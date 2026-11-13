@@ -513,3 +513,21 @@ Bağışçı sayfası (`flxb-donors&donor=ID`) Flux CRM varsa `flxcrm_person_car
 - Karta eklenenler: `flxcrm_person_card_actions` (Bağışlar, Bağış ekle), `flxcrm_person_card_main_before` (düzenli bağışlar, varsa), `flxcrm_person_card_side` (bağış özeti, sertifikalar, KVKK + bağış notu).
 - `flxb_use_crm_card` (bool, `$donor`): false → hep klasik kart.
 - `flxb-add&donor=ID`: bağış ekleme formunda bağışçı bilgileri hazır gelir.
+
+## Etkinlik mesajı değerleri (2.28.0)
+
+Flux CRM › Etkinlikler › Etkinliğe mesaj ekranına kişi başı değerler (`flx_event_vars`, CRM 0.7.0+; sınıf `FLXB_Event_Vars`).
+
+| Anahtar | Değer |
+|---|---|
+| `{bagis_tutari}` | Kişinin bu etkinliğe bağlı ödenmiş bağış tutarı (birden çok para birimi: `450 ₺ + $20`) |
+| `{bagis_adedi}` | Adet toplamı |
+| `{bagis_turu}` | Bağış türleri (virgülle) |
+| `{birim_fiyat}` | Birim fiyat(lar) |
+| `{bagis_tarihi}` | Son bağış tarihi (`flxb_date`, `date` biçimi) |
+| `{<tür>_adedi}`, `{<tür>_tutari}` | Etkinlikte geçen her bağış türü için; anahtar tür slug'ından (`fidan-bagisi` → `{fidan_bagisi_adedi}`) |
+
+- Etkinlik bağı: sertifika `event_id` (Flux Certificates). Bağış satırı `certificate_code` ile eşlenir, ek kodlar `meta.certificates`. Yalnız `FLXB_Donations::PAID` durumları.
+- Bağışçı (`donor_id` = ortak kişi id) satırın tamamını alır; adına sertifika yapılan kişi payını alır (sertifikadaki `fidan_sayisi`, yoksa satır adedi / sertifika sayısı) × birim fiyat. İki rol aynı kişideyse tamamı.
+- Filtre `flxb_event_vars` ( $out, $event_id, $per ): `$per` = person_id => [ donation_id => { donation_id, type_id, type, qty, amount, currency, unit_price, created_at } ].
+- Kişi değerleri alıcıyla gider; Flux Mail `recipient_vars` bildirene kadar CRM ekranında kapalıdır.

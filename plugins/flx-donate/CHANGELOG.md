@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 2.28.0
+- Flux CRM etkinlik mesajında kişiye özel bağış değerleri (Flux CRM 0.7.0+, `flx_event_vars`): `{bagis_tutari}`, `{bagis_adedi}`, `{bagis_turu}`, `{birim_fiyat}`, `{bagis_tarihi}` ve etkinlikteki her bağış türü için `{<tür>_adedi}`, `{<tür>_tutari}` (ör. `{fidan_adedi}`, `{fidan_tutari}`). Değerler mesaj ekranındaki düğmelerde ve kişi seçerek önizlemede görünür.
+- Bağış, sertifikası o etkinlikte olan ödenmiş bağışlardan bulunur. Bağışçı bağışın tamamını, adına sertifika yapılan kişi kendi payını (sertifikadaki fidan) görür. Flux Certificates ya da Flux CRM 0.7.0 yoksa hiçbir şey değişmez.
+
 ## 2.27.0
 - Flux AI & MCP için salt okunur "Bağış özeti" aracı (`flxb_donation_summary`): seçilen gün ya da aralıkta ödenen bağış sayısı ve tutarı, fidan adedi, yeni bağışçı, türe göre kırılım (fidan, zekat, kurban …), tek seferlik / aylık, dekont onayı bekleyen ve ödeme bekleyen bağışlar (aralıkta ve şu an açık olanlar), iptal / başarısız / iade, aktif aylık bağışlar. `compare` ile bir önceki eş dönem ve fark. Günlük brifing artık bağış verisini okuyabilir.
 - Araç kişisel veri döndürmez; diğer para birimleri ayrı listelenir, toplama karışmaz.

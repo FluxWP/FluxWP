@@ -6004,3 +6004,18 @@ msgstr "Bir şey değiştirdiniz: önce \"Uygula ve yeniden kontrol et\"e basın
 
 msgid "%1$s names for %2$s units: the extra names go on the first certificate"
 msgstr "%2$s adet için %1$s ad: fazla adlar ilk sertifikaya yazılır"
+
+msgid "Donation amount of the person"
+msgstr "Kişinin bağış tutarı"
+
+msgid "Donation quantity of the person"
+msgstr "Kişinin bağış adedi"
+
+msgid "Donation date"
+msgstr "Bağış tarihi"
+
+msgid "%s: quantity"
+msgstr "%s: adet"
+
+msgid "%s: amount"
+msgstr "%s: tutar"
