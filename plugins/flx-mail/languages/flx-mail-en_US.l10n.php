@@ -1845,5 +1845,9 @@ return array(
   'Sending paused. Press Resume to continue where it stopped.' => 'Sending paused. Press Resume to continue where it stopped.',
   'Sending resumed.' => 'Sending resumed.',
   'Estimated finish:' => 'Estimated finish:',
+  '%s reached' => '%s reached',
+  '%s read' => '%s read',
+  '%s replied' => '%s replied',
+  '%s opted out' => '%s opted out',
  ),
 );

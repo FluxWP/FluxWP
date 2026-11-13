@@ -233,7 +233,8 @@ function flxi_campaign_progress( $id ) {
  * Kampanyanın alıcıları (kuyruk satırları).
  *
  * @param array $args status ('' tümü; 'sent', 'failed,skipped' gibi virgüllü), per_page (en çok 200), page, s (alıcı/ad arama)
- * @return array rows [ id, name, recipient, status, label, error, sent_at, scheduled_at ] (tarihler GMT), total
+ * @return array rows [ id, name, recipient, status, label, error, sent_at, scheduled_at, delivered, read, replied, optout,
+ *               delivered_at, read_at, replied_at ] (tarihler GMT; bilinmeyen null), total
  */
 function flxi_campaign_recipients( $id, array $args = array() ) {
 	global $wpdb;
@@ -260,9 +261,13 @@ function flxi_campaign_recipients( $id, array $args = array() ) {
 	}
 	$where = implode( ' AND ', $w );
 	$total = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $t WHERE $where", $p ) ); // phpcs:ignore
-	$rows  = (array) $wpdb->get_results( $wpdb->prepare( "SELECT id, name, recipient, status, error, sent_at, scheduled_at FROM $t WHERE $where ORDER BY id ASC LIMIT %d OFFSET %d", array_merge( $p, array( $per, ( $page - 1 ) * $per ) ) ), ARRAY_A ); // phpcs:ignore
+	$rows  = (array) $wpdb->get_results( $wpdb->prepare( "SELECT id, name, recipient, status, error, sent_at, scheduled_at, ext_id FROM $t WHERE $where ORDER BY id ASC LIMIT %d OFFSET %d", array_merge( $p, array( $per, ( $page - 1 ) * $per ) ) ), ARRAY_A ); // phpcs:ignore
 	$lab   = function_exists( 'flxi_queue_labels' ) ? flxi_queue_labels() : array();
+	$c     = flxi_get_campaign( $id );
+	$eng   = ( $c && function_exists( 'flxi_engagement_rows' ) ) ? flxi_engagement_rows( $c, $rows ) : array();
 	foreach ( $rows as &$r ) {
+		$r += array_intersect_key( (array) ( $eng[ $r['id'] ] ?? array() ), array_flip( array( 'delivered', 'read', 'replied', 'optout', 'delivered_at', 'read_at', 'replied_at' ) ) );
+		unset( $r['ext_id'] );
 		$r['id']    = (int) $r['id'];
 		$r['label'] = (string) ( $lab[ $r['status'] ] ?? $r['status'] );
 		$r['error'] = (string) $r['error'];

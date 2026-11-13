@@ -3072,3 +3072,15 @@ msgstr "Sending resumed."
 
 msgid "Estimated finish:"
 msgstr "Estimated finish:"
+
+msgid "%s reached"
+msgstr "%s reached"
+
+msgid "%s read"
+msgstr "%s read"
+
+msgid "%s replied"
+msgstr "%s replied"
+
+msgid "%s opted out"
+msgstr "%s opted out"

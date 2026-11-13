@@ -3072,3 +3072,15 @@ msgstr "Gönderim sürüyor."
 
 msgid "Estimated finish:"
 msgstr "Tahmini bitiş:"
+
+msgid "%s reached"
+msgstr "%s ulaştı"
+
+msgid "%s read"
+msgstr "%s okudu"
+
+msgid "%s replied"
+msgstr "%s cevap verdi"
+
+msgid "%s opted out"
+msgstr "%s IPTAL"

@@ -466,3 +466,8 @@ html.flxa-dark .flxi-wa-state[data-state="error"], html.flxa-dark .flxi-wa-state
 	.flxi-wrap .flxi-table--bl td.flxi-nowrap { white-space: normal; }
 	.flxi-wrap .flxi-bl-act { text-align: left; }
 }
+.flxi-wrap .flxi-eng-row { margin-top: 2px; font-size: 12px; text-align: left; }
+.flxi-wrap .flxi-eta { white-space: normal; max-width: 220px; font-size: 12px; margin-bottom: 4px; }
+.flxi-wrap .flxi-eng--read { color: #1d6fb8; }
+.flxi-wrap .flxi-eng--replied { color: var(--flxi-pd, #146c43); }
+.flxi-wrap .flxi-eng--optout { color: var(--flxi-red, #b42318); }
