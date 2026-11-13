@@ -2535,3 +2535,6 @@ msgstr ""
 
 msgid "This tool only works in the AI chat."
 msgstr ""
+
+msgid "Promotional content: skip people who opted out (STOP) and add an opt-out line"
+msgstr ""

@@ -69,6 +69,7 @@ add_action(
 						'panel'    => ! empty( $post['notify_panel'] ),
 						'whatsapp' => ! empty( $post['notify_wa'] ) ? (string) ( $post['notify_whatsapp'] ?? '' ) : '',
 						'to'       => (array) json_decode( (string) ( $post['notify_to'] ?? '[]' ), true ),
+						'promo'    => ! empty( $post['notify_promo'] ),
 					),
 				),
 				$id
@@ -383,6 +384,7 @@ function flxai_task_form( $t ) {
 		'panel'    => true,
 		'whatsapp' => '',
 		'to'       => array(),
+		'promo'    => false,
 	);
 	echo '<tr><th><label for="flxai-task-notify">' . esc_html__( 'Notify me', 'flx-ai' ) . '</label></th><td><select id="flxai-task-notify" name="notify">';
 	foreach ( array(
@@ -420,6 +422,7 @@ function flxai_task_form( $t ) {
 	echo '<input type="hidden" name="notify_to" value="' . esc_attr( wp_json_encode( $n['to'] ) ) . '">';
 	echo '<div class="flxai-rcp-list"></div>';
 	echo '<div class="flxai-rcp-add"><input type="search" class="regular-text" autocomplete="off" placeholder="' . esc_attr__( 'Search name, e-mail, phone or group…', 'flx-ai' ) . '" aria-label="' . esc_attr__( 'Add recipient', 'flx-ai' ) . '"><div class="flxai-rcp-res" hidden></div></div>';
+	echo '<label class="flxai-check"><input type="checkbox" name="notify_promo" value="1"' . checked( ! empty( $n['promo'] ), true, false ) . '> ' . esc_html__( 'Promotional content: skip people who opted out (STOP) and add an opt-out line', 'flx-ai' ) . '</label>';
 	echo '<p class="description">' . esc_html__( 'You can also say it in the AI chat, e.g. "send the daily briefing to Ayşe by WhatsApp and to the board group".', 'flx-ai' ) . '</p>';
 	echo '</div></div></td></tr>';
 	if ( function_exists( 'flxai_ws_ready' ) ) {

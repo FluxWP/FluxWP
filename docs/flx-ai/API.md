@@ -400,6 +400,9 @@ add_filter( 'flxai_slash_commands', function ( $c ) {
 
 Sohbet listesi (`GET chats`) her öğede `task` (görev adı ya da boş) döner.
 
+## Bildirim türü (0.15.1)
+- Görev meta `notify.promo` (bool, varsayılan false; sohbet aracında `notify_promo`). true ise `notify.to` içindeki personel olmayan alıcılara (CRM kişisi, e-posta, telefon, WhatsApp grubu) `flxi_send_message` / `flxi_send_email` çağrısı `kind => 'marketing'` ile gider (Flux Mail 1.17.0+ IPTAL ve abonelik çıkışına uyar, çıkış satırı ekler). Diğer her durumda `kind => 'info'`. Eski Flux Mail `kind`'i yok sayar.
+
 ## Görsel rapor (0.15.0)
 - Sohbet aracı `flxai_visual_report` `{title, html, file?}`: `html` `<main>` içine konacak Tailwind gövdesi ya da tam `<html>` belgesi. Gövde şablona sarılır (Tailwind CDN 3.4.16, `darkMode:'media'`; gövdede `new Chart` varsa Chart.js 4.4.1, `class="mermaid"` varsa Mermaid 11.4.1). Dosya `<sohbet klasörü>/raporlar/<slug>.html`; aynı `file` ile güncellenir. Dönüş `{path, title, saved}`. Flux Files (çalışma alanı) gerekir; yalnız sohbette çalışır (MCP'de yok).
 - PHP: `flxai_report_save( $chat, $title, $html, $file = '' )` → `{path,title}` | `WP_Error`; `flxai_report_wrap( $title, $html )`.

@@ -1377,5 +1377,6 @@ return array(
   'The report is too large.' => 'The report is too large.',
   'Create a visual report' => 'Create a visual report',
   'This tool only works in the AI chat.' => 'This tool only works in the AI chat.',
+  'Promotional content: skip people who opted out (STOP) and add an opt-out line' => 'Promotional content: skip people who opted out (STOP) and add an opt-out line',
  ),
 );
