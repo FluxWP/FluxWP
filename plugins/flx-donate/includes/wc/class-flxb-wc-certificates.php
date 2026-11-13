@@ -265,9 +265,23 @@ final class FLXB_WC_Certificates {
 
 	/** Make one certificate. @return array|WP_Error */
 	private static function make_one( WC_Order $order, $item, array $line, array $template, $tpl_id, $name, $count, $phone, $email, $billing ) {
-		$p = flxs_upsert_person( $name, $phone, $email );
+		/* 2.29.0: a certificate in someone else's name is still sent to the donor's phone / e-mail when the person has
+		   none, but those contacts are not written on the person's card: with shared contacts (Flux CRM) the donor's
+		   e-mail on "Ayşe" made the donor's own record take Ayşe's name. */
+		$pphone = $phone;
+		$pemail = $email;
+		if ( '' !== trim( (string) $billing ) && flxb_fold( $name ) !== flxb_fold( $billing ) ) {
+			list( $dphone, $demail ) = self::donor_contacts( $order );
+			if ( '' !== $dphone && $phone === $dphone ) {
+				$pphone = '';
+			}
+			if ( '' !== $demail && strtolower( $email ) === strtolower( $demail ) ) {
+				$pemail = '';
+			}
+		}
+		$p = flxs_upsert_person( $name, $pphone, $pemail );
 		if ( is_wp_error( $p ) && in_array( $p->get_error_code(), array( 'flxs_phone', 'flxs_email' ), true ) ) {
-			$p = 'flxs_phone' === $p->get_error_code() ? flxs_upsert_person( $name, '', $email ) : flxs_upsert_person( $name, $phone, '' );
+			$p = 'flxs_phone' === $p->get_error_code() ? flxs_upsert_person( $name, '', $pemail ) : flxs_upsert_person( $name, $pphone, '' );
 			if ( is_wp_error( $p ) ) {
 				$p = flxs_upsert_person( $name, '', '' );
 			}

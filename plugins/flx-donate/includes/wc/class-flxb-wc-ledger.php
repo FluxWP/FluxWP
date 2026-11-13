@@ -106,7 +106,8 @@ class FLXB_WC_Ledger {
 			case 'pending':
 				/* Unpaid card attempts stay out of the ledger; bank transfers and call-centre orders do not. */
 				/* 2.3.0: so are staff requests (flxb-ref), so the referral sees the gift before it is paid. */
-				return in_array( $order->get_payment_method(), array( FLXB_WC_Havale::ID ), true ) || in_array( $order->get_created_via(), array( 'flx-chat', 'flxb-ref' ), true ) ? 'pending' : '';
+				/* 2.29.0: and gifts recorded by hand (Donations › Add donation) before the money arrives. */
+				return in_array( $order->get_payment_method(), array( FLXB_WC_Havale::ID ), true ) || in_array( $order->get_created_via(), array( 'flx-chat', 'flxb-ref', 'flxb-manual' ), true ) ? 'pending' : '';
 			case 'cancelled':
 				return 'canceled';
 			case 'failed':
@@ -126,6 +127,8 @@ class FLXB_WC_Ledger {
 				return 'renewal';
 			case 'flxb-ref':
 				return 'staff';
+			case 'flxb-manual':
+				return 'manual'; // 2.29.0: Donations › Add donation
 		}
 		return 'woocommerce';
 	}

@@ -6019,3 +6019,51 @@ msgstr "%s: adet"
 
 msgid "%s: amount"
 msgstr "%s: tutar"
+
+msgid "%1$s / %2$s"
+msgstr "%1$s / %2$s"
+
+msgid "%1$s × %2$s"
+msgstr "%1$s × %2$s"
+
+msgid "+ Add note"
+msgstr "+ Not ekle"
+
+msgid "+ Add person"
+msgstr "+ Kişi ekle"
+
+msgid "+ Add referral and note"
+msgstr "+ Referans ve not ekle"
+
+msgid "Different unit price"
+msgstr "Farklı birim fiyat"
+
+msgid "E-mail allowed"
+msgstr "E-posta izni"
+
+msgid "Each person gets one unit and their own certificate; the remaining units go to the first person. A certificate without WhatsApp or e-mail goes to the donor."
+msgstr "Her kişi 1 adet ve kendi sertifikasını alır, kalan adetler 1. kişide. WhatsApp ya da e-postası boş kişinin sertifikası bağışçıya gider."
+
+msgid "Full name"
+msgstr "Ad soyad"
+
+msgid "Matched on phone or e-mail"
+msgstr "Telefon ya da e-postayla eşleşir"
+
+msgid "No donation type (free amount)"
+msgstr "Bağış türü yok (serbest tutar)"
+
+msgid "Optional"
+msgstr "İsteğe bağlı"
+
+msgid "SMS allowed"
+msgstr "SMS izni"
+
+msgid "This donation is on behalf of other people (one certificate each)"
+msgstr "Bu bağış başka kişiler adına (her kişiye ayrı sertifika)"
+
+msgid "WhatsApp + e-mail"
+msgstr "WhatsApp + e-posta"
+
+msgid "to the donor"
+msgstr "bağışçıya"

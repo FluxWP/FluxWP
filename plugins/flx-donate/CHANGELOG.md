@@ -1,5 +1,12 @@
 # Değişiklikler
 
+## 2.29.0
+- "Bağış ekle" sadeleşti: solda bağış + bağışçı, sağda canlı özet (toplam, kime kaç adet/sertifika gidecek) ve ödeme. Tür ve seçenek tek listede, tutar adet × fiyattan kendiliğinden hesaplanır. Farklı birim fiyat ve serbest tutar yalnız gerekince açılır. Yöntem (Havale / Nakit / Diğer) ve durum (Ödendi / Ödeme bekleniyor) tek tıkla seçilir. Hesap yalnız havalede, referans ve not "+ ekle" altında görünür.
+- Başka kişiler adına bağış: her kişiye ad, WhatsApp ve e-posta girilir, her biri 1 adet ve kendi sertifikasını alır (sitedeki "Başka bir kişi ekle" ile aynı). Kalan adetler 1. kişide kalır. WhatsApp ya da e-postası boş kişinin sertifikası bağışçıya gider.
+- Telefon alanları ortak bayraklı, ülke kodlu alana geçti.
+- Bağış türü seçilen elle kayıt artık WooCommerce siparişi olarak açılır (kaynak "Elle kayıt"). Ödendi olarak kaydedilince sertifikalar sitedeki bağışla aynı yoldan hazırlanır ve gönderilir. Önceden elle girilen bağışa sertifika çıkmıyordu. Türsüz serbest tutar eskisi gibi yalnız bağış kaydıdır.
+- Düzeltme: başkası adına sertifikada kişinin kendi iletişimi yoksa bağışçının telefon/e-postası artık o kişinin kartına yazılmaz (yalnız gönderimde kullanılır). Önceden ortak kişilerde bağışçının kaydı sertifikadaki kişinin adını alabiliyordu.
+
 ## 2.28.0
 - Flux CRM etkinlik mesajında kişiye özel bağış değerleri (Flux CRM 0.7.0+, `flx_event_vars`): `{bagis_tutari}`, `{bagis_adedi}`, `{bagis_turu}`, `{birim_fiyat}`, `{bagis_tarihi}` ve etkinlikteki her bağış türü için `{<tür>_adedi}`, `{<tür>_tutari}` (ör. `{fidan_adedi}`, `{fidan_tutari}`). Değerler mesaj ekranındaki düğmelerde ve kişi seçerek önizlemede görünür.
 - Bağış, sertifikası o etkinlikte olan ödenmiş bağışlardan bulunur. Bağışçı bağışın tamamını, adına sertifika yapılan kişi kendi payını (sertifikadaki fidan) görür. Flux Certificates ya da Flux CRM 0.7.0 yoksa hiçbir şey değişmez.
