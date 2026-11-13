@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.21.0 — 2026-11-13
+- Flux Chat'te toplu mesaj başlığı: kampanyadan (ya da CRM etkinliğinden) giden WhatsApp mesajının balonunun üstünde kısa kampanya adı (48 karakter), tıklayınca gönderim detayı (etkinlik gönderimlerinde CRM etkinliğinin gönderilen mesajları). Flux Chat 1.48.0+ `flxc_message_origin` filtresi.
+- Eşleşme: kuyruktaki mesaj kimliği (`ext_id`), gönderim öncesi bekleyen işaret (artık kampanya id'si de tutar), eski mesajlarda numara + zaman (±10 dk). Gönderim sonrası `flxc_set_message_origin()` varsa çağrılır.
+- API: `flxi_campaign_origin( $id )`, `flxi_campaign_for_message( $ctx )`, `flxi_campaign_url( $campaign )` + filtre `flxi_campaign_url`.
+
 ## 1.20.0 — 2026-11-13
 - Gönderim bazlı etkileşim: kaç kişiye **ulaştı**, kaçı **okudu**, kaçı **cevap verdi** (gönderimden sonraki 72 saatte, IPTAL/BAŞLA hariç), kaçı **IPTAL** yazdı. Gönder › Son gönderimler'de her satırın altında.
 - WhatsApp'ta veriler Flux Chat'ten gelir (Flux Mail'in gönderdiği mesaj orada telefondan giden olarak görünür, çift/mavi tik güncellenir). Kuyruk satırı artık gönderilen mesaj kimliğini saklar (`ext_id`, DB 5); eski satırlar gönderim saatine en yakın mesajla eşleşir. SMS'te Netgsm teslim raporu, e-postada gönderildi = ulaştı (açılma takibi yok).

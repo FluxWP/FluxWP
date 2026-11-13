@@ -383,6 +383,13 @@ function flxi_run_queue( $budget = 20 ) {
 			if ( $res['ok'] ) {
 				$stats['sent']++;
 				$wpdb->update( $t, array( 'status' => 'sent', 'sent_at' => flxi_now(), 'error' => '', 'ext_id' => mb_substr( (string) ( $res['external_id'] ?? '' ), 0, 120 ) ), array( 'id' => $row['id'] ) );
+				// Flux Chat 1.48.0+: sohbette balonun üstünde kampanya başlığı.
+				if ( 'whatsapp' === $row['channel'] && '' !== (string) ( $res['external_id'] ?? '' ) && function_exists( 'flxc_set_message_origin' ) ) {
+					$origin = flxi_campaign_origin( $cid );
+					if ( $origin ) {
+						flxc_set_message_origin( (string) $res['external_id'], $origin );
+					}
+				}
 			} elseif ( ! empty( $res['skip'] ) ) {
 				$wpdb->update( $t, array( 'status' => 'skipped', 'error' => mb_substr( (string) $res['error'], 0, 500 ) ), array( 'id' => $row['id'] ) );
 			} elseif ( ! empty( $res['retry'] ) && (int) $row['attempts'] < 2 ) {

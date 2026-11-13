@@ -197,6 +197,18 @@ flxi_campaign_recipients( $cid, array( 'per_page' => 50 ) );
 
 WhatsApp eşleşmesi: kuyruk satırındaki mesaj kimliği (`ext_id`), eski satırlarda gönderim saatine 10 dk içinde en yakın giden mesaj. Flux Chat yoksa WhatsApp alanları null. `delivered_at` / `read_at` Flux Chat mesaj `meta.delivered_at` / `meta.read_at` (Unix) tutarsa dolar. Cevap süresi `flxi_engagement_reply_window` (saniye) ile değişir.
 
+### Sohbette toplu mesaj başlığı (1.21.0+)
+
+Flux Chat 1.48.0+ `flxc_message_origin` filtresine Flux Mail cevap verir (kaynak boş, `flx-mail*` ya da `phone` olan mesajlar; diğerlerinde `$origin` aynen döner).
+
+```php
+flxi_campaign_origin( $cid );
+// [ label (≤48 karakter), url, kind => 'event'|'campaign', campaign_id, ref ]
+flxi_campaign_for_message( array( 'wa_id' => '', 'phone' => '', 'body' => '', 'ts' => 0 ) ); // kampanya id | 0
+```
+
+Eşleşme sırası: kuyruk `ext_id` = `wa_id`; bekleyen gönderim işareti (numara + metin, 2 dk, kampanya id'li); numaranın son 10 hanesi + gönderim saati ±10 dk. `url` varsayılan Gönder › Kuyruk (`flxi-kuyruk&campaign=N`); `data.ref = flxcrm_event:N` ise `flxcrm_events_url( id, view=message, sub=sent )`. CRM kendi gönderim detayına `flxi_campaign_url( $url, $campaign )` filtresiyle yönlendirebilir.
+
 ### WhatsApp ban koruması (1.17.0+)
 
 Evolution API / Flux WPAPI bağlantılarında, **yalnız kuyruktaki toplu gönderimlere** uygulanır (sohbet cevapları, sertifika, tekil `flxi_send_message()` beklemez). Ayarlar bağlantı başına, Bağlantılar › düzenle › "Ban koruması":

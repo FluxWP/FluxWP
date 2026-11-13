@@ -366,7 +366,7 @@ function flxi_pending_hash( $body ) {
  * Göndermeden ÖNCE bırakılan işaret (2 dk): Evolution'ın "fromMe" echo webhook'u HTTP yanıtından önce
  * gelirse Flux Chat bu mesajı telefondan yazılmış sanmasın. Ayrı istekte okunduğu için seçenekte tutulur.
  */
-function flxi_mark_sending( $phone, $body ) {
+function flxi_mark_sending( $phone, $body, $campaign_id = 0 ) {
 	$k = flxi_pending_key( $phone );
 	if ( '' === $k ) {
 		return;
@@ -387,7 +387,7 @@ function flxi_mark_sending( $phone, $body ) {
 			unset( $d[ $key ] );
 		}
 	}
-	$d[ $k ][] = array( $now, flxi_pending_hash( $body ) );
+	$d[ $k ][] = array( $now, flxi_pending_hash( $body ), (int) $campaign_id );
 	if ( count( $d ) > 300 ) {
 		$d = array_slice( $d, -300, null, true );
 	}
@@ -442,3 +442,19 @@ add_action(
 		flxi_redirect( flxi_back( flxi_admin_url( 'flxi-kara-liste' ) ), __( 'Removed from the opt-out list. Promotional messages will be sent to this person again.', 'flx-mail' ) );
 	}
 );
+
+/** Bekleyen işaretteki kampanya (son 2 dk, bu numara ve metin). 0: yok. */
+function flxi_sending_campaign( $phone, $body = null ) {
+	$k = flxi_pending_key( $phone );
+	$d = get_option( 'flxi_sending', array() );
+	if ( '' === $k || ! is_array( $d ) || empty( $d[ $k ] ) ) {
+		return 0;
+	}
+	$h = null === $body || '' === trim( (string) $body ) ? '' : flxi_pending_hash( $body );
+	foreach ( array_reverse( (array) $d[ $k ] ) as $r ) {
+		if ( (int) $r[0] > time() - 120 && ( '' === $h || $h === $r[1] ) && ! empty( $r[2] ) ) {
+			return (int) $r[2];
+		}
+	}
+	return 0;
+}
