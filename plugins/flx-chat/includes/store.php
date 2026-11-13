@@ -594,10 +594,13 @@ function flxc_edit_minutes() {
 	return (int) min( 15, max( 0, (int) apply_filters( 'flxc_edit_minutes', 15 ) ) );
 }
 
-/** Düzenlenebileceği son an (ms), olmuyorsa 0. Yalnız Evolution hattından giden, gönderilmiş metin mesajı. */
+/**
+ * Düzenlenebileceği son an (ms), olmuyorsa 0. Yalnız Evolution hattından giden, gönderilmiş mesaj:
+ * metin ya da (1.46.0) fotoğraf/video/belge açıklaması (WhatsApp açıklamayı da düzenletir).
+ */
 function flxc_edit_until( $m ) {
 	$min = flxc_edit_minutes();
-	if ( ! $min || 'out' !== $m['direction'] || '' === (string) $m['wa_id'] || 'text' !== $m['type'] || in_array( $m['status'], array( 'failed', 'pending', '' ), true ) || ! flxc_conn_can_revoke( $m['conn'] ) ) {
+	if ( ! $min || 'out' !== $m['direction'] || '' === (string) $m['wa_id'] || ! in_array( $m['type'], array( 'text', 'image', 'video', 'document' ), true ) || in_array( $m['status'], array( 'failed', 'pending', '' ), true ) || ! flxc_conn_can_revoke( $m['conn'] ) ) {
 		return 0;
 	}
 	return (int) $m['ts'] + $min * MINUTE_IN_SECONDS * 1000;

@@ -3267,5 +3267,12 @@ return array(
   'The time limit for editing has passed (WhatsApp allows 15 minutes).' => 'The time limit for editing has passed (WhatsApp allows 15 minutes).',
   'The message can\'t be empty.' => 'The message can\'t be empty.',
   'WhatsApp did not edit the message.' => 'WhatsApp did not edit the message.',
+  'Sent from the chat' => 'Sent from the chat',
+  'Drop files to attach' => 'Drop files to attach',
+  'You can attach up to {n} files.' => 'You can attach up to {n} files.',
+  'Upload failed' => 'Upload failed',
+  'Files are uploading, please wait.' => 'Files are uploading, please wait.',
+  'Attachments' => 'Attachments',
+  'The upload has expired. Please add the file again.' => 'The upload has expired. Please add the file again.',
  ),
 );

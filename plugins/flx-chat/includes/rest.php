@@ -60,6 +60,8 @@ function flxc_register_rest() {
 		array( '/messages/(?P<id>\d+)/edit', 'POST', 'flxc_rest_edit_message', $use ),
 		array( '/messages/(?P<id>\d+)', 'DELETE', 'flxc_rest_delete_message', $use ),
 		array( '/media/(?P<id>\d+)', 'GET', 'flxc_rest_media', $use ),
+		array( '/uploads', 'POST', 'flxc_rest_upload', $use ),
+		array( '/uploads/(?P<token>[a-z0-9]+)', 'DELETE', 'flxc_rest_upload_delete', $use ),
 		array( '/check-number', 'POST', 'flxc_rest_check_number', $use ),
 		array( '/link-preview', 'GET', 'flxc_rest_link_preview', $use ),
 		array( '/replies', 'GET', 'flxc_rest_replies', $use ),
@@ -429,37 +431,30 @@ function flxc_rest_send( WP_REST_Request $req ) {
 		'source'    => in_array( $req->get_param( 'source' ), array( 'quick', 'ai' ), true ) ? $req->get_param( 'source' ) : 'agent',
 		'preview'   => false !== $req->get_param( 'preview' ) && '0' !== (string) $req->get_param( 'preview' ),
 	);
-	$files = $req->get_file_params();
-	if ( ! empty( $files['file'] ) && empty( $files['file']['error'] ) ) {
-		$f    = $files['file'];
-		$max  = (int) apply_filters( 'flxc_max_upload', 16 * MB_IN_BYTES );
-		if ( $f['size'] > $max ) {
-			/* translators: %s: size */
-			return new WP_Error( 'flxc_big', sprintf( __( 'File is too large (max %s).', 'flx-chat' ), size_format( $max ) ), array( 'status' => 400 ) );
+	$files  = $req->get_file_params();
+	$upload = sanitize_key( (string) $req->get_param( 'upload' ) );
+	if ( $upload ) {
+		// 1.46.0: dosya önceden /uploads ile yüklendi (ek kartı ilerleme çubuğuyla); burada yalnız token gelir.
+		$up = flxc_upload_take( $upload );
+		if ( is_wp_error( $up ) ) {
+			return $up;
 		}
-		$name = sanitize_file_name( (string) ( $req->get_param( 'name' ) ? $req->get_param( 'name' ) : $f['name'] ) );
-		$mime = (string) $f['type'];
-		$chk  = wp_check_filetype_and_ext( $f['tmp_name'], $name );
-		if ( ! empty( $chk['type'] ) ) {
-			$mime = $chk['type'];
-		}
-		$mime = $mime ? $mime : 'application/octet-stream';
-		if ( preg_match( '/\.(php\d?|phtml|phar|js|html?|svg)$/i', $name ) ) {
-			return new WP_Error( 'flxc_type', __( 'This file type cannot be sent.', 'flx-chat' ), array( 'status' => 400 ) );
-		}
-		if ( 'audio' !== $type ) {
-			if ( 0 === strpos( $mime, 'image/' ) && 'image/svg+xml' !== $mime ) {
-				$type = 'image';
-			} elseif ( 0 === strpos( $mime, 'video/' ) ) {
-				$type = 'video';
-			} else {
-				$type = 'document';
-			}
-		}
+		$type         = 'audio' === $type ? 'audio' : $up['type'];
 		$args['type'] = $type;
-		$args['file'] = $f['tmp_name'];
-		$args['mime'] = 'audio' === $type ? ( $mime ? $mime : 'audio/ogg' ) : $mime;
-		$args['name'] = $name;
+		$args['file'] = $up['file'];
+		$args['mime'] = $up['mime'];
+		$args['name'] = $up['name'];
+		$staged       = $up['file'];
+	} elseif ( ! empty( $files['file'] ) && empty( $files['file']['error'] ) ) {
+		$chk = flxc_upload_check( $files['file'], (string) $req->get_param( 'name' ), $type );
+		if ( is_wp_error( $chk ) ) {
+			return $chk;
+		}
+		$type         = $chk['type'];
+		$args['type'] = $type;
+		$args['file'] = $files['file']['tmp_name'];
+		$args['mime'] = $chk['mime'];
+		$args['name'] = $chk['name'];
 	} elseif ( 'text' !== $type && 'note' !== $type ) {
 		return new WP_Error( 'flxc_file', __( 'File could not be uploaded.', 'flx-chat' ), array( 'status' => 400 ) );
 	}
@@ -467,11 +462,101 @@ function flxc_rest_send( WP_REST_Request $req ) {
 		return new WP_Error( 'flxc_empty', __( 'Message is empty.', 'flx-chat' ), array( 'status' => 400 ) );
 	}
 	$m = flxc_send( $chat, $args );
+	if ( ! empty( $staged ) ) {
+		wp_delete_file( $staged );
+	}
 	if ( is_wp_error( $m ) ) {
 		$m->add_data( array( 'status' => 400 ) );
 		return $m;
 	}
 	return array( 'message' => flxc_messages_for_js( array( $m ) )[0] );
+}
+
+/**
+ * Yüklenen dosyayı denetler: boyut, yasak uzantı, gerçek MIME, mesaj türü.
+ *
+ * @return array|WP_Error type, mime, name
+ */
+function flxc_upload_check( $f, $name, $type ) {
+	$max = (int) apply_filters( 'flxc_max_upload', 16 * MB_IN_BYTES );
+	if ( $f['size'] > $max ) {
+		/* translators: %s: size */
+		return new WP_Error( 'flxc_big', sprintf( __( 'File is too large (max %s).', 'flx-chat' ), size_format( $max ) ), array( 'status' => 400 ) );
+	}
+	$name = sanitize_file_name( '' !== $name ? $name : (string) $f['name'] );
+	$mime = (string) $f['type'];
+	$chk  = wp_check_filetype_and_ext( $f['tmp_name'], $name );
+	if ( ! empty( $chk['type'] ) ) {
+		$mime = $chk['type'];
+	}
+	$mime = $mime ? $mime : 'application/octet-stream';
+	if ( preg_match( '/\.(php\d?|phtml|phar|js|html?|svg)$/i', $name ) ) {
+		return new WP_Error( 'flxc_type', __( 'This file type cannot be sent.', 'flx-chat' ), array( 'status' => 400 ) );
+	}
+	if ( 'audio' !== $type ) {
+		if ( 0 === strpos( $mime, 'image/' ) && 'image/svg+xml' !== $mime ) {
+			$type = 'image';
+		} elseif ( 0 === strpos( $mime, 'video/' ) ) {
+			$type = 'video';
+		} else {
+			$type = 'document';
+		}
+	} elseif ( ! $mime ) {
+		$mime = 'audio/ogg';
+	}
+	return array( 'type' => $type, 'mime' => $mime, 'name' => $name );
+}
+
+/** Ek kartı için ön yükleme: dosya geçici klasöre alınır, token döner (1 saat geçerli, yalnız yükleyen kullanır). */
+function flxc_rest_upload( WP_REST_Request $req ) {
+	$files = $req->get_file_params();
+	if ( empty( $files['file'] ) || ! empty( $files['file']['error'] ) ) {
+		return new WP_Error( 'flxc_file', __( 'File could not be uploaded.', 'flx-chat' ), array( 'status' => 400 ) );
+	}
+	$chk = flxc_upload_check( $files['file'], (string) $req->get_param( 'name' ), '' );
+	if ( is_wp_error( $chk ) ) {
+		return $chk;
+	}
+	$dir = flxc_media_dir() . '/up-tmp';
+	wp_mkdir_p( $dir );
+	flxc_upload_gc( $dir );
+	$token = strtolower( wp_generate_password( 24, false, false ) );
+	$file  = $dir . '/' . $token . '.' . flxc_mime_ext( $chk['mime'], $chk['name'] );
+	// phpcs:ignore WordPress.WP.AlternativeFunctions
+	if ( ! @copy( $files['file']['tmp_name'], $file ) ) {
+		return new WP_Error( 'flxc_file', __( 'File could not be uploaded.', 'flx-chat' ), array( 'status' => 500 ) );
+	}
+	set_transient( 'flxc_up_' . $token, array_merge( $chk, array( 'file' => $file, 'user' => get_current_user_id() ) ), HOUR_IN_SECONDS );
+	return array( 'token' => $token, 'type' => $chk['type'] );
+}
+
+/** Ön yüklenen dosyayı gönderim için alır (token tek kullanımlık). */
+function flxc_upload_take( $token ) {
+	$up = get_transient( 'flxc_up_' . $token );
+	delete_transient( 'flxc_up_' . $token );
+	if ( ! is_array( $up ) || (int) $up['user'] !== get_current_user_id() || ! is_readable( $up['file'] ) ) {
+		return new WP_Error( 'flxc_file', __( 'The upload has expired. Please add the file again.', 'flx-chat' ), array( 'status' => 400 ) );
+	}
+	return $up;
+}
+
+/** Ek kartından kaldırılan dosyayı siler. */
+function flxc_rest_upload_delete( WP_REST_Request $req ) {
+	$up = get_transient( 'flxc_up_' . sanitize_key( (string) $req['token'] ) );
+	if ( is_array( $up ) && (int) $up['user'] === get_current_user_id() ) {
+		delete_transient( 'flxc_up_' . sanitize_key( (string) $req['token'] ) );
+		wp_delete_file( $up['file'] );
+	}
+	return array( 'ok' => true );
+}
+
+/** Gönderilmeden bırakılan ön yüklemeleri (2 saatten eski) temizler. */
+function flxc_upload_gc( $dir ) {
+	foreach ( (array) glob( $dir . '/*' ) as $f ) {
+		if ( is_file( $f ) && filemtime( $f ) < time() - 2 * HOUR_IN_SECONDS ) {
+			wp_delete_file( $f );
+		}
+	}
 }
 
 function flxc_rest_retry( WP_REST_Request $req ) {
