@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.1.0
+- Personal values for Flux CRM event messages (`flx_event_vars`): `{fidan}` saplings on the person's certificates of that event, `{sertifika_sayisi}`, `{sertifika_link}` (first certificate) and `{sertifika_no}`.
+
 ## 2.0.2
 - With Flux CRM active the Certificates menu no longer has an Events item; events are managed only in CRM › Events. The old address still redirects there, and the "Create event" link on the new certificate screen and the system check links open the CRM screen. Without Flux CRM nothing changes.
 

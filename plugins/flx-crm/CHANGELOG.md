@@ -1,5 +1,12 @@
 # Değişiklikler
 
+## 0.7.0
+- Event messages get values: buttons under the text add `{ad}`, `{ad_soyad}`, event values (`{etkinlik}`, `{etkinlik_tarihi}`, `{etkinlik_saati}`, `{etkinlik_yeri}`, `{etkinlik_link}`), site values (`{site}`, `{kurum}`, `{kurum_telefon}`) and every package's personal values (Flux Certificates: `{fidan}`, `{sertifika_sayisi}`, `{sertifika_link}`, `{sertifika_no}`) where the cursor is.
+- Live preview: pick a person of the event and see the WhatsApp/SMS bubble (with the photo) and the e-mail (subject, photo, paragraphs) as that person will read it; values empty for that person are named.
+- Event values are written into the text before it goes to Flux Mail. Personal values travel with each recipient (`vars` on the recipient) and need a Flux Mail that declares `recipient_vars` in `flxi_campaign_features`; until then those buttons are off and a text using them is refused with a clear message.
+- Site users with no WooCommerce billing phone now get the account phone from Flux Roles (`flx_phone`) on their CRM contact.
+- New shared filters: `flx_event_vars` (packages add personal values: `[ key => [ label, sample, values => [ person_id => value ] ] ]`) and `flx_event_message_vars` (event-wide values).
+
 ## 0.6.0
 - Event messages: CRM › Events › an event › "Message to the event". One extra message to everyone tied to the event (certificates, donations, every package's people) by WhatsApp, e-mail and/or SMS, now or planned for a date and time (site time). Typical use: a thank-you with a photo when the event is over.
 - A photo, video or file from the media library can go with it: on e-mail a photo shows above the text and other files get a button; on WhatsApp it goes as an attachment once Flux Mail declares campaign media (`flxi_campaign_features` contains `media`), until then the file link is added to the text, as on SMS.

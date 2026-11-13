@@ -674,6 +674,10 @@ window.flxcrmBoot.push( function ( R ) {
 				var a = frame.state().get( 'selection' ).first().toJSON();
 				var img = 'image' === a.type ? ( ( a.sizes && ( a.sizes.medium || a.sizes.large ) ) || a ).url : '';
 				inp.value = a.id;
+				box.dataset.url = img ? ( ( a.sizes && a.sizes.large ) || a ).url : a.url;
+				box.dataset.image = img ? '1' : '';
+				box.dataset.name = a.filename || a.title || '';
+				f.dispatchEvent( new Event( 'flxcrm:media' ) );
 				prev.textContent = '';
 				if ( img ) {
 					var i = document.createElement( 'img' );
@@ -691,12 +695,142 @@ window.flxcrmBoot.push( function ( R ) {
 		} );
 		clr.addEventListener( 'click', function () {
 			inp.value = 0;
+			box.dataset.url = '';
+			f.dispatchEvent( new Event( 'flxcrm:media' ) );
 			prev.textContent = '';
 			var sp = document.createElement( 'span' );
 			sp.textContent = t.none || '';
 			prev.appendChild( sp );
 			clr.hidden = true;
 		} );
+	} );
+} );
+
+/* 0.7.0 Etkinlik mesajı: değer düğmeleri ve kişiye göre canlı önizleme. */
+window.flxcrmBoot.push( function ( R ) {
+	'use strict';
+	flxcrmOnce( R, '[data-evmsg-vars]' ).forEach( function ( box ) {
+		var f = box.closest( 'form' );
+		var data = JSON.parse( box.dataset.evmsgVars || '{}' );
+		var ta = f.querySelector( '[data-evmsg-text]' );
+		var subj = f.querySelector( '[name=subject]' );
+		var pv = f.querySelector( '[data-evmsg-preview]' );
+		var who = pv.querySelector( '[data-evmsg-who]' );
+		var last = ta;
+		var people = data.people || [];
+		ta.addEventListener( 'focus', function () {
+			last = ta;
+		} );
+		if ( subj ) {
+			subj.addEventListener( 'focus', function () {
+				last = subj;
+			} );
+		}
+		box.addEventListener( 'click', function ( ev ) {
+			var b = ev.target.closest( '[data-var]' );
+			if ( ! b || b.disabled ) {
+				return;
+			}
+			var el = last || ta;
+			var tok = '{' + b.dataset.var + '}';
+			var s = el.selectionStart || el.value.length;
+			var e = el.selectionEnd || s;
+			el.value = el.value.slice( 0, s ) + tok + el.value.slice( e );
+			el.focus();
+			el.setSelectionRange( s + tok.length, s + tok.length );
+			render();
+		} );
+		if ( ! people.length ) {
+			people = [ { n: '—', v: {} } ];
+		}
+		people.forEach( function ( p, i ) {
+			var o = document.createElement( 'option' );
+			o.value = i;
+			o.textContent = p.n;
+			who.appendChild( o );
+		} );
+		function fill( text, p ) {
+			var empty = [];
+			var out = String( text ).replace( /\{([a-z0-9_]+)\}/gi, function ( m, k ) {
+				k = k.toLowerCase();
+				var v;
+				if ( p.v && Object.prototype.hasOwnProperty.call( p.v, k ) ) {
+					v = p.v[ k ];
+				} else if ( Object.prototype.hasOwnProperty.call( data.event || {}, k ) ) {
+					v = data.event[ k ];
+				} else if ( Object.prototype.hasOwnProperty.call( data.global || {}, k ) ) {
+					v = data.global[ k ];
+				} else {
+					return m;
+				}
+				if ( '' === String( v ).trim() ) {
+					empty.push( '{' + k + '}' );
+				}
+				return v;
+			} );
+			return { text: out.replace( / +([,.!?;:])/g, '$1' ), empty: empty };
+		}
+		function media( slot ) {
+			var m = f.querySelector( '[data-flxcrm-evmedia]' );
+			slot.textContent = '';
+			if ( ! m || ! m.dataset.url ) {
+				return;
+			}
+			if ( m.dataset.image ) {
+				var i = document.createElement( 'img' );
+				i.src = m.dataset.url;
+				i.alt = '';
+				slot.appendChild( i );
+			} else {
+				var s = document.createElement( 'span' );
+				s.className = 'flxcrm-evmsg__file';
+				s.textContent = '📎 ' + ( m.dataset.name || '' );
+				slot.appendChild( s );
+			}
+		}
+		function paras( el, text ) {
+			el.textContent = '';
+			String( text ).split( /\n{2,}/ ).forEach( function ( para ) {
+				var p = document.createElement( 'p' );
+				para.split( '\n' ).forEach( function ( line, i ) {
+					if ( i ) {
+						p.appendChild( document.createElement( 'br' ) );
+					}
+					p.appendChild( document.createTextNode( line ) );
+				} );
+				el.appendChild( p );
+			} );
+		}
+		function render() {
+			var p = people[ +who.value || 0 ];
+			var raw = ta.value || ta.placeholder;
+			var r = fill( raw, p );
+			var on = {};
+			f.querySelectorAll( '[name="channels[]"]:checked' ).forEach( function ( c ) {
+				on[ c.value ] = true;
+			} );
+			var chat = pv.querySelector( '[data-pane=chat]' );
+			var mail = pv.querySelector( '[data-pane=email]' );
+			chat.hidden = ! on.whatsapp && ! on.sms;
+			mail.hidden = ! on.email;
+			chat.querySelector( '[data-pane-title]' ).textContent = [ on.whatsapp ? 'WhatsApp' : '', on.sms ? 'SMS' : '' ].filter( Boolean ).join( ' · ' );
+			chat.querySelector( '[data-pv-text]' ).textContent = r.text;
+			chat.querySelector( 'time' ).textContent = new Date().toTimeString().slice( 0, 5 );
+			media( chat.querySelector( '[data-pv-media]' ) );
+			var s = fill( ( subj && ( subj.value || subj.placeholder ) ) || '', p );
+			mail.querySelector( '[data-pv-subject]' ).textContent = s.text;
+			media( mail.querySelector( '[data-pv-media]' ) );
+			paras( mail.querySelector( '[data-pv-body]' ), r.text );
+			var empty = r.empty.concat( s.empty ).filter( function ( x, i, a ) {
+				return a.indexOf( x ) === i;
+			} );
+			pv.querySelector( '[data-pv-note]' ).textContent = empty.length ? ( pv.dataset.empty || '' ).replace( '%s', empty.join( ', ' ) ) : '';
+			pv.hidden = chat.hidden && mail.hidden;
+		}
+		f.addEventListener( 'input', render );
+		f.addEventListener( 'change', render );
+		f.addEventListener( 'flxcrm:media', render );
+		render();
 	} );
 } );
 

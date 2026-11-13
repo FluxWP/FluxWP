@@ -102,7 +102,7 @@ final class FLXCRM_Event_Messages {
 				++$res['no_consent'];
 				continue;
 			}
-			$res['list'][] = array( 'name' => (string) $p['name'], 'email' => (string) $p['email'], 'phone' => (string) $p['phone'] );
+			$res['list'][] = array( 'id' => (int) $p['id'], 'name' => (string) $p['name'], 'email' => (string) $p['email'], 'phone' => (string) $p['phone'] );
 		}
 		return $res;
 	}
@@ -141,6 +141,98 @@ final class FLXCRM_Event_Messages {
 		return array( 'total' => $a['total'] - $a['no_address'], 'no_consent' => $a['no_consent'] );
 	}
 
+
+	/* ------------------------------------------------------------ */
+	/* Message variables (0.7.0)                                     */
+	/* ------------------------------------------------------------ */
+
+	/** Flux Mail keeps per-recipient values on a campaign (`flxi_campaign_features` contains `recipient_vars`). */
+	public static function mail_has_recipient_vars() {
+		return in_array( 'recipient_vars', (array) apply_filters( 'flxi_campaign_features', array() ), true );
+	}
+
+	/** Same for everyone: written into the text before it goes to Flux Mail. key => [ label, value ]. */
+	public static function event_vars( array $e ) {
+		$date = '' !== (string) $e['event_date'] ? flx_date( $e['event_date'] . ' 12:00:00', get_option( 'date_format' ) ) : '';
+		$out  = array(
+			'etkinlik'        => array( __( 'Event name', 'flx-crm' ), (string) $e['name'] ),
+			'etkinlik_tarihi' => array( __( 'Event date', 'flx-crm' ), $date ),
+			'etkinlik_saati'  => array( __( 'Event time', 'flx-crm' ), (string) $e['event_time'] ),
+			'etkinlik_yeri'   => array( __( 'Event place', 'flx-crm' ), '' !== (string) $e['loc_name'] ? (string) $e['loc_name'] : (string) $e['loc_address'] ),
+			'etkinlik_link'   => array( __( 'Event page', 'flx-crm' ), (int) $e['post_id'] && 'publish' === get_post_status( (int) $e['post_id'] ) ? (string) get_permalink( (int) $e['post_id'] ) : '' ),
+		);
+		/**
+		 * Event-wide message variables: key => [ label, value ].
+		 *
+		 * @param array $out Variables.
+		 * @param array $e   Event row.
+		 */
+		return (array) apply_filters( 'flx_event_message_vars', $out, $e );
+	}
+
+	/**
+	 * Per person: key => [ 'label' => …, 'sample' => …, 'values' => [ person_id => value ] ]. {ad} and {ad_soyad} are
+	 * always there (Flux Mail fills them from the name); packages add their own through `flx_event_vars`
+	 * (Flux Certificates: {fidan}, {sertifika_sayisi}, {sertifika_link}, {sertifika_no}).
+	 */
+	public static function person_vars( $event_id, array $people ) {
+		$ad = array();
+		$fn = array();
+		foreach ( $people as $p ) {
+			$fn[ (int) $p['id'] ] = (string) $p['name'];
+			$ad[ (int) $p['id'] ] = '' !== trim( (string) $p['name'] ) ? preg_split( '/\s+/u', trim( (string) $p['name'] ) )[0] : '';
+		}
+		$out = (array) apply_filters( 'flx_event_vars', array(), (int) $event_id, array_keys( $fn ) );
+		foreach ( $out as $k => $v ) {
+			if ( ! preg_match( '/^[a-z0-9_]+$/', (string) $k ) || ! is_array( $v ) ) {
+				unset( $out[ $k ] );
+				continue;
+			}
+			$out[ $k ] = array(
+				'label'  => (string) ( $v['label'] ?? $k ),
+				'sample' => (string) ( $v['sample'] ?? '' ),
+				'values' => array_map( 'strval', (array) ( $v['values'] ?? array() ) ),
+			);
+		}
+		return array(
+			'ad'       => array( 'label' => __( 'First name', 'flx-crm' ), 'sample' => 'Ayşe', 'values' => $ad, 'builtin' => true ),
+			'ad_soyad' => array( 'label' => __( 'Full name', 'flx-crm' ), 'sample' => 'Ayşe Yılmaz', 'values' => $fn, 'builtin' => true ),
+		) + $out;
+	}
+
+	/** Replaces {key} with event-wide values; other tokens stay for Flux Mail. */
+	public static function fill_event_vars( $text, array $e ) {
+		$vars = self::event_vars( $e );
+		return preg_replace_callback(
+			'/\{([a-z0-9_]+)\}/i',
+			function ( $m ) use ( $vars ) {
+				$k = strtolower( $m[1] );
+				return isset( $vars[ $k ] ) ? (string) $vars[ $k ][1] : $m[0];
+			},
+			(string) $text
+		);
+	}
+
+	/** Person-variable keys (not built in) used in the text. */
+	public static function used_person_vars( $text, array $pvars ) {
+		preg_match_all( '/\{([a-z0-9_]+)\}/i', (string) $text, $m );
+		$used = array();
+		foreach ( array_unique( array_map( 'strtolower', $m[1] ) ) as $k ) {
+			if ( isset( $pvars[ $k ] ) && empty( $pvars[ $k ]['builtin'] ) ) {
+				$used[] = $k;
+			}
+		}
+		return $used;
+	}
+
+	/** Address the way Flux Mail stores it, to match a recipient back to a person. */
+	private static function addr( $channel, array $p ) {
+		if ( 'email' === $channel ) {
+			return strtolower( trim( (string) $p['email'] ) );
+		}
+		return function_exists( 'flxi_normalize_phone' ) ? (string) flxi_normalize_phone( $p['phone'] ) : preg_replace( '/\D+/', '', (string) $p['phone'] );
+	}
+
 	/* ------------------------------------------------------------ */
 	/* Sending                                                       */
 	/* ------------------------------------------------------------ */
@@ -172,6 +264,18 @@ final class FLXCRM_Event_Messages {
 		if ( in_array( 'email', $channels, true ) && '' === $subject ) {
 			$subject = $e['name'];
 		}
+		$text    = self::fill_event_vars( $text, $e );
+		$subject = self::fill_event_vars( $subject, $e );
+		$pvars   = array();
+		$used    = array();
+		if ( preg_match( '/\{[a-z0-9_]+\}/i', $text . $subject ) ) {
+			$pvars = self::person_vars( (int) $e['id'], self::people( (int) $e['id'] ) );
+			$used  = self::used_person_vars( $text . ' ' . $subject, $pvars );
+			if ( $used && ! self::mail_has_recipient_vars() ) {
+				/* translators: %s: variable list */
+				return new WP_Error( 'flxcrm_vars', sprintf( __( 'Personal values (%s) need a newer Flux Mail that keeps a value for each recipient. Update Flux Mail or take them out of the text.', 'flx-crm' ), '{' . implode( '}, {', $used ) . '}' ) );
+			}
+		}
 		$kind    = 'marketing' === ( $a['kind'] ?? '' ) ? 'marketing' : 'info';
 		$send_at = trim( (string) ( $a['send_at'] ?? '' ) );
 		$media   = absint( $a['media_id'] ?? 0 );
@@ -190,6 +294,24 @@ final class FLXCRM_Event_Messages {
 			if ( ! $rec ) {
 				$out['skipped'][ $ch ] = __( 'No one to send to on this channel.', 'flx-crm' );
 				continue;
+			}
+			if ( $used ) { // each recipient carries their own values
+				$by = array();
+				foreach ( self::people( (int) $e['id'] ) as $p ) {
+					$k = self::addr( $ch, $p );
+					if ( '' !== $k && ! isset( $by[ $k ] ) ) {
+						$by[ $k ] = (int) $p['id'];
+					}
+				}
+				foreach ( $rec as &$r ) {
+					$pid = $by[ (string) $r['to'] ] ?? 0;
+					$v   = array();
+					foreach ( $used as $k ) {
+						$v[ $k ] = $pid ? ( $pvars[ $k ]['values'][ $pid ] ?? '' ) : '';
+					}
+					$r['vars'] = $v;
+				}
+				unset( $r );
 			}
 			$data = array(
 				/* translators: 1: event name, 2: channel */

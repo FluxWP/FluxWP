@@ -43,7 +43,11 @@ final class FLXCRM_Adapter_Users {
 		}
 		$name  = trim( $user->first_name . ' ' . $user->last_name );
 		$role  = (string) flxcrm_setting( 'role_users' );
+		// Billing phone (WooCommerce) first, else the account phone from Flux Roles (user profile).
 		$phone = (string) get_user_meta( $user->ID, 'billing_phone', true );
+		if ( '' === trim( $phone ) ) {
+			$phone = (string) get_user_meta( $user->ID, 'flx_phone', true );
+		}
 		$cid   = FLXCRM_Contacts::upsert(
 			array(
 				'name'    => '' !== $name ? $name : $user->display_name,
