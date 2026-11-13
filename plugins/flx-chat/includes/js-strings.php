@@ -429,5 +429,11 @@ function flxc_js_strings() {
 		'(boş)' => __( '(empty)', 'flx-chat' ),
 		'Daha az göster' => __( 'Show less', 'flx-chat' ),
 		'Tümünü göster ({n})' => __( 'Show all ({n})', 'flx-chat' ),
+		'Vazgeç' => __( 'Cancel', 'flx-chat' ),
+		'Düzenleme süresi doldu. WhatsApp gönderimden sonra 15 dakika izin verir.' => __( 'The time limit for editing has passed. WhatsApp allows 15 minutes after sending.', 'flx-chat' ),
+		'Kalan süre: {t}' => __( 'Time left: {t}', 'flx-chat' ),
+		'Mesaj düzenlendi' => __( 'Message edited', 'flx-chat' ),
+		'Mesajı düzenle' => __( 'Edit message', 'flx-chat' ),
+		'Mesaj kişinin telefonunda da değişir ve altında "Düzenlendi" yazar.' => __( 'The message also changes on the contact\'s phone and shows "Edited" below it.', 'flx-chat' ),
 	);
 }

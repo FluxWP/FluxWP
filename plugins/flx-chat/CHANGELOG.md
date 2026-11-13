@@ -5,6 +5,9 @@
 - Video balonda oynamaz: ilk kare (ya da WhatsApp küçük resmi), oynat simgesi ve süre görünür. Tıklayınca önizleme penceresi açılır ve video orada oynar. Fotoğraf da aynı pencerede tam boy açılır.
 - Önizleme penceresinde üstte gönderen ve tarih, altta mesaj metni (kaydırılabilir), indir ve kapat düğmeleri. Esc ya da boşluğa tıklama kapatır.
 - Gelen videolarda WhatsApp'ın verdiği en/boy ve küçük resim saklanır; önizleme video yüklenmeden doğru oranda görünür.
+- Mesaj düzenleme: giden metin mesajında menüde "Düzenle" (WhatsApp gibi gönderimden sonra 15 dakika; süre dolunca seçenek görünmez). Pencerede kalan süre sayılır, Ctrl/Cmd+Enter kaydeder. Mesaj kişinin telefonunda da değişir; panelde "düzenlendi" yazar. Yalnız gönderen ya da yönetici düzenleyebilir; Evolution hattında çalışır (Cloud API ve site sohbetinde yok). İlk metin sunucuda saklanır.
+- Karşıdan gelen düzenlemeler `messages.update` ve `messages.edited` olaylarıyla da yansır. "düzenlendi" etiketi artık metnin üstüne binmez.
+- Yeni filtre `flxc_edit_minutes` (0 = düzenleme kapalı), yeni olay `flxc_message_edited`.
 
 ## 1.44.0
 - Flux Mail IPTAL uyumu (Flux Mail 1.17.0+). Kişi yalnız IPTAL / BAŞLA yazarsa asistan, karşılama ve mesai dışı yanıtı cevap yazmaz; onayı Flux Mail gönderir. Komutun yanında soru da varsa ya da "bağışımı iptal etmek istiyorum" gibi bir cümleyse asistan normal cevap verir.

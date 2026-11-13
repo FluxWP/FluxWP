@@ -23,8 +23,21 @@ function flxc_handle_event( $conn_id, array $payload ) {
 			break;
 		case 'messages.update':
 			foreach ( isset( $data[0] ) ? $data : array( $data ) as $d ) {
-				if ( is_array( $d ) ) {
-					flxc_ingest_status( $conn_id, $d );
+				if ( ! is_array( $d ) ) {
+					continue;
+				}
+				// 1.45.0: bazı Evolution sürümleri düzenlemeyi update olayıyla yollar (message.editedMessage / protocolMessage).
+				if ( isset( $d['message'] ) && is_array( $d['message'] ) && ( isset( $d['message']['editedMessage'] ) || isset( $d['message']['protocolMessage'] ) ) ) {
+					flxc_ingest_message( $conn_id, $d );
+					continue;
+				}
+				flxc_ingest_status( $conn_id, $d );
+			}
+			break;
+		case 'messages.edited':
+			foreach ( isset( $data[0] ) ? $data : array( $data ) as $d ) {
+				if ( is_array( $d ) && isset( $d['message'] ) ) {
+					flxc_ingest_message( $conn_id, $d );
 				}
 			}
 			break;
@@ -317,10 +330,8 @@ function flxc_ingest_message( $conn_id, array $d, $opts = array() ) {
 	}
 	if ( 'edit' === $p['kind'] ) {
 		$t = flxc_find_message_by_wa( $conn_id, $p['target'] );
-		if ( $t ) {
-			$meta           = flxc_decode( $t['meta'] );
-			$meta['edited'] = 1;
-			flxc_update_message( $t['id'], array( 'body' => $p['body'], 'meta' => $meta ) );
+		if ( $t && '' !== $p['body'] && 'deleted' !== $t['type'] ) {
+			flxc_apply_edit( $t, $p['body'] );
 		}
 		return 0;
 	}

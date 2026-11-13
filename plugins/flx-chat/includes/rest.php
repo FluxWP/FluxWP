@@ -57,6 +57,7 @@ function flxc_register_rest() {
 		array( '/chats/(?P<id>\d+)/export', 'POST', 'flxc_rest_export', $use ),
 		array( '/messages/(?P<id>\d+)/retry', 'POST', 'flxc_rest_retry', $use ),
 		array( '/messages/(?P<id>\d+)/react', 'POST', 'flxc_rest_react', $use ),
+		array( '/messages/(?P<id>\d+)/edit', 'POST', 'flxc_rest_edit_message', $use ),
 		array( '/messages/(?P<id>\d+)', 'DELETE', 'flxc_rest_delete_message', $use ),
 		array( '/media/(?P<id>\d+)', 'GET', 'flxc_rest_media', $use ),
 		array( '/check-number', 'POST', 'flxc_rest_check_number', $use ),
@@ -563,6 +564,47 @@ function flxc_rest_delete_message( WP_REST_Request $req ) {
 	flxc_soft_delete_message( $m, $scope, $me );
 	/** 1.38.0: mesaj silindikten sonra (satır sunucuda kalır). */
 	do_action( 'flxc_message_deleted', (int) $m['id'], $scope, $me );
+	return array( 'message' => flxc_messages_for_js( array( flxc_get_message( $m['id'] ) ) )[0] );
+}
+
+/**
+ * 1.45.0: giden metin mesajını WhatsApp'ta düzenler (WhatsApp süresi içinde, ~15 dk). Kişinin telefonunda da
+ * "Düzenlendi" görünür. İlk metin meta'da (orig_body) saklanır.
+ */
+function flxc_rest_edit_message( WP_REST_Request $req ) {
+	$m = flxc_get_message( (int) $req['id'] );
+	if ( ! $m || 'out' !== $m['direction'] ) {
+		return new WP_Error( 'flxc_edit', __( 'Message not found.', 'flx-chat' ), array( 'status' => 404 ) );
+	}
+	$chat = flxc_rest_chat_or_error( $m['chat_id'] );
+	if ( is_wp_error( $chat ) ) {
+		return $chat;
+	}
+	$me = get_current_user_id();
+	if ( (int) $m['user_id'] !== $me && ! flxc_can_manage() ) {
+		return new WP_Error( 'flxc_edit', __( 'Only the sender or an administrator can edit this message.', 'flx-chat' ), array( 'status' => 403 ) );
+	}
+	$until = flxc_edit_until( $m );
+	if ( ! $until ) {
+		return new WP_Error( 'flxc_edit', __( 'This message can\'t be edited on this channel.', 'flx-chat' ), array( 'status' => 400 ) );
+	}
+	if ( time() * 1000 > $until ) {
+		return new WP_Error( 'flxc_edit', __( 'The time limit for editing has passed (WhatsApp allows 15 minutes).', 'flx-chat' ), array( 'status' => 400 ) );
+	}
+	$text = trim( (string) $req->get_param( 'text' ) );
+	if ( '' === $text ) {
+		return new WP_Error( 'flxc_edit', __( 'The message can\'t be empty.', 'flx-chat' ), array( 'status' => 400 ) );
+	}
+	if ( $text === $m['body'] ) {
+		return array( 'message' => flxc_messages_for_js( array( $m ) )[0] );
+	}
+	$r = flxc_evo_edit_message( $chat['conn'], $chat['jid'], $m['wa_id'], $text );
+	if ( empty( $r['ok'] ) ) {
+		return new WP_Error( 'flxc_edit', ! empty( $r['error'] ) ? $r['error'] : __( 'WhatsApp did not edit the message.', 'flx-chat' ), array( 'status' => 400 ) );
+	}
+	flxc_apply_edit( $m, $text, $me );
+	/** 1.45.0: giden mesaj panelden düzenlendikten sonra. */
+	do_action( 'flxc_message_edited', (int) $m['id'], $text, $me );
 	return array( 'message' => flxc_messages_for_js( array( flxc_get_message( $m['id'] ) ) )[0] );
 }
 

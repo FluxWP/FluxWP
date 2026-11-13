@@ -1441,7 +1441,7 @@
 			if (lps) wrap.appendChild(lps);
 			var tx = h('div', { class: 'flxc-text', html: waFormat(text) });
 			if (/^(\p{Extended_Pictographic}|️|‍|\s){1,6}$/u.test(text) && m.type === 'text') tx.classList.add('is-jumbo');
-			tx.appendChild(h('span', { class: 'flxc-meta-sp' }));
+			tx.appendChild(h('span', { class: 'flxc-meta-sp' + (m.edited ? ' is-edited' : '') }));
 			wrap.appendChild(tx);
 		}
 		wrap.appendChild(meta);
@@ -1504,6 +1504,8 @@
 		}
 		if (m.dir !== 'note' && m.wa) items.push({ icon: 'reply', label: t('Yanıtla'), fn: function () { setQuoted(m); } });
 		if (m.body) items.push({ icon: 'copy', label: t('Kopyala'), fn: function () { copyText(m.body); } });
+		// 1.45.0: WhatsApp gibi düzenle; yalnız gönderen/yönetici, WhatsApp süresi (15 dk) içinde.
+		if (m.dir === 'out' && m.editUntil && m.editUntil > Date.now() && (m.userId === S.me.id || S.me.manage)) items.push({ icon: 'edit', label: t('Düzenle'), fn: function () { openEdit(m); } });
 		if (m.media && m.media.url) items.push({ icon: 'download', label: t('İndir'), fn: function () { window.open(m.media.url + '&download=1', '_blank'); } });
 		if (m.status === 'failed') items.push({ icon: 'reopen', label: t('Tekrar gönder'), fn: function () { retry(m); } });
 		if (recOn() && m.dir === 'in' && (m.type === 'image' || m.type === 'document')) items.push({ icon: 'receipt', label: t('Dekont olarak eşleştir'), fn: function () { openReceipt(m); } });
@@ -1534,6 +1536,57 @@
 		api('messages/' + m.id, { method: 'DELETE', query: { scope: 'panel' } }).then(function (r) {
 			applyMessages([r.message]);
 		}).catch(function (e) { toast(e.message, 'err'); });
+	}
+
+	/* 1.45.0: giden metin mesajını düzenle (WhatsApp'ta da düzenlenir, kişide "Düzenlendi" görünür). */
+	function openEdit(m) {
+		var ta = h('textarea', { class: 'flxc-field flxc-edit-ta', rows: '5', 'aria-label': t('Mesaj') });
+		ta.value = m.body || '';
+		var left = h('small', { class: 'flxc-help flxc-edit-left' });
+		var save = h('button', { type: 'button', class: 'flxc-btn' }, icon('check'), t('Kaydet'));
+		var cancel = h('button', { type: 'button', class: 'flxc-btn flxc-btn-ghost' }, t('Vazgeç'));
+		var timer = 0, busy = false;
+		function tick() {
+			if (!ta.isConnected && timer) { clearInterval(timer); return; }
+			var ms = (m.editUntil || 0) - Date.now();
+			if (ms <= 0) {
+				left.textContent = t('Düzenleme süresi doldu. WhatsApp gönderimden sonra 15 dakika izin verir.');
+				left.classList.add('flxc-warn');
+				save.disabled = true;
+				clearInterval(timer);
+				return;
+			}
+			var mm = Math.floor(ms / 60000), ss = Math.floor(ms / 1000) % 60;
+			left.textContent = t('Kalan süre: {t}', { t: mm + ':' + (ss < 10 ? '0' : '') + ss });
+		}
+		function sync() { save.disabled = busy || !ta.value.trim() || ta.value.trim() === (m.body || '').trim() || (m.editUntil || 0) <= Date.now(); }
+		function go() {
+			sync();
+			if (save.disabled) return;
+			busy = true; sync();
+			api('messages/' + m.id + '/edit', { method: 'POST', body: { text: ta.value.trim() } }).then(function (r) {
+				dlg.close();
+				applyMessages([r.message]);
+				toast(t('Mesaj düzenlendi'));
+			}).catch(function (e) { busy = false; sync(); toast(e.message, 'err'); });
+		}
+		ta.addEventListener('input', sync);
+		ta.addEventListener('keydown', function (e) { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); go(); } });
+		save.addEventListener('click', go);
+		var dlg = modal({
+			cls: 'flxc-exp flxc-edit-dlg', title: t('Mesajı düzenle'),
+			body: [
+				h('p', { class: 'flxc-help', text: t('Mesaj kişinin telefonunda da değişir ve altında "Düzenlendi" yazar.') }),
+				ta, left
+			],
+			foot: [cancel, save]
+		});
+		var close0 = dlg.close;
+		dlg.close = function () { clearInterval(timer); close0(); };
+		cancel.addEventListener('click', dlg.close);
+		timer = setInterval(tick, 1000);
+		tick(); sync();
+		setTimeout(function () { ta.focus(); ta.setSelectionRange(ta.value.length, ta.value.length); }, 30);
 	}
 
 	/* 1.38.0: WhatsApp gibi "Herkesten sil" / "Yalnız panelde gizle". Satır ve dosya sunucuda kalır. */
