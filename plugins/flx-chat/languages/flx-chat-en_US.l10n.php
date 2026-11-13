@@ -2154,6 +2154,7 @@ return array(
   'Tekrar dene' => 'Retry',
   'Bu mesaj silindi' => 'This message was deleted',
   'Görsel yüklenemedi' => 'Image could not be loaded',
+  'Videoyu oynat' => 'Play video',
   'Konum' => 'Location',
   'Mesaj gönder' => 'Send message',
   'Bu mesaj türü burada gösterilemiyor. Telefondan bakın.' => 'This message type can\'t be shown here. Check the phone.',

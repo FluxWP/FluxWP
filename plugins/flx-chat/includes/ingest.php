@@ -138,8 +138,15 @@ function flxc_parse_wa_message( $message ) {
 		$out['type'] = 'video';
 		$out['body'] = (string) ( $x['caption'] ?? '' );
 		$out['mime'] = (string) ( $x['mimetype'] ?? 'video/mp4' );
-		$out['meta'] = array( 'seconds' => (int) ( $x['seconds'] ?? 0 ) );
-		$ctx         = $x['contextInfo'] ?? null;
+		$out['meta'] = array(
+			'seconds' => (int) ( $x['seconds'] ?? 0 ),
+			'w'       => (int) ( $x['width'] ?? 0 ),
+			'h'       => (int) ( $x['height'] ?? 0 ),
+		);
+		if ( ! empty( $x['jpegThumbnail'] ) && is_string( $x['jpegThumbnail'] ) && strlen( $x['jpegThumbnail'] ) < 20000 ) {
+			$out['meta']['thumb'] = 'data:image/jpeg;base64,' . $x['jpegThumbnail'];
+		}
+		$ctx = $x['contextInfo'] ?? null;
 	} elseif ( isset( $m['audioMessage'] ) ) {
 		$x           = $m['audioMessage'];
 		$out['type'] = 'audio';

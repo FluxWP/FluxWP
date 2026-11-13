@@ -1318,6 +1318,8 @@
 			}, h('strong', { text: m.quoted.dir === 'in' ? (S.chats.get(S.active) || {}).title || '' : t('Siz') }), h('span', { text: m.quoted.body })));
 		}
 		b.appendChild(content(m));
+		// 1.45.0: fotoğraf/video varsa balon medya genişliğinde; açıklama metni medyanın genişliğine sarılır.
+		if (!m.deleted && (m.type === 'image' || m.type === 'video') && m.media) b.classList.add('has-media');
 		if (b.querySelector('.flxc-lp-slot')) b.classList.add('has-lp');
 		var rb = receiptBar(m);
 		if (rb) b.appendChild(rb);
@@ -1389,9 +1391,21 @@
 				wrap.appendChild(fig);
 				break;
 			case 'video':
-				var vfig = h('div', { class: 'flxc-vid' });
-				var vid = h('video', { src: media.url, controls: true, preload: 'metadata', playsinline: true });
+				// 1.45.0: balonda oynatıcı yok; önizleme (ilk kare / küçük resim + oynat), tıklayınca önizleme penceresinde izlenir.
+				var vratio = media && media.w && media.h ? Math.min(1.6, Math.max(0.5, media.h / media.w)) : 0.75;
+				var vfig = h('button', { type: 'button', class: 'flxc-img flxc-vid', style: { aspectRatio: '1 / ' + vratio }, 'aria-label': t('Videoyu oynat'), onclick: function () { lightbox(media.url, 'video', m); } });
+				if (media && media.thumb) vfig.style.backgroundImage = 'url("' + media.thumb + '")';
+				var vdurT = h('em', { text: media.secs ? fmtSecs(media.secs) : '' });
+				var vid = h('video', { src: media.url + '#t=0.1', preload: 'metadata', playsinline: true, tabindex: '-1', 'aria-hidden': 'true' });
+				vid.muted = true;
+				vid.addEventListener('loadedmetadata', function () {
+					if (!(media.w && media.h) && vid.videoWidth) vfig.style.aspectRatio = '1 / ' + Math.min(1.6, Math.max(0.5, vid.videoHeight / vid.videoWidth));
+					if (!media.secs && isFinite(vid.duration) && vid.duration > 0) vdurT.textContent = fmtSecs(Math.round(vid.duration));
+				});
+				vid.onerror = function () { vid.remove(); };
 				vfig.appendChild(vid);
+				vfig.appendChild(h('span', { class: 'flxc-vid-play' }, icon('play')));
+				vfig.appendChild(h('span', { class: 'flxc-vid-dur' }, icon('video'), vdurT));
 				wrap.appendChild(vfig);
 				break;
 			case 'audio':
@@ -3078,11 +3092,20 @@
 		function onKey(e) { if (e.key === 'Escape') { e.stopPropagation(); close(); } }
 		document.addEventListener('keydown', onKey, true);
 		back.appendChild(h('div', { class: 'flxc-lb-bar' },
-			h('span', { text: (m && m.body) || '' }),
+			h('span', { class: 'flxc-lb-who' }, h('strong', { text: !m ? '' : m.dir === 'out' ? t('Siz') : (m.sender || (S.chats.get(S.active) || {}).title || '') }), m && m.ts ? h('small', { text: fmtLong.format(m.ts) + ' ' + fmtTime.format(m.ts) }) : null),
 			h('a', { class: 'flxc-ib', href: src + '&download=1', target: '_blank', rel: 'noopener', title: t('İndir') }, icon('download')),
 			btn('close', t('Kapat'), close)
 		));
-		back.appendChild(h('img', { src: src, alt: '' }));
+		if (kind === 'video') {
+			var lv = h('video', { src: src, controls: true, autoplay: true, playsinline: true, preload: 'auto' });
+			back.appendChild(lv);
+			var pp = lv.play && lv.play();
+			if (pp && pp.catch) pp.catch(function () {});
+		} else {
+			back.appendChild(h('img', { src: src, alt: (m && m.body) || '' }));
+		}
+		var cap = m && m.body ? h('div', { class: 'flxc-lb-cap', html: waFormat(m.body) }) : null;
+		if (cap) back.appendChild(cap);
 		back.addEventListener('click', function (e) { if (e.target === back || e.target.tagName === 'IMG') close(); });
 		root.appendChild(back);
 	}

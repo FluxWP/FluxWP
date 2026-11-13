@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.45.0
+- Fotoğraflı ve videolu mesajlarda balon medya genişliğinde (WhatsApp gibi): uzun açıklama metni artık balonu genişletmez, medyanın altına sarılır. Gelen ve giden mesajlarda, masaüstü ve mobilde aynı.
+- Video balonda oynamaz: ilk kare (ya da WhatsApp küçük resmi), oynat simgesi ve süre görünür. Tıklayınca önizleme penceresi açılır ve video orada oynar. Fotoğraf da aynı pencerede tam boy açılır.
+- Önizleme penceresinde üstte gönderen ve tarih, altta mesaj metni (kaydırılabilir), indir ve kapat düğmeleri. Esc ya da boşluğa tıklama kapatır.
+- Gelen videolarda WhatsApp'ın verdiği en/boy ve küçük resim saklanır; önizleme video yüklenmeden doğru oranda görünür.
+
 ## 1.44.0
 - Flux Mail IPTAL uyumu (Flux Mail 1.17.0+). Kişi yalnız IPTAL / BAŞLA yazarsa asistan, karşılama ve mesai dışı yanıtı cevap yazmaz; onayı Flux Mail gönderir. Komutun yanında soru da varsa ya da "bağışımı iptal etmek istiyorum" gibi bir cümleyse asistan normal cevap verir.
 - Flux Mail gönderimleri (kampanya, IPTAL onayı; kaynak `flx-mail`) asistanı susturmaz. Onay mesajının bildirimi Flux Mail kimliği kaydetmeden gelse de (2 dk içinde, metin aynıysa) telefondan yazılmış sayılmaz.
