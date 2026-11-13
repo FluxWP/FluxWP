@@ -1,0 +1,26 @@
+{
+    "skill_name": "skill-olusturucu",
+    "trigger_evals": [
+        { "query": "Bağışçıları inceleyen bir skill oluştur", "should_trigger": true },
+        { "query": "Her pazartesi yaptığım SEO kontrolünü skill yapalım", "should_trigger": true },
+        { "query": "gunluk-brifing skill'i neden hiç devreye girmiyor?", "should_trigger": true },
+        { "query": "Yeni skill: WhatsApp şablon mesajı yazan", "should_trigger": true },
+        { "query": "Bu skill'in açıklamasını iyileştir", "should_trigger": true },
+        { "query": "Dünkü bağışları özetle", "should_trigger": false },
+        { "query": "Ana sayfadaki başlığı değiştir", "should_trigger": false },
+        { "query": "Site hızını kontrol et", "should_trigger": false }
+    ],
+    "evals": [
+        {
+            "id": "1",
+            "prompt": "Bana her ay sonunda gönüllü sayılarını ve etkinlik katılımını raporlayan bir skill yaz.",
+            "expected_output": "Kebab-case adlı, tetikleyici ifadeler içeren açıklamalı ve adım adım talimatlı bir skill taslağı.",
+            "expectations": [
+                "Skill adı küçük harf ve tireli (kebab-case)",
+                "Açıklama hem ne yaptığını hem ne zaman kullanılacağını söylüyor",
+                "Talimat numaralı adımlar içeriyor",
+                "Veri yoksa uydurmama kuralı var"
+            ]
+        }
+    ]
+}

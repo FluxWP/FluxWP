@@ -530,6 +530,8 @@ function flxai_save_settings() {
 	$new['media_days']     = max( 7, min( 1825, (int) ( $p['media_days'] ?? 90 ) ) );
 	$new['web_on']           = empty( $p['web_on'] ) ? 0 : 1;
 	$new['web_fetch_on']     = empty( $p['web_fetch_on'] ) ? 0 : 1;
+	$new['image_tool_on']    = empty( $p['image_tool_on'] ) ? 0 : 1;
+	$new['shell_on']         = empty( $p['shell_on'] ) ? 0 : 1;
 	$flxai_wp                = sanitize_key( (string) ( $p['web_provider'] ?? 'auto' ) );
 	$new['web_provider']     = ( 'auto' === $flxai_wp || isset( flxai_web_providers()[ $flxai_wp ] ) ) ? $flxai_wp : 'auto';
 	$new['web_search_month'] = max( 0, min( 1000000, (int) ( $p['web_search_month'] ?? 0 ) ) );
@@ -710,6 +712,7 @@ function flxai_page_settings() {
 						<?php endforeach; ?>
 					</select></td></tr>
 				<?php endforeach; ?>
+				<tr><th><?php esc_html_e( 'Image tool', 'flx-ai' ); ?></th><td><label class="flxai-check"><input type="checkbox" name="image_tool_on" value="1" <?php checked( ! empty( $s['image_tool_on'] ) ); ?>> <?php esc_html_e( 'Chat and agents may generate images with the default image model (flxai_image_generate; each image is charged and counted in the spending limit)', 'flx-ai' ); ?></label></td></tr>
 				<tr><th><?php esc_html_e( 'Model › provider', 'flx-ai' ); ?></th><td>
 					<table class="widefat striped flxai-media-routes"><thead><tr><th><?php esc_html_e( 'Model', 'flx-ai' ); ?></th><th><?php esc_html_e( 'Order', 'flx-ai' ); ?></th><th><?php esc_html_e( 'Automatic', 'flx-ai' ); ?></th></tr></thead><tbody>
 					<?php foreach ( $flxai_mp['models'] as $flxai_mm ) : ?>
@@ -728,6 +731,7 @@ function flxai_page_settings() {
 			<table class="form-table" role="presentation">
 				<tr><th><?php esc_html_e( 'Web search', 'flx-ai' ); ?></th><td><label class="flxai-check"><input type="checkbox" name="web_on" value="1" <?php checked( ! empty( $s['web_on'] ) ); ?>> <?php esc_html_e( 'Allow the flxai_web_search tool', 'flx-ai' ); ?></label></td></tr>
 				<tr><th><?php esc_html_e( 'Read web pages', 'flx-ai' ); ?></th><td><label class="flxai-check"><input type="checkbox" name="web_fetch_on" value="1" <?php checked( ! empty( $s['web_fetch_on'] ) ); ?>> <?php esc_html_e( 'Allow the flxai_web_fetch tool (no key needed)', 'flx-ai' ); ?></label></td></tr>
+				<tr><th><?php esc_html_e( 'Virtual shell', 'flx-ai' ); ?></th><td><label class="flxai-check"><input type="checkbox" name="shell_on" value="1" <?php checked( ! empty( $s['shell_on'] ) ); ?>> <?php esc_html_e( 'Allow the flxai_sh tool: shell-like commands (ls, grep, sed, jq, curl…) on the workspace files. No real processes; the workspace rules apply.', 'flx-ai' ); ?></label></td></tr>
 				<?php
 				$flxai_wps = flxai_web_providers();
 				foreach ( $flxai_wps as $flxai_wid => $flxai_w ) :

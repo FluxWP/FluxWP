@@ -1,5 +1,31 @@
 # Flux AI — Değişiklikler
 
+## 0.20.0
+- **Gömülebilir sohbet:** Flux AI sohbet bileşeni artık başka eklentilerde aynen kullanılır: `window.FlxAIChat.mount( el, { chat, onSend, busy, dark, placeholder, emptyText } )`. Aynı çizim, araç adımları, onay kartları, çalışma alanı. PHP tarafında `flxai_chat_embed_enqueue()`. Gönderimi eklenti yürütebilir (`onSend`); bileşen sohbeti izler. Flux Agents görev penceresi bunu kullanır.
+- **Okunur onay kartları:** onay bekleyen işlemde ham JSON yerine başlık, kısa alanlar, uzun metinler Markdown önizleme, görsel adresleri küçük resim. Ham veri "Gönderilecek veri" altında.
+- **Görsel üret aracı (`flxai_image_generate`):** sohbet ve ajanlar varsayılan görsel modeliyle görsel üretir, medya kütüphanesine ekler ve `attachment_id` döner (öne çıkan görsel için). Ayarlar › Görsel ve video'dan kapatılabilir; her görsel harcama sınırına sayılır.
+- **Sayfa ekran görüntüsü (`flxai_page_screenshot`):** Görsel çevirici (Gotenberg) ayarlıysa sitenin sayfasının ya da taslağın PNG görüntüsü. Taslaklar için oturumsuz, süreli, imzalı önizleme bağlantısı (`flxai_preview_link`), veritabanı değişmez.
+- İçerik araçlarının sonucuna yayımlanmamış içerik için `preview_url` ve `edit_url` eklenir. Yeni filtre `flxai_tool_result` (başarılı araç sonucunu zenginleştirmek için).
+- Mesajda `_show` alanı: eklenti, modele giden metinden farklı bir görünen metin verebilir (kullanıcı ve asistan mesajları).
+## 0.19.0
+- **MCP istemcisi:** yeni ekran Flux AI & MCP › **Bağlantılar**. Dış MCP sunucuları (Streamable HTTP) bağlanır; araçları sohbet, zamanlanmış görev ve ajanlarda `mcp_<bağlantı>_<araç>` adıyla kullanılır. Sunucu kaynak sunuyorsa `mcp_<bağlantı>_resources` / `_resource_read` araçları da gelir.
+- Oturum açma: yok, API anahtarı (Bearer), özel başlık ya da **OAuth 2.1** (otomatik keşif, dinamik istemci kaydı, PKCE, belirteç yenileme; kayda izin vermeyen sağlayıcıda client ID/secret elle). Anahtar ve belirteçler şifreli saklanır, yapay zekâya gitmez.
+- Araç başına **İzinli / Önce sor / Kapalı**. Varsayılan "Önce sor"; "İzinli" yalnız sunucunun salt okuma dediği araçlarda, veri değiştirenler her zaman onaylı. Bağlantı kişisel (yalnız ekleyen) ya da paylaşılan (yöneticiler + seçili roller). Sonuçlar dış içerik sayılır (veri, talimat değil). Sistem kontrolünde her bağlantının durumu.
+- stdio sunucular ve eski HTTP+SSE transport'u desteklenmez (paylaşımlı sunucuda süreç / uzun bağlantı açılamaz).
+
+## 0.18.0
+- **Sanal shell (`flxai_sh`):** sohbet, görev ve ajanlar çalışma alanı dosyalarında shell komutları kullanır: `ls cd cat head tail wc mkdir touch cp mv rm find tree grep sed awk sort uniq cut tr diff jq echo printf tee base64 sha256sum date curl/wget` ve `sh betik.sh`; `|`, `>`, `>>`, `<`, heredoc (`<<EOF`), `&&`, `||`, `;`, `$DEĞİŞKEN`, `*.md`. Gerçek süreç açılmaz (exec yok, Python/npm yok); her dosya işlemi çalışma alanı kurallarından geçer: kendi klasörü commit, dışarısı değişiklik isteği (PR), `rm` çöpe. Çalışma klasörü sohbet başına hatırlanır, çıktı 64 KB'de kesilir.
+- Kendi klasöründe `.html`, `.json`, `.js`, `.css`, `.sh` yazılabilir (klasör web'e kapalı, dosyalar çalıştırılmaz); `.php` ve sunucu ayar dosyaları hiçbir yerde yazılmaz.
+- Ayarlar › Web: "Sanal shell" aç/kapa. Yeni filtreler `flxai_workspace_policy` (eklentiler klasörü değiştirebilir, ör. Flux Agents ajan başına kalıcı klasör) ve `flxai_sh_command` (bilinmeyen komut için eklenti).
+
+## 0.17.0
+- **Agent Skills standardı:** skill artık klasör: `SKILL.md` + `references/`, `assets/`, `scripts/`, `evals/`. Ön bölüm `name`, `description` (1024), `license`, `compatibility`, `allowed-tools`, `metadata`; ad klasör adıyla aynı ve kurallara göre doğrulanır. Claude'dan indirilen skill zip'leri (birden çok skill olabilir) içe alınır, skill'ler zip olarak dışa verilir.
+- Skill düzenleme ekranı üç sekme: **SKILL.md**, **Dosyalar** (ekle, yükle, düzenle, sil, indir), **Testler**. Açıklama sayacı ve kural uyarısı.
+- Model skill'in dosyalarını gerektiğinde okur (`flxai_skill_file`); yazabilir (`flxai_skill_file_write`, onaylı). Mesajda birden çok `/skill` kullanılabilir.
+- **Skill testleri:** tetikleme testi (hangi istemde skill seçiliyor, doğruluk oranı) ve skill'li/skill'siz karşılaştırmalı fonksiyonel test (beklentiler yargıç modelle işaretlenir, token ve maliyet görünür). Testler `evals/evals.json`, skill-creator ile uyumlu.
+- İsteğe bağlı: skill kullanılan mesajda modele yalnız `allowed-tools` araçları sunulur (Skill'ler › Ayarlar).
+- Açık/kapalı durumu ayrı tutulur; hazır skill kapatılınca kopyası çıkmaz. Yeni hazır skill **Skill oluşturucu**.
+
 ## 0.16.1
 - Çalışma alanı klasörü silinirken `GLOB_BRACE` kullanılmıyor: Alpine/musl PHP'de (Docker) bu sabit tanımsız olduğu için fatal hata veriyordu.
 

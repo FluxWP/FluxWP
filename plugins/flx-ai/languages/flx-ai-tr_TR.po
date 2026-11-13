@@ -3050,3 +3050,571 @@ msgstr "Sayfa okunamadı (HTTP %d)."
 
 msgid "This content type cannot be read as text: %s"
 msgstr "Bu içerik türü metin olarak okunamıyor: %s"
+
+msgid "Unexpected indentation on line %d of the header."
+msgstr "Başlığın %d. satırında beklenmeyen girinti."
+
+msgid "A list item cannot follow a key on line %d of the header."
+msgstr "Başlığın %d. satırında anahtardan sonra liste öğesi gelemez."
+
+msgid "Line %d of the header is not \"key: value\"."
+msgstr "Başlığın %d. satırı \"anahtar: değer\" biçiminde değil."
+
+msgid "A key cannot follow a list item on line %d of the header."
+msgstr "Başlığın %d. satırında liste öğesinden sonra anahtar gelemez."
+
+msgid "A quoted value in the header is not closed."
+msgstr "Başlıktaki tırnaklı bir değer kapanmamış."
+
+msgid "Skill creator"
+msgstr "Skill oluşturucu"
+
+msgid "Creates, reviews and tests skills in the Agent Skills format. Use when the user wants a new skill, wants to improve one or asks why a skill does not trigger."
+msgstr "Agent Skills biçiminde skill yazar, inceler ve test eder. Kullanıcı yeni skill istediğinde, bir skill'i iyileştirmek istediğinde ya da bir skill'in neden devreye girmediğini sorduğunda kullan."
+
+msgid "The skill needs a name (lowercase letters, numbers and dashes)."
+msgstr "Skill'in bir adı olmalı (küçük harf, rakam ve tire)."
+
+msgid "\"%s\" is not a valid skill name: use up to 64 lowercase letters, numbers and single dashes, not starting or ending with a dash."
+msgstr "\"%s\" geçerli bir skill adı değil: en fazla 64 küçük harf, rakam ve tek tire kullanın; tireyle başlamasın ve bitmesin."
+
+msgid "Skill names cannot contain \"claude\" or \"anthropic\" (reserved)."
+msgstr "Skill adı \"claude\" ya da \"anthropic\" içeremez (ayrılmış)."
+
+msgid "The folder \"%1$s\" must have the same name as the skill (\"%2$s\")."
+msgstr "\"%1$s\" klasörü skill ile aynı adı taşımalı (\"%2$s\")."
+
+msgid "Write a description: what the skill does and when to use it. The assistant picks skills by this."
+msgstr "Açıklama yazın: skill ne yapar ve ne zaman kullanılır. Asistan skill'i buna bakarak seçer."
+
+msgid "The description can be at most 1024 characters."
+msgstr "Açıklama en fazla 1024 karakter olabilir."
+
+msgid "The name and description cannot contain < or > characters."
+msgstr "Ad ve açıklama < ya da > karakteri içeremez."
+
+msgid "Compatibility can be at most 500 characters."
+msgstr "Uyumluluk en fazla 500 karakter olabilir."
+
+msgid "Invalid file path. Use something like references/guide.md."
+msgstr "Geçersiz dosya yolu. references/rehber.md gibi bir yol kullanın."
+
+msgid "SKILL.md is edited with the skill form or flxai_skill_save."
+msgstr "SKILL.md, skill formundan ya da flxai_skill_save ile düzenlenir."
+
+msgid "This file type is not allowed in a skill folder."
+msgstr "Bu dosya türü skill klasöründe kullanılamaz."
+
+msgid "The skill has no file \"%s\"."
+msgstr "Skill'de \"%s\" adlı dosya yok."
+
+msgid "Binary file (image, font, archive…); it can be used as a template or attachment but not read as text."
+msgstr "İkili dosya (görsel, yazı tipi, arşiv…); şablon ya da ek olarak kullanılabilir ama metin olarak okunamaz."
+
+msgid "A skill file can be at most 5 MB."
+msgstr "Bir skill dosyası en fazla 5 MB olabilir."
+
+msgid "A skill folder can hold at most 200 files."
+msgstr "Bir skill klasöründe en fazla 200 dosya olabilir."
+
+msgid "The zip PHP extension is not available on this server."
+msgstr "Bu sunucuda zip PHP uzantısı yok."
+
+msgid "The zip file could not be created."
+msgstr "Zip dosyası oluşturulamadı."
+
+msgid "The zip file could not be opened."
+msgstr "Zip dosyası açılamadı."
+
+msgid "The zip is too large (at most 500 files and 30 MB)."
+msgstr "Zip çok büyük (en fazla 500 dosya ve 30 MB)."
+
+msgid "The instructions file must be named exactly SKILL.md (capital letters)."
+msgstr "Talimat dosyasının adı tam olarak SKILL.md olmalı (büyük harfle)."
+
+msgid "No SKILL.md found in the zip."
+msgstr "Zip'te SKILL.md bulunamadı."
+
+msgid "README.md is not part of a skill folder and was skipped; put documentation in SKILL.md or references/."
+msgstr "README.md skill klasörüne ait değil, atlandı; belgeyi SKILL.md'ye ya da references/ altına koyun."
+
+msgid "Skipped: %s"
+msgstr "Atlandı: %s"
+
+msgid "\"%s\" has scripts. They are stored but not run on this server."
+msgstr "\"%s\" script içeriyor. Script'ler saklanır ama bu sunucuda çalıştırılmaz."
+
+msgid "Read a skill file"
+msgstr "Skill dosyası oku"
+
+msgid "Write a skill file"
+msgstr "Skill dosyası yaz"
+
+msgid "Test a skill"
+msgstr "Skill'i test et"
+
+msgid "Add trigger test prompts first (some that should use the skill, some that should not)."
+msgstr "Önce tetiklenme testi istemleri ekleyin (bir kısmı skill'i kullanmalı, bir kısmı kullanmamalı)."
+
+msgid "Test not found. Add a functional test with a prompt and expectations."
+msgstr "Test bulunamadı. İstem ve beklentilerle bir fonksiyonel test ekleyin."
+
+msgid "Choose a file to upload."
+msgstr "Yüklenecek dosyayı seçin."
+
+msgid "Instruction folders the assistant follows, in the open Agent Skills format (the same SKILL.md folders Claude uses). Chats and scheduled tasks use them by name; edit a skill once and every task that uses it follows the new version."
+msgstr "Asistanın uyduğu talimat klasörleri, açık Agent Skills biçiminde (Claude'un kullandığı SKILL.md klasörlerinin aynısı). Sohbetler ve zamanlanmış görevler onları adıyla kullanır; bir skill'i bir kez düzenleyin, onu kullanan her görev yeni halini izler."
+
+msgid "File saved."
+msgstr "Dosya kaydedildi."
+
+msgid "File deleted."
+msgstr "Dosya silindi."
+
+msgid "Imported: %s"
+msgstr "İçe aktarıldı: %s"
+
+msgid "Scripts are stored but not run on this server."
+msgstr "Script'ler saklanır ama bu sunucuda çalıştırılmaz."
+
+msgid "Scripts"
+msgstr "Script"
+
+msgid "Tip: start a chat message with /name to use a skill, e.g. \"/gunluk-brifing only donations\"; several work together (\"/a /b …\"). Ask \"/skill-olusturucu\" to write and test a new one. Plugins can ship ready skill folders with the flxai_skills filter."
+msgstr "İpucu: Bir skill'i kullanmak için sohbet mesajına /ad ile başlayın, ör. \"/gunluk-brifing yalnız bağışlar\"; birkaçı birlikte çalışır (\"/a /b …\"). Yenisini yazıp test etmek için \"/skill-olusturucu\" deyin. Eklentiler hazır skill klasörlerini flxai_skills filtresiyle getirir."
+
+msgid "When a message uses a skill, offer only the tools in its allowed-tools list"
+msgstr "Mesaj bir skill kullanıyorsa yalnız allowed-tools listesindeki araçları sun"
+
+msgid "SKILL.md"
+msgstr "SKILL.md"
+
+msgid "Tests"
+msgstr "Testler"
+
+msgid "Title"
+msgstr "Başlık"
+
+msgid "The skill folder name: lowercase letters, numbers and dashes, up to 64; cannot contain \"claude\" or \"anthropic\". Used in chat as /name. Left empty, it is made from the title."
+msgstr "Skill klasörünün adı: küçük harf, rakam ve tire, en fazla 64; \"claude\" ya da \"anthropic\" içeremez. Sohbette /ad olarak kullanılır. Boş bırakılırsa başlıktan üretilir."
+
+msgid "What it does and when to use it, with the words users actually say (e.g. \"Use when the user asks for a donor review or loyal donors\"). The assistant picks skills by this. Up to 1024 characters, no < or >."
+msgstr "Ne yaptığı ve ne zaman kullanılacağı, kullanıcıların gerçekten söyleyeceği sözlerle (ör. \"Kullanıcı bağışçı incelemesi ya da sadık bağışçılar istediğinde kullan\"). Asistan skill'i buna bakarak seçer. En fazla 1024 karakter, < ya da > yok."
+
+msgid "The SKILL.md body, Markdown. Step by step: what to look at, which tools to use, how the result should look. Put long details in references/ files (Files tab) and mention them here."
+msgstr "SKILL.md gövdesi, Markdown. Adım adım: neye bakılacak, hangi araçlar kullanılacak, sonuç nasıl görünecek. Uzun ayrıntıları references/ dosyalarına koyun (Dosyalar sekmesi) ve burada anın."
+
+msgid "Allowed tools"
+msgstr "İzinli araçlar"
+
+msgid "allowed-tools: tool names separated by spaces (see Tools); a trailing * matches a prefix (flxcrm_*). A hint for the assistant; with the setting on the Skills page they also limit the tools."
+msgstr "allowed-tools: boşlukla ayrılmış araç adları (bkz. Araçlar); sondaki * ön eki eşler (flxcrm_*). Asistana ipucudur; Skill'ler sayfasındaki ayar açıksa araçları da sınırlar."
+
+msgid "Saved as references/examples.md."
+msgstr "references/examples.md olarak saklanır."
+
+msgid "License"
+msgstr "Lisans"
+
+msgid "Compatibility"
+msgstr "Uyumluluk"
+
+msgid "Needs Flux CRM"
+msgstr "Flux CRM gerekir"
+
+msgid "Skill folder"
+msgstr "Skill klasörü"
+
+msgid "references/ holds documents the assistant reads only when needed, assets/ templates and images, scripts/ code (stored, not run on this server), evals/ tests. Files are also visible in Flux Files."
+msgstr "references/ asistanın yalnız gerektiğinde okuduğu belgeler, assets/ şablon ve görseller, scripts/ kod (saklanır, bu sunucuda çalışmaz), evals/ testler içindir. Dosyalar Flux Files'ta da görünür."
+
+msgid "Changing a file keeps an edited copy of this skill on the site."
+msgstr "Bir dosyayı değiştirmek bu skill'in düzenlenmiş kopyasını sitede tutar."
+
+msgid "Size"
+msgstr "Boyut"
+
+msgid "Download"
+msgstr "İndir"
+
+msgid "Delete %s?"
+msgstr "%s silinsin mi?"
+
+msgid "Upload to"
+msgstr "Yükleneceği yer"
+
+msgid "Upload"
+msgstr "Yükle"
+
+msgid "New text file"
+msgstr "Yeni metin dosyası"
+
+msgid "%s · file"
+msgstr "%s · dosya"
+
+msgid "Path"
+msgstr "Yol"
+
+msgid "Trigger test"
+msgstr "Tetikleme testi"
+
+msgid "Does the assistant pick this skill from its name and description alone? One prompt per line: \"+\" should use the skill, \"-\" should not. Aim for 90% or more."
+msgstr "Asistan bu skill'i yalnız ad ve açıklamasına bakarak seçiyor mu? Her satıra bir istem: \"+\" skill'i kullanmalı, \"-\" kullanmamalı. Hedef %90 ve üzeri."
+
+msgid "Functional tests"
+msgstr "Fonksiyonel testler"
+
+msgid "A request and what a good answer must contain (one check per line). The test answers it with and without the skill (no tools, nothing is changed) and compares checks, tokens and cost."
+msgstr "Bir istek ve iyi bir cevabın içermesi gerekenler (her satıra bir kontrol). Test isteği skill'li ve skill'siz cevaplar (araç yok, hiçbir şey değişmez); kontrolleri, token'ı ve maliyeti karşılaştırır."
+
+msgid "New test"
+msgstr "Yeni test"
+
+msgid "Request"
+msgstr "İstek"
+
+msgid "Checks, one per line"
+msgstr "Kontroller, her satıra bir tane"
+
+msgid "Save tests"
+msgstr "Testleri kaydet"
+
+msgid "Run"
+msgstr "Çalıştır"
+
+msgid "Each run uses the chat model and is billed like a short chat (purpose \"skill_test\" in Logs)."
+msgstr "Her çalıştırma sohbet modelini kullanır ve kısa bir sohbet gibi ücretlenir (Kayıtlar'da amaç \"skill_test\")."
+
+msgid "Run trigger test"
+msgstr "Tetikleme testini çalıştır"
+
+msgid "Run test #%s"
+msgstr "#%s testini çalıştır"
+
+msgid "Import skills"
+msgstr "Skill içe aktar"
+
+msgid "Upload a skill folder as .zip (one or more folders, each with a SKILL.md, e.g. exported from Claude) or a single SKILL.md, or paste its content. A skill with the same name is updated. Scripts are stored but not run."
+msgstr "Skill klasörünü .zip olarak (her birinde SKILL.md olan bir ya da birkaç klasör, ör. Claude'dan dışa aktarılmış) ya da tek bir SKILL.md yükleyin veya içeriğini yapıştırın. Aynı adlı skill güncellenir. Script'ler saklanır ama çalıştırılmaz."
+
+msgid "or paste SKILL.md"
+msgstr "ya da SKILL.md yapıştırın"
+
+msgid "%s / 1024"
+msgstr "%s / 1024"
+
+msgid "%s% correct"
+msgstr "%%s doğru"
+
+msgid "%1$s of %2$s prompts · %3$s · %4$s"
+msgstr "%2$s istemden %1$s · %3$s · %4$s"
+
+msgid "Stopped early (time limit); run again for the rest."
+msgstr "Süre sınırı nedeniyle erken durdu; kalanlar için yeniden çalıştırın."
+
+msgid "Prompt"
+msgstr "İstem"
+
+msgid "Expected"
+msgstr "Beklenen"
+
+msgid "Picked skills"
+msgstr "Seçilen skill'ler"
+
+msgid "Use"
+msgstr "Kullanmalı"
+
+msgid "Do not use"
+msgstr "Kullanmamalı"
+
+msgid "%1$s/%2$s checks"
+msgstr "%1$s/%2$s kontrol"
+
+msgid "%1$s in · %2$s out tokens · %3$s · %4$s s"
+msgstr "%1$s giriş · %2$s çıkış token · %3$s · %4$s sn"
+
+msgid "Test #%s"
+msgstr "Test #%s"
+
+msgid "Check"
+msgstr "Kontrol"
+
+msgid "With skill"
+msgstr "Skill'li"
+
+msgid "Without"
+msgstr "Skill'siz"
+
+msgid "No results yet."
+msgstr "Henüz sonuç yok."
+
+msgid "Running…"
+msgstr "Çalışıyor…"
+
+msgid "%s file"
+msgid_plural "%s files"
+msgstr[0] "%s dosya"
+msgstr[1] "%s dosya"
+
+msgid "Virtual shell"
+msgstr "Sanal shell"
+
+msgid "Allow the flxai_sh tool: shell-like commands (ls, grep, sed, jq, curl…) on the workspace files. No real processes; the workspace rules apply."
+msgstr "flxai_sh aracına izin ver: çalışma alanı dosyalarında shell benzeri komutlar (ls, grep, sed, jq, curl…). Gerçek süreç açılmaz; çalışma alanı kuralları geçerli."
+
+msgid "Invalid or blocked address. Use a public https address."
+msgstr "Geçersiz ya da engelli adres. Herkese açık bir https adresi girin."
+
+msgid "The server needs sign-in. Use \"Connect\" in Flux AI & MCP › Connections."
+msgstr "Sunucu oturum açmayı istiyor. Flux AI & MCP › Bağlantılar'da \"Bağlan\"ı kullanın."
+
+msgid "The server rejected the credentials (401)."
+msgstr "Sunucu kimlik bilgilerini reddetti (401)."
+
+msgid "The server answered with HTTP %d."
+msgstr "Sunucu HTTP %d ile yanıt verdi."
+
+msgid "The server did not return a valid MCP response."
+msgstr "Sunucu geçerli bir MCP yanıtı döndürmedi."
+
+msgid "Connection not found."
+msgstr "Bağlantı bulunamadı."
+
+msgid "Resources"
+msgstr "Kaynaklar"
+
+msgid "Read resource"
+msgstr "Kaynağı oku"
+
+msgid "Could not find the sign-in (OAuth) settings of this server. Enter a token instead, or check the address."
+msgstr "Bu sunucunun oturum açma (OAuth) ayarları bulunamadı. Bunun yerine bir anahtar girin ya da adresi kontrol edin."
+
+msgid "This server does not support PKCE (S256), which OAuth 2.1 requires."
+msgstr "Bu sunucu OAuth 2.1'in gerektirdiği PKCE'yi (S256) desteklemiyor."
+
+msgid "This server does not allow automatic client registration. Create an OAuth client at the provider and enter its client ID (and secret) in the connection settings."
+msgstr "Bu sunucu otomatik istemci kaydına izin vermiyor. Sağlayıcıda bir OAuth istemcisi oluşturup client ID'sini (ve secret'ını) bağlantı ayarlarına girin."
+
+msgid "Automatic client registration failed. Enter a client ID in the connection settings."
+msgstr "Otomatik istemci kaydı başarısız. Bağlantı ayarlarına bir client ID girin."
+
+msgid "Sign-in failed: %s"
+msgstr "Oturum açılamadı: %s"
+
+msgid "Sign in again."
+msgstr "Yeniden oturum açın."
+
+msgid "Sign-in session expired. Try again."
+msgstr "Oturum açma süresi doldu. Yeniden deneyin."
+
+msgid "Sign-in was cancelled or refused (%s)."
+msgstr "Oturum açma iptal edildi ya da reddedildi (%s)."
+
+msgid "MCP connection: %s"
+msgstr "MCP bağlantısı: %s"
+
+msgid "Not checked yet."
+msgstr "Henüz kontrol edilmedi."
+
+msgid "Connections"
+msgstr "Bağlantılar"
+
+msgid "This is another user's personal connection."
+msgstr "Bu, başka bir kullanıcının kişisel bağlantısı."
+
+msgid "Connection deleted."
+msgstr "Bağlantı silindi."
+
+msgid "Tool list updated."
+msgstr "Araç listesi güncellendi."
+
+msgid "Signed in. The server's tools are listed below."
+msgstr "Oturum açıldı. Sunucunun araçları aşağıda."
+
+msgid "Signed out."
+msgstr "Oturum kapatıldı."
+
+msgid "Saved. Now sign in with \"Connect\"."
+msgstr "Kaydedildi. Şimdi \"Bağlan\" ile oturum açın."
+
+msgid "Connect external MCP servers (for example a CRM, a project tool or another site). Their tools become available in chat, scheduled tasks and agents. Only remote servers over HTTPS work here; local (stdio) servers need a computer that runs them."
+msgstr "Dış MCP sunucularını bağlayın (ör. bir CRM, proje aracı ya da başka bir site). Araçları sohbette, zamanlanmış görevlerde ve ajanlarda kullanılır. Burada yalnız HTTPS üzerinden çalışan uzak sunucular bağlanır; yerel (stdio) sunucular onları çalıştıran bir bilgisayar ister."
+
+msgid "MCP servers"
+msgstr "MCP sunucuları"
+
+msgid "Add connection"
+msgstr "Bağlantı ekle"
+
+msgid "No connections yet."
+msgstr "Henüz bağlantı yok."
+
+msgid "Address"
+msgstr "Adres"
+
+msgid "Sign-in"
+msgstr "Oturum açma"
+
+msgid "Sign-in needed"
+msgstr "Oturum açılmalı"
+
+msgid "Connected"
+msgstr "Bağlı"
+
+msgid "Shared"
+msgstr "Paylaşılan"
+
+msgid "Personal"
+msgstr "Kişisel"
+
+msgid "%1$s of %2$s"
+msgstr "%2$s içinde %1$s"
+
+msgid "API key / token (Bearer)"
+msgstr "API anahtarı / token (Bearer)"
+
+msgid "Custom header"
+msgstr "Özel başlık"
+
+msgid "Sign in (OAuth 2.1)"
+msgstr "Oturum aç (OAuth 2.1)"
+
+msgid "Server: %1$s %2$s · protocol %3$s"
+msgstr "Sunucu: %1$s %2$s · protokol %3$s"
+
+msgid "Server address"
+msgstr "Sunucu adresi"
+
+msgid "The Streamable HTTP address the provider gives for MCP clients."
+msgstr "Sağlayıcının MCP istemcileri için verdiği Streamable HTTP adresi."
+
+msgid "Header name"
+msgstr "Başlık adı"
+
+msgid "Key / token"
+msgstr "Anahtar / token"
+
+msgid "Saved (leave empty to keep)"
+msgstr "Kayıtlı (değiştirmemek için boş bırakın)"
+
+msgid "Stored encrypted; never shown to the AI."
+msgstr "Şifreli saklanır; yapay zekâya hiç gösterilmez."
+
+msgid "OAuth client"
+msgstr "OAuth istemcisi"
+
+msgid "Client ID (optional)"
+msgstr "Client ID (isteğe bağlı)"
+
+msgid "Client secret (optional)"
+msgstr "Client secret (isteğe bağlı)"
+
+msgid "Leave empty: Flux AI registers itself automatically when the server allows it. Otherwise create an OAuth app at the provider with this redirect address:"
+msgstr "Boş bırakın: sunucu izin veriyorsa Flux AI kendini otomatik kaydeder. Vermiyorsa sağlayıcıda şu yönlendirme adresiyle bir OAuth uygulaması oluşturun:"
+
+msgid "Only me (personal)"
+msgstr "Yalnız ben (kişisel)"
+
+msgid "Shared: administrators and these roles"
+msgstr "Paylaşılan: yöneticiler ve şu roller"
+
+msgid "Agents and scheduled tasks run as their owner, so they can use the connections that user can use."
+msgstr "Ajanlar ve zamanlanmış görevler sahibinin adına çalışır; o kullanıcının kullanabildiği bağlantıları kullanır."
+
+msgid "Offer this server's tools"
+msgstr "Bu sunucunun araçlarını sun"
+
+msgid "Connect"
+msgstr "Bağlan"
+
+msgid "Sign in again"
+msgstr "Yeniden oturum aç"
+
+msgid "Sign out"
+msgstr "Oturumu kapat"
+
+msgid "Test and update tools"
+msgstr "Test et ve araçları güncelle"
+
+msgid "Delete the connection \"%s\"? Its tools disappear from chats, tasks and agents."
+msgstr "\"%s\" bağlantısı silinsin mi? Araçları sohbetlerden, görevlerden ve ajanlardan kalkar."
+
+msgid "No tools listed yet. Save the connection (and sign in) to load them."
+msgstr "Henüz araç yok. Yüklemek için bağlantıyı kaydedin (ve oturum açın)."
+
+msgid "Allowed: runs without asking (only tools the server marks read-only). Ask first: shows an approval card. Off: never offered. Tools that change data always ask."
+msgstr "İzinli: sormadan çalışır (yalnız sunucunun salt okuma dediği araçlar). Önce sor: onay kartı çıkar. Kapalı: hiç sunulmaz. Veri değiştiren araçlar her zaman sorar."
+
+msgid "Allowed"
+msgstr "İzinli"
+
+msgid "Ask first"
+msgstr "Önce sor"
+
+msgid "Read-only"
+msgstr "Salt okuma"
+
+msgid "Destructive"
+msgstr "Silebilir"
+
+msgid "Changes data"
+msgstr "Veri değiştirir"
+
+msgid "Save permissions"
+msgstr "İzinleri kaydet"
+
+msgid "%d tool available."
+msgid_plural "%d tools available."
+msgstr[0] "%d araç kullanılabilir."
+msgstr[1] "%d araç kullanılabilir."
+
+msgid "No messages yet."
+msgstr "Henüz mesaj yok."
+
+msgid "Summary"
+msgstr "Özet"
+
+msgid "Text"
+msgstr "Metin"
+
+msgid "Slug"
+msgstr "Kısa ad"
+
+msgid "Date"
+msgstr "Tarih"
+
+msgid "Recipient"
+msgstr "Alıcı"
+
+msgid "Subject"
+msgstr "Konu"
+
+msgid "AI image"
+msgstr "AI görseli"
+
+msgid "Generate image"
+msgstr "Görsel üret"
+
+msgid "Image tool"
+msgstr "Görsel aracı"
+
+msgid "Chat and agents may generate images with the default image model (flxai_image_generate; each image is charged and counted in the spending limit)"
+msgstr "Sohbet ve ajanlar varsayılan görsel modeliyle görsel üretebilir (flxai_image_generate; her görsel ücretlidir ve harcama sınırına sayılır)"
+
+msgid "Page screenshot"
+msgstr "Sayfa ekran görüntüsü"
+
+msgid "No visual renderer (Gotenberg) is set: Flux AI & MCP › Settings › Visual renderer."
+msgstr "Görsel çevirici (Gotenberg) ayarlı değil: Flux AI & MCP › Ayarlar › Görsel çevirici."
+
+msgid "Could not take the screenshot (HTTP %d)."
+msgstr "Ekran görüntüsü alınamadı (HTTP %d)."
+
+msgid "You cannot view this content."
+msgstr "Bu içeriği görme yetkiniz yok."
+
+msgid "Only this site's addresses can be captured."
+msgstr "Yalnız bu sitenin adreslerinin görüntüsü alınabilir."
+
+msgid "Content not found."
+msgstr "İçerik bulunamadı."

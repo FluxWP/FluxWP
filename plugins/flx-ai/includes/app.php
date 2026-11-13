@@ -80,6 +80,7 @@ add_filter(
 				'key_brave'         => array( 'type' => 'string', 'default' => '' ),
 				'web_on'            => array( 'type' => 'bool', 'default' => 1 ),
 				'web_fetch_on'      => array( 'type' => 'bool', 'default' => 1 ),
+				'shell_on'          => array( 'type' => 'bool', 'default' => 1 ),
 				'web_search_month'  => array( 'type' => 'int', 'default' => 0 ),
 			),
 		);

@@ -138,6 +138,17 @@ function flxai_run_tool( $name, $args, array $ctx = array() ) {
 				$data = call_user_func( $t['run'], is_array( $args ) ? $args : array(), $ctx );
 				$ok   = true;
 			}
+			if ( $ok ) {
+				/**
+				 * Başarılı araç sonucunu değiştir/zenginleştir (ör. taslak için önizleme bağlantısı).
+				 *
+				 * @param mixed  $data Sonuç.
+				 * @param string $name Araç.
+				 * @param array  $args Girdi.
+				 * @param array  $ctx  user_id, chat_id, turn, source, purpose.
+				 */
+				$data = apply_filters( 'flxai_tool_result', $data, $name, is_array( $args ) ? $args : array(), $ctx );
+			}
 		} catch ( Throwable $e ) {
 			$data = array( 'error' => $e->getMessage() );
 		}

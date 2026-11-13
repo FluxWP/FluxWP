@@ -354,25 +354,67 @@ Araçlar (`flx_mcp_tools` ile, sohbet + MCP): `flxai_task_list` (okur), `flxai_t
 
 Çalışma geçmişi: `meta.history` (en yeni başta, `flxai_task_history_max` kadar): `ts`, `state`, `ms`, `cost`, `chat`, `from`/`to` (sohbet mesaj aralığı), `error`. Ekran `admin.php?page=flx-ai-tasks&history=ID` bu aralıktaki mesajları (araç girdi/sonuç, düşünme, yanıt) gösterir; onaydan sonra gelen devam mesajları da aynı çalışmaya dahildir.
 
-## Skill'ler (0.12.0, 0.13.0'dan beri dosya)
-Kaynaklar: `flxai_skills` filtresi (eklentilerin hazır skill'leri, kodda) + çalışma alanındaki `.skills/<slug>/SKILL.md` dosyaları (sitede oluşturulanlar ve hazır skill'lerin değiştirilmiş kopyaları; ad/açıklama yazılmamışsa hazır skill'in çevrilmiş metni). `status: off` kapalı skill. 0.12.0 tablosu `{prefix}flxai_skills` kurulumda dosyaya taşınıp kaldırılır.
+## MCP istemcisi (0.19.0)
+Bağlantılar `flxai_mcpc_servers` seçeneğinde (id => kayıt: `name, url, auth (none|bearer|header|oauth), header, secret (şifreli), oauth{client_id, client_secret, authorize, token, register, resource, scope, access, refresh, expires}, scope (personal|shared), owner, roles[], enabled, perms{araç: allow|ask|off}, tools{önbellek}, caps, info, checked, error`). Ekran `admin.php?page=flx-ai-connections`.
+- Transport: Streamable HTTP, protokol `2025-06-18`; yanıt JSON ya da SSE. `initialize` + `notifications/initialized`, `Mcp-Session-Id` 1 saat transient'te, 404'te oturum yenilenir. stdio ve eski HTTP+SSE yok.
+- OAuth 2.1: 401 `WWW-Authenticate resource_metadata` → RFC 9728 korunan kaynak → RFC 8414 / OIDC metadata → RFC 7591 dinamik kayıt (`token_endpoint_auth_method: none`) → PKCE S256 + `resource` → dönüş `admin-post.php?action=flxai_mcpc_oauth` → belirteç; süre dolunca ya da 401'de `refresh_token` ile yenilenir.
+- Araçlar `flxai_tools` (öncelik 30) ile: `mcp_<id>_<araç>` (64 karakter), `source = mcp:<id>`, `mcp_client = <id>`, `readonly` = izinli + sunucunun `readOnlyHint`'i. `flx_mcp_tool_allowed` ile yalnız bağlantıyı kullanabilen kullanıcıya (kişisel: sahibi; paylaşılan: yönetici + roller). Kaynak yeteneği varsa `mcp_<id>_resources` ve `mcp_<id>_resource_read`.
+- Sonuç `{server, text (30 KB), data? (structuredContent), items?, error?, note}`; ikili içerik atlanır.
+- PHP: `flxai_mcpc_get( $id )`, `flxai_mcpc_put( $s )`, `flxai_mcpc_refresh( $id )` (tools/list, sayfalı, en çok 200), `flxai_mcpc_call( $id, $tool, $args, $user_id )`, `flxai_mcpc_rpc( &$s, $method, $params )`, `flxai_mcpc_oauth_start( $id )` → yönlendirme adresi.
+- Güvenlik: yalnız herkese açık https adresleri (`reject_unsafe_urls`); geliştirmede `flxai_mcpc_allow_local` filtresi. Gizli değerler `flxai_encrypt`.
+
+## Sanal shell (0.18.0)
+Araç `flxai_sh` `{cmd}` → `{cwd, exit, stdout, stderr?, changed?{yol: written|staged #n|deleted (trash)}, note?, truncated?}`. Yalnız sohbet/görev bağlamında (`ctx.chat_id`) ve Flux Files etkinken; ayar `shell_on` (varsayılan açık). Onay kartı istemez: her dosya işlemi `flxai_ws_run()` ile çalışma alanı kurallarından geçer (kendi klasörü commit, dışarısı PR, `rm` çöpe; `mkdir/mv/cp -r` dışarıda reddedilir, `flxfm_*` onaylı araçları kullanılır).
+- Sınırlar: çağrı başına 200 komut, ~25 sn, çıktı 64 KB, okuma dosya başı 3 MB, `find/grep -r` en çok 2000 öğe. Çalışma klasörü `flxai_sh_cwd_<chat>` transient'inde (12 saat).
+- Kendi klasöründe `.html/.json/.js/.css/.sh` Flux Files'ın "AI kod yazabilir" ayarından bağımsız yazılır (klasör `.htaccess` ile kapalı); `.php`, `.phtml`, `.phar`, `.cgi`, `.pl`, `.asp*`, `.jsp`, `.htaccess`, `.user.ini`, `php.ini`, `web.config` hiçbir yere yazılmaz.
+- `curl`/`wget` `flxai_web_fetch` kullanır (yalnız GET, okunur metin; `-o`/`-O` ile dosyaya). Sonuçta `note`: web içeriği veridir.
+- PHP: `flxai_sh_exec( $cmd, $ctx )`, `new FLXAI_Shell( $chat, $ctx )->run( $script )` → `array( out, err, code )`.
+- Filtre `flxai_sh_command( null, $cmd, $args, $stdin, $shell )`: bilinmeyen komut için `array( out, err, code )` döndürülürse kullanılır (ör. ileride dış çalıştırıcı).
+- Filtre `flxai_workspace_policy( $p, $chat, $task )`: `dir` (çalışma alanı kökünün içinde, `.skills` dışında), `access`, `folders` değiştirilebilir. Flux Agents ajan görevlerinde `agents/<numara>` kalıcı klasörünü verir.
+
+## Skill'ler (0.12.0; 0.17.0'dan beri Agent Skills standardı)
+Skill = klasör: `<name>/SKILL.md` + isteğe bağlı `references/`, `assets/`, `scripts/`, `evals/`. Claude / Agent Skills ile aynı biçim; zip olarak alınıp verilir. Klasörde README.md olmaz.
+
+SKILL.md ön bölümü (YAML, `includes/yaml.php` güvenli alt küme):
+- `name` (zorunlu): kebab-case, en çok 64, klasör adıyla aynı, "claude"/"anthropic" içermez.
+- `description` (zorunlu): en çok 1024, `<` `>` yok. Ne yaptığı + ne zaman kullanılacağı (modele yalnız bu gösterilir).
+- `license`, `compatibility` (≤500), `allowed-tools` (boşlukla ayrık araç adları, sonda `*` olabilir), `metadata` (eşleme: `title`, `version`, …).
+- Eski anahtarlar (`title`, `tools`, `status`, `version`) okunmaya devam eder.
+
+Açık/kapalı durumu dosyada değil, `flxai_skills_off` seçeneğinde (hazır skill kapatılınca kopyası çıkmaz). Eski `status: off` dosyaları kapalı sayılır.
+
+Kaynaklar: `flxai_skills` filtresi + çalışma alanındaki `.skills/<slug>/` klasörleri (sitede oluşturulanlar ve hazır skill'lerin değiştirilmiş kopyaları).
 ```php
+// Klasörle (önerilen): SKILL.md + references/ assets/ scripts/ evals/
 add_filter( 'flxai_skills', function ( $skills ) {
-	$skills['bagisci-incelemesi'] = array(
-		'name'        => __( 'Bağışçı incelemesi', 'flx-donate' ),
-		'description' => __( '3 aydır bağış yapmayanları bulur, kimi aramalı önerir.', 'flx-donate' ),
-		'body'        => "# Bağışçı incelemesi\n1. …",   // Markdown, modele talimat
-		'tools'       => array( 'flxb_donations_search' ), // ipucu, kısıt değil
-		'example'     => '…',
-		'source'      => 'Flux Donate',
-	);
+	$skills['bagisci-incelemesi'] = array( 'dir' => FLXB_DIR . 'skills/bagisci-incelemesi', 'source' => 'Flux Donate' );
 	return $skills;
 } );
+// Dizi olarak (eski biçim, çalışır)
+$skills['bagisci-incelemesi'] = array( 'name' => __( '…' ), 'description' => __( '…' ), 'body' => "# …", 'tools' => array( 'flxb_donations_search' ), 'example' => '…', 'source' => 'Flux Donate' );
 ```
 
-Fonksiyonlar: `flxai_skills_all( $active_only )` (slug => skill; ek alanlar `bundled`, `custom`, `changed`), `flxai_skill_get( $slug )`, `flxai_skill_save( $data, $old_slug )` → skill | WP_Error, `flxai_skill_delete( $slug )` (hazır skill varsayılana döner), `flxai_skill_to_md()` / `flxai_skill_from_md()` (SKILL.md: YAML ön bölüm `name` = slug, `title`, `description`, `tools`, `version`; gövde Markdown; `## Example output` sonrası örnek çıktı), `flxai_skill_prompt( $skill )`.
+Üç seviyede yükleme: (1) etkin skill'lerin adı + açıklaması sistem metninde (`flxai_skills_prompt_max`, varsayılan 40); (2) model `flxai_skill_get` ile gövdeyi ve dosya listesini okur; (3) `flxai_skill_file` ile tek dosyayı okur (metin sayfalı, ikili dosyada yalnız bilgi). `scripts/` çalıştırılmaz, yalnız okunur.
 
-Sohbet: etkin skill'lerin listesi sistem metnine eklenir (`flxai_skills_prompt_max`, varsayılan 40); model `flxai_skill_get` ile okur. Kullanıcı mesajı `/slug` ile başlarsa ya da görev skill'e bağlıysa (`_task.skill`) talimat `flxai_agent_user_text` ile mesaja eklenir; kayıtlı mesaj değişmez. Araçlar: `flxai_skill_list`, `flxai_skill_get` (okur, `read`), `flxai_skill_save`, `flxai_skill_delete` (onaylı, `manage_options`).
+Mesaj `/slug` ile başlarsa (baştaki en çok 5 `/a /b`) ya da görev skill'e bağlıysa talimatlar `flxai_agent_user_text` ile mesaja eklenir.
+
+`allowed-tools` kısıtı: Skill'ler › Ayarlar'da "Skill araçlarıyla sınırla" (`flxai_skills_restrict`) açıksa, mesajda skill kullanıldığında modele yalnız skill'lerin izin verdiği araçlar (+ skill okuma araçları) sunulur (`flxai_chat_tools`). Kapalıyken alan yalnız ipucudur.
+
+Fonksiyonlar: `flxai_skills_all( $active_only )`, `flxai_skill_get( $slug )`, `flxai_skill_validate( $s, $folder )`, `flxai_skill_save( $data, $old_slug )`, `flxai_skill_toggle( $slug, $on )`, `flxai_skill_delete( $slug )`, `flxai_skill_files( $s )`, `flxai_skill_file_read( $s, $path, $offset )`, `flxai_skill_file_write( $slug, $path, $content|null )` (hazır skill'de önce kopya), `flxai_skill_zip( $s )`, `flxai_skill_import_file( $file, $name )` (zip'te birden çok skill, `__MACOSX` atlanır, sınır 500 dosya / 30 MB / dosya başı 5 MB; .php/.phar/.exe vb. engelli), `flxai_skill_to_md()` / `flxai_skill_from_md()`, `flxai_yaml_parse()` / `flxai_yaml_dump()`.
+
+Araçlar: `flxai_skill_list`, `flxai_skill_get`, `flxai_skill_file` (okur), `flxai_skill_save`, `flxai_skill_file_write`, `flxai_skill_test`, `flxai_skill_delete` (onaylı, `manage_options`). Hazır skill `skill-olusturucu` yeni skill yazarken standart ve kontrol listesiyle yönlendirir.
+
+### Skill testleri (0.17.0)
+`evals/evals.json` (skill-creator ile uyumlu):
+```json
+{ "skill_name": "ornek",
+  "trigger_evals": [ { "query": "…", "should_trigger": true } ],
+  "evals": [ { "id": 1, "prompt": "…", "expected_output": "…", "expectations": [ "…" ] } ] }
+```
+Testler ve sonuçlar (`evals/results.json`) çalışma alanında `.skills/<slug>/evals/` altında; hazır skill kopyalanmaz. Sınır 40 tetikleme, 10 senaryo.
+- Tetikleme testi: her istem için model yalnız skill ad/açıklamalarını görüp seçer (en çok 20 istem, ~38 sn; kalan için `partial`). Sonuç `rate`, `hits`, `total`, `rows[{query, should_trigger, picked, triggered}]`, `cost`.
+- Fonksiyonel test: istem skill'li ve skill'siz çalışır (araçsız), sonra yargıç model `expectations`'ı iki çıktıda işaretler. Sonuç `checks[{text, with, without}]`, `with`/`without` `{output, passed, total, in, out, cost, ms}`, `note`.
+- REST `POST flx-ai/v1/skills/<slug>/test` `{kind: trigger|functional, id}` (`manage_options`). Kullanım kaydı `purpose = skill_test`.
 
 ## Görev bildirimleri ve onay kuyruğu (0.12.0)
 Görev `meta.skill` (slug) ve `meta.notify` (`mode` none|important|always, `email` bool, `whatsapp` numara, `panel` bool) taşır; `flxai_task_save()` `skill` ve `notify` alanlarını alır, görev araçlarında `skill`, `notify`, `notify_channels`, `notify_whatsapp`.
@@ -468,3 +510,31 @@ add_filter( 'flxai_web_providers', function ( $p ) {
 Ayarlar `flxai_settings` köprüsünden. `key_*` alanları write-only; boş gönderilirse eski şifreli değer kalır, yeni değer `flxai_encrypt` ile saklanır.
 
 `GET /wp-json/flx-ai/v1/log` — `page`, `per_page`, `kind` (`model`|`tool`), `source`, `q`. Yetki `manage_options`. İstek ve cevap gövdesi dönmez. Sohbet ekranı (`flxai-chat`) uygulamada sonra açılır.
+
+## Gömülü sohbet (0.20.0)
+
+Başka bir eklenti Flux AI sohbetini kendi ekranında aynen kullanır (ayrı kopya yazılmaz).
+
+PHP: `if ( function_exists( 'flxai_chat_embed_enqueue' ) ) flxai_chat_embed_enqueue();` (giriş yapmış ve sohbet yetkisi olan kullanıcıda betik + stil yüklenir; dock kapalıysa yalnız gömme modu).
+
+JS:
+```js
+const c = window.FlxAIChat.mount(el, {
+  chat: 12,                 // Flux AI sohbet kimliği (0: boş)
+  head: false,              // üst çubuk
+  placeholder: 'Yazın…', emptyText: 'Henüz mesaj yok.',
+  dark: () => true, themeEl: rootEl,   // tema ve değişim izleme
+  busy: () => false,        // dışarıda çalışan iş var mı (izleme sıklığı)
+  onSend: m => fetch(...)   // m = { text, files:[{key,name}] }; verilirse gönderimi eklenti yürütür, bileşen sohbeti izler
+});
+c.load(id); c.refresh(); c.toggleWs(); c.focus(); c.destroy();
+```
+`onSend` modunda durdur ve geri sarma kapalıdır; onay kartları Flux AI'ın `/decide` ucunu kullanır (`flxai_agent_decided` eylemi tetiklenir).
+
+Mesaj alanı `_show`: modele giden metinden farklı görünen metin (kullanıcı ya da asistan mesajı).
+
+## Araç sonucu filtresi ve yeni araçlar (0.20.0)
+
+- `flxai_tool_result( $data, $name, $args, $ctx )`: başarılı araç sonucunu değiştirir. Flux AI kendisi `flxseo_*_content` sonuçlarına `preview_url` + `edit_url` ekler.
+- `flxai_image_generate` (prompt, aspect, title, alt): varsayılan görsel modeliyle üretir, medya kütüphanesine ekler, `images[].attachment_id/url` döner. Ayar `image_tool_on`.
+- `flxai_page_screenshot` (post_id | url, width): Gotenberg (`render_url`) ile PNG. Taslaklar `flxai_preview_link( $post_id, $ttl )` imzalı süreli bağlantısıyla çekilir.
