@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.17.1 — 2026-11-13
+- Kişiye özel değişkenler: `flxi_create_campaign()` alıcı satırı `vars` taşıyabilir (`[ 'fidan' => 3, 'tutar' => '450 TL' ]`); metinde `{fidan}`, `{tutar}` o kişinin değeriyle dolar (e-posta, WhatsApp, SMS). Alıcı kaynakları da (`flxi_recipients_from_source`) satıra `vars` ekleyebilir. Yerleşik `{ad}`, `{ad_soyad}`, `{eposta}`, `{telefon}` ezilmez. Özellik: `flxi_campaign_features` → `recipient_vars`.
+- Netgsm toplu SMS'te de IPTAL listesi, çıkış satırı ve `{a|b}` çeşitlemesi uygulanır (1.17.0'da yalnız tek tek gönderimde vardı).
+
 ## 1.17.0 — 2026-11-12
 - WhatsApp ban koruması (Evolution API / Flux WPAPI, yalnız kuyruktaki toplu gönderim): mesajlar arası rastgele bekleme (varsayılan 8–20 sn), her 25 mesajda 10 dk mola, saatlik (60) ve günlük (250) üst sınır, yeni numarada ısınma (günlük sınır 20'den başlar, her gün +20), sessiz saatler (21:00–09:00), göndermeden önce numaranın WhatsApp'ı var mı kontrolü (yoksa atlanır), art arda 5 hatada 30 dk durma + sistem kontrolü uyarısı, "yazıyor…" süresi mesaj uzunluğuna göre. Ayarlar Bağlantılar › düzenle › "Ban koruması". Gönder ekranında bekleyen gönderimin nedeni ve devam saati görünür.
 - Metin çeşitlemesi: `{Merhaba|Selam|İyi günler}` her alıcıda rastgele biri.

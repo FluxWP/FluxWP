@@ -332,7 +332,7 @@ function flxi_wa_typing_ms( $config, $text ) {
 add_filter(
 	'flxi_campaign_features',
 	function ( $f ) {
-		return array_values( array_unique( array_merge( (array) $f, array( 'media', 'kind', 'ref', 'optout', 'wa_guard', 'spin' ) ) ) );
+		return array_values( array_unique( array_merge( (array) $f, array( 'media', 'kind', 'ref', 'optout', 'wa_guard', 'spin', 'recipient_vars' ) ) ) );
 	}
 );
 

@@ -144,7 +144,22 @@ $cid   = flxi_create_campaign( array(
 - **`media`**: resim/video (jpg, png, webp, gif, mp4…) tek mesaj gider, metin altyazı olur. Diğer dosyalar (PDF) önce metin, sonra belge olarak gider. Cloud API'de metin + medya iki mesaj.
 - **`kind`**: `marketing` tanıtım/reklamdır: IPTAL yazmış kişiye gitmez (kuyrukta `skipped`), altına çıkış satırı eklenir; e-postada abonelikten çıkanlara gitmez. `info` bilgilendirmedir (etkinlik detayı, teşekkür, makbuz): her zaman gider, satır eklenmez. Kara liste her ikisinde de geçerli.
 - **Çeşitleme**: metinde `{Merhaba|Selam|İyi günler}` her alıcıda rastgele biri olur (`flxi_spin()`); değişkenler (`{ad}`) etkilenmez.
-- **Özellik sorgusu**: `apply_filters( 'flxi_campaign_features', array() )` → `[ 'media', 'kind', 'ref', 'optout', 'wa_guard', 'spin' ]`. Eski Flux Mail'de boş döner; çağıran taraf ona göre davranır (ör. medya yoksa linki metne ekler).
+- **Özellik sorgusu**: `apply_filters( 'flxi_campaign_features', array() )` → `[ 'media', 'kind', 'ref', 'optout', 'wa_guard', 'spin', 'recipient_vars' ]`. Eski Flux Mail'de boş döner; çağıran taraf ona göre davranır (ör. medya yoksa linki metne ekler).
+
+### Kişiye özel değişkenler (1.17.1+)
+
+```php
+$liste = flxi_collect_recipients( array( 'flxcrm_event:12' ), '', 'whatsapp' );
+// ya da kendi listeniz: her satıra isteğe bağlı 'vars'
+$liste[] = array( 'to' => '905321234567', 'name' => 'Ayşe Kaya', 'vars' => array( 'fidan' => 3, 'urun' => 'Fidan', 'tutar' => '450 TL' ) );
+flxi_create_campaign( array( 'channel' => 'whatsapp', 'text' => 'Merhaba {ad}, {fidan} {urun} için teşekkürler ({tutar}).', 'kind' => 'info' ), $liste );
+```
+
+- Anahtar `[a-z0-9_]`, en çok 40 karakter, en çok 50 anahtar; değer düz metin (HTML atılır, en çok 1000 karakter). `ad`, `ad_soyad`, `eposta`, `telefon` yerleşiktir, ezilmez.
+- Değerler kuyruk satırında (`vars` sütunu, `{"fill":{…}}`) saklanır; e-posta konusu/içeriği, WhatsApp ve Netgsm SMS'te dolar.
+- Alıcı kaynağı filtresi `flxi_recipients_from_source` satırlarına da `vars` eklenebilir; `flxi_collect_recipients()` taşır (tekrarlarda ilk satır kalır).
+- Değeri olmayan değişken metinde `{fidan}` olarak kalır; her alıcıya aynı anahtarları verin.
+- Desteklendiği: `flxi_campaign_features` içinde `recipient_vars`.
 
 ### WhatsApp ban koruması (1.17.0+)
 
@@ -207,7 +222,7 @@ Echo webhook'u gönderim yanıtından önce gelebilir (henüz `external_id` yok)
 | `flxi_verified_meta` | `flxi_mark_email_verified( $user_id )` tarafından yazılacak doğrulama meta anahtarları |
 | `flxi_connection_types` | Yeni WhatsApp/SMS sağlayıcısı |
 | `flxi_recipient_sources`, `flxi_recipients_from_source` | Toplu gönderimde yeni alıcı kaynağı |
-| `flxi_campaign_features` | 1.17.0+. Kampanyanın desteklediği özellikler (`media`, `kind`, `ref`, `optout`, `wa_guard`, `spin`) |
+| `flxi_campaign_features` | 1.17.0+. Kampanyanın desteklediği özellikler (`media`, `kind`, `ref`, `optout`, `wa_guard`, `spin`, `recipient_vars` 1.17.1+) |
 | `flxi_recipient_source_info` ( `array $info, string $kaynak, string $kanal` ) | 1.14.0+. Kaynak, o kanal için eleyip hiç döndürmediği kişileri bildirir: `[ 'total' => listedeki kişi, 'no_consent' => kanala izin vermediği için alınmayan ]`. Gönder ekranı "43 kişiden 0 kişi eklendi (43 kişi e-posta izni vermemiş)" satırını bununla yazar. Adresi olmayanları ve tekrarları Flux Mail kendisi sayar. |
 | `flxi_site_logos` ( `array{logo,logo_white,icon}` ) | 1.14.0+. Flux Mail ayarında logo seçilmemişse e-postada kullanılan site logoları (PNG/JPG; SVG olmaz). Varsayılan sıra: Flux SEO kurum logosu, kurum profili logosu, temanın Site Logosu. Ön ayarlar kendi PNG logosunu buradan verir. Hepsi boşsa site simgesi ve site adı yazılır. |
 | `flxi_certificate_background` | Sertifika önizlemesi için temiz arka plan görseli |
