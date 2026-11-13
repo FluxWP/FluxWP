@@ -1,4 +1,4 @@
-/* Flux Donate 2.21.0 · EsnekPOS card fields on the checkout block, installments, 3D Secure in a modal. GPL v2 or later. */
+/* Flux Donate 2.21.0 (2.30.0) · EsnekPOS card fields on the checkout block, installments, 3D Secure in a modal. GPL v2 or later. */
 (function () {
 	'use strict';
 	var reg = window.wc && window.wc.wcBlocksRegistry;
@@ -120,6 +120,43 @@
 		);
 	};
 
+	/* 2.30.0: card number, expiry and security code in one box (number on top, expiry | code below).
+	   The number field shows the supported card logos; once the number tells the brand, only that logo stays. */
+	var LOGO = {
+		visa: '<rect width="34" height="22" rx="3" fill="#1A1F71"/><path fill="#fff" d="M14.2 7.3 12.6 14.7h-1.9l1.6-7.4zm8 4.8 1-2.7.6 2.7zm2.1 2.6h1.8l-1.5-7.4h-1.6c-.4 0-.7.2-.8.5l-2.9 6.9h2l.4-1.1h2.5zm-5-2.4c0-1.9-2.7-2.1-2.7-2.9 0-.3.3-.6.8-.6.7-.1 1.4 0 2 .3l.4-1.6a5 5 0 0 0-1.9-.4c-2 0-3.3 1-3.3 2.5 0 1.1 1 1.7 1.7 2.1.8.4 1 .6 1 1 0 .5-.6.8-1.2.8-.8 0-1.6-.2-2.2-.5l-.4 1.6c.7.3 1.6.5 2.4.5 2 0 3.4-1 3.4-2.6m-8.2-5-3.1 7.4H6l-1.6-6.1c-.1-.4-.2-.5-.5-.7-.5-.3-1.3-.5-2-.7l.1-.2H5.3c.4 0 .8.3.9.8l.8 4.2 2-5z"/>',
+		mastercard: '<rect width="34" height="22" rx="3" fill="#1F2937"/><circle cx="13.5" cy="11" r="6" fill="#EB001B"/><circle cx="20.5" cy="11" r="6" fill="#F79E1B"/><path fill="#FF5F00" d="M17 6.1a6 6 0 0 1 0 9.8 6 6 0 0 1 0-9.8"/>',
+		troy: '<rect x=".5" y=".5" width="33" height="21" rx="2.5" fill="#fff" stroke="#D5DBE1"/><text x="17" y="14.6" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#1D1D1B" letter-spacing="-.2">tr<tspan fill="#00A3AD">o</tspan>y</text>',
+		amex: '<rect width="34" height="22" rx="3" fill="#2E77BB"/><text x="17" y="14.2" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="8" font-weight="800" fill="#fff" letter-spacing=".3">AMEX</text>'
+	};
+	var Logo = function (b) {
+		return el('svg', { key: b, className: 'flxb-cc__logo flxb-cc__logo--' + b, viewBox: '0 0 34 22', role: 'img', 'aria-label': BRAND[b] || b, dangerouslySetInnerHTML: { __html: LOGO[b] } });
+	};
+	var CVC_ICON = '<rect x="1" y="3" width="26" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M1 8h26" stroke="currentColor" stroke-width="2.4"/><rect x="11" y="11" width="21" height="10" rx="2" fill="var(--flx-f-bg,#fff)"/><text x="21.5" y="19" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="8.5" font-weight="700" fill="currentColor">123</text>';
+	var CardBox = function (p) {
+		var shown = p.brand ? [p.brand] : p.brands.filter(function (b) { return LOGO[b]; });
+		var cell = function (k, f, extra, after) {
+			return el('div', { className: 'flxb-cc__cell flxb-cc__cell--' + k + (f.error ? ' is-error' : '') },
+				el('input', Object.assign({
+					className: 'flxb-cc__in', type: 'text', inputMode: 'numeric', value: f.value, 'aria-invalid': f.error ? 'true' : 'false',
+					onChange: function (e) { f.onChange(e.target.value); }, onBlur: f.onBlur
+				}, extra)),
+				after || null);
+		};
+		var err = p.num.error || p.exp.error || p.cvv.error;
+		return el('div', { className: 'flxb-cc__card' + (err ? ' is-error' : '') },
+			el('div', { className: 'flxb-cc__card-h', id: 'flxb-cc-h' }, t.cardInfo),
+			el('div', { className: 'flxb-cc__box', role: 'group', 'aria-labelledby': 'flxb-cc-h' },
+				cell('num', p.num, { autoComplete: 'cc-number', placeholder: t.card, 'aria-label': t.card, maxLength: 23 },
+					el('span', { className: 'flxb-cc__logos' + (p.brand ? ' is-known' : ''), 'aria-live': 'polite' }, shown.map(Logo))),
+				el('div', { className: 'flxb-cc__split' },
+					cell('exp', p.exp, { autoComplete: 'cc-exp', placeholder: t.expFmt, 'aria-label': t.exp + ' (' + t.expFmt + ')', maxLength: 7 }),
+					cell('cvv', p.cvv, { autoComplete: 'cc-csc', placeholder: t.cvv, 'aria-label': t.cvv, maxLength: 4 },
+						el('svg', { className: 'flxb-cc__cvc', viewBox: '0 0 34 22', 'aria-hidden': 'true', dangerouslySetInnerHTML: { __html: CVC_ICON } })))
+			),
+			err ? el('p', { className: 'flx-fld__msg flxb-cc__msg', role: 'alert' }, err) : null
+		);
+	};
+
 	var Content = function (props) {
 		var reg = props.eventRegistration, emit = props.emitResponse;
 		var billing = props.billing || {};
@@ -231,15 +268,12 @@
 		}
 
 		return el('div', { className: 'flxb-cc' },
-			el(Field, {
-				label: t.card, icon: 'card', value: v('num'), inputMode: 'numeric', autoComplete: 'cc-number', placeholder: '0000 0000 0000 0000', maxLength: 23, wide: true,
-				onChange: change('num', function (x) { return groupCard(digits(x)); }), onBlur: blur('num'), error: errOf('num'),
-				after: el('span', { className: 'flxb-cc__brand flxb-cc__brand--' + (brand || 'none'), 'aria-hidden': 'true' }, BRAND[brand] || '')
+			el(CardBox, {
+				brand: brand, brands: data.brands || ['visa', 'mastercard', 'troy'],
+				num: { value: v('num'), onChange: change('num', function (x) { return groupCard(digits(x)); }), onBlur: blur('num'), error: errOf('num') },
+				exp: { value: v('exp'), onChange: change('exp', groupExp), onBlur: blur('exp'), error: errOf('exp') },
+				cvv: { value: v('cvv'), onChange: change('cvv', function (x) { return digits(x).slice(0, 4); }), onBlur: blur('cvv'), error: errOf('cvv') }
 			}),
-			el('div', { className: 'flxb-cc__row' },
-				el(Field, { label: t.exp, icon: 'calendar', hint: t.expFmt, value: v('exp'), inputMode: 'numeric', autoComplete: 'cc-exp', placeholder: 'AA / YY', maxLength: 7, onChange: change('exp', groupExp), onBlur: blur('exp'), error: errOf('exp') }),
-				el(Field, { label: t.cvv, icon: 'lock', value: v('cvv'), inputMode: 'numeric', autoComplete: 'cc-csc', placeholder: '•••', maxLength: 4, type: 'password', onChange: change('cvv', function (x) { return digits(x).slice(0, 4); }), onBlur: blur('cvv'), error: errOf('cvv') })
-			),
 			el(Field, { label: t.name, icon: 'user', value: v('name'), autoComplete: 'cc-name', wide: true, onChange: change('name', function (x) { return x.toLocaleUpperCase('tr-TR'); }), onBlur: blur('name'), error: errOf('name') }),
 			needPhone ? el(Field, { label: t.phone, icon: 'phone', value: v('phone'), type: 'tel', inputMode: 'tel', autoComplete: 'tel', placeholder: '0532 123 45 67', wide: true, onChange: change('phone'), onBlur: blur('phone'), error: errOf('phone') || '' }) : null,
 			needPhone && !errOf('phone') ? el('p', { className: 'flxb-cc__muted flxb-cc__hint' }, t.phoneHelp) : null,
@@ -248,12 +282,7 @@
 				el('span', { className: 'flxb-cc__3ds-ico', 'aria-hidden': 'true' }),
 				el('span', { className: 'flxb-cc__3ds-t' }, el('strong', null, '3D Secure'), ' ', t.sec)
 			),
-			el('div', { className: 'flxb-cc__foot' },
-				el('p', { className: 'flxb-cc__muted flxb-cc__safe' }, t.secShort),
-				el('span', { className: 'flxb-cc-label__brands', 'aria-hidden': 'true' },
-					el('i', { className: 'flxb-cc__brand flxb-cc__brand--visa' }, 'VISA'),
-					el('i', { className: 'flxb-cc__brand flxb-cc__brand--mastercard' }, ''),
-					el('i', { className: 'flxb-cc__brand flxb-cc__brand--troy' }, 'troy')))
+			el('p', { className: 'flxb-cc__muted flxb-cc__safe' }, t.secShort)
 		);
 	};
 

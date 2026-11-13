@@ -115,12 +115,20 @@ final class FLXB_WC_Esnekpos_Direct {
 			'rest'         => esc_url_raw( rest_url( self::NS . '/esnekpos/' ) ),
 			'nonce'        => wp_create_nonce( 'wp_rest' ),
 			'test'         => FLXB_WC_Esnekpos::credentials()['test'],
+			/**
+			 * 2.30.0: card logos shown in the card number field until the number tells the brand.
+			 * Keys: visa, mastercard, troy, amex.
+			 *
+			 * @param string[] $brands
+			 */
+			'brands'       => array_values( array_intersect( (array) apply_filters( 'flxb_cc_brands', array( 'visa', 'mastercard', 'troy' ) ), array( 'visa', 'mastercard', 'troy', 'amex' ) ) ),
 			'i18n'         => array(
+				'cardInfo'     => __( 'Card information', 'flx-donate' ),
 				'card'         => __( 'Card number', 'flx-donate' ),
 				'exp'          => __( 'Expiry', 'flx-donate' ),
 				/* translators: expiry date format shown beside the label */
 				'expFmt'       => __( 'MM/YY', 'flx-donate' ),
-				'cvv'          => __( 'CVV', 'flx-donate' ),
+				'cvv'          => __( 'Security code', 'flx-donate' ),
 				'name'         => __( 'Name on card', 'flx-donate' ),
 				'phone'        => __( 'Mobile phone', 'flx-donate' ),
 				'phoneHelp'    => __( 'Card payments need a phone number.', 'flx-donate' ),

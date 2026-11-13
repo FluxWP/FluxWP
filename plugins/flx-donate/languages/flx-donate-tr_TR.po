@@ -6067,3 +6067,9 @@ msgstr "WhatsApp + e-posta"
 
 msgid "to the donor"
 msgstr "bağışçıya"
+
+msgid "Card information"
+msgstr "Kart bilgileri"
+
+msgid "Security code"
+msgstr "Güvenlik kodu"
