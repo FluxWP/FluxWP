@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.47.1
+- Fotoğraf, video ve belge indirme yeni sekme açmıyor; indirme aynı sayfada arka planda başlıyor (mesaj menüsü, önizleme penceresi, belge balonu). Kişi fotoğrafı da kişinin adıyla iniyor.
+
 ## 1.47.0
 - Kişi profil fotoğrafları sunucuda önbelleklenir. WhatsApp'ın fotoğraf adresi tarayıcıya hiç gitmez; fotoğrafı sunucu indirir, panel yalnız sitenin kendi adresinden alır (süresi dolan WhatsApp adresi yüzünden kırık fotoğraf da kalmaz). Adres fotoğrafın özetini taşır, tarayıcı uzun süre önbellekte tutar.
 - Sohbet açılınca fotoğrafın güncelliği sunucuda kontrol edilir (sohbet başına en sık 10 dakikada bir); değiştiyse listede, başlıkta ve kişi bilgisinde hemen yenilenir.
