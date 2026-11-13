@@ -153,7 +153,7 @@ final class FLXCRM_Event_Messages {
 
 	/** Same for everyone: written into the text before it goes to Flux Mail. key => [ label, value ]. */
 	public static function event_vars( array $e ) {
-		$date = '' !== (string) $e['event_date'] ? flx_date( $e['event_date'] . ' 12:00:00', get_option( 'date_format' ) ) : '';
+		$date = '' !== (string) $e['event_date'] ? flx_date( $e['event_date'] . ' 12:00:00', 'date' ) : '';
 		$out  = array(
 			'etkinlik'        => array( __( 'Event name', 'flx-crm' ), (string) $e['name'] ),
 			'etkinlik_tarihi' => array( __( 'Event date', 'flx-crm' ), $date ),
@@ -455,11 +455,11 @@ final class FLXCRM_Event_Messages {
 		);
 		// phpcs:enable
 		if ( is_wp_error( $r ) ) {
-			wp_safe_redirect( flxcrm_events_url( array( 'id' => $id, 'flxcrm_err' => rawurlencode( $r->get_error_message() ) ) ) . '#flxcrm-evmsg' );
+			wp_safe_redirect( flxcrm_events_url( array( 'id' => $id, 'flxcrm_err' => rawurlencode( $r->get_error_message() ), 'view' => 'message' ) ) . '#flxcrm-evmsg' );
 			exit;
 		}
 		$n    = array_sum( $r['counts'] );
-		$args = array( 'id' => $id, 'flxcrm_msg' => 'evmsg' . $n );
+		$args = array( 'id' => $id, 'view' => 'message', 'flxcrm_msg' => 'evmsg' . $n );
 		if ( $r['skipped'] ) { // some channels did not go: say why
 			$args['flxcrm_err'] = rawurlencode( implode( ' ', array_map( function ( $ch, $why ) { return self::channels()[ $ch ] . ': ' . $why; }, array_keys( $r['skipped'] ), $r['skipped'] ) ) );
 		}
@@ -481,7 +481,7 @@ final class FLXCRM_Event_Messages {
 				}
 			}
 		}
-		wp_safe_redirect( flxcrm_events_url( array( 'id' => $id, 'flxcrm_msg' => 'evmsgstop' ) ) . '#flxcrm-evmsg-log' );
+		wp_safe_redirect( flxcrm_events_url( array( 'id' => $id, 'view' => 'message', 'flxcrm_msg' => 'evmsgstop' ) ) . '#flxcrm-evmsg-log' );
 		exit;
 	}
 }

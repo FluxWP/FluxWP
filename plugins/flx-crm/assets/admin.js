@@ -834,6 +834,27 @@ window.flxcrmBoot.push( function ( R ) {
 	} );
 } );
 
+/* 0.8.0: quick filter over a table (event contacts) and closing other ⋯ menus. */
+window.flxcrmBoot.push( function ( R ) {
+	'use strict';
+	flxcrmOnce( R, '[data-flxcrm-filter]' ).forEach( function ( inp ) {
+		var t = document.querySelector( inp.dataset.flxcrmFilter );
+		if ( ! t ) { return; }
+		inp.addEventListener( 'input', function () {
+			var q = inp.value.trim().toLocaleLowerCase();
+			t.querySelectorAll( 'tbody tr' ).forEach( function ( tr ) {
+				tr.hidden = q !== '' && tr.textContent.toLocaleLowerCase().indexOf( q ) === -1;
+			} );
+		} );
+	} );
+	flxcrmOnce( R, '.flxcrm-more' ).forEach( function ( d ) {
+		d.addEventListener( 'toggle', function () {
+			if ( ! d.open ) { return; }
+			document.querySelectorAll( '.flxcrm-more[open]' ).forEach( function ( o ) { if ( o !== d ) { o.open = false; } } );
+		} );
+	} );
+} );
+
 ( function () {
 	'use strict';
 	if ( ! window.fetch || ! window.DOMParser || ! window.history || ! history.pushState ) {

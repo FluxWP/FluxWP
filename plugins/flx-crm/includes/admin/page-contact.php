@@ -467,7 +467,7 @@ final class FLXCRM_Page_Contact {
 
 	private static function render_new() {
 		$blank = array( 'id' => 0, 'name' => '', 'email' => '', 'phone' => '', 'company' => '', 'city' => '', 'roles' => '', 'note' => '', 'owner_id' => 0, 'consent_email' => 0, 'consent_sms' => 0, 'consent_whatsapp' => 0, 'consent_ads' => 0 );
-		FLXCRM_Admin::open( __( 'New contact', 'flx-crm' ), __( 'An e-mail or a phone number is enough. If a contact with the same e-mail or phone exists, their card opens.', 'flx-crm' ) );
+		FLXCRM_Admin::open( __( 'New contact', 'flx-crm' ), __( 'An e-mail or a phone number is enough. If a contact with the same e-mail or phone exists, their card opens.', 'flx-crm' ), '', true, array( flxcrm_admin_url( 'contacts' ), __( 'Contacts', 'flx-crm' ) ) );
 		echo '<div class="flxcrm-card flxcrm-narrow"><form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
 		wp_nonce_field( 'flxcrm_contact_save' );
 		echo '<input type="hidden" name="action" value="flxcrm_contact_save"><input type="hidden" name="id" value="0">';
