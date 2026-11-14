@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 2.30.1
+- Kurban metinlerinde "kesilir / kesimi" ifadeleri bağış diliyle yazıldı: "Kimler adına?" açıklamaları "Bağışınız … adına yapılır", vekâlet onayı "Bu metne göre kurban bağışım için vekâlet veriyorum." İçe aktarma yardımında "kesim yeri" yerine "uygulama yeri".
+
 ## 2.30.0
 - Ödeme sayfasında kart alanları tek kutuda: üstte kart numarası, altında yan yana son kullanma (AA/YY) ve güvenlik kodu.
 - Kart numarası alanının sağında desteklenen kart logoları (Visa, Mastercard, Troy); numara yazıldıkça kartın cinsi anlaşılınca yalnız onun logosu kalır. Liste filtre `flxb_cc_brands` ile değişir (amex de eklenebilir).
