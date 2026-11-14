@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name:       Flux Commerce
- * Description:       WooCommerce mağazası için satış paneli, müşteriler, satış raporları, dekont yüklemeli Havale/EFT, sade ödeme sayfası, ücretsiz kargo çubuğu, Google Merchant ürün feed'i ve WhatsApp/e-posta bildirimleri.
- * Version:           0.3.1
+ * Description:       WooCommerce mağazası için satış paneli, müşteriler, aylık/yıllık abonelikler, satış raporları, dekont yüklemeli Havale/EFT, sade ödeme sayfası, ücretsiz kargo çubuğu, Google Merchant ürün feed'i ve WhatsApp/e-posta bildirimleri.
+ * Version:           0.4.0
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Requires Plugins:  woocommerce
@@ -27,8 +27,8 @@ if ( defined( 'FLXCM_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXCM_VERSION', '0.3.1' );
-define( 'FLXCM_DB_VERSION', 1 );
+define( 'FLXCM_VERSION', '0.4.0' );
+define( 'FLXCM_DB_VERSION', 2 );
 define( 'FLXCM_FILE', __FILE__ );
 define( 'FLXCM_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXCM_URL', plugin_dir_url( __FILE__ ) );
@@ -44,6 +44,9 @@ require_once FLXCM_DIR . 'includes/app-manifest.php';
 require_once FLXCM_DIR . 'includes/class-flxcm-checkout.php';
 require_once FLXCM_DIR . 'includes/class-flxcm-feed.php';
 require_once FLXCM_DIR . 'includes/class-flxcm-notify.php';
+require_once FLXCM_DIR . 'includes/class-flxcm-subscriptions.php';
+require_once FLXCM_DIR . 'includes/class-flxcm-sub-product.php';
+require_once FLXCM_DIR . 'includes/class-flxcm-sub-account.php';
 require_once FLXCM_DIR . 'includes/system-checks.php';
 if ( is_admin() ) {
 	require_once FLXCM_DIR . 'includes/admin/class-flxcm-admin.php';
@@ -101,6 +104,9 @@ add_action(
 		FLXCM_Checkout::init();
 		FLXCM_Feed::init();
 		FLXCM_Notify::init();
+		FLXCM_Subscriptions::init();
+		FLXCM_Sub_Product::init();
+		FLXCM_Sub_Account::init();
 		if ( is_admin() ) {
 			FLXCM_Admin::init();
 		}

@@ -44,6 +44,9 @@ function flxcm_defaults() {
 			'notify_customer_wa' => 1,
 			'notify_admin_phone' => '',
 			'notify_admin_order' => 0,
+			// Abonelikler.
+			'sub_renew_days'     => 7,
+			'sub_grace_days'     => 3,
 		)
 	);
 }

@@ -32,7 +32,7 @@ final class FLXCM_Page_Settings {
 		if ( ! current_user_can( FLXCM_Admin::CAP_MANAGE ) ) {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-commerce' ), 403 );
 		}
-		FLXCM_Admin::open( __( 'Settings', 'flx-commerce' ), __( 'Dashboard, checkout, bank transfer, product feed and notifications.', 'flx-commerce' ) );
+		FLXCM_Admin::open( __( 'Settings', 'flx-commerce' ), __( 'Dashboard, checkout, bank transfer, subscriptions, product feed and notifications.', 'flx-commerce' ) );
 		if ( isset( $_GET['saved'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 			echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Settings saved.', 'flx-commerce' ) . '</p></div>';
 		}
@@ -91,6 +91,13 @@ final class FLXCM_Page_Settings {
 		self::input( 'cancel_after_days', __( 'Cancel unpaid bank transfers after (days)', 'flx-commerce' ), 'number', __( '0 = never cancel. Orders with a receipt are not cancelled; stock is restored.', 'flx-commerce' ), 'min="0" max="60" class="small-text"' );
 		echo '</section>';
 
+		// Abonelikler.
+		echo '<section class="flxcm-card"><h2>' . flxcm_icon( 'refresh', 18 ) . ' ' . esc_html__( 'Subscriptions', 'flx-commerce' ) . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		echo '<p class="flxcm-muted">' . esc_html__( 'Tick "Subscription" on a simple product and enter a monthly and/or yearly price. Renewals are paid by bank transfer or through the payment link; automatic card charging comes later.', 'flx-commerce' ) . '</p>';
+		self::input( 'sub_renew_days', __( 'Create the renewal order (days before the period ends)', 'flx-commerce' ), 'number', __( 'The customer gets the reminder e-mail with the bank details or payment link at the same time, and once more on the last day if unpaid.', 'flx-commerce' ), 'min="0" max="60" class="small-text"' );
+		self::input( 'sub_grace_days', __( 'Grace period after the period ends (days)', 'flx-commerce' ), 'number', __( 'Access stays on while the renewal is unpaid; after this the subscription ends. 0 = ends on the last day.', 'flx-commerce' ), 'min="0" max="60" class="small-text"' );
+		echo '</section>';
+
 		// Feed.
 		echo '<section class="flxcm-card"><h2>' . flxcm_icon( 'rss', 18 ) . ' ' . esc_html__( 'Product feed (Google Merchant)', 'flx-commerce' ) . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		self::toggle( 'feed', __( 'Feed on', 'flx-commerce' ), __( 'Google Merchant Center, Meta catalog and similar services read this address.', 'flx-commerce' ) );
@@ -137,6 +144,8 @@ final class FLXCM_Page_Settings {
 		$out['receipt_max_mb']     = max( 1, min( 20, absint( $in['receipt_max_mb'] ?? 8 ) ) );
 		$out['receipt_notify']     = sanitize_email( (string) ( $in['receipt_notify'] ?? '' ) );
 		$out['cancel_after_days']  = min( 60, absint( $in['cancel_after_days'] ?? 0 ) );
+		$out['sub_renew_days']     = min( 60, absint( $in['sub_renew_days'] ?? 7 ) );
+		$out['sub_grace_days']     = min( 60, absint( $in['sub_grace_days'] ?? 3 ) );
 		$out['feed_brand']         = sanitize_text_field( (string) ( $in['feed_brand'] ?? '' ) );
 		$out['notify_admin_phone'] = preg_replace( '/[^0-9+ ]/', '', (string) ( $in['notify_admin_phone'] ?? '' ) );
 		flxcm_save_settings( $out );

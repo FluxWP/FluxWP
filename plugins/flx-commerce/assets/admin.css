@@ -193,3 +193,9 @@ html.flxa-dark .flxcm{--c-ok:#4ade80;--c-ok-s:rgba(74,222,128,.14)}
 @media (max-width:782px){.flxcm-hero{padding:14px}.flxcm-hero__actions{width:100%}.flxcm-hero__main{min-width:0}.flxcm-avatar.is-lg{width:52px;height:52px;font-size:20px}}
 @media (prefers-color-scheme:dark){html.flxa-auto .flxcm{--c-ok:#4ade80;--c-ok-s:rgba(74,222,128,.14)}}
 .flxcm-tl-more{display:flex;align-items:center;gap:10px;margin:6px 0 0 40px}
+/* Abonelikler (0.4.0) */
+.flxcm-table--subs td small{display:inline}
+.flxcm-table--subs .flxcm-who small{display:block}
+.flxcm-actions{white-space:nowrap;text-align:right}
+.flxcm-actions .button{margin:2px 0 2px 4px}
+@media (max-width:782px){.flxcm-actions{white-space:normal;text-align:left}.flxcm-actions .button{margin:4px 6px 0 0}}

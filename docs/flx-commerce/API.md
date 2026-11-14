@@ -51,3 +51,83 @@ Uygulama (Flux App manifesti `flxcm`, 0.2.3). Okuma `view_woocommerce_reports` y
 
 ## Paylaşılan kancalar
 `flx_system_checks`, `flxa_page_heads`, `flxa_package_heads`, `flxa_menu_logos`, `flxa_default_groups` (Flux Admin), `flxu_package_icons` (FluxWP Panel), Flux Mail `flxi_send_message`.
+
+## Abonelikler (0.4.0)
+
+Aylık / yıllık yinelenen ödeme, WooCommerce üzerinde (ücretli WooCommerce Subscriptions yok). Faz 1: yenileme
+Havale/EFT ya da ödeme bağlantısıyla (müşteri ödeme sayfasında açık olan her yöntemi seçebilir). Faz 2 (kartla
+otomatik çekim) aynı olayları kullanacak; dinleyicilerin değişmesi gerekmez.
+
+### Ürün
+Basit üründe **Abonelik** kutusu + **Aylık fiyat** / **Yıllık fiyat** (boş = o dönem yok). Ürün meta:
+`_flxcm_sub` (`yes`), `_flxcm_sub_month`, `_flxcm_sub_year`. Fatura adı/adresi/e-posta normal WooCommerce ödeme
+akışından gelir ve her yenileme siparişine kopyalanır. Sepette abonelik varsa hesap açmak zorunludur.
+Ürün sayfasında dönem seçimi `flxcm_period=month|year` (ör. `?add-to-cart=12&flxcm_period=year` ya da ürün
+sayfası `?flxcm_period=year` ön seçimi).
+
+Fiyatı başka yerden hesaplamak (ör. Flux Cloud'un yıllık indirim parametresi):
+```php
+add_filter( 'flxcm_subscription_prices', function ( $prices, $product ) {
+	// $prices = [ 'month' => 1299.0, 'year' => 12990.0 ]
+	return $prices;
+}, 10, 2 );
+```
+
+### Durumlar
+| Durum | Anlamı | `has_access` |
+|---|---|---|
+| `pending` | Sipariş verildi, ilk ödeme gelmedi | hayır |
+| `active` | Ödendi, dönem sürüyor | evet |
+| `past_due` | Dönem bitti, yenileme ödenmedi, ek süre (`sub_grace_days`) | evet |
+| `cancelled` | Müşteri/yönetici yenilemeyi kapattı, `period_end`'e kadar geçerli | evet (bitişe kadar) |
+| `expired` | Bitti | hayır |
+
+Akış: sipariş → `pending` → ödeme → `active` (`period_end` = +1 ay/yıl, ay sonu kaymasız) → bitişten
+`sub_renew_days` (7) gün önce yenileme siparişi + e-posta → ödenirse dönem eskisinin sonundan uzar → ödenmezse
+`period_end`'de `past_due` → `sub_grace_days` (3) sonra `expired`. Saatlik cron `flxcm_subs_tick`; gerçek cron
+yoksa sayfa isteklerinin sonunda saatte bir döner. Sistem kontrolü `flxcm.subscriptions`.
+
+### Olaylar
+Hepsi ilk argüman olarak `$sub` (aşağıdaki dizi) alır.
+
+| Eylem | Argümanlar | Ne zaman |
+|---|---|---|
+| `flxcm_subscription_started` | `$sub, WC_Order $order` | İlk ödeme alındı (her yöntem; Havale onayı dahil) |
+| `flxcm_subscription_renewed` | `$sub, WC_Order $order` | Yenileme siparişi ödendi; `$sub['period_end']` yeni bitiş |
+| `flxcm_subscription_ended` | `$sub, string $reason` | Erişim kapanmalı. `$reason`: `cancelled` (iptal edilmişti, dönem bitti), `unpaid` (ek süre doldu), `refunded` (ilk sipariş iade), `admin` (yönetici "Şimdi bitir") |
+| `flxcm_subscription_cancelled` | `$sub, string $by` | Yenileme kapatıldı (`customer`/`admin`); erişim `period_end`'e kadar sürer |
+| `flxcm_subscription_resumed` | `$sub` | İptal geri alındı |
+| `flxcm_subscription_past_due` | `$sub` | Dönem bitti, ödeme yok; ek süre başladı (erişim açık) |
+| `flxcm_subscription_renewal_created` | `$sub, WC_Order $order` | Yenileme siparişi açıldı |
+| `flxcm_subscription_status_changed` | `$sub, string $old, string $new` | Her durum değişikliği |
+
+`$sub` dizisi (zamanlar Unix, UTC):
+```
+id, status, has_access, auto_renew, user_id, email, name, product_id, product_name, period (month|year),
+amount, currency, payment_method, parent_order_id, last_order_id, renewal_order_id, renewals,
+started_at, period_end, cancelled_at, ended_at, end_reason, meta (dizi), created_at
+```
+
+### Fonksiyonlar
+| | |
+|---|---|
+| `flxcm_add_subscription_to_cart( $product_id, $period = '', array $meta = [] )` | Sepete abonelik ekler (aynı ürünün eski satırı çıkar), sonra `wc_get_checkout_url()`'e yönlendirin. `$meta` aboneliğin `meta`'sına taşınır (ör. `[ 'flx_cloud_account' => 12 ]`). Dönüş sepet anahtarı ya da `WP_Error` |
+| `flxcm_get_subscription( $id )` | `$sub` ya da `null` |
+| `flxcm_get_subscriptions( $args )` | `status`, `user_id`, `email`, `product_id`, `s`, `paged`, `per_page` |
+| `flxcm_user_subscriptions( $user_id = 0, $product_id = 0 )` | Erişimi açık abonelikler |
+| `flxcm_cancel_subscription( $id, $immediately = false )` | Dönem sonunda (ya da hemen) bitir |
+| `flxcm_update_subscription_meta( $id, $key, $value )` | `meta`'ya yaz (`null` siler) |
+| `FLXCM_Subscriptions::create_renewal( $id, $force = false )` | Yenileme siparişini şimdi aç |
+
+### Filtreler
+| Filtre | |
+|---|---|
+| `flxcm_subscription_prices( $prices, WC_Product )` | Dönem fiyatları |
+| `flxcm_subscription_renewal_amount( $amount, $sub )` | Yenileme tutarı (varsayılan: abonelikteki kilitli tutar) |
+| `flxcm_subscription_manual_methods` | Yenileme siparişine yazılan elle ödeme yöntemleri (`flxcm_bank`, `flxb_havale`, `bacs`) |
+| `flxcm_subscription_send_mail( bool, $kind, $sub, $order )` | `renewal` / `ended` e-postasını kapat |
+
+E-posta şablonları (Flux Mail › E-postalar): `flx-commerce/sub-renewal`, `flx-commerce/sub-ended`; Flux Mail
+yoksa `wp_mail` düz metin. Tablo `wp_flxcm_subscriptions` (kaldırmada silinmez). Hesabım uç noktası `subscriptions`.
+Sipariş meta: `_flxcm_subs` (ilk sipariş → abonelik id'leri), `_flxcm_renewal_of`, `_flxcm_renewal_for`.
+Satır meta: `_flxcm_period`, `flxcm_period` (görünen), `_flxcm_sub_id`, `_flxcm_sub_meta`.

@@ -902,3 +902,290 @@ msgstr "İletişim"
 
 msgid "Sales panel for WooCommerce store, customers, sales reports, Money Order/EFT with receipt upload, simple payment page, free shipping bar, Google Merchant product feed and WhatsApp/email notifications."
 msgstr "WooCommerce mağazası için satış paneli, müşteriler, satış raporları, dekont yüklemeli Havale/EFT, sade ödeme sayfası, ücretsiz kargo çubuğu, Google Merchant ürün feed'i ve WhatsApp/e-posta bildirimleri."
+
+msgid "Subscriptions"
+msgstr "Abonelikler"
+
+msgid "Awaiting first payment"
+msgstr "İlk ödeme bekleniyor"
+
+msgid "Active"
+msgstr "Etkin"
+
+msgid "Payment overdue"
+msgstr "Ödeme gecikti"
+
+msgid "Ended"
+msgstr "Bitti"
+
+msgid "Renews on %s"
+msgstr "%s tarihinde yenilenir"
+
+msgid "Was due on %s"
+msgstr "Yenileme tarihi %s idi"
+
+msgid "Valid until %s"
+msgstr "%s tarihine kadar geçerli"
+
+msgid "Ended on %s"
+msgstr "%s tarihinde bitti"
+
+msgid "You have no subscriptions yet."
+msgstr "Henüz aboneliğiniz yok."
+
+msgid "Renewal order #%1$s is waiting for payment: %2$s"
+msgstr "#%1$s numaralı yenileme siparişi ödeme bekliyor: %2$s"
+
+msgid "Bank details and receipt"
+msgstr "Banka bilgileri ve dekont"
+
+msgid "Pay now"
+msgstr "Şimdi öde"
+
+msgid "Last order #%s"
+msgstr "Son sipariş #%s"
+
+msgid "Turn off renewal? The subscription stays valid until the end of the current period."
+msgstr "Yenileme kapatılsın mı? Abonelik bu dönemin sonuna kadar geçerli kalır."
+
+msgid "Cancel subscription"
+msgstr "Aboneliği iptal et"
+
+msgid "Turn renewal back on"
+msgstr "Yenilemeyi yeniden aç"
+
+msgid "Start again"
+msgstr "Yeniden başlat"
+
+msgid "Your subscription has ended."
+msgstr "Aboneliğiniz sona erdi."
+
+msgid "Renewal is off. Your subscription stays valid until %s."
+msgstr "Yenileme kapatıldı. Aboneliğiniz %s tarihine kadar geçerli."
+
+msgid "Renewal is back on."
+msgstr "Yenileme yeniden açıldı."
+
+msgid "Subscription"
+msgstr "Abonelik"
+
+msgid "Sold as a monthly or yearly subscription (Flux Commerce). Renewals arrive as orders."
+msgstr "Aylık ya da yıllık abonelik olarak satılır (Flux Commerce). Yenilemeler sipariş olarak gelir."
+
+msgid "Monthly price (%s)"
+msgstr "Aylık fiyat (%s)"
+
+msgid "Empty = no monthly option."
+msgstr "Boş = aylık seçenek yok."
+
+msgid "Yearly price (%s)"
+msgstr "Yıllık fiyat (%s)"
+
+msgid "Empty = no yearly option."
+msgstr "Boş = yıllık seçenek yok."
+
+msgid "or"
+msgstr "ya da"
+
+msgid "Subscribe"
+msgstr "Abone ol"
+
+msgid "Billing period"
+msgstr "Ödeme dönemi"
+
+msgid "Save %s%%"
+msgstr "%%%s tasarruf"
+
+msgid "Renews automatically; we send a reminder before every renewal. You can cancel any time from My account."
+msgstr "Kendiliğinden yenilenir; her yenilemeden önce hatırlatma göndeririz. Hesabım'dan istediğiniz zaman iptal edebilirsiniz."
+
+msgid "This product is not a subscription."
+msgstr "Bu ürün abonelik değil."
+
+msgid "The product could not be added to the cart."
+msgstr "Ürün sepete eklenemedi."
+
+msgid "Subscription #%d created; it starts when the payment arrives."
+msgstr "#%d numaralı abonelik açıldı; ödeme gelince başlar."
+
+msgid "Subscription #%1$d started; next renewal %2$s."
+msgstr "#%1$d numaralı abonelik başladı; sonraki yenileme %2$s."
+
+msgid "Subscription #%1$d renewed until %2$s."
+msgstr "#%1$d numaralı abonelik %2$s tarihine kadar yenilendi."
+
+msgid "Subscription ended; the renewal order is no longer needed."
+msgstr "Abonelik bitti; yenileme siparişine gerek kalmadı."
+
+msgid "Only an active subscription can be renewed."
+msgstr "Yalnız etkin bir abonelik yenilenebilir."
+
+msgid "A renewal order for this period was already created."
+msgstr "Bu dönem için yenileme siparişi zaten açıldı."
+
+msgid "Renewal order for subscription #%1$d (period ends %2$s)."
+msgstr "#%1$d numaralı aboneliğin yenileme siparişi (dönem sonu %2$s)."
+
+msgid "First name"
+msgstr "Ad"
+
+msgid "Period end"
+msgstr "Dönem sonu"
+
+msgid "Payment link"
+msgstr "Ödeme bağlantısı"
+
+msgid "Monthly"
+msgstr "Aylık"
+
+msgid "Subscription renewal reminder"
+msgstr "Abonelik yenileme hatırlatması"
+
+msgid "Goes to the customer when the renewal order is created and again on the last day if it is unpaid."
+msgstr "Yenileme siparişi açılınca müşteriye gider; ödenmezse son gün bir kez daha."
+
+msgid "Your {urun} subscription renews on {bitis}"
+msgstr "{urun} aboneliğiniz {bitis} tarihinde yenileniyor"
+
+msgid "Time to renew, {ad}"
+msgstr "Yenileme zamanı, {ad}"
+
+msgid "Your {urun} subscription ({donem}) renews on {bitis}. Amount: {tutar}."
+msgstr "{urun} aboneliğiniz ({donem}) {bitis} tarihinde yenileniyor. Tutar: {tutar}."
+
+msgid "Subscription ended"
+msgstr "Abonelik bitti"
+
+msgid "Goes to the customer when a subscription ends."
+msgstr "Abonelik bitince müşteriye gider."
+
+msgid "Your {urun} subscription has ended"
+msgstr "{urun} aboneliğiniz sona erdi"
+
+msgid "Your subscription has ended"
+msgstr "Aboneliğiniz sona erdi"
+
+msgid "Hello {ad}, your {urun} subscription has ended. You can start it again at any time."
+msgstr "Merhaba {ad}, {urun} aboneliğiniz sona erdi. İstediğiniz zaman yeniden başlatabilirsiniz."
+
+msgid "Yearly"
+msgstr "Yıllık"
+
+msgid "year"
+msgstr "yıl"
+
+msgid "month"
+msgstr "ay"
+
+msgid "Recipient: %1$s · IBAN: %2$s · Reference: %3$s"
+msgstr "Alıcı: %1$s · IBAN: %2$s · Açıklama: %3$s"
+
+msgid "Your %s subscription has ended"
+msgstr "%s aboneliğiniz sona erdi"
+
+msgid "Hello %1$s, your %2$s subscription has ended. You can start it again at any time: %3$s"
+msgstr "Merhaba %1$s, %2$s aboneliğiniz sona erdi. İstediğiniz zaman yeniden başlatabilirsiniz: %3$s"
+
+msgid "Your %1$s subscription renews on %2$s"
+msgstr "%1$s aboneliğiniz %2$s tarihinde yenileniyor"
+
+msgid "Hello %1$s, your %2$s subscription (%3$s) renews on %4$s. Amount: %5$s. Pay here: %6$s"
+msgstr "Merhaba %1$s, %2$s aboneliğiniz (%3$s) %4$s tarihinde yenileniyor. Tutar: %5$s. Ödeme: %6$s"
+
+msgid "Subscription renewals"
+msgstr "Abonelik yenilemeleri"
+
+msgid "The renewal job has not run for more than 6 hours. Check the server cron (wp-cron.php); renewal orders and reminders wait until it runs."
+msgstr "Yenileme işi 6 saatten uzun süredir çalışmadı. Sunucu cron'unu (wp-cron.php) kontrol edin; yenileme siparişleri ve hatırlatmalar o çalışana kadar bekler."
+
+msgid "%1$s open subscriptions. Last run: %2$s"
+msgstr "%1$s açık abonelik. Son çalışma: %2$s"
+
+msgid "Dashboard, checkout, bank transfer, subscriptions, product feed and notifications."
+msgstr "Panel, ödeme sayfası, Havale/EFT, abonelikler, ürün feed'i ve bildirimler."
+
+msgid "Tick \"Subscription\" on a simple product and enter a monthly and/or yearly price. Renewals are paid by bank transfer or through the payment link; automatic card charging comes later."
+msgstr "Basit bir üründe \"Abonelik\"i işaretleyip aylık ve/veya yıllık fiyat girin. Yenilemeler Havale/EFT ile ya da ödeme bağlantısından ödenir; kartla otomatik çekim sonra gelecek."
+
+msgid "Create the renewal order (days before the period ends)"
+msgstr "Yenileme siparişini aç (dönem bitmeden kaç gün önce)"
+
+msgid "The customer gets the reminder e-mail with the bank details or payment link at the same time, and once more on the last day if unpaid."
+msgstr "Müşteriye aynı anda banka bilgileri ya da ödeme bağlantısıyla hatırlatma e-postası gider; ödenmezse son gün bir kez daha."
+
+msgid "Grace period after the period ends (days)"
+msgstr "Dönem bittikten sonra ek süre (gün)"
+
+msgid "Access stays on while the renewal is unpaid; after this the subscription ends. 0 = ends on the last day."
+msgstr "Yenileme ödenmemişken erişim açık kalır; bu süre dolunca abonelik biter. 0 = son gün biter."
+
+msgid "Monthly and yearly payments. Renewal orders are created before each period ends; the customer pays by bank transfer or through the payment link."
+msgstr "Aylık ve yıllık ödemeler. Her dönem bitmeden yenileme siparişi açılır; müşteri Havale/EFT ile ya da ödeme bağlantısından öder."
+
+msgid "Renewal order created and the customer was notified."
+msgstr "Yenileme siparişi açıldı, müşteriye bildirildi."
+
+msgid "Renewal turned off; the subscription stays valid until the end of the period."
+msgstr "Yenileme kapatıldı; abonelik dönem sonuna kadar geçerli."
+
+msgid "Subscription ended."
+msgstr "Abonelik bitirildi."
+
+msgid "Monthly recurring revenue"
+msgstr "Aylık yinelenen gelir"
+
+msgid "Yearly plans count as 1/12"
+msgstr "Yıllıklar 1/12 sayılır"
+
+msgid "Renewing in 30 days"
+msgstr "30 gün içinde yenilenecek"
+
+msgid "Search subscriptions"
+msgstr "Aboneliklerde ara"
+
+msgid "Name, e-mail, product, no."
+msgstr "Ad, e-posta, ürün, no."
+
+msgid "No subscription matches the search."
+msgstr "Aramaya uyan abonelik yok."
+
+msgid "No subscriptions yet. Tick \"Subscription\" on a simple product and give it a monthly or yearly price."
+msgstr "Henüz abonelik yok. Basit bir üründe \"Abonelik\"i işaretleyip aylık ya da yıllık fiyat verin."
+
+msgid "Customer"
+msgstr "Müşteri"
+
+msgid "Status"
+msgstr "Durum"
+
+msgid "Renewal / end"
+msgstr "Yenileme / bitiş"
+
+msgid "Actions"
+msgstr "İşlemler"
+
+msgid "first"
+msgstr "ilk"
+
+msgid "awaiting"
+msgstr "bekleyen"
+
+msgid "%d renewal"
+msgid_plural "%d renewals"
+msgstr[0] "%d yenileme"
+msgstr[1] "%d yenileme"
+
+msgid "Create renewal order"
+msgstr "Yenileme siparişi aç"
+
+msgid "Cancel at period end"
+msgstr "Dönem sonunda iptal et"
+
+msgid "End this subscription now? Access closes immediately."
+msgstr "Abonelik şimdi bitirilsin mi? Erişim hemen kapanır."
+
+msgid "End now"
+msgstr "Şimdi bitir"
+
+msgid "Renew now"
+msgstr "Şimdi yenile"

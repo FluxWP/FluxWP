@@ -56,6 +56,12 @@ WooCommerce's own analytics are powerful but slow to read and need background jo
 - "Confirm payment" on the order screen and as an order action; a Transfer column in the orders list; optional auto-cancel after N days.
 - Classic and block checkout. Hides itself when Flux Donate's bank transfer is on.
 
+### Subscriptions
+- Monthly and/or yearly price on a simple product; period picker on the product page (with the yearly saving), "Subscribe".
+- Renewal order before the period ends + reminder e-mail with bank details or a payment link; grace period, then the end.
+- My account › Subscriptions (pay, cancel, turn back on) and Store › Subscriptions (monthly recurring revenue, overdue payments, actions).
+- Events for other plugins: `flxcm_subscription_started` / `_renewed` / `_ended`. Automatic card charging is next.
+
 ### Cart and checkout
 - Hide company and address line 2; no address for virtual-only carts (classic); order notes on/off; sticky "Place order" on mobile.
 - Free-shipping bar in the cart, checkout and mini cart, updated live in the cart block. Threshold from the settings or WooCommerce's Free shipping method.
@@ -111,6 +117,8 @@ Full setup notes (Turkish): [KURULUM.md](../../docs/flx-commerce/KURULUM.md) · 
 | ✅ | Overview, customers, sales report |
 | ✅ | Bank transfer with receipt upload, checkout options, free-shipping bar |
 | ✅ | Google Merchant feed, WhatsApp notifications |
+| ✅ | Monthly / yearly subscriptions (renewal by bank transfer or payment link) |
+| ⬜ | Automatic card charging for subscriptions |
 | ⬜ | Abandoned cart reminders over WhatsApp and e-mail |
 | ⬜ | Customer detail page with order timeline |
 | ⬜ | Stock alerts and reorder list |

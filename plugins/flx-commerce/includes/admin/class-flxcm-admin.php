@@ -11,6 +11,7 @@ require_once FLXCM_DIR . 'includes/admin/page-dashboard.php';
 require_once FLXCM_DIR . 'includes/admin/page-customers.php';
 require_once FLXCM_DIR . 'includes/admin/page-customer.php';
 require_once FLXCM_DIR . 'includes/admin/page-reports.php';
+require_once FLXCM_DIR . 'includes/admin/page-subscriptions.php';
 require_once FLXCM_DIR . 'includes/admin/page-settings.php';
 
 final class FLXCM_Admin {
@@ -28,6 +29,7 @@ final class FLXCM_Admin {
 		add_action( 'admin_post_flxcm_report_csv', array( 'FLXCM_Page_Reports', 'csv' ) );
 		add_action( 'wp_dashboard_setup', array( __CLASS__, 'widget' ) );
 		FLXCM_Page_Customer::init();
+		FLXCM_Page_Subscriptions::init();
 	}
 
 	public static function menu_icon() {
@@ -41,6 +43,7 @@ final class FLXCM_Admin {
 		self::$hooks[] = add_menu_page( __( 'Store', 'flx-commerce' ), __( 'Store', 'flx-commerce' ) . $badge, self::CAP_VIEW, 'flx-commerce', array( 'FLXCM_Page_Dashboard', 'render' ), self::menu_icon(), 56 );
 		self::$hooks[] = add_submenu_page( 'flx-commerce', __( 'Overview', 'flx-commerce' ), __( 'Overview', 'flx-commerce' ), self::CAP_VIEW, 'flx-commerce', array( 'FLXCM_Page_Dashboard', 'render' ) );
 		self::$hooks[] = add_submenu_page( 'flx-commerce', __( 'Customers', 'flx-commerce' ), __( 'Customers', 'flx-commerce' ), self::CAP_VIEW, 'flx-commerce-customers', array( 'FLXCM_Page_Customers', 'render' ) );
+		self::$hooks[] = add_submenu_page( 'flx-commerce', __( 'Subscriptions', 'flx-commerce' ), __( 'Subscriptions', 'flx-commerce' ), self::CAP_VIEW, 'flx-commerce-subscriptions', array( 'FLXCM_Page_Subscriptions', 'render' ) );
 		self::$hooks[] = add_submenu_page( 'flx-commerce', __( 'Sales report', 'flx-commerce' ), __( 'Sales report', 'flx-commerce' ), self::CAP_VIEW, 'flx-commerce-reports', array( 'FLXCM_Page_Reports', 'render' ) );
 		self::$hooks[] = add_submenu_page( 'flx-commerce', __( 'Settings', 'flx-commerce' ), __( 'Settings', 'flx-commerce' ), self::CAP_MANAGE, 'flx-commerce-settings', array( 'FLXCM_Page_Settings', 'render' ) );
 	}
@@ -121,6 +124,7 @@ final class FLXCM_Admin {
 		$tabs = array(
 			'flx-commerce'           => __( 'Overview', 'flx-commerce' ),
 			'flx-commerce-customers' => __( 'Customers', 'flx-commerce' ),
+			'flx-commerce-subscriptions' => __( 'Subscriptions', 'flx-commerce' ),
 			'flx-commerce-reports'   => __( 'Sales report', 'flx-commerce' ),
 		);
 		if ( current_user_can( self::CAP_MANAGE ) ) {

@@ -1,6 +1,6 @@
 <?php
 /**
- * Kurulum: müşteri özeti tablosu (wp_flxcm_customers) ve sürüm yükseltmeleri.
+ * Kurulum: müşteri özeti (wp_flxcm_customers) ve abonelik (wp_flxcm_subscriptions) tabloları ve sürüm yükseltmeleri.
  *
  * @package FLX_Commerce
  */
@@ -42,6 +42,7 @@ final class FLXCM_Install {
 			KEY total (total)
 			) {$charset};"
 		);
+		dbDelta( FLXCM_Subscriptions::schema( $charset ) );
 		update_option( 'flxcm_db_version', FLXCM_DB_VERSION, false );
 		if ( ! get_option( 'flxcm_installed_at' ) ) {
 			update_option( 'flxcm_installed_at', time(), false );
@@ -62,5 +63,6 @@ register_deactivation_hook(
 	FLXCM_FILE,
 	function () {
 		wp_clear_scheduled_hook( 'flxcm_daily' );
+		wp_clear_scheduled_hook( 'flxcm_subs_tick' );
 	}
 );

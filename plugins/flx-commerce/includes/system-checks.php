@@ -55,5 +55,24 @@ function flxcm_system_checks( $checks ) {
 		'action_url'   => flxcm_admin_url( 'customers' ),
 		'action_label' => __( 'Customers', 'flx-commerce' ),
 	);
+	global $wpdb;
+	$subs = (int) $wpdb->get_var( 'SELECT COUNT(*) FROM ' . FLXCM_Subscriptions::table() . " WHERE status IN ('active','past_due','cancelled')" ); // phpcs:ignore WordPress.DB
+	if ( $subs ) {
+		$last     = (int) get_option( FLXCM_Subscriptions::HEARTBEAT );
+		$late     = ! $last || time() - $last > 6 * HOUR_IN_SECONDS;
+		$checks[] = array(
+			'id'           => 'flxcm.subscriptions',
+			'source'       => $src,
+			'group'        => 'Cron',
+			'label'        => __( 'Subscription renewals', 'flx-commerce' ),
+			'status'       => $late ? 'warning' : 'ok',
+			'message'      => $late
+				? __( 'The renewal job has not run for more than 6 hours. Check the server cron (wp-cron.php); renewal orders and reminders wait until it runs.', 'flx-commerce' )
+				/* translators: 1: subscription count, 2: time ago */
+				: sprintf( __( '%1$s open subscriptions. Last run: %2$s', 'flx-commerce' ), number_format_i18n( $subs ), flxcm_ago( $last ) ),
+			'action_url'   => flxcm_admin_url( 'subscriptions' ),
+			'action_label' => __( 'Subscriptions', 'flx-commerce' ),
+		);
+	}
 	return $checks;
 }
