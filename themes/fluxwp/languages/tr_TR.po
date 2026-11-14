@@ -1457,7 +1457,7 @@ msgid "Live / follow WooCommerce"
 msgstr "Yayında / WooCommerce ayarını izle"
 
 msgid "Coming soon: entire site"
-msgstr "Yakında: tüm site"
+msgstr "Çok yakında: tüm site"
 
 msgid "Entire-site mode hides public pages from visitors, including signed-in customers. Administrators and shop managers can keep working. Automatic mode keeps WooCommerce visibility settings and private preview links unchanged."
 msgstr "Tüm site modu, giriş yapmış müşteriler dahil ziyaretçilerden sayfaları gizler. Yöneticiler ve mağaza yöneticileri çalışmaya devam edebilir. Otomatik mod, WooCommerce görünürlük ayarlarını ve özel ön izleme bağlantılarını korur."
@@ -1484,7 +1484,7 @@ msgid "Optional. Only this address is shown; the administrator email stays priva
 msgstr "İsteğe bağlı. Yalnızca bu adres gösterilir; yönetici e-postası gizli kalır."
 
 msgid "Site coming soon"
-msgstr "Site yakında"
+msgstr "Site çok yakında"
 
 msgid "Staff sign in"
 msgstr "Ekip girişi"
@@ -1498,3 +1498,54 @@ msgstr "Sayfalardaki, Wiki'deki ve WooCommerce'teki tabloların başlık hücrel
 #, php-format
 msgid "Güvenli ödeme · %s"
 msgstr "Güvenli ödeme · %s"
+
+msgid "Live"
+msgstr "Yayında"
+
+msgid "Everyone can see the whole site."
+msgstr "Herkes sitenin tamamını görür."
+
+msgid "Visitors, including signed-in customers, only see the coming-soon page."
+msgstr "Giriş yapmış müşteriler dahil ziyaretçiler yalnız çok yakında sayfasını görür."
+
+msgid "Coming soon: store pages only"
+msgstr "Çok yakında: yalnız mağaza sayfaları"
+
+msgid "The site stays open. Shop, product, cart and checkout pages show a coming-soon notice inside the normal header and footer."
+msgstr "Site açık kalır. Mağaza, ürün, sepet ve ödeme sayfaları normal üst ve alt bölümle birlikte çok yakında uyarısı gösterir."
+
+msgid "Requires WooCommerce."
+msgstr "WooCommerce gerekir."
+
+msgid "Administrators, shop managers and editors keep seeing the site. This is the same setting as WooCommerce › Settings › Site visibility; changing either one updates the other, and WooCommerce private preview links keep working."
+msgstr "Yöneticiler, mağaza yöneticileri ve editörler siteyi görmeye devam eder. Bu ayar WooCommerce › Ayarlar › Site görünürlüğü ile aynıdır; birini değiştirmek diğerini de günceller, WooCommerce özel ön izleme bağlantıları çalışmaya devam eder."
+
+msgid "Administrators and editors keep seeing the site."
+msgstr "Yöneticiler ve editörler siteyi görmeye devam eder."
+
+msgid "Store notice title"
+msgstr "Mağaza uyarısı başlığı"
+
+msgid "Store notice message"
+msgstr "Mağaza uyarısı mesajı"
+
+msgid "Leave the title and message empty to use the translated defaults. The wording follows the site type (shop or donations)."
+msgstr "Varsayılan çevrilmiş metinleri kullanmak için başlığı ve mesajı boş bırakın. Metin site türüne (mağaza ya da bağış) göre seçilir."
+
+msgid "Store coming soon"
+msgstr "Mağaza çok yakında"
+
+msgid "Online donations open soon."
+msgstr "Online bağış çok yakında açılıyor."
+
+msgid "Our online store opens soon."
+msgstr "Online mağazamız çok yakında açılıyor."
+
+msgid "Donations can't be completed online just yet. You can keep exploring the rest of the site in the meantime."
+msgstr "Bağışlar henüz online tamamlanamıyor. Bu arada sitenin geri kalanını gezmeye devam edebilirsiniz."
+
+msgid "Orders can't be placed online just yet. You can keep exploring the rest of the site in the meantime."
+msgstr "Siparişler henüz online verilemiyor. Bu arada sitenin geri kalanını gezmeye devam edebilirsiniz."
+
+msgid "Back to homepage"
+msgstr "Ana sayfaya dön"
