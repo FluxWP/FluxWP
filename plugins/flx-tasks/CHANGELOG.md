@@ -1,5 +1,10 @@
 # Flux Tasks — Değişiklikler
 
+## 0.8.20
+- Görev adı listede (masaüstü ve mobil) ve alt görev tablosunda artık tek satırda kesilmez: sarılır, en fazla 2 satır görünür, fazlası … ile kısalır.
+- "Metni sar" seçeneği yeni görünümlerde varsayılan açık; diğer alanlar da en fazla 2 satır (önceden 3).
+- Sol menü başlığında site logosu yerine İşler'in kendi simgesi, daha küçük (site logosu yönetim şeridinde zaten var).
+
 ## 0.8.19
 - Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
 

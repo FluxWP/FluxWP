@@ -2548,8 +2548,8 @@ msgstr "Afficher l'image de couverture"
 msgid "Wrap text"
 msgstr "Envelopper le texte"
 
-msgid "Long text shows up to 3 lines, the rest is cut with …"
-msgstr "Le texte long affiche jusqu'à 3 lignes, le reste est coupé avec..."
+msgid "Long text shows up to 2 lines, the rest is cut with …"
+msgstr "Le texte long affiche jusqu'à 2 lignes, le reste est coupé avec..."
 
 msgid "Date to use in the calendar"
 msgstr "Date à utiliser dans le calendrier"

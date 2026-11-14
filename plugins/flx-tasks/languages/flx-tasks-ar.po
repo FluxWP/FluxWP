@@ -2548,8 +2548,8 @@ msgstr "إظهار صورة الغلاف"
 msgid "Wrap text"
 msgstr "التفاف النص"
 
-msgid "Long text shows up to 3 lines, the rest is cut with …"
-msgstr "نص طويل يصل إلى 3 أسطر، والباقي مقطوع بـ ..."
+msgid "Long text shows up to 2 lines, the rest is cut with …"
+msgstr "نص طويل يصل إلى 2 أسطر، والباقي مقطوع بـ ..."
 
 msgid "Date to use in the calendar"
 msgstr "تاريخ للاستخدام في التقويم"

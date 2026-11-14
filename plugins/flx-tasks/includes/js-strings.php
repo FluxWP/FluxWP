@@ -695,7 +695,7 @@ function flxg_js_strings() {
 		'Filtreleri temizle' => __( 'Clear filters', 'flx-tasks' ),
 		'Kapak görselini göster' => __( 'Show cover image', 'flx-tasks' ),
 		'Metni sar' => __( 'Wrap text', 'flx-tasks' ),
-		'Uzun metinler en fazla 3 satır görünür, fazlası … ile kısalır.' => __( 'Long text shows up to 3 lines, the rest is cut with …', 'flx-tasks' ),
+		'Uzun metinler en fazla 2 satır görünür, fazlası … ile kısalır.' => __( 'Long text shows up to 2 lines, the rest is cut with …', 'flx-tasks' ),
 		'Takvimde kullanılacak tarih' => __( 'Date to use in the calendar', 'flx-tasks' ),
 		'Sütunlar' => __( 'Columns', 'flx-tasks' ),
 		'Kartta gösterilecek alanlar' => __( 'Fields shown on the card', 'flx-tasks' ),

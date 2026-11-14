@@ -65,6 +65,8 @@ function flxg_admin_assets() {
 			'appUrl'   => admin_url( 'admin.php?page=flx-tasks' ),
 			'start'    => $start,
 			'icon'     => get_site_icon_url( 128 ) ? get_site_icon_url( 128 ) : plugins_url( 'assets/icon.svg', FLXG_FILE ),
+			// Başlıkta site logosu değil eklentinin kendi simgesi (site logosu sol şeritte zaten var). Flux Admin varsa seçili logo stili.
+			'appIcon'  => function_exists( 'flxa_logo_file_url' ) ? flxa_logo_file_url( 'flx-tasks.svg' ) : plugins_url( 'assets/icon.svg', FLXG_FILE ),
 			'i18n'     => flxg_js_strings(),
 		)
 	);

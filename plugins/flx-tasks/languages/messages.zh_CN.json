@@ -855,7 +855,7 @@
     "Clear filters": "清除过滤器",
     "Show cover image": "显示封面图片",
     "Wrap text": "文字换行",
-    "Long text shows up to 3 lines, the rest is cut with …": "长文本最多显示 3 行,其余部分用...剪切",
+    "Long text shows up to 2 lines, the rest is cut with …": "长文本最多显示 2 行,其余部分用...剪切",
     "Date to use in the calendar": "日历中使用的日期",
     "Columns": "专栏",
     "Fields shown on the card": "卡上显示的字段",

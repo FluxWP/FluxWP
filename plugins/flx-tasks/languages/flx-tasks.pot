@@ -2548,7 +2548,7 @@ msgstr ""
 msgid "Wrap text"
 msgstr ""
 
-msgid "Long text shows up to 3 lines, the rest is cut with …"
+msgid "Long text shows up to 2 lines, the rest is cut with …"
 msgstr ""
 
 msgid "Date to use in the calendar"

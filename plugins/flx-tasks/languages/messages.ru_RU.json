@@ -855,7 +855,7 @@
     "Clear filters": "Очистить фильтры",
     "Show cover image": "Показать обложку",
     "Wrap text": "Перенос текста",
-    "Long text shows up to 3 lines, the rest is cut with …": "Длинный текст показывает до 3 строк, остальное обрезается...",
+    "Long text shows up to 2 lines, the rest is cut with …": "Длинный текст показывает до 2 строк, остальное обрезается...",
     "Date to use in the calendar": "Дата для использования в календаре",
     "Columns": "Столбцы",
     "Fields shown on the card": "Поля, отображаемые на карточке",
