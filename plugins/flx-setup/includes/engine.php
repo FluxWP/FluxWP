@@ -227,23 +227,9 @@ function flxk_media_import( $key, $def, $dir, $preset_id = '' ) {
 		return new WP_Error( 'media', __( 'Media needs "file" or "url".', 'flx-setup' ) );
 	}
 	// SVG yalnız şablonun kendi klasöründen (güvenilir dosya) kabul edilir.
-	$svg = function ( $m ) {
-		$m['svg'] = 'image/svg+xml';
-		return $m;
-	};
-	$chk = function ( $data, $file, $filename ) {
-		if ( preg_match( '/\.svg$/i', $filename ) ) {
-			return array(
-				'ext'             => 'svg',
-				'type'            => 'image/svg+xml',
-				'proper_filename' => false,
-			);
-		}
-		return $data;
-	};
+	$hash = $local ? md5_file( $path ) : '';
 	if ( $local ) {
-		add_filter( 'upload_mimes', $svg );
-		add_filter( 'wp_check_filetype_and_ext', $chk, 10, 3 );
+		flxk_media_allow_svg( true );
 	}
 	$id = media_handle_sideload(
 		array(
@@ -254,18 +240,135 @@ function flxk_media_import( $key, $def, $dir, $preset_id = '' ) {
 		(string) ( $def['title'] ?? '' )
 	);
 	if ( $local ) {
-		remove_filter( 'upload_mimes', $svg );
-		remove_filter( 'wp_check_filetype_and_ext', $chk, 10 );
+		flxk_media_allow_svg( false );
 	}
 	if ( is_wp_error( $id ) ) {
 		@unlink( $tmp ); // phpcs:ignore WordPress.PHP.NoSilencedErrors
 		return $id;
 	}
 	update_post_meta( $id, '_flxk_media', ( $preset_id ? $preset_id . ':' : '' ) . $key );
+	if ( $hash ) {
+		update_post_meta( $id, '_flxk_media_hash', $hash ); // Ön ayar dosyası değişince yenilensin diye.
+	}
 	if ( ! empty( $def['alt'] ) ) {
 		update_post_meta( $id, '_wp_attachment_image_alt', sanitize_text_field( $def['alt'] ) );
 	}
 	return (int) $id;
+}
+
+function flxk_media_svg_mimes( $m ) {
+	$m['svg'] = 'image/svg+xml';
+	return $m;
+}
+
+function flxk_media_svg_check( $data, $file, $filename ) {
+	if ( preg_match( '/\.svg$/i', (string) $filename ) ) {
+		return array(
+			'ext'             => 'svg',
+			'type'            => 'image/svg+xml',
+			'proper_filename' => false,
+		);
+	}
+	return $data;
+}
+
+/** Ön ayar klasöründen gelen dosya için SVG yüklemesini aç/kapat. */
+function flxk_media_allow_svg( $on ) {
+	if ( $on ) {
+		add_filter( 'upload_mimes', 'flxk_media_svg_mimes' );
+		add_filter( 'wp_check_filetype_and_ext', 'flxk_media_svg_check', 10, 3 );
+	} else {
+		remove_filter( 'upload_mimes', 'flxk_media_svg_mimes' );
+		remove_filter( 'wp_check_filetype_and_ext', 'flxk_media_svg_check', 10 );
+	}
+}
+
+/** Medya tanımının ön ayar klasöründeki dosyası (URL'li medyada boş). */
+function flxk_media_source( $def, $dir ) {
+	$def = is_array( $def ) ? $def : array( 'file' => $def );
+	if ( empty( $def['file'] ) || ! $dir ) {
+		return '';
+	}
+	return (string) flxk_safe_path( $dir, (string) $def['file'] );
+}
+
+/** Ekin sitedeki özgün dosyasının md5'i (dosya yoksa boş). */
+function flxk_media_disk_hash( $id ) {
+	$file = function_exists( 'wp_get_original_image_path' ) ? wp_get_original_image_path( $id ) : '';
+	$file = $file ? $file : get_attached_file( $id, true );
+	return ( $file && is_file( $file ) ) ? (string) md5_file( $file ) : '';
+}
+
+/**
+ * Ön ayar dosyası değişmiş medyayı yeniler. Ek aynı kalır (ID değişmez, profil/site simgesi/sayfalar bağlı kalır),
+ * dosya yeni adla yüklenir (önbellekler eski dosyayı göstermez), eski dosya geri alma için diskte kalır.
+ *
+ * @return array|WP_Error geri alma kaydı
+ */
+function flxk_media_replace( $id, $def, $dir ) {
+	$path = flxk_media_source( $def, $dir );
+	if ( ! $path ) {
+		/* translators: %s: dosya */
+		return new WP_Error( 'media', sprintf( __( 'Media file missing: %s', 'flx-setup' ), is_array( $def ) ? (string) ( $def['file'] ?? '' ) : (string) $def ) );
+	}
+	require_once ABSPATH . 'wp-admin/includes/file.php';
+	require_once ABSPATH . 'wp-admin/includes/media.php';
+	require_once ABSPATH . 'wp-admin/includes/image.php';
+	$backup = array(
+		'id'   => (int) $id,
+		'file' => (string) get_attached_file( $id, true ),
+		'meta' => wp_get_attachment_metadata( $id ),
+		'mime' => (string) get_post_mime_type( $id ),
+		'hash' => (string) get_post_meta( $id, '_flxk_media_hash', true ),
+	);
+	$tmp = wp_tempnam( basename( $path ) );
+	copy( $path, $tmp );
+	flxk_media_allow_svg( true );
+	$upload = array(
+		'name'     => basename( $path ),
+		'tmp_name' => $tmp,
+	);
+	$file   = wp_handle_sideload( $upload, array( 'test_form' => false ) );
+	flxk_media_allow_svg( false );
+	if ( ! empty( $file['error'] ) || empty( $file['file'] ) ) {
+		@unlink( $tmp ); // phpcs:ignore WordPress.PHP.NoSilencedErrors
+		/* translators: %s: dosya */
+		return new WP_Error( 'media', (string) ( $file['error'] ?? sprintf( __( 'Media file missing: %s', 'flx-setup' ), basename( $path ) ) ) );
+	}
+	update_attached_file( $id, $file['file'] );
+	wp_update_post(
+		array(
+			'ID'             => (int) $id,
+			'post_mime_type' => (string) $file['type'],
+		)
+	);
+	wp_update_attachment_metadata( $id, wp_generate_attachment_metadata( $id, $file['file'] ) );
+	update_post_meta( $id, '_flxk_media_hash', (string) md5_file( $path ) );
+	clean_attachment_cache( $id );
+	return $backup;
+}
+
+/** Geri al: medyanın önceki dosyasına dön (dosya hâlâ diskteyse). */
+function flxk_media_restore( array $old ) {
+	$id = (int) ( $old['id'] ?? 0 );
+	if ( ! $id || empty( $old['file'] ) || ! is_file( $old['file'] ) ) {
+		return false;
+	}
+	update_attached_file( $id, $old['file'] );
+	wp_update_post(
+		array(
+			'ID'             => $id,
+			'post_mime_type' => (string) ( $old['mime'] ?? '' ),
+		)
+	);
+	wp_update_attachment_metadata( $id, is_array( $old['meta'] ?? null ) ? $old['meta'] : array() );
+	if ( ! empty( $old['hash'] ) ) {
+		update_post_meta( $id, '_flxk_media_hash', $old['hash'] );
+	} else {
+		delete_post_meta( $id, '_flxk_media_hash' );
+	}
+	clean_attachment_cache( $id );
+	return true;
 }
 
 /* ---------- Plan ---------- */
@@ -318,7 +421,17 @@ function flxk_plan( $preset_id, array $p, array $opts = array() ) {
 	foreach ( (array) ( $p['media'] ?? array() ) as $key => $def ) {
 		$id                              = flxk_media_find( $preset_id . ':' . $key );
 		$ctx['refs']['media'][ $key ] = $id;
-		$op                              = flxk_decide( $preset_id, 'media:' . $key, (bool) $id, $id ? 'id:' . $id : null, basename( (string) ( is_array( $def ) ? ( $def['file'] ?? ( $def['url'] ?? '' ) ) : $def ) ), $st, $opts, (bool) $id );
+		// Ön ayardaki dosya değiştiyse (yeni logo vb.) aynı ek yenilenir; dosyası elle değiştirilmişse dokunulmaz.
+		$src    = $id ? flxk_media_source( $def, $p['dir'] ?? ( $ctx['dir'] ?? '' ) ) : '';
+		$disk   = $src ? flxk_media_disk_hash( $id ) : '';
+		$stored = $src ? (string) get_post_meta( $id, '_flxk_media_hash', true ) : '';
+		$same   = (bool) $id && ( ! $src || ( $stored ? $stored : $disk ) === md5_file( $src ) );
+		$op                              = flxk_decide( $preset_id, 'media:' . $key, (bool) $id, $id ? 'id:' . $id : null, basename( (string) ( is_array( $def ) ? ( $def['file'] ?? ( $def['url'] ?? '' ) ) : $def ) ), $st, $opts, $same );
+		if ( $id && ! $same ) {
+			$force        = ! empty( $opts['force'] ) && ( true === $opts['force'] || in_array( 'media:' . $key, (array) $opts['force'], true ) );
+			$op['status'] = ( $stored && '' !== $disk && $disk !== $stored && ! $force ) ? 'manual' : 'change';
+			$op['apply']  = 'change' === $op['status'];
+		}
 		$op                             += array(
 			'section' => 'media',
 			'def'     => $def,
@@ -590,6 +703,16 @@ function flxk_execute_ops( array $ops, array $p, array &$ctx, array &$run, array
 
 			case 'media':
 				$key = substr( $t, 6 );
+				if ( preg_match( '/^id:(\d+)$/', (string) $op['old'], $m ) ) {
+					$bk = flxk_media_replace( (int) $m[1], $op['def'], $p['dir'] ?? '' );
+					if ( is_wp_error( $bk ) ) {
+						$run['errors'][] = $t . ': ' . $bk->get_error_message();
+						break;
+					}
+					$run['backup'][ $t ]  = $bk;
+					$run['written'][ $t ] = flxk_hash( 'media' );
+					break;
+				}
 				$id  = flxk_media_import( $key, $op['def'], $p['dir'] ?? '', $ctx['preset'] ?? '' );
 				if ( is_wp_error( $id ) ) {
 					$run['errors'][] = $t . ': ' . $id->get_error_message();
@@ -928,7 +1051,7 @@ function flxk_guard_option( $opt, array $before, array $written ) {
 
 /** Ön ayarın ayar bölümleri (profil, WordPress ayarları, eklenti ayarları). */
 function flxk_settings_part( array $p ) {
-	return array_intersect_key( $p, array_flip( array( 'format', 'id', 'name', 'version', 'profile', 'wp', 'settings', 'dir' ) ) );
+	return array_intersect_key( $p, array_flip( array( 'format', 'id', 'name', 'version', 'media', 'profile', 'wp', 'settings', 'dir' ) ) );
 }
 
 /**
@@ -946,8 +1069,14 @@ function flxk_sync_preset( $id, $force = false ) {
 		return null;
 	}
 	$ver = (string) ( $p['version'] ?? '' );
-	if ( ! $force && (string) ( $st['ver'] ?? '' ) === $ver ) {
+	// 1.2.10'dan önce eşitleme medyaya bakmıyordu: değişmiş logolar bir kez yenilensin.
+	$media_once = empty( $st['media_sync'] );
+	if ( ! $force && ! $media_once && (string) ( $st['ver'] ?? '' ) === $ver ) {
 		return null;
+	}
+	if ( $media_once ) {
+		$st['media_sync'] = 1;
+		flxk_save_state( $id, $st );
 	}
 	$part = flxk_settings_part( $p );
 	$opts = array( 'mode' => (string) ( $st['mode'] ?? 'apply' ) );
@@ -1032,6 +1161,8 @@ function flxk_revert_run( $run_id ) {
 				$options[ $opt ] = (array) get_option( $opt, array() );
 			}
 			$options[ $opt ] = flxk_path_set( $options[ $opt ], $path, $old, FLXK_ABSENT === $old );
+		} elseif ( 0 === strpos( $t, 'media:' ) && is_array( $old ) ) {
+			flxk_media_restore( $old );
 		} elseif ( 0 === strpos( $t, 'content:' ) && is_array( $old ) && ! empty( $old['data'] ) ) {
 			list( , $type ) = explode( ':', $t, 3 );
 			$T             = flxk_importers()[ $type ] ?? null;

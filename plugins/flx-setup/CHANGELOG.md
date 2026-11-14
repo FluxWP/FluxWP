@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 1.2.10
+- Ön ayarlar: preset'teki medya dosyası değişince (yeni logo, site simgesi, görsel) sitedeki ek de yenilenir. Ek aynı kalır (profil, site simgesi ve sayfalar bağlı kalır), dosya yeni adla yüklenir, önbellekler eskisini göstermez. Dosyası sitede elle değiştirilmiş medyaya dokunulmaz; geri al eski dosyaya döner.
+- Ön ayar sürüm eşitlemesi artık medyayı da kapsar. Güncellemeden sonra bir kez tüm ön ayarlar medyaya bakılarak eşitlenir: eski logoda kalan siteler (Qurban Global) yeni logoyu alır.
+
 ## 1.2.9
 - İkon önbelleği temizliği `GLOB_BRACE` kullanmıyor: Alpine/musl PHP'de (Docker worker, wordpress:cli) bu sabit tanımsız olduğu için `wp plugin install` fatal hata veriyordu.
 
