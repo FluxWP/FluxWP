@@ -1415,12 +1415,19 @@ body.flxg-col-resizing * { cursor: col-resize !important; user-select: none !imp
 .flxg-row.is-drag-hidden { display: none !important; }
 .flxg-ghost .flxg-row-addsub { display: none; }
 
-/* Metni sar: en fazla 3 satır, sonrası … */
+/* Görev adı her zaman sarılır: en fazla 2 satır, sonrası … (liste, mobil, alt görev tablosu). */
+.flxg-title,
+.flxg-sub-title { white-space: normal; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow-wrap: anywhere; line-height: 1.35; }
+.flxg-row:not(.is-head) > .flxg-title-cell,
+.flxg-subrow:not(.is-head) .flxg-subname { padding-top: 6px; padding-bottom: 6px; }
+.flxg-row-main .flxg-title-cell { padding-top: 0; padding-bottom: 0; }
+
+/* Metni sar: diğer alanlar da en fazla 2 satır, sonrası … */
 .flxg-listview.is-wrap .flxg-row:not(.is-head) { align-items: stretch; }
 .flxg-listview.is-wrap .flxg-row:not(.is-head) > .flxg-cell { align-items: center; padding-top: 7px; padding-bottom: 7px; }
 .flxg-listview.is-wrap .flxg-title,
 .flxg-listview.is-wrap .flxg-fv.is-text,
-.flxg-listview.is-wrap .flxg-fv { white-space: normal; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow-wrap: anywhere; }
+.flxg-listview.is-wrap .flxg-fv { white-space: normal; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow-wrap: anywhere; }
 .flxg-listview.is-wrap .flxg-tags { flex-wrap: wrap; row-gap: 4px; }
 
 /* 0.2.2: görev adı yanındaki ikonlar 2'li sütun, en fazla 2 satır */

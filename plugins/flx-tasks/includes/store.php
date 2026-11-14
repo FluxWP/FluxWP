@@ -512,7 +512,7 @@ function flxg_clean_view_config( $c, $type ) {
 	}
 	$out['subtasks']  = in_array( $c['subtasks'] ?? '', array( 'open', 'closed', 'off' ), true ) ? $c['subtasks'] : 'open';
 	$out['subFilter'] = ! empty( $c['subFilter'] );
-	$out['wrap']      = ! empty( $c['wrap'] );
+	$out['wrap']      = ! isset( $c['wrap'] ) || ! empty( $c['wrap'] );
 	return $out;
 }
 

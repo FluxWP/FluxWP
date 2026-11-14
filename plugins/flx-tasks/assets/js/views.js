@@ -586,7 +586,7 @@
 				box.appendChild(h('label.flxg-switch-row.is-strong', h('input', { type: 'checkbox', checked: !!c.cover, onchange: function (e) { c.cover = e.target.checked; Y.touchDraft(); } }), Y.icon('image', 15), h('span', t('Kapak görselini göster'))));
 			}
 			if (S.view && S.view.type === 'list') {
-				box.appendChild(h('label.flxg-switch-row.is-strong', h('input', { type: 'checkbox', checked: !!c.wrap, onchange: function (e) { c.wrap = e.target.checked; Y.saveViewPart(['wrap']); Y.emit('view'); } }), Y.icon('list', 15), h('span', h('b', t('Metni sar')), h('small', t('Uzun metinler en fazla 3 satır görünür, fazlası … ile kısalır.')))));
+				box.appendChild(h('label.flxg-switch-row.is-strong', h('input', { type: 'checkbox', checked: c.wrap !== false, onchange: function (e) { c.wrap = e.target.checked; Y.saveViewPart(['wrap']); Y.emit('view'); } }), Y.icon('list', 15), h('span', h('b', t('Metni sar')), h('small', t('Uzun metinler en fazla 2 satır görünür, fazlası … ile kısalır.')))));
 			}
 			if (S.view && S.view.type === 'calendar') {
 				box.appendChild(h('.flxg-menu-head', t('Takvimde kullanılacak tarih')));
@@ -847,7 +847,7 @@
 		if (!tasks.length && S.scope && S.scope.type === 'home') { root.appendChild(Y.emptyState()); Y.renderBulkBar(); return; }
 		var cols = Y.visibleCols();
 		var mobile = Y.isMobile();
-		var wrap = h('.flxg-listview' + (mobile ? '.is-mobile' : '') + (c.wrap ? '.is-wrap' : ''));
+		var wrap = h('.flxg-listview' + (mobile ? '.is-mobile' : '') + (c.wrap !== false ? '.is-wrap' : ''));
 		wrap.style.setProperty('--cols', colsTemplate(cols));
 		var kidsIdx = mode === 'off' ? {} : Y.childIndex();
 		var canAddAny = Y.scopeLists().some(function (l) { return Y.rank(l.role) >= 3; });

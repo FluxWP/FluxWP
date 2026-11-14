@@ -585,7 +585,7 @@
  "Uyarı": "Warning",
  "Uygula": "Apply",
  "Uzun metin": "Long text",
- "Uzun metinler en fazla 3 satır görünür, fazlası … ile kısalır.": "Long text shows up to 3 lines, the rest is cut with …",
+ "Uzun metinler en fazla 2 satır görünür, fazlası … ile kısalır.": "Long text shows up to 2 lines, the rest is cut with …",
  "Vazgeç": "Cancel",
  "Veri": "Data",
  "Veri yok.": "No data.",

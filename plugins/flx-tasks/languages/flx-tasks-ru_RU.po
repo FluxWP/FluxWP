@@ -2548,8 +2548,8 @@ msgstr "Показать обложку"
 msgid "Wrap text"
 msgstr "Перенос текста"
 
-msgid "Long text shows up to 3 lines, the rest is cut with …"
-msgstr "Длинный текст показывает до 3 строк, остальное обрезается..."
+msgid "Long text shows up to 2 lines, the rest is cut with …"
+msgstr "Длинный текст показывает до 2 строк, остальное обрезается..."
 
 msgid "Date to use in the calendar"
 msgstr "Дата для использования в календаре"

@@ -2548,8 +2548,8 @@ msgstr "显示封面图片"
 msgid "Wrap text"
 msgstr "文字换行"
 
-msgid "Long text shows up to 3 lines, the rest is cut with …"
-msgstr "长文本最多显示 3 行,其余部分用...剪切"
+msgid "Long text shows up to 2 lines, the rest is cut with …"
+msgstr "长文本最多显示 2 行,其余部分用...剪切"
 
 msgid "Date to use in the calendar"
 msgstr "日历中使用的日期"

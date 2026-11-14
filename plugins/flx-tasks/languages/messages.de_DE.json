@@ -855,7 +855,7 @@
     "Clear filters": "Filter löschen",
     "Show cover image": "Titelbild anzeigen",
     "Wrap text": "Text umbrechen",
-    "Long text shows up to 3 lines, the rest is cut with …": "Langer Text zeigt bis zu 3 Zeilen, der Rest wird mit ... abgeschnitten",
+    "Long text shows up to 2 lines, the rest is cut with …": "Langer Text zeigt bis zu 2 Zeilen, der Rest wird mit ... abgeschnitten",
     "Date to use in the calendar": "Datum zur Verwendung im Kalender",
     "Columns": "Spalten",
     "Fields shown on the card": "Auf der Karte angezeigte Felder",

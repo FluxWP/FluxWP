@@ -2548,8 +2548,8 @@ msgstr "カバー画像を表示"
 msgid "Wrap text"
 msgstr "テキストを折り返す"
 
-msgid "Long text shows up to 3 lines, the rest is cut with …"
-msgstr "長いテキストは 3 行まで表示され、残りは...でカットされます。"
+msgid "Long text shows up to 2 lines, the rest is cut with …"
+msgstr "長いテキストは 2 行まで表示され、残りは...でカットされます。"
 
 msgid "Date to use in the calendar"
 msgstr "カレンダーで使用する日付"

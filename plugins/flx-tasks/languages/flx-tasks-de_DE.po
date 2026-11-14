@@ -2548,8 +2548,8 @@ msgstr "Titelbild anzeigen"
 msgid "Wrap text"
 msgstr "Text umbrechen"
 
-msgid "Long text shows up to 3 lines, the rest is cut with …"
-msgstr "Langer Text zeigt bis zu 3 Zeilen, der Rest wird mit ... abgeschnitten"
+msgid "Long text shows up to 2 lines, the rest is cut with …"
+msgstr "Langer Text zeigt bis zu 2 Zeilen, der Rest wird mit ... abgeschnitten"
 
 msgid "Date to use in the calendar"
 msgstr "Datum zur Verwendung im Kalender"

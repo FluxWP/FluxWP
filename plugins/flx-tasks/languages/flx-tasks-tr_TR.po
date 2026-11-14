@@ -2548,8 +2548,8 @@ msgstr "Kapak görselini göster"
 msgid "Wrap text"
 msgstr "Metni sar"
 
-msgid "Long text shows up to 3 lines, the rest is cut with …"
-msgstr "Uzun metinler en fazla 3 satır görünür, fazlası … ile kısalır."
+msgid "Long text shows up to 2 lines, the rest is cut with …"
+msgstr "Uzun metinler en fazla 2 satır görünür, fazlası … ile kısalır."
 
 msgid "Date to use in the calendar"
 msgstr "Takvimde kullanılacak tarih"

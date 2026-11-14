@@ -855,7 +855,7 @@
     "Clear filters": "مسح المرشحات",
     "Show cover image": "إظهار صورة الغلاف",
     "Wrap text": "التفاف النص",
-    "Long text shows up to 3 lines, the rest is cut with …": "نص طويل يصل إلى 3 أسطر، والباقي مقطوع بـ ...",
+    "Long text shows up to 2 lines, the rest is cut with …": "نص طويل يصل إلى 2 أسطر، والباقي مقطوع بـ ...",
     "Date to use in the calendar": "تاريخ للاستخدام في التقويم",
     "Columns": "أعمدة",
     "Fields shown on the card": "الحقول الموضحة على البطاقة",
