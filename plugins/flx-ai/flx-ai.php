@@ -48,6 +48,7 @@ require_once FLXAI_DIR . 'includes/widgets.php';
 require_once FLXAI_DIR . 'includes/media.php';
 require_once FLXAI_DIR . 'includes/preview.php';
 require_once FLXAI_DIR . 'includes/design.php';
+require_once FLXAI_DIR . 'includes/image-tools.php';
 require_once FLXAI_DIR . 'includes/agent.php';
 require_once FLXAI_DIR . 'includes/tasks.php';
 require_once FLXAI_DIR . 'includes/workspace.php';

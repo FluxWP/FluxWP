@@ -1,4 +1,4 @@
-# Design system (from the tested cover set)
+# Design system (tested base + original design)
 
 ## Look
 - Photo covers: full-bleed photo, brand-dark scrim from the reading side (≈ .93 → .8 at 38% → 0 at 80%), plus a light dark gradient at the bottom/top for the footer and logo. Text never sits on a busy, unscrimmed photo.
@@ -10,7 +10,19 @@
 - QR: white rounded card, dark modules (--qr-color), 1-line caption ("Konum için okutun", "Bağış için okutun"). Only if there is a real URL. Prefer a short URL.
 - Corners: pills fully round; cards .55-.7em radius. Shadows only on the QR card.
 
-## Choosing a layout
+
+## Original design
+Fixed (quality base, never change): brand colours and contrast rules below, Figtree/Caveat only, the `--u` em scale per format, safe areas (`formatlar.md`), `data-fit` on text boxes, real QR, logo inside the safe area, one clear focal point, max ~25 words of body text.
+
+Free (change for every brief): composition, grid, crop, shapes, colour balance, type treatment, decoration. Ideas to combine:
+- Full-bleed photo + soft scrim from the reading side; photo in a big rounded frame or circle; split screen (photo / colour panel) with a diagonal, curved or torn edge; photo cut-out feel with a solid colour block behind.
+- Typographic: oversized title that bleeds off the edge, a giant number or date as the visual, stacked words with alternating weights, outline text, one huge word plus a small sentence, quote with a big quote mark.
+- Shapes: large blobs or rings in the accent at low opacity, grain or soft gradient mesh in brand colours (CSS radial-gradients), stripes, leaf/organic SVG shapes drawn inline, a thin accent frame inset from the edge, sticker/badge circle for a number or date.
+- Rhythm: asymmetric layouts (text in a third, visual in two thirds), a strong baseline grid, generous empty space; or a bold centred poster for statements.
+- Light or dark: pick per mood and photo; vary from the previous design in the chat.
+Always check legibility at phone size after rendering; an original idea that is hard to read is a failed design.
+
+## Choosing a starting skeleton (mechanics, or the same look when asked)
 | Content | Template | Notes |
 |---|---|---|
 | Event, meeting, planting day, webinar | etkinlik | needs date + place; QR to location/registration |

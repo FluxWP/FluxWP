@@ -483,12 +483,21 @@ function flxai_mcp_call( $name, $args ) {
 	if ( ! $ok || null === $t || false !== ( $t['log'] ?? true ) ) {
 		flxai_mcp_log( $name, $ok, $args );
 	}
+	// Görsel çıktı (_view) MCP istemcisine image içerik bloğu olarak gider (0.21.0).
+	$images = array();
+	if ( is_array( $data ) && array_key_exists( '_view', $data ) ) {
+		$images = $ok && function_exists( 'flxai_img_mcp_blocks' ) ? flxai_img_mcp_blocks( $data['_view'] ) : array();
+		unset( $data['_view'] );
+	}
 	$res = array(
-		'content' => array(
+		'content' => array_merge(
 			array(
-				'type' => 'text',
-				'text' => wp_json_encode( $data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ),
+				array(
+					'type' => 'text',
+					'text' => wp_json_encode( $data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ),
+				),
 			),
+			$images
 		),
 		'isError' => ! $ok,
 	);

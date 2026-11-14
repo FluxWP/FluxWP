@@ -1868,37 +1868,94 @@ add_filter(
 		if ( ! flxai_setting( 'image_tool_on', 1 ) || ! flxai_media_image_ready() ) {
 			return $tools;
 		}
+		$cat    = flxai_media_providers();
+		$models = array();
+		$labels = array();
+		foreach ( $cat['models'] as $mid => $m ) {
+			if ( 'image' === $m['kind'] && ! empty( $m['providers'] ) ) {
+				$models[] = $mid;
+				$labels[] = $mid . ' (' . $m['label'] . ( $mid === $cat['default_image'] ? ', varsayılan' : '' ) . ')';
+			}
+		}
 		$tools['flxai_image_generate'] = array(
 			'title'       => __( 'Generate image', 'flx-ai' ),
-			'description' => 'Metinden görsel üretir (Flux AI › Görsel ve video ayarındaki varsayılan model) ve medya kütüphanesine ekler. attachment_id döner: yazının öne çıkan görseli için featured_image_id olarak, gövdede ![alt](url) olarak kullan. İstem İngilizce ve ayrıntılı olsun (konu, ortam, ışık, kompozisyon); yazı/logo isteme. Her çağrı ücretlidir: gerektiği kadar üret.',
+			'description' => 'Metinden ya da referans görsellerden görsel üretir/düzenler. Modeller: ' . implode( ', ', $labels ) . ' (GPT Image = ChatGPT; Nano Banana = Gemini). refs: logo, ürün/mekân fotoğrafı, önceki çıktın (düzenlemek için) — çalışma alanı path, attachment_id ya da url; istemde her referansın rolünü yaz ("1. görsel logo: aynen koru, değiştirme"). n: 1-4 varyant (kullanıcı 3 seçenek isterse n:3). Sonuçlar çalışma alanına (gorseller/) kaydedilir ve sana otomatik gösterilir: kontrol et, gerekirse refs:[önceki path] ile yeniden düzenlet. library:true ise medya kütüphanesine de eklenir ve attachment_id döner (öne çıkan görsel, gövdede ![alt](url)). İstem İngilizce ve ayrıntılı (konu, ortam, ışık, kompozisyon, stil). Uzun metin ve küçük yazıyı modele çizdirme; başlık/logo/QR gereken tasarımda görseli arka plan olarak üret, yazıyı flxai_design_render ile koy. Her çağrı ücretlidir: gerektiği kadar üret.',
 			'readonly'    => true,
 			'cap'         => 'upload_files',
 			'source'      => 'flx-ai',
 			'schema'      => array(
 				'type'       => 'object',
 				'properties' => array(
-					'prompt' => array( 'type' => 'string', 'description' => 'Görsel istemi' ),
-					'aspect' => array( 'type' => 'string', 'description' => 'En-boy oranı, ör. 16:9 (öne çıkan görsel), 1:1, 4:5. Varsayılan 16:9.' ),
-					'title'  => array( 'type' => 'string', 'description' => 'Medya kütüphanesindeki ad' ),
-					'alt'    => array( 'type' => 'string', 'description' => 'Alt metin (sitenin dilinde)' ),
+					'prompt'     => array( 'type' => 'string', 'description' => 'Görsel istemi' ),
+					'model'      => array(
+						'type' => 'string',
+						'enum' => $models,
+					),
+					'refs'       => array(
+						'type'        => 'array',
+						'description' => 'Referans görseller (en çok 8)',
+						'items'       => flxai_img_src_schema(),
+					),
+					'n'          => array( 'type' => 'integer', 'description' => 'Varyant sayısı 1-4 (varsayılan 1)' ),
+					'aspect'     => array( 'type' => 'string', 'description' => 'En-boy oranı, ör. 16:9 (öne çıkan görsel), 1:1, 4:5, 9:16. Varsayılan 16:9.' ),
+					'resolution' => array(
+						'type' => 'string',
+						'enum' => array( '1K', '2K', '4K' ),
+					),
+					'quality'    => array(
+						'type'        => 'string',
+						'enum'        => array( 'auto', 'low', 'medium', 'high' ),
+						'description' => 'Yalnız GPT Image',
+					),
+					'name'       => array( 'type' => 'string', 'description' => 'Çalışma alanındaki dosya adı, ör. arka-plan (uzantı otomatik)' ),
+					'library'    => array( 'type' => 'boolean', 'description' => 'Medya kütüphanesine ekle (çalışma alanı yoksa her zaman). Varsayılan true; tasarım ara adımlarında false.' ),
+					'title'      => array( 'type' => 'string', 'description' => 'Medya kütüphanesindeki ad' ),
+					'alt'        => array( 'type' => 'string', 'description' => 'Alt metin (sitenin dilinde)' ),
 				),
 				'required'   => array( 'prompt' ),
 			),
-			'run'         => function ( $a, $ctx = array() ) {
+			'run'         => function ( $a, $ctx = array() ) use ( $models ) {
 				$cat    = flxai_media_providers();
-				$model  = $cat['default_image'];
+				$model  = in_array( $a['model'] ?? '', $models, true ) ? (string) $a['model'] : $cat['default_image'];
+				$m      = $cat['models'][ $model ] ?? array();
 				$aspect = (string) ( $a['aspect'] ?? '16:9' );
-				$asps   = (array) ( $cat['models'][ $model ]['aspects'] ?? array() );
+				$aspect = '4:5' === $aspect && ! in_array( '4:5', (array) ( $m['aspects'] ?? array() ), true ) ? '3:4' : $aspect;
 				$req    = array(
 					'source'  => (string) ( $ctx['source'] ?? 'flx-ai' ),
 					'purpose' => 'image_tool',
 					'kind'    => 'image',
+					'model'   => $model,
 					'prompt'  => (string) ( $a['prompt'] ?? '' ),
-					'n'       => 1,
+					'n'       => max( 1, min( 4, (int) ( $a['n'] ?? 1 ) ) ),
 					'user_id' => (int) ( $ctx['user_id'] ?? get_current_user_id() ),
 				);
-				if ( $asps && in_array( $aspect, $asps, true ) ) {
+				if ( in_array( $aspect, (array) ( $m['aspects'] ?? array() ), true ) ) {
 					$req['aspect'] = $aspect;
+				}
+				if ( in_array( $a['resolution'] ?? '', (array) ( $m['resolutions'] ?? array() ), true ) ) {
+					$req['resolution'] = (string) $a['resolution'];
+				}
+				if ( in_array( $a['quality'] ?? '', (array) ( $m['qualities'] ?? array() ), true ) ) {
+					$req['quality'] = (string) $a['quality'];
+				}
+				// Referanslar: çalışma alanı dosyası data URL olarak, ek kimliği ve adres olduğu gibi.
+				$refs = array();
+				foreach ( array_slice( (array) ( $a['refs'] ?? array() ), 0, min( 8, max( 1, (int) ( $m['max_refs'] ?? 8 ) ) ) ) as $s ) {
+					if ( is_array( $s ) && empty( $s['path'] ) && ( ! empty( $s['attachment_id'] ) || ! empty( $s['url'] ) ) ) {
+						$refs[] = ! empty( $s['attachment_id'] ) ? (int) $s['attachment_id'] : (string) $s['url'];
+						continue;
+					}
+					$r = flxai_img_source( $s, $ctx );
+					if ( is_wp_error( $r ) ) {
+						throw new Exception( $r->get_error_message() ); // phpcs:ignore
+					}
+					if ( 'image/svg+xml' === $r[1] ) {
+						throw new Exception( __( 'SVG cannot be used as a reference; render it to PNG first (flxai_design_render) or use a PNG logo.', 'flx-ai' ) ); // phpcs:ignore
+					}
+					$refs[] = 'data:' . $r[1] . ';base64,' . base64_encode( $r[0] ); // phpcs:ignore
+				}
+				if ( $refs ) {
+					$req['refs'] = $refs;
 				}
 				$r = flxai_media_submit( $req );
 				// Kuyruklu sağlayıcı: en çok ~40 sn bekle (PHP ~60 sn'de kesilir).
@@ -1916,20 +1973,47 @@ add_filter(
 						'note'  => 'Görsel henüz hazır değil; biraz sonra aynı istemle yeniden deneme, iş sürüyor. Görselsiz devam edebilirsin.',
 					);
 				}
-				$out = array();
-				foreach ( $r['outputs'] as $o ) {
-					$aid   = flxai_media_to_library( $o, (string) ( $a['title'] ?? '' ), (string) ( $a['alt'] ?? '' ) );
-					$out[] = array(
-						'attachment_id' => $aid,
-						'url'           => $aid ? wp_get_attachment_url( $aid ) : (string) $o['url'],
-						'width'         => (int) ( $o['width'] ?? 0 ),
-						'height'        => (int) ( $o['height'] ?? 0 ),
+				$pol  = function_exists( 'flxai_img_policy' ) ? flxai_img_policy( $ctx ) : null;
+				$lib  = ! $pol || false !== ( $a['library'] ?? true );
+				$out  = array();
+				$view = array();
+				foreach ( $r['outputs'] as $k => $o ) {
+					$row = array(
+						'width'  => (int) ( $o['width'] ?? 0 ),
+						'height' => (int) ( $o['height'] ?? 0 ),
 					);
+					if ( $pol ) {
+						$b = ! empty( $o['path'] ) && is_readable( $o['path'] ) ? array( (string) file_get_contents( $o['path'] ), (string) ( $o['mime'] ?? 'image/png' ) ) : flxai_media_ref_bytes( (string) ( $o['url'] ?? '' ) ); // phpcs:ignore
+						if ( ! is_wp_error( $b ) && '' !== flxai_img_mime( $b[0] ) ) {
+							$base = '' !== trim( (string) ( $a['name'] ?? '' ) ) ? (string) $a['name'] : 'uretim';
+							$rel  = flxai_img_put( $pol, 'gorseller/' . $base . ( count( $r['outputs'] ) > 1 ? '-' . ( $k + 1 ) : '' ), $b[0], flxai_img_mime( $b[0] ), true );
+							if ( is_string( $rel ) ) {
+								$row['path'] = $rel;
+								$view[]      = array(
+									'path'  => $rel,
+									'label' => basename( $rel ),
+								);
+							}
+						}
+					}
+					if ( $lib ) {
+						$aid                  = flxai_media_to_library( $o, (string) ( $a['title'] ?? '' ), (string) ( $a['alt'] ?? '' ) );
+						$row['attachment_id'] = $aid;
+						$row['url']           = $aid ? wp_get_attachment_url( $aid ) : (string) $o['url'];
+						if ( ! $pol && $aid ) {
+							$view[] = array(
+								'att'   => $aid,
+								'label' => 'attachment #' . $aid,
+							);
+						}
+					}
+					$out[] = $row;
 				}
 				return array(
 					'images' => $out,
 					'cost'   => $r['cost'],
 					'model'  => $r['model'],
+					'_view'  => $view,
 				);
 			},
 		);

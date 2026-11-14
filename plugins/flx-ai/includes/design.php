@@ -259,7 +259,7 @@ function flxai_design_document( $html, $w, $h ) {
 }
 
 /** Ek görselleri dosyaya çevirir: ad => array( bytes, mime ). $renames: istenen ad => gerçek ad. */
-function flxai_design_images( array $images, &$renames = array() ) {
+function flxai_design_images( array $images, &$renames = array(), array $ctx = array() ) {
 	$renames = array();
 	$out     = array();
 	$total = 0;
@@ -267,11 +267,18 @@ function flxai_design_images( array $images, &$renames = array() ) {
 		if ( ! is_array( $img ) ) {
 			continue;
 		}
-		$ref = ! empty( $img['attachment_id'] ) ? (int) $img['attachment_id'] : (string) ( $img['url'] ?? '' );
+		$ref = ! empty( $img['path'] ) ? (string) $img['path'] : ( ! empty( $img['attachment_id'] ) ? (int) $img['attachment_id'] : (string) ( $img['url'] ?? '' ) );
 		if ( ! $ref ) {
 			continue;
 		}
-		$b = flxai_media_ref_bytes( $ref, 15728640 );
+		if ( ! empty( $img['path'] ) && function_exists( 'flxai_img_source' ) ) {
+			$b = flxai_img_source( array( 'path' => $ref ), $ctx );
+			if ( is_wp_error( $b ) ) {
+				return $b;
+			}
+		} else {
+			$b = flxai_media_ref_bytes( $ref, 15728640 );
+		}
 		if ( is_wp_error( $b ) ) {
 			/* translators: %s: image name or id */
 			return new WP_Error( 'flxai_design_image', sprintf( __( 'Could not read the image %s.', 'flx-ai' ), is_int( $ref ) ? '#' . $ref : $ref ) );
@@ -461,14 +468,30 @@ add_filter(
 		}
 		$tools['flxai_design_render'] = array(
 			'title'       => __( 'Render design', 'flx-ai' ),
-			'description' => 'HTML/CSS tasarımı (kapak, sosyal medya görseli, hikâye, afiş, karusel sayfası) tam olarak width×height piksel PNG/JPEG\'e çevirir ve medya kütüphanesine ekler; attachment_id + url döner (öne çıkan görsel, WhatsApp/e-posta eki). Belge hazır: Figtree (300-900) ve Caveat (el yazısı) yazı tipleri gömülü, dış kaynak YÜKLENMEZ (CDN, Google Fonts, uzak görsel yok). Görseller images ile verilir ve HTML\'de adıyla kullanılır: images=[{name:"bg.jpg",attachment_id:12}] → <img src="bg.jpg"> ya da url(bg.jpg). QR: <div data-qr="https://..."></div> (kare SVG; renk --qr-color). Sığdırma: data-fit verilen öğenin yazısı kutusuna (sabit width/height ya da max-height) sığana kadar küçülür. Taslak için tek ölçü çevir, onaydan sonra diğer ölçüler.',
+			'description' => 'HTML/CSS tasarımı (kapak, sosyal medya görseli, hikâye, afiş, karusel sayfası) tam olarak width×height piksel PNG/JPEG\'e çevirir. Sonuç çalışma alanına (cikti/) kaydedilir ve sana otomatik gösterilir: kullanıcıya vermeden önce KONTROL ET, sorun varsa HTML\'i düzeltip yeniden çevir. draft:true → yalnız çalışma alanı (kontrol turları); draft:false (varsayılan) → medya kütüphanesine de eklenir, attachment_id + url döner (öne çıkan görsel, WhatsApp/e-posta eki). İlk çeviride html ver: kaynak çalışma alanına kaydedilir (source, ör. tasarim/kapak.html); düzeltme turlarında html_path + edits [{find,replace}] ile yalnız değişen kısmı gönder, diğer ölçüler için html_path + body_class (ör. f-dikey) ve width/height ver. Belge hazır: Figtree (300-900) ve Caveat (el yazısı) yazı tipleri gömülü, dış kaynak YÜKLENMEZ (CDN, Google Fonts, uzak görsel yok). Görseller images ile verilir ve HTML\'de adıyla kullanılır: images=[{name:"bg.jpg",path:"gorseller/foto.jpg"}] (ya da attachment_id/url) → <img src="bg.jpg"> ya da url(bg.jpg). QR: <div data-qr="https://..."></div> (kare SVG; renk --qr-color). Sığdırma: data-fit verilen öğenin yazısı kutusuna (sabit width/height ya da max-height) sığana kadar küçülür. Önce tek ölçüyü taslak çevirip kontrol et, sonra diğer ölçüler.',
 			'readonly'    => true,
 			'cap'         => 'upload_files',
 			'source'      => 'flx-ai',
 			'schema'      => array(
 				'type'       => 'object',
 				'properties' => array(
-					'html'    => array( 'type' => 'string', 'description' => 'Tam HTML belge ya da gövde' ),
+					'html'      => array( 'type' => 'string', 'description' => 'Tam HTML belge ya da gövde (html_path yoksa)' ),
+					'html_path' => array( 'type' => 'string', 'description' => 'Daha önce kaydedilen kaynak (dönen source), ör. tasarim/kapak.html' ),
+					'body_class' => array( 'type' => 'string', 'description' => 'Yalnız bu çeviri için <body class> (ör. f-dikey); kaynak değişmez' ),
+					'edits'     => array(
+						'type'        => 'array',
+						'description' => 'html_path kaynağında çevirmeden önce yapılacak değişiklikler (kaydedilir)',
+						'items'       => array(
+							'type'       => 'object',
+							'properties' => array(
+								'find'    => array( 'type' => 'string' ),
+								'replace' => array( 'type' => 'string' ),
+								'all'     => array( 'type' => 'boolean' ),
+							),
+						),
+					),
+					'save_as'   => array( 'type' => 'string', 'description' => 'Çalışma alanındaki çıktı yolu, ör. cikti/kapak-kare.png (varsayılan cikti/<ad>-<w>x<h>)' ),
+					'draft'     => array( 'type' => 'boolean', 'description' => 'true: yalnız çalışma alanına kaydet (kontrol turu); false: medya kütüphanesine de ekle' ),
 					'width'   => array( 'type' => 'integer', 'description' => 'Genişlik px (200-4096)' ),
 					'height'  => array( 'type' => 'integer', 'description' => 'Yükseklik px (200-4096)' ),
 					'format'  => array(
@@ -481,6 +504,7 @@ add_filter(
 							'type'       => 'object',
 							'properties' => array(
 								'name'          => array( 'type' => 'string' ),
+								'path'          => array( 'type' => 'string' ),
 								'attachment_id' => array( 'type' => 'integer' ),
 								'url'           => array( 'type' => 'string' ),
 							),
@@ -489,17 +513,65 @@ add_filter(
 					'title'   => array( 'type' => 'string', 'description' => 'Medya kütüphanesindeki ad' ),
 					'alt'     => array( 'type' => 'string', 'description' => 'Alt metin' ),
 				),
-				'required'   => array( 'html', 'width', 'height' ),
+				'required'   => array( 'width', 'height' ),
 			),
 			'run'         => function ( $a, $ctx = array() ) {
 				$html = (string) ( $a['html'] ?? '' );
+				$pol  = function_exists( 'flxai_img_policy' ) ? flxai_img_policy( $ctx ) : null;
+				$src  = '';
+				if ( '' === trim( $html ) && ! empty( $a['html_path'] ) ) {
+					if ( ! $pol ) {
+						throw new Exception( __( 'There is no workspace here; pass the HTML in "html".', 'flx-ai' ) ); // phpcs:ignore
+					}
+					$src = flxai_img_rel( (string) $a['html_path'], $pol );
+					if ( '' === $src || 'deny' === flxai_ws_kind( $src, $pol, false ) ) {
+						throw new Exception( __( 'This file is outside your workspace.', 'flx-ai' ) ); // phpcs:ignore
+					}
+					$html = (string) flxai_ws_read( $src );
+					// Düzeltmeler kaynak dosyada yapılır (Flux Files'ta AI'ın kod dosyası yazması kapalı olabilir).
+					foreach ( array_slice( (array) ( $a['edits'] ?? array() ), 0, 30 ) as $e ) {
+						$find = (string) ( $e['find'] ?? '' );
+						if ( '' === $find ) {
+							continue;
+						}
+						$n = substr_count( $html, $find );
+						if ( ! $n ) {
+							/* translators: %s: searched text */
+							throw new Exception( sprintf( __( 'Text to replace was not found in the design: %s', 'flx-ai' ), mb_substr( $find, 0, 80 ) ) ); // phpcs:ignore
+						}
+						if ( $n > 1 && empty( $e['all'] ) ) {
+							/* translators: 1: count, 2: searched text */
+							throw new Exception( sprintf( __( 'The text occurs %1$d times; make it unique or set all=true: %2$s', 'flx-ai' ), $n, mb_substr( $find, 0, 80 ) ) ); // phpcs:ignore
+						}
+						$html = empty( $e['all'] ) ? implode( (string) ( $e['replace'] ?? '' ), explode( $find, $html, 2 ) ) : str_replace( $find, (string) ( $e['replace'] ?? '' ), $html );
+					}
+				}
 				if ( '' === trim( $html ) ) {
 					throw new Exception( __( 'The design HTML is empty.', 'flx-ai' ) ); // phpcs:ignore
 				}
 				if ( strlen( $html ) > 400000 ) {
 					throw new Exception( __( 'The design HTML is too large (at most 400 KB). Pass images with "images", not inline.', 'flx-ai' ) ); // phpcs:ignore
 				}
-				$files = flxai_design_images( is_array( $a['images'] ?? null ) ? $a['images'] : array(), $renames );
+				// Kaynak HTML çalışma alanına (tasarim/<ad>.html): sonraki turlarda html_path + edits ile düzeltilir.
+				if ( $pol ) {
+					if ( '' === $src ) {
+						$save = trim( (string) ( $a['save_as'] ?? '' ) );
+						$stem = '' !== $save ? preg_replace( '/\.[a-z0-9]+$/i', '', basename( $save ) ) : ( '' !== (string) ( $a['title'] ?? '' ) ? (string) $a['title'] : 'tasarim' );
+						$stem = trim( preg_replace( '/[^a-z0-9_-]+/', '-', strtolower( remove_accents( $stem ) ) ), '-' );
+						$src  = flxai_img_rel( 'tasarim/' . ( '' !== $stem ? substr( $stem, 0, 60 ) : 'tasarim' ) . '.html', $pol );
+					}
+					if ( '' !== $src && 'own' === flxai_ws_kind( $src, $pol ) ) {
+						flxai_ws_write( $src, $html );
+					}
+				}
+				// Ölçü sınıfı yalnız bu çeviri için (kaynak değişmez): aynı tasarımın diğer formatları.
+				$bc = trim( preg_replace( '/[^a-zA-Z0-9_ -]+/', '', (string) ( $a['body_class'] ?? '' ) ) );
+				if ( '' !== $bc ) {
+					$html = preg_match( '/<body\b[^>]*\bclass=("|\')[^"\']*\1/i', $html )
+						? preg_replace( '/(<body\b[^>]*\bclass=)("|\')[^"\']*\2/i', '$1"' . $bc . '"', $html, 1 )
+						: preg_replace( '/<body\b/i', '<body class="' . $bc . '"', $html, 1 );
+				}
+				$files = flxai_design_images( is_array( $a['images'] ?? null ) ? $a['images'] : array(), $renames, $ctx );
 				if ( is_wp_error( $files ) ) {
 					throw new Exception( $files->get_error_message() ); // phpcs:ignore
 				}
@@ -531,24 +603,53 @@ add_filter(
 				if ( is_wp_error( $res ) ) {
 					throw new Exception( $res->get_error_message() ); // phpcs:ignore
 				}
-				$f = flxai_media_write( $res['data'], $res['mime'] );
-				if ( is_wp_error( $f ) ) {
-					throw new Exception( $f->get_error_message() ); // phpcs:ignore
-				}
 				$title = (string) ( $a['title'] ?? '' );
-				$aid   = flxai_media_to_library( $f, '' !== $title ? $title : __( 'Design', 'flx-ai' ), (string) ( $a['alt'] ?? '' ) );
-				if ( $aid ) {
-					update_post_meta( $aid, '_flxai_design_html', wp_slash( $html ) );
-					update_post_meta( $aid, '_flxai_design_size', $w . 'x' . $h );
-				}
-				return array(
-					'attachment_id' => $aid,
-					'url'           => $aid ? wp_get_attachment_url( $aid ) : $f['url'],
-					'width'         => (int) ( $f['width'] ?? $w ),
-					'height'        => (int) ( $f['height'] ?? $h ),
-					'bytes'         => (int) $f['bytes'],
-					'note'          => 'Sohbette ![başlık](url) olarak göster.',
+				$out   = array(
+					'width'  => $w,
+					'height' => $h,
+					'bytes'  => strlen( $res['data'] ),
 				);
+				$view  = array();
+				// Çalışma alanına çıktı: kontrol turları ve kaynakla yan yana saklama.
+				if ( '' !== $src ) {
+					$out['source'] = $src;
+				}
+				if ( $pol ) {
+					$stem = '' !== $src ? preg_replace( '/\.[a-z0-9]+$/i', '', basename( $src ) ) : ( '' !== $title ? $title : 'tasarim' );
+					$save = trim( (string) ( $a['save_as'] ?? '' ) );
+					$rel  = flxai_img_put( $pol, '' !== $save ? $save : 'cikti/' . $stem . '-' . $w . 'x' . $h, $res['data'], $res['mime'], false );
+					if ( is_string( $rel ) ) {
+						$out['path'] = $rel;
+						$view[]      = array(
+							'path'  => $rel,
+							'label' => basename( $rel ),
+						);
+					}
+				}
+				if ( ! $pol || empty( $a['draft'] ) ) {
+					$f = flxai_media_write( $res['data'], $res['mime'] );
+					if ( is_wp_error( $f ) ) {
+						throw new Exception( $f->get_error_message() ); // phpcs:ignore
+					}
+					$aid = flxai_media_to_library( $f, '' !== $title ? $title : __( 'Design', 'flx-ai' ), (string) ( $a['alt'] ?? '' ) );
+					if ( $aid ) {
+						update_post_meta( $aid, '_flxai_design_html', wp_slash( $html ) );
+						update_post_meta( $aid, '_flxai_design_size', $w . 'x' . $h );
+					}
+					$out['attachment_id'] = $aid;
+					$out['url']           = $aid ? wp_get_attachment_url( $aid ) : $f['url'];
+					$out['note']          = 'Sohbette ![başlık](url) olarak göster.';
+					if ( ! $view && $aid ) {
+						$view[] = array(
+							'att'   => $aid,
+							'label' => 'attachment #' . $aid,
+						);
+					}
+				} else {
+					$out['note'] = 'Taslak: yalnız çalışma alanında. Kontrol et; onaydan sonra draft:false ile çevir.';
+				}
+				$out['_view'] = $view;
+				return $out;
 			},
 		);
 		return $tools;

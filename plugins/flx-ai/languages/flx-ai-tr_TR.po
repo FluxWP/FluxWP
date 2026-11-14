@@ -3834,3 +3834,66 @@ msgstr "Skill'lerin okuduğu Markdown belgeleri, ör. about-me.md ve voice.md (v
 
 msgid "New document (Markdown)"
 msgstr "Yeni belge (Markdown)"
+
+#, php-format
+msgid "Attachment #%d is not an image."
+msgstr "#%d eki bir görsel değil."
+
+msgid "Collect images"
+msgstr "Görselleri topla"
+
+msgid "Edit image"
+msgstr "Görseli düzenle"
+
+msgid "View image"
+msgstr "Görsele bak"
+
+#, php-format
+msgid "File not found: %s"
+msgstr "Dosya bulunamadı: %s"
+
+msgid "Give at least one image."
+msgstr "En az bir görsel verin."
+
+msgid "Give path, attachment_id or url for each image."
+msgstr "Her görsel için path, attachment_id ya da url verin."
+
+#, php-format
+msgid "Images can only be saved in your own folder (%s)."
+msgstr "Görseller yalnız kendi klasörünüze (%s) kaydedilebilir."
+
+#, php-format
+msgid "Not an image (PNG, JPEG, WebP, GIF or SVG): %s"
+msgstr "Görsel değil (PNG, JPEG, WebP, GIF ya da SVG): %s"
+
+msgid "SVG files cannot be edited; use them as they are."
+msgstr "SVG dosyaları düzenlenemez; olduğu gibi kullanın."
+
+msgid "The file is not an image (PNG, JPEG, WebP, GIF or SVG)."
+msgstr "Dosya bir görsel değil (PNG, JPEG, WebP, GIF ya da SVG)."
+
+msgid "The image could not be opened."
+msgstr "Görsel açılamadı."
+
+msgid "The image is too large (at most 15 MB)."
+msgstr "Görsel çok büyük (en çok 15 MB)."
+
+msgid "There is no workspace here; pass attachment_id or url."
+msgstr "Burada çalışma alanı yok; attachment_id ya da url verin."
+
+msgid "This file is outside your workspace."
+msgstr "Bu dosya çalışma alanınızın dışında."
+
+msgid "There is no workspace here; pass the HTML in \"html\"."
+msgstr "Burada çalışma alanı yok; HTML'i \"html\" ile verin."
+
+msgid "SVG cannot be used as a reference; render it to PNG first (flxai_design_render) or use a PNG logo."
+msgstr "SVG referans olarak kullanılamaz; önce PNG'ye çevirin (flxai_design_render) ya da PNG logo kullanın."
+
+#, php-format
+msgid "Text to replace was not found in the design: %s"
+msgstr "Değiştirilecek metin tasarımda bulunamadı: %s"
+
+#, php-format
+msgid "The text occurs %1$d times; make it unique or set all=true: %2$s"
+msgstr "Metin %1$d kez geçiyor; tekil yapın ya da all=true verin: %2$s"

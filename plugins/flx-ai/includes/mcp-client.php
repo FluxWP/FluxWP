@@ -411,7 +411,7 @@ function flxai_mcpc_tool_name( $sid, $tool ) {
  * @return array sonuç (metin içerik + yapı)
  * @throws Exception Hata.
  */
-function flxai_mcpc_call( $id, $tool, array $args, $user_id = 0 ) {
+function flxai_mcpc_call( $id, $tool, array $args, $user_id = 0, array $ctx = array() ) {
 	$s = flxai_mcpc_get( $id );
 	if ( ! $s || ! flxai_mcpc_user_can( $s, $user_id ) ) {
 		throw new Exception( 'This MCP connection is not available to you.' );
@@ -431,13 +431,15 @@ function flxai_mcpc_call( $id, $tool, array $args, $user_id = 0 ) {
 	if ( is_wp_error( $r ) ) {
 		throw new Exception( $r->get_error_message() ); // phpcs:ignore
 	}
-	return flxai_mcpc_result( $r, $s );
+	return flxai_mcpc_result( $r, $s, $ctx );
 }
 
 /** MCP sonucu → model için dizi. */
-function flxai_mcpc_result( array $r, array $s ) {
+function flxai_mcpc_result( array $r, array $s, array $ctx = array() ) {
 	$text = array();
 	$more = array();
+	$view = array();
+	$pol  = function_exists( 'flxai_img_policy' ) ? flxai_img_policy( $ctx ) : null;
 	foreach ( (array) ( $r['content'] ?? array() ) as $c ) {
 		$type = (string) ( $c['type'] ?? '' );
 		if ( 'text' === $type ) {
@@ -446,6 +448,17 @@ function flxai_mcpc_result( array $r, array $s ) {
 			$text[] = (string) $c['resource']['text'];
 		} elseif ( 'resource_link' === $type ) {
 			$more[] = array( 'link' => (string) ( $c['uri'] ?? '' ), 'name' => (string) ( $c['name'] ?? '' ) );
+		} elseif ( 'image' === $type && $pol && count( $view ) < 4 ) {
+			// Görsel (ör. bir görsel üretim sunucusunun çıktısı) çalışma alanına kaydedilir, model görür (0.21.0).
+			$bytes = base64_decode( (string) ( $c['data'] ?? '' ), true ); // phpcs:ignore
+			$mime  = false !== $bytes && strlen( $bytes ) <= 15728640 ? flxai_img_mime( $bytes, (string) ( $c['mimeType'] ?? '' ) ) : '';
+			$rel   = '' !== $mime ? flxai_img_put( $pol, 'gorseller/mcp-' . sanitize_key( (string) $s['id'] ), $bytes, $mime, true ) : null;
+			if ( is_string( $rel ) ) {
+				$more[] = array( 'type' => 'image', 'mime' => $mime, 'path' => $rel );
+				$view[] = array( 'path' => $rel, 'label' => basename( $rel ) );
+			} else {
+				$more[] = array( 'type' => 'image', 'mime' => (string) ( $c['mimeType'] ?? '' ), 'note' => 'binary content omitted' );
+			}
 		} elseif ( in_array( $type, array( 'image', 'audio' ), true ) ) {
 			$more[] = array( 'type' => $type, 'mime' => (string) ( $c['mimeType'] ?? '' ), 'note' => 'binary content omitted' );
 		}
@@ -466,6 +479,9 @@ function flxai_mcpc_result( array $r, array $s ) {
 	}
 	if ( ! empty( $r['isError'] ) ) {
 		$out['error'] = '' !== $out['text'] ? mb_substr( $out['text'], 0, 500 ) : 'The MCP tool reported an error.';
+	}
+	if ( $view ) {
+		$out['_view'] = $view;
 	}
 	return $out;
 }
@@ -508,7 +524,7 @@ add_filter(
 					'source'      => 'mcp:' . $id,
 					'mcp_client'  => $id,
 					'run'         => function ( $a, $ctx = array() ) use ( $id, $tool ) {
-						return flxai_mcpc_call( $id, $tool, (array) $a, (int) ( $ctx['user_id'] ?? 0 ) );
+						return flxai_mcpc_call( $id, $tool, (array) $a, (int) ( $ctx['user_id'] ?? 0 ), (array) $ctx );
 					},
 				);
 			}
