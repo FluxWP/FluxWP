@@ -27,7 +27,7 @@ def main():
   target=repo/'catalog/packages.json';old=json.loads(target.read_text()).get('packages',{}) if target.exists() else {};records={};copy_file=repo/'tools/readme-media/descriptions.json';curated=json.loads(copy_file.read_text()) if copy_file.exists() else {}
   for area in ['plugins','themes']:
    for folder in sorted((repo/area).iterdir()):
-    if not folder.is_dir() or not (folder/'README.md').exists() or folder.name=='flx-migrate':continue
+    if not folder.is_dir() or not (folder/'README.md').exists():continue
     slug=folder.name;prev=old.get(slug,{});initial=seed.get(slug,{}) if not private else {};desc=prev.get('desc',initial.get('description',{})).copy()
     if not prev:desc.update(curated.get(slug,{}))
     if not desc.get('en'):desc['en']=intro(folder/'README.md')
@@ -42,10 +42,11 @@ def main():
      website={lang:'https://fluxwp.com'+('' if lang=='en' else '/'+lang)+path for lang in LANGUAGES}
     cfg_path=repo/'tools/readme-media/cfg'/f'{slug}.json'
     if not cfg_path.exists():cfg_path=ROOT/'tools/readme-media/cfg'/f'{slug}.json'
-    cfg=json.loads(cfg_path.read_text());names=[s['name'] for s in cfg.get('shots',[])][:4];gallery={};previews=folder/'docs/previews';previews.mkdir(exist_ok=True)
+    cfg=json.loads(cfg_path.read_text()) if cfg_path.exists() else {};names=[s['name'] for s in cfg.get('shots',[])][:4];gallery={};previews=folder/'docs/previews';previews.mkdir(exist_ok=True)
     for lang in ['en','tr']:
      files=[folder/'docs/images'/f'{name}-{lang}.jpg' for name in names]
-     if not files or not all(f.exists() for f in files):raise FileNotFoundError(f'{slug}/{lang}: capture and install all configured screenshots first')
+     if not names:gallery[lang]=[];continue
+     if not all(f.exists() for f in files):raise FileNotFoundError(f'{slug}/{lang}: capture and install all configured screenshots first')
      gallery[lang]=[]
      for source in files:
       dest=previews/(source.stem+'.webp')
