@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.7.25
+- Çok yakında (tüm site) sayfasında giriş yapmış ama siteyi görme yetkisi olmayan kişi (ör. Google ile ilk kez girip müşteri rolü alan ekip üyesi) artık "… olarak giriş yaptınız, hesabınızın henüz erişimi yok, site yöneticisinden yetki isteyin" notunu görür; altta "Ekip girişi" yerine "Çıkış yap" çıkar. Yetki ya da başka bilgi açılmaz, yalnız kendi görünen adı yazılır.
+
 ## 0.7.24
 - Tema Ayarları › Site görünürlüğü artık 3 seçenek: **Yayında**, **Çok yakında: tüm site**, **Çok yakında: yalnız mağaza sayfaları**.
 - Yalnız mağaza modunda site açık kalır; mağaza, ürün, sepet ve ödeme sayfaları sitenin üst/alt bölümüyle birlikte "çok yakında" uyarısı gösterir (önceden bu sayfalarda da tam ekran kapalı sayfa çıkıyordu). Metin site türüne göre (mağaza / bağış), panelden değiştirilebilir.

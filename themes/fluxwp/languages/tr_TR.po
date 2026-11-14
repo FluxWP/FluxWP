@@ -1549,3 +1549,13 @@ msgstr "Siparişler henüz online verilemiyor. Bu arada sitenin geri kalanını 
 
 msgid "Back to homepage"
 msgstr "Ana sayfaya dön"
+
+#. translators: %s: user display name
+msgid "Signed in as %s"
+msgstr "%s olarak giriş yaptınız"
+
+msgid "Your account does not have access to the site yet. If you are on the team, ask a site administrator to grant your account access."
+msgstr "Hesabınızın siteye henüz erişimi yok. Ekipteyseniz site yöneticisinden hesabınıza yetki vermesini isteyin."
+
+msgid "Sign out"
+msgstr "Çıkış yap"

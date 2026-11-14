@@ -13,6 +13,8 @@ $flx_text  = trim( (string) flx_ayar( 'coming_soon_text' ) );
 $flx_email = sanitize_email( flx_ayar( 'coming_soon_email' ) );
 $flx_dark  = 'off' !== flx_ayar( 'dark_mode' );
 $flx_icon  = get_site_icon_url() ?: flx_logo_files()['icon'];
+// Signed in but without preview rights (e.g. a new Google sign-in gets the customer role): say so, show nothing else.
+$flx_user  = is_user_logged_in() ? wp_get_current_user() : null;
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
@@ -38,9 +40,15 @@ $flx_icon  = get_site_icon_url() ?: flx_logo_files()['icon'];
 			<p class="flx-soon__eyebrow"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></p>
 			<h1><?php echo esc_html( $flx_title ? flx_t( $flx_title ) : __( 'Something good is on its way.', 'fluxwp' ) ); ?></h1>
 			<p class="flx-soon__message"><?php echo nl2br( esc_html( $flx_text ? flx_t( $flx_text ) : __( "We're putting the finishing touches on our website. Please check back soon.", 'fluxwp' ) ) ); ?></p>
+			<?php if ( $flx_user ) : ?>
+			<div class="flx-soon__account" role="status">
+				<p class="flx-soon__account-who"><?php echo esc_html( sprintf( /* translators: %s: user display name */ __( 'Signed in as %s', 'fluxwp' ), $flx_user->display_name ) ); ?></p>
+				<p><?php esc_html_e( 'Your account does not have access to the site yet. If you are on the team, ask a site administrator to grant your account access.', 'fluxwp' ); ?></p>
+			</div>
+			<?php endif; ?>
 			<?php if ( $flx_email ) : ?><a class="flx-soon__contact" href="<?php echo esc_url( 'mailto:' . $flx_email ); ?>"><?php esc_html_e( 'Get in touch', 'fluxwp' ); ?><span aria-hidden="true">↗</span></a><?php endif; ?>
 		</main>
-		<footer class="flx-soon__footer"><span><?php echo flx_brand_credit( 'coming-soon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Shared escaped brand signature. ?></span><a href="<?php echo esc_url( wp_login_url( home_url( '/' ) ) ); ?>"><?php esc_html_e( 'Staff sign in', 'fluxwp' ); ?><span aria-hidden="true"> ↗</span></a></footer>
+		<footer class="flx-soon__footer"><span><?php echo flx_brand_credit( 'coming-soon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Shared escaped brand signature. ?></span><?php if ( $flx_user ) : ?><a href="<?php echo esc_url( wp_logout_url( home_url( '/' ) ) ); ?>"><?php esc_html_e( 'Sign out', 'fluxwp' ); ?></a><?php else : ?><a href="<?php echo esc_url( wp_login_url( home_url( '/' ) ) ); ?>"><?php esc_html_e( 'Staff sign in', 'fluxwp' ); ?><span aria-hidden="true"> ↗</span></a><?php endif; ?></footer>
 	</div>
 </body>
 </html>
