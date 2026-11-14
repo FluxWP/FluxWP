@@ -476,7 +476,18 @@ def outputs():
         "# Coolify: Projects > Add Resource > Docker Compose Empty > paste this file > Save.",
         "# Default stack (same as coolify/" + DEFAULT + "). Coolify: add this repository as a resource\n"
         "# (Docker Compose build pack, default location /docker-compose.yml), or paste this file into\n"
-        "# Docker Compose Empty. Plain Docker: use compose/" + DEFAULT + "/ instead.",
+        "# Docker Compose Empty. Plain Docker: docker-compose.local.yml here, or compose/" + DEFAULT + "/.",
+    )
+    # Plain Docker next to it, so a local copy runs from here too:
+    #   cp .env.example .env && docker compose -f docker-compose.local.yml up -d
+    files["docker-compose.local.yml"] = build("compose", DEFAULT, VARIANTS[DEFAULT]).replace(
+        "# Usage: cp .env.example .env  (set passwords)  &&  docker compose up -d",
+        "# Local / plain Docker, default stack (same as compose/" + DEFAULT + ").\n"
+        "# Usage: cp .env.example .env  (set passwords)  &&  docker compose -f docker-compose.local.yml up -d",
+    ).replace("\nservices:\n", "\nname: fluxwp\n\nservices:\n", 1)
+    files[".env.example"] = env_example(DEFAULT, VARIANTS[DEFAULT]).replace(
+        "# Copy to .env and fill in.",
+        "# For docker-compose.local.yml. Copy to .env and fill in.",
     )
     for name, v in VARIANTS.items():
         files[f"coolify/{name}/docker-compose.yml"] = build("coolify", name, v)

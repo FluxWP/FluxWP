@@ -3,7 +3,7 @@
 #
 # Default stack (same as coolify/mariadb-redis). Coolify: add this repository as a resource
 # (Docker Compose build pack, default location /docker-compose.yml), or paste this file into
-# Docker Compose Empty. Plain Docker: use compose/mariadb-redis/ instead.
+# Docker Compose Empty. Plain Docker: docker-compose.local.yml here, or compose/mariadb-redis/.
 # Coolify generates a domain for the 'wordpress' service; put your own there if you like, then Deploy.
 # The worker installs WordPress on first start (WP_AUTO_INSTALL defaults to true).
 # A generated admin password is not logged. Read it from the worker:
