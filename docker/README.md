@@ -16,7 +16,7 @@ Production-ready WordPress stacks for **Coolify** and plain **Docker Compose**: 
 |---|---|---|---|---|
 | `mariadb` | Apache + mod_php | MariaDB 11.8 LTS | none | Small sites, closest to the stock Coolify template |
 | `mysql` | Apache + mod_php | MySQL 8.4 LTS | none | Hosts or tools that expect MySQL |
-| `mariadb-redis` (default) | Apache + mod_php | MariaDB 11.8 LTS | Redis 8.8 | WooCommerce, membership, busy admin. Also `docker-compose.yml` in the repository root (Coolify) |
+| `mariadb-redis` (default) | Apache + mod_php | MariaDB 11.8 LTS | Redis 8.8 | WooCommerce, membership, busy admin. Also in `docker/`: `docker-compose.yml` (Coolify) and `docker-compose.local.yml` + `.env.example` (plain Docker) |
 | `nginx-fpm` | nginx 1.30 + PHP-FPM | MariaDB 11.8 LTS | Redis 8.8 | Most traffic per GB of RAM |
 
 Every stack comes twice:
@@ -49,10 +49,10 @@ Quick start with the default stack (`mariadb-redis`):
 ```bash
 git clone --depth 1 --filter=blob:none --sparse https://github.com/FluxWP/FluxWP.git fluxwp
 cd fluxwp && git sparse-checkout set docker
-cd docker/compose/mariadb-redis
+cd docker
 cp .env.example .env
 # set DB_PASSWORD, DB_ROOT_PASSWORD, REDIS_PASSWORD: openssl rand -base64 24
-docker compose up -d
+docker compose -f docker-compose.local.yml up -d
 ```
 
 Another stack:

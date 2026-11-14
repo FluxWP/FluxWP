@@ -16,7 +16,7 @@
 |---|---|---|---|---|
 | `mariadb` | Apache + mod_php | MariaDB 11.8 LTS | yok | Küçük siteler, Coolify'ın hazır şablonuna en yakın olan |
 | `mysql` | Apache + mod_php | MySQL 8.4 LTS | yok | MySQL bekleyen sunucu ve araçlar |
-| `mariadb-redis` (varsayılan) | Apache + mod_php | MariaDB 11.8 LTS | Redis 8.8 | WooCommerce, üyelik, yoğun yönetim paneli. Repo kökündeki `docker-compose.yml` de bu (Coolify) |
+| `mariadb-redis` (varsayılan) | Apache + mod_php | MariaDB 11.8 LTS | Redis 8.8 | WooCommerce, üyelik, yoğun yönetim paneli. `docker/` içinde de var: `docker-compose.yml` (Coolify) ve `docker-compose.local.yml` + `.env.example` (düz Docker) |
 | `nginx-fpm` | nginx 1.30 + PHP-FPM | MariaDB 11.8 LTS | Redis 8.8 | GB RAM başına en çok trafik |
 
 Her yığının iki hali var:
@@ -49,10 +49,10 @@ Varsayılan yığınla (`mariadb-redis`) hızlı başlangıç:
 ```bash
 git clone --depth 1 --filter=blob:none --sparse https://github.com/FluxWP/FluxWP.git fluxwp
 cd fluxwp && git sparse-checkout set docker
-cd docker/compose/mariadb-redis
+cd docker
 cp .env.example .env
 # DB_PASSWORD, DB_ROOT_PASSWORD, REDIS_PASSWORD gir: openssl rand -base64 24
-docker compose up -d
+docker compose -f docker-compose.local.yml up -d
 ```
 
 Başka bir yığın:

@@ -40,6 +40,10 @@ jobs:
             (cd "$dir" && docker compose config -q) && echo "ok $dir"
             rm "$dir/.env"
           done
+          cp .env.example .env
+          sed -i 's/^DB_PASSWORD=$/DB_PASSWORD=ci/;s/^DB_ROOT_PASSWORD=$/DB_ROOT_PASSWORD=ci/;s/^REDIS_PASSWORD=$/REDIS_PASSWORD=ci/' .env
+          docker compose -f docker-compose.local.yml config -q && echo "ok docker-compose.local.yml"
+          rm .env
           for f in docker-compose.yml coolify/*/docker-compose.yml coolify-template/*.yaml; do
             python3 -c "import sys, yaml; yaml.safe_load(open(sys.argv[1]))" "$f" && echo "ok $f"
           done

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026.11.14.1
+
+- `docker/docker-compose.local.yml` and `docker/.env.example`: the default stack (MariaDB + Redis) for plain Docker next to the Coolify `docker-compose.yml`. Run `cp .env.example .env && docker compose -f docker-compose.local.yml up -d` in `docker/`.
+
 ## 2026.11.13.1
 
 - Moved from `FluxWP/docker-wordpress` into the FluxWP monorepo under `docker/`. Image names and tags (`ghcr.io/fluxwp/wordpress:*`) are unchanged; Coolify Git deploys use Base Directory `/docker` and Watch Paths `docker/**`.
