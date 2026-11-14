@@ -1,4 +1,4 @@
-/* Flux Certificates · Dashboard: rakamlar + SVG grafikler (kütüphanesiz) */
+/* Flux PDF & Certificates · Dashboard: rakamlar + SVG grafikler (kütüphanesiz) */
 (function () {
 	'use strict';
 	var A = window.FLXSA, esc = A.esc;

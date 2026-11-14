@@ -1,4 +1,4 @@
-/* Flux Certificates · Şablon editörü: arka plan + sürüklenebilir alanlar + canlı PDF */
+/* Flux PDF & Certificates · Şablon editörü: arka plan + sürüklenebilir alanlar + canlı PDF */
 (function () {
 	'use strict';
 	var A = window.FLXSA, R = window.FLXSRender, esc = A.esc;

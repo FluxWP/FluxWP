@@ -234,7 +234,7 @@ function flxai_sources() {
 		'flx-ai'            => __( 'Flux AI chat', 'flx-ai' ),
 		'flx-chat' => 'Flux Chat',
 		'flx-tasks'         => 'Flux Tasks',
-		'flx-certificates'     => 'Flux Certificates',
+		'flx-certificates'     => 'Flux PDF & Certificates',
 		'flx-donate'         => 'Flux Donate',
 		'flx-seo'           => 'Flux SEO',
 		'flx-mail'      => 'Flux Mail',

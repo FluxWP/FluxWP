@@ -1,4 +1,4 @@
-/* Flux Certificates · sitedeki etkinlik bölümleri: harita tıklayınca yüklenir, sayaç yumuşak sayar */
+/* Flux PDF & Certificates · sitedeki etkinlik bölümleri: harita tıklayınca yüklenir, sayaç yumuşak sayar */
 (function () {
 	'use strict';
 	var L = window.FLXS_SITE || {};

@@ -182,7 +182,7 @@ function flxs_og_tags() {
 		$w   = 0;
 		$h   = 0;
 	}
-	echo "\n<!-- Flux Certificates -->\n";
+	echo "\n<!-- Flux PDF & Certificates -->\n";
 	echo '<link rel="canonical" href="' . esc_url( $url ) . '">' . "\n";
 	echo '<meta name="description" content="' . esc_attr( $d['og_desc'] ) . '">' . "\n";
 	echo '<meta property="og:type" content="website">' . "\n";

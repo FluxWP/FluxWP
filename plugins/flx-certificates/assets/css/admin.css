@@ -1,4 +1,4 @@
-/* Flux Certificates · panel */
+/* Flux PDF & Certificates · panel */
 .flxs-wrap{--g:var(--flxa-accent, #1F2937);--gd:color-mix(in srgb, var(--flxa-accent, #1F2937) 78%, #000);--leaf:#F59E0B;--ink:#111827;--tx:#4B5563;--mint:color-mix(in srgb, var(--flxa-accent, #1F2937) 10%, #fff);--line:color-mix(in srgb, var(--flxa-accent, #1F2937) 16%, #fff);--r:14px;max-width:1500px}
 /* Flux Admin koyu modu: açık nane zeminler ve çizgiler koyu tonlara döner. */
 html.flxa-dark .flxs-wrap{--gd:var(--flxa-accent-strong);--ink:var(--flxa-text);--tx:var(--flxa-text);--mint:var(--flxa-accent-soft);--line:var(--flxa-border)}

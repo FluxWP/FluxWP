@@ -1,7 +1,7 @@
 <?php
 /**
  * 2.0.0: events live in the shared FluxWP events table ({prefix}flx_events, flx-brand events.php). The event screen
- * is Flux CRM › Events when Flux CRM is active, otherwise Flux Certificates › Events. Everything certificate-specific
+ * is Flux CRM › Events when Flux CRM is active, otherwise Flux PDF & Certificates › Events. Everything certificate-specific
  * reaches that screen through the shared filters below, so neither screen knows about certificates.
  *
  * Owned here: columns `target` and `base_count` (saplings), certificate counts and people per event, the

@@ -1,6 +1,6 @@
 <?php
 /**
- * Flux Certificates uygulama manifesti. Yalnız Flux App etkinken kaydolur.
+ * Flux PDF & Certificates uygulama manifesti. Yalnız Flux App etkinken kaydolur.
  * Şablon ve yeni sertifika (PDF önizleme) web görünümünde kalır.
  *
  * @package FLX_Certificates

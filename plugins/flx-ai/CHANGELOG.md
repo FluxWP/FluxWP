@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.21.1
+- Flux Certificates eklentisinin görünen adı "Flux PDF & Certificates" oldu (yalnız ad; slug, text domain ve güncelleme kimliği aynı).
+
 ## 0.21.0
 - **Tasarım skill'leri:** yeni hazır skill **Kapak tasarımı** (`/kapak-tasarimi`): etkinlik kapağı, kampanya/bağış duyurusu, gönderi, hikâye, WhatsApp durumu, bağlantı önizlemesi, teşekkür/alıntı kartı, adım infografiği ve karusel sayfası. Test edilmiş 4 şablon (etkinlik, duyuru, tipografik, liste) × 6 ölçü (1920×1080, 1600×1000 site kartı, 1080×1920, 1080×1080, 1080×1350, 1200×630) ve güvenli alan kuralları; ajan her seferinde aynı tasarım sistemiyle çalışır, tek ölçüde taslak gösterip onaydan sonra diğer ölçüleri çıkarır.
 - **Tasarımı görsele çevir (`flxai_design_render`):** HTML/CSS tasarımı tam ölçüde PNG/JPEG/WebP'ye çevirir, medya kütüphanesine ekler (`attachment_id`, kaynak HTML ekte saklanır). Gotenberg ile çalışır (Ayarlar › Görsel çevirici); kendi çeviriciniz için `flxai_render_html` filtresi. Belgeye Figtree ve Caveat yazı tipleri gömülür (dış kaynak yüklenmez), `data-qr` ile QR kod, `data-fit` ile yazıyı kutusuna sığdırma.

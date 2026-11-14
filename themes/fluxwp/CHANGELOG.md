@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.7.26
+- Sistem kontrolünde Flux Certificates eklentisinin görünen adı "Flux PDF & Certificates" oldu (yalnız ad; slug, text domain ve güncelleme kimliği aynı).
+
 ## 0.7.25
 - Çok yakında (tüm site) sayfasında giriş yapmış ama siteyi görme yetkisi olmayan kişi (ör. Google ile ilk kez girip müşteri rolü alan ekip üyesi) artık "… olarak giriş yaptınız, hesabınızın henüz erişimi yok, site yöneticisinden yetki isteyin" notunu görür; altta "Ekip girişi" yerine "Çıkış yap" çıkar. Yetki ya da başka bilgi açılmaz, yalnız kendi görünen adı yazılır.
 

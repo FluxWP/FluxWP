@@ -1,5 +1,5 @@
 /**
- * Flux Certificates · PDF çizici
+ * Flux PDF & Certificates · PDF çizici
  * Şablon (arka plan PDF/görsel + alanlar) + değerler => PDF (pdf-lib), PDF => canvas/JPEG (pdf.js).
  * Aynı kod hem panelde canlı önizleme hem kayıt sırasında son PDF için kullanılır; çıktı birebir aynıdır.
  */
@@ -271,7 +271,7 @@
 		return docP.then(function (doc) {
 			doc.registerFontkit(global.fontkit);
 			doc.setTitle(fill('{sertifika} · {ad_soyad}', buildVars(config, values, meta)));
-			doc.setCreator('Flux Certificates');
+			doc.setCreator('Flux PDF & Certificates');
 			doc.setProducer(CFG.site || 'WordPress');
 			var pages = doc.getPages();
 			var vars = buildVars(config, values, meta);

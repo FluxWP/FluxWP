@@ -3,8 +3,8 @@
  * FluxWP shared events: one event table for every FluxWP package (1.4.0).
  *
  * An event (a planting day, a meeting, a training) lives here once. Packages attach their own records to it
- * (Flux Certificates: certificates, later Flux Forms registrations, Flux Donate gifts) and tell the others what
- * they have through filters, so the event screen (Flux CRM › Events, or Flux Certificates › Events when Flux CRM
+ * (Flux PDF & Certificates: certificates, later Flux Forms registrations, Flux Donate gifts) and tell the others what
+ * they have through filters, so the event screen (Flux CRM › Events, or Flux PDF & Certificates › Events when Flux CRM
  * is not installed) shows every package's numbers and people without knowing the packages.
  *
  * Table: {prefix}flx_events. Packages add the columns they own with `flx_events_columns`.
