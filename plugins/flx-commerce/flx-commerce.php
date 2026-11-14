@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Commerce
  * Description:       WooCommerce mağazası için satış paneli, müşteriler, aylık/yıllık abonelikler, satış raporları, dekont yüklemeli Havale/EFT, sade ödeme sayfası, ücretsiz kargo çubuğu, Google Merchant ürün feed'i ve WhatsApp/e-posta bildirimleri.
- * Version:           0.4.1
+ * Version:           0.5.0
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Requires Plugins:  woocommerce
@@ -27,7 +27,7 @@ if ( defined( 'FLXCM_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXCM_VERSION', '0.4.1' );
+define( 'FLXCM_VERSION', '0.5.0' );
 define( 'FLXCM_DB_VERSION', 2 );
 define( 'FLXCM_FILE', __FILE__ );
 define( 'FLXCM_DIR', plugin_dir_path( __FILE__ ) );
@@ -48,6 +48,7 @@ require_once FLXCM_DIR . 'includes/class-flxcm-subscriptions.php';
 require_once FLXCM_DIR . 'includes/class-flxcm-sub-product.php';
 require_once FLXCM_DIR . 'includes/class-flxcm-sub-account.php';
 require_once FLXCM_DIR . 'includes/class-flxcm-hidden-product.php';
+require_once FLXCM_DIR . 'includes/class-flxcm-sub-cards.php';
 require_once FLXCM_DIR . 'includes/system-checks.php';
 if ( is_admin() ) {
 	require_once FLXCM_DIR . 'includes/admin/class-flxcm-admin.php';
@@ -109,6 +110,7 @@ add_action(
 		FLXCM_Sub_Product::init();
 		FLXCM_Sub_Account::init();
 		FLXCM_Hidden_Product::init();
+		FLXCM_Sub_Cards::init();
 		if ( is_admin() ) {
 			FLXCM_Admin::init();
 		}

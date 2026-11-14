@@ -93,7 +93,9 @@ final class FLXCM_Page_Settings {
 
 		// Abonelikler.
 		echo '<section class="flxcm-card"><h2>' . flxcm_icon( 'refresh', 18 ) . ' ' . esc_html__( 'Subscriptions', 'flx-commerce' ) . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput
-		echo '<p class="flxcm-muted">' . esc_html__( 'Tick "Subscription" on a simple product and enter a monthly and/or yearly price. Renewals are paid by bank transfer or through the payment link; automatic card charging comes later.', 'flx-commerce' ) . '</p>';
+		echo '<p class="flxcm-muted">' . esc_html__( 'Tick "Subscription" on a simple product and enter a monthly and/or yearly price. If the first payment is made with a card provider that can store cards, renewals are charged to that card automatically; otherwise they are paid by bank transfer or through the payment link.', 'flx-commerce' ) . '</p>';
+		$cp = wp_list_pluck( FLXCM_Sub_Cards::providers(), 'label' );
+		echo '<p class="flxcm-muted"><strong>' . esc_html__( 'Automatic card renewal:', 'flx-commerce' ) . '</strong> ' . esc_html( $cp ? implode( ', ', $cp ) : __( 'no card provider yet (Flux Donate iyzico adds one).', 'flx-commerce' ) ) . '</p>';
 		self::input( 'sub_renew_days', __( 'Create the renewal order (days before the period ends)', 'flx-commerce' ), 'number', __( 'The customer gets the reminder e-mail with the bank details or payment link at the same time, and once more on the last day if unpaid.', 'flx-commerce' ), 'min="0" max="60" class="small-text"' );
 		self::input( 'sub_grace_days', __( 'Grace period after the period ends (days)', 'flx-commerce' ), 'number', __( 'Access stays on while the renewal is unpaid; after this the subscription ends. 0 = ends on the last day.', 'flx-commerce' ), 'min="0" max="60" class="small-text"' );
 		self::input( 'hidden_redirect', __( 'Hidden products: send visitors to', 'flx-commerce' ), 'url', __( 'Where a customer goes when opening a hidden product page (e.g. your pricing page). Empty = home page.', 'flx-commerce' ), 'class="regular-text" placeholder="' . esc_attr( home_url( '/' ) ) . '"' );

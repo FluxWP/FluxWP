@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 2.31.0
+- **Flux Commerce abonelikleri iyzico kartla otomatik yenilenir.** Flux Commerce 0.5.0'ın ortak kart katmanına iyzico sağlayıcısı eklendi (`flxcm_card_providers`). Abonelik içeren siparişte iyzico kartı saklar (aylık bağıştaki gibi `SUBSCRIPTION`, tek çekim, taksit yok); yenilemede Commerce yenileme siparişini açar, kart iyzico'dan çekilir. Cevap kaybolursa sonraki denemede önce ödeme durumu sorulur, iki kez çekilmez.
+- Abonelik sepetinde resmi iyzico eklentisi seçili olsa bile kart saklayabilen Flux Donate iyzico gösterilir; diğer yöntemler (Havale/EFT) gizlenmez. Kart kutusunda abonelik notu.
+- Aylık bağışların kendi tekrarlı çekimi değişmedi.
+- Filtre `flxb_commerce_renewal_request( $body, $order, $sub )`.
+
 ## 2.30.1
 - Kurban metinlerinde "kesilir / kesimi" ifadeleri bağış diliyle yazıldı: "Kimler adına?" açıklamaları "Bağışınız … adına yapılır", vekâlet onayı "Bu metne göre kurban bağışım için vekâlet veriyorum." İçe aktarma yardımında "kesim yeri" yerine "uygulama yeri".
 

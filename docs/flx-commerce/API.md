@@ -139,3 +139,28 @@ Satır meta: `_flxcm_period`, `flxcm_period` (görünen), `_flxcm_sub_id`, `_flx
 - Satın alma: `?add-to-cart=ID&flxcm_period=month|year` ya da `flxcm_add_subscription_to_cart( $id, $period, $meta )` sonra `wc_get_checkout_url()`.
 - Filtre `flxcm_hidden_product_redirect( string $url, int $product_id )`.
 - `FLXCM_Hidden_Product::is_hidden( $product )`.
+
+## Kartla otomatik yenileme (0.5.0)
+Ödeme eklentisi sağlayıcı kaydeder:
+```php
+add_filter( 'flxcm_card_providers', function ( $providers ) {
+	$providers['my_pos'] = array(
+		'label'    => 'My POS',
+		'gateways' => array( 'my_pos_gateway' ),          // Bu WC ödeme yöntemleriyle ödenen siparişlerde kart aranır.
+		'card'     => function ( WC_Order $order ) {      // İlk/elle ödenen siparişten saklanacak kart (mühürlü token).
+			return array( 'data' => array( 'token' => '…' ), 'label' => 'Visa •••• 4242' ); // ya da null
+		},
+		'charge'   => function ( WC_Order $renewal, array $data, array $sub ) {
+			// Kartı çek. payment_complete() çağırma; Commerce çağırır.
+			return array( 'result' => 'paid', 'txn' => 'abc' );           // paid | failed | uncertain
+		},
+	);
+	return $providers;
+} );
+```
+- Sağlayıcı kartı saklamak için siparişte abonelik olup olmadığına `flxcm_order_has_subscription( $order )` / `flxcm_cart_has_subscription()` ile bakar.
+- `uncertain`: cevap gelmedi; deneme sayılmaz, bir saat sonra yeniden çağrılır (sağlayıcı önce durumu sorup iki kez çekmemeli).
+- Tekrar deneme günleri `flxcm_card_retry_days` (varsayılan `[1, 1]`: dönem sonu, +1, +2 gün). Son başarısızlıkta `flxcm_subscription_charge_failed( $sub, $order, $error )` ve ödeme bağlantılı e-posta.
+- Yenileme siparişi meta: `_flxcm_card_auto`, `_flxcm_charge_attempts`, `_flxcm_charge_next`, `_flxcm_charge_failed`.
+- Abonelik dizisinde `card` (etiket) ve `auto_charge`; kart verisi `meta`'da görünmez.
+- E-posta şablonları: `flx-commerce/sub-card-notice` (değişken `{kart}`), `flx-commerce/sub-card-failed`.

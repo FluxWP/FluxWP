@@ -3621,4 +3621,8 @@ Teşekkürler,
 'to the donor'=>'bağışçıya',
 'Card information'=>'Kart bilgileri',
 'Security code'=>'Güvenlik kodu',
+'iyzico keys are missing.'=>'iyzico anahtarları eksik.',
+'No stored card for this subscription.'=>'Bu abonelik için kayıtlı kart yok.',
+'Subscription'=>'Abonelik',
+'iyzico keeps your card and the subscription renews from it automatically. You can remove the card or cancel any time in My account.'=>'Kartınızı iyzico saklar, abonelik bu karttan otomatik yenilenir. Kartı kaldırmak ya da iptal etmek için Hesabım\'a gidebilirsiniz.',
 ));

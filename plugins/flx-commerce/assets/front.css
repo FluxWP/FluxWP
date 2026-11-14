@@ -73,8 +73,10 @@
 .flxcm-sub__badge.is-wait{color:var(--fc-warn);background:color-mix(in srgb,var(--fc-warn) 14%,transparent)}
 .flxcm-sub__badge.is-bad{color:var(--fc-bad);background:color-mix(in srgb,var(--fc-bad) 12%,transparent)}
 .flxcm-sub__when{margin:10px 0 0}
+.flxcm-sub__card{margin:4px 0 0;font-size:.92em;color:var(--fc-mut)}
 .flxcm-sub__due{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin:12px 0 0;padding:12px 14px;border-radius:12px;background:var(--fc-soft)}
 .flxcm-sub__due .button{margin:0}
+.flxcm-sub__due.flxcm-sub__due--auto{background:color-mix(in srgb,var(--fc-ok) 10%,transparent)}
 .flxcm-sub__foot{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0;padding:12px 0 0;border-top:1px solid var(--fc-bd);font-size:.92em;color:var(--fc-mut)}
 .flxcm-sub__cancel{color:var(--fc-bad)}
 @media (prefers-color-scheme:dark){.flxcm-period-pick,.flxcm-subs{--fc-ok:#4ade80;--fc-warn:#fbbf24;--fc-bad:#f87171}}

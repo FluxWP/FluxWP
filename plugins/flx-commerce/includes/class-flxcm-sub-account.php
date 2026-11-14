@@ -120,12 +120,33 @@ final class FLXCM_Sub_Account {
 		foreach ( $rows as $r ) {
 			$renew = (int) $r['renewal_order_id'] ? wc_get_order( (int) $r['renewal_order_id'] ) : null;
 			$due   = $renew && $renew->has_status( array( 'pending', 'on-hold', 'failed' ) ) && ! $renew->is_paid();
+			$auto  = $due && FLXCM_Sub_Cards::auto_pending( $renew );
+			$card  = FLXCM_Sub_Cards::label( $r );
+			$live  = in_array( $r['status'], array( 'active', 'past_due' ), true );
 			echo '<article class="flxcm-sub flxcm-sub--' . esc_attr( $r['status'] ) . '">';
 			echo '<header class="flxcm-sub__head"><div><h3 class="flxcm-sub__name">' . esc_html( $r['product_name'] ) . '</h3>';
 			echo '<span class="flxcm-sub__price">' . wp_kses_post( wc_price( $r['amount'], array( 'currency' => $r['currency'] ) ) ) . ' / ' . esc_html( FLXCM_Subscriptions::period_label( $r['period'], false ) ) . '</span></div>';
 			echo '<span class="flxcm-sub__badge ' . esc_attr( self::status_class( $r['status'] ) ) . '">' . esc_html( self::status_label( $r['status'] ) ) . '</span></header>';
 			echo '<p class="flxcm-sub__when">' . esc_html( self::when( $r ) ) . '</p>';
-			if ( $due ) {
+			if ( $card && $live ) {
+				echo '<p class="flxcm-sub__card">' . esc_html(
+					sprintf(
+						/* translators: %s: card */
+						__( 'Renews automatically from your card %s.', 'flx-commerce' ),
+						$card
+					)
+				) . '</p>';
+			}
+			if ( $auto ) {
+				echo '<div class="flxcm-sub__due flxcm-sub__due--auto"><span>' . esc_html(
+					sprintf(
+						/* translators: 1: amount, 2: date */
+						__( '%1$s will be charged to your card on %2$s.', 'flx-commerce' ),
+						wp_strip_all_tags( flxcm_money( $renew->get_total(), $renew->get_currency() ) ),
+						flxcm_date( max( (int) strtotime( $r['period_end'] . ' UTC' ), (int) $renew->get_meta( '_flxcm_charge_next' ) ) )
+					)
+				) . '</span></div>';
+			} elseif ( $due ) {
 				$bank = FLXCM_Bank::ID === $renew->get_payment_method();
 				echo '<div class="flxcm-sub__due"><span>' . esc_html(
 					sprintf(
@@ -145,6 +166,10 @@ final class FLXCM_Sub_Account {
 			if ( ! $due && in_array( $r['status'], array( 'active', 'past_due' ), true ) && time() >= $window ) {
 				// Yenileme siparişi iptal olduysa (ör. süresinde ödenmedi) müşteri yenisini kendisi açabilir.
 				$links[] = '<a href="' . esc_url( self::action_url( $r['id'], 'renew' ) ) . '">' . esc_html__( 'Renew now', 'flx-commerce' ) . '</a>';
+			}
+			if ( $card && $live ) {
+				$fmsg    = esc_js( __( 'Remove the card? Renewals will then be paid with the payment link we e-mail you.', 'flx-commerce' ) );
+				$links[] = '<a href="' . esc_url( self::action_url( $r['id'], 'forget_card' ) ) . '" onclick="return confirm(\'' . $fmsg . '\')">' . esc_html__( 'Remove card', 'flx-commerce' ) . '</a>';
 			}
 			if ( in_array( $r['status'], array( 'active', 'past_due' ), true ) ) {
 				$msg     = esc_js( __( 'Turn off renewal? The subscription stays valid until the end of the current period.', 'flx-commerce' ) );
@@ -169,7 +194,7 @@ final class FLXCM_Sub_Account {
 		}
 		$id = absint( $_GET['flxcm_sub'] );
 		$do = sanitize_key( wp_unslash( $_GET['flxcm_do'] ) );
-		if ( ! in_array( $do, array( 'cancel', 'resume', 'renew' ), true ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ?? '' ) ), 'flxcm_sub_' . $do . '_' . $id ) ) {
+		if ( ! in_array( $do, array( 'cancel', 'resume', 'renew', 'forget_card' ), true ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ?? '' ) ), 'flxcm_sub_' . $do . '_' . $id ) ) {
 			return;
 		}
 		$own = wp_list_pluck( self::mine(), 'id' );
@@ -185,6 +210,16 @@ final class FLXCM_Sub_Account {
 						: sprintf( __( 'Renewal is off. Your subscription stays valid until %s.', 'flx-commerce' ), flxcm_date( $sub['period_end'] ) )
 				);
 			}
+		} elseif ( 'forget_card' === $do ) {
+			FLXCM_Sub_Cards::forget( $id );
+			$row = FLXCM_Subscriptions::row( $id );
+			$o   = $row && (int) $row['renewal_order_id'] ? wc_get_order( (int) $row['renewal_order_id'] ) : null;
+			if ( $o && ! $o->is_paid() && $o->get_meta( '_flxcm_card_auto' ) ) {
+				$o->delete_meta_data( '_flxcm_card_auto' );
+				$o->add_order_note( __( 'The customer removed the stored card; this renewal is paid with the payment link.', 'flx-commerce' ) );
+				$o->save();
+			}
+			wc_add_notice( __( 'The card was removed. We will e-mail you a payment link before each renewal.', 'flx-commerce' ) );
 		} elseif ( 'renew' === $do ) {
 			$o = FLXCM_Subscriptions::create_renewal( $id, true );
 			if ( $o instanceof WC_Order ) {
