@@ -20,6 +20,11 @@ function flxi_seo_option( $key ) {
 }
 
 function flxi_defaults() {
+	return (array) apply_filters( 'flxi_defaults', flxi_default_values() );
+}
+
+/** Eklentinin nötr varsayılanları; kuruma özel değer (slogan, alt çizim) ön ayardan `flxi_defaults` filtresiyle gelir. */
+function flxi_default_values() {
 	$domain = flxi_site_domain();
 	$name   = flxi_seo_option( 'site_name' );
 	if ( '' === $name ) {
@@ -49,7 +54,7 @@ function flxi_defaults() {
 		'wrap_html'        => 1,
 		'email_images_fix' => 1,
 		'embed_images'     => 1,
-		'footer_art'       => 'tepeler',
+		'footer_art'       => 'none',
 		'logo'             => '',
 		'logo_white'       => '',
 		'logo_width'       => 210,
@@ -58,7 +63,7 @@ function flxi_defaults() {
 		'color_bg'         => '',
 		'color_text'       => '',
 		'org_name'         => '',
-		'tagline'          => 'Daha yeşil bir Türkiye mümkün',
+		'tagline'          => '',
 		'address'          => '',
 		'phone'            => '',
 		'contact_email'    => '',
@@ -500,17 +505,28 @@ function flxi_wa_group_unsupported() {
 
 /** Alt kısım çizimleri (e-postanın en altındaki ağaç silüeti). */
 function flxi_footer_arts() {
-	return array(
-		'none'    => __( 'None', 'flx-mail' ),
-		'orman'   => __( 'Forest', 'flx-mail' ),
-		'tepeler' => __( 'Hills', 'flx-mail' ),
-		'cizgi'   => __( 'Line art', 'flx-mail' ),
+	// Ön ayarlar kendi çizimini `flxi_footer_arts` (anahtar => ad) + `flxi_footer_art_urls` (anahtar => light/dark adresi) ile ekler.
+	return (array) apply_filters(
+		'flxi_footer_arts',
+		array(
+			'none'    => __( 'None', 'flx-mail' ),
+			'orman'   => __( 'Forest', 'flx-mail' ),
+			'tepeler' => __( 'Hills', 'flx-mail' ),
+			'cizgi'   => __( 'Line art', 'flx-mail' ),
+		)
 	);
 }
 
 /** Seçili çizimin açık/koyu PNG adresleri (yoksa null). */
 function flxi_footer_art_urls( $art ) {
 	$art = (string) $art;
+	$ext = apply_filters( 'flxi_footer_art_urls', null, $art );
+	if ( is_array( $ext ) && ! empty( $ext['light'] ) && 'none' !== $art ) {
+		return array(
+			'light' => (string) $ext['light'],
+			'dark'  => (string) ( $ext['dark'] ?? $ext['light'] ),
+		);
+	}
 	if ( 'none' === $art || ! isset( flxi_footer_arts()[ $art ] ) || ! file_exists( FLXI_DIR . 'assets/img/footer/' . $art . '.png' ) ) {
 		return null;
 	}
@@ -541,3 +557,18 @@ function flxi_media_mime( $url, $name, $kind ) {
 	}
 	return 'image' === $kind ? 'image/jpeg' : ( 'video' === $kind ? 'video/mp4' : 'application/pdf' );
 }
+
+/** Ön ayar / AI ile yazılabilir e-posta şablonu alanları (flx_settings_schema). */
+add_filter(
+	'flx_settings_schema',
+	function ( $s ) {
+		$s['flxi_settings'] = array(
+			'label'  => 'Flux Mail',
+			'fields' => array(
+				'tagline'    => array( 'type' => 'string', 'desc' => 'E-posta alt kısmındaki slogan.' ),
+				'footer_art' => array( 'type' => 'string', 'desc' => 'E-posta altındaki çizim anahtarı (none, orman, tepeler, cizgi ya da ön ayarın eklediği).' ),
+			),
+		);
+		return $s;
+	}
+);

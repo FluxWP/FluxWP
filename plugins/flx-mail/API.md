@@ -197,6 +197,18 @@ flxi_campaign_recipients( $cid, array( 'per_page' => 50 ) );
 
 WhatsApp eşleşmesi: kuyruk satırındaki mesaj kimliği (`ext_id`), eski satırlarda gönderim saatine 10 dk içinde en yakın giden mesaj. Flux Chat yoksa WhatsApp alanları null. `delivered_at` / `read_at` Flux Chat mesaj `meta.delivered_at` / `meta.read_at` (Unix) tutarsa dolar. Cevap süresi `flxi_engagement_reply_window` (saniye) ile değişir.
 
+### E-posta alt kısmı için ön ayar filtreleri (1.22.0+)
+
+Çekirdek varsayılanı nötr: slogan boş, alt çizim `none`. Kuruma özel görünüm ön ayardan gelir:
+
+```php
+// Varsayılan ayarlar (kullanıcı kaydettiyse kayıtlı değer geçerli).
+add_filter( 'flxi_defaults', fn( $d ) => array_merge( $d, array( 'tagline' => '...', 'footer_art' => 'mysite' ) ) );
+// Alt çizim listesine ekle + açık/koyu PNG adresi.
+add_filter( 'flxi_footer_arts', fn( $a ) => $a + array( 'mysite' => 'My site' ) );
+add_filter( 'flxi_footer_art_urls', fn( $u, $key ) => 'mysite' === $key ? array( 'light' => URL . 'light.png', 'dark' => URL . 'dark.png' ) : $u, 10, 2 );
+```
+
 ### Sohbette toplu mesaj başlığı (1.21.0+)
 
 Flux Chat 1.48.0+ `flxc_message_origin` filtresine Flux Mail cevap verir (kaynak boş, `flx-mail*` ya da `phone` olan mesajlar; diğerlerinde `$origin` aynen döner).
