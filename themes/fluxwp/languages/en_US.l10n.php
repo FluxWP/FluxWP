@@ -984,5 +984,8 @@ return array(
   'Donations can\'t be completed online just yet. You can keep exploring the rest of the site in the meantime.' => 'Donations can\'t be completed online just yet. You can keep exploring the rest of the site in the meantime.',
   'Orders can\'t be placed online just yet. You can keep exploring the rest of the site in the meantime.' => 'Orders can\'t be placed online just yet. You can keep exploring the rest of the site in the meantime.',
   'Back to homepage' => 'Back to homepage',
+  'Signed in as %s' => 'Signed in as %s',
+  'Your account does not have access to the site yet. If you are on the team, ask a site administrator to grant your account access.' => 'Your account does not have access to the site yet. If you are on the team, ask a site administrator to grant your account access.',
+  'Sign out' => 'Sign out',
  ),
 );

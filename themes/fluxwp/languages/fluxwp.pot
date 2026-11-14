@@ -1545,3 +1545,13 @@ msgstr ""
 
 msgid "Back to homepage"
 msgstr ""
+
+#. translators: %s: user display name
+msgid "Signed in as %s"
+msgstr ""
+
+msgid "Your account does not have access to the site yet. If you are on the team, ask a site administrator to grant your account access."
+msgstr ""
+
+msgid "Sign out"
+msgstr ""

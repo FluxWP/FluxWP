@@ -1549,3 +1549,13 @@ msgstr "Orders can't be placed online just yet. You can keep exploring the rest 
 
 msgid "Back to homepage"
 msgstr "Back to homepage"
+
+#. translators: %s: user display name
+msgid "Signed in as %s"
+msgstr "Signed in as %s"
+
+msgid "Your account does not have access to the site yet. If you are on the team, ask a site administrator to grant your account access."
+msgstr "Your account does not have access to the site yet. If you are on the team, ask a site administrator to grant your account access."
+
+msgid "Sign out"
+msgstr "Sign out"

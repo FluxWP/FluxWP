@@ -984,5 +984,8 @@ return array(
   'Donations can\'t be completed online just yet. You can keep exploring the rest of the site in the meantime.' => 'Bağışlar henüz online tamamlanamıyor. Bu arada sitenin geri kalanını gezmeye devam edebilirsiniz.',
   'Orders can\'t be placed online just yet. You can keep exploring the rest of the site in the meantime.' => 'Siparişler henüz online verilemiyor. Bu arada sitenin geri kalanını gezmeye devam edebilirsiniz.',
   'Back to homepage' => 'Ana sayfaya dön',
+  'Signed in as %s' => '%s olarak giriş yaptınız',
+  'Your account does not have access to the site yet. If you are on the team, ask a site administrator to grant your account access.' => 'Hesabınızın siteye henüz erişimi yok. Ekipteyseniz site yöneticisinden hesabınıza yetki vermesini isteyin.',
+  'Sign out' => 'Çıkış yap',
  ),
 );
