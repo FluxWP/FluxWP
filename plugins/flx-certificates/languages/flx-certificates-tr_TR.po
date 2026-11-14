@@ -857,7 +857,7 @@ msgid "Cancel this certificate?"
 msgstr "Sertifika iptal edilsin mi?"
 
 msgid "People who received a certificate appear here."
-msgstr "Sertifika kesilen kişiler burada görünür."
+msgstr "Sertifika verilen kişiler burada görünür."
 
 msgid "No certificates"
 msgstr "Sertifika yok"

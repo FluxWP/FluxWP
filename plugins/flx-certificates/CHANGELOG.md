@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.1.1
+- Turkish: "Sertifika kesilen kişiler" now reads "Sertifika verilen kişiler".
+
 ## 2.1.0
 - Personal values for Flux CRM event messages (`flx_event_vars`): `{fidan}` saplings on the person's certificates of that event, `{sertifika_sayisi}`, `{sertifika_link}` (first certificate) and `{sertifika_no}`.
 

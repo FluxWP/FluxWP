@@ -1936,7 +1936,7 @@ msgid "Upload a file"
 msgstr "Dosya yükle"
 
 msgid "The first row names the columns. Recognised: date, donor, phone, e-mail, on behalf of, donation type, option, quantity, amount, currency, payment, status, partner, brought in by, target date, referral, note."
-msgstr "İlk satır sütun adlarıdır. Tanınanlar: tarih, bağışçı, telefon, e-posta, kimin adına, bağış türü, seçenek, adet, tutar, para birimi, ödeme, durum, iş ortağı (kesim yeri, dikim alanı…), kurum/getiren, hedef tarih, referans, not."
+msgstr "İlk satır sütun adlarıdır. Tanınanlar: tarih, bağışçı, telefon, e-posta, kimin adına, bağış türü, seçenek, adet, tutar, para birimi, ödeme, durum, iş ortağı (uygulama yeri, dikim alanı…), kurum/getiren, hedef tarih, referans, not."
 
 msgid "Reading..."
 msgstr "Okunuyor…"
@@ -4465,19 +4465,19 @@ msgid "On whose behalf?"
 msgstr "Kimler adına?"
 
 msgid "Given in your name, as you write it at the checkout."
-msgstr "Ödeme sayfasında yazdığınız ad adına kesilir."
+msgstr "Bağışınız, ödeme sayfasında yazdığınız ad adına yapılır."
 
 msgid "Shares without a name are given in the name from the checkout. With a phone number we can also send that person the news on WhatsApp."
-msgstr "Adı boş bırakılan hisseler ödeme sayfasındaki ad adına kesilir. Telefon yazarsanız o kişiye WhatsApp'tan haber de gönderebiliriz."
+msgstr "Adı boş bırakılan hisselerin bağışı, ödeme sayfasındaki ad adına yapılır. Telefon yazarsanız o kişiye WhatsApp'tan haber de gönderebiliriz."
 
 msgid "Shares without a name are given in the name from the checkout."
-msgstr "Adı boş bırakılan hisseler ödeme sayfasındaki ad adına kesilir."
+msgstr "Adı boş bırakılan hisselerin bağışı, ödeme sayfasındaki ad adına yapılır."
 
 msgid "Read the proxy (vekâlet) text (version %s)"
 msgstr "Vekâlet metnini okuyun (sürüm %s)"
 
 msgid "I give my proxy (vekâlet) for the sacrifice according to this text."
-msgstr "Bu metne göre kurban kesimi için vekâlet veriyorum."
+msgstr "Bu metne göre kurban bağışım için vekâlet veriyorum."
 
 msgid "Share %s"
 msgstr "Hisse %s"
