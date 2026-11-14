@@ -85,7 +85,49 @@ function flxai_skills_builtin() {
 			'description' => __( 'Creates, reviews and tests skills in the Agent Skills format. Use when the user wants a new skill, wants to improve one or asks why a skill does not trigger.', 'flx-ai' ),
 			'dir'         => FLXAI_DIR . 'skills/skill-olusturucu',
 		),
+		'kapak-tasarimi'   => array(
+			'name'        => __( 'Cover design', 'flx-ai' ),
+			'description' => __( 'Brand-style visuals with text as PNG/JPEG in several sizes from one brief: event covers, campaign and donation announcements, posts, stories, WhatsApp status, link previews, thank-you and quote cards, step infographics, carousel pages. Use for "cover", "poster", "event visual", "story", "post image", "banner".', 'flx-ai' ),
+			'dir'         => FLXAI_DIR . 'skills/kapak-tasarimi',
+		),
+	) + flxai_skills_social();
+}
+
+/**
+ * Sosyal medya skill'leri (0.21.0): charlie947/social-media-skills v1.1.0 (MIT, Charlie Hills), Flux AI araçlarına uyarlandı.
+ * Lisans: skills/THIRD-PARTY.md.
+ */
+function flxai_skills_social() {
+	$src  = __( 'Social media', 'flx-ai' );
+	$list = array(
+		'voice-builder'          => array( __( 'Voice builder', 'flx-ai' ), __( 'Learns who you are and how you write from a short interview and 3-5 writing samples; saves about-me.md and voice.md to the brand kit. The other social media skills read them. Use for "learn my voice", "set up my content system".', 'flx-ai' ) ),
+		'newsletter-voice'       => array( __( 'Newsletter voice', 'flx-ai' ), __( 'Adds newsletter-specific writing rules on top of the voice profile (newsletter-voice.md), from past issues or one of 6 archetypes. Use for "learn my newsletter style", "set up my newsletter".', 'flx-ai' ) ),
+		'post-writer'            => array( __( 'Post writer', 'flx-ai' ), __( 'Writes LinkedIn and social media posts in your voice from a topic, notes or a transcript. Use for "write a post", "draft a post about…".', 'flx-ai' ) ),
+		'post-formatter'         => array( __( 'Post formatter', 'flx-ai' ), __( 'Turns a topic into a ready-to-publish post with a named framework (PAS, AIDA, BAB, STAR, SLAY), mobile-formatted. Use for "format this as a post", "write it as PAS".', 'flx-ai' ) ),
+		'hook-generator'         => array( __( 'Hook generator', 'flx-ai' ), __( 'Six short two-line opening hooks for a post topic, using your real numbers and experience. Use for "write me hooks", "hook ideas".', 'flx-ai' ) ),
+		'post-scorer'            => array( __( 'Post scorer', 'flx-ai' ), __( 'Scores a post draft against your own past performance (export or pasted posts) or with a labelled editorial review. Use for "score my post", "rate this post".', 'flx-ai' ) ),
+		'content-matrix'         => array( __( 'Content matrix', 'flx-ai' ), __( 'Pairs your 3-5 content pillars with 8 formats for 24-40 post ideas in one table. Use for "post ideas", "content plan for the month", "what should I post".', 'flx-ai' ) ),
+		'niche-research'         => array( __( 'Niche research', 'flx-ai' ), __( 'Finds up to 20 dated stories from the last 7 days in a niche with web search, with links and post angles. Use for "what\'s trending", "this week\'s news in…", "research my niche".', 'flx-ai' ) ),
+		'graphic-designer'       => array( __( 'Graphic designer', 'flx-ai' ), __( 'Designs the image for a post: a structured HTML graphic rendered to PNG or an AI infographic (whiteboard or branded). Use for "design a graphic for my post", "make an image for this post".', 'flx-ai' ) ),
+		'carousel'               => array( __( 'Carousel', 'flx-ai' ), __( 'Builds a branded multi-slide carousel (1080x1350): brief, approval, then one image prompt or render per slide. Use for "carousel", "turn this into slides".', 'flx-ai' ) ),
+		'whiteboard-infographic' => array( __( 'Whiteboard infographic', 'flx-ai' ), __( 'Turns a post, newsletter or note into a hand-drawn whiteboard infographic (brief + image prompt or generated image). Use for "whiteboard infographic", "hand-drawn graphic".', 'flx-ai' ) ),
+		'quote-post'             => array( __( 'Quote post', 'flx-ai' ), __( 'Writes short original quotes and a matching quote graphic for a caption. Use for "quote post", "quote graphic", "motivational post".', 'flx-ai' ) ),
+		'pinned-comment'         => array( __( 'Pinned comment', 'flx-ai' ), __( 'Writes a deadpan pinned/first comment for a post together with a matching image prompt. Use for "pinned comment", "first comment".', 'flx-ai' ) ),
+		'profile-optimizer'      => array( __( 'Profile optimizer', 'flx-ai' ), __( 'Rewrites a LinkedIn profile: headline options, about, experience, featured section and banner/photo image prompts. Use for "optimize my profile", "rewrite my headline".', 'flx-ai' ) ),
+		'youtube-thumbnail'      => array( __( 'YouTube thumbnail', 'flx-ai' ), __( 'Turns a video title into a high-click branded YouTube thumbnail prompt or image. Use for "thumbnail", "YouTube cover".', 'flx-ai' ) ),
+		'reels-scripting'        => array( __( 'Reels scripting', 'flx-ai' ), __( 'Writes a Reel/short video script in your voice from a reference video\'s transcript and your content. Use for "script a reel", "turn this into a reel".', 'flx-ai' ) ),
+		'analytics-dashboard'    => array( __( 'Analytics dashboard', 'flx-ai' ), __( 'Turns a LinkedIn Analytics export (CSV) into an interactive visual report and 5 data-backed recommendations. Use for "analyse my LinkedIn", "build my dashboard".', 'flx-ai' ) ),
 	);
+	$out = array();
+	foreach ( $list as $slug => $s ) {
+		$out[ $slug ] = array(
+			'name'        => $s[0],
+			'description' => $s[1],
+			'dir'         => FLXAI_DIR . 'skills/' . $slug,
+			'source'      => $src,
+		);
+	}
+	return $out;
 }
 
 /**

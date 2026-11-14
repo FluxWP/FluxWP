@@ -3633,3 +3633,267 @@ msgstr "%s reddedildi"
 
 msgid "1 rejected"
 msgstr "1 reddedildi"
+
+msgid "\"%s\" is not a hex color (e.g. #0A5A40)."
+msgstr "\"%s\" geçerli bir hex renk değil (ör. #0A5A40)."
+
+msgid "%s is too long (at most 30 KB)."
+msgstr "%s çok uzun (en fazla 30 KB)."
+
+msgid "The brand kit can hold at most 20 documents."
+msgstr "Marka kitinde en fazla 20 belge olabilir."
+
+msgid "Could not read the image %s."
+msgstr "%s görseli okunamadı."
+
+msgid "The images are too large in total (at most 30 MB)."
+msgstr "Görsellerin toplam boyutu çok büyük (en fazla 30 MB)."
+
+msgid "Brand kit"
+msgstr "Marka kiti"
+
+msgid "Update brand kit"
+msgstr "Marka kitini güncelle"
+
+msgid "Render design"
+msgstr "Tasarımı görsele çevir"
+
+msgid "The design HTML is empty."
+msgstr "Tasarım HTML'i boş."
+
+msgid "The design HTML is too large (at most 400 KB). Pass images with \"images\", not inline."
+msgstr "Tasarım HTML'i çok büyük (en fazla 400 KB). Görselleri satır içi değil \"images\" ile verin."
+
+msgid "Design"
+msgstr "Tasarım"
+
+msgid "Cover design"
+msgstr "Kapak tasarımı"
+
+msgid "Brand-style visuals with text as PNG/JPEG in several sizes from one brief: event covers, campaign and donation announcements, posts, stories, WhatsApp status, link previews, thank-you and quote cards, step infographics, carousel pages. Use for \"cover\", \"poster\", \"event visual\", \"story\", \"post image\", \"banner\"."
+msgstr "Tek bilgiden birkaç ölçüde, marka tarzında yazılı görseller (PNG/JPEG): etkinlik kapağı, kampanya ve bağış duyurusu, gönderi, hikâye, WhatsApp durumu, bağlantı önizlemesi, teşekkür ve alıntı kartı, adım infografiği, karusel sayfası. \"kapak\", \"afiş\", \"etkinlik görseli\", \"hikâye\", \"post görseli\", \"banner\" isteklerinde kullanılır."
+
+msgid "Social media"
+msgstr "Sosyal medya"
+
+msgid "Voice builder"
+msgstr "Yazım sesi"
+
+msgid "Learns who you are and how you write from a short interview and 3-5 writing samples; saves about-me.md and voice.md to the brand kit. The other social media skills read them. Use for \"learn my voice\", \"set up my content system\"."
+msgstr "Kısa bir görüşme ve 3-5 yazı örneğinden kim olduğunuzu ve nasıl yazdığınızı öğrenir; about-me.md ve voice.md'yi marka kitine kaydeder. Diğer sosyal medya skill'leri bunları okur. \"üslubumu öğren\", \"içerik sistemimi kur\" isteklerinde kullanılır."
+
+msgid "Newsletter voice"
+msgstr "Bülten üslubu"
+
+msgid "Adds newsletter-specific writing rules on top of the voice profile (newsletter-voice.md), from past issues or one of 6 archetypes. Use for \"learn my newsletter style\", \"set up my newsletter\"."
+msgstr "Yazım sesinin üstüne bültene özel kurallar ekler (newsletter-voice.md); eski sayılardan ya da 6 hazır tipten. \"bülten üslubumu öğren\", \"bültenimi kur\" isteklerinde kullanılır."
+
+msgid "Post writer"
+msgstr "Gönderi yazarı"
+
+msgid "Writes LinkedIn and social media posts in your voice from a topic, notes or a transcript. Use for \"write a post\", \"draft a post about…\"."
+msgstr "Konudan, notlardan ya da konuşma metninden sizin üslubunuzla LinkedIn ve sosyal medya gönderisi yazar. \"gönderi yaz\", \"… hakkında post taslağı\" isteklerinde kullanılır."
+
+msgid "Post formatter"
+msgstr "Gönderi kalıbı"
+
+msgid "Turns a topic into a ready-to-publish post with a named framework (PAS, AIDA, BAB, STAR, SLAY), mobile-formatted. Use for \"format this as a post\", \"write it as PAS\"."
+msgstr "Bir konuyu bilinen bir kalıpla (PAS, AIDA, BAB, STAR, SLAY) mobilde okunur, yayına hazır gönderiye çevirir. \"bunu gönderi yap\", \"PAS ile yaz\" isteklerinde kullanılır."
+
+msgid "Hook generator"
+msgstr "Giriş cümlesi üretici"
+
+msgid "Six short two-line opening hooks for a post topic, using your real numbers and experience. Use for \"write me hooks\", \"hook ideas\"."
+msgstr "Gönderi konusu için gerçek sayı ve deneyiminizle altı kısa, iki satırlık giriş (hook). \"hook yaz\", \"giriş cümlesi önerisi\" isteklerinde kullanılır."
+
+msgid "Post scorer"
+msgstr "Gönderi puanlayıcı"
+
+msgid "Scores a post draft against your own past performance (export or pasted posts) or with a labelled editorial review. Use for \"score my post\", \"rate this post\"."
+msgstr "Gönderi taslağını kendi geçmiş performansınıza (dışa aktarım ya da yapıştırılan gönderiler) göre ya da açıkça belirtilen editoryal incelemeyle puanlar. \"gönderimi puanla\", \"bu postu değerlendir\" isteklerinde kullanılır."
+
+msgid "Content matrix"
+msgstr "İçerik matrisi"
+
+msgid "Pairs your 3-5 content pillars with 8 formats for 24-40 post ideas in one table. Use for \"post ideas\", \"content plan for the month\", \"what should I post\"."
+msgstr "3-5 içerik konunuzu 8 biçimle eşleyip tek tabloda 24-40 gönderi fikri çıkarır. \"gönderi fikri\", \"aylık içerik planı\", \"ne paylaşayım\" isteklerinde kullanılır."
+
+msgid "Niche research"
+msgstr "Alan taraması"
+
+msgid "Finds up to 20 dated stories from the last 7 days in a niche with web search, with links and post angles. Use for \"what's trending\", \"this week's news in…\", \"research my niche\"."
+msgstr "Web aramasıyla bir alanda son 7 günün tarihli 20 habere kadarını bağlantı ve paylaşım açısıyla bulur. \"gündemde ne var\", \"bu haftanın … haberleri\", \"alanımı tara\" isteklerinde kullanılır."
+
+msgid "Graphic designer"
+msgstr "Grafik tasarımcı"
+
+msgid "Designs the image for a post: a structured HTML graphic rendered to PNG or an AI infographic (whiteboard or branded). Use for \"design a graphic for my post\", \"make an image for this post\"."
+msgstr "Gönderinin görselini tasarlar: PNG'ye çevrilen düzenli bir HTML grafik ya da yapay zekâ infografiği (beyaz tahta ya da marka renkli). \"gönderim için grafik tasarla\", \"bu posta görsel yap\" isteklerinde kullanılır."
+
+msgid "Carousel"
+msgstr "Karusel"
+
+msgid "Builds a branded multi-slide carousel (1080x1350): brief, approval, then one image prompt or render per slide. Use for \"carousel\", \"turn this into slides\"."
+msgstr "Marka renklerinde çok sayfalı karusel hazırlar (1080x1350): özet, onay, sonra her sayfa için görsel istemi ya da çıktı. \"karusel\", \"bunu slaytlara çevir\" isteklerinde kullanılır."
+
+msgid "Whiteboard infographic"
+msgstr "Beyaz tahta infografiği"
+
+msgid "Turns a post, newsletter or note into a hand-drawn whiteboard infographic (brief + image prompt or generated image). Use for \"whiteboard infographic\", \"hand-drawn graphic\"."
+msgstr "Gönderi, bülten ya da notu elle çizilmiş beyaz tahta infografiğine çevirir (özet + görsel istemi ya da üretilmiş görsel). \"beyaz tahta infografiği\", \"elle çizilmiş grafik\" isteklerinde kullanılır."
+
+msgid "Quote post"
+msgstr "Alıntı gönderisi"
+
+msgid "Writes short original quotes and a matching quote graphic for a caption. Use for \"quote post\", \"quote graphic\", \"motivational post\"."
+msgstr "Gönderi metni için kısa özgün sözler ve uygun alıntı görseli hazırlar. \"alıntı gönderisi\", \"söz görseli\", \"motivasyon postu\" isteklerinde kullanılır."
+
+msgid "Pinned comment"
+msgstr "Sabit yorum"
+
+msgid "Writes a deadpan pinned/first comment for a post together with a matching image prompt. Use for \"pinned comment\", \"first comment\"."
+msgstr "Gönderi için esprili, ciddi tonlu sabit/ilk yorumu uygun görsel istemiyle birlikte yazar. \"sabit yorum\", \"ilk yorum\" isteklerinde kullanılır."
+
+msgid "Profile optimizer"
+msgstr "Profil iyileştirici"
+
+msgid "Rewrites a LinkedIn profile: headline options, about, experience, featured section and banner/photo image prompts. Use for \"optimize my profile\", \"rewrite my headline\"."
+msgstr "LinkedIn profilini yeniden yazar: başlık seçenekleri, hakkında, deneyim, öne çıkanlar ve kapak/profil görseli istemleri. \"profilimi iyileştir\", \"başlığımı yeniden yaz\" isteklerinde kullanılır."
+
+msgid "YouTube thumbnail"
+msgstr "YouTube küçük resmi"
+
+msgid "Turns a video title into a high-click branded YouTube thumbnail prompt or image. Use for \"thumbnail\", \"YouTube cover\"."
+msgstr "Video başlığından tıklanma oranı yüksek, marka renkli YouTube küçük resmi istemi ya da görseli hazırlar. \"thumbnail\", \"YouTube kapağı\" isteklerinde kullanılır."
+
+msgid "Reels scripting"
+msgstr "Reels senaryosu"
+
+msgid "Writes a Reel/short video script in your voice from a reference video's transcript and your content. Use for \"script a reel\", \"turn this into a reel\"."
+msgstr "Örnek bir videonun konuşma metni ve kendi içeriğinizden sizin üslubunuzla Reels/kısa video senaryosu yazar. \"reels senaryosu yaz\", \"bunu reels'e çevir\" isteklerinde kullanılır."
+
+msgid "Analytics dashboard"
+msgstr "Analitik paneli"
+
+msgid "Turns a LinkedIn Analytics export (CSV) into an interactive visual report and 5 data-backed recommendations. Use for \"analyse my LinkedIn\", \"build my dashboard\"."
+msgstr "LinkedIn Analytics dışa aktarımını (CSV) etkileşimli görsel rapora ve veriye dayalı 5 öneriye çevirir. \"LinkedIn'imi analiz et\", \"panelimi kur\" isteklerinde kullanılır."
+
+msgid "Design and writing skills read this before they start: colors and logos for visuals, voice documents for posts. Empty fields use the site name, logo and theme colors. The assistant can also update it from the chat (you approve each change)."
+msgstr "Tasarım ve yazım skill'leri işe başlamadan bunu okur: görseller için renk ve logolar, gönderiler için üslup belgeleri. Boş alanlarda site adı, logo ve tema renkleri kullanılır. Asistan da sohbetten güncelleyebilir (her değişikliği siz onaylarsınız)."
+
+msgid "Organisation name"
+msgstr "Kurum adı"
+
+msgid "Tagline"
+msgstr "Slogan"
+
+msgid "Website shown on visuals"
+msgstr "Görsellerde yazan web adresi"
+
+msgid "Phone / WhatsApp"
+msgstr "Telefon / WhatsApp"
+
+msgid "Social media handle or hashtag"
+msgstr "Sosyal medya hesabı ya da etiketi"
+
+msgid "Primary color"
+msgstr "Ana renk"
+
+msgid "Accent color"
+msgstr "Vurgu rengi"
+
+msgid "Dark color (backgrounds)"
+msgstr "Koyu renk (zeminler)"
+
+msgid "Light color (backgrounds)"
+msgstr "Açık renk (zeminler)"
+
+msgid "Logo (media ID)"
+msgstr "Logo (medya kimliği)"
+
+msgid "White logo for dark backgrounds (media ID)"
+msgstr "Koyu zemin için beyaz logo (medya kimliği)"
+
+msgid "Partner logos (media IDs, comma separated)"
+msgstr "İş ortağı logoları (medya kimlikleri, virgülle)"
+
+msgid "Design notes"
+msgstr "Tasarım notları"
+
+msgid "e.g. Rounded shapes, lots of green, real photos of our volunteers"
+msgstr "ör. Yuvarlak hatlar, bol yeşil, gönüllülerimizin gerçek fotoğrafları"
+
+msgid "Theme colors"
+msgstr "Tema renkleri"
+
+msgid "Documents"
+msgstr "Belgeler"
+
+msgid "Markdown documents skills read, e.g. about-me.md and voice.md (written by the voice-builder skill). Clear a document to delete it."
+msgstr "Skill'lerin okuduğu Markdown belgeleri, ör. about-me.md ve voice.md (voice-builder skill'i yazar). Silmek için belgeyi boşaltın."
+
+msgid "New document (Markdown)"
+msgstr "Yeni belge (Markdown)"
+
+#, php-format
+msgid "Attachment #%d is not an image."
+msgstr "#%d eki bir görsel değil."
+
+msgid "Collect images"
+msgstr "Görselleri topla"
+
+msgid "Edit image"
+msgstr "Görseli düzenle"
+
+msgid "View image"
+msgstr "Görsele bak"
+
+#, php-format
+msgid "File not found: %s"
+msgstr "Dosya bulunamadı: %s"
+
+msgid "Give at least one image."
+msgstr "En az bir görsel verin."
+
+msgid "Give path, attachment_id or url for each image."
+msgstr "Her görsel için path, attachment_id ya da url verin."
+
+#, php-format
+msgid "Images can only be saved in your own folder (%s)."
+msgstr "Görseller yalnız kendi klasörünüze (%s) kaydedilebilir."
+
+#, php-format
+msgid "Not an image (PNG, JPEG, WebP, GIF or SVG): %s"
+msgstr "Görsel değil (PNG, JPEG, WebP, GIF ya da SVG): %s"
+
+msgid "SVG files cannot be edited; use them as they are."
+msgstr "SVG dosyaları düzenlenemez; olduğu gibi kullanın."
+
+msgid "The file is not an image (PNG, JPEG, WebP, GIF or SVG)."
+msgstr "Dosya bir görsel değil (PNG, JPEG, WebP, GIF ya da SVG)."
+
+msgid "The image could not be opened."
+msgstr "Görsel açılamadı."
+
+msgid "The image is too large (at most 15 MB)."
+msgstr "Görsel çok büyük (en çok 15 MB)."
+
+msgid "There is no workspace here; pass attachment_id or url."
+msgstr "Burada çalışma alanı yok; attachment_id ya da url verin."
+
+msgid "This file is outside your workspace."
+msgstr "Bu dosya çalışma alanınızın dışında."
+
+msgid "There is no workspace here; pass the HTML in \"html\"."
+msgstr "Burada çalışma alanı yok; HTML'i \"html\" ile verin."
+
+msgid "SVG cannot be used as a reference; render it to PNG first (flxai_design_render) or use a PNG logo."
+msgstr "SVG referans olarak kullanılamaz; önce PNG'ye çevirin (flxai_design_render) ya da PNG logo kullanın."
+
+#, php-format
+msgid "Text to replace was not found in the design: %s"
+msgstr "Değiştirilecek metin tasarımda bulunamadı: %s"
+
+#, php-format
+msgid "The text occurs %1$d times; make it unique or set all=true: %2$s"
+msgstr "Metin %1$d kez geçiyor; tekil yapın ya da all=true verin: %2$s"

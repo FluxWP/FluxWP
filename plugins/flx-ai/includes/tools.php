@@ -102,7 +102,7 @@ function flxai_tool_defs( array $tools ) {
 /**
  * Aracı çalıştırır, süresini kaydeder.
  *
- * @return array array( ok bool, result string (JSON), ms int )
+ * @return array array( ok bool, result string (JSON), ms int, view array (görsel çıktı referansları) )
  */
 function flxai_run_tool( $name, $args, array $ctx = array() ) {
 	$name  = flxai_tool_resolve( $name );
@@ -154,6 +154,12 @@ function flxai_run_tool( $name, $args, array $ctx = array() ) {
 		}
 	}
 	$ms   = (int) round( ( microtime( true ) - $t0 ) * 1000 );
+	// Görsel çıktı (_view): modele sonraki çağrıda görsel olarak gider, JSON'a girmez (0.21.0).
+	$view = array();
+	if ( is_array( $data ) && array_key_exists( '_view', $data ) ) {
+		$view = $ok && function_exists( 'flxai_img_view_list' ) ? flxai_img_view_list( $data['_view'] ) : array();
+		unset( $data['_view'] );
+	}
 	$json = is_string( $data ) ? $data : wp_json_encode( $data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES );
 	if ( mb_strlen( (string) $json ) > 30000 ) {
 		$json = mb_substr( (string) $json, 0, 30000 ) . "\n…(kısaltıldı)";
@@ -171,7 +177,7 @@ function flxai_run_tool( $name, $args, array $ctx = array() ) {
 			'error'   => $ok ? '' : ( is_array( $data ) ? (string) ( $data['error'] ?? '' ) : '' ),
 		)
 	);
-	return array( 'ok' => $ok, 'result' => (string) $json, 'ms' => $ms );
+	return array( 'ok' => $ok, 'result' => (string) $json, 'ms' => $ms, 'view' => $view );
 }
 
 /** Flux AI'nin kendi araçları. */

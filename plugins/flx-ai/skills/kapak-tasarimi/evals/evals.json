@@ -1,0 +1,110 @@
+{
+  "skill_name": "kapak-tasarimi",
+  "trigger_evals": [
+    {
+      "query": "14 Kasım'daki fidan dikim etkinliği için kapak görseli hazırla, Kemerburgaz, saat 11",
+      "should_trigger": true
+    },
+    {
+      "query": "Kış kampanyası için Instagram post görseli ve hikâye yap",
+      "should_trigger": true
+    },
+    {
+      "query": "WhatsApp durumuna koymak için bağış afişi lazım",
+      "should_trigger": true
+    },
+    {
+      "query": "Bağışçılara teşekkür kartı tasarla, bu yıl 12.480 fidan",
+      "should_trigger": true
+    },
+    {
+      "query": "Make a link preview image for our new blog post about composting",
+      "should_trigger": true
+    },
+    {
+      "query": "Fidan bağışının 5 adımını anlatan karusel sayfaları yap",
+      "should_trigger": true
+    },
+    {
+      "query": "Dünkü bağışları özetle",
+      "should_trigger": false
+    },
+    {
+      "query": "Ana sayfadaki hero bölümünün rengini değiştir",
+      "should_trigger": false
+    },
+    {
+      "query": "Bu e-postaya kısa bir cevap yaz",
+      "should_trigger": false
+    }
+  ],
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Cumartesi 22 Kasım 2026 saat 10:00'da Belgrad Ormanı Neşet Suyu'nda fidan dikim etkinliği var. Yatay ve dikey kapak yap, konum linki https://maps.app.goo.gl/abc",
+      "expected_output": "Two renders of an original event design with the given facts and a QR to the link.",
+      "expectations": [
+        "Creates an original composition (not a copy of a template) while keeping safe areas, brand colours and Figtree",
+        "Date shows 22 Kasım 2026 Cumartesi 10:00 and place Belgrad Ormanı / Neşet Suyu",
+        "Calls flxai_brand_kit before designing",
+        "Renders one format first or both formats with only the body class changed",
+        "QR points to https://maps.app.goo.gl/abc",
+        "Does not invent details that were not given"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Gönüllülerimize teşekkür için sade bir kare görsel, fotoğraf olmasın.",
+      "expected_output": "tipografik template, f-kare, thank-you text, no image generation.",
+      "expectations": [
+        "Renders 1080x1080 with a typographic or shape-based original design, no photo",
+        "Does not call flxai_image_generate",
+        "Text is short (title ≤ 12 words)"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Kış kampanyası duyurusu için kare görsel yap, 3 farklı seçenek görmek istiyorum. Logo medya kütüphanesinde, fotoğrafı sen üret.",
+      "expected_output": "Three clearly different drafts (layout, crop or colour), each checked, shown together for a choice.",
+      "expectations": [
+        "Collects the logo into the workspace with flxai_image_import",
+        "Asks or states the cost once before paid generation, then uses flxai_image_generate with library:false",
+        "Writes the HTML to the workspace and renders with html_path and draft:true",
+        "Mentions what it checked or fixed after seeing the renders",
+        "Shows three variants that differ in layout, crop or emphasis and asks which to continue with"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Bu fotoğrafla (ek #55) etkinlik hikâyesi yap ama yüz yazının altında kalmasın.",
+      "expected_output": "A 1080x1920 etkinlik render where the face is visible, after looking at the photo.",
+      "expectations": [
+        "Looks at the photo (import or view) before designing",
+        "Uses flxai_image_edit cover with a focus point or --bg-pos so the face is clear of the text",
+        "Checks the render and re-renders if the face is covered",
+        "Does not generate a new photo when the user's photo was given"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Gemini ile logomuzun olduğu, ormanda gün doğumu temalı bir poster görseli üret, yazı olmasın.",
+      "expected_output": "A generated poster with the brand logo as a reference, checked before showing.",
+      "expectations": [
+        "Uses flxai_image_generate with a Nano Banana (Gemini) model",
+        "Passes the logo as a PNG reference in refs and states its role in the prompt",
+        "Looks at the result and either finishes, edits again with refs of the previous result, or places it in a template",
+        "Does not put text in the generated image"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Geçen haftaki kapağın aynısını bu etkinlik için yap: 29 Kasım 2026, Validebağ Korusu.",
+      "expected_output": "The earlier design reused exactly with only the facts changed.",
+      "expectations": [
+        "Finds the earlier HTML (workspace tasarim/ or the image's saved design) instead of designing a new look",
+        "Changes only texts, date, place and images",
+        "Checks the render before showing"
+      ]
+    }
+  ]
+}

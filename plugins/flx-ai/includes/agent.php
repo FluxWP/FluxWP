@@ -57,7 +57,7 @@ function flxai_agent_system( $user_id, $at = 0, $chat = null ) {
 }
 
 /** Modele giden geçmiş: son N mesaj, yarım kalan araç çiftleri olmadan; sayfa bağlamı kullanıcı mesajına eklenir. */
-function flxai_agent_history( array $messages, $user_id = 0 ) {
+function flxai_agent_history( array $messages, $user_id = 0, $vision = true ) {
 	$n    = max( 6, (int) flxai_setting( 'chat_history', 40 ) );
 	$msgs = array_slice( $messages, -$n );
 	while ( $msgs && ( 'user' !== ( $msgs[0]['role'] ?? '' ) ) ) {
@@ -96,7 +96,8 @@ function flxai_agent_history( array $messages, $user_id = 0 ) {
 		}
 		$out[] = $m;
 	}
-	return $out;
+	// Araçların görsel çıktıları (son ikisi) modele görsel olarak eklenir; model kendi işini görüp kontrol eder.
+	return function_exists( 'flxai_img_history' ) ? flxai_img_history( $out, (bool) $vision ) : $out;
 }
 
 /** Kullanıcı mesajı ekler ve ilk adımı çalıştırır. */
@@ -183,6 +184,9 @@ function flxai_agent_tool_result( array &$chat, array $call, array $res ) {
 		'_error'       => ! $res['ok'],
 		'_ms'          => (int) $res['ms'],
 	);
+	if ( ! empty( $res['view'] ) ) {
+		$chat['messages'][ count( $chat['messages'] ) - 1 ]['_view'] = (array) $res['view'];
+	}
 	$chat['state']['turn']['tool_ms'] = (int) ( $chat['state']['turn']['tool_ms'] ?? 0 ) + (int) $res['ms'];
 }
 
@@ -264,7 +268,7 @@ function flxai_agent_step( array $chat, $emit = null ) {
 			$tools = (array) apply_filters( 'flxai_chat_tools', flxai_tools_for_user( $user_id ), $chat );
 			$model = flxai_model_for( 'flx-ai', (string) ( $chat['model'] ?: flxai_setting( 'chat_model', '' ) ) );
 			$info  = flxai_model_info( $model );
-			$msgs  = array_merge( array( flxai_agent_system( $user_id, (int) ( $chat['state']['turn']['started'] ?? 0 ), $chat ) ), flxai_agent_history( $chat['messages'], $user_id ) );
+			$msgs  = array_merge( array( flxai_agent_system( $user_id, (int) ( $chat['state']['turn']['started'] ?? 0 ), $chat ) ), flxai_agent_history( $chat['messages'], $user_id, ! $info || ! empty( $info['vision'] ) ) );
 			if ( $emit ) {
 				$emit( array( 't' => 'model' ) );
 			}
