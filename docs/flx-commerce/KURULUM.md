@@ -26,6 +26,16 @@ Flux Donate ile aynı sitede çakışmadan çalışır.
 - Ücretsiz kargo tutarı boşsa WooCommerce'in **Ücretsiz kargo** yönteminin "en az tutar"ı kullanılır.
 - Mobil sabit "Siparişi ver" FluxWP temasında kapalı (tema zaten yapıyor).
 
+## Abonelikler (0.4.0)
+1. Ürün › Genel: **Abonelik** kutusunu işaretleyin, **Aylık fiyat** ve/veya **Yıllık fiyat** girin (basit ürün; sanal olabilir). Normal fiyat boşsa ilk dönem fiyatı yazılır.
+2. Havale/EFT yöntemi açık olmalı (yenileme siparişleri buna yazılır); kapalıysa müşteri ödeme bağlantısından açık bir yöntemle öder.
+3. Mağaza › Ayarlar › Abonelikler: yenileme siparişi kaç gün önce açılsın (7), ek süre (3).
+4. Sunucu cron'u `wp-cron.php`'yi saatte bir çağırmalı. Çağırmasa da sayfa açıldıkça saatte bir çalışır; Sistem Kontrolü "Abonelik yenilemeleri" son çalışmayı gösterir.
+5. Yenileme Havale/EFT ödemesi normal havale gibi onaylanır (sipariş › "Ödemeyi onayla"); onaylanınca dönem uzar.
+6. E-posta metinleri Flux Mail › E-postalar › Flux Commerce altında.
+
+Başka eklentiden kullanım (Flux Cloud vb.) ve olaylar: API.md › Abonelikler. Kartla otomatik çekim sonraki sürümde.
+
 ## Ürün feed'i
 **Mağaza › Ayarlar › Ürün feed'i** → Feed açık → adresi kopyalayıp Google Merchant Center'a (Ürünler › Feed'ler › Planlı getirme) verin. Adres anahtarlıdır; anahtar ayarlarda saklanır. Bağış ürünleri ve `_flxcm_no_feed` meta'sı olan ürünler girmez.
 

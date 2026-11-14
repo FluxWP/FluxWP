@@ -49,3 +49,33 @@
 .flxcm-ship.is-done .flxcm-ship__bar span{background:var(--fc-ok)}
 .widget_shopping_cart .flxcm-ship,.wc-block-mini-cart__drawer .flxcm-ship{margin:0 0 12px;padding:10px 12px}
 @media (max-width:520px){.flxcm-bank{padding:16px}.flxcm-row{grid-template-columns:1fr;gap:4px}.flxcm-step{gap:10px}}
+/* Abonelik: dönem seçimi ve Hesabım › Abonelikler (0.4.0) */
+.flxcm-period-pick,.flxcm-subs{--fc-ac:var(--wp--preset--color--primary,var(--wp--preset--color--contrast,#1f2937));--fc-bd:color-mix(in srgb,currentColor 14%,transparent);--fc-mut:color-mix(in srgb,currentColor 62%,transparent);--fc-soft:color-mix(in srgb,var(--fc-ac) 8%,transparent);--fc-ok:#0f7a4f;--fc-warn:#9a6700;--fc-bad:#b42318;box-sizing:border-box}
+.flxcm-sub-per,.flxcm-sub-or{font-size:.85em;color:color-mix(in srgb,currentColor 62%,transparent);font-weight:400}
+/* WooCommerce blok formu ızgara; seçim kutusu tam satır, düğme altında. */
+.wp-block-woocommerce-add-to-cart-form form.cart:has(.flxcm-period-pick),form.cart:has(.flxcm-period-pick){display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.flxcm-period-pick{flex:0 0 100%;width:100%;min-width:0;margin:0 0 4px;display:grid;gap:8px}
+.flxcm-period-pick__legend{font-weight:600}
+.flxcm-period-pick label.flxcm-period-pick__opt{display:flex;margin:0;align-items:center;gap:12px;border:1px solid var(--fc-bd);border-radius:12px;padding:12px 14px;cursor:pointer;min-height:48px}
+.flxcm-period-pick label.flxcm-period-pick__opt:has(input:checked){border-color:var(--fc-ac);background:var(--fc-soft);box-shadow:0 0 0 1px var(--fc-ac)}
+.flxcm-period-pick__opt input{margin:0;accent-color:var(--fc-ac);width:18px;height:18px;flex:none}
+.flxcm-period-pick__name{flex:1;font-weight:600;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.flxcm-period-pick__save{font-size:.75em;font-weight:600;color:var(--fc-ok);background:color-mix(in srgb,var(--fc-ok) 12%,transparent);padding:2px 8px;border-radius:99px}
+.flxcm-period-pick__price{font-variant-numeric:tabular-nums;white-space:nowrap}
+.flxcm-period-pick__hint{margin:4px 0 0;font-size:.85em;color:var(--fc-mut)}
+.flxcm-subs{display:grid;gap:14px}
+.flxcm-sub{border:1px solid var(--fc-bd);border-radius:16px;padding:16px 18px}
+.flxcm-sub__head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.flxcm-sub__name{margin:0 0 2px;font-size:1.1em}
+.flxcm-sub__price{color:var(--fc-mut);font-variant-numeric:tabular-nums}
+.flxcm-sub__badge{font-size:.78em;font-weight:600;padding:3px 10px;border-radius:99px;background:color-mix(in srgb,currentColor 8%,transparent);white-space:nowrap}
+.flxcm-sub__badge.is-ok{color:var(--fc-ok);background:color-mix(in srgb,var(--fc-ok) 12%,transparent)}
+.flxcm-sub__badge.is-wait{color:var(--fc-warn);background:color-mix(in srgb,var(--fc-warn) 14%,transparent)}
+.flxcm-sub__badge.is-bad{color:var(--fc-bad);background:color-mix(in srgb,var(--fc-bad) 12%,transparent)}
+.flxcm-sub__when{margin:10px 0 0}
+.flxcm-sub__due{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin:12px 0 0;padding:12px 14px;border-radius:12px;background:var(--fc-soft)}
+.flxcm-sub__due .button{margin:0}
+.flxcm-sub__foot{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0;padding:12px 0 0;border-top:1px solid var(--fc-bd);font-size:.92em;color:var(--fc-mut)}
+.flxcm-sub__cancel{color:var(--fc-bad)}
+@media (prefers-color-scheme:dark){.flxcm-period-pick,.flxcm-subs{--fc-ok:#4ade80;--fc-warn:#fbbf24;--fc-bad:#f87171}}
+body.flx-dark .flxcm-period-pick,body.flx-dark .flxcm-subs{--fc-ok:#4ade80;--fc-warn:#fbbf24;--fc-bad:#f87171}

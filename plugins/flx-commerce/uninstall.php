@@ -1,7 +1,8 @@
 <?php
 /**
  * Kaldırma: ayarlar, müşteri özeti tablosu ve önbellekler silinir. Siparişlerdeki havale açıklaması ve
- * dekont kayıtları (_flxcm_*) sipariş geçmişi olduğu için kalır; dekont dosyaları uploads/flxcm-dekont/'ta.
+ * dekont kayıtları (_flxcm_*) sipariş geçmişi olduğu için kalır; abonelik tablosu (wp_flxcm_subscriptions) müşteri
+ * sözleşmesi olduğu için silinmez; dekont dosyaları uploads/flxcm-dekont/'ta.
  */
 
 defined( 'WP_UNINSTALL_PLUGIN' ) || exit;
@@ -13,3 +14,6 @@ foreach ( array( 'flxcm_settings', 'flxcm_db_version', 'flxcm_installed_at', 'fl
 }
 $wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE '\_transient\_flxcm\_%' OR option_name LIKE '\_transient\_timeout\_flxcm\_%'" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
 wp_clear_scheduled_hook( 'flxcm_daily' );
+wp_clear_scheduled_hook( 'flxcm_subs_tick' );
+delete_option( 'flxcm_subs_tick_at' );
+delete_option( 'flxcm_rewrite_ver' );

@@ -902,3 +902,290 @@ msgstr ""
 
 msgid "Sales panel for WooCommerce store, customers, sales reports, Money Order/EFT with receipt upload, simple payment page, free shipping bar, Google Merchant product feed and WhatsApp/email notifications."
 msgstr ""
+
+msgid "Subscriptions"
+msgstr ""
+
+msgid "Awaiting first payment"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "Payment overdue"
+msgstr ""
+
+msgid "Ended"
+msgstr ""
+
+msgid "Renews on %s"
+msgstr ""
+
+msgid "Was due on %s"
+msgstr ""
+
+msgid "Valid until %s"
+msgstr ""
+
+msgid "Ended on %s"
+msgstr ""
+
+msgid "You have no subscriptions yet."
+msgstr ""
+
+msgid "Renewal order #%1$s is waiting for payment: %2$s"
+msgstr ""
+
+msgid "Bank details and receipt"
+msgstr ""
+
+msgid "Pay now"
+msgstr ""
+
+msgid "Last order #%s"
+msgstr ""
+
+msgid "Turn off renewal? The subscription stays valid until the end of the current period."
+msgstr ""
+
+msgid "Cancel subscription"
+msgstr ""
+
+msgid "Turn renewal back on"
+msgstr ""
+
+msgid "Start again"
+msgstr ""
+
+msgid "Your subscription has ended."
+msgstr ""
+
+msgid "Renewal is off. Your subscription stays valid until %s."
+msgstr ""
+
+msgid "Renewal is back on."
+msgstr ""
+
+msgid "Subscription"
+msgstr ""
+
+msgid "Sold as a monthly or yearly subscription (Flux Commerce). Renewals arrive as orders."
+msgstr ""
+
+msgid "Monthly price (%s)"
+msgstr ""
+
+msgid "Empty = no monthly option."
+msgstr ""
+
+msgid "Yearly price (%s)"
+msgstr ""
+
+msgid "Empty = no yearly option."
+msgstr ""
+
+msgid "or"
+msgstr ""
+
+msgid "Subscribe"
+msgstr ""
+
+msgid "Billing period"
+msgstr ""
+
+msgid "Save %s%%"
+msgstr ""
+
+msgid "Renews automatically; we send a reminder before every renewal. You can cancel any time from My account."
+msgstr ""
+
+msgid "This product is not a subscription."
+msgstr ""
+
+msgid "The product could not be added to the cart."
+msgstr ""
+
+msgid "Subscription #%d created; it starts when the payment arrives."
+msgstr ""
+
+msgid "Subscription #%1$d started; next renewal %2$s."
+msgstr ""
+
+msgid "Subscription #%1$d renewed until %2$s."
+msgstr ""
+
+msgid "Subscription ended; the renewal order is no longer needed."
+msgstr ""
+
+msgid "Only an active subscription can be renewed."
+msgstr ""
+
+msgid "A renewal order for this period was already created."
+msgstr ""
+
+msgid "Renewal order for subscription #%1$d (period ends %2$s)."
+msgstr ""
+
+msgid "First name"
+msgstr ""
+
+msgid "Period end"
+msgstr ""
+
+msgid "Payment link"
+msgstr ""
+
+msgid "Monthly"
+msgstr ""
+
+msgid "Subscription renewal reminder"
+msgstr ""
+
+msgid "Goes to the customer when the renewal order is created and again on the last day if it is unpaid."
+msgstr ""
+
+msgid "Your {urun} subscription renews on {bitis}"
+msgstr ""
+
+msgid "Time to renew, {ad}"
+msgstr ""
+
+msgid "Your {urun} subscription ({donem}) renews on {bitis}. Amount: {tutar}."
+msgstr ""
+
+msgid "Subscription ended"
+msgstr ""
+
+msgid "Goes to the customer when a subscription ends."
+msgstr ""
+
+msgid "Your {urun} subscription has ended"
+msgstr ""
+
+msgid "Your subscription has ended"
+msgstr ""
+
+msgid "Hello {ad}, your {urun} subscription has ended. You can start it again at any time."
+msgstr ""
+
+msgid "Yearly"
+msgstr ""
+
+msgid "year"
+msgstr ""
+
+msgid "month"
+msgstr ""
+
+msgid "Recipient: %1$s · IBAN: %2$s · Reference: %3$s"
+msgstr ""
+
+msgid "Your %s subscription has ended"
+msgstr ""
+
+msgid "Hello %1$s, your %2$s subscription has ended. You can start it again at any time: %3$s"
+msgstr ""
+
+msgid "Your %1$s subscription renews on %2$s"
+msgstr ""
+
+msgid "Hello %1$s, your %2$s subscription (%3$s) renews on %4$s. Amount: %5$s. Pay here: %6$s"
+msgstr ""
+
+msgid "Subscription renewals"
+msgstr ""
+
+msgid "The renewal job has not run for more than 6 hours. Check the server cron (wp-cron.php); renewal orders and reminders wait until it runs."
+msgstr ""
+
+msgid "%1$s open subscriptions. Last run: %2$s"
+msgstr ""
+
+msgid "Dashboard, checkout, bank transfer, subscriptions, product feed and notifications."
+msgstr ""
+
+msgid "Tick \"Subscription\" on a simple product and enter a monthly and/or yearly price. Renewals are paid by bank transfer or through the payment link; automatic card charging comes later."
+msgstr ""
+
+msgid "Create the renewal order (days before the period ends)"
+msgstr ""
+
+msgid "The customer gets the reminder e-mail with the bank details or payment link at the same time, and once more on the last day if unpaid."
+msgstr ""
+
+msgid "Grace period after the period ends (days)"
+msgstr ""
+
+msgid "Access stays on while the renewal is unpaid; after this the subscription ends. 0 = ends on the last day."
+msgstr ""
+
+msgid "Monthly and yearly payments. Renewal orders are created before each period ends; the customer pays by bank transfer or through the payment link."
+msgstr ""
+
+msgid "Renewal order created and the customer was notified."
+msgstr ""
+
+msgid "Renewal turned off; the subscription stays valid until the end of the period."
+msgstr ""
+
+msgid "Subscription ended."
+msgstr ""
+
+msgid "Monthly recurring revenue"
+msgstr ""
+
+msgid "Yearly plans count as 1/12"
+msgstr ""
+
+msgid "Renewing in 30 days"
+msgstr ""
+
+msgid "Search subscriptions"
+msgstr ""
+
+msgid "Name, e-mail, product, no."
+msgstr ""
+
+msgid "No subscription matches the search."
+msgstr ""
+
+msgid "No subscriptions yet. Tick \"Subscription\" on a simple product and give it a monthly or yearly price."
+msgstr ""
+
+msgid "Customer"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Renewal / end"
+msgstr ""
+
+msgid "Actions"
+msgstr ""
+
+msgid "first"
+msgstr ""
+
+msgid "awaiting"
+msgstr ""
+
+msgid "%d renewal"
+msgid_plural "%d renewals"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Create renewal order"
+msgstr ""
+
+msgid "Cancel at period end"
+msgstr ""
+
+msgid "End this subscription now? Access closes immediately."
+msgstr ""
+
+msgid "End now"
+msgstr ""
+
+msgid "Renew now"
+msgstr ""

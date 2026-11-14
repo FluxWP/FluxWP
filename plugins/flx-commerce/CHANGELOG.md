@@ -1,5 +1,13 @@
 # Değişiklikler
 
+## 0.4.0
+- **Abonelikler**: basit ürüne aylık ve/veya yıllık fiyat verilir (ürün › Genel › Abonelik). Ürün sayfasında Aylık / Yıllık seçimi (yıllıkta tasarruf yüzdesi), düğme "Abone ol"; sepette ve siparişte "Ödeme dönemi" satırı. Fatura bilgileri normal ödeme akışından gelir; abonelikte hesap açmak zorunlu.
+- İlk sipariş ödenince abonelik başlar (Havale/EFT onayı dahil her yöntem). Dönem bitmeden 7 gün önce yenileme siparişi açılır, müşteriye banka bilgileri ya da ödeme bağlantısıyla e-posta gider; ödenmezse son gün bir hatırlatma daha. Dönem bitince 3 gün ek süre, sonra abonelik biter. Gün sayıları Mağaza › Ayarlar › Abonelikler'de.
+- **Hesabım › Abonelikler**: durum, sonraki yenileme, bekleyen yenileme için "Banka bilgileri ve dekont" / "Şimdi öde", iptal (dönem sonuna kadar geçerli), yenilemeyi yeniden aç, "Şimdi yenile", bitmişse "Yeniden başlat".
+- **Mağaza › Abonelikler**: etkin sayısı, aylık yinelenen gelir, 30 günde yenilenecek, ödemesi geciken; durum filtreleri, arama; yenileme siparişi aç, dönem sonunda iptal, şimdi bitir, yeniden aç.
+- Başka eklentiler için olaylar: `flxcm_subscription_started`, `_renewed`, `_ended`, `_cancelled`, `_past_due`, `_renewal_created`, `_status_changed`; `flxcm_add_subscription_to_cart()` ile sepete ek bilgiyle abonelik. Ayrıntı docs/flx-commerce/API.md.
+- Flux Mail şablonları: "Abonelik yenileme hatırlatması", "Abonelik bitti". Sistem kontrolünde "Abonelik yenilemeleri" (son çalışma).
+
 ## 0.3.1
 - İçe aktarılan eski siparişler (Flux Donate Excel aktarımı) için yöneticiye "yeni sipariş" WhatsApp'ı gitmez (`flx_silent`).
 

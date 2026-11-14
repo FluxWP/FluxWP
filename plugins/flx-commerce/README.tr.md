@@ -56,6 +56,12 @@ WooCommerce'in kendi analizi güçlü ama okuması yavaş ve arka plan işi iste
 - Sipariş ekranında ve sipariş işlemlerinde "Ödemeyi onayla"; siparişler listesinde Havale sütunu; isteğe bağlı N gün sonra iptal.
 - Klasik ve blok ödeme. Flux Donate'in havalesi açıksa kendini gizler.
 
+### Abonelikler
+- Basit ürüne aylık ve/veya yıllık fiyat; ürün sayfasında dönem seçimi (yıllık tasarruf yüzdesiyle), "Abone ol".
+- Dönem bitmeden yenileme siparişi + Havale/EFT bilgisi ya da ödeme bağlantılı hatırlatma e-postası; ek süre, sonra bitiş.
+- Hesabım › Abonelikler (öde, iptal, yeniden aç) ve Mağaza › Abonelikler (aylık yinelenen gelir, geciken ödemeler, işlemler).
+- Başka eklentiler için olaylar: `flxcm_subscription_started` / `_renewed` / `_ended`. Kartla otomatik çekim sırada.
+
 ### Sepet ve ödeme sayfası
 - Şirket ve adres 2 gizleme; yalnız sanal ürünlü sepette adres sormama (klasik); sipariş notu aç/kapa; mobilde sabit "Siparişi ver".
 - Sepet, ödeme ve mini sepette ücretsiz kargo çubuğu; blok sepette adet değişince canlı güncellenir. Eşik ayardan ya da WooCommerce "Ücretsiz kargo" yönteminden.
@@ -111,6 +117,8 @@ Ayrıntılı kurulum notları: [KURULUM.md](../../docs/flx-commerce/KURULUM.md) 
 | ✅ | Genel bakış, müşteriler, satış raporu |
 | ✅ | Dekont yüklemeli Havale/EFT, ödeme seçenekleri, ücretsiz kargo çubuğu |
 | ✅ | Google Merchant feed'i, WhatsApp bildirimleri |
+| ✅ | Aylık / yıllık abonelikler (Havale/EFT ve ödeme bağlantısıyla yenileme) |
+| ⬜ | Abonelikte kartla otomatik çekim |
 | ⬜ | WhatsApp ve e-postayla terk edilen sepet hatırlatması |
 | ⬜ | Sipariş zaman çizelgeli müşteri sayfası |
 | ⬜ | Stok uyarıları ve yeniden sipariş listesi |
