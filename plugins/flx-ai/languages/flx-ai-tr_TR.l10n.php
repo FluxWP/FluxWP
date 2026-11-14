@@ -1603,5 +1603,10 @@ return array(
   'You cannot view this content.' => 'Bu içeriği görme yetkiniz yok.',
   'Only this site\'s addresses can be captured.' => 'Yalnız bu sitenin adreslerinin görüntüsü alınabilir.',
   'Content not found.' => 'İçerik bulunamadı.',
+  '1 error' => '1 hata',
+  '%s tools' => '%s araç',
+  '1 tool' => '1 araç',
+  '%s rejected' => '%s reddedildi',
+  '1 rejected' => '1 reddedildi',
  ),
 );

@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.20.1
+- Sohbet: onay kartında reddedilen araç artık hata sayılmıyor; özet "1 reddedildi" yazar (kırmızı değil), araç satırı soluk ve üstü çizili.
+- Sohbet özetindeki "N araç", "1 hata" ve "N reddedildi" metinleri çevrilir (İngilizce arayüzde Türkçe kalıyordu; tekil/çoğul ayrı).
 ## 0.20.0
 - **Gömülebilir sohbet:** Flux AI sohbet bileşeni artık başka eklentilerde aynen kullanılır: `window.FlxAIChat.mount( el, { chat, onSend, busy, dark, placeholder, emptyText } )`. Aynı çizim, araç adımları, onay kartları, çalışma alanı. PHP tarafında `flxai_chat_embed_enqueue()`. Gönderimi eklenti yürütebilir (`onSend`); bileşen sohbeti izler. Flux Agents görev penceresi bunu kullanır.
 - **Okunur onay kartları:** onay bekleyen işlemde ham JSON yerine başlık, kısa alanlar, uzun metinler Markdown önizleme, görsel adresleri küçük resim. Ham veri "Gönderilecek veri" altında.

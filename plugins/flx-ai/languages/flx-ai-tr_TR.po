@@ -3618,3 +3618,18 @@ msgstr "Yalnız bu sitenin adreslerinin görüntüsü alınabilir."
 
 msgid "Content not found."
 msgstr "İçerik bulunamadı."
+
+msgid "1 error"
+msgstr "1 hata"
+
+msgid "%s tools"
+msgstr "%s araç"
+
+msgid "1 tool"
+msgstr "1 araç"
+
+msgid "%s rejected"
+msgstr "%s reddedildi"
+
+msgid "1 rejected"
+msgstr "1 reddedildi"

@@ -1094,7 +1094,7 @@
 				if (m.role === 'tool') return;
 				if (m.role !== 'assistant') return;
 				if (m._error) { out.push({ kind: 'err', m: m }); cur = null; return; }
-				if (!cur) { cur = { kind: 'ai', id: m._id || ('i' + i), work: [], answer: '', ms: 0, calls: 0, failed: 0 }; out.push(cur); }
+				if (!cur) { cur = { kind: 'ai', id: m._id || ('i' + i), work: [], answer: '', ms: 0, calls: 0, failed: 0, rejected: 0 }; out.push(cur); }
 				cur.ms += +m._ms || 0;
 				if (m._thinking) cur.work.push({ k: 'think', text: m._thinking });
 				if (m.tool_calls && m.tool_calls.length) {
@@ -1113,7 +1113,7 @@
 							var rr = null; try { rr = JSON.parse(r.content || 'null'); } catch (e) {}
 							if (rr && rr.path) { cur.rep = cur.rep || {}; cur.rep[rr.path] = { path: rr.path, title: rr.title || rr.path }; }
 						}
-						if (r) { cur.ms += +r._ms || 0; if (r._ok === false) cur.failed++; }
+						if (r) { cur.ms += +r._ms || 0; if (r._rejected) cur.rejected++; else if (r._ok === false) cur.failed++; } // ret hata sayılmaz
 					});
 				} else if (m.content || m._show) cur.answer = m._live ? liveText(m.content) : (m._show != null ? m._show : m.content); // _show: eklentinin gösterdiği metin (ör. ajan raporu)
 			});
@@ -1209,8 +1209,9 @@
 			if (x.work.length || live) {
 				var open = !!S.openWork[x.id] || (live && !x.answer);
 				var label = live ? '<span class="dots">' + esc(x.calls ? t('Çalışıyor') : t('Düşünüyor')) + '</span>' : esc(tf('%s düşündü', ms(x.ms)));
-				if (x.calls) label += ' · ' + esc(tf(x.calls === 1 ? '%s araç' : '%s araç', x.calls));
-				if (x.failed) label += ' <span class="fail">· ' + esc(tf('%s hata', x.failed)) + '</span>';
+				if (x.calls) label += ' · ' + esc(x.calls === 1 ? t('1 araç') : tf('%s araç', x.calls));
+				if (x.rejected) label += ' · ' + esc(x.rejected === 1 ? t('1 reddedildi') : tf('%s reddedildi', x.rejected));
+				if (x.failed) label += ' <span class="fail">· ' + esc(x.failed === 1 ? t('1 hata') : tf('%s hata', x.failed)) + '</span>';
 				h += '<div class="work"><button class="work-btn" type="button" data-work="' + esc(x.id) + '" aria-expanded="' + (open ? 'true' : 'false') + '">' +
 					(live ? '<span class="spin"></span>' : ic('brain')) + '<span>' + label + '</span><span class="chev">' + ic('down') + '</span></button>';
 				if (open) {
@@ -1245,8 +1246,8 @@
 			return h + '</div></div>';
 		}
 		function renderTool(w) {
-			var r = w.res, state = !r ? 'run' : (r._ok === false ? 'err' : 'ok');
-			var cls = 'chip' + (state === 'err' ? ' err' : '') + (isWrite(w.name) ? ' write' : '');
+			var r = w.res, state = !r ? 'run' : (r._rejected ? 'rej' : (r._ok === false ? 'err' : 'ok'));
+			var cls = 'chip' + (state === 'err' ? ' err' : state === 'rej' ? ' rej' : '') + (isWrite(w.name) ? ' write' : '');
 			var ico = state === 'run' ? '<span class="spin" style="width:12px;height:12px"></span>' : ic(isWrite(w.name) ? 'edit' : 'wrench');
 			var info = r ? (r._rejected ? t('reddedildi') : ms(r._ms)) : (S.pending.some(function (p) { return p.id === w.id; }) ? t('onay bekliyor') : '');
 			var h = '<div><button class="' + cls + '" type="button" data-tool="' + esc(w.id) + '"><span class="ico">' + ico + '</span><b>' + esc(toolTitle(w.name)) + '</b>' +
