@@ -3,6 +3,10 @@ return array(
  'language' => 'tr_TR',
  'plural-forms' => 'nplurals=2; plural=(n != 1);',
  'messages' => array(
+  'Open full screen' => 'Tam ekranda aç',
+  'New chat' => 'Yeni sohbet',
+  'Hi! What should we do with your tasks? You can also attach meeting notes or a PDF and say "create tasks from this".' => 'Merhaba! Görevlerle ilgili ne yapalım? Toplantı notu ya da PDF ekleyip "buradan görevleri çıkar" da diyebilirsiniz.',
+  'Could not start a chat.' => 'Sohbet başlatılamadı.',
   'Tasks' => 'İşler',
   'Usage dashboard' => 'Kullanım panosu',
   'Task Settings' => 'Görev Ayarları',

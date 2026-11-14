@@ -1,5 +1,11 @@
 # Flux Tasks — Değişiklikler
 
+## 0.8.22
+- Yapay zekâ asistanı paneli artık Flux AI'ın ortak sohbeti (Flux AI 0.20.0+): dosya ve PDF ekleme, sesle yazma, araç adımları, onay kartları, model seçimi, düzenle/geri sar ve çalışma alanı ana sohbetle aynı. Sohbet hesabınızda kalır; "Yeni sohbet" ve "Tam ekranda aç" düğmeleri var. Telefonda tam ekran açılır.
+- Dosyadan görev çıkarma: toplantı notu ya da PDF ekleyip "buradan görevleri oluştur" deyin. Asistan önce görevleri listeler, hedef liste belli değilse sorar, sonra her görev onay kartında ayrı gelir; istediklerinizi onaylayıp diğerlerini reddedersiniz. Onaylanmayan görev oluşturulmaz.
+- Asistan bulunduğunuz listeyi, açık görevi ve belgeyi sayfa adresinden anlar ("bu liste", "bu görev").
+- Flux AI kurulu değilse eski sade panel çalışır.
+
 ## 0.8.21
 - Kişi adları profildeki Ad + Soyad'dan gelir (boşsa WordPress görünen adı). Kullanıcının adı değişince İşler'de de hemen yeni ad görünür; WordPress'in "Herkese açık görünen ad" alanını ayrıca değiştirmek gerekmez. Filtre `flxg_user_display_name`.
 

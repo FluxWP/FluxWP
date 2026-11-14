@@ -117,6 +117,7 @@ function flxg_register_routes() {
 		return current_user_can( 'flxg_use' ) && current_user_can( 'flxg_ai' );
 	};
 	flxg_route( '/ai/chat', 'POST', 'flxg_rest_ai_chat', $ai );
+	flxg_route( '/ai/thread', 'GET,POST', 'flxg_rest_ai_thread', $ai );
 	flxg_route( '/ai/task/(?P<id>\d+)', 'POST', 'flxg_rest_ai_task', $ai );
 	flxg_route( '/doc-pages/(?P<id>\d+)/ai', 'POST', 'flxg_rest_doc_ai', $ai );
 }
@@ -1140,6 +1141,31 @@ function flxg_rest_settings_save( WP_REST_Request $r ) {
 	}
 	flxg_update_settings( $set );
 	return flxg_public_settings();
+}
+
+/**
+ * Asistan paneli Flux AI'ın ortak sohbetini gömer (FlxAIChat.mount). Kullanıcının İşler sohbeti user meta'da durur.
+ * GET: varsa son sohbet, yoksa yeni. POST new=1: yeni sohbet. Dönüş: chat (Flux AI sohbet kimliği), url (tam ekran).
+ */
+function flxg_rest_ai_thread( WP_REST_Request $r ) {
+	if ( ! flxg_ai_ready() || ! function_exists( 'flxai_chat_create' ) || ! function_exists( 'flxai_chat_get' ) ) {
+		return flxg_error( 'flxg_ai_off', flxg_ai_off_message() );
+	}
+	$uid  = get_current_user_id();
+	$id   = (int) get_user_meta( $uid, 'flxg_ai_chat', true );
+	$new  = 'POST' === $r->get_method() && ! empty( flxg_body( $r )['new'] );
+	$chat = ( $id && ! $new ) ? flxai_chat_get( $id, $uid ) : null;
+	if ( ! $chat || ! empty( $chat['archived'] ) ) {
+		$chat = flxai_chat_create( $uid );
+		if ( ! $chat ) {
+			return flxg_error( 'flxg_ai_off', __( 'Could not start a chat.', 'flx-tasks' ), 500 );
+		}
+		update_user_meta( $uid, 'flxg_ai_chat', (int) $chat['id'] );
+	}
+	return array(
+		'chat' => (int) $chat['id'],
+		'url'  => admin_url( 'admin.php?page=flx-ai-chat&flxai_chat=' . (int) $chat['id'] ),
+	);
 }
 
 function flxg_rest_ai_chat( WP_REST_Request $r ) {

@@ -542,9 +542,13 @@ add_filter(
 		if ( ! user_can( $user_id ? (int) $user_id : get_current_user_id(), 'flxg_use' ) ) {
 			return $text;
 		}
-		return $text . "\n\nYT Görev (task tracker, admin.php?page=flx-tasks): tools prefixed flxg_ read and change tasks and documents with the user's permissions. "
-			. 'If the page URL hash is #/doc/{doc_id}/p/{page_id}, the user is viewing that document page; "this document/page" means it. '
-			. 'To change a document: read it with flxg_get_doc_page, then flxg_edit_doc_page with block ids (replace/insert/delete). Do not answer that you cannot edit documents.';
+		return $text . "\n\nFlux Tasks (task tracker, admin.php?page=flx-tasks): tools prefixed flxg_ read and change tasks and documents with the user's permissions. "
+			. 'The page URL hash tells where the user is: #/list/{list_id} = that list ("this list"), .../t/{task_id} = that open task ("this task"), #/doc/{doc_id}/p/{page_id} = that document page ("this document/page"). '
+			. 'To change a document: read it with flxg_get_doc_page, then flxg_edit_doc_page with block ids (replace/insert/delete). Do not answer that you cannot edit documents. '
+			. 'Creating tasks from a file or notes (meeting minutes, PDF, email): read it, then first show the proposed tasks as a short numbered list (title, assignee, due date if stated) and the target list. '
+			. 'If the target list is not clear from the page or the message, call flxg_list_projects and ask which list. '
+			. 'Then call flxg_create_task once per task (all calls in the same turn, with list_name filled) so the user can approve or reject each task on the approval card; never merge several tasks into one call. '
+			. 'Match people to users with flxg_list_users; leave assignees empty when unsure.';
 	},
 	20,
 	2

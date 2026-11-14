@@ -49,6 +49,8 @@ function flxg_admin_assets() {
 	wp_enqueue_script( 'flxg-task', FLXG_URL . 'assets/js/task.js', array( 'flxg-views' ), FLXG_VERSION, true );
 	wp_enqueue_script( 'flxg-docs', FLXG_URL . 'assets/js/docs.js', array( 'flxg-task' ), FLXG_VERSION, true );
 	wp_enqueue_script( 'flxg-app', FLXG_URL . 'assets/js/pages.js', array( 'flxg-docs' ), FLXG_VERSION, true );
+	// Asistan paneli: Flux AI'ın ortak sohbeti (dosya ekleme, araç adımları, onay kartları, çalışma alanı).
+	$ai_embed = current_user_can( 'flxg_ai' ) && function_exists( 'flxai_chat_embed_enqueue' ) && flxai_chat_embed_enqueue();
 	if ( function_exists( 'flxai_enqueue_model_picker' ) && current_user_can( 'manage_options' ) ) {
 		flxai_enqueue_model_picker(); // Ayarlar'da Flux AI'nin aranabilir model listesi.
 	}
@@ -67,6 +69,7 @@ function flxg_admin_assets() {
 			'icon'     => get_site_icon_url( 128 ) ? get_site_icon_url( 128 ) : plugins_url( 'assets/icon.svg', FLXG_FILE ),
 			// Başlıkta site logosu değil eklentinin kendi simgesi (site logosu sol şeritte zaten var). Flux Admin varsa seçili logo stili.
 			'appIcon'  => function_exists( 'flxa_logo_file_url' ) ? flxa_logo_file_url( 'flx-tasks.svg' ) : plugins_url( 'assets/icon.svg', FLXG_FILE ),
+			'aiEmbed'  => ! empty( $ai_embed ),
 			'i18n'     => flxg_js_strings(),
 		)
 	);

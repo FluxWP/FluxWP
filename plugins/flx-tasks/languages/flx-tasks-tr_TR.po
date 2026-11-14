@@ -2688,3 +2688,15 @@ msgstr "Flux Tasks araçları Flux AI & MCP gerektirir."
 
 msgid "MCP"
 msgstr "MCP"
+
+msgid "Open full screen"
+msgstr "Tam ekranda aç"
+
+msgid "New chat"
+msgstr "Yeni sohbet"
+
+msgid "Hi! What should we do with your tasks? You can also attach meeting notes or a PDF and say \"create tasks from this\"."
+msgstr "Merhaba! Görevlerle ilgili ne yapalım? Toplantı notu ya da PDF ekleyip \"buradan görevleri çıkar\" da diyebilirsiniz."
+
+msgid "Could not start a chat."
+msgstr "Sohbet başlatılamadı."
