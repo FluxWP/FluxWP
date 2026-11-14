@@ -1,5 +1,8 @@
 # Flux Tasks — Değişiklikler
 
+## 0.8.21
+- Kişi adları profildeki Ad + Soyad'dan gelir (boşsa WordPress görünen adı). Kullanıcının adı değişince İşler'de de hemen yeni ad görünür; WordPress'in "Herkese açık görünen ad" alanını ayrıca değiştirmek gerekmez. Filtre `flxg_user_display_name`.
+
 ## 0.8.20
 - Görev adı listede (masaüstü ve mobil) ve alt görev tablosunda artık tek satırda kesilmez: sarılır, en fazla 2 satır görünür, fazlası … ile kısalır.
 - "Metni sar" seçeneği yeni görünümlerde varsayılan açık; diğer alanlar da en fazla 2 satır (önceden 3).

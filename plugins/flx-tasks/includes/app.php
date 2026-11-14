@@ -50,7 +50,7 @@ function flxg_app_user( $uid ) {
 	$u = get_userdata( (int) $uid );
 	return array(
 		'id'     => (int) $uid,
-		'name'   => $u ? $u->display_name : __( 'Deleted user', 'flx-tasks' ),
+		'name'   => $u ? flxg_display_name( $u ) : __( 'Deleted user', 'flx-tasks' ),
 		'avatar' => get_avatar_url( (int) $uid, array( 'size' => 96 ) ),
 	);
 }
