@@ -1494,3 +1494,54 @@ msgstr ""
 
 msgid "Header cells of tables in pages, Wiki and WooCommerce. Pick a tone slightly darker than the page background. Leave empty to use the style colour."
 msgstr ""
+
+msgid "Live"
+msgstr ""
+
+msgid "Everyone can see the whole site."
+msgstr ""
+
+msgid "Visitors, including signed-in customers, only see the coming-soon page."
+msgstr ""
+
+msgid "Coming soon: store pages only"
+msgstr ""
+
+msgid "The site stays open. Shop, product, cart and checkout pages show a coming-soon notice inside the normal header and footer."
+msgstr ""
+
+msgid "Requires WooCommerce."
+msgstr ""
+
+msgid "Administrators, shop managers and editors keep seeing the site. This is the same setting as WooCommerce › Settings › Site visibility; changing either one updates the other, and WooCommerce private preview links keep working."
+msgstr ""
+
+msgid "Administrators and editors keep seeing the site."
+msgstr ""
+
+msgid "Store notice title"
+msgstr ""
+
+msgid "Store notice message"
+msgstr ""
+
+msgid "Leave the title and message empty to use the translated defaults. The wording follows the site type (shop or donations)."
+msgstr ""
+
+msgid "Store coming soon"
+msgstr ""
+
+msgid "Online donations open soon."
+msgstr ""
+
+msgid "Our online store opens soon."
+msgstr ""
+
+msgid "Donations can't be completed online just yet. You can keep exploring the rest of the site in the meantime."
+msgstr ""
+
+msgid "Orders can't be placed online just yet. You can keep exploring the rest of the site in the meantime."
+msgstr ""
+
+msgid "Back to homepage"
+msgstr ""

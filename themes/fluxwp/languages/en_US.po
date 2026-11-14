@@ -1498,3 +1498,54 @@ msgstr "Header cells of tables in pages, Wiki and WooCommerce. Pick a tone sligh
 #, php-format
 msgid "Güvenli ödeme · %s"
 msgstr "Secure payment · %s"
+
+msgid "Live"
+msgstr "Live"
+
+msgid "Everyone can see the whole site."
+msgstr "Everyone can see the whole site."
+
+msgid "Visitors, including signed-in customers, only see the coming-soon page."
+msgstr "Visitors, including signed-in customers, only see the coming-soon page."
+
+msgid "Coming soon: store pages only"
+msgstr "Coming soon: store pages only"
+
+msgid "The site stays open. Shop, product, cart and checkout pages show a coming-soon notice inside the normal header and footer."
+msgstr "The site stays open. Shop, product, cart and checkout pages show a coming-soon notice inside the normal header and footer."
+
+msgid "Requires WooCommerce."
+msgstr "Requires WooCommerce."
+
+msgid "Administrators, shop managers and editors keep seeing the site. This is the same setting as WooCommerce › Settings › Site visibility; changing either one updates the other, and WooCommerce private preview links keep working."
+msgstr "Administrators, shop managers and editors keep seeing the site. This is the same setting as WooCommerce › Settings › Site visibility; changing either one updates the other, and WooCommerce private preview links keep working."
+
+msgid "Administrators and editors keep seeing the site."
+msgstr "Administrators and editors keep seeing the site."
+
+msgid "Store notice title"
+msgstr "Store notice title"
+
+msgid "Store notice message"
+msgstr "Store notice message"
+
+msgid "Leave the title and message empty to use the translated defaults. The wording follows the site type (shop or donations)."
+msgstr "Leave the title and message empty to use the translated defaults. The wording follows the site type (shop or donations)."
+
+msgid "Store coming soon"
+msgstr "Store coming soon"
+
+msgid "Online donations open soon."
+msgstr "Online donations open soon."
+
+msgid "Our online store opens soon."
+msgstr "Our online store opens soon."
+
+msgid "Donations can't be completed online just yet. You can keep exploring the rest of the site in the meantime."
+msgstr "Donations can't be completed online just yet. You can keep exploring the rest of the site in the meantime."
+
+msgid "Orders can't be placed online just yet. You can keep exploring the rest of the site in the meantime."
+msgstr "Orders can't be placed online just yet. You can keep exploring the rest of the site in the meantime."
+
+msgid "Back to homepage"
+msgstr "Back to homepage"

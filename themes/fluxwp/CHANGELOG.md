@@ -1,5 +1,13 @@
 # Değişiklikler
 
+## 0.7.24
+- Tema Ayarları › Site görünürlüğü artık 3 seçenek: **Yayında**, **Çok yakında: tüm site**, **Çok yakında: yalnız mağaza sayfaları**.
+- Yalnız mağaza modunda site açık kalır; mağaza, ürün, sepet ve ödeme sayfaları sitenin üst/alt bölümüyle birlikte "çok yakında" uyarısı gösterir (önceden bu sayfalarda da tam ekran kapalı sayfa çıkıyordu). Metin site türüne göre (mağaza / bağış), panelden değiştirilebilir.
+- Ayar WooCommerce › Ayarlar › Site görünürlüğü ile iki yönlü eşit: birinden değiştirmek diğerini günceller; WooCommerce'in "Mağazayı yayına al" düğmesi de tema ayarını Yayında yapar. Hangi sayfaların mağaza sayılacağına WooCommerce karar verir (`woocommerce_store_pages`, `woocommerce_is_extension_store_page`), özel ön izleme bağlantısı çalışır.
+- WooCommerce varken tüm site modunu WooCommerce uygular (tema kapısı yalnız WooCommerce yoksa ya da Launch Your Store kapalıysa çalışır); editörler (`edit_theme_options`) siteyi görmeye devam eder.
+- Admin çubuğunda WooCommerce rozeti varken temanınki eklenmez (çift rozet yok); WooCommerce yoksa "Site çok yakında" / "Mağaza çok yakında".
+- Ön ayar şeması: `site_visibility` `auto | coming-soon | store`; yeni alanlar `coming_soon_store_title`, `coming_soon_store_text`.
+
 ## 0.7.23
 - Bağış sayfasındaki "Merhaba …, bağışların hesabına kaydedilir" / "Giriş yap" şeridi artık kendiliğinden eklenmez (yer kaplıyordu). Eski davranış: `add_filter( 'flx_hesap_satiri_auto', '__return_true' )`; kısa kod `[flx_hesap_satiri]` duruyor.
 - Yeni ince sayfa başlığı stili `flx-page-head--slim`: kapak bloğu kısa bant olur, telefonda alt yazı gizlenir; form ilk ekranda görünür.

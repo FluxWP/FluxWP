@@ -31,6 +31,8 @@ function flx_ayar_defaults() {
 		'site_visibility' => 'auto',
 		'coming_soon_title' => '',
 		'coming_soon_text' => '',
+		'coming_soon_store_title' => '',
+		'coming_soon_store_text' => '',
 		'coming_soon_email' => '',
 		'site_mod'        => 'shop',
 		'aktif_kart'      => 'on',
@@ -215,11 +217,16 @@ function flx_ayar_sanitize( $in ) {
 		// Önceden eksik onay kutuları "kapalı" sayılıyordu; ön ayar yalnız site_mod yazınca çerez banner'ı kapanıyordu.
 		$in = array_merge( $old, $in );
 	}
+	if ( ! empty( $in['_form'] ) && function_exists( 'flx_visibility_form_save' ) ) {
+		flx_visibility_form_save( true );
+	}
 	unset( $in['_form'] );
 	$out = array(
-		'site_visibility' => 'coming-soon' === ( $in['site_visibility'] ?? 'auto' ) ? 'coming-soon' : 'auto',
+		'site_visibility' => in_array( $in['site_visibility'] ?? '', array( 'coming-soon', 'store' ), true ) ? $in['site_visibility'] : 'auto',
 		'coming_soon_title' => sanitize_text_field( $in['coming_soon_title'] ?? '' ),
 		'coming_soon_text' => sanitize_textarea_field( $in['coming_soon_text'] ?? '' ),
+		'coming_soon_store_title' => sanitize_text_field( $in['coming_soon_store_title'] ?? '' ),
+		'coming_soon_store_text' => sanitize_textarea_field( $in['coming_soon_store_text'] ?? '' ),
 		'coming_soon_email' => sanitize_email( $in['coming_soon_email'] ?? '' ),
 		'decoration_pattern' => in_array( $in['decoration_pattern'] ?? '', array( 'dots', 'leaves', 'none' ), true ) ? $in['decoration_pattern'] : 'dots',
 		'news_intro' => sanitize_text_field( $in['news_intro'] ?? '' ),
@@ -547,9 +554,11 @@ add_filter(
 			) + $extra;
 		};
 		$fields           = array(
-			'site_visibility' => $f( 'enum', 'auto follows WooCommerce (or live without it); coming-soon gates the entire public site.', array( 'enum' => array( 'auto', 'coming-soon' ) ) ),
+			'site_visibility' => $f( 'enum', 'auto = live; coming-soon = entire public site shows the coming-soon page; store = site stays open, WooCommerce store pages (shop, product, cart, checkout) show a notice inside the header/footer. With WooCommerce this is synced both ways with WooCommerce › Settings › Site visibility; store needs WooCommerce.', array( 'enum' => array( 'auto', 'coming-soon', 'store' ) ) ),
 			'coming_soon_title' => $f( 'string', 'Optional coming-soon heading. Empty uses the translated default.' ),
 			'coming_soon_text' => $f( 'string', 'Optional plain-text coming-soon message.' ),
+			'coming_soon_store_title' => $f( 'string', 'Optional store-only notice heading. Empty uses the translated default for the site type.' ),
+			'coming_soon_store_text' => $f( 'string', 'Optional plain-text store-only notice message.' ),
 			'coming_soon_email' => $f( 'string', 'Optional explicitly public contact email.' ),
 			'decoration_pattern' => $f( 'enum', 'Background decoration for title bands, menus and consent cards.', array( 'enum' => array( 'dots', 'leaves', 'none' ) ) ),
 			'news_intro' => $f( 'string', 'Optional news archive introduction. Empty uses the translated generic theme text.' ),
