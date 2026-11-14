@@ -226,7 +226,7 @@
 		var r = Y.route || {};
 		Y.clear(R.side);
 		var brand = h('.flxg-brand',
-			B.icon ? h('img.flxg-brand-logo', { src: B.icon, alt: '' }) : h('span.flxg-brand-mark', Y.icon('check', 16)),
+			(B.appIcon || B.icon) ? h('img.flxg-brand-logo', { src: B.appIcon || B.icon, alt: '' }) : h('span.flxg-brand-mark', Y.icon('check', 16)),
 			h('.flxg-brand-text', h('b', t('Görevler')), h('span', B.brand)),
 			h('button.flxg-icon-btn.flxg-only-mobile', { type: 'button', 'aria-label': t('Kapat'), onclick: closeNav }, Y.icon('x', 18)),
 			h('button.flxg-icon-btn.is-sm.flxg-side-hide', { type: 'button', title: t('Kenar menüyü gizle'), 'aria-label': t('Kenar menüyü gizle'), onclick: function () { setSideCollapsed(true); } }, Y.icon('sidebar', 17))
