@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.22.0 — 2026-11-14
+- E-posta şablonu artık kuruma özel iz taşımıyor: varsayılan slogan boş ("Daha yeşil bir Türkiye mümkün" kaldırıldı) ve alt çizim "Yok" (ağaç silüeti varsayılan değildi artık). Ayarda kayıtlı değer varsa dokunulmaz.
+- Ön ayarlar için filtreler: `flxi_defaults` (varsayılan ayarlar, ör. tagline/footer_art), `flxi_footer_arts` (alt çizim listesine ekle), `flxi_footer_art_urls` (çizimin açık/koyu PNG adresi).
+
 ## 1.21.0 — 2026-11-13
 - Flux Chat'te toplu mesaj başlığı: kampanyadan (ya da CRM etkinliğinden) giden WhatsApp mesajının balonunun üstünde kısa kampanya adı (48 karakter), tıklayınca gönderim detayı (etkinlik gönderimlerinde CRM etkinliğinin gönderilen mesajları). Flux Chat 1.48.0+ `flxc_message_origin` filtresi.
 - Eşleşme: kuyruktaki mesaj kimliği (`ext_id`), gönderim öncesi bekleyen işaret (artık kampanya id'si de tutar), eski mesajlarda numara + zaman (±10 dk). Gönderim sonrası `flxc_set_message_origin()` varsa çağrılır.
