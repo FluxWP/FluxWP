@@ -1,4 +1,4 @@
-/* Flux Certificates · sitede etkinlik bölümü, kartlar ve etkinlik paneli. Temanın --flx-* renklerini kullanır (dark mode dahil). */
+/* Flux PDF & Certificates · sitede etkinlik bölümü, kartlar ve etkinlik paneli. Temanın --flx-* renklerini kullanır (dark mode dahil). */
 .flxs-ev-section,.flxs-ev-panel,.flxs-ev-card,.flxs-ev-badge{--e-pri:var(--flx-primary,#1F2937);--e-ink:var(--flx-ink,#111827);--e-tx:var(--flx-text,#4B5563);--e-mint:var(--flx-mint,#F2EEE7);--e-line:var(--flx-line,#E6E0D6);--e-surf:var(--flx-surface,#fff);--e-leaf:var(--flx-leaf,#F59E0B)}
 .flxs-ico{flex:none;vertical-align:-4px}
 .flxs-ev-section{padding:clamp(2.6rem,6vw,4.5rem) 1.25rem;margin:0!important;background:var(--e-surf)}

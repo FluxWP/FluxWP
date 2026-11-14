@@ -1,4 +1,4 @@
-/* Flux Certificates · Yeni sertifika (liste bazlı) + canlı önizleme */
+/* Flux PDF & Certificates · Yeni sertifika (liste bazlı) + canlı önizleme */
 (function () {
 	'use strict';
 	var A = window.FLXSA, R = window.FLXSRender, C = A.C, esc = A.esc;

@@ -1,8 +1,8 @@
 <?php
 /**
- * 2.0.0: Flux Certificates keeps no person table of its own. People are rows of the shared FluxWP table
+ * 2.0.0: Flux PDF & Certificates keeps no person table of its own. People are rows of the shared FluxWP table
  * ({prefix}flx_people, flx-brand people.php), so a person added here is the same person in Flux CRM, Flux Mail,
- * Flux Donate or Flux Chat, and Flux Certificates still works alone (the shared module ships inside this plugin).
+ * Flux Donate or Flux Chat, and Flux PDF & Certificates still works alone (the shared module ships inside this plugin).
  *
  * Owned here: the `created_by` column (who added the person in Certificates, used for staff scope) and the
  * one-time move of the old {prefix}flxs_people table.
@@ -137,14 +137,14 @@ function flxs_migrate_people() {
 	$running = false;
 }
 
-/** Marks a person as used by Flux Certificates (shared link `certificates`), so other packages see it on the person. */
+/** Marks a person as used by Flux PDF & Certificates (shared link `certificates`), so other packages see it on the person. */
 function flxs_person_mark( $id ) {
 	if ( $id && function_exists( 'flx_person_link' ) ) {
 		flx_person_link( (int) $id, 'certificates', (string) (int) $id );
 	}
 }
 
-/** SQL condition: people Flux Certificates uses (tied with the `certificates` link or holding a certificate). */
+/** SQL condition: people Flux PDF & Certificates uses (tied with the `certificates` link or holding a certificate). */
 function flxs_people_mine_sql( $alias = 'p' ) {
 	global $wpdb;
 	$a = $alias ? $alias . '.' : '';

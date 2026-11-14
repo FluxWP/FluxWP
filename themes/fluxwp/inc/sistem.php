@@ -97,7 +97,7 @@ function flx_sk_required_plugins() {
 	}
 	if ( $donate ) {
 		$list['flx-donate']       = array( 'name' => 'Flux Donate', 'min' => '2.0.0', 'required' => true, 'checks' => '2.0.0', 'why' => __( 'Donation types, sapling packages, card donations and donors', 'fluxwp' ) );
-		$list['flx-certificates'] = array( 'name' => 'Flux Certificates', 'min' => '1.2.4', 'required' => true, 'checks' => '1.2.4', 'why' => __( 'Sapling certificates and events', 'fluxwp' ) );
+		$list['flx-certificates'] = array( 'name' => 'Flux PDF & Certificates', 'min' => '1.2.4', 'required' => true, 'checks' => '1.2.4', 'why' => __( 'Sapling certificates and events', 'fluxwp' ) );
 	}
 	$list['flx-forms'] = array( 'name' => 'Flux Forms', 'min' => '2.0.8', 'required' => true, 'checks' => '2.0.8', 'why' => $donate ? __( 'Donation and contact forms', 'fluxwp' ) : __( 'Contact forms', 'fluxwp' ) );
 	$list['flx-seo']   = array( 'name' => 'Flux SEO', 'min' => '1.0.9', 'required' => false, 'checks' => '1.0.8', 'why' => __( 'SEO, sitemap, schema and browser cache', 'fluxwp' ) );
@@ -390,7 +390,7 @@ function flx_sk_theme_checks( $checks ) {
 add_filter( 'flx_system_checks', 'flx_sk_theme_checks', 1 );
 
 if ( ! function_exists( 'flx_system_checks_run' ) ) {
-	/** Ortak yardımcı; Flux Donate veya Flux Certificates tanımladıysa onlarınki kullanılır. */
+	/** Ortak yardımcı; Flux Donate veya Flux PDF & Certificates tanımladıysa onlarınki kullanılır. */
 	function flx_system_checks_run() {
 		return (array) apply_filters( 'flx_system_checks', array() );
 	}
@@ -453,8 +453,8 @@ function flx_sk_source_label( $source ) {
 		'flxb'          => 'Flux Donate',
 		'flx-forms'      => 'Flux Forms',
 		'flxf'          => 'Flux Forms',
-		'flx-certificates' => 'Flux Certificates',
-		'flxs'          => 'Flux Certificates',
+		'flx-certificates' => 'Flux PDF & Certificates',
+		'flxs'          => 'Flux PDF & Certificates',
 		'flx-seo'       => 'SEO & MCP',
 		'flxseo'        => 'SEO & MCP',
 		'flx-chat'     => 'Flux Chat',

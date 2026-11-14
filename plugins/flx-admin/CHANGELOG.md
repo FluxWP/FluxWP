@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.7.27
+- Flux Certificates eklentisinin görünen adı "Flux PDF & Certificates" oldu (yalnız ad; slug, text domain ve güncelleme kimliği aynı).
+
 ## 1.7.26
 - Yönetim temasının çıplak öğe kuralları (başlık, paragraf, bağlantı, kod, form alanı) blok editörü içeriğine sızmıyor. Meta kutusu olan sayfalarda editör iframe'siz çalıştığı için manşet gibi koyu zeminli bölümlerde başlık yönetim yazı rengini (koyu) alıyordu; artık ön yüzdeki gibi görünür. Özgüllük değişmedi.
 

@@ -2,12 +2,12 @@
 
 **English** · [Türkçe](README.tr.md)
 
-<img src="docs/logo.svg" alt="Flux Certificate logo" width="120">
+<img src="docs/logo.svg" alt="Flux PDF & Certificates logo" width="120">
 
-# Flux Certificate
+# Flux PDF & Certificates
 
 **A personal certificate, a share link and a PDF for every sapling gifted.**<br>
-Flux Certificate creates sapling donation certificates, e-cards and participation documents from your own designs, gives each one a verified page with a PDF and a share image, and sends it by WhatsApp, SMS or e-mail. Events, referral staff and a live dashboard show where every sapling came from.
+Flux PDF & Certificates creates sapling donation certificates, e-cards and participation documents from your own designs, gives each one a verified page with a PDF and a share image, and sends it by WhatsApp, SMS or e-mail. Events, referral staff and a live dashboard show where every sapling came from.
 
 [![WordPress 6.4+](https://img.shields.io/badge/WordPress-6.4%2B-21759b?logo=wordpress&logoColor=white)](https://wordpress.org)
 [![PHP 7.4+](https://img.shields.io/badge/PHP-7.4%2B-777bb4?logo=php&logoColor=white)](https://www.php.net)
@@ -18,15 +18,15 @@ Flux Certificate creates sapling donation certificates, e-cards and participatio
 
 [Features](#features) · [Screenshots](#screenshots) · [Installation](#installation) · [For developers](#for-developers) · [Roadmap](#roadmap)
 
-<img src="docs/demo.gif" alt="Flux Certificate tour: the dashboard, the certificate list, typing a name on New certificate with a live PDF preview, the template gallery and the public certificate page" width="900">
+<img src="docs/demo.gif" alt="Flux PDF & Certificates tour: the dashboard, the certificate list, typing a name on New certificate with a live PDF preview, the template gallery and the public certificate page" width="900">
 
 </div>
 
 ---
 
-## Why Flux Certificate?
+## Why Flux PDF & Certificates?
 
-A thank-you certificate is often the only thing a donor keeps, and the one thing they share. Making them by hand in Canva and sending them one by one doesn't scale to a planting event with hundreds of people. Flux Certificate turns it into a list:
+A thank-you certificate is often the only thing a donor keeps, and the one thing they share. Making them by hand in Canva and sending them one by one doesn't scale to a planting event with hundreds of people. Flux PDF & Certificates turns it into a list:
 
 - 📝 **Type names, get certificates.** One row per person (or paste a list); each gets their own certificate, link and PDF, with a live preview while you type.
 - 🔗 **A page people want to share.** `/sertifika/{code}` shows the certificate with a "verified" badge, PDF download and WhatsApp, LinkedIn, Facebook and X buttons; the link preview shows the person's own certificate.
@@ -86,7 +86,7 @@ Requirements: WordPress 6.4+, PHP 7.4+. Pretty permalinks. For WhatsApp/SMS/e-ma
 
 **With FluxWP Panel** (recommended on our sites)
 
-**FluxWP Panel › Packages** lists every FluxWP package; click **Install** next to *Flux Certificate*. Updates arrive the same way.
+**FluxWP Panel › Packages** lists every FluxWP package; click **Install** next to *Flux PDF & Certificates*. Updates arrive the same way.
 
 **First steps**
 
@@ -120,7 +120,7 @@ Full setup notes (Turkish): [KURULUM.md](../../docs/sertifika-sistemi/KURULUM.md
 
 ## License
 
-Flux Certificate Released under the [GNU General Public License v2 or later](https://www.gnu.org/licenses/gpl-2.0.html).
+Flux PDF & Certificates Released under the [GNU General Public License v2 or later](https://www.gnu.org/licenses/gpl-2.0.html).
 
 Made by FluxWP.
 

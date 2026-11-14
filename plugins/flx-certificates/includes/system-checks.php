@@ -47,7 +47,7 @@ function flxs_ago( $ts ) {
 	return flx_time_ago( (int) $ts );
 }
 
-/** Flux Certificates kontrolleri */
+/** Flux PDF & Certificates kontrolleri */
 function flxs_system_checks() {
 	global $wpdb;
 	$src   = 'flx-certificates';
@@ -262,7 +262,7 @@ function flxs_system_fixes( $fixes ) {
 	$fixes['flxs.render_missing'] = array(
 		'label'       => __( 'Create missing certificate files', 'flx-certificates' ),
 		'description' => __( 'Generates files on the server for up to 25 certificates that are missing a PDF or image.', 'flx-certificates' ),
-		'source'      => 'Flux Certificates',
+		'source'      => 'Flux PDF & Certificates',
 		'checks'      => array( 'flxs_render' ),
 		'current'     => function () {
 			return flxs_certificates_missing_files();

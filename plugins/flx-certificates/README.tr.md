@@ -2,12 +2,12 @@
 
 [English](README.md) · **Türkçe**
 
-<img src="docs/logo.svg" alt="Flux Certificates logosu" width="120">
+<img src="docs/logo.svg" alt="Flux PDF & Certificates logosu" width="120">
 
-# Flux Certificates
+# Flux PDF & Certificates
 
 **Hediye edilen her fidan için kişiye özel sertifika, paylaşım linki ve PDF.**<br>
-Flux Certificates kendi tasarımlarınızdan fidan bağış sertifikası, e-kart ve katılım belgesi üretir; her birine PDF'i ve paylaşım görseliyle doğrulanmış bir sayfa açar ve WhatsApp, SMS ya da e-postayla gönderir. Etkinlikler, referans personel ve canlı Dashboard her fidanın nereden geldiğini gösterir.
+Flux PDF & Certificates kendi tasarımlarınızdan fidan bağış sertifikası, e-kart ve katılım belgesi üretir; her birine PDF'i ve paylaşım görseliyle doğrulanmış bir sayfa açar ve WhatsApp, SMS ya da e-postayla gönderir. Etkinlikler, referans personel ve canlı Dashboard her fidanın nereden geldiğini gösterir.
 
 [![WordPress 6.4+](https://img.shields.io/badge/WordPress-6.4%2B-21759b?logo=wordpress&logoColor=white)](https://wordpress.org)
 [![PHP 7.4+](https://img.shields.io/badge/PHP-7.4%2B-777bb4?logo=php&logoColor=white)](https://www.php.net)
@@ -18,15 +18,15 @@ Flux Certificates kendi tasarımlarınızdan fidan bağış sertifikası, e-kart
 
 [Özellikler](#özellikler) · [Ekran görüntüleri](#ekran-görüntüleri) · [Kurulum](#kurulum) · [Geliştiriciler için](#geliştiriciler-için) · [Yol haritası](#yol-haritası)
 
-<img src="docs/demo-tr.gif" alt="Flux Certificates turu: Dashboard, sertifika listesi, Yeni sertifika ekranında isim yazınca canlı PDF önizlemesi, şablon galerisi ve sitedeki sertifika sayfası" width="900">
+<img src="docs/demo-tr.gif" alt="Flux PDF & Certificates turu: Dashboard, sertifika listesi, Yeni sertifika ekranında isim yazınca canlı PDF önizlemesi, şablon galerisi ve sitedeki sertifika sayfası" width="900">
 
 </div>
 
 ---
 
-## Neden Flux Certificates?
+## Neden Flux PDF & Certificates?
 
-Teşekkür sertifikası çoğu zaman bağışçının sakladığı ve paylaştığı tek şeydir. Canva'da tek tek hazırlayıp tek tek göndermek, yüzlerce kişilik bir fidan dikimine yetişmez. Flux Certificates bunu bir listeye çevirir:
+Teşekkür sertifikası çoğu zaman bağışçının sakladığı ve paylaştığı tek şeydir. Canva'da tek tek hazırlayıp tek tek göndermek, yüzlerce kişilik bir fidan dikimine yetişmez. Flux PDF & Certificates bunu bir listeye çevirir:
 
 - 📝 **İsmi yaz, sertifika hazır.** Her kişi bir satır (ya da listeden yapıştır); herkese ayrı sertifika, link ve PDF; yazarken canlı önizleme.
 - 🔗 **Paylaşılası bir sayfa.** `/sertifika/{kod}` "doğrulanmış" rozetiyle sertifikayı, PDF indirmeyi ve WhatsApp, LinkedIn, Facebook, X düğmelerini gösterir; link önizlemesinde kişinin kendi sertifikası çıkar.
@@ -86,7 +86,7 @@ Gereksinimler: WordPress 6.4+, PHP 7.4+. Kalıcı bağlantılar açık. WhatsApp
 
 **FluxWP Panel ile** (sitelerimizde önerilen)
 
-**FluxWP Panel › Paketler** tüm FluxWP paketlerini listeler; *Flux Certificates* satırındaki **Kur**'a basın. Güncellemeler de buradan gelir.
+**FluxWP Panel › Paketler** tüm FluxWP paketlerini listeler; *Flux PDF & Certificates* satırındaki **Kur**'a basın. Güncellemeler de buradan gelir.
 
 **İlk adımlar**
 
@@ -120,7 +120,7 @@ Ayrıntılı kurulum notları: [KURULUM.md](../../docs/sertifika-sistemi/KURULUM
 
 ## Lisans
 
-Flux Certificates, [GNU Genel Kamu Lisansı v2 veya üzeri](https://www.gnu.org/licenses/gpl-2.0.html) ile yayınlanır.
+Flux PDF & Certificates, [GNU Genel Kamu Lisansı v2 veya üzeri](https://www.gnu.org/licenses/gpl-2.0.html) ile yayınlanır.
 
 FluxWP tarafından geliştirilmiştir.
 

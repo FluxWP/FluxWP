@@ -1,7 +1,7 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 
-/** Sertifika › Sistem kontrolü: Flux Certificates'nın kendi kontrolleri (tema tüm FluxWP kontrollerini tek ekranda toplar) */
+/** Sertifika › Sistem kontrolü: Flux PDF & Certificates'nın kendi kontrolleri (tema tüm FluxWP kontrollerini tek ekranda toplar) */
 function flxs_page_system() {
 	$checks = flxs_system_checks();
 	$count  = array_count_values( wp_list_pluck( $checks, 'status' ) );

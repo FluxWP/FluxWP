@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.1.2
+- Display name is now "Flux PDF & Certificates" (plugin header, README, docs, PDF creator metadata). Slug, text domain, prefixes, options and update ID are unchanged.
+
 ## 2.1.1
 - Turkish: "Sertifika kesilen kişiler" now reads "Sertifika verilen kişiler".
 

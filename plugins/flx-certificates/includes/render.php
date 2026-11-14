@@ -347,7 +347,7 @@ class FLXS_Renderer {
 		$pdf->SetAutoPageBreak( false, 0 );
 		$pdf->setCellPaddings( 0, 0, 0, 0 );
 		$pdf->setFontSubsetting( true );
-		$pdf->SetCreator( 'Flux Certificates' );
+		$pdf->SetCreator( 'Flux PDF & Certificates' );
 		$pdf->SetAuthor( get_bloginfo( 'name' ) );
 		$pdf->SetTitle( flxs_fill( '{sertifika} · {ad_soyad}', $this->vars ) );
 		return $this->pdf = $pdf;
@@ -701,7 +701,7 @@ function flxs_load_tcpdf() {
 		define( 'K_TIMEZONE', 'UTC' );
 		define( 'PDF_PAGE_FORMAT', 'A4' );
 		define( 'PDF_PAGE_ORIENTATION', 'P' );
-		define( 'PDF_CREATOR', 'Flux Certificates' );
+		define( 'PDF_CREATOR', 'Flux PDF & Certificates' );
 		define( 'PDF_AUTHOR', '' );
 		define( 'PDF_UNIT', 'pt' );
 		define( 'PDF_FONT_NAME_MAIN', 'helvetica' );

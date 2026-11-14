@@ -55,7 +55,7 @@ function flxa_package_heads() {
 			'flx-analytics'    => array( 'Flux Analytics', __( 'Cookieless site statistics and visitor journeys', 'flx-admin' ) ),
 			'flx-app'          => array( 'Flux App', __( 'Desktop and mobile app sign-in, personal API keys', 'flx-admin' ) ),
 			'flx-backup'       => array( 'Flux Backup', __( 'Automatic pre-update backups, scheduled backups and restore', 'flx-admin' ) ),
-			'flx-certificates' => array( 'Flux Certificates', __( 'Certificate templates, creation, bulk sending and verification', 'flx-admin' ) ),
+			'flx-certificates' => array( 'Flux PDF & Certificates', __( 'Certificate templates, creation, bulk sending and verification', 'flx-admin' ) ),
 			'flx-chat'         => array( 'Flux Chat', __( 'WhatsApp call centre, AI assistant and reports', 'flx-admin' ) ),
 			'flx-donate'       => array( 'Flux Donate', __( 'Donation types, donors and payments on WooCommerce', 'flx-admin' ) ),
 			'flx-forms'        => array( 'Flux Forms', __( 'Drag-and-drop form builder, responses and automations', 'flx-admin' ) ),

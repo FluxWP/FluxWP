@@ -1,4 +1,4 @@
-/* Flux Certificates · herkese açık sayfa: paylaş, kopyala, tarayıcıda çizim (yedek), sorgulama formu */
+/* Flux PDF & Certificates · herkese açık sayfa: paylaş, kopyala, tarayıcıda çizim (yedek), sorgulama formu */
 (function () {
 	'use strict';
 	var L = window.FLXS_PUB || {};

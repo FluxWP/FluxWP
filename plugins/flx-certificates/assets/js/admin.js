@@ -1,4 +1,4 @@
-/* Flux Certificates · panel ortak yardımcıları + küçük sayfa davranışları */
+/* Flux PDF & Certificates · panel ortak yardımcıları + küçük sayfa davranışları */
 (function () {
 	'use strict';
 	var C = window.FLXS || {};
