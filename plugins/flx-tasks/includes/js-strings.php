@@ -737,5 +737,8 @@ function flxg_js_strings() {
 		'Yeni toplantı' => __( 'New meeting', 'flx-tasks' ),
 		'Yeni görev' => __( 'New task', 'flx-tasks' ),
 		'Oluştur ve aç' => __( 'Create and open', 'flx-tasks' ),
+		'Tam ekranda aç' => __( 'Open full screen', 'flx-tasks' ),
+		'Yeni sohbet' => __( 'New chat', 'flx-tasks' ),
+		'Merhaba! Görevlerle ilgili ne yapalım? Toplantı notu ya da PDF ekleyip "buradan görevleri çıkar" da diyebilirsiniz.' => __( 'Hi! What should we do with your tasks? You can also attach meeting notes or a PDF and say "create tasks from this".', 'flx-tasks' ),
 	);
 }

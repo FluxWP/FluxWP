@@ -918,6 +918,9 @@ body.flxg-dragging * { cursor: grabbing !important; user-select: none !important
 	background: var(--panel); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow-lg); display: flex; flex-direction: column;
 	overflow: hidden; animation: flxg-modal .2s ease-out;
 }
+.flxg-ai.is-embed { width: 460px; height: min(720px, calc(100% - 32px)); }
+.flxg-ai-embed { flex: 1 1 auto; min-height: 0; position: relative; }
+@media (max-width: 700px) { .flxg-ai.is-embed { left: 0; right: 0; top: 0; bottom: 0; width: auto; height: auto; border-radius: 0; border: 0; z-index: 90; } }
 .flxg-ai-head { display: flex; align-items: center; gap: 8px; padding: 10px 8px 10px 16px; border-bottom: 1px solid var(--line); color: #8b5cf6; flex: none; }
 .flxg-ai-head b { color: var(--ink); }
 .flxg-ai-log { flex: 1 1 auto; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 10px; }

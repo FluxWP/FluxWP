@@ -2688,3 +2688,15 @@ msgstr ""
 
 msgid "MCP"
 msgstr ""
+
+msgid "Open full screen"
+msgstr ""
+
+msgid "New chat"
+msgstr ""
+
+msgid "Hi! What should we do with your tasks? You can also attach meeting notes or a PDF and say \"create tasks from this\"."
+msgstr ""
+
+msgid "Could not start a chat."
+msgstr ""

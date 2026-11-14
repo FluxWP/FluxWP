@@ -248,6 +248,7 @@ function flxg_tools() {
 				'properties' => array_merge(
 					array(
 						'list_id'   => array( 'type' => 'integer' ),
+						'list_name' => array( 'type' => 'string', 'description' => 'Name of the list, shown to the user on the approval card. list_id decides where the task goes.' ),
 						'parent_id' => array( 'type' => 'integer', 'description' => 'Make it a subtask of this task.' ),
 					),
 					$task_props

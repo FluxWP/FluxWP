@@ -1375,8 +1375,40 @@
 	 * ================================================================== */
 	var AI = { el: null, msgs: [] };
 	try { AI.msgs = JSON.parse(sessionStorage.getItem('flxg-ai') || '[]'); } catch (e) { AI.msgs = []; }
+	/* Flux AI varsa panel onun ortak sohbetini gömer: dosya/PDF ekleme, araç adımları, onay kartları, çalışma alanı.
+	   Sayfa adresi (#/list/…, /t/…, #/doc/…) her mesajla gider; asistan "bu liste/görev/belge"yi oradan anlar. */
+	function closeAI() { if (AI.chat) { AI.chat.destroy(); AI.chat = null; } if (AI.el) { AI.el.remove(); AI.el = null; } }
+	function openEmbedAI() {
+		var box = h('.flxg-ai-embed');
+		var full = h('a.flxg-icon-btn', { href: '#', target: '_blank', rel: 'noopener', title: t('Tam ekranda aç'), hidden: true }, Y.icon('external', 16));
+		function mount(id, url) {
+			if (AI.chat) AI.chat.destroy();
+			Y.clear(box);
+			AI.chat = window.FlxAIChat.mount(box, {
+				chat: id, head: false,
+				placeholder: t('Ne yapmak istersiniz? Örn: "Bu listede yarın biten görevleri göster" ya da "Ayşe\'ye cuma günü bitecek afiş görevi aç"'),
+				emptyText: t('Merhaba! Görevlerle ilgili ne yapalım? Toplantı notu ya da PDF ekleyip "buradan görevleri çıkar" da diyebilirsiniz.'),
+				dark: function () { return app.dataset.theme === 'dark'; }, themeEl: app
+			});
+			if (url) { full.href = url; full.hidden = false; }
+			setTimeout(function () { if (AI.chat) AI.chat.focus(); }, 50);
+		}
+		function thread(fresh) {
+			return Y.api(fresh ? 'POST' : 'GET', 'ai/thread', fresh ? { 'new': 1 } : undefined).then(function (r) { mount(r.chat, r.url); }, Y.fail);
+		}
+		AI.el = h('aside.flxg-ai.is-embed',
+			h('header.flxg-ai-head', Y.icon('sparkle', 18), h('b', t('Yapay zekâ asistanı')), h('span.flxg-grow'),
+				h('button.flxg-icon-btn', { type: 'button', title: t('Yeni sohbet'), onclick: function () { thread(true); } }, Y.icon('plus', 16)),
+				full,
+				h('button.flxg-icon-btn', { type: 'button', title: t('Kapat'), onclick: closeAI }, Y.icon('x', 18))),
+			box
+		);
+		app.appendChild(AI.el);
+		thread(false);
+	}
 	Y.openAI = function (ctx) {
 		ctx = ctx || {};
+		if (B.aiEmbed && window.FlxAIChat) { var was = !!AI.el; closeAI(); if (!was || ctx.task || ctx.page) openEmbedAI(); return; }
 		if (AI.el) { AI.el.remove(); AI.el = null; if (!ctx.task) return; }
 		var log = h('.flxg-ai-log');
 		var ta = h('textarea.flxg-composer-input', { rows: 2, placeholder: t('Ne yapmak istersiniz? Örn: "Bu listede yarın biten görevleri göster" ya da "Ayşe\'ye cuma günü bitecek afiş görevi aç"') });
