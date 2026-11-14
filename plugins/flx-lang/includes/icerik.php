@@ -373,7 +373,9 @@ function flxl_pre_get_posts( WP_Query $q ) {
 			return;
 		}
 		// Tekil içerik çözümü süzülmez; dil uyuşmazlığı template_redirect'te yönlendirilir.
-		foreach ( array( 'p', 'page_id', 'name', 'pagename', 'attachment', 'attachment_id', 'post__in', 'preview', 'subpost', 'subpost_id' ) as $k ) {
+		// Yazılar sayfası (page_for_posts) tekil değil, yazı listesidir: süzülür.
+		$posts_page = $q->is_main_query() && $q->is_posts_page;
+		foreach ( $posts_page ? array() : array( 'p', 'page_id', 'name', 'pagename', 'attachment', 'attachment_id', 'post__in', 'preview', 'subpost', 'subpost_id' ) as $k ) {
 			if ( $q->get( $k ) ) {
 				return;
 			}

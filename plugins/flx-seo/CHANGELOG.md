@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 1.9.1
+- Yazılar sayfası (ör. /news/) ve WooCommerce mağaza sayfası, sayfanın SEO alanına yazılan başlığı kullanıyor (önceden WordPress varsayılanı "News – Site" çıkıyordu). Mağaza sayfasının SEO açıklaması da kullanılır.
+- Sepet, ödeme ve Hesabım sayfalarında açıklama artık sayfa içeriğinden (boş sepet metni, ürün önerileri) üretilmiyor; SEO alanı ya da özet yoksa site açıklaması kullanılır.
+
 ## 1.9.0
 - MCP aracı `flxseo_order_summary` artık geçmiş bir günü de verir: `date` (Y-m-d, ör. dün) ile o günün ödenmiş sipariş, ciro, bekleyen ve iptal özeti; `recent` o günün son siparişleri olur.
 - `compare=true` ile bir önceki günün özeti (`previous`) ve fark (`change`: diff + yüzde) da döner. Günlük brifing artık "dün"ü önceki günle karşılaştırabilir.

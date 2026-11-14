@@ -76,9 +76,6 @@ msgstr ""
 msgid "For theme and plugin scripts, the .min sibling is used if it is newer than the source; otherwise a copy without comments and indentation is generated (line breaks are kept). Bundles that load chunks relative to their own location and scripts with translations are left alone."
 msgstr ""
 
-msgid "jQuery always stays blocking (older inline scripts on the page may call it directly). WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on."
-msgstr ""
-
 msgid "Defer head scripts"
 msgstr ""
 
@@ -1778,4 +1775,13 @@ msgid "%1$s needs the %2$s plugin. It is not installed yet."
 msgstr ""
 
 msgid "%1$s needs the %2$s plugin to be active. It is installed but turned off."
+msgstr ""
+
+msgid "jQuery stays blocking unless \"Defer jQuery too\" is on. WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on."
+msgstr ""
+
+msgid "Defer jQuery too"
+msgstr ""
+
+msgid "jQuery and jQuery Migrate get defer as well. WordPress keeps them blocking when a blocking script depends on them, and Flux Speed keeps them blocking on pages with an inline script that calls jQuery or $ directly."
 msgstr ""

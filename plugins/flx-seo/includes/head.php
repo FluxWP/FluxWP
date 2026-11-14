@@ -54,8 +54,18 @@ function flxseo_description() {
 		$id = (int) get_option( 'page_for_posts' );
 		return $id ? flxseo_post_description( $id ) : flxseo_opt( 'home_desc' );
 	}
+	$shop = function_exists( 'is_shop' ) && is_shop() ? flxseo_listing_page_id() : 0;
+	if ( $shop && ( flxseo_get( $shop, 'desc' ) || has_excerpt( $shop ) ) ) {
+		return flxseo_post_description( $shop );
+	}
 	if ( is_singular() ) {
-		return flxseo_post_description( get_queried_object() );
+		$post = get_queried_object();
+		// Sepet, ödeme ve hesap sayfalarının içeriği dinamik (boş sepet, öneriler): açıklama oradan üretilmez.
+		if ( flxseo_is_wc_utility_page( $post ) && ! flxseo_get( $post->ID, 'desc' ) && ! has_excerpt( $post ) ) {
+			$home = flxseo_opt( 'home_desc' );
+			return flxseo_clean( $home ? $home : get_bloginfo( 'description' ) );
+		}
+		return flxseo_post_description( $post );
 	}
 	if ( is_category() || is_tag() || is_tax() ) {
 		$t = get_queried_object();
@@ -67,6 +77,38 @@ function flxseo_description() {
 		return flxseo_clean( apply_filters( 'flxseo_archive_desc', $pto && ! empty( $pto->description ) ? $pto->description : sprintf( '%s: %s.', flxseo_opt( 'alt_name' ), post_type_archive_title( '', false ) ), get_query_var( 'post_type' ) ) );
 	}
 	return flxseo_clean( get_bloginfo( 'description' ) );
+}
+
+/**
+ * Liste sayfasının (yazılar sayfası, WooCommerce mağazası) kendi sayfa kimliği; yoksa 0.
+ */
+function flxseo_listing_page_id() {
+	if ( is_front_page() ) {
+		return 0;
+	}
+	if ( is_home() ) {
+		return 'page' === get_option( 'show_on_front' ) ? (int) get_option( 'page_for_posts' ) : 0;
+	}
+	if ( function_exists( 'is_shop' ) && is_shop() && function_exists( 'wc_get_page_id' ) ) {
+		$id = (int) wc_get_page_id( 'shop' );
+		return $id > 0 ? $id : 0;
+	}
+	return 0;
+}
+
+/**
+ * Sepet, ödeme veya hesabım sayfası mı.
+ */
+function flxseo_is_wc_utility_page( $post ) {
+	if ( ! $post instanceof WP_Post || 'page' !== $post->post_type || ! function_exists( 'wc_get_page_id' ) ) {
+		return false;
+	}
+	foreach ( array( 'cart', 'checkout', 'myaccount' ) as $key ) {
+		if ( (int) wc_get_page_id( $key ) === (int) $post->ID ) {
+			return true;
+		}
+	}
+	return false;
 }
 
 /**
@@ -84,6 +126,11 @@ add_filter(
 		}
 		if ( is_singular() && flxseo_get( get_queried_object_id(), 'title' ) ) {
 			return flxseo_get( get_queried_object_id(), 'title' );
+		}
+		// Yazılar sayfası ve WooCommerce mağaza sayfası tekil değildir ama başlıkları sayfanın SEO alanındadır.
+		$page = flxseo_listing_page_id();
+		if ( $page && flxseo_get( $page, 'title' ) ) {
+			return flxseo_get( $page, 'title' );
 		}
 		if ( ( is_category() || is_tag() || is_tax() ) && get_term_meta( get_queried_object_id(), '_flxseo_title', true ) ) {
 			return get_term_meta( get_queried_object_id(), '_flxseo_title', true );

@@ -28,7 +28,6 @@ return array(
   'For unminified (non-.min) local CSS files, an up-to-date .min sibling or a copy without comments and whitespace is used.' => '縮小されていない (.min 以外の) ローカル CSS ファイルの場合は、最新の .min 兄弟またはコメントと空白のないコピーが使用されます。',
   'Minify JS files' => 'JSファイルを縮小する',
   'For theme and plugin scripts, the .min sibling is used if it is newer than the source; otherwise a copy without comments and indentation is generated (line breaks are kept). Bundles that load chunks relative to their own location and scripts with translations are left alone.' => 'テーマとプラグインのスクリプトでは、ソースよりも新しい場合は .min 兄弟が使用されます。それ以外の場合は、コメントとインデントのないコピーが生成されます (改行は維持されます)。独自の場所を基準にしてチャンクをロードするバンドルと、翻訳付きのスクリプトはそのまま残されます。',
-  'jQuery always stays blocking (older inline scripts on the page may call it directly). WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on.' => 'jQuery は常にブロックしたままになります (ページ上の古いインライン スクリプトが jQuery を直接呼び出す可能性があります)。 WordPress 自体は、その後にインライン スクリプトがあるスクリプト、またはブロック スクリプトが依存するスクリプトの遅延を削除します。',
   'Defer head scripts' => 'ヘッドスクリプトを延期する',
   'Scripts loaded in the page <head> that hold up rendering get defer (e.g. language suggestion, analytics scripts).' => 'ページ<head>にロードされた、レンダリングを保留するスクリプトは延期されます (言語の提案、分析スクリプトなど)。',
   'Fonts' => 'フォント',

@@ -288,7 +288,12 @@ class Flx_Blocks_CSS {
 	 * Class Constructor.
 	 */
 	public function __construct() {
-		add_action( 'wp_enqueue_scripts', array( $this, 'frontend_block_css' ), 180 );
+		// Styles are static: one print hook for every instance, or the whole sheet is printed twice.
+		static $hooked = false;
+		if ( ! $hooked ) {
+			$hooked = true;
+			add_action( 'wp_enqueue_scripts', array( $this, 'frontend_block_css' ), 180 );
+		}
 	}
 
 	/**

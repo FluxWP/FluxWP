@@ -76,9 +76,6 @@ msgstr "Minificar arquivos JS"
 msgid "For theme and plugin scripts, the .min sibling is used if it is newer than the source; otherwise a copy without comments and indentation is generated (line breaks are kept). Bundles that load chunks relative to their own location and scripts with translations are left alone."
 msgstr "Para scripts de tema e plug-in, o irmão .min será usado se for mais recente que a fonte; caso contrário, será gerada uma cópia sem comentários e recuo (as quebras de linha serão mantidas). Pacotes que carregam pedaços relativos à sua própria localização e scripts com traduções são deixados de lado."
 
-msgid "jQuery always stays blocking (older inline scripts on the page may call it directly). WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on."
-msgstr "o jQuery sempre permanece bloqueando (scripts embutidos mais antigos na página podem chamá-lo diretamente). O próprio WordPress elimina o adiamento para scripts que possuem um script embutido depois deles ou dos quais depende um script de bloqueio."
-
 msgid "Defer head scripts"
 msgstr "Adiar scripts principais"
 

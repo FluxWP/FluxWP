@@ -1,5 +1,8 @@
 # Flux Lang
 
+## 0.2.11
+- Yazılar sayfası (Ayarlar › Okuma › Yazılar sayfası, ör. /news/) artık dile göre süzülüyor: İngilizce sayfada yalnız İngilizce, /tr/ altında yalnız Türkçe yazılar listelenir. Önceden adres bir sayfa adı taşıdığı için süzme atlanıyor, iki dilin yazıları karışık çıkıyordu.
+
 ## 0.2.10
 - Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
 

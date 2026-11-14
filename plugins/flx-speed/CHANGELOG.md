@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.8.0
+- PageSpeed › JavaScript'e "jQuery'yi de ertele" (varsayılan kapalı, "Önce deneyin"): jQuery ve jQuery Migrate head'de defer ile yüklenir, ana sayfada kalan en büyük engelleyen istek kalkar. Engelleyen bir betik jQuery'ye bağlıysa WordPress, sayfada `jQuery(...)` / `$(...)` çağıran satır içi betik varsa Flux Speed jQuery'yi o sayfada engelleyen bırakır (filtre `flxp_inline_jquery_found`).
+
 ## 0.7.3
 - Önbelleği temizleme ve tema CSS taraması `GLOB_BRACE` kullanmıyor: Alpine/musl PHP'de (Docker) bu sabit tanımsız olduğu için fatal hata veriyordu.
 
