@@ -94,6 +94,23 @@ function flxg_today() {
 	return wp_date( 'Y-m-d' );
 }
 
+/**
+ * Görünen ad: profildeki Ad + Soyad, boşsa WordPress "görünen ad", o da boşsa kullanıcı adı.
+ * WordPress profilde ad değişince "Herkese açık görünen ad"ı kendiliğinden değiştirmez; bu yüzden önce Ad Soyad.
+ * Filtre `flxg_user_display_name`.
+ */
+function flxg_display_name( $user ) {
+	if ( ! $user instanceof WP_User ) {
+		$user = get_userdata( (int) $user );
+	}
+	if ( ! $user ) {
+		return '';
+	}
+	$full = trim( trim( (string) $user->first_name ) . ' ' . trim( (string) $user->last_name ) );
+	$name = '' !== $full ? $full : ( '' !== trim( (string) $user->display_name ) ? $user->display_name : $user->user_login );
+	return (string) apply_filters( 'flxg_user_display_name', $name, $user );
+}
+
 function flxg_user_public( $user ) {
 	if ( ! $user instanceof WP_User ) {
 		$user = get_userdata( (int) $user );
@@ -103,8 +120,8 @@ function flxg_user_public( $user ) {
 	}
 	return array(
 		'id'       => (int) $user->ID,
-		'name'     => $user->display_name ? $user->display_name : $user->user_login,
-		'initials' => flxg_initials( $user->display_name ? $user->display_name : $user->user_login ),
+		'name'     => flxg_display_name( $user ),
+		'initials' => flxg_initials( flxg_display_name( $user ) ),
 		'avatar'   => get_avatar_url( $user->ID, array( 'size' => 64, 'default' => 'blank' ) ),
 		'color'    => flxg_user_color( $user->ID ),
 	);
@@ -142,12 +159,19 @@ function flxg_users( $refresh = false ) {
 	foreach ( $users as $u ) {
 		$cache[ (int) $u->ID ] = flxg_user_public( $u );
 	}
+	// Ad Soyad'a göre sırala (görünen ad eski kalmış olabilir).
+	uasort(
+		$cache,
+		function ( $a, $b ) {
+			return strnatcasecmp( $a['name'], $b['name'] );
+		}
+	);
 	return $cache;
 }
 
 function flxg_user_name( $id ) {
 	$u = get_userdata( (int) $id );
-	return $u ? ( $u->display_name ? $u->display_name : $u->user_login ) : __( 'Deleted user', 'flx-tasks' );
+	return $u ? flxg_display_name( $u ) : __( 'Deleted user', 'flx-tasks' );
 }
 
 function flxg_brand_name() {

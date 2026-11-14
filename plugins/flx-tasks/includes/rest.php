@@ -470,7 +470,7 @@ function flxg_rest_list_move_check( WP_REST_Request $r ) {
 	foreach ( array_unique( $uids ) as $uid ) {
 		if ( $uid && flxg_list_role( $list, $uid ) && ! flxg_list_role( $moved, $uid ) ) {
 			$u        = get_userdata( $uid );
-			$people[] = array( 'id' => $uid, 'name' => $u ? $u->display_name : '#' . $uid );
+			$people[] = array( 'id' => $uid, 'name' => $u ? flxg_display_name( $u ) : '#' . $uid );
 		}
 	}
 	return array( 'tags' => $tags, 'people' => $people );
