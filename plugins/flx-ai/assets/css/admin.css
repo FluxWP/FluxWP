@@ -424,3 +424,10 @@ html.flxa-dark .flxai .flxai-home-send { color: #0D0E13; }
 .flxai-skill-side h4 { margin: 0 0 4px; }
 .flxai-skill-side pre { white-space: pre-wrap; word-break: break-word; max-height: 320px; overflow: auto; font-size: 12px; background: var(--a-surface-2); padding: 8px; border-radius: 8px; margin: 6px 0 0; }
 @media (max-width: 782px) { .flxai-skill-sides { grid-template-columns: minmax(0, 1fr); } }
+
+/* 0.21.0: skill groups + brand kit */
+.flxai-skill-group { margin: 22px 0 10px; font-size: 14px; display: flex; gap: 8px; align-items: baseline; }
+.flxai-skill-group:first-of-type { margin-top: 6px; }
+.flxai-brand-swatch { display: inline-block; width: 22px; height: 22px; border-radius: 6px; border: 1px solid rgba(0,0,0,.15); vertical-align: middle; }
+.flxai-brand-palette span { display: inline-flex; align-items: center; gap: 4px; margin: 0 10px 6px 0; }
+.flxai-brand-logo { max-height: 40px; max-width: 160px; width: auto; vertical-align: middle; background: #1f2937; border-radius: 4px; padding: 2px; }

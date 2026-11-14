@@ -1,0 +1,39 @@
+{
+  "skill_name": "kapak-tasarimi",
+  "trigger_evals": [
+    {"query": "14 Kasım'daki fidan dikim etkinliği için kapak görseli hazırla, Kemerburgaz, saat 11", "should_trigger": true},
+    {"query": "Kış kampanyası için Instagram post görseli ve hikâye yap", "should_trigger": true},
+    {"query": "WhatsApp durumuna koymak için bağış afişi lazım", "should_trigger": true},
+    {"query": "Bağışçılara teşekkür kartı tasarla, bu yıl 12.480 fidan", "should_trigger": true},
+    {"query": "Make a link preview image for our new blog post about composting", "should_trigger": true},
+    {"query": "Fidan bağışının 5 adımını anlatan karusel sayfaları yap", "should_trigger": true},
+    {"query": "Dünkü bağışları özetle", "should_trigger": false},
+    {"query": "Ana sayfadaki hero bölümünün rengini değiştir", "should_trigger": false},
+    {"query": "Bu e-postaya kısa bir cevap yaz", "should_trigger": false}
+  ],
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Cumartesi 22 Kasım 2026 saat 10:00'da Belgrad Ormanı Neşet Suyu'nda fidan dikim etkinliği var. Yatay ve dikey kapak yap, konum linki https://maps.app.goo.gl/abc",
+      "expected_output": "Two renders from the etkinlik template with the given facts and a QR to the link.",
+      "expectations": [
+        "Uses the etkinlik template (photo cover) instead of a new design",
+        "Date shows 22 Kasım 2026 Cumartesi 10:00 and place Belgrad Ormanı / Neşet Suyu",
+        "Calls flxai_brand_kit before designing",
+        "Renders one format first or both formats with only the body class changed",
+        "QR points to https://maps.app.goo.gl/abc",
+        "Does not invent details that were not given"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Gönüllülerimize teşekkür için sade bir kare görsel, fotoğraf olmasın.",
+      "expected_output": "tipografik template, f-kare, thank-you text, no image generation.",
+      "expectations": [
+        "Uses the tipografik template with body class f-kare",
+        "Does not call flxai_image_generate",
+        "Text is short (title ≤ 12 words)"
+      ]
+    }
+  ]
+}

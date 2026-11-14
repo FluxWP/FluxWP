@@ -91,6 +91,25 @@ add_action(
 			$args['msg'] = 'imported';
 		} elseif ( 'settings' === $do ) {
 			update_option( 'flxai_skills_restrict', empty( $post['restrict'] ) ? 0 : 1, false );
+		} elseif ( 'brand' === $do ) {
+			$prof = array();
+			foreach ( array_keys( flxai_brand_fields() ) as $k ) {
+				if ( isset( $post['brand'][ $k ] ) ) {
+					$prof[ $k ] = $post['brand'][ $k ];
+				}
+			}
+			$docs = array();
+			foreach ( (array) ( $post['brand_doc'] ?? array() ) as $n => $md ) {
+				$docs[ (string) $n ] = (string) $md;
+			}
+			if ( '' !== trim( (string) ( $post['brand_new_name'] ?? '' ) ) && '' !== trim( (string) ( $post['brand_new_body'] ?? '' ) ) ) {
+				$docs[ (string) $post['brand_new_name'] ] = (string) $post['brand_new_body'];
+			}
+			$r = flxai_brand_save( $prof, $docs );
+			if ( is_wp_error( $r ) ) {
+				$fail( $r, 'brand' );
+			}
+			$args['edit'] = 'brand';
 		} elseif ( $old && ( $s = flxai_skill_get( $old ) ) ) { // phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition
 			if ( 'toggle' === $do ) {
 				flxai_skill_toggle( $old );
@@ -195,6 +214,11 @@ function flxai_page_skills() {
 			echo '<div class="notice notice-success is-dismissible"><p>' . esc_html( $m ) . '</p></div>';
 		}
 	}
+	if ( 'brand' === $edit ) {
+		flxai_brand_form();
+		echo '</div>';
+		return;
+	}
 	if ( 'import' === $edit ) {
 		flxai_skill_import_form();
 		echo '</div>';
@@ -223,66 +247,85 @@ function flxai_page_skills() {
 	}
 	echo '<section class="flxai-card flxai-skills">';
 	echo '<div class="flxai-bill-head"><h2>' . esc_html__( 'Skills', 'flx-ai' ) . '</h2><div class="flxai-tasks-acts">';
+	echo '<a class="button" href="' . esc_url( admin_url( 'admin.php?page=flx-ai-skills&edit=brand' ) ) . '">' . esc_html__( 'Brand kit', 'flx-ai' ) . '</a> ';
 	echo '<a class="button" href="' . esc_url( admin_url( 'admin.php?page=flx-ai-skills&edit=import' ) ) . '">' . esc_html__( 'Import', 'flx-ai' ) . '</a> ';
 	echo '<a class="button button-primary" href="' . esc_url( admin_url( 'admin.php?page=flx-ai-skills&edit=new' ) ) . '">' . esc_html__( 'New skill', 'flx-ai' ) . '</a>';
 	echo '</div></div>';
-	echo '<div class="flxai-skill-grid">';
+	// Kaynağa göre gruplar: bu sitenin skill'leri, Flux AI & MCP, sonra eklentiler / paketler.
+	$groups = array();
 	foreach ( $skills as $s ) {
-		$n     = (int) ( $used[ $s['slug'] ] ?? 0 );
-		$files = flxai_skill_files( $s );
-		echo '<article class="flxai-skill' . ( 'active' !== $s['status'] ? ' is-off' : '' ) . '">';
-		echo '<div class="flxai-skill-top"><strong>' . esc_html( $s['name'] ) . '</strong>';
-		if ( 'active' !== $s['status'] ) {
-			echo ' <span class="flxai-pill">' . esc_html__( 'Off', 'flx-ai' ) . '</span>';
-		}
-		echo '</div><code class="flxai-skill-slug">/' . esc_html( $s['slug'] ) . '</code>';
-		echo '<p class="flxai-desc">' . esc_html( $s['description'] ) . '</p>';
-		echo '<div class="flxai-skill-meta">';
-		if ( $s['bundled'] ) {
-			echo '<span class="flxai-pill">' . esc_html( $s['source'] ) . '</span>';
-			if ( $s['changed'] ) {
-				echo '<span class="flxai-pill is-warn">' . esc_html__( 'Edited', 'flx-ai' ) . '</span>';
-			}
-		} else {
-			echo '<span class="flxai-pill is-ok">' . esc_html__( 'This site', 'flx-ai' ) . '</span>';
-		}
-		/* translators: %s: version number */
-		echo '<span class="flxai-note">' . esc_html( sprintf( __( 'v%s', 'flx-ai' ), $s['version'] ) ) . '</span>';
-		if ( $files ) {
-			/* translators: %s: number of files */
-			echo '<span class="flxai-note">' . esc_html( sprintf( _n( '%s file', '%s files', count( $files ), 'flx-ai' ), number_format_i18n( count( $files ) ) ) ) . '</span>';
-		}
-		if ( flxai_skill_has_scripts( $s ) ) {
-			echo '<span class="flxai-pill is-warn" title="' . esc_attr__( 'Scripts are stored but not run on this server.', 'flx-ai' ) . '">' . esc_html__( 'Scripts', 'flx-ai' ) . '</span>';
-		}
-		if ( $n ) {
-			/* translators: %s: number of tasks */
-			echo '<span class="flxai-note">' . esc_html( sprintf( __( 'Tasks: %s', 'flx-ai' ), number_format_i18n( $n ) ) ) . '</span>';
-		}
-		echo '</div><form method="post" class="flxai-skill-acts">';
-		wp_nonce_field( 'flxai_skills', 'flxai_skills_nonce' );
-		echo '<input type="hidden" name="old" value="' . esc_attr( $s['slug'] ) . '">';
-		echo '<a class="button button-small" href="' . esc_url( admin_url( 'admin.php?page=flx-ai-skills&edit=' . $s['slug'] ) ) . '">' . esc_html__( 'Edit', 'flx-ai' ) . '</a> ';
-		echo '<button type="submit" name="do" value="toggle" class="button button-small">' . esc_html( 'active' === $s['status'] ? __( 'Turn off', 'flx-ai' ) : __( 'Turn on', 'flx-ai' ) ) . '</button> ';
-		echo '<a class="button button-small" href="' . esc_url( wp_nonce_url( admin_url( 'admin.php?page=flx-ai-skills&export=' . $s['slug'] ), 'flxai_skill_export' ) ) . '">' . esc_html__( 'Export', 'flx-ai' ) . '</a> ';
-		if ( ! $s['bundled'] ) {
-			printf(
-				'<button type="submit" name="do" value="delete" class="button button-small button-link-delete" data-flx-confirm="%1$s" data-flx-confirm-ok="%2$s" data-flx-confirm-danger>%2$s</button>',
-				/* translators: %s: skill name */
-				esc_attr( sprintf( __( 'Delete the skill "%s"? Tasks that use it will run without it.', 'flx-ai' ), $s['name'] ) ),
-				esc_html__( 'Delete', 'flx-ai' )
-			);
-		} elseif ( $s['changed'] || flxai_skill_is_saved( $s['slug'] ) ) {
-			printf(
-				'<button type="submit" name="do" value="delete" class="button button-small" data-flx-confirm="%1$s" data-flx-confirm-ok="%2$s">%2$s</button>',
-				/* translators: %s: skill name */
-				esc_attr( sprintf( __( 'Reset "%s" to the version its plugin ships? Your changes are lost.', 'flx-ai' ), $s['name'] ) ),
-				esc_html__( 'Reset', 'flx-ai' )
-			);
-		}
-		echo '</form></article>';
+		$g              = $s['bundled'] ? (string) $s['source'] : __( 'This site', 'flx-ai' );
+		$groups[ $g ][] = $s;
 	}
-	echo '</div>';
+	uksort(
+		$groups,
+		function ( $a, $b ) {
+			$rank = fn( $k ) => __( 'This site', 'flx-ai' ) === $k ? 0 : ( 'Flux AI & MCP' === $k ? 1 : 2 );
+			return $rank( $a ) <=> $rank( $b ) ?: strcmp( $a, $b );
+		}
+	);
+	foreach ( $groups as $flxai_group => $flxai_list ) {
+		if ( count( $groups ) > 1 ) {
+			echo '<h3 class="flxai-skill-group">' . esc_html( $flxai_group ) . ' <span class="flxai-note">' . esc_html( number_format_i18n( count( $flxai_list ) ) ) . '</span></h3>';
+		}
+		echo '<div class="flxai-skill-grid">';
+		foreach ( $flxai_list as $s ) {
+			$n     = (int) ( $used[ $s['slug'] ] ?? 0 );
+			$files = flxai_skill_files( $s );
+			echo '<article class="flxai-skill' . ( 'active' !== $s['status'] ? ' is-off' : '' ) . '">';
+			echo '<div class="flxai-skill-top"><strong>' . esc_html( $s['name'] ) . '</strong>';
+			if ( 'active' !== $s['status'] ) {
+				echo ' <span class="flxai-pill">' . esc_html__( 'Off', 'flx-ai' ) . '</span>';
+			}
+			echo '</div><code class="flxai-skill-slug">/' . esc_html( $s['slug'] ) . '</code>';
+			echo '<p class="flxai-desc">' . esc_html( $s['description'] ) . '</p>';
+			echo '<div class="flxai-skill-meta">';
+			if ( $s['bundled'] ) {
+				echo '<span class="flxai-pill">' . esc_html( $s['source'] ) . '</span>';
+				if ( $s['changed'] ) {
+					echo '<span class="flxai-pill is-warn">' . esc_html__( 'Edited', 'flx-ai' ) . '</span>';
+				}
+			} else {
+				echo '<span class="flxai-pill is-ok">' . esc_html__( 'This site', 'flx-ai' ) . '</span>';
+			}
+			/* translators: %s: version number */
+			echo '<span class="flxai-note">' . esc_html( sprintf( __( 'v%s', 'flx-ai' ), $s['version'] ) ) . '</span>';
+			if ( $files ) {
+				/* translators: %s: number of files */
+				echo '<span class="flxai-note">' . esc_html( sprintf( _n( '%s file', '%s files', count( $files ), 'flx-ai' ), number_format_i18n( count( $files ) ) ) ) . '</span>';
+			}
+			if ( flxai_skill_has_scripts( $s ) ) {
+				echo '<span class="flxai-pill is-warn" title="' . esc_attr__( 'Scripts are stored but not run on this server.', 'flx-ai' ) . '">' . esc_html__( 'Scripts', 'flx-ai' ) . '</span>';
+			}
+			if ( $n ) {
+				/* translators: %s: number of tasks */
+				echo '<span class="flxai-note">' . esc_html( sprintf( __( 'Tasks: %s', 'flx-ai' ), number_format_i18n( $n ) ) ) . '</span>';
+			}
+			echo '</div><form method="post" class="flxai-skill-acts">';
+			wp_nonce_field( 'flxai_skills', 'flxai_skills_nonce' );
+			echo '<input type="hidden" name="old" value="' . esc_attr( $s['slug'] ) . '">';
+			echo '<a class="button button-small" href="' . esc_url( admin_url( 'admin.php?page=flx-ai-skills&edit=' . $s['slug'] ) ) . '">' . esc_html__( 'Edit', 'flx-ai' ) . '</a> ';
+			echo '<button type="submit" name="do" value="toggle" class="button button-small">' . esc_html( 'active' === $s['status'] ? __( 'Turn off', 'flx-ai' ) : __( 'Turn on', 'flx-ai' ) ) . '</button> ';
+			echo '<a class="button button-small" href="' . esc_url( wp_nonce_url( admin_url( 'admin.php?page=flx-ai-skills&export=' . $s['slug'] ), 'flxai_skill_export' ) ) . '">' . esc_html__( 'Export', 'flx-ai' ) . '</a> ';
+			if ( ! $s['bundled'] ) {
+				printf(
+					'<button type="submit" name="do" value="delete" class="button button-small button-link-delete" data-flx-confirm="%1$s" data-flx-confirm-ok="%2$s" data-flx-confirm-danger>%2$s</button>',
+					/* translators: %s: skill name */
+					esc_attr( sprintf( __( 'Delete the skill "%s"? Tasks that use it will run without it.', 'flx-ai' ), $s['name'] ) ),
+					esc_html__( 'Delete', 'flx-ai' )
+				);
+			} elseif ( $s['changed'] || flxai_skill_is_saved( $s['slug'] ) ) {
+				printf(
+					'<button type="submit" name="do" value="delete" class="button button-small" data-flx-confirm="%1$s" data-flx-confirm-ok="%2$s">%2$s</button>',
+					/* translators: %s: skill name */
+					esc_attr( sprintf( __( 'Reset "%s" to the version its plugin ships? Your changes are lost.', 'flx-ai' ), $s['name'] ) ),
+					esc_html__( 'Reset', 'flx-ai' )
+				);
+			}
+			echo '</form></article>';
+		}
+		echo '</div>';
+	}
 	echo '<p class="flxai-note flxai-tasks-tip">' . esc_html__( 'Tip: start a chat message with /name to use a skill, e.g. "/gunluk-brifing only donations"; several work together ("/a /b …"). Ask "/skill-olusturucu" to write and test a new one. Plugins can ship ready skill folders with the flxai_skills filter.', 'flx-ai' ) . '</p>';
 	echo '<form method="post" class="flxai-skill-settings">';
 	wp_nonce_field( 'flxai_skills', 'flxai_skills_nonce' );
@@ -457,4 +500,75 @@ function flxai_skill_import_form() {
 	echo '</table>';
 	echo '<p class="submit"><button type="submit" class="button button-primary">' . esc_html__( 'Import', 'flx-ai' ) . '</button> <a class="button" href="' . esc_url( admin_url( 'admin.php?page=flx-ai-skills' ) ) . '">' . esc_html__( 'Cancel', 'flx-ai' ) . '</a></p>';
 	echo '</form>';
+}
+
+/** Marka kiti: tasarım ve yazım skill'lerinin okuduğu kurum bilgileri, renkler, logolar ve belgeler. */
+function flxai_brand_form() {
+	$raw  = flxai_brand_raw();
+	$def  = flxai_brand_defaults();
+	$p    = $raw['profile'];
+	$back = admin_url( 'admin.php?page=flx-ai-skills' );
+	echo '<p><a href="' . esc_url( $back ) . '">&larr; ' . esc_html__( 'Skills', 'flx-ai' ) . '</a></p>';
+	echo '<form method="post" class="flxai-card flxai-brand">';
+	wp_nonce_field( 'flxai_skills', 'flxai_skills_nonce' );
+	echo '<input type="hidden" name="do" value="brand">';
+	echo '<h2>' . esc_html__( 'Brand kit', 'flx-ai' ) . '</h2>';
+	echo '<p class="description">' . esc_html__( 'Design and writing skills read this before they start: colors and logos for visuals, voice documents for posts. Empty fields use the site name, logo and theme colors. The assistant can also update it from the chat (you approve each change).', 'flx-ai' ) . '</p>';
+	$labels = array(
+		'name'          => array( __( 'Organisation name', 'flx-ai' ), $def['name'] ),
+		'tagline'       => array( __( 'Tagline', 'flx-ai' ), $def['tagline'] ),
+		'website'       => array( __( 'Website shown on visuals', 'flx-ai' ), $def['website'] ),
+		'phone'         => array( __( 'Phone / WhatsApp', 'flx-ai' ), '' ),
+		'handle'        => array( __( 'Social media handle or hashtag', 'flx-ai' ), '' ),
+		'color_primary' => array( __( 'Primary color', 'flx-ai' ), '' ),
+		'color_accent'  => array( __( 'Accent color', 'flx-ai' ), '' ),
+		'color_dark'    => array( __( 'Dark color (backgrounds)', 'flx-ai' ), '' ),
+		'color_light'   => array( __( 'Light color (backgrounds)', 'flx-ai' ), '' ),
+		'logo_id'       => array( __( 'Logo (media ID)', 'flx-ai' ), $def['logo_id'] ? (string) $def['logo_id'] : '' ),
+		'logo_light_id' => array( __( 'White logo for dark backgrounds (media ID)', 'flx-ai' ), '' ),
+		'partner_ids'   => array( __( 'Partner logos (media IDs, comma separated)', 'flx-ai' ), '' ),
+		'notes'         => array( __( 'Design notes', 'flx-ai' ), '' ),
+	);
+	echo '<table class="form-table">';
+	foreach ( flxai_brand_fields() as $k => $type ) {
+		$v = $p[ $k ] ?? '';
+		$v = is_array( $v ) ? implode( ', ', $v ) : (string) ( 0 === $v ? '' : $v );
+		echo '<tr><th><label for="flxai-brand-' . esc_attr( $k ) . '">' . esc_html( $labels[ $k ][0] ) . '</label></th><td>';
+		if ( 'textarea' === $type ) {
+			echo '<textarea id="flxai-brand-' . esc_attr( $k ) . '" name="brand[' . esc_attr( $k ) . ']" rows="3" class="large-text" placeholder="' . esc_attr__( 'e.g. Rounded shapes, lots of green, real photos of our volunteers', 'flx-ai' ) . '">' . esc_textarea( $v ) . '</textarea>';
+		} elseif ( 'color' === $type ) {
+			echo '<input type="text" id="flxai-brand-' . esc_attr( $k ) . '" name="brand[' . esc_attr( $k ) . ']" value="' . esc_attr( $v ) . '" class="regular-text code" placeholder="#rrggbb" pattern="#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})"> ';
+			echo '<span class="flxai-brand-swatch" style="background:' . esc_attr( '' !== $v ? $v : 'transparent' ) . '"></span>';
+		} else {
+			echo '<input type="text" id="flxai-brand-' . esc_attr( $k ) . '" name="brand[' . esc_attr( $k ) . ']" value="' . esc_attr( $v ) . '" class="regular-text" placeholder="' . esc_attr( (string) $labels[ $k ][1] ) . '">';
+			if ( 'ids' === $type ) {
+				foreach ( array_filter( array_map( 'absint', explode( ',', $v ) ) ) as $flxai_id ) {
+					$flxai_u = wp_get_attachment_url( $flxai_id );
+					echo $flxai_u ? ' <img class="flxai-brand-logo" src="' . esc_url( $flxai_u ) . '" alt="">' : '';
+				}
+			}
+			if ( 'id' === $type && (int) $v ) {
+				$flxai_u = wp_get_attachment_url( (int) $v );
+				if ( $flxai_u ) {
+					echo ' <img class="flxai-brand-logo" src="' . esc_url( $flxai_u ) . '" alt="">';
+				}
+			}
+		}
+		echo '</td></tr>';
+	}
+	if ( $def['theme_palette'] ) {
+		echo '<tr><th>' . esc_html__( 'Theme colors', 'flx-ai' ) . '</th><td class="flxai-brand-palette">';
+		foreach ( $def['theme_palette'] as $c ) {
+			echo '<span title="' . esc_attr( $c['name'] ) . '"><i class="flxai-brand-swatch" style="background:' . esc_attr( $c['color'] ) . '"></i><code>' . esc_html( $c['color'] ) . '</code></span> ';
+		}
+		echo '</td></tr>';
+	}
+	echo '</table>';
+	echo '<h3>' . esc_html__( 'Documents', 'flx-ai' ) . '</h3>';
+	echo '<p class="description">' . esc_html__( 'Markdown documents skills read, e.g. about-me.md and voice.md (written by the voice-builder skill). Clear a document to delete it.', 'flx-ai' ) . '</p>';
+	foreach ( $raw['docs'] as $n => $md ) {
+		echo '<p><label><strong><code>' . esc_html( $n ) . '</code></strong></label><br><textarea name="brand_doc[' . esc_attr( $n ) . ']" rows="8" class="large-text code">' . esc_textarea( $md ) . '</textarea></p>';
+	}
+	echo '<p><input type="text" name="brand_new_name" class="regular-text code" placeholder="voice.md"></p><p><textarea name="brand_new_body" rows="5" class="large-text code" placeholder="' . esc_attr__( 'New document (Markdown)', 'flx-ai' ) . '"></textarea></p>';
+	echo '<p class="submit"><button type="submit" class="button button-primary">' . esc_html__( 'Save', 'flx-ai' ) . '</button></p></form>';
 }

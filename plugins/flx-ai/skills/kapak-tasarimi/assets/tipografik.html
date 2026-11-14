@@ -1,0 +1,58 @@
+<!doctype html>
+<!--
+  Layout: TIPOGRAFIK (no photo). Big type on the brand color with large soft shapes. For quotes, thank-you posts,
+  statements, news headlines, "we are hiring", holidays. Variant: add class "v-alinti" to body for a quote (big quote mark + author).
+  Light version: add class "v-acik" to body (light background, dark text).
+  1. body class = format + optional variant, e.g. "f-kare v-alinti". 2. Colors from the brand kit. 3. Replace texts.
+  4. Images: logo.svg (white logo; on v-acik pass the normal dark logo with the same name).
+-->
+<html lang="tr">
+<head>
+<style>
+:root{--dark:#063022;--accent:#BED600;--on-accent:#0A5A40;--text:#fff;--light:#F4F1EA}
+body{background:var(--dark);color:var(--text);font-size:var(--u);overflow:hidden}
+.v-acik{background:var(--light);--text:var(--dark)}
+.blob{position:absolute;border-radius:50%;background:var(--accent);opacity:.16}
+.b1{width:70%;aspect-ratio:1;right:-22%;top:-30%}
+.b2{width:40%;aspect-ratio:1;left:-14%;bottom:-18%;opacity:.1}
+.ring{position:absolute;border:3px solid var(--accent);border-radius:50%;opacity:.5;width:22%;aspect-ratio:1;right:9%;bottom:12%}
+.safe{position:absolute;display:flex;flex-direction:column}
+.logo{height:var(--logo);width:auto;align-self:flex-start;display:block}
+.main{flex:1;min-height:0;overflow:hidden;display:flex;flex-direction:column;justify-content:safe center;padding:.8em 0}
+.main>*{flex:none}
+.kicker{align-self:flex-start;font-weight:800;font-size:.8em;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);border-bottom:3px solid var(--accent);padding-bottom:.35em;margin-bottom:1em}
+.v-acik .kicker{color:var(--on-accent);border-color:var(--accent)}
+h1{margin:0;font-weight:900;font-size:4.2em;line-height:1.02;letter-spacing:-.025em;max-height:4.2em;overflow:hidden;text-wrap:balance;color:var(--text)}
+h1 em{font-style:normal;color:var(--accent)}
+.v-acik h1 em{color:var(--on-accent);background:linear-gradient(transparent 62%,color-mix(in srgb,var(--accent) 70%,transparent) 62%)}
+.q{display:none;font-weight:900;font-size:9em;line-height:.7;height:.45em;color:var(--accent)}
+.v-alinti .q{display:block}
+.v-alinti h1{font-weight:700;font-size:2.8em;line-height:1.18;letter-spacing:-.01em;max-height:6em}
+.sub{margin-top:1em;font-weight:600;font-size:1.15em;line-height:1.35;opacity:.88;max-width:26em}
+.v-alinti .sub{font-weight:800;opacity:1}
+.v-alinti .sub small{display:block;font-weight:500;opacity:.8;font-size:.82em}
+.foot{display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:.9em}
+.foot span{opacity:.75;font-weight:600}
+
+.f-yatay{--u:30px;--logo:72px}.f-yatay .safe{inset:90px 120px 80px}.f-yatay .main{max-width:1380px}
+.f-kart{--u:24px;--logo:58px}.f-kart .safe{inset:120px 200px}
+.f-dikey{--u:36px;--logo:84px}.f-dikey .safe{inset:250px 84px 260px}.f-dikey .b1{width:120%;right:-60%;top:-14%}.f-dikey .ring{width:40%;bottom:6%}
+.f-kare{--u:26px;--logo:58px}.f-kare .safe{inset:80px 80px 70px}
+.f-portre{--u:28px;--logo:62px}.f-portre .safe{inset:90px 84px 80px}.f-portre .b1{width:100%;right:-48%;top:-22%}
+.f-og{--u:18px;--logo:40px}.f-og .safe{inset:48px 64px 44px}.f-og .sub{display:none}
+</style>
+</head>
+<body class="f-kare">
+<div class="blob b1"></div><div class="blob b2"></div><div class="ring"></div>
+<div class="safe">
+  <img class="logo" src="logo.svg" alt="">
+  <div class="main" data-fit data-fit-min="0.6">
+    <div class="kicker">Teşekkürler</div>
+    <div class="q">“</div>
+    <h1 data-fit>Bu yıl <em>12.480 fidan</em> sizinle toprağa kavuştu.</h1>
+    <div class="sub">Bağışçılarımıza, gönüllülerimize ve dikim ekiplerimize teşekkür ederiz.</div>
+  </div>
+  <div class="foot"><b>yesilturkiyeist.org</b><span>#BirFidanBirNefes</span></div>
+</div>
+</body>
+</html>

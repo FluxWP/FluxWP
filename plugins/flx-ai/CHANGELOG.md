@@ -1,5 +1,12 @@
 # Flux AI — Değişiklikler
 
+## 0.21.0
+- **Tasarım skill'leri:** yeni hazır skill **Kapak tasarımı** (`/kapak-tasarimi`): etkinlik kapağı, kampanya/bağış duyurusu, gönderi, hikâye, WhatsApp durumu, bağlantı önizlemesi, teşekkür/alıntı kartı, adım infografiği ve karusel sayfası. Test edilmiş 4 şablon (etkinlik, duyuru, tipografik, liste) × 6 ölçü (1920×1080, 1600×1000 site kartı, 1080×1920, 1080×1080, 1080×1350, 1200×630) ve güvenli alan kuralları; ajan her seferinde aynı tasarım sistemiyle çalışır, tek ölçüde taslak gösterip onaydan sonra diğer ölçüleri çıkarır.
+- **Tasarımı görsele çevir (`flxai_design_render`):** HTML/CSS tasarımı tam ölçüde PNG/JPEG/WebP'ye çevirir, medya kütüphanesine ekler (`attachment_id`, kaynak HTML ekte saklanır). Gotenberg ile çalışır (Ayarlar › Görsel çevirici); kendi çeviriciniz için `flxai_render_html` filtresi. Belgeye Figtree ve Caveat yazı tipleri gömülür (dış kaynak yüklenmez), `data-qr` ile QR kod, `data-fit` ile yazıyı kutusuna sığdırma.
+- **Marka kiti:** Flux AI & MCP › Skill'ler › Marka kiti. Kurum adı, slogan, web adresi, renkler, logo / beyaz logo / iş ortağı logoları ve skill belgeleri (ör. about-me.md, voice.md). Boş alanlar site adı, logo ve tema paletinden gelir. Araçlar `flxai_brand_kit` (okur) ve `flxai_brand_kit_save` (onaylı yazar).
+- **17 sosyal medya skill'i** (Charlie Hills, Social Media Skills v1.1.0, MIT; `skills/THIRD-PARTY.md`): voice-builder, newsletter-voice, post-writer, post-formatter, hook-generator, post-scorer, content-matrix, niche-research, graphic-designer, carousel, whiteboard-infographic, quote-post, pinned-comment, profile-optimizer, youtube-thumbnail, reels-scripting, analytics-dashboard. Flux'a uyarlandı: sorular sohbette, profil dosyaları marka kitinde, görseller `flxai_image_generate` / `flxai_design_render`, araştırma `flxai_web_search` / `flxai_web_fetch`, çıktı kullanıcının dilinde. Hepsi ayrı ayrı açılıp kapatılır.
+- Skill'ler ekranı kaynağa göre gruplu (Bu site, Flux AI & MCP, Sosyal medya, eklentiler).
+
 ## 0.20.1
 - Sohbet: onay kartında reddedilen araç artık hata sayılmıyor; özet "1 reddedildi" yazar (kırmızı değil), araç satırı soluk ve üstü çizili.
 - Sohbet özetindeki "N araç", "1 hata" ve "N reddedildi" metinleri çevrilir (İngilizce arayüzde Türkçe kalıyordu; tekil/çoğul ayrı).

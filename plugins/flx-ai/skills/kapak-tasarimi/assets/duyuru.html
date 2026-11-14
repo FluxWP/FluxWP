@@ -1,0 +1,72 @@
+<!doctype html>
+<!--
+  Layout: DUYURU (announcement / campaign / donation call). Solid brand panel + photo side by side (landscape) or stacked (portrait).
+  Big statement, optional big number (stat), short text, call-to-action pill, website.
+  1. body class = format: f-yatay | f-kart | f-dikey | f-kare | f-portre | f-og
+  2. Colors in :root from the brand kit. 3. Replace texts; delete .stat / .desc / .cta / .qr if not needed.
+  4. Images: bg.jpg (photo), logo.svg (white/light logo). No photo: add class "no-photo" to body.
+-->
+<html lang="tr">
+<head>
+<style>
+:root{--dark:#063022;--accent:#BED600;--on-accent:#0A5A40;--text:#fff;--bg-pos:center}
+body{background:var(--dark);color:var(--text);font-size:var(--u)}
+.photo{position:absolute;background:url(bg.jpg) var(--bg-pos)/cover no-repeat}
+.no-photo .photo{background:repeating-linear-gradient(135deg,color-mix(in srgb,var(--accent) 22%,var(--dark)) 0 18px,color-mix(in srgb,var(--accent) 12%,var(--dark)) 18px 36px)}
+.panel{position:absolute;display:flex;flex-direction:column;background:var(--dark)}
+.panel::after{content:"";position:absolute;background:var(--accent)}
+.logo{height:var(--logo);display:block;width:auto;align-self:flex-start}
+.main{flex:1;min-height:0;overflow:hidden;display:flex;flex-direction:column;justify-content:safe center;padding:.8em 0}
+.main>*{flex:none}
+.kicker{font-weight:800;font-size:.8em;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.9em}
+h1{margin:0;font-weight:900;font-size:3.3em;line-height:1.02;letter-spacing:-.02em;max-height:3.15em;overflow:hidden;text-wrap:balance}
+h1 span{color:var(--accent)}
+.stat{display:flex;align-items:baseline;gap:.35em;margin-top:.8em}
+.stat b{font-weight:900;font-size:3.4em;line-height:1;color:var(--accent);letter-spacing:-.03em}
+.stat span{font-weight:700;font-size:1.05em;opacity:.9;max-width:14em;line-height:1.2}
+.desc{margin:.9em 0 0;font-weight:500;font-size:1em;line-height:1.45;opacity:.92;max-width:26em;max-height:4.4em;overflow:hidden}
+.cta{align-self:flex-start;margin-top:1.2em;background:var(--accent);color:var(--on-accent);font-weight:800;font-size:1em;padding:.6em 1.2em;border-radius:999px;white-space:nowrap}
+.foot{display:flex;align-items:flex-end;justify-content:space-between;gap:1em}
+.site{font-weight:800;font-size:.9em;letter-spacing:.02em;opacity:.95}
+.qr{width:var(--qr);background:#fff;border-radius:.4em;padding:.35em;--qr-color:var(--dark)}
+
+/* landscape: panel left, photo right with a diagonal accent edge */
+.f-yatay{--u:30px;--logo:78px;--qr:150px}
+.f-yatay .panel{inset:0 auto 0 0;width:980px;padding:90px 90px 80px 110px}
+.f-yatay .photo{inset:0 0 0 900px;clip-path:polygon(80px 0,100% 0,100% 100%,0 100%)}
+.f-yatay .panel{background:transparent}
+.f-kart{--u:24px;--logo:60px;--qr:120px}
+.f-kart .panel{inset:120px auto 120px 200px;width:640px;background:transparent}
+.f-kart .photo{inset:0 0 0 880px;clip-path:polygon(70px 0,100% 0,100% 100%,0 100%)}
+.f-og{--u:18px;--logo:40px;--qr:0}
+.f-og .panel{inset:0 auto 0 0;width:660px;padding:44px 40px 40px 60px;background:transparent}
+.f-og .photo{inset:0 0 0 640px;clip-path:polygon(50px 0,100% 0,100% 100%,0 100%)}
+.f-og .desc,.f-og .qr{display:none}
+/* portrait / square: photo on top, panel below */
+.f-dikey{--u:38px;--logo:80px;--qr:170px}
+.f-dikey .photo{inset:0 0 auto 0;height:900px;clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - 90px))}
+.f-dikey .panel{inset:820px 0 0 0;padding:70px 80px 250px;background:transparent}
+.f-portre{--u:28px;--logo:62px;--qr:130px}
+.f-portre .photo{inset:0 0 auto 0;height:600px;clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - 70px))}
+.f-portre .panel{inset:540px 0 0 0;padding:56px 80px 64px;background:transparent}
+.f-kare{--u:24px;--logo:54px;--qr:120px}
+.f-kare .photo{inset:0 0 0 560px;clip-path:polygon(60px 0,100% 0,100% 100%,0 100%)}
+.f-kare .panel{inset:0 auto 0 0;width:620px;padding:64px 40px 60px 64px;background:transparent}
+.f-kare h1{font-size:2.9em}
+</style>
+</head>
+<body class="f-yatay">
+<div class="photo"></div>
+<div class="panel">
+  <img class="logo" src="logo.svg" alt="">
+  <div class="main" data-fit data-fit-min="0.7">
+    <div class="kicker">Kış kampanyası</div>
+    <h1 data-fit>Bu kış <span>1.000 fidan</span> toprakla buluşuyor</h1>
+    <div class="stat"><b>%62</b><span>hedefe ulaşıldı, son 380 fidan</span></div>
+    <p class="desc">Her fidan adınıza dikilir, sertifikası WhatsApp ile gelir. Bağışınızı bugün yapın, ilkbaharda ormanda görün.</p>
+    <div class="cta">Fidan bağışla · 150 TL</div>
+  </div>
+  <div class="foot"><div class="site">yesilturkiyeist.org</div><div class="qr"><div data-qr="https://yesilturkiyeist.org/fidan/"></div></div></div>
+</div>
+</body>
+</html>

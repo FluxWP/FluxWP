@@ -1,0 +1,102 @@
+<!doctype html>
+<!--
+  Layout: ETKINLIK (event / photo cover). Photo + brand scrim on the reading side, tag, big title, date, place, short text, QR, website.
+  1. Set the body class to the format: f-yatay | f-kart | f-dikey | f-kare | f-portre | f-og  (sizes: references/formatlar.md)
+  2. Set the colors in :root from the brand kit (--dark, --accent, --on-accent; --scrim = --dark as "r,g,b").
+  3. Replace the texts. Delete blocks you do not need (.date, .loc, .desc, .qr, .partner). Keep the class names.
+  4. Images are file names passed to flxai_design_render "images": bg.jpg, logo.svg, partner.png. No photo: add class "no-photo" to body and remove the .bg url.
+-->
+<html lang="tr">
+<head>
+<style>
+:root{
+  --dark:#063022;        /* brand dark: scrim + no-photo background */
+  --scrim:6,48,34;       /* same color as r,g,b */
+  --accent:#BED600;      /* brand accent: tag, highlight word, day */
+  --on-accent:#0A5A40;   /* text on the accent color */
+  --text:#ffffff;
+  --bg-pos:center;       /* focal point of the photo, e.g. 68% center */
+}
+body{background:var(--dark);color:var(--text);font-size:var(--u)}
+.bg{position:absolute;inset:0;background:url(bg.jpg) var(--bg-pos)/cover no-repeat}
+.no-photo .bg{background:radial-gradient(circle at 85% 20%,color-mix(in srgb,var(--accent) 35%,transparent) 0,transparent 45%),radial-gradient(circle at 70% 110%,color-mix(in srgb,var(--accent) 22%,transparent) 0,transparent 50%),var(--dark)}
+.sh{position:absolute;inset:0;background:linear-gradient(90deg,rgba(var(--scrim),.93) 0%,rgba(var(--scrim),.8) 38%,rgba(var(--scrim),.25) 62%,rgba(var(--scrim),0) 80%),linear-gradient(0deg,rgba(0,0,0,.38),rgba(0,0,0,0) 30%),linear-gradient(180deg,rgba(0,0,0,.3),rgba(0,0,0,0) 22%)}
+.safe{position:absolute;display:flex;flex-direction:column}
+.top{display:flex;align-items:center;gap:.8em;height:var(--logo)}
+.top img{height:100%;width:auto;display:block}
+.top i{width:3px;height:78%;background:rgba(255,255,255,.7);border-radius:2px}
+.top .partner{height:118%;border-radius:50%}
+.main{flex:1;min-height:0;overflow:hidden;display:flex;flex-direction:column;justify-content:safe center;width:var(--col);padding:.9em 0 1.1em}
+.main>*{flex:none}
+.tag{align-self:flex-start;background:var(--accent);color:var(--on-accent);font-weight:800;font-size:.8em;letter-spacing:.12em;text-transform:uppercase;padding:.48em .95em;border-radius:999px;margin-bottom:1.05em;white-space:nowrap}
+h1{margin:0;font-weight:900;font-size:4em;line-height:1;letter-spacing:-.02em;max-height:2.1em;overflow:hidden;text-wrap:balance}
+h1 span{color:var(--accent)}
+.date{display:flex;align-items:center;gap:.8em;margin-top:1.3em}
+.day{font-weight:900;font-size:3.7em;line-height:.9;color:var(--accent);letter-spacing:-.02em}
+.bar{width:4px;align-self:stretch;background:rgba(255,255,255,.5);border-radius:2px}
+.mo{font-weight:800;font-size:1.45em;line-height:1.1}
+.mo small{display:block;font-weight:600;font-size:.66em;opacity:.85;margin-top:.15em}
+.loc{display:flex;align-items:center;gap:.45em;margin-top:1.05em;font-weight:700;font-size:1.2em;line-height:1.15}
+.loc svg{width:1.15em;height:1.15em;flex:none;color:var(--accent)}
+.loc small{display:block;font-weight:600;font-size:.7em;opacity:.85}
+.desc{margin:1.2em 0 0;font-weight:500;font-size:1em;line-height:1.4;max-width:24em;max-height:4.3em;overflow:hidden;opacity:.95;text-shadow:0 2px 10px rgba(0,0,0,.55),0 1px 2px rgba(0,0,0,.4)}
+.bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:1em}
+.site{background:rgba(var(--scrim),.62);padding:.33em .75em;border-radius:999px;font-weight:700;font-size:.95em;letter-spacing:.02em;white-space:nowrap}
+.site b{color:var(--accent);font-weight:800}
+.qr{width:var(--qr);background:#fff;border-radius:.55em;padding:.5em .5em .4em;box-shadow:0 10px 30px rgba(0,0,0,.35);text-align:center;color:var(--on-accent);--qr-color:var(--dark)}
+.qr small{display:block;margin-top:.35em;font-weight:800;font-size:.75em;line-height:1.2}
+
+/* ---------- formats ---------- */
+/* 1920x1080 landscape (YouTube, screen, Facebook event) */
+.f-yatay{--u:32px;--logo:92px;--col:900px;--qr:220px}
+.f-yatay .safe{inset:80px 110px 70px 110px}
+.f-yatay .bottom{position:absolute;left:0;right:0;bottom:0}
+.f-yatay .main{padding-bottom:2.4em}
+/* 1600x1000 site card: safe area x 200-1400, y 120-880 (cropped to 2:1 and ~1.4) */
+.f-kart{--u:24px;--logo:68px;--col:780px;--qr:180px}
+.f-kart .safe{inset:120px 200px 120px 200px}
+.f-kart .sh{background:linear-gradient(90deg,rgba(var(--scrim),.93) 0%,rgba(var(--scrim),.82) 42%,rgba(var(--scrim),.25) 66%,rgba(var(--scrim),0) 82%),linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,0) 22%),linear-gradient(0deg,rgba(0,0,0,.35),rgba(0,0,0,0) 30%)}
+.f-kart .main{padding-top:1em}
+.f-kart .desc{max-width:22em}
+/* 1080x1920 story / WhatsApp status: keep top and bottom 250px clear of key content */
+.f-dikey{--u:34px;--logo:86px;--col:100%;--qr:230px;--bg-pos:68% center}
+.f-dikey .safe{inset:230px 80px 250px 80px}
+.f-dikey .sh{background:linear-gradient(180deg,rgba(var(--scrim),.95) 0%,rgba(var(--scrim),.84) 42%,rgba(var(--scrim),.2) 64%,rgba(var(--scrim),0) 76%),linear-gradient(0deg,rgba(var(--scrim),.9) 0%,rgba(var(--scrim),0) 30%)}
+.f-dikey .main{justify-content:flex-start;padding-top:70px}
+.f-dikey h1{font-size:4em}
+.f-dikey .desc{margin-top:1.6em}
+/* 1080x1080 square post */
+.f-kare{--u:24px;--logo:62px;--col:740px;--qr:170px}
+.f-kare .safe{inset:72px 72px 64px 72px}
+.f-kare .sh{background:linear-gradient(90deg,rgba(var(--scrim),.94) 0%,rgba(var(--scrim),.84) 48%,rgba(var(--scrim),.3) 74%,rgba(var(--scrim),.05) 100%),linear-gradient(0deg,rgba(0,0,0,.4),rgba(0,0,0,0) 35%)}
+.f-kare h1{font-size:3.6em}
+/* 1080x1350 portrait post (Instagram, LinkedIn) */
+.f-portre{--u:28px;--logo:70px;--col:100%;--qr:190px;--bg-pos:65% center}
+.f-portre .safe{inset:80px 80px 72px 80px}
+.f-portre .sh{background:linear-gradient(180deg,rgba(var(--scrim),.95) 0%,rgba(var(--scrim),.84) 46%,rgba(var(--scrim),.2) 68%,rgba(var(--scrim),0) 80%),linear-gradient(0deg,rgba(var(--scrim),.88) 0%,rgba(var(--scrim),0) 26%)}
+.f-portre .main{justify-content:flex-start;padding-top:56px}
+/* 1200x630 link preview (Open Graph): short, no text block, no QR */
+.f-og{--u:19px;--logo:46px;--col:640px;--qr:0}
+.f-og .safe{inset:48px 64px 44px 64px}
+.f-og .desc,.f-og .qr{display:none}
+.f-og h1{font-size:3.9em}
+</style>
+</head>
+<body class="f-yatay">
+<div class="bg"></div><div class="sh"></div>
+<div class="safe">
+  <div class="top"><img src="logo.svg" alt=""><i></i><img class="partner" src="partner.png" alt=""></div>
+  <div class="main" data-fit data-fit-min="0.7">
+    <div class="tag">Milli Ağaçlandırma Haftası</div>
+    <h1 data-fit>Fidan Dikim<br><span>Etkinliği</span></h1>
+    <div class="date"><div class="day">14</div><div class="bar"></div><div class="mo">Kasım 2026<small>Cumartesi · Saat 11:00</small></div></div>
+    <div class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><div>Kemerburgaz<small>Ağaçlandırma Sahası</small></div></div>
+    <p class="desc" data-fit>Milli Ağaçlandırma Haftası’nda düzenlenen etkinlikte ağaçlarınız dikiliyor. Sizleri de ağaç dikmeye davet ediyoruz.</p>
+  </div>
+  <div class="bottom">
+    <div class="site"><b>yesilturkiyeist.org</b></div>
+    <div class="qr"><div data-qr="https://yesilturkiyeist.org/konum/2026-11-14/"></div><small>Konum için okutun</small></div>
+  </div>
+</div>
+</body>
+</html>
