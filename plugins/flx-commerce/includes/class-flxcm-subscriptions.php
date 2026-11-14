@@ -106,6 +106,9 @@ final class FLXCM_Subscriptions {
 			return null;
 		}
 		$meta = json_decode( (string) $row['meta'], true );
+		$meta = is_array( $meta ) ? $meta : array();
+		$card = isset( $meta[ FLXCM_Sub_Cards::META ] ) && is_array( $meta[ FLXCM_Sub_Cards::META ] ) ? $meta[ FLXCM_Sub_Cards::META ] : null;
+		unset( $meta[ FLXCM_Sub_Cards::META ] ); // Kart verisi dışarı verilmez; yalnız etiketi.
 		return array(
 			'id'               => (int) $row['id'],
 			'status'           => (string) $row['status'],
@@ -129,7 +132,9 @@ final class FLXCM_Subscriptions {
 			'cancelled_at'     => self::ts( $row['cancelled_at'] ),
 			'ended_at'         => self::ts( $row['ended_at'] ),
 			'end_reason'       => (string) $row['end_reason'],
-			'meta'             => is_array( $meta ) ? $meta : array(),
+			'card'             => $card ? (string) ( $card['label'] ?? '' ) : '',
+			'auto_charge'      => $card && in_array( $row['status'], array( 'active', 'past_due' ), true ),
+			'meta'             => $meta,
 			'created_at'       => self::ts( $row['created_at'] ),
 		);
 	}
@@ -627,8 +632,16 @@ final class FLXCM_Subscriptions {
 		$order->update_meta_data( '_flxcm_renewal_of', (int) $row['id'] );
 		$order->update_meta_data( '_flxcm_renewal_for', (string) $row['period_end'] );
 		$order->calculate_totals( false );
-		$gw = self::renewal_method( $row );
-		if ( $gw ) {
+		$card = FLXCM_Sub_Cards::card( $row );
+		$gw   = $card ? null : self::renewal_method( $row );
+		if ( $card ) {
+			// Kartla otomatik: dönem bitince kayıtlı karttan çekilir (FLXCM_Sub_Cards).
+			$all = WC()->payment_gateways() ? WC()->payment_gateways()->payment_gateways() : array();
+			$cgw = $all[ $card['gateway'] ] ?? null;
+			$order->set_payment_method( (string) $card['gateway'] );
+			$order->set_payment_method_title( $cgw ? $cgw->get_title() : (string) $card['label'] );
+			$order->update_meta_data( '_flxcm_card_auto', 1 );
+		} elseif ( $gw ) {
 			$order->set_payment_method( $gw );
 		}
 		$order->save();
@@ -644,7 +657,7 @@ final class FLXCM_Subscriptions {
 		$meta['_renewal_for'] = (string) $row['period_end'];
 		self::update( (int) $row['id'], array( 'renewal_order_id' => $order->get_id(), 'meta' => wp_json_encode( $meta ) ) );
 		$sub = self::export( (int) $row['id'] );
-		self::mail( $sub, 'renewal', $order );
+		self::mail( $sub, $card ? 'card_notice' : 'renewal', $order );
 		/**
 		 * Yenileme siparişi açıldı (ödeme bekleniyor).
 		 *
@@ -687,6 +700,8 @@ final class FLXCM_Subscriptions {
 		foreach ( (array) $wpdb->get_col( $wpdb->prepare( "SELECT id FROM {$t} WHERE status = 'active' AND renewal_order_id > 0 AND period_end <= %s AND period_end > %s LIMIT 50", $tomorrow, $nowg ) ) as $id ) {
 			self::last_reminder( (int) $id );
 		}
+		// 2b) Kartla otomatik yenilemeler: dönem bitince ve tekrar deneme zamanlarında kart çekilir.
+		FLXCM_Sub_Cards::run();
 		// 3) Dönemi bitenler: iptal edilmişse biter, ödenmemişse ek süreye girer.
 		foreach ( (array) $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$t} WHERE status IN ('active','cancelled') AND period_end <= %s LIMIT 50", $nowg ), ARRAY_A ) as $row ) {
 			if ( 'cancelled' === $row['status'] ) {
@@ -723,7 +738,7 @@ final class FLXCM_Subscriptions {
 			return;
 		}
 		$order = wc_get_order( (int) $row['renewal_order_id'] );
-		if ( ! $order || $order->is_paid() ) {
+		if ( ! $order || $order->is_paid() || FLXCM_Sub_Cards::auto_pending( $order ) ) {
 			return;
 		}
 		self::update_meta( $id, '_reminded_for', (string) $row['period_end'] );
@@ -791,6 +806,42 @@ final class FLXCM_Subscriptions {
 			),
 			'can_disable' => true,
 		);
+		$types['flx-commerce/sub-card-notice'] = array(
+			'label'       => __( 'Subscription renews by card', 'flx-commerce' ),
+			'group'       => 'Flux Commerce',
+			'description' => __( 'Goes to the customer before a renewal that will be charged to the stored card.', 'flx-commerce' ),
+			'recipient'   => 'user',
+			'vars'        => $vars + array( 'kart' => __( 'Card', 'flx-commerce' ) ),
+			'sample'      => $sample + array( 'kart' => 'Visa •••• 4242' ),
+			'defaults'    => array(
+				'subject'     => __( 'Your {urun} subscription renews on {bitis}', 'flx-commerce' ),
+				'heading'     => __( 'Renewal coming up, {ad}', 'flx-commerce' ),
+				'body'        => '<p>' . __( 'Your {urun} subscription ({donem}) renews on {bitis}. {tutar} will be charged to your card {kart}; you do not need to do anything.', 'flx-commerce' ) . '</p><p>' . __( 'To change the card or turn off renewal, go to My account › Subscriptions.', 'flx-commerce' ) . '</p>',
+				'button_text' => __( 'My subscriptions', 'flx-commerce' ),
+				'button_url'  => '{link}',
+				'sender'      => 'info',
+				'enabled'     => 1,
+			),
+			'can_disable' => true,
+		);
+		$types['flx-commerce/sub-card-failed'] = array(
+			'label'       => __( 'Subscription card charge failed', 'flx-commerce' ),
+			'group'       => 'Flux Commerce',
+			'description' => __( 'Goes to the customer when the stored card could not be charged after the last attempt.', 'flx-commerce' ),
+			'recipient'   => 'user',
+			'vars'        => $vars + array( 'kart' => __( 'Card', 'flx-commerce' ) ),
+			'sample'      => $sample + array( 'kart' => 'Visa •••• 4242' ),
+			'defaults'    => array(
+				'subject'     => __( 'We could not renew your {urun} subscription', 'flx-commerce' ),
+				'heading'     => __( 'Payment needed, {ad}', 'flx-commerce' ),
+				'body'        => '<p>' . __( 'We could not charge {tutar} to your card {kart} for your {urun} subscription. Please pay with the button below so the subscription continues.', 'flx-commerce' ) . '</p>',
+				'button_text' => __( 'Pay now', 'flx-commerce' ),
+				'button_url'  => '{link}',
+				'sender'      => 'info',
+				'enabled'     => 1,
+			),
+			'can_disable' => true,
+		);
 		$types['flx-commerce/sub-ended'] = array(
 			'label'       => __( 'Subscription ended', 'flx-commerce' ),
 			'group'       => 'Flux Commerce',
@@ -822,7 +873,7 @@ final class FLXCM_Subscriptions {
 	/**
 	 * Müşteriye e-posta (Flux Mail şablonu, yoksa wp_mail düz metin).
 	 *
-	 * @param string $kind renewal | ended.
+	 * @param string $kind renewal | ended | card_notice | card_failed.
 	 */
 	public static function mail( $sub, $kind, $order = null ) {
 		if ( ! $sub || ! is_email( $sub['email'] ) || ! apply_filters( 'flxcm_subscription_send_mail', true, $kind, $sub, $order ) ) {
@@ -840,7 +891,7 @@ final class FLXCM_Subscriptions {
 				FLXCM_Bank::reference( $order )
 			);
 		}
-		$link = 'ended' === $kind ? ( $sub['product_id'] ? get_permalink( $sub['product_id'] ) : home_url( '/' ) ) : ( $order instanceof WC_Order ? self::pay_url( $order ) : wc_get_account_endpoint_url( FLXCM_Sub_Account::ENDPOINT ) );
+		$link = 'ended' === $kind ? ( $sub['product_id'] ? get_permalink( $sub['product_id'] ) : home_url( '/' ) ) : ( $order instanceof WC_Order && 'card_notice' !== $kind ? self::pay_url( $order ) : wc_get_account_endpoint_url( FLXCM_Sub_Account::ENDPOINT ) );
 		$vars = array(
 			'ad'    => (string) $first,
 			'urun'  => (string) $sub['product_name'],
@@ -849,12 +900,18 @@ final class FLXCM_Subscriptions {
 			'bitis' => flxcm_date( $sub['period_end'] ),
 			'link'  => (string) $link,
 			'odeme' => $bank,
+			'kart'  => (string) $sub['card'],
+		);
+		$tpl  = array(
+			'ended'       => 'sub-ended',
+			'card_notice' => 'sub-card-notice',
+			'card_failed' => 'sub-card-failed',
 		);
 		if ( function_exists( 'flxi_send_email' ) ) {
 			return (bool) flxi_send_email(
 				array(
 					'to'       => $sub['email'],
-					'template' => 'flx-commerce/' . ( 'ended' === $kind ? 'sub-ended' : 'sub-renewal' ),
+					'template' => 'flx-commerce/' . ( $tpl[ $kind ] ?? 'sub-renewal' ),
 					'vars'     => $vars,
 				)
 			);
@@ -864,6 +921,16 @@ final class FLXCM_Subscriptions {
 			$subject = sprintf( __( 'Your %s subscription has ended', 'flx-commerce' ), $vars['urun'] );
 			/* translators: 1: first name, 2: product, 3: link */
 			$body = sprintf( __( 'Hello %1$s, your %2$s subscription has ended. You can start it again at any time: %3$s', 'flx-commerce' ), $vars['ad'], $vars['urun'], $vars['link'] );
+		} elseif ( 'card_notice' === $kind ) {
+			/* translators: 1: product, 2: date */
+			$subject = sprintf( __( 'Your %1$s subscription renews on %2$s', 'flx-commerce' ), $vars['urun'], $vars['bitis'] );
+			/* translators: 1: first name, 2: product, 3: date, 4: amount, 5: card, 6: link */
+			$body = sprintf( __( 'Hello %1$s, your %2$s subscription renews on %3$s. %4$s will be charged to your card %5$s; you do not need to do anything. Manage it here: %6$s', 'flx-commerce' ), $vars['ad'], $vars['urun'], $vars['bitis'], $vars['tutar'], $vars['kart'], $vars['link'] );
+		} elseif ( 'card_failed' === $kind ) {
+			/* translators: %s: product */
+			$subject = sprintf( __( 'We could not renew your %s subscription', 'flx-commerce' ), $vars['urun'] );
+			/* translators: 1: first name, 2: amount, 3: card, 4: product, 5: link */
+			$body = sprintf( __( 'Hello %1$s, we could not charge %2$s to your card %3$s for your %4$s subscription. Please pay here so it continues: %5$s', 'flx-commerce' ), $vars['ad'], $vars['tutar'], $vars['kart'], $vars['urun'], $vars['link'] );
 		} else {
 			/* translators: 1: product, 2: date */
 			$subject = sprintf( __( 'Your %1$s subscription renews on %2$s', 'flx-commerce' ), $vars['urun'], $vars['bitis'] );

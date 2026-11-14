@@ -6073,3 +6073,15 @@ msgstr "Kart bilgileri"
 
 msgid "Security code"
 msgstr "Güvenlik kodu"
+
+msgid "iyzico keys are missing."
+msgstr "iyzico anahtarları eksik."
+
+msgid "No stored card for this subscription."
+msgstr "Bu abonelik için kayıtlı kart yok."
+
+msgid "Subscription"
+msgstr "Abonelik"
+
+msgid "iyzico keeps your card and the subscription renews from it automatically. You can remove the card or cancel any time in My account."
+msgstr "Kartınızı iyzico saklar, abonelik bu karttan otomatik yenilenir. Kartı kaldırmak ya da iptal etmek için Hesabım'a gidebilirsiniz."

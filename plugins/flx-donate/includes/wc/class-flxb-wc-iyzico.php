@@ -121,7 +121,7 @@ class FLXB_WC_Iyzico {
 		}
 		if ( isset( $gateways[ self::ID ], $gateways[ self::OFFICIAL ] ) ) {
 			/* One card method: the official plugin only when the setting says so (2.1.0). */
-			if ( 'official' === self::ui() ) {
+			if ( 'official' === self::ui() && ! self::cart_keeps_card() ) { // Abonelikte kart saklayan bizimki kalır (2.31.0).
 				unset( $gateways[ self::ID ] );
 			} else {
 				unset( $gateways[ self::OFFICIAL ] );
@@ -155,6 +155,15 @@ class FLXB_WC_Iyzico {
 			return $o && FLXB_WC_Cart::order_has_monthly( $o );
 		}
 		return FLXB_WC_Cart::cart_has_monthly();
+	}
+
+	/** iyzico kartı saklasın mı: aylık bağış ya da Flux Commerce aboneliği (kartla otomatik yenileme). */
+	public static function keeps_card( WC_Order $order ) {
+		return FLXB_WC_Cart::order_has_monthly( $order ) || ( function_exists( 'flxcm_order_has_subscription' ) && flxcm_order_has_subscription( $order ) );
+	}
+
+	public static function cart_keeps_card() {
+		return FLXB_WC_Cart::cart_has_monthly() || ( function_exists( 'flxcm_cart_has_subscription' ) && flxcm_cart_has_subscription() );
 	}
 
 	public static function callback_url() {
@@ -226,7 +235,7 @@ class FLXB_WC_Iyzico {
 			'price'               => FLXB_Iyzico_Api::price( $amount ),
 			'paidPrice'           => FLXB_Iyzico_Api::price( $amount ),
 			'basketId'            => $conv,
-			'paymentGroup'        => FLXB_WC_Cart::order_has_monthly( $order ) ? 'SUBSCRIPTION' : 'PRODUCT',
+			'paymentGroup'        => self::keeps_card( $order ) ? 'SUBSCRIPTION' : 'PRODUCT',
 			'buyer'               => $buyer,
 			'billingAddress'      => $address,
 			'basketItems'         => FLXB_Iyzico_Api::basket( $amount, self::basket_lines( $order ), __( 'Donation', 'flx-donate' ), 'flxbwc' ),
@@ -354,7 +363,7 @@ class FLXB_WC_Iyzico {
 		}
 		$k = (string) ( $r['cardUserKey'] ?? '' );
 		$t = (string) ( $r['cardToken'] ?? '' );
-		if ( '' !== $k && '' !== $t && FLXB_WC_Cart::order_has_monthly( $order ) ) {
+		if ( '' !== $k && '' !== $t && self::keeps_card( $order ) ) {
 			$order->update_meta_data( '_flxb_iyz_card', array( 'k' => FLXB_Iyzico_Api::seal( $k ), 't' => FLXB_Iyzico_Api::seal( $t ), 'label' => $info['card'] ) );
 		}
 		if ( '' !== $k && $order->get_customer_id() ) {

@@ -1,5 +1,16 @@
 # Değişiklikler
 
+## 0.5.0
+- **Kartla otomatik yenileme (Faz 2).** Ortak kart sağlayıcı katmanı: ödeme eklentileri `flxcm_card_providers` ile sağlayıcı kaydeder (Flux Donate 2.31.0 iyzico'yu ekler). İlk sipariş ya da elle ödenen yenileme kart sağlayıcısıyla ödenirse kart (sağlayıcının mühürlü token'ı) aboneliğe yazılır.
+- Kartlı abonelikte yenileme siparişi yine dönem bitmeden 7 gün önce açılır ama müşteriye "kartınızdan şu tarihte çekilecek" e-postası gider (yeni şablon `flx-commerce/sub-card-notice`). Dönem bitince kart çekilir, sipariş ödenir, dönem uzar. Çekilemezse ertesi gün ve bir sonraki gün yeniden denenir (`flxcm_card_retry_days`); son denemede de olmazsa ödeme bağlantılı e-posta gider (`flx-commerce/sub-card-failed`) ve ek süre işler. Sağlayıcı cevabı gelmezse deneme sayılmaz, bir saat sonra durum sorulur.
+- Hesabım › Aboneliklerim: "… kartınızdan otomatik yenilenir", yaklaşan çekim tarihi, **Kartı kaldır** (sonraki yenilemeler ödeme bağlantısıyla). Yönetim listesinde "Otomatik: kart". Abonelik bitince kart silinir.
+- Kart verisi dışarı verilmez: `flxcm_get_subscription()` yalnız `card` (etiket) ve `auto_charge` döner.
+- Yeni olay `flxcm_subscription_charge_failed( $sub, $order, $error )`; yardımcılar `flxcm_order_has_subscription()`, `flxcm_cart_has_subscription()`.
+
+## 0.4.1
+- **Gizli ürün** (ürün › Genel › Gizli ürün): mağazada, aramada, ilgili ürünlerde, ürün akışında ve site haritasında görünmez; müşteri ürün sayfasını açarsa Mağaza › Ayarlar › Abonelikler'deki adrese (boşsa ana sayfaya) yönlenir. Sepete ekleme bağlantısı (`?add-to-cart=ID&flxcm_period=year`) ve `flxcm_add_subscription_to_cart()` çalışmaya devam eder; ödeme, fatura adresi ve Hesabım normal akışta. Ürün sayfasını (görsel, açıklama) yalnız ürünü düzenleyebilenler görür, üstte "Gizli ürün" notuyla. Sepet ve sipariş satırında ürün bağlantısı çıkmaz.
+- Filtre `flxcm_hidden_product_redirect( $url, $product_id )`.
+
 ## 0.4.0
 - **Abonelikler**: basit ürüne aylık ve/veya yıllık fiyat verilir (ürün › Genel › Abonelik). Ürün sayfasında Aylık / Yıllık seçimi (yıllıkta tasarruf yüzdesi), düğme "Abone ol"; sepette ve siparişte "Ödeme dönemi" satırı. Fatura bilgileri normal ödeme akışından gelir; abonelikte hesap açmak zorunlu.
 - İlk sipariş ödenince abonelik başlar (Havale/EFT onayı dahil her yöntem). Dönem bitmeden 7 gün önce yenileme siparişi açılır, müşteriye banka bilgileri ya da ödeme bağlantısıyla e-posta gider; ödenmezse son gün bir hatırlatma daha. Dönem bitince 3 gün ek süre, sonra abonelik biter. Gün sayıları Mağaza › Ayarlar › Abonelikler'de.

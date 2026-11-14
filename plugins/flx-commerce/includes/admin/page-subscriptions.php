@@ -35,7 +35,7 @@ final class FLXCM_Page_Subscriptions {
 		$q   = FLXCM_Subscriptions::query( $args );
 		$can = current_user_can( FLXCM_Admin::CAP_MANAGE );
 
-		FLXCM_Admin::open( __( 'Subscriptions', 'flx-commerce' ), __( 'Monthly and yearly payments. Renewal orders are created before each period ends; the customer pays by bank transfer or through the payment link.', 'flx-commerce' ) );
+		FLXCM_Admin::open( __( 'Subscriptions', 'flx-commerce' ), __( 'Monthly and yearly payments. Renewal orders are created before each period ends; a stored card is charged automatically, otherwise the customer pays by bank transfer or through the payment link.', 'flx-commerce' ) );
 		if ( $done ) {
 			$msgs = array(
 				'renewal' => __( 'Renewal order created and the customer was notified.', 'flx-commerce' ),
@@ -94,7 +94,12 @@ final class FLXCM_Page_Subscriptions {
 			echo '<td data-label="' . esc_attr__( 'Product', 'flx-commerce' ) . '">' . ( $plink ? '<a href="' . esc_url( $plink ) . '">' . esc_html( $r['product_name'] ) . '</a>' : esc_html( $r['product_name'] ) ) . '<small class="flxcm-muted"> · ' . esc_html( FLXCM_Subscriptions::period_label( $r['period'] ) ) . '</small></td>';
 			echo '<td class="num" data-label="' . esc_attr__( 'Amount', 'flx-commerce' ) . '"><strong>' . esc_html( flxcm_money( $r['amount'], $r['currency'] ) ) . '</strong></td>';
 			echo '<td data-label="' . esc_attr__( 'Status', 'flx-commerce' ) . '"><span class="flxcm-badge ' . esc_attr( FLXCM_Sub_Account::status_class( $r['status'] ) ) . '">' . esc_html( FLXCM_Sub_Account::status_label( $r['status'] ) ) . '</span></td>';
-			echo '<td data-label="' . esc_attr__( 'Renewal / end', 'flx-commerce' ) . '">' . esc_html( FLXCM_Sub_Account::when( $r ) ) . '</td>';
+			$card = FLXCM_Sub_Cards::label( $r );
+			$card = '' !== $card && in_array( $r['status'], array( 'active', 'past_due' ), true ) ? '<br><small class="flxcm-muted">' . esc_html(
+				/* translators: %s: card */
+				sprintf( __( 'Auto: %s', 'flx-commerce' ), $card )
+			) . '</small>' : '';
+			echo '<td data-label="' . esc_attr__( 'Renewal / end', 'flx-commerce' ) . '">' . esc_html( FLXCM_Sub_Account::when( $r ) ) . $card . '</td>'; // phpcs:ignore WordPress.Security.EscapeOutput
 			$ol = array();
 			foreach ( array( 'parent_order_id' => __( 'first', 'flx-commerce' ), 'renewal_order_id' => __( 'awaiting', 'flx-commerce' ) ) as $col => $lbl ) {
 				$o = (int) $r[ $col ] ? wc_get_order( (int) $r[ $col ] ) : null;

@@ -57,7 +57,8 @@ class FLXB_WC_Iyzico_Card {
 
 	/** What the card form needs (strings, endpoint, the donor's saved cards). */
 	public static function js_data() {
-		$monthly = function_exists( 'WC' ) && WC()->cart && FLXB_WC_Cart::cart_has_monthly();
+		$monthly = function_exists( 'WC' ) && WC()->cart && FLXB_WC_Iyzico::cart_keeps_card();
+		$sub     = $monthly && ! FLXB_WC_Cart::cart_has_monthly();
 		return array(
 			'inst'      => rest_url( 'flxb/v1' . self::ROUTE_INST ),
 			'nonce'     => wp_create_nonce( 'wp_rest' ),
@@ -76,7 +77,7 @@ class FLXB_WC_Iyzico_Card {
 				'cvc'        => __( 'CVC', 'flx-donate' ),
 				'save'       => __( 'Save my card for next time', 'flx-donate' ),
 				'saveHelp'   => __( 'iyzico keeps the card; this site never stores card numbers.', 'flx-donate' ),
-				'monthly'    => __( 'For the monthly donation iyzico keeps your card and charges it once a month. You can cancel at any time.', 'flx-donate' ),
+				'monthly'    => $sub ? __( 'iyzico keeps your card and the subscription renews from it automatically. You can remove the card or cancel any time in My account.', 'flx-donate' ) : __( 'For the monthly donation iyzico keeps your card and charges it once a month. You can cancel at any time.', 'flx-donate' ),
 				'newCard'    => __( 'Use another card', 'flx-donate' ),
 				'savedCards' => __( 'Your saved cards', 'flx-donate' ),
 				'inst'       => __( 'Installments', 'flx-donate' ),
@@ -360,7 +361,7 @@ class FLXB_WC_Iyzico_Card {
 		if ( $amount <= 0 ) {
 			return new WP_Error( 'flxb_iyz', __( 'The amount must be greater than zero.', 'flx-donate' ) );
 		}
-		$monthly = FLXB_WC_Cart::order_has_monthly( $order );
+		$monthly = FLXB_WC_Iyzico::keeps_card( $order );
 		$user    = (int) $order->get_customer_id();
 		$card    = null;
 		$saved   = null;

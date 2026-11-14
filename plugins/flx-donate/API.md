@@ -168,6 +168,7 @@ Seçeneklerde `badge`: `''` \| `populer` \| `avantajli` \| `aile` (filtre `flxb_
 | `flxb_wc_forms_checkout( bool )` | Flux Forms ödemelerini WooCommerce'e yönlendirmek |
 | `flxb_wc_form_fallback_type( int $type_id )` | Türe bağlı olmayan formun yazılacağı tür |
 | `flxb_wc_iyzico_checkout_request( array $body, WC_Order $order )` | Flux Donate iyzico Checkout Form isteği |
+| `flxb_commerce_renewal_request( array $body, WC_Order $order, array $sub )` | Flux Commerce abonelik yenilemesinde iyzico kayıtlı kart çekim isteği (2.31.0) |
 | `flxb_create_order()` 2.3.0 | `ref_user_id` argümanı: siparişe `_flx_ref_user` yazar |
 | `flxb_wc_mirror_callcenter( bool, int $donation_id, array $data )` | Çağrı merkezi kaydına sipariş açılsın mı |
 | `flxb_wc_callcenter_emails( bool, int $donation_id )` | O siparişte WooCommerce e-postaları |
