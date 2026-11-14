@@ -1189,3 +1189,18 @@ msgstr "End now"
 
 msgid "Renew now"
 msgstr "Renew now"
+
+msgid "Hidden product"
+msgstr "Hidden product"
+
+msgid "Not shown in the shop, search or sitemap; customers cannot open the product page. Sold only through a link (e.g. a pricing page). Only editors see the product page."
+msgstr "Not shown in the shop, search or sitemap; customers cannot open the product page. Sold only through a link (e.g. a pricing page). Only editors see the product page."
+
+msgid "Hidden product: only editors see this page. Customers buy it through a link."
+msgstr "Hidden product: only editors see this page. Customers buy it through a link."
+
+msgid "Hidden products: send visitors to"
+msgstr "Hidden products: send visitors to"
+
+msgid "Where a customer goes when opening a hidden product page (e.g. your pricing page). Empty = home page."
+msgstr "Where a customer goes when opening a hidden product page (e.g. your pricing page). Empty = home page."

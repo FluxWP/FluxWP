@@ -131,3 +131,11 @@ E-posta şablonları (Flux Mail › E-postalar): `flx-commerce/sub-renewal`, `fl
 yoksa `wp_mail` düz metin. Tablo `wp_flxcm_subscriptions` (kaldırmada silinmez). Hesabım uç noktası `subscriptions`.
 Sipariş meta: `_flxcm_subs` (ilk sipariş → abonelik id'leri), `_flxcm_renewal_of`, `_flxcm_renewal_for`.
 Satır meta: `_flxcm_period`, `flxcm_period` (görünen), `_flxcm_sub_id`, `_flxcm_sub_meta`.
+
+## Gizli ürün (0.4.1)
+Ürün meta `_flxcm_hidden = yes` (ürün › Genel › Gizli ürün). Kaydedince katalog görünürlüğü `hidden` olur.
+- Müşteri ürün sayfasını açarsa ayar `hidden_redirect` adresine (boş = ana sayfa) 302 ile gider; `edit_post` yetkisi olan görür.
+- Site haritası, mağaza/arama, ürün akışı ve ilgili ürünlerde yok; sepet/sipariş satırında ürün bağlantısı boş.
+- Satın alma: `?add-to-cart=ID&flxcm_period=month|year` ya da `flxcm_add_subscription_to_cart( $id, $period, $meta )` sonra `wc_get_checkout_url()`.
+- Filtre `flxcm_hidden_product_redirect( string $url, int $product_id )`.
+- `FLXCM_Hidden_Product::is_hidden( $product )`.

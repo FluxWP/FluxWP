@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.4.1
+- **Gizli ürün** (ürün › Genel › Gizli ürün): mağazada, aramada, ilgili ürünlerde, ürün akışında ve site haritasında görünmez; müşteri ürün sayfasını açarsa Mağaza › Ayarlar › Abonelikler'deki adrese (boşsa ana sayfaya) yönlenir. Sepete ekleme bağlantısı (`?add-to-cart=ID&flxcm_period=year`) ve `flxcm_add_subscription_to_cart()` çalışmaya devam eder; ödeme, fatura adresi ve Hesabım normal akışta. Ürün sayfasını (görsel, açıklama) yalnız ürünü düzenleyebilenler görür, üstte "Gizli ürün" notuyla. Sepet ve sipariş satırında ürün bağlantısı çıkmaz.
+- Filtre `flxcm_hidden_product_redirect( $url, $product_id )`.
+
 ## 0.4.0
 - **Abonelikler**: basit ürüne aylık ve/veya yıllık fiyat verilir (ürün › Genel › Abonelik). Ürün sayfasında Aylık / Yıllık seçimi (yıllıkta tasarruf yüzdesi), düğme "Abone ol"; sepette ve siparişte "Ödeme dönemi" satırı. Fatura bilgileri normal ödeme akışından gelir; abonelikte hesap açmak zorunlu.
 - İlk sipariş ödenince abonelik başlar (Havale/EFT onayı dahil her yöntem). Dönem bitmeden 7 gün önce yenileme siparişi açılır, müşteriye banka bilgileri ya da ödeme bağlantısıyla e-posta gider; ödenmezse son gün bir hatırlatma daha. Dönem bitince 3 gün ek süre, sonra abonelik biter. Gün sayıları Mağaza › Ayarlar › Abonelikler'de.

@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.7.27
+- Ödeme sayfasında adres kartı ile ödeme/teslimat seçenekleri (Havale/EFT kutusu vb.) bej zemin yerine beyaz kart; koyu modda yüzey rengi.
+
 ## 0.7.26
 - Sistem kontrolünde Flux Certificates eklentisinin görünen adı "Flux PDF & Certificates" oldu (yalnız ad; slug, text domain ve güncelleme kimliği aynı).
 

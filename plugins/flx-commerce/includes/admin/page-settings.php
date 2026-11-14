@@ -96,6 +96,7 @@ final class FLXCM_Page_Settings {
 		echo '<p class="flxcm-muted">' . esc_html__( 'Tick "Subscription" on a simple product and enter a monthly and/or yearly price. Renewals are paid by bank transfer or through the payment link; automatic card charging comes later.', 'flx-commerce' ) . '</p>';
 		self::input( 'sub_renew_days', __( 'Create the renewal order (days before the period ends)', 'flx-commerce' ), 'number', __( 'The customer gets the reminder e-mail with the bank details or payment link at the same time, and once more on the last day if unpaid.', 'flx-commerce' ), 'min="0" max="60" class="small-text"' );
 		self::input( 'sub_grace_days', __( 'Grace period after the period ends (days)', 'flx-commerce' ), 'number', __( 'Access stays on while the renewal is unpaid; after this the subscription ends. 0 = ends on the last day.', 'flx-commerce' ), 'min="0" max="60" class="small-text"' );
+		self::input( 'hidden_redirect', __( 'Hidden products: send visitors to', 'flx-commerce' ), 'url', __( 'Where a customer goes when opening a hidden product page (e.g. your pricing page). Empty = home page.', 'flx-commerce' ), 'class="regular-text" placeholder="' . esc_attr( home_url( '/' ) ) . '"' );
 		echo '</section>';
 
 		// Feed.
@@ -146,6 +147,7 @@ final class FLXCM_Page_Settings {
 		$out['cancel_after_days']  = min( 60, absint( $in['cancel_after_days'] ?? 0 ) );
 		$out['sub_renew_days']     = min( 60, absint( $in['sub_renew_days'] ?? 7 ) );
 		$out['sub_grace_days']     = min( 60, absint( $in['sub_grace_days'] ?? 3 ) );
+		$out['hidden_redirect']    = esc_url_raw( trim( (string) ( $in['hidden_redirect'] ?? '' ) ) );
 		$out['feed_brand']         = sanitize_text_field( (string) ( $in['feed_brand'] ?? '' ) );
 		$out['notify_admin_phone'] = preg_replace( '/[^0-9+ ]/', '', (string) ( $in['notify_admin_phone'] ?? '' ) );
 		flxcm_save_settings( $out );

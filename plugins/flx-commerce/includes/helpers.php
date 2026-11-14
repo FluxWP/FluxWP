@@ -47,6 +47,7 @@ function flxcm_defaults() {
 			// Abonelikler.
 			'sub_renew_days'     => 7,
 			'sub_grace_days'     => 3,
+			'hidden_redirect'    => '',
 		)
 	);
 }

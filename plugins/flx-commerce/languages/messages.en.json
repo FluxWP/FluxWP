@@ -398,6 +398,11 @@
     "Cancel at period end": "Cancel at period end",
     "End this subscription now? Access closes immediately.": "End this subscription now? Access closes immediately.",
     "End now": "End now",
-    "Renew now": "Renew now"
+    "Renew now": "Renew now",
+    "Hidden product": "Hidden product",
+    "Not shown in the shop, search or sitemap; customers cannot open the product page. Sold only through a link (e.g. a pricing page). Only editors see the product page.": "Not shown in the shop, search or sitemap; customers cannot open the product page. Sold only through a link (e.g. a pricing page). Only editors see the product page.",
+    "Hidden product: only editors see this page. Customers buy it through a link.": "Hidden product: only editors see this page. Customers buy it through a link.",
+    "Hidden products: send visitors to": "Hidden products: send visitors to",
+    "Where a customer goes when opening a hidden product page (e.g. your pricing page). Empty = home page.": "Where a customer goes when opening a hidden product page (e.g. your pricing page). Empty = home page."
   }
 }

@@ -703,5 +703,10 @@ return array(
   'End this subscription now? Access closes immediately.' => 'Abonelik şimdi bitirilsin mi? Erişim hemen kapanır.',
   'End now' => 'Şimdi bitir',
   'Renew now' => 'Şimdi yenile',
+  'Hidden product' => 'Gizli ürün',
+  'Not shown in the shop, search or sitemap; customers cannot open the product page. Sold only through a link (e.g. a pricing page). Only editors see the product page.' => 'Mağazada, aramada ve site haritasında görünmez; müşteri ürün sayfasını açamaz. Yalnız bağlantıyla satılır (ör. fiyat sayfası). Ürün sayfasını yalnız yöneticiler görür.',
+  'Hidden product: only editors see this page. Customers buy it through a link.' => 'Gizli ürün: bu sayfayı yalnız yöneticiler görür. Müşteriler bağlantıyla satın alır.',
+  'Hidden products: send visitors to' => 'Gizli ürün sayfası açılınca git',
+  'Where a customer goes when opening a hidden product page (e.g. your pricing page). Empty = home page.' => 'Müşteri gizli bir ürünün sayfasını açarsa buraya yönlenir (ör. fiyat sayfanız). Boş = ana sayfa.',
  ),
 );
