@@ -1965,3 +1965,84 @@ msgstr ""
 
 msgid "Download failed (HTTP %1$d: %2$s). %3$s"
 msgstr ""
+
+msgid "%1$d of %2$d sites"
+msgstr ""
+
+msgid "%d sites connected"
+msgstr ""
+
+msgid "Another request is renewing the session. Try again in a moment."
+msgstr ""
+
+msgid "Checked %s"
+msgstr ""
+
+msgid "Connect your FluxWP account"
+msgstr ""
+
+msgid "Connected to your FluxWP account. Your plan's packages are on the Packages screen."
+msgstr ""
+
+msgid "Connected, plan %s."
+msgstr ""
+
+msgid "Connecting failed. Try again."
+msgstr ""
+
+msgid "Connecting was cancelled on FluxWP."
+msgstr ""
+
+msgid "Disconnect"
+msgstr ""
+
+msgid "Disconnected. Installed plugins keep working; updates of paid packages stop."
+msgstr ""
+
+msgid "FluxWP %1$s · %2$s"
+msgstr ""
+
+msgid "FluxWP account"
+msgstr ""
+
+msgid "FluxWP answered with HTTP %d."
+msgstr ""
+
+msgid "FluxWP could not be reached: %s"
+msgstr ""
+
+msgid "FluxWP did not return a key. Try again."
+msgstr ""
+
+msgid "Manage account"
+msgstr ""
+
+msgid "Not connected. Sign in with FluxWP to get the packages of your plan."
+msgstr ""
+
+msgid "Plan information refreshed."
+msgstr ""
+
+msgid "Refresh"
+msgstr ""
+
+msgid "Renews or ends on %s"
+msgstr ""
+
+msgid "Sets: %s"
+msgstr ""
+
+msgid "Sign in or sign up on fluxwp.com: this site gets its update key and the packages of your plan automatically. The Free plan needs no card."
+msgstr ""
+
+msgid "Sign in with FluxWP"
+msgstr ""
+
+msgid "Subscription ended: the Free plan applies, paid updates are paused."
+msgstr ""
+
+msgid "The sign-in link expired. Start again with \"Sign in with FluxWP\"."
+msgstr ""
+
+msgid "This site is not connected to a FluxWP account."
+msgstr ""

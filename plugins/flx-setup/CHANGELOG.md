@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 1.2.11
+- "FluxWP ile giriş yap": Ayarlar'ın en üstünde FluxWP hesabı kartı. Düğmeye basılınca fluxwp.com'da giriş ya da kayıt ekranı açılır (Google ya da e-posta), ilk girişte temel bilgiler istenir, onaydan sonra bu sayfaya dönülür. Site güncelleme anahtarını ve planının paketlerini kendiliğinden alır; elle anahtar girmek gerekmez.
+- Güvenlik: OAuth 2.1 + PKCE (doğrulayıcı yalnız bu sunucuda kalır, kod bir kez ve 10 dakika geçerli). 15 dakikalık imzalı erişim token'ı, 60 günlük ve her kullanımda yenilenen refresh token (şifreli saklanır, aynı anda tek yenileme).
+- Kartta plan, setler, bağlı site sayısı ve abonelik bitişi; "Hesabı yönet", "Yenile", "Bağlantıyı kes". Bağlantı kesilince bu hesabın verdiği anahtar silinir, kurulu eklentiler çalışmaya devam eder. Sistem kontrolünde "FluxWP hesabı" satırı.
+- Geliştirici: hesap sunucusu `FLX_CLOUD_URL` sabiti ya da `flxk_cloud_url` filtresiyle değişir (https; yerelde localhost). Ayarlar ekranına `flxu_settings_before` kancası.
+
 ## 1.2.10
 - Ön ayarlar: preset'teki medya dosyası değişince (yeni logo, site simgesi, görsel) sitedeki ek de yenilenir. Ek aynı kalır (profil, site simgesi ve sayfalar bağlı kalır), dosya yeni adla yüklenir, önbellekler eskisini göstermez. Dosyası sitede elle değiştirilmiş medyaya dokunulmaz; geri al eski dosyaya döner.
 - Ön ayar sürüm eşitlemesi artık medyayı da kapsar. Güncellemeden sonra bir kez tüm ön ayarlar medyaya bakılarak eşitlenir: eski logoda kalan siteler (Qurban Global) yeni logoyu alır.

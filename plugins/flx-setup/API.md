@@ -96,6 +96,15 @@ Sanitize callback'iniz kısmi diziyle de çağrılabilir (ön ayar, AI, yama yal
 - Filtreler: `flxk_telemetry_enabled` (bool), `flxk_telemetry_url`, `flxk_telemetry_payload` (array).
 - Önizleme: `FLXK_Telemetry::payload( false )` (kimlik üretmeden), temizleme kuralı `FLXK_Telemetry::scrub( $msg )`.
 
+## FluxWP hesabı (Flux Cloud)
+
+Ayarlar'daki "FluxWP ile giriş yap" kartı siteyi fluxwp.com hesabına bağlar (OAuth 2.1 + PKCE). Sözleşme: wp-extras `plugins/flx-cloud/docs/API.md`.
+
+- `FLXK_Cloud::connected()`: bağlı mı. `FLXK_Cloud::summary( $force = false )`: plan özeti (6 saat önbellek).
+- `FLXK_Cloud::access_token()`: geçerli JWT ya da `WP_Error`; süresi bitince refresh token ile yenilenir (tek seferde bir yenileme). FluxWP servislerine `Authorization: Bearer` ile gönderin; token tarayıcıya verilmez.
+- `flxk_cloud_url` filtresi / `FLX_CLOUD_URL` sabiti: hesap sunucusu (varsayılan https://fluxwp.com).
+- `flxu_settings_before`: Ayarlar ekranının en üstüne kart eklemek için.
+
 ## PHP fonksiyonları
 `flxk_presets()`, `flxk_get_preset( $id )`, `flxk_plan( $id, $data, $opts )`, `flxk_apply_preset( $id, 'apply'|'fill' )`, `flxk_apply_migration( $id, $mig )`, `flxk_sync_preset( $id, $force )`, `flxk_settings_schema()`, `flxk_remove_preset( $id )`, `flxk_revert_run( $run )`, `flxk_export( $args )`, `flxk_patch_preview( $patch )`, `flxk_patch_submit( $patch, $source, $note )`, `flxk_patch_apply( $id_or_patch )`.
 

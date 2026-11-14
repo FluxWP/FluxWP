@@ -912,6 +912,7 @@ final class FLXU_Admin {
 			<?php if ( 'saved' === $msg ) : ?>
 				<div class="notice notice-success is-dismissible"><p><?php esc_html_e( 'Settings saved and updates checked.', 'flx-setup' ); ?></p></div>
 			<?php endif; ?>
+			<?php do_action( 'flxu_settings_before' ); ?>
 			<?php self::status_card( FLXU_Updater::status(), FLXU_Updater::instance()->catalog() ); ?>
 			<?php self::connection_form( FLXU_Updater::settings() ); ?>
 			<?php self::sources_section( $msg ); ?>
