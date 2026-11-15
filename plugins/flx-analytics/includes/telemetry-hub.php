@@ -310,7 +310,7 @@ class FLXAN_Telemetry_Hub {
 	}
 
 	/** Ülke adı (site dilinde). */
-	private static function cc_name( $cc ) {
+	public static function cc_name( $cc ) {
 		if ( '' === $cc || '?' === $cc ) {
 			return __( 'Unknown', 'flx-analytics' );
 		}
@@ -634,7 +634,7 @@ class FLXAN_Telemetry_Hub {
 	}
 
 	/** Paket adı: FluxWP Panel kataloğundan (kuruluysa), yoksa slug. */
-	private static function name( $slug ) {
+	public static function name( $slug ) {
 		static $names = null;
 		if ( null === $names ) {
 			$names = array();
@@ -659,7 +659,7 @@ class FLXAN_Telemetry_Hub {
 		return ( $names[ $s ] ?? $s ) . ( $theme ? ' ' . __( '(theme)', 'flx-analytics' ) : '' );
 	}
 
-	private static function step_name( $key ) {
+	public static function step_name( $key ) {
 		$map = array(
 			'intro'      => __( 'Intro', 'flx-analytics' ),
 			'base'       => __( 'Where to start?', 'flx-analytics' ),
