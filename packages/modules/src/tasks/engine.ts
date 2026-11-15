@@ -4,5 +4,5 @@ import { tt } from './i18n';
 
 setTaskLabels(tt);
 
-export { FlxgEngine, useEngineVersion, store, rank, norm, cmpStr, between, parseDay, dayKey, today, addDays } from '@fluxwp/runtime/src/modules/tasks/engine';
-export type { FlxgState, Group, Route, Scope } from '@fluxwp/runtime/src/modules/tasks/engine';
+export { FlxgEngine, useEngineVersion, store, rank, norm, cmpStr, between, parseDay, dayKey, today, addDays, PLAIN_PAGES } from '@fluxwp/runtime/src/modules/tasks/engine';
+export type { FlxgDocRef, FlxgState, Group, Route, RoutePage, Scope } from '@fluxwp/runtime/src/modules/tasks/engine';

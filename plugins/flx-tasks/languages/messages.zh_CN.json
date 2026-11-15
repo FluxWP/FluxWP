@@ -901,6 +901,15 @@
     "Flux AI & MCP": "Flux AI & MCP",
     "Flux Tasks tools are available through Flux AI & MCP.": "Flux Tasks 工具通过 Flux AI & MCP 提供。",
     "Flux Tasks tools require Flux AI & MCP.": "Flux Tasks 工具需要 Flux AI & MCP。",
-    "MCP": "MCP"
+    "MCP": "MCP",
+    "New chat": "新对话",
+    "Open full screen": "全屏打开",
+    "Hi! What should we do with your tasks? You can also attach meeting notes or a PDF and say \"create tasks from this\".": "你好！要对你的任务做些什么？你也可以附上会议记录或 PDF，然后说“根据这个创建任务”。",
+    "Interface": "界面",
+    "The new view is the same screen as FluxApp, with every feature.": "新视图与 FluxApp 是同一界面，包含全部功能。",
+    "Switch to the new view": "切换到新视图",
+    "Classic view": "经典视图",
+    "This screen is the same as FluxApp. The classic view stays available for a while.": "此界面与 FluxApp 相同。经典视图还会保留一段时间。",
+    "Could not start a chat.": "无法开始对话。"
   }
 }

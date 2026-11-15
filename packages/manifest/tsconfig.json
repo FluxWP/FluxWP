@@ -1,1 +1,1 @@
-{ "extends": "../../tsconfig.base.json", "compilerOptions": { "types": [] }, "include": ["src", "fixtures/*.json"], "exclude": ["src/**/*.test.ts"] }
+{ "extends": "../../tsconfig.strict.json", "compilerOptions": { "types": [] }, "include": ["src", "fixtures/*.json"], "exclude": ["src/**/*.test.ts"] }

@@ -1,0 +1,57 @@
+name: PHPStan
+
+# strict: Flux GraphQL and migrated package folders, level max (tools/phpstan/phpstan.neon).
+# legacy: every other plugin and theme, level 5; known errors are frozen in tools/phpstan/legacy-baseline.neon,
+# so only new errors fail.
+
+on:
+  pull_request:
+    paths:
+      - 'plugins/**.php'
+      - 'themes/**.php'
+      - 'tools/brand/**.php'
+      - 'tools/phpstan/**'
+      - '.github/workflows/phpstan.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'plugins/**.php'
+      - 'themes/**.php'
+      - 'tools/brand/**.php'
+      - 'tools/phpstan/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: phpstan-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  analyse:
+    name: ${{ matrix.config }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        config: [strict, legacy]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer
+          coverage: none
+      - name: Install PHPStan
+        working-directory: tools/phpstan
+        run: composer install --no-interaction --no-progress
+      - uses: actions/cache@v4
+        with:
+          path: tools/phpstan/.cache
+          key: phpstan-${{ matrix.config }}-${{ github.sha }}
+          restore-keys: phpstan-${{ matrix.config }}-
+      - name: Analyse
+        run: |
+          if [ "${{ matrix.config }}" = strict ]; then cfg=phpstan.neon; else cfg=legacy.neon; fi
+          php -d memory_limit=4G tools/phpstan/vendor/bin/phpstan analyse -c "tools/phpstan/$cfg" --no-progress --error-format=github

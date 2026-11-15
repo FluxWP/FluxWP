@@ -1,0 +1,119 @@
+<?php
+
+namespace WPGraphQL\Admin;
+
+use WPGraphQL\Admin\Extensions\Extensions;
+use WPGraphQL\Admin\GraphiQL\GraphiQL;
+use WPGraphQL\Admin\Settings\Settings;
+use WPGraphQL\Admin\SettingsReview\SettingsReview;
+use WPGraphQL\Admin\SiteHealth\SiteHealth;
+
+/**
+ * Class Admin
+ *
+ * @package WPGraphQL\Admin
+ */
+class Admin {
+
+	/**
+	 * Whether Admin Pages are enabled or not
+	 *
+	 * @var bool
+	 */
+	protected $admin_enabled;
+
+	/**
+	 * Whether GraphiQL is enabled or not
+	 *
+	 * @var bool|string
+	 */
+	protected $graphiql_enabled;
+
+	/**
+	 * @var \WPGraphQL\Admin\Settings\Settings
+	 */
+	protected $settings;
+
+	/**
+	 * @var \WPGraphQL\Admin\Extensions\Extensions
+	 */
+	protected $extensions;
+
+	/**
+	 * @var \WPGraphQL\Admin\SettingsReview\SettingsReview
+	 */
+	protected $settings_review;
+
+	/**
+	 * @var \WPGraphQL\Admin\SiteHealth\SiteHealth
+	 */
+	protected $site_health;
+
+	/**
+	 * Initialize Admin functionality for WPGraphQL
+	 *
+	 * @return void
+	 */
+	public function init() {
+
+		// Determine whether the admin pages should show or not.
+		// Default is enabled.
+		/**
+		 * Filters whether WPGraphQL admin pages should be visible.
+		 *
+		 * @param bool $show_admin Whether WPGraphQL admin pages should be visible.
+		 * @hookGroup settings
+		 * @since 0.13.0
+		 */
+		$this->admin_enabled = apply_filters( 'graphql_show_admin', true );
+		/**
+		 * Filters whether the embedded GraphiQL IDE should be enabled.
+		 *
+		 * @param bool|string $graphiql_enabled Whether GraphiQL should be enabled.
+		 * @hookGroup settings
+		 * @since 0.13.0
+		 */
+		$this->graphiql_enabled = apply_filters( 'graphql_enable_graphiql', get_graphql_setting( 'graphiql_enabled', true ) );
+
+		// The settings review invitation must be registered before the admin notices initialize.
+		// There's nowhere to send administrators when the admin pages are disabled.
+		if ( false !== $this->admin_enabled ) {
+			SettingsReview::register_admin_notice();
+		}
+
+		AdminNotices::get_instance();
+
+		// This removes the menu page for WPGraphiQL as it's now built into WPGraphQL
+		if ( $this->graphiql_enabled ) {
+			add_action(
+				'admin_menu',
+				static function () {
+					remove_menu_page( 'wp-graphiql/wp-graphiql.php' );
+				}
+			);
+		}
+
+		// If the admin is disabled, prevent admin from being scaffolded.
+		if ( false === $this->admin_enabled ) {
+			return;
+		}
+
+		$this->settings = new Settings();
+		$this->settings->init();
+
+		if ( 'on' === $this->graphiql_enabled || true === $this->graphiql_enabled ) {
+			global $graphiql;
+			$graphiql = new GraphiQL();
+			$graphiql->init();
+		}
+
+		$this->extensions = new Extensions();
+		$this->extensions->init();
+
+		$this->settings_review = new SettingsReview( $this->settings->settings_api );
+		$this->settings_review->init();
+
+		$this->site_health = new SiteHealth();
+		$this->site_health->init();
+	}
+}

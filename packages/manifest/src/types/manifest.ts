@@ -265,6 +265,6 @@ export interface Manifest {
 
 /** GET flxapp/v1/manifest */
 export interface ManifestBundle {
-  hash?: string;
+  hash?: string | undefined;
   modules: Record<string, Manifest>;
 }

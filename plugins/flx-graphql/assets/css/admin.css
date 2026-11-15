@@ -1,0 +1,64 @@
+/* Settings › Flux GraphQL. Scoped to .flxgql; light + dark (device, FluxWP theme, Flux Admin). */
+.flxgql {
+	--flxgql-bg: #fff;
+	--flxgql-fg: #1d2327;
+	--flxgql-muted: #50575e;
+	--flxgql-border: #dcdcde;
+	--flxgql-ok: #1a7f37;
+	--flxgql-warn: #9a6700;
+	--flxgql-bad: #cf222e;
+	--flxgql-code: #f6f7f7;
+	max-width: 1180px;
+}
+@media (prefers-color-scheme: dark) {
+	body.flx-dark .flxgql {
+		--flxgql-bg: #1e2126;
+		--flxgql-fg: #e6e8eb;
+		--flxgql-muted: #a7adb5;
+		--flxgql-border: #343a42;
+		--flxgql-ok: #3fb950;
+		--flxgql-warn: #d29922;
+		--flxgql-bad: #f85149;
+		--flxgql-code: #2a2f36;
+	}
+}
+html.flxa-dark .flxgql {
+	--flxgql-bg: #1e2126;
+	--flxgql-fg: #e6e8eb;
+	--flxgql-muted: #a7adb5;
+	--flxgql-border: #343a42;
+	--flxgql-ok: #3fb950;
+	--flxgql-warn: #d29922;
+	--flxgql-bad: #f85149;
+	--flxgql-code: #2a2f36;
+}
+.flxgql .flxgql-lead { color: var(--flxgql-muted); max-width: 70ch; font-size: 14px; }
+.flxgql .flxgql-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 20px; align-items: start; margin-top: 16px; }
+.flxgql .flxgql-card { background: var(--flxgql-bg); color: var(--flxgql-fg); border: 1px solid var(--flxgql-border); border-radius: 10px; padding: 18px 20px; }
+.flxgql .flxgql-card h2 { margin: 0 0 12px; font-size: 15px; color: var(--flxgql-fg); }
+.flxgql .flxgql-card h2:not(:first-of-type) { margin-top: 22px; }
+.flxgql .flxgql-facts { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 8px 14px; margin: 0 0 14px; }
+.flxgql .flxgql-facts dt { color: var(--flxgql-muted); }
+.flxgql .flxgql-facts dd { margin: 0; overflow-wrap: anywhere; }
+.flxgql .flxgql-facts code { background: var(--flxgql-code); color: var(--flxgql-fg); padding: 2px 6px; border-radius: 4px; }
+.flxgql .flxgql-pill { display: inline-block; margin-left: 6px; padding: 1px 8px; border-radius: 99px; font-size: 12px; font-weight: 600; border: 1px solid currentColor; }
+.flxgql .flxgql-pill--ok { color: var(--flxgql-ok); }
+.flxgql .flxgql-pill--bad { color: var(--flxgql-bad); }
+.flxgql .flxgql-rows { margin: 14px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--flxgql-border); }
+.flxgql .flxgql-row { display: grid; gap: 2px; padding: 10px 0 10px 14px; border-bottom: 1px solid var(--flxgql-border); position: relative; }
+.flxgql .flxgql-row::before { content: ""; position: absolute; left: 0; top: 15px; width: 8px; height: 8px; border-radius: 50%; background: var(--flxgql-muted); }
+.flxgql .flxgql-row--ok::before { background: var(--flxgql-ok); }
+.flxgql .flxgql-row--warning::before { background: var(--flxgql-warn); }
+.flxgql .flxgql-row--error::before { background: var(--flxgql-bad); }
+.flxgql .flxgql-row span { color: var(--flxgql-muted); }
+.flxgql .flxgql-checks { display: grid; gap: 10px; margin: 14px 0 4px; }
+.flxgql .flxgql-limits { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.flxgql .flxgql-hint { color: var(--flxgql-muted); }
+@media (max-width: 960px) {
+	.flxgql .flxgql-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 600px) {
+	.flxgql .flxgql-limits { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.flxgql .flxgql-facts { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+	.flxgql .flxgql-facts dd { margin-bottom: 8px; }
+}

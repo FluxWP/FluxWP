@@ -1,0 +1,6 @@
+mutation FlxTaskCreate($input: FlxTaskCreateInput!) {
+  flxTaskCreate(input: $input) {
+    task { ...FlxTaskRow }
+    errors { code message field }
+  }
+}

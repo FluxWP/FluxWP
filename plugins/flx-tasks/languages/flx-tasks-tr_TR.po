@@ -2700,3 +2700,18 @@ msgstr "Merhaba! Görevlerle ilgili ne yapalım? Toplantı notu ya da PDF ekleyi
 
 msgid "Could not start a chat."
 msgstr "Sohbet başlatılamadı."
+
+msgid "Interface"
+msgstr "Arayüz"
+
+msgid "The new view is the same screen as FluxApp, with every feature."
+msgstr "Yeni görünüm FluxApp ile aynı ekrandır, tüm özellikler orada."
+
+msgid "Switch to the new view"
+msgstr "Yeni görünüme geç"
+
+msgid "Classic view"
+msgstr "Klasik görünüm"
+
+msgid "This screen is the same as FluxApp. The classic view stays available for a while."
+msgstr "Bu ekran FluxApp ile aynıdır. Klasik görünüm bir süre daha kullanılabilir."

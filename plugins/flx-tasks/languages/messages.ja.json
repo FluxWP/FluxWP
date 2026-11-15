@@ -901,6 +901,15 @@
     "Flux AI & MCP": "Flux AI & MCP",
     "Flux Tasks tools are available through Flux AI & MCP.": "Flux Tasks のツールは Flux AI & MCP から使えます。",
     "Flux Tasks tools require Flux AI & MCP.": "Flux Tasks のツールには Flux AI & MCP が必要です。",
-    "MCP": "MCP"
+    "MCP": "MCP",
+    "New chat": "新しいチャット",
+    "Open full screen": "全画面で開く",
+    "Hi! What should we do with your tasks? You can also attach meeting notes or a PDF and say \"create tasks from this\".": "こんにちは！タスクについて何をしましょうか？会議メモやPDFを添付して「ここからタスクを作成して」と言うこともできます。",
+    "Interface": "インターフェース",
+    "The new view is the same screen as FluxApp, with every feature.": "新しい表示は FluxApp と同じ画面で、すべての機能があります。",
+    "Switch to the new view": "新しい表示に切り替える",
+    "Classic view": "クラシック表示",
+    "This screen is the same as FluxApp. The classic view stays available for a while.": "この画面は FluxApp と同じです。クラシック表示はしばらく引き続き使えます。",
+    "Could not start a chat.": "チャットを開始できませんでした。"
   }
 }

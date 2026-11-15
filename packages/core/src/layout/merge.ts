@@ -3,14 +3,14 @@ import type { MenuItem, ModuleInfo } from '../api/types';
 
 export interface LayoutPrefs {
   /** Üst menü id sırası; listede olmayanlar sunucu sırasıyla sona eklenir. */
-  order?: string[];
-  hidden?: string[];
-  pinned?: string[];
+  order?: string[] | undefined;
+  hidden?: string[] | undefined;
+  pinned?: string[] | undefined;
   /** Yerel ekranı olsa da web görünümünde açılacak modüller. */
-  forceWeb?: string[];
+  forceWeb?: string[] | undefined;
   /** Dashboard kart sırası ve gizlenenler (kart id). */
-  cardOrder?: string[];
-  cardHidden?: string[];
+  cardOrder?: string[] | undefined;
+  cardHidden?: string[] | undefined;
 }
 
 export interface NavItem {
@@ -18,16 +18,16 @@ export interface NavItem {
   title: string;
   icon: string;
   /** WP menü slug'ı (ikon yoksa slug'dan ikon seçilir). */
-  slug?: string;
-  iconUrl?: string;
-  badge?: number | string;
+  slug?: string | undefined;
+  iconUrl?: string | undefined;
+  badge?: number | string | undefined;
   /** native: uygulamanın kendi ekranı, web: panel sayfası. */
   kind: 'native' | 'web';
-  moduleId?: string;
+  moduleId?: string | undefined;
   /** wp-admin göreli yol (session ucu için), ör. admin.php?page=flx-tasks */
   path: string;
   url: string;
-  children: { id: string; title: string; path: string; url: string; badge?: number | string }[];
+  children: { id: string; title: string; path: string; url: string; badge?: number | string | undefined }[];
   hidden: boolean;
   pinned: boolean;
 }
@@ -38,7 +38,7 @@ export function adminPath(url: string): string {
   return i < 0 ? url : url.slice(i + 10) || 'index.php';
 }
 
-const pick = <K extends keyof LayoutPrefs>(k: K, user?: LayoutPrefs, site?: LayoutPrefs): LayoutPrefs[K] =>
+const pick = <K extends keyof LayoutPrefs>(k: K, user?: LayoutPrefs, site?: LayoutPrefs): LayoutPrefs[K] | undefined =>
   user?.[k] !== undefined ? user[k] : site?.[k];
 
 export function mergeLayout(input: {

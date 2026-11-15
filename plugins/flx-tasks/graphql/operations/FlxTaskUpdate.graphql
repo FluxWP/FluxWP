@@ -1,0 +1,6 @@
+mutation FlxTaskUpdate($input: FlxTaskUpdateInput!) {
+  flxTaskUpdate(input: $input) {
+    task { ...FlxTaskRow }
+    errors { code message field }
+  }
+}

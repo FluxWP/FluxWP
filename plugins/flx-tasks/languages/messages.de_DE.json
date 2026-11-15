@@ -901,6 +901,15 @@
     "Flux AI & MCP": "Flux AI & MCP",
     "Flux Tasks tools are available through Flux AI & MCP.": "Flux Tasks-Werkzeuge sind über Flux AI & MCP verfügbar.",
     "Flux Tasks tools require Flux AI & MCP.": "Flux Tasks-Werkzeuge benötigen Flux AI & MCP.",
-    "MCP": "MCP"
+    "MCP": "MCP",
+    "New chat": "Neuer Chat",
+    "Open full screen": "Im Vollbild öffnen",
+    "Hi! What should we do with your tasks? You can also attach meeting notes or a PDF and say \"create tasks from this\".": "Hallo! Was sollen wir mit deinen Aufgaben machen? Du kannst auch Besprechungsnotizen oder ein PDF anhängen und „erstelle daraus Aufgaben“ sagen.",
+    "Interface": "Oberfläche",
+    "The new view is the same screen as FluxApp, with every feature.": "Die neue Ansicht ist derselbe Bildschirm wie in FluxApp, mit allen Funktionen.",
+    "Switch to the new view": "Zur neuen Ansicht wechseln",
+    "Classic view": "Klassische Ansicht",
+    "This screen is the same as FluxApp. The classic view stays available for a while.": "Dieser Bildschirm ist derselbe wie in FluxApp. Die klassische Ansicht bleibt noch eine Weile verfügbar.",
+    "Could not start a chat.": "Der Chat konnte nicht gestartet werden."
   }
 }

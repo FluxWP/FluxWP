@@ -85,10 +85,10 @@ describe('schemas', () => {
   });
 
   it('rejects absolute source paths and a sixth tab', () => {
-    const m = structuredClone(bundle.modules.crm) as Record<string, any>;
+    const m = structuredClone(bundle.modules.crm) as unknown as { sources: { stats: { path: string } } };
     m.sources.stats.path = 'https://evil.example/x';
     expect(parseManifest(m)).toBeNull();
-    const c = structuredClone(config) as Record<string, any>;
+    const c = structuredClone(config) as unknown as { shell: { tabs: unknown[] } };
     c.shell.tabs = [...c.shell.tabs, { id: 'x', target: 'more' }];
     expect(parseConfig(c)).toBeNull();
   });

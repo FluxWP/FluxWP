@@ -1034,6 +1034,11 @@
 		var inner = h('.flxg-page-inner');
 		R.main.appendChild(h('.flxg-content.is-page', inner));
 		var mode = store('theme') || 'auto';
+		if (B.fluxUrl) inner.appendChild(h('section.flxg-card-box',
+			h('h3', t('Arayüz')),
+			h('p.flxg-muted', t('Yeni görünüm FluxApp ile aynı ekrandır, tüm özellikler orada.')),
+			h('a.flxg-btn.is-primary', { href: B.fluxUrl }, t('Yeni görünüme geç'))
+		));
 		inner.appendChild(h('section.flxg-card-box',
 			h('.flxg-profile-head', Y.avatar(S.me, 48), h('div', h('b', S.me.name), h('span.flxg-muted', t('Profil fotoğrafı ve adı WordPress profilinden gelir.')))),
 			h('h3', t('Tema')),

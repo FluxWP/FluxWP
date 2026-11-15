@@ -2,9 +2,13 @@
 // görünüm sekmeleri, araç çubuğu, liste/pano/takvim, bildirim kutusu, görev penceresi. WP ile aynı tasarım (flxg.css).
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { flxg, trimEnd, type FlxgList, type FlxgNotif, type FlxgView } from '@fluxwp/core';
+import { type FlxgList, type FlxgNotif, type FlxgView } from '@fluxwp/core';
+import { flxgGraphQL } from '@fluxwp/graphql/flx-tasks';
 import { useHost } from '../host';
-import { addDays, dayKey, rank, store, FlxgEngine, type Route } from './engine';
+import { addDays, dayKey, rank, store, FlxgEngine, type FlxgDocRef, type Route } from './engine';
+import { addMenu, folderMenu, listMenu, listSettings, spaceMenu, spaceModal, tree, treeDragProps, treeDropProps } from './admin';
+import { AiPanel, DashboardPage, openAI, ProfilePage, SettingsPage, themeMenu, useThemeMode } from './pages';
+import { DocPage, docMenu, newDoc, useDocBridge } from './docs';
 import { setYtgLang, tt, flxgLocale } from './i18n';
 import { ago, Avatar, fullTime, Ic, Layer, Ui, FlxgCtx, useYtg, type Ctx } from './ui';
 import { BoardView, BulkBar, CalendarView, EmptyState, ListView, quickCreate, Toolbar } from './views';
@@ -16,13 +20,13 @@ const cls = (...a: (string | false | null | undefined | 0)[]) => a.filter(Boolea
 /* ---------------- Adres ⇄ yönlendirme (WP'de #/list/3/v/5/t/9, uygulamada yerel kayıt) ---------------- */
 function parseHash(h: string): Partial<Route> {
   const p = h.replace(/^#\/?/, '').split('/');
-  const r: Partial<Route> = { page: 'home', id: 0, view: 0, task: 0 };
+  const r: Partial<Route> = { page: 'home', id: 0, view: 0, task: 0, pg: 0 };
   let i = 0;
-  if (p[0] === 'list' || p[0] === 'space') {
+  if (p[0] === 'list' || p[0] === 'space' || p[0] === 'doc') {
     r.page = p[0];
     r.id = +(p[1] ?? 0);
     i = 2;
-  } else if (p[0] === 'inbox' || p[0] === 'home') {
+  } else if (p[0] === 'inbox' || p[0] === 'home' || p[0] === 'dashboard' || p[0] === 'settings' || p[0] === 'profile') {
     r.page = p[0];
     i = 1;
   } else if (p[0] === 'task') {
@@ -32,18 +36,21 @@ function parseHash(h: string): Partial<Route> {
   while (i < p.length) {
     if (p[i] === 'v') r.view = +(p[i + 1] ?? 0);
     if (p[i] === 't') r.task = +(p[i + 1] ?? 0);
+    if (p[i] === 'p') r.pg = +(p[i + 1] ?? 0);
     i += 2;
   }
   return r;
 }
 function toHash(r: Route) {
-  let h = '#/' + (r.page === 'list' || r.page === 'space' ? r.page + '/' + r.id : r.page);
-  if (r.view && r.page !== 'inbox') h += '/v/' + r.view;
+  let h = '#/' + (r.page === 'list' || r.page === 'space' || r.page === 'doc' ? r.page + '/' + r.id : r.page);
+  if (r.view && (r.page === 'list' || r.page === 'space' || r.page === 'home')) h += '/v/' + r.view;
+  if (r.page === 'doc' && r.pg) h += '/p/' + r.pg;
   if (r.task) h += '/t/' + r.task;
   return h;
 }
 
 function useTheme(ref: React.RefObject<HTMLElement | null>) {
+  const mode = useThemeMode();
   const read = () => {
     const el = ref.current?.parentElement?.closest<HTMLElement>('[data-theme]') ?? document.documentElement;
     const v = el.dataset.theme;
@@ -64,7 +71,7 @@ function useTheme(ref: React.RefObject<HTMLElement | null>) {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  return theme;
+  return mode === 'auto' ? theme : mode;
 }
 
 export function TasksScreen() {
@@ -74,11 +81,19 @@ export function TasksScreen() {
   const rootRef = useRef<HTMLDivElement>(null);
   const theme = useTheme(rootRef);
   const c = useMemo<Ctx>(() => {
-    const initial = host.mode === 'wp' ? parseHash(location.hash) : (store.json<Partial<Route>>('route-' + host.scope) ?? {});
-    const e = new FlxgEngine(flxg(host.client), initial);
+    const fromWp = () => {
+      if (location.hash.length > 2) return parseHash(location.hash);
+      if (host.startPage === 'dashboard' || host.startPage === 'settings') return { page: host.startPage } as Partial<Route>;
+      // Son açılan liste/proje.
+      const m = /^(list|space):(\d+)$/.exec(store.get('last') ?? '');
+      return m ? ({ page: m[1], id: +m[2]! } as Partial<Route>) : {};
+    };
+    const initial = host.mode === 'wp' ? fromWp() : (store.json<Partial<Route>>('route-' + host.scope) ?? {});
+    const e = new FlxgEngine(flxgGraphQL(host.client), initial);
     const ui = new Ui();
     e.onError = ui.fail;
     e.onRoute = (r) => {
+      if (r.page === 'list' || r.page === 'space') store.set('last', r.page + ':' + r.id);
       if (host.mode === 'wp') {
         const h = toHash(r);
         if (location.hash !== h) history.replaceState(null, '', h);
@@ -116,6 +131,7 @@ function Shell({ rootRef, theme }: { rootRef: React.RefObject<HTMLDivElement | n
   const c = useYtg();
   const { e } = c;
   const S = e.S;
+  const host = useHost();
   const [sideCol, setSideCol] = useState(() => store.get('side-col') === '1');
   const [navOpen, setNavOpen] = useState(false);
   const [sideW, setSideW] = useState(() => {
@@ -136,6 +152,25 @@ function Shell({ rootRef, theme }: { rootRef: React.RefObject<HTMLDivElement | n
   const closeNav = () => setNavOpen(false);
   useEffect(closeNav, [S.route.page, S.route.id]);
 
+  useDocBridge(toggleSide);
+  // Kısayollar (WP ile aynı): n yeni görev, / arama.
+  useEffect(() => {
+    const on = (ev: KeyboardEvent) => {
+      const a = document.activeElement as HTMLElement | null;
+      if (a && (a.isContentEditable || /INPUT|TEXTAREA|SELECT/.test(a.tagName))) return;
+      if (ev.ctrlKey || ev.metaKey || ev.altKey || !e.S.scope || c.ui.pop || c.ui.modals.length) return;
+      const root = rootRef.current;
+      if (!root || !root.isConnected) return;
+      if (ev.key === 'n') (ev.preventDefault(), quickCreate(c));
+      if (ev.key === '/') {
+        const sr = root.querySelector<HTMLInputElement>('.flxg-search');
+        if (sr) (ev.preventDefault(), sr.focus());
+      }
+    };
+    document.addEventListener('keydown', on);
+    return () => document.removeEventListener('keydown', on);
+  }, [c, e, rootRef]);
+  const top = ({ title, extra }: { title: ReactNode; extra?: ReactNode }) => <TopBar title={title} extra={extra} toggleSide={toggleSide} mobile={mobile} />;
   let main: ReactNode;
   if (S.error && !S.ready)
     main = (
@@ -151,6 +186,10 @@ function Shell({ rootRef, theme }: { rootRef: React.RefObject<HTMLDivElement | n
     );
   else if (!S.ready) main = <Skeleton />;
   else if (S.route.page === 'inbox') main = <Inbox toggleSide={toggleSide} mobile={mobile} />;
+  else if (S.route.page === 'dashboard') main = <DashboardPage Top={top} />;
+  else if (S.route.page === 'settings') main = <SettingsPage Top={top} />;
+  else if (S.route.page === 'profile') main = <ProfilePage Top={top} />;
+  else if (S.route.page === 'doc') main = <DocPage key={S.route.id} Top={top} toggleSide={toggleSide} />;
   else main = <ScopePage toggleSide={toggleSide} mobile={mobile} />;
 
   return (
@@ -168,6 +207,7 @@ function Shell({ rootRef, theme }: { rootRef: React.RefObject<HTMLDivElement | n
         <main className="flxg-main">{main}</main>
       </div>
       {S.ready && <TaskDrawer />}
+      {S.ready && <AiPanel embed={!!host.aiEmbed} dark={theme === 'dark'} />}
       <Layer theme={theme} />
     </div>
   );
@@ -186,16 +226,15 @@ function Skeleton() {
 }
 
 /* ---------------- Sol menü ---------------- */
-function useCollapsedMap(key: string) {
-  const [m, setM] = useState<Record<string, 1>>(() => store.json<Record<string, 1>>(key) ?? {});
-  const set = (k: string | number, v: boolean) => {
-    const n = { ...m };
-    if (v) n[k] = 1;
-    else delete n[k];
-    store.set(key, JSON.stringify(n));
-    setM(n);
-  };
-  return [m, set] as const;
+function useTreeMap(k: 'sp-open' | 'collapsed') {
+  const m = useSyncExternalStore(tree.subscribe, () => store.get(k) ?? '{}', () => '{}');
+  return useMemo(() => {
+    try {
+      return JSON.parse(m) as Record<string, 1>;
+    } catch {
+      return {};
+    }
+  }, [m]);
 }
 function Side({ closeNav, hide, setW, setResizing, collapse }: { closeNav: () => void; hide: () => void; setW: (w: number) => void; setResizing: (b: boolean) => void; collapse: () => void }) {
   const c = useYtg();
@@ -204,48 +243,71 @@ function Side({ closeNav, hide, setW, setResizing, collapse }: { closeNav: () =>
   const host = useHost();
   const r = S.route;
   const sideRef = useRef<HTMLElement>(null);
-  const [spOpen, setSpOpen] = useCollapsedMap('sp-open');
-  const [col, setColl] = useCollapsedMap('collapsed');
-  // O an açık listenin projesi (ve klasörü) açılır.
+  const spOpen = useTreeMap('sp-open');
+  const col = useTreeMap('collapsed');
+  const [treeDrag, setTreeDrag] = useState(false);
+  // Yeni bir sayfaya gelince o sayfanın projesi (ve klasörü) açılır; sonra kullanıcı kapatabilir.
   const auto = useRef('');
   useEffect(() => {
     const key = r.page + r.id;
     if (auto.current === key) return;
     auto.current = key;
-    const l = r.page === 'list' ? e.list(r.id) : null;
-    const sid = r.page === 'space' ? r.id : l ? l.space_id : 0;
-    if (sid && !spOpen[sid]) setSpOpen(sid, true);
-    if (l?.folder_id && col['f' + l.folder_id]) setColl('f' + l.folder_id, false);
+    const obj = r.page === 'list' ? e.list(r.id) : r.page === 'doc' ? e.doc(r.id) : null;
+    const sid = r.page === 'space' ? r.id : obj ? obj.space_id : 0;
+    if (sid && !spOpen[sid]) tree.set('sp-open', sid, true);
+    if (obj?.folder_id && col['f' + obj.folder_id]) tree.set('collapsed', 'f' + obj.folder_id, false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [r.page, r.id]);
   const go = (route: Partial<Route>) => {
     closeNav();
     void e.go(route);
   };
-  const site = host.siteUrl ? trimEnd(host.siteUrl) + '/wp-admin/admin.php?page=flx-tasks' : '';
-  const webMenu = (anchor: HTMLElement, hash: string) =>
-    c.ui.menu(anchor, [{ label: tt("Open in web panel (settings, members)"), icon: 'settings', onClick: () => host.openUrl(site + hash) }]);
+  const mkDoc = (space: number, folder: number) => newDoc(c, space, folder);
   const listRow = (l: FlxgList) => (
-    <div key={l.id} className={cls('flxg-tree-row', 'is-list', r.page === 'list' && r.id === l.id && 'is-active')}>
+    <div
+      key={'l' + l.id}
+      className={cls('flxg-tree-row', 'is-list', r.page === 'list' && r.id === l.id && 'is-active')}
+      {...(rank(l.role) >= 4 ? treeDragProps({ list: l }, setTreeDrag) : {})}
+    >
       <a className="flxg-tree-link" href={'#/list/' + l.id} onClick={(ev) => (ev.preventDefault(), go({ page: 'list', id: l.id }))}>
         {l.kind === 'meeting' ? <Ic n="meeting" s={14} /> : <span className="flxg-dot" style={{ background: l.color }} />}
         <span className="flxg-tree-name">{l.name}</span>
         {l.access === 'members' && <Ic n="lock" s={12} cls="flxg-lock" />}
       </a>
-      {rank(l.role) >= 4 && site && (
-        <button type="button" className="flxg-icon-btn is-sm flxg-tree-more" aria-label={tt("List menu")} onClick={(ev) => webMenu(ev.currentTarget, '#/list/' + l.id)}>
+      {rank(l.role) >= 4 && (
+        <button type="button" className="flxg-icon-btn is-sm flxg-tree-more" aria-label={tt("List menu")} onClick={(ev) => listMenu(c, ev.currentTarget, l)}>
+          <Ic n="dots" s={15} />
+        </button>
+      )}
+    </div>
+  );
+  const docRow = (d: FlxgDocRef) => (
+    <div key={'d' + d.id} className={cls('flxg-tree-row', 'is-list', 'is-doc', r.page === 'doc' && r.id === d.id && 'is-active')}>
+      <a className="flxg-tree-link" href={'#/doc/' + d.id} onClick={(ev) => (ev.preventDefault(), go({ page: 'doc', id: d.id }))}>
+        <Ic n="doc" s={15} cls="flxg-doc-tic" />
+        <span className="flxg-tree-name">{d.title}</span>
+      </a>
+      {rank(d.role) >= 3 && (
+        <button type="button" className="flxg-icon-btn is-sm flxg-tree-more" aria-label={tt("Document menu")} onClick={(ev) => docMenu(c, ev.currentTarget, d)}>
           <Ic n="dots" s={15} />
         </button>
       )}
     </div>
   );
   const unread = S.unread;
+  const can = S.me?.can;
+  const canSort = S.spaces.length > 1;
+  const mode = useThemeMode();
   return (
-    <aside ref={sideRef} className="flxg-side">
+    <aside ref={sideRef} className={cls('flxg-side', treeDrag && 'is-tree-drag')}>
       <div className="flxg-brand">
-        <span className="flxg-brand-mark">
-          <Ic n="check" s={16} />
-        </span>
+        {host.appIcon ? (
+          <img className="flxg-brand-logo" src={host.appIcon} alt="" />
+        ) : (
+          <span className="flxg-brand-mark">
+            <Ic n="check" s={16} />
+          </span>
+        )}
         <div className="flxg-brand-text">
           <b>{tt("Tasks")}</b>
           <span>{host.siteName ?? ''}</span>
@@ -267,18 +329,46 @@ function Side({ closeNav, hide, setW, setResizing, collapse }: { closeNav: () =>
           <span className="flxg-nav-label">{tt("Notifications")}</span>
           {unread > 0 && <span className="flxg-count">{unread > 99 ? '99+' : unread}</span>}
         </a>
+        {can?.ai && (
+          <button type="button" className="flxg-nav-item" onClick={() => (closeNav(), openAI())}>
+            <Ic n="sparkle" s={17} />
+            <span className="flxg-nav-label">{tt("AI assistant")}</span>
+          </button>
+        )}
+        {can?.manage && (
+          <>
+            <a className={cls('flxg-nav-item', r.page === 'dashboard' && 'is-active')} href="#/dashboard" onClick={(ev) => (ev.preventDefault(), go({ page: 'dashboard' }))}>
+              <Ic n="chart" s={17} />
+              <span className="flxg-nav-label">{tt("Usage dashboard")}</span>
+            </a>
+            <a className={cls('flxg-nav-item', r.page === 'settings' && 'is-active')} href="#/settings" onClick={(ev) => (ev.preventDefault(), go({ page: 'settings' }))}>
+              <Ic n="settings" s={17} />
+              <span className="flxg-nav-label">{tt("Settings")}</span>
+            </a>
+          </>
+        )}
       </nav>
       <div className="flxg-tree">
         <div className="flxg-tree-head">
           <span>{tt("Projects")}</span>
+          {can?.create && (
+            <button type="button" className="flxg-icon-btn is-sm" title={tt("New project")} onClick={() => spaceModal(c)}>
+              <Ic n="plus" s={15} />
+            </button>
+          )}
         </div>
         {S.spaces.map((sp) => {
           const isCol = !spOpen[sp.id];
           const folders = S.folders.filter((f) => f.space_id === sp.id);
+          const canMake = !!can?.create && rank(sp.role) >= 3;
           return (
             <div key={sp.id} className={cls('flxg-space', isCol && 'is-collapsed')} data-space={sp.id}>
-              <div className={cls('flxg-tree-row', 'is-space', r.page === 'space' && r.id === sp.id && 'is-active')}>
-                <button type="button" className="flxg-caret" aria-label={tt("Collapse")} onClick={() => setSpOpen(sp.id, isCol)}>
+              <div
+                className={cls('flxg-tree-row', 'is-space', r.page === 'space' && r.id === sp.id && 'is-active')}
+                {...treeDropProps(c, { space: sp, folder: 0 })}
+                {...(canSort && rank(sp.role) >= 4 ? treeDragProps({ space: sp }, setTreeDrag) : {})}
+              >
+                <button type="button" className="flxg-caret" aria-label={tt("Collapse")} onClick={() => tree.set('sp-open', sp.id, isCol)}>
                   <Ic n={isCol ? 'chevR' : 'chevD'} s={14} />
                 </button>
                 <a className="flxg-tree-link" href={'#/space/' + sp.id} onClick={(ev) => (ev.preventDefault(), go({ page: 'space', id: sp.id }))}>
@@ -288,8 +378,8 @@ function Side({ closeNav, hide, setW, setResizing, collapse }: { closeNav: () =>
                   <span className="flxg-tree-name">{sp.name}</span>
                   {sp.access === 'members' && <Ic n="lock" s={12} cls="flxg-lock" />}
                 </a>
-                {rank(sp.role) >= 4 && site && (
-                  <button type="button" className="flxg-icon-btn is-sm flxg-tree-more" aria-label={tt("Project menu")} onClick={(ev) => webMenu(ev.currentTarget, '#/space/' + sp.id)}>
+                {(canMake || rank(sp.role) >= 4) && (
+                  <button type="button" className="flxg-icon-btn is-sm flxg-tree-more" aria-label={tt("Project menu")} onClick={(ev) => spaceMenu(c, ev.currentTarget, sp, mkDoc)}>
                     <Ic n="dots" s={15} />
                   </button>
                 )}
@@ -300,22 +390,41 @@ function Side({ closeNav, hide, setW, setResizing, collapse }: { closeNav: () =>
                     const fk = 'f' + f.id;
                     const fCol = !!col[fk];
                     const lists = S.lists.filter((l) => l.folder_id === f.id);
+                    const fdocs = S.docs.filter((d) => d.folder_id === f.id);
                     return (
                       <div key={f.id} className="flxg-folder">
-                        <div className="flxg-tree-row is-folder">
-                          <button type="button" className="flxg-caret" onClick={() => setColl(fk, !fCol)}>
+                        <div className="flxg-tree-row is-folder" {...treeDropProps(c, { space: sp, folder: f.id })}>
+                          <button type="button" className="flxg-caret" onClick={() => tree.set('collapsed', fk, !fCol)}>
                             <Ic n={fCol ? 'chevR' : 'chevD'} s={14} />
                           </button>
-                          <span className="flxg-tree-link" onClick={() => setColl(fk, !fCol)}>
+                          <span className="flxg-tree-link" onClick={() => tree.set('collapsed', fk, !fCol)}>
                             <Ic n="folder" s={15} />
                             <span className="flxg-tree-name">{f.name}</span>
                           </span>
+                          {canMake && (
+                            <button type="button" className="flxg-icon-btn is-sm flxg-tree-more" onClick={(ev) => folderMenu(c, ev.currentTarget, f, sp, mkDoc)}>
+                              <Ic n="dots" s={15} />
+                            </button>
+                          )}
                         </div>
-                        {!fCol && <div className="flxg-tree-kids">{lists.length ? lists.map(listRow) : <div className="flxg-tree-empty">{tt("Empty folder")}</div>}</div>}
+                        {!fCol && (
+                          <div className="flxg-tree-kids">
+                            {lists.map(listRow)}
+                            {fdocs.map(docRow)}
+                            {!lists.length && !fdocs.length && <div className="flxg-tree-empty">{tt("Empty folder")}</div>}
+                          </div>
+                        )}
                       </div>
                     );
                   })}
                   {S.lists.filter((l) => l.space_id === sp.id && (!l.folder_id || !e.folder(l.folder_id))).map(listRow)}
+                  {S.docs.filter((d) => d.space_id === sp.id && (!d.folder_id || !e.folder(d.folder_id))).map(docRow)}
+                  {canMake && (
+                    <button type="button" className="flxg-tree-add" onClick={(ev) => addMenu(c, ev.currentTarget, sp.id, 0, mkDoc)}>
+                      <Ic n="plus" s={14} />
+                      {tt("Add")}
+                    </button>
+                  )}
                 </div>
               )}
             </div>
@@ -324,10 +433,18 @@ function Side({ closeNav, hide, setW, setResizing, collapse }: { closeNav: () =>
         {!S.spaces.length && <div className="flxg-tree-empty">{tt("You have no visible projects.")}</div>}
       </div>
       <div className="flxg-side-foot">
-        <span className="flxg-me">
+        <a className={cls('flxg-me', r.page === 'profile' && 'is-active')} href="#/profile" onClick={(ev) => (ev.preventDefault(), go({ page: 'profile' }))}>
           <Avatar u={S.me} size={28} />
           <span>{S.me?.name}</span>
-        </span>
+        </a>
+        <button type="button" className="flxg-icon-btn" title={tt("Theme")} onClick={(ev) => themeMenu(c, ev.currentTarget)}>
+          <Ic n={mode === 'dark' ? 'moon' : 'sun'} s={17} />
+        </button>
+        {host.mode === 'wp' && host.adminUrl && (
+          <a className="flxg-icon-btn" href={host.adminUrl} title={tt("Back to WordPress admin")}>
+            <Ic n="back" s={17} />
+          </a>
+        )}
       </div>
       <div
         className="flxg-side-resize"
@@ -513,13 +630,26 @@ function ScopePage({ toggleSide, mobile }: { toggleSide: () => void; mobile: boo
       { label: tt("Calendar"), icon: 'calendar', onClick: () => void mk('calendar', tt("Calendar")) },
     ]);
   };
-  const site = host.siteUrl ? trimEnd(host.siteUrl) + '/wp-admin/admin.php?page=flx-tasks' : '';
-  const extra =
-    sc?.type === 'list' && rank(sc.role) >= 4 && site ? (
-      <button type="button" className="flxg-icon-btn" title={tt("List settings")} onClick={() => host.openUrl(site + '#/list/' + sc.id)}>
-        <Ic n="settings" s={18} />
-      </button>
-    ) : null;
+  const extra = (
+    <>
+      {sc?.type === 'list' && rank(sc.role) >= 4 && (
+        <>
+          <button type="button" className="flxg-btn is-ghost is-sm flxg-hide-sm" onClick={() => listSettings(c, sc.id, 'access')}>
+            <Ic n="users" s={15} />
+            {tt("Share")}
+          </button>
+          <button type="button" className="flxg-icon-btn" title={tt("List settings")} onClick={() => listSettings(c, sc.id, 'general')}>
+            <Ic n="settings" s={18} />
+          </button>
+        </>
+      )}
+      {S.me?.can.ai && (
+        <button type="button" className="flxg-icon-btn is-ai" title={tt("AI assistant")} onClick={() => openAI()}>
+          <Ic n="sparkle" s={18} />
+        </button>
+      )}
+    </>
+  );
 
   let content: ReactNode;
   if (S.loading || !sc) content = <Skeleton />;

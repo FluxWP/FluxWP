@@ -1,0 +1,7 @@
+# Change from the task screen; answers with the whole screen data (one request).
+mutation FlxTaskUpdateDetail($input: FlxTaskUpdateInput!) {
+  flxTaskUpdate(input: $input) {
+    task { ...FlxTaskScreen }
+    errors { code message field }
+  }
+}

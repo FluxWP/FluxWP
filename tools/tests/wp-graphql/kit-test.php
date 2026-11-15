@@ -1,0 +1,86 @@
+<?php
+/**
+ * Flux GraphQL kit contract tests. Run on the test site (fixtures on):
+ *   wp eval-file tools/tests/wp-graphql/kit-test.php
+ */
+
+require __DIR__ . '/lib.php';
+
+echo "Flux GraphQL kit\n";
+update_option( 'flxgql_settings', array() );
+
+$s = flx_gql_state();
+flxt_same( 'embedded', $s['source'], 'embedded WPGraphQL loads' );
+flxt_ok( $s['ok'], 'embedded version is supported', $s );
+flxt_same( trim( (string) file_get_contents( FLXGQL_DIR . 'vendor/WPGRAPHQL_VERSION' ) ), WPGRAPHQL_VERSION, 'pinned version file matches the loaded copy' );
+flxt_ok( ! class_exists( 'Appsero\Client' ), 'Appsero telemetry client is not shipped' );
+
+// Registry rules.
+$r = flxt_gql( '{ flxTestNoCap }' );
+flxt_ok( isset( $r['errors'] ) && ! isset( $r['data']['flxTestNoCap'] ), 'a root field without cap is refused (fail closed)' );
+flxt_ok( isset( flx_gql_registration_errors()['RootQuery.flxTestNoCap'] ), 'the refusal is recorded for the system check' );
+
+$r = flxt_gql( '{ flxTestAdminOnly }' );
+flxt_same( 'UNAUTHENTICATED', flxt_code( $r ), 'visitor gets UNAUTHENTICATED' );
+$sub = wp_insert_user( array( 'user_login' => 'flxt_sub_' . wp_rand(), 'user_pass' => wp_generate_password(), 'role' => 'subscriber' ) );
+$r   = flxt_gql( '{ flxTestAdminOnly }', array(), (int) $sub );
+flxt_same( 'FORBIDDEN', flxt_code( $r ), 'subscriber gets FORBIDDEN' );
+$r = flxt_gql( '{ flxTestAdminOnly }', array(), 1 );
+flxt_same( 'secret', $r['data']['flxTestAdminOnly'] ?? null, 'administrator passes the cap' );
+
+// Errors.
+$r = flxt_gql( '{ flxTestFail }' );
+flxt_same( 'NOT_FOUND', flxt_code( $r ), 'WP_Error status 404 → NOT_FOUND' );
+flxt_same( 'flx_test_missing', $r['errors'][0]['extensions']['data']['reason'] ?? null, 'WP_Error code is kept as extensions.data.reason' );
+
+// Mutations.
+$r = flxt_gql( 'mutation { flxTestSave(input:{name:"x"}) { name errors { code } } }' );
+flxt_same( 'UNAUTHENTICATED', flxt_code( $r ), 'mutation cap is checked' );
+$r = flxt_gql( 'mutation { flxTestSave(input:{name:"ab"}) { name errors { code } } }', array(), 1 );
+flxt_same( array( 'name' => 'AB', 'errors' => array() ), $r['data']['flxTestSave'] ?? null, 'mutation payload + empty errors' );
+$r = flxt_gql( 'mutation { flxTestSave(input:{name:" "}) { name errors { code field } } }', array(), 1 );
+flxt_same( array( array( 'code' => 'INVALID_INPUT', 'field' => 'name' ) ), $r['data']['flxTestSave']['errors'] ?? null, 'input problems come back as FlxUserError' );
+
+// Connections.
+$r = flxt_gql( '{ flxTestItems(first:3) { totalCount pageInfo { hasNextPage hasPreviousPage endCursor } nodes { n } } }' );
+$c = $r['data']['flxTestItems'] ?? array();
+flxt_same( array( 1, 2, 3 ), array_column( $c['nodes'] ?? array(), 'n' ), 'first page' );
+flxt_same( 7, $c['totalCount'] ?? null, 'totalCount' );
+$r = flxt_gql( '{ flxTestItems(first:3, after:"' . $c['pageInfo']['endCursor'] . '") { pageInfo { hasNextPage hasPreviousPage } nodes { n } } }' );
+flxt_same( array( 4, 5, 6 ), array_column( $r['data']['flxTestItems']['nodes'] ?? array(), 'n' ), 'second page after endCursor' );
+$r = flxt_gql( '{ flxTestItems(first:500) { nodes { n } } }' );
+flxt_same( 7, count( $r['data']['flxTestItems']['nodes'] ?? array() ), 'page size is clamped (7 items, max 50)' );
+$r = flxt_gql( '{ flxTestItems(after:"nope") { nodes { n } } }' );
+flxt_same( 'INVALID_INPUT', flxt_code( $r ), 'foreign cursor → INVALID_INPUT' );
+
+// Shared types.
+$dt = flx_gql_datetime( '2026-11-15 14:59:00' );
+flxt_same( '2026-11-15T14:59:00Z', $dt['iso'] ?? null, 'FlxDateTime from GMT string' );
+flxt_same( null, flx_gql_datetime( '0000-00-00 00:00:00' ), 'empty date → null' );
+flxt_same( 'TRY', flx_gql_money( 150, 'try' )['currency'], 'FlxMoney currency upper-cased' );
+flxt_same( 'FlxTask', \GraphQLRelay\Relay::fromGlobalId( flx_gql_global_id( 'FlxTask', 12 ) )['type'], 'global id round trip' );
+flxt_same( 12, flx_gql_decode_id( flx_gql_global_id( 'FlxTask', 12 ), 'FlxTask' ), 'decode global id' );
+flxt_same( 12, flx_gql_decode_id( '12', 'FlxTask' ), 'decode database id' );
+try {
+	flx_gql_decode_id( flx_gql_global_id( 'FlxOther', 12 ), 'FlxTask' );
+	flxt_ok( false, 'decode refuses another type' );
+} catch ( FLXGQL_Error $e ) {
+	flxt_same( 'INVALID_INPUT', $e->flx_code, 'decode refuses another type' );
+}
+
+// Settings types from flx_settings_schema.
+$r = flxt_gql( '{ flxSettings { flxgqlSettings { queryMode maxPage } } }', array(), 1 );
+flxt_same( 'STRICT', $r['data']['flxSettings']['flxgqlSettings']['queryMode'] ?? null, 'settings enum read' );
+$r = flxt_gql( 'mutation { flxSettingsUpdate(input:{flxgqlSettings:{maxPage: 5000}}) { settings { flxgqlSettings { maxPage } } errors { field } } }', array(), 1 );
+flxt_same( 100, $r['data']['flxSettingsUpdate']['settings']['flxgqlSettings']['maxPage'] ?? null, 'own option is clamped on every write' );
+update_option( 'flxgql_settings', array() );
+$r = flxt_gql( '{ flxSettings { flxgqlSettings { queryMode } } }', array(), (int) $sub );
+flxt_same( 'FORBIDDEN', flxt_code( $r ), 'settings need manage_options' );
+
+// Persisted queries.
+$pq = flx_gql_persisted();
+flxt_ok( isset( $pq['queries']['ffddb6ac5762b8d7ceee75ad414d56112547858efbd5c677d267a7c8c50a11fd'] ), 'fixture manifest is loaded' );
+flxt_same( flx_gql_document_hash( "query FlxTestPing {\n  flxTestEcho(text: \"pong\")\n}" ), flx_gql_document_hash( 'query FlxTestPing { flxTestEcho(text: "pong") }' ), 'allowlist hash ignores formatting' );
+
+wp_delete_user( (int) $sub );
+flxt_done();

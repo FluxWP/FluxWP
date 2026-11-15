@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 1.3.0
+- Flux GraphQL hazırlığı (GraphQL geçişi Faz 0): sistem kontrolünde "PHP sürümü" satırı (yeni FluxWP paketleri PHP 8.1+ ister) ve "Flux GraphQL" satırı (kurulu mu, çalışıyor mu, ayrı WPGraphQL çakışması var mı).
+- Flux GraphQL isteyen bir paket etkinken Flux GraphQL kurulu ya da etkin değilse yönetim panelinde uyarı ve tek tıkla "Flux GraphQL'i kur" / "Etkinleştir" düğmesi. Paketler kendi ekranlarında aynı uyarıyı `flxk_graphql_notice( 'Paket adı' )` ile gösterebilir.
+- Paket kataloğunda Flux GraphQL var; onu isteyen bir paket kurulurken ("Requires Plugins: flx-graphql") sihirbaz ve Paketler ekranı onu da kurar.
+- Yeni metinler 10 dilde.
+
 ## 1.2.11
 - "FluxWP ile giriş yap": Ayarlar'ın en üstünde FluxWP hesabı kartı. Düğmeye basılınca fluxwp.com'da giriş ya da kayıt ekranı açılır (Google ya da e-posta), ilk girişte temel bilgiler istenir, onaydan sonra bu sayfaya dönülür. Site güncelleme anahtarını ve planının paketlerini kendiliğinden alır; elle anahtar girmek gerekmez.
 - Güvenlik: OAuth 2.1 + PKCE (doğrulayıcı yalnız bu sunucuda kalır, kod bir kez ve 10 dakika geçerli). 15 dakikalık imzalı erişim token'ı, 60 günlük ve her kullanımda yenilenen refresh token (şifreli saklanır, aynı anda tek yenileme).

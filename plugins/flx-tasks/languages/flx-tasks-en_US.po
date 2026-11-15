@@ -2688,3 +2688,21 @@ msgstr "Flux Tasks tools require Flux AI & MCP."
 
 msgid "MCP"
 msgstr "MCP"
+
+msgid "Interface"
+msgstr "Interface"
+
+msgid "The new view is the same screen as FluxApp, with every feature."
+msgstr "The new view is the same screen as FluxApp, with every feature."
+
+msgid "Switch to the new view"
+msgstr "Switch to the new view"
+
+msgid "Classic view"
+msgstr "Classic view"
+
+msgid "This screen is the same as FluxApp. The classic view stays available for a while."
+msgstr "This screen is the same as FluxApp. The classic view stays available for a while."
+
+msgid "Could not start a chat."
+msgstr "Could not start a chat."

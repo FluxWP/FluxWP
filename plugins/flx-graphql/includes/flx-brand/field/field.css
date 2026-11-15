@@ -1,0 +1,126 @@
+/* FluxWP form fields (flx-brand 1.5.0): one look for inputs, selects, text areas, check boxes and their errors.
+ * Colours follow the theme's --flx-* variables; override --flx-f-* on a wrapper to restyle. GPL v2 or later. */
+:root {
+	--flx-f-h: 60px;
+	--flx-f-r: 14px;
+	--flx-f-pad: 16px;
+	--flx-f-fs: 1.125rem;
+	--flx-f-ls: .78rem;
+	--flx-f-line: var(--flx-line, #D9DEE5);
+	--flx-f-bg: var(--flx-surface, #fff);
+	--flx-f-ink: var(--flx-ink, #0F172A);
+	--flx-f-text: var(--flx-text, #475569);
+	--flx-f-muted: var(--flx-text-muted, #64748B);
+	--flx-f-p: var(--flx-primary, #1F2937);
+	--flx-f-ok: #15803D;
+	--flx-f-err: #B42318;
+	--flx-f-err-bg: #FEF3F2;
+	--flx-f-ph: #A7B0BD;
+}
+.flx-fld, .flx-fld *, .flx-chk, .flx-chk * { box-sizing: border-box; }
+.flx-fld { position: relative; display: block; width: 100%; min-width: 0; margin: 0; font: inherit; text-align: left; }
+.flx-fld[hidden], .flx-chk[hidden], .flx-fld__msg[hidden], .flx-fld__help[hidden] { display: none !important; }
+
+/* The box: icon · (label over value) · suffix · state */
+/* Tripled class: themes style "form label" (WooCommerce pages) stronger than one class. */
+.flx-fld .flx-fld__box.flx-fld__box {
+	display: flex; flex-direction: row; align-items: center; gap: 12px;
+	width: 100%; min-height: var(--flx-f-h); margin: 0; padding: 8px var(--flx-f-pad);
+	font: inherit; font-weight: 400; letter-spacing: normal; text-transform: none;
+	border: 1.5px solid var(--flx-f-line); border-radius: var(--flx-f-r);
+	background: var(--flx-f-bg); color: var(--flx-f-ink); cursor: text;
+	transition: border-color .15s, box-shadow .15s, background-color .15s;
+}
+.flx-fld__box:hover { border-color: color-mix(in srgb, var(--flx-f-p) 40%, var(--flx-f-line)); }
+.flx-fld__box:focus-within { border-color: var(--flx-f-p); box-shadow: 0 0 0 3px color-mix(in srgb, var(--flx-f-p) 15%, transparent); }
+.flx-fld__ico { flex: none; display: grid; place-items: center; width: 22px; height: 22px; color: var(--flx-f-ph); transition: color .15s; }
+.flx-fld__ico svg { display: block; width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.flx-fld__box:focus-within .flx-fld__ico { color: var(--flx-f-p); }
+.flx-fld__in { flex: 1 1 auto; display: flex; flex-direction: column; justify-content: center; gap: 1px; min-width: 0; }
+.flx-fld__label { display: flex; align-items: baseline; gap: 6px; margin: 0; font-size: var(--flx-f-ls); font-weight: 700; line-height: 1.25; color: var(--flx-f-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.flx-fld__req { font-style: normal; color: var(--flx-f-err); }
+.flx-fld__hint { margin-left: auto; font-size: .92em; font-weight: 600; letter-spacing: .02em; opacity: .85; }
+.flx-fld .flx-fld__input {
+	display: block; width: 100%; min-width: 0; height: auto !important; min-height: 0 !important; margin: 0 !important; padding: 0 !important;
+	border: 0 !important; border-radius: 0 !important; outline: 0 !important; background: none !important; box-shadow: none !important;
+	font: inherit; font-size: var(--flx-f-fs); font-weight: 700; line-height: 1.35; letter-spacing: .005em; color: var(--flx-f-ink);
+	-webkit-appearance: none; appearance: none;
+}
+.flx-fld .flx-fld__input::placeholder { color: var(--flx-f-ph); font-weight: 600; opacity: 1; }
+.flx-fld .flx-fld__input:-webkit-autofill { -webkit-box-shadow: 0 0 0 40px var(--flx-f-bg) inset !important; -webkit-text-fill-color: var(--flx-f-ink); }
+.flx-fld__suf { flex: none; font-size: .9rem; font-weight: 800; color: var(--flx-f-muted); white-space: nowrap; }
+.flx-fld__state { flex: none; display: none; width: 22px; height: 22px; }
+.flx-fld__state svg { display: block; width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.flx-fld.is-ok .flx-fld__state--ok { display: block; color: var(--flx-f-ok); }
+.flx-fld.is-error .flx-fld__state--err { display: block; color: var(--flx-f-err); }
+
+/* No label: the value alone is centred. Small size for dense forms. */
+.flx-fld--nolabel .flx-fld__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.flx-fld--sm { --flx-f-h: 50px; --flx-f-fs: 1rem; --flx-f-r: 12px; }
+
+/* Text area and select */
+.flx-fld--area .flx-fld__box { align-items: flex-start; padding-top: 10px; padding-bottom: 10px; }
+.flx-fld--area .flx-fld__ico { margin-top: 8px; }
+.flx-fld--area .flx-fld__input { min-height: 4.2em !important; resize: vertical; font-weight: 600; }
+.flx-fld--select .flx-fld__box { cursor: pointer; }
+.flx-fld--select .flx-fld__input { cursor: pointer; padding-right: 26px !important; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") right center/18px no-repeat !important; text-overflow: ellipsis; }
+
+/* Phone: the shared phone field sits inside the box */
+.flx-fld--phone .flx-fld__box { cursor: default; }
+.flx-fld--phone .flx-ph { --flx-ph-h: 30px; gap: 4px; }
+.flx-fld--phone .flx-ph .flx-ph__cc { height: 30px; padding: 0 8px 0 0; border: 0; border-right: 1.5px solid var(--flx-f-line); border-radius: 0; background: none; box-shadow: none !important; font-weight: 700; }
+.flx-fld--phone .flx-ph .flx-ph__num { height: 30px; padding: 0 30px 0 8px !important; border: 0 !important; border-radius: 0 !important; background: none !important; box-shadow: none !important; font-size: var(--flx-f-fs); font-weight: 700; color: var(--flx-f-ink); }
+.flx-fld--phone .flx-ph .flx-ph__state { right: 0; }
+.flx-fld--phone .flx-ph .flx-ph__pop { top: calc(100% + 14px); left: calc(-1 * var(--flx-f-pad) - 34px); right: calc(-1 * var(--flx-f-pad)); }
+.flx-fld--phone .flx-ph__msg { display: none !important; }
+
+/* States */
+.flx-fld.is-error .flx-fld__box { border-color: var(--flx-f-err); background: var(--flx-f-err-bg); }
+.flx-fld.is-error .flx-fld__box:focus-within { box-shadow: 0 0 0 3px color-mix(in srgb, var(--flx-f-err) 15%, transparent); }
+.flx-fld.is-error .flx-fld__ico { color: var(--flx-f-err); }
+.flx-fld.is-error .flx-fld__input:-webkit-autofill { -webkit-box-shadow: 0 0 0 40px var(--flx-f-err-bg) inset !important; }
+.flx-fld.is-readonly .flx-fld__box, .flx-fld.is-disabled .flx-fld__box { border-style: dashed; background: color-mix(in srgb, var(--flx-f-line) 22%, var(--flx-f-bg)); cursor: default; box-shadow: none; }
+.flx-fld.is-readonly .flx-fld__box:hover, .flx-fld.is-disabled .flx-fld__box:hover { border-color: var(--flx-f-line); }
+.flx-fld.is-disabled { opacity: .7; }
+
+/* Messages under a field or a check box */
+.flx-fld__msg, .flx-fld__help { display: flex; align-items: flex-start; gap: 6px; margin: 6px 2px 0; padding: 0; font-size: .875rem; line-height: 1.4; }
+.flx-fld__msg { color: var(--flx-f-err); font-weight: 700; }
+.flx-fld__msg::before { content: ""; flex: none; width: 16px; height: 16px; margin-top: 1px; background: currentColor; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 7v6M12 16.5v.5'/%3E%3C/svg%3E") center/contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 7v6M12 16.5v.5'/%3E%3C/svg%3E") center/contain no-repeat; }
+.flx-fld__help { color: var(--flx-f-muted); font-weight: 600; }
+.flx-fld.is-error > .flx-fld__help { display: none; }
+
+/* Check box and radio */
+label.flx-chk.flx-chk, .flx-chk { position: relative; display: flex; align-items: flex-start; gap: 12px; margin: 0; padding: 0; font: inherit; font-size: .97rem; line-height: 1.45; color: var(--flx-f-ink); cursor: pointer; text-align: left; }
+.flx-chk .flx-chk__input { position: absolute !important; top: 0; left: 0; width: 24px !important; height: 24px !important; margin: 0 !important; opacity: 0 !important; cursor: pointer; }
+.flx-chk__box { flex: none; display: grid; place-items: center; width: 24px; height: 24px; border: 1.5px solid color-mix(in srgb, var(--flx-f-muted) 75%, var(--flx-f-line)); border-radius: 7px; background: var(--flx-f-bg); transition: border-color .15s, background-color .15s, box-shadow .15s; }
+.flx-chk__box::after { content: ""; width: 12px; height: 7px; margin-top: -3px; border-left: 2.5px solid #fff; border-bottom: 2.5px solid #fff; transform: rotate(-45deg) scale(0); transition: transform .12s; }
+.flx-chk--radio .flx-chk__box { border-radius: 50%; }
+.flx-chk--radio .flx-chk__box::after { width: 10px; height: 10px; margin: 0; border: 0; border-radius: 50%; background: #fff; transform: scale(0); }
+.flx-chk:hover .flx-chk__box { border-color: var(--flx-f-p); }
+.flx-chk__input:checked + .flx-chk__box { border-color: var(--flx-f-p); background: var(--flx-f-p); }
+.flx-chk__input:checked + .flx-chk__box::after { transform: rotate(-45deg) scale(1); }
+.flx-chk--radio .flx-chk__input:checked + .flx-chk__box::after { transform: scale(1); }
+.flx-chk__input:focus-visible + .flx-chk__box { box-shadow: 0 0 0 3px color-mix(in srgb, var(--flx-f-p) 22%, transparent); border-color: var(--flx-f-p); }
+.flx-chk__text { flex: 1 1 auto; min-width: 0; padding-top: 1px; }
+.flx-chk__text a { color: var(--flx-f-p); font-weight: 700; }
+.flx-chk__text small { display: block; margin-top: 2px; font-size: .86em; color: var(--flx-f-muted); }
+.flx-chk.is-error .flx-chk__box { border-color: var(--flx-f-err); background: var(--flx-f-err-bg); }
+.flx-chk.is-disabled { opacity: .6; cursor: default; }
+.flx-chk + .flx-fld__msg { margin-left: 36px; }
+
+/* Layout helpers */
+.flx-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.flx-fields > .flx-fld--wide, .flx-fields > .flx-chk, .flx-fields > .flx-fld__msg, .flx-fields > .flx-fields__wide { grid-column: 1 / -1; }
+@media (max-width: 600px) {
+	:root { --flx-f-h: 58px; --flx-f-pad: 14px; }
+	.flx-fields { grid-template-columns: 1fr; }
+	.flx-fld .flx-fld__input { font-size: max(16px, var(--flx-f-fs)); } /* iOS does not zoom at 16px and up */
+}
+@media (prefers-reduced-motion: reduce) { .flx-fld__box, .flx-chk__box, .flx-chk__box::after { transition: none; } }
+
+/* Dark colours: same rule as the phone field (body.flx-dark = the theme allows dark mode). */
+@media (prefers-color-scheme: dark) {
+	html:not([data-flxfw-theme]) body.flx-dark { --flx-f-bg: #111827; --flx-f-line: #374151; --flx-f-ink: #F3F4F6; --flx-f-text: #D1D5DB; --flx-f-muted: #9CA3AF; --flx-f-ph: #6B7280; --flx-f-err: #F97066; --flx-f-err-bg: #2A1513; --flx-f-ok: #4ADE80; }
+}
+html.flxfw-dark, html.flxa-dark { --flx-f-bg: #111827; --flx-f-line: #374151; --flx-f-ink: #F3F4F6; --flx-f-text: #D1D5DB; --flx-f-muted: #9CA3AF; --flx-f-ph: #6B7280; --flx-f-err: #F97066; --flx-f-err-bg: #2A1513; --flx-f-ok: #4ADE80; }

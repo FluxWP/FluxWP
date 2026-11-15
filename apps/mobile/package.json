@@ -23,6 +23,7 @@
   "dependencies": {
     "@expo/ui": "~58.0.28",
     "@fluxwp/core": "workspace:*",
+    "@fluxwp/graphql": "workspace:*",
     "@fluxwp/manifest": "workspace:*",
     "@fluxwp/runtime": "workspace:*",
     "@fluxwp/tokens": "workspace:*",

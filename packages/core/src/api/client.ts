@@ -33,37 +33,42 @@ export interface ClientOptions {
   /** Güncel kimlik; yoksa anonim istek. */
   getCredentials: () => Promise<Credentials | null>;
   /** 401'de bir kez çağrılır; yeni kimlik dönerse istek tekrarlanır. */
-  onUnauthorized?: () => Promise<Credentials | null>;
+  onUnauthorized?: (() => Promise<Credentials | null>) | undefined;
   /** Sunucu Authorization başlığını düşürüyorsa X-FluxWP-Token kullanılır. */
-  useHeaderFallback?: boolean;
-  fetchImpl?: typeof fetch;
+  useHeaderFallback?: boolean | undefined;
+  fetchImpl?: typeof fetch | undefined;
   /** Her isteğe eklenecek başlıklar (WP admin: X-WP-Nonce). */
-  extraHeaders?: () => Record<string, string>;
+  extraHeaders?: (() => Record<string, string>) | undefined;
   /** WP admin içinde çerezle kimlik: 'same-origin'. */
-  credentials?: RequestCredentials;
+  credentials?: RequestCredentials | undefined;
 }
 
 export interface RequestOptions {
-  method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
-  query?: Record<string, string | number | boolean | undefined | null>;
-  body?: unknown;
-  form?: Record<string, string>;
+  method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE' | undefined;
+  query?: Record<string, string | number | boolean | undefined | null> | undefined;
+  body?: unknown | undefined;
+  form?: Record<string, string> | undefined;
   /** Dosya yükleme (multipart). Content-Type tarayıcıya bırakılır. */
-  formData?: FormData;
+  formData?: FormData | undefined;
   /** İsteğe ek başlıklar (ör. `If-None-Match`). Kimlik başlığının üstüne yazamaz. */
-  headers?: Record<string, string>;
+  headers?: Record<string, string> | undefined;
   /** Multipart yüklemede 0..1. Platform `XMLHttpRequest` verirse ara değerler gelir. */
-  onUploadProgress?: (ratio: number) => void;
+  onUploadProgress?: ((ratio: number) => void) | undefined;
   /** 'blob': medya gibi ham cevap. */
-  as?: 'json' | 'blob';
+  as?: 'json' | 'blob' | undefined;
   /**
    * true: gövdeyle birlikte durum ve yanıt başlıkları (`ETag`, `X-WP-TotalPages`).
    * 304 gövdesiz başarıdır (`data: null`), hata değildir.
    */
-  raw?: boolean;
-  signal?: AbortSignal;
+  raw?: boolean | undefined;
+  signal?: AbortSignal | undefined;
   /** Kimlik eklemeden gönder (OAuth token ucu gibi). */
-  anonymous?: boolean;
+  anonymous?: boolean | undefined;
+  /**
+   * false: 4xx/5xx JSON cevabı da `raw` sonuç olarak döner (GraphQL hata gövdesi gibi); yalnız ağ
+   * hatası ve bozuk JSON fırlatır. Varsayılan true.
+   */
+  throwOnError?: boolean | undefined;
 }
 
 /** Case-insensitive response headers (Fetch `Headers#get`). */
@@ -197,7 +202,11 @@ export function createClient(o: ClientOptions): ApiClient {
     // cookies with native requests; with a login cookie present WordPress resolves the user from the
     // cookie, ignores the token and FluxApp answers 401 "token is invalid or expired".
     const credentials = o.credentials ?? (cred && !opts.anonymous ? 'omit' : undefined);
-    return doFetch(url, { method, headers, body, signal: opts.signal, credentials });
+    const init: RequestInit = { method, headers };
+    if (body !== undefined) init.body = body;
+    if (opts.signal) init.signal = opts.signal;
+    if (credentials) init.credentials = credentials;
+    return doFetch(url, init);
   };
 
   async function request<T>(path: string, opts: RequestOptions = {}): Promise<T | ApiResult<T>> {
@@ -225,7 +234,7 @@ export function createClient(o: ClientOptions): ApiClient {
         throw new ApiError(res.status, 'invalid_json', text.slice(0, 200));
       }
     }
-    if (!res.ok) {
+    if (!res.ok && opts.throwOnError !== false) {
       const j = (json ?? {}) as { code?: string; message?: string; error?: string; error_description?: string; data?: unknown };
       throw new ApiError(res.status, j.code ?? j.error ?? 'http_' + res.status, j.message ?? j.error_description ?? res.statusText, j.data);
     }

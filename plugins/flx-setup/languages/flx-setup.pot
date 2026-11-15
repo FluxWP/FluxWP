@@ -2046,3 +2046,45 @@ msgstr ""
 
 msgid "This site is not connected to a FluxWP account."
 msgstr ""
+
+msgid "Install Flux GraphQL"
+msgstr ""
+
+msgid "Activate Flux GraphQL"
+msgstr ""
+
+msgid "Flux GraphQL settings"
+msgstr ""
+
+msgid "%1$s needs PHP %2$s or newer; this site runs PHP %3$s. Raise the PHP version in the hosting panel."
+msgstr ""
+
+msgid "%s cannot load its data because the Flux GraphQL server is not running. Open the Flux GraphQL settings to fix it."
+msgstr ""
+
+msgid "%s needs Flux GraphQL to load its data. Install and activate it; it takes a few seconds."
+msgstr ""
+
+msgid "PHP version"
+msgstr ""
+
+msgid "PHP %s. FluxWP GraphQL packages run on it."
+msgstr ""
+
+msgid "PHP %1$s. New FluxWP packages (Flux GraphQL and the packages that use it) need PHP %2$s or newer: raise it in the hosting panel."
+msgstr ""
+
+msgid "Flux GraphQL %s is installed and working; no separate WPGraphQL conflict."
+msgstr ""
+
+msgid "Flux GraphQL is active, but its GraphQL server is not running (usually an unsupported, separately installed WPGraphQL), so GraphQL screens are off."
+msgstr ""
+
+msgid "These packages need Flux GraphQL, which is not active: %s. Their screens cannot load data."
+msgstr ""
+
+msgid "Flux GraphQL is installed but not active. No active package needs it."
+msgstr ""
+
+msgid "Flux GraphQL"
+msgstr ""

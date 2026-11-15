@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.3.2
+- `react-i18next` and `i18next` are deduplicated, so module screens use the app language.
+
 ## 0.3.1
 - Content-Security-Policy is set for the shell (`script-src 'self'`, no `unsafe-eval`). The dev server keeps a separate policy so Vite HMR can connect.
 - The OS credential store is granted only to the main window. Separate wp-admin windows do not get those commands.

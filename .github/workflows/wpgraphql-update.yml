@@ -1,0 +1,113 @@
+name: WPGraphQL update (Flux GraphQL)
+
+# Weekly: pins the newest WPGraphQL release inside Flux GraphQL, runs the tests and opens a PR.
+# Nothing is merged automatically; Ahmet merges the PR like any other.
+# Needs: Settings › Actions › "Allow GitHub Actions to create and approve pull requests".
+
+on:
+  schedule:
+    - cron: '17 4 * * 1'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'WPGraphQL version (empty = newest)'
+        required: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: wpgraphql-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: pdo_sqlite, sqlite3, mbstring, intl
+          tools: composer, wp-cli
+          coverage: none
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+
+      - name: Pin WPGraphQL
+        id: pin
+        run: |
+          dir=plugins/flx-graphql
+          old="$(cat $dir/vendor/WPGRAPHQL_VERSION)"
+          bash $dir/tools/update-wpgraphql.sh "${{ inputs.version || '--latest' }}"
+          new="$(cat $dir/vendor/WPGRAPHQL_VERSION)"
+          echo "old=$old" >> "$GITHUB_OUTPUT"
+          echo "new=$new" >> "$GITHUB_OUTPUT"
+          if [ "$old" = "$new" ] || [ -z "$(git status --porcelain $dir)" ]; then
+            echo "changed=0" >> "$GITHUB_OUTPUT"; echo "WPGraphQL $old is current."
+          else
+            echo "changed=1" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Stop when the new major is outside the supported range
+        if: steps.pin.outputs.changed == '1'
+        run: |
+          new="${{ steps.pin.outputs.new }}"
+          max="$(grep -oP "FLXGQL_WPGQL_MAX', '\K[0-9.]+" plugins/flx-graphql/flx-graphql.php)"
+          if [ "$(printf '%s\n%s\n' "$new" "$max" | sort -V | tail -1)" = "$new" ]; then
+            echo "::error::WPGraphQL $new is at or above the supported limit $max. Update the kit by hand."
+            exit 1
+          fi
+
+      - name: Bump Flux GraphQL patch version
+        if: steps.pin.outputs.changed == '1'
+        id: bump
+        run: |
+          dir=plugins/flx-graphql
+          cur="$(grep -oP "define\( 'FLXGQL_VERSION', '\K[0-9.]+" $dir/flx-graphql.php)"
+          next="$(echo "$cur" | awk -F. '{print $1"."$2"."$3+1}')"
+          sed -i -E "s/^( \* Version: +)$cur/\1$next/; s/'FLXGQL_VERSION', '$cur'/'FLXGQL_VERSION', '$next'/" $dir/flx-graphql.php
+          {
+            echo "# Changelog"; echo
+            echo "## $next"; echo
+            echo "- Gömülü WPGraphQL ${{ steps.pin.outputs.old }} → ${{ steps.pin.outputs.new }} (haftalık otomatik güncelleme)."
+            echo
+            tail -n +2 $dir/CHANGELOG.md | sed '1{/^$/d}'
+          } > "$RUNNER_TEMP/cl.md"
+          mv "$RUNNER_TEMP/cl.md" $dir/CHANGELOG.md
+          echo "version=$next" >> "$GITHUB_OUTPUT"
+
+      - name: Tests
+        if: steps.pin.outputs.changed == '1'
+        env:
+          TEST_ROOT: ${{ runner.temp }}/flx-test
+        run: bash tools/tests/wp-graphql/run.sh
+
+      - name: Open the pull request
+        if: steps.pin.outputs.changed == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          OLD: ${{ steps.pin.outputs.old }}
+          NEW: ${{ steps.pin.outputs.new }}
+          VER: ${{ steps.bump.outputs.version }}
+        run: |
+          branch="wpgraphql/v$NEW"
+          if git ls-remote --exit-code --heads origin "$branch" >/dev/null; then
+            echo "Branch $branch already exists."; exit 0
+          fi
+          git config user.name "Ahmet Yılmaz"
+          git config user.email "70577707+sharkpaw@users.noreply.github.com"
+          git switch -c "$branch"
+          git add plugins/flx-graphql
+          git commit -q -m "flx-graphql: update embedded WPGraphQL to $NEW"
+          git push -q origin "$branch"
+          gh pr create --base main --head "$branch" \
+            --title "Flux GraphQL $VER: WPGraphQL $OLD → $NEW" \
+            --body "Weekly update of the embedded WPGraphQL ($OLD → $NEW). Kit, HTTP and polyfill tests passed on PHP 8.1. Release notes: https://github.com/wp-graphql/wp-graphql/releases/tag/wp-graphql%2Fv$NEW" \
+            --assignee sharkpaw --reviewer sharkpaw || gh pr create --base main --head "$branch" \
+            --title "Flux GraphQL $VER: WPGraphQL $OLD → $NEW" \
+            --body "Weekly update of the embedded WPGraphQL ($OLD → $NEW). Tests passed on PHP 8.1."

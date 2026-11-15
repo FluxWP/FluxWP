@@ -1944,3 +1944,45 @@ msgstr "O servidor de atualizações teve um erro temporário. Tente novamente e
 
 msgid "Download failed (HTTP %1$d: %2$s). %3$s"
 msgstr "Falha no download (HTTP %1$d: %2$s). %3$s"
+
+msgid "Install Flux GraphQL"
+msgstr "Instalar Flux GraphQL"
+
+msgid "Activate Flux GraphQL"
+msgstr "Ativar Flux GraphQL"
+
+msgid "Flux GraphQL settings"
+msgstr "Configurações do Flux GraphQL"
+
+msgid "%1$s needs PHP %2$s or newer; this site runs PHP %3$s. Raise the PHP version in the hosting panel."
+msgstr "%1$s precisa do PHP %2$s ou mais recente; este site usa PHP %3$s. Aumente a versão do PHP no painel da hospedagem."
+
+msgid "%s cannot load its data because the Flux GraphQL server is not running. Open the Flux GraphQL settings to fix it."
+msgstr "%s não consegue carregar seus dados porque o servidor do Flux GraphQL não está funcionando. Abra as configurações do Flux GraphQL para corrigir."
+
+msgid "%s needs Flux GraphQL to load its data. Install and activate it; it takes a few seconds."
+msgstr "%s precisa do Flux GraphQL para carregar seus dados. Instale e ative; leva poucos segundos."
+
+msgid "PHP version"
+msgstr "Versão do PHP"
+
+msgid "PHP %s. FluxWP GraphQL packages run on it."
+msgstr "PHP %s. Os pacotes GraphQL do FluxWP funcionam nesta versão."
+
+msgid "PHP %1$s. New FluxWP packages (Flux GraphQL and the packages that use it) need PHP %2$s or newer: raise it in the hosting panel."
+msgstr "PHP %1$s. Os novos pacotes do FluxWP (Flux GraphQL e os pacotes que o usam) precisam do PHP %2$s ou mais recente: aumente no painel da hospedagem."
+
+msgid "Flux GraphQL %s is installed and working; no separate WPGraphQL conflict."
+msgstr "Flux GraphQL %s está instalado e funcionando; sem conflito com um WPGraphQL separado."
+
+msgid "Flux GraphQL is active, but its GraphQL server is not running (usually an unsupported, separately installed WPGraphQL), so GraphQL screens are off."
+msgstr "Flux GraphQL está ativo, mas seu servidor GraphQL não está funcionando (geralmente por um WPGraphQL separado e não suportado), então as telas GraphQL estão desligadas."
+
+msgid "These packages need Flux GraphQL, which is not active: %s. Their screens cannot load data."
+msgstr "Estes pacotes precisam do Flux GraphQL, que não está ativo: %s. Suas telas não conseguem carregar dados."
+
+msgid "Flux GraphQL is installed but not active. No active package needs it."
+msgstr "Flux GraphQL está instalado, mas não ativo. Nenhum pacote ativo precisa dele."
+
+msgid "Flux GraphQL"
+msgstr "Flux GraphQL"

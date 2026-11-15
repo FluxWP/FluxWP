@@ -1,0 +1,544 @@
+<?php
+
+namespace WPGraphQL\Utils;
+
+use GraphQLRelay\Relay;
+
+class Utils {
+
+	/**
+	 * Given a GraphQL Query string, return a hash
+	 *
+	 * @param string $query The Query String to hash
+	 *
+	 * @return string|null
+	 */
+	public static function get_query_id( string $query ) {
+
+		/**
+		 * Filter the hash algorithm to allow different algorithms.
+		 *
+		 * @param string $algorithm Default is sha256. Possible values are those that work with the PHP hash() function. See: https://www.php.net/manual/en/function.hash-algos.php
+		 *
+		 * @hookGroup request-lifecycle
+		 * @since 0.0.2
+		 */
+		$hash_algorithm = apply_filters( 'graphql_query_id_hash_algorithm', 'sha256' );
+
+		try {
+			$query_ast = \GraphQL\Language\Parser::parse( $query );
+			$query     = \GraphQL\Language\Printer::doPrint( $query_ast );
+			return hash( $hash_algorithm, $query );
+		} catch ( \Throwable $exception ) {
+			return null;
+		}
+	}
+
+	/**
+	 * Maps new input query args and sanitizes the input
+	 *
+	 * @param mixed[]|string $args The raw query args from the GraphQL query
+	 * @param mixed[]|string $map  The mapping of where each of the args should go
+	 * @param string[]       $skip Fields to skipped and not be added to the output array.
+	 *
+	 * @return array<string,mixed>
+	 * @since  0.5.0
+	 */
+	public static function map_input( $args, $map, $skip = [] ) {
+		if ( ! is_array( $args ) || ! is_array( $map ) ) {
+			return [];
+		}
+
+		$query_args = [];
+
+		foreach ( $args as $arg => $value ) {
+			if ( [] !== $skip && in_array( $arg, $skip, true ) ) {
+				continue;
+			}
+
+			if ( is_array( $value ) && ! empty( $value ) ) {
+				$value = array_map(
+					static function ( $value ) {
+						if ( is_string( $value ) ) {
+							$value = sanitize_text_field( $value );
+						}
+
+						return $value;
+					},
+					$value
+				);
+			} elseif ( is_string( $value ) ) {
+				$value = sanitize_text_field( $value );
+			}
+
+			if ( array_key_exists( $arg, $map ) ) {
+				$query_args[ $map[ $arg ] ] = $value;
+			} else {
+				$query_args[ $arg ] = $value;
+			}
+		}
+
+		return $query_args;
+	}
+
+	/**
+	 * Checks the post_date_gmt or modified_gmt and prepare any post or
+	 * modified date for single post output.
+	 *
+	 * @param string      $date_gmt GMT publication time.
+	 * @param string|null $date Optional. Local publication time. Default null.
+	 *
+	 * @return string|null ISO8601/RFC3339 formatted datetime.
+	 * @since 4.7.0
+	 */
+	public static function prepare_date_response( string $date_gmt, $date = null ) {
+		// Use the date if passed.
+		if ( isset( $date ) ) {
+			return mysql_to_rfc3339( $date );
+		}
+		// Return null if $date_gmt is empty/zeros.
+		if ( '0000-00-00 00:00:00' === $date_gmt ) {
+			return null;
+		}
+
+		// Return the formatted datetime.
+		return mysql_to_rfc3339( $date_gmt );
+	}
+
+	/**
+	 * Format a GraphQL name according to the GraphQL spec.
+	 *
+	 * Per the GraphQL spec, characters in names are limited to Latin ASCII letter, digits, or underscores.
+	 *
+	 * @see http://spec.graphql.org/draft/#sec-Names
+	 *
+	 * @param string $name The name to format.
+	 * @param string $replacement The replacement character for invalid characters. Defaults to '_'.
+	 * @param string $regex The regex to use to match invalid characters. Defaults to '/[^A-Za-z0-9_]/i'.
+	 *
+	 * @since v1.17.0
+	 */
+	public static function format_graphql_name( string $name, string $replacement = '_', string $regex = '/[^A-Za-z0-9_]/i' ): string {
+		if ( empty( $name ) ) {
+			return '';
+		}
+
+		/**
+		 * Filter to manually format a GraphQL name according to custom rules.
+		 *
+		 * If anything other than null is returned, the result will be used for the name instead of the standard regex.
+		 *
+		 * Useful for providing custom transliteration rules that will convert non ASCII characters to ASCII.
+		 *
+		 * @param string|null $formatted_name The name to format. If not null, the result will be returned as the formatted name.
+		 * @param string $original_name       The name to format.
+		 * @param string $replacement         The replacement character for invalid characters. Defaults to '_'.
+		 * @param string $regex               The regex to use to match invalid characters. Defaults to '/[^A-Za-z0-9_]/i'.
+		 *
+		 * @hookGroup schema-registration
+		 * @since 1.17.0
+		 *
+		 * @return string|null
+		 */
+		$pre_format_name = apply_filters( 'graphql_pre_format_name', null, $name, $replacement, $regex );
+
+		// Check whether the filter is being used (correctly).
+		if ( ! empty( $pre_format_name ) && is_string( $pre_format_name ) ) {
+			// Don't trust the filter to return a formatted string.
+			$name = trim( sanitize_text_field( $pre_format_name ) );
+		} else {
+			// Throw a warning if someone is using the filter incorrectly.
+			if ( null !== $pre_format_name ) {
+				graphql_debug(
+					esc_html__( 'The `graphql_pre_format_name` filter must return a string or null.', 'wp-graphql' ),
+					[
+						'type'          => 'INVALID_GRAPHQL_NAME',
+						'original_name' => esc_html( $name ),
+					]
+				);
+			}
+
+			// Remove all non-alphanumeric characters.
+			$name = preg_replace( $regex, $replacement, $name );
+		}
+
+		if ( empty( $name ) ) {
+			return '';
+		}
+
+		// Replace multiple consecutive leading underscores with a single underscore, since those are reserved.
+		$name = preg_replace( '/^_+/', '_', trim( $name ) );
+
+		return ! empty( $name ) ? $name : '';
+	}
+
+	/**
+	 * Given a field name, formats it for GraphQL
+	 *
+	 * @param string $field_name         The field name to format
+	 * @param bool   $allow_underscores  Whether the field should be formatted with underscores allowed. Default false.
+	 */
+	public static function format_field_name( string $field_name, bool $allow_underscores = false ): string {
+		// Bail if empty.
+		if ( empty( $field_name ) ) {
+			return '';
+		}
+
+		$formatted_field_name = graphql_format_name( $field_name, '_', '/[^a-zA-Z0-9 -]/' );
+
+		// If the formatted name is empty, we want to return the original value so it displays in the error.
+		if ( empty( $formatted_field_name ) ) {
+			return $field_name;
+		}
+
+		// underscores are allowed by GraphQL, but WPGraphQL has historically
+		// stripped them when formatting field names.
+		// The $allow_underscores argument allows functions to opt-in to allowing underscores
+		if ( true !== $allow_underscores ) {
+			// uppercase words separated by an underscore, then replace the underscores with a space
+			$formatted_field_name = lcfirst( str_replace( '_', ' ', ucwords( $formatted_field_name, '_' ) ) );
+		}
+
+		// uppercase words separated by a dash, then replace the dashes with a space
+		$formatted_field_name = lcfirst( str_replace( '-', ' ', ucwords( $formatted_field_name, '-' ) ) );
+
+		// uppercace words separated by a space, and replace spaces with no space
+		$formatted_field_name = lcfirst( str_replace( ' ', '', ucwords( $formatted_field_name, ' ' ) ) );
+
+		// Field names should be lcfirst.
+		return lcfirst( $formatted_field_name );
+	}
+
+	/**
+	 * Given a type name, formats it for GraphQL
+	 *
+	 * @param string $type_name The type name to format
+	 *
+	 * @return string
+	 */
+	public static function format_type_name( $type_name ) {
+		return ucfirst( self::format_field_name( $type_name ) );
+	}
+
+	/**
+	 * Returns a GraphQL type name for a given WordPress template name.
+	 *
+	 * If the template name has no ASCII characters, the file name will be used instead.
+	 *
+	 * @param string $name The template name.
+	 * @param string $file The file name.
+	 * @return string The formatted type name. If the name is empty, an empty string will be returned.
+	 */
+	public static function format_type_name_for_wp_template( string $name, string $file ): string {
+		$name = ucwords( $name );
+		// Strip out not ASCII characters.
+		$name = graphql_format_name( $name, '', '/[^\w]/' );
+
+		// If replaced_name is empty, use the file name.
+		if ( empty( $name ) ) {
+			$file_parts    = explode( '.', $file );
+			$file_name     = ! empty( $file_parts[0] ) ? self::format_type_name( $file_parts[0] ) : '';
+			$replaced_name = ! empty( $file_name ) ? graphql_format_name( $file_name, '', '/[^\w]/' ) : '';
+
+			$name = ! empty( $replaced_name ) ? $replaced_name : $name;
+		}
+
+		// If the name is still empty, we don't have a valid type.
+		if ( empty( $name ) ) {
+			return '';
+		}
+
+		// Maybe prefix the name with "Template_".
+		if ( preg_match( '/^\d/', $name ) || false === strpos( strtolower( $name ), 'template' ) ) {
+			$name = 'Template_' . $name;
+		}
+
+		return $name;
+	}
+
+	/**
+	 * Helper function that defines the allowed HTML to use on the Settings pages
+	 *
+	 * @return array<string,array<string,array<string>>>
+	 */
+	public static function get_allowed_wp_kses_html() {
+		$allowed_atts = [
+			'align'      => [],
+			'class'      => [],
+			'type'       => [],
+			'id'         => [],
+			'dir'        => [],
+			'lang'       => [],
+			'style'      => [],
+			'xml:lang'   => [],
+			'src'        => [],
+			'alt'        => [],
+			'href'       => [],
+			'rel'        => [],
+			'rev'        => [],
+			'target'     => [],
+			'novalidate' => [],
+			'value'      => [],
+			'name'       => [],
+			'tabindex'   => [],
+			'action'     => [],
+			'method'     => [],
+			'for'        => [],
+			'width'      => [],
+			'height'     => [],
+			'data'       => [],
+			'title'      => [],
+			'checked'    => [],
+			'disabled'   => [],
+			'selected'   => [],
+		];
+
+		return [
+			'form'     => $allowed_atts,
+			'label'    => $allowed_atts,
+			'input'    => $allowed_atts,
+			'textarea' => $allowed_atts,
+			'iframe'   => $allowed_atts,
+			'script'   => $allowed_atts,
+			'select'   => $allowed_atts,
+			'option'   => $allowed_atts,
+			'style'    => $allowed_atts,
+			'strong'   => $allowed_atts,
+			'small'    => $allowed_atts,
+			'table'    => $allowed_atts,
+			'span'     => $allowed_atts,
+			'abbr'     => $allowed_atts,
+			'code'     => $allowed_atts,
+			'pre'      => $allowed_atts,
+			'div'      => $allowed_atts,
+			'img'      => $allowed_atts,
+			'h1'       => $allowed_atts,
+			'h2'       => $allowed_atts,
+			'h3'       => $allowed_atts,
+			'h4'       => $allowed_atts,
+			'h5'       => $allowed_atts,
+			'h6'       => $allowed_atts,
+			'ol'       => $allowed_atts,
+			'ul'       => $allowed_atts,
+			'li'       => $allowed_atts,
+			'em'       => $allowed_atts,
+			'hr'       => $allowed_atts,
+			'br'       => $allowed_atts,
+			'tr'       => $allowed_atts,
+			'td'       => $allowed_atts,
+			'p'        => $allowed_atts,
+			'a'        => $allowed_atts,
+			'b'        => $allowed_atts,
+			'i'        => $allowed_atts,
+		];
+	}
+
+	/**
+	 * Helper function to get the WordPress database ID from a GraphQL ID type input.
+	 *
+	 * Returns false if not a valid ID.
+	 *
+	 * @param int|string $id The ID from the input args. Can be either the database ID (as either a string or int) or the global Relay ID.
+	 *
+	 * @return int|false
+	 * @phpstan-return ( $id is int|numeric-string ? int : (int|false) )
+	 */
+	public static function get_database_id_from_id( $id ) {
+		// If we already have the database ID, send it back as an integer.
+		if ( is_numeric( $id ) ) {
+			return absint( $id );
+		}
+
+		$id_parts = Relay::fromGlobalId( $id );
+
+		return isset( $id_parts['id'] ) && is_numeric( $id_parts['id'] ) ? absint( $id_parts['id'] ) : false;
+	}
+
+	/**
+	 * Get the node type from the ID
+	 *
+	 * @param int|string $id The encoded Node ID.
+	 *
+	 * @return ?string
+	 * @phpstan-return ( $id is int|numeric-string ? null : ?string )
+	 */
+	public static function get_node_type_from_id( $id ) {
+		if ( is_numeric( $id ) ) {
+			return null;
+		}
+
+		$id_parts = Relay::fromGlobalId( $id );
+		return $id_parts['type'] ?: null;
+	}
+
+	/**
+	 * Given a WP Post or post ID, this method attempts to resolve a preview post ID.
+	 *
+	 * @param int|\WP_Post $post The WP Post object or Post ID
+	 *
+	 * @return int A preview post ID if one exists, the current post ID if one doesn't exist.
+	 * @since 1.18.0
+	 */
+	public static function get_post_preview_id( $post ): int {
+		$post_id = is_object( $post ) ? $post->ID : $post;
+
+		$revisions = wp_get_post_revisions(
+			$post_id,
+			[
+				'posts_per_page' => 1,
+				'fields'         => 'ids',
+				'check_enabled'  => false,
+			]
+		);
+
+		$post_id = ! empty( $revisions ) ? array_values( $revisions )[0] : $post_id;
+
+		return is_object( $post_id ) ? (int) $post_id->ID : (int) $post_id;
+	}
+
+	/**
+	 * Given the name of a registered Enum Type and an input string, return the enum's
+	 * underlying value the input identifies.
+	 *
+	 * The input may be either the enum's underlying value (returned unchanged) or the
+	 * enum's name as exposed in the schema (mapped back to its value). This is useful
+	 * for fields that accept an identifier as an ID scalar, where no enum coercion
+	 * happens, but the value space is also modeled as an Enum Type elsewhere in the
+	 * schema. Enum names cannot always be re-derived from the value, TaxonomyEnum for
+	 * example derives its names from a taxonomy's graphql_single_name, so the mapping
+	 * must come from the registered Enum Type itself.
+	 *
+	 * @param string $enum_type_name The name of the registered Enum Type to map against, e.g. "ContentTypeEnum".
+	 * @param string $input          The input to map. Either an enum name (e.g. "POST") or an underlying enum value (e.g. "post").
+	 *
+	 * @return ?string The underlying enum value, or null if the input matches neither an enum name nor an enum value, or the type is not a registered Enum Type.
+	 *
+	 * @since 2.20.0
+	 */
+	public static function map_enum_name_to_value( string $enum_type_name, string $input ): ?string {
+		try {
+			$type_registry = \WPGraphQL::get_type_registry();
+			$enum_type     = $type_registry->get_type( $enum_type_name );
+
+			// The registry is populated during schema generation, so make sure
+			// that has happened before concluding the type doesn't exist.
+			if ( null === $enum_type ) {
+				\WPGraphQL::get_schema();
+				$enum_type = $type_registry->get_type( $enum_type_name );
+			}
+		} catch ( \Throwable $e ) {
+			return null;
+		}
+
+		if ( ! $enum_type instanceof \GraphQL\Type\Definition\EnumType ) {
+			return null;
+		}
+
+		$named_match = null;
+
+		foreach ( $enum_type->getValues() as $enum_value ) {
+			if ( ! is_string( $enum_value->value ) ) {
+				continue;
+			}
+
+			// A raw underlying value wins over a name match, so input that is
+			// already a valid value always passes through unchanged.
+			if ( $enum_value->value === $input ) {
+				return $input;
+			}
+
+			if ( $enum_value->name === $input ) {
+				$named_match = $enum_value->value;
+			}
+		}
+
+		return $named_match;
+	}
+
+	/**
+	 * Whether an operation only asks for introspection.
+	 *
+	 * Returns true when the operation is a query and every field at its root, including
+	 * fields reached through root-level fragment spreads and inline fragments, is `__schema`,
+	 * `__type` or `__typename`, with at least one `__schema` or `__type` field.
+	 *
+	 * This differs from WPGraphQL::is_introspection_query(), which is true when `__schema` or
+	 * `__type` appears anywhere in the request. Use this method when the answer decides whether a
+	 * limit applies, so a content query can't skip the limit by adding an introspection field.
+	 *
+	 * @param \GraphQL\Language\AST\OperationDefinitionNode              $operation The operation to check.
+	 * @param array<string,\GraphQL\Language\AST\FragmentDefinitionNode> $fragments The fragments in the document, keyed by name.
+	 *
+	 * @since 2.24.0
+	 */
+	public static function is_introspection_only_operation( \GraphQL\Language\AST\OperationDefinitionNode $operation, array $fragments = [] ): bool {
+		if ( 'query' !== $operation->operation ) {
+			return false;
+		}
+
+		$has_introspection_field = false;
+		$visited_fragments       = [];
+
+		$is_introspection_only = self::selections_are_introspection_only( $operation->selectionSet, $fragments, $visited_fragments, $has_introspection_field );
+
+		return $is_introspection_only && $has_introspection_field;
+	}
+
+	/**
+	 * Whether every root selection in a selection set is an introspection field.
+	 *
+	 * @param \GraphQL\Language\AST\SelectionSetNode                     $selection_set           The selection set to check.
+	 * @param array<string,\GraphQL\Language\AST\FragmentDefinitionNode> $fragments               The fragments in the document, keyed by name.
+	 * @param array<string,bool>                                         $visited_fragments       Fragments already checked, to avoid cycles.
+	 * @param bool                                                       $has_introspection_field Set to true when a `__schema` or `__type` field is found.
+	 */
+	private static function selections_are_introspection_only( \GraphQL\Language\AST\SelectionSetNode $selection_set, array $fragments, array &$visited_fragments, bool &$has_introspection_field ): bool {
+		foreach ( $selection_set->selections as $selection ) {
+			if ( $selection instanceof \GraphQL\Language\AST\FieldNode ) {
+				$name = $selection->name->value;
+
+				if ( '__schema' === $name || '__type' === $name ) {
+					$has_introspection_field = true;
+					continue;
+				}
+
+				if ( '__typename' === $name ) {
+					continue;
+				}
+
+				return false;
+			}
+
+			if ( $selection instanceof \GraphQL\Language\AST\InlineFragmentNode ) {
+				if ( ! self::selections_are_introspection_only( $selection->selectionSet, $fragments, $visited_fragments, $has_introspection_field ) ) {
+					return false;
+				}
+				continue;
+			}
+
+			if ( $selection instanceof \GraphQL\Language\AST\FragmentSpreadNode ) {
+				$fragment_name = $selection->name->value;
+
+				// An unknown fragment is reported by the standard validation rules. Don't treat it as introspection.
+				if ( ! isset( $fragments[ $fragment_name ] ) ) {
+					return false;
+				}
+
+				if ( isset( $visited_fragments[ $fragment_name ] ) ) {
+					continue;
+				}
+
+				$visited_fragments[ $fragment_name ] = true;
+
+				if ( ! self::selections_are_introspection_only( $fragments[ $fragment_name ]->selectionSet, $fragments, $visited_fragments, $has_introspection_field ) ) {
+					return false;
+				}
+				continue;
+			}
+
+			return false;
+		}
+
+		return true;
+	}
+}

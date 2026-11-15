@@ -1135,6 +1135,48 @@
         ]
       }
     },
+    "flx-graphql": {
+      "desc": {
+        "en": "One typed GraphQL API for every FluxWP plugin, with WPGraphQL built in.",
+        "tr": "Tüm FluxWP eklentileri için tek, tipli GraphQL API; WPGraphQL içinde gelir.",
+        "de": "Eine typisierte GraphQL-API für alle FluxWP-Plugins, mit integriertem WPGraphQL.",
+        "es": "Una API GraphQL tipada para todos los plugins de FluxWP, con WPGraphQL incluido.",
+        "fr": "Une API GraphQL typée pour tous les plugins FluxWP, avec WPGraphQL intégré.",
+        "pt-br": "Uma API GraphQL tipada para todos os plugins do FluxWP, com o WPGraphQL incluído.",
+        "ja": "すべての FluxWP プラグインのための型付き GraphQL API。WPGraphQL を内蔵。",
+        "zh": "为所有 FluxWP 插件提供统一的类型化 GraphQL API,内置 WPGraphQL。",
+        "ar": "واجهة GraphQL واحدة محددة الأنواع لجميع إضافات FluxWP، مع WPGraphQL مدمج.",
+        "ru": "Единый типизированный GraphQL API для всех плагинов FluxWP со встроенным WPGraphQL."
+      },
+      "website": {
+        "en": "https://fluxwp.com/plugins/",
+        "tr": "https://fluxwp.com/tr/plugins/",
+        "de": "https://fluxwp.com/de/plugins/",
+        "es": "https://fluxwp.com/es/plugins/",
+        "fr": "https://fluxwp.com/fr/plugins/",
+        "pt-br": "https://fluxwp.com/pt-br/plugins/",
+        "ja": "https://fluxwp.com/ja/plugins/",
+        "zh": "https://fluxwp.com/zh/plugins/",
+        "ar": "https://fluxwp.com/ar/plugins/",
+        "ru": "https://fluxwp.com/ru/plugins/"
+      },
+      "icons": {
+        "svg": {
+          "path": "plugins/flx-graphql/assets/icon.svg",
+          "sha": "b69ebb5614e676c4224a145134cd47bc7a2c0852",
+          "size": 1046
+        },
+        "pastel": {
+          "path": "plugins/flx-graphql/assets/icon-pastel.svg",
+          "sha": "11c6e77a8bf514fcfae7fc68e924ecf2a9b9021a",
+          "size": 732
+        }
+      },
+      "gallery": {
+        "en": [],
+        "tr": []
+      }
+    },
     "flx-lang": {
       "desc": {
         "en": "A light multilingual layer for WordPress: Turkish by default, English at /en/, AI translation through Flux AI.",

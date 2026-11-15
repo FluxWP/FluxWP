@@ -2032,3 +2032,45 @@ msgstr "حدث خطأ مؤقت في خادم التحديثات. أعد المح
 
 msgid "Download failed (HTTP %1$d: %2$s). %3$s"
 msgstr "فشل التنزيل (HTTP %1$d: %2$s). %3$s"
+
+msgid "Install Flux GraphQL"
+msgstr "تثبيت Flux GraphQL"
+
+msgid "Activate Flux GraphQL"
+msgstr "تفعيل Flux GraphQL"
+
+msgid "Flux GraphQL settings"
+msgstr "إعدادات Flux GraphQL"
+
+msgid "%1$s needs PHP %2$s or newer; this site runs PHP %3$s. Raise the PHP version in the hosting panel."
+msgstr "يحتاج %1$s إلى PHP %2$s أو أحدث؛ يعمل هذا الموقع على PHP %3$s. ارفع إصدار PHP من لوحة الاستضافة."
+
+msgid "%s cannot load its data because the Flux GraphQL server is not running. Open the Flux GraphQL settings to fix it."
+msgstr "لا يستطيع %s تحميل بياناته لأن خادم Flux GraphQL لا يعمل. افتح إعدادات Flux GraphQL لإصلاح ذلك."
+
+msgid "%s needs Flux GraphQL to load its data. Install and activate it; it takes a few seconds."
+msgstr "يحتاج %s إلى Flux GraphQL لتحميل بياناته. ثبّته وفعّله؛ يستغرق ذلك بضع ثوانٍ."
+
+msgid "PHP version"
+msgstr "إصدار PHP"
+
+msgid "PHP %s. FluxWP GraphQL packages run on it."
+msgstr "PHP %s. تعمل حزم FluxWP GraphQL على هذا الإصدار."
+
+msgid "PHP %1$s. New FluxWP packages (Flux GraphQL and the packages that use it) need PHP %2$s or newer: raise it in the hosting panel."
+msgstr "PHP %1$s. تحتاج حزم FluxWP الجديدة (Flux GraphQL والحزم التي تستخدمه) إلى PHP %2$s أو أحدث: ارفعه من لوحة الاستضافة."
+
+msgid "Flux GraphQL %s is installed and working; no separate WPGraphQL conflict."
+msgstr "Flux GraphQL %s مثبّت ويعمل؛ لا يوجد تعارض مع WPGraphQL مثبّت بشكل منفصل."
+
+msgid "Flux GraphQL is active, but its GraphQL server is not running (usually an unsupported, separately installed WPGraphQL), so GraphQL screens are off."
+msgstr "Flux GraphQL مفعّل لكن خادم GraphQL الخاص به لا يعمل (غالبًا بسبب WPGraphQL مثبّت بشكل منفصل وغير مدعوم)، لذا شاشات GraphQL متوقفة."
+
+msgid "These packages need Flux GraphQL, which is not active: %s. Their screens cannot load data."
+msgstr "تحتاج هذه الحزم إلى Flux GraphQL غير المفعّل: %s. لا تستطيع شاشاتها تحميل البيانات."
+
+msgid "Flux GraphQL is installed but not active. No active package needs it."
+msgstr "Flux GraphQL مثبّت لكنه غير مفعّل. لا توجد حزمة مفعّلة تحتاجه."
+
+msgid "Flux GraphQL"
+msgstr "Flux GraphQL"

@@ -9,7 +9,7 @@ export default defineConfig({
     react(),
     { name: 'flux-brand-html', transformIndexHtml: (h) => h.replaceAll('%BRAND_NAME%', brand.name) },
   ],
-  resolve: { dedupe: ['react', 'react-dom', '@tanstack/react-query'] },
+  resolve: { dedupe: ['react', 'react-dom', '@tanstack/react-query', 'react-i18next', 'i18next'] },
   publicDir: resolve(__dirname, '../../packages/panel/public'),
   base: './',
   clearScreen: false,

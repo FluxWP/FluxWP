@@ -22,6 +22,16 @@ export interface ModuleHost {
   blobMedia?: boolean;
   /** Masaüstü bildirimi (uygulama yerel bildirim kullanabilir); yoksa tarayıcı Notification. */
   notify?: (n: { title: string; body: string; icon?: string; onClick?: () => void }) => void;
+  /** WP admin adresi ("WordPress paneline dön"). */
+  adminUrl?: string;
+  /** Ekranın başlık simgesi (WP'de eklenti/marka logosu). */
+  appIcon?: string;
+  /** Flux AI ortak sohbeti sayfada yüklü (window.FlxAIChat). */
+  aiEmbed?: boolean;
+  /** İlk açılacak sayfa (WP alt menüsü: 'dashboard', 'settings'). */
+  startPage?: string;
+  /** WP: klasik görünüme geçiş bağlantısı. */
+  classicUrl?: string;
   /** Sunucu yeni REST nonce'u verdi (WP oturumu yenilendi). */
   setNonce?: (nonce: string) => void;
 }

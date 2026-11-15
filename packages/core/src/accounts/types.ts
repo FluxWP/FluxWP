@@ -19,9 +19,9 @@ export interface Account {
 
 export interface StoredTokens {
   access: string;
-  refresh?: string;
+  refresh?: string | undefined;
   /** ms epoch; API anahtarında yok. */
-  expiresAt?: number;
+  expiresAt?: number | undefined;
 }
 
 export interface ParsedAccountId {

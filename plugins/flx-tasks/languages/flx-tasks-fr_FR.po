@@ -2688,3 +2688,30 @@ msgstr "Les outils Flux Tasks nécessitent Flux AI & MCP."
 
 msgid "MCP"
 msgstr "MCP"
+
+msgid "New chat"
+msgstr "Nouvelle discussion"
+
+msgid "Open full screen"
+msgstr "Ouvrir en plein écran"
+
+msgid "Hi! What should we do with your tasks? You can also attach meeting notes or a PDF and say \"create tasks from this\"."
+msgstr "Bonjour ! Que faisons-nous de vos tâches ? Vous pouvez aussi joindre des notes de réunion ou un PDF et dire « crée des tâches à partir de ceci »."
+
+msgid "Interface"
+msgstr "Interface"
+
+msgid "The new view is the same screen as FluxApp, with every feature."
+msgstr "La nouvelle vue est le même écran que FluxApp, avec toutes les fonctionnalités."
+
+msgid "Switch to the new view"
+msgstr "Passer à la nouvelle vue"
+
+msgid "Classic view"
+msgstr "Vue classique"
+
+msgid "This screen is the same as FluxApp. The classic view stays available for a while."
+msgstr "Cet écran est le même que dans FluxApp. La vue classique reste disponible encore un moment."
+
+msgid "Could not start a chat."
+msgstr "Impossible de démarrer la discussion."

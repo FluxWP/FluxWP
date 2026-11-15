@@ -1,0 +1,73 @@
+# Task fields every screen shows (list row, board card, subtask row).
+fragment FlxTaskRow on FlxTask {
+  databaseId
+  title
+  kind
+  status
+  priority
+  listId
+  parentId
+  startDate
+  dueDate
+  position
+  creatorId
+  createdAt { iso }
+  updatedAt { iso }
+  completedAt { iso }
+  assigneeIds
+  tagIds
+  fieldValues
+  commentCount
+  fileCount
+  subtaskCount
+  agendaCount
+  decisionCount
+  coverFileId
+  archived
+  hasDescription
+}
+
+fragment FlxTaskFileRow on FlxTaskFile {
+  databaseId
+  taskId
+  commentId
+  fieldId
+  context
+  uploaderId
+  name
+  mime
+  size
+  image
+  hasThumb
+  width
+  height
+  createdAt { iso }
+}
+
+fragment FlxTaskCommentRow on FlxTaskComment {
+  databaseId
+  taskId
+  authorId
+  body
+  createdAt { iso }
+  editedAt { iso }
+  files { ...FlxTaskFileRow }
+}
+
+# Everything the task screen shows (same data as REST GET /tasks/<id>).
+fragment FlxTaskScreen on FlxTask {
+  ...FlxTaskRow
+  description
+  role
+  watching
+  watcherIds
+  depth
+  depthLimit
+  parent { databaseId title }
+  comments { ...FlxTaskCommentRow }
+  activity { databaseId userId action data createdAt { iso } }
+  attachments { ...FlxTaskFileRow }
+  children { ...FlxTaskRow description }
+  subtree { ...FlxTaskRow }
+  childFiles { taskId files { ...FlxTaskFileRow } }
+}

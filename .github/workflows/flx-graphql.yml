@@ -1,0 +1,46 @@
+name: Flux GraphQL tests
+
+on:
+  pull_request:
+    paths:
+      - 'plugins/flx-graphql/**'
+      - 'tools/tests/wp-graphql/**'
+      - '.github/workflows/flx-graphql.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'plugins/flx-graphql/**'
+      - 'tools/tests/wp-graphql/**'
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: PHP ${{ matrix.php }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['8.1', '8.2', '8.3', '8.4', '8.5']
+    steps:
+      - uses: actions/checkout@v5
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: pdo_sqlite, sqlite3, mbstring, intl
+          tools: wp-cli
+          coverage: none
+      - name: PHP syntax
+        run: find plugins/flx-graphql -name '*.php' -not -path '*/vendor/*' -print0 | xargs -0 -n1 php -l >/dev/null
+      - name: Translations are complete
+        run: python3 plugins/flx-graphql/tools/i18n.py --check
+      - name: Kit, HTTP and polyfill tests
+        env:
+          TEST_ROOT: ${{ runner.temp }}/flx-test
+        run: bash tools/tests/wp-graphql/run.sh
+      - name: Debug log
+        if: failure()
+        run: cat "$RUNNER_TEMP/flx-test/gql-site/wp-content/debug.log" 2>/dev/null | tail -100 || true

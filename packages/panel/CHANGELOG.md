@@ -1,5 +1,8 @@
 # @fluxwp/panel
 
+## 0.3.5
+- `react-i18next` and `i18next` are deduplicated, so module screens use the panel language.
+
 ## 0.3.4
 - The open panel reads `/me` and the counters from the shared runtime queries, so the legacy hooks no longer start a second poll.
 
