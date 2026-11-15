@@ -1,13 +1,15 @@
 <?php
 /**
- * Ziyaretçiye dil önerisi. Varsayılan: Türkiye dışından gelen ilk girişte kendi diline (İngilizce) açılır.
+ * Ziyaretçiye dil önerisi. Varsayılan: ilk girişte tarayıcı dili sitede varsa o dile, yoksa ülkesinin diline, o da yoksa İngilizceye açılır.
  *
  * Sayfa herkese aynı gelir (önbellek güvenli); karar tarayıcıda verilir:
  *  1. flxl_pref çerezi varsa (ziyaretçi dil seçmiş) hiçbir şey yapılmaz.
  *  2. Arama motoru / önizleme botları hariç.
- *  3. Ülke: /wp-json/flx-lang/v1/geo (Cloudflare CF-IPCountry vb. başlıklar) → yoksa saat dilimi (Europe/Istanbul = TR).
- *  4. Ev ülkesi (TR, KKTC) → varsayılan dil; değilse tarayıcı dili etkin dillerdeyse o, yoksa ayardaki dil (en).
- *  5. Önerilen dil şu anki dilden farklıysa: "redirect" (varsayılan) sayfa çizilmeden yönlendirir ve tercihi çereze yazar;
+ *  3. Tarayıcı dili (navigator.languages sırası) sitede etkinse o dil; ülke sorgusu beklenmez.
+ *  4. Yoksa ülke: /wp-json/flx-lang/v1/geo (Cloudflare CF-IPCountry vb. başlıklar) → yoksa saat dilimi (Europe/Istanbul = TR).
+ *     Ev ülkesi (TR, KKTC) → ülkenin dili ya da varsayılan dil; diğer ülkeler → ülkenin dili etkinse o.
+ *  5. Hiçbiri yoksa ayardaki dil (en).
+ *  6. Önerilen dil şu anki dilden farklıysa: "redirect" (varsayılan) sayfa çizilmeden yönlendirir ve tercihi çereze yazar;
  *     sonraki girişlerde de seçtiği dile açılır; dil seçiciden Türkçe seçerse Türkçe kalır. "banner" üstte öneri bandı gösterir.
  *  Betik <head> içinde, erteleme olmadan yüklenir (yönlendirmede Türkçe sayfa görünmesin).
  *

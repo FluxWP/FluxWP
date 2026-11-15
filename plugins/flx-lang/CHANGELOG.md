@@ -1,5 +1,9 @@
 # Flux Lang
 
+## 0.2.12
+- Otomatik dil artık her sitede tarayıcı dilini önce dinliyor: ziyaretçinin tarayıcı dili sitede etkinse (ör. Almanya'dan Almanca tarayıcıyla gelen → Almanca, yurt dışında Türkçe tarayıcı kullanan → Türkçe) o dilde açılır. Tarayıcı dili sitede yoksa ülkeye bakılır: Türkiye/KKTC'den gelen Türkçe, diğer ülkeler ülkenin dili etkinse o dil; hiçbiri yoksa İngilizce. Önceden Türkiye'den gelen herkes tarayıcı dili ne olursa olsun Türkçe görüyordu.
+- Ayar ekranında "Türkiye dışından gelene" yerine "Otomatik dil"; açıklamalar yeni sırayı anlatıyor.
+
 ## 0.2.11
 - Yazılar sayfası (Ayarlar › Okuma › Yazılar sayfası, ör. /news/) artık dile göre süzülüyor: İngilizce sayfada yalnız İngilizce, /tr/ altında yalnız Türkçe yazılar listelenir. Önceden adres bir sayfa adı taşıdığı için süzme atlanıyor, iki dilin yazıları karışık çıkıyordu.
 
