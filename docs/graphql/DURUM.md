@@ -9,8 +9,8 @@ Durum: ○ başlamadı · ✱ sürüyor · 👀 PR açık ("al" bekliyor) · ✓
 |---|---|---|---|
 | 0.1 | Test ortamı (`tools/tests/wp-graphql/`: WP + SQLite + Flux GraphQL + paketler; `run.sh`) | 👀 | PR A. CI: `.github/workflows/flx-graphql.yml` (PHP 8.1–8.5) |
 | 0.4 | `flx-graphql` 0.1.0: gömülü WPGraphQL 2.28.0 + çakışma koruması + kit v0.1 + haftalık güncelleme CI (`wpgraphql-update.yml`) | 👀 | PR A |
-| 0.5 | `@fluxwp/graphql`: codegen, persisted manifest, fetcher + hook'lar, `core/api` entegrasyonu | ○ | PR B |
-| 0.6 | `graphql.yml`: şema snapshot → diff → graphql-inspector → codegen → typecheck | ○ | PR B |
+| 0.5 | `@fluxwp/graphql`: codegen, persisted manifest, fetcher + hook'lar, `core/api` entegrasyonu | 👀 | PR B (`packages/graphql`, core 0.4.4 `throwOnError`) |
+| 0.6 | `graphql.yml`: şema snapshot → diff → graphql-inspector → codegen → typecheck | 👀 | PR B (kırıcı değişiklik `graphql-breaking` etiketiyle geçer) |
 | 0.7 | Flux Setup: flx-graphql kurulumu, sistem kontrolü, katalog | ○ | PR D |
 | 0.8 | `/flx/v1/upload` + `FlxFile` | 👀 | PR A (kit içinde) |
 | 0.9 | `docs/graphql/` KURALLAR, ISTISNALAR, IS-PAKETI-SABLONU, ESLEME şablonu | ○ | PR E |

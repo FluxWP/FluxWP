@@ -13,6 +13,20 @@ describe('client', () => {
     expect(buildUrl('https://x.org/blog', 'https://x.org/blog/wp-content/uploads/a.png')).toBe('https://x.org/blog/wp-content/uploads/a.png');
   });
 
+  it('reaches the GraphQL endpoint next to wp-json', () => {
+    expect(buildUrl('https://x.org/blog', '../graphql', { queryId: 'a' })).toBe('https://x.org/blog/graphql?_locale=user&queryId=a');
+    expect(buildUrl('https://x.org', '../graphql')).toBe('https://x.org/graphql?_locale=user');
+  });
+
+  it('throwOnError: false returns the error body', async () => {
+    const f = vi.fn<typeof fetch>(async () => json(400, { errors: [{ message: 'bad' }] }));
+    const api = createClient({ siteUrl: 'https://x.org', fetchImpl: f, getCredentials: async () => null });
+    const r = await api<{ errors: { message: string }[] }>('../graphql', { raw: true, throwOnError: false });
+    expect(r.status).toBe(400);
+    expect(r.data?.errors[0]?.message).toBe('bad');
+    await expect(api('../graphql')).rejects.toMatchObject({ status: 400 });
+  });
+
   it('rejects paths that leave the site before any request', async () => {
     const f = vi.fn<typeof fetch>();
     const creds = vi.fn(async () => ({ token: 'secret' }));

@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.4.4
+- API client: `throwOnError: false` returns a 4xx/5xx JSON body as a `raw` result (GraphQL error bodies). `../graphql` reaches `/graphql` next to `/wp-json/`, also under a subdirectory install.
+
 ## 0.4.2
 - API client sends no cookies with token requests (`credentials: omit`, XHR `withCredentials = false`). A wp-admin login cookie shared from the app web views made WordPress ignore the token (401 `flxapp_invalid_token`).
 

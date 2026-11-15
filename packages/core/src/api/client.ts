@@ -64,6 +64,11 @@ export interface RequestOptions {
   signal?: AbortSignal;
   /** Kimlik eklemeden gönder (OAuth token ucu gibi). */
   anonymous?: boolean;
+  /**
+   * false: 4xx/5xx JSON cevabı da `raw` sonuç olarak döner (GraphQL hata gövdesi gibi); yalnız ağ
+   * hatası ve bozuk JSON fırlatır. Varsayılan true.
+   */
+  throwOnError?: boolean;
 }
 
 /** Case-insensitive response headers (Fetch `Headers#get`). */
@@ -225,7 +230,7 @@ export function createClient(o: ClientOptions): ApiClient {
         throw new ApiError(res.status, 'invalid_json', text.slice(0, 200));
       }
     }
-    if (!res.ok) {
+    if (!res.ok && opts.throwOnError !== false) {
       const j = (json ?? {}) as { code?: string; message?: string; error?: string; error_description?: string; data?: unknown };
       throw new ApiError(res.status, j.code ?? j.error ?? 'http_' + res.status, j.message ?? j.error_description ?? res.statusText, j.data);
     }
