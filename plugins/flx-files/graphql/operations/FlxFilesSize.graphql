@@ -1,0 +1,8 @@
+query FlxFilesSize($path: String!) {
+  flxFilesSize(path: $path) {
+    bytes
+    files
+    folders
+    partial
+  }
+}

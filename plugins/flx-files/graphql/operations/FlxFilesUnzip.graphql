@@ -1,0 +1,9 @@
+mutation FlxFilesUnzip($input: FlxFilesUnzipInput!) {
+  flxFilesUnzip(input: $input) {
+    path
+    fileCount
+    errors {
+      ...FlxFilesUserError
+    }
+  }
+}

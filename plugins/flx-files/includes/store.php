@@ -41,6 +41,8 @@ function flxfm_log_list( $args = array() ) {
 	$via   = isset( $args['via'] ) ? (string) $args['via'] : '';
 	$limit = max( 1, min( 500, (int) ( $args['limit'] ?? 100 ) ) );
 	$page  = max( 1, (int) ( $args['page'] ?? 1 ) );
+	$skip  = isset( $args['offset'] ) ? max( 0, (int) $args['offset'] ) : ( $page - 1 ) * $limit;
+	$page  = (int) floor( $skip / $limit ) + 1;
 	$rows  = array();
 	foreach ( $log as $e ) {
 		if ( '' !== $path && $e['p'] !== $path && $e['to'] !== $path && 0 !== strpos( $e['p'], $path . '/' ) ) {
@@ -52,7 +54,7 @@ function flxfm_log_list( $args = array() ) {
 		$rows[] = $e;
 	}
 	$total = count( $rows );
-	$rows  = array_slice( $rows, ( $page - 1 ) * $limit, $limit );
+	$rows  = array_slice( $rows, $skip, $limit );
 	$names = array();
 	foreach ( $rows as &$e ) {
 		if ( ! isset( $names[ $e['u'] ] ) ) {

@@ -1,0 +1,22 @@
+query FlxFilesLog($first: Int = 50, $after: String, $path: String, $via: FlxFilesVia) {
+  flxFilesLog(first: $first, after: $after, path: $path, via: $via) {
+    totalCount
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    nodes {
+      action
+      path
+      to
+      user
+      userId
+      via
+      when {
+        iso
+        label
+        relative
+      }
+    }
+  }
+}
