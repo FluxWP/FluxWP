@@ -21,10 +21,15 @@ parameters:
     - ../../plugins/flx-graphql/vendor/wp-graphql/src
     - ../../plugins/flx-graphql/vendor/wp-graphql/vendor/webonyx
     - ../../plugins/flx-graphql/vendor/wp-graphql/vendor/ivome
+    # Legacy code the strict folders call (scanned for symbols only).
+    - ../../plugins/flx-tasks/includes
   paths:
     - ../../plugins/flx-graphql/flx-graphql.php
     - ../../plugins/flx-graphql/uninstall.php
     - ../../plugins/flx-graphql/includes
+    # Flux Tasks (GraphQL pilot)
+    - ../../plugins/flx-tasks/includes/services
+    - ../../plugins/flx-tasks/includes/graphql
   excludePaths:
     - ../../plugins/flx-graphql/includes/flx-brand
   treatPhpDocTypesAsCertain: false

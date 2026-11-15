@@ -12,7 +12,6 @@ import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildSchema, parse } from 'graphql';
 import { codegen } from '@graphql-codegen/core';
-import * as typescript from '@graphql-codegen/typescript';
 import * as operations from '@graphql-codegen/typescript-operations';
 import { collectOperations, GenerateError, HEADER, manifests, operationsModule, type SourceFile } from './lib';
 
@@ -57,8 +56,10 @@ const types = await codegen({
   filename: 'types.ts',
   schema: parse(schemaSdl),
   documents: ops.map((op) => ({ location: op.path, document: parse(op.document) })),
-  plugins: [{ typescript: {} }, { typescriptOperations: {} }],
-  pluginMap: { typescript, typescriptOperations: operations },
+  // typescript-operations 7 emits the enums, inputs and scalars the operations use; adding the
+  // `typescript` plugin as well declares them twice (TS2300).
+  plugins: [{ typescriptOperations: {} }],
+  pluginMap: { typescriptOperations: operations },
   config: {
     onlyOperationTypes: true,
     enumsAsTypes: true,

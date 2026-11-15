@@ -2,7 +2,8 @@
 // görünüm sekmeleri, araç çubuğu, liste/pano/takvim, bildirim kutusu, görev penceresi. WP ile aynı tasarım (flxg.css).
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { flxg, trimEnd, type FlxgList, type FlxgNotif, type FlxgView } from '@fluxwp/core';
+import { trimEnd, type FlxgList, type FlxgNotif, type FlxgView } from '@fluxwp/core';
+import { flxgGraphQL } from '@fluxwp/graphql/flx-tasks';
 import { useHost } from '../host';
 import { addDays, dayKey, rank, store, FlxgEngine, type Route } from './engine';
 import { setYtgLang, tt, flxgLocale } from './i18n';
@@ -75,7 +76,7 @@ export function TasksScreen() {
   const theme = useTheme(rootRef);
   const c = useMemo<Ctx>(() => {
     const initial = host.mode === 'wp' ? parseHash(location.hash) : (store.json<Partial<Route>>('route-' + host.scope) ?? {});
-    const e = new FlxgEngine(flxg(host.client), initial);
+    const e = new FlxgEngine(flxgGraphQL(host.client), initial);
     const ui = new Ui();
     e.onError = ui.fail;
     e.onRoute = (r) => {

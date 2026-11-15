@@ -1,0 +1,15 @@
+{
+  "mode": "chunks",
+  "entry": "flux-modules.js",
+  "files": [
+    "flux-host-CiKzf1Nt.js",
+    "flux-modules.css",
+    "flux-modules.js",
+    "flux-review-DS8YHis-.js",
+    "flux-rolldown-runtime-WkwZ5CU-.js",
+    "flux-sticky-note-Yh8LHeNn.js",
+    "flux-tasks-STjRgPm7.js",
+    "flux-useTranslation-B5TVZrUu.js",
+    "flux-whatsapp-v5PUdx_u.js"
+  ]
+}

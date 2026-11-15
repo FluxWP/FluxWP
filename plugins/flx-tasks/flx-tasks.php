@@ -2,9 +2,10 @@
 /**
  * Plugin Name:       Flux Tasks
  * Description:       ClickUp benzeri görev takibi: projeler, klasörler, listeler; liste, pano (kanban) ve takvim görünümleri, kayıtlı filtreli görünümler, özel alanlar, yorum ve dosya ekleri, bildirimler, liste yetkileri, yönetici panosu ve Flux AI & MCP üzerinden yapay zekâ.
- * Version:           0.8.22
+ * Version:           0.9.0
  * Requires at least: 6.5
- * Requires PHP:      7.4
+ * Requires PHP:      8.1
+ * Requires Plugins:  flx-graphql
  * Author:            FluxWP
  * Text Domain:       flx-tasks
  * Domain Path:       /languages
@@ -16,7 +17,7 @@ defined( 'ABSPATH' ) || exit;
 require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback; no Flux Lang dependency.
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
-define( 'FLXG_VERSION', '0.8.22' );
+define( 'FLXG_VERSION', '0.9.0' );
 define( 'FLXG_DB_VERSION', '3' );
 define( 'FLXG_FILE', __FILE__ );
 define( 'FLXG_DIR', plugin_dir_path( __FILE__ ) );
@@ -26,6 +27,8 @@ require_once FLXG_DIR . 'includes/helpers.php';
 require_once FLXG_DIR . 'includes/install.php';
 require_once FLXG_DIR . 'includes/perms.php';
 require_once FLXG_DIR . 'includes/store.php';
+require_once FLXG_DIR . 'includes/services/class-flxg-task.php';
+require_once FLXG_DIR . 'includes/services/class-flxg-task-service.php';
 require_once FLXG_DIR . 'includes/files.php';
 require_once FLXG_DIR . 'includes/docs.php';
 require_once FLXG_DIR . 'includes/notify.php';
@@ -41,6 +44,31 @@ require_once FLXG_DIR . 'includes/app.php';
 if ( is_admin() ) {
 	require_once FLXG_DIR . 'includes/admin.php';
 }
+
+/*
+ * GraphQL (Flux GraphQL): schema only inside a GraphQL request; the persisted queries the screens send.
+ * Without Flux GraphQL the action never fires and the REST API keeps working.
+ */
+add_action(
+	'flx_gql_register',
+	static function () {
+		require_once FLXG_DIR . 'includes/graphql/schema.php';
+	}
+);
+add_action(
+	'flx_gql_loaders',
+	static function () {
+		flx_gql_node_loader( 'FlxTask', 'FLXG_Task_Loader' );
+	}
+);
+add_filter(
+	'flx_gql_persisted_manifests',
+	static function ( $m ) {
+		$m              = is_array( $m ) ? $m : array();
+		$m['flx-tasks'] = FLXG_DIR . 'graphql/persisted-queries.json';
+		return $m;
+	}
+);
 
 /*
  * Çeviri: kaynak metinler Türkçe; site/kullanıcı dili başka olduğunda languages/ içindeki çeviri kullanılır.

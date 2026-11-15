@@ -359,10 +359,29 @@ function flx_gql_node_loader( string $type, string $class ): void {
 	$flx_gql_node_loaders[ $type ] = $class;
 }
 
+/**
+ * AppContext reads the loader classes in its constructor, before the lazy type registry runs
+ * `flx_gql_register`. So a Node type's loader must also be named on `flx_gql_loaders`, which fires
+ * here, once per request:
+ *
+ *     add_action( 'flx_gql_loaders', fn() => flx_gql_node_loader( 'FlxTask', 'FLXG_Task_Loader' ) );
+ *
+ * Only the class name is given; the class itself may be defined later with the schema.
+ */
 add_filter(
 	'graphql_data_loader_classes',
 	static function ( $classes ) {
 		global $flx_gql_node_loaders;
+		static $fired = false;
+		if ( ! $fired && flx_gql_ready() ) {
+			$fired = true;
+			/**
+			 * Packages name their Node loaders here (flx_gql_node_loader).
+			 *
+			 * @since 0.1.0
+			 */
+			do_action( 'flx_gql_loaders' );
+		}
 		return is_array( $flx_gql_node_loaders ) ? array_merge( (array) $classes, $flx_gql_node_loaders ) : $classes;
 	}
 );

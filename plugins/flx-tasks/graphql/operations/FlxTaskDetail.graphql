@@ -1,0 +1,4 @@
+# Task screen.
+query FlxTaskDetail($id: ID!) {
+  flxTask(id: $id) { ...FlxTaskScreen }
+}

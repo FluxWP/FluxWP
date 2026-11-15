@@ -1,5 +1,11 @@
 # Flux Tasks — Değişiklikler
 
+## 0.9.0
+- GraphQL: görev ekranı, görev ekleme/düzenleme/silme, takip, yorum ve okundu işaretleme Flux GraphQL üzerinden (`flxTask`, `flxTasks`, `flxTaskCreate/Update/Delete/Watch`, `flxTaskCommentCreate`, `flxTaskNotificationsRead`). Kayıtlı sorgular `graphql/persisted-queries.json`.
+- Servis katmanı (`FLXG_Task_Service`): yetki kontrolü ve görev işlemleri tek yerde; REST ve GraphQL aynı kodu çağırır. REST yanıtları değişmedi.
+- Yeni React görünüm (FluxApp ile ortak ekran) wp-admin'de açılabilir; görev ekranı GraphQL'i, pano toplu okuma REST'i kullanır.
+- Gereksinim: PHP 8.1+, Flux GraphQL eklentisi.
+
 ## 0.8.22
 - Yapay zekâ asistanı paneli artık Flux AI'ın ortak sohbeti (Flux AI 0.20.0+): dosya ve PDF ekleme, sesle yazma, araç adımları, onay kartları, model seçimi, düzenle/geri sar ve çalışma alanı ana sohbetle aynı. Sohbet hesabınızda kalır; "Yeni sohbet" ve "Tam ekranda aç" düğmeleri var. Telefonda tam ekran açılır.
 - Dosyadan görev çıkarma: toplantı notu ya da PDF ekleyip "buradan görevleri oluştur" deyin. Asistan önce görevleri listeler, hedef liste belli değilse sorar, sonra her görev onay kartında ayrı gelir; istediklerinizi onaylayıp diğerlerini reddedersiniz. Onaylanmayan görev oluşturulmaz.

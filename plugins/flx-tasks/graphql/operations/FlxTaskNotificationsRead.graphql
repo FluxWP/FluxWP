@@ -1,0 +1,6 @@
+mutation FlxTaskNotificationsRead($input: FlxTaskNotificationsReadInput!) {
+  flxTaskNotificationsRead(input: $input) {
+    unread
+    errors { code message field }
+  }
+}

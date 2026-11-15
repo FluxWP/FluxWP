@@ -4,7 +4,8 @@ import { Pressable, ScrollView, TextInput, View } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
-import { flxg, type FlxgComment, type FlxgTask, type FlxgTaskDetail } from '@fluxwp/core';
+import type { FlxgComment, FlxgTask, FlxgTaskDetail } from '@fluxwp/core';
+import { flxgGraphQL } from '@fluxwp/graphql/flx-tasks';
 import { FlxgEngine, parseChecklist, toggleChecklistItem, useAccount, useApi, useEngineVersion, useRenderer } from '@fluxwp/runtime';
 import { KeyboardView } from '@/ui/KeyboardView';
 import { Avatar, Button, EmptyState, IconButton, Skeleton, Text } from '@/ui/primitives';
@@ -31,7 +32,7 @@ export default function TasksScreen(_props: { params: Record<string, string> }) 
   const account = useAccount();
   const renderer = useRenderer();
   const ports = useMemo(() => mobilePorts(account.id), [account.id]);
-  const engine = useMemo(() => new FlxgEngine(flxg(api), undefined, ports), [api, ports]);
+  const engine = useMemo(() => new FlxgEngine(flxgGraphQL(api), undefined, ports), [api, ports]);
   const ver = useEngineVersion(engine);
   const [mode, setMode] = useState<'list' | 'board'>('list');
   const [q, setQ] = useState('');

@@ -1,0 +1,6 @@
+mutation FlxTaskWatch($input: FlxTaskWatchInput!) {
+  flxTaskWatch(input: $input) {
+    watcherIds
+    errors { code message field }
+  }
+}

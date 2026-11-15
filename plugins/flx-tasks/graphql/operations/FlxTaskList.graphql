@@ -1,0 +1,8 @@
+# One page of tasks (search, "my tasks", a list or project).
+query FlxTaskList($listId: Int, $spaceId: Int, $parentId: Int, $mine: Boolean, $search: String, $archived: Boolean, $first: Int, $after: String) {
+  flxTasks(listId: $listId, spaceId: $spaceId, parentId: $parentId, mine: $mine, search: $search, archived: $archived, first: $first, after: $after) {
+    totalCount
+    pageInfo { hasNextPage endCursor }
+    nodes { ...FlxTaskRow }
+  }
+}

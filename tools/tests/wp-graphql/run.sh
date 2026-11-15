@@ -16,6 +16,10 @@ FIXTURES=1 SERVE=1 bash "$here/site.sh" "$site" "$port" || exit 1
 trap 'kill "$(cat "$site/.server.pid" 2>/dev/null)" 2>/dev/null || true' EXIT
 
 $WP eval-file "$here/kit-test.php" --path="$site" || fail=1
+# Package contract tests: tools/tests/wp-graphql/<slug>/contract-test.php
+for t in "$here"/*/contract-test.php; do
+  [ -f "$t" ] && { $WP eval-file "$t" --path="$site" || fail=1; }
+done
 bash "$here/http-test.sh" "$site" "http://127.0.0.1:$port" || fail=1
 
 if [ -s "$site/wp-content/debug.log" ] && grep -qE 'PHP (Fatal|Parse) error' "$site/wp-content/debug.log"; then

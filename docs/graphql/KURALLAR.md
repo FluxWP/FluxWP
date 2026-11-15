@@ -61,6 +61,7 @@ add_action( 'flx_gql_register', function () {
 - `owner`: cap tutmazsa ikinci şans (kişinin kendi kaydı). İkisi de tutmazsa `FORBIDDEN` (girişsizse `UNAUTHENTICATED`).
 - `'public'` yalnız herkese açık veride (yayımlanmış bağış türü, sertifika doğrulama). PR'da gerekçe yazılır.
 - Node: loader'ın `can_see()` metodu görmeyen kullanıcıya `null` döndürür (hata değil). `node(id:)` de aynı loader'dan geçer.
+- Node loader'ı ayrıca `flx_gql_loaders` aksiyonunda adlandırılır: HTTP isteğinde WPGraphQL AppContext loader listesini şema kurulmadan okur, yalnız `flx_gql_register` içinde adlandırılan loader "No loader assigned" hatası verir. `add_action( 'flx_gql_loaders', fn() => flx_gql_node_loader( 'FlxTask', 'FLXG_Task_Loader' ) );` Sınıf adı yeter, sınıf şemayla birlikte sonra yüklenebilir.
 - Nesne tipinin alanları cap almaz; görünürlük kök alanda ve loader'da çözülür. Hassas alan (e-posta, telefon, not) ayrıca `cap` ile alan düzeyinde kapatılır.
 
 ## 4. Hatalar

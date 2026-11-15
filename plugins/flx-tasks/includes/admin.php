@@ -35,9 +35,83 @@ add_action(
 	}
 );
 
+/*
+ * New view (0.9.0, GraphQL pilot): the Tasks page can open the same React screen as FluxApp
+ * (assets/flux/, tools/fluxapp/embed-sync.sh flx-tasks). Per user, opt-in; the classic app stays the
+ * default and keeps documents, the usage dashboard and settings. Needs Flux GraphQL.
+ */
+function flxg_flux_available() {
+	return file_exists( FLXG_DIR . 'assets/flux/flux-modules.js' ) && function_exists( 'flx_gql_ready' ) && flx_gql_ready();
+}
+
+function flxg_flux_ui() {
+	return flxg_flux_available() && 'flx-tasks' === sanitize_key( $_GET['page'] ?? '' ) && 'flux' === get_user_meta( get_current_user_id(), 'flxg_ui', true ); // phpcs:ignore
+}
+
+/** Link that switches the current user between the views. */
+function flxg_ui_switch_url( $ui ) {
+	return wp_nonce_url( admin_url( 'admin.php?page=flx-tasks&flxg_ui=' . ( 'flux' === $ui ? 'flux' : 'classic' ) ), 'flxg_ui' );
+}
+
+add_action(
+	'admin_init',
+	function () {
+		if ( ! isset( $_GET['flxg_ui'] ) || ! current_user_can( 'flxg_use' ) ) { // phpcs:ignore
+			return;
+		}
+		check_admin_referer( 'flxg_ui' );
+		$ui = 'flux' === $_GET['flxg_ui'] && flxg_flux_available() ? 'flux' : ''; // phpcs:ignore
+		update_user_meta( get_current_user_id(), 'flxg_ui', $ui );
+		wp_safe_redirect( admin_url( 'admin.php?page=flx-tasks' ) );
+		exit;
+	}
+);
+
+/** The chunked bundle loads as an ES module (WP 6.5 script modules are not needed for one handle). */
+function flxg_flux_module_tag( $tag, $handle ) {
+	if ( 'flxg-flux' !== $handle ) {
+		return $tag;
+	}
+	return (string) preg_replace_callback(
+		'/<script\b[^>]*\ssrc=[^>]*>/',
+		static function ( $m ) {
+			$open = (string) preg_replace( '/\stype=("|\')[^"\']*\1/', '', $m[0] );
+			return (string) preg_replace( '/^<script\b/', '<script type="module"', $open );
+		},
+		$tag,
+		1
+	);
+}
+
+function flxg_flux_assets() {
+	$ver  = FLXG_VERSION . '-' . (int) filemtime( FLXG_DIR . 'assets/flux/flux-modules.js' );
+	$opts = array(
+		'module' => 'flxg-tasks',
+		'rest'   => rest_url(),
+		'nonce'  => wp_create_nonce( 'wp_rest' ),
+		'locale' => get_user_locale(),
+	);
+	wp_enqueue_style( 'flxg-flux', FLXG_URL . 'assets/flux/flux-modules.css', array(), $ver );
+	wp_enqueue_script( 'flxg-flux', FLXG_URL . 'assets/flux/flux-modules.js', array(), $ver, true );
+	if ( is_readable( FLXG_DIR . 'assets/flux/chunks.json' ) ) {
+		add_filter( 'script_loader_tag', 'flxg_flux_module_tag', 10, 2 );
+		wp_add_inline_script(
+			'flxg-flux',
+			'(function(){var slot=window.FluxModulesOptions||(window.FluxModulesOptions={});slot.id="flxg-flux";slot.opts=' . wp_json_encode( $opts ) . ';function go(){if(slot.done||!window.FluxModules)return;var el=document.getElementById(slot.id);if(!el)return;slot.done=true;try{window.FluxModules.mount(el,slot.opts);}catch(e){el.textContent=String(e&&e.message||e);}}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);go();})();',
+			'before'
+		);
+		return;
+	}
+	wp_add_inline_script( 'flxg-flux', '(function(){var el=document.getElementById("flxg-flux");if(el&&window.FluxModules){try{window.FluxModules.mount(el,' . wp_json_encode( $opts ) . ');}catch(e){el.textContent=String(e&&e.message||e);}}})();' );
+}
+
 add_action( 'admin_enqueue_scripts', 'flxg_admin_assets' );
 function flxg_admin_assets() {
 	if ( ! flxg_is_app_screen() ) {
+		return;
+	}
+	if ( flxg_flux_ui() ) {
+		flxg_flux_assets();
 		return;
 	}
 	$page  = sanitize_key( $_GET['page'] ?? '' ); // phpcs:ignore
@@ -70,6 +144,7 @@ function flxg_admin_assets() {
 			// Başlıkta site logosu değil eklentinin kendi simgesi (site logosu sol şeritte zaten var). Flux Admin varsa seçili logo stili.
 			'appIcon'  => function_exists( 'flxa_logo_file_url' ) ? flxa_logo_file_url( 'flx-tasks.svg' ) : plugins_url( 'assets/icon.svg', FLXG_FILE ),
 			'aiEmbed'  => ! empty( $ai_embed ),
+			'fluxUrl'  => flxg_flux_available() ? flxg_ui_switch_url( 'flux' ) : '',
 			'i18n'     => flxg_js_strings(),
 		)
 	);
@@ -77,6 +152,13 @@ function flxg_admin_assets() {
 
 /* Uygulama tam ekran: WP menüsü ve çubuğu üstünde kendi arayüzü. */
 function flxg_render_app() {
+	if ( flxg_flux_ui() ) {
+		// WP menu and toolbar stay; the screen fills the rest of the content area under a thin bar.
+		echo '<style>#wpcontent{padding-left:0}#wpbody-content{padding-bottom:0}#wpfooter{display:none}.flxg-flux-bar{display:flex;gap:10px;align-items:center;justify-content:flex-end;height:32px;padding:0 14px;font-size:12px;border-bottom:1px solid rgba(127,127,127,.25)}#flxg-flux{height:calc(100vh - var(--wp-admin--admin-bar--height,32px) - 33px);min-height:480px}</style>';
+		echo '<div class="flxg-flux-bar"><span>' . esc_html__( 'New view (GraphQL)', 'flx-tasks' ) . '</span><a href="' . esc_url( flxg_ui_switch_url( 'classic' ) ) . '">' . esc_html__( 'Classic view', 'flx-tasks' ) . '</a></div>';
+		echo '<div id="flxg-flux"><noscript>' . esc_html__( 'JavaScript is required for Tasks.', 'flx-tasks' ) . '</noscript></div>';
+		return;
+	}
 	echo '<script>document.documentElement.classList.add("flxg-lock");</script>';
 	echo '<div id="flxg-app" class="flxg"><noscript>' . esc_html__( 'JavaScript is required for Tasks.', 'flx-tasks' ) . '</noscript></div>';
 	// Tema div'in hemen ardından, ilk boyamadan önce uygulanır (pages.js yüklenene kadar açık tema görünmesin).

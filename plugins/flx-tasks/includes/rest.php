@@ -734,14 +734,7 @@ function flxg_rest_tag_delete( WP_REST_Request $r ) {
 
 /** İstek kapsamındaki listeler: list=ID | space=ID | mine=1. */
 function flxg_scope_lists( WP_REST_Request $r ) {
-	if ( $r->get_param( 'list' ) ) {
-		$l = flxg_get_list( (int) $r->get_param( 'list' ) );
-		return $l && flxg_can_list( $l ) ? array( $l['id'] ) : null;
-	}
-	if ( $r->get_param( 'space' ) ) {
-		return flxg_visible_list_ids( (int) $r->get_param( 'space' ) );
-	}
-	return flxg_visible_list_ids();
+	return FLXG_Task_Service::scope_lists( (int) $r->get_param( 'list' ), (int) $r->get_param( 'space' ), get_current_user_id() );
 }
 
 function flxg_rest_tasks( WP_REST_Request $r ) {
@@ -780,62 +773,30 @@ function flxg_rest_tasks( WP_REST_Request $r ) {
 }
 
 function flxg_rest_task_create( WP_REST_Request $r ) {
-	$b    = flxg_body( $r );
-	$list = flxg_get_list( (int) ( $b['list'] ?? 0 ) );
-	if ( ! $list || ! flxg_can_list( $list, 'edit' ) ) {
-		return flxg_error( 'flxg_forbidden', __( 'You don\'t have permission to add tasks to this list.', 'flx-tasks' ), 403 );
-	}
-	$b['list_id'] = $list['id'];
-	if ( ! empty( $b['parent'] ) ) {
-		$b['parent_id'] = flxg_can_task( (int) $b['parent'], 'edit' ) ? (int) $b['parent'] : 0;
-	}
-	$id = flxg_create_task( $b, get_current_user_id() );
-	if ( is_wp_error( $id ) ) {
-		return $id;
-	}
-	return array( 'task' => flxg_get_task( $id, false ) );
+	$t = FLXG_Task_Service::create( flxg_body( $r ), get_current_user_id() );
+	return is_wp_error( $t ) ? $t : array( 'task' => $t ? $t : null );
 }
 
 function flxg_rest_task_get( WP_REST_Request $r ) {
 	$id = (int) $r['id'];
-	if ( ! flxg_can_task( $id ) ) {
+	if ( ! FLXG_Task_Service::can( $id, 'view', get_current_user_id() ) ) {
 		return flxg_error( 'flxg_404', __( 'Task not found or you don\'t have access.', 'flx-tasks' ), 404 );
 	}
-	flxg_mark_read( get_current_user_id(), null, $id );
+	$unread = FLXG_Task_Service::mark_read( $id, get_current_user_id() );
 	return array(
-		'task'   => flxg_task_detail( $id, get_current_user_id() ),
-		'unread' => flxg_unread_count( get_current_user_id() ),
+		'task'   => FLXG_Task_Service::detail( $id, get_current_user_id() ),
+		'unread' => $unread,
 	);
 }
 
 function flxg_rest_task_update( WP_REST_Request $r ) {
-	$id  = (int) $r['id'];
-	$row = flxg_get_task_row( $id );
-	if ( ! $row || ! flxg_can_task( $row, 'edit' ) ) {
-		return flxg_error( 'flxg_forbidden', __( 'You don\'t have permission to edit this task.', 'flx-tasks' ), 403 );
-	}
-	$b = flxg_body( $r );
-	if ( isset( $b['list'] ) && (int) $b['list'] !== (int) $row['list_id'] && ! flxg_can_list( (int) $b['list'], 'edit' ) ) {
-		return flxg_error( 'flxg_forbidden', __( 'You don\'t have permission to add tasks to the target list.', 'flx-tasks' ), 403 );
-	}
-	$t = flxg_update_task( $id, $b, get_current_user_id() );
-	if ( is_wp_error( $t ) ) {
-		return $t;
-	}
-	if ( ! empty( $b['detail'] ) ) {
-		return array( 'task' => flxg_task_detail( $id, get_current_user_id() ) );
-	}
-	unset( $t['description'] );
-	return array( 'task' => $t );
+	$t = FLXG_Task_Service::update( (int) $r['id'], flxg_body( $r ), get_current_user_id() );
+	return is_wp_error( $t ) ? $t : array( 'task' => $t );
 }
 
 function flxg_rest_task_delete( WP_REST_Request $r ) {
-	$id = (int) $r['id'];
-	if ( ! flxg_can_task( $id, 'edit' ) ) {
-		return flxg_error( 'flxg_forbidden', __( 'You don\'t have permission to delete this task.', 'flx-tasks' ), 403 );
-	}
-	flxg_delete_task( $id, get_current_user_id() );
-	return array( 'deleted' => $id );
+	$id = FLXG_Task_Service::delete( (int) $r['id'], get_current_user_id() );
+	return is_wp_error( $id ) ? $id : array( 'deleted' => $id );
 }
 
 function flxg_rest_task_bulk( WP_REST_Request $r ) {
@@ -866,26 +827,14 @@ function flxg_rest_task_bulk( WP_REST_Request $r ) {
 }
 
 function flxg_rest_task_watch( WP_REST_Request $r ) {
-	$id = (int) $r['id'];
-	if ( ! flxg_can_task( $id ) ) {
-		return flxg_error( 'flxg_404', __( 'Task not found or you don\'t have access.', 'flx-tasks' ), 404 );
-	}
 	$b = flxg_body( $r );
-	if ( ! empty( $b['watch'] ) ) {
-		flxg_add_watcher( $id, get_current_user_id() );
-	} else {
-		flxg_remove_watcher( $id, get_current_user_id() );
-	}
-	return array( 'watchers' => flxg_watchers( $id ) );
+	$w = FLXG_Task_Service::watch( (int) $r['id'], ! empty( $b['watch'] ), get_current_user_id() );
+	return is_wp_error( $w ) ? $w : array( 'watchers' => $w );
 }
 
 function flxg_rest_comment_create( WP_REST_Request $r ) {
-	$id = (int) $r['id'];
-	if ( ! flxg_can_task( $id, 'comment' ) ) {
-		return flxg_error( 'flxg_forbidden', __( 'You don\'t have permission to comment on this task.', 'flx-tasks' ), 403 );
-	}
 	$b = flxg_body( $r );
-	return flxg_add_comment( $id, (string) ( $b['body'] ?? '' ), (array) ( $b['files'] ?? array() ), get_current_user_id() );
+	return FLXG_Task_Service::comment( (int) $r['id'], (string) ( $b['body'] ?? '' ), array_values( array_map( 'intval', (array) ( $b['files'] ?? array() ) ) ), get_current_user_id() );
 }
 
 function flxg_rest_comment_update( WP_REST_Request $r ) {

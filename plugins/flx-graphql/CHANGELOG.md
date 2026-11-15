@@ -9,4 +9,5 @@
 - Kayıtlı sorgular (persisted queries): üretimde yalnız FluxWP paketleriyle gelen sorgular çalışır; herkese açık okumalar GET ile LiteSpeed/CDN önbelleğine girer, cache tag ile temizlenir.
 - Ortak dosya yükleme ucu `/wp-json/flx/v1/upload` (GraphQL işlemleri `uploadId` ile çalışır).
 - Derinlik ve karmaşıklık sınırları, CORS izin listesi, PHP 8.2–8.5 fonksiyonları için polyfill seti.
+- Node yükleyicileri `flx_gql_loaders` aksiyonunda adlandırılır (HTTP isteğinde AppContext şemadan önce kurulduğu için).
 - Ayarlar › Flux GraphQL paneli ve sistem kontrolü satırları. Türkçe çeviri.

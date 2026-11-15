@@ -1,0 +1,6 @@
+mutation FlxTaskCommentCreate($input: FlxTaskCommentCreateInput!) {
+  flxTaskCommentCreate(input: $input) {
+    comment { ...FlxTaskCommentRow }
+    errors { code message field }
+  }
+}
