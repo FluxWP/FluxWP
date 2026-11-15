@@ -1,0 +1,537 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Flux GraphQL\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+#: includes/admin.php
+msgid "Flux GraphQL"
+msgstr ""
+
+#: includes/admin.php
+msgid "Settings"
+msgstr ""
+
+#: includes/admin.php
+msgid "You do not have permission to do this."
+msgstr ""
+
+#: includes/admin.php
+msgid "One GraphQL API for the FluxWP plugins. Screens in wp-admin, the FluxWP desktop and mobile apps and a headless front end all read the same typed schema."
+msgstr ""
+
+#: includes/admin.php
+msgid "Settings saved."
+msgstr ""
+
+#: includes/admin.php
+msgid "The separate WPGraphQL plugin was deactivated; the built-in copy is in use."
+msgstr ""
+
+#: includes/admin.php
+msgid "Status"
+msgstr ""
+
+#: includes/admin.php
+msgid "Endpoint"
+msgstr ""
+
+#: includes/admin.php
+msgid "WPGraphQL"
+msgstr ""
+
+#: includes/admin.php
+msgid "%s (built in)"
+msgstr ""
+
+#: includes/admin.php
+msgid "%s (separate plugin)"
+msgstr ""
+
+#: includes/admin.php
+msgid "not loaded"
+msgstr ""
+
+#: includes/admin.php
+msgid "working"
+msgstr ""
+
+#: includes/admin.php
+msgid "off"
+msgstr ""
+
+#: includes/admin.php
+msgid "Known queries"
+msgstr ""
+
+#: includes/admin.php
+msgid "%1$d from %2$d packages"
+msgstr ""
+
+#: includes/admin.php
+msgid "Upload endpoint"
+msgstr ""
+
+#: includes/admin.php
+msgid "Use the Flux GraphQL version"
+msgstr ""
+
+#: includes/admin.php
+msgid "Open GraphiQL IDE"
+msgstr ""
+
+#: includes/admin.php
+msgid "Access"
+msgstr ""
+
+#: includes/admin.php
+msgid "Only queries shipped with FluxWP packages (recommended)"
+msgstr ""
+
+#: includes/admin.php
+msgid "Administrators may also send any query"
+msgstr ""
+
+#: includes/admin.php
+msgid "Anyone may send any query (public headless API)"
+msgstr ""
+
+#: includes/admin.php
+msgid "Which queries run"
+msgstr ""
+
+#: includes/admin.php
+msgid "Persisted queries keep the API small and let LiteSpeed cache public reads."
+msgstr ""
+
+#: includes/admin.php
+msgid "Front-end origins"
+msgstr ""
+
+#: includes/admin.php
+msgid "Sites allowed to call /graphql from the browser, one per line. This site is always allowed."
+msgstr ""
+
+#: includes/admin.php
+msgid "GraphiQL IDE for administrators"
+msgstr ""
+
+#: includes/admin.php
+msgid "Also lets administrators run any query while it is on."
+msgstr ""
+
+#: includes/admin.php
+msgid "Public schema introspection"
+msgstr ""
+
+#: includes/admin.php
+msgid "Administrators can always read the schema."
+msgstr ""
+
+#: includes/admin.php
+msgid "Debug messages for administrators"
+msgstr ""
+
+#: includes/admin.php
+msgid "Limits"
+msgstr ""
+
+#: includes/admin.php
+msgid "Deepest nesting"
+msgstr ""
+
+#: includes/admin.php
+msgid "Highest complexity"
+msgstr ""
+
+#: includes/admin.php
+msgid "Records per page"
+msgstr ""
+
+#: includes/admin.php
+msgid "Queries per batch"
+msgstr ""
+
+#: includes/admin.php
+msgid "Public cache"
+msgstr ""
+
+#: includes/admin.php
+msgid "sec"
+msgstr ""
+
+#: includes/admin.php
+msgid "Largest upload"
+msgstr ""
+
+#: includes/admin.php
+msgid "The FluxWP form fields could not load. Reinstall Flux GraphQL."
+msgstr ""
+
+#: includes/admin.php
+msgid "Shared hosting: keep the limits low. A query that goes over them is refused before it runs."
+msgstr ""
+
+#: includes/admin.php
+msgid "Save"
+msgstr ""
+
+#: includes/checks.php
+msgid "GraphQL server"
+msgstr ""
+
+#: includes/checks.php
+msgid "Flux GraphQL settings"
+msgstr ""
+
+#: includes/checks.php
+msgid "Built-in WPGraphQL %s is running."
+msgstr ""
+
+#: includes/checks.php
+msgid "A separately installed WPGraphQL %1$s is running instead of the built-in %2$s. It works, but its updates are not tested with FluxWP. Use the built-in copy unless another plugin needs the separate one."
+msgstr ""
+
+#: includes/checks.php
+msgid "A separately installed WPGraphQL %1$s is active. FluxWP needs %2$s or newer and below %3$s, so FluxWP GraphQL screens fall back to the classic pages. Deactivate it to use the built-in copy."
+msgstr ""
+
+#: includes/checks.php
+msgid "The built-in WPGraphQL files are missing. Reinstall Flux GraphQL from FluxWP Panel › Packages."
+msgstr ""
+
+#: includes/checks.php
+msgid "GraphQL queries"
+msgstr ""
+
+#: includes/checks.php
+msgid "Anyone may send any GraphQL query. Keep this only for a public headless front end; depth and complexity limits still apply."
+msgstr ""
+
+#: includes/checks.php
+msgid "GraphQL types"
+msgstr ""
+
+#: includes/checks.php
+msgid "Some GraphQL fields were refused because they break the FluxWP rules: %s. Update the package that adds them."
+msgstr ""
+
+#: includes/checks.php
+msgid "Flux GraphQL: the separately installed WPGraphQL %s is not supported, so FluxWP GraphQL screens are off."
+msgstr ""
+
+#: includes/checks.php
+msgid "Only queries shipped with FluxWP packages run (%d known)."
+msgstr ""
+
+#: includes/loader.php
+msgid "You are not allowed to manage plugins."
+msgstr ""
+
+#: includes/upload.php
+msgid "Uploads are not accepted for this screen."
+msgstr ""
+
+#: includes/upload.php
+msgid "You do not have permission to upload files here."
+msgstr ""
+
+#: includes/upload.php
+msgid "Too many uploads. Wait a few minutes and try again."
+msgstr ""
+
+#: includes/upload.php
+msgid "The file did not arrive. Try again."
+msgstr ""
+
+#: includes/upload.php
+msgid "The file is larger than %s."
+msgstr ""
+
+#: includes/upload.php
+msgid "This file type is not allowed."
+msgstr ""
+
+#: includes/upload.php
+msgid "The file could not be saved on the server."
+msgstr ""
+
+#: includes/upload.php
+msgid "The uploaded file was not found. Upload it again."
+msgstr ""
+
+#: includes/kit/connection.php
+msgid "Where a page sits in a list."
+msgstr ""
+
+#: includes/kit/connection.php
+msgid "More records follow this page."
+msgstr ""
+
+#: includes/kit/connection.php
+msgid "Records come before this page."
+msgstr ""
+
+#: includes/kit/connection.php
+msgid "Cursor of the first record on this page."
+msgstr ""
+
+#: includes/kit/connection.php
+msgid "Cursor of the last record on this page; pass it as \"after\" for the next page."
+msgstr ""
+
+#: includes/kit/connection.php
+msgid "One %s in a list, with its cursor."
+msgstr ""
+
+#: includes/kit/connection.php
+msgid "Opaque cursor of this record."
+msgstr ""
+
+#: includes/kit/connection.php
+msgid "The record."
+msgstr ""
+
+#: includes/kit/connection.php
+msgid "A page of %s records."
+msgstr ""
+
+#: includes/kit/connection.php
+msgid "Records with their cursors."
+msgstr ""
+
+#: includes/kit/connection.php
+msgid "Records of this page."
+msgstr ""
+
+#: includes/kit/connection.php
+msgid "Paging information."
+msgstr ""
+
+#: includes/kit/connection.php
+msgid "All matching records (null when counting would be slow)."
+msgstr ""
+
+#: includes/kit/connection.php
+msgid "Records per page (at most %d)."
+msgstr ""
+
+#: includes/kit/connection.php
+msgid "Cursor to continue after (pageInfo.endCursor)."
+msgstr ""
+
+#: includes/kit/connection.php
+msgid "The page cursor is not valid."
+msgstr ""
+
+#: includes/kit/errors.php
+msgid "Please sign in again."
+msgstr ""
+
+#: includes/kit/errors.php
+msgid "The record was not found."
+msgstr ""
+
+#: includes/kit/errors.php
+msgid "Some fields are not valid."
+msgstr ""
+
+#: includes/kit/errors.php
+msgid "The record was changed by someone else. Reload and try again."
+msgstr ""
+
+#: includes/kit/errors.php
+msgid "Too many requests. Wait a moment and try again."
+msgstr ""
+
+#: includes/kit/errors.php
+msgid "Something went wrong. Please try again."
+msgstr ""
+
+#: includes/kit/persisted.php
+msgid "This query is not known to the site. Update the app or the FluxWP packages."
+msgstr ""
+
+#: includes/kit/persisted.php
+msgid "Only queries shipped with FluxWP packages may run on this site."
+msgstr ""
+
+#: includes/kit/registry.php
+msgid "The ID is not valid."
+msgstr ""
+
+#: includes/kit/registry.php
+msgid "Global ID."
+msgstr ""
+
+#: includes/kit/registry.php
+msgid "Database ID."
+msgstr ""
+
+#: includes/kit/registry.php
+msgid "Input problems to show next to the form fields. Empty when the mutation succeeded."
+msgstr ""
+
+#: includes/kit/settings-types.php
+msgid "Changes to %s. Only the fields you send are changed."
+msgstr ""
+
+#: includes/kit/settings-types.php
+msgid "Panel settings of the installed FluxWP packages (from flx_settings_schema)."
+msgstr ""
+
+#: includes/kit/settings-types.php
+msgid "Panel settings of the installed FluxWP packages."
+msgstr ""
+
+#: includes/kit/settings-types.php
+msgid "Changes panel settings. Only the groups and fields you send are written."
+msgstr ""
+
+#: includes/kit/settings-types.php
+msgid "Settings after the change."
+msgstr ""
+
+#: includes/kit/settings-types.php
+msgid "This setting cannot be changed here."
+msgstr ""
+
+#: includes/kit/settings-types.php
+msgid "A list or object is expected."
+msgstr ""
+
+#: includes/kit/settings-types.php
+msgid "This choice is not available."
+msgstr ""
+
+#: includes/kit/settings-types.php
+msgid "Enter a colour like #1F6FEB."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "Free-form JSON value (object, list, string, number or boolean)."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "A problem with the input of a mutation, shown next to the form field."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "Stable code: INVALID_INPUT, CONFLICT, …"
+msgstr ""
+
+#: includes/kit/types.php
+msgid "Message in the user's language."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "Input field (dotted path) the problem belongs to."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "A point in time with labels in the user's language."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "ISO 8601 in UTC (2026-11-15T14:59:00Z)."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "Unix timestamp."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "Date and time for display, in the site time zone and the user's language."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "Relative time for display (\"5 minutes ago\")."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "An amount of money."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "Amount in the currency unit (150.5)."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "ISO 4217 code (TRY, USD)."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "Amount with the currency sign for display."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "A phone number."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "E.164 form (+905301234567); empty when the number is not valid."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "Digits only (905301234567)."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "Number as entered, for display."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "A stored file."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "File ID (upload ID or the package's own ID)."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "File name."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "MIME type."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "Size in bytes."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "Download address (may need the same sign-in)."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "The file is an image."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "Thumbnail address for images."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "A person (donor, customer, contact). Flux CRM owns the record; other packages return it."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "Person ID in the shared people table."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "Full name."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "E-mail address."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "Phone number."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "Picture address."
+msgstr ""
+

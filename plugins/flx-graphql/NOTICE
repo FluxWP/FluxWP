@@ -1,0 +1,14 @@
+Flux GraphQL
+Copyright (C) FluxWP
+
+This program is free software: you can redistribute it and/or modify it under the terms of the
+GNU General Public License as published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version. See LICENSE.
+
+Bundled third-party software (vendor/wp-graphql/):
+
+  WPGraphQL (https://github.com/wp-graphql/wp-graphql), GPL-3.0, pinned version in
+  vendor/WPGRAPHQL_VERSION, fetched by tools/update-wpgraphql.sh. The Appsero usage-tracking
+  client is removed from the bundled copy; nothing else is changed.
+    graphql-php (webonyx/graphql-php), MIT
+    graphql-relay-php (ivome/graphql-relay-php), BSD-3-Clause

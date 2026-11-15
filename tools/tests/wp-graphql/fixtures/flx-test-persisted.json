@@ -1,0 +1,3 @@
+{
+  "ffddb6ac5762b8d7ceee75ad414d56112547858efbd5c677d267a7c8c50a11fd": "query FlxTestPing { flxTestEcho(text: \"pong\") }"
+}
