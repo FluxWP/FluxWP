@@ -63,10 +63,9 @@
 	function add(el, c) {
 		if (c === null || c === undefined || c === false) return;
 		if (Array.isArray(c)) return c.forEach(function (x) { add(el, x); });
-		// Primitives always become text nodes; only real DOM nodes are appended as-is.
-		if (typeof c !== 'object') { el.appendChild(document.createTextNode(String(c))); return; }
-		if (c instanceof Node) el.appendChild(c);
-		else el.appendChild(document.createTextNode(String(c)));
+		// Primitives always become text; only real DOM nodes are appended as-is.
+		// Element.append() inserts strings as text nodes, never as HTML.
+		el.append(c instanceof Node ? c : String(c));
 	}
 	Y.h = h;
 	Y.clear = function (el) {
