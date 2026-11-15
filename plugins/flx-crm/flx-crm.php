@@ -86,6 +86,35 @@ add_filter(
 		return $m;
 	}
 );
+/*
+ * Every writer (REST, classic pages, AI tools, sync, package adapters, GraphQL) goes through the data classes, which
+ * fire these actions: drop the GraphQL cache of the contact and the lists that count it.
+ */
+foreach ( array( 'flxcrm_contact_created', 'flxcrm_contact_updated', 'flxcrm_contact_deleting', 'flxcrm_consent_changed', 'flxcrm_tag_added', 'flxcrm_tag_removed', 'flxcrm_role_added', 'flxcrm_segment_changed' ) as $flxcrm_hook ) {
+	add_action(
+		$flxcrm_hook,
+		static function ( $id = 0 ) {
+			flxcrm_purge( array( 'flx-crm:contacts', 'flx-crm:overview', 'flx-crm:meta', 'flx-crm:contact:' . (int) $id ) );
+		}
+	);
+}
+add_action(
+	'flxcrm_contact_merged',
+	static function ( $keep = 0, $dup = 0 ) {
+		flxcrm_purge( array( 'flx-crm:contacts', 'flx-crm:overview', 'flx-crm:contact:' . (int) $keep, 'flx-crm:contact:' . (int) $dup ) );
+	},
+	10,
+	2
+);
+add_action(
+	'flxcrm_event',
+	static function ( $event_id = 0, $contact_id = 0 ) {
+		flxcrm_purge( array( 'flx-crm:contacts', 'flx-crm:overview', 'flx-crm:contact:' . (int) $contact_id ) );
+	},
+	10,
+	2
+);
+unset( $flxcrm_hook );
 add_filter(
 	'flx_gql_capabilities',
 	static function ( $caps ) {
