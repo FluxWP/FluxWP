@@ -213,6 +213,7 @@ flx_gql_type(
 				'description' => sprintf( __( 'People in the role by name (the first %d).', 'flx-roles' ), FLXR_Roles_Service::MEMBERS_MAX ),
 				'args'        => flx_gql_connection_args(),
 				'resolve'     => static function ( $r, array $args ): array {
+					/** @var array<string,mixed> $args */
 					$key = flxr_gql_src( $r, FLXR_Role::class )->key;
 					return flx_gql_paginate( $args, static fn( int $offset, int $limit ): array => FLXR_Roles_Service::members( $key, $offset, $limit ) );
 				},

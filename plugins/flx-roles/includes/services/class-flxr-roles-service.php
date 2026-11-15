@@ -194,7 +194,7 @@ final class FLXR_Roles_Service {
 				}
 			}
 		}
-		$settings = flxr_settings();
+		$settings = (array) flxr_settings();
 		$home     = is_array( $settings['home'] ?? null ) ? $settings['home'] : array();
 		foreach ( $roles as $r ) {
 			if ( isset( $r['capabilities'] ) ) {
@@ -332,7 +332,7 @@ final class FLXR_Roles_Service {
 				$on[] = $cap;
 			}
 		}
-		$settings = flxr_settings();
+		$settings = (array) flxr_settings();
 		$home     = is_array( $settings['home'] ?? null ) ? $settings['home'] : array();
 		$want     = self::str( $home[ $key ] ?? 'auto' );
 		return new FLXR_Role(
