@@ -606,6 +606,7 @@
     "Continue in the AI chat": "AI sohbetinde devam et",
     "The previous run still had an action waiting for approval, so this run was skipped.": "Önceki çalışmada onay bekleyen bir işlem vardı, bu yüzden bu çalışma atlandı.",
     "No details were kept for this run.": "Bu çalışmanın ayrıntısı saklanmadı.",
-    "Tools: %s": "Araç: %s"
+    "Tools: %s": "Araç: %s",
+    "MCP server of %s: read and manage the site content and the tools of its FluxWP plugins.": "%s MCP sunucusu: site içeriğini ve FluxWP eklentilerinin araçlarını okur ve yönetir."
   }
 }

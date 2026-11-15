@@ -47,6 +47,7 @@ function flxseo_audit_owners() {
 		'flx-seo' => __( 'Flux SEO (one click)', 'flx-seo' ),
 		'flx-speed' => __( 'Flux Speed (one click)', 'flx-seo' ),
 		'setting' => __( 'WordPress setting', 'flx-seo' ),
+		'flx-ai'  => __( 'Flux AI & MCP', 'flx-seo' ),
 	);
 }
 
@@ -141,6 +142,13 @@ function flxseo_audit_catalog() {
 		'llms-txt'                     => array( 'agentic', __( 'No llms.txt', 'flx-seo' ), __( 'AI agents summarize a site through /llms.txt. Flux SEO builds it from the site name, description, menu pages and recent content; one click to turn it on.', 'flx-seo' ), 'flx-seo', array(), 'flxseo_llms' ),
 		'llms-txt-format'              => array( 'agentic', __( 'llms.txt is not in the recommended format', 'flx-seo' ), __( 'The first line must be "# Site name", then "> short summary" and link lists in [title](url) form. If an old hand-made file sits in the root, delete it; Flux SEO generates one.', 'flx-seo' ), 'flx-seo', array(), 'flxseo_llms' ),
 		'webmcp-forms'                 => array( 'agentic', __( 'Forms are not declared as WebMCP tools', 'flx-seo' ), __( 'WebMCP lets browser agents call forms as tools (form toolname/tooldescription). Flux SEO adds it to the search form; add it to your own forms too.', 'flx-seo' ), 'flx-seo', array(), 'flxseo_webmcp' ),
+		'content-signal'               => array( 'agentic', __( 'No Content-Signal in robots.txt', 'flx-seo' ), __( 'A Content-Signal line (e.g. search=yes, ai-input=yes, ai-train=no) tells crawlers how your content may be used. Flux SEO adds it to the generated robots.txt; set the values in SEO › Settings. If a hand-written robots.txt sits in the site root, add the line under "User-agent: *" yourself.', 'flx-seo' ), 'flx-seo', array(), 'flxseo_content_signal' ),
+		'sitemap-lastmod'              => array( 'seo', __( 'Sitemap has no lastmod dates', 'flx-seo' ), __( 'Each sitemap entry should carry <lastmod> so search engines and agents know what changed. Flux SEO adds it to the WordPress sitemap and its index; if another plugin builds the sitemap, turn on lastmod there.', 'flx-seo' ), 'flx-seo', array( 'agentic' ) ),
+		'org-schema-incomplete'        => array( 'agentic', __( 'Organization schema is missing contact details', 'flx-seo' ), __( 'Fill in the phone and address so an agent can answer questions about the organization without guessing: SEO › Organization, or the organization profile in Flux Setup (Flux SEO reads it when its own fields are empty).', 'flx-seo' ), 'setting', array( 'seo' ) ),
+		'key-pages-linked'             => array( 'agentic', __( 'About, contact or legal page is not linked from the home page', 'flx-seo' ), __( 'Link the about, contact and privacy/terms pages from the home page (usually the footer). A mailto: link does not count as a contact page; agents look for a page they can read.', 'flx-seo' ), 'theme', array( 'seo' ) ),
+		'markdown-negotiation'         => array( 'agentic', __( 'Markdown is not served when an agent asks for it', 'flx-seo' ), __( 'For Accept: text/markdown the page should answer with a Markdown version; it costs agents far fewer tokens than HTML. Flux SEO does this when "Serve Markdown" is on. If HTML still comes back, a page cache is answering first: purge the cache (LiteSpeed: Purge All) and check that the "Flux SEO Markdown" block is at the top of .htaccess.', 'flx-seo' ), 'flx-seo', array(), 'flxseo_markdown' ),
+		'webmcp-tools'                 => array( 'agentic', __( 'No WebMCP tools are registered on page load', 'flx-seo' ), __( 'Browser agents look for tools registered with navigator.modelContext.registerTool() or forms marked with toolname/tooldescription. Flux SEO registers search, read-page and site-overview tools when WebMCP is on.', 'flx-seo' ), 'flx-seo', array(), 'flxseo_webmcp' ),
+		'mcp-server-card'              => array( 'agentic', __( 'No MCP Server Card', 'flx-seo' ), __( 'Agents discover the site\'s MCP server from /.well-known/mcp/server-card.json (name, version, endpoint, capabilities). Flux AI & MCP publishes it when its MCP server is on (Flux AI & MCP › MCP). Without Flux AI & MCP the site has no MCP server; you can ignore this.', 'flx-seo' ), 'flx-ai' ),
 		'ai-crawlers-blocked'          => array( 'agentic', __( 'robots.txt blocks AI crawlers', 'flx-seo' ), __( 'If crawlers like GPTBot, ClaudeBot, Google-Extended, PerplexityBot are blocked, your content does not show up in AI answers. Remove them from robots.txt unless you block them on purpose.', 'flx-seo' ), 'server' ),
 	);
 	return $c;
@@ -171,7 +179,7 @@ function flxseo_audit_finding( $id, $priority, $items = array(), $detail = '', $
  * ------------------------------------------------------------------------- */
 
 /** Sayfayı sunucu içinden ister (önbellek atlanmaz; ziyaretçinin gördüğü sayfa). */
-function flxseo_audit_fetch( $url ) {
+function flxseo_audit_fetch( $url, $accept = 'text/html' ) {
 	$t0 = microtime( true );
 	$r  = wp_remote_get(
 		$url,
@@ -180,7 +188,7 @@ function flxseo_audit_fetch( $url ) {
 			'redirection' => 3,
 			'sslverify'   => false,
 			'user-agent'  => 'Mozilla/5.0 (compatible; FluxSEO-Audit/' . FLXSEO_VERSION . '; +' . home_url( '/' ) . ')',
-			'headers'     => array( 'Accept' => 'text/html', 'Accept-Encoding' => 'gzip, deflate' ),
+			'headers'     => array( 'Accept' => $accept, 'Accept-Encoding' => 'gzip, deflate' ),
 			'decompress'  => true,
 		)
 	);
@@ -412,6 +420,10 @@ function flxseo_audit_analyze( array $page, $url ) {
 		} else {
 			$ld_bad[] = mb_substr( trim( $s->textContent ), 0, 120 );
 		}
+	}
+	$org_miss = flxseo_audit_org_missing( $xp );
+	if ( $org_miss ) {
+		$add( 'org-schema-incomplete', 'low', $org_miss );
 	}
 	if ( $ld_bad ) {
 		$add( 'structured-data', 'high', $ld_bad, __( 'JSON-LD could not be parsed.', 'flx-seo' ) );
@@ -758,8 +770,112 @@ function flxseo_audit_analyze( array $page, $url ) {
 	if ( $no_tool ) {
 		$add( 'webmcp-forms', flxseo_opt( 'webmcp' ) ? 'low' : 'medium', $no_tool );
 	}
+	if ( ! preg_match( '/modelContext[^;]{0,80}registerTool|registerTool\s*\(|<form\b[^>]*\btoolname=/i', $html ) ) {
+		$add( 'webmcp-tools', 'medium' );
+	}
+	if ( untrailingslashit( strtok( $url, '?' ) ) === untrailingslashit( home_url( '/' ) ) ) {
+		$pages = flxseo_audit_key_pages_missing( $xp );
+		if ( $pages ) {
+			$add( 'key-pages-linked', 'low', $pages );
+		}
+	}
 
 	return (array) apply_filters( 'flxseo_audit_local_checks', $f, $html, $h, $url );
+}
+
+/** JSON-LD'deki kurum düğümünde eksik alanlar (telephone, address); kurum düğümü yoksa boş. */
+function flxseo_audit_org_missing( DOMXPath $xp ) {
+	$types = array( 'Organization', 'NGO', 'Corporation', 'LocalBusiness', 'OnlineBusiness', 'OnlineStore', 'EducationalOrganization', 'GovernmentOrganization', 'NewsMediaOrganization', 'Store', 'ProfessionalService' );
+	$nodes = array();
+	$walk  = function ( $d ) use ( &$walk, &$nodes ) {
+		if ( ! is_array( $d ) ) {
+			return;
+		}
+		if ( isset( $d['@type'] ) ) {
+			$nodes[] = $d;
+		}
+		foreach ( $d as $v ) {
+			if ( is_array( $v ) ) {
+				$walk( $v );
+			}
+		}
+	};
+	foreach ( $xp->query( '//script[@type="application/ld+json"]' ) as $s ) {
+		$walk( json_decode( trim( $s->textContent ), true ) );
+	}
+	$miss = array();
+	foreach ( $nodes as $n ) {
+		$t = array_map( 'strval', (array) $n['@type'] );
+		if ( ! array_intersect( $t, $types ) || count( $n ) < 4 ) {
+			continue; // Yalnız @id başvurusu olan düğümler atlanır.
+		}
+		foreach ( array( 'telephone', 'address' ) as $k ) {
+			$has = ! empty( $n[ $k ] ) || ( 'telephone' === $k && ! empty( $n['contactPoint']['telephone'] ) );
+			if ( ! $has ) {
+				$miss[] = $k;
+			}
+		}
+		break;
+	}
+	return array_values( array_unique( $miss ) );
+}
+
+/** Ana sayfada bağlantısı bulunmayan temel sayfalar: about, contact, legal. */
+function flxseo_audit_key_pages_missing( DOMXPath $xp ) {
+	$pats = (array) apply_filters(
+		'flxseo_key_page_patterns',
+		array(
+			'about'   => '/about|hakk[iı]m[iı]zda|biz-kimiz|kurumsal|uber-uns|über|a-propos|qui-sommes|acerca|sobre|chi-siamo|o-nas|会社|关于/iu',
+			'contact' => '/contact|[iİı]leti[sş]im|kontakt|contacto|contato|contatti|bize-ulas|お問い合わせ|联系/iu',
+			'legal'   => '/privacy|gizlilik|kvkk|terms|kullan[iı]m-ko[sş]ul|legal|yasal|impressum|imprint|datenschutz|mentions-legales|aviso-legal|privacidad|cookie|[cç]erez/iu',
+		)
+	);
+	$found = array();
+	foreach ( $xp->query( '//a[@href]' ) as $a ) {
+		$href = trim( $a->getAttribute( 'href' ) );
+		if ( '' === $href || '#' === $href[0] || preg_match( '/^(mailto|tel|javascript):/i', $href ) ) {
+			continue;
+		}
+		$hay = rawurldecode( (string) wp_parse_url( $href, PHP_URL_PATH ) ) . ' ' . trim( $a->textContent );
+		foreach ( $pats as $k => $re ) {
+			if ( ! isset( $found[ $k ] ) && preg_match( $re, $hay ) ) {
+				$found[ $k ] = true;
+			}
+		}
+	}
+	return array_values( array_diff( array_keys( $pats ), array_keys( $found ) ) );
+}
+
+/** Sitemap dizininde ve ilk alt sitemap'te <lastmod> var mı? Sorun varsa açıklama satırları döner. */
+function flxseo_audit_sitemap_lastmod( $robots_txt ) {
+	$url = '';
+	if ( preg_match( '/^\s*sitemap:\s*(\S+)/mi', (string) $robots_txt, $m ) ) {
+		$url = $m[1];
+	} elseif ( function_exists( 'wp_sitemaps_get_server' ) && wp_sitemaps_get_server()->sitemaps_enabled() ) {
+		$url = home_url( '/wp-sitemap.xml' );
+	}
+	if ( '' === $url ) {
+		return array();
+	}
+	$idx = flxseo_audit_fetch( $url, 'application/xml' );
+	if ( is_wp_error( $idx ) || 200 !== $idx['code'] ) {
+		return array();
+	}
+	$out = array();
+	if ( false !== stripos( $idx['body'], '<sitemapindex' ) ) {
+		if ( false === stripos( $idx['body'], '<lastmod>' ) ) {
+			$out[] = $url;
+		}
+		if ( preg_match( '#<loc>\s*([^<\s]+)\s*</loc>#i', $idx['body'], $m ) ) {
+			$child = flxseo_audit_fetch( html_entity_decode( $m[1] ), 'application/xml' );
+			if ( ! is_wp_error( $child ) && 200 === $child['code'] && false !== stripos( $child['body'], '<url>' ) && false === stripos( $child['body'], '<lastmod>' ) ) {
+				$out[] = html_entity_decode( $m[1] );
+			}
+		}
+	} elseif ( false !== stripos( $idx['body'], '<url>' ) && false === stripos( $idx['body'], '<lastmod>' ) ) {
+		$out[] = $url;
+	}
+	return $out;
 }
 
 /** Site geneli bulgular (sayfaya bağlı değil): robots.txt, llms.txt, aynı başlıklı yayınlar. */
@@ -786,6 +902,21 @@ function flxseo_audit_site_checks() {
 		if ( ! preg_match( '/^\s*sitemap:\s*\S+/mi', $txt ) ) {
 			$f[] = flxseo_audit_finding( 'robots-sitemap', 'low' );
 		}
+		if ( ! preg_match( '/^\s*content-signal:\s*\S+/mi', $txt ) ) {
+			$f[] = flxseo_audit_finding( 'content-signal', 'low' );
+		}
+		$lm = flxseo_audit_sitemap_lastmod( $txt );
+		if ( $lm ) {
+			$f[] = flxseo_audit_finding( 'sitemap-lastmod', 'low', $lm );
+		}
+	}
+	$md = flxseo_audit_fetch( add_query_arg( 'flxseo_audit', time(), home_url( '/' ) ), 'text/markdown' );
+	if ( ! is_wp_error( $md ) && 200 === $md['code'] && false === stripos( $md['headers']['content-type'] ?? '', 'markdown' ) ) {
+		$f[] = flxseo_audit_finding( 'markdown-negotiation', 'low', array( 'Accept: text/markdown → ' . ( $md['headers']['content-type'] ?? '?' ) ) );
+	}
+	$card = flxseo_audit_fetch( home_url( '/.well-known/mcp/server-card.json' ), 'application/json' );
+	if ( ! is_wp_error( $card ) && ( 200 !== $card['code'] || ! is_array( json_decode( $card['body'], true ) ) ) ) {
+		$f[] = flxseo_audit_finding( 'mcp-server-card', 'low', array( '/.well-known/mcp/server-card.json → HTTP ' . (int) $card['code'] . ( 200 === $card['code'] ? ' (' . ( $card['headers']['content-type'] ?? '?' ) . ')' : '' ) ) );
 	}
 	if ( get_option( 'blog_public' ) ) {
 		if ( ! flxseo_opt( 'indexnow' ) ) {

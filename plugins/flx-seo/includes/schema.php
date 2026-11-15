@@ -55,6 +55,62 @@ function flxseo_breadcrumbs() {
 	return $items;
 }
 
+/** Ülke kodu: ayar, yoksa WooCommerce mağaza ülkesi; bilinmiyorsa boş. */
+function flxseo_org_country() {
+	$c = (string) flxseo_opt( 'country' );
+	if ( '' === $c ) {
+		$c = strtoupper( substr( (string) get_option( 'woocommerce_default_country', '' ), 0, 2 ) );
+	}
+	if ( '' === $c && function_exists( 'flx_profile' ) && preg_match( '/(T[üu]rkiye|Turkey)\s*$/iu', trim( (string) flx_profile( 'address', '' ) ) ) ) {
+		$c = 'TR';
+	}
+	return preg_match( '/^[A-Z]{2}$/', $c ) ? $c : '';
+}
+
+/**
+ * Kurum iletişim bilgileri (schema ve denetim): Flux SEO alanları, boşsa Flux Setup kurum profili (flx_profile).
+ *
+ * @return array{address: array, phone: string, email: string, url: string}
+ */
+function flxseo_org_contact() {
+	$prof    = function ( $k ) {
+		return function_exists( 'flx_profile' ) ? trim( (string) flx_profile( $k, '' ) ) : '';
+	};
+	$street  = trim( (string) flxseo_opt( 'street' ) );
+	$address = array();
+	if ( '' !== $street || '' !== trim( (string) flxseo_opt( 'locality' ) ) ) {
+		$address = array(
+			'@type'           => 'PostalAddress',
+			'streetAddress'   => $street,
+			'addressLocality' => flxseo_opt( 'locality' ),
+			'postalCode'      => flxseo_opt( 'postal' ),
+		);
+	} elseif ( '' !== $prof( 'address' ) ) {
+		// Profil adresi tek satır: tamamı streetAddress olarak verilir.
+		$address = array(
+			'@type'         => 'PostalAddress',
+			'streetAddress' => preg_replace( '/\s+/u', ' ', $prof( 'address' ) ),
+		);
+	}
+	if ( $address ) {
+		$address['addressCountry'] = flxseo_org_country();
+		$address                   = array_filter( $address );
+	}
+	$phone = trim( (string) flxseo_opt( 'phone' ) );
+	$phone = '' !== $phone ? $phone : $prof( 'phone' );
+	$email = trim( (string) flxseo_opt( 'email' ) );
+	$email = '' !== $email ? $email : ( function_exists( 'flx_profile' ) ? trim( (string) flx_profile( 'email', '' ) ) : '' );
+	return (array) apply_filters(
+		'flxseo_org_contact',
+		array(
+			'address' => $address,
+			'phone'   => $phone,
+			'email'   => is_email( $email ) ? $email : '',
+			'url'     => (string) apply_filters( 'flxseo_contact_url', '' ),
+		)
+	);
+}
+
 function flxseo_schema_graph() {
 	$home  = home_url( '/' );
 	$org   = $home . '#organization';
@@ -82,22 +138,26 @@ function flxseo_schema_graph() {
 	if ( flxseo_opt( 'founding' ) ) {
 		$o['foundingDate'] = flxseo_opt( 'founding' );
 	}
-	if ( flxseo_opt( 'street' ) || flxseo_opt( 'locality' ) ) {
-		$o['address'] = array_filter(
+	$c = flxseo_org_contact();
+	if ( $c['address'] ) {
+		$o['address'] = $c['address'];
+	}
+	if ( $c['phone'] ) {
+		$o['telephone'] = $c['phone'];
+	}
+	if ( $c['email'] ) {
+		$o['email'] = $c['email'];
+	}
+	if ( $c['phone'] || $c['email'] ) {
+		$o['contactPoint'] = array_filter(
 			array(
-				'@type'           => 'PostalAddress',
-				'streetAddress'   => flxseo_opt( 'street' ),
-				'addressLocality' => flxseo_opt( 'locality' ),
-				'postalCode'      => flxseo_opt( 'postal' ),
-				'addressCountry'  => 'TR',
+				'@type'       => 'ContactPoint',
+				'contactType' => 'customer support',
+				'telephone'   => $c['phone'],
+				'email'       => $c['email'],
+				'url'         => $c['url'],
 			)
 		);
-	}
-	if ( flxseo_opt( 'phone' ) ) {
-		$o['telephone'] = flxseo_opt( 'phone' );
-	}
-	if ( flxseo_opt( 'email' ) ) {
-		$o['email'] = flxseo_opt( 'email' );
 	}
 	$same = array_values( array_filter( array_map( 'esc_url_raw', preg_split( '/\s+/', (string) flxseo_opt( 'same_as' ) ) ) ) );
 	if ( $same ) {

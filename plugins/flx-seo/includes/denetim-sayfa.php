@@ -26,7 +26,11 @@ function flxseo_audit_agentic( array $report ) {
 	$checks = array(
 		'llms'   => array( __( 'llms.txt follows recommendations', 'flx-seo' ), ! array_intersect( $ids, array( 'llms-txt', 'llms-txt-format' ) ) ),
 		'tree'   => array( __( 'Accessibility tree is well-formed', 'flx-seo' ), ! array_intersect( $ids, array( 'aria-required-children', 'aria-required-parent' ) ) ),
-		'webmcp' => array( __( 'Forms are WebMCP tools', 'flx-seo' ), ! in_array( 'webmcp-forms', $ids, true ) ),
+		'webmcp' => array( __( 'WebMCP tools are registered', 'flx-seo' ), ! array_intersect( $ids, array( 'webmcp-forms', 'webmcp-tools' ) ) ),
+		'md'     => array( __( 'Markdown is served to agents', 'flx-seo' ), ! in_array( 'markdown-negotiation', $ids, true ) ),
+		'signal' => array( __( 'Content signals are declared', 'flx-seo' ), ! in_array( 'content-signal', $ids, true ) ),
+		'org'    => array( __( 'Organization and contact pages are complete', 'flx-seo' ), ! array_intersect( $ids, array( 'org-schema-incomplete', 'key-pages-linked' ) ) ),
+		'card'   => array( __( 'MCP Server Card is published', 'flx-seo' ), ! in_array( 'mcp-server-card', $ids, true ) ),
 	);
 	if ( ! empty( $report['psi'] ) ) {
 		$checks['cls'] = array( __( 'Low layout shift (CLS)', 'flx-seo' ), ! in_array( 'cumulative-layout-shift', $ids, true ) );
@@ -232,7 +236,28 @@ function flxseo_audit_settings_page() {
 					<label><input type="checkbox" name="o[llms]" value="1" <?php checked( $o['llms'] ); ?>> <?php esc_html_e( 'Generate /llms.txt (site name, description, menu pages, recent content)', 'flx-seo' ); ?></label><br>
 					<label for="au-intro" class="au-sub"><?php esc_html_e( 'llms.txt intro text (optional)', 'flx-seo' ); ?></label>
 					<textarea id="au-intro" name="o[llms_intro]" rows="3" class="large-text" placeholder="<?php esc_attr_e( 'E.g. who your organization is, what it does, which pages agents should read first.', 'flx-seo' ); ?>"><?php echo esc_textarea( $o['llms_intro'] ); ?></textarea>
-					<label><input type="checkbox" name="o[webmcp]" value="1" <?php checked( $o['webmcp'] ); ?>> <?php esc_html_e( 'WebMCP: expose the search form to browser agents as a tool', 'flx-seo' ); ?></label>
+					<label><input type="checkbox" name="o[webmcp]" value="1" <?php checked( $o['webmcp'] ); ?>> <?php esc_html_e( 'WebMCP: register site tools for browser agents (search, read page as Markdown, site overview) and mark the search form as a tool', 'flx-seo' ); ?></label><br>
+					<label><input type="checkbox" name="o[markdown]" value="1" <?php checked( $o['markdown'] ); ?>> <?php esc_html_e( 'Serve Markdown when an agent asks for it (Accept: text/markdown)', 'flx-seo' ); ?></label><br>
+					<label><input type="checkbox" name="o[content_signal]" value="1" <?php checked( $o['content_signal'] ); ?>> <?php esc_html_e( 'Declare Content-Signal in robots.txt', 'flx-seo' ); ?></label>
+					<span class="au-cs">
+						<?php
+						$cs_labels = array(
+							'cs_search'   => __( 'Search (search)', 'flx-seo' ),
+							'cs_ai_input' => __( 'AI answers (ai-input)', 'flx-seo' ),
+							'cs_ai_train' => __( 'AI training (ai-train)', 'flx-seo' ),
+						);
+						foreach ( $cs_labels as $k => $l ) :
+							?>
+							<label><?php echo esc_html( $l ); ?>
+								<select name="o[<?php echo esc_attr( $k ); ?>]">
+									<option value="yes" <?php selected( $o[ $k ], 'yes' ); ?>><?php esc_html_e( 'Allowed', 'flx-seo' ); ?></option>
+									<option value="no" <?php selected( $o[ $k ], 'no' ); ?>><?php esc_html_e( 'Not allowed', 'flx-seo' ); ?></option>
+									<option value="" <?php selected( $o[ $k ], '' ); ?>><?php esc_html_e( 'Not stated', 'flx-seo' ); ?></option>
+								</select>
+							</label>
+						<?php endforeach; ?>
+					</span>
+					<span class="description"><?php esc_html_e( 'Content signals tell crawlers how your content may be used: in search results, as live input to AI answers, and for training AI models. They are a stated preference; crawlers are not forced to follow them.', 'flx-seo' ); ?></span>
 				</fieldset>
 				<fieldset>
 					<legend><strong><?php esc_html_e( 'Security headers', 'flx-seo' ); ?></strong></legend>
@@ -371,7 +396,7 @@ function flxseo_audit_css() {
 	.au-counts{white-space:nowrap}.au-counts .au-badge{display:inline-block;min-width:26px;padding:2px 6px;margin-right:2px}
 	.au-srow{display:flex;flex-wrap:wrap;gap:2px 8px;align-items:baseline}.au-srow+.au-srow{margin-top:4px}.au-srow>span{font-weight:700}.au-srow .au-srow__k{font-weight:400;color:var(--au-muted);min-width:64px}.au-srow .au-meta{font-weight:400}
 	.au-table summary{cursor:pointer}.au-table summary span{margin-right:8px;font-weight:600}.au-diff{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:2px}
-	.au-sched{display:flex;flex-wrap:wrap;gap:8px 14px;margin-bottom:4px}.au-sched label{display:flex;flex-direction:column;line-height:1.6}
+	.au-sched,.au-cs{display:flex;flex-wrap:wrap;gap:8px 14px;margin-bottom:4px}.au-cs{margin:6px 0 4px 24px}.au-cs label{display:flex;flex-direction:column;line-height:1.6}.au-sched label{display:flex;flex-direction:column;line-height:1.6}
 	.au-settings[data-freq="daily"] .au-day,.au-settings[data-freq="off"] .au-day{display:none}
 	@media (max-width:782px){.au-table thead{display:none}.au-table,.au-table tbody{display:block}.au-table tr{display:grid;grid-template-columns:1fr auto;gap:6px 10px;padding:12px 0;border-top:1px solid var(--au-border)}.au-table td{border:0;padding:0}.au-td-trig{text-align:right;color:var(--au-muted)}.au-counts,.au-scorecell,.au-td-diff{grid-column:1/-1}.au-td-date br{display:none}.au-td-date .au-meta::before{content:' · '}.au-head{grid-template-columns:1fr}.au-run input{min-width:0;width:100%}.au-run .button{flex:1}.flxseo-au .au-card{padding:14px}.au-grid2,.au-scores{grid-template-columns:1fr}.au-bar h2{width:100%}}
 	@media (prefers-reduced-motion:no-preference){.au-ring__fg{transition:stroke-dasharray .6s ease}}
@@ -461,10 +486,13 @@ add_action(
 		}
 		$in  = isset( $_POST['o'] ) ? (array) wp_unslash( $_POST['o'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 		$o   = (array) get_option( 'flxseo', array() );
-		foreach ( array( 'llms', 'webmcp', 'hdr_frame', 'hdr_coop', 'hdr_csp', 'hsts_sub', 'hsts_preload', 'audit_psi', 'audit_mail' ) as $k ) {
+		foreach ( array( 'llms', 'webmcp', 'markdown', 'content_signal', 'hdr_frame', 'hdr_coop', 'hdr_csp', 'hsts_sub', 'hsts_preload', 'audit_psi', 'audit_mail' ) as $k ) {
 			$o[ $k ] = empty( $in[ $k ] ) ? 0 : 1;
 		}
 		$o['llms_intro']    = sanitize_textarea_field( $in['llms_intro'] ?? '' );
+		foreach ( array( 'cs_search', 'cs_ai_input', 'cs_ai_train' ) as $k ) {
+			$o[ $k ] = in_array( $in[ $k ] ?? '', array( 'yes', 'no', '' ), true ) ? $in[ $k ] : flxseo_defaults()[ $k ];
+		}
 		$o['audit_freq']    = isset( flxseo_audit_freqs()[ $in['audit_freq'] ?? '' ] ) ? $in['audit_freq'] : 'daily';
 		$o['audit_day']     = (string) max( 1, min( 7, (int) ( $in['audit_day'] ?? 1 ) ) );
 		$o['audit_hour']    = (string) max( 0, min( 23, (int) ( $in['audit_hour'] ?? 3 ) ) );

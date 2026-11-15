@@ -3897,3 +3897,7 @@ msgstr "Değiştirilecek metin tasarımda bulunamadı: %s"
 #, php-format
 msgid "The text occurs %1$d times; make it unique or set all=true: %2$s"
 msgstr "Metin %1$d kez geçiyor; tekil yapın ya da all=true verin: %2$s"
+
+#, php-format
+msgid "MCP server of %s: read and manage the site content and the tools of its FluxWP plugins."
+msgstr "%s MCP sunucusu: site içeriğini ve FluxWP eklentilerinin araçlarını okur ve yönetir."
