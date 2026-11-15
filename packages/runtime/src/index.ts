@@ -26,7 +26,7 @@ export { WaEngine, type ChatMsgs, type EngineOptions as WaEngineOptions, type Wa
 export { notifyIncoming } from './modules/whatsapp/notify';
 export {
   FlxgEngine, useEngineVersion, addDays, between, cmpStr, dayKey, norm, parseDay, rank, store as taskStore, today,
-  type FlxgState, type Group, type Route as TaskRoute, type Scope as TaskScope,
+  PLAIN_PAGES, type FlxgDocRef, type FlxgState, type Group, type Route as TaskRoute, type RoutePage as TaskRoutePage, type Scope as TaskScope,
 } from './modules/tasks/engine';
 export { parseChecklist, toggleChecklistItem, type CheckItem } from './modules/tasks/checklist';
 export { messageText, parseNdjson, readAiStream, streamAiStep, type AiChat, type AiEvent, type AiMessage, type AiPending } from './modules/ai';

@@ -3,6 +3,12 @@ return array(
  'language' => 'en_US',
  'plural-forms' => 'nplurals=2; plural=(n != 1);',
  'messages' => array(
+  'Interface' => 'Interface',
+  'The new view is the same screen as FluxApp, with every feature.' => 'The new view is the same screen as FluxApp, with every feature.',
+  'Switch to the new view' => 'Switch to the new view',
+  'Classic view' => 'Classic view',
+  'This screen is the same as FluxApp. The classic view stays available for a while.' => 'This screen is the same as FluxApp. The classic view stays available for a while.',
+  'Could not start a chat.' => 'Could not start a chat.',
   'Tasks' => 'Tasks',
   'Usage dashboard' => 'Usage dashboard',
   'Task Settings' => 'Task Settings',

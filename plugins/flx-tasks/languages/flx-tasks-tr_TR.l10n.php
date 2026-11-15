@@ -3,6 +3,11 @@ return array(
  'language' => 'tr_TR',
  'plural-forms' => 'nplurals=2; plural=(n != 1);',
  'messages' => array(
+  'Interface' => 'Arayüz',
+  'The new view is the same screen as FluxApp, with every feature.' => 'Yeni görünüm FluxApp ile aynı ekrandır, tüm özellikler orada.',
+  'Switch to the new view' => 'Yeni görünüme geç',
+  'Classic view' => 'Klasik görünüm',
+  'This screen is the same as FluxApp. The classic view stays available for a while.' => 'Bu ekran FluxApp ile aynıdır. Klasik görünüm bir süre daha kullanılabilir.',
   'Open full screen' => 'Tam ekranda aç',
   'New chat' => 'Yeni sohbet',
   'Hi! What should we do with your tasks? You can also attach meeting notes or a PDF and say "create tasks from this".' => 'Merhaba! Görevlerle ilgili ne yapalım? Toplantı notu ya da PDF ekleyip "buradan görevleri çıkar" da diyebilirsiniz.',

@@ -156,6 +156,8 @@
 		var body = { since: D.rev, leave: 1 };
 		if (c.ops.length) body.ops = c.ops;
 		if (D.titleDirty) body.title = D.titleEl.value;
+		// Ortak ekran (FluxApp / yeni görünüm) kendi istemcisiyle gönderir (belirteç ya da nonce orada).
+		if (Y.sendLeave) { try { Y.sendLeave(D.page.id, body, !!keepalive); } catch (e) { /* yok */ } return; }
 		var url = B.rest + 'doc-pages/' + D.page.id + '/sync';
 		url += (url.indexOf('?') > -1 ? '&' : '?') + '_locale=user';
 		try {

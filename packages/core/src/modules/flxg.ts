@@ -72,7 +72,7 @@ export interface FlxgNotif {
   data?: { label?: string; excerpt?: string };
 }
 export interface FlxgStructure {
-  spaces: FlxgSpace[]; folders: FlxgFolder[]; lists: FlxgList[]; docs: { id: number; space_id: number; folder_id: number; title: string }[];
+  spaces: FlxgSpace[]; folders: FlxgFolder[]; lists: FlxgList[]; docs: { id: number; space_id: number; folder_id: number; title: string; role?: FlxgRole }[];
   tags: FlxgTag[]; rev: number;
 }
 export interface FlxgBoot extends FlxgStructure {
@@ -82,6 +82,33 @@ export interface FlxgBoot extends FlxgStructure {
   time: string;
   config: { poll: number; maxUpload: number; priorities: { id: number; label: string; color: string }[]; today: string; weekStart: number; fieldTypes: Record<string, string> };
 }
+/** Yapıyı değiştiren uçların yanıtı (proje/klasör/liste): güncel ağaç, yeni kaydın id'si. */
+export type FlxgStructurePatch = Partial<FlxgStructure> & { id?: number; field?: FlxgField; fields?: FlxgField[] };
+export interface FlxgMember { user: number; role: FlxgRole | '' }
+export interface FlxgListMembers { access: 'inherit' | 'members'; members: FlxgMember[]; spaceAccess: string; spaceDefault: FlxgRole }
+export interface FlxgMoveCheck { tags: { id: number; name: string; color: string; exists: boolean }[]; people: { id: number; name: string }[] }
+export interface FlxgSystemCheck { id: string; source?: string; group?: string; label: string; status: 'ok' | 'warning' | 'error' | 'info'; message: string; action_url?: string; action_label?: string }
+export interface FlxgSettings {
+  settings: Record<string, unknown> & { roles_use?: string[]; roles_create?: string[]; ai_roles?: string[]; poll_interval: number };
+  roles: { key: string; name: string }[];
+  checks?: FlxgSystemCheck[];
+  usage?: { calls: number; tokens: number; cost: number } | null;
+}
+export interface FlxgDashboard {
+  storage: {
+    total: number; count: number; thumbs: number; limit: number; free: number | null;
+    kinds: Record<string, { size: number; count: number }>; pending: { size: number; count: number };
+    uploads: { size: number; count: number; complete: boolean } | null; months: Record<string, number>;
+  };
+  tasks: { open: number; done: number; overdue: number; created30: number; completed30: number; comments: number; active30: number; spaces: number; lists: number; users: number };
+  lists: { id: number; name: string; space: string; tasks: number; files: number; size: number }[];
+  users: { user: number; name: string; count: number; size: number }[];
+  largest: { id: number; name: string; task: number; title: string; list: string; user: string; size: number }[];
+  db: { tables: { name: string; rows: number; size: number | null }[]; total: number | null };
+  ai: { month: string; calls: number; tokens: number; cost: number } | null;
+}
+export interface FlxgAiAction { tool: string; ok: boolean; task?: number; doc?: number; page?: number; title?: string; error?: string }
+
 export interface FlxgScopeMeta { role?: FlxgRole; fields?: FlxgField[]; views: FlxgView[] }
 export interface FlxgSync {
   time: string; unread: number; rev: number; notifs: FlxgNotif[]; tasks: FlxgTask[]; gone: number[]; taskChanged?: boolean;
@@ -124,6 +151,40 @@ export function flxg(api: ApiClient) {
     read: (body: { all?: boolean; task?: number; ids?: number[] }) => send<{ unread: number }>('POST', 'notifications/read', body),
     ai: (id: number, action: string, hint: string) => send<{ text?: string; html?: string; items?: string[] }>('POST', 'ai/task/' + id, { action, hint }),
     sync: (q: Record<string, string | number | undefined>) => get<FlxgSync>('sync', q),
+
+    /* Yapı: proje, klasör, liste, alan, üyeler (WP pages.js ile aynı uçlar). */
+    createSpace: (body: Record<string, unknown>) => send<FlxgStructurePatch>('POST', 'spaces', body),
+    updateSpace: (id: number, body: Record<string, unknown>) => send<FlxgStructurePatch>('PATCH', 'spaces/' + id, body),
+    deleteSpace: (id: number) => send<FlxgStructurePatch>('DELETE', 'spaces/' + id),
+    spaceMembers: (id: number) => get<{ members: FlxgMember[] }>(`spaces/${id}/members`),
+    saveSpaceMembers: (id: number, body: Record<string, unknown>) => send<FlxgStructurePatch>('POST', `spaces/${id}/members`, body),
+    createFolder: (space: number, name: string) => send<FlxgStructurePatch>('POST', 'folders', { space, name }),
+    updateFolder: (id: number, body: Record<string, unknown>) => send<FlxgStructurePatch>('PATCH', 'folders/' + id, body),
+    deleteFolder: (id: number) => send<FlxgStructurePatch>('DELETE', 'folders/' + id),
+    createList: (body: Record<string, unknown>) => send<FlxgStructurePatch>('POST', 'lists', body),
+    updateList: (id: number, body: Record<string, unknown>) => send<FlxgStructurePatch>('PATCH', 'lists/' + id, body),
+    deleteList: (id: number) => send<FlxgStructurePatch>('DELETE', 'lists/' + id),
+    moveCheck: (id: number, space: number) => get<FlxgMoveCheck>(`lists/${id}/move-check`, { space }),
+    moveList: (id: number, body: Record<string, unknown>) => send<FlxgStructurePatch>('POST', `lists/${id}/move`, body),
+    listMembers: (id: number) => get<FlxgListMembers>(`lists/${id}/members`),
+    saveListMembers: (id: number, body: Record<string, unknown>) => send<FlxgStructurePatch>('POST', `lists/${id}/members`, body),
+    createField: (list: number, body: Record<string, unknown>) => send<FlxgStructurePatch>('POST', `lists/${list}/fields`, body),
+    updateField: (id: number, body: Record<string, unknown>) => send<FlxgStructurePatch>('PATCH', 'fields/' + id, body),
+    deleteField: (id: number) => send<FlxgStructurePatch>('DELETE', 'fields/' + id),
+
+    /* Yönetici sayfaları. */
+    settings: () => get<FlxgSettings>('settings'),
+    saveSettings: (body: Record<string, unknown>) => send<FlxgSettings>('POST', 'settings', body),
+    dashboard: () => get<FlxgDashboard>('dashboard'),
+    dashboardScan: () => send<unknown>('POST', 'dashboard/scan'),
+
+    /* Yapay zekâ sohbeti (Flux AI yoksa sade panel; varsa ortak sohbet iş parçacığı). */
+    aiChat: (body: { messages: { role: string; content: string }[]; context: Record<string, number> }) => send<{ reply?: string; actions?: FlxgAiAction[] }>('POST', 'ai/chat', body),
+    aiThread: (fresh: boolean) => (fresh ? send<{ chat: string; url?: string }>('POST', 'ai/thread', { new: 1 }) : get<{ chat: string; url?: string }>('ai/thread')),
+
+    /** Diğer uçlar (dokümanlar): yol flx-tasks/v1'e göre. */
+    rest: <T>(method: 'GET' | 'POST' | 'PATCH' | 'DELETE', path: string, body?: unknown, query?: Record<string, string | number | boolean | undefined | null>) =>
+      method === 'GET' ? get<T>(path, query) : send<T>(method, path, body),
   };
 }
 export type FlxgApi = ReturnType<typeof flxg>;

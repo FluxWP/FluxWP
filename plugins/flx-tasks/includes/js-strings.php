@@ -250,8 +250,6 @@ function flxg_js_strings() {
 		'Tema' => __( 'Theme', 'flx-tasks' ),
 		'Sistem' => __( 'System', 'flx-tasks' ),
 		'Arayüz' => __( 'Interface', 'flx-tasks' ),
-		'Yeni görünüm (GraphQL)' => __( 'New view (GraphQL)', 'flx-tasks' ),
-		'FluxApp ile aynı ekran. Belgeler, pano ve ayarlar klasik görünümde kalır.' => __( 'The same screen as FluxApp. Documents, the dashboard and settings stay in the classic view.', 'flx-tasks' ),
 		'Açık' => __( 'Light', 'flx-tasks' ),
 		'Koyu' => __( 'Dark', 'flx-tasks' ),
 		'WordPress paneline dön' => __( 'Back to WordPress admin', 'flx-tasks' ),
@@ -743,5 +741,9 @@ function flxg_js_strings() {
 		'Tam ekranda aç' => __( 'Open full screen', 'flx-tasks' ),
 		'Yeni sohbet' => __( 'New chat', 'flx-tasks' ),
 		'Merhaba! Görevlerle ilgili ne yapalım? Toplantı notu ya da PDF ekleyip "buradan görevleri çıkar" da diyebilirsiniz.' => __( 'Hi! What should we do with your tasks? You can also attach meeting notes or a PDF and say "create tasks from this".', 'flx-tasks' ),
+		'Yeni görünüm FluxApp ile aynı ekrandır, tüm özellikler orada.' => __( 'The new view is the same screen as FluxApp, with every feature.', 'flx-tasks' ),
+		'Yeni görünüme geç' => __( 'Switch to the new view', 'flx-tasks' ),
+		'Klasik görünüm' => __( 'Classic view', 'flx-tasks' ),
+		'Bu ekran FluxApp ile aynıdır. Klasik görünüm bir süre daha kullanılabilir.' => __( 'This screen is the same as FluxApp. The classic view stays available for a while.', 'flx-tasks' ),
 	);
 }

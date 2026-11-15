@@ -3,7 +3,10 @@
 ## 0.9.0
 - GraphQL: görev ekranı, görev ekleme/düzenleme/silme, takip, yorum ve okundu işaretleme Flux GraphQL üzerinden (`flxTask`, `flxTasks`, `flxTaskCreate/Update/Delete/Watch`, `flxTaskCommentCreate`, `flxTaskNotificationsRead`). Kayıtlı sorgular `graphql/persisted-queries.json`.
 - Servis katmanı (`FLXG_Task_Service`): yetki kontrolü ve görev işlemleri tek yerde; REST ve GraphQL aynı kodu çağırır. REST yanıtları değişmedi.
-- Yeni React görünüm (FluxApp ile ortak ekran) wp-admin'de açılabilir; görev ekranı GraphQL'i, pano toplu okuma REST'i kullanır.
+- Yeni görünüm varsayılan: wp-admin'de Görevler, Kullanım panosu ve Ayarlar FluxApp ile aynı React ekranı tam ekran açar (Flux GraphQL kuruluysa). Klasik ekranın tüm özellikleri var: belgeler, pano, ayarlar, profil, proje/klasör/liste yönetimi, liste ayarları (durum, alan, erişim), sürükle-bırak, tema, yapay zekâ paneli, `n` ve `/` kısayolları. Görev ekranı GraphQL'i, pano toplu okuma ve belgeler REST'i kullanır.
+- Klasik görünüm bir süre daha duruyor: Profil > Arayüz > Klasik görünüm; dönüş klasik profildeki "Yeni görünüme geç" ile.
+- Belge düzenleyici iki ekranda aynı kod (`assets/js/docs.js`); React ekranının stili `app.css`'ten, sözlükleri bu eklentinin çevirilerinden üretilir (`tools/gen-react-css.py`, `tools/gen-react-i18n.py`).
+- Çeviri: yeni metinler ve eksik "Yeni sohbet", "Tam ekranda aç", "Arayüz", "Sohbet başlatılamadı" 10 dilde.
 - Gereksinim: PHP 8.1+, Flux GraphQL eklentisi.
 
 ## 0.8.22

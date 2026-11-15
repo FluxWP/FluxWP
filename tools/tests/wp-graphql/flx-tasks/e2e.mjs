@@ -1,14 +1,16 @@
 // Flux Tasks pilot end to end in wp-admin: the new view (wp-embed React screen) opens a task and
 // saves through GraphQL. Prints the GraphQL operations the page sent; fails on console errors or
 // when the task screen did not use GraphQL. Screenshots: desktop 1440 / mobile 390, light / dark.
-// Usage: node tools/tests/wp-graphql/flx-tasks/e2e.mjs <site url> <out dir> <task title>
+// Then the pages the classic app has (document editor, usage dashboard, settings, profile) on the same
+// screen; on desktop it types into the document and checks the text is saved.
+// Usage: node tools/tests/wp-graphql/flx-tasks/e2e.mjs <site url> <out dir> <task title> [document title]
 import { createRequire } from 'node:module';
 import fs from 'node:fs';
 import path from 'node:path';
 
 const require = createRequire(import.meta.url);
 const { chromium } = require('playwright');
-const [url, out, title] = process.argv.slice(2);
+const [url, out, title, docTitle] = process.argv.slice(2);
 fs.mkdirSync(out, { recursive: true });
 
 const browser = await chromium.launch(process.env.PW_CHROMIUM ? { executablePath: process.env.PW_CHROMIUM } : {});
@@ -63,6 +65,38 @@ for (const scheme of ['light', 'dark']) {
       });
     await page.waitForTimeout(500);
     await shot('gorev');
+    await page.keyboard.press('Escape');
+    // Classic pages on the shared screen.
+    for (const [hash, name, text] of [['#/dashboard', 'pano', 'Dosya depolama'], ['#/settings', 'ayarlar', 'Sistem kontrolü'], ['#/profile', 'profil', 'Klasik görünüm']]) {
+      await page.evaluate((h) => (location.hash = h), hash);
+      await page.getByText(text).first().waitFor({ timeout: 20000 });
+      await page.waitForTimeout(400);
+      await shot(name);
+    }
+    if (docTitle) {
+      if (label === 'mobil') {
+        await page.locator('.flxg-menu-btn').first().click();
+        await page.waitForTimeout(400);
+        await shot('menu');
+      }
+      // Open every project in the sidebar tree, then the document.
+      const closed = page.locator('.flxg-space.is-collapsed .flxg-caret');
+      for (let i = 0; i < 20 && (await closed.count()); i++) await closed.first().click();
+      await page.getByText(docTitle, { exact: true }).first().click();
+      const ed = page.locator('.flxg-doc-ed[contenteditable]').first();
+      await ed.waitFor({ timeout: 20000 });
+      if (label === 'masaustu' && scheme === 'light') {
+        const line = 'Toplantı notu ' + Date.now();
+        await ed.click();
+        const saved = page.waitForResponse((r) => r.url().includes('/sync') && r.request().method() === 'POST' && (r.request().postData() ?? '').includes('Toplantı notu'), { timeout: 20000 });
+        await page.keyboard.type(line);
+        if (!(await saved).ok()) throw new Error('document sync failed');
+        await page.reload({ waitUntil: 'networkidle' });
+        await page.getByText(line).first().waitFor({ timeout: 20000 });
+      }
+      await page.waitForTimeout(900);
+      await shot('belge');
+    }
     console.log(`${tag} ok`);
     await ctx.close();
   }

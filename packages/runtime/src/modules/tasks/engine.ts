@@ -8,7 +8,11 @@ import { browserPorts, store, type ModulePorts } from '../ports';
 export { store };
 
 export type Scope = { type: 'home' | 'list' | 'space'; id: number; role: string };
-export type Route = { page: 'home' | 'inbox' | 'list' | 'space'; id: number; view: number; task: number };
+export type RoutePage = 'home' | 'inbox' | 'list' | 'space' | 'doc' | 'dashboard' | 'settings' | 'profile';
+export type Route = { page: RoutePage; id: number; view: number; task: number; /** Doküman sayfası. */ pg?: number };
+export type FlxgDocRef = { id: number; space_id: number; folder_id: number; title: string; role?: string };
+/** Görev kapsamı yüklemeyen sayfalar. */
+export const PLAIN_PAGES: readonly RoutePage[] = ['inbox', 'doc', 'dashboard', 'settings', 'profile'];
 export type Group = {
   key: string; label: string; color: string; tasks: FlxgTask[];
   patch: ((task: FlxgTask, from: string | null) => Record<string, unknown> | null) | null;
@@ -26,6 +30,7 @@ export interface FlxgState {
   spaces: FlxgSpace[];
   folders: FlxgBoot['folders'];
   lists: FlxgList[];
+  docs: FlxgDocRef[];
   tags: FlxgTag[];
   rev: number;
   unread: number;
@@ -95,7 +100,7 @@ export class FlxgEngine {
     this.S = {
       ready: false, error: '', me: null, users: {}, userList: [],
       config: { poll: 45, maxUpload: 20 * 1024 * 1024, priorities: [], today: today(), weekStart: 1, fieldTypes: {} },
-      spaces: [], folders: [], lists: [], tags: [], rev: 0, unread: 0, lastNotif: 0,
+      spaces: [], folders: [], lists: [], docs: [], tags: [], rev: 0, unread: 0, lastNotif: 0,
       route: { page: 'home', id: 0, view: 0, task: 0, ...initial },
       scope: null, loading: false, views: [], view: null, draft: null, dirty: false, fields: [], tasks: {}, keep: {}, saving: {}, selected: {},
       since: '', q: '', openTask: 0, addUnder: 0,
@@ -156,6 +161,7 @@ export class FlxgEngine {
     if (d.spaces) S.spaces = d.spaces;
     if (d.folders) S.folders = d.folders;
     if (d.lists) S.lists = d.lists;
+    if (d.docs) S.docs = d.docs as FlxgDocRef[];
     if (d.tags) S.tags = d.tags;
     if (d.rev !== undefined) S.rev = d.rev;
     this.bump();
@@ -174,11 +180,16 @@ export class FlxgEngine {
     const sameScope = !force && S.scope && next.page === S.route.page && next.id === S.route.id;
     S.route = next;
     this.onRoute?.(next);
-    if (next.page !== 'inbox' && next.page !== 'home' && next.page !== 'list' && next.page !== 'space') next.page = 'home';
+    if (!['home', 'list', 'space', ...PLAIN_PAGES].includes(next.page)) next.page = 'home';
     if (next.page === 'list' && !this.list(next.id)) next.page = 'home';
     if (next.page === 'space' && !this.space(next.id)) next.page = 'home';
+    if ((next.page === 'dashboard' || next.page === 'settings') && !S.me?.can.manage) next.page = 'home';
     S.openTask = next.task;
-    if (next.page === 'inbox') {
+    if (PLAIN_PAGES.includes(next.page)) {
+      if (next.page !== 'inbox') {
+        S.scope = null;
+        S.tasks = {};
+      }
       this.bump();
       return;
     }
@@ -241,6 +252,7 @@ export class FlxgEngine {
   list = (id: number) => this.S.lists.find((l) => l.id === +id) ?? null;
   space = (id: number) => this.S.spaces.find((s) => s.id === +id) ?? null;
   folder = (id: number) => this.S.folders.find((f) => f.id === +id) ?? null;
+  doc = (id: number) => this.S.docs.find((d) => d.id === +id) ?? null;
   tag = (id: number) => this.S.tags.find((x) => x.id === +id) ?? null;
   canList = (id: number, need = 'view') => rank(this.list(id)?.role) >= rank(need);
   status(task: Pick<FlxgTask, 'list' | 'status'>): FlxgStatus {

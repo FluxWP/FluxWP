@@ -10,7 +10,7 @@ import prefixer from 'postcss-prefix-selector';
 const split = process.env.FLUX_EMBED_CHUNKS === '1';
 
 export default defineConfig(({ command }) => ({
-  resolve: { dedupe: ['react', 'react-dom', '@tanstack/react-query'] },
+  resolve: { dedupe: ['react', 'react-dom', '@tanstack/react-query', 'react-i18next', 'i18next'] },
   plugins: [react()],
   define: command === 'build' ? { 'process.env.NODE_ENV': '"production"' } : {},
   css: {
@@ -20,6 +20,9 @@ export default defineConfig(({ command }) => ({
           prefix: '.flux-root',
           ignoreFiles: [/index\.html/],
           transform: (prefix: string, selector: string, prefixed: string) => {
+            // html.durum / body.durum: sayfa sınıfı koşulu korunur (yoksa kural hep geçerli olur), öneki ardından gelir.
+            const state = /^((?:html|body)(?:\.[\w-]+)+)(?=$|[\s>+~,*])(.*)$/.exec(selector);
+            if (state) return state[2]!.trim() ? `${state[1]} ${prefix} ${state[2]!.trim()}` : `${state[1]} ${prefix}`;
             if (/^(html|body|:root|#root)\b/.test(selector)) return selector.replace(/^(html|body|:root|#root)(\.[\w-]+)*/, prefix);
             if (selector.startsWith('.flux-root')) return selector;
             if (selector === '*' || selector.startsWith('*')) return `${prefix} ${selector}, ${prefix}`;

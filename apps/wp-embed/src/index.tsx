@@ -26,6 +26,18 @@ export interface MountOptions {
   colors?: Partial<BrandColors>;
   /** Geliştirme/test: gerçek sunucu yerine bu fetch. */
   fetchImpl?: typeof fetch;
+  /** Ekran başlığı ve geri dönüş için (ModuleHost'a aynen geçer). */
+  siteName?: string;
+  adminUrl?: string;
+  appIcon?: string;
+  /** Eklentinin vurgu rengi (--brand). */
+  accent?: string;
+  /** Flux AI ortak sohbeti sayfada yüklü. */
+  aiEmbed?: boolean;
+  /** İlk sayfa (WP alt menüsü), ör. 'dashboard'. */
+  startPage?: string;
+  /** Klasik görünüme geçiş bağlantısı (varsa). */
+  classicUrl?: string;
 }
 
 let nonce = '';
@@ -79,9 +91,16 @@ export function mount(el: HTMLElement, o: MountOptions): () => void {
     // Test ortamında (sahte fetch) medya da istemciden geçsin; gerçek WP'de çerezli adres doğrudan.
     blobMedia: !!o.fetchImpl,
     setNonce: (n) => (nonce = n),
+    siteName: o.siteName,
+    adminUrl: o.adminUrl,
+    appIcon: o.appIcon,
+    aiEmbed: o.aiEmbed,
+    startPage: o.startPage || undefined,
+    classicUrl: o.classicUrl,
   };
   const colors = { ...brand.colors, ...o.colors };
   el.classList.add('flux-root');
+  if (o.accent) el.style.setProperty('--brand', o.accent);
   const apply = (mode: 'light' | 'dark') => {
     for (const [k, v] of Object.entries(toCssVars(mode, colors))) el.style.setProperty(k, v);
   };

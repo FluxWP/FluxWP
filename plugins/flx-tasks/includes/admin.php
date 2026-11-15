@@ -36,16 +36,17 @@ add_action(
 );
 
 /*
- * New view (0.9.0, GraphQL pilot): the Tasks page can open the same React screen as FluxApp
- * (assets/flux/, tools/fluxapp/embed-sync.sh flx-tasks). Per user, opt-in; the classic app stays the
- * default and keeps documents, the usage dashboard and settings. Needs Flux GraphQL.
+ * New view (0.9.0, GraphQL): the Tasks pages open the same React screen as FluxApp
+ * (assets/flux/, tools/fluxapp/embed-sync.sh flx-tasks). It is the default and has every feature of the
+ * classic app (documents, usage dashboard, settings, AI panel); a user can still switch to the classic
+ * view from the profile page. Needs Flux GraphQL.
  */
 function flxg_flux_available() {
 	return file_exists( FLXG_DIR . 'assets/flux/flux-modules.js' ) && function_exists( 'flx_gql_ready' ) && flx_gql_ready();
 }
 
 function flxg_flux_ui() {
-	return flxg_flux_available() && 'flx-tasks' === sanitize_key( $_GET['page'] ?? '' ) && 'flux' === get_user_meta( get_current_user_id(), 'flxg_ui', true ); // phpcs:ignore
+	return flxg_flux_available() && flxg_is_app_screen() && 'classic' !== get_user_meta( get_current_user_id(), 'flxg_ui', true );
 }
 
 /** Link that switches the current user between the views. */
@@ -60,8 +61,11 @@ add_action(
 			return;
 		}
 		check_admin_referer( 'flxg_ui' );
-		$ui = 'flux' === $_GET['flxg_ui'] && flxg_flux_available() ? 'flux' : ''; // phpcs:ignore
-		update_user_meta( get_current_user_id(), 'flxg_ui', $ui );
+		if ( 'classic' === $_GET['flxg_ui'] ) { // phpcs:ignore
+			update_user_meta( get_current_user_id(), 'flxg_ui', 'classic' );
+		} else {
+			delete_user_meta( get_current_user_id(), 'flxg_ui' );
+		}
 		wp_safe_redirect( admin_url( 'admin.php?page=flx-tasks' ) );
 		exit;
 	}
@@ -84,12 +88,26 @@ function flxg_flux_module_tag( $tag, $handle ) {
 }
 
 function flxg_flux_assets() {
-	$ver  = FLXG_VERSION . '-' . (int) filemtime( FLXG_DIR . 'assets/flux/flux-modules.js' );
+	$ver   = FLXG_VERSION . '-' . (int) filemtime( FLXG_DIR . 'assets/flux/flux-modules.js' );
+	$page  = sanitize_key( $_GET['page'] ?? '' ); // phpcs:ignore
+	$start = 'flx-tasks-pano' === $page ? 'dashboard' : ( 'flx-tasks-ayarlar' === $page ? 'settings' : '' );
+	// Asistan paneli ve model seçici: klasik görünümle aynı Flux AI parçaları.
+	$ai_embed = current_user_can( 'flxg_ai' ) && function_exists( 'flxai_chat_embed_enqueue' ) && flxai_chat_embed_enqueue();
+	if ( function_exists( 'flxai_enqueue_model_picker' ) && current_user_can( 'manage_options' ) ) {
+		flxai_enqueue_model_picker();
+	}
 	$opts = array(
-		'module' => 'flxg-tasks',
-		'rest'   => rest_url(),
-		'nonce'  => wp_create_nonce( 'wp_rest' ),
-		'locale' => get_user_locale(),
+		'module'     => 'flxg-tasks',
+		'rest'       => rest_url(),
+		'nonce'      => wp_create_nonce( 'wp_rest' ),
+		'locale'     => get_user_locale(),
+		'siteName'   => flxg_brand_name(),
+		'adminUrl'   => admin_url(),
+		'appIcon'    => function_exists( 'flxa_logo_file_url' ) ? flxa_logo_file_url( 'flx-tasks.svg' ) : plugins_url( 'assets/icon.svg', FLXG_FILE ),
+		'accent'     => flxg_color( flxg_setting( 'accent' ), function_exists( 'flxa_accent' ) ? flxa_accent() : '#1F2937' ),
+		'aiEmbed'    => ! empty( $ai_embed ),
+		'startPage'  => $start,
+		'classicUrl' => flxg_ui_switch_url( 'classic' ),
 	);
 	wp_enqueue_style( 'flxg-flux', FLXG_URL . 'assets/flux/flux-modules.css', array(), $ver );
 	wp_enqueue_script( 'flxg-flux', FLXG_URL . 'assets/flux/flux-modules.js', array(), $ver, true );
@@ -97,12 +115,12 @@ function flxg_flux_assets() {
 		add_filter( 'script_loader_tag', 'flxg_flux_module_tag', 10, 2 );
 		wp_add_inline_script(
 			'flxg-flux',
-			'(function(){var slot=window.FluxModulesOptions||(window.FluxModulesOptions={});slot.id="flxg-flux";slot.opts=' . wp_json_encode( $opts ) . ';function go(){if(slot.done||!window.FluxModules)return;var el=document.getElementById(slot.id);if(!el)return;slot.done=true;try{window.FluxModules.mount(el,slot.opts);}catch(e){el.textContent=String(e&&e.message||e);}}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);go();})();',
+			'(function(){var slot=window.FluxModulesOptions||(window.FluxModulesOptions={});slot.id="flxg-app";slot.opts=' . wp_json_encode( $opts ) . ';function go(){if(slot.done||!window.FluxModules)return;var el=document.getElementById(slot.id);if(!el)return;slot.done=true;try{window.FluxModules.mount(el,slot.opts);}catch(e){el.textContent=String(e&&e.message||e);}}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);go();})();',
 			'before'
 		);
 		return;
 	}
-	wp_add_inline_script( 'flxg-flux', '(function(){var el=document.getElementById("flxg-flux");if(el&&window.FluxModules){try{window.FluxModules.mount(el,' . wp_json_encode( $opts ) . ');}catch(e){el.textContent=String(e&&e.message||e);}}})();' );
+	wp_add_inline_script( 'flxg-flux', '(function(){var el=document.getElementById("flxg-app");if(el&&window.FluxModules){try{window.FluxModules.mount(el,' . wp_json_encode( $opts ) . ');}catch(e){el.textContent=String(e&&e.message||e);}}})();' );
 }
 
 add_action( 'admin_enqueue_scripts', 'flxg_admin_assets' );
@@ -153,10 +171,11 @@ function flxg_admin_assets() {
 /* Uygulama tam ekran: WP menüsü ve çubuğu üstünde kendi arayüzü. */
 function flxg_render_app() {
 	if ( flxg_flux_ui() ) {
-		// WP menu and toolbar stay; the screen fills the rest of the content area under a thin bar.
-		echo '<style>#wpcontent{padding-left:0}#wpbody-content{padding-bottom:0}#wpfooter{display:none}.flxg-flux-bar{display:flex;gap:10px;align-items:center;justify-content:flex-end;height:32px;padding:0 14px;font-size:12px;border-bottom:1px solid rgba(127,127,127,.25)}#flxg-flux{height:calc(100vh - var(--wp-admin--admin-bar--height,32px) - 33px);min-height:480px}</style>';
-		echo '<div class="flxg-flux-bar"><span>' . esc_html__( 'New view (GraphQL)', 'flx-tasks' ) . '</span><a href="' . esc_url( flxg_ui_switch_url( 'classic' ) ) . '">' . esc_html__( 'Classic view', 'flx-tasks' ) . '</a></div>';
-		echo '<div id="flxg-flux"><noscript>' . esc_html__( 'JavaScript is required for Tasks.', 'flx-tasks' ) . '</noscript></div>';
+		// Klasik görünümle aynı tam ekran (app.css yüklenmez; kabuk kuralları burada).
+		echo '<style>html.flxg-lock,html.flxg-lock body{overflow:hidden!important;height:100%}html.flxg-lock #wpadminbar,html.flxg-lock #adminmenumain,html.flxg-lock #wpfooter,html.flxg-lock #screen-meta-links,html.flxg-lock .notice,html.flxg-lock .update-nag,html.flxg-lock #wpbody-content>.error,html.flxg-lock #wpbody-content>.updated{display:none!important}html.flxg-lock #wpcontent,html.flxg-lock #wpbody-content{margin:0!important;padding:0!important}#flxg-app{position:fixed;inset:0;z-index:100000;overflow:hidden;background:#f6f7f9}#flxg-app[data-theme=dark]{background:#121417}</style>';
+		echo '<script>document.documentElement.classList.add("flxg-lock");</script>';
+		echo '<div id="flxg-app"><noscript>' . esc_html__( 'JavaScript is required for Tasks.', 'flx-tasks' ) . '</noscript></div>';
+		echo "<script>(function(d,w){var m;try{m=localStorage.getItem('flxg-theme')}catch(e){}m=m||'auto';var k=m==='dark'||(m==='auto'&&!!w.matchMedia&&w.matchMedia('(prefers-color-scheme: dark)').matches);d.getElementById('flxg-app').dataset.theme=k?'dark':'light'})(document,window)</script>";
 		return;
 	}
 	echo '<script>document.documentElement.classList.add("flxg-lock");</script>';

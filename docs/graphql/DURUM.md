@@ -15,7 +15,7 @@ Durum: ○ başlamadı · ✱ sürüyor · 👀 PR açık ("al" bekliyor) · ✓
 | 0.7 | Flux Setup: flx-graphql kurulumu, sistem kontrolü, katalog | 👀 | flx-setup 1.3.0 (`flxk_graphql_notice()`, PHP 8.1 satırı) + `catalog/packages.json` |
 | 0.8 | `/flx/v1/upload` + `FlxFile` | 👀 | PR A (kit içinde) |
 | 0.9 | `docs/graphql/` KURALLAR, ISTISNALAR, IS-PAKETI-SABLONU, ESLEME şablonu | 👀 | #300 (`KURALLAR.md`, `ISTISNALAR.md`, `IS-PAKETI-SABLONU.md`, `ESLEME/_SABLON.md`) |
-| 0.10 | Pilot: Flux Tasks uçtan uca | ✱ | #300: servis katmanı, şema, 9 kayıtlı işlem, TS adaptörü (REST yedekli), sözleşme testi 43/43, e2e. Sırada: React ekranın klasik ekranla tam eşitlenmesi ve wp-admin varsayılanı (Ahmet 2026-11-15) |
+| 0.10 | Pilot: Flux Tasks uçtan uca | ✱ | #300: servis katmanı, şema, 9 kayıtlı işlem, TS adaptörü (REST yedekli), sözleşme testi 43/43, e2e (görev + belge yazma + pano/ayarlar/profil, 4 düzen). React ekranı klasikle eşit ve wp-admin varsayılanı; klasik görünüm profilden. Eşleme `ESLEME/flx-tasks.md` |
 | 0.11 | PHPStan + baseline + CI | 👀 | #300 (`tools/phpstan`: flx-graphql level max 0 hata; diğer kod level 5 + baseline 3871; `phpstan.yml`) |
 | 0.12 | Strict TS ayarları + lint | 👀 | #300 (`tsconfig.strict.json` + `tools/ts-strict/no-any.ts`; core, graphql, manifest, tokens; diğerleri paket PR'larında) |
 | 0.13 | PHP 8.1+ ve polyfill seti | 👀 | PR A (`includes/kit/polyfills.php`, 66 test); paket başlıkları paket PR'larında; flx-tasks 0.9.0 Requires PHP 8.1 |
@@ -25,7 +25,7 @@ Durum: ○ başlamadı · ✱ sürüyor · 👀 PR açık ("al" bekliyor) · ✓
 - WPGraphQL Smart Cache gömülmedi: önbellek etiketleri kit'te (`X-LiteSpeed-Tag: flxgql_*`, `X-GraphQL-Keys`), temizleme `flx_gql_purge()`.
 - Node arayüzü (`node(id:)`) loader'larla kurulu; pilot Flux Tasks'ta HTTP üzerinden test edildi.
 - Haftalık WPGraphQL güncellemesi PR açar, kendisi merge etmez. Depo ayarında "Allow GitHub Actions to create and approve pull requests" açık olmalı.
-- Pilot bulguları: (1) WPGraphQL AppContext loader sınıflarını şemadan önce okur; Node loader'ı `flx_gql_loaders` aksiyonunda adlandırılır (kit + KURALLAR). (2) Codegen'de `typescript` + `typescript-operations` birlikte çift tip üretiyordu; yalnız operations. (3) Pano toplu okuma (sync, 50 sınırını aşan listeler) REST'te kalır; ISTISNALAR'a yazılacak.
+- Pilot bulguları: (1) WPGraphQL AppContext loader sınıflarını şemadan önce okur; Node loader'ı `flx_gql_loaders` aksiyonunda adlandırılır (kit + KURALLAR). (2) Codegen'de `typescript` + `typescript-operations` birlikte çift tip üretiyordu; yalnız operations. (3) Pilot dışındaki uçlar (sync, yapı, belgeler, ayarlar, pano) geçici istisna, Faz 1'de taşınır. (4) wp-embed parça derlemesinde `react-i18next` iki kopya yükleniyordu, ekran kullanıcı dilini görmüyordu; dedupe ile düzeldi. (5) Önekleyici `body.<sınıf>` kurallarını koşulsuz yapıyordu; düzeldi.
 
 ## Faz 1+
 
