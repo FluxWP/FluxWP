@@ -27,7 +27,7 @@ final class FLXR_Roles_Service {
 	 * @return list<string>
 	 */
 	public static function role_keys(): array {
-		return array_values( array_map( 'strval', array_keys( self::raw_roles() ) ) );
+		return array_map( 'strval', array_keys( self::raw_roles() ) );
 	}
 
 	/**
@@ -37,7 +37,7 @@ final class FLXR_Roles_Service {
 	 */
 	public static function roles(): array {
 		$counts = count_users();
-		$avail  = is_array( $counts['avail_roles'] ?? null ) ? $counts['avail_roles'] : array();
+		$avail  = $counts['avail_roles'];
 		$out    = array();
 		foreach ( self::role_keys() as $key ) {
 			$out[] = self::build_role( $key, is_numeric( $avail[ $key ] ?? null ) ? (int) $avail[ $key ] : 0 );
@@ -325,7 +325,6 @@ final class FLXR_Roles_Service {
 
 	private static function build_role( string $key, int $count ): FLXR_Role {
 		$r    = self::raw_roles()[ $key ] ?? array();
-		$r    = is_array( $r ) ? $r : array();
 		$on   = array();
 		foreach ( array_keys( self::capability_labels() ) as $cap ) {
 			if ( flxr_role_has( $key, $cap ) ) {
