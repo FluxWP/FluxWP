@@ -14,7 +14,7 @@ Durum: ○ başlamadı · ✱ sürüyor · 👀 PR açık ("al" bekliyor) · ✓
 | 0.6 | `graphql.yml`: şema snapshot → diff → graphql-inspector → codegen → typecheck | 👀 | PR B (kırıcı değişiklik `graphql-breaking` etiketiyle geçer) |
 | 0.7 | Flux Setup: flx-graphql kurulumu, sistem kontrolü, katalog | 👀 | flx-setup 1.3.0 (`flxk_graphql_notice()`, PHP 8.1 satırı) + `catalog/packages.json` |
 | 0.8 | `/flx/v1/upload` + `FlxFile` | 👀 | PR A (kit içinde) |
-| 0.9 | `docs/graphql/` KURALLAR, ISTISNALAR, IS-PAKETI-SABLONU, ESLEME şablonu | ○ | PR E |
+| 0.9 | `docs/graphql/` KURALLAR, ISTISNALAR, IS-PAKETI-SABLONU, ESLEME şablonu | 👀 | #300 (`KURALLAR.md`, `ISTISNALAR.md`, `IS-PAKETI-SABLONU.md`, `ESLEME/_SABLON.md`) |
 | 0.10 | Pilot: Flux Tasks uçtan uca | ○ | PR F |
 | 0.11 | PHPStan + baseline + CI | 👀 | #300 (`tools/phpstan`: flx-graphql level max 0 hata; diğer kod level 5 + baseline 3871; `phpstan.yml`) |
 | 0.12 | Strict TS ayarları + lint | 👀 | #300 (`tsconfig.strict.json` + `tools/ts-strict/no-any.ts`; core, graphql, manifest, tokens; diğerleri paket PR'larında) |
