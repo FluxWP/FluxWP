@@ -27,6 +27,7 @@ function flxseo_defaults() {
 		'street'         => '',
 		'locality'       => '',
 		'postal'         => '',
+		'country'        => '',
 		'phone'          => '',
 		'email'          => '',
 		'same_as'        => '',
@@ -51,6 +52,12 @@ function flxseo_defaults() {
 		'llms'           => 1,
 		'llms_intro'     => '',
 		'webmcp'         => 1,
+		'markdown'       => 1,
+		// robots.txt Content-Signal (contentsignals.org): '' = satır yazılmaz.
+		'content_signal' => 1,
+		'cs_search'      => 'yes',
+		'cs_ai_input'    => 'yes',
+		'cs_ai_train'    => 'no',
 		'hdr_frame'      => 0,
 		'hdr_coop'       => 0,
 		'hdr_csp'        => 0,
@@ -336,6 +343,10 @@ function flxseo_sanitize( $in ) {
 	$out['audit_day']     = (string) max( 1, min( 7, (int) $out['audit_day'] ) );
 	$out['audit_hour']    = (string) max( 0, min( 23, (int) $out['audit_hour'] ) );
 	$out['audit_mail_to'] = sanitize_email( $out['audit_mail_to'] );
+	foreach ( array( 'cs_search', 'cs_ai_input', 'cs_ai_train' ) as $k ) {
+		$out[ $k ] = in_array( $out[ $k ], array( 'yes', 'no', '' ), true ) ? $out[ $k ] : $d[ $k ];
+	}
+	$out['country'] = preg_match( '/^[A-Za-z]{2}$/', $out['country'] ) ? strtoupper( $out['country'] ) : '';
 	return $out;
 }
 
@@ -386,7 +397,7 @@ function flxseo_settings_page() {
 		foreach ( $o as $k => $v ) {
 			$here = 'genel' === $tab
 				? in_array( $k, array( 'enabled', 'site_name', 'alt_name', 'sep', 'home_title', 'home_desc', 'og_image', 'verify_google', 'verify_bing', 'verify_yandex', 'verify_naver', 'verify_seznam', 'verify_baidu', 'noindex_shop', 'noindex_search', 'noindex_author', 'noindex_tags', 'auto_alt', 'indexnow' ), true )
-				: in_array( $k, array( 'org_name', 'org_type', 'founding', 'logo', 'street', 'locality', 'postal', 'phone', 'email', 'same_as', 'twitter', 'knows_about', 'area_served', 'donate_label', 'donate_url' ), true );
+				: in_array( $k, array( 'org_name', 'org_type', 'founding', 'logo', 'street', 'locality', 'postal', 'country', 'phone', 'email', 'same_as', 'twitter', 'knows_about', 'area_served', 'donate_label', 'donate_url' ), true );
 			if ( ! $here ) {
 				printf( '<input type="hidden" name="%s[%s]" value="%s">', esc_attr( $n ), esc_attr( $k ), esc_attr( $v ) );
 			} elseif ( is_int( flxseo_defaults()[ $k ] ) ) {
@@ -447,7 +458,7 @@ function flxseo_settings_page() {
 			<tr><th scope="row"><label for="ys-ot">Kurum türü</label></th><td><select id="ys-ot" name="<?php echo esc_attr( $n ); ?>[org_type]"><?php foreach ( array( 'NGO' => 'Dernek / STK (NGO)', 'Organization' => 'Kurum (Organization)' ) as $k => $l ) : ?><option value="<?php echo esc_attr( $k ); ?>" <?php selected( $o['org_type'], $k ); ?>><?php echo esc_html( $l ); ?></option><?php endforeach; ?></select>
 				Kuruluş yılı <input class="small-text" name="<?php echo esc_attr( $n ); ?>[founding]" value="<?php echo esc_attr( $o['founding'] ); ?>"></td></tr>
 			<tr><th scope="row"><label for="ys-lg">Logo (kare)</label></th><td><input id="ys-lg" class="large-text code" name="<?php echo esc_attr( $n ); ?>[logo]" value="<?php echo esc_attr( $o['logo'] ); ?>" placeholder="<?php echo esc_attr( FLXSEO_URL . 'assets/icons/icon-512.png' ); ?>"><p class="description">Google bilgi paneli için. En az 112×112 PNG. Boşsa Flux SEO simgesi.</p></td></tr>
-			<tr><th scope="row">Adres</th><td><input class="regular-text" name="<?php echo esc_attr( $n ); ?>[street]" value="<?php echo esc_attr( $o['street'] ); ?>" placeholder="Sokak, no"> <input class="regular-text" name="<?php echo esc_attr( $n ); ?>[locality]" value="<?php echo esc_attr( $o['locality'] ); ?>" placeholder="İlçe, il"> <input class="small-text" name="<?php echo esc_attr( $n ); ?>[postal]" value="<?php echo esc_attr( $o['postal'] ); ?>" placeholder="Posta kodu"></td></tr>
+			<tr><th scope="row">Adres</th><td><input class="regular-text" name="<?php echo esc_attr( $n ); ?>[street]" value="<?php echo esc_attr( $o['street'] ); ?>" placeholder="Sokak, no"> <input class="regular-text" name="<?php echo esc_attr( $n ); ?>[locality]" value="<?php echo esc_attr( $o['locality'] ); ?>" placeholder="İlçe, il"> <input class="small-text" name="<?php echo esc_attr( $n ); ?>[postal]" value="<?php echo esc_attr( $o['postal'] ); ?>" placeholder="Posta kodu"> <input class="small-text" maxlength="2" name="<?php echo esc_attr( $n ); ?>[country]" value="<?php echo esc_attr( $o['country'] ); ?>" placeholder="TR" aria-label="<?php esc_attr_e( 'Country code', 'flx-seo' ); ?>"><p class="description"><?php esc_html_e( 'Country is a two-letter code (TR, US, DE). Empty fields are filled from the organization profile (Flux Setup) when it has an address or phone.', 'flx-seo' ); ?></p></td></tr>
 			<tr><th scope="row">İletişim</th><td><input class="regular-text" name="<?php echo esc_attr( $n ); ?>[phone]" value="<?php echo esc_attr( $o['phone'] ); ?>" placeholder="+90 ..."> <input class="regular-text" name="<?php echo esc_attr( $n ); ?>[email]" value="<?php echo esc_attr( $o['email'] ); ?>" placeholder="e-posta"></td></tr>
 			<tr><th scope="row"><label for="ys-sa">Sosyal medya profilleri</label></th><td><textarea id="ys-sa" class="large-text code" rows="5" name="<?php echo esc_attr( $n ); ?>[same_as]" placeholder="https://www.instagram.com/...&#10;https://www.youtube.com/@..."><?php echo esc_textarea( $o['same_as'] ); ?></textarea><p class="description">Her satıra bir adres. Google kurum bilgisini bu profillerle eşleştirir.</p></td></tr>
 			<tr><th scope="row"><label for="ys-tw">X (Twitter) kullanıcı adı</label></th><td><input id="ys-tw" class="regular-text" name="<?php echo esc_attr( $n ); ?>[twitter]" value="<?php echo esc_attr( $o['twitter'] ); ?>" placeholder="@kullanici"></td></tr>

@@ -258,6 +258,8 @@ function flxseo_fix_map() {
 		'flxseo_headers' => array( 'hdr_frame', 'hdr_coop', 'hdr_csp' ),
 		'flxseo_hsts'    => array( 'hsts_sub' ),
 		'flxseo_indexnow' => array( 'indexnow' ),
+		'flxseo_content_signal' => array( 'content_signal' ),
+		'flxseo_markdown' => array( 'markdown' ),
 	);
 }
 
@@ -304,6 +306,8 @@ add_filter(
 			'flxseo_webmcp'  => array( __( 'Turn on the WebMCP search tool', 'flx-seo' ), __( 'Adds toolname/tooldescription to the search form so browser agents see it as a tool.', 'flx-seo' ) ),
 			'flxseo_headers' => array( __( 'Turn on security headers', 'flx-seo' ), __( 'X-Frame-Options: SAMEORIGIN, COOP same-origin-allow-popups and a basic CSP (object-src \'none\'; base-uri \'self\'; frame-ancestors \'self\'). Do not turn on if the site is embedded in other sites with an iframe.', 'flx-seo' ) ),
 			'flxseo_hsts'    => array( __( 'HSTS includeSubDomains', 'flx-seo' ), __( 'If every subdomain is HTTPS, HSTS also covers subdomains.', 'flx-seo' ) ),
+			'flxseo_content_signal' => array( __( 'Turn on Content-Signal in robots.txt', 'flx-seo' ), __( 'Adds a Content-Signal line (search, ai-input, ai-train) to robots.txt so crawlers know how the content may be used. The values are set in SEO › Settings.', 'flx-seo' ) ),
+			'flxseo_markdown' => array( __( 'Serve Markdown to agents', 'flx-seo' ), __( 'Pages answer Accept: text/markdown with a Markdown version of the main content; far fewer tokens than HTML.', 'flx-seo' ) ),
 			'flxseo_indexnow' => array( __( 'Turn on IndexNow', 'flx-seo' ), __( 'New and updated pages are sent instantly to Bing, Yandex, Seznam and Naver; the whole site is submitted once automatically.', 'flx-seo' ) ),
 		);
 		foreach ( $labels as $id => $l ) {
@@ -331,6 +335,9 @@ add_filter(
 		$fields = array();
 		foreach ( flxseo_defaults() as $k => $v ) {
 			$fields[ $k ] = is_int( $v ) ? array( 'type' => 'bool', 'default' => $v ) : array( 'type' => in_array( $k, array( 'home_desc', 'same_as', 'llms_intro' ), true ) ? 'text' : 'string', 'default' => $v );
+		}
+		foreach ( array( 'cs_search', 'cs_ai_input', 'cs_ai_train' ) as $k ) {
+			$fields[ $k ] = array( 'type' => 'enum', 'enum' => array( 'yes', 'no', '' ), 'default' => flxseo_defaults()[ $k ] );
 		}
 		$fields['org_type']['type'] = 'enum';
 		$fields['org_type']['enum'] = array( 'NGO', 'Organization' );

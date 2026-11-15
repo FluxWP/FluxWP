@@ -1,5 +1,13 @@
 # Değişiklikler
 
+## 1.10.0
+- **Content-Signal:** robots.txt'nin `User-agent: *` grubuna `Content-Signal: search=yes, ai-input=yes, ai-train=no` satırı eklenir. Üç değer SEO › Ayarlar › Ajan uyumu'ndan seçilir (İzinli / İzin yok / Belirtilmedi), satır kapatılabilir. Filtre `flxseo_content_signal`.
+- **Sitemap lastmod:** sitemap dizinindeki her alt sitemap'e (o sayfadaki en yeni adresin tarihi) ve kategori/etiket sitemap'lerine `<lastmod>` eklenir. Hesap önbellekte; içerik değişince silinir.
+- **Markdown sunma:** `Accept: text/markdown` isteyen ajana sayfanın ana içeriği Markdown olarak döner (başta title/url/description/lang). Sayfalar `Vary: Accept` gönderir, Markdown yanıtı önbelleğe girmez; LiteSpeed sunucusunda .htaccess'in başına küçük bir "Flux SEO Markdown" bloğu yazılır (Markdown isteği sunucu önbelleğini atlar, ayar kapanınca ya da eklenti devre dışı kalınca silinir). Filtreler `flxseo_markdown`, `flxseo_markdown_eligible`.
+- **WebMCP araçları:** sayfa açılınca tarayıcı ajanlarına `search_site`, `read_page` (Markdown) ve `site_overview` (llms.txt) araçları `document.modelContext` / `navigator.modelContext.registerTool()` ile kaydedilir. Filtre `flxseo_webmcp_config`.
+- **Kurum schema'sı:** telefon, adres ve e-posta boşsa Flux Setup kurum profilinden okunur; `contactPoint` eklenir; ülke artık sabit "TR" değil (yeni Ülke alanı, yoksa WooCommerce mağaza ülkesi). Filtreler `flxseo_org_contact`, `flxseo_contact_url`.
+- **Site denetimi yeni kontroller:** Content-Signal yok, sitemap'te lastmod yok, kurum schema'sında telefon/adres eksik, ana sayfadan hakkımızda/iletişim/yasal sayfa bağlantısı yok (mailto sayılmaz), Markdown sunulmuyor, WebMCP aracı kayıtlı değil, MCP Server Card yok. Ajan uyumu özetine eklendi; Content-Signal ve Markdown tek tıkla açılır.
+
 ## 1.9.1
 - Yazılar sayfası (ör. /news/) ve WooCommerce mağaza sayfası, sayfanın SEO alanına yazılan başlığı kullanıyor (önceden WordPress varsayılanı "News – Site" çıkıyordu). Mağaza sayfasının SEO açıklaması da kullanılır.
 - Sepet, ödeme ve Hesabım sayfalarında açıklama artık sayfa içeriğinden (boş sepet metni, ürün önerileri) üretilmiyor; SEO alanı ya da özet yoksa site açıklaması kullanılır.

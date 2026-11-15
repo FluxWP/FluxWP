@@ -1212,3 +1212,126 @@ msgstr "Meta başlık/açıklama, canonical, Open Graph, schema (Organization, W
 
 msgid "PageSpeed timed out; this step was skipped."
 msgstr "PageSpeed zaman aşımına uğradı; bu adım atlandı."
+
+msgid "A Content-Signal line (e.g. search=yes, ai-input=yes, ai-train=no) tells crawlers how your content may be used. Flux SEO adds it to the generated robots.txt; set the values in SEO › Settings. If a hand-written robots.txt sits in the site root, add the line under \"User-agent: *\" yourself."
+msgstr "Content-Signal satırı (ör. search=yes, ai-input=yes, ai-train=no) tarayıcılara içeriğin nasıl kullanılabileceğini söyler. Flux SEO bunu ürettiği robots.txt'ye ekler; değerleri SEO › Ayarlar'dan seçin. Site kökünde elle yazılmış bir robots.txt varsa satırı \"User-agent: *\" altına kendiniz ekleyin."
+
+msgid "AI answers (ai-input)"
+msgstr "AI yanıtları (ai-input)"
+
+msgid "AI training (ai-train)"
+msgstr "AI eğitimi (ai-train)"
+
+msgid "About, contact or legal page is not linked from the home page"
+msgstr "Hakkımızda, iletişim ya da yasal sayfa ana sayfadan bağlanmamış"
+
+msgid "Adds a Content-Signal line (search, ai-input, ai-train) to robots.txt so crawlers know how the content may be used. The values are set in SEO › Settings."
+msgstr "robots.txt'ye Content-Signal satırı (search, ai-input, ai-train) ekler; tarayıcılar içeriğin nasıl kullanılabileceğini bilir. Değerler SEO › Ayarlar'da."
+
+msgid "Agents discover the site's MCP server from /.well-known/mcp/server-card.json (name, version, endpoint, capabilities). Flux AI & MCP publishes it when its MCP server is on (Flux AI & MCP › MCP). Without Flux AI & MCP the site has no MCP server; you can ignore this."
+msgstr "Ajanlar sitenin MCP sunucusunu /.well-known/mcp/server-card.json kartından bulur (ad, sürüm, adres, yetenekler). Flux AI & MCP, MCP sunucusu açıkken kartı yayınlar (Flux AI & MCP › MCP). Flux AI & MCP yoksa sitede MCP sunucusu da yoktur; bu öneriyi geçebilirsiniz."
+
+msgid "Browser agents look for tools registered with navigator.modelContext.registerTool() or forms marked with toolname/tooldescription. Flux SEO registers search, read-page and site-overview tools when WebMCP is on."
+msgstr "Tarayıcı ajanları navigator.modelContext.registerTool() ile kaydedilmiş araçları ya da toolname/tooldescription işaretli formları arar. WebMCP açıkken Flux SEO arama, sayfa okuma ve site özeti araçlarını kaydeder."
+
+msgid "Content signals are declared"
+msgstr "İçerik sinyalleri bildirilmiş"
+
+msgid "Each sitemap entry should carry <lastmod> so search engines and agents know what changed. Flux SEO adds it to the WordPress sitemap and its index; if another plugin builds the sitemap, turn on lastmod there."
+msgstr "Her sitemap kaydında <lastmod> olmalı; arama motorları ve ajanlar neyin değiştiğini böyle anlar. Flux SEO bunu WordPress sitemap'ine ve dizinine ekler; sitemap'i başka bir eklenti üretiyorsa lastmod'u orada açın."
+
+msgid "Fill in the phone and address so an agent can answer questions about the organization without guessing: SEO › Organization, or the organization profile in Flux Setup (Flux SEO reads it when its own fields are empty)."
+msgstr "Telefon ve adresi doldurun; ajan kurumla ilgili soruları tahmin etmeden yanıtlasın: SEO › Kurum ya da Flux Setup'taki kurum profili (Flux SEO kendi alanları boşsa oradan okur)."
+
+msgid "Flux AI & MCP"
+msgstr "Flux AI & MCP"
+
+msgid "For Accept: text/markdown the page should answer with a Markdown version; it costs agents far fewer tokens than HTML. Flux SEO does this when \"Serve Markdown\" is on. If HTML still comes back, a page cache is answering first: purge the cache (LiteSpeed: Purge All) and check that the \"Flux SEO Markdown\" block is at the top of .htaccess."
+msgstr "Accept: text/markdown isteğine sayfa Markdown hâliyle yanıt vermeli; ajanlara HTML'den çok daha az token harcatır. \"Markdown sun\" açıkken Flux SEO bunu yapar. Yine HTML dönüyorsa önce sayfa önbelleği yanıt veriyordur: önbelleği temizleyin (LiteSpeed: Purge All) ve .htaccess'in başında \"Flux SEO Markdown\" bloğu olduğunu kontrol edin."
+
+msgid "Link the about, contact and privacy/terms pages from the home page (usually the footer). A mailto: link does not count as a contact page; agents look for a page they can read."
+msgstr "Hakkımızda, iletişim ve gizlilik/kullanım koşulları sayfalarını ana sayfadan (genelde alt bilgiden) bağlayın. mailto: bağlantısı iletişim sayfası sayılmaz; ajanlar okuyabilecekleri bir sayfa arar."
+
+msgid "MCP Server Card is published"
+msgstr "MCP Server Card yayında"
+
+msgid "Markdown is not served when an agent asks for it"
+msgstr "Ajan isteyince Markdown sunulmuyor"
+
+msgid "Markdown is served to agents"
+msgstr "Ajanlara Markdown sunuluyor"
+
+msgid "No Content-Signal in robots.txt"
+msgstr "robots.txt'de Content-Signal yok"
+
+msgid "No MCP Server Card"
+msgstr "MCP Server Card yok"
+
+msgid "No WebMCP tools are registered on page load"
+msgstr "Sayfa açılınca WebMCP aracı kaydedilmiyor"
+
+msgid "Organization and contact pages are complete"
+msgstr "Kurum bilgisi ve iletişim sayfaları tam"
+
+msgid "Organization schema is missing contact details"
+msgstr "Kurum schema'sında iletişim bilgisi eksik"
+
+msgid "Pages answer Accept: text/markdown with a Markdown version of the main content; far fewer tokens than HTML."
+msgstr "Sayfalar Accept: text/markdown isteğine ana içeriğin Markdown hâliyle yanıt verir; HTML'den çok daha az token."
+
+msgid "Search (search)"
+msgstr "Arama (search)"
+
+msgid "Serve Markdown to agents"
+msgstr "Ajanlara Markdown sun"
+
+msgid "Sitemap has no lastmod dates"
+msgstr "Sitemap'te lastmod tarihi yok"
+
+msgid "Turn on Content-Signal in robots.txt"
+msgstr "robots.txt'de Content-Signal'ı aç"
+
+msgid "WebMCP tools are registered"
+msgstr "WebMCP araçları kayıtlı"
+
+msgid "Allowed"
+msgstr "İzinli"
+
+msgid "Content signals tell crawlers how your content may be used: in search results, as live input to AI answers, and for training AI models. They are a stated preference; crawlers are not forced to follow them."
+msgstr "İçerik sinyalleri tarayıcılara içeriğinizin nasıl kullanılabileceğini söyler: arama sonuçlarında, AI yanıtlarına anlık girdi olarak ve AI modellerini eğitmek için. Bu bir tercih bildirimidir; tarayıcılar uymak zorunda değildir."
+
+msgid "Country code"
+msgstr "Ülke kodu"
+
+msgid "Country is a two-letter code (TR, US, DE). Empty fields are filled from the organization profile (Flux Setup) when it has an address or phone."
+msgstr "Ülke iki harfli koddur (TR, US, DE). Boş alanlar, kurum profilinde (Flux Setup) adres ya da telefon varsa oradan doldurulur."
+
+msgid "Declare Content-Signal in robots.txt"
+msgstr "robots.txt'de Content-Signal bildir"
+
+msgid "Not allowed"
+msgstr "İzin yok"
+
+msgid "Not stated"
+msgstr "Belirtilmedi"
+
+msgid "Serve Markdown when an agent asks for it (Accept: text/markdown)"
+msgstr "Ajan isteyince Markdown sun (Accept: text/markdown)"
+
+msgid "WebMCP: register site tools for browser agents (search, read page as Markdown, site overview) and mark the search form as a tool"
+msgstr "WebMCP: tarayıcı ajanlarına site araçlarını kaydet (arama, sayfayı Markdown olarak okuma, site özeti) ve arama formunu araç olarak işaretle"
+
+msgid "How many results to return (1-20)"
+msgstr "Kaç sonuç dönsün (1-20)"
+
+msgid "Page address on this website; empty for the current page"
+msgstr "Bu sitedeki sayfa adresi; boşsa açık sayfa"
+
+msgid "Reads a page of this website as Markdown (title, description and main content). Without an address, reads the current page."
+msgstr "Bu sitedeki bir sayfayı Markdown olarak okur (başlık, açıklama ve ana içerik). Adres verilmezse açık sayfayı okur."
+
+msgid "Returns a short overview of this website (llms.txt): what it is about and its main pages."
+msgstr "Bu sitenin kısa özetini (llms.txt) verir: ne hakkında olduğu ve ana sayfaları."
+
+msgid "Searches this website and returns matching pages and posts with their title and address."
+msgstr "Bu sitede arama yapar; eşleşen sayfa ve yazıları başlık ve adresleriyle döndürür."

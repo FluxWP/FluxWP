@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.22.0
+- **MCP Server Card:** MCP sunucusu açıkken `/.well-known/mcp/server-card.json` (ayrıca `server-cards.json`, `/.well-known/mcp.json` ve `/mcp/server-card`) ajanlara sunucunun adını, sürümünü, adresini (streamable-http), desteklenen protokol sürümlerini, yeteneklerini ve kimlik doğrulamasını (OAuth/bearer) verir. CORS açık, 1 saat önbellek. Ana sayfada `<link rel="mcp-server-card">`. Filtreler `flx_mcp_server_card`, `flx_mcp_server_card_name`. MCP kapalıysa kart yoktur.
+
 ## 0.21.1
 - Flux Certificates eklentisinin görünen adı "Flux PDF & Certificates" oldu (yalnız ad; slug, text domain ve güncelleme kimliği aynı).
 

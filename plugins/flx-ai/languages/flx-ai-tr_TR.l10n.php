@@ -1694,5 +1694,7 @@ return array(
   'SVG cannot be used as a reference; render it to PNG first (flxai_design_render) or use a PNG logo.' => 'SVG referans olarak kullanılamaz; önce PNG\'ye çevirin (flxai_design_render) ya da PNG logo kullanın.',
   'Text to replace was not found in the design: %s' => 'Değiştirilecek metin tasarımda bulunamadı: %s',
   'The text occurs %1$d times; make it unique or set all=true: %2$s' => 'Metin %1$d kez geçiyor; tekil yapın ya da all=true verin: %2$s',
+   'MCP server of %s: read and manage the site content and the tools of its FluxWP plugins.' => '%s MCP sunucusu: site içeriğini ve FluxWP eklentilerinin araçlarını okur ve yönetir.',
+
  ),
 );
