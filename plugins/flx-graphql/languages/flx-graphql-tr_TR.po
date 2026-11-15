@@ -197,6 +197,51 @@ msgstr "Dosya sunucuya kaydedilemedi."
 msgid "The uploaded file was not found. Upload it again."
 msgstr "Yüklenen dosya bulunamadı. Yeniden yükleyin."
 
+msgid "The user making the request and what they may do."
+msgstr "İsteği yapan kullanıcı ve yapabildikleri."
+
+msgid "Whether the request is signed in."
+msgstr "İstek giriş yapmış bir kullanıcıdan mı."
+
+msgid "User ID; empty for a visitor."
+msgstr "Kullanıcı ID'si; ziyaretçide boş."
+
+msgid "Display name; empty for a visitor."
+msgstr "Görünen ad; ziyaretçide boş."
+
+msgid "Whether the user manages the site (manage_options)."
+msgstr "Kullanıcı siteyi yönetiyor mu (manage_options)."
+
+msgid "Capabilities from the FluxWP catalog that the user has."
+msgstr "FluxWP kataloğundan kullanıcıda olan yetkiler."
+
+msgid "Whether the user has this capability."
+msgstr "Kullanıcıda bu yetki var mı."
+
+msgid "Capability name, e.g. flxg_use."
+msgstr "Yetki adı, ör. flxg_use."
+
+msgid "A capability a FluxWP package checks."
+msgstr "Bir FluxWP paketinin kontrol ettiği yetki."
+
+msgid "What the capability allows, in the user's language."
+msgstr "Yetkinin neye izin verdiği, kullanıcının dilinde."
+
+msgid "Group label (usually the package); empty when not given."
+msgstr "Grup adı (genelde paket); verilmezse boş."
+
+msgid "Package slug that declares it; empty when not given."
+msgstr "Yetkiyi bildiren paketin slug'ı; verilmezse boş."
+
+msgid "Whether the current user has it."
+msgstr "Geçerli kullanıcıda var mı."
+
+msgid "The user making the request. A visitor gets loggedIn false and no capabilities."
+msgstr "İsteği yapan kullanıcı. Ziyaretçide loggedIn false, yetki listesi boş."
+
+msgid "The FluxWP capability catalog, with what the current user has."
+msgstr "FluxWP yetki kataloğu ve geçerli kullanıcıda olanlar."
+
 msgid "Where a page sits in a list."
 msgstr "Sayfanın listedeki yeri."
 

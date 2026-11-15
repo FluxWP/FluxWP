@@ -1,0 +1,14 @@
+mutation FlxRoleMemberRemove($input: FlxRoleMemberRemoveInput!) {
+  flxRoleMemberRemove(input: $input) {
+    removedUserId
+    roles {
+      key
+      memberCount
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

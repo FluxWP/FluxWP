@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.0
+
+- Yetki modeli: `flx_gql_any_cap()` (biri yeter) ve `flx_gql_all_caps()` (hepsi gerekir) `cap` yardımcıları; paketler yetkilerini `flx_gql_capabilities` filtresiyle bildirir.
+- `flxViewer` (giriş yapan kişi, yönetici mi, katalogdaki yetkileri, `can(capability:)`) ve `flxCapabilities` (katalog + kişide var mı). Paketler `FlxViewer`'a kendi alanlarını ekleyebilir.
+- Kendi kayıtlı sorgusu `FlxViewer` (persisted manifest).
+
 ## 0.1.0
 
 - İlk sürüm: FluxWP eklentileri için ortak GraphQL sunucusu (`/graphql`).

@@ -1,0 +1,9 @@
+# Next page of the people in a role.
+query FlxRoleMembers($key: String!, $first: Int = 50, $after: String) {
+  flxRole(key: $key) {
+    key
+    members(first: $first, after: $after) {
+      ...FlxRoleMemberPage
+    }
+  }
+}

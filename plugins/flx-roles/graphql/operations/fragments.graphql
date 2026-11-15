@@ -1,0 +1,42 @@
+fragment FlxRoleRow on FlxRole {
+  key
+  label
+  description
+  custom
+  memberCount
+  capabilities
+  home
+}
+
+fragment FlxRoleMemberRow on FlxRoleMember {
+  databaseId
+  name
+  email
+  phone {
+    display
+    e164
+  }
+  editUrl
+  referralLink
+}
+
+fragment FlxRoleMemberPage on FlxRoleMemberConnection {
+  nodes {
+    ...FlxRoleMemberRow
+  }
+  pageInfo {
+    hasNextPage
+    endCursor
+  }
+  totalCount
+}
+
+fragment FlxRolesConfigFields on FlxRolesConfig {
+  referralDays
+  newUserUrl
+  permissionsUrl
+  homeChoices {
+    key
+    label
+  }
+}

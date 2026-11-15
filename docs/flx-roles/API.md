@@ -149,6 +149,10 @@ Panelde `flxb_create_ref` (Bağış ekle, referans = kendisi) ve `flxb_donors_ow
 ### Flux Tasks, Flux Admin, Flux Chat
 Değişiklik gerekmez. (Flux Admin › Yetkiler tablosu bu yetkileri `flxa_cap_labels` ile okunur adla gösterir.)
 
+## GraphQL (1.5.0)
+
+Rol ekranının tüm işlemleri GraphQL'de: [GRAPHQL.md](GRAPHQL.md). Giriş yapan kişinin rolü ve referans linki `flxViewer { roleKey roleLabel referralLink }`.
+
 ## Uygulama
 
-Modül `roles` menüyü `users.php?page=flx-roles` web görünümünde açar. Rol matrisi için ayrı REST yoktur.
+FluxApp modülü `flxr-roles` (filtre `flxapp_modules`): ortak React ekranı, veriyi `/graphql`'den alır. wp-admin'de de varsayılan bu ekrandır; klasik görünüm sayfadaki bağlantıyla açılır.

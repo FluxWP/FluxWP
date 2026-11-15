@@ -1,0 +1,3 @@
+{
+  "3b302e1658cbd0be2df949e041acd18026dfe171eb43cf850e998a3590b1eab6": "query FlxViewer {\n  flxViewer {\n    loggedIn\n    databaseId\n    name\n    isAdmin\n    capabilities\n  }\n}"
+}

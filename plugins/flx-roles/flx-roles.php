@@ -2,9 +2,10 @@
 /**
  * Plugin Name:       Flux Roles
  * Description:       Personel, İdareci ve Yönetici rollerini ekler (panelden yeni rol de eklenir); rollerin Görev, Sertifika, Bağış, Çağrı Merkezi, Stüdyo ve rapor erişimini tek sayfadan açıp kapatırsınız. Kişisel referans linki ve kullanıcı telefonu (WhatsApp asistanı için) burada.
- * Version:           1.4.1
- * Requires at least: 6.4
- * Requires PHP:      7.4
+ * Version:           1.5.0
+ * Requires at least: 6.5
+ * Requires PHP:      8.1
+ * Requires Plugins:  flx-graphql
  * Author:            FluxWP
  * License:           GPL-2.0-or-later
  * Text Domain:       flx-roles
@@ -21,13 +22,15 @@ if ( defined( 'FLXR_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXR_VERSION', '1.4.1' );
+define( 'FLXR_VERSION', '1.5.0' );
 define( 'FLXR_DB_VERSION', 3 );
 define( 'FLXR_FILE', __FILE__ );
 define( 'FLXR_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXR_URL', plugin_dir_url( __FILE__ ) );
 
 require_once FLXR_DIR . 'includes/caps.php';
+require_once FLXR_DIR . 'includes/services/class-flxr-dto.php';
+require_once FLXR_DIR . 'includes/services/class-flxr-roles-service.php';
 require_once FLXR_DIR . 'includes/referral.php';
 require_once FLXR_DIR . 'includes/access.php';
 require_once FLXR_DIR . 'includes/phone.php';
@@ -36,6 +39,42 @@ require_once FLXR_DIR . 'includes/app.php';
 if ( is_admin() ) {
 	require_once FLXR_DIR . 'includes/admin.php';
 }
+
+/*
+ * GraphQL (Flux GraphQL): schema only inside a GraphQL request; the persisted operations the Roles and
+ * access screen sends. Without Flux GraphQL (0.2.0+, capability model) the schema is left out and the
+ * classic page keeps working.
+ */
+add_action(
+	'flx_gql_register',
+	static function () {
+		if ( ! function_exists( 'flx_gql_all_caps' ) ) {
+			return;
+		}
+		require_once FLXR_DIR . 'includes/graphql/schema.php';
+	}
+);
+add_filter(
+	'flx_gql_persisted_manifests',
+	static function ( $m ) {
+		$m              = is_array( $m ) ? $m : array();
+		$m['flx-roles'] = FLXR_DIR . 'graphql/persisted-queries.json';
+		return $m;
+	}
+);
+/* The whole Roles and access catalog is the shared capability catalog (flxViewer.capabilities). */
+add_filter(
+	'flx_gql_capabilities',
+	static function ( $caps ) {
+		$caps = is_array( $caps ) ? $caps : array();
+		foreach ( FLXR_Roles_Service::capability_labels() as $cap => $c ) {
+			if ( 'read' !== $cap && ! isset( $caps[ $cap ] ) ) {
+				$caps[ $cap ] = $c + array( 'package' => 'flx-roles' );
+			}
+		}
+		return $caps;
+	}
+);
 
 /*
  * Çeviri: kaynak metinler Türkçe; site/kullanıcı dili İngilizce olduğunda languages/ içindeki çeviri kullanılır.

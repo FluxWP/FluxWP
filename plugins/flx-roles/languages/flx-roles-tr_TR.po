@@ -30,6 +30,9 @@ msgstr[1] "%s kişi"
 msgid "You are not allowed to do this."
 msgstr "Bu işlem için yetkiniz yok."
 
+msgid "JavaScript is required for this screen."
+msgstr "Bu ekran için JavaScript gerekli."
+
 msgid "Saved. Permission changes apply immediately."
 msgstr "Kaydedildi. Yetki değişikliği hemen geçerli."
 
@@ -59,6 +62,12 @@ msgstr "Rol silindi; kişileri varsayılan role geçti."
 
 msgid "Role name must be 1-40 characters."
 msgstr "Rol adı 1-40 karakter olmalı."
+
+msgid "New view"
+msgstr "Yeni görünüm"
+
+msgid "Open the new view (same features, works in the FluxWP app too)."
+msgstr "Yeni görünümü aç (aynı özellikler, FluxWP uygulamasında da çalışır)."
 
 msgid "Turn on and off what each role can access. A disabled action disappears from the menu and can't be done even by URL. The WordPress Administrator sees everything."
 msgstr "Rollerin neye erişeceğini buradan açıp kapatın. Kapatılan işlem menüden kalkar, adresle girilse de yapılamaz. WordPress yöneticisi (Administrator) her şeyi görür."
@@ -315,8 +324,209 @@ msgstr "Açık ama henüz uygulanmayan yetkiler var; şu eklentilerin güncellem
 msgid "All enabled permissions are enforced."
 msgstr "Açık yetkilerin hepsi uygulanıyor."
 
-msgid "Roles"
-msgstr "Roller"
+msgid "Unknown role."
+msgstr "Bilinmeyen rol."
 
-msgid "Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here."
-msgstr "Personel, İdareci ve Yönetici rollerini ekler (panelden yeni rol de eklenir); rollerin Görev, Sertifika, Bağış, Çağrı Merkezi, Stüdyo ve rapor erişimini tek sayfadan açıp kapatırsınız. Kişisel referans linki ve kullanıcı telefonu (WhatsApp asistanı için) burada."
+msgid "Unknown permission: %s."
+msgstr "Bilinmeyen yetki: %s."
+
+msgid "This screen is not available."
+msgstr "Bu ekran kullanılamıyor."
+
+msgid "Enter 1 to 365 days."
+msgstr "1 ile 365 gün arası girin."
+
+msgid "Only roles added from the panel can be deleted."
+msgstr "Yalnız panelden eklenen roller silinebilir."
+
+msgid "Not found."
+msgstr "Bulunamadı."
+
+msgid "One permission of the Roles and access table."
+msgstr "Roller ve erişim tablosundaki bir yetki."
+
+msgid "Capability name, e.g. flxg_use."
+msgstr "Yetki adı, ör. flxg_use."
+
+msgid "What the permission allows, in the user's language."
+msgstr "Yetkinin neye izin verdiği, kullanıcının dilinde."
+
+msgid "Always on for every role (cannot be changed)."
+msgstr "Her rolde hep açık (değiştirilemez)."
+
+msgid "Gives broad access; shown with a warning."
+msgstr "Geniş erişim verir; uyarıyla gösterilir."
+
+msgid "Saved, but the package enforces it only after an update."
+msgstr "Kaydedilir, ama paket ancak güncellendikten sonra uygular."
+
+msgid "A package group of the Roles and access table."
+msgstr "Roller ve erişim tablosunda bir paket grubu."
+
+msgid "Group key."
+msgstr "Grup anahtarı."
+
+msgid "Group name."
+msgstr "Grup adı."
+
+msgid "Package that enforces the group; empty for General."
+msgstr "Grubu uygulayan paket; Genel için boş."
+
+msgid "Whether the package is installed."
+msgstr "Paket kurulu mu."
+
+msgid "Permissions of the group."
+msgstr "Grubun yetkileri."
+
+msgid "A person in a role."
+msgstr "Roldeki bir kişi."
+
+msgid "User ID."
+msgstr "Kullanıcı kimliği."
+
+msgid "Display name."
+msgstr "Görünen ad."
+
+msgid "E-mail address."
+msgstr "E-posta adresi."
+
+msgid "WhatsApp number; empty when none is saved on the profile."
+msgstr "WhatsApp numarası; profilde kayıtlı değilse boş."
+
+msgid "Profile edit page."
+msgstr "Profil düzenleme sayfası."
+
+msgid "Personal referral link; empty when the person cannot be a referrer."
+msgstr "Kişisel referans linki; kişi referans olamıyorsa boş."
+
+msgid "A page of the people in a role."
+msgstr "Roldeki kişilerin bir sayfası."
+
+msgid "A FluxWP role: Director, Manager, Staff or a role added from the panel."
+msgstr "FluxWP rolü: Yönetici, İdareci, Personel ya da panelden eklenen rol."
+
+msgid "Role key, e.g. flx_personel."
+msgstr "Rol anahtarı, ör. flx_personel."
+
+msgid "Role name in the user's language."
+msgstr "Rol adı, kullanıcının dilinde."
+
+msgid "What the role is for."
+msgstr "Rolün ne için olduğu."
+
+msgid "Added from the panel; can be deleted."
+msgstr "Panelden eklendi; silinebilir."
+
+msgid "Number of people with the role."
+msgstr "Bu roldeki kişi sayısı."
+
+msgid "Table permissions that are on for the role."
+msgstr "Rolde açık olan tablo yetkileri."
+
+msgid "Screen after login (a key of flxRolesConfig.homeChoices)."
+msgstr "Girişte açılan ekran (flxRolesConfig.homeChoices anahtarı)."
+
+msgid "People in the role by name (the first %d)."
+msgstr "Roldeki kişiler, ada göre (ilk %d)."
+
+msgid "A screen a role can open after login."
+msgstr "Rolün girişte açabileceği ekran."
+
+msgid "Choice key (auto, gorev, profile …)."
+msgstr "Seçenek anahtarı (auto, gorev, profile …)."
+
+msgid "Screen name."
+msgstr "Ekran adı."
+
+msgid "Settings and links of the Roles and access page."
+msgstr "Roller ve erişim sayfasının ayarları ve bağlantıları."
+
+msgid "Referral link lifetime in days (1–365)."
+msgstr "Referans linki süresi, gün (1–365)."
+
+msgid "Screens a role can open after login."
+msgstr "Rolün girişte açabileceği ekranlar."
+
+msgid "Page that creates a user."
+msgstr "Kullanıcı oluşturma sayfası."
+
+msgid "Flux Admin permissions tab; empty without Flux Admin."
+msgstr "Flux Admin yetkiler sekmesi; Flux Admin yoksa boş."
+
+msgid "Roles Flux Roles manages, broadest first."
+msgstr "Flux Roles'un yönettiği roller, en geniş yetkili önce."
+
+msgid "One role; empty when the key is unknown."
+msgstr "Tek rol; anahtar bilinmiyorsa boş."
+
+msgid "Role key."
+msgstr "Rol anahtarı."
+
+msgid "The Roles and access table: permissions by package."
+msgstr "Roller ve erişim tablosu: pakete göre yetkiler."
+
+msgid "The viewer's FluxWP role key; empty without one."
+msgstr "İsteği yapanın FluxWP rol anahtarı; rolü yoksa boş."
+
+msgid "Name of the viewer's FluxWP role; empty without one."
+msgstr "İsteği yapanın FluxWP rol adı; rolü yoksa boş."
+
+msgid "The viewer's personal referral link; empty when they cannot be a referrer."
+msgstr "İsteği yapanın kişisel referans linki; referans olamıyorsa boş."
+
+msgid "Changes to one role. Fields you leave out stay as they are."
+msgstr "Bir roldeki değişiklikler. Göndermediğiniz alanlar olduğu gibi kalır."
+
+msgid "Every table permission that should be on; the others are turned off (locked ones stay)."
+msgstr "Açık olması gereken tüm tablo yetkileri; diğerleri kapatılır (kilitliler kalır)."
+
+msgid "Saves the Roles and access table and settings in one go. Nothing is written when any part is invalid."
+msgstr "Roller ve erişim tablosunu ve ayarları tek seferde kaydeder. Bir parçası geçersizse hiçbir şey yazılmaz."
+
+msgid "Roles to change; the others stay as they are."
+msgstr "Değişecek roller; diğerleri olduğu gibi kalır."
+
+msgid "Every role after the change."
+msgstr "Değişiklikten sonra tüm roller."
+
+msgid "Page settings after the change."
+msgstr "Değişiklikten sonra sayfa ayarları."
+
+msgid "Adds a role from the panel; it starts with admin panel access only."
+msgstr "Panelden rol ekler; yalnız panele girme yetkisiyle başlar."
+
+msgid "Role name (1–40 characters), e.g. Volunteer."
+msgstr "Rol adı (1–40 karakter), ör. Gönüllü."
+
+msgid "The new role."
+msgstr "Yeni rol."
+
+msgid "Deletes a role added from the panel; its people move to the default role."
+msgstr "Panelden eklenen rolü siler; kişileri varsayılan role geçer."
+
+msgid "Key of the deleted role."
+msgstr "Silinen rolün anahtarı."
+
+msgid "Puts a role's table permissions back to the defaults."
+msgstr "Rolün tablo yetkilerini varsayılana döndürür."
+
+msgid "The role after the reset."
+msgstr "Varsayılana döndükten sonra rol."
+
+msgid "Gives a user the role. Their other FluxWP role and Subscriber/Customer are removed; other roles stay."
+msgstr "Kullanıcıya rolü verir. Diğer FluxWP rolü ve Abone/Müşteri kaldırılır; başka roller kalır."
+
+msgid "Username or email of an existing user."
+msgstr "Kayıtlı kullanıcının kullanıcı adı ya da e-postası."
+
+msgid "The person added."
+msgstr "Eklenen kişi."
+
+msgid "Every role after the change (counts)."
+msgstr "Değişiklikten sonra tüm roller (sayılar)."
+
+msgid "Takes the role from a user; with no role left they get the default role."
+msgstr "Kullanıcıdan rolü alır; rolü kalmazsa varsayılan rolü alır."
+
+msgid "User the role was taken from."
+msgstr "Rolü alınan kullanıcı."

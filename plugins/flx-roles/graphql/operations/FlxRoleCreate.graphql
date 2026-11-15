@@ -1,0 +1,12 @@
+mutation FlxRoleCreate($input: FlxRoleCreateInput!) {
+  flxRoleCreate(input: $input) {
+    role {
+      ...FlxRoleRow
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

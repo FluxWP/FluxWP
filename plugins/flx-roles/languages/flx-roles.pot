@@ -30,6 +30,9 @@ msgstr[1] ""
 msgid "You are not allowed to do this."
 msgstr ""
 
+msgid "JavaScript is required for this screen."
+msgstr ""
+
 msgid "Saved. Permission changes apply immediately."
 msgstr ""
 
@@ -58,6 +61,12 @@ msgid "Role deleted; its people moved to the default role."
 msgstr ""
 
 msgid "Role name must be 1-40 characters."
+msgstr ""
+
+msgid "New view"
+msgstr ""
+
+msgid "Open the new view (same features, works in the FluxWP app too)."
 msgstr ""
 
 msgid "Turn on and off what each role can access. A disabled action disappears from the menu and can't be done even by URL. The WordPress Administrator sees everything."
@@ -315,8 +324,209 @@ msgstr ""
 msgid "All enabled permissions are enforced."
 msgstr ""
 
-msgid "Roles"
+msgid "Unknown role."
 msgstr ""
 
-msgid "Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here."
+msgid "Unknown permission: %s."
+msgstr ""
+
+msgid "This screen is not available."
+msgstr ""
+
+msgid "Enter 1 to 365 days."
+msgstr ""
+
+msgid "Only roles added from the panel can be deleted."
+msgstr ""
+
+msgid "Not found."
+msgstr ""
+
+msgid "One permission of the Roles and access table."
+msgstr ""
+
+msgid "Capability name, e.g. flxg_use."
+msgstr ""
+
+msgid "What the permission allows, in the user's language."
+msgstr ""
+
+msgid "Always on for every role (cannot be changed)."
+msgstr ""
+
+msgid "Gives broad access; shown with a warning."
+msgstr ""
+
+msgid "Saved, but the package enforces it only after an update."
+msgstr ""
+
+msgid "A package group of the Roles and access table."
+msgstr ""
+
+msgid "Group key."
+msgstr ""
+
+msgid "Group name."
+msgstr ""
+
+msgid "Package that enforces the group; empty for General."
+msgstr ""
+
+msgid "Whether the package is installed."
+msgstr ""
+
+msgid "Permissions of the group."
+msgstr ""
+
+msgid "A person in a role."
+msgstr ""
+
+msgid "User ID."
+msgstr ""
+
+msgid "Display name."
+msgstr ""
+
+msgid "E-mail address."
+msgstr ""
+
+msgid "WhatsApp number; empty when none is saved on the profile."
+msgstr ""
+
+msgid "Profile edit page."
+msgstr ""
+
+msgid "Personal referral link; empty when the person cannot be a referrer."
+msgstr ""
+
+msgid "A page of the people in a role."
+msgstr ""
+
+msgid "A FluxWP role: Director, Manager, Staff or a role added from the panel."
+msgstr ""
+
+msgid "Role key, e.g. flx_personel."
+msgstr ""
+
+msgid "Role name in the user's language."
+msgstr ""
+
+msgid "What the role is for."
+msgstr ""
+
+msgid "Added from the panel; can be deleted."
+msgstr ""
+
+msgid "Number of people with the role."
+msgstr ""
+
+msgid "Table permissions that are on for the role."
+msgstr ""
+
+msgid "Screen after login (a key of flxRolesConfig.homeChoices)."
+msgstr ""
+
+msgid "People in the role by name (the first %d)."
+msgstr ""
+
+msgid "A screen a role can open after login."
+msgstr ""
+
+msgid "Choice key (auto, gorev, profile …)."
+msgstr ""
+
+msgid "Screen name."
+msgstr ""
+
+msgid "Settings and links of the Roles and access page."
+msgstr ""
+
+msgid "Referral link lifetime in days (1–365)."
+msgstr ""
+
+msgid "Screens a role can open after login."
+msgstr ""
+
+msgid "Page that creates a user."
+msgstr ""
+
+msgid "Flux Admin permissions tab; empty without Flux Admin."
+msgstr ""
+
+msgid "Roles Flux Roles manages, broadest first."
+msgstr ""
+
+msgid "One role; empty when the key is unknown."
+msgstr ""
+
+msgid "Role key."
+msgstr ""
+
+msgid "The Roles and access table: permissions by package."
+msgstr ""
+
+msgid "The viewer's FluxWP role key; empty without one."
+msgstr ""
+
+msgid "Name of the viewer's FluxWP role; empty without one."
+msgstr ""
+
+msgid "The viewer's personal referral link; empty when they cannot be a referrer."
+msgstr ""
+
+msgid "Changes to one role. Fields you leave out stay as they are."
+msgstr ""
+
+msgid "Every table permission that should be on; the others are turned off (locked ones stay)."
+msgstr ""
+
+msgid "Saves the Roles and access table and settings in one go. Nothing is written when any part is invalid."
+msgstr ""
+
+msgid "Roles to change; the others stay as they are."
+msgstr ""
+
+msgid "Every role after the change."
+msgstr ""
+
+msgid "Page settings after the change."
+msgstr ""
+
+msgid "Adds a role from the panel; it starts with admin panel access only."
+msgstr ""
+
+msgid "Role name (1–40 characters), e.g. Volunteer."
+msgstr ""
+
+msgid "The new role."
+msgstr ""
+
+msgid "Deletes a role added from the panel; its people move to the default role."
+msgstr ""
+
+msgid "Key of the deleted role."
+msgstr ""
+
+msgid "Puts a role's table permissions back to the defaults."
+msgstr ""
+
+msgid "The role after the reset."
+msgstr ""
+
+msgid "Gives a user the role. Their other FluxWP role and Subscriber/Customer are removed; other roles stay."
+msgstr ""
+
+msgid "Username or email of an existing user."
+msgstr ""
+
+msgid "The person added."
+msgstr ""
+
+msgid "Every role after the change (counts)."
+msgstr ""
+
+msgid "Takes the role from a user; with no role left they get the default role."
+msgstr ""
+
+msgid "User the role was taken from."
 msgstr ""

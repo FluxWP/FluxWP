@@ -259,6 +259,66 @@ msgstr ""
 msgid "The uploaded file was not found. Upload it again."
 msgstr ""
 
+#: includes/kit/caps.php
+msgid "The user making the request and what they may do."
+msgstr ""
+
+#: includes/kit/caps.php
+msgid "Whether the request is signed in."
+msgstr ""
+
+#: includes/kit/caps.php
+msgid "User ID; empty for a visitor."
+msgstr ""
+
+#: includes/kit/caps.php
+msgid "Display name; empty for a visitor."
+msgstr ""
+
+#: includes/kit/caps.php
+msgid "Whether the user manages the site (manage_options)."
+msgstr ""
+
+#: includes/kit/caps.php
+msgid "Capabilities from the FluxWP catalog that the user has."
+msgstr ""
+
+#: includes/kit/caps.php
+msgid "Whether the user has this capability."
+msgstr ""
+
+#: includes/kit/caps.php
+msgid "Capability name, e.g. flxg_use."
+msgstr ""
+
+#: includes/kit/caps.php
+msgid "A capability a FluxWP package checks."
+msgstr ""
+
+#: includes/kit/caps.php
+msgid "What the capability allows, in the user's language."
+msgstr ""
+
+#: includes/kit/caps.php
+msgid "Group label (usually the package); empty when not given."
+msgstr ""
+
+#: includes/kit/caps.php
+msgid "Package slug that declares it; empty when not given."
+msgstr ""
+
+#: includes/kit/caps.php
+msgid "Whether the current user has it."
+msgstr ""
+
+#: includes/kit/caps.php
+msgid "The user making the request. A visitor gets loggedIn false and no capabilities."
+msgstr ""
+
+#: includes/kit/caps.php
+msgid "The FluxWP capability catalog, with what the current user has."
+msgstr ""
+
 #: includes/kit/connection.php
 msgid "Where a page sits in a list."
 msgstr ""

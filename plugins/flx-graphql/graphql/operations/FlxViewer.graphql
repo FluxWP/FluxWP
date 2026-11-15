@@ -1,0 +1,10 @@
+# Who is asking and which FluxWP capabilities they have (useFlxViewer / useFlxCan).
+query FlxViewer {
+  flxViewer {
+    loggedIn
+    databaseId
+    name
+    isAdmin
+    capabilities
+  }
+}

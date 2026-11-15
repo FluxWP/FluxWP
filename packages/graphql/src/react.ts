@@ -11,6 +11,8 @@ import {
 import type { GraphQLClient } from './client';
 import type { FlxGraphQLError } from './errors';
 import type { FlxOperation } from './operation';
+import { FlxViewer } from './generated/operations';
+import type { FlxViewerQuery } from './generated/types';
 
 interface Ctx {
   client: GraphQLClient;
@@ -58,4 +60,20 @@ export function useFlxMutation<R, V, C = unknown>(
     ...options,
     mutationFn: (variables) => (client.request as (o: FlxOperation<R, V>, v: V) => Promise<R>)(op, variables),
   });
+}
+
+/**
+ * The signed-in user and the FluxWP catalog capabilities they have (flxViewer, kit 0.2). Cached for a
+ * minute; the server still checks every field, this only hides what would be refused.
+ */
+export function useFlxViewer(options?: QueryOpts<FlxViewerQuery, FlxViewerQuery>): UseQueryResult<FlxViewerQuery, FlxGraphQLError> {
+  return useFlxQuery(FlxViewer, {}, { staleTime: 60_000, ...options });
+}
+
+/** Whether the viewer has a catalog capability (flx_gql_capabilities): undefined while loading. */
+export function useFlxCan(capability: string): boolean | undefined {
+  const q = useFlxViewer();
+  const v = q.data?.flxViewer;
+  if (!v) return undefined;
+  return v.capabilities.includes(capability);
 }

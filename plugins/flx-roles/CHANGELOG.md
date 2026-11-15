@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 1.5.0
+- Roller ve erişim ekranı yenilendi: aynı özellikler (rol kartları, yeni rol, yetki tablosu, giriş sonrası ekran, referans süresi, kişiler) ortak FluxWP ekranında, açık/koyu temaya uyar ve FluxWP uygulamasında da açılır. wp-admin'de varsayılan budur; eski görünüm sayfadaki "Klasik görünüm" bağlantısıyla açılır (kullanıcı başına hatırlanır).
+- Tüm işlemler GraphQL'de (`flxRoles`, `flxRolesSave`, `flxRoleCreate`, `flxRoleDelete`, `flxRoleReset`, `flxRoleMemberAdd`, `flxRoleMemberRemove`); kaydetme önce her şeyi doğrular, hata varsa hiçbir şey yazılmaz. Belge: docs/flx-roles/GRAPHQL.md.
+- Giriş yapan kişinin rolü ve referans linki `flxViewer` ile okunur; yetki kataloğu Flux GraphQL'e bildirilir.
+- Gereksinim: Flux GraphQL, PHP 8.1, WordPress 6.5.
+
 ## 1.4.1
 - Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
 

@@ -1,0 +1,10 @@
+mutation FlxRoleDelete($input: FlxRoleDeleteInput!) {
+  flxRoleDelete(input: $input) {
+    deletedKey
+    errors {
+      code
+      message
+      field
+    }
+  }
+}
