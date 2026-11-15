@@ -58,6 +58,9 @@ defined( 'ABSPATH' ) || exit;
  */
 final class FLXAN_Service {
 
+	/** Admin menu slug of the classic pages (the settings link is built from it). */
+	public const PAGE = 'flx-analytics';
+
 	public const CACHE_TAG = 'flx-analytics:stats';
 
 	/* ------------------------------------------------------------------ */
@@ -791,8 +794,8 @@ final class FLXAN_Service {
 			'fastEndpoint'      => $test ? FLXAN_URL . 'endpoint.php' : '',
 			'exportUrl'         => wp_nonce_url( admin_url( 'admin-post.php?action=flxan_export' ), 'flxan_export' ),
 			'homeUrl'           => home_url(),
-			'settingsUrl'       => current_user_can( 'manage_options' ) ? admin_url( 'admin.php?page=' . FLXAN_Admin::SLUG . '-settings' ) : '',
-			'funnelSettingsUrl' => current_user_can( 'manage_options' ) ? admin_url( 'admin.php?page=' . FLXAN_Admin::SLUG . '-settings#flxan-funnels' ) : '',
+			'settingsUrl'       => current_user_can( 'manage_options' ) ? admin_url( 'admin.php?page=' . self::PAGE . '-settings' ) : '',
+			'funnelSettingsUrl' => current_user_can( 'manage_options' ) ? admin_url( 'admin.php?page=' . self::PAGE . '-settings#flxan-funnels' ) : '',
 			'hasWorldMap'       => is_file( FLXAN_DIR . 'assets/world.js' ),
 		);
 	}

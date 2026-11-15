@@ -1033,7 +1033,7 @@ flx_gql_query(
 	array(
 		'type'        => 'FlxAnalyticsConfig!',
 		'description' => __( 'Option lists, permissions and links the statistics screens need.', 'flx-analytics' ),
-		'cap'         => 'flxan_gql_can_view',
+		'cap'         => Closure::fromCallable( 'flxan_gql_can_view' ),
 		'resolve'     => static fn(): array => FLXAN_Service::config(),
 	)
 );
@@ -1042,7 +1042,7 @@ flx_gql_query(
 	array(
 		'type'        => 'FlxAnalyticsReport!',
 		'description' => __( 'Everything the Statistics screen shows for a date range.', 'flx-analytics' ),
-		'cap'         => 'flxan_gql_can_view',
+		'cap'         => Closure::fromCallable( 'flxan_gql_can_view' ),
 		'args'        => array( 'filter' => $flxan_filter_arg ),
 		'resolve'     => static function ( $root, array $args ): array {
 			flxan_gql_tag();
@@ -1055,7 +1055,7 @@ flx_gql_query(
 	array(
 		'type'        => 'FlxAnalyticsRealtime!',
 		'description' => __( 'Who is on the site now; with kpi the headline numbers and chart too (a light query to repeat every few seconds).', 'flx-analytics' ),
-		'cap'         => 'flxan_gql_can_view',
+		'cap'         => Closure::fromCallable( 'flxan_gql_can_view' ),
 		'args'        => array(
 			'filter'  => $flxan_filter_arg,
 			'minutes' => array( 'type' => 'Int', 'description' => __( 'Window in minutes, 1–60 (default 30).', 'flx-analytics' ), 'default' => 30 ),
@@ -1069,7 +1069,7 @@ flx_gql_query(
 	array(
 		'type'        => 'FlxAnalyticsPageRowConnection!',
 		'description' => __( 'Pages by views, a page at a time.', 'flx-analytics' ),
-		'cap'         => 'flxan_gql_can_view',
+		'cap'         => Closure::fromCallable( 'flxan_gql_can_view' ),
 		'args'        => flx_gql_connection_args(
 			array(
 				'filter'  => $flxan_filter_arg,
@@ -1091,7 +1091,7 @@ flx_gql_query(
 	array(
 		'type'        => 'FlxAnalyticsReferrerRowConnection!',
 		'description' => __( 'Referring sites by visitors, a page at a time.', 'flx-analytics' ),
-		'cap'         => 'flxan_gql_can_view',
+		'cap'         => Closure::fromCallable( 'flxan_gql_can_view' ),
 		'args'        => flx_gql_connection_args(
 			array(
 				'filter' => $flxan_filter_arg,
@@ -1112,7 +1112,7 @@ flx_gql_query(
 	array(
 		'type'        => 'FlxAnalyticsDimRowConnection!',
 		'description' => __( 'Traffic split by channel, device, browser, country or campaign, a page at a time.', 'flx-analytics' ),
-		'cap'         => 'flxan_gql_can_view',
+		'cap'         => Closure::fromCallable( 'flxan_gql_can_view' ),
 		'args'        => flx_gql_connection_args(
 			array(
 				'filter' => $flxan_filter_arg,
@@ -1133,7 +1133,7 @@ flx_gql_query(
 	array(
 		'type'        => 'FlxAnalyticsEventRowConnection!',
 		'description' => __( 'Events (clicks, downloads, donations …), a page at a time.', 'flx-analytics' ),
-		'cap'         => 'flxan_gql_can_view',
+		'cap'         => Closure::fromCallable( 'flxan_gql_can_view' ),
 		'args'        => flx_gql_connection_args(
 			array(
 				'filter' => $flxan_filter_arg,
@@ -1154,7 +1154,7 @@ flx_gql_query(
 	array(
 		'type'        => 'FlxAnalyticsPageStats!',
 		'description' => __( 'Views of one page or post.', 'flx-analytics' ),
-		'cap'         => 'flxan_gql_can_view',
+		'cap'         => Closure::fromCallable( 'flxan_gql_can_view' ),
 		'args'        => array(
 			'filter' => $flxan_filter_arg,
 			'target' => array( 'type' => 'String!', 'description' => __( 'Post ID, path or address.', 'flx-analytics' ) ),
@@ -1170,7 +1170,7 @@ flx_gql_query(
 	array(
 		'type'        => 'FlxAnalyticsFunnel!',
 		'description' => __( 'A funnel, optionally split by channel, site, code, role or country.', 'flx-analytics' ),
-		'cap'         => 'flxan_gql_can_view',
+		'cap'         => Closure::fromCallable( 'flxan_gql_can_view' ),
 		'args'        => array(
 			'filter' => $flxan_filter_arg,
 			'id'     => array( 'type' => 'Int', 'description' => __( 'Funnel number; 0 or none = the first.', 'flx-analytics' ), 'default' => 0 ),
@@ -1188,7 +1188,7 @@ flx_gql_query(
 	array(
 		'type'        => '[FlxAnalyticsRef!]!',
 		'description' => __( 'Referral links with what their visitors did (50 at most).', 'flx-analytics' ),
-		'cap'         => 'flxan_gql_can_view',
+		'cap'         => Closure::fromCallable( 'flxan_gql_can_view' ),
 		'args'        => array( 'filter' => $flxan_filter_arg ),
 		'resolve'     => static function ( $root, array $args ): array {
 			flxan_gql_tag();
@@ -1201,7 +1201,7 @@ flx_gql_query(
 	array(
 		'type'        => 'FlxAnalyticsJourneys!',
 		'description' => __( 'How visitors move through the site: flow chart and frequent paths.', 'flx-analytics' ),
-		'cap'         => 'flxan_gql_can_view',
+		'cap'         => Closure::fromCallable( 'flxan_gql_can_view' ),
 		'args'        => array(
 			'filter'  => $flxan_filter_arg,
 			'options' => array( 'type' => 'FlxAnalyticsJourneysInput', 'description' => __( 'Steps, filters, goal and grouping.', 'flx-analytics' ) ),
@@ -1226,7 +1226,7 @@ flx_gql_query(
 	array(
 		'type'        => 'FlxAnalyticsSettings!',
 		'description' => __( 'Flux Analytics settings and the data status.', 'flx-analytics' ),
-		'cap'         => 'flxan_gql_can_manage',
+		'cap'         => Closure::fromCallable( 'flxan_gql_can_manage' ),
 		'resolve'     => static function (): array {
 			flxan_gql_tag();
 			return FLXAN_Service::settings();
@@ -1238,7 +1238,7 @@ flx_gql_query(
 	array(
 		'type'        => 'FlxAnalyticsTelemetry!',
 		'description' => __( 'Anonymous product telemetry from FluxWP installs: usage, versions and the setup wizard.', 'flx-analytics' ),
-		'cap'         => 'flxan_gql_can_hub',
+		'cap'         => Closure::fromCallable( 'flxan_gql_can_hub' ),
 		'args'        => array(
 			'days'    => array( 'type' => 'Int', 'description' => __( 'Range in days: 7, 30 (default) or 90.', 'flx-analytics' ), 'default' => 30 ),
 			'country' => array( 'type' => 'String', 'description' => __( 'Only installs of this country (two-letter code).', 'flx-analytics' ) ),
@@ -1251,7 +1251,7 @@ flx_gql_query(
 	array(
 		'type'        => 'FlxAnalyticsTmErrors!',
 		'description' => __( 'Errors FluxWP installs reported, fatal first.', 'flx-analytics' ),
-		'cap'         => 'flxan_gql_can_hub',
+		'cap'         => Closure::fromCallable( 'flxan_gql_can_hub' ),
 		'args'        => array(
 			'days'    => array( 'type' => 'Int', 'description' => __( 'Range in days: 7, 30 (default) or 90.', 'flx-analytics' ), 'default' => 30 ),
 			'country' => array( 'type' => 'String', 'description' => __( 'Only errors seen on installs of this country.', 'flx-analytics' ) ),
@@ -1275,7 +1275,7 @@ flx_gql_mutation(
 	'flxAnalyticsRefSave',
 	array(
 		'description' => __( 'Adds a referral link name, renames it, or removes the name (the statistics stay).', 'flx-analytics' ),
-		'cap'         => 'flxan_gql_can_refs',
+		'cap'         => Closure::fromCallable( 'flxan_gql_can_refs' ),
 		'input'       => array(
 			'code'   => array( 'type' => 'String!', 'description' => __( 'Referral code (letters, digits, - and _).', 'flx-analytics' ) ),
 			'name'   => array( 'type' => 'String', 'description' => __( 'Name shown in reports.', 'flx-analytics' ) ),
@@ -1297,7 +1297,7 @@ flx_gql_mutation(
 	'flxAnalyticsSettingsSave',
 	array(
 		'description' => __( 'Changes settings and funnels. Fields you do not send stay as they are.', 'flx-analytics' ),
-		'cap'         => 'flxan_gql_can_manage',
+		'cap'         => Closure::fromCallable( 'flxan_gql_can_manage' ),
 		'input'       => array(
 			'on'           => array( 'type' => 'Boolean', 'description' => __( 'Count visits.', 'flx-analytics' ) ),
 			'method'       => array( 'type' => 'FlxAnalyticsCollectMethod', 'description' => __( 'Collection method.', 'flx-analytics' ) ),
@@ -1327,7 +1327,7 @@ flx_gql_mutation(
 	'flxAnalyticsAggregate',
 	array(
 		'description' => __( 'Processes the waiting visits now.', 'flx-analytics' ),
-		'cap'         => 'flxan_gql_can_manage',
+		'cap'         => Closure::fromCallable( 'flxan_gql_can_manage' ),
 		'output'      => array(
 			'processed' => array( 'type' => 'Int!', 'description' => __( 'Visit rows processed.', 'flx-analytics' ) ),
 			'settings'  => array( 'type' => 'FlxAnalyticsSettings', 'description' => __( 'Settings and data status after the run.', 'flx-analytics' ) ),
@@ -1342,7 +1342,7 @@ flx_gql_mutation(
 	'flxAnalyticsReset',
 	array(
 		'description' => __( 'Deletes all statistics permanently.', 'flx-analytics' ),
-		'cap'         => 'flxan_gql_can_manage',
+		'cap'         => Closure::fromCallable( 'flxan_gql_can_manage' ),
 		'output'      => array(
 			'settings' => array( 'type' => 'FlxAnalyticsSettings', 'description' => __( 'Settings and data status after the reset.', 'flx-analytics' ) ),
 		),
@@ -1356,7 +1356,7 @@ flx_gql_mutation(
 	'flxAnalyticsKokoImport',
 	array(
 		'description' => __( 'Imports Koko Analytics history from before Flux Analytics was installed.', 'flx-analytics' ),
-		'cap'         => 'flxan_gql_can_manage',
+		'cap'         => Closure::fromCallable( 'flxan_gql_can_manage' ),
 		'output'      => array(
 			'rows'     => array( 'type' => 'Int!', 'description' => __( 'Rows imported.', 'flx-analytics' ) ),
 			'settings' => array( 'type' => 'FlxAnalyticsSettings', 'description' => __( 'Settings and data status after the import.', 'flx-analytics' ) ),
@@ -1371,7 +1371,7 @@ flx_gql_mutation(
 	'flxAnalyticsFastTest',
 	array(
 		'description' => __( 'Records whether this browser reached the fast endpoint.', 'flx-analytics' ),
-		'cap'         => 'flxan_gql_can_manage',
+		'cap'         => Closure::fromCallable( 'flxan_gql_can_manage' ),
 		'input'       => array(
 			'ok' => array( 'type' => 'Boolean!', 'description' => __( 'The endpoint answered.', 'flx-analytics' ) ),
 		),
@@ -1385,7 +1385,7 @@ flx_gql_mutation(
 	'flxAnalyticsTelemetryForget',
 	array(
 		'description' => __( 'Removes one telemetry error record, or all of them with "all". A record returns when the error happens again.', 'flx-analytics' ),
-		'cap'         => 'flxan_gql_can_hub',
+		'cap'         => Closure::fromCallable( 'flxan_gql_can_hub' ),
 		'input'       => array(
 			'hash' => array( 'type' => 'String!', 'description' => __( 'Record key, or "all".', 'flx-analytics' ) ),
 		),

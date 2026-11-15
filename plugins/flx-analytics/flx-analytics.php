@@ -46,8 +46,8 @@ require_once FLXAN_DIR . 'includes/dashboard.php'; // widget'lar + REST /dashboa
 require_once FLXAN_DIR . 'includes/app.php';
 require_once FLXAN_DIR . 'includes/services/class-flxan-service.php';
 require_once FLXAN_DIR . 'includes/services/class-flxan-telemetry-service.php';
+require_once FLXAN_DIR . 'includes/import.php'; // functions only; the service also runs inside a GraphQL request
 if ( is_admin() ) {
-	require_once FLXAN_DIR . 'includes/import.php';
 	require_once FLXAN_DIR . 'includes/admin.php';
 }
 
