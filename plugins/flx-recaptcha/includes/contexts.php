@@ -21,6 +21,9 @@
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * @return array<string,array<string,mixed>> Context key → definition (see the field list above).
+ */
 function flxrc_contexts() {
 	static $list = null;
 	if ( null !== $list && did_action( 'init' ) ) {
@@ -135,7 +138,11 @@ function flxrc_contexts() {
 	return $out;
 }
 
-/** Panel grupları. */
+/**
+ * Panel grupları.
+ *
+ * @return array<string,string>
+ */
 function flxrc_groups() {
 	return array(
 		'wordpress'   => 'WordPress',

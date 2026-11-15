@@ -3,6 +3,42 @@
 import type { FlxOperation } from '../operation';
 import type * as T from './types';
 
+/** query FlxCaptcha (flx-recaptcha, plugins/flx-recaptcha/graphql/operations/FlxCaptcha.graphql) */
+export const FlxCaptcha: FlxOperation<T.FlxCaptchaQuery, T.FlxCaptchaQueryVariables> = {
+  id: 'bf7fd46036fb2d97f7dc535492e833995c18920097fb2357a406fe7b0bb13621',
+  name: 'FlxCaptcha',
+  kind: 'query',
+  plugin: 'flx-recaptcha',
+  document: "query FlxCaptcha($context: String!) {\n  flxCaptcha(context: $context) {\n    context\n    enabled\n    version\n    siteKey\n    action\n    scriptUrl\n    theme\n    size\n    hideBadge\n    tokenField\n    tokenHeader\n  }\n}",
+};
+
+/** mutation FlxRecaptchaKeysTest (flx-recaptcha, plugins/flx-recaptcha/graphql/operations/FlxRecaptchaKeysTest.graphql) */
+export const FlxRecaptchaKeysTest: FlxOperation<T.FlxRecaptchaKeysTestMutation, T.FlxRecaptchaKeysTestMutationVariables> = {
+  id: '8475313bd287a3d2bbf784eb2da2abcae1fbc70a38f9c1d6257b9251ea9c0873',
+  name: 'FlxRecaptchaKeysTest',
+  kind: 'mutation',
+  plugin: 'flx-recaptcha',
+  document: "mutation FlxRecaptchaKeysTest($input: FlxRecaptchaKeysTestInput!) {\n  flxRecaptchaKeysTest(input: $input) {\n    result {\n      ok\n      message\n      score\n    }\n    settings {\n      ...FlxRecaptchaSettingsFields\n    }\n    forms {\n      ...FlxRecaptchaFormRow\n    }\n    status {\n      ...FlxRecaptchaStatusFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxRecaptchaFormRow on FlxRecaptchaForm {\n  key\n  label\n  description\n  group\n  groupLabel\n  available\n  enabled\n  passed\n  blocked\n}\n\nfragment FlxRecaptchaSettingsFields on FlxRecaptchaSettings {\n  version\n  siteKey\n  siteKeyLocked\n  secretSaved\n  secretHint\n  secretLocked\n  threshold\n  domain\n  v2Theme\n  v2Size\n  hideBadge\n  skipLoggedIn\n  failOpen\n  allowIps\n  currentIp\n  keysVerified\n  disabledByConstant\n  formsOverlap\n}\n\nfragment FlxRecaptchaStatusFields on FlxRecaptchaStatus {\n  state\n  version\n  formsOn\n  formsAvailable\n  passed\n  blocked\n  lastTest {\n    time {\n      iso\n      label\n    }\n    ok\n    message\n  }\n  lastError {\n    time {\n      iso\n      label\n    }\n    kind\n    reason\n    letPass\n  }\n}",
+};
+
+/** query FlxRecaptchaScreen (flx-recaptcha, plugins/flx-recaptcha/graphql/operations/FlxRecaptchaScreen.graphql) */
+export const FlxRecaptchaScreen: FlxOperation<T.FlxRecaptchaScreenQuery, T.FlxRecaptchaScreenQueryVariables> = {
+  id: '9c0623f86ccc32d8df7367593176ecb135881242b39ad7dca166ac7c9ab9a98d',
+  name: 'FlxRecaptchaScreen',
+  kind: 'query',
+  plugin: 'flx-recaptcha',
+  document: "query FlxRecaptchaScreen {\n  flxRecaptchaSettings {\n    ...FlxRecaptchaSettingsFields\n  }\n  flxRecaptchaForms {\n    ...FlxRecaptchaFormRow\n  }\n  flxRecaptchaStatus {\n    ...FlxRecaptchaStatusFields\n  }\n}\n\nfragment FlxRecaptchaFormRow on FlxRecaptchaForm {\n  key\n  label\n  description\n  group\n  groupLabel\n  available\n  enabled\n  passed\n  blocked\n}\n\nfragment FlxRecaptchaSettingsFields on FlxRecaptchaSettings {\n  version\n  siteKey\n  siteKeyLocked\n  secretSaved\n  secretHint\n  secretLocked\n  threshold\n  domain\n  v2Theme\n  v2Size\n  hideBadge\n  skipLoggedIn\n  failOpen\n  allowIps\n  currentIp\n  keysVerified\n  disabledByConstant\n  formsOverlap\n}\n\nfragment FlxRecaptchaStatusFields on FlxRecaptchaStatus {\n  state\n  version\n  formsOn\n  formsAvailable\n  passed\n  blocked\n  lastTest {\n    time {\n      iso\n      label\n    }\n    ok\n    message\n  }\n  lastError {\n    time {\n      iso\n      label\n    }\n    kind\n    reason\n    letPass\n  }\n}",
+};
+
+/** mutation FlxRecaptchaSettingsUpdate (flx-recaptcha, plugins/flx-recaptcha/graphql/operations/FlxRecaptchaSettingsUpdate.graphql) */
+export const FlxRecaptchaSettingsUpdate: FlxOperation<T.FlxRecaptchaSettingsUpdateMutation, T.FlxRecaptchaSettingsUpdateMutationVariables> = {
+  id: '2d24402e0c3acaad9aeb96bea6cb25a54ff8664cf8103f515b767c891690206e',
+  name: 'FlxRecaptchaSettingsUpdate',
+  kind: 'mutation',
+  plugin: 'flx-recaptcha',
+  document: "mutation FlxRecaptchaSettingsUpdate($input: FlxRecaptchaSettingsUpdateInput!) {\n  flxRecaptchaSettingsUpdate(input: $input) {\n    settings {\n      ...FlxRecaptchaSettingsFields\n    }\n    forms {\n      ...FlxRecaptchaFormRow\n    }\n    status {\n      ...FlxRecaptchaStatusFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxRecaptchaFormRow on FlxRecaptchaForm {\n  key\n  label\n  description\n  group\n  groupLabel\n  available\n  enabled\n  passed\n  blocked\n}\n\nfragment FlxRecaptchaSettingsFields on FlxRecaptchaSettings {\n  version\n  siteKey\n  siteKeyLocked\n  secretSaved\n  secretHint\n  secretLocked\n  threshold\n  domain\n  v2Theme\n  v2Size\n  hideBadge\n  skipLoggedIn\n  failOpen\n  allowIps\n  currentIp\n  keysVerified\n  disabledByConstant\n  formsOverlap\n}\n\nfragment FlxRecaptchaStatusFields on FlxRecaptchaStatus {\n  state\n  version\n  formsOn\n  formsAvailable\n  passed\n  blocked\n  lastTest {\n    time {\n      iso\n      label\n    }\n    ok\n    message\n  }\n  lastError {\n    time {\n      iso\n      label\n    }\n    kind\n    reason\n    letPass\n  }\n}",
+};
+
 /** mutation FlxRoleCreate (flx-roles, plugins/flx-roles/graphql/operations/FlxRoleCreate.graphql) */
 export const FlxRoleCreate: FlxOperation<T.FlxRoleCreateMutation, T.FlxRoleCreateMutationVariables> = {
   id: '21a336969a0dc41b8caaa1be0a20b9bd740359347ff57bc8cb72f70ca6254f9e',

@@ -4,6 +4,63 @@
 type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 /** Internal type. DO NOT USE DIRECTLY. */
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+/** Size of the v2 checkbox. */
+export type FlxRecaptchaSize =
+  /** Compact. */
+  | 'COMPACT'
+  /** Normal. */
+  | 'NORMAL';
+
+/** Look of the v2 checkbox. */
+export type FlxRecaptchaTheme =
+  /** Follows the site's dark mode. */
+  | 'AUTO'
+  /** Dark. */
+  | 'DARK'
+  /** Light. */
+  | 'LIGHT';
+
+/** reCAPTCHA type. */
+export type FlxRecaptchaVersion =
+  /** The "I'm not a robot" checkbox. */
+  | 'V2'
+  /** Invisible; Google returns a score from 0 to 1. */
+  | 'V3';
+
+/** Group a protectable form belongs to. */
+export type FlxRecaptchaFormGroup =
+  /** FluxWP forms. */
+  | 'FLUXWP'
+  /** Forms of other plugins. */
+  | 'OTHER'
+  /** WooCommerce forms. */
+  | 'WOOCOMMERCE'
+  /** WordPress forms. */
+  | 'WORDPRESS';
+
+/** Google host the script and the verification use. */
+export type FlxRecaptchaDomain =
+  /** www.google.com */
+  | 'GOOGLE'
+  /** www.recaptcha.net, for networks where google.com is blocked. */
+  | 'RECAPTCHA';
+
+/** What went wrong when Google was asked. */
+export type FlxRecaptchaErrorKind =
+  /** Google rejected the secret key. */
+  | 'CONFIG'
+  /** Google could not be reached. */
+  | 'NETWORK';
+
+/** Whether protection is running. */
+export type FlxRecaptchaState =
+  /** The keys are not tested yet; no form is checked. */
+  | 'AWAITING_TEST'
+  /** Turned off by the FLXRC_DISABLE recovery constant. */
+  | 'OFF'
+  /** Keys tested; the enabled forms are protected. */
+  | 'ON';
+
 /** What a task row is. */
 export type FlxTaskKind =
   /** An agenda item of a meeting. */
@@ -23,6 +80,58 @@ export type FlxTaskRole =
   | 'EDIT'
   /** See tasks. */
   | 'VIEW';
+
+/** Input for the flxRecaptchaKeysTest mutation. */
+export type FlxRecaptchaKeysTestInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Secret key to test; empty uses the saved one. */
+  secret?: string | null | undefined;
+  /** Site key the token was made with. Ignored when FLXRC_SITE_KEY is set. */
+  siteKey?: string | null | undefined;
+  /** Token Google returned in the browser (grecaptcha.execute or the v2 checkbox). */
+  token: string;
+  /** reCAPTCHA type of the keys. */
+  version: FlxRecaptchaVersion;
+};
+
+/** Input for the flxRecaptchaSettingsUpdate mutation. */
+export type FlxRecaptchaSettingsUpdateInput = {
+  /** IP addresses and ranges (CIDR) that skip the check; replaces the list. */
+  allowIps?: Array<string> | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Google host. */
+  domain?: FlxRecaptchaDomain | null | undefined;
+  /** Let submissions through when Google is unreachable. */
+  failOpen?: boolean | null | undefined;
+  /** Form switches to change; the other forms stay as they are. */
+  forms?: Array<FlxRecaptchaFormSwitchInput> | null | undefined;
+  /** Hide the v3 badge. */
+  hideBadge?: boolean | null | undefined;
+  /** Secret key; write-only, stored sealed. Empty keeps the saved one. */
+  secret?: string | null | undefined;
+  /** Site key. Ignored when FLXRC_SITE_KEY is set. */
+  siteKey?: string | null | undefined;
+  /** Do not check signed-in users on comments, checkout, donations and forms. */
+  skipLoggedIn?: boolean | null | undefined;
+  /** v3 bot threshold (0.1–0.9). */
+  threshold?: number | null | undefined;
+  /** v2 checkbox size. */
+  v2Size?: FlxRecaptchaSize | null | undefined;
+  /** v2 checkbox theme. */
+  v2Theme?: FlxRecaptchaTheme | null | undefined;
+  /** reCAPTCHA type. */
+  version?: FlxRecaptchaVersion | null | undefined;
+};
+
+/** Turns protection on or off for one form. */
+export type FlxRecaptchaFormSwitchInput = {
+  /** Protection on. */
+  enabled: boolean;
+  /** Form (context) key. */
+  key: string;
+};
 
 /** Input for the flxRoleCreate mutation. */
 export type FlxRoleCreateInput = {
@@ -185,6 +294,38 @@ export type FlxTaskWatchInput = {
   /** Follow (true) or stop following (false). */
   watch: boolean;
 };
+
+export type FlxCaptchaQueryVariables = Exact<{
+  context: string;
+}>;
+
+
+export type FlxCaptchaQuery = { flxCaptcha: { context: string, enabled: boolean, version: FlxRecaptchaVersion, siteKey: string | null, action: string | null, scriptUrl: string | null, theme: FlxRecaptchaTheme, size: FlxRecaptchaSize, hideBadge: boolean, tokenField: string, tokenHeader: string } | null };
+
+export type FlxRecaptchaKeysTestMutationVariables = Exact<{
+  input: FlxRecaptchaKeysTestInput;
+}>;
+
+
+export type FlxRecaptchaKeysTestMutation = { flxRecaptchaKeysTest: { result: { ok: boolean, message: string, score: number | null } | null, settings: { version: FlxRecaptchaVersion, siteKey: string, siteKeyLocked: boolean, secretSaved: boolean, secretHint: string, secretLocked: boolean, threshold: number, domain: FlxRecaptchaDomain, v2Theme: FlxRecaptchaTheme, v2Size: FlxRecaptchaSize, hideBadge: boolean, skipLoggedIn: boolean, failOpen: boolean, allowIps: Array<string>, currentIp: string | null, keysVerified: boolean, disabledByConstant: boolean, formsOverlap: boolean }, forms: Array<{ key: string, label: string, description: string, group: FlxRecaptchaFormGroup, groupLabel: string, available: boolean, enabled: boolean, passed: number, blocked: number }>, status: { state: FlxRecaptchaState, version: FlxRecaptchaVersion, formsOn: number, formsAvailable: number, passed: number, blocked: number, lastTest: { ok: boolean, message: string, time: { iso: string, label: string } } | null, lastError: { kind: FlxRecaptchaErrorKind, reason: string, letPass: boolean, time: { iso: string, label: string } } | null }, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxRecaptchaFormRowFragment = { key: string, label: string, description: string, group: FlxRecaptchaFormGroup, groupLabel: string, available: boolean, enabled: boolean, passed: number, blocked: number };
+
+export type FlxRecaptchaSettingsFieldsFragment = { version: FlxRecaptchaVersion, siteKey: string, siteKeyLocked: boolean, secretSaved: boolean, secretHint: string, secretLocked: boolean, threshold: number, domain: FlxRecaptchaDomain, v2Theme: FlxRecaptchaTheme, v2Size: FlxRecaptchaSize, hideBadge: boolean, skipLoggedIn: boolean, failOpen: boolean, allowIps: Array<string>, currentIp: string | null, keysVerified: boolean, disabledByConstant: boolean, formsOverlap: boolean };
+
+export type FlxRecaptchaStatusFieldsFragment = { state: FlxRecaptchaState, version: FlxRecaptchaVersion, formsOn: number, formsAvailable: number, passed: number, blocked: number, lastTest: { ok: boolean, message: string, time: { iso: string, label: string } } | null, lastError: { kind: FlxRecaptchaErrorKind, reason: string, letPass: boolean, time: { iso: string, label: string } } | null };
+
+export type FlxRecaptchaScreenQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxRecaptchaScreenQuery = { flxRecaptchaSettings: { version: FlxRecaptchaVersion, siteKey: string, siteKeyLocked: boolean, secretSaved: boolean, secretHint: string, secretLocked: boolean, threshold: number, domain: FlxRecaptchaDomain, v2Theme: FlxRecaptchaTheme, v2Size: FlxRecaptchaSize, hideBadge: boolean, skipLoggedIn: boolean, failOpen: boolean, allowIps: Array<string>, currentIp: string | null, keysVerified: boolean, disabledByConstant: boolean, formsOverlap: boolean }, flxRecaptchaForms: Array<{ key: string, label: string, description: string, group: FlxRecaptchaFormGroup, groupLabel: string, available: boolean, enabled: boolean, passed: number, blocked: number }>, flxRecaptchaStatus: { state: FlxRecaptchaState, version: FlxRecaptchaVersion, formsOn: number, formsAvailable: number, passed: number, blocked: number, lastTest: { ok: boolean, message: string, time: { iso: string, label: string } } | null, lastError: { kind: FlxRecaptchaErrorKind, reason: string, letPass: boolean, time: { iso: string, label: string } } | null } };
+
+export type FlxRecaptchaSettingsUpdateMutationVariables = Exact<{
+  input: FlxRecaptchaSettingsUpdateInput;
+}>;
+
+
+export type FlxRecaptchaSettingsUpdateMutation = { flxRecaptchaSettingsUpdate: { settings: { version: FlxRecaptchaVersion, siteKey: string, siteKeyLocked: boolean, secretSaved: boolean, secretHint: string, secretLocked: boolean, threshold: number, domain: FlxRecaptchaDomain, v2Theme: FlxRecaptchaTheme, v2Size: FlxRecaptchaSize, hideBadge: boolean, skipLoggedIn: boolean, failOpen: boolean, allowIps: Array<string>, currentIp: string | null, keysVerified: boolean, disabledByConstant: boolean, formsOverlap: boolean }, forms: Array<{ key: string, label: string, description: string, group: FlxRecaptchaFormGroup, groupLabel: string, available: boolean, enabled: boolean, passed: number, blocked: number }>, status: { state: FlxRecaptchaState, version: FlxRecaptchaVersion, formsOn: number, formsAvailable: number, passed: number, blocked: number, lastTest: { ok: boolean, message: string, time: { iso: string, label: string } } | null, lastError: { kind: FlxRecaptchaErrorKind, reason: string, letPass: boolean, time: { iso: string, label: string } } | null }, errors: Array<{ code: string, message: string, field: string | null }> } | null };
 
 export type FlxRoleCreateMutationVariables = Exact<{
   input: FlxRoleCreateInput;

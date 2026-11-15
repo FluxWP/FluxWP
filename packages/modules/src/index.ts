@@ -16,6 +16,7 @@ function lazyScreen(load: () => Promise<{ default: ComponentType }>): ComponentT
 export const moduleScreens: Record<string, ComponentType> = {
   'flxb-review': lazyScreen(() => import('./review/ReviewScreen').then((m) => ({ default: m.ReviewScreen }))),
   'flxg-tasks': lazyScreen(() => import('./tasks/TasksScreen').then((m) => ({ default: m.TasksScreen }))),
+  'flxrc-recaptcha': lazyScreen(() => import('./recaptcha/RecaptchaScreen').then((m) => ({ default: m.RecaptchaScreen }))),
   'flxr-roles': lazyScreen(() => import('./roles/RolesScreen').then((m) => ({ default: m.RolesScreen }))),
   'flxc-inbox': lazyScreen(() => import('./whatsapp/WhatsAppScreen').then((m) => ({ default: m.WhatsAppScreen }))),
 };

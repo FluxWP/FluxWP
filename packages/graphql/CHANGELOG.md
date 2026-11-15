@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2.1
+- Flux reCAPTCHA operations (`FlxRecaptchaScreen`, `FlxRecaptchaSettingsUpdate`, `FlxRecaptchaKeysTest`, `FlxCaptcha`).
+
 ## 0.2.0
 - `useFlxViewer()` ve `useFlxCan(capability)`: giriş yapan kişi ve FluxWP yetkileri (Flux GraphQL 0.2.0 `flxViewer`).
 - Flux Roles işlemleri (`FlxRolesScreen`, `FlxRoleMembers`, `FlxRolesSave`, `FlxRoleCreate`, `FlxRoleDelete`, `FlxRoleReset`, `FlxRoleMemberAdd`, `FlxRoleMemberRemove`).
