@@ -1,6 +1,7 @@
 # GraphQL geçişi: durum
 
 Plan: `/mnt/project-files/fluxwp/headless/GRAPHQL-GECIS-PLANI.md` (tek kaynak). Her PR bu tabloyu günceller.
+Faz 0'ın tamamı tek PR'da: #300 (Ahmet kararı).
 Durum: ○ başlamadı · ✱ sürüyor · 👀 PR açık ("al" bekliyor) · ✓ merge edildi
 
 ## Faz 0: temel altyapı
@@ -11,7 +12,7 @@ Durum: ○ başlamadı · ✱ sürüyor · 👀 PR açık ("al" bekliyor) · ✓
 | 0.4 | `flx-graphql` 0.1.0: gömülü WPGraphQL 2.28.0 + çakışma koruması + kit v0.1 + haftalık güncelleme CI (`wpgraphql-update.yml`) | 👀 | PR A |
 | 0.5 | `@fluxwp/graphql`: codegen, persisted manifest, fetcher + hook'lar, `core/api` entegrasyonu | 👀 | PR B (`packages/graphql`, core 0.4.4 `throwOnError`) |
 | 0.6 | `graphql.yml`: şema snapshot → diff → graphql-inspector → codegen → typecheck | 👀 | PR B (kırıcı değişiklik `graphql-breaking` etiketiyle geçer) |
-| 0.7 | Flux Setup: flx-graphql kurulumu, sistem kontrolü, katalog | ○ | PR D |
+| 0.7 | Flux Setup: flx-graphql kurulumu, sistem kontrolü, katalog | 👀 | flx-setup 1.3.0 (`flxk_graphql_notice()`, PHP 8.1 satırı) + `catalog/packages.json` |
 | 0.8 | `/flx/v1/upload` + `FlxFile` | 👀 | PR A (kit içinde) |
 | 0.9 | `docs/graphql/` KURALLAR, ISTISNALAR, IS-PAKETI-SABLONU, ESLEME şablonu | ○ | PR E |
 | 0.10 | Pilot: Flux Tasks uçtan uca | ○ | PR F |
