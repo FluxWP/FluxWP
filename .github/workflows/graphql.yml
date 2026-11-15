@@ -13,6 +13,8 @@ on:
       - 'tools/tests/wp-graphql/**'
       - 'package.json'
       - 'bun.lock'
+      - 'tsconfig*.json'
+      - 'tools/ts-strict/**'
       - '.github/workflows/graphql.yml'
   push:
     branches: [main]
@@ -73,5 +75,8 @@ jobs:
       # Every client (panel, modules, wp-embed, desktop, mobile) compiles against the generated types.
       - name: Typecheck
         run: bunx turbo run typecheck
+      # Packages in tools/ts-strict/strict.json: tsconfig.strict.json + no explicit any.
+      - name: No explicit any
+        run: bun tools/ts-strict/no-any.ts
       - name: Tests
         run: bunx turbo run test --filter=@fluxwp/graphql --filter=@fluxwp/core

@@ -17,7 +17,7 @@ Durum: ○ başlamadı · ✱ sürüyor · 👀 PR açık ("al" bekliyor) · ✓
 | 0.9 | `docs/graphql/` KURALLAR, ISTISNALAR, IS-PAKETI-SABLONU, ESLEME şablonu | ○ | PR E |
 | 0.10 | Pilot: Flux Tasks uçtan uca | ○ | PR F |
 | 0.11 | PHPStan + baseline + CI | 👀 | #300 (`tools/phpstan`: flx-graphql level max 0 hata; diğer kod level 5 + baseline 3871; `phpstan.yml`) |
-| 0.12 | Strict TS ayarları + lint | ○ | PR C |
+| 0.12 | Strict TS ayarları + lint | 👀 | #300 (`tsconfig.strict.json` + `tools/ts-strict/no-any.ts`; core, graphql, manifest, tokens; diğerleri paket PR'larında) |
 | 0.13 | PHP 8.1+ ve polyfill seti | 👀 | PR A (`includes/kit/polyfills.php`, 66 test); paket başlıkları paket PR'larında |
 
 ## Notlar
