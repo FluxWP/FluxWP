@@ -2,9 +2,10 @@
 /**
  * Plugin Name:       Flux CRM
  * Description:       Kişiler ve pazarlama: bağışçı, müşteri, gönüllü ve aday tek kişi kartında; zaman tüneli, etiketler, KVKK izinleri, RFM skoru ve kayıp riski, dinamik segmentler. Veriyi Flux Donate, Flux Commerce, Flux Chat, Flux Forms ve WordPress kullanıcılarından toplar; gönderim Flux Mail, AI Flux AI üzerinden.
- * Version:           0.9.4
- * Requires at least: 6.4
- * Requires PHP:      7.4
+ * Version:           0.10.0
+ * Requires at least: 6.5
+ * Requires PHP:      8.1
+ * Requires Plugins:  flx-graphql
  * Author:            FluxWP
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -24,13 +25,14 @@ if ( defined( 'FLXCRM_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXCRM_VERSION', '0.9.4' );
+define( 'FLXCRM_VERSION', '0.10.0' );
 define( 'FLXCRM_DB_VERSION', 3 );
 define( 'FLXCRM_FILE', __FILE__ );
 define( 'FLXCRM_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXCRM_URL', plugin_dir_url( __FILE__ ) );
 
 require_once FLXCRM_DIR . 'includes/helpers.php';
+require_once FLXCRM_DIR . 'includes/services/class-flxcrm-dto.php';
 require_once FLXCRM_DIR . 'includes/class-flxcrm-install.php';
 require_once FLXCRM_DIR . 'includes/class-flxcrm-contacts.php';
 require_once FLXCRM_DIR . 'includes/class-flxcrm-events.php';
@@ -40,6 +42,11 @@ require_once FLXCRM_DIR . 'includes/class-flxcrm-segments.php';
 require_once FLXCRM_DIR . 'includes/class-flxcrm-sync.php';
 require_once FLXCRM_DIR . 'includes/class-flxcrm-journeys.php';
 require_once FLXCRM_DIR . 'includes/class-flxcrm-event-messages.php';
+require_once FLXCRM_DIR . 'includes/services/class-flxcrm-contact-service.php';
+require_once FLXCRM_DIR . 'includes/services/class-flxcrm-segment-service.php';
+require_once FLXCRM_DIR . 'includes/services/class-flxcrm-insight-service.php';
+require_once FLXCRM_DIR . 'includes/services/class-flxcrm-settings-service.php';
+require_once FLXCRM_DIR . 'includes/services/class-flxcrm-journey-service.php';
 require_once FLXCRM_DIR . 'includes/adapters/donate.php';
 require_once FLXCRM_DIR . 'includes/adapters/commerce.php';
 require_once FLXCRM_DIR . 'includes/adapters/chat.php';
@@ -56,6 +63,42 @@ require_once FLXCRM_DIR . 'includes/system-checks.php';
 if ( is_admin() ) {
 	require_once FLXCRM_DIR . 'includes/admin/class-flxcrm-admin.php';
 }
+// The duplicate matching lives in the contact service; the GraphQL schema reads the groups without the admin pages.
+
+/*
+ * GraphQL (Flux GraphQL): the schema is loaded only inside a GraphQL request. Without Flux GraphQL 0.2.0+
+ * (capability model) the schema is left out; REST, the AI tools and the classic pages keep working.
+ */
+add_action(
+	'flx_gql_register',
+	static function () {
+		if ( ! function_exists( 'flx_gql_any_cap' ) ) {
+			return;
+		}
+		require_once FLXCRM_DIR . 'includes/graphql/schema.php';
+	}
+);
+add_filter(
+	'flx_gql_persisted_manifests',
+	static function ( $m ) {
+		$m            = is_array( $m ) ? $m : array();
+		$m['flx-crm'] = FLXCRM_DIR . 'graphql/persisted-queries.json';
+		return $m;
+	}
+);
+add_filter(
+	'flx_gql_capabilities',
+	static function ( $caps ) {
+		$caps = is_array( $caps ) ? $caps : array();
+		if ( ! isset( $caps[ FLXCRM_CAP_VIEW ] ) ) {
+			$caps[ FLXCRM_CAP_VIEW ] = array( 'label' => __( 'Sees contacts, segments and the CRM overview', 'flx-crm' ), 'group' => 'crm', 'package' => 'flx-crm' );
+		}
+		if ( ! isset( $caps[ FLXCRM_CAP_MANAGE ] ) ) {
+			$caps[ FLXCRM_CAP_MANAGE ] = array( 'label' => __( 'Edits contacts, segments, journeys and CRM settings', 'flx-crm' ), 'group' => 'crm', 'package' => 'flx-crm' );
+		}
+		return $caps;
+	}
+);
 
 /*
  * Çeviri: kaynak metinler Türkçe; site/kullanıcı dili İngilizce olduğunda languages/ içindeki çeviri kullanılır.
