@@ -3,6 +3,114 @@
 import type { FlxOperation } from '../operation';
 import type * as T from './types';
 
+/** query FlxAiBilling (flx-ai, plugins/flx-ai/graphql/operations/FlxAiBilling.graphql) */
+export const FlxAiBilling: FlxOperation<T.FlxAiBillingQuery, T.FlxAiBillingQueryVariables> = {
+  id: '167e5e2580f16b00dbacd93bfc0599f64c50599939ce0d8224290f6b0bb28dad',
+  name: 'FlxAiBilling',
+  kind: 'query',
+  plugin: 'flx-ai',
+  document: "query FlxAiBilling($month: String) {\n  flxAiBudget {\n    ...FlxAiBudgetRow\n  }\n  flxAiBilling(month: $month) {\n    month\n    report {\n      ...FlxAiReportFields\n    }\n    months {\n      month\n      label\n      cost\n      saved\n      calls\n    }\n    credits {\n      checked {\n        timestamp\n        label\n      }\n      usage\n      limit\n      remaining\n      credits\n    }\n  }\n}\n\nfragment FlxAiBreakdownFields on FlxAiBreakdownRow {\n  key\n  label\n  calls\n  tools\n  cost\n  fullCost\n  inTokens\n  outTokens\n  cacheRead\n  modelMs\n  toolMs\n  errors\n  partial\n}\n\nfragment FlxAiBudgetRow on FlxAiBudgetPeriod {\n  key\n  label\n  limit\n  spent\n  pct\n  over\n  resets {\n    timestamp\n    label\n  }\n}\n\nfragment FlxAiReportFields on FlxAiReport {\n  from {\n    timestamp\n    label\n  }\n  to {\n    timestamp\n    label\n  }\n  totals {\n    calls\n    tools\n    inTokens\n    outTokens\n    cacheRead\n    cacheWrite\n    cost\n    fullCost\n    saved\n    modelMs\n    toolMs\n    errors\n  }\n  daily {\n    date\n    cost\n    inTokens\n    outTokens\n    cacheRead\n    modelMs\n    toolMs\n    calls\n    tools\n    errors\n  }\n  bySource {\n    ...FlxAiBreakdownFields\n  }\n  byModel {\n    ...FlxAiBreakdownFields\n  }\n  byPurpose {\n    ...FlxAiBreakdownFields\n  }\n  byTool {\n    key\n    label\n    source\n    calls\n    avgMs\n    maxMs\n    totalMs\n    errors\n  }\n  byProvider {\n    ...FlxAiBreakdownFields\n  }\n}",
+};
+
+/** mutation FlxAiCreditsRefresh (flx-ai, plugins/flx-ai/graphql/operations/FlxAiCreditsRefresh.graphql) */
+export const FlxAiCreditsRefresh: FlxOperation<T.FlxAiCreditsRefreshMutation, T.FlxAiCreditsRefreshMutationVariables> = {
+  id: 'ecfbbe459dc33b5d5788763a9b369b151e2c6fb1b03dcffe9f31e1fa29785ab3',
+  name: 'FlxAiCreditsRefresh',
+  kind: 'mutation',
+  plugin: 'flx-ai',
+  document: "mutation FlxAiCreditsRefresh {\n  flxAiCreditsRefresh(input: {  }) {\n    credits {\n      checked {\n        timestamp\n        label\n      }\n      usage\n      limit\n      remaining\n      credits\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxAiLogBody (flx-ai, plugins/flx-ai/graphql/operations/FlxAiLogBody.graphql) */
+export const FlxAiLogBody: FlxOperation<T.FlxAiLogBodyQuery, T.FlxAiLogBodyQueryVariables> = {
+  id: '580801a095e875c9d47b645c9cb73f0f6fdb1846df5ad9d786d2efa129e9a5c8',
+  name: 'FlxAiLogBody',
+  kind: 'query',
+  plugin: 'flx-ai',
+  document: "query FlxAiLogBody($id: Int!) {\n  flxAiLogBody(id: $id) {\n    logId\n    request {\n      role\n      text\n    }\n    reply\n    toolCalls\n    error\n  }\n}",
+};
+
+/** query FlxAiLogs (flx-ai, plugins/flx-ai/graphql/operations/FlxAiLogs.graphql) */
+export const FlxAiLogs: FlxOperation<T.FlxAiLogsQuery, T.FlxAiLogsQueryVariables> = {
+  id: 'eebe6c676c9d99c5200a53263539c163c3c4f838ca7e6fe125ce4b190711d0b5',
+  name: 'FlxAiLogs',
+  kind: 'query',
+  plugin: 'flx-ai',
+  document: "query FlxAiLogs($first: Int = 50, $after: String, $days: Int = 7, $kind: FlxAiLogKind, $source: String, $errorsOnly: Boolean = false) {\n  flxAiLogs(\n    first: $first\n    after: $after\n    days: $days\n    kind: $kind\n    source: $source\n    errorsOnly: $errorsOnly\n  ) {\n    nodes {\n      ...FlxAiLogRowFields\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    totalCount\n  }\n  flxAiLogSources {\n    id\n    label\n  }\n}\n\nfragment FlxAiLogRowFields on FlxAiLog {\n  databaseId\n  time {\n    timestamp\n    label\n  }\n  kind\n  source\n  sourceLabel\n  purpose\n  purposeLabel\n  chatId\n  userId\n  userName\n  provider\n  model\n  modelLabel\n  tool\n  inTokens\n  outTokens\n  cacheRead\n  cacheWrite\n  cost\n  estimated\n  ms\n  ok\n  error\n  errorLabel\n  hasBody\n}",
+};
+
+/** query FlxAiModels (flx-ai, plugins/flx-ai/graphql/operations/FlxAiModels.graphql) */
+export const FlxAiModels: FlxOperation<T.FlxAiModelsQuery, T.FlxAiModelsQueryVariables> = {
+  id: 'ca6dc8ad4a997533257ffb1be1de3b6e892908b13ebd29cf8132953a97a62a87',
+  name: 'FlxAiModels',
+  kind: 'query',
+  plugin: 'flx-ai',
+  document: "query FlxAiModels($search: String, $first: Int = 50) {\n  flxAiModels(search: $search, first: $first) {\n    id\n    name\n    family\n    provider\n    context\n    priceIn\n    priceOut\n    tools\n    vision\n    thinking\n  }\n}",
+};
+
+/** mutation FlxAiModelTest (flx-ai, plugins/flx-ai/graphql/operations/FlxAiModelTest.graphql) */
+export const FlxAiModelTest: FlxOperation<T.FlxAiModelTestMutation, T.FlxAiModelTestMutationVariables> = {
+  id: '26493d21bc4cbbc74a727b78e026b640105e8157477eefcbfb36f7ba46caa432',
+  name: 'FlxAiModelTest',
+  kind: 'mutation',
+  plugin: 'flx-ai',
+  document: "mutation FlxAiModelTest($input: FlxAiModelTestInput!) {\n  flxAiModelTest(input: $input) {\n    result {\n      text\n      ms\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxAiOverview (flx-ai, plugins/flx-ai/graphql/operations/FlxAiOverview.graphql) */
+export const FlxAiOverview: FlxOperation<T.FlxAiOverviewQuery, T.FlxAiOverviewQueryVariables> = {
+  id: 'a016eb829167be15c5f406279dc7b461d1610db9bd6287d84a489d71f9cc1a17',
+  name: 'FlxAiOverview',
+  kind: 'query',
+  plugin: 'flx-ai',
+  document: "query FlxAiOverview($days: Int = 30, $source: String) {\n  flxAiBudget {\n    ...FlxAiBudgetRow\n  }\n  flxAiReport(days: $days, source: $source) {\n    ...FlxAiReportFields\n  }\n  flxAiLogSources {\n    id\n    label\n  }\n  flxAiSecrets {\n    name\n    configured\n  }\n}\n\nfragment FlxAiBreakdownFields on FlxAiBreakdownRow {\n  key\n  label\n  calls\n  tools\n  cost\n  fullCost\n  inTokens\n  outTokens\n  cacheRead\n  modelMs\n  toolMs\n  errors\n  partial\n}\n\nfragment FlxAiBudgetRow on FlxAiBudgetPeriod {\n  key\n  label\n  limit\n  spent\n  pct\n  over\n  resets {\n    timestamp\n    label\n  }\n}\n\nfragment FlxAiReportFields on FlxAiReport {\n  from {\n    timestamp\n    label\n  }\n  to {\n    timestamp\n    label\n  }\n  totals {\n    calls\n    tools\n    inTokens\n    outTokens\n    cacheRead\n    cacheWrite\n    cost\n    fullCost\n    saved\n    modelMs\n    toolMs\n    errors\n  }\n  daily {\n    date\n    cost\n    inTokens\n    outTokens\n    cacheRead\n    modelMs\n    toolMs\n    calls\n    tools\n    errors\n  }\n  bySource {\n    ...FlxAiBreakdownFields\n  }\n  byModel {\n    ...FlxAiBreakdownFields\n  }\n  byPurpose {\n    ...FlxAiBreakdownFields\n  }\n  byTool {\n    key\n    label\n    source\n    calls\n    avgMs\n    maxMs\n    totalMs\n    errors\n  }\n  byProvider {\n    ...FlxAiBreakdownFields\n  }\n}",
+};
+
+/** mutation FlxAiRenderTest (flx-ai, plugins/flx-ai/graphql/operations/FlxAiRenderTest.graphql) */
+export const FlxAiRenderTest: FlxOperation<T.FlxAiRenderTestMutation, T.FlxAiRenderTestMutationVariables> = {
+  id: '6b7262310f5715f6eaf6d3d7d1864540ba7597a648899ddce2cda734997e1e95',
+  name: 'FlxAiRenderTest',
+  kind: 'mutation',
+  plugin: 'flx-ai',
+  document: "mutation FlxAiRenderTest($input: FlxAiRenderTestInput!) {\n  flxAiRenderTest(input: $input) {\n    result {\n      via\n      ms\n      image\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxAiSettingsScreen (flx-ai, plugins/flx-ai/graphql/operations/FlxAiSettingsScreen.graphql) */
+export const FlxAiSettingsScreen: FlxOperation<T.FlxAiSettingsScreenQuery, T.FlxAiSettingsScreenQueryVariables> = {
+  id: 'fcbb3cef6e71e12ccbf8e9ff024a957a7ec475336556e2ef9136bb3784c3bec2',
+  name: 'FlxAiSettingsScreen',
+  kind: 'query',
+  plugin: 'flx-ai',
+  document: "query FlxAiSettingsScreen {\n  flxAiSettings {\n    ...FlxAiSettingsFields\n  }\n  flxAiSecrets {\n    ...FlxAiSecretFields\n  }\n  flxAiSettingsOptions {\n    roles {\n      id\n      label\n    }\n    webProviders {\n      id\n      label\n    }\n    mediaModels {\n      id\n      label\n      kind\n      routes\n      auto\n    }\n    mediaProviders {\n      id\n      label\n    }\n    defaultModel\n    renderer\n    webMonthCount\n    providersReady\n  }\n}\n\nfragment FlxAiSecretFields on FlxAiSecret {\n  name\n  group\n  label\n  help\n  configured\n  hint\n  fromConfig\n}\n\nfragment FlxAiSettingsFields on FlxAiSettings {\n  anthropicWorkspace\n  model\n  chatModel\n  titleModel\n  sourceModels {\n    source\n    label\n    model\n  }\n  cache\n  effort\n  thinking\n  limitDay\n  limitWeek\n  limitMonth\n  limitAction\n  limitWarnPct\n  limitNotify\n  chatRoles\n  chatAdmin\n  chatFront\n  chatMode\n  chatMaxRounds\n  chatHistory\n  chatInstructions\n  chatWidgets\n  mediaImageModel\n  mediaVideoModel\n  mediaDays\n  imageToolOn\n  webOn\n  webFetchOn\n  shellOn\n  webProvider\n  webSearchMonth\n  webSearchCost\n  renderUrl\n  renderUser\n  logDays\n  logBodies\n  logBodyDays\n  deleteData\n}",
+};
+
+/** mutation FlxAiSettingsUpdate (flx-ai, plugins/flx-ai/graphql/operations/FlxAiSettingsUpdate.graphql) */
+export const FlxAiSettingsUpdate: FlxOperation<T.FlxAiSettingsUpdateMutation, T.FlxAiSettingsUpdateMutationVariables> = {
+  id: '142806ed14f0d030b028c91f2ebfcb6be9b808394ff42f165b17ee726731c132',
+  name: 'FlxAiSettingsUpdate',
+  kind: 'mutation',
+  plugin: 'flx-ai',
+  document: "mutation FlxAiSettingsUpdate($input: FlxAiSettingsUpdateInput!) {\n  flxAiSettingsUpdate(input: $input) {\n    settings {\n      ...FlxAiSettingsFields\n    }\n    secrets {\n      ...FlxAiSecretFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAiSecretFields on FlxAiSecret {\n  name\n  group\n  label\n  help\n  configured\n  hint\n  fromConfig\n}\n\nfragment FlxAiSettingsFields on FlxAiSettings {\n  anthropicWorkspace\n  model\n  chatModel\n  titleModel\n  sourceModels {\n    source\n    label\n    model\n  }\n  cache\n  effort\n  thinking\n  limitDay\n  limitWeek\n  limitMonth\n  limitAction\n  limitWarnPct\n  limitNotify\n  chatRoles\n  chatAdmin\n  chatFront\n  chatMode\n  chatMaxRounds\n  chatHistory\n  chatInstructions\n  chatWidgets\n  mediaImageModel\n  mediaVideoModel\n  mediaDays\n  imageToolOn\n  webOn\n  webFetchOn\n  shellOn\n  webProvider\n  webSearchMonth\n  webSearchCost\n  renderUrl\n  renderUser\n  logDays\n  logBodies\n  logBodyDays\n  deleteData\n}",
+};
+
+/** query FlxAiSystems (flx-ai, plugins/flx-ai/graphql/operations/FlxAiSystems.graphql) */
+export const FlxAiSystems: FlxOperation<T.FlxAiSystemsQuery, T.FlxAiSystemsQueryVariables> = {
+  id: '97e294dc31a61739f94e276e07f3a784c69619c14137143d7fa6c20e6ffd6ab5',
+  name: 'FlxAiSystems',
+  kind: 'query',
+  plugin: 'flx-ai',
+  document: "query FlxAiSystems {\n  flxAiSystems {\n    ...FlxAiSystemRow\n  }\n}\n\nfragment FlxAiSystemRow on FlxAiSystem {\n  source\n  label\n  installed\n  active\n  on\n  model\n  modelLabel\n  calls\n  tools\n  tokens\n  cost\n  errors\n  lastUsed {\n    timestamp\n    label\n  }\n  settingsPage\n  hasAiSettings\n}",
+};
+
+/** mutation FlxAiSystemsUpdate (flx-ai, plugins/flx-ai/graphql/operations/FlxAiSystemsUpdate.graphql) */
+export const FlxAiSystemsUpdate: FlxOperation<T.FlxAiSystemsUpdateMutation, T.FlxAiSystemsUpdateMutationVariables> = {
+  id: '73431ff2a62e32d7f2e91309552ed1c18343d40e544dd7ad09c09618c1c845fb',
+  name: 'FlxAiSystemsUpdate',
+  kind: 'mutation',
+  plugin: 'flx-ai',
+  document: "mutation FlxAiSystemsUpdate($input: FlxAiSystemsUpdateInput!) {\n  flxAiSystemsUpdate(input: $input) {\n    systems {\n      ...FlxAiSystemRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAiSystemRow on FlxAiSystem {\n  source\n  label\n  installed\n  active\n  on\n  model\n  modelLabel\n  calls\n  tools\n  tokens\n  cost\n  errors\n  lastUsed {\n    timestamp\n    label\n  }\n  settingsPage\n  hasAiSettings\n}",
+};
+
 /** mutation FlxRoleCreate (flx-roles, plugins/flx-roles/graphql/operations/FlxRoleCreate.graphql) */
 export const FlxRoleCreate: FlxOperation<T.FlxRoleCreateMutation, T.FlxRoleCreateMutationVariables> = {
   id: '21a336969a0dc41b8caaa1be0a20b9bd740359347ff57bc8cb72f70ca6254f9e',
