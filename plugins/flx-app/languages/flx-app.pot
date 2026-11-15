@@ -1,15 +1,6 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: en_US\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Aggregate mobile app usage"
-msgstr ""
-
-msgid "Optional and off by default. Only accounts that also opt in inside the app are counted. Completed UTC-day iOS/Android totals go to your telemetry hub only for cohorts of at least five accounts. No names, account IDs, content, site URLs or GPS location are included. Country comes from site settings. General usage sharing must also be on. Sign-in and app features do not depend on this choice."
-msgstr ""
-
-msgid "Share aggregate mobile app usage"
-msgstr ""
-
 msgid "Application"
 msgstr ""
 
@@ -447,7 +438,25 @@ msgstr ""
 msgid "Sign in with code"
 msgstr ""
 
+msgid "Let donors sign in with a code sent to their email, or to the phone number saved on their account"
+msgstr ""
+
+msgid "Create a customer account for an email after its sign-in code is confirmed"
+msgstr ""
+
 msgid "Let staff sign in with a code too (not recommended; staff use OAuth in the browser)"
+msgstr ""
+
+msgid "Phone codes go out through Flux Call Center (WhatsApp) when that channel is available; otherwise the code is emailed to the account. A phone code signs in only the account whose saved number is exactly that full number. Donations and orders never open or claim an account."
+msgstr ""
+
+msgid "Own phone number"
+msgstr ""
+
+msgid "Let a signed-in donor confirm a phone number and save it on their account"
+msgstr ""
+
+msgid "The code is sent only to that phone (WhatsApp or an SMS provider), never by email. People who can edit posts keep an administrator-managed number unless staff code sign-in is turned on."
 msgstr ""
 
 msgid "Can create API keys"
@@ -630,6 +639,9 @@ msgstr ""
 msgid "Manifest not found."
 msgstr ""
 
+msgid "The token does not include the scope this request needs."
+msgstr ""
+
 msgid "App connection"
 msgstr ""
 
@@ -699,16 +711,43 @@ msgstr ""
 msgid "The code is wrong or has expired."
 msgstr ""
 
+msgid "Phone confirmation is not available."
+msgstr ""
+
+msgid "%1$s is your code to confirm the phone number on %2$s. Valid for 10 minutes. Do not share this code with anyone."
+msgstr ""
+
+msgid "The phone number on your %s account was changed"
+msgstr ""
+
+msgid "The phone number on your account now ends in %s. If you did not do this, contact the site administrator."
+msgstr ""
+
+msgid "The phone number was removed from your %s account"
+msgstr ""
+
+msgid "The phone number ending in %s was removed from your account. If you did not do this, contact the site administrator."
+msgstr ""
+
+msgid "A phone number was added to your %s account"
+msgstr ""
+
+msgid "A phone number ending in %s was added to your account. If you did not do this, contact the site administrator."
+msgstr ""
+
+msgid "Enter a valid phone number."
+msgstr ""
+
+msgid "The phone number could not be saved."
+msgstr ""
+
+msgid "No phone number is saved on this account."
+msgstr ""
+
+msgid "An administrator manages this phone number."
+msgstr ""
+
 msgid "Other"
-msgstr ""
-
-msgid "Admin sessions are turned off in settings."
-msgstr ""
-
-msgid "Too many requests. Please wait a moment."
-msgstr ""
-
-msgid "Invalid admin path."
 msgstr ""
 
 msgid "This setting cannot be opened from the app."
@@ -784,6 +823,534 @@ msgid "Developer mode is on (exp:// redirects); turn it off on the live site."
 msgstr ""
 
 msgid "The token is invalid or expired."
+msgstr ""
+
+msgid "Aggregate mobile app usage"
+msgstr ""
+
+msgid "Optional and off by default. Only accounts that also opt in inside the app are counted. Completed UTC-day iOS/Android totals go to your telemetry hub only for cohorts of at least five accounts. No names, account IDs, content, site URLs or GPS location are included. Country comes from site settings. General usage sharing must also be on. Sign-in and app features do not depend on this choice."
+msgstr ""
+
+msgid "Share aggregate mobile app usage"
+msgstr ""
+
+msgid "Yetkiniz yok."
+msgstr ""
+
+msgid "Admin sessions are turned off in settings."
+msgstr ""
+
+msgid "Too many requests. Please wait a moment."
+msgstr ""
+
+msgid "Invalid admin path."
+msgstr ""
+
+msgid "Platform of the asking app; decides which menu and screens are sent."
+msgstr ""
+
+msgid "How the request signed in."
+msgstr ""
+
+msgid "A counter shown as a badge (unread messages, open tasks …)."
+msgstr ""
+
+msgid "Counter name."
+msgstr ""
+
+msgid "Current number."
+msgstr ""
+
+msgid "Short digests of the documents the app caches; a changed digest means refetch."
+msgstr ""
+
+msgid "Digest of flxAppMe."
+msgstr ""
+
+msgid "Digest of flxAppConfig."
+msgstr ""
+
+msgid "Digest of flxAppManifest."
+msgstr ""
+
+msgid "A role of the user."
+msgstr ""
+
+msgid "Role key."
+msgstr ""
+
+msgid "Role name in the user's language."
+msgstr ""
+
+msgid "The signed-in user."
+msgstr ""
+
+msgid "User ID."
+msgstr ""
+
+msgid "Username."
+msgstr ""
+
+msgid "Display name."
+msgstr ""
+
+msgid "E-mail address."
+msgstr ""
+
+msgid "Avatar image address."
+msgstr ""
+
+msgid "Roles of the user."
+msgstr ""
+
+msgid "Language of the user (profile language)."
+msgstr ""
+
+msgid "Can manage the site settings."
+msgstr ""
+
+msgid "Profile page in the panel."
+msgstr ""
+
+msgid "The site the app is connected to."
+msgstr ""
+
+msgid "Site name."
+msgstr ""
+
+msgid "Home address."
+msgstr ""
+
+msgid "Panel address."
+msgstr ""
+
+msgid "REST API root."
+msgstr ""
+
+msgid "Site icon address; empty when none."
+msgstr ""
+
+msgid "Site language."
+msgstr ""
+
+msgid "Site time zone."
+msgstr ""
+
+msgid "How this request signed in."
+msgstr ""
+
+msgid "Cookie session, app access token or personal API key."
+msgstr ""
+
+msgid "OAuth client of the token; empty for a cookie session."
+msgstr ""
+
+msgid "Scopes of the token; empty for a cookie session."
+msgstr ""
+
+msgid "Unix time the token expires; empty when it does not or for a cookie session."
+msgstr ""
+
+msgid "A sub item of a menu entry."
+msgstr ""
+
+msgid "Menu slug."
+msgstr ""
+
+msgid "Title in the user's language."
+msgstr ""
+
+msgid "Badge text (a count); empty when none."
+msgstr ""
+
+msgid "A panel menu entry the user may open."
+msgstr ""
+
+msgid "Entry ID."
+msgstr ""
+
+msgid "Icon name."
+msgstr ""
+
+msgid "Coloured package logo; empty when the package has none (use icon)."
+msgstr ""
+
+msgid "Sub items."
+msgstr ""
+
+msgid "A package module with a native screen in the app."
+msgstr ""
+
+msgid "Module key."
+msgstr ""
+
+msgid "Module title."
+msgstr ""
+
+msgid "Panel menu slug the module replaces; empty when none."
+msgstr ""
+
+msgid "REST root of the module; empty when none."
+msgstr ""
+
+msgid "Icon name; empty when none."
+msgstr ""
+
+msgid "Package version; empty when not reported."
+msgstr ""
+
+msgid "Sort order; empty = default."
+msgstr ""
+
+msgid "Panel page an app without the native screen opens."
+msgstr ""
+
+msgid "The module has a manifest (flxAppManifest) and opens with it."
+msgstr ""
+
+msgid "Further keys a package adds to its module entry (open map)."
+msgstr ""
+
+msgid "One core WordPress permission, for the app's screen and menu decisions."
+msgstr ""
+
+msgid "Capability name."
+msgstr ""
+
+msgid "The user has it. The server still checks every field."
+msgstr ""
+
+msgid "An installed FluxWP package and its version."
+msgstr ""
+
+msgid "Package slug."
+msgstr ""
+
+msgid "Version."
+msgstr ""
+
+msgid "A group of the left menu."
+msgstr ""
+
+msgid "Group key."
+msgstr ""
+
+msgid "Group name; empty for the first unnamed group."
+msgstr ""
+
+msgid "Starts collapsed."
+msgstr ""
+
+msgid "Menu slugs in the group."
+msgstr ""
+
+msgid "The menu layout as in the panel (Flux Admin)."
+msgstr ""
+
+msgid "Menu slugs the person pinned."
+msgstr ""
+
+msgid "Menu groups."
+msgstr ""
+
+msgid "Everything the app needs after sign-in: user, site, menu, modules, counters and digests."
+msgstr ""
+
+msgid "The site."
+msgstr ""
+
+msgid "Menu the user may open."
+msgstr ""
+
+msgid "Modules with native screens, by sort order."
+msgstr ""
+
+msgid "Badge counters."
+msgstr ""
+
+msgid "Menu slugs of the phone bottom bar."
+msgstr ""
+
+msgid "The app may open panel pages in a web view (admin sessions are on)."
+msgstr ""
+
+msgid "Core permissions summary."
+msgstr ""
+
+msgid "Installed FluxWP packages."
+msgstr ""
+
+msgid "Menu layout; empty without Flux Admin."
+msgstr ""
+
+msgid "Digests for the cached documents."
+msgstr ""
+
+msgid "The signed-in user, site, menu, modules and layout (REST GET /flxapp/v1/me)."
+msgstr ""
+
+msgid "Only the badge counters (light poll; REST GET /flxapp/v1/counts)."
+msgstr ""
+
+msgid "A notification event for the desktop app."
+msgstr ""
+
+msgid "Event type, e.g. flxg.assigned."
+msgstr ""
+
+msgid "Title."
+msgstr ""
+
+msgid "Text; empty when the site hides notification text."
+msgstr ""
+
+msgid "Where the app opens when the event is clicked."
+msgstr ""
+
+msgid "Parameters of the target (open map)."
+msgstr ""
+
+msgid "Unix time."
+msgstr ""
+
+msgid "Light poll: counters, digests of the cached documents and the new events."
+msgstr ""
+
+msgid "Digests; a changed one means refetch that document."
+msgstr ""
+
+msgid "Events after the asked time (the last 20 are kept)."
+msgstr ""
+
+msgid "Server Unix time; send it back as `since`."
+msgstr ""
+
+msgid "Light poll (REST GET /flxapp/v1/sync). Poll no faster than every 10 seconds and stop while the app is hidden."
+msgstr ""
+
+msgid "Unix time of the last poll; events after it are returned."
+msgstr ""
+
+msgid "The resolved look and behaviour of the app (flx-app-config/1)."
+msgstr ""
+
+msgid "Digest of the document; send it as ifHash next time."
+msgstr ""
+
+msgid "ifHash matched: keep the cached document."
+msgstr ""
+
+msgid "The flx-app-config/1 document (brand, theme, shell, features …); empty when not modified. Open and versioned, validated by the client."
+msgstr ""
+
+msgid "The app look for the asking platform (REST GET /flxapp/v1/config, with ETag semantics via ifHash)."
+msgstr ""
+
+msgid "Digest the app already has; a match returns notModified and no document."
+msgstr ""
+
+msgid "The screens of one package (flx-app-manifest/1)."
+msgstr ""
+
+msgid "The module manifest (screens, actions, fields); open and versioned, validated by the client."
+msgstr ""
+
+msgid "Screens of the packages the user may open."
+msgstr ""
+
+msgid "Manifest format, flx-app-manifest/1."
+msgstr ""
+
+msgid "Digest; send it as ifHash next time."
+msgstr ""
+
+msgid "ifHash matched: keep the cached manifests."
+msgstr ""
+
+msgid "Platform the list was filtered for; empty when the app did not say."
+msgstr ""
+
+msgid "Module manifests by sort order; empty when not modified."
+msgstr ""
+
+msgid "Screens of the packages for the user and platform (REST GET /flxapp/v1/manifest, ETag via ifHash)."
+msgstr ""
+
+msgid "Digest the app already has; a match returns notModified and no modules."
+msgstr ""
+
+msgid "Public discovery of the site for the app."
+msgstr ""
+
+msgid "The flx-app-bootstrap/1 document: site, sign-in methods, apps, brand, theme, packages. Public, no secrets; open and versioned, validated by the client."
+msgstr ""
+
+msgid "What the app learns before signing in (REST GET /flxapp/v1/app/bootstrap; cached 5 minutes)."
+msgstr ""
+
+msgid "A figure card of the app home."
+msgstr ""
+
+msgid "Card key."
+msgstr ""
+
+msgid "Formatted number or amount."
+msgstr ""
+
+msgid "Small text under the value."
+msgstr ""
+
+msgid "accent, warn, danger or ok; empty = default."
+msgstr ""
+
+msgid "Panel page that opens in a web view."
+msgstr ""
+
+msgid "App target (menu:<slug>, module:<id>, web:<path>)."
+msgstr ""
+
+msgid "Sort order."
+msgstr ""
+
+msgid "A row of a home list."
+msgstr ""
+
+msgid "Second line."
+msgstr ""
+
+msgid "Right-hand text (time, amount)."
+msgstr ""
+
+msgid "A list of the app home."
+msgstr ""
+
+msgid "List key."
+msgstr ""
+
+msgid "Rows."
+msgstr ""
+
+msgid "The app home: cards and lists the user's permissions allow."
+msgstr ""
+
+msgid "Figure cards by sort order."
+msgstr ""
+
+msgid "Lists by sort order."
+msgstr ""
+
+msgid "The app home (REST GET /flxapp/v1/dashboard)."
+msgstr ""
+
+msgid "Whether the person wants one notification type."
+msgstr ""
+
+msgid "Event type."
+msgstr ""
+
+msgid "Notifications of this type are on."
+msgstr ""
+
+msgid "A notification type the person may switch on or off."
+msgstr ""
+
+msgid "Name in the user's language."
+msgstr ""
+
+msgid "Package that sends it; empty for core."
+msgstr ""
+
+msgid "On until the person changes it."
+msgstr ""
+
+msgid "Currently on for this person."
+msgstr ""
+
+msgid "The person's app preferences, shared by all their devices."
+msgstr ""
+
+msgid "Menu order (slugs)."
+msgstr ""
+
+msgid "Hidden menu entries."
+msgstr ""
+
+msgid "Pinned menu entries."
+msgstr ""
+
+msgid "Entries always opened in the web view."
+msgstr ""
+
+msgid "Bottom bar entries (at most 5)."
+msgstr ""
+
+msgid "Home card order."
+msgstr ""
+
+msgid "Hidden home cards."
+msgstr ""
+
+msgid "Notification choices the person made."
+msgstr ""
+
+msgid "Notification types the person may choose from."
+msgstr ""
+
+msgid "Unix time of the last change; 0 = never."
+msgstr ""
+
+msgid "The person's app preferences (REST GET /flxapp/v1/prefs)."
+msgstr ""
+
+msgid "A notification choice."
+msgstr ""
+
+msgid "Event type (a flxAppPrefs.events id)."
+msgstr ""
+
+msgid "Turn it on or off."
+msgstr ""
+
+msgid "Changes the preferences that are sent; the others stay as they are (REST POST /flxapp/v1/prefs)."
+msgstr ""
+
+msgid "Notification choices to change."
+msgstr ""
+
+msgid "The preferences after the change."
+msgstr ""
+
+msgid "A one-time panel sign-in address (valid 60 seconds) for the app's web view (REST POST /flxapp/v1/session)."
+msgstr ""
+
+msgid "Panel path, e.g. admin.php?page=flx-crm."
+msgstr ""
+
+msgid "Site address to open instead of a panel path."
+msgstr ""
+
+msgid "Treat `path` as a site (front end) path."
+msgstr ""
+
+msgid "Open without the panel chrome (default true)."
+msgstr ""
+
+msgid "The sign-in address."
+msgstr ""
+
+msgid "Seconds the address stays valid."
+msgstr ""
+
+msgid "Ends the web view cookie sessions this app session opened (REST POST /flxapp/v1/session/end)."
+msgstr ""
+
+msgid "Number of sessions ended."
+msgstr ""
+
+msgid "Signs this app session out: its tokens, devices and web sessions (REST POST /flxapp/v1/logout)."
+msgstr ""
+
+msgid "The session is closed."
 msgstr ""
 
 msgid "Draft"
@@ -1285,67 +1852,4 @@ msgid "Notes"
 msgstr ""
 
 msgid "Call"
-msgstr ""
-
-msgid "Yetkiniz yok."
-msgstr ""
-
-msgid "Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth."
-msgstr ""
-
-msgid "%1$s is your code to confirm the phone number on %2$s. Valid for 10 minutes. Do not share this code with anyone."
-msgstr ""
-
-msgid "A phone number ending in %s was added to your account. If you did not do this, contact the site administrator."
-msgstr ""
-
-msgid "A phone number was added to your %s account"
-msgstr ""
-
-msgid "An administrator manages this phone number."
-msgstr ""
-
-msgid "Create a customer account for an email after its sign-in code is confirmed"
-msgstr ""
-
-msgid "Enter a valid phone number."
-msgstr ""
-
-msgid "Let a signed-in donor confirm a phone number and save it on their account"
-msgstr ""
-
-msgid "Let donors sign in with a code sent to their email, or to the phone number saved on their account"
-msgstr ""
-
-msgid "No phone number is saved on this account."
-msgstr ""
-
-msgid "Own phone number"
-msgstr ""
-
-msgid "Phone codes go out through Flux Call Center (WhatsApp) when that channel is available; otherwise the code is emailed to the account. A phone code signs in only the account whose saved number is exactly that full number. Donations and orders never open or claim an account."
-msgstr ""
-
-msgid "Phone confirmation is not available."
-msgstr ""
-
-msgid "The code is sent only to that phone (WhatsApp or an SMS provider), never by email. People who can edit posts keep an administrator-managed number unless staff code sign-in is turned on."
-msgstr ""
-
-msgid "The phone number could not be saved."
-msgstr ""
-
-msgid "The phone number ending in %s was removed from your account. If you did not do this, contact the site administrator."
-msgstr ""
-
-msgid "The phone number on your %s account was changed"
-msgstr ""
-
-msgid "The phone number on your account now ends in %s. If you did not do this, contact the site administrator."
-msgstr ""
-
-msgid "The phone number was removed from your %s account"
-msgstr ""
-
-msgid "The token does not include the scope this request needs."
 msgstr ""

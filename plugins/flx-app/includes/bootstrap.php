@@ -127,6 +127,7 @@ function flxapp_bootstrap() {
 /** Ayar ya da paket değişince keşif önbelleği boşalır. */
 function flxapp_bootstrap_flush() {
 	global $wpdb;
+	do_action( 'flxapp_bootstrap_flushed' );
 	$wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE '\\_transient\\_flxapp\\_bootstrap\\_%' OR option_name LIKE '\\_transient\\_timeout\\_flxapp\\_bootstrap\\_%'" ); // phpcs:ignore WordPress.DB
 }
 foreach ( array( 'update_option_flxapp_settings', 'update_option_flxapp_app', 'update_option_flx_profile', 'activated_plugin', 'deactivated_plugin', 'switch_theme', 'update_option_blogname', 'update_option_site_icon' ) as $flxapp_hook ) {

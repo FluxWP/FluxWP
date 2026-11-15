@@ -1,0 +1,21 @@
+fragment FlxAppPrefsFields on FlxAppPrefs {
+  order
+  hidden
+  pinned
+  forceWeb
+  tabs
+  cardOrder
+  cardHidden
+  push {
+    event
+    on
+  }
+  events {
+    id
+    title
+    source
+    default
+    on
+  }
+  updated
+}

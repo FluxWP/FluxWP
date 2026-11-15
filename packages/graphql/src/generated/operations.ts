@@ -3,6 +3,114 @@
 import type { FlxOperation } from '../operation';
 import type * as T from './types';
 
+/** query FlxAppBootstrap (flx-app, plugins/flx-app/graphql/operations/FlxAppBootstrap.graphql) */
+export const FlxAppBootstrap: FlxOperation<T.FlxAppBootstrapQuery, T.FlxAppBootstrapQueryVariables> = {
+  id: '4850096db374db9b37d4fc02550c0248242e0adb19015eadc68717b90ac7147d',
+  name: 'FlxAppBootstrap',
+  kind: 'query',
+  plugin: 'flx-app',
+  document: "query FlxAppBootstrap {\n  flxAppBootstrap {\n    document\n  }\n}",
+};
+
+/** query FlxAppConfig (flx-app, plugins/flx-app/graphql/operations/FlxAppConfig.graphql) */
+export const FlxAppConfig: FlxOperation<T.FlxAppConfigQuery, T.FlxAppConfigQueryVariables> = {
+  id: 'd42f09a39296126fd6b968f4640a2f690f247a7b2a205df5df1294039d864d92',
+  name: 'FlxAppConfig',
+  kind: 'query',
+  plugin: 'flx-app',
+  document: "query FlxAppConfig($ifHash: String) {\n  flxAppConfig(ifHash: $ifHash) {\n    hash\n    notModified\n    document\n  }\n}",
+};
+
+/** query FlxAppCounts (flx-app, plugins/flx-app/graphql/operations/FlxAppCounts.graphql) */
+export const FlxAppCounts: FlxOperation<T.FlxAppCountsQuery, T.FlxAppCountsQueryVariables> = {
+  id: '7df2f9c9afbfb4cbf06c341cc448f815650a0e7d7e3d61bdf57a745a3786e397',
+  name: 'FlxAppCounts',
+  kind: 'query',
+  plugin: 'flx-app',
+  document: "query FlxAppCounts {\n  flxAppCounts {\n    key\n    value\n  }\n}",
+};
+
+/** query FlxAppDashboard (flx-app, plugins/flx-app/graphql/operations/FlxAppDashboard.graphql) */
+export const FlxAppDashboard: FlxOperation<T.FlxAppDashboardQuery, T.FlxAppDashboardQueryVariables> = {
+  id: '1eacda91aa4cc35d78858bd1216b721f003177049a5f4070397f9019237b8d2b',
+  name: 'FlxAppDashboard',
+  kind: 'query',
+  plugin: 'flx-app',
+  document: "query FlxAppDashboard {\n  flxAppDashboard {\n    cards {\n      id\n      title\n      value\n      sub\n      icon\n      tone\n      url\n      open\n      order\n    }\n    lists {\n      id\n      title\n      icon\n      url\n      open\n      order\n      items {\n        title\n        sub\n        meta\n        url\n      }\n    }\n  }\n}",
+};
+
+/** mutation FlxAppLogout (flx-app, plugins/flx-app/graphql/operations/FlxAppLogout.graphql) */
+export const FlxAppLogout: FlxOperation<T.FlxAppLogoutMutation, T.FlxAppLogoutMutationVariables> = {
+  id: '581d784d156bdcbf674e74bf80ac014a58a27beb29cb1aefb721ec87150c6386',
+  name: 'FlxAppLogout',
+  kind: 'mutation',
+  plugin: 'flx-app',
+  document: "mutation FlxAppLogout {\n  flxAppLogout(input: {  }) {\n    ok\n  }\n}",
+};
+
+/** query FlxAppManifest (flx-app, plugins/flx-app/graphql/operations/FlxAppManifest.graphql) */
+export const FlxAppManifest: FlxOperation<T.FlxAppManifestQuery, T.FlxAppManifestQueryVariables> = {
+  id: 'be768903018c97df98f3c8a1d6561d546d8d03a9972508ed1a695d85f25fca1c',
+  name: 'FlxAppManifest',
+  kind: 'query',
+  plugin: 'flx-app',
+  document: "query FlxAppManifest($ifHash: String) {\n  flxAppManifest(ifHash: $ifHash) {\n    schema\n    hash\n    notModified\n    platform\n    modules {\n      id\n      document\n    }\n  }\n}",
+};
+
+/** query FlxAppMe (flx-app, plugins/flx-app/graphql/operations/FlxAppMe.graphql) */
+export const FlxAppMe: FlxOperation<T.FlxAppMeQuery, T.FlxAppMeQueryVariables> = {
+  id: 'cba8508c6de751e14f96be2f2c48765115575862f782433e228b516833a1cd5f',
+  name: 'FlxAppMe',
+  kind: 'query',
+  plugin: 'flx-app',
+  document: "query FlxAppMe {\n  flxAppMe {\n    user {\n      databaseId\n      login\n      name\n      email\n      avatar\n      roles {\n        id\n        name\n      }\n      locale\n      isAdmin\n      profileUrl\n    }\n    site {\n      name\n      url\n      adminUrl\n      restUrl\n      icon\n      locale\n      timezone\n    }\n    auth {\n      kind\n      client\n      scope\n      expires\n    }\n    menu {\n      id\n      slug\n      title\n      url\n      icon\n      iconUrl\n      badge\n      items {\n        slug\n        title\n        url\n        badge\n      }\n    }\n    modules {\n      id\n      title\n      menu\n      api\n      icon\n      version\n      order\n      url\n      hasManifest\n      extra\n    }\n    counts {\n      key\n      value\n    }\n    bottom\n    webSession\n    caps {\n      key\n      granted\n    }\n    versions {\n      slug\n      version\n    }\n    layout {\n      pins\n      groups {\n        id\n        label\n        collapsed\n        items\n      }\n    }\n    hashes {\n      me\n      config\n      manifest\n    }\n  }\n}",
+};
+
+/** query FlxAppPrefs (flx-app, plugins/flx-app/graphql/operations/FlxAppPrefs.graphql) */
+export const FlxAppPrefs: FlxOperation<T.FlxAppPrefsQuery, T.FlxAppPrefsQueryVariables> = {
+  id: '1a62c8567390b5db293ddf348d4f16357ebc9674802472d5805b4f576b12d2a0',
+  name: 'FlxAppPrefs',
+  kind: 'query',
+  plugin: 'flx-app',
+  document: "query FlxAppPrefs {\n  flxAppPrefs {\n    ...FlxAppPrefsFields\n  }\n}\n\nfragment FlxAppPrefsFields on FlxAppPrefs {\n  order\n  hidden\n  pinned\n  forceWeb\n  tabs\n  cardOrder\n  cardHidden\n  push {\n    event\n    on\n  }\n  events {\n    id\n    title\n    source\n    default\n    on\n  }\n  updated\n}",
+};
+
+/** mutation FlxAppPrefsUpdate (flx-app, plugins/flx-app/graphql/operations/FlxAppPrefsUpdate.graphql) */
+export const FlxAppPrefsUpdate: FlxOperation<T.FlxAppPrefsUpdateMutation, T.FlxAppPrefsUpdateMutationVariables> = {
+  id: '522afbeb70b132491258fc307b12fa464f70e26adecb04288c562dd6988311bc',
+  name: 'FlxAppPrefsUpdate',
+  kind: 'mutation',
+  plugin: 'flx-app',
+  document: "mutation FlxAppPrefsUpdate($input: FlxAppPrefsUpdateInput!) {\n  flxAppPrefsUpdate(input: $input) {\n    prefs {\n      ...FlxAppPrefsFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAppPrefsFields on FlxAppPrefs {\n  order\n  hidden\n  pinned\n  forceWeb\n  tabs\n  cardOrder\n  cardHidden\n  push {\n    event\n    on\n  }\n  events {\n    id\n    title\n    source\n    default\n    on\n  }\n  updated\n}",
+};
+
+/** mutation FlxAppSessionCreate (flx-app, plugins/flx-app/graphql/operations/FlxAppSessionCreate.graphql) */
+export const FlxAppSessionCreate: FlxOperation<T.FlxAppSessionCreateMutation, T.FlxAppSessionCreateMutationVariables> = {
+  id: '7609ec865712b962f6777d969a7d24945a7b0bcd4d40b6736f9d2eb6da23a88d',
+  name: 'FlxAppSessionCreate',
+  kind: 'mutation',
+  plugin: 'flx-app',
+  document: "mutation FlxAppSessionCreate($input: FlxAppSessionCreateInput!) {\n  flxAppSessionCreate(input: $input) {\n    url\n    expiresIn\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxAppSessionEnd (flx-app, plugins/flx-app/graphql/operations/FlxAppSessionEnd.graphql) */
+export const FlxAppSessionEnd: FlxOperation<T.FlxAppSessionEndMutation, T.FlxAppSessionEndMutationVariables> = {
+  id: 'f44b43d790d42a4e40f3043ef92df28908d2f586405269157b9acf3d70ee64a1',
+  name: 'FlxAppSessionEnd',
+  kind: 'mutation',
+  plugin: 'flx-app',
+  document: "mutation FlxAppSessionEnd {\n  flxAppSessionEnd(input: {  }) {\n    ended\n  }\n}",
+};
+
+/** query FlxAppSync (flx-app, plugins/flx-app/graphql/operations/FlxAppSync.graphql) */
+export const FlxAppSync: FlxOperation<T.FlxAppSyncQuery, T.FlxAppSyncQueryVariables> = {
+  id: '74959c1f5581dbb6bbff6bc34c10bd2f42777d0b33917352eb48b01c75a8b8cd',
+  name: 'FlxAppSync',
+  kind: 'query',
+  plugin: 'flx-app',
+  document: "query FlxAppSync($since: Int) {\n  flxAppSync(since: $since) {\n    counts {\n      key\n      value\n    }\n    hashes {\n      me\n      config\n      manifest\n    }\n    events {\n      event\n      title\n      body\n      target\n      params\n      at\n    }\n    serverTime\n  }\n}",
+};
+
 /** mutation FlxRoleCreate (flx-roles, plugins/flx-roles/graphql/operations/FlxRoleCreate.graphql) */
 export const FlxRoleCreate: FlxOperation<T.FlxRoleCreateMutation, T.FlxRoleCreateMutationVariables> = {
   id: '21a336969a0dc41b8caaa1be0a20b9bd740359347ff57bc8cb72f70ca6254f9e',

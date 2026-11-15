@@ -4,6 +4,17 @@
 type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 /** Internal type. DO NOT USE DIRECTLY. */
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+/** Platform of the asking app; decides which menu and screens are sent. */
+export type FlxAppPlatform =
+  | 'DESKTOP'
+  | 'MOBILE';
+
+/** How the request signed in. */
+export type FlxAppAuthKind =
+  | 'ACCESS'
+  | 'COOKIE'
+  | 'KEY';
+
 /** What a task row is. */
 export type FlxTaskKind =
   /** An agenda item of a meeting. */
@@ -23,6 +34,50 @@ export type FlxTaskRole =
   | 'EDIT'
   /** See tasks. */
   | 'VIEW';
+
+/** Input for the flxAppPrefsUpdate mutation. */
+export type FlxAppPrefsUpdateInput = {
+  /** Hidden home cards. */
+  cardHidden?: Array<string> | null | undefined;
+  /** Home card order. */
+  cardOrder?: Array<string> | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Entries always opened in the web view. */
+  forceWeb?: Array<string> | null | undefined;
+  /** Hidden menu entries. */
+  hidden?: Array<string> | null | undefined;
+  /** Menu order (slugs). */
+  order?: Array<string> | null | undefined;
+  /** Pinned menu entries. */
+  pinned?: Array<string> | null | undefined;
+  /** Notification choices to change. */
+  push?: Array<FlxAppPushPrefInput> | null | undefined;
+  /** Bottom bar entries (at most 5). */
+  tabs?: Array<string> | null | undefined;
+};
+
+/** A notification choice. */
+export type FlxAppPushPrefInput = {
+  /** Event type (a flxAppPrefs.events id). */
+  event: string;
+  /** Turn it on or off. */
+  on: boolean;
+};
+
+/** Input for the flxAppSessionCreate mutation. */
+export type FlxAppSessionCreateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Open without the panel chrome (default true). */
+  embed?: boolean | null | undefined;
+  /** Treat `path` as a site (front end) path. */
+  front?: boolean | null | undefined;
+  /** Panel path, e.g. admin.php?page=flx-crm. */
+  path?: string | null | undefined;
+  /** Site address to open instead of a panel path. */
+  url?: string | null | undefined;
+};
 
 /** Input for the flxRoleCreate mutation. */
 export type FlxRoleCreateInput = {
@@ -185,6 +240,78 @@ export type FlxTaskWatchInput = {
   /** Follow (true) or stop following (false). */
   watch: boolean;
 };
+
+export type FlxAppBootstrapQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAppBootstrapQuery = { flxAppBootstrap: { document: unknown } };
+
+export type FlxAppConfigQueryVariables = Exact<{
+  ifHash?: string | null | undefined;
+}>;
+
+
+export type FlxAppConfigQuery = { flxAppConfig: { hash: string, notModified: boolean, document: unknown } };
+
+export type FlxAppCountsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAppCountsQuery = { flxAppCounts: Array<{ key: string, value: number }> };
+
+export type FlxAppDashboardQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAppDashboardQuery = { flxAppDashboard: { cards: Array<{ id: string, title: string, value: string, sub: string | null, icon: string | null, tone: string | null, url: string | null, open: string | null, order: number | null }>, lists: Array<{ id: string, title: string, icon: string | null, url: string | null, open: string | null, order: number | null, items: Array<{ title: string, sub: string | null, meta: string | null, url: string | null }> }> } };
+
+export type FlxAppLogoutMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAppLogoutMutation = { flxAppLogout: { ok: boolean } | null };
+
+export type FlxAppManifestQueryVariables = Exact<{
+  ifHash?: string | null | undefined;
+}>;
+
+
+export type FlxAppManifestQuery = { flxAppManifest: { schema: string, hash: string, notModified: boolean, platform: FlxAppPlatform | null, modules: Array<{ id: string, document: unknown }> } };
+
+export type FlxAppMeQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAppMeQuery = { flxAppMe: { bottom: Array<string>, webSession: boolean, user: { databaseId: number, login: string, name: string, email: string, avatar: string, locale: string, isAdmin: boolean, profileUrl: string, roles: Array<{ id: string, name: string }> }, site: { name: string, url: string, adminUrl: string, restUrl: string, icon: string, locale: string, timezone: string }, auth: { kind: FlxAppAuthKind, client: string | null, scope: string | null, expires: number | null }, menu: Array<{ id: string, slug: string, title: string, url: string, icon: string, iconUrl: string | null, badge: string | null, items: Array<{ slug: string, title: string, url: string, badge: string | null }> }>, modules: Array<{ id: string, title: string, menu: string | null, api: string | null, icon: string | null, version: string | null, order: number | null, url: string | null, hasManifest: boolean, extra: unknown }>, counts: Array<{ key: string, value: number }>, caps: Array<{ key: string, granted: boolean }>, versions: Array<{ slug: string, version: string }>, layout: { pins: Array<string>, groups: Array<{ id: string, label: string, collapsed: boolean, items: Array<string> }> } | null, hashes: { me: string, config: string, manifest: string } } };
+
+export type FlxAppPrefsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAppPrefsQuery = { flxAppPrefs: { order: Array<string>, hidden: Array<string>, pinned: Array<string>, forceWeb: Array<string>, tabs: Array<string>, cardOrder: Array<string>, cardHidden: Array<string>, updated: number, push: Array<{ event: string, on: boolean }>, events: Array<{ id: string, title: string, source: string, default: boolean, on: boolean }> } };
+
+export type FlxAppPrefsFieldsFragment = { order: Array<string>, hidden: Array<string>, pinned: Array<string>, forceWeb: Array<string>, tabs: Array<string>, cardOrder: Array<string>, cardHidden: Array<string>, updated: number, push: Array<{ event: string, on: boolean }>, events: Array<{ id: string, title: string, source: string, default: boolean, on: boolean }> };
+
+export type FlxAppPrefsUpdateMutationVariables = Exact<{
+  input: FlxAppPrefsUpdateInput;
+}>;
+
+
+export type FlxAppPrefsUpdateMutation = { flxAppPrefsUpdate: { prefs: { order: Array<string>, hidden: Array<string>, pinned: Array<string>, forceWeb: Array<string>, tabs: Array<string>, cardOrder: Array<string>, cardHidden: Array<string>, updated: number, push: Array<{ event: string, on: boolean }>, events: Array<{ id: string, title: string, source: string, default: boolean, on: boolean }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAppSessionCreateMutationVariables = Exact<{
+  input: FlxAppSessionCreateInput;
+}>;
+
+
+export type FlxAppSessionCreateMutation = { flxAppSessionCreate: { url: string | null, expiresIn: number | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAppSessionEndMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAppSessionEndMutation = { flxAppSessionEnd: { ended: number } | null };
+
+export type FlxAppSyncQueryVariables = Exact<{
+  since?: number | null | undefined;
+}>;
+
+
+export type FlxAppSyncQuery = { flxAppSync: { serverTime: number, counts: Array<{ key: string, value: number }>, hashes: { me: string, config: string, manifest: string }, events: Array<{ event: string, title: string, body: string, target: string, params: unknown, at: number }> } };
 
 export type FlxRoleCreateMutationVariables = Exact<{
   input: FlxRoleCreateInput;
