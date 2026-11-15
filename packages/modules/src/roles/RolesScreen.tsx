@@ -336,7 +336,8 @@ function Roles() {
 /** A translated sentence with one <a href="%s">…</a> link. */
 function Linked({ text, href }: { text: string; href: string }) {
   const m = /^(.*)<a href="%s">(.*)<\/a>(.*)$/s.exec(text);
-  if (!m) return <>{text.replace(/<[^>]+>/g, '')}</>;
+  // A translation without the link markup is shown as text; React escapes it, nothing is parsed as HTML.
+  if (!m) return <>{text.split('<a href="%s">').join('').split('</a>').join('')}</>;
   return (
     <>
       {m[1]}
