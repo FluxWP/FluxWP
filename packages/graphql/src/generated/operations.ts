@@ -111,6 +111,33 @@ export const FlxAiSystemsUpdate: FlxOperation<T.FlxAiSystemsUpdateMutation, T.Fl
   document: "mutation FlxAiSystemsUpdate($input: FlxAiSystemsUpdateInput!) {\n  flxAiSystemsUpdate(input: $input) {\n    systems {\n      ...FlxAiSystemRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAiSystemRow on FlxAiSystem {\n  source\n  label\n  installed\n  active\n  on\n  model\n  modelLabel\n  calls\n  tools\n  tokens\n  cost\n  errors\n  lastUsed {\n    timestamp\n    label\n  }\n  settingsPage\n  hasAiSettings\n}",
 };
 
+/** mutation FlxAiToolPick (flx-ai, plugins/flx-ai/graphql/operations/FlxAiToolPick.graphql) */
+export const FlxAiToolPick: FlxOperation<T.FlxAiToolPickMutation, T.FlxAiToolPickMutationVariables> = {
+  id: '89cc3100bddc0b80ca45c79713741b1e5c52fbff15fcc12aa33aa648bfa6b3cd',
+  name: 'FlxAiToolPick',
+  kind: 'mutation',
+  plugin: 'flx-ai',
+  document: "mutation FlxAiToolPick($input: FlxAiToolPickInput!) {\n  flxAiToolPick(input: $input) {\n    tools {\n      ...FlxAiToolRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAiToolRow on FlxAiTool {\n  name\n  title\n  description\n  source\n  sourceLabel\n  readonly\n  approval\n  capability\n  mcp\n  chat\n  off\n  aliases\n  duplicate\n  rivals\n  prefixed\n  calls\n  errors\n  avgMs\n}",
+};
+
+/** query FlxAiTools (flx-ai, plugins/flx-ai/graphql/operations/FlxAiTools.graphql) */
+export const FlxAiTools: FlxOperation<T.FlxAiToolsQuery, T.FlxAiToolsQueryVariables> = {
+  id: '2ac9ecc70a8c53e97b50f2b9b4761536f293a681d6e3e0c4fe65ae7b83a2cacb',
+  name: 'FlxAiTools',
+  kind: 'query',
+  plugin: 'flx-ai',
+  document: "query FlxAiTools {\n  flxAiTools {\n    ...FlxAiToolRow\n  }\n}\n\nfragment FlxAiToolRow on FlxAiTool {\n  name\n  title\n  description\n  source\n  sourceLabel\n  readonly\n  approval\n  capability\n  mcp\n  chat\n  off\n  aliases\n  duplicate\n  rivals\n  prefixed\n  calls\n  errors\n  avgMs\n}",
+};
+
+/** mutation FlxAiToolsUpdate (flx-ai, plugins/flx-ai/graphql/operations/FlxAiToolsUpdate.graphql) */
+export const FlxAiToolsUpdate: FlxOperation<T.FlxAiToolsUpdateMutation, T.FlxAiToolsUpdateMutationVariables> = {
+  id: 'fa6d026ab04301f37b80092e734c35cea8adfdf785d61057e8a0d53f71e4fdae',
+  name: 'FlxAiToolsUpdate',
+  kind: 'mutation',
+  plugin: 'flx-ai',
+  document: "mutation FlxAiToolsUpdate($input: FlxAiToolsUpdateInput!) {\n  flxAiToolsUpdate(input: $input) {\n    tools {\n      ...FlxAiToolRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAiToolRow on FlxAiTool {\n  name\n  title\n  description\n  source\n  sourceLabel\n  readonly\n  approval\n  capability\n  mcp\n  chat\n  off\n  aliases\n  duplicate\n  rivals\n  prefixed\n  calls\n  errors\n  avgMs\n}",
+};
+
 /** mutation FlxRoleCreate (flx-roles, plugins/flx-roles/graphql/operations/FlxRoleCreate.graphql) */
 export const FlxRoleCreate: FlxOperation<T.FlxRoleCreateMutation, T.FlxRoleCreateMutationVariables> = {
   id: '21a336969a0dc41b8caaa1be0a20b9bd740359347ff57bc8cb72f70ca6254f9e',

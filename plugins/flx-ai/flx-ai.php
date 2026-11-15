@@ -69,6 +69,8 @@ require_once FLXAI_DIR . 'includes/services/class-flxai-usage-dto.php';
 require_once FLXAI_DIR . 'includes/services/class-flxai-usage-service.php';
 require_once FLXAI_DIR . 'includes/services/class-flxai-settings-dto.php';
 require_once FLXAI_DIR . 'includes/services/class-flxai-settings-service.php';
+require_once FLXAI_DIR . 'includes/services/class-flxai-tools-dto.php';
+require_once FLXAI_DIR . 'includes/services/class-flxai-tools-service.php';
 
 if ( is_admin() ) {
 	require_once FLXAI_DIR . 'includes/admin.php';

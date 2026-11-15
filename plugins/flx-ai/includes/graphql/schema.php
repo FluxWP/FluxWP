@@ -72,3 +72,4 @@ function flxai_gql_fields( string $class, array $spec ): array {
 
 require_once __DIR__ . '/schema-usage.php';
 require_once __DIR__ . '/schema-settings.php';
+require_once __DIR__ . '/schema-tools.php';

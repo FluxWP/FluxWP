@@ -329,6 +329,9 @@ type RootQuery {
   "Plugins that use Flux AI, with their usage of the last 30 days."
   flxAiSystems: [FlxAiSystem!]!
 
+  "Every tool with its state and use over the last 30 days."
+  flxAiTools: [FlxAiTool!]!
+
   "The FluxWP capability catalog, with what the current user has."
   flxCapabilities: [FlxCapability!]!
 
@@ -9807,6 +9810,63 @@ type FlxAiSystem {
   tools: Int!
 }
 
+"A tool that the chat and the MCP server can call."
+type FlxAiTool {
+  "Old names that still work."
+  aliases: [String!]!
+
+  "A call waits for approval."
+  approval: Boolean!
+
+  "Average duration in the last 30 days, milliseconds."
+  avgMs: Int!
+
+  "Calls in the last 30 days."
+  calls: Int!
+
+  "Capability the caller needs."
+  capability: String!
+
+  "Offered in the Flux AI chat."
+  chat: Boolean!
+
+  "What the tool does."
+  description: String!
+
+  "Another plugin registered the same name and this one is inactive."
+  duplicate: Boolean!
+
+  "Failed calls in the last 30 days."
+  errors: Int!
+
+  "Offered over MCP."
+  mcp: Boolean!
+
+  "Tool name (with the plugin prefix)."
+  name: String!
+
+  "Switched off by an administrator."
+  off: Boolean!
+
+  "The name carries the plugin prefix."
+  prefixed: Boolean!
+
+  "The tool only reads."
+  readonly: Boolean!
+
+  "Plugins that offer the same name."
+  rivals: [String!]!
+
+  "Plugin folder that provides the tool."
+  source: String!
+
+  "Plugin name for display."
+  sourceLabel: String!
+
+  "Tool title for display."
+  title: String!
+}
+
 "A capability a FluxWP package checks."
 type FlxCapability {
   "Whether the current user has it."
@@ -12512,6 +12572,18 @@ type RootMutation {
     input: FlxAiSystemsUpdateInput!
   ): FlxAiSystemsUpdatePayload
 
+  "Chooses which plugin provides a tool when several register the same name."
+  flxAiToolPick(
+    "Input for the flxAiToolPick mutation"
+    input: FlxAiToolPickInput!
+  ): FlxAiToolPickPayload
+
+  "Switches tools on or off. Tools you leave out keep their state."
+  flxAiToolsUpdate(
+    "Input for the flxAiToolsUpdate mutation"
+    input: FlxAiToolsUpdateInput!
+  ): FlxAiToolsUpdatePayload
+
   "Adds a role from the panel; it starts with admin panel access only."
   flxRoleCreate(
     "Input for the flxRoleCreate mutation"
@@ -13597,6 +13669,60 @@ type FlxAiSystemsUpdatePayload {
 
   "Every system after the change."
   systems: [FlxAiSystem!]!
+}
+
+"Input for the flxAiToolPick mutation."
+input FlxAiToolPickInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Tool name."
+  name: String!
+
+  "Plugin folder that should provide it."
+  source: String!
+}
+
+"The payload for the flxAiToolPick mutation."
+type FlxAiToolPickPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Every tool after the change; empty when the input was refused."
+  tools: [FlxAiTool!]
+}
+
+"Input for the flxAiToolsUpdate mutation."
+input FlxAiToolsUpdateInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "States to set."
+  tools: [FlxAiToolStateInput!]!
+}
+
+"One tool to switch."
+input FlxAiToolStateInput {
+  "Tool name; an old alias works too."
+  name: String!
+
+  "Whether the tool is on."
+  on: Boolean!
+}
+
+"The payload for the flxAiToolsUpdate mutation."
+type FlxAiToolsUpdatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Every tool after the change; empty when the input was refused."
+  tools: [FlxAiTool!]
 }
 
 "Input for the flxRoleCreate mutation."

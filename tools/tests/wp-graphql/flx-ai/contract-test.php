@@ -277,6 +277,27 @@ flxt_same( 'ANTHROPIC', $r['data']['flxAiModels'][0]['provider'] ?? null, 'model
 flxt_same( 2, count( flxai_t_op( 'FlxAiModels', array(), $admin )['data']['flxAiModels'] ?? array() ), 'models: all without a search' );
 delete_transient( 'flxai_models_all' );
 
+
+// Tools.
+$r     = flxai_t_op( 'FlxAiTools', array(), $admin );
+$tools = $r['data']['flxAiTools'] ?? array();
+flxt_ok( is_array( $tools ) && count( $tools ) > 0, 'tools: listed', $r['errors'] ?? null );
+$first = (string) ( $tools[0]['name'] ?? '' );
+flxt_ok( '' !== $first && isset( $tools[0]['calls'], $tools[0]['sourceLabel'] ), 'tools: row has name, calls and source' );
+$r = flxai_t_op( 'FlxAiToolsUpdate', array( 'input' => array( 'tools' => array( array( 'name' => $first, 'on' => false ) ) ) ), $admin );
+flxt_same( array(), $r['data']['flxAiToolsUpdate']['errors'] ?? null, 'tools update: no errors' );
+flxt_same( true, array_column( $r['data']['flxAiToolsUpdate']['tools'] ?? array(), null, 'name' )[ $first ]['off'] ?? null, 'tools update: switched off' );
+flxt_same( true, flxai_tool_is_off( $first ), 'tools update: classic reader sees it' );
+flxai_t_op( 'FlxAiToolsUpdate', array( 'input' => array( 'tools' => array( array( 'name' => $first, 'on' => true ) ) ) ), $admin );
+flxt_same( false, flxai_tool_is_off( $first ), 'tools update: switched on again' );
+$r = flxai_t_op( 'FlxAiToolsUpdate', array( 'input' => array( 'tools' => array( array( 'name' => 'no_such_tool', 'on' => false ) ) ) ), $admin );
+flxt_same( 'INVALID_INPUT', $r['data']['flxAiToolsUpdate']['errors'][0]['code'] ?? $r['errors'][0]['extensions']['code'] ?? null, 'tools update: unknown tool is refused' );
+$r = flxai_t_op( 'FlxAiToolPick', array( 'input' => array( 'name' => $first, 'source' => 'flx-nope' ) ), $admin );
+flxt_same( 'INVALID_INPUT', $r['data']['flxAiToolPick']['errors'][0]['code'] ?? $r['errors'][0]['extensions']['code'] ?? null, 'tool pick: not a rival is refused' );
+foreach ( array( 'FlxAiTools' => array(), 'FlxAiToolsUpdate' => array( 'input' => array( 'tools' => array() ) ), 'FlxAiToolPick' => array( 'input' => array( 'name' => 'x', 'source' => 'y' ) ) ) as $op => $v ) {
+	flxt_same( 'FORBIDDEN', flxt_code( flxai_t_op( $op, $v, $sub ) ), "$op: subscriber → FORBIDDEN" );
+}
+
 // Persisted operations run by queryId (strict mode).
 $hash = array_search( $GLOBALS['flxai_ops']['FlxAiSystems'], (array) json_decode( (string) file_get_contents( FLXAI_DIR . 'graphql/persisted-queries.json' ), true ), true );
 wp_set_current_user( $admin );

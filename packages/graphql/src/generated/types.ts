@@ -209,6 +209,32 @@ export type FlxAiSystemStateInput = {
   source: string;
 };
 
+/** Input for the flxAiToolPick mutation. */
+export type FlxAiToolPickInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Tool name. */
+  name: string;
+  /** Plugin folder that should provide it. */
+  source: string;
+};
+
+/** Input for the flxAiToolsUpdate mutation. */
+export type FlxAiToolsUpdateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** States to set. */
+  tools: Array<FlxAiToolStateInput>;
+};
+
+/** One tool to switch. */
+export type FlxAiToolStateInput = {
+  /** Tool name; an old alias works too. */
+  name: string;
+  /** Whether the tool is on. */
+  on: boolean;
+};
+
 /** Input for the flxRoleCreate mutation. */
 export type FlxRoleCreateInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -469,6 +495,27 @@ export type FlxAiSystemsUpdateMutationVariables = Exact<{
 
 
 export type FlxAiSystemsUpdateMutation = { flxAiSystemsUpdate: { systems: Array<{ source: string, label: string, installed: boolean, active: boolean, on: boolean, model: string, modelLabel: string, calls: number, tools: number, tokens: number, cost: number, errors: number, settingsPage: string, hasAiSettings: boolean, lastUsed: { timestamp: number, label: string } | null }>, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAiToolPickMutationVariables = Exact<{
+  input: FlxAiToolPickInput;
+}>;
+
+
+export type FlxAiToolPickMutation = { flxAiToolPick: { tools: Array<{ name: string, title: string, description: string, source: string, sourceLabel: string, readonly: boolean, approval: boolean, capability: string, mcp: boolean, chat: boolean, off: boolean, aliases: Array<string>, duplicate: boolean, rivals: Array<string>, prefixed: boolean, calls: number, errors: number, avgMs: number }> | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAiToolRowFragment = { name: string, title: string, description: string, source: string, sourceLabel: string, readonly: boolean, approval: boolean, capability: string, mcp: boolean, chat: boolean, off: boolean, aliases: Array<string>, duplicate: boolean, rivals: Array<string>, prefixed: boolean, calls: number, errors: number, avgMs: number };
+
+export type FlxAiToolsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAiToolsQuery = { flxAiTools: Array<{ name: string, title: string, description: string, source: string, sourceLabel: string, readonly: boolean, approval: boolean, capability: string, mcp: boolean, chat: boolean, off: boolean, aliases: Array<string>, duplicate: boolean, rivals: Array<string>, prefixed: boolean, calls: number, errors: number, avgMs: number }> };
+
+export type FlxAiToolsUpdateMutationVariables = Exact<{
+  input: FlxAiToolsUpdateInput;
+}>;
+
+
+export type FlxAiToolsUpdateMutation = { flxAiToolsUpdate: { tools: Array<{ name: string, title: string, description: string, source: string, sourceLabel: string, readonly: boolean, approval: boolean, capability: string, mcp: boolean, chat: boolean, off: boolean, aliases: Array<string>, duplicate: boolean, rivals: Array<string>, prefixed: boolean, calls: number, errors: number, avgMs: number }> | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
 
 export type FlxRoleCreateMutationVariables = Exact<{
   input: FlxRoleCreateInput;

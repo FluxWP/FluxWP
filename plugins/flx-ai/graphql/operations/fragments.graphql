@@ -192,3 +192,24 @@ fragment FlxAiSecretFields on FlxAiSecret {
   hint
   fromConfig
 }
+
+fragment FlxAiToolRow on FlxAiTool {
+  name
+  title
+  description
+  source
+  sourceLabel
+  readonly
+  approval
+  capability
+  mcp
+  chat
+  off
+  aliases
+  duplicate
+  rivals
+  prefixed
+  calls
+  errors
+  avgMs
+}
