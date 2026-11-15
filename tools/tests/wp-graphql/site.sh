@@ -12,6 +12,7 @@
 #   PACKAGES           space separated plugin slugs to activate besides flx-graphql
 #                      (default: every plugin whose header says "Requires Plugins: … flx-graphql")
 #   WOOCOMMERCE_ZIP    optional WooCommerce zip, activated before the packages
+#   SQLITE_VERSION     sqlite-database-integration version to download (default 3.1.3)
 #   FIXTURES=0         leave the kit test fixtures (mu-plugin) out, e.g. for the schema snapshot
 #   SERVE=1            start `php -S` on the port and wait until it answers (PID in $site/.server.pid)
 #
@@ -37,7 +38,11 @@ fi
 
 sqlite="${SQLITE_PLUGIN_DIR:-}"
 if [ -z "$sqlite" ]; then
-  $WP plugin install sqlite-database-integration --path="$site" >/dev/null 2>&1 || true
+  # wp-cli "plugin install" needs a working database, which is what this plugin provides: download it directly.
+  tmpzip="$(mktemp)"
+  curl -fsSL -o "$tmpzip" "https://downloads.wordpress.org/plugin/sqlite-database-integration.${SQLITE_VERSION:-3.1.3}.zip"
+  unzip -qo "$tmpzip" -d "$site/wp-content/plugins"
+  rm -f "$tmpzip"
   sqlite="$site/wp-content/plugins/sqlite-database-integration"
 else
   cp -rL "$sqlite" "$site/wp-content/plugins/sqlite-database-integration"
