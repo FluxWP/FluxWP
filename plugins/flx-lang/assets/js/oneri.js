@@ -48,25 +48,32 @@
 	}
 
 	function decide( country ) {
-		var home;
-		if ( country ) {
-			home = d.home.indexOf( country ) !== -1;
-		} else {
-			var tz = '';
-			try {
-				tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
-			} catch ( e ) {}
-			home = (d.home.indexOf('TR') !== -1 && (tz === 'Europe/Istanbul' || tz === 'Asia/Istanbul')) || (d.home.indexOf('CY') !== -1 && (tz === 'Asia/Famagusta' || tz === 'Asia/Nicosia'));
-		}
-		if ( home ) {
-			return d.def;
-		}
+		// 1. Browser language wins when the site has it.
 		var b = browserLang();
 		if ( b ) {
 			return b;
 		}
-		var local = (d.countries || {})[country];
-		if (local && d.alts[local]) { return local; }
+		// 2. Country (geo header, else time zone).
+		var hc = country;
+		if ( ! hc ) {
+			var tz = '';
+			try {
+				tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+			} catch ( e ) {}
+			if ( tz === 'Europe/Istanbul' || tz === 'Asia/Istanbul' ) {
+				hc = 'TR';
+			} else if ( tz === 'Asia/Famagusta' || tz === 'Asia/Nicosia' ) {
+				hc = 'CY';
+			}
+		}
+		var local = hc ? (d.countries || {})[ hc ] : '';
+		if ( hc && d.home.indexOf( hc ) !== -1 ) {
+			return local && d.alts[ local ] ? local : d.def;
+		}
+		if ( local && d.alts[ local ] ) {
+			return local;
+		}
+		// 3. Fallback language (English).
 		return d.alts[ d.to ] ? d.to : '';
 	}
 

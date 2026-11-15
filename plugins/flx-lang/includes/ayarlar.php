@@ -189,13 +189,13 @@ function flxl_settings_page() {
 
 			<h2><?php esc_html_e( 'Language suggestion for visitors', 'flx-lang' ); ?></h2>
 			<table class="form-table" role="presentation">
-				<tr><th scope="row"><?php esc_html_e( 'Visitors from outside Türkiye', 'flx-lang' ); ?></th><td>
+				<tr><th scope="row"><?php esc_html_e( 'Automatic language', 'flx-lang' ); ?></th><td>
 					<fieldset>
 						<label><input type="radio" name="suggest" value="redirect" <?php checked( $s['suggest'], 'redirect' ); ?>> <?php esc_html_e( 'Open directly in their language (recommended)', 'flx-lang' ); ?></label><br>
 						<label><input type="radio" name="suggest" value="banner" <?php checked( $s['suggest'], 'banner' ); ?>> <?php esc_html_e( 'Show a suggestion bar at the top of the page', 'flx-lang' ); ?></label><br>
 						<label><input type="radio" name="suggest" value="off" <?php checked( $s['suggest'], 'off' ); ?>> <?php esc_html_e( 'Off', 'flx-lang' ); ?></label>
 					</fieldset>
-					<p class="description"><?php esc_html_e( 'Visitors from outside Türkiye open the version in their language (English if none) before the page renders, and stay in it on later visits. A visitor who picks another language in the switcher stays in it. Search engine bots are never redirected. If the country or time zone is Türkiye, the visitor stays in Turkish. Not applied to logged-in users; use a private window to test.', 'flx-lang' ); ?></p>
+					<p class="description"><?php esc_html_e( 'On the first visit, before the page renders, the site opens in the visitor\'s browser language if it is active here; otherwise in their country\'s language; otherwise in the suggested language below. The choice is kept on later visits, and a visitor who picks another language in the switcher stays in it. Search engine bots are never redirected. Not applied to logged-in users; use a private window to test.', 'flx-lang' ); ?></p>
 				</td></tr>
 				<tr><th scope="row"><label for="flxl-to"><?php esc_html_e( 'Suggested language', 'flx-lang' ); ?></label></th><td>
 					<select id="flxl-to" name="suggest_to">
@@ -203,11 +203,11 @@ function flxl_settings_page() {
 							<option value="<?php echo esc_attr( $code ); ?>" <?php selected( $s['suggest_to'], $code ); ?>><?php echo esc_html( $l['name'] ); ?></option>
 						<?php endforeach; ?>
 					</select>
-					<p class="description"><?php esc_html_e( 'If the browser language is one of the active languages (e.g. German once added), that one is suggested; otherwise this one.', 'flx-lang' ); ?></p>
+					<p class="description"><?php esc_html_e( 'Used when neither the browser language nor the country\'s language is active on the site.', 'flx-lang' ); ?></p>
 				</td></tr>
-				<tr><th scope="row"><label for="flxl-hc"><?php esc_html_e( 'Countries that see Turkish', 'flx-lang' ); ?></label></th><td>
+				<tr><th scope="row"><label for="flxl-hc"><?php esc_html_e( 'Countries that see the default language', 'flx-lang' ); ?></label></th><td>
 					<input id="flxl-hc" type="text" class="regular-text" name="home_countries" value="<?php echo esc_attr( implode( ', ', (array) $s['home_countries'] ) ); ?>">
-					<p class="description"><?php esc_html_e( 'Two-letter country codes (TR, CY…).', 'flx-lang' ); ?></p>
+					<p class="description"><?php esc_html_e( 'Two-letter country codes (TR, CY…). Used only when the browser language is not on the site.', 'flx-lang' ); ?></p>
 				</td></tr>
 				<tr><th scope="row"><?php esc_html_e( 'Country information', 'flx-lang' ); ?></th><td>
 					<?php if ( $geo['country'] ) : ?>

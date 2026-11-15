@@ -3,6 +3,11 @@ return array(
  'language' => 'tr_TR',
  'plural-forms' => 'nplurals=2; plural=(n != 1);',
  'messages' => array(
+  'Automatic language' => 'Otomatik dil',
+  'On the first visit, before the page renders, the site opens in the visitor\'s browser language if it is active here; otherwise in their country\'s language; otherwise in the suggested language below. The choice is kept on later visits, and a visitor who picks another language in the switcher stays in it. Search engine bots are never redirected. Not applied to logged-in users; use a private window to test.' => 'İlk girişte, sayfa çizilmeden önce site ziyaretçinin tarayıcı dili burada etkinse o dilde; değilse ülkesinin dilinde; o da yoksa aşağıdaki önerilen dilde açılır. Seçim sonraki girişlerde korunur; dil seçiciden başka dil seçen o dilde kalır. Arama motoru botları yönlendirilmez. Giriş yapmış kullanıcılara uygulanmaz; denemek için gizli pencere kullanın.',
+  'Used when neither the browser language nor the country\'s language is active on the site.' => 'Ne tarayıcı dili ne ülkenin dili sitede etkin değilse bu dil kullanılır.',
+  'Countries that see the default language' => 'Varsayılan dili gören ülkeler',
+  'Two-letter country codes (TR, CY…). Used only when the browser language is not on the site.' => 'İki harfli ülke kodları (TR, CY…). Yalnız tarayıcı dili sitede yoksa kullanılır.',
   'Languages' => 'Diller',
   'Shared page: the same in every language, interface in the visitor\'s language.' => 'Ortak sayfa: her dilde aynı, arayüz ziyaretçinin dilinde.',
   'Shared' => 'Ortak',

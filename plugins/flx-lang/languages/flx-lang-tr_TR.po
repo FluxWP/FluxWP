@@ -327,3 +327,18 @@ msgstr "Boş bırakılırsa Türkçe ad ve açıklama gösterilir."
 
 msgid "Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools."
 msgstr "Siteyi çok dilli yapar: /en/ gibi dil adresleri, sayfa, yazı, proje ve etkinlik başına çeviri, dile özgü görsel, hreflang ve canonical, Türkiye dışından gelene İngilizce önerisi, dil seçici; Flux AI & MCP ve Flux AI araçlarına dil desteği."
+
+msgid "Automatic language"
+msgstr "Otomatik dil"
+
+msgid "On the first visit, before the page renders, the site opens in the visitor's browser language if it is active here; otherwise in their country's language; otherwise in the suggested language below. The choice is kept on later visits, and a visitor who picks another language in the switcher stays in it. Search engine bots are never redirected. Not applied to logged-in users; use a private window to test."
+msgstr "İlk girişte, sayfa çizilmeden önce site ziyaretçinin tarayıcı dili burada etkinse o dilde; değilse ülkesinin dilinde; o da yoksa aşağıdaki önerilen dilde açılır. Seçim sonraki girişlerde korunur; dil seçiciden başka dil seçen o dilde kalır. Arama motoru botları yönlendirilmez. Giriş yapmış kullanıcılara uygulanmaz; denemek için gizli pencere kullanın."
+
+msgid "Used when neither the browser language nor the country's language is active on the site."
+msgstr "Ne tarayıcı dili ne ülkenin dili sitede etkin değilse bu dil kullanılır."
+
+msgid "Countries that see the default language"
+msgstr "Varsayılan dili gören ülkeler"
+
+msgid "Two-letter country codes (TR, CY…). Used only when the browser language is not on the site."
+msgstr "İki harfli ülke kodları (TR, CY…). Yalnız tarayıcı dili sitede yoksa kullanılır."
