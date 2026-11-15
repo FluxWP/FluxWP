@@ -1,0 +1,13 @@
+# One chat with its messages after $afterId. Opening it marks the visitor's messages as read unless $peek.
+query FlxChatbotConversationOpen($id: ID!, $afterId: Int = 0, $peek: Boolean = false) {
+  flxChatbotConversation(id: $id) {
+    ...FlxChatbotConversationRow
+  }
+  flxChatbotMessages(conversationId: $id, afterId: $afterId, peek: $peek) {
+    nodes {
+      ...FlxChatbotMessageFields
+    }
+    lastId
+    hasMore
+  }
+}

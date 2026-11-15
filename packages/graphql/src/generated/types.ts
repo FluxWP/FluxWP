@@ -4,6 +4,113 @@
 type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 /** Internal type. DO NOT USE DIRECTLY. */
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+/** State of a connection line. */
+export type FlxChatbotStatusState =
+  | 'INFO'
+  | 'OK'
+  | 'WARN';
+
+/** Who wrote a message. */
+export type FlxChatbotMessageRole =
+  | 'AGENT'
+  /** The assistant. */
+  | 'BOT'
+  /** An event line (handed over, ended, …). */
+  | 'SYSTEM'
+  | 'VISITOR';
+
+/** Where a chat is. */
+export type FlxChatbotConversationStatus =
+  /** An agent is talking with the visitor. */
+  | 'AGENT'
+  /** The assistant is answering. */
+  | 'BOT'
+  /** The chat ended. */
+  | 'CLOSED'
+  /** The visitor left a message outside working hours. */
+  | 'OFFLINE'
+  /** Waiting for an agent. */
+  | 'QUEUED';
+
+/** Which chats the list shows. */
+export type FlxChatbotConversationFilter =
+  /** In conversation. */
+  | 'AGENT'
+  /** Every chat. */
+  | 'ALL'
+  /** With the assistant. */
+  | 'BOT'
+  /** Closed. */
+  | 'CLOSED'
+  /** Left a message. */
+  | 'OFFLINE'
+  /** Waiting for an agent, in conversation or left a message. */
+  | 'OPEN'
+  /** Waiting for an agent. */
+  | 'QUEUED';
+
+/** What a message carries. */
+export type FlxChatbotMessageType =
+  | 'FILE'
+  | 'IMAGE'
+  | 'TEXT';
+
+export type FlxSettingsChatbotAskEmail =
+  | 'ALWAYS'
+  | 'NEVER'
+  | 'OFFLINE';
+
+export type FlxSettingsChatbotAudience =
+  | 'ALL'
+  | 'GUESTS'
+  | 'MEMBERS';
+
+export type FlxSettingsChatbotAvatarIcon =
+  | 'BOT'
+  | 'HEADSET'
+  | 'LOGO'
+  | 'SMILE'
+  | 'SPARKLES';
+
+export type FlxSettingsChatbotFont =
+  | 'INHERIT'
+  | 'SYSTEM';
+
+export type FlxSettingsChatbotHandoffTo =
+  | 'AUTO'
+  | 'FLX_CHAT'
+  | 'INBOX';
+
+export type FlxSettingsChatbotHeaderStyle =
+  | 'GRADIENT'
+  | 'SOLID';
+
+export type FlxSettingsChatbotHoursMode =
+  | 'ALWAYS'
+  | 'CUSTOM'
+  | 'FLX_CHAT';
+
+export type FlxSettingsChatbotLauncherIcon =
+  | 'AVATAR'
+  | 'CHAT'
+  | 'HEADSET'
+  | 'HELP'
+  | 'SPARKLES';
+
+export type FlxSettingsChatbotMode =
+  | 'AI'
+  | 'HYBRID'
+  | 'LIVE';
+
+export type FlxSettingsChatbotPosition =
+  | 'LEFT'
+  | 'RIGHT';
+
+export type FlxSettingsChatbotTheme =
+  | 'AUTO'
+  | 'DARK'
+  | 'LIGHT';
+
 /** What a task row is. */
 export type FlxTaskKind =
   /** An agenda item of a meeting. */
@@ -23,6 +130,129 @@ export type FlxTaskRole =
   | 'EDIT'
   /** See tasks. */
   | 'VIEW';
+
+/** Input for the flxChatbotConversationClose mutation. */
+export type FlxChatbotConversationCloseInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Global ID or chat number. */
+  id: string;
+};
+
+/** Input for the flxChatbotConversationDelete mutation. */
+export type FlxChatbotConversationDeleteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Global ID or chat number. */
+  id: string;
+};
+
+/** Input for the flxChatbotConversationReply mutation. */
+export type FlxChatbotConversationReplyInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Global ID or chat number. */
+  id: string;
+  /** Reply text. */
+  text?: string | null | undefined;
+  /** File sent first to /wp-json/flx/v1/upload (context flx-chatbot/reply). */
+  uploadId?: string | null | undefined;
+};
+
+/** Input for the flxChatbotConversationTyping mutation. */
+export type FlxChatbotConversationTypingInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Global ID or chat number. */
+  id: string;
+};
+
+/** Input for the flxChatbotSettingsSave mutation. */
+export type FlxChatbotSettingsSaveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** The settings to change. */
+  settings: FlxSettingsChatbotInput;
+};
+
+/** Changes to Flux AI Chatbot. Only the fields you send are changed. */
+export type FlxSettingsChatbotInput = {
+  aiCards?: boolean | null | undefined;
+  aiDailyLimit?: number | null | undefined;
+  aiHourLimit?: number | null | undefined;
+  aiInstructions?: string | null | undefined;
+  /** Free-form knowledge base the assistant may answer from. */
+  aiKnowledge?: string | null | undefined;
+  aiMaxTurns?: number | null | undefined;
+  aiPersona?: string | null | undefined;
+  aiSrcPages?: boolean | null | undefined;
+  aiSrcPosts?: boolean | null | undefined;
+  aiSrcProducts?: boolean | null | undefined;
+  aiSrcWiki?: boolean | null | undefined;
+  aiToolLead?: boolean | null | undefined;
+  aiToolOrders?: boolean | null | undefined;
+  askEmail?: FlxSettingsChatbotAskEmail | null | undefined;
+  audience?: FlxSettingsChatbotAudience | null | undefined;
+  avatarIcon?: FlxSettingsChatbotAvatarIcon | null | undefined;
+  avatarId?: number | null | undefined;
+  botName?: string | null | undefined;
+  /** Widget main color (hex). Empty follows the theme primary color. */
+  color?: string | null | undefined;
+  colorText?: string | null | undefined;
+  deviceDesktop?: boolean | null | undefined;
+  deviceMobile?: boolean | null | undefined;
+  dictation?: boolean | null | undefined;
+  emailReplies?: boolean | null | undefined;
+  enabled?: boolean | null | undefined;
+  excludeUrls?: string | null | undefined;
+  font?: FlxSettingsChatbotFont | null | undefined;
+  handoffTo?: FlxSettingsChatbotHandoffTo | null | undefined;
+  headerStyle?: FlxSettingsChatbotHeaderStyle | null | undefined;
+  homeEnabled?: boolean | null | undefined;
+  homeText?: string | null | undefined;
+  homeTitle?: string | null | undefined;
+  hours?: unknown;
+  hoursMode?: FlxSettingsChatbotHoursMode | null | undefined;
+  launcherIcon?: FlxSettingsChatbotLauncherIcon | null | undefined;
+  launcherLabel?: string | null | undefined;
+  launcherSize?: number | null | undefined;
+  /** Home screen contact links, one per line: Label | URL (https, mailto, tel, wa.me). */
+  links?: string | null | undefined;
+  mobileFull?: boolean | null | undefined;
+  /** hybrid = AI first, then human handoff; ai = AI only; live = human agents only. */
+  mode?: FlxSettingsChatbotMode | null | undefined;
+  notifyEmail?: string | null | undefined;
+  offlineText?: string | null | undefined;
+  offsetX?: number | null | undefined;
+  offsetY?: number | null | undefined;
+  placeholder?: string | null | undefined;
+  position?: FlxSettingsChatbotPosition | null | undefined;
+  privacyText?: string | null | undefined;
+  /** One suggested question per line. */
+  quickReplies?: string | null | undefined;
+  radius?: number | null | undefined;
+  rating?: boolean | null | undefined;
+  retentionDays?: number | null | undefined;
+  showBranding?: boolean | null | undefined;
+  showOnAccount?: boolean | null | undefined;
+  showOnCart?: boolean | null | undefined;
+  showOnCheckout?: boolean | null | undefined;
+  showOnHome?: boolean | null | undefined;
+  showOnOther?: boolean | null | undefined;
+  showOnPages?: boolean | null | undefined;
+  showOnPosts?: boolean | null | undefined;
+  showOnShop?: boolean | null | undefined;
+  showTeam?: boolean | null | undefined;
+  sound?: boolean | null | undefined;
+  teaserDelay?: number | null | undefined;
+  teaserEnabled?: boolean | null | undefined;
+  teaserText?: string | null | undefined;
+  theme?: FlxSettingsChatbotTheme | null | undefined;
+  uploadMb?: number | null | undefined;
+  uploads?: boolean | null | undefined;
+  welcome?: string | null | undefined;
+  width?: number | null | undefined;
+};
 
 /** Input for the flxRoleCreate mutation. */
 export type FlxRoleCreateInput = {
@@ -185,6 +415,77 @@ export type FlxTaskWatchInput = {
   /** Follow (true) or stop following (false). */
   watch: boolean;
 };
+
+export type FlxChatbotConversationCloseMutationVariables = Exact<{
+  input: FlxChatbotConversationCloseInput;
+}>;
+
+
+export type FlxChatbotConversationCloseMutation = { flxChatbotConversationClose: { conversation: { id: string, databaseId: number, title: string, name: string | null, email: string | null, phone: string | null, status: FlxChatbotConversationStatus, unread: number, rating: number | null, ratingNote: string | null, isLead: boolean, orderId: number | null, orderUrl: string | null, pageUrl: string | null, pageTitle: string | null, userId: number | null, agentName: string | null, fluxChatUrl: string | null, summary: string | null, online: boolean, typing: boolean, lastActivity: { timestamp: number, label: string, relative: string } | null, lastMessage: { role: FlxChatbotMessageRole, body: string } | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxChatbotConversationRowFragment = { id: string, databaseId: number, title: string, name: string | null, email: string | null, phone: string | null, status: FlxChatbotConversationStatus, unread: number, rating: number | null, ratingNote: string | null, isLead: boolean, orderId: number | null, orderUrl: string | null, pageUrl: string | null, pageTitle: string | null, userId: number | null, agentName: string | null, fluxChatUrl: string | null, summary: string | null, online: boolean, typing: boolean, lastActivity: { timestamp: number, label: string, relative: string } | null, lastMessage: { role: FlxChatbotMessageRole, body: string } | null };
+
+export type FlxChatbotConversationDeleteMutationVariables = Exact<{
+  input: FlxChatbotConversationDeleteInput;
+}>;
+
+
+export type FlxChatbotConversationDeleteMutation = { flxChatbotConversationDelete: { deletedId: number | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxChatbotConversationListQueryVariables = Exact<{
+  filter?: FlxChatbotConversationFilter | null | undefined;
+  search?: string | null | undefined;
+  first?: number | null | undefined;
+}>;
+
+
+export type FlxChatbotConversationListQuery = { flxChatbotConversations: { totalCount: number | null, nodes: Array<{ id: string, databaseId: number, title: string, name: string | null, email: string | null, phone: string | null, status: FlxChatbotConversationStatus, unread: number, rating: number | null, ratingNote: string | null, isLead: boolean, orderId: number | null, orderUrl: string | null, pageUrl: string | null, pageTitle: string | null, userId: number | null, agentName: string | null, fluxChatUrl: string | null, summary: string | null, online: boolean, typing: boolean, lastActivity: { timestamp: number, label: string, relative: string } | null, lastMessage: { role: FlxChatbotMessageRole, body: string } | null }>, pageInfo: { hasNextPage: boolean, endCursor: string | null } } };
+
+export type FlxChatbotConversationOpenQueryVariables = Exact<{
+  id: string;
+  afterId?: number | null | undefined;
+  peek?: boolean | null | undefined;
+}>;
+
+
+export type FlxChatbotConversationOpenQuery = { flxChatbotConversation: { id: string, databaseId: number, title: string, name: string | null, email: string | null, phone: string | null, status: FlxChatbotConversationStatus, unread: number, rating: number | null, ratingNote: string | null, isLead: boolean, orderId: number | null, orderUrl: string | null, pageUrl: string | null, pageTitle: string | null, userId: number | null, agentName: string | null, fluxChatUrl: string | null, summary: string | null, online: boolean, typing: boolean, lastActivity: { timestamp: number, label: string, relative: string } | null, lastMessage: { role: FlxChatbotMessageRole, body: string } | null } | null, flxChatbotMessages: { lastId: number, hasMore: boolean, nodes: Array<{ databaseId: number, role: FlxChatbotMessageRole, type: FlxChatbotMessageType, body: string, author: string | null, sentAt: { timestamp: number, label: string }, file: { name: string, mime: string, url: string | null } | null, cards: Array<{ title: string, url: string, image: string | null, price: string, inStock: boolean, cartUrl: string | null }> }> } };
+
+export type FlxChatbotMessageFieldsFragment = { databaseId: number, role: FlxChatbotMessageRole, type: FlxChatbotMessageType, body: string, author: string | null, sentAt: { timestamp: number, label: string }, file: { name: string, mime: string, url: string | null } | null, cards: Array<{ title: string, url: string, image: string | null, price: string, inStock: boolean, cartUrl: string | null }> };
+
+export type FlxChatbotConversationReplyMutationVariables = Exact<{
+  input: FlxChatbotConversationReplyInput;
+}>;
+
+
+export type FlxChatbotConversationReplyMutation = { flxChatbotConversationReply: { conversation: { id: string, databaseId: number, title: string, name: string | null, email: string | null, phone: string | null, status: FlxChatbotConversationStatus, unread: number, rating: number | null, ratingNote: string | null, isLead: boolean, orderId: number | null, orderUrl: string | null, pageUrl: string | null, pageTitle: string | null, userId: number | null, agentName: string | null, fluxChatUrl: string | null, summary: string | null, online: boolean, typing: boolean, lastActivity: { timestamp: number, label: string, relative: string } | null, lastMessage: { role: FlxChatbotMessageRole, body: string } | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxChatbotConversationTypingMutationVariables = Exact<{
+  input: FlxChatbotConversationTypingInput;
+}>;
+
+
+export type FlxChatbotConversationTypingMutation = { flxChatbotConversationTyping: { ok: boolean } | null };
+
+export type FlxChatbotInboxQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxChatbotInboxQuery = { flxChatbotInbox: { fluxChatUrl: string | null, settingsUrl: string | null, canDelete: boolean, agentName: string, maxUploadMb: number } };
+
+export type FlxChatbotSettingsSaveMutationVariables = Exact<{
+  input: FlxChatbotSettingsSaveInput;
+}>;
+
+
+export type FlxChatbotSettingsSaveMutation = { flxChatbotSettingsSave: { settings: { enabled: boolean | null, mode: FlxSettingsChatbotMode | null, botName: string | null, avatarId: number | null, avatarIcon: FlxSettingsChatbotAvatarIcon | null, color: string | null, colorText: string | null, theme: FlxSettingsChatbotTheme | null, position: FlxSettingsChatbotPosition | null, offsetX: number | null, offsetY: number | null, launcherIcon: FlxSettingsChatbotLauncherIcon | null, launcherLabel: string | null, launcherSize: number | null, radius: number | null, width: number | null, headerStyle: FlxSettingsChatbotHeaderStyle | null, font: FlxSettingsChatbotFont | null, mobileFull: boolean | null, showBranding: boolean | null, sound: boolean | null, homeEnabled: boolean | null, homeTitle: string | null, homeText: string | null, welcome: string | null, placeholder: string | null, quickReplies: string | null, links: string | null, showTeam: boolean | null, teaserEnabled: boolean | null, teaserText: string | null, teaserDelay: number | null, aiPersona: string | null, aiInstructions: string | null, aiKnowledge: string | null, aiSrcPages: boolean | null, aiSrcPosts: boolean | null, aiSrcProducts: boolean | null, aiSrcWiki: boolean | null, aiToolOrders: boolean | null, aiToolLead: boolean | null, aiCards: boolean | null, aiMaxTurns: number | null, aiHourLimit: number | null, aiDailyLimit: number | null, handoffTo: FlxSettingsChatbotHandoffTo | null, hoursMode: FlxSettingsChatbotHoursMode | null, hours: unknown, askEmail: FlxSettingsChatbotAskEmail | null, notifyEmail: string | null, emailReplies: boolean | null, rating: boolean | null, uploads: boolean | null, uploadMb: number | null, dictation: boolean | null, offlineText: string | null, audience: FlxSettingsChatbotAudience | null, deviceDesktop: boolean | null, deviceMobile: boolean | null, excludeUrls: string | null, retentionDays: number | null, privacyText: string | null, showOnHome: boolean | null, showOnPosts: boolean | null, showOnPages: boolean | null, showOnShop: boolean | null, showOnCart: boolean | null, showOnCheckout: boolean | null, showOnAccount: boolean | null, showOnOther: boolean | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxChatbotSettingsFieldsFragment = { enabled: boolean | null, mode: FlxSettingsChatbotMode | null, botName: string | null, avatarId: number | null, avatarIcon: FlxSettingsChatbotAvatarIcon | null, color: string | null, colorText: string | null, theme: FlxSettingsChatbotTheme | null, position: FlxSettingsChatbotPosition | null, offsetX: number | null, offsetY: number | null, launcherIcon: FlxSettingsChatbotLauncherIcon | null, launcherLabel: string | null, launcherSize: number | null, radius: number | null, width: number | null, headerStyle: FlxSettingsChatbotHeaderStyle | null, font: FlxSettingsChatbotFont | null, mobileFull: boolean | null, showBranding: boolean | null, sound: boolean | null, homeEnabled: boolean | null, homeTitle: string | null, homeText: string | null, welcome: string | null, placeholder: string | null, quickReplies: string | null, links: string | null, showTeam: boolean | null, teaserEnabled: boolean | null, teaserText: string | null, teaserDelay: number | null, aiPersona: string | null, aiInstructions: string | null, aiKnowledge: string | null, aiSrcPages: boolean | null, aiSrcPosts: boolean | null, aiSrcProducts: boolean | null, aiSrcWiki: boolean | null, aiToolOrders: boolean | null, aiToolLead: boolean | null, aiCards: boolean | null, aiMaxTurns: number | null, aiHourLimit: number | null, aiDailyLimit: number | null, handoffTo: FlxSettingsChatbotHandoffTo | null, hoursMode: FlxSettingsChatbotHoursMode | null, hours: unknown, askEmail: FlxSettingsChatbotAskEmail | null, notifyEmail: string | null, emailReplies: boolean | null, rating: boolean | null, uploads: boolean | null, uploadMb: number | null, dictation: boolean | null, offlineText: string | null, audience: FlxSettingsChatbotAudience | null, deviceDesktop: boolean | null, deviceMobile: boolean | null, excludeUrls: string | null, retentionDays: number | null, privacyText: string | null, showOnHome: boolean | null, showOnPosts: boolean | null, showOnPages: boolean | null, showOnShop: boolean | null, showOnCart: boolean | null, showOnCheckout: boolean | null, showOnAccount: boolean | null, showOnOther: boolean | null };
+
+export type FlxChatbotSettingsScreenQueryVariables = Exact<{
+  days?: number | null | undefined;
+}>;
+
+
+export type FlxChatbotSettingsScreenQuery = { flxSettings: { chatbot: { enabled: boolean | null, mode: FlxSettingsChatbotMode | null, botName: string | null, avatarId: number | null, avatarIcon: FlxSettingsChatbotAvatarIcon | null, color: string | null, colorText: string | null, theme: FlxSettingsChatbotTheme | null, position: FlxSettingsChatbotPosition | null, offsetX: number | null, offsetY: number | null, launcherIcon: FlxSettingsChatbotLauncherIcon | null, launcherLabel: string | null, launcherSize: number | null, radius: number | null, width: number | null, headerStyle: FlxSettingsChatbotHeaderStyle | null, font: FlxSettingsChatbotFont | null, mobileFull: boolean | null, showBranding: boolean | null, sound: boolean | null, homeEnabled: boolean | null, homeTitle: string | null, homeText: string | null, welcome: string | null, placeholder: string | null, quickReplies: string | null, links: string | null, showTeam: boolean | null, teaserEnabled: boolean | null, teaserText: string | null, teaserDelay: number | null, aiPersona: string | null, aiInstructions: string | null, aiKnowledge: string | null, aiSrcPages: boolean | null, aiSrcPosts: boolean | null, aiSrcProducts: boolean | null, aiSrcWiki: boolean | null, aiToolOrders: boolean | null, aiToolLead: boolean | null, aiCards: boolean | null, aiMaxTurns: number | null, aiHourLimit: number | null, aiDailyLimit: number | null, handoffTo: FlxSettingsChatbotHandoffTo | null, hoursMode: FlxSettingsChatbotHoursMode | null, hours: unknown, askEmail: FlxSettingsChatbotAskEmail | null, notifyEmail: string | null, emailReplies: boolean | null, rating: boolean | null, uploads: boolean | null, uploadMb: number | null, dictation: boolean | null, offlineText: string | null, audience: FlxSettingsChatbotAudience | null, deviceDesktop: boolean | null, deviceMobile: boolean | null, excludeUrls: string | null, retentionDays: number | null, privacyText: string | null, showOnHome: boolean | null, showOnPosts: boolean | null, showOnPages: boolean | null, showOnShop: boolean | null, showOnCart: boolean | null, showOnCheckout: boolean | null, showOnAccount: boolean | null, showOnOther: boolean | null } | null }, flxChatbotAdmin: { avatarUrl: string | null, notifyEmailDefault: string, aiReady: boolean, aiSettingsUrl: string | null, fluxChatReady: boolean, fluxChatActive: boolean, shopActive: boolean, ordersActive: boolean, wikiActive: boolean, inboxUrl: string, siteUrl: string, stats: { total: number, human: number, resolved: number, leads: number, orders: number, rating: number | null, rated: number, open: number }, status: Array<{ key: string, state: FlxChatbotStatusState, title: string, text: string, url: string | null, urlLabel: string | null }>, textDefaults: Array<{ key: string, text: string }>, pageTypes: Array<{ key: string, label: string }>, weekdays: Array<{ key: string, label: string }>, preview: { config: unknown, scriptUrl: string } } };
 
 export type FlxRoleCreateMutationVariables = Exact<{
   input: FlxRoleCreateInput;

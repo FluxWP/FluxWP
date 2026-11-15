@@ -1,165 +1,12 @@
 <?php
 /**
  * Yönetim: Chatbot ayarları (sekmeler + canlı önizleme) ve kaydetme.
+ * Alan tanımları ve temizleme includes/settings.php'de (GraphQL isteğinde de gerekir).
  *
  * @package FLX_Chatbot
  */
 
 defined( 'ABSPATH' ) || exit;
-
-/**
- * Alan tanımları: anahtar => array( tür, sekme, ek ).
- * Türler: bool, int, text, textarea, enum, color, media, hours.
- */
-function flxcb_fields() {
-	$f = array(
-		'enabled'         => array( 'bool', 'general' ),
-		'mode'            => array( 'enum', 'general', array( 'hybrid', 'ai', 'live' ) ),
-		'bot_name'        => array( 'text', 'look' ),
-		'avatar_id'       => array( 'media', 'look' ),
-		'avatar_icon'     => array( 'enum', 'look', array( 'bot', 'sparkles', 'headset', 'smile', 'logo' ) ),
-		'color'           => array( 'color', 'look' ),
-		'color_text'      => array( 'color', 'look' ),
-		'theme'           => array( 'enum', 'look', array( 'auto', 'light', 'dark' ) ),
-		'position'        => array( 'enum', 'look', array( 'right', 'left' ) ),
-		'offset_x'        => array( 'int', 'look', array( 0, 200 ) ),
-		'offset_y'        => array( 'int', 'look', array( 0, 300 ) ),
-		'launcher_icon'   => array( 'enum', 'look', array( 'chat', 'sparkles', 'headset', 'help', 'avatar' ) ),
-		'launcher_label'  => array( 'text', 'look' ),
-		'launcher_size'   => array( 'int', 'look', array( 44, 80 ) ),
-		'radius'          => array( 'int', 'look', array( 0, 28 ) ),
-		'width'           => array( 'int', 'look', array( 320, 480 ) ),
-		'header_style'    => array( 'enum', 'look', array( 'gradient', 'solid' ) ),
-		'font'            => array( 'enum', 'look', array( 'inherit', 'system' ) ),
-		'mobile_full'     => array( 'bool', 'look' ),
-		'show_branding'   => array( 'bool', 'look' ),
-		'sound'           => array( 'bool', 'look' ),
-		'home_enabled'    => array( 'bool', 'texts' ),
-		'home_title'      => array( 'text', 'texts' ),
-		'home_text'       => array( 'textarea', 'texts' ),
-		'welcome'         => array( 'textarea', 'texts' ),
-		'placeholder'     => array( 'text', 'texts' ),
-		'quick_replies'   => array( 'textarea', 'texts' ),
-		'links'           => array( 'textarea', 'texts' ),
-		'show_team'       => array( 'bool', 'texts' ),
-		'teaser_enabled'  => array( 'bool', 'texts' ),
-		'teaser_text'     => array( 'text', 'texts' ),
-		'teaser_delay'    => array( 'int', 'texts', array( 0, 300 ) ),
-		'ai_persona'      => array( 'textarea', 'ai' ),
-		'ai_instructions' => array( 'textarea', 'ai' ),
-		'ai_knowledge'    => array( 'textarea', 'ai' ),
-		'ai_src_pages'    => array( 'bool', 'ai' ),
-		'ai_src_posts'    => array( 'bool', 'ai' ),
-		'ai_src_products' => array( 'bool', 'ai' ),
-		'ai_src_wiki'     => array( 'bool', 'ai' ),
-		'ai_tool_orders'  => array( 'bool', 'ai' ),
-		'ai_tool_lead'    => array( 'bool', 'ai' ),
-		'ai_cards'        => array( 'bool', 'ai' ),
-		'ai_max_turns'    => array( 'int', 'ai', array( 1, 200 ) ),
-		'ai_hour_limit'   => array( 'int', 'ai', array( 0, 500 ) ),
-		'ai_daily_limit'  => array( 'int', 'ai', array( 0, 100000 ) ),
-		'handoff_to'      => array( 'enum', 'live', array( 'auto', 'flx-chat', 'inbox' ) ),
-		'hours_mode'      => array( 'enum', 'live', array( 'always', 'custom', 'flx-chat' ) ),
-		'hours'           => array( 'hours', 'live' ),
-		'ask_email'       => array( 'enum', 'live', array( 'offline', 'always', 'never' ) ),
-		'notify_email'    => array( 'text', 'live' ),
-		'email_replies'   => array( 'bool', 'live' ),
-		'rating'          => array( 'bool', 'live' ),
-		'uploads'         => array( 'bool', 'live' ),
-		'upload_mb'       => array( 'int', 'live', array( 1, 20 ) ),
-		'dictation'       => array( 'bool', 'live' ),
-		'offline_text'    => array( 'textarea', 'live' ),
-		'audience'        => array( 'enum', 'visibility', array( 'all', 'guests', 'members' ) ),
-		'device_desktop'  => array( 'bool', 'visibility' ),
-		'device_mobile'   => array( 'bool', 'visibility' ),
-		'exclude_urls'    => array( 'textarea', 'visibility' ),
-		'retention_days'  => array( 'int', 'visibility', array( 0, 3650 ) ),
-		'privacy_text'    => array( 'text', 'visibility' ),
-	);
-	foreach ( array_keys( flxcb_page_types() ) as $p ) {
-		$f[ 'show_on_' . $p ] = array( 'bool', 'visibility' );
-	}
-	return $f;
-}
-
-/** Formdan gelen değerleri temizler (yalnız formda olan alanlar). */
-function flxcb_sanitize( array $in ) {
-	$out = array();
-	foreach ( flxcb_fields() as $k => $def ) {
-		if ( ! array_key_exists( $k, $in ) ) {
-			continue;
-		}
-		$v = $in[ $k ];
-		switch ( $def[0] ) {
-			case 'bool':
-				$out[ $k ] = ! empty( $v ) && '0' !== $v ? 1 : 0;
-				break;
-			case 'int':
-			case 'media':
-				$n         = (int) $v;
-				$out[ $k ] = isset( $def[2] ) ? max( $def[2][0], min( $def[2][1], $n ) ) : max( 0, $n );
-				break;
-			case 'enum':
-				$out[ $k ] = in_array( (string) $v, $def[2], true ) ? (string) $v : $def[2][0];
-				break;
-			case 'color':
-				$c         = sanitize_hex_color( (string) $v );
-				$out[ $k ] = $c ? $c : '';
-				break;
-			case 'textarea':
-				$out[ $k ] = sanitize_textarea_field( (string) $v );
-				break;
-			case 'hours':
-				$h = array();
-				for ( $i = 1; $i <= 7; $i++ ) {
-					$d       = is_array( $v[ $i ] ?? null ) ? $v[ $i ] : array();
-					$from    = preg_match( '/^\d{2}:\d{2}$/', (string) ( $d['from'] ?? '' ) ) ? $d['from'] : '09:00';
-					$to      = preg_match( '/^\d{2}:\d{2}$/', (string) ( $d['to'] ?? '' ) ) ? $d['to'] : '18:00';
-					$h[ $i ] = array( 'on' => ! empty( $d['on'] ) ? 1 : 0, 'from' => $from, 'to' => $to );
-				}
-				$out[ $k ] = $h;
-				break;
-			default:
-				$out[ $k ] = sanitize_text_field( (string) $v );
-		}
-	}
-	if ( isset( $out['privacy_text'] ) ) {
-		$out['privacy_text'] = wp_kses( wp_unslash( (string) ( $in['privacy_text'] ?? '' ) ), array( 'a' => array( 'href' => array(), 'target' => array(), 'rel' => array() ) ) );
-	}
-	if ( isset( $out['notify_email'] ) && '' !== $out['notify_email'] && ! is_email( $out['notify_email'] ) ) {
-		$out['notify_email'] = '';
-	}
-	return $out;
-}
-
-/* Ön ayar ve AI için ayar şeması. */
-add_filter(
-	'flx_settings_schema',
-	function ( $s ) {
-		$map    = array( 'bool' => 'bool', 'int' => 'int', 'text' => 'string', 'textarea' => 'text', 'enum' => 'enum', 'color' => 'color', 'media' => 'int', 'hours' => 'object' );
-		$d      = flxcb_defaults();
-		$fields = array();
-		foreach ( flxcb_fields() as $k => $def ) {
-			$fields[ $k ] = array(
-				'type'    => $map[ $def[0] ],
-				'default' => $d[ $k ] ?? '',
-			);
-			if ( 'enum' === $def[0] ) {
-				$fields[ $k ]['enum'] = $def[2];
-			}
-		}
-		$fields['color']['desc']        = 'Widget main color (hex). Empty follows the theme primary color.';
-		$fields['mode']['desc']         = 'hybrid = AI first, then human handoff; ai = AI only; live = human agents only.';
-		$fields['ai_knowledge']['desc'] = 'Free-form knowledge base the assistant may answer from.';
-		$fields['quick_replies']['desc'] = 'One suggested question per line.';
-		$fields['links']['desc']        = 'Home screen contact links, one per line: Label | URL (https, mailto, tel, wa.me).';
-		$s['flxcb_settings']            = array(
-			'label'  => 'Flux AI Chatbot',
-			'fields' => $fields,
-		);
-		return $s;
-	}
-);
 
 final class FLXCB_Admin {
 
@@ -197,15 +44,9 @@ final class FLXCB_Admin {
 			wp_enqueue_media();
 			wp_enqueue_style( 'flxcb-admin', FLXCB_URL . 'assets/admin.css', array(), FLXCB_VERSION );
 			wp_enqueue_script( 'flxcb-admin', FLXCB_URL . 'assets/admin.js', array(), FLXCB_VERSION, true );
-			$cfg            = flxcb_widget_config();
-			$cfg['preview'] = true;
-			$cfg['enabled'] = (bool) flxcb_setting( 'enabled' );
-			$cfg['demo']    = self::demo();
+			$cfg = FLXCB_Settings_Service::preview_config();
 			wp_add_inline_script( 'flxcb-admin', 'window.flxcbConfig=' . wp_json_encode( $cfg, JSON_HEX_TAG | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE ) . ';', 'before' );
-			$defaults = array();
-			foreach ( array( 'bot_name', 'home_title', 'home_text', 'welcome', 'placeholder', 'teaser_text', 'offline_text' ) as $k ) {
-				$defaults[ $k ] = flxcb_default_text( $k );
-			}
+			$defaults = FLXCB_Settings_Service::default_texts();
 			wp_localize_script(
 				'flxcb-admin',
 				'flxcbAdmin',
@@ -236,29 +77,6 @@ final class FLXCB_Admin {
 				)
 			);
 		}
-	}
-
-	/** Önizlemedeki örnek konuşma (gerçek sohbet yokken). Mağaza varsa son ürünle kart gösterilir. */
-	private static function demo() {
-		$now  = flxcb_now_ms();
-		$card = array();
-		if ( function_exists( 'wc_get_products' ) ) {
-			$ids = wc_get_products( array( 'status' => 'publish', 'limit' => 1, 'orderby' => 'date' ) );
-			$p   = $ids ? flxcb_product_info( $ids[0] ) : null;
-			if ( $p ) {
-				$card = array( flxcb_product_card( $p ) );
-			}
-		}
-		return array(
-			array( 'id' => -1, 'role' => 'visitor', 'body' => __( 'Hi, how long does shipping take?', 'flx-chatbot' ), 'ts' => $now - 60000, 'read' => 1 ),
-			array(
-				'id'    => -2,
-				'role'  => 'bot',
-				'body'  => $card ? __( 'Orders ship within **1-3 business days**. Here is a product you might like:', 'flx-chatbot' ) : __( 'Orders ship within **1-3 business days**; shipping is free over $50. Anything else I can help with?', 'flx-chatbot' ),
-				'ts'    => $now - 55000,
-				'cards' => $card,
-			),
-		);
 	}
 
 	/* ---------------- Sayfa ---------------- */
@@ -397,22 +215,9 @@ final class FLXCB_Admin {
 
 		self::card_open( 'flxcb-health', 'shield', __( 'Connections', 'flx-chatbot' ) );
 		echo '<ul class="flxcb-statuses">';
-		if ( $ai_ok ) {
-			self::status_row( true, __( 'Flux AI & MCP connected', 'flx-chatbot' ), __( 'Key, model, spending limit and logs come from Flux AI.', 'flx-chatbot' ), flx_ai_settings_url( 'flx-chatbot' ), __( 'Choose model', 'flx-chatbot' ) );
-		} elseif ( function_exists( 'flxai_chat' ) ) {
-			self::status_row( false, __( 'Flux AI is not ready', 'flx-chatbot' ), __( 'Enter an API key in Flux AI & MCP or turn on Flux AI Chatbot under Connected systems.', 'flx-chatbot' ), admin_url( 'admin.php?page=flx-ai' ), __( 'Flux AI', 'flx-chatbot' ) );
-		} else {
-			self::status_row( false, __( 'Flux AI & MCP is not installed', 'flx-chatbot' ), __( 'Install the Flux AI & MCP plugin for the assistant. Until then the window works as live chat only.', 'flx-chatbot' ) );
+		foreach ( FLXCB_Settings_Service::status_rows() as $row ) {
+			self::status_row( 'ok' === $row->state ? true : ( 'info' === $row->state ? null : false ), $row->title, $row->text, $row->url, $row->url_label );
 		}
-		if ( 'ai' === $s['mode'] ) {
-			self::status_row( null, __( 'Live chat off', 'flx-chatbot' ), __( 'Mode is "AI only".', 'flx-chatbot' ) );
-		} elseif ( 'flx-chat' === flxcb_handoff_target() ) {
-			self::status_row( true, __( 'Flux Chat inbox', 'flx-chatbot' ), __( 'All site chats (including the ones the assistant answered) appear in the call center with the site chat icon; agents reply from the same screen as WhatsApp and other channels.', 'flx-chatbot' ), admin_url( 'admin.php?page=flx-chat' ), __( 'Flux Chat', 'flx-chatbot' ) );
-		} else {
-			self::status_row( true, __( 'Plugin inbox', 'flx-chatbot' ), $fc || flxcb_flux_chat_active() ? __( 'Handed-over chats land on the Chatbot › Chats screen.', 'flx-chatbot' ) : __( 'Handed-over chats land on the Chatbot › Chats screen. With Flux Chat (1.37+) installed they can also be answered from the call center.', 'flx-chatbot' ), flxcb_inbox_url(), __( 'Chats', 'flx-chatbot' ) );
-		}
-		/* translators: %s: hours text */
-		self::status_row( flxcb_is_online() ? true : null, flxcb_is_online() ? __( 'Online now', 'flx-chatbot' ) : __( 'Outside working hours now', 'flx-chatbot' ), 'custom' === $s['hours_mode'] ? sprintf( __( 'Working hours: %s', 'flx-chatbot' ), flxcb_hours_text() ) : ( 'flx-chat' === $s['hours_mode'] ? __( 'Working hours come from the Flux Chat settings.', 'flx-chatbot' ) : __( 'Agents always count as online.', 'flx-chatbot' ) ), flxcb_admin_url( 'live' ), __( 'Hours', 'flx-chatbot' ) );
 		echo '</ul></section>';
 
 		self::card_open( 'flxcb-embed', 'ext', __( 'Open from a page', 'flx-chatbot' ), __( 'Any button or link can open the window.', 'flx-chatbot' ) );
@@ -628,9 +433,7 @@ A: We sell online only.', 'flx-chatbot' ) );
 		check_admin_referer( 'flxcb_save' );
 		$in  = isset( $_POST['s'] ) && is_array( $_POST['s'] ) ? wp_unslash( $_POST['s'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$tab = isset( $_POST['tab'] ) ? sanitize_key( wp_unslash( $_POST['tab'] ) ) : 'general';
-		flxcb_update_settings( flxcb_sanitize( $in ) );
-		delete_transient( 'flxcb_team' );
-		do_action( 'flxcb_settings_saved' );
+		FLXCB_Settings_Service::save( $in );
 		wp_safe_redirect( add_query_arg( 'msg', 'saved', flxcb_admin_url( $tab ) ) );
 		exit;
 	}

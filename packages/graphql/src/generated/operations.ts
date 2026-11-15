@@ -3,6 +3,87 @@
 import type { FlxOperation } from '../operation';
 import type * as T from './types';
 
+/** mutation FlxChatbotConversationClose (flx-chatbot, plugins/flx-chatbot/graphql/operations/FlxChatbotConversationClose.graphql) */
+export const FlxChatbotConversationClose: FlxOperation<T.FlxChatbotConversationCloseMutation, T.FlxChatbotConversationCloseMutationVariables> = {
+  id: 'edb4984f25c406a9143913da2ef715d97887a74bbacdcda82da3f7a8c9707ca2',
+  name: 'FlxChatbotConversationClose',
+  kind: 'mutation',
+  plugin: 'flx-chatbot',
+  document: "mutation FlxChatbotConversationClose($input: FlxChatbotConversationCloseInput!) {\n  flxChatbotConversationClose(input: $input) {\n    conversation {\n      ...FlxChatbotConversationRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxChatbotConversationRow on FlxChatbotConversation {\n  id\n  databaseId\n  title\n  name\n  email\n  phone\n  status\n  unread\n  rating\n  ratingNote\n  isLead\n  orderId\n  orderUrl\n  pageUrl\n  pageTitle\n  userId\n  agentName\n  fluxChatUrl\n  summary\n  lastActivity {\n    timestamp\n    label\n    relative\n  }\n  online\n  typing\n  lastMessage {\n    role\n    body\n  }\n}",
+};
+
+/** mutation FlxChatbotConversationDelete (flx-chatbot, plugins/flx-chatbot/graphql/operations/FlxChatbotConversationDelete.graphql) */
+export const FlxChatbotConversationDelete: FlxOperation<T.FlxChatbotConversationDeleteMutation, T.FlxChatbotConversationDeleteMutationVariables> = {
+  id: '06f77cf96adcd58c306be0a2123151c07f7b20c102c675ac503f4e0f2193d3aa',
+  name: 'FlxChatbotConversationDelete',
+  kind: 'mutation',
+  plugin: 'flx-chatbot',
+  document: "mutation FlxChatbotConversationDelete($input: FlxChatbotConversationDeleteInput!) {\n  flxChatbotConversationDelete(input: $input) {\n    deletedId\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxChatbotConversationList (flx-chatbot, plugins/flx-chatbot/graphql/operations/FlxChatbotConversationList.graphql) */
+export const FlxChatbotConversationList: FlxOperation<T.FlxChatbotConversationListQuery, T.FlxChatbotConversationListQueryVariables> = {
+  id: '0159e5c0272f4a76eb58d3908ee9e42355887bca6384a602ca16fa3ded368fb7',
+  name: 'FlxChatbotConversationList',
+  kind: 'query',
+  plugin: 'flx-chatbot',
+  document: "query FlxChatbotConversationList($filter: FlxChatbotConversationFilter, $search: String, $first: Int = 50) {\n  flxChatbotConversations(filter: $filter, search: $search, first: $first) {\n    nodes {\n      ...FlxChatbotConversationRow\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    totalCount\n  }\n}\n\nfragment FlxChatbotConversationRow on FlxChatbotConversation {\n  id\n  databaseId\n  title\n  name\n  email\n  phone\n  status\n  unread\n  rating\n  ratingNote\n  isLead\n  orderId\n  orderUrl\n  pageUrl\n  pageTitle\n  userId\n  agentName\n  fluxChatUrl\n  summary\n  lastActivity {\n    timestamp\n    label\n    relative\n  }\n  online\n  typing\n  lastMessage {\n    role\n    body\n  }\n}",
+};
+
+/** query FlxChatbotConversationOpen (flx-chatbot, plugins/flx-chatbot/graphql/operations/FlxChatbotConversationOpen.graphql) */
+export const FlxChatbotConversationOpen: FlxOperation<T.FlxChatbotConversationOpenQuery, T.FlxChatbotConversationOpenQueryVariables> = {
+  id: 'c22dcbbc9132d33808d9995d8744230f8914601afae91ff9f71b5aa8e40f71f4',
+  name: 'FlxChatbotConversationOpen',
+  kind: 'query',
+  plugin: 'flx-chatbot',
+  document: "query FlxChatbotConversationOpen($id: ID!, $afterId: Int = 0, $peek: Boolean = false) {\n  flxChatbotConversation(id: $id) {\n    ...FlxChatbotConversationRow\n  }\n  flxChatbotMessages(conversationId: $id, afterId: $afterId, peek: $peek) {\n    nodes {\n      ...FlxChatbotMessageFields\n    }\n    lastId\n    hasMore\n  }\n}\n\nfragment FlxChatbotConversationRow on FlxChatbotConversation {\n  id\n  databaseId\n  title\n  name\n  email\n  phone\n  status\n  unread\n  rating\n  ratingNote\n  isLead\n  orderId\n  orderUrl\n  pageUrl\n  pageTitle\n  userId\n  agentName\n  fluxChatUrl\n  summary\n  lastActivity {\n    timestamp\n    label\n    relative\n  }\n  online\n  typing\n  lastMessage {\n    role\n    body\n  }\n}\n\nfragment FlxChatbotMessageFields on FlxChatbotMessage {\n  databaseId\n  role\n  type\n  body\n  sentAt {\n    timestamp\n    label\n  }\n  author\n  file {\n    name\n    mime\n    url\n  }\n  cards {\n    title\n    url\n    image\n    price\n    inStock\n    cartUrl\n  }\n}",
+};
+
+/** mutation FlxChatbotConversationReply (flx-chatbot, plugins/flx-chatbot/graphql/operations/FlxChatbotConversationReply.graphql) */
+export const FlxChatbotConversationReply: FlxOperation<T.FlxChatbotConversationReplyMutation, T.FlxChatbotConversationReplyMutationVariables> = {
+  id: '019b8ae4942af3eb50b362f80c7946ad71090cbad2a0b11a8383c6dc969665f8',
+  name: 'FlxChatbotConversationReply',
+  kind: 'mutation',
+  plugin: 'flx-chatbot',
+  document: "mutation FlxChatbotConversationReply($input: FlxChatbotConversationReplyInput!) {\n  flxChatbotConversationReply(input: $input) {\n    conversation {\n      ...FlxChatbotConversationRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxChatbotConversationRow on FlxChatbotConversation {\n  id\n  databaseId\n  title\n  name\n  email\n  phone\n  status\n  unread\n  rating\n  ratingNote\n  isLead\n  orderId\n  orderUrl\n  pageUrl\n  pageTitle\n  userId\n  agentName\n  fluxChatUrl\n  summary\n  lastActivity {\n    timestamp\n    label\n    relative\n  }\n  online\n  typing\n  lastMessage {\n    role\n    body\n  }\n}",
+};
+
+/** mutation FlxChatbotConversationTyping (flx-chatbot, plugins/flx-chatbot/graphql/operations/FlxChatbotConversationTyping.graphql) */
+export const FlxChatbotConversationTyping: FlxOperation<T.FlxChatbotConversationTypingMutation, T.FlxChatbotConversationTypingMutationVariables> = {
+  id: '4b73e1d9351052ac89be5c9f77fe281fc9c69498e55c1b83e984e65c49ddcafd',
+  name: 'FlxChatbotConversationTyping',
+  kind: 'mutation',
+  plugin: 'flx-chatbot',
+  document: "mutation FlxChatbotConversationTyping($input: FlxChatbotConversationTypingInput!) {\n  flxChatbotConversationTyping(input: $input) {\n    ok\n  }\n}",
+};
+
+/** query FlxChatbotInbox (flx-chatbot, plugins/flx-chatbot/graphql/operations/FlxChatbotInbox.graphql) */
+export const FlxChatbotInbox: FlxOperation<T.FlxChatbotInboxQuery, T.FlxChatbotInboxQueryVariables> = {
+  id: '2578214d2427732b0bca1b77938018e459d2b57a4a4b50fab18baa2c9c90171f',
+  name: 'FlxChatbotInbox',
+  kind: 'query',
+  plugin: 'flx-chatbot',
+  document: "query FlxChatbotInbox {\n  flxChatbotInbox {\n    fluxChatUrl\n    settingsUrl\n    canDelete\n    agentName\n    maxUploadMb\n  }\n}",
+};
+
+/** mutation FlxChatbotSettingsSave (flx-chatbot, plugins/flx-chatbot/graphql/operations/FlxChatbotSettingsSave.graphql) */
+export const FlxChatbotSettingsSave: FlxOperation<T.FlxChatbotSettingsSaveMutation, T.FlxChatbotSettingsSaveMutationVariables> = {
+  id: '58380f4eafb8b23ee0ed48cc1b49d596c5a05fda9b8cce508d5cc3a3ebcd0b4c',
+  name: 'FlxChatbotSettingsSave',
+  kind: 'mutation',
+  plugin: 'flx-chatbot',
+  document: "mutation FlxChatbotSettingsSave($input: FlxChatbotSettingsSaveInput!) {\n  flxChatbotSettingsSave(input: $input) {\n    settings {\n      ...FlxChatbotSettingsFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxChatbotSettingsFields on FlxSettingsChatbot {\n  enabled\n  mode\n  botName\n  avatarId\n  avatarIcon\n  color\n  colorText\n  theme\n  position\n  offsetX\n  offsetY\n  launcherIcon\n  launcherLabel\n  launcherSize\n  radius\n  width\n  headerStyle\n  font\n  mobileFull\n  showBranding\n  sound\n  homeEnabled\n  homeTitle\n  homeText\n  welcome\n  placeholder\n  quickReplies\n  links\n  showTeam\n  teaserEnabled\n  teaserText\n  teaserDelay\n  aiPersona\n  aiInstructions\n  aiKnowledge\n  aiSrcPages\n  aiSrcPosts\n  aiSrcProducts\n  aiSrcWiki\n  aiToolOrders\n  aiToolLead\n  aiCards\n  aiMaxTurns\n  aiHourLimit\n  aiDailyLimit\n  handoffTo\n  hoursMode\n  hours\n  askEmail\n  notifyEmail\n  emailReplies\n  rating\n  uploads\n  uploadMb\n  dictation\n  offlineText\n  audience\n  deviceDesktop\n  deviceMobile\n  excludeUrls\n  retentionDays\n  privacyText\n  showOnHome\n  showOnPosts\n  showOnPages\n  showOnShop\n  showOnCart\n  showOnCheckout\n  showOnAccount\n  showOnOther\n}",
+};
+
+/** query FlxChatbotSettingsScreen (flx-chatbot, plugins/flx-chatbot/graphql/operations/FlxChatbotSettingsScreen.graphql) */
+export const FlxChatbotSettingsScreen: FlxOperation<T.FlxChatbotSettingsScreenQuery, T.FlxChatbotSettingsScreenQueryVariables> = {
+  id: 'c116623608453060a2014d87ec9efcc566c9956ce079c536f86803f37e4f56e7',
+  name: 'FlxChatbotSettingsScreen',
+  kind: 'query',
+  plugin: 'flx-chatbot',
+  document: "query FlxChatbotSettingsScreen($days: Int = 30) {\n  flxSettings {\n    chatbot {\n      ...FlxChatbotSettingsFields\n    }\n  }\n  flxChatbotAdmin {\n    stats(days: $days) {\n      total\n      human\n      resolved\n      leads\n      orders\n      rating\n      rated\n      open\n    }\n    status {\n      key\n      state\n      title\n      text\n      url\n      urlLabel\n    }\n    textDefaults {\n      key\n      text\n    }\n    pageTypes {\n      key\n      label\n    }\n    weekdays {\n      key\n      label\n    }\n    avatarUrl\n    notifyEmailDefault\n    aiReady\n    aiSettingsUrl\n    fluxChatReady\n    fluxChatActive\n    shopActive\n    ordersActive\n    wikiActive\n    inboxUrl\n    siteUrl\n    preview {\n      config\n      scriptUrl\n    }\n  }\n}\n\nfragment FlxChatbotSettingsFields on FlxSettingsChatbot {\n  enabled\n  mode\n  botName\n  avatarId\n  avatarIcon\n  color\n  colorText\n  theme\n  position\n  offsetX\n  offsetY\n  launcherIcon\n  launcherLabel\n  launcherSize\n  radius\n  width\n  headerStyle\n  font\n  mobileFull\n  showBranding\n  sound\n  homeEnabled\n  homeTitle\n  homeText\n  welcome\n  placeholder\n  quickReplies\n  links\n  showTeam\n  teaserEnabled\n  teaserText\n  teaserDelay\n  aiPersona\n  aiInstructions\n  aiKnowledge\n  aiSrcPages\n  aiSrcPosts\n  aiSrcProducts\n  aiSrcWiki\n  aiToolOrders\n  aiToolLead\n  aiCards\n  aiMaxTurns\n  aiHourLimit\n  aiDailyLimit\n  handoffTo\n  hoursMode\n  hours\n  askEmail\n  notifyEmail\n  emailReplies\n  rating\n  uploads\n  uploadMb\n  dictation\n  offlineText\n  audience\n  deviceDesktop\n  deviceMobile\n  excludeUrls\n  retentionDays\n  privacyText\n  showOnHome\n  showOnPosts\n  showOnPages\n  showOnShop\n  showOnCart\n  showOnCheckout\n  showOnAccount\n  showOnOther\n}",
+};
+
 /** mutation FlxRoleCreate (flx-roles, plugins/flx-roles/graphql/operations/FlxRoleCreate.graphql) */
 export const FlxRoleCreate: FlxOperation<T.FlxRoleCreateMutation, T.FlxRoleCreateMutationVariables> = {
   id: '21a336969a0dc41b8caaa1be0a20b9bd740359347ff57bc8cb72f70ca6254f9e',

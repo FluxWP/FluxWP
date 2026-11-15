@@ -476,109 +476,46 @@ function flxcb_rest_typing( WP_REST_Request $req ) {
 /* ---------------------------------------------------------------- */
 
 function flxcb_conv_for_agent( $c ) {
-	$last = flxcb_last_message( (int) $c['id'] );
-	return array(
-		'id'       => (int) $c['id'],
-		'title'    => flxcb_conv_title( $c ),
-		'name'     => (string) $c['name'],
-		'email'    => (string) $c['email'],
-		'phone'    => (string) $c['phone'],
-		'status'   => (string) $c['status'],
-		'unread'   => (int) $c['unread'],
-		'rating'   => (int) $c['rating'],
-		'note'     => (string) $c['rating_note'],
-		'lead'     => (int) $c['lead'],
-		'order'    => (int) $c['order_id'],
-		'orderUrl' => (int) $c['order_id'] && function_exists( 'wc_get_order' ) && wc_get_order( (int) $c['order_id'] ) ? wc_get_order( (int) $c['order_id'] )->get_edit_order_url() : '',
-		'page'     => array( 'url' => (string) $c['page_url'], 'title' => (string) $c['page_title'] ),
-		'user'     => (int) $c['user_id'],
-		'agent'    => (int) $c['assigned_to'] ? flxcb_user_name( (int) $c['assigned_to'] ) : '',
-		'fluxChat' => (int) $c['flxc_chat'] && flxcb_fc_ready() ? admin_url( 'admin.php?page=flx-chat&chat=' . (int) $c['flxc_chat'] ) : '',
-		'summary'  => (string) flxcb_conv_meta( $c, 'summary' ),
-		'lastTs'   => (int) $c['last_ts'],
-		'ago'      => function_exists( 'flx_time_ago' ) ? flx_time_ago( (int) floor( $c['last_ts'] / 1000 ) ) : '',
-		'online'   => flxcb_now_ms() - (int) $c['seen_ts'] < 45000 ? 1 : 0,
-		'typing'   => get_transient( 'flxcb_typing_v_' . (int) $c['id'] ) ? 1 : 0,
-		'last'     => $last ? array(
-			'role' => $last['role'],
-			'body' => mb_substr( '' !== (string) $last['body'] ? (string) $last['body'] : (string) $last['file_name'], 0, 120 ),
-		) : null,
-	);
+	return FLXCB_Chat_Service::rest_conversation( FLXCB_Chat_Service::conversation( (array) $c ) );
 }
 
 function flxcb_agent_messages_for_js( array $rows ) {
 	return array_map(
-		function ( $m ) {
-			$meta = flxcb_decode( $m['meta'] );
-			$o    = array(
-				'id'     => (int) $m['id'],
-				'role'   => $m['role'],
-				'type'   => $m['type'],
-				'body'   => (string) $m['body'],
-				'ts'     => (int) $m['ts'],
-				'time'   => function_exists( 'flx_date' ) ? flx_date( (int) floor( $m['ts'] / 1000 ), 'datetime' ) : '',
-				'author' => 'agent' === $m['role'] ? flxcb_user_name( (int) $m['user_id'] ) : ( 'bot' === $m['role'] ? flxcb_bot_name() : '' ),
-			);
-			if ( '' !== $m['file_path'] ) {
-				$o['file'] = array(
-					'name' => (string) $m['file_name'],
-					'mime' => (string) $m['file_mime'],
-					'url'  => add_query_arg( '_wpnonce', wp_create_nonce( 'wp_rest' ), rest_url( 'flx-chatbot/v1/file/' . (int) $m['id'] ) ),
-				);
-			}
-			if ( ! empty( $meta['cards'] ) ) {
-				$o['cards'] = $meta['cards'];
-			}
-			return $o;
+		static function ( $m ) {
+			return FLXCB_Chat_Service::rest_message( FLXCB_Chat_Service::message( (array) $m ) );
 		},
 		$rows
 	);
 }
 
 function flxcb_rest_agent_list( WP_REST_Request $req ) {
-	$rows = flxcb_query_conversations(
-		array(
-			'status' => sanitize_key( flxcb_p( $req, 'status' ) ),
-			'q'      => sanitize_text_field( flxcb_p( $req, 'q' ) ),
-			'limit'  => 60,
-			'offset' => max( 0, (int) $req->get_param( 'offset' ) ),
-		)
-	);
+	$page = FLXCB_Chat_Service::page( sanitize_key( flxcb_p( $req, 'status' ) ), sanitize_text_field( flxcb_p( $req, 'q' ) ), max( 0, (int) $req->get_param( 'offset' ) ), 60 );
 	return flxcb_rest_out(
 		array(
-			'items' => array_map( 'flxcb_conv_for_agent', $rows ),
+			'items' => array_map( array( 'FLXCB_Chat_Service', 'rest_conversation' ), $page['items'] ),
 			'stats' => flxcb_stats( 30 ),
 		)
 	);
 }
 
 function flxcb_rest_agent_get( WP_REST_Request $req ) {
-	$c = flxcb_get_conversation( (int) $req['id'] );
-	if ( ! $c ) {
-		return flxcb_rest_err( 'flxcb_conv', __( 'Chat not found.', 'flx-chatbot' ), 404 );
+	$page = FLXCB_Chat_Service::messages( (int) $req['id'], (int) $req->get_param( 'after' ), 300, (bool) $req->get_param( 'peek' ) );
+	if ( is_wp_error( $page ) ) {
+		return $page;
 	}
-	$c    = flxcb_fc_sync_status( $c );
-	$rows = flxcb_messages( (int) $c['id'], (int) $req->get_param( 'after' ), 300 );
-	if ( $rows && ! $req->get_param( 'peek' ) ) {
-		global $wpdb;
-		$last_in = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT MAX(id) FROM ' . flxcb_table( 'messages' ) . " WHERE conv_id = %d AND role = 'visitor'", (int) $c['id'] ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-		flxcb_update_conversation( (int) $c['id'], array( 'agent_read' => $last_in, 'unread' => 0 ) );
-		$c = flxcb_get_conversation( (int) $c['id'] );
-	}
+	$conv = FLXCB_Chat_Service::find( (int) $req['id'] );
 	return flxcb_rest_out(
 		array(
-			'conv'     => flxcb_conv_for_agent( $c ),
-			'messages' => flxcb_agent_messages_for_js( $rows ),
+			'conv'     => $conv ? FLXCB_Chat_Service::rest_conversation( $conv ) : null,
+			'messages' => array_map( array( 'FLXCB_Chat_Service', 'rest_message' ), $page->nodes ),
 		)
 	);
 }
 
 function flxcb_rest_agent_reply( WP_REST_Request $req ) {
-	$c = flxcb_get_conversation( (int) $req['id'] );
-	if ( ! $c ) {
+	if ( ! FLXCB_Chat_Service::find( (int) $req['id'] ) ) {
 		return flxcb_rest_err( 'flxcb_conv', __( 'Chat not found.', 'flx-chatbot' ), 404 );
 	}
-	$text  = trim( sanitize_textarea_field( flxcb_p( $req, 'text' ) ) );
 	$file  = array();
 	$files = $req->get_file_params();
 	if ( ! empty( $files['file'] ) ) {
@@ -588,28 +525,27 @@ function flxcb_rest_agent_reply( WP_REST_Request $req ) {
 		}
 		$file = $f;
 	}
-	if ( '' === $text && ! $file ) {
-		return flxcb_rest_err( 'flxcb_empty', __( 'The message is empty.', 'flx-chatbot' ) );
+	$r = FLXCB_Chat_Service::reply( (int) $req['id'], get_current_user_id(), flxcb_p( $req, 'text' ), $file );
+	if ( is_wp_error( $r ) ) {
+		return $r;
 	}
-	flxcb_agent_reply( $c, get_current_user_id(), $text, $file );
 	return flxcb_rest_agent_get( $req );
 }
 
 function flxcb_rest_agent_close( WP_REST_Request $req ) {
-	$c = flxcb_get_conversation( (int) $req['id'] );
-	if ( ! $c ) {
-		return flxcb_rest_err( 'flxcb_conv', __( 'Chat not found.', 'flx-chatbot' ), 404 );
+	$r = FLXCB_Chat_Service::close( (int) $req['id'] );
+	if ( is_wp_error( $r ) ) {
+		return $r;
 	}
-	flxcb_close( $c, 'agent' );
 	return flxcb_rest_agent_get( $req );
 }
 
 function flxcb_rest_agent_typing( WP_REST_Request $req ) {
-	set_transient( 'flxcb_typing_a_' . (int) $req['id'], 1, 8 );
+	FLXCB_Chat_Service::typing( (int) $req['id'] );
 	return flxcb_rest_out( array( 'ok' => true ) );
 }
 
 function flxcb_rest_agent_delete( WP_REST_Request $req ) {
-	flxcb_delete_conversation( (int) $req['id'] );
+	FLXCB_Chat_Service::delete( (int) $req['id'] );
 	return flxcb_rest_out( array( 'ok' => true ) );
 }
