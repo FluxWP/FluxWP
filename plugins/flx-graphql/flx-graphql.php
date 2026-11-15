@@ -68,7 +68,7 @@ add_action(
 add_filter(
 	'load_textdomain_mofile',
 	static function ( $mofile, $domain ) {
-		if ( 'flx-graphql' !== $domain || is_readable( $mofile ) || is_readable( str_replace( '.mo', '.l10n.php', $mofile ) ) ) {
+		if ( ! is_string( $mofile ) || 'flx-graphql' !== $domain || is_readable( $mofile ) || is_readable( str_replace( '.mo', '.l10n.php', $mofile ) ) ) {
 			return $mofile;
 		}
 		if ( preg_match( '/-tr(_[A-Z]{2})?\.mo$/', $mofile ) ) {

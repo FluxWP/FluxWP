@@ -44,7 +44,7 @@ function flx_gql_check_rows(): array {
 	}
 	$rows[] = $row;
 
-	$mode   = (string) flx_gql_opt( 'query_mode' );
+	$mode   = flx_gql_settings()['query_mode'];
 	$rows[] = array(
 		'id'           => 'flxgql.queries',
 		'source'       => $source,

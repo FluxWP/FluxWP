@@ -11,6 +11,7 @@ delete_option( 'flxgql_settings' );
 delete_option( 'flxgql_rewrite' );
 
 global $wpdb;
+/** @var wpdb $wpdb */
 $wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE '\\_transient\\_flxgql\\_%' OR option_name LIKE '\\_transient\\_timeout\\_flxgql\\_%'" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
 
 $up  = wp_upload_dir( null, false );

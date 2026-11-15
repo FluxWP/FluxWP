@@ -27,6 +27,7 @@ defined( 'ABSPATH' ) || exit;
  * @return array{queries:array<string,string>,allow:array<string,bool>,files:array<string,string>}
  */
 function flx_gql_persisted(): array {
+	/** @var array{queries:array<string,string>,allow:array<string,bool>,files:array<string,string>}|null $cache */
 	static $cache = null;
 	if ( null !== $cache ) {
 		return $cache;
@@ -36,26 +37,29 @@ function flx_gql_persisted(): array {
 	 *
 	 * @param array<string,string> $manifests Manifests.
 	 */
-	$files = (array) apply_filters( 'flx_gql_persisted_manifests', array() );
-	$sig   = array();
-	foreach ( $files as $slug => $path ) {
+	$filtered = apply_filters( 'flx_gql_persisted_manifests', array() );
+	$files    = array();
+	$sig      = array();
+	foreach ( flx_gql_arr( $filtered ) as $slug => $path ) {
 		if ( is_string( $path ) && is_readable( $path ) ) {
-			$sig[] = $slug . ':' . $path . ':' . filemtime( $path ) . ':' . filesize( $path );
+			$files[ $slug ] = $path;
+			$sig[]          = $slug . ':' . $path . ':' . filemtime( $path ) . ':' . filesize( $path );
 		}
 	}
 	sort( $sig );
 	$key    = 'flxgql_pq_' . md5( FLXGQL_VERSION . '|' . implode( '|', $sig ) );
 	$stored = get_transient( $key );
-	if ( is_array( $stored ) && isset( $stored['queries'], $stored['allow'] ) ) {
-		$cache = $stored + array( 'files' => $files );
+	if ( is_array( $stored ) && is_array( $stored['queries'] ?? null ) && is_array( $stored['allow'] ?? null ) ) {
+		$cache = array(
+			'queries' => array_map( 'flx_gql_str', flx_gql_arr( $stored['queries'] ) ),
+			'allow'   => array_map( 'boolval', flx_gql_arr( $stored['allow'] ) ),
+			'files'   => $files,
+		);
 		return $cache;
 	}
 	$queries = array();
 	$allow   = array();
 	foreach ( $files as $path ) {
-		if ( ! is_string( $path ) || ! is_readable( $path ) ) {
-			continue;
-		}
 		$json = json_decode( (string) file_get_contents( $path ), true ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 		foreach ( is_array( $json ) ? $json : array() as $id => $doc ) {
 			if ( ! is_string( $id ) || ! is_string( $doc ) || ! preg_match( '/^[a-f0-9]{64}$/', $id ) ) {
@@ -65,12 +69,19 @@ function flx_gql_persisted(): array {
 			$allow[ flx_gql_document_hash( $doc ) ] = true;
 		}
 	}
+	set_transient(
+		$key,
+		array(
+			'queries' => $queries,
+			'allow'   => $allow,
+		),
+		DAY_IN_SECONDS
+	);
 	$cache = array(
 		'queries' => $queries,
 		'allow'   => $allow,
+		'files'   => $files,
 	);
-	set_transient( $key, $cache, DAY_IN_SECONDS );
-	$cache['files'] = $files;
 	return $cache;
 }
 
@@ -92,12 +103,12 @@ function flx_gql_document_hash( $doc ): string {
  * Whether the current user may send documents that are not in a manifest.
  */
 function flx_gql_free_queries_allowed(): bool {
-	$mode = (string) flx_gql_opt( 'query_mode' );
+	$mode = flx_gql_settings()['query_mode'];
 	if ( 'open' === $mode ) {
 		return true;
 	}
 	$admin = current_user_can( 'manage_options' );
-	return $admin && ( 'admins' === $mode || flx_gql_opt( 'ide' ) );
+	return $admin && ( 'admins' === $mode || flx_gql_settings()['ide'] );
 }
 
 /**
@@ -122,23 +133,25 @@ add_filter(
 		$ops      = $is_batch ? $data : array( $data );
 		$all      = (bool) $ops;
 		$known    = flx_gql_persisted()['queries'];
-		foreach ( $ops as $i => $op ) {
-			if ( ! is_array( $op ) ) {
+		foreach ( $ops as $i => $raw ) {
+			if ( ! is_array( $raw ) ) {
 				$all = false;
 				continue;
 			}
+			$op = flx_gql_arr( $raw );
 			$id = $op['queryId'] ?? ( $op['queryid'] ?? null );
 			if ( is_string( $id ) && isset( $known[ $id ] ) ) {
-				$ops[ $i ]['query'] = $known[ $id ];
-				unset( $ops[ $i ]['queryId'], $ops[ $i ]['queryid'] );
+				$op['query'] = $known[ $id ];
+				unset( $op['queryId'], $op['queryid'] );
 			} else {
 				$all = false;
 				if ( is_string( $id ) && empty( $op['query'] ) ) {
 					// Unknown id and no document: say so instead of graphql-php's "persisted queries not supported".
-					$ops[ $i ]['query'] = 'query FlxPersistedQueryNotFound { __typename }';
-					unset( $ops[ $i ]['queryId'], $ops[ $i ]['queryid'] );
+					$op['query'] = 'query FlxPersistedQueryNotFound { __typename }';
+					unset( $op['queryId'], $op['queryid'] );
 				}
 			}
+			$ops[ $i ] = $op;
 		}
 		$flx_gql_request_persisted = $all;
 		return $is_batch ? $ops : $ops[0];

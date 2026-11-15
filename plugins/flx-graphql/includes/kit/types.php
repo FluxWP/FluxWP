@@ -29,8 +29,8 @@ function flx_gql_register_shared_types(): void {
 			'description'  => __( 'Free-form JSON value (object, list, string, number or boolean).', 'flx-graphql' ),
 			'serialize'    => static fn( $v ) => $v,
 			'parseValue'   => static fn( $v ) => $v,
-			'parseLiteral' => static function ( $ast, ?array $variables = null ) {
-				return \GraphQL\Utils\AST::valueFromASTUntyped( $ast, $variables );
+			'parseLiteral' => static function ( \GraphQL\Language\AST\Node $ast, ?array $variables = null ) {
+				return \GraphQL\Utils\AST::valueFromASTUntyped( $ast, null === $variables ? null : flx_gql_arr( $variables ) );
 			},
 		)
 	);
@@ -191,7 +191,8 @@ function flx_gql_register_shared_types(): void {
 				),
 			),
 			'resolveType' => static function ( $value ) {
-				$type = is_array( $value ) ? ( $value['__typename'] ?? null ) : ( $value instanceof FLXGQL_Node ? $value->gql_type() : null );
+				$type = is_array( $value ) ? flx_gql_str( $value['__typename'] ?? '' ) : ( $value instanceof FLXGQL_Node ? $value->gql_type() : '' );
+				$type = '' !== $type ? $type : null;
 				/**
 				 * Concrete FlxPerson type of a value (Flux CRM registers FlxCrmPerson).
 				 *
@@ -219,7 +220,7 @@ function flx_gql_datetime( $time ): ?array {
 	} elseif ( is_numeric( $time ) ) {
 		$ts = (int) $time;
 	} else {
-		$ts = strtotime( (string) $time . ' UTC' );
+		$ts = strtotime( flx_gql_str( $time ) . ' UTC' );
 		if ( false === $ts ) {
 			return null;
 		}
@@ -227,8 +228,8 @@ function flx_gql_datetime( $time ): ?array {
 	return array(
 		'iso'       => gmdate( 'Y-m-d\TH:i:s\Z', $ts ),
 		'timestamp' => $ts,
-		'label'     => function_exists( 'flx_date' ) ? (string) flx_date( $ts, 'datetime' ) : wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $ts ),
-		'relative'  => function_exists( 'flx_time_ago' ) ? (string) flx_time_ago( $ts ) : gmdate( 'Y-m-d H:i', $ts ),
+		'label'     => function_exists( 'flx_date' ) ? flx_gql_str( flx_date( $ts, 'datetime' ) ) : gmdate( 'Y-m-d H:i', $ts ),
+		'relative'  => function_exists( 'flx_time_ago' ) ? flx_gql_str( flx_time_ago( $ts ) ) : gmdate( 'Y-m-d H:i', $ts ),
 	);
 }
 
@@ -241,7 +242,7 @@ function flx_gql_datetime( $time ): ?array {
  */
 function flx_gql_money( $amount, string $currency = '' ): array {
 	$amount   = (float) $amount;
-	$currency = '' !== $currency ? strtoupper( $currency ) : ( function_exists( 'get_woocommerce_currency' ) ? (string) get_woocommerce_currency() : 'TRY' );
+	$currency = '' !== $currency ? strtoupper( $currency ) : ( function_exists( 'get_woocommerce_currency' ) ? flx_gql_str( get_woocommerce_currency(), 'TRY' ) : 'TRY' );
 	if ( function_exists( 'wc_price' ) ) {
 		$formatted = html_entity_decode( wp_strip_all_tags( wc_price( $amount, array( 'currency' => $currency ) ) ), ENT_QUOTES, 'UTF-8' );
 	} else {
@@ -265,7 +266,7 @@ function flx_gql_phone( string $raw, string $country = '' ): ?array {
 	if ( '' === trim( $raw ) ) {
 		return null;
 	}
-	$e164 = function_exists( 'flx_phone_normalize' ) ? (string) flx_phone_normalize( $raw, $country ) : '';
+	$e164 = function_exists( 'flx_phone_normalize' ) ? flx_gql_str( flx_phone_normalize( $raw, $country ) ) : '';
 	return array(
 		'e164'    => $e164,
 		'digits'  => '' !== $e164 ? ltrim( $e164, '+' ) : (string) preg_replace( '/\D+/', '', $raw ),
@@ -280,14 +281,14 @@ function flx_gql_phone( string $raw, string $country = '' ): ?array {
  * @return array<string,mixed>
  */
 function flx_gql_file( array $f ): array {
-	$mime = (string) ( $f['mime'] ?? 'application/octet-stream' );
+	$mime = flx_gql_str( $f['mime'] ?? '', 'application/octet-stream' );
 	return array(
-		'id'      => (string) ( $f['id'] ?? '' ),
-		'name'    => (string) ( $f['name'] ?? '' ),
-		'mime'    => $mime,
-		'size'    => (int) ( $f['size'] ?? 0 ),
-		'url'     => isset( $f['url'] ) ? (string) $f['url'] : null,
+		'id'      => flx_gql_str( $f['id'] ?? '' ),
+		'name'    => flx_gql_str( $f['name'] ?? '' ),
+		'mime'    => '' !== $mime ? $mime : 'application/octet-stream',
+		'size'    => flx_gql_int( $f['size'] ?? 0 ),
+		'url'     => isset( $f['url'] ) ? flx_gql_str( $f['url'] ) : null,
 		'isImage' => str_starts_with( $mime, 'image/' ),
-		'thumb'   => isset( $f['thumb'] ) ? (string) $f['thumb'] : null,
+		'thumb'   => isset( $f['thumb'] ) ? flx_gql_str( $f['thumb'] ) : null,
 	);
 }

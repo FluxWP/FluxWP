@@ -50,12 +50,13 @@ abstract class FLXGQL_Loader extends \WPGraphQL\Data\Loader\AbstractDataLoader {
 	 * @return array<int|string,mixed>
 	 */
 	protected function loadKeys( array $keys ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid
-		$ids  = array_values( array_unique( array_filter( array_map( 'intval', $keys ), static fn( $id ) => $id > 0 ) ) );
+		$ids  = array_values( array_unique( array_filter( array_map( static fn( $k ): int => flx_gql_int( $k ), $keys ), static fn( int $id ): bool => $id > 0 ) ) );
 		$rows = $ids ? $this->fetch( $ids ) : array();
 		$out  = array();
 		foreach ( $keys as $key ) {
-			$row          = $rows[ (int) $key ] ?? null;
-			$out[ $key ] = null !== $row && $this->can_see( $row ) ? $row : null;
+			$id         = flx_gql_int( $key );
+			$row        = $rows[ $id ] ?? null;
+			$out[ $id ] = null !== $row && $this->can_see( $row ) ? $row : null;
 		}
 		return $out;
 	}

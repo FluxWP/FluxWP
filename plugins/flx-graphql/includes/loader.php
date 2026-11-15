@@ -34,6 +34,7 @@ function flx_gql_external_plugin(): string {
  * Pinned embedded version (vendor/WPGRAPHQL_VERSION).
  */
 function flx_gql_embedded_version(): string {
+	/** @var string|null $v */
 	static $v = null;
 	if ( null === $v ) {
 		$file = FLXGQL_DIR . 'vendor/WPGRAPHQL_VERSION';
@@ -51,11 +52,18 @@ function flx_gql_embedded_version(): string {
 function flx_gql_state(): array {
 	global $flx_gql_state;
 	if ( is_array( $flx_gql_state ) ) {
-		if ( 'external' === $flx_gql_state['source'] && '' === $flx_gql_state['version'] && defined( 'WPGRAPHQL_VERSION' ) ) {
-			$flx_gql_state['version'] = (string) WPGRAPHQL_VERSION;
-			$flx_gql_state['ok']      = flx_gql_version_supported( $flx_gql_state['version'] );
+		$st = array(
+			'source'   => flx_gql_str( $flx_gql_state['source'] ?? 'none' ),
+			'external' => flx_gql_str( $flx_gql_state['external'] ?? '' ),
+			'version'  => flx_gql_str( $flx_gql_state['version'] ?? '' ),
+			'ok'       => ! empty( $flx_gql_state['ok'] ),
+		);
+		if ( 'external' === $st['source'] && '' === $st['version'] && defined( 'WPGRAPHQL_VERSION' ) ) {
+			$st['version'] = flx_gql_str( WPGRAPHQL_VERSION );
+			$st['ok']      = flx_gql_version_supported( $st['version'] );
+			$flx_gql_state = $st;
 		}
-		return $flx_gql_state;
+		return $st;
 	}
 	return array( 'source' => 'none', 'external' => '', 'version' => '', 'ok' => false );
 }
@@ -131,9 +139,9 @@ function flx_gql_embedded_hooks(): void {
 					'public_introspection_enabled'         => $s['introspection'] ? 'on' : 'off',
 					'debug_mode_enabled'                   => $s['debug'] ? 'on' : 'off',
 					'query_depth_enabled'                  => 'on',
-					'query_depth_max'                      => (string) $s['max_depth'],
+					'query_depth_max'                      => flx_gql_str( $s['max_depth'] ),
 					'batch_queries_enabled'                => 'on',
-					'batch_limit'                          => (string) $s['batch_limit'],
+					'batch_limit'                          => flx_gql_str( $s['batch_limit'] ),
 					'restrict_endpoint_to_logged_in_users' => 'off',
 					'tracing_enabled'                      => 'off',
 					'query_logs_enabled'                   => 'off',

@@ -37,7 +37,7 @@ function flx_gql_upload_contexts(): array {
 	 * @param array<string,array<string,mixed>> $contexts Contexts.
 	 */
 	$c = apply_filters( 'flx_gql_upload_contexts', array() );
-	return is_array( $c ) ? $c : array();
+	return array_map( 'flx_gql_arr', flx_gql_arr( $c ) );
 }
 
 /**
@@ -108,7 +108,7 @@ add_action(
  */
 function flx_gql_rest_upload_permission( WP_REST_Request $request ) {
 	$contexts = flx_gql_upload_contexts();
-	$name     = (string) $request->get_param( 'context' );
+	$name     = flx_gql_str( $request->get_param( 'context' ) );
 	if ( ! isset( $contexts[ $name ] ) ) {
 		return new WP_Error( 'flxgql_upload_context', __( 'Uploads are not accepted for this screen.', 'flx-graphql' ), array( 'status' => 400 ) );
 	}
@@ -124,7 +124,7 @@ function flx_gql_rest_upload_permission( WP_REST_Request $request ) {
 	if ( ! $ok ) {
 		return new WP_Error( 'rest_forbidden', __( 'You do not have permission to upload files here.', 'flx-graphql' ), array( 'status' => is_user_logged_in() ? 403 : 401 ) );
 	}
-	$who = is_user_logged_in() ? 'u' . get_current_user_id() : 'ip' . ( function_exists( 'flx_client_ip' ) ? flx_client_ip() : '' );
+	$who = is_user_logged_in() ? 'u' . get_current_user_id() : 'ip' . ( function_exists( 'flx_client_ip' ) ? flx_gql_str( flx_client_ip() ) : '' );
 	if ( function_exists( 'flx_rate_limit' ) && ! flx_rate_limit( 'flxgql_upload_' . $who, 60, 600 ) ) {
 		return new WP_Error( 'flxgql_rate', __( 'Too many uploads. Wait a few minutes and try again.', 'flx-graphql' ), array( 'status' => 429 ) );
 	}
@@ -138,21 +138,23 @@ function flx_gql_rest_upload_permission( WP_REST_Request $request ) {
  * @return WP_REST_Response|WP_Error
  */
 function flx_gql_rest_upload( WP_REST_Request $request ) {
-	$name  = (string) $request->get_param( 'context' );
-	$ctx   = flx_gql_upload_contexts()[ $name ];
+	$name  = flx_gql_str( $request->get_param( 'context' ) );
+	$ctx   = flx_gql_upload_contexts()[ $name ] ?? array();
 	$files = $request->get_file_params();
-	$f     = $files['file'] ?? null;
-	if ( ! is_array( $f ) || ! isset( $f['tmp_name'], $f['name'] ) || UPLOAD_ERR_OK !== (int) ( $f['error'] ?? UPLOAD_ERR_NO_FILE ) || ! is_uploaded_file( $f['tmp_name'] ) ) {
+	$f     = flx_gql_arr( $files['file'] ?? null );
+	$tmp   = flx_gql_str( $f['tmp_name'] ?? '' );
+	$orig  = flx_gql_str( $f['name'] ?? '' );
+	if ( '' === $tmp || '' === $orig || UPLOAD_ERR_OK !== flx_gql_int( $f['error'] ?? UPLOAD_ERR_NO_FILE, UPLOAD_ERR_NO_FILE ) || ! is_uploaded_file( $tmp ) ) {
 		return new WP_Error( 'flxgql_upload_missing', __( 'The file did not arrive. Try again.', 'flx-graphql' ), array( 'status' => 400 ) );
 	}
-	$max = (int) ( $ctx['max_mb'] ?? flx_gql_opt( 'upload_max_mb' ) ) * MB_IN_BYTES;
+	$max = flx_gql_int( $ctx['max_mb'] ?? null, flx_gql_settings()['upload_max_mb'] ) * MB_IN_BYTES;
 	$max = min( $max, (int) wp_max_upload_size() );
-	if ( (int) $f['size'] > $max ) {
+	if ( flx_gql_int( $f['size'] ?? 0 ) > $max ) {
 		/* translators: %s: size like "20 MB". */
 		return new WP_Error( 'flxgql_upload_size', sprintf( __( 'The file is larger than %s.', 'flx-graphql' ), size_format( $max ) ), array( 'status' => 400 ) );
 	}
-	$mimes = isset( $ctx['mimes'] ) && is_array( $ctx['mimes'] ) ? $ctx['mimes'] : null;
-	$check = wp_check_filetype_and_ext( $f['tmp_name'], sanitize_file_name( (string) $f['name'] ), $mimes );
+	$mimes = isset( $ctx['mimes'] ) && is_array( $ctx['mimes'] ) ? array_map( 'flx_gql_str', flx_gql_arr( $ctx['mimes'] ) ) : null;
+	$check = wp_check_filetype_and_ext( $tmp, sanitize_file_name( $orig ), $mimes );
 	if ( empty( $check['ext'] ) || empty( $check['type'] ) ) {
 		return new WP_Error( 'flxgql_upload_type', __( 'This file type is not allowed.', 'flx-graphql' ), array( 'status' => 400 ) );
 	}
@@ -161,13 +163,13 @@ function flx_gql_rest_upload( WP_REST_Request $request ) {
 	$id     = wp_generate_password( 20, false, false );
 	$secret = wp_generate_password( 24, false, false );
 	$path   = flx_gql_upload_dir() . '/' . $id . '.' . $check['ext'];
-	if ( ! move_uploaded_file( $f['tmp_name'], $path ) ) {
+	if ( ! move_uploaded_file( $tmp, $path ) ) {
 		return new WP_Error( 'flxgql_upload_store', __( 'The file could not be saved on the server.', 'flx-graphql' ), array( 'status' => 500 ) );
 	}
 	$meta = array(
 		'path'    => $path,
-		'name'    => sanitize_file_name( (string) $f['name'] ),
-		'mime'    => (string) $check['type'],
+		'name'    => sanitize_file_name( $orig ),
+		'mime'    => flx_gql_str( $check['type'] ),
 		'size'    => (int) filesize( $path ),
 		'user'    => get_current_user_id(),
 		'context' => $name,
@@ -186,7 +188,8 @@ function flx_gql_rest_upload( WP_REST_Request $request ) {
 		)
 	);
 	$res->set_status( 201 );
-	return function_exists( 'flx_rest_nocache' ) ? flx_rest_nocache( $res ) : $res;
+	$out = function_exists( 'flx_rest_nocache' ) ? flx_rest_nocache( $res ) : $res;
+	return $out instanceof WP_REST_Response ? $out : $res;
 }
 
 /**
@@ -201,11 +204,12 @@ function flx_gql_upload_get( string $upload_id, string $context ) {
 	if ( 2 !== count( $parts ) || ! preg_match( '/^[A-Za-z0-9]{20}$/', $parts[0] ) ) {
 		return new WP_Error( 'flxgql_upload_id', __( 'The uploaded file was not found. Upload it again.', 'flx-graphql' ), array( 'status' => 404, 'field' => 'uploadId' ) );
 	}
-	$meta = get_transient( 'flxgql_up_' . $parts[0] );
-	if ( ! is_array( $meta ) || ! hash_equals( (string) $meta['secret'], wp_hash( $parts[1] ) ) || $meta['context'] !== $context || ! is_file( $meta['path'] ) ) {
+	$meta = flx_gql_arr( get_transient( 'flxgql_up_' . $parts[0] ) );
+	if ( ! $meta || ! hash_equals( flx_gql_str( $meta['secret'] ?? '' ), wp_hash( $parts[1] ) ) || ( $meta['context'] ?? null ) !== $context || ! is_file( flx_gql_str( $meta['path'] ?? '' ) ) ) {
 		return new WP_Error( 'flxgql_upload_id', __( 'The uploaded file was not found. Upload it again.', 'flx-graphql' ), array( 'status' => 404, 'field' => 'uploadId' ) );
 	}
-	if ( (int) $meta['user'] && (int) $meta['user'] !== get_current_user_id() ) {
+	$owner = flx_gql_int( $meta['user'] ?? 0 );
+	if ( $owner && get_current_user_id() !== $owner ) {
 		return new WP_Error( 'flxgql_upload_id', __( 'The uploaded file was not found. Upload it again.', 'flx-graphql' ), array( 'status' => 404, 'field' => 'uploadId' ) );
 	}
 	unset( $meta['secret'] );
@@ -224,7 +228,7 @@ function flx_gql_upload_get( string $upload_id, string $context ) {
 function flx_gql_upload_take( string $upload_id, string $context ) {
 	$meta = flx_gql_upload_get( $upload_id, $context );
 	if ( ! is_wp_error( $meta ) ) {
-		delete_transient( 'flxgql_up_' . $meta['id'] );
+		delete_transient( 'flxgql_up_' . flx_gql_str( $meta['id'] ?? '' ) );
 	}
 	return $meta;
 }

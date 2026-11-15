@@ -1,0 +1,48 @@
+# Existing code of every plugin and theme: level 5, PHP 8.1–8.5, known errors frozen in legacy-baseline.neon.
+# New errors fail CI. After fixing old ones, regenerate the baseline so they cannot come back.
+#   tools/phpstan/vendor/bin/phpstan analyse -c tools/phpstan/legacy.neon
+# Refresh the baseline only when a fix removes entries:
+#   tools/phpstan/vendor/bin/phpstan analyse -c tools/phpstan/legacy.neon --generate-baseline tools/phpstan/legacy-baseline.neon
+includes:
+  - vendor/szepeviktor/phpstan-wordpress/extension.neon
+  - legacy-constants.php
+  - legacy-baseline.neon
+
+parameters:
+  level: 5
+  phpVersion:
+    min: 80100
+    max: 80500
+  tmpDir: .cache
+  bootstrapFiles:
+    - legacy-bootstrap.php
+  scanFiles:
+    - vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
+    - vendor/php-stubs/wp-cli-stubs/wp-cli-stubs.php
+    - ../../plugins/flx-graphql/vendor/wp-graphql/access-functions.php
+    - stubs/optional-classes.php
+  scanDirectories:
+    - ../../plugins/flx-graphql/vendor/wp-graphql/src
+    - ../../plugins/flx-graphql/vendor/wp-graphql/vendor/webonyx
+  paths:
+    - ../../plugins
+    - ../../themes
+    - ../brand
+  excludePaths:
+    analyse:
+      - ../../plugins/flx-graphql
+      - ../../plugins/*/includes/flx-brand
+      - ../../themes/*/inc/flx-brand
+      - ../../themes/*/includes/flx-brand
+      - ../../plugins/*/vendor
+      - ../../plugins/*/includes/vendor
+      - ../../plugins/*/node_modules
+      - ../../themes/*/vendor
+      - ../../themes/*/node_modules
+    analyseAndScan:
+      # Tests define stub add_action/apply_filters that would shadow the WordPress stubs.
+      - ../../plugins/*/tests
+      - ../brand/tests
+  # Inline @phpstan-ignore comments written for stricter levels would show as unmatched at level 5.
+  # Fixed baseline entries are still dropped by regenerating the baseline (CI shows the count).
+  reportUnmatchedIgnoredErrors: false

@@ -8,13 +8,52 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
+ * A scalar as string (anything else: the default). Typed access to WordPress' mixed values.
+ *
+ * @param mixed  $v       Value.
+ * @param string $default Default.
+ */
+function flx_gql_str( $v, string $default = '' ): string {
+	return is_scalar( $v ) ? (string) $v : $default;
+}
+
+/**
+ * A number or numeric string as int (anything else: the default).
+ *
+ * @param mixed $v       Value.
+ * @param int   $default Default.
+ */
+function flx_gql_int( $v, int $default = 0 ): int {
+	if ( is_int( $v ) ) {
+		return $v;
+	}
+	return is_numeric( $v ) || is_bool( $v ) ? (int) $v : $default;
+}
+
+/**
+ * An array with string keys (anything else: empty).
+ *
+ * @param mixed $v Value.
+ * @return array<string,mixed>
+ */
+function flx_gql_arr( $v ): array {
+	$out = array();
+	if ( is_array( $v ) ) {
+		foreach ( $v as $k => $x ) {
+			$out[ (string) $k ] = $x;
+		}
+	}
+	return $out;
+}
+
+/**
  * "flxb_wc_look" / "flx-tasks" → "FlxbWcLook" / "FlxTasks".
  *
  * @param string $s Snake, kebab or space separated name.
  */
 function flx_gql_pascal( string $s ): string {
 	$parts = preg_split( '/[^a-zA-Z0-9]+/', $s ) ?: array();
-	return implode( '', array_map( static fn( $p ) => ucfirst( strtolower( $p ) ), array_filter( $parts, 'strlen' ) ) );
+	return implode( '', array_map( static fn( $p ) => ucfirst( strtolower( $p ) ), array_filter( $parts, static fn( string $p ): bool => '' !== $p ) ) );
 }
 
 /**
@@ -48,14 +87,14 @@ function flx_gql_registration_error( string $what, string $message ): void {
  */
 function flx_gql_registration_errors(): array {
 	global $flx_gql_registration_errors;
-	return is_array( $flx_gql_registration_errors ) ? $flx_gql_registration_errors : array();
+	return array_map( 'flx_gql_str', flx_gql_arr( $flx_gql_registration_errors ) );
 }
 
 /**
  * Public GraphQL endpoint URL.
  */
 function flx_gql_endpoint(): string {
-	return function_exists( 'graphql_get_endpoint_url' ) ? (string) graphql_get_endpoint_url() : home_url( '/graphql' );
+	return function_exists( 'graphql_get_endpoint_url' ) ? flx_gql_str( graphql_get_endpoint_url() ) : home_url( '/graphql' );
 }
 
 /**

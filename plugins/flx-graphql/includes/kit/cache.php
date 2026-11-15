@@ -81,8 +81,8 @@ add_filter(
 		if ( $tags ) {
 			$headers['X-GraphQL-Keys'] = implode( ' ', $tags );
 		}
-		$method = isset( $_SERVER['REQUEST_METHOD'] ) ? strtoupper( sanitize_key( wp_unslash( $_SERVER['REQUEST_METHOD'] ) ) ) : '';
-		$ttl    = (int) flx_gql_opt( 'cache_ttl' );
+		$method = isset( $_SERVER['REQUEST_METHOD'] ) ? strtoupper( sanitize_key( flx_gql_str( wp_unslash( $_SERVER['REQUEST_METHOD'] ) ) ) ) : '';
+		$ttl    = flx_gql_settings()['cache_ttl'];
 		if ( 'GET' === $method && $ttl > 0 && flx_gql_persisted_only() && ! is_user_logged_in() && ! isset( $headers['Cache-Control'] ) ) {
 			$headers['Cache-Control']            = 'public, max-age=' . $ttl;
 			$headers['X-LiteSpeed-Cache-Control'] = 'public,max-age=' . $ttl;

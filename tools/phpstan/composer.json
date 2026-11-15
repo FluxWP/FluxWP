@@ -1,0 +1,17 @@
+{
+  "name": "fluxwp/phpstan",
+  "description": "PHPStan for the FluxWP plugins (dev tool, not shipped).",
+  "type": "project",
+  "license": "GPL-3.0-or-later",
+  "require-dev": {
+    "phpstan/phpstan": "^2.1",
+    "szepeviktor/phpstan-wordpress": "^2.0",
+    "php-stubs/woocommerce-stubs": "^10.0",
+    "php-stubs/wp-cli-stubs": "^2.11"
+  },
+  "config": {
+    "platform": {
+      "php": "8.1.0"
+    }
+  }
+}

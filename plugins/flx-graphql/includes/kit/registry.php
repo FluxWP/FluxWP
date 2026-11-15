@@ -115,13 +115,13 @@ function flx_gql_deny(): void {
  */
 function flx_gql_wrap_resolver( ?callable $resolve, $cap, ?callable $owner, string $name ): callable {
 	return static function ( $source, $args, $context, $info ) use ( $resolve, $cap, $owner, $name ) {
-		$args = is_array( $args ) ? $args : array();
+		$args = flx_gql_arr( $args );
 		if ( null !== $cap && ! flx_gql_allowed( $cap, $owner, $source, $args, $context ) ) {
 			flx_gql_deny();
 		}
 		if ( null === $resolve ) {
 			// Default resolver: array key or public property with the field name.
-			$key = $info->fieldName ?? $name; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+			$key = $info instanceof \GraphQL\Type\Definition\ResolveInfo ? $info->fieldName : $name; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 			if ( is_array( $source ) ) {
 				return $source[ $key ] ?? null;
 			}
@@ -196,49 +196,51 @@ function flx_gql_decode_id( $id, string $type ): int {
 	if ( is_int( $id ) || ( is_string( $id ) && ctype_digit( $id ) ) ) {
 		return (int) $id;
 	}
-	$parts = \GraphQLRelay\Relay::fromGlobalId( (string) $id );
-	if ( ( $parts['type'] ?? '' ) !== $type || ! ctype_digit( (string) ( $parts['id'] ?? '' ) ) ) {
+	$parts = \GraphQLRelay\Relay::fromGlobalId( flx_gql_str( $id ) );
+	$raw   = flx_gql_str( $parts['id'] ?? '' );
+	if ( flx_gql_str( $parts['type'] ?? '' ) !== $type || ! ctype_digit( $raw ) ) {
 		throw flx_gql_error( 'INVALID_INPUT', __( 'The ID is not valid.', 'flx-graphql' ), 'id' );
 	}
-	return (int) $parts['id'];
+	return (int) $raw;
 }
 
 /**
  * Prepares a field map: type notation, args, resolver wrapper, deprecation.
  *
- * @param array<string,array<string,mixed>> $fields     Fields.
- * @param string                            $owner_type Type the fields belong to (for messages).
- * @param bool                              $need_cap   Every field must declare a cap.
+ * @param array<mixed> $fields     Fields: [ name => { type, description, args, cap, owner, resolve, deprecated, complexity } ].
+ * @param string       $owner_type Type the fields belong to (for messages).
+ * @param bool         $need_cap   Every field must declare a cap.
  * @return array<string,array<string,mixed>>|null Null when a field is refused.
  */
 function flx_gql_prepare_fields( array $fields, string $owner_type, bool $need_cap ): ?array {
 	$out = array();
 	foreach ( $fields as $name => $f ) {
-		if ( ! preg_match( '/^[a-z][A-Za-z0-9]*$/', (string) $name ) ) {
+		$name = (string) $name;
+		if ( ! preg_match( '/^[a-z][A-Za-z0-9]*$/', $name ) ) {
 			flx_gql_registration_error( $owner_type . '.' . $name, 'Field names are camelCase.' );
 			return null;
 		}
-		$f   = (array) $f;
+		$f   = flx_gql_arr( $f );
 		$cap = array_key_exists( 'cap', $f ) ? $f['cap'] : null;
 		if ( $need_cap && null === $cap ) {
 			flx_gql_registration_error( $owner_type . '.' . $name, 'A cap is required (fail closed).' );
 			return null;
 		}
 		$field = array(
-			'type'        => flx_gql_parse_type( $f['type'] ?? 'String' ),
-			'description' => (string) ( $f['description'] ?? '' ),
+			'type'        => flx_gql_type_of( $f['type'] ?? null ),
+			'description' => flx_gql_str( $f['description'] ?? '' ),
 		);
-		if ( ! empty( $f['args'] ) ) {
-			$field['args'] = flx_gql_prepare_args( (array) $f['args'] );
+		if ( ! empty( $f['args'] ) && is_array( $f['args'] ) ) {
+			$field['args'] = flx_gql_prepare_args( $f['args'] );
 		}
 		if ( ! empty( $f['deprecated'] ) ) {
-			$field['deprecationReason'] = (string) $f['deprecated'];
+			$field['deprecationReason'] = flx_gql_str( $f['deprecated'] );
 		}
 		if ( isset( $f['complexity'] ) ) {
 			$field['complexity'] = $f['complexity'];
 		}
 		if ( null !== $cap || isset( $f['resolve'] ) ) {
-			$field['resolve'] = flx_gql_wrap_resolver( $f['resolve'] ?? null, $cap, $f['owner'] ?? null, (string) $name );
+			$field['resolve'] = flx_gql_wrap_resolver( flx_gql_callable( $f['resolve'] ?? null ), $cap, flx_gql_callable( $f['owner'] ?? null ), $name );
 		}
 		$out[ $name ] = $field;
 	}
@@ -248,26 +250,46 @@ function flx_gql_prepare_fields( array $fields, string $owner_type, bool $need_c
 /**
  * Argument / input field map.
  *
- * @param array<string,array<string,mixed>|string> $args Arguments.
+ * @param array<mixed> $args Arguments: [ name => type notation | { type, description, default, deprecated } ].
  * @return array<string,array<string,mixed>>
  */
 function flx_gql_prepare_args( array $args ): array {
 	$out = array();
 	foreach ( $args as $name => $a ) {
-		$a     = is_string( $a ) ? array( 'type' => $a ) : (array) $a;
+		$name  = (string) $name;
+		$a     = is_string( $a ) ? array( 'type' => $a ) : flx_gql_arr( $a );
 		$entry = array(
-			'type'        => flx_gql_parse_type( $a['type'] ?? 'String' ),
-			'description' => (string) ( $a['description'] ?? '' ),
+			'type'        => flx_gql_type_of( $a['type'] ?? null ),
+			'description' => flx_gql_str( $a['description'] ?? '' ),
 		);
 		if ( array_key_exists( 'default', $a ) ) {
 			$entry['defaultValue'] = $a['default'];
 		}
 		if ( ! empty( $a['deprecated'] ) ) {
-			$entry['deprecationReason'] = (string) $a['deprecated'];
+			$entry['deprecationReason'] = flx_gql_str( $a['deprecated'] );
 		}
 		$out[ $name ] = $entry;
 	}
 	return $out;
+}
+
+/**
+ * Type notation from a config value ('[X!]!' or a WPGraphQL type array; default String).
+ *
+ * @param mixed $t Notation.
+ * @return array<string,mixed>|string
+ */
+function flx_gql_type_of( $t ) {
+	return flx_gql_parse_type( is_array( $t ) ? flx_gql_arr( $t ) : flx_gql_str( $t, 'String' ) );
+}
+
+/**
+ * A callable config value, or null.
+ *
+ * @param mixed $c Value.
+ */
+function flx_gql_callable( $c ): ?callable {
+	return is_callable( $c ) ? $c : null;
 }
 
 /**
@@ -293,11 +315,11 @@ function flx_gql_type( string $name, array $config ): bool {
 	if ( ! flx_gql_check_type_name( $name ) ) {
 		return false;
 	}
-	$fields = flx_gql_prepare_fields( (array) ( $config['fields'] ?? array() ), $name, false );
+	$fields = flx_gql_prepare_fields( flx_gql_arr( $config['fields'] ?? array() ), $name, false );
 	if ( null === $fields ) {
 		return false;
 	}
-	$interfaces = (array) ( $config['interfaces'] ?? array() );
+	$interfaces = array_map( 'flx_gql_str', (array) ( $config['interfaces'] ?? array() ) );
 	if ( ! empty( $config['node'] ) ) {
 		$interfaces[] = 'Node';
 		$fields       = array(
@@ -312,12 +334,12 @@ function flx_gql_type( string $name, array $config ): bool {
 				'resolve'     => static fn( $source ) => $source instanceof FLXGQL_Node ? $source->gql_id() : null,
 			),
 		) + $fields;
-		flx_gql_node_loader( $name, (string) $config['node'] );
+		flx_gql_node_loader( $name, flx_gql_str( $config['node'] ) );
 	}
 	register_graphql_object_type(
 		$name,
 		array(
-			'description' => (string) ( $config['description'] ?? '' ),
+			'description' => flx_gql_str( $config['description'] ?? '' ),
 			'interfaces'  => array_values( array_unique( $interfaces ) ),
 			'fields'      => $fields,
 		)
@@ -363,12 +385,12 @@ function flx_gql_interface( string $name, array $config ): bool {
 	if ( ! flx_gql_check_type_name( $name ) ) {
 		return false;
 	}
-	$fields = flx_gql_prepare_fields( (array) ( $config['fields'] ?? array() ), $name, false );
+	$fields = flx_gql_prepare_fields( flx_gql_arr( $config['fields'] ?? array() ), $name, false );
 	if ( null === $fields ) {
 		return false;
 	}
 	$args = array(
-		'description' => (string) ( $config['description'] ?? '' ),
+		'description' => flx_gql_str( $config['description'] ?? '' ),
 		'fields'      => $fields,
 	);
 	if ( isset( $config['resolveType'] ) && is_callable( $config['resolveType'] ) ) {
@@ -395,7 +417,7 @@ function flx_gql_input( string $name, array $config ): bool {
 	register_graphql_input_type(
 		$name,
 		array(
-			'description' => (string) ( $config['description'] ?? '' ),
+			'description' => flx_gql_str( $config['description'] ?? '' ),
 			'fields'      => flx_gql_prepare_args( (array) ( $config['fields'] ?? array() ) ),
 		)
 	);
@@ -413,24 +435,26 @@ function flx_gql_enum( string $name, array $config ): bool {
 		return false;
 	}
 	$values = array();
-	foreach ( (array) ( $config['values'] ?? array() ) as $key => $v ) {
-		if ( ! preg_match( '/^[A-Z][A-Z0-9_]*$/', (string) $key ) ) {
+	foreach ( flx_gql_arr( $config['values'] ?? array() ) as $key => $v ) {
+		if ( ! preg_match( '/^[A-Z][A-Z0-9_]*$/', $key ) ) {
 			flx_gql_registration_error( $name . '.' . $key, 'Enum values are UPPER_SNAKE.' );
 			return false;
 		}
-		$v              = is_array( $v ) ? $v : array( 'value' => $v );
-		$values[ $key ] = array(
-			'value'       => $v['value'] ?? strtolower( (string) $key ),
-			'description' => (string) ( $v['description'] ?? '' ),
+		$v     = is_array( $v ) ? flx_gql_arr( $v ) : array( 'value' => $v );
+		$entry = array(
+			'value'       => $v['value'] ?? strtolower( $key ),
+			'description' => flx_gql_str( $v['description'] ?? '' ),
 		);
-		if ( ! empty( $v['deprecated'] ) ) {
-			$values[ $key ]['deprecationReason'] = (string) $v['deprecated'];
+		$why   = flx_gql_str( $v['deprecated'] ?? '' );
+		if ( '' !== $why ) {
+			$entry['deprecationReason'] = $why;
 		}
+		$values[ $key ] = $entry;
 	}
 	register_graphql_enum_type(
 		$name,
 		array(
-			'description' => (string) ( $config['description'] ?? '' ),
+			'description' => flx_gql_str( $config['description'] ?? '' ),
 			'values'      => $values,
 		)
 	);
@@ -506,21 +530,21 @@ function flx_gql_mutation( string $name, array $config ): bool {
 		'resolve'     => static fn( $payload ) => is_array( $payload ) ? ( $payload['errors'] ?? array() ) : array(),
 	);
 	$cap     = $config['cap'];
-	$owner   = $config['owner'] ?? null;
-	$resolve = $config['resolve'] ?? null;
+	$owner   = flx_gql_callable( $config['owner'] ?? null );
+	$resolve = flx_gql_callable( $config['resolve'] ?? null );
 
 	register_graphql_mutation(
 		$name,
 		array(
-			'description'         => (string) ( $config['description'] ?? '' ),
+			'description'         => flx_gql_str( $config['description'] ?? '' ),
 			'inputFields'         => flx_gql_prepare_args( (array) ( $config['input'] ?? array() ) ),
 			'outputFields'        => $output,
 			'mutateAndGetPayload' => static function ( $input, $context, $info ) use ( $cap, $owner, $resolve ) {
-				$input = is_array( $input ) ? $input : array();
+				$input = flx_gql_arr( $input );
 				if ( ! flx_gql_allowed( $cap, $owner, null, $input, $context ) ) {
 					flx_gql_deny();
 				}
-				if ( ! is_callable( $resolve ) ) {
+				if ( null === $resolve ) {
 					return array( 'errors' => array() );
 				}
 				try {

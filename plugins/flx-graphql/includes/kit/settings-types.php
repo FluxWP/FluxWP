@@ -24,7 +24,7 @@ add_action( 'flx_gql_register_core', 'flx_gql_register_settings_types', 30 );
 /**
  * Normalised settings schema: [ option => { field, type, cap, label, fields: [ key => { gql, type, enum, default, desc } ] } ].
  *
- * @return array<string,array<string,mixed>>
+ * @return array<string,FlxGqlSettingsGroup>
  */
 function flx_gql_settings_schema(): array {
 	$raw = apply_filters( 'flx_settings_schema', array() );
@@ -50,10 +50,10 @@ function flx_gql_settings_schema(): array {
 			}
 			$fields[ $gql ] = array(
 				'key'     => $key,
-				'type'    => (string) ( $f['type'] ?? 'string' ),
-				'enum'    => isset( $f['enum'] ) && is_array( $f['enum'] ) ? array_values( $f['enum'] ) : array(),
+				'type'    => flx_gql_str( $f['type'] ?? 'string', 'string' ),
+				'enum'    => isset( $f['enum'] ) && is_array( $f['enum'] ) ? array_values( array_filter( $f['enum'], 'is_scalar' ) ) : array(),
 				'default' => $f['default'] ?? null,
-				'desc'    => (string) ( $f['desc'] ?? ( $f['label'] ?? '' ) ),
+				'desc'    => flx_gql_str( $f['desc'] ?? ( $f['label'] ?? '' ) ),
 			);
 		}
 		if ( ! $fields ) {
@@ -63,7 +63,7 @@ function flx_gql_settings_schema(): array {
 			'field'  => lcfirst( $base ),
 			'type'   => 'FlxSettings' . $base,
 			'cap'    => isset( $entry['cap'] ) && is_string( $entry['cap'] ) ? $entry['cap'] : 'manage_options',
-			'label'  => (string) ( $entry['label'] ?? $option ),
+			'label'  => flx_gql_str( $entry['label'] ?? $option, $option ),
 			'fields' => $fields,
 		);
 	}
@@ -73,14 +73,14 @@ function flx_gql_settings_schema(): array {
 /**
  * GraphQL enum values of a schema enum, or null when one is not a valid name.
  *
- * @param array<int,mixed> $values Raw values.
- * @return array<string,mixed>|null [ GRAPHQL_NAME => raw ]
+ * @param array<int,scalar> $values Raw values.
+ * @return array<string,scalar>|null [ GRAPHQL_NAME => raw ]
  */
 function flx_gql_settings_enum_values( array $values ): ?array {
 	$out = array();
 	foreach ( $values as $v ) {
 		$name = strtoupper( (string) preg_replace( '/[^A-Za-z0-9]+/', '_', (string) $v ) );
-		if ( ! is_scalar( $v ) || ! preg_match( '/^[A-Z_][A-Z0-9_]*$/', $name ) || isset( $out[ $name ] ) || in_array( $name, array( 'TRUE', 'FALSE', 'NULL' ), true ) ) {
+		if ( ! preg_match( '/^[A-Z_][A-Z0-9_]*$/', $name ) || isset( $out[ $name ] ) || in_array( $name, array( 'TRUE', 'FALSE', 'NULL' ), true ) ) {
 			return null;
 		}
 		$out[ $name ] = $v;
@@ -91,9 +91,9 @@ function flx_gql_settings_enum_values( array $values ): ?array {
 /**
  * GraphQL type of a schema field (registers its enum on the way).
  *
- * @param string              $type_name Parent type name.
- * @param string              $gql       Field name.
- * @param array<string,mixed> $f         Normalised field.
+ * @param string               $type_name Parent type name.
+ * @param string               $gql       Field name.
+ * @param FlxGqlSettingsField  $f         Normalised field.
  */
 function flx_gql_settings_field_type( string $type_name, string $gql, array $f ): string {
 	switch ( $f['type'] ) {
@@ -215,7 +215,8 @@ function flx_gql_register_settings_types(): void {
 			'resolve'     => static function ( array $input ) use ( $schema ) {
 				$errors = new WP_Error();
 				foreach ( $schema as $option => $o ) {
-					if ( empty( $input[ $o['field'] ] ) || ! is_array( $input[ $o['field'] ] ) ) {
+					$group = flx_gql_arr( $input[ $o['field'] ] ?? null );
+					if ( ! $group ) {
 						continue;
 					}
 					if ( ! current_user_can( $o['cap'] ) ) {
@@ -226,7 +227,7 @@ function flx_gql_register_settings_types(): void {
 						$errors->add( 'invalid', __( 'This setting cannot be changed here.', 'flx-graphql' ), array( 'field' => $o['field'], 'status' => 400 ) );
 						continue;
 					}
-					foreach ( $input[ $o['field'] ] as $gql => $value ) {
+					foreach ( $group as $gql => $value ) {
 						if ( ! isset( $o['fields'][ $gql ] ) ) {
 							continue;
 						}
@@ -248,7 +249,7 @@ function flx_gql_register_settings_types(): void {
 				/**
 				 * Settings were written through GraphQL.
 				 *
-				 * @param array<string,mixed> $input Mutation input.
+				 * @param array $input Mutation input.
 				 */
 				do_action( 'flx_gql_settings_updated', $input );
 				return array();
@@ -261,7 +262,7 @@ function flx_gql_register_settings_types(): void {
  * Stored value → GraphQL value.
  *
  * @param mixed               $v Stored value.
- * @param array<string,mixed> $f Field.
+ * @param FlxGqlSettingsField $f Field.
  * @return mixed
  */
 function flx_gql_settings_out( $v, array $f ) {
@@ -288,7 +289,7 @@ function flx_gql_settings_out( $v, array $f ) {
  * GraphQL input value → stored value, or WP_Error.
  *
  * @param mixed               $v Input.
- * @param array<string,mixed> $f Field.
+ * @param FlxGqlSettingsField $f Field.
  * @return mixed|WP_Error
  */
 function flx_gql_settings_in( $v, array $f ) {
@@ -297,25 +298,25 @@ function flx_gql_settings_in( $v, array $f ) {
 			return (bool) $v;
 		case 'int':
 		case 'page':
-			return (int) $v;
+			return flx_gql_int( $v );
 		case 'number':
 		case 'float':
-			return (float) $v;
+			return is_numeric( $v ) ? (float) $v : 0.0;
 		case 'object':
 		case 'list':
 			return is_array( $v ) ? $v : new WP_Error( 'invalid', __( 'A list or object is expected.', 'flx-graphql' ) );
 		case 'enum':
-			return in_array( $v, $f['enum'], true ) || in_array( (string) $v, array_map( 'strval', $f['enum'] ), true ) ? $v : new WP_Error( 'invalid', __( 'This choice is not available.', 'flx-graphql' ) );
+			return in_array( $v, $f['enum'], true ) || in_array( flx_gql_str( $v ), array_map( static fn( $e ): string => (string) $e, $f['enum'] ), true ) ? $v : new WP_Error( 'invalid', __( 'This choice is not available.', 'flx-graphql' ) );
 		case 'color':
-			$v = trim( (string) $v );
+			$v = trim( flx_gql_str( $v ) );
 			return '' === $v || preg_match( '/^#[0-9a-fA-F]{3,8}$/', $v ) ? $v : new WP_Error( 'invalid', __( 'Enter a colour like #1F6FEB.', 'flx-graphql' ) );
 		case 'url':
-			return esc_url_raw( (string) $v );
+			return esc_url_raw( flx_gql_str( $v ) );
 		case 'html':
-			return wp_kses_post( (string) $v );
+			return wp_kses_post( flx_gql_str( $v ) );
 		case 'text':
-			return sanitize_textarea_field( (string) $v );
+			return sanitize_textarea_field( flx_gql_str( $v ) );
 		default:
-			return sanitize_text_field( (string) $v );
+			return sanitize_text_field( flx_gql_str( $v ) );
 	}
 }

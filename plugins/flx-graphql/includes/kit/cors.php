@@ -25,27 +25,27 @@ function flx_gql_cors_origins(): array {
 			$own[] = strtolower( $p['scheme'] . '://' . $p['host'] . ( isset( $p['port'] ) ? ':' . $p['port'] : '' ) );
 		}
 	}
-	$extra = array_filter( array_map( 'trim', explode( "\n", (string) flx_gql_opt( 'cors_origins' ) ) ) );
+	$extra = array_filter( array_map( 'trim', explode( "\n", flx_gql_settings()['cors_origins'] ) ) );
 	/**
 	 * Browser origins allowed to call /graphql.
 	 *
 	 * @param array<int,string> $origins Origins (scheme://host[:port]).
 	 */
-	return array_values( array_unique( (array) apply_filters( 'flx_gql_cors_origins', array_merge( $own, $extra ) ) ) );
+	return array_values( array_unique( array_filter( array_map( 'flx_gql_str', (array) apply_filters( 'flx_gql_cors_origins', array_merge( $own, $extra ) ) ) ) ) );
 }
 
 add_filter(
 	'graphql_response_headers_to_send',
 	static function ( $headers ) {
 		$headers = is_array( $headers ) ? $headers : array();
-		$origin  = isset( $_SERVER['HTTP_ORIGIN'] ) ? strtolower( untrailingslashit( esc_url_raw( wp_unslash( $_SERVER['HTTP_ORIGIN'] ) ) ) ) : '';
-		if ( 'open' === flx_gql_opt( 'query_mode' ) && '' === (string) flx_gql_opt( 'cors_origins' ) ) {
+		$origin  = isset( $_SERVER['HTTP_ORIGIN'] ) ? strtolower( untrailingslashit( esc_url_raw( flx_gql_str( wp_unslash( $_SERVER['HTTP_ORIGIN'] ) ) ) ) ) : '';
+		if ( 'open' === flx_gql_settings()['query_mode'] && '' === flx_gql_settings()['cors_origins'] ) {
 			return $headers; // Fully open API: keep WPGraphQL's "*".
 		}
 		unset( $headers['Access-Control-Allow-Origin'] );
 		if ( '' !== $origin && in_array( $origin, flx_gql_cors_origins(), true ) ) {
 			$headers['Access-Control-Allow-Origin'] = $origin;
-			$headers['Vary']                        = trim( ( $headers['Vary'] ?? '' ) . ', Origin', ', ' );
+			$headers['Vary']                        = trim( flx_gql_str( $headers['Vary'] ?? '' ) . ', Origin', ', ' );
 		}
 		return $headers;
 	},
@@ -55,6 +55,6 @@ add_filter(
 add_filter(
 	'graphql_access_control_allow_headers',
 	static function ( $allowed ) {
-		return array_values( array_unique( array_merge( (array) $allowed, array( 'X-WP-Nonce', 'X-FluxWP-Token', 'X-Flux-Locale' ) ) ) );
+		return array_values( array_unique( array_merge( array_map( 'flx_gql_str', (array) $allowed ), array( 'X-WP-Nonce', 'X-FluxWP-Token', 'X-Flux-Locale' ) ) ) );
 	}
 );

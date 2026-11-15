@@ -121,7 +121,7 @@ function flx_gql_code_of( WP_Error $e ): string {
 	if ( is_array( $data ) && ! empty( $data['graphql_code'] ) && is_string( $data['graphql_code'] ) ) {
 		return $data['graphql_code'];
 	}
-	$status = is_array( $data ) && isset( $data['status'] ) ? (int) $data['status'] : 0;
+	$status = is_array( $data ) ? flx_gql_int( $data['status'] ?? 0 ) : 0;
 	$map    = array(
 		400 => 'INVALID_INPUT',
 		401 => 'UNAUTHENTICATED',
@@ -160,19 +160,20 @@ function flx_gql_from_wp_error( WP_Error $e ): FLXGQL_Error {
 /**
  * FlxUserError list for a mutation payload.
  *
- * @param WP_Error|FLXGQL_Error|array<int,array{code?:string,message?:string,field?:string}> $errors Errors.
+ * @param WP_Error|FLXGQL_Error|array<mixed> $errors Errors (a list of { code?, message?, field? }).
  * @return array<int,array{code:string,message:string,field:?string}>
  */
 function flx_gql_user_errors( $errors ): array {
 	if ( $errors instanceof WP_Error ) {
 		$out = array();
 		foreach ( $errors->get_error_codes() as $code ) {
+			$code = is_int( $code ) ? $code : flx_gql_str( $code );
 			$data = $errors->get_error_data( $code );
 			foreach ( $errors->get_error_messages( $code ) as $msg ) {
 				$out[] = array(
 					'code'    => flx_gql_code_of( new WP_Error( $code, $msg, $data ) ),
 					'message' => $msg,
-					'field'   => is_array( $data ) && isset( $data['field'] ) ? (string) $data['field'] : null,
+					'field'   => is_array( $data ) && isset( $data['field'] ) ? flx_gql_str( $data['field'] ) : null,
 				);
 			}
 		}
@@ -188,12 +189,14 @@ function flx_gql_user_errors( $errors ): array {
 		);
 	}
 	$out = array();
-	foreach ( (array) $errors as $e ) {
-		$code  = (string) ( $e['code'] ?? 'INVALID_INPUT' );
+	foreach ( $errors as $raw ) {
+		$e     = flx_gql_arr( $raw );
+		$code  = flx_gql_str( $e['code'] ?? '', 'INVALID_INPUT' );
+		$code  = '' !== $code ? $code : 'INVALID_INPUT';
 		$out[] = array(
 			'code'    => $code,
-			'message' => (string) ( $e['message'] ?? flx_gql_error_message( $code ) ),
-			'field'   => isset( $e['field'] ) ? (string) $e['field'] : null,
+			'message' => flx_gql_str( $e['message'] ?? flx_gql_error_message( $code ) ),
+			'field'   => isset( $e['field'] ) ? flx_gql_str( $e['field'] ) : null,
 		);
 	}
 	return $out;

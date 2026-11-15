@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Defaults. Kept small and safe for shared hosting (Hostinger: PHP stops at ~60 s, no Redis).
  *
- * @return array<string,mixed>
+ * @return FlxGqlSettings
  */
 function flx_gql_defaults(): array {
 	return array(
@@ -31,31 +31,32 @@ function flx_gql_defaults(): array {
 }
 
 /**
- * Current settings merged with defaults.
+ * Current settings, validated and merged with defaults (cached for the request).
  *
- * @return array<string,mixed>
+ * @param bool $fresh Read the option again (after it changed).
+ * @return FlxGqlSettings
  */
-function flx_gql_settings(): array {
-	global $flx_gql_settings_cache;
-	if ( ! is_array( $flx_gql_settings_cache ) ) {
-		$stored                 = get_option( 'flxgql_settings', array() );
-		$flx_gql_settings_cache = array_merge( flx_gql_defaults(), is_array( $stored ) ? $stored : array() );
+function flx_gql_settings( bool $fresh = false ): array {
+	/** @var FlxGqlSettings|null $cache */
+	static $cache = null;
+	if ( $fresh || null === $cache ) {
+		$cache = flx_gql_sanitize_settings( array_merge( flx_gql_defaults(), flx_gql_arr( get_option( 'flxgql_settings', array() ) ) ) );
 	}
-	return $flx_gql_settings_cache;
+	return $cache;
 }
 
 foreach ( array( 'add_option_flxgql_settings', 'update_option_flxgql_settings', 'delete_option_flxgql_settings' ) as $flx_gql_hook ) {
 	add_action(
 		$flx_gql_hook,
 		static function () {
-			$GLOBALS['flx_gql_settings_cache'] = null;
+			flx_gql_settings( true );
 		}
 	);
 }
 unset( $flx_gql_hook );
 
 /**
- * One setting.
+ * One setting (for code outside the plugin; inside, flx_gql_settings()['key'] is typed).
  *
  * @param string $key Setting name.
  * @return mixed
@@ -69,42 +70,36 @@ function flx_gql_opt( string $key ) {
  * Validates raw panel input into a settings array.
  *
  * @param array<string,mixed> $in Raw input.
- * @return array<string,mixed>
+ * @return FlxGqlSettings
  */
 function flx_gql_sanitize_settings( array $in ): array {
-	$d   = flx_gql_defaults();
-	$out = array();
-
-	$mode              = (string) ( $in['query_mode'] ?? $d['query_mode'] );
-	$out['query_mode'] = in_array( $mode, array( 'strict', 'admins', 'open' ), true ) ? $mode : $d['query_mode'];
-
-	foreach ( array( 'ide', 'introspection', 'debug' ) as $k ) {
-		$out[ $k ] = ! empty( $in[ $k ] );
-	}
-
-	$ranges = array(
-		'max_depth'      => array( 3, 50 ),
-		'max_complexity' => array( 100, 20000 ),
-		'max_page'       => array( 10, 100 ),
-		'batch_limit'    => array( 1, 50 ),
-		'cache_ttl'      => array( 0, 86400 ),
-		'upload_max_mb'  => array( 1, 512 ),
-	);
-	foreach ( $ranges as $k => list( $min, $max ) ) {
-		$v         = isset( $in[ $k ] ) && is_numeric( $in[ $k ] ) ? (int) $in[ $k ] : (int) $d[ $k ];
-		$out[ $k ] = max( $min, min( $max, $v ) );
-	}
+	$d     = flx_gql_defaults();
+	$mode  = flx_gql_str( $in['query_mode'] ?? $d['query_mode'] );
+	$clamp = static function ( string $k, int $default, int $min, int $max ) use ( $in ): int {
+		return max( $min, min( $max, flx_gql_int( $in[ $k ] ?? null, $default ) ) );
+	};
 
 	$origins = array();
-	foreach ( preg_split( '/[\s,]+/', (string) ( $in['cors_origins'] ?? '' ) ) ?: array() as $o ) {
+	foreach ( preg_split( '/[\s,]+/', flx_gql_str( $in['cors_origins'] ?? '' ) ) ?: array() as $o ) {
 		$o = untrailingslashit( trim( $o ) );
 		if ( preg_match( '#^https?://[a-z0-9.-]+(:\d+)?$#i', $o ) ) {
 			$origins[] = strtolower( $o );
 		}
 	}
-	$out['cors_origins'] = implode( "\n", array_unique( $origins ) );
 
-	return $out;
+	return array(
+		'query_mode'     => in_array( $mode, array( 'strict', 'admins', 'open' ), true ) ? $mode : $d['query_mode'],
+		'ide'            => ! empty( $in['ide'] ),
+		'introspection'  => ! empty( $in['introspection'] ),
+		'debug'          => ! empty( $in['debug'] ),
+		'max_depth'      => $clamp( 'max_depth', $d['max_depth'], 3, 50 ),
+		'max_complexity' => $clamp( 'max_complexity', $d['max_complexity'], 100, 20000 ),
+		'max_page'       => $clamp( 'max_page', $d['max_page'], 10, 100 ),
+		'batch_limit'    => $clamp( 'batch_limit', $d['batch_limit'], 1, 50 ),
+		'cache_ttl'      => $clamp( 'cache_ttl', $d['cache_ttl'], 0, 86400 ),
+		'cors_origins'   => implode( "\n", array_unique( $origins ) ),
+		'upload_max_mb'  => $clamp( 'upload_max_mb', $d['upload_max_mb'], 1, 512 ),
+	);
 }
 
 /**
@@ -137,7 +132,6 @@ add_filter(
 add_filter(
 	'pre_update_option_flxgql_settings',
 	static function ( $value ) {
-		$value = is_array( $value ) ? $value : array();
-		return flx_gql_sanitize_settings( array_merge( flx_gql_defaults(), $value ) );
+		return flx_gql_sanitize_settings( array_merge( flx_gql_defaults(), flx_gql_arr( $value ) ) );
 	}
 );

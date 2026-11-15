@@ -27,7 +27,7 @@ if ( ! function_exists( 'json_validate' ) ) {
 		if ( '' === $json ) {
 			return false;
 		}
-		json_decode( $json, null, $depth, $flags & JSON_INVALID_UTF8_IGNORE );
+		json_decode( $json, null, max( 1, $depth ), $flags & JSON_INVALID_UTF8_IGNORE );
 		return JSON_ERROR_NONE === json_last_error();
 	}
 }

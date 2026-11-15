@@ -1,0 +1,34 @@
+# Strict analysis: new and migrated code (Flux GraphQL kit, package services/ and graphql/ folders).
+# Level max, PHP 8.1–8.5. Every GraphQL work package adds its folders under `paths` (plan §2.7).
+#   tools/phpstan/vendor/bin/phpstan analyse -c tools/phpstan/phpstan.neon
+includes:
+  - vendor/szepeviktor/phpstan-wordpress/extension.neon
+
+parameters:
+  level: max
+  phpVersion:
+    min: 80100
+    max: 80500
+  tmpDir: .cache
+  bootstrapFiles:
+    - bootstrap.php
+  scanFiles:
+    - ../../plugins/flx-graphql/vendor/wp-graphql/access-functions.php
+    - vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
+    - vendor/php-stubs/wp-cli-stubs/wp-cli-stubs.php
+  scanDirectories:
+    - ../../plugins/flx-graphql/includes/flx-brand
+    - ../../plugins/flx-graphql/vendor/wp-graphql/src
+    - ../../plugins/flx-graphql/vendor/wp-graphql/vendor/webonyx
+    - ../../plugins/flx-graphql/vendor/wp-graphql/vendor/ivome
+  paths:
+    - ../../plugins/flx-graphql/flx-graphql.php
+    - ../../plugins/flx-graphql/uninstall.php
+    - ../../plugins/flx-graphql/includes
+  excludePaths:
+    - ../../plugins/flx-graphql/includes/flx-brand
+  treatPhpDocTypesAsCertain: false
+  typeAliases:
+    FlxGqlSettingsField: 'array{key: string, type: string, enum: list<scalar>, default: mixed, desc: string}'
+    FlxGqlSettingsGroup: 'array{field: string, type: string, cap: string, label: string, fields: array<string, FlxGqlSettingsField>}'
+    FlxGqlSettings: 'array{query_mode: string, ide: bool, introspection: bool, debug: bool, max_depth: int, max_complexity: int, max_page: int, batch_limit: int, cache_ttl: int, cors_origins: string, upload_max_mb: int}'

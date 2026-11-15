@@ -17,10 +17,10 @@ add_filter(
 	static function ( $rules ) {
 		$rules = is_array( $rules ) ? $rules : array();
 		if ( class_exists( 'GraphQL\Validator\Rules\QueryComplexity' ) ) {
-			$rules['flx_query_complexity'] = new \GraphQL\Validator\Rules\QueryComplexity( (int) flx_gql_opt( 'max_complexity' ) );
+			$rules['flx_query_complexity'] = new \GraphQL\Validator\Rules\QueryComplexity( flx_gql_settings()['max_complexity'] );
 		}
 		if ( 'external' === flx_gql_state()['source'] && class_exists( 'GraphQL\Validator\Rules\QueryDepth' ) ) {
-			$rules['flx_query_depth'] = new \GraphQL\Validator\Rules\QueryDepth( (int) flx_gql_opt( 'max_depth' ) );
+			$rules['flx_query_depth'] = new \GraphQL\Validator\Rules\QueryDepth( flx_gql_settings()['max_depth'] );
 		}
 		return $rules;
 	}
@@ -29,6 +29,6 @@ add_filter(
 add_filter(
 	'graphql_connection_max_query_amount',
 	static function ( $max ) {
-		return min( (int) $max, (int) flx_gql_opt( 'max_page' ) );
+		return min( flx_gql_int( $max, flx_gql_settings()['max_page'] ), flx_gql_settings()['max_page'] );
 	}
 );

@@ -36,6 +36,7 @@ add_action(
 add_filter(
 	'plugin_action_links_' . plugin_basename( FLXGQL_FILE ),
 	static function ( $links ) {
+		$links = is_array( $links ) ? $links : array();
 		array_unshift( $links, '<a href="' . esc_url( admin_url( 'options-general.php?page=flx-graphql' ) ) . '">' . esc_html__( 'Settings', 'flx-graphql' ) . '</a>' );
 		return $links;
 	}
@@ -49,7 +50,7 @@ add_action(
 		}
 		check_admin_referer( 'flxgql_save' );
 		$in = wp_unslash( $_POST ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- flx_gql_sanitize_settings validates every key.
-		update_option( 'flxgql_settings', flx_gql_sanitize_settings( is_array( $in ) ? $in : array() ), false );
+		update_option( 'flxgql_settings', flx_gql_sanitize_settings( flx_gql_arr( $in ) ), false );
 		wp_safe_redirect( add_query_arg( 'flxgql_msg', 'saved', admin_url( 'options-general.php?page=flx-graphql' ) ) );
 		exit;
 	}
@@ -64,9 +65,12 @@ function flx_gql_admin_render(): void {
 	}
 	$s     = flx_gql_settings();
 	$state = flx_gql_state();
-	$msg   = isset( $_GET['flxgql_msg'] ) ? sanitize_key( wp_unslash( $_GET['flxgql_msg'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	$msg   = isset( $_GET['flxgql_msg'] ) ? sanitize_key( flx_gql_str( wp_unslash( $_GET['flxgql_msg'] ) ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	$pq    = flx_gql_persisted();
 	$has   = function_exists( 'flx_field' ) && function_exists( 'flx_check' );
+	// flx-brand has no return types; both return escaped HTML.
+	$field = static fn( array $a ): string => function_exists( 'flx_field' ) ? flx_gql_str( flx_field( $a ) ) : '';
+	$check = static fn( array $a ): string => function_exists( 'flx_check' ) ? flx_gql_str( flx_check( $a ) ) : '';
 	?>
 	<div class="wrap flxgql">
 		<h1><?php esc_html_e( 'Flux GraphQL', 'flx-graphql' ); ?></h1>
@@ -136,7 +140,7 @@ function flx_gql_admin_render(): void {
 					'open'   => __( 'Anyone may send any query (public headless API)', 'flx-graphql' ),
 				);
 				if ( $has ) {
-					echo flx_field( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- flx_field escapes.
+					echo $field( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- flx_field escapes.
 						array(
 							'name'    => 'query_mode',
 							'type'    => 'select',
@@ -147,7 +151,7 @@ function flx_gql_admin_render(): void {
 							'wide'    => true,
 						)
 					);
-					echo flx_field( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo $field( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						array(
 							'name'        => 'cors_origins',
 							'type'        => 'textarea',
@@ -160,7 +164,7 @@ function flx_gql_admin_render(): void {
 						)
 					);
 					echo '<div class="flxgql-checks">';
-					echo flx_check( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo $check( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						array(
 							'name'    => 'ide',
 							'label'   => __( 'GraphiQL IDE for administrators', 'flx-graphql' ),
@@ -168,7 +172,7 @@ function flx_gql_admin_render(): void {
 							'checked' => (bool) $s['ide'],
 						)
 					);
-					echo flx_check( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo $check( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						array(
 							'name'    => 'introspection',
 							'label'   => __( 'Public schema introspection', 'flx-graphql' ),
@@ -176,7 +180,7 @@ function flx_gql_admin_render(): void {
 							'checked' => (bool) $s['introspection'],
 						)
 					);
-					echo flx_check( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo $check( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						array(
 							'name'    => 'debug',
 							'label'   => __( 'Debug messages for administrators', 'flx-graphql' ),
@@ -195,7 +199,7 @@ function flx_gql_admin_render(): void {
 						'upload_max_mb'  => array( __( 'Largest upload', 'flx-graphql' ), 'MB' ),
 					);
 					foreach ( $limits as $key => list( $label, $suffix ) ) {
-						echo flx_field( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						echo $field( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							array(
 								'name'   => $key,
 								'type'   => 'number',

@@ -109,7 +109,7 @@ function flx_gql_connection_args( array $extra = array() ): array {
 		'first' => array(
 			'type'        => 'Int',
 			/* translators: %d: largest page size. */
-			'description' => sprintf( __( 'Records per page (at most %d).', 'flx-graphql' ), (int) flx_gql_opt( 'max_page' ) ),
+			'description' => sprintf( __( 'Records per page (at most %d).', 'flx-graphql' ), flx_gql_settings()['max_page'] ),
 		),
 		'after' => array(
 			'type'        => 'String',
@@ -137,7 +137,7 @@ function flx_gql_cursor_offset( $cursor ): int {
 	if ( null === $cursor || '' === $cursor ) {
 		return 0;
 	}
-	$raw = base64_decode( (string) $cursor, true ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
+	$raw = base64_decode( flx_gql_str( $cursor ), true ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
 	if ( false === $raw || ! preg_match( '/^flxo:(\d+)$/', $raw, $m ) ) {
 		throw flx_gql_error( 'INVALID_INPUT', __( 'The page cursor is not valid.', 'flx-graphql' ), 'after' );
 	}
@@ -151,8 +151,8 @@ function flx_gql_cursor_offset( $cursor ): int {
  * @param int                 $default Size when "first" is missing.
  */
 function flx_gql_page_size( array $args, int $default = 20 ): int {
-	$max   = max( 1, (int) flx_gql_opt( 'max_page' ) );
-	$first = isset( $args['first'] ) ? (int) $args['first'] : $default;
+	$max   = max( 1, flx_gql_settings()['max_page'] );
+	$first = flx_gql_int( $args['first'] ?? null, $default );
 	return max( 1, min( $max, $first ) );
 }
 
@@ -169,7 +169,7 @@ function flx_gql_paginate( array $args, callable $fetch ): array {
 	$limit  = flx_gql_page_size( $args );
 	$res    = flx_gql_normalize_value( call_user_func( $fetch, $offset, $limit + 1 ) );
 	$items  = is_array( $res ) && array_key_exists( 'items', $res ) ? (array) $res['items'] : (array) $res;
-	$total  = is_array( $res ) && array_key_exists( 'total', $res ) && null !== $res['total'] ? (int) $res['total'] : null;
+	$total  = is_array( $res ) && array_key_exists( 'total', $res ) && null !== $res['total'] ? flx_gql_int( $res['total'] ) : null;
 	$items  = array_values( $items );
 	$more   = count( $items ) > $limit;
 	$items  = array_slice( $items, 0, $limit );
