@@ -2157,6 +2157,29 @@
           }
         ]
       }
+    },
+    "flx-migrate": {
+      "desc": {
+        "en": "Switches a site set up with old package names to FluxWP names: settings, tables, meta, content, theme and upload folders.",
+        "tr": "Eski paket adlarıyla kurulmuş bir siteyi FluxWP adlarına geçirir: ayarlar, tablolar, meta, içerik, tema ve yükleme klasörleri.",
+        "de": "Stellt eine mit alten Paketnamen eingerichtete Website auf FluxWP-Namen um: Einstellungen, Tabellen, Meta, Inhalte, Theme und Upload-Ordner.",
+        "es": "Pasa un sitio configurado con nombres de paquete antiguos a los nombres de FluxWP: ajustes, tablas, metadatos, contenido, tema y carpetas de subida.",
+        "fr": "Fait passer un site installé avec d'anciens noms de paquets aux noms FluxWP : réglages, tables, métadonnées, contenu, thème et dossiers de téléversement.",
+        "pt-br": "Migra um site configurado com nomes de pacote antigos para os nomes do FluxWP: configurações, tabelas, metadados, conteúdo, tema e pastas de upload.",
+        "ja": "旧パッケージ名で構築されたサイトを FluxWP の名前に切り替えます:設定、テーブル、メタ、コンテンツ、テーマ、アップロードフォルダー。",
+        "zh": "将使用旧软件包名称的站点切换为 FluxWP 名称:设置、数据表、元数据、内容、主题和上传文件夹。",
+        "ar": "ينقل موقعًا أُعدّ بأسماء حزم قديمة إلى أسماء FluxWP: الإعدادات والجداول والبيانات الوصفية والمحتوى والقالب ومجلدات الرفع.",
+        "ru": "Переводит сайт, настроенный со старыми названиями пакетов, на названия FluxWP: настройки, таблицы, метаданные, контент, тему и папки загрузок."
+      },
+      "website": {},
+      "icons": {
+        "svg": {
+          "path": "plugins/flx-migrate/docs/logo.svg",
+          "sha": "ba753b0d1edcd909116f5b9fdb1f30f4c89c9611",
+          "size": 906
+        }
+      },
+      "gallery": {}
     }
   }
 }
