@@ -3,7 +3,8 @@
 
 defined( 'ABSPATH' ) || exit;
 
-/* Flux App: Stüdyo uygulamada yerel ekranla açılır. */
+/* Flux App: Stüdyo uygulamada yerel ekranla açılır (wp-admin ile aynı React ekranı, @fluxwp/modules `studio`; veri GraphQL).
+ * Mobil uygulamanın bildirimli galeri listesi (app/manifest.json) REST uçlarında kalır (ISTISNALAR: eski uygulama sürümleri). */
 add_filter(
 	'flxapp_modules',
 	function ( $m ) {
@@ -11,7 +12,7 @@ add_filter(
 			'title'   => __( 'Studio', 'flx-studio' ),
 			'cap'     => FLXST_CAP_USE,
 			'menu'    => 'flx-studio',
-			'api'     => rest_url( FLXST_NS ),
+			'api'     => home_url( '/graphql' ),
 			'icon'    => 'image',
 			'version' => FLXST_VERSION,
 		);

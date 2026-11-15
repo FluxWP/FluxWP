@@ -2,9 +2,10 @@
 /**
  * Plugin Name:       Flux Studio
  * Description:       Yapay zekâ ile görsel ve video stüdyosu: üretim, referanslar ve kişiler, alan düzenleme, Geliştir ve Beyin fırtınası, klasörlü galeri. Üretim Flux AI üzerinden (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).
- * Version:           0.4.4
- * Requires at least: 6.4
- * Requires PHP:      7.4
+ * Version:           0.5.0
+ * Requires at least: 6.5
+ * Requires PHP:      8.1
+ * Requires Plugins:  flx-graphql
  * Author:            FluxWP
  * License:           GPL-2.0-or-later
  * Text Domain:       flx-studio
@@ -21,7 +22,7 @@ if ( defined( 'FLXST_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXST_VERSION', '0.4.4' );
+define( 'FLXST_VERSION', '0.5.0' );
 define( 'FLXST_DB_VERSION', 1 );
 define( 'FLXST_FILE', __FILE__ );
 define( 'FLXST_DIR', plugin_dir_path( __FILE__ ) );
@@ -29,6 +30,8 @@ define( 'FLXST_URL', plugin_dir_url( __FILE__ ) );
 define( 'FLXST_NS', 'flx-studio/v1' );
 
 require_once FLXST_DIR . 'includes/install.php';
+require_once FLXST_DIR . 'includes/services/class-flxst-dto.php';
+require_once FLXST_DIR . 'includes/services/class-flxst-service.php';
 require_once FLXST_DIR . 'includes/store.php';
 require_once FLXST_DIR . 'includes/media.php';
 require_once FLXST_DIR . 'includes/ai.php';
@@ -40,6 +43,56 @@ require_once FLXST_DIR . 'includes/app.php';
 if ( is_admin() ) {
 	require_once FLXST_DIR . 'includes/admin.php';
 }
+
+/*
+ * GraphQL (Flux GraphQL 0.2.0+, capability model): the schema is registered only inside a GraphQL request;
+ * the persisted operations the Studio screen sends. Without Flux GraphQL the schema is left out and the
+ * classic screen (assets/js) keeps working over REST.
+ */
+add_action(
+	'flx_gql_register',
+	static function () {
+		if ( ! function_exists( 'flx_gql_any_cap' ) ) {
+			return;
+		}
+		require_once FLXST_DIR . 'includes/graphql/schema.php';
+	}
+);
+add_action(
+	'flx_gql_loaders',
+	static function () {
+		// Only the class name: the class is defined with the schema (includes/graphql/schema.php).
+		if ( function_exists( 'flx_gql_node_loader' ) ) {
+			flx_gql_node_loader( 'FlxStudioItem', 'FLXST_Item_Loader' );
+		}
+	}
+);
+add_filter(
+	'flx_gql_persisted_manifests',
+	static function ( $m ) {
+		$m               = is_array( $m ) ? $m : array();
+		$m['flx-studio'] = FLXST_DIR . 'graphql/persisted-queries.json';
+		return $m;
+	}
+);
+add_filter(
+	'flx_gql_upload_contexts',
+	static function ( $c ) {
+		$c = is_array( $c ) ? $c : array();
+		// Reference photos (and the mask of an area edit): the screen sends the file here first, then the mutation takes it over.
+		$c['flx-studio/reference'] = array(
+			'cap'    => static fn(): bool => flxst_can_use(),
+			'mimes'  => array( 'png' => 'image/png', 'jpg|jpeg' => 'image/jpeg', 'webp' => 'image/webp', 'gif' => 'image/gif' ),
+			'max_mb' => 25,
+		);
+		$c['flx-studio/mask']      = array(
+			'cap'    => static fn(): bool => flxst_can_use(),
+			'mimes'  => array( 'png' => 'image/png' ),
+			'max_mb' => 20,
+		);
+		return $c;
+	}
+);
 
 add_action(
 	'init',
