@@ -1,0 +1,77 @@
+name: GraphQL schema and types
+
+# Schema snapshot → breaking change check → codegen → typecheck of every client.
+# A breaking change fails the check unless the PR has the "graphql-breaking" label.
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+    paths:
+      - 'plugins/**'
+      - 'packages/**'
+      - 'apps/**'
+      - 'tools/tests/wp-graphql/**'
+      - 'package.json'
+      - 'bun.lock'
+      - '.github/workflows/graphql.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'plugins/**'
+      - 'packages/graphql/**'
+      - '.github/workflows/graphql.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  schema:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: pdo_sqlite, sqlite3, mbstring, intl
+          tools: wp-cli
+          coverage: none
+      - uses: oven-sh/setup-bun@v2
+        with: { bun-version: 1.4.4 }
+      - uses: actions/setup-node@v5
+        with: { node-version: 22 }
+      - run: bun install --frozen-lockfile
+
+      - name: Schema snapshot
+        env:
+          TEST_ROOT: ${{ runner.temp }}/flx-test
+        run: |
+          base="${{ github.event.pull_request.base.sha || github.event.before }}"
+          git show "$base:packages/graphql/schema/schema.graphql" > "$RUNNER_TEMP/base.graphql" 2>/dev/null || true
+          bun run --filter @fluxwp/graphql schema
+          if ! git diff --quiet -- packages/graphql/schema; then
+            git diff --stat -- packages/graphql/schema
+            echo "::error title=Schema snapshot::packages/graphql/schema/schema.graphql is out of date. Run 'bun run --filter @fluxwp/graphql schema' and commit it."
+            exit 1
+          fi
+
+      - name: Breaking changes
+        env:
+          FLX_GQL_ALLOW_BREAKING: ${{ contains(github.event.pull_request.labels.*.name, 'graphql-breaking') && '1' || '0' }}
+        run: |
+          if [ -s "$RUNNER_TEMP/base.graphql" ]; then
+            cd packages/graphql && bun scripts/schema-diff.ts "$RUNNER_TEMP/base.graphql"
+          else
+            echo "No schema on the base commit; nothing to compare."
+          fi
+
+      - name: Generated types and persisted manifests are current
+        run: bun run --filter @fluxwp/graphql generate:check
+
+      # Every client (panel, modules, wp-embed, desktop, mobile) compiles against the generated types.
+      - name: Typecheck
+        run: bunx turbo run typecheck
+      - name: Tests
+        run: bunx turbo run test --filter=@fluxwp/graphql --filter=@fluxwp/core
