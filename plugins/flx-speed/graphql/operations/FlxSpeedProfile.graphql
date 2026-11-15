@@ -1,0 +1,12 @@
+mutation FlxSpeedProfile($input: FlxSpeedProfileInput!) {
+  flxSpeedProfile(input: $input) {
+    recordId
+    status
+    url
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

@@ -1014,7 +1014,7 @@ class FLXP_Admin {
 			wp_die( '', 403 );
 		}
 		check_admin_referer( 'flxp_clear' );
-		FLXP_Store::clear();
+		FLXP_Speed_Service::records_clear();
 		wp_safe_redirect( self::url( array( 'tab' => 'records', 'flxp_msg' => 'cleared' ) ) );
 		exit;
 	}
@@ -1025,7 +1025,7 @@ class FLXP_Admin {
 		}
 		check_admin_referer( 'flxp_cleanup' );
 		$job = isset( $_POST['job'] ) ? sanitize_key( $_POST['job'] ) : '';
-		$n   = flxp_cleanup( $job );
+		$n   = FLXP_Speed_Service::cleanup( $job );
 		$arg = is_wp_error( $n ) ? array( 'flxp_err' => rawurlencode( $n->get_error_message() ) ) : array( 'flxp_done' => (int) $n );
 		wp_safe_redirect( self::url( array_merge( array( 'tab' => 'database' ), $arg ) ) );
 		exit;
@@ -1037,7 +1037,7 @@ class FLXP_Admin {
 		}
 		check_admin_referer( 'flxp_profile' );
 		$url = isset( $_POST['url'] ) ? sanitize_text_field( wp_unslash( $_POST['url'] ) ) : '';
-		$res = flxp_profile_url( $url );
+		$res = FLXP_Speed_Service::profile( $url );
 		if ( is_wp_error( $res ) ) {
 			wp_safe_redirect( self::url( array( 'tab' => 'records', 'flxp_err' => rawurlencode( $res->get_error_message() ) ) ) );
 		} else {

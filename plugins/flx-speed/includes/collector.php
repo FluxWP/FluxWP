@@ -589,10 +589,28 @@ class FLXP_Collector {
 		if ( defined( 'XMLRPC_REQUEST' ) && XMLRPC_REQUEST ) {
 			return 'xmlrpc';
 		}
+		if ( self::is_graphql() ) {
+			return 'graphql';
+		}
 		if ( is_admin() ) {
 			return 'admin';
 		}
 		return 'front';
+	}
+
+	/** Flux GraphQL isteği mi (uç nokta ayarından bağımsız)? */
+	public static function is_graphql() {
+		return function_exists( 'is_graphql_http_request' ) && is_graphql_http_request();
+	}
+
+	/** Bu istek Flux Speed ekranının kendi GraphQL sorgusu mu? Kayıtlara gürültü olmasın (klasik ekranlar gibi). */
+	public static function is_own_graphql() {
+		static $own = null;
+		if ( null === $own ) {
+			$body = self::is_graphql() ? (string) file_get_contents( 'php://input', false, null, 0, 65536 ) : '';
+			$own  = '' !== $body && 1 === preg_match( '/flxSpeed|FlxSpeed/', $body );
+		}
+		return $own;
 	}
 
 	/** WordPress shutdown (öncelik 0): veriyi dondur, gerekirse paneli bas. */

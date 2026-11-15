@@ -126,7 +126,7 @@ class FLXP_PageSpeed {
 
 	/** Ön yüz sayfa isteği mi? */
 	public static function front_request() {
-		if ( is_admin() || wp_doing_ajax() || wp_doing_cron() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) || ( defined( 'WP_CLI' ) && WP_CLI ) || ( defined( 'XMLRPC_REQUEST' ) && XMLRPC_REQUEST ) ) {
+		if ( is_admin() || wp_doing_ajax() || wp_doing_cron() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) || ( defined( 'WP_CLI' ) && WP_CLI ) || ( defined( 'XMLRPC_REQUEST' ) && XMLRPC_REQUEST ) || FLXP_Collector::is_graphql() ) {
 			return false;
 		}
 		$method = isset( $_SERVER['REQUEST_METHOD'] ) ? strtoupper( sanitize_key( $_SERVER['REQUEST_METHOD'] ) ) : 'GET';
@@ -137,7 +137,7 @@ class FLXP_PageSpeed {
 			return false;
 		}
 		$uri = isset( $_SERVER['REQUEST_URI'] ) ? (string) wp_unslash( $_SERVER['REQUEST_URI'] ) : '/'; // phpcs:ignore
-		if ( preg_match( '#/(?:wp-json|wp-admin|wp-login\.php|xmlrpc\.php|feed)(?:/|$|\?)#', $uri ) ) {
+		if ( preg_match( '#/(?:wp-json|graphql|wp-admin|wp-login\.php|xmlrpc\.php|feed)(?:/|$|\?)#', $uri ) ) {
 			return false;
 		}
 		foreach ( self::lines( 'ps_skip_urls' ) as $p ) {
