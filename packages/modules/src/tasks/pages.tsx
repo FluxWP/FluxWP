@@ -2,6 +2,7 @@
 // profil, yapay zekâ asistanı paneli. Görünüm WP ile aynı (flxg.css).
 import { useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore, type ReactNode } from 'react';
 import type { FlxgAiAction, FlxgDashboard, FlxgSettings, FlxgSystemCheck } from '@fluxwp/core';
+import { openSanitizedLink, sanitizeHtml } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { cmpStr, store } from './engine';
 import { flxgLocale, tt } from './i18n';
@@ -872,13 +873,14 @@ function AiSimple({ close, ctx }: { close: () => void; ctx: { task?: number; pag
               <div
                 className="flxg-prose"
                 onClick={(ev) => {
-                  const a = (ev.target as HTMLElement).closest('a[data-task]');
-                  if (a) {
+                  const a = (ev.target as HTMLElement).closest('a');
+                  const m = /^#\/task\/(\d+)$/.exec(a?.getAttribute('href') ?? '');
+                  if (m) {
                     ev.preventDefault();
-                    e.openTask(+(a.getAttribute('data-task') ?? 0));
-                  }
+                    e.openTask(+m[1]!);
+                  } else openSanitizedLink(ev);
                 }}
-                dangerouslySetInnerHTML={{ __html: richText(m.content, S.users, S.me?.id ?? 0).replace(/#(\d+)/g, '<a href="#/task/$1" data-task="$1">#$1</a>') }}
+                dangerouslySetInnerHTML={{ __html: sanitizeHtml(richText(m.content, S.users, S.me?.id ?? 0).replace(/#(\d+)/g, '<a href="#/task/$1">#$1</a>')) }}
               />
             ) : (
               <div>{m.content}</div>
