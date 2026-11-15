@@ -3,6 +3,78 @@
 import type { FlxOperation } from '../operation';
 import type * as T from './types';
 
+/** mutation FlxRoleCreate (flx-roles, plugins/flx-roles/graphql/operations/FlxRoleCreate.graphql) */
+export const FlxRoleCreate: FlxOperation<T.FlxRoleCreateMutation, T.FlxRoleCreateMutationVariables> = {
+  id: '21a336969a0dc41b8caaa1be0a20b9bd740359347ff57bc8cb72f70ca6254f9e',
+  name: 'FlxRoleCreate',
+  kind: 'mutation',
+  plugin: 'flx-roles',
+  document: "mutation FlxRoleCreate($input: FlxRoleCreateInput!) {\n  flxRoleCreate(input: $input) {\n    role {\n      ...FlxRoleRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxRoleRow on FlxRole {\n  key\n  label\n  description\n  custom\n  memberCount\n  capabilities\n  home\n}",
+};
+
+/** mutation FlxRoleDelete (flx-roles, plugins/flx-roles/graphql/operations/FlxRoleDelete.graphql) */
+export const FlxRoleDelete: FlxOperation<T.FlxRoleDeleteMutation, T.FlxRoleDeleteMutationVariables> = {
+  id: '2bd5579ac1188eadb0dff5235840b66098c68b1b0d9e5d9a86c1a07b54d3acea',
+  name: 'FlxRoleDelete',
+  kind: 'mutation',
+  plugin: 'flx-roles',
+  document: "mutation FlxRoleDelete($input: FlxRoleDeleteInput!) {\n  flxRoleDelete(input: $input) {\n    deletedKey\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxRoleMemberAdd (flx-roles, plugins/flx-roles/graphql/operations/FlxRoleMemberAdd.graphql) */
+export const FlxRoleMemberAdd: FlxOperation<T.FlxRoleMemberAddMutation, T.FlxRoleMemberAddMutationVariables> = {
+  id: 'af09ea3f7594b6e37e1aa272f116e57dd7079ca275a754a8107fc230ce3014df',
+  name: 'FlxRoleMemberAdd',
+  kind: 'mutation',
+  plugin: 'flx-roles',
+  document: "mutation FlxRoleMemberAdd($input: FlxRoleMemberAddInput!) {\n  flxRoleMemberAdd(input: $input) {\n    member {\n      ...FlxRoleMemberRow\n    }\n    roles {\n      key\n      memberCount\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxRoleMemberRow on FlxRoleMember {\n  databaseId\n  name\n  email\n  phone {\n    display\n    e164\n  }\n  editUrl\n  referralLink\n}",
+};
+
+/** mutation FlxRoleMemberRemove (flx-roles, plugins/flx-roles/graphql/operations/FlxRoleMemberRemove.graphql) */
+export const FlxRoleMemberRemove: FlxOperation<T.FlxRoleMemberRemoveMutation, T.FlxRoleMemberRemoveMutationVariables> = {
+  id: '6eab4d6f1f97457a8679a9b1dd92d47dc2e01a7f41163eff439dc854213b2a7c',
+  name: 'FlxRoleMemberRemove',
+  kind: 'mutation',
+  plugin: 'flx-roles',
+  document: "mutation FlxRoleMemberRemove($input: FlxRoleMemberRemoveInput!) {\n  flxRoleMemberRemove(input: $input) {\n    removedUserId\n    roles {\n      key\n      memberCount\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxRoleMembers (flx-roles, plugins/flx-roles/graphql/operations/FlxRoleMembers.graphql) */
+export const FlxRoleMembers: FlxOperation<T.FlxRoleMembersQuery, T.FlxRoleMembersQueryVariables> = {
+  id: '067ae709ce0675a0f8e8ab3ab7d21d722afa9f7449f358767be373133c98de6f',
+  name: 'FlxRoleMembers',
+  kind: 'query',
+  plugin: 'flx-roles',
+  document: "query FlxRoleMembers($key: String!, $first: Int = 50, $after: String) {\n  flxRole(key: $key) {\n    key\n    members(first: $first, after: $after) {\n      ...FlxRoleMemberPage\n    }\n  }\n}\n\nfragment FlxRoleMemberPage on FlxRoleMemberConnection {\n  nodes {\n    ...FlxRoleMemberRow\n  }\n  pageInfo {\n    hasNextPage\n    endCursor\n  }\n  totalCount\n}\n\nfragment FlxRoleMemberRow on FlxRoleMember {\n  databaseId\n  name\n  email\n  phone {\n    display\n    e164\n  }\n  editUrl\n  referralLink\n}",
+};
+
+/** mutation FlxRoleReset (flx-roles, plugins/flx-roles/graphql/operations/FlxRoleReset.graphql) */
+export const FlxRoleReset: FlxOperation<T.FlxRoleResetMutation, T.FlxRoleResetMutationVariables> = {
+  id: '20e6cdbb88f7639a8749e74cf75ef58a4ab704143f0cf0fa3474dbb2366cb1d0',
+  name: 'FlxRoleReset',
+  kind: 'mutation',
+  plugin: 'flx-roles',
+  document: "mutation FlxRoleReset($input: FlxRoleResetInput!) {\n  flxRoleReset(input: $input) {\n    role {\n      ...FlxRoleRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxRoleRow on FlxRole {\n  key\n  label\n  description\n  custom\n  memberCount\n  capabilities\n  home\n}",
+};
+
+/** mutation FlxRolesSave (flx-roles, plugins/flx-roles/graphql/operations/FlxRolesSave.graphql) */
+export const FlxRolesSave: FlxOperation<T.FlxRolesSaveMutation, T.FlxRolesSaveMutationVariables> = {
+  id: '0a4da13faad85546b92fab5b45716dab5b06e87791475a9dfaa4664888375658',
+  name: 'FlxRolesSave',
+  kind: 'mutation',
+  plugin: 'flx-roles',
+  document: "mutation FlxRolesSave($input: FlxRolesSaveInput!) {\n  flxRolesSave(input: $input) {\n    roles {\n      ...FlxRoleRow\n    }\n    config {\n      ...FlxRolesConfigFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxRoleRow on FlxRole {\n  key\n  label\n  description\n  custom\n  memberCount\n  capabilities\n  home\n}\n\nfragment FlxRolesConfigFields on FlxRolesConfig {\n  referralDays\n  newUserUrl\n  permissionsUrl\n  homeChoices {\n    key\n    label\n  }\n}",
+};
+
+/** query FlxRolesScreen (flx-roles, plugins/flx-roles/graphql/operations/FlxRolesScreen.graphql) */
+export const FlxRolesScreen: FlxOperation<T.FlxRolesScreenQuery, T.FlxRolesScreenQueryVariables> = {
+  id: '2c22565866bcebf0aaed510b75bec73444fc8257c8d2b327873e9c2963c59030',
+  name: 'FlxRolesScreen',
+  kind: 'query',
+  plugin: 'flx-roles',
+  document: "query FlxRolesScreen($members: Int = 50) {\n  flxRoles {\n    ...FlxRoleRow\n    members(first: $members) {\n      ...FlxRoleMemberPage\n    }\n  }\n  flxRoleCapabilityGroups {\n    key\n    label\n    plugin\n    active\n    capabilities {\n      key\n      label\n      locked\n      broad\n      pending\n    }\n  }\n  flxRolesConfig {\n    ...FlxRolesConfigFields\n  }\n}\n\nfragment FlxRoleMemberPage on FlxRoleMemberConnection {\n  nodes {\n    ...FlxRoleMemberRow\n  }\n  pageInfo {\n    hasNextPage\n    endCursor\n  }\n  totalCount\n}\n\nfragment FlxRoleMemberRow on FlxRoleMember {\n  databaseId\n  name\n  email\n  phone {\n    display\n    e164\n  }\n  editUrl\n  referralLink\n}\n\nfragment FlxRoleRow on FlxRole {\n  key\n  label\n  description\n  custom\n  memberCount\n  capabilities\n  home\n}\n\nfragment FlxRolesConfigFields on FlxRolesConfig {\n  referralDays\n  newUserUrl\n  permissionsUrl\n  homeChoices {\n    key\n    label\n  }\n}",
+};
+
 /** mutation FlxTaskCommentCreate (flx-tasks, plugins/flx-tasks/graphql/operations/FlxTaskCommentCreate.graphql) */
 export const FlxTaskCommentCreate: FlxOperation<T.FlxTaskCommentCreateMutation, T.FlxTaskCommentCreateMutationVariables> = {
   id: 'fca51d9372f393736cd5c7f3cc3a6c6f76bc42c714907f05360f59ce43283d8b',
@@ -82,4 +154,13 @@ export const FlxTaskWatch: FlxOperation<T.FlxTaskWatchMutation, T.FlxTaskWatchMu
   kind: 'mutation',
   plugin: 'flx-tasks',
   document: "mutation FlxTaskWatch($input: FlxTaskWatchInput!) {\n  flxTaskWatch(input: $input) {\n    watcherIds\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxViewer (flx-graphql, plugins/flx-graphql/graphql/operations/FlxViewer.graphql) */
+export const FlxViewer: FlxOperation<T.FlxViewerQuery, T.FlxViewerQueryVariables> = {
+  id: '3b302e1658cbd0be2df949e041acd18026dfe171eb43cf850e998a3590b1eab6',
+  name: 'FlxViewer',
+  kind: 'query',
+  plugin: 'flx-graphql',
+  document: "query FlxViewer {\n  flxViewer {\n    loggedIn\n    databaseId\n    name\n    isAdmin\n    capabilities\n  }\n}",
 };

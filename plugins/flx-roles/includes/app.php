@@ -1,53 +1,27 @@
 <?php
 /**
- * Flux App: rol matrisi web görünümünde açılır (M+ sonra).
+ * Flux App: Roles and access is a native screen (the same React screen as wp-admin, @fluxwp/modules
+ * `flxr-roles`, data over GraphQL). App versions without the screen open the admin page instead.
  *
  * @package flx-roles
  */
 
 defined( 'ABSPATH' ) || exit;
 
-/**
- * @param mixed $node
- * @return mixed
- */
-function flxr_app_texts( $node, $domain ) {
-	if ( ! is_array( $node ) ) {
-		return $node;
-	}
-	foreach ( $node as $k => $v ) {
-		if ( 'text' === $k && is_string( $v ) && false === strpos( $v, '{{' ) ) {
-			$node[ $k ] = translate( $v, $domain ); // phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralText, WordPress.WP.I18n.NonSingularStringLiteralDomain
-		} else {
-			$node[ $k ] = flxr_app_texts( $v, $domain );
-		}
-	}
-	return $node;
-}
-
-add_action(
-	'plugins_loaded',
-	function () {
-		if ( ! function_exists( 'flxapp_manifest_file' ) ) {
-			return;
-		}
-		add_filter(
-			'flxapp_manifest',
-			function ( $m ) {
-				$loaded      = flxapp_manifest_file(
-					FLXR_DIR . 'app/manifest.json',
-					'flx-roles',
-					array(
-						'version' => FLXR_VERSION,
-						'caps'    => array( 'view' => 'manage_options' ),
-					)
-				);
-				$m['roles'] = flxr_app_texts( $loaded, 'flx-roles' );
-				return $m;
-			},
-			10,
-			2
+add_filter(
+	'flxapp_modules',
+	static function ( $m ) {
+		$m               = is_array( $m ) ? $m : array();
+		$m['flxr-roles'] = array(
+			'title'   => __( 'Roles and access', 'flx-roles' ),
+			'cap'     => 'manage_options',
+			'menu'    => 'flx-roles',
+			'url'     => admin_url( 'users.php?page=flx-roles' ),
+			'api'     => home_url( '/graphql' ),
+			'icon'    => 'users',
+			'version' => FLXR_VERSION,
+			'order'   => 80,
 		);
-	},
-	20
+		return $m;
+	}
 );

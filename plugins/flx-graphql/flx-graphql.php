@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux GraphQL
  * Description:       Shared GraphQL API for FluxWP plugins: an embedded, pinned WPGraphQL, the Flux GraphQL kit (typed registration, permissions, errors, pagination, persisted queries, cache tags) and one upload endpoint for every package.
- * Version:           0.1.0
+ * Version:           0.2.0
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Author:            FluxWP
@@ -23,7 +23,7 @@ if ( defined( 'FLXGQL_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXGQL_VERSION', '0.1.0' );
+define( 'FLXGQL_VERSION', '0.2.0' );
 define( 'FLXGQL_FILE', __FILE__ );
 define( 'FLXGQL_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXGQL_URL', plugin_dir_url( __FILE__ ) );
@@ -47,6 +47,7 @@ require_once FLXGQL_DIR . 'includes/kit/connection.php';
 require_once FLXGQL_DIR . 'includes/kit/dataloader.php';
 require_once FLXGQL_DIR . 'includes/kit/types.php';
 require_once FLXGQL_DIR . 'includes/kit/settings-types.php';
+require_once FLXGQL_DIR . 'includes/kit/caps.php';
 require_once FLXGQL_DIR . 'includes/kit/limits.php';
 require_once FLXGQL_DIR . 'includes/kit/persisted.php';
 require_once FLXGQL_DIR . 'includes/kit/cache.php';
@@ -78,6 +79,16 @@ add_filter(
 	},
 	10,
 	2
+);
+
+// The kit's own persisted operations (flxViewer) for every client.
+add_filter(
+	'flx_gql_persisted_manifests',
+	static function ( $m ) {
+		$m                = is_array( $m ) ? $m : array();
+		$m['flx-graphql'] = FLXGQL_DIR . 'graphql/persisted-queries.json';
+		return $m;
+	}
 );
 
 register_activation_hook( __FILE__, 'flx_gql_activate' );

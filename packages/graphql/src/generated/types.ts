@@ -24,6 +24,70 @@ export type FlxTaskRole =
   /** See tasks. */
   | 'VIEW';
 
+/** Input for the flxRoleCreate mutation. */
+export type FlxRoleCreateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Role name (1–40 characters), e.g. Volunteer. */
+  name: string;
+};
+
+/** Input for the flxRoleDelete mutation. */
+export type FlxRoleDeleteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Role key. */
+  key: string;
+};
+
+/** Input for the flxRoleMemberAdd mutation. */
+export type FlxRoleMemberAddInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Username or email of an existing user. */
+  login: string;
+  /** Role key. */
+  role: string;
+};
+
+/** Input for the flxRoleMemberRemove mutation. */
+export type FlxRoleMemberRemoveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Role key. */
+  role: string;
+  /** User ID. */
+  userId: number;
+};
+
+/** Input for the flxRoleReset mutation. */
+export type FlxRoleResetInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Role key. */
+  key: string;
+};
+
+/** Input for the flxRolesSave mutation. */
+export type FlxRolesSaveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Referral link lifetime in days (1–365). */
+  referralDays?: number | null | undefined;
+  /** Roles to change; the others stay as they are. */
+  roles?: Array<FlxRolesSaveRoleInput> | null | undefined;
+};
+
+/** Changes to one role. Fields you leave out stay as they are. */
+export type FlxRolesSaveRoleInput = {
+  /** Every table permission that should be on; the others are turned off (locked ones stay). */
+  capabilities?: Array<string> | null | undefined;
+  /** Screen after login (a key of flxRolesConfig.homeChoices). */
+  home?: string | null | undefined;
+  /** Role key. */
+  key: string;
+};
+
 /** Input for the flxTaskCommentCreate mutation. */
 export type FlxTaskCommentCreateInput = {
   /** Comment text (limited HTML, @mentions). */
@@ -122,6 +186,72 @@ export type FlxTaskWatchInput = {
   watch: boolean;
 };
 
+export type FlxRoleCreateMutationVariables = Exact<{
+  input: FlxRoleCreateInput;
+}>;
+
+
+export type FlxRoleCreateMutation = { flxRoleCreate: { role: { key: string, label: string, description: string, custom: boolean, memberCount: number, capabilities: Array<string>, home: string } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxRoleRowFragment = { key: string, label: string, description: string, custom: boolean, memberCount: number, capabilities: Array<string>, home: string };
+
+export type FlxRoleDeleteMutationVariables = Exact<{
+  input: FlxRoleDeleteInput;
+}>;
+
+
+export type FlxRoleDeleteMutation = { flxRoleDelete: { deletedKey: string | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxRoleMemberAddMutationVariables = Exact<{
+  input: FlxRoleMemberAddInput;
+}>;
+
+
+export type FlxRoleMemberAddMutation = { flxRoleMemberAdd: { member: { databaseId: number, name: string, email: string, editUrl: string, referralLink: string | null, phone: { display: string, e164: string } | null } | null, roles: Array<{ key: string, memberCount: number }>, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxRoleMemberRowFragment = { databaseId: number, name: string, email: string, editUrl: string, referralLink: string | null, phone: { display: string, e164: string } | null };
+
+export type FlxRoleMemberRemoveMutationVariables = Exact<{
+  input: FlxRoleMemberRemoveInput;
+}>;
+
+
+export type FlxRoleMemberRemoveMutation = { flxRoleMemberRemove: { removedUserId: number | null, roles: Array<{ key: string, memberCount: number }>, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxRoleMembersQueryVariables = Exact<{
+  key: string;
+  first?: number | null | undefined;
+  after?: string | null | undefined;
+}>;
+
+
+export type FlxRoleMembersQuery = { flxRole: { key: string, members: { totalCount: number | null, nodes: Array<{ databaseId: number, name: string, email: string, editUrl: string, referralLink: string | null, phone: { display: string, e164: string } | null }>, pageInfo: { hasNextPage: boolean, endCursor: string | null } } } | null };
+
+export type FlxRoleMemberPageFragment = { totalCount: number | null, nodes: Array<{ databaseId: number, name: string, email: string, editUrl: string, referralLink: string | null, phone: { display: string, e164: string } | null }>, pageInfo: { hasNextPage: boolean, endCursor: string | null } };
+
+export type FlxRoleResetMutationVariables = Exact<{
+  input: FlxRoleResetInput;
+}>;
+
+
+export type FlxRoleResetMutation = { flxRoleReset: { role: { key: string, label: string, description: string, custom: boolean, memberCount: number, capabilities: Array<string>, home: string } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxRolesSaveMutationVariables = Exact<{
+  input: FlxRolesSaveInput;
+}>;
+
+
+export type FlxRolesSaveMutation = { flxRolesSave: { roles: Array<{ key: string, label: string, description: string, custom: boolean, memberCount: number, capabilities: Array<string>, home: string }>, config: { referralDays: number, newUserUrl: string, permissionsUrl: string | null, homeChoices: Array<{ key: string, label: string }> }, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxRolesConfigFieldsFragment = { referralDays: number, newUserUrl: string, permissionsUrl: string | null, homeChoices: Array<{ key: string, label: string }> };
+
+export type FlxRolesScreenQueryVariables = Exact<{
+  members?: number | null | undefined;
+}>;
+
+
+export type FlxRolesScreenQuery = { flxRoles: Array<{ key: string, label: string, description: string, custom: boolean, memberCount: number, capabilities: Array<string>, home: string, members: { totalCount: number | null, nodes: Array<{ databaseId: number, name: string, email: string, editUrl: string, referralLink: string | null, phone: { display: string, e164: string } | null }>, pageInfo: { hasNextPage: boolean, endCursor: string | null } } }>, flxRoleCapabilityGroups: Array<{ key: string, label: string, plugin: string | null, active: boolean, capabilities: Array<{ key: string, label: string, locked: boolean, broad: boolean, pending: boolean }> }>, flxRolesConfig: { referralDays: number, newUserUrl: string, permissionsUrl: string | null, homeChoices: Array<{ key: string, label: string }> } };
+
 export type FlxTaskCommentCreateMutationVariables = Exact<{
   input: FlxTaskCommentCreateInput;
 }>;
@@ -199,3 +329,8 @@ export type FlxTaskWatchMutationVariables = Exact<{
 
 
 export type FlxTaskWatchMutation = { flxTaskWatch: { watcherIds: Array<number>, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxViewerQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxViewerQuery = { flxViewer: { loggedIn: boolean, databaseId: number | null, name: string | null, isAdmin: boolean, capabilities: Array<string> } };

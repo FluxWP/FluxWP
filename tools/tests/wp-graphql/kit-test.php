@@ -82,5 +82,28 @@ $pq = flx_gql_persisted();
 flxt_ok( isset( $pq['queries']['ffddb6ac5762b8d7ceee75ad414d56112547858efbd5c677d267a7c8c50a11fd'] ), 'fixture manifest is loaded' );
 flxt_same( flx_gql_document_hash( "query FlxTestPing {\n  flxTestEcho(text: \"pong\")\n}" ), flx_gql_document_hash( 'query FlxTestPing { flxTestEcho(text: "pong") }' ), 'allowlist hash ignores formatting' );
 
+// Capability model (kit 0.2).
+wp_set_current_user( (int) $sub );
+flxt_same( true, ( flx_gql_any_cap( 'manage_options', 'read' ) )( null, array(), null ), 'any_cap: one capability is enough' );
+flxt_same( false, ( flx_gql_all_caps( 'manage_options', 'read' ) )( null, array(), null ), 'all_caps: every capability is needed' );
+flxt_same( false, ( flx_gql_all_caps() )( null, array(), null ), 'all_caps without capabilities refuses' );
+wp_set_current_user( 1 );
+flxt_same( true, ( flx_gql_all_caps( 'manage_options', 'read' ) )( null, array(), null ), 'all_caps: administrator passes' );
+add_filter( 'flx_gql_capabilities', $flxt_caps = static fn( $c ) => (array) $c + array( 'flxt_cap' => array( 'label' => 'Test cap', 'group' => 'Test', 'package' => 'flx-test' ), 'Bad Cap' => 'x' ) );
+flxt_ok( isset( flx_gql_capabilities()['flxt_cap'] ) && ! isset( flx_gql_capabilities()['Bad Cap'] ), 'catalog keeps valid capability names only' );
+( new WP_User( (int) $sub ) )->add_cap( 'flxt_cap' );
+$r = flxt_gql( '{ flxViewer { loggedIn databaseId isAdmin capabilities can(capability:"flxt_cap") } }', array(), (int) $sub );
+$v = $r['data']['flxViewer'] ?? array();
+flxt_same( array( true, (int) $sub, false, true ), array( $v['loggedIn'] ?? null, $v['databaseId'] ?? null, $v['isAdmin'] ?? null, $v['can'] ?? null ), 'viewer: signed in, id, not admin, can()' );
+flxt_ok( in_array( 'flxt_cap', $v['capabilities'] ?? array(), true ), 'viewer: catalog capability the user has is listed' );
+$r = flxt_gql( '{ flxViewer { loggedIn databaseId capabilities can(capability:"read") } }' );
+flxt_same( array( 'loggedIn' => false, 'databaseId' => null, 'capabilities' => array(), 'can' => false ), $r['data']['flxViewer'] ?? null, 'viewer: visitor has nothing' );
+$r = flxt_gql( '{ flxCapabilities { key granted } }' );
+flxt_same( 'UNAUTHENTICATED', flxt_code( $r ), 'capability catalog needs sign-in' );
+$r = flxt_gql( '{ flxCapabilities { key label group package granted } }', array(), (int) $sub );
+$row = array_values( array_filter( $r['data']['flxCapabilities'] ?? array(), static fn( $c ) => 'flxt_cap' === $c['key'] ) );
+flxt_same( array( 'key' => 'flxt_cap', 'label' => 'Test cap', 'group' => 'Test', 'package' => 'flx-test', 'granted' => true ), $row[0] ?? null, 'capability catalog row with granted' );
+remove_filter( 'flx_gql_capabilities', $flxt_caps );
+
 wp_delete_user( (int) $sub );
 flxt_done();

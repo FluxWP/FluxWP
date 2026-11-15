@@ -64,6 +64,30 @@ add_action( 'flx_gql_register', function () {
 - Node loader'ı ayrıca `flx_gql_loaders` aksiyonunda adlandırılır: HTTP isteğinde WPGraphQL AppContext loader listesini şema kurulmadan okur, yalnız `flx_gql_register` içinde adlandırılan loader "No loader assigned" hatası verir. `add_action( 'flx_gql_loaders', fn() => flx_gql_node_loader( 'FlxTask', 'FLXG_Task_Loader' ) );` Sınıf adı yeter, sınıf şemayla birlikte sonra yüklenebilir.
 - Nesne tipinin alanları cap almaz; görünürlük kök alanda ve loader'da çözülür. Hassas alan (e-posta, telefon, not) ayrıca `cap` ile alan düzeyinde kapatılır.
 
+### 3.1 Yetki modeli (kit 0.2.0)
+
+Birden fazla yetkiyle açılan alan için callable yazılmaz, kit yardımcıları kullanılır:
+
+```php
+'cap' => flx_gql_any_cap( 'flxb_view_own', 'flx_bagis_view' ),   // biri yeter
+'cap' => flx_gql_all_caps( 'manage_options', 'promote_users' ),   // hepsi gerekir (boş liste = kapalı)
+```
+
+Paket yetkilerini katalogla bildirir; istemci (React, FluxApp) menü ve düğmeleri buna göre gizler. Sunucu yine her alanda kendi `cap`'ini uygular, istemcideki kontrol yalnız görünüm içindir.
+
+```php
+add_filter( 'flx_gql_capabilities', function ( array $caps ): array {
+	$caps['flxb_dashboard'] = array( 'label' => __( 'Sees the donation dashboard', 'flx-donate' ), 'group' => 'donations', 'package' => 'flx-donate' );
+	return $caps;
+} );
+```
+
+- Anahtar `^[a-z0-9_]+$`; geçersizler atlanır. Etiket çevrilmiş metin.
+- `flxViewer` (public): `loggedIn databaseId name isAdmin capabilities can(capability:)`. `capabilities` yalnız katalogdaki ve kişide olan yetkiler.
+- `flxCapabilities` (logged_in): katalog satırları + `granted`.
+- Paket `FlxViewer`'a kendi alanını ekleyebilir (`flx_gql_field( 'FlxViewer', … )`, ör. Flux Roles `roleKey`, `referralLink`); ziyaretçide null döner.
+- İstemci: `useFlxViewer()`, `useFlxCan( 'flxb_dashboard' )` (`@fluxwp/graphql/react`; yüklenirken `undefined`). Yöneticiler için kısa yol yoktur: yönetici de katalogdaki yetkileriyle görünür.
+
 ## 4. Hatalar
 
 | `extensions.code` | Ne zaman |

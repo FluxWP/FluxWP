@@ -14,7 +14,7 @@
     },
     "apps/desktop": {
       "name": "@fluxwp/desktop",
-      "version": "0.3.1",
+      "version": "0.3.2",
       "dependencies": {
         "@fluxwp/core": "workspace:*",
         "@fluxwp/panel": "workspace:*",
@@ -98,7 +98,7 @@
     },
     "apps/wp-embed": {
       "name": "@fluxwp/wp-embed",
-      "version": "0.3.3",
+      "version": "0.3.4",
       "dependencies": {
         "@fluxwp/core": "workspace:*",
         "@fluxwp/manifest": "workspace:*",
@@ -134,7 +134,7 @@
     },
     "packages/graphql": {
       "name": "@fluxwp/graphql",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "dependencies": {
         "@fluxwp/core": "workspace:*",
       },
@@ -173,7 +173,7 @@
     },
     "packages/modules": {
       "name": "@fluxwp/modules",
-      "version": "0.3.4",
+      "version": "0.3.6",
       "dependencies": {
         "@dnd-kit/core": "^6.3.1",
         "@fluxwp/core": "workspace:*",
@@ -195,7 +195,7 @@
     },
     "packages/panel": {
       "name": "@fluxwp/panel",
-      "version": "0.3.4",
+      "version": "0.3.5",
       "dependencies": {
         "@fluxwp/core": "workspace:*",
         "@fluxwp/manifest": "workspace:*",

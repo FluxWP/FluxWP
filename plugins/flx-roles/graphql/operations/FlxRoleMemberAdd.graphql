@@ -1,0 +1,16 @@
+mutation FlxRoleMemberAdd($input: FlxRoleMemberAddInput!) {
+  flxRoleMemberAdd(input: $input) {
+    member {
+      ...FlxRoleMemberRow
+    }
+    roles {
+      key
+      memberCount
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

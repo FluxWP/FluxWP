@@ -1,0 +1,12 @@
+mutation FlxRoleReset($input: FlxRoleResetInput!) {
+  flxRoleReset(input: $input) {
+    role {
+      ...FlxRoleRow
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

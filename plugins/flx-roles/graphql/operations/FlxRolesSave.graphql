@@ -1,0 +1,15 @@
+mutation FlxRolesSave($input: FlxRolesSaveInput!) {
+  flxRolesSave(input: $input) {
+    roles {
+      ...FlxRoleRow
+    }
+    config {
+      ...FlxRolesConfigFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

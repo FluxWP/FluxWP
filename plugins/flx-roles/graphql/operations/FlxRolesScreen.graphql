@@ -1,0 +1,25 @@
+# Everything the Roles and access screen shows: role cards, the table, settings, the first people.
+query FlxRolesScreen($members: Int = 50) {
+  flxRoles {
+    ...FlxRoleRow
+    members(first: $members) {
+      ...FlxRoleMemberPage
+    }
+  }
+  flxRoleCapabilityGroups {
+    key
+    label
+    plugin
+    active
+    capabilities {
+      key
+      label
+      locked
+      broad
+      pending
+    }
+  }
+  flxRolesConfig {
+    ...FlxRolesConfigFields
+  }
+}

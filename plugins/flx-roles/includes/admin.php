@@ -16,11 +16,94 @@ add_action(
 		add_action(
 			'admin_print_styles-' . $hook,
 			function () {
+				if ( flxr_flux_ui() ) {
+					flxr_flux_assets();
+					return;
+				}
 				wp_enqueue_style( 'flxr-admin', FLXR_URL . 'assets/admin.css', array(), FLXR_VERSION );
 			}
 		);
 	}
 );
+
+/*
+ * New view (1.5.0, GraphQL): the page opens the same React screen as the FluxWP app (assets/flux/,
+ * tools/fluxapp/embed-sync.sh flx-roles). It is the default and has every feature of the classic page;
+ * a user can switch back to the classic page from the screen header for now. Needs Flux GraphQL.
+ */
+function flxr_flux_available() {
+	return file_exists( FLXR_DIR . 'assets/flux/flux-modules.js' ) && function_exists( 'flx_gql_ready' ) && function_exists( 'flx_gql_all_caps' ) && flx_gql_ready();
+}
+
+function flxr_flux_ui() {
+	return flxr_flux_available() && 'classic' !== get_user_meta( get_current_user_id(), 'flxr_ui', true );
+}
+
+/** Link that switches the current user between the views. */
+function flxr_ui_switch_url( $ui ) {
+	return wp_nonce_url( flxr_admin_url( array( 'flxr_ui' => 'flux' === $ui ? 'flux' : 'classic' ) ), 'flxr_ui' );
+}
+
+add_action(
+	'admin_init',
+	function () {
+		if ( ! isset( $_GET['flxr_ui'], $_GET['page'] ) || 'flx-roles' !== $_GET['page'] || ! current_user_can( 'manage_options' ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+			return;
+		}
+		check_admin_referer( 'flxr_ui' );
+		if ( 'classic' === $_GET['flxr_ui'] ) {
+			update_user_meta( get_current_user_id(), 'flxr_ui', 'classic' );
+		} else {
+			delete_user_meta( get_current_user_id(), 'flxr_ui' );
+		}
+		wp_safe_redirect( flxr_admin_url() );
+		exit;
+	}
+);
+
+/** The chunked bundle loads as an ES module. */
+function flxr_flux_module_tag( $tag, $handle ) {
+	if ( 'flxr-flux' !== $handle ) {
+		return $tag;
+	}
+	return (string) preg_replace_callback(
+		'/<script\b[^>]*\ssrc=[^>]*>/',
+		static function ( $m ) {
+			$open = (string) preg_replace( '/\stype=("|\')[^"\']*\1/', '', $m[0] );
+			return (string) preg_replace( '/^<script\b/', '<script type="module"', $open );
+		},
+		$tag,
+		1
+	);
+}
+
+function flxr_flux_assets() {
+	$ver    = FLXR_VERSION . '-' . (int) filemtime( FLXR_DIR . 'assets/flux/flux-modules.js' );
+	$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#2c7a64';
+	$opts   = array(
+		'module'     => 'flxr-roles',
+		'rest'       => rest_url(),
+		'nonce'      => wp_create_nonce( 'wp_rest' ),
+		'locale'     => get_user_locale(),
+		'siteName'   => get_bloginfo( 'name' ),
+		'adminUrl'   => admin_url(),
+		'theme'      => 'light',
+		'colors'     => array(
+			'primary'         => $accent,
+			'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
+		),
+		'classicUrl' => flxr_ui_switch_url( 'classic' ),
+	);
+	wp_enqueue_style( 'flxr-flux', FLXR_URL . 'assets/flux/flux-modules.css', array(), $ver );
+	wp_enqueue_script( 'flxr-flux', FLXR_URL . 'assets/flux/flux-modules.js', array(), $ver, true );
+	add_filter( 'script_loader_tag', 'flxr_flux_module_tag', 10, 2 );
+	// Light / dark follows Flux Admin (html.flxa-dark), also when the user switches it on the page.
+	wp_add_inline_script(
+		'flxr-flux',
+		'(function(){var h=document.documentElement,o=' . wp_json_encode( $opts ) . ';o.theme=h.classList.contains("flxa-dark")?"dark":"light";var slot=window.FluxModulesOptions||(window.FluxModulesOptions={});slot.id="flxr-app";slot.opts=o;function sync(){var el=document.getElementById("flxr-app");if(el)el.dataset.theme=h.classList.contains("flxa-dark")?"dark":"light";}new MutationObserver(sync).observe(h,{attributes:true,attributeFilter:["class"]});function go(){if(slot.done||!window.FluxModules)return;var el=document.getElementById(slot.id);if(!el)return;slot.done=true;try{window.FluxModules.mount(el,slot.opts);}catch(e){el.textContent=String(e&&e.message||e);}}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);go();})();',
+		'before'
+	);
+}
 
 add_action( 'admin_post_flxr_save', 'flxr_handle_save' );
 add_action( 'admin_post_flxr_user', 'flxr_handle_user' );
@@ -32,25 +115,24 @@ function flxr_handle_save() {
 		wp_die( esc_html__( 'You are not allowed to do this.', 'flx-roles' ), 403 );
 	}
 	check_admin_referer( 'flxr_save' );
-	$in = isset( $_POST['caps'] ) && is_array( $_POST['caps'] ) ? wp_unslash( $_POST['caps'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-	foreach ( array_keys( flxr_roles() ) as $rk ) {
-		foreach ( flxr_catalog() as $g ) {
-			foreach ( $g['caps'] as $cap => $c ) {
-				if ( ! empty( $c['locked'] ) ) {
-					continue;
-				}
-				flxr_set_role_cap( $rk, $cap, ! empty( $in[ $rk ][ $cap ] ) );
+	$in    = isset( $_POST['caps'] ) && is_array( $_POST['caps'] ) ? wp_unslash( $_POST['caps'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+	$home  = isset( $_POST['home'] ) && is_array( $_POST['home'] ) ? wp_unslash( $_POST['home'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+	$roles = array();
+	foreach ( FLXR_Roles_Service::role_keys() as $rk ) {
+		$on = array();
+		foreach ( array_keys( FLXR_Roles_Service::capability_labels() ) as $cap ) {
+			if ( ! empty( $in[ $rk ][ $cap ] ) ) {
+				$on[] = $cap;
 			}
 		}
+		$v       = sanitize_key( (string) ( $home[ $rk ] ?? 'auto' ) );
+		$roles[] = array(
+			'key'          => $rk,
+			'capabilities' => $on,
+			'home'         => isset( flxr_home_choices()[ $v ] ) ? $v : 'auto',
+		);
 	}
-	$s       = flxr_settings();
-	$choices = flxr_home_choices();
-	foreach ( array_keys( flxr_roles() ) as $rk ) {
-		$v                = sanitize_key( wp_unslash( $_POST['home'][ $rk ] ?? 'auto' ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-		$s['home'][ $rk ] = isset( $choices[ $v ] ) ? $v : 'auto';
-	}
-	$s['ref_days'] = max( 1, min( 365, absint( $_POST['ref_days'] ?? 30 ) ) );
-	update_option( 'flxr_settings', $s, false );
+	FLXR_Roles_Service::save( $roles, max( 1, min( 365, absint( $_POST['ref_days'] ?? 30 ) ) ) );
 	wp_safe_redirect( flxr_admin_url( array( 'flxr_msg' => 'saved' ) ) );
 	exit;
 }
@@ -60,10 +142,7 @@ function flxr_handle_reset() {
 		wp_die( esc_html__( 'You are not allowed to do this.', 'flx-roles' ), 403 );
 	}
 	check_admin_referer( 'flxr_reset' );
-	$rk = sanitize_key( wp_unslash( $_GET['role'] ?? '' ) );
-	if ( isset( flxr_roles()[ $rk ] ) ) {
-		flxr_reset_role( $rk );
-	}
+	FLXR_Roles_Service::reset_role( sanitize_key( wp_unslash( $_GET['role'] ?? '' ) ) );
 	wp_safe_redirect( flxr_admin_url( array( 'flxr_msg' => 'reset' ) ) );
 	exit;
 }
@@ -76,9 +155,9 @@ function flxr_handle_role() {
 	check_admin_referer( 'flxr_role' );
 	$do = sanitize_key( wp_unslash( $_POST['do'] ?? '' ) );
 	if ( 'delete' === $do ) {
-		$msg = flxr_delete_custom_role( sanitize_key( wp_unslash( $_POST['role'] ?? '' ) ) ) ? 'role_deleted' : 'user_err';
+		$msg = true === FLXR_Roles_Service::delete_role( sanitize_key( wp_unslash( $_POST['role'] ?? '' ) ) ) ? 'role_deleted' : 'user_err';
 	} else {
-		$r   = flxr_add_custom_role( sanitize_text_field( wp_unslash( $_POST['name'] ?? '' ) ) );
+		$r   = FLXR_Roles_Service::create_role( sanitize_text_field( wp_unslash( $_POST['name'] ?? '' ) ) );
 		$msg = is_wp_error( $r ) ? 'role_err' : 'role_added';
 	}
 	wp_safe_redirect( flxr_admin_url( array( 'flxr_msg' => $msg ) ) );
@@ -96,14 +175,7 @@ function flxr_handle_user() {
 	$msg = 'user_err';
 	if ( isset( flxr_roles()[ $rk ] ) ) {
 		if ( 'remove' === $do ) {
-			$u = get_userdata( absint( $_POST['user'] ?? 0 ) );
-			if ( $u ) {
-				$u->remove_role( $rk );
-				if ( ! $u->roles ) {
-					$u->add_role( (string) get_option( 'default_role', 'subscriber' ) );
-				}
-				$msg = 'user_removed';
-			}
+			$msg = true === FLXR_Roles_Service::remove_member( $rk, absint( $_POST['user'] ?? 0 ) ) ? 'user_removed' : 'user_err';
 		} else {
 			$who = sanitize_text_field( wp_unslash( $_POST['who'] ?? '' ) );
 			$u   = is_email( $who ) ? get_user_by( 'email', $who ) : get_user_by( 'login', $who );
@@ -112,17 +184,7 @@ function flxr_handle_user() {
 			} elseif ( user_can( $u, 'manage_options' ) ) {
 				$msg = 'user_admin';
 			} else {
-				foreach ( array_keys( flxr_roles() ) as $other ) {
-					if ( $other !== $rk ) {
-						$u->remove_role( $other );
-					}
-				}
-				// Müşteri/abone rolü yerine geçer; başka rolleri (ör. Çağrı Merkezi temsilcisi) kalır.
-				foreach ( array( 'subscriber', 'customer' ) as $low ) {
-					$u->remove_role( $low );
-				}
-				$u->add_role( $rk );
-				$msg = 'user_added';
+				$msg = is_wp_error( FLXR_Roles_Service::add_member( $rk, $who ) ) ? 'user_err' : 'user_added';
 			}
 		}
 	}
@@ -132,6 +194,11 @@ function flxr_handle_user() {
 
 function flxr_render_page() {
 	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+	if ( flxr_flux_ui() ) {
+		echo '<style>#flxr-app.flux-root{height:auto;background:transparent;font-family:inherit}</style>';
+		echo '<div class="wrap flxr-wrap"><div id="flxr-app"><noscript>' . esc_html__( 'JavaScript is required for this screen.', 'flx-roles' ) . '</noscript></div></div>';
 		return;
 	}
 	$roles    = flxr_roles();
@@ -152,6 +219,9 @@ function flxr_render_page() {
 	$m = sanitize_key( wp_unslash( $_GET['flxr_msg'] ?? '' ) ); // phpcs:ignore WordPress.Security.NonceVerification
 	echo '<div class="wrap flxr">';
 	echo '<h1>' . esc_html__( 'Roles and access', 'flx-roles' ) . '</h1>';
+	if ( flxr_flux_available() ) {
+		echo '<p><a class="button" href="' . esc_url( flxr_ui_switch_url( 'flux' ) ) . '">' . esc_html__( 'New view', 'flx-roles' ) . '</a> <span class="flxr-muted">' . esc_html__( 'Open the new view (same features, works in the FluxWP app too).', 'flx-roles' ) . '</span></p>';
+	}
 	if ( isset( $msgs[ $m ] ) ) {
 		echo '<div class="notice notice-' . esc_attr( $msgs[ $m ][0] ) . ' is-dismissible"><p>' . esc_html( $msgs[ $m ][1] ) . '</p></div>';
 	}
