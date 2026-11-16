@@ -802,8 +802,8 @@ final class FLXADS_Meta_Service {
 		}
 		return array(
 			'metaReady'  => $ready,
-			'today'      => wp_date( 'Y-m-d' ),
-			'defaultEnd' => wp_date( 'Y-m-d', time() + 28 * DAY_IN_SECONDS ),
+			'today'      => FLXADS_V::s( wp_date( 'Y-m-d' ) ),
+			'defaultEnd' => FLXADS_V::s( wp_date( 'Y-m-d', time() + 28 * DAY_IN_SECONDS ) ),
 			'adGroups'   => $groups,
 			'audiences'  => $auds,
 		);
@@ -827,7 +827,7 @@ final class FLXADS_Meta_Service {
 		if ( 'ab' === $in['type'] ) {
 			$a          = explode( ':', $in['a'] ?? '' );
 			$b          = explode( ':', $in['b'] ?? '' );
-			$d['campaign'] = ( $a[0] ?? '' ) === ( $b[0] ?? '' ) ? ( $a[0] ?? '' ) : '';
+			$d['campaign'] = $a[0] === $b[0] ? $a[0] : '';
 			$d['a']        = $a[1] ?? '';
 			$d['b']        = $b[1] ?? '';
 		}

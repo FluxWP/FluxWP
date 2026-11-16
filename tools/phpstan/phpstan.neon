@@ -12,6 +12,8 @@ parameters:
   tmpDir: .cache
   bootstrapFiles:
     - bootstrap.php
+  stubFiles:
+    - stubs/flx-ads.php
   scanFiles:
     - ../../plugins/flx-graphql/vendor/wp-graphql/access-functions.php
     - vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php

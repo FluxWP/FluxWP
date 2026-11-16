@@ -86,7 +86,7 @@ final class FLXADS_Settings_Service {
 	 * @return array{ok: bool, openSuggestions: int}
 	 */
 	public static function heartbeat(): array {
-		if ( (int) get_option( 'flxads_heartbeat' ) < time() - 10 * MINUTE_IN_SECONDS ) {
+		if ( FLXADS_V::i( get_option( 'flxads_heartbeat' ) ) < time() - 10 * MINUTE_IN_SECONDS ) {
 			FLXADS_Send::run_queue( 10 );
 		}
 		FLXADS_Spend::maybe_sync_later();
@@ -102,7 +102,7 @@ final class FLXADS_Settings_Service {
 	 */
 	private static function secret( string $key ): array {
 		$const  = 'FLXADS_' . strtoupper( $key );
-		$cfg    = defined( $const ) && '' !== (string) constant( $const );
+		$cfg    = defined( $const ) && '' !== FLXADS_V::s( constant( $const ) );
 		$plain  = flxads_secret( $key );
 		$stored = '' !== $plain;
 		return array(

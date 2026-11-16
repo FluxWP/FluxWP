@@ -9,7 +9,7 @@
  * @package FLX_Ads
  * @phpstan-import-type FlxadsMoney from FLXADS_V
  *
- * @phpstan-type FlxadsFilter array{range?: string, from?: string, to?: string, kind?: string, channel?: string, by?: string}
+ * @phpstan-type FlxadsFilter array<string, string>
  * @phpstan-type FlxadsOption array{key: string, label: string}
  * @phpstan-type FlxadsReportTotals array{count: int, amount: FlxadsMoney, adsCount: int, adsAmount: FlxadsMoney, adsPercent: float|null, newCount: int, mixed: bool, hasSpend: bool, spend: FlxadsMoney|null, clicks: int, roas: float|null, spendIncome: FlxadsMoney, spendCount: int, spendNew: int, cpa: FlxadsMoney|null, cpn: FlxadsMoney|null}
  * @phpstan-type FlxadsReportRow array{key: string, label: string, channel: string, channelLabel: string, count: int, amount: FlxadsMoney, amounts: list<FlxadsMoney>, otherCurrency: bool, newCount: int, share: float, hasSpend: bool, spend: FlxadsMoney|null, cpa: FlxadsMoney|null, roas: float|null, roasLevel: string}
@@ -55,8 +55,8 @@ final class FLXADS_Reports_Service {
 		} else {
 			$range = isset( $days[ $range ] ) ? $range : $default_range;
 			$n     = $days[ $range ];
-			$from  = wp_date( 'Y-m-d', time() - ( $n - 1 ) * DAY_IN_SECONDS );
-			$to    = wp_date( 'Y-m-d' );
+			$from  = FLXADS_V::s( wp_date( 'Y-m-d', time() - ( $n - 1 ) * DAY_IN_SECONDS ) );
+			$to    = FLXADS_V::s( wp_date( 'Y-m-d' ) );
 		}
 		return array(
 			'range'   => $range,
@@ -515,7 +515,7 @@ final class FLXADS_Reports_Service {
 	 */
 	public static function link_builder(): array {
 		$pages = array( home_url( '/' ) );
-		foreach ( get_pages(
+		foreach ( (array) get_pages(
 			array(
 				'number'      => 50,
 				'sort_column' => 'menu_order,post_title',

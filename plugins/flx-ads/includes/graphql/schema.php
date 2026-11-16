@@ -59,7 +59,7 @@ function flxads_gql_list( $v ): array {
  * Typed report filter from the `filter` argument.
  *
  * @param mixed $raw Argument.
- * @return FlxadsFilter
+ * @return array<string,string>
  */
 function flxads_gql_filter( $raw ): array {
 	$in  = flx_gql_arr( $raw );
@@ -89,7 +89,7 @@ function flxads_gql_filter_arg(): array {
 /**
  * Output of a mutation that only says it worked.
  *
- * @return array<string,array<string,string>>
+ * @return array<string,array<string,mixed>>
  */
 function flxads_gql_done(): array {
 	return array(
@@ -669,10 +669,23 @@ flxads_gql_m(
 	static function ( array $input ) {
 		$e  = flx_gql_arr( $input['experiment'] ?? array() );
 		$in = array( 'type' => flx_gql_str( $e['type'] ?? '' ) );
-		foreach ( array( 'name', 'start', 'end', 'a', 'b', 'audience' ) as $k ) {
-			if ( isset( $e[ $k ] ) ) {
-				$in[ $k ] = flx_gql_str( $e[ $k ] );
-			}
+		if ( isset( $e['name'] ) ) {
+			$in['name'] = flx_gql_str( $e['name'] );
+		}
+		if ( isset( $e['start'] ) ) {
+			$in['start'] = flx_gql_str( $e['start'] );
+		}
+		if ( isset( $e['end'] ) ) {
+			$in['end'] = flx_gql_str( $e['end'] );
+		}
+		if ( isset( $e['a'] ) ) {
+			$in['a'] = flx_gql_str( $e['a'] );
+		}
+		if ( isset( $e['b'] ) ) {
+			$in['b'] = flx_gql_str( $e['b'] );
+		}
+		if ( isset( $e['audience'] ) ) {
+			$in['audience'] = flx_gql_str( $e['audience'] );
 		}
 		if ( isset( $e['pct'] ) ) {
 			$in['pct'] = flx_gql_int( $e['pct'] );
@@ -721,7 +734,7 @@ flxads_gql_m(
  * Typed draft from the input.
  *
  * @param mixed $raw Input.
- * @return FlxadsDraftInput
+ * @return array{name: string, objective: string, link: string, dailyBudget: float, start: string, end: string, adsets: list<array{name: string, ageMin: int, ageMax: int, gender: string, countries: list<string>, audiences: list<string>, exclude: list<string>, share: int}>, ads: list<array{name: string, text: string, headline: string, description: string, cta: string, image: string}>}
  */
 function flxads_gql_draft_input( $raw ): array {
 	$d     = flx_gql_arr( $raw );
