@@ -1,0 +1,18 @@
+mutation FlxRecaptchaSettingsUpdate($input: FlxRecaptchaSettingsUpdateInput!) {
+  flxRecaptchaSettingsUpdate(input: $input) {
+    settings {
+      ...FlxRecaptchaSettingsFields
+    }
+    forms {
+      ...FlxRecaptchaFormRow
+    }
+    status {
+      ...FlxRecaptchaStatusFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

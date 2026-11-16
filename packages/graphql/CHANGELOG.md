@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.3.5
+- Flux reCAPTCHA operations (`FlxRecaptchaScreen`, `FlxRecaptchaSettingsUpdate`, `FlxRecaptchaKeysTest`, `FlxCaptcha`).
+
 ## 0.3.4
 - Flux Speed işlemleri (`FlxSpeedConfig`, `FlxSpeedSummary`, `FlxSpeedRecords`, `FlxSpeedRecord`, `FlxSpeedCache`, `FlxSpeedSettings` ve diğerleri, 20 işlem) ve tipleri.
 

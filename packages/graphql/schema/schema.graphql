@@ -461,6 +461,12 @@ type RootQuery {
   "The FluxWP capability catalog, with what the current user has."
   flxCapabilities: [FlxCapability!]!
 
+  "What a client needs to protect one form with reCAPTCHA; empty when the form key is not registered."
+  flxCaptcha(
+    "Form (context) key, e.g. login, checkout or one a plugin registered with flx_captcha_contexts."
+    context: String!
+  ): FlxCaptchaConfig
+
   "The shopper&#039;s cart (Cart-Token session or the WooCommerce session cookie). Never cached."
   flxCart: FlxCart!
 
@@ -538,6 +544,15 @@ type RootQuery {
 
   "The languages visitors can open, default first. Public: the language switcher shows the same list."
   flxLanguages: [FlxLanguage!]!
+
+  "Every form the panel can protect, with its switch and the last 30 days."
+  flxRecaptchaForms: [FlxRecaptchaForm!]!
+
+  "Keys and options of the reCAPTCHA page. The secret key is never returned."
+  flxRecaptchaSettings: FlxRecaptchaSettings!
+
+  "State of the protection, the last 30 days, the last key test and the last Google error."
+  flxRecaptchaStatus: FlxRecaptchaStatus!
 
   "One role; empty when the key is unknown."
   flxRole(
@@ -12165,6 +12180,72 @@ type FlxCapability {
   package: String!
 }
 
+"What a client needs to protect one form with reCAPTCHA. Send the token with the mutation (its captchaToken input) or in the X-Flx-Captcha header."
+type FlxCaptchaConfig {
+  "v3 action name to execute; empty when the form is not protected."
+  action: String
+
+  "Form (context) key."
+  context: String!
+
+  "The form is protected for visitors. Signed-in users and allowed IP addresses may still be skipped by the server."
+  enabled: Boolean!
+
+  "The v3 badge is hidden; show Google&#039;s notice under the form."
+  hideBadge: Boolean!
+
+  "Google script address to load; empty when the form is not protected."
+  scriptUrl: String
+
+  "Site key (public); empty when the form is not protected."
+  siteKey: String
+
+  "v2 checkbox size."
+  size: FlxRecaptchaSize!
+
+  "v2 checkbox theme."
+  theme: FlxRecaptchaTheme!
+
+  "POST field name that carries the token (forms that post)."
+  tokenField: String!
+
+  "Request header name that carries the token (REST and GraphQL)."
+  tokenHeader: String!
+
+  "reCAPTCHA type."
+  version: FlxRecaptchaVersion!
+}
+
+"Size of the v2 checkbox."
+enum FlxRecaptchaSize {
+  "Compact."
+  COMPACT
+
+  "Normal."
+  NORMAL
+}
+
+"Look of the v2 checkbox."
+enum FlxRecaptchaTheme {
+  "Follows the site's dark mode."
+  AUTO
+
+  "Dark."
+  DARK
+
+  "Light."
+  LIGHT
+}
+
+"reCAPTCHA type."
+enum FlxRecaptchaVersion {
+  "The \"I'm not a robot\" checkbox."
+  V2
+
+  "Invisible; Google returns a score from 0 to 1."
+  V3
+}
+
 "The shopper&#039;s WooCommerce cart (Store API)."
 type FlxCart {
   "Billing address."
@@ -13620,6 +13701,192 @@ type FlxLanguageSiteText {
   value: String!
 }
 
+"A form the panel can protect."
+type FlxRecaptchaForm {
+  "The plugin that owns the form is installed."
+  available: Boolean!
+
+  "Submissions blocked in the last 30 days."
+  blocked: Int!
+
+  "What is protected."
+  description: String!
+
+  "Protection is on for the form in the panel."
+  enabled: Boolean!
+
+  "Group of the form."
+  group: FlxRecaptchaFormGroup!
+
+  "Group name in the user&#039;s language."
+  groupLabel: String!
+
+  "Form (context) key, e.g. login or checkout."
+  key: String!
+
+  "Form name in the user&#039;s language."
+  label: String!
+
+  "Submissions that passed in the last 30 days."
+  passed: Int!
+}
+
+"Group a protectable form belongs to."
+enum FlxRecaptchaFormGroup {
+  "FluxWP forms."
+  FLUXWP
+
+  "Forms of other plugins."
+  OTHER
+
+  "WooCommerce forms."
+  WOOCOMMERCE
+
+  "WordPress forms."
+  WORDPRESS
+}
+
+"Keys and options of the reCAPTCHA page. The secret key is never returned."
+type FlxRecaptchaSettings {
+  "IP addresses and ranges (CIDR) that skip the check."
+  allowIps: [String!]!
+
+  "The caller&#039;s IP address; empty when unknown."
+  currentIp: String
+
+  "Protection is turned off by the FLXRC_DISABLE recovery constant."
+  disabledByConstant: Boolean!
+
+  "Google host."
+  domain: FlxRecaptchaDomain!
+
+  "Submissions are let through when Google is unreachable."
+  failOpen: Boolean!
+
+  "Flux Forms is installed and its form protection is on here; its own reCAPTCHA option must be off."
+  formsOverlap: Boolean!
+
+  "The v3 badge is hidden; the notice Google requires is added under protected forms."
+  hideBadge: Boolean!
+
+  "The keys were tested for the current type; protection runs only then."
+  keysVerified: Boolean!
+
+  "Masked last four characters of the saved secret key; empty when none. The key itself is never returned."
+  secretHint: String!
+
+  "The secret key comes from the FLXRC_SECRET_KEY constant in wp-config.php; the panel value is not used."
+  secretLocked: Boolean!
+
+  "A secret key is saved."
+  secretSaved: Boolean!
+
+  "Site key in use (public). Empty when none is set."
+  siteKey: String!
+
+  "The site key comes from the FLXRC_SITE_KEY constant in wp-config.php; the panel value is not used."
+  siteKeyLocked: Boolean!
+
+  "Signed-in users are not checked on comments, checkout, donations and forms."
+  skipLoggedIn: Boolean!
+
+  "v3 score below which a submission is blocked (0.1–0.9)."
+  threshold: Float!
+
+  "v2 checkbox size."
+  v2Size: FlxRecaptchaSize!
+
+  "v2 checkbox theme."
+  v2Theme: FlxRecaptchaTheme!
+
+  "reCAPTCHA type."
+  version: FlxRecaptchaVersion!
+}
+
+"Google host the script and the verification use."
+enum FlxRecaptchaDomain {
+  "www.google.com"
+  GOOGLE
+
+  "www.recaptcha.net, for networks where google.com is blocked."
+  RECAPTCHA
+}
+
+"State of the protection and the last 30 days."
+type FlxRecaptchaStatus {
+  "Submissions blocked in the last 30 days."
+  blocked: Int!
+
+  "Forms of installed plugins."
+  formsAvailable: Int!
+
+  "Available forms with protection on."
+  formsOn: Int!
+
+  "A Google error of the last day while protection is on; empty otherwise."
+  lastError: FlxRecaptchaErrorLog
+
+  "The last key test; empty when none ran yet."
+  lastTest: FlxRecaptchaTestLog
+
+  "Submissions that passed in the last 30 days."
+  passed: Int!
+
+  "Whether protection is running."
+  state: FlxRecaptchaState!
+
+  "reCAPTCHA type in use."
+  version: FlxRecaptchaVersion!
+}
+
+"The last time Google could not be reached or rejected the secret key (kept for a day)."
+type FlxRecaptchaErrorLog {
+  "What went wrong."
+  kind: FlxRecaptchaErrorKind!
+
+  "Submissions were let through without a check at that time (otherwise they were blocked)."
+  letPass: Boolean!
+
+  "Google&#039;s error codes or the connection error (short)."
+  reason: String!
+
+  "When it happened."
+  time: FlxDateTime!
+}
+
+"What went wrong when Google was asked."
+enum FlxRecaptchaErrorKind {
+  "Google rejected the secret key."
+  CONFIG
+
+  "Google could not be reached."
+  NETWORK
+}
+
+"The last key test."
+type FlxRecaptchaTestLog {
+  "Result of the test."
+  message: String!
+
+  "The keys worked."
+  ok: Boolean!
+
+  "When the test ran."
+  time: FlxDateTime!
+}
+
+"Whether protection is running."
+enum FlxRecaptchaState {
+  "The keys are not tested yet; no form is checked."
+  AWAITING_TEST
+
+  "Turned off by the FLXRC_DISABLE recovery constant."
+  OFF
+
+  "Keys tested; the enabled forms are protected."
+  ON
+}
+
 "A FluxWP role: Director, Manager, Staff or a role added from the panel."
 type FlxRole {
   "Table permissions that are on for the role."
@@ -14366,6 +14633,9 @@ type FlxSettings {
   "Flux Speed"
   flxpSettings: FlxSettingsFlxpSettings
 
+  "Flux reCAPTCHA"
+  flxrcSettings: FlxSettingsFlxrcSettings
+
   "Flux SEO"
   flxseo: FlxSettingsFlxseo
 
@@ -14521,6 +14791,75 @@ enum FlxSettingsFlxpSettingsPsCssScope {
 
   ""
   THEME
+}
+
+"Flux reCAPTCHA"
+type FlxSettingsFlxrcSettings {
+  "API host"
+  domain: FlxSettingsFlxrcSettingsDomain
+
+  ""
+  failOpen: Boolean
+
+  "Protected forms: context key =&gt; 0/1 (login, register, lostpassword, comments, wc_login, wc_register, checkout, donate, forms)"
+  forms: FlxJSON
+
+  ""
+  hideBadge: Boolean
+
+  ""
+  skipLoggedIn: Boolean
+
+  "v3 score threshold 0.1-0.9"
+  threshold: String
+
+  ""
+  v2Size: FlxSettingsFlxrcSettingsV2Size
+
+  ""
+  v2Theme: FlxSettingsFlxrcSettingsV2Theme
+
+  "reCAPTCHA type"
+  version: FlxSettingsFlxrcSettingsVersion
+}
+
+""
+enum FlxSettingsFlxrcSettingsDomain {
+  ""
+  GOOGLE
+
+  ""
+  RECAPTCHA
+}
+
+""
+enum FlxSettingsFlxrcSettingsV2Size {
+  ""
+  COMPACT
+
+  ""
+  NORMAL
+}
+
+""
+enum FlxSettingsFlxrcSettingsV2Theme {
+  ""
+  AUTO
+
+  ""
+  DARK
+
+  ""
+  LIGHT
+}
+
+""
+enum FlxSettingsFlxrcSettingsVersion {
+  ""
+  V2
+
+  ""
+  V3
 }
 
 "Flux SEO"
@@ -19835,6 +20174,18 @@ type RootMutation {
     input: FlxLanguageTranslationCreateInput!
   ): FlxLanguageTranslationCreatePayload
 
+  "Tests the keys with the token the browser got from Google. When the test passes the keys are saved and protection turns on; when it fails nothing changes and the result says why."
+  flxRecaptchaKeysTest(
+    "Input for the flxRecaptchaKeysTest mutation"
+    input: FlxRecaptchaKeysTestInput!
+  ): FlxRecaptchaKeysTestPayload
+
+  "Changes the keys, the options and the form switches in one go. Fields you leave out stay as they are; nothing is written when any part is invalid. A changed key or type turns protection off until the keys are tested again."
+  flxRecaptchaSettingsUpdate(
+    "Input for the flxRecaptchaSettingsUpdate mutation"
+    input: FlxRecaptchaSettingsUpdateInput!
+  ): FlxRecaptchaSettingsUpdatePayload
+
   "Adds a role from the panel; it starts with admin panel access only."
   flxRoleCreate(
     "Input for the flxRoleCreate mutation"
@@ -23139,6 +23490,126 @@ type FlxLanguageTranslationCreatePayload {
   translation: FlxTranslation
 }
 
+"Input for the flxRecaptchaKeysTest mutation."
+input FlxRecaptchaKeysTestInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Secret key to test; empty uses the saved one."
+  secret: String
+
+  "Site key the token was made with. Ignored when FLXRC_SITE_KEY is set."
+  siteKey: String
+
+  "Token Google returned in the browser (grecaptcha.execute or the v2 checkbox)."
+  token: String!
+
+  "reCAPTCHA type of the keys."
+  version: FlxRecaptchaVersion!
+}
+
+"The payload for the flxRecaptchaKeysTest mutation."
+type FlxRecaptchaKeysTestPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Forms after the change."
+  forms: [FlxRecaptchaForm!]!
+
+  "Result of the test."
+  result: FlxRecaptchaTestResult
+
+  "Settings after the change."
+  settings: FlxRecaptchaSettings!
+
+  "Protection state after the change."
+  status: FlxRecaptchaStatus!
+}
+
+"Result of testing keys with Google."
+type FlxRecaptchaTestResult {
+  "What happened, in the user&#039;s language."
+  message: String!
+
+  "The keys work and were saved."
+  ok: Boolean!
+
+  "v3 score of the test token; empty for v2 or a failed test."
+  score: Float
+}
+
+"Input for the flxRecaptchaSettingsUpdate mutation."
+input FlxRecaptchaSettingsUpdateInput {
+  "IP addresses and ranges (CIDR) that skip the check; replaces the list."
+  allowIps: [String!]
+
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Google host."
+  domain: FlxRecaptchaDomain
+
+  "Let submissions through when Google is unreachable."
+  failOpen: Boolean
+
+  "Form switches to change; the other forms stay as they are."
+  forms: [FlxRecaptchaFormSwitchInput!]
+
+  "Hide the v3 badge."
+  hideBadge: Boolean
+
+  "Secret key; write-only, stored sealed. Empty keeps the saved one."
+  secret: String
+
+  "Site key. Ignored when FLXRC_SITE_KEY is set."
+  siteKey: String
+
+  "Do not check signed-in users on comments, checkout, donations and forms."
+  skipLoggedIn: Boolean
+
+  "v3 bot threshold (0.1–0.9)."
+  threshold: Float
+
+  "v2 checkbox size."
+  v2Size: FlxRecaptchaSize
+
+  "v2 checkbox theme."
+  v2Theme: FlxRecaptchaTheme
+
+  "reCAPTCHA type."
+  version: FlxRecaptchaVersion
+}
+
+"Turns protection on or off for one form."
+input FlxRecaptchaFormSwitchInput {
+  "Protection on."
+  enabled: Boolean!
+
+  "Form (context) key."
+  key: String!
+}
+
+"The payload for the flxRecaptchaSettingsUpdate mutation."
+type FlxRecaptchaSettingsUpdatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Forms after the change."
+  forms: [FlxRecaptchaForm!]!
+
+  "Settings after the change."
+  settings: FlxRecaptchaSettings!
+
+  "Protection state after the change."
+  status: FlxRecaptchaStatus!
+}
+
 "Input for the flxRoleCreate mutation."
 input FlxRoleCreateInput {
   "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
@@ -23507,6 +23978,9 @@ input FlxSettingsUpdateInput {
   "Flux Speed"
   flxpSettings: FlxSettingsFlxpSettingsInput
 
+  "Flux reCAPTCHA"
+  flxrcSettings: FlxSettingsFlxrcSettingsInput
+
   "Flux SEO"
   flxseo: FlxSettingsFlxseoInput
 
@@ -23641,6 +24115,36 @@ input FlxSettingsFlxpSettingsInput {
 
   ""
   psViewport: Boolean
+}
+
+"Changes to Flux reCAPTCHA. Only the fields you send are changed."
+input FlxSettingsFlxrcSettingsInput {
+  "API host"
+  domain: FlxSettingsFlxrcSettingsDomain
+
+  ""
+  failOpen: Boolean
+
+  "Protected forms: context key => 0/1 (login, register, lostpassword, comments, wc_login, wc_register, checkout, donate, forms)"
+  forms: FlxJSON
+
+  ""
+  hideBadge: Boolean
+
+  ""
+  skipLoggedIn: Boolean
+
+  "v3 score threshold 0.1-0.9"
+  threshold: String
+
+  ""
+  v2Size: FlxSettingsFlxrcSettingsV2Size
+
+  ""
+  v2Theme: FlxSettingsFlxrcSettingsV2Theme
+
+  "reCAPTCHA type"
+  version: FlxSettingsFlxrcSettingsVersion
 }
 
 "Changes to Flux SEO. Only the fields you send are changed."
