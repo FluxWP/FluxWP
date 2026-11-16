@@ -29,6 +29,7 @@ on:
       - 'plugins/**'
       - 'themes/**'
       - 'packages/graphql/**'
+      - 'packages/modules/**'
       - '.github/workflows/graphql.yml'
   workflow_dispatch:
 
