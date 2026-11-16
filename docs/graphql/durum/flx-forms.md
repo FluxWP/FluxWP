@@ -1,10 +1,10 @@
-# flx-forms 2.4.0
+# flx-forms 2.5.0
 
 - Faz: 1
-- Durum: ✱
+- Durum: 👀
 - PR: #334
 
-Plan: 1 public okuma + gönderim, 2 Panel yanıtlar + ayarlar, 3 Pano + sistem kontrolü, 4 Ödemeler, 5 Otomasyonlar, 6 Eklentiler. Bu dal 1. Oluştur (fork form oluşturucu) klasik kalır. Eşleme `docs/graphql/ESLEME/flx-forms.md`. Blok formu AJAX istisnası (`fxb_process_ajax_submit`, `fxb_process_advanced_form_submit`) `ISTISNALAR.md` ortak dosyasında; silinmesi ayrı PR.
+Plan: 1 public okuma + gönderim (`flxForm`, `flxFormSubmit`, `flxFormTrack`, `flxFormTrackReply`), 2 Panel yanıtlar + ayarlar, 3 Pano + sistem kontrolü, 4 Ödemeler, 5 Otomasyonlar, 6 Eklentiler. Bu dal 1'i yazar; ekran yok. Oluştur (fork form oluşturucu) klasik kalır. Eşleme `docs/graphql/ESLEME/flx-forms.md`. Ayrıntı `docs/flx-forms/GRAPHQL.md`. Blok formu AJAX istisnası (`fxb_process_ajax_submit`, `fxb_process_advanced_form_submit`) `ISTISNALAR.md` ortak dosyasında; silinmesi ayrı PR.
 
 ## İstisnalar
 

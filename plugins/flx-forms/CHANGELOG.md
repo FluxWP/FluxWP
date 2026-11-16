@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 2.5.0
+- Herkese açık form okuma ve gönderim GraphQL üzerinden: `flxForm`, `flxFormSubmit`, `flxFormTrack`, `flxFormTrackReply`. Çizim alanları döner; bildirim alıcıları, webhook, sırlar ve rezervasyon sayaçları dönmez. Gönderim form, anket ve abonelik içindir. Captcha Flux reCAPTCHA (`flxf_submit`), honeypot ve hız sınırı GraphQL'de. Klasik REST aynı kaldı.
+- PHP 8.1 ve Flux GraphQL gerekli. Flux GraphQL yoksa GraphQL kaydı atlanır, REST çalışır.
+
 ## 2.4.0
 - Formlar tek yerde: Flux Block Editor'ın kendi "Form" ve "Form (gelişmiş)" blokları, Flux Forms kuruluyken ekleyiciden kalkar. Sayfalardaki mevcut formlar olduğu gibi çalışmaya devam eder.
 - Eski form bloklarında "Flux Forms'a taşı" (araç çubuğu ve blok ayarları): alanlar Flux Forms bloklarına dönüşür (metin, e-posta, telefon, sayı, tarih, saat, uzun metin, açılır liste, çoklu seçim, onay kutuları, radyo, onay, dosya, gizli alan), düğme metni, başarı mesajı ve bildirim e-postası da taşınır. Sayfa kaydedilince form Flux Forms'ta oluşur. Eski gelişmiş form kaydı silinmez.
