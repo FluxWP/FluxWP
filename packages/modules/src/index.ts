@@ -16,7 +16,11 @@ function lazyScreen(load: () => Promise<{ default: ComponentType }>): ComponentT
 export const moduleScreens: Record<string, ComponentType> = {
   'flxb-review': lazyScreen(() => import('./review/ReviewScreen').then((m) => ({ default: m.ReviewScreen }))),
   'flxg-tasks': lazyScreen(() => import('./tasks/TasksScreen').then((m) => ({ default: m.TasksScreen }))),
+  'flxl-lang': lazyScreen(() => import('./lang/LanguagesScreen').then((m) => ({ default: m.LanguagesScreen }))),
   'flxr-roles': lazyScreen(() => import('./roles/RolesScreen').then((m) => ({ default: m.RolesScreen }))),
   'studio': lazyScreen(() => import('./studio/StudioScreen').then((m) => ({ default: m.StudioScreen }))),
+  'flxapp-settings': lazyScreen(() => import('./app-settings/AppSettingsScreen').then((m) => ({ default: m.AppSettingsScreen }))),
+  'flxapp-access': lazyScreen(() => import('./app-settings/AccessScreen').then((m) => ({ default: m.AccessScreen }))),
+  'flxseo-seo': lazyScreen(() => import('./seo/SeoScreen').then((m) => ({ default: m.SeoScreen }))),
   'flxc-inbox': lazyScreen(() => import('./whatsapp/WhatsAppScreen').then((m) => ({ default: m.WhatsAppScreen }))),
 };

@@ -1,0 +1,12 @@
+mutation FlxLanguageTranslateStart($input: FlxLanguageTranslateStartInput!) {
+  flxLanguageTranslateStart(input: $input) {
+    job {
+      ...FlxLanguageJobFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

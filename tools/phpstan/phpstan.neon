@@ -14,6 +14,8 @@ parameters:
     - bootstrap.php
   scanFiles:
     - ../../plugins/flx-graphql/vendor/wp-graphql/access-functions.php
+    - ../../plugins/flx-app/flx-app.php
+    - ../../plugins/flx-seo/flx-seo.php
     - vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
     - vendor/php-stubs/wp-cli-stubs/wp-cli-stubs.php
   scanDirectories:
@@ -25,6 +27,9 @@ parameters:
     - ../../plugins/flx-tasks/includes
     - ../../plugins/flx-roles/includes
     - ../../plugins/flx-studio/includes
+    - ../../plugins/flx-app/includes
+    - ../../plugins/flx-lang/includes
+    - ../../plugins/flx-seo/includes
   paths:
     - ../../plugins/flx-graphql/flx-graphql.php
     - ../../plugins/flx-graphql/uninstall.php
@@ -38,6 +43,15 @@ parameters:
     # Flux Studio (Faz 1)
     - ../../plugins/flx-studio/includes/services
     - ../../plugins/flx-studio/includes/graphql
+    # Flux App (Faz 1)
+    - ../../plugins/flx-app/includes/services
+    - ../../plugins/flx-app/includes/graphql
+    # Flux Lang (Faz 1)
+    - ../../plugins/flx-lang/includes/services
+    - ../../plugins/flx-lang/includes/graphql
+    # Flux SEO (Faz 1)
+    - ../../plugins/flx-seo/includes/services
+    - ../../plugins/flx-seo/includes/graphql
   excludePaths:
     - ../../plugins/flx-graphql/includes/flx-brand
   treatPhpDocTypesAsCertain: false

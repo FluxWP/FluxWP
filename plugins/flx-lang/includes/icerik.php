@@ -369,7 +369,7 @@ function flxl_pre_get_posts( WP_Query $q ) {
 		if ( flxl_is_backend() ) {
 			return; // Yönetimde liste filtresi admin.php'de.
 		}
-		if ( defined( 'REST_REQUEST' ) && REST_REQUEST && ! flxl_is_explicit() ) {
+		if ( ( ( defined( 'REST_REQUEST' ) && REST_REQUEST ) || flxl_is_graphql_request() ) && ! flxl_is_explicit() ) {
 			return;
 		}
 		// Tekil içerik çözümü süzülmez; dil uyuşmazlığı template_redirect'te yönlendirilir.
