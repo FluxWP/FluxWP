@@ -1,0 +1,12 @@
+mutation FlxLanguageTranslationCreate($input: FlxLanguageTranslationCreateInput!) {
+  flxLanguageTranslationCreate(input: $input) {
+    translation {
+      ...FlxTranslationRow
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

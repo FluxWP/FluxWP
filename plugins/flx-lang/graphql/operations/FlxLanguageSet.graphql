@@ -1,0 +1,13 @@
+mutation FlxLanguageSet($input: FlxLanguageSetInput!) {
+  flxLanguageSet(input: $input) {
+    lang
+    translations {
+      ...FlxTranslationRow
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

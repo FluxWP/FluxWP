@@ -199,16 +199,7 @@ add_action(
 		if ( ! flxl_is_language( $l ) || flxl_is_shared( $post_id ) ) {
 			return;
 		}
-		$has_term = is_array( get_the_terms( $post_id, FLXL_TAX ) );
-		if ( $l === flxl_post_language( $post_id ) && ( $has_term || $l === flxl_default_language() ) ) {
-			return;
-		}
-		// Gruptaki başka içerik aynı dildeyse gruptan ayrılır.
-		$tr = flxl_get_translations( $post_id );
-		if ( isset( $tr[ $l ] ) && (int) $tr[ $l ] !== (int) $post_id ) {
-			flxl_unlink_translation( $post_id );
-		}
-		flxl_set_post_language( $post_id, $l );
+		FLXL_Language_Service::set_post_language( (int) $post_id, $l );
 	},
 	10,
 	2

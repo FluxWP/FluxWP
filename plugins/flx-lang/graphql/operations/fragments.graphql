@@ -1,0 +1,74 @@
+fragment FlxLanguageRow on FlxLanguage {
+  code
+  name
+  locale
+  flag
+  active
+  default
+  address
+  hreflang
+}
+
+fragment FlxTranslationRow on FlxTranslation {
+  lang
+  databaseId
+  id
+  title
+  status
+  url
+  editUrl
+  isSelf
+}
+
+fragment FlxLanguageJobFields on FlxLanguageJob {
+  id
+  status
+  step
+  total
+  sourceId
+  translationId
+  lang
+  errors
+  editUrl
+}
+
+fragment FlxLanguageSettingsFields on FlxLanguageSettings {
+  defaultLanguage
+  languages {
+    ...FlxLanguageRow
+  }
+  postTypes
+  fallback
+  suggest
+  suggestTo
+  homeCountries
+  switcher
+  switcherPlace
+  texts {
+    lang
+    key
+    value
+  }
+  catalog {
+    code
+    name
+    locale
+    flag
+  }
+  postTypeChoices {
+    name
+    label
+    selected
+  }
+  textFields {
+    key
+    label
+    textarea
+    placeholder
+  }
+  geo {
+    country
+    source
+  }
+  aiAvailable
+}
