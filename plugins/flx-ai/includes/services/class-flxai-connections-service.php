@@ -25,13 +25,13 @@ final class FLXAI_Connections_Service {
 				$roles[] = new FLXAI_Option( (string) $key, translate_user_role( (string) $name ) );
 			}
 		}
-		return new FLXAI_Connections_Screen( $list, $roles, flxai_mcpc_oauth_callback() );
+		return new FLXAI_Connections_Screen( $list, $roles, FLXAI_Cast::str( flxai_mcpc_oauth_callback() ) );
 	}
 
 	/** @return FLXAI_Connection|null */
 	public static function get( string $id ) {
-		$s = '' !== $id ? flxai_mcpc_get( $id ) : null;
-		return $s ? self::map( FLXAI_Cast::arr( $s ) ) : null;
+		$s = '' !== $id ? FLXAI_Cast::arr( flxai_mcpc_get( $id ) ) : array();
+		return $s ? self::map( $s ) : null;
 	}
 
 	/**
@@ -51,7 +51,7 @@ final class FLXAI_Connections_Service {
 			}
 		}
 		$new = null === $s;
-		$s   = $s ?? flxai_mcpc_defaults();
+		$s   = $s ?? FLXAI_Cast::arr( flxai_mcpc_defaults() );
 
 		$url = $new || array_key_exists( 'url', $in ) ? esc_url_raw( trim( FLXAI_Cast::str( $in['url'] ?? '' ) ), array( 'http', 'https' ) ) : FLXAI_Cast::str( $s['url'] );
 		if ( ! flxai_mcpc_url_ok( $url ) ) {
@@ -62,7 +62,7 @@ final class FLXAI_Connections_Service {
 			);
 		}
 		if ( $new ) {
-			$s['id']      = flxai_mcpc_slug( FLXAI_Cast::str( $in['name'] ?? '' ) );
+			$s['id']      = FLXAI_Cast::str( flxai_mcpc_slug( FLXAI_Cast::str( $in['name'] ?? '' ) ) );
 			$s['owner']   = get_current_user_id();
 			$s['created'] = time();
 		}
@@ -106,12 +106,13 @@ final class FLXAI_Connections_Service {
 		}
 		$s['oauth'] = $o;
 		flxai_mcpc_put( $s );
-		delete_transient( 'flxai_mcpc_sess_' . $s['id'] );
+		$sid = FLXAI_Cast::str( $s['id'] );
+		delete_transient( 'flxai_mcpc_sess_' . $sid );
 		if ( ! ( 'oauth' === $s['auth'] && empty( $o['access'] ) ) && $s['enabled'] ) {
-			flxai_mcpc_refresh( (string) $s['id'] );
+			flxai_mcpc_refresh( $sid );
 		}
 		self::changed();
-		$out = self::get( (string) $s['id'] );
+		$out = self::get( $sid );
 		return $out ?? new WP_Error( 'flxai_mcpc_none', __( 'Connection not found.', 'flx-ai' ), array( 'graphql_code' => 'NOT_FOUND' ) );
 	}
 
@@ -154,7 +155,7 @@ final class FLXAI_Connections_Service {
 		if ( $s instanceof WP_Error ) {
 			return $s;
 		}
-		if ( 'oauth' !== $s['auth'] ) {
+		if ( 'oauth' !== FLXAI_Cast::str( $s['auth'] ) ) {
 			return new WP_Error(
 				'flxai_mcpc_auth',
 				__( 'This connection does not sign in with OAuth.', 'flx-ai' ),
@@ -227,11 +228,11 @@ final class FLXAI_Connections_Service {
 	 * @return array<mixed>|WP_Error
 	 */
 	private static function own( string $id ) {
-		$s = '' !== $id ? flxai_mcpc_get( sanitize_key( $id ) ) : null;
+		$s = '' !== $id ? FLXAI_Cast::arr( flxai_mcpc_get( sanitize_key( $id ) ) ) : array();
 		if ( ! $s ) {
 			return self::missing();
 		}
-		if ( 'personal' === $s['scope'] && (int) $s['owner'] !== get_current_user_id() ) {
+		if ( 'personal' === $s['scope'] && FLXAI_Cast::int( $s['owner'] ) !== get_current_user_id() ) {
 			return new WP_Error(
 				'flxai_mcpc_other',
 				__( 'This is another user\'s personal connection.', 'flx-ai' ),
@@ -251,7 +252,7 @@ final class FLXAI_Connections_Service {
 
 	/** @param array<mixed> $s Stored record. */
 	private static function map( array $s ): FLXAI_Connection {
-		$s     = $s + flxai_mcpc_defaults();
+		$s     = $s + FLXAI_Cast::arr( flxai_mcpc_defaults() );
 		$o     = FLXAI_Cast::arr( $s['oauth'] );
 		$info  = FLXAI_Cast::arr( $s['info'] );
 		$owner = get_userdata( FLXAI_Cast::int( $s['owner'] ) );
@@ -259,13 +260,13 @@ final class FLXAI_Connections_Service {
 		$on    = 0;
 		foreach ( FLXAI_Cast::arr( $s['tools'] ) as $name => $t ) {
 			$t    = FLXAI_Cast::arr( $t );
-			$perm = flxai_mcpc_perm( $s, (string) $name );
+			$perm = FLXAI_Cast::str( flxai_mcpc_perm( $s, (string) $name ) );
 			if ( 'off' !== $perm ) {
 				++$on;
 			}
 			$tools[] = new FLXAI_Connection_Tool(
 				(string) $name,
-				flxai_mcpc_tool_name( FLXAI_Cast::str( $s['id'] ), (string) $name ),
+				FLXAI_Cast::str( flxai_mcpc_tool_name( FLXAI_Cast::str( $s['id'] ), (string) $name ) ),
 				FLXAI_Cast::str( $t['title'] ?? $name ),
 				FLXAI_Cast::str( $t['description'] ?? '' ),
 				! empty( $t['readonly'] ),
@@ -284,7 +285,7 @@ final class FLXAI_Connections_Service {
 		} else {
 			$status = 'connected';
 		}
-		$mine = 'shared' === $s['scope'] || (int) $s['owner'] === get_current_user_id();
+		$mine = 'shared' === $s['scope'] || FLXAI_Cast::int( $s['owner'] ) === get_current_user_id();
 		return new FLXAI_Connection(
 			FLXAI_Cast::str( $s['id'] ),
 			FLXAI_Cast::str( $s['name'] ),

@@ -14,7 +14,7 @@ final class FLXAI_Mcp_Service {
 	public const CACHE_TAG = 'flx-ai:mcp';
 
 	public static function overview(): FLXAI_Mcp_Overview {
-		$on    = flxai_mcp_enabled();
+		$on    = FLXAI_Cast::bool( flxai_mcp_enabled() );
 		$set   = get_option( 'flxai_settings', array() );
 		$oauth = ! is_array( $set ) || ! array_key_exists( 'mcp_oauth', $set ) || ! empty( $set['mcp_oauth'] );
 		$tools = FLXAI_Cast::arr( flxai_mcp_tools() );
@@ -62,10 +62,10 @@ final class FLXAI_Mcp_Service {
 			new FLXAI_Mcp_Server(
 				$on,
 				$oauth,
-				$on && flxai_oauth_enabled(),
-				flxai_mcp_legacy(),
-				flxai_mcp_url(),
-				flxai_mcp_rest_url(),
+				$on && FLXAI_Cast::bool( flxai_oauth_enabled() ),
+				FLXAI_Cast::bool( flxai_mcp_legacy() ),
+				FLXAI_Cast::str( flxai_mcp_url() ),
+				FLXAI_Cast::str( flxai_mcp_rest_url() ),
 				count( $tools ),
 				function_exists( 'flxr_admin_url' ) ? FLXAI_Cast::str( flxr_admin_url() ) : ''
 			),
