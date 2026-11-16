@@ -110,6 +110,7 @@ FLXY_Settings::save( FLXY_Settings::defaults() );
 // A step does one small unit of work, so a job is still running after start() on any machine.
 add_filter( 'flxy_step_seconds', static fn() => 0.0 );
 add_filter( 'flxy_step_bytes', static fn() => MB_IN_BYTES );
+add_filter( 'flxy_use_loopback', '__return_false' ); // No background loopback: the test steps the job itself.
 
 // Start a backup, step it to the end.
 $r = flxy_t_op( 'FlxBackupStart', array( 'input' => array( 'type' => 'FILES', 'label' => 'Test files' ) ), $admin );
