@@ -2,7 +2,7 @@
 
 - Faz: 2
 - Durum: ✱
-- PR:
+- PR: #340
 
 Envanter. Eşleme `ESLEME/flx-donate.md`: 102 GraphQL satırı, 29 istisna. Alt paketler (a) 16, (b) 19, (c) 11, (d) 17, atanmamış 39. Servis, şema ve ekran bu turda yok. Sıra (a) → (b) → (c) → (d) → atanmamış; tek `schema.graphql`. `FlxPerson` #333'e bağlı, liste değil.
 
