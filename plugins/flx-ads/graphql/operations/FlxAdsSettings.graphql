@@ -1,0 +1,5 @@
+query FlxAdsSettings {
+  flxAdsSettings {
+    ...FlxAdsSettings
+  }
+}

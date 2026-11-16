@@ -1,0 +1,10 @@
+mutation FlxAdsExperimentCreate($input: FlxAdsExperimentCreateInput!) {
+  flxAdsExperimentCreate(input: $input) {
+    id
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

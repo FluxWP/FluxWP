@@ -1,0 +1,13 @@
+# Queues a generation; follow the items with FlxStudioPoll.
+mutation FlxStudioGenerate($input: FlxStudioGenerateInput!) {
+  flxStudioGenerate(input: $input) {
+    items {
+      ...FlxStudioItemRow
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

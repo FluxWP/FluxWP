@@ -1,30 +1,12 @@
 <?php
 /**
- * Flux App: yedek listesi, şimdi yedekle, durum. Geri yükleme web görünümünde kalır.
+ * Flux App: the Backups screen (React module flxy-backup, GraphQL) and the REST routes older app builds use.
  * REST: flx-backup/v1/backups
  *
  * @package flx-backup
  */
 
 defined( 'ABSPATH' ) || exit;
-
-/**
- * @param mixed $node
- * @return mixed
- */
-function flxy_app_texts( $node, $domain ) {
-	if ( ! is_array( $node ) ) {
-		return $node;
-	}
-	foreach ( $node as $k => $v ) {
-		if ( 'text' === $k && is_string( $v ) && false === strpos( $v, '{{' ) ) {
-			$node[ $k ] = translate( $v, $domain ); // phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralText, WordPress.WP.I18n.NonSingularStringLiteralDomain
-		} else {
-			$node[ $k ] = flxy_app_texts( $v, $domain );
-		}
-	}
-	return $node;
-}
 
 function flxy_app_can() {
 	return current_user_can( 'manage_options' );
@@ -203,29 +185,20 @@ add_action(
 	}
 );
 
-add_action(
-	'plugins_loaded',
-	function () {
-		if ( ! function_exists( 'flxapp_manifest_file' ) ) {
-			return;
-		}
-		add_filter(
-			'flxapp_manifest',
-			function ( $m ) {
-				$loaded       = flxapp_manifest_file(
-					FLXY_DIR . 'app/manifest.json',
-					'flx-backup',
-					array(
-						'version' => FLXY_VERSION,
-						'caps'    => array( 'view' => 'manage_options' ),
-					)
-				);
-				$m['backup'] = flxy_app_texts( $loaded, 'flx-backup' );
-				return $m;
-			},
-			10,
-			2
+add_filter(
+	'flxapp_modules',
+	static function ( $m ) {
+		$m                = is_array( $m ) ? $m : array();
+		$m['flxy-backup'] = array(
+			'title'   => __( 'Backups', 'flx-backup' ),
+			'cap'     => 'manage_options',
+			'menu'    => 'flx-backup',
+			'url'     => admin_url( 'admin.php?page=flx-backup' ),
+			'api'     => home_url( '/graphql' ),
+			'icon'    => 'backup',
+			'version' => FLXY_VERSION,
+			'order'   => 90,
 		);
-	},
-	20
+		return $m;
+	}
 );

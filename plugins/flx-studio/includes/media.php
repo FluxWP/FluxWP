@@ -165,7 +165,7 @@ function flxst_ai_input( $url, $path ) {
  * İstemcinin referans listesini çözer: [{type: item|ref|person, id}] → Flux AI girdileri ve kayıt için özet.
  * Kişi = o kişinin tüm fotoğrafları (aynı kişi).
  *
- * @return array|WP_Error [ inputs[], summary[] ]
+ * @return array{0: list<array<string,mixed>>, 1: list<array<string,mixed>>}|WP_Error
  */
 function flxst_resolve_refs( array $refs, $user_id, $max = 14 ) {
 	$inputs  = array();
@@ -207,7 +207,11 @@ function flxst_resolve_refs( array $refs, $user_id, $max = 14 ) {
 	return array( $inputs, $summary );
 }
 
-/** Üretimi WordPress Medya kitaplığına ekler (dosya kopyalanır). */
+/**
+ * Üretimi WordPress Medya kitaplığına ekler (dosya kopyalanır).
+ *
+ * @return int|WP_Error
+ */
 function flxst_to_library( $row ) {
 	if ( (int) $row['attachment_id'] && get_post( (int) $row['attachment_id'] ) ) {
 		return (int) $row['attachment_id'];

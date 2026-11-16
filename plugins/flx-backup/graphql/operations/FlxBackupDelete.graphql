@@ -1,0 +1,13 @@
+mutation FlxBackupDelete($input: FlxBackupDeleteInput!) {
+  flxBackupDelete(input: $input) {
+    deletedIds
+    counts {
+      ...FlxBackupCountsFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

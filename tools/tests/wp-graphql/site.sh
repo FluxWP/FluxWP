@@ -19,8 +19,10 @@
 #   FIXTURES=0         leave the kit test fixtures (mu-plugin) out, e.g. for the schema snapshot
 #   SERVE=1            start `php -S` on the port and wait until it answers (PID in $site/.server.pid)
 #
-# Package hooks: tools/tests/wp-graphql/<slug>/site.sh is sourced after the packages are activated (with
-# $WP, $site, $root, $url and FIXTURES set), so a package can add its own setup without editing this file.
+# Package hooks, so a package can add its own setup without editing this file:
+#   tools/tests/wp-graphql/<slug>/deps.sh   sourced before activation (Requires Plugins stand-ins)
+#   tools/tests/wp-graphql/<slug>/site.sh   sourced after the packages are activated
+# Both see $WP, $site, $root, $url and FIXTURES.
 #
 # Packages are symlinked from the monorepo, so edits show up without reinstalling.
 # The admin user is admin / admin.
@@ -67,6 +69,12 @@ $WP config set AUTOMATIC_UPDATER_DISABLED true --raw --path="$site"
 $WP core install --path="$site" --url="$url" --title="Flux GraphQL Test" --admin_user=admin --admin_password=admin --admin_email=test@example.com --skip-email >/dev/null
 $WP rewrite structure '/%postname%/' --path="$site" >/dev/null
 
+# Dependency stand-ins (for example WooCommerce for flx-ads) before activation, and before the
+# optional WooCommerce zip below so a hook can clear WOOCOMMERCE_ZIP for the schema snapshot.
+for hook in "$root"/tools/tests/wp-graphql/*/deps.sh; do
+  # shellcheck source=/dev/null
+  [ -f "$hook" ] && . "$hook"
+done
 wc_zip="${WOOCOMMERCE_ZIP:-}"
 if [[ "$wc_zip" == https://* ]]; then
   # WP_HTTP_BLOCK_EXTERNAL is on, so wp-cli cannot download it: fetch the zip here.

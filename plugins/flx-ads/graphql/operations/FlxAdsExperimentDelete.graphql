@@ -1,0 +1,10 @@
+mutation FlxAdsExperimentDelete($input: FlxAdsExperimentDeleteInput!) {
+  flxAdsExperimentDelete(input: $input) {
+    ok
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

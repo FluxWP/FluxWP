@@ -1,0 +1,5 @@
+query FlxAdsChangeHistory($limit: Int) {
+  flxAdsChangeHistory(limit: $limit) {
+    ...FlxAdsChange
+  }
+}

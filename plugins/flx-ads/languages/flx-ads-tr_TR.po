@@ -5,6 +5,15 @@ msgstr ""
 "Language: tr_TR\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Sees ad conversions"
+msgstr "Reklam dönüşümlerini görür"
+
+msgid "Ads"
+msgstr "Reklam"
+
+msgid "Manages ads and tracking settings"
+msgstr "Reklamları ve izleme ayarlarını yönetir"
+
 msgid "Settings"
 msgstr "Ayarlar"
 
@@ -112,6 +121,9 @@ msgstr "Taslağı Meta'da oluştur (duraklatılmış)"
 
 msgid "Delete a campaign draft"
 msgstr "Kampanya taslağını sil"
+
+msgid "Ad conversions"
+msgstr "Reklam dönüşümleri"
 
 msgid "Audience not found."
 msgstr "Kitle bulunamadı."
@@ -517,6 +529,9 @@ msgstr "İlk geldiği yer: %s"
 msgid "Ad report"
 msgstr "Reklam raporu"
 
+msgid "JavaScript is required for this screen."
+msgstr "Bu ekran için JavaScript gerekir."
+
 msgid "Other campaigns (UTM)"
 msgstr "Diğer kampanyalar (UTM)"
 
@@ -548,9 +563,6 @@ msgstr "Son bağlantı testi başarısız:"
 
 msgid "Pixel and server events are set up. Run \"Test\" once to check the key."
 msgstr "Pixel ve sunucu olayları kurulu. Anahtarı denetlemek için bir kez \"Test\" çalıştırın."
-
-msgid "Ads"
-msgstr "Reklam"
 
 msgid "Ad platforms"
 msgstr "Reklam platformları"
@@ -649,11 +661,14 @@ msgstr "Reklam bağlantısı"
 msgid "You are not allowed to view this page."
 msgstr "Bu sayfayı görme yetkiniz yok."
 
-msgid "Ad conversions"
-msgstr "Reklam dönüşümleri"
-
 msgid "Which ad, campaign and ad text brought which donation. Paid donations and orders only; bank transfers count when approved."
 msgstr "Hangi reklam, kampanya ve reklam metni hangi bağışı getirdi. Yalnız ödenmiş bağış ve siparişler; Havale/EFT onaylanınca sayılır."
+
+msgid "New view"
+msgstr "Yeni görünüm"
+
+msgid "Open the new view (same features, works in the FluxWP app too)."
+msgstr "Yeni görünümü aç (aynı özellikler, FluxWP uygulamasında da çalışır)."
 
 msgid "Settings saved."
 msgstr "Ayarlar kaydedildi."
@@ -1731,3 +1746,1443 @@ msgstr "Bir tıklama sonraki bağış için kaç gün sayılır."
 
 msgid "Save settings"
 msgstr "Ayarları kaydet"
+
+msgid "Period, kind, channel and grouping. Empty uses the screen's defaults."
+msgstr "Dönem, tür, kanal ve gruplama. Boş bırakılırsa ekranın varsayılanları kullanılır."
+
+msgid "The change was made."
+msgstr "Değişiklik yapıldı."
+
+msgid "What the Flux Ads screen needs before it draws."
+msgstr "Flux Ads ekranının çizilmeden önce ihtiyaç duyduğu bilgiler."
+
+msgid "The conversion report: which ad, campaign and ad text brought which donation."
+msgstr "Dönüşüm raporu: hangi reklam, kampanya ve reklam metni hangi bağışı getirdi."
+
+msgid "Ad spend by campaign, and the rows entered by hand (managers)."
+msgstr "Kampanya bazında reklam harcaması ve elle girilen satırlar (yöneticiler)."
+
+msgid "Donor value by acquisition group, and the cohort table."
+msgstr "Kazanım grubuna göre bağışçı değeri ve kohort tablosu."
+
+msgid "Conversions sent to the ad platforms, and the ones that failed."
+msgstr "Reklam platformlarına gönderilen dönüşümler ve başarısız olanlar."
+
+msgid "What the tracked link builder offers."
+msgstr "İzlemeli bağlantı oluşturucunun sunduğu seçenekler."
+
+msgid "Audiences kept in Meta, and the CRM groups they can be built from."
+msgstr "Meta'da tutulan kitleler ve oluşturulabilecekleri CRM grupları."
+
+msgid "Meta campaigns with their numbers and the income they brought on the site."
+msgstr "Meta kampanyaları, rakamları ve sitede getirdikleri gelir."
+
+msgid "Period key from FlxAdsCampaignList.ranges; empty is the default."
+msgstr "FlxAdsCampaignList.ranges'ten dönem anahtarı; boşsa varsayılan."
+
+msgid "One campaign: ad sets, ads, age/gender and placement."
+msgstr "Tek kampanya: reklam setleri, reklamlar, yaş/cinsiyet ve yerleşim."
+
+msgid "Meta campaign ID."
+msgstr "Meta kampanya kimliği."
+
+msgid "Period key; empty is the default."
+msgstr "Dönem anahtarı; boşsa varsayılan."
+
+msgid "Changes made to the ad account from Flux Ads, newest first."
+msgstr "Flux Ads'ten reklam hesabında yapılan değişiklikler, en yeniden eskiye."
+
+msgid "How many (1–100). Default 15."
+msgstr "Kaç tane (1–100). Varsayılan 15."
+
+msgid "Budget and pause suggestions from the optimizer, and season reminders."
+msgstr "Optimizasyon aracının bütçe ve durdurma önerileri ile sezon hatırlatmaları."
+
+msgid "Tests: two ads side by side, or a group held out of the ads."
+msgstr "Testler: yan yana iki reklam ya da reklamlardan ayrı tutulan bir grup."
+
+msgid "What the new test form offers."
+msgstr "Yeni test formunun sunduğu seçenekler."
+
+msgid "Periods when giving and sales rise, with last year's numbers."
+msgstr "Bağış ve satışların arttığı dönemler, geçen yılın rakamlarıyla."
+
+msgid "Studio: what the editor offers and the drafts."
+msgstr "Stüdyo: düzenleyicinin sunduğu seçenekler ve taslaklar."
+
+msgid "One Studio draft; empty when it does not exist."
+msgstr "Tek bir Stüdyo taslağı; yoksa boş."
+
+msgid "Draft ID."
+msgstr "Taslak kimliği."
+
+msgid "Tracking settings. Secrets are never returned, only whether one is set."
+msgstr "İzleme ayarları. Gizli anahtarlar asla döndürülmez, yalnızca tanımlı olup olmadığı bildirilir."
+
+msgid "What the classic page does when it opens: send due conversions and read ad spend. The screen calls it now and then. Nothing is written to an ad account."
+msgstr "Klasik sayfanın açılırken yaptığı iş: vadesi gelen dönüşümleri gönderir ve reklam harcamasını okur. Ekran bunu zaman zaman çağırır. Reklam hesabına hiçbir şey yazılmaz."
+
+msgid "Suggestions waiting for a decision."
+msgstr "Karar bekleyen öneriler."
+
+msgid "Saves tracking settings. A secret left empty keeps the stored one; \"__clear__\" removes it."
+msgstr "İzleme ayarlarını kaydeder. Boş bırakılan gizli anahtar mevcut olanı korur; \"__clear__\" onu siler."
+
+msgid "Settings to save."
+msgstr "Kaydedilecek ayarlar."
+
+msgid "Settings after the change."
+msgstr "Değişiklikten sonraki ayarlar."
+
+msgid "Tests one platform with a test event (Meta, TikTok) or the validation endpoint (GA4); nothing is recorded. Any settings sent are saved first, as the classic Test button does."
+msgstr "Bir platformu test olayıyla (Meta, TikTok) ya da doğrulama uç noktasıyla (GA4) dener; hiçbir şey kaydedilmez. Gönderilen ayarlar önce kaydedilir, klasik Test düğmesi gibi."
+
+msgid "Platform to test."
+msgstr "Test edilecek platform."
+
+msgid "Form values to save before testing."
+msgstr "Testten önce kaydedilecek form değerleri."
+
+msgid "What the platform answered."
+msgstr "Platformun verdiği yanıt."
+
+msgid "Settings after the test."
+msgstr "Testten sonraki ayarlar."
+
+msgid "Reads ad spend from Meta now."
+msgstr "Reklam harcamasını şimdi Meta'dan okur."
+
+msgid "The result of the read."
+msgstr "Okumanın sonucu."
+
+msgid "Adds a spend row by hand (Google, TikTok or anything not read from Meta)."
+msgstr "Elle harcama satırı ekler (Google, TikTok veya Meta'dan okunmayan her şey)."
+
+msgid "Channel key from FlxAdsSpendPage.channels."
+msgstr "FlxAdsSpendPage.channels'tan kanal anahtarı."
+
+msgid "Day (Y-m-d)."
+msgstr "Gün (Y-m-d)."
+
+msgid "Campaign name."
+msgstr "Kampanya adı."
+
+msgid "Ad name."
+msgstr "Reklam adı."
+
+msgid "Amount as typed."
+msgstr "Yazıldığı gibi tutar."
+
+msgid "ISO currency; empty is the shop currency."
+msgstr "ISO para birimi; boşsa mağaza para birimi."
+
+msgid "Deletes a spend row entered by hand."
+msgstr "Elle girilen harcama satırını siler."
+
+msgid "Row ID."
+msgstr "Satır kimliği."
+
+msgid "Sends a failed conversion again."
+msgstr "Başarısız dönüşümü yeniden gönderir."
+
+msgid "Log row ID."
+msgstr "Kayıt satırı kimliği."
+
+msgid "Creates an audience in Meta from a CRM group, fills it, and optionally a lookalike."
+msgstr "Bir CRM grubundan Meta'da kitle oluşturur, doldurur; istenirse benzer kitle de ekler."
+
+msgid "The audience."
+msgstr "Kitle."
+
+msgid "Creates a lookalike audience from one of your own."
+msgstr "Kendi kitlelerinden birinden benzer kitle oluşturur."
+
+msgid "Audience ID to start from."
+msgstr "Başlangıç kitlesinin kimliği."
+
+msgid "Country code."
+msgstr "Ülke kodu."
+
+msgid "Size in percent (1–10)."
+msgstr "Yüzde olarak boyut (1–10)."
+
+msgid "Sends the current CRM group to the audience in Meta."
+msgstr "Güncel CRM grubunu Meta'daki kitleye gönderir."
+
+msgid "Audience ID."
+msgstr "Kitle kimliği."
+
+msgid "Deletes an audience in Meta and in Flux Ads."
+msgstr "Bir kitleyi Meta'dan ve Flux Ads'ten siler."
+
+msgid "Pauses or resumes a campaign, ad set or ad in Meta."
+msgstr "Meta'da kampanyayı, reklam setini ya da reklamı durdurur veya sürdürür."
+
+msgid "Meta ID."
+msgstr "Meta kimliği."
+
+msgid "The new status."
+msgstr "Yeni durum."
+
+msgid "Changes the daily budget of a campaign or ad set in Meta."
+msgstr "Meta'da kampanyanın ya da reklam setinin günlük bütçesini değiştirir."
+
+msgid "New daily budget in the ad account currency."
+msgstr "Reklam hesabı para biriminde yeni günlük bütçe."
+
+msgid "Looks at the numbers again and writes new suggestions."
+msgstr "Rakamlara yeniden bakar ve yeni öneriler yazar."
+
+msgid "New suggestions."
+msgstr "Yeni öneriler."
+
+msgid "Applies a suggestion to the ad account."
+msgstr "Bir öneriyi reklam hesabına uygular."
+
+msgid "Suggestion ID."
+msgstr "Öneri kimliği."
+
+msgid "Dismisses a suggestion."
+msgstr "Bir öneriyi kapatır."
+
+msgid "Adds a date of your own to the season plan."
+msgstr "Sezon planına kendi tarihini ekler."
+
+msgid "The date."
+msgstr "Tarih."
+
+msgid "Deletes a date you added."
+msgstr "Eklediğin tarihi siler."
+
+msgid "Season ID (FlxAdsSeason.id)."
+msgstr "Sezon kimliği (FlxAdsSeason.id)."
+
+msgid "Starts a test. It only watches; it changes nothing in the ad account."
+msgstr "Test başlatır. Yalnızca izler; reklam hesabında hiçbir şeyi değiştirmez."
+
+msgid "The test."
+msgstr "Test."
+
+msgid "New test ID; empty when the input was refused."
+msgstr "Yeni test kimliği; girdi reddedildiyse boş."
+
+msgid "Ends a test now."
+msgstr "Testi şimdi bitirir."
+
+msgid "Test ID."
+msgstr "Test kimliği."
+
+msgid "Deletes a test."
+msgstr "Testi siler."
+
+msgid "Pauses the weaker ad of a finished test in Meta."
+msgstr "Biten testin zayıf reklamını Meta'da durdurur."
+
+msgid "Saves a Studio draft; a new one when no ID is given. Nothing reaches Meta."
+msgstr "Stüdyo taslağını kaydeder; kimlik verilmezse yenisini oluşturur. Meta'ya hiçbir şey gitmez."
+
+msgid "Draft ID; empty creates a new draft."
+msgstr "Taslak kimliği; boşsa yeni taslak oluşturulur."
+
+msgid "The draft."
+msgstr "Taslak."
+
+msgid "The saved draft."
+msgstr "Kaydedilen taslak."
+
+msgid "Flux AI writes a draft from a brief (up to 90 seconds). Nothing reaches Meta."
+msgstr "Flux AI bir brife göre taslak yazar (en fazla 90 saniye). Meta'ya hiçbir şey gitmez."
+
+msgid "What to write from."
+msgstr "Neye göre yazılacağı."
+
+msgid "New draft ID."
+msgstr "Yeni taslak kimliği."
+
+msgid "The new draft."
+msgstr "Yeni taslak."
+
+msgid "Copies a draft."
+msgstr "Taslağı kopyalar."
+
+msgid "The copy's ID."
+msgstr "Kopyanın kimliği."
+
+msgid "Deletes a draft. Nothing changes in Meta."
+msgstr "Taslağı siler. Meta'da hiçbir şey değişmez."
+
+msgid "Creates the draft in Meta. The campaign, ad sets and ads are always created paused."
+msgstr "Taslağı Meta'da oluşturur. Kampanya, reklam setleri ve reklamlar her zaman duraklatılmış oluşturulur."
+
+msgid "The draft after sending."
+msgstr "Gönderildikten sonraki taslak."
+
+msgid "An audience Flux Ads keeps in Meta."
+msgstr "Flux Ads'in Meta'da tuttuğu kitle."
+
+msgid "Audience ID in Flux Ads."
+msgstr "Flux Ads'teki kitle kimliği."
+
+msgid "Name."
+msgstr "Ad."
+
+msgid "custom or lookalike."
+msgstr "özel ya da benzer."
+
+msgid "Audience ID in Meta."
+msgstr "Meta'daki kitle kimliği."
+
+msgid "Source group as text."
+msgstr "Kaynak grup, metin olarak."
+
+msgid "Purpose key."
+msgstr "Amaç anahtarı."
+
+msgid "Purpose as text."
+msgstr "Amaç, metin olarak."
+
+msgid "People sent at the last sync."
+msgstr "Son eşitlemede gönderilen kişi sayısı."
+
+msgid "Last sync; empty when never."
+msgstr "Son eşitleme; hiç yapılmadıysa boş."
+
+msgid "Why the last sync failed; empty when it worked."
+msgstr "Son eşitleme neden başarısız oldu; sorunsuzsa boş."
+
+msgid "People added at the last sync."
+msgstr "Son eşitlemede eklenen kişiler."
+
+msgid "People removed at the last sync."
+msgstr "Son eşitlemede çıkarılan kişiler."
+
+msgid "It can be synced again."
+msgstr "Yeniden eşitlenebilir."
+
+msgid "Used by a holdout test."
+msgstr "Bir ayrı tutma testinde kullanılıyor."
+
+msgid "A CRM group an audience can be built from."
+msgstr "Kitle oluşturulabilecek bir CRM grubu."
+
+msgid "Source key."
+msgstr "Kaynak anahtarı."
+
+msgid "People with ad consent (managers only; 0 otherwise)."
+msgstr "Reklam izni olan kişiler (yalnızca yöneticiler; aksi halde 0)."
+
+msgid "The Audiences tab."
+msgstr "Kitleler sekmesi."
+
+msgid "Flux CRM is active."
+msgstr "Flux CRM etkin."
+
+msgid "The Meta ad account is set up."
+msgstr "Meta reklam hesabı tanımlı."
+
+msgid "Audiences."
+msgstr "Kitleler."
+
+msgid "CRM groups to build from."
+msgstr "Oluşturulabilecek CRM grupları."
+
+msgid "What an audience is for."
+msgstr "Kitlenin ne için kullanılacağı."
+
+msgid "Own audiences a lookalike can start from."
+msgstr "Benzer kitlenin başlangıcı olabilecek kendi kitlelerin."
+
+msgid "A new audience."
+msgstr "Yeni kitle."
+
+msgid "A source key from the page."
+msgstr "Sayfadan bir kaynak anahtarı."
+
+msgid "A purpose key from the page."
+msgstr "Sayfadan bir amaç anahtarı."
+
+msgid "Also create a lookalike."
+msgstr "Benzer kitle de oluştur."
+
+msgid "Lookalike country code."
+msgstr "Benzer kitle ülke kodu."
+
+msgid "Lookalike size in percent (1–10)."
+msgstr "Benzer kitle boyutu, yüzde olarak (1–10)."
+
+msgid "An ad set of a draft."
+msgstr "Taslağın bir reklam seti."
+
+msgid "Youngest age."
+msgstr "En genç yaş."
+
+msgid "Oldest age."
+msgstr "En büyük yaş."
+
+msgid "all, men or women."
+msgstr "tümü, erkek ya da kadın."
+
+msgid "Country codes."
+msgstr "Ülke kodları."
+
+msgid "Audience IDs to include."
+msgstr "Dahil edilecek kitle kimlikleri."
+
+msgid "Audience IDs to exclude."
+msgstr "Hariç tutulacak kitle kimlikleri."
+
+msgid "Share of the budget (0–100)."
+msgstr "Bütçe payı (0–100)."
+
+msgid "An ad of a draft."
+msgstr "Taslağın bir reklamı."
+
+msgid "Main text."
+msgstr "Ana metin."
+
+msgid "Headline."
+msgstr "Başlık."
+
+msgid "Description."
+msgstr "Açıklama."
+
+msgid "Button key."
+msgstr "Düğme anahtarı."
+
+msgid "Image address."
+msgstr "Görsel adresi."
+
+msgid "A Studio draft. Nothing reaches Meta until it is sent, and then it is created paused."
+msgstr "Stüdyo taslağı. Gönderilene kadar Meta'ya hiçbir şey gitmez; gönderilince duraklatılmış oluşturulur."
+
+msgid "draft, sent or failed."
+msgstr "taslak, gönderildi ya da başarısız."
+
+msgid "Objective key."
+msgstr "Hedef anahtarı."
+
+msgid "Address the ads open."
+msgstr "Reklamların açtığı adres."
+
+msgid "Daily budget."
+msgstr "Günlük bütçe."
+
+msgid "Start (Y-m-d)."
+msgstr "Başlangıç (Y-m-d)."
+
+msgid "End (Y-m-d)."
+msgstr "Bitiş (Y-m-d)."
+
+msgid "Ad sets."
+msgstr "Reklam setleri."
+
+msgid "Ads."
+msgstr "Reklamlar."
+
+msgid "Notes the AI left for the person."
+msgstr "Yapay zekanın kişiye bıraktığı notlar."
+
+msgid "The brief it was written from."
+msgstr "Yazıldığı brif."
+
+msgid "Already created in Meta."
+msgstr "Meta'da zaten oluşturuldu."
+
+msgid "Why sending failed; empty otherwise."
+msgstr "Gönderim neden başarısız oldu; aksi halde boş."
+
+msgid "What was created in Meta."
+msgstr "Meta'da oluşturulanlar."
+
+msgid "A draft in the list."
+msgstr "Listedeki bir taslak."
+
+msgid "Status as text."
+msgstr "Durum, metin olarak."
+
+msgid "Status colour: ok, warn, bad or off."
+msgstr "Durum rengi: ok, warn, bad ya da off."
+
+msgid "Objective as text."
+msgstr "Hedef, metin olarak."
+
+msgid "Last change as text."
+msgstr "Son değişiklik, metin olarak."
+
+msgid "Meta campaign ID once sent."
+msgstr "Gönderildikten sonra Meta kampanya kimliği."
+
+msgid "The Studio tab: what the editor offers and the drafts."
+msgstr "Stüdyo sekmesi: düzenleyicinin sunduğu seçenekler ve taslaklar."
+
+msgid "Flux AI can write drafts."
+msgstr "Flux AI taslak yazabilir."
+
+msgid "What is missing before a draft can be sent (token, ad account, page)."
+msgstr "Taslak gönderilmeden önce eksik olanlar (anahtar, reklam hesabı, sayfa)."
+
+msgid "Objectives."
+msgstr "Hedefler."
+
+msgid "Call-to-action buttons."
+msgstr "Eylem çağrısı düğmeleri."
+
+msgid "Audiences a draft can target."
+msgstr "Taslağın hedefleyebileceği kitleler."
+
+msgid "Drafts, newest first."
+msgstr "Taslaklar, en yeniden eskiye."
+
+msgid "Site address."
+msgstr "Site adresi."
+
+msgid "A Studio draft to save."
+msgstr "Kaydedilecek Stüdyo taslağı."
+
+msgid "What Flux AI writes a draft from."
+msgstr "Flux AI'ın taslağı neye göre yazdığı."
+
+msgid "The brief."
+msgstr "Brif."
+
+msgid "Last year's numbers for the same period."
+msgstr "Aynı dönemin geçen yılki rakamları."
+
+msgid "Payments."
+msgstr "Ödemeler."
+
+msgid "Income."
+msgstr "Gelir."
+
+msgid "New people."
+msgstr "Yeni kişiler."
+
+msgid "Ad spend."
+msgstr "Reklam harcaması."
+
+msgid "Return on ad spend."
+msgstr "Reklam harcaması getirisi."
+
+msgid "A period when giving and sales rise."
+msgstr "Bağış ve satışların arttığı bir dönem."
+
+msgid "Key."
+msgstr "Anahtar."
+
+msgid "ID of a date you added; empty for built-in ones."
+msgstr "Eklediğin tarihin kimliği; hazır olanlar için boş."
+
+msgid "Start as text."
+msgstr "Başlangıç, metin olarak."
+
+msgid "End as text."
+msgstr "Bitiş, metin olarak."
+
+msgid "The dates follow the moon and can shift by a day."
+msgstr "Tarihler aya göre belirlenir ve bir gün kayabilir."
+
+msgid "Added by a person."
+msgstr "Bir kişi tarafından eklendi."
+
+msgid "now, prep or later."
+msgstr "şimdi, hazırlık ya da sonra."
+
+msgid "State as text."
+msgstr "Durum, metin olarak."
+
+msgid "Colour: ok, warn, bad or off."
+msgstr "Renk: ok, warn, bad ya da off."
+
+msgid "Days until it starts; 0 while it runs."
+msgstr "Başlamasına kalan gün; sürerken 0."
+
+msgid "When, as text."
+msgstr "Ne zaman, metin olarak."
+
+msgid "There are numbers from last year."
+msgstr "Geçen yıldan rakamlar var."
+
+msgid "Last year's numbers."
+msgstr "Geçen yılın rakamları."
+
+msgid "Ready brief for Studio."
+msgstr "Stüdyo için hazır brif."
+
+msgid "A date of your own."
+msgstr "Kendi tarihin."
+
+msgid "End (Y-m-d); empty is the start day."
+msgstr "Bitiş (Y-m-d); boşsa başlangıç günü."
+
+msgid "Days to prepare before it starts (3–60)."
+msgstr "Başlamadan önce hazırlık günü (3–60)."
+
+msgid "A Meta campaign with its numbers."
+msgstr "Rakamlarıyla bir Meta kampanyası."
+
+msgid "Meta effective status."
+msgstr "Meta etkin durumu."
+
+msgid "Meta objective."
+msgstr "Meta hedefi."
+
+msgid "Budget as text."
+msgstr "Bütçe, metin olarak."
+
+msgid "The status can be switched."
+msgstr "Durum değiştirilebilir."
+
+msgid "Delivering now."
+msgstr "Şu an yayında."
+
+msgid "Daily budget; empty when the budget is on ad sets."
+msgstr "Günlük bütçe; bütçe reklam setlerindeyse boş."
+
+msgid "Spend in the period."
+msgstr "Dönemdeki harcama."
+
+msgid "Impressions."
+msgstr "Gösterim."
+
+msgid "Link clicks."
+msgstr "Bağlantı tıklamaları."
+
+msgid "Click rate (0–100)."
+msgstr "Tıklama oranı (0–100)."
+
+msgid "Payments on the site from this campaign."
+msgstr "Bu kampanyadan sitedeki ödemeler."
+
+msgid "Income on the site from this campaign."
+msgstr "Bu kampanyadan sitedeki gelir."
+
+msgid "none, bad, mid or good (colour)."
+msgstr "none, bad, mid ya da good (renk)."
+
+msgid "Totals of the campaign list."
+msgstr "Kampanya listesinin toplamları."
+
+msgid "Spend."
+msgstr "Harcama."
+
+msgid "Income on the site."
+msgstr "Sitedeki gelir."
+
+msgid "Campaigns delivering."
+msgstr "Yayındaki kampanyalar."
+
+msgid "Campaigns."
+msgstr "Kampanyalar."
+
+msgid "The Campaigns tab. Meta problems come back in `error` instead of failing the request."
+msgstr "Kampanyalar sekmesi. Meta sorunları isteği başarısız kılmaz, `error` alanında döner."
+
+msgid "Period key."
+msgstr "Dönem anahtarı."
+
+msgid "Periods to choose from."
+msgstr "Seçilebilecek dönemler."
+
+msgid "Why the list is empty (no token, Meta refused …); empty when it worked."
+msgstr "Liste neden boş (anahtar yok, Meta reddetti …); sorunsuzsa boş."
+
+msgid "Ad account currency."
+msgstr "Reklam hesabı para birimi."
+
+msgid "Totals; empty when there is an error."
+msgstr "Toplamlar; hata varsa boş."
+
+msgid "The campaigns."
+msgstr "Kampanyalar."
+
+msgid "An ad with its numbers."
+msgstr "Rakamlarıyla bir reklam."
+
+msgid "Meta ad ID."
+msgstr "Meta reklam kimliği."
+
+msgid "Preview image address."
+msgstr "Önizleme görseli adresi."
+
+msgid "An ad set with its ads."
+msgstr "Reklamlarıyla bir reklam seti."
+
+msgid "Meta ad set ID."
+msgstr "Meta reklam seti kimliği."
+
+msgid "Who it targets, as text."
+msgstr "Kimi hedeflediği, metin olarak."
+
+msgid "Daily budget; empty when the budget is on the campaign."
+msgstr "Günlük bütçe; bütçe kampanyadaysa boş."
+
+msgid "Ads of the ad set."
+msgstr "Reklam setinin reklamları."
+
+msgid "One row of an age/gender or placement breakdown."
+msgstr "Yaş/cinsiyet ya da yerleşim dökümünün bir satırı."
+
+msgid "Group."
+msgstr "Grup."
+
+msgid "Share of the spend (0–100)."
+msgstr "Harcama payı (0–100)."
+
+msgid "One campaign: ad sets, ads and breakdowns. Meta problems come back in `error`."
+msgstr "Tek kampanya: reklam setleri, reklamlar ve dökümler. Meta sorunları `error` alanında döner."
+
+msgid "Why the detail is empty; empty when it worked."
+msgstr "Detay neden boş; sorunsuzsa boş."
+
+msgid "Objective and budget in one line."
+msgstr "Hedef ve bütçe tek satırda."
+
+msgid "Spend by age and gender."
+msgstr "Yaş ve cinsiyete göre harcama."
+
+msgid "Spend by placement."
+msgstr "Yerleşime göre harcama."
+
+msgid "A change made to the ad account from Flux Ads."
+msgstr "Flux Ads'ten reklam hesabında yapılan bir değişiklik."
+
+msgid "When it was made."
+msgstr "Ne zaman yapıldı."
+
+msgid "What was changed."
+msgstr "Neyin değiştiği."
+
+msgid "The change as text."
+msgstr "Değişiklik, metin olarak."
+
+msgid "Who made it."
+msgstr "Kim yaptı."
+
+msgid "Where it was made: screen, suggestion, AI …"
+msgstr "Nereden yapıldı: ekran, öneri, yapay zekâ …"
+
+msgid "The change a suggestion applies."
+msgstr "Önerinin uyguladığı değişiklik."
+
+msgid "What changes (daily budget, status …)."
+msgstr "Ne değişir (günlük bütçe, durum …)."
+
+msgid "The new value."
+msgstr "Yeni değer."
+
+msgid "Text to confirm with the user."
+msgstr "Kullanıcıya onaylatılacak metin."
+
+msgid "Button text."
+msgstr "Düğme metni."
+
+msgid "A suggestion from the optimizer."
+msgstr "Optimizasyon aracından bir öneri."
+
+msgid "Type key."
+msgstr "Tür anahtarı."
+
+msgid "Type as text."
+msgstr "Tür, metin olarak."
+
+msgid "Colour: ok, warn, bad or info."
+msgstr "Renk: ok, warn, bad ya da info."
+
+msgid "When it was created."
+msgstr "Ne zaman oluşturuldu."
+
+msgid "Campaign or season name."
+msgstr "Kampanya ya da sezon adı."
+
+msgid "campaign, adset or ad."
+msgstr "kampanya, reklam seti ya da reklam."
+
+msgid "The numbers behind it, as text."
+msgstr "Arkasındaki rakamlar, metin olarak."
+
+msgid "Why, in the user's language."
+msgstr "Nedeni, kullanıcının dilinde."
+
+msgid "The change it applies; empty for advice only."
+msgstr "Uyguladığı değişiklik; yalnızca tavsiye ise boş."
+
+msgid "Studio brief (season suggestions)."
+msgstr "Stüdyo brifi (sezon önerileri)."
+
+msgid "Season start (Y-m-d)."
+msgstr "Sezon başlangıcı (Y-m-d)."
+
+msgid "Season end (Y-m-d)."
+msgstr "Sezon bitişi (Y-m-d)."
+
+msgid "open, applied or dismissed."
+msgstr "açık, uygulandı ya da kapatıldı."
+
+msgid "When it was decided; empty while open."
+msgstr "Karar verildiği zaman; açıkken boş."
+
+msgid "Who decided."
+msgstr "Kim karar verdi."
+
+msgid "What happened when applied."
+msgstr "Uygulanınca ne oldu."
+
+msgid "The last time suggestions were refreshed."
+msgstr "Önerilerin en son yenilendiği zaman."
+
+msgid "When it ran."
+msgstr "Ne zaman çalıştı."
+
+msgid "It worked; empty when still running."
+msgstr "Başarılı oldu; hâlâ çalışıyorsa boş."
+
+msgid "What happened."
+msgstr "Ne oldu."
+
+msgid "The Suggestions tab."
+msgstr "Öneriler sekmesi."
+
+msgid "The last refresh."
+msgstr "Son yenileme."
+
+msgid "Target ROAS."
+msgstr "Hedef ROAS."
+
+msgid "The rules in one sentence."
+msgstr "Kurallar tek cümlede."
+
+msgid "Waiting for a decision."
+msgstr "Karar bekleyenler."
+
+msgid "Already decided."
+msgstr "Karara bağlananlar."
+
+msgid "A row of the two-sided result table."
+msgstr "İki taraflı sonuç tablosunun bir satırı."
+
+msgid "Measure."
+msgstr "Ölçü."
+
+msgid "Side A value."
+msgstr "A tarafı değeri."
+
+msgid "Side B value."
+msgstr "B tarafı değeri."
+
+msgid "The weaker ad of a finished test."
+msgstr "Biten testin zayıf reklamı."
+
+msgid "A test: two ads side by side, or a group held out of the ads."
+msgstr "Bir test: yan yana iki reklam ya da reklamlardan ayrı tutulan bir grup."
+
+msgid "ab or holdout."
+msgstr "ab ya da holdout."
+
+msgid "running or finished."
+msgstr "sürüyor ya da bitti."
+
+msgid "Still running."
+msgstr "Hâlâ sürüyor."
+
+msgid "What is compared, as text."
+msgstr "Neyin karşılaştırıldığı, metin olarak."
+
+msgid "The numbers could be read."
+msgstr "Rakamlar okunabildi."
+
+msgid "Why they could not; empty when ok."
+msgstr "Neden okunamadı; sorunsuzsa boş."
+
+msgid "Side A heading."
+msgstr "A tarafı başlığı."
+
+msgid "Side B heading."
+msgstr "B tarafı başlığı."
+
+msgid "Result table."
+msgstr "Sonuç tablosu."
+
+msgid "a, b or empty."
+msgstr "a, b ya da boş."
+
+msgid "Confidence of the winner (0–100)."
+msgstr "Kazananın güveni (0–100)."
+
+msgid "Too little data to judge."
+msgstr "Karar vermek için veri çok az."
+
+msgid "The result in one sentence."
+msgstr "Sonuç tek cümlede."
+
+msgid "The weaker ad that can be paused."
+msgstr "Durdurulabilecek zayıf reklam."
+
+msgid "An ad that can be picked for a test."
+msgstr "Test için seçilebilecek bir reklam."
+
+msgid "Value to send back (campaign and ad)."
+msgstr "Geri gönderilecek değer (kampanya ve reklam)."
+
+msgid "The ads of one campaign."
+msgstr "Bir kampanyanın reklamları."
+
+msgid "Its ads."
+msgstr "Reklamları."
+
+msgid "An audience a holdout test can use."
+msgstr "Ayrı tutma testinde kullanılabilecek bir kitle."
+
+msgid "Audience name."
+msgstr "Kitle adı."
+
+msgid "Today (Y-m-d)."
+msgstr "Bugün (Y-m-d)."
+
+msgid "Suggested end date (Y-m-d)."
+msgstr "Önerilen bitiş tarihi (Y-m-d)."
+
+msgid "Ads by campaign."
+msgstr "Kampanyaya göre reklamlar."
+
+msgid "Audiences for a holdout."
+msgstr "Ayrı tutma için kitleler."
+
+msgid "A new test."
+msgstr "Yeni test."
+
+msgid "Side A: an ad key from the choices."
+msgstr "A tarafı: seçeneklerden bir reklam anahtarı."
+
+msgid "Side B: an ad key from the choices."
+msgstr "B tarafı: seçeneklerden bir reklam anahtarı."
+
+msgid "Audience ID for a holdout."
+msgstr "Ayrı tutma için kitle kimliği."
+
+msgid "Share held out (1–50)."
+msgstr "Ayrı tutulan pay (1–50)."
+
+msgid "A conversion tracking platform."
+msgstr "Bir dönüşüm izleme platformu."
+
+msgid "Meta Pixel and Conversions API."
+msgstr "Meta Pixel ve Conversions API."
+
+msgid "TikTok Pixel and Events API."
+msgstr "TikTok Pixel ve Events API."
+
+msgid "Google Analytics 4."
+msgstr "Google Analytics 4."
+
+msgid "The status a campaign, ad set or ad can be set to."
+msgstr "Kampanya, reklam seti ya da reklamın alabileceği durum."
+
+msgid "Delivering."
+msgstr "Yayında."
+
+msgid "Paused."
+msgstr "Duraklatıldı."
+
+msgid "A key with its label (a filter choice)."
+msgstr "Etiketli bir anahtar (filtre seçeneği)."
+
+msgid "Value to send back."
+msgstr "Geri gönderilecek değer."
+
+msgid "Text in the user's language."
+msgstr "Kullanıcının dilinde metin."
+
+msgid "Report filter. Empty fields use the screen's defaults."
+msgstr "Rapor filtresi. Boş alanlar ekranın varsayılanlarını kullanır."
+
+msgid "Period key (7, 30, 90, month, last_month, year or custom)."
+msgstr "Dönem anahtarı (7, 30, 90, month, last_month, year ya da custom)."
+
+msgid "Start date (Y-m-d) for the custom period."
+msgstr "Özel dönem için başlangıç tarihi (Y-m-d)."
+
+msgid "End date (Y-m-d) for the custom period."
+msgstr "Özel dönem için bitiş tarihi (Y-m-d)."
+
+msgid "What to count: all, donations or orders."
+msgstr "Ne sayılacağı: all, donations ya da orders."
+
+msgid "Limit to one channel key."
+msgstr "Tek bir kanal anahtarıyla sınırla."
+
+msgid "Grouping key (channel, campaign, content …)."
+msgstr "Gruplama anahtarı (channel, campaign, content …)."
+
+msgid "The viewer can change settings and the ad account."
+msgstr "Görüntüleyen ayarları ve reklam hesabını değiştirebilir."
+
+msgid "The Meta ad account and token are set."
+msgstr "Meta reklam hesabı ve anahtarı tanımlı."
+
+msgid "Flux AI can write for Flux Ads."
+msgstr "Flux AI, Flux Ads için yazabilir."
+
+msgid "Flux CRM is active (audiences need it)."
+msgstr "Flux CRM etkin (kitleler buna ihtiyaç duyar)."
+
+msgid "Currency the report adds up in."
+msgstr "Raporun toplandığı para birimi."
+
+msgid "Flux Ads version."
+msgstr "Flux Ads sürümü."
+
+msgid "Tabs the viewer can open, in order."
+msgstr "Görüntüleyenin açabileceği sekmeler, sırayla."
+
+msgid "A stored secret. The value is never returned; only whether it is set."
+msgstr "Saklanan bir gizli anahtar. Değer asla döndürülmez; yalnızca tanımlı olup olmadığı bildirilir."
+
+msgid "A value is stored."
+msgstr "Bir değer saklı."
+
+msgid "Last four characters, or empty."
+msgstr "Son dört karakter ya da boş."
+
+msgid "The value comes from a wp-config constant."
+msgstr "Değer bir wp-config sabitinden geliyor."
+
+msgid "The result of the last connection test."
+msgstr "Son bağlantı testinin sonucu."
+
+msgid "The platform accepted the test event."
+msgstr "Platform test olayını kabul etti."
+
+msgid "What the platform answered, in the user's language."
+msgstr "Platformun verdiği yanıt, kullanıcının dilinde."
+
+msgid "When it ran; empty when never."
+msgstr "Ne zaman çalıştı; hiç çalışmadıysa boş."
+
+msgid "One tracking platform and its state."
+msgstr "Bir izleme platformu ve durumu."
+
+msgid "meta, tiktok or ga4."
+msgstr "meta, tiktok ya da ga4."
+
+msgid "Platform name."
+msgstr "Platform adı."
+
+msgid "Switched on."
+msgstr "Açık."
+
+msgid "Browser tracking is set up."
+msgstr "Tarayıcı izleme kurulu."
+
+msgid "Server events are set up, so the test can run."
+msgstr "Sunucu olayları kurulu, test çalışabilir."
+
+msgid "The last test; empty when none ran."
+msgstr "Son test; hiç yapılmadıysa boş."
+
+msgid "Flux Ads settings. Secrets are write-only."
+msgstr "Flux Ads ayarları. Gizli anahtarlar yalnızca yazılır."
+
+msgid "Meta tracking on."
+msgstr "Meta izleme açık."
+
+msgid "Pixel (dataset) ID."
+msgstr "Pixel (veri seti) kimliği."
+
+msgid "Conversions API access token."
+msgstr "Conversions API erişim anahtarı."
+
+msgid "Test event code."
+msgstr "Test olayı kodu."
+
+msgid "Ad account ID."
+msgstr "Reklam hesabı kimliği."
+
+msgid "Facebook Page ID."
+msgstr "Facebook Sayfa kimliği."
+
+msgid "Marketing API token."
+msgstr "Marketing API anahtarı."
+
+msgid "TikTok tracking on."
+msgstr "TikTok izleme açık."
+
+msgid "TikTok pixel ID."
+msgstr "TikTok pixel kimliği."
+
+msgid "Events API access token."
+msgstr "Events API erişim anahtarı."
+
+msgid "GA4 tracking on."
+msgstr "GA4 izleme açık."
+
+msgid "Measurement ID; empty uses the theme's."
+msgstr "Ölçüm kimliği; boşsa temanınki kullanılır."
+
+msgid "Measurement ID set in the theme."
+msgstr "Temada ayarlı ölçüm kimliği."
+
+msgid "Measurement Protocol API secret."
+msgstr "Measurement Protocol API gizli anahtarı."
+
+msgid "auto (wait for the cookie banner) or always."
+msgstr "auto (çerez bandını bekle) ya da always."
+
+msgid "E-mail and phone matching: consent, never or always."
+msgstr "E-posta ve telefon eşleştirme: consent, never ya da always."
+
+msgid "Load the browser pixels too."
+msgstr "Tarayıcı piksellerini de yükle."
+
+msgid "Attribution window in days."
+msgstr "Gün olarak atıf penceresi."
+
+msgid "Target ROAS for suggestions."
+msgstr "Öneriler için hedef ROAS."
+
+msgid "Spend before judging a campaign; 0 is automatic."
+msgstr "Bir kampanyayı değerlendirmeden önceki harcama; 0 otomatiktir."
+
+msgid "The three platforms and their test results."
+msgstr "Üç platform ve test sonuçları."
+
+msgid "Settings to save. Fields you leave out stay as they are. A secret left empty keeps the stored one; \"__clear__\" removes it."
+msgstr "Kaydedilecek ayarlar. Atlanan alanlar olduğu gibi kalır. Boş bırakılan gizli anahtar mevcut olanı korur; \"__clear__\" onu siler."
+
+msgid "Conversions API access token (write-only)."
+msgstr "Conversions API erişim anahtarı (yalnızca yazılır)."
+
+msgid "Marketing API token (write-only)."
+msgstr "Marketing API anahtarı (yalnızca yazılır)."
+
+msgid "Events API access token (write-only)."
+msgstr "Events API erişim anahtarı (yalnızca yazılır)."
+
+msgid "Measurement ID."
+msgstr "Ölçüm kimliği."
+
+msgid "Measurement Protocol API secret (write-only)."
+msgstr "Measurement Protocol API gizli anahtarı (yalnızca yazılır)."
+
+msgid "auto or always."
+msgstr "auto ya da always."
+
+msgid "consent, never or always."
+msgstr "consent, never ya da always."
+
+msgid "Attribution window in days (1–365)."
+msgstr "Gün olarak atıf penceresi (1–365)."
+
+msgid "Spend before judging a campaign."
+msgstr "Bir kampanyayı değerlendirmeden önceki harcama."
+
+msgid "Totals of the conversion report."
+msgstr "Dönüşüm raporunun toplamları."
+
+msgid "Payments that came from ads."
+msgstr "Reklamlardan gelen ödemeler."
+
+msgid "Income that came from ads."
+msgstr "Reklamlardan gelen gelir."
+
+msgid "Share of income from ads (0–100); empty without income."
+msgstr "Gelirin reklamlardan gelen payı (0–100); gelir yoksa boş."
+
+msgid "Payments in other currencies are in the totals."
+msgstr "Başka para birimindeki ödemeler toplamlara dahil."
+
+msgid "Ad spend is known for the period."
+msgstr "Dönem için reklam harcaması biliniyor."
+
+msgid "Ad spend; empty when unknown."
+msgstr "Reklam harcaması; bilinmiyorsa boş."
+
+msgid "Income per unit of spend; empty without spend."
+msgstr "Harcama birimi başına gelir; harcama yoksa boş."
+
+msgid "Income of the rows that have spend."
+msgstr "Harcaması olan satırların geliri."
+
+msgid "Payments of the rows that have spend."
+msgstr "Harcaması olan satırların ödemeleri."
+
+msgid "New people of the rows that have spend."
+msgstr "Harcaması olan satırların yeni kişileri."
+
+msgid "Cost per payment."
+msgstr "Ödeme başına maliyet."
+
+msgid "Cost per new person."
+msgstr "Yeni kişi başına maliyet."
+
+msgid "One group of the conversion report."
+msgstr "Dönüşüm raporunun bir grubu."
+
+msgid "Group key."
+msgstr "Grup anahtarı."
+
+msgid "Group name."
+msgstr "Grup adı."
+
+msgid "Channel key."
+msgstr "Kanal anahtarı."
+
+msgid "Channel name."
+msgstr "Kanal adı."
+
+msgid "Income in the base currency."
+msgstr "Temel para biriminde gelir."
+
+msgid "Income per currency."
+msgstr "Para birimi başına gelir."
+
+msgid "Includes another currency."
+msgstr "Başka bir para birimi içerir."
+
+msgid "Share of the income (0–100)."
+msgstr "Gelirin payı (0–100)."
+
+msgid "Spend is known."
+msgstr "Harcama biliniyor."
+
+msgid "A recent attributed payment."
+msgstr "Yakın zamanda atfedilen bir ödeme."
+
+msgid "Order ID."
+msgstr "Sipariş kimliği."
+
+msgid "Order number."
+msgstr "Sipariş numarası."
+
+msgid "Order edit page; empty when the viewer cannot open it."
+msgstr "Sipariş düzenleme sayfası; görüntüleyen açamıyorsa boş."
+
+msgid "When it was paid."
+msgstr "Ne zaman ödendi."
+
+msgid "A donation rather than a shop order."
+msgstr "Mağaza siparişi değil, bağış."
+
+msgid "First payment of this person."
+msgstr "Bu kişinin ilk ödemesi."
+
+msgid "What was bought or given to."
+msgstr "Ne satın alındı ya da neye bağış yapıldı."
+
+msgid "Amount."
+msgstr "Tutar."
+
+msgid "The conversion report: which ad brought which donation."
+msgstr "Dönüşüm raporu: hangi reklam hangi bağışı getirdi."
+
+msgid "all, donations or orders."
+msgstr "all, donations ya da orders."
+
+msgid "Grouping key."
+msgstr "Gruplama anahtarı."
+
+msgid "Grouping name."
+msgstr "Gruplama adı."
+
+msgid "Groupings to choose from."
+msgstr "Seçilebilecek gruplamalar."
+
+msgid "Channel filter; empty when none."
+msgstr "Kanal filtresi; yoksa boş."
+
+msgid "Channel filter name."
+msgstr "Kanal filtresi adı."
+
+msgid "Base currency."
+msgstr "Temel para birimi."
+
+msgid "Totals."
+msgstr "Toplamlar."
+
+msgid "Show the spend, cost and ROAS columns."
+msgstr "Harcama, maliyet ve ROAS sütunlarını göster."
+
+msgid "The groups."
+msgstr "Gruplar."
+
+msgid "Latest attributed payments."
+msgstr "En son atfedilen ödemeler."
+
+msgid "The last read of ad spend from Meta."
+msgstr "Reklam harcamasının Meta'dan son okunuşu."
+
+msgid "The last read worked."
+msgstr "Son okuma başarılı."
+
+msgid "What happened, in the user's language."
+msgstr "Ne oldu, kullanıcının dilinde."
+
+msgid "Rows read."
+msgstr "Okunan satırlar."
+
+msgid "First day read (Y-m-d)."
+msgstr "Okunan ilk gün (Y-m-d)."
+
+msgid "Last day read (Y-m-d)."
+msgstr "Okunan son gün (Y-m-d)."
+
+msgid "First day as text."
+msgstr "İlk gün, metin olarak."
+
+msgid "Last day as text."
+msgstr "Son gün, metin olarak."
+
+msgid "Spend of one campaign in the period."
+msgstr "Bir kampanyanın dönemdeki harcaması."
+
+msgid "Campaign."
+msgstr "Kampanya."
+
+msgid "A spend row entered by hand."
+msgstr "Elle girilen harcama satırı."
+
+msgid "Day as text."
+msgstr "Gün, metin olarak."
+
+msgid "Ad."
+msgstr "Reklam."
+
+msgid "The Ad spend tab."
+msgstr "Reklam harcaması sekmesi."
+
+msgid "Meta spend can be read."
+msgstr "Meta harcaması okunabilir."
+
+msgid "The last Meta read; empty when none."
+msgstr "Son Meta okuması; yapılmadıysa boş."
+
+msgid "Spend per campaign."
+msgstr "Kampanya başına harcama."
+
+msgid "Total spend."
+msgstr "Toplam harcama."
+
+msgid "Rows entered by hand (managers only)."
+msgstr "Elle girilen satırlar (yalnızca yöneticiler)."
+
+msgid "Channels a row can be added for."
+msgstr "Satır eklenebilecek kanallar."
+
+msgid "Totals of the donor value report."
+msgstr "Bağışçı değeri raporunun toplamları."
+
+msgid "New people from ads."
+msgstr "Reklamlardan gelen yeni kişiler."
+
+msgid "Average lifetime value of people from ads."
+msgstr "Reklamlardan gelen kişilerin ortalama yaşam boyu değeri."
+
+msgid "Cost to win one person."
+msgstr "Bir kişiyi kazanma maliyeti."
+
+msgid "Lifetime value per cost to win."
+msgstr "Kazanma maliyeti başına yaşam boyu değer."
+
+msgid "Share who gave again (0–100)."
+msgstr "Yeniden bağış yapanların payı (0–100)."
+
+msgid "Donor value of one acquisition group."
+msgstr "Bir kazanım grubunun bağışçı değeri."
+
+msgid "Average first payment."
+msgstr "Ortalama ilk ödeme."
+
+msgid "Average value in the first 90 days."
+msgstr "İlk 90 gündeki ortalama değer."
+
+msgid "Average value so far."
+msgstr "Şimdiye kadarki ortalama değer."
+
+msgid "Average payment."
+msgstr "Ortalama ödeme."
+
+msgid "Days until the cost to win is paid back; empty when not yet."
+msgstr "Kazanma maliyetinin geri dönmesine kalan gün; henüz dönmediyse boş."
+
+msgid "One acquisition month of the cohort table."
+msgstr "Kohort tablosunun bir kazanım ayı."
+
+msgid "Month (Y-m)."
+msgstr "Ay (Y-m)."
+
+msgid "Month as text."
+msgstr "Ay, metin olarak."
+
+msgid "New people that month."
+msgstr "O ay gelen yeni kişiler."
+
+msgid "Cumulative value per person after each month; empty where the month has not come yet."
+msgstr "Her aydan sonra kişi başına birikimli değer; ayı henüz gelmediyse boş."
+
+msgid "The Donor value tab."
+msgstr "Bağışçı değeri sekmesi."
+
+msgid "Months in the cohort table."
+msgstr "Kohort tablosundaki aylar."
+
+msgid "Cohort rows."
+msgstr "Kohort satırları."
+
+msgid "One conversion sent (or waiting) to a platform."
+msgstr "Bir platforma gönderilen (ya da bekleyen) bir dönüşüm."
+
+msgid "Platform key."
+msgstr "Platform anahtarı."
+
+msgid "Conversion value."
+msgstr "Dönüşüm değeri."
+
+msgid "sent, pending, failed or skipped."
+msgstr "sent, pending, failed ya da skipped."
+
+msgid "Why it failed or was skipped."
+msgstr "Neden başarısız oldu ya da atlandı."
+
+msgid "Attempts."
+msgstr "Deneme sayısı."
+
+msgid "Last attempt."
+msgstr "Son deneme."
+
+msgid "It can be sent again."
+msgstr "Yeniden gönderilebilir."
+
+msgid "The conversion send log."
+msgstr "Dönüşüm gönderim kaydı."
+
+msgid "Sent."
+msgstr "Gönderildi."
+
+msgid "Waiting."
+msgstr "Bekliyor."
+
+msgid "Failed."
+msgstr "Başarısız."
+
+msgid "Skipped."
+msgstr "Atlandı."
+
+msgid "The latest 100 rows."
+msgstr "Son 100 satır."
+
+msgid "Page addresses to link to."
+msgstr "Bağlantı verilecek sayfa adresleri."
+
+msgid "utm_source choices."
+msgstr "utm_source seçenekleri."
+
+msgid "utm_medium choices."
+msgstr "utm_medium seçenekleri."
+
+msgid "Spend not found."
+msgstr "Harcama bulunamadı."
+
+msgid "Row not found."
+msgstr "Satır bulunamadı."
+
+msgid "Unknown platform."
+msgstr "Bilinmeyen platform."

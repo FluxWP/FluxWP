@@ -1,0 +1,12 @@
+mutation FlxAdsSpendSync($input: FlxAdsSpendSyncInput!) {
+  flxAdsSpendSync(input: $input) {
+    status {
+      ...FlxAdsMetaStatus
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

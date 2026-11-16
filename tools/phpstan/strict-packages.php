@@ -6,7 +6,7 @@
  * - A plugin with includes/services or includes/graphql (a theme: inc/services, inc/graphql) is analysed
  *   at level max in those folders; the rest of its includes/ (inc/) is scanned for symbols.
  * - Package specifics (main file to scan, ignoreErrors …) go in packages/<slug>.php, which returns
- *   [ 'scanFiles' => [], 'scanDirectories' => [], 'paths' => [], 'excludePaths' => [], 'ignoreErrors' => [] ]
+ *   [ 'scanFiles' => [], 'scanDirectories' => [], 'paths' => [], 'excludePaths' => [], 'ignoreErrors' => [], 'stubFiles' => [] ]
  *   with absolute paths (__DIR__ . '/../../../plugins/<slug>/…').
  * - Constants the code reads come from legacy-constants.php (main files and includes/*.php); others go in
  *   packages/<slug>.bootstrap.php.
@@ -19,6 +19,7 @@ $flx_params = array(
 	'scanFiles'       => array(),
 	'excludePaths'    => array(),
 	'ignoreErrors'    => array(),
+	'stubFiles'       => array(),
 );
 $flx_dirs   = array_merge( glob( $flx_root . '/plugins/*', GLOB_ONLYDIR ) ?: array(), glob( $flx_root . '/themes/*', GLOB_ONLYDIR ) ?: array() );
 sort( $flx_dirs );

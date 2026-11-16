@@ -1,0 +1,12 @@
+mutation FlxStudioCancel($input: FlxStudioCancelInput!) {
+  flxStudioCancel(input: $input) {
+    items {
+      ...FlxStudioItemRow
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

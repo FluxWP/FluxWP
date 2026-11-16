@@ -58,18 +58,6 @@ function flxst_boot_data() {
 	);
 }
 
-/** Toplu kimlik listesi → düzenlenebilir kayıtlar. */
-function flxst_editable_rows( $ids, $uid ) {
-	$out = array();
-	foreach ( array_slice( array_unique( array_map( 'intval', (array) $ids ) ), 0, 500 ) as $id ) {
-		$r = flxst_item( $id );
-		if ( flxst_item_editable( $r, $uid ) ) {
-			$out[] = $r;
-		}
-	}
-	return $out;
-}
-
 /** Yüklenen dosya: multipart `file` ya da JSON `data` (data URL). */
 function flxst_request_file( WP_REST_Request $req, array $allowed, $sub, $max_mb = 25 ) {
 	$files = $req->get_file_params();
@@ -106,7 +94,40 @@ function flxst_insert_ref( array $file, $uid, $person, $name, $role, $saved ) {
 			'created'   => time(),
 		)
 	);
-	return flxst_format_ref( flxst_ref( (int) $wpdb->insert_id ) );
+	return (int) $wpdb->insert_id;
+}
+
+/** Servis sonucu → REST cevabı (WP_Error aynen döner). */
+function flxst_rest( $res, $map = null ) {
+	if ( is_wp_error( $res ) ) {
+		return $res;
+	}
+	return $map ? $map( $res ) : $res;
+}
+
+/** @param FLXST_Item[] $items */
+function flxst_rest_items( array $items ) {
+	return array( 'items' => array_map( static fn( $i ) => $i->to_rest(), $items ) );
+}
+
+/** @param FLXST_Template[] $tpls */
+function flxst_rest_templates( array $tpls ) {
+	return array( 'templates' => array_map( static fn( $t ) => $t->to_rest(), $tpls ) );
+}
+
+/** Kaynak liste: ["type" => ..., "id" => ...] (REST gövdesindeki refs). */
+function flxst_ref_inputs( $refs ) {
+	$out = array();
+	foreach ( (array) $refs as $r ) {
+		if ( is_array( $r ) ) {
+			$out[] = array(
+				'type' => (string) ( $r['type'] ?? '' ),
+				'id'   => (int) ( $r['id'] ?? 0 ),
+				'role' => (string) ( $r['role'] ?? '' ),
+			);
+		}
+	}
+	return $out;
 }
 
 add_action(
@@ -138,80 +159,46 @@ add_action(
 			'/items/(?P<id>\d+)',
 			'GET',
 			function ( WP_REST_Request $r ) {
-				$row = flxst_item( (int) $r['id'] );
-				return flxst_item_visible( $row, get_current_user_id() ) ? flxst_format_item( $row ) : flxst_nf();
+				$item = FLXST_Service::item( (int) $r['id'] );
+				return $item ? $item->to_rest() : flxst_nf();
 			}
 		);
 		flxst_route(
 			'/items/(?P<id>\d+)',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				$uid = get_current_user_id();
-				$row = flxst_item( (int) $r['id'] );
-				if ( ! flxst_item_editable( $row, $uid ) ) {
-					return flxst_nf();
-				}
-				$d = array();
+				$change = array();
 				if ( null !== $r->get_param( 'favorite' ) ) {
-					$d['favorite'] = rest_sanitize_boolean( $r->get_param( 'favorite' ) ) ? 1 : 0;
+					$change['favorite'] = (bool) rest_sanitize_boolean( $r->get_param( 'favorite' ) );
 				}
 				if ( null !== $r->get_param( 'title' ) ) {
-					$d['title'] = mb_substr( sanitize_text_field( (string) $r->get_param( 'title' ) ), 0, 190 );
+					$change['title'] = (string) $r->get_param( 'title' );
 				}
-				if ( null !== $r->get_param( 'folder' ) && flxst_folder_writable( (int) $r->get_param( 'folder' ), $uid ) ) {
-					$d['folder_id'] = (int) $r->get_param( 'folder' );
+				if ( null !== $r->get_param( 'folder' ) ) {
+					$change['folder'] = (int) $r->get_param( 'folder' );
 				}
-				if ( $d ) {
-					flxst_item_update( (int) $row['id'], $d );
-				}
-				return flxst_format_item( flxst_item( (int) $row['id'] ) );
+				return flxst_rest( FLXST_Service::item_update( (int) $r['id'], $change ), static fn( $i ) => $i->to_rest() );
 			}
 		);
 		flxst_route(
 			'/items/delete',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				$n = 0;
-				foreach ( flxst_editable_rows( $r->get_param( 'ids' ), get_current_user_id() ) as $row ) {
-					if ( in_array( $row['state'], array( 'queued', 'running' ), true ) && function_exists( 'flxai_media_cancel' ) && $row['job'] ) {
-						flxai_media_cancel( $row['job'] );
-					}
-					flxst_item_delete( $row );
-					++$n;
-				}
-				return array( 'deleted' => $n );
+				return array( 'deleted' => count( FLXST_Service::items_delete( array_map( 'intval', (array) $r->get_param( 'ids' ) ) ) ) );
 			}
 		);
 		flxst_route(
 			'/items/move',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				$uid    = get_current_user_id();
-				$folder = (int) $r->get_param( 'folder' );
-				if ( ! flxst_folder_writable( $folder, $uid ) ) {
-					return new WP_Error( 'rest_forbidden', __( 'You cannot move items to this folder.', 'flx-studio' ), array( 'status' => 403 ) );
-				}
-				$n = 0;
-				foreach ( flxst_editable_rows( $r->get_param( 'ids' ), $uid ) as $row ) {
-					flxst_item_update( (int) $row['id'], array( 'folder_id' => $folder ) );
-					++$n;
-				}
-				return array( 'moved' => $n );
+				return flxst_rest( FLXST_Service::items_move( array_map( 'intval', (array) $r->get_param( 'ids' ) ), (int) $r->get_param( 'folder' ) ), static fn( $ids ) => array( 'moved' => count( $ids ) ) );
 			}
 		);
 		flxst_route(
 			'/items/(?P<id>\d+)/library',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				if ( ! current_user_can( 'upload_files' ) ) {
-					return new WP_Error( 'rest_forbidden', __( 'You are not allowed to add to the Media Library.', 'flx-studio' ), array( 'status' => 403 ) );
-				}
-				$row = flxst_item( (int) $r['id'] );
-				if ( ! flxst_item_visible( $row, get_current_user_id() ) || 'done' !== $row['state'] ) {
-					return flxst_nf();
-				}
-				$id = flxst_to_library( $row );
-				return is_wp_error( $id ) ? $id : array( 'attachment' => $id, 'edit_url' => get_edit_post_link( $id, 'raw' ), 'url' => wp_get_attachment_url( $id ) );
+				return flxst_rest( FLXST_Service::item_to_library( (int) $r['id'] ), static fn( $l ) => array( 'attachment' => $l->attachment, 'edit_url' => $l->edit_url, 'url' => $l->url ) );
 			}
 		);
 
@@ -223,8 +210,7 @@ add_action(
 				if ( ! $in ) {
 					$in = $r->get_params();
 				}
-				$res = flxst_generate( $in, get_current_user_id() );
-				return is_wp_error( $res ) ? $res : array( 'items' => $res );
+				return flxst_rest( FLXST_Service::generate( $in ), 'flxst_rest_items' );
 			}
 		);
 		flxst_route(
@@ -232,33 +218,14 @@ add_action(
 			'GET',
 			function ( WP_REST_Request $r ) {
 				$jobs = array_filter( explode( ',', (string) $r->get_param( 'jobs' ) ) );
-				return array( 'items' => flxst_poll( $jobs, get_current_user_id() ) );
+				return flxst_rest_items( FLXST_Service::poll( array_values( $jobs ) ) );
 			}
 		);
 		flxst_route(
 			'/jobs/(?P<job>flx[md]_[a-f0-9]+)/cancel',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				global $wpdb;
-				$t   = flxst_table( 'items' );
-				$job = (string) $r['job'];
-				$real = 0 === strpos( $job, 'flxd_' ) ? get_transient( 'flxst_map_' . $job ) : '';
-				$job  = $real ? (string) $real : $job; // Bu arada gönderildiyse gerçek iş.
-				$row  = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$t} WHERE job = %s LIMIT 1", $job ), ARRAY_A ); // phpcs:ignore WordPress.DB
-				if ( ! flxst_item_editable( $row, get_current_user_id() ) ) {
-					return flxst_nf();
-				}
-				if ( 0 === strpos( $row['job'], 'flxd_' ) ) {
-					// Henüz gönderilmedi: kayıtlar iptal, gönderim yapılmaz (gönderim sürüyorsa iş ardından durdurulur).
-					$wpdb->query( $wpdb->prepare( "UPDATE {$t} SET state = 'cancelled', error = %s WHERE job = %s AND state IN ('queued','running')", __( 'Cancelled.', 'flx-studio' ), $row['job'] ) ); // phpcs:ignore WordPress.DB
-					delete_transient( 'flxst_' . $row['job'] );
-					return array( 'items' => flxst_poll( array( $row['job'] ), get_current_user_id() ) );
-				}
-				$st = function_exists( 'flxai_media_cancel' ) ? flxai_media_cancel( $row['job'] ) : null;
-				if ( is_array( $st ) ) {
-					flxst_apply_job( $st );
-				}
-				return array( 'items' => flxst_poll( array( $row['job'] ), get_current_user_id() ) );
+				return flxst_rest( FLXST_Service::cancel( (string) $r['job'] ), 'flxst_rest_items' );
 			}
 		);
 
@@ -266,18 +233,22 @@ add_action(
 			'/enhance',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				$refs = flxst_resolve_refs( (array) $r->get_param( 'refs' ), get_current_user_id() );
-				$out  = flxst_enhance( (string) $r->get_param( 'prompt' ), sanitize_key( (string) $r->get_param( 'mode' ) ), is_wp_error( $refs ) ? array() : $refs[1], sanitize_text_field( (string) $r->get_param( 'model_label' ) ) );
-				return is_wp_error( $out ) ? $out : array( 'prompt' => $out );
+				$out = FLXST_Service::enhance( (string) $r->get_param( 'prompt' ), (string) $r->get_param( 'mode' ), flxst_ref_inputs( $r->get_param( 'refs' ) ), (string) $r->get_param( 'model_label' ) );
+				return flxst_rest( $out, static fn( $p ) => array( 'prompt' => $p ) );
 			}
 		);
 		flxst_route(
 			'/brainstorm',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				$refs = flxst_resolve_refs( (array) $r->get_param( 'refs' ), get_current_user_id() );
-				$out  = flxst_brainstorm( (string) $r->get_param( 'brief' ), (int) $r->get_param( 'count' ), sanitize_key( (string) $r->get_param( 'style' ) ), is_wp_error( $refs ) ? array() : $refs[1], 'video' === $r->get_param( 'mode' ) ? 'video' : 'image' );
-				return is_wp_error( $out ) ? $out : array( 'ideas' => $out, 'batch' => strtolower( wp_generate_password( 12, false ) ) );
+				$out = FLXST_Service::brainstorm( (string) $r->get_param( 'brief' ), (int) $r->get_param( 'count' ), (string) $r->get_param( 'style' ), flxst_ref_inputs( $r->get_param( 'refs' ) ), 'video' === $r->get_param( 'mode' ) ? 'video' : 'image' );
+				return flxst_rest(
+					$out,
+					static fn( $o ) => array(
+						'ideas' => array_map( static fn( $i ) => array( 'title' => $i->title, 'prompt' => $i->prompt ), $o['ideas'] ),
+						'batch' => $o['batch'],
+					)
+				);
 			}
 		);
 
@@ -286,80 +257,29 @@ add_action(
 			'/folders',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				global $wpdb;
-				$uid  = get_current_user_id();
-				$name = mb_substr( sanitize_text_field( (string) $r->get_param( 'name' ) ), 0, 120 );
-				if ( '' === $name ) {
-					return new WP_Error( 'flxst_name', __( 'Folder name is required.', 'flx-studio' ), array( 'status' => 400 ) );
-				}
-				$parent = (int) $r->get_param( 'parent' );
-				$wpdb->insert( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
-					flxst_table( 'folders' ),
-					array(
-						'user_id'   => $uid,
-						'parent_id' => flxst_folder_writable( $parent, $uid ) ? $parent : 0,
-						'name'      => $name,
-						'shared'    => rest_sanitize_boolean( $r->get_param( 'shared' ) ) ? 1 : 0,
-						'created'   => time(),
-					)
-				);
-				return flxst_format_folder( flxst_folder( (int) $wpdb->insert_id ) );
+				return flxst_rest( FLXST_Service::folder_create( (string) $r->get_param( 'name' ), (int) $r->get_param( 'parent' ), (bool) rest_sanitize_boolean( $r->get_param( 'shared' ) ) ), static fn( $f ) => $f->to_rest() );
 			}
 		);
 		flxst_route(
 			'/folders/(?P<id>\d+)',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				global $wpdb;
-				$uid = get_current_user_id();
-				if ( ! flxst_folder_owned( (int) $r['id'], $uid ) ) {
-					return flxst_nf();
-				}
-				$d = array();
-				if ( null !== $r->get_param( 'name' ) && '' !== trim( (string) $r->get_param( 'name' ) ) ) {
-					$d['name'] = mb_substr( sanitize_text_field( (string) $r->get_param( 'name' ) ), 0, 120 );
-				}
-				if ( null !== $r->get_param( 'shared' ) ) {
-					$d['shared'] = rest_sanitize_boolean( $r->get_param( 'shared' ) ) ? 1 : 0;
-				}
-				if ( null !== $r->get_param( 'parent' ) ) {
-					$p = (int) $r->get_param( 'parent' );
-					// Kendisinin altına taşınamaz.
-					$x = $p;
-					$ok = true;
-					for ( $i = 0; $x && $i < 50; $i++ ) {
-						if ( $x === (int) $r['id'] ) {
-							$ok = false;
-							break;
-						}
-						$f = flxst_folder( $x );
-						$x = $f ? (int) $f['parent_id'] : 0;
-					}
-					if ( $ok && flxst_folder_writable( $p, $uid ) ) {
-						$d['parent_id'] = $p;
-					}
-				}
-				if ( $d ) {
-					$wpdb->update( flxst_table( 'folders' ), $d, array( 'id' => (int) $r['id'] ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
-				}
-				return flxst_format_folder( flxst_folder( (int) $r['id'] ) );
+				return flxst_rest(
+					FLXST_Service::folder_update(
+						(int) $r['id'],
+						null !== $r->get_param( 'name' ) ? (string) $r->get_param( 'name' ) : null,
+						null !== $r->get_param( 'shared' ) ? (bool) rest_sanitize_boolean( $r->get_param( 'shared' ) ) : null,
+						null !== $r->get_param( 'parent' ) ? (int) $r->get_param( 'parent' ) : null
+					),
+					static fn( $f ) => $f->to_rest()
+				);
 			}
 		);
 		flxst_route(
 			'/folders/(?P<id>\d+)/delete',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				global $wpdb;
-				$id = (int) $r['id'];
-				$f  = flxst_folder( $id );
-				if ( ! flxst_folder_owned( $id, get_current_user_id() ) ) {
-					return flxst_nf();
-				}
-				// İçerik ve alt klasörler üst klasöre çıkar; üretimler silinmez.
-				$wpdb->update( flxst_table( 'items' ), array( 'folder_id' => (int) $f['parent_id'] ), array( 'folder_id' => $id ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
-				$wpdb->update( flxst_table( 'folders' ), array( 'parent_id' => (int) $f['parent_id'] ), array( 'parent_id' => $id ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
-				$wpdb->delete( flxst_table( 'folders' ), array( 'id' => $id ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
-				return array( 'deleted' => true );
+				return flxst_rest( FLXST_Service::folder_delete( (int) $r['id'] ), static fn() => array( 'deleted' => true ) );
 			}
 		);
 
@@ -368,45 +288,21 @@ add_action(
 			'/people',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				global $wpdb;
-				$name = mb_substr( sanitize_text_field( (string) $r->get_param( 'name' ) ), 0, 120 );
-				if ( '' === $name ) {
-					return new WP_Error( 'flxst_name', __( 'Person name is required.', 'flx-studio' ), array( 'status' => 400 ) );
-				}
-				$wpdb->insert( flxst_table( 'people' ), array( 'user_id' => get_current_user_id(), 'name' => $name, 'shared' => 1, 'created' => time() ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
-				return array( 'id' => (int) $wpdb->insert_id, 'name' => $name, 'owner' => get_current_user_id(), 'photos' => array() );
+				return flxst_rest( FLXST_Service::person_create( (string) $r->get_param( 'name' ) ), static fn( $p ) => $p->to_rest() );
 			}
 		);
 		flxst_route(
 			'/people/(?P<id>\d+)',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				global $wpdb;
-				$p = flxst_person( (int) $r['id'] );
-				if ( ! $p || ( (int) $p['user_id'] !== get_current_user_id() && ! flxst_can_manage() ) ) {
-					return flxst_nf();
-				}
-				$name = mb_substr( sanitize_text_field( (string) $r->get_param( 'name' ) ), 0, 120 );
-				if ( '' !== $name ) {
-					$wpdb->update( flxst_table( 'people' ), array( 'name' => $name ), array( 'id' => (int) $p['id'] ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
-				}
-				return array( 'ok' => true );
+				return flxst_rest( FLXST_Service::person_rename( (int) $r['id'], (string) $r->get_param( 'name' ) ), static fn() => array( 'ok' => true ) );
 			}
 		);
 		flxst_route(
 			'/people/(?P<id>\d+)/delete',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				global $wpdb;
-				$p = flxst_person( (int) $r['id'] );
-				if ( ! $p || ( (int) $p['user_id'] !== get_current_user_id() && ! flxst_can_manage() ) ) {
-					return flxst_nf();
-				}
-				foreach ( flxst_refs( get_current_user_id(), array( 'person' => (int) $p['id'] ) ) as $ph ) {
-					flxst_delete_ref( flxst_ref( $ph['id'] ) );
-				}
-				$wpdb->delete( flxst_table( 'people' ), array( 'id' => (int) $p['id'] ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
-				return array( 'deleted' => true );
+				return flxst_rest( FLXST_Service::person_delete( (int) $r['id'] ), static fn() => array( 'deleted' => true ) );
 			}
 		);
 
@@ -422,13 +318,9 @@ add_action(
 			'/refs',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				$uid    = get_current_user_id();
 				$person = (int) $r->get_param( 'person' );
-				if ( $person ) {
-					$p = flxst_person( $person );
-					if ( ! flxst_person_visible( $p, $uid ) ) {
-						return flxst_nf();
-					}
+				if ( ! FLXST_Service::person_usable( $person ) ) {
+					return flxst_nf();
 				}
 				$kind    = (string) $r->get_param( 'kind' );
 				$allowed = in_array( $kind, array( 'video', 'audio' ), true ) ? FLXST_MEDIA_MIMES : FLXST_IMAGE_MIMES;
@@ -436,43 +328,29 @@ add_action(
 				if ( is_wp_error( $file ) ) {
 					return $file;
 				}
-				return flxst_insert_ref( $file, $uid, $person, (string) $r->get_param( 'name' ), (string) $r->get_param( 'role' ), $person || rest_sanitize_boolean( $r->get_param( 'saved' ) ) );
+				return flxst_rest( FLXST_Service::ref_create( $file, $person, (string) $r->get_param( 'name' ), (string) $r->get_param( 'role' ), (bool) rest_sanitize_boolean( $r->get_param( 'saved' ) ) ), static fn( $f ) => $f->to_rest() );
 			}
 		);
 		flxst_route(
 			'/refs/(?P<id>\d+)',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				global $wpdb;
-				$row = flxst_ref( (int) $r['id'] );
-				if ( ! $row || ( (int) $row['user_id'] !== get_current_user_id() && ! flxst_can_manage() ) ) {
-					return flxst_nf();
-				}
-				$d = array();
-				foreach ( array( 'name', 'role' ) as $k ) {
-					if ( null !== $r->get_param( $k ) ) {
-						$d[ $k ] = 'role' === $k ? sanitize_key( (string) $r->get_param( $k ) ) : mb_substr( sanitize_text_field( (string) $r->get_param( $k ) ), 0, 190 );
-					}
-				}
-				if ( null !== $r->get_param( 'saved' ) ) {
-					$d['saved'] = rest_sanitize_boolean( $r->get_param( 'saved' ) ) ? 1 : 0;
-				}
-				if ( $d ) {
-					$wpdb->update( flxst_table( 'refs' ), $d, array( 'id' => (int) $row['id'] ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
-				}
-				return flxst_format_ref( flxst_ref( (int) $row['id'] ) );
+				return flxst_rest(
+					FLXST_Service::ref_update(
+						(int) $r['id'],
+						null !== $r->get_param( 'name' ) ? (string) $r->get_param( 'name' ) : null,
+						null !== $r->get_param( 'role' ) ? (string) $r->get_param( 'role' ) : null,
+						null !== $r->get_param( 'saved' ) ? (bool) rest_sanitize_boolean( $r->get_param( 'saved' ) ) : null
+					),
+					static fn( $f ) => $f->to_rest()
+				);
 			}
 		);
 		flxst_route(
 			'/refs/(?P<id>\d+)/delete',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				$row = flxst_ref( (int) $r['id'] );
-				if ( ! $row || ( (int) $row['user_id'] !== get_current_user_id() && ! flxst_can_manage() ) ) {
-					return flxst_nf();
-				}
-				flxst_delete_ref( $row );
-				return array( 'deleted' => true );
+				return flxst_rest( FLXST_Service::ref_delete( (int) $r['id'] ), static fn() => array( 'deleted' => true ) );
 			}
 		);
 
@@ -481,39 +359,14 @@ add_action(
 			'/templates',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				global $wpdb;
-				$name = mb_substr( sanitize_text_field( (string) $r->get_param( 'name' ) ), 0, 120 );
-				if ( '' === $name ) {
-					return new WP_Error( 'flxst_name', __( 'Template name is required.', 'flx-studio' ), array( 'status' => 400 ) );
-				}
-				$params = (array) $r->get_param( 'params' );
-				$keep   = array_intersect_key( $params, array_flip( array( 'kind', 'model', 'aspect', 'resolution', 'quality', 'size', 'n', 'duration', 'audio', 'mode', 'refs' ) ) );
-				$wpdb->insert( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
-					flxst_table( 'templates' ),
-					array(
-						'user_id' => get_current_user_id(),
-						'name'    => $name,
-						'prompt'  => (string) $r->get_param( 'prompt' ),
-						'params'  => flxst_json( $keep ),
-						'shared'  => rest_sanitize_boolean( $r->get_param( 'shared' ) ) ? 1 : 0,
-						'created' => time(),
-					)
-				);
-				return array( 'templates' => flxst_templates( get_current_user_id() ) );
+				return flxst_rest( FLXST_Service::template_create( (string) $r->get_param( 'name' ), (string) $r->get_param( 'prompt' ), (array) $r->get_param( 'params' ), (bool) rest_sanitize_boolean( $r->get_param( 'shared' ) ) ), 'flxst_rest_templates' );
 			}
 		);
 		flxst_route(
 			'/templates/(?P<id>\d+)/delete',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				global $wpdb;
-				$t   = flxst_table( 'templates' );
-				$row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$t} WHERE id = %d", (int) $r['id'] ), ARRAY_A ); // phpcs:ignore WordPress.DB
-				if ( ! $row || ( (int) $row['user_id'] !== get_current_user_id() && ! flxst_can_manage() ) ) {
-					return flxst_nf();
-				}
-				$wpdb->delete( $t, array( 'id' => (int) $row['id'] ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
-				return array( 'templates' => flxst_templates( get_current_user_id() ) );
+				return flxst_rest( FLXST_Service::template_delete( (int) $r['id'] ), 'flxst_rest_templates' );
 			}
 		);
 
@@ -530,21 +383,16 @@ add_action(
 			'/settings',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				$s = flxst_settings();
-				foreach ( array( 'image_model', 'video_model', 'text_model' ) as $k ) {
+				$in = array();
+				foreach ( array( 'image_model', 'video_model', 'text_model', 'max_n', 'max_batch' ) as $k ) {
 					if ( null !== $r->get_param( $k ) ) {
-						$s[ $k ] = sanitize_text_field( (string) $r->get_param( $k ) );
-					}
-				}
-				foreach ( array( 'max_n' => array( 1, 8 ), 'max_batch' => array( 1, 40 ) ) as $k => $lim ) {
-					if ( null !== $r->get_param( $k ) ) {
-						$s[ $k ] = max( $lim[0], min( $lim[1], (int) $r->get_param( $k ) ) );
+						$in[ $k ] = $r->get_param( $k );
 					}
 				}
 				if ( null !== $r->get_param( 'shared_people' ) ) {
-					$s['shared_people'] = rest_sanitize_boolean( $r->get_param( 'shared_people' ) ) ? 1 : 0;
+					$in['shared_people'] = (bool) rest_sanitize_boolean( $r->get_param( 'shared_people' ) );
 				}
-				update_option( 'flxst_settings', $s, false );
+				FLXST_Service::settings_update( $in );
 				return flxst_settings();
 			},
 			'flxst_perm_manage'

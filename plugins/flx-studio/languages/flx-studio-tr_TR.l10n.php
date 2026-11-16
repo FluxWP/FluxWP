@@ -3,6 +3,7 @@ return array(
  'language' => 'tr_TR',
  'plural-forms' => 'nplurals=2; plural=(n != 1);',
  'messages' => array(
+  'New view' => 'Yeni görünüm',
   'General' => 'Genel',
   'Person (face/identity)' => 'Kişi (yüz/kimlik)',
   'Style' => 'Tarz',

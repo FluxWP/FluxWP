@@ -1,0 +1,10 @@
+mutation FlxAdsAudienceLookalike($input: FlxAdsAudienceLookalikeInput!) {
+  flxAdsAudienceLookalike(input: $input) {
+    ok
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

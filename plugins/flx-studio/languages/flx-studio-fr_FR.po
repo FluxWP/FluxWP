@@ -948,3 +948,7 @@ msgstr "Invite"
 
 msgid "Visual and video studio with AI: production, references and contacts, field editing, Develop and Brainstorm, gallery with folders. Production via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter)."
 msgstr "Studio visuel et vidéo avec IA : production, références et contacts, montage sur le terrain, Développer et Brainstorm, galerie avec dossiers. Production via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter)."
+
+#: includes/admin.php
+msgid "New view"
+msgstr "Nouvelle vue"

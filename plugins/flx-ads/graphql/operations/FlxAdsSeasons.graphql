@@ -1,0 +1,5 @@
+query FlxAdsSeasons {
+  flxAdsSeasons {
+    ...FlxAdsSeason
+  }
+}

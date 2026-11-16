@@ -1,0 +1,8 @@
+# Advances the active job by one time budget.
+mutation FlxBackupStep {
+  flxBackupStep(input: {}) {
+    job {
+      ...FlxBackupJobFields
+    }
+  }
+}

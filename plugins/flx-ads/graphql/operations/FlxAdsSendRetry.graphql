@@ -1,0 +1,10 @@
+mutation FlxAdsSendRetry($input: FlxAdsSendRetryInput!) {
+  flxAdsSendRetry(input: $input) {
+    ok
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

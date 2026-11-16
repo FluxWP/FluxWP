@@ -1,0 +1,12 @@
+mutation FlxStudioTemplateCreate($input: FlxStudioTemplateCreateInput!) {
+  flxStudioTemplateCreate(input: $input) {
+    templates {
+      ...FlxStudioTemplateRow
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

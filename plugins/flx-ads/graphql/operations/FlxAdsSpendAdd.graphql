@@ -1,0 +1,10 @@
+mutation FlxAdsSpendAdd($input: FlxAdsSpendAddInput!) {
+  flxAdsSpendAdd(input: $input) {
+    ok
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

@@ -948,3 +948,7 @@ msgstr "Prompt"
 
 msgid "Visual and video studio with AI: production, references and contacts, field editing, Develop and Brainstorm, gallery with folders. Production via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter)."
 msgstr "Visual- und Videostudio mit KI: Produktion, Referenzen und Kontakte, Feldbearbeitung, Entwickeln und Brainstorming, Galerie mit Ordnern. Produktion über Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter)."
+
+#: includes/admin.php
+msgid "New view"
+msgstr "Neue Ansicht"

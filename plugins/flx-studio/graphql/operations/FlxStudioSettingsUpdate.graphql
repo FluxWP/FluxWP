@@ -1,0 +1,12 @@
+mutation FlxStudioSettingsUpdate($input: FlxStudioSettingsUpdateInput!) {
+  flxStudioSettingsUpdate(input: $input) {
+    settings {
+      ...FlxStudioSettingsRow
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

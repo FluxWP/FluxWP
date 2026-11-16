@@ -1,0 +1,6 @@
+# A page of the gallery.
+query FlxStudioItems($first: Int = 60, $after: String, $folderId: Int, $kind: FlxStudioKind, $favorite: Boolean, $batch: String, $search: String, $allOwners: Boolean) {
+  flxStudioItems(first: $first, after: $after, folderId: $folderId, kind: $kind, favorite: $favorite, batch: $batch, search: $search, allOwners: $allOwners) {
+    ...FlxStudioItemPage
+  }
+}

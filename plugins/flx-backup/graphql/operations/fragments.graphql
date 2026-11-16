@@ -1,0 +1,111 @@
+fragment FlxBackupRow on FlxBackup {
+  id
+  type
+  typeLabel
+  typeColor
+  status
+  statusLabel
+  title
+  label
+  created {
+    iso
+    timestamp
+    label
+    relative
+  }
+  size
+  sizeLabel
+  files
+  includesDatabase
+  contents
+  source
+  sourceLabel
+  originalSite
+  locked
+  keepKind
+  keepLabel
+  error
+  packages {
+    slug
+    name
+    fromVersion
+    toVersion
+    label
+  }
+  downloadUrl
+  percent
+  progress
+  running
+  restore {
+    id
+    title
+    database
+    foreignSite
+    prefixInBackup
+    prefixOnSite
+    groups {
+      key
+      label
+      items {
+        path
+        label
+      }
+    }
+  }
+}
+
+fragment FlxBackupJobFields on FlxBackupJob {
+  status
+  kind
+  id
+  phase
+  percent
+  text
+  error
+  token
+  cancelled
+  elapsed
+  elapsedLabel
+  eta
+  etaLabel
+  title
+  sizeLabel
+  result
+}
+
+fragment FlxBackupSettingsFields on FlxBackupSettings {
+  quotaGb
+  preScope
+  preKeepDays
+  schedule
+  scheduleHour
+  scheduleDay
+  scheduleKeep
+  includeCore
+  exclude
+  safetyRestore
+  deleteOnUninstall
+}
+
+fragment FlxBackupCountsFields on FlxBackupCounts {
+  all
+  usedBytes
+  usedLabel
+  types {
+    type
+    label
+    count
+  }
+}
+
+fragment FlxBackupHealthFields on FlxBackupHealth {
+  zipAvailable
+  writable
+  folder
+  chunkSize
+  nonce
+  ajaxUrl
+  lastRestore
+  includeCoreDefault
+  safetyDefault
+}

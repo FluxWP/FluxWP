@@ -24,7 +24,7 @@ Nothing to list: `strict-packages.php` finds every plugin with `includes/service
    `includes/*.php` with a stand-in (literal → its value, `*_URL`, `*_DIR`, `*_FILE`, `*_VERSION` → a
    placeholder). A constant whose value matters, or one defined elsewhere, goes in
    `packages/<slug>.bootstrap.php`.
-3. Package specifics (`scanFiles` such as the main plugin file, `ignoreErrors`, extra `paths`) go in
+3. Package specifics (`scanFiles` such as the main plugin file, `ignoreErrors`, extra `paths`, `stubFiles`) go in
    `packages/<slug>.php`, which returns an array of those keys with absolute paths (`dirname( __DIR__, 3 ) . '/plugins/<slug>/…'`).
 4. Fix every error. No `@phpstan-ignore` without a reason in the same comment; no baseline for strict.
 5. Shared array shapes go under `typeAliases` in `types.neon` (`FlxGqlSettings` is an example). Both configs include it, so legacy code that calls a kit function resolves the alias too.
