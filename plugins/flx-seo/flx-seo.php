@@ -103,6 +103,7 @@ add_filter(
 /**
  * Başka bir SEO eklentisi (Yoast, Rank Math, AIOSEO, SEOPress) etkinse meta/schema çıktısı kapanır;
  * favicon, SEO kontrolü ve MCP çalışmaya devam eder.
+ * @return bool
  */
 function flxseo_other_seo_plugin() {
 	return defined( 'WPSEO_VERSION' ) || defined( 'RANK_MATH_VERSION' ) || defined( 'AIOSEO_VERSION' ) || defined( 'SEOPRESS_VERSION' ) || defined( 'THE_SEO_FRAMEWORK_VERSION' );

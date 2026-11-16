@@ -14,6 +14,7 @@ parameters:
     - bootstrap.php
   scanFiles:
     - ../../plugins/flx-graphql/vendor/wp-graphql/access-functions.php
+    - ../../plugins/flx-seo/flx-seo.php
     - vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
     - vendor/php-stubs/wp-cli-stubs/wp-cli-stubs.php
   scanDirectories:

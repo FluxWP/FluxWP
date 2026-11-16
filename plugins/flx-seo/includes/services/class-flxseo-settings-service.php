@@ -62,7 +62,7 @@ final class FLXSEO_Settings_Service {
 		}
 		$urls = flxseo_indexnow_all_urls();
 		$r    = flxseo_indexnow_send( $urls, true );
-		if ( is_wp_error( $r ) ) {
+		if ( $r instanceof WP_Error ) {
 			return new WP_Error( $r->get_error_code(), $r->get_error_message(), array( 'graphql_code' => 'INVALID_INPUT' ) );
 		}
 		update_option( 'flxseo_indexnow_init', time(), false );

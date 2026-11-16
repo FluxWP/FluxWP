@@ -161,6 +161,7 @@ function flxseo_admin_url( $tab = '' ) {
 /**
  * Doğrulama alanı olan arama motorları: ayar anahtarı => ad, panel adresi, açıklama.
  * Meta etiket adları head.php'de (flxseo_head).
+ * @return array<string, array<string, string>>
  */
 function flxseo_search_engines() {
 	return array(
@@ -214,12 +215,16 @@ function flxseo_article_types() {
 	return array_values( array_unique( (array) apply_filters( 'flxseo_article_types', array( 'post' ) ) ) );
 }
 
-/** Google Site Kit kurulu ve bir yönetici Google hesabını bağlamış mı. */
+/** Google Site Kit kurulu ve bir yönetici Google hesabını bağlamış mı.
+ * @return bool
+ */
 function flxseo_sitekit_connected() {
 	return defined( 'GOOGLESITEKIT_VERSION' ) && (bool) get_option( 'googlesitekit_has_connected_admins', false );
 }
 
-/** Son IndexNow toplu bildiriminin kısa metni. */
+/** Son IndexNow toplu bildiriminin kısa metni.
+ * @return string
+ */
 function flxseo_indexnow_last_text( $last ) {
 	if ( empty( $last['time'] ) ) {
 		return '';

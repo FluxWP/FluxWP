@@ -896,12 +896,19 @@ flx_gql_mutation(
 		),
 		'resolve'     => static function ( array $input ) {
 			$in = array();
-			foreach ( array( 'title' => 'title', 'description' => 'description', 'focusKeyword' => 'focus_keyword', 'ogImage' => 'og_image' ) as $gql => $key ) {
-				if ( array_key_exists( $gql, $input ) && null !== $input[ $gql ] ) {
-					$in[ $key ] = flx_gql_str( $input[ $gql ] );
-				}
+			if ( isset( $input['title'] ) ) {
+				$in['title'] = flx_gql_str( $input['title'] );
 			}
-			if ( array_key_exists( 'noindex', $input ) && null !== $input['noindex'] ) {
+			if ( isset( $input['description'] ) ) {
+				$in['description'] = flx_gql_str( $input['description'] );
+			}
+			if ( isset( $input['focusKeyword'] ) ) {
+				$in['focus_keyword'] = flx_gql_str( $input['focusKeyword'] );
+			}
+			if ( isset( $input['ogImage'] ) ) {
+				$in['og_image'] = flx_gql_str( $input['ogImage'] );
+			}
+			if ( isset( $input['noindex'] ) ) {
 				$in['noindex'] = (bool) $input['noindex'];
 			}
 			$r = FLXSEO_Content_Service::set_post( flx_gql_int( $input['databaseId'] ?? 0 ), $in );

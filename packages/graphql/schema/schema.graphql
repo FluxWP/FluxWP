@@ -10717,7 +10717,7 @@ interface MenuItemLinkableConnectionEdge implements Edge {
 }
 
 "Deprecated in favor of MenuItemLinkable Interface"
-union MenuItemObjectUnion = Post | Page | Category | Tag
+union MenuItemObjectUnion = Post | Page | Category | Tag | PostFormat
 
 "Connection between the MenuItem type and the Menu type"
 type MenuItemToMenuConnectionEdge implements OneToOneConnection & Edge & MenuConnectionEdge {

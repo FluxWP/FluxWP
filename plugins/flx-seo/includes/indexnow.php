@@ -12,7 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 const FLXSEO_INDEXNOW_ENDPOINT = 'https://api.indexnow.org/indexnow';
 
-/** Site başına sabit anahtar (ilk istekte üretilir). */
+/** Site başına sabit anahtar (ilk istekte üretilir).
+ * @return string
+ */
 function flxseo_indexnow_key() {
 	$key = (string) get_option( 'flxseo_indexnow_key' );
 	if ( ! preg_match( '/^[a-f0-9]{32}$/', $key ) ) {
@@ -22,6 +24,9 @@ function flxseo_indexnow_key() {
 	return $key;
 }
 
+/**
+ * @return bool
+ */
 function flxseo_indexnow_enabled() {
 	if ( ! flxseo_opt( 'indexnow' ) || ! get_option( 'blog_public' ) || wp_get_environment_type() === 'local' ) {
 		return false;
@@ -164,7 +169,9 @@ add_action(
 	20
 );
 
-/** Tüm site: yayındaki tüm içerik adresleri (Ayarlar'daki "Tüm siteyi bildir" düğmesi). */
+/** Tüm site: yayındaki tüm içerik adresleri (Ayarlar'daki "Tüm siteyi bildir" düğmesi).
+ * @return list<string>
+ */
 function flxseo_indexnow_all_urls() {
 	$urls = array( home_url( '/' ) );
 	$ids  = get_posts(

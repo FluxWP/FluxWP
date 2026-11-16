@@ -20,7 +20,9 @@ function flxseo_audit_menu_badge() {
 	return $n ? ' <span class="awaiting-mod count-' . $n . '"><span class="pending-count">' . number_format_i18n( $n ) . '</span></span>' : '';
 }
 
-/** Ajan uyumu özeti: geçen / toplam. */
+/** Ajan uyumu özeti: geçen / toplam.
+ * @return array<string, array{0: string, 1: bool}>
+ */
 function flxseo_audit_agentic( array $report ) {
 	$ids    = wp_list_pluck( $report['findings'], 'id' );
 	$checks = array(

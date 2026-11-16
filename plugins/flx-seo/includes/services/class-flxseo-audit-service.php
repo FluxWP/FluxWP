@@ -208,7 +208,7 @@ final class FLXSEO_Audit_Service {
 	 */
 	public static function run_local( string $url = '' ) {
 		$r = flxseo_audit_run_local( '' !== $url ? flxseo_audit_url( $url ) : '' );
-		if ( is_wp_error( $r ) ) {
+		if ( $r instanceof WP_Error ) {
 			return self::failed( $r );
 		}
 		do_action( 'flxseo_audit_done', 'manual' );
@@ -225,7 +225,7 @@ final class FLXSEO_Audit_Service {
 	 */
 	public static function run_pagespeed( string $strategy, string $url = '' ) {
 		$r = flxseo_psi_run( 'desktop' === $strategy ? 'desktop' : 'mobile', '' !== $url ? flxseo_audit_url( $url ) : '' );
-		if ( is_wp_error( $r ) ) {
+		if ( $r instanceof WP_Error ) {
 			return self::failed( $r );
 		}
 		flxseo_gql_purge( self::CACHE_TAG );

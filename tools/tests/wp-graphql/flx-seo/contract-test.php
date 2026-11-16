@@ -237,7 +237,7 @@ $r = flxs_op( 'FlxSeoAuditRun', array( 'input' => array( 'mode' => 'LOCAL', 'url
 $run = $r['data']['flxSeoAuditRun'] ?? array();
 if ( ! empty( $run['audit']['local'] ) ) {
 	flxt_same( home_url( '/' ), $run['audit']['local']['url'] ?? null, 'run: an address of another site audits the home page' );
-	flxt_ok( ( $run['audit']['local']['time']['timestamp'] ?? 0 ) >= time() - 30 && ( $run['history']['total'] ?? 0 ) >= 1, 'run: the on-site audit is saved and the history grows' );
+	flxt_ok( (int) strtotime( (string) ( $run['audit']['local']['time']['iso'] ?? '' ) ) >= time() - 30 && ( $run['history']['total'] ?? 0 ) >= 1, 'run: the on-site audit is saved and the history grows' );
 } else {
 	flxt_ok( 'INVALID_INPUT' === ( $run['errors'][0]['code'] ?? '' ), 'run: the on-site audit answers with INVALID_INPUT when the page is not reachable', $run );
 }
