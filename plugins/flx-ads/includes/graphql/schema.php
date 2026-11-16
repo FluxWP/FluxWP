@@ -746,9 +746,9 @@ function flxads_gql_draft_input( $raw ): array {
 			'ageMin'    => flx_gql_int( $s['ageMin'] ?? 18, 18 ),
 			'ageMax'    => flx_gql_int( $s['ageMax'] ?? 65, 65 ),
 			'gender'    => flx_gql_str( $s['gender'] ?? 'all', 'all' ),
-			'countries' => array_values( array_map( 'flx_gql_str', flxads_gql_list( $s['countries'] ?? array() ) ) ),
-			'audiences' => array_values( array_map( 'flx_gql_str', flxads_gql_list( $s['audiences'] ?? array() ) ) ),
-			'exclude'   => array_values( array_map( 'flx_gql_str', flxads_gql_list( $s['exclude'] ?? array() ) ) ),
+			'countries' => array_map( 'flx_gql_str', flxads_gql_list( $s['countries'] ?? array() ) ),
+			'audiences' => array_map( 'flx_gql_str', flxads_gql_list( $s['audiences'] ?? array() ) ),
+			'exclude'   => array_map( 'flx_gql_str', flxads_gql_list( $s['exclude'] ?? array() ) ),
 			'share'     => flx_gql_int( $s['share'] ?? 100, 100 ),
 		);
 	}
