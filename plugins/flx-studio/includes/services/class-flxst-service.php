@@ -533,7 +533,7 @@ final class FLXST_Service {
 			return array();
 		}
 		$out = array();
-		foreach ( is_array( $res[1] ?? null ) ? $res[1] : array() as $s ) {
+		foreach ( $res[1] as $s ) {
 			$out[] = FLXST_Util::arr( $s );
 		}
 		return $out;
@@ -568,7 +568,7 @@ final class FLXST_Service {
 			return $ideas;
 		}
 		$out = array();
-		foreach ( is_array( $ideas ) ? $ideas : array() as $i ) {
+		foreach ( $ideas as $i ) {
 			$i     = FLXST_Util::arr( $i );
 			$out[] = new FLXST_Idea( FLXST_Util::str( $i['title'] ?? '' ), FLXST_Util::str( $i['prompt'] ?? '' ) );
 		}
