@@ -1,0 +1,31 @@
+query FlxCrmGatheringSendView($id: Int!, $key: String!, $channel: String, $status: String, $first: Int = 40, $after: String) {
+  flxGatheringSend(id: $id, key: $key) {
+    ...FlxCrmGatheringSend
+    recipients(channel: $channel, status: $status, first: $first, after: $after) {
+      totalCount
+      channel
+      channels
+      countSent
+      countWaiting
+      countFailed
+      countOther
+      nodes {
+        name
+        recipient
+        status
+        error
+        sentAt
+        scheduledAt
+        delivered
+        read
+        replied
+        optout
+        hasEngagement
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+    }
+  }
+}

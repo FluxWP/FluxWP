@@ -1,0 +1,33 @@
+query FlxCrmGatheringMessages($id: Int!) {
+  flxGatheringMessages(id: $id) {
+    databaseId
+    mailReady
+    canPause
+    hasMedia
+    timezone
+    defaultSendAt
+    channels {
+      key
+      label
+      ready
+      infoCount
+      marketingCount
+    }
+    variables {
+      group
+      key
+      label
+      off
+    }
+    samples {
+      name
+      values {
+        key
+        value
+      }
+    }
+    sends {
+      ...FlxCrmGatheringSend
+    }
+  }
+}

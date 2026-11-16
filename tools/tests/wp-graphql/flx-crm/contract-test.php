@@ -17,7 +17,7 @@ foreach ( (array) json_decode( (string) file_get_contents( FLXCRM_DIR . 'graphql
 		$GLOBALS['flxcrm_ops'][ $m[1] ] = $doc;
 	}
 }
-flxt_same( 28, count( $GLOBALS['flxcrm_ops'] ), 'Flux CRM ships 28 persisted operations' );
+flxt_same( 40, count( $GLOBALS['flxcrm_ops'] ), 'Flux CRM ships 40 persisted operations' );
 
 function flxcrm_t( string $name, array $vars = array(), int $user = 0 ): array {
 	return flxt_gql( $GLOBALS['flxcrm_ops'][ $name ], $vars, $user );
@@ -49,7 +49,7 @@ function flxcrm_field( array $r, string $field ) {
 }
 
 // ---- Permissions -------------------------------------------------------------------------------------
-foreach ( array( 'FlxCrmShell', 'FlxCrmOverview', 'FlxCrmContacts', 'FlxCrmSegmentEditor', 'FlxCrmJourneys', 'FlxCrmDuplicates', 'FlxCrmSettings' ) as $op ) {
+foreach ( array( 'FlxCrmShell', 'FlxCrmOverview', 'FlxCrmContacts', 'FlxCrmSegmentEditor', 'FlxCrmJourneys', 'FlxCrmDuplicates', 'FlxCrmSettings', 'FlxCrmGatherings' ) as $op ) {
 	flxt_same( 'UNAUTHENTICATED', flxt_code( flxcrm_t( $op ) ), "$op: visitor → UNAUTHENTICATED" );
 	flxt_same( 'FORBIDDEN', flxt_code( flxcrm_t( $op, array(), $sub ) ), "$op: subscriber → FORBIDDEN" );
 }
@@ -277,6 +277,80 @@ flxt_ok( '' !== ( $sy['result']['step'] ?? '' ) && is_bool( $sy['result']['finis
 $ai = $s['flxCrmAi'] ?? array();
 flxt_same( count( flxcrm_tools() ), count( $ai['tools'] ?? array() ), 'ai: every tool is listed' );
 flxt_same( 'FORBIDDEN', flxt_code( flxcrm_t( 'FlxCrmSettingsSave', array( 'input' => array( 'riskThreshold' => 10 ) ), $viewer ) ), 'settings save: a viewer is refused' );
+
+// ---- Events --------------------------------------------------------------------------------------------
+flxt_same( 'FORBIDDEN', flxt_code( flxcrm_t( 'FlxCrmGatheringSave', array( 'input' => array( 'fields' => array( array( 'key' => 'name', 'value' => 'X' ) ) ) ), $viewer ) ), 'gathering save: a viewer is refused' );
+$board = flxcrm_t( 'FlxCrmGatherings', array(), $viewer )['data']['flxGatherings'] ?? array();
+flxt_same( array( 0, 0 ), array( $board['openCount'] ?? null, $board['closedCount'] ?? null ), 'gatherings: empty counts' );
+$bad = flxcrm_t( 'FlxCrmGatheringSave', array( 'input' => array( 'fields' => array( array( 'key' => 'name', 'value' => '' ) ) ) ), $editor )['data']['flxGatheringSave'] ?? array();
+flxt_ok( ! empty( $bad['errors'] ), 'gathering: a name is required', $bad );
+$made = flxcrm_t( 'FlxCrmGatheringSave', array( 'input' => array( 'fields' => array( array( 'key' => 'name', 'value' => 'Planting day' ), array( 'key' => 'event_date', 'value' => '2026-12-01' ) ) ) ), $editor )['data']['flxGatheringSave'] ?? array();
+$gid  = (int) ( $made['gathering']['databaseId'] ?? 0 );
+flxt_same( array( array(), 'Planting day', 'OPEN' ), array( $made['errors'] ?? null, $made['gathering']['name'] ?? null, $made['gathering']['status'] ?? null ), 'gathering: created' );
+flxt_same( null, flxcrm_field( flxcrm_t( 'FlxCrmGathering', array( 'id' => 999999 ), $admin ), 'flxGathering' ), 'gathering: unknown id → null' );
+$form = flxcrm_t( 'FlxCrmGatheringForm', array( 'id' => $gid ), $editor )['data']['flxGatheringForm'] ?? array();
+$form_keys = array();
+foreach ( $form['sections'] ?? array() as $sec ) {
+	foreach ( $sec['fields'] ?? array() as $field ) {
+		$form_keys[] = $field['key'] ?? '';
+	}
+}
+flxt_ok( in_array( 'name', $form_keys, true ), 'gathering form: includes the name', $form );
+$people = flxcrm_t( 'FlxCrmGatheringPeople', array( 'id' => $gid ), $viewer )['data']['flxGatheringPeople'] ?? array();
+flxt_same( array( 0, array() ), array( $people['totalCount'] ?? null, $people['nodes'] ?? null ), 'gathering people: none yet' );
+$msgs = flxcrm_t( 'FlxCrmGatheringMessages', array( 'id' => $gid ), $editor )['data']['flxGatheringMessages'] ?? array();
+flxt_ok( is_bool( $msgs['mailReady'] ?? null ), 'gathering messages: mailReady is a boolean', $msgs );
+$sent = flxcrm_t( 'FlxCrmGatheringSend', array( 'input' => array( 'id' => $gid, 'channels' => array( 'WHATSAPP' ), 'text' => '' ) ), $editor );
+flxt_ok( ! empty( $sent['errors'] ) || ! empty( $sent['data']['flxGatheringMessageSend']['errors'] ), 'gathering send: an empty message is refused', $sent );
+flxt_same( 'NOT_FOUND', flxt_code( flxcrm_t( 'FlxCrmGatheringDelete', array( 'input' => array( 'id' => 999999 ) ), $editor ) ), 'gathering delete: unknown id → NOT_FOUND' );
+$closed = flxcrm_t( 'FlxCrmGatheringStatus', array( 'input' => array( 'id' => $gid, 'status' => 'CLOSED' ) ), $editor )['data']['flxGatheringSetStatus'] ?? array();
+flxt_same( array( array(), 'CLOSED' ), array( $closed['errors'] ?? null, $closed['gathering']['status'] ?? null ), 'gathering: archived' );
+$open = flxcrm_t( 'FlxCrmGatheringStatus', array( 'input' => array( 'id' => $gid, 'status' => 'OPEN' ) ), $editor )['data']['flxGatheringSetStatus'] ?? array();
+flxt_same( 'OPEN', $open['gathering']['status'] ?? null, 'gathering: reopened' );
+$gone = flxcrm_t( 'FlxCrmGatheringDelete', array( 'input' => array( 'id' => $gid ) ), $editor )['data']['flxGatheringDelete'] ?? array();
+flxt_same( array( array(), true ), array( $gone['errors'] ?? null, $gone['deleted'] ?? null ), 'gathering: deleted' );
+
+// ---- Person-card sections ------------------------------------------------------------------------------
+flxcrm_register_person_section(
+	array(
+		'id'        => 'flxt_note',
+		'package'   => 'test',
+		'title'     => 'Test section',
+		'placement' => 'side',
+		'resolve'   => static function () {
+			return array( array( 'kind' => 'note', 'text' => 'Hello section' ) );
+		},
+	)
+);
+flxcrm_register_person_section(
+	array(
+		'id'        => 'flxt_secret',
+		'package'   => 'test',
+		'title'     => 'Secret',
+		'placement' => 'main',
+		'cap'       => FLXCRM_CAP_MANAGE,
+		'resolve'   => static function () {
+			return array( array( 'kind' => 'note', 'text' => 'secret' ) );
+		},
+	)
+);
+add_action(
+	'flxcrm_person_card_side',
+	static function () {
+		echo '<p>Legacy ads</p>';
+	}
+);
+$secs = flxcrm_t( 'FlxCrmContact', array( 'id' => $c['id'] ), $admin )['data']['flxContact']['sections'] ?? array();
+$by   = array();
+foreach ( $secs as $sec ) {
+	$by[ $sec['id'] ] = $sec;
+}
+flxt_same( 'Hello section', $by['flxt_note']['blocks'][0]['text'] ?? null, 'sections: a registered note is returned' );
+flxt_ok( isset( $by['flxt_secret'] ), 'sections: a manager sees a manage-only section', $by );
+flxt_ok( str_contains( (string) ( $by['legacy:flxcrm_person_card_side']['blocks'][0]['text'] ?? '' ), 'Legacy ads' ), 'sections: an unreplaced hook is captured as HTML', $by );
+$view_ids = array_column( flxcrm_t( 'FlxCrmContact', array( 'id' => $c['id'] ), $viewer )['data']['flxContact']['sections'] ?? array(), 'id' );
+flxt_ok( ! in_array( 'flxt_secret', $view_ids, true ), 'sections: a viewer does not see a manage-only section', $view_ids );
+remove_all_actions( 'flxcrm_person_card_side' );
 
 // ---- Delete -------------------------------------------------------------------------------------------
 $de = flxcrm_t( 'FlxCrmContactDelete', array( 'input' => array( 'id' => $c['id'] ) ), $editor )['data']['flxContactDelete'] ?? array();

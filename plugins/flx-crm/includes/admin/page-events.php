@@ -22,42 +22,12 @@ final class FLXCRM_Page_Events {
 
 	/** Labels of the core fields (the shared module has no text domain). */
 	public static function labels( $f ) {
-		$l = array(
-			'name'         => array( __( 'Event name', 'flx-crm' ), __( 'e.g. National Forestation Day', 'flx-crm' ) ),
-			'event_date'   => array( __( 'Date', 'flx-crm' ), '' ),
-			'event_time'   => array( __( 'Time', 'flx-crm' ), '10:00' ),
-			'summary'      => array( __( 'Short description (on the site card and at the top of the page)', 'flx-crm' ), '' ),
-			'image_id'     => array( __( 'Image', 'flx-crm' ), '' ),
-			'loc_name'     => array( __( 'Place', 'flx-crm' ), '' ),
-			'loc_announce' => array( __( 'Location announced on', 'flx-crm' ), '' ),
-			'loc_address'  => array( __( 'Address / directions', 'flx-crm' ), '' ),
-			'loc_map'      => array( __( 'Map link or coordinates', 'flx-crm' ), __( 'Google Maps link or 41.1612, 28.9271', 'flx-crm' ) ),
-			'post_id'      => array( __( 'Page on the site', 'flx-crm' ), '' ),
-			'note'         => array( __( 'Internal note (not shown on the site)', 'flx-crm' ), '' ),
-		);
-		foreach ( $l as $k => $v ) {
-			if ( isset( $f[ $k ] ) && '' === (string) ( $f[ $k ]['label'] ?? '' ) ) {
-				$f[ $k ]['label'] = $v[0];
-				if ( '' !== $v[1] && empty( $f[ $k ]['placeholder'] ) ) {
-					$f[ $k ]['placeholder'] = $v[1];
-				}
-			}
-		}
-		if ( isset( $f['loc_announce'] ) && empty( $f['loc_announce']['help'] ) ) {
-			$f['loc_announce']['help'] = __( 'Empty: 10 days before the event.', 'flx-crm' );
-		}
-		return $f;
+		return FLXCRM_Gathering_Service::field_labels( is_array( $f ) ? $f : array() );
 	}
 
 	/** Section titles; packages add theirs with `flx_event_sections`. */
 	public static function sections() {
-		$s = array(
-			'event'    => __( 'Event', 'flx-crm' ),
-			'location' => __( 'Location', 'flx-crm' ),
-			'page'     => __( 'Page on the site', 'flx-crm' ),
-			'note'     => __( 'Internal note', 'flx-crm' ),
-		);
-		return (array) apply_filters( 'flx_event_sections', $s );
+		return FLXCRM_Gathering_Service::sections();
 	}
 
 	private static function guard( $nonce ) {

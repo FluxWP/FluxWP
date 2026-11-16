@@ -1,7 +1,7 @@
 # Flux CRM GraphQL API
 
 Uç: `/graphql` (Flux GraphQL). Okuma `flxcrm_view`, yazma `flxcrm_manage`. İşlemler `plugins/flx-crm/graphql/operations/*.graphql`
-(28), tipleri `@fluxwp/graphql` (`FlxCrmOverview`, `FlxCrmContacts` …). Servisler `plugins/flx-crm/includes/services/`; şema `includes/graphql/schema.php`.
+(40), tipleri `@fluxwp/graphql` (`FlxCrmOverview`, `FlxCrmGatherings` …). Servisler `plugins/flx-crm/includes/services/`; şema `includes/graphql/schema.php`, `gatherings.php`, `sections.php`.
 
 ## FlxPerson: kişi için ortak arayüz
 
@@ -22,7 +22,7 @@ flx_gql_field( 'FlxContact', 'donationTotal', array(
 - `avatar`: Gravatar adresi yalnız Ayarlar > Tartışma'da avatarlar açıksa döner; kapalıysa `null` (e-posta özeti siteden çıkmaz). İstemci baş harfleri gösterir.
 - Başka tipten kişiye bağlanırken `$context->get_loader( 'FlxContact' )->load_deferred( $id )` kullan (N+1 olmaz).
 - Kişi değişince önbellek etiketleri `flx-crm:contact:<id>`, `flx-crm:contacts` ve `flx-crm:overview` temizlenir (`flx_gql_purge`). Yeni yazarlar bunu bozmaz: klasik REST/AJAX/admin yazıcıları da aynı kancalarla temizler.
-- Kişi kartının eklenti bölümleri (`flxcrm_person_card_main_before/main/side`) hâlâ klasik PHP kancasıdır (aşağıda İstisnalar).
+- Kişi kartının eklenti bölümleri `FlxContact.sections` (aşağıda kayıt). Klasik kancalar durur; kayıt `replaces` demedikçe HTML'leri de döner.
 
 ## Okuma
 
@@ -35,12 +35,15 @@ flx_gql_field( 'FlxContact', 'donationTotal', array(
 | `flxContactDuplicates` | Olası kopyalar |
 | `flxSegmentEditor`, `flxSegmentPreview(input)` | Kural alanları ve canlı sayı |
 | `flxJourneys`, `flxJourneyConfig` | Yolculuklar, şablonlar, varsayılanlar |
+| `flxGatherings`, `flxGathering`, `flxGatheringForm`, `flxGatheringPeople`, `flxGatheringMessages`, `flxGatheringSend` | Olaylar ekranı. Tip adı `FlxGathering` (`FlxEvent` kişi zaman çizgisinde durur) |
 | `flxCrmSettings`, `flxCrmAi`, `flxCrmAiLog` | Ayarlar, AI & MCP, AI günlüğü |
 
 ## Yazma
 
 `flxContactCreate/Update/Delete/Bulk/Merge`, `flxContactTagAdd/Remove`, `flxContactEventAdd/Delete`,
-`flxSegmentSave/Delete`, `flxJourneySave/FromTemplate/SetStatus/Delete`, `flxCrmSettingsSave`, `flxCrmScoreRun`, `flxCrmSyncStep`.
+`flxSegmentSave/Delete`, `flxJourneySave/FromTemplate/SetStatus/Delete`,
+`flxGatheringSave/SetStatus/Delete/EnsurePage`, `flxGatheringMessageSend`, `flxGatheringSendControl`,
+`flxCrmSettingsSave`, `flxCrmScoreRun`, `flxCrmSyncStep`.
 Hatalar payload `errors` içinde (`INVALID_INPUT`, `field`); bulunamayan kayıt üst düzey `NOT_FOUND`.
 Toplu iş ve skorlama sayfalı: `flxCrmScoreRun` `{ done, scored, total }`, `flxCrmSyncStep` `{ next, page, done }` döner; istemci `done` olana dek çağırır.
 
@@ -50,11 +53,44 @@ Toplu iş ve skorlama sayfalı: `flxCrmScoreRun` `{ done, scored, total }`, `flx
 - Yolculuklar ve kopyalar için yeni sorgular eklendi (`flxJourneys`, `flxContactDuplicates`).
 - AI araçları kendi `flxcrm_tools` filtresinde kalır (MCP `flx_mcp_tools` değil); aynı servisleri çağırır.
 
-## İstisnalar (bu sürümde klasik)
+## Kişi kartı bölüm kaydı
 
-- **Olaylar sayfası** (`flx-crm-events`): klasik PHP; React sekmesi bağlantı verir. Ahmet'in ekran kuralına aykırıdır, `gql/flx-crm-2`'de MUTLAKA React'e taşınacak.
-- **Kişi kartı eklenti bölümleri**: kancalar PHP; `gql/flx-crm-2`'de zorunlu kapanacak (kanca → GraphQL alanı/bölüm kaydı). Bu sürümde React kartında "More sections" kartı klasik karta bağlar.
-- Klasik REST/AJAX/admin işleyicileri servislere taşınmadı, çalışmaya devam eder.
+Başka bir paket CRM dosyasına dokunmadan bir bölüm ekler. Kayıt GraphQL olmasa da çalışır (`includes/person-card.php`).
+
+```php
+flxcrm_register_person_section( array(
+	'id'        => 'donate_gifts',          // sanitize_key; boşsa yok sayılır
+	'package'   => 'flx-donate',
+	'title'     => __( 'Recurring gifts', 'flx-donate' ),
+	'placement' => 'side',                  // actions | main_before | main | side
+	'replaces'  => 'flxcrm_person_card_side', // bu kancanın HTML'i artık eklenmez
+	'cap'       => 'flxd_view',             // string cap, ya da fn(FLXCRM_Contact): bool. Varsayılan flxcrm_view
+	'resolve'   => static function ( FLXCRM_Contact $contact, string $context ) {
+		// Kendi verini yükle. İstek static'ine güvenme. null = bölüm yok.
+		return array(
+			array( 'kind' => 'stats', 'items' => array( array( 'label' => 'Gifts', 'value' => '3' ) ) ),
+			array( 'kind' => 'links', 'items' => array( array( 'label' => 'Open', 'url' => 'https://example.com' ) ) ),
+		);
+	},
+) );
+```
+
+`resolve` dönüşü: `null` (gizle), bir blok listesi, ya da `array{ title?: string, blocks: list }`. Blok türleri: `stats`, `links`, `list`, `table`, `note`, `html`, `actions`.
+
+| Tür | Alanlar |
+|---|---|
+| stats, links, list, actions | `items[]`: `label`, `value`, `url`, `meta`, `primary` |
+| table | `columns[]`, `rows[]`: `cells[]`, `url`, `label`, `meta` |
+| note, html | `text` |
+
+GraphQL: `FlxContact.sections(placement, context): [FlxPersonSection!]!`. Alan `flxcrm_view` ister (yalnız `flxcrm_gql_can_see_contact` ile kişiyi gören, alanı isteyince `FORBIDDEN` alır). Cap'i geçmeyen bölüm listede yoktur. Çözen hata fırlatırsa o bölüm düşer.
+
+Kayıt yoksa ve kancada callback varsa, CRM kartında context `''` ile `do_action` çıktısı `kind: html`, `id: legacy:<kanca>` olur. HTML güveni klasik yönetici kartıyla aynıdır. Donate'in `context === 'donate'` bölümü CRM kartında görünmez (klasikle aynı). Commerce ve Ads, `replaces` deyene kadar HTML olarak gelir.
+
+## İstisnalar
+
+- Klasik REST/AJAX/admin-post işleyicileri durur (etkinlik yazmaları `admin-post.php`). React onları çağırmaz.
+- Etkinlik kişi listesi artık sunucuda aranır ve sayfalanır (klasikte ilk 500, tarayıcıda süzülürdü).
 
 ## React
 

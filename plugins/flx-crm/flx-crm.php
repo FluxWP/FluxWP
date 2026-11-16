@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux CRM
  * Description:       Kişiler ve pazarlama: bağışçı, müşteri, gönüllü ve aday tek kişi kartında; zaman tüneli, etiketler, KVKK izinleri, RFM skoru ve kayıp riski, dinamik segmentler. Veriyi Flux Donate, Flux Commerce, Flux Chat, Flux Forms ve WordPress kullanıcılarından toplar; gönderim Flux Mail, AI Flux AI üzerinden.
- * Version:           0.10.0
+ * Version:           0.11.0
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Requires Plugins:  flx-graphql
@@ -25,7 +25,7 @@ if ( defined( 'FLXCRM_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXCRM_VERSION', '0.10.0' );
+define( 'FLXCRM_VERSION', '0.11.0' );
 define( 'FLXCRM_DB_VERSION', 3 );
 define( 'FLXCRM_FILE', __FILE__ );
 define( 'FLXCRM_DIR', plugin_dir_path( __FILE__ ) );
@@ -47,6 +47,8 @@ require_once FLXCRM_DIR . 'includes/services/class-flxcrm-segment-service.php';
 require_once FLXCRM_DIR . 'includes/services/class-flxcrm-insight-service.php';
 require_once FLXCRM_DIR . 'includes/services/class-flxcrm-settings-service.php';
 require_once FLXCRM_DIR . 'includes/services/class-flxcrm-journey-service.php';
+require_once FLXCRM_DIR . 'includes/services/class-flxcrm-gathering-service.php';
+require_once FLXCRM_DIR . 'includes/services/class-flxcrm-section-service.php';
 require_once FLXCRM_DIR . 'includes/adapters/donate.php';
 require_once FLXCRM_DIR . 'includes/adapters/commerce.php';
 require_once FLXCRM_DIR . 'includes/adapters/chat.php';
@@ -115,6 +117,35 @@ add_action(
 	2
 );
 unset( $flxcrm_hook );
+foreach ( array( 'flx_event_saved', 'flx_event_status', 'flx_event_deleting' ) as $flxcrm_event_hook ) {
+	add_action(
+		$flxcrm_event_hook,
+		static function ( $id = 0 ) {
+			FLXCRM_Gathering_Service::changed( (int) $id );
+		}
+	);
+}
+unset( $flxcrm_event_hook );
+add_filter(
+	'flx_gql_upload_contexts',
+	static function ( $c ) {
+		$c                        = is_array( $c ) ? $c : array();
+		$cap                      = static function () {
+			return flxcrm_can( true ) && current_user_can( 'upload_files' );
+		};
+		$c['flx-crm/event-image'] = array(
+			'cap'   => $cap,
+			'mimes' => array(
+				'jpg|jpeg|jpe' => 'image/jpeg',
+				'png'          => 'image/png',
+				'gif'          => 'image/gif',
+				'webp'         => 'image/webp',
+			),
+		);
+		$c['flx-crm/event-file']  = array( 'cap' => $cap );
+		return $c;
+	}
+);
 add_filter(
 	'flx_gql_capabilities',
 	static function ( $caps ) {

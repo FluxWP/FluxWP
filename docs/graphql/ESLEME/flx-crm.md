@@ -1,8 +1,8 @@
 # Flux CRM (flx-crm): REST → GraphQL eşlemesi
 
-Paket sürümü: 0.10.0 (olaylar ve kişi kartı bölümleri 0.11.0, `gql/flx-crm-2`) · Önek: `flxcrm_` (sınıf `FLXCRM_`) · Cap: `flxcrm_view` (okuma), `flxcrm_manage` (yazma) · Durum: kişi/segment/yolculuk uygulandı (`docs/flx-crm/GRAPHQL.md`); olaylar sayfası ve kişi kartı bölüm kaydı bu dalda.
+Paket sürümü: 0.11.0 · Önek: `flxcrm_` (sınıf `FLXCRM_`) · Cap: `flxcrm_view` (okuma), `flxcrm_manage` (yazma) · Durum: kişi, segment, yolculuk, olaylar sayfası ve kişi kartı bölüm kaydı GraphQL + React (`docs/flx-crm/GRAPHQL.md`).
 
-Not: Üstteki tablolar 0.10.0 envanteridir. Olaylar sayfası ve kişi kartı kancaları aşağıdaki "flx-crm-2" bölümündedir.
+Not: Üstteki tablolar 0.10.0 envanteridir. Olaylar sayfası ve kişi kartı kancaları aşağıdaki "flx-crm-2" bölümündedir; 0.11.0'da uygulandı.
 
 ## Özet
 

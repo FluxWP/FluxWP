@@ -77,6 +77,13 @@ type FlxContact implements FlxPerson & Node {
   rfm: FlxContactRfm
   """Role keys (flxCrmMeta.roles)."""
   roles: [String!]
+  """Sections other packages add. Hidden ones are left out."""
+  sections(
+    """Caller context. Empty is the CRM card."""
+    context: String
+    """Only this place. Empty is every place."""
+    placement: FlxPersonPlacement
+  ): [FlxPersonSection!]!
   """Value segment key (flxCrmMeta.rfm); empty before the first scoring."""
   segment: String
   """Name of the value segment."""
@@ -1044,6 +1051,694 @@ type FlxDuplicateItem {
   usedBy: [String!]!
 }
 
+"""An event: a planting day, a meeting or a training."""
+type FlxGathering {
+  """Links from packages."""
+  actions: [FlxGatheringAction!]!
+  """Address. Empty on a list card."""
+  address: String!
+  """The theme has an event post type."""
+  canCreatePage: Boolean!
+  """Cover picture."""
+  coverUrl: String!
+  """Event ID."""
+  databaseId: Int!
+  """Day of the month."""
+  dateDay: String!
+  """Month name."""
+  dateMonth: String!
+  """Year."""
+  dateYear: String!
+  """Messages delivered for this event. 0 on a list card."""
+  deliveredCount: Int!
+  """Flux Mail can send."""
+  mailReady: Boolean!
+  """Map link."""
+  mapUrl: String!
+  """Event name."""
+  name: String!
+  """Internal note. Empty unless the viewer may edit events."""
+  note: String
+  """published, draft or none."""
+  pageState: String!
+  """Page title."""
+  pageTitle: String!
+  """Public page. Empty until it is published."""
+  pageUrl: String!
+  """People the packages attach to this event."""
+  peopleCount: Int!
+  """Today, in N days, archived, or no date."""
+  phaseLabel: String!
+  """ok, info, warn or mute."""
+  phaseTone: String!
+  """Place, or a short address."""
+  place: String!
+  """Page on the site. 0 when there is none."""
+  postId: Int!
+  """First package bar, 0–100."""
+  progress: Int
+  """Caption of that bar."""
+  progressHint: String!
+  """Why people are included. Empty on a list card."""
+  reasons: [FlxGatheringReason!]!
+  """Newest sends (up to 3). Empty on a list card."""
+  recentSends: [FlxGatheringSend!]!
+  """Sends. 0 on a list card."""
+  sendCount: Int!
+  """Numbers from packages."""
+  stats: [FlxGatheringStat!]!
+  """Open or archived."""
+  status: FlxGatheringStatus!
+  """Short description. Empty on a list card."""
+  summary: String!
+  """Date and time, for the card."""
+  whenLabel: String!
+}
+
+"""A link a package adds to an event card."""
+type FlxGatheringAction {
+  """Button label."""
+  label: String!
+  """Shown as the main button."""
+  primary: Boolean!
+  """Link target. Empty stays in this tab."""
+  target: String!
+  """Address."""
+  url: String!
+}
+
+"""How many people a channel can reach."""
+type FlxGatheringAudience {
+  """People for an information message."""
+  infoCount: Int!
+  """Channel key."""
+  key: String!
+  """Channel name."""
+  label: String!
+  """People for a marketing message."""
+  marketingCount: Int!
+  """Flux Mail has a connection."""
+  ready: Boolean!
+}
+
+"""The Events screen: counts, the site tab, and one page of cards."""
+type FlxGatheringBoard {
+  """Archived events."""
+  closedCount: Int!
+  """Event cards. Search is not on this list; open an event for its people."""
+  events(
+    """Cursor to continue after (pageInfo.endCursor)."""
+    after: String
+    """Records per page (at most 50)."""
+    first: Int
+    """Open or archived (default open)."""
+    status: FlxGatheringStatus
+  ): FlxGatheringConnection!
+  """A package prints an On the site tab."""
+  hasSite: Boolean!
+  """Flux Mail can send."""
+  mailReady: Boolean!
+  """Open events."""
+  openCount: Int!
+  """That tab. Empty when no package hooks it."""
+  siteHtml: String!
+}
+
+"""A channel Flux Mail can send an event message on."""
+enum FlxGatheringChannel {
+  """E-mail."""
+  EMAIL
+  """SMS."""
+  SMS
+  """WhatsApp."""
+  WHATSAPP
+}
+
+"""How far one channel of a send has got."""
+type FlxGatheringChannelProgress {
+  """Flux Mail campaign. Empty when there is none."""
+  campaignId: Int
+  """Estimated finish. Empty when it is not running."""
+  eta: FlxDateTime
+  """Failed."""
+  failed: Int!
+  """Channel key."""
+  key: String!
+  """Channel name."""
+  label: String!
+  """Flux Mail has no campaign for this channel."""
+  missing: Boolean!
+  """Done, 0–100."""
+  percent: Int!
+  """Sent."""
+  sent: Int!
+  """Skipped."""
+  skipped: Int!
+  """Recipients."""
+  total: Int!
+}
+
+"""A page of events."""
+type FlxGatheringConnection {
+  """Records with their cursors."""
+  edges: [FlxGatheringEdge!]!
+  """Records of this page."""
+  nodes: [FlxGathering!]!
+  """Paging information."""
+  pageInfo: FlxPageInfo!
+  """All matching records (null when counting would be slow)."""
+  totalCount: Int
+}
+
+"""What to do with a send that is still going out."""
+enum FlxGatheringControl {
+  """Cancel."""
+  CANCEL
+  """Pause."""
+  PAUSE
+  """Resume."""
+  RESUME
+}
+
+"""Input for the flxGatheringDelete mutation."""
+input FlxGatheringDeleteInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Event ID."""
+  id: Int!
+}
+
+"""The payload for the flxGatheringDelete mutation."""
+type FlxGatheringDeletePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """True when it was deleted."""
+  deleted: Boolean
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""One FlxGathering in a list, with its cursor."""
+type FlxGatheringEdge {
+  """Opaque cursor of this record."""
+  cursor: String!
+  """The record."""
+  node: FlxGathering!
+}
+
+"""Input for the flxGatheringEnsurePage mutation."""
+input FlxGatheringEnsurePageInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Event ID."""
+  id: Int!
+}
+
+"""The payload for the flxGatheringEnsurePage mutation."""
+type FlxGatheringEnsurePagePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The event after the change."""
+  gathering: FlxGathering
+  """Page ID."""
+  postId: Int
+}
+
+"""One event field. Packages add their own keys."""
+input FlxGatheringFieldInput {
+  """Field key (name, event_date, …)."""
+  key: String!
+  """Posted value."""
+  value: String
+}
+
+"""The event form, blank or filled."""
+type FlxGatheringForm {
+  """HTML a package prints after the fields."""
+  afterHtml: String!
+  """Offer to create the site page."""
+  createPost: Boolean!
+  """Event ID. 0 for a new event."""
+  databaseId: Int!
+  """Event name."""
+  name: String!
+  """The theme has an event post type."""
+  postType: Boolean!
+  """Field groups."""
+  sections: [FlxGatheringFormSection!]!
+}
+
+"""One field of the event form."""
+type FlxGatheringFormField {
+  """Help under the field."""
+  help: String!
+  """Field key."""
+  key: String!
+  """Label."""
+  label: String!
+  """Choices (page field)."""
+  options: [FlxGatheringOption!]!
+  """Placeholder."""
+  placeholder: String!
+  """Required."""
+  required: Boolean!
+  """text, textarea, date, time, number, url, image or post."""
+  type: String!
+  """Current value."""
+  value: String!
+}
+
+"""A group of fields on the event form."""
+type FlxGatheringFormSection {
+  """Fields."""
+  fields: [FlxGatheringFormField!]!
+  """Extra HTML a package prints in this section."""
+  html: String!
+  """Section key."""
+  key: String!
+  """Heading."""
+  title: String!
+}
+
+"""Whether an event message is information or marketing."""
+enum FlxGatheringKind {
+  """Information. No marketing consent."""
+  INFO
+  """Marketing. Consent is required."""
+  MARKETING
+}
+
+"""Input for the flxGatheringMessageSend mutation."""
+input FlxGatheringMessageSendInput {
+  """Channels."""
+  channels: [FlxGatheringChannel!]!
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Event ID."""
+  id: Int!
+  """Information or marketing (default information)."""
+  kind: FlxGatheringKind
+  """Already uploaded attachment."""
+  mediaId: Int
+  """Upload id from flx-crm/event-file."""
+  mediaUploadId: String
+  """Site time Y-m-dTH:i. Empty sends now."""
+  sendAt: String
+  """E-mail subject. Empty uses the event name."""
+  subject: String
+  """Message."""
+  text: String!
+}
+
+"""The payload for the flxGatheringMessageSend mutation."""
+type FlxGatheringMessageSendPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The queued send."""
+  send: FlxGatheringSend
+  """Channels that were not queued."""
+  skipped: [FlxGatheringSkip!]!
+}
+
+"""Composer and send history of one event."""
+type FlxGatheringMessages {
+  """Flux Mail can pause a send."""
+  canPause: Boolean!
+  """Channels and how many people each reaches."""
+  channels: [FlxGatheringAudience!]!
+  """Event ID."""
+  databaseId: Int!
+  """Suggested time: the event date at 20:00, if it is still ahead."""
+  defaultSendAt: String!
+  """WhatsApp can take a file, not only a link."""
+  hasMedia: Boolean!
+  """Flux Mail can send."""
+  mailReady: Boolean!
+  """Up to 40 people for the preview."""
+  samples: [FlxGatheringSample!]!
+  """History, newest first."""
+  sends: [FlxGatheringSend!]!
+  """Site timezone."""
+  timezone: String!
+  """Tokens."""
+  variables: [FlxGatheringVariable!]!
+}
+
+"""A choice of a form field."""
+type FlxGatheringOption {
+  """Label."""
+  label: String!
+  """Stored value."""
+  value: String!
+}
+
+"""Where a send is, across every channel."""
+enum FlxGatheringOverall {
+  """Cancelled."""
+  CANCELLED
+  """Sent."""
+  DONE
+  """Paused."""
+  PAUSED
+  """Planned."""
+  PLANNED
+  """Waiting for reports."""
+  REPORTING
+  """Needs a check."""
+  REVIEW
+  """Sending."""
+  RUNNING
+  """Not known."""
+  UNKNOWN
+}
+
+"""A person attached to an event by a package."""
+type FlxGatheringPerson {
+  """Person ID."""
+  databaseId: Int!
+  """E-mail."""
+  email: String!
+  """Name."""
+  name: String!
+  """Phone."""
+  phone: String!
+  """Why they are included."""
+  why: [String!]!
+}
+
+"""A page of people on an event."""
+type FlxGatheringPersonConnection {
+  """Records with their cursors."""
+  edges: [FlxGatheringPersonEdge!]!
+  """Records of this page."""
+  nodes: [FlxGatheringPerson!]!
+  """Paging information."""
+  pageInfo: FlxPageInfo!
+  """All matching records (null when counting would be slow)."""
+  totalCount: Int
+}
+
+"""One FlxGatheringPerson in a list, with its cursor."""
+type FlxGatheringPersonEdge {
+  """Opaque cursor of this record."""
+  cursor: String!
+  """The record."""
+  node: FlxGatheringPerson!
+}
+
+"""Why people are on an event, grouped."""
+type FlxGatheringReason {
+  """People."""
+  count: Int!
+  """Reason."""
+  label: String!
+  """Share of the largest group, 0–100."""
+  percent: Int!
+}
+
+"""One recipient of an event message."""
+type FlxGatheringRecipient {
+  """Delivered."""
+  delivered: Boolean!
+  """Why it failed."""
+  error: String!
+  """This row knows about reads or replies."""
+  hasEngagement: Boolean!
+  """Name."""
+  name: String!
+  """Opted out."""
+  optout: Boolean!
+  """Read."""
+  read: Boolean!
+  """Address or phone."""
+  recipient: String!
+  """Replied."""
+  replied: Boolean!
+  """When it is planned."""
+  scheduledAt: String!
+  """When it was sent."""
+  sentAt: String!
+  """Queue status."""
+  status: String!
+}
+
+"""A page of recipients."""
+type FlxGatheringRecipientConnection {
+  """Channel these recipients belong to."""
+  channel: String!
+  """Channels this send used."""
+  channels: [String!]!
+  """Failed on this channel."""
+  countFailed: Int!
+  """Skipped or cancelled on this channel."""
+  countOther: Int!
+  """Sent on this channel."""
+  countSent: Int!
+  """Still waiting on this channel."""
+  countWaiting: Int!
+  """Records with their cursors."""
+  edges: [FlxGatheringRecipientEdge!]!
+  """Records of this page."""
+  nodes: [FlxGatheringRecipient!]!
+  """Paging information."""
+  pageInfo: FlxPageInfo!
+  """All matching records (null when counting would be slow)."""
+  totalCount: Int
+}
+
+"""One FlxGatheringRecipient in a list, with its cursor."""
+type FlxGatheringRecipientEdge {
+  """Opaque cursor of this record."""
+  cursor: String!
+  """The record."""
+  node: FlxGatheringRecipient!
+}
+
+"""A person the composer can preview the message as."""
+type FlxGatheringSample {
+  """Name."""
+  name: String!
+  """Token values."""
+  values: [FlxGatheringVarValue!]!
+}
+
+"""Input for the flxGatheringSave mutation."""
+input FlxGatheringSaveInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Also create the page on the site."""
+  createPost: Boolean
+  """Fields to write. Omitted keys stay as they are."""
+  fields: [FlxGatheringFieldInput!]
+  """Event ID. Empty creates one."""
+  id: Int
+  """Upload id from flx-crm/event-image."""
+  imageUploadId: String
+}
+
+"""The payload for the flxGatheringSave mutation."""
+type FlxGatheringSavePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The event after the change."""
+  gathering: FlxGathering
+}
+
+"""One message queued for the people of an event."""
+type FlxGatheringSend {
+  """When it was queued."""
+  at: FlxDateTime
+  """Who queued it."""
+  byName: String!
+  """Flux Mail can pause a send."""
+  canPause: Boolean!
+  """Progress of each channel."""
+  channels: [FlxGatheringChannelProgress!]!
+  """Delivered. Empty when no channel reports it."""
+  delivered: Int
+  """Latest estimated finish across channels."""
+  eta: FlxDateTime
+  """Event ID."""
+  eventId: Int!
+  """Failed."""
+  failed: Int!
+  """Send key."""
+  key: String!
+  """Information or marketing."""
+  kind: FlxGatheringKind!
+  """Attached file. 0 when there is none."""
+  mediaId: Int!
+  """The file is a picture."""
+  mediaIsImage: Boolean!
+  """File address."""
+  mediaUrl: String!
+  """Opted out. Empty when no channel reports it."""
+  optout: Int
+  """Where the send is."""
+  overall: FlxGatheringOverall!
+  """Where the send is, in words."""
+  overallLabel: String!
+  """The send can still be stopped."""
+  pending: Boolean!
+  """Recipients across channels."""
+  reachedTotal: Int!
+  """Read. Empty when no channel reports it."""
+  read: Int
+  """Who this send went to, on one channel."""
+  recipients(
+    """Cursor to continue after (pageInfo.endCursor)."""
+    after: String
+    """Channel key. Empty uses the first."""
+    channel: String
+    """Records per page (at most 50)."""
+    first: Int
+    """sent, waiting, failed or other."""
+    status: String
+  ): FlxGatheringRecipientConnection!
+  """Replied. Empty when no channel reports it."""
+  replied: Int
+  """Planned time (site time, Y-m-dTH:i). Empty sends now."""
+  sendAt: String!
+  """Message text (stored up to 300 characters)."""
+  text: String!
+  """Picture preview."""
+  thumbUrl: String!
+  """ok, info, warn or mute."""
+  tone: String!
+}
+
+"""Input for the flxGatheringSendControl mutation."""
+input FlxGatheringSendControlInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Pause, resume or cancel."""
+  do: FlxGatheringControl!
+  """Event ID."""
+  id: Int!
+  """Send key."""
+  key: String!
+}
+
+"""The payload for the flxGatheringSendControl mutation."""
+type FlxGatheringSendControlPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The send after the change."""
+  send: FlxGatheringSend
+}
+
+"""Input for the flxGatheringSetStatus mutation."""
+input FlxGatheringSetStatusInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Event ID."""
+  id: Int!
+  """Open or archived."""
+  status: FlxGatheringStatus!
+}
+
+"""The payload for the flxGatheringSetStatus mutation."""
+type FlxGatheringSetStatusPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The event after the change."""
+  gathering: FlxGathering
+}
+
+"""A channel that was not queued, and why."""
+type FlxGatheringSkip {
+  """Channel key."""
+  channel: String!
+  """Why it was skipped."""
+  reason: String!
+}
+
+"""A number a package shows on an event card."""
+type FlxGatheringStat {
+  """Short extra line."""
+  hint: String!
+  """What the number is."""
+  label: String!
+  """Bar from 0 to 100. Empty when there is no bar."""
+  progress: Int
+  """The number, already formatted."""
+  value: String!
+}
+
+"""Open events are the working list. Closed events are the archive."""
+enum FlxGatheringStatus {
+  """Archived. Its records stay."""
+  CLOSED
+  """On the working list."""
+  OPEN
+}
+
+"""One sample value."""
+type FlxGatheringVarValue {
+  """Token."""
+  key: String!
+  """Value for this person."""
+  value: String!
+}
+
+"""A {token} the message composer can insert."""
+type FlxGatheringVariable {
+  """person, event or site."""
+  group: String!
+  """Token without braces."""
+  key: String!
+  """What it is."""
+  label: String!
+  """Needs a newer Flux Mail, so the composer disables it."""
+  off: Boolean!
+}
+
 """An automatic flow for contacts: a trigger, steps and rules."""
 type FlxJourney {
   """Journey ID."""
@@ -1302,6 +1997,92 @@ type FlxJourneyTriggerValues {
   values: [FlxCrmOption!]!
 }
 
+"""One block inside a person-card section."""
+type FlxPersonBlock {
+  """Table headings."""
+  columns: [String!]!
+  """Lines of a stats, links, list or actions block."""
+  items: [FlxPersonItem!]!
+  """How to draw it."""
+  kind: FlxPersonBlockKind!
+  """Table rows."""
+  rows: [FlxPersonRow!]!
+  """Note or HTML."""
+  text: String!
+}
+
+"""How to draw one block of a person-card section."""
+enum FlxPersonBlockKind {
+  """Buttons."""
+  ACTIONS
+  """HTML, trusted like the classic card."""
+  HTML
+  """Links."""
+  LINKS
+  """A list."""
+  LIST
+  """A note."""
+  NOTE
+  """Numbers."""
+  STATS
+  """A table."""
+  TABLE
+}
+
+"""One line of a stats, links, list or actions block."""
+type FlxPersonItem {
+  """Label."""
+  label: String!
+  """Secondary line."""
+  meta: String!
+  """Drawn as the main action."""
+  primary: Boolean!
+  """Link. Empty when it is not a link."""
+  url: String!
+  """Value."""
+  value: String!
+}
+
+"""Where a package section sits on the person card."""
+enum FlxPersonPlacement {
+  """Buttons in the header."""
+  ACTIONS
+  """Main column, under the timeline."""
+  MAIN
+  """Main column, above the timeline."""
+  MAIN_BEFORE
+  """Side column."""
+  SIDE
+}
+
+"""One row of a table block."""
+type FlxPersonRow {
+  """Cells, in column order."""
+  cells: [String!]!
+  """Accessible name of the row."""
+  label: String!
+  """Secondary line."""
+  meta: String!
+  """Row link."""
+  url: String!
+}
+
+"""A block a package adds to the person card."""
+type FlxPersonSection {
+  """What to draw."""
+  blocks: [FlxPersonBlock!]!
+  """Caller context. Empty is the CRM card."""
+  context: String
+  """Stable id. legacy: plus the hook name is the unmigrated HTML."""
+  id: String!
+  """Package slug. Empty for a legacy hook."""
+  package: String!
+  """Where it sits."""
+  placement: FlxPersonPlacement!
+  """Heading."""
+  title: String!
+}
+
 """A saved list of contacts that match rules."""
 type FlxSegment {
   """Matching contacts (counted when saved and scored)."""
@@ -1543,6 +2324,36 @@ extend type RootMutation {
     """Input for the flxCrmSyncStep mutation"""
     input: FlxCrmSyncStepInput!
   ): FlxCrmSyncStepPayload
+  """Deletes an event. Package records stay; they detach themselves."""
+  flxGatheringDelete(
+    """Input for the flxGatheringDelete mutation"""
+    input: FlxGatheringDeleteInput!
+  ): FlxGatheringDeletePayload
+  """Creates or publishes the site page of an event."""
+  flxGatheringEnsurePage(
+    """Input for the flxGatheringEnsurePage mutation"""
+    input: FlxGatheringEnsurePageInput!
+  ): FlxGatheringEnsurePagePayload
+  """Queues an event message through Flux Mail."""
+  flxGatheringMessageSend(
+    """Input for the flxGatheringMessageSend mutation"""
+    input: FlxGatheringMessageSendInput!
+  ): FlxGatheringMessageSendPayload
+  """Creates an event, or updates one when an ID is given."""
+  flxGatheringSave(
+    """Input for the flxGatheringSave mutation"""
+    input: FlxGatheringSaveInput!
+  ): FlxGatheringSavePayload
+  """Pauses, resumes or cancels every channel of one send."""
+  flxGatheringSendControl(
+    """Input for the flxGatheringSendControl mutation"""
+    input: FlxGatheringSendControlInput!
+  ): FlxGatheringSendControlPayload
+  """Archives an event, or puts it back on the working list."""
+  flxGatheringSetStatus(
+    """Input for the flxGatheringSetStatus mutation"""
+    input: FlxGatheringSetStatusInput!
+  ): FlxGatheringSetStatusPayload
   """Deletes a journey and the progress of the people inside it."""
   flxJourneyDelete(
     """Input for the flxJourneyDelete mutation"""
@@ -1620,6 +2431,44 @@ extend type RootQuery {
   ): [FlxContactEvent!]!
   """Flux CRM settings."""
   flxCrmSettings: FlxCrmSettings!
+  """One event. Empty when it does not exist."""
+  flxGathering(
+    """Event ID."""
+    id: Int!
+  ): FlxGathering
+  """Event form. Empty id is a blank form. Unknown id is empty."""
+  flxGatheringForm(
+    """Event ID. Empty for a new event."""
+    id: Int
+  ): FlxGatheringForm
+  """Composer and history. Empty when the event does not exist."""
+  flxGatheringMessages(
+    """Event ID."""
+    id: Int!
+  ): FlxGatheringMessages
+  """People of an event. Search matches name, phone and e-mail."""
+  flxGatheringPeople(
+    """Cursor to continue after (pageInfo.endCursor)."""
+    after: String
+    """Records per page (at most 50)."""
+    first: Int
+    """Event ID."""
+    id: Int!
+    """Name, phone or e-mail."""
+    search: String
+  ): FlxGatheringPersonConnection!
+  """One send, with its recipients. Empty when it does not exist."""
+  flxGatheringSend(
+    """Event ID."""
+    id: Int!
+    """Send key."""
+    key: String!
+  ): FlxGatheringSend
+  """Events screen: counts and one page of cards."""
+  flxGatherings(
+    """Which list the cards start on (default open)."""
+    status: FlxGatheringStatus
+  ): FlxGatheringBoard!
   """One journey; empty when it does not exist."""
   flxJourney(
     """Journey ID."""
