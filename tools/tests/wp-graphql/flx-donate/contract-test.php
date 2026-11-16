@@ -299,7 +299,7 @@ if ( function_exists( 'WC' ) && is_object( WC() ) && WC()->cart ) {
 		)
 	);
 	flxt_ok( is_string( $key ) && '' !== $key, 'classic add returns a cart key', $key );
-	$back = flxt_gql( 'query { flxCart { items { key kind flxDonation { names units option } } } }' );
+	$back = flxt_gql( 'query { flxCart { items { key kind quantityLimits { editable } flxDonation { names units option } } } }' );
 	flxt_same( null, $back['errors'] ?? null, 'classic line is readable from GraphQL' );
 	$found = null;
 	foreach ( $back['data']['flxCart']['items'] ?? array() as $item ) {
@@ -309,10 +309,67 @@ if ( function_exists( 'WC' ) && is_object( WC() ) && WC()->cart ) {
 	}
 	flxt_same( array( 'Deniz' ), $found['flxDonation']['names'] ?? null, 'classic writer, GraphQL reader: the name' );
 	flxt_same( 'donation', $found['kind'] ?? null, 'classic writer, GraphQL reader: kind' );
+	flxt_same( false, $found['quantityLimits']['editable'] ?? null, 'donation line quantity is not editable in Store API' );
 } else {
 	echo "  ok   classic cart add skipped (WooCommerce cart is not loaded)\n";
 	++$GLOBALS['flxt_pass'];
 }
+
+// Non-proxy multi-certificate: N saplings to different names = 1 cart line, N certificates.
+$cert_type = FLXB_Types::save(
+	array(
+		'title'          => 'Sapling Certificate',
+		'slug'           => 'gql-sapling-cert',
+		'status'         => 'active',
+		'currency'       => 'TRY',
+		'allow_quantity' => 1,
+		'options'        => array(
+			array(
+				'key'       => 'one',
+				'label'     => 'One sapling',
+				'price'     => 100,
+				'unit'      => 'fidan',
+				'active'    => 1,
+				'units_per' => 1,
+			),
+		),
+		'meta'           => array(
+			'certificate' => 1,
+		),
+	)
+);
+$cert_pid = (int) wp_insert_post(
+	array(
+		'post_type'   => 'product',
+		'post_status' => 'publish',
+		'post_title'  => 'Sapling Certificate',
+	)
+);
+update_post_meta( $cert_pid, '_price', '100' );
+FLXB_WC_Products::set_type_meta( (int) $cert_type, 'wc_product_id', $cert_pid );
+if ( class_exists( 'FLXGQL_Cart' ) ) {
+	FLXGQL_Cart::clear();
+}
+$GLOBALS['flxb_last_line'] = null;
+$r = flxb_t_op(
+	'FlxDonationCartAdd',
+	array(
+		'input' => array(
+			'typeId'   => (int) $cert_type,
+			'option'   => 'one',
+			'currency' => 'TRY',
+			'names'    => $names,
+		),
+	)
+);
+flxt_same( array(), $r['data']['flxDonationCartAdd']['errors'] ?? null, 'cart: non-proxy multi-name accepted' );
+$cert_items = $r['data']['flxDonationCartAdd']['cart']['items'] ?? array();
+flxt_same( 1, count( $cert_items ), 'cart: non-proxy multi-name is one line' );
+flxt_same( 3, $cert_items[0]['flxDonation']['units'] ?? null, 'cart: non-proxy multi-name defaults units to name count' );
+flxt_same( $names, $cert_items[0]['flxDonation']['names'] ?? null, 'cart: non-proxy multi-name keeps all names' );
+$cert_recs = FLXB_WC_Certificates::recipients_with_contacts( is_array( $GLOBALS['flxb_last_line'] ) ? $GLOBALS['flxb_last_line'] : array(), $stub, 'Donor', 3, '', '', '', '' );
+flxt_same( array( 'Ada', 'Bea', 'Cem' ), array_column( $cert_recs, 'name' ), 'cart: non-proxy multi-name issues one certificate per name' );
+flxt_same( array( 1, 1, 1 ), array_column( $cert_recs, 'count' ), 'cart: each certificate gets 1 sapling' );
 
 // Single line, invalid amount, closed type.
 if ( class_exists( 'FLXGQL_Cart' ) ) {
