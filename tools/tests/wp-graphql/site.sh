@@ -62,8 +62,15 @@ $WP config set AUTOMATIC_UPDATER_DISABLED true --raw --path="$site"
 $WP core install --path="$site" --url="$url" --title="Flux GraphQL Test" --admin_user=admin --admin_password=admin --admin_email=test@example.com --skip-email >/dev/null
 $WP rewrite structure '/%postname%/' --path="$site" >/dev/null
 
-if [ -n "${WOOCOMMERCE_ZIP:-}" ] && { [ -f "$WOOCOMMERCE_ZIP" ] || [[ "$WOOCOMMERCE_ZIP" == https://* ]]; }; then
-  $WP plugin install "$WOOCOMMERCE_ZIP" --activate --path="$site" >/dev/null 2>&1 || echo "WooCommerce could not be activated" >&2
+wc_zip="${WOOCOMMERCE_ZIP:-}"
+if [[ "$wc_zip" == https://* ]]; then
+  # WP_HTTP_BLOCK_EXTERNAL is on, so wp-cli cannot download it: fetch the zip here.
+  tmpwc="$(mktemp --suffix=.zip)"
+  curl -fsSL -o "$tmpwc" "$wc_zip" || echo "WooCommerce could not be downloaded" >&2
+  wc_zip="$tmpwc"
+fi
+if [ -n "$wc_zip" ] && [ -s "$wc_zip" ]; then
+  $WP plugin install "$wc_zip" --activate --path="$site" >/dev/null || echo "WooCommerce could not be activated" >&2
 fi
 
 # Kit fixtures (test queries, upload context). FIXTURES=0 leaves them out (schema snapshot).
