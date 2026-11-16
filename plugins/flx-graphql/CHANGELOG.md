@@ -8,6 +8,10 @@
 - Paketler için `FLXGQL_Cart::add_item()` (kendi sepet satırı verisiyle ekleme, ör. bağış), `flx_gql_cart_item_kind` filtresi ve `flx_gql_no_store()`.
 - Kayıtlı işlemler ve Türkçe çeviri.
 
+## 0.2.1
+
+- Güvenlik: panel ayarlarından üretilen GraphQL tiplerinde gizli alan süzgeci sıkılaştı (fail closed). `key_*`, `*_key`, `*secret*`, `*token*`, `*password*`/`pass`/`pwd`, `auth`, `private`, `credential` biçimleri ve camelCase/kebab yazımları şemaya girmez; adı gizli görünen seçeneğin tamamı dışarıda kalır; alanda `'secret' => true` ya da `type: password` desteklenir. Nesne/liste ayarlarındaki gizli alt anahtarlar okumada silinir, yazmada saklı değer korunur. Önceki sürümde `key_*` biçimi açıkta kalabiliyordu.
+
 ## 0.2.0
 
 - Yetki modeli: `flx_gql_any_cap()` (biri yeter) ve `flx_gql_all_caps()` (hepsi gerekir) `cap` yardımcıları; paketler yetkilerini `flx_gql_capabilities` filtresiyle bildirir.
