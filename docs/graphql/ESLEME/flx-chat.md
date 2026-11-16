@@ -15,7 +15,7 @@ Satır = bir yöntem + yol, ya da bir kayıt. GraphQL adı yeni istemcinin kulla
 | admin-post | 4 | 2 | 2 |
 | Admin menü sayfası | 4 | 4 | 0 |
 | MCP filtresi (`flx_mcp_tools`, `flxai_tools`, `flxseo_mcp_tools`) | 0 | 0 | 0 |
-| Asistan function-call aracı (GraphQL kökü değil) | 34 | 0 | 0 |
+| Asistan function-call aracı (GraphQL kökü değil) | 35 | 0 | 0 |
 | Ayar grubu (`flxc_settings`; `flx_settings_schema` yok) | 7 sekme | 7 | 0 |
 | Gizli alan (ayrı işaretli) | 3 | 3 (yaz-only / maske) | 0 |
 | Cron / tek seferlik kanca | 5 | durum sorgusu | gönderim döngüsü mevcut loopback'te |
@@ -32,11 +32,21 @@ Menü 4 sayfa. Brief'teki beşinci "stüdyo" ayrı `add_submenu_page` değil; `p
 |---|---|---|
 | `flxc_use` | Temsilci. `manage_options` de geçer. | `includes/helpers.php:243`, rol `install.php:320` |
 | `flxc_manage` | Yönetici (ayar, asistan, hafıza, kara liste, temizlik). `manage_options` de geçer. | `includes/helpers.php:247`, `install.php:328` |
-| `flxc_user_can_see_chat` | `restrict_agents` açıksa temsilci yalnız atandığı sohbeti görür. | `includes/store.php:220` |
-| `flx_reports_manage` | Rapor sayfası. Yoksa menü `flxc_manage` ister. Cap Flux Roles'ta. | `includes/reports.php:346` |
-| `flxc_can_record_donation` / `flxc_can_record_certificate` | REST `permission_callback` yine `flxc_can_use`; asıl kontrol callback içinde. | `includes/integrations.php:21`, `:26` |
+| `flxc_user_can_see_chat` | `restrict_agents` açıksa temsilci yalnız atandığı (veya atanmamış) sohbeti görür. Yönetici ve `manage_options` hepsini görür. | `includes/store.php:220` |
+| `flx_reports_manage` / `flx_reports_receive` / `flx_reports_view` | Rapor sayfası ve alıcılar. Bu paket `flx_role_caps_supported` ile kaydeder. Menü `flx_reports_manage` yoksa `flxc_manage` ister. Sorgu cap'i `flx_gql_any_cap( 'flx_reports_manage', 'flxc_manage' )`. | `includes/reports.php:16-21`, menü `:346` |
+| `flxc_can_record_donation` | Bağış oluşturma, durum ve dekont eşleme. `agents_donations` ya da yönetici. REST `permission_callback` yine `flxc_can_use`. | `includes/integrations.php:21-24` |
+| `flxc_can_record_certificate` | Sertifika oluşturma ve sertifika dekontu. | `integrations.php:26-29` |
 
-Kataloga yazılacaklar: `flxc_use`, `flxc_manage`. `flx_reports_*` bu paketin kataloğuna tekrar yazılmaz.
+Katalog (`flx_gql_capabilities`): `flxc_use`, `flxc_manage`, ve bu paketin kaydettiği `flx_reports_manage`, `flx_reports_receive`, `flx_reports_view`. Flux Roles aynı anahtarları katalogdan kopyalarsa chat öncelik 9 ile önce yazar.
+
+Sohbet, mesaj, medya, dekont, dışa aktarma, kullanım, öneri veya sohbete bağlı bir kayıt döndüren her GraphQL alanı hedef sohbeti `flxc_user_can_see_chat` ile süzer. Göremezse `NOT_FOUND` (liste ve `node(id:)` boş). Klasik REST'te bu kontrolün olmadığı yerler bu PR'da değiştirilmez; GraphQL o boşluğu miras almaz:
+
+- `flxc_receipt_download` (`integrations.php:998`): yalnız `flxc_can_use() || flxb_can_view()`, sohbet kontrolü yok.
+- `admin_post_flxc_export` tek sohbet (`export.php:166-185`): `flxc_can_use()` + `flxc_get_chat()`, görünürlük yok. REST export kontrol eder.
+- `POST /check-number` (`rest.php`, servis `FLXC_Chat_Service::check_number`): bulunan sohbetin id ve başlığını süzer. `flxChatCheckNumber` göremediği sohbeti (id, başlık) döndürmez.
+- `GET /records/donations/{id}` (`integrations.php:227`) ve `GET /records/certificates/{id}?chat=` (`:819`) sohbeti `flxc_get_chat` ile alır, `flxc_user_can_see_chat` yok. GraphQL `chat` verilmişse süzer.
+
+Mesaj silme (not ve `scope=everyone`) ve düzenleme: gönderen ya da `flxc_can_manage()`. `staff_user` güncellemesi yalnız yönetici. Dekont ayırma (`flxc_rest_detach_receipt`, `:980`) bugün `flxc_can_record_*` bakmaz; eşleme (`:959`) türe göre bakar. GraphQL ayırma da eşleme ile aynı cap'i ister. Klasik ayırma olduğu gibi kalır.
 
 ## REST uçları
 
@@ -54,21 +64,21 @@ Hepsi `flxc_can_use`, son dört `flxc_can_manage`.
 | POST | `/chats` | `flxc_use` | `flxChatCreate` | `FlxChatCreateInput` | `{ chat, errors }` | klasik, React |
 | GET | `/chats/{id}` | `flxc_use` | `flxChat` | `id` | `FlxChat` | klasik, React |
 | POST | `/chats/{id}` | `flxc_use` | `flxChatUpdate` | `FlxChatUpdateInput` | `{ chat, errors }` | klasik, React |
-| GET | `/chats/{id}/messages` | `flxc_use` | `flxChatMessages` | `chatId`, `before`, `first` ≤ 50 | `FlxChatMessageConnection!` | klasik, React |
-| POST | `/chats/{id}/messages` | `flxc_use` | `flxChatMessageSend` | metin veya `uploadId` | `{ message, errors }` | klasik, React (multipart dahil) |
+| GET | `/chats/{id}/messages` | `flxc_use` + `flxc_user_can_see_chat` | `flxChatMessages` | `chatId`, `before`, `first` ≤ 50 | `FlxChatMessageConnection!` | klasik, React |
+| POST | `/chats/{id}/messages` | `flxc_use` + görünür sohbet | `flxChatMessageSend` | metin, `uploadId`, `voice` (ptt, dosya türü `audio`'dan ayrı) | `{ message, errors }` | klasik, React (multipart dahil) |
 | POST | `/chats/{id}/read` | `flxc_use` | `flxChatMarkRead` | `id` | `{ chat, errors }` | klasik, React |
 | POST | `/chats/{id}/typing` | `flxc_use` | `flxChatTyping` | `state` | `{ ok, errors }` | klasik, React |
 | POST | `/chats/{id}/avatar` | `flxc_use` | `flxChatAvatarRefresh` | `id` | `{ chat, errors }` | klasik |
-| POST | `/chats/{id}/ai` | `flxc_use` | `flxChatSuggest` | `fresh`, `hint` | `{ text, errors }` | klasik, React. Tek JSON; akış yok |
-| POST | `/chats/{id}/export` | `flxc_use` | `flxChatExport` | `format`, `mask`, `notes` | `{ body, filename, errors }` | yeni arayüz (`export.php:232`). Dosya gövdesi REST'te kalır |
-| POST | `/messages/{id}/retry` | `flxc_use` | `flxChatMessageRetry` | `id` | `{ message, errors }` | klasik, React |
-| POST | `/messages/{id}/react` | `flxc_use` | `flxChatMessageReact` | `emoji` | `{ message, errors }` | klasik, React |
-| POST | `/messages/{id}/edit` | `flxc_use` | `flxChatMessageEdit` | `text` | `{ message, errors }` | klasik |
-| DELETE | `/messages/{id}` | `flxc_use` | `flxChatMessageDelete` | `scope` | `{ message, errors }` | klasik, React |
+| POST | `/chats/{id}/ai` | `flxc_use` + görünür sohbet | `flxChatSuggest` | `fresh`, `hint` | `{ text, errors }` | klasik, React. Tek JSON; akış yok |
+| POST | `/chats/{id}/export` | `flxc_use` + görünür sohbet | `flxChatExport` | `format`, `mask`, `notes` | `{ body, filename, errors }` | yeni arayüz (`export.php:232`). Dosya gövdesi REST'te kalır. admin-post tek sohbet indirmesi görünürlük süzmez; GraphQL süzer |
+| POST | `/messages/{id}/retry` | `flxc_use` + mesajın sohbeti görünür | `flxChatMessageRetry` | `id` | `{ message, errors }` | klasik, React |
+| POST | `/messages/{id}/react` | `flxc_use` + görünür sohbet | `flxChatMessageReact` | `emoji` | `{ message, errors }` | klasik, React |
+| POST | `/messages/{id}/edit` | gönderen veya `flxc_can_manage`, sohbet görünür | `flxChatMessageEdit` | `text` | `{ message, errors }` | klasik |
+| DELETE | `/messages/{id}` | not / `everyone`: gönderen veya `flxc_can_manage`; sohbet görünür | `flxChatMessageDelete` | `scope` | `{ message, errors }` | klasik, React |
 | GET | `/media/{id}` | `flxc_use` | İSTİSNA | | | Binary + `Range` (`rest.php:782`, `flxc_stream_file` `:808`). GraphQL `FlxFile.url` bu adresi verir |
 | POST | `/uploads` | `flxc_use` | `flxChatMessageSend.uploadId` | ortak `POST /flx/v1/upload` bağlam `flx-chat/outbound` | | klasik composer. Ayrı şema tipi yok |
 | DELETE | `/uploads/{token}` | `flxc_use` | aynı | iptal, ortak yükleme | | klasik |
-| POST | `/check-number` | `flxc_use` | `flxChatCheckNumber` | `phone`, `conn` | `{ result, errors }` | klasik, React |
+| POST | `/check-number` | `flxc_use` | `flxChatCheckNumber` | `phone`, `conn` | `{ result, errors }` | klasik, React. REST id ve başlığı sürmez. GraphQL göremediği sohbet için id ve başlık vermez |
 | GET | `/link-preview` | `flxc_use` | `flxChatLinkPreview` | `url` | `FlxChatLinkPreview` | klasik, React |
 | GET | `/replies` | `flxc_use` | `flxChatReplies` | `first` ≤ 50 | `FlxChatReplyConnection!` | klasik. React listeyi bootstrap'tan okur |
 | POST | `/replies` | `flxc_use` | `flxChatReplySave` | `FlxChatReplyInput` | `{ reply, errors }` | klasik |
@@ -77,9 +87,9 @@ Hepsi `flxc_can_use`, son dört `flxc_can_manage`.
 | POST | `/admin/connections/{conn}/test` | `flxc_manage` | `flxChatConnectionTest` | `id` | `{ ok, errors }` | ayar |
 | POST | `/admin/connections/{conn}/webhook` | `flxc_manage` | `flxChatConnectionWebhook` | `id` | `{ ok, errors }` | ayar. Evolution'a URL yazar |
 | POST | `/admin/connections/{conn}/qr` | `flxc_manage` | `flxChatConnectionQr` | `id` | `{ qr, errors }` | ayar |
-| POST | `/admin/connections/{conn}/import` | `flxc_manage` | `flxChatConnectionImport` | `id` | `{ ok, errors }` | ayar. Uzun iş; adım adım |
+| POST | `/admin/connections/{conn}/import` | `flxc_manage` | `flxChatConnectionImport` | `id` | `{ ok, errors }` | ayar. Sonraki parça. `set_time_limit(300)` ve en çok 200 sohbet tek istekte (`rest.php` `flxc_rest_conn_import`). PHP ~60 sn sınırını aşar; adım adım ya da mevcut loopback, tek mutation değil |
 
-`/sync` bugün `limit: 200` sohbet döner (`rest.php:176`). GraphQL deltası en çok 50 + `truncated`.
+`/sync` bugün `limit: 200` sohbet ve `flxc_messages_since` içinde `LIMIT 200` döner; `after` istemcinin gördüğü son mesaj id'sidir (`rev > since OR id > after`). GraphQL `flxChatUpdates(since:, after:, chat:)` en çok 50 sohbet ve 50 mesaj. Kesilince sıra `rev` artan olur ve cevap devam rev'ini (`continueRev`) verir; istemci yeni `since` ile kaldığı yerden sorar. Sabitlenmiş/son mesaj sırasıyla kesip yeni rev'e atlamak, sığmayan eski rev'li sohbeti düşürür. Sözleşme testi 50'den fazla değişen sohbetle bunu dener.
 
 ### Gelen webhook ve Meta dosyası
 
@@ -127,13 +137,13 @@ Hepsi `flxc_manage`. Klasik sohbet menüsü (`app.js:810`, `:824`, `:836`).
 | GET | `/records/search` | `flxChatRecords` | Donate/Certificates sorgusuna delege. Bağımlı paketler GraphQL'e geçince ekran onların sorgusunu çağırır |
 | GET | `/records/chat/{id}` | `flxChat.records` | Açık sohbet |
 | POST | `/records/donations` | `flxChatDonationRecord` | Sohbetten kayıt. Donate mutation'ı hazır olunca ince sarmalayıcı |
-| GET | `/records/donations/{id}` | `flxChatDonation` | |
-| POST | `/records/donations/{id}/status` | `flxChatDonationStatus` | |
-| POST | `/records/certificates` | `flxChatCertificateRecord` | |
-| GET | `/records/certificates/{id}` | `flxChatCertificate` | |
-| POST | `/records/certificates/{id}/send` | `flxChatCertificateSend` | WhatsApp'a gönderir |
-| POST | `/messages/{id}/receipt` | `flxChatReceiptAttach` | |
-| DELETE | `/messages/{id}/receipt` | `flxChatReceiptDetach` | |
+| GET | `/records/donations/{id}` | `flxChatDonation` | `chat` verilirse `flxc_user_can_see_chat`. Klasik (`:227`) sürmez |
+| POST | `/records/donations/{id}/status` | `flxChatDonationStatus` | `flxc_can_record_donation()` |
+| POST | `/records/certificates` | `flxChatCertificateRecord` | `flxc_can_record_certificate()` |
+| GET | `/records/certificates/{id}` | `flxChatCertificate` | `?chat=` görünür olmalı. Klasik (`:819`) `flxc_get_chat` ile yetinir |
+| POST | `/records/certificates/{id}/send` | `flxChatCertificateSend` | görünür sohbet; WhatsApp'a gönderir |
+| POST | `/messages/{id}/receipt` | `flxChatReceiptAttach` | türe göre `flxc_can_record_donation` veya `flxc_can_record_certificate`; sohbet görünür |
+| DELETE | `/messages/{id}/receipt` | `flxChatReceiptDetach` | GraphQL eşleme ile aynı cap. Klasik (`:980`) cap bakmaz |
 
 ### Asistan sayfası
 
@@ -143,24 +153,24 @@ Hepsi `flxc_can_manage`, kullanım/limit satırları `flxc_can_use`.
 |---|---|---|---|
 | POST | `/chats/{id}/bot` | `flxChatBotSet` | `bot.php:2442` · klasik, React |
 | POST | `/chats/{id}/clear` | `flxChatClear` | `export.php:320` · `confirm=yes` |
-| GET | `/bot/studio` | `flxChatStudio` | `bot-studio.php:597` |
+| GET | `/bot/studio` | `flxChatStudio` | `bot-studio.php:609` |
 | GET | `/bot/chats` | `flxChatBotChats` | aynı dizi |
 | POST | `/bot/prompt` | `flxChatPromptSave` | |
 | POST | `/bot/prompt/activate` | `flxChatPromptActivate` | |
 | POST | `/bot/prompt/preview` | `flxChatPromptPreview` | |
 | POST | `/bot/docs` | `flxChatDocSave` | |
 | DELETE | `/bot/docs/{id}` | `flxChatDocDelete` | |
-| POST | `/bot/editor` | `flxChatPromptTurn` | Eski tek dönüş. Stüdyo bunu çağırmaz; oturum ucu var. Yine de taşınır |
-| POST | `/bot/test` | `flxChatTestTurn` | Sandbox. Kayıt açmaz |
+| POST | `/bot/editor` | `flxChatPromptTurn` | Sonraki parça. Eski tek dönüş. Bütçe ~50 sn, ayar 110 sn'ye çıkar. Tek istekte taşınmaz; adım adım |
+| POST | `/bot/test` | `flxChatTestTurn` | Sonraki parça. Sandbox. Aynı süre sınırı |
 | GET | `/bot/stats` | `flxChatBotStats` | `bot-stats.php:286` · `range`: today, 7, 30, month, all |
-| GET | `/chats/{id}/usage` | `flxChatUsage` | `:308` |
+| GET | `/chats/{id}/usage` | `flxChatUsage` | `:308` · sohbet `flxc_user_can_see_chat` |
 | POST | `/chats/{id}/usage/reset` | `flxChatUsageReset` | `:320` |
 | POST | `/bot/limit` | `flxChatDailyLimit` | `:345` |
 | GET | `/bot/editor/sessions` | `flxChatEditorSessions` | `bot-editor.php:514` · `status`, `q` |
 | GET | `/bot/editor/sessions/{id}` | `flxChatEditorSession` | `:515` |
 | POST | `/bot/editor/sessions/{id}` | `flxChatEditorSessionUpdate` | aynı |
 | DELETE | `/bot/editor/sessions/{id}` | `flxChatEditorSessionDelete` | aynı |
-| POST | `/bot/editor/step` | `flxChatEditorStep` | `:524` · tek JSON, SSE değil |
+| POST | `/bot/editor/step` | `flxChatEditorStep` | `:524` · tek JSON, SSE değil. Sonraki parça; adım zaten bir tur, süre bütçesi aynı |
 
 ### Benchmark (`includes/bench.php:1597-1796`)
 
@@ -177,7 +187,7 @@ Panel uçları `flxc_manage`. Arka plan ucu anahtarlı.
 | GET | `/bot/bench/runs/{id}` | `flxChatBenchRun` (`since`) |
 | GET | `/bot/bench/runs/{id}/report` | `flxChatBenchReport` |
 | DELETE | `/bot/bench/runs/{id}` | `flxChatBenchRunDelete` |
-| POST | `/bot/bench/runs/{id}/step` | `flxChatBenchStep` |
+| POST | `/bot/bench/runs/{id}/step` | `flxChatBenchStep` | Sonraki parça. Adım bütçesi ~50 sn, ayar 110 sn. Tek istekte bir adım |
 | POST | `/bot/bench/runs/{id}/state` | `flxChatBenchRunState` |
 | POST | `/bot/bench/bg/{id}` | İSTİSNA · `hash_equals(flxc_bench_key())` (`:1785`) |
 
@@ -260,7 +270,7 @@ Aşağıdakiler modelin function-call araçları. GraphQL kökü olmazlar; servi
 | Araç | Dosya |
 |---|---|
 | `save_details`, `send_price_list`, `set_order`, `create_donation`, `payment_link`, `cancel_donation`, `handoff`, `opt_out`, `my_records`, `certificate_resend`, `read_doc` | `bot.php:1184-1282` |
-| `verify_send`, `verify_check` | `verify.php:349` |
+| `verify_send`, `verify_check`, `set_email_notify` | `verify.php:349`, `set_email_notify` `:370` (yalnız `flxc_ev_on()`) |
 | `receipt_check` | `dekont.php:158` |
 | `donation_options`, `payment_info`, `current_time` | `bot-info.php:29` |
 | `close_chat`, `react` | `bot-close.php:146` |
@@ -277,7 +287,7 @@ Aşağıdakiler modelin function-call araçları. GraphQL kökü olmazlar; servi
 | Grup | Alanlar | GraphQL | Not |
 |---|---|---|---|
 | Bağlantı (gizli) | `connections[].api_key` | `apiKey: String` yaz-only | Password input, boşsa eskisi kalır (`settings-page.php:243`, `:712`). `flx_secret_seal` (`helpers.php:129`) |
-| Bağlantı (gizli) | `connections[].secret` | okunmaz; `rotateSecret: Boolean` | Üretilir (`:716`). Webhook URL `?t=` ile gömer (`connections.php:311`). URL yalnız `flxChatSettings` içinde, cap `flxc_manage` |
+| Bağlantı (gizli) | `connections[].secret` | okunmaz; `rotateSecret: Boolean` | Üretilir (`:716`). Kurulum adresi `flxc_webhook_url` (`connections.php:312`) `?t=<secret>` gömer. `FlxChatSettings` bu adresi taşımaz. Kurulum penceresi sonraki parçada yöneticiye özel `flxChatWebhookUrlReveal` (flx-social `flxSocialTickKeyReveal` kalıbı) ile bir kez gösterir |
 | Seçenek (gizli) | `flxc_bench_key` | okunmaz | Loopback anahtarı (`bench.php:1530`). Ayar formu değil |
 | Bağlantı (açık) | `id`, `label`, `source`, `provider_id`, `base_url`, `instance` | `FlxChatConnection` | `source`: own / `flxi:` / `flxs:` |
 | Genel | `brand_name`, `accent`, `send_read`, `agent_signature`, `restrict_agents`, `show_groups`, `ui_flux`, `delete_data`, `poll_interval`, `delete_everyone_hours` | `FlxChatSettings` | `poll_interval` formda 3–60 (`settings-page.php:731`). Yeni istemci en az 10 sn kullanır |
@@ -296,7 +306,7 @@ WP-Cron bu sunucuda tetiklenmez. Asıl iş loopback + panel/webhook dürtmesi.
 |---|---|---|
 | `flxc_jobs_tick` saatlik (`jobs.php:415`) | `flxc_jobs_pump` | Durum `flxChatJobs`. Çalıştırma `flxChatJobsScan`. İşin kendisi İSTİSNA `/jobs/bg/{id}` |
 | `flxc_rem_tick` tek sefer (`reminders.php:517`) | hatırlatıcı saati | Aynı kuyruk |
-| `flxc_reports_tick` (`reports.php:304`, `:320`) | raporu WhatsApp'tan gönderir. `flxc_jobs_poked` `spawn_cron()` çağırır (`:321`) | Tanım `flxChatReports`. Gönderim bu kancada kalır |
+| `flxc_reports_tick` (`reports.php:304`, `:320`) | raporu WhatsApp'tan gönderir. Bugün `flxc_jobs_poked` `spawn_cron()` çağırır (`:321`). Karar: spawn_cron değil | Kalıcı istisna: jobs ile aynı jetonlu loopback. GraphQL: durum sorgusu `flxChatReportStatus`, çalıştırma `flxChatReportRun`. Rapor ekranı sonraki parça |
 | `flxc_bench_tick` (`bench.php:1543`) | benchmark yedeği | Adım İSTİSNA `/bot/bench/bg/{id}` |
 | `flxc_wacloud_temp_clean` (`wacloud.php:122`) | 1 saatlik dosyayı siler | Uç İSTİSNA |
 
@@ -311,7 +321,7 @@ Uç yok. "Cevap akarken 3 sn" metni (`settings-page.php:307`) bot meşgulken pol
 | Akış | GraphQL |
 |---|---|
 | Giden dosya `POST /uploads` | Ortak `flx/v1/upload`, bağlam `flx-chat/outbound`, sonra `uploadId` |
-| Gelen/giden dosya `GET /media/{id}` | İSTİSNA binary. Mesajda `FlxFile` |
+| Gelen/giden dosya `GET /media/{id}` | İSTİSNA binary. Mesajda `FlxFile`. `flxc_media_url` ve `flxc_app_media_url` kullanıcıya özel nonce / HMAC taşır. Adres izleyici başına çözülür; paylaşılan önbellek etiketine girmez |
 | Avatar `GET /chats/{id}/photo` | İSTİSNA binary |
 | Uygulama `GET /app/media/{id}?u&e&s` | İSTİSNA imzalı |
 | Meta `GET /wacloud-media/{key}` | İSTİSNA |
@@ -334,6 +344,7 @@ Sohbetin kendi ön yüz shortcode'u veya herkese açık formu yok. "Site chat" k
 | Uç | Ekran |
 |---|---|
 | `GET /bootstrap` | gelen kutusu açılışı |
+| `GET /replies` | hazır cevap listesi (`flxc.ts` `replies()`) |
 | `GET /sync` | canlı yenileme |
 | `GET /chats`, `POST /chats` | liste, yeni sohbet |
 | `GET/POST /chats/{id}` | başlık, ata, sabitle, kapat, ad, not |
@@ -354,22 +365,44 @@ Poll bugün: sekme gizliyken durmaz, taban 60 sn; bot meşgulken 3 sn (`packages
 
 | Tip | Alanlar (kısa) | Nullable | Loader |
 |---|---|---|---|
-| `FlxChat` | id, title, phone (`FlxPhone`), channel, status, labels, unread, pinned, lastMessage, bot, assignedTo, rev | `person: FlxPerson` — CRM kaydı yoksa veya `flxcrm_gql_can_see_contact` false ise null. Liste sorgusunda istenmezse yüklenmez | `FLXC_Chat_Loader` (`can_see` = `flxc_user_can_see_chat`) |
-| `FlxChatMessage` | id, dir, type, body, status, ts (`FlxDateTime`), media (`FlxFile`), quoted | `media` metinde null. `person` yok | mesaj, sohbet loader'ından |
-| `FlxChatUpdates` | rev, chats (≤ 50), messages (açık sohbet, ≤ 50), incoming, connectionStates, unread, truncated | `truncated` true ise istemci `since`'i yeni rev ile bir kez daha sorar | — |
-| `FlxChatInbox` | me, agents, labels, channels, replies, unread, ai, bot | `ai` Flux AI hazır değilse null | — |
-| `FlxChatSettings` | yukarıdaki açık alanlar | webhook URL yalnız yönetici sorgusunda | — |
-| enum | `FlxChatStatus` OPEN/CLOSED, `FlxChatFilter`, `FlxChatDir`, `FlxChatMsgType`, `FlxChatBot` ON/OFF/PAUSED | | |
+| `FlxChat` | id, title, phone (`FlxPhone`), channel, status, labels, unread, pinned, lastMessage, lastAt (`FlxDateTime`), lastMs ve rev (`String`, milisaniye Int'e sığmaz), lastInTs, typing, bot, botBusy, assignedTo, staffUser (yönetici), group, avatarAt, pushName, notes, connection, created, optOut, blocked | `person: FlxPerson` — CRM kaydı yoksa, telefon görünür bir sohbete bağlı değilse veya `flxcrm_gql_can_see_contact` false ise null. Tek sohbet sorgusu `sections` ve kişi `log` döner | `FLXC_Chat_Loader` (`can_see` = `flxc_user_can_see_chat`). `person` telefon anahtarlı DataLoader |
+| `FlxChatMessage` | id, dir (`FlxChatDir`), type (`String`; ses notu `audio` + `media.ptt`), body, status (`FlxChatMsgStatus`), ts, rev, edited, editUntil, revokeUntil, deleted, deletion audit, error, author, source, group sender, link preview, receipts, rcheck (AI dekont özeti), origin (kampanya), reactions | `media: FlxFile` metinde null. Adres izleyiciye özel; paylaşılan cache etiketi yok | mesaj, sohbet loader'ından; her çözümleyici sohbeti süzer |
+| `FlxChatUpdates` | rev, continueRev, chats (≤ 50, `rev` artan), messages (açık sohbet, `after` sonrası, ≤ 50), incoming, connectionStates (gizli alan yok), unread, truncated | `truncated` true ise istemci `since` = `continueRev` ile bir kez daha sorar. `after` açık sohbetin son mesaj id'si | — |
+| `FlxChatInbox` | me, delHours, agents, labels, channels, connections (gizli alan yok), replies, unread, ai, bot, records (açılış), staff, rev | `ai` Flux AI hazır değilse null. Ayar ve rapor ekranının okumaları aşağıda; bu parçada kurulmaz | — |
+| `FlxChatSettings` | sonraki parça. Açık ayarlar. Webhook adresi yok | gizli anahtarlar yaz-only | — |
+| enum | `FlxChatStatus` OPEN/CLOSED. `FlxChatFilter` ALL, UNREAD, MINE, UNASSIGNED, AI, CLOSED (değerler `all`, `unread`, `mine`, `unassigned`, `ai`, `closed`; `all` kapalıları dışlar). `FlxChatDir` IN, OUT, NOTE, SYSTEM. `FlxChatMsgStatus` PENDING, SENT, DELIVERED, READ, PLAYED, FAILED (boş durum null). `FlxChatBot` ON, OFF, PAUSED | | |
 
-`since` milisaniye `rev` (`helpers.php:175`), `FlxDateTime` değil.
+`since` ve `rev` milisaniye dizisi (`helpers.php:175`), `FlxDateTime` değil. GraphQL `Int` 32 bit.
 
-Önbellek: `flx-chat:chat:{id}`, `flx-chat:list`, `flx-chat:settings`. Yazma purge eder. Poll sorgusu cache'lenmez (girişli POST/GET kuralı). LiteSpeed için bugünkü no-store (`rest.php:9`) REST'te kalır.
+Önbellek: `flx-chat:chat:{id}`, `flx-chat:list`. Yazma purge eder. Medya URL alanları paylaşılan etikete girmez. Poll sorgusu cache'lenmez (girişli istek). LiteSpeed için bugünkü no-store (`rest.php:9`) REST'te kalır.
 
-## Açık sorular
+## Sonraki parçaların okuma sorguları
 
-Ürün kararları uygulayıcı turunda sorulacak. Teknik varsayılanlar KURALLAR'da.
+Bu turda kurulmaz. Eşleme şimdi, ekran kendi parçasında.
 
-- CRM kişi kartına sohbet bölümü: bu dalda `flxcrm_person_card_*` kaydı yok. Kayıt `gql/flx-crm-2` merge'ünden sonra.
-- `FlxPerson` görünürlüğü: temsilcide `flxcrm_view` yok. Öneri: filtre, yalnız kullanıcının görebildiği sohbetin telefonu için true.
-- Rapor gönderimi `spawn_cron()` (`reports.php:321`). Hostinger cron'u çalıştırmıyor. Öneri: jobs ile aynı loopback; şimdi istisna satırı cron'a bağlı kaldığı için ayrıca yazıldı.
-- Bağış/sertifika mutation'ları Donate ve Certificates GraphQL'i gelene kadar chat sarmalayıcısı. Sonra ekran onların mutation'ını çağırır.
+| Ekran | Sorgu | Ne | Kaynak |
+|---|---|---|---|
+| Ayarlar | `flxChatSettings` | açık ayarlar. Webhook adresi yok | `settings-page.php` |
+| Ayarlar | `flxChatWebhookUrlReveal` | yönetici, bağlantı kurulum adresini bir kez gösterir (`?t=` gizli) | `connections.php:312`. flx-social `flxSocialTickKeyReveal` |
+| Ayarlar | `flxChatSystemChecks` | sistem kontrol listesi | `system-checks.php:47` |
+| Ayarlar | `flxChatConnectionSources` | bağlantı kaynağı seçenekleri | `connections.php` `flxc_channels` |
+| Ayarlar | `FlxChatConnection.lastWebhookAt` | son webhook zamanı | `flxc_last_webhook_{id}` (`webhook.php:44`) |
+| Ayarlar | `flxChatGroups` / `flxChatGroupsRefresh` | WhatsApp grup listesi | `flxc_mirror_groups` (`settings-page.php:633`) |
+| Ayarlar | `flxChatMirrorError` | son ayna hatası | `flxc_mirror_error` (`:648`) |
+| Ayarlar | `flxChatPricePreview` | fiyat listesi önizlemesi | `send_price_list` |
+| Ayarlar | `flxChatSearchableTypes` | aranabilir yazı türleri | `site-search.php` |
+| Ayarlar | `flxChatAiUsage` | aylık AI kullanımı | `ai.php` |
+| Raporlar | `flxChatReports` | kurallar | `reports.php` `flxc_report_defaults` |
+| Raporlar | `flxChatReportPreview` | önizleme metni | `flxc_report_text` (`:154`) |
+| Raporlar | `flxChatReportStaff` | seçilebilir personel (`hasNumber`) ve alıcı sayısı | `flxc_report_recipients` (`:107`) |
+| Raporlar | `flxChatReportStatus` / `flxChatReportRun` | jetonlu loopback durumu ve çalıştırma | karar: `spawn_cron` değil |
+| Gelen kutusu | `flxChatInbox` | `delHours`, connections, records açılışı, staff, rev | `flxc_rest_bootstrap` |
+
+Bağlantı geçmişi içe aktarma, AI düzenleyici / test / prompt turu ve bench adımı PHP ~60 sn sınırını aşabilir (içe aktarma 300 sn ve 200 sohbet; AI turu 50 sn, ayar 110 sn). Sonraki parçalarda adım adım ya da mevcut loopback. Bu parçada yok.
+
+## Kararlar
+
+- Temsilci `FlxPerson` görür: yalnız `flxc_user_can_see_chat` ile görebildiği sohbetin telefonu. CRM'e özel alanlar yine `flxcrm_view`.
+- Rapor gönderimi: jobs ile aynı jetonlu loopback (kalıcı istisna) + durum sorgusu + çalıştırma mutation'ı. `spawn_cron` değil. Ekran sonraki parça.
+- Sohbetten bağış/sertifika: mutation mevcut PHP'yi çağırır (`flxc_create_donation`, `flxc_make_certificate`). Donate ve Certificates GraphQL gelince ekran onlara geçer. İkinci kalıcı API yok (`docs/flx-chat/GRAPHQL.md`).
+- Kişi kartı sohbet bölümü: bu parçada yok. `gql/flx-crm-2` (PR #333) kayıt API'sinden sonra.
