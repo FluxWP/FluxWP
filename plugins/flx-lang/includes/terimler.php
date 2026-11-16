@@ -39,7 +39,7 @@ function flxl_filter_term( $term ) {
 	if ( ! $term instanceof WP_Term || FLXL_TAX === $term->taxonomy || flxl_is_backend() || flxl_current_language() === flxl_default_language() ) {
 		return $term;
 	}
-	if ( defined( 'REST_REQUEST' ) && REST_REQUEST && ! flxl_is_explicit() ) {
+	if ( ( ( defined( 'REST_REQUEST' ) && REST_REQUEST ) || flxl_is_graphql_request() ) && ! flxl_is_explicit() ) {
 		return $term;
 	}
 	$n = flxl_term_text( $term->term_id, 'name' );
