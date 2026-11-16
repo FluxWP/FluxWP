@@ -4,7 +4,7 @@
  * systems and Tools open the same screen as the FluxWP app (assets/flux/, tools/fluxapp/embed-sync.sh
  * flx-ai). A user can switch back to the classic page from the screen header. Needs Flux GraphQL.
  *
- * Not yet in React (stay classic): Chat.
+ * Not yet in React (stay classic): the live Chat (stream, approvals and files inside a chat); its history is a screen.
  *
  * @package FLX_AI
  */
@@ -25,6 +25,7 @@ function flxai_flux_pages() {
 		'flx-ai-skills' => 'skills',
 		'flx-ai-mcp' => 'mcp',
 		'flx-ai-connections' => 'connections',
+		'flx-ai-history' => 'history',
 	);
 }
 

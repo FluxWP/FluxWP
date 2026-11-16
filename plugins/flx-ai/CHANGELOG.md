@@ -1,5 +1,12 @@
 # Flux AI — Değişiklikler
 
+## 0.29.0
+- **Sohbet geçmişi React ekranı oldu** (yeni "Sohbet geçmişi" sayfası): sohbet listesi, başlıkta ve konuşma metninde arama (eşleşen parça gösterilir), Aktif/Arşiv/Tümü süzgeci, yazışmayı salt okunur açma (araç çağrıları ve sonuçları), yeniden adlandırma, arşivleme/geri alma, silme (dosyalarıyla), "Sohbette devam et" bağlantısı. Her kullanıcı yalnız kendi sohbetlerini görür. Flux GraphQL yoksa klasik liste açılır.
+- **GraphQL:** `flxAiChats` (arama, arşiv süzgeci, sayfalama), `flxAiChat` sorguları; `flxAiChatUpdate`, `flxAiChatDelete` mutation'ları. Sağlayıcının ham blokları ve iç mesajlar yazışmada görünmez; araç çıktısı 4000 karaktere kısaltılır.
+- Servis: `FLXAI_Chats_Service` (+ DTO'lar).
+- Sözleşme testi 479 kontrol.
+- Canlı sohbet (mesaj gönderme, akış, onay kartları, dosya) olduğu gibi klasik; akış GraphQL dışında kalır.
+
 ## 0.28.0
 - **Sistem başı AI ayarları React ekranı oldu** (Bağlı sistemler › eklenti): AI aç/kapa, eklentiye özel model ve eklentinin Flux AI SDK ile tanımladığı alanlar (aç/kapa, metin, uzun metin, sayı, seçim, model); araç sayısı ve "Araçları yönet" bağlantısı. Klasik görünüme bağlantı durur; görünüm değiştirirken eklenti seçimi korunur.
 - **GraphQL:** `flxAiSystemSettings` sorgusu, `flxAiSystemSettingsUpdate` mutation'ı. Bırakılan alanlar eski değerini korur; tanımsız alan reddedilir; sayı alanı min/max'a kırpılır (ekran sunucunun döndürdüğü değeri gösterir).

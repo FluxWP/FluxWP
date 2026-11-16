@@ -1,0 +1,12 @@
+mutation FlxAiChatUpdate($input: FlxAiChatUpdateInput!) {
+  flxAiChatUpdate(input: $input) {
+    chat {
+      ...FlxAiChatSummaryFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

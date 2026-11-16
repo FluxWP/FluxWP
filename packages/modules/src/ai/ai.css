@@ -163,3 +163,10 @@ textarea.flxai-input{width:100%;max-width:560px}
 .flxai-mcpc-roles{display:flex;flex-wrap:wrap;gap:4px 14px;margin:6px 0 0 22px}
 .flxai-mcpc-perm td:not(:first-child),.flxai-mcpc-perm th:not(:first-child){text-align:center;width:90px}
 .flxai-mcpc-tool-desc{font-size:12px;color:var(--flux-muted,#6b7280)}
+.flxai-hist{border-top:1px solid var(--bd);padding:12px 0}.flxai-hist:first-of-type{border-top:0}.flxai-hist.is-off .flxai-tc-title{opacity:.75}
+.flxai-hist-search{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}.flxai-hist-snip{color:var(--mut);font-size:13px;margin-top:4px}
+.flxai-link{border:0;background:none;padding:0;font:inherit;font-weight:600;color:var(--flux-text);cursor:pointer;text-align:left}.flxai-link:hover{text-decoration:underline}
+.flxai-tx{margin-top:10px;padding:10px 12px;border:1px solid var(--bd);border-radius:8px;background:var(--flux-surface2);display:flex;flex-direction:column;gap:10px;max-height:520px;overflow:auto}
+.flxai-tx-msg{max-width:720px}.flxai-tx-msg.is-user{align-self:flex-end;text-align:left;background:var(--flux-surface);border:1px solid var(--bd);border-radius:10px;padding:8px 12px}
+.flxai-tx-who{font-size:12px;font-weight:600;color:var(--mut);margin-bottom:2px}.flxai-tx-text{white-space:pre-wrap;word-break:break-word}
+.flxai-tx-tool{font-size:13px}.flxai-tx-tool summary{cursor:pointer}.flxai-tx-tool pre{white-space:pre-wrap;word-break:break-word;max-height:240px;overflow:auto;margin:6px 0 0;font-size:12px}

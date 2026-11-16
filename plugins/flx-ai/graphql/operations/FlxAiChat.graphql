@@ -1,0 +1,23 @@
+# One chat with its transcript (read-only).
+query FlxAiChat($id: Int!) {
+  flxAiChat(id: $id) {
+    model
+    total
+    summary {
+      ...FlxAiChatSummaryFields
+    }
+    messages {
+      index
+      role
+      text
+      tool
+      ok
+      error
+      tools
+      time {
+        timestamp
+        label
+      }
+    }
+  }
+}

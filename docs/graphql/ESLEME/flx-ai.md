@@ -1,6 +1,6 @@
 # Flux AI & MCP (flx-ai): klasik → GraphQL eşlemesi
 
-Paket sürümü: 0.28.0 · Önek: `flxai_` · Sahip thread: Faz 1 / flx-ai · Durum: **kısmen bitti** (0.23.0–0.27.0 merge; `gql/flx-ai-6` 0.28.0 PR'ında; kalan: sohbet geçmişi)
+Paket sürümü: 0.29.0 · Önek: `flxai_` · Sahip thread: Faz 1 / flx-ai · Durum: **kısmen bitti** (0.23.0–0.28.0 merge; `gql/flx-ai-7` 0.29.0 PR'ında; kalan: canlı sohbet ekranı)
 
 ## Özet
 
@@ -31,8 +31,10 @@ Paket sürümü: 0.28.0 · Önek: `flxai_` · Sahip thread: Faz 1 / flx-ai · Du
 | Bağlantı OAuth girişi/çıkışı, araç izinleri | `flxAiConnectionSignIn` (sağlayıcı adresini döner), `flxAiConnectionSignOut`, `flxAiConnectionPermissions` | `ai/Connections.tsx`; dönüş `admin-post.php?action=flxai_mcpc_oauth` klasikte durur ve bu ekrana yönlendirir |
 | Sistem başı AI ayarları (aç/kapa, model, SDK alanları) | `flxAiSystemSettings`, `flxAiSystemSettingsUpdate` | `ai/SystemSettings.tsx` (0.28.0), Bağlı sistemler `?system=<eklenti>`; değerler string (aç/kapa `"1"`/`"0"`) |
 
+| Sohbet geçmişi (liste, arama, arşiv süzgeci, yazışmayı okuma, yeniden adlandır, arşivle, sil) | `flxAiChats`, `flxAiChat`, `flxAiChatUpdate`, `flxAiChatDelete` | `ai/History.tsx` (0.29.0), yeni sayfa `flx-ai-history`; her kullanıcı yalnız kendi sohbetini görür; "Sohbette devam et" `flx-ai-chat&flxai_chat=<id>` açar |
+
 Yetki: hepsi `manage_options`. wp-admin'de ekranlar varsayılan, "Klasik görünüm" bağlantısı kullanıcı başına (`flxai_ui` meta). FluxApp modülü `flxai-admin`.
 
 ## Kalanlar
 
-Sohbet geçmişi.
+Canlı sohbetin kendisi (mesaj gönderme, akış, onay kartları, dosya ekleme, slash komutları; `assets/js/chat.js`). Akış SSE olduğu için GraphQL dışında kalır; ekran yine React'e alınabilir ama ayrı, büyük bir iş.
