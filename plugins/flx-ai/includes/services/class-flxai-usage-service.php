@@ -231,8 +231,8 @@ final class FLXAI_Usage_Service {
 		/** @var \wpdb $wpdb */
 		global $wpdb;
 		$days   = max( 1, min( self::MAX_DAYS, $days ) );
-		$t      = flxai_table( 'log' );
-		$b      = flxai_table( 'log_body' );
+		$t      = FLXAI_Cast::str( flxai_table( 'log' ) );
+		$b      = FLXAI_Cast::str( flxai_table( 'log_body' ) );
 		$where  = $wpdb->prepare( 'l.ts >= %d', time() - $days * DAY_IN_SECONDS );
 		if ( in_array( $kind, array( 'model', 'tool' ), true ) ) {
 			$where .= $wpdb->prepare( ' AND l.kind = %s', $kind );
