@@ -2,7 +2,7 @@
 
 - Faz: 2
 - Durum: ✱
-- PR: draft
+- PR: #339
 
 Envanter (`gql/flx-commerce-1`). Servis, şema ve ekran yok. Eşleme `docs/graphql/ESLEME/flx-commerce.md`. REST 7 (1 istisna), AJAX 2, admin-post 8, menü 5, ayar 31 (`feed_key` gizli). Kişi kartı `FlxContact` alanı olarak planlandı; `origin/gql/flx-crm-2` bölüm kaydı henüz yok. Sepete ekleme GraphQL'de `FLXGQL_Cart::add_item`. Checkout Store API'de kalır.
 
