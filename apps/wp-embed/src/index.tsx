@@ -3,13 +3,13 @@
 // Tek dosya (IIFE): FluxModules.mount(el, { module: 'flxc-inbox', rest: '/wp-json/', nonce: '…', locale: 'tr_TR' }).
 // Parça (ES modül): sayfa seçenekleri window.FluxModulesOptions'a yazar; giriş onları bir kez bağlar.
 import { StrictMode, useEffect, useState } from 'react';
-import { createRoot, type Root } from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { I18nextProvider } from 'react-i18next';
 import { brand, createClient, createI18n, setPlatform, memoryStore, trimEnd } from '@fluxwp/core';
 import type { BrandColors } from '@fluxwp/tokens';
 import { toCssVars } from '@fluxwp/tokens';
-import { ModuleHostProvider, moduleScreens, type ModuleHost } from '@fluxwp/modules';
+import { ModuleHostProvider, moduleScreens, preloadScreen, type ModuleHost } from '@fluxwp/modules';
 import { mountManifest, type ManifestMountOptions } from './manifest';
 import '@fluxwp/ui/src/styles.css';
 import './embed.css';
@@ -22,7 +22,8 @@ export interface MountOptions {
   /** wp_create_nonce('wp_rest') */
   nonce: string;
   locale?: string;
-  theme?: 'auto' | 'light' | 'dark';
+  /** 'admin': follows Flux Admin's light / dark switch (html.flxa-dark), also when it changes on the page. */
+  theme?: 'auto' | 'light' | 'dark' | 'admin';
   colors?: Partial<BrandColors>;
   /** Geliştirme/test: gerçek sunucu yerine bu fetch. */
   fetchImpl?: typeof fetch;
@@ -41,7 +42,38 @@ export interface MountOptions {
 }
 
 let nonce = '';
-const roots = new Map<HTMLElement, Root>();
+const roots = new Map<HTMLElement, () => void>();
+
+/**
+ * One React Query cache per bundle, kept across mounts: going from one screen to another in the same tab
+ * (the Flux GraphQL screen navigator) shows what was already read at once. Reads younger than the stale
+ * time are not sent again; older ones show and refresh in the background.
+ */
+let sharedQc: QueryClient | null = null;
+function queryClient(): QueryClient {
+  sharedQc ??= new QueryClient({
+    defaultOptions: { queries: { retry: 1, refetchOnWindowFocus: true, staleTime: 30_000, gcTime: 15 * 60_000 } },
+  });
+  return sharedQc;
+}
+
+const i18ns = new Map<string, ReturnType<typeof createI18n>>();
+function i18nFor(locale: string) {
+  let i = i18ns.get(locale);
+  if (!i) {
+    i = createI18n(locale);
+    i18ns.set(locale, i);
+  }
+  return i;
+}
+
+/** The wp-admin screen navigator (Flux GraphQL, assets/js/screens.js), when the page has it. */
+interface FlxScreensNav {
+  go: (url: string) => boolean;
+  setNonce?: (nonce: string) => void;
+  nonce?: string;
+}
+const screensNav = (): FlxScreensNav | undefined => (window as { FlxScreens?: FlxScreensNav }).FlxScreens;
 
 function siteFromRest(rest: string): string {
   return trimEnd(rest.replace(/\/wp-json\/?$/, '')) || location.origin;
@@ -55,7 +87,15 @@ function Themed({ el, theme }: { el: HTMLElement; theme: NonNullable<MountOption
     mq.addEventListener('change', on);
     return () => mq.removeEventListener('change', on);
   }, [mq]);
-  const mode = theme === 'auto' ? (dark ? 'dark' : 'light') : theme;
+  const html = document.documentElement;
+  const [adminDark, setAdminDark] = useState(html.classList.contains('flxa-dark'));
+  useEffect(() => {
+    if (theme !== 'admin') return;
+    const obs = new MutationObserver(() => setAdminDark(html.classList.contains('flxa-dark')));
+    obs.observe(html, { attributes: true, attributeFilter: ['class'] });
+    return () => obs.disconnect();
+  }, [html, theme]);
+  const mode = theme === 'auto' ? (dark ? 'dark' : 'light') : theme === 'admin' ? (adminDark ? 'dark' : 'light') : theme;
   useEffect(() => void (el.dataset.theme = mode), [el, mode]);
   return null;
 }
@@ -63,7 +103,8 @@ function Themed({ el, theme }: { el: HTMLElement; theme: NonNullable<MountOption
 export function mount(el: HTMLElement, o: MountOptions): () => void {
   const Screen = moduleScreens[o.module];
   if (!Screen) throw new Error(`FluxModules: unknown module ${o.module}`);
-  nonce = o.nonce;
+  // The navigator holds the newest nonce of the page (a screen may have renewed it).
+  nonce = screensNav()?.nonce || o.nonce;
   const site = siteFromRest(o.rest);
   setPlatform({
     kind: 'web',
@@ -87,10 +128,18 @@ export function mount(el: HTMLElement, o: MountOptions): () => void {
     client,
     siteUrl: site,
     scope: 'wp',
-    openUrl: (u) => (u.startsWith(location.origin) ? (location.href = u) : void window.open(u, '_blank', 'noopener')),
+    // Another Flux screen opens in place (navigator); other wp-admin pages load as usual.
+    openUrl: (u) => {
+      if (screensNav()?.go(u)) return;
+      if (u.startsWith(location.origin)) location.href = u;
+      else window.open(u, '_blank', 'noopener');
+    },
     // Test ortamında (sahte fetch) medya da istemciden geçsin; gerçek WP'de çerezli adres doğrudan.
     blobMedia: !!o.fetchImpl,
-    setNonce: (n) => (nonce = n),
+    setNonce: (n) => {
+      nonce = n;
+      screensNav()?.setNonce?.(n);
+    },
     siteName: o.siteName,
     adminUrl: o.adminUrl,
     appIcon: o.appIcon,
@@ -108,8 +157,8 @@ export function mount(el: HTMLElement, o: MountOptions): () => void {
   obs.observe(el, { attributes: true, attributeFilter: ['data-theme'] });
   apply('light');
 
-  const qc = new QueryClient({ defaultOptions: { queries: { retry: 1, refetchOnWindowFocus: true } } });
-  const i18n = createI18n(o.locale ?? document.documentElement.lang);
+  const qc = queryClient();
+  const i18n = i18nFor(o.locale ?? document.documentElement.lang);
   el.dir = i18n.language === 'ar' ? 'rtl' : 'ltr';
   const root = createRoot(el);
   root.render(
@@ -124,12 +173,26 @@ export function mount(el: HTMLElement, o: MountOptions): () => void {
       </I18nextProvider>
     </StrictMode>,
   );
-  roots.set(el, root);
-  return () => {
+  const stop = () => {
     obs.disconnect();
     root.unmount();
     roots.delete(el);
   };
+  roots.set(el, stop);
+  return stop;
+}
+
+/** Loads a screen's code ahead of mount(): the screen then paints without a loading fallback. */
+export function preload(module: string): Promise<void> {
+  return preloadScreen(module);
+}
+
+/** Unmounts the screen in `el` (the navigator, before it shows the next screen). */
+export function unmount(el: HTMLElement): boolean {
+  const stop = roots.get(el);
+  if (!stop) return false;
+  stop();
+  return true;
 }
 
 /** Sunucu yeni nonce verdiğinde (ör. /sync cevabı) güncelle. */
@@ -150,6 +213,8 @@ declare global {
   interface Window {
     FluxModules?: {
       mount: typeof mount;
+      unmount: typeof unmount;
+      preload: typeof preload;
       setNonce: typeof setNonce;
       modules: typeof modules;
       mountManifest: typeof mountManifest;
@@ -166,15 +231,19 @@ function mountPending(): void {
   const el = document.getElementById(slot.id);
   if (!el) return;
   slot.done = true;
-  try {
-    mount(el, slot.opts);
-  } catch (e) {
-    el.textContent = e instanceof Error ? e.message : String(e);
-  }
+  const go = () => {
+    try {
+      mount(el, slot.opts);
+    } catch (e) {
+      el.textContent = e instanceof Error ? e.message : String(e);
+    }
+  };
+  // The screen's code first, then one paint with content (no spinner in between).
+  void preloadScreen(slot.opts.module).then(go, go);
 }
 
 if (typeof window !== 'undefined') {
-  window.FluxModules = { mount, setNonce, modules, mountManifest };
+  window.FluxModules = { mount, unmount, preload, setNonce, modules, mountManifest };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mountPending);
   mountPending();
 }
