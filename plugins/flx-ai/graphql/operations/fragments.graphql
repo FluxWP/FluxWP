@@ -474,3 +474,87 @@ fragment FlxAiBrandFields on FlxAiBrand {
     color
   }
 }
+
+fragment FlxAiMcpOverviewFields on FlxAiMcpOverview {
+  server {
+    enabled
+    oauth
+    oauthActive
+    legacy
+    url
+    restUrl
+    toolCount
+    rolesUrl
+  }
+  keys {
+    id
+    name
+    type
+    hint
+    userId
+    userLogin
+    canUse
+    tools
+    created {
+      timestamp
+      label
+    }
+    lastUsed {
+      timestamp
+      label
+    }
+  }
+  choices {
+    name
+    title
+    readonly
+  }
+  log {
+    time {
+      timestamp
+      label
+    }
+    userLogin
+    tool
+    target
+    ok
+  }
+}
+
+fragment FlxAiConnectionFields on FlxAiConnection {
+  id
+  name
+  url
+  auth
+  header
+  scope
+  ownerId
+  ownerLogin
+  roles
+  enabled
+  editable
+  hasSecret
+  clientId
+  hasClientSecret
+  signedIn
+  serverName
+  serverVersion
+  serverProtocol
+  checked {
+    timestamp
+    label
+  }
+  error
+  status
+  prefix
+  toolsOn
+  tools {
+    name
+    toolName
+    title
+    description
+    readonly
+    destructive
+    permission
+  }
+}

@@ -8,7 +8,9 @@ import { useHost } from '../host';
 import { Approvals } from './Approvals';
 import { Billing } from './Billing';
 import { useAi } from './common';
+import { Connections } from './Connections';
 import { Logs } from './Logs';
+import { Mcp } from './Mcp';
 import { Overview } from './Overview';
 import { Settings } from './Settings';
 import { Skills } from './Skills';
@@ -27,6 +29,8 @@ const VIEWS: Record<string, { title: string; sub: string; View: ComponentType }>
   tasks: { title: 'Scheduled tasks', sub: '', View: Tasks },
   skills: { title: 'Skills', sub: '', View: Skills },
   settings: { title: 'Settings', sub: '', View: Settings },
+  mcp: { title: 'MCP', sub: '', View: Mcp },
+  connections: { title: 'Connections', sub: '', View: Connections },
 };
 
 export function AiScreen() {

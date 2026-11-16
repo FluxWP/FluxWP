@@ -1,0 +1,12 @@
+mutation FlxAiConnectionPermissions($input: FlxAiConnectionPermissionsInput!) {
+  flxAiConnectionPermissions(input: $input) {
+    connection {
+      ...FlxAiConnectionFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

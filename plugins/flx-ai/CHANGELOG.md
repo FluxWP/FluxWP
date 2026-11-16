@@ -1,5 +1,13 @@
 # Flux AI — Değişiklikler
 
+## 0.27.0
+- **MCP sayfası React ekranı oldu** (wp-admin'de varsayılan, klasik görünüme bağlantı var): sunucuyu ve OAuth girişini aç/kapat, anahtar oluştur (yalnız oluşturulduğunda bir kez gösterilir, kopyala düğmesi), araçla sınırla, iptal et, asistana bağlama örnekleri (anahtar yazılı hâlde), son işlemler.
+- **Bağlantılar React ekranı oldu:** dış MCP sunucuları (ekle/düzenle, anahtar/başlık/OAuth girişi, kişisel ya da rollere açık, aç/kapat), OAuth ile giriş/çıkış (sağlayıcı dönüşü bu ekrana gelir), "Test et ve araçları güncelle", araç başına izin (izinli/sor/kapalı; yalnız salt-okunur araç izinli olabilir), silme.
+- **GraphQL:** `flxAiMcp`, `flxAiConnections` sorguları; `flxAiMcpServerUpdate`, `flxAiMcpKeyCreate`, `flxAiMcpKeyRevoke`, `flxAiConnectionSave/Delete/Refresh/SignIn/SignOut/Permissions` mutation'ları. Gizli değerler yalnız yazılır: anahtar yalnız oluşturma yanıtında döner; bağlantılar yalnız "kayıtlı mı" bilgisini verir (anahtar, belirteç, OAuth istemci sırrı asla dönmez).
+- Servisler: `FLXAI_Mcp_Service`, `FLXAI_Connections_Service` (+ DTO'lar); klasik sayfaların işlemleri aynı servisleri kullanır. MCP sunucusu, OAuth uçları ve SSE akışı olduğu gibi kalır.
+- Sözleşme testi 410 kontrol (sahte MCP sunucusuyla bağlantı kaydı, araç listesi, izin doğrulama, hata durumu, başkasının kişisel bağlantısı, sırların yanıtta çıkmaması).
+- Sistem başı SDK ayarları ve sohbet geçmişi henüz klasik.
+
 ## 0.26.0
 - **Skill'ler React ekranı oldu** (wp-admin'de varsayılan, klasik görünüme bağlantı var): liste (kaynağa göre gruplar, aç/kapat, dışa aktar, sil/sıfırla), düzenle formu (SKILL.md alanları, açıklama sayacı), Dosyalar sekmesi (aç/düzenle, indir, sil, yükle, yeni metin dosyası), Testler sekmesi (tetiklenme istemleri, fonksiyonel testler, çalıştır, son sonuçlar), içe aktarma (.zip/.skill/SKILL.md ya da yapıştır), Marka kiti ve "yalnız izinli araçlar" ayarı.
 - **GraphQL:** `flxAiSkills`, `flxAiSkill`, `flxAiSkillFile`, `flxAiBrand` sorguları; `flxAiSkillSave/Toggle/Delete`, `flxAiSkillsSettings`, `flxAiSkillImport`, `flxAiSkillFileSave/Delete/Upload`, `flxAiSkillEvalsSave`, `flxAiSkillTestRun`, `flxAiBrandSave` mutation'ları. Dosya yükleme ve içe aktarma base64 ile gider (5 MB / 20 MB sınırı). Test çalıştırma sohbet modelini çağırır, `skill_test` amacıyla kayda geçer.

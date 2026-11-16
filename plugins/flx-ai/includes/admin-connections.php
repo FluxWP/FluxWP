@@ -35,12 +35,13 @@ add_action(
 			$go( array( 'flxai_err' => rawurlencode( __( 'This is another user\'s personal connection.', 'flx-ai' ) ) ) );
 		}
 		if ( 'delete' === $do && $s ) {
-			flxai_mcpc_delete( $id );
+			FLXAI_Connections_Service::delete( $id );
 			$go( array( 'flxai_ok' => 'deleted' ) );
 		}
 		if ( 'refresh' === $do && $s ) {
-			$r = flxai_mcpc_refresh( $id );
-			$go( is_wp_error( $r ) ? array( 'edit' => $id, 'flxai_err' => rawurlencode( $r->get_error_message() ) ) : array( 'edit' => $id, 'flxai_ok' => 'refreshed' ) );
+			$r = FLXAI_Connections_Service::refresh( $id );
+			$e = $r instanceof FLXAI_Connection ? $r->error : '';
+			$go( '' !== $e ? array( 'edit' => $id, 'flxai_err' => rawurlencode( $e ) ) : array( 'edit' => $id, 'flxai_ok' => 'refreshed' ) );
 		}
 		if ( 'connect' === $do && $s ) {
 			$u = flxai_mcpc_oauth_start( $id );
@@ -51,9 +52,7 @@ add_action(
 			exit;
 		}
 		if ( 'signout' === $do && $s ) {
-			$s['oauth'] = array_diff_key( (array) $s['oauth'], array_flip( array( 'access', 'refresh', 'expires' ) ) );
-			flxai_mcpc_put( $s );
-			delete_transient( 'flxai_mcpc_sess_' . $id );
+			FLXAI_Connections_Service::sign_out( $id );
 			$go( array( 'edit' => $id, 'flxai_ok' => 'signedout' ) );
 		}
 		if ( 'perms' === $do && $s ) {
@@ -140,6 +139,9 @@ function flxai_mcpc_notices() {
 }
 
 function flxai_page_connections() {
+	if ( flxai_flux_render() ) {
+		return;
+	}
 	$edit = isset( $_GET['edit'] ) ? sanitize_key( wp_unslash( $_GET['edit'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	flxai_page_head( __( 'Connections', 'flx-ai' ), __( 'Connect external MCP servers (for example a CRM, a project tool or another site). Their tools become available in chat, scheduled tasks and agents. Only remote servers over HTTPS work here; local (stdio) servers need a computer that runs them.', 'flx-ai' ) );
 	flxai_mcpc_notices();
