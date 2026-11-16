@@ -161,6 +161,9 @@ add_filter( 'flx_gql_capabilities', function ( array $caps ): array {
 - API verisi için elle tip yazılmaz; `ResultOf<typeof Op>` / `VariablesOf<typeof Op>`.
 - Strict TS: paket `tsconfig.strict.json`'dan türer, `any` yok (`tools/ts-strict/README.md`).
 - `@fluxwp/modules` ve `@fluxwp/graphql` sürümü PR'da artmaz (`package.json` ve CHANGELOG'a dokunulmaz, CI reddeder). PR `.changes/<ad>.md` notu bırakır; sürümü ve CHANGELOG'u release anında "JS package versions" workflow'u yazar (`.changes/README.md`).
+- wp-admin ekranı `flx_admin_screen()` ile kaydedilir, `flx_admin_screen_render()` ile basılır; pakete özel
+  mount / module tag yazılmaz. İlk sorgular `preload` ile PHP'den gelir (değişkenler ekranınkiyle aynı).
+  Ekranlar arası geçiş sayfa yenilemeden olur; sonuçlar sayfa çapında paylaşılır (`EKRAN-KABUGU.md`).
 
 ## 10. PHP sürümü
 

@@ -169,6 +169,7 @@ add_action(
 				$args['tab']  = 'tests';
 			}
 		}
+		FLXAI_Skills_Service::changed();
 		wp_safe_redirect( add_query_arg( $args, $back ) );
 		exit;
 	}
@@ -185,6 +186,9 @@ add_action(
 );
 
 function flxai_page_skills() {
+	if ( flxai_flux_render() ) {
+		return;
+	}
 	// phpcs:disable WordPress.Security.NonceVerification.Recommended
 	$edit = isset( $_GET['edit'] ) ? sanitize_key( wp_unslash( $_GET['edit'] ) ) : '';
 	flxai_page_head( __( 'Skills', 'flx-ai' ), __( 'Instruction folders the assistant follows, in the open Agent Skills format (the same SKILL.md folders Claude uses). Chats and scheduled tasks use them by name; edit a skill once and every task that uses it follows the new version.', 'flx-ai' ) );

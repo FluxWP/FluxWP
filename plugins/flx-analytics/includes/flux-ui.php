@@ -21,7 +21,7 @@ function flxan_flux_modules() {
 }
 
 function flxan_flux_available() {
-	return file_exists( FLXAN_DIR . 'assets/flux/flux-modules.js' ) && function_exists( 'flx_gql_ready' ) && function_exists( 'flx_gql_all_caps' ) && flx_gql_ready();
+	return file_exists( FLXAN_DIR . 'assets/flux/flux-modules.js' ) && function_exists( 'flx_gql_ready' ) && function_exists( 'flx_gql_all_caps' ) && function_exists( 'flx_admin_screen' ) && flx_gql_ready();
 }
 
 /** Module of the admin page being shown ('' when it is not one of ours). */
@@ -55,10 +55,9 @@ function flxan_flux_classic_notice() {
 	echo '<p class="flxan-newview"><a class="button" href="' . esc_url( flxan_ui_switch_url( 'flux' ) ) . '">' . esc_html__( 'New view', 'flx-analytics' ) . '</a> <span class="description">' . esc_html__( 'Open the new view (same features, works in the FluxWP app too).', 'flx-analytics' ) . '</span></p>';
 }
 
-/** The React screen's mount point. */
+/** The React screen (Flux GraphQL's screen shell prints it). */
 function flxan_flux_mount() {
-	echo '<style>#flxan-app.flux-root{height:auto;background:transparent;font-family:inherit}</style>';
-	echo '<div class="wrap flxan-wrap"><div id="flxan-app"><noscript>' . esc_html__( 'This screen requires JavaScript.', 'flx-analytics' ) . '</noscript></div></div>';
+	flx_admin_screen_render();
 }
 
 add_action(
@@ -81,58 +80,59 @@ add_action(
 	}
 );
 
-/** The chunked bundle loads as an ES module. */
-function flxan_flux_module_tag( $tag, $handle ) {
-	if ( 'flxan-flux' !== $handle ) {
-		return $tag;
-	}
-	return (string) preg_replace_callback(
-		'/<script\b[^>]*\ssrc=[^>]*>/',
-		static function ( $m ) {
-			$open = (string) preg_replace( '/\stype=("|\')[^"\']*\1/', '', $m[0] );
-			return (string) preg_replace( '/^<script\b/', '<script type="module"', $open );
-		},
-		$tag,
-		1
+/** Mount options of the React screens (Flux GraphQL's screen shell adds rest, nonce, locale, site name, admin URL). */
+function flxan_flux_options() {
+	$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#1F2937';
+	return array(
+		'colors'     => array(
+			'primary'         => $accent,
+			'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
+		),
+		'classicUrl' => flxan_ui_switch_url( 'classic' ),
 	);
 }
 
+/*
+ * The pages open through Flux GraphQL's screen shell (includes/screens.php there): first queries preloaded
+ * into the page, and the other Flux screens open from the menu without reloading wp-admin.
+ */
 add_action(
-	'admin_enqueue_scripts',
-	function () {
-		if ( ! flxan_flux_ui_active() ) {
+	'admin_menu',
+	static function () {
+		if ( ! function_exists( 'flx_admin_screen' ) ) {
 			return;
 		}
-		$all    = flxan_flux_modules();
-		$module = $all[ flxan_flux_page() ];
-		$ver    = FLXAN_VERSION . '-' . (int) filemtime( FLXAN_DIR . 'assets/flux/flux-modules.js' );
-		$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#1F2937';
-		$opts   = array(
-			'module'     => $module,
-			'rest'       => rest_url(),
-			'nonce'      => wp_create_nonce( 'wp_rest' ),
-			'locale'     => get_user_locale(),
-			'siteName'   => get_bloginfo( 'name' ),
-			'adminUrl'   => admin_url(),
-			'theme'      => 'light',
-			'colors'     => array(
-				'primary'         => $accent,
-				'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
-			),
-			'classicUrl' => flxan_ui_switch_url( 'classic' ),
-		);
-		if ( 'flxan-stats' === $module && file_exists( FLXAN_DIR . 'assets/world.js' ) ) {
-			wp_enqueue_script( 'flxan-world', FLXAN_URL . 'assets/world.js', array(), FLXAN_VERSION, true ); // window.FLXAN_WORLD for the map
+		foreach ( flxan_flux_modules() as $page => $module ) {
+			$args = array(
+				'module'     => $module,
+				'assets_dir' => FLXAN_DIR . 'assets/flux/',
+				'assets_url' => FLXAN_URL . 'assets/flux/',
+				'version'    => FLXAN_VERSION,
+				'enabled'    => 'flxan_flux_ui',
+				'options'    => 'flxan_flux_options',
+				'preload'    => array( array( 'FlxAnalyticsConfig' ) ),
+			);
+			if ( 'flxan-stats' === $module && file_exists( FLXAN_DIR . 'assets/world.js' ) ) {
+				// window.FLXAN_WORLD for the map.
+				$args['scripts'] = array( add_query_arg( 'ver', FLXAN_VERSION, FLXAN_URL . 'assets/world.js' ) );
+			}
+			if ( 'flxan-stats' === $module ) {
+				// Default view (last 30 days, no filter in the address); another filter is fetched by the screen.
+				$args['preload'][] = array( 'FlxAnalyticsReport', array( 'filter' => array( 'range' => 'DAYS_30' ) ) );
+				$args['preload'][] = array(
+					'FlxAnalyticsRealtime',
+					array(
+						'filter'  => array( 'range' => 'DAYS_30' ),
+						'minutes' => 30,
+						'kpi'     => true,
+					),
+				);
+			}
+			if ( 'flxan-settings' === $module ) {
+				$args['preload'][] = array( 'FlxAnalyticsSettings' );
+			}
+			flx_admin_screen( $page, $args );
 		}
-		wp_enqueue_style( 'flxan-flux', FLXAN_URL . 'assets/flux/flux-modules.css', array(), $ver );
-		wp_enqueue_script( 'flxan-flux', FLXAN_URL . 'assets/flux/flux-modules.js', array(), $ver, true );
-		add_filter( 'script_loader_tag', 'flxan_flux_module_tag', 10, 2 );
-		// Light / dark follows Flux Admin (html.flxa-dark), also when the user switches it on the page.
-		wp_add_inline_script(
-			'flxan-flux',
-			'(function(){var h=document.documentElement,o=' . wp_json_encode( $opts ) . ';o.theme=h.classList.contains("flxa-dark")?"dark":"light";var slot=window.FluxModulesOptions||(window.FluxModulesOptions={});slot.id="flxan-app";slot.opts=o;function sync(){var el=document.getElementById("flxan-app");if(el)el.dataset.theme=h.classList.contains("flxa-dark")?"dark":"light";}new MutationObserver(sync).observe(h,{attributes:true,attributeFilter:["class"]});function go(){if(slot.done||!window.FluxModules)return;var el=document.getElementById(slot.id);if(!el)return;slot.done=true;try{window.FluxModules.mount(el,slot.opts);}catch(e){el.textContent=String(e&&e.message||e);}}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);go();})();',
-			'before'
-		);
 	},
-	5
+	20
 );
