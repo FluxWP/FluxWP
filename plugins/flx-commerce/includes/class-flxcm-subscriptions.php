@@ -88,6 +88,9 @@ final class FLXCM_Subscriptions {
 		return $gmt ? (int) strtotime( $gmt . ' UTC' ) : 0;
 	}
 
+	/**
+	 * @return array<string,mixed>|null
+	 */
 	public static function row( $id ) {
 		global $wpdb;
 		$t = self::table();
@@ -97,8 +100,8 @@ final class FLXCM_Subscriptions {
 	/**
 	 * Dışarıya verilen biçim (olaylar, API, Hesabım). Zamanlar Unix (UTC).
 	 *
-	 * @param array|int $row Satır ya da id.
-	 * @return array|null
+	 * @param array<string,mixed>|int $row Satır ya da id.
+	 * @return array<string,mixed>|null
 	 */
 	public static function export( $row ) {
 		$row = is_array( $row ) ? $row : self::row( (int) $row );
@@ -153,6 +156,10 @@ final class FLXCM_Subscriptions {
 	 * @param array $args status (string|array), user_id, email, product_id, s, paged, per_page, orderby.
 	 * @return array{rows: array, total: int, pages: int, paged: int}
 	 */
+	/**
+	 * @param array<string,mixed> $args Filters.
+	 * @return array{rows:list<array<string,mixed>>,total:int,pages:int,paged:int}
+	 */
 	public static function query( array $args = array() ) {
 		global $wpdb;
 		$t     = self::table();
@@ -202,7 +209,11 @@ final class FLXCM_Subscriptions {
 		);
 	}
 
-	/** Durum sayıları + aylık yinelenen gelir (yıllıklar 12'ye bölünür; site para biriminde). */
+	/**
+	 * Durum sayıları + aylık yinelenen gelir (yıllıklar 12'ye bölünür; site para biriminde).
+	 *
+	 * @return array<string,int|float>
+	 */
 	public static function counts() {
 		global $wpdb;
 		$t   = self::table();

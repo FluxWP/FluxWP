@@ -11,6 +11,8 @@
  * an order. The WooCommerce CI job runs the order and cart checks.
  */
 
+require dirname( __DIR__ ) . '/lib.php';
+
 $admin = flxcm_test_admin();
 $view  = flxcm_test_user( 'flxcm_view', array( 'read', 'view_woocommerce_reports' ) );
 $shop  = flxcm_test_user( 'flxcm_shop', array( 'read', 'edit_shop_orders' ) );
@@ -69,7 +71,7 @@ flxt_same( $email, $one['data']['flxCommerceCustomer']['email'] ?? '', 'filled c
 flxt_same( true, $one['data']['flxCommerceCustomer']['guest'] ?? false, 'guest badge' );
 
 $missing = flxt_gql( 'query($id: ID!){ flxCommerceCustomer(id: $id) { id } }', array( 'id' => '999999' ), $view );
-flxt_same( null, $missing['data']['flxCommerceCustomer'] ?? 'x', 'missing customer is null' );
+flxt_same( null, array_key_exists( 'flxCommerceCustomer', $missing['data'] ?? array() ) ? $missing['data']['flxCommerceCustomer'] : 'missing', 'missing customer is null' );
 
 $long = flxt_gql(
 	'mutation($input: FlxCommerceCustomerNoteInput!){ flxCommerceCustomerNote(input: $input){ customer { id } errors { code } } }',

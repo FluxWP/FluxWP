@@ -20,15 +20,15 @@ final class FLXCM_Customer_Service {
 	 */
 	public static function rest_row( array $r ): array {
 		return array(
-			'id'          => (int) $r['id'],
-			'name'        => (string) $r['name'],
-			'email'       => (string) $r['email'],
-			'phone'       => (string) ( $r['phone'] ?? '' ),
-			'city'        => (string) ( $r['city'] ?? '' ),
-			'orders'      => (int) $r['orders'],
-			'total'       => round( (float) $r['total'], 2 ),
+			'id'          => FLXCM_Val::int($r['id']),
+			'name'        => FLXCM_Val::str($r['name']),
+			'email'       => FLXCM_Val::str($r['email']),
+			'phone'       => FLXCM_Val::str(( $r['phone'] ?? '' )),
+			'city'        => FLXCM_Val::str(( $r['city'] ?? '' )),
+			'orders'      => FLXCM_Val::int($r['orders']),
+			'total'       => round( FLXCM_Val::float($r['total']), 2 ),
 			'total_label' => flxcm_money( $r['total'] ),
-			'note'        => (string) ( $r['note'] ?? '' ),
+			'note'        => FLXCM_Val::str(( $r['note'] ?? '' )),
 			'first_label' => self::when( $r['first_at'] ?? '' ),
 			'last_label'  => self::when( $r['last_at'] ?? '' ),
 		);
@@ -41,8 +41,8 @@ final class FLXCM_Customer_Service {
 		if ( ! $mysql ) {
 			return '';
 		}
-		$ts = strtotime( (string) $mysql . ' UTC' );
-		return $ts ? flxcm_date( $ts, 'datetime' ) : '';
+		$ts = strtotime( FLXCM_Val::str($mysql) . ' UTC' );
+		return $ts ? FLXCM_Val::str( flxcm_date( $ts, 'datetime' ) ) : '';
 	}
 
 	/**
@@ -51,21 +51,21 @@ final class FLXCM_Customer_Service {
 	 * @return array{items:array<int,array<string,mixed>>,total:int,pages:int}
 	 */
 	public static function rest_list( WP_REST_Request $r ): array {
-		$per = (int) $r['per_page'];
+		$per = FLXCM_Val::int($r['per_page']);
 		$q   = FLXCM_Customers::query(
 			array(
-				's'        => sanitize_text_field( (string) $r->get_param( 's' ) ),
-				'segment'  => sanitize_key( (string) $r->get_param( 'segment' ) ),
-				'orderby'  => sanitize_key( (string) $r->get_param( 'orderby' ) ),
-				'order'    => sanitize_key( (string) $r->get_param( 'order' ) ),
-				'paged'    => (int) $r['page'],
+				's'        => sanitize_text_field( FLXCM_Val::str($r->get_param( 's' )) ),
+				'segment'  => sanitize_key( FLXCM_Val::str($r->get_param( 'segment' )) ),
+				'orderby'  => sanitize_key( FLXCM_Val::str($r->get_param( 'orderby' )) ),
+				'order'    => sanitize_key( FLXCM_Val::str($r->get_param( 'order' )) ),
+				'paged'    => FLXCM_Val::int($r['page']),
 				'per_page' => $per,
 			)
 		);
 		return array(
 			'items' => array_map( array( __CLASS__, 'rest_row' ), $q['rows'] ),
-			'total' => (int) $q['total'],
-			'pages' => (int) $q['pages'],
+			'total' => FLXCM_Val::int($q['total']),
+			'pages' => FLXCM_Val::int($q['pages']),
 		);
 	}
 
@@ -90,18 +90,18 @@ final class FLXCM_Customer_Service {
 	 */
 	public static function map( array $r ): array {
 		return array(
-			'id'     => (string) (int) $r['id'],
-			'name'   => (string) $r['name'],
-			'email'  => (string) $r['email'],
-			'phone'  => (string) ( $r['phone'] ?? '' ),
-			'city'   => (string) ( $r['city'] ?? '' ),
-			'orders' => (int) $r['orders'],
+			'id'     => FLXCM_Val::str( FLXCM_Val::int( $r['id'] ) ),
+			'name'   => FLXCM_Val::str($r['name']),
+			'email'  => FLXCM_Val::str($r['email']),
+			'phone'  => FLXCM_Val::str(( $r['phone'] ?? '' )),
+			'city'   => FLXCM_Val::str(( $r['city'] ?? '' )),
+			'orders' => FLXCM_Val::int($r['orders']),
 			'total'  => flxcm_gql_money( $r['total'] ),
-			'note'   => (string) ( $r['note'] ?? '' ),
+			'note'   => FLXCM_Val::str(( $r['note'] ?? '' )),
 			'firstAt' => flxcm_gql_time( $r['first_at'] ?? '' ),
 			'lastAt'  => flxcm_gql_time( $r['last_at'] ?? '' ),
-			'userId'  => (int) ( $r['user_id'] ?? 0 ),
-			'guest'   => ! (int) ( $r['user_id'] ?? 0 ),
+			'userId'  => FLXCM_Val::int(( $r['user_id'] ?? 0 )),
+			'guest'   => ! FLXCM_Val::int(( $r['user_id'] ?? 0 )),
 		);
 	}
 
@@ -112,23 +112,21 @@ final class FLXCM_Customer_Service {
 	public static function page( array $args, int $offset, int $limit ): array {
 		$q = FLXCM_Customers::query(
 			array(
-				's'        => sanitize_text_field( (string) ( $args['search'] ?? '' ) ),
-				'segment'  => sanitize_key( (string) ( $args['segment'] ?? 'all' ) ),
-				'orderby'  => sanitize_key( (string) ( $args['orderby'] ?? 'last_at' ) ),
-				'order'    => sanitize_key( (string) ( $args['order'] ?? 'desc' ) ),
+				's'        => sanitize_text_field( FLXCM_Val::str(( $args['search'] ?? '' )) ),
+				'segment'  => sanitize_key( FLXCM_Val::str(( $args['segment'] ?? 'all' )) ),
+				'orderby'  => sanitize_key( FLXCM_Val::str(( $args['orderby'] ?? 'last_at' )) ),
+				'order'    => sanitize_key( FLXCM_Val::str(( $args['order'] ?? 'desc' )) ),
 				'per_page' => $limit,
 				'offset'   => $offset,
 			)
 		);
 		$items = array();
 		foreach ( $q['rows'] as $row ) {
-			if ( is_array( $row ) ) {
-				$items[] = self::map( $row );
-			}
+			$items[] = self::map( $row );
 		}
 		return array(
 			'items' => $items,
-			'total' => (int) $q['total'],
+			'total' => FLXCM_Val::int($q['total']),
 		);
 	}
 
@@ -140,6 +138,9 @@ final class FLXCM_Customer_Service {
 	 */
 	public static function save_note( int $id, string $note, bool $must_exist ) {
 		global $wpdb;
+		if ( ! $wpdb instanceof wpdb ) {
+			return new WP_Error( 'flxcm_note', __( 'The note could not be saved.', 'flx-commerce' ), array( 'status' => 500 ) );
+		}
 		$note = sanitize_textarea_field( $note );
 		if ( $must_exist && ! FLXCM_Customers::get( $id ) ) {
 			return new WP_Error( 'flxcm_missing', __( 'Customer not found.', 'flx-commerce' ), array( 'status' => 404 ) );
@@ -147,7 +148,7 @@ final class FLXCM_Customer_Service {
 		if ( $must_exist && mb_strlen( $note ) > 2000 ) {
 			return new WP_Error( 'flxcm_note', __( 'The note is too long.', 'flx-commerce' ), array( 'status' => 400 ) );
 		}
-		$wpdb->update( FLXCM_Install::table(), array( 'note' => mb_substr( $note, 0, 2000 ) ), array( 'id' => $id ) );
+		$wpdb->update( FLXCM_Val::str( FLXCM_Install::table() ), array( 'note' => mb_substr( $note, 0, 2000 ) ), array( 'id' => $id ) );
 		flxcm_gql_purge( array( 'flx-commerce:customers', 'flx-commerce:customer:' . $id ) );
 		return array( 'note' => $note );
 	}
@@ -165,9 +166,9 @@ final class FLXCM_Customer_Service {
 		flxcm_gql_purge( array( 'flx-commerce:customers', 'flx-commerce:summary' ) );
 		return array(
 			'done'    => (bool) $out['done'],
-			'page'    => (int) $out['page'],
-			'scanned' => (int) $out['scanned'],
-			'total'   => (int) $out['total'],
+			'page'    => FLXCM_Val::int($out['page']),
+			'scanned' => FLXCM_Val::int($out['scanned']),
+			'total'   => FLXCM_Val::int($out['total']),
 		);
 	}
 
@@ -192,10 +193,10 @@ final class FLXCM_Customer_Service {
 		return array(
 			'orders'   => $d['orders'],
 			'events'   => $d['events'],
-			'billing'  => (string) $d['billing'],
-			'shipping' => (string) $d['shipping'],
+			'billing'  => FLXCM_Val::str($d['billing']),
+			'shipping' => FLXCM_Val::str($d['shipping']),
 			'products' => $d['products'],
-			'open'     => (int) $d['open'],
+			'open'     => FLXCM_Val::int($d['open']),
 		);
 	}
 }

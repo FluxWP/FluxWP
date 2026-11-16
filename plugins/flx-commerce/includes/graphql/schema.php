@@ -11,17 +11,11 @@
 
 defined( 'ABSPATH' ) || exit;
 
-/**
- * @return Closure|string
- */
-function flxcm_gql_view() {
+function flxcm_gql_view(): Closure {
 	return flx_gql_any_cap( 'view_woocommerce_reports', 'manage_woocommerce' );
 }
 
-/**
- * @return Closure|string
- */
-function flxcm_gql_approve() {
+function flxcm_gql_approve(): Closure {
 	return flx_gql_any_cap( 'edit_shop_orders', 'manage_woocommerce' );
 }
 
@@ -35,7 +29,7 @@ function flxcm_gql_throw( $result ) {
 		return $result;
 	}
 	$data   = $result->get_error_data();
-	$status = is_array( $data ) && isset( $data['status'] ) ? (int) $data['status'] : 0;
+	$status = is_array( $data ) && isset( $data['status'] ) ? FLXCM_Val::int($data['status']) : 0;
 	if ( 404 === $status ) {
 		$code = 'NOT_FOUND';
 	} elseif ( 409 === $status ) {
@@ -63,11 +57,7 @@ function flxcm_gql_tag( string $tag ): void {
  * @param string $name GraphQL type name.
  */
 function flxcm_gql_has_type( string $name ): bool {
-	if ( ! class_exists( 'WPGraphQL' ) || ! method_exists( 'WPGraphQL', 'get_type_registry' ) ) {
-		return false;
-	}
-	$reg = WPGraphQL::get_type_registry();
-	return is_object( $reg ) && method_exists( $reg, 'get_type' ) && (bool) $reg->get_type( $name );
+	return flxcm_gql_type_exists( $name );
 }
 
 /**
@@ -76,14 +66,14 @@ function flxcm_gql_has_type( string $name ): bool {
  * @throws FLXGQL_Error On refusal.
  */
 function flxcm_gql_account( array $act ): array {
-	$code = (string) $act['code'];
+	$code = FLXCM_Val::str($act['code']);
 	if ( 'OK' !== $code ) {
-		throw new FLXGQL_Error( $code, (string) $act['notice'] );
+		throw new FLXGQL_Error( $code, FLXCM_Val::str($act['notice']) );
 	}
 	return array(
 		'subscription' => $act['subscription'],
-		'notice'       => (string) $act['notice'],
-		'payUrl'       => '' !== (string) $act['redirect'] ? (string) $act['redirect'] : null,
+		'notice'       => FLXCM_Val::str($act['notice']),
+		'payUrl'       => '' !== FLXCM_Val::str($act['redirect']) ? FLXCM_Val::str($act['redirect']) : null,
 	);
 }
 
@@ -450,14 +440,15 @@ flx_gql_type(
 				'type'        => '[FlxCommerceAddress!]!',
 				'description' => __( 'Billing and shipping on the latest order.', 'flx-commerce' ),
 				'resolve'     => static function ( $row ) {
-					$src  = FLXCM_Customers::get( (int) ( $row['id'] ?? 0 ) );
+				$row = FLXCM_Val::map( $row );
+					$src  = FLXCM_Customers::get( FLXCM_Val::int(( $row['id'] ?? 0 )) );
 					$prof = is_array( $src ) ? FLXCM_Customer_Service::profile( $src ) : array( 'billing' => '', 'shipping' => '' );
 					$out  = array();
-					if ( '' !== (string) $prof['billing'] ) {
-						$out[] = array( 'kind' => 'billing', 'text' => (string) $prof['billing'] );
+					if ( '' !== FLXCM_Val::str($prof['billing']) ) {
+						$out[] = array( 'kind' => 'billing', 'text' => FLXCM_Val::str($prof['billing']) );
 					}
-					if ( '' !== (string) $prof['shipping'] ) {
-						$out[] = array( 'kind' => 'shipping', 'text' => (string) $prof['shipping'] );
+					if ( '' !== FLXCM_Val::str($prof['shipping']) ) {
+						$out[] = array( 'kind' => 'shipping', 'text' => FLXCM_Val::str($prof['shipping']) );
 					}
 					return $out;
 				},
@@ -492,11 +483,12 @@ flx_gql_type(
 				'type'        => 'Int!',
 				'description' => __( 'Orders that are not finished.', 'flx-commerce' ),
 				'resolve'     => static function ( $row ) {
-					$src = FLXCM_Customers::get( (int) ( $row['id'] ?? 0 ) );
+				$row = FLXCM_Val::map( $row );
+					$src = FLXCM_Customers::get( FLXCM_Val::int(( $row['id'] ?? 0 )) );
 					if ( ! is_array( $src ) ) {
 						return 0;
 					}
-					return (int) FLXCM_Customer_Service::profile( $src )['open'];
+					return FLXCM_Val::int(FLXCM_Customer_Service::profile( $src )['open']);
 				},
 			),
 			'orders'    => array(
@@ -511,19 +503,17 @@ flx_gql_type(
 				'type'        => '[FlxCommerceProductStat!]!',
 				'description' => __( 'Most bought products, up to five.', 'flx-commerce' ),
 				'resolve'     => static function ( $row ) {
-					$src = FLXCM_Customers::get( (int) ( $row['id'] ?? 0 ) );
+				$row = FLXCM_Val::map( $row );
+					$src = FLXCM_Customers::get( FLXCM_Val::int(( $row['id'] ?? 0 )) );
 					if ( ! is_array( $src ) ) {
 						return array();
 					}
 					$out = array();
 					foreach ( FLXCM_Customer_Service::profile( $src )['products'] as $p ) {
-						if ( ! is_array( $p ) ) {
-							continue;
-						}
 						$out[] = array(
-							'productId' => (int) ( $p['id'] ?? 0 ),
-							'name'      => (string) ( $p['name'] ?? '' ),
-							'quantity'  => (int) ( $p['qty'] ?? 0 ),
+							'productId' => FLXCM_Val::int(( $p['id'] ?? 0 )),
+							'name'      => FLXCM_Val::str(( $p['name'] ?? '' )),
+							'quantity'  => FLXCM_Val::int(( $p['qty'] ?? 0 )),
 							'total'     => flxcm_gql_money( $p['total'] ?? 0 ),
 						);
 					}
@@ -534,7 +524,8 @@ flx_gql_type(
 				'type'        => '[FlxCommerceOrder!]!',
 				'description' => __( 'Latest orders, up to ten.', 'flx-commerce' ),
 				'resolve'     => static function ( $row ) {
-					$src = FLXCM_Customers::get( (int) ( $row['id'] ?? 0 ) );
+				$row = FLXCM_Val::map( $row );
+					$src = FLXCM_Customers::get( FLXCM_Val::int(( $row['id'] ?? 0 )) );
 					if ( ! is_array( $src ) ) {
 						return array();
 					}
@@ -544,13 +535,13 @@ flx_gql_type(
 							continue;
 						}
 						$out[] = array(
-							'id'          => (string) $o->get_id(),
-							'number'      => (string) $o->get_order_number(),
-							'status'      => (string) $o->get_status(),
-							'statusLabel' => function_exists( 'flxcm_status_label' ) ? (string) flxcm_status_label( $o->get_status() ) : (string) $o->get_status(),
+							'id'          => FLXCM_Val::str($o->get_id()),
+							'number'      => FLXCM_Val::str($o->get_order_number()),
+							'status'      => FLXCM_Val::str($o->get_status()),
+							'statusLabel' => function_exists( 'flxcm_status_label' ) ? FLXCM_Val::str(flxcm_status_label( $o->get_status() )) : FLXCM_Val::str($o->get_status()),
 							'total'       => flxcm_gql_money( $o->get_total(), $o->get_currency() ),
 							'createdAt'   => $o->get_date_created() ? flxcm_gql_time( $o->get_date_created()->getTimestamp() ) : null,
-							'url'         => (string) $o->get_edit_order_url(),
+							'url'         => FLXCM_Val::str($o->get_edit_order_url()),
 							'paid'        => (bool) $o->is_paid(),
 						);
 					}
@@ -567,11 +558,13 @@ flx_gql_type(
 					),
 				),
 				'resolve'     => static function ( $row, $args ) {
-					$src = FLXCM_Customers::get( (int) ( $row['id'] ?? 0 ) );
+				$row = FLXCM_Val::map( $row );
+				$args = FLXCM_Val::map( $args );
+					$src = FLXCM_Customers::get( FLXCM_Val::int(( $row['id'] ?? 0 )) );
 					if ( ! is_array( $src ) ) {
 						return array();
 					}
-					$want = (string) ( $args['filter'] ?? 'all' );
+					$want = FLXCM_Val::str(( $args['filter'] ?? 'all' ));
 					$types = array();
 					if ( 'orders' === $want ) {
 						$types = array( 'order' );
@@ -582,20 +575,17 @@ flx_gql_type(
 					}
 					$out = array();
 					foreach ( array_slice( FLXCM_Customer_Service::profile( $src )['events'], 0, 50 ) as $e ) {
-						if ( ! is_array( $e ) ) {
-							continue;
-						}
-						$keep = ! $types || in_array( (string) $e['type'], $types, true ) || ( in_array( 'order_paid', $types, true ) && 'order' === $e['type'] && ! empty( $e['paid'] ) );
+						$keep = ! $types || in_array( FLXCM_Val::str($e['type']), $types, true ) || ( in_array( 'order_paid', $types, true ) && 'order' === $e['type'] && ! empty( $e['paid'] ) );
 						if ( ! $keep ) {
 							continue;
 						}
 						$out[] = array(
-							'type'  => (string) ( $e['type'] ?? '' ),
-							'at'    => flxcm_gql_time( (int) ( $e['ts'] ?? 0 ) ),
-							'label' => (string) ( $e['label'] ?? '' ),
-							'title' => (string) ( $e['title'] ?? '' ),
-							'text'  => (string) ( $e['text'] ?? '' ),
-							'url'   => (string) ( $e['url'] ?? '' ),
+							'type'  => FLXCM_Val::str(( $e['type'] ?? '' )),
+							'at'    => flxcm_gql_time( FLXCM_Val::int(( $e['ts'] ?? 0 )) ),
+							'label' => FLXCM_Val::str(( $e['label'] ?? '' )),
+							'title' => FLXCM_Val::str(( $e['title'] ?? '' )),
+							'text'  => FLXCM_Val::str(( $e['text'] ?? '' )),
+							'url'   => FLXCM_Val::str(( $e['url'] ?? '' )),
 							'paid'  => (bool) ( $e['paid'] ?? false ),
 						);
 					}
@@ -620,11 +610,13 @@ if ( flxcm_gql_has_type( 'FlxContact' ) ) {
 			'type'        => 'FlxContact',
 			'description' => __( 'The same person in Flux CRM. Empty when CRM has no match. CRM-only fields stay hidden.', 'flx-commerce' ),
 			'resolve'     => static function ( $row, $args, $context ) {
+				$row = FLXCM_Val::map( $row );
+				$args = FLXCM_Val::map( $args );
 				unset( $args );
 				if ( ! function_exists( 'flxcrm_contact_for' ) || ! is_object( $context ) || ! method_exists( $context, 'get_loader' ) ) {
 					return null;
 				}
-				$id = (int) flxcrm_contact_for( array( 'email' => (string) ( $row['email'] ?? '' ) ) );
+				$id = FLXCM_Val::int( flxcrm_contact_for( array( 'email' => FLXCM_Val::str( $row['email'] ?? '' ) ) ) );
 				if ( $id <= 0 ) {
 					return null;
 				}
@@ -1195,7 +1187,7 @@ flx_gql_type(
  * @return array{0:string,1:string}
  */
 function flxcm_gql_range( array $args ): array {
-	return FLXCM_Store_Service::range( (string) ( $args['preset'] ?? '' ), (string) ( $args['from'] ?? '' ), (string) ( $args['to'] ?? '' ) );
+	return FLXCM_Store_Service::range( FLXCM_Val::str(( $args['preset'] ?? '' )), FLXCM_Val::str(( $args['from'] ?? '' )), FLXCM_Val::str(( $args['to'] ?? '' )) );
 }
 
 $range_args = array(
@@ -1226,9 +1218,10 @@ flx_gql_query(
 			),
 		),
 		'resolve'     => static function ( $root, $args ) {
+			$args = FLXCM_Val::map( $args );
 			unset( $root );
 			flxcm_gql_tag( 'flx-commerce:summary' );
-			$days = (int) ( $args['days'] ?? 30 );
+			$days = FLXCM_Val::int(( $args['days'] ?? 30 ));
 			return FLXCM_Store_Service::summary_days( min( 90, max( 1, $days ) ) );
 		},
 	)
@@ -1261,12 +1254,13 @@ flx_gql_query(
 			)
 		),
 		'resolve'     => static function ( $root, $args ) {
+			$args = FLXCM_Val::map( $args );
 			unset( $root );
 			flxcm_gql_tag( 'flx-commerce:customers' );
 			return flx_gql_paginate(
 				$args,
-				static function ( $offset, $limit ) use ( $args ) {
-					return FLXCM_Customer_Service::page( $args, (int) $offset, (int) $limit );
+				static function ( int $offset, int $limit ) use ( $args ) {
+					return FLXCM_Customer_Service::page( $args, FLXCM_Val::int($offset), FLXCM_Val::int($limit) );
 				}
 			);
 		},
@@ -1286,12 +1280,13 @@ flx_gql_query(
 			),
 		),
 		'resolve'     => static function ( $root, $args ) {
+			$args = FLXCM_Val::map( $args );
 			unset( $root );
-			$row = FLXCM_Customers::get( (int) $args['id'] );
+			$row = FLXCM_Customers::get( FLXCM_Val::int($args['id']) );
 			if ( ! is_array( $row ) ) {
 				return null;
 			}
-			flxcm_gql_tag( 'flx-commerce:customer:' . (int) $row['id'] );
+			flxcm_gql_tag( 'flx-commerce:customer:' . FLXCM_Val::int($row['id']) );
 			return FLXCM_Customer_Service::map( $row );
 		},
 	)
@@ -1306,13 +1301,13 @@ flx_gql_query(
 		'resolve'     => static function () {
 			flxcm_gql_tag( 'flx-commerce:customers' );
 			$c = FLXCM_Customers::counts();
-			$built = (int) get_option( 'flxcm_customers_built' );
+			$built = FLXCM_Val::int(get_option( 'flxcm_customers_built' ));
 			return array(
-				'all'     => (int) $c['all'],
-				'repeat'  => (int) $c['repeat'],
-				'vip'     => (int) $c['vip'],
-				'lapsed'  => (int) $c['lapsed'],
-				'new'     => (int) $c['new'],
+				'all'     => FLXCM_Val::int($c['all']),
+				'repeat'  => FLXCM_Val::int($c['repeat']),
+				'vip'     => FLXCM_Val::int($c['vip']),
+				'lapsed'  => FLXCM_Val::int($c['lapsed']),
+				'new'     => FLXCM_Val::int($c['new']),
 				'spent'   => flxcm_gql_money( $c['spent'] ),
 				'ltv'     => flxcm_gql_money( $c['ltv'] ),
 				'built'   => $built > 0,
@@ -1330,12 +1325,13 @@ flx_gql_query(
 		'description' => __( 'Bank transfers waiting for approval.', 'flx-commerce' ),
 		'args'        => flx_gql_connection_args(),
 		'resolve'     => static function ( $root, $args ) {
+			$args = FLXCM_Val::map( $args );
 			unset( $root );
 			flxcm_gql_tag( 'flx-commerce:receipts' );
 			return flx_gql_paginate(
 				$args,
-				static function ( $offset, $limit ) {
-					return FLXCM_Receipt_Service::page( (int) $offset, (int) $limit );
+				static function ( int $offset, int $limit ) {
+					return FLXCM_Receipt_Service::page( FLXCM_Val::int($offset), FLXCM_Val::int($limit) );
 				}
 			);
 		},
@@ -1355,12 +1351,13 @@ flx_gql_query(
 			),
 		),
 		'resolve'     => static function ( $root, $args ) {
+			$args = FLXCM_Val::map( $args );
 			unset( $root );
 			flxcm_gql_tag( 'flx-commerce:receipts' );
 			if ( ! function_exists( 'wc_get_order' ) ) {
 				return null;
 			}
-			$order = wc_get_order( (int) $args['id'] );
+			$order = flxcm_order( $args['id'] );
 			if ( ! $order || FLXCM_Bank::ID !== $order->get_payment_method() ) {
 				return null;
 			}
@@ -1388,12 +1385,13 @@ flx_gql_query(
 			)
 		),
 		'resolve'     => static function ( $root, $args ) {
+			$args = FLXCM_Val::map( $args );
 			unset( $root );
 			flxcm_gql_tag( 'flx-commerce:subscriptions' );
 			return flx_gql_paginate(
 				$args,
-				static function ( $offset, $limit ) use ( $args ) {
-					return FLXCM_Subscription_Service::page( $args, (int) $offset, (int) $limit );
+				static function ( int $offset, int $limit ) use ( $args ) {
+					return FLXCM_Subscription_Service::page( $args, FLXCM_Val::int($offset), FLXCM_Val::int($limit) );
 				}
 			);
 		},
@@ -1413,12 +1411,13 @@ flx_gql_query(
 			),
 		),
 		'resolve'     => static function ( $root, $args ) {
+			$args = FLXCM_Val::map( $args );
 			unset( $root );
-			$row = FLXCM_Subscriptions::export( (int) $args['id'] );
+			$row = FLXCM_Subscriptions::export( FLXCM_Val::int($args['id']) );
 			if ( ! is_array( $row ) ) {
 				return null;
 			}
-			flxcm_gql_tag( 'flx-commerce:subscription:' . (int) $row['id'] );
+			flxcm_gql_tag( 'flx-commerce:subscription:' . FLXCM_Val::int($row['id']) );
 			return FLXCM_Subscription_Service::map( $row );
 		},
 	)
@@ -1445,6 +1444,7 @@ flx_gql_query(
 		'description' => __( 'Sales report totals for a preset or a from/to range.', 'flx-commerce' ),
 		'args'        => $range_args,
 		'resolve'     => static function ( $root, $args ) {
+			$args = FLXCM_Val::map( $args );
 			unset( $root );
 			flxcm_gql_tag( 'flx-commerce:summary' );
 			list( $from, $to ) = flxcm_gql_range( $args );
@@ -1463,10 +1463,10 @@ function flxcm_gql_report_page( string $key, array $args ): array {
 	list( $from, $to ) = flxcm_gql_range( $args );
 	return flx_gql_paginate(
 		$args,
-		static function ( $offset, $limit ) use ( $key, $from, $to ) {
+		static function ( int $offset, int $limit ) use ( $key, $from, $to ) {
 			$pack = FLXCM_Store_Service::summary_between( $from, $to, false );
-			$rows = isset( $pack[ $key ] ) && is_array( $pack[ $key ] ) ? $pack[ $key ] : array();
-			return FLXCM_Store_Service::slice( $rows, (int) $offset, (int) $limit );
+			$rows = FLXCM_Val::arr( $pack[ $key ] ?? array() );
+			return FLXCM_Store_Service::slice( $rows, FLXCM_Val::int($offset), FLXCM_Val::int($limit) );
 		}
 	);
 }
@@ -1479,6 +1479,7 @@ flx_gql_query(
 		'description' => __( 'Daily revenue. Pages of at most 50, so a year is several pages.', 'flx-commerce' ),
 		'args'        => flx_gql_connection_args( $range_args ),
 		'resolve'     => static function ( $root, $args ) {
+			$args = FLXCM_Val::map( $args );
 			unset( $root );
 			return flxcm_gql_report_page( 'series', $args );
 		},
@@ -1492,6 +1493,7 @@ flx_gql_query(
 		'description' => __( 'Products in the report.', 'flx-commerce' ),
 		'args'        => flx_gql_connection_args( $range_args ),
 		'resolve'     => static function ( $root, $args ) {
+			$args = FLXCM_Val::map( $args );
 			unset( $root );
 			return flxcm_gql_report_page( 'products', $args );
 		},
@@ -1505,6 +1507,7 @@ flx_gql_query(
 		'description' => __( 'Categories in the report.', 'flx-commerce' ),
 		'args'        => flx_gql_connection_args( $range_args ),
 		'resolve'     => static function ( $root, $args ) {
+			$args = FLXCM_Val::map( $args );
 			unset( $root );
 			return flxcm_gql_report_page( 'categories', $args );
 		},
@@ -1518,6 +1521,7 @@ flx_gql_query(
 		'description' => __( 'Payment methods in the report.', 'flx-commerce' ),
 		'args'        => flx_gql_connection_args( $range_args ),
 		'resolve'     => static function ( $root, $args ) {
+			$args = FLXCM_Val::map( $args );
 			unset( $root );
 			return flxcm_gql_report_page( 'methods', $args );
 		},
@@ -1584,8 +1588,9 @@ flx_gql_query(
 			),
 		),
 		'resolve'     => static function ( $root, $args ) {
+			$args = FLXCM_Val::map( $args );
 			unset( $root );
-			$offer = FLXCM_Cart_Service::offer( (int) $args['productId'] );
+			$offer = FLXCM_Cart_Service::offer( FLXCM_Val::int($args['productId']) );
 			if ( is_wp_error( $offer ) ) {
 				return null;
 			}
@@ -1617,7 +1622,8 @@ $acct_out = $sub_out + array(
  */
 function flxcm_gql_sub_change( string $do ): Closure {
 	return static function ( $input ) use ( $do ) {
-		$result = FLXCM_Subscription_Service::change( (int) ( $input['id'] ?? 0 ), $do );
+		$input  = FLXCM_Val::map( $input );
+		$result = FLXCM_Subscription_Service::change( FLXCM_Val::int(( $input['id'] ?? 0 )), $do );
 		return flxcm_gql_throw( $result );
 	};
 }
@@ -1640,10 +1646,11 @@ flx_gql_mutation(
 			),
 		),
 		'resolve'     => static function ( $input ) {
-			$result = FLXCM_Receipt_Service::approve( (int) ( $input['id'] ?? 0 ) );
+			$input = FLXCM_Val::map( $input );
+			$result = FLXCM_Receipt_Service::approve( FLXCM_Val::int(( $input['id'] ?? 0 )) );
 			$result = flxcm_gql_throw( $result );
-			$order  = function_exists( 'wc_get_order' ) ? wc_get_order( (int) ( $input['id'] ?? 0 ) ) : null;
-			return array( 'receipt' => FLXCM_Receipt_Service::map( $order ) );
+			$order  = flxcm_order( $input['id'] ?? 0 );
+			return array( 'receipt' => $order ? FLXCM_Receipt_Service::map( $order ) : null );
 		},
 	)
 );
@@ -1670,9 +1677,10 @@ flx_gql_mutation(
 			),
 		),
 		'resolve'     => static function ( $input ) {
-			$result = FLXCM_Customer_Service::save_note( (int) ( $input['id'] ?? 0 ), (string) ( $input['note'] ?? '' ), true );
+			$input = FLXCM_Val::map( $input );
+			$result = FLXCM_Customer_Service::save_note( FLXCM_Val::int(( $input['id'] ?? 0 )), FLXCM_Val::str(( $input['note'] ?? '' )), true );
 			flxcm_gql_throw( $result );
-			$row = FLXCM_Customers::get( (int) ( $input['id'] ?? 0 ) );
+			$row = FLXCM_Customers::get( FLXCM_Val::int(( $input['id'] ?? 0 )) );
 			return array( 'customer' => is_array( $row ) ? FLXCM_Customer_Service::map( $row ) : null );
 		},
 	)
@@ -1708,7 +1716,8 @@ flx_gql_mutation(
 			),
 		),
 		'resolve'     => static function ( $input ) {
-			$result = FLXCM_Customer_Service::rebuild_step( max( 1, (int) ( $input['page'] ?? 1 ) ) );
+			$input = FLXCM_Val::map( $input );
+			$result = FLXCM_Customer_Service::rebuild_step( max( 1, FLXCM_Val::int(( $input['page'] ?? 1 )) ) );
 			return flxcm_gql_throw( $result );
 		},
 	)
@@ -1813,6 +1822,7 @@ flx_gql_mutation(
 			),
 		),
 		'resolve'     => static function ( $input ) {
+			$input = FLXCM_Val::map( $input );
 			return array( 'settings' => FLXCM_Settings_Service::save( FLXCM_Settings_Service::from_input( $input ) ) );
 		},
 	)
@@ -1840,6 +1850,7 @@ flx_gql_mutation(
 			),
 		),
 		'resolve'     => static function ( $input ) {
+			$input = FLXCM_Val::map( $input );
 			return array( 'settings' => FLXCM_Settings_Service::bank_save( $input ) );
 		},
 	)
@@ -1871,7 +1882,8 @@ flx_gql_mutation(
 			),
 		),
 		'resolve'     => static function ( $input ) {
-			$result = FLXCM_Cart_Service::add( (int) ( $input['productId'] ?? 0 ), (string) ( $input['period'] ?? '' ) );
+			$input = FLXCM_Val::map( $input );
+			$result = FLXCM_Cart_Service::add( FLXCM_Val::int(( $input['productId'] ?? 0 )), FLXCM_Val::str(( $input['period'] ?? '' )) );
 			return flxcm_gql_throw( $result );
 		},
 	)
@@ -1882,7 +1894,8 @@ flx_gql_mutation(
  */
 function flxcm_gql_my_act( string $do ): Closure {
 	return static function ( $input ) use ( $do ) {
-		$act = FLXCM_Subscription_Service::account_act( (int) ( $input['id'] ?? 0 ), $do, get_current_user_id() );
+		$input = FLXCM_Val::map( $input );
+		$act = FLXCM_Subscription_Service::account_act( FLXCM_Val::int(( $input['id'] ?? 0 )), $do, get_current_user_id() );
 		return flxcm_gql_account( $act );
 	};
 }
@@ -1962,7 +1975,7 @@ if ( flxcm_gql_has_type( 'FlxCartItem' ) ) {
 			'cap'         => 'public',
 			'description' => __( 'Set when the line is a subscription. Empty for an ordinary product.', 'flx-commerce' ),
 			'resolve'     => static function ( $source ) {
-				return is_array( $source ) ? FLXCM_Cart_Service::line( $source ) : null;
+				return is_array( $source ) ? FLXCM_Cart_Service::line( FLXCM_Val::map( $source ) ) : null;
 			},
 		)
 	);
@@ -1992,9 +2005,9 @@ if ( flxcm_gql_has_type( 'FlxContact' ) ) {
 			'resolve'     => static function ( $contact ) {
 				$email = '';
 				if ( is_object( $contact ) && isset( $contact->email ) ) {
-					$email = (string) $contact->email;
+					$email = FLXCM_Val::str($contact->email);
 				} elseif ( is_object( $contact ) && isset( $contact->contact ) && is_object( $contact->contact ) && isset( $contact->contact->email ) ) {
-					$email = (string) $contact->contact->email;
+					$email = FLXCM_Val::str($contact->contact->email);
 				}
 				if ( '' === $email ) {
 					return null;
@@ -2012,7 +2025,7 @@ if ( flxcm_gql_has_type( 'FlxContact' ) ) {
  */
 add_filter(
 	'flxcrm_gql_can_see_contact',
-	static function ( $ok, $contact, $user_id ) {
+	static function ( bool $ok, $contact, int $user_id ) {
 		if ( $ok ) {
 			return true;
 		}
@@ -2020,11 +2033,11 @@ add_filter(
 		if ( ! is_object( $record ) || ! isset( $record->email ) ) {
 			return (bool) $ok;
 		}
-		$uid = (int) $user_id;
+		$uid = FLXCM_Val::int($user_id);
 		if ( ! user_can( $uid, 'view_woocommerce_reports' ) && ! user_can( $uid, 'manage_woocommerce' ) ) {
 			return false;
 		}
-		$email = (string) $record->email;
+		$email = FLXCM_Val::str($record->email);
 		if ( '' === $email ) {
 			return false;
 		}

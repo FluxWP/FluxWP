@@ -29,14 +29,15 @@ final class FLXCM_Cart_Service {
 	 * @param mixed $product   Product, when the store has one.
 	 * @param mixed $cart_item Cart item.
 	 */
-	public static function quantity_editable( $editable, $product = null, $cart_item = null ) {
-		if ( is_array( $cart_item ) && ! empty( $cart_item['flxcm_sub']['period'] ) ) {
+	public static function quantity_editable( $editable, $product = null, $cart_item = null ): bool {
+		$sub = FLXCM_Val::map( is_array( $cart_item ) ? ( $cart_item['flxcm_sub'] ?? null ) : null );
+		if ( '' !== FLXCM_Val::str( $sub['period'] ?? '' ) ) {
 			return false;
 		}
 		if ( $product instanceof WC_Product && class_exists( 'FLXCM_Sub_Product' ) && FLXCM_Sub_Product::is_sub( $product ) ) {
 			return false;
 		}
-		return $editable;
+		return (bool) $editable;
 	}
 
 	/**
@@ -46,7 +47,8 @@ final class FLXCM_Cart_Service {
 	 */
 	public static function kind( $kind, $wc = null, $store = null ): string {
 		unset( $store );
-		if ( is_array( $wc ) && ! empty( $wc['flxcm_sub']['period'] ) ) {
+		$sub = FLXCM_Val::map( is_array( $wc ) ? ( $wc['flxcm_sub'] ?? null ) : null );
+		if ( '' !== FLXCM_Val::str( $sub['period'] ?? '' ) ) {
 			return 'subscription';
 		}
 		return is_string( $kind ) && '' !== $kind ? $kind : 'product';
@@ -66,7 +68,7 @@ final class FLXCM_Cart_Service {
 			return new WP_Error( 'flxcm_missing', __( 'This product is not a subscription.', 'flx-commerce' ), array( 'status' => 404 ) );
 		}
 		$prices = FLXCM_Sub_Product::prices_of( $product );
-		$cur    = $product->get_currency();
+		$cur    = function_exists( 'get_woocommerce_currency' ) ? get_woocommerce_currency() : '';
 		return array(
 			'productId' => $product->get_id(),
 			'name'      => $product->get_name(),
@@ -100,8 +102,8 @@ final class FLXCM_Cart_Service {
 		if ( is_wp_error( $added ) ) {
 			return $added;
 		}
-		$cart = isset( $added['cart'] ) && is_array( $added['cart'] ) ? $added['cart'] : null;
-		$key  = (string) ( $added['itemKey'] ?? '' );
+		$cart = flxcm_added_cart( $added );
+		$key  = flxcm_added_key( $added );
 		$cart = self::clamp_quantity( $cart, $key, $product_id );
 		return array(
 			'cart'    => $cart,
@@ -114,18 +116,14 @@ final class FLXCM_Cart_Service {
 	 * The Store API stand-in does not run that hook, so the GraphQL cart is scanned too.
 	 */
 	private static function drop_existing( int $product_id ): void {
-		if ( class_exists( 'FLXCM_Sub_Product' ) && function_exists( 'WC' ) && WC()->cart instanceof WC_Cart ) {
+		if ( class_exists( 'FLXCM_Sub_Product' ) && flxcm_wc_cart() ) {
 			FLXCM_Sub_Product::validate( true, $product_id );
 		}
-		$cart = FLXGQL_Cart::get();
-		if ( ! is_array( $cart ) || empty( $cart['items'] ) || ! is_array( $cart['items'] ) ) {
-			return;
-		}
-		foreach ( $cart['items'] as $item ) {
-			if ( ! is_array( $item ) || (int) ( $item['productId'] ?? 0 ) !== $product_id ) {
+		foreach ( flxcm_cart_lines() as $item ) {
+			if ( FLXCM_Val::int( $item['productId'] ?? 0 ) !== $product_id ) {
 				continue;
 			}
-			FLXGQL_Cart::remove_item( (string) ( $item['key'] ?? '' ) );
+			FLXGQL_Cart::remove_item( FLXCM_Val::str( $item['key'] ?? '' ) );
 		}
 	}
 
@@ -140,14 +138,14 @@ final class FLXCM_Cart_Service {
 			return $cart;
 		}
 		foreach ( $cart['items'] as $item ) {
-			if ( ! is_array( $item ) || (int) ( $item['quantity'] ?? 0 ) <= 1 ) {
+			if ( ! is_array( $item ) || FLXCM_Val::int(( $item['quantity'] ?? 0 )) <= 1 ) {
 				continue;
 			}
-			$same = ( '' !== $key && (string) ( $item['key'] ?? '' ) === $key ) || (int) ( $item['productId'] ?? 0 ) === $product_id;
+			$same = ( '' !== $key && FLXCM_Val::str(( $item['key'] ?? '' )) === $key ) || FLXCM_Val::int(( $item['productId'] ?? 0 )) === $product_id;
 			if ( ! $same ) {
 				continue;
 			}
-			$fixed = FLXGQL_Cart::update_item( (string) ( $item['key'] ?? '' ), 1 );
+			$fixed = FLXGQL_Cart::update_item( FLXCM_Val::str(( $item['key'] ?? '' )), 1 );
 			if ( is_array( $fixed ) ) {
 				$cart = $fixed;
 			}
@@ -161,10 +159,11 @@ final class FLXCM_Cart_Service {
 	 * @return array{enabled:bool,threshold:array{amount:float,currency:string,formatted:string},remaining:array{amount:float,currency:string,formatted:string},reached:bool}
 	 */
 	public static function free_shipping(): array {
-		$min = class_exists( 'FLXCM_Checkout' ) ? (float) FLXCM_Checkout::free_threshold() : 0.0;
+		$min = class_exists( 'FLXCM_Checkout' ) ? FLXCM_Val::float(FLXCM_Checkout::free_threshold()) : 0.0;
 		$sub = 0.0;
-		if ( function_exists( 'WC' ) && WC()->cart ) {
-			$sub = (float) WC()->cart->get_displayed_subtotal() - (float) WC()->cart->get_discount_total();
+		$cart = flxcm_wc_cart();
+		if ( $cart ) {
+			$sub = FLXCM_Val::float( $cart->get_displayed_subtotal() ) - FLXCM_Val::float( $cart->get_discount_total() );
 		}
 		$left = max( 0, $min - $sub );
 		return array(
@@ -185,18 +184,19 @@ final class FLXCM_Cart_Service {
 		if ( ! class_exists( 'FLXGQL_Cart' ) ) {
 			return null;
 		}
-		$wc = FLXGQL_Cart::wc_item( (string) ( $source['key'] ?? '' ) );
-		if ( ! is_array( $wc ) || empty( $wc['flxcm_sub']['period'] ) ) {
+		$wc = FLXGQL_Cart::wc_item( FLXCM_Val::str(( $source['key'] ?? '' )) );
+		$sub = FLXCM_Val::map( is_array( $wc ) ? ( $wc['flxcm_sub'] ?? null ) : null );
+		if ( '' === FLXCM_Val::str( $sub['period'] ?? '' ) ) {
 			return null;
 		}
-		$period = sanitize_key( (string) $wc['flxcm_sub']['period'] );
+		$period = sanitize_key( FLXCM_Val::str( $sub['period'] ?? '' ) );
 		$amount = null;
 		if ( function_exists( 'wc_get_product' ) && ! empty( $wc['product_id'] ) ) {
-			$product = wc_get_product( (int) $wc['product_id'] );
+			$product = wc_get_product( FLXCM_Val::int($wc['product_id']) );
 			if ( $product instanceof WC_Product ) {
 				$prices = FLXCM_Sub_Product::prices_of( $product );
 				if ( isset( $prices[ $period ] ) ) {
-					$amount = flxcm_gql_money( $prices[ $period ], $product->get_currency() );
+					$amount = flxcm_gql_money( $prices[ $period ], function_exists( 'get_woocommerce_currency' ) ? get_woocommerce_currency() : '' );
 				}
 			}
 		}

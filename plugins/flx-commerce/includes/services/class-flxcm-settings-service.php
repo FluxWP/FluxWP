@@ -30,19 +30,19 @@ final class FLXCM_Settings_Service {
 			}
 			$out[ $k ] = empty( $in[ $k ] ) ? 0 : 1;
 		}
-		$valid = function_exists( 'wc_get_order_statuses' ) ? array_map( static function ( $k ) { return substr( (string) $k, 3 ); }, array_keys( wc_get_order_statuses() ) ) : array( 'processing', 'completed', 'on-hold', 'pending', 'cancelled', 'refunded', 'failed' );
-		$paid  = array_values( array_intersect( array_map( 'sanitize_key', (array) ( $in['paid_statuses'] ?? array() ) ), $valid ) );
+		$valid = function_exists( 'wc_get_order_statuses' ) ? array_map( static function ( $k ) { return substr( FLXCM_Val::str($k), 3 ); }, array_keys( wc_get_order_statuses() ) ) : array( 'processing', 'completed', 'on-hold', 'pending', 'cancelled', 'refunded', 'failed' );
+		$paid  = array_values( array_intersect( array_map( static function ( $status ) { return sanitize_key( FLXCM_Val::str( $status ) ); }, FLXCM_Val::arr( $in['paid_statuses'] ?? array() ) ), $valid ) );
 		$out['paid_statuses']      = $paid ? $paid : array( 'processing', 'completed' );
-		$out['low_stock']          = min( 9999, absint( $in['low_stock'] ?? 3 ) );
-		$out['free_ship_amount']   = max( 0, function_exists( 'wc_format_decimal' ) ? (float) wc_format_decimal( $in['free_ship_amount'] ?? 0 ) : (float) ( $in['free_ship_amount'] ?? 0 ) );
-		$out['receipt_max_mb']     = max( 1, min( 20, absint( $in['receipt_max_mb'] ?? 8 ) ) );
-		$out['receipt_notify']     = sanitize_email( (string) ( $in['receipt_notify'] ?? '' ) );
-		$out['cancel_after_days']  = min( 60, absint( $in['cancel_after_days'] ?? 0 ) );
-		$out['sub_renew_days']     = min( 60, absint( $in['sub_renew_days'] ?? 7 ) );
-		$out['sub_grace_days']     = min( 60, absint( $in['sub_grace_days'] ?? 3 ) );
-		$out['hidden_redirect']    = esc_url_raw( trim( (string) ( $in['hidden_redirect'] ?? '' ) ) );
-		$out['feed_brand']         = sanitize_text_field( (string) ( $in['feed_brand'] ?? '' ) );
-		$out['notify_admin_phone'] = preg_replace( '/[^0-9+ ]/', '', (string) ( $in['notify_admin_phone'] ?? '' ) );
+		$out['low_stock']          = min( 9999, absint( FLXCM_Val::str( $in['low_stock'] ?? 3 ) ) );
+		$out['free_ship_amount']   = max( 0, function_exists( 'wc_format_decimal' ) ? FLXCM_Val::float( wc_format_decimal( FLXCM_Val::str( $in['free_ship_amount'] ?? 0 ) ) ) : FLXCM_Val::float( $in['free_ship_amount'] ?? 0 ) );
+		$out['receipt_max_mb']     = max( 1, min( 20, absint( FLXCM_Val::str( $in['receipt_max_mb'] ?? 8 ) ) ) );
+		$out['receipt_notify']     = sanitize_email( FLXCM_Val::str(( $in['receipt_notify'] ?? '' )) );
+		$out['cancel_after_days']  = min( 60, absint( FLXCM_Val::str( $in['cancel_after_days'] ?? 0 ) ) );
+		$out['sub_renew_days']     = min( 60, absint( FLXCM_Val::str( $in['sub_renew_days'] ?? 7 ) ) );
+		$out['sub_grace_days']     = min( 60, absint( FLXCM_Val::str( $in['sub_grace_days'] ?? 3 ) ) );
+		$out['hidden_redirect']    = esc_url_raw( trim( FLXCM_Val::str(( $in['hidden_redirect'] ?? '' )) ) );
+		$out['feed_brand']         = sanitize_text_field( FLXCM_Val::str(( $in['feed_brand'] ?? '' )) );
+		$out['notify_admin_phone'] = preg_replace( '/[^0-9+ ]/', '', FLXCM_Val::str(( $in['notify_admin_phone'] ?? '' )) );
 		return $out;
 	}
 
@@ -75,8 +75,8 @@ final class FLXCM_Settings_Service {
 			$out[ $to ] = empty( $in[ $from ] ) ? 0 : 1;
 		}
 		if ( array_key_exists( 'paidStatuses', $in ) && is_array( $in['paidStatuses'] ) ) {
-			$valid = function_exists( 'wc_get_order_statuses' ) ? array_map( static function ( $k ) { return substr( (string) $k, 3 ); }, array_keys( wc_get_order_statuses() ) ) : array( 'processing', 'completed', 'on-hold', 'pending', 'cancelled', 'refunded', 'failed' );
-			$paid  = array_values( array_intersect( array_map( 'sanitize_key', $in['paidStatuses'] ), $valid ) );
+			$valid = function_exists( 'wc_get_order_statuses' ) ? array_map( static function ( $k ) { return substr( FLXCM_Val::str($k), 3 ); }, array_keys( wc_get_order_statuses() ) ) : array( 'processing', 'completed', 'on-hold', 'pending', 'cancelled', 'refunded', 'failed' );
+			$paid  = array_values( array_intersect( array_map( static function ( $status ) { return sanitize_key( FLXCM_Val::str( $status ) ); }, FLXCM_Val::arr( $in['paidStatuses'] ) ), $valid ) );
 			$out['paid_statuses'] = $paid ? $paid : array( 'processing', 'completed' );
 		}
 		$ints = array(
@@ -90,22 +90,22 @@ final class FLXCM_Settings_Service {
 			if ( ! array_key_exists( $from, $in ) || null === $in[ $from ] ) {
 				continue;
 			}
-			$out[ $spec[0] ] = min( $spec[2], max( $spec[1], absint( $in[ $from ] ) ) );
+			$out[ $spec[0] ] = min( $spec[2], max( $spec[1], absint( FLXCM_Val::str( $in[ $from ] ) ) ) );
 		}
 		if ( array_key_exists( 'freeShipAmount', $in ) && null !== $in['freeShipAmount'] ) {
-			$out['free_ship_amount'] = max( 0, (float) $in['freeShipAmount'] );
+			$out['free_ship_amount'] = max( 0, FLXCM_Val::float($in['freeShipAmount']) );
 		}
 		if ( array_key_exists( 'receiptNotify', $in ) && null !== $in['receiptNotify'] ) {
-			$out['receipt_notify'] = sanitize_email( (string) $in['receiptNotify'] );
+			$out['receipt_notify'] = sanitize_email( FLXCM_Val::str($in['receiptNotify']) );
 		}
 		if ( array_key_exists( 'hiddenRedirect', $in ) && null !== $in['hiddenRedirect'] ) {
-			$out['hidden_redirect'] = esc_url_raw( trim( (string) $in['hiddenRedirect'] ) );
+			$out['hidden_redirect'] = esc_url_raw( trim( FLXCM_Val::str($in['hiddenRedirect']) ) );
 		}
 		if ( array_key_exists( 'feedBrand', $in ) && null !== $in['feedBrand'] ) {
-			$out['feed_brand'] = sanitize_text_field( (string) $in['feedBrand'] );
+			$out['feed_brand'] = sanitize_text_field( FLXCM_Val::str($in['feedBrand']) );
 		}
 		if ( array_key_exists( 'notifyAdminPhone', $in ) && null !== $in['notifyAdminPhone'] ) {
-			$out['notify_admin_phone'] = (string) preg_replace( '/[^0-9+ ]/', '', (string) $in['notifyAdminPhone'] );
+			$out['notify_admin_phone'] = FLXCM_Val::str( preg_replace( '/[^0-9+ ]/', '', FLXCM_Val::str( $in['notifyAdminPhone'] ) ) );
 		}
 		return $out;
 	}
@@ -130,34 +130,34 @@ final class FLXCM_Settings_Service {
 	 * @return array<string,mixed>
 	 */
 	public static function read(): array {
-		$s    = flxcm_settings();
+		$s    = FLXCM_Val::map( flxcm_settings() );
 		$feed = (bool) $s['feed'];
-		$min  = class_exists( 'FLXCM_Checkout' ) ? (float) FLXCM_Checkout::free_threshold() : 0.0;
+		$min  = class_exists( 'FLXCM_Checkout' ) ? FLXCM_Val::float(FLXCM_Checkout::free_threshold()) : 0.0;
 		return array(
-			'paidStatuses'      => array_values( array_map( 'strval', (array) $s['paid_statuses'] ) ),
+			'paidStatuses'      => array_values( array_map( static function ( $status ) { return FLXCM_Val::str( $status ); }, FLXCM_Val::arr( $s['paid_statuses'] ) ) ),
 			'excludeDonations'  => (bool) $s['exclude_donations'],
-			'lowStock'          => (int) $s['low_stock'],
+			'lowStock'          => FLXCM_Val::int($s['low_stock']),
 			'hideCompany'       => (bool) $s['hide_company'],
 			'hideAddress2'      => (bool) $s['hide_address_2'],
 			'virtualNoAddress'  => (bool) $s['virtual_no_address'],
 			'orderNotes'        => (bool) $s['order_notes'],
 			'stickyPay'         => (bool) $s['sticky_pay'],
 			'freeShipBar'       => (bool) $s['free_ship_bar'],
-			'freeShipAmount'    => (float) $s['free_ship_amount'],
+			'freeShipAmount'    => FLXCM_Val::float($s['free_ship_amount']),
 			'freeShipThreshold' => flxcm_gql_money( $min ),
-			'receiptMaxMb'      => (int) $s['receipt_max_mb'],
-			'receiptNotify'     => (string) $s['receipt_notify'],
+			'receiptMaxMb'      => FLXCM_Val::int($s['receipt_max_mb']),
+			'receiptNotify'     => FLXCM_Val::str($s['receipt_notify']),
 			'deferToDonate'     => (bool) $s['defer_to_donate'],
-			'cancelAfterDays'   => (int) $s['cancel_after_days'],
+			'cancelAfterDays'   => FLXCM_Val::int($s['cancel_after_days']),
 			'feed'              => $feed,
-			'feedBrand'         => (string) $s['feed_brand'],
+			'feedBrand'         => FLXCM_Val::str($s['feed_brand']),
 			'feedUrl'           => ( $feed && class_exists( 'FLXCM_Feed' ) ) ? FLXCM_Feed::url() : '',
 			'notifyCustomerWa'  => (bool) $s['notify_customer_wa'],
-			'notifyAdminPhone'  => (string) $s['notify_admin_phone'],
+			'notifyAdminPhone'  => FLXCM_Val::str($s['notify_admin_phone']),
 			'notifyAdminOrder'  => (bool) $s['notify_admin_order'],
-			'subRenewDays'      => (int) $s['sub_renew_days'],
-			'subGraceDays'      => (int) $s['sub_grace_days'],
-			'hiddenRedirect'    => (string) $s['hidden_redirect'],
+			'subRenewDays'      => FLXCM_Val::int($s['sub_renew_days']),
+			'subGraceDays'      => FLXCM_Val::int($s['sub_grace_days']),
+			'hiddenRedirect'    => FLXCM_Val::str($s['hidden_redirect']),
 			'orderStatuses'     => self::order_statuses(),
 			'cardProviders'     => self::card_provider_labels(),
 			'whatsappReady'     => class_exists( 'FLXCM_Notify' ) && FLXCM_Notify::whatsapp_ready(),
@@ -178,13 +178,13 @@ final class FLXCM_Settings_Service {
 		$skip = array( 'pending', 'cancelled', 'failed', 'checkout-draft', 'refunded' );
 		$out  = array();
 		foreach ( wc_get_order_statuses() as $key => $label ) {
-			$slug = substr( (string) $key, 3 );
+			$slug = substr( FLXCM_Val::str($key), 3 );
 			if ( in_array( $slug, $skip, true ) ) {
 				continue;
 			}
 			$out[] = array(
 				'slug'  => $slug,
-				'label' => (string) $label,
+				'label' => FLXCM_Val::str($label),
 			);
 		}
 		return $out;
@@ -201,8 +201,9 @@ final class FLXCM_Settings_Service {
 		}
 		$labels = array();
 		foreach ( FLXCM_Sub_Cards::providers() as $provider ) {
-			if ( is_array( $provider ) && isset( $provider['label'] ) ) {
-				$labels[] = (string) $provider['label'];
+			$provider = FLXCM_Val::map( $provider );
+			if ( isset( $provider['label'] ) ) {
+				$labels[] = FLXCM_Val::str($provider['label']);
 			}
 		}
 		return $labels;
@@ -216,13 +217,13 @@ final class FLXCM_Settings_Service {
 		$o = is_array( $o ) ? $o : array();
 		return array(
 			'enabled'   => 'yes' === ( $o['enabled'] ?? 'no' ),
-			'title'     => (string) ( $o['title'] ?? '' ),
-			'description' => (string) ( $o['description'] ?? '' ),
-			'holder'    => (string) ( $o['holder'] ?? '' ),
-			'iban'      => (string) ( $o['iban'] ?? '' ),
-			'bank'      => (string) ( $o['bank'] ?? '' ),
-			'refFormat' => (string) ( $o['ref_format'] ?? '' ),
-			'refPrefix' => (string) ( $o['ref_prefix'] ?? 'SP' ),
+			'title'     => FLXCM_Val::str(( $o['title'] ?? '' )),
+			'description' => FLXCM_Val::str(( $o['description'] ?? '' )),
+			'holder'    => FLXCM_Val::str(( $o['holder'] ?? '' )),
+			'iban'      => FLXCM_Val::str(( $o['iban'] ?? '' )),
+			'bank'      => FLXCM_Val::str(( $o['bank'] ?? '' )),
+			'refFormat' => FLXCM_Val::str(( $o['ref_format'] ?? '' )),
+			'refPrefix' => FLXCM_Val::str(( $o['ref_prefix'] ?? 'SP' )),
 		);
 	}
 
@@ -244,7 +245,7 @@ final class FLXCM_Settings_Service {
 		);
 		foreach ( $str as $from => $to ) {
 			if ( array_key_exists( $from, $in ) && null !== $in[ $from ] ) {
-				$cur[ $to ] = sanitize_text_field( (string) $in[ $from ] );
+				$cur[ $to ] = sanitize_text_field( FLXCM_Val::str($in[ $from ]) );
 			}
 		}
 		if ( array_key_exists( 'enabled', $in ) && null !== $in['enabled'] ) {

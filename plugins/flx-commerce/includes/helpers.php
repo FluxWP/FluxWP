@@ -9,8 +9,165 @@ defined( 'ABSPATH' ) || exit;
 
 const FLXCM_OPTION = 'flxcm_settings';
 
+/**
+ * Scalar coercion for rows and GraphQL arguments. A direct cast of mixed fails PHPStan.
+ */
+final class FLXCM_Val {
+
+	/**
+	 * @param mixed $v Value.
+	 */
+	public static function str( $v, string $default = '' ): string {
+		return is_scalar( $v ) ? (string) $v : $default;
+	}
+
+	/**
+	 * @param mixed $v Value.
+	 */
+	public static function int( $v, int $default = 0 ): int {
+		return is_numeric( $v ) ? (int) $v : $default;
+	}
+
+	/**
+	 * @param mixed $v Value.
+	 */
+	public static function float( $v ): float {
+		return is_numeric( $v ) ? (float) $v : 0.0;
+	}
+
+	/**
+	 * @param mixed $v Value.
+	 * @return array<mixed>
+	 */
+	public static function arr( $v ): array {
+		return is_array( $v ) ? $v : array();
+	}
+
+	/**
+	 * String-keyed map.
+	 *
+	 * @param mixed $v Value.
+	 * @return array<string,mixed>
+	 */
+	public static function map( $v ): array {
+		if ( ! is_array( $v ) ) {
+			return array();
+		}
+		$out = array();
+		foreach ( $v as $key => $item ) {
+			$out[ is_string( $key ) ? $key : (string) $key ] = $item;
+		}
+		return $out;
+	}
+}
+
+/**
+ * Shop order, never a refund. wc_get_order() is typed as either.
+ * No native return type: the class is absent when WooCommerce is not loaded.
+ *
+ * @param mixed $id Order id.
+ * @return WC_Order|null
+ */
+function flxcm_order( $id ) {
+	if ( ! function_exists( 'wc_get_order' ) ) {
+		return null;
+	}
+	$order = wc_get_order( FLXCM_Val::int( $id ) );
+	if ( ! $order instanceof WC_Order || $order instanceof WC_Order_Refund ) {
+		return null;
+	}
+	return $order;
+}
+
 function flxcm_wc_ready() {
 	return class_exists( 'WooCommerce' ) && function_exists( 'wc_get_orders' );
+}
+
+/**
+ * WooCommerce cart when the real plugin is loaded. Kept here so the service
+ * can stay free of checks the two analysers disagree on.
+ *
+ * @return WC_Cart|null
+ */
+function flxcm_wc_cart() {
+	if ( ! function_exists( 'WC' ) ) {
+		return null;
+	}
+	$wc = WC();
+	if ( ! is_object( $wc ) || ! isset( $wc->cart ) || ! $wc->cart instanceof WC_Cart ) {
+		return null;
+	}
+	return $wc->cart;
+}
+
+/**
+ * Cart payload from FLXGQL_Cart::add_item(). The stub always has these keys;
+ * the Store API stand-in may not.
+ *
+ * @param mixed $added Bridge result.
+ * @return array<string,mixed>|null
+ */
+function flxcm_added_cart( $added ) {
+	if ( ! is_array( $added ) || ! isset( $added['cart'] ) || ! is_array( $added['cart'] ) ) {
+		return null;
+	}
+	return FLXCM_Val::map( $added['cart'] );
+}
+
+/**
+ * @param mixed $added Bridge result.
+ */
+function flxcm_added_key( $added ): string {
+	if ( ! is_array( $added ) || ! isset( $added['itemKey'] ) ) {
+		return '';
+	}
+	return FLXCM_Val::str( $added['itemKey'] );
+}
+
+/**
+ * Lines from the GraphQL cart. Empty when the bridge is absent.
+ *
+ * @return list<array<string,mixed>>
+ */
+function flxcm_cart_lines(): array {
+	if ( ! class_exists( 'FLXGQL_Cart' ) ) {
+		return array();
+	}
+	$cart = FLXGQL_Cart::get();
+	if ( ! is_array( $cart ) || empty( $cart['items'] ) || ! is_array( $cart['items'] ) ) {
+		return array();
+	}
+	$out = array();
+	foreach ( $cart['items'] as $item ) {
+		if ( is_array( $item ) ) {
+			$out[] = FLXCM_Val::map( $item );
+		}
+	}
+	return $out;
+}
+
+/**
+ * Message when a renewal did not return a shop order.
+ *
+ * @param mixed $result create_renewal() result.
+ */
+function flxcm_renewal_error( $result ): string {
+	if ( $result instanceof WP_Error ) {
+		return $result->get_error_message();
+	}
+	return __( 'Something went wrong. Please try again.', 'flx-commerce' );
+}
+
+/**
+ * Whether WPGraphQL has registered the type. The registry class is absent
+ * until that plugin loads.
+ */
+function flxcm_gql_type_exists( string $name ): bool {
+	if ( ! class_exists( 'WPGraphQL' ) ) {
+		return false;
+	}
+	$reg = WPGraphQL::get_type_registry();
+	return $reg instanceof WPGraphQL\Registry\TypeRegistry && (bool) $reg->get_type( $name );
 }
 
 /**
@@ -93,6 +250,9 @@ function flxcm_defaults() {
 	);
 }
 
+/**
+ * @return array<string,mixed>
+ */
 function flxcm_settings() {
 	return array_merge( flxcm_defaults(), (array) get_option( FLXCM_OPTION, array() ) );
 }

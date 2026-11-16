@@ -11,7 +11,7 @@ defined( 'ABSPATH' ) || exit;
 final class FLXCM_Receipt_Service {
 
 	/**
-	 * @return array{orders:array<int,mixed>,total:int,pages:int}
+	 * @return array{orders:array<mixed>,total:int,pages:int}
 	 */
 	public static function query( int $page, int $per ): array {
 		if ( ! function_exists( 'wc_get_orders' ) ) {
@@ -29,13 +29,18 @@ final class FLXCM_Receipt_Service {
 				'paginate'       => true,
 			)
 		);
-		$orders = is_object( $q ) ? (array) $q->orders : (array) $q;
-		$total  = is_object( $q ) ? (int) $q->total : count( $orders );
-		$pages  = is_object( $q ) ? (int) $q->max_num_pages : 1;
+		$orders = array();
+		if ( is_object( $q ) && isset( $q->orders ) ) {
+			$orders = FLXCM_Val::arr( $q->orders );
+		} elseif ( is_array( $q ) ) {
+			$orders = $q;
+		}
+		$total = is_object( $q ) && isset( $q->total ) ? FLXCM_Val::int( $q->total ) : count( $orders );
+		$pages = is_object( $q ) && isset( $q->max_num_pages ) ? FLXCM_Val::int( $q->max_num_pages ) : 1;
 		return array(
 			'orders' => $orders,
 			'total'  => $total,
-			'pages'  => max( 1, $pages ),
+			'pages'  => FLXCM_Val::int( max( 1, $pages ) ),
 		);
 	}
 
@@ -51,9 +56,10 @@ final class FLXCM_Receipt_Service {
 		}
 		$files = FLXCM_Receipts::of( $order );
 		$list  = array();
-		foreach ( $files as $i => $file ) {
+		foreach ( FLXCM_Val::arr( $files ) as $i => $file ) {
+			$file = FLXCM_Val::map( $file );
 			$list[] = array(
-				'name' => (string) ( $file['name'] ?? '' ),
+				'name' => FLXCM_Val::str(( $file['name'] ?? '' )),
 				'url'  => FLXCM_Receipts::url( $order, $i, true ),
 			);
 		}
@@ -61,8 +67,8 @@ final class FLXCM_Receipt_Service {
 			'id'           => $order->get_id(),
 			'number'       => $order->get_order_number(),
 			'name'         => trim( $order->get_formatted_billing_full_name() ),
-			'email'        => (string) $order->get_billing_email(),
-			'phone'        => (string) $order->get_billing_phone(),
+			'email'        => FLXCM_Val::str($order->get_billing_email()),
+			'phone'        => FLXCM_Val::str($order->get_billing_phone()),
 			'total_label'  => flxcm_money( $order->get_total(), $order->get_currency() ),
 			'reference'    => FLXCM_Bank::reference( $order ),
 			'status'       => $order->get_status(),
@@ -80,31 +86,30 @@ final class FLXCM_Receipt_Service {
 	 *
 	 * @return array<string,mixed>|null
 	 */
-	public static function map( $order ): ?array {
+	public static function map( WC_Order $order ): ?array {
 		$row = self::rest_row( $order );
-		if ( ! $row || ! $order instanceof WC_Order ) {
+		if ( ! $row ) {
 			return null;
 		}
 		$open  = current_user_can( 'edit_shop_orders' );
 		$files = array();
-		foreach ( $row['files'] as $f ) {
-			if ( is_array( $f ) ) {
-				$files[] = array(
-					'name' => (string) ( $f['name'] ?? '' ),
-					'url'  => $open ? (string) ( $f['url'] ?? '' ) : '',
-				);
-			}
+		foreach ( FLXCM_Val::arr( $row['files'] ?? array() ) as $f ) {
+			$f = FLXCM_Val::map( $f );
+			$files[] = array(
+				'name' => FLXCM_Val::str(( $f['name'] ?? '' )),
+				'url'  => $open ? FLXCM_Val::str(( $f['url'] ?? '' )) : '',
+			);
 		}
 		return array(
-			'id'          => (string) (int) $row['id'],
-			'number'      => (string) $row['number'],
-			'name'        => (string) $row['name'],
-			'email'       => (string) $row['email'],
-			'phone'       => (string) $row['phone'],
+			'id'          => FLXCM_Val::str( FLXCM_Val::int( $row['id'] ) ),
+			'number'      => FLXCM_Val::str($row['number']),
+			'name'        => FLXCM_Val::str($row['name']),
+			'email'       => FLXCM_Val::str($row['email']),
+			'phone'       => FLXCM_Val::str($row['phone']),
 			'total'       => flxcm_gql_money( $order->get_total(), $order->get_currency() ),
-			'reference'   => (string) $row['reference'],
-			'status'      => (string) $row['status'],
-			'statusLabel' => (string) $row['status_label'],
+			'reference'   => FLXCM_Val::str($row['reference']),
+			'status'      => FLXCM_Val::str($row['status']),
+			'statusLabel' => FLXCM_Val::str($row['status_label']),
 			'files'       => $files,
 			'createdAt'   => $order->get_date_created() ? flxcm_gql_time( $order->get_date_created()->getTimestamp() ) : null,
 		);
@@ -133,7 +138,7 @@ final class FLXCM_Receipt_Service {
 	 * @return array<string,mixed>|WP_Error
 	 */
 	public static function rest_one( int $id ) {
-		$order = function_exists( 'wc_get_order' ) ? wc_get_order( $id ) : null;
+		$order = flxcm_order( $id );
 		if ( ! $order || FLXCM_Bank::ID !== $order->get_payment_method() ) {
 			return new WP_Error( 'flxcm_missing', __( 'Order not found.', 'flx-commerce' ), array( 'status' => 404 ) );
 		}
@@ -148,14 +153,14 @@ final class FLXCM_Receipt_Service {
 		if ( ! function_exists( 'wc_get_order' ) ) {
 			return new WP_Error( 'flxcm_missing', __( 'Order not found.', 'flx-commerce' ), array( 'status' => 404 ) );
 		}
-		$order = wc_get_order( $id );
+		$order = flxcm_order( $id );
 		if ( ! $order ) {
 			return new WP_Error( 'flxcm_missing', __( 'Order not found.', 'flx-commerce' ), array( 'status' => 404 ) );
 		}
 		if ( ! FLXCM_Bank::mark_paid( $order ) ) {
 			return new WP_Error( 'flxcm_state', __( 'This order is not waiting for approval.', 'flx-commerce' ), array( 'status' => 409 ) );
 		}
-		$order = wc_get_order( $order->get_id() );
+		$order = flxcm_order( $order->get_id() );
 		flxcm_gql_purge( array( 'flx-commerce:receipts', 'flx-commerce:summary' ) );
 		return array(
 			'ok'    => true,
@@ -171,6 +176,9 @@ final class FLXCM_Receipt_Service {
 		$q    = self::query( 1, max( 1, $need ) );
 		$all  = array();
 		foreach ( $q['orders'] as $order ) {
+			if ( ! $order instanceof WC_Order ) {
+				continue;
+			}
 			$row = self::map( $order );
 			if ( $row ) {
 				$all[] = $row;
@@ -178,7 +186,7 @@ final class FLXCM_Receipt_Service {
 		}
 		return array(
 			'items' => array_slice( $all, $offset, $limit ),
-			'total' => (int) $q['total'],
+			'total' => FLXCM_Val::int($q['total']),
 		);
 	}
 }

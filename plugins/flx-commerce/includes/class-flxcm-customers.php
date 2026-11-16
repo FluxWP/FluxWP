@@ -322,7 +322,8 @@ final class FLXCM_Customers {
 	/**
 	 * Liste sorgusu.
 	 *
-	 * @param array $a { s, orderby (last_at|total|orders|name), order, paged, per_page, segment (all|repeat|vip|lapsed|new) }
+	 * @param array<string,mixed> $a { s, orderby (last_at|total|orders|name), order, paged, per_page, segment (all|repeat|vip|lapsed|new) }
+	 * @return array{rows:list<array<string,mixed>>,total:int,pages:int,paged:int}
 	 */
 	public static function query( array $a ) {
 		global $wpdb;
@@ -373,7 +374,11 @@ final class FLXCM_Customers {
 		);
 	}
 
-	/** Tek müşteri satırı. */
+	/**
+	 * Tek müşteri satırı.
+	 *
+	 * @return array<string,mixed>|null
+	 */
 	public static function get( $id ) {
 		global $wpdb;
 		$t   = FLXCM_Install::table();
@@ -385,7 +390,11 @@ final class FLXCM_Customers {
 		return $row ? $row : null;
 	}
 
-	/** E-postaya göre müşteri satırı. */
+	/**
+	 * E-postaya göre müşteri satırı.
+	 *
+	 * @return array<string,mixed>|null
+	 */
 	public static function by_email( $email ) {
 		global $wpdb;
 		$email = strtolower( trim( (string) $email ) );
@@ -442,6 +451,9 @@ final class FLXCM_Customers {
 		return (float) apply_filters( 'flxcm_vip_threshold', max( 1, $v ) );
 	}
 
+	/**
+	 * @return array{all:int,repeat:int,vip:int,lapsed:int,new:int,spent:float,ltv:float}
+	 */
 	public static function counts() {
 		global $wpdb;
 		$t = FLXCM_Install::table();

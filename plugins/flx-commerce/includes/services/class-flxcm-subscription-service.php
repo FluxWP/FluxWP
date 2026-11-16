@@ -21,30 +21,30 @@ final class FLXCM_Subscription_Service {
 	public static function map( array $row ): array {
 		return array_merge(
 			array(
-				'id'             => (string) (int) $row['id'],
-				'status'         => (string) $row['status'],
+				'id'             => FLXCM_Val::str( FLXCM_Val::int( $row['id'] ) ),
+				'status'         => FLXCM_Val::str($row['status']),
 				'hasAccess'      => (bool) $row['has_access'],
 				'autoRenew'      => (bool) $row['auto_renew'],
-				'userId'         => (int) $row['user_id'],
-				'email'          => (string) $row['email'],
-				'name'           => (string) $row['name'],
-				'productId'      => (int) $row['product_id'],
-				'productName'    => (string) $row['product_name'],
-				'period'         => (string) $row['period'],
-				'amount'         => flxcm_gql_money( $row['amount'], (string) $row['currency'] ),
-				'paymentMethod'  => (string) $row['payment_method'],
-				'parentOrderId'  => (int) $row['parent_order_id'],
-				'lastOrderId'    => (int) $row['last_order_id'],
-				'renewalOrderId' => (int) $row['renewal_order_id'],
-				'renewals'       => (int) $row['renewals'],
-				'startedAt'      => flxcm_gql_time( (int) $row['started_at'] ),
-				'periodEnd'      => flxcm_gql_time( (int) $row['period_end'] ),
-				'cancelledAt'    => flxcm_gql_time( (int) $row['cancelled_at'] ),
-				'endedAt'        => flxcm_gql_time( (int) $row['ended_at'] ),
-				'endReason'      => (string) $row['end_reason'],
-				'cardLabel'      => (string) $row['card'],
+				'userId'         => FLXCM_Val::int($row['user_id']),
+				'email'          => FLXCM_Val::str($row['email']),
+				'name'           => FLXCM_Val::str($row['name']),
+				'productId'      => FLXCM_Val::int($row['product_id']),
+				'productName'    => FLXCM_Val::str($row['product_name']),
+				'period'         => FLXCM_Val::str($row['period']),
+				'amount'         => flxcm_gql_money( $row['amount'], FLXCM_Val::str($row['currency']) ),
+				'paymentMethod'  => FLXCM_Val::str($row['payment_method']),
+				'parentOrderId'  => FLXCM_Val::int($row['parent_order_id']),
+				'lastOrderId'    => FLXCM_Val::int($row['last_order_id']),
+				'renewalOrderId' => FLXCM_Val::int($row['renewal_order_id']),
+				'renewals'       => FLXCM_Val::int($row['renewals']),
+				'startedAt'      => flxcm_gql_time( FLXCM_Val::int($row['started_at']) ),
+				'periodEnd'      => flxcm_gql_time( FLXCM_Val::int($row['period_end']) ),
+				'cancelledAt'    => flxcm_gql_time( FLXCM_Val::int($row['cancelled_at']) ),
+				'endedAt'        => flxcm_gql_time( FLXCM_Val::int($row['ended_at']) ),
+				'endReason'      => FLXCM_Val::str($row['end_reason']),
+				'cardLabel'      => FLXCM_Val::str($row['card']),
 				'autoCharge'     => (bool) $row['auto_charge'],
-				'createdAt'      => flxcm_gql_time( (int) $row['created_at'] ),
+				'createdAt'      => flxcm_gql_time( FLXCM_Val::int($row['created_at']) ),
 			),
 			self::account_fields( $row )
 		);
@@ -58,14 +58,14 @@ final class FLXCM_Subscription_Service {
 	 * @return array{productUrl:string,nextChargeAt:array{iso:string,timestamp:int,label:string,relative:string}|null,renewNow:bool,payUrl:string,lastOrderUrl:string}
 	 */
 	private static function account_fields( array $row ): array {
-		$product_id = (int) $row['product_id'];
+		$product_id = FLXCM_Val::int($row['product_id']);
 		$product    = '';
 		if ( $product_id > 0 && 'publish' === get_post_status( $product_id ) ) {
 			$link = get_permalink( $product_id );
 			$product = is_string( $link ) ? $link : '';
 		}
-		$end    = (int) $row['period_end'];
-		$status = (string) $row['status'];
+		$end    = FLXCM_Val::int($row['period_end']);
+		$status = FLXCM_Val::str($row['status']);
 		$live   = in_array( $status, array( 'active', 'past_due' ), true );
 		$renew  = null;
 		$due    = false;
@@ -73,24 +73,24 @@ final class FLXCM_Subscription_Service {
 		$next   = null;
 		$last   = '';
 		if ( function_exists( 'wc_get_order' ) ) {
-			$order = (int) $row['renewal_order_id'] ? wc_get_order( (int) $row['renewal_order_id'] ) : null;
+			$order = FLXCM_Val::int($row['renewal_order_id']) ? flxcm_order( $row['renewal_order_id'] ) : null;
 			$due   = $order instanceof WC_Order && $order->has_status( array( 'pending', 'on-hold', 'failed' ) ) && ! $order->is_paid();
 			if ( $due && class_exists( 'FLXCM_Sub_Cards' ) && FLXCM_Sub_Cards::auto_pending( $order ) ) {
-				$next = flxcm_gql_time( max( $end, (int) $order->get_meta( '_flxcm_charge_next' ) ) );
+				$next = flxcm_gql_time( max( $end, FLXCM_Val::int($order->get_meta( '_flxcm_charge_next' )) ) );
 			} elseif ( $due ) {
-				$pay = (string) FLXCM_Subscriptions::pay_url( $order );
+				$pay = FLXCM_Val::str(FLXCM_Subscriptions::pay_url( $order ));
 			}
-			$last_id = (int) $row['last_order_id'];
-			$last_o  = $last_id ? wc_get_order( $last_id ) : null;
+			$last_id = FLXCM_Val::int($row['last_order_id']);
+			$last_o  = $last_id ? flxcm_order( $last_id ) : null;
 			if ( $last_o instanceof WC_Order ) {
 				if ( current_user_can( 'edit_shop_orders' ) ) {
-					$last = (string) $last_o->get_edit_order_url();
+					$last = FLXCM_Val::str($last_o->get_edit_order_url());
 				} elseif ( self::viewer_owns( $row ) ) {
-					$last = (string) $last_o->get_view_order_url();
+					$last = FLXCM_Val::str($last_o->get_view_order_url());
 				}
 			}
 		}
-		$window = $end - max( 0, (int) flxcm_setting( 'sub_renew_days' ) ) * DAY_IN_SECONDS;
+		$window = $end - max( 0, FLXCM_Val::int(flxcm_setting( 'sub_renew_days' )) ) * DAY_IN_SECONDS;
 		return array(
 			'productUrl'   => $product,
 			'nextChargeAt' => $next,
@@ -108,11 +108,11 @@ final class FLXCM_Subscription_Service {
 		if ( $uid <= 0 ) {
 			return false;
 		}
-		if ( (int) $row['user_id'] === $uid ) {
+		if ( FLXCM_Val::int($row['user_id']) === $uid ) {
 			return true;
 		}
 		$user = get_userdata( $uid );
-		return $user instanceof WP_User && '' !== $user->user_email && strtolower( $user->user_email ) === strtolower( (string) $row['email'] );
+		return $user instanceof WP_User && '' !== $user->user_email && strtolower( $user->user_email ) === strtolower( FLXCM_Val::str($row['email']) );
 	}
 
 	/**
@@ -128,11 +128,11 @@ final class FLXCM_Subscription_Service {
 	 * @return array{items:array<int,array<string,mixed>>,total:int}
 	 */
 	public static function page( array $args, int $offset, int $limit ): array {
-		$status = sanitize_key( (string) ( $args['status'] ?? '' ) );
+		$status = sanitize_key( FLXCM_Val::str(( $args['status'] ?? '' )) );
 		$q      = FLXCM_Subscriptions::query(
 			array(
 				'status'   => '' !== $status && 'all' !== $status ? $status : '',
-				's'        => sanitize_text_field( (string) ( $args['search'] ?? '' ) ),
+				's'        => sanitize_text_field( FLXCM_Val::str(( $args['search'] ?? '' )) ),
 				'per_page' => $limit,
 				'offset'   => $offset,
 			)
@@ -146,7 +146,7 @@ final class FLXCM_Subscription_Service {
 		}
 		return array(
 			'items' => $items,
-			'total' => (int) $q['total'],
+			'total' => FLXCM_Val::int($q['total']),
 		);
 	}
 
@@ -158,35 +158,38 @@ final class FLXCM_Subscription_Service {
 	public static function counts(): array {
 		if ( ! function_exists( 'get_woocommerce_currency' ) ) {
 			global $wpdb;
-			$t   = FLXCM_Subscriptions::table();
+			$t   = FLXCM_Val::str( FLXCM_Subscriptions::table() );
 			$out = array_fill_keys( FLXCM_Subscriptions::STATUSES, 0 );
-			foreach ( (array) $wpdb->get_results( "SELECT status, COUNT(*) n FROM {$t} GROUP BY status", ARRAY_A ) as $r ) { // phpcs:ignore WordPress.DB
-				if ( isset( $out[ $r['status'] ] ) ) {
-					$out[ $r['status'] ] = (int) $r['n'];
+			$rows = ( $wpdb instanceof wpdb ) ? $wpdb->get_results( "SELECT status, COUNT(*) n FROM {$t} GROUP BY status", ARRAY_A ) : array(); // phpcs:ignore WordPress.DB
+			foreach ( FLXCM_Val::arr( $rows ) as $r ) {
+				$r = FLXCM_Val::map( $r );
+				$status = FLXCM_Val::str( $r['status'] ?? '' );
+				if ( isset( $out[ $status ] ) ) {
+					$out[ $status ] = FLXCM_Val::int( $r['n'] ?? 0 );
 				}
 			}
 			$all = array_sum( $out );
 			return array(
 				'all'       => $all,
-				'pending'   => (int) $out['pending'],
-				'active'    => (int) $out['active'],
-				'pastDue'   => (int) $out['past_due'],
-				'cancelled' => (int) $out['cancelled'],
-				'expired'   => (int) $out['expired'],
+				'pending'   => FLXCM_Val::int($out['pending']),
+				'active'    => FLXCM_Val::int($out['active']),
+				'pastDue'   => FLXCM_Val::int($out['past_due']),
+				'cancelled' => FLXCM_Val::int($out['cancelled']),
+				'expired'   => FLXCM_Val::int($out['expired']),
 				'mrr'       => flxcm_gql_money( 0 ),
 				'due'       => 0,
 			);
 		}
 		$c = FLXCM_Subscriptions::counts();
 		return array(
-			'all'       => (int) $c['all'],
-			'pending'   => (int) $c['pending'],
-			'active'    => (int) $c['active'],
-			'pastDue'   => (int) $c['past_due'],
-			'cancelled' => (int) $c['cancelled'],
-			'expired'   => (int) $c['expired'],
+			'all'       => FLXCM_Val::int($c['all']),
+			'pending'   => FLXCM_Val::int($c['pending']),
+			'active'    => FLXCM_Val::int($c['active']),
+			'pastDue'   => FLXCM_Val::int($c['past_due']),
+			'cancelled' => FLXCM_Val::int($c['cancelled']),
+			'expired'   => FLXCM_Val::int($c['expired']),
 			'mrr'       => flxcm_gql_money( $c['mrr'] ),
-			'due'       => (int) $c['due'],
+			'due'       => FLXCM_Val::int($c['due']),
 		);
 	}
 
@@ -264,7 +267,7 @@ final class FLXCM_Subscription_Service {
 			return new WP_Error( 'flxcm_input', __( 'Unknown action.', 'flx-commerce' ), array( 'status' => 400 ) );
 		}
 		$after = FLXCM_Subscriptions::export( $id );
-		return array( 'subscription' => is_array( $after ) ? self::map( $after ) : self::map( $before ) );
+		return array( 'subscription' => is_array( $after ) ? self::map( FLXCM_Val::map( $after ) ) : self::map( FLXCM_Val::map( $before ) ) );
 	}
 
 	/**
@@ -277,9 +280,9 @@ final class FLXCM_Subscription_Service {
 			return array();
 		}
 		$out = array();
-		foreach ( flxcm_user_subscriptions( $user_id ) as $row ) {
+		foreach ( FLXCM_Val::arr( flxcm_user_subscriptions( $user_id ) ) as $row ) {
 			if ( is_array( $row ) ) {
-				$out[] = self::map( $row );
+				$out[] = self::map( FLXCM_Val::map( $row ) );
 			}
 		}
 		return $out;
@@ -296,11 +299,11 @@ final class FLXCM_Subscription_Service {
 		if ( ! is_array( $row ) ) {
 			return false;
 		}
-		if ( (int) $row['user_id'] === $user_id ) {
+		if ( FLXCM_Val::int($row['user_id']) === $user_id ) {
 			return true;
 		}
 		$user = get_userdata( $user_id );
-		return $user instanceof WP_User && '' !== $user->user_email && strtolower( $user->user_email ) === strtolower( (string) $row['email'] );
+		return $user instanceof WP_User && '' !== $user->user_email && strtolower( $user->user_email ) === strtolower( FLXCM_Val::str($row['email']) );
 	}
 
 	/**
@@ -323,7 +326,7 @@ final class FLXCM_Subscription_Service {
 		}
 		$allowed = false;
 		foreach ( self::mine( $user_id ) as $mine ) {
-			if ( (string) $mine['id'] === (string) $id ) {
+			if ( FLXCM_Val::str($mine['id']) === FLXCM_Val::str($id) ) {
 				$allowed = true;
 			}
 		}
@@ -338,19 +341,19 @@ final class FLXCM_Subscription_Service {
 			$notice = 'expired' === $sub['status']
 				? __( 'Your subscription has ended.', 'flx-commerce' )
 				/* translators: %s: date */
-				: sprintf( __( 'Renewal is off. Your subscription stays valid until %s.', 'flx-commerce' ), flxcm_date( $sub['period_end'] ) );
+				: sprintf( __( 'Renewal is off. Your subscription stays valid until %s.', 'flx-commerce' ), FLXCM_Val::str( flxcm_date( FLXCM_Val::str( $sub['period_end'] ?? '' ) ) ) );
 			return array(
 				'code'         => 'OK',
 				'type'         => 'success',
 				'notice'       => $notice,
 				'redirect'     => '',
-				'subscription' => self::map( $sub ),
+				'subscription' => self::map( FLXCM_Val::map( $sub ) ),
 			);
 		}
 		if ( 'forget_card' === $do ) {
 			FLXCM_Sub_Cards::forget( $id );
 			$row = FLXCM_Subscriptions::row( $id );
-			$o   = ( flxcm_wc_ready() && $row && (int) $row['renewal_order_id'] ) ? wc_get_order( (int) $row['renewal_order_id'] ) : null;
+			$o   = ( flxcm_wc_ready() && $row && FLXCM_Val::int($row['renewal_order_id']) ) ? flxcm_order( $row['renewal_order_id'] ) : null;
 			if ( $o && ! $o->is_paid() && $o->get_meta( '_flxcm_card_auto' ) ) {
 				$o->delete_meta_data( '_flxcm_card_auto' );
 				$o->add_order_note( __( 'The customer removed the stored card; this renewal is paid with the payment link.', 'flx-commerce' ) );
@@ -362,7 +365,7 @@ final class FLXCM_Subscription_Service {
 				'type'         => 'success',
 				'notice'       => __( 'The card was removed. We will e-mail you a payment link before each renewal.', 'flx-commerce' ),
 				'redirect'     => '',
-				'subscription' => is_array( $export ) ? self::map( $export ) : null,
+				'subscription' => self::map( FLXCM_Val::map( $export ) ),
 			);
 		}
 		if ( 'renew' === $do ) {
@@ -376,11 +379,11 @@ final class FLXCM_Subscription_Service {
 					'code'         => 'OK',
 					'type'         => 'success',
 					'notice'       => '',
-					'redirect'     => FLXCM_Subscriptions::pay_url( $o ),
-					'subscription' => is_array( $export ) ? self::map( $export ) : null,
+					'redirect'     => FLXCM_Val::str( FLXCM_Subscriptions::pay_url( $o ) ),
+					'subscription' => self::map( FLXCM_Val::map( $export ) ),
 				);
 			}
-			return $fail( 'CONFLICT', is_wp_error( $o ) ? $o->get_error_message() : __( 'Something went wrong. Please try again.', 'flx-commerce' ) );
+			return $fail( 'CONFLICT', flxcm_renewal_error( $o ) );
 		}
 		if ( 'resume' === $do ) {
 			$sub = FLXCM_Subscriptions::resume( $id );
@@ -392,7 +395,7 @@ final class FLXCM_Subscription_Service {
 				'type'         => 'success',
 				'notice'       => __( 'Renewal is back on.', 'flx-commerce' ),
 				'redirect'     => '',
-				'subscription' => self::map( $sub ),
+				'subscription' => self::map( FLXCM_Val::map( $sub ) ),
 			);
 		}
 		return $fail( 'INVALID_INPUT', __( 'Unknown action.', 'flx-commerce' ) );
@@ -405,7 +408,7 @@ final class FLXCM_Subscription_Service {
 	 */
 	public static function renewals_run(): array {
 		FLXCM_Subscriptions::tick();
-		$at = (int) get_option( FLXCM_Subscriptions::HEARTBEAT, 0 );
+		$at = FLXCM_Val::int(get_option( FLXCM_Subscriptions::HEARTBEAT, 0 ));
 		flxcm_gql_purge( array( 'flx-commerce:subscriptions' ) );
 		return array(
 			'ran' => $at > 0,
@@ -417,7 +420,7 @@ final class FLXCM_Subscription_Service {
 	 * @return array{ran:bool,at:array{iso:string,timestamp:int,label:string,relative:string}|null}
 	 */
 	public static function renewal_status(): array {
-		$at = (int) get_option( FLXCM_Subscriptions::HEARTBEAT, 0 );
+		$at = FLXCM_Val::int(get_option( FLXCM_Subscriptions::HEARTBEAT, 0 ));
 		return array(
 			'ran' => $at > 0,
 			'at'  => $at > 0 ? flxcm_gql_time( $at ) : null,
