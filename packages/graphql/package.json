@@ -1,7 +1,6 @@
 {
   "name": "@fluxwp/graphql",
   "version": "0.3.2",
-  XX
   "private": true,
   "type": "module",
   "main": "src/index.ts",

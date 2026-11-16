@@ -3,6 +3,195 @@
 import type { FlxOperation } from '../operation';
 import type * as T from './types';
 
+/** mutation FlxAnalyticsAggregate (flx-analytics, plugins/flx-analytics/graphql/operations/FlxAnalyticsAggregate.graphql) */
+export const FlxAnalyticsAggregate: FlxOperation<T.FlxAnalyticsAggregateMutation, T.FlxAnalyticsAggregateMutationVariables> = {
+  id: '38c66e1db90a0c7f811614cb50f0f82d679a21ff93ebe0cbf3b021b9e5a9f7af',
+  name: 'FlxAnalyticsAggregate',
+  kind: 'mutation',
+  plugin: 'flx-analytics',
+  document: "mutation FlxAnalyticsAggregate($input: FlxAnalyticsAggregateInput!) {\n  flxAnalyticsAggregate(input: $input) {\n    processed\n    settings {\n      ...FlxAnalyticsSettingsFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAnalyticsSettingsFields on FlxAnalyticsSettings {\n  on\n  method\n  methodNow\n  dnt\n  excludeRoles\n  excludeIps\n  evOutbound\n  evDownload\n  evContact\n  evSearch\n  evDonation\n  postsColumn\n  adminbar\n  keepMonths\n  tmHub\n  hubEndpoint\n  lastAggregated {\n    iso\n    label\n    relative\n  }\n  pendingBytes\n  pendingLabel\n  fastPossible\n  fastTest\n  roles {\n    value\n    label\n  }\n  funnels {\n    id\n    name\n    steps {\n      label\n      type\n      value\n    }\n  }\n  funnelDefaults {\n    id\n    name\n    steps {\n      label\n      type\n      value\n    }\n  }\n  funnelEvents {\n    value\n    label\n  }\n  funnelPages {\n    path\n    title\n  }\n  koko {\n    days\n    first\n    last\n  }\n  exportUrl\n}",
+};
+
+/** query FlxAnalyticsBreakdown (flx-analytics, plugins/flx-analytics/graphql/operations/FlxAnalyticsBreakdown.graphql) */
+export const FlxAnalyticsBreakdown: FlxOperation<T.FlxAnalyticsBreakdownQuery, T.FlxAnalyticsBreakdownQueryVariables> = {
+  id: '6b342c00c7aeb5b90485e9ccd04debf159a54692615072abccfe121ae406f79f',
+  name: 'FlxAnalyticsBreakdown',
+  kind: 'query',
+  plugin: 'flx-analytics',
+  document: "query FlxAnalyticsBreakdown($filter: FlxAnalyticsFilterInput, $kind: FlxAnalyticsDimKind!, $first: Int, $after: String) {\n  flxAnalyticsBreakdown(\n    filter: $filter\n    kind: $kind\n    first: $first\n    after: $after\n  ) {\n    totalCount\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    nodes {\n      ...FlxAnalyticsDimRowFields\n    }\n  }\n}\n\nfragment FlxAnalyticsDimRowFields on FlxAnalyticsDimRow {\n  value\n  label\n  visitors\n  pageviews\n}",
+};
+
+/** query FlxAnalyticsConfig (flx-analytics, plugins/flx-analytics/graphql/operations/FlxAnalyticsConfig.graphql) */
+export const FlxAnalyticsConfig: FlxOperation<T.FlxAnalyticsConfigQuery, T.FlxAnalyticsConfigQueryVariables> = {
+  id: '2023f590bac125700fa5bcb6ddf42b8117fe52804f68d372a0a34d4868d6832b',
+  name: 'FlxAnalyticsConfig',
+  kind: 'query',
+  plugin: 'flx-analytics',
+  document: "query FlxAnalyticsConfig {\n  flxAnalyticsConfig {\n    presets {\n      value\n      label\n    }\n    kinds {\n      value\n      label\n    }\n    events {\n      value\n      label\n    }\n    channels {\n      value\n      label\n    }\n    segments {\n      value\n      label\n    }\n    funnelBy {\n      value\n      label\n    }\n    goals {\n      value\n      label\n    }\n    defaultGoal\n    canManageRefs\n    canManage\n    ignoreBrowser\n    fastEndpoint\n    exportUrl\n    homeUrl\n    settingsUrl\n    funnelSettingsUrl\n    hasWorldMap\n  }\n}",
+};
+
+/** query FlxAnalyticsEvents (flx-analytics, plugins/flx-analytics/graphql/operations/FlxAnalyticsEvents.graphql) */
+export const FlxAnalyticsEvents: FlxOperation<T.FlxAnalyticsEventsQuery, T.FlxAnalyticsEventsQueryVariables> = {
+  id: '5576bd9bb02666b281e1c009983a7c270480a77cf90231fd8ba61016a7056037',
+  name: 'FlxAnalyticsEvents',
+  kind: 'query',
+  plugin: 'flx-analytics',
+  document: "query FlxAnalyticsEvents($filter: FlxAnalyticsFilterInput, $name: String, $first: Int, $after: String) {\n  flxAnalyticsEvents(filter: $filter, name: $name, first: $first, after: $after) {\n    totalCount\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    nodes {\n      ...FlxAnalyticsEventRowFields\n    }\n  }\n}\n\nfragment FlxAnalyticsEventRowFields on FlxAnalyticsEventRow {\n  name\n  label\n  param\n  hits\n  uniques\n  amount\n}",
+};
+
+/** mutation FlxAnalyticsFastTest (flx-analytics, plugins/flx-analytics/graphql/operations/FlxAnalyticsFastTest.graphql) */
+export const FlxAnalyticsFastTest: FlxOperation<T.FlxAnalyticsFastTestMutation, T.FlxAnalyticsFastTestMutationVariables> = {
+  id: '79d1dccd00bee3f2f3c4de1ed9fa6ff89fd2056b81518e5f7e92466bdbf3a388',
+  name: 'FlxAnalyticsFastTest',
+  kind: 'mutation',
+  plugin: 'flx-analytics',
+  document: "mutation FlxAnalyticsFastTest($input: FlxAnalyticsFastTestInput!) {\n  flxAnalyticsFastTest(input: $input) {\n    method\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxAnalyticsFunnel (flx-analytics, plugins/flx-analytics/graphql/operations/FlxAnalyticsFunnel.graphql) */
+export const FlxAnalyticsFunnel: FlxOperation<T.FlxAnalyticsFunnelQuery, T.FlxAnalyticsFunnelQueryVariables> = {
+  id: 'ea6bd1bf4b9cbda61bd0c6e6053256c45c01af2682b85d64981868aa0b5d82f8',
+  name: 'FlxAnalyticsFunnel',
+  kind: 'query',
+  plugin: 'flx-analytics',
+  document: "query FlxAnalyticsFunnel($filter: FlxAnalyticsFilterInput, $id: Int, $by: FlxAnalyticsFunnelBy) {\n  flxAnalyticsFunnel(filter: $filter, id: $id, by: $by) {\n    ...FlxAnalyticsFunnelFields\n  }\n}\n\nfragment FlxAnalyticsFunnelFields on FlxAnalyticsFunnel {\n  found\n  id\n  name\n  by\n  steps {\n    label\n    type\n    value\n    count\n    rate\n    drop\n  }\n  groups {\n    value\n    label\n    counts\n    rate\n  }\n  funnels {\n    id\n    name\n  }\n}",
+};
+
+/** query FlxAnalyticsJourneys (flx-analytics, plugins/flx-analytics/graphql/operations/FlxAnalyticsJourneys.graphql) */
+export const FlxAnalyticsJourneys: FlxOperation<T.FlxAnalyticsJourneysQuery, T.FlxAnalyticsJourneysQueryVariables> = {
+  id: '712f94387c03d252e5e19ad5cc11d4f20cc35fa4b778aba666cae6a27dff36a5',
+  name: 'FlxAnalyticsJourneys',
+  kind: 'query',
+  plugin: 'flx-analytics',
+  document: "query FlxAnalyticsJourneys($filter: FlxAnalyticsFilterInput, $options: FlxAnalyticsJourneysInput) {\n  flxAnalyticsJourneys(filter: $filter, options: $options) {\n    range {\n      ...FlxAnalyticsRangeFields\n    }\n    options {\n      steps\n      from\n      to\n      goal\n      group\n      top\n    }\n    goals {\n      value\n      label\n    }\n    summary {\n      sessions\n      multi\n      multiPct\n      multiChange\n      avgLen\n      avgLenChange\n      topEntry {\n        key\n        label\n        count\n        pct\n      }\n      topExit {\n        key\n        label\n        count\n        pct\n      }\n      goalRate\n      goalReached\n      goalChange\n    }\n    flow {\n      columns {\n        nodes {\n          key\n          label\n          path\n          ev\n          count\n          ends\n        }\n      }\n      links {\n        step\n        from\n        to\n        count\n      }\n    }\n    paths {\n      top\n      total\n      items {\n        sessions\n        reached\n        share\n        prev\n        change\n        rate\n        steps {\n          key\n          label\n          path\n          ev\n        }\n      }\n    }\n  }\n}\n\nfragment FlxAnalyticsRangeFields on FlxAnalyticsRange {\n  preset\n  start\n  end\n  label\n  days\n  prevStart\n  prevEnd\n}",
+};
+
+/** mutation FlxAnalyticsKokoImport (flx-analytics, plugins/flx-analytics/graphql/operations/FlxAnalyticsKokoImport.graphql) */
+export const FlxAnalyticsKokoImport: FlxOperation<T.FlxAnalyticsKokoImportMutation, T.FlxAnalyticsKokoImportMutationVariables> = {
+  id: 'e7a13b823796a603132470f9f248230c22cedfd4d2391e05e1a1a6626ecbd35a',
+  name: 'FlxAnalyticsKokoImport',
+  kind: 'mutation',
+  plugin: 'flx-analytics',
+  document: "mutation FlxAnalyticsKokoImport($input: FlxAnalyticsKokoImportInput!) {\n  flxAnalyticsKokoImport(input: $input) {\n    rows\n    settings {\n      ...FlxAnalyticsSettingsFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAnalyticsSettingsFields on FlxAnalyticsSettings {\n  on\n  method\n  methodNow\n  dnt\n  excludeRoles\n  excludeIps\n  evOutbound\n  evDownload\n  evContact\n  evSearch\n  evDonation\n  postsColumn\n  adminbar\n  keepMonths\n  tmHub\n  hubEndpoint\n  lastAggregated {\n    iso\n    label\n    relative\n  }\n  pendingBytes\n  pendingLabel\n  fastPossible\n  fastTest\n  roles {\n    value\n    label\n  }\n  funnels {\n    id\n    name\n    steps {\n      label\n      type\n      value\n    }\n  }\n  funnelDefaults {\n    id\n    name\n    steps {\n      label\n      type\n      value\n    }\n  }\n  funnelEvents {\n    value\n    label\n  }\n  funnelPages {\n    path\n    title\n  }\n  koko {\n    days\n    first\n    last\n  }\n  exportUrl\n}",
+};
+
+/** query FlxAnalyticsPage (flx-analytics, plugins/flx-analytics/graphql/operations/FlxAnalyticsPage.graphql) */
+export const FlxAnalyticsPage: FlxOperation<T.FlxAnalyticsPageQuery, T.FlxAnalyticsPageQueryVariables> = {
+  id: '8d1c4f7574619f7eb39e4b908cdd7ff3e11a3b13bc255f0e2b3f8efd83489839',
+  name: 'FlxAnalyticsPage',
+  kind: 'query',
+  plugin: 'flx-analytics',
+  document: "query FlxAnalyticsPage($filter: FlxAnalyticsFilterInput, $target: String!) {\n  flxAnalyticsPage(filter: $filter, target: $target) {\n    found\n    paths\n    visitors\n    pageviews\n    series {\n      date\n      visitors\n      pageviews\n    }\n  }\n}",
+};
+
+/** query FlxAnalyticsPages (flx-analytics, plugins/flx-analytics/graphql/operations/FlxAnalyticsPages.graphql) */
+export const FlxAnalyticsPages: FlxOperation<T.FlxAnalyticsPagesQuery, T.FlxAnalyticsPagesQueryVariables> = {
+  id: 'ebbac7ddcb08b32fb8b2c0eb5b67c80284fa09be3165b30eebeae0a282cee423',
+  name: 'FlxAnalyticsPages',
+  kind: 'query',
+  plugin: 'flx-analytics',
+  document: "query FlxAnalyticsPages($filter: FlxAnalyticsFilterInput, $q: String, $only404: Boolean, $first: Int, $after: String) {\n  flxAnalyticsPages(\n    filter: $filter\n    q: $q\n    only404: $only404\n    first: $first\n    after: $after\n  ) {\n    totalCount\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    nodes {\n      ...FlxAnalyticsPageRowFields\n    }\n  }\n}\n\nfragment FlxAnalyticsPageRowFields on FlxAnalyticsPageRow {\n  path\n  url\n  postId\n  title\n  is404\n  visitors\n  pageviews\n}",
+};
+
+/** query FlxAnalyticsRealtime (flx-analytics, plugins/flx-analytics/graphql/operations/FlxAnalyticsRealtime.graphql) */
+export const FlxAnalyticsRealtime: FlxOperation<T.FlxAnalyticsRealtimeQuery, T.FlxAnalyticsRealtimeQueryVariables> = {
+  id: 'db042cdd9f459d72081431f7df6d8a9e1081c5230eef59de2e263c30dcb9d698',
+  name: 'FlxAnalyticsRealtime',
+  kind: 'query',
+  plugin: 'flx-analytics',
+  document: "query FlxAnalyticsRealtime($filter: FlxAnalyticsFilterInput, $minutes: Int, $kpi: Boolean) {\n  flxAnalyticsRealtime(filter: $filter, minutes: $minutes, kpi: $kpi) {\n    ...FlxAnalyticsRealtimeFields\n    kpi {\n      ...FlxAnalyticsKpiFields\n    }\n  }\n}\n\nfragment FlxAnalyticsKpiFields on FlxAnalyticsKpi {\n  totals {\n    visitors\n    pageviews\n  }\n  prev {\n    visitors\n    pageviews\n  }\n  visits {\n    sessions\n    avgDuration\n    bounceRate\n    pagesPer\n  }\n  visitsPrev {\n    sessions\n    avgDuration\n    bounceRate\n    pagesPer\n  }\n  change {\n    visitors\n    pageviews\n    sessions\n    avgDuration\n    bounceRate\n    pagesPer\n  }\n  series {\n    group\n    items {\n      date\n      visitors\n      pageviews\n    }\n  }\n}\n\nfragment FlxAnalyticsRealtimeFields on FlxAnalyticsRealtime {\n  minutes\n  active\n  visitors\n  pageviews\n  perMinute\n  updated {\n    iso\n    label\n    relative\n  }\n  pages {\n    path\n    title\n    pageviews\n  }\n  referrers {\n    host\n    pageviews\n  }\n  countries {\n    value\n    label\n    visitors\n  }\n  codes {\n    code\n    label\n    visitors\n  }\n}",
+};
+
+/** query FlxAnalyticsReferrers (flx-analytics, plugins/flx-analytics/graphql/operations/FlxAnalyticsReferrers.graphql) */
+export const FlxAnalyticsReferrers: FlxOperation<T.FlxAnalyticsReferrersQuery, T.FlxAnalyticsReferrersQueryVariables> = {
+  id: '3c8464c3ca4e71ec015a9a16728f8a3696bdbd22a4e4eecc19312c893c3d4db1',
+  name: 'FlxAnalyticsReferrers',
+  kind: 'query',
+  plugin: 'flx-analytics',
+  document: "query FlxAnalyticsReferrers($filter: FlxAnalyticsFilterInput, $q: String, $first: Int, $after: String) {\n  flxAnalyticsReferrers(filter: $filter, q: $q, first: $first, after: $after) {\n    totalCount\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    nodes {\n      ...FlxAnalyticsReferrerRowFields\n    }\n  }\n}\n\nfragment FlxAnalyticsReferrerRowFields on FlxAnalyticsReferrerRow {\n  host\n  channel\n  channelLabel\n  visitors\n  pageviews\n}",
+};
+
+/** query FlxAnalyticsRefs (flx-analytics, plugins/flx-analytics/graphql/operations/FlxAnalyticsRefs.graphql) */
+export const FlxAnalyticsRefs: FlxOperation<T.FlxAnalyticsRefsQuery, T.FlxAnalyticsRefsQueryVariables> = {
+  id: '4372b37694b08ae56c81f13508114de417e4dabf7c341530bfed7cf1b5eac0ba',
+  name: 'FlxAnalyticsRefs',
+  kind: 'query',
+  plugin: 'flx-analytics',
+  document: "query FlxAnalyticsRefs($filter: FlxAnalyticsFilterInput) {\n  flxAnalyticsRefs(filter: $filter) {\n    ...FlxAnalyticsRefFields\n  }\n}\n\nfragment FlxAnalyticsRefFields on FlxAnalyticsRef {\n  code\n  name\n  label\n  url\n  visitors\n  pageviews\n  sessions\n  pagesPer\n  avgDuration\n  donations\n  amount\n  deepest\n  deepestLabel\n  completed\n}",
+};
+
+/** mutation FlxAnalyticsRefSave (flx-analytics, plugins/flx-analytics/graphql/operations/FlxAnalyticsRefSave.graphql) */
+export const FlxAnalyticsRefSave: FlxOperation<T.FlxAnalyticsRefSaveMutation, T.FlxAnalyticsRefSaveMutationVariables> = {
+  id: '59ee013d5260056c879e17dc79e67240198450d0cb156e6425159922a2d37744',
+  name: 'FlxAnalyticsRefSave',
+  kind: 'mutation',
+  plugin: 'flx-analytics',
+  document: "mutation FlxAnalyticsRefSave($input: FlxAnalyticsRefSaveInput!) {\n  flxAnalyticsRefSave(input: $input) {\n    ref {\n      code\n      name\n      url\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxAnalyticsReport (flx-analytics, plugins/flx-analytics/graphql/operations/FlxAnalyticsReport.graphql) */
+export const FlxAnalyticsReport: FlxOperation<T.FlxAnalyticsReportQuery, T.FlxAnalyticsReportQueryVariables> = {
+  id: '8379b10f9853966238a2d54a9b2b4dd22175b692573038145ee03bf5b3501f45',
+  name: 'FlxAnalyticsReport',
+  kind: 'query',
+  plugin: 'flx-analytics',
+  document: "query FlxAnalyticsReport($filter: FlxAnalyticsFilterInput) {\n  flxAnalyticsReport(filter: $filter) {\n    range {\n      ...FlxAnalyticsRangeFields\n    }\n    filter {\n      seg\n      rc\n    }\n    kpi {\n      ...FlxAnalyticsKpiFields\n    }\n    pages {\n      total\n      items {\n        ...FlxAnalyticsPageRowFields\n      }\n    }\n    notFound {\n      total\n      items {\n        ...FlxAnalyticsPageRowFields\n      }\n    }\n    referrers {\n      total\n      items {\n        ...FlxAnalyticsReferrerRowFields\n      }\n    }\n    dims {\n      kind\n      total\n      items {\n        ...FlxAnalyticsDimRowFields\n      }\n    }\n    segments {\n      value\n      label\n      visitors\n      pageviews\n    }\n    refs {\n      ...FlxAnalyticsRefFields\n    }\n    funnel {\n      ...FlxAnalyticsFunnelFields\n    }\n    eventSummary {\n      name\n      label\n      hits\n      uniques\n      amount\n    }\n    events {\n      total\n      items {\n        ...FlxAnalyticsEventRowFields\n      }\n    }\n    realtime {\n      ...FlxAnalyticsRealtimeFields\n    }\n  }\n}\n\nfragment FlxAnalyticsDimRowFields on FlxAnalyticsDimRow {\n  value\n  label\n  visitors\n  pageviews\n}\n\nfragment FlxAnalyticsEventRowFields on FlxAnalyticsEventRow {\n  name\n  label\n  param\n  hits\n  uniques\n  amount\n}\n\nfragment FlxAnalyticsFunnelFields on FlxAnalyticsFunnel {\n  found\n  id\n  name\n  by\n  steps {\n    label\n    type\n    value\n    count\n    rate\n    drop\n  }\n  groups {\n    value\n    label\n    counts\n    rate\n  }\n  funnels {\n    id\n    name\n  }\n}\n\nfragment FlxAnalyticsKpiFields on FlxAnalyticsKpi {\n  totals {\n    visitors\n    pageviews\n  }\n  prev {\n    visitors\n    pageviews\n  }\n  visits {\n    sessions\n    avgDuration\n    bounceRate\n    pagesPer\n  }\n  visitsPrev {\n    sessions\n    avgDuration\n    bounceRate\n    pagesPer\n  }\n  change {\n    visitors\n    pageviews\n    sessions\n    avgDuration\n    bounceRate\n    pagesPer\n  }\n  series {\n    group\n    items {\n      date\n      visitors\n      pageviews\n    }\n  }\n}\n\nfragment FlxAnalyticsPageRowFields on FlxAnalyticsPageRow {\n  path\n  url\n  postId\n  title\n  is404\n  visitors\n  pageviews\n}\n\nfragment FlxAnalyticsRangeFields on FlxAnalyticsRange {\n  preset\n  start\n  end\n  label\n  days\n  prevStart\n  prevEnd\n}\n\nfragment FlxAnalyticsRealtimeFields on FlxAnalyticsRealtime {\n  minutes\n  active\n  visitors\n  pageviews\n  perMinute\n  updated {\n    iso\n    label\n    relative\n  }\n  pages {\n    path\n    title\n    pageviews\n  }\n  referrers {\n    host\n    pageviews\n  }\n  countries {\n    value\n    label\n    visitors\n  }\n  codes {\n    code\n    label\n    visitors\n  }\n}\n\nfragment FlxAnalyticsReferrerRowFields on FlxAnalyticsReferrerRow {\n  host\n  channel\n  channelLabel\n  visitors\n  pageviews\n}\n\nfragment FlxAnalyticsRefFields on FlxAnalyticsRef {\n  code\n  name\n  label\n  url\n  visitors\n  pageviews\n  sessions\n  pagesPer\n  avgDuration\n  donations\n  amount\n  deepest\n  deepestLabel\n  completed\n}",
+};
+
+/** mutation FlxAnalyticsReset (flx-analytics, plugins/flx-analytics/graphql/operations/FlxAnalyticsReset.graphql) */
+export const FlxAnalyticsReset: FlxOperation<T.FlxAnalyticsResetMutation, T.FlxAnalyticsResetMutationVariables> = {
+  id: 'ce33713a41cfcf183974cb43003436209c4bedc460a35228a0fd27982819f466',
+  name: 'FlxAnalyticsReset',
+  kind: 'mutation',
+  plugin: 'flx-analytics',
+  document: "mutation FlxAnalyticsReset($input: FlxAnalyticsResetInput!) {\n  flxAnalyticsReset(input: $input) {\n    settings {\n      ...FlxAnalyticsSettingsFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAnalyticsSettingsFields on FlxAnalyticsSettings {\n  on\n  method\n  methodNow\n  dnt\n  excludeRoles\n  excludeIps\n  evOutbound\n  evDownload\n  evContact\n  evSearch\n  evDonation\n  postsColumn\n  adminbar\n  keepMonths\n  tmHub\n  hubEndpoint\n  lastAggregated {\n    iso\n    label\n    relative\n  }\n  pendingBytes\n  pendingLabel\n  fastPossible\n  fastTest\n  roles {\n    value\n    label\n  }\n  funnels {\n    id\n    name\n    steps {\n      label\n      type\n      value\n    }\n  }\n  funnelDefaults {\n    id\n    name\n    steps {\n      label\n      type\n      value\n    }\n  }\n  funnelEvents {\n    value\n    label\n  }\n  funnelPages {\n    path\n    title\n  }\n  koko {\n    days\n    first\n    last\n  }\n  exportUrl\n}",
+};
+
+/** query FlxAnalyticsSettings (flx-analytics, plugins/flx-analytics/graphql/operations/FlxAnalyticsSettings.graphql) */
+export const FlxAnalyticsSettings: FlxOperation<T.FlxAnalyticsSettingsQuery, T.FlxAnalyticsSettingsQueryVariables> = {
+  id: '129cfba2b194904d644f1f6c1a89065b2c3534dd0982d6aa88d30aa855920c9f',
+  name: 'FlxAnalyticsSettings',
+  kind: 'query',
+  plugin: 'flx-analytics',
+  document: "query FlxAnalyticsSettings {\n  flxAnalyticsSettings {\n    ...FlxAnalyticsSettingsFields\n  }\n}\n\nfragment FlxAnalyticsSettingsFields on FlxAnalyticsSettings {\n  on\n  method\n  methodNow\n  dnt\n  excludeRoles\n  excludeIps\n  evOutbound\n  evDownload\n  evContact\n  evSearch\n  evDonation\n  postsColumn\n  adminbar\n  keepMonths\n  tmHub\n  hubEndpoint\n  lastAggregated {\n    iso\n    label\n    relative\n  }\n  pendingBytes\n  pendingLabel\n  fastPossible\n  fastTest\n  roles {\n    value\n    label\n  }\n  funnels {\n    id\n    name\n    steps {\n      label\n      type\n      value\n    }\n  }\n  funnelDefaults {\n    id\n    name\n    steps {\n      label\n      type\n      value\n    }\n  }\n  funnelEvents {\n    value\n    label\n  }\n  funnelPages {\n    path\n    title\n  }\n  koko {\n    days\n    first\n    last\n  }\n  exportUrl\n}",
+};
+
+/** mutation FlxAnalyticsSettingsSave (flx-analytics, plugins/flx-analytics/graphql/operations/FlxAnalyticsSettingsSave.graphql) */
+export const FlxAnalyticsSettingsSave: FlxOperation<T.FlxAnalyticsSettingsSaveMutation, T.FlxAnalyticsSettingsSaveMutationVariables> = {
+  id: 'fcf4e0148b6d01ec7f05e578011d35764659fdef2afb0d3cd5438e14707c4c8f',
+  name: 'FlxAnalyticsSettingsSave',
+  kind: 'mutation',
+  plugin: 'flx-analytics',
+  document: "mutation FlxAnalyticsSettingsSave($input: FlxAnalyticsSettingsSaveInput!) {\n  flxAnalyticsSettingsSave(input: $input) {\n    settings {\n      ...FlxAnalyticsSettingsFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAnalyticsSettingsFields on FlxAnalyticsSettings {\n  on\n  method\n  methodNow\n  dnt\n  excludeRoles\n  excludeIps\n  evOutbound\n  evDownload\n  evContact\n  evSearch\n  evDonation\n  postsColumn\n  adminbar\n  keepMonths\n  tmHub\n  hubEndpoint\n  lastAggregated {\n    iso\n    label\n    relative\n  }\n  pendingBytes\n  pendingLabel\n  fastPossible\n  fastTest\n  roles {\n    value\n    label\n  }\n  funnels {\n    id\n    name\n    steps {\n      label\n      type\n      value\n    }\n  }\n  funnelDefaults {\n    id\n    name\n    steps {\n      label\n      type\n      value\n    }\n  }\n  funnelEvents {\n    value\n    label\n  }\n  funnelPages {\n    path\n    title\n  }\n  koko {\n    days\n    first\n    last\n  }\n  exportUrl\n}",
+};
+
+/** query FlxAnalyticsTelemetry (flx-analytics, plugins/flx-analytics/graphql/operations/FlxAnalyticsTelemetry.graphql) */
+export const FlxAnalyticsTelemetry: FlxOperation<T.FlxAnalyticsTelemetryQuery, T.FlxAnalyticsTelemetryQueryVariables> = {
+  id: 'eb5453fc995071cd78ac870527d7da1090a3441f298f6113f2af7cfe9fde45f4',
+  name: 'FlxAnalyticsTelemetry',
+  kind: 'query',
+  plugin: 'flx-analytics',
+  document: "query FlxAnalyticsTelemetry($days: Int, $country: String) {\n  flxAnalyticsTelemetry(days: $days, country: $country) {\n    enabled\n    endpoint\n    days\n    country\n    countries {\n      code\n      name\n      sites\n    }\n    overview {\n      installs\n      reports\n      errorsOpen\n      fatalOpen\n      events\n      appUsage {\n        day\n        platform\n        accounts\n      }\n      usage {\n        slug\n        name\n        sites\n        topVersion\n      }\n      pairs {\n        aName\n        bName\n        sites\n      }\n      combos {\n        names\n        sites\n      }\n      php {\n        key\n        label\n        sites\n      }\n      wp {\n        key\n        label\n        sites\n      }\n      locales {\n        key\n        label\n        sites\n      }\n      countries {\n        key\n        label\n        sites\n      }\n    }\n    onboarding {\n      runs\n      done\n      skipped\n      left\n      medianSeconds\n      reach {\n        step\n        label\n        count\n      }\n      stops {\n        step\n        label\n        outcome\n        count\n      }\n      cards {\n        slug\n        name\n        picked\n        dropped\n        recOff\n      }\n      presets {\n        key\n        count\n      }\n      styles {\n        key\n        count\n      }\n    }\n  }\n}",
+};
+
+/** query FlxAnalyticsTelemetryErrors (flx-analytics, plugins/flx-analytics/graphql/operations/FlxAnalyticsTelemetryErrors.graphql) */
+export const FlxAnalyticsTelemetryErrors: FlxOperation<T.FlxAnalyticsTelemetryErrorsQuery, T.FlxAnalyticsTelemetryErrorsQueryVariables> = {
+  id: '98c319fa61824c0c4714f4d86466d15123634d74291edb45f9001c7d7b6b7fbb',
+  name: 'FlxAnalyticsTelemetryErrors',
+  kind: 'query',
+  plugin: 'flx-analytics',
+  document: "query FlxAnalyticsTelemetryErrors($days: Int, $country: String, $plugin: String, $type: String) {\n  flxAnalyticsTelemetryErrors(\n    days: $days\n    country: $country\n    plugin: $plugin\n    type: $type\n  ) {\n    plugins {\n      value\n      label\n    }\n    items {\n      hash\n      type\n      fatal\n      message\n      more\n      file\n      line\n      plugin\n      pluginName\n      version\n      sites\n      count\n      last {\n        iso\n        label\n        relative\n      }\n    }\n  }\n}",
+};
+
+/** mutation FlxAnalyticsTelemetryForget (flx-analytics, plugins/flx-analytics/graphql/operations/FlxAnalyticsTelemetryForget.graphql) */
+export const FlxAnalyticsTelemetryForget: FlxOperation<T.FlxAnalyticsTelemetryForgetMutation, T.FlxAnalyticsTelemetryForgetMutationVariables> = {
+  id: 'd64ae79eb5491a540154bd58029d69fc0b5e212e8c46414279d4ca0eaa940e1d',
+  name: 'FlxAnalyticsTelemetryForget',
+  kind: 'mutation',
+  plugin: 'flx-analytics',
+  document: "mutation FlxAnalyticsTelemetryForget($input: FlxAnalyticsTelemetryForgetInput!) {\n  flxAnalyticsTelemetryForget(input: $input) {\n    removed\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
 /** query FlxAppAccess (flx-app, plugins/flx-app/graphql/operations/FlxAppAccess.graphql) */
 export const FlxAppAccess: FlxOperation<T.FlxAppAccessQuery, T.FlxAppAccessQueryVariables> = {
   id: '1dd252522e2e7e352cbe31ebb7ef763661f7f52d407b0023f418e1365e0d5aa8',

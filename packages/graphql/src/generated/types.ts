@@ -4,6 +4,90 @@
 type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 /** Internal type. DO NOT USE DIRECTLY. */
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+/** Date range and visitor filters shared by every report. */
+export type FlxAnalyticsFilterInput = {
+  /** Last day (YYYY-MM-DD) when the range is custom. */
+  end?: string | null | undefined;
+  /** Ready-made range; default is the last 30 days. */
+  range?: FlxAnalyticsRangePreset | null | undefined;
+  /** Referral code filter: empty = all, * = only referral links, or a code. */
+  rc?: string | null | undefined;
+  /** Visitor type: all (default), guest, members or a role name. */
+  seg?: string | null | undefined;
+  /** First day (YYYY-MM-DD) when the range is custom. */
+  start?: string | null | undefined;
+};
+
+/** Ready-made date range of a report. */
+export type FlxAnalyticsRangePreset =
+  | 'ALL'
+  | 'CUSTOM'
+  | 'DAYS_30'
+  | 'DAYS_7'
+  | 'DAYS_90'
+  | 'LAST_MONTH'
+  | 'LAST_YEAR'
+  | 'MONTHS_12'
+  | 'THIS_MONTH'
+  | 'THIS_YEAR'
+  | 'TODAY'
+  | 'YESTERDAY';
+
+/** What a breakdown splits the traffic by. */
+export type FlxAnalyticsDimKind =
+  | 'BROWSER'
+  | 'CHANNEL'
+  | 'COUNTRY'
+  | 'DEVICE'
+  | 'LANG'
+  | 'OS'
+  | 'UTM_CAMPAIGN'
+  | 'UTM_MEDIUM'
+  | 'UTM_SOURCE';
+
+/** How a funnel is split into groups. */
+export type FlxAnalyticsFunnelBy =
+  | 'CHANNEL'
+  | 'COUNTRY'
+  | 'RC'
+  | 'REF'
+  | 'SEG'
+  | 'TOTAL';
+
+/** What a funnel step matches. */
+export type FlxAnalyticsStepType =
+  | 'ANY'
+  | 'EVENT'
+  | 'PATH';
+
+/** Options of the journeys report. */
+export type FlxAnalyticsJourneysInput = {
+  /** Only journeys that start on this path. */
+  from?: string | null | undefined;
+  /** Goal "funnel:step"; empty = no goal; not given = the default goal. */
+  goal?: string | null | undefined;
+  /** Group sub pages (/news/…) into one box. */
+  group?: boolean | null | undefined;
+  /** Steps to show, 2–6 (default 4). */
+  steps?: number | null | undefined;
+  /** Only journeys that end on this path. */
+  to?: string | null | undefined;
+  /** Paths to list, 5–100 (default 15). */
+  top?: number | null | undefined;
+};
+
+/** How a time series is grouped. */
+export type FlxAnalyticsSeriesGroup =
+  | 'DAY'
+  | 'MONTH'
+  | 'WEEK';
+
+/** How visits are sent to the site. */
+export type FlxAnalyticsCollectMethod =
+  | 'AUTO'
+  | 'FAST'
+  | 'REST';
+
 /** A personal API key or an app session. */
 export type FlxAppAccessKind =
   | 'KEY'
@@ -81,6 +165,106 @@ export type FlxTaskRole =
   | 'EDIT'
   /** See tasks. */
   | 'VIEW';
+
+/** Input for the flxAnalyticsAggregate mutation. */
+export type FlxAnalyticsAggregateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+};
+
+/** Input for the flxAnalyticsFastTest mutation. */
+export type FlxAnalyticsFastTestInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** The endpoint answered. */
+  ok: boolean;
+};
+
+/** Input for the flxAnalyticsKokoImport mutation. */
+export type FlxAnalyticsKokoImportInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+};
+
+/** Input for the flxAnalyticsRefSave mutation. */
+export type FlxAnalyticsRefSaveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Referral code (letters, digits, - and _). */
+  code: string;
+  /** Remove the name. */
+  delete?: boolean | null | undefined;
+  /** Name shown in reports. */
+  name?: string | null | undefined;
+};
+
+/** Input for the flxAnalyticsReset mutation. */
+export type FlxAnalyticsResetInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+};
+
+/** Input for the flxAnalyticsSettingsSave mutation. */
+export type FlxAnalyticsSettingsSaveInput = {
+  /** Show the page's views in the admin bar. */
+  adminbar?: boolean | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Do not count visitors who send "Do Not Track". */
+  dnt?: boolean | null | undefined;
+  /** Track phone, email and WhatsApp clicks. */
+  evContact?: boolean | null | undefined;
+  /** Track paid donations and orders. */
+  evDonation?: boolean | null | undefined;
+  /** Track file downloads. */
+  evDownload?: boolean | null | undefined;
+  /** Track outbound link clicks. */
+  evOutbound?: boolean | null | undefined;
+  /** Track site searches. */
+  evSearch?: boolean | null | undefined;
+  /** IP addresses that are not counted, one per line (* and CIDR work). */
+  excludeIps?: string | null | undefined;
+  /** Roles that are not counted. */
+  excludeRoles?: Array<string> | null | undefined;
+  /** Replaces the funnels (5 at most); an empty list or the default set goes back to the defaults. */
+  funnels?: Array<FlxAnalyticsFunnelInput> | null | undefined;
+  /** Months to keep data (0–120); 0 = forever. */
+  keepMonths?: number | null | undefined;
+  /** Collection method. */
+  method?: FlxAnalyticsCollectMethod | null | undefined;
+  /** Count visits. */
+  on?: boolean | null | undefined;
+  /** Show a views column in the post and page lists. */
+  postsColumn?: boolean | null | undefined;
+  /** Receive telemetry from FluxWP installs. */
+  tmHub?: boolean | null | undefined;
+};
+
+/** A funnel: steps visitors go through in order. */
+export type FlxAnalyticsFunnelInput = {
+  /** Funnel name. */
+  name: string;
+  /** Steps, 10 at most. */
+  steps: Array<FlxAnalyticsFunnelStepInput>;
+};
+
+/** One funnel step. */
+export type FlxAnalyticsFunnelStepInput = {
+  /** Name shown in the report. */
+  label: string;
+  /** Site entry, a page path prefix or an event. */
+  type: FlxAnalyticsStepType;
+  /** Path (/donate/) or event (name or name:detail); empty for site entry. */
+  value?: string | null | undefined;
+};
+
+/** Input for the flxAnalyticsTelemetryForget mutation. */
+export type FlxAnalyticsTelemetryForgetInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Record key, or "all". */
+  hash: string;
+};
 
 /** Input for the flxAppAccessRevoke mutation. */
 export type FlxAppAccessRevokeInput = {
@@ -509,6 +693,192 @@ export type FlxTaskWatchInput = {
   /** Follow (true) or stop following (false). */
   watch: boolean;
 };
+
+export type FlxAnalyticsAggregateMutationVariables = Exact<{
+  input: FlxAnalyticsAggregateInput;
+}>;
+
+
+export type FlxAnalyticsAggregateMutation = { flxAnalyticsAggregate: { processed: number, settings: { on: boolean, method: FlxAnalyticsCollectMethod, methodNow: FlxAnalyticsCollectMethod, dnt: boolean, excludeRoles: Array<string>, excludeIps: string, evOutbound: boolean, evDownload: boolean, evContact: boolean, evSearch: boolean, evDonation: boolean, postsColumn: boolean, adminbar: boolean, keepMonths: number, tmHub: boolean, hubEndpoint: string | null, pendingBytes: number, pendingLabel: string, fastPossible: boolean, fastTest: string, exportUrl: string, lastAggregated: { iso: string, label: string, relative: string } | null, roles: Array<{ value: string, label: string }>, funnels: Array<{ id: number, name: string, steps: Array<{ label: string, type: FlxAnalyticsStepType, value: string }> }>, funnelDefaults: Array<{ id: number, name: string, steps: Array<{ label: string, type: FlxAnalyticsStepType, value: string }> }>, funnelEvents: Array<{ value: string, label: string }>, funnelPages: Array<{ path: string, title: string }>, koko: { days: number, first: string, last: string } | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAnalyticsSettingsFieldsFragment = { on: boolean, method: FlxAnalyticsCollectMethod, methodNow: FlxAnalyticsCollectMethod, dnt: boolean, excludeRoles: Array<string>, excludeIps: string, evOutbound: boolean, evDownload: boolean, evContact: boolean, evSearch: boolean, evDonation: boolean, postsColumn: boolean, adminbar: boolean, keepMonths: number, tmHub: boolean, hubEndpoint: string | null, pendingBytes: number, pendingLabel: string, fastPossible: boolean, fastTest: string, exportUrl: string, lastAggregated: { iso: string, label: string, relative: string } | null, roles: Array<{ value: string, label: string }>, funnels: Array<{ id: number, name: string, steps: Array<{ label: string, type: FlxAnalyticsStepType, value: string }> }>, funnelDefaults: Array<{ id: number, name: string, steps: Array<{ label: string, type: FlxAnalyticsStepType, value: string }> }>, funnelEvents: Array<{ value: string, label: string }>, funnelPages: Array<{ path: string, title: string }>, koko: { days: number, first: string, last: string } | null };
+
+export type FlxAnalyticsBreakdownQueryVariables = Exact<{
+  filter?: FlxAnalyticsFilterInput | null | undefined;
+  kind: FlxAnalyticsDimKind;
+  first?: number | null | undefined;
+  after?: string | null | undefined;
+}>;
+
+
+export type FlxAnalyticsBreakdownQuery = { flxAnalyticsBreakdown: { totalCount: number | null, pageInfo: { hasNextPage: boolean, endCursor: string | null }, nodes: Array<{ value: string, label: string, visitors: number, pageviews: number }> } };
+
+export type FlxAnalyticsDimRowFieldsFragment = { value: string, label: string, visitors: number, pageviews: number };
+
+export type FlxAnalyticsConfigQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAnalyticsConfigQuery = { flxAnalyticsConfig: { defaultGoal: string, canManageRefs: boolean, canManage: boolean, ignoreBrowser: boolean, fastEndpoint: string, exportUrl: string, homeUrl: string, settingsUrl: string, funnelSettingsUrl: string, hasWorldMap: boolean, presets: Array<{ value: string, label: string }>, kinds: Array<{ value: string, label: string }>, events: Array<{ value: string, label: string }>, channels: Array<{ value: string, label: string }>, segments: Array<{ value: string, label: string }>, funnelBy: Array<{ value: string, label: string }>, goals: Array<{ value: string, label: string }> } };
+
+export type FlxAnalyticsEventsQueryVariables = Exact<{
+  filter?: FlxAnalyticsFilterInput | null | undefined;
+  name?: string | null | undefined;
+  first?: number | null | undefined;
+  after?: string | null | undefined;
+}>;
+
+
+export type FlxAnalyticsEventsQuery = { flxAnalyticsEvents: { totalCount: number | null, pageInfo: { hasNextPage: boolean, endCursor: string | null }, nodes: Array<{ name: string, label: string, param: string, hits: number, uniques: number, amount: number }> } };
+
+export type FlxAnalyticsEventRowFieldsFragment = { name: string, label: string, param: string, hits: number, uniques: number, amount: number };
+
+export type FlxAnalyticsFastTestMutationVariables = Exact<{
+  input: FlxAnalyticsFastTestInput;
+}>;
+
+
+export type FlxAnalyticsFastTestMutation = { flxAnalyticsFastTest: { method: FlxAnalyticsCollectMethod, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAnalyticsFunnelQueryVariables = Exact<{
+  filter?: FlxAnalyticsFilterInput | null | undefined;
+  id?: number | null | undefined;
+  by?: FlxAnalyticsFunnelBy | null | undefined;
+}>;
+
+
+export type FlxAnalyticsFunnelQuery = { flxAnalyticsFunnel: { found: boolean, id: number | null, name: string | null, by: FlxAnalyticsFunnelBy, steps: Array<{ label: string, type: FlxAnalyticsStepType, value: string, count: number, rate: number, drop: number }>, groups: Array<{ value: string, label: string, counts: Array<number>, rate: number }>, funnels: Array<{ id: number, name: string }> } };
+
+export type FlxAnalyticsFunnelFieldsFragment = { found: boolean, id: number | null, name: string | null, by: FlxAnalyticsFunnelBy, steps: Array<{ label: string, type: FlxAnalyticsStepType, value: string, count: number, rate: number, drop: number }>, groups: Array<{ value: string, label: string, counts: Array<number>, rate: number }>, funnels: Array<{ id: number, name: string }> };
+
+export type FlxAnalyticsJourneysQueryVariables = Exact<{
+  filter?: FlxAnalyticsFilterInput | null | undefined;
+  options?: FlxAnalyticsJourneysInput | null | undefined;
+}>;
+
+
+export type FlxAnalyticsJourneysQuery = { flxAnalyticsJourneys: { range: { preset: FlxAnalyticsRangePreset, start: string, end: string, label: string, days: number, prevStart: string, prevEnd: string }, options: { steps: number, from: string, to: string, goal: string, group: boolean, top: number }, goals: Array<{ value: string, label: string }>, summary: { sessions: number, multi: number, multiPct: number, multiChange: number | null, avgLen: number, avgLenChange: number | null, goalRate: number | null, goalReached: number, goalChange: number | null, topEntry: { key: string, label: string, count: number, pct: number } | null, topExit: { key: string, label: string, count: number, pct: number } | null }, flow: { columns: Array<{ nodes: Array<{ key: string, label: string, path: string, ev: boolean, count: number, ends: number }> }>, links: Array<{ step: number, from: string, to: string, count: number }> }, paths: { top: number, total: number, items: Array<{ sessions: number, reached: number, share: number, prev: number, change: number | null, rate: number, steps: Array<{ key: string, label: string, path: string, ev: boolean }> }> } } };
+
+export type FlxAnalyticsRangeFieldsFragment = { preset: FlxAnalyticsRangePreset, start: string, end: string, label: string, days: number, prevStart: string, prevEnd: string };
+
+export type FlxAnalyticsKokoImportMutationVariables = Exact<{
+  input: FlxAnalyticsKokoImportInput;
+}>;
+
+
+export type FlxAnalyticsKokoImportMutation = { flxAnalyticsKokoImport: { rows: number, settings: { on: boolean, method: FlxAnalyticsCollectMethod, methodNow: FlxAnalyticsCollectMethod, dnt: boolean, excludeRoles: Array<string>, excludeIps: string, evOutbound: boolean, evDownload: boolean, evContact: boolean, evSearch: boolean, evDonation: boolean, postsColumn: boolean, adminbar: boolean, keepMonths: number, tmHub: boolean, hubEndpoint: string | null, pendingBytes: number, pendingLabel: string, fastPossible: boolean, fastTest: string, exportUrl: string, lastAggregated: { iso: string, label: string, relative: string } | null, roles: Array<{ value: string, label: string }>, funnels: Array<{ id: number, name: string, steps: Array<{ label: string, type: FlxAnalyticsStepType, value: string }> }>, funnelDefaults: Array<{ id: number, name: string, steps: Array<{ label: string, type: FlxAnalyticsStepType, value: string }> }>, funnelEvents: Array<{ value: string, label: string }>, funnelPages: Array<{ path: string, title: string }>, koko: { days: number, first: string, last: string } | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAnalyticsPageQueryVariables = Exact<{
+  filter?: FlxAnalyticsFilterInput | null | undefined;
+  target: string;
+}>;
+
+
+export type FlxAnalyticsPageQuery = { flxAnalyticsPage: { found: boolean, paths: Array<string>, visitors: number, pageviews: number, series: Array<{ date: string, visitors: number, pageviews: number }> } };
+
+export type FlxAnalyticsPagesQueryVariables = Exact<{
+  filter?: FlxAnalyticsFilterInput | null | undefined;
+  q?: string | null | undefined;
+  only404?: boolean | null | undefined;
+  first?: number | null | undefined;
+  after?: string | null | undefined;
+}>;
+
+
+export type FlxAnalyticsPagesQuery = { flxAnalyticsPages: { totalCount: number | null, pageInfo: { hasNextPage: boolean, endCursor: string | null }, nodes: Array<{ path: string, url: string, postId: number, title: string, is404: boolean, visitors: number, pageviews: number }> } };
+
+export type FlxAnalyticsPageRowFieldsFragment = { path: string, url: string, postId: number, title: string, is404: boolean, visitors: number, pageviews: number };
+
+export type FlxAnalyticsRealtimeQueryVariables = Exact<{
+  filter?: FlxAnalyticsFilterInput | null | undefined;
+  minutes?: number | null | undefined;
+  kpi?: boolean | null | undefined;
+}>;
+
+
+export type FlxAnalyticsRealtimeQuery = { flxAnalyticsRealtime: { minutes: number, active: number, visitors: number, pageviews: number, perMinute: Array<number>, kpi: { totals: { visitors: number, pageviews: number }, prev: { visitors: number, pageviews: number }, visits: { sessions: number, avgDuration: number, bounceRate: number, pagesPer: number }, visitsPrev: { sessions: number, avgDuration: number, bounceRate: number, pagesPer: number }, change: { visitors: number | null, pageviews: number | null, sessions: number | null, avgDuration: number | null, bounceRate: number | null, pagesPer: number | null }, series: { group: FlxAnalyticsSeriesGroup, items: Array<{ date: string, visitors: number, pageviews: number }> } } | null, updated: { iso: string, label: string, relative: string } | null, pages: Array<{ path: string, title: string, pageviews: number }>, referrers: Array<{ host: string, pageviews: number }>, countries: Array<{ value: string, label: string, visitors: number }>, codes: Array<{ code: string, label: string, visitors: number }> } };
+
+export type FlxAnalyticsKpiFieldsFragment = { totals: { visitors: number, pageviews: number }, prev: { visitors: number, pageviews: number }, visits: { sessions: number, avgDuration: number, bounceRate: number, pagesPer: number }, visitsPrev: { sessions: number, avgDuration: number, bounceRate: number, pagesPer: number }, change: { visitors: number | null, pageviews: number | null, sessions: number | null, avgDuration: number | null, bounceRate: number | null, pagesPer: number | null }, series: { group: FlxAnalyticsSeriesGroup, items: Array<{ date: string, visitors: number, pageviews: number }> } };
+
+export type FlxAnalyticsRealtimeFieldsFragment = { minutes: number, active: number, visitors: number, pageviews: number, perMinute: Array<number>, updated: { iso: string, label: string, relative: string } | null, pages: Array<{ path: string, title: string, pageviews: number }>, referrers: Array<{ host: string, pageviews: number }>, countries: Array<{ value: string, label: string, visitors: number }>, codes: Array<{ code: string, label: string, visitors: number }> };
+
+export type FlxAnalyticsReferrersQueryVariables = Exact<{
+  filter?: FlxAnalyticsFilterInput | null | undefined;
+  q?: string | null | undefined;
+  first?: number | null | undefined;
+  after?: string | null | undefined;
+}>;
+
+
+export type FlxAnalyticsReferrersQuery = { flxAnalyticsReferrers: { totalCount: number | null, pageInfo: { hasNextPage: boolean, endCursor: string | null }, nodes: Array<{ host: string, channel: string, channelLabel: string, visitors: number, pageviews: number }> } };
+
+export type FlxAnalyticsReferrerRowFieldsFragment = { host: string, channel: string, channelLabel: string, visitors: number, pageviews: number };
+
+export type FlxAnalyticsRefsQueryVariables = Exact<{
+  filter?: FlxAnalyticsFilterInput | null | undefined;
+}>;
+
+
+export type FlxAnalyticsRefsQuery = { flxAnalyticsRefs: Array<{ code: string, name: string, label: string, url: string, visitors: number, pageviews: number, sessions: number, pagesPer: number, avgDuration: number, donations: number, amount: number, deepest: number, deepestLabel: string, completed: number }> };
+
+export type FlxAnalyticsRefFieldsFragment = { code: string, name: string, label: string, url: string, visitors: number, pageviews: number, sessions: number, pagesPer: number, avgDuration: number, donations: number, amount: number, deepest: number, deepestLabel: string, completed: number };
+
+export type FlxAnalyticsRefSaveMutationVariables = Exact<{
+  input: FlxAnalyticsRefSaveInput;
+}>;
+
+
+export type FlxAnalyticsRefSaveMutation = { flxAnalyticsRefSave: { ref: { code: string, name: string, url: string } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAnalyticsReportQueryVariables = Exact<{
+  filter?: FlxAnalyticsFilterInput | null | undefined;
+}>;
+
+
+export type FlxAnalyticsReportQuery = { flxAnalyticsReport: { range: { preset: FlxAnalyticsRangePreset, start: string, end: string, label: string, days: number, prevStart: string, prevEnd: string }, filter: { seg: string, rc: string }, kpi: { totals: { visitors: number, pageviews: number }, prev: { visitors: number, pageviews: number }, visits: { sessions: number, avgDuration: number, bounceRate: number, pagesPer: number }, visitsPrev: { sessions: number, avgDuration: number, bounceRate: number, pagesPer: number }, change: { visitors: number | null, pageviews: number | null, sessions: number | null, avgDuration: number | null, bounceRate: number | null, pagesPer: number | null }, series: { group: FlxAnalyticsSeriesGroup, items: Array<{ date: string, visitors: number, pageviews: number }> } }, pages: { total: number, items: Array<{ path: string, url: string, postId: number, title: string, is404: boolean, visitors: number, pageviews: number }> }, notFound: { total: number, items: Array<{ path: string, url: string, postId: number, title: string, is404: boolean, visitors: number, pageviews: number }> }, referrers: { total: number, items: Array<{ host: string, channel: string, channelLabel: string, visitors: number, pageviews: number }> }, dims: Array<{ kind: FlxAnalyticsDimKind, total: number, items: Array<{ value: string, label: string, visitors: number, pageviews: number }> }>, segments: Array<{ value: string, label: string, visitors: number, pageviews: number }>, refs: Array<{ code: string, name: string, label: string, url: string, visitors: number, pageviews: number, sessions: number, pagesPer: number, avgDuration: number, donations: number, amount: number, deepest: number, deepestLabel: string, completed: number }>, funnel: { found: boolean, id: number | null, name: string | null, by: FlxAnalyticsFunnelBy, steps: Array<{ label: string, type: FlxAnalyticsStepType, value: string, count: number, rate: number, drop: number }>, groups: Array<{ value: string, label: string, counts: Array<number>, rate: number }>, funnels: Array<{ id: number, name: string }> }, eventSummary: Array<{ name: string, label: string, hits: number, uniques: number, amount: number }>, events: { total: number, items: Array<{ name: string, label: string, param: string, hits: number, uniques: number, amount: number }> }, realtime: { minutes: number, active: number, visitors: number, pageviews: number, perMinute: Array<number>, updated: { iso: string, label: string, relative: string } | null, pages: Array<{ path: string, title: string, pageviews: number }>, referrers: Array<{ host: string, pageviews: number }>, countries: Array<{ value: string, label: string, visitors: number }>, codes: Array<{ code: string, label: string, visitors: number }> } } };
+
+export type FlxAnalyticsResetMutationVariables = Exact<{
+  input: FlxAnalyticsResetInput;
+}>;
+
+
+export type FlxAnalyticsResetMutation = { flxAnalyticsReset: { settings: { on: boolean, method: FlxAnalyticsCollectMethod, methodNow: FlxAnalyticsCollectMethod, dnt: boolean, excludeRoles: Array<string>, excludeIps: string, evOutbound: boolean, evDownload: boolean, evContact: boolean, evSearch: boolean, evDonation: boolean, postsColumn: boolean, adminbar: boolean, keepMonths: number, tmHub: boolean, hubEndpoint: string | null, pendingBytes: number, pendingLabel: string, fastPossible: boolean, fastTest: string, exportUrl: string, lastAggregated: { iso: string, label: string, relative: string } | null, roles: Array<{ value: string, label: string }>, funnels: Array<{ id: number, name: string, steps: Array<{ label: string, type: FlxAnalyticsStepType, value: string }> }>, funnelDefaults: Array<{ id: number, name: string, steps: Array<{ label: string, type: FlxAnalyticsStepType, value: string }> }>, funnelEvents: Array<{ value: string, label: string }>, funnelPages: Array<{ path: string, title: string }>, koko: { days: number, first: string, last: string } | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAnalyticsSettingsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAnalyticsSettingsQuery = { flxAnalyticsSettings: { on: boolean, method: FlxAnalyticsCollectMethod, methodNow: FlxAnalyticsCollectMethod, dnt: boolean, excludeRoles: Array<string>, excludeIps: string, evOutbound: boolean, evDownload: boolean, evContact: boolean, evSearch: boolean, evDonation: boolean, postsColumn: boolean, adminbar: boolean, keepMonths: number, tmHub: boolean, hubEndpoint: string | null, pendingBytes: number, pendingLabel: string, fastPossible: boolean, fastTest: string, exportUrl: string, lastAggregated: { iso: string, label: string, relative: string } | null, roles: Array<{ value: string, label: string }>, funnels: Array<{ id: number, name: string, steps: Array<{ label: string, type: FlxAnalyticsStepType, value: string }> }>, funnelDefaults: Array<{ id: number, name: string, steps: Array<{ label: string, type: FlxAnalyticsStepType, value: string }> }>, funnelEvents: Array<{ value: string, label: string }>, funnelPages: Array<{ path: string, title: string }>, koko: { days: number, first: string, last: string } | null } };
+
+export type FlxAnalyticsSettingsSaveMutationVariables = Exact<{
+  input: FlxAnalyticsSettingsSaveInput;
+}>;
+
+
+export type FlxAnalyticsSettingsSaveMutation = { flxAnalyticsSettingsSave: { settings: { on: boolean, method: FlxAnalyticsCollectMethod, methodNow: FlxAnalyticsCollectMethod, dnt: boolean, excludeRoles: Array<string>, excludeIps: string, evOutbound: boolean, evDownload: boolean, evContact: boolean, evSearch: boolean, evDonation: boolean, postsColumn: boolean, adminbar: boolean, keepMonths: number, tmHub: boolean, hubEndpoint: string | null, pendingBytes: number, pendingLabel: string, fastPossible: boolean, fastTest: string, exportUrl: string, lastAggregated: { iso: string, label: string, relative: string } | null, roles: Array<{ value: string, label: string }>, funnels: Array<{ id: number, name: string, steps: Array<{ label: string, type: FlxAnalyticsStepType, value: string }> }>, funnelDefaults: Array<{ id: number, name: string, steps: Array<{ label: string, type: FlxAnalyticsStepType, value: string }> }>, funnelEvents: Array<{ value: string, label: string }>, funnelPages: Array<{ path: string, title: string }>, koko: { days: number, first: string, last: string } | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAnalyticsTelemetryQueryVariables = Exact<{
+  days?: number | null | undefined;
+  country?: string | null | undefined;
+}>;
+
+
+export type FlxAnalyticsTelemetryQuery = { flxAnalyticsTelemetry: { enabled: boolean, endpoint: string, days: number, country: string, countries: Array<{ code: string, name: string, sites: number }>, overview: { installs: number, reports: number, errorsOpen: number, fatalOpen: number, events: number, appUsage: Array<{ day: string, platform: string, accounts: number }>, usage: Array<{ slug: string, name: string, sites: number, topVersion: string }>, pairs: Array<{ aName: string, bName: string, sites: number }>, combos: Array<{ names: Array<string>, sites: number }>, php: Array<{ key: string, label: string, sites: number }>, wp: Array<{ key: string, label: string, sites: number }>, locales: Array<{ key: string, label: string, sites: number }>, countries: Array<{ key: string, label: string, sites: number }> }, onboarding: { runs: number, done: number, skipped: number, left: number, medianSeconds: number, reach: Array<{ step: string, label: string, count: number }>, stops: Array<{ step: string, label: string, outcome: string, count: number }>, cards: Array<{ slug: string, name: string, picked: number, dropped: number, recOff: number }>, presets: Array<{ key: string, count: number }>, styles: Array<{ key: string, count: number }> } } };
+
+export type FlxAnalyticsTelemetryErrorsQueryVariables = Exact<{
+  days?: number | null | undefined;
+  country?: string | null | undefined;
+  plugin?: string | null | undefined;
+  type?: string | null | undefined;
+}>;
+
+
+export type FlxAnalyticsTelemetryErrorsQuery = { flxAnalyticsTelemetryErrors: { plugins: Array<{ value: string, label: string }>, items: Array<{ hash: string, type: string, fatal: boolean, message: string, more: string, file: string, line: number, plugin: string, pluginName: string, version: string, sites: number, count: number, last: { iso: string, label: string, relative: string } }> } };
+
+export type FlxAnalyticsTelemetryForgetMutationVariables = Exact<{
+  input: FlxAnalyticsTelemetryForgetInput;
+}>;
+
+
+export type FlxAnalyticsTelemetryForgetMutation = { flxAnalyticsTelemetryForget: { removed: boolean | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
 
 export type FlxAppAccessQueryVariables = Exact<{
   all?: boolean | null | undefined;
