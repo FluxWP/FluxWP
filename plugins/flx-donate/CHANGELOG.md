@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 2.32.0
+- Bağış sayfasının GraphQL'i (a): `flxDonationTypes`, `flxDonationType`, `flxDonationCartAdd`, `flxMyDonations`, bağışçı sorgulama (`flxDonationLookupStart` / `Verify` / `End`) ve `flxDonationBankAccount`. Ödeme ve banka dönüşleri Store API'de kalır. Birkaç ad tek satır, tek ödeme, ad başına bir sertifika.
+- PHP 8.1 ve Flux GraphQL gerekli. Flux GraphQL yoksa REST eskisi gibi çalışır.
+
 ## 2.31.0
 - **Flux Commerce abonelikleri iyzico kartla otomatik yenilenir.** Flux Commerce 0.5.0'ın ortak kart katmanına iyzico sağlayıcısı eklendi (`flxcm_card_providers`). Abonelik içeren siparişte iyzico kartı saklar (aylık bağıştaki gibi `SUBSCRIPTION`, tek çekim, taksit yok); yenilemede Commerce yenileme siparişini açar, kart iyzico'dan çekilir. Cevap kaybolursa sonraki denemede önce ödeme durumu sorulur, iki kez çekilmez.
 - Abonelik sepetinde resmi iyzico eklentisi seçili olsa bile kart saklayabilen Flux Donate iyzico gösterilir; diğer yöntemler (Havale/EFT) gizlenmez. Kart kutusunda abonelik notu.

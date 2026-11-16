@@ -1,8 +1,8 @@
 # Flux Donate (flx-donate): REST → GraphQL eşlemesi
 
-Paket sürümü: 2.31.0 · Önek: `flxb_` · Dal: `gql/flx-donate-1` · Durum: taslak (envanter)
+Paket sürümü: 2.32.0 · Önek: `flxb_` · Dal: `gql/flx-donate-1` · Durum: (a) public
 
-Bu dosya envanterdir. Servis, şema ve ekran bu turda yok. Her satır ya bir GraphQL adına ya da İSTİSNA'ya bağlıdır. Satırdaki `dosya:satır` kodda görülen kayıttır.
+Bu dosya envanterdir. (a) servisleri ve şema parçası bu PR'de. React ekranı yok (`packages/modules` altında bağış klasörü yok). Her satır ya bir GraphQL adına ya da İSTİSNA'ya bağlıdır. Satırdaki `dosya:satır` kodda görülen kayıttır.
 
 Beş alt paket (sahip kararı): **(a)** public türler, sepete ekleme, Bağışlarım · **(b)** admin liste/detay (bağış, bağışçı, ödeme kaydı, abonelik; detay sayfasındaki kalem adı, sertifika ve sekmeler) · **(c)** onay, dekont, durum · **(d)** ayarlar ve görünüm · **(e)** takip, iş ortağı, rapor, Excel, tür yönetimi, talep. Banka/protokol uçları **istisna**.
 
@@ -380,14 +380,14 @@ Gizli yazma: sahip onayladı. Yaz-yalnız girdi (boş tutar, `"__clear__"` siler
 - AJAX: brief "2". Kodda 2 (`flxb_stats`, `flxb_import_step`), nopriv yok. Doğru.
 - Abonelik: brief Flux Commerce. `flxb_iyzico_renewals` Forms aboneliğini sipariş açmadan tahsil eder. WC checkout aboneliği (`FLXB_WC_Recurring::handles`) önce `created_via=flxb-renewal` siparişi açar (`class-flxb-wc-recurring.php:183`, `charge_locked` `:230`).
 - "kes-/kesim": bağışçı metninde yok. Yalnız içe aktarma takma adları (`class-flxb-import.php:193`).
-- PHPStan: `FLXB_WC_READY` `includes/wc/class-flxb-wc.php:181`. Strict bootstrap yalnız ana dosya ve `includes/*.php` görür. Sonraki PR `tools/phpstan/packages/flx-donate.bootstrap.php` ister; bu turda yazılmaz.
+- PHPStan: `FLXB_WC_READY` `includes/wc/class-flxb-wc.php:181`. Sabit `tools/phpstan/packages/flx-donate.bootstrap.php` içinde.
 
-## Servisler (sonraki PR'lar, bu turda yok)
+## Servisler
 
-- (a) `FLXB_Type_Public_Service`, `FLXB_Cart_Service`, `FLXB_My_Donations_Service`, `FLXB_Lookup_Service`
+- (a) `FLXB_Type_Public_Service`, `FLXB_Cart_Service`, `FLXB_My_Donations_Service`, `FLXB_Lookup_Service` (bu PR)
 - (b) `FLXB_Donation_Query_Service`, `FLXB_Donor_Service`, `FLXB_Subscription_Query_Service`, `FLXB_Payment_Query_Service`, `FLXB_Dashboard_Service`
 - (c) `FLXB_Approval_Service`, `FLXB_Receipt_Service`, `FLXB_Refund_Service`
 - (d) `FLXB_Settings_Service`, `FLXB_Appearance_Service`, `FLXB_Woo_Settings_Service`, `FLXB_Payment_Settings_Service`
 - atanmamış: `FLXB_Type_Admin_Service`, `FLXB_Track_Service`, `FLXB_Partner_Service`, `FLXB_Report_Service`, `FLXB_Import_Service`
 
-PR sırası: (a) → (b) → (c) → (d) → atanmamış. Aynı `plugins/flx-donate/graphql/schema.graphql` olduğu için paralel merge çakışır. (a) `FlxDonationType` ve sepet alanının sahibi. (b) `FlxDonation` / `FlxDonor` / `FlxPerson`. (c) (b)'nin düğümünü döner. (d) ayar tipleri, (a)'nın PHP görünümüne muhtaç değil. (b) kişi kartı bölümü #333'e muhtaç; liste değil.
+PR sırası: (a) → (b) → (c) → (d) → (e). Aynı `plugins/flx-donate/graphql/schema.graphql` olduğu için paralel merge çakışır. (a) `FlxDonationType` ve sepet alanının sahibi. (b) `FlxDonation` / `FlxDonor` / `FlxPerson`. (c) (b)'nin düğümünü döner. (d) ayar tipleri, (a)'nın PHP görünümüne muhtaç değil. (b) kişi kartı bölümü #333'e muhtaç; liste değil.

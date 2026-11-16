@@ -32,7 +32,7 @@ final class FLXB_Rest {
 					'category' => array( 'type' => 'string', 'default' => '', 'sanitize_callback' => 'sanitize_key' ),
 				),
 				'callback'            => function ( WP_REST_Request $r ) {
-					return rest_ensure_response( flxb_get_types( array( 'status' => $r['status'], 'category' => (string) $r['category'] ) ) );
+					return rest_ensure_response( FLXB_Type_Public_Service::list( (string) $r['status'], (string) $r['category'] ) );
 				},
 			)
 		);
@@ -43,11 +43,8 @@ final class FLXB_Rest {
 				'methods'             => 'GET',
 				'permission_callback' => '__return_true',
 				'callback'            => function ( WP_REST_Request $r ) {
-					$t = flxb_get_type( (string) $r['ref'] );
-					if ( ! $t || 'archived' === $t['state'] ) {
-						return new WP_Error( 'flxb_not_found', __( 'Donation type not found.', 'flx-donate' ), array( 'status' => 404 ) );
-					}
-					return rest_ensure_response( $t );
+					$t = FLXB_Type_Public_Service::one( (string) $r['ref'] );
+					return $t instanceof WP_Error ? $t : rest_ensure_response( $t );
 				},
 			)
 		);

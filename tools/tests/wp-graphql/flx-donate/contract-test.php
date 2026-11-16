@@ -1,0 +1,386 @@
+<?php
+/**
+ * Flux Donate public GraphQL (part a). Documents are the persisted operations.
+ *
+ *   wp eval-file tools/tests/wp-graphql/flx-donate/contract-test.php
+ *
+ * WooCommerce may be the Store API stand-in. The order assertion runs when WC_Order exists
+ * (the CI job with FLX_CART_REQUIRE_WC=1).
+ */
+
+require dirname( __DIR__ ) . '/lib.php';
+
+echo "Flux Donate GraphQL (public)\n";
+
+$GLOBALS['flxb_ops'] = array();
+foreach ( (array) json_decode( (string) file_get_contents( FLXB_DIR . 'graphql/persisted-queries.json' ), true ) as $doc ) {
+	if ( preg_match( '/^(?:query|mutation) (Flx\w+)/', $doc, $m ) ) {
+		$GLOBALS['flxb_ops'][ $m[1] ] = $doc;
+	}
+}
+flxt_same( 8, count( $GLOBALS['flxb_ops'] ), 'Flux Donate ships 8 persisted operations' );
+
+/**
+ * @param array<string,mixed> $vars Variables.
+ */
+function flxb_t_op( string $name, array $vars = array(), int $user = 0 ): array {
+	return flxt_gql( $GLOBALS['flxb_ops'][ $name ], $vars, $user );
+}
+
+add_filter(
+	'flxb_kurban_enabled',
+	static function () {
+		return true;
+	}
+);
+update_option(
+	'flxb_proxy_texts',
+	array(
+		array(
+			'version'    => 1,
+			'text'       => 'Proxy text for the test.',
+			'created_at' => '2026-01-01 00:00:00',
+		),
+	)
+);
+$GLOBALS['flxb_codes'] = array();
+add_filter(
+	'flxb_lookup_send',
+	static function ( $via, $type, $value, $code ) {
+		unset( $via, $type );
+		$GLOBALS['flxb_codes'][ (string) $value ] = (string) $code;
+		return 'email';
+	},
+	10,
+	4
+);
+
+$open = FLXB_Types::save(
+	array(
+		'title'          => 'Saplings',
+		'slug'           => 'gql-saplings',
+		'description'    => 'A sapling donation.',
+		'status'         => 'active',
+		'currency'       => 'TRY',
+		'allow_quantity' => 1,
+		'options'        => array(
+			array(
+				'key'       => 'one',
+				'label'     => 'One sapling',
+				'price'     => 100,
+				'unit'      => 'fidan',
+				'active'    => 1,
+				'units_per' => 1,
+			),
+		),
+		'meta'           => array(
+			'requires_proxy' => 1,
+			'certificate'    => 1,
+		),
+	)
+);
+flxt_ok( is_int( $open ) && $open > 0, 'open type saved', $open );
+$closed = FLXB_Types::save(
+	array(
+		'title'   => 'Closed cause',
+		'slug'    => 'gql-closed',
+		'status'  => 'closed',
+		'options' => array(
+			array(
+				'key'    => 'one',
+				'label'  => 'One',
+				'price'  => 10,
+				'active' => 1,
+			),
+		),
+	)
+);
+$free = FLXB_Types::save(
+	array(
+		'title'      => 'Free amount',
+		'slug'       => 'gql-free',
+		'status'     => 'active',
+		'allow_free' => 1,
+		'min_amount' => 50,
+		'currency'   => 'TRY',
+	)
+);
+$archived = FLXB_Types::save(
+	array(
+		'title'   => 'Archived cause',
+		'slug'    => 'gql-archived',
+		'status'  => 'archived',
+		'options' => array(
+			array(
+				'key'    => 'one',
+				'label'  => 'One',
+				'price'  => 10,
+				'active' => 1,
+			),
+		),
+	)
+);
+flxt_ok( is_int( $closed ) && is_int( $free ) && is_int( $archived ), 'other types saved' );
+
+if ( ! class_exists( 'FLXB_WC_Products' ) ) {
+	require_once FLXB_DIR . 'includes/wc/class-flxb-wc-products.php';
+}
+$pid = (int) wp_insert_post(
+	array(
+		'post_type'   => 'product',
+		'post_status' => 'publish',
+		'post_title'  => 'Saplings',
+	)
+);
+update_post_meta( $pid, '_price', '100' );
+FLXB_WC_Products::set_type_meta( (int) $open, 'wc_product_id', $pid );
+flxt_ok( $pid > 0, 'donation product exists' );
+
+// Anonymous type read. No internal form id, no donor row.
+$r = flxb_t_op( 'FlxDonationTypes', array( 'first' => 50 ) );
+flxt_same( null, $r['errors'] ?? null, 'types: visitor reads' );
+$nodes = $r['data']['flxDonationTypes']['nodes'] ?? array();
+$ids   = array_map( 'intval', array_column( $nodes, 'databaseId' ) );
+flxt_ok( in_array( (int) $open, $ids, true ), 'types: open type is listed' );
+flxt_ok( in_array( (int) $closed, $ids, true ), 'types: a closed type is still listed' );
+flxt_ok( ! in_array( (int) $archived, $ids, true ), 'types: archived type is left out' );
+$mine = null;
+foreach ( $nodes as $n ) {
+	if ( (int) ( $n['databaseId'] ?? 0 ) === (int) $open ) {
+		$mine = $n;
+	}
+}
+flxt_same( 'Saplings', $mine['title'] ?? null, 'types: title' );
+flxt_same( 'OPEN', $mine['state'] ?? null, 'types: open' );
+flxt_same( 'one', $mine['options'][0]['key'] ?? null, 'types: option key' );
+flxt_same( 100.0, $mine['options'][0]['price'] ?? null, 'types: price' );
+flxt_same( null, $mine['imageUrl'], 'types: no image is null' );
+flxt_same( null, $mine['progress'], 'types: no goal is null' );
+$blob = (string) wp_json_encode( $r );
+flxt_ok( false === strpos( $blob, 'form_ids' ) && false === strpos( $blob, 'cardToken' ) && false === strpos( $blob, 'cvc' ) && false === strpos( $blob, 'secret' ), 'types: no form ids, card or secret' );
+
+$r = flxb_t_op( 'FlxDonationType', array( 'slug' => 'gql-archived' ) );
+flxt_same( null, $r['data']['flxDonationType'], 'type: archived is null' );
+$r = flxb_t_op( 'FlxDonationType', array( 'id' => (int) $closed ) );
+flxt_same( 'CLOSED', $r['data']['flxDonationType']['state'] ?? null, 'type: closed state' );
+
+// IBAN, one source.
+update_option(
+	'woocommerce_bacs_accounts',
+	array(
+		array(
+			'account_name' => 'Flux Association',
+			'iban'         => 'TR33 0006 1005 1978 6457 8413 26',
+			'bank_name'    => 'Test Bank',
+		),
+	)
+);
+if ( class_exists( 'FLXB_WC_Havale' ) ) {
+	update_option(
+		'woocommerce_flxb_havale_settings',
+		array(
+			'holder' => 'Flux Association',
+			'iban'   => 'TR330006100519786457841326',
+			'bank'   => 'Test Bank',
+		)
+	);
+}
+$r = flxb_t_op( 'FlxDonationBankAccount' );
+flxt_same( null, $r['errors'] ?? null, 'iban: visitor reads' );
+flxt_same( 'TR330006100519786457841326', $r['data']['flxDonationBankAccount']['iban'] ?? null, 'iban: from the bank transfer settings' );
+flxt_same( 'Flux Association', $r['data']['flxDonationBankAccount']['holder'] ?? null, 'iban: holder' );
+
+// The type prices are in TRY. A fresh WooCommerce shop is USD, and the classic line refuses an option in another currency.
+update_option( 'woocommerce_currency', 'TRY' );
+if ( class_exists( 'FLXB_WC' ) ) {
+	FLXB_WC::save_settings( array( 'currencies' => array( 'TRY', 'USD', 'EUR' ) ) );
+}
+
+// Cart: hooks, one line, three names, one certificate recipient each.
+$GLOBALS['flxb_line_hooks'] = 0;
+$GLOBALS['flxb_recorded']   = 0;
+$GLOBALS['flxb_last_line']  = null;
+add_filter(
+	'flxb_wc_line',
+	static function ( $line ) {
+		++$GLOBALS['flxb_line_hooks'];
+		$GLOBALS['flxb_last_line'] = $line;
+		return $line;
+	}
+);
+add_action(
+	'flxb_donation_recorded',
+	static function () {
+		++$GLOBALS['flxb_recorded'];
+	}
+);
+$names = array( 'Ada', 'Bea', 'Cem' );
+$r     = flxb_t_op(
+	'FlxDonationCartAdd',
+	array(
+		'input' => array(
+			'typeId'       => (int) $open,
+			'option'       => 'one',
+			'units'        => 3,
+			'currency'     => 'TRY',
+			'names'        => $names,
+			'proxyConsent' => true,
+		),
+	)
+);
+flxt_same( null, $r['errors'] ?? null, 'cart: three names, no GraphQL error' );
+flxt_same( array(), $r['data']['flxDonationCartAdd']['errors'] ?? null, 'cart: three names accepted' );
+$items = $r['data']['flxDonationCartAdd']['cart']['items'] ?? array();
+flxt_same( 1, count( $items ), 'cart: one line for three names' );
+flxt_same( 'donation', $items[0]['kind'] ?? null, 'cart: kind donation' );
+flxt_same( $names, $items[0]['flxDonation']['names'] ?? null, 'cart: the three names' );
+flxt_same( 3, $items[0]['flxDonation']['units'] ?? null, 'cart: three units' );
+flxt_same( 1, $GLOBALS['flxb_line_hooks'], 'cart: flxb_wc_line fired once' );
+flxt_same( 0, $GLOBALS['flxb_recorded'], 'cart: flxb_donation_recorded does not fire on add' );
+$cart_blob = (string) wp_json_encode( $r );
+flxt_ok( false === strpos( $cart_blob, 'cardToken' ) && false === strpos( $cart_blob, 'cvc' ) && false === strpos( $cart_blob, 'cardUserKey' ), 'cart: no card data' );
+$again = FLXB_WC_Cart::build_line( FLXB_Cart_Service::classic_input( array( 'typeId' => (int) $open, 'option' => 'one', 'units' => 3, 'currency' => 'TRY', 'names' => $names, 'proxyConsent' => true ) ) );
+flxt_ok( is_array( $again ) && ( $again['beneficiaries'] ?? null ) === ( $GLOBALS['flxb_last_line']['beneficiaries'] ?? null ), 'cart: classic build_line keeps the same names' );
+if ( ! class_exists( 'FLXB_WC_Certificates' ) ) {
+	require_once FLXB_DIR . 'includes/wc/class-flxb-wc-certificates.php';
+}
+$stub = new class() {
+	/**
+	 * @param string $key Meta key.
+	 */
+	public function get_meta( $key ) {
+		unset( $key );
+		return '';
+	}
+};
+$recs = FLXB_WC_Certificates::recipients( is_array( $GLOBALS['flxb_last_line'] ) ? $GLOBALS['flxb_last_line'] : array(), $stub, 'Donor', 3 );
+flxt_same( array( 'Ada', 'Bea', 'Cem' ), array_column( $recs, 'name' ), 'cart: one certificate name each' );
+if ( class_exists( 'WC_Order' ) && class_exists( 'WC_Order_Item_Product' ) && function_exists( 'wc_create_order' ) && is_array( $GLOBALS['flxb_last_line'] ) ) {
+	$order = wc_create_order();
+	$item  = new WC_Order_Item_Product();
+	$item->set_product_id( $pid );
+	$item->set_quantity( 1 );
+	FLXB_WC_Cart::write_line_meta( $item, $GLOBALS['flxb_last_line'], 1 );
+	$order->add_item( $item );
+	$order->save();
+	flxt_same( 1, count( $order->get_items() ), 'order: one line' );
+	$meta = (string) $item->get_meta( 'flxb_names' );
+	flxt_ok( false !== strpos( $meta, 'Ada' ) && false !== strpos( $meta, 'Bea' ) && false !== strpos( $meta, 'Cem' ), 'order: the three names are on that line', $meta );
+} else {
+	echo "  ok   order: skipped (WooCommerce order classes are not loaded)\n";
+	++$GLOBALS['flxt_pass'];
+}
+
+// Single line, invalid amount, closed type.
+if ( class_exists( 'FLXGQL_Cart' ) ) {
+	FLXGQL_Cart::clear();
+}
+$r = flxb_t_op(
+	'FlxDonationCartAdd',
+	array(
+		'input' => array(
+			'typeId'       => (int) $open,
+			'option'       => 'one',
+			'units'        => 1,
+			'currency'     => 'TRY',
+			'proxyConsent' => true,
+		),
+	)
+);
+flxt_same( array(), $r['data']['flxDonationCartAdd']['errors'] ?? null, 'cart: one sapling' );
+flxt_same( 1, count( $r['data']['flxDonationCartAdd']['cart']['items'] ?? array() ), 'cart: single line' );
+flxt_same( array(), $r['data']['flxDonationCartAdd']['cart']['items'][0]['flxDonation']['names'] ?? null, 'cart: no extra names' );
+$r = flxb_t_op(
+	'FlxDonationCartAdd',
+	array(
+		'input' => array(
+			'typeId'   => (int) $free,
+			'amount'   => '1',
+			'currency' => 'TRY',
+		),
+	)
+);
+flxt_ok( ! empty( $r['data']['flxDonationCartAdd']['errors'] ), 'cart: amount below the minimum is a payload error' );
+flxt_same( 'amount', $r['data']['flxDonationCartAdd']['errors'][0]['field'] ?? null, 'cart: the error points at amount' );
+$r = flxb_t_op(
+	'FlxDonationCartAdd',
+	array(
+		'input' => array(
+			'typeId' => (int) $closed,
+			'option' => 'one',
+		),
+	)
+);
+flxt_ok( ! empty( $r['data']['flxDonationCartAdd']['errors'] ), 'cart: a closed type is refused' );
+
+// My donations: owner only.
+$owner = (int) wp_insert_user(
+	array(
+		'user_login' => 'flxb_owner_' . wp_rand(),
+		'user_pass'  => wp_generate_password(),
+		'user_email' => 'owner.gql@example.com',
+		'role'       => 'subscriber',
+	)
+);
+$other = (int) wp_insert_user(
+	array(
+		'user_login' => 'flxb_other_' . wp_rand(),
+		'user_pass'  => wp_generate_password(),
+		'user_email' => 'other.gql@example.com',
+		'role'       => 'subscriber',
+	)
+);
+$did = FLXB_Donations::record(
+	array(
+		'provider'     => 'test',
+		'provider_ref' => 'gql-' . wp_rand(),
+		'amount'       => 100,
+		'currency'     => 'TRY',
+		'status'       => 'completed',
+		'type_id'      => (int) $open,
+		'donor'        => array(
+			'name'  => 'Owner',
+			'email' => 'owner.gql@example.com',
+		),
+	)
+);
+flxt_ok( $did > 0, 'a donation was recorded', $did );
+$r = flxb_t_op( 'FlxMyDonations' );
+flxt_same( 'UNAUTHENTICATED', flxt_code( $r ), 'my donations: visitor → UNAUTHENTICATED' );
+$r = flxb_t_op( 'FlxMyDonations', array(), $other );
+flxt_same( null, $r['errors'] ?? null, 'my donations: another account reads' );
+flxt_same( array(), $r['data']['flxMyDonations']['nodes'] ?? null, 'my donations: another account sees none' );
+$r = flxb_t_op( 'FlxMyDonations', array(), $owner );
+$got = array_map( 'intval', array_column( $r['data']['flxMyDonations']['nodes'] ?? array(), 'databaseId' ) );
+flxt_ok( in_array( (int) $did, $got, true ), 'my donations: the owner sees their donation' );
+flxt_ok( false === strpos( (string) wp_json_encode( $r ), 'cardToken' ), 'my donations: no card data' );
+
+// Lookup: same answer, then the session, then the rate limit.
+wp_set_current_user( 0 );
+$known = flxb_t_op( 'FlxDonationLookupStart', array( 'input' => array( 'login' => 'owner.gql@example.com' ) ) );
+$miss  = flxb_t_op( 'FlxDonationLookupStart', array( 'input' => array( 'login' => 'nobody.gql@example.com' ) ) );
+flxt_same( null, $known['errors'] ?? null, 'lookup start: known address' );
+flxt_same( null, $miss['errors'] ?? null, 'lookup start: unknown address' );
+flxt_same( $known['data']['flxDonationLookupStart'] ?? null, $miss['data']['flxDonationLookupStart'] ?? null, 'lookup start: the same answer either way' );
+flxt_same( true, $known['data']['flxDonationLookupStart']['ok'] ?? null, 'lookup start: ok' );
+$bad = flxb_t_op( 'FlxDonationLookupVerify', array( 'input' => array( 'login' => 'nobody.gql@example.com', 'code' => '123456' ) ) );
+flxt_ok( ! empty( $bad['data']['flxDonationLookupVerify']['errors'] ), 'lookup verify: unknown address fails' );
+$code = (string) ( $GLOBALS['flxb_codes']['owner.gql@example.com'] ?? '' );
+flxt_ok( 6 === strlen( $code ), 'lookup: a code was issued only for the known address' );
+$ok = flxb_t_op( 'FlxDonationLookupVerify', array( 'input' => array( 'login' => 'owner.gql@example.com', 'code' => $code ) ) );
+flxt_same( true, $ok['data']['flxDonationLookupVerify']['ok'] ?? null, 'lookup verify: the code opens the session' );
+$r = flxb_t_op( 'FlxMyDonations' );
+$got = array_map( 'intval', array_column( $r['data']['flxMyDonations']['nodes'] ?? array(), 'databaseId' ) );
+flxt_ok( in_array( (int) $did, $got, true ), 'lookup session sees that donor\'s donations' );
+$end = flxb_t_op( 'FlxDonationLookupEnd', array( 'input' => array() ) );
+flxt_same( true, $end['data']['flxDonationLookupEnd']['ok'] ?? null, 'lookup end' );
+$r = flxb_t_op( 'FlxMyDonations' );
+flxt_same( 'UNAUTHENTICATED', flxt_code( $r ), 'my donations: the session is gone' );
+
+$limited = null;
+for ( $i = 0; $i < 4; $i++ ) {
+	$limited = flxb_t_op( 'FlxDonationLookupStart', array( 'input' => array( 'login' => 'rate.gql@example.com' ) ) );
+}
+flxt_same( 'RATE_LIMITED', flxt_code( is_array( $limited ) ? $limited : array() ), 'lookup start: rate limit' );
+
+flxt_done();

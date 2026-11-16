@@ -233,12 +233,16 @@ final class FLXB_App {
 	}
 
 	public static function rest_donations( WP_REST_Request $r ) {
-		$gifts = self::gifts( get_current_user_id() );
-		$per   = (int) $r['per_page'];
-		$page  = (int) $r['page'];
-		$items = array_map( array( __CLASS__, 'gift_out' ), array_slice( $gifts, ( $page - 1 ) * $per, $per ) );
-		$res   = rest_ensure_response( array( 'items' => $items, 'total' => count( $gifts ), 'page' => $page, 'pages' => (int) ceil( count( $gifts ) / $per ) ) );
-		$res->header( 'X-WP-Total', (string) count( $gifts ) );
+		$page = FLXB_My_Donations_Service::page( get_current_user_id(), (int) $r['page'], (int) $r['per_page'] );
+		$res  = rest_ensure_response(
+			array(
+				'items' => $page['items'],
+				'total' => $page['total'],
+				'page'  => $page['page'],
+				'pages' => $page['pages'],
+			)
+		);
+		$res->header( 'X-WP-Total', (string) $page['total'] );
 		return $res;
 	}
 

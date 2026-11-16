@@ -1,10 +1,10 @@
-# flx-donate 2.31.0
+# flx-donate 2.32.0
 
 - Faz: 2
-- Durum: ✱
+- Durum: 👀
 - PR: #340
 
-Envanter düzeltildi. Eşleme `ESLEME/flx-donate.md`: 102 GraphQL, 32 istisna. (a) 16, (b) 24, (c) 11, (d) 17, (e) 34. Sıra (a) → (b) → (c) → (d) → (e). Tek `schema.graphql`.
+(a) public bu PR'de: `flxDonationTypes`, `flxDonationType`, `flxDonationCartAdd`, `flxMyDonations`, `flxDonationLookupStart` / `Verify` / `End`, `flxDonationBankAccount`. Eşleme `ESLEME/flx-donate.md`: 102 GraphQL, 32 istisna. (a) 16, (b) 24, (c) 11, (d) 17, (e) 34. Sıra (a) → (b) → (c) → (d) → (e). Tek `schema.graphql`. React ekranı yok.
 
 Kararlar: (e) takip, iş ortağı, rapor, Excel, tür, talep; detay sayfasının kalem adı, sertifika ve sekmeleri (b). `flxb_iyzico_renewals` aynı kalır, tahsilat mutation'ı yok, cron istisna; Forms siparişsiz, WC checkout `flxb-renewal` siparişi açar. CSV ekranı connection, indirme admin-post. `FlxPerson` #333'ten önce nullable.
 

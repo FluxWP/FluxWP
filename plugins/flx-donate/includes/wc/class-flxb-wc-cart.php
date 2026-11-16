@@ -43,6 +43,7 @@ final class FLXB_WC_Cart {
 		add_action( 'woocommerce_checkout_create_order', array( __CLASS__, 'fill_address' ), 20 );
 		add_action( 'woocommerce_store_api_checkout_update_order_from_request', array( __CLASS__, 'fill_address_store_api' ), 20 );
 		add_filter( 'woocommerce_cart_item_quantity', array( __CLASS__, 'fixed_quantity' ), 10, 3 );
+		add_filter( 'woocommerce_store_api_product_quantity_editable', array( __CLASS__, 'quantity_editable' ), 10, 3 );
 		add_action( 'woocommerce_check_cart_items', array( __CLASS__, 'check_cart' ) );
 	}
 
@@ -346,7 +347,13 @@ final class FLXB_WC_Cart {
 
 	/** 2.15: the donor's currency now (store currency without the currency choice). */
 	public static function currency() {
-		return class_exists( 'FLXB_WC_Currency' ) ? FLXB_WC_Currency::current() : strtoupper( (string) get_woocommerce_currency() );
+		if ( class_exists( 'FLXB_WC_Currency' ) ) {
+			return FLXB_WC_Currency::current();
+		}
+		if ( function_exists( 'get_woocommerce_currency' ) ) {
+			return strtoupper( (string) get_woocommerce_currency() );
+		}
+		return 'TRY';
 	}
 
 	/**
@@ -650,6 +657,21 @@ final class FLXB_WC_Cart {
 		}
 		$title = self::line_title( $item[ self::KEY ] );
 		return '' !== $title ? esc_html( $title ) : $name;
+	}
+
+	/**
+	 * A donation line's count lives in the line, so the Store API quantity is not editable.
+	 *
+	 * @param mixed $editable  Whether the shopper may change the quantity.
+	 * @param mixed $product   Product.
+	 * @param mixed $cart_item Cart item.
+	 */
+	public static function quantity_editable( $editable, $product = null, $cart_item = null ) {
+		unset( $product );
+		if ( is_array( $cart_item ) && ! empty( $cart_item[ self::KEY ] ) ) {
+			return false;
+		}
+		return $editable;
 	}
 
 	/** Custom count and free-amount lines keep quantity 1 in the cart (the count is in the line). */

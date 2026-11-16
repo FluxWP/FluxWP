@@ -189,22 +189,22 @@ final class FLXB_Lookup {
 
 	/* ---------- Rate limits ---------- */
 
-	private static function ip() {
+	public static function ip() {
 		$ip = flx_client_ip();
 		return '' !== $ip ? $ip : '0';
 	}
 
-	private static function h( $s ) {
+	public static function h( $s ) {
 		return substr( hash_hmac( 'sha256', (string) $s, wp_salt( 'nonce' ) ), 0, 32 );
 	}
 
 	/** Counts a hit; false when the limit is reached. */
-	private static function rate( $key, $max, $window ) {
+	public static function rate( $key, $max, $window ) {
 		return flx_rate_limit( 'flxb_lk|' . $key, (int) $max, (int) $window );
 	}
 
 	/** Daily cap per channel (Hostinger: 100 e-mails a day for the whole site). */
-	private static function daily_ok( $via ) {
+	public static function daily_ok( $via ) {
 		$cap = (int) apply_filters( 'flxb_lookup_daily_cap', 'email' === $via ? 40 : 200, $via );
 		$k   = 'flxb_lk_day_' . $via . '_' . gmdate( 'Ymd' );
 		$n   = (int) get_transient( $k );
@@ -237,49 +237,16 @@ final class FLXB_Lookup {
 		return $res;
 	}
 
-	private static function err( $code, $msg, $status = 400 ) {
+	public static function err( $code, $msg, $status = 400 ) {
 		return new WP_Error( $code, $msg, array( 'status' => $status ) );
 	}
 
 	public static function rest_start( WP_REST_Request $r ) {
-		list( $type, $value ) = self::normalize( (string) $r->get_param( 'login' ) );
-		if ( '' === $type ) {
-			return self::err( 'flxb_lookup_login', __( 'Enter a valid e-mail address or phone number.', 'flx-donate' ) );
-		}
-		if ( 'phone' === $type && ! self::phone_ready() ) {
-			return self::err( 'flxb_lookup_phone', __( 'Codes cannot be sent by phone at the moment. Please use your e-mail address.', 'flx-donate' ) );
-		}
-		if ( 'email' === $type && ! self::channel_ready( 'email' ) ) {
-			return self::err( 'flxb_lookup_email', __( 'Codes cannot be sent by e-mail at the moment. Please use your phone number.', 'flx-donate' ) );
-		}
-		if ( ! self::rate( 'ip|' . self::ip(), 8, 10 * MINUTE_IN_SECONDS ) || ! self::rate( 'login|' . $value, 3, 10 * MINUTE_IN_SECONDS ) ) {
-			return self::err( 'flxb_lookup_rate', __( 'Too many attempts. Please wait a few minutes and try again.', 'flx-donate' ), 429 );
-		}
-		$via = 'email' === $type ? 'email' : '';
-		$m   = self::match( $type, $value );
-		if ( $m['donors'] || $m['orders'] ) {
-			$code = (string) wp_rand( 100000, 999999 );
-			$sent = self::deliver( $type, $value, $code );
-			if ( false === $sent ) {
-				return self::err( 'flxb_lookup_send', __( 'The code could not be sent. Please try again later or contact us.', 'flx-donate' ), 503 );
-			}
-			$via = $sent;
-			set_transient( 'flxb_lkc_' . self::h( $value ), array( 'h' => wp_hash_password( $code ), 'tries' => 0 ), self::TTL );
-		} elseif ( 'phone' === $type ) {
-			$via = self::channel_ready( 'whatsapp' ) ? 'whatsapp' : 'sms';
-		}
-		/* The same answer whether or not there is a donation: nobody learns who donated. */
-		return rest_ensure_response(
-			array(
-				'ok'      => true,
-				'via'     => $via,
-				'ttl'     => self::TTL,
-				'message' => self::sent_message( $via ),
-			)
-		);
+		$out = FLXB_Lookup_Service::start( (string) $r->get_param( 'login' ) );
+		return $out instanceof WP_Error ? $out : rest_ensure_response( $out );
 	}
 
-	private static function sent_message( $via ) {
+	public static function sent_message( $via ) {
 		if ( 'whatsapp' === $via ) {
 			return __( 'If there is a donation with this number, we have sent a 6-digit code to it on WhatsApp.', 'flx-donate' );
 		}
@@ -290,7 +257,7 @@ final class FLXB_Lookup {
 	}
 
 	/** Sends the code. @return string|false channel used */
-	private static function deliver( $type, $value, $code ) {
+	public static function deliver( $type, $value, $code ) {
 		$site = wp_specialchars_decode( flxb_brand()['name'], ENT_QUOTES );
 		/* translators: 1: code, 2: organisation name */
 		$text = sprintf( __( '%1$s is your code to view your donations at %2$s. Valid for 10 minutes. Do not share it with anyone.', 'flx-donate' ), $code, $site );
@@ -334,37 +301,37 @@ final class FLXB_Lookup {
 	}
 
 	public static function rest_verify( WP_REST_Request $r ) {
-		list( $type, $value ) = self::normalize( (string) $r->get_param( 'login' ) );
-		$code                 = preg_replace( '/\D+/', '', (string) $r->get_param( 'code' ) );
-		$bad                  = self::err( 'flxb_lookup_code', __( 'The code is wrong or has expired.', 'flx-donate' ) );
-		if ( '' === $type || 6 !== strlen( $code ) ) {
-			return $bad;
-		}
-		if ( ! self::rate( 'verify|' . self::ip(), 20, 10 * MINUTE_IN_SECONDS ) ) {
-			return self::err( 'flxb_lookup_rate', __( 'Too many attempts. Please wait a few minutes and try again.', 'flx-donate' ), 429 );
-		}
-		$key = 'flxb_lkc_' . self::h( $value );
-		$d   = get_transient( $key );
-		if ( ! is_array( $d ) || empty( $d['h'] ) ) {
-			return $bad;
-		}
-		if ( ! wp_check_password( $code, $d['h'] ) ) {
-			$d['tries'] = (int) $d['tries'] + 1;
-			if ( $d['tries'] >= self::TRIES ) {
-				delete_transient( $key );
-			} else {
-				set_transient( $key, $d, self::TTL );
-			}
-			return $bad;
-		}
-		delete_transient( $key );
-		$token = wp_generate_password( 40, false, false );
-		set_transient( 'flxb_lks_' . self::h( $token ), array( 'type' => $type, 'value' => $value ), self::SESSION );
-		self::set_cookie( $token, time() + self::SESSION );
-		return rest_ensure_response( array( 'ok' => true, 'data' => self::data_for( $type, $value ) ) );
+		$out = FLXB_Lookup_Service::verify( (string) $r->get_param( 'login' ), (string) $r->get_param( 'code' ) );
+		return $out instanceof WP_Error ? $out : rest_ensure_response( $out );
 	}
 
-	private static function set_cookie( $value, $expire ) {
+	/**
+	 * Donations of a proven e-mail or phone (the lookup page's shape).
+	 *
+	 * @param string $type  email|phone.
+	 * @param string $value Normalised value.
+	 * @return array<string,mixed>
+	 */
+	public static function proven( $type, $value ) {
+		return self::data_for( $type, $value );
+	}
+
+	/**
+	 * Donations of a signed-in account (the lookup page's shape).
+	 *
+	 * @param int $user_id Account.
+	 * @return array<string,mixed>
+	 */
+	public static function account( $user_id ) {
+		return self::data_user( (int) $user_id );
+	}
+
+	public static function set_cookie( $value, $expire ) {
+		if ( '' === $value ) {
+			unset( $_COOKIE[ self::COOKIE ] );
+		} else {
+			$_COOKIE[ self::COOKIE ] = $value;
+		}
 		if ( headers_sent() ) {
 			return;
 		}
@@ -377,7 +344,7 @@ final class FLXB_Lookup {
 	}
 
 	/** Session of the lookup cookie: [ type, value ] or null. */
-	private static function session() {
+	public static function session() {
 		$t = isset( $_COOKIE[ self::COOKIE ] ) ? preg_replace( '/[^A-Za-z0-9]/', '', (string) wp_unslash( $_COOKIE[ self::COOKIE ] ) ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		if ( 40 !== strlen( $t ) ) {
 			return null;
@@ -387,23 +354,12 @@ final class FLXB_Lookup {
 	}
 
 	public static function rest_data() {
-		if ( is_user_logged_in() ) {
-			return rest_ensure_response( array( 'ok' => true, 'data' => self::data_user( get_current_user_id() ) ) );
-		}
-		$s = self::session();
-		if ( ! $s ) {
-			return rest_ensure_response( array( 'ok' => false ) );
-		}
-		return rest_ensure_response( array( 'ok' => true, 'data' => self::data_for( $s['type'], $s['value'] ) ) );
+		$out = FLXB_Lookup_Service::current();
+		return rest_ensure_response( $out );
 	}
 
 	public static function rest_logout() {
-		$t = isset( $_COOKIE[ self::COOKIE ] ) ? preg_replace( '/[^A-Za-z0-9]/', '', (string) wp_unslash( $_COOKIE[ self::COOKIE ] ) ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-		if ( '' !== $t ) {
-			delete_transient( 'flxb_lks_' . self::h( $t ) );
-		}
-		self::set_cookie( '', time() - HOUR_IN_SECONDS );
-		return rest_ensure_response( array( 'ok' => true ) );
+		return rest_ensure_response( FLXB_Lookup_Service::end() );
 	}
 
 	/* ---------- Output ---------- */
