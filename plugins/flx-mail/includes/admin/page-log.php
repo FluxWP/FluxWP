@@ -17,6 +17,9 @@ function flxi_status_labels() {
 }
 
 function flxi_page_log() {
+	if ( flxi_flux_screen( 'logs' ) ) {
+		return;
+	}
 	global $wpdb;
 	// phpcs:disable WordPress.Security.NonceVerification
 	$status   = sanitize_key( wp_unslash( $_GET['status'] ?? '' ) );

@@ -1,0 +1,141 @@
+fragment FlxMailDate on FlxDateTime {
+  iso
+  label
+  relative
+}
+
+fragment FlxMailSecret on FlxMailSecret {
+  set
+  mask
+  fromConfig
+}
+
+fragment FlxMailSettings on FlxMailSettings {
+  fromName
+  fromEmail
+  noreplyName
+  noreplyEmail
+  replyTo
+  forceFrom
+  setSender
+  mailer
+  smtpHost
+  smtpPort
+  smtpSecure
+  smtpAuthentication
+  smtpUser
+  smtpNoreplyUser
+  smtpPassword { ...FlxMailSecret }
+  smtpNoreplyPassword { ...FlxMailSecret }
+  mailboxEnabled
+  imapHost
+  imapPort
+  imapSecure
+  imapUser
+  imapPassword { ...FlxMailSecret }
+  mailboxDays
+  mailboxKeepDays
+  mailboxSignature
+  wrapPlain
+  wrapHtml
+  emailImagesFix
+  embedImages
+  footerArt
+  logo
+  logoWhite
+  logoWidth
+  colorPrimary
+  colorDark
+  colorBg
+  colorText
+  orgName
+  tagline
+  address
+  phone
+  contactEmail
+  website
+  social { network url }
+  footerNote
+  socialBlockCore
+  socialBlockWc
+  socialVerified
+  logEnabled
+  logBody
+  logDays
+  bulkPerRun
+  bulkUnsubscribe
+  optoutEnabled
+  optoutFooterWa
+  optoutFooterSms
+  optoutText
+  optoutKeywords
+  optinKeywords
+  optoutReply
+  optinReply
+  limitDaily
+  limitRecipients
+  limitReserve
+  limitSizeMb
+  limitAttachMb
+  limitStorageGb
+  limitMailboxEmails
+  limitAliases
+  limitForwarders
+  unsubscribedCount
+  optoutWhatsappCount
+  optoutSmsCount
+  wooActive
+  lastTest { ok to error at { ...FlxMailDate } }
+  wcBranded { ...FlxMailDate }
+  otherSmtpPlugin
+  smtpAccountNotes { mailbox level text }
+  activeSocialPlugins
+  quota { mailbox type used limit left percent next { ...FlxMailDate } }
+  quotaFullDays
+  dns { domain spf dmarc mx error checkedAt { ...FlxMailDate } }
+  footerArts { key label }
+  socialNetworks { key label }
+}
+
+fragment FlxMailTemplate on FlxMailTemplate {
+  key
+  label
+  group
+  description
+  audience
+  enabled
+  canDisable
+  sender
+  editable
+  kind
+  wooUrl
+  lastSubject
+  senderInfo
+  senderNoreply
+  subject
+  heading
+  body
+  buttonText
+  buttonUrl
+  wrap
+  vars { name description }
+}
+
+fragment FlxMailLogRow on FlxMailLog {
+  databaseId
+  createdAt { ...FlxMailDate }
+  channel
+  template
+  recipient
+  subject
+  status
+  error
+  sender
+  campaignId
+  person { id name email }
+}
+
+fragment FlxMailLog on FlxMailLog {
+  ...FlxMailLogRow
+  body
+}

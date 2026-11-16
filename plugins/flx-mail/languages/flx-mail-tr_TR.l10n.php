@@ -1850,5 +1850,13 @@ return array(
   '%s read' => '%s okudu',
   '%s replied' => '%s cevap verdi',
   '%s opted out' => '%s IPTAL',
+  'New view' => 'Yeni görünüm',
+  'Communication requires JavaScript.' => 'İletişim için JavaScript gerekir.',
+  'Choose an email.' => 'Bir e-posta seçin.',
+  'File upload is not available.' => 'Dosya yükleme kullanılamıyor.',
+  'Manages communication' => 'İletişimi yönetir',
+  'People who opted out of promotional WhatsApp.' => 'Tanıtım WhatsApp’ından çıkan kişi sayısı.',
+  'People who opted out of promotional SMS.' => 'Tanıtım SMS’inden çıkan kişi sayısı.',
+  'WooCommerce is active.' => 'WooCommerce etkin.',
  ),
 );

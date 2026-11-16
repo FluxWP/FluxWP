@@ -2,9 +2,10 @@
 /**
  * Plugin Name: Flux Mail
  * Description: Sitenin tüm e-postaları tek yerde: gönderen adı/adresi (bilgi@ / no-reply@), SMTP, logolu ve mobil uyumlu kurumsal şablonlar, WordPress + WooCommerce + FluxWP eklentilerinin e-postalarını görme, düzenleme, açma/kapama, gönderim kayıtları, tekil ve toplu gönderim. WhatsApp (Evolution API) ve SMS (Netgsm) bağlantıları da burada; diğer eklentiler ortak API ile kullanır.
- * Version: 1.22.0
+ * Version: 1.23.0
  * Requires at least: 6.2
- * Requires PHP: 7.4
+ * Requires PHP: 8.1
+ * Requires Plugins: flx-graphql
  * Author: FluxWP
  * Text Domain: flx-mail
  * Domain Path: /languages
@@ -19,7 +20,7 @@ require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 require_once __DIR__ . '/includes/flx-background.php'; // Portable worker support (tools/background).
 
-define( 'FLXI_VERSION', '1.22.0' );
+define( 'FLXI_VERSION', '1.23.0' );
 define( 'FLXI_DB_VERSION', '5' );
 define( 'FLXI_FILE', __FILE__ );
 define( 'FLXI_DIR', plugin_dir_path( __FILE__ ) );
@@ -27,6 +28,11 @@ define( 'FLXI_URL', plugin_dir_url( __FILE__ ) );
 
 require_once FLXI_DIR . 'includes/flx-system-checks.php';
 require_once FLXI_DIR . 'includes/helpers.php';
+require_once FLXI_DIR . 'includes/services/class-flxi-settings-service.php';
+require_once FLXI_DIR . 'includes/services/class-flxi-template-service.php';
+require_once FLXI_DIR . 'includes/services/class-flxi-log-service.php';
+require_once FLXI_DIR . 'includes/services/class-flxi-delivery-service.php';
+require_once FLXI_DIR . 'includes/services/class-flxi-system-service.php';
 require_once FLXI_DIR . 'includes/install.php';
 require_once FLXI_DIR . 'includes/layout.php';
 require_once FLXI_DIR . 'includes/templates.php';
@@ -95,3 +101,35 @@ add_filter(
 );
 
 add_action( 'plugins_loaded', 'flxi_maybe_upgrade', 5 );
+
+add_action(
+	'flx_gql_register',
+	static function () {
+		if ( ! function_exists( 'flx_gql_query' ) ) {
+			return;
+		}
+		require_once FLXI_DIR . 'includes/graphql/schema.php';
+		flxi_gql_register();
+	}
+);
+add_filter(
+	'flx_gql_persisted_manifests',
+	static function ( $m ) {
+		$m             = is_array( $m ) ? $m : array();
+		$m['flx-mail'] = FLXI_DIR . 'graphql/persisted-queries.json';
+		return $m;
+	}
+);
+add_filter(
+	'flx_gql_capabilities',
+	static function ( $caps ) {
+		$caps = is_array( $caps ) ? $caps : array();
+		return $caps + array(
+			'flxi_manage' => array(
+				'label'   => __( 'Manages communication', 'flx-mail' ),
+				'group'   => __( 'Communication', 'flx-mail' ),
+				'package' => 'flx-mail',
+			),
+		);
+	}
+);

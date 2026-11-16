@@ -8,6 +8,9 @@
 defined( 'ABSPATH' ) || exit;
 
 function flxi_page_settings() {
+	if ( flxi_flux_screen( 'settings' ) ) {
+		return;
+	}
 	$s = flxi_settings();
 	$b = flxi_brand();
 	flxi_page_head( __( 'Settings', 'flx-mail' ), __( 'Sender name and addresses, sending method, and email appearance.', 'flx-mail' ) );
@@ -264,61 +267,12 @@ add_action(
 	'admin_post_flxi_save_settings',
 	function () {
 		flxi_check( 'flxi_save_settings' );
-		$in    = (array) wp_unslash( $_POST['flxi'] ?? array() ); // phpcs:ignore
-		$d     = flxi_defaults();
-		$clean = array();
-		// İşaret kutuları formda yoksa kapalıdır (yalnız bu formdaki bölümler için).
-		$bools = array( 'force_from', 'set_sender', 'smtp_auth', 'wrap_plain', 'wrap_html', 'email_images_fix', 'embed_images', 'social_block_core', 'social_block_wc', 'social_verified', 'log_enabled', 'log_body', 'bulk_unsubscribe', 'mailbox_enabled', 'optout_enabled', 'optout_footer_wa', 'optout_footer_sms' );
+		$in      = (array) wp_unslash( $_POST['flxi'] ?? array() ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 		$partial = ! empty( $_POST['partial'] );
-		foreach ( $d as $k => $def ) {
-			if ( in_array( $k, $bools, true ) ) {
-				if ( $partial && ! array_key_exists( $k, $in ) && ! in_array( $k, array( 'log_enabled', 'log_body', 'bulk_unsubscribe', 'optout_enabled', 'optout_footer_wa', 'optout_footer_sms' ), true ) ) {
-					continue;
-				}
-				$clean[ $k ] = empty( $in[ $k ] ) ? 0 : 1;
-				continue;
-			}
-			if ( ! array_key_exists( $k, $in ) ) {
-				continue;
-			}
-			if ( in_array( $k, array( 'smtp_pass', 'smtp_nr_pass', 'imap_pass' ), true ) ) {
-				$v = trim( (string) $in[ $k ] );
-				if ( '' !== $v ) {
-					$clean[ $k ] = flxi_encrypt( $v );
-				}
-				continue;
-			}
-			try {
-				$clean[ $k ] = flxi_sanitize_setting( $k, $in[ $k ] );
-			} catch ( Exception $e ) {
-				flxi_redirect( flxi_admin_url( 'flxi-ayarlar' ), '', $e->getMessage() );
-			}
+		$saved   = FLXI_Settings_Service::save( $in, 'form', $partial );
+		if ( is_wp_error( $saved ) ) {
+			flxi_redirect( flxi_admin_url( 'flxi-ayarlar' ), '', $saved->get_error_message() );
 		}
-		foreach ( array( 'from_name', 'noreply_name' ) as $k ) {
-			if ( isset( $clean[ $k ] ) && '' === $clean[ $k ] ) {
-				$clean[ $k ] = $d[ $k ];
-			}
-		}
-		foreach ( array( 'from_email', 'noreply_email' ) as $k ) {
-			if ( isset( $clean[ $k ] ) && '' === $clean[ $k ] ) {
-				$clean[ $k ] = $d[ $k ];
-			}
-		}
-		if ( isset( $clean['log_days'] ) ) {
-			$clean['log_days'] = max( 1, min( 3650, (int) $clean['log_days'] ) );
-		}
-		foreach ( array( 'limit_daily', 'limit_recipients', 'limit_size_mb', 'limit_attach_mb', 'limit_storage_gb', 'limit_mailbox_emails', 'limit_aliases', 'limit_forwarders', 'limit_reserve' ) as $k ) {
-			if ( isset( $clean[ $k ] ) ) {
-				$clean[ $k ] = max( 0, min( 1000000, (int) $clean[ $k ] ) );
-			}
-		}
-		if ( isset( $clean['limit_reserve'], $clean['limit_daily'] ) && $clean['limit_daily'] ) {
-			$clean['limit_reserve'] = min( $clean['limit_reserve'], max( 0, $clean['limit_daily'] - 1 ) );
-		}
-		if ( isset( $clean['bulk_per_run'] ) ) {
-			$clean['bulk_per_run'] = max( 1, min( 500, (int) $clean['bulk_per_run'] ) );
-		}
-		flxi_update_settings( $clean );
 		flxi_redirect( flxi_back( flxi_admin_url( 'flxi-ayarlar' ) ), __( 'Settings saved.', 'flx-mail' ) );
 	}
 );

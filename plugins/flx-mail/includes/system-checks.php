@@ -7,6 +7,11 @@
 
 defined( 'ABSPATH' ) || exit;
 
+/** Sistem kontrolü Flux Speed'ta mı. Öyleyse bu paketin ekranı gizlenir. */
+function flxi_system_moved() {
+	return function_exists( 'flxp_system_checks_url' );
+}
+
 add_filter( 'flx_system_checks', 'flxi_system_checks' );
 
 function flxi_system_checks( $checks ) {

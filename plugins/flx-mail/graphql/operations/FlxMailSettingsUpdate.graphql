@@ -1,0 +1,6 @@
+mutation FlxMailSettingsUpdate($input: FlxMailSettingsUpdateInput!) {
+  flxMailSettingsUpdate(input: $input) {
+    settings { ...FlxMailSettings }
+    errors { code message field }
+  }
+}

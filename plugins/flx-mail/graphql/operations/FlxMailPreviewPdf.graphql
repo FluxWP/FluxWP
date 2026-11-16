@@ -1,0 +1,6 @@
+mutation FlxMailPreviewPdf($input: FlxMailPreviewPdfInput!) {
+  flxMailPreviewPdf(input: $input) {
+    pdf { name data }
+    errors { code message field }
+  }
+}

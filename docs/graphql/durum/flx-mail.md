@@ -1,10 +1,10 @@
-# flx-mail 1.22.0
+# flx-mail 1.23.0
 
 - Faz: 3
 - Durum: ✱
 - PR: #332
 
-Envanter güncellendi (`ESLEME/flx-mail.md`). Servis, şema ve ekran yok. 42 REST ucu (39 GraphQL, 3 istisna), `wp_ajax_` yok, 9 admin sayfası. Parola ve bağlantı gizli alanı yazma-yalnız GraphQL girdisi (`""` korur, `"__clear__"` siler); okuma `FlxMailSecret`. Verify token `flxMailWacloudSetup.webhookVerifyValue`. Kuyruk tetiği nopriv loopback değil: WP-Cron `flxi_run_queue` artı kimlikli `flxMailQueueRun`. Posta kutusu AI düğmesi `flxMailDraftAi`; araçlar `flxai_tools` üzerinde kalır. Kişi `FlxPerson` (CRM yoksa null).
+Parça 1 uygulandı: Ayarlar, E-postalar (şablon düzenleyici dahil), Kayıtlar ve Sistem kontrolü GraphQL üzerinden (`FlxMailSettings`, şablon, kayıt ve sistem sorguları; ayar, şablon, önizleme, test, DNS, WooCommerce marka ve IMAP test mutasyonları). React ekran `flxi-mail` wp-admin’de varsayılan; klasik görünüm `flxi_ui` ile duruyor. Sözleşme testi `tools/tests/wp-graphql/flx-mail/contract-test.php`. Parça 2 bağlantılar ve WhatsApp Cloud, parça 3 gönderim / kuyruk / kara liste, parça 4 posta kutusu.
 
 ## İstisnalar
 

@@ -1,0 +1,3 @@
+query FlxMailTemplate($key: ID!) {
+  flxMailTemplate(key: $key) { ...FlxMailTemplate }
+}

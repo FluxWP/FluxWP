@@ -8,6 +8,9 @@
 defined( 'ABSPATH' ) || exit;
 
 function flxi_page_templates() {
+	if ( flxi_flux_screen( 'templates' ) ) {
+		return;
+	}
 	$key = isset( $_GET['key'] ) ? sanitize_text_field( wp_unslash( $_GET['key'] ) ) : ''; // phpcs:ignore
 	if ( $key ) {
 		flxi_page_template_edit( $key );
@@ -244,14 +247,12 @@ add_action(
 		flxi_check( 'flxi_toggle_template' );
 		$key = sanitize_text_field( wp_unslash( $_POST['key'] ?? '' ) );
 		$on  = ! empty( $_POST['enabled'] );
-		if ( 0 === strpos( $key, 'wc/' ) ) {
-			flxi_wc_set_enabled( substr( $key, 3 ), $on );
-		} else {
+		FLXI_Template_Service::toggle( $key, $on );
+		if ( 0 !== strpos( $key, 'wc/' ) ) {
 			$type = flxi_email_types()[ $key ] ?? null;
 			if ( $type && ! $type['can_disable'] ) {
 				$on = true;
 			}
-			flxi_save_template( $key, array( 'enabled' => $on ) );
 		}
 		flxi_redirect( flxi_back( flxi_admin_url( 'flxi' ) ), $on ? __( 'Email enabled.', 'flx-mail' ) : __( 'Email disabled; it will not be sent.', 'flx-mail' ) );
 	}
@@ -262,29 +263,18 @@ add_action(
 	function () {
 		flxi_check( 'flxi_save_template' );
 		$key  = sanitize_text_field( wp_unslash( $_POST['key'] ?? '' ) );
-		$type = flxi_email_types()[ $key ] ?? null;
 		$back = flxi_admin_url( 'flxi', array( 'key' => $key ) );
-		if ( ! empty( $_POST['reset'] ) ) {
-			flxi_reset_template( $key );
-			flxi_redirect( $back, __( 'Default content restored.', 'flx-mail' ) );
-		}
-		$data = array(
-			'enabled' => ! empty( $_POST['enabled'] ) || ( $type && ! $type['can_disable'] ),
-			'sender'  => sanitize_key( wp_unslash( $_POST['sender'] ?? '' ) ),
+		$post = array(
+			'key'         => $key,
+			'reset'       => ! empty( $_POST['reset'] ),
+			'enabled'     => ! empty( $_POST['enabled'] ),
+			'sender'      => sanitize_key( wp_unslash( $_POST['sender'] ?? '' ) ),
+			'wrap'        => ! empty( $_POST['wrap'] ),
 		);
-		if ( $type && $type['editable'] ) {
-			foreach ( array( 'subject', 'heading', 'body', 'button_text', 'button_url' ) as $f ) {
-				$v = wp_unslash( $_POST[ $f ] ?? '' ); // phpcs:ignore
-				// Varsayılanla aynıysa kaydetme (varsayılan metin çevirisi değişince güncel kalsın).
-				$data[ $f ] = trim( (string) $v ) === trim( (string) $type['defaults'][ $f ] ) ? '' : $v;
-			}
-		} else {
-			$data['wrap'] = ! empty( $_POST['wrap'] );
+		foreach ( array( 'subject', 'heading', 'body', 'button_text', 'button_url' ) as $f ) {
+			$post[ $f ] = wp_unslash( $_POST[ $f ] ?? '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		}
-		if ( 0 === strpos( $key, 'wc/' ) ) {
-			flxi_wc_set_enabled( substr( $key, 3 ), $data['enabled'] );
-		}
-		flxi_save_template( $key, $data );
-		flxi_redirect( $back, __( 'Saved.', 'flx-mail' ) );
+		FLXI_Template_Service::save_post( $post );
+		flxi_redirect( $back, ! empty( $_POST['reset'] ) ? __( 'Default content restored.', 'flx-mail' ) : __( 'Saved.', 'flx-mail' ) );
 	}
 );

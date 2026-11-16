@@ -1,0 +1,7 @@
+query FlxMailLogs($first: Int, $after: String, $status: String, $channel: String, $template: String, $campaign: Int, $search: String) {
+  flxMailLogs(first: $first, after: $after, status: $status, channel: $channel, template: $template, campaign: $campaign, search: $search) {
+    totalCount
+    pageInfo { hasNextPage endCursor }
+    nodes { ...FlxMailLogRow }
+  }
+}
