@@ -1,0 +1,12 @@
+mutation FlxBlocksLibrarySourceRemove($input: FlxBlocksLibrarySourceRemoveInput!) {
+  flxBlocksLibrarySourceRemove(input: $input) {
+    sources {
+      ...FlxBlocksSourceRow
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

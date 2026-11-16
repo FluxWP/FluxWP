@@ -17,6 +17,18 @@ msgstr "Blok editörü için sayfa oluşturucu: satır/sütun düzeni, gelişmi�
 msgid "FluxWP"
 msgstr "FluxWP"
 
+msgid "JavaScript is required for this screen."
+msgstr "Bu ekran için JavaScript gerekir."
+
+msgid "New view"
+msgstr "Yeni görünüm"
+
+msgid "Open the new view (same features plus the design library, works in the FluxWP app too)."
+msgstr "Yeni görünümü açın (aynı özellikler, ek olarak tasarım kütüphanesi; FluxWP uygulamasında da çalışır)."
+
+msgid "Block Editor"
+msgstr "Blok Editörü"
+
 msgid "Actionable endpoint for api call."
 msgstr "API çağrısı için işlem uç noktası."
 
@@ -413,8 +425,8 @@ msgstr "Diğer"
 msgid "My patterns"
 msgstr "Desenlerim"
 
-msgid "Enter a valid site address."
-msgstr "Geçerli bir site adresi girin."
+msgid "Home"
+msgstr "Ana sayfa"
 
 msgid "Unknown action."
 msgstr "Bilinmeyen işlem."
@@ -606,6 +618,390 @@ msgstr "reCAPTCHA doğrulanamadı"
 
 msgid "Required Field Empty"
 msgstr "Zorunlu alan boş"
+
+msgid "What kind of file an asset is."
+msgstr "Dosyanın türü."
+
+msgid "Stylesheet."
+msgstr "Stil dosyası."
+
+msgid "Classic script."
+msgstr "Klasik betik."
+
+msgid "Script module (type=\"module\", uses the import map in footerHtml)."
+msgstr "Betik modülü (type=\"module\", footerHtml'deki import map'i kullanır)."
+
+msgid "A stylesheet or script rendered blocks need, as WordPress registered it."
+msgstr "İşlenen blokların ihtiyaç duyduğu, WordPress'te kayıtlı stil ya da betik dosyası."
+
+msgid "Stylesheet, script or script module."
+msgstr "Stil dosyası, betik ya da betik modülü."
+
+msgid "Registered handle (module id for modules). Use it to load each file once per page."
+msgstr "Kayıtlı ad (modüllerde modül kimliği). Her dosyayı sayfada bir kez yüklemek için kullanın."
+
+msgid "Absolute URL without the version; null for an inline-only asset."
+msgstr "Sürümsüz tam adres; yalnız satır içi dosyada null."
+
+msgid "Version WordPress adds as ?ver=; null when it adds none."
+msgstr "WordPress'in ?ver= olarak eklediği sürüm; eklemiyorsa null."
+
+msgid "Stylesheet media; null for scripts."
+msgstr "Stil dosyasının media değeri; betiklerde null."
+
+msgid "Handles this asset needs; they come earlier in the same list."
+msgstr "Bu dosyanın ihtiyaç duyduğu dosyalar; listede ondan önce gelir."
+
+msgid "Inline script to run before the file; empty when none."
+msgstr "Dosyadan önce çalışacak satır içi betik; yoksa boş."
+
+msgid "Inline CSS or script to add after the file; empty when none."
+msgstr "Dosyadan sonra eklenecek satır içi CSS ya da betik; yoksa boş."
+
+msgid "Localized data script (var x = {...}) to run before the file; empty when none."
+msgstr "Dosyadan önce çalışacak yerelleştirilmiş veri betiği (var x = {...}); yoksa boş."
+
+msgid "Loaded at the end of the body."
+msgstr "Body'nin sonunda yüklenir."
+
+msgid "Loading strategy: defer, async or empty."
+msgstr "Yükleme stratejisi: defer, async ya da boş."
+
+msgid "One block of the content. The tree is flat: inner blocks point to their parent with parentClientId."
+msgstr "İçeriğin bir bloğu. Ağaç düzdür: iç bloklar üst bloklarını parentClientId ile gösterir."
+
+msgid "Position path, the same for the same content (\"0\", \"0.2\", \"0.2.1\")."
+msgstr "Konum yolu, aynı içerik için hep aynıdır (\"0\", \"0.2\", \"0.2.1\")."
+
+msgid "Parent block; null for a top-level block."
+msgstr "Üst blok; en üst düzey blokta null."
+
+msgid "Position among its siblings, from 0."
+msgstr "Kardeşleri arasındaki sırası, 0'dan başlar."
+
+msgid "Nesting level; 0 for a top-level block."
+msgstr "İç içe düzeyi; en üst düzey blokta 0."
+
+msgid "Block name, e.g. flx/rowlayout; core/freeform for loose HTML."
+msgstr "Blok adı, ör. flx/rowlayout; serbest HTML için core/freeform."
+
+msgid "Attributes saved in the block comment (each block type has its own)."
+msgstr "Blok yorumunda kayıtlı öznitelikler (her blok türünün kendine özgü)."
+
+msgid "The block's own saved HTML, without its inner blocks."
+msgstr "Bloğun iç blokları hariç kayıtlı HTML'i."
+
+msgid "Rendered on the server; its saved HTML is not what visitors see."
+msgstr "Sunucuda işlenir; kayıtlı HTML'i ziyaretçinin gördüğü değildir."
+
+msgid "Block content rendered as on the site, with everything the page needs for it. Either put headHtml in <head> and footerHtml at the end of <body>, or load css, styles, scripts and fonts yourself; not both."
+msgstr "Sitedeki gibi işlenmiş blok içeriği ve sayfanın bunun için ihtiyaç duyduğu her şey. Ya headHtml'i <head>'e, footerHtml'i <body> sonuna koyun ya da css, styles, scripts ve fonts'u kendiniz yükleyin; ikisini birden değil."
+
+msgid "Rendered HTML (the_content)."
+msgstr "İşlenmiş HTML (the_content)."
+
+msgid "CSS generated for these blocks (block styles, custom CSS, layout). Not in styles."
+msgstr "Bu bloklar için üretilen CSS (blok stilleri, özel CSS, yerleşim). styles içinde yoktur."
+
+msgid "Block tree as a flat list in document order."
+msgstr "Belge sırasıyla düz liste hâlinde blok ağacı."
+
+msgid "Stylesheets, dependencies first."
+msgstr "Stil dosyaları, önce bağımlılıklar."
+
+msgid "Scripts and script modules, dependencies first."
+msgstr "Betikler ve betik modülleri, önce bağımlılıklar."
+
+msgid "Font stylesheet URLs (served from the site when local fonts are on)."
+msgstr "Yazı tipi stil dosyası adresleri (yerel yazı tipleri açıksa siteden sunulur)."
+
+msgid "JSON-LD documents for the page head (e.g. FAQ schema of accordions)."
+msgstr "Sayfa başlığı için JSON-LD belgeleri (ör. akordeonların SSS şeması)."
+
+msgid "Ready <head> markup: stylesheets, fonts, css, schema and head scripts, printed by WordPress."
+msgstr "Hazır <head> kodu: WordPress'in yazdığı stil dosyaları, yazı tipleri, css, şema ve head betikleri."
+
+msgid "Ready end-of-body markup: footer scripts, script modules and their data."
+msgstr "Hazır body sonu kodu: alt betikler, betik modülleri ve verileri."
+
+msgid "Site-wide styles every block page needs once."
+msgstr "Her blok sayfasının bir kez ihtiyaç duyduğu site geneli stiller."
+
+msgid "Flux Block Editor variables, theme palette and palette color classes."
+msgstr "Flux Block Editor değişkenleri, tema paleti ve palet renk sınıfları."
+
+msgid "The theme's global styles (theme.json presets and styles)."
+msgstr "Temanın genel stilleri (theme.json ön ayarları ve stilleri)."
+
+msgid "Base block library stylesheets."
+msgstr "Temel blok kütüphanesi stil dosyaları."
+
+msgid "Ready <head> markup of all of the above."
+msgstr "Yukarıdakilerin hepsinin hazır <head> kodu."
+
+msgid "The blocks of this content rendered as on the site, with the CSS and files the page needs. Null when the content is password protected."
+msgstr "Bu içeriğin blokları, sayfanın ihtiyaç duyduğu CSS ve dosyalarla birlikte sitedeki gibi işlenmiş. İçerik parola korumalıysa null."
+
+msgid "Site-wide styles block pages share. Load once per page, before the content styles."
+msgstr "Blok sayfalarının paylaştığı site geneli stiller. Sayfada bir kez, içerik stillerinden önce yükleyin."
+
+msgid "Renders block markup (a pattern or an unsaved draft) as the site would."
+msgstr "Blok kodunu (bir desen ya da kaydedilmemiş taslak) sitenin işleyeceği gibi işler."
+
+msgid "Block markup."
+msgstr "Blok kodu."
+
+msgid "Post the markup belongs to; dynamic blocks read it. The user must be able to edit it."
+msgstr "Kodun ait olduğu yazı; dinamik bloklar onu okur. Kullanıcı onu düzenleyebilmelidir."
+
+msgid "The content is too long to preview."
+msgstr "İçerik önizleme için çok uzun."
+
+msgid "A design library category."
+msgstr "Bir tasarım kütüphanesi kategorisi."
+
+msgid "Category slug."
+msgstr "Kategori kısa adı."
+
+msgid "Category name."
+msgstr "Kategori adı."
+
+msgid "Patterns in the category."
+msgstr "Kategorideki desenler."
+
+msgid "A design library pattern (a ready section or page)."
+msgstr "Bir tasarım kütüphanesi deseni (hazır bölüm ya da sayfa)."
+
+msgid "Pattern name (e.g. flx-preset/hero) or user/<post id> for My patterns."
+msgstr "Desen adı (ör. flx-preset/hero) ya da Desenlerim için user/<yazı kimliği>."
+
+msgid "Title."
+msgstr "Başlık."
+
+msgid "Description; empty when none."
+msgstr "Açıklama; yoksa boş."
+
+msgid "Category slugs."
+msgstr "Kategori kısa adları."
+
+msgid "Search keywords."
+msgstr "Arama anahtar kelimeleri."
+
+msgid "Width to preview the pattern at (px)."
+msgstr "Desenin önizleneceği genişlik (px)."
+
+msgid "Block markup to insert."
+msgstr "Eklenecek blok kodu."
+
+msgid "Linked library the pattern comes from; null for this site."
+msgstr "Desenin geldiği bağlı kütüphane; bu site için null."
+
+msgid "The pattern rendered on this site (preview). Ask for it on one pattern at a time."
+msgstr "Desenin bu sitede işlenmiş hâli (önizleme). Her seferinde tek desen için isteyin."
+
+msgid "Design library patterns."
+msgstr "Tasarım kütüphanesi desenleri."
+
+msgid "A design library: this site's or a linked Flux site's."
+msgstr "Bir tasarım kütüphanesi: bu sitenin ya da bağlı bir Flux sitesinin."
+
+msgid "Site name."
+msgstr "Site adı."
+
+msgid "Site address."
+msgstr "Site adresi."
+
+msgid "Linked library id; null for this site."
+msgstr "Bağlı kütüphane kimliği; bu site için null."
+
+msgid "Categories in use (a short list)."
+msgstr "Kullanılan kategoriler (kısa liste)."
+
+msgid "Patterns, filtered by category and search words."
+msgstr "Kategoriye ve arama kelimelerine göre süzülmüş desenler."
+
+msgid "Words to look for in the title, description and keywords."
+msgstr "Başlıkta, açıklamada ve anahtar kelimelerde aranacak kelimeler."
+
+msgid "A linked design library (another Flux site). Its key never leaves the server."
+msgstr "Bağlı bir tasarım kütüphanesi (başka bir Flux sitesi). Anahtarı sunucudan hiç çıkmaz."
+
+msgid "Source id."
+msgstr "Kaynak kimliği."
+
+msgid "Name."
+msgstr "Ad."
+
+msgid "A library key is saved for it."
+msgstr "Bunun için kayıtlı bir kütüphane anahtarı var."
+
+msgid "Sharing this site's design library with other Flux sites."
+msgstr "Bu sitenin tasarım kütüphanesinin diğer Flux siteleriyle paylaşımı."
+
+msgid "Other sites can add this library."
+msgstr "Diğer siteler bu kütüphaneyi ekleyebilir."
+
+msgid "Key the other site enters; empty until sharing is turned on."
+msgstr "Diğer sitenin gireceği anahtar; paylaşım açılana kadar boş."
+
+msgid "Address the other site enters."
+msgstr "Diğer sitenin gireceği adres."
+
+msgid "This site's design library, or a linked library's."
+msgstr "Bu sitenin ya da bağlı bir kütüphanenin tasarım kütüphanesi."
+
+msgid "Linked library id; leave empty for this site."
+msgstr "Bağlı kütüphane kimliği; bu site için boş bırakın."
+
+msgid "Fetch a linked library again instead of using the 30 minute copy."
+msgstr "Bağlı kütüphaneyi 30 dakikalık kopyayı kullanmak yerine yeniden getir."
+
+msgid "One design library pattern (for its preview)."
+msgstr "Tek bir tasarım kütüphanesi deseni (önizlemesi için)."
+
+msgid "Pattern id."
+msgstr "Desen kimliği."
+
+msgid "Linked design libraries (a short list)."
+msgstr "Bağlı tasarım kütüphaneleri (kısa liste)."
+
+msgid "Sharing of this site's design library."
+msgstr "Bu sitenin tasarım kütüphanesinin paylaşımı."
+
+msgid "Links another Flux site's design library. The site is asked once to check the address and key."
+msgstr "Başka bir Flux sitesinin tasarım kütüphanesini bağlar. Adres ve anahtarı doğrulamak için siteye bir kez sorulur."
+
+msgid "Name; leave empty to use the site's own name."
+msgstr "Ad; sitenin kendi adını kullanmak için boş bırakın."
+
+msgid "Library key given by the other site."
+msgstr "Diğer sitenin verdiği kütüphane anahtarı."
+
+msgid "The added library."
+msgstr "Eklenen kütüphane."
+
+msgid "All linked libraries."
+msgstr "Tüm bağlı kütüphaneler."
+
+msgid "Removes a linked design library."
+msgstr "Bağlı bir tasarım kütüphanesini kaldırır."
+
+msgid "Remaining linked libraries."
+msgstr "Kalan bağlı kütüphaneler."
+
+msgid "Turns sharing of this site's design library on or off, or makes a new key."
+msgstr "Bu sitenin tasarım kütüphanesi paylaşımını açar ya da kapatır veya yeni anahtar üretir."
+
+msgid "Share the library; leave out to keep it as it is."
+msgstr "Kütüphaneyi paylaş; olduğu gibi kalsın diye göndermeyin."
+
+msgid "Make a new key; sites using the old key lose access."
+msgstr "Yeni anahtar üret; eski anahtarı kullanan siteler erişimini kaybeder."
+
+msgid "Sharing after the change."
+msgstr "Değişiklikten sonraki paylaşım."
+
+msgid "Editor width of a page or post."
+msgstr "Sayfa ya da yazının editör genişliği."
+
+msgid "Small template."
+msgstr "Küçük şablon."
+
+msgid "Large template."
+msgstr "Büyük şablon."
+
+msgid "Full width."
+msgstr "Tam genişlik."
+
+msgid "A block on the Block Editor dashboard."
+msgstr "Block Editor panosundaki bir blok."
+
+msgid "Block name, e.g. flx/rowlayout."
+msgstr "Blok adı, ör. flx/rowlayout."
+
+msgid "Block title."
+msgstr "Blok başlığı."
+
+msgid "What the block does."
+msgstr "Bloğun ne yaptığı."
+
+msgid "The block is offered in the editor."
+msgstr "Blok editörde sunulur."
+
+msgid "Admin page of the block's items (e.g. Lottie animations); null when none."
+msgstr "Bloğun öğelerinin yönetim sayfası (ör. Lottie animasyonları); yoksa null."
+
+msgid "Text of that link."
+msgstr "O bağlantının metni."
+
+msgid "Editor widths (only for themes that use them)."
+msgstr "Editör genişlikleri (yalnız bunları kullanan temalarda)."
+
+msgid "Width can be chosen per page and post."
+msgstr "Genişlik sayfa ve yazı başına seçilebilir."
+
+msgid "Small template width (px)."
+msgstr "Küçük şablon genişliği (px)."
+
+msgid "Large template width (px)."
+msgstr "Büyük şablon genişliği (px)."
+
+msgid "Width of new posts."
+msgstr "Yeni yazıların genişliği."
+
+msgid "Width of new pages."
+msgstr "Yeni sayfaların genişliği."
+
+msgid "The theme's content width (px); 0 when it sets none."
+msgstr "Temanın içerik genişliği (px); belirtmiyorsa 0."
+
+msgid "Block Editor dashboard settings."
+msgstr "Block Editor panosu ayarları."
+
+msgid "Show the page's header blocks in the admin bar."
+msgstr "Sayfanın başlık bloklarını yönetim çubuğunda göster."
+
+msgid "The admin bar setting is offered (filter flxbk_show_admin_bar)."
+msgstr "Yönetim çubuğu ayarı sunulur (flxbk_show_admin_bar filtresi)."
+
+msgid "Editor widths; null when the theme does not use them."
+msgstr "Editör genişlikleri; tema kullanmıyorsa null."
+
+msgid "Admin address of the Style Library."
+msgstr "Stil Kütüphanesi'nin yönetim adresi."
+
+msgid "Blocks of the Block Editor dashboard (a short list)."
+msgstr "Block Editor panosunun blokları (kısa liste)."
+
+msgid "Turns a block on or off in the editor. Content that already uses it keeps working."
+msgstr "Bir bloğu editörde açar ya da kapatır. Onu zaten kullanan içerik çalışmaya devam eder."
+
+msgid "Block name."
+msgstr "Blok adı."
+
+msgid "On."
+msgstr "Açık."
+
+msgid "The block after the change."
+msgstr "Değişiklikten sonraki blok."
+
+msgid "Editor widths; a field left out stays as it is."
+msgstr "Editör genişlikleri; gönderilmeyen alan olduğu gibi kalır."
+
+msgid "Small template width (px, 200–4000)."
+msgstr "Küçük şablon genişliği (px, 200–4000)."
+
+msgid "Large template width (px, 200–4000)."
+msgstr "Büyük şablon genişliği (px, 200–4000)."
+
+msgid "Saves Block Editor dashboard settings; a field left out stays as it is."
+msgstr "Block Editor panosu ayarlarını kaydeder; gönderilmeyen alan olduğu gibi kalır."
+
+msgid "Editor widths."
+msgstr "Editör genişlikleri."
+
+msgid "Settings after the change."
+msgstr "Değişiklikten sonraki ayarlar."
 
 msgctxt "post type general name"
 msgid "Flux Header"
@@ -1463,6 +1859,21 @@ msgstr "Tema düğmesi"
 msgid "Theme Secondary"
 msgstr "Tema ikincil rengi"
 
+msgid "Unknown block."
+msgstr "Bilinmeyen blok."
+
+msgid "Choose Small, Large or Fullwidth."
+msgstr "Küçük, Büyük ya da Tam genişlik seçin."
+
+msgid "Enter a width between 200 and 4000 px."
+msgstr "200 ile 4000 px arasında bir genişlik girin."
+
+msgid "Pattern not found."
+msgstr "Desen bulunamadı."
+
+msgid "Enter a valid site address."
+msgstr "Geçerli bir site adresi girin."
+
 msgid "Pale pink"
 msgstr "Soluk pembe"
 
@@ -1495,9 +1906,6 @@ msgstr "Camgöbeği mavimsi gri"
 
 msgid "Very dark gray"
 msgstr "Çok koyu gri"
-
-msgid "Block Editor"
-msgstr "Blok Editörü"
 
 msgid "Close"
 msgstr "Kapat"
@@ -6839,9 +7247,6 @@ msgstr "WordPress menüsünü içe aktar"
 msgid "Make selection…"
 msgstr "Seçim yapın…"
 
-msgid "Home"
-msgstr "Ana sayfa"
-
 msgid "Collapse Vertical Sub Menus"
 msgstr "Dikey alt menüleri daralt"
 
@@ -7003,6 +7408,10 @@ msgstr "Seçilen menü çöp kutusunda."
 
 msgid "Select navigation"
 msgstr "Menü seçin"
+
+msgctxt "block description"
+msgid "An advanced navigation block."
+msgstr "Gelişmiş bir menü bloğu."
 
 msgctxt "block title"
 msgid "Navigation (Adv)"
@@ -8487,6 +8896,10 @@ msgstr "Kaydediliyor…"
 
 msgid "Width Settings"
 msgstr "Genişlik ayarları"
+
+msgctxt "block description"
+msgid "Display a thumbnail that opens a video in a popup."
+msgstr "Tıklayınca videoyu açılır pencerede oynatan bir küçük görsel gösterin."
 
 msgid "YouTube/Vimeo/VideoPress"
 msgstr "YouTube/Vimeo/VideoPress"
@@ -10048,10 +10461,6 @@ msgctxt "block description"
 msgid "Add a page, link, or another item to your navigation."
 msgstr "Menünüze bir sayfa, bağlantı ya da başka bir öğe ekleyin."
 
-msgctxt "block description"
-msgid "An advanced navigation block."
-msgstr "Gelişmiş bir menü bloğu."
-
 msgctxt "block keyword"
 msgid "menu"
 msgstr "menü"
@@ -10083,7 +10492,3 @@ msgstr "Vektör SVG"
 msgctxt "block title"
 msgid "Video Popup"
 msgstr "Video açılır pencere"
-
-msgctxt "block description"
-msgid "Display a thumbnail that opens a video in a popup."
-msgstr "Tıklayınca videoyu açılır pencerede oynatan bir küçük görsel gösterin."
