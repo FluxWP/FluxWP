@@ -156,6 +156,69 @@ export const FlxTaskWatch: FlxOperation<T.FlxTaskWatchMutation, T.FlxTaskWatchMu
   document: "mutation FlxTaskWatch($input: FlxTaskWatchInput!) {\n  flxTaskWatch(input: $input) {\n    watcherIds\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
 };
 
+/** query FlxThemeGlobalStyles (fluxwp, themes/fluxwp/graphql/operations/FlxThemeGlobalStyles.graphql) */
+export const FlxThemeGlobalStyles: FlxOperation<T.FlxThemeGlobalStylesQuery, T.FlxThemeGlobalStylesQueryVariables> = {
+  id: 'cc61c9f54e4b550df35f5ea9f4b3b665a18ed79520509a0ed8c76b9c3aba731a',
+  name: 'FlxThemeGlobalStyles',
+  kind: 'query',
+  plugin: 'fluxwp',
+  document: "query FlxThemeGlobalStyles {\n  flxThemeGlobalStyles {\n    palette {\n      slug\n      name\n      color\n    }\n    fonts {\n      slug\n      name\n      fontFamily\n    }\n    darkMode\n    tableHead\n    pattern\n  }\n}",
+};
+
+/** mutation FlxThemeMigrate (fluxwp, themes/fluxwp/graphql/operations/FlxThemeMigrate.graphql) */
+export const FlxThemeMigrate: FlxOperation<T.FlxThemeMigrateMutation, T.FlxThemeMigrateMutationVariables> = {
+  id: '82a77154cc559fdb176a8880985bf3a64706b404515780458ee98ec4b66f3870',
+  name: 'FlxThemeMigrate',
+  kind: 'mutation',
+  plugin: 'fluxwp',
+  document: "mutation FlxThemeMigrate($input: FlxThemeMigrateInput!) {\n  flxThemeMigrate(input: $input) {\n    log\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxThemeMigrationSources (fluxwp, themes/fluxwp/graphql/operations/FlxThemeMigrationSources.graphql) */
+export const FlxThemeMigrationSources: FlxOperation<T.FlxThemeMigrationSourcesQuery, T.FlxThemeMigrationSourcesQueryVariables> = {
+  id: 'fc5031368340a38a66f0982b81b94cbed677d41d75d84f75da83d39cbf71af4e',
+  name: 'FlxThemeMigrationSources',
+  kind: 'query',
+  plugin: 'fluxwp',
+  document: "query FlxThemeMigrationSources {\n  flxThemeMigrationSources {\n    stylesheet\n    lastRun {\n      label\n    }\n  }\n}",
+};
+
+/** mutation FlxThemePayLogosSave (fluxwp, themes/fluxwp/graphql/operations/FlxThemePayLogosSave.graphql) */
+export const FlxThemePayLogosSave: FlxOperation<T.FlxThemePayLogosSaveMutation, T.FlxThemePayLogosSaveMutationVariables> = {
+  id: '3ed6b0ac119ee2d69851b315aa6bf0e730f23ff9b8a1b58d8df96549912a99fb',
+  name: 'FlxThemePayLogosSave',
+  kind: 'mutation',
+  plugin: 'fluxwp',
+  document: "mutation FlxThemePayLogosSave($input: FlxThemePayLogosSaveInput!) {\n  flxThemePayLogosSave(input: $input) {\n    logos {\n      ...FlxThemePayLogosFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxThemePayLogoRow on FlxThemePayLogo {\n  key\n  label\n  url\n  chip\n}\n\nfragment FlxThemePayLogosFields on FlxThemePayLogos {\n  automatic\n  current {\n    ...FlxThemePayLogoRow\n  }\n  builtin {\n    ...FlxThemePayLogoRow\n  }\n  automaticList {\n    ...FlxThemePayLogoRow\n  }\n}",
+};
+
+/** query FlxThemeSettings (fluxwp, themes/fluxwp/graphql/operations/FlxThemeSettings.graphql) */
+export const FlxThemeSettings: FlxOperation<T.FlxThemeSettingsQuery, T.FlxThemeSettingsQueryVariables> = {
+  id: '37837540607fffefd13b6fbddd55ddff4839e6df404bedaaef4da41084b3352f',
+  name: 'FlxThemeSettings',
+  kind: 'query',
+  plugin: 'fluxwp',
+  document: "query FlxThemeSettings {\n  flxThemeSettings {\n    ...FlxThemeSettingsFields\n  }\n  pages(\n    first: 100\n    where: { status: PUBLISH, orderby: { field: TITLE, order: ASC } }\n  ) {\n    nodes {\n      databaseId\n      title\n    }\n  }\n  flxThemePayLogos {\n    ...FlxThemePayLogosFields\n  }\n}\n\nfragment FlxThemePayLogoRow on FlxThemePayLogo {\n  key\n  label\n  url\n  chip\n}\n\nfragment FlxThemePayLogosFields on FlxThemePayLogos {\n  automatic\n  current {\n    ...FlxThemePayLogoRow\n  }\n  builtin {\n    ...FlxThemePayLogoRow\n  }\n  automaticList {\n    ...FlxThemePayLogoRow\n  }\n}\n\nfragment FlxThemeSettingsFields on FlxThemeSettings {\n  visibility\n  comingSoonTitle\n  comingSoonText\n  storeNoticeTitle\n  storeNoticeText\n  storeNoticeTitleDefault\n  storeNoticeTextDefault\n  contactEmail\n  siteType\n  pattern\n  tableHead\n  newsIntro\n  darkMode\n  animations\n  pagination\n  activeCard\n  activeCampaign\n  cookieEnabled\n  cookieTitle\n  cookieText\n  cookieAccept\n  cookieReject\n  cookieMore\n  cookiePage\n  cookiePosition\n  cookieRevision\n  ga4Id\n  gaMode\n  consentScripts\n  bankHolder\n  bankIban\n  bankInUse\n  woocommerceActive\n  activeCardAvailable\n  canEditScripts\n  presetsUrl\n  campaigns {\n    databaseId\n    title\n  }\n}",
+};
+
+/** mutation FlxThemeSettingsSave (fluxwp, themes/fluxwp/graphql/operations/FlxThemeSettingsSave.graphql) */
+export const FlxThemeSettingsSave: FlxOperation<T.FlxThemeSettingsSaveMutation, T.FlxThemeSettingsSaveMutationVariables> = {
+  id: 'e8bf1a5cfdcfc9f66d6c5707ad00151b20e558b30ea400989b9547e3acac1ae6',
+  name: 'FlxThemeSettingsSave',
+  kind: 'mutation',
+  plugin: 'fluxwp',
+  document: "mutation FlxThemeSettingsSave($input: FlxThemeSettingsSaveInput!) {\n  flxThemeSettingsSave(input: $input) {\n    settings {\n      ...FlxThemeSettingsFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxThemeSettingsFields on FlxThemeSettings {\n  visibility\n  comingSoonTitle\n  comingSoonText\n  storeNoticeTitle\n  storeNoticeText\n  storeNoticeTitleDefault\n  storeNoticeTextDefault\n  contactEmail\n  siteType\n  pattern\n  tableHead\n  newsIntro\n  darkMode\n  animations\n  pagination\n  activeCard\n  activeCampaign\n  cookieEnabled\n  cookieTitle\n  cookieText\n  cookieAccept\n  cookieReject\n  cookieMore\n  cookiePage\n  cookiePosition\n  cookieRevision\n  ga4Id\n  gaMode\n  consentScripts\n  bankHolder\n  bankIban\n  bankInUse\n  woocommerceActive\n  activeCardAvailable\n  canEditScripts\n  presetsUrl\n  campaigns {\n    databaseId\n    title\n  }\n}",
+};
+
+/** query FlxThemeSystem (fluxwp, themes/fluxwp/graphql/operations/FlxThemeSystem.graphql) */
+export const FlxThemeSystem: FlxOperation<T.FlxThemeSystemQuery, T.FlxThemeSystemQueryVariables> = {
+  id: '2319101e3a871af11052c6fe8dcae1de118834cc9f13b232bd573001daca537c',
+  name: 'FlxThemeSystem',
+  kind: 'query',
+  plugin: 'fluxwp',
+  document: "query FlxThemeSystem {\n  flxThemeSystem {\n    checkedAt {\n      iso\n      timestamp\n      label\n    }\n    checks {\n      id\n      source\n      sourceLabel\n      group\n      label\n      status\n      message\n      actionUrl\n      actionLabel\n    }\n    fixLogAvailable\n    fixLog {\n      time {\n        timestamp\n        label\n      }\n      user\n      label\n      value\n      before\n      after\n      success\n      message\n    }\n  }\n}",
+};
+
 /** query FlxViewer (flx-graphql, plugins/flx-graphql/graphql/operations/FlxViewer.graphql) */
 export const FlxViewer: FlxOperation<T.FlxViewerQuery, T.FlxViewerQueryVariables> = {
   id: '3b302e1658cbd0be2df949e041acd18026dfe171eb43cf850e998a3590b1eab6',

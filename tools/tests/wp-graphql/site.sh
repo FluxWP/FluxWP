@@ -11,6 +11,7 @@
 #   SQLITE_PLUGIN_DIR  sqlite-database-integration folder (else downloaded with wp-cli)
 #   PACKAGES           space separated plugin slugs to activate besides flx-graphql
 #                      (default: every plugin whose header says "Requires Plugins: … flx-graphql")
+#   THEME              theme slug to activate (default fluxwp; empty = keep the default theme)
 #   WOOCOMMERCE_ZIP    optional WooCommerce zip, activated before the packages
 #   SQLITE_VERSION     sqlite-database-integration version to download (default 3.1.3)
 #   FIXTURES=0         leave the kit test fixtures (mu-plugin) out, e.g. for the schema snapshot
@@ -76,6 +77,10 @@ for dir in "$root"/plugins/*/; do
   slug="$(basename "$dir")"
   ln -s "$root/plugins/$slug" "$site/wp-content/plugins/$slug"
 done
+# Themes are linked too; THEME (default fluxwp) is activated after the plugins.
+for dir in "$root"/themes/*/; do
+  ln -s "$root/themes/$(basename "$dir")" "$site/wp-content/themes/$(basename "$dir")"
+done
 packages="${PACKAGES:-}"
 if [ -z "$packages" ]; then
   for main in "$root"/plugins/*/*.php; do
@@ -91,6 +96,9 @@ for slug in $packages; do
   [ "$slug" = flx-graphql ] && continue
   $WP plugin activate "$slug" --path="$site" || { echo "::error::$slug could not be activated" >&2; exit 1; }
 done
+if [ -d "$root/themes/${THEME:-fluxwp}" ]; then
+  $WP theme activate "${THEME:-fluxwp}" --path="$site" || { echo "::error::theme ${THEME:-fluxwp} could not be activated" >&2; exit 1; }
+fi
 $WP rewrite flush --path="$site" >/dev/null
 
 echo "site=$site url=$url packages=flx-graphql$packages"
