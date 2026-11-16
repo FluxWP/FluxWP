@@ -41,7 +41,7 @@ final class FLXA_Settings_Service {
 	 */
 	public static function get(): array {
 		$s     = flxa_settings( true );
-		$logo  = absint( $s['logo_id'] );
+		$logo  = absint( FLXA_Util::int( $s['logo_id'] ) );
 		$stats = array();
 		foreach ( (array) $s['dash_stats'] as $k ) {
 			if ( is_scalar( $k ) ) {
@@ -196,7 +196,7 @@ final class FLXA_Settings_Service {
 			$s['pwa_short'] = mb_substr( sanitize_text_field( FLXA_Util::str( $patch['pwa_short'] ) ), 0, 20 );
 		}
 		if ( array_key_exists( 'logo_id', $patch ) && null !== $patch['logo_id'] ) {
-			$id = absint( $patch['logo_id'] );
+			$id = absint( FLXA_Util::int( $patch['logo_id'] ) );
 			if ( $id && ! wp_attachment_is_image( $id ) ) {
 				if ( $strict ) {
 					$err->add( 'flxa_logo', __( 'The logo must be an image from the media library.', 'flx-admin' ), array( 'graphql_code' => 'INVALID_INPUT', 'field' => 'logoId' ) );

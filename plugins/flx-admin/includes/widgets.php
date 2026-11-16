@@ -13,7 +13,12 @@ function flxa_task_available() {
 	return function_exists( 'flxg_table' ) && function_exists( 'flxg_visible_list_ids' ) && current_user_can( 'flxg_use' );
 }
 
-/** Modül filtreleri (kişi başı). */
+/**
+ * Modül filtreleri (kişi başı).
+ *
+ * @param string $id Module (tasks | donations).
+ * @return array<string, mixed>
+ */
 function flxa_widget_prefs( $id ) {
 	$defaults = array(
 		'tasks'     => array(
@@ -31,6 +36,11 @@ function flxa_widget_prefs( $id ) {
 	return wp_parse_args( $p, $defaults[ $id ] ?? array() );
 }
 
+/**
+ * @param string               $id Module.
+ * @param array<string, mixed> $in Raw filters.
+ * @return array<string, mixed>
+ */
 function flxa_widget_prefs_save( $id, array $in ) {
 	$p = flxa_widget_prefs( $id );
 	if ( 'tasks' === $id ) {
@@ -142,6 +152,10 @@ function flxa_task_lists( $need = 'view' ) {
 	return $out;
 }
 
+/**
+ * @param array<string, mixed> $p Filters.
+ * @return string
+ */
 function flxa_render_tasks( array $p ) {
 	$lists = flxa_task_lists();
 	$opts  = array( 0 => __( 'All lists', 'flx-admin' ) );
@@ -287,6 +301,10 @@ function flxa_widget_donations() {
 	echo '</div>';
 }
 
+/**
+ * @param array<string, mixed> $p Filters.
+ * @return string
+ */
 function flxa_render_donations( array $p ) {
 	global $wpdb;
 	$days = (int) $p['days'];

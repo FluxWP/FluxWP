@@ -61,7 +61,11 @@ function flxa_caps_known() {
 	);
 }
 
-/** Tablodaki satırlar: bilinenler (sitede var olanlar) + FluxWP eklentilerinin yetkileri otomatik. */
+/**
+ * Tablodaki satırlar: bilinenler (sitede var olanlar) + FluxWP eklentilerinin yetkileri otomatik.
+ *
+ * @return array<string, array{label: string, caps: array<string, string>}>
+ */
 function flxa_caps_rows() {
 	$all = array();
 	foreach ( wp_roles()->roles as $r ) {

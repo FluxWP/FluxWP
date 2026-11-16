@@ -30,6 +30,10 @@ function flxa_defaults() {
 	);
 }
 
+/**
+ * @param bool $refresh Read the option again.
+ * @return array<string, mixed>
+ */
 function flxa_settings( $refresh = false ) {
 	static $s = null;
 	if ( null === $s || $refresh ) {
@@ -185,7 +189,12 @@ function flxa_logo_fallback_url( $size = 96 ) {
 	return $url;
 }
 
-/** Kullanıcının tema tercihi: auto | light | dark. */
+/**
+ * Kullanıcının tema tercihi: auto | light | dark.
+ *
+ * @param int $user_id User (0 = current).
+ * @return string
+ */
 function flxa_user_mode( $user_id = 0 ) {
 	$user_id = $user_id ? $user_id : get_current_user_id();
 	$m       = $user_id ? (string) get_user_meta( $user_id, 'flxa_mode', true ) : '';
@@ -367,7 +376,11 @@ function flxa_screen_tokens() {
 	return implode( ' ', array_filter( $t ) );
 }
 
-/** Rol adları (çevrilmiş). */
+/**
+ * Rol adları (çevrilmiş).
+ *
+ * @return array<string, string>
+ */
 function flxa_roles() {
 	$out = array();
 	foreach ( wp_roles()->roles as $key => $r ) {

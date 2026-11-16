@@ -62,7 +62,12 @@ function flxa_default_pins() {
 	return array_map( 'strval', (array) apply_filters( 'flxa_default_pins', array( 'index.php', 'flx-chat', 'flx-tasks', 'flxb-dashboard' ) ) );
 }
 
-/** Kişinin sabitledikleri; hiç düzenlemediyse varsayılanlar. */
+/**
+ * Kişinin sabitledikleri; hiç düzenlemediyse varsayılanlar.
+ *
+ * @param int $user_id User (0 = current).
+ * @return list<string>
+ */
 function flxa_user_pins( $user_id = 0 ) {
 	$user_id = $user_id ? $user_id : get_current_user_id();
 	if ( $user_id && ! metadata_exists( 'user', $user_id, 'flxa_pins' ) ) {
@@ -71,7 +76,12 @@ function flxa_user_pins( $user_id = 0 ) {
 	return flxa_user_list( 'flxa_pins', $user_id );
 }
 
-/** Verilen menü sırasından varsayılan düzen üretir. */
+/**
+ * Verilen menü sırasından varsayılan düzen üretir.
+ *
+ * @param list<string> $slugs Menu links in order.
+ * @return list<array<string, mixed>>
+ */
 function flxa_default_entries( array $slugs ) {
 	$groups = flxa_default_groups();
 	$bucket = array();
@@ -117,6 +127,9 @@ function flxa_default_entries( array $slugs ) {
  *   add_filter( 'flxa_menu_platforms', fn( $p ) => $p + array( 'web' => 'Web', 'mobile' => 'Mobil', 'desktop' => 'Masaüstü' ) );
  * Boşsa menü düzenleyicide platform düğmeleri çıkmaz.
  */
+/**
+ * @return array<string, string>
+ */
 function flxa_menu_platforms() {
 	return array_map( 'strval', (array) apply_filters( 'flxa_menu_platforms', array() ) );
 }
@@ -132,6 +145,9 @@ function flxa_menu_platform_off( $user = null ) {
 	return $out;
 }
 
+/**
+ * @return array<string, mixed>
+ */
 function flxa_menus_option() {
 	$o = get_option( 'flxa_menus', array() );
 	return is_array( $o ) ? $o : array();
@@ -192,12 +208,21 @@ function flxa_catalog_snapshot() {
 	}
 }
 
+/**
+ * @return list<array{slug: string, label: string, cap: string, icon: string, url: string, sub: list<array{slug: string, label: string, cap: string}>}>
+ */
 function flxa_menu_catalog() {
 	$c = get_option( 'flxa_menu_catalog', array() );
 	return is_array( $c ) && ! empty( $c['items'] ) ? $c['items'] : array();
 }
 
-/** Kişisel menü listeleri: `flxa_pins` (üste sabitlenenler, sıralı), `flxa_away` ("Diğer"e taşınanlar). */
+/**
+ * Kişisel menü listeleri: `flxa_pins` (üste sabitlenenler, sıralı), `flxa_away` ("Diğer"e taşınanlar).
+ *
+ * @param string $key     User meta key.
+ * @param int    $user_id User (0 = current).
+ * @return list<string>
+ */
 function flxa_user_list( $key, $user_id = 0 ) {
 	$user_id = $user_id ? $user_id : get_current_user_id();
 	$v       = $user_id ? get_user_meta( $user_id, $key, true ) : array();
@@ -218,7 +243,11 @@ function flxa_group_key( $g ) {
 	return '' !== $k ? $k : ( '' !== $id ? sanitize_key( $id ) : 'g' );
 }
 
-/** Erişimi engellenemeyen menüler (kilitlenme olmasın). */
+/**
+ * Erişimi engellenemeyen menüler (kilitlenme olmasın).
+ *
+ * @return list<string>
+ */
 function flxa_unblockable() {
 	return array( 'index.php', 'profile.php' );
 }
@@ -761,7 +790,11 @@ function flxa_bottom_items() {
 	return $out;
 }
 
-/** Mobil alt barın varsayılanları (sırayla ilk erişilebilir dördü). */
+/**
+ * Mobil alt barın varsayılanları (sırayla ilk erişilebilir dördü).
+ *
+ * @return list<string>
+ */
 function flxa_default_bottom() {
 	return array( 'index.php', 'flx-chat', 'flx-tasks', 'flxb-dashboard', 'flxs', 'edit.php?post_type=page', 'upload.php', 'profile.php' );
 }

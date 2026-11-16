@@ -378,6 +378,7 @@ flx_gql_mutation(
 			),
 		),
 		'resolve'     => static function ( array $input ) {
+			/** @var array<string, mixed> $input */
 			$patch = flxa_gql_settings_patch( $input );
 			$up    = isset( $input['logoUploadId'] ) ? FLXA_Util::str( $input['logoUploadId'] ) : '';
 			if ( '' !== $up ) {
@@ -425,6 +426,7 @@ flx_gql_type(
 				'description' => __( 'Inner markup of the 24×24 line icon (shapes only: path, circle, rect, line, polyline).', 'flx-admin' ),
 				'resolve'     => static function ( $src ): string {
 					$k = is_array( $src ) ? FLXA_Util::str( $src['icon'] ?? '' ) : '';
+					/** @var array<string, string> $p */
 					$p = flxa_icon_paths();
 					return $p[ '' !== $k && isset( $p[ $k ] ) ? $k : 'dot' ];
 				},
