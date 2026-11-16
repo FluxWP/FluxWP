@@ -921,35 +921,6 @@ export type FlxSetupCheckStatus =
   /** Needs attention. */
   | 'WARNING';
 
-/** What a generation makes. */
-export type FlxStudioKind =
-  /** An image. */
-  | 'IMAGE'
-  /** A video. */
-  | 'VIDEO';
-
-/** What a reference points to. */
-export type FlxStudioRefType =
-  /** A gallery item. */
-  | 'ITEM'
-  /** A person (their photos are used). */
-  | 'PERSON'
-  /** A saved reference image. */
-  | 'REF';
-
-/** Where a generation is. */
-export type FlxStudioItemState =
-  /** Cancelled by the user. */
-  | 'CANCELLED'
-  /** Finished; the file is ready. */
-  | 'DONE'
-  /** Failed; see the error. */
-  | 'FAILED'
-  /** Waiting to be sent to Flux AI. */
-  | 'QUEUED'
-  /** Being made; follow it with flxStudioPoll. */
-  | 'RUNNING';
-
 /** Connection state of an account. */
 export type FlxSocialAccountStatus =
   /** Connected. */
@@ -1022,6 +993,35 @@ export type FlxSpeedCssScope =
 export type FlxSpeedLoginBlocked =
   | 'HOME'
   | 'NOT_FOUND';
+
+/** What a generation makes. */
+export type FlxStudioKind =
+  /** An image. */
+  | 'IMAGE'
+  /** A video. */
+  | 'VIDEO';
+
+/** What a reference points to. */
+export type FlxStudioRefType =
+  /** A gallery item. */
+  | 'ITEM'
+  /** A person (their photos are used). */
+  | 'PERSON'
+  /** A saved reference image. */
+  | 'REF';
+
+/** Where a generation is. */
+export type FlxStudioItemState =
+  /** Cancelled by the user. */
+  | 'CANCELLED'
+  /** Finished; the file is ready. */
+  | 'DONE'
+  /** Failed; see the error. */
+  | 'FAILED'
+  /** Waiting to be sent to Flux AI. */
+  | 'QUEUED'
+  /** Being made; follow it with flxStudioPoll. */
+  | 'RUNNING';
 
 /** What a task row is. */
 export type FlxTaskKind =
@@ -2985,6 +2985,8 @@ export type FlxSettingsUpdateInput = {
   flxrcSettings?: FlxSettingsFlxrcSettingsInput | null | undefined;
   /** Flux SEO */
   flxseo?: FlxSettingsFlxseoInput | null | undefined;
+  /** Flux Studio */
+  studio?: FlxSettingsStudioInput | null | undefined;
   /** FluxWP theme settings (Appearance > Theme Settings) */
   themeSettings?: FlxSettingsThemeSettingsInput | null | undefined;
   /** Flux Wiki */
@@ -3139,6 +3141,22 @@ export type FlxSettingsFlxseoInput = {
   verifySeznam?: string | null | undefined;
   verifyYandex?: string | null | undefined;
   webmcp?: boolean | null | undefined;
+};
+
+/** Changes to Flux Studio. Only the fields you send are changed. */
+export type FlxSettingsStudioInput = {
+  /** Default image model id (empty: the Flux AI default). */
+  imageModel?: string | null | undefined;
+  /** Most ideas one Brainstorm may return (1-40). */
+  maxBatch?: number | null | undefined;
+  /** Most images one request may ask for (1-8). */
+  maxN?: number | null | undefined;
+  /** People are shared with every Studio user. */
+  sharedPeople?: boolean | null | undefined;
+  /** Text model for Enhance and Brainstorm (empty: the Flux AI default). */
+  textModel?: string | null | undefined;
+  /** Default video model id (empty: the Flux AI default). */
+  videoModel?: string | null | undefined;
 };
 
 /** Changes to FluxWP theme settings (Appearance &gt; Theme Settings). Only the fields you send are changed. */
@@ -3394,332 +3412,6 @@ export type FlxSetupWizardStepKind =
   | 'TAGLINE'
   /** Activate the FluxWP theme. */
   | 'THEME';
-
-/** Input for the flxStudioBrainstorm mutation. */
-export type FlxStudioBrainstormInput = {
-  /** The idea. */
-  brief: string;
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Ideas wanted; limited by the Studio setting. */
-  count?: number | null | undefined;
-  /** Ideas for images or videos (default image). */
-  kind?: FlxStudioKind | null | undefined;
-  /** References the ideas should take into account. */
-  refs?: Array<FlxStudioRefInput> | null | undefined;
-  /** How the ideas are written (default simple). */
-  style?: FlxStudioBrainstormStyle | null | undefined;
-};
-
-/** A reference to generate with. */
-export type FlxStudioRefInput = {
-  /** Record ID. */
-  id: number;
-  /** Role (identity, style, product, background, composition, first_frame, last_frame); empty for general. */
-  role?: string | null | undefined;
-  /** Item, saved reference or person. */
-  type: FlxStudioRefType;
-};
-
-/** How Brainstorm writes the ideas. */
-export type FlxStudioBrainstormStyle =
-  /** Plain prompts. */
-  | 'SIMPLE'
-  /** Thumbnail-style prompts. */
-  | 'YOUTUBE';
-
-/** Input for the flxStudioCancel mutation. */
-export type FlxStudioCancelInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Job ID of the item. */
-  job: string;
-};
-
-/** Input for the flxStudioEnhance mutation. */
-export type FlxStudioEnhanceInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** What the prompt is for (default image). */
-  mode?: FlxStudioEnhanceMode | null | undefined;
-  /** Name of the model the prompt is for. */
-  modelLabel?: string | null | undefined;
-  /** Draft. */
-  prompt: string;
-  /** References the prompt should take into account. */
-  refs?: Array<FlxStudioRefInput> | null | undefined;
-};
-
-/** What the prompt is written for. */
-export type FlxStudioEnhanceMode =
-  /** Area edit of an image. */
-  | 'EDIT'
-  /** Image generation. */
-  | 'IMAGE'
-  /** Video generation. */
-  | 'VIDEO';
-
-/** Input for the flxStudioFolderCreate mutation. */
-export type FlxStudioFolderCreateInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Name (up to 120 characters). */
-  name: string;
-  /** Parent folder; empty for the top level. */
-  parentId?: number | null | undefined;
-  /** Visible to the whole team. */
-  shared?: boolean | null | undefined;
-};
-
-/** Input for the flxStudioFolderDelete mutation. */
-export type FlxStudioFolderDeleteInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Folder ID. */
-  id: number;
-};
-
-/** Input for the flxStudioFolderUpdate mutation. */
-export type FlxStudioFolderUpdateInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Folder ID. */
-  id: number;
-  /** New name; an empty name changes nothing. */
-  name?: string | null | undefined;
-  /** New parent; 0 for the top level. A folder cannot move into itself. */
-  parentId?: number | null | undefined;
-  /** Visible to the whole team. */
-  shared?: boolean | null | undefined;
-};
-
-/** Input for the flxStudioGenerate mutation. */
-export type FlxStudioGenerateInput = {
-  /** Aspect ratio. */
-  aspect?: string | null | undefined;
-  /** Video with sound (default on). */
-  audio?: boolean | null | undefined;
-  /** Brainstorm batch the results belong to. */
-  batch?: string | null | undefined;
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Images to make (video is always one); limited by the model and the Studio setting. */
-  count?: number | null | undefined;
-  /** First draft before Enhance. */
-  draft?: string | null | undefined;
-  /** Video length in seconds. */
-  duration?: number | null | undefined;
-  /** The prompt came from Enhance. */
-  enhanced?: boolean | null | undefined;
-  /** Folder for the results; 0 or a folder the user cannot write to means none. */
-  folderId?: number | null | undefined;
-  /** Brainstorm idea title. */
-  idea?: string | null | undefined;
-  /** Image or video; the model decides when left out. */
-  kind?: FlxStudioKind | null | undefined;
-  /** Tools used in the mask editor (kept with the item). */
-  layers?: Array<string> | null | undefined;
-  /** Upload ID of the mask PNG (context flx-studio/mask); transparent pixels are changed. Needs parentId. */
-  maskUploadId?: string | null | undefined;
-  /** Video mode (auto, text, image …). */
-  mode?: string | null | undefined;
-  /** Model ID; empty uses the Studio default. */
-  model?: string | null | undefined;
-  /** Image to edit (area edit). */
-  parentId?: number | null | undefined;
-  /** What to generate. */
-  prompt: string;
-  /** Provider ID, or auto. */
-  provider?: string | null | undefined;
-  /** Quality level. */
-  quality?: string | null | undefined;
-  /** References to generate with. */
-  refs?: Array<FlxStudioRefInput> | null | undefined;
-  /** Resolution. */
-  resolution?: string | null | undefined;
-  /** Exact size such as 1024x1536. */
-  size?: string | null | undefined;
-  /** Title for the results. */
-  title?: string | null | undefined;
-};
-
-/** Input for the flxStudioItemToLibrary mutation. */
-export type FlxStudioItemToLibraryInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Item ID. */
-  id: number;
-};
-
-/** Input for the flxStudioItemUpdate mutation. */
-export type FlxStudioItemUpdateInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Starred. */
-  favorite?: boolean | null | undefined;
-  /** Folder to move to; 0 for none. A folder the user cannot write to leaves the item where it is. */
-  folderId?: number | null | undefined;
-  /** Item ID. */
-  id: number;
-  /** Title (up to 190 characters). */
-  title?: string | null | undefined;
-};
-
-/** Input for the flxStudioItemsDelete mutation. */
-export type FlxStudioItemsDeleteInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Item IDs (at most 500 are looked at). */
-  ids: Array<number>;
-};
-
-/** Input for the flxStudioItemsMove mutation. */
-export type FlxStudioItemsMoveInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Target folder; 0 for none. */
-  folderId: number;
-  /** Item IDs. */
-  ids: Array<number>;
-};
-
-/** Input for the flxStudioPersonCreate mutation. */
-export type FlxStudioPersonCreateInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Name (up to 120 characters). */
-  name: string;
-};
-
-/** Input for the flxStudioPersonDelete mutation. */
-export type FlxStudioPersonDeleteInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Person ID. */
-  id: number;
-};
-
-/** Input for the flxStudioPersonRename mutation. */
-export type FlxStudioPersonRenameInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Person ID. */
-  id: number;
-  /** New name. */
-  name: string;
-};
-
-/** Input for the flxStudioPoll mutation. */
-export type FlxStudioPollInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Job IDs of the items (flxd_… or flxm_…). */
-  jobs: Array<string>;
-};
-
-/** Input for the flxStudioRefCreate mutation. */
-export type FlxStudioRefCreateInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Name (up to 190 characters). */
-  name?: string | null | undefined;
-  /** Person the photo belongs to; empty for a plain reference. */
-  personId?: number | null | undefined;
-  /** Role (identity, style, product, background, composition, first_frame, last_frame); empty for general. */
-  role?: string | null | undefined;
-  /** Keep in the saved references list (always for a person's photo). */
-  saved?: boolean | null | undefined;
-  /** Upload ID. */
-  uploadId: string;
-};
-
-/** Input for the flxStudioRefDelete mutation. */
-export type FlxStudioRefDeleteInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Reference ID. */
-  id: number;
-};
-
-/** Input for the flxStudioRefUpdate mutation. */
-export type FlxStudioRefUpdateInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Reference ID. */
-  id: number;
-  /** Name. */
-  name?: string | null | undefined;
-  /** Role key; empty for general. */
-  role?: string | null | undefined;
-  /** Kept in the saved references list. */
-  saved?: boolean | null | undefined;
-};
-
-/** Input for the flxStudioSettingsUpdate mutation. */
-export type FlxStudioSettingsUpdateInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Image model the screen starts with; empty uses the Flux AI default. */
-  imageModel?: string | null | undefined;
-  /** Most ideas per Brainstorm (1–40). */
-  maxBatch?: number | null | undefined;
-  /** Most images per request (1–8). */
-  maxCount?: number | null | undefined;
-  /** Share people with every Studio user. */
-  sharedPeople?: boolean | null | undefined;
-  /** Model for Enhance and Brainstorm; empty uses the Flux AI default. */
-  textModel?: string | null | undefined;
-  /** Video model the screen starts with; empty uses the Flux AI default. */
-  videoModel?: string | null | undefined;
-};
-
-/** Input for the flxStudioTemplateCreate mutation. */
-export type FlxStudioTemplateCreateInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Name (up to 120 characters). */
-  name: string;
-  /** Settings to keep. */
-  params?: FlxStudioTemplateParamsInput | null | undefined;
-  /** Prompt. */
-  prompt?: string | null | undefined;
-  /** Visible to the whole team. */
-  shared?: boolean | null | undefined;
-};
-
-/** Generation settings a template keeps. Unknown settings are not kept. */
-export type FlxStudioTemplateParamsInput = {
-  /** Aspect ratio. */
-  aspect?: string | null | undefined;
-  /** Video with sound. */
-  audio?: boolean | null | undefined;
-  /** Images per request. */
-  count?: number | null | undefined;
-  /** Video seconds. */
-  duration?: number | null | undefined;
-  /** Image or video. */
-  kind?: FlxStudioKind | null | undefined;
-  /** Video mode. */
-  mode?: string | null | undefined;
-  /** Model ID. */
-  model?: string | null | undefined;
-  /** Quality level. */
-  quality?: string | null | undefined;
-  /** References the template adds. */
-  refs?: Array<FlxStudioRefInput> | null | undefined;
-  /** Resolution. */
-  resolution?: string | null | undefined;
-  /** Exact size. */
-  size?: string | null | undefined;
-};
-
-/** Input for the flxStudioTemplateDelete mutation. */
-export type FlxStudioTemplateDeleteInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Template ID. */
-  id: number;
-};
 
 /** Input for the flxSocialAccountDelete mutation. */
 export type FlxSocialAccountDeleteInput = {
@@ -4264,6 +3956,332 @@ export type FlxSpeedSettingsSaveInput = {
   slowMs?: number | null | undefined;
   /** Slow query threshold in milliseconds (1–10000). */
   slowQueryMs?: number | null | undefined;
+};
+
+/** Input for the flxStudioBrainstorm mutation. */
+export type FlxStudioBrainstormInput = {
+  /** The idea. */
+  brief: string;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Ideas wanted; limited by the Studio setting. */
+  count?: number | null | undefined;
+  /** Ideas for images or videos (default image). */
+  kind?: FlxStudioKind | null | undefined;
+  /** References the ideas should take into account. */
+  refs?: Array<FlxStudioRefInput> | null | undefined;
+  /** How the ideas are written (default simple). */
+  style?: FlxStudioBrainstormStyle | null | undefined;
+};
+
+/** A reference to generate with. */
+export type FlxStudioRefInput = {
+  /** Record ID. */
+  id: number;
+  /** Role (identity, style, product, background, composition, first_frame, last_frame); empty for general. */
+  role?: string | null | undefined;
+  /** Item, saved reference or person. */
+  type: FlxStudioRefType;
+};
+
+/** How Brainstorm writes the ideas. */
+export type FlxStudioBrainstormStyle =
+  /** Plain prompts. */
+  | 'SIMPLE'
+  /** Thumbnail-style prompts. */
+  | 'YOUTUBE';
+
+/** Input for the flxStudioCancel mutation. */
+export type FlxStudioCancelInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Job ID of the item. */
+  job: string;
+};
+
+/** Input for the flxStudioEnhance mutation. */
+export type FlxStudioEnhanceInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** What the prompt is for (default image). */
+  mode?: FlxStudioEnhanceMode | null | undefined;
+  /** Name of the model the prompt is for. */
+  modelLabel?: string | null | undefined;
+  /** Draft. */
+  prompt: string;
+  /** References the prompt should take into account. */
+  refs?: Array<FlxStudioRefInput> | null | undefined;
+};
+
+/** What the prompt is written for. */
+export type FlxStudioEnhanceMode =
+  /** Area edit of an image. */
+  | 'EDIT'
+  /** Image generation. */
+  | 'IMAGE'
+  /** Video generation. */
+  | 'VIDEO';
+
+/** Input for the flxStudioFolderCreate mutation. */
+export type FlxStudioFolderCreateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Name (up to 120 characters). */
+  name: string;
+  /** Parent folder; empty for the top level. */
+  parentId?: number | null | undefined;
+  /** Visible to the whole team. */
+  shared?: boolean | null | undefined;
+};
+
+/** Input for the flxStudioFolderDelete mutation. */
+export type FlxStudioFolderDeleteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Folder ID. */
+  id: number;
+};
+
+/** Input for the flxStudioFolderUpdate mutation. */
+export type FlxStudioFolderUpdateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Folder ID. */
+  id: number;
+  /** New name; an empty name changes nothing. */
+  name?: string | null | undefined;
+  /** New parent; 0 for the top level. A folder cannot move into itself. */
+  parentId?: number | null | undefined;
+  /** Visible to the whole team. */
+  shared?: boolean | null | undefined;
+};
+
+/** Input for the flxStudioGenerate mutation. */
+export type FlxStudioGenerateInput = {
+  /** Aspect ratio. */
+  aspect?: string | null | undefined;
+  /** Video with sound (default on). */
+  audio?: boolean | null | undefined;
+  /** Brainstorm batch the results belong to. */
+  batch?: string | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Images to make (video is always one); limited by the model and the Studio setting. */
+  count?: number | null | undefined;
+  /** First draft before Enhance. */
+  draft?: string | null | undefined;
+  /** Video length in seconds. */
+  duration?: number | null | undefined;
+  /** The prompt came from Enhance. */
+  enhanced?: boolean | null | undefined;
+  /** Folder for the results; 0 or a folder the user cannot write to means none. */
+  folderId?: number | null | undefined;
+  /** Brainstorm idea title. */
+  idea?: string | null | undefined;
+  /** Image or video; the model decides when left out. */
+  kind?: FlxStudioKind | null | undefined;
+  /** Tools used in the mask editor (kept with the item). */
+  layers?: Array<string> | null | undefined;
+  /** Upload ID of the mask PNG (context flx-studio/mask); transparent pixels are changed. Needs parentId. */
+  maskUploadId?: string | null | undefined;
+  /** Video mode (auto, text, image …). */
+  mode?: string | null | undefined;
+  /** Model ID; empty uses the Studio default. */
+  model?: string | null | undefined;
+  /** Image to edit (area edit). */
+  parentId?: number | null | undefined;
+  /** What to generate. */
+  prompt: string;
+  /** Provider ID, or auto. */
+  provider?: string | null | undefined;
+  /** Quality level. */
+  quality?: string | null | undefined;
+  /** References to generate with. */
+  refs?: Array<FlxStudioRefInput> | null | undefined;
+  /** Resolution. */
+  resolution?: string | null | undefined;
+  /** Exact size such as 1024x1536. */
+  size?: string | null | undefined;
+  /** Title for the results. */
+  title?: string | null | undefined;
+};
+
+/** Input for the flxStudioItemToLibrary mutation. */
+export type FlxStudioItemToLibraryInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Item ID. */
+  id: number;
+};
+
+/** Input for the flxStudioItemUpdate mutation. */
+export type FlxStudioItemUpdateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Starred. */
+  favorite?: boolean | null | undefined;
+  /** Folder to move to; 0 for none. A folder the user cannot write to leaves the item where it is. */
+  folderId?: number | null | undefined;
+  /** Item ID. */
+  id: number;
+  /** Title (up to 190 characters). */
+  title?: string | null | undefined;
+};
+
+/** Input for the flxStudioItemsDelete mutation. */
+export type FlxStudioItemsDeleteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Item IDs (at most 500 are looked at). */
+  ids: Array<number>;
+};
+
+/** Input for the flxStudioItemsMove mutation. */
+export type FlxStudioItemsMoveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Target folder; 0 for none. */
+  folderId: number;
+  /** Item IDs. */
+  ids: Array<number>;
+};
+
+/** Input for the flxStudioPersonCreate mutation. */
+export type FlxStudioPersonCreateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Name (up to 120 characters). */
+  name: string;
+};
+
+/** Input for the flxStudioPersonDelete mutation. */
+export type FlxStudioPersonDeleteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Person ID. */
+  id: number;
+};
+
+/** Input for the flxStudioPersonRename mutation. */
+export type FlxStudioPersonRenameInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Person ID. */
+  id: number;
+  /** New name. */
+  name: string;
+};
+
+/** Input for the flxStudioPoll mutation. */
+export type FlxStudioPollInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Job IDs of the items (flxd_… or flxm_…). */
+  jobs: Array<string>;
+};
+
+/** Input for the flxStudioRefCreate mutation. */
+export type FlxStudioRefCreateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Name (up to 190 characters). */
+  name?: string | null | undefined;
+  /** Person the photo belongs to; empty for a plain reference. */
+  personId?: number | null | undefined;
+  /** Role (identity, style, product, background, composition, first_frame, last_frame); empty for general. */
+  role?: string | null | undefined;
+  /** Keep in the saved references list (always for a person's photo). */
+  saved?: boolean | null | undefined;
+  /** Upload ID. */
+  uploadId: string;
+};
+
+/** Input for the flxStudioRefDelete mutation. */
+export type FlxStudioRefDeleteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Reference ID. */
+  id: number;
+};
+
+/** Input for the flxStudioRefUpdate mutation. */
+export type FlxStudioRefUpdateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Reference ID. */
+  id: number;
+  /** Name. */
+  name?: string | null | undefined;
+  /** Role key; empty for general. */
+  role?: string | null | undefined;
+  /** Kept in the saved references list. */
+  saved?: boolean | null | undefined;
+};
+
+/** Input for the flxStudioSettingsUpdate mutation. */
+export type FlxStudioSettingsUpdateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Image model the screen starts with; empty uses the Flux AI default. */
+  imageModel?: string | null | undefined;
+  /** Most ideas per Brainstorm (1–40). */
+  maxBatch?: number | null | undefined;
+  /** Most images per request (1–8). */
+  maxCount?: number | null | undefined;
+  /** Share people with every Studio user. */
+  sharedPeople?: boolean | null | undefined;
+  /** Model for Enhance and Brainstorm; empty uses the Flux AI default. */
+  textModel?: string | null | undefined;
+  /** Video model the screen starts with; empty uses the Flux AI default. */
+  videoModel?: string | null | undefined;
+};
+
+/** Input for the flxStudioTemplateCreate mutation. */
+export type FlxStudioTemplateCreateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Name (up to 120 characters). */
+  name: string;
+  /** Settings to keep. */
+  params?: FlxStudioTemplateParamsInput | null | undefined;
+  /** Prompt. */
+  prompt?: string | null | undefined;
+  /** Visible to the whole team. */
+  shared?: boolean | null | undefined;
+};
+
+/** Generation settings a template keeps. Unknown settings are not kept. */
+export type FlxStudioTemplateParamsInput = {
+  /** Aspect ratio. */
+  aspect?: string | null | undefined;
+  /** Video with sound. */
+  audio?: boolean | null | undefined;
+  /** Images per request. */
+  count?: number | null | undefined;
+  /** Video seconds. */
+  duration?: number | null | undefined;
+  /** Image or video. */
+  kind?: FlxStudioKind | null | undefined;
+  /** Video mode. */
+  mode?: string | null | undefined;
+  /** Model ID. */
+  model?: string | null | undefined;
+  /** Quality level. */
+  quality?: string | null | undefined;
+  /** References the template adds. */
+  refs?: Array<FlxStudioRefInput> | null | undefined;
+  /** Resolution. */
+  resolution?: string | null | undefined;
+  /** Exact size. */
+  size?: string | null | undefined;
+};
+
+/** Input for the flxStudioTemplateDelete mutation. */
+export type FlxStudioTemplateDeleteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Template ID. */
+  id: number;
 };
 
 /** Input for the flxTaskCommentCreate mutation. */
