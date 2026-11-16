@@ -153,24 +153,31 @@ add_action(
 	}
 );
 
-/*
- * Flux App: Performance is a native screen (the same React screen as wp-admin, @fluxwp/modules
- * `flxp-speed`, data over GraphQL). App versions without the screen open the admin page instead.
- */
-add_filter(
-	'flxapp_modules',
-	static function ( $m ) {
-		$m                = is_array( $m ) ? $m : array();
-		$m['flxp-speed'] = array(
-			'title'   => __( 'Flux Performance', 'flx-speed' ),
-			'cap'     => 'flxp_view',
-			'menu'    => 'flx-speed',
-			'url'     => admin_url( 'admin.php?page=flx-speed' ),
-			'api'     => home_url( '/graphql' ),
-			'icon'    => 'gauge',
-			'version' => FLXP_VERSION,
-			'order'   => 70,
+add_action(
+	'plugins_loaded',
+	function () {
+		if ( ! function_exists( 'flxapp_manifest_file' ) ) {
+			return;
+		}
+		add_filter(
+			'flxapp_manifest',
+			function ( $m ) {
+				$loaded      = flxapp_manifest_file(
+					FLXP_DIR . 'app/manifest.json',
+					'flx-speed',
+					array(
+						'version' => FLXP_VERSION,
+						'caps'    => array(
+							'view' => array( 'manage_options', 'flxp_view' ),
+						),
+					)
+				);
+				$m['speed'] = flxp_app_texts( $loaded, 'flx-speed' );
+				return $m;
+			},
+			10,
+			2
 		);
-		return $m;
-	}
+	},
+	20
 );

@@ -3901,27 +3901,3 @@ msgstr "Metin %1$d kez geçiyor; tekil yapın ya da all=true verin: %2$s"
 #, php-format
 msgid "MCP server of %s: read and manage the site content and the tools of its FluxWP plugins."
 msgstr "%s MCP sunucusu: site içeriğini ve FluxWP eklentilerinin araçlarını okur ve yönetir."
-
-msgid "That plugin does not offer this tool under the same name."
-msgstr "Bu eklenti bu aracı aynı adla sunmuyor."
-
-msgid "The prompt cache must be off, 5 minutes or 1 hour."
-msgstr "İstem önbelleği kapalı, 5 dakika ya da 1 saat olmalı."
-
-msgid "Effort must be low, medium or high."
-msgstr "Çaba düşük, orta ya da yüksek olmalı."
-
-msgid "Choose a model from the list."
-msgstr "Listeden bir model seçin."
-
-msgid "Choose a search provider from the list."
-msgstr "Listeden bir arama sağlayıcısı seçin."
-
-msgid "This key is not one Flux AI uses."
-msgstr "Bu anahtar Flux AI'ın kullandığı bir anahtar değil."
-
-msgid "New view"
-msgstr "Yeni görünüm"
-
-msgid "Open the new view (same features, works in the FluxWP app too)."
-msgstr "Yeni görünümü aç (aynı özellikler, FluxWP uygulamasında da çalışır)."

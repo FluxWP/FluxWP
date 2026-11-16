@@ -15,7 +15,6 @@ final class FLXRC_Admin {
 		add_action( 'admin_menu', array( __CLASS__, 'menu' ), 60 );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'assets' ) );
 		add_action( 'admin_head', array( __CLASS__, 'menu_logo' ) );
-		add_action( 'admin_init', array( __CLASS__, 'ui_switch' ) );
 		add_action( 'admin_post_flxrc_save', array( __CLASS__, 'save' ) );
 		add_action( 'wp_ajax_flxrc_test', array( __CLASS__, 'ajax_test' ) );
 		add_action( 'admin_notices', array( __CLASS__, 'nag' ) );
@@ -34,88 +33,8 @@ final class FLXRC_Admin {
 		return isset( $_GET['page'] ) && 'flx-recaptcha' === $_GET['page']; // phpcs:ignore WordPress.Security.NonceVerification
 	}
 
-	/*
-	 * New view (0.3.0, GraphQL): the page opens the same React screen as the FluxWP app (assets/flux/,
-	 * tools/fluxapp/embed-sync.sh flx-recaptcha). It is the default and has every feature of the classic
-	 * page; a user can switch back to the classic page from the screen header for now. Needs Flux GraphQL.
-	 */
-	public static function flux_available() {
-		return file_exists( FLXRC_DIR . 'assets/flux/flux-modules.js' ) && function_exists( 'flx_gql_ready' ) && function_exists( 'flx_gql_all_caps' ) && flx_gql_ready();
-	}
-
-	public static function flux_ui() {
-		return self::flux_available() && 'classic' !== get_user_meta( get_current_user_id(), 'flxrc_ui', true );
-	}
-
-	/** Link that switches the current user between the views. */
-	public static function ui_switch_url( $ui ) {
-		return wp_nonce_url( flxrc_admin_url( array( 'flxrc_ui' => 'flux' === $ui ? 'flux' : 'classic' ) ), 'flxrc_ui' );
-	}
-
-	public static function ui_switch() {
-		if ( ! isset( $_GET['flxrc_ui'], $_GET['page'] ) || 'flx-recaptcha' !== $_GET['page'] || ! current_user_can( self::CAP ) ) { // phpcs:ignore WordPress.Security.NonceVerification
-			return;
-		}
-		check_admin_referer( 'flxrc_ui' );
-		if ( 'classic' === $_GET['flxrc_ui'] ) {
-			update_user_meta( get_current_user_id(), 'flxrc_ui', 'classic' );
-		} else {
-			delete_user_meta( get_current_user_id(), 'flxrc_ui' );
-		}
-		wp_safe_redirect( flxrc_admin_url() );
-		exit;
-	}
-
-	/** The chunked bundle loads as an ES module. */
-	public static function flux_module_tag( $tag, $handle ) {
-		if ( 'flxrc-flux' !== $handle ) {
-			return $tag;
-		}
-		return (string) preg_replace_callback(
-			'/<script\b[^>]*\ssrc=[^>]*>/',
-			static function ( $m ) {
-				$open = (string) preg_replace( '/\stype=("|\')[^"\']*\1/', '', $m[0] );
-				return (string) preg_replace( '/^<script\b/', '<script type="module"', $open );
-			},
-			$tag,
-			1
-		);
-	}
-
-	public static function flux_assets() {
-		$ver    = FLXRC_VERSION . '-' . (int) filemtime( FLXRC_DIR . 'assets/flux/flux-modules.js' );
-		$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#2c7a64';
-		$opts   = array(
-			'module'     => 'flxrc-recaptcha',
-			'rest'       => rest_url(),
-			'nonce'      => wp_create_nonce( 'wp_rest' ),
-			'locale'     => get_user_locale(),
-			'siteName'   => get_bloginfo( 'name' ),
-			'adminUrl'   => admin_url(),
-			'theme'      => 'light',
-			'colors'     => array(
-				'primary'         => $accent,
-				'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
-			),
-			'classicUrl' => self::ui_switch_url( 'classic' ),
-		);
-		wp_enqueue_style( 'flxrc-flux', FLXRC_URL . 'assets/flux/flux-modules.css', array(), $ver );
-		wp_enqueue_script( 'flxrc-flux', FLXRC_URL . 'assets/flux/flux-modules.js', array(), $ver, true );
-		add_filter( 'script_loader_tag', array( __CLASS__, 'flux_module_tag' ), 10, 2 );
-		// Light / dark follows Flux Admin (html.flxa-dark), also when the user switches it on the page.
-		wp_add_inline_script(
-			'flxrc-flux',
-			'(function(){var h=document.documentElement,o=' . wp_json_encode( $opts ) . ';o.theme=h.classList.contains("flxa-dark")?"dark":"light";var slot=window.FluxModulesOptions||(window.FluxModulesOptions={});slot.id="flxrc-app";slot.opts=o;function sync(){var el=document.getElementById("flxrc-app");if(el)el.dataset.theme=h.classList.contains("flxa-dark")?"dark":"light";}new MutationObserver(sync).observe(h,{attributes:true,attributeFilter:["class"]});function go(){if(slot.done||!window.FluxModules)return;var el=document.getElementById(slot.id);if(!el)return;slot.done=true;try{window.FluxModules.mount(el,slot.opts);}catch(e){el.textContent=String(e&&e.message||e);}}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);go();})();',
-			'before'
-		);
-	}
-
 	public static function assets() {
 		if ( ! self::is_screen() ) {
-			return;
-		}
-		if ( self::flux_ui() ) {
-			self::flux_assets();
 			return;
 		}
 		wp_enqueue_style( 'flxrc-admin', FLXRC_URL . 'assets/admin.css', array(), FLXRC_VERSION );
@@ -161,11 +80,6 @@ final class FLXRC_Admin {
 		if ( ! current_user_can( self::CAP ) ) {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-recaptcha' ), 403 );
 		}
-		if ( self::flux_ui() ) {
-			echo '<style>#flxrc-app.flux-root{height:auto;background:transparent;font-family:inherit}</style>';
-			echo '<div class="wrap flxrc-wrap"><div id="flxrc-app"><noscript>' . esc_html__( 'JavaScript is required for this screen.', 'flx-recaptcha' ) . '</noscript></div></div>';
-			return;
-		}
 		$s        = flxrc_settings();
 		$ctxs     = flxrc_contexts();
 		$stats    = flxrc_stats_totals( 30 );
@@ -182,11 +96,7 @@ final class FLXRC_Admin {
 		}
 
 		echo '<div class="wrap flxrc">';
-		echo '<div class="flxrc-head"><div><h1>' . esc_html__( 'reCAPTCHA', 'flx-recaptcha' ) . '</h1><p class="flxrc-lead">' . esc_html__( 'Protects login, registration, comments, checkout, donations and form submissions from bots with Google reCAPTCHA. Choose below which forms to protect.', 'flx-recaptcha' ) . '</p>';
-		if ( self::flux_available() ) {
-			echo '<p><a class="button" href="' . esc_url( self::ui_switch_url( 'flux' ) ) . '">' . esc_html__( 'New view', 'flx-recaptcha' ) . '</a> <span class="flxrc-muted">' . esc_html__( 'Open the new view (same features, works in the FluxWP app too).', 'flx-recaptcha' ) . '</span></p>';
-		}
-		echo '</div></div>';
+		echo '<div class="flxrc-head"><div><h1>' . esc_html__( 'reCAPTCHA', 'flx-recaptcha' ) . '</h1><p class="flxrc-lead">' . esc_html__( 'Protects login, registration, comments, checkout, donations and form submissions from bots with Google reCAPTCHA. Choose below which forms to protect.', 'flx-recaptcha' ) . '</p></div></div>';
 		self::notices();
 
 		if ( $locked ) {
@@ -333,39 +243,29 @@ final class FLXRC_Admin {
 		if ( ! current_user_can( self::CAP ) ) {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-recaptcha' ), 403 );
 		}
-		$was   = flxrc_keys_verified();
-		$ips   = array();
+		$s    = flxrc_settings();
+		$was  = flxrc_keys_verified();
+		$s    = self::apply_keys( $s, (string) self::post( 'version', 'v3' ), self::post( 'site_key', null ), (string) self::post( 'secret' ) );
+		$s['threshold']      = max( 0.1, min( 0.9, round( (float) self::post( 'threshold', 0.5 ), 1 ) ) );
+		$s['domain']         = 'recaptcha' === self::post( 'domain' ) ? 'recaptcha' : 'google';
+		$s['v2_theme']       = in_array( self::post( 'v2_theme' ), array( 'auto', 'light', 'dark' ), true ) ? self::post( 'v2_theme' ) : 'auto';
+		$s['v2_size']        = 'compact' === self::post( 'v2_size' ) ? 'compact' : 'normal';
+		$s['hide_badge']     = (int) (bool) self::post( 'hide_badge', 0 );
+		$s['skip_logged_in'] = (int) (bool) self::post( 'skip_logged_in', 0 );
+		$s['fail_open']      = (int) (bool) self::post( 'fail_open', 0 );
+		$ips                 = array();
 		foreach ( preg_split( '/[\s,]+/', (string) self::post( 'allow_ips' ), -1, PREG_SPLIT_NO_EMPTY ) as $ip ) {
 			if ( preg_match( '#^[0-9a-fA-F:.]+(/\d{1,3})?$#', $ip ) ) {
 				$ips[] = $ip;
 			}
 		}
-		$forms = array();
+		$s['allow_ips'] = implode( "\n", array_unique( $ips ) );
+		$forms          = array();
 		foreach ( (array) self::post( 'forms', array() ) as $k => $v ) {
-			$k = sanitize_key( $k );
-			if ( isset( flxrc_contexts()[ $k ] ) ) {
-				$forms[] = array( 'key' => $k, 'enabled' => (bool) $v );
-			}
+			$forms[ sanitize_key( $k ) ] = (int) (bool) $v;
 		}
-		$site  = self::post( 'site_key', null );
-		$theme = (string) self::post( 'v2_theme' );
-		$in    = array(
-			'version'        => 'v2' === self::post( 'version', 'v3' ) ? 'v2' : 'v3',
-			'secret'         => (string) preg_replace( '/[^A-Za-z0-9_-]/', '', (string) self::post( 'secret' ) ),
-			'threshold'      => max( 0.1, min( 0.9, round( (float) self::post( 'threshold', 0.5 ), 1 ) ) ),
-			'domain'         => 'recaptcha' === self::post( 'domain' ) ? 'recaptcha' : 'google',
-			'v2_theme'       => in_array( $theme, array( 'auto', 'light', 'dark' ), true ) ? $theme : 'auto',
-			'v2_size'        => 'compact' === self::post( 'v2_size' ) ? 'compact' : 'normal',
-			'hide_badge'     => (bool) self::post( 'hide_badge', 0 ),
-			'skip_logged_in' => (bool) self::post( 'skip_logged_in', 0 ),
-			'fail_open'      => (bool) self::post( 'fail_open', 0 ),
-			'allow_ips'      => $ips,
-			'forms'          => $forms,
-		);
-		if ( null !== $site ) {
-			$in['site_key'] = (string) preg_replace( '/[^A-Za-z0-9_-]/', '', (string) $site );
-		}
-		FLXRC_Settings_Service::update( $in );
+		$s['forms'] = array_merge( (array) $s['forms'], $forms );
+		flxrc_update_settings( $s );
 		$msg  = ( $was && ! flxrc_keys_verified() ) ? 'unverified' : 'saved';
 		$args = array( 'flxrc_msg' => $msg );
 		if ( self::post( 'then_test' ) ) {
@@ -373,6 +273,24 @@ final class FLXRC_Admin {
 		}
 		wp_safe_redirect( flxrc_admin_url( $args ) . '#flxrc-keys' );
 		exit;
+	}
+
+	/** Sürüm ve anahtarları ayarlara yazar; özet değişirse test onayı düşer. */
+	private static function apply_keys( array $s, $version, $site, $secret ) {
+		$s['version'] = 'v2' === $version ? 'v2' : 'v3';
+		if ( null !== $site && ! ( defined( 'FLXRC_SITE_KEY' ) && FLXRC_SITE_KEY ) ) {
+			$s['site_key'] = preg_replace( '/[^A-Za-z0-9_-]/', '', (string) $site );
+		}
+		$secret = preg_replace( '/[^A-Za-z0-9_-]/', '', (string) $secret );
+		if ( '' !== $secret ) {
+			$s['secret'] = flxrc_seal( $secret );
+		}
+		/* Test onayı yalnız aynı sürüm + anahtarlar için geçerli. */
+		$fp = substr( hash( 'sha256', $s['version'] . '|' . ( defined( 'FLXRC_SITE_KEY' ) && FLXRC_SITE_KEY ? FLXRC_SITE_KEY : $s['site_key'] ) . '|' . ( defined( 'FLXRC_SECRET_KEY' ) && FLXRC_SECRET_KEY ? FLXRC_SECRET_KEY : flxrc_unseal( $s['secret'] ) ) ), 0, 24 );
+		if ( ! hash_equals( (string) $s['verified'], $fp ) ) {
+			$s['verified'] = '';
+		}
+		return $s;
 	}
 
 	/* ---------------------------------------------------------------- */
@@ -384,13 +302,29 @@ final class FLXRC_Admin {
 		if ( ! current_user_can( self::CAP ) ) {
 			wp_send_json_error( array( 'msg' => __( 'You are not allowed to do this.', 'flx-recaptcha' ) ), 403 );
 		}
-		$res = FLXRC_Settings_Service::test_keys( 'v2' === self::post( 'version' ) ? 'v2' : 'v3', (string) self::post( 'site_key' ), (string) self::post( 'secret' ), (string) self::post( 'token' ) );
-		if ( is_wp_error( $res ) ) {
-			wp_send_json_error( array( 'msg' => $res->get_error_message() ) );
+		$version = 'v2' === self::post( 'version' ) ? 'v2' : 'v3';
+		$site    = defined( 'FLXRC_SITE_KEY' ) && FLXRC_SITE_KEY ? FLXRC_SITE_KEY : preg_replace( '/[^A-Za-z0-9_-]/', '', (string) self::post( 'site_key' ) );
+		$typed   = preg_replace( '/[^A-Za-z0-9_-]/', '', (string) self::post( 'secret' ) );
+		$secret  = '' !== $typed ? $typed : flxrc_secret();
+		if ( '' === $site || '' === $secret ) {
+			wp_send_json_error( array( 'msg' => __( 'The site key and the secret key are required.', 'flx-recaptcha' ) ) );
 		}
-		if ( ! $res->ok ) {
-			wp_send_json_error( array( 'msg' => $res->message ) );
+		$res = FLXRC_Verify::test( (string) self::post( 'token' ), $secret );
+		if ( $res['ok'] && ( 'v3' === $version ) !== ! empty( $res['v3'] ) ) {
+			$res = array(
+				'ok'  => false,
+				'msg' => 'v3' === $version ? __( 'These are v2 (checkbox) keys. Choose v2, or create v3 keys in the Google console.', 'flx-recaptcha' ) : __( 'These are v3 keys. Choose v3, or create v2 keys in the Google console.', 'flx-recaptcha' ),
+			);
 		}
-		wp_send_json_success( array( 'msg' => $res->message ) );
+		flxrc_status( 'last_test', array( 'time' => time(), 'ok' => $res['ok'], 'msg' => wp_strip_all_tags( $res['msg'] ) ) );
+		if ( ! $res['ok'] ) {
+			wp_send_json_error( array( 'msg' => $res['msg'] ) );
+		}
+		$s = self::apply_keys( flxrc_settings(), $version, $site, $typed );
+		flxrc_update_settings( $s );
+		$s['verified'] = flxrc_key_fingerprint();
+		flxrc_update_settings( $s );
+		flxrc_status_clear( 'last_error' );
+		wp_send_json_success( array( 'msg' => $res['msg'] ) );
 	}
 }

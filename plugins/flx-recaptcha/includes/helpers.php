@@ -7,11 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-/**
- * Varsayılan ayarlar. `forms` bağlam anahtarı → 0/1; listede olmayan bağlam kendi varsayılanını alır.
- *
- * @return array<string,mixed>
- */
+/** Varsayılan ayarlar. `forms` bağlam anahtarı → 0/1; listede olmayan bağlam kendi varsayılanını alır. */
 function flxrc_defaults() {
 	return array(
 		'version'        => 'v3',      // v3 | v2.
@@ -30,12 +26,7 @@ function flxrc_defaults() {
 	);
 }
 
-/**
- * Ayarlar (dizi) ya da tek alan.
- *
- * @param string|null $key Key; null returns every setting.
- * @return mixed Array of all settings, or the value of one.
- */
+/** Ayarlar (dizi) ya da tek alan. */
 function flxrc_settings( $key = null ) {
 	static $cache = null;
 	if ( null === $cache || 'flush' === $key ) {
@@ -51,17 +42,12 @@ function flxrc_settings( $key = null ) {
 	return array_key_exists( $key, $cache ) ? $cache[ $key ] : null;
 }
 
-/**
- * @param array<string,mixed> $s Settings.
- * @return void
- */
 function flxrc_update_settings( array $s ) {
 	update_option( 'flxrc_settings', array_merge( flxrc_defaults(), $s ), true );
 	flxrc_settings( 'flush' );
 }
 
 /** Kurtarma: wp-config.php'de define( 'FLXRC_DISABLE', true ); tüm koruma kapanır. */
-/** @return bool */
 function flxrc_disabled_by_constant() {
 	return defined( 'FLXRC_DISABLE' ) && FLXRC_DISABLE;
 }
@@ -93,11 +79,7 @@ function flxrc_unseal( $stored ) {
 	return flx_secret_open( $stored, 'flx-recaptcha', array( 's1:' => 'flx-recaptcha|' . wp_salt( 'secure_auth' ) ) );
 }
 
-/**
- * Gizli anahtar (düz). FLXRC_SECRET_KEY sabiti paneli ezer.
- *
- * @return string
- */
+/** Gizli anahtar (düz). FLXRC_SECRET_KEY sabiti paneli ezer. */
 function flxrc_secret() {
 	if ( defined( 'FLXRC_SECRET_KEY' ) && is_string( FLXRC_SECRET_KEY ) && '' !== FLXRC_SECRET_KEY ) {
 		return FLXRC_SECRET_KEY;
@@ -105,11 +87,7 @@ function flxrc_secret() {
 	return flxrc_unseal( flxrc_settings( 'secret' ) );
 }
 
-/**
- * Site anahtarı. FLXRC_SITE_KEY sabiti paneli ezer.
- *
- * @return string
- */
+/** Site anahtarı. FLXRC_SITE_KEY sabiti paneli ezer. */
 function flxrc_site_key() {
 	if ( defined( 'FLXRC_SITE_KEY' ) && is_string( FLXRC_SITE_KEY ) && '' !== FLXRC_SITE_KEY ) {
 		return FLXRC_SITE_KEY;
@@ -117,24 +95,20 @@ function flxrc_site_key() {
 	return (string) flxrc_settings( 'site_key' );
 }
 
-/** @return 'v2'|'v3' */
 function flxrc_version() {
 	return 'v2' === flxrc_settings( 'version' ) ? 'v2' : 'v3';
 }
 
 /** Test geçen anahtar özetini üretir (sürüm + iki anahtar). */
-/** @return string */
 function flxrc_key_fingerprint() {
 	return substr( hash( 'sha256', flxrc_version() . '|' . flxrc_site_key() . '|' . flxrc_secret() ), 0, 24 );
 }
 
-/** @return bool */
 function flxrc_has_keys() {
 	return '' !== flxrc_site_key() && '' !== flxrc_secret();
 }
 
 /** Anahtarlar girildi ve panelde test edildi mi. Test edilmemiş anahtarla koruma çalışmaz (yöneticinin kilitlenmemesi için). */
-/** @return bool */
 function flxrc_keys_verified() {
 	return flxrc_has_keys() && hash_equals( (string) flxrc_settings( 'verified' ), flxrc_key_fingerprint() );
 }
@@ -144,12 +118,7 @@ function flxrc_active() {
 	return ! flxrc_disabled_by_constant() && flxrc_keys_verified();
 }
 
-/**
- * Gizli değeri ekranda göstermek için: son 4 hane.
- *
- * @param mixed $v Secret.
- * @return string
- */
+/** Gizli değeri ekranda göstermek için: son 4 hane. */
 function flxrc_mask( $v ) {
 	$v = (string) $v;
 	return '' === $v ? '' : '••••' . substr( $v, -4 );
@@ -160,7 +129,6 @@ function flxrc_admin_url( $args = array() ) {
 }
 
 /** API sunucusu (www.google.com ya da www.recaptcha.net: Google'ın erişilemediği ağlar için). */
-/** @return string */
 function flxrc_api_host() {
 	return 'recaptcha' === flxrc_settings( 'domain' ) ? 'https://www.recaptcha.net' : 'https://www.google.com';
 }
@@ -169,11 +137,7 @@ function flxrc_api_host() {
 /* İstek bilgisi                                                       */
 /* ------------------------------------------------------------------ */
 
-/**
- * Ziyaretçi IP'si (yalnız REMOTE_ADDR; vekil başlıkları sahte olabilir). Filtre: flxrc_client_ip.
- *
- * @return string
- */
+/** Ziyaretçi IP'si (yalnız REMOTE_ADDR; vekil başlıkları sahte olabilir). Filtre: flxrc_client_ip. */
 function flxrc_client_ip() {
 	$ip = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '';
 	return (string) apply_filters( 'flxrc_client_ip', $ip );
@@ -235,12 +199,7 @@ function flxrc_stat( $ctx, $ok ) {
 	update_option( 'flxrc_stats', $s, false );
 }
 
-/**
- * Toplamlar: [ bağlam => [geçti, engellendi] ] ve '_all'.
- *
- * @param int $days Days.
- * @return array<string,array{0:int,1:int}>
- */
+/** Toplamlar: [ bağlam => [geçti, engellendi] ] ve '_all'. */
 function flxrc_stats_totals( $days = 30 ) {
 	$s    = get_option( 'flxrc_stats', array() );
 	$from = wp_date( 'Y-m-d', time() - ( $days - 1 ) * DAY_IN_SECONDS );
@@ -277,13 +236,7 @@ function flxrc_stats_daily( $days = 14 ) {
 	return $out;
 }
 
-/**
- * Son hata ve test sonucu (autoload kapalı).
- *
- * @param string|null $key   Key.
- * @param mixed       $value Value to store.
- * @return mixed
- */
+/** Son hata ve test sonucu (autoload kapalı). */
 function flxrc_status( $key = null, $value = null ) {
 	$st = get_option( 'flxrc_status', array() );
 	$st = is_array( $st ) ? $st : array();
@@ -295,10 +248,6 @@ function flxrc_status( $key = null, $value = null ) {
 	return null === $key ? $st : ( $st[ $key ] ?? null );
 }
 
-/**
- * @param string $key Key.
- * @return void
- */
 function flxrc_status_clear( $key ) {
 	$st = get_option( 'flxrc_status', array() );
 	if ( is_array( $st ) && isset( $st[ $key ] ) ) {

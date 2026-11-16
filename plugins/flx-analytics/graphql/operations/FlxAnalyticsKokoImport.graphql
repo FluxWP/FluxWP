@@ -1,7 +1,0 @@
-mutation FlxAnalyticsKokoImport($input: FlxAnalyticsKokoImportInput!) {
-  flxAnalyticsKokoImport(input: $input) {
-    rows
-    settings { ...FlxAnalyticsSettingsFields }
-    errors { code message field }
-  }
-}

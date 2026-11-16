@@ -35,9 +35,7 @@ add_filter(
 
 add_filter( 'flx_mcp_instructions', 'flxseo_mcp_instructions' );
 
-/** MCP sunucusu (Flux AI) açık mı?
- * @return bool
- */
+/** MCP sunucusu (Flux AI) açık mı? */
 function flxseo_mcp_server_on() {
 	return function_exists( 'flxai_mcp_enabled' ) && flxai_mcp_enabled();
 }

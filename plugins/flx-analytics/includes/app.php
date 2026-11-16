@@ -55,33 +55,3 @@ add_action(
 	},
 	20
 );
-
-/*
- * Flux App: the statistics screens are native screens (the same React screens as wp-admin, @fluxwp/modules
- * `flxan-*`, data over GraphQL). App versions without them keep using the manifest above.
- */
-add_filter(
-	'flxapp_modules',
-	static function ( $m ) {
-		$m   = is_array( $m ) ? $m : array();
-		$api = home_url( '/graphql' );
-		$def = array(
-			'flxan-stats'     => array( __( 'Statistics', 'flx-analytics' ), 'manage_options', 'flx-analytics', 'admin.php?page=flx-analytics', 'chart', 30 ),
-			'flxan-journeys'  => array( __( 'Journeys', 'flx-analytics' ), 'manage_options', 'flx-analytics-journeys', 'admin.php?page=flx-analytics-journeys', 'route', 31 ),
-			'flxan-settings'  => array( __( 'Settings', 'flx-analytics' ), 'manage_options', 'flx-analytics-settings', 'admin.php?page=flx-analytics-settings', 'settings', 32 ),
-		);
-		foreach ( $def as $id => $d ) {
-			$m[ $id ] = array(
-				'title'   => $d[0],
-				'cap'     => $d[1],
-				'menu'    => $d[2],
-				'url'     => admin_url( $d[3] ),
-				'api'     => $api,
-				'icon'    => $d[4],
-				'version' => FLXAN_VERSION,
-				'order'   => $d[5],
-			);
-		}
-		return $m;
-	}
-);

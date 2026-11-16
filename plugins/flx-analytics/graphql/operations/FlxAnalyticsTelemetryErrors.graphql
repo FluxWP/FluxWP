@@ -1,7 +1,0 @@
-# Errors FluxWP installs reported.
-query FlxAnalyticsTelemetryErrors($days: Int, $country: String, $plugin: String, $type: String) {
-  flxAnalyticsTelemetryErrors(days: $days, country: $country, plugin: $plugin, type: $type) {
-    plugins { value label }
-    items { hash type fatal message more file line plugin pluginName version sites count last { iso label relative } }
-  }
-}

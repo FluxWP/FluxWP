@@ -29,7 +29,6 @@ function flxapp_stored_clients() {
 	return (array) get_option( 'flxapp_clients', array() );
 }
 
-/** @return array<string, array<string, mixed>> */
 function flxapp_clients() {
 	return array_merge( flxapp_stored_clients(), flxapp_builtin_clients() );
 }

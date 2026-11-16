@@ -1,3 +1,0 @@
-# wp eval-file arguments for the flx-lang contract test (run.sh).
-# flx-lang scripts its own Flux AI stand-in (flxai_* functions): load the real flx-ai out of that run.
---skip-plugins=flx-ai

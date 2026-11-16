@@ -499,10 +499,6 @@ function flx_sk_page() {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		return;
 	}
-	if ( function_exists( 'flx_flux_ui' ) && flx_flux_ui() ) {
-		flx_flux_root( 'flx-theme-system-app' );
-		return;
-	}
 	$checks = flx_sk_collect();
 	$count  = array_fill_keys( array( 'error', 'warning', 'ok', 'info' ), 0 );
 	$groups = array();
@@ -557,7 +553,6 @@ function flx_sk_page() {
 			@media (max-width:782px){.flx-sk-row{grid-template-columns:1.1em 1fr}.flx-sk-row .flx-sk-msg,.flx-sk-row .flx-sk-act{grid-column:2}}
 		</style>
 		<h1><?php esc_html_e( 'System Check', 'fluxwp' ); ?></h1>
-		<?php flx_flux_new_view_link( 'flx-sistem' ); ?>
 		<p><?php esc_html_e( 'Plugins, scheduled tasks and key settings. Red rows mean part of the site is not working; yellow rows are recommended fixes. The page re-checks every time it opens.', 'fluxwp' ); ?></p>
 		<div class="flx-sk-sum">
 			<?php foreach ( $count as $st => $n ) : ?>

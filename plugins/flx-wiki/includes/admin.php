@@ -11,7 +11,6 @@ final class FLXWK_Admin {
 
 	public static function init() {
 		add_action( 'admin_menu', array( __CLASS__, 'menu' ) );
-		add_action( 'admin_init', array( __CLASS__, 'switch_view' ) );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'assets' ) );
 		add_action( 'admin_head', array( __CLASS__, 'menu_logo' ) );
 		add_action( 'edit_form_after_title', array( __CLASS__, 'editor' ) );
@@ -26,93 +25,7 @@ final class FLXWK_Admin {
 	}
 
 	public static function menu() {
-		$hook = add_submenu_page( 'edit.php?post_type=' . FLXWK_PT, __( 'Wiki settings', 'flx-wiki' ), __( 'Settings', 'flx-wiki' ), 'manage_options', 'flx-wiki', array( __CLASS__, 'render' ) );
-		if ( $hook ) {
-			add_action(
-				'admin_print_styles-' . $hook,
-				static function () {
-					if ( self::flux_ui() ) {
-						self::flux_assets();
-					}
-				}
-			);
-		}
-	}
-
-	/*
-	 * New view (0.3.0, GraphQL): the settings page opens the same React screen as the FluxWP app
-	 * (assets/flux/, tools/fluxapp/embed-sync.sh flx-wiki). It is the default and has every feature of the
-	 * classic page and the page list; a user can switch back to the classic page for now. Needs Flux GraphQL.
-	 */
-	public static function flux_available() {
-		return file_exists( FLXWK_DIR . 'assets/flux/flux-modules.js' ) && function_exists( 'flx_gql_ready' ) && function_exists( 'flx_gql_all_caps' ) && flx_gql_ready();
-	}
-
-	public static function flux_ui() {
-		return self::flux_available() && 'classic' !== get_user_meta( get_current_user_id(), 'flxwk_ui', true );
-	}
-
-	/** Link that switches the current user between the views. */
-	public static function switch_url( $ui ) {
-		return wp_nonce_url( add_query_arg( 'flxwk_ui', 'flux' === $ui ? 'flux' : 'classic', flxwk_admin_url() ), 'flxwk_ui' );
-	}
-
-	public static function switch_view() {
-		if ( ! isset( $_GET['flxwk_ui'], $_GET['page'] ) || 'flx-wiki' !== $_GET['page'] || ! current_user_can( 'manage_options' ) ) { // phpcs:ignore WordPress.Security.NonceVerification
-			return;
-		}
-		check_admin_referer( 'flxwk_ui' );
-		if ( 'classic' === $_GET['flxwk_ui'] ) {
-			update_user_meta( get_current_user_id(), 'flxwk_ui', 'classic' );
-		} else {
-			delete_user_meta( get_current_user_id(), 'flxwk_ui' );
-		}
-		wp_safe_redirect( flxwk_admin_url() );
-		exit;
-	}
-
-	/** The chunked bundle loads as an ES module. */
-	public static function module_tag( $tag, $handle ) {
-		if ( 'flxwk-flux' !== $handle ) {
-			return $tag;
-		}
-		return (string) preg_replace_callback(
-			'/<script\b[^>]*\ssrc=[^>]*>/',
-			static function ( $m ) {
-				$open = (string) preg_replace( '/\stype=("|\')[^"\']*\1/', '', $m[0] );
-				return (string) preg_replace( '/^<script\b/', '<script type="module"', $open );
-			},
-			$tag,
-			1
-		);
-	}
-
-	public static function flux_assets() {
-		$ver    = FLXWK_VERSION . '-' . (int) filemtime( FLXWK_DIR . 'assets/flux/flux-modules.js' );
-		$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#2c7a64';
-		$opts   = array(
-			'module'     => 'flxwk-wiki',
-			'rest'       => rest_url(),
-			'nonce'      => wp_create_nonce( 'wp_rest' ),
-			'locale'     => get_user_locale(),
-			'siteName'   => get_bloginfo( 'name' ),
-			'adminUrl'   => admin_url(),
-			'theme'      => 'light',
-			'colors'     => array(
-				'primary'         => $accent,
-				'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
-			),
-			'classicUrl' => self::switch_url( 'classic' ),
-		);
-		wp_enqueue_style( 'flxwk-flux', FLXWK_URL . 'assets/flux/flux-modules.css', array(), $ver );
-		wp_enqueue_script( 'flxwk-flux', FLXWK_URL . 'assets/flux/flux-modules.js', array(), $ver, true );
-		add_filter( 'script_loader_tag', array( __CLASS__, 'module_tag' ), 10, 2 );
-		// Light / dark follows Flux Admin (html.flxa-dark), also when the user switches it on the page.
-		wp_add_inline_script(
-			'flxwk-flux',
-			'(function(){var h=document.documentElement,o=' . wp_json_encode( $opts ) . ';o.theme=h.classList.contains("flxa-dark")?"dark":"light";var slot=window.FluxModulesOptions||(window.FluxModulesOptions={});slot.id="flxwk-app";slot.opts=o;function sync(){var el=document.getElementById("flxwk-app");if(el)el.dataset.theme=h.classList.contains("flxa-dark")?"dark":"light";}new MutationObserver(sync).observe(h,{attributes:true,attributeFilter:["class"]});function go(){if(slot.done||!window.FluxModules)return;var el=document.getElementById(slot.id);if(!el)return;slot.done=true;try{window.FluxModules.mount(el,slot.opts);}catch(e){el.textContent=String(e&&e.message||e);}}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);go();})();',
-			'before'
-		);
+		add_submenu_page( 'edit.php?post_type=' . FLXWK_PT, __( 'Wiki settings', 'flx-wiki' ), __( 'Settings', 'flx-wiki' ), 'manage_options', 'flx-wiki', array( __CLASS__, 'render' ) );
 	}
 
 	public static function menu_logo() {
@@ -269,11 +182,6 @@ final class FLXWK_Admin {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
-		if ( self::flux_ui() ) {
-			echo '<style>#flxwk-app.flux-root{height:auto;background:transparent;font-family:inherit}</style>';
-			echo '<div class="wrap flxwk-flux"><div id="flxwk-app"><noscript>' . esc_html__( 'JavaScript is required for this screen.', 'flx-wiki' ) . '</noscript></div></div>';
-			return;
-		}
 		$s     = flxwk_settings();
 		$count = wp_count_posts( FLXWK_PT );
 		$msg   = isset( $_GET['flxwk_msg'] ) ? sanitize_key( $_GET['flxwk_msg'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
@@ -290,9 +198,6 @@ final class FLXWK_Admin {
 			<h1 class="wp-heading-inline"><?php esc_html_e( 'Wiki settings', 'flx-wiki' ); ?></h1>
 			<a class="page-title-action" href="<?php echo esc_url( admin_url( 'post-new.php?post_type=' . FLXWK_PT ) ); ?>"><?php esc_html_e( 'Add page', 'flx-wiki' ); ?></a>
 			<a class="page-title-action" href="<?php echo esc_url( flxwk_home_url() ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Open wiki', 'flx-wiki' ); ?></a>
-			<?php if ( self::flux_available() ) : ?>
-				<a class="page-title-action" href="<?php echo esc_url( self::switch_url( 'flux' ) ); ?>"><?php esc_html_e( 'New view', 'flx-wiki' ); ?></a>
-			<?php endif; ?>
 			<?php if ( ! $s['enabled'] ) : ?>
 				<div class="notice notice-warning"><p><?php esc_html_e( 'The wiki is closed to visitors; only people who can write pages see it.', 'flx-wiki' ); ?></p></div>
 			<?php endif; ?>
@@ -455,8 +360,48 @@ final class FLXWK_Admin {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-wiki' ) );
 		}
 		check_admin_referer( 'flxwk_save' );
-		$p   = wp_unslash( $_POST ); // phpcs:ignore WordPress.Security.NonceVerification, WordPress.Security.ValidatedSanitizedInput -- verified above; the service sanitises every field.
-		$tab = ( new FLXWK_Admin_Service() )->save_tab( sanitize_key( is_string( $p['tab'] ?? null ) ? $p['tab'] : 'general' ), $p );
+		$p   = wp_unslash( $_POST );
+		$tab = sanitize_key( $p['tab'] ?? 'general' );
+		$cur = flxwk_settings();
+		$new = $cur;
+		if ( 'general' === $tab ) {
+			$base = sanitize_title( (string) ( $p['base'] ?? '' ) );
+			$new  = array_merge(
+				$new,
+				array(
+					'enabled'   => empty( $p['enabled'] ) ? 0 : 1,
+					'title'     => sanitize_text_field( $p['title'] ?? '' ),
+					'intro'     => sanitize_textarea_field( $p['intro'] ?? '' ),
+					'base'      => '' === $base ? 'wiki' : $base,
+					'ai_links'  => empty( $p['ai_links'] ) ? 0 : 1,
+					'edit_link' => empty( $p['edit_link'] ) ? 0 : 1,
+				)
+			);
+		} elseif ( 'look' === $tab ) {
+			$new = array_merge(
+				$new,
+				array(
+					'accent' => empty( $p['accent_theme'] ) ? (string) sanitize_hex_color( (string) ( $p['accent'] ?? '' ) ) : '',
+					'width'  => 'wide' === ( $p['width'] ?? '' ) ? 'wide' : 'normal',
+					'nav'    => empty( $p['nav'] ) ? 0 : 1,
+					'toc'    => empty( $p['toc'] ) ? 0 : 1,
+				)
+			);
+		} else {
+			$tab = 'ai';
+			$new = array_merge(
+				$new,
+				array(
+					'ask'       => isset( $p['ask'] ) && in_array( $p['ask'], array( 'off', 'users', 'all' ), true ) ? $p['ask'] : 'users',
+					'ask_limit' => max( 1, min( 500, (int) ( $p['ask_limit'] ?? 20 ) ) ),
+				)
+			);
+		}
+		update_option( 'flxwk_settings', $new );
+		if ( $new['base'] !== $cur['base'] ) {
+			update_option( 'flxwk_flush', 1, true );
+		}
+		flxwk_bump();
 		wp_safe_redirect( add_query_arg( array( 'flxwk_msg' => 'saved', 'tab' => $tab ), flxwk_admin_url() ) );
 		exit;
 	}
@@ -466,16 +411,7 @@ final class FLXWK_Admin {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-wiki' ) );
 		}
 		check_admin_referer( 'flxwk_seed' );
-		$r = ( new FLXWK_Admin_Service() )->import_guides();
-		set_transient(
-			'flxwk_seed_stat',
-			array(
-				'created' => $r->created,
-				'updated' => $r->updated,
-				'skipped' => $r->skipped,
-			),
-			300
-		);
+		set_transient( 'flxwk_seed_stat', flxwk_seed_import( true ), 300 );
 		wp_safe_redirect( add_query_arg( 'flxwk_msg', 'seeded', flxwk_admin_url() ) );
 		exit;
 	}

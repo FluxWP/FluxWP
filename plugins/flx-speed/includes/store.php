@@ -34,7 +34,6 @@ class FLXP_Store {
 			'rest'   => 'REST',
 			'cron'   => 'Cron',
 			'xmlrpc' => 'XML-RPC',
-			'graphql' => 'GraphQL',
 		);
 	}
 
@@ -80,7 +79,7 @@ class FLXP_Store {
 		}
 		$url = (string) $snap['overview']['url'];
 		// Kendi kayıt ekranlarımız ve kalp atışı gürültü üretmesin.
-		if ( false !== strpos( $url, 'page=flx-speed' ) || ( 'graphql' === (string) $snap['overview']['type'] && FLXP_Collector::is_own_graphql() ) ) {
+		if ( false !== strpos( $url, 'page=flx-speed' ) ) {
 			return 0;
 		}
 		$flags = self::flags( $snap );
@@ -203,8 +202,8 @@ class FLXP_Store {
 			$vals[]  = gmdate( 'Y-m-d H:i:s', time() - (int) $args['hours'] * HOUR_IN_SECONDS );
 		}
 		if ( ! empty( $args['flag'] ) && isset( self::flag_labels()[ $args['flag'] ] ) ) {
-			$where[] = "CONCAT(',', flags, ',') LIKE %s";
-			$vals[]  = '%,' . $wpdb->esc_like( (string) $args['flag'] ) . ',%';
+			$where[] = 'FIND_IN_SET(%s, flags)';
+			$vals[]  = $args['flag'];
 		}
 		if ( ! empty( $args['type'] ) && isset( self::type_labels()[ $args['type'] ] ) ) {
 			$where[] = 'type = %s';
@@ -220,14 +219,13 @@ class FLXP_Store {
 		}
 		$per   = max( 1, min( 200, (int) ( $args['per_page'] ?? 30 ) ) );
 		$page  = max( 1, (int) ( $args['page'] ?? 1 ) );
-		$skip  = isset( $args['offset'] ) ? max( 0, (int) $args['offset'] ) : ( $page - 1 ) * $per;
 		$order = ( isset( $args['order'] ) && 'slow' === $args['order'] ) ? 'ms DESC' : 'id DESC';
 		$w     = implode( ' AND ', $where );
 		$cols  = 'id, created, url, method, type, status, ms, mem_kb, queries, query_ms, http, errors, flags, user_id';
 		$sqlc  = "SELECT COUNT(*) FROM {$t} WHERE {$w}";
 		$sql   = "SELECT {$cols} FROM {$t} WHERE {$w} ORDER BY {$order} LIMIT %d OFFSET %d";
 		$total = (int) ( $vals ? $wpdb->get_var( $wpdb->prepare( $sqlc, $vals ) ) : $wpdb->get_var( $sqlc ) ); // phpcs:ignore
-		$items = (array) $wpdb->get_results( $wpdb->prepare( $sql, array_merge( $vals, array( $per, $skip ) ) ), ARRAY_A ); // phpcs:ignore
+		$items = (array) $wpdb->get_results( $wpdb->prepare( $sql, array_merge( $vals, array( $per, ( $page - 1 ) * $per ) ) ), ARRAY_A ); // phpcs:ignore
 		foreach ( $items as &$it ) {
 			$it = self::row( $it );
 		}

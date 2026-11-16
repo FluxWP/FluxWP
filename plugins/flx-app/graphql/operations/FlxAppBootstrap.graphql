@@ -1,6 +1,0 @@
-# Public discovery of the site (before sign-in): the flx-app-bootstrap/1 document.
-query FlxAppBootstrap {
-  flxAppBootstrap {
-    document
-  }
-}

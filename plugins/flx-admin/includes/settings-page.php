@@ -44,92 +44,8 @@ function flxa_settings_tab() {
 	return array_key_exists( $t, flxa_settings_tabs() ) ? $t : 'general';
 }
 
-/*
- * New view (1.8.0, GraphQL): the page opens the same React screen as the FluxWP app (assets/flux/,
- * tools/fluxapp/embed-sync.sh flx-admin). It is the default and has every feature of the classic page;
- * a user can switch to the classic page from the screen header for now. Needs Flux GraphQL.
- */
-function flxa_flux_available() {
-	return file_exists( FLXA_DIR . 'assets/flux/flux-modules.js' ) && function_exists( 'flx_gql_ready' ) && function_exists( 'flx_gql_all_caps' ) && flx_gql_ready();
-}
-
-function flxa_flux_ui() {
-	return flxa_flux_available() && 'classic' !== get_user_meta( get_current_user_id(), 'flxa_ui', true );
-}
-
-/** Link that switches the current user between the views (keeps the open tab). */
-function flxa_ui_switch_url( $ui ) {
-	return wp_nonce_url( flxa_settings_url(), 'flxa_ui' ) . '&flxa_ui=' . ( 'flux' === $ui ? 'flux' : 'classic' );
-}
-
-add_action(
-	'admin_init',
-	function () {
-		if ( ! isset( $_GET['flxa_ui'], $_GET['page'] ) || 'flx-admin' !== $_GET['page'] || ! current_user_can( 'manage_options' ) ) { // phpcs:ignore WordPress.Security.NonceVerification
-			return;
-		}
-		check_admin_referer( 'flxa_ui' );
-		if ( 'classic' === $_GET['flxa_ui'] ) {
-			update_user_meta( get_current_user_id(), 'flxa_ui', 'classic' );
-		} else {
-			delete_user_meta( get_current_user_id(), 'flxa_ui' );
-		}
-		wp_safe_redirect( flxa_settings_url( flxa_settings_tab() ) );
-		exit;
-	}
-);
-
-/** The chunked bundle loads as an ES module. */
-function flxa_flux_module_tag( $tag, $handle ) {
-	if ( 'flxa-flux' !== $handle ) {
-		return $tag;
-	}
-	return (string) preg_replace_callback(
-		'/<script\b[^>]*\ssrc=[^>]*>/',
-		static function ( $m ) {
-			$open = (string) preg_replace( '/\stype=("|\')[^"\']*\1/', '', $m[0] );
-			return (string) preg_replace( '/^<script\b/', '<script type="module"', $open );
-		},
-		$tag,
-		1
-	);
-}
-
-function flxa_flux_assets() {
-	$ver    = FLXA_VERSION . '-' . (int) filemtime( FLXA_DIR . 'assets/flux/flux-modules.js' );
-	$accent = (string) flxa_accent();
-	$opts   = array(
-		'module'     => 'flxa-admin',
-		'rest'       => rest_url(),
-		'nonce'      => wp_create_nonce( 'wp_rest' ),
-		'locale'     => get_user_locale(),
-		'siteName'   => get_bloginfo( 'name' ),
-		'adminUrl'   => admin_url(),
-		'appIcon'    => FLXA_URL . 'assets/icon.svg',
-		'theme'      => 'light',
-		'colors'     => array(
-			'primary'         => $accent,
-			'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
-		),
-		'classicUrl' => flxa_ui_switch_url( 'classic' ),
-	);
-	wp_enqueue_style( 'flxa-flux', FLXA_URL . 'assets/flux/flux-modules.css', array(), $ver );
-	wp_enqueue_script( 'flxa-flux', FLXA_URL . 'assets/flux/flux-modules.js', array(), $ver, true );
-	add_filter( 'script_loader_tag', 'flxa_flux_module_tag', 10, 2 );
-	// Light / dark follows Flux Admin (html.flxa-dark), also when the user switches it on the page.
-	wp_add_inline_script(
-		'flxa-flux',
-		'(function(){var h=document.documentElement,o=' . wp_json_encode( $opts ) . ';o.theme=h.classList.contains("flxa-dark")?"dark":"light";var slot=window.FluxModulesOptions||(window.FluxModulesOptions={});slot.id="flxa-app";slot.opts=o;function sync(){var el=document.getElementById("flxa-app");if(el)el.dataset.theme=h.classList.contains("flxa-dark")?"dark":"light";}new MutationObserver(sync).observe(h,{attributes:true,attributeFilter:["class"]});function go(){if(slot.done||!window.FluxModules)return;var el=document.getElementById(slot.id);if(!el)return;slot.done=true;try{window.FluxModules.mount(el,slot.opts);}catch(e){el.textContent=String(e&&e.message||e);}}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);go();})();',
-		'before'
-	);
-}
-
 function flxa_settings_assets( $hook ) {
 	if ( 'settings_page_flx-admin' !== $hook ) {
-		return;
-	}
-	if ( flxa_flux_ui() ) {
-		flxa_flux_assets();
 		return;
 	}
 	wp_enqueue_style( 'flxa-settings', FLXA_URL . 'assets/css/settings.css', array(), FLXA_VERSION );
@@ -234,11 +150,6 @@ function flxa_settings_render() {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		return;
 	}
-	if ( flxa_flux_ui() ) {
-		echo '<style>#flxa-app.flux-root{height:auto;background:transparent;font-family:inherit}</style>';
-		echo '<div class="wrap flxa-settings-flux"><div id="flxa-app"><noscript>' . esc_html__( 'JavaScript is required for this screen.', 'flx-admin' ) . '</noscript></div></div>';
-		return;
-	}
 	$tab  = flxa_settings_tab();
 	$s    = flxa_settings();
 	$base = flxa_settings_url();
@@ -246,9 +157,6 @@ function flxa_settings_render() {
 	echo '<h1 class="flxa-settings-title"><img src="' . esc_url( FLXA_URL . 'assets/icon.svg' ) . '" alt="" width="32" height="32"> ' . esc_html__( 'Admin theme', 'flx-admin' ) . ' <small>Flux Admin ' . esc_html( FLXA_VERSION ) . '</small></h1>';
 	if ( isset( $_GET['updated'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Saved.', 'flx-admin' ) . '</p></div>';
-	}
-	if ( flxa_flux_available() ) {
-		echo '<p><a class="button" href="' . esc_url( flxa_ui_switch_url( 'flux' ) ) . '">' . esc_html__( 'New view', 'flx-admin' ) . '</a> <span class="description">' . esc_html__( 'Open the new view (same features, works in the FluxWP app too).', 'flx-admin' ) . '</span></p>';
 	}
 	echo '<nav class="nav-tab-wrapper flxa-tabs">';
 	foreach ( flxa_settings_tabs() as $k => $l ) {
@@ -329,7 +237,7 @@ function flxa_settings_render() {
 			'donations_today' => __( 'Donations today', 'flx-admin' ),
 			'donations_month' => __( 'This month', 'flx-admin' ),
 			'pending'         => __( 'Donation awaiting approval', 'flx-admin' ),
-			'whatsapp'        => __( 'Unread WhatsApp', 'flx-admin' ),
+			'whatsapp'        => __( 'Okunmamış WhatsApp', 'flx-admin' ),
 			'tasks'           => __( 'My open tasks', 'flx-admin' ),
 			'system'          => __( 'System check', 'flx-admin' ),
 		);
@@ -406,50 +314,123 @@ function flxa_settings_save() {
 	check_admin_referer( 'flxa_save' );
 	$tab = sanitize_key( wp_unslash( $_POST['tab'] ?? 'general' ) );
 	$in  = isset( $_POST['s'] ) && is_array( $_POST['s'] ) ? wp_unslash( $_POST['s'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-	$in  = FLXA_Util::arr( $in );
+	$old = get_option( 'flxa_settings', array() );
+	$s   = is_array( $old ) ? $old : array();
 
-	// Every tab posts all of its fields (an unchecked box is simply absent): the service gets a patch.
-	$patch = array();
 	if ( 'general' === $tab ) {
 		foreach ( array( 'enabled', 'bottom_bar', 'app_rail', 'app_switcher', 'fast_nav', 'palette', 'login' ) as $k ) {
-			$patch[ $k ] = ! empty( $in[ $k ] );
+			$s[ $k ] = empty( $in[ $k ] ) ? 0 : 1;
 		}
-		$patch['brand']     = $in['brand'] ?? '';
-		$patch['subtitle']  = $in['subtitle'] ?? '';
-		$patch['logo_id']   = $in['logo_id'] ?? 0;
-		$patch['heartbeat'] = $in['heartbeat'] ?? 60;
+		$s['brand']        = sanitize_text_field( (string) ( $in['brand'] ?? '' ) );
+		$s['subtitle']     = sanitize_text_field( (string) ( $in['subtitle'] ?? '' ) );
+		$s['logo_id']      = absint( $in['logo_id'] ?? 0 );
+		$hb                = (int) ( $in['heartbeat'] ?? 60 );
+		$s['heartbeat']    = in_array( $hb, array( 30, 60, 120 ), true ) ? $hb : 60;
 	} elseif ( 'look' === $tab ) {
-		$patch['line_icons']   = ! empty( $in['line_icons'] );
-		$patch['logo_style']   = $in['logo_style'] ?? '';
-		$patch['accent']       = $in['accent'] ?? '';
-		$patch['mode']         = $in['mode'] ?? 'auto';
-		$patch['dark_exclude'] = $in['dark_exclude'] ?? '';
-		$patch['theme']        = is_array( $in['theme'] ?? null ) ? $in['theme'] : array();
+		$s['line_icons']   = empty( $in['line_icons'] ) ? 0 : 1;
+		$s['logo_style']   = 'pastel' === ( $in['logo_style'] ?? '' ) ? 'pastel' : 'gradient';
+		$c                 = sanitize_hex_color( (string) ( $in['accent'] ?? '' ) );
+		// Temanın rengiyle aynıysa saklanmaz: tema/ön ayar rengi değişince yönetim paneli de değişir.
+		$s['accent']       = ( $c && strtolower( $c ) !== strtolower( flxa_theme_primary() ) ) ? $c : '';
+		$m                 = (string) ( $in['mode'] ?? 'auto' );
+		$s['mode']         = in_array( $m, array( 'auto', 'light', 'dark' ), true ) ? $m : 'auto';
+		$s['dark_exclude'] = implode( "\n", array_filter( array_map( 'sanitize_text_field', preg_split( '/\r\n|\r|\n/', (string) ( $in['dark_exclude'] ?? '' ) ) ) ) );
+		$s['theme']        = flxa_theme_sanitize( is_array( $in['theme'] ?? null ) ? $in['theme'] : array() );
 	} elseif ( 'caps' === $tab ) {
 		flxa_caps_save();
 	} elseif ( 'dashboard' === $tab ) {
-		$patch['dash_header'] = ! empty( $in['dash_header'] );
-		$patch['dash_stats']  = (array) ( $in['dash_stats'] ?? array() );
-		$patch['quick_links'] = $in['quick_links'] ?? '';
+		$s['dash_header'] = empty( $in['dash_header'] ) ? 0 : 1;
+		$allowed          = array( 'donations_today', 'donations_month', 'pending', 'whatsapp', 'tasks', 'system' );
+		$s['dash_stats']  = array_values( array_intersect( $allowed, array_map( 'strval', (array) ( $in['dash_stats'] ?? array() ) ) ) );
+		$lines            = array();
+		foreach ( preg_split( '/\r\n|\r|\n/', (string) ( $in['quick_links'] ?? '' ) ) as $line ) {
+			$p = array_map( 'trim', explode( '|', $line, 2 ) );
+			if ( 2 === count( $p ) && '' !== $p[0] && '' !== $p[1] ) {
+				$url     = preg_match( '#^https?://#i', $p[1] ) ? esc_url_raw( $p[1] ) : ltrim( preg_replace( '#[^A-Za-z0-9._\-/?=&%\#]#', '', $p[1] ), '/' );
+				$lines[] = sanitize_text_field( $p[0] ) . '|' . $url;
+			}
+		}
+		$s['quick_links'] = implode( "\n", $lines );
 	} elseif ( 'pwa' === $tab ) {
-		$patch['pwa']       = ! empty( $in['pwa'] );
-		$patch['pwa_name']  = $in['pwa_name'] ?? '';
-		$patch['pwa_short'] = $in['pwa_short'] ?? '';
+		$s['pwa']       = empty( $in['pwa'] ) ? 0 : 1;
+		$s['pwa_name']  = sanitize_text_field( (string) ( $in['pwa_name'] ?? '' ) );
+		$s['pwa_short'] = mb_substr( sanitize_text_field( (string) ( $in['pwa_short'] ?? '' ) ), 0, 20 );
 	} elseif ( 'menu' === $tab ) {
 		$raw = json_decode( (string) wp_unslash( $_POST['menus'] ?? '' ), true ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		if ( is_array( $raw ) ) {
-			FLXA_Menu_Service::save_raw( FLXA_Util::arr( $raw ) );
+			update_option( 'flxa_menus', array( 'roles' => flxa_sanitize_menus( $raw ) ), true );
 		}
 	}
-	if ( $patch ) {
-		FLXA_Settings_Service::update( $patch, false );
+	if ( ! in_array( $tab, array( 'menu', 'caps' ), true ) ) {
+		update_option( 'flxa_settings', $s, true );
 	}
 	delete_transient( 'flxa_syscheck' );
 	wp_safe_redirect( add_query_arg( array( 'tab' => $tab, 'updated' => 1 ), flxa_settings_url() ) );
 	exit;
 }
 
-/** Menü düzenleyiciden gelen veriyi temizler: yalnız bilinen roller ve menüde olan kısa adlar (FLXA_Menu_Service). */
+/** Menü düzenleyiciden gelen veriyi temizler: yalnız bilinen roller ve menüde olan kısa adlar. */
 function flxa_sanitize_menus( array $raw ) {
-	return FLXA_Menu_Service::sanitize( $raw );
+	$roles = array_merge( array( '_default' ), array_keys( flxa_roles() ) );
+	$known = array();
+	foreach ( flxa_menu_catalog() as $it ) {
+		$known[ $it['slug'] ] = wp_list_pluck( $it['sub'], 'slug' );
+	}
+	$out = array();
+	foreach ( $raw as $role => $cfg ) {
+		if ( ! in_array( $role, $roles, true ) || ! is_array( $cfg ) || empty( $cfg['entries'] ) || ! is_array( $cfg['entries'] ) ) {
+			continue;
+		}
+		$entries = array();
+		$seen    = array();
+		$gn      = 0;
+		foreach ( array_slice( $cfg['entries'], 0, 300 ) as $e ) {
+			if ( ! is_array( $e ) ) {
+				continue;
+			}
+			if ( 'g' === ( $e['t'] ?? '' ) ) {
+				$label = mb_substr( sanitize_text_field( (string) ( $e['label'] ?? '' ) ), 0, 40 );
+				$entries[] = array(
+					't'     => 'g',
+					'id'    => 'g' . ( ++$gn ),
+					'label' => $label,
+					'c'     => empty( $e['c'] ) ? 0 : 1,
+				);
+				continue;
+			}
+			$slug = (string) ( $e['slug'] ?? '' );
+			if ( ! isset( $known[ $slug ] ) || isset( $seen[ $slug ] ) ) {
+				continue;
+			}
+			$seen[ $slug ] = true;
+			$item          = array( 't' => 'i', 'slug' => $slug );
+			$label         = mb_substr( sanitize_text_field( (string) ( $e['label'] ?? '' ) ), 0, 40 );
+			if ( '' !== $label ) {
+				$item['label'] = $label;
+			}
+			if ( ! empty( $e['hidden'] ) ) {
+				$item['hidden'] = 1;
+			}
+			if ( ! empty( $e['blocked'] ) && 'administrator' !== $role && ! in_array( $slug, flxa_unblockable(), true ) ) {
+				$item['blocked'] = 1;
+			}
+			$pf_off = array_values( array_intersect( array_keys( flxa_menu_platforms() ), array_map( 'strval', (array) ( $e['pf_off'] ?? array() ) ) ) );
+			if ( $pf_off ) {
+				$item['pf_off'] = $pf_off;
+			}
+			$subs = array_values( array_intersect( $known[ $slug ], array_map( 'strval', (array) ( $e['sub_hidden'] ?? array() ) ) ) );
+			if ( $subs ) {
+				$item['sub_hidden'] = $subs;
+			}
+			$entries[] = $item;
+		}
+		$bottom = array_slice( array_values( array_unique( array_intersect( array_map( 'strval', (array) ( $cfg['bottom'] ?? array() ) ), array_keys( $known ) ) ) ), 0, 4 );
+		if ( $entries ) {
+			$out[ $role ] = array(
+				'entries' => $entries,
+				'bottom'  => $bottom,
+			);
+		}
+	}
+	return $out;
 }

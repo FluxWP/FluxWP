@@ -115,21 +115,12 @@ function flxapp_request_token() {
 
 function flxapp_is_rest_request() {
 	$uri = (string) wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-	return false !== strpos( $uri, '/' . rest_get_url_prefix() . '/' ) || isset( $_GET['rest_route'] ) || flxapp_is_graphql_request(); // phpcs:ignore WordPress.Security.NonceVerification
-}
-
-/**
- * GraphQL isteği (Flux GraphQL, `/graphql`). Belirteç ve `X-Flux-Locale` GraphQL'de de REST'teki gibi çalışır:
- * uygulama aynı başlıklarla hem REST hem GraphQL'e gider.
- */
-function flxapp_is_graphql_request() {
-	return function_exists( 'is_graphql_http_request' ) && is_graphql_http_request();
+	return false !== strpos( $uri, '/' . rest_get_url_prefix() . '/' ) || isset( $_GET['rest_route'] ); // phpcs:ignore WordPress.Security.NonceVerification
 }
 
 /**
  * Bu istekte kullanılan belirteç kaydı (yoksa null). REST yanıtları ve /me için.
  */
-/** @return array<string, mixed>|null */
 function flxapp_current_token( $set = null ) {
 	static $row = null;
 	if ( null !== $set ) {
@@ -161,14 +152,6 @@ add_filter(
 		$user = get_userdata( (int) $row['user_id'] );
 		if ( ! $user ) {
 			return 0;
-		}
-		// GraphQL reaches everything REST does: like the `flx` REST routes it needs the `flx` scope (an `mcp` only token does not).
-		if ( flxapp_is_graphql_request() ) {
-			$have = flxapp_token_scopes( $row );
-			if ( null !== $have && ! in_array( 'flx', $have, true ) ) {
-				$GLOBALS['flxapp_graphql_scope_denied'] = true;
-				return 0;
-			}
 		}
 		flxapp_current_token( $row );
 		if ( time() - (int) $row['last_used'] > 300 ) {
@@ -206,7 +189,6 @@ add_filter(
 );
 
 /** Kullanıcının kişisel API anahtarları ve oturumları (yönetim ekranı için). */
-/** @return list<array<string, mixed>> */
 function flxapp_user_tokens( $user_id = 0, $kinds = array( 'key', 'refresh' ) ) {
 	global $wpdb;
 	$t    = flxapp_table();
@@ -223,37 +205,8 @@ function flxapp_user_tokens( $user_id = 0, $kinds = array( 'key', 'refresh' ) ) 
 }
 
 /** Bir grant'ın son kullanım zamanı (erişim belirteçleri dahil). */
-/** @return int */
 function flxapp_grant_last_used( $grant_id ) {
 	global $wpdb;
 	$t = flxapp_table();
 	return (int) $wpdb->get_var( $wpdb->prepare( "SELECT MAX(last_used) FROM {$t} WHERE grant_id = %s", $grant_id ) ); // phpcs:ignore WordPress.DB
 }
-
-/*
- * GraphQL'de de geçersiz/süresi dolmuş belirteç sessizce anonim olmaz: HTTP 401 döner, istemci yenilemeyi dener
- * (REST'teki `flxapp_invalid_token` ile aynı). `flx` kapsamı olmayan belirteç (yalnız `mcp`) GraphQL'e giremez: 403.
- */
-add_filter(
-	'graphql_response_status_code',
-	function ( $status ) {
-		if ( ! empty( $GLOBALS['flxapp_graphql_scope_denied'] ) ) {
-			return 403;
-		}
-		if ( '' !== flxapp_request_token() && ! flxapp_current_token() ) {
-			return 401;
-		}
-		return $status;
-	}
-);
-
-/*
- * WPGraphQL, Authorization başlığı olmayan oturumlu isteği çerez sayıp nonce ister, yoksa konuğa düşürür.
- * Belirteçle kimliği biz doğruladık (başlık `X-FluxWP-Token` de olabilir): kimlik korunur.
- */
-add_filter(
-	'graphql_authentication_errors',
-	function ( $result ) {
-		return flxapp_current_token() ? false : $result;
-	}
-);

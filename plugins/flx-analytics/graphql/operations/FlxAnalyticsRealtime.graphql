@@ -1,7 +1,0 @@
-# Light query repeated every few seconds for the live panel.
-query FlxAnalyticsRealtime($filter: FlxAnalyticsFilterInput, $minutes: Int, $kpi: Boolean) {
-  flxAnalyticsRealtime(filter: $filter, minutes: $minutes, kpi: $kpi) {
-    ...FlxAnalyticsRealtimeFields
-    kpi { ...FlxAnalyticsKpiFields }
-  }
-}

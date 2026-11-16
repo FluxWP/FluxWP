@@ -407,13 +407,23 @@ class Flx_Blocks_Design_Library {
 	 * @return array<int,array{id:string,name:string,url:string,key?:string,has_key?:bool}>
 	 */
 	public static function sources( $with_keys = false ) {
-		$out = array();
-		foreach ( FLXBK_Library_Service::source_rows() as $row ) {
-			if ( ! $with_keys ) {
-				$row['has_key'] = '' !== $row['key'];
-				unset( $row['key'] );
+		$list = get_option( self::OPT_SOURCES, array() );
+		$out  = array();
+		foreach ( is_array( $list ) ? $list : array() as $row ) {
+			if ( empty( $row['id'] ) || empty( $row['url'] ) ) {
+				continue;
 			}
-			$out[] = $row;
+			$item = array(
+				'id'   => (string) $row['id'],
+				'name' => isset( $row['name'] ) ? (string) $row['name'] : (string) $row['url'],
+				'url'  => (string) $row['url'],
+			);
+			if ( $with_keys ) {
+				$item['key'] = isset( $row['key'] ) ? (string) $row['key'] : '';
+			} else {
+				$item['has_key'] = ! empty( $row['key'] );
+			}
+			$out[] = $item;
 		}
 		return $out;
 	}
@@ -437,17 +447,44 @@ class Flx_Blocks_Design_Library {
 	 */
 	public static function rest_sources_update( $request ) {
 		$action = (string) $request->get_param( 'action' );
+		$list   = self::sources( true );
 		if ( 'remove' === $action ) {
-			// Removing an unknown id was never an error here, so the result is not checked.
-			FLXBK_Library_Service::remove_source( (string) $request->get_param( 'id' ) );
+			$id   = (string) $request->get_param( 'id' );
+			$list = array_values(
+				array_filter(
+					$list,
+					static function ( $row ) use ( $id ) {
+						return $row['id'] !== $id;
+					}
+				)
+			);
+			delete_transient( 'flxbk_lib_' . md5( $id ) );
 		} elseif ( 'add' === $action ) {
-			$r = FLXBK_Library_Service::add_source( (string) $request->get_param( 'url' ), (string) $request->get_param( 'name' ), (string) $request->get_param( 'key' ) );
-			if ( is_wp_error( $r ) ) {
-				return $r;
+			$url = esc_url_raw( trim( (string) $request->get_param( 'url' ) ), array( 'https', 'http' ) );
+			if ( ! $url || ! wp_http_validate_url( $url ) ) {
+				return new WP_Error( 'flxbk_library_url', __( 'Enter a valid site address.', 'flx-blocks' ), array( 'status' => 400 ) );
 			}
+			$url  = trailingslashit( preg_replace( '#/wp-json/.*$#', '', $url ) );
+			$name = sanitize_text_field( (string) $request->get_param( 'name' ) );
+			$key  = sanitize_text_field( (string) $request->get_param( 'key' ) );
+			$row  = array(
+				'id'   => substr( md5( $url . wp_rand() ), 0, 12 ),
+				'name' => '' !== $name ? $name : wp_parse_url( $url, PHP_URL_HOST ),
+				'url'  => $url,
+				'key'  => $key,
+			);
+			$test = self::fetch_remote( $row, true );
+			if ( is_wp_error( $test ) ) {
+				return $test;
+			}
+			if ( '' === $name && ! empty( $test['name'] ) ) {
+				$row['name'] = sanitize_text_field( $test['name'] );
+			}
+			$list[] = $row;
 		} else {
 			return new WP_Error( 'flxbk_library_action', __( 'Unknown action.', 'flx-blocks' ), array( 'status' => 400 ) );
 		}
+		update_option( self::OPT_SOURCES, $list, false );
 		return self::rest_sources();
 	}
 
@@ -458,7 +495,7 @@ class Flx_Blocks_Design_Library {
 	 */
 	public static function rest_remote( $request ) {
 		$id = (string) $request->get_param( 'source' );
-		foreach ( FLXBK_Library_Service::source_rows() as $row ) {
+		foreach ( self::sources( true ) as $row ) {
 			if ( $row['id'] === $id ) {
 				$data = self::fetch_remote( $row, (bool) $request->get_param( 'refresh' ) );
 				return is_wp_error( $data ) ? $data : rest_ensure_response( $data );
@@ -470,13 +507,11 @@ class Flx_Blocks_Design_Library {
 	/**
 	 * Fetch and validate a linked library.
 	 *
-	 * Also used by FLXBK_Library_Service (GraphQL); the editor and the service share the 30 minute cache.
-	 *
 	 * @param array $row     Source row with key.
 	 * @param bool  $refresh Skip the cache.
 	 * @return array|WP_Error
 	 */
-	public static function fetch_remote( array $row, $refresh = false ) {
+	private static function fetch_remote( array $row, $refresh = false ) {
 		$cache_key = 'flxbk_lib_' . md5( $row['id'] );
 		if ( ! $refresh ) {
 			$cached = get_transient( $cache_key );
@@ -570,8 +605,14 @@ class Flx_Blocks_Design_Library {
 	 * @param WP_REST_Request $request Request.
 	 */
 	public static function rest_share_update( $request ) {
-		$enabled = $request->get_param( 'enabled' );
-		FLXBK_Library_Service::update_share( null === $enabled ? null : (bool) $enabled, (bool) $request->get_param( 'regenerate' ) );
+		$s = self::share_settings();
+		if ( null !== $request->get_param( 'enabled' ) ) {
+			$s['enabled'] = (bool) $request->get_param( 'enabled' );
+		}
+		if ( $request->get_param( 'regenerate' ) || ( $s['enabled'] && '' === $s['key'] ) ) {
+			$s['key'] = wp_generate_password( 32, false );
+		}
+		update_option( self::OPT_SHARE, $s, false );
 		return self::rest_share();
 	}
 }

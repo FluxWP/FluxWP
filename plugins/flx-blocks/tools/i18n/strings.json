@@ -16,26 +16,6 @@
 },
 {
 "ctx": "",
-"id": "JavaScript is required for this screen.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "New view",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Open the new view (same features plus the design library, works in the FluxWP app too).",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Block Editor",
-"plural": ""
-},
-{
-"ctx": "",
 "id": "Actionable endpoint for api call.",
 "plural": ""
 },
@@ -691,7 +671,7 @@
 },
 {
 "ctx": "",
-"id": "Home",
+"id": "Enter a valid site address.",
 "plural": ""
 },
 {
@@ -1007,646 +987,6 @@
 {
 "ctx": "",
 "id": "Required Field Empty",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "What kind of file an asset is.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Stylesheet.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Classic script.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Script module (type=\"module\", uses the import map in footerHtml).",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "A stylesheet or script rendered blocks need, as WordPress registered it.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Stylesheet, script or script module.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Registered handle (module id for modules). Use it to load each file once per page.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Absolute URL without the version; null for an inline-only asset.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Version WordPress adds as ?ver=; null when it adds none.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Stylesheet media; null for scripts.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Handles this asset needs; they come earlier in the same list.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Inline script to run before the file; empty when none.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Inline CSS or script to add after the file; empty when none.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Localized data script (var x = {...}) to run before the file; empty when none.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Loaded at the end of the body.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Loading strategy: defer, async or empty.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "One block of the content. The tree is flat: inner blocks point to their parent with parentClientId.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Position path, the same for the same content (\"0\", \"0.2\", \"0.2.1\").",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Parent block; null for a top-level block.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Position among its siblings, from 0.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Nesting level; 0 for a top-level block.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Block name, e.g. flx/rowlayout; core/freeform for loose HTML.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Attributes saved in the block comment (each block type has its own).",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "The block's own saved HTML, without its inner blocks.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Rendered on the server; its saved HTML is not what visitors see.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Block content rendered as on the site, with everything the page needs for it. Either put headHtml in <head> and footerHtml at the end of <body>, or load css, styles, scripts and fonts yourself; not both.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Rendered HTML (the_content).",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "CSS generated for these blocks (block styles, custom CSS, layout). Not in styles.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Block tree as a flat list in document order.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Stylesheets, dependencies first.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Scripts and script modules, dependencies first.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Font stylesheet URLs (served from the site when local fonts are on).",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "JSON-LD documents for the page head (e.g. FAQ schema of accordions).",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Ready <head> markup: stylesheets, fonts, css, schema and head scripts, printed by WordPress.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Ready end-of-body markup: footer scripts, script modules and their data.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Site-wide styles every block page needs once.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Flux Block Editor variables, theme palette and palette color classes.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "The theme's global styles (theme.json presets and styles).",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Base block library stylesheets.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Ready <head> markup of all of the above.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "The blocks of this content rendered as on the site, with the CSS and files the page needs. Null when the content is password protected.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Site-wide styles block pages share. Load once per page, before the content styles.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Renders block markup (a pattern or an unsaved draft) as the site would.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Block markup.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Post the markup belongs to; dynamic blocks read it. The user must be able to edit it.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "The content is too long to preview.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "A design library category.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Category slug.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Category name.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Patterns in the category.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "A design library pattern (a ready section or page).",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Pattern name (e.g. flx-preset/hero) or user/<post id> for My patterns.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Title.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Description; empty when none.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Category slugs.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Search keywords.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Width to preview the pattern at (px).",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Block markup to insert.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Linked library the pattern comes from; null for this site.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "The pattern rendered on this site (preview). Ask for it on one pattern at a time.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Design library patterns.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "A design library: this site's or a linked Flux site's.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Site name.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Site address.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Linked library id; null for this site.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Categories in use (a short list).",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Patterns, filtered by category and search words.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Words to look for in the title, description and keywords.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "A linked design library (another Flux site). Its key never leaves the server.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Source id.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Name.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "A library key is saved for it.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Sharing this site's design library with other Flux sites.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Other sites can add this library.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Key the other site enters; empty until sharing is turned on.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Address the other site enters.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "This site's design library, or a linked library's.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Linked library id; leave empty for this site.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Fetch a linked library again instead of using the 30 minute copy.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "One design library pattern (for its preview).",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Pattern id.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Linked design libraries (a short list).",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Sharing of this site's design library.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Links another Flux site's design library. The site is asked once to check the address and key.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Name; leave empty to use the site's own name.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Library key given by the other site.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "The added library.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "All linked libraries.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Removes a linked design library.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Remaining linked libraries.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Turns sharing of this site's design library on or off, or makes a new key.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Share the library; leave out to keep it as it is.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Make a new key; sites using the old key lose access.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Sharing after the change.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Editor width of a page or post.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Small template.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Large template.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Full width.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "A block on the Block Editor dashboard.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Block name, e.g. flx/rowlayout.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Block title.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "What the block does.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "The block is offered in the editor.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Admin page of the block's items (e.g. Lottie animations); null when none.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Text of that link.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Editor widths (only for themes that use them).",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Width can be chosen per page and post.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Small template width (px).",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Large template width (px).",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Width of new posts.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Width of new pages.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "The theme's content width (px); 0 when it sets none.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Block Editor dashboard settings.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Show the page's header blocks in the admin bar.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "The admin bar setting is offered (filter flxbk_show_admin_bar).",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Editor widths; null when the theme does not use them.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Admin address of the Style Library.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Blocks of the Block Editor dashboard (a short list).",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Turns a block on or off in the editor. Content that already uses it keeps working.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Block name.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "On.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "The block after the change.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Editor widths; a field left out stays as it is.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Small template width (px, 200–4000).",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Large template width (px, 200–4000).",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Saves Block Editor dashboard settings; a field left out stays as it is.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Editor widths.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Settings after the change.",
 "plural": ""
 },
 {
@@ -3066,31 +2406,6 @@
 },
 {
 "ctx": "",
-"id": "Unknown block.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Choose Small, Large or Fullwidth.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Enter a width between 200 and 4000 px.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Pattern not found.",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Enter a valid site address.",
-"plural": ""
-},
-{
-"ctx": "",
 "id": "Pale pink",
 "plural": ""
 },
@@ -3142,6 +2457,11 @@
 {
 "ctx": "",
 "id": "Very dark gray",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Block Editor",
 "plural": ""
 },
 {
@@ -11971,6 +11291,11 @@
 },
 {
 "ctx": "",
+"id": "Home",
+"plural": ""
+},
+{
+"ctx": "",
 "id": "Collapse Vertical Sub Menus",
 "plural": ""
 },
@@ -12237,11 +11562,6 @@
 {
 "ctx": "",
 "id": "Select navigation",
-"plural": ""
-},
-{
-"ctx": "block description",
-"id": "An advanced navigation block.",
 "plural": ""
 },
 {
@@ -14682,11 +14002,6 @@
 {
 "ctx": "",
 "id": "Width Settings",
-"plural": ""
-},
-{
-"ctx": "block description",
-"id": "Display a thumbnail that opens a video in a popup.",
 "plural": ""
 },
 {
@@ -17220,6 +16535,11 @@
 "plural": ""
 },
 {
+"ctx": "block description",
+"id": "An advanced navigation block.",
+"plural": ""
+},
+{
 "ctx": "block keyword",
 "id": "menu",
 "plural": ""
@@ -17257,6 +16577,11 @@
 {
 "ctx": "block title",
 "id": "Video Popup",
+"plural": ""
+},
+{
+"ctx": "block description",
+"id": "Display a thumbnail that opens a video in a popup.",
 "plural": ""
 }
 ]

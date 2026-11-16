@@ -110,7 +110,6 @@ final class FLXCRM_Events {
 		}
 		$wpdb->delete( $t, array( 'id' => (int) $id ) ); // phpcs:ignore WordPress.DB
 		FLXCRM_Contacts::recalc( (int) $row['contact_id'] );
-		flxcrm_purge( array( 'flx-crm:contacts', 'flx-crm:contact:' . (int) $row['contact_id'] ) );
 		return true;
 	}
 

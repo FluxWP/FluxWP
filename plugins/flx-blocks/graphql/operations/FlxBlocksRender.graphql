@@ -1,6 +1,0 @@
-# Renders block markup (draft or pattern) as the site would.
-query FlxBlocksRender($content: String!, $postId: Int) {
-  flxBlocksRender(content: $content, postId: $postId) {
-    ...FlxBlocksContentFields
-  }
-}

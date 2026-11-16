@@ -1,7 +1,0 @@
-# A page for reading: the rendered HTML (by path, as the wiki address).
-query FlxWikiPageView($path: String!) {
-  flxWikiPage(path: $path) {
-    ...FlxWikiPageRow
-    html
-  }
-}

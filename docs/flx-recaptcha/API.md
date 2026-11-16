@@ -82,7 +82,3 @@ Doğrudan çağrı (kurulu olduğundan eminseniz): `flx_captcha_enabled( $ctx )`
 ## Uygulama
 
 Ayarlar `flxrc_settings` köprüsünden. `site_key` ve `secret` write-only. `secret` düz metin gelirse `flxrc_seal` ile mühürlenir (`s1:` / `p1:` olan değer tekrar mühürlenmez). Korunan formlar paneldedir.
-
-## GraphQL
-
-Ayar, durum, anahtar testi ve herkese açık `flxCaptcha(context)` sorgusu `/graphql` üzerindedir; GraphQL mutation'ları için `flx_captcha_gql_verify( $context, $token )` kullanın. Ayrıntı: `GRAPHQL.md`.

@@ -10,9 +10,6 @@
  *   $ok = apply_filters( 'flx_captcha_verify', true, 'my_form' );
  *   if ( is_wp_error( $ok ) ) { … $ok->get_error_message() … }
  *
- *   // GraphQL mutation'da (hata: INVALID_INPUT, alan captchaToken; Flux GraphQL gerekir, kurulu değilse hiçbir şey yapmaz):
- *   do_action( 'flx_captcha_gql_verify', 'my_form', $input['captchaToken'] ?? null );
- *
  * Formun panelde aç/kapa satırı olması için `flx_captcha_contexts` filtresiyle kaydedin (includes/contexts.php).
  *
  * @package FLX_Recaptcha
@@ -40,29 +37,6 @@ function flx_captcha_field( $context ) {
 function flx_captcha_verify( $context, $token = null ) {
 	return FLXRC_Verify::check( sanitize_key( $context ), $token );
 }
-
-/**
- * GraphQL mutation için doğrula; geçmezse INVALID_INPUT fırlatır (Flux GraphQL kit hatası).
- *
- * @param string      $context Bağlam.
- * @param string|null $token   Belirteç; null ise X-Flx-Captcha başlığından okunur.
- * @param string      $field   Hatanın gösterileceği girdi alanı.
- * @throws FLXGQL_Error Geçmezse.
- */
-function flx_captcha_gql_verify( $context, $token = null, $field = 'captchaToken' ) {
-	if ( function_exists( 'flx_gql_error' ) ) {
-		FLXRC_Captcha_Service::guard( (string) $context, null === $token ? null : (string) $token, (string) $field );
-	}
-}
-
-add_action(
-	'flx_captcha_gql_verify',
-	function ( $context, $token = null, $field = 'captchaToken' ) {
-		flx_captcha_gql_verify( $context, $token, $field );
-	},
-	10,
-	3
-);
 
 add_action(
 	'flx_captcha_field',

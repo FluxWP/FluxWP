@@ -17,9 +17,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-/** Kayıtlı düzeltmeler (geçersiz satırlar atlanır).
- * @return array<string, array<string, mixed>>
- */
+/** Kayıtlı düzeltmeler (geçersiz satırlar atlanır). */
 function flxseo_system_fixes() {
 	$out = array();
 	foreach ( (array) apply_filters( 'flx_system_fixes', array() ) as $id => $f ) {

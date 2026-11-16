@@ -3,7 +3,6 @@
 
 defined( 'ABSPATH' ) || exit;
 
-/** @return array<string, mixed> */
 function flxapp_defaults() {
 	return array(
 		'access_minutes'  => 60,
@@ -68,12 +67,10 @@ function flxapp_secret_get( $name ) {
 function flxapp_secret_has( $name ) {
 	return isset( ( (array) get_option( 'flxapp_secrets', array() ) )[ $name ] );
 }
-/** @return array<string, mixed> */
 function flxapp_settings() {
 	return wp_parse_args( (array) get_option( 'flxapp_settings', array() ), flxapp_defaults() );
 }
 
-/** @return mixed */
 function flxapp_opt( $key ) {
 	$s = flxapp_settings();
 	return $s[ $key ] ?? null;
@@ -94,7 +91,6 @@ function flxapp_ip() {
 }
 
 /** Sitenin kimliği (OAuth "issuer"): sonda eğik çizgi olmadan ana adres. */
-/** @return string */
 function flxapp_issuer() {
 	return untrailingslashit( home_url() );
 }

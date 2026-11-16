@@ -1,6 +1,0 @@
-# Referral links with what their visitors did.
-query FlxAnalyticsRefs($filter: FlxAnalyticsFilterInput) {
-  flxAnalyticsRefs(filter: $filter) {
-    ...FlxAnalyticsRefFields
-  }
-}

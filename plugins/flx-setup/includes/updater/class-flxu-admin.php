@@ -128,18 +128,29 @@ final class FLXU_Admin {
 		}
 		check_admin_referer( 'flxu_save' );
 
-		FLXK_Settings_Service::save(
-			array(
-				'server'   => (string) wp_unslash( $_POST['server'] ?? '' ),
-				// Boş bırakılırsa mevcut anahtar korunur.
-				'key'      => (string) wp_unslash( $_POST['key'] ?? '' ),
-				'clearKey' => ! empty( $_POST['clear_key'] ),
-				'auto'     => ! empty( $_POST['auto'] ),
-				'health'   => ! empty( $_POST['health'] ),
-				'usage'    => ! empty( $_POST['usage'] ),
-			),
-			false // https olmayan adres eskiden sessizce boşalırdı (varsayılan sunucu).
+		$old    = FLXU_Updater::settings();
+		$server = esc_url_raw( trim( wp_unslash( $_POST['server'] ?? '' ) ) );
+		if ( $server && 'https' !== wp_parse_url( $server, PHP_URL_SCHEME ) ) {
+			$server = '';
+		}
+		$key = trim( sanitize_text_field( wp_unslash( $_POST['key'] ?? '' ) ) );
+
+		$new = array(
+			'server' => untrailingslashit( $server ),
+			// Boş bırakılırsa mevcut anahtar korunur.
+			'key'    => '' !== $key ? $key : $old['key'],
+			'auto'   => empty( $_POST['auto'] ) ? 0 : 1,
+			'health' => empty( $_POST['health'] ) ? 0 : 1,
 		);
+		if ( ! empty( $_POST['clear_key'] ) ) {
+			$new['key'] = '';
+		}
+		update_site_option( FLXU_Updater::SETTINGS_OPTION, $new );
+		if ( function_exists( 'flxk_set_telemetry' ) ) {
+			flxk_set_telemetry( ! empty( $_POST['usage'] ) );
+		}
+
+		FLXU_Updater::instance()->check_now();
 		$connected = 'connected' === self::connection_state( FLXU_Updater::status() );
 		wp_safe_redirect( $connected ? self::url( array( 'flxu_msg' => 'saved' ) ) : self::url( array( 'flxu_msg' => 'saved' ), self::SETTINGS_SLUG ) );
 		exit;
@@ -155,7 +166,7 @@ final class FLXU_Admin {
 		exit;
 	}
 
-	/** Diğer kaynaklar: ekle / sil / aç-kapat / yukarı (FLXK_Settings_Service). */
+	/** Diğer kaynaklar: ekle / sil / aç-kapat / yukarı. */
 	public function source_action(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-setup' ), 403 );
@@ -165,18 +176,23 @@ final class FLXU_Admin {
 		$id   = sanitize_key( wp_unslash( $_POST['id'] ?? '' ) );
 		$args = array( 'flxu_msg' => 'src_' . $op );
 		if ( 'add' === $op ) {
-			$res = FLXK_Settings_Service::source_add(
+			$res = FLXU_Sources::add(
 				(string) wp_unslash( $_POST['name'] ?? '' ),
 				(string) wp_unslash( $_POST['url'] ?? '' ),
-				(string) wp_unslash( $_POST['key'] ?? '' )
+				trim( (string) wp_unslash( $_POST['key'] ?? '' ) )
 			);
 			if ( is_wp_error( $res ) ) {
 				set_transient( 'flxu_src_err_' . get_current_user_id(), $res->get_error_message(), 5 * MINUTE_IN_SECONDS );
 				$args = array( 'flxu_msg' => 'src_error' );
 			}
-		} else {
-			FLXK_Settings_Service::source_change( $op, $id );
+		} elseif ( 'remove' === $op ) {
+			FLXU_Sources::remove( $id );
+		} elseif ( 'toggle' === $op ) {
+			FLXU_Sources::toggle( $id );
+		} elseif ( 'up' === $op ) {
+			FLXU_Sources::move_up( $id );
 		}
+		FLXU_Updater::instance()->check_now();
 		wp_safe_redirect( self::url( $args, self::SETTINGS_SLUG ) . '#flxu-sources' );
 		exit;
 	}
@@ -506,12 +522,6 @@ final class FLXU_Admin {
 			return;
 		}
 		FLXU_Icon_Cache::warm_missing();
-
-		// The shared React screen is the default when Flux GraphQL runs (classic page: "Classic view" link).
-		// phpcs:ignore WordPress.Security.NonceVerification
-		if ( ! isset( $_GET['flxu_install'] ) && empty( $_POST['flxu_do'] ) && flxk_flux_render( 'flxk-packages', self::SLUG ) ) {
-			return;
-		}
 
 		// phpcs:disable WordPress.Security.NonceVerification
 		if ( isset( $_GET['flxu_install'] ) ) {
@@ -894,14 +904,10 @@ final class FLXU_Admin {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
-		if ( flxk_flux_render( 'flxk-settings', self::SETTINGS_SLUG ) ) {
-			return;
-		}
 		$msg = isset( $_GET['flxu_msg'] ) ? sanitize_key( wp_unslash( $_GET['flxu_msg'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 		?>
 		<div class="wrap flxu-wrap">
 			<h1><?php esc_html_e( 'Update settings', 'flx-setup' ); ?></h1>
-			<?php flxk_flux_classic_notice( self::SETTINGS_SLUG ); ?>
 			<p class="description"><?php esc_html_e( 'FluxWP themes and plugins are updated from your own update server instead of wordpress.org.', 'flx-setup' ); ?></p>
 			<?php if ( 'saved' === $msg ) : ?>
 				<div class="notice notice-success is-dismissible"><p><?php esc_html_e( 'Settings saved and updates checked.', 'flx-setup' ); ?></p></div>
@@ -1071,16 +1077,135 @@ final class FLXU_Admin {
 	 */
 	public function manage_action(): void {
 		check_admin_referer( 'flxu_bulk' );
-		$res = FLXK_Packages_Service::manage(
-			sanitize_key( wp_unslash( $_POST['flxu_op'] ?? '' ) ),
-			array_map( 'sanitize_key', (array) wp_unslash( $_POST['flxu_slugs'] ?? array() ) ),
-			array_map( 'sanitize_text_field', (array) wp_unslash( $_POST['flxu_wp'] ?? array() ) )
-		);
-		if ( is_wp_error( $res ) ) {
+		$op = sanitize_key( wp_unslash( $_POST['flxu_op'] ?? '' ) );
+		if ( ! in_array( $op, array( 'activate', 'deactivate', 'delete', 'auto_on', 'auto_off' ), true ) ) {
 			wp_safe_redirect( self::url() );
 			exit;
 		}
-		set_transient( 'flxu_manage_' . get_current_user_id(), $res, 300 );
+		require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		require_once ABSPATH . 'wp-admin/includes/file.php';
+		require_once ABSPATH . 'wp-admin/includes/theme.php';
+
+		/* Seçim: FluxWP paketleri (slug) + 3. parti satırlar (p:dosya / t:tema) → [type, id, name]. */
+		$catalog = FLXU_Updater::instance()->catalog();
+		$files   = FLXU_Updater::plugin_files();
+		$all_pl  = get_plugins();
+		$items   = array();
+		foreach ( array_unique( array_map( 'sanitize_key', (array) wp_unslash( $_POST['flxu_slugs'] ?? array() ) ) ) as $slug ) {
+			$p = $catalog[ $slug ] ?? null;
+			if ( ! $p ) {
+				continue;
+			}
+			$items[] = 'theme' === $p['type']
+				? array( 'theme', $slug, $p['name'] )
+				: array( 'plugin', $files[ $slug ] ?? '', $p['name'] );
+		}
+		foreach ( array_unique( array_map( 'sanitize_text_field', (array) wp_unslash( $_POST['flxu_wp'] ?? array() ) ) ) as $key ) {
+			$id = (string) substr( $key, 2 );
+			if ( 0 === strpos( $key, 'p:' ) && isset( $all_pl[ $id ] ) && ! isset( $catalog[ dirname( $id ) ] ) ) {
+				$items[] = array( 'plugin', $id, (string) $all_pl[ $id ]['Name'] );
+			} elseif ( 0 === strpos( $key, 't:' ) && wp_get_theme( $id )->exists() && ! isset( $catalog[ $id ] ) ) {
+				$items[] = array( 'theme', $id, (string) wp_get_theme( $id )->get( 'Name' ) );
+			}
+		}
+
+		$done   = 0;
+		$skip   = array();
+		$fail   = array();
+		$del_pl = array();
+		$auto   = array(
+			'plugin' => (array) get_site_option( 'auto_update_plugins', array() ),
+			'theme'  => (array) get_site_option( 'auto_update_themes', array() ),
+		);
+		foreach ( $items as $it ) {
+			list( $type, $id, $name ) = $it;
+			if ( '' === $id ) {
+				$skip[] = $name;
+				continue;
+			}
+			if ( 'auto_on' === $op || 'auto_off' === $op ) {
+				if ( ! current_user_can( 'theme' === $type ? 'update_themes' : 'update_plugins' ) || ! wp_is_auto_update_enabled_for_type( $type ) ) {
+					$skip[] = $name;
+					continue;
+				}
+				$on  = in_array( $id, $auto[ $type ], true );
+				$set = 'auto_on' === $op;
+				if ( $on === $set ) {
+					$skip[] = $name;
+					continue;
+				}
+				$auto[ $type ] = $set ? array_merge( $auto[ $type ], array( $id ) ) : array_values( array_diff( $auto[ $type ], array( $id ) ) );
+				++$done;
+				continue;
+			}
+			if ( 'theme' === $type ) {
+				$theme = wp_get_theme( $id );
+				if ( 'delete' !== $op || ! $theme->exists() || ! current_user_can( 'delete_themes' ) || in_array( $id, array( get_stylesheet(), get_template() ), true ) ) {
+					$skip[] = $name;
+					continue;
+				}
+				$r = delete_theme( $id );
+				if ( true === $r ) {
+					++$done;
+				} else {
+					$fail[] = $name;
+				}
+				continue;
+			}
+			if ( plugin_basename( FLXU_FILE ) === $id && 'activate' !== $op ) {
+				$skip[] = $name;
+				continue;
+			}
+			if ( 'activate' === $op ) {
+				if ( ! current_user_can( 'activate_plugins' ) || is_plugin_active( $id ) ) {
+					$skip[] = $name;
+					continue;
+				}
+				$r = activate_plugin( $id );
+				if ( is_wp_error( $r ) ) {
+					$fail[] = $name;
+				} else {
+					++$done;
+				}
+			} elseif ( 'deactivate' === $op ) {
+				if ( ! current_user_can( 'activate_plugins' ) || ! is_plugin_active( $id ) ) {
+					$skip[] = $name;
+					continue;
+				}
+				deactivate_plugins( $id );
+				++$done;
+			} else {
+				if ( ! current_user_can( 'delete_plugins' ) ) {
+					$skip[] = $name;
+					continue;
+				}
+				$del_pl[ $id ] = $name;
+			}
+		}
+		if ( 'auto_on' === $op || 'auto_off' === $op ) {
+			update_site_option( 'auto_update_plugins', array_values( array_unique( $auto['plugin'] ) ) );
+			update_site_option( 'auto_update_themes', array_values( array_unique( $auto['theme'] ) ) );
+		}
+		if ( $del_pl ) {
+			// Önce kapat, sonra sil (WordPress etkin eklentiyi silmez).
+			deactivate_plugins( array_keys( $del_pl ), true );
+			$r = delete_plugins( array_keys( $del_pl ) );
+			if ( true === $r ) {
+				$done += count( $del_pl );
+			} else {
+				$fail = array_merge( $fail, array_values( $del_pl ) );
+			}
+		}
+		set_transient(
+			'flxu_manage_' . get_current_user_id(),
+			array(
+				'op'   => $op,
+				'done' => $done,
+				'skip' => $skip,
+				'fail' => $fail,
+			),
+			300
+		);
 		wp_safe_redirect( add_query_arg( 'flxu_msg', 'managed', self::url() ) );
 		exit;
 	}
@@ -1094,18 +1219,31 @@ final class FLXU_Admin {
 		$do   = sanitize_key( wp_unslash( $_POST['flxu_bk'] ?? '' ) );
 
 		if ( 'keep' === $do && function_exists( 'flxy_set_pre_update_keep_days' ) ) {
-			$n = FLXK_Packages_Service::set_retention( max( 1, min( 365, absint( $_POST['keep_days'] ?? 7 ) ) ) );
-			wp_safe_redirect( add_query_arg( array( 'flxu_msg' => 'keep_saved', 'flxu_n' => is_wp_error( $n ) ? 0 : $n ), $back ) . '#flxu-history' );
+			$res = flxy_set_pre_update_keep_days( max( 1, min( 365, absint( $_POST['keep_days'] ?? 7 ) ) ) );
+			wp_safe_redirect( add_query_arg( array( 'flxu_msg' => 'keep_saved', 'flxu_n' => (int) $res['deleted'] ), $back ) . '#flxu-history' );
 			exit;
 		}
 
-		$ids = array();
-		if ( 'one' === $do ) {
-			$ids = array( sanitize_text_field( wp_unslash( $_POST['flxu_id'] ?? '' ) ) );
-		} elseif ( 'selected' === $do ) {
-			$ids = array_map( 'sanitize_text_field', (array) wp_unslash( $_POST['flxu_ids'] ?? array() ) );
+		$n = 0;
+		if ( self::backup_api() ) {
+			$ids = array();
+			if ( 'one' === $do ) {
+				$ids = array( sanitize_text_field( wp_unslash( $_POST['flxu_id'] ?? '' ) ) );
+			} elseif ( 'selected' === $do ) {
+				$ids = array_map( 'sanitize_text_field', (array) wp_unslash( $_POST['flxu_ids'] ?? array() ) );
+			} elseif ( 'all' === $do ) {
+				foreach ( self::update_backups() as $r ) {
+					$ids[] = $r['id'];
+				}
+			}
+			foreach ( array_unique( array_filter( $ids ) ) as $id ) {
+				$r = flxy_backup_get( $id );
+				// Yalnız güncelleme öncesi yedekler; kilitli olanlar silinmez.
+				if ( $r && 'pre_update' === $r['type'] && empty( $r['locked'] ) && flxy_backup_delete( $id ) ) {
+					++$n;
+				}
+			}
 		}
-		$n = in_array( $do, array( 'one', 'selected', 'all' ), true ) ? FLXK_Packages_Service::delete_backups( $do, $ids ) : 0;
 		wp_safe_redirect( add_query_arg( array( 'flxu_msg' => 'bk_deleted', 'flxu_n' => $n ), $back ) . '#flxu-history' );
 		exit;
 	}

@@ -1,6 +1,0 @@
-# One funnel, optionally split into groups.
-query FlxAnalyticsFunnel($filter: FlxAnalyticsFilterInput, $id: Int, $by: FlxAnalyticsFunnelBy) {
-  flxAnalyticsFunnel(filter: $filter, id: $id, by: $by) {
-    ...FlxAnalyticsFunnelFields
-  }
-}

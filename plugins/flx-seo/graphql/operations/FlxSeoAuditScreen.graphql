@@ -1,9 +1,0 @@
-# Site audit tab: the report, PageSpeed scores, agent readiness, recommendations and the report history.
-query FlxSeoAuditScreen($history: Int = 30) {
-  flxSeoAudit {
-    ...FlxSeoAuditFields
-  }
-  flxSeoAuditHistory(limit: $history) {
-    ...FlxSeoHistoryFields
-  }
-}

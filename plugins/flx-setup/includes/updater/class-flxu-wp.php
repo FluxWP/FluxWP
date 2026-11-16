@@ -354,18 +354,39 @@ final class FLXU_WP {
 		echo '</td>';
 	}
 
-	/** wp_ajax_flxu_auto: tek satırın otomatik güncellemesini aç/kapa (FLXK_Packages_Service::set_auto). */
+	/** wp_ajax_flxu_auto: tek satırın otomatik güncellemesini aç/kapa. */
 	public static function ajax_auto(): void {
 		check_ajax_referer( FLXU_Ajax::NONCE, 'nonce' );
-		$res = FLXK_Packages_Service::set_auto(
-			sanitize_key( wp_unslash( $_POST['type'] ?? '' ) ),
-			sanitize_text_field( wp_unslash( $_POST['id'] ?? '' ) ),
-			! empty( $_POST['on'] )
-		);
-		if ( is_wp_error( $res ) ) {
-			wp_send_json_error( array( 'message' => $res->get_error_message() ), 'FORBIDDEN' === ( $res->get_error_data()['graphql_code'] ?? '' ) ? 403 : 200 );
+		$type = sanitize_key( wp_unslash( $_POST['type'] ?? '' ) );
+		$id   = sanitize_text_field( wp_unslash( $_POST['id'] ?? '' ) );
+		$on   = ! empty( $_POST['on'] );
+		if ( ! in_array( $type, array( 'plugin', 'theme' ), true ) || ! current_user_can( 'theme' === $type ? 'update_themes' : 'update_plugins' ) ) {
+			wp_send_json_error( array( 'message' => __( 'You are not allowed to do this.', 'flx-setup' ) ), 403 );
 		}
-		wp_send_json_success( $res );
+		if ( ! wp_is_auto_update_enabled_for_type( $type ) ) {
+			wp_send_json_error( array( 'message' => __( 'Automatic updates are turned off for this site.', 'flx-setup' ) ) );
+		}
+		if ( 'plugin' === $type ) {
+			if ( ! function_exists( 'get_plugins' ) ) {
+				require_once ABSPATH . 'wp-admin/includes/plugin.php';
+			}
+			$ok = isset( get_plugins()[ $id ] );
+		} else {
+			$ok = wp_get_theme( $id )->exists();
+		}
+		if ( ! $ok ) {
+			wp_send_json_error( array( 'message' => __( 'Package not found.', 'flx-setup' ) ) );
+		}
+		$opt  = 'theme' === $type ? 'auto_update_themes' : 'auto_update_plugins';
+		$list = (array) get_site_option( $opt, array() );
+		$list = $on ? array_values( array_unique( array_merge( $list, array( $id ) ) ) ) : array_values( array_diff( $list, array( $id ) ) );
+		update_site_option( $opt, $list );
+		wp_send_json_success(
+			array(
+				'on'    => $on,
+				'label' => $on ? __( 'On', 'flx-setup' ) : __( 'Off', 'flx-setup' ),
+			)
+		);
 	}
 
 	/** Tablo satırı (FluxWP satırlarıyla aynı sütunlar). */

@@ -1,6 +1,0 @@
-# Modules the app can show, with their on/off state.
-query FlxAppAdminModules {
-  flxAppAdminModules {
-    ...FlxAppAdminModuleFields
-  }
-}

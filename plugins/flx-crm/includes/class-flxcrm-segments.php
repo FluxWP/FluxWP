@@ -262,20 +262,17 @@ final class FLXCRM_Segments {
 		$t = flxcrm_table( 'segments' );
 		if ( $id && self::get( $id ) ) {
 			$wpdb->update( $t, $row, array( 'id' => (int) $id ) ); // phpcs:ignore WordPress.DB
-			flxcrm_purge( array( 'flx-crm:segments', 'flx-crm:overview', 'flx-crm:meta' ) );
 			return (int) $id;
 		}
 		$row['created_by'] = get_current_user_id();
 		$row['created_at'] = flxcrm_now();
 		$wpdb->insert( $t, $row ); // phpcs:ignore WordPress.DB
-		flxcrm_purge( array( 'flx-crm:segments', 'flx-crm:overview', 'flx-crm:meta' ) );
 		return (int) $wpdb->insert_id;
 	}
 
 	public static function delete( $id ) {
 		global $wpdb;
 		$wpdb->delete( flxcrm_table( 'segments' ), array( 'id' => (int) $id ) ); // phpcs:ignore WordPress.DB
-		flxcrm_purge( array( 'flx-crm:segments', 'flx-crm:overview', 'flx-crm:meta' ) );
 	}
 
 	public static function recount_all() {
@@ -283,7 +280,6 @@ final class FLXCRM_Segments {
 		foreach ( self::all() as $s ) {
 			$wpdb->update( flxcrm_table( 'segments' ), array( 'count' => FLXCRM_Contacts::count( array( 'rules' => $s['rules'] ) ), 'counted_at' => flxcrm_now() ), array( 'id' => (int) $s['id'] ) ); // phpcs:ignore WordPress.DB
 		}
-		flxcrm_purge( 'flx-crm:segments' );
 	}
 
 	/** İlk kurulumda örnek segmentler (bir kez). */

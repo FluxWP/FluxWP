@@ -76,8 +76,8 @@ function flxp_environment() {
 			'charset'         => $wpdb->charset,
 			'collate'         => $wpdb->collate,
 			'prefix'          => $wpdb->prefix,
-			'size_mb'         => isset( $db_size['size'] ) ? round( (float) $db_size['size'] / 1048576, 1 ) : null,
-			'tables'          => isset( $db_size['tables'] ) ? (int) $db_size['tables'] : null,
+			'size_mb'         => $db_size ? round( (float) $db_size['size'] / 1048576, 1 ) : null,
+			'tables'          => $db_size ? (int) $db_size['tables'] : null,
 			'autoload_kb'     => round( (float) $autoload / 1024 ),
 		),
 		'wordpress' => array(

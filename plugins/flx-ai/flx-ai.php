@@ -2,10 +2,9 @@
 /**
  * Plugin Name:       Flux AI & MCP
  * Description:       Tüm FluxWP eklentileri için ortak yapay zekâ merkezi: OpenRouter ve Anthropic anahtarları, model kataloğu ve fiyatlar, prompt önbelleği, araç kaydı, ortak MCP sunucusu, kullanım raporları, faturalandırma ve harcama sınırı; yetkili kullanıcılar için admin ve sitede ortak AI sohbeti.
- * Version:           0.23.0
+ * Version:           0.22.0
  * Requires at least: 6.5
- * Requires PHP:      8.1
- * Requires Plugins:  flx-graphql
+ * Requires PHP:      7.4
  * Author:            FluxWP
  * License:           GPL-2.0-or-later
  * Text Domain:       flx-ai
@@ -22,7 +21,7 @@ if ( defined( 'FLXAI_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXAI_VERSION', '0.23.0' );
+define( 'FLXAI_VERSION', '0.22.0' );
 define( 'FLXAI_DB_VERSION', '7' );
 define( 'FLXAI_CAP_MCP', 'flxai_mcp' );
 define( 'FLXAI_FILE', __FILE__ );
@@ -61,20 +60,11 @@ require_once FLXAI_DIR . 'includes/approvals.php';
 require_once FLXAI_DIR . 'includes/reports.php';
 require_once FLXAI_DIR . 'includes/rest.php';
 require_once FLXAI_DIR . 'includes/app.php';
-require_once FLXAI_DIR . 'includes/app-modules.php';
 require_once FLXAI_DIR . 'includes/dock.php';
 require_once FLXAI_DIR . 'includes/checks.php';
 require_once FLXAI_DIR . 'includes/js-strings.php';
-require_once FLXAI_DIR . 'includes/services/class-flxai-cast.php';
-require_once FLXAI_DIR . 'includes/services/class-flxai-usage-dto.php';
-require_once FLXAI_DIR . 'includes/services/class-flxai-usage-service.php';
-require_once FLXAI_DIR . 'includes/services/class-flxai-settings-dto.php';
-require_once FLXAI_DIR . 'includes/services/class-flxai-settings-service.php';
-require_once FLXAI_DIR . 'includes/services/class-flxai-tools-dto.php';
-require_once FLXAI_DIR . 'includes/services/class-flxai-tools-service.php';
 
 if ( is_admin() ) {
-	require_once FLXAI_DIR . 'includes/admin-flux.php';
 	require_once FLXAI_DIR . 'includes/admin.php';
 	require_once FLXAI_DIR . 'includes/admin-mcp.php';
 	require_once FLXAI_DIR . 'includes/admin-connections.php';
@@ -84,50 +74,6 @@ if ( is_admin() ) {
 	require_once FLXAI_DIR . 'includes/admin-skills.php';
 	require_once FLXAI_DIR . 'includes/admin-approvals.php';
 }
-
-/*
- * GraphQL (Flux GraphQL): the schema is built only inside a GraphQL request; the persisted operations the
- * Flux AI screens send. Without Flux GraphQL (0.2.0+, capability model) the schema is left out and the
- * classic pages and REST routes keep working. MCP, OAuth and the chat stream stay on their own protocols.
- */
-add_action(
-	'flx_gql_register',
-	static function () {
-		if ( ! function_exists( 'flx_gql_all_caps' ) ) {
-			return;
-		}
-		require_once FLXAI_DIR . 'includes/graphql/schema.php';
-	}
-);
-add_filter(
-	'flx_gql_persisted_manifests',
-	static function ( $m ) {
-		$m           = is_array( $m ) ? $m : array();
-		$m['flx-ai'] = FLXAI_DIR . 'graphql/persisted-queries.json';
-		return $m;
-	}
-);
-/*
- * Flux AI has its own settings type with API keys held back (flxAiSettings). The generic settings types
- * would list the key_* fields, which the kit's secret filter does not recognise, so the Flux AI entry is
- * left out of the generated types.
- */
-add_action(
-	'flx_gql_register_core',
-	static function () {
-		add_filter(
-			'flx_settings_schema',
-			static function ( $schema ) {
-				if ( is_array( $schema ) ) {
-					unset( $schema['flxai_settings'] );
-				}
-				return $schema;
-			},
-			99
-		);
-	},
-	1
-);
 
 /*
  * Çeviri: kaynak metinler Türkçe; en_GB, en_AU gibi İngilizce yerel ayarlar en_US çevirisine düşer.

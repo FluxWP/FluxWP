@@ -1,6 +1,0 @@
-# General settings of the app.
-query FlxAppAdminSettings {
-  flxAppAdminSettings {
-    ...FlxAppAdminSettingsFields
-  }
-}

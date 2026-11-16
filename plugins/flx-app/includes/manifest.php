@@ -301,7 +301,6 @@ function flxapp_manifest_hash( $user = null, $platform = null ) {
 }
 
 /** Ekran kataloğu (Görünüm sekmesi): "module/screen" => başlık, yalnız giriş noktası olan türler. */
-/** @return array<string, mixed> */
 function flxapp_screen_catalog( $user = null ) {
 	$out = array();
 	foreach ( flxapp_manifests_raw( $user ) as $id => $m ) {

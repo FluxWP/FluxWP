@@ -1,6 +1,0 @@
-# The person's app preferences, shared by all their devices.
-query FlxAppPrefs {
-  flxAppPrefs {
-    ...FlxAppPrefsFields
-  }
-}

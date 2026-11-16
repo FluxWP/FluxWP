@@ -17,7 +17,6 @@ defined( 'ABSPATH' ) || exit;
 const FLXAPP_CONFIG_SCHEMA = 'flx-app-config/1';
 
 /** Site katmanı (yönetici/preset). Bilinmeyen alanlar atılır. */
-/** @return array<string, mixed> */
 function flxapp_app_option() {
 	$o = get_option( 'flxapp_app', array() );
 	return is_array( $o ) ? $o : array();
@@ -184,7 +183,6 @@ function flxapp_actions_sanitize( $list ) {
 	return $out;
 }
 
-/** @return list<string> */
 function flxapp_fonts() {
 	return array( 'Inter', 'Figtree', 'Nunito', 'Nunito Sans', 'System' );
 }
@@ -275,7 +273,6 @@ function flxapp_media_url( $id, $size = 'full' ) {
 }
 
 /** Çözümlenmiş tema: { mode, light{…}, dark{…}, radius, density, font }. */
-/** @return array<string, mixed> */
 function flxapp_theme() {
 	$o       = (array) ( flxapp_app_option()['theme'] ?? array() );
 	$fa      = function_exists( 'flxa_theme' ) ? flxa_theme() : array();

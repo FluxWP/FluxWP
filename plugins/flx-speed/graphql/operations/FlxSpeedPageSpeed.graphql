@@ -1,5 +1,0 @@
-query FlxSpeedPageSpeed {
-  flxSpeedPageSpeed {
-    ...FlxSpeedPageSpeedFields
-  }
-}

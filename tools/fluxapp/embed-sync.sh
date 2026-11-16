@@ -2,7 +2,7 @@
 # Ortak modül bundle'ını (apps/wp-embed) bir eklentinin assets/flux/ klasörüne kopyalar.
 #
 # Varsayılan — parça derlemesi (Vite FLUX_EMBED_CHUNKS=1):
-#   tools/fluxapp/embed-sync.sh <eklenti-slug>          ör. flx-chat (tema: themes/fluxwp)
+#   tools/fluxapp/embed-sync.sh <eklenti-slug>          ör. flx-chat
 #   Çıktı: flux-modules.js (ES giriş), flux-<modül>-<hash>.js parçaları,
 #   flux-modules.css ve chunks.json. Manifest: {"mode":"chunks","entry":"flux-modules.js","files":[...]}.
 #   Hedefteki eski flux-*.js dosyaları silinir. Parça adları hash taşır; sürüm sorgusu yalnız girişe konur.
@@ -29,17 +29,14 @@ for arg in "$@"; do
 	esac
 done
 slug="${slug:?eklenti slug gerekli}"
-# "themes/<slug>" bir temanın assets/flux/ klasörüne yazar; yalın slug eklentidir.
-base="plugins"
-case "$slug" in themes/*) base="themes"; slug="${slug#themes/}" ;; esac
 if [ "${FLUX_EMBED_CHUNKS:-1}" = "0" ]; then
 	single=1
 fi
 
 root="$(cd "$(dirname "$0")/../.." && pwd)"
-dest="$root/$base/$slug/assets/flux"
+dest="$root/plugins/$slug/assets/flux"
 dist="$root/apps/wp-embed/dist"
-[ -d "$root/$base/$slug" ] || { echo "$base/$slug yok" >&2; exit 1; }
+[ -d "$root/plugins/$slug" ] || { echo "plugins/$slug yok" >&2; exit 1; }
 
 if [ "$single" = 1 ]; then
 	(cd "$root/apps/wp-embed" && FLUX_EMBED_CHUNKS=0 bun run build)

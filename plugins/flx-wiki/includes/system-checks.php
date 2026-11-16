@@ -54,21 +54,20 @@ add_filter(
 	'flx_settings_schema',
 	function ( $s ) {
 		$s['flxwk_settings'] = array(
-			'label'   => 'Flux Wiki',
-			'graphql' => 'Wiki', // flxSettings.wiki, flxSettingsUpdate(input: { wiki: … }).
+			'label'  => 'Flux Wiki',
 			'fields' => array(
-				'title'     => array( 'type' => 'string', 'default' => '', 'desc' => 'Wiki name; empty = Developer Wiki in the visitor language.' ),
+				'title'     => array( 'type' => 'string', 'default' => '', 'desc' => 'Wiki name; empty = "Developer Wiki" in the visitor language.' ),
 				'intro'     => array( 'type' => 'text', 'default' => '', 'desc' => 'Intro on the wiki home, meta description and llms.txt.' ),
-				'ask'       => array( 'type' => 'enum', 'enum' => array( 'off', 'users', 'all' ), 'default' => 'users', 'desc' => 'Who can use Ask the wiki (Flux AI).' ),
+				'ask'       => array( 'type' => 'enum', 'enum' => array( 'off', 'users', 'all' ), 'default' => 'users', 'desc' => 'Who can use "Ask the wiki" (Flux AI).' ),
 				'ask_limit' => array( 'type' => 'int', 'default' => 20, 'desc' => 'Questions per person per hour.' ),
-				'ai_links'  => array( 'type' => 'bool', 'default' => true, 'desc' => 'Show the Open in ChatGPT / Claude / Perplexity links.' ),
-				'edit_link' => array( 'type' => 'bool', 'default' => true, 'desc' => 'Show the Edit button to editors.' ),
+				'ai_links'  => array( 'type' => 'bool', 'default' => true, 'desc' => 'Show "Open in ChatGPT / Claude / Perplexity".' ),
+				'edit_link' => array( 'type' => 'bool', 'default' => true, 'desc' => 'Show "Edit" to editors.' ),
 				'enabled'   => array( 'type' => 'bool', 'default' => true, 'desc' => 'Wiki open to visitors; off = 404 for everyone except editors.' ),
 				'base'      => array( 'type' => 'string', 'default' => 'wiki', 'desc' => 'URL base (lowercase, digits, hyphen).' ),
-				'accent'    => array( 'type' => 'color', 'default' => '', 'desc' => 'Accent colour (#hex); empty = theme colour.' ),
+				'accent'    => array( 'type' => 'string', 'default' => '', 'desc' => 'Accent colour (#hex); empty = theme colour.' ),
 				'width'     => array( 'type' => 'enum', 'enum' => array( 'normal', 'wide' ), 'default' => 'normal', 'desc' => 'Layout width.' ),
 				'nav'       => array( 'type' => 'bool', 'default' => true, 'desc' => 'Left page menu and search.' ),
-				'toc'       => array( 'type' => 'bool', 'default' => true, 'desc' => 'Right-hand contents list (On this page).' ),
+				'toc'       => array( 'type' => 'bool', 'default' => true, 'desc' => 'Right "On this page" table of contents.' ),
 			),
 		);
 		return $s;

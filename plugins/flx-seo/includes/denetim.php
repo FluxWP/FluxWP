@@ -18,9 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 const FLXSEO_PSI_ENDPOINT = 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed';
 
-/** Öncelik sırası (küçük = önemli).
- * @return array<string, array{0: int, 1: string}>
- */
+/** Öncelik sırası (küçük = önemli). */
 function flxseo_audit_priorities() {
 	return array(
 		'critical' => array( 0, __( 'Critical', 'flx-seo' ) ),
@@ -30,9 +28,6 @@ function flxseo_audit_priorities() {
 	);
 }
 
-/**
- * @return array<string, string>
- */
 function flxseo_audit_categories() {
 	return array(
 		'performance'    => __( 'Performance', 'flx-seo' ),
@@ -43,9 +38,7 @@ function flxseo_audit_categories() {
 	);
 }
 
-/** Düzeltmeyi kimin yapacağı (panelde etiket).
- * @return array<string, string>
- */
+/** Düzeltmeyi kimin yapacağı (panelde etiket). */
 function flxseo_audit_owners() {
 	return array(
 		'theme'   => __( 'Theme / preset', 'flx-seo' ),
@@ -1279,7 +1272,7 @@ function flxseo_md_strip( $s ) {
 /**
  * Yerel + PageSpeed (mobil, masaüstü) bulguları birleştirir, önceliğe göre sıralar.
  *
- * @return array<string, mixed>
+ * @return array{findings:array, counts:array, local:array, psi:array}
  */
 function flxseo_audit_report() {
 	$store = flxseo_audit_store();

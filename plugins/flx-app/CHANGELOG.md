@@ -1,20 +1,5 @@
 # Değişiklikler
 
-## 0.6.0
-- "Uygulama" ayar sayfası ve "Uygulama erişimi" artık wp-admin'de varsayılan olarak yeni React ekranında açılır (FluxWP uygulamasıyla aynı ekran, Flux GraphQL gerekir): Genel, Görünüm, Uygulamalar (mağaza bağlantıları, push, markalı uygulamalar, deneme bildirimi), Modüller, Menü, OAuth istemcileri, Tüm erişimler. Klasik sayfanın tüm özellikleri var; ekran başlığındaki "Klasik görünüm" bağlantısıyla klasik sayfaya, oradaki "Yeni görünüm" düğmesiyle geri dönülür (kullanıcı başına hatırlanır).
-- Ayarlar, modüller, menü, istemciler, erişim anahtarı/oturum/cihaz iptali, mobil ayarlar, deneme bildirimi ve görünüm GraphQL'de (`flxAppAdmin*`, `flxAppAccess`, `flxAppKeyCreate`, `flxAppAccessRevoke`, `flxAppDeviceRevoke`); her alan yetki ister. Klasik sayfalar ve GraphQL aynı servis katmanını (`FLXAPP_Admin_Service`) kullanır.
-- Markalı uygulama listesinde aynı `client_id` tekrarlanırsa son kayıt geçerli olur.
-- Yeni metinlerin Türkçesi eklendi.
-
-## 0.5.0
-- FluxApp bağlantısı GraphQL'e de açıldı (`/graphql`, Flux GraphQL gerekir; `Requires Plugins: flx-graphql`, PHP 8.1): `flxAppBootstrap` (herkese açık), `flxAppMe`, `flxAppCounts`, `flxAppSync`, `flxAppConfig`, `flxAppManifest`, `flxAppDashboard`, `flxAppPrefs` ve `flxAppPrefsUpdate`, `flxAppSessionCreate`, `flxAppSessionEnd`, `flxAppLogout`. Belgeler (config, manifest, bootstrap) REST ile birebir aynı içeriktir; `ifHash` ETag/304 yerine geçer.
-- GraphQL isteği de uygulama belirtecini (`Authorization: Bearer` ya da `X-FluxWP-Token`) kabul eder; belirteç gelmişse çerez/nonce denetimi devreye girmez. `flx` kapsamı olmayan belirteç (yalnız `mcp`) GraphQL'e giremez (403), geçersiz belirteç 401 döner.
-- `X-Flux-Locale` GraphQL isteklerinde de dili belirler.
-- OAuth akışı, cihaz/OTP uçları ve mağazadaki eski uygulama sürümlerinin kullandığı tüm REST uçları aynen çalışır; oturum, çıkış ve oturum sonlandırma REST'te de artık aynı servis katmanını kullanır (yanıt şekli değişmedi).
-- Uygulama ön yükleme belgesi değişince GraphQL önbelleği de temizlenir (`flx-app:bootstrap`).
-- Yeni metinlerin Türkçesi eklendi.
-
-
 ## 0.4.16
 - Uygulama arayüz dilini `X-Flux-Locale` başlığıyla (ör. `tr_TR`, `tr-TR`, `tr`) gönderirse REST isteği o dille işlenir. Menü, sekme ve grup adları uygulamanın dilinde gelir. Daha önce bu adlar WordPress profil dilinden, profil dili boşsa site dilinden geliyordu, bu yüzden Türkçe uygulamada İngilizce görünebiliyordu. Yalnız yüklü diller ya da eklentilerin kendi paketindeki diller kabul edilir. Başlık yoksa ya da dil tanınmıyorsa eski kural geçerlidir.
 

@@ -1,6 +1,0 @@
-# Ends the web view cookie sessions this app session opened.
-mutation FlxAppSessionEnd {
-  flxAppSessionEnd(input: {}) {
-    ended
-  }
-}

@@ -1,6 +1,15 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: en_US\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "FluxWP packages."
+msgstr ""
+
+msgid "Install and activate missing plugins"
+msgstr ""
+
+msgid "The missing plugins could not be installed. Install them from FluxWP Panel › Packages."
+msgstr ""
+
 msgid "Presets"
 msgstr ""
 
@@ -14,9 +23,6 @@ msgid "Presets: %1$d pending updates, %2$d patches awaiting approval."
 msgstr ""
 
 msgid "You are not allowed to do this."
-msgstr ""
-
-msgid "The missing plugins could not be installed. Install them from FluxWP Panel › Packages."
 msgstr ""
 
 msgid "Done."
@@ -65,9 +71,6 @@ msgid "Not applied"
 msgstr ""
 
 msgid "Missing: %s. These parts are skipped."
-msgstr ""
-
-msgid "Install and activate missing plugins"
 msgstr ""
 
 msgid "Preview and apply"
@@ -139,6 +142,15 @@ msgstr ""
 msgid "Patch not found."
 msgstr ""
 
+msgid "Sync"
+msgstr ""
+
+msgid "Settings synced (%s)"
+msgstr ""
+
+msgid "%1$s: \"%2$s\" is not in the settings schema; it is written but the plugin may not use it."
+msgstr ""
+
 msgid "Patch"
 msgstr ""
 
@@ -146,12 +158,6 @@ msgid "Preset not found."
 msgstr ""
 
 msgid "Apply"
-msgstr ""
-
-msgid "Select all changes"
-msgstr ""
-
-msgid "Select all protected values (overwrite)"
 msgstr ""
 
 msgid "What"
@@ -166,9 +172,6 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-msgid "Select %s"
-msgstr ""
-
 msgid "Value of the %s preset. Once applied, that preset's updates will not overwrite it."
 msgstr ""
 
@@ -178,10 +181,10 @@ msgstr ""
 msgid "Apply anyway"
 msgstr ""
 
-msgid "Show unchanged rows too"
+msgid "Apply (%d changes)"
 msgstr ""
 
-msgid "Apply selected changes (%d)"
+msgid "Show unchanged rows too"
 msgstr ""
 
 msgid "Organisation identity. Plugins read the name, signature, WhatsApp, IBAN and similar details from here. The preset fills it on first install; preset updates never overwrite values you change here."
@@ -194,9 +197,6 @@ msgid "Nothing applied yet."
 msgstr ""
 
 msgid "Update"
-msgstr ""
-
-msgid "Sync"
 msgstr ""
 
 msgid "Undo"
@@ -271,90 +271,6 @@ msgstr ""
 msgid "Unregistered block: %s"
 msgstr ""
 
-msgid "The sign-in link expired. Start again with \"Sign in with FluxWP\"."
-msgstr ""
-
-msgid "FluxWP did not return a key. Try again."
-msgstr ""
-
-msgid "FluxWP could not be reached: %s"
-msgstr ""
-
-msgid "FluxWP answered with HTTP %d."
-msgstr ""
-
-msgid "This site is not connected to a FluxWP account."
-msgstr ""
-
-msgid "Another request is renewing the session. Try again in a moment."
-msgstr ""
-
-msgid "Connecting failed. Try again."
-msgstr ""
-
-msgid "Connected to your FluxWP account. Your plan's packages are on the Packages screen."
-msgstr ""
-
-msgid "Connecting was cancelled on FluxWP."
-msgstr ""
-
-msgid "Disconnected. Installed plugins keep working; updates of paid packages stop."
-msgstr ""
-
-msgid "Plan information refreshed."
-msgstr ""
-
-msgid "FluxWP %1$s · %2$s"
-msgstr ""
-
-msgid "Subscription ended: the Free plan applies, paid updates are paused."
-msgstr ""
-
-msgid "Renews or ends on %s"
-msgstr ""
-
-msgid "Sets: %s"
-msgstr ""
-
-msgid "%d sites connected"
-msgstr ""
-
-msgid "%1$d of %2$d sites"
-msgstr ""
-
-msgid "Checked %s"
-msgstr ""
-
-msgid "Connect your FluxWP account"
-msgstr ""
-
-msgid "Sign in or sign up on fluxwp.com: this site gets its update key and the packages of your plan automatically. The Free plan needs no card."
-msgstr ""
-
-msgid "Manage account"
-msgstr ""
-
-msgid "Refresh"
-msgstr ""
-
-msgid "Disconnect"
-msgstr ""
-
-msgid "Sign in with FluxWP"
-msgstr ""
-
-msgid "FluxWP account"
-msgstr ""
-
-msgid "Connected, plan %s."
-msgstr ""
-
-msgid "Not connected. Sign in with FluxWP to get the packages of your plan."
-msgstr ""
-
-msgid "Settings"
-msgstr ""
-
 msgid "Media file missing: %s"
 msgstr ""
 
@@ -370,124 +286,13 @@ msgstr ""
 msgid "The %s language pack is not installed; the site language was not set (Settings › General)."
 msgstr ""
 
-msgid "Select at least one change."
-msgstr ""
-
-msgid "The selected changes are no longer available. Refresh the preview."
-msgstr ""
-
-msgid "Also select the required items: %s"
-msgstr ""
-
 msgid "Migration not found."
-msgstr ""
-
-msgid "%s activated."
-msgstr ""
-
-msgid "Settings synced (%s)"
 msgstr ""
 
 msgid "Record not found."
 msgstr ""
 
 msgid "Exported from %1$s on %2$s."
-msgstr ""
-
-msgid "JavaScript is required for this screen."
-msgstr ""
-
-msgid "New view"
-msgstr ""
-
-msgid "Open the new view (same features, works in the FluxWP app too)."
-msgstr ""
-
-msgid "FluxWP Panel"
-msgstr ""
-
-msgid "Packages"
-msgstr ""
-
-msgid "Update settings"
-msgstr ""
-
-msgid "Be found on Google"
-msgstr ""
-
-msgid "Watch from the panel how the site looks in Google search, how many people arrive, and how fast pages open. Google Site Kit brings Search Console, Analytics and PageSpeed into one screen."
-msgstr ""
-
-msgid "Install Google Site Kit"
-msgstr ""
-
-msgid "Activate Google Site Kit"
-msgstr ""
-
-msgid "Show your products on Google"
-msgstr ""
-
-msgid "Your Google account is connected. With Google for WooCommerce your products are listed for free on Google Shopping, Search, YouTube and Images; you can also run ads."
-msgstr ""
-
-msgid "Install Google for WooCommerce"
-msgstr ""
-
-msgid "Activate Google for WooCommerce"
-msgstr ""
-
-msgid "Not needed"
-msgstr ""
-
-msgid "Try from Plugins › Add New"
-msgstr ""
-
-msgid "Could not download %s from wordpress.org."
-msgstr ""
-
-msgid "%1$s could not be installed: %2$s"
-msgstr ""
-
-msgid "Install Flux GraphQL"
-msgstr ""
-
-msgid "Activate Flux GraphQL"
-msgstr ""
-
-msgid "Flux GraphQL settings"
-msgstr ""
-
-msgid "%1$s needs PHP %2$s or newer; this site runs PHP %3$s. Raise the PHP version in the hosting panel."
-msgstr ""
-
-msgid "%s cannot load its data because the Flux GraphQL server is not running. Open the Flux GraphQL settings to fix it."
-msgstr ""
-
-msgid "%s needs Flux GraphQL to load its data. Install and activate it; it takes a few seconds."
-msgstr ""
-
-msgid "PHP version"
-msgstr ""
-
-msgid "PHP %s. FluxWP GraphQL packages run on it."
-msgstr ""
-
-msgid "PHP %1$s. New FluxWP packages (Flux GraphQL and the packages that use it) need PHP %2$s or newer: raise it in the hosting panel."
-msgstr ""
-
-msgid "Flux GraphQL %s is installed and working; no separate WPGraphQL conflict."
-msgstr ""
-
-msgid "Flux GraphQL is active, but its GraphQL server is not running (usually an unsupported, separately installed WPGraphQL), so GraphQL screens are off."
-msgstr ""
-
-msgid "These packages need Flux GraphQL, which is not active: %s. Their screens cannot load data."
-msgstr ""
-
-msgid "Flux GraphQL is installed but not active. No active package needs it."
-msgstr ""
-
-msgid "Flux GraphQL"
 msgstr ""
 
 msgid "Page"
@@ -520,507 +325,6 @@ msgstr ""
 msgid "Product not found."
 msgstr ""
 
-msgid "Flux Updater is now part of FluxWP Panel; the old plugin was deactivated and its settings were kept. You can delete it from the Plugins screen."
-msgstr ""
-
-msgid "Blog"
-msgstr ""
-
-msgid "About us"
-msgstr ""
-
-msgid "Tell visitors who you are and what you do."
-msgstr ""
-
-msgid "Add your address, phone and e-mail here."
-msgstr ""
-
-msgid "FAQ"
-msgstr ""
-
-msgid "Add common questions and their answers here."
-msgstr ""
-
-msgid "Upload a PNG, JPG, WebP or GIF."
-msgstr ""
-
-msgid "Setup wizard"
-msgstr ""
-
-msgid "Admin theme"
-msgstr ""
-
-msgid "Flux Admin: a redesigned admin panel with a command palette, mobile menu and light/dark mode."
-msgstr ""
-
-msgid "Store"
-msgstr ""
-
-msgid "Flux Commerce: sales dashboard, customers, reports and bank transfer with receipts."
-msgstr ""
-
-msgid "Nonprofit and donations"
-msgstr ""
-
-msgid "Flux Donate and Flux Certificates: donation types, a one-page checkout and a certificate in every donor's name."
-msgstr ""
-
-msgid "Other"
-msgstr ""
-
-msgid "Other FluxWP packages."
-msgstr ""
-
-msgid "Plugins"
-msgstr ""
-
-msgid "FluxWP packages."
-msgstr ""
-
-msgid "FluxWP demo"
-msgstr ""
-
-msgid "Sample home page, products and menus."
-msgstr ""
-
-msgid "Blank"
-msgstr ""
-
-msgid "Theme and colour only"
-msgstr ""
-
-msgid "Anthracite"
-msgstr ""
-
-msgid "Blue"
-msgstr ""
-
-msgid "Teal"
-msgstr ""
-
-msgid "Indigo"
-msgstr ""
-
-msgid "Forest"
-msgstr ""
-
-msgid "Calm and serious; fits anything."
-msgstr ""
-
-msgid "Trustworthy, corporate."
-msgstr ""
-
-msgid "Quiet and modern."
-msgstr ""
-
-msgid "Lively; tech and education."
-msgstr ""
-
-msgid "Nature; for nonprofits and foundations."
-msgstr ""
-
-msgid "Connect e-mail"
-msgstr ""
-
-msgid "Without SMTP, receipts and notifications are not delivered."
-msgstr ""
-
-msgid "Flux Mail › Settings"
-msgstr ""
-
-msgid "Upload your logo"
-msgstr ""
-
-msgid "Used in the admin and in e-mails."
-msgstr ""
-
-msgid "Settings › Admin theme"
-msgstr ""
-
-msgid "Add an AI key"
-msgstr ""
-
-msgid "Needed for assistants and AI tools."
-msgstr ""
-
-msgid "Flux AI & MCP › Settings"
-msgstr ""
-
-msgid "The setup wizard needs JavaScript."
-msgstr ""
-
-msgid "Go to the Packages screen."
-msgstr ""
-
-msgid "Site name: %s"
-msgstr ""
-
-msgid "Tagline: %s"
-msgstr ""
-
-msgid "Could not set the logo."
-msgstr ""
-
-msgid "Logo set."
-msgstr ""
-
-msgid "You are not allowed to create pages."
-msgstr ""
-
-msgid "Page: %s"
-msgstr ""
-
-msgid "No new pages."
-msgstr ""
-
-msgid "The FluxWP theme is not installed."
-msgstr ""
-
-msgid "You are not allowed to switch themes."
-msgstr ""
-
-msgid "FluxWP theme is active."
-msgstr ""
-
-msgid "No preset applied (Blank)."
-msgstr ""
-
-msgid "You are not allowed to apply presets."
-msgstr ""
-
-msgid "The preset is already applied."
-msgstr ""
-
-msgid "Preset not found. If the package is installed, apply it under Appearance › Presets."
-msgstr ""
-
-msgid "%s preset applied."
-msgstr ""
-
-msgid "Usage data consent saved."
-msgstr ""
-
-msgid "Usage data will not be sent."
-msgstr ""
-
-msgid "Setup finished."
-msgstr ""
-
-msgid "Wizard skipped."
-msgstr ""
-
-msgid "Unknown action."
-msgstr ""
-
-msgid "Colour unchanged."
-msgstr ""
-
-msgid "You are not allowed to edit the appearance."
-msgstr ""
-
-msgid "The active theme does not support colour styles."
-msgstr ""
-
-msgid "The theme has no %s colour style."
-msgstr ""
-
-msgid "Could not create the global styles record."
-msgstr ""
-
-msgid "Colour style: %s"
-msgstr ""
-
-msgid "Step %1$s of %2$s"
-msgstr ""
-
-msgid "Welcome to FluxWP"
-msgstr ""
-
-msgid "Let's set up your site in three steps. Pick the plugins, choose the look, and FluxWP Panel installs the rest."
-msgstr ""
-
-msgid "%d plugins"
-msgstr ""
-
-msgid "Donations, forms, WhatsApp, e-mail, SEO and backups work from one admin."
-msgstr ""
-
-msgid "Updates"
-msgstr ""
-
-msgid "New versions appear on WordPress's Updates screen."
-msgstr ""
-
-msgid "Change later"
-msgstr ""
-
-msgid "You can change the preset and colour later under Appearance › Theme settings."
-msgstr ""
-
-msgid "Get started"
-msgstr ""
-
-msgid "I accept the %1$s and %2$s; I have read the %3$s."
-msgstr ""
-
-msgid "Terms of Use"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr ""
-
-msgid "KVKK Privacy Notice"
-msgstr ""
-
-msgid "Help us improve FluxWP (send usage data)"
-msgstr ""
-
-msgid "Optional. WordPress and PHP version, language and time zone, plus anonymous version and error data for FluxWP plugins. The site address and country are always recorded for updates (IPs are not stored). Updates work when this is off; change it under FluxWP Panel › Settings."
-msgstr ""
-
-msgid "Accept the terms to continue."
-msgstr ""
-
-msgid "I'll set it up myself"
-msgstr ""
-
-msgid "About 3 minutes"
-msgstr ""
-
-msgid "Plugins · %1$s of %2$s"
-msgstr ""
-
-msgid "%s packages queued"
-msgstr ""
-
-msgid "activating"
-msgstr ""
-
-msgid "Select all"
-msgstr ""
-
-msgid "Clear selection"
-msgstr ""
-
-msgid "Essentials"
-msgstr ""
-
-msgid "What should we start with?"
-msgstr ""
-
-msgid "The admin theme and the kind of site: a store or a nonprofit. Pick one kind; you can install the other later."
-msgstr ""
-
-msgid "Continue without these"
-msgstr ""
-
-msgid "Recommended"
-msgstr ""
-
-msgid "Block theme with shop, donation and company page templates."
-msgstr ""
-
-msgid "Installed"
-msgstr ""
-
-msgid "Appearance"
-msgstr ""
-
-msgid "How should your site look?"
-msgstr ""
-
-msgid "Your name and logo first, then preset, colour and pages. The preview on the right updates right away."
-msgstr ""
-
-msgid "Pages and menus are created from it."
-msgstr ""
-
-msgid "Colour"
-msgstr ""
-
-msgid "The theme and plugins share this colour."
-msgstr ""
-
-msgid "Site name"
-msgstr ""
-
-msgid "Also shown in e-mails and certificates."
-msgstr ""
-
-msgid "Identity"
-msgstr ""
-
-msgid "Tagline"
-msgstr ""
-
-msgid "Shown under the name on the home page and in search results."
-msgstr ""
-
-msgid "Logo"
-msgstr ""
-
-msgid "A square or wide image (PNG, JPG, WebP). You can change it later."
-msgstr ""
-
-msgid "Upload logo"
-msgstr ""
-
-msgid "Change"
-msgstr ""
-
-msgid "Delete"
-msgstr ""
-
-msgid "Uploading…"
-msgstr ""
-
-msgid "Selected pages are created empty for you to fill in later. Existing pages are not created again."
-msgstr ""
-
-msgid "Donate"
-msgstr ""
-
-msgid "Latest posts"
-msgstr ""
-
-msgid "Home"
-msgstr ""
-
-msgid "Your site is ready"
-msgstr ""
-
-msgid "Plugins installed, preset and colour applied."
-msgstr ""
-
-msgid "Setup finished, some steps did not complete"
-msgstr ""
-
-msgid "The failed steps are below. You can try again from FluxWP Panel › Packages."
-msgstr ""
-
-msgid "plugins"
-msgstr ""
-
-msgid "pages"
-msgstr ""
-
-msgid "colour"
-msgstr ""
-
-msgid "Open site"
-msgstr ""
-
-msgid "Go to dashboard"
-msgstr ""
-
-msgid "Back"
-msgstr ""
-
-msgid "Continue"
-msgstr ""
-
-msgid "Install"
-msgstr ""
-
-msgid "Skip setup?"
-msgstr ""
-
-msgid "Nothing is installed. You can open the wizard later from FluxWP Panel › Setup wizard."
-msgstr ""
-
-msgid "Cancel"
-msgstr ""
-
-msgid "%s plugins + FluxWP theme"
-msgstr ""
-
-msgid "%s plugins"
-msgstr ""
-
-msgid "Keep this tab open."
-msgstr ""
-
-msgid "Updates first"
-msgstr ""
-
-msgid "Your installed apps are being updated before setup, so everything is installed on the latest version."
-msgstr ""
-
-msgid "Checking for updates…"
-msgstr ""
-
-msgid "updating"
-msgstr ""
-
-msgid "updated"
-msgstr ""
-
-msgid "FluxWP Panel was updated. Reopening the wizard on the new version…"
-msgstr ""
-
-msgid "Updates could not be completed: %s Setup does not continue until the updates are done."
-msgstr ""
-
-msgid "Try again"
-msgstr ""
-
-msgid "Go to Packages"
-msgstr ""
-
-msgid "Unknown error."
-msgstr ""
-
-msgid "queued"
-msgstr ""
-
-msgid "installing"
-msgstr ""
-
-msgid "installed"
-msgstr ""
-
-msgid "applying"
-msgstr ""
-
-msgid "applied"
-msgstr ""
-
-msgid "error"
-msgstr ""
-
-msgid "Downloading packages"
-msgstr ""
-
-msgid "Installing plugins"
-msgstr ""
-
-msgid "Getting your site ready"
-msgstr ""
-
-msgid "Creating pages and menus"
-msgstr ""
-
-msgid "Almost there, final touches"
-msgstr ""
-
-msgid "FluxWP theme"
-msgstr ""
-
-msgid "Activating the theme"
-msgstr ""
-
-msgid "Ready"
-msgstr ""
-
-msgid "Opening the final screen."
-msgstr ""
-
-msgid "Could not reach the server. Check your connection and try again."
-msgstr ""
-
-msgid "Could not reach the update server; the package list is empty. Check the server under FluxWP Panel › Settings. The theme and preset can still be applied."
-msgstr ""
-
 msgid "This patch has already been processed."
 msgstr ""
 
@@ -1028,6 +332,9 @@ msgid "Short name"
 msgstr ""
 
 msgid "Legal name"
+msgstr ""
+
+msgid "Tagline"
 msgstr ""
 
 msgid "Short introduction"
@@ -1123,170 +430,87 @@ msgstr ""
 msgid "The \"%s\" option cannot be written by a preset."
 msgstr ""
 
-msgid "%1$s: \"%2$s\" is not in the settings schema; it is written but the plugin may not use it."
+msgid "Preset engine: sets up the site in one step from a preset file (preset.json) or changes it through approved patches. Organisation profile, plugin settings, global styles, templates, header/footer, pages, menus and media. Preview, apply, undo, migrations, export this site as a preset; approved edits from the Flux AI chat and Flux MCP."
 msgstr ""
 
-msgid "Anonymous usage data"
-msgstr ""
-
-msgid "Sent."
-msgstr ""
-
-msgid "Could not send. Check the URL and that the Flux Analytics telemetry hub is on at the target site."
-msgstr ""
-
-msgid "Saved."
-msgstr ""
-
-msgid "On"
-msgstr ""
-
-msgid "Last sent %s. Sent at most once a day."
-msgstr ""
-
-msgid "Not sent yet. Sent at most once a day."
-msgstr ""
-
-msgid "Off"
-msgstr ""
-
-msgid "Nothing is sent. Tick \"Help us improve the product\" to turn it on."
-msgstr ""
-
-msgid "Sent: a random install ID, WordPress and PHP version, site language, country (from the time zone or store country), active FluxWP plugins and theme, PHP errors from FluxWP (with paths, domain, emails and IPs removed), setup wizard progress and choices. Site address, IP, users and content are never sent."
-msgstr ""
-
-msgid "Telemetry URL"
-msgstr ""
-
-msgid "Leave empty to send to FluxWP. To run your own hub, turn on Flux Analytics › Settings › Telemetry hub on one site and paste that address here. https only."
-msgstr ""
-
-msgid "Send now"
-msgstr ""
-
-msgid "Show the data that will be sent"
-msgstr ""
-
-msgid "%d package activated."
-msgid_plural "%d packages activated."
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "%d package deactivated."
-msgid_plural "%d packages deactivated."
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "%d package removed."
-msgid_plural "%d packages removed."
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "Automatic updates turned on for %d package."
-msgid_plural "Automatic updates turned on for %d packages."
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "Automatic updates turned off for %d package."
-msgid_plural "Automatic updates turned off for %d packages."
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "%d backup deleted."
-msgid_plural "%d backups deleted."
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "%d expired backup deleted."
-msgid_plural "%d expired backups deleted."
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "Connected · %d package"
-msgid_plural "Connected · %d packages"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "%d day"
-msgid_plural "%d days"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "Currently %1$d update backup, %2$s."
-msgid_plural "Currently %1$d update backups, %2$s."
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "%s record"
-msgid_plural "%s records"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "Flux Packages"
-msgstr ""
-
-msgid "Connected"
-msgstr ""
-
-msgid "Connection error"
-msgstr ""
-
-msgid "Not checked yet"
-msgstr ""
-
-msgid "No package selected to install or update."
-msgstr ""
-
-msgid "Back to updates"
+msgid "Settings"
 msgstr ""
 
 msgid "Package not found."
 msgstr ""
 
-msgid "Installing %1$s version %2$s"
+msgid "Installing %s"
 msgstr ""
 
-msgid "No records."
+msgid "FluxWP themes and plugins are updated from your own update server instead of wordpress.org. New versions appear on Dashboard › Updates as usual."
 msgstr ""
 
-msgid "Success ✓"
+msgid "Settings saved and updates checked."
 msgstr ""
 
-msgid "version changed (%s)"
+msgid "Updates checked."
 msgstr ""
 
-msgid "installed %s"
+msgid "Connected to the server as \"%1$s\". Last check: %2$s ago."
 msgstr ""
 
-msgid "install failed"
+msgid "Packages"
 msgstr ""
 
-msgid "rolled back automatically (%s)"
+msgid "Package"
 msgstr ""
 
-msgid "update failed (%s)"
+msgid "Type"
 msgstr ""
 
-msgid "updated (%s)"
+msgid "Installed"
+msgstr ""
+
+msgid "Latest version"
+msgstr ""
+
+msgid "Could not get the package list from the server. Enter the key and press \"Check now\"."
+msgstr ""
+
+msgid "Theme"
+msgstr ""
+
+msgid "Plugin"
+msgstr ""
+
+msgid "Update available"
+msgstr ""
+
+msgid "Up to date"
+msgstr ""
+
+msgid "Not installed"
+msgstr ""
+
+msgid "Install"
+msgstr ""
+
+msgid "Check now"
+msgstr ""
+
+msgid "Check for updates"
 msgstr ""
 
 msgid "Last check: %s"
 msgstr ""
 
-msgid "Connected without a key (%s): public packages are available. Enter a site key for private packages."
+msgid "Checking…"
 msgstr ""
 
-msgid "Recognized by the server as \"%1$s\" (%2$s)."
+msgid "Could not connect to the server."
 msgstr ""
 
-msgid "Connect to the server with \"Test connection\"."
-msgstr ""
+msgid "%d update available"
+msgid_plural "%d updates available"
+msgstr[0] ""
+msgstr[1] ""
 
-msgid "%1$d packages, %2$d updates"
-msgstr ""
-
-msgid "Test connection"
+msgid "All up to date ✓"
 msgstr ""
 
 msgid "Connection"
@@ -1313,16 +537,7 @@ msgstr ""
 msgid "Remove key"
 msgstr ""
 
-msgid "Optional. Public packages need no key; for private packages, get one from the update server panel (/admin) with \"Add site\". Give each site its own key."
-msgstr ""
-
-msgid "Post-update check"
-msgstr ""
-
-msgid "Check that the site still loads after updating; roll the package back if it fails"
-msgstr ""
-
-msgid "Only HTTP 500 (critical error) triggers a rollback; network or firewall errors do not."
+msgid "Get it from the update server's admin panel (/admin) with \"Add site\". Give each site its own key."
 msgstr ""
 
 msgid "Automatic updates"
@@ -1334,139 +549,139 @@ msgstr ""
 msgid "When this is off, WordPress's per-plugin \"Enable auto-updates\" setting applies."
 msgstr ""
 
-msgid "Usage data"
-msgstr ""
-
-msgid "Update checks always send the site address; the server also looks up the country from the IP and does not store the IP (mandatory record). When on, update checks also send the WordPress and PHP version, time zone and language, and FluxWP plugin versions and errors are sent anonymously. When off, only what updates need is sent and updates work the same. You can withdraw consent here at any time."
-msgstr ""
-
 msgid "Save and check"
 msgstr ""
 
-msgid "Check for updates"
+msgid "No site key entered."
 msgstr ""
 
-msgid "Hide log"
+msgid "Could not reach the server: %s"
 msgstr ""
 
-msgid "Settings saved and updates checked."
+msgid "Invalid site key. Compare it with config.php on the server."
 msgstr ""
 
-msgid "Skipped (already in that state, active theme or FluxWP Panel): %s."
+msgid "The server returned an unexpected response (HTTP %d)."
 msgstr ""
 
-msgid "Failed: %s."
+msgid "No notes for this version."
 msgstr ""
 
-msgid "Updates checked."
+msgid "Could not rename the package folder."
 msgstr ""
 
-msgid "Retention saved and applied to existing update backups."
+msgid "Update key"
 msgstr ""
 
-msgid "Filter packages"
+msgid "No site key entered; FluxWP packages will not receive updates."
 msgstr ""
 
-msgid "Updates available"
+msgid "Not checked yet."
 msgstr ""
 
-msgid "Search plugins and themes"
+msgid "Server connection works. Last check: %s."
 msgstr ""
 
-msgid "Search plugins and themes…"
+msgid "Update server"
 msgstr ""
 
-msgid "Only updates"
+msgid "FluxWP package updates"
 msgstr ""
 
-msgid "Plugins, themes and updates"
+msgid "Waiting for update: %s"
 msgstr ""
 
-msgid "Activate installed"
+msgid "Updates"
 msgstr ""
 
-msgid "Install / update selected"
+msgid "Connected"
 msgstr ""
 
-msgid "Bulk action"
+msgid "Connection error"
 msgstr ""
 
-msgid "Bulk actions"
+msgid "Not connected"
 msgstr ""
 
-msgid "Activate"
+msgid "Not checked yet"
 msgstr ""
 
-msgid "Deactivate"
+msgid "Recognized by the server as \"%1$s\" (%2$s)."
 msgstr ""
 
-msgid "Turn on automatic updates"
+msgid "No site key entered. Get one from the update server's admin panel (/admin)."
 msgstr ""
 
-msgid "Turn off automatic updates"
+msgid "Connect to the server with \"Test connection\"."
+msgstr ""
+
+msgid "Last check: %s ago"
+msgstr ""
+
+msgid "%1$d packages, %2$d updates"
+msgstr ""
+
+msgid "Test connection"
+msgstr ""
+
+msgid "Flux Packages"
+msgstr ""
+
+msgid "Update settings"
+msgstr ""
+
+msgid "No package selected for update."
+msgstr ""
+
+msgid "Updating plugins"
+msgstr ""
+
+msgid "Updating themes"
+msgstr ""
+
+msgid "Installing %1$s version %2$s"
+msgstr ""
+
+msgid "No records."
+msgstr ""
+
+msgid "Back to updates"
+msgstr ""
+
+msgid "version changed (%s)"
+msgstr ""
+
+msgid "rolled back automatically (%s)"
+msgstr ""
+
+msgid "update failed (%s)"
+msgstr ""
+
+msgid "updated (%s)"
+msgstr ""
+
+msgid "Post-update check"
+msgstr ""
+
+msgid "Check that the site still loads after updating; roll the package back if it fails"
+msgstr ""
+
+msgid "Only HTTP 500 (critical error) triggers a rollback; network or firewall errors do not."
+msgstr ""
+
+msgid "FluxWP packages"
+msgstr ""
+
+msgid "Update selected"
 msgstr ""
 
 msgid "Update all (%s)"
 msgstr ""
 
-msgid "Package"
+msgid "Select all"
 msgstr ""
 
-msgid "Latest version"
-msgstr ""
-
-msgid "Auto-update"
-msgstr ""
-
-msgid "The package list could not be fetched. Check the server address and key (if any) in Settings and press \"Test connection\"."
-msgstr ""
-
-msgid "Folder"
-msgstr ""
-
-msgid "Slug"
-msgstr ""
-
-msgid "Type"
-msgstr ""
-
-msgid "Theme"
-msgstr ""
-
-msgid "Plugin"
-msgstr ""
-
-msgid "Category"
-msgstr ""
-
-msgid "Released"
-msgstr ""
-
-msgid "Source: %s"
-msgstr ""
-
-msgid "available from %d sources"
-msgstr ""
-
-msgid "Requires:"
-msgstr ""
-
-msgid "Active"
-msgstr ""
-
-msgid "Installed, inactive"
-msgstr ""
-
-msgid "Not installed"
-msgstr ""
-
-msgid "Inactive"
-msgstr ""
-
-msgid "Update available"
-msgstr ""
-
-msgid "Up to date"
+msgid "Could not get the package list. Enter the key in Settings and click \"Test connection\"."
 msgstr ""
 
 msgid "Change version"
@@ -1487,17 +702,371 @@ msgstr ""
 msgid "Flux Backup is not installed: no backup will be taken."
 msgstr ""
 
-msgid "Nothing matches this filter."
-msgstr ""
-
 msgid "WordPress updates"
 msgstr ""
 
 msgid "FluxWP themes and plugins are updated from your own update server instead of wordpress.org."
 msgstr ""
 
+msgid "A backup is taken before every update (Flux Backup)."
+msgstr ""
+
+msgid "Backups"
+msgstr ""
+
+msgid "No backup before updates: the Flux Backup plugin is not installed or active."
+msgstr ""
+
+msgid "Activate"
+msgstr ""
+
+msgid "Install Flux Backup"
+msgstr ""
+
+msgid "No FluxWP package updates yet."
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "By"
+msgstr ""
+
+msgid "Backup"
+msgstr ""
+
+msgid "Success"
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+msgid "Automatic"
+msgstr ""
+
+msgid "Open backup"
+msgstr ""
+
+msgid "Install version %2$s of %1$s?"
+msgstr ""
+
+msgid "Package did not change; the installation may have failed."
+msgstr ""
+
+msgid "Success ✓"
+msgstr ""
+
+msgid "Rolled back to the previous version automatically."
+msgstr ""
+
+msgid "Previous version not found; restore it manually."
+msgstr ""
+
+msgid "This version is not on the server."
+msgstr ""
+
+msgid "Package is not installed on this site."
+msgstr ""
+
+msgid "Before %1$s %2$s → %3$s"
+msgstr ""
+
+msgid "Backup failed, nothing was changed: %s"
+msgstr ""
+
+msgid "Installation failed."
+msgstr ""
+
+msgid "The site failed after the update (HTTP 500: %s)."
+msgstr ""
+
+msgid "Site check could not run (no connection)."
+msgstr ""
+
+msgid "Site check returned HTTP %d; not treated as a failure."
+msgstr ""
+
+msgid "%d backup deleted."
+msgid_plural "%d backups deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Retention saved and applied to existing update backups."
+msgstr ""
+
+msgid "%d expired backup deleted."
+msgid_plural "%d expired backups deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Update backups are deleted automatically after"
+msgstr ""
+
+msgid "%d day"
+msgid_plural "%d days"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "."
+msgstr ""
+
+msgid "Flux Backup settings"
+msgstr ""
+
+msgid "Update backup retention is set on the %s page (with Flux Backup 1.2.0 you can also change it here)."
+msgstr ""
+
+msgid "Currently %1$d update backup, %2$s."
+msgid_plural "Currently %1$d update backups, %2$s."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Delete all unlocked update backups? This cannot be undone."
+msgstr ""
+
+msgid "Delete all"
+msgstr ""
+
+msgid "Deleted"
+msgstr ""
+
+msgid "Locked backups are never deleted automatically."
+msgstr ""
+
+msgid "Locked"
+msgstr ""
+
+msgid "Deleted on %s"
+msgstr ""
+
+msgid "Open"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Delete the selected update backups? This cannot be undone."
+msgstr ""
+
+msgid "Delete selected backups"
+msgstr ""
+
+msgid "%s item"
+msgid_plural "%s items"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "First page"
+msgstr ""
+
+msgid "Previous page"
+msgstr ""
+
+msgid "Next page"
+msgstr ""
+
+msgid "Last page"
+msgstr ""
+
+msgid "%1$d of %2$d"
+msgstr ""
+
+msgid "Delete this backup? It also holds the backup of the other packages in the same bulk update. This cannot be undone."
+msgstr ""
+
+msgid "No package selected to install or update."
+msgstr ""
+
+msgid "installed %s"
+msgstr ""
+
+msgid "install failed"
+msgstr ""
+
+msgid "Hide log"
+msgstr ""
+
+msgid "Show log"
+msgstr ""
+
+msgid "Activate installed"
+msgstr ""
+
+msgid "Install / update selected"
+msgstr ""
+
+msgid "Requires:"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "Installed, inactive"
+msgstr ""
+
+msgid "%1$s requires %2$s (%3$s)."
+msgstr ""
+
+msgid "not installed"
+msgstr ""
+
+msgid "installed, inactive"
+msgstr ""
+
+msgid "Add %s too"
+msgstr ""
+
+msgid "Will also be installed / activated:"
+msgstr ""
+
+msgid "wordpress.org"
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
+msgid "%1$s was deselected: it does not work without %2$s."
+msgstr ""
+
+msgid "For %1$s these will also be installed and activated: %2$s. Continue?"
+msgstr ""
+
+msgid "Preparing…"
+msgstr ""
+
+msgid "Working, please stay on this page…"
+msgstr ""
+
+msgid "Stay on this page until it finishes"
+msgstr ""
+
+msgid "Reload"
+msgstr ""
+
+msgid "Reload the page to see the latest changes."
+msgstr ""
+
+msgid "Dismiss"
+msgstr ""
+
+msgid "Nothing to do."
+msgstr ""
+
+msgid "Done: %1$d succeeded, %2$d failed."
+msgstr ""
+
+msgid "The server did not respond (%s). Check the history and system checks."
+msgstr ""
+
+msgid "An install/update is running. Leaving the page may interrupt it."
+msgstr ""
+
+msgid "Installing %s…"
+msgstr ""
+
+msgid "Installing %s from wordpress.org…"
+msgstr ""
+
+msgid "Activating %s…"
+msgstr ""
+
+msgid "Updating %s (backup first)…"
+msgstr ""
+
+msgid "Changing the version of %s (backup first)…"
+msgstr ""
+
+msgid "Installing…"
+msgstr ""
+
+msgid "Activating…"
+msgstr ""
+
+msgid "Updating…"
+msgstr ""
+
+msgid "Changing version…"
+msgstr ""
+
+msgid "Queued"
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+msgid "(required by %s)"
+msgstr ""
+
+msgid "%1$s installed%2$s."
+msgstr ""
+
+msgid "%1$s was not activated: %2$s must be installed and active first."
+msgstr ""
+
+msgid "%1$s could not be activated: %2$s"
+msgstr ""
+
+msgid "%s activated."
+msgstr ""
+
+msgid "%s: you are not allowed to install."
+msgstr ""
+
+msgid "Could not download %1$s from wordpress.org: %2$s"
+msgstr ""
+
+msgid "no download link"
+msgstr ""
+
+msgid "unknown error"
+msgstr ""
+
+msgid "%1$s could not be installed: %2$s"
+msgstr ""
+
+msgid "%s is already installed."
+msgstr ""
+
+msgid "%1$s %2$s installed."
+msgstr ""
+
+msgid "This plugin is not required by any FluxWP package."
+msgstr ""
+
+msgid "%s was installed from wordpress.org."
+msgstr ""
+
+msgid "%s is not installed, so it could not be activated."
+msgstr ""
+
+msgid "%s is already active."
+msgstr ""
+
+msgid "Unknown action."
+msgstr ""
+
+msgid "The package is not installed."
+msgstr ""
+
+msgid "%s was not updated: WordPress sees no update for it. Click \"Check for updates\" and try again."
+msgstr ""
+
+msgid "Source: %s"
+msgstr ""
+
+msgid "available from %d sources"
+msgstr ""
+
 msgid "Remove this source? Packages installed from it stay on the site; they just stop receiving updates."
 msgstr ""
+
+msgid "Off"
+msgstr ""
+
+msgid "Connected · %d package"
+msgid_plural "Connected · %d packages"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Other sources"
 msgstr ""
@@ -1535,10 +1104,10 @@ msgstr ""
 msgid "Move up"
 msgstr ""
 
-msgid "Turn on"
+msgid "Turn off"
 msgstr ""
 
-msgid "Turn off"
+msgid "Turn on"
 msgstr ""
 
 msgid "Add source"
@@ -1568,97 +1137,686 @@ msgstr ""
 msgid "Sources"
 msgstr ""
 
-msgid "A backup is taken before every update (Flux Backup)."
+msgid "Update source: %s"
 msgstr ""
 
-msgid "Backups"
+msgid "The GitHub address is not in owner/repo form."
 msgstr ""
 
-msgid "No backup before updates: the Flux Backup plugin is not installed or active."
+msgid "Could not reach the source: %s"
 msgstr ""
 
-msgid "Install Flux Backup"
+msgid "Repository not found or not public."
 msgstr ""
 
-msgid "Update backups are deleted automatically after"
+msgid "GitHub returned an unexpected response (HTTP %d)."
 msgstr ""
 
-msgid "."
+msgid "The address must start with https://."
 msgstr ""
 
-msgid "Update backup retention is set on the %s page (with Flux Backup 1.2.0 you can also change it here)."
+msgid "This source is already in the list."
 msgstr ""
 
-msgid "Flux Backup settings"
+msgid "The source could not be tested."
 msgstr ""
 
-msgid "Delete all unlocked update backups? This cannot be undone."
+msgid "Connected without a key (%s): public packages are available. Enter a site key for private packages."
 msgstr ""
 
-msgid "Delete all"
+msgid "Optional. Public packages need no key; for private packages, get one from the update server panel (/admin) with \"Add site\". Give each site its own key."
 msgstr ""
 
-msgid "No updates yet."
+msgid "The package list could not be fetched. Check the server address and key (if any) in Settings and press \"Test connection\"."
 msgstr ""
 
-msgid "Date"
+msgid "This server does not serve updates without a key; enter a site key."
 msgstr ""
 
-msgid "By"
+msgid "Invalid site key. Try it with \"Test an existing key\" in the update server panel (/admin)."
 msgstr ""
 
-msgid "Backup"
+msgid "No key: only public packages are available."
 msgstr ""
 
-msgid "Success"
+msgid "The site key is disabled on the server; only public packages are available."
 msgstr ""
 
-msgid "Error"
+msgid "Bulk action"
 msgstr ""
 
-msgid "Automatic"
+msgid "Bulk actions"
 msgstr ""
 
-msgid "Deleted"
+msgid "Deactivate"
 msgstr ""
 
-msgid "Locked backups are never deleted automatically."
+msgid "Inactive"
 msgstr ""
 
-msgid "Locked"
+msgid "%d package activated."
+msgid_plural "%d packages activated."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%d package deactivated."
+msgid_plural "%d packages deactivated."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%d package deleted."
+msgid_plural "%d packages deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Skipped (already in that state, active theme or FluxWP Panel): %s."
 msgstr ""
 
-msgid "Deleted on %s"
+msgid "Failed: %s."
 msgstr ""
 
-msgid "Open"
+msgid "Delete these packages from the site? Their files will be removed. %s"
 msgstr ""
 
-msgid "Delete this backup? It also holds the backup of the other packages in the same bulk update. This cannot be undone."
+msgid "Setup wizard"
 msgstr ""
 
-msgid "Open backup"
+msgid "FluxWP demo"
 msgstr ""
 
-msgid "Delete the selected update backups? This cannot be undone."
+msgid "Sample home page, products and menus."
 msgstr ""
 
-msgid "Delete selected backups"
+msgid "Blank"
 msgstr ""
 
-msgid "First page"
+msgid "Theme and colour only"
 msgstr ""
 
-msgid "Previous page"
+msgid "Anthracite"
 msgstr ""
 
-msgid "%1$d of %2$d"
+msgid "Blue"
 msgstr ""
 
-msgid "Next page"
+msgid "Teal"
 msgstr ""
 
-msgid "Last page"
+msgid "Indigo"
+msgstr ""
+
+msgid "Forest"
+msgstr ""
+
+msgid "Connect e-mail"
+msgstr ""
+
+msgid "Without SMTP, receipts and notifications are not delivered."
+msgstr ""
+
+msgid "Flux Mail › Settings"
+msgstr ""
+
+msgid "Upload your logo"
+msgstr ""
+
+msgid "Used in the admin and in e-mails."
+msgstr ""
+
+msgid "Settings › Admin theme"
+msgstr ""
+
+msgid "Add an AI key"
+msgstr ""
+
+msgid "Needed for assistants and AI tools."
+msgstr ""
+
+msgid "Flux AI & MCP › Settings"
+msgstr ""
+
+msgid "The setup wizard needs JavaScript."
+msgstr ""
+
+msgid "Go to the Packages screen."
+msgstr ""
+
+msgid "Site name: %s"
+msgstr ""
+
+msgid "The FluxWP theme is not installed."
+msgstr ""
+
+msgid "You are not allowed to switch themes."
+msgstr ""
+
+msgid "FluxWP theme is active."
+msgstr ""
+
+msgid "No preset applied (Blank)."
+msgstr ""
+
+msgid "You are not allowed to apply presets."
+msgstr ""
+
+msgid "The preset is already applied."
+msgstr ""
+
+msgid "Preset not found. If the package is installed, apply it under Appearance › Presets."
+msgstr ""
+
+msgid "%s preset applied."
+msgstr ""
+
+msgid "Setup finished."
+msgstr ""
+
+msgid "Wizard skipped."
+msgstr ""
+
+msgid "Colour unchanged."
+msgstr ""
+
+msgid "You are not allowed to edit the appearance."
+msgstr ""
+
+msgid "The active theme does not support colour styles."
+msgstr ""
+
+msgid "The theme has no %s colour style."
+msgstr ""
+
+msgid "Could not create the global styles record."
+msgstr ""
+
+msgid "Colour style: %s"
+msgstr ""
+
+msgid "Step %1$s of %2$s"
+msgstr ""
+
+msgid "Welcome to FluxWP"
+msgstr ""
+
+msgid "Let's set up your site in three steps. Pick the plugins, choose the look, and FluxWP Panel installs the rest."
+msgstr ""
+
+msgid "%d plugins"
+msgstr ""
+
+msgid "Donations, forms, WhatsApp, e-mail, SEO and backups work from one admin."
+msgstr ""
+
+msgid "New versions appear on WordPress's Updates screen."
+msgstr ""
+
+msgid "Change later"
+msgstr ""
+
+msgid "You can change the preset and colour later under Appearance › Theme settings."
+msgstr ""
+
+msgid "Get started"
+msgstr ""
+
+msgid "I'll set it up myself"
+msgstr ""
+
+msgid "About 3 minutes"
+msgstr ""
+
+msgid "Plugins"
+msgstr ""
+
+msgid "Updates first"
+msgstr ""
+
+msgid "Your installed apps are being updated before setup, so everything is installed on the latest version."
+msgstr ""
+
+msgid "Checking for updates…"
+msgstr ""
+
+msgid "updating"
+msgstr ""
+
+msgid "updated"
+msgstr ""
+
+msgid "FluxWP Panel was updated. Reopening the wizard on the new version…"
+msgstr ""
+
+msgid "Updates could not be completed: %s Setup does not continue until the updates are done."
+msgstr ""
+
+msgid "Try again"
+msgstr ""
+
+msgid "Go to Packages"
+msgstr ""
+
+msgid "Unknown error."
+msgstr ""
+
+msgid "Clear selection"
+msgstr ""
+
+msgid "Essentials"
+msgstr ""
+
+msgid "What should we start with?"
+msgstr ""
+
+msgid "Continue without these"
+msgstr ""
+
+msgid "Recommended"
+msgstr ""
+
+msgid "Block theme with shop, donation and company page templates."
+msgstr ""
+
+msgid "Appearance"
+msgstr ""
+
+msgid "How should your site look?"
+msgstr ""
+
+msgid "Pages and menus are created from it."
+msgstr ""
+
+msgid "Colour"
+msgstr ""
+
+msgid "The theme and plugins share this colour."
+msgstr ""
+
+msgid "Site name"
+msgstr ""
+
+msgid "Also shown in e-mails and certificates."
+msgstr ""
+
+msgid "Your site is ready"
+msgstr ""
+
+msgid "Plugins installed, preset and colour applied."
+msgstr ""
+
+msgid "Setup finished, some steps did not complete"
+msgstr ""
+
+msgid "The failed steps are below. You can try again from FluxWP Panel › Packages."
+msgstr ""
+
+msgid "plugins"
+msgstr ""
+
+msgid "pages"
+msgstr ""
+
+msgid "colour"
+msgstr ""
+
+msgid "Open site"
+msgstr ""
+
+msgid "Go to dashboard"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "Continue"
+msgstr ""
+
+msgid "Skip setup?"
+msgstr ""
+
+msgid "Nothing is installed. You can open the wizard later from FluxWP Panel › Setup wizard."
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "%s plugins + FluxWP theme"
+msgstr ""
+
+msgid "%s plugins"
+msgstr ""
+
+msgid "Keep this tab open."
+msgstr ""
+
+msgid "queued"
+msgstr ""
+
+msgid "installing"
+msgstr ""
+
+msgid "installed"
+msgstr ""
+
+msgid "applying"
+msgstr ""
+
+msgid "applied"
+msgstr ""
+
+msgid "error"
+msgstr ""
+
+msgid "Downloading packages"
+msgstr ""
+
+msgid "Installing plugins"
+msgstr ""
+
+msgid "Getting your site ready"
+msgstr ""
+
+msgid "Creating pages and menus"
+msgstr ""
+
+msgid "Almost there, final touches"
+msgstr ""
+
+msgid "FluxWP theme"
+msgstr ""
+
+msgid "Activating the theme"
+msgstr ""
+
+msgid "Ready"
+msgstr ""
+
+msgid "Opening the final screen."
+msgstr ""
+
+msgid "Could not reach the server. Check your connection and try again."
+msgstr ""
+
+msgid "Could not reach the update server; the package list is empty. Check the server under FluxWP Panel › Settings. The theme and preset can still be applied."
+msgstr ""
+
+msgid "Flux Updater is now part of FluxWP Panel; the old plugin was deactivated and its settings were kept. You can delete it from the Plugins screen."
+msgstr ""
+
+msgid "Store"
+msgstr ""
+
+msgid "Flux Commerce: sales dashboard, customers, reports and bank transfer with receipts."
+msgstr ""
+
+msgid "Nonprofit and donations"
+msgstr ""
+
+msgid "Flux Donate and Flux Certificates: donation types, a one-page checkout and a certificate in every donor's name."
+msgstr ""
+
+msgid "Admin theme"
+msgstr ""
+
+msgid "Flux Admin: a redesigned admin panel with a command palette, mobile menu and light/dark mode."
+msgstr ""
+
+msgid "Communication"
+msgstr ""
+
+msgid "Other"
+msgstr ""
+
+msgid "Other FluxWP packages."
+msgstr ""
+
+msgid "Plugins · %1$s of %2$s"
+msgstr ""
+
+msgid "%s packages queued"
+msgstr ""
+
+msgid "activating"
+msgstr ""
+
+msgid "The admin theme and the kind of site: a store or a nonprofit. Pick one kind; you can install the other later."
+msgstr ""
+
+msgid "Blog"
+msgstr ""
+
+msgid "About us"
+msgstr ""
+
+msgid "FAQ"
+msgstr ""
+
+msgid "Tell visitors who you are and what you do."
+msgstr ""
+
+msgid "Add your address, phone and e-mail here."
+msgstr ""
+
+msgid "Add common questions and their answers here."
+msgstr ""
+
+msgid "Upload a PNG, JPG, WebP or GIF."
+msgstr ""
+
+msgid "Tagline: %s"
+msgstr ""
+
+msgid "Could not set the logo."
+msgstr ""
+
+msgid "Logo set."
+msgstr ""
+
+msgid "You are not allowed to create pages."
+msgstr ""
+
+msgid "Page: %s"
+msgstr ""
+
+msgid "No new pages."
+msgstr ""
+
+msgid "Identity"
+msgstr ""
+
+msgid "Shown under the name on the home page and in search results."
+msgstr ""
+
+msgid "Logo"
+msgstr ""
+
+msgid "A square or wide image (PNG, JPG, WebP). You can change it later."
+msgstr ""
+
+msgid "Upload logo"
+msgstr ""
+
+msgid "Change"
+msgstr ""
+
+msgid "Uploading…"
+msgstr ""
+
+msgid "Selected pages are created empty for you to fill in later. Existing pages are not created again."
+msgstr ""
+
+msgid "Donate"
+msgstr ""
+
+msgid "Latest posts"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Calm and serious; fits anything."
+msgstr ""
+
+msgid "Trustworthy, corporate."
+msgstr ""
+
+msgid "Quiet and modern."
+msgstr ""
+
+msgid "Lively; tech and education."
+msgstr ""
+
+msgid "Nature; for nonprofits and foundations."
+msgstr ""
+
+msgid "Your name and logo first, then preset, colour and pages. The preview on the right updates right away."
+msgstr ""
+
+msgctxt "context_ac58193b5653"
+msgid "Contact"
+msgstr ""
+
+msgid "I accept the %1$s and %2$s; I have read the %3$s."
+msgstr ""
+
+msgid "Terms of Use"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
+
+msgid "KVKK Privacy Notice"
+msgstr ""
+
+msgid "Help us improve FluxWP (send usage data)"
+msgstr ""
+
+msgid "Optional. WordPress and PHP version, language and time zone, plus anonymous version and error data for FluxWP plugins. The site address and country are always recorded for updates (IPs are not stored). Updates work when this is off; change it under FluxWP Panel › Settings."
+msgstr ""
+
+msgid "Accept the terms to continue."
+msgstr ""
+
+msgid "Usage data consent saved."
+msgstr ""
+
+msgid "Usage data will not be sent."
+msgstr ""
+
+msgid "Usage data"
+msgstr ""
+
+msgid "Update checks always send the site address; the server also looks up the country from the IP and does not store the IP (mandatory record). When on, update checks also send the WordPress and PHP version, time zone and language, and FluxWP plugin versions and errors are sent anonymously. When off, only what updates need is sent and updates work the same. You can withdraw consent here at any time."
+msgstr ""
+
+msgid "Anonymous usage data"
+msgstr ""
+
+msgid "On"
+msgstr ""
+
+msgid "Sent."
+msgstr ""
+
+msgid "Show the data that will be sent"
+msgstr ""
+
+msgid "Could not send. Check the URL and that the Flux Analytics telemetry hub is on at the target site."
+msgstr ""
+
+msgid "Sent: a random install ID, WordPress and PHP version, site language, country (from the time zone or store country), active FluxWP plugins and theme, PHP errors from FluxWP (with paths, domain, emails and IPs removed), setup wizard progress and choices. Site address, IP, users and content are never sent."
+msgstr ""
+
+msgid "Not sent yet. Sent at most once a day."
+msgstr ""
+
+msgid "Nothing is sent. Tick \"Help us improve the product\" to turn it on."
+msgstr ""
+
+msgid "Saved."
+msgstr ""
+
+msgid "Last sent %s. Sent at most once a day."
+msgstr ""
+
+msgid "Telemetry URL"
+msgstr ""
+
+msgid "Send now"
+msgstr ""
+
+msgid "Leave empty to send to FluxWP. To run your own hub, turn on Flux Analytics › Settings › Telemetry hub on one site and paste that address here. https only."
+msgstr ""
+
+msgid "Be found on Google"
+msgstr ""
+
+msgid "Watch from the panel how the site looks in Google search, how many people arrive, and how fast pages open. Google Site Kit brings Search Console, Analytics and PageSpeed into one screen."
+msgstr ""
+
+msgid "Install Google Site Kit"
+msgstr ""
+
+msgid "Activate Google Site Kit"
+msgstr ""
+
+msgid "Show your products on Google"
+msgstr ""
+
+msgid "Your Google account is connected. With Google for WooCommerce your products are listed for free on Google Shopping, Search, YouTube and Images; you can also run ads."
+msgstr ""
+
+msgid "Install Google for WooCommerce"
+msgstr ""
+
+msgid "Activate Google for WooCommerce"
+msgstr ""
+
+msgid "Not needed"
+msgstr ""
+
+msgid "Could not download %s from wordpress.org."
+msgstr ""
+
+msgid "Try from Plugins › Add New"
+msgstr ""
+
+msgid "Next attempt: %s."
+msgstr ""
+
+msgid "Update distribution is temporarily paused on the server. Nothing is wrong with your site; updates will resume when distribution is turned back on."
+msgstr ""
+
+msgid "The update server does not accept requests from this site's country. Contact the server administrator for access."
+msgstr ""
+
+msgid "The update server does not accept keyless requests from this site's country. Enter a site key or contact the server administrator."
+msgstr ""
+
+msgid "This server has turned off keyless updates. Enter a site key to keep receiving packages."
+msgstr ""
+
+msgid "The site key is disabled on the server and keyless updates are off, so no packages are available. Ask the server administrator to re-enable the key."
+msgstr ""
+
+msgid "The server cannot respond right now (HTTP %d)."
+msgstr ""
+
+msgid "Distribution paused"
+msgstr ""
+
+msgid "Blocked in this region"
+msgstr ""
+
+msgid "Site key required"
+msgstr ""
+
+msgid "Site key disabled"
+msgstr ""
+
+msgid "Support and feedback: %s"
+msgstr ""
+
+msgid "FluxWP Panel"
 msgstr ""
 
 msgid "Close preview"
@@ -1682,118 +1840,97 @@ msgstr ""
 msgid "Preview image %d"
 msgstr ""
 
-msgid "%1$s requires %2$s (%3$s)."
+msgid "%d package removed."
+msgid_plural "%d packages removed."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%s record"
+msgid_plural "%s records"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%dthere is an update"
+msgid_plural "%dthere is an update"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%dpackage activated."
+msgid_plural "%dpackage activated."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%dpackage has been disabled."
+msgid_plural "%dpackage has been disabled."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%dpackage removed."
+msgid_plural "%dpackage removed."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%dbackup deleted."
+msgid_plural "%dbackup deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Expired%dbackup deleted. Expired%dbackup deleted."
 msgstr ""
 
-msgid "Checking…"
+msgid "Connected ·%dpackage Connected ·%dpackage"
 msgstr ""
 
-msgid "not installed"
+msgid "%dday"
+msgid_plural "%dday"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
 msgstr ""
 
-msgid "installed, inactive"
+msgid "%sregistration"
+msgid_plural "%sregistration"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back."
 msgstr ""
 
-msgid "Add %s too"
+msgid "Expired%dbackup deleted. Expired%dbackup deleted."
+msgid_plural "Expired%dbackup deleted. Expired%dbackup deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Connected ·%dpackage Connected ·%dpackage"
+msgid_plural "Connected ·%dpackage Connected ·%dpackage"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
+msgid_plural "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Select at least one change."
 msgstr ""
 
-msgid "Will also be installed / activated:"
+msgid "The selected changes are no longer available. Refresh the preview."
 msgstr ""
 
-msgid "wordpress.org"
+msgid "Also select the required items: %s"
 msgstr ""
 
-msgid "Remove"
+msgid "Select all changes"
 msgstr ""
 
-msgid "%1$s was deselected: it does not work without %2$s."
+msgid "Select all protected values (overwrite)"
 msgstr ""
 
-msgid "For %1$s these will also be installed and activated: %2$s. Continue?"
+msgid "Select %s"
 msgstr ""
 
-msgid "Install version %2$s of %1$s?"
-msgstr ""
-
-msgid "Delete these packages from the site? Their files will be removed. %s"
-msgstr ""
-
-msgid "Preparing…"
-msgstr ""
-
-msgid "Working, please stay on this page…"
-msgstr ""
-
-msgid "Stay on this page until it finishes"
-msgstr ""
-
-msgid "Reload"
-msgstr ""
-
-msgid "Reload the page to see the latest changes."
-msgstr ""
-
-msgid "Dismiss"
-msgstr ""
-
-msgid "Nothing to do."
-msgstr ""
-
-msgid "Done: %1$d succeeded, %2$d failed."
-msgstr ""
-
-msgid "The server did not respond (%s). Check the history and system checks."
-msgstr ""
-
-msgid "An install/update is running. Leaving the page may interrupt it."
-msgstr ""
-
-msgid "Show log"
-msgstr ""
-
-msgid "Installing %s…"
-msgstr ""
-
-msgid "Installing %s from wordpress.org…"
-msgstr ""
-
-msgid "Activating %s…"
-msgstr ""
-
-msgid "Updating %s (backup first)…"
-msgstr ""
-
-msgid "Changing the version of %s (backup first)…"
-msgstr ""
-
-msgid "Updating %s…"
-msgstr ""
-
-msgid "Installing…"
-msgstr ""
-
-msgid "Activating…"
-msgstr ""
-
-msgid "Updating…"
-msgstr ""
-
-msgid "Changing version…"
-msgstr ""
-
-msgid "Queued"
-msgstr ""
-
-msgid "Retry failed ones"
-msgstr ""
-
-msgid "Done"
-msgstr ""
-
-msgid "The package is not installed."
-msgstr ""
-
-msgid "%s was not updated: WordPress sees no update for it. Click \"Check for updates\" and try again."
+msgid "Apply selected changes (%d)"
 msgstr ""
 
 msgid "Download failed: the temporary folder (%s) is not writable. Ask your host to check folder permissions."
@@ -1829,1266 +1966,125 @@ msgstr ""
 msgid "Download failed (HTTP %1$d: %2$s). %3$s"
 msgstr ""
 
-msgid "Package did not change; the installation may have failed."
+msgid "%1$d of %2$d sites"
 msgstr ""
 
-msgid "Rolled back to the previous version automatically."
+msgid "%d sites connected"
 msgstr ""
 
-msgid "Previous version not found; restore it manually."
+msgid "Another request is renewing the session. Try again in a moment."
 msgstr ""
 
-msgid "This version is not on the server."
+msgid "Checked %s"
 msgstr ""
 
-msgid "Package is not installed on this site."
+msgid "Connect your FluxWP account"
 msgstr ""
 
-msgid "Before %1$s %2$s → %3$s"
+msgid "Connected to your FluxWP account. Your plan's packages are on the Packages screen."
 msgstr ""
 
-msgid "Backup failed, nothing was changed: %s"
+msgid "Connected, plan %s."
 msgstr ""
 
-msgid "Installation failed."
+msgid "Connecting failed. Try again."
 msgstr ""
 
-msgid "The site failed after the update (HTTP 500: %s)."
+msgid "Connecting was cancelled on FluxWP."
 msgstr ""
 
-msgid "Site check could not run (no connection)."
+msgid "Disconnect"
 msgstr ""
 
-msgid "Site check returned HTTP %d; not treated as a failure."
+msgid "Disconnected. Installed plugins keep working; updates of paid packages stop."
 msgstr ""
 
-msgid "%s is already installed."
+msgid "FluxWP %1$s · %2$s"
 msgstr ""
 
-msgid "%1$s %2$s installed."
+msgid "FluxWP account"
 msgstr ""
 
-msgid "This plugin is not required by any FluxWP package."
+msgid "FluxWP answered with HTTP %d."
 msgstr ""
 
-msgid "%s was installed from wordpress.org."
+msgid "FluxWP could not be reached: %s"
 msgstr ""
 
-msgid "%s is not installed, so it could not be activated."
+msgid "FluxWP did not return a key. Try again."
 msgstr ""
 
-msgid "%s is already active."
+msgid "Manage account"
 msgstr ""
 
-msgid "%1$s was not activated: %2$s must be installed and active first."
+msgid "Not connected. Sign in with FluxWP to get the packages of your plan."
 msgstr ""
 
-msgid "%1$s could not be activated: %2$s"
+msgid "Plan information refreshed."
 msgstr ""
 
-msgid "%s: you are not allowed to install."
+msgid "Refresh"
 msgstr ""
 
-msgid "Could not download %1$s from wordpress.org: %2$s"
+msgid "Renews or ends on %s"
 msgstr ""
 
-msgid "no download link"
+msgid "Sets: %s"
 msgstr ""
 
-msgid "unknown error"
+msgid "Sign in or sign up on fluxwp.com: this site gets its update key and the packages of your plan automatically. The Free plan needs no card."
 msgstr ""
 
-msgid "The GitHub address is not in owner/repo form."
+msgid "Sign in with FluxWP"
 msgstr ""
 
-msgid "Could not reach the source: %s"
+msgid "Subscription ended: the Free plan applies, paid updates are paused."
 msgstr ""
 
-msgid "Repository not found or not public."
+msgid "The sign-in link expired. Start again with \"Sign in with FluxWP\"."
 msgstr ""
 
-msgid "GitHub returned an unexpected response (HTTP %d)."
+msgid "This site is not connected to a FluxWP account."
 msgstr ""
 
-msgid "The address must start with https://."
+msgid "Install Flux GraphQL"
 msgstr ""
 
-msgid "This source is already in the list."
+msgid "Activate Flux GraphQL"
 msgstr ""
 
-msgid "The source could not be tested."
+msgid "Flux GraphQL settings"
 msgstr ""
 
-msgid "Could not reach the server: %s"
+msgid "%1$s needs PHP %2$s or newer; this site runs PHP %3$s. Raise the PHP version in the hosting panel."
 msgstr ""
 
-msgid "This server does not serve updates without a key; enter a site key."
+msgid "%s cannot load its data because the Flux GraphQL server is not running. Open the Flux GraphQL settings to fix it."
 msgstr ""
 
-msgid "Invalid site key. Try it with \"Test an existing key\" in the update server panel (/admin)."
+msgid "%s needs Flux GraphQL to load its data. Install and activate it; it takes a few seconds."
 msgstr ""
 
-msgid "The server returned an unexpected response (HTTP %d)."
+msgid "PHP version"
 msgstr ""
 
-msgid "The site key is disabled on the server; only public packages are available."
+msgid "PHP %s. FluxWP GraphQL packages run on it."
 msgstr ""
 
-msgid "Next attempt: %s."
+msgid "PHP %1$s. New FluxWP packages (Flux GraphQL and the packages that use it) need PHP %2$s or newer: raise it in the hosting panel."
 msgstr ""
 
-msgid "Support and feedback: %s"
+msgid "Flux GraphQL %s is installed and working; no separate WPGraphQL conflict."
 msgstr ""
 
-msgid "Update distribution is temporarily paused on the server. Nothing is wrong with your site; updates will resume when distribution is turned back on."
+msgid "Flux GraphQL is active, but its GraphQL server is not running (usually an unsupported, separately installed WPGraphQL), so GraphQL screens are off."
 msgstr ""
 
-msgid "The update server does not accept requests from this site's country. Contact the server administrator for access."
+msgid "These packages need Flux GraphQL, which is not active: %s. Their screens cannot load data."
 msgstr ""
 
-msgid "The update server does not accept keyless requests from this site's country. Enter a site key or contact the server administrator."
+msgid "Flux GraphQL is installed but not active. No active package needs it."
 msgstr ""
 
-msgid "This server has turned off keyless updates. Enter a site key to keep receiving packages."
-msgstr ""
-
-msgid "The site key is disabled on the server and keyless updates are off, so no packages are available. Ask the server administrator to re-enable the key."
-msgstr ""
-
-msgid "The server cannot respond right now (HTTP %d)."
-msgstr ""
-
-msgid "Distribution paused"
-msgstr ""
-
-msgid "Blocked in this region"
-msgstr ""
-
-msgid "Site key required"
-msgstr ""
-
-msgid "Site key disabled"
-msgstr ""
-
-msgid "No notes for this version."
-msgstr ""
-
-msgid "Could not rename the package folder."
-msgstr ""
-
-msgid "Not checked yet."
-msgstr ""
-
-msgid "Server connection works. Last check: %s."
-msgstr ""
-
-msgid "No key: only public packages are available."
-msgstr ""
-
-msgid "Update server"
-msgstr ""
-
-msgid "Check now"
-msgstr ""
-
-msgid "Update source: %s"
-msgstr ""
-
-msgid "FluxWP package updates"
-msgstr ""
-
-msgid "Waiting for update: %s"
-msgstr ""
-
-msgid "%d update"
-msgid_plural "%d updates"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "All"
-msgstr ""
-
-msgid "FluxWP"
-msgstr ""
-
-msgid "Themes"
-msgstr ""
-
-msgid "WordPress & translations"
-msgstr ""
-
-msgid "Translations"
-msgstr ""
-
-msgid "New translations: %s"
-msgstr ""
-
-msgid "All translations are up to date."
-msgstr ""
-
-msgid "Core"
-msgstr ""
-
-msgid "On for all FluxWP packages (FluxWP Panel › Settings)."
-msgstr ""
-
-msgid "Automatic updates are turned off for this site."
-msgstr ""
-
-msgid "Translation"
-msgstr ""
-
-msgid "File"
-msgstr ""
-
-msgid "Author"
-msgstr ""
-
-msgid "General"
-msgstr ""
-
-msgid "No download available"
-msgstr ""
-
-msgid "Not installed: %s"
-msgstr ""
-
-msgid "WordPress.org still offers a newer translation: %s. The file could not be written or the language folder is read-only."
-msgstr ""
-
-msgid "%s updated."
-msgstr ""
-
-msgid "%d update available"
-msgid_plural "%d updates available"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "The update engine is not available: the old Flux Updater plugin is still active. Deactivate it."
-msgstr ""
-
-msgid "Could not connect to the server."
-msgstr ""
-
-msgid "All up to date ✓"
-msgstr ""
-
-msgid "Update backup retention is set on the Flux Backup settings page."
-msgstr ""
-
-msgid "Enter 1 to 365 days."
-msgstr ""
-
-msgid "Where a package row belongs in the table."
-msgstr ""
-
-msgid "FluxWP package."
-msgstr ""
-
-msgid "Plugin of another maker."
-msgstr ""
-
-msgid "Theme of another maker."
-msgstr ""
-
-msgid "WordPress core and translations."
-msgstr ""
-
-msgid "A tab of the package table."
-msgstr ""
-
-msgid "Every row."
-msgstr ""
-
-msgid "Plugins of other makers."
-msgstr ""
-
-msgid "Themes of other makers."
-msgstr ""
-
-msgid "What a package row is."
-msgstr ""
-
-msgid "FluxWP plugin."
-msgstr ""
-
-msgid "FluxWP theme."
-msgstr ""
-
-msgid "Translation updates of WordPress, plugins and themes (one row)."
-msgstr ""
-
-msgid "WordPress itself; it updates on the WordPress updates screen."
-msgstr ""
-
-msgid "Install state of a package."
-msgstr ""
-
-msgid "Installed, a newer version is available."
-msgstr ""
-
-msgid "Installed and up to date."
-msgstr ""
-
-msgid "Not installed."
-msgstr ""
-
-msgid "Automatic update setting of a plugin or theme."
-msgstr ""
-
-msgid "On."
-msgstr ""
-
-msgid "Off."
-msgstr ""
-
-msgid "On for every FluxWP package (FluxWP Panel setting); cannot be changed per package."
-msgstr ""
-
-msgid "Not applicable: not installed, not a plugin or theme, or automatic updates are off for the site."
-msgstr ""
-
-msgid "State of a plugin another package needs."
-msgstr ""
-
-msgid "Installed and active."
-msgstr ""
-
-msgid "Installed, not active."
-msgstr ""
-
-msgid "State of the connection to the update server."
-msgstr ""
-
-msgid "The server answered."
-msgstr ""
-
-msgid "The server could not be reached or refused the site."
-msgstr ""
-
-msgid "The server paused updates for this site; checks wait."
-msgstr ""
-
-msgid "One step of an install or update."
-msgstr ""
-
-msgid "Install a FluxWP package."
-msgstr ""
-
-msgid "Install a required plugin from wordpress.org."
-msgstr ""
-
-msgid "Activate a plugin."
-msgstr ""
-
-msgid "Update a FluxWP package (a backup is taken first)."
-msgstr ""
-
-msgid "Install a chosen version of a FluxWP package (a backup is taken first)."
-msgstr ""
-
-msgid "Update a plugin of another maker."
-msgstr ""
-
-msgid "Update a theme of another maker."
-msgstr ""
-
-msgid "Update translations."
-msgstr ""
-
-msgid "Bulk action on installed packages."
-msgstr ""
-
-msgid "Activate plugins."
-msgstr ""
-
-msgid "Deactivate plugins."
-msgstr ""
-
-msgid "Delete plugins and themes from the site."
-msgstr ""
-
-msgid "Turn on automatic updates."
-msgstr ""
-
-msgid "Turn off automatic updates."
-msgstr ""
-
-msgid "What an automatic update setting belongs to."
-msgstr ""
-
-msgid "A plugin (id is the plugin file)."
-msgstr ""
-
-msgid "A theme (id is the theme folder)."
-msgstr ""
-
-msgid "Kind of an update source."
-msgstr ""
-
-msgid "A FluxWP update server."
-msgstr ""
-
-msgid "A public GitHub repository."
-msgstr ""
-
-msgid "State of an update source."
-msgstr ""
-
-msgid "Connected."
-msgstr ""
-
-msgid "Could not be reached or refused the site."
-msgstr ""
-
-msgid "Turned off."
-msgstr ""
-
-msgid "Change of an update source."
-msgstr ""
-
-msgid "Remove the source."
-msgstr ""
-
-msgid "Turn the source on or off."
-msgstr ""
-
-msgid "Move the source up (higher sources win)."
-msgstr ""
-
-msgid "Which update backups to delete."
-msgstr ""
-
-msgid "The first id of the list."
-msgstr ""
-
-msgid "The listed ids."
-msgstr ""
-
-msgid "Every unlocked update backup."
-msgstr ""
-
-msgid "Result of a system check row."
-msgstr ""
-
-msgid "Fine."
-msgstr ""
-
-msgid "For information."
-msgstr ""
-
-msgid "Needs attention."
-msgstr ""
-
-msgid "Broken."
-msgstr ""
-
-msgid "State of Flux GraphQL on the site."
-msgstr ""
-
-msgid "Installed and working."
-msgstr ""
-
-msgid "Active, but its GraphQL server is not running."
-msgstr ""
-
-msgid "A step of the setup wizard."
-msgstr ""
-
-msgid "Set the site name."
-msgstr ""
-
-msgid "Set the tagline."
-msgstr ""
-
-msgid "Use a media library image as the logo (value: attachment id)."
-msgstr ""
-
-msgid "Create starter pages (value: comma separated page keys)."
-msgstr ""
-
-msgid "Activate the FluxWP theme."
-msgstr ""
-
-msgid "Apply a colour style of the theme (value: style key)."
-msgstr ""
-
-msgid "Apply a preset (value: preset id)."
-msgstr ""
-
-msgid "Accept the terms and set the usage data consent (value: 1 or 0)."
-msgstr ""
-
-msgid "Finish the wizard."
-msgstr ""
-
-msgid "Skip the wizard."
-msgstr ""
-
-msgid "A label under a package name."
-msgstr ""
-
-msgid "Text."
-msgstr ""
-
-msgid "Style: flux, cat, general or type."
-msgstr ""
-
-msgid "A plugin a package needs."
-msgstr ""
-
-msgid "Plugin folder."
-msgstr ""
-
-msgid "Plugin name."
-msgstr ""
-
-msgid "Whether it is installed and active."
-msgstr ""
-
-msgid "It is a FluxWP package (else it comes from wordpress.org)."
-msgstr ""
-
-msgid "Another version of a package the site can switch to."
-msgstr ""
-
-msgid "Version number."
-msgstr ""
-
-msgid "Release date; empty when the server did not say."
-msgstr ""
-
-msgid "Older than the installed version."
-msgstr ""
-
-msgid "The automatic update switch of a row."
-msgstr ""
-
-msgid "Current setting."
-msgstr ""
-
-msgid "plugin or theme; empty when there is no switch."
-msgstr ""
-
-msgid "Plugin file or theme folder to pass to flxSetupAutoUpdateSet; empty when there is no switch."
-msgstr ""
-
-msgid "The viewer may change it."
-msgstr ""
-
-msgid "A label and value of the package details."
-msgstr ""
-
-msgid "Label."
-msgstr ""
-
-msgid "Value."
-msgstr ""
-
-msgid "A row of the package table: a FluxWP package, a plugin or theme of another maker, translations or WordPress core."
-msgstr ""
-
-msgid "Row key: the slug of a FluxWP package, p:<plugin file>, t:<theme folder>, lang or core."
-msgstr ""
-
-msgid "Tab the row belongs to."
-msgstr ""
-
-msgid "What the row is."
-msgstr ""
-
-msgid "Slug (FluxWP), plugin file, theme folder; empty for translations and core."
-msgstr ""
-
-msgid "Name."
-msgstr ""
-
-msgid "Slug, folder or a short status line."
-msgstr ""
-
-msgid "Author; empty when unknown."
-msgstr ""
-
-msgid "Install state."
-msgstr ""
-
-msgid "Installed version; empty when not installed."
-msgstr ""
-
-msgid "Latest version."
-msgstr ""
-
-msgid "Release date of the latest version; empty when unknown."
-msgstr ""
-
-msgid "The plugin is active (the theme in use)."
-msgstr ""
-
-msgid "Icon address; empty shows a placeholder."
-msgstr ""
-
-msgid "Labels under the name."
-msgstr ""
-
-msgid "FluxWP category name; empty for other rows."
-msgstr ""
-
-msgid "Update source of a FluxWP package; empty for other rows."
-msgstr ""
-
-msgid "The source is worth showing (not the main server, or several sources offer it)."
-msgstr ""
-
-msgid "How many sources offer the package."
-msgstr ""
-
-msgid "Extra line, e.g. which translations are waiting."
-msgstr ""
-
-msgid "Plugins the package needs."
-msgstr ""
-
-msgid "Automatic update switch."
-msgstr ""
-
-msgid "An update is waiting and the viewer may install it."
-msgstr ""
-
-msgid "Not installed and the viewer may install it."
-msgstr ""
-
-msgid "The row can be selected for bulk actions."
-msgstr ""
-
-msgid "The viewer may switch to another version of the package."
-msgstr ""
-
-msgid "Other versions the site can switch to."
-msgstr ""
-
-msgid "Short description for the details window."
-msgstr ""
-
-msgid "Web page of the package; empty when there is none."
-msgstr ""
-
-msgid "Example screenshots (https only)."
-msgstr ""
-
-msgid "Technical details for the details window."
-msgstr ""
-
-msgid "A page of the package table."
-msgstr ""
-
-msgid "Connection to the main update server."
-msgstr ""
-
-msgid "State."
-msgstr ""
-
-msgid "Short state title."
-msgstr ""
-
-msgid "What the state means."
-msgstr ""
-
-msgid "Server host."
-msgstr ""
-
-msgid "Site name the server knows this site by; empty without a key."
-msgstr ""
-
-msgid "Last check; empty when never checked."
-msgstr ""
-
-msgid "Last check as a sentence (\"Last check: …\")."
-msgstr ""
-
-msgid "The server asked the site to wait before the next check."
-msgstr ""
-
-msgid "A site key is in use (the key itself is never returned)."
-msgstr ""
-
-msgid "The key comes from wp-config.php."
-msgstr ""
-
-msgid "Packages in the catalog."
-msgstr ""
-
-msgid "FluxWP packages with an update."
-msgstr ""
-
-msgid "Row and update counts of a tab."
-msgstr ""
-
-msgid "Tab."
-msgstr ""
-
-msgid "Tab name."
-msgstr ""
-
-msgid "Rows."
-msgstr ""
-
-msgid "Rows with an update."
-msgstr ""
-
-msgid "An update source that could not be reached."
-msgstr ""
-
-msgid "Source name."
-msgstr ""
-
-msgid "What went wrong."
-msgstr ""
-
-msgid "Whether a backup is taken before updates (Flux Backup)."
-msgstr ""
-
-msgid "Flux Backup is active."
-msgstr ""
-
-msgid "Flux Backup is installed."
-msgstr ""
-
-msgid "It is installed and the viewer may activate it."
-msgstr ""
-
-msgid "It is not installed, the catalog has it and the viewer may install it."
-msgstr ""
-
-msgid "What the top of the Packages screen shows."
-msgstr ""
-
-msgid "Connection to the update server."
-msgstr ""
-
-msgid "Tabs with their counts."
-msgstr ""
-
-msgid "Count only the rows that match this text."
-msgstr ""
-
-msgid "Updates the \"Update all\" button installs (FluxWP and others, not WordPress core)."
-msgstr ""
-
-msgid "The screen should check for updates by itself now (the last check is not recent)."
-msgstr ""
-
-msgid "Other sources that could not be reached."
-msgstr ""
-
-msgid "Backup before updates."
-msgstr ""
-
-msgid "Flux Backup page."
-msgstr ""
-
-msgid "FluxWP Panel settings page; empty when the viewer may not open it."
-msgstr ""
-
-msgid "WordPress updates screen (core updates run there)."
-msgstr ""
-
-msgid "The viewer may open the settings."
-msgstr ""
-
-msgid "One step of an install or update plan."
-msgstr ""
-
-msgid "What the step does."
-msgstr ""
-
-msgid "Row key of the package (pass it back to flxSetupStepRun)."
-msgstr ""
-
-msgid "Plugin file or theme folder of a row of another maker; empty for FluxWP packages."
-msgstr ""
-
-msgid "Name to show."
-msgstr ""
-
-msgid "The package that asked for this one; empty when it was chosen."
-msgstr ""
-
-msgid "Version for a version step."
-msgstr ""
-
-msgid "A line of a step result."
-msgstr ""
-
-msgid "It succeeded."
-msgstr ""
-
-msgid "What happened."
-msgstr ""
-
-msgid "The backup taken before an update."
-msgstr ""
-
-msgid "Backup id."
-msgstr ""
-
-msgid "The backup was deleted."
-msgstr ""
-
-msgid "Size to show; empty when deleted."
-msgstr ""
-
-msgid "When it is deleted automatically; empty when never."
-msgstr ""
-
-msgid "The viewer may delete it."
-msgstr ""
-
-msgid "Shows a checkbox (the first row of a bulk update that shares the backup)."
-msgstr ""
-
-msgid "Where to open it in Flux Backup; empty without Flux Backup."
-msgstr ""
-
-msgid "A record of the update history."
-msgstr ""
-
-msgid "When it happened."
-msgstr ""
-
-msgid "Package name."
-msgstr ""
-
-msgid "What was done (\"updated (1.0 → 1.1)\")."
-msgstr ""
-
-msgid "What went wrong or was rolled back; empty on success."
-msgstr ""
-
-msgid "Who did it (\"Automatic\" or a name)."
-msgstr ""
-
-msgid "Backup taken before it; empty when none."
-msgstr ""
-
-msgid "How long update backups are kept."
-msgstr ""
-
-msgid "The viewer can manage update backups here."
-msgstr ""
-
-msgid "Days update backups are kept; 0 when Flux Backup does not allow setting it here."
-msgstr ""
-
-msgid "Day choices to offer."
-msgstr ""
-
-msgid "Update backups now."
-msgstr ""
-
-msgid "Space they take, for display."
-msgstr ""
-
-msgid "Flux Backup settings page."
-msgstr ""
-
-msgid "A page of the update history."
-msgstr ""
-
-msgid "Records of this page, newest first."
-msgstr ""
-
-msgid "All records."
-msgstr ""
-
-msgid "Number of pages."
-msgstr ""
-
-msgid "This page, from 1."
-msgstr ""
-
-msgid "The viewer may delete update backups."
-msgstr ""
-
-msgid "Flux Backup list page; empty without Flux Backup."
-msgstr ""
-
-msgid "Legal pages the usage data consent refers to."
-msgstr ""
-
-msgid "KVKK Privacy Notice."
-msgstr ""
-
-msgid "Privacy Policy."
-msgstr ""
-
-msgid "Terms of Use."
-msgstr ""
-
-msgid "Connection and update settings. The site key is never returned."
-msgstr ""
-
-msgid "Server address typed in the settings; empty uses the default."
-msgstr ""
-
-msgid "Default server address."
-msgstr ""
-
-msgid "The server address comes from wp-config.php (FLX_UPDATE_SERVER) and cannot be changed here."
-msgstr ""
-
-msgid "Server address in use."
-msgstr ""
-
-msgid "A site key is saved."
-msgstr ""
-
-msgid "The key comes from wp-config.php (FLX_UPDATE_KEY)."
-msgstr ""
-
-msgid "Install new versions of FluxWP packages automatically."
-msgstr ""
-
-msgid "Check that the site still loads after an update and roll the package back if it fails."
-msgstr ""
-
-msgid "The usage data consent can be changed here."
-msgstr ""
-
-msgid "Usage data is sent."
-msgstr ""
-
-msgid "Legal pages."
-msgstr ""
-
-msgid "An update source: the main server or one added in the settings. Its key is never returned."
-msgstr ""
-
-msgid "Source id; \"main\" for the main server."
-msgstr ""
-
-msgid "Address."
-msgstr ""
-
-msgid "Kind of source."
-msgstr ""
-
-msgid "The main server (set under Connection)."
-msgstr ""
-
-msgid "Turned on."
-msgstr ""
-
-msgid "A site key is saved for it."
-msgstr ""
-
-msgid "Last known state."
-msgstr ""
-
-msgid "State as a sentence; empty when not checked or off."
-msgstr ""
-
-msgid "Packages it offers."
-msgstr ""
-
-msgid "It is not the first added source."
-msgstr ""
-
-msgid "A row FluxWP Panel adds to the system check."
-msgstr ""
-
-msgid "Row id."
-msgstr ""
-
-msgid "Package that reports it."
-msgstr ""
-
-msgid "Group (Config, Plugins …)."
-msgstr ""
-
-msgid "What is checked."
-msgstr ""
-
-msgid "Result."
-msgstr ""
-
-msgid "Explanation."
-msgstr ""
-
-msgid "Where to fix it; empty when there is nothing to do."
-msgstr ""
-
-msgid "Name of the fix link."
-msgstr ""
-
-msgid "Flux GraphQL on this site and the PHP version it needs."
-msgstr ""
-
-msgid "State of Flux GraphQL."
-msgstr ""
-
-msgid "Installed version; empty when not running."
-msgstr ""
-
-msgid "PHP version of the site."
-msgstr ""
-
-msgid "Lowest PHP version of the GraphQL packages."
-msgstr ""
-
-msgid "The site PHP is new enough."
-msgstr ""
-
-msgid "Where the admin installs, activates or fixes it; empty when there is nothing to do."
-msgstr ""
-
-msgid "Name of that link."
-msgstr ""
-
-msgid "An installed package that has an update before the wizard starts."
-msgstr ""
-
-msgid "Package slug."
-msgstr ""
-
-msgid "Installed version."
-msgstr ""
-
-msgid "New version."
-msgstr ""
-
-msgid "Icon address; empty for a placeholder."
-msgstr ""
-
-msgid "It is FluxWP Panel itself (the wizard reopens after it updates)."
-msgstr ""
-
-msgid "Connection state, tab counts and strips of the Packages screen."
-msgstr ""
-
-msgid "The package table: FluxWP packages, plugins and themes of other makers, translations and WordPress core, in the order the classic page shows them."
-msgstr ""
-
-msgid "Only this tab (default: all)."
-msgstr ""
-
-msgid "Only rows that match this text (name, slug, author, category)."
-msgstr ""
-
-msgid "Only rows with an update."
-msgstr ""
-
-msgid "One row of the package table; empty when the key is unknown."
-msgstr ""
-
-msgid "Row key."
-msgstr ""
-
-msgid "The steps to install or update a selection: required plugins first, then installs, then updates. Nothing runs; send each step to flxSetupStepRun."
-msgstr ""
-
-msgid "FluxWP packages to install or update."
-msgstr ""
-
-msgid "Rows of other makers to update (keys like p:folder/file.php, t:folder or lang)."
-msgstr ""
-
-msgid "Every row with an update (not WordPress core)."
-msgstr ""
-
-msgid "Activate the installed plugins (default: yes)."
-msgstr ""
-
-msgid "A page of the update history with the backup of each record."
-msgstr ""
-
-msgid "Page, from 1 (20 records per page)."
-msgstr ""
-
-msgid "Connection and update settings."
-msgstr ""
-
-msgid "The main update server and the other sources, in priority order."
-msgstr ""
-
-msgid "The rows FluxWP Panel adds to the system check: PHP version, Flux GraphQL, update server, other sources and packages waiting for an update."
-msgstr ""
-
-msgid "Asks every update source for the latest versions (\"Check for updates\")."
-msgstr ""
-
-msgid "The main server answered."
-msgstr ""
-
-msgid "FluxWP updates waiting (the menu badge)."
-msgstr ""
-
-msgid "Last check as a sentence."
-msgstr ""
-
-msgid "Result in one line."
-msgstr ""
-
-msgid "Runs one install, update or version step. A backup is taken before updates. Send the steps of flxSetupPlan one by one."
-msgstr ""
-
-msgid "Step kind."
-msgstr ""
-
-msgid "Package slug (or the row key of another maker)."
-msgstr ""
-
-msgid "Plugin file or theme folder for the steps of other makers."
-msgstr ""
-
-msgid "The step succeeded."
-msgstr ""
-
-msgid "FluxWP updates waiting after the step (the menu badge)."
-msgstr ""
-
-msgid "The FluxWP package row after the step; empty for rows of other makers."
-msgstr ""
-
-msgid "Activates, deactivates or deletes installed packages, or turns their automatic updates on or off. FluxWP Panel does not close or delete itself and the active theme is not deleted."
-msgstr ""
-
-msgid "What to do."
-msgstr ""
-
-msgid "Rows of other makers (keys like p:folder/file.php or t:folder)."
-msgstr ""
-
-msgid "Packages changed."
-msgstr ""
-
-msgid "Names skipped (already in that state, active theme or FluxWP Panel)."
-msgstr ""
-
-msgid "Names that failed."
-msgstr ""
-
-msgid "Turns WordPress' automatic updates of one plugin or theme on or off."
-msgstr ""
-
-msgid "Plugin or theme."
-msgstr ""
-
-msgid "Plugin file or theme folder (FlxSetupAutoUpdate.id)."
-msgstr ""
-
-msgid "Turn on."
-msgstr ""
-
-msgid "The setting now."
-msgstr ""
-
-msgid "On or Off, in the user's language."
-msgstr ""
-
-msgid "Saves the connection settings and checks the server. Fields you leave out stay as they are; an empty key keeps the saved one."
-msgstr ""
-
-msgid "Server address (https); empty uses the default server."
-msgstr ""
-
-msgid "New site key; empty keeps the saved one."
-msgstr ""
-
-msgid "Remove the saved key."
-msgstr ""
-
-msgid "Check the site after an update and roll back on a critical error."
-msgstr ""
-
-msgid "Send usage data (consent)."
-msgstr ""
-
-msgid "The settings after the change."
-msgstr ""
-
-msgid "The connection after the check."
-msgstr ""
-
-msgid "The sources after the check."
-msgstr ""
-
-msgid "Tests and adds an update source (a public GitHub repository or a FluxWP update server) and loads its packages."
-msgstr ""
-
-msgid "Repository or server address (https only)."
-msgstr ""
-
-msgid "Name; taken from the address when empty."
-msgstr ""
-
-msgid "Site key, only for servers that need one; sent only to that server."
-msgstr ""
-
-msgid "The sources after the change."
-msgstr ""
-
-msgid "Removes, turns on or off, or moves up an update source. Packages installed from a removed source stay on the site."
-msgstr ""
-
-msgid "Source id."
-msgstr ""
-
-msgid "Deletes update backups. Locked backups and other kinds of backups are never deleted."
-msgstr ""
-
-msgid "Which backups."
-msgstr ""
-
-msgid "Backup ids for one or selected."
-msgstr ""
-
-msgid "Backups deleted."
-msgstr ""
-
-msgid "Update backups left."
-msgstr ""
-
-msgid "Sets how long update backups are kept and applies it to the existing ones."
-msgstr ""
-
-msgid "Days (1–365)."
-msgstr ""
-
-msgid "Expired backups deleted now."
-msgstr ""
-
-msgid "Retention after the change."
-msgstr ""
-
-msgid "Runs one step of the setup wizard (site name, tagline, logo, pages, theme, colour, preset, consent, finish or skip)."
-msgstr ""
-
-msgid "Step."
-msgstr ""
-
-msgid "Value of the step; see the step kinds."
-msgstr ""
-
-msgid "Published pages after the step, when it changes them."
-msgstr ""
-
-msgid "Asks the update server and lists the installed packages that have an update, before the wizard installs anything."
-msgstr ""
-
-msgid "Why it did not; empty when it did."
-msgstr ""
-
-msgid "Packages with an update; FluxWP Panel itself first."
-msgstr ""
-
-msgid "Adds an uploaded image (POST /wp-json/flx/v1/upload, context flx-setup/logo) to the media library for the logo."
-msgstr ""
-
-msgid "Upload id returned by the upload endpoint."
-msgstr ""
-
-msgid "Media library id; pass it to the logo step."
-msgstr ""
-
-msgid "Medium size image address."
+msgid "Flux GraphQL"
 msgstr ""

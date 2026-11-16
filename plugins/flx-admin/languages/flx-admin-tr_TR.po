@@ -1,11 +1,44 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: tr_TR\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Settings"
-msgstr "Ayarlar"
+msgid "Collapse menu"
+msgstr "Menüyü daralt"
 
-msgid "Admin theme"
-msgstr "Yönetim teması"
+msgid "Expand menu"
+msgstr "Menüyü genişlet"
+
+msgid "Log out"
+msgstr "Çıkış yap"
+
+msgid "Collapse / expand menu ([)"
+msgstr "Menüyü daralt / genişlet ([)"
+
+msgid "Store: %s"
+msgstr "Mağaza: %s"
+
+msgid "WordPress updates"
+msgstr "WordPress güncellemeleri"
+
+msgid "System"
+msgstr "Sistem"
+
+msgid "Screens"
+msgstr "Ekranlar"
+
+msgid "Growth"
+msgstr "Büyüme"
+
+msgid "Communication"
+msgstr "İletişim"
+
+msgid "Where to show"
+msgstr "Nerede görünsün"
+
+msgid "%s: hidden"
+msgstr "%s: gösterilmez"
+
+msgid "More"
+msgstr "Daha"
 
 msgid "Content"
 msgstr "İçerik"
@@ -160,12 +193,6 @@ msgstr "Tema: açık"
 msgid "Theme: dark"
 msgstr "Tema: koyu"
 
-msgid "Collapse menu"
-msgstr "Menüyü daralt"
-
-msgid "Expand menu"
-msgstr "Menüyü genişlet"
-
 msgid "Toggle submenu"
 msgstr "Alt menüyü aç/kapat"
 
@@ -223,9 +250,6 @@ msgstr "Grubu aç/kapat"
 msgid "Drag to resize (double-click: default)"
 msgstr "Genişliği sürükleyin (çift tık: varsayılan)"
 
-msgid "More"
-msgstr "Daha"
-
 msgid "Saved."
 msgstr "Kaydedildi."
 
@@ -268,26 +292,8 @@ msgstr "Aç"
 msgid "None"
 msgstr "Yok"
 
-msgid "Select date"
-msgstr "Tarih seçin"
-
-msgid "Previous month"
-msgstr "Önceki ay"
-
-msgid "Next month"
-msgstr "Sonraki ay"
-
-msgid "Today"
-msgstr "Bugün"
-
-msgid "Clear"
-msgstr "Temizle"
-
 msgid "Switch app"
 msgstr "Uygulama değiştir"
-
-msgid "Collapse / expand menu ([)"
-msgstr "Menüyü daralt / genişlet ([)"
 
 msgid "Collapse / expand menu"
 msgstr "Menüyü daralt / genişlet"
@@ -298,8 +304,8 @@ msgstr "Ara veya komut…"
 msgid "Edit menu"
 msgstr "Menüyü düzenle"
 
-msgid "Log out"
-msgstr "Çıkış yap"
+msgid "Theme"
+msgstr "Tema"
 
 msgid "Submenu"
 msgstr "Alt menü"
@@ -310,38 +316,14 @@ msgstr "Ara"
 msgid "Search (Ctrl+K)"
 msgstr "Ara (Ctrl+K)"
 
-msgid "Theme"
-msgstr "Tema"
-
 msgid "Theme: click for light / dark"
 msgstr "Tema: tıklayınca açık / koyu"
-
-msgid "Light"
-msgstr "Açık"
-
-msgid "Dark"
-msgstr "Koyu"
 
 msgid "System (follow device)"
 msgstr "Sistem (cihaza göre)"
 
 msgid "Flux Admin"
 msgstr "Flux Admin"
-
-msgid "%s donation"
-msgid_plural "%s donations"
-msgstr[0] "%s bağışı"
-msgstr[1] "%s bağışları"
-
-msgid "%s error"
-msgid_plural "%s errors"
-msgstr[0] "%s hatası"
-msgstr[1] "%s hataları"
-
-msgid "%s warning"
-msgid_plural "%s warnings"
-msgstr[0] "%s uyarısı"
-msgstr[1] "%s uyarıları"
 
 msgid "Good morning"
 msgstr "Günaydın"
@@ -379,6 +361,9 @@ msgstr "Yükle"
 msgid "Donations today"
 msgstr "Bugünkü bağış"
 
+msgid "%s donations"
+msgstr "%s bağış"
+
 msgid "This month"
 msgstr "Bu ay"
 
@@ -405,6 +390,12 @@ msgstr "Flux Tasks →"
 
 msgid "System check"
 msgstr "Sistem kontrolü"
+
+msgid "%s errors"
+msgstr "%s hata"
+
+msgid "%s warnings"
+msgstr "%s uyarı"
 
 msgid "No problems"
 msgstr "Sorun yok"
@@ -469,122 +460,14 @@ msgstr "Yönetim"
 msgid "Dashboard"
 msgstr "Başlangıç"
 
-msgid "Filters"
-msgstr "Filtreler"
-
-msgid "Pagination"
-msgstr "Sayfalama"
-
-msgid "%1$s–%2$s of %3$s"
-msgstr "%1$s–%2$s / %3$s"
-
-msgid "Previous page"
-msgstr "Önceki sayfa"
-
-msgid "Next page"
-msgstr "Sonraki sayfa"
-
-msgid "Per page"
-msgstr "Sayfa başı"
-
-msgid "Apply"
-msgstr "Uygula"
-
 msgid "General"
 msgstr "Genel"
-
-msgid "Communication"
-msgstr "İletişim"
-
-msgid "Growth"
-msgstr "Büyüme"
-
-msgid "Screens"
-msgstr "Ekranlar"
-
-msgid "System"
-msgstr "Sistem"
-
-msgid "WordPress updates"
-msgstr "WordPress güncellemeleri"
-
-msgid "Store: %s"
-msgstr "Mağaza: %s"
 
 msgid "Your access to this page is turned off. Contact the site administrator if needed."
 msgstr "Bu sayfaya erişiminiz kapatıldı. Gerekirse site yöneticisine başvurun."
 
 msgid "Access blocked"
 msgstr "Erişim kapalı"
-
-msgid "Admin panel look, menu and permissions"
-msgstr "Yönetim panelinin görünümü, menüsü ve yetkileri"
-
-msgid "Shared AI hub for all plugins"
-msgstr "Tüm eklentiler için ortak yapay zekâ merkezi"
-
-msgid "Cookieless site statistics and visitor journeys"
-msgstr "Çerezsiz site istatistikleri ve ziyaretçi yolculukları"
-
-msgid "Desktop and mobile app sign-in, personal API keys"
-msgstr "Masaüstü ve mobil uygulama girişi, kişisel API anahtarları"
-
-msgid "Automatic pre-update backups, scheduled backups and restore"
-msgstr "Güncelleme öncesi otomatik yedek, zamanlanmış yedek ve geri yükleme"
-
-msgid "Certificate templates, creation, bulk sending and verification"
-msgstr "Sertifika şablonları, oluşturma, toplu gönderim ve doğrulama"
-
-msgid "WhatsApp call centre, AI assistant and reports"
-msgstr "WhatsApp çağrı merkezi, AI asistanı ve raporlar"
-
-msgid "Donation types, donors and payments on WooCommerce"
-msgstr "WooCommerce üzerinde bağış türleri, bağışçılar ve ödemeler"
-
-msgid "Drag-and-drop form builder, responses and automations"
-msgstr "Sürükle bırak form oluşturucu, yanıtlar ve otomasyonlar"
-
-msgid "Multilingual site: language URLs and content translations"
-msgstr "Çok dilli site: dil adresleri ve içerik çevirileri"
-
-msgid "All site emails, mailbox and SMTP"
-msgstr "Sitenin tüm e-postaları, posta kutusu ve SMTP"
-
-msgid "Moves data saved under old package names to the new ones"
-msgstr "Eski paket adlarıyla kaydedilmiş verileri yeni adlara taşır"
-
-msgid "Manage and publish QR menus from this site"
-msgstr "QR menüleri bu siteden yönet ve yayınla"
-
-msgid "Staff, Manager and Director roles and access"
-msgstr "Personel, İdareci ve Yönetici rolleri ve erişimleri"
-
-msgid "Meta tags, schema, sitemap and SEO audit"
-msgstr "Meta etiketler, schema, site haritası ve SEO denetimi"
-
-msgid "Setup wizard, presets and FluxWP package updates"
-msgstr "Kurulum sihirbazı, ön ayarlar ve FluxWP paket güncellemeleri"
-
-msgid "Queries, PHP errors, external requests and cron in one place"
-msgstr "Sorgular, PHP hataları, dış istekler ve cron tek yerde"
-
-msgid "Staff gifts, rent, accruals and collections"
-msgstr "Personel hediyeleri, kira, tahakkuk ve tahsilat"
-
-msgid "Projects, lists and task tracking"
-msgstr "Projeler, listeler ve görev takibi"
-
-msgid "Qurban donations, shares and proxies"
-msgstr "Kurban bağışları, hisseler ve vekâlet"
-
-msgid "Boards and slides for your screens"
-msgstr "Ekranlarda gösterilecek pano ve slaytlar"
-
-msgid "Control TVs and boards remotely"
-msgstr "Televizyonları ve panoları uzaktan yönet"
-
-msgid "Theme settings and presets"
-msgstr "Tema ayarları ve ön ayarlar"
 
 msgid "Admin dashboard"
 msgstr "Yönetim paneli"
@@ -597,6 +480,9 @@ msgstr "İnternet bağlantısı gelince panel kaldığı yerden açılır."
 
 msgid "Try again"
 msgstr "Yeniden dene"
+
+msgid "Admin theme"
+msgstr "Yönetim teması"
 
 msgid "Appearance"
 msgstr "Görünüm"
@@ -691,21 +577,6 @@ msgstr "Yetkilerin tamamı: Yetkiler sekmesi"
 msgid "Access can't be blocked for the Administrator role."
 msgstr "Yönetici rolünde erişim engellenemez."
 
-msgid "Where to show"
-msgstr "Nerede görünsün"
-
-msgid "%s: hidden"
-msgstr "%s: gösterilmez"
-
-msgid "JavaScript is required for this screen."
-msgstr "Bu ekran için JavaScript gerekli."
-
-msgid "New view"
-msgstr "Yeni görünüm"
-
-msgid "Open the new view (same features, works in the FluxWP app too)."
-msgstr "Yeni görünümü aç (aynı özellikler, FluxWP uygulamasında da çalışır)."
-
 msgid "Brand"
 msgstr "Marka"
 
@@ -772,9 +643,6 @@ msgstr "\"Erişimi engelle\" o menüyü bu rol için gerçekten kapatır: menüd
 msgid "Donation awaiting approval"
 msgstr "Onay bekleyen bağış"
 
-msgid "Unread WhatsApp"
-msgstr "Okunmamış WhatsApp"
-
 msgid "Welcome and summary"
 msgstr "Karşılama ve özet"
 
@@ -792,9 +660,6 @@ msgstr "Kişi yalnız yetkisi olan kutucukları görür. Eklentiler `flxa_dashbo
 
 msgid "Extra quick actions"
 msgstr "Ek hızlı işlemler"
-
-msgid "Events|edit.php?post_type=etkinlik\nLive site|https://"
-msgstr "Etkinlikler|edit.php?post_type=etkinlik\nCanlı site|https://"
 
 msgid "One \"Label|Address\" per line. The address can be relative to wp-admin or a full https:// URL."
 msgstr "Satır başına \"Etiket|Adres\". Adres wp-admin'e göre veya tam https:// olabilir."
@@ -856,16 +721,14 @@ msgstr "Durum"
 msgid "Description"
 msgstr "Açıklama"
 
-msgid "%s role has a custom menu layout; other roles use the default grouped menu."
-msgid_plural "%s roles have custom menu layouts; other roles use the default grouped menu."
-msgstr[0] "%s rolünün özel bir menü düzeni vardır; diğer roller varsayılan gruplandırılmış menüyü kullanır."
-msgstr[1] "%s rollerinin özel menü düzenleri vardır; diğer roller varsayılan gruplandırılmış menüyü kullanır."
-
 msgid "On. Role-based menu, bottom bar and light/dark theme are active."
 msgstr "Açık. Rol bazlı menü, alt bar ve açık/koyu tema çalışıyor."
 
 msgid "Off; the standard WordPress dashboard is shown."
 msgstr "Kapalı; WordPress'in standart paneli görünüyor."
+
+msgid "Settings"
+msgstr "Ayarlar"
 
 msgid "Install as an app (PWA)"
 msgstr "Uygulama olarak yükleme (PWA)"
@@ -890,6 +753,11 @@ msgstr "Site simgesi yok; Flux Admin simgesi kullanılıyor. Görünüm › Öze
 
 msgid "Role-based menu"
 msgstr "Rol bazlı menü"
+
+msgid "%s role has a custom menu layout; other roles see the default grouped menu."
+msgid_plural "%s roles have a custom menu layout; other roles see the default grouped menu."
+msgstr[0] "%s rol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür."
+msgstr[1] "%s rol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür."
 
 msgid "All roles see the default grouped menu."
 msgstr "Tüm roller varsayılan gruplu menüyü görüyor."
@@ -966,6 +834,12 @@ msgstr "Varsayılan tema"
 msgid "Automatic (device setting)"
 msgstr "Otomatik (cihazın ayarı)"
 
+msgid "Light"
+msgstr "Açık"
+
+msgid "Dark"
+msgstr "Koyu"
+
 msgid "Everyone can change their own preference with the moon/sun button at the bottom left."
 msgstr "Herkes kendi tercihini sol alttaki ay/güneş düğmesinden değiştirebilir."
 
@@ -1032,18 +906,6 @@ msgstr "Simgeler"
 msgid "Line icons in WordPress menus (FluxWP logos stay in color)"
 msgstr "WordPress menülerinde çizgi simgeler (FluxWP logoları renkli kalır)"
 
-msgid "Package logos"
-msgstr "Paket logoları"
-
-msgid "Gradient (default)"
-msgstr "Degrade (varsayılan)"
-
-msgid "Pastel"
-msgstr "Pastel"
-
-msgid "Used in the side menu, the FluxWP Panel package list and FluxWP App. Colours show the package group: platform, maintenance, communication, content, commerce."
-msgstr "Sol menüde, FluxWP Panel paket listesinde ve FluxWP App'te kullanılır. Renkler paket grubunu gösterir: yönetim, bakım, iletişim, içerik, ticaret."
-
 msgid "Screens without dark theme"
 msgstr "Koyu tema kapalı ekranlar"
 
@@ -1091,6 +953,9 @@ msgstr "Atanmamış"
 
 msgid "Overdue"
 msgstr "Geciken"
+
+msgid "Today"
+msgstr "Bugün"
 
 msgid "Done in the last 7 days"
 msgstr "Son 7 günde biten"
@@ -1164,653 +1029,174 @@ msgstr "Flux Tasks kullanılamıyor."
 msgid "You can't add tasks to this list."
 msgstr "Bu listeye görev ekleme yetkiniz yok."
 
-msgid "This role does not exist."
-msgstr "Bu rol yok."
+msgid "Events|edit.php?post_type=etkinlik\nLive site|https://"
+msgstr "Etkinlikler|edit.php?post_type=etkinlik\nCanlı site|https://"
 
-msgid "This permission is not in the table."
-msgstr "Bu yetki tabloda yok."
+msgid "Redesigns the admin: editable role-based side menu, mobile bottom bar and side panel, WhatsApp / Tasks switcher, editable Dashboard modules, automatic light/dark theme, command palette (Ctrl+K), live counters and PWA (add to home screen)."
+msgstr "Yönetim panelini baştan tasarlar: rol bazlı düzenlenebilir sol menü, mobil alt bar ve yan panel, WhatsApp / Görevler geçişi, düzenlenebilir Başlangıç modülleri, otomatik açık/koyu tema, komut paleti (Ctrl+K), canlı sayaçlar ve PWA (ana ekrana ekle)."
 
-msgid "There is no backup to restore."
-msgstr "Geri yüklenecek yedek yok."
+msgid "Filters"
+msgstr "Filtreler"
 
-msgid "A layout needs at least one menu item."
-msgstr "Bir düzende en az bir menü öğesi olmalı."
+msgid "Clear"
+msgstr "Temizle"
 
-msgid "Choose a menu item."
-msgstr "Bir menü öğesi seçin."
+msgid "Pagination"
+msgstr "Sayfalama"
 
-msgid "Unknown menu action."
-msgstr "Bilinmeyen menü işlemi."
+msgid "%1$s–%2$s of %3$s"
+msgstr "%1$s–%2$s / %3$s"
 
-msgid "The logo must be an image from the media library."
-msgstr "Logo, ortam kitaplığından bir görsel olmalı."
+msgid "Previous page"
+msgstr "Önceki sayfa"
 
-msgid "Choose 30, 60 or 120 seconds."
-msgstr "30, 60 veya 120 saniye seçin."
+msgid "Next page"
+msgstr "Sonraki sayfa"
 
-msgid "Enter a color like #1F2937."
-msgstr "#1F2937 gibi bir renk girin."
+msgid "Per page"
+msgstr "Sayfa başı"
 
-msgid "The uploaded file was not found. Upload it again."
-msgstr "Yüklenen dosya bulunamadı. Yeniden yükleyin."
+msgid "Apply"
+msgstr "Uygula"
 
-msgid "The file could not be saved on the server."
-msgstr "Dosya sunucuya kaydedilemedi."
+msgid "Default: the theme's primary colour (Appearance › Editor › Styles). If you pick the theme's colour, this follows the theme when it changes."
+msgstr "Varsayılan: temanın ana rengi (Görünüm › Düzenleyici › Stiller). Temanın rengini seçerseniz tema değişince bu da değişir."
 
-msgid "Choose auto, light or dark."
-msgstr "Otomatik, açık veya koyu seçin."
+msgid "Package logos"
+msgstr "Paket logoları"
 
-msgid "You do not have permission to do this."
-msgstr "Bunu yapmaya yetkiniz yok."
+msgid "Gradient (default)"
+msgstr "Degrade (varsayılan)"
 
-msgid "Light or dark admin theme."
-msgstr "Açık veya koyu yönetim teması."
+msgid "Pastel"
+msgstr "Pastel"
 
-msgid "Corner roundness."
-msgstr "Köşe yuvarlaklığı."
+msgid "Used in the side menu, the FluxWP Panel package list and FluxWP App. Colours show the package group: platform, maintenance, communication, content, commerce."
+msgstr "Sol menüde, FluxWP Panel paket listesinde ve FluxWP App'te kullanılır. Renkler paket grubunu gösterir: yönetim, bakım, iletişim, içerik, ticaret."
 
-msgid "Admin font."
-msgstr "Yönetim yazı tipi."
+msgid "Admin panel look, menu and permissions"
+msgstr "Yönetim panelinin görünümü, menüsü ve yetkileri"
 
-msgid "Menu row height."
-msgstr "Menü satır yüksekliği."
+msgid "Shared AI hub for all plugins"
+msgstr "Tüm eklentiler için ortak yapay zekâ merkezi"
 
-msgid "Style of the FluxWP package logos."
-msgstr "FluxWP paket logolarının stili."
+msgid "Cookieless site statistics and visitor journeys"
+msgstr "Çerezsiz site istatistikleri ve ziyaretçi yolculukları"
 
-msgid "Summary tile of the dashboard."
-msgstr "Başlangıç sayfasının özet kutusu."
+msgid "Desktop and mobile app sign-in, personal API keys"
+msgstr "Masaüstü ve mobil uygulama girişi, kişisel API anahtarları"
 
-msgid "A group heading or a menu item."
-msgstr "Bir grup başlığı veya bir menü öğesi."
+msgid "Automatic pre-update backups, scheduled backups and restore"
+msgstr "Güncelleme öncesi otomatik yedek, zamanlanmış yedek ve geri yükleme"
 
-msgid "A change to the user's own menu."
-msgstr "Kullanıcının kendi menüsünde yaptığı değişiklik."
+msgid "Certificate templates, creation, bulk sending and verification"
+msgstr "Sertifika şablonları, oluşturma, toplu gönderim ve doğrulama"
 
-msgid "Dashboard module with filters."
-msgstr "Filtreli başlangıç modülü."
+msgid "WhatsApp call centre, AI assistant and reports"
+msgstr "WhatsApp çağrı merkezi, AI asistanı ve raporlar"
 
-msgid "Which tasks the Tasks module counts."
-msgstr "Görevler modülünün saydığı görevler."
+msgid "Donation types, donors and payments on WooCommerce"
+msgstr "WooCommerce üzerinde bağış türleri, bağışçılar ve ödemeler"
 
-msgid "How the Tasks module splits the chart."
-msgstr "Görevler modülünün grafiği nasıl böldüğü."
+msgid "Drag-and-drop form builder, responses and automations"
+msgstr "Sürükle bırak form oluşturucu, yanıtlar ve otomasyonlar"
 
-msgid "How the Donations module splits the chart."
-msgstr "Bağışlar modülünün grafiği nasıl böldüğü."
+msgid "Multilingual site: language URLs and content translations"
+msgstr "Çok dilli site: dil adresleri ve içerik çevirileri"
 
-msgid "The four colors of one theme (hex)."
-msgstr "Bir temanın dört rengi (hex)."
+msgid "All site emails, mailbox and SMTP"
+msgstr "Sitenin tüm e-postaları, posta kutusu ve SMTP"
 
-msgid "Page background."
-msgstr "Sayfa arka planı."
+msgid "Moves data saved under old package names to the new ones"
+msgstr "Eski paket adlarıyla kaydedilmiş verileri yeni adlara taşır"
 
-msgid "Side menu background."
-msgstr "Yan menü arka planı."
+msgid "Manage and publish QR menus from this site"
+msgstr "QR menüleri bu siteden yönet ve yayınla"
 
-msgid "Card background."
-msgstr "Kart arka planı."
+msgid "Staff, Manager and Director roles and access"
+msgstr "Personel, İdareci ve Yönetici rolleri ve erişimleri"
 
-msgid "Text color."
-msgstr "Metin rengi."
+msgid "Meta tags, schema, sitemap and SEO audit"
+msgstr "Meta etiketler, schema, site haritası ve SEO denetimi"
 
-msgid "Look of the admin panel: colors, font, corners, density."
-msgstr "Yönetim panelinin görünümü: renkler, yazı tipi, köşeler, yoğunluk."
+msgid "Set up the site in one step from a preset"
+msgstr "Siteyi bir ön ayar şablonuyla tek adımda kur"
 
-msgid "Font family choice."
-msgstr "Yazı tipi seçimi."
+msgid "Queries, PHP errors, external requests and cron in one place"
+msgstr "Sorgular, PHP hataları, dış istekler ve cron tek yerde"
 
-msgid "Font name for the custom choice; empty otherwise."
-msgstr "Özel seçim için yazı tipi adı; aksi halde boş."
+msgid "Staff gifts, rent, accruals and collections"
+msgstr "Personel hediyeleri, kira, tahakkuk ve tahsilat"
 
-msgid "Base font size in pixels: 13, 14 or 15."
-msgstr "Taban yazı boyutu (piksel): 13, 14 veya 15."
+msgid "Projects, lists and task tracking"
+msgstr "Projeler, listeler ve görev takibi"
 
-msgid "Colors of the light theme (the default color when none is chosen)."
-msgstr "Açık tema renkleri (seçilmediyse varsayılan renk)."
+msgid "Qurban donations, shares and proxies"
+msgstr "Kurban bağışları, hisseler ve vekâlet"
 
-msgid "Colors of the dark theme (the default color when none is chosen)."
-msgstr "Koyu tema renkleri (seçilmediyse varsayılan renk)."
+msgid "Boards and slides for your screens"
+msgstr "Ekranlarda gösterilecek pano ve slaytlar"
 
-msgid "Settings › Admin theme."
-msgstr "Ayarlar › Yönetim teması."
+msgid "Control TVs and boards remotely"
+msgstr "Televizyonları ve panoları uzaktan yönet"
 
-msgid "The admin theme is on (off restores the standard WordPress dashboard)."
-msgstr "Yönetim teması açık (kapalıysa standart WordPress paneli döner)."
+msgid "Update FluxWP themes and plugins from the update server"
+msgstr "FluxWP tema ve eklentilerini güncelleme sunucusundan güncelle"
 
-msgid "Name at the top of the side menu; empty = the site name."
-msgstr "Yan menünün üstündeki ad; boşsa site adı."
+msgid "Theme settings and presets"
+msgstr "Tema ayarları ve ön ayarlar"
 
-msgid "Line under the name; empty = \"Admin\"."
-msgstr "Adın altındaki satır; boşsa \"Admin\"."
+msgid "Setup wizard, presets and FluxWP package updates"
+msgstr "Kurulum sihirbazı, ön ayarlar ve FluxWP paket güncellemeleri"
 
-msgid "The logo chosen here; empty when the site icon or the Flux Admin icon is used."
-msgstr "Burada seçilen logo; site simgesi veya Flux Admin simgesi kullanılıyorsa boş."
+msgid "%s donation"
+msgid_plural "%s donations"
+msgstr[0] "%s bağışı"
+msgstr[1] "%s bağışları"
 
-msgid "The logo the panel shows (chosen logo, institution icon, site icon or the Flux Admin icon)."
-msgstr "Panelin gösterdiği logo (seçilen logo, kurum simgesi, site simgesi veya Flux Admin simgesi)."
+msgid "%s error"
+msgid_plural "%s errors"
+msgstr[0] "%s hatası"
+msgstr[1] "%s hataları"
 
-msgid "Accent color (hex); the theme color when none is chosen."
-msgstr "Vurgu rengi (hex); seçilmediyse tema rengi."
+msgid "%s warning"
+msgid_plural "%s warnings"
+msgstr[0] "%s uyarısı"
+msgstr[1] "%s uyarıları"
 
-msgid "Default light/dark choice for everyone."
-msgstr "Herkes için varsayılan açık/koyu seçimi."
+msgid "%s role has a custom menu layout; other roles use the default grouped menu."
+msgid_plural "%s roles have custom menu layouts; other roles use the default grouped menu."
+msgstr[0] "%s rolünün özel bir menü düzeni vardır; diğer roller varsayılan gruplandırılmış menüyü kullanır."
+msgstr[1] "%s rollerinin özel menü düzenleri vardır; diğer roller varsayılan gruplandırılmış menüyü kullanır."
 
-msgid "Screen IDs or body classes (one per line) that stay light."
-msgstr "Açık kalan ekran kimlikleri veya body sınıfları (her satıra bir tane)."
+msgid "Okunmamış WhatsApp"
+msgstr "Okunmamış WhatsApp"
 
-msgid "Line icons in WordPress menus."
-msgstr "WordPress menülerinde çizgi simgeler."
+msgid "%sdonate"
+msgid_plural "%sdonate"
+msgstr[0] "%s bağış"
+msgstr[1] "%s bağış"
 
-msgid "Bottom bar on mobile."
-msgstr "Mobilde alt çubuk."
+msgid "%seven"
+msgid_plural "%seven"
+msgstr[0] "%s hata"
+msgstr[1] "%s hata"
 
-msgid "WhatsApp and Tasks open next to the side menu, which shrinks to icons."
-msgstr "WhatsApp ve Görevler yan menünün yanında açılır; menü simgelere küçülür."
+msgid "%swarning"
+msgid_plural "%swarning"
+msgstr[0] "%s uyarı"
+msgstr[1] "%s uyarı"
 
-msgid "App switcher on the WhatsApp and Tasks screens on phones."
-msgstr "Telefonlarda WhatsApp ve Görevler ekranlarında uygulama değiştirici."
+msgid "%shas a special menu layout for the role; other roles see the default grouped menu."
+msgid_plural "%shas a special menu layout for the role; other roles see the default grouped menu."
+msgstr[0] "%s rol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür."
+msgstr[1] "%s rol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür."
 
-msgid "Fast navigation: the clicked menu page is prepared in advance."
-msgstr "Hızlı gezinme: tıklanan menü sayfası önceden hazırlanır."
+msgid "Select date"
+msgstr "Tarih seçin"
 
-msgid "Command palette (Ctrl+K)."
-msgstr "Komut paleti (Ctrl+K)."
+msgid "Previous month"
+msgstr "Önceki ay"
 
-msgid "Style the login screen too."
-msgstr "Giriş ekranını da biçimlendir."
-
-msgid "Seconds between live counter refreshes: 30, 60 or 120."
-msgstr "Canlı sayaç yenilemeleri arasındaki saniye: 30, 60 veya 120."
-
-msgid "Colors, font, corners and density."
-msgstr "Renkler, yazı tipi, köşeler ve yoğunluk."
-
-msgid "Greeting, date and summary tiles at the top of the dashboard."
-msgstr "Başlangıç sayfasının üstündeki karşılama, tarih ve özet kutuları."
-
-msgid "Summary tiles that show; people only see tiles they have permission for."
-msgstr "Gösterilen özet kutuları; kişiler yalnız yetkili oldukları kutuları görür."
-
-msgid "Extra quick actions, one \"Label|Address\" per line."
-msgstr "Ek hızlı işlemler, her satırda bir \"Etiket|Adres\"."
-
-msgid "The dashboard can be installed as an app (PWA)."
-msgstr "Başlangıç sayfası uygulama (PWA) olarak kurulabilir."
-
-msgid "App name; empty = the panel name."
-msgstr "Uygulama adı; boşsa panel adı."
-
-msgid "Short app name under the icon (20 characters at most); empty = made from the name."
-msgstr "Simgenin altındaki kısa uygulama adı (en çok 20 karakter); boşsa addan üretilir."
-
-msgid "A summary tile the dashboard can show."
-msgstr "Başlangıç sayfasının gösterebileceği bir özet kutusu."
-
-msgid "Tile."
-msgstr "Kutu."
-
-msgid "Tile name."
-msgstr "Kutu adı."
-
-msgid "Colors used when none is chosen."
-msgstr "Seçilmediğinde kullanılan renkler."
-
-msgid "Light theme."
-msgstr "Açık tema."
-
-msgid "Dark theme."
-msgstr "Koyu tema."
-
-msgid "Values around the Admin theme settings: defaults, availability and links."
-msgstr "Yönetim teması ayarlarının çevresindeki değerler: varsayılanlar, uygunluk ve bağlantılar."
-
-msgid "Site name (the panel name when the name setting is empty)."
-msgstr "Site adı (ad ayarı boşsa panel adı)."
-
-msgid "Accent color of the site theme."
-msgstr "Site temasının vurgu rengi."
-
-msgid "Theme colors used when none is chosen."
-msgstr "Seçilmediğinde kullanılan tema renkleri."
-
-msgid "Every summary tile the dashboard can show."
-msgstr "Başlangıç sayfasının gösterebileceği her özet kutusu."
-
-msgid "The site is served over HTTPS, so browsers allow installing."
-msgstr "Site HTTPS ile sunuluyor, tarayıcılar kurulumuna izin verir."
-
-msgid "App icon (the site icon, or the Flux Admin icon)."
-msgstr "Uygulama simgesi (site simgesi veya Flux Admin simgesi)."
-
-msgid "App name used when the setting is empty."
-msgstr "Ayar boşken kullanılan uygulama adı."
-
-msgid "Short app name used when the setting is empty."
-msgstr "Ayar boşken kullanılan kısa uygulama adı."
-
-msgid "Page of the system check when Flux Speed hosts it; empty when it is on this page."
-msgstr "Flux Speed barındırıyorsa sistem kontrolü sayfası; bu sayfadaysa boş."
-
-msgid "The Admin theme settings."
-msgstr "Yönetim teması ayarları."
-
-msgid "Defaults, availability and links around the Admin theme settings."
-msgstr "Yönetim teması ayarlarının çevresindeki varsayılanlar, uygunluk ve bağlantılar."
-
-msgid "Colors of one theme. Colors you leave out stay as they are; the default color means \"not customised\"."
-msgstr "Bir temanın renkleri. Boş bıraktığınız renkler olduğu gibi kalır; varsayılan renk \"özelleştirilmemiş\" demektir."
-
-msgid "Page background (hex)."
-msgstr "Sayfa arka planı (hex)."
-
-msgid "Side menu background (hex)."
-msgstr "Yan menü arka planı (hex)."
-
-msgid "Card background (hex)."
-msgstr "Kart arka planı (hex)."
-
-msgid "Text color (hex)."
-msgstr "Metin rengi (hex)."
-
-msgid "Changes to the look. Fields you leave out stay as they are."
-msgstr "Görünümde değişiklikler. Boş bıraktığınız alanlar olduğu gibi kalır."
-
-msgid "Font name for the custom choice (a font installed on the computer or loaded on the site)."
-msgstr "Özel seçim için yazı tipi adı (bilgisayarda kurulu ya da sitede yüklü bir yazı tipi)."
-
-msgid "Light theme colors."
-msgstr "Açık tema renkleri."
-
-msgid "Dark theme colors."
-msgstr "Koyu tema renkleri."
-
-msgid "Changes Admin theme settings. Fields you leave out stay as they are; nothing is written when any field is invalid."
-msgstr "Yönetim teması ayarlarını değiştirir. Boş bıraktığınız alanlar olduğu gibi kalır; herhangi bir alan geçersizse hiçbir şey yazılmaz."
-
-msgid "Turn the admin theme on or off."
-msgstr "Yönetim temasını aç veya kapat."
-
-msgid "Media library image to use as the logo; 0 removes the logo."
-msgstr "Logo olarak kullanılacak ortam kitaplığı görseli; 0 logoyu kaldırır."
-
-msgid "Upload ID of a logo sent to /wp-json/flx/v1/upload (context flx-admin/logo); it joins the media library and becomes the logo."
-msgstr "/wp-json/flx/v1/upload adresine gönderilen logonun yükleme kimliği (bağlam flx-admin/logo); ortam kitaplığına girer ve logo olur."
-
-msgid "Accent color (hex); empty or the theme color follows the site theme."
-msgstr "Vurgu rengi (hex); boş ya da tema rengi site temasını izler."
-
-msgid "WhatsApp and Tasks open next to the side menu."
-msgstr "WhatsApp ve Görevler yan menünün yanında açılır."
-
-msgid "Fast navigation."
-msgstr "Hızlı gezinme."
-
-msgid "Summary tiles that show."
-msgstr "Gösterilen özet kutuları."
-
-msgid "Allow installing the dashboard as an app."
-msgstr "Başlangıç sayfasının uygulama olarak kurulmasına izin ver."
-
-msgid "Short app name (20 characters at most)."
-msgstr "Kısa uygulama adı (en çok 20 karakter)."
-
-msgid "The settings after the change."
-msgstr "Değişiklikten sonraki ayarlar."
-
-msgid "Defaults, availability and links after the change."
-msgstr "Değişiklikten sonraki varsayılanlar, uygunluk ve bağlantılar."
-
-msgid "A submenu item."
-msgstr "Bir alt menü öğesi."
-
-msgid "Submenu link (what the layout stores)."
-msgstr "Alt menü bağlantısı (düzenin sakladığı)."
-
-msgid "Submenu name."
-msgstr "Alt menü adı."
-
-msgid "Permission it needs."
-msgstr "Gereken yetki."
-
-msgid "A menu item the administrator sees (the editor's list)."
-msgstr "Yöneticinin gördüğü bir menü öğesi (düzenleyicinin listesi)."
-
-msgid "Menu link (what the layout stores)."
-msgstr "Menü bağlantısı (düzenin sakladığı)."
-
-msgid "Menu name."
-msgstr "Menü adı."
-
-msgid "Icon key; empty when the item has none."
-msgstr "Simge anahtarı; öğenin simgesi yoksa boş."
-
-msgid "Inner markup of the 24×24 line icon (shapes only: path, circle, rect, line, polyline)."
-msgstr "24×24 çizgi simgenin iç işaretlemesi (yalnız şekiller: path, circle, rect, line, polyline)."
-
-msgid "Where the item opens."
-msgstr "Öğenin açıldığı yer."
-
-msgid "Submenu items."
-msgstr "Alt menü öğeleri."
-
-msgid "A role of the menu editor."
-msgstr "Menü düzenleyicisinin bir rolü."
-
-msgid "Role key; \"_default\" is the layout of all other roles."
-msgstr "Rol anahtarı; \"_default\" diğer tüm rollerin düzenidir."
-
-msgid "Role name."
-msgstr "Rol adı."
-
-msgid "People with the role."
-msgstr "Role sahip kişiler."
-
-msgid "A place a menu item can be hidden on (web, mobile app, desktop app)."
-msgstr "Bir menü öğesinin gizlenebileceği yer (web, mobil uygulama, masaüstü uygulaması)."
-
-msgid "Platform key."
-msgstr "Platform anahtarı."
-
-msgid "Platform name."
-msgstr "Platform adı."
-
-msgid "One row of a menu layout: a group heading or a menu item."
-msgstr "Bir menü düzeninin bir satırı: grup başlığı veya menü öğesi."
-
-msgid "Group heading or menu item."
-msgstr "Grup başlığı veya menü öğesi."
-
-msgid "Group name, or the item's own name; empty = the original name."
-msgstr "Grup adı ya da öğenin kendi adı; boş = özgün ad."
-
-msgid "Group only: starts collapsed."
-msgstr "Yalnız grup: kapalı başlar."
-
-msgid "Item only: the menu link; empty for a group."
-msgstr "Yalnız öğe: menü bağlantısı; grup için boş."
-
-msgid "Item only: hidden from the menu (permissions do not change)."
-msgstr "Yalnız öğe: menüden gizli (yetkiler değişmez)."
-
-msgid "Item only: access is closed; it is not in the menu and opening it by URL shows \"no permission\"."
-msgstr "Yalnız öğe: erişim kapalı; menüde yok, adresle açılırsa \"yetki yok\" görünür."
-
-msgid "Item only: submenu links hidden from the menu."
-msgstr "Yalnız öğe: menüden gizlenen alt menü bağlantıları."
-
-msgid "Item only: platforms the item is not shown on."
-msgstr "Yalnız öğe: öğenin gösterilmediği platformlar."
-
-msgid "The side menu and bottom bar of one role."
-msgstr "Bir rolün yan menüsü ve alt çubuğu."
-
-msgid "Role key (\"_default\" = all other roles)."
-msgstr "Rol anahtarı (\"_default\" = diğer tüm roller)."
-
-msgid "The role has its own layout; false = the default layout."
-msgstr "Rolün kendi düzeni var; false = varsayılan düzen."
-
-msgid "Rows in order; items new in the menu are at the end under \"Other\"."
-msgstr "Sıralı satırlar; menüye yeni gelen öğeler sonda \"Diğer\" altındadır."
-
-msgid "Mobile bottom bar items (up to 4 menu links)."
-msgstr "Mobil alt çubuk öğeleri (en çok 4 menü bağlantısı)."
-
-msgid "Menu links this role has permission to open."
-msgstr "Bu rolün açmaya yetkili olduğu menü bağlantıları."
-
-msgid "The default layout (\"reset this role\")."
-msgstr "Varsayılan düzen (\"bu rolü sıfırla\")."
-
-msgid "Default rows."
-msgstr "Varsayılan satırlar."
-
-msgid "Default bottom bar."
-msgstr "Varsayılan alt çubuk."
-
-msgid "Everything the menu editor needs."
-msgstr "Menü düzenleyicisinin ihtiyaç duyduğu her şey."
-
-msgid "The menu as the administrator sees it. It is rebuilt on the next admin page load after plugins change."
-msgstr "Yöneticinin gördüğü menü. Eklentiler değişince sonraki yönetim sayfası yüklenişinde yeniden kurulur."
-
-msgid "Roles that can have their own layout, \"all other roles\" first."
-msgstr "Kendi düzeni olabilen roller, \"diğer tüm roller\" başta."
-
-msgid "The layout of every role."
-msgstr "Her rolün düzeni."
-
-msgid "The default layout."
-msgstr "Varsayılan düzen."
-
-msgid "Platforms an item can be hidden on; empty without the app package."
-msgstr "Bir öğenin gizlenebileceği platformlar; uygulama paketi yoksa boş."
-
-msgid "Menu links whose access cannot be closed (no lock-out)."
-msgstr "Erişimi kapatılamayan menü bağlantıları (kilitlenmeyi önler)."
-
-msgid "The role layouts of the side menu and the bottom bar."
-msgstr "Yan menünün ve alt çubuğun rol düzenleri."
-
-msgid "One row of a menu layout."
-msgstr "Bir menü düzeninin bir satırı."
-
-msgid "Group name, or the item's own name (40 characters at most); empty = the original name."
-msgstr "Grup adı ya da öğenin kendi adı (en çok 40 karakter); boş = özgün ad."
-
-msgid "Item only: the menu link. Links that are not in the menu are dropped."
-msgstr "Yalnız öğe: menü bağlantısı. Menüde olmayan bağlantılar atılır."
-
-msgid "Item only: hide from the menu."
-msgstr "Yalnız öğe: menüden gizle."
-
-msgid "Item only: close access (not for the Administrator role or the links in unblockable)."
-msgstr "Yalnız öğe: erişimi kapat (Yönetici rolü ve unblockable içindeki bağlantılar için değil)."
-
-msgid "Item only: submenu links to hide."
-msgstr "Yalnız öğe: gizlenecek alt menü bağlantıları."
-
-msgid "A layout to save for one role."
-msgstr "Bir rol için kaydedilecek düzen."
-
-msgid "Rows in order (300 at most)."
-msgstr "Sıralı satırlar (en çok 300)."
-
-msgid "Mobile bottom bar items (4 at most)."
-msgstr "Mobil alt çubuk öğeleri (en çok 4)."
-
-msgid "Saves the layouts of some roles and sends others back to the default; roles you leave out stay as they are."
-msgstr "Bazı rollerin düzenlerini kaydeder, diğerlerini varsayılana döndürür; boş bıraktığınız roller olduğu gibi kalır."
-
-msgid "Layouts to save."
-msgstr "Kaydedilecek düzenler."
-
-msgid "Roles that go back to the default layout."
-msgstr "Varsayılan düzene dönen roller."
-
-msgid "The layout of every role after the change."
-msgstr "Değişiklikten sonra her rolün düzeni."
-
-msgid "A permission of the table."
-msgstr "Tablonun bir yetkisi."
-
-msgid "Permission name, e.g. edit_posts."
-msgstr "Yetki adı, ör. edit_posts."
-
-msgid "What it allows; empty for permissions without a readable name."
-msgstr "Neye izin verdiği; okunabilir adı olmayan yetkiler için boş."
-
-msgid "A group of the permissions table."
-msgstr "Yetki tablosunun bir grubu."
-
-msgid "Group key."
-msgstr "Grup anahtarı."
-
-msgid "Group name."
-msgstr "Grup adı."
-
-msgid "Permissions of the group."
-msgstr "Grubun yetkileri."
-
-msgid "A role column of the permissions table."
-msgstr "Yetki tablosunun bir rol sütunu."
-
-msgid "Role key."
-msgstr "Rol anahtarı."
-
-msgid "The Administrator role; it cannot be changed."
-msgstr "Yönetici rolü; değiştirilemez."
-
-msgid "Table permissions this role has."
-msgstr "Bu rolün sahip olduğu tablo yetkileri."
-
-msgid "The role × permission table (real WordPress permissions)."
-msgstr "Rol × yetki tablosu (gerçek WordPress yetkileri)."
-
-msgid "Role columns."
-msgstr "Rol sütunları."
-
-msgid "Permission rows by group."
-msgstr "Gruba göre yetki satırları."
-
-msgid "When the backup of the permissions before the first change was taken; empty without a backup."
-msgstr "İlk değişiklikten önceki yetki yedeğinin alındığı zaman; yedek yoksa boş."
-
-msgid "The role × permission table."
-msgstr "Rol × yetki tablosu."
-
-msgid "The table permissions one role should have."
-msgstr "Bir rolün sahip olması gereken tablo yetkileri."
-
-msgid "Role key. The Administrator role is skipped."
-msgstr "Rol anahtarı. Yönetici rolü atlanır."
-
-msgid "Every table permission that should be on; the other table permissions are turned off."
-msgstr "Açık olması gereken her tablo yetkisi; diğer tablo yetkileri kapatılır."
-
-msgid "Changes the permissions of some roles. These are real permissions. The first change backs everything up."
-msgstr "Bazı rollerin yetkilerini değiştirir. Bunlar gerçek yetkilerdir. İlk değişiklik her şeyin yedeğini alır."
-
-msgid "Roles to change; the others stay as they are."
-msgstr "Değiştirilecek roller; diğerleri olduğu gibi kalır."
-
-msgid "The table after the change."
-msgstr "Değişiklikten sonra tablo."
-
-msgid "Returns every role to the backup taken before the first change, then removes the backup."
-msgstr "Her rolü ilk değişiklikten önce alınan yedeğe döndürür, sonra yedeği siler."
-
-msgid "Must be true: every role goes back to its state before the first change."
-msgstr "True olmalı: her rol ilk değişiklikten önceki durumuna döner."
-
-msgid "The table after the restore."
-msgstr "Geri yüklemeden sonra tablo."
-
-msgid "Confirm the restore."
-msgstr "Geri yüklemeyi onayla."
-
-msgid "The signed-in user's light/dark choice (the site default when they have not chosen)."
-msgstr "Oturumdaki kullanıcının açık/koyu seçimi (seçmediyse sitenin varsayılanı)."
-
-msgid "Saves the signed-in user's light/dark choice."
-msgstr "Oturumdaki kullanıcının açık/koyu seçimini kaydeder."
-
-msgid "Automatic (device setting), light or dark."
-msgstr "Otomatik (cihaz ayarı), açık veya koyu."
-
-msgid "The saved choice."
-msgstr "Kaydedilen seçim."
-
-msgid "A person's own menu choices (right-click menu)."
-msgstr "Bir kişinin kendi menü seçimleri (sağ tık menüsü)."
-
-msgid "Menu links pinned at the top, in order."
-msgstr "En üste sabitlenen menü bağlantıları, sırayla."
-
-msgid "Menu links moved under \"Other\"."
-msgstr "\"Diğer\" altına taşınan menü bağlantıları."
-
-msgid "Submenu links moved under \"Other\"."
-msgstr "\"Diğer\" altına taşınan alt menü bağlantıları."
-
-msgid "Submenu links kept in place although they would move under \"Other\" automatically."
-msgstr "Kendiliğinden \"Diğer\" altına taşınacakken yerinde tutulan alt menü bağlantıları."
-
-msgid "The signed-in user's pinned and moved menu items."
-msgstr "Oturumdaki kullanıcının sabitlenen ve taşınan menü öğeleri."
-
-msgid "Pin, unpin or move one menu item of the signed-in user, or reorder the pins."
-msgstr "Oturumdaki kullanıcının bir menü öğesini sabitler, çözer veya taşır ya da sabitleri yeniden sıralar."
-
-msgid "What to do."
-msgstr "Ne yapılacak."
-
-msgid "The menu (or submenu) link; not used for ORDER."
-msgstr "Menü (veya alt menü) bağlantısı; ORDER için kullanılmaz."
-
-msgid "ORDER only: the pinned links in the new order."
-msgstr "Yalnız ORDER: sabitlenen bağlantıların yeni sırası."
-
-msgid "The user's menu choices after the change."
-msgstr "Değişiklikten sonra kullanıcının menü seçimleri."
-
-msgid "Filters of the Tasks dashboard module."
-msgstr "Görevler başlangıç modülünün filtreleri."
-
-msgid "Which tasks it counts."
-msgstr "Hangi görevleri sayar."
-
-msgid "Task list ID; 0 = all lists."
-msgstr "Görev listesi kimliği; 0 = tüm listeler."
-
-msgid "How the chart is split."
-msgstr "Grafiğin nasıl bölündüğü."
-
-msgid "Filters of the Donations dashboard module."
-msgstr "Bağışlar başlangıç modülünün filtreleri."
-
-msgid "Days it covers: 7, 14 or 30."
-msgstr "Kapsadığı gün: 7, 14 veya 30."
-
-msgid "The signed-in user's dashboard module filters."
-msgstr "Oturumdaki kullanıcının başlangıç modülü filtreleri."
-
-msgid "Tasks module."
-msgstr "Görevler modülü."
-
-msgid "Donations module."
-msgstr "Bağışlar modülü."
-
-msgid "The user can have the Tasks module (Flux Tasks is installed and they may use it)."
-msgstr "Kullanıcı Görevler modülüne sahip olabilir (Flux Tasks kurulu ve kullanmasına izin var)."
-
-msgid "The user can have the Donations module (Flux Donate is installed and they may see donations)."
-msgstr "Kullanıcı Bağışlar modülüne sahip olabilir (Flux Donate kurulu ve bağışları görmesine izin var)."
-
-msgid "Saves the filters of one dashboard module and returns the module as the dashboard shows it. Filters you leave out stay as they are."
-msgstr "Bir başlangıç modülünün filtrelerini kaydeder ve modülü başlangıç sayfasının gösterdiği biçimde döndürür. Boş bıraktığınız filtreler olduğu gibi kalır."
-
-msgid "The module."
-msgstr "Modül."
-
-msgid "Tasks: which tasks it counts."
-msgstr "Görevler: hangi görevleri sayar."
-
-msgid "Tasks: task list ID; 0 = all lists."
-msgstr "Görevler: görev listesi kimliği; 0 = tüm listeler."
-
-msgid "Tasks: how the chart is split."
-msgstr "Görevler: grafiğin nasıl bölündüğü."
-
-msgid "Donations: days it covers (7, 14 or 30)."
-msgstr "Bağışlar: kapsadığı gün (7, 14 veya 30)."
-
-msgid "Donations: how the chart is split."
-msgstr "Bağışlar: grafiğin nasıl bölündüğü."
-
-msgid "The module's body as the dashboard shows it (HTML rendered by Flux Admin)."
-msgstr "Modülün gövdesi, başlangıç sayfasının gösterdiği biçimde (Flux Admin'in oluşturduğu HTML)."
-
-msgid "The user's filters after the change."
-msgstr "Değişiklikten sonra kullanıcının filtreleri."
+msgid "Next month"
+msgstr "Sonraki ay"

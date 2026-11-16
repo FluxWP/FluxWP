@@ -1,6 +1,0 @@
-# Signs this app session out.
-mutation FlxAppLogout {
-  flxAppLogout(input: {}) {
-    ok
-  }
-}

@@ -1,7 +1,0 @@
-# Badge counters only (light poll when the site has no sync).
-query FlxAppCounts {
-  flxAppCounts {
-    key
-    value
-  }
-}

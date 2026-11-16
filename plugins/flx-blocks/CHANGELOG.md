@@ -1,11 +1,5 @@
 # Changelog
 
-## 0.3.0
-- GraphQL (Flux GraphQL gerekir, PHP 8.1+): her içerik tipinde `flxBlocks` alanı; headless ön yüz bir sayfayı sitedeki gibi göstermek için işlenmiş HTML'i, blok CSS'ini, stil/betik/modül dosyalarını (bağımlılık sırasıyla), yazı tiplerini, FAQ şemasını, hazır `headHtml`/`footerHtml`'i ve düz blok ağacını tek yanıtta alır. Site geneli stiller `flxBlocksSiteStyles`, taslak/desen önizlemesi `flxBlocksRender`. Belge docs/flx-blocks/GRAPHQL.md.
-- GraphQL: tasarım kütüphanesi (desenler, önizleme, bağlı kütüphaneler, paylaşım) ve Block Editor panosu (bloklar, ayarlar). Klasik pano ve kütüphane REST uçları aynı servisleri kullanır.
-- Yeni Block Editor ekranı (FluxWP uygulamasıyla aynı React ekranı): klasik panonun tüm özellikleri ve ek olarak tasarım kütüphanesi (desen tarayıcı + önizleme, bağlı kütüphaneler, paylaşım). wp-admin'de varsayılan; başlıktaki "Klasik görünüm" ile eski panoya dönülür.
-- Türkçe: 134 yeni çeviri.
-
 ## 0.2.3
 - Performans: İlerleme çubuğu bloğu olan sayfalarda tüm blok CSS'i (`flxbk_css`) iki kez basılıyordu (blok ikinci bir CSS nesnesi açıp yazdırma kancasını yineliyordu). Artık tek kez basılıyor (Qurban Global ana sayfası 399 KB → 277 KB, satır içi blok CSS'i 244 KB → 122 KB).
 - Görsel bloğu: yalnız adresle eklenen görsellere (desenler, ön ayarlar) genişlik/yükseklik, ortam kütüphanesindeyse `srcset`/`sizes` eklenir; şablondan doğrudan basılan görsellerde ilk görseller hemen, sonrakiler `loading="lazy"` ve `decoding="async"` ile yüklenir. Kapatmak için `flxbk_image_add_dimensions` / `flxbk_image_loading_optimization` filtreleri.

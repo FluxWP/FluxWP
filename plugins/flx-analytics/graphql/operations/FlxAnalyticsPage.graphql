@@ -1,7 +1,0 @@
-# Views of one page or post.
-query FlxAnalyticsPage($filter: FlxAnalyticsFilterInput, $target: String!) {
-  flxAnalyticsPage(filter: $filter, target: $target) {
-    found paths visitors pageviews
-    series { date visitors pageviews }
-  }
-}

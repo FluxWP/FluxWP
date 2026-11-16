@@ -147,11 +147,9 @@ add_filter(
 			'title'   => __( 'CRM', 'flx-crm' ),
 			'cap'     => FLXCRM_CAP_VIEW,
 			'menu'    => 'flx-crm',
-			'url'     => admin_url( 'admin.php?page=flx-crm' ),
-			'api'     => home_url( '/graphql' ),
+			'api'     => rest_url( FLXCRM_REST::NS ),
 			'icon'    => 'users',
 			'version' => FLXCRM_VERSION,
-			'order'   => 40,
 		);
 		return $m;
 	}

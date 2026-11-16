@@ -2,9 +2,9 @@
 /**
  * Plugin Name:       FluxWP Panel
  * Description:       FluxWP'nin kurulum ve güncelleme eklentisi. İlk açılışta kurulum sihirbazı (tanıtım, eklenti seçimi, görünüm, kurulum); FluxWP tema ve eklentilerini güncelleme sunucusundan (varsayılan updater.fluxwp.com) WordPress'in güncelleme ekranına getirir; ön ayar motoru (preset.json) siteyi tek adımda kurar, onaylı yamalarla değiştirir, geri alır.
- * Version:           1.4.0
+ * Version:           1.3.0
  * Requires at least: 6.6
- * Requires PHP:      8.1
+ * Requires PHP:      7.4
  * Author:            FluxWP
  * License:           GPL-2.0-or-later
  * Text Domain:       flx-setup
@@ -21,7 +21,7 @@ if ( defined( 'FLXK_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXK_VERSION', '1.4.0' );
+define( 'FLXK_VERSION', '1.3.0' );
 define( 'FLXK_FORMAT', 'flx-preset/1' );
 define( 'FLXK_FILE', __FILE__ );
 define( 'FLXK_DIR', plugin_dir_path( __FILE__ ) );
@@ -41,51 +41,6 @@ require_once FLXK_DIR . 'includes/patches.php';
 require_once FLXK_DIR . 'includes/mcp.php';
 require_once FLXK_DIR . 'includes/telemetry.php';
 require_once FLXK_DIR . 'includes/graphql.php';
-require_once FLXK_DIR . 'includes/services/class-flxk-val.php';
-require_once FLXK_DIR . 'includes/services/class-flxk-packages-service.php';
-require_once FLXK_DIR . 'includes/services/class-flxk-settings-service.php';
-require_once FLXK_DIR . 'includes/services/class-flxk-wizard-service.php';
-require_once FLXK_DIR . 'includes/services/class-flxk-system-service.php';
-require_once FLXK_DIR . 'includes/flux-ui.php';
-
-/*
- * GraphQL (Flux GraphQL 0.2.0+): schema only inside a GraphQL request, persisted operations of the Packages,
- * Settings and wizard screens, and the logo upload context. Without Flux GraphQL the classic screens keep working.
- */
-add_action(
-	'flx_gql_register',
-	static function () {
-		if ( ! function_exists( 'flx_gql_all_caps' ) ) {
-			return;
-		}
-		require_once FLXK_DIR . 'includes/graphql/schema.php';
-	}
-);
-add_filter(
-	'flx_gql_persisted_manifests',
-	static function ( $m ) {
-		$m             = is_array( $m ) ? $m : array();
-		$m['flx-setup'] = FLXK_DIR . 'graphql/persisted-queries.json';
-		return $m;
-	}
-);
-add_filter(
-	'flx_gql_upload_contexts',
-	static function ( $c ) {
-		$c                       = is_array( $c ) ? $c : array();
-		$c['flx-setup/logo']     = array(
-			'cap'    => static fn(): bool => current_user_can( 'install_plugins' ) && current_user_can( 'upload_files' ),
-			'mimes'  => array(
-				'jpg|jpeg|jpe' => 'image/jpeg',
-				'png'          => 'image/png',
-				'gif'          => 'image/gif',
-				'webp'         => 'image/webp',
-			),
-			'max_mb' => 5,
-		);
-		return $c;
-	}
-);
 
 if ( is_admin() ) {
 	require_once FLXK_DIR . 'includes/admin.php';

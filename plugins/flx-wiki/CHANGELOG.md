@@ -1,11 +1,5 @@
 # Flux Wiki
 
-## 0.3.0
-- GraphQL: sayfalar, bölümler, ağaç, arama, "Wiki'ye sor", önizleme, kılavuz içe aktarma ve ayarlar `/graphql` üzerinden (Flux GraphQL ≥ 0.2.0 gerekir). REST, MCP ve klasik ekran aynı servis katmanını çağırır; yanıtları değişmez.
-- Yeni görünüm: Wiki › Ayarlar sayfası FluxWP uygulamasındaki React ekranını açar (sayfa listesi, bölümler, Markdown düzenleyici + önizleme, ayarlar, adresler). Klasik görünüme bağlantıyla dönülür.
-- Ayarlar yazılınca önbellek ve adres kuralları ayar kancasında yenilenir (panel, preset ve GraphQL aynı davranır).
-- PHP en az 8.1. Çeviri araçları `tools/i18n.py`'ye geçti (kaynak dil İngilizce).
-
 ## 0.2.11
 - Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
 

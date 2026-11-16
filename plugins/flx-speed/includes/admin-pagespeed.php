@@ -215,7 +215,11 @@ class FLXP_Admin_PageSpeed {
 		}
 		check_admin_referer( 'flxp_ps_save' );
 		$in  = isset( $_POST['flxp'] ) && is_array( $_POST['flxp'] ) ? wp_unslash( $_POST['flxp'] ) : array(); // phpcs:ignore
-		FLXP_Speed_Service::pagespeed_save( $in );
+		$out = flxp_sanitize_settings( $in, 'pagespeed' );
+		update_option( 'flxp_settings', $out, false );
+		FLXP_PageSpeed::clear_cache();
+		delete_transient( 'flxp_ps_anim' );
+		do_action( 'litespeed_purge_all' );
 		wp_safe_redirect( self::url( array( 'flxp_ps' => 'saved' ) ) );
 		exit;
 	}
@@ -225,7 +229,9 @@ class FLXP_Admin_PageSpeed {
 			wp_die( '', 403 );
 		}
 		check_admin_referer( 'flxp_ps_clear' );
-		FLXP_Speed_Service::pagespeed_clear();
+		FLXP_PageSpeed::clear_cache();
+		delete_transient( 'flxp_ps_anim' );
+		do_action( 'litespeed_purge_all' );
 		wp_safe_redirect( self::url( array( 'flxp_ps' => 'cleared' ) ) );
 		exit;
 	}

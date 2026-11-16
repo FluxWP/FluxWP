@@ -219,11 +219,15 @@ add_action(
 					'delete' => array( 'type' => 'boolean', 'default' => false ),
 				),
 				'callback'            => function ( WP_REST_Request $r ) {
-					$ref = FLXAN_Service::ref_save( (string) $r['code'], (string) $r['name'], (bool) $r['delete'] );
-					if ( null === $ref ) {
+					$code = flxan_ref_save( (string) $r['code'], $r['delete'] ? null : (string) $r['name'] );
+					if ( '' === $code ) {
 						return new WP_Error( 'flxan_bad_code', __( 'Invalid code. Use letters, digits, - and _.', 'flx-analytics' ), array( 'status' => 400 ) );
 					}
-					return $ref;
+					return array(
+						'code' => $code,
+						'name' => flxan_ref_names()[ $code ] ?? '',
+						'url'  => add_query_arg( 'r', $code, home_url( '/' ) ),
+					);
 				},
 			)
 		);
@@ -252,7 +256,9 @@ add_action(
 				},
 				'args'                => array( 'ok' => array( 'type' => 'boolean', 'required' => true ) ),
 				'callback'            => function ( WP_REST_Request $r ) {
-					return array( 'method' => FLXAN_Service::fast_test( (bool) $r['ok'] ) );
+					update_option( 'flxan_fast_test', $r['ok'] ? 'ok' : 'fail', false );
+					update_option( 'flxan_fast_test_time', time(), false );
+					return array( 'method' => flxan_method() );
 				},
 			)
 		);

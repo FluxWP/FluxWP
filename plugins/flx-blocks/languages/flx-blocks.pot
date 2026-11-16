@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Flux Block Editor 0.3.0\n"
+"Project-Id-Version: Flux Block Editor 0.1.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/flx-blocks\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-16T00:55:55+00:00\n"
+"POT-Creation-Date: 2026-11-12T10:22:13+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: flx-blocks\n"
@@ -32,23 +32,6 @@ msgstr ""
 #. Author of the plugin
 #: flx-blocks.php
 msgid "FluxWP"
-msgstr ""
-
-#: includes/admin-screen.php:103
-msgid "JavaScript is required for this screen."
-msgstr ""
-
-#: includes/admin-screen.php:111
-msgid "New view"
-msgstr ""
-
-#: includes/admin-screen.php:111
-msgid "Open the new view (same features plus the design library, works in the FluxWP app too)."
-msgstr ""
-
-#: includes/admin-screen.php:123
-#: includes/settings/class-flx-blocks-settings.php:578
-msgid "Block Editor"
 msgstr ""
 
 #: includes/advanced-form/activecampaign-rest-api.php:113
@@ -177,7 +160,7 @@ msgstr ""
 #: src/blocks/advanced-form/fields/text/edit.js:150
 #: src/blocks/advanced-form/fields/textarea/edit.js:159
 #: src/blocks/advanced-form/fields/time/edit.js:146
-#: src/blocks/navigation-link/edit.js:1115
+#: src/blocks/navigation-link/edit.js:1113
 msgid "Description"
 msgstr ""
 
@@ -443,7 +426,7 @@ msgstr ""
 #: includes/blocks/class-flx-blocks-advancedgallery-block.php:1290
 #: includes/blocks/class-flx-blocks-row-layout-block.php:1899
 #: includes/blocks/class-flx-blocks-testimonials-block.php:959
-#: src/blocks/testimonials/block.js:29
+#: src/blocks/testimonials/block.js:30
 msgid "carousel"
 msgstr ""
 
@@ -765,38 +748,35 @@ msgstr ""
 msgid "The library key is missing or wrong."
 msgstr ""
 
-#: includes/class-flx-blocks-design-library.php:223
+#: includes/class-flx-blocks-design-library.php:221
 msgid "Other"
 msgstr ""
 
-#: includes/class-flx-blocks-design-library.php:224
+#: includes/class-flx-blocks-design-library.php:222
 msgid "My patterns"
 msgstr ""
 
-#: includes/class-flx-blocks-design-library.php:352
-#: src/blocks/navigation/edit-inner.js:871
-msgid "Home"
+#: includes/class-flx-blocks-design-library.php:310
+msgid "Enter a valid site address."
 msgstr ""
 
-#: includes/class-flx-blocks-design-library.php:449
+#: includes/class-flx-blocks-design-library.php:330
 msgid "Unknown action."
 msgstr ""
 
-#: includes/class-flx-blocks-design-library.php:467
-#: includes/services/class-flxbk-library-service.php:40
-#: includes/services/class-flxbk-library-service.php:161
+#: includes/class-flx-blocks-design-library.php:349
 msgid "Library not found."
 msgstr ""
 
-#: includes/class-flx-blocks-design-library.php:499
+#: includes/class-flx-blocks-design-library.php:379
 msgid "The library could not be reached."
 msgstr ""
 
-#: includes/class-flx-blocks-design-library.php:503
+#: includes/class-flx-blocks-design-library.php:383
 msgid "The library refused access. Check the key, and that sharing is on at the other site."
 msgstr ""
 
-#: includes/class-flx-blocks-design-library.php:507
+#: includes/class-flx-blocks-design-library.php:387
 msgid "This address is not a Flux design library."
 msgstr ""
 
@@ -1028,7 +1008,7 @@ msgstr ""
 
 #: includes/class-flx-blocks-table-of-contents.php:932
 #: includes/class-flx-blocks-table-of-contents.php:940
-#: includes/settings/class-flx-blocks-settings.php:1294
+#: includes/settings/class-flx-blocks-settings.php:1285
 #: src/plugins/flxbk-control-plugin.js:732
 msgid "Table of Contents"
 msgstr ""
@@ -1067,7 +1047,7 @@ msgid "Please enter a vector title"
 msgstr ""
 
 #: includes/flx-integration.php:22
-#: includes/settings/class-flx-blocks-settings.php:1168
+#: includes/settings/class-flx-blocks-settings.php:1159
 #: packages/components/src/typography/typography-control/index.js:114
 msgid "Google Fonts"
 msgstr ""
@@ -1082,7 +1062,7 @@ msgstr ""
 
 #: includes/flx-integration.php:28
 #: includes/flx-integration.php:56
-#: includes/settings/class-flx-blocks-settings.php:1439
+#: includes/settings/class-flx-blocks-settings.php:1449
 #: src/blocks/form/edit.js:1081
 #: src/blocks/form/edit.js:1127
 #: src/blocks/rowlayout/style-controls.js:980
@@ -1138,528 +1118,6 @@ msgstr ""
 
 #: includes/form-ajax.php:182
 msgid "Required Field Empty"
-msgstr ""
-
-#: includes/graphql/schema.php:101
-msgid "What kind of file an asset is."
-msgstr ""
-
-#: includes/graphql/schema.php:105
-msgid "Stylesheet."
-msgstr ""
-
-#: includes/graphql/schema.php:109
-msgid "Classic script."
-msgstr ""
-
-#: includes/graphql/schema.php:113
-msgid "Script module (type=\"module\", uses the import map in footerHtml)."
-msgstr ""
-
-#: includes/graphql/schema.php:122
-msgid "A stylesheet or script rendered blocks need, as WordPress registered it."
-msgstr ""
-
-#: includes/graphql/schema.php:126
-msgid "Stylesheet, script or script module."
-msgstr ""
-
-#: includes/graphql/schema.php:131
-msgid "Registered handle (module id for modules). Use it to load each file once per page."
-msgstr ""
-
-#: includes/graphql/schema.php:136
-msgid "Absolute URL without the version; null for an inline-only asset."
-msgstr ""
-
-#: includes/graphql/schema.php:141
-msgid "Version WordPress adds as ?ver=; null when it adds none."
-msgstr ""
-
-#: includes/graphql/schema.php:146
-msgid "Stylesheet media; null for scripts."
-msgstr ""
-
-#: includes/graphql/schema.php:151
-msgid "Handles this asset needs; they come earlier in the same list."
-msgstr ""
-
-#: includes/graphql/schema.php:156
-msgid "Inline script to run before the file; empty when none."
-msgstr ""
-
-#: includes/graphql/schema.php:161
-msgid "Inline CSS or script to add after the file; empty when none."
-msgstr ""
-
-#: includes/graphql/schema.php:166
-msgid "Localized data script (var x = {...}) to run before the file; empty when none."
-msgstr ""
-
-#: includes/graphql/schema.php:171
-msgid "Loaded at the end of the body."
-msgstr ""
-
-#: includes/graphql/schema.php:176
-msgid "Loading strategy: defer, async or empty."
-msgstr ""
-
-#: includes/graphql/schema.php:186
-msgid "One block of the content. The tree is flat: inner blocks point to their parent with parentClientId."
-msgstr ""
-
-#: includes/graphql/schema.php:190
-msgid "Position path, the same for the same content (\"0\", \"0.2\", \"0.2.1\")."
-msgstr ""
-
-#: includes/graphql/schema.php:195
-msgid "Parent block; null for a top-level block."
-msgstr ""
-
-#: includes/graphql/schema.php:200
-msgid "Position among its siblings, from 0."
-msgstr ""
-
-#: includes/graphql/schema.php:205
-msgid "Nesting level; 0 for a top-level block."
-msgstr ""
-
-#: includes/graphql/schema.php:210
-msgid "Block name, e.g. flx/rowlayout; core/freeform for loose HTML."
-msgstr ""
-
-#: includes/graphql/schema.php:216
-msgid "Attributes saved in the block comment (each block type has its own)."
-msgstr ""
-
-#: includes/graphql/schema.php:224
-msgid "The block's own saved HTML, without its inner blocks."
-msgstr ""
-
-#: includes/graphql/schema.php:229
-msgid "Rendered on the server; its saved HTML is not what visitors see."
-msgstr ""
-
-#: includes/graphql/schema.php:239
-msgid "Block content rendered as on the site, with everything the page needs for it. Either put headHtml in <head> and footerHtml at the end of <body>, or load css, styles, scripts and fonts yourself; not both."
-msgstr ""
-
-#: includes/graphql/schema.php:243
-msgid "Rendered HTML (the_content)."
-msgstr ""
-
-#: includes/graphql/schema.php:248
-msgid "CSS generated for these blocks (block styles, custom CSS, layout). Not in styles."
-msgstr ""
-
-#: includes/graphql/schema.php:254
-msgid "Block tree as a flat list in document order."
-msgstr ""
-
-#: includes/graphql/schema.php:259
-msgid "Stylesheets, dependencies first."
-msgstr ""
-
-#: includes/graphql/schema.php:264
-msgid "Scripts and script modules, dependencies first."
-msgstr ""
-
-#: includes/graphql/schema.php:269
-msgid "Font stylesheet URLs (served from the site when local fonts are on)."
-msgstr ""
-
-#: includes/graphql/schema.php:274
-msgid "JSON-LD documents for the page head (e.g. FAQ schema of accordions)."
-msgstr ""
-
-#: includes/graphql/schema.php:279
-msgid "Ready <head> markup: stylesheets, fonts, css, schema and head scripts, printed by WordPress."
-msgstr ""
-
-#: includes/graphql/schema.php:284
-msgid "Ready end-of-body markup: footer scripts, script modules and their data."
-msgstr ""
-
-#: includes/graphql/schema.php:294
-msgid "Site-wide styles every block page needs once."
-msgstr ""
-
-#: includes/graphql/schema.php:298
-msgid "Flux Block Editor variables, theme palette and palette color classes."
-msgstr ""
-
-#: includes/graphql/schema.php:303
-msgid "The theme's global styles (theme.json presets and styles)."
-msgstr ""
-
-#: includes/graphql/schema.php:308
-msgid "Base block library stylesheets."
-msgstr ""
-
-#: includes/graphql/schema.php:313
-msgid "Ready <head> markup of all of the above."
-msgstr ""
-
-#: includes/graphql/schema.php:330
-msgid "The blocks of this content rendered as on the site, with the CSS and files the page needs. Null when the content is password protected."
-msgstr ""
-
-#: includes/graphql/schema.php:348
-msgid "Site-wide styles block pages share. Load once per page, before the content styles."
-msgstr ""
-
-#: includes/graphql/schema.php:361
-msgid "Renders block markup (a pattern or an unsaved draft) as the site would."
-msgstr ""
-
-#: includes/graphql/schema.php:366
-msgid "Block markup."
-msgstr ""
-
-#: includes/graphql/schema.php:370
-msgid "Post the markup belongs to; dynamic blocks read it. The user must be able to edit it."
-msgstr ""
-
-#: includes/graphql/schema.php:376
-msgid "The content is too long to preview."
-msgstr ""
-
-#: includes/graphql/schema.php:399
-msgid "A design library category."
-msgstr ""
-
-#: includes/graphql/schema.php:403
-#: includes/graphql/schema.php:507
-msgid "Category slug."
-msgstr ""
-
-#: includes/graphql/schema.php:408
-msgid "Category name."
-msgstr ""
-
-#: includes/graphql/schema.php:413
-msgid "Patterns in the category."
-msgstr ""
-
-#: includes/graphql/schema.php:423
-msgid "A design library pattern (a ready section or page)."
-msgstr ""
-
-#: includes/graphql/schema.php:427
-msgid "Pattern name (e.g. flx-preset/hero) or user/<post id> for My patterns."
-msgstr ""
-
-#: includes/graphql/schema.php:432
-msgid "Title."
-msgstr ""
-
-#: includes/graphql/schema.php:437
-msgid "Description; empty when none."
-msgstr ""
-
-#: includes/graphql/schema.php:442
-msgid "Category slugs."
-msgstr ""
-
-#: includes/graphql/schema.php:447
-msgid "Search keywords."
-msgstr ""
-
-#: includes/graphql/schema.php:452
-msgid "Width to preview the pattern at (px)."
-msgstr ""
-
-#: includes/graphql/schema.php:457
-msgid "Block markup to insert."
-msgstr ""
-
-#: includes/graphql/schema.php:462
-msgid "Linked library the pattern comes from; null for this site."
-msgstr ""
-
-#: includes/graphql/schema.php:467
-msgid "The pattern rendered on this site (preview). Ask for it on one pattern at a time."
-msgstr ""
-
-#: includes/graphql/schema.php:473
-msgid "Design library patterns."
-msgstr ""
-
-#: includes/graphql/schema.php:478
-msgid "A design library: this site's or a linked Flux site's."
-msgstr ""
-
-#: includes/graphql/schema.php:482
-msgid "Site name."
-msgstr ""
-
-#: includes/graphql/schema.php:487
-#: includes/graphql/schema.php:547
-#: includes/graphql/schema.php:666
-msgid "Site address."
-msgstr ""
-
-#: includes/graphql/schema.php:492
-msgid "Linked library id; null for this site."
-msgstr ""
-
-#: includes/graphql/schema.php:497
-msgid "Categories in use (a short list)."
-msgstr ""
-
-#: includes/graphql/schema.php:502
-msgid "Patterns, filtered by category and search words."
-msgstr ""
-
-#: includes/graphql/schema.php:511
-msgid "Words to look for in the title, description and keywords."
-msgstr ""
-
-#: includes/graphql/schema.php:533
-msgid "A linked design library (another Flux site). Its key never leaves the server."
-msgstr ""
-
-#: includes/graphql/schema.php:537
-#: includes/graphql/schema.php:703
-msgid "Source id."
-msgstr ""
-
-#: includes/graphql/schema.php:542
-msgid "Name."
-msgstr ""
-
-#: includes/graphql/schema.php:552
-msgid "A library key is saved for it."
-msgstr ""
-
-#: includes/graphql/schema.php:562
-msgid "Sharing this site's design library with other Flux sites."
-msgstr ""
-
-#: includes/graphql/schema.php:566
-msgid "Other sites can add this library."
-msgstr ""
-
-#: includes/graphql/schema.php:571
-msgid "Key the other site enters; empty until sharing is turned on."
-msgstr ""
-
-#: includes/graphql/schema.php:576
-msgid "Address the other site enters."
-msgstr ""
-
-#: includes/graphql/schema.php:587
-msgid "This site's design library, or a linked library's."
-msgstr ""
-
-#: includes/graphql/schema.php:592
-#: includes/graphql/schema.php:620
-msgid "Linked library id; leave empty for this site."
-msgstr ""
-
-#: includes/graphql/schema.php:596
-msgid "Fetch a linked library again instead of using the 30 minute copy."
-msgstr ""
-
-#: includes/graphql/schema.php:611
-msgid "One design library pattern (for its preview)."
-msgstr ""
-
-#: includes/graphql/schema.php:616
-msgid "Pattern id."
-msgstr ""
-
-#: includes/graphql/schema.php:639
-msgid "Linked design libraries (a short list)."
-msgstr ""
-
-#: includes/graphql/schema.php:652
-msgid "Sharing of this site's design library."
-msgstr ""
-
-#: includes/graphql/schema.php:661
-msgid "Links another Flux site's design library. The site is asked once to check the address and key."
-msgstr ""
-
-#: includes/graphql/schema.php:670
-msgid "Name; leave empty to use the site's own name."
-msgstr ""
-
-#: includes/graphql/schema.php:674
-msgid "Library key given by the other site."
-msgstr ""
-
-#: includes/graphql/schema.php:680
-msgid "The added library."
-msgstr ""
-
-#: includes/graphql/schema.php:684
-msgid "All linked libraries."
-msgstr ""
-
-#: includes/graphql/schema.php:698
-msgid "Removes a linked design library."
-msgstr ""
-
-#: includes/graphql/schema.php:709
-msgid "Remaining linked libraries."
-msgstr ""
-
-#: includes/graphql/schema.php:723
-msgid "Turns sharing of this site's design library on or off, or makes a new key."
-msgstr ""
-
-#: includes/graphql/schema.php:728
-msgid "Share the library; leave out to keep it as it is."
-msgstr ""
-
-#: includes/graphql/schema.php:732
-msgid "Make a new key; sites using the old key lose access."
-msgstr ""
-
-#: includes/graphql/schema.php:738
-msgid "Sharing after the change."
-msgstr ""
-
-#: includes/graphql/schema.php:753
-msgid "Editor width of a page or post."
-msgstr ""
-
-#: includes/graphql/schema.php:757
-msgid "Small template."
-msgstr ""
-
-#: includes/graphql/schema.php:761
-msgid "Large template."
-msgstr ""
-
-#: includes/graphql/schema.php:765
-msgid "Full width."
-msgstr ""
-
-#: includes/graphql/schema.php:774
-msgid "A block on the Block Editor dashboard."
-msgstr ""
-
-#: includes/graphql/schema.php:778
-msgid "Block name, e.g. flx/rowlayout."
-msgstr ""
-
-#: includes/graphql/schema.php:783
-msgid "Block title."
-msgstr ""
-
-#: includes/graphql/schema.php:788
-msgid "What the block does."
-msgstr ""
-
-#: includes/graphql/schema.php:793
-msgid "The block is offered in the editor."
-msgstr ""
-
-#: includes/graphql/schema.php:798
-msgid "Admin page of the block's items (e.g. Lottie animations); null when none."
-msgstr ""
-
-#: includes/graphql/schema.php:803
-msgid "Text of that link."
-msgstr ""
-
-#: includes/graphql/schema.php:813
-msgid "Editor widths (only for themes that use them)."
-msgstr ""
-
-#: includes/graphql/schema.php:817
-#: includes/graphql/schema.php:933
-msgid "Width can be chosen per page and post."
-msgstr ""
-
-#: includes/graphql/schema.php:822
-msgid "Small template width (px)."
-msgstr ""
-
-#: includes/graphql/schema.php:827
-msgid "Large template width (px)."
-msgstr ""
-
-#: includes/graphql/schema.php:832
-#: includes/graphql/schema.php:945
-msgid "Width of new posts."
-msgstr ""
-
-#: includes/graphql/schema.php:837
-#: includes/graphql/schema.php:949
-msgid "Width of new pages."
-msgstr ""
-
-#: includes/graphql/schema.php:842
-msgid "The theme's content width (px); 0 when it sets none."
-msgstr ""
-
-#: includes/graphql/schema.php:852
-#: includes/graphql/schema.php:892
-msgid "Block Editor dashboard settings."
-msgstr ""
-
-#: includes/graphql/schema.php:856
-#: includes/graphql/schema.php:963
-msgid "Show the page's header blocks in the admin bar."
-msgstr ""
-
-#: includes/graphql/schema.php:861
-msgid "The admin bar setting is offered (filter flxbk_show_admin_bar)."
-msgstr ""
-
-#: includes/graphql/schema.php:866
-msgid "Editor widths; null when the theme does not use them."
-msgstr ""
-
-#: includes/graphql/schema.php:871
-msgid "Admin address of the Style Library."
-msgstr ""
-
-#: includes/graphql/schema.php:882
-msgid "Blocks of the Block Editor dashboard (a short list)."
-msgstr ""
-
-#: includes/graphql/schema.php:901
-msgid "Turns a block on or off in the editor. Content that already uses it keeps working."
-msgstr ""
-
-#: includes/graphql/schema.php:906
-msgid "Block name."
-msgstr ""
-
-#: includes/graphql/schema.php:910
-msgid "On."
-msgstr ""
-
-#: includes/graphql/schema.php:916
-msgid "The block after the change."
-msgstr ""
-
-#: includes/graphql/schema.php:929
-msgid "Editor widths; a field left out stays as it is."
-msgstr ""
-
-#: includes/graphql/schema.php:937
-msgid "Small template width (px, 200–4000)."
-msgstr ""
-
-#: includes/graphql/schema.php:941
-msgid "Large template width (px, 200–4000)."
-msgstr ""
-
-#: includes/graphql/schema.php:958
-msgid "Saves Block Editor dashboard settings; a field left out stays as it is."
-msgstr ""
-
-#: includes/graphql/schema.php:967
-msgid "Editor widths."
-msgstr ""
-
-#: includes/graphql/schema.php:973
-msgid "Settings after the change."
 msgstr ""
 
 #: includes/header/class-flxbk-header-cpt.php:200
@@ -1996,8 +1454,8 @@ msgid "Extra Small"
 msgstr ""
 
 #: includes/resources/Design_Tokens/Registry/declarations.php:27
-#: includes/settings/class-flx-blocks-settings.php:1000
-#: includes/settings/class-flx-blocks-settings.php:1013
+#: includes/settings/class-flx-blocks-settings.php:996
+#: includes/settings/class-flx-blocks-settings.php:1009
 #: packages/components/src/column-drag-resizer/constants.js:32
 #: packages/components/src/font-size/constants.js:11
 #: packages/components/src/measurement-range-control/constants.js:31
@@ -2022,8 +1480,8 @@ msgid "Medium"
 msgstr ""
 
 #: includes/resources/Design_Tokens/Registry/declarations.php:29
-#: includes/settings/class-flx-blocks-settings.php:1001
-#: includes/settings/class-flx-blocks-settings.php:1014
+#: includes/settings/class-flx-blocks-settings.php:997
+#: includes/settings/class-flx-blocks-settings.php:1010
 #: packages/components/src/column-drag-resizer/constants.js:46
 #: packages/components/src/font-size/constants.js:25
 #: packages/components/src/measurement-range-control/constants.js:45
@@ -2535,7 +1993,7 @@ msgid "Advanced Image"
 msgstr ""
 
 #: includes/resources/Design_Tokens/Registry/declarations.php:930
-#: includes/settings/class-flx-blocks-settings.php:1211
+#: includes/settings/class-flx-blocks-settings.php:1202
 #: src/plugins/flxbk-control-plugin.js:611
 msgid "Row Layout"
 msgstr ""
@@ -2546,7 +2004,7 @@ msgid "Section"
 msgstr ""
 
 #: includes/resources/Design_Tokens/Registry/declarations.php:1085
-#: includes/settings/class-flx-blocks-settings.php:1259
+#: includes/settings/class-flx-blocks-settings.php:1250
 #: src/blocks/infobox/edit.js:2517
 #: src/blocks/single-icon/advanced-settings.js:19
 #: src/blocks/tabs/edit.js:1166
@@ -2557,7 +2015,7 @@ msgid "Icon"
 msgstr ""
 
 #: includes/resources/Design_Tokens/Registry/declarations.php:1167
-#: includes/settings/class-flx-blocks-settings.php:1269
+#: includes/settings/class-flx-blocks-settings.php:1260
 #: src/plugins/flxbk-control-plugin.js:357
 msgid "Advanced Text"
 msgstr ""
@@ -3235,26 +2693,6 @@ msgstr ""
 msgid "Theme Secondary"
 msgstr ""
 
-#: includes/services/class-flxbk-dashboard-service.php:83
-msgid "Unknown block."
-msgstr ""
-
-#: includes/services/class-flxbk-dashboard-service.php:143
-msgid "Choose Small, Large or Fullwidth."
-msgstr ""
-
-#: includes/services/class-flxbk-dashboard-service.php:153
-msgid "Enter a width between 200 and 4000 px."
-msgstr ""
-
-#: includes/services/class-flxbk-library-service.php:99
-msgid "Pattern not found."
-msgstr ""
-
-#: includes/services/class-flxbk-library-service.php:126
-msgid "Enter a valid site address."
-msgstr ""
-
 #: includes/settings/class-flx-blocks-settings.php:214
 #: includes/settings/class-flx-blocks-settings.php:384
 msgid "Pale pink"
@@ -3310,7 +2748,11 @@ msgstr ""
 msgid "Very dark gray"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:590
+#: includes/settings/class-flx-blocks-settings.php:578
+msgid "Block Editor"
+msgstr ""
+
+#: includes/settings/class-flx-blocks-settings.php:586
 #: src/blocks/header/components/popover-tutorial/index.js:125
 #: src/blocks/navigation/components/menu-editor/edit.js:232
 #: src/extension/block-css/index.js:141
@@ -3321,7 +2763,7 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:591
+#: includes/settings/class-flx-blocks-settings.php:587
 #: packages/components/src/advanced-form/submit-actions/convert-kit/index.js:213
 #: packages/components/src/advanced-form/submit-actions/mailchimp/index.js:260
 #: packages/components/src/advanced-form/submit-actions/sendinblue/index.js:173
@@ -3347,371 +2789,371 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:592
+#: includes/settings/class-flx-blocks-settings.php:588
 msgid "Updating"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:593
+#: includes/settings/class-flx-blocks-settings.php:589
 msgid "Updated"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:594
+#: includes/settings/class-flx-blocks-settings.php:590
 msgid "Config"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:595
+#: includes/settings/class-flx-blocks-settings.php:591
 msgid "Default Settings"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:601
-#: includes/settings/class-flx-blocks-settings.php:607
-#: includes/settings/class-flx-blocks-settings.php:613
-#: includes/settings/class-flx-blocks-settings.php:619
-#: includes/settings/class-flx-blocks-settings.php:625
-#: includes/settings/class-flx-blocks-settings.php:631
-#: includes/settings/class-flx-blocks-settings.php:637
-#: includes/settings/class-flx-blocks-settings.php:643
-#: includes/settings/class-flx-blocks-settings.php:649
-#: includes/settings/class-flx-blocks-settings.php:655
+#: includes/settings/class-flx-blocks-settings.php:597
+#: includes/settings/class-flx-blocks-settings.php:603
+#: includes/settings/class-flx-blocks-settings.php:609
+#: includes/settings/class-flx-blocks-settings.php:615
+#: includes/settings/class-flx-blocks-settings.php:621
+#: includes/settings/class-flx-blocks-settings.php:627
+#: includes/settings/class-flx-blocks-settings.php:633
+#: includes/settings/class-flx-blocks-settings.php:639
+#: includes/settings/class-flx-blocks-settings.php:645
+#: includes/settings/class-flx-blocks-settings.php:651
 msgid "Setting defaults has moved into Gutenberg, click on the top right corner settings and go to Flux Block Editor Controls"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:683
+#: includes/settings/class-flx-blocks-settings.php:679
 msgid "Config Flux Block Defaults"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:694
+#: includes/settings/class-flx-blocks-settings.php:690
 msgid "Config Flux Block visibility settings"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:705
+#: includes/settings/class-flx-blocks-settings.php:701
 msgid "Config Flux Block Settings"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:716
+#: includes/settings/class-flx-blocks-settings.php:712
 msgid "Config Flux Block Prophecy AI"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:727
+#: includes/settings/class-flx-blocks-settings.php:723
 msgid "Config Flux Block Editor Color Palette"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:738
+#: includes/settings/class-flx-blocks-settings.php:734
 msgid "Config Flux Block Editor Global Settings"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:749
+#: includes/settings/class-flx-blocks-settings.php:745
 msgid "Google reCaptcha Site Key"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:760
+#: includes/settings/class-flx-blocks-settings.php:756
 msgid "Google reCaptcha Secret Key"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:771
+#: includes/settings/class-flx-blocks-settings.php:767
 msgid "Google reCaptcha Language"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:782
+#: includes/settings/class-flx-blocks-settings.php:778
 msgid "Cloudflare Turnstile Site Key"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:793
+#: includes/settings/class-flx-blocks-settings.php:789
 msgid "Cloudflare Turnstile Secret Key"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:804
+#: includes/settings/class-flx-blocks-settings.php:800
 msgid "hCaptcha Turnstile Site Key"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:815
+#: includes/settings/class-flx-blocks-settings.php:811
 #: src/blocks/advanced-form/fields/captcha/edit.js:414
 msgid "hCaptcha Secret Key"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:826
+#: includes/settings/class-flx-blocks-settings.php:822
 msgid "MailerLite API Key"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:837
+#: includes/settings/class-flx-blocks-settings.php:833
 msgid "Google Maps API Key"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:848
+#: includes/settings/class-flx-blocks-settings.php:844
 msgid "Config Flux Block Editor Cloud"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:859
+#: includes/settings/class-flx-blocks-settings.php:855
 msgid "Is Flux header notice dismissed"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:870
+#: includes/settings/class-flx-blocks-settings.php:866
 msgid "Subscribe to Wireframe library"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:881
-#: includes/settings/class-flx-blocks-settings.php:892
-#: includes/settings/class-flx-blocks-settings.php:903
+#: includes/settings/class-flx-blocks-settings.php:877
+#: includes/settings/class-flx-blocks-settings.php:888
+#: includes/settings/class-flx-blocks-settings.php:899
 msgid "ConvertKit API Key"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:914
+#: includes/settings/class-flx-blocks-settings.php:910
 msgid "Mark the Header popover tutorial Complete"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:930
+#: includes/settings/class-flx-blocks-settings.php:926
 msgid "Small Template"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:931
+#: includes/settings/class-flx-blocks-settings.php:927
 msgid "Large Template"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:933
+#: includes/settings/class-flx-blocks-settings.php:929
 msgid "Post default"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:934
+#: includes/settings/class-flx-blocks-settings.php:930
 msgid "Page Default"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:936
+#: includes/settings/class-flx-blocks-settings.php:932
 msgid "Enable Editor Width"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:941
+#: includes/settings/class-flx-blocks-settings.php:937
 msgid "Load Google Fonts Locally"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:945
+#: includes/settings/class-flx-blocks-settings.php:941
 msgid "Show Block Headers in Admin Bar"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:953
+#: includes/settings/class-flx-blocks-settings.php:949
 msgid "Allows for changes to the editor width on per page/post basis with preset defaults."
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:955
-#: includes/settings/class-flx-blocks-settings.php:968
-#: includes/settings/class-flx-blocks-settings.php:1026
-#: includes/settings/class-flx-blocks-settings.php:1038
+#: includes/settings/class-flx-blocks-settings.php:951
+#: includes/settings/class-flx-blocks-settings.php:964
+#: includes/settings/class-flx-blocks-settings.php:1022
+#: includes/settings/class-flx-blocks-settings.php:1034
 msgid "False"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:956
-#: includes/settings/class-flx-blocks-settings.php:969
-#: includes/settings/class-flx-blocks-settings.php:1027
-#: includes/settings/class-flx-blocks-settings.php:1039
+#: includes/settings/class-flx-blocks-settings.php:952
+#: includes/settings/class-flx-blocks-settings.php:965
+#: includes/settings/class-flx-blocks-settings.php:1023
+#: includes/settings/class-flx-blocks-settings.php:1035
 msgid "True"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:966
+#: includes/settings/class-flx-blocks-settings.php:962
 msgid "Experimental editor CSS for less excess margins in Gutenberg in an attempt to get a closer WYSIWYG editing experience."
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:980
-#: includes/settings/class-flx-blocks-settings.php:990
+#: includes/settings/class-flx-blocks-settings.php:976
+#: includes/settings/class-flx-blocks-settings.php:986
 msgid "px"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1002
-#: includes/settings/class-flx-blocks-settings.php:1015
+#: includes/settings/class-flx-blocks-settings.php:998
+#: includes/settings/class-flx-blocks-settings.php:1011
 msgid "Fullwidth"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1135
-#: includes/settings/class-flx-blocks-settings.php:1136
+#: includes/settings/class-flx-blocks-settings.php:1126
+#: includes/settings/class-flx-blocks-settings.php:1127
 msgid "Activate"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1136
-#: includes/settings/class-flx-blocks-settings.php:1138
+#: includes/settings/class-flx-blocks-settings.php:1127
+#: includes/settings/class-flx-blocks-settings.php:1129
 msgid "Deactivate"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1136
+#: includes/settings/class-flx-blocks-settings.php:1127
 msgid "Activating…"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1136
+#: includes/settings/class-flx-blocks-settings.php:1127
 msgid "Activated"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1136
+#: includes/settings/class-flx-blocks-settings.php:1127
 msgid "Deactivating…"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1136
+#: includes/settings/class-flx-blocks-settings.php:1127
 msgid "Deactivated"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1152
+#: includes/settings/class-flx-blocks-settings.php:1143
 msgid "Editor Max Widths"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1152
+#: includes/settings/class-flx-blocks-settings.php:1143
 msgid "Match the editor width to your sites width."
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1154
+#: includes/settings/class-flx-blocks-settings.php:1145
 msgid "Note: The current active themes \"content_width\" is set to:"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1161
-#: includes/settings/class-flx-blocks-settings.php:1174
-#: includes/settings/class-flx-blocks-settings.php:1187
+#: includes/settings/class-flx-blocks-settings.php:1152
+#: includes/settings/class-flx-blocks-settings.php:1165
+#: includes/settings/class-flx-blocks-settings.php:1178
 msgid "Save Changes"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1181
+#: includes/settings/class-flx-blocks-settings.php:1172
 msgid "Admin Bar"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1212
+#: includes/settings/class-flx-blocks-settings.php:1203
 msgid "Create rows with nested blocks either in columns or as a container. Give style to your rows with background, overlay, padding, etc."
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1216
+#: includes/settings/class-flx-blocks-settings.php:1207
 #: src/blocks/advanced-form/components/form-title/index.js:152
 #: src/blocks/advanced-form/edit-inner.js:683
 msgid "Form"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1217
+#: includes/settings/class-flx-blocks-settings.php:1208
 msgid "Create a contact form or marketing form and style it within the block editor."
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1221
+#: includes/settings/class-flx-blocks-settings.php:1212
 #: src/plugins/flxbk-control-plugin.js:322
 msgid "Advanced Gallery"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1222
+#: includes/settings/class-flx-blocks-settings.php:1213
 msgid "Photo galleries, carousels, and sliders! Enable custom links, captions, and more. Plus, you can select image sizes."
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1226
+#: includes/settings/class-flx-blocks-settings.php:1217
 #: src/plugins/flxbk-control-plugin.js:277
 msgid "Advanced Button"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1227
+#: includes/settings/class-flx-blocks-settings.php:1218
 msgid "Create an advanced button or a row of buttons. Style each one including hover controls plus you can use an icon and display them side by side"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1231
+#: includes/settings/class-flx-blocks-settings.php:1222
 msgid "Lottie Animations"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1232
+#: includes/settings/class-flx-blocks-settings.php:1223
 msgid "Add an extra \"wow\" factor to your site with engaging Lottie animations."
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1234
+#: includes/settings/class-flx-blocks-settings.php:1225
 msgid "Manage Lottie Animations"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1238
+#: includes/settings/class-flx-blocks-settings.php:1229
 msgid "Vector Graphics"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1239
+#: includes/settings/class-flx-blocks-settings.php:1230
 msgid "Add custom vector icons and SVGs to enhance your site design."
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1241
+#: includes/settings/class-flx-blocks-settings.php:1232
 msgid "Manage Vector Graphics"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1245
+#: includes/settings/class-flx-blocks-settings.php:1236
 #: src/blocks/header/edit-inner.js:486
 msgid "Advanced Header"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1246
+#: includes/settings/class-flx-blocks-settings.php:1237
 msgid "Build custom headers in the block editor and full site editing."
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1248
+#: includes/settings/class-flx-blocks-settings.php:1239
 msgid "Manage Headers"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1252
+#: includes/settings/class-flx-blocks-settings.php:1243
 #: src/blocks/navigation/edit.js:380
 msgid "Advanced Navigation"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1253
+#: includes/settings/class-flx-blocks-settings.php:1244
 msgid "Build custom navigation menus"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1255
+#: includes/settings/class-flx-blocks-settings.php:1246
 msgid "Manage Navigation Menus"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1260
+#: includes/settings/class-flx-blocks-settings.php:1251
 msgid "Choose from over 1500+ SVG Icons to add into your page and style the size, colors, background, border, etc."
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1264
+#: includes/settings/class-flx-blocks-settings.php:1255
 #: src/plugins/flxbk-control-plugin.js:705
 msgid "Spacer/Divider"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1265
+#: includes/settings/class-flx-blocks-settings.php:1256
 msgid "Easily create a divider and determine the space around it or just create some space in your content."
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1270
+#: includes/settings/class-flx-blocks-settings.php:1261
 #: src/blocks/advancedheading/block.js:40
 msgid "Create a heading or paragraph and define sizes for desktop, tablet and mobile along with font family, colors, etc."
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1274
+#: includes/settings/class-flx-blocks-settings.php:1265
 #: src/blocks/tabs/edit.js:753
 #: src/blocks/tabs/edit.js:758
 #: src/plugins/flxbk-control-plugin.js:771
 msgid "Tabs"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1275
+#: includes/settings/class-flx-blocks-settings.php:1266
 msgid "Create custom vertical or horizontal tabs with advanced styling controls. Each tab content is an empty canvas able to contain any other blocks."
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1279
+#: includes/settings/class-flx-blocks-settings.php:1270
 #: src/plugins/flxbk-control-plugin.js:518
 msgid "Info Box"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1280
+#: includes/settings/class-flx-blocks-settings.php:1271
 msgid "Create a box containing an icon or image and, optionally, a title, description, and learn more text. Style static and hover separately."
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1284
+#: includes/settings/class-flx-blocks-settings.php:1275
 #: src/blocks/tabs/edit.js:755
 #: src/plugins/flxbk-control-plugin.js:230
 msgid "Accordion"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1285
+#: includes/settings/class-flx-blocks-settings.php:1276
 #: src/blocks/accordion/block.js:52
 msgid "Create beautiful accordions! Each pane can contain any other block, customize title styles, content background, and borders."
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1289
+#: includes/settings/class-flx-blocks-settings.php:1280
 #: src/plugins/flxbk-control-plugin.js:487
 msgid "Icon List"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1290
+#: includes/settings/class-flx-blocks-settings.php:1281
 msgid "Add beautiful icons to your lists and make them more engaging. Over 1500 icons to choose from and unlimited styles."
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1295
+#: includes/settings/class-flx-blocks-settings.php:1286
 msgid "Allow your readers to navigate your content easily with a table of contents block. Includes smooth scroll to anchor."
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1299
+#: includes/settings/class-flx-blocks-settings.php:1290
 #: packages/components/src/post-selector-checkbox/index.js:23
 #: src/blocks/posts/edit.js:982
 #: src/blocks/posts/edit.js:992
@@ -3719,50 +3161,50 @@ msgstr ""
 msgid "Posts"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1300
+#: includes/settings/class-flx-blocks-settings.php:1291
 msgid "Display a clean grid of posts anywhere on your site, great for your home page where you want to tease your blog."
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1304
+#: includes/settings/class-flx-blocks-settings.php:1295
 #: src/plugins/flxbk-control-plugin.js:402
 msgid "Countdown"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1305
+#: includes/settings/class-flx-blocks-settings.php:1296
 msgid "Increase your conversions by adding a sense of urgency to your offering. Pro includes evergreen campaigns as well."
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1309
+#: includes/settings/class-flx-blocks-settings.php:1300
 #: src/plugins/flxbk-control-plugin.js:807
 msgid "Testimonials"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1310
+#: includes/settings/class-flx-blocks-settings.php:1301
 msgid "Create confidence in your brand or product by showing off beautiful unique testimonials, add as a carousel or a grid."
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1318
+#: includes/settings/class-flx-blocks-settings.php:1309
 #: packages/components/src/links/image-url-input-link-controls/index.js:229
 #: packages/components/src/links/inline-link-control/index.js:110
 #: packages/components/src/links/link-control/index.js:116
-#: src/blocks/videopopup/block.js:50
-#: src/blocks/videopopup/block.js:55
+#: src/blocks/videopopup/block.js:49
+#: src/blocks/videopopup/block.js:54
 msgid "Video Popup"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1319
+#: includes/settings/class-flx-blocks-settings.php:1310
 msgid "Beautifully display a thumbnail with overlay and hover effect that links to a video popup on click. Works with local or external videos!"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1331
+#: includes/settings/class-flx-blocks-settings.php:1322
 msgid "Invalid nonce"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1334
+#: includes/settings/class-flx-blocks-settings.php:1325
 msgid "Missing Content"
 msgstr ""
 
-#: includes/settings/class-flx-blocks-settings.php:1340
+#: includes/settings/class-flx-blocks-settings.php:1331
 msgid "Nothing to Save"
 msgstr ""
 
@@ -4532,7 +3974,7 @@ msgstr ""
 #: packages/components/src/common/media-placeholder/index.js:310
 #: src/blocks/image/edit.js:645
 #: src/blocks/infobox/edit.js:4227
-#: src/blocks/navigation-link/edit.js:813
+#: src/blocks/navigation-link/edit.js:811
 #: src/blocks/videopopup/edit.js:1147
 msgid "Select Image"
 msgstr ""
@@ -5659,7 +5101,7 @@ msgstr ""
 #: src/blocks/infobox/edit.js:3286
 #: src/blocks/infobox/edit.js:3454
 #: src/blocks/infobox/edit.js:3625
-#: src/blocks/navigation-link/edit.js:1138
+#: src/blocks/navigation-link/edit.js:1136
 #: src/blocks/tabs/edit.js:1633
 #: src/blocks/tabs/edit.js:1679
 #: src/plugins/site-styles/preview.js:49
@@ -6814,7 +6256,7 @@ msgstr ""
 
 #: src/blocks/accordion/edit.js:443
 #: src/blocks/navigation-link/edit.js:479
-#: src/blocks/navigation-link/edit.js:1429
+#: src/blocks/navigation-link/edit.js:1427
 #: src/blocks/tabs/edit.js:597
 #: src/blocks/testimonials/edit.js:1275
 msgid "Skip"
@@ -6859,7 +6301,7 @@ msgid "Start with all panes collapsed"
 msgstr ""
 
 #: src/blocks/accordion/edit.js:1539
-#: src/blocks/navigation-link/edit.js:1413
+#: src/blocks/navigation-link/edit.js:1411
 #: src/blocks/rowlayout/edit.js:1301
 msgid "Column Layout"
 msgstr ""
@@ -7090,7 +6532,7 @@ msgstr ""
 #: src/blocks/infobox/edit.js:4012
 #: src/blocks/listitem/edit.js:775
 #: src/blocks/lottie/edit.js:566
-#: src/blocks/navigation-link/edit.js:1181
+#: src/blocks/navigation-link/edit.js:1179
 #: src/blocks/navigation/edit-inner.js:1915
 #: src/blocks/navigation/edit-inner.js:2376
 #: src/blocks/progress-bar/edit.js:1224
@@ -7447,7 +6889,7 @@ msgid "Page %1$d of %2$d"
 msgstr ""
 
 #: src/blocks/advanced-form/components/form-title/index.js:136
-#: src/blocks/navigation-link/edit.js:1439
+#: src/blocks/navigation-link/edit.js:1437
 msgid "Select Initial Layout"
 msgstr ""
 
@@ -7541,7 +6983,7 @@ msgstr ""
 #: src/blocks/infobox/edit.js:3970
 #: src/blocks/infobox/edit.js:4035
 #: src/blocks/lottie/edit.js:588
-#: src/blocks/navigation-link/edit.js:1208
+#: src/blocks/navigation-link/edit.js:1206
 #: src/blocks/navigation/edit-inner.js:1942
 #: src/blocks/navigation/edit-inner.js:2405
 #: src/blocks/progress-bar/edit.js:1251
@@ -8983,7 +8425,7 @@ msgstr ""
 #: src/blocks/column/edit.js:1675
 #: src/blocks/column/edit.js:1753
 #: src/blocks/googlemaps/edit.js:592
-#: src/blocks/navigation-link/edit.js:1024
+#: src/blocks/navigation-link/edit.js:1022
 #: src/blocks/navigation/edit-inner.js:1559
 #: src/blocks/navigation/edit-inner.js:2048
 #: src/blocks/spacer/edit.js:214
@@ -10015,7 +9457,7 @@ msgid "Screen Reader Text"
 msgstr ""
 
 #: src/blocks/advancedheading/formats/tooltips-popover.js:15
-#: src/blocks/navigation-link/edit.js:1061
+#: src/blocks/navigation-link/edit.js:1059
 msgid "Open in new tab"
 msgstr ""
 
@@ -10679,7 +10121,7 @@ msgstr ""
 msgid "number"
 msgstr ""
 
-#: src/blocks/countup/block.js:67
+#: src/blocks/countup/block.js:68
 msgid "My count up title"
 msgstr ""
 
@@ -13379,85 +12821,85 @@ msgstr ""
 msgid "Are you sure you want to replace this sub menu with a mega menu?"
 msgstr ""
 
-#: src/blocks/navigation-link/edit.js:546
+#: src/blocks/navigation-link/edit.js:545
 msgid "Are you sure you want to delete this mega menu?"
 msgstr ""
 
-#: src/blocks/navigation-link/edit.js:956
-#: src/blocks/navigation-link/edit.js:990
-#: src/blocks/navigation-link/edit.js:993
+#: src/blocks/navigation-link/edit.js:954
+#: src/blocks/navigation-link/edit.js:988
+#: src/blocks/navigation-link/edit.js:991
 #: src/blocks/navigation/edit-inner.js:1206
 #: src/blocks/navigation/edit-inner.js:1223
 #: src/blocks/navigation/edit-inner.js:1226
 msgid "Add Navigation Link"
 msgstr ""
 
-#: src/blocks/navigation-link/edit.js:1010
+#: src/blocks/navigation-link/edit.js:1008
 msgid "View Navigation Settings"
 msgstr ""
 
-#: src/blocks/navigation-link/edit.js:1048
+#: src/blocks/navigation-link/edit.js:1046
 msgid "Hide Label"
 msgstr ""
 
-#: src/blocks/navigation-link/edit.js:1053
+#: src/blocks/navigation-link/edit.js:1051
 msgid "Disable Link"
 msgstr ""
 
-#: src/blocks/navigation-link/edit.js:1093
+#: src/blocks/navigation-link/edit.js:1091
 msgid "Edit URL"
 msgstr ""
 
-#: src/blocks/navigation-link/edit.js:1116
+#: src/blocks/navigation-link/edit.js:1114
 msgid "Supporting text for this item."
 msgstr ""
 
-#: src/blocks/navigation-link/edit.js:1127
+#: src/blocks/navigation-link/edit.js:1125
 msgid "Sub Menu Settings"
 msgstr ""
 
-#: src/blocks/navigation-link/edit.js:1132
+#: src/blocks/navigation-link/edit.js:1130
 msgid "Open dropdown on"
 msgstr ""
 
-#: src/blocks/navigation-link/edit.js:1139
+#: src/blocks/navigation-link/edit.js:1137
 msgid "Hover to open"
 msgstr ""
 
-#: src/blocks/navigation-link/edit.js:1143
+#: src/blocks/navigation-link/edit.js:1141
 msgid "Click"
 msgstr ""
 
-#: src/blocks/navigation-link/edit.js:1144
+#: src/blocks/navigation-link/edit.js:1142
 msgid "Click to Open"
 msgstr ""
 
-#: src/blocks/navigation-link/edit.js:1235
+#: src/blocks/navigation-link/edit.js:1233
 msgid "Freeze Mega Menu Preview"
 msgstr ""
 
-#: src/blocks/navigation-link/edit.js:1236
+#: src/blocks/navigation-link/edit.js:1234
 msgid "Freeze Sub Menu Preview"
 msgstr ""
 
-#: src/blocks/navigation-link/edit.js:1393
-#: src/blocks/navigation-link/edit.js:1399
+#: src/blocks/navigation-link/edit.js:1391
+#: src/blocks/navigation-link/edit.js:1397
 msgid "Expand child menu"
 msgstr ""
 
-#: src/blocks/navigation-link/edit.js:1411
+#: src/blocks/navigation-link/edit.js:1409
 msgid "Select Your Columns"
 msgstr ""
 
-#: src/blocks/navigation-link/edit.js:1443
+#: src/blocks/navigation-link/edit.js:1441
 msgid "Basic Layout"
 msgstr ""
 
-#: src/blocks/navigation-link/edit.js:1473
+#: src/blocks/navigation-link/edit.js:1471
 msgid "or choose a design"
 msgstr ""
 
-#: src/blocks/navigation-link/edit.js:1477
+#: src/blocks/navigation-link/edit.js:1475
 msgid "Content Layout"
 msgstr ""
 
@@ -13665,6 +13107,10 @@ msgstr ""
 
 #: src/blocks/navigation/components/select-or-create-placeholder/index.js:150
 msgid "Make selection…"
+msgstr ""
+
+#: src/blocks/navigation/edit-inner.js:871
+msgid "Home"
 msgstr ""
 
 #: src/blocks/navigation/edit-inner.js:910
@@ -13900,11 +13346,6 @@ msgid "Select navigation"
 msgstr ""
 
 #: src/blocks/navigation/index.js:22
-msgctxt "block description"
-msgid "An advanced navigation block."
-msgstr ""
-
-#: src/blocks/navigation/index.js:23
 msgctxt "block title"
 msgid "Navigation (Adv)"
 msgstr ""
@@ -14964,7 +14405,7 @@ msgid "Search Style"
 msgstr ""
 
 #: src/blocks/search/edit.js:295
-#: src/blocks/videopopup/block.js:55
+#: src/blocks/videopopup/block.js:54
 msgid "Modal"
 msgstr ""
 
@@ -16050,11 +15491,6 @@ msgstr ""
 
 #: src/blocks/vector/edit.js:246
 msgid "Width Settings"
-msgstr ""
-
-#: src/blocks/videopopup/block.js:49
-msgctxt "block description"
-msgid "Display a thumbnail that opens a video in a popup."
 msgstr ""
 
 #: src/blocks/videopopup/edit.js:597

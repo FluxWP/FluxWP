@@ -1,9 +1,0 @@
-# The signed-in user's pinned and moved menu items.
-query FlxAdminUserMenuGet {
-  flxAdminUserMenu {
-    pins
-    away
-    subAway
-    subKeep
-  }
-}

@@ -141,14 +141,10 @@ function flx_coming_soon_template( $template ) {
 }
 add_filter( 'coming-soon_template', 'flx_coming_soon_template' );
 
-/**
- * Store-mode notice texts; site type picks donation or shop wording.
- *
- * @param bool $custom False returns only the translated defaults (the settings screen shows them as placeholders).
- */
-function flx_coming_soon_store_texts( $custom = true ) {
-	$title    = $custom ? trim( (string) flx_ayar( 'coming_soon_store_title' ) ) : '';
-	$text     = $custom ? trim( (string) flx_ayar( 'coming_soon_store_text' ) ) : '';
+/** Store-mode notice texts; site type picks donation or shop wording. */
+function flx_coming_soon_store_texts() {
+	$title    = trim( (string) flx_ayar( 'coming_soon_store_title' ) );
+	$text     = trim( (string) flx_ayar( 'coming_soon_store_text' ) );
 	$donation = 'donation' === flx_ayar( 'site_mod' );
 	return array(
 		'title' => $title ? flx_t( $title ) : ( $donation ? __( 'Online donations open soon.', 'fluxwp' ) : __( 'Our online store opens soon.', 'fluxwp' ) ),

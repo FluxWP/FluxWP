@@ -133,14 +133,7 @@ final class FLXRC_Verify {
 		return flxrc_settings( 'fail_open' ) ? true : self::fail( 'unreachable', $why );
 	}
 
-	/**
-	 * Panel "Test": verilen belirteci zorla doğrular; ham sonucu da döner.
-	 *
-	 * @param string $token  Token.
-	 * @param string $secret Secret key.
-	 * @param string $ctx    Context.
-	 * @return array{ok: bool, msg: string, v3?: bool, score?: float|null}
-	 */
+	/** Panel "Test": verilen belirteci zorla doğrular; ham sonucu da döner. */
 	public static function test( $token, $secret, $ctx = 'test' ) {
 		$resp = wp_remote_post(
 			flxrc_api_host() . '/recaptcha/api/siteverify',

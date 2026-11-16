@@ -1,7 +1,0 @@
-# A page of event details.
-query FlxAnalyticsEvents($filter: FlxAnalyticsFilterInput, $name: String, $first: Int, $after: String) {
-  flxAnalyticsEvents(filter: $filter, name: $name, first: $first, after: $after) {
-    totalCount pageInfo { hasNextPage endCursor }
-    nodes { ...FlxAnalyticsEventRowFields }
-  }
-}

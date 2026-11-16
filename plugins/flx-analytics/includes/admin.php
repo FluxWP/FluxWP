@@ -37,7 +37,7 @@ class FLXAN_Admin {
 	}
 
 	public static function assets( $hook ) {
-		if ( false === strpos( (string) $hook, self::SLUG ) || flxan_flux_ui_active() ) {
+		if ( false === strpos( (string) $hook, self::SLUG ) ) {
 			return;
 		}
 		wp_enqueue_style( 'flxan-admin', FLXAN_URL . 'assets/admin.css', array(), FLXAN_VERSION );
@@ -111,13 +111,7 @@ class FLXAN_Admin {
 		if ( ! flxan_can_view() ) {
 			wp_die( esc_html__( 'You are not allowed to view this page.', 'flx-analytics' ) );
 		}
-		if ( flxan_flux_ui_active() ) {
-			flxan_flux_mount();
-			return;
-		}
-		echo '<div class="wrap flxan">';
-		flxan_flux_classic_notice();
-		echo '<div id="flxan-app" class="flxan-app" aria-busy="true">';
+		echo '<div class="wrap flxan"><div id="flxan-app" class="flxan-app" aria-busy="true">';
 		echo '<div class="flxan-head"><h1>' . esc_html__( 'Statistics', 'flx-analytics' ) . '</h1></div>';
 		echo '<div class="flxan-cards flxan-kpis">';
 		for ( $i = 0; $i < 6; $i++ ) {
@@ -133,13 +127,7 @@ class FLXAN_Admin {
 		if ( ! flxan_can_view() ) {
 			wp_die( esc_html__( 'You are not allowed to view this page.', 'flx-analytics' ) );
 		}
-		if ( flxan_flux_ui_active() ) {
-			flxan_flux_mount();
-			return;
-		}
-		echo '<div class="wrap flxan">';
-		flxan_flux_classic_notice();
-		echo '<div id="flxan-journeys" class="flxan-app" aria-busy="true">';
+		echo '<div class="wrap flxan"><div id="flxan-journeys" class="flxan-app" aria-busy="true">';
 		echo '<div class="flxan-head"><h1>' . esc_html__( 'Journeys', 'flx-analytics' ) . '</h1></div>';
 		echo '<div class="flxan-cards flxan-kpis flxan-kpis--5">';
 		for ( $i = 0; $i < 5; $i++ ) {
@@ -170,10 +158,6 @@ class FLXAN_Admin {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_die( esc_html__( 'You are not allowed to view this page.', 'flx-analytics' ) );
 		}
-		if ( flxan_flux_ui_active() ) {
-			flxan_flux_mount();
-			return;
-		}
 		$s      = flxan_settings();
 		$method = flxan_method();
 		$koko   = flxan_koko_available();
@@ -181,7 +165,6 @@ class FLXAN_Admin {
 		?>
 		<div class="wrap flxan flxan-settings">
 			<h1><?php esc_html_e( 'Site Analytics settings', 'flx-analytics' ); ?></h1>
-			<?php flxan_flux_classic_notice(); ?>
 			<?php self::notice(); ?>
 			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 				<input type="hidden" name="action" value="flxan_save">
@@ -346,15 +329,21 @@ class FLXAN_Admin {
 		}
 		check_admin_referer( 'flxan_save' );
 		$in = isset( $_POST['s'] ) && is_array( $_POST['s'] ) ? wp_unslash( $_POST['s'] ) : array(); // phpcs:ignore
-		FLXAN_Service::store_settings( $in ); // the same storage GraphQL uses
+		update_option( 'flxan_settings', flxan_sanitize_settings( $in ), false );
+		flxan_settings( 'flush' );
 		if ( isset( $_POST['funnels_json'] ) || isset( $_POST['funnels'] ) ) { // phpcs:ignore
+			$def = flxan_funnels_to_text( flxan_default_funnels() );
 			if ( isset( $_POST['funnels_json'] ) ) { // phpcs:ignore
 				$f = flxan_funnels_sanitize( json_decode( (string) wp_unslash( $_POST['funnels_json'] ), true ) ); // phpcs:ignore
 			} else {
 				$text = trim( (string) wp_unslash( $_POST['funnels'] ) ); // phpcs:ignore
 				$f    = '' === $text ? array() : flxan_funnels_from_text( $text );
 			}
-			FLXAN_Service::store_funnels( $f );
+			if ( ! $f || trim( flxan_funnels_to_text( $f ) ) === trim( $def ) ) {
+				delete_option( 'flxan_funnels' );
+			} else {
+				update_option( 'flxan_funnels', $f, false );
+			}
 		}
 		flxan_write_config();
 		wp_safe_redirect( self::url( 'settings', array( 'flxan_msg' => 'saved' ) ) );
@@ -366,7 +355,7 @@ class FLXAN_Admin {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-analytics' ) );
 		}
 		check_admin_referer( 'flxan_aggregate' );
-		$n = FLXAN_Service::aggregate();
+		$n = max( 0, FLXAN_Aggregator::run( 25 ) );
 		wp_safe_redirect( self::url( 'settings', array( 'flxan_msg' => 'agg', 'n' => $n ) ) );
 		exit;
 	}
@@ -376,7 +365,7 @@ class FLXAN_Admin {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-analytics' ) );
 		}
 		check_admin_referer( 'flxan_reset' );
-		FLXAN_Service::reset();
+		FLXAN_Aggregator::reset();
 		wp_safe_redirect( self::url( 'settings', array( 'flxan_msg' => 'reset' ) ) );
 		exit;
 	}
@@ -386,8 +375,8 @@ class FLXAN_Admin {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-analytics' ) );
 		}
 		check_admin_referer( 'flxan_import_koko' );
-		$n = FLXAN_Service::koko_import();
-		wp_safe_redirect( self::url( 'settings', array( 'flxan_msg' => 'imported', 'n' => $n ) ) );
+		$r = flxan_koko_import();
+		wp_safe_redirect( self::url( 'settings', array( 'flxan_msg' => 'imported', 'n' => array_sum( $r ) ) ) );
 		exit;
 	}
 

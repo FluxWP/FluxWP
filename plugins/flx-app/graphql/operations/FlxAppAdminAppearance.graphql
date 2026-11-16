@@ -1,6 +1,0 @@
-# Appearance settings and what the pickers need.
-query FlxAppAdminAppearance {
-  flxAppAdminAppearance {
-    ...FlxAppAdminAppearanceFields
-  }
-}

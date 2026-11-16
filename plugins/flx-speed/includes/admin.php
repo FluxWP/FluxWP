@@ -20,83 +20,6 @@ class FLXP_Admin {
 		add_action( 'admin_post_flxp_cleanup', array( __CLASS__, 'cleanup' ) );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'assets' ) );
 		add_filter( 'submenu_file', array( __CLASS__, 'submenu_file' ) );
-		add_action( 'admin_init', array( __CLASS__, 'ui_switch' ) );
-	}
-
-	/*
-	 * New view (0.9.0, GraphQL): the page opens the same React screen as the FluxWP app (assets/flux/,
-	 * tools/fluxapp/embed-sync.sh flx-speed). It is the default and has every feature of the classic page;
-	 * a user can switch back to the classic page from the screen header for now. Needs Flux GraphQL.
-	 */
-	public static function flux_available() {
-		return file_exists( FLXP_DIR . 'assets/flux/flux-modules.js' ) && function_exists( 'flx_gql_ready' ) && function_exists( 'flx_gql_all_caps' ) && flx_gql_ready();
-	}
-
-	public static function flux_ui() {
-		return self::flux_available() && 'classic' !== get_user_meta( get_current_user_id(), 'flxp_ui', true );
-	}
-
-	/** Link that switches the current user between the views. */
-	public static function ui_switch_url( $ui ) {
-		return wp_nonce_url( self::url( array( 'flxp_ui' => 'flux' === $ui ? 'flux' : 'classic' ) ), 'flxp_ui' );
-	}
-
-	public static function ui_switch() {
-		if ( ! isset( $_GET['flxp_ui'], $_GET['page'] ) || self::SLUG !== $_GET['page'] || ! flxp_can_view() ) { // phpcs:ignore WordPress.Security.NonceVerification
-			return;
-		}
-		check_admin_referer( 'flxp_ui' );
-		if ( 'classic' === $_GET['flxp_ui'] ) {
-			update_user_meta( get_current_user_id(), 'flxp_ui', 'classic' );
-		} else {
-			delete_user_meta( get_current_user_id(), 'flxp_ui' );
-		}
-		wp_safe_redirect( self::url() );
-		exit;
-	}
-
-	/** The chunked bundle loads as an ES module. */
-	public static function module_tag( $tag, $handle ) {
-		if ( 'flxp-flux' !== $handle ) {
-			return $tag;
-		}
-		return (string) preg_replace_callback(
-			'/<script\b[^>]*\ssrc=[^>]*>/',
-			static function ( $m ) {
-				$open = (string) preg_replace( '/\stype=("|\')[^"\']*\1/', '', $m[0] );
-				return (string) preg_replace( '/^<script\b/', '<script type="module"', $open );
-			},
-			$tag,
-			1
-		);
-	}
-
-	private static function flux_assets() {
-		$ver    = FLXP_VERSION . '-' . (int) filemtime( FLXP_DIR . 'assets/flux/flux-modules.js' );
-		$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#2c7a64';
-		$opts   = array(
-			'module'     => 'flxp-speed',
-			'rest'       => rest_url(),
-			'nonce'      => wp_create_nonce( 'wp_rest' ),
-			'locale'     => get_user_locale(),
-			'siteName'   => get_bloginfo( 'name' ),
-			'adminUrl'   => admin_url(),
-			'theme'      => 'light',
-			'colors'     => array(
-				'primary'         => $accent,
-				'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
-			),
-			'classicUrl' => self::ui_switch_url( 'classic' ),
-		);
-		wp_enqueue_style( 'flxp-flux', FLXP_URL . 'assets/flux/flux-modules.css', array(), $ver );
-		wp_enqueue_script( 'flxp-flux', FLXP_URL . 'assets/flux/flux-modules.js', array(), $ver, true );
-		add_filter( 'script_loader_tag', array( __CLASS__, 'module_tag' ), 10, 2 );
-		// Light / dark follows Flux Admin (html.flxa-dark), also when the user switches it on the page.
-		wp_add_inline_script(
-			'flxp-flux',
-			'(function(){var h=document.documentElement,o=' . wp_json_encode( $opts ) . ';o.theme=h.classList.contains("flxa-dark")?"dark":"light";var slot=window.FluxModulesOptions||(window.FluxModulesOptions={});slot.id="flxp-app";slot.opts=o;function sync(){var el=document.getElementById("flxp-app");if(el)el.dataset.theme=h.classList.contains("flxa-dark")?"dark":"light";}new MutationObserver(sync).observe(h,{attributes:true,attributeFilter:["class"]});function go(){if(slot.done||!window.FluxModules)return;var el=document.getElementById(slot.id);if(!el)return;slot.done=true;try{window.FluxModules.mount(el,slot.opts);}catch(e){el.textContent=String(e&&e.message||e);}}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);go();})();',
-			'before'
-		);
 	}
 
 	/** Sekme → [başlık, yalnız yönetici]. */
@@ -149,10 +72,6 @@ class FLXP_Admin {
 
 	public static function assets( $hook ) {
 		if ( false === strpos( (string) $hook, self::SLUG ) ) {
-			return;
-		}
-		if ( self::flux_ui() ) {
-			self::flux_assets();
 			return;
 		}
 		wp_enqueue_style( 'flxp-admin', FLXP_URL . 'assets/admin.css', array(), FLXP_VERSION );
@@ -237,17 +156,9 @@ class FLXP_Admin {
 		if ( ! flxp_can_view() ) {
 			wp_die( esc_html__( 'You are not allowed to view this page.', 'flx-speed' ) );
 		}
-		if ( self::flux_ui() ) {
-			echo '<style>#flxp-app.flux-root{height:auto;background:transparent;font-family:inherit}</style>';
-			echo '<div class="wrap flxp-flux"><div id="flxp-app"><noscript>' . esc_html__( 'JavaScript is required for this screen.', 'flx-speed' ) . '</noscript></div></div>';
-			return;
-		}
 		$tab = self::current_tab();
 		$id  = isset( $_GET['id'] ) ? absint( $_GET['id'] ) : 0; // phpcs:ignore
 		echo '<div class="wrap flxp-wrap"><h1 class="wp-heading-inline">' . esc_html__( 'Flux Performance', 'flx-speed' ) . '</h1>';
-		if ( self::flux_available() ) {
-			echo '<p><a class="button" href="' . esc_url( self::ui_switch_url( 'flux' ) ) . '">' . esc_html__( 'New view', 'flx-speed' ) . '</a> <span class="description">' . esc_html__( 'Open the new view (same features, works in the FluxWP app too).', 'flx-speed' ) . '</span></p>';
-		}
 		self::notice();
 		if ( $id ) {
 			self::detail( $id );
@@ -1103,7 +1014,7 @@ class FLXP_Admin {
 			wp_die( '', 403 );
 		}
 		check_admin_referer( 'flxp_clear' );
-		FLXP_Speed_Service::records_clear();
+		FLXP_Store::clear();
 		wp_safe_redirect( self::url( array( 'tab' => 'records', 'flxp_msg' => 'cleared' ) ) );
 		exit;
 	}
@@ -1114,7 +1025,7 @@ class FLXP_Admin {
 		}
 		check_admin_referer( 'flxp_cleanup' );
 		$job = isset( $_POST['job'] ) ? sanitize_key( $_POST['job'] ) : '';
-		$n   = FLXP_Speed_Service::cleanup( $job );
+		$n   = flxp_cleanup( $job );
 		$arg = is_wp_error( $n ) ? array( 'flxp_err' => rawurlencode( $n->get_error_message() ) ) : array( 'flxp_done' => (int) $n );
 		wp_safe_redirect( self::url( array_merge( array( 'tab' => 'database' ), $arg ) ) );
 		exit;
@@ -1126,7 +1037,7 @@ class FLXP_Admin {
 		}
 		check_admin_referer( 'flxp_profile' );
 		$url = isset( $_POST['url'] ) ? sanitize_text_field( wp_unslash( $_POST['url'] ) ) : '';
-		$res = FLXP_Speed_Service::profile( $url );
+		$res = flxp_profile_url( $url );
 		if ( is_wp_error( $res ) ) {
 			wp_safe_redirect( self::url( array( 'tab' => 'records', 'flxp_err' => rawurlencode( $res->get_error_message() ) ) ) );
 		} else {

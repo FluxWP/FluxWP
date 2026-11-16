@@ -1,4 +1,0 @@
-# The signed-in user's light/dark choice.
-query FlxAdminModeGet {
-  flxAdminMode
-}

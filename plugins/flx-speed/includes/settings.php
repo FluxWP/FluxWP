@@ -26,17 +26,9 @@ function flxp_defaults() {
 	) + FLXP_PageSpeed::defaults(); // PageSpeed sekmesi (includes/optimize.php)
 }
 
-/**
- * Ayar(lar)ı okur.
- *
- * @param string|null $key   Ayar adı; boşsa hepsi.
- * @param bool        $fresh Önbelleği atıp seçeneği yeniden okur (aynı istekte kaydettikten sonra, GraphQL).
- */
-function flxp_settings( $key = null, $fresh = false ) {
+/** Ayar(lar)ı okur. */
+function flxp_settings( $key = null ) {
 	static $cache = null;
-	if ( $fresh ) {
-		$cache = null;
-	}
 	if ( null === $cache ) {
 		$saved = get_option( 'flxp_settings', array() );
 		$cache = array_merge( flxp_defaults(), is_array( $saved ) ? $saved : array() );

@@ -62,12 +62,7 @@ function flxa_default_pins() {
 	return array_map( 'strval', (array) apply_filters( 'flxa_default_pins', array( 'index.php', 'flx-chat', 'flx-tasks', 'flxb-dashboard' ) ) );
 }
 
-/**
- * Kişinin sabitledikleri; hiç düzenlemediyse varsayılanlar.
- *
- * @param int $user_id User (0 = current).
- * @return list<string>
- */
+/** Kişinin sabitledikleri; hiç düzenlemediyse varsayılanlar. */
 function flxa_user_pins( $user_id = 0 ) {
 	$user_id = $user_id ? $user_id : get_current_user_id();
 	if ( $user_id && ! metadata_exists( 'user', $user_id, 'flxa_pins' ) ) {
@@ -76,12 +71,7 @@ function flxa_user_pins( $user_id = 0 ) {
 	return flxa_user_list( 'flxa_pins', $user_id );
 }
 
-/**
- * Verilen menü sırasından varsayılan düzen üretir.
- *
- * @param list<string> $slugs Menu links in order.
- * @return list<array<string, mixed>>
- */
+/** Verilen menü sırasından varsayılan düzen üretir. */
 function flxa_default_entries( array $slugs ) {
 	$groups = flxa_default_groups();
 	$bucket = array();
@@ -127,9 +117,6 @@ function flxa_default_entries( array $slugs ) {
  *   add_filter( 'flxa_menu_platforms', fn( $p ) => $p + array( 'web' => 'Web', 'mobile' => 'Mobil', 'desktop' => 'Masaüstü' ) );
  * Boşsa menü düzenleyicide platform düğmeleri çıkmaz.
  */
-/**
- * @return array<string, string>
- */
 function flxa_menu_platforms() {
 	return array_map( 'strval', (array) apply_filters( 'flxa_menu_platforms', array() ) );
 }
@@ -145,9 +132,6 @@ function flxa_menu_platform_off( $user = null ) {
 	return $out;
 }
 
-/**
- * @return array<string, mixed>
- */
 function flxa_menus_option() {
 	$o = get_option( 'flxa_menus', array() );
 	return is_array( $o ) ? $o : array();
@@ -208,21 +192,12 @@ function flxa_catalog_snapshot() {
 	}
 }
 
-/**
- * @return list<array{slug: string, label: string, cap: string, icon: string, url: string, sub: list<array{slug: string, label: string, cap: string}>}>
- */
 function flxa_menu_catalog() {
 	$c = get_option( 'flxa_menu_catalog', array() );
 	return is_array( $c ) && ! empty( $c['items'] ) ? $c['items'] : array();
 }
 
-/**
- * Kişisel menü listeleri: `flxa_pins` (üste sabitlenenler, sıralı), `flxa_away` ("Diğer"e taşınanlar).
- *
- * @param string $key     User meta key.
- * @param int    $user_id User (0 = current).
- * @return list<string>
- */
+/** Kişisel menü listeleri: `flxa_pins` (üste sabitlenenler, sıralı), `flxa_away` ("Diğer"e taşınanlar). */
 function flxa_user_list( $key, $user_id = 0 ) {
 	$user_id = $user_id ? $user_id : get_current_user_id();
 	$v       = $user_id ? get_user_meta( $user_id, $key, true ) : array();
@@ -243,11 +218,7 @@ function flxa_group_key( $g ) {
 	return '' !== $k ? $k : ( '' !== $id ? sanitize_key( $id ) : 'g' );
 }
 
-/**
- * Erişimi engellenemeyen menüler (kilitlenme olmasın).
- *
- * @return list<string>
- */
+/** Erişimi engellenemeyen menüler (kilitlenme olmasın). */
 function flxa_unblockable() {
 	return array( 'index.php', 'profile.php' );
 }
@@ -685,17 +656,47 @@ function flxa_block_die() {
 add_action( 'wp_ajax_flxa_menu_user', 'flxa_ajax_menu_user' );
 function flxa_ajax_menu_user() {
 	check_ajax_referer( 'flxa', 'nonce' );
-	$op    = sanitize_key( wp_unslash( $_POST['op'] ?? '' ) );
-	$slug  = (string) wp_unslash( $_POST['slug'] ?? '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-	$order = array();
+	$op   = sanitize_key( wp_unslash( $_POST['op'] ?? '' ) );
+	$slug = (string) wp_unslash( $_POST['slug'] ?? '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+	$slug = substr( wp_strip_all_tags( $slug ), 0, 200 );
+	$uid  = get_current_user_id();
+	$pins = flxa_user_pins( $uid );
+	$away = flxa_user_list( 'flxa_away' );
 	if ( 'order' === $op ) {
-		$want  = json_decode( (string) wp_unslash( $_POST['pins'] ?? '[]' ), true ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-		$order = is_array( $want ) ? array_map( 'strval', $want ) : array();
-	}
-	$r = FLXA_Menu_Service::user_set( $op, $slug, array_values( $order ) );
-	if ( is_wp_error( $r ) ) {
+		$want = json_decode( (string) wp_unslash( $_POST['pins'] ?? '[]' ), true ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$want = is_array( $want ) ? array_map( 'strval', $want ) : array();
+		$pins = array_values( array_merge( array_intersect( $want, $pins ), array_diff( $pins, $want ) ) );
+	} elseif ( '' === $slug ) {
+		wp_send_json_error( null, 400 );
+	} elseif ( 'pin' === $op ) {
+		$pins[] = $slug;
+		$away   = array_diff( $away, array( $slug ) );
+	} elseif ( 'unpin' === $op ) {
+		$pins = array_diff( $pins, array( $slug ) );
+	} elseif ( 'away' === $op ) {
+		$away[] = $slug;
+		$pins   = array_diff( $pins, array( $slug ) );
+	} elseif ( 'back' === $op ) {
+		$away = array_diff( $away, array( $slug ) );
+	} elseif ( 'subaway' === $op || 'subback' === $op ) {
+		// Alt menü öğesi (bağlantısıyla): "Diğer" altına taşı / yerine al. Otomatik "Diğer"e düşenleri geri alma `flxa_sub_keep`te.
+		$sa = flxa_user_list( 'flxa_sub_away', $uid );
+		$sk = flxa_user_list( 'flxa_sub_keep', $uid );
+		if ( 'subaway' === $op ) {
+			$sa[] = $slug;
+			$sk   = array_diff( $sk, array( $slug ) );
+		} else {
+			$sa   = array_diff( $sa, array( $slug ) );
+			$sk[] = $slug;
+		}
+		update_user_meta( $uid, 'flxa_sub_away', array_slice( array_values( array_unique( $sa ) ), -150 ) );
+		update_user_meta( $uid, 'flxa_sub_keep', array_slice( array_values( array_unique( $sk ) ), -150 ) );
+		wp_send_json_success();
+	} else {
 		wp_send_json_error( null, 400 );
 	}
+	update_user_meta( $uid, 'flxa_pins', array_slice( array_values( array_unique( $pins ) ), 0, 30 ) );
+	update_user_meta( $uid, 'flxa_away', array_slice( array_values( array_unique( $away ) ), 0, 80 ) );
 	wp_send_json_success();
 }
 
@@ -790,11 +791,7 @@ function flxa_bottom_items() {
 	return $out;
 }
 
-/**
- * Mobil alt barın varsayılanları (sırayla ilk erişilebilir dördü).
- *
- * @return list<string>
- */
+/** Mobil alt barın varsayılanları (sırayla ilk erişilebilir dördü). */
 function flxa_default_bottom() {
 	return array( 'index.php', 'flx-chat', 'flx-tasks', 'flxb-dashboard', 'flxs', 'edit.php?post_type=page', 'upload.php', 'profile.php' );
 }

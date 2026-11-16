@@ -582,10 +582,6 @@ class Flx_Blocks_Settings {
 	 * Loads admin style sheets and scripts
 	 */
 	public function scripts() {
-		if ( function_exists( 'flxbk_flux_ui' ) && flxbk_flux_ui() ) {
-			flxbk_flux_assets();
-			return;
-		}
 		$texts    = [
 			'close'    => __( 'Close', 'flx-blocks' ),
 			'save'     => __( 'Save', 'flx-blocks' ),
@@ -1090,10 +1086,6 @@ class Flx_Blocks_Settings {
 	 * Loads config page
 	 */
 	public function config_page() {
-		if ( function_exists( 'flxbk_flux_ui' ) && flxbk_flux_ui() ) {
-			flxbk_flux_render();
-			return;
-		}
 		?>
 		<div class="flxbk_dash_head">
 			<div class="flxbk_dash_head_container">
@@ -1108,7 +1100,6 @@ class Flx_Blocks_Settings {
 			<div class="flxbk_dashboard">
 				<h2 class="notices" style="display:none;"></h2>
 				<?php settings_errors(); ?>
-				<?php if ( function_exists( 'flxbk_flux_switch_notice' ) ) { flxbk_flux_switch_notice(); } ?>
 				<div class="page-grid">
 					<div class="flxbk_dashboard_main">
 						<h2 class="section-header"><?php echo esc_html( apply_filters( 'flxbk_brand_name', 'Flux Block Editor' ) ); ?></h2>
@@ -1399,7 +1390,26 @@ class Flx_Blocks_Settings {
 		if ( ! isset( $_POST['fxt_block'] ) ) {
 			return wp_send_json_error();
 		}
-		FLXBK_Dashboard_Service::toggle( sanitize_text_field( wp_unslash( $_POST['fxt_block'] ) ) );
+		// Get variables.
+		$unregistered_blocks = get_option( 'fxt_blocks_unregistered_blocks' );
+		$block               = sanitize_text_field( wp_unslash( $_POST['fxt_block'] ) );
+
+		if ( ! is_array( $unregistered_blocks ) ) {
+			$unregistered_blocks = [];
+		}
+
+		// If current block is in the array - remove it.
+		if ( in_array( $block, $unregistered_blocks ) ) {
+			$index = array_search( $block, $unregistered_blocks );
+			if ( false !== $index ) {
+				unset( $unregistered_blocks[ $index ] );
+			}
+			// if current block is not in the array - add it.
+		} else {
+			array_push( $unregistered_blocks, $block );
+		}
+
+		update_option( 'fxt_blocks_unregistered_blocks', $unregistered_blocks );
 		return wp_send_json_success();
 	}
 	/**

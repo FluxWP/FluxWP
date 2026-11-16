@@ -1,7 +1,0 @@
-# A page of the "all pages" list.
-query FlxAnalyticsPages($filter: FlxAnalyticsFilterInput, $q: String, $only404: Boolean, $first: Int, $after: String) {
-  flxAnalyticsPages(filter: $filter, q: $q, only404: $only404, first: $first, after: $after) {
-    totalCount pageInfo { hasNextPage endCursor }
-    nodes { ...FlxAnalyticsPageRowFields }
-  }
-}

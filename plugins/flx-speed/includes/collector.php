@@ -96,7 +96,6 @@ class FLXP_Collector {
 		add_filter( 'pre_http_request', array( __CLASS__, 'on_http_pre' ), PHP_INT_MAX, 3 );
 		add_action( 'http_api_debug', array( __CLASS__, 'on_http_done' ), 10, 5 );
 
-		add_action( 'do_graphql_request', array( __CLASS__, 'on_graphql_request' ), 10, 2 );
 		add_action( 'doing_it_wrong_run', array( __CLASS__, 'on_doing_it_wrong' ), 10, 3 );
 		add_action( 'deprecated_function_run', array( __CLASS__, 'on_deprecated_function' ), 10, 3 );
 		add_action( 'deprecated_argument_run', array( __CLASS__, 'on_deprecated_argument' ), 10, 3 );
@@ -590,32 +589,10 @@ class FLXP_Collector {
 		if ( defined( 'XMLRPC_REQUEST' ) && XMLRPC_REQUEST ) {
 			return 'xmlrpc';
 		}
-		if ( self::is_graphql() ) {
-			return 'graphql';
-		}
 		if ( is_admin() ) {
 			return 'admin';
 		}
 		return 'front';
-	}
-
-	/** Flux GraphQL isteği mi (uç nokta ayarından bağımsız)? */
-	public static function is_graphql() {
-		return function_exists( 'is_graphql_http_request' ) && is_graphql_http_request();
-	}
-
-	/** @var bool Flux Speed ekranının kendi GraphQL sorgusu (istek çalışırken işaretlenir; gövde kapanışta okunmaz). */
-	private static $own_graphql = false;
-
-	/** do_graphql_request: işlem Flux Speed ekranına ait mi? */
-	public static function on_graphql_request( $query = '', $operation_name = '' ) {
-		$text              = ( is_string( $query ) ? $query : '' ) . ' ' . ( is_string( $operation_name ) ? $operation_name : '' );
-		self::$own_graphql = 1 === preg_match( '/flxSpeed|FlxSpeed/', $text );
-	}
-
-	/** Bu istek Flux Speed ekranının kendi GraphQL sorgusu mu? Kayıtlara gürültü olmasın (klasik ekranlar gibi). */
-	public static function is_own_graphql() {
-		return self::$own_graphql;
 	}
 
 	/** WordPress shutdown (öncelik 0): veriyi dondur, gerekirse paneli bas. */

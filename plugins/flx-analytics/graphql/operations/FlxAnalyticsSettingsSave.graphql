@@ -1,6 +1,0 @@
-mutation FlxAnalyticsSettingsSave($input: FlxAnalyticsSettingsSaveInput!) {
-  flxAnalyticsSettingsSave(input: $input) {
-    settings { ...FlxAnalyticsSettingsFields }
-    errors { code message field }
-  }
-}

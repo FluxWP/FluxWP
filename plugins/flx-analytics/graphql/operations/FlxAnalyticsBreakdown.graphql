@@ -1,7 +1,0 @@
-# A page of one breakdown (device, browser, country, campaign ...).
-query FlxAnalyticsBreakdown($filter: FlxAnalyticsFilterInput, $kind: FlxAnalyticsDimKind!, $first: Int, $after: String) {
-  flxAnalyticsBreakdown(filter: $filter, kind: $kind, first: $first, after: $after) {
-    totalCount pageInfo { hasNextPage endCursor }
-    nodes { ...FlxAnalyticsDimRowFields }
-  }
-}

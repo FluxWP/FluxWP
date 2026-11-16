@@ -1,5 +1,0 @@
-query FlxSpeedCache {
-  flxSpeedCache {
-    ...FlxSpeedCacheFields
-  }
-}

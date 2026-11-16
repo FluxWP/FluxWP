@@ -1,3 +1,0 @@
-{
-  "0affdcc6732e05c0ec0f9e99b2e0ec65d6acd8ce242154747d8346285cd74197": "mutation FlxTestCartNoteAdd($input: FlxTestCartNoteAddInput!) { flxTestCartNoteAdd(input: $input) { itemKey cart { token items { key kind quantity quantityLimits { editable } itemData { name value } } } errors { code field } } }"
-}

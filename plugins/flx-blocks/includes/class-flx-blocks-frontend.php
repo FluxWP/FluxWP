@@ -40,7 +40,7 @@ class Flx_Blocks_Frontend {
 	/**
 	 * Google schema to add to head
 	 *
-	 * @var string|null
+	 * @var null
 	 */
 	public static $faq_schema = null;
 

@@ -1,0 +1,137 @@
+{
+  "id": "speed",
+  "plugin": "flx-speed",
+  "min_app": "1.0.0",
+  "title": "Performans",
+  "icon": "clock",
+  "menu": "flx-speed",
+  "entry": "summary",
+  "tabs": ["summary", "slow"],
+  "fallback": { "web": "admin.php?page=flx-speed" },
+  "routes": {
+    "admin.php?page=flx-speed": { "screen": "summary" }
+  },
+  "sources": {
+    "summary": {
+      "path": "flx-speed/v1/summary",
+      "query": { "hours": 24 },
+      "cache": { "stale": 30 },
+      "poll": 30
+    },
+    "slow": {
+      "path": "flx-speed/v1/requests",
+      "query": { "flag": "slow", "hours": 24, "order": "slow" },
+      "paging": { "mode": "page", "param": "page", "size_param": "per_page", "size": 20, "items": "items", "total": "total", "pages": "pages" },
+      "key": "id",
+      "cache": { "stale": 30 }
+    },
+    "request": {
+      "path": "flx-speed/v1/requests/{{params.id}}",
+      "cache": { "stale": 60 }
+    }
+  },
+  "screens": {
+    "summary": {
+      "type": "dashboard",
+      "title": "Özet",
+      "sources": ["summary"],
+      "sections": [
+        {
+          "type": "stats",
+          "items": [
+            { "label": "Yük", "value": "{{data.server.load_pct|number}}" },
+            { "label": "Bellek", "value": "{{data.server.ram_pct|number}}" },
+            { "label": "Disk", "value": "{{data.server.disk_pct|number}}" },
+            { "label": "Kayıt", "value": "{{data.requests.recorded|number}}", "sub": "24 saat", "onPress": { "target": "screen:speed/slow" } }
+          ]
+        },
+        {
+          "type": "stats",
+          "items": [
+            { "label": "Ortalama", "value": "{{data.requests.ms_avg|number}}" },
+            { "label": "p95", "value": "{{data.requests.ms_p95|number}}" },
+            { "label": "En uzun", "value": "{{data.requests.ms_max|number}}", "tone": "warn" },
+            { "label": "Yavaş", "value": "{{data.requests.flags.slow|number}}", "tone": "warn", "onPress": { "target": "screen:speed/slow" } }
+          ]
+        },
+        {
+          "type": "list",
+          "title": "En yavaş adresler",
+          "path": "requests.slowest_urls",
+          "item": { "title": "{{url}}", "meta": "{{ms_max|number}}", "caption": "{{count|number}}" }
+        },
+        { "type": "notice", "tone": "info", "text": "Yalnız yavaş, hatalı ve örneklenen PHP istekleri kaydedilir. Önbellekten gelen sayfalar bu sayılara girmez." },
+        { "type": "actions", "items": ["open_panel"] }
+      ]
+    },
+    "slow": {
+      "type": "list",
+      "title": "Yavaş istekler",
+      "source": "slow",
+      "search": { "param": "q", "placeholder": "Adreste ara" },
+      "filters": [
+        {
+          "param": "flag",
+          "label": "İşaret",
+          "type": "select",
+          "options": [
+            { "value": "slow", "label": "Yavaş" },
+            { "value": "error", "label": "Hata" },
+            { "value": "fatal", "label": "Kritik" },
+            { "value": "slow_query", "label": "Yavaş sorgu" },
+            { "value": "", "label": "Tümü" }
+          ]
+        },
+        {
+          "param": "hours",
+          "label": "Süre",
+          "type": "select",
+          "options": [
+            { "value": "24", "label": "24 saat" },
+            { "value": "168", "label": "7 gün" }
+          ]
+        }
+      ],
+      "item": {
+        "title": "{{url}}",
+        "subtitle": "{{type}}",
+        "meta": "{{ms_label}}",
+        "caption": "{{flags_label}}",
+        "badges": [
+          { "text": "Hata", "tone": "danger", "when": { "path": "errors", "op": "gt", "value": 0 } }
+        ]
+      },
+      "onPress": { "target": "screen:speed/request", "params": { "id": "{{id}}" } },
+      "empty": { "title": "Kayıt yok", "body": "Bu aralıkta eşleşen istek yok." }
+    },
+    "request": {
+      "type": "detail",
+      "title": "İstek",
+      "source": "request",
+      "header": { "title": "{{url}}", "subtitle": "{{created}}" },
+      "sections": [
+        {
+          "type": "stats",
+          "items": [
+            { "label": "Süre", "value": "{{ms_label}}" },
+            { "label": "Sorgu", "value": "{{queries|number}}" },
+            { "label": "Sorgu süresi", "value": "{{query_ms|number}}" },
+            { "label": "HTTP", "value": "{{status|number}}" }
+          ]
+        },
+        {
+          "type": "fields",
+          "fields": [
+            { "label": "Tür", "value": "{{type}}" },
+            { "label": "İşaretler", "value": "{{flags_label}}", "when": { "path": "flags_label", "op": "filled" } },
+            { "label": "PHP uyarısı", "value": "{{php_count|number}}" }
+          ]
+        }
+      ],
+      "actions": { "header": ["open_panel"] }
+    }
+  },
+  "actions": {
+    "open_panel": { "label": "Panelde aç", "icon": "globe", "web": "admin.php?page=flx-speed" }
+  }
+}

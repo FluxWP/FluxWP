@@ -1,5 +1,0 @@
-query FlxCrmContact($id: ID!) {
-  flxContact(id: $id) {
-    ...FlxCrmContactCard
-  }
-}

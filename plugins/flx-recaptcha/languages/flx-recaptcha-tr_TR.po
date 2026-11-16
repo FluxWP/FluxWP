@@ -46,17 +46,8 @@ msgstr "Ayarlara git"
 msgid "You are not allowed to do this."
 msgstr "Bu işlem için yetkiniz yok."
 
-msgid "JavaScript is required for this screen."
-msgstr "Bu ekran için JavaScript gerekir."
-
 msgid "Protects login, registration, comments, checkout, donations and form submissions from bots with Google reCAPTCHA. Choose below which forms to protect."
 msgstr "Giriş, kayıt, yorum, ödeme, bağış ve form gönderimlerini botlara karşı Google reCAPTCHA ile korur. Hangi formun korunacağını aşağıdan seçin."
-
-msgid "New view"
-msgstr "Yeni görünüm"
-
-msgid "Open the new view (same features, works in the FluxWP app too)."
-msgstr "Yeni görünümü açın (aynı özellikler, FluxWP uygulamasında da çalışır)."
 
 msgid "Protection is turned off by the recovery constant."
 msgstr "Koruma kurtarma sabitiyle kapalı."
@@ -256,6 +247,15 @@ msgstr "Kaydedildi."
 msgid "Saved. The keys changed, so protection stays off until they are tested."
 msgstr "Kaydedildi. Anahtarlar değiştiği için koruma test edilene kadar kapalı."
 
+msgid "The site key and the secret key are required."
+msgstr "Site anahtarı ve gizli anahtar gerekli."
+
+msgid "These are v2 (checkbox) keys. Choose v2, or create v3 keys in the Google console."
+msgstr "Bu anahtarlar v2 (kutucuk) anahtarı. Türü v2 seçin ya da Google konsolunda v3 anahtarı oluşturun."
+
+msgid "These are v3 keys. Choose v3, or create v2 keys in the Google console."
+msgstr "Bu anahtarlar v3 anahtarı. Türü v3 seçin ya da Google konsolunda v2 anahtarı oluşturun."
+
 msgid "JavaScript must be enabled in your browser to send this form."
 msgstr "Bu formu göndermek için tarayıcınızda JavaScript açık olmalı."
 
@@ -400,347 +400,26 @@ msgstr "%1$s: %2$s. Anahtarları yeniden test edin; Google erişilemiyorsa Ayarl
 msgid "Test"
 msgstr "Test et"
 
-msgid "Choose v2 or v3."
-msgstr "v2 ya da v3 seçin."
+msgid "Between 0.1 and 0.9. Submissions scoring below this are blocked."
+msgstr "0,1 ile 0,9 arası. Altında kalan gönderim engellenir."
 
-msgid "A key can only contain letters, numbers, \"-\" and \"_\"."
-msgstr "Anahtar yalnız harf, rakam, \"-\" ve \"_\" içerebilir."
+msgid "Leave blank to keep the saved key. The value is never read back."
+msgstr "Boş bırakılırsa kayıtlı anahtar kalır. Değer geri okunmaz."
 
-msgid "The bot threshold must be between 0.1 and 0.9."
-msgstr "Bot eşiği 0,1 ile 0,9 arasında olmalı."
+msgid "Checkbox size"
+msgstr "Kutucuk boyutu"
 
-msgid "Choose the Google host."
-msgstr "Google adresini seçin."
+msgid "Checkbox theme"
+msgstr "Kutucuk görünümü"
 
-msgid "Choose the checkbox theme."
-msgstr "Kutucuk görünümünü seçin."
+msgid "Automatic"
+msgstr "Otomatik"
 
-msgid "Choose the checkbox size."
-msgstr "Kutucuk boyutunu seçin."
+msgid "google.com"
+msgstr "google.com"
 
-msgid "Enter an IP address or a range like 198.51.100.0/24."
-msgstr "Bir IP adresi ya da 198.51.100.0/24 gibi bir aralık girin."
+msgid "recaptcha.net"
+msgstr "recaptcha.net"
 
-msgid "This form is not known."
-msgstr "Bu form tanınmıyor."
-
-msgid "The site key and the secret key are required."
-msgstr "Site anahtarı ve gizli anahtar gerekli."
-
-msgid "These are v2 (checkbox) keys. Choose v2, or create v3 keys in the Google console."
-msgstr "Bu anahtarlar v2 (kutucuk) anahtarı. Türü v2 seçin ya da Google konsolunda v3 anahtarı oluşturun."
-
-msgid "These are v3 keys. Choose v3, or create v2 keys in the Google console."
-msgstr "Bu anahtarlar v3 anahtarı. Türü v3 seçin ya da Google konsolunda v2 anahtarı oluşturun."
-
-msgid "reCAPTCHA type."
-msgstr "reCAPTCHA türü."
-
-msgid "Invisible; Google returns a score from 0 to 1."
-msgstr "Görünmez; Google 0 ile 1 arasında puan döndürür."
-
-msgid "The \"I'm not a robot\" checkbox."
-msgstr "\"Ben robot değilim\" kutucuğu."
-
-msgid "Google host the script and the verification use."
-msgstr "Betiğin ve doğrulamanın kullandığı Google adresi."
-
-msgid "www.google.com"
-msgstr "www.google.com"
-
-msgid "www.recaptcha.net, for networks where google.com is blocked."
-msgstr "www.recaptcha.net; google.com'un engellendiği ağlar için."
-
-msgid "Look of the v2 checkbox."
-msgstr "v2 kutucuğunun görünümü."
-
-msgid "Follows the site's dark mode."
-msgstr "Sitenin koyu modunu izler."
-
-msgid "Light."
-msgstr "Açık."
-
-msgid "Dark."
-msgstr "Koyu."
-
-msgid "Size of the v2 checkbox."
-msgstr "v2 kutucuğunun boyutu."
-
-msgid "Normal."
-msgstr "Normal."
-
-msgid "Compact."
-msgstr "Küçük."
-
-msgid "Group a protectable form belongs to."
-msgstr "Korunabilen formun ait olduğu grup."
-
-msgid "WordPress forms."
-msgstr "WordPress formları."
-
-msgid "WooCommerce forms."
-msgstr "WooCommerce formları."
-
-msgid "FluxWP forms."
-msgstr "FluxWP formları."
-
-msgid "Forms of other plugins."
-msgstr "Diğer eklentilerin formları."
-
-msgid "Whether protection is running."
-msgstr "Korumanın çalışıp çalışmadığı."
-
-msgid "Keys tested; the enabled forms are protected."
-msgstr "Anahtarlar test edildi; açık formlar korunuyor."
-
-msgid "Turned off by the FLXRC_DISABLE recovery constant."
-msgstr "FLXRC_DISABLE kurtarma sabitiyle kapatıldı."
-
-msgid "The keys are not tested yet; no form is checked."
-msgstr "Anahtarlar henüz test edilmedi; hiçbir form denetlenmiyor."
-
-msgid "What went wrong when Google was asked."
-msgstr "Google'a sorulurken ne ters gitti."
-
-msgid "Google rejected the secret key."
-msgstr "Google gizli anahtarı reddetti."
-
-msgid "Google could not be reached."
-msgstr "Google'a ulaşılamadı."
-
-msgid "Keys and options of the reCAPTCHA page. The secret key is never returned."
-msgstr "reCAPTCHA sayfasının anahtarları ve seçenekleri. Gizli anahtar hiçbir zaman döndürülmez."
-
-msgid "Site key in use (public). Empty when none is set."
-msgstr "Kullanılan site anahtarı (herkese açık). Hiç girilmediyse boş."
-
-msgid "The site key comes from the FLXRC_SITE_KEY constant in wp-config.php; the panel value is not used."
-msgstr "Site anahtarı wp-config.php içindeki FLXRC_SITE_KEY sabitinden geliyor; paneldeki değer kullanılmaz."
-
-msgid "A secret key is saved."
-msgstr "Kayıtlı bir gizli anahtar var."
-
-msgid "Masked last four characters of the saved secret key; empty when none. The key itself is never returned."
-msgstr "Kayıtlı gizli anahtarın maskelenmiş son dört hanesi; yoksa boş. Anahtarın kendisi hiçbir zaman döndürülmez."
-
-msgid "The secret key comes from the FLXRC_SECRET_KEY constant in wp-config.php; the panel value is not used."
-msgstr "Gizli anahtar wp-config.php içindeki FLXRC_SECRET_KEY sabitinden geliyor; paneldeki değer kullanılmaz."
-
-msgid "v3 score below which a submission is blocked (0.1–0.9)."
-msgstr "v3 puanı bunun altında kalan gönderim engellenir (0,1–0,9)."
-
-msgid "Google host."
-msgstr "Google adresi."
-
-msgid "v2 checkbox theme."
-msgstr "v2 kutucuk görünümü."
-
-msgid "v2 checkbox size."
-msgstr "v2 kutucuk boyutu."
-
-msgid "The v3 badge is hidden; the notice Google requires is added under protected forms."
-msgstr "v3 rozeti gizli; Google'ın istediği bilgi metni korunan formların altına eklenir."
-
-msgid "Signed-in users are not checked on comments, checkout, donations and forms."
-msgstr "Giriş yapan kullanıcılar yorum, ödeme, bağış ve formlarda denetlenmez."
-
-msgid "Submissions are let through when Google is unreachable."
-msgstr "Google'a ulaşılamazsa gönderimler geçirilir."
-
-msgid "IP addresses and ranges (CIDR) that skip the check."
-msgstr "Denetimden muaf IP adresleri ve aralıkları (CIDR)."
-
-msgid "The caller's IP address; empty when unknown."
-msgstr "İsteği yapanın IP adresi; bilinmiyorsa boş."
-
-msgid "The keys were tested for the current type; protection runs only then."
-msgstr "Anahtarlar mevcut tür için test edildi; koruma ancak o zaman çalışır."
-
-msgid "Protection is turned off by the FLXRC_DISABLE recovery constant."
-msgstr "Koruma FLXRC_DISABLE kurtarma sabitiyle kapatıldı."
-
-msgid "Flux Forms is installed and its form protection is on here; its own reCAPTCHA option must be off."
-msgstr "Flux Forms kurulu ve form koruması burada açık; kendi reCAPTCHA seçeneği kapalı olmalı."
-
-msgid "A form the panel can protect."
-msgstr "Panelin koruyabildiği bir form."
-
-msgid "Form (context) key, e.g. login or checkout."
-msgstr "Form (bağlam) anahtarı, ör. login ya da checkout."
-
-msgid "Form name in the user's language."
-msgstr "Form adı, kullanıcının dilinde."
-
-msgid "What is protected."
-msgstr "Neyin korunduğu."
-
-msgid "Group of the form."
-msgstr "Formun grubu."
-
-msgid "Group name in the user's language."
-msgstr "Grup adı, kullanıcının dilinde."
-
-msgid "The plugin that owns the form is installed."
-msgstr "Formun sahibi eklenti kurulu."
-
-msgid "Protection is on for the form in the panel."
-msgstr "Form için koruma panelde açık."
-
-msgid "Submissions that passed in the last 30 days."
-msgstr "Son 30 günde geçen gönderimler."
-
-msgid "Submissions blocked in the last 30 days."
-msgstr "Son 30 günde engellenen gönderimler."
-
-msgid "The last key test."
-msgstr "Son anahtar testi."
-
-msgid "When the test ran."
-msgstr "Testin yapıldığı zaman."
-
-msgid "The keys worked."
-msgstr "Anahtarlar çalıştı."
-
-msgid "Result of the test."
-msgstr "Testin sonucu."
-
-msgid "The last time Google could not be reached or rejected the secret key (kept for a day)."
-msgstr "Google'a ulaşılamadığı ya da gizli anahtarı reddettiği son an (bir gün saklanır)."
-
-msgid "When it happened."
-msgstr "Ne zaman oldu."
-
-msgid "What went wrong."
-msgstr "Ne ters gitti."
-
-msgid "Google's error codes or the connection error (short)."
-msgstr "Google'ın hata kodları ya da bağlantı hatası (kısa)."
-
-msgid "Submissions were let through without a check at that time (otherwise they were blocked)."
-msgstr "O sırada gönderimler denetlenmeden geçirildi (aksi halde engellendi)."
-
-msgid "State of the protection and the last 30 days."
-msgstr "Korumanın durumu ve son 30 gün."
-
-msgid "reCAPTCHA type in use."
-msgstr "Kullanılan reCAPTCHA türü."
-
-msgid "Available forms with protection on."
-msgstr "Koruması açık, kullanılabilir formlar."
-
-msgid "Forms of installed plugins."
-msgstr "Kurulu eklentilerin formları."
-
-msgid "The last key test; empty when none ran yet."
-msgstr "Son anahtar testi; henüz yapılmadıysa boş."
-
-msgid "A Google error of the last day while protection is on; empty otherwise."
-msgstr "Koruma açıkken son bir günün Google hatası; yoksa boş."
-
-msgid "Result of testing keys with Google."
-msgstr "Anahtarların Google ile testinin sonucu."
-
-msgid "The keys work and were saved."
-msgstr "Anahtarlar çalışıyor ve kaydedildi."
-
-msgid "What happened, in the user's language."
-msgstr "Ne oldu, kullanıcının dilinde."
-
-msgid "v3 score of the test token; empty for v2 or a failed test."
-msgstr "Test belirtecinin v3 puanı; v2 ya da başarısız testte boş."
-
-msgid "What a client needs to protect one form with reCAPTCHA. Send the token with the mutation (its captchaToken input) or in the X-Flx-Captcha header."
-msgstr "Bir formu reCAPTCHA ile korumak için istemcinin ihtiyaç duyduğu bilgi. Belirteci mutation ile (captchaToken girdisi) ya da X-Flx-Captcha başlığında gönderin."
-
-msgid "Form (context) key."
-msgstr "Form (bağlam) anahtarı."
-
-msgid "The form is protected for visitors. Signed-in users and allowed IP addresses may still be skipped by the server."
-msgstr "Form ziyaretçiler için korunuyor. Giriş yapanlar ve izinli IP adresleri sunucuda yine de atlanabilir."
-
-msgid "Site key (public); empty when the form is not protected."
-msgstr "Site anahtarı (herkese açık); form korunmuyorsa boş."
-
-msgid "v3 action name to execute; empty when the form is not protected."
-msgstr "Çalıştırılacak v3 eylem adı; form korunmuyorsa boş."
-
-msgid "Google script address to load; empty when the form is not protected."
-msgstr "Yüklenecek Google betiğinin adresi; form korunmuyorsa boş."
-
-msgid "The v3 badge is hidden; show Google's notice under the form."
-msgstr "v3 rozeti gizli; Google'ın bilgi metnini formun altında gösterin."
-
-msgid "POST field name that carries the token (forms that post)."
-msgstr "Belirteci taşıyan POST alanının adı (POST eden formlar)."
-
-msgid "Request header name that carries the token (REST and GraphQL)."
-msgstr "Belirteci taşıyan istek başlığının adı (REST ve GraphQL)."
-
-msgid "Every form the panel can protect, with its switch and the last 30 days."
-msgstr "Panelin koruyabildiği her form; anahtarı ve son 30 günüyle."
-
-msgid "State of the protection, the last 30 days, the last key test and the last Google error."
-msgstr "Korumanın durumu, son 30 gün, son anahtar testi ve son Google hatası."
-
-msgid "What a client needs to protect one form with reCAPTCHA; empty when the form key is not registered."
-msgstr "Bir formu reCAPTCHA ile korumak için istemcinin ihtiyaç duyduğu bilgi; form anahtarı kayıtlı değilse boş."
-
-msgid "Form (context) key, e.g. login, checkout or one a plugin registered with flx_captcha_contexts."
-msgstr "Form (bağlam) anahtarı, ör. login, checkout ya da bir eklentinin flx_captcha_contexts ile kaydettiği."
-
-msgid "Turns protection on or off for one form."
-msgstr "Bir form için korumayı açar ya da kapatır."
-
-msgid "Protection on."
-msgstr "Koruma açık."
-
-msgid "Settings after the change."
-msgstr "Değişiklikten sonraki ayarlar."
-
-msgid "Forms after the change."
-msgstr "Değişiklikten sonraki formlar."
-
-msgid "Protection state after the change."
-msgstr "Değişiklikten sonraki koruma durumu."
-
-msgid "Changes the keys, the options and the form switches in one go. Fields you leave out stay as they are; nothing is written when any part is invalid. A changed key or type turns protection off until the keys are tested again."
-msgstr "Anahtarları, seçenekleri ve form anahtarlarını tek seferde değiştirir. Vermediğiniz alan olduğu gibi kalır; bir kısım geçersizse hiçbir şey yazılmaz. Anahtar ya da tür değişirse koruma, anahtarlar yeniden test edilene kadar kapanır."
-
-msgid "Site key. Ignored when FLXRC_SITE_KEY is set."
-msgstr "Site anahtarı. FLXRC_SITE_KEY tanımlıysa yok sayılır."
-
-msgid "Secret key; write-only, stored sealed. Empty keeps the saved one."
-msgstr "Gizli anahtar; yalnız yazılır, mühürlü saklanır. Boş bırakılırsa kayıtlı olan kalır."
-
-msgid "v3 bot threshold (0.1–0.9)."
-msgstr "v3 bot eşiği (0,1–0,9)."
-
-msgid "Hide the v3 badge."
-msgstr "v3 rozetini gizle."
-
-msgid "Do not check signed-in users on comments, checkout, donations and forms."
-msgstr "Giriş yapan kullanıcıları yorum, ödeme, bağış ve formlarda denetleme."
-
-msgid "Let submissions through when Google is unreachable."
-msgstr "Google'a ulaşılamazsa gönderimleri geçir."
-
-msgid "IP addresses and ranges (CIDR) that skip the check; replaces the list."
-msgstr "Denetimden muaf IP adresleri ve aralıkları (CIDR); listenin yerine geçer."
-
-msgid "Form switches to change; the other forms stay as they are."
-msgstr "Değiştirilecek form anahtarları; diğer formlar olduğu gibi kalır."
-
-msgid "Tests the keys with the token the browser got from Google. When the test passes the keys are saved and protection turns on; when it fails nothing changes and the result says why."
-msgstr "Anahtarları tarayıcının Google'dan aldığı belirteçle test eder. Test geçerse anahtarlar kaydedilir ve koruma açılır; geçmezse hiçbir şey değişmez, sonuç nedenini söyler."
-
-msgid "reCAPTCHA type of the keys."
-msgstr "Anahtarların reCAPTCHA türü."
-
-msgid "Site key the token was made with. Ignored when FLXRC_SITE_KEY is set."
-msgstr "Belirtecin üretildiği site anahtarı. FLXRC_SITE_KEY tanımlıysa yok sayılır."
-
-msgid "Secret key to test; empty uses the saved one."
-msgstr "Test edilecek gizli anahtar; boşsa kayıtlı olan kullanılır."
-
-msgid "Token Google returned in the browser (grecaptcha.execute or the v2 checkbox)."
-msgstr "Google'ın tarayıcıda döndürdüğü belirteç (grecaptcha.execute ya da v2 kutucuğu)."
+msgid "It protects login, registration, password reset, comment, WooCommerce account and payment, Flux Donate donation form and Flux Forms submissions against spam and bot attacks with Google reCAPTCHA (v3 invisible or v2 tile). Which form will be maintained is switched on and off from the panel; Flux Speed ​​is compatible with custom login address."
+msgstr "Google reCAPTCHA (v3 görünmez ya da v2 kutucuk) ile giriş, kayıt, şifre sıfırlama, yorum, WooCommerce hesap ve ödeme, Flux Donate bağış formu ve Flux Forms gönderimlerini spam ve bot saldırılarına karşı korur. Hangi formun korunacağı panelden açılıp kapanır; Flux Speed özel giriş adresiyle uyumludur."

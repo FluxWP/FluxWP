@@ -129,7 +129,6 @@ final class FLXCRM_Tags {
 		}
 		if ( $upd ) {
 			$wpdb->update( $t, $upd, array( 'id' => (int) $tag_id ) ); // phpcs:ignore WordPress.DB
-			flxcrm_purge( array( 'flx-crm:contacts', 'flx-crm:meta' ) );
 		}
 		return true;
 	}
@@ -138,6 +137,5 @@ final class FLXCRM_Tags {
 		global $wpdb;
 		$wpdb->delete( flxcrm_table( 'contact_tags' ), array( 'tag_id' => (int) $tag_id ) ); // phpcs:ignore WordPress.DB
 		$wpdb->delete( flxcrm_table( 'tags' ), array( 'id' => (int) $tag_id ) ); // phpcs:ignore WordPress.DB
-		flxcrm_purge( array( 'flx-crm:contacts', 'flx-crm:meta' ) );
 	}
 }

@@ -13,12 +13,7 @@ function flxa_task_available() {
 	return function_exists( 'flxg_table' ) && function_exists( 'flxg_visible_list_ids' ) && current_user_can( 'flxg_use' );
 }
 
-/**
- * Modül filtreleri (kişi başı).
- *
- * @param string $id Module (tasks | donations).
- * @return array<string, mixed>
- */
+/** Modül filtreleri (kişi başı). */
 function flxa_widget_prefs( $id ) {
 	$defaults = array(
 		'tasks'     => array(
@@ -36,11 +31,6 @@ function flxa_widget_prefs( $id ) {
 	return wp_parse_args( $p, $defaults[ $id ] ?? array() );
 }
 
-/**
- * @param string               $id Module.
- * @param array<string, mixed> $in Raw filters.
- * @return array<string, mixed>
- */
 function flxa_widget_prefs_save( $id, array $in ) {
 	$p = flxa_widget_prefs( $id );
 	if ( 'tasks' === $id ) {
@@ -152,10 +142,6 @@ function flxa_task_lists( $need = 'view' ) {
 	return $out;
 }
 
-/**
- * @param array<string, mixed> $p Filters.
- * @return string
- */
 function flxa_render_tasks( array $p ) {
 	$lists = flxa_task_lists();
 	$opts  = array( 0 => __( 'All lists', 'flx-admin' ) );
@@ -301,10 +287,6 @@ function flxa_widget_donations() {
 	echo '</div>';
 }
 
-/**
- * @param array<string, mixed> $p Filters.
- * @return string
- */
 function flxa_render_donations( array $p ) {
 	global $wpdb;
 	$days = (int) $p['days'];
@@ -424,11 +406,14 @@ function flxa_ajax_widget() {
 	check_ajax_referer( 'flxa', 'nonce' );
 	$id    = sanitize_key( wp_unslash( $_POST['widget'] ?? '' ) );
 	$prefs = json_decode( (string) wp_unslash( $_POST['prefs'] ?? '{}' ), true ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-	$r     = FLXA_User_Service::set_widget( $id, is_array( $prefs ) ? FLXA_Util::arr( $prefs ) : array() );
-	if ( is_wp_error( $r ) ) {
-		wp_send_json_error( null, 403 );
+	$prefs = is_array( $prefs ) ? $prefs : array();
+	if ( 'tasks' === $id && flxa_task_available() ) {
+		wp_send_json_success( array( 'html' => flxa_render_tasks( flxa_widget_prefs_save( 'tasks', $prefs ) ) ) );
 	}
-	wp_send_json_success( array( 'html' => $r['html'] ) );
+	if ( 'donations' === $id && function_exists( 'flxb_table' ) && flxa_can_view_donations() ) {
+		wp_send_json_success( array( 'html' => flxa_render_donations( flxa_widget_prefs_save( 'donations', $prefs ) ) ) );
+	}
+	wp_send_json_error( null, 403 );
 }
 
 /** Hızlı görev formu: düzenlenebilir listeler ve öncelikler. */

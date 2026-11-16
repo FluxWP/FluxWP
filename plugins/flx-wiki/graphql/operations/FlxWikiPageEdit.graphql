@@ -1,7 +1,0 @@
-# One page with its Markdown source, for the editor.
-query FlxWikiPageEdit($id: ID!) {
-  flxWikiPage(id: $id) {
-    ...FlxWikiPageRow
-    markdown
-  }
-}

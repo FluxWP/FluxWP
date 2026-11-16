@@ -19,9 +19,46 @@ final class FLXCRM_Page_Duplicates {
 		add_action( 'admin_post_flxcrm_merge', array( __CLASS__, 'post_merge' ) );
 	}
 
-	/** @return array[] Groups of contact rows (2–10 each), at most $limit groups; the service holds the matching. */
+	/** @return array[] Groups of contact rows (2–10 each), at most $limit groups. */
 	public static function groups( $limit = 50 ) {
-		return FLXCRM_Contact_Service::duplicate_groups( (int) $limit );
+		global $wpdb;
+		$t     = flxcrm_table( 'contacts' );
+		$byk   = array();
+		$after = 0;
+		// Light columns only, in pages; grouping is done here so the query runs the same on MySQL and SQLite.
+		do {
+			$batch = (array) $wpdb->get_results( $wpdb->prepare( "SELECT id, name, phone FROM $t WHERE status <> 'deleted' AND id > %d ORDER BY id LIMIT 5000", $after ), ARRAY_A ); // phpcs:ignore WordPress.DB
+			foreach ( $batch as $r ) {
+				$after = (int) $r['id'];
+				$name  = function_exists( 'mb_strtolower' ) ? mb_strtolower( trim( (string) $r['name'] ) ) : strtolower( trim( (string) $r['name'] ) );
+				$digits = preg_replace( '/\D+/', '', (string) $r['phone'] );
+				if ( '' !== $name ) {
+					$byk[ 'name|' . $name ][] = $after;
+				}
+				if ( strlen( $digits ) >= 10 ) {
+					$byk[ 'phone|' . substr( $digits, -10 ) ][] = $after;
+				}
+			}
+		} while ( count( $batch ) === 5000 );
+		$out  = array();
+		$seen = array();
+		foreach ( $byk as $k => $ids ) {
+			if ( count( $ids ) < 2 ) {
+				continue;
+			}
+			$ids = array_slice( $ids, 0, 10 );
+			$sig = implode( ',', $ids );
+			if ( isset( $seen[ $sig ] ) ) {
+				continue;
+			}
+			$seen[ $sig ] = 1;
+			$rows         = (array) $wpdb->get_results( "SELECT * FROM $t WHERE id IN (" . implode( ',', array_map( 'intval', $ids ) ) . ') ORDER BY id', ARRAY_A ); // phpcs:ignore WordPress.DB
+			$out[]        = array( 'why' => strstr( $k, '|', true ), 'rows' => $rows );
+			if ( count( $out ) >= $limit ) {
+				break;
+			}
+		}
+		return array_slice( (array) apply_filters( 'flxcrm_duplicate_groups', $out ), 0, $limit );
 	}
 
 	public static function post_merge() {

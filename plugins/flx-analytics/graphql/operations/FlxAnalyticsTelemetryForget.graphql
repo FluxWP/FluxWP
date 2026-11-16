@@ -1,6 +1,0 @@
-mutation FlxAnalyticsTelemetryForget($input: FlxAnalyticsTelemetryForgetInput!) {
-  flxAnalyticsTelemetryForget(input: $input) {
-    removed
-    errors { code message field }
-  }
-}

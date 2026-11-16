@@ -1,5 +1,0 @@
-query FlxSpeedSettings {
-  flxSpeedSettings {
-    ...FlxSpeedSettingsFields
-  }
-}

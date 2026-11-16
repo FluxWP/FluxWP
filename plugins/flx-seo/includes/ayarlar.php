@@ -105,7 +105,7 @@ add_action(
 
 function flxseo_opt( $key ) {
 	static $o = null;
-	if ( null === $o || doing_action( 'update_option_flxseo' ) || doing_action( 'add_option_flxseo' ) ) {
+	if ( null === $o || doing_action( 'update_option_flxseo' ) ) {
 		$o = flxseo_with_fallbacks( wp_parse_args( (array) get_option( 'flxseo', array() ), flxseo_defaults() ) );
 	}
 	if ( 'mcp_enabled' === $key ) {
@@ -113,10 +113,6 @@ function flxseo_opt( $key ) {
 	}
 	return $o[ $key ] ?? null;
 }
-
-// Ayar yazılınca önbelleği hemen tazele (aynı istekte okuyan kod yeni değeri görsün; ön ayar, MCP, GraphQL).
-add_action( 'update_option_flxseo', static fn() => flxseo_opt( 'enabled' ), 1 );
-add_action( 'add_option_flxseo', static fn() => flxseo_opt( 'enabled' ), 1 );
 
 /**
  * Boş metin alanlarına WordPress'in kendi değerleri: site adı (Ayarlar › Genel) ve slogan.
@@ -161,7 +157,6 @@ function flxseo_admin_url( $tab = '' ) {
 /**
  * Doğrulama alanı olan arama motorları: ayar anahtarı => ad, panel adresi, açıklama.
  * Meta etiket adları head.php'de (flxseo_head).
- * @return array<string, array<string, string>>
  */
 function flxseo_search_engines() {
 	return array(
@@ -215,16 +210,12 @@ function flxseo_article_types() {
 	return array_values( array_unique( (array) apply_filters( 'flxseo_article_types', array( 'post' ) ) ) );
 }
 
-/** Google Site Kit kurulu ve bir yönetici Google hesabını bağlamış mı.
- * @return bool
- */
+/** Google Site Kit kurulu ve bir yönetici Google hesabını bağlamış mı. */
 function flxseo_sitekit_connected() {
 	return defined( 'GOOGLESITEKIT_VERSION' ) && (bool) get_option( 'googlesitekit_has_connected_admins', false );
 }
 
-/** Son IndexNow toplu bildiriminin kısa metni.
- * @return string
- */
+/** Son IndexNow toplu bildiriminin kısa metni. */
 function flxseo_indexnow_last_text( $last ) {
 	if ( empty( $last['time'] ) ) {
 		return '';
@@ -323,9 +314,6 @@ add_action(
 	}
 );
 
-// Every write of the option (settings tab, GraphQL flxSettingsUpdate, presets, MCP) goes through the same validation.
-add_filter( 'sanitize_option_flxseo', 'flxseo_sanitize' );
-
 function flxseo_sanitize( $in ) {
 	$in  = (array) $in;
 	$d   = flxseo_defaults();
@@ -367,20 +355,12 @@ function flxseo_settings_page() {
 		return;
 	}
 	$tab = isset( $_GET['tab'] ) ? sanitize_key( $_GET['tab'] ) : 'genel'; // phpcs:ignore WordPress.Security.NonceVerification
-	if ( flxseo_flux_ui() ) {
-		echo '<style>#flxseo-app.flux-root{height:auto;background:transparent;font-family:inherit}</style>';
-		echo '<div class="wrap flxseo-wrap"><div id="flxseo-app"><noscript>' . esc_html__( 'JavaScript is required for this screen.', 'flx-seo' ) . '</noscript></div></div>';
-		return;
-	}
 	$o   = wp_parse_args( (array) get_option( 'flxseo', array() ), flxseo_defaults() );
 	$n   = 'flxseo';
 	$tabs = flxseo_tabs();
 	?>
 <div class="wrap flxseo-wrap">
 	<h1>SEO</h1>
-	<?php if ( flxseo_flux_available() ) : ?>
-		<p><a class="button" href="<?php echo esc_url( flxseo_ui_switch_url( 'flux', $tab ) ); ?>"><?php esc_html_e( 'New view', 'flx-seo' ); ?></a> <span class="description"><?php esc_html_e( 'Open the new view (same features, works in the FluxWP app too).', 'flx-seo' ); ?></span></p>
-	<?php endif; ?>
 	<?php settings_errors(); ?>
 	<?php if ( flxseo_other_seo_plugin() ) : ?>
 		<div class="notice notice-warning"><p>Başka bir SEO eklentisi etkin. Çakışma olmaması için bu eklentinin meta ve schema çıktısı kapalı; favicon, SEO kontrolü ve yapay zekâ araçları çalışmaya devam ediyor.</p></div>

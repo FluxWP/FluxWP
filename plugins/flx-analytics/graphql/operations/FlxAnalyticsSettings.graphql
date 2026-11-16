@@ -1,5 +1,0 @@
-query FlxAnalyticsSettings {
-  flxAnalyticsSettings {
-    ...FlxAnalyticsSettingsFields
-  }
-}

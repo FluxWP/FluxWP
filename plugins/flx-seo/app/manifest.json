@@ -1,0 +1,131 @@
+{
+  "id": "seo",
+  "plugin": "flx-seo",
+  "min_app": "1.0.0",
+  "title": "SEO",
+  "icon": "search",
+  "menu": "flxseo",
+  "entry": "audit",
+  "tabs": ["audit", "findings", "settings"],
+  "fallback": { "web": "admin.php?page=flxseo" },
+  "routes": {
+    "admin.php?page=flxseo": { "screen": "settings" },
+    "admin.php?page=flxseo&tab=denetim": { "screen": "audit" }
+  },
+  "sources": {
+    "audit": {
+      "path": "flx-seo/v1/audit",
+      "cache": { "stale": 60, "persist": true }
+    },
+    "findings": {
+      "path": "flx-seo/v1/audit",
+      "paging": { "mode": "none", "items": "findings" },
+      "key": "id",
+      "cache": { "stale": 60, "persist": true }
+    }
+  },
+  "screens": {
+    "audit": {
+      "type": "dashboard",
+      "title": "Site denetimi",
+      "sources": ["audit"],
+      "sections": [
+        {
+          "type": "stats",
+          "items": [
+            { "label": "Kritik", "value": "{{data.counts.critical|number}}", "tone": "danger", "onPress": { "target": "screen:seo/findings" } },
+            { "label": "Yüksek", "value": "{{data.counts.high|number}}", "tone": "warn" },
+            { "label": "Orta", "value": "{{data.counts.medium|number}}" },
+            { "label": "Düşük", "value": "{{data.counts.low|number}}" }
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Puanlar",
+          "path": "scores",
+          "item": { "title": "{{label}}", "subtitle": "{{strategy}}", "meta": "{{score|number}}" }
+        },
+        {
+          "type": "fields",
+          "fields": [
+            { "label": "Son yerel denetim", "value": "{{ran_at}}", "when": { "path": "ran_at", "op": "filled" } },
+            { "label": "Adres", "value": "{{url}}", "when": { "path": "url", "op": "filled" } }
+          ]
+        },
+        { "type": "actions", "items": ["audit_run", "open_audit"] }
+      ]
+    },
+    "findings": {
+      "type": "list",
+      "title": "Bulgular",
+      "source": "findings",
+      "layout": "rows",
+      "item": {
+        "title": "{{title}}",
+        "subtitle": "{{detail}}",
+        "caption": "{{fix}}",
+        "badges": [
+          { "text": "Kritik", "tone": "danger", "when": { "path": "priority", "op": "eq", "value": "critical" } },
+          { "text": "Yüksek", "tone": "warn", "when": { "path": "priority", "op": "eq", "value": "high" } },
+          { "text": "Orta", "tone": "accent", "when": { "path": "priority", "op": "eq", "value": "medium" } },
+          { "text": "Düşük", "tone": "muted", "when": { "path": "priority", "op": "eq", "value": "low" } }
+        ]
+      },
+      "empty": { "title": "Bulgu yok", "body": "Denetim çalışınca bulgular burada listelenir." }
+    },
+    "settings": {
+      "type": "settings",
+      "title": "Ayarlar",
+      "option": "flxseo",
+      "write_cap": "manage_options",
+      "fields": [
+        { "name": "enabled", "type": "switch", "label": "SEO çıktısı" },
+        { "name": "site_name", "type": "text", "label": "Site adı" },
+        { "name": "sep", "type": "text", "label": "Ayırıcı", "width": "half" },
+        { "name": "home_title", "type": "text", "label": "Ana sayfa başlığı" },
+        { "name": "home_desc", "type": "textarea", "label": "Ana sayfa açıklaması" },
+        { "name": "org_name", "type": "text", "label": "Kurum adı" },
+        {
+          "name": "org_type",
+          "type": "select",
+          "label": "Kurum türü",
+          "options": [
+            { "value": "Organization", "label": "Kuruluş" },
+            { "value": "NGO", "label": "STK" }
+          ]
+        },
+        { "name": "phone", "type": "phone", "label": "Telefon", "width": "half" },
+        { "name": "email", "type": "email", "label": "E-posta", "width": "half" },
+        { "name": "indexnow", "type": "switch", "label": "IndexNow" },
+        { "name": "llms", "type": "switch", "label": "llms.txt" },
+        { "name": "webmcp", "type": "switch", "label": "WebMCP" },
+        { "name": "noindex_search", "type": "switch", "label": "Aramayı dizine ekleme" },
+        { "name": "noindex_tags", "type": "switch", "label": "Etiketleri dizine ekleme" },
+        {
+          "name": "audit_freq",
+          "type": "select",
+          "label": "Denetim sıklığı",
+          "options": [
+            { "value": "daily", "label": "Her gün" },
+            { "value": "weekly", "label": "Her hafta" },
+            { "value": "off", "label": "Kapalı" }
+          ]
+        },
+        { "name": "audit_mail", "type": "switch", "label": "Denetim e-postası" }
+      ]
+    }
+  },
+  "actions": {
+    "audit_run": {
+      "label": "Denetimi çalıştır",
+      "icon": "check",
+      "request": { "method": "POST", "path": "flx-seo/v1/audit" },
+      "after": { "toast": "Denetim güncellendi", "refresh": true, "invalidate": ["audit"] }
+    },
+    "open_audit": {
+      "label": "Panelde aç",
+      "icon": "globe",
+      "web": "admin.php?page=flxseo&tab=denetim"
+    }
+  }
+}

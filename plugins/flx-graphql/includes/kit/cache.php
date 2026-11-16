@@ -73,34 +73,11 @@ function flx_gql_purge( $tags ): void {
 	do_action( 'flx_gql_purged', (array) $tags );
 }
 
-/**
- * Marks the current GraphQL response as personal: never stored by a browser, CDN or LiteSpeed,
- * whoever asks and whatever the method (a cart, a one-time link). Call it from the resolver.
- *
- * @since 0.3.0
- */
-function flx_gql_no_store(): void {
-	$GLOBALS['flx_gql_no_store'] = true;
-}
-
-/**
- * Whether flx_gql_no_store() was called in this request.
- */
-function flx_gql_is_no_store(): bool {
-	return ! empty( $GLOBALS['flx_gql_no_store'] );
-}
-
 add_filter(
 	'graphql_response_headers_to_send',
 	static function ( $headers ) {
 		$headers = is_array( $headers ) ? $headers : array();
 		$tags    = flx_gql_cache_tags();
-		if ( flx_gql_is_no_store() ) {
-			$headers['Cache-Control']             = 'no-store, private';
-			$headers['X-LiteSpeed-Cache-Control'] = 'no-cache';
-			unset( $headers['X-LiteSpeed-Tag'] );
-			return $headers;
-		}
 		if ( $tags ) {
 			$headers['X-GraphQL-Keys'] = implode( ' ', $tags );
 		}

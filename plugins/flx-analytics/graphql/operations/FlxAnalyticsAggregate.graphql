@@ -1,7 +1,0 @@
-mutation FlxAnalyticsAggregate($input: FlxAnalyticsAggregateInput!) {
-  flxAnalyticsAggregate(input: $input) {
-    processed
-    settings { ...FlxAnalyticsSettingsFields }
-    errors { code message field }
-  }
-}

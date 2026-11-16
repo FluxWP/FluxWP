@@ -2,8 +2,6 @@
 
 FluxWP masaüstü (Tauri), mobil (Expo, `apps/mobile`), MCP istemcileri ve betikler için giriş ve uygulama uçları. Masaüstü ve mobil **aynı sözleşmeyi** kullanır; fark yalnız `X-FluxWP-Platform: mobile | desktop` başlığıyla seçilen kabuk düzenidir. Prefix `flxapp_`, REST kökü `flxapp/v1`.
 
-> **GraphQL**: bootstrap, me, counts, sync, config, manifest, dashboard, prefs ve oturum uçları `/graphql` üzerinden de vardır (0.5.0, belirteç ve kapsam kuralları aynı): [GRAPHQL.md](GRAPHQL.md). Bu REST uçları mağazadaki eski uygulama sürümleri için aynen çalışır.
-
 Sözleşme kaynağı: `docs/mobile-app-plan.md` (proje deposu) ve kanonik şemalar `packages/manifest/schema/*.schema.json` (`@fluxwp/manifest`). Bu sürüm (0.4.0) çıktıları bu şemalardan geçer: `bootstrap`, `config` (mobil ve masaüstü), `manifest` paketi ve her modül. Plandan sapmalar en altta.
 
 ## Uç listesi

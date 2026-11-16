@@ -2,10 +2,9 @@
 /**
  * Plugin Name:       Flux Analytics
  * Description:       Çerezsiz, kişisel veri tutmayan site istatistikleri: ziyaretçi, görüntülenme, en çok okunan sayfalar, yönlendiren siteler, kanal, cihaz/tarayıcı, kampanya (UTM), tıklama olayları ve bağış dönüşümleri. Veriler sitede kalır; yapay zekâ Flux AI / Flux AI & MCP araçlarıyla okur.
- * Version:           0.5.0
- * Requires at least: 6.5
- * Requires PHP:      8.1
- * Requires Plugins:  flx-graphql
+ * Version:           0.4.11
+ * Requires at least: 6.4
+ * Requires PHP:      7.4
  * Author:            FluxWP
  * License:           GPL-2.0-or-later
  * Text Domain:       flx-analytics
@@ -22,7 +21,7 @@ if ( defined( 'FLXAN_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXAN_VERSION', '0.5.0' );
+define( 'FLXAN_VERSION', '0.4.11' );
 define( 'FLXAN_DB_VERSION', 3 );
 define( 'FLXAN_FILE', __FILE__ );
 define( 'FLXAN_DIR', plugin_dir_path( __FILE__ ) );
@@ -44,49 +43,10 @@ require_once FLXAN_DIR . 'includes/js-strings.php';
 require_once FLXAN_DIR . 'includes/telemetry-hub.php';
 require_once FLXAN_DIR . 'includes/dashboard.php'; // widget'lar + REST /dashboard (REST isteği is_admin değildir)
 require_once FLXAN_DIR . 'includes/app.php';
-require_once FLXAN_DIR . 'includes/services/class-flxan-service.php';
-require_once FLXAN_DIR . 'includes/services/class-flxan-telemetry-service.php';
-require_once FLXAN_DIR . 'includes/flux-ui.php';
-require_once FLXAN_DIR . 'includes/import.php'; // functions only; the service also runs inside a GraphQL request
 if ( is_admin() ) {
+	require_once FLXAN_DIR . 'includes/import.php';
 	require_once FLXAN_DIR . 'includes/admin.php';
 }
-
-/*
- * GraphQL (Flux GraphQL): schema only inside a GraphQL request; persisted operations the screens send;
- * the "View statistics" capability joins the shared catalog. Without Flux GraphQL the schema is left out
- * and the classic pages keep working. Visit collection stays outside GraphQL (docs/graphql/ISTISNALAR.md).
- */
-add_action(
-	'flx_gql_register',
-	static function () {
-		if ( ! function_exists( 'flx_gql_all_caps' ) ) {
-			return;
-		}
-		require_once FLXAN_DIR . 'includes/graphql/schema.php';
-	}
-);
-add_filter(
-	'flx_gql_persisted_manifests',
-	static function ( $m ) {
-		$m                   = is_array( $m ) ? $m : array();
-		$m['flx-analytics']  = FLXAN_DIR . 'graphql/persisted-queries.json';
-		return $m;
-	}
-);
-add_filter(
-	'flx_gql_capabilities',
-	static function ( $caps ) {
-		$caps = is_array( $caps ) ? $caps : array();
-		if ( ! isset( $caps['flxan_view'] ) ) {
-			$caps['flxan_view'] = array(
-				'label'   => __( 'View statistics', 'flx-analytics' ),
-				'package' => 'flx-analytics',
-			);
-		}
-		return $caps;
-	}
-);
 
 /*
  * Çeviri: kaynak metinler Türkçe; kullanıcı dili İngilizce olduğunda languages/ içindeki çeviri kullanılır.

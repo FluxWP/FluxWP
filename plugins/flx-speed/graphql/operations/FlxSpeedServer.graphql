@@ -1,5 +1,0 @@
-query FlxSpeedServer {
-  flxSpeedServer {
-    ...FlxSpeedSectionFields
-  }
-}

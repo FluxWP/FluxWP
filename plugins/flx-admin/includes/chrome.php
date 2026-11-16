@@ -420,9 +420,10 @@ function flxa_footer_text( $t ) {
 /** Tema tercihini kaydeder (tek istek, yalnız tıklayınca). */
 function flxa_ajax_mode() {
 	check_ajax_referer( 'flxa', 'nonce' );
-	$r = FLXA_User_Service::set_mode( sanitize_key( wp_unslash( $_POST['mode'] ?? '' ) ) );
-	if ( is_wp_error( $r ) ) {
+	$m = sanitize_key( wp_unslash( $_POST['mode'] ?? '' ) );
+	if ( ! in_array( $m, array( 'auto', 'light', 'dark' ), true ) ) {
 		wp_send_json_error( null, 400 );
 	}
-	wp_send_json_success( array( 'mode' => $r ) );
+	update_user_meta( get_current_user_id(), 'flxa_mode', $m );
+	wp_send_json_success( array( 'mode' => $m ) );
 }

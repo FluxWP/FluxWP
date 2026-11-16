@@ -24,9 +24,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 const FLXSEO_HISTORY_MAX = 90;
 
-/**
- * @return list<array<string, mixed>>
- */
 function flxseo_audit_history( $limit = FLXSEO_HISTORY_MAX ) {
 	$h = get_option( 'flxseo_audit_history', array() );
 	return array_slice( is_array( $h ) ? $h : array(), 0, $limit );
@@ -104,9 +101,7 @@ function flxseo_audit_days() {
 	);
 }
 
-/** Verilen andan sonraki ilk planlı zaman (site saat diliminde); kapalıysa 0.
- * @return int
- */
+/** Verilen andan sonraki ilk planlı zaman (site saat diliminde); kapalıysa 0. */
 function flxseo_audit_next_after( $after ) {
 	$freq = (string) flxseo_opt( 'audit_freq' );
 	if ( ! in_array( $freq, array( 'daily', 'weekly' ), true ) ) {
@@ -125,9 +120,6 @@ function flxseo_audit_next_after( $after ) {
 	return 0;
 }
 
-/**
- * @return int
- */
 function flxseo_audit_next_run() {
 	$last = (int) get_option( 'flxseo_audit_last_auto', 0 );
 	if ( ! $last ) {
@@ -403,9 +395,6 @@ function flxseo_audit_mail( array $entry ) {
  * Panel: geçmiş kartı
  * ------------------------------------------------------------------------- */
 
-/**
- * @return array<string, string>
- */
 function flxseo_audit_triggers() {
 	return array(
 		'auto'   => __( 'Automatic', 'flx-seo' ),

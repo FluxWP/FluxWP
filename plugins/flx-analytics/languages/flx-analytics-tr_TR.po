@@ -1,8 +1,17 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: tr_TR\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "View statistics"
-msgstr "İstatistikleri görüntüle"
+msgid "Mobile app: daily active accounts"
+msgstr "Mobil uygulama: günlük aktif hesaplar"
+
+msgid "UTC day / platform"
+msgstr "UTC gün / platform"
+
+msgid "Consenting accounts"
+msgstr "İzin veren hesaplar"
+
+msgid "No eligible totals yet. Both device and site consent are required; cohorts below five accounts per site/platform/day are withheld. Country is the configured site country, not a person’s location. The same person may count on multiple sites or platforms."
+msgstr "Henüz uygun toplam yok. Kullanıcı ve site izni gerekir; site/platform/gün başına beşten az hesap paylaşılmaz. Ülke filtresi sitenin ayarlı ülkesidir; kişilerin konumu değildir. Aynı kişi farklı sitelerde veya platformlarda tekrar sayılabilir."
 
 msgid "Statistics"
 msgstr "İstatistikler"
@@ -346,12 +355,6 @@ msgstr "Huni tanımlı değil."
 msgid "%s · last 7 days"
 msgstr "%s · son 7 gün"
 
-msgid "New view"
-msgstr "Yeni görünüm"
-
-msgid "Open the new view (same features, works in the FluxWP app too)."
-msgstr "Yeni görünümü aç (aynı özellikler, FluxWP uygulamasında da çalışır)."
-
 msgid "No goal"
 msgstr "Hedef yok"
 
@@ -391,497 +394,20 @@ msgstr "Dosya indirdi"
 msgid "Other pages"
 msgstr "Diğer sayfalar"
 
-msgid "Fast endpoint works"
-msgstr "Hızlı uç çalışıyor"
-
-msgid "Fast endpoint unreachable, REST will be used"
-msgstr "Hızlı uç erişilemiyor, REST kullanılacak"
-
-msgid "%s s"
-msgstr "%s sn"
-
-msgid "%1$s min %2$s s"
-msgstr "%1$s dk %2$s sn"
-
-msgid "Copied"
-msgstr "Kopyalandı"
-
-msgid "Link"
-msgstr "Bağlantı"
-
-msgid "Date range"
-msgstr "Tarih aralığı"
-
-msgid "Start"
-msgstr "Başlangıç"
-
-msgid "End"
-msgstr "Bitiş"
-
-msgid "Apply"
-msgstr "Uygula"
-
-msgid "Download CSV"
-msgstr "CSV indir"
-
-msgid "Visitor type"
-msgstr "Ziyaretçi türü"
-
-msgid "All visitors"
-msgstr "Tüm ziyaretçiler"
-
-msgid "Outside visitors"
-msgstr "Dışarıdan gelenler"
-
-msgid "Logged-in users"
-msgstr "Giriş yapanlar"
-
-msgid "Role: %s"
-msgstr "Rol: %s"
-
-msgid "Referral"
-msgstr "Referans"
-
-msgid "All sources"
-msgstr "Tüm kaynaklar"
-
-msgid "Referral links only"
-msgstr "Yalnız referans bağlantıları"
-
-msgid "Visitors: the sum of unique people per day. A person is recognised only within the same day; someone arriving via a referral link is credited to that code for 30 days. Country is derived from the browser time zone, not the IP."
-msgstr "Ziyaretçi: her gün için tekil kişi sayısının toplamı. Kişi yalnız aynı gün içinde tanınır; referans bağlantısıyla gelen 30 gün boyunca o koda sayılır. Ülke, IP'ye bakılmadan tarayıcının saat diliminden çıkarılır."
-
-msgid "Visitors and views chart"
-msgstr "Ziyaretçi ve görüntülenme grafiği"
-
-msgid "Week of %s"
-msgstr "%s haftası"
-
-msgid "Compared with the previous period of equal length"
-msgstr "Önceki eşit döneme göre"
-
-msgid "Previous period: %s"
-msgstr "Önceki dönem: %s"
-
-msgid "Sessions"
-msgstr "Oturum"
-
-msgid "Pages / visitor"
-msgstr "Sayfa / ziyaretçi"
-
-msgid "Avg. session duration"
-msgstr "Ort. ziyaret süresi"
-
-msgid "Bounce rate"
-msgstr "Hemen çıkma"
-
-msgid "Left after viewing one page"
-msgstr "Tek sayfa görüp ayrılanlar"
-
-msgid "%1$s min ago: %2$s"
-msgstr "%1$s dk önce: %2$s"
-
-msgid "Live"
-msgstr "Canlı"
-
-msgid "Refreshes every 5 s"
-msgstr "5 sn'de bir yenilenir"
-
-msgid "visitors in last %s min"
-msgstr "son %s dk ziyaretçi"
-
-msgid "%s views"
-msgstr "%s görüntülenme"
-
-msgid "%s min ago"
-msgstr "%s dk önce"
-
-msgid "now"
-msgstr "şimdi"
-
-msgid "Pages"
-msgstr "Sayfalar"
-
-msgid "Countries"
-msgstr "Ülkeler"
-
-msgid "See all (%s)"
-msgstr "Tümünü gör (%s)"
-
-msgid "Traffic sources"
-msgstr "Trafik kaynakları"
-
-msgid "By role"
-msgstr "Rollere göre"
-
-msgid "not logged in"
-msgstr "giriş yapmamış"
-
-msgid "Click a row to filter the whole screen by that visitor type. For outside traffic only, choose \"Outside visitors\" at the top."
-msgstr "Satıra tıklayınca bütün ekran o ziyaretçi türüne süzülür. Yalnız dışarıdan gelen trafik için üstten \"Dışarıdan gelenler\"i seçin."
-
-msgid "Most viewed pages"
-msgstr "En çok görüntülenen sayfalar"
-
-msgid "No visits from other sites yet."
-msgstr "Henüz başka siteden gelen yok."
-
-msgid "Device and browser"
-msgstr "Cihaz ve tarayıcı"
-
-msgid "Campaigns (UTM)"
-msgstr "Kampanyalar (UTM)"
-
-msgid "Not found pages (404)"
-msgstr "Bulunamayan sayfalar (404)"
-
-msgid "Visitors by country"
-msgstr "Ülkelere göre ziyaretçi"
-
-msgid "World map"
-msgstr "Dünya haritası"
-
-msgid "Few"
-msgstr "Az"
-
-msgid "Many"
-msgstr "Çok"
-
-msgid "Country"
-msgstr "Ülke"
-
-msgid "No country data in this range."
-msgstr "Bu aralıkta ülke bilgisi yok."
-
-msgid "Funnel"
-msgstr "Huni"
-
-msgid "Funnel: %s"
-msgstr "Huni: %s"
-
-msgid "Drop from previous step"
-msgstr "Önceki adımdan kayıp"
-
-msgid "No visits entered the funnel in this range."
-msgstr "Bu aralıkta huniye giren ziyaret yok."
-
-msgid "Completion"
-msgstr "Tamamlama"
-
-msgid "Counts the furthest step each visitor reached within a day. You can change the steps in Settings › Funnels."
-msgstr "Her ziyaretçinin gün içinde ulaştığı en ileri adım sayılır. Adımları Ayarlar › Huniler'den değiştirebilirsiniz."
-
-msgid "Funnel settings"
-msgstr "Huni ayarları"
-
-msgid "New link"
-msgstr "Yeni bağlantı"
-
-msgid "Name (e.g. Ayşe's Instagram)"
-msgstr "Ad (ör. Ayşe'nin Instagram'ı)"
-
-msgid "Code (e.g. ayse-ig)"
-msgstr "Kod (ör. ayse-ig)"
-
-msgid "Save"
-msgstr "Kaydet"
-
-msgid "No referral links yet. Add ?r=code to the site address wherever you share it (e.g. %s); give it a name here and reports will show that name."
-msgstr "Henüz referans bağlantısı yok. Sitenin adresini paylaştığınız yerde sonuna ?r=kod ekleyin (ör. %s); buraya ad verirseniz raporlarda o adla görünür."
-
-msgid "Pages / session"
-msgstr "Sayfa / ziyaret"
-
-msgid "Avg. duration"
-msgstr "Ort. süre"
-
-msgid "Furthest step"
-msgstr "En ileri adım"
-
-msgid "Donations"
-msgstr "Bağış"
-
-msgid "Show what visitors from this link did"
-msgstr "Bu bağlantıyla gelenlerin ne yaptığını göster"
-
-msgid "Copy link"
-msgstr "Bağlantıyı kopyala"
-
-msgid "Rename"
-msgstr "Adını değiştir"
-
-msgid "Remove name"
-msgstr "Adı sil"
-
-msgid "A visitor arriving via the link gets a 30-day cookie; their later pages, later days and donation are credited to that code. Click a row to filter the whole screen to visitors from that link."
-msgstr "Bağlantıyla gelen kişiye 30 günlük bir çerez konur; sonraki sayfaları, sonraki günleri ve bağışı da o koda sayılır. Bir satıra tıklayınca bütün ekran o bağlantıyla gelenlere süzülür."
-
-msgid "Copy"
-msgstr "Kopyala"
-
-msgid "Name for \"%s\""
-msgstr "\"%s\" için ad"
-
-msgid "Remove the name? Statistics are kept and shown under the code."
-msgstr "Ad silinsin mi? İstatistikler kalır, kod adıyla görünür."
-
-msgid "Clicks and conversions"
-msgstr "Tıklamalar ve dönüşümler"
-
-msgid "No events in this range. Outbound links, downloads, phone/WhatsApp clicks, searches and donations appear here."
-msgstr "Bu aralıkta olay yok. Dış bağlantı, indirme, telefon/WhatsApp tıklaması, arama ve bağışlar burada görünür."
-
-msgid "All"
-msgstr "Tümü"
-
-msgid "Close"
-msgstr "Kapat"
-
-msgid "Search"
-msgstr "Ara"
-
-msgid "More"
-msgstr "Daha fazla"
-
-msgid "Could not load. Try again in a moment."
-msgstr "Yüklenemedi. Biraz sonra yeniden deneyin."
-
-msgid "No data yet."
-msgstr "Henüz veri yok."
-
-msgid "Open the site in a browser where you are not logged in (or on your phone); the visit appears here within a few minutes."
-msgstr "Siteyi giriş yapmadığınız bir tarayıcıda (ya da telefonda) açın; ziyaret birkaç dakika içinde burada görünür."
-
-msgid "Filter:"
-msgstr "Süzgeç:"
-
-msgid "Clear filter"
-msgstr "Süzgeci kaldır"
-
-msgid "Site entry"
-msgstr "Siteye giriş"
-
-msgid "Page"
-msgstr "Sayfa"
-
-msgid "The first page of every visit counts"
-msgstr "Her ziyaretin ilk sayfası sayılır"
-
-msgid "Choose an event…"
-msgstr "Olay seçin…"
-
-msgid "Type another event…"
-msgstr "Başka olay yaz…"
-
-msgid "all pages starting with this path"
-msgstr "bu yolla başlayan tüm sayfalar"
-
-msgid "Funnel name"
-msgstr "Huni adı"
-
-msgid "%s steps"
-msgstr "%s adım"
-
-msgid "Delete funnel"
-msgstr "Huniyi sil"
-
-msgid "Drag to move"
-msgstr "Sürükleyip taşıyın"
-
-msgid "Step name"
-msgstr "Adımın adı"
-
-msgid "Step type"
-msgstr "Adım türü"
-
-msgid "Move up"
-msgstr "Yukarı taşı"
-
-msgid "Move down"
-msgstr "Aşağı taşı"
-
-msgid "Delete step"
-msgstr "Adımı sil"
-
-msgid "Add step"
-msgstr "Adım ekle"
-
-msgid "Add preset step"
-msgstr "Hazır adım ekle"
-
-msgid "Add preset step…"
-msgstr "Hazır adım ekle…"
-
-msgid "At most %s steps."
-msgstr "En fazla %s adım."
-
-msgid "New funnel"
-msgstr "Yeni huni"
-
-msgid "Reset to default donation funnel"
-msgstr "Varsayılan bağış hunisine dön"
-
-msgid "Edit as text"
-msgstr "Metin olarak düzenle"
-
-msgid "Event name (e.g. donation_form or checkout:submit):"
-msgstr "Olay adı (ör. bagis_formu ya da checkout:submit):"
-
-msgid "Delete funnel \"%s\"?"
-msgstr "\"%s\" hunisi silinsin mi?"
-
-msgid "Funnel %s"
-msgstr "Huni %s"
-
-msgid "Replace all funnels with the default donation funnel? (Applied when you click Save.)"
-msgstr "Tüm huniler varsayılan bağış hunisiyle değiştirilsin mi? (Kaydet'e basınca uygulanır.)"
-
-msgid "Back to visual editor"
-msgstr "Görsel düzenleyiciye dön"
-
-msgid "Compare previous period"
-msgstr "Önceki dönemle karşılaştır"
-
-msgid "Goal page"
-msgstr "Hedef sayfa"
-
-msgid "Combine sub-pages like /news/… into one box"
-msgstr "/haber/… gibi alt sayfaları tek kutuda topla"
-
-msgid "Group pages"
-msgstr "Sayfaları grupla"
-
-msgid "Paths from session start"
-msgstr "Girişten itibaren yollar"
-
-msgid "Starts at"
-msgstr "Şuradan başlayan"
-
-msgid "All pages"
-msgstr "Tüm sayfalar"
-
-msgid "Ends at"
-msgstr "Şurada biten"
-
-msgid "Steps"
-msgstr "Adım"
-
-msgid "Fewer steps"
-msgstr "Adım azalt"
-
-msgid "More steps"
-msgstr "Adım artır"
-
-msgid "Paths shown"
-msgstr "Gösterilen yol"
-
-msgid "Top %s paths"
-msgstr "En çok %s yol"
-
-msgid "Top paths"
-msgstr "En sık izlenen yollar"
-
-msgid "Search pages…"
-msgstr "Sayfa ara…"
-
-msgid "Reach goal"
-msgstr "Hedefe ulaşma"
-
-msgid "Never reach"
-msgstr "Ulaşmayan"
-
-msgid "Journey: the order of pages in one visit (first 8 steps; refreshing the same page counts once). Events such as add to cart, checkout form, \"Place order\", payment method, order, and WhatsApp/phone clicks show as steps marked ⚡. Only visits with at least 2 pages are listed. The goal is chosen from Settings › Funnels. This screen shows visits after version 0.3.0."
-msgstr "Yolculuk: bir ziyarette gezilen sayfaların sırası (ilk 8 adım; aynı sayfanın yenilenmesi tek sayılır). Sepete ekleme, ödeme formu, \"Ödeme yap\", ödeme yöntemi, sipariş, WhatsApp/telefon tıklaması gibi olaylar ⚡ ile adım olarak görünür. Yalnız en az 2 sayfa gezilen ziyaretler gösterilir. Hedef, Ayarlar › Huniler'deki adımlardan seçilir. Bu ekran 0.3.0 sürümünden sonraki ziyaretleri gösterir."
-
-msgid "Could not load data. Refresh the page."
-msgstr "Veri alınamadı. Sayfayı yenileyin."
-
-msgid "%1$s visits · %2$s"
-msgstr "%1$s ziyaret · %2$s"
-
-msgid "No data"
-msgstr "Veri yok"
-
-msgid "Multi-page sessions"
-msgstr "Çok sayfalı ziyaret"
-
-msgid "%s of all visits"
-msgstr "Tüm ziyaretlerin %s"
-
-msgid "Avg path length"
-msgstr "Ort. yol uzunluğu"
-
-msgid "%s pages"
-msgstr "%s sayfa"
-
-msgid "In multi-page sessions"
-msgstr "Çok sayfalı ziyaretlerde"
-
-msgid "Top entry page"
-msgstr "En sık giriş"
-
-msgid "Top exit after 2+ pages"
-msgstr "2+ sayfadan sonra en sık çıkış"
-
-msgid "No goal selected"
-msgstr "Hedef seçilmedi"
-
-msgid "No journeys yet"
-msgstr "Henüz yolculuk yok"
-
-msgid "No visits with at least 2 pages in the selected period. Widen the filters or wait for new visits."
-msgstr "Seçili dönemde en az 2 sayfa gezilen ziyaret bulunamadı. Süzgeçleri genişletin ya da yeni ziyaretleri bekleyin."
-
-msgid "Click a box to filter the paths below by that page. Thickness shows the number of visits."
-msgstr "Bir kutuya tıklayınca aşağıdaki yollar o sayfaya göre süzülür. Kalınlık ziyaret sayısını gösterir."
-
-msgid "%s visits"
-msgstr "%s ziyaret"
-
-msgid "Entries"
-msgstr "Giriş"
-
-msgid "Step %s"
-msgstr "%s. adım"
-
-msgid "%s end here"
-msgstr "%s burada bitti"
-
-msgid "all continue"
-msgstr "hepsi devam etti"
-
-msgid "continues"
-msgstr "devam ediyor"
-
-msgid "No paths match the search."
-msgstr "Aramaya uyan yol yok."
-
-msgid "No paths to show."
-msgstr "Gösterilecek yol yok."
-
-msgid "Path"
-msgstr "Yol"
-
-msgid "Share"
-msgstr "Pay"
-
-msgid "vs prev"
-msgstr "Öncekine göre"
-
-msgid "new"
-msgstr "yeni"
-
-msgid "Showing %2$s of %1$s paths."
-msgstr "%1$s yoldan %2$s tanesi gösteriliyor."
-
 msgid "Site traffic summary"
 msgstr "Site trafiği özeti"
 
 msgid "Daily visitor chart data"
 msgstr "Günlük ziyaretçi grafiği verisi"
 
+msgid "Most viewed pages"
+msgstr "En çok görüntülenen sayfalar"
+
 msgid "Channel, device, browser breakdown"
 msgstr "Kanal, cihaz, tarayıcı dağılımı"
+
+msgid "Clicks and conversions"
+msgstr "Tıklamalar ve dönüşümler"
 
 msgid "How many people are on the site now?"
 msgstr "Şu an sitede kaç kişi var?"
@@ -913,6 +439,9 @@ msgstr "Referans bağlantılarını düzenleme yetkiniz yok."
 msgid "Invalid code. Use letters, digits, - and _."
 msgstr "Geçersiz kod. Harf, rakam, - ve _ kullanın."
 
+msgid "%s views"
+msgstr "%s görüntülenme"
+
 msgid "Last 30 days (Site Analytics)"
 msgstr "Son 30 gün (Site Analitik)"
 
@@ -934,6 +463,9 @@ msgstr "Bağış sayfası kaç kişiye ulaştı, kaç bağışa döndü?"
 msgid "Every 5 minutes"
 msgstr "Her 5 dakikada"
 
+msgid "Site entry"
+msgstr "Siteye giriş"
+
 msgid "Donation page"
 msgstr "Bağış sayfası"
 
@@ -948,6 +480,9 @@ msgstr "Bağış tamamlandı"
 
 msgid "Donation flow"
 msgstr "Bağış akışı"
+
+msgid "Funnel"
+msgstr "Huni"
 
 msgid "First touch on checkout form"
 msgstr "Ödeme formuna ilk dokunuş"
@@ -1018,6 +553,9 @@ msgstr "İşletim sistemi"
 msgid "Browser language"
 msgstr "Tarayıcı dili"
 
+msgid "Country"
+msgstr "Ülke"
+
 msgid "Campaign source"
 msgstr "Kampanya kaynağı"
 
@@ -1051,6 +589,9 @@ msgstr "Sepete ekleme"
 msgid "Home page"
 msgstr "Ana sayfa"
 
+msgid "Outside visitors"
+msgstr "Dışarıdan gelenler"
+
 msgid "Total"
 msgstr "Toplam"
 
@@ -1062,6 +603,9 @@ msgstr "Yönlendiren siteye göre"
 
 msgid "By referral code"
 msgstr "Referans koduna göre"
+
+msgid "By role"
+msgstr "Rollere göre"
 
 msgid "By country"
 msgstr "Ülkeye göre"
@@ -1261,23 +805,14 @@ msgstr "Henüz rapor yok."
 msgid "FluxWP Panel on sites sends to this URL:"
 msgstr "Sitelerdeki FluxWP Panel bu adrese gönderir:"
 
-msgid "Mobile app: daily active accounts"
-msgstr "Mobil uygulama: günlük aktif hesaplar"
-
-msgid "UTC day / platform"
-msgstr "UTC gün / platform"
-
-msgid "Consenting accounts"
-msgstr "İzin veren hesaplar"
-
-msgid "No eligible totals yet. Both device and site consent are required; cohorts below five accounts per site/platform/day are withheld. Country is the configured site country, not a person’s location. The same person may count on multiple sites or platforms."
-msgstr "Henüz uygun toplam yok. Kullanıcı ve site izni gerekir; site/platform/gün başına beşten az hesap paylaşılmaz. Ülke filtresi sitenin ayarlı ülkesidir; kişilerin konumu değildir. Aynı kişi farklı sitelerde veya platformlarda tekrar sayılabilir."
-
 msgid "Plugin usage"
 msgstr "Eklenti kullanımı"
 
 msgid "Package"
 msgstr "Paket"
+
+msgid "Share"
+msgstr "Pay"
 
 msgid "Common version"
 msgstr "Yaygın sürüm"
@@ -1378,6 +913,9 @@ msgstr "FluxWP Panel 1.0.11 ve üstü, sihirbaz bitince ya da kapatılınca son 
 msgid "Reached each step"
 msgstr "Adımlara ulaşan"
 
+msgid "Steps"
+msgstr "Adım"
+
 msgid "skipped"
 msgstr "atladı"
 
@@ -1417,5 +955,521 @@ msgstr "Renk stili (bitirenler)"
 msgid "Choice"
 msgstr "Seçim"
 
-msgid "Logged-in people"
-msgstr "Giriş yapmış kişiler"
+msgid "Fast endpoint works"
+msgstr "Hızlı uç çalışıyor"
+
+msgid "Fast endpoint unreachable, REST will be used"
+msgstr "Hızlı uç erişilemiyor, REST kullanılacak"
+
+msgid "%s s"
+msgstr "%s sn"
+
+msgid "%1$s min %2$s s"
+msgstr "%1$s dk %2$s sn"
+
+msgid "Copied"
+msgstr "Kopyalandı"
+
+msgid "Link"
+msgstr "Bağlantı"
+
+msgid "Date range"
+msgstr "Tarih aralığı"
+
+msgid "Start"
+msgstr "Başlangıç"
+
+msgid "End"
+msgstr "Bitiş"
+
+msgid "Apply"
+msgstr "Uygula"
+
+msgid "Download CSV"
+msgstr "CSV indir"
+
+msgid "Visitor type"
+msgstr "Ziyaretçi türü"
+
+msgid "All visitors"
+msgstr "Tüm ziyaretçiler"
+
+msgid "Logged-in users"
+msgstr "Giriş yapanlar"
+
+msgid "Role: %s"
+msgstr "Rol: %s"
+
+msgid "Referral"
+msgstr "Referans"
+
+msgid "All sources"
+msgstr "Tüm kaynaklar"
+
+msgid "Referral links only"
+msgstr "Yalnız referans bağlantıları"
+
+msgid "Visitors: the sum of unique people per day. A person is recognised only within the same day; someone arriving via a referral link is credited to that code for 30 days. Country is derived from the browser time zone, not the IP."
+msgstr "Ziyaretçi: her gün için tekil kişi sayısının toplamı. Kişi yalnız aynı gün içinde tanınır; referans bağlantısıyla gelen 30 gün boyunca o koda sayılır. Ülke, IP'ye bakılmadan tarayıcının saat diliminden çıkarılır."
+
+msgid "Visitors and views chart"
+msgstr "Ziyaretçi ve görüntülenme grafiği"
+
+msgid "Week of %s"
+msgstr "%s haftası"
+
+msgid "Compared with the previous period of equal length"
+msgstr "Önceki eşit döneme göre"
+
+msgid "Previous period: %s"
+msgstr "Önceki dönem: %s"
+
+msgid "Sessions"
+msgstr "Oturum"
+
+msgid "Pages / visitor"
+msgstr "Sayfa / ziyaretçi"
+
+msgid "Avg. session duration"
+msgstr "Ort. ziyaret süresi"
+
+msgid "Bounce rate"
+msgstr "Hemen çıkma"
+
+msgid "Left after viewing one page"
+msgstr "Tek sayfa görüp ayrılanlar"
+
+msgid "%1$s min ago: %2$s"
+msgstr "%1$s dk önce: %2$s"
+
+msgid "Live"
+msgstr "Canlı"
+
+msgid "Refreshes every 5 s"
+msgstr "5 sn'de bir yenilenir"
+
+msgid "visitors in last %s min"
+msgstr "son %s dk ziyaretçi"
+
+msgid "%s min ago"
+msgstr "%s dk önce"
+
+msgid "now"
+msgstr "şimdi"
+
+msgid "Pages"
+msgstr "Sayfalar"
+
+msgid "Countries"
+msgstr "Ülkeler"
+
+msgid "See all (%s)"
+msgstr "Tümünü gör (%s)"
+
+msgid "Traffic sources"
+msgstr "Trafik kaynakları"
+
+msgid "not logged in"
+msgstr "giriş yapmamış"
+
+msgid "Click a row to filter the whole screen by that visitor type. For outside traffic only, choose \"Outside visitors\" at the top."
+msgstr "Satıra tıklayınca bütün ekran o ziyaretçi türüne süzülür. Yalnız dışarıdan gelen trafik için üstten \"Dışarıdan gelenler\"i seçin."
+
+msgid "No visits from other sites yet."
+msgstr "Henüz başka siteden gelen yok."
+
+msgid "Device and browser"
+msgstr "Cihaz ve tarayıcı"
+
+msgid "Campaigns (UTM)"
+msgstr "Kampanyalar (UTM)"
+
+msgid "Not found pages (404)"
+msgstr "Bulunamayan sayfalar (404)"
+
+msgid "Visitors by country"
+msgstr "Ülkelere göre ziyaretçi"
+
+msgid "World map"
+msgstr "Dünya haritası"
+
+msgid "Few"
+msgstr "Az"
+
+msgid "Many"
+msgstr "Çok"
+
+msgid "No country data in this range."
+msgstr "Bu aralıkta ülke bilgisi yok."
+
+msgid "Funnel: %s"
+msgstr "Huni: %s"
+
+msgid "Drop from previous step"
+msgstr "Önceki adımdan kayıp"
+
+msgid "No visits entered the funnel in this range."
+msgstr "Bu aralıkta huniye giren ziyaret yok."
+
+msgid "Completion"
+msgstr "Tamamlama"
+
+msgid "Counts the furthest step each visitor reached within a day. You can change the steps in Settings › Funnels."
+msgstr "Her ziyaretçinin gün içinde ulaştığı en ileri adım sayılır. Adımları Ayarlar › Huniler'den değiştirebilirsiniz."
+
+msgid "Funnel settings"
+msgstr "Huni ayarları"
+
+msgid "New link"
+msgstr "Yeni bağlantı"
+
+msgid "Name (e.g. Ayşe's Instagram)"
+msgstr "Ad (ör. Ayşe'nin Instagram'ı)"
+
+msgid "Code (e.g. ayse-ig)"
+msgstr "Kod (ör. ayse-ig)"
+
+msgid "Save"
+msgstr "Kaydet"
+
+msgid "No referral links yet. Add ?r=code to the site address wherever you share it (e.g. %s); give it a name here and reports will show that name."
+msgstr "Henüz referans bağlantısı yok. Sitenin adresini paylaştığınız yerde sonuna ?r=kod ekleyin (ör. %s); buraya ad verirseniz raporlarda o adla görünür."
+
+msgid "Pages / session"
+msgstr "Sayfa / ziyaret"
+
+msgid "Avg. duration"
+msgstr "Ort. süre"
+
+msgid "Furthest step"
+msgstr "En ileri adım"
+
+msgid "Donations"
+msgstr "Bağış"
+
+msgid "Show what visitors from this link did"
+msgstr "Bu bağlantıyla gelenlerin ne yaptığını göster"
+
+msgid "Copy link"
+msgstr "Bağlantıyı kopyala"
+
+msgid "Rename"
+msgstr "Adını değiştir"
+
+msgid "Remove name"
+msgstr "Adı sil"
+
+msgid "A visitor arriving via the link gets a 30-day cookie; their later pages, later days and donation are credited to that code. Click a row to filter the whole screen to visitors from that link."
+msgstr "Bağlantıyla gelen kişiye 30 günlük bir çerez konur; sonraki sayfaları, sonraki günleri ve bağışı da o koda sayılır. Bir satıra tıklayınca bütün ekran o bağlantıyla gelenlere süzülür."
+
+msgid "Copy"
+msgstr "Kopyala"
+
+msgid "Name for \"%s\""
+msgstr "\"%s\" için ad"
+
+msgid "Remove the name? Statistics are kept and shown under the code."
+msgstr "Ad silinsin mi? İstatistikler kalır, kod adıyla görünür."
+
+msgid "No events in this range. Outbound links, downloads, phone/WhatsApp clicks, searches and donations appear here."
+msgstr "Bu aralıkta olay yok. Dış bağlantı, indirme, telefon/WhatsApp tıklaması, arama ve bağışlar burada görünür."
+
+msgid "All"
+msgstr "Tümü"
+
+msgid "Close"
+msgstr "Kapat"
+
+msgid "Search"
+msgstr "Ara"
+
+msgid "More"
+msgstr "Daha fazla"
+
+msgid "Could not load. Try again in a moment."
+msgstr "Yüklenemedi. Biraz sonra yeniden deneyin."
+
+msgid "No data yet."
+msgstr "Henüz veri yok."
+
+msgid "Open the site in a browser where you are not logged in (or on your phone); the visit appears here within a few minutes."
+msgstr "Siteyi giriş yapmadığınız bir tarayıcıda (ya da telefonda) açın; ziyaret birkaç dakika içinde burada görünür."
+
+msgid "Filter:"
+msgstr "Süzgeç:"
+
+msgid "Clear filter"
+msgstr "Süzgeci kaldır"
+
+msgid "Page"
+msgstr "Sayfa"
+
+msgid "The first page of every visit counts"
+msgstr "Her ziyaretin ilk sayfası sayılır"
+
+msgid "Choose an event…"
+msgstr "Olay seçin…"
+
+msgid "Type another event…"
+msgstr "Başka olay yaz…"
+
+msgid "all pages starting with this path"
+msgstr "bu yolla başlayan tüm sayfalar"
+
+msgid "Funnel name"
+msgstr "Huni adı"
+
+msgid "%s steps"
+msgstr "%s adım"
+
+msgid "Delete funnel"
+msgstr "Huniyi sil"
+
+msgid "Drag to move"
+msgstr "Sürükleyip taşıyın"
+
+msgid "Step name"
+msgstr "Adımın adı"
+
+msgid "Step type"
+msgstr "Adım türü"
+
+msgid "Move up"
+msgstr "Yukarı taşı"
+
+msgid "Move down"
+msgstr "Aşağı taşı"
+
+msgid "Delete step"
+msgstr "Adımı sil"
+
+msgid "Add step"
+msgstr "Adım ekle"
+
+msgid "Add preset step"
+msgstr "Hazır adım ekle"
+
+msgid "Add preset step…"
+msgstr "Hazır adım ekle…"
+
+msgid "At most %s steps."
+msgstr "En fazla %s adım."
+
+msgid "New funnel"
+msgstr "Yeni huni"
+
+msgid "Reset to default donation funnel"
+msgstr "Varsayılan bağış hunisine dön"
+
+msgid "Edit as text"
+msgstr "Metin olarak düzenle"
+
+msgid "Event name (e.g. donation_form or checkout:submit):"
+msgstr "Olay adı (ör. bagis_formu ya da checkout:submit):"
+
+msgid "Delete funnel \"%s\"?"
+msgstr "\"%s\" hunisi silinsin mi?"
+
+msgid "Funnel %s"
+msgstr "Huni %s"
+
+msgid "Replace all funnels with the default donation funnel? (Applied when you click Save.)"
+msgstr "Tüm huniler varsayılan bağış hunisiyle değiştirilsin mi? (Kaydet'e basınca uygulanır.)"
+
+msgid "Back to visual editor"
+msgstr "Görsel düzenleyiciye dön"
+
+msgid "Compare previous period"
+msgstr "Önceki dönemle karşılaştır"
+
+msgid "Goal page"
+msgstr "Hedef sayfa"
+
+msgid "Combine sub-pages like /news/… into one box"
+msgstr "/haber/… gibi alt sayfaları tek kutuda topla"
+
+msgid "Group pages"
+msgstr "Sayfaları grupla"
+
+msgid "Paths from session start"
+msgstr "Girişten itibaren yollar"
+
+msgid "Starts at"
+msgstr "Şuradan başlayan"
+
+msgid "All pages"
+msgstr "Tüm sayfalar"
+
+msgid "Ends at"
+msgstr "Şurada biten"
+
+msgid "Fewer steps"
+msgstr "Adım azalt"
+
+msgid "More steps"
+msgstr "Adım artır"
+
+msgid "Paths shown"
+msgstr "Gösterilen yol"
+
+msgid "Top %s paths"
+msgstr "En çok %s yol"
+
+msgid "Top paths"
+msgstr "En sık izlenen yollar"
+
+msgid "Search pages…"
+msgstr "Sayfa ara…"
+
+msgid "Reach goal"
+msgstr "Hedefe ulaşma"
+
+msgid "Never reach"
+msgstr "Ulaşmayan"
+
+msgid "Journey: the order of pages in one visit (first 8 steps; refreshing the same page counts once). Events such as add to cart, checkout form, \"Place order\", payment method, order, and WhatsApp/phone clicks show as steps marked ⚡. Only visits with at least 2 pages are listed. The goal is chosen from Settings › Funnels. This screen shows visits after version 0.3.0."
+msgstr "Yolculuk: bir ziyarette gezilen sayfaların sırası (ilk 8 adım; aynı sayfanın yenilenmesi tek sayılır). Sepete ekleme, ödeme formu, \"Ödeme yap\", ödeme yöntemi, sipariş, WhatsApp/telefon tıklaması gibi olaylar ⚡ ile adım olarak görünür. Yalnız en az 2 sayfa gezilen ziyaretler gösterilir. Hedef, Ayarlar › Huniler'deki adımlardan seçilir. Bu ekran 0.3.0 sürümünden sonraki ziyaretleri gösterir."
+
+msgid "Could not load data. Refresh the page."
+msgstr "Veri alınamadı. Sayfayı yenileyin."
+
+msgid "%1$s visits · %2$s"
+msgstr "%1$s ziyaret · %2$s"
+
+msgid "No data"
+msgstr "Veri yok"
+
+msgid "Multi-page sessions"
+msgstr "Çok sayfalı ziyaret"
+
+msgid "%s of all visits"
+msgstr "Tüm ziyaretlerin %s"
+
+msgid "Avg path length"
+msgstr "Ort. yol uzunluğu"
+
+msgid "%s pages"
+msgstr "%s sayfa"
+
+msgid "In multi-page sessions"
+msgstr "Çok sayfalı ziyaretlerde"
+
+msgid "Top entry page"
+msgstr "En sık giriş"
+
+msgid "Top exit after 2+ pages"
+msgstr "2+ sayfadan sonra en sık çıkış"
+
+msgid "No goal selected"
+msgstr "Hedef seçilmedi"
+
+msgid "No journeys yet"
+msgstr "Henüz yolculuk yok"
+
+msgid "No visits with at least 2 pages in the selected period. Widen the filters or wait for new visits."
+msgstr "Seçili dönemde en az 2 sayfa gezilen ziyaret bulunamadı. Süzgeçleri genişletin ya da yeni ziyaretleri bekleyin."
+
+msgid "Click a box to filter the paths below by that page. Thickness shows the number of visits."
+msgstr "Bir kutuya tıklayınca aşağıdaki yollar o sayfaya göre süzülür. Kalınlık ziyaret sayısını gösterir."
+
+msgid "%s visits"
+msgstr "%s ziyaret"
+
+msgid "Entries"
+msgstr "Giriş"
+
+msgid "Step %s"
+msgstr "%s. adım"
+
+msgid "%s end here"
+msgstr "%s burada bitti"
+
+msgid "all continue"
+msgstr "hepsi devam etti"
+
+msgid "continues"
+msgstr "devam ediyor"
+
+msgid "No paths match the search."
+msgstr "Aramaya uyan yol yok."
+
+msgid "No paths to show."
+msgstr "Gösterilecek yol yok."
+
+msgid "Path"
+msgstr "Yol"
+
+msgid "vs prev"
+msgstr "Öncekine göre"
+
+msgid "new"
+msgstr "yeni"
+
+msgid "Showing %2$s of %1$s paths."
+msgstr "%1$s yoldan %2$s tanesi gösteriliyor."
+
+msgid "30 days"
+msgstr "30 gün"
+
+msgid "7 days"
+msgstr "7 gün"
+
+msgid "90 days"
+msgstr "90 gün"
+
+msgid "Search the address"
+msgstr "Adreste ara"
+
+msgid "Range"
+msgstr "Aralık"
+
+msgid "Pages being viewed"
+msgstr "Bakılan sayfalar"
+
+msgid "No external sites in this range."
+msgstr "Bu aralıkta dış site yok."
+
+msgid "No pages were viewed in this range."
+msgstr "Bu aralıkta görüntülenen sayfa yok."
+
+msgid "No channel breakdown in this range."
+msgstr "Bu aralıkta kanal dağılımı yok."
+
+msgid "No channels"
+msgstr "Kanal yok"
+
+msgid "Sources"
+msgstr "Kaynaklar"
+
+msgid "Open in panel"
+msgstr "Panelde aç"
+
+msgid "No pages"
+msgstr "Sayfa yok"
+
+msgid "Search sites"
+msgstr "Site ara"
+
+msgid "Sites"
+msgstr "Siteler"
+
+msgid "Last minutes"
+msgstr "Son dakikalar"
+
+msgid "No referrers"
+msgstr "Yönlendiren yok"
+
+msgid "Referrers"
+msgstr "Yönlendirenler"
+
+msgid "Visitors and pageviews"
+msgstr "Ziyaretçi ve görüntülenme"
+
+msgid "Analytics"
+msgstr "İstatistik"
+
+msgid "Right now"
+msgstr "Şu an"
+
+msgid "Cookie-free, no-personal data site statistics: visitors, views, most read pages, referring sites, channel, device/browser, campaign (UTM), click events and donation conversions. The data remains on the site; Reads with artificial intelligence Flux AI / Flux AI & MCP tools."
+msgstr "Çerezsiz, kişisel veri tutmayan site istatistikleri: ziyaretçi, görüntülenme, en çok okunan sayfalar, yönlendiren siteler, kanal, cihaz/tarayıcı, kampanya (UTM), tıklama olayları ve bağış dönüşümleri. Veriler sitede kalır; yapay zekâ Flux AI / Flux AI & MCP araçlarıyla okur."
