@@ -1,0 +1,6 @@
+# The AI settings of one connected system.
+query FlxAiSystemSettings($source: String!) {
+  flxAiSystemSettings(source: $source) {
+    ...FlxAiSystemSettingsFields
+  }
+}

@@ -1,6 +1,6 @@
 # Flux AI & MCP (flx-ai): klasik → GraphQL eşlemesi
 
-Paket sürümü: 0.27.0 · Önek: `flxai_` · Sahip thread: Faz 1 / flx-ai · Durum: **kısmen bitti** (0.23.0–0.26.0 merge; `gql/flx-ai-5` 0.27.0 PR'ında; kalan: sistem başı SDK ayarları, sohbet geçmişi)
+Paket sürümü: 0.28.0 · Önek: `flxai_` · Sahip thread: Faz 1 / flx-ai · Durum: **kısmen bitti** (0.23.0–0.27.0 merge; `gql/flx-ai-6` 0.28.0 PR'ında; kalan: sohbet geçmişi)
 
 ## Özet
 
@@ -29,9 +29,10 @@ Paket sürümü: 0.27.0 · Önek: `flxai_` · Sahip thread: Faz 1 / flx-ai · Du
 | MCP anahtarları (oluştur: bir kez gösterilir, araçla sınırla, iptal, son işlemler) | `flxAiMcpKeyCreate`, `flxAiMcpKeyRevoke` | `ai/Mcp.tsx`; yalnız hash saklanır, anahtar yalnız oluşturma yanıtında |
 | Bağlantılar (dış MCP sunucuları: liste, ekle/düzenle, sil, test) | `flxAiConnections`, `flxAiConnectionSave`, `flxAiConnectionDelete`, `flxAiConnectionRefresh` | `ai/Connections.tsx`; sırlar yazma-yalnız (`hasSecret`, `hasClientSecret`) |
 | Bağlantı OAuth girişi/çıkışı, araç izinleri | `flxAiConnectionSignIn` (sağlayıcı adresini döner), `flxAiConnectionSignOut`, `flxAiConnectionPermissions` | `ai/Connections.tsx`; dönüş `admin-post.php?action=flxai_mcpc_oauth` klasikte durur ve bu ekrana yönlendirir |
+| Sistem başı AI ayarları (aç/kapa, model, SDK alanları) | `flxAiSystemSettings`, `flxAiSystemSettingsUpdate` | `ai/SystemSettings.tsx` (0.28.0), Bağlı sistemler `?system=<eklenti>`; değerler string (aç/kapa `"1"`/`"0"`) |
 
 Yetki: hepsi `manage_options`. wp-admin'de ekranlar varsayılan, "Klasik görünüm" bağlantısı kullanıcı başına (`flxai_ui` meta). FluxApp modülü `flxai-admin`.
 
 ## Kalanlar
 
-Sohbet geçmişi, sistem başı SDK ayarları.
+Sohbet geçmişi.

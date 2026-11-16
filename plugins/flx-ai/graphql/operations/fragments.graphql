@@ -558,3 +558,29 @@ fragment FlxAiConnectionFields on FlxAiConnection {
     permission
   }
 }
+
+fragment FlxAiSystemSettingsFields on FlxAiSystemSettings {
+  source
+  label
+  description
+  on
+  model
+  defaultModel
+  declared
+  toolsTotal
+  toolsOn
+  sdkVersion
+  fields {
+    key
+    type
+    label
+    help
+    value
+    min
+    max
+    options {
+      id
+      label
+    }
+  }
+}

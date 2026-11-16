@@ -1,5 +1,5 @@
 // Flux AI › Connected systems: AI on/off per plugin with its model and 30-day use. The per-plugin AI
-// settings (declared with the Flux AI SDK) stay on their classic page, linked from each row.
+// settings (declared with the Flux AI SDK) open from each row (?system=<plugin>, SystemSettings).
 import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { FlxAiSystems, FlxAiSystemsUpdate } from '@fluxwp/graphql/operations';
@@ -7,8 +7,14 @@ import { flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/gr
 import { Loading } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { Card, NoticeBar, Pill, Switch, errText, useAi, type Notice } from './common';
+import { SystemSettings } from './SystemSettings';
 
 export function Systems() {
+  const system = typeof window === 'undefined' ? null : new URLSearchParams(window.location.search).get('system');
+  return system ? <SystemSettings source={system} /> : <SystemList />;
+}
+
+function SystemList() {
   const { t, num, usd } = useAi();
   const host = useHost();
   const { scope } = useGraphQL();

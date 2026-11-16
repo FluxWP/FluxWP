@@ -525,5 +525,14 @@
   "Copied.": "Kopyalandı.",
   "Copy": "Kopyala",
   "Key revoked.": "Anahtar iptal edildi.",
-  "Revoke \"%s\"? Assistants using it stop working.": "\"%s\" iptal edilsin mi? Onu kullanan asistanlar çalışmayı bırakır."
+  "Revoke \"%s\"? Assistants using it stop working.": "\"%s\" iptal edilsin mi? Onu kullanan asistanlar çalışmayı bırakır.",
+  "%1$s / %2$s tools on": "%1$s / %2$s araç açık",
+  "AI settings of this plugin. Values are stored in Flux AI and read by the plugin.": "Bu eklentinin yapay zekâ ayarları. Değerler Flux AI'da saklanır, eklenti kendisi okur.",
+  "Empty uses the default model.": "Boşsa varsayılan model kullanılır.",
+  "Flux AI SDK %s loaded.": "Flux AI SDK %s yüklü.",
+  "Manage tools": "Araçları yönet",
+  "This plugin declares no settings with the Flux AI SDK; only on/off and the model can be set.": "Bu eklenti Flux AI SDK ile ayar tanımlamamış; yalnız aç/kapa ve model seçilebilir.",
+  "This plugin has no tools.": "Bu eklentinin aracı yok.",
+  "This plugin may use AI": "Bu eklenti yapay zekâ kullanabilir",
+  "When off, the plugin's model requests are rejected; its tools are turned off separately on the Tools screen.": "Kapalıyken eklentinin model istekleri reddedilir; araçları ayrıca Araçlar ekranından kapatılır."
 }

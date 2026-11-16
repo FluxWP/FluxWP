@@ -25,34 +25,18 @@ add_action(
 		if ( '' === $slug ) {
 			return;
 		}
-		// Aç/kapa (Bağlı sistemler listesindeki anahtarla aynı ayar).
-		$off = array_diff( (array) flxai_setting( 'sources_off', array() ), array( $slug ) );
-		if ( empty( $post['ai_on'] ) ) {
-			$off[] = $slug;
+		$vals = array();
+		foreach ( (array) ( $post['f'] ?? array() ) as $k => $v ) {
+			$vals[ sanitize_key( (string) $k ) ] = is_scalar( $v ) ? (string) $v : '';
 		}
-		$models = (array) flxai_setting( 'source_models', array() );
-		$m      = sanitize_text_field( (string) ( $post['source_model'] ?? '' ) );
-		if ( '' === $m ) {
-			unset( $models[ $slug ] );
-		} else {
-			$models[ $slug ] = $m;
-		}
-		flxai_update_settings(
-			array(
-				'sources_off'   => array_values( array_unique( $off ) ),
-				'source_models' => $models,
-			)
-		);
-		if ( function_exists( 'flx_ai_set' ) ) {
-			$fields = flx_ai_registry()['settings'][ $slug ] ?? array();
-			$vals   = (array) ( $post['f'] ?? array() );
-			foreach ( $fields as $key => $f ) {
-				if ( 'toggle' === $f['type'] ) {
-					$vals[ $key ] = ! empty( $vals[ $key ] );
-				}
+		// An unticked box is not posted: send "0" for every declared toggle.
+		$decl = function_exists( 'flx_ai_registry' ) ? (array) ( flx_ai_registry()['settings'][ $slug ] ?? array() ) : array();
+		foreach ( $decl as $key => $f ) {
+			if ( 'toggle' === $f['type'] && empty( $vals[ $key ] ) ) {
+				$vals[ $key ] = '0';
 			}
-			flx_ai_set( $slug, $vals );
 		}
+		FLXAI_System_Settings_Service::save( $slug, ! empty( $post['ai_on'] ), sanitize_text_field( (string) ( $post['source_model'] ?? '' ) ), array_intersect_key( $vals, $decl ) );
 		wp_safe_redirect( admin_url( 'admin.php?page=flx-ai-systems&system=' . rawurlencode( $slug ) . '&saved=1' ) );
 		exit;
 	}
@@ -69,6 +53,9 @@ add_action(
 );
 
 function flxai_page_system_settings( $slug ) {
+	if ( flxai_flux_render() ) {
+		return;
+	}
 	$reg    = function_exists( 'flx_ai_registry' ) ? flx_ai_registry() : array(
 		'plugins'  => array(),
 		'settings' => array(),
