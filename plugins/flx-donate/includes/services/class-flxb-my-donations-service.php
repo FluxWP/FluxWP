@@ -8,12 +8,17 @@
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * One gift the account and the lookup page already return, plus the stored UTC time.
+ *
+ * @phpstan-type FlxbMyGift array{id: int, title: string, status: string, date: string, amount: float, currency: string, created_at: string}
+ */
 final class FLXB_My_Donations_Service {
 
 	/**
-	 * One page of the account's gifts, in the app's shape.
+	 * One page of the account's gifts, in the app's shape (REST stays gift_out()).
 	 *
-	 * @return array{items: list<array<string,mixed>>, total: int, page: int, pages: int}
+	 * @return array{items: list<array{id: int, order_id: int, date: string, title: string, amount: float, currency: string, status: string}>, total: int, page: int, pages: int}
 	 */
 	public static function page( int $user_id, int $page, int $per ): array {
 		$gifts = $user_id > 0 ? FLXB_App::gifts( $user_id ) : array();
@@ -34,45 +39,42 @@ final class FLXB_My_Donations_Service {
 
 	/**
 	 * Gifts the current viewer may see: their account, else the lookup session.
+	 * The rows are gift_out(); created_at is the UTC value the donation row stores.
 	 *
-	 * @return list<array<string,mixed>>
+	 * @return list<FlxbMyGift>
 	 */
 	public static function visible(): array {
 		if ( is_user_logged_in() ) {
-			$out = array();
-			foreach ( FLXB_App::gifts( get_current_user_id() ) as $gift ) {
-				$out[] = FLXB_App::gift_out( $gift );
-			}
-			return $out;
+			return self::from_groups( FLXB_App::gifts( get_current_user_id() ) );
 		}
 		$s = FLXB_Lookup::session();
 		if ( ! is_array( $s ) || '' === $s['type'] ) {
 			return array();
 		}
-		$data  = FLXB_Lookup::proven( $s['type'], $s['value'] );
-		$items = $data['items'] ?? array();
-		if ( ! is_array( $items ) ) {
-			return array();
-		}
-		$out = array();
-		foreach ( $items as $row ) {
-			if ( is_array( $row ) ) {
-				$out[] = self::row( $row );
-			}
-		}
-		return $out;
+		return self::from_groups( FLXB_Lookup::gifts( $s['type'], $s['value'] ) );
 	}
 
 	/**
-	 * @param array<mixed> $row Row.
-	 * @return array<string,mixed>
+	 * @param list<array<int, array<string, mixed>>> $groups Grouped donation rows.
+	 * @return list<FlxbMyGift>
 	 */
-	private static function row( array $row ): array {
+	private static function from_groups( array $groups ): array {
 		$out = array();
-		foreach ( $row as $k => $v ) {
-			if ( is_string( $k ) ) {
-				$out[ $k ] = $v;
+		foreach ( $groups as $gift ) {
+			$first = $gift[0] ?? null;
+			if ( ! is_array( $first ) ) {
+				continue;
 			}
+			$row   = FLXB_App::gift_out( $gift );
+			$out[] = array(
+				'id'         => (int) $row['id'],
+				'title'      => (string) $row['title'],
+				'status'     => (string) $row['status'],
+				'date'       => (string) $row['date'],
+				'amount'     => (float) $row['amount'],
+				'currency'   => (string) $row['currency'],
+				'created_at' => is_scalar( $first['created_at'] ?? null ) ? (string) $first['created_at'] : '',
+			);
 		}
 		return $out;
 	}

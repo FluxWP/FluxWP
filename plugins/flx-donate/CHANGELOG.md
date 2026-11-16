@@ -1,7 +1,7 @@
 # Değişiklikler
 
 ## 2.32.0
-- Bağış sayfasının GraphQL'i (a): `flxDonationTypes`, `flxDonationType`, `flxDonationCartAdd`, `flxMyDonations`, bağışçı sorgulama (`flxDonationLookupStart` / `Verify` / `End`) ve `flxDonationBankAccount`. Ödeme ve banka dönüşleri Store API'de kalır. Birkaç ad tek satır, tek ödeme, ad başına bir sertifika.
+- Bağış sayfasının GraphQL'i (a): `flxDonationTypes`, `flxDonationType`, `flxDonationCartAdd`, `flxMyDonations`, bağışçı sorgulama (`flxDonationLookupStart` / `Verify` / `End`) ve `flxDonationBankAccount`. Tutarlar `FlxMoney`, kayıt zamanı `FlxDateTime` (saklanan değer UTC). Ödeme ve banka dönüşleri Store API'de kalır. Birkaç ad tek satır, tek ödeme, ad başına bir sertifika.
 - PHP 8.1 ve Flux GraphQL gerekli. Flux GraphQL yoksa REST eskisi gibi çalışır.
 
 ## 2.31.0

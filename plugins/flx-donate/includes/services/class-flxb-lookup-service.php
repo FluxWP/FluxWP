@@ -10,7 +10,8 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * @phpstan-type FlxbLookupStart array{ok: bool, via: string, ttl: int, message: string}
- * @phpstan-type FlxbLookupVerify array{ok: bool, data: array<string,mixed>}
+ * @phpstan-type FlxbLookupData array{who: string, account: bool, count: int, total_label: string, items: list<array{id: int, title: string, status: string, date: string, amount: float, currency: string}>, certificates: list<array{code: string}>, donate_url: string}
+ * @phpstan-type FlxbLookupVerify array{ok: bool, data: FlxbLookupData}
  */
 final class FLXB_Lookup_Service {
 
@@ -99,7 +100,7 @@ final class FLXB_Lookup_Service {
 	/**
 	 * The lookup page's current answer (signed-in account, else the session).
 	 *
-	 * @return array{ok: bool, data?: array<string,mixed>}
+	 * @return array{ok: bool, data?: FlxbLookupData}
 	 */
 	public static function current(): array {
 		if ( is_user_logged_in() ) {

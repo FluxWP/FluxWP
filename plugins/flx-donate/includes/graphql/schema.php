@@ -11,8 +11,9 @@
  *   visitor's own Store API session. Card data is not a field.
  * - flxDonationLookupStart / Verify / End: lookup is for visitors. Start returns the same
  *   answer whether or not a donation exists.
- * - flxDonationBankAccount: the donation and thank-you pages already show this one IBAN
- *   (WooCommerce direct bank transfer).
+ * - flxDonationBankAccount: the donation page already shows this IBAN. The query calls
+ *   flxb_bank_account(): the donation bank-transfer gateway when that class is loaded,
+ *   otherwise WooCommerce direct bank transfer.
  *
  * flxMyDonations is not public: only the signed-in owner or a lookup session that proved
  * the address.
@@ -82,7 +83,8 @@ function flxb_gql_type_node( $row ): ?array {
 	if ( ! is_array( $row ) || 'archived' === flxb_gql_str( $row['state'] ?? '' ) ) {
 		return null;
 	}
-	$options = array();
+	$currency = flxb_gql_str( $row['currency'] ?? '' );
+	$options  = array();
 	foreach ( (array) ( $row['options'] ?? array() ) as $o ) {
 		if ( ! is_array( $o ) ) {
 			continue;
@@ -90,17 +92,15 @@ function flxb_gql_type_node( $row ): ?array {
 		$prices = array();
 		foreach ( (array) ( $o['prices'] ?? array() ) as $code => $amount ) {
 			$code = strtoupper( flxb_gql_str( $code ) );
-			if ( preg_match( '/^[A-Z]{3}$/', $code ) ) {
-				$prices[] = array(
-					'currency' => $code,
-					'amount'   => flxb_gql_float( $amount ),
-				);
+			if ( preg_match( '/^[A-Z]{3}$/', $code ) && is_numeric( $amount ) ) {
+				$prices[] = flx_gql_money( $amount, $code );
 			}
 		}
+		$price = is_numeric( $o['price'] ?? null ) ? flx_gql_money( $o['price'], $currency ) : null;
 		$options[] = array(
 			'key'       => flxb_gql_str( $o['key'] ?? '' ),
 			'label'     => flxb_gql_str( $o['label'] ?? '' ),
-			'price'     => flxb_gql_nullable_float( $o['price'] ?? null ),
+			'price'     => $price,
 			'prices'    => $prices,
 			'unit'      => flxb_gql_nullable_str( $o['unit'] ?? null ),
 			'unitLabel' => flxb_gql_nullable_str( $o['unit_label'] ?? null ),
@@ -110,13 +110,14 @@ function flxb_gql_type_node( $row ): ?array {
 	}
 	$progress = null;
 	if ( is_array( $row['progress'] ?? null ) ) {
-		$p        = $row['progress'];
-		$progress = array(
-			'raised'   => flxb_gql_float( $p['raised'] ?? 0 ),
+		$p         = $row['progress'];
+		$p_cur     = flxb_gql_str( $p['currency'] ?? $currency );
+		$progress  = array(
+			'raised'   => flx_gql_money( flxb_gql_float( $p['raised'] ?? 0 ), $p_cur ),
 			'gifts'    => flxb_gql_int( $p['gifts'] ?? 0 ),
-			'goal'     => flxb_gql_float( $p['goal'] ?? 0 ),
+			'goal'     => flx_gql_money( flxb_gql_float( $p['goal'] ?? 0 ), $p_cur ),
 			'percent'  => flxb_gql_float( $p['percent'] ?? 0 ),
-			'currency' => flxb_gql_str( $p['currency'] ?? '' ),
+			'currency' => $p_cur,
 		);
 	}
 	$image = flxb_gql_str( $row['image_url'] ?? '' );
@@ -137,7 +138,7 @@ function flxb_gql_type_node( $row ): ?array {
 		'stateMessage'  => flxb_gql_str( $row['state_message'] ?? '' ),
 		'options'       => $options,
 		'allowFree'     => ! empty( $row['allow_free'] ),
-		'minAmount'     => flxb_gql_float( $row['min_amount'] ?? 0 ),
+		'minAmount'     => flx_gql_money( flxb_gql_float( $row['min_amount'] ?? 0 ), $currency ),
 		'allowQuantity' => ! empty( $row['allow_quantity'] ),
 		'requiresProxy' => ! empty( $row['requires_proxy'] ),
 		'progress'      => $progress,
@@ -151,18 +152,13 @@ function flxb_gql_type_node( $row ): ?array {
 function flxb_gql_my_node( array $gift ): array {
 	$amount   = flxb_gql_float( $gift['amount'] ?? 0 );
 	$currency = flxb_gql_str( $gift['currency'] ?? '' );
+	$stored   = flxb_gql_str( $gift['created_at'] ?? '' );
 	return array(
 		'databaseId' => flxb_gql_int( $gift['id'] ?? 0 ),
 		'title'       => flxb_gql_str( $gift['title'] ?? '' ),
 		'status'      => flxb_gql_str( $gift['status'] ?? 'pending' ),
-		'date'        => flxb_gql_str( $gift['date'] ?? '' ),
-		'amount'      => function_exists( 'flx_gql_money' )
-			? flx_gql_money( $amount, $currency )
-			: array(
-				'amount'    => $amount,
-				'currency'  => $currency,
-				'formatted' => flxb_gql_str( $gift['amount_label'] ?? '' ),
-			),
+		'date'        => flx_gql_datetime( $stored ),
+		'amount'      => flx_gql_money( $amount, $currency ),
 	);
 }
 
@@ -206,23 +202,6 @@ flx_gql_enum(
 );
 
 flx_gql_type(
-	'FlxDonationTypePrice',
-	array(
-		'description' => __( 'An option price in one currency.', 'flx-donate' ),
-		'fields'      => array(
-			'currency' => array(
-				'type'        => 'String!',
-				'description' => __( 'ISO currency code.', 'flx-donate' ),
-			),
-			'amount'   => array(
-				'type'        => 'Float!',
-				'description' => __( 'Price in that currency.', 'flx-donate' ),
-			),
-		),
-	)
-);
-
-flx_gql_type(
 	'FlxDonationTypeOption',
 	array(
 		'description' => __( 'One choice on a donation type (a sapling package, a share).', 'flx-donate' ),
@@ -236,11 +215,11 @@ flx_gql_type(
 				'description' => __( 'Label shown on the donation page.', 'flx-donate' ),
 			),
 			'price'     => array(
-				'type'        => 'Float',
+				'type'        => 'FlxMoney',
 				'description' => __( 'Price in the type currency. Null when the price is not announced.', 'flx-donate' ),
 			),
 			'prices'    => array(
-				'type'        => '[FlxDonationTypePrice!]!',
+				'type'        => '[FlxMoney!]!',
 				'description' => __( 'Prices in other currencies. Empty when the option has only its own currency.', 'flx-donate' ),
 			),
 			'unit'      => array(
@@ -269,7 +248,7 @@ flx_gql_type(
 		'description' => __( 'How far a type with a goal has come. Null on the type when there is no goal.', 'flx-donate' ),
 		'fields'      => array(
 			'raised'   => array(
-				'type'        => 'Float!',
+				'type'        => 'FlxMoney!',
 				'description' => __( 'Amount raised in the type currency.', 'flx-donate' ),
 			),
 			'gifts'    => array(
@@ -277,7 +256,7 @@ flx_gql_type(
 				'description' => __( 'Number of paid donations.', 'flx-donate' ),
 			),
 			'goal'     => array(
-				'type'        => 'Float!',
+				'type'        => 'FlxMoney!',
 				'description' => __( 'Goal amount.', 'flx-donate' ),
 			),
 			'percent'  => array(
@@ -346,8 +325,8 @@ flx_gql_type(
 				'description' => __( 'Whether the donor may type an amount.', 'flx-donate' ),
 			),
 			'minAmount'     => array(
-				'type'        => 'Float!',
-				'description' => __( 'Lowest free amount. 0 when there is no minimum.', 'flx-donate' ),
+				'type'        => 'FlxMoney!',
+				'description' => __( 'Lowest free amount, in the type currency. The amount is 0 when there is no minimum.', 'flx-donate' ),
 			),
 			'allowQuantity' => array(
 				'type'        => 'Boolean!',
@@ -385,8 +364,8 @@ flx_gql_type(
 				'description' => __( 'Certificate names. Empty when the donation is not in someone else\'s name. One certificate is made per name.', 'flx-donate' ),
 			),
 			'amount' => array(
-				'type'        => 'Float',
-				'description' => __( 'Free amount. Null when the price comes from the option.', 'flx-donate' ),
+				'type'        => 'FlxMoney',
+				'description' => __( 'Free amount, in the line currency. Null when the price comes from the option.', 'flx-donate' ),
 			),
 		),
 	)
@@ -404,11 +383,12 @@ flx_gql_field(
 			if ( ! is_array( $line ) ) {
 				return null;
 			}
+			$amount = null !== $line['amount'] ? flx_gql_money( $line['amount'], $line['currency'] ) : null;
 			return array(
-				'option' => flxb_gql_str( $line['option'] ?? '' ),
-				'units'  => max( 1, flxb_gql_int( $line['units'] ?? 1 ) ),
+				'option' => $line['option'],
+				'units'  => $line['units'],
 				'names'  => FLXB_Cart_Service::names_of( $line ),
-				'amount' => flxb_gql_nullable_float( $line['amount'] ?? null ),
+				'amount' => $amount,
 			);
 		},
 	)
@@ -432,8 +412,8 @@ flx_gql_type(
 				'description' => __( 'Payment status.', 'flx-donate' ),
 			),
 			'date'        => array(
-				'type'        => 'String!',
-				'description' => __( 'When it was recorded, ISO-8601.', 'flx-donate' ),
+				'type'        => 'FlxDateTime',
+				'description' => __( 'When it was recorded. The stored value is UTC.', 'flx-donate' ),
 			),
 			'amount'      => array(
 				'type'        => 'FlxMoney!',
@@ -448,7 +428,7 @@ flx_gql_connection( 'FlxMyDonation' );
 flx_gql_type(
 	'FlxDonationBankAccount',
 	array(
-		'description' => __( 'The organisation account for a bank transfer. One source: WooCommerce direct bank transfer.', 'flx-donate' ),
+		'description' => __( 'The account flxb_bank_account() returns: the donation bank-transfer gateway when that class is loaded, otherwise WooCommerce direct bank transfer.', 'flx-donate' ),
 		'fields'      => array(
 			'holder'      => array(
 				'type'        => 'String!',

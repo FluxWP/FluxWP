@@ -9,7 +9,7 @@ mutation FlxDonationCartAdd($input: FlxDonationCartAddInput!) {
           option
           units
           names
-          amount
+          amount { amount currency }
         }
       }
     }

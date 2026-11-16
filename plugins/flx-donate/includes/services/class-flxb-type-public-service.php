@@ -8,6 +8,13 @@
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Public type row from flxb_type_public().
+ *
+ * @phpstan-type FlxbPublicOption array{key: string, label: string, price: float|null, prices: array<string, float>, unit: string|null, unit_label: string|null, units_per: int, active: bool}
+ * @phpstan-type FlxbPublicProgress array{raised: float, gifts: int, goal: float, percent: float, currency: string}
+ * @phpstan-type FlxbPublicRow array{id: int, slug: string, title: string, description: string, image_url: string, currency: string, state: string, state_message: string, category: string, category_label: string, options: list<FlxbPublicOption>, allow_free: bool, min_amount: float, allow_quantity: bool, requires_proxy: bool, progress: FlxbPublicProgress|null}
+ */
 final class FLXB_Type_Public_Service {
 
 	public const TAG = 'flx-donate:types';
@@ -17,7 +24,7 @@ final class FLXB_Type_Public_Service {
 	 *
 	 * @param string $status   visible|open.
 	 * @param string $category Category slug, or empty.
-	 * @return list<array<string,mixed>>
+	 * @return list<FlxbPublicRow>
 	 */
 	public static function list( string $status, string $category ): array {
 		$status = in_array( $status, array( 'visible', 'open' ), true ) ? $status : 'visible';
@@ -33,7 +40,7 @@ final class FLXB_Type_Public_Service {
 	 * One type by id or slug.
 	 *
 	 * @param string $ref Id or slug.
-	 * @return array<string,mixed>|WP_Error
+	 * @return FlxbPublicRow|WP_Error
 	 */
 	public static function one( string $ref ) {
 		$t = flxb_get_type( $ref );
@@ -54,7 +61,7 @@ final class FLXB_Type_Public_Service {
 	}
 
 	/**
-	 * @return array{items: list<array<string,mixed>>, total: int}
+	 * @return array{items: list<FlxbPublicRow>, total: int}
 	 */
 	public static function page( string $status, string $category, int $offset, int $limit ): array {
 		$all = self::list( $status, $category );

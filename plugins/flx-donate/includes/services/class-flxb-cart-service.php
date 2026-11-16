@@ -13,12 +13,14 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
+ * @phpstan-import-type FlxCartShape from FLXGQL_Cart
  * @phpstan-type FlxbCartAdd array{typeId: int, option: string, units: int, amount: string, names: list<string>, proxyConsent: bool}
- * @phpstan-type FlxbCartResult array{cart: array<string,mixed>, itemKey: string}
+ * @phpstan-type FlxbCartResult array{cart: FlxCartShape, itemKey: string}
+ * @phpstan-type FlxbStoredLine array{type_id: int, option: string, units: int, currency: string, amount: float|null, beneficiaries: list<string>, ben_name: string, people: list<array{name: string}>}
  */
 final class FLXB_Cart_Service {
 
-	/** @var array<string,array<string,mixed>> Lines remembered this request, keyed by cart item key. */
+	/** @var array<string, FlxbStoredLine> Lines remembered this request, keyed by cart item key. */
 	private static array $lines = array();
 
 	public static function init(): void {
@@ -39,19 +41,19 @@ final class FLXB_Cart_Service {
 		if ( ! class_exists( 'FLXB_WC_Cart' ) || ! is_array( $data ) || ! isset( $data[ FLXB_WC_Cart::KEY ] ) || ! is_array( $data[ FLXB_WC_Cart::KEY ] ) ) {
 			return;
 		}
-		self::$lines[ self::str( $key ) ] = self::row( $data[ FLXB_WC_Cart::KEY ] );
+		self::$lines[ self::str( $key ) ] = self::stored( $data[ FLXB_WC_Cart::KEY ] );
 	}
 
 	/**
 	 * Donation line of a cart item, from the WooCommerce cart or from the line just added.
 	 *
-	 * @return array<string,mixed>|null
+	 * @return FlxbStoredLine|null
 	 */
 	public static function line_of( string $key ): ?array {
 		if ( class_exists( 'FLXGQL_Cart' ) && class_exists( 'FLXB_WC_Cart' ) ) {
 			$wc = FLXGQL_Cart::wc_item( $key );
 			if ( is_array( $wc ) && isset( $wc[ FLXB_WC_Cart::KEY ] ) && is_array( $wc[ FLXB_WC_Cart::KEY ] ) ) {
-				return self::row( $wc[ FLXB_WC_Cart::KEY ] );
+				return self::stored( $wc[ FLXB_WC_Cart::KEY ] );
 			}
 		}
 		return self::$lines[ $key ] ?? null;
@@ -76,34 +78,20 @@ final class FLXB_Cart_Service {
 	/**
 	 * Names carried by a line (certificate recipients).
 	 *
-	 * @param array<string,mixed> $line Line.
+	 * @param FlxbStoredLine $line Line.
 	 * @return list<string>
 	 */
 	public static function names_of( array $line ): array {
-		if ( ! empty( $line['beneficiaries'] ) && is_array( $line['beneficiaries'] ) ) {
-			$out = array();
-			foreach ( $line['beneficiaries'] as $n ) {
-				$n = trim( self::str( $n ) );
-				if ( '' !== $n ) {
-					$out[] = $n;
-				}
-			}
-			return $out;
+		if ( $line['beneficiaries'] ) {
+			return $line['beneficiaries'];
 		}
 		$out = array();
-		$one = trim( self::str( $line['ben_name'] ?? '' ) );
-		if ( '' !== $one ) {
-			$out[] = $one;
+		if ( '' !== $line['ben_name'] ) {
+			$out[] = $line['ben_name'];
 		}
-		if ( ! empty( $line['people'] ) && is_array( $line['people'] ) ) {
-			foreach ( $line['people'] as $p ) {
-				if ( ! is_array( $p ) ) {
-					continue;
-				}
-				$n = trim( self::str( $p['name'] ?? '' ) );
-				if ( '' !== $n ) {
-					$out[] = $n;
-				}
+		foreach ( $line['people'] as $p ) {
+			if ( '' !== $p['name'] ) {
+				$out[] = $p['name'];
 			}
 		}
 		return $out;
@@ -112,8 +100,8 @@ final class FLXB_Cart_Service {
 	/**
 	 * Classic form input for build_line().
 	 *
-	 * @param array<string,mixed> $input GraphQL input.
-	 * @return array<string,mixed>
+	 * @param array<string, mixed> $input GraphQL input.
+	 * @return array{type_id: int, option: string, units: int, amount: string, beneficiaries?: list<string>, proxy_consent?: string, for_other?: bool, ben_name?: string, people?: list<array{name: string, phone: string, email: string}>}
 	 */
 	public static function classic_input( array $input ): array {
 		$names = array();
@@ -175,7 +163,6 @@ final class FLXB_Cart_Service {
 			$code = (string) $line->get_error_code();
 			return self::invalid( $code, $line->get_error_message(), self::field_of( $code ) );
 		}
-		$line = self::row( $line );
 		self::load_products();
 		$pid = FLXB_WC_Products::product_id( self::int( $line['type_id'] ?? 0 ) );
 		if ( $pid <= 0 ) {
@@ -220,17 +207,39 @@ final class FLXB_Cart_Service {
 	}
 
 	/**
-	 * @param array<mixed> $row Row.
-	 * @return array<string,mixed>
+	 * The classic line, limited to the keys GraphQL and the certificate names read.
+	 *
+	 * @param array<mixed> $raw Line from build_line() or the cart.
+	 * @return FlxbStoredLine
 	 */
-	private static function row( array $row ): array {
-		$out = array();
-		foreach ( $row as $k => $v ) {
-			if ( is_string( $k ) ) {
-				$out[ $k ] = $v;
+	private static function stored( array $raw ): array {
+		$names = array();
+		if ( isset( $raw['beneficiaries'] ) && is_array( $raw['beneficiaries'] ) ) {
+			foreach ( $raw['beneficiaries'] as $n ) {
+				$n = trim( self::str( $n ) );
+				if ( '' !== $n ) {
+					$names[] = $n;
+				}
 			}
 		}
-		return $out;
+		$people = array();
+		if ( isset( $raw['people'] ) && is_array( $raw['people'] ) ) {
+			foreach ( $raw['people'] as $p ) {
+				if ( is_array( $p ) ) {
+					$people[] = array( 'name' => self::str( $p['name'] ?? '' ) );
+				}
+			}
+		}
+		return array(
+			'type_id'        => self::int( $raw['type_id'] ?? 0 ),
+			'option'         => self::str( $raw['option'] ?? '' ),
+			'units'          => max( 1, self::int( $raw['units'] ?? 1 ) ),
+			'currency'       => self::str( $raw['currency'] ?? '' ),
+			'amount'         => is_numeric( $raw['amount'] ?? null ) ? (float) $raw['amount'] : null,
+			'beneficiaries'  => $names,
+			'ben_name'       => self::str( $raw['ben_name'] ?? '' ),
+			'people'         => $people,
+		);
 	}
 
 	private static function field_of( string $code ): string {

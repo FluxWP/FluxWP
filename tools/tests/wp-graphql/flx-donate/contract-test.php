@@ -137,7 +137,16 @@ FLXB_WC_Products::set_type_meta( (int) $open, 'wc_product_id', $pid );
 flxt_ok( $pid > 0, 'donation product exists' );
 
 // Anonymous type read. No internal form id, no donor row.
+$GLOBALS['flxb_type_public_n'] = 0;
+add_filter(
+	'flxb_type_public',
+	static function ( $out ) {
+		++$GLOBALS['flxb_type_public_n'];
+		return $out;
+	}
+);
 $r = flxb_t_op( 'FlxDonationTypes', array( 'first' => 50 ) );
+flxt_ok( $GLOBALS['flxb_type_public_n'] > 0, 'types: flxb_type_public ran' );
 flxt_same( null, $r['errors'] ?? null, 'types: visitor reads' );
 $nodes = $r['data']['flxDonationTypes']['nodes'] ?? array();
 $ids   = array_map( 'intval', array_column( $nodes, 'databaseId' ) );
@@ -153,7 +162,11 @@ foreach ( $nodes as $n ) {
 flxt_same( 'Saplings', $mine['title'] ?? null, 'types: title' );
 flxt_same( 'OPEN', $mine['state'] ?? null, 'types: open' );
 flxt_same( 'one', $mine['options'][0]['key'] ?? null, 'types: option key' );
-flxt_same( 100.0, $mine['options'][0]['price'] ?? null, 'types: price' );
+flxt_same( 100.0, $mine['options'][0]['price']['amount'] ?? null, 'types: price' );
+flxt_same( 'TRY', $mine['options'][0]['price']['currency'] ?? null, 'types: price currency' );
+$classic_type = flxb_get_type( (int) $open );
+flxt_same( is_array( $classic_type ) ? $classic_type['title'] : null, $mine['title'] ?? null, 'types: classic reader sees the saved title' );
+flxt_same( is_array( $classic_type ) ? $classic_type['options'][0]['price'] : null, $mine['options'][0]['price']['amount'] ?? null, 'types: classic price matches GraphQL' );
 flxt_same( null, $mine['imageUrl'], 'types: no image is null' );
 flxt_same( null, $mine['progress'], 'types: no goal is null' );
 $blob = (string) wp_json_encode( $r );
@@ -234,6 +247,8 @@ $items = $r['data']['flxDonationCartAdd']['cart']['items'] ?? array();
 flxt_same( 1, count( $items ), 'cart: one line for three names' );
 flxt_same( 'donation', $items[0]['kind'] ?? null, 'cart: kind donation' );
 flxt_same( $names, $items[0]['flxDonation']['names'] ?? null, 'cart: the three names' );
+flxt_same( $names, is_array( $GLOBALS['flxb_last_line'] ) ? ( $GLOBALS['flxb_last_line']['beneficiaries'] ?? null ) : null, 'cart: classic hook reads the names GraphQL wrote' );
+flxt_same( null, $items[0]['flxDonation']['amount'] ?? null, 'cart: an option line has no free amount' );
 flxt_same( 3, $items[0]['flxDonation']['units'] ?? null, 'cart: three units' );
 flxt_same( 1, $GLOBALS['flxb_line_hooks'], 'cart: flxb_wc_line fired once' );
 flxt_same( 0, $GLOBALS['flxb_recorded'], 'cart: flxb_donation_recorded does not fire on add' );
@@ -268,6 +283,34 @@ if ( class_exists( 'WC_Order' ) && class_exists( 'WC_Order_Item_Product' ) && fu
 	flxt_ok( false !== strpos( $meta, 'Ada' ) && false !== strpos( $meta, 'Bea' ) && false !== strpos( $meta, 'Cem' ), 'order: the three names are on that line', $meta );
 } else {
 	echo "  ok   order: skipped (WooCommerce order classes are not loaded)\n";
+	++$GLOBALS['flxt_pass'];
+}
+if ( function_exists( 'WC' ) && is_object( WC() ) && WC()->cart ) {
+	if ( class_exists( 'FLXGQL_Cart' ) ) {
+		FLXGQL_Cart::clear();
+	}
+	$key = FLXB_WC_Cart::add(
+		array(
+			'type_id'        => (int) $open,
+			'option'         => 'one',
+			'units'          => 1,
+			'proxy_consent'  => '1',
+			'beneficiaries'  => array( 'Deniz' ),
+		)
+	);
+	flxt_ok( is_string( $key ) && '' !== $key, 'classic add returns a cart key', $key );
+	$back = flxt_gql( 'query { flxCart { items { key kind flxDonation { names units option } } } }' );
+	flxt_same( null, $back['errors'] ?? null, 'classic line is readable from GraphQL' );
+	$found = null;
+	foreach ( $back['data']['flxCart']['items'] ?? array() as $item ) {
+		if ( ( $item['key'] ?? '' ) === $key ) {
+			$found = $item;
+		}
+	}
+	flxt_same( array( 'Deniz' ), $found['flxDonation']['names'] ?? null, 'classic writer, GraphQL reader: the name' );
+	flxt_same( 'donation', $found['kind'] ?? null, 'classic writer, GraphQL reader: kind' );
+} else {
+	echo "  ok   classic cart add skipped (WooCommerce cart is not loaded)\n";
 	++$GLOBALS['flxt_pass'];
 }
 
@@ -330,6 +373,7 @@ $other = (int) wp_insert_user(
 		'role'       => 'subscriber',
 	)
 );
+update_option( 'timezone_string', 'Europe/Istanbul' );
 $did = FLXB_Donations::record(
 	array(
 		'provider'     => 'test',
@@ -338,6 +382,7 @@ $did = FLXB_Donations::record(
 		'currency'     => 'TRY',
 		'status'       => 'completed',
 		'type_id'      => (int) $open,
+		'created_at'   => '2026-06-15 12:00:00',
 		'donor'        => array(
 			'name'  => 'Owner',
 			'email' => 'owner.gql@example.com',
@@ -353,7 +398,28 @@ flxt_same( array(), $r['data']['flxMyDonations']['nodes'] ?? null, 'my donations
 $r = flxb_t_op( 'FlxMyDonations', array(), $owner );
 $got = array_map( 'intval', array_column( $r['data']['flxMyDonations']['nodes'] ?? array(), 'databaseId' ) );
 flxt_ok( in_array( (int) $did, $got, true ), 'my donations: the owner sees their donation' );
-flxt_ok( false === strpos( (string) wp_json_encode( $r ), 'cardToken' ), 'my donations: no card data' );
+$mine_gift = null;
+foreach ( $r['data']['flxMyDonations']['nodes'] ?? array() as $node ) {
+	if ( (int) ( $node['databaseId'] ?? 0 ) === (int) $did ) {
+		$mine_gift = $node;
+	}
+}
+flxt_same( '2026-06-15T12:00:00Z', $mine_gift['date']['iso'] ?? null, 'my donations: stored UTC stays UTC in Istanbul' );
+flxt_same( strtotime( '2026-06-15 12:00:00 UTC' ), $mine_gift['date']['timestamp'] ?? null, 'my donations: timestamp' );
+flxt_same( 100.0, $mine_gift['amount']['amount'] ?? null, 'my donations: amount' );
+flxt_same( 'TRY', $mine_gift['amount']['currency'] ?? null, 'my donations: currency' );
+$classic_gifts = FLXB_App::gifts( $owner );
+$classic_gift  = null;
+foreach ( $classic_gifts as $group ) {
+	if ( (int) ( $group[0]['id'] ?? 0 ) === (int) $did ) {
+		$classic_gift = FLXB_App::gift_out( $group );
+	}
+}
+flxt_same( is_array( $classic_gift ) ? $classic_gift['title'] : null, $mine_gift['title'] ?? null, 'my donations: classic gift_out title' );
+flxt_same( is_array( $classic_gift ) ? $classic_gift['amount'] : null, $mine_gift['amount']['amount'] ?? null, 'my donations: classic gift_out amount' );
+$owner_blob = (string) wp_json_encode( $r );
+flxt_ok( false === strpos( $owner_blob, 'cardToken' ), 'my donations: no card data' );
+flxt_ok( false === strpos( $owner_blob, 'owner.gql@example.com' ), 'my donations: the address is not in the payload' );
 
 // Lookup: same answer, then the session, then the rate limit.
 wp_set_current_user( 0 );
@@ -363,12 +429,19 @@ flxt_same( null, $known['errors'] ?? null, 'lookup start: known address' );
 flxt_same( null, $miss['errors'] ?? null, 'lookup start: unknown address' );
 flxt_same( $known['data']['flxDonationLookupStart'] ?? null, $miss['data']['flxDonationLookupStart'] ?? null, 'lookup start: the same answer either way' );
 flxt_same( true, $known['data']['flxDonationLookupStart']['ok'] ?? null, 'lookup start: ok' );
+$code_key = 'flxb_lkc_' . FLXB_Lookup::h( 'owner.gql@example.com' );
+$code_ttl = (int) get_option( '_transient_timeout_' . $code_key );
+flxt_ok( abs( $code_ttl - ( time() + FLXB_Lookup::TTL ) ) < 30, 'lookup start: the code uses the classic ttl', $code_ttl );
 $bad = flxb_t_op( 'FlxDonationLookupVerify', array( 'input' => array( 'login' => 'nobody.gql@example.com', 'code' => '123456' ) ) );
 flxt_ok( ! empty( $bad['data']['flxDonationLookupVerify']['errors'] ), 'lookup verify: unknown address fails' );
 $code = (string) ( $GLOBALS['flxb_codes']['owner.gql@example.com'] ?? '' );
 flxt_ok( 6 === strlen( $code ), 'lookup: a code was issued only for the known address' );
 $ok = flxb_t_op( 'FlxDonationLookupVerify', array( 'input' => array( 'login' => 'owner.gql@example.com', 'code' => $code ) ) );
 flxt_same( true, $ok['data']['flxDonationLookupVerify']['ok'] ?? null, 'lookup verify: the code opens the session' );
+flxt_ok( isset( $_COOKIE[ FLXB_Lookup::COOKIE ] ) && '' !== (string) $_COOKIE[ FLXB_Lookup::COOKIE ], 'lookup verify: the classic cookie is set' );
+$session_key = 'flxb_lks_' . FLXB_Lookup::h( (string) $_COOKIE[ FLXB_Lookup::COOKIE ] );
+$session_ttl = (int) get_option( '_transient_timeout_' . $session_key );
+flxt_ok( abs( $session_ttl - ( time() + FLXB_Lookup::SESSION ) ) < 30, 'lookup verify: the session uses the classic ttl', $session_ttl );
 $r = flxb_t_op( 'FlxMyDonations' );
 $got = array_map( 'intval', array_column( $r['data']['flxMyDonations']['nodes'] ?? array(), 'databaseId' ) );
 flxt_ok( in_array( (int) $did, $got, true ), 'lookup session sees that donor\'s donations' );

@@ -9,17 +9,17 @@ query FlxDonationTypes($status: FlxDonationTypeList, $category: String, $first: 
       currency
       state
       allowFree
-      minAmount
+      minAmount { amount currency }
       allowQuantity
       requiresProxy
       progress {
-        raised
-        goal
+        raised { amount currency }
+        goal { amount currency }
       }
       options {
         key
         label
-        price
+        price { amount currency }
         unit
         active
       }

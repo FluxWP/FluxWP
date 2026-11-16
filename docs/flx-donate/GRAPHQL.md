@@ -13,7 +13,7 @@ Flux GraphQL yoksa şema kaydı atlanır; REST eskisi gibi çalışır.
 | `flxDonationTypes`, `flxDonationType` | Sayfa türün başlığını, açıklamasını, tutarlarını, görselini ve seçeneklerini gösterir. Arşiv, form kimliği ve tür metası yok |
 | `flxDonationCartAdd` | Aynı sayfa hesapsız sepete ekler. Sepet ziyaretçinin Store API oturumudur |
 | `flxDonationLookupStart`, `flxDonationLookupVerify`, `flxDonationLookupEnd` | Sorgulama ziyaretçi içindir. Start, bağış olsa da olmasa da aynı cevabı verir |
-| `flxDonationBankAccount` | Sayfa ve teşekkür ekranı bu IBAN'ı gösterir. Kaynak `flxb_bank_account()` |
+| `flxDonationBankAccount` | Sayfa bu IBAN'ı gösterir. Sorgu `flxb_bank_account()` çağırır: havale sınıfı yüklüyse Donate'in kendi havale ayarı, değilse WooCommerce BACS |
 
 `flxMyDonations` public değildir. Yalnız giriş yapmış hesabın kendi bağışları, ya da `flxb_lk` çerezini doğrulamış oturum. Cevap `no-store`.
 
@@ -22,7 +22,7 @@ Flux GraphQL yoksa şema kaydı atlanır; REST eskisi gibi çalışır.
 ```graphql
 query {
   flxDonationTypes(first: 20) {
-    nodes { databaseId slug title state options { key label price } }
+    nodes { databaseId slug title state options { key label price { amount currency } } minAmount { amount currency } }
   }
   flxDonationType(slug: "fidan") { title state requiresProxy }
   flxDonationBankAccount { holder iban bank }
@@ -34,7 +34,7 @@ Giriş ya da doğrulanmış sorgulama oturumu:
 ```graphql
 query {
   flxMyDonations(first: 20) {
-    nodes { databaseId title status date amount { amount currency } }
+    nodes { databaseId title status date { iso timestamp } amount { amount currency } }
   }
 }
 ```
