@@ -110,14 +110,10 @@ final class FLXP_Speed_Service {
 	public static function when( int $ts ): array {
 		return array(
 			'timestamp' => $ts,
-			'short'     => wp_date( 'd.m H:i:s', $ts ),
-			'date'      => flx_date( $ts ),
-			'relative'  => flx_time_ago( $ts ),
+			'short'     => (string) wp_date( 'd.m H:i:s', $ts ),
+			'date'      => self::s( flx_date( $ts ) ),
+			'relative'  => self::s( flx_time_ago( $ts ) ),
 		);
-	}
-
-	private static function size( float $bytes ): string {
-		return $bytes <= 0 ? '—' : size_format( $bytes, 1 );
 	}
 
 	private static function kb( int $kb ): string {
@@ -127,7 +123,7 @@ final class FLXP_Speed_Service {
 	/* ------------------------------------------------------------ Access */
 
 	public static function can_view(): bool {
-		return flxp_can_view();
+		return (bool) flxp_can_view();
 	}
 
 	public static function can_manage(): bool {
@@ -173,14 +169,14 @@ final class FLXP_Speed_Service {
 	 */
 	public static function config(): array {
 		$flags = array();
-		foreach ( FLXP_Store::flag_labels() as $k => $l ) {
+		foreach ( self::a( FLXP_Store::flag_labels() ) as $k => $l ) {
 			$flags[] = array(
 				'key'   => (string) $k,
 				'label' => self::s( $l ),
 			);
 		}
 		$types = array();
-		foreach ( FLXP_Store::type_labels() as $k => $l ) {
+		foreach ( self::a( FLXP_Store::type_labels() ) as $k => $l ) {
 			$types[] = array(
 				'key'   => (string) $k,
 				'label' => self::s( $l ),
@@ -255,8 +251,8 @@ final class FLXP_Speed_Service {
 	public static function summary( int $hours ): array {
 		$hours = max( 1, min( 720, $hours ) );
 		$s     = self::a( FLXP_Store::summary( $hours ) );
-		$fl    = FLXP_Store::flag_labels();
-		$tl    = FLXP_Store::type_labels();
+		$fl    = self::a( FLXP_Store::flag_labels() );
+		$tl    = self::a( FLXP_Store::type_labels() );
 
 		$flags = array();
 		foreach ( self::a( $s['flags'] ?? array() ) as $k => $n ) {
@@ -361,8 +357,8 @@ final class FLXP_Speed_Service {
 	 * @return array<string,mixed>
 	 */
 	private static function record_row( array $r ): array {
-		$fl    = FLXP_Store::flag_labels();
-		$tl    = FLXP_Store::type_labels();
+		$fl    = self::a( FLXP_Store::flag_labels() );
+		$tl    = self::a( FLXP_Store::type_labels() );
 		$flags = array();
 		foreach ( (array) ( $r['flags'] ?? array() ) as $f ) {
 			$f       = self::s( $f );
@@ -388,7 +384,7 @@ final class FLXP_Speed_Service {
 			'http'       => self::i( $r['http'] ?? 0 ),
 			'errors'     => self::i( $r['errors'] ?? 0 ),
 			'flags'      => $flags,
-			'failed'     => (bool) array_intersect( array( 'fatal', 'error', '5xx' ), array_map( 'strval', (array) ( $r['flags'] ?? array() ) ) ),
+			'failed'     => (bool) array_intersect( array( 'fatal', 'error', '5xx' ), array_map( static fn( $x ): string => self::s( $x ), (array) ( $r['flags'] ?? array() ) ) ),
 		);
 	}
 
@@ -525,7 +521,7 @@ final class FLXP_Speed_Service {
 			)
 		);
 
-		$fmt = static fn( $b ): string => ( null === $b || self::f( $b ) <= 0 ) ? '—' : size_format( self::f( $b ), 1 );
+		$fmt = static fn( $b ): string => ( null === $b || self::f( $b ) <= 0 ) ? '—' : size_format( (int) self::f( $b ), 1 );
 		$du  = self::a( $live['disk_usage'] ?? array() );
 		if ( $du ) {
 			$out[] = self::section(
@@ -543,7 +539,7 @@ final class FLXP_Speed_Service {
 		}
 		if ( 'machine' !== $scope || ! empty( $live['disk_shared'] ) ) {
 			$m    = self::a( $live['machine'] ?? array() );
-			$load = array_map( 'strval', (array) ( $m['load'] ?? array() ) );
+			$load = array_map( static fn( $x ): string => self::s( $x ), (array) ( $m['load'] ?? array() ) );
 			$ld   = $load ? implode( ' / ', $load ) . ( null === ( $m['load_pct'] ?? null ) ? '' : ' (%' . self::s( $m['load_pct'] ) . ')' ) : '—';
 			$out[] = self::section(
 				'machine',
@@ -559,7 +555,7 @@ final class FLXP_Speed_Service {
 		}
 
 		$ext = array();
-		foreach ( self::a( $e['php']['extensions'] ?? array() ) as $k => $v ) {
+		foreach ( self::a( self::a( $e['php'] ?? array() )['extensions'] ?? array() ) as $k => $v ) {
 			$ext[] = ( $v ? '✓ ' : '✗ ' ) . $k;
 		}
 		$phpe  = self::a( $e['php'] ?? array() );
@@ -651,6 +647,7 @@ final class FLXP_Speed_Service {
 	 * @return array<string,mixed>
 	 */
 	public static function database(): array {
+		/** @var wpdb $wpdb */
 		global $wpdb;
 		try {
 			$db = self::a( flxp_database( true ) );
@@ -661,7 +658,7 @@ final class FLXP_Speed_Service {
 		$s  = self::a( $db['status'] ?? array() );
 		$t  = self::a( $db['totals'] ?? array() );
 		$d  = self::a( $db['derived'] ?? array() );
-		$mb = static fn( $bytes ): string => '' === self::s( $bytes ) ? '—' : size_format( self::f( $bytes ), 1 );
+		$mb = static fn( $bytes ): string => '' === self::s( $bytes ) ? '—' : size_format( (int) self::f( $bytes ), 1 );
 
 		$cards = array(
 			array( 'label' => __( 'Data', 'flx-speed' ), 'value' => number_format_i18n( self::f( $t['data_mb'] ?? 0 ), 1 ) . ' MB', 'tone' => 'NONE' ),
@@ -800,7 +797,7 @@ final class FLXP_Speed_Service {
 		$last = self::i( $c['last_seen'] ?? 0 );
 		$now  = time();
 		$tim  = array();
-		foreach ( FLXP_Cron_Timing::stats() as $t ) {
+		foreach ( self::rows( FLXP_Cron_Timing::stats() ) as $t ) {
 			$t     = self::a( $t );
 			$tim[] = array(
 				'hook'      => self::s( $t['hook'] ?? '' ),
@@ -902,8 +899,9 @@ final class FLXP_Speed_Service {
 	public static function settings(): array {
 		$s          = self::a( flxp_settings( null, true ) );
 		$const_slug = defined( 'FLXP_LOGIN_SLUG' );
+		$const_val  = $const_slug ? self::s( constant( 'FLXP_LOGIN_SLUG' ) ) : '';
 		$active     = FLXP_Login_URL::slug();
-		$value      = $const_slug ? FLXP_Login_URL::clean( FLXP_LOGIN_SLUG ) : self::s( $s['login_slug'] ?? '' );
+		$value      = $const_slug ? FLXP_Login_URL::clean( $const_val ) : self::s( $s['login_slug'] ?? '' );
 		$prefix     = get_option( 'permalink_structure' ) ? trailingslashit( home_url() ) : trailingslashit( home_url() ) . '?';
 		return array(
 			'panel'          => ! empty( $s['panel'] ),
@@ -941,7 +939,7 @@ final class FLXP_Speed_Service {
 		$prev = self::s( flxp_settings( 'login_slug' ) );
 		if ( ! defined( 'FLXP_LOGIN_SLUG' ) && array_key_exists( 'login_slug', $in ) ) {
 			$slug = FLXP_Login_URL::clean( self::s( $in['login_slug'] ) );
-			$ok   = '' === $slug ? true : FLXP_Login_URL::validate( $slug );
+			$ok   = '' === $slug ? true : FLXP_Login_URL::validate( self::s( $slug ) );
 			if ( $ok instanceof WP_Error ) {
 				return new WP_Error(
 					$ok->get_error_code(),
@@ -975,7 +973,7 @@ final class FLXP_Speed_Service {
 	public static function pagespeed(): array {
 		$s       = self::a( flxp_settings() );
 		$toggles = array();
-		foreach ( FLXP_PageSpeed::toggles() as $k ) {
+		foreach ( array_map( static fn( $x ): string => self::s( $x ), (array) FLXP_PageSpeed::toggles() ) as $k ) {
 			$on        = ! empty( $s[ $k ] );
 			$toggles[] = array(
 				'key'    => $k,
@@ -988,7 +986,7 @@ final class FLXP_Speed_Service {
 		foreach ( self::rows( FLXP_PageSpeed::animation_report() ) as $a ) {
 			$anim[] = array(
 				'name'    => self::s( $a['name'] ?? '' ),
-				'props'   => array_values( array_map( 'strval', (array) ( $a['props'] ?? array() ) ) ),
+				'props'   => array_values( array_map( static fn( $x ): string => self::s( $x ), (array) ( $a['props'] ?? array() ) ) ),
 				'file'    => self::s( $a['file'] ?? '' ),
 				'reduced' => ! empty( $a['reduced'] ),
 			);

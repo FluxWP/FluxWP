@@ -16,3 +16,7 @@ defined( 'FLXR_DB_VERSION' ) || define( 'FLXR_DB_VERSION', 3 );
 defined( 'FLXR_FILE' ) || define( 'FLXR_FILE', __FILE__ );
 defined( 'FLXR_DIR' ) || define( 'FLXR_DIR', __DIR__ . '/' );
 defined( 'FLXR_URL' ) || define( 'FLXR_URL', 'https://example.com/' );
+defined( 'FLXP_VERSION' ) || define( 'FLXP_VERSION', '0.0.0' );
+defined( 'FLXP_FILE' ) || define( 'FLXP_FILE', __FILE__ );
+defined( 'FLXP_DIR' ) || define( 'FLXP_DIR', __DIR__ . '/' );
+defined( 'FLXP_URL' ) || define( 'FLXP_URL', 'https://example.com/' );

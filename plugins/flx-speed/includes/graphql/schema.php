@@ -481,7 +481,9 @@ flx_gql_query(
 				'q'     => isset( $args['q'] ) && is_string( $args['q'] ) ? $args['q'] : '',
 				'order' => ! empty( $args['slow'] ) ? 'slow' : 'new',
 			);
-			return flx_gql_paginate( $args, static fn( int $offset, int $limit ): array => FLXP_Speed_Service::records( $filter, $offset, $limit ) );
+			/** @var array<string,mixed> $page_args */
+			$page_args = $args;
+			return flx_gql_paginate( $page_args, static fn( int $offset, int $limit ): array => FLXP_Speed_Service::records( $filter, $offset, $limit ) );
 		},
 	)
 );
