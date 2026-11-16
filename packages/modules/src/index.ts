@@ -16,6 +16,7 @@ function lazyScreen(load: () => Promise<{ default: ComponentType }>): ComponentT
 export const moduleScreens: Record<string, ComponentType> = {
   'flxb-review': lazyScreen(() => import('./review/ReviewScreen').then((m) => ({ default: m.ReviewScreen }))),
   'flxg-tasks': lazyScreen(() => import('./tasks/TasksScreen').then((m) => ({ default: m.TasksScreen }))),
+  'flxl-lang': lazyScreen(() => import('./lang/LanguagesScreen').then((m) => ({ default: m.LanguagesScreen }))),
   'flxr-roles': lazyScreen(() => import('./roles/RolesScreen').then((m) => ({ default: m.RolesScreen }))),
   'flxan-stats': lazyScreen(() => import('./analytics/StatsScreen').then((m) => ({ default: m.StatsScreen }))),
   'flxan-journeys': lazyScreen(() => import('./analytics/JourneysScreen').then((m) => ({ default: m.JourneysScreen }))),

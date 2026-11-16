@@ -238,6 +238,11 @@ final class FLXAN_Telemetry_Service {
 		return array( 'items' => $items, 'plugins' => $plugins );
 	}
 
+	/** Hub table name. */
+	private static function tbl( string $name ): string {
+		return FLXAN_Service::str( FLXAN_Telemetry_Hub::t( $name ) );
+	}
+
 	/**
 	 * Removes one error record (or all of them with "all"). It reappears when it happens again.
 	 *
@@ -248,11 +253,11 @@ final class FLXAN_Telemetry_Service {
 		$h = sanitize_key( $h );
 		// phpcs:disable WordPress.DB
 		if ( 'all' === $h ) {
-			$wpdb->query( 'TRUNCATE TABLE ' . FLXAN_Telemetry_Hub::t( 'errors' ) );
-			$wpdb->query( 'TRUNCATE TABLE ' . FLXAN_Telemetry_Hub::t( 'esites' ) );
+			$wpdb->query( 'TRUNCATE TABLE ' . self::tbl( 'errors' ) );
+			$wpdb->query( 'TRUNCATE TABLE ' . self::tbl( 'esites' ) );
 		} elseif ( preg_match( '/^[a-f0-9]{16}$/', $h ) ) {
-			$wpdb->delete( FLXAN_Telemetry_Hub::t( 'errors' ), array( 'h' => $h ) );
-			$wpdb->delete( FLXAN_Telemetry_Hub::t( 'esites' ), array( 'h' => $h ) );
+			$wpdb->delete( self::tbl( 'errors' ), array( 'h' => $h ) );
+			$wpdb->delete( self::tbl( 'esites' ), array( 'h' => $h ) );
 		} else {
 			return false;
 		}

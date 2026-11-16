@@ -48,17 +48,17 @@ function flxan_gql_filter( array $args ): array {
 
 /** Statistics permission: managers and people with flxan_view. */
 function flxan_gql_can_view(): bool {
-	return flxan_can_view();
+	return (bool) flxan_can_view();
 }
 
 /** Referral name permission. */
 function flxan_gql_can_refs(): bool {
-	return flxan_can_manage_refs();
+	return (bool) flxan_can_manage_refs();
 }
 
 /** Settings and data permission. */
 function flxan_gql_can_manage(): bool {
-	return current_user_can( 'manage_options' );
+	return (bool) current_user_can( 'manage_options' );
 }
 
 /** Telemetry hub permission: managers, and the hub is switched on. */
@@ -1045,6 +1045,7 @@ flx_gql_query(
 		'cap'         => Closure::fromCallable( 'flxan_gql_can_view' ),
 		'args'        => array( 'filter' => $flxan_filter_arg ),
 		'resolve'     => static function ( $root, array $args ): array {
+			/** @var array<string,mixed> $args */
 			flxan_gql_tag();
 			return FLXAN_Service::report( flxan_gql_filter( $args ) );
 		},
@@ -1061,7 +1062,10 @@ flx_gql_query(
 			'minutes' => array( 'type' => 'Int', 'description' => 'Window in minutes, 1–60 (default 30).', 'default' => 30 ),
 			'kpi'     => array( 'type' => 'Boolean', 'description' => 'Include the headline numbers and chart.', 'default' => false ),
 		),
-		'resolve'     => static fn( $root, array $args ): array => FLXAN_Service::realtime( flxan_gql_filter( $args ), max( 1, min( 60, FLXAN_Service::int( $args['minutes'] ?? 30 ) ) ), ! empty( $args['kpi'] ) ),
+		'resolve'     => static function ( $root, array $args ): array {
+			/** @var array<string,mixed> $args */
+			return FLXAN_Service::realtime( flxan_gql_filter( $args ), max( 1, min( 60, FLXAN_Service::int( $args['minutes'] ?? 30 ) ) ), ! empty( $args['kpi'] ) );
+		},
 	)
 );
 flx_gql_query(
@@ -1078,6 +1082,7 @@ flx_gql_query(
 			)
 		),
 		'resolve'     => static function ( $root, array $args ): array {
+			/** @var array<string,mixed> $args */
 			flxan_gql_tag();
 			return flx_gql_paginate(
 				$args,
@@ -1099,6 +1104,7 @@ flx_gql_query(
 			)
 		),
 		'resolve'     => static function ( $root, array $args ): array {
+			/** @var array<string,mixed> $args */
 			flxan_gql_tag();
 			return flx_gql_paginate(
 				$args,
@@ -1120,6 +1126,7 @@ flx_gql_query(
 			)
 		),
 		'resolve'     => static function ( $root, array $args ): array {
+			/** @var array<string,mixed> $args */
 			flxan_gql_tag();
 			return flx_gql_paginate(
 				$args,
@@ -1141,6 +1148,7 @@ flx_gql_query(
 			)
 		),
 		'resolve'     => static function ( $root, array $args ): array {
+			/** @var array<string,mixed> $args */
 			flxan_gql_tag();
 			return flx_gql_paginate(
 				$args,
@@ -1160,6 +1168,7 @@ flx_gql_query(
 			'target' => array( 'type' => 'String!', 'description' => 'Post ID, path or address.' ),
 		),
 		'resolve'     => static function ( $root, array $args ): array {
+			/** @var array<string,mixed> $args */
 			flxan_gql_tag();
 			return FLXAN_Service::page_stats( flxan_gql_filter( $args ), FLXAN_Service::str( $args['target'] ?? '' ) );
 		},
@@ -1177,6 +1186,7 @@ flx_gql_query(
 			'by'     => array( 'type' => 'FlxAnalyticsFunnelBy', 'description' => 'How to split it (default total).', 'default' => 'total' ),
 		),
 		'resolve'     => static function ( $root, array $args ): array {
+			/** @var array<string,mixed> $args */
 			flxan_gql_tag();
 			$by = FLXAN_Service::str( $args['by'] ?? 'total', 'total' );
 			return FLXAN_Service::funnel( flxan_gql_filter( $args ), FLXAN_Service::int( $args['id'] ?? 0 ), 'total' === $by ? '' : $by );
@@ -1191,6 +1201,7 @@ flx_gql_query(
 		'cap'         => Closure::fromCallable( 'flxan_gql_can_view' ),
 		'args'        => array( 'filter' => $flxan_filter_arg ),
 		'resolve'     => static function ( $root, array $args ): array {
+			/** @var array<string,mixed> $args */
 			flxan_gql_tag();
 			return FLXAN_Service::refs( flxan_gql_filter( $args ), 50 );
 		},
@@ -1207,6 +1218,7 @@ flx_gql_query(
 			'options' => array( 'type' => 'FlxAnalyticsJourneysInput', 'description' => 'Steps, filters, goal and grouping.' ),
 		),
 		'resolve'     => static function ( $root, array $args ): array {
+			/** @var array<string,mixed> $args */
 			flxan_gql_tag();
 			$o   = isset( $args['options'] ) && is_array( $args['options'] ) ? $args['options'] : array();
 			$out = array(
@@ -1285,6 +1297,7 @@ flx_gql_mutation(
 			'ref' => array( 'type' => 'FlxAnalyticsRefSaved', 'description' => 'The saved code and its link.' ),
 		),
 		'resolve'     => static function ( array $input ): array {
+			/** @var array<string,mixed> $input */
 			$ref = FLXAN_Service::ref_save( FLXAN_Service::str( $input['code'] ?? '' ), FLXAN_Service::str( $input['name'] ?? '' ), ! empty( $input['delete'] ) );
 			if ( null === $ref ) {
 				throw flx_gql_error( 'INVALID_INPUT', 'Invalid code. Use letters, digits, - and _.', 'code' );
@@ -1319,6 +1332,7 @@ flx_gql_mutation(
 			'settings' => array( 'type' => 'FlxAnalyticsSettings', 'description' => 'Settings after the change.' ),
 		),
 		'resolve'     => static function ( array $input ): array {
+			/** @var array<string,mixed> $input */
 			return array( 'settings' => FLXAN_Service::save_settings( $input ) );
 		},
 	)

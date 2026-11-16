@@ -21,3 +21,5 @@ defined( 'FLXAN_DB_VERSION' ) || define( 'FLXAN_DB_VERSION', 3 );
 defined( 'FLXAN_FILE' ) || define( 'FLXAN_FILE', __FILE__ );
 defined( 'FLXAN_DIR' ) || define( 'FLXAN_DIR', __DIR__ . '/' );
 defined( 'FLXAN_URL' ) || define( 'FLXAN_URL', 'https://example.com/' );
+defined( 'FLXL_VERSION' ) || define( 'FLXL_VERSION', '0.0.0' );
+defined( 'FLXL_DIR' ) || define( 'FLXL_DIR', __DIR__ . '/' );

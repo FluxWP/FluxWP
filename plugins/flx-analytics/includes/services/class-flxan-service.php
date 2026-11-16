@@ -96,6 +96,20 @@ final class FLXAN_Service {
 	}
 
 	/**
+	 * Any array as value => label strings.
+	 *
+	 * @param mixed $v Value.
+	 * @return array<string,string>
+	 */
+	public static function strmap( $v ): array {
+		$out = array();
+		foreach ( self::arr( $v ) as $k => $label ) {
+			$out[ (string) $k ] = self::str( $label );
+		}
+		return $out;
+	}
+
+	/**
 	 * Rows of a legacy list.
 	 *
 	 * @param mixed $v Value.
@@ -171,7 +185,7 @@ final class FLXAN_Service {
 	 * @return array{seg: string, rc: string}
 	 */
 	private static function current_filter(): array {
-		$f = FLXAN_Stats::$filter;
+		$f = self::arr( FLXAN_Stats::$filter );
 		return array( 'seg' => self::str( $f['seg'] ?? 'all', 'all' ), 'rc' => self::str( $f['rc'] ?? '' ) );
 	}
 
@@ -485,7 +499,7 @@ final class FLXAN_Service {
 		$start = self::str( $g['start'] ?? '' );
 		$end   = self::str( $g['end'] ?? '' );
 		$dims  = array();
-		foreach ( array_keys( FLXAN_Stats::kinds() ) as $kind ) {
+		foreach ( array_keys( self::arr( FLXAN_Stats::kinds() ) ) as $kind ) {
 			$kind   = (string) $kind;
 			$dims[] = self::map_dim( $kind, FLXAN_Stats::dim( $kind, $start, $end, 'country' === $kind ? 250 : 8 ) );
 		}
@@ -633,8 +647,8 @@ final class FLXAN_Service {
 		flx_gql_purge_safe( self::CACHE_TAG );
 		return array(
 			'code' => $saved,
-			'name' => self::str( flxan_ref_names()[ $saved ] ?? '' ),
-			'url'  => add_query_arg( 'r', $saved, home_url( '/' ) ),
+			'name' => self::str( self::arr( flxan_ref_names() )[ $saved ] ?? '' ),
+			'url'  => self::str( add_query_arg( 'r', $saved, home_url( '/' ) ) ),
 		);
 	}
 
@@ -732,7 +746,7 @@ final class FLXAN_Service {
 				'group' => ! empty( $opt['group'] ),
 				'top'   => self::int( $opt['top'] ?? 15 ),
 			),
-			'goals'   => self::options( array_map( array( __CLASS__, 'str' ), self::arr( $rep['goals'] ?? array() ) ) ),
+			'goals'   => self::options( self::strmap( $rep['goals'] ?? array() ) ),
 			'summary' => array(
 				'sessions'     => self::int( $sum['sessions'] ?? 0 ),
 				'multi'        => self::int( $sum['multi'] ?? 0 ),
@@ -761,16 +775,16 @@ final class FLXAN_Service {
 	 * @return Config
 	 */
 	public static function config(): array {
-		$roles   = (array) wp_get_current_user()->roles;
-		$ignored = (bool) array_intersect( $roles, array_map( 'strval', self::arr( flxan_settings( 'exclude_roles' ) ) ) );
+		$roles   = self::arr( wp_get_current_user()->roles );
+		$ignored = (bool) array_intersect( array_values( self::strmap( $roles ) ), array_values( self::strmap( flxan_settings( 'exclude_roles' ) ) ) );
 		$test    = current_user_can( 'manage_options' ) && 'rest' !== flxan_settings( 'method' ) && flxan_fast_possible()
-			&& ( time() - (int) get_option( 'flxan_fast_test_time', 0 ) > DAY_IN_SECONDS );
+			&& ( time() - self::int( get_option( 'flxan_fast_test_time', 0 ) ) > DAY_IN_SECONDS );
 		$segs    = array(
 			'all'     => __( 'All visitors', 'flx-analytics' ),
 			'guest'   => __( 'Outside visitors', 'flx-analytics' ),
 			'members' => __( 'Logged-in people', 'flx-analytics' ),
 		);
-		foreach ( FLXAN_Stats::seg_options() as $seg => $label ) {
+		foreach ( self::strmap( FLXAN_Stats::seg_options() ) as $seg => $label ) {
 			/* translators: %s: role name */
 			$segs[ (string) $seg ] = sprintf( __( 'Role: %s', 'flx-analytics' ), $label );
 		}
@@ -778,17 +792,17 @@ final class FLXAN_Service {
 		foreach ( array( 'direct', 'search', 'social', 'ai', 'email', 'paid', 'campaign', 'referral', 'ref' ) as $c ) {
 			$channels[ $c ] = self::str( flxan_dim_label( 'channel', $c ) );
 		}
-		$goals = array_map( array( __CLASS__, 'str' ), FLXAN_Journeys::goals() );
+		$goals = self::strmap( FLXAN_Journeys::goals() );
 		return array(
-			'presets'           => self::options( array_map( 'strval', FLXAN_Stats::presets() ) ),
-			'kinds'             => self::options( array_map( 'strval', FLXAN_Stats::kinds() ) ),
-			'events'            => self::options( array_map( 'strval', FLXAN_Stats::event_labels() ) ),
+			'presets'           => self::options( self::strmap( FLXAN_Stats::presets() ) ),
+			'kinds'             => self::options( self::strmap( FLXAN_Stats::kinds() ) ),
+			'events'            => self::options( self::strmap( FLXAN_Stats::event_labels() ) ),
 			'channels'          => self::options( $channels ),
-			'segments'          => self::options( $segs ),
-			'funnelBy'          => self::options( array_map( 'strval', FLXAN_Stats::funnel_by() ) ),
+			'segments'          => self::options( self::strmap( $segs ) ),
+			'funnelBy'          => self::options( self::strmap( FLXAN_Stats::funnel_by() ) ),
 			'goals'             => self::options( $goals ),
 			'defaultGoal'       => self::str( FLXAN_Journeys::default_goal() ),
-			'canManageRefs'     => flxan_can_manage_refs(),
+			'canManageRefs'     => (bool) flxan_can_manage_refs(),
 			'canManage'         => current_user_can( 'manage_options' ),
 			'ignoreBrowser'     => $ignored,
 			'fastEndpoint'      => $test ? FLXAN_URL . 'endpoint.php' : '',
@@ -826,22 +840,22 @@ final class FLXAN_Service {
 	public static function settings(): array {
 		$s     = self::arr( flxan_settings() );
 		$roles = array();
-		foreach ( wp_roles()->get_names() as $key => $name ) {
-			$roles[ (string) $key ] = translate_user_role( $name );
+		foreach ( self::strmap( wp_roles()->get_names() ) as $key => $name ) {
+			$roles[ $key ] = self::str( translate_user_role( $name ) );
 		}
-		$events = array_map( 'strval', flxan_funnel_event_options() );
+		$events = self::strmap( flxan_funnel_event_options() );
 		$pages  = array();
 		foreach ( self::rows( flxan_funnel_page_options() ) as $p ) {
 			$pages[] = array( 'path' => self::str( $p['path'] ?? '' ), 'title' => self::str( $p['title'] ?? '' ) );
 		}
 		$koko = flxan_koko_available();
-		$pend = (int) FLXAN_Aggregator::pending_bytes();
+		$pend = self::int( FLXAN_Aggregator::pending_bytes() );
 		return array(
 			'on'             => ! empty( $s['on'] ),
 			'method'         => self::str( $s['method'] ?? 'auto', 'auto' ),
 			'methodNow'      => 'fast' === flxan_method() ? 'fast' : 'rest',
 			'dnt'            => ! empty( $s['dnt'] ),
-			'excludeRoles'   => array_values( array_map( array( __CLASS__, 'str' ), self::arr( $s['exclude_roles'] ?? array() ) ) ),
+			'excludeRoles'   => array_values( self::strmap( $s['exclude_roles'] ?? array() ) ),
 			'excludeIps'     => self::str( $s['exclude_ips'] ?? '' ),
 			'evOutbound'     => ! empty( $s['ev_outbound'] ),
 			'evDownload'     => ! empty( $s['ev_download'] ),
@@ -853,12 +867,12 @@ final class FLXAN_Service {
 			'keepMonths'     => self::int( $s['keep_months'] ?? 0 ),
 			'tmHub'          => ! empty( $s['tm_hub'] ),
 			'hubEndpoint'    => class_exists( 'FLXAN_Telemetry_Hub' ) ? self::str( FLXAN_Telemetry_Hub::endpoint() ) : null,
-			'lastAggregated' => (int) get_option( 'flxan_last_agg', 0 ),
+			'lastAggregated' => self::int( get_option( 'flxan_last_agg', 0 ) ),
 			'pendingBytes'   => $pend,
 			'pendingLabel'   => self::str( size_format( $pend ), '0 B' ),
 			'fastPossible'   => (bool) flxan_fast_possible(),
 			'fastTest'       => self::str( get_option( 'flxan_fast_test', '' ) ),
-			'roles'          => self::options( $roles ),
+			'roles'          => self::options( self::strmap( $roles ) ),
 			'funnels'        => self::map_funnel_defs( flxan_funnels() ),
 			'funnelDefaults' => self::map_funnel_defs( flxan_default_funnels() ),
 			'funnelEvents'   => self::options( $events ),
@@ -884,8 +898,8 @@ final class FLXAN_Service {
 	 * @param list<FunnelDef>|list<array<mixed>> $funnels Sanitized funnels.
 	 */
 	public static function store_funnels( array $funnels ): void {
-		$def = flxan_funnels_to_text( flxan_default_funnels() );
-		if ( ! $funnels || trim( flxan_funnels_to_text( $funnels ) ) === trim( $def ) ) {
+		$def = self::str( flxan_funnels_to_text( self::arr( flxan_default_funnels() ) ) );
+		if ( ! $funnels || trim( self::str( flxan_funnels_to_text( self::arr( $funnels ) ) ) ) === trim( $def ) ) {
 			delete_option( 'flxan_funnels' );
 		} else {
 			update_option( 'flxan_funnels', $funnels, false );
@@ -932,7 +946,7 @@ final class FLXAN_Service {
 
 	/** Processes the visit queue now; returns the rows handled. */
 	public static function aggregate(): int {
-		return max( 0, (int) FLXAN_Aggregator::run( 25 ) );
+		return max( 0, self::int( FLXAN_Aggregator::run( 25 ) ) );
 	}
 
 	/** Deletes every statistic. */
