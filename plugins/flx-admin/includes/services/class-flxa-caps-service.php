@@ -28,7 +28,7 @@ final class FLXA_Caps_Service {
 		$out = array();
 		foreach ( flxa_caps_rows() as $key => $g ) {
 			$caps = array();
-			foreach ( FLXA_Util::arr( $g['caps'] ?? array() ) as $cap => $label ) {
+			foreach ( $g['caps'] as $cap => $label ) {
 				$caps[] = array(
 					'key'   => (string) $cap,
 					'label' => FLXA_Util::str( $label ),
@@ -36,7 +36,7 @@ final class FLXA_Caps_Service {
 			}
 			$out[] = array(
 				'key'   => (string) $key,
-				'label' => FLXA_Util::str( $g['label'] ?? '' ),
+				'label' => $g['label'],
 				'caps'  => $caps,
 			);
 		}

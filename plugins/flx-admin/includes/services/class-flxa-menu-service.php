@@ -103,7 +103,7 @@ final class FLXA_Menu_Service {
 	 * @return list<string>
 	 */
 	public static function unblockable(): array {
-		return array_map( 'strval', array_values( flxa_unblockable() ) );
+		return flxa_unblockable();
 	}
 
 	/**
@@ -429,10 +429,10 @@ final class FLXA_Menu_Service {
 	public static function user_menu( int $user_id = 0 ): array {
 		$user_id = $user_id ? $user_id : get_current_user_id();
 		return array(
-			'pins'     => array_map( 'strval', array_values( flxa_user_pins( $user_id ) ) ),
-			'away'     => array_map( 'strval', array_values( flxa_user_list( 'flxa_away', $user_id ) ) ),
-			'sub_away' => array_map( 'strval', array_values( flxa_user_list( 'flxa_sub_away', $user_id ) ) ),
-			'sub_keep' => array_map( 'strval', array_values( flxa_user_list( 'flxa_sub_keep', $user_id ) ) ),
+			'pins'     => flxa_user_pins( $user_id ),
+			'away'     => flxa_user_list( 'flxa_away', $user_id ),
+			'sub_away' => flxa_user_list( 'flxa_sub_away', $user_id ),
+			'sub_keep' => flxa_user_list( 'flxa_sub_keep', $user_id ),
 		);
 	}
 
@@ -447,10 +447,10 @@ final class FLXA_Menu_Service {
 	public static function user_set( string $op, string $slug = '', array $order = array() ) {
 		$uid  = get_current_user_id();
 		$slug = substr( wp_strip_all_tags( $slug ), 0, 200 );
-		$pins = array_map( 'strval', array_values( flxa_user_pins( $uid ) ) );
-		$away = array_map( 'strval', array_values( flxa_user_list( 'flxa_away', $uid ) ) );
+		$pins = flxa_user_pins( $uid );
+		$away = flxa_user_list( 'flxa_away', $uid );
 		if ( 'order' === $op ) {
-			$pins = array_values( array_merge( array_intersect( $order, $pins ), array_diff( $pins, $order ) ) );
+			$pins = array_merge( array_intersect( $order, $pins ), array_diff( $pins, $order ) );
 		} elseif ( '' === $slug ) {
 			return FLXA_Util::error( 'flxa_menu_slug', __( 'Choose a menu item.', 'flx-admin' ), 'INVALID_INPUT', 'slug' );
 		} elseif ( 'pin' === $op ) {
