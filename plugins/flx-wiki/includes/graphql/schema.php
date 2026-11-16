@@ -616,8 +616,8 @@ flx_gql_query(
 				),
 			)
 		),
-		/** @param array<string,mixed> $args */
 		'resolve'     => static function ( $root, array $args ): array {
+			/** @var array<string,mixed> $args */
 			$filter = array(
 				'search'   => flx_gql_str( $args['search'] ?? '' ),
 				'section'  => flx_gql_str( $args['section'] ?? '' ),
@@ -653,8 +653,8 @@ flx_gql_query(
 				'description' => __( 'Path below the wiki address (plugins/ai-enabled), short name or title.', 'flx-wiki' ),
 			),
 		),
-		/** @param array<string,mixed> $args */
 		'resolve'     => static function ( $root, array $args ): ?FLXWK_Page_Node {
+			/** @var array<string,mixed> $args */
 			flxwk_gql_tag();
 			$page = null;
 			if ( isset( $args['id'] ) && '' !== $args['id'] ) {
@@ -713,8 +713,8 @@ flx_gql_query(
 				'description' => __( 'Best hits to return (1–50, default 10).', 'flx-wiki' ),
 			),
 		),
-		/** @param array<string,mixed> $args */
 		'resolve'     => static function ( $root, array $args ): FLXWK_Search_Result {
+			/** @var array<string,mixed> $args */
 			flxwk_gql_tag();
 			return FLXWK_Search_Service::search( flx_gql_str( $args['query'] ?? '' ), flx_gql_str( $args['section'] ?? '' ), flx_gql_int( $args['limit'] ?? 10, 10 ) );
 		},
@@ -774,8 +774,8 @@ flx_gql_mutation(
 				'description' => __( 'The saved page.', 'flx-wiki' ),
 			),
 		),
-		/** @param array<string,mixed> $input */
 		'resolve'     => static function ( array $input ) {
+			/** @var array<string,mixed> $input */
 			$in = array();
 			if ( isset( $input['id'] ) && '' !== $input['id'] ) {
 				$in['id'] = flx_gql_decode_id( $input['id'], 'FlxWikiPage' );
@@ -822,8 +822,8 @@ flx_gql_mutation(
 				'description' => __( 'Database ID of the page that was moved to the trash.', 'flx-wiki' ),
 			),
 		),
-		/** @param array<string,mixed> $input */
 		'resolve'     => static function ( array $input ) {
+			/** @var array<string,mixed> $input */
 			$id = flx_gql_decode_id( $input['id'] ?? 0, 'FlxWikiPage' );
 			$r  = FLXWK_Page_Service::trash( $id );
 			return $r instanceof WP_Error ? $r : array( 'trashedId' => $id );
@@ -856,8 +856,8 @@ flx_gql_mutation(
 				'description' => __( 'The saved section.', 'flx-wiki' ),
 			),
 		),
-		/** @param array<string,mixed> $input */
 		'resolve'     => static function ( array $input ) {
+			/** @var array<string,mixed> $input */
 			$order = array_key_exists( 'order', $input ) && null !== $input['order'] ? flx_gql_int( $input['order'] ) : null;
 			$s     = FLXWK_Page_Service::section_save( flx_gql_int( $input['id'] ?? 0 ), flx_gql_str( $input['name'] ?? '' ), $order );
 			return $s instanceof WP_Error ? $s : array( 'section' => $s );
@@ -882,8 +882,8 @@ flx_gql_mutation(
 				'description' => __( 'ID of the section that was deleted.', 'flx-wiki' ),
 			),
 		),
-		/** @param array<string,mixed> $input */
 		'resolve'     => static function ( array $input ) {
+			/** @var array<string,mixed> $input */
 			$id = flx_gql_int( $input['id'] ?? 0 );
 			$r  = FLXWK_Page_Service::section_delete( $id );
 			return $r instanceof WP_Error ? $r : array( 'deletedId' => $id );
@@ -908,7 +908,7 @@ flx_gql_mutation(
 				'description' => __( 'The rendered page.', 'flx-wiki' ),
 			),
 		),
-		'resolve'     => /** @param array<string,mixed> $input */ static fn( array $input ): array => array( 'rendered' => FLXWK_Page_Service::preview( flx_gql_str( $input['markdown'] ?? '' ) ) ),
+		'resolve'     => static fn( array $input ): array => array( 'rendered' => FLXWK_Page_Service::preview( flx_gql_str( $input['markdown'] ?? '' ) ) ),
 	)
 );
 
@@ -933,8 +933,8 @@ flx_gql_mutation(
 				'description' => __( 'The answer.', 'flx-wiki' ),
 			),
 		),
-		/** @param array<string,mixed> $input */
 		'resolve'     => static function ( array $input ) {
+			/** @var array<string,mixed> $input */
 			$a = FLXWK_Ask_Service::ask( flx_gql_str( $input['question'] ?? '' ), flx_gql_int( $input['pageId'] ?? 0 ) );
 			return $a instanceof WP_Error ? $a : array( 'answer' => $a );
 		},
