@@ -1,0 +1,6 @@
+mutation FlxAnalyticsFastTest($input: FlxAnalyticsFastTestInput!) {
+  flxAnalyticsFastTest(input: $input) {
+    method
+    errors { code message field }
+  }
+}

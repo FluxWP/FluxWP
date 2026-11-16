@@ -1,0 +1,13 @@
+mutation FlxSpeedCacheRun($input: FlxSpeedCacheRunInput!) {
+  flxSpeedCacheRun(input: $input) {
+    message
+    cache {
+      ...FlxSpeedCacheFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

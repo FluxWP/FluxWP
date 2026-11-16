@@ -1,0 +1,15 @@
+mutation FlxBlocksLibrarySourceAdd($input: FlxBlocksLibrarySourceAddInput!) {
+  flxBlocksLibrarySourceAdd(input: $input) {
+    source {
+      ...FlxBlocksSourceRow
+    }
+    sources {
+      ...FlxBlocksSourceRow
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

@@ -1,37 +1,1246 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: en_US\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "\"Discourage search engines from indexing this site\" is checked. Uncheck it on the live site."
+msgid "Coming soon"
 msgstr ""
 
-msgid "%1$d critical issues: %2$s"
+msgid "Back to homepage"
 msgstr ""
 
-msgid "%1$s is active, v%2$s. Flux Donate reads the keys from it."
+msgid "Get in touch"
 msgstr ""
 
-msgid "%1$s (%2$s)."
+msgid "Something good is on its way."
 msgstr ""
 
-msgid "%d issues"
+msgid "Signed in as %s"
 msgstr ""
 
-msgid "%s is active."
+msgid "Your account does not have access to the site yet. If you are on the team, ask a site administrator to grant your account access."
 msgstr ""
 
-msgid "%s is installed but not active. Flux Donate reads the keys from its own Payments settings."
+msgid "Sign out"
 msgstr ""
 
-msgid "%s. Choose 8.1 or later under Hostinger › PHP Configuration."
+msgid "Staff sign in"
 msgstr ""
 
-msgid "%s. Choose Istanbul so certificate and donation dates are correct."
+msgid "FluxWP"
+msgstr ""
+
+msgid "Latest news, updates and articles."
+msgstr ""
+
+msgid "Recent donations"
+msgstr ""
+
+msgid "Recent orders"
+msgstr ""
+
+msgid "View all"
+msgstr ""
+
+msgid "Change cookie preferences"
+msgstr ""
+
+msgid "Theme Settings"
+msgstr ""
+
+msgid "General"
+msgstr ""
+
+msgid "Presets"
+msgstr ""
+
+msgid "A preset sets up the site in one step with the organisation profile, plugin settings, colours, header/footer, templates, pages and menus. Changes you make in the panel are never overwritten; updates are applied one by one with your approval."
+msgstr ""
+
+msgid "Appearance"
+msgstr ""
+
+msgid "Site type"
+msgstr ""
+
+msgid "Shop: Orders, Return to shop"
+msgstr ""
+
+msgid "Donation: Donations, Donate button, return to the donation page"
+msgstr ""
+
+msgid "Sets the wording in My account, the cart and the mobile menu."
+msgstr ""
+
+msgid "Background pattern"
+msgstr ""
+
+msgid "Dots"
+msgstr ""
+
+msgid "Leaves"
+msgstr ""
+
+msgid "None"
+msgstr ""
+
+msgid "Table header background"
+msgstr ""
+
+msgid "Header cells of tables in pages, Wiki and WooCommerce. Pick a tone slightly darker than the page background. Leave empty to use the style colour."
+msgstr ""
+
+msgid "News introduction"
+msgstr ""
+
+msgid "Save settings"
+msgstr ""
+
+msgid "Play video"
+msgstr ""
+
+msgid "Watch on YouTube"
+msgstr ""
+
+msgid "Online donations open soon."
+msgstr ""
+
+msgid "Our online store opens soon."
+msgstr ""
+
+msgid "Site visibility"
+msgstr ""
+
+msgid "Visibility"
+msgstr ""
+
+msgid "Live"
+msgstr ""
+
+msgid "Everyone can see the whole site."
+msgstr ""
+
+msgid "Coming soon: entire site"
+msgstr ""
+
+msgid "Visitors, including signed-in customers, only see the coming-soon page."
+msgstr ""
+
+msgid "Coming soon: store pages only"
+msgstr ""
+
+msgid "The site stays open. Shop, product, cart and checkout pages show a coming-soon notice inside the normal header and footer."
+msgstr ""
+
+msgid "Requires WooCommerce."
+msgstr ""
+
+msgid "Administrators, shop managers and editors keep seeing the site. This is the same setting as WooCommerce › Settings › Site visibility; changing either one updates the other, and WooCommerce private preview links keep working."
+msgstr ""
+
+msgid "Administrators and editors keep seeing the site."
+msgstr ""
+
+msgid "Coming-soon title"
+msgstr ""
+
+msgid "Coming-soon message"
+msgstr ""
+
+msgid "Leave the title and message empty to use the translated defaults."
+msgstr ""
+
+msgid "Store notice title"
+msgstr ""
+
+msgid "Store notice message"
+msgstr ""
+
+msgid "Leave the title and message empty to use the translated defaults. The wording follows the site type (shop or donations)."
+msgstr ""
+
+msgid "Public contact email"
+msgstr ""
+
+msgid "Optional. Only this address is shown; the administrator email stays private."
+msgstr ""
+
+msgid "Store coming soon"
+msgstr ""
+
+msgid "Site coming soon"
+msgstr ""
+
+msgid "Copy"
+msgstr ""
+
+msgid "Previous"
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
+msgid "Show more"
+msgstr ""
+
+msgid "Loading…"
+msgstr ""
+
+msgid "Copied ✓"
+msgstr ""
+
+msgid "Search the site"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "What are you looking for?"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Search products, posts, pages…"
+msgstr ""
+
+msgid "Popular:"
+msgstr ""
+
+msgid "Read more"
+msgstr ""
+
+msgid "Cookie banner title"
+msgstr ""
+
+msgid "Cookie banner text"
+msgstr ""
+
+msgid "Cookie banner: accept button"
+msgstr ""
+
+msgid "Cookie banner: necessary only button"
+msgstr ""
+
+msgid "Cookie banner: policy link"
+msgstr ""
+
+msgid "Language selection"
+msgstr ""
+
+msgid "Language Switcher"
+msgstr ""
+
+msgid "Account and Cart"
+msgstr ""
+
+msgid "System Check"
+msgstr ""
+
+msgid "JavaScript is required for this screen."
+msgstr ""
+
+msgid "New view"
+msgstr ""
+
+msgid "Open the new view (same features, works in the FluxWP app too)."
+msgstr ""
+
+msgid "Hi %s, your donations are saved to your account."
+msgstr ""
+
+msgid "My account"
+msgstr ""
+
+msgid "Log out"
+msgstr ""
+
+msgid "Have an account? Log in to track your donations from your account."
+msgstr ""
+
+msgid "Log in"
+msgstr ""
+
+msgid "Sign up"
+msgstr ""
+
+msgid "Back to Donations"
+msgstr ""
+
+msgid "Log In"
+msgstr ""
+
+msgid "Sign Up"
+msgstr ""
+
+msgid "or"
+msgstr ""
+
+msgid "Phone"
 msgstr ""
 
 msgid "(optional)"
 msgstr ""
 
+msgid "So we can also send your donation and order updates via WhatsApp."
+msgstr ""
+
+msgid "The phone number looks invalid. Example: +90 532 123 45 67"
+msgstr ""
+
+msgid "Add your phone number to also receive updates via WhatsApp."
+msgstr ""
+
+msgid "Add phone"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Pay with iyzico · Mastercard · Visa · American Express · Troy"
+msgstr ""
+
+msgid "Payment methods"
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
+msgid "Move left"
+msgstr ""
+
+msgid "Payment logos"
+msgstr ""
+
+msgid "Add logos"
+msgstr ""
+
+msgid "No logos: the footer shows no payment logos."
+msgstr ""
+
+msgid "Logos that virtual POS providers (iyzico, EsnekPOS, etc.) want on the site. Shown in the footer; add them anywhere else with the [flx_odeme_logolari] shortcode."
+msgstr ""
+
+msgid "Logos"
+msgstr ""
+
+msgid "Upload logo"
+msgstr ""
+
+msgid "Built-in logo"
+msgstr ""
+
+msgid "Add a built-in logo…"
+msgstr ""
+
+msgid "Back to automatic"
+msgstr ""
+
+msgid "Automatic now: the iyzico band and the logos of enabled virtual POS plugins. Once you add or remove a logo, the list is your own choice."
+msgstr ""
+
+msgid "Hand-picked list. \"Back to automatic\" returns to the iyzico band and the logos of enabled virtual POS plugins."
+msgstr ""
+
+msgid "SVG or transparent PNG is best; colored logos are shown in a white box on a dark footer."
+msgstr ""
+
+msgid "My Account, cart and checkout pages"
+msgstr ""
+
+msgid "Store dashboard, customers, sales report and bank transfer with receipt"
+msgstr ""
+
+msgid "Donation types, sapling packages, card donations and donors"
+msgstr ""
+
+msgid "Sapling certificates and events"
+msgstr ""
+
+msgid "Donation and contact forms"
+msgstr ""
+
+msgid "Contact forms"
+msgstr ""
+
+msgid "SEO, sitemap, schema and browser cache"
+msgstr ""
+
+msgid "Phone donations and call logs"
+msgstr ""
+
+msgid "WhatsApp chats and call logs"
+msgstr ""
+
+msgid "Team task tracking"
+msgstr ""
+
+msgid "Open"
+msgstr ""
+
+msgid "Plugins"
+msgstr ""
+
+msgid "Required"
+msgstr ""
+
+msgid "Optional"
+msgstr ""
+
+msgid "Not installed."
+msgstr ""
+
+msgid "Upload plugin"
+msgstr ""
+
+msgid "Installed (v%s) but not active."
+msgstr ""
+
+msgid "Active, v%1$s. This theme was tested with v%2$s or later; please update."
+msgstr ""
+
+msgid "Update"
+msgstr ""
+
+msgid "Active, v%s."
+msgstr ""
+
+msgid "v%s and later add their own checks to this screen."
+msgstr ""
+
+msgid "No iyzico plugin installed. That is fine: Flux Donate reads the iyzico keys from its own Payments settings."
+msgstr ""
+
+msgid "%s is installed but not active. Flux Donate reads the keys from its own Payments settings."
+msgstr ""
+
+msgid "%1$s is active, v%2$s. Flux Donate reads the keys from it."
+msgstr ""
+
+msgid "Scheduled tasks (cron)"
+msgstr ""
+
+msgid "Server cron"
+msgstr ""
+
+msgid "DISABLE_WP_CRON is on: tasks run from the server cron and do not slow down visitor requests."
+msgstr ""
+
+msgid "Tasks only run when visitors arrive (WP-Cron). With little traffic the certificate queue and recurring donation renewals are delayed. Add this command under Hostinger › Advanced › Cron Jobs, every 5 minutes: %s Then add define( 'DISABLE_WP_CRON', true ); to wp-config.php."
+msgstr ""
+
+msgid "Tasks run only when visitors arrive (WP-Cron). With low traffic, emails and scheduled jobs are delayed. Add this command every 5 minutes under Hostinger › Advanced › Cron Jobs: %s Then add define( 'DISABLE_WP_CRON', true ); to wp-config.php."
+msgstr ""
+
+msgid "Last run"
+msgstr ""
+
+msgid "No record yet. It appears after the first cron run following the theme update; reload this page in a few minutes."
+msgstr ""
+
+msgid "%1$s (%2$s)."
+msgstr ""
+
+msgid "Cron has not run for hours. Check the cron job and command path in Hostinger."
+msgstr ""
+
+msgid "Has not run for longer than expected (should run every 5 minutes)."
+msgstr ""
+
+msgid "Has not run for a while because traffic is low."
+msgstr ""
+
+msgid "Overdue tasks"
+msgstr ""
+
+msgid "No overdue tasks."
+msgstr ""
+
+msgid "%1$d tasks are more than 15 minutes overdue: %2$s"
+msgstr ""
+
+msgid "Site settings"
+msgstr ""
+
+msgid "Search engines"
+msgstr ""
+
+msgid "The site is visible to Google."
+msgstr ""
+
+msgid "\"Discourage search engines from indexing this site\" is checked. Uncheck it on the live site."
+msgstr ""
+
+msgid "Reading settings"
+msgstr ""
+
+msgid "Site address uses https."
+msgstr ""
+
+msgid "Site address uses http. Enable SSL and switch the address to https for payments and login."
+msgstr ""
+
+msgid "General settings"
+msgstr ""
+
+msgid "Permalinks"
+msgstr ""
+
+msgid "Plain (?p=123) addresses are used. Choose \"Post name\"."
+msgstr ""
+
+msgid "Post name structure."
+msgstr ""
+
+msgid "Post name structure; /projeler/ and /etkinlikler/ addresses are registered."
+msgstr ""
+
 msgid "The /projeler/ rewrite rule is missing and may return 404."
+msgstr ""
+
+msgid "Refresh rules"
+msgstr ""
+
+msgid "Timezone"
+msgstr ""
+
+msgid "%s. Choose Istanbul so certificate and donation dates are correct."
+msgstr ""
+
+msgid "%s. Choose Istanbul so order, form and email times are correct."
+msgstr ""
+
+msgid "Email delivery"
+msgstr ""
+
+msgid "%s is active."
+msgstr ""
+
+msgid "No SMTP plugin. Certificate and donation emails may land in spam; connect the association mailbox with WP Mail SMTP or FluentSMTP."
+msgstr ""
+
+msgid "No SMTP plugin. Site emails may land in spam; connect your organization's email with WP Mail SMTP or FluentSMTP."
+msgstr ""
+
+msgid "Search plugins"
+msgstr ""
+
+msgid "Page cache"
+msgstr ""
+
+msgid "LiteSpeed Cache is active, but image lazy load is on. The theme already lazy-loads images; with both on, images appear blank on every reload. LiteSpeed Cache › Page Optimization › Media › Lazy Load: Off."
+msgstr ""
+
+msgid "LiteSpeed Cache is active."
+msgstr ""
+
+msgid "A page cache is active (WP_CACHE)."
+msgstr ""
+
+msgid "No page cache. Install and enable LiteSpeed Cache on Hostinger; the site gets noticeably faster."
+msgstr ""
+
+msgid "%s. Hostinger › PHP Yapılandırması'ndan 8.2 veya üstünü seçin."
+msgstr ""
+
+msgid "Pages and theme"
+msgstr ""
+
+msgid "Site setup"
+msgstr ""
+
+msgid "Basic setup has been run."
+msgstr ""
+
+msgid "Basic setup was never run; pages and menu may be missing."
+msgstr ""
+
+msgid "Site Setup"
+msgstr ""
+
+msgid "Donation page"
+msgstr ""
+
+msgid "KVKK Privacy Notice"
+msgstr ""
+
+msgid "Cookie Policy"
+msgstr ""
+
+msgid "Cart"
+msgstr ""
+
+msgid "Checkout"
+msgstr ""
+
+msgid "Required pages"
+msgstr ""
+
+msgid "Missing or not published: %s."
+msgstr ""
+
+msgid "Donation, KVKK, Cookie Policy, My Account, Cart and Checkout are published."
+msgstr ""
+
+msgid "My account, Cart and Checkout are published."
+msgstr ""
+
+msgid "Currency"
+msgstr ""
+
+msgid "WooCommerce currency is %s. Choose Turkish lira."
+msgstr ""
+
+msgid "Account registration"
+msgstr ""
+
+msgid "Registration is enabled on My Account."
+msgstr ""
+
+msgid "Registration is disabled on My Account; only the Login tab is shown."
+msgstr ""
+
+msgid "Enable registration"
+msgstr ""
+
+msgid "No GA4 measurement ID entered."
+msgstr ""
+
+msgid "Cookie banner"
+msgstr ""
+
+msgid "On, linked to the Cookie Policy page."
+msgstr ""
+
+msgid "On, but no Cookie Policy page is linked."
+msgstr ""
+
+msgid "Off. If analytics cookies are used, KVKK requires it to be on."
+msgstr ""
+
+msgid "Ready-made updates"
+msgstr ""
+
+msgid "%1$d updates have never been applied. A fresh install may not need them; apply one if the related page looks outdated. List: %2$s"
+msgstr ""
+
+msgid "All have been applied at least once."
+msgstr ""
+
+msgid "Payments"
+msgstr ""
+
+msgid "Email"
+msgstr ""
+
+msgid "Security"
+msgstr ""
+
+msgid "Forms"
+msgstr ""
+
+msgid "Other"
+msgstr ""
+
+msgid "Theme"
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+msgid "OK"
+msgstr ""
+
+msgid "Info"
+msgstr ""
+
+msgid "Plugins, scheduled tasks and key settings. Red rows mean part of the site is not working; yellow rows are recommended fixes. The page re-checks every time it opens."
+msgstr ""
+
+msgid "Show only these (click again for all)"
+msgstr ""
+
+msgid "Check again"
+msgstr ""
+
+msgid "Checked: %s"
+msgstr ""
+
+msgid "%d issues"
+msgstr ""
+
+msgid "All good"
+msgstr ""
+
+msgid "%1$d critical issues: %2$s"
+msgstr ""
+
+msgid "See the status of plugins, cron and settings on the %s screen."
+msgstr ""
+
+msgid "Recent fixes (AI / MCP)"
+msgstr ""
+
+msgid "No fixes have been made through MCP yet."
+msgstr ""
+
+msgid "Time"
+msgstr ""
+
+msgid "User"
+msgstr ""
+
+msgid "Fix"
+msgstr ""
+
+msgid "Before → After"
+msgstr ""
+
+msgid "Result"
+msgstr ""
+
+msgid "Theme settings copied (%d fields)."
+msgstr ""
+
+msgid "Additional CSS copied."
+msgstr ""
+
+msgid "Site Editor records copied (%d templates, parts or styles)."
+msgstr ""
+
+msgid "There was nothing new to migrate."
+msgstr ""
+
+msgid "You are not allowed to do this."
+msgstr ""
+
+msgid "Migrated from the previous theme."
+msgstr ""
+
+msgid "Migrate from the previous theme"
+msgstr ""
+
+msgid "Copies the previous theme's settings (logo, menus, additional CSS) and the templates, parts and styles you saved in the Site Editor to this theme. The previous theme is left untouched; records with the same name in this theme are not overwritten."
+msgstr ""
+
+msgid "Migrate from %s"
+msgstr ""
+
+msgid "Migrate from %1$s again (last: %2$s)"
+msgstr ""
+
+msgid "Donate"
+msgstr ""
+
+msgid "Shop"
+msgstr ""
+
+msgid "Welcome"
+msgstr ""
+
+msgid "Log in to manage your donations, addresses and account details, or create an account in seconds."
+msgstr ""
+
+msgid "Log in to manage your orders, addresses and account details, or create an account in seconds."
+msgstr ""
+
+msgid "Hello, %s"
+msgstr ""
+
+msgid "Track your donations and manage your addresses and account details in one place."
+msgstr ""
+
+msgid "Track your orders and manage your addresses and account details in one place."
+msgstr ""
+
+msgid "Confirmation"
+msgstr ""
+
+msgid "Order steps"
+msgstr ""
+
+msgid "Thank you, your donation has been received"
+msgstr ""
+
+msgid "Thank you, your order has been received"
+msgstr ""
+
+msgid "Your donation summary is below. The details have also been sent to your email address."
+msgstr ""
+
+msgid "Your order summary is below. The details were also sent to your email address."
+msgstr ""
+
+msgid "Enter your details and complete your order securely."
+msgstr ""
+
+msgid "Review your cart; every purchase is a contribution to nature."
+msgstr ""
+
+msgid "Review your cart, then proceed to checkout."
+msgstr ""
+
+msgid "Continue donating"
+msgstr ""
+
+msgid "Continue shopping"
+msgstr ""
+
+msgid "Go to the shop"
+msgstr ""
+
+msgid "See your donations and their status."
+msgstr ""
+
+msgid "See your orders and their status."
+msgstr ""
+
+msgid "Download the files you purchased."
+msgstr ""
+
+msgid "Edit your billing and shipping addresses."
+msgstr ""
+
+msgid "Manage your saved payment methods."
+msgstr ""
+
+msgid "Update your name, email and password."
+msgstr ""
+
+msgid "Donations"
+msgstr ""
+
+msgid "Donation"
+msgstr ""
+
+msgid "Güvenli ödeme"
+msgstr ""
+
+msgid "Güvenli ödeme · %s"
+msgstr ""
+
+msgid "This choice is not available."
+msgstr ""
+
+msgid "The IBAN must be 26 characters starting with “TR”; it was not saved."
+msgstr ""
+
+msgid "The GA4 measurement ID must look like “G-XXXXXXX”; it was not saved."
+msgstr ""
+
+msgid "Enter a colour like #F1F2F4."
+msgstr ""
+
+msgid "Enter a valid email address."
+msgstr ""
+
+msgid "Only users who may add raw code can change this."
+msgstr ""
+
+msgid "Too many logos."
+msgstr ""
+
+msgid "This theme cannot be migrated."
+msgstr ""
+
+msgid "Who sees the public site."
+msgstr ""
+
+msgid "Everyone sees the whole site."
+msgstr ""
+
+msgid "Visitors only see the coming-soon page."
+msgstr ""
+
+msgid "The site is open; store pages show a coming-soon notice (needs WooCommerce)."
+msgstr ""
+
+msgid "Wording of My account, the cart and the mobile menu."
+msgstr ""
+
+msgid "Background decoration of title bands, menus and consent cards."
+msgstr ""
+
+msgid "Dark mode of the public site."
+msgstr ""
+
+msgid "Follows the visitor's device."
+msgstr ""
+
+msgid "Always light."
+msgstr ""
+
+msgid "How archive pages continue."
+msgstr ""
+
+msgid "Cookie banner layout."
+msgstr ""
+
+msgid "How Google Analytics loads."
+msgstr ""
+
+msgid "Google tag in the head, cookie-free until consent (Consent Mode v2)."
+msgstr ""
+
+msgid "Only after the visitor accepts."
+msgstr ""
+
+msgid "Result of a System Check row."
+msgstr ""
+
+msgid "A page or donation type offered in a select."
+msgstr ""
+
+msgid "Post or donation type ID."
+msgstr ""
+
+msgid "Name."
+msgstr ""
+
+msgid "Theme Settings (Appearance › Theme Settings) with what the screen needs around them."
+msgstr ""
+
+msgid "Who sees the site. With WooCommerce this is the same setting as WooCommerce › Settings › Site visibility."
+msgstr ""
+
+msgid "Entire-site coming-soon title; empty uses the translated default."
+msgstr ""
+
+msgid "Entire-site coming-soon message; empty uses the translated default."
+msgstr ""
+
+msgid "Store-notice title; empty uses the default for the site type."
+msgstr ""
+
+msgid "Store-notice message; empty uses the default for the site type."
+msgstr ""
+
+msgid "Default store-notice title for the site type."
+msgstr ""
+
+msgid "Default store-notice message for the site type."
+msgstr ""
+
+msgid "Public contact email shown on the coming-soon page; empty shows none."
+msgstr ""
+
+msgid "Shop or donation wording."
+msgstr ""
+
+msgid "Background decoration."
+msgstr ""
+
+msgid "Table header colour (#RRGGBB); empty uses the style colour."
+msgstr ""
+
+msgid "News archive introduction; empty uses the translated default."
+msgstr ""
+
+msgid "Scroll reveal animations."
+msgstr ""
+
+msgid "Archive pagination."
+msgstr ""
+
+msgid "Show the active project card under the home page slider."
+msgstr ""
+
+msgid "Donation type whose progress the card shows; 0 picks the first open type with a goal."
+msgstr ""
+
+msgid "Show the cookie banner on the first visit."
+msgstr ""
+
+msgid "Banner title."
+msgstr ""
+
+msgid "Banner text; links allowed."
+msgstr ""
+
+msgid "Accept button label."
+msgstr ""
+
+msgid "Necessary-only button label."
+msgstr ""
+
+msgid "Policy link label."
+msgstr ""
+
+msgid "Cookie policy page ID; 0 finds /cerez-politikasi/."
+msgstr ""
+
+msgid "Banner layout."
+msgstr ""
+
+msgid "Consent version; raising it asks everyone again."
+msgstr ""
+
+msgid "Google Analytics 4 measurement ID (G-XXXXXXX); empty when not set."
+msgstr ""
+
+msgid "Extra code added after consent. Null for users who may not add raw code."
+msgstr ""
+
+msgid "Account holder for Havale/EFT."
+msgstr ""
+
+msgid "IBAN without spaces; empty when not set."
+msgstr ""
+
+msgid "The account the site really shows when it is not this one (Flux Donate / WooCommerce transfer settings win); null when the same."
+msgstr ""
+
+msgid "WooCommerce is active (store-only coming soon needs it)."
+msgstr ""
+
+msgid "The home page campaign card exists (Flux Donate)."
+msgstr ""
+
+msgid "The user may save raw code in consentScripts."
+msgstr ""
+
+msgid "Presets tab of Theme Settings; null without Flux Setup."
+msgstr ""
+
+msgid "Donation types to pick the home page card from (the first 100); empty without Flux Donate."
+msgstr ""
+
+msgid "Theme Settings and the context the Theme Settings screen needs."
+msgstr ""
+
+msgid "Changes Theme Settings. Only the fields you send change; nothing is written when any of them is invalid."
+msgstr ""
+
+msgid "Who sees the site (also updates WooCommerce)."
+msgstr ""
+
+msgid "Entire-site coming-soon title."
+msgstr ""
+
+msgid "Entire-site coming-soon message."
+msgstr ""
+
+msgid "Store-notice title."
+msgstr ""
+
+msgid "Store-notice message."
+msgstr ""
+
+msgid "Public contact email."
+msgstr ""
+
+msgid "Table header colour (#RRGGBB); empty clears it."
+msgstr ""
+
+msgid "News archive introduction."
+msgstr ""
+
+msgid "Show the active project card on the home page."
+msgstr ""
+
+msgid "Donation type ID of the card; 0 = automatic."
+msgstr ""
+
+msgid "Show the cookie banner."
+msgstr ""
+
+msgid "Policy page ID; 0 = automatic."
+msgstr ""
+
+msgid "true asks every visitor again (raises the consent version)."
+msgstr ""
+
+msgid "GA4 measurement ID (G-XXXXXXX); empty turns it off."
+msgstr ""
+
+msgid "Extra code added after consent; needs the unfiltered_html capability."
+msgstr ""
+
+msgid "Account holder."
+msgstr ""
+
+msgid "IBAN (TR + 24 digits); empty clears it."
+msgstr ""
+
+msgid "The settings after the change; null when something was invalid."
+msgstr ""
+
+msgid "A colour of the site palette."
+msgstr ""
+
+msgid "Palette slug (CSS variable --wp--preset--color--<slug>)."
+msgstr ""
+
+msgid "CSS colour value."
+msgstr ""
+
+msgid "A font family of the site."
+msgstr ""
+
+msgid "Font slug (CSS variable --wp--preset--font-family--<slug>)."
+msgstr ""
+
+msgid "CSS font-family value."
+msgstr ""
+
+msgid "Colours, fonts and the dark-mode switch of the public site, for headless front ends and the app."
+msgstr ""
+
+msgid "Colours: Site Editor changes over theme.json over WordPress defaults."
+msgstr ""
+
+msgid "Font families; empty when the theme declares none."
+msgstr ""
+
+msgid "The site follows the visitor's dark mode (false = always light)."
+msgstr ""
+
+msgid "Table header colour (#RRGGBB); empty uses the palette colour \"table-head\"."
+msgstr ""
+
+msgid "Public design tokens of the site (palette, fonts, dark mode)."
+msgstr ""
+
+msgid "A payment or trust logo shown in the footer."
+msgstr ""
+
+msgid "Built-in key (iyzico …) or a:<attachment ID>."
+msgstr ""
+
+msgid "Image URL."
+msgstr ""
+
+msgid "Shown in a white box on a dark footer."
+msgstr ""
+
+msgid "The footer payment logos."
+msgstr ""
+
+msgid "The list is automatic (iyzico band and the logos of enabled virtual POS plugins), not hand-picked."
+msgstr ""
+
+msgid "Logos the footer shows, in order."
+msgstr ""
+
+msgid "Logos the theme and plugins provide."
+msgstr ""
+
+msgid "What the automatic list shows (the iyzico band and the logos of enabled virtual POS plugins)."
+msgstr ""
+
+msgid "Footer payment logos and the ones that can be added."
+msgstr ""
+
+msgid "Hand-picks the footer payment logos, or goes back to the automatic list."
+msgstr ""
+
+msgid "Logo keys in order (built-in keys and a:<attachment ID>). Unknown keys are dropped."
+msgstr ""
+
+msgid "true returns to the automatic list; keys are then ignored."
+msgstr ""
+
+msgid "The logos after the change."
+msgstr ""
+
+msgid "One row of the System Check."
+msgstr ""
+
+msgid "Check ID."
+msgstr ""
+
+msgid "Package code; \"theme\" or empty for the theme."
+msgstr ""
+
+msgid "Readable package name; null for the theme."
+msgstr ""
+
+msgid "Group title."
+msgstr ""
+
+msgid "What is checked."
+msgstr ""
+
+msgid "Result."
+msgstr ""
+
+msgid "What was found; may be empty."
+msgstr ""
+
+msgid "Page that fixes it; null when there is none."
+msgstr ""
+
+msgid "Button label for actionUrl; null for the default."
+msgstr ""
+
+msgid "A fix applied through Flux AI / MCP."
+msgstr ""
+
+msgid "When."
+msgstr ""
+
+msgid "User login."
+msgstr ""
+
+msgid "The fix."
+msgstr ""
+
+msgid "Value sent; empty when none."
+msgstr ""
+
+msgid "Value before."
+msgstr ""
+
+msgid "Value after."
+msgstr ""
+
+msgid "The fix worked."
+msgstr ""
+
+msgid "Result message."
+msgstr ""
+
+msgid "The System Check: every plugin's checks plus the recent AI fixes. Run when asked."
+msgstr ""
+
+msgid "When the checks ran."
+msgstr ""
+
+msgid "Rows in group order, problems first inside a group."
+msgstr ""
+
+msgid "Flux SEO & MCP keeps a fix log."
+msgstr ""
+
+msgid "The last 20 fixes made through MCP, newest first."
+msgstr ""
+
+msgid "Runs the System Check."
+msgstr ""
+
+msgid "A previous theme whose settings, templates and styles can be copied to FluxWP."
+msgstr ""
+
+msgid "Theme folder name."
+msgstr ""
+
+msgid "Last time it was migrated; null when never."
+msgstr ""
+
+msgid "Previous themes that have data to copy (usually none)."
+msgstr ""
+
+msgid "Copies the previous theme's settings, templates, parts and styles to this theme. The previous theme is not changed; same-named records here are not overwritten. Safe to repeat."
+msgstr ""
+
+msgid "Previous theme folder name (flxThemeMigrationSources.stylesheet)."
+msgstr ""
+
+msgid "What was done."
+msgstr ""
+
+msgid "%s. Choose 8.1 or later under Hostinger › PHP Configuration."
 msgstr ""
 
 msgid "1. Send your donation"
@@ -44,9 +1253,6 @@ msgid "2. Your sapling is planted"
 msgstr ""
 
 msgid "3. Get your certificate"
-msgstr ""
-
-msgid "Update your name, email and password."
 msgstr ""
 
 msgid "A sapling"
@@ -73,25 +1279,7 @@ msgstr ""
 msgid "Recipient name"
 msgstr ""
 
-msgid "Home"
-msgstr ""
-
-msgid "Search"
-msgstr ""
-
 msgid "The page you are looking for may have been moved or removed. You can search or return to the home page."
-msgstr ""
-
-msgid "Search engines"
-msgstr ""
-
-msgid "Open"
-msgstr ""
-
-msgid "On, but no Cookie Policy page is linked."
-msgstr ""
-
-msgid "On, linked to the Cookie Policy page."
 msgstr ""
 
 msgid "Reference"
@@ -115,46 +1303,10 @@ msgstr ""
 msgid "In the Press"
 msgstr ""
 
-msgid "Donation"
-msgstr ""
-
-msgid "Donate"
-msgstr ""
-
-msgid "Donation page"
-msgstr ""
-
 msgid "Sapling packages and card donations on the donation page"
 msgstr ""
 
-msgid "Donation types, sapling packages, card donations and donors"
-msgstr ""
-
-msgid "Donation and contact forms"
-msgstr ""
-
-msgid "Your donation summary is below. The details have also been sent to your email address."
-msgstr ""
-
-msgid "Donation, KVKK, Cookie Policy, My Account, Cart and Checkout are published."
-msgstr ""
-
 msgid "Where are my donated saplings planted?"
-msgstr ""
-
-msgid "Donations"
-msgstr ""
-
-msgid "Back to Donations"
-msgstr ""
-
-msgid "Track your donations and manage your addresses and account details in one place."
-msgstr ""
-
-msgid "See your donations and their status."
-msgstr ""
-
-msgid "Log in to manage your donations, addresses and account details, or create an account in seconds."
 msgstr ""
 
 msgid "Your donation becomes a sapling at the"
@@ -164,15 +1316,6 @@ msgid "With your donation we plant new saplings and protect green spaces."
 msgstr ""
 
 msgid "Can I donate a sapling on behalf of someone else?"
-msgstr ""
-
-msgid "Has not run for longer than expected (should run every 5 minutes)."
-msgstr ""
-
-msgid "Info"
-msgstr ""
-
-msgid "Enter your details and complete your order securely."
 msgstr ""
 
 msgid "One sapling is 150 TL. Just write “fidan bağışı” and your name in the description. 🌿"
@@ -193,9 +1336,6 @@ msgstr ""
 msgid "Curious how a sapling is planted? See our"
 msgstr ""
 
-msgid "A page cache is active (WP_CACHE)."
-msgstr ""
-
 msgid "Together"
 msgstr ""
 
@@ -214,9 +1354,6 @@ msgstr ""
 msgid "Contact Us"
 msgstr ""
 
-msgid "Get in touch"
-msgstr ""
-
 msgid "Follow Us"
 msgstr ""
 
@@ -233,15 +1370,6 @@ msgid "The text of this page will be replaced with the association’s approved 
 msgstr ""
 
 msgid "Join Our Newsletter"
-msgstr ""
-
-msgid "Cron has not run for hours. Check the cron job and command path in Hostinger."
-msgstr ""
-
-msgid "DISABLE_WP_CRON is on: tasks run from the server cron and do not slow down visitor requests."
-msgstr ""
-
-msgid "Show more"
 msgstr ""
 
 msgid "With more green space, cleaner air and stronger communities, healthy and liveable cities in harmony with nature are possible. Starting today, we work together for tomorrow."
@@ -283,18 +1411,6 @@ msgstr ""
 msgid "Ongoing Projects"
 msgstr ""
 
-msgid "Read more"
-msgstr ""
-
-msgid "Language Switcher"
-msgstr ""
-
-msgid "Language selection"
-msgstr ""
-
-msgid "Other"
-msgstr ""
-
 msgid "Other events"
 msgstr ""
 
@@ -322,49 +1438,10 @@ msgstr ""
 msgid "Announcements"
 msgstr ""
 
-msgid "Plain (?p=123) addresses are used. Choose \"Post name\"."
-msgstr ""
-
-msgid "Fix"
-msgstr ""
-
-msgid "Email"
-msgstr ""
-
-msgid "Email delivery"
-msgstr ""
-
 msgid "Email and phone"
 msgstr ""
 
-msgid "Team task tracking"
-msgstr ""
-
-msgid "Search plugins"
-msgstr ""
-
-msgid "Upload plugin"
-msgstr ""
-
-msgid "Plugins"
-msgstr ""
-
-msgid "Plugins, scheduled tasks and key settings. Red rows mean part of the site is not working; yellow rows are recommended fixes. The page re-checks every time it opens."
-msgstr ""
-
-msgid "See the status of plugins, cron and settings on the %s screen."
-msgstr ""
-
 msgid "Ecosystem protection"
-msgstr ""
-
-msgid "Missing or not published: %s."
-msgstr ""
-
-msgid "Active, v%1$s. This theme was tested with v%2$s or later; please update."
-msgstr ""
-
-msgid "Active, v%s."
 msgstr ""
 
 msgid "Event"
@@ -392,9 +1469,6 @@ msgid "Education"
 msgstr ""
 
 msgid "Our Education Events"
-msgstr ""
-
-msgid "Edit your billing and shipping addresses."
 msgstr ""
 
 msgid "Sapling"
@@ -445,12 +1519,6 @@ msgstr ""
 msgid "Children waving at a tree planting site"
 msgstr ""
 
-msgid "Sapling certificates and events"
-msgstr ""
-
-msgid "So we can also send your donation and order updates via WhatsApp."
-msgstr ""
-
 msgid "Where are the saplings planted?"
 msgstr ""
 
@@ -463,34 +1531,7 @@ msgstr ""
 msgid "Place the sapling upright, with the root collar level with the soil."
 msgstr ""
 
-msgid "Forms"
-msgstr ""
-
-msgid "No GA4 measurement ID entered."
-msgstr ""
-
-msgid "Overdue tasks"
-msgstr ""
-
 msgid "Head Office"
-msgstr ""
-
-msgid "General settings"
-msgstr ""
-
-msgid "Required"
-msgstr ""
-
-msgid "Required pages"
-msgstr ""
-
-msgid "Server cron"
-msgstr ""
-
-msgid "Log In"
-msgstr ""
-
-msgid "Log in"
 msgstr ""
 
 msgid "Privacy Agreement"
@@ -511,16 +1552,7 @@ msgstr ""
 msgid "We are here for volunteering, donations, corporate partnerships and all your questions."
 msgstr ""
 
-msgid "Tasks only run when visitors arrive (WP-Cron). With little traffic the certificate queue and recurring donation renewals are delayed. Add this command under Hostinger › Advanced › Cron Jobs, every 5 minutes: %s Then add define( 'DISABLE_WP_CRON', true ); to wp-config.php."
-msgstr ""
-
-msgid "Update"
-msgstr ""
-
 msgid "Secure payment · iyzico"
-msgstr ""
-
-msgid "Security"
 msgstr ""
 
 msgid "News"
@@ -529,16 +1561,7 @@ msgstr ""
 msgid "About Us"
 msgstr ""
 
-msgid "Error"
-msgstr ""
-
 msgid "Donate by Bank Transfer"
-msgstr ""
-
-msgid "Ready-made updates"
-msgstr ""
-
-msgid "No fixes have been made through MCP yet."
 msgstr ""
 
 msgid "No content found yet."
@@ -547,43 +1570,7 @@ msgstr ""
 msgid "No content yet."
 msgstr ""
 
-msgid "No record yet. It appears after the first cron run following the theme update; reload this page in a few minutes."
-msgstr ""
-
-msgid "All have been applied at least once."
-msgstr ""
-
 msgid "Every sapling is recorded with a certificate issued in your name or in the name of someone you love."
-msgstr ""
-
-msgid "All good"
-msgstr ""
-
-msgid "My account"
-msgstr ""
-
-msgid "Registration is enabled on My Account."
-msgstr ""
-
-msgid "Registration is disabled on My Account; only the Login tab is shown."
-msgstr ""
-
-msgid "My Account, cart and checkout pages"
-msgstr ""
-
-msgid "Have an account? Log in to track your donations from your account."
-msgstr ""
-
-msgid "Account registration"
-msgstr ""
-
-msgid "Account and Cart"
-msgstr ""
-
-msgid "%1$d updates have never been applied. A fresh install may not need them; apply one if the related page looks outdated. List: %2$s"
-msgstr ""
-
-msgid "Welcome"
 msgstr ""
 
 msgid "Quick Links"
@@ -592,22 +1579,10 @@ msgstr ""
 msgid "Privacy Notice"
 msgstr ""
 
-msgid "KVKK Privacy Notice"
-msgstr ""
-
 msgid "Accept"
 msgstr ""
 
-msgid "Permalinks"
-msgstr ""
-
 msgid "Campaign"
-msgstr ""
-
-msgid "Off. If analytics cookies are used, KVKK requires it to be on."
-msgstr ""
-
-msgid "Close"
 msgstr ""
 
 msgid "Online card donations for saplings are coming soon."
@@ -625,43 +1600,10 @@ msgstr ""
 msgid "Ways to Contribute"
 msgstr ""
 
-msgid "Enable registration"
-msgstr ""
-
-msgid "Sign Up"
-msgstr ""
-
-msgid "Sign up"
-msgstr ""
-
-msgid "Manage your saved payment methods."
-msgstr ""
-
 msgid "Our Library"
 msgstr ""
 
 msgid "People Trained"
-msgstr ""
-
-msgid "Checked: %s"
-msgstr ""
-
-msgid "Copy"
-msgstr ""
-
-msgid "Copied ✓"
-msgstr ""
-
-msgid "User"
-msgstr ""
-
-msgid "Refresh rules"
-msgstr ""
-
-msgid "Installed (v%s) but not active."
-msgstr ""
-
-msgid "Not installed."
 msgstr ""
 
 msgid "Can our company or school make a bulk sapling donation?"
@@ -676,12 +1618,6 @@ msgstr ""
 msgid "Short video"
 msgstr ""
 
-msgid "LiteSpeed Cache is active, but image lazy load is on. The theme already lazy-loads images; with both on, images appear blank on every reload. LiteSpeed Cache › Page Optimization › Media › Lazy Load: Off."
-msgstr ""
-
-msgid "LiteSpeed Cache is active."
-msgstr ""
-
 msgid "Articles"
 msgstr ""
 
@@ -691,34 +1627,16 @@ msgstr ""
 msgid "Brand Partnerships"
 msgstr ""
 
-msgid "Shop"
-msgstr ""
-
-msgid "Hi %s, your donations are saved to your account."
-msgstr ""
-
-msgid "Hello, %s"
-msgstr ""
-
 msgid "Distance Sales Agreement"
 msgstr ""
 
 msgid "How Can You Contribute?"
 msgstr ""
 
-msgid "What are you looking for?"
-msgstr ""
-
 msgid "At events with schools and families, children learn how to plant a sapling and protect the forest."
 msgstr ""
 
 msgid "We meet schools, organisations and volunteers in the field and turn every planting day into a festival."
-msgstr ""
-
-msgid "Reading settings"
-msgstr ""
-
-msgid "Confirmation"
 msgstr ""
 
 msgid "Online credit and debit card donations are coming very soon. For now you can donate by bank transfer."
@@ -736,13 +1654,7 @@ msgstr ""
 msgid "A ranger hanging a birdhouse on a tree with children"
 msgstr ""
 
-msgid "Currency"
-msgstr ""
-
 msgid "Write the policy text here."
-msgstr ""
-
-msgid "Popular:"
 msgstr ""
 
 msgid "Project ·"
@@ -766,33 +1678,6 @@ msgstr ""
 msgid "View project"
 msgstr ""
 
-msgid "SEO, sitemap, schema and browser cache"
-msgstr ""
-
-msgid "No SMTP plugin. Certificate and donation emails may land in spam; connect the association mailbox with WP Mail SMTP or FluentSMTP."
-msgstr ""
-
-msgid "Timezone"
-msgstr ""
-
-msgid "Download the files you purchased."
-msgstr ""
-
-msgid "Page cache"
-msgstr ""
-
-msgid "No page cache. Install and enable LiteSpeed Cache on Hostinger; the site gets noticeably faster."
-msgstr ""
-
-msgid "Pages and theme"
-msgstr ""
-
-msgid "Cart"
-msgstr ""
-
-msgid "Review your cart; every purchase is a contribution to nature."
-msgstr ""
-
 msgid "Plant a sapling in the name of your loved ones and let’s give the future room to breathe."
 msgstr ""
 
@@ -802,55 +1687,13 @@ msgstr ""
 msgid "Donate a sapling for a loved one"
 msgstr ""
 
-msgid "Order steps"
-msgstr ""
-
-msgid "System Check"
-msgstr ""
-
-msgid "The site is visible to Google."
-msgstr ""
-
-msgid "Site Setup"
-msgstr ""
-
-msgid "Site address uses http. Enable SSL and switch the address to https for payments and login."
-msgstr ""
-
-msgid "Site address uses https."
-msgstr ""
-
-msgid "Site settings"
-msgstr ""
-
-msgid "Site setup"
-msgstr ""
-
-msgid "Search the site"
-msgstr ""
-
 msgid "We use essential cookies to make our site work, and analytics cookies to understand visits only if you consent."
 msgstr ""
 
 msgid "Latest News"
 msgstr ""
 
-msgid "Recent donations"
-msgstr ""
-
-msgid "Recent fixes (AI / MCP)"
-msgstr ""
-
-msgid "Last run"
-msgstr ""
-
 msgid "Autumn"
-msgstr ""
-
-msgid "Next"
-msgstr ""
-
-msgid "Result"
 msgstr ""
 
 msgid "TRY IBAN"
@@ -859,52 +1702,19 @@ msgstr ""
 msgid "TR00 0000 0000 0000 0000 0000 00"
 msgstr ""
 
-msgid "OK"
-msgstr ""
-
 msgid "Completed Projects"
 msgstr ""
 
 msgid "One-time and Regular Donations"
 msgstr ""
 
-msgid "Phone"
-msgstr ""
-
-msgid "Add phone"
-msgstr ""
-
-msgid "Add your phone number to also receive updates via WhatsApp."
-msgstr ""
-
-msgid "The phone number looks invalid. Example: +90 532 123 45 67"
-msgstr ""
-
-msgid "Phone donations and call logs"
-msgstr ""
-
-msgid "Theme"
-msgstr ""
-
-msgid "Theme Settings"
-msgstr ""
-
 msgid "Our Core Goals"
-msgstr ""
-
-msgid "Basic setup was never run; pages and menu may be missing."
-msgstr ""
-
-msgid "Basic setup has been run."
 msgstr ""
 
 msgid "Clean-up Drives"
 msgstr ""
 
 msgid "Delivery and Refund Policy"
-msgstr ""
-
-msgid "Thank you, your donation has been received"
 msgstr ""
 
 msgid "From Our Community"
@@ -925,19 +1735,7 @@ msgstr ""
 msgid "All Our Work"
 msgstr ""
 
-msgid "View all"
-msgstr ""
-
 msgid "For Türkiye,"
-msgstr ""
-
-msgid "Warning"
-msgstr ""
-
-msgid "%1$d tasks are more than 15 minutes overdue: %2$s"
-msgstr ""
-
-msgid "No overdue tasks."
 msgstr ""
 
 msgid "Tax Exemption"
@@ -946,19 +1744,7 @@ msgstr ""
 msgid "Video"
 msgstr ""
 
-msgid "Play video"
-msgstr ""
-
 msgid "WooCommerce account icon and mini cart. Hidden when WooCommerce is inactive."
-msgstr ""
-
-msgid "WooCommerce currency is %s. Choose Turkish lira."
-msgstr ""
-
-msgid "Coming soon"
-msgstr ""
-
-msgid "Show only these (click again for all)"
 msgstr ""
 
 msgid "Essential only"
@@ -967,31 +1753,10 @@ msgstr ""
 msgid "Publications"
 msgstr ""
 
-msgid "Post name structure; /projeler/ and /etkinlikler/ addresses are registered."
-msgstr ""
-
 msgid "Add news from the Posts menu; they are listed here automatically."
 msgstr ""
 
-msgid "Check again"
-msgstr ""
-
 msgid "Green Library"
-msgstr ""
-
-msgid "Watch on YouTube"
-msgstr ""
-
-msgid "Loading…"
-msgstr ""
-
-msgid "Time"
-msgstr ""
-
-msgid "Scheduled tasks (cron)"
-msgstr ""
-
-msgid "Has not run for a while because traffic is low."
 msgstr ""
 
 msgid "has begun"
@@ -1036,9 +1801,6 @@ msgstr ""
 msgid "."
 msgstr ""
 
-msgid "No iyzico plugin installed. That is fine: Flux Donate reads the iyzico keys from its own Payments settings."
-msgstr ""
-
 msgid "Pay with iyzico, Mastercard, Visa, American Express, Troy"
 msgstr ""
 
@@ -1051,40 +1813,10 @@ msgstr ""
 msgid "guide and our"
 msgstr ""
 
-msgid "v%s and later add their own checks to this screen."
-msgstr ""
-
-msgid "or"
-msgstr ""
-
 msgid "by our forests"
 msgstr ""
 
 msgid "Our Work"
-msgstr ""
-
-msgid "Cookie Policy"
-msgstr ""
-
-msgid "Cookie banner"
-msgstr ""
-
-msgid "Cookie banner title"
-msgstr ""
-
-msgid "Cookie banner text"
-msgstr ""
-
-msgid "Cookie banner: accept button"
-msgstr ""
-
-msgid "Cookie banner: policy link"
-msgstr ""
-
-msgid "Cookie banner: necessary only button"
-msgstr ""
-
-msgid "Change cookie preferences"
 msgstr ""
 
 msgid "We use cookies"
@@ -1103,21 +1835,6 @@ msgid "Planting a sapling together with children"
 msgstr ""
 
 msgid "Fill the hole with soil and press gently so no air pockets remain."
-msgstr ""
-
-msgid "Log out"
-msgstr ""
-
-msgid "Checkout"
-msgstr ""
-
-msgid "Payments"
-msgstr ""
-
-msgid "Before → After"
-msgstr ""
-
-msgid "Previous"
 msgstr ""
 
 msgid "Featured"
@@ -1142,108 +1859,6 @@ msgid "Our Istanbul Branch and Provincial Office"
 msgstr ""
 
 msgid "Istanbul Branch"
-msgstr ""
-
-msgid "Optional"
-msgstr ""
-
-msgid "General"
-msgstr ""
-
-msgid "Presets"
-msgstr ""
-
-msgid "A preset sets up the site in one step with the organisation profile, plugin settings, colours, header/footer, templates, pages and menus. Changes you make in the panel are never overwritten; updates are applied one by one with your approval."
-msgstr ""
-
-msgid "Appearance"
-msgstr ""
-
-msgid "Site type"
-msgstr ""
-
-msgid "Shop: Orders, Return to shop"
-msgstr ""
-
-msgid "Donation: Donations, Donate button, return to the donation page"
-msgstr ""
-
-msgid "Sets the wording in My account, the cart and the mobile menu."
-msgstr ""
-
-msgid "Save settings"
-msgstr ""
-
-msgid "Log in to manage your orders, addresses and account details, or create an account in seconds."
-msgstr ""
-
-msgid "Track your orders and manage your addresses and account details in one place."
-msgstr ""
-
-msgid "Thank you, your order has been received"
-msgstr ""
-
-msgid "Your order summary is below. The details were also sent to your email address."
-msgstr ""
-
-msgid "Review your cart, then proceed to checkout."
-msgstr ""
-
-msgid "Continue donating"
-msgstr ""
-
-msgid "Continue shopping"
-msgstr ""
-
-msgid "Go to the shop"
-msgstr ""
-
-msgid "See your orders and their status."
-msgstr ""
-
-msgid "Recent orders"
-msgstr ""
-
-msgid "Search products, posts, pages…"
-msgstr ""
-
-msgid "Post name structure."
-msgstr ""
-
-msgid "My account, Cart and Checkout are published."
-msgstr ""
-
-msgid "Theme settings copied (%d fields)."
-msgstr ""
-
-msgid "Additional CSS copied."
-msgstr ""
-
-msgid "Site Editor records copied (%d templates, parts or styles)."
-msgstr ""
-
-msgid "There was nothing new to migrate."
-msgstr ""
-
-msgid "You are not allowed to do this."
-msgstr ""
-
-msgid "Migrated from the previous theme."
-msgstr ""
-
-msgid "Migrate from the previous theme"
-msgstr ""
-
-msgid "Copies the previous theme's settings (logo, menus, additional CSS) and the templates, parts and styles you saved in the Site Editor to this theme. The previous theme is left untouched; records with the same name in this theme are not overwritten."
-msgstr ""
-
-msgid "Migrate from %s"
-msgstr ""
-
-msgid "Migrate from %1$s again (last: %2$s)"
-msgstr ""
-
-msgid "FluxWP"
 msgstr ""
 
 msgid "New season"
@@ -1300,258 +1915,56 @@ msgstr ""
 msgid "Blog"
 msgstr ""
 
-msgctxt "context_dd7eb423550c"
-msgid "Primary"
+msgid "context_dd7eb423550cPrimary"
 msgstr ""
 
-msgctxt "context_dd7eb423550c"
-msgid "Primary dark"
+msgid "context_dd7eb423550cPrimary dark"
 msgstr ""
 
-msgctxt "context_dd7eb423550c"
-msgid "Accent"
+msgid "context_dd7eb423550cAccent"
 msgstr ""
 
-msgctxt "context_dd7eb423550c"
-msgid "Heading"
+msgid "context_dd7eb423550cHeading"
 msgstr ""
 
-msgctxt "context_dd7eb423550c"
-msgid "Text"
+msgid "context_dd7eb423550cText"
 msgstr ""
 
-msgctxt "context_dd7eb423550c"
-msgid "Light background"
+msgid "context_dd7eb423550cLight background"
 msgstr ""
 
-msgctxt "context_dd7eb423550c"
-msgid "Lighter background"
+msgid "context_dd7eb423550cLighter background"
 msgstr ""
 
-msgctxt "context_dd7eb423550c"
-msgid "Border"
+msgid "context_dd7eb423550cBorder"
 msgstr ""
 
-msgctxt "context_dd7eb423550c"
-msgid "White"
+msgid "context_dd7eb423550cWhite"
 msgstr ""
 
-msgctxt "context_5a4407eb92ce"
-msgid "Indigo"
+msgid "context_5a4407eb92ceIndigo"
 msgstr ""
 
-msgctxt "context_5a4407eb92ce"
-msgid "Charcoal"
+msgid "context_5a4407eb92ceCharcoal"
 msgstr ""
 
-msgctxt "context_5a4407eb92ce"
-msgid "Blue"
+msgid "context_5a4407eb92ceBlue"
 msgstr ""
 
-msgctxt "context_5a4407eb92ce"
-msgid "Forest"
+msgid "context_5a4407eb92ceForest"
 msgstr ""
 
-msgctxt "context_5a4407eb92ce"
-msgid "Petrol"
+msgid "context_5a4407eb92cePetrol"
 msgstr ""
 
-msgctxt "context_dd7eb423550c"
-msgid "Page background"
-msgstr ""
-
-msgid "Store dashboard, customers, sales report and bank transfer with receipt"
-msgstr ""
-
-msgid "Contact forms"
-msgstr ""
-
-msgid "WhatsApp chats and call logs"
-msgstr ""
-
-msgid "Tasks run only when visitors arrive (WP-Cron). With low traffic, emails and scheduled jobs are delayed. Add this command every 5 minutes under Hostinger › Advanced › Cron Jobs: %s Then add define( 'DISABLE_WP_CRON', true ); to wp-config.php."
-msgstr ""
-
-msgid "%s. Choose Istanbul so order, form and email times are correct."
-msgstr ""
-
-msgid "No SMTP plugin. Site emails may land in spam; connect your organization's email with WP Mail SMTP or FluentSMTP."
-msgstr ""
-
-msgid "Pay with iyzico · Mastercard · Visa · American Express · Troy"
-msgstr ""
-
-msgid "Payment methods"
-msgstr ""
-
-msgid "Remove"
-msgstr ""
-
-msgid "Move left"
-msgstr ""
-
-msgid "Payment logos"
-msgstr ""
-
-msgid "Add logos"
-msgstr ""
-
-msgid "No logos: the footer shows no payment logos."
-msgstr ""
-
-msgid "Logos that virtual POS providers (iyzico, EsnekPOS, etc.) want on the site. Shown in the footer; add them anywhere else with the [flx_odeme_logolari] shortcode."
-msgstr ""
-
-msgid "Logos"
-msgstr ""
-
-msgid "Upload logo"
-msgstr ""
-
-msgid "Built-in logo"
-msgstr ""
-
-msgid "Add a built-in logo…"
-msgstr ""
-
-msgid "Back to automatic"
-msgstr ""
-
-msgid "Automatic now: the iyzico band and the logos of enabled virtual POS plugins. Once you add or remove a logo, the list is your own choice."
-msgstr ""
-
-msgid "Hand-picked list. \"Back to automatic\" returns to the iyzico band and the logos of enabled virtual POS plugins."
-msgstr ""
-
-msgid "SVG or transparent PNG is best; colored logos are shown in a white box on a dark footer."
-msgstr ""
-
-msgid "Background pattern"
-msgstr ""
-
-msgid "Leaves"
-msgstr ""
-
-msgid "None"
-msgstr ""
-
-msgid "News introduction"
-msgstr ""
-
-msgid "Latest news, updates and articles."
-msgstr ""
-
-msgid "%s. Hostinger › PHP Yapılandırması'ndan 8.2 veya üstünü seçin."
-msgstr ""
-
-msgid "Dots"
-msgstr ""
-
-msgid "Site visibility"
-msgstr ""
-
-msgid "Visibility"
+msgid "context_dd7eb423550cPage background"
 msgstr ""
 
 msgid "Live / follow WooCommerce"
 msgstr ""
 
-msgid "Coming soon: entire site"
-msgstr ""
-
 msgid "Entire-site mode hides public pages from visitors, including signed-in customers. Administrators and shop managers can keep working. Automatic mode keeps WooCommerce visibility settings and private preview links unchanged."
 msgstr ""
 
-msgid "Coming-soon title"
-msgstr ""
-
-msgid "Coming-soon message"
-msgstr ""
-
-msgid "Something good is on its way."
-msgstr ""
-
 msgid "We're putting the finishing touches on our website. Please check back soon."
-msgstr ""
-
-msgid "Leave the title and message empty to use the translated defaults."
-msgstr ""
-
-msgid "Public contact email"
-msgstr ""
-
-msgid "Optional. Only this address is shown; the administrator email stays private."
-msgstr ""
-
-msgid "Site coming soon"
-msgstr ""
-
-msgid "Staff sign in"
-msgstr ""
-
-msgid "Table header background"
-msgstr ""
-
-msgid "Header cells of tables in pages, Wiki and WooCommerce. Pick a tone slightly darker than the page background. Leave empty to use the style colour."
-msgstr ""
-
-msgid "Live"
-msgstr ""
-
-msgid "Everyone can see the whole site."
-msgstr ""
-
-msgid "Visitors, including signed-in customers, only see the coming-soon page."
-msgstr ""
-
-msgid "Coming soon: store pages only"
-msgstr ""
-
-msgid "The site stays open. Shop, product, cart and checkout pages show a coming-soon notice inside the normal header and footer."
-msgstr ""
-
-msgid "Requires WooCommerce."
-msgstr ""
-
-msgid "Administrators, shop managers and editors keep seeing the site. This is the same setting as WooCommerce › Settings › Site visibility; changing either one updates the other, and WooCommerce private preview links keep working."
-msgstr ""
-
-msgid "Administrators and editors keep seeing the site."
-msgstr ""
-
-msgid "Store notice title"
-msgstr ""
-
-msgid "Store notice message"
-msgstr ""
-
-msgid "Leave the title and message empty to use the translated defaults. The wording follows the site type (shop or donations)."
-msgstr ""
-
-msgid "Store coming soon"
-msgstr ""
-
-msgid "Online donations open soon."
-msgstr ""
-
-msgid "Our online store opens soon."
-msgstr ""
-
-msgid "Donations can't be completed online just yet. You can keep exploring the rest of the site in the meantime."
-msgstr ""
-
-msgid "Orders can't be placed online just yet. You can keep exploring the rest of the site in the meantime."
-msgstr ""
-
-msgid "Back to homepage"
-msgstr ""
-
-#. translators: %s: user display name
-msgid "Signed in as %s"
-msgstr ""
-
-msgid "Your account does not have access to the site yet. If you are on the team, ask a site administrator to grant your account access."
-msgstr ""
-
-msgid "Sign out"
 msgstr ""

@@ -1,0 +1,12 @@
+mutation FlxBlocksSettingsUpdate($input: FlxBlocksSettingsUpdateInput!) {
+  flxBlocksSettingsUpdate(input: $input) {
+    settings {
+      ...FlxBlocksSettingsFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

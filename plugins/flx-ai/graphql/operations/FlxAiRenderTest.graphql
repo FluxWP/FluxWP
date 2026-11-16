@@ -1,0 +1,14 @@
+mutation FlxAiRenderTest($input: FlxAiRenderTestInput!) {
+  flxAiRenderTest(input: $input) {
+    result {
+      via
+      ms
+      image
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

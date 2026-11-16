@@ -1,0 +1,6 @@
+# The shopper's cart (Cart-Token or WooCommerce session cookie). Never cached.
+query FlxCart {
+  flxCart {
+    ...FlxCartFields
+  }
+}

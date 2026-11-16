@@ -2,9 +2,10 @@
 /**
  * Plugin Name:       Flux Admin
  * Description:       Yönetim panelini baştan tasarlar: rol bazlı düzenlenebilir sol menü, mobil alt bar ve yan panel, WhatsApp / Görevler geçişi, düzenlenebilir Başlangıç modülleri, otomatik açık/koyu tema, komut paleti (Ctrl+K), canlı sayaçlar ve PWA (ana ekrana ekle).
- * Version:           1.7.27
- * Requires at least: 6.4
- * Requires PHP:      7.4
+ * Version:           1.8.0
+ * Requires at least: 6.5
+ * Requires PHP:      8.1
+ * Requires Plugins:  flx-graphql
  * Author:            FluxWP
  * Text Domain:       flx-admin
  * Domain Path:       /languages
@@ -16,11 +17,12 @@ defined( 'ABSPATH' ) || exit;
 require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback; no Flux Lang dependency.
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
-define( 'FLXA_VERSION', '1.7.27' );
+define( 'FLXA_VERSION', '1.8.0' );
 define( 'FLXA_FILE', __FILE__ );
 define( 'FLXA_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXA_URL', plugin_dir_url( __FILE__ ) );
 
+require_once FLXA_DIR . 'includes/services/class-flxa-util.php';
 require_once FLXA_DIR . 'includes/helpers.php';
 require_once FLXA_DIR . 'includes/icons.php';
 require_once FLXA_DIR . 'includes/menu.php';
@@ -36,6 +38,33 @@ require_once FLXA_DIR . 'includes/login.php';
 require_once FLXA_DIR . 'includes/system-checks.php';
 require_once FLXA_DIR . 'includes/list.php';
 require_once FLXA_DIR . 'includes/page-head.php';
+require_once FLXA_DIR . 'includes/services/class-flxa-settings-service.php';
+require_once FLXA_DIR . 'includes/services/class-flxa-menu-service.php';
+require_once FLXA_DIR . 'includes/services/class-flxa-caps-service.php';
+require_once FLXA_DIR . 'includes/services/class-flxa-user-service.php';
+require_once FLXA_DIR . 'includes/app.php';
+
+/*
+ * GraphQL (Flux GraphQL): schema only inside a GraphQL request; the persisted operations the Admin theme
+ * screen sends. Without Flux GraphQL (0.2.0+) the schema is left out and the classic page keeps working.
+ */
+add_action(
+	'flx_gql_register',
+	static function () {
+		if ( ! function_exists( 'flx_gql_all_caps' ) ) {
+			return;
+		}
+		require_once FLXA_DIR . 'includes/graphql/schema.php';
+	}
+);
+add_filter(
+	'flx_gql_persisted_manifests',
+	static function ( $m ) {
+		$m              = is_array( $m ) ? $m : array();
+		$m['flx-admin'] = FLXA_DIR . 'graphql/persisted-queries.json';
+		return $m;
+	}
+);
 
 if ( is_admin() ) {
 	require_once FLXA_DIR . 'includes/settings-page.php';

@@ -1,0 +1,21 @@
+query FlxCrmSegmentEditor {
+  flxSegmentEditor {
+    fields {
+      key
+      label
+      type
+      ops
+    }
+    ops {
+      key
+      label
+    }
+    options {
+      type
+      values {
+        value
+        label
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+mutation FlxSpeedSettingsSave($input: FlxSpeedSettingsSaveInput!) {
+  flxSpeedSettingsSave(input: $input) {
+    settings {
+      ...FlxSpeedSettingsFields
+    }
+    loginChanged
+    loginRemoved
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

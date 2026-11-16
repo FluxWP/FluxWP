@@ -61,7 +61,11 @@ function flxa_caps_known() {
 	);
 }
 
-/** Tablodaki satırlar: bilinenler (sitede var olanlar) + FluxWP eklentilerinin yetkileri otomatik. */
+/**
+ * Tablodaki satırlar: bilinenler (sitede var olanlar) + FluxWP eklentilerinin yetkileri otomatik.
+ *
+ * @return array<string, array{label: string, caps: array<string, string>}>
+ */
 function flxa_caps_rows() {
 	$all = array();
 	foreach ( wp_roles()->roles as $r ) {
@@ -145,37 +149,21 @@ function flxa_caps_render() {
 	echo '<script>(function(){var f=document.querySelector("[data-flxa-caps-filter]");if(!f)return;f.addEventListener("input",function(){var q=f.value.toLowerCase().trim();document.querySelectorAll(".flxa-caps tr[data-cap]").forEach(function(tr){tr.hidden=q&&tr.getAttribute("data-cap").indexOf(q)<0;});});})();</script>';
 }
 
-/** Kaydet: yalnız tabloda gösterilen yetkiler, yönetici dışındaki roller. */
+/** Kaydet: yalnız tabloda gösterilen yetkiler, yönetici dışındaki roller (FLXA_Caps_Service). */
 function flxa_caps_save() {
-	$shown = array_filter( array_map( 'sanitize_key', explode( ',', (string) wp_unslash( $_POST['caps_shown'] ?? '' ) ) ) ); // phpcs:ignore WordPress.Security.NonceVerification, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+	$shown = array_values( array_filter( array_map( 'sanitize_key', explode( ',', (string) wp_unslash( $_POST['caps_shown'] ?? '' ) ) ) ) ); // phpcs:ignore WordPress.Security.NonceVerification, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 	$in    = isset( $_POST['caps'] ) && is_array( $_POST['caps'] ) ? wp_unslash( $_POST['caps'] ) : array(); // phpcs:ignore WordPress.Security.NonceVerification, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 	if ( ! $shown ) {
 		return;
 	}
-	if ( ! is_array( get_option( 'flxa_caps_backup' ) ) ) {
-		$b = array( '_time' => time() );
-		foreach ( wp_roles()->roles as $rk => $r ) {
-			$b[ $rk ] = (array) ( $r['capabilities'] ?? array() );
-		}
-		update_option( 'flxa_caps_backup', $b, false );
-	}
-	foreach ( wp_roles()->roles as $rk => $r ) {
-		if ( 'administrator' === $rk ) {
-			continue;
-		}
-		$role = get_role( $rk );
-		if ( ! $role ) {
-			continue;
-		}
+	foreach ( array_keys( wp_roles()->roles ) as $rk ) {
+		$on = array();
 		foreach ( $shown as $cap ) {
-			$want = ! empty( $in[ $rk ][ $cap ] );
-			$has  = ! empty( $role->capabilities[ $cap ] );
-			if ( $want && ! $has ) {
-				$role->add_cap( $cap );
-			} elseif ( ! $want && $has ) {
-				$role->remove_cap( $cap );
+			if ( ! empty( $in[ $rk ][ $cap ] ) ) {
+				$on[] = $cap;
 			}
 		}
+		FLXA_Caps_Service::apply( (string) $rk, $on, $shown );
 	}
 }
 
@@ -184,24 +172,7 @@ function flxa_caps_restore() {
 		wp_die( esc_html__( 'You do not have permission.', 'flx-admin' ), 403 );
 	}
 	check_admin_referer( 'flxa_caps_restore' );
-	$b = get_option( 'flxa_caps_backup' );
-	if ( is_array( $b ) ) {
-		foreach ( $b as $rk => $caps ) {
-			$role = '_time' === $rk ? null : get_role( $rk );
-			if ( ! $role || 'administrator' === $rk ) {
-				continue;
-			}
-			foreach ( array_keys( $role->capabilities ) as $cap ) {
-				if ( ! isset( $caps[ $cap ] ) ) {
-					$role->remove_cap( $cap );
-				}
-			}
-			foreach ( (array) $caps as $cap => $on ) {
-				$role->add_cap( $cap, (bool) $on );
-			}
-		}
-		delete_option( 'flxa_caps_backup' );
-	}
+	FLXA_Caps_Service::restore();
 	wp_safe_redirect( add_query_arg( array( 'tab' => 'caps', 'updated' => 1 ), flxa_settings_url() ) );
 	exit;
 }
