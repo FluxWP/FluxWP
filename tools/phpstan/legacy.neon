@@ -32,6 +32,10 @@ parameters:
   excludePaths:
     analyse:
       - ../../plugins/flx-graphql
+      # Strict folders (phpstan.neon, level max). Analysing them here again flags the runtime
+      # guards strict requires as "always true". Still scanned for symbols.
+      - ../../plugins/*/includes/services
+      - ../../plugins/*/includes/graphql
       - ../../plugins/*/includes/flx-brand
       - ../../themes/*/inc/flx-brand
       - ../../themes/*/includes/flx-brand
@@ -46,7 +50,4 @@ parameters:
       - ../brand/tests
   # Inline @phpstan-ignore comments written for stricter levels would show as unmatched at level 5.
   # Fixed baseline entries are still dropped by regenerating the baseline (CI shows the count).
-  # Same as phpstan.neon: strict folders are analysed here too, and their runtime guards on
-  # PHPDoc-typed values must not be reported as "always true".
-  treatPhpDocTypesAsCertain: false
   reportUnmatchedIgnoredErrors: false
