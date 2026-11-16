@@ -1,5 +1,5 @@
 /* Flux Social › Social Media screen. Built on the --flux-* tokens so it follows the theme, dark mode and the app. */
-.flxsm-app{--bd:var(--flux-border);--mut:var(--flux-text-muted);--ac:var(--flux-primary);--card:var(--flux-surface);display:grid;grid-template-columns:220px minmax(0,1fr);gap:0 24px;color:var(--flux-text);font-size:14px;line-height:1.5;min-height:100%}
+.flxsm-app{--bd:var(--flux-border);--mut:var(--flux-text-muted);--ac:var(--flux-primary);--card:var(--flux-surface);display:grid;grid-template-columns:220px minmax(0,1fr);gap:0 24px;color:var(--flux-text);font-size:14px;line-height:1.5;height:100%;overflow:auto;padding:0 24px;align-content:start}
 .flxsm-app *{box-sizing:border-box}
 .flxsm-app h1{font-size:22px;font-weight:600;margin:0}
 .flxsm-app h2{font-size:16px;font-weight:600;margin:0 0 8px}
