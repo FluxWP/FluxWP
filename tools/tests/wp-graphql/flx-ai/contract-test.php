@@ -55,6 +55,14 @@ $vars = array(
 	'FlxAiApprovals'        => array(),
 	'FlxAiApprovalDecide'   => array( 'input' => array( 'chatId' => 1, 'callId' => 'x', 'approve' => true ) ),
 	'FlxAiChangeDecide'     => array( 'input' => array( 'id' => 1, 'merge' => false ) ),
+	'FlxAiTasks'            => array(),
+	'FlxAiRecipients'       => array( 'search' => 'a' ),
+	'FlxAiTaskSave'         => array( 'input' => array( 'prompt' => 'x' ) ),
+	'FlxAiTaskRun'          => array( 'input' => array( 'id' => 1 ) ),
+	'FlxAiTaskSetActive'    => array( 'input' => array( 'id' => 1, 'active' => false ) ),
+	'FlxAiTaskDelete'       => array( 'input' => array( 'id' => 1 ) ),
+	'FlxAiTaskMarkRead'     => array( 'input' => array( 'id' => 1 ) ),
+	'FlxAiTasksToggle'      => array( 'input' => array( 'enabled' => true ) ),
 );
 foreach ( $vars as $op => $v ) {
 	flxt_same( 'UNAUTHENTICATED', flxt_code( flxai_t_op( $op, $v ) ), "$op: visitor → UNAUTHENTICATED" );
@@ -313,6 +321,75 @@ $r = flxai_t_op( 'FlxAiApprovalDecide', array( 'input' => array( 'chatId' => 1, 
 flxt_same( 'INVALID_INPUT', $r['data']['flxAiApprovalDecide']['errors'][0]['code'] ?? $r['errors'][0]['extensions']['code'] ?? null, 'approval decide: invalid JSON is refused' );
 $r = flxai_t_op( 'FlxAiChangeDecide', array( 'input' => array( 'id' => 999999, 'merge' => false ) ), $admin );
 flxt_same( 'NOT_FOUND', $r['data']['flxAiChangeDecide']['errors'][0]['code'] ?? $r['errors'][0]['extensions']['code'] ?? null, 'change decide: an unknown change request is NOT_FOUND' );
+
+// Scheduled tasks: create, validate, change, pause, run, delete.
+$GLOBALS['wpdb']->query( 'DELETE FROM ' . flxai_table( 'tasks' ) ); // phpcs:ignore
+$code = static function ( array $r, string $field ) {
+	return $r['data'][ $field ]['errors'][0]['code'] ?? $r['errors'][0]['extensions']['code'] ?? null;
+};
+$r = flxai_t_op( 'FlxAiTasks', array(), $admin );
+flxt_same( null, $r['errors'] ?? null, 'tasks: no errors' );
+flxt_same( array(), $r['data']['flxAiTasks']['tasks'] ?? null, 'tasks: none yet' );
+$r = flxai_t_op( 'FlxAiTaskSave', array( 'input' => array( 'prompt' => '   ' ) ), $admin );
+flxt_same( 'INVALID_INPUT', $code( $r, 'flxAiTaskSave' ), 'task save: empty instructions are refused' );
+$r = flxai_t_op( 'FlxAiTaskSave', array( 'input' => array( 'prompt' => 'Summarise donations.', 'schedule' => array( 'freq' => 'once', 'at' => '2001-01-01 10:00' ) ) ), $admin );
+flxt_same( 'INVALID_INPUT', $code( $r, 'flxAiTaskSave' ), 'task save: a one-time task in the past is refused' );
+$r = flxai_t_op( 'FlxAiTaskSave', array( 'input' => array( 'prompt' => 'Summarise donations.', 'skill' => 'no-such-skill' ) ), $admin );
+flxt_same( 'INVALID_INPUT', $code( $r, 'flxAiTaskSave' ), 'task save: an unknown skill is refused' );
+$r = flxai_t_op( 'FlxAiTaskSave', array( 'input' => array(
+	'prompt'   => 'Summarise yesterday’s donations.',
+	'schedule' => array( 'freq' => 'weekly', 'time' => '08:30', 'days' => array( 3, 1, 3, 9 ) ),
+	'notify'   => array( 'mode' => 'important', 'panel' => true, 'to' => array( array( 'kind' => 'email', 'email' => 'ops@example.com', 'channels' => array( 'email' ) ) ) ),
+) ), $admin );
+flxt_same( null, $r['errors'] ?? null, 'task save: no errors' );
+flxt_same( array(), $r['data']['flxAiTaskSave']['errors'] ?? null, 'task save: accepted' );
+$t  = $r['data']['flxAiTaskSave']['task'] ?? array();
+$tid = (int) ( $t['id'] ?? 0 );
+flxt_ok( $tid > 0, 'task save: id returned', $t );
+flxt_same( 'weekly', $t['schedule']['freq'] ?? null, 'task save: frequency' );
+flxt_same( '08:30', $t['schedule']['time'] ?? null, 'task save: time' );
+flxt_same( array( 1, 3 ), $t['schedule']['days'] ?? null, 'task save: weekdays are cleaned and sorted' );
+flxt_same( 'active', $t['status'] ?? null, 'task save: active by default' );
+flxt_ok( ! empty( $t['nextRun']['timestamp'] ), 'task save: next run is planned', $t );
+flxt_same( 'Summarise yesterday’s donations.', $t['title'] ?? null, 'task save: the title comes from the instructions' );
+flxt_same( true, $t['mine'] ?? null, 'task save: owned by the caller' );
+flxt_ok( 'ops@example.com' === ( $t['notify']['to'][0]['email'] ?? '' ), 'task save: recipient kept', $t['notify'] ?? null );
+flxt_ok( flxai_task_get( $tid ) !== null, 'task save: classic reader sees it' );
+
+$r = flxai_t_op( 'FlxAiTaskSave', array( 'input' => array( 'id' => $tid, 'title' => 'Weekly donations' ) ), $admin );
+$t = $r['data']['flxAiTaskSave']['task'] ?? array();
+flxt_same( 'Weekly donations', $t['title'] ?? null, 'task update: title changed' );
+flxt_same( array( 1, 3 ), $t['schedule']['days'] ?? null, 'task update: fields left out keep their value' );
+flxt_same( 'Summarise yesterday’s donations.', $t['prompt'] ?? null, 'task update: instructions kept' );
+
+$r = flxai_t_op( 'FlxAiTaskSetActive', array( 'input' => array( 'id' => $tid, 'active' => false ) ), $admin );
+flxt_same( 'paused', $r['data']['flxAiTaskSetActive']['task']['status'] ?? null, 'task pause: status' );
+flxt_same( null, $r['data']['flxAiTaskSetActive']['task']['nextRun'] ?? null, 'task pause: no next run' );
+$r = flxai_t_op( 'FlxAiTaskSetActive', array( 'input' => array( 'id' => $tid, 'active' => true ) ), $admin );
+flxt_same( 'active', $r['data']['flxAiTaskSetActive']['task']['status'] ?? null, 'task resume: status' );
+
+$r = flxai_t_op( 'FlxAiTasks', array(), $admin );
+$o = $r['data']['flxAiTasks'] ?? array();
+flxt_same( 1, count( $o['tasks'] ?? array() ), 'tasks: the list has the task' );
+flxt_same( true, $o['enabled'] ?? null, 'tasks: enabled by default' );
+
+$r = flxai_t_op( 'FlxAiTasksToggle', array( 'input' => array( 'enabled' => false ) ), $admin );
+flxt_same( false, $r['data']['flxAiTasksToggle']['overview']['enabled'] ?? null, 'tasks toggle: turned off' );
+flxai_t_op( 'FlxAiTasksToggle', array( 'input' => array( 'enabled' => true ) ), $admin );
+
+$r = flxai_t_op( 'FlxAiRecipients', array( 'search' => 'ops@example.com' ), $admin );
+flxt_same( null, $r['errors'] ?? null, 'recipients: no errors' );
+flxt_ok( isset( $r['data']['flxAiRecipients']['channels']['email'] ), 'recipients: channels listed', $r['data'] ?? null );
+
+foreach ( array( 'FlxAiTaskRun', 'FlxAiTaskSetActive', 'FlxAiTaskDelete', 'FlxAiTaskMarkRead' ) as $op ) {
+	$r = flxai_t_op( $op, array( 'input' => 'FlxAiTaskSetActive' === $op ? array( 'id' => 999999, 'active' => true ) : array( 'id' => 999999 ) ), $admin );
+	flxt_same( 'NOT_FOUND', $code( $r, lcfirst( $op ) ), "$op: an unknown task is NOT_FOUND" );
+}
+
+// Another administrator's task is theirs; a second administrator still manages it (manage_options), but "mine" is false.
+$r = flxai_t_op( 'FlxAiTaskDelete', array( 'input' => array( 'id' => $tid ) ), $admin );
+flxt_same( true, $r['data']['flxAiTaskDelete']['deleted'] ?? null, 'task delete: deleted' );
+flxt_same( null, flxai_task_get( $tid ), 'task delete: gone for the classic reader too' );
 
 // The classic settings form saves through the same service.
 if ( ! function_exists( 'flxai_save_settings' ) ) {

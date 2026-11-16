@@ -12,6 +12,7 @@ import { Logs } from './Logs';
 import { Overview } from './Overview';
 import { Settings } from './Settings';
 import { Systems } from './Systems';
+import { Tasks } from './Tasks';
 import { Tools } from './Tools';
 import './ai.css';
 
@@ -22,6 +23,7 @@ const VIEWS: Record<string, { title: string; sub: string; View: ComponentType }>
   systems: { title: 'Connected systems', sub: '', View: Systems },
   tools: { title: 'Tools', sub: '', View: Tools },
   approvals: { title: 'Awaiting approval', sub: '', View: Approvals },
+  tasks: { title: 'Scheduled tasks', sub: '', View: Tasks },
   settings: { title: 'Settings', sub: '', View: Settings },
 };
 

@@ -569,3 +569,29 @@ function flxai_task_mark_read( $task_id, $user_id = 0 ) {
 		update_user_meta( $user_id, 'flxai_task_unread', $u );
 	}
 }
+
+/** Bildirim alıcılarının kısa özeti. */
+function flxai_task_notify_label( array $t ) {
+	$n = flxai_task_notify_cfg( $t );
+	if ( 'none' === $n['mode'] ) {
+		return '';
+	}
+	$who = array();
+	if ( $n['panel'] ) {
+		$who[] = __( 'panel', 'flx-ai' );
+	}
+	if ( $n['email'] ) {
+		$who[] = __( 'my e-mail', 'flx-ai' );
+	}
+	if ( '' !== $n['whatsapp'] ) {
+		$who[] = 'WhatsApp';
+	}
+	foreach ( $n['to'] as $r ) {
+		$who[] = $r['name'];
+	}
+	if ( ! $who ) {
+		return '';
+	}
+	$more = count( $who ) > 3 ? ' +' . number_format_i18n( count( $who ) - 3 ) : '';
+	return implode( ', ', array_slice( $who, 0, 3 ) ) . $more;
+}

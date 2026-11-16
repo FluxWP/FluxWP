@@ -606,6 +606,15 @@ export const FlxAiOverview: FlxOperation<T.FlxAiOverviewQuery, T.FlxAiOverviewQu
   document: "query FlxAiOverview($days: Int = 30, $source: String) {\n  flxAiBudget {\n    ...FlxAiBudgetRow\n  }\n  flxAiReport(days: $days, source: $source) {\n    ...FlxAiReportFields\n  }\n  flxAiLogSources {\n    id\n    label\n  }\n  flxAiSecrets {\n    name\n    configured\n  }\n}\n\nfragment FlxAiBreakdownFields on FlxAiBreakdownRow {\n  key\n  label\n  calls\n  tools\n  cost\n  fullCost\n  inTokens\n  outTokens\n  cacheRead\n  modelMs\n  toolMs\n  errors\n  partial\n}\n\nfragment FlxAiBudgetRow on FlxAiBudgetPeriod {\n  key\n  label\n  limit\n  spent\n  pct\n  over\n  resets {\n    timestamp\n    label\n  }\n}\n\nfragment FlxAiReportFields on FlxAiReport {\n  from {\n    timestamp\n    label\n  }\n  to {\n    timestamp\n    label\n  }\n  totals {\n    calls\n    tools\n    inTokens\n    outTokens\n    cacheRead\n    cacheWrite\n    cost\n    fullCost\n    saved\n    modelMs\n    toolMs\n    errors\n  }\n  daily {\n    date\n    cost\n    inTokens\n    outTokens\n    cacheRead\n    modelMs\n    toolMs\n    calls\n    tools\n    errors\n  }\n  bySource {\n    ...FlxAiBreakdownFields\n  }\n  byModel {\n    ...FlxAiBreakdownFields\n  }\n  byPurpose {\n    ...FlxAiBreakdownFields\n  }\n  byTool {\n    key\n    label\n    source\n    calls\n    avgMs\n    maxMs\n    totalMs\n    errors\n  }\n  byProvider {\n    ...FlxAiBreakdownFields\n  }\n}",
 };
 
+/** query FlxAiRecipients (flx-ai, plugins/flx-ai/graphql/operations/FlxAiRecipients.graphql) */
+export const FlxAiRecipients: FlxOperation<T.FlxAiRecipientsQuery, T.FlxAiRecipientsQueryVariables> = {
+  id: '97cc803140314bc8487bb7b36e05aa5709b31e5727793e322f8fb0a42a63077c',
+  name: 'FlxAiRecipients',
+  kind: 'query',
+  plugin: 'flx-ai',
+  document: "query FlxAiRecipients($search: String) {\n  flxAiRecipients(search: $search) {\n    channels {\n      email\n      sms\n      whatsapp\n    }\n    items {\n      ...FlxAiRecipientFields\n    }\n  }\n}\n\nfragment FlxAiRecipientFields on FlxAiRecipient {\n  kind\n  id\n  name\n  email\n  phone\n  jid\n  sub\n  channels\n}",
+};
+
 /** mutation FlxAiRenderTest (flx-ai, plugins/flx-ai/graphql/operations/FlxAiRenderTest.graphql) */
 export const FlxAiRenderTest: FlxOperation<T.FlxAiRenderTestMutation, T.FlxAiRenderTestMutationVariables> = {
   id: '6b7262310f5715f6eaf6d3d7d1864540ba7597a648899ddce2cda734997e1e95',
@@ -649,6 +658,69 @@ export const FlxAiSystemsUpdate: FlxOperation<T.FlxAiSystemsUpdateMutation, T.Fl
   kind: 'mutation',
   plugin: 'flx-ai',
   document: "mutation FlxAiSystemsUpdate($input: FlxAiSystemsUpdateInput!) {\n  flxAiSystemsUpdate(input: $input) {\n    systems {\n      ...FlxAiSystemRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAiSystemRow on FlxAiSystem {\n  source\n  label\n  installed\n  active\n  on\n  model\n  modelLabel\n  calls\n  tools\n  tokens\n  cost\n  errors\n  lastUsed {\n    timestamp\n    label\n  }\n  settingsPage\n  hasAiSettings\n}",
+};
+
+/** mutation FlxAiTaskDelete (flx-ai, plugins/flx-ai/graphql/operations/FlxAiTaskDelete.graphql) */
+export const FlxAiTaskDelete: FlxOperation<T.FlxAiTaskDeleteMutation, T.FlxAiTaskDeleteMutationVariables> = {
+  id: '968bc851fc41b9038e26b9f469b50c6b8abc9aa6a0231c99c42f65810f2f65da',
+  name: 'FlxAiTaskDelete',
+  kind: 'mutation',
+  plugin: 'flx-ai',
+  document: "mutation FlxAiTaskDelete($input: FlxAiTaskDeleteInput!) {\n  flxAiTaskDelete(input: $input) {\n    deleted\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxAiTaskMarkRead (flx-ai, plugins/flx-ai/graphql/operations/FlxAiTaskMarkRead.graphql) */
+export const FlxAiTaskMarkRead: FlxOperation<T.FlxAiTaskMarkReadMutation, T.FlxAiTaskMarkReadMutationVariables> = {
+  id: 'f3005d2e9db881531188e770cf1ee16f5a8e604346797e208b8537ebaf876ab4',
+  name: 'FlxAiTaskMarkRead',
+  kind: 'mutation',
+  plugin: 'flx-ai',
+  document: "mutation FlxAiTaskMarkRead($input: FlxAiTaskMarkReadInput!) {\n  flxAiTaskMarkRead(input: $input) {\n    task {\n      ...FlxAiTaskFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAiRecipientFields on FlxAiRecipient {\n  kind\n  id\n  name\n  email\n  phone\n  jid\n  sub\n  channels\n}\n\nfragment FlxAiTaskFields on FlxAiTask {\n  id\n  title\n  prompt\n  schedule {\n    freq\n    time\n    days\n    day\n    every\n    at\n  }\n  scheduleLabel\n  status\n  nextRun {\n    timestamp\n    label\n  }\n  lastRun {\n    timestamp\n    label\n  }\n  lastState\n  lastError\n  lastOutput\n  runs\n  cost\n  avgMs\n  chatId\n  owner\n  mine\n  skill\n  unread\n  notify {\n    mode\n    email\n    panel\n    whatsapp\n    promo\n    label\n    to {\n      ...FlxAiRecipientFields\n    }\n  }\n  workspace {\n    dir\n    access\n    folders\n  }\n}",
+};
+
+/** mutation FlxAiTaskRun (flx-ai, plugins/flx-ai/graphql/operations/FlxAiTaskRun.graphql) */
+export const FlxAiTaskRun: FlxOperation<T.FlxAiTaskRunMutation, T.FlxAiTaskRunMutationVariables> = {
+  id: 'a716b6d24e46024257e51c1690e1e1283a388f1806a112617551e4ad58a552bb',
+  name: 'FlxAiTaskRun',
+  kind: 'mutation',
+  plugin: 'flx-ai',
+  document: "mutation FlxAiTaskRun($input: FlxAiTaskRunInput!) {\n  flxAiTaskRun(input: $input) {\n    task {\n      ...FlxAiTaskFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAiRecipientFields on FlxAiRecipient {\n  kind\n  id\n  name\n  email\n  phone\n  jid\n  sub\n  channels\n}\n\nfragment FlxAiTaskFields on FlxAiTask {\n  id\n  title\n  prompt\n  schedule {\n    freq\n    time\n    days\n    day\n    every\n    at\n  }\n  scheduleLabel\n  status\n  nextRun {\n    timestamp\n    label\n  }\n  lastRun {\n    timestamp\n    label\n  }\n  lastState\n  lastError\n  lastOutput\n  runs\n  cost\n  avgMs\n  chatId\n  owner\n  mine\n  skill\n  unread\n  notify {\n    mode\n    email\n    panel\n    whatsapp\n    promo\n    label\n    to {\n      ...FlxAiRecipientFields\n    }\n  }\n  workspace {\n    dir\n    access\n    folders\n  }\n}",
+};
+
+/** query FlxAiTasks (flx-ai, plugins/flx-ai/graphql/operations/FlxAiTasks.graphql) */
+export const FlxAiTasks: FlxOperation<T.FlxAiTasksQuery, T.FlxAiTasksQueryVariables> = {
+  id: '430fa2417957a3261f5b5cad236830f3d186555265e97f90c244bea62694201b',
+  name: 'FlxAiTasks',
+  kind: 'query',
+  plugin: 'flx-ai',
+  document: "query FlxAiTasks {\n  flxAiTasks {\n    ...FlxAiTaskOverviewFields\n  }\n}\n\nfragment FlxAiRecipientFields on FlxAiRecipient {\n  kind\n  id\n  name\n  email\n  phone\n  jid\n  sub\n  channels\n}\n\nfragment FlxAiTaskFields on FlxAiTask {\n  id\n  title\n  prompt\n  schedule {\n    freq\n    time\n    days\n    day\n    every\n    at\n  }\n  scheduleLabel\n  status\n  nextRun {\n    timestamp\n    label\n  }\n  lastRun {\n    timestamp\n    label\n  }\n  lastState\n  lastError\n  lastOutput\n  runs\n  cost\n  avgMs\n  chatId\n  owner\n  mine\n  skill\n  unread\n  notify {\n    mode\n    email\n    panel\n    whatsapp\n    promo\n    label\n    to {\n      ...FlxAiRecipientFields\n    }\n  }\n  workspace {\n    dir\n    access\n    folders\n  }\n}\n\nfragment FlxAiTaskOverviewFields on FlxAiTaskOverview {\n  enabled\n  nextRun {\n    timestamp\n    label\n  }\n  awaiting\n  lastCheck {\n    timestamp\n    label\n  }\n  workspaceReady\n  whatsappReady\n  ownerEmail\n  timezone\n  skills {\n    slug\n    name\n    active\n  }\n  channels {\n    email\n    sms\n    whatsapp\n  }\n  tasks {\n    ...FlxAiTaskFields\n  }\n}",
+};
+
+/** mutation FlxAiTaskSave (flx-ai, plugins/flx-ai/graphql/operations/FlxAiTaskSave.graphql) */
+export const FlxAiTaskSave: FlxOperation<T.FlxAiTaskSaveMutation, T.FlxAiTaskSaveMutationVariables> = {
+  id: '1f4f0cf7a4e19e42faa4145528018626aa1c712f6d77cb4c87781073e74ab24d',
+  name: 'FlxAiTaskSave',
+  kind: 'mutation',
+  plugin: 'flx-ai',
+  document: "mutation FlxAiTaskSave($input: FlxAiTaskSaveInput!) {\n  flxAiTaskSave(input: $input) {\n    task {\n      ...FlxAiTaskFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAiRecipientFields on FlxAiRecipient {\n  kind\n  id\n  name\n  email\n  phone\n  jid\n  sub\n  channels\n}\n\nfragment FlxAiTaskFields on FlxAiTask {\n  id\n  title\n  prompt\n  schedule {\n    freq\n    time\n    days\n    day\n    every\n    at\n  }\n  scheduleLabel\n  status\n  nextRun {\n    timestamp\n    label\n  }\n  lastRun {\n    timestamp\n    label\n  }\n  lastState\n  lastError\n  lastOutput\n  runs\n  cost\n  avgMs\n  chatId\n  owner\n  mine\n  skill\n  unread\n  notify {\n    mode\n    email\n    panel\n    whatsapp\n    promo\n    label\n    to {\n      ...FlxAiRecipientFields\n    }\n  }\n  workspace {\n    dir\n    access\n    folders\n  }\n}",
+};
+
+/** mutation FlxAiTaskSetActive (flx-ai, plugins/flx-ai/graphql/operations/FlxAiTaskSetActive.graphql) */
+export const FlxAiTaskSetActive: FlxOperation<T.FlxAiTaskSetActiveMutation, T.FlxAiTaskSetActiveMutationVariables> = {
+  id: '534e50822d3b85dbba646ca9b3fe4266802f3a320c8df8cdbc649d8abf8777be',
+  name: 'FlxAiTaskSetActive',
+  kind: 'mutation',
+  plugin: 'flx-ai',
+  document: "mutation FlxAiTaskSetActive($input: FlxAiTaskSetActiveInput!) {\n  flxAiTaskSetActive(input: $input) {\n    task {\n      ...FlxAiTaskFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAiRecipientFields on FlxAiRecipient {\n  kind\n  id\n  name\n  email\n  phone\n  jid\n  sub\n  channels\n}\n\nfragment FlxAiTaskFields on FlxAiTask {\n  id\n  title\n  prompt\n  schedule {\n    freq\n    time\n    days\n    day\n    every\n    at\n  }\n  scheduleLabel\n  status\n  nextRun {\n    timestamp\n    label\n  }\n  lastRun {\n    timestamp\n    label\n  }\n  lastState\n  lastError\n  lastOutput\n  runs\n  cost\n  avgMs\n  chatId\n  owner\n  mine\n  skill\n  unread\n  notify {\n    mode\n    email\n    panel\n    whatsapp\n    promo\n    label\n    to {\n      ...FlxAiRecipientFields\n    }\n  }\n  workspace {\n    dir\n    access\n    folders\n  }\n}",
+};
+
+/** mutation FlxAiTasksToggle (flx-ai, plugins/flx-ai/graphql/operations/FlxAiTasksToggle.graphql) */
+export const FlxAiTasksToggle: FlxOperation<T.FlxAiTasksToggleMutation, T.FlxAiTasksToggleMutationVariables> = {
+  id: '5b14958f712eea70ed3c52f18f2399b72ff469ae34b95246c31fdc9b2481caad',
+  name: 'FlxAiTasksToggle',
+  kind: 'mutation',
+  plugin: 'flx-ai',
+  document: "mutation FlxAiTasksToggle($input: FlxAiTasksToggleInput!) {\n  flxAiTasksToggle(input: $input) {\n    overview {\n      ...FlxAiTaskOverviewFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAiRecipientFields on FlxAiRecipient {\n  kind\n  id\n  name\n  email\n  phone\n  jid\n  sub\n  channels\n}\n\nfragment FlxAiTaskFields on FlxAiTask {\n  id\n  title\n  prompt\n  schedule {\n    freq\n    time\n    days\n    day\n    every\n    at\n  }\n  scheduleLabel\n  status\n  nextRun {\n    timestamp\n    label\n  }\n  lastRun {\n    timestamp\n    label\n  }\n  lastState\n  lastError\n  lastOutput\n  runs\n  cost\n  avgMs\n  chatId\n  owner\n  mine\n  skill\n  unread\n  notify {\n    mode\n    email\n    panel\n    whatsapp\n    promo\n    label\n    to {\n      ...FlxAiRecipientFields\n    }\n  }\n  workspace {\n    dir\n    access\n    folders\n  }\n}\n\nfragment FlxAiTaskOverviewFields on FlxAiTaskOverview {\n  enabled\n  nextRun {\n    timestamp\n    label\n  }\n  awaiting\n  lastCheck {\n    timestamp\n    label\n  }\n  workspaceReady\n  whatsappReady\n  ownerEmail\n  timezone\n  skills {\n    slug\n    name\n    active\n  }\n  channels {\n    email\n    sms\n    whatsapp\n  }\n  tasks {\n    ...FlxAiTaskFields\n  }\n}",
 };
 
 /** mutation FlxAiToolPick (flx-ai, plugins/flx-ai/graphql/operations/FlxAiToolPick.graphql) */

@@ -249,3 +249,95 @@ fragment FlxAiApprovalQueueFields on FlxAiApprovalQueue {
     }
   }
 }
+
+fragment FlxAiRecipientFields on FlxAiRecipient {
+  kind
+  id
+  name
+  email
+  phone
+  jid
+  sub
+  channels
+}
+
+fragment FlxAiTaskFields on FlxAiTask {
+  id
+  title
+  prompt
+  schedule {
+    freq
+    time
+    days
+    day
+    every
+    at
+  }
+  scheduleLabel
+  status
+  nextRun {
+    timestamp
+    label
+  }
+  lastRun {
+    timestamp
+    label
+  }
+  lastState
+  lastError
+  lastOutput
+  runs
+  cost
+  avgMs
+  chatId
+  owner
+  mine
+  skill
+  unread
+  notify {
+    mode
+    email
+    panel
+    whatsapp
+    promo
+    label
+    to {
+      ...FlxAiRecipientFields
+    }
+  }
+  workspace {
+    dir
+    access
+    folders
+  }
+}
+
+fragment FlxAiTaskOverviewFields on FlxAiTaskOverview {
+  enabled
+  nextRun {
+    timestamp
+    label
+  }
+  awaiting
+  lastCheck {
+    timestamp
+    label
+  }
+  workspaceReady
+  whatsappReady
+  ownerEmail
+  timezone
+  skills {
+    slug
+    name
+    active
+  }
+  channels {
+    email
+    sms
+    whatsapp
+  }
+  tasks {
+    ...FlxAiTaskFields
+  }
+}

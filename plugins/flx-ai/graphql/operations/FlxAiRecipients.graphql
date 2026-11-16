@@ -1,0 +1,13 @@
+# People, addresses, numbers and WhatsApp groups to notify.
+query FlxAiRecipients($search: String) {
+  flxAiRecipients(search: $search) {
+    channels {
+      email
+      sms
+      whatsapp
+    }
+    items {
+      ...FlxAiRecipientFields
+    }
+  }
+}

@@ -22,6 +22,7 @@ function flxai_flux_pages() {
 		'flx-ai-tools'   => 'tools',
 		'flx-ai-settings' => 'settings',
 		'flx-ai-approvals' => 'approvals',
+		'flx-ai-tasks' => 'tasks',
 	);
 }
 

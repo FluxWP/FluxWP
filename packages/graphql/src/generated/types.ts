@@ -1896,6 +1896,128 @@ export type FlxAiSystemStateInput = {
   source: string;
 };
 
+/** Input for the flxAiTaskDelete mutation. */
+export type FlxAiTaskDeleteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Task. */
+  id: number;
+};
+
+/** Input for the flxAiTaskMarkRead mutation. */
+export type FlxAiTaskMarkReadInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Task. */
+  id: number;
+};
+
+/** Input for the flxAiTaskRun mutation. */
+export type FlxAiTaskRunInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Task. */
+  id: number;
+};
+
+/** Input for the flxAiTaskSave mutation. */
+export type FlxAiTaskSaveInput = {
+  /** The task runs (false pauses it). */
+  active?: boolean | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Task to change; leave out to create one. */
+  id?: number | null | undefined;
+  /** Who is told about the runs. */
+  notify?: FlxAiTaskNotifyInput | null | undefined;
+  /** Instructions, as if sent in the chat. */
+  prompt?: string | null | undefined;
+  /** When it repeats. */
+  schedule?: FlxAiTaskScheduleInput | null | undefined;
+  /** Skill slug; empty for none. */
+  skill?: string | null | undefined;
+  /** Name; empty takes the first words of the instructions. */
+  title?: string | null | undefined;
+  /** The files it may touch. */
+  workspace?: FlxAiTaskWorkspaceInput | null | undefined;
+};
+
+/** How a task tells people about its runs. Fields you leave out keep their value. */
+export type FlxAiTaskNotifyInput = {
+  /** Also e-mail the owner. */
+  email?: boolean | null | undefined;
+  /** none, important or always. */
+  mode?: string | null | undefined;
+  /** Show in the admin panel. */
+  panel?: boolean | null | undefined;
+  /** Promotional content. */
+  promo?: boolean | null | undefined;
+  /** The full list of more recipients; it replaces the old one. */
+  to?: Array<FlxAiRecipientInput> | null | undefined;
+  /** Owner's WhatsApp number; empty for none. */
+  whatsapp?: string | null | undefined;
+};
+
+/** A recipient as FlxAiRecipient returned it. */
+export type FlxAiRecipientInput = {
+  /** Channels to use: email, sms, whatsapp. */
+  channels?: Array<string> | null | undefined;
+  /** E-mail address. */
+  email?: string | null | undefined;
+  /** Contact or user ID. */
+  id?: number | null | undefined;
+  /** WhatsApp group address. */
+  jid?: string | null | undefined;
+  /** contact, user, email, phone or group. */
+  kind: string;
+  /** Name for display. */
+  name?: string | null | undefined;
+  /** Phone number. */
+  phone?: string | null | undefined;
+};
+
+/** When a task repeats. Fields you leave out keep their value. */
+export type FlxAiTaskScheduleInput = {
+  /** Date and time of a one-time task (Y-m-d H:i or Y-m-dTH:i). */
+  at?: string | null | undefined;
+  /** Day of the month. */
+  day?: number | null | undefined;
+  /** Weekdays for weekly tasks, 1 (Monday) to 7 (Sunday). */
+  days?: Array<number> | null | undefined;
+  /** Hours between runs. */
+  every?: number | null | undefined;
+  /** daily, weekdays, weekly, monthly, hourly or once. */
+  freq?: string | null | undefined;
+  /** Time of day, HH:MM. */
+  time?: string | null | undefined;
+};
+
+/** The files a task may touch. */
+export type FlxAiTaskWorkspaceInput = {
+  /** workspace or site. */
+  access?: string | null | undefined;
+  /** Allowed folders, relative to the site root. */
+  folders?: Array<string> | null | undefined;
+};
+
+/** Input for the flxAiTaskSetActive mutation. */
+export type FlxAiTaskSetActiveInput = {
+  /** Resume (false pauses). */
+  active: boolean;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Task. */
+  id: number;
+};
+
+/** Input for the flxAiTasksToggle mutation. */
+export type FlxAiTasksToggleInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** On (false turns all tasks off). */
+  enabled: boolean;
+};
+
 /** Input for the flxAiToolPick mutation. */
 export type FlxAiToolPickInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -5549,6 +5671,15 @@ export type FlxAiOverviewQueryVariables = Exact<{
 
 export type FlxAiOverviewQuery = { flxAiBudget: Array<{ key: string, label: string, limit: number, spent: number, pct: number, over: boolean, resets: { timestamp: number, label: string } }>, flxAiReport: { from: { timestamp: number, label: string }, to: { timestamp: number, label: string }, totals: { calls: number, tools: number, inTokens: number, outTokens: number, cacheRead: number, cacheWrite: number, cost: number, fullCost: number, saved: number, modelMs: number, toolMs: number, errors: number }, daily: Array<{ date: string, cost: number, inTokens: number, outTokens: number, cacheRead: number, modelMs: number, toolMs: number, calls: number, tools: number, errors: number }>, bySource: Array<{ key: string, label: string, calls: number, tools: number, cost: number, fullCost: number, inTokens: number, outTokens: number, cacheRead: number, modelMs: number, toolMs: number, errors: number, partial: boolean }>, byModel: Array<{ key: string, label: string, calls: number, tools: number, cost: number, fullCost: number, inTokens: number, outTokens: number, cacheRead: number, modelMs: number, toolMs: number, errors: number, partial: boolean }>, byPurpose: Array<{ key: string, label: string, calls: number, tools: number, cost: number, fullCost: number, inTokens: number, outTokens: number, cacheRead: number, modelMs: number, toolMs: number, errors: number, partial: boolean }>, byTool: Array<{ key: string, label: string, source: string, calls: number, avgMs: number, maxMs: number, totalMs: number, errors: number }>, byProvider: Array<{ key: string, label: string, calls: number, tools: number, cost: number, fullCost: number, inTokens: number, outTokens: number, cacheRead: number, modelMs: number, toolMs: number, errors: number, partial: boolean }> }, flxAiLogSources: Array<{ id: string, label: string }>, flxAiSecrets: Array<{ name: string, configured: boolean }> };
 
+export type FlxAiRecipientsQueryVariables = Exact<{
+  search?: string | null | undefined;
+}>;
+
+
+export type FlxAiRecipientsQuery = { flxAiRecipients: { channels: { email: boolean, sms: boolean, whatsapp: boolean }, items: Array<{ kind: string, id: number, name: string, email: string, phone: string, jid: string, sub: string, channels: Array<string> }> } };
+
+export type FlxAiRecipientFieldsFragment = { kind: string, id: number, name: string, email: string, phone: string, jid: string, sub: string, channels: Array<string> };
+
 export type FlxAiRenderTestMutationVariables = Exact<{
   input: FlxAiRenderTestInput;
 }>;
@@ -5585,6 +5716,57 @@ export type FlxAiSystemsUpdateMutationVariables = Exact<{
 
 
 export type FlxAiSystemsUpdateMutation = { flxAiSystemsUpdate: { systems: Array<{ source: string, label: string, installed: boolean, active: boolean, on: boolean, model: string, modelLabel: string, calls: number, tools: number, tokens: number, cost: number, errors: number, settingsPage: string, hasAiSettings: boolean, lastUsed: { timestamp: number, label: string } | null }>, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAiTaskDeleteMutationVariables = Exact<{
+  input: FlxAiTaskDeleteInput;
+}>;
+
+
+export type FlxAiTaskDeleteMutation = { flxAiTaskDelete: { deleted: boolean | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAiTaskMarkReadMutationVariables = Exact<{
+  input: FlxAiTaskMarkReadInput;
+}>;
+
+
+export type FlxAiTaskMarkReadMutation = { flxAiTaskMarkRead: { task: { id: number, title: string, prompt: string, scheduleLabel: string, status: string, lastState: string, lastError: string, lastOutput: string, runs: number, cost: number, avgMs: number, chatId: number, owner: string, mine: boolean, skill: string, unread: boolean, schedule: { freq: string, time: string, days: Array<number>, day: number, every: number, at: string }, nextRun: { timestamp: number, label: string } | null, lastRun: { timestamp: number, label: string } | null, notify: { mode: string, email: boolean, panel: boolean, whatsapp: string, promo: boolean, label: string, to: Array<{ kind: string, id: number, name: string, email: string, phone: string, jid: string, sub: string, channels: Array<string> }> }, workspace: { dir: string, access: string, folders: Array<string> } | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAiTaskFieldsFragment = { id: number, title: string, prompt: string, scheduleLabel: string, status: string, lastState: string, lastError: string, lastOutput: string, runs: number, cost: number, avgMs: number, chatId: number, owner: string, mine: boolean, skill: string, unread: boolean, schedule: { freq: string, time: string, days: Array<number>, day: number, every: number, at: string }, nextRun: { timestamp: number, label: string } | null, lastRun: { timestamp: number, label: string } | null, notify: { mode: string, email: boolean, panel: boolean, whatsapp: string, promo: boolean, label: string, to: Array<{ kind: string, id: number, name: string, email: string, phone: string, jid: string, sub: string, channels: Array<string> }> }, workspace: { dir: string, access: string, folders: Array<string> } | null };
+
+export type FlxAiTaskRunMutationVariables = Exact<{
+  input: FlxAiTaskRunInput;
+}>;
+
+
+export type FlxAiTaskRunMutation = { flxAiTaskRun: { task: { id: number, title: string, prompt: string, scheduleLabel: string, status: string, lastState: string, lastError: string, lastOutput: string, runs: number, cost: number, avgMs: number, chatId: number, owner: string, mine: boolean, skill: string, unread: boolean, schedule: { freq: string, time: string, days: Array<number>, day: number, every: number, at: string }, nextRun: { timestamp: number, label: string } | null, lastRun: { timestamp: number, label: string } | null, notify: { mode: string, email: boolean, panel: boolean, whatsapp: string, promo: boolean, label: string, to: Array<{ kind: string, id: number, name: string, email: string, phone: string, jid: string, sub: string, channels: Array<string> }> }, workspace: { dir: string, access: string, folders: Array<string> } | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAiTasksQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAiTasksQuery = { flxAiTasks: { enabled: boolean, awaiting: number, workspaceReady: boolean, whatsappReady: boolean, ownerEmail: string, timezone: string, nextRun: { timestamp: number, label: string } | null, lastCheck: { timestamp: number, label: string } | null, skills: Array<{ slug: string, name: string, active: boolean }>, channels: { email: boolean, sms: boolean, whatsapp: boolean }, tasks: Array<{ id: number, title: string, prompt: string, scheduleLabel: string, status: string, lastState: string, lastError: string, lastOutput: string, runs: number, cost: number, avgMs: number, chatId: number, owner: string, mine: boolean, skill: string, unread: boolean, schedule: { freq: string, time: string, days: Array<number>, day: number, every: number, at: string }, nextRun: { timestamp: number, label: string } | null, lastRun: { timestamp: number, label: string } | null, notify: { mode: string, email: boolean, panel: boolean, whatsapp: string, promo: boolean, label: string, to: Array<{ kind: string, id: number, name: string, email: string, phone: string, jid: string, sub: string, channels: Array<string> }> }, workspace: { dir: string, access: string, folders: Array<string> } | null }> } };
+
+export type FlxAiTaskOverviewFieldsFragment = { enabled: boolean, awaiting: number, workspaceReady: boolean, whatsappReady: boolean, ownerEmail: string, timezone: string, nextRun: { timestamp: number, label: string } | null, lastCheck: { timestamp: number, label: string } | null, skills: Array<{ slug: string, name: string, active: boolean }>, channels: { email: boolean, sms: boolean, whatsapp: boolean }, tasks: Array<{ id: number, title: string, prompt: string, scheduleLabel: string, status: string, lastState: string, lastError: string, lastOutput: string, runs: number, cost: number, avgMs: number, chatId: number, owner: string, mine: boolean, skill: string, unread: boolean, schedule: { freq: string, time: string, days: Array<number>, day: number, every: number, at: string }, nextRun: { timestamp: number, label: string } | null, lastRun: { timestamp: number, label: string } | null, notify: { mode: string, email: boolean, panel: boolean, whatsapp: string, promo: boolean, label: string, to: Array<{ kind: string, id: number, name: string, email: string, phone: string, jid: string, sub: string, channels: Array<string> }> }, workspace: { dir: string, access: string, folders: Array<string> } | null }> };
+
+export type FlxAiTaskSaveMutationVariables = Exact<{
+  input: FlxAiTaskSaveInput;
+}>;
+
+
+export type FlxAiTaskSaveMutation = { flxAiTaskSave: { task: { id: number, title: string, prompt: string, scheduleLabel: string, status: string, lastState: string, lastError: string, lastOutput: string, runs: number, cost: number, avgMs: number, chatId: number, owner: string, mine: boolean, skill: string, unread: boolean, schedule: { freq: string, time: string, days: Array<number>, day: number, every: number, at: string }, nextRun: { timestamp: number, label: string } | null, lastRun: { timestamp: number, label: string } | null, notify: { mode: string, email: boolean, panel: boolean, whatsapp: string, promo: boolean, label: string, to: Array<{ kind: string, id: number, name: string, email: string, phone: string, jid: string, sub: string, channels: Array<string> }> }, workspace: { dir: string, access: string, folders: Array<string> } | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAiTaskSetActiveMutationVariables = Exact<{
+  input: FlxAiTaskSetActiveInput;
+}>;
+
+
+export type FlxAiTaskSetActiveMutation = { flxAiTaskSetActive: { task: { id: number, title: string, prompt: string, scheduleLabel: string, status: string, lastState: string, lastError: string, lastOutput: string, runs: number, cost: number, avgMs: number, chatId: number, owner: string, mine: boolean, skill: string, unread: boolean, schedule: { freq: string, time: string, days: Array<number>, day: number, every: number, at: string }, nextRun: { timestamp: number, label: string } | null, lastRun: { timestamp: number, label: string } | null, notify: { mode: string, email: boolean, panel: boolean, whatsapp: string, promo: boolean, label: string, to: Array<{ kind: string, id: number, name: string, email: string, phone: string, jid: string, sub: string, channels: Array<string> }> }, workspace: { dir: string, access: string, folders: Array<string> } | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAiTasksToggleMutationVariables = Exact<{
+  input: FlxAiTasksToggleInput;
+}>;
+
+
+export type FlxAiTasksToggleMutation = { flxAiTasksToggle: { overview: { enabled: boolean, awaiting: number, workspaceReady: boolean, whatsappReady: boolean, ownerEmail: string, timezone: string, nextRun: { timestamp: number, label: string } | null, lastCheck: { timestamp: number, label: string } | null, skills: Array<{ slug: string, name: string, active: boolean }>, channels: { email: boolean, sms: boolean, whatsapp: boolean }, tasks: Array<{ id: number, title: string, prompt: string, scheduleLabel: string, status: string, lastState: string, lastError: string, lastOutput: string, runs: number, cost: number, avgMs: number, chatId: number, owner: string, mine: boolean, skill: string, unread: boolean, schedule: { freq: string, time: string, days: Array<number>, day: number, every: number, at: string }, nextRun: { timestamp: number, label: string } | null, lastRun: { timestamp: number, label: string } | null, notify: { mode: string, email: boolean, panel: boolean, whatsapp: string, promo: boolean, label: string, to: Array<{ kind: string, id: number, name: string, email: string, phone: string, jid: string, sub: string, channels: Array<string> }> }, workspace: { dir: string, access: string, folders: Array<string> } | null }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
 
 export type FlxAiToolPickMutationVariables = Exact<{
   input: FlxAiToolPickInput;

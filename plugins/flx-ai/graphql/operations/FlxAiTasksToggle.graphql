@@ -1,0 +1,12 @@
+mutation FlxAiTasksToggle($input: FlxAiTasksToggleInput!) {
+  flxAiTasksToggle(input: $input) {
+    overview {
+      ...FlxAiTaskOverviewFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}
