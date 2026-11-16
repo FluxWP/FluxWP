@@ -55,6 +55,42 @@ export type FlxChatbotMessageType =
   | 'IMAGE'
   | 'TEXT';
 
+/** State of an AI translation job. */
+export type FlxLanguageJobStatus =
+  /** The translation is written. */
+  | 'DONE'
+  /** The last step failed; running it again retries. */
+  | 'FAILED'
+  /** Steps are still to run. */
+  | 'RUNNING';
+
+/** What a first-time visitor gets when their language differs from the page. */
+export type FlxLanguageSuggestMode =
+  /** A suggestion bar at the top of the page. */
+  | 'BANNER'
+  /** Nothing. */
+  | 'OFF'
+  /** The site opens directly in their language. */
+  | 'REDIRECT';
+
+/** How the language switcher names the languages. */
+export type FlxLanguageSwitcherStyle =
+  /** Language codes (TR · EN). */
+  | 'CODE'
+  /** Flags. */
+  | 'FLAG'
+  /** Language names. */
+  | 'NAME';
+
+/** Where the theme shows the language switcher. */
+export type FlxLanguageSwitcherPlace =
+  /** Both. */
+  | 'BOTH'
+  /** Footer. */
+  | 'FOOTER'
+  /** Header and mobile menu. */
+  | 'HEADER';
+
 export type FlxSettingsChatbotAskEmail =
   | 'ALWAYS'
   | 'NEVER'
@@ -177,81 +213,238 @@ export type FlxChatbotSettingsSaveInput = {
 
 /** Changes to Flux AI Chatbot. Only the fields you send are changed. */
 export type FlxSettingsChatbotInput = {
+  /** Show suggested products as cards in the window. */
   aiCards?: boolean | null | undefined;
+  /** Assistant replies per day on the whole site (0 = unlimited). */
   aiDailyLimit?: number | null | undefined;
+  /** Assistant replies per chat per hour (0 = unlimited). */
   aiHourLimit?: number | null | undefined;
+  /** Rules the assistant must follow. */
   aiInstructions?: string | null | undefined;
   /** Free-form knowledge base the assistant may answer from. */
   aiKnowledge?: string | null | undefined;
+  /** Assistant replies per chat before it goes to an agent (1-200). */
   aiMaxTurns?: number | null | undefined;
+  /** Personality and tone of the assistant. */
   aiPersona?: string | null | undefined;
+  /** Let the assistant search published pages. */
   aiSrcPages?: boolean | null | undefined;
+  /** Let the assistant search published posts. */
   aiSrcPosts?: boolean | null | undefined;
+  /** Let the assistant look up WooCommerce products (price, stock, link). */
   aiSrcProducts?: boolean | null | undefined;
+  /** Let the assistant search Flux Wiki pages. */
   aiSrcWiki?: boolean | null | undefined;
+  /** Save contact details a visitor gives (also to Flux CRM when installed). */
   aiToolLead?: boolean | null | undefined;
+  /** Let a signed-in customer ask about their own orders. */
   aiToolOrders?: boolean | null | undefined;
+  /** When to ask the visitor for an email address. */
   askEmail?: FlxSettingsChatbotAskEmail | null | undefined;
+  /** Who sees the window: everyone, guests only, or signed-in members only. */
   audience?: FlxSettingsChatbotAudience | null | undefined;
+  /** Avatar icon used when there is no image. */
   avatarIcon?: FlxSettingsChatbotAvatarIcon | null | undefined;
+  /** Media library image ID of the assistant avatar (0 = none). */
   avatarId?: number | null | undefined;
+  /** Assistant name in the window header. Empty uses the default. */
   botName?: string | null | undefined;
   /** Widget main color (hex). Empty follows the theme primary color. */
   color?: string | null | undefined;
+  /** Header and button text color (hex). Empty picks a readable color from the main color. */
   colorText?: string | null | undefined;
+  /** Show on desktop. */
   deviceDesktop?: boolean | null | undefined;
+  /** Show on mobile. */
   deviceMobile?: boolean | null | undefined;
+  /** Show a voice dictation button in the message field. */
   dictation?: boolean | null | undefined;
+  /** Also email agent replies when the visitor has left the page. */
   emailReplies?: boolean | null | undefined;
+  /** Show the chat window on the site. Off hides it from visitors (admins can still preview). */
   enabled?: boolean | null | undefined;
+  /** Paths where the window is hidden, one per line; * is a wildcard. */
   excludeUrls?: string | null | undefined;
+  /** Window font: same as the site or the system font. */
   font?: FlxSettingsChatbotFont | null | undefined;
+  /** Where handed-over chats go: automatic, Flux Chat or the plugin inbox. */
   handoffTo?: FlxSettingsChatbotHandoffTo | null | undefined;
+  /** Window header: gradient or solid color. */
   headerStyle?: FlxSettingsChatbotHeaderStyle | null | undefined;
+  /** Show the home screen when the window opens (off opens the chat directly). */
   homeEnabled?: boolean | null | undefined;
+  /** Home screen subtitle. Empty uses the default. */
   homeText?: string | null | undefined;
+  /** Home screen headline. Empty uses the default. */
   homeTitle?: string | null | undefined;
+  /** Weekly hours: { "1".."7": { on: 0|1, from: "HH:MM", to: "HH:MM" } }, 1 = Monday. */
   hours?: unknown;
+  /** Working hours: always open, weekly hours, or Flux Chat hours. */
   hoursMode?: FlxSettingsChatbotHoursMode | null | undefined;
+  /** Icon of the open button. */
   launcherIcon?: FlxSettingsChatbotLauncherIcon | null | undefined;
+  /** Text next to the open button; empty shows the button only. */
   launcherLabel?: string | null | undefined;
+  /** Open button size, px (44-80). */
   launcherSize?: number | null | undefined;
   /** Home screen contact links, one per line: Label | URL (https, mailto, tel, wa.me). */
   links?: string | null | undefined;
+  /** Cover the whole screen on small screens. */
   mobileFull?: boolean | null | undefined;
   /** hybrid = AI first, then human handoff; ai = AI only; live = human agents only. */
   mode?: FlxSettingsChatbotMode | null | undefined;
+  /** Address for handoff and after-hours notifications; empty uses the site admin. */
   notifyEmail?: string | null | undefined;
+  /** Message shown outside working hours. Empty uses the default. */
   offlineText?: string | null | undefined;
+  /** Space from the side edge, px. */
   offsetX?: number | null | undefined;
+  /** Space from the bottom edge, px. */
   offsetY?: number | null | undefined;
+  /** Hint in the message field. Empty uses the default. */
   placeholder?: string | null | undefined;
+  /** Side of the screen the button sits on. */
   position?: FlxSettingsChatbotPosition | null | undefined;
+  /** Note under the message field; links are allowed. */
   privacyText?: string | null | undefined;
   /** One suggested question per line. */
   quickReplies?: string | null | undefined;
+  /** Window corner radius, px. */
   radius?: number | null | undefined;
+  /** Ask for 1-5 stars at the end of a chat. */
   rating?: boolean | null | undefined;
+  /** Delete chats and files after this many days (0 = keep). */
   retentionDays?: number | null | undefined;
+  /** Show the small "Powered by FluxWP" note. */
   showBranding?: boolean | null | undefined;
+  /** Show the window on this page type: account. */
   showOnAccount?: boolean | null | undefined;
+  /** Show the window on this page type: cart. */
   showOnCart?: boolean | null | undefined;
+  /** Show the window on this page type: checkout. */
   showOnCheckout?: boolean | null | undefined;
+  /** Show the window on this page type: home. */
   showOnHome?: boolean | null | undefined;
+  /** Show the window on this page type: other. */
   showOnOther?: boolean | null | undefined;
+  /** Show the window on this page type: pages. */
   showOnPages?: boolean | null | undefined;
+  /** Show the window on this page type: posts. */
   showOnPosts?: boolean | null | undefined;
+  /** Show the window on this page type: shop. */
   showOnShop?: boolean | null | undefined;
+  /** Show photos of agents who replied recently on the home screen. */
   showTeam?: boolean | null | undefined;
+  /** Play a short sound for a new reply while the window is closed. */
   sound?: boolean | null | undefined;
+  /** Seconds on the page before the teaser shows (0-300). */
   teaserDelay?: number | null | undefined;
+  /** Pop a short message above the button after the visitor stays a while. */
   teaserEnabled?: boolean | null | undefined;
+  /** Message of the teaser bubble. Empty uses the default. */
   teaserText?: string | null | undefined;
+  /** Window colors: follow device and site, or always light or dark. */
   theme?: FlxSettingsChatbotTheme | null | undefined;
+  /** Largest file, MB (1-20). */
   uploadMb?: number | null | undefined;
+  /** Let visitors send images, PDFs and office documents. */
   uploads?: boolean | null | undefined;
+  /** The assistant's first message. Empty uses the default. */
   welcome?: string | null | undefined;
+  /** Window width, px (320-480). */
   width?: number | null | undefined;
+};
+
+/** Input for the flxLanguageSet mutation. */
+export type FlxLanguageSetInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Global ID or database ID of the content. */
+  id: string;
+  /** Language code. */
+  lang: string;
+};
+
+/** Input for the flxLanguageSettingsUpdate mutation. */
+export type FlxLanguageSettingsUpdateInput = {
+  /** Code of a catalog language to add. It is added inactive: prepare its content, then activate it. */
+  addLanguage?: string | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Code of the default language. */
+  defaultLanguage?: string | null | undefined;
+  /** Show the default-language version when a translation is missing. */
+  fallback?: boolean | null | undefined;
+  /** Two-letter country codes that see the default language. */
+  homeCountries?: Array<string> | null | undefined;
+  /** All languages after the change. The default language cannot be removed. */
+  languages?: Array<FlxLanguageInput> | null | undefined;
+  /** Content types to translate. */
+  postTypes?: Array<string> | null | undefined;
+  /** Automatic language for first-time visitors. */
+  suggest?: FlxLanguageSuggestMode | null | undefined;
+  /** Language used when neither the browser language nor the country's language is active. */
+  suggestTo?: string | null | undefined;
+  /** How the language switcher names languages. */
+  switcher?: FlxLanguageSwitcherStyle | null | undefined;
+  /** Where the theme shows the language switcher. */
+  switcherPlace?: FlxLanguageSwitcherPlace | null | undefined;
+  /** All translated site texts after the change. */
+  texts?: Array<FlxLanguageSiteTextInput> | null | undefined;
+};
+
+/** A language of the site. */
+export type FlxLanguageInput = {
+  /** Visitors can open it. The default language is always active. */
+  active?: boolean | null | undefined;
+  /** Language code and address prefix (en, de, pt-br). */
+  code: string;
+  /** Flag emoji. */
+  flag?: string | null | undefined;
+  /** WordPress locale of the content (en_US). */
+  locale?: string | null | undefined;
+  /** Name people see. Empty keeps the code. */
+  name?: string | null | undefined;
+};
+
+/** A site text in one language. An empty value removes the translation. */
+export type FlxLanguageSiteTextInput = {
+  /** Text key from textFields. */
+  key: string;
+  /** Language code (not the default language). */
+  lang: string;
+  /** The text. */
+  value: string;
+};
+
+/** Input for the flxLanguageTranslateStart mutation. */
+export type FlxLanguageTranslateStartInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Target language code. */
+  lang: string;
+  /** Global ID or database ID of the source content. */
+  sourceId: string;
+};
+
+/** Input for the flxLanguageTranslateStep mutation. */
+export type FlxLanguageTranslateStepInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Job key from flxLanguageTranslateStart. */
+  jobId: string;
+  /** Step to run, from 0 to total - 1. */
+  step: number;
+};
+
+/** Input for the flxLanguageTranslationCreate mutation. */
+export type FlxLanguageTranslationCreateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Target language code. */
+  lang: string;
+  /** Global ID or database ID of the source content. */
+  sourceId: string;
 };
 
 /** Input for the flxRoleCreate mutation. */
@@ -487,6 +680,77 @@ export type FlxChatbotSettingsScreenQueryVariables = Exact<{
 
 export type FlxChatbotSettingsScreenQuery = { flxSettings: { chatbot: { enabled: boolean | null, mode: FlxSettingsChatbotMode | null, botName: string | null, avatarId: number | null, avatarIcon: FlxSettingsChatbotAvatarIcon | null, color: string | null, colorText: string | null, theme: FlxSettingsChatbotTheme | null, position: FlxSettingsChatbotPosition | null, offsetX: number | null, offsetY: number | null, launcherIcon: FlxSettingsChatbotLauncherIcon | null, launcherLabel: string | null, launcherSize: number | null, radius: number | null, width: number | null, headerStyle: FlxSettingsChatbotHeaderStyle | null, font: FlxSettingsChatbotFont | null, mobileFull: boolean | null, showBranding: boolean | null, sound: boolean | null, homeEnabled: boolean | null, homeTitle: string | null, homeText: string | null, welcome: string | null, placeholder: string | null, quickReplies: string | null, links: string | null, showTeam: boolean | null, teaserEnabled: boolean | null, teaserText: string | null, teaserDelay: number | null, aiPersona: string | null, aiInstructions: string | null, aiKnowledge: string | null, aiSrcPages: boolean | null, aiSrcPosts: boolean | null, aiSrcProducts: boolean | null, aiSrcWiki: boolean | null, aiToolOrders: boolean | null, aiToolLead: boolean | null, aiCards: boolean | null, aiMaxTurns: number | null, aiHourLimit: number | null, aiDailyLimit: number | null, handoffTo: FlxSettingsChatbotHandoffTo | null, hoursMode: FlxSettingsChatbotHoursMode | null, hours: unknown, askEmail: FlxSettingsChatbotAskEmail | null, notifyEmail: string | null, emailReplies: boolean | null, rating: boolean | null, uploads: boolean | null, uploadMb: number | null, dictation: boolean | null, offlineText: string | null, audience: FlxSettingsChatbotAudience | null, deviceDesktop: boolean | null, deviceMobile: boolean | null, excludeUrls: string | null, retentionDays: number | null, privacyText: string | null, showOnHome: boolean | null, showOnPosts: boolean | null, showOnPages: boolean | null, showOnShop: boolean | null, showOnCart: boolean | null, showOnCheckout: boolean | null, showOnAccount: boolean | null, showOnOther: boolean | null } | null }, flxChatbotAdmin: { avatarUrl: string | null, notifyEmailDefault: string, aiReady: boolean, aiSettingsUrl: string | null, fluxChatReady: boolean, fluxChatActive: boolean, shopActive: boolean, ordersActive: boolean, wikiActive: boolean, inboxUrl: string, siteUrl: string, stats: { total: number, human: number, resolved: number, leads: number, orders: number, rating: number | null, rated: number, open: number }, status: Array<{ key: string, state: FlxChatbotStatusState, title: string, text: string, url: string | null, urlLabel: string | null }>, textDefaults: Array<{ key: string, text: string }>, pageTypes: Array<{ key: string, label: string }>, weekdays: Array<{ key: string, label: string }>, preview: { config: unknown, scriptUrl: string } } };
 
+export type FlxContentLanguageQueryVariables = Exact<{
+  id: string;
+}>;
+
+
+export type FlxContentLanguageQuery = { contentNode:
+    | { databaseId: number, flxLanguage: string | null, flxTranslations: Array<{ lang: string, databaseId: number, id: string, title: string, status: string, url: string | null, editUrl: string | null, isSelf: boolean }> }
+    | { databaseId: number, flxLanguage: string | null, flxTranslations: Array<{ lang: string, databaseId: number, id: string, title: string, status: string, url: string | null, editUrl: string | null, isSelf: boolean }> }
+    | { databaseId: number, flxLanguage: string | null, flxTranslations: Array<{ lang: string, databaseId: number, id: string, title: string, status: string, url: string | null, editUrl: string | null, isSelf: boolean }> }
+   | null };
+
+export type FlxTranslationRowFragment = { lang: string, databaseId: number, id: string, title: string, status: string, url: string | null, editUrl: string | null, isSelf: boolean };
+
+export type FlxLanguageJobQueryVariables = Exact<{
+  id: string;
+}>;
+
+
+export type FlxLanguageJobQuery = { flxLanguageJob: { id: string, status: FlxLanguageJobStatus, step: number, total: number, sourceId: number, translationId: number, lang: string, errors: Array<string>, editUrl: string | null } | null };
+
+export type FlxLanguageJobFieldsFragment = { id: string, status: FlxLanguageJobStatus, step: number, total: number, sourceId: number, translationId: number, lang: string, errors: Array<string>, editUrl: string | null };
+
+export type FlxLanguagesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxLanguagesQuery = { flxLanguages: Array<{ code: string, name: string, locale: string, flag: string | null, active: boolean, default: boolean, address: string, hreflang: string }> };
+
+export type FlxLanguageRowFragment = { code: string, name: string, locale: string, flag: string | null, active: boolean, default: boolean, address: string, hreflang: string };
+
+export type FlxLanguageSetMutationVariables = Exact<{
+  input: FlxLanguageSetInput;
+}>;
+
+
+export type FlxLanguageSetMutation = { flxLanguageSet: { lang: string | null, translations: Array<{ lang: string, databaseId: number, id: string, title: string, status: string, url: string | null, editUrl: string | null, isSelf: boolean }> | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxLanguageSettingsScreenQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxLanguageSettingsScreenQuery = { flxLanguageSettings: { defaultLanguage: string, postTypes: Array<string>, fallback: boolean, suggest: FlxLanguageSuggestMode, suggestTo: string, homeCountries: Array<string>, switcher: FlxLanguageSwitcherStyle, switcherPlace: FlxLanguageSwitcherPlace, aiAvailable: boolean, languages: Array<{ code: string, name: string, locale: string, flag: string | null, active: boolean, default: boolean, address: string, hreflang: string }>, texts: Array<{ lang: string, key: string, value: string }>, catalog: Array<{ code: string, name: string, locale: string, flag: string }>, postTypeChoices: Array<{ name: string, label: string, selected: boolean }>, textFields: Array<{ key: string, label: string, textarea: boolean, placeholder: string }>, geo: { country: string | null, source: string | null } } };
+
+export type FlxLanguageSettingsFieldsFragment = { defaultLanguage: string, postTypes: Array<string>, fallback: boolean, suggest: FlxLanguageSuggestMode, suggestTo: string, homeCountries: Array<string>, switcher: FlxLanguageSwitcherStyle, switcherPlace: FlxLanguageSwitcherPlace, aiAvailable: boolean, languages: Array<{ code: string, name: string, locale: string, flag: string | null, active: boolean, default: boolean, address: string, hreflang: string }>, texts: Array<{ lang: string, key: string, value: string }>, catalog: Array<{ code: string, name: string, locale: string, flag: string }>, postTypeChoices: Array<{ name: string, label: string, selected: boolean }>, textFields: Array<{ key: string, label: string, textarea: boolean, placeholder: string }>, geo: { country: string | null, source: string | null } };
+
+export type FlxLanguageSettingsUpdateMutationVariables = Exact<{
+  input: FlxLanguageSettingsUpdateInput;
+}>;
+
+
+export type FlxLanguageSettingsUpdateMutation = { flxLanguageSettingsUpdate: { settings: { defaultLanguage: string, postTypes: Array<string>, fallback: boolean, suggest: FlxLanguageSuggestMode, suggestTo: string, homeCountries: Array<string>, switcher: FlxLanguageSwitcherStyle, switcherPlace: FlxLanguageSwitcherPlace, aiAvailable: boolean, languages: Array<{ code: string, name: string, locale: string, flag: string | null, active: boolean, default: boolean, address: string, hreflang: string }>, texts: Array<{ lang: string, key: string, value: string }>, catalog: Array<{ code: string, name: string, locale: string, flag: string }>, postTypeChoices: Array<{ name: string, label: string, selected: boolean }>, textFields: Array<{ key: string, label: string, textarea: boolean, placeholder: string }>, geo: { country: string | null, source: string | null } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxLanguageTranslateStartMutationVariables = Exact<{
+  input: FlxLanguageTranslateStartInput;
+}>;
+
+
+export type FlxLanguageTranslateStartMutation = { flxLanguageTranslateStart: { job: { id: string, status: FlxLanguageJobStatus, step: number, total: number, sourceId: number, translationId: number, lang: string, errors: Array<string>, editUrl: string | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxLanguageTranslateStepMutationVariables = Exact<{
+  input: FlxLanguageTranslateStepInput;
+}>;
+
+
+export type FlxLanguageTranslateStepMutation = { flxLanguageTranslateStep: { job: { id: string, status: FlxLanguageJobStatus, step: number, total: number, sourceId: number, translationId: number, lang: string, errors: Array<string>, editUrl: string | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxLanguageTranslationCreateMutationVariables = Exact<{
+  input: FlxLanguageTranslationCreateInput;
+}>;
+
+
+export type FlxLanguageTranslationCreateMutation = { flxLanguageTranslationCreate: { translation: { lang: string, databaseId: number, id: string, title: string, status: string, url: string | null, editUrl: string | null, isSelf: boolean } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
 export type FlxRoleCreateMutationVariables = Exact<{
   input: FlxRoleCreateInput;
 }>;
@@ -635,3 +899,8 @@ export type FlxViewerQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type FlxViewerQuery = { flxViewer: { loggedIn: boolean, databaseId: number | null, name: string | null, isAdmin: boolean, capabilities: Array<string> } };
+
+export type FlxVisitorCountryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxVisitorCountryQuery = { flxVisitorCountry: { country: string | null } };

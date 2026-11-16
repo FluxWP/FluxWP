@@ -114,7 +114,7 @@ function flxl_detect_request() {
 
 	// lang parametresi (REST, AJAX, wc-ajax): ?lang=en.
 	$param = isset( $_GET['lang'] ) ? sanitize_key( wp_unslash( $_GET['lang'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-	if ( '' !== $param && in_array( $param, $codes, true ) && ( wp_doing_ajax() || flxl_uri_is_rest( $uri ) || isset( $_GET['wc-ajax'] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+	if ( '' !== $param && in_array( $param, $codes, true ) && ( wp_doing_ajax() || flxl_uri_is_rest( $uri ) || flxl_uri_is_graphql( $uri ) || isset( $_GET['wc-ajax'] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 		$st['current']  = $param;
 		$st['explicit'] = true;
 	}
@@ -162,6 +162,21 @@ function flxl_detect_request() {
 function flxl_uri_is_rest( $uri ) {
 	$prefix = '/' . trim( rest_get_url_prefix(), '/' ) . '/';
 	return false !== strpos( (string) $uri, $prefix ) || false !== strpos( (string) $uri, 'rest_route=' );
+}
+
+/**
+ * GraphQL isteği mi (Flux GraphQL ucu /graphql): REST gibi ?lang= ile dil seçilir.
+ */
+function flxl_uri_is_graphql( $uri ) {
+	return 1 === preg_match( '#/graphql/?(?:\?|$)#', (string) $uri );
+}
+
+/**
+ * Bu istek bir GraphQL HTTP isteği mi (WPGraphQL yönlendiricisi tanımlar). Dil açıkça istenmedikçe
+ * listeler dile göre süzülmez (REST ile aynı kural); düzenleme ekranları tüm dilleri görür.
+ */
+function flxl_is_graphql_request() {
+	return defined( 'GRAPHQL_HTTP_REQUEST' ) && GRAPHQL_HTTP_REQUEST;
 }
 
 /**
@@ -317,7 +332,7 @@ function flxl_filter_locale( $locale ) {
 	$busy = true;
 	$out  = $locale;
 	$cur  = flxl_current_language();
-	if ( $cur !== flxl_default_language() && ! ( is_admin() && ! wp_doing_ajax() ) && ! ( defined( 'REST_REQUEST' ) && REST_REQUEST && ! flxl_is_explicit() ) ) {
+	if ( $cur !== flxl_default_language() && ! ( is_admin() && ! wp_doing_ajax() ) && ! ( ( ( defined( 'REST_REQUEST' ) && REST_REQUEST ) || flxl_is_graphql_request() ) && ! flxl_is_explicit() ) ) {
 		$out = flxl_language_locale( $cur );
 	}
 	$busy = false;

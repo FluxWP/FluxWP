@@ -70,6 +70,15 @@ msgstr "AI ile çevrilsin mi? Hayır derseniz kopya taslak oluşturulur, kendini
 msgid "Settings"
 msgstr "Ayarlar"
 
+msgid "JavaScript is required for this screen."
+msgstr "Bu ekran için JavaScript gerekir."
+
+msgid "New view"
+msgstr "Yeni görünüm"
+
+msgid "Open the new view (same features, works in the FluxWP app too)."
+msgstr "Yeni görünümü aç (aynı özellikler, FluxWP uygulamasında da çalışır)."
+
 msgid "Saved."
 msgstr "Kaydedildi."
 
@@ -145,8 +154,8 @@ msgstr "İkisi de"
 msgid "Language suggestion for visitors"
 msgstr "Ziyaretçiye dil önerisi"
 
-msgid "Visitors from outside Türkiye"
-msgstr "Türkiye dışından gelene"
+msgid "Automatic language"
+msgstr "Otomatik dil"
 
 msgid "Open directly in their language (recommended)"
 msgstr "Direkt kendi dilinde aç (önerilen)"
@@ -157,20 +166,20 @@ msgstr "Sayfanın üstünde öneri bandı göster"
 msgid "Off"
 msgstr "Kapalı"
 
-msgid "Visitors from outside Türkiye open the version in their language (English if none) before the page renders, and stay in it on later visits. A visitor who picks another language in the switcher stays in it. Search engine bots are never redirected. If the country or time zone is Türkiye, the visitor stays in Turkish. Not applied to logged-in users; use a private window to test."
-msgstr "Türkiye dışından gelen ziyaretçi sayfa çizilmeden kendi dilindeki (yoksa İngilizce) sürüme açılır ve sonraki girişlerde de o dilde kalır. Dil seçicide başka dil seçen o dilde kalır. Arama motoru botları hiçbir zaman yönlendirilmez. Ülke Türkiye ya da saat dilimi Türkiye ise Türkçe kalır. Giriş yapmış kullanıcıya uygulanmaz; denemek için gizli pencere kullanın."
+msgid "On the first visit, before the page renders, the site opens in the visitor's browser language if it is active here; otherwise in their country's language; otherwise in the suggested language below. The choice is kept on later visits, and a visitor who picks another language in the switcher stays in it. Search engine bots are never redirected. Not applied to logged-in users; use a private window to test."
+msgstr "İlk ziyarette, sayfa çizilmeden önce site, ziyaretçinin tarayıcı dili burada etkinse o dilde açılır; değilse ülkesinin dilinde; o da yoksa aşağıdaki önerilen dilde. Seçim sonraki ziyaretlerde saklanır; dil seçiciden başka bir dil seçen ziyaretçi o dilde kalır. Arama motoru botları asla yönlendirilmez. Giriş yapmış kullanıcılara uygulanmaz; denemek için gizli pencere kullanın."
 
 msgid "Suggested language"
 msgstr "Önerilen dil"
 
-msgid "If the browser language is one of the active languages (e.g. German once added), that one is suggested; otherwise this one."
-msgstr "Tarayıcı dili etkin dillerden biriyse (ör. Almanca eklendiğinde Almanca) o önerilir, değilse bu."
+msgid "Used when neither the browser language nor the country's language is active on the site."
+msgstr "Ne tarayıcı dili ne de ülkesinin dili sitede etkin olduğunda kullanılır."
 
-msgid "Countries that see Turkish"
-msgstr "Türkçe gösterilen ülkeler"
+msgid "Countries that see the default language"
+msgstr "Varsayılan dili görecek ülkeler"
 
-msgid "Two-letter country codes (TR, CY…)."
-msgstr "İki harfli ülke kodları (TR, CY…)."
+msgid "Two-letter country codes (TR, CY…). Used only when the browser language is not on the site."
+msgstr "İki harfli ülke kodları (TR, CY…). Yalnız tarayıcı dili sitede olmadığında kullanılır."
 
 msgid "Country information"
 msgstr "Ülke bilgisi"
@@ -325,20 +334,395 @@ msgstr "Açıklama (%s)"
 msgid "If left empty, the Turkish name and description are shown."
 msgstr "Boş bırakılırsa Türkçe ad ve açıklama gösterilir."
 
-msgid "Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools."
-msgstr "Siteyi çok dilli yapar: /en/ gibi dil adresleri, sayfa, yazı, proje ve etkinlik başına çeviri, dile özgü görsel, hreflang ve canonical, Türkiye dışından gelene İngilizce önerisi, dil seçici; Flux AI & MCP ve Flux AI araçlarına dil desteği."
+msgid "A language code has 2–3 letters and, optionally, a region such as pt-br."
+msgstr "Dil kodu 2–3 harftir; isteğe bağlı olarak pt-br gibi bir bölge eklenir."
 
-msgid "Automatic language"
-msgstr "Otomatik dil"
+msgid "A language can be listed only once."
+msgstr "Bir dil yalnız bir kez listelenebilir."
 
-msgid "On the first visit, before the page renders, the site opens in the visitor's browser language if it is active here; otherwise in their country's language; otherwise in the suggested language below. The choice is kept on later visits, and a visitor who picks another language in the switcher stays in it. Search engine bots are never redirected. Not applied to logged-in users; use a private window to test."
-msgstr "İlk girişte, sayfa çizilmeden önce site ziyaretçinin tarayıcı dili burada etkinse o dilde; değilse ülkesinin dilinde; o da yoksa aşağıdaki önerilen dilde açılır. Seçim sonraki girişlerde korunur; dil seçiciden başka dil seçen o dilde kalır. Arama motoru botları yönlendirilmez. Giriş yapmış kullanıcılara uygulanmaz; denemek için gizli pencere kullanın."
+msgid "A WordPress locale has letters, digits and an underscore, e.g. en_US."
+msgstr "WordPress yerel ayarı harf, rakam ve alt çizgiden oluşur, ör. en_US."
 
-msgid "Used when neither the browser language nor the country's language is active on the site."
-msgstr "Ne tarayıcı dili ne ülkenin dili sitede etkin değilse bu dil kullanılır."
+msgid "This language is not in the catalog."
+msgstr "Bu dil katalogda yok."
 
-msgid "Countries that see the default language"
-msgstr "Varsayılan dili gören ülkeler"
+msgid "The default language must be one of the listed languages and cannot be removed."
+msgstr "Varsayılan dil listelenen dillerden biri olmalı ve kaldırılamaz."
 
-msgid "Two-letter country codes (TR, CY…). Used only when the browser language is not on the site."
-msgstr "İki harfli ülke kodları (TR, CY…). Yalnız tarayıcı dili sitede yoksa kullanılır."
+msgid "Unknown suggestion mode."
+msgstr "Bilinmeyen öneri kipi."
+
+msgid "The suggested language must be one of the listed languages."
+msgstr "Önerilen dil listelenen dillerden biri olmalı."
+
+msgid "Unknown switcher style."
+msgstr "Bilinmeyen dil seçici biçimi."
+
+msgid "Unknown switcher position."
+msgstr "Bilinmeyen dil seçici konumu."
+
+msgid "Use two-letter country codes (TR, CY…)."
+msgstr "İki harfli ülke kodları kullanın (TR, CY…)."
+
+msgid "This content type does not exist."
+msgstr "Bu içerik türü yok."
+
+msgid "Unknown site text."
+msgstr "Bilinmeyen site metni."
+
+msgid "Site texts belong to a language other than the default one."
+msgstr "Site metinleri varsayılan dilden başka bir dile aittir."
+
+msgid "What a first-time visitor gets when their language differs from the page."
+msgstr "İlk kez gelen ziyaretçinin dili sayfadan farklıysa ne olacağı."
+
+msgid "Nothing."
+msgstr "Hiçbir şey."
+
+msgid "A suggestion bar at the top of the page."
+msgstr "Sayfanın üstünde bir öneri bandı."
+
+msgid "The site opens directly in their language."
+msgstr "Site doğrudan ziyaretçinin dilinde açılır."
+
+msgid "How the language switcher names the languages."
+msgstr "Dil seçicinin dilleri nasıl adlandırdığı."
+
+msgid "Language codes (TR · EN)."
+msgstr "Dil kodları (TR · EN)."
+
+msgid "Language names."
+msgstr "Dil adları."
+
+msgid "Flags."
+msgstr "Bayraklar."
+
+msgid "Where the theme shows the language switcher."
+msgstr "Temanın dil seçiciyi nerede gösterdiği."
+
+msgid "Footer."
+msgstr "Alt bilgi."
+
+msgid "Header and mobile menu."
+msgstr "Başlık ve mobil menü."
+
+msgid "Both."
+msgstr "İkisi de."
+
+msgid "State of an AI translation job."
+msgstr "Bir yapay zekâ çeviri işinin durumu."
+
+msgid "Steps are still to run."
+msgstr "Çalıştırılacak adımlar var."
+
+msgid "The translation is written."
+msgstr "Çeviri yazıldı."
+
+msgid "The last step failed; running it again retries."
+msgstr "Son adım başarısız oldu; yeniden çalıştırmak tekrar dener."
+
+msgid "A language of the site."
+msgstr "Sitenin bir dili."
+
+msgid "Language code, also the address prefix (en, de, pt-br)."
+msgstr "Dil kodu, aynı zamanda adres öneki (en, de, pt-br)."
+
+msgid "Name people see (English, Deutsch)."
+msgstr "İnsanların gördüğü ad (English, Deutsch)."
+
+msgid "WordPress locale of the language's content (en_US)."
+msgstr "Dilin içeriğinin WordPress yerel ayarı (en_US)."
+
+msgid "Flag emoji. Empty when none is set."
+msgstr "Bayrak emojisi. Ayarlanmadıysa boştur."
+
+msgid "Visitors can open this language. The default language is always active."
+msgstr "Ziyaretçiler bu dili açabilir. Varsayılan dil her zaman etkindir."
+
+msgid "The default language (no address prefix)."
+msgstr "Varsayılan dil (adreste önek yok)."
+
+msgid "Address of the language root: \"/\" for the default language, \"/en/\" for the others."
+msgstr "Dil kökünün adresi: varsayılan dil için \"/\", diğerleri için \"/en/\"."
+
+msgid "hreflang value search engines get."
+msgstr "Arama motorlarının aldığı hreflang değeri."
+
+msgid "One language version of a content."
+msgstr "Bir içeriğin bir dil sürümü."
+
+msgid "Language code of this version."
+msgstr "Bu sürümün dil kodu."
+
+msgid "Post ID of this version."
+msgstr "Bu sürümün yazı kimliği."
+
+msgid "Global ID of the post (the same as the id of the content node)."
+msgstr "Yazının genel kimliği (içerik düğümünün kimliğiyle aynı)."
+
+msgid "Title of this version."
+msgstr "Bu sürümün başlığı."
+
+msgid "WordPress post status (publish, draft, pending …). Anyone sees only published versions; people who can edit the version see the others too."
+msgstr "WordPress yazı durumu (publish, draft, pending …). Herkes yalnız yayımlanmış sürümleri görür; sürümü düzenleyebilenler diğerlerini de görür."
+
+msgid "Public address of this version. Empty until it is published."
+msgstr "Bu sürümün herkese açık adresi. Yayımlanana kadar boştur."
+
+msgid "Editor address. Empty when the viewer cannot edit this version."
+msgstr "Düzenleyici adresi. Bakan kişi bu sürümü düzenleyemiyorsa boştur."
+
+msgid "This is the content the list was read from."
+msgstr "Listenin okunduğu içerik bu."
+
+msgid "A site text (site title, tagline, home page title …) in one language."
+msgstr "Bir dilde bir site metni (site başlığı, slogan, ana sayfa başlığı …)."
+
+msgid "Language code (never the default language)."
+msgstr "Dil kodu (hiçbir zaman varsayılan dil değil)."
+
+msgid "Text key (blogname, blogdescription, flxseo_home_title …)."
+msgstr "Metin anahtarı (blogname, blogdescription, flxseo_home_title …)."
+
+msgid "The text in that language."
+msgstr "O dildeki metin."
+
+msgid "A site text that can be translated."
+msgstr "Çevrilebilen bir site metni."
+
+msgid "Text key."
+msgstr "Metin anahtarı."
+
+msgid "What the text is, in the user's language."
+msgstr "Metnin ne olduğu, kullanıcının dilinde."
+
+msgid "A long text (shown in a multi-line box)."
+msgstr "Uzun bir metin (çok satırlı kutuda gösterilir)."
+
+msgid "The text in the default language; shown as a hint while the translation is empty."
+msgstr "Varsayılan dildeki metin; çeviri boşken ipucu olarak gösterilir."
+
+msgid "A language that can be added to the site."
+msgstr "Siteye eklenebilecek bir dil."
+
+msgid "Language code."
+msgstr "Dil kodu."
+
+msgid "Name."
+msgstr "Ad."
+
+msgid "WordPress locale."
+msgstr "WordPress yerel ayarı."
+
+msgid "Flag emoji."
+msgstr "Bayrak emojisi."
+
+msgid "A public content type that can be translated."
+msgstr "Çevrilebilen herkese açık bir içerik türü."
+
+msgid "Post type name (post, page …)."
+msgstr "İçerik türü adı (post, page …)."
+
+msgid "Plural label."
+msgstr "Çoğul etiket."
+
+msgid "Translated now."
+msgstr "Şu an çevriliyor."
+
+msgid "The country the server sees for the current request."
+msgstr "Sunucunun mevcut istek için gördüğü ülke."
+
+msgid "Two-letter country code (TR, DE …). Empty when the server sends no country header; the browser time zone is the fallback then."
+msgstr "İki harfli ülke kodu (TR, DE …). Sunucu ülke başlığı göndermiyorsa boştur; o zaman tarayıcı saat dilimine bakılır."
+
+msgid "Country information of the settings page: the code and the header it came from."
+msgstr "Ayarlar sayfasının ülke bilgisi: kod ve geldiği başlık."
+
+msgid "Two-letter country code of the current request. Empty when the server sends none."
+msgstr "Mevcut isteğin iki harfli ülke kodu. Sunucu göndermiyorsa boştur."
+
+msgid "Name of the header the country came from. Empty when none."
+msgstr "Ülkenin geldiği başlığın adı. Yoksa boştur."
+
+msgid "The Languages settings."
+msgstr "Dil ayarları."
+
+msgid "Code of the default language (no address prefix)."
+msgstr "Varsayılan dilin kodu (adreste önek yok)."
+
+msgid "Every language, inactive ones too; the default language first."
+msgstr "Tüm diller, pasif olanlar da; varsayılan dil ilk sırada."
+
+msgid "Content types that are translated."
+msgstr "Çevrilen içerik türleri."
+
+msgid "Show the default-language version when a translation is missing."
+msgstr "Çevirisi olmayan içerikte varsayılan dildeki sürümü göster."
+
+msgid "Automatic language for first-time visitors."
+msgstr "İlk kez gelen ziyaretçiler için otomatik dil."
+
+msgid "Language used when neither the browser language nor the country's language is active."
+msgstr "Ne tarayıcı dili ne de ülkesinin dili etkin olduğunda kullanılan dil."
+
+msgid "Two-letter country codes that see the default language when the browser language is not on the site."
+msgstr "Tarayıcı dili sitede olmadığında varsayılan dili görecek iki harfli ülke kodları."
+
+msgid "How the language switcher names languages."
+msgstr "Dil seçicinin dilleri nasıl adlandırdığı."
+
+msgid "Translated site texts. A text that is not listed shows in the default language."
+msgstr "Çevrilmiş site metinleri. Listelenmeyen metin varsayılan dilde görünür."
+
+msgid "Languages that can still be added."
+msgstr "Hâlâ eklenebilecek diller."
+
+msgid "Public content types that can be translated."
+msgstr "Çevrilebilen herkese açık içerik türleri."
+
+msgid "Site texts that can be translated."
+msgstr "Çevrilebilen site metinleri."
+
+msgid "Country information of this request (does country-based suggestion work on this server?)."
+msgstr "Bu isteğin ülke bilgisi (ülkeye göre öneri bu sunucuda çalışıyor mu?)."
+
+msgid "Flux AI & MCP is installed and ready, so AI translation buttons work."
+msgstr "Flux AI & MCP kurulu ve hazır, yani yapay zekâ çeviri düğmeleri çalışır."
+
+msgid "An AI translation job: the draft translation plus the parts the AI translates one request at a time (the host stops a request at about 60 seconds)."
+msgstr "Bir yapay zekâ çeviri işi: taslak çeviri ve yapay zekânın her istekte bir tane çevirdiği parçalar (sunucu bir isteği yaklaşık 60 saniyede keser)."
+
+msgid "Job key. Send it to flxLanguageTranslateStep."
+msgstr "İş anahtarı. flxLanguageTranslateStep'e gönderin."
+
+msgid "State of the job."
+msgstr "İşin durumu."
+
+msgid "Last finished step; -1 before the first. Run steps 0 to total - 1."
+msgstr "Biten son adım; ilk adımdan önce -1. Adım 0'dan toplam - 1'e kadar çalıştırın."
+
+msgid "Number of steps: the title/excerpt/SEO step plus one per body part."
+msgstr "Adım sayısı: başlık/özet/SEO adımı artı her gövde parçası için bir adım."
+
+msgid "Post ID of the source content."
+msgstr "Kaynak içeriğin yazı kimliği."
+
+msgid "Post ID of the translation being written."
+msgstr "Yazılmakta olan çevirinin yazı kimliği."
+
+msgid "Target language code."
+msgstr "Hedef dil kodu."
+
+msgid "Parts that stayed in the source language (\"meta\" or a step number). Check them in the editor."
+msgstr "Kaynak dilde kalan parçalar (\"meta\" ya da adım numarası). Düzenleyicide kontrol edin."
+
+msgid "Editor address of the translation."
+msgstr "Çevirinin düzenleyici adresi."
+
+msgid "The languages visitors can open, default first. Public: the language switcher shows the same list."
+msgstr "Ziyaretçilerin açabildiği diller, varsayılan ilk sırada. Herkese açık: dil seçici de aynı listeyi gösterir."
+
+msgid "The Languages settings: every language, content types, switcher, automatic language, site texts and what the screen needs to edit them."
+msgstr "Dil ayarları: tüm diller, içerik türleri, dil seçici, otomatik dil, site metinleri ve ekranın bunları düzenlemek için ihtiyaç duyduğu her şey."
+
+msgid "The visitor's country from the server's CDN / GeoIP header. Never cached. Public: it only returns the caller's own country."
+msgstr "Ziyaretçinin ülkesi, sunucunun CDN / GeoIP başlığından. Asla önbelleğe alınmaz. Herkese açık: yalnız çağıranın kendi ülkesini döndürür."
+
+msgid "An AI translation job you started (it stays readable for a few minutes after it finishes)."
+msgstr "Sizin başlattığınız bir yapay zekâ çeviri işi (bittikten sonra birkaç dakika okunabilir kalır)."
+
+msgid "Job key."
+msgstr "İş anahtarı."
+
+msgid "Language code of this content. Empty for a type that is not translated and for shared pages (cart, checkout, my account)."
+msgstr "Bu içeriğin dil kodu. Çevrilmeyen tür ve ortak sayfalar (sepet, ödeme, hesabım) için boştur."
+
+msgid "The language versions of this content, in language order, including itself. Drafts and private versions are listed only for people who can edit them. Empty for a type that is not translated."
+msgstr "Bu içeriğin dil sürümleri, dil sırasıyla, kendisi dahil. Taslak ve özel sürümleri yalnız düzenleyebilen kişiler görür. Çevrilmeyen tür için boştur."
+
+msgid "Language code and address prefix (en, de, pt-br)."
+msgstr "Dil kodu ve adres öneki (en, de, pt-br)."
+
+msgid "Name people see. Empty keeps the code."
+msgstr "İnsanların gördüğü ad. Boşsa kod kalır."
+
+msgid "WordPress locale of the content (en_US)."
+msgstr "İçeriğin WordPress yerel ayarı (en_US)."
+
+msgid "Visitors can open it. The default language is always active."
+msgstr "Ziyaretçiler açabilir. Varsayılan dil her zaman etkindir."
+
+msgid "A site text in one language. An empty value removes the translation."
+msgstr "Bir dilde bir site metni. Boş değer çeviriyi kaldırır."
+
+msgid "Language code (not the default language)."
+msgstr "Dil kodu (varsayılan dil değil)."
+
+msgid "Text key from textFields."
+msgstr "textFields'taki metin anahtarı."
+
+msgid "The text."
+msgstr "Metin."
+
+msgid "Saves the Languages settings. A field that is not sent stays as it is; `languages` and `texts`, when sent, replace the whole list (a language that is not listed is removed). Nothing is written when any part is invalid."
+msgstr "Dil ayarlarını kaydeder. Gönderilmeyen alan olduğu gibi kalır; gönderildiğinde `languages` ve `texts` tüm listeyi değiştirir (listelenmeyen dil kaldırılır). Herhangi bir kısım geçersizse hiçbir şey yazılmaz."
+
+msgid "All languages after the change. The default language cannot be removed."
+msgstr "Değişiklikten sonra tüm diller. Varsayılan dil kaldırılamaz."
+
+msgid "Code of a catalog language to add. It is added inactive: prepare its content, then activate it."
+msgstr "Eklenecek katalog dilinin kodu. Pasif eklenir: önce içeriğini hazırlayın, sonra etkinleştirin."
+
+msgid "Code of the default language."
+msgstr "Varsayılan dilin kodu."
+
+msgid "Content types to translate."
+msgstr "Çevrilecek içerik türleri."
+
+msgid "Two-letter country codes that see the default language."
+msgstr "Varsayılan dili görecek iki harfli ülke kodları."
+
+msgid "All translated site texts after the change."
+msgstr "Değişiklikten sonra tüm çevrilmiş site metinleri."
+
+msgid "The settings after the change."
+msgstr "Değişiklikten sonra ayarlar."
+
+msgid "Sets the language of a content (the editor's Language box). If another content of the same group already has that language, this one leaves the group."
+msgstr "Bir içeriğin dilini ayarlar (düzenleyicideki Dil kutusu). Aynı gruptaki başka bir içerik zaten o dildeyse bu içerik gruptan ayrılır."
+
+msgid "Global ID or database ID of the content."
+msgstr "İçeriğin genel kimliği ya da veritabanı kimliği."
+
+msgid "Language of the content after the change."
+msgstr "Değişiklikten sonra içeriğin dili."
+
+msgid "Language versions of the content after the change."
+msgstr "Değişiklikten sonra içeriğin dil sürümleri."
+
+msgid "Creates the translation of a content in a language: a draft copy to translate by hand (terms, meta and image are copied). Returns the existing one when the language already has a version."
+msgstr "Bir içeriğin bir dilde çevirisini oluşturur: elle çevrilecek taslak bir kopya (terimler, meta ve görsel kopyalanır). Dilin zaten bir sürümü varsa onu döndürür."
+
+msgid "Global ID or database ID of the source content."
+msgstr "Kaynak içeriğin genel kimliği ya da veritabanı kimliği."
+
+msgid "The translation."
+msgstr "Çeviri."
+
+msgid "Starts an AI translation of a content (needs Flux AI & MCP): creates the draft translation and the list of parts. Run flxLanguageTranslateStep for step 0 to total - 1."
+msgstr "Bir içeriğin yapay zekâ çevirisini başlatır (Flux AI & MCP gerekir): taslak çeviriyi ve parça listesini oluşturur. flxLanguageTranslateStep'i adım 0'dan toplam - 1'e kadar çalıştırın."
+
+msgid "The job to step through."
+msgstr "Adım adım ilerletilecek iş."
+
+msgid "Runs one step of an AI translation job. Each step is one request, so no request runs into the host time limit. The last step writes the body and finishes the job."
+msgstr "Bir yapay zekâ çeviri işinin tek adımını çalıştırır. Her adım bir istektir; böylece hiçbir istek sunucu süre sınırına takılmaz. Son adım gövdeyi yazar ve işi bitirir."
+
+msgid "Job key from flxLanguageTranslateStart."
+msgstr "flxLanguageTranslateStart'tan gelen iş anahtarı."
+
+msgid "Step to run, from 0 to total - 1."
+msgstr "Çalıştırılacak adım, 0'dan toplam - 1'e."
+
+msgid "The job after the step."
+msgstr "Adımdan sonra iş."
