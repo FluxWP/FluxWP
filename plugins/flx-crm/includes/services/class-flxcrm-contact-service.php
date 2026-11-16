@@ -28,6 +28,9 @@ final class FLXCRM_Contact_Service {
 	/** Contact ids a single bulk action takes. */
 	public const BULK_MAX = 500;
 
+	/** @var array<int,list<FLXCRM_Tag>> Tags read in this request, by contact (cleared on every write). */
+	private static array $tag_memo = array();
+
 	/**
 	 * A WP_Error the GraphQL layer maps to a stable code.
 	 *
@@ -50,6 +53,7 @@ final class FLXCRM_Contact_Service {
 	 * @param int $id Contact id (0 = lists only).
 	 */
 	public static function changed( int $id = 0 ): void {
+		self::forget_tags();
 		FLXCRM_Contacts::flush_stats();
 		$tags = array( self::TAG_CONTACTS, self::TAG_OVERVIEW );
 		if ( $id > 0 ) {
@@ -161,23 +165,21 @@ final class FLXCRM_Contact_Service {
 	 * @return array<int,list<FLXCRM_Tag>>
 	 */
 	public static function tags_of_many( array $ids ): array {
-		/** @var array<int,list<FLXCRM_Tag>> $memo */
-		static $memo = array();
-		$miss = array_values( array_filter( $ids, static fn( int $id ): bool => ! isset( $memo[ $id ] ) ) );
+		$miss = array_values( array_filter( $ids, static fn( int $id ): bool => ! isset( self::$tag_memo[ $id ] ) ) );
 		if ( $miss ) {
 			$rows = FLXCRM_Tags::of_many( $miss );
 			foreach ( $miss as $id ) {
-				$memo[ $id ] = array();
+				self::$tag_memo[ $id ] = array();
 			}
 			foreach ( $rows as $cid => $tags ) {
 				foreach ( FLXCRM_Val::arr( $tags ) as $t ) {
-					$memo[ (int) $cid ][] = FLXCRM_Tag::from_row( FLXCRM_Val::arr( $t ) );
+					self::$tag_memo[ (int) $cid ][] = FLXCRM_Tag::from_row( FLXCRM_Val::arr( $t ) );
 				}
 			}
 		}
 		$out = array();
 		foreach ( $ids as $id ) {
-			$out[ $id ] = $memo[ $id ] ?? array();
+			$out[ $id ] = self::$tag_memo[ $id ] ?? array();
 		}
 		return $out;
 	}
@@ -186,7 +188,7 @@ final class FLXCRM_Contact_Service {
 	 * Forget memoised tags (after a write in the same request).
 	 */
 	public static function forget_tags(): void {
-		// The memo is function-static; a fresh request starts empty. Writes in a request read through FLXCRM_Tags.
+		self::$tag_memo = array();
 	}
 
 	/**
@@ -530,8 +532,14 @@ final class FLXCRM_Contact_Service {
 		if ( ! in_array( $action, array( 'tag', 'role', 'archive', 'restore', 'delete' ), true ) ) {
 			return self::error( 'flxcrm_bulk', __( 'Unknown action.', 'flx-crm' ), 'INVALID_INPUT', 'action' );
 		}
+		if ( ! $ids ) {
+			return self::error( 'flxcrm_bulk', __( 'Select at least one contact.', 'flx-crm' ), 'INVALID_INPUT', 'ids' );
+		}
 		if ( count( $ids ) > self::BULK_MAX ) {
 			return self::error( 'flxcrm_bulk', __( 'Too many contacts selected.', 'flx-crm' ), 'INVALID_INPUT', 'ids' );
+		}
+		if ( in_array( $action, array( 'tag', 'role' ), true ) && '' === trim( $value ) ) {
+			return self::error( 'flxcrm_bulk', 'tag' === $action ? __( 'Give a tag name.', 'flx-crm' ) : __( 'Pick a role.', 'flx-crm' ), 'INVALID_INPUT', 'value' );
 		}
 		$n = 0;
 		foreach ( array_unique( array_filter( $ids ) ) as $id ) {

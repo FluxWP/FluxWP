@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 0.10.0
+- GraphQL: kişi, zaman çizgisi, segment, yolculuk, kopya, ayar, AI ve senkron işlemleri `/graphql` üzerinde (28 işlem). `FlxContact`, ortak `FlxPerson` arayüzünün tek uygulaması; diğer paketler alanı `flx_gql_field('FlxContact', ...)` ile ekler.
+- Yeni React ekranı: Genel bakış, Kişiler, kişi kartı, Segmentler, Yolculuklar, Kopyalar, Ayarlar klasikle aynı özellik ve görünümde; wp-admin'de varsayılan. Klasik görünüm başlıktaki bağlantıyla açılır.
+- Servis katmanı (`includes/services`); klasik yazıcılar GraphQL önbelleğini temizler.
+- Kalan klasik: Olaylar sayfası ve kişi kartı eklenti bölümleri.
+
 ## 0.9.4
 - Telefon alanındaki doğrulama işareti sade: arka plansız, hafif kıvrımlı yeşil tik; geçersizde küçük kırmızı çarpı (flx-brand 1.6.3).
 

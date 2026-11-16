@@ -34,3 +34,4 @@ Faz 0'da 0.4, 0.5 ve 0.6 merge edilince başlar (plan §5).
 | Paket | Durum | PR / not |
 |---|---|---|
 | flx-roles 1.5.0 | 👀 | `gql/flx-roles-1`: servis katmanı, 4 sorgu + 6 mutation, 8 kayıtlı işlem, sözleşme testi 55/55. React ekranı (`flxr-roles`) klasikle eşit, wp-admin varsayılanı; klasik sayfadaki bağlantıyla. Kit 0.2.0 yetki modeli (`flx_gql_any_cap/all_caps`, `flx_gql_capabilities`, `flxViewer`, `useFlxCan`), KURALLAR §3.1. Eşleme `ESLEME/flx-roles.md` |
+| flx-crm 0.10.0 | 👀 | `gql/flx-crm-1`: servis katmanı, 28 işlem, `FlxContact` = ortak `FlxPerson`, sözleşme testi 121/121. React ekranı (`crm`) klasikle eşit, wp-admin varsayılanı. İstisna: Olaylar sayfası ve kişi kartı eklenti kancaları klasik (sonraki paket). `flxcrm_sync` → `flxCrmSyncStep`. Belge `docs/flx-crm/GRAPHQL.md`, eşleme `ESLEME/flx-crm.md` |

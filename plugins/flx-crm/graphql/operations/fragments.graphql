@@ -31,6 +31,8 @@ fragment FlxCrmContactRow on FlxContact {
   company
   city
   roles
+  donations
+  orders
   segment
   segmentLabel
   ltv {
@@ -73,8 +75,6 @@ fragment FlxCrmContactCard on FlxContact {
   ownerName
   note
   paidDays
-  donations
-  orders
   firstPaidAt {
     ...FlxCrmWhen
   }
