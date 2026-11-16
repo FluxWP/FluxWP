@@ -1,7 +1,7 @@
 # flx-backup 1.5.0
 
 - Faz: 1
-- Durum: 👀
+- Durum: ✓
 - PR: #322
 
 `gql/flx-backup-1`: servis katmanı, 8 sorgu + 7 mutation, 12 kayıtlı işlem, sözleşme testi 82/82. React ekranı (`flxy-backup`: pano, liste, ayrıntı, ayarlar, yedekle/geri yükle/sil/kilit/yükle, iş ilerlemesi) klasikle eşit, wp-admin varsayılanı. İş adım adım (mutation başlatır, durum sorguyla). İndirme ve parçalı yükleme istisna. Eşleme `ESLEME/flx-backup.md`

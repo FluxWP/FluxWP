@@ -52,13 +52,6 @@
 .flxai-pill.is-err{background:color-mix(in srgb,var(--flux-danger) 14%,transparent);color:var(--flux-danger)}
 .flxai-pill.is-warn{background:color-mix(in srgb,var(--flux-warning) 18%,transparent)}
 .flxai-alias{font-size:12px;color:var(--mut)}
-.flxai-switch{position:relative;display:inline-block;width:40px;height:22px;vertical-align:middle}
-.flxai-switch input{position:absolute;inset:0;opacity:0;width:100%;height:100%;margin:0;cursor:pointer}
-.flxai-switch span[aria-hidden]{position:absolute;inset:0;border-radius:99px;background:color-mix(in srgb,var(--flux-text) 22%,transparent);transition:background .15s}
-.flxai-switch span[aria-hidden]::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .15s}
-.flxai-switch input:checked+span{background:var(--ac)}
-.flxai-switch input:checked+span::after{transform:translateX(18px)}
-.flxai-switch input:focus-visible+span{outline:2px solid var(--ac);outline-offset:2px}
 .flxai-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
 .flxai-chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
 .flxai-chip{display:inline-flex;gap:6px;align-items:center;border:1px solid var(--bd);background:var(--flux-surface2);color:var(--flux-text);border-radius:99px;padding:2px 10px;font:inherit;font-size:12.5px;cursor:pointer}
@@ -129,3 +122,31 @@ textarea.flxai-input{width:100%;max-width:560px}
 .flxai-notice.is-warn{border-color:#d97706}
 .flxai-rcp{display:flex;flex-direction:column;gap:8px;width:100%}.flxai-rcp-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.flxai-rcp-res{display:flex;flex-wrap:wrap;gap:6px}
 .flxai-tasks-empty ul{margin:6px 0 0 18px}
+/* Skills */
+.flxai-skill-group{margin:16px 0 8px;font-size:14px}
+.flxai-skill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.flxai-skill{border:1px solid var(--bd);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:6px;background:var(--card)}
+.flxai-skill.is-off{opacity:.65}
+.flxai-skill-desc{font-size:13px;margin:0;flex:1}
+.flxai-skill-meta,.flxai-skill-acts{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.flxai-link{background:none;border:0;padding:0;color:var(--ac);cursor:pointer;font:inherit;text-decoration:underline}
+.flxai-link.is-danger{color:#dc2626}
+.flxai-tabs{display:flex;gap:4px;border-bottom:1px solid var(--bd);margin:0 0 12px;flex-wrap:wrap}
+.flxai-tab{background:none;border:0;border-bottom:2px solid transparent;padding:8px 12px;cursor:pointer;color:var(--flux-text);font:inherit}
+.flxai-tab.is-on{border-bottom-color:var(--ac);font-weight:600}
+.flxai-table{width:100%;border-collapse:collapse;font-size:13px}
+.flxai-table th,.flxai-table td{text-align:left;padding:6px 8px;border-top:1px solid var(--bd);vertical-align:top}
+.flxai-skill-file-new{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}
+.flxai-skill-case{display:flex;flex-direction:column;gap:6px;margin:0 0 12px}
+.flxai-skill-case textarea,.flxai-skill-res pre{max-width:none}
+.flxai-skill-res{border-top:1px solid var(--bd);margin-top:16px;padding-top:8px}
+.flxai-skill-sides{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.flxai-skill-side pre{white-space:pre-wrap;background:var(--flux-surface2);border-radius:6px;padding:8px;max-height:300px;overflow:auto;font-size:12px}
+.flxai-rate.is-ok{color:#16a34a}.flxai-rate.is-warn{color:#d97706}
+.flxai-hint.is-error{color:#dc2626}
+.flxai-brand-swatch{display:inline-block;width:18px;height:18px;border-radius:4px;border:1px solid var(--bd);vertical-align:middle}
+.flxai-brand-logo{height:32px;max-width:120px;object-fit:contain;border:1px solid var(--bd);border-radius:4px;padding:2px;background:#fff}
+.flxai-brand-logo.is-dark{background:#222}
+.flxai-brand-chip{display:inline-flex;gap:4px;align-items:center;margin-right:10px}
+.flxai-brand-doc{display:flex;flex-direction:column;gap:6px;margin:0 0 12px}
+.flxai-brand-doc textarea{max-width:none}

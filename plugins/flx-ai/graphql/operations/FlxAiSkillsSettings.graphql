@@ -1,0 +1,12 @@
+mutation FlxAiSkillsSettings($input: FlxAiSkillsSettingsInput!) {
+  flxAiSkillsSettings(input: $input) {
+    overview {
+      ...FlxAiSkillsOverviewFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

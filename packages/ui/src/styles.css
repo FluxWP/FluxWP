@@ -75,6 +75,9 @@ kbd{font-family:var(--flux-font-mono);font-size:11px;padding:1px 6px;border-radi
 .tone-accent .card-icon{background:color-mix(in srgb,var(--flux-primary) 14%,transparent);color:var(--flux-primary)}
 .btn-primary.danger-bg{background:var(--flux-danger);color:#fff}
 .loading{display:grid;place-items:center;padding:40px;color:var(--flux-text-muted)}
+/* A short wait shows no spinner (no flash when a screen opens from the cache or the preload). */
+.loading{animation:flux-loading-in .2s ease-out .25s both}
+@keyframes flux-loading-in{from{opacity:0}to{opacity:1}}
 .empty-mini{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;padding:56px 24px;color:var(--flux-text-muted)}
 .empty-mini strong{color:var(--flux-text)}
 .field textarea{padding:10px 12px;border-radius:var(--flux-radius-md);border:1px solid var(--flux-border);background:var(--flux-bg);font:inherit;color:inherit;resize:vertical;outline:none}
@@ -350,3 +353,33 @@ html.platform-desktop .split-head,html.platform-desktop .subnav,html.platform-de
 .menu-ic{flex:none;display:inline-grid;place-items:center;border-radius:28%;background:var(--flux-surface2);color:var(--flux-text-muted)}
 .menu-ic.img{background:none;border-radius:24%;object-fit:contain}
 .menu-ic.toned{background:color-mix(in srgb,var(--tone) 13%,transparent);color:var(--tone)}
+
+/* Flux onay kutusu, radyo ve anahtar (flx-brand 1.7.0 ile aynı görünüm): A = yuvarlak köşeli dolgu; role="switch" = anahtar. */
+input:is([type=checkbox],[type=radio]) { -webkit-appearance: none; appearance: none; position: relative; display: inline-grid; place-content: center; flex: none; width: 20px; height: 20px; min-width: 20px; min-height: 0; margin: 0 6px 0 0; padding: 0; vertical-align: middle; border: 1.5px solid color-mix(in srgb, var(--flux-text-muted) 70%, var(--flux-border)); border-radius: 6px; background: var(--flux-surface); box-shadow: none; cursor: pointer; transition: border-color .15s, background-color .15s, box-shadow .15s; }
+input:is([type=checkbox],[type=radio])[type=radio] { border-radius: 50%; }
+input:is([type=checkbox],[type=radio])::before { content: ""; display: block; float: none; width: 12px; height: 12px; margin: 0; background: var(--flux-primary-contrast, #fff); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 8.5l3.2 3.2L13 4.8'/%3E%3C/svg%3E") center/contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 8.5l3.2 3.2L13 4.8'/%3E%3C/svg%3E") center/contain no-repeat; transform: scale(0); transition: transform .12s; }
+input:is([type=checkbox],[type=radio])[type=radio]::before { width: 8px; height: 8px; border-radius: 50%; -webkit-mask: none; mask: none; }
+input:is([type=checkbox],[type=radio]):hover:not(:disabled) { border-color: var(--flux-primary); }
+input:is([type=checkbox],[type=radio]):checked, input:is([type=checkbox],[type=radio])[type=checkbox]:indeterminate { background: var(--flux-primary); border-color: var(--flux-primary); }
+input:is([type=checkbox],[type=radio]):checked::before { transform: scale(1); }
+input:is([type=checkbox],[type=radio])[type=checkbox]:indeterminate::before { transform: scale(1); -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M4 8h8'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M4 8h8'/%3E%3C/svg%3E"); }
+input:is([type=checkbox],[type=radio]):focus-visible { outline: 0; box-shadow: 0 0 0 3px color-mix(in srgb, var(--flux-primary) 25%, transparent); }
+input:is([type=checkbox],[type=radio]):disabled { opacity: .5; cursor: default; }
+input:is([type=checkbox],[type=radio])[type=checkbox][aria-invalid=true], input:is([type=checkbox],[type=radio])[type=radio][aria-invalid=true] { border-color: var(--flux-danger); background: color-mix(in srgb, var(--flux-danger) 10%, var(--flux-surface)); }
+input:is([type=checkbox],[type=radio])[type=checkbox][role=switch] { width: 40px; height: 24px; min-width: 40px; border: 0; border-radius: 999px; background: color-mix(in srgb, var(--flux-text-muted) 35%, var(--flux-surface)); }
+input:is([type=checkbox],[type=radio])[type=checkbox][role=switch]::before { position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, .3); -webkit-mask: none; mask: none; transform: none; transition: transform .18s; }
+input:is([type=checkbox],[type=radio])[type=checkbox][role=switch]:hover:not(:disabled) { background: color-mix(in srgb, var(--flux-text-muted) 50%, var(--flux-surface)); }
+input:is([type=checkbox],[type=radio])[type=checkbox][role=switch]:checked, input:is([type=checkbox],[type=radio])[type=checkbox][role=switch]:checked:hover:not(:disabled) { background: var(--flux-primary); }
+input:is([type=checkbox],[type=radio])[type=checkbox][role=switch]:checked::before { transform: translateX(16px); }
+input:is([type=checkbox],[type=radio])[type=checkbox][role=switch]:indeterminate { background: color-mix(in srgb, var(--flux-primary) 55%, var(--flux-surface)); }
+input:is([type=checkbox],[type=radio])[type=checkbox][role=switch]:indeterminate::before { transform: translateX(8px); -webkit-mask: none; mask: none; }
+input:is([type=checkbox],[type=radio])[type=checkbox][role=switch][aria-invalid=true] { box-shadow: 0 0 0 2px var(--flux-danger); }
+@media (pointer: coarse) { input:is([type=checkbox],[type=radio]) { width: 24px; height: 24px; min-width: 24px; } input[type=checkbox][role=switch] { width: 46px; height: 28px; min-width: 46px; } input[type=checkbox][role=switch]::before { width: 22px; height: 22px; } input[type=checkbox][role=switch]:checked::before { transform: translateX(18px); } input[type=radio]::before { width: 10px; height: 10px; } }
+@media (prefers-reduced-motion: reduce) { input:is([type=checkbox],[type=radio]), input:is([type=checkbox],[type=radio])::before { transition: none; } }
+/* Check bileşeni: etiketli onay kutusu / radyo / anahtar */
+.chk{display:flex;align-items:flex-start;gap:12px;margin:0;font-size:var(--flux-font-md);line-height:1.45;color:var(--flux-text);cursor:pointer;text-align:left}
+.chk input{margin:2px 0 0;flex:none}
+.chk.is-disabled{cursor:default}
+.chk__text{flex:1 1 auto;min-width:0;padding-top:2px}
+.chk__text small{display:block;margin-top:2px;font-size:.86em;color:var(--flux-text-muted)}
+.chk__msg{margin:6px 0 0 36px;color:var(--flux-danger);font-size:var(--flux-font-sm);font-weight:700}

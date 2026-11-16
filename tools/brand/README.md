@@ -96,6 +96,7 @@ echo flx_check( array( 'name' => 'terms', 'label_html' => __( 'I accept the <a h
 - JS: `window.flxField.validate( el | form )`, `.setError( el, msg )`, `.clear( el )`, `.html( args )` (same markup from JS), `.icon( name )`, `.addRule()`, `.addFormat()`; event `flx-field:change` `{ valid, value }`.
 - `data-flx-manual` on the wrapper: markup and look only; the owner (a React form, an own script) formats and validates itself.
 - Sizes and colours are CSS variables on the wrapper or a parent: `--flx-f-h` (60px), `--flx-f-r`, `--flx-f-fs`, `--flx-f-p` (accent), `--flx-f-line`, `--flx-f-bg`, `--flx-f-ink`, `--flx-f-err`. Dark mode follows the same rules as the phone field.
+- Check boxes (1.7.0): rounded square with solid fill, radio is round, `'switch' => true` makes an on/off switch (`role="switch"`). Indeterminate (`input.indeterminate = true`), disabled, error and keyboard focus are styled; the touch target is 28 px (32 px on touch screens). Flux Admin (native inputs) and `@fluxwp/ui` (`<Check>`, native inputs in the React screens) use the same look.
 - `sync.py` copies `field/` into every package next to `flx-brand`.
 
 ## Dialogs and toasts (1.6.0)
