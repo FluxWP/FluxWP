@@ -1,6 +1,6 @@
 # Flux Commerce (flx-commerce): REST → GraphQL eşlemesi
 
-Paket sürümü: 0.5.0 · Önek: `flxcm_` · Dal: `gql/flx-commerce-1` · Durum: taslak (envanter)
+Paket sürümü: 0.5.0 (uygulama 0.6.0) · Önek: `flxcm_` · Dal: `gql/flx-commerce-1` · Durum: uygulanıyor
 
 Envanter koddan. `flx_settings_schema`, `flx_mcp_tools`, `flxai_tools`, `flxseo_mcp_tools` ve `wp_ajax_nopriv_*` kaydı yok. Toplu işlem (bulk) yok.
 
@@ -20,14 +20,14 @@ Envanter koddan. `flx_settings_schema`, `flx_mcp_tools`, `flxai_tools`, `flxseo_
 | Cron / pompa | 4 | 0 | 3 | 1 |
 | Webhook / ödeme callback | 0 | 0 | 0 | 0 |
 | Shortcode / blok / public akış | 12 | 4 | 8 | 0 |
-| WooCommerce iş kancası | 11 | 4 | 2 | 5 |
+| WooCommerce iş kancası | 13 | 4 | 2 | 7 |
 
 Aynı akış iki tabloda görünebilir (düğme ve onu karşılayan admin-post). Satır sayıları tablo başınadır.
 
 - İstisna: `docs/graphql/durum/flx-commerce.md`. Ortak `ISTISNALAR.md` satırına dokunulmaz. Bu pakette banka webhook'u veya 3DS dönüşü yok (ortak listedeki "flx-commerce" webhook satırının kod karşılığı yok; iyzico Flux Donate).
 - Servisler (sonraki PR, bu dosyada yok): `FLXCM_Stats_Service`, `FLXCM_Customers_Service`, `FLXCM_Subscriptions_Service`, `FLXCM_Receipts_Service`, `FLXCM_Settings_Service`, `FLXCM_Account_Service`, `FLXCM_Cart_Service`.
 - Node tipleri: `FlxCommerceCustomer`, `FlxCommerceSubscription`, `FlxCommerceReceipt`, `FlxCommerceSummary`, `FlxCommerceReport`.
-- Gizli alan: `feed_key` (yazılır, okuma yalnız set/mask). Kart token'ı (`meta._card.d`) GraphQL'e hiç girmez; yalnız `label`.
+- Feed adresi karar B: `feedUrl` düz `String`, yalnız `manage_woocommerce` (ayar sorgusu). Feed kapalıyken klasik ekran adresi göstermez; GraphQL de boş döner. Anahtar ayrı alan değildir; kitte ortak `FlxSecret` tipi yok. Kart bloğu `meta._card.d` GraphQL, REST, log ve `export()` dışına çıkmaz; dışarıda yalnız `label` (marka + son 4).
 - Kişi: `FlxCommerceCustomer.person` nullable `FlxContact`. Görünürlük `flxcrm_gql_can_see_contact`. Bölüm kaydı `origin/gql/flx-crm-2` (`0ace6abf`) üzerinde henüz yok; `docs/flx-crm/GRAPHQL.md` kancaların PHP kaldığını yazar.
 
 ## Yetki
@@ -149,9 +149,9 @@ Yok. `flx_mcp_tools`, `flxai_tools`, `flxseo_mcp_tools` ve başka bir araç kayd
 | Havale | `receipt_notify` | e-posta | `receiptNotify: String!` | hayır | `includes/helpers.php:36` |
 | Havale | `defer_to_donate` | bool (yalnız `FLXB_WC_Havale` varken) | `deferToDonate: Boolean!` | hayır | `includes/helpers.php:37` |
 | Havale | `cancel_after_days` | int 0–60 | `cancelAfterDays: Int!` | hayır | `includes/helpers.php:38` |
-| Feed | `feed` | bool | `feedEnabled: Boolean!` | hayır | `includes/helpers.php:40` |
+| Feed | `feed` | bool | `feed: Boolean!` | hayır | `includes/helpers.php:40` |
 | Feed | `feed_brand` | metin | `feedBrand: String!` | hayır | `includes/helpers.php:41` |
-| Feed | `feed_key` | 20 karakter, otomatik | `feedKey: FlxSecret!` yazma `String` | **evet** | `includes/helpers.php:42`, üretim `includes/class-flxcm-feed.php:28` |
+| Feed | `feed_key` | 20 karakter, otomatik; formda yazılmaz | `feedUrl: String!` tam adres, feed açıkken, yalnız `manage_woocommerce`. Anahtarın kendi alanı yok | hayır (adın kendisi gizli değil; sorgu yönetim yetkisi) | `includes/helpers.php:42`, `includes/class-flxcm-feed.php:28`, ekran `includes/admin/page-settings.php:107` |
 | Bildirim | `notify_customer_wa` | bool | `notifyCustomerWa: Boolean!` | hayır | `includes/helpers.php:44` |
 | Bildirim | `notify_admin_phone` | telefon | `notifyAdminPhone: String!` | hayır | `includes/helpers.php:45` |
 | Bildirim | `notify_admin_order` | bool | `notifyAdminOrder: Boolean!` | hayır | `includes/helpers.php:46` |
@@ -172,14 +172,25 @@ Havale yöntemi WooCommerce › Ödemeler ekranında, seçenek `woocommerce_flxc
 | `ref_format` | text | `refFormat: String!` | hayır | `includes/gateways/class-flxcm-gateway-bank.php:65` |
 | `ref_prefix` | text | `refPrefix: String!` | hayır | `includes/gateways/class-flxcm-gateway-bank.php:72` |
 
+Klasik ayar ekranının salt okunur / ortama bağlı verisi de `FlxCommerceSettings` üzerindedir (cap yönetim). Yazma girdisinde yoktur:
+
+| Veri | GraphQL | Dosya |
+|---|---|---|
+| Seçilebilir sipariş durumları (pending, cancelled, failed, checkout-draft, refunded hariç) | `orderStatuses: [FlxCommerceOrderStatus!]!` `{ slug, label }` | `includes/admin/page-settings.php:47` |
+| Kart sağlayıcı etiketleri (çağrılabilir `card` / `charge` yok) | `cardProviders: [String!]!` | `includes/class-flxcm-sub-cards.php:35`, ekran `:97` |
+| WhatsApp hazır mı | `whatsappReady: Boolean!` | `includes/class-flxcm-notify.php:28`, ekran `:115` |
+| Ücretsiz kargo eşiği (ayar ya da WC yöntemi) | `freeShipThreshold: FlxMoney!` | `includes/class-flxcm-checkout.php:95`, ekran `:69` |
+| Flux Donate sepeti var mı | `donateCart: Boolean!` | `class_exists( 'FLXB_WC_Cart' )`, ekran `:55` |
+| Flux Donate havalesi var mı | `donateHavale: Boolean!` | `class_exists( 'FLXB_WC_Havale' )`, ekran `:86` |
+
 ## Cron ve pompa
 
 Hostinger'da WP cron tetiklenmez. Saatlik iş, GET isteklerinin `shutdown`'ında saatte bir kez de döner (`includes/class-flxcm-subscriptions.php:749`). Adımlar sınırlı: yenileme 50, kart çekimi 25 (`:695`, `includes/class-flxcm-sub-cards.php:201`).
 
 | Tetik | Ne yapar | → | Dosya |
 |---|---|---|---|
-| `flxcm_subs_tick` saatlik | Yenileme siparişi, son gün hatırlatması, kart çekimi, ek süre, bitiş | İSTİSNA. Durum `flxCommerceRenewalStatus`, tek adım `flxCommerceRenewalsRun` | `includes/class-flxcm-subscriptions.php:76` |
-| `flxcm_daily` günlük | Aynı `tick` (`:73`) + müşteri `flush_dirty` (`includes/class-flxcm-customers.php:23`) + dekontsuz havale iptali (`includes/class-flxcm-bank.php:35`) | İSTİSNA (aynı mutation) | `includes/class-flxcm-install.php:51` |
+| `flxcm_subs_tick` saatlik | Yenileme siparişi, son gün hatırlatması, kart çekimi, ek süre, bitiş | İSTİSNA (cron + shutdown pompası durur). Durum `flxCommerceRenewalStatus` cap görüntüleme. `flxCommerceRenewalsRun` cap `manage_woocommerce`, girdi boş, çıktı `{ status { ran, at } }`. Yalnız `FLXCM_Subscriptions::tick()` (`:682`): 5 dk kilit, dönem başına `renewal_order_id` / `_renewal_for`. `flush_dirty` ve `cancel_stale` bu mutation'da yok | `includes/class-flxcm-subscriptions.php:76` |
+| `flxcm_daily` günlük | Aynı `tick` (`:73`) + müşteri `flush_dirty` (`includes/class-flxcm-customers.php:23`) + dekontsuz havale iptali (`includes/class-flxcm-bank.php:35`) | İSTİSNA. Günlük iş GraphQL'e taşınmaz | `includes/class-flxcm-install.php:51` |
 | `shutdown` pompası | Cron yoksa `tick()` | İSTİSNA | `includes/class-flxcm-subscriptions.php:74` |
 | `shutdown` `flush_dirty` | Kirli müşteri satırlarını yazar | Servis; ayrı uç yok. Yazma mutation'ları aynı flush'ı çağırır | `includes/class-flxcm-customers.php:48` |
 
@@ -199,8 +210,8 @@ Yok. iyzico bu pakette yok. Kart çekimi, Donate'in `flxcm_card_providers` süzg
 | Hesabım `cancel` / `resume` / `renew` / `forget_card` | `flxMySubscriptionCancel`, `Resume`, `Renew`, `ForgetCard` | cap `read` + sahiplik (`:200`) → `{ subscription, errors }`; `renew` ödeme adresine gider | `includes/class-flxcm-sub-account.php:191` |
 | Yenileme ödeme adresi | İSTİSNA: WC ödeme sayfası veya havale teşekkür sayfası, sipariş anahtarı | — | `includes/class-flxcm-subscriptions.php:672` |
 | Form POST `flxcm_action=receipt` | İSTİSNA: JS'siz dekont yükleme, sipariş anahtarı | — | `includes/class-flxcm-receipts.php:19` |
-| `?flxcm_dekont=&i=` dosya | İSTİSNA: ikili yanıt; yönetici nonce veya sipariş anahtarı | — | `includes/class-flxcm-receipts.php:211` |
-| `?flxcm_feed=google&key=` | İSTİSNA: Merchant / Meta RSS XML bekler | Ayar `feedEnabled` / `feedBrand`; anahtar `FlxSecret` | `includes/class-flxcm-feed.php:41` |
+| `?flxcm_dekont=&i=` dosya | İSTİSNA: ikili yanıt. Yönetici yolu nonce + yalnız `edit_shop_orders` (`includes/class-flxcm-receipts.php:220`); sipariş anahtarı sahibi de açar. Onay yetkisi ise `edit_shop_orders \|\| manage_woocommerce` (`includes/class-flxcm-rest.php:31`). Yalnız `manage_woocommerce` olan rol listeyi görür, dosyada 404 alır. Klasik `serve()` bu PR'da değişmez. GraphQL `files.url` yalnız `edit_shop_orders` varsa dolu | `includes/class-flxcm-receipts.php:211` |
+| `?flxcm_feed=google&key=` | İSTİSNA: Merchant / Meta RSS XML bekler | Ayar `feed` / `feedBrand`; adres `feedUrl` (düz metin, yönetim) | `includes/class-flxcm-feed.php:41` |
 | Teşekkür, Hesabım sipariş, sipariş e-postası havale paneli | İSTİSNA: checkout Store API'de kalır; HTML talimat | Onay `flxCommerceReceiptApprove` | `includes/class-flxcm-bank.php:22`, `:23`, `:24` |
 | Ürün sayfası dönem seçici | `flxSubscriptionCartAdd` | `productId`, `period: MONTH\|YEAR` → `{ cart, itemKey, errors }`, cap `public` | `includes/class-flxcm-sub-product.php:19`, `:282` |
 | Gizli ürün `template_redirect` | İSTİSNA: tarayıcı yönlendirmesi | Adres ayarı `hiddenRedirect` | `includes/class-flxcm-hidden-product.php:19` |
@@ -218,7 +229,9 @@ Görüntü filtresi (fiyat HTML, sütun, meta kutusu) bu tabloda yok.
 |---|---|---|---|
 | `woocommerce_checkout_order_processed`, `woocommerce_store_api_checkout_order_processed` | Siparişten abonelik (`pending`) | İSTİSNA: checkout Store API. Servis `from_order` | `includes/class-flxcm-subscriptions.php:68` |
 | `woocommerce_payment_gateways` | `flxcm_bank` yöntemini ekler | İSTİSNA: WC gateway, Store API | `includes/class-flxcm-bank.php:21` |
-| `woocommerce_add_cart_item_data`, `woocommerce_get_cart_item_from_session`, `woocommerce_before_calculate_totals` | Dönem fiyatı, satır `flxcm_sub` | `flxSubscriptionCartAdd` + `flx_gql_cart_item_kind` | `includes/class-flxcm-sub-product.php:21` |
+| `woocommerce_add_cart_item_data`, `woocommerce_get_cart_item_from_session`, `woocommerce_before_calculate_totals` | Dönem fiyatı, satır `flxcm_sub` | `flxSubscriptionCartAdd` + `flx_gql_cart_item_kind`. Aynı üründen tek satır: `validate` (`:157`) eskisini çıkarır. Adet 1: `individually` (`:226`) ve `woocommerce_store_api_product_quantity_editable` → false (`docs/graphql/SEPET.md` §6) | `includes/class-flxcm-sub-product.php:21` |
+| `woocommerce_product_options_general_product_data` (gizli ürün), katalog / site haritası | `_flxcm_hidden` | Kanca kalır. Yönlendirme istisna | `includes/class-flxcm-hidden-product.php:17` |
+| Ürün meta `_flxcm_no_feed` | Feed'den çıkar (düzenleme kutusu yok; meta okunur) | Kanca / meta kalır. Feed istisna | `includes/class-flxcm-feed.php:80` |
 | `woocommerce_product_options_general_product_data`, `woocommerce_admin_process_product_object` | `_flxcm_sub`, `_flxcm_sub_month`, `_flxcm_sub_year` | `Product.flxSubscription` okuma cap `public`. Yazma WC ürün ekranında kalır | `includes/class-flxcm-sub-product.php:16` |
 | `woocommerce_get_query_vars`, `woocommerce_account_subscriptions_endpoint` | Hesabım listesi | `flxMySubscriptions` | `includes/class-flxcm-sub-account.php:15` |
 | `woocommerce_order_action_flxcm_confirm` | Sipariş ekranından havale onayı | `flxCommerceReceiptApprove` | `includes/class-flxcm-bank.php:30` |
@@ -232,18 +245,21 @@ Görüntü filtresi (fiyat HTML, sütun, meta kutusu) bu tabloda yok.
 
 | Tip | Alanlar (kısa) | Nullable ve nedeni |
 |---|---|---|
-| `FlxCommerceSummary` | `revenue`, `orders`, `aov`, `customers`, `newCustomers` (`FlxMoney` / `Int`), `series` connection, `awaiting`, `lowStock`, `topProducts`, `methods` | `delta` önceki dönem yoksa null |
-| `FlxCommerceCustomer` | `id`, `name`, `email`, `phone`, `city`, `orders`, `total`, `note`, `firstAt`, `lastAt`, `person` | `person: FlxContact` CRM yoksa veya `flxcrm_gql_can_see_contact` false ise null. `phone` / `city` boşsa `""` |
-| `FlxCommerceSubscription` | `id`, `status` enum, `period` enum, `amount`, `currency`, `product`, `renewsAt`, `cardLabel`, `hasAccess`, `autoRenew` | `cardLabel` kart yoksa null. `renewalOrder` açık yenileme yoksa null. Token alanı yok |
-| `FlxCommerceReceipt` | `id`, `number`, `name`, `email`, `total`, `reference`, `status`, `files { name url }` | `files` boş liste olabilir. `url` istisna indirme adresidir |
-| `FlxCommerceReport` | toplamlar + `days` / `products` / `categories` / `methods` connection (`first ≤ 50`) | Aralıkta satış yoksa connection boş, toplamlar 0 |
-| `FlxCommerceSettings` | yukarıdaki 23 alan | `feedKey` yalnız `{ set, mask }` |
-| `FlxCommerceBankSettings` | 8 gateway alanı | IBAN boşsa yöntem kasada görünmez (`is_available`, gateway `:80`) |
-| `FlxMySubscription` | müşterinin gördüğü alt küme: ürün, tutar, durum, yenileme, `cardLabel`, `payUrl` | `payUrl` ödeme beklenmiyorsa null. Token yok |
-| `Product.flxSubscription` | `enabled`, `month`, `year` | Ay veya yıl fiyatı yoksa o alan null |
-| `FlxCartItem.flxSubscription` | `period`, `label` | Abonelik satırı değilse null |
-| `FlxCart.flxFreeShipping` | `enabled`, `threshold`, `remaining` | Çubuk kapalıysa null |
-| `FlxContact.flxCommerce` | sipariş connection, özet, adresler, sık ürünler, not | Kişi mağaza müşterisi değilse null. Cap görüntüleme |
+| `FlxCommerceSummary` | `revenue`, `orders`, `aov`, `customers`, `newCustomers`, `series` (en çok 90 gün), `awaiting`, `lowStock` | `*Delta` önceki dönem 0 ise null. Uzun seri `flxCommerceReportDays` |
+| `FlxCommerceCustomer` | `id`, `name`, `email`, `phone`, `city`, `userId`, `guest`, `orders`, `openOrders`, `total`, `note`, `firstAt`, `lastAt`, `addresses`, `products`, `recentOrders`, `timeline(filter)`, `person` | CRM yokken yedek sayfa bu alanlardan kurulur. `person: FlxContact` CRM yoksa veya `flxcrm_gql_can_see_contact` false ise null |
+| `FlxCommerceCustomerCounts` | `all`, `repeat`, `vip`, `lapsed`, `new`, `spent`, `ltv`, `built`, `builtAt` | `built` false ise klasik "eski siparişler taranmadı" uyarısı. `builtAt` hiç taranmadıysa null |
+| `FlxCommerceSubscription` | `id`, `status`, `period`, `amount`, `name`, `email`, `productId`, `productName`, `productUrl`, `parentOrderId`, `lastOrderId`, `renewalOrderId`, `renewals`, `startedAt`, `periodEnd`, `endedAt`, `cardLabel`, `autoCharge`, `nextChargeAt`, `renewNow`, `payUrl`, `lastOrderUrl` | `cardLabel` boş string, kart yoksa. `nextChargeAt` / `payUrl` otomatik çekim veya açık ödeme yoksa null. Token yok. Yönetici düzenleme adresi yalnız `edit_shop_orders` |
+| `FlxCommerceSubscriptionCounts` | `all`, `pending`, `active`, `pastDue`, `cancelled`, `expired`, `mrr`, `due` | — |
+| `FlxCommerceReceipt` | `id`, `number`, `name`, `email`, `total`, `reference`, `status`, `files { name url }` | `url` yalnız `edit_shop_orders` varsa dolu (dosyayı açamayan yöneticiye boş) |
+| `FlxCommerceReport` | toplamlar. Gün / ürün / kategori / yöntem ayrı connection (`first ≤ 50`) | Satış yoksa connection boş, toplamlar 0 |
+| `FlxCommerceSettings` | kayıtlı alanlar + `feedUrl` + yukarıdaki salt okunur altılı | `feedUrl` feed kapalıyken `""`. `FlxSecret` yok |
+| `FlxCommerceBankSettings` | 8 gateway alanı | IBAN boşsa yöntem kasada görünmez |
+| `FlxCommerceRenewalStatus` | `ran`, `at` | `at` tick hiç çalışmadıysa null. Sorgu cap görüntüleme. `flxCommerceRenewalsRun` cap yönetim, girdi yok, çıktı `status` |
+| `flxMySubscriptions` | `[FlxCommerceSubscription!]!` (ayrı tip yok; Hesabım alanları aynı tipte) | cap `read`, yalnız erişimi açık satırlar |
+| `flxCommerceSubscriptionOffer` | `productId`, `name`, `month`, `year` | Bu şemada `Product` tipi yok. Ay veya yıl yoksa o para alanı null. cap `public` |
+| `FlxCartItem.flxSubscription` | `period`, `amount` | Abonelik satırı değilse null |
+| `FlxCart.flxFreeShipping` | `enabled`, `threshold`, `remaining`, `reached` | — |
+| `FlxContact.flxCommerce` | `FlxCommerceCustomer` | Kişi mağaza müşterisi değilse null. Cap görüntüleme. CRM bölüm kaydı (PR #333) gelince aynı alan bölüme bağlanır |
 
 Connection'lar `first` en çok 50. Raporun günlük serisi sayfalanır; ekran bir yılı parça parça ister (karmaşıklık sınırı 1000).
 
@@ -263,11 +279,15 @@ Hatalar: `UNAUTHENTICATED`, `FORBIDDEN`, `NOT_FOUND`, `INVALID_INPUT`, `CONFLICT
 
 Okuma `flx_gql_cache_tag`. Yazma `flx_gql_purge`. Dekont listesi canlı izlenmez; sekme gizliyken duran bir yoklama gerekirse aralık en az 10 sn (manifest bugün 60 sn, `includes/app-manifest.php:69`).
 
-## Açık sorular
+## Kararlar
 
-Ürün kararı bekleyen dört soru (seçenekler ve öneri PR açıklamasında ve uygulayıcıya iletilen planda):
+Dört ürün sorusu kapandı. Sahibin ayrıca bakacağı uyuşmazlık aşağıda.
 
-- Feed adresindeki `feed_key` yönetim yetkisine tam mı görünsün, yoksa yalnız maske mi?
-- Müşteri ekranı `FlxContact` alanlarıyla bu pakette mi çıksın, CRM bölüm kaydı merge edilene kadar mı beklesin?
-- Hesabım abonelik işlemleri bu dalgada GraphQL'e gelsin mi?
-- Misafir dekont yüklemesi kalıcı istisna olarak kalsın mı?
+1. Feed adresi B. `manage_woocommerce` tam adresi görür (`feedUrl`). Başkası ayar sorgusunu hiç okuyamaz. Alan adı anahtar/token içermez.
+2. Müşteri kartı C. `FlxContact.flxCommerce` bu PR'da, cap görüntüleme, nullable. CRM bölüm kaydı `gql/flx-crm-2` (PR #333) gelince aynı alan bölüme bağlanır. CRM yokken yedek sayfa `FlxCommerceCustomer` üzerindedir.
+3. Hesabım A. GraphQL bu PR'da. WooCommerce hesap sayfası aynı servisi çağırır; HTML değişmez.
+4. Misafir dekont A. `POST /receipt` ve form POST kalıcı istisna (multipart).
+
+Dekont dosyası: `serve()` yalnız `edit_shop_orders` (veya sipariş anahtarı). Onay listesi `edit_shop_orders || manage_woocommerce`. Klasik davranış bu PR'da değişmez; GraphQL dosya adresini yalnız dosyayı açabilene verir. Sahip `serve()`'in `manage_woocommerce` kabul edip etmeyeceğine karar verecek.
+
+`d` içinde PAN, CVV veya son kullanma yoktur. iyzico sağlayıcısı mühürlü `k` (cardUserKey) ve `t` (cardToken) yazar; `label` marka ve son 4'tür ve `d`'nin dışındadır. Depolama bu PR'da değişmez.
