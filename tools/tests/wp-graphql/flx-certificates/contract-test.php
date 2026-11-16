@@ -114,6 +114,7 @@ flxt_same( 'ACTIVE', $cert['status'] ?? null, 'create: status' );
 flxt_same( 'Holder ' . $stamp, $cert['holderName'] ?? null, 'create: holder' );
 flxt_same( null, flxs_t_get( $cert, 'pdfUrl' ), 'create: no PDF until a file is stored' );
 flxt_same( 'holder-' . $stamp . '@example.test', $cert['person']['email'] ?? null, 'create: the staff row includes the e-mail' );
+$holder_id = (int) ( $cert['person']['databaseId'] ?? 0 );
 
 $r = flxs_t_op(
 	'FlxCertificateUpdate',
@@ -199,6 +200,8 @@ $back = flxs_t_op(
 	$admin
 );
 flxt_same( true, flxs_t_payload( $back, 'flxCertificateCreate' )['certificate']['backdated'] ?? null, 'create: a manager may backdate' );
+$back_id     = (int) ( flxs_t_payload( $back, 'flxCertificateCreate' )['certificate']['databaseId'] ?? 0 );
+$back_person = (int) ( flxs_t_payload( $back, 'flxCertificateCreate' )['person']['databaseId'] ?? 0 );
 
 $spare = flxs_t_op( 'FlxCertificatePersonSave', array( 'input' => array( 'name' => '' ) ), $admin );
 flxt_same( null, $spare['errors'] ?? null, 'person save: empty name is not a top-level error' );
@@ -319,5 +322,17 @@ for ( $n = 0; $n < 9; $n++ ) {
 }
 $limited = flxs_t_op( 'FlxCertificateLookup', array( 'input' => array( 'contact' => 'not-an-address' ) ) );
 flxt_same( 'RATE_LIMITED', flxt_code( $limited ), 'lookup: the 11th call from one address is RATE_LIMITED' );
+
+// People live in the shared table Flux CRM lists. Leave it as the test found it.
+foreach ( array( $id, $back_id, $a_id, $b_id ) as $cid ) {
+	if ( $cid ) {
+		flxs_delete_certificate( $cid );
+	}
+}
+foreach ( array( $holder_id, $back_person, $a_person, $b_person ) as $pid ) {
+	if ( $pid ) {
+		flxs_delete_person( $pid );
+	}
+}
 
 flxt_done();
