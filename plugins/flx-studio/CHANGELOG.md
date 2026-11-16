@@ -1,5 +1,11 @@
 # Flux Studio — Değişiklikler
 
+## 0.5.0
+- GraphQL: servis katmanı (`FLXST_Service`), `flxStudio*` şeması, 26 kayıtlı işlem. REST, MCP ve mobil manifest aynen durur, servise delege eder.
+- wp-admin'de varsayılan ortak React ekranı (`studio`): galeri, klasörler, favoriler, seçim, sürükle-bırak, üretim çubuğu, referans/kişi/@anma, Geliştir, Beyin fırtınası, şablonlar, görüntüleyici, karşılaştırma, maske düzenleyici, pano, ayarlar. Klasik ekran "Klasik görünüm" bağlantısıyla erişilebilir.
+- Üretim ve poll GraphQL ile; yükleme `/flx/v1/upload` (bağlam `flx-studio/reference`, `flx-studio/mask`).
+- Requires PHP 8.1, Requires Plugins: flx-graphql.
+
 ## 0.4.4
 - Stüdyo API yanıtları ortak önbelleksiz başlıkları kullanır. CDN işareti durur.
 
