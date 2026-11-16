@@ -565,6 +565,7 @@ final class FLXBK_Render_Service {
 			if ( empty( $list ) || ! apply_filters( 'flxbk_print_google_fonts', true ) ) {
 				continue;
 			}
+			/** @var array<string, array{fontfamily: string, fontvariants?: array<string>, fontsubsets?: array<string>}> $list The front end's own font list. */
 			ob_start();
 			$fe->print_gfonts( $list );
 			$tag = (string) ob_get_clean();
