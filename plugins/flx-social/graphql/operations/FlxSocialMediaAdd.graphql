@@ -1,0 +1,6 @@
+mutation FlxSocialMediaAdd($input: FlxSocialMediaAddInput!) {
+  flxSocialMediaAdd(input: $input) {
+    media { ...FlxSocialMediaRow }
+    errors { code message field }
+  }
+}

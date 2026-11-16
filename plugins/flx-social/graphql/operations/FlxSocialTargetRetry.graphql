@@ -1,0 +1,6 @@
+mutation FlxSocialTargetRetry($input: FlxSocialTargetRetryInput!) {
+  flxSocialTargetRetry(input: $input) {
+    post { ...FlxSocialPostRow }
+    errors { code message field }
+  }
+}

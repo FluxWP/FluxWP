@@ -7,7 +7,11 @@
 
 defined( 'ABSPATH' ) || exit;
 
-/** Sayfa türleri (görünürlük). */
+/**
+ * Sayfa türleri (görünürlük).
+ *
+ * @return array<string,string>
+ */
 function flxcb_page_types() {
 	return array(
 		'home'     => __( 'Home', 'flx-chatbot' ),
@@ -106,7 +110,11 @@ function flxcb_defaults() {
 	return $d;
 }
 
-/** Ayarlar (varsayılanlarla birleştirilmiş). */
+/**
+ * Ayarlar (varsayılanlarla birleştirilmiş).
+ *
+ * @return array<string,mixed>
+ */
 function flxcb_settings( $refresh = false ) {
 	static $cache = null;
 	if ( null === $cache || $refresh ) {
@@ -124,6 +132,9 @@ function flxcb_setting( $key ) {
 	return $s[ $key ] ?? null;
 }
 
+/**
+ * @return array<string,mixed>
+ */
 function flxcb_update_settings( array $values ) {
 	$s = array_merge( flxcb_settings(), $values );
 	update_option( 'flxcb_settings', $s, false );
@@ -131,7 +142,11 @@ function flxcb_update_settings( array $values ) {
 	return $s;
 }
 
-/** Boş bırakılan metin alanlarının çevrilmiş varsayılanları. */
+/**
+ * Boş bırakılan metin alanlarının çevrilmiş varsayılanları.
+ *
+ * @return string
+ */
 function flxcb_default_text( $key ) {
 	switch ( $key ) {
 		case 'bot_name':
@@ -205,11 +220,18 @@ function flxcb_links() {
 	return array_slice( $out, 0, 6 );
 }
 
+/**
+ * @return string
+ */
 function flxcb_admin_url( $tab = '' ) {
 	return admin_url( 'admin.php?page=flx-chatbot' . ( $tab ? '&tab=' . rawurlencode( $tab ) : '' ) );
 }
 
-/** Sohbetlerin yönetildiği yer: tek gelen kutusunda Flux Chat, değilse eklentinin gelen kutusu. */
+/**
+ * Sohbetlerin yönetildiği yer: tek gelen kutusunda Flux Chat, değilse eklentinin gelen kutusu.
+ *
+ * @return string
+ */
 function flxcb_inbox_url( $conv_id = 0 ) {
 	if ( function_exists( 'flxcb_fc_unified' ) && flxcb_fc_unified() ) {
 		$conv = $conv_id ? flxcb_get_conversation( (int) $conv_id ) : null;
@@ -227,7 +249,11 @@ function flxcb_can_reply( $user_id = 0 ) {
 	return user_can( $user_id, 'manage_options' ) || user_can( $user_id, 'flxcb_reply' ) || user_can( $user_id, 'flxc_use' );
 }
 
-/** Asistanın adı. */
+/**
+ * Asistanın adı.
+ *
+ * @return string
+ */
 function flxcb_bot_name() {
 	return flxcb_text( 'bot_name' );
 }
@@ -250,7 +276,11 @@ function flxcb_avatar_url() {
 	return '';
 }
 
-/** Görünen ad (temsilci). */
+/**
+ * Görünen ad (temsilci).
+ *
+ * @return string
+ */
 function flxcb_user_name( $user_id ) {
 	$u = $user_id ? get_userdata( (int) $user_id ) : null;
 	if ( ! $u ) {
@@ -357,6 +387,9 @@ function flxcb_flight_track( $conv_id, $drop ) {
 	);
 }
 
+/**
+ * @return int
+ */
 function flxcb_now_ms() {
 	return (int) floor( microtime( true ) * 1000 );
 }

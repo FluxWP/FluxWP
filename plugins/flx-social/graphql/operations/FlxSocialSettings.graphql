@@ -1,0 +1,15 @@
+query FlxSocialSettings {
+  flxSocialSettings {
+    approval signature utm metaVersion xTier xPremium xMonthLimit tiktokMode pinSandbox liOrg waConn xMonth tickUrl
+    lastTick { timestamp }
+    auto { enabled postTypes accounts template mode delay image }
+    postTypes { id name }
+    xTiers { id name }
+    waChoices { id name }
+  }
+  flxSocialApps {
+    id label console redirect help ready
+    fields { key label secret value isSet placeholder optional }
+    connect { for label provider local }
+  }
+}

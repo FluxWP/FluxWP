@@ -1,0 +1,7 @@
+query FlxSocialPosts($first: Int, $after: String, $status: [FlxSocialPostStatus!], $accountId: Int, $provider: String, $search: String, $tag: String, $mine: Boolean, $from: Int, $to: Int, $ascending: Boolean) {
+  flxSocialPosts(first: $first, after: $after, status: $status, accountId: $accountId, provider: $provider, search: $search, tag: $tag, mine: $mine, from: $from, to: $to, ascending: $ascending) {
+    nodes { ...FlxSocialPostRow }
+    pageInfo { hasNextPage endCursor }
+    totalCount
+  }
+}

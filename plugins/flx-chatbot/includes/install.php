@@ -7,6 +7,9 @@
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * @return string
+ */
 function flxcb_table( $name ) {
 	global $wpdb;
 	return $wpdb->prefix . 'flxcb_' . $name;
@@ -35,7 +38,7 @@ function flxcb_install() {
 		rating_note text,
 		ai_turns int(11) NOT NULL DEFAULT 0,
 		unread int(11) NOT NULL DEFAULT 0,
-		lead tinyint(1) NOT NULL DEFAULT 0,
+		`lead` tinyint(1) NOT NULL DEFAULT 0,
 		order_id bigint(20) unsigned NOT NULL DEFAULT 0,
 		seen_ts bigint(20) NOT NULL DEFAULT 0,
 		agent_read bigint(20) unsigned NOT NULL DEFAULT 0,

@@ -1,0 +1,44 @@
+fragment FlxSocialCapsFields on FlxSocialCaps {
+  text image video gif maxText maxImages maxVideos mix needsMedia edit delete comment metrics options
+}
+
+fragment FlxSocialAccountRow on FlxSocialAccount {
+  id databaseId provider via network name username avatar status
+  expires { timestamp }
+  kind premium lastError
+  boards { id name }
+  groups { id name }
+  playlists { id name }
+  caps { ...FlxSocialCapsFields }
+}
+
+fragment FlxSocialMediaRow on FlxSocialMedia {
+  databaseId url kind mime bytes width height duration thumb name alt
+}
+
+fragment FlxSocialOptionsFields on FlxSocialOptions {
+  title link board privacy igType flxCategory playlist tiktokPrivacy gbpTopic gbpCta gbpCtaUrl
+  waKind waTo firstComment liVisibility alt thumbUrl replySettings eventTitle eventStart eventEnd offerCode
+  madeForKids notify shorts disableComment disableDuet disableStitch aiGenerated brandContent brandOrganic shareToFeed autoMusic
+  tags
+}
+
+fragment FlxSocialTargetRow on FlxSocialTarget {
+  id databaseId accountId provider account avatar status remoteUrl error
+  publishedAt { timestamp label }
+  metrics { views impressions reach clicks likes comments shares saves }
+  caps { ...FlxSocialCapsFields }
+  content
+  media { ...FlxSocialMediaRow }
+  options { ...FlxSocialOptionsFields }
+}
+
+fragment FlxSocialPostRow on FlxSocialPost {
+  id databaseId status title content tags repeatDays source note author authorId approvedBy
+  media { ...FlxSocialMediaRow }
+  scheduledAt { timestamp label }
+  publishedAt { timestamp label }
+  created { timestamp }
+  updated { timestamp }
+  targets { ...FlxSocialTargetRow }
+}

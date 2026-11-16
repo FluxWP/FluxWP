@@ -1,6 +1,9 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: tr_TR\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Answers site chats"
+msgstr "Site sohbetlerini yanıtlar"
+
 msgid "Settings"
 msgstr "Ayarlar"
 
@@ -157,15 +160,6 @@ msgstr "Bu görseli kullan"
 msgid "You have unsaved changes"
 msgstr "Kaydedilmemiş değişiklikler var"
 
-msgid "Hi, how long does shipping take?"
-msgstr "Merhaba, kargo ne kadar sürüyor?"
-
-msgid "Orders ship within **1-3 business days**. Here is a product you might like:"
-msgstr "Siparişler **1-3 iş günü** içinde kargoya verilir. İlginizi çekebilecek bir ürün:"
-
-msgid "Orders ship within **1-3 business days**; shipping is free over $50. Anything else I can help with?"
-msgstr "Siparişler **1-3 iş günü** içinde kargoya verilir; 500 TL üzeri kargo ücretsiz. Başka bir konuda yardımcı olabilir miyim?"
-
 msgid "General"
 msgstr "Genel"
 
@@ -252,69 +246,6 @@ msgstr "Asistan yok; mesajlar doğrudan temsilcilere gider."
 
 msgid "Connections"
 msgstr "Bağlantılar"
-
-msgid "Flux AI & MCP connected"
-msgstr "Flux AI & MCP bağlı"
-
-msgid "Key, model, spending limit and logs come from Flux AI."
-msgstr "Anahtar, model, harcama sınırı ve kayıtlar Flux AI'dan gelir."
-
-msgid "Choose model"
-msgstr "Model seç"
-
-msgid "Flux AI is not ready"
-msgstr "Flux AI hazır değil"
-
-msgid "Enter an API key in Flux AI & MCP or turn on Flux AI Chatbot under Connected systems."
-msgstr "Flux AI & MCP'de bir API anahtarı girin ya da Bağlı sistemler'de Flux AI Chatbot'u açın."
-
-msgid "Flux AI"
-msgstr "Flux AI"
-
-msgid "Flux AI & MCP is not installed"
-msgstr "Flux AI & MCP kurulu değil"
-
-msgid "Install the Flux AI & MCP plugin for the assistant. Until then the window works as live chat only."
-msgstr "Asistan için Flux AI & MCP eklentisini kurun. O zamana kadar pencere yalnız canlı destek olarak çalışır."
-
-msgid "Live chat off"
-msgstr "Canlı destek kapalı"
-
-msgid "Mode is \"AI only\"."
-msgstr "Çalışma şekli \"Yalnız AI\"."
-
-msgid "Flux Chat inbox"
-msgstr "Flux Chat gelen kutusu"
-
-msgid "All site chats (including the ones the assistant answered) appear in the call center with the site chat icon; agents reply from the same screen as WhatsApp and other channels."
-msgstr "Tüm site sohbetleri (asistanın cevapladıkları dahil) çağrı merkezinde site sohbeti ikonuyla görünür; temsilciler WhatsApp ve diğer kanallarla aynı ekrandan cevaplar."
-
-msgid "Plugin inbox"
-msgstr "Eklentinin gelen kutusu"
-
-msgid "Handed-over chats land on the Chatbot › Chats screen."
-msgstr "Devredilen sohbetler Chatbot › Sohbetler ekranına düşer."
-
-msgid "Handed-over chats land on the Chatbot › Chats screen. With Flux Chat (1.37+) installed they can also be answered from the call center."
-msgstr "Devredilen sohbetler Chatbot › Sohbetler ekranına düşer. Flux Chat (1.37+) kurulursa çağrı merkezinden de cevaplanır."
-
-msgid "Online now"
-msgstr "Şu an çevrim içi"
-
-msgid "Outside working hours now"
-msgstr "Şu an mesai dışı"
-
-msgid "Working hours: %s"
-msgstr "Çalışma saatleri: %s"
-
-msgid "Working hours come from the Flux Chat settings."
-msgstr "Mesai saatleri Flux Chat ayarından."
-
-msgid "Agents always count as online."
-msgstr "Temsilciler her zaman çevrim içi sayılır."
-
-msgid "Hours"
-msgstr "Saatler"
 
 msgid "Open from a page"
 msgstr "Sayfadan açma"
@@ -593,7 +524,7 @@ msgid "Information not on your site: shipping, returns, opening hours, FAQs. Pla
 msgstr "Sitede yazmayan bilgiler: kargo, iade, çalışma saatleri, sık sorulan sorular. Düz metin; asistan yalnız buradan ve sitenizden cevap verir."
 
 msgid "Shipping: 1-3 business days, free over $50.\nReturns: within 14 days with the invoice.\nQ: Do you have a store?\nA: We sell online only."
-msgstr "Kargo: 1-3 iş günü, 500 TL üzeri ücretsiz.\nİade: 14 gün içinde, faturayla.\nS: Mağazanız var mı?\nC: Yalnız online satış yapıyoruz."
+msgstr "Kargo: 1-3 iş günü, 50 $ üzeri ücretsiz.\nİade: faturayla 14 gün içinde.\nS: Mağazanız var mı?\nC: Yalnız online satış yapıyoruz."
 
 msgid "Sources and tools"
 msgstr "Kaynaklar ve araçlar"
@@ -666,6 +597,9 @@ msgstr "Çağrı merkezi gelen kutusu; WhatsApp sohbetleriyle birlikte."
 
 msgid "Flux Chat 1.37+ is not installed; the inbox is used."
 msgstr "Flux Chat 1.37+ kurulu değil; gelen kutusu kullanılır."
+
+msgid "Plugin inbox"
+msgstr "Eklentinin gelen kutusu"
 
 msgid "Chatbot › Chats screen, with email notification."
 msgstr "Chatbot › Sohbetler ekranı; e-posta bildirimiyle."
@@ -1129,6 +1063,9 @@ msgstr "Çok fazla yeni sohbet açıldı. Biraz sonra tekrar deneyin."
 msgid "Could not start the chat."
 msgstr "Sohbet başlatılamadı."
 
+msgid "Still answering. Please wait a moment."
+msgstr "Hâlâ cevap veriyor. Biraz bekleyin."
+
 msgid "I can't answer right now. Please write again in a moment or reach us through our contact details."
 msgstr "Şu an cevap veremiyorum. Lütfen biraz sonra tekrar yazın ya da iletişim bilgilerimizden bize ulaşın."
 
@@ -1182,6 +1119,9 @@ msgstr "Flux AI bağlı; asistan cevap veriyor."
 msgid "Flux AI is not ready; messages go to an agent instead of the assistant."
 msgstr "Flux AI hazır değil; mesajlar asistan yerine temsilciye gidiyor."
 
+msgid "Flux AI"
+msgstr "Flux AI"
+
 msgid "Handoffs go to the Flux Chat inbox."
 msgstr "Devirler Flux Chat gelen kutusuna gidiyor."
 
@@ -1194,8 +1134,479 @@ msgstr "Sipariş verildi: #%1$s (%2$s)"
 msgid "Placed after site chat #%d"
 msgstr "Site sohbeti #%d sonrasında verildi"
 
-msgid "Artificial intelligence-supported chat window to the site: With Flux AI, 24/7 responses from your site's content and products, potential customer collection, WooCommerce information, one-click transfer to a live representative (Flux Chat inbox or the plugin's own inbox), file sharing, read receipts, end-of-chat scoring and leaving messages after hours. Color, position, avatar, texts and visibility are customized from the panel."
-msgstr "Siteye yapay zekâ destekli sohbet penceresi: Flux AI ile sitenizin içeriğinden ve ürünlerinden 7/24 cevap, potansiyel müşteri toplama, WooCommerce bilgisi, tek tıkla canlı temsilciye devir (Flux Chat gelen kutusu ya da eklentinin kendi gelen kutusu), dosya paylaşımı, okundu bilgisi, sohbet sonu puanlama ve mesai dışında mesaj bırakma. Renk, konum, avatar, metinler ve görünürlük panelden özelleştirilir."
+msgid "Flux AI & MCP connected"
+msgstr "Flux AI & MCP bağlı"
 
-msgid "Still answering. Please wait a moment."
-msgstr "Hâlâ cevap veriyor. Biraz bekleyin."
+msgid "Key, model, spending limit and logs come from Flux AI."
+msgstr "Anahtar, model, harcama sınırı ve kayıtlar Flux AI'dan gelir."
+
+msgid "Choose model"
+msgstr "Model seç"
+
+msgid "Flux AI is not ready"
+msgstr "Flux AI hazır değil"
+
+msgid "Enter an API key in Flux AI & MCP or turn on Flux AI Chatbot under Connected systems."
+msgstr "Flux AI & MCP'de bir API anahtarı girin ya da Bağlı sistemler'de Flux AI Chatbot'u açın."
+
+msgid "Flux AI & MCP is not installed"
+msgstr "Flux AI & MCP kurulu değil"
+
+msgid "Install the Flux AI & MCP plugin for the assistant. Until then the window works as live chat only."
+msgstr "Asistan için Flux AI & MCP eklentisini kurun. O zamana kadar pencere yalnız canlı destek olarak çalışır."
+
+msgid "Live chat off"
+msgstr "Canlı destek kapalı"
+
+msgid "Mode is \"AI only\"."
+msgstr "Çalışma şekli \"Yalnız AI\"."
+
+msgid "Flux Chat inbox"
+msgstr "Flux Chat gelen kutusu"
+
+msgid "All site chats (including the ones the assistant answered) appear in the call center with the site chat icon; agents reply from the same screen as WhatsApp and other channels."
+msgstr "Tüm site sohbetleri (asistanın cevapladıkları dahil) çağrı merkezinde site sohbeti ikonuyla görünür; temsilciler WhatsApp ve diğer kanallarla aynı ekrandan cevaplar."
+
+msgid "Handed-over chats land on the Chatbot › Chats screen."
+msgstr "Devredilen sohbetler Chatbot › Sohbetler ekranına düşer."
+
+msgid "Handed-over chats land on the Chatbot › Chats screen. With Flux Chat (1.37+) installed they can also be answered from the call center."
+msgstr "Devredilen sohbetler Chatbot › Sohbetler ekranına düşer. Flux Chat (1.37+) kurulursa çağrı merkezinden de cevaplanır."
+
+msgid "Working hours: %s"
+msgstr "Çalışma saatleri: %s"
+
+msgid "Working hours come from the Flux Chat settings."
+msgstr "Mesai saatleri Flux Chat ayarından."
+
+msgid "Agents always count as online."
+msgstr "Temsilciler her zaman çevrim içi sayılır."
+
+msgid "Online now"
+msgstr "Şu an çevrim içi"
+
+msgid "Outside working hours now"
+msgstr "Şu an mesai dışı"
+
+msgid "Hours"
+msgstr "Saatler"
+
+msgid "Hi, how long does shipping take?"
+msgstr "Merhaba, kargo ne kadar sürüyor?"
+
+msgid "Orders ship within **1-3 business days**. Here is a product you might like:"
+msgstr "Siparişler **1-3 iş günü** içinde kargoya verilir. İlginizi çekebilecek bir ürün:"
+
+msgid "Orders ship within **1-3 business days**; shipping is free over $50. Anything else I can help with?"
+msgstr "Siparişler **1-3 iş günü** içinde kargoya verilir; 500 TL üzeri kargo ücretsiz. Başka bir konuda yardımcı olabilir miyim?"
+
+msgid "Where a chat is."
+msgstr "Sohbetin durumu."
+
+msgid "The assistant is answering."
+msgstr "Asistan yanıtlıyor."
+
+msgid "Waiting for an agent."
+msgstr "Temsilci bekliyor."
+
+msgid "An agent is talking with the visitor."
+msgstr "Bir temsilci ziyaretçiyle konuşuyor."
+
+msgid "The visitor left a message outside working hours."
+msgstr "Ziyaretçi çalışma saatleri dışında mesaj bıraktı."
+
+msgid "The chat ended."
+msgstr "Sohbet bitti."
+
+msgid "Which chats the list shows."
+msgstr "Listenin göstereceği sohbetler."
+
+msgid "Waiting for an agent, in conversation or left a message."
+msgstr "Temsilci bekleyen, görüşülen ya da mesaj bırakılan."
+
+msgid "With the assistant."
+msgstr "Asistanla."
+
+msgid "In conversation."
+msgstr "Görüşülüyor."
+
+msgid "Left a message."
+msgstr "Mesaj bıraktı."
+
+msgid "Closed."
+msgstr "Kapalı."
+
+msgid "Every chat."
+msgstr "Tüm sohbetler."
+
+msgid "Who wrote a message."
+msgstr "Mesajı kimin yazdığı."
+
+msgid "The assistant."
+msgstr "Asistan."
+
+msgid "An event line (handed over, ended, …)."
+msgstr "Olay satırı (devredildi, bitti, …)."
+
+msgid "What a message carries."
+msgstr "Mesajın taşıdığı."
+
+msgid "State of a connection line."
+msgstr "Bağlantı satırının durumu."
+
+msgid "A product the assistant suggested."
+msgstr "Asistanın önerdiği ürün."
+
+msgid "Product name."
+msgstr "Ürün adı."
+
+msgid "Product page."
+msgstr "Ürün sayfası."
+
+msgid "Product image; empty when it has none."
+msgstr "Ürün görseli; yoksa boş."
+
+msgid "Price as shown in the shop."
+msgstr "Mağazada görünen fiyat."
+
+msgid "The product is in stock."
+msgstr "Ürün stokta."
+
+msgid "Add-to-cart address; empty when the product cannot be added directly."
+msgstr "Sepete ekleme adresi; ürün doğrudan eklenemiyorsa boş."
+
+msgid "One message of a chat."
+msgstr "Bir sohbetin tek mesajı."
+
+msgid "Message number; grows with time."
+msgstr "Mesaj numarası; zamanla artar."
+
+msgid "Who wrote it."
+msgstr "Kimin yazdığı."
+
+msgid "What it carries."
+msgstr "Taşıdığı."
+
+msgid "Text (assistant replies use a small Markdown subset); a file caption for files."
+msgstr "Metin (asistan yanıtları küçük bir Markdown alt kümesi kullanır); dosyalarda dosya açıklaması."
+
+msgid "When it was sent."
+msgstr "Gönderilme zamanı."
+
+msgid "Agent first name or the assistant's name; empty for the visitor and event lines."
+msgstr "Temsilcinin adı ya da asistanın adı; ziyaretçi ve olay satırlarında boş."
+
+msgid "Attached file; the address works for signed-in agents only."
+msgstr "Ekli dosya; adres yalnız giriş yapmış temsilcilerde çalışır."
+
+msgid "Products the assistant suggested in this message."
+msgstr "Asistanın bu mesajda önerdiği ürünler."
+
+msgid "Messages after a given message, oldest first (the chat screen asks again with the last number to get what is new)."
+msgstr "Verilen mesajdan sonraki mesajlar, eskiden yeniye (sohbet ekranı yenileri almak için son numarayla yeniden sorar)."
+
+msgid "The messages."
+msgstr "Mesajlar."
+
+msgid "Number of the last returned message; pass it as afterId next time."
+msgstr "Dönen son mesajın numarası; bir sonraki sefer afterId olarak verin."
+
+msgid "More messages follow; ask again with lastId."
+msgstr "Devamında mesaj var; lastId ile yeniden sorun."
+
+msgid "The last line of a chat, for the list."
+msgstr "Liste için sohbetin son satırı."
+
+msgid "First 120 characters (the file name for a file)."
+msgstr "İlk 120 karakter (dosyada dosya adı)."
+
+msgid "A chat between a site visitor and the assistant or an agent."
+msgstr "Bir site ziyaretçisi ile asistan ya da temsilci arasındaki sohbet."
+
+msgid "Visitor name, else email, else \"Visitor #n\"."
+msgstr "Ziyaretçi adı, yoksa e-posta, yoksa \"Ziyaretçi #n\"."
+
+msgid "Name the visitor gave; empty when none."
+msgstr "Ziyaretçinin verdiği ad; yoksa boş."
+
+msgid "Visitor email; empty when not given."
+msgstr "Ziyaretçi e-postası; verilmediyse boş."
+
+msgid "Visitor phone; empty when not given."
+msgstr "Ziyaretçi telefonu; verilmediyse boş."
+
+msgid "Where the chat is."
+msgstr "Sohbetin durumu."
+
+msgid "Visitor messages no agent has read."
+msgstr "Hiçbir temsilcinin okumadığı ziyaretçi mesajları."
+
+msgid "Stars (1-5) the visitor gave; empty when not rated."
+msgstr "Ziyaretçinin verdiği yıldız (1-5); puanlanmadıysa boş."
+
+msgid "Note that came with the rating; empty when none."
+msgstr "Puanla gelen not; yoksa boş."
+
+msgid "The visitor left contact details."
+msgstr "Ziyaretçi iletişim bilgisi bıraktı."
+
+msgid "WooCommerce order placed after the chat; empty when none."
+msgstr "Sohbetten sonra verilen WooCommerce siparişi; yoksa boş."
+
+msgid "Edit screen of that order; empty when none or WooCommerce is off."
+msgstr "O siparişin düzenleme ekranı; sipariş yoksa ya da WooCommerce kapalıysa boş."
+
+msgid "Page the visitor is on; empty when unknown."
+msgstr "Ziyaretçinin bulunduğu sayfa; bilinmiyorsa boş."
+
+msgid "Title of that page; empty when unknown."
+msgstr "O sayfanın başlığı; bilinmiyorsa boş."
+
+msgid "Site member id when the visitor was signed in; empty for guests."
+msgstr "Ziyaretçi giriş yapmışsa üye numarası; misafirde boş."
+
+msgid "First name of the agent the chat is assigned to; empty when none."
+msgstr "Sohbetin atandığı temsilcinin adı; yoksa boş."
+
+msgid "The same chat in the Flux Chat inbox; empty when it is not there."
+msgstr "Aynı sohbetin Flux Chat gelen kutusundaki adresi; orada değilse boş."
+
+msgid "Note the assistant wrote for the agent when it handed over; empty when none."
+msgstr "Asistanın devrederken temsilci için yazdığı not; yoksa boş."
+
+msgid "Time of the last message; empty for a chat without messages."
+msgstr "Son mesajın zamanı; mesajsız sohbette boş."
+
+msgid "The visitor is on the page now."
+msgstr "Ziyaretçi şu an sayfada."
+
+msgid "The visitor is typing."
+msgstr "Ziyaretçi yazıyor."
+
+msgid "The last message; empty for a chat without messages."
+msgstr "Son mesaj; mesajsız sohbette boş."
+
+msgid "A page of chats."
+msgstr "Bir sayfa sohbet."
+
+msgid "Site chats, newest activity first."
+msgstr "Site sohbetleri, en yeni hareket önce."
+
+msgid "Which chats to list; open chats when left out."
+msgstr "Listelenecek sohbetler; verilmezse açık sohbetler."
+
+msgid "Words in the name, email, phone or page title."
+msgstr "Ad, e-posta, telefon ya da sayfa başlığındaki sözcükler."
+
+msgid "One chat; empty when it does not exist or the user is not an agent."
+msgstr "Tek sohbet; yoksa ya da kullanıcı temsilci değilse boş."
+
+msgid "Global ID or chat number."
+msgstr "Genel kimlik ya da sohbet numarası."
+
+msgid "Messages of a chat after a message number, oldest first. Unless peek is on, opening the chat marks the visitor's messages as read."
+msgstr "Bir sohbetin verilen mesaj numarasından sonraki mesajları, eskiden yeniye. peek açık değilse sohbeti açmak ziyaretçi mesajlarını okundu yapar."
+
+msgid "Only messages after this message number (0: from the start)."
+msgstr "Yalnız bu mesaj numarasından sonrakiler (0: baştan)."
+
+msgid "How many messages (at most 100)."
+msgstr "Kaç mesaj (en çok 100)."
+
+msgid "Read without marking the chat as read."
+msgstr "Sohbeti okundu yapmadan oku."
+
+msgid "What the Site chats screen needs besides the chats."
+msgstr "Site sohbetleri ekranının sohbetlerin dışında ihtiyaç duyduğu veriler."
+
+msgid "Flux Chat inbox; empty when handed-over chats do not go there."
+msgstr "Flux Chat gelen kutusu; devredilen sohbetler oraya gitmiyorsa boş."
+
+msgid "Chatbot settings page; empty for agents who may not change settings."
+msgstr "Chatbot ayar sayfası; ayar değiştiremeyen temsilcilerde boş."
+
+msgid "The user may delete chats (administrators)."
+msgstr "Kullanıcı sohbet silebilir (yöneticiler)."
+
+msgid "Name replies are signed with."
+msgstr "Yanıtların altına yazılan ad."
+
+msgid "Largest file an agent can attach (MB)."
+msgstr "Temsilcinin ekleyebileceği en büyük dosya (MB)."
+
+msgid "Settings of the Site chats screen."
+msgstr "Site sohbetleri ekranının ayarları."
+
+msgid "Answers a chat as an agent. The visitor sees it right away."
+msgstr "Sohbeti temsilci olarak yanıtlar. Ziyaretçi hemen görür."
+
+msgid "Reply text."
+msgstr "Yanıt metni."
+
+msgid "File sent first to /wp-json/flx/v1/upload (context flx-chatbot/reply)."
+msgstr "Önce /wp-json/flx/v1/upload adresine gönderilen dosya (context flx-chatbot/reply)."
+
+msgid "The chat after the reply."
+msgstr "Yanıttan sonraki sohbet."
+
+msgid "Ends a chat. It reopens when the visitor writes again."
+msgstr "Sohbeti bitirir. Ziyaretçi yeniden yazarsa açılır."
+
+msgid "The chat after it ended."
+msgstr "Bittikten sonraki sohbet."
+
+msgid "Deletes a chat and its files for good."
+msgstr "Sohbeti ve dosyalarını kalıcı siler."
+
+msgid "Number of the deleted chat."
+msgstr "Silinen sohbetin numarası."
+
+msgid "Shows the visitor that an agent is typing (for 8 seconds)."
+msgstr "Ziyaretçiye temsilcinin yazdığını gösterir (8 saniye)."
+
+msgid "Always true."
+msgstr "Her zaman doğru."
+
+msgid "Chat figures of the last days."
+msgstr "Son günlerin sohbet rakamları."
+
+msgid "Chats started."
+msgstr "Başlayan sohbetler."
+
+msgid "Chats an agent was needed for."
+msgstr "Temsilci gereken sohbetler."
+
+msgid "Percent solved by the assistant alone."
+msgstr "Yalnız asistanın çözdüğü yüzde."
+
+msgid "Chats where the visitor left contact details."
+msgstr "Ziyaretçinin iletişim bilgisi bıraktığı sohbetler."
+
+msgid "Orders placed within 7 days of a chat."
+msgstr "Sohbetten sonra 7 gün içinde verilen siparişler."
+
+msgid "Average stars; empty when nothing is rated."
+msgstr "Ortalama yıldız; puan yoksa boş."
+
+msgid "Number of ratings."
+msgstr "Puan sayısı."
+
+msgid "Chats waiting for an agent or in conversation now."
+msgstr "Şu an temsilci bekleyen ya da görüşülen sohbetler."
+
+msgid "One line of the Connections card."
+msgstr "Bağlantılar kartının bir satırı."
+
+msgid "Line: ai, live or hours."
+msgstr "Satır: ai, live ya da hours."
+
+msgid "Good, needs attention, or just information."
+msgstr "İyi, dikkat gerekiyor ya da yalnız bilgi."
+
+msgid "Headline."
+msgstr "Başlık."
+
+msgid "Explanation."
+msgstr "Açıklama."
+
+msgid "Where to fix or change it; empty when there is nothing to open."
+msgstr "Düzeltmek ya da değiştirmek için adres; açılacak bir şey yoksa boş."
+
+msgid "Label of that link."
+msgstr "O bağlantının etiketi."
+
+msgid "The text a field uses while it is left empty."
+msgstr "Alan boş bırakılınca kullanılan metin."
+
+msgid "Setting key, e.g. welcome."
+msgstr "Ayar anahtarı, ör. welcome."
+
+msgid "Default text in the admin's language."
+msgstr "Yönetici dilinde varsayılan metin."
+
+msgid "A key with its label (page type, weekday)."
+msgstr "Etiketli bir anahtar (sayfa türü, gün)."
+
+msgid "Key; weekdays are 1 (Monday) to 7 (Sunday)."
+msgstr "Anahtar; günler 1 (Pazartesi) ile 7 (Pazar) arası."
+
+msgid "Name in the admin's language."
+msgstr "Yönetici dilinde ad."
+
+msgid "What the live preview needs to show the real chat window."
+msgstr "Canlı önizlemenin gerçek sohbet penceresini göstermesi için gerekenler."
+
+msgid "Window configuration the widget script reads (free-form: it is the widget's own contract, not an API)."
+msgstr "Widget betiğinin okuduğu pencere yapılandırması (serbest biçim: widget'ın kendi sözleşmesi, API değil)."
+
+msgid "The widget script."
+msgstr "Widget betiği."
+
+msgid "Everything the Chatbot settings screen shows besides the settings values."
+msgstr "Chatbot ayar ekranının ayar değerleri dışında gösterdiği her şey."
+
+msgid "Chat figures."
+msgstr "Sohbet rakamları."
+
+msgid "How many days back (default 30)."
+msgstr "Kaç gün geriye (varsayılan 30)."
+
+msgid "The Connections card."
+msgstr "Bağlantılar kartı."
+
+msgid "Texts used while a text field is empty."
+msgstr "Metin alanı boşken kullanılan metinler."
+
+msgid "Page types of the Visibility tab (setting showOn<Type>)."
+msgstr "Görünürlük sekmesinin sayfa türleri (ayar showOn<Tür>)."
+
+msgid "Weekdays of the working hours table."
+msgstr "Çalışma saatleri tablosunun günleri."
+
+msgid "Thumbnail of the chosen avatar image; empty when none."
+msgstr "Seçilen avatar görselinin küçük resmi; yoksa boş."
+
+msgid "Address used for notifications while the field is empty (the site admin)."
+msgstr "Alan boşken bildirimlerde kullanılan adres (site yöneticisi)."
+
+msgid "Flux AI & MCP is connected for the assistant."
+msgstr "Asistan için Flux AI & MCP bağlı."
+
+msgid "Where the model for this plugin is chosen (Flux AI); empty without Flux AI."
+msgstr "Bu eklenti için modelin seçildiği yer (Flux AI); Flux AI yoksa boş."
+
+msgid "Flux Chat can take handed-over chats."
+msgstr "Flux Chat devredilen sohbetleri alabilir."
+
+msgid "Flux Chat is installed (its working hours can be used)."
+msgstr "Flux Chat kurulu (çalışma saatleri kullanılabilir)."
+
+msgid "WooCommerce is active (product cards, order status, orders after chat)."
+msgstr "WooCommerce etkin (ürün kartları, sipariş durumu, sohbet sonrası siparişler)."
+
+msgid "WooCommerce orders can be looked up."
+msgstr "WooCommerce siparişleri sorgulanabilir."
+
+msgid "Flux Wiki is active (its pages can be a knowledge source)."
+msgstr "Flux Wiki etkin (sayfaları bilgi kaynağı olabilir)."
+
+msgid "Where the chats are answered."
+msgstr "Sohbetlerin yanıtlandığı yer."
+
+msgid "Front page, to try the window on the site."
+msgstr "Pencereyi sitede denemek için ana sayfa."
+
+msgid "Data of the live preview."
+msgstr "Canlı önizleme verisi."
+
+msgid "Data of the Chatbot settings screen (the values are in flxSettings.chatbot)."
+msgstr "Chatbot ayar ekranının verisi (değerler flxSettings.chatbot içinde)."
+
+msgid "Saves chatbot settings the way the settings form does (values are cleaned and limited). Only the fields you send change."
+msgstr "Chatbot ayarlarını ayar formuyla aynı şekilde kaydeder (değerler temizlenir ve sınırlanır). Yalnız gönderdiğiniz alanlar değişir."
+
+msgid "The settings to change."
+msgstr "Değişecek ayarlar."
+
+msgid "Settings after saving."
+msgstr "Kaydettikten sonraki ayarlar."
