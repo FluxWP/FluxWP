@@ -30,6 +30,10 @@ function flxbk_t_handles( array $assets ): array {
 	return array_column( $assets, 'handle' );
 }
 
+// Hermetic: Google Fonts are linked, not downloaded (the local font loader would fetch them from Google).
+$flxbk_fonts_before = get_option( 'flxbk_font_settings' );
+update_option( 'flxbk_font_settings', array( 'load_fonts_local' => 'false' ) );
+
 $admin  = 1;
 $editor = (int) wp_insert_user( array( 'user_login' => 'flxbk_ed_' . wp_rand(), 'user_pass' => wp_generate_password(), 'role' => 'editor' ) );
 $author = (int) wp_insert_user( array( 'user_login' => 'flxbk_au_' . wp_rand(), 'user_pass' => wp_generate_password(), 'role' => 'author' ) );
@@ -199,5 +203,11 @@ $r = flxbk_t_op( 'FlxBlocksSettingsUpdate', array( 'input' => array( 'editorWidt
 $w = $r['data']['flxBlocksSettingsUpdate']['settings']['editorWidth'] ?? array();
 flxt_same( array( 800, 'FULL_WIDTH', 1140 ), array( $w['small'] ?? null, $w['postDefault'] ?? null, $w['large'] ?? null ), 'dashboard: editor widths saved', $r['errors'] ?? null );
 remove_filter( 'flxbk_editor_width', '__return_true' );
+
+if ( false === $flxbk_fonts_before ) {
+	delete_option( 'flxbk_font_settings' );
+} else {
+	update_option( 'flxbk_font_settings', $flxbk_fonts_before );
+}
 
 flxt_done();
