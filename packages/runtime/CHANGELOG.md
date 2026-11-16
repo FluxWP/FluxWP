@@ -1,5 +1,9 @@
 # @fluxwp/runtime
 
+## 0.3.5
+- Giriş öncesi `loadBootstrap` da kayıtlı istemci geliştiricisinden geçer (FluxApp GraphQL taşıyıcısı).
+
+
 ## 0.3.3
 - Flux AI stream request omits cookies (token only).
 
