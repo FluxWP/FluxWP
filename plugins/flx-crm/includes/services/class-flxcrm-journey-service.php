@@ -191,15 +191,15 @@ final class FLXCRM_Journey_Service {
 			$segs[] = array( 'value' => (string) $k, 'label' => FLXCRM_Val::str( $l ) );
 		}
 		$events = array();
-		foreach ( array_diff_key( flxcrm_event_types(), array_flip( array( 'journey', 'journey_skip' ) ) ) as $k => $e ) {
+		foreach ( array_diff_key( FLXCRM_Val::arr( flxcrm_event_types() ), array_flip( array( 'journey', 'journey_skip' ) ) ) as $k => $e ) {
 			$events[] = array( 'value' => (string) $k, 'label' => FLXCRM_Val::str( FLXCRM_Val::arr( $e )[0] ?? $k ) );
 		}
 		$d = FLXCRM_Val::arr( FLXCRM_Journeys::defaults() );
 		return array(
-			'triggers'       => $pairs( FLXCRM_Journeys::triggers() ),
-			'step_types'     => $pairs( FLXCRM_Journeys::step_types() ),
-			'conditions'     => $pairs( FLXCRM_Journeys::conditions() ),
-			'statuses'       => $pairs( FLXCRM_Journeys::statuses() ),
+			'triggers'       => $pairs( FLXCRM_Val::arr( FLXCRM_Journeys::triggers() ) ),
+			'step_types'     => $pairs( FLXCRM_Val::arr( FLXCRM_Journeys::step_types() ) ),
+			'conditions'     => $pairs( FLXCRM_Val::arr( FLXCRM_Journeys::conditions() ) ),
+			'statuses'       => $pairs( FLXCRM_Val::arr( FLXCRM_Journeys::statuses() ) ),
 			'goals'          => $goals,
 			'templates'      => $tpls,
 			'defaults'       => array(

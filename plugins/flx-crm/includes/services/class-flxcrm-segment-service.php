@@ -124,7 +124,7 @@ final class FLXCRM_Segment_Service {
 		}
 		return array(
 			'count'   => FLXCRM_Val::int( $q['total'] ?? 0 ),
-			'summary' => FLXCRM_Val::str( FLXCRM_Segments::describe( $clean ) ),
+			'summary' => FLXCRM_Val::str( FLXCRM_Segments::describe( FLXCRM_Val::arr( $clean ) ) ),
 			'sample'  => $sample,
 		);
 	}
@@ -163,7 +163,7 @@ final class FLXCRM_Segment_Service {
 		}
 		$opt['rfm'][] = array( 'value' => 'none', 'label' => __( 'No payments', 'flx-crm' ) );
 		foreach ( FLXCRM_Val::arr( FLXCRM_Contacts::consent_labels() ) as $k => $l ) {
-			$opt['consent'][] = array( 'value' => (string) $k, 'label' => $l );
+			$opt['consent'][] = array( 'value' => (string) $k, 'label' => FLXCRM_Val::str( $l ) );
 		}
 		foreach ( FLXCRM_Val::arr( flxcrm_sources() ) as $k => $l ) {
 			$opt['source'][] = array( 'value' => (string) $k, 'label' => FLXCRM_Val::str( $l ) );
