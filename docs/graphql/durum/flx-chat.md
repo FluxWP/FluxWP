@@ -2,7 +2,7 @@
 
 - Faz: 2
 - Durum: ✱
-- PR: draft
+- PR: #337
 
 Envanter. REST `flx-chat/v1` 101 satır (94 GraphQL, 7 istisna), AJAX yok, admin-post 4 (2 GraphQL, 2 dosya istisnası), menü 4 sayfa. `flx_settings_schema` yok; ayarlar `flxc_settings`. MCP filtresi yok; AI `flxai_chat()`. SSE ucu yok. Eşleme `docs/graphql/ESLEME/flx-chat.md`. Sonraki tur: servis, şema, ekran. Kişi kartı bölümü `gql/flx-crm-2` kayıt API'sini bekler.
 
