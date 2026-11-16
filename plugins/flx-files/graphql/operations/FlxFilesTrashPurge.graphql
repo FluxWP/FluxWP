@@ -1,0 +1,11 @@
+mutation FlxFilesTrashPurge($input: FlxFilesTrashPurgeInput!) {
+  flxFilesTrashPurge(input: $input) {
+    removed
+    failed {
+      ...FlxFilesFailureFields
+    }
+    errors {
+      ...FlxFilesUserError
+    }
+  }
+}

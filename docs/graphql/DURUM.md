@@ -57,3 +57,4 @@ Faz 0'da 0.4, 0.5 ve 0.6 merge edilince başlar (plan §5).
 | flx-commerce | ○ | Köprü merge edilince. Kullanacağı API `SEPET.md` §6 |
 | flx-donate | ○ | Köprü merge edilince. Bağış satırı `FLXGQL_Cart::add_item()` ile (`SEPET.md` §6) |
 | flx-social 0.3.0 | 👀 | `claude/project-thread-yhevwp`: servis katmanı + DTO, 13 sorgu + 22 mutation, 34 kayıtlı işlem, sözleşme testi 70/70, strict PHPStan (services + graphql). React ekranı (`flxsm-social`) klasikle eşit (pano, gönderiler, onaylar, takvim, hesaplar, ayarlar, oluşturucu, ayrıntı), wp-admin varsayılanı; klasik görünüm bağlantısıyla. OAuth, `/tick`, yükleme istisna. Eşleme `ESLEME/flx-social.md` |
+| flx-files 0.2.0 | 👀 | `claude/project-thread-lerwuf`: servis katmanı, 12 sorgu + 18 mutation, 27 kayıtlı işlem, sözleşme testi. React ekranı (`flxfm-files`) klasikle eşit, wp-admin varsayılanı; klasik görünüm bağlantısıyla. Yükleme ve indirme istisna. FluxApp yerel modülü ertelendi. Eşleme `ESLEME/flx-files.md` |

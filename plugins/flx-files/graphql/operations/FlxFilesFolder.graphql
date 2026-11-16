@@ -1,0 +1,19 @@
+query FlxFilesFolder($path: String!, $first: Int = 500, $after: String, $sort: FlxFilesSort, $order: FlxFilesOrder, $hidden: Boolean, $foldersOnly: Boolean, $countItems: Boolean) {
+  flxFilesFolder(path: $path) {
+    path
+    parent
+    dir {
+      ...FlxFilesItemFields
+    }
+    items(first: $first, after: $after, sort: $sort, order: $order, hidden: $hidden, foldersOnly: $foldersOnly, countItems: $countItems) {
+      totalCount
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      nodes {
+        ...FlxFilesItemFields
+      }
+    }
+  }
+}

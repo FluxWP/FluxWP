@@ -1,0 +1,43 @@
+fragment FlxFilesItemFields on FlxFilesItem {
+  name
+  path
+  isDir
+  kind
+  extension
+  size
+  modified {
+    iso
+    label
+    relative
+    timestamp
+  }
+  permissions
+  writable
+  locked
+  core
+  sensitive
+  shared
+  isLink
+  itemCount
+}
+
+fragment FlxFilesFailureFields on FlxFilesFailure {
+  path
+  message
+}
+
+fragment FlxFilesSettingsFields on FlxFilesSettings {
+  trashDays
+  versions
+  quotaGb
+  showHidden
+  mcpWrite
+  aiCode
+  shared
+}
+
+fragment FlxFilesUserError on FlxUserError {
+  code
+  message
+  field
+}

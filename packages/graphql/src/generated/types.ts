@@ -371,6 +371,97 @@ export type FlxContactOrder =
   /** Largest first. */
   | 'DESC';
 
+/** What a file or folder is, for its icon and preview. */
+export type FlxFilesKind =
+  /** Archive (ZIP, TAR, …). */
+  | 'ARCHIVE'
+  /** Audio. */
+  | 'AUDIO'
+  /** Source code or data file. */
+  | 'CODE'
+  /** Folder. */
+  | 'DIR'
+  /** Office document or spreadsheet. */
+  | 'DOC'
+  /** Any other file. */
+  | 'FILE'
+  /** Font. */
+  | 'FONT'
+  /** Image. */
+  | 'IMAGE'
+  /** PDF document. */
+  | 'PDF'
+  /** Plain text. */
+  | 'TEXT'
+  /** Video. */
+  | 'VIDEO';
+
+/** What a folder listing is sorted by (folders always come first). */
+export type FlxFilesSort =
+  /** Last modified. */
+  | 'MODIFIED'
+  /** Name. */
+  | 'NAME'
+  /** Size. */
+  | 'SIZE'
+  /** File extension. */
+  | 'TYPE';
+
+/** Sort direction. */
+export type FlxFilesOrder =
+  /** Ascending. */
+  | 'ASC'
+  /** Descending. */
+  | 'DESC';
+
+/** Where a change came from. */
+export type FlxFilesVia =
+  /** The Flux AI chat. */
+  | 'AI'
+  /** The site (shared folder shortcode). */
+  | 'FRONT'
+  /** An external MCP client. */
+  | 'MCP'
+  /** The Flux Files screen. */
+  | 'PANEL';
+
+/** What an Activity row records. */
+export type FlxFilesLogAction =
+  /** Permissions changed. */
+  | 'CHMOD'
+  /** Copied. */
+  | 'COPY'
+  /** A file was created. */
+  | 'CREATE'
+  /** A file was changed. */
+  | 'EDIT'
+  /** A folder was created. */
+  | 'MKDIR'
+  /** Moved. */
+  | 'MOVE'
+  /** Deleted for good. */
+  | 'PURGE'
+  /** Renamed. */
+  | 'RENAME'
+  /** Restored from the trash. */
+  | 'RESTORE'
+  /** An earlier version was restored. */
+  | 'REVERT'
+  /** Settings changed. */
+  | 'SETTINGS'
+  /** A folder was shared on the site. */
+  | 'SHARE'
+  /** Moved to the trash. */
+  | 'TRASH'
+  /** Sharing stopped. */
+  | 'UNSHARE'
+  /** Extracted. */
+  | 'UNZIP'
+  /** Uploaded. */
+  | 'UPLOAD'
+  /** Archived. */
+  | 'ZIP';
+
 /** State of a journey. Only an active journey sends. */
 export type FlxJourneyStatus =
   /** Running. */
@@ -2175,6 +2266,198 @@ export type FlxCrmSyncStepInput = {
   page?: number | null | undefined;
   /** Step key from the previous result (empty = the first). */
   step?: string | null | undefined;
+};
+
+/** Input for the flxFilesAiEdit mutation. */
+export type FlxFilesAiEditInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** The text as it is in the editor. Empty: the file on disk. */
+  content?: string | null | undefined;
+  /** Path from the site folder. */
+  path: string;
+  /** What should change. */
+  prompt: string;
+};
+
+/** Input for the flxFilesAiExplain mutation. */
+export type FlxFilesAiExplainInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** The text as it is in the editor. Empty: the file on disk. */
+  content?: string | null | undefined;
+  /** Path from the site folder. */
+  path: string;
+  /** Part of the text to explain. */
+  selection?: string | null | undefined;
+};
+
+/** Input for the flxFilesChmod mutation. */
+export type FlxFilesChmodInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Three octal digits, e.g. 644 or 755. */
+  mode: string;
+  /** Path from the site folder. */
+  path: string;
+};
+
+/** Input for the flxFilesCopy mutation. */
+export type FlxFilesCopyInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Target folder. Empty for the site folder. */
+  destination: string;
+  /** Replace entries that already exist (the replaced ones go to the trash). */
+  overwrite?: boolean | null | undefined;
+  /** Entries to process (at most 1000). */
+  paths: Array<string>;
+};
+
+/** Input for the flxFilesDuplicate mutation. */
+export type FlxFilesDuplicateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Entries to duplicate (at most 1000). */
+  paths: Array<string>;
+};
+
+/** Input for the flxFilesFolderCreate mutation. */
+export type FlxFilesFolderCreateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Path of the new folder from the site folder. */
+  path: string;
+};
+
+/** Input for the flxFilesMove mutation. */
+export type FlxFilesMoveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Target folder. Empty for the site folder. */
+  destination: string;
+  /** Replace entries that already exist (the replaced ones go to the trash). */
+  overwrite?: boolean | null | undefined;
+  /** Entries to process (at most 1000). */
+  paths: Array<string>;
+};
+
+/** Input for the flxFilesRename mutation. */
+export type FlxFilesRenameInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** New name (no slashes). */
+  name: string;
+  /** Path from the site folder. */
+  path: string;
+};
+
+/** Input for the flxFilesRevert mutation. */
+export type FlxFilesRevertInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Path from the site folder. */
+  path: string;
+  /** Version id (flxFilesVersions). */
+  versionId: string;
+};
+
+/** Input for the flxFilesSettingsUpdate mutation. */
+export type FlxFilesSettingsUpdateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Settings to change. */
+  settings: FlxFilesSettingsInput;
+};
+
+/** Settings to change. A field left out stays as it is. */
+export type FlxFilesSettingsInput = {
+  /** AI and MCP may change code files. */
+  aiCode?: boolean | null | undefined;
+  /** External MCP clients may change files. */
+  mcpWrite?: boolean | null | undefined;
+  /** Hosting disk quota in GB. */
+  quotaGb?: number | null | undefined;
+  /** Shared folders (replaces the list). */
+  shared?: Array<string> | null | undefined;
+  /** Show files that start with a dot. */
+  showHidden?: boolean | null | undefined;
+  /** Days the trash keeps entries (0–365). */
+  trashDays?: number | null | undefined;
+  /** Earlier versions kept per file (0–50). */
+  versions?: number | null | undefined;
+};
+
+/** Input for the flxFilesShare mutation. */
+export type FlxFilesShareInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Share (true) or stop sharing (false). */
+  on: boolean;
+  /** A folder inside the uploads folder. */
+  path: string;
+};
+
+/** Input for the flxFilesTrash mutation. */
+export type FlxFilesTrashInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Entries to delete (at most 1000). */
+  paths: Array<string>;
+};
+
+/** Input for the flxFilesTrashPurge mutation. */
+export type FlxFilesTrashPurgeInput = {
+  /** Empty the whole trash (ids are ignored). */
+  all?: boolean | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Trash ids to delete. */
+  ids?: Array<string> | null | undefined;
+};
+
+/** Input for the flxFilesTrashRestore mutation. */
+export type FlxFilesTrashRestoreInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Trash ids (flxFilesTrash). */
+  ids: Array<string>;
+};
+
+/** Input for the flxFilesUnzip mutation. */
+export type FlxFilesUnzipInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Folder to extract into. Empty: a new folder named after the archive. */
+  destination?: string | null | undefined;
+  /** The ZIP file. */
+  path: string;
+};
+
+/** Input for the flxFilesWrite mutation. */
+export type FlxFilesWriteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** The new content. */
+  content: string;
+  /** Refuse when a file with this name already exists. */
+  createOnly?: boolean | null | undefined;
+  /** Fingerprint of the content that was opened (FlxFilesFile.hash). When the file changed on the server since, the save is refused (CONFLICT). */
+  hash?: string | null | undefined;
+  /** Path from the site folder. */
+  path: string;
+};
+
+/** Input for the flxFilesZip mutation. */
+export type FlxFilesZipInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Folder to create the archive in. Empty for the site folder. */
+  folder?: string | null | undefined;
+  /** File name of the archive (".zip" is added). Empty: named after the entry. */
+  name?: string | null | undefined;
+  /** Entries to archive. */
+  paths: Array<string>;
 };
 
 /** Input for the flxJourneyDelete mutation. */
@@ -4828,6 +5111,215 @@ export type FlxCrmTimelineQueryVariables = Exact<{
 
 
 export type FlxCrmTimelineQuery = { flxContact: { id: string, timeline: { nodes: Array<{ databaseId: number, contactId: number, contactName: string | null, type: string, typeLabel: string, icon: string, source: string | null, title: string, body: string | null, paid: boolean, status: string | null, url: string | null, userName: string | null, deletable: boolean, amount: { amount: number, currency: string, formatted: string } | null, at: { iso: string, label: string, relative: string }, answers: Array<{ question: string, answer: string }> }>, pageInfo: { hasNextPage: boolean, endCursor: string | null } } | null } | null };
+
+export type FlxFilesAiEditMutationVariables = Exact<{
+  input: FlxFilesAiEditInput;
+}>;
+
+
+export type FlxFilesAiEditMutation = { flxFilesAiEdit: { content: string | null, note: string | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxFilesUserErrorFragment = { code: string, message: string, field: string | null };
+
+export type FlxFilesAiExplainMutationVariables = Exact<{
+  input: FlxFilesAiExplainInput;
+}>;
+
+
+export type FlxFilesAiExplainMutation = { flxFilesAiExplain: { answer: string | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxFilesBootstrapQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxFilesBootstrapQuery = { flxFilesConfig: { rootPath: string, rootName: string, uploadsPath: string, uploadsUrl: string, homeUrl: string, fileUrl: string, host: string, writable: boolean, chunkSize: number, aiReady: boolean }, flxFilesSettings: { trashDays: number, versions: number, quotaGb: number, showHidden: boolean, mcpWrite: boolean, aiCode: boolean, shared: Array<string> } };
+
+export type FlxFilesSettingsFieldsFragment = { trashDays: number, versions: number, quotaGb: number, showHidden: boolean, mcpWrite: boolean, aiCode: boolean, shared: Array<string> };
+
+export type FlxFilesChmodMutationVariables = Exact<{
+  input: FlxFilesChmodInput;
+}>;
+
+
+export type FlxFilesChmodMutation = { flxFilesChmod: { item: { name: string, path: string, isDir: boolean, kind: FlxFilesKind, extension: string, size: number | null, permissions: string, writable: boolean, locked: boolean, core: boolean, sensitive: boolean, shared: boolean, isLink: boolean, itemCount: number | null, modified: { iso: string, label: string, relative: string, timestamp: number } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxFilesItemFieldsFragment = { name: string, path: string, isDir: boolean, kind: FlxFilesKind, extension: string, size: number | null, permissions: string, writable: boolean, locked: boolean, core: boolean, sensitive: boolean, shared: boolean, isLink: boolean, itemCount: number | null, modified: { iso: string, label: string, relative: string, timestamp: number } };
+
+export type FlxFilesCopyMutationVariables = Exact<{
+  input: FlxFilesCopyInput;
+}>;
+
+
+export type FlxFilesCopyMutation = { flxFilesCopy: { items: Array<{ name: string, path: string, isDir: boolean, kind: FlxFilesKind, extension: string, size: number | null, permissions: string, writable: boolean, locked: boolean, core: boolean, sensitive: boolean, shared: boolean, isLink: boolean, itemCount: number | null, modified: { iso: string, label: string, relative: string, timestamp: number } }>, failed: Array<{ path: string, message: string }>, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxFilesFailureFieldsFragment = { path: string, message: string };
+
+export type FlxFilesDiskQueryVariables = Exact<{
+  refresh?: boolean | null | undefined;
+}>;
+
+
+export type FlxFilesDiskQuery = { flxFilesDisk: { usedBytes: number | null, totalBytes: number | null, fileCount: number | null, measured: string, scanning: boolean } };
+
+export type FlxFilesDuplicateMutationVariables = Exact<{
+  input: FlxFilesDuplicateInput;
+}>;
+
+
+export type FlxFilesDuplicateMutation = { flxFilesDuplicate: { items: Array<{ name: string, path: string, isDir: boolean, kind: FlxFilesKind, extension: string, size: number | null, permissions: string, writable: boolean, locked: boolean, core: boolean, sensitive: boolean, shared: boolean, isLink: boolean, itemCount: number | null, modified: { iso: string, label: string, relative: string, timestamp: number } }>, failed: Array<{ path: string, message: string }>, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxFilesFileQueryVariables = Exact<{
+  path: string;
+}>;
+
+
+export type FlxFilesFileQuery = { flxFilesFile: { hash: string, content: string | null, item: { name: string, path: string, isDir: boolean, kind: FlxFilesKind, extension: string, size: number | null, permissions: string, writable: boolean, locked: boolean, core: boolean, sensitive: boolean, shared: boolean, isLink: boolean, itemCount: number | null, modified: { iso: string, label: string, relative: string, timestamp: number } } } };
+
+export type FlxFilesFolderQueryVariables = Exact<{
+  path: string;
+  first?: number | null | undefined;
+  after?: string | null | undefined;
+  sort?: FlxFilesSort | null | undefined;
+  order?: FlxFilesOrder | null | undefined;
+  hidden?: boolean | null | undefined;
+  foldersOnly?: boolean | null | undefined;
+  countItems?: boolean | null | undefined;
+}>;
+
+
+export type FlxFilesFolderQuery = { flxFilesFolder: { path: string, parent: string | null, dir: { name: string, path: string, isDir: boolean, kind: FlxFilesKind, extension: string, size: number | null, permissions: string, writable: boolean, locked: boolean, core: boolean, sensitive: boolean, shared: boolean, isLink: boolean, itemCount: number | null, modified: { iso: string, label: string, relative: string, timestamp: number } }, items: { totalCount: number | null, pageInfo: { hasNextPage: boolean, endCursor: string | null }, nodes: Array<{ name: string, path: string, isDir: boolean, kind: FlxFilesKind, extension: string, size: number | null, permissions: string, writable: boolean, locked: boolean, core: boolean, sensitive: boolean, shared: boolean, isLink: boolean, itemCount: number | null, modified: { iso: string, label: string, relative: string, timestamp: number } }> } } };
+
+export type FlxFilesFolderCreateMutationVariables = Exact<{
+  input: FlxFilesFolderCreateInput;
+}>;
+
+
+export type FlxFilesFolderCreateMutation = { flxFilesFolderCreate: { item: { name: string, path: string, isDir: boolean, kind: FlxFilesKind, extension: string, size: number | null, permissions: string, writable: boolean, locked: boolean, core: boolean, sensitive: boolean, shared: boolean, isLink: boolean, itemCount: number | null, modified: { iso: string, label: string, relative: string, timestamp: number } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxFilesLogQueryVariables = Exact<{
+  first?: number | null | undefined;
+  after?: string | null | undefined;
+  path?: string | null | undefined;
+  via?: FlxFilesVia | null | undefined;
+}>;
+
+
+export type FlxFilesLogQuery = { flxFilesLog: { totalCount: number | null, pageInfo: { hasNextPage: boolean, endCursor: string | null }, nodes: Array<{ action: FlxFilesLogAction | null, path: string, to: string, user: string, userId: number, via: FlxFilesVia | null, when: { iso: string, label: string, relative: string } }> } };
+
+export type FlxFilesMoveMutationVariables = Exact<{
+  input: FlxFilesMoveInput;
+}>;
+
+
+export type FlxFilesMoveMutation = { flxFilesMove: { items: Array<{ name: string, path: string, isDir: boolean, kind: FlxFilesKind, extension: string, size: number | null, permissions: string, writable: boolean, locked: boolean, core: boolean, sensitive: boolean, shared: boolean, isLink: boolean, itemCount: number | null, modified: { iso: string, label: string, relative: string, timestamp: number } }>, failed: Array<{ path: string, message: string }>, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxFilesRenameMutationVariables = Exact<{
+  input: FlxFilesRenameInput;
+}>;
+
+
+export type FlxFilesRenameMutation = { flxFilesRename: { item: { name: string, path: string, isDir: boolean, kind: FlxFilesKind, extension: string, size: number | null, permissions: string, writable: boolean, locked: boolean, core: boolean, sensitive: boolean, shared: boolean, isLink: boolean, itemCount: number | null, modified: { iso: string, label: string, relative: string, timestamp: number } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxFilesRevertMutationVariables = Exact<{
+  input: FlxFilesRevertInput;
+}>;
+
+
+export type FlxFilesRevertMutation = { flxFilesRevert: { file: { hash: string, content: string | null, item: { name: string, path: string, isDir: boolean, kind: FlxFilesKind, extension: string, size: number | null, permissions: string, writable: boolean, locked: boolean, core: boolean, sensitive: boolean, shared: boolean, isLink: boolean, itemCount: number | null, modified: { iso: string, label: string, relative: string, timestamp: number } } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxFilesSearchQueryVariables = Exact<{
+  path: string;
+  query: string;
+  content?: boolean | null | undefined;
+}>;
+
+
+export type FlxFilesSearchQuery = { flxFilesSearch: { query: string, partial: boolean, results: Array<{ name: string, path: string, isDir: boolean, kind: FlxFilesKind, extension: string, size: number | null, permissions: string, writable: boolean, locked: boolean, core: boolean, sensitive: boolean, shared: boolean, isLink: boolean, itemCount: number | null, matches: Array<{ line: number, text: string }>, modified: { iso: string, label: string, relative: string, timestamp: number } }> } };
+
+export type FlxFilesSettingsUpdateMutationVariables = Exact<{
+  input: FlxFilesSettingsUpdateInput;
+}>;
+
+
+export type FlxFilesSettingsUpdateMutation = { flxFilesSettingsUpdate: { settings: { trashDays: number, versions: number, quotaGb: number, showHidden: boolean, mcpWrite: boolean, aiCode: boolean, shared: Array<string> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxFilesShareMutationVariables = Exact<{
+  input: FlxFilesShareInput;
+}>;
+
+
+export type FlxFilesShareMutation = { flxFilesShare: { shared: boolean | null, shortcode: string | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxFilesSizeQueryVariables = Exact<{
+  path: string;
+}>;
+
+
+export type FlxFilesSizeQuery = { flxFilesSize: { bytes: number, files: number, folders: number, partial: boolean } };
+
+export type FlxFilesTrashMutationVariables = Exact<{
+  input: FlxFilesTrashInput;
+}>;
+
+
+export type FlxFilesTrashMutation = { flxFilesTrash: { trashed: Array<{ path: string, trashId: string }>, failed: Array<{ path: string, message: string }>, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxFilesTrashListQueryVariables = Exact<{
+  first?: number | null | undefined;
+  after?: string | null | undefined;
+}>;
+
+
+export type FlxFilesTrashListQuery = { flxFilesTrash: { days: number, items: { totalCount: number | null, pageInfo: { hasNextPage: boolean, endCursor: string | null }, nodes: Array<{ id: string, name: string, path: string, isDir: boolean, kind: FlxFilesKind, size: number | null, until: string, user: string, via: FlxFilesVia, deleted: { iso: string, label: string, relative: string } }> } } };
+
+export type FlxFilesTrashPurgeMutationVariables = Exact<{
+  input: FlxFilesTrashPurgeInput;
+}>;
+
+
+export type FlxFilesTrashPurgeMutation = { flxFilesTrashPurge: { removed: number | null, failed: Array<{ path: string, message: string }>, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxFilesTrashRestoreMutationVariables = Exact<{
+  input: FlxFilesTrashRestoreInput;
+}>;
+
+
+export type FlxFilesTrashRestoreMutation = { flxFilesTrashRestore: { items: Array<{ name: string, path: string, isDir: boolean, kind: FlxFilesKind, extension: string, size: number | null, permissions: string, writable: boolean, locked: boolean, core: boolean, sensitive: boolean, shared: boolean, isLink: boolean, itemCount: number | null, modified: { iso: string, label: string, relative: string, timestamp: number } }>, failed: Array<{ path: string, message: string }>, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxFilesUnzipMutationVariables = Exact<{
+  input: FlxFilesUnzipInput;
+}>;
+
+
+export type FlxFilesUnzipMutation = { flxFilesUnzip: { path: string | null, fileCount: number | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxFilesVersionContentQueryVariables = Exact<{
+  path: string;
+  versionId: string;
+}>;
+
+
+export type FlxFilesVersionContentQuery = { flxFilesVersionContent: string };
+
+export type FlxFilesVersionsQueryVariables = Exact<{
+  path: string;
+}>;
+
+
+export type FlxFilesVersionsQuery = { flxFilesVersions: Array<{ id: string, size: number, user: string, via: FlxFilesVia, saved: { iso: string, label: string, relative: string } }> };
+
+export type FlxFilesWriteMutationVariables = Exact<{
+  input: FlxFilesWriteInput;
+}>;
+
+
+export type FlxFilesWriteMutation = { flxFilesWrite: { file: { hash: string, item: { name: string, path: string, isDir: boolean, kind: FlxFilesKind, extension: string, size: number | null, permissions: string, writable: boolean, locked: boolean, core: boolean, sensitive: boolean, shared: boolean, isLink: boolean, itemCount: number | null, modified: { iso: string, label: string, relative: string, timestamp: number } } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxFilesZipMutationVariables = Exact<{
+  input: FlxFilesZipInput;
+}>;
+
+
+export type FlxFilesZipMutation = { flxFilesZip: { item: { name: string, path: string, isDir: boolean, kind: FlxFilesKind, extension: string, size: number | null, permissions: string, writable: boolean, locked: boolean, core: boolean, sensitive: boolean, shared: boolean, isLink: boolean, itemCount: number | null, modified: { iso: string, label: string, relative: string, timestamp: number } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
 
 export type FlxLanguageJobQueryVariables = Exact<{
   id: string;

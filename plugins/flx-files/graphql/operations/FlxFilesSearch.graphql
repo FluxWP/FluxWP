@@ -1,0 +1,13 @@
+query FlxFilesSearch($path: String!, $query: String!, $content: Boolean) {
+  flxFilesSearch(path: $path, query: $query, content: $content) {
+    query
+    partial
+    results {
+      ...FlxFilesItemFields
+      matches {
+        line
+        text
+      }
+    }
+  }
+}

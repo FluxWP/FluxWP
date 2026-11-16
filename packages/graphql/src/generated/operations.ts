@@ -1254,6 +1254,249 @@ export const FlxCrmTimeline: FlxOperation<T.FlxCrmTimelineQuery, T.FlxCrmTimelin
   document: "query FlxCrmTimeline($id: ID!, $filter: String, $first: Int = 20, $after: String) {\n  flxContact(id: $id) {\n    id\n    timeline(filter: $filter, first: $first, after: $after) {\n      nodes {\n        ...FlxCrmEvent\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n    }\n  }\n}\n\nfragment FlxCrmEvent on FlxContactEvent {\n  databaseId\n  contactId\n  contactName\n  type\n  typeLabel\n  icon\n  source\n  title\n  body\n  amount {\n    ...FlxCrmMoney\n  }\n  paid\n  status\n  url\n  userName\n  at {\n    ...FlxCrmWhen\n  }\n  answers {\n    question\n    answer\n  }\n  deletable\n}\n\nfragment FlxCrmMoney on FlxMoney {\n  amount\n  currency\n  formatted\n}\n\nfragment FlxCrmWhen on FlxDateTime {\n  iso\n  label\n  relative\n}",
 };
 
+/** mutation FlxFilesAiEdit (flx-files, plugins/flx-files/graphql/operations/FlxFilesAiEdit.graphql) */
+export const FlxFilesAiEdit: FlxOperation<T.FlxFilesAiEditMutation, T.FlxFilesAiEditMutationVariables> = {
+  id: '61dca741b4cda6ec8f60505b8548df2e5d33c72546464ffa58e107cc85ba83d5',
+  name: 'FlxFilesAiEdit',
+  kind: 'mutation',
+  plugin: 'flx-files',
+  document: "mutation FlxFilesAiEdit($input: FlxFilesAiEditInput!) {\n  flxFilesAiEdit(input: $input) {\n    content\n    note\n    errors {\n      ...FlxFilesUserError\n    }\n  }\n}\n\nfragment FlxFilesUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** mutation FlxFilesAiExplain (flx-files, plugins/flx-files/graphql/operations/FlxFilesAiExplain.graphql) */
+export const FlxFilesAiExplain: FlxOperation<T.FlxFilesAiExplainMutation, T.FlxFilesAiExplainMutationVariables> = {
+  id: '32abcee8e0a969a62b439f52fbce12c71c847005925cfae133f29ebb40068a31',
+  name: 'FlxFilesAiExplain',
+  kind: 'mutation',
+  plugin: 'flx-files',
+  document: "mutation FlxFilesAiExplain($input: FlxFilesAiExplainInput!) {\n  flxFilesAiExplain(input: $input) {\n    answer\n    errors {\n      ...FlxFilesUserError\n    }\n  }\n}\n\nfragment FlxFilesUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** query FlxFilesBootstrap (flx-files, plugins/flx-files/graphql/operations/FlxFilesBootstrap.graphql) */
+export const FlxFilesBootstrap: FlxOperation<T.FlxFilesBootstrapQuery, T.FlxFilesBootstrapQueryVariables> = {
+  id: '11c4bcaba7b6a88fc32514cdc6c72fa7eddee29ae51a30d924c9ef337ae01482',
+  name: 'FlxFilesBootstrap',
+  kind: 'query',
+  plugin: 'flx-files',
+  document: "query FlxFilesBootstrap {\n  flxFilesConfig {\n    rootPath\n    rootName\n    uploadsPath\n    uploadsUrl\n    homeUrl\n    fileUrl\n    host\n    writable\n    chunkSize\n    aiReady\n  }\n  flxFilesSettings {\n    ...FlxFilesSettingsFields\n  }\n}\n\nfragment FlxFilesSettingsFields on FlxFilesSettings {\n  trashDays\n  versions\n  quotaGb\n  showHidden\n  mcpWrite\n  aiCode\n  shared\n}",
+};
+
+/** mutation FlxFilesChmod (flx-files, plugins/flx-files/graphql/operations/FlxFilesChmod.graphql) */
+export const FlxFilesChmod: FlxOperation<T.FlxFilesChmodMutation, T.FlxFilesChmodMutationVariables> = {
+  id: '4f023bb510e149c91f1629825589973c85cae4835fa812ad549677ba6980d5bc',
+  name: 'FlxFilesChmod',
+  kind: 'mutation',
+  plugin: 'flx-files',
+  document: "mutation FlxFilesChmod($input: FlxFilesChmodInput!) {\n  flxFilesChmod(input: $input) {\n    item {\n      ...FlxFilesItemFields\n    }\n    errors {\n      ...FlxFilesUserError\n    }\n  }\n}\n\nfragment FlxFilesItemFields on FlxFilesItem {\n  name\n  path\n  isDir\n  kind\n  extension\n  size\n  modified {\n    iso\n    label\n    relative\n    timestamp\n  }\n  permissions\n  writable\n  locked\n  core\n  sensitive\n  shared\n  isLink\n  itemCount\n}\n\nfragment FlxFilesUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** mutation FlxFilesCopy (flx-files, plugins/flx-files/graphql/operations/FlxFilesCopy.graphql) */
+export const FlxFilesCopy: FlxOperation<T.FlxFilesCopyMutation, T.FlxFilesCopyMutationVariables> = {
+  id: 'f68b3adcc3c580e155d2613c5ebd32eda97074945cf130cd3b0c3aa8b15796e9',
+  name: 'FlxFilesCopy',
+  kind: 'mutation',
+  plugin: 'flx-files',
+  document: "mutation FlxFilesCopy($input: FlxFilesCopyInput!) {\n  flxFilesCopy(input: $input) {\n    items {\n      ...FlxFilesItemFields\n    }\n    failed {\n      ...FlxFilesFailureFields\n    }\n    errors {\n      ...FlxFilesUserError\n    }\n  }\n}\n\nfragment FlxFilesFailureFields on FlxFilesFailure {\n  path\n  message\n}\n\nfragment FlxFilesItemFields on FlxFilesItem {\n  name\n  path\n  isDir\n  kind\n  extension\n  size\n  modified {\n    iso\n    label\n    relative\n    timestamp\n  }\n  permissions\n  writable\n  locked\n  core\n  sensitive\n  shared\n  isLink\n  itemCount\n}\n\nfragment FlxFilesUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** query FlxFilesDisk (flx-files, plugins/flx-files/graphql/operations/FlxFilesDisk.graphql) */
+export const FlxFilesDisk: FlxOperation<T.FlxFilesDiskQuery, T.FlxFilesDiskQueryVariables> = {
+  id: '9a932876948ac21226ac489170974c79b8567a55bd985e88b64f69a0f76baee6',
+  name: 'FlxFilesDisk',
+  kind: 'query',
+  plugin: 'flx-files',
+  document: "query FlxFilesDisk($refresh: Boolean) {\n  flxFilesDisk(refresh: $refresh) {\n    usedBytes\n    totalBytes\n    fileCount\n    measured\n    scanning\n  }\n}",
+};
+
+/** mutation FlxFilesDuplicate (flx-files, plugins/flx-files/graphql/operations/FlxFilesDuplicate.graphql) */
+export const FlxFilesDuplicate: FlxOperation<T.FlxFilesDuplicateMutation, T.FlxFilesDuplicateMutationVariables> = {
+  id: 'f669e131af94b4ab873afbea5a686bef1d50491e121c61abf6d622f7de7ee944',
+  name: 'FlxFilesDuplicate',
+  kind: 'mutation',
+  plugin: 'flx-files',
+  document: "mutation FlxFilesDuplicate($input: FlxFilesDuplicateInput!) {\n  flxFilesDuplicate(input: $input) {\n    items {\n      ...FlxFilesItemFields\n    }\n    failed {\n      ...FlxFilesFailureFields\n    }\n    errors {\n      ...FlxFilesUserError\n    }\n  }\n}\n\nfragment FlxFilesFailureFields on FlxFilesFailure {\n  path\n  message\n}\n\nfragment FlxFilesItemFields on FlxFilesItem {\n  name\n  path\n  isDir\n  kind\n  extension\n  size\n  modified {\n    iso\n    label\n    relative\n    timestamp\n  }\n  permissions\n  writable\n  locked\n  core\n  sensitive\n  shared\n  isLink\n  itemCount\n}\n\nfragment FlxFilesUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** query FlxFilesFile (flx-files, plugins/flx-files/graphql/operations/FlxFilesFile.graphql) */
+export const FlxFilesFile: FlxOperation<T.FlxFilesFileQuery, T.FlxFilesFileQueryVariables> = {
+  id: '68f93e146bd77ed04fea958b274e19984ff9fea5474d5c1818fea7a00976d3aa',
+  name: 'FlxFilesFile',
+  kind: 'query',
+  plugin: 'flx-files',
+  document: "query FlxFilesFile($path: String!) {\n  flxFilesFile(path: $path) {\n    hash\n    content\n    item {\n      ...FlxFilesItemFields\n    }\n  }\n}\n\nfragment FlxFilesItemFields on FlxFilesItem {\n  name\n  path\n  isDir\n  kind\n  extension\n  size\n  modified {\n    iso\n    label\n    relative\n    timestamp\n  }\n  permissions\n  writable\n  locked\n  core\n  sensitive\n  shared\n  isLink\n  itemCount\n}",
+};
+
+/** query FlxFilesFolder (flx-files, plugins/flx-files/graphql/operations/FlxFilesFolder.graphql) */
+export const FlxFilesFolder: FlxOperation<T.FlxFilesFolderQuery, T.FlxFilesFolderQueryVariables> = {
+  id: 'eff7fe14bc929cb4523e5cc13b4c9944073068de7ed0704080b8676ab83e75da',
+  name: 'FlxFilesFolder',
+  kind: 'query',
+  plugin: 'flx-files',
+  document: "query FlxFilesFolder($path: String!, $first: Int = 500, $after: String, $sort: FlxFilesSort, $order: FlxFilesOrder, $hidden: Boolean, $foldersOnly: Boolean, $countItems: Boolean) {\n  flxFilesFolder(path: $path) {\n    path\n    parent\n    dir {\n      ...FlxFilesItemFields\n    }\n    items(\n      first: $first\n      after: $after\n      sort: $sort\n      order: $order\n      hidden: $hidden\n      foldersOnly: $foldersOnly\n      countItems: $countItems\n    ) {\n      totalCount\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      nodes {\n        ...FlxFilesItemFields\n      }\n    }\n  }\n}\n\nfragment FlxFilesItemFields on FlxFilesItem {\n  name\n  path\n  isDir\n  kind\n  extension\n  size\n  modified {\n    iso\n    label\n    relative\n    timestamp\n  }\n  permissions\n  writable\n  locked\n  core\n  sensitive\n  shared\n  isLink\n  itemCount\n}",
+};
+
+/** mutation FlxFilesFolderCreate (flx-files, plugins/flx-files/graphql/operations/FlxFilesFolderCreate.graphql) */
+export const FlxFilesFolderCreate: FlxOperation<T.FlxFilesFolderCreateMutation, T.FlxFilesFolderCreateMutationVariables> = {
+  id: '3df09f77ce66415c30bf3f11448063018063298f8afe8693354151f339789a2d',
+  name: 'FlxFilesFolderCreate',
+  kind: 'mutation',
+  plugin: 'flx-files',
+  document: "mutation FlxFilesFolderCreate($input: FlxFilesFolderCreateInput!) {\n  flxFilesFolderCreate(input: $input) {\n    item {\n      ...FlxFilesItemFields\n    }\n    errors {\n      ...FlxFilesUserError\n    }\n  }\n}\n\nfragment FlxFilesItemFields on FlxFilesItem {\n  name\n  path\n  isDir\n  kind\n  extension\n  size\n  modified {\n    iso\n    label\n    relative\n    timestamp\n  }\n  permissions\n  writable\n  locked\n  core\n  sensitive\n  shared\n  isLink\n  itemCount\n}\n\nfragment FlxFilesUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** query FlxFilesLog (flx-files, plugins/flx-files/graphql/operations/FlxFilesLog.graphql) */
+export const FlxFilesLog: FlxOperation<T.FlxFilesLogQuery, T.FlxFilesLogQueryVariables> = {
+  id: 'df297c445606cc8674482cb2a7dad93ef00b19f27724a00e88ff1013a86847bc',
+  name: 'FlxFilesLog',
+  kind: 'query',
+  plugin: 'flx-files',
+  document: "query FlxFilesLog($first: Int = 50, $after: String, $path: String, $via: FlxFilesVia) {\n  flxFilesLog(first: $first, after: $after, path: $path, via: $via) {\n    totalCount\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    nodes {\n      action\n      path\n      to\n      user\n      userId\n      via\n      when {\n        iso\n        label\n        relative\n      }\n    }\n  }\n}",
+};
+
+/** mutation FlxFilesMove (flx-files, plugins/flx-files/graphql/operations/FlxFilesMove.graphql) */
+export const FlxFilesMove: FlxOperation<T.FlxFilesMoveMutation, T.FlxFilesMoveMutationVariables> = {
+  id: 'ed9598e1137f47c40a7f58d684fd9cd4a825c7389ea9a74ee2d41891f38db51c',
+  name: 'FlxFilesMove',
+  kind: 'mutation',
+  plugin: 'flx-files',
+  document: "mutation FlxFilesMove($input: FlxFilesMoveInput!) {\n  flxFilesMove(input: $input) {\n    items {\n      ...FlxFilesItemFields\n    }\n    failed {\n      ...FlxFilesFailureFields\n    }\n    errors {\n      ...FlxFilesUserError\n    }\n  }\n}\n\nfragment FlxFilesFailureFields on FlxFilesFailure {\n  path\n  message\n}\n\nfragment FlxFilesItemFields on FlxFilesItem {\n  name\n  path\n  isDir\n  kind\n  extension\n  size\n  modified {\n    iso\n    label\n    relative\n    timestamp\n  }\n  permissions\n  writable\n  locked\n  core\n  sensitive\n  shared\n  isLink\n  itemCount\n}\n\nfragment FlxFilesUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** mutation FlxFilesRename (flx-files, plugins/flx-files/graphql/operations/FlxFilesRename.graphql) */
+export const FlxFilesRename: FlxOperation<T.FlxFilesRenameMutation, T.FlxFilesRenameMutationVariables> = {
+  id: '4fda84d50728f46b957ba8c54dd0ddfa92f51531d8881ae73a899645d69dda5b',
+  name: 'FlxFilesRename',
+  kind: 'mutation',
+  plugin: 'flx-files',
+  document: "mutation FlxFilesRename($input: FlxFilesRenameInput!) {\n  flxFilesRename(input: $input) {\n    item {\n      ...FlxFilesItemFields\n    }\n    errors {\n      ...FlxFilesUserError\n    }\n  }\n}\n\nfragment FlxFilesItemFields on FlxFilesItem {\n  name\n  path\n  isDir\n  kind\n  extension\n  size\n  modified {\n    iso\n    label\n    relative\n    timestamp\n  }\n  permissions\n  writable\n  locked\n  core\n  sensitive\n  shared\n  isLink\n  itemCount\n}\n\nfragment FlxFilesUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** mutation FlxFilesRevert (flx-files, plugins/flx-files/graphql/operations/FlxFilesRevert.graphql) */
+export const FlxFilesRevert: FlxOperation<T.FlxFilesRevertMutation, T.FlxFilesRevertMutationVariables> = {
+  id: '1a3f6c38af3fdde3ce542ed5459d58bc51e2e0531923742d050c3944e43fbfc6',
+  name: 'FlxFilesRevert',
+  kind: 'mutation',
+  plugin: 'flx-files',
+  document: "mutation FlxFilesRevert($input: FlxFilesRevertInput!) {\n  flxFilesRevert(input: $input) {\n    file {\n      hash\n      content\n      item {\n        ...FlxFilesItemFields\n      }\n    }\n    errors {\n      ...FlxFilesUserError\n    }\n  }\n}\n\nfragment FlxFilesItemFields on FlxFilesItem {\n  name\n  path\n  isDir\n  kind\n  extension\n  size\n  modified {\n    iso\n    label\n    relative\n    timestamp\n  }\n  permissions\n  writable\n  locked\n  core\n  sensitive\n  shared\n  isLink\n  itemCount\n}\n\nfragment FlxFilesUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** query FlxFilesSearch (flx-files, plugins/flx-files/graphql/operations/FlxFilesSearch.graphql) */
+export const FlxFilesSearch: FlxOperation<T.FlxFilesSearchQuery, T.FlxFilesSearchQueryVariables> = {
+  id: '5356c293231db15f518a757f5eb788d353ec8f33108eb57039c272de7e36fff4',
+  name: 'FlxFilesSearch',
+  kind: 'query',
+  plugin: 'flx-files',
+  document: "query FlxFilesSearch($path: String!, $query: String!, $content: Boolean) {\n  flxFilesSearch(path: $path, query: $query, content: $content) {\n    query\n    partial\n    results {\n      ...FlxFilesItemFields\n      matches {\n        line\n        text\n      }\n    }\n  }\n}\n\nfragment FlxFilesItemFields on FlxFilesItem {\n  name\n  path\n  isDir\n  kind\n  extension\n  size\n  modified {\n    iso\n    label\n    relative\n    timestamp\n  }\n  permissions\n  writable\n  locked\n  core\n  sensitive\n  shared\n  isLink\n  itemCount\n}",
+};
+
+/** mutation FlxFilesSettingsUpdate (flx-files, plugins/flx-files/graphql/operations/FlxFilesSettingsUpdate.graphql) */
+export const FlxFilesSettingsUpdate: FlxOperation<T.FlxFilesSettingsUpdateMutation, T.FlxFilesSettingsUpdateMutationVariables> = {
+  id: '47f5421ba6b9e20badaeb414b94d527088d2bfd140e32f7a147a3c730d4c5041',
+  name: 'FlxFilesSettingsUpdate',
+  kind: 'mutation',
+  plugin: 'flx-files',
+  document: "mutation FlxFilesSettingsUpdate($input: FlxFilesSettingsUpdateInput!) {\n  flxFilesSettingsUpdate(input: $input) {\n    settings {\n      ...FlxFilesSettingsFields\n    }\n    errors {\n      ...FlxFilesUserError\n    }\n  }\n}\n\nfragment FlxFilesSettingsFields on FlxFilesSettings {\n  trashDays\n  versions\n  quotaGb\n  showHidden\n  mcpWrite\n  aiCode\n  shared\n}\n\nfragment FlxFilesUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** mutation FlxFilesShare (flx-files, plugins/flx-files/graphql/operations/FlxFilesShare.graphql) */
+export const FlxFilesShare: FlxOperation<T.FlxFilesShareMutation, T.FlxFilesShareMutationVariables> = {
+  id: '67739f018af821391785f275b9817550d051b7dad1879bcd1e491c84931c3314',
+  name: 'FlxFilesShare',
+  kind: 'mutation',
+  plugin: 'flx-files',
+  document: "mutation FlxFilesShare($input: FlxFilesShareInput!) {\n  flxFilesShare(input: $input) {\n    shared\n    shortcode\n    errors {\n      ...FlxFilesUserError\n    }\n  }\n}\n\nfragment FlxFilesUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** query FlxFilesSize (flx-files, plugins/flx-files/graphql/operations/FlxFilesSize.graphql) */
+export const FlxFilesSize: FlxOperation<T.FlxFilesSizeQuery, T.FlxFilesSizeQueryVariables> = {
+  id: '714c52700ef0d6771f581011a651a3c23a0fe8e8ba99395c93d621c7cb988b4a',
+  name: 'FlxFilesSize',
+  kind: 'query',
+  plugin: 'flx-files',
+  document: "query FlxFilesSize($path: String!) {\n  flxFilesSize(path: $path) {\n    bytes\n    files\n    folders\n    partial\n  }\n}",
+};
+
+/** mutation FlxFilesTrash (flx-files, plugins/flx-files/graphql/operations/FlxFilesTrash.graphql) */
+export const FlxFilesTrash: FlxOperation<T.FlxFilesTrashMutation, T.FlxFilesTrashMutationVariables> = {
+  id: '770f0507a338ab54a68921d53536c2521475117d015f2ecbae7c73c9836e5f8e',
+  name: 'FlxFilesTrash',
+  kind: 'mutation',
+  plugin: 'flx-files',
+  document: "mutation FlxFilesTrash($input: FlxFilesTrashInput!) {\n  flxFilesTrash(input: $input) {\n    trashed {\n      path\n      trashId\n    }\n    failed {\n      ...FlxFilesFailureFields\n    }\n    errors {\n      ...FlxFilesUserError\n    }\n  }\n}\n\nfragment FlxFilesFailureFields on FlxFilesFailure {\n  path\n  message\n}\n\nfragment FlxFilesUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** query FlxFilesTrashList (flx-files, plugins/flx-files/graphql/operations/FlxFilesTrashList.graphql) */
+export const FlxFilesTrashList: FlxOperation<T.FlxFilesTrashListQuery, T.FlxFilesTrashListQueryVariables> = {
+  id: 'e7695dfcf0d582a7b2aac6dff97e29d64d15b8aacebe1bb54905fc69dac327a1',
+  name: 'FlxFilesTrashList',
+  kind: 'query',
+  plugin: 'flx-files',
+  document: "query FlxFilesTrashList($first: Int = 200, $after: String) {\n  flxFilesTrash {\n    days\n    items(first: $first, after: $after) {\n      totalCount\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      nodes {\n        id\n        name\n        path\n        isDir\n        kind\n        size\n        deleted {\n          iso\n          label\n          relative\n        }\n        until\n        user\n        via\n      }\n    }\n  }\n}",
+};
+
+/** mutation FlxFilesTrashPurge (flx-files, plugins/flx-files/graphql/operations/FlxFilesTrashPurge.graphql) */
+export const FlxFilesTrashPurge: FlxOperation<T.FlxFilesTrashPurgeMutation, T.FlxFilesTrashPurgeMutationVariables> = {
+  id: '2f986646c02a7e0cbfc324e66a5f57e02434a3b14c8137f0586fb3800647cb98',
+  name: 'FlxFilesTrashPurge',
+  kind: 'mutation',
+  plugin: 'flx-files',
+  document: "mutation FlxFilesTrashPurge($input: FlxFilesTrashPurgeInput!) {\n  flxFilesTrashPurge(input: $input) {\n    removed\n    failed {\n      ...FlxFilesFailureFields\n    }\n    errors {\n      ...FlxFilesUserError\n    }\n  }\n}\n\nfragment FlxFilesFailureFields on FlxFilesFailure {\n  path\n  message\n}\n\nfragment FlxFilesUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** mutation FlxFilesTrashRestore (flx-files, plugins/flx-files/graphql/operations/FlxFilesTrashRestore.graphql) */
+export const FlxFilesTrashRestore: FlxOperation<T.FlxFilesTrashRestoreMutation, T.FlxFilesTrashRestoreMutationVariables> = {
+  id: 'ae8ec6576f6d062c32245c2784087a446d828c8ed7f09e69761abbf62429ddaa',
+  name: 'FlxFilesTrashRestore',
+  kind: 'mutation',
+  plugin: 'flx-files',
+  document: "mutation FlxFilesTrashRestore($input: FlxFilesTrashRestoreInput!) {\n  flxFilesTrashRestore(input: $input) {\n    items {\n      ...FlxFilesItemFields\n    }\n    failed {\n      ...FlxFilesFailureFields\n    }\n    errors {\n      ...FlxFilesUserError\n    }\n  }\n}\n\nfragment FlxFilesFailureFields on FlxFilesFailure {\n  path\n  message\n}\n\nfragment FlxFilesItemFields on FlxFilesItem {\n  name\n  path\n  isDir\n  kind\n  extension\n  size\n  modified {\n    iso\n    label\n    relative\n    timestamp\n  }\n  permissions\n  writable\n  locked\n  core\n  sensitive\n  shared\n  isLink\n  itemCount\n}\n\nfragment FlxFilesUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** mutation FlxFilesUnzip (flx-files, plugins/flx-files/graphql/operations/FlxFilesUnzip.graphql) */
+export const FlxFilesUnzip: FlxOperation<T.FlxFilesUnzipMutation, T.FlxFilesUnzipMutationVariables> = {
+  id: 'd75223e3edb904ea34d2c371549694e223391ed1969dcb5eb23fa6e8350d6775',
+  name: 'FlxFilesUnzip',
+  kind: 'mutation',
+  plugin: 'flx-files',
+  document: "mutation FlxFilesUnzip($input: FlxFilesUnzipInput!) {\n  flxFilesUnzip(input: $input) {\n    path\n    fileCount\n    errors {\n      ...FlxFilesUserError\n    }\n  }\n}\n\nfragment FlxFilesUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** query FlxFilesVersionContent (flx-files, plugins/flx-files/graphql/operations/FlxFilesVersionContent.graphql) */
+export const FlxFilesVersionContent: FlxOperation<T.FlxFilesVersionContentQuery, T.FlxFilesVersionContentQueryVariables> = {
+  id: 'f0d2ddd90670e48e6ecda7e06b56f5ed9687520d1a05c430b6f7d6e2269e8e5d',
+  name: 'FlxFilesVersionContent',
+  kind: 'query',
+  plugin: 'flx-files',
+  document: "query FlxFilesVersionContent($path: String!, $versionId: String!) {\n  flxFilesVersionContent(path: $path, versionId: $versionId)\n}",
+};
+
+/** query FlxFilesVersions (flx-files, plugins/flx-files/graphql/operations/FlxFilesVersions.graphql) */
+export const FlxFilesVersions: FlxOperation<T.FlxFilesVersionsQuery, T.FlxFilesVersionsQueryVariables> = {
+  id: '6723e081addb1e78d9fbf04474e63ac1877473e63ee8fa3e83bd70f8d13b0272',
+  name: 'FlxFilesVersions',
+  kind: 'query',
+  plugin: 'flx-files',
+  document: "query FlxFilesVersions($path: String!) {\n  flxFilesVersions(path: $path) {\n    id\n    saved {\n      iso\n      label\n      relative\n    }\n    size\n    user\n    via\n  }\n}",
+};
+
+/** mutation FlxFilesWrite (flx-files, plugins/flx-files/graphql/operations/FlxFilesWrite.graphql) */
+export const FlxFilesWrite: FlxOperation<T.FlxFilesWriteMutation, T.FlxFilesWriteMutationVariables> = {
+  id: '723e828c659888ada86d76eaf190cb45ba9d65731e4474ab57051f8cd19db9b6',
+  name: 'FlxFilesWrite',
+  kind: 'mutation',
+  plugin: 'flx-files',
+  document: "mutation FlxFilesWrite($input: FlxFilesWriteInput!) {\n  flxFilesWrite(input: $input) {\n    file {\n      hash\n      item {\n        ...FlxFilesItemFields\n      }\n    }\n    errors {\n      ...FlxFilesUserError\n    }\n  }\n}\n\nfragment FlxFilesItemFields on FlxFilesItem {\n  name\n  path\n  isDir\n  kind\n  extension\n  size\n  modified {\n    iso\n    label\n    relative\n    timestamp\n  }\n  permissions\n  writable\n  locked\n  core\n  sensitive\n  shared\n  isLink\n  itemCount\n}\n\nfragment FlxFilesUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** mutation FlxFilesZip (flx-files, plugins/flx-files/graphql/operations/FlxFilesZip.graphql) */
+export const FlxFilesZip: FlxOperation<T.FlxFilesZipMutation, T.FlxFilesZipMutationVariables> = {
+  id: '32203b0cbb4dd23257d8028daf389e5819361d7e3352f1ddab908a7459ba9244',
+  name: 'FlxFilesZip',
+  kind: 'mutation',
+  plugin: 'flx-files',
+  document: "mutation FlxFilesZip($input: FlxFilesZipInput!) {\n  flxFilesZip(input: $input) {\n    item {\n      ...FlxFilesItemFields\n    }\n    errors {\n      ...FlxFilesUserError\n    }\n  }\n}\n\nfragment FlxFilesItemFields on FlxFilesItem {\n  name\n  path\n  isDir\n  kind\n  extension\n  size\n  modified {\n    iso\n    label\n    relative\n    timestamp\n  }\n  permissions\n  writable\n  locked\n  core\n  sensitive\n  shared\n  isLink\n  itemCount\n}\n\nfragment FlxFilesUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
 /** query FlxLanguageJob (flx-lang, plugins/flx-lang/graphql/operations/FlxLanguageJob.graphql) */
 export const FlxLanguageJob: FlxOperation<T.FlxLanguageJobQuery, T.FlxLanguageJobQueryVariables> = {
   id: '66156d0f78ffd2d934aaf886825d8a8be13ec1c5a34eec1a11eaea0804e69359',

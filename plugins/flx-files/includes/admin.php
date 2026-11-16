@@ -32,7 +32,92 @@ function flxfm_page_load() {
 			return $c . ' flxfm-screen';
 		}
 	);
-	add_action( 'admin_enqueue_scripts', 'flxfm_enqueue' );
+	add_action( 'admin_enqueue_scripts', flxfm_flux_ui() ? 'flxfm_flux_enqueue' : 'flxfm_enqueue' );
+}
+
+/*
+ * New view (0.2.0, GraphQL): the page opens the same React screen as the FluxWP app (assets/flux/,
+ * tools/fluxapp/embed-sync.sh flx-files). It is the default and has every feature of the classic screen;
+ * the classic screen stays reachable from the screen's menu for now. Needs Flux GraphQL.
+ */
+function flxfm_flux_available() {
+	return file_exists( FLXFM_DIR . 'assets/flux/flux-modules.js' ) && function_exists( 'flx_gql_ready' ) && function_exists( 'flx_gql_all_caps' ) && flx_gql_ready();
+}
+
+function flxfm_flux_ui() {
+	return flxfm_flux_available() && 'classic' !== get_user_meta( get_current_user_id(), 'flxfm_ui', true );
+}
+
+function flxfm_admin_url( $args = array() ) {
+	return add_query_arg( $args, admin_url( 'admin.php?page=flx-files' ) );
+}
+
+/** Link that switches the current user between the views. */
+function flxfm_ui_switch_url( $ui ) {
+	return wp_nonce_url( flxfm_admin_url( array( 'flxfm_ui' => 'flux' === $ui ? 'flux' : 'classic' ) ), 'flxfm_ui' );
+}
+
+add_action(
+	'admin_init',
+	static function () {
+		if ( ! isset( $_GET['flxfm_ui'], $_GET['page'] ) || 'flx-files' !== $_GET['page'] || ! current_user_can( 'flxfm_manage' ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+			return;
+		}
+		check_admin_referer( 'flxfm_ui' );
+		if ( 'classic' === $_GET['flxfm_ui'] ) {
+			update_user_meta( get_current_user_id(), 'flxfm_ui', 'classic' );
+		} else {
+			delete_user_meta( get_current_user_id(), 'flxfm_ui' );
+		}
+		wp_safe_redirect( flxfm_admin_url() );
+		exit;
+	}
+);
+
+/** The chunked bundle loads as an ES module. */
+function flxfm_flux_module_tag( $tag, $handle ) {
+	if ( 'flxfm-flux' !== $handle ) {
+		return $tag;
+	}
+	return (string) preg_replace_callback(
+		'/<script\b[^>]*\ssrc=[^>]*>/',
+		static function ( $m ) {
+			$open = (string) preg_replace( '/\stype=("|\')[^"\']*\1/', '', $m[0] );
+			return (string) preg_replace( '/^<script\b/', '<script type="module"', $open );
+		},
+		$tag,
+		1
+	);
+}
+
+/** Scripts and styles of the new view; the editor uses WordPress's CodeMirror. */
+function flxfm_flux_enqueue() {
+	wp_enqueue_code_editor( array( 'type' => 'text/x-php', 'codemirror' => array( 'lint' => false, 'gutters' => array() ) ) );
+	$ver    = FLXFM_VERSION . '-' . (int) filemtime( FLXFM_DIR . 'assets/flux/flux-modules.js' );
+	$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#2c7a64';
+	$opts   = array(
+		'module'     => 'flxfm-files',
+		'rest'       => rest_url(),
+		'nonce'      => wp_create_nonce( 'wp_rest' ),
+		'locale'     => get_user_locale(),
+		'siteName'   => get_bloginfo( 'name' ),
+		'adminUrl'   => admin_url(),
+		'theme'      => 'light',
+		'colors'     => array(
+			'primary'         => $accent,
+			'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
+		),
+		'classicUrl' => flxfm_ui_switch_url( 'classic' ),
+	);
+	wp_enqueue_style( 'flxfm-flux', FLXFM_URL . 'assets/flux/flux-modules.css', array( 'code-editor' ), $ver );
+	wp_enqueue_script( 'flxfm-flux', FLXFM_URL . 'assets/flux/flux-modules.js', array( 'code-editor' ), $ver, true );
+	add_filter( 'script_loader_tag', 'flxfm_flux_module_tag', 10, 2 );
+	// Light / dark follows Flux Admin (html.flxa-dark), also when the user switches it on the page.
+	wp_add_inline_script(
+		'flxfm-flux',
+		'(function(){var h=document.documentElement,o=' . wp_json_encode( $opts ) . ';o.theme=h.classList.contains("flxa-dark")?"dark":"light";var slot=window.FluxModulesOptions||(window.FluxModulesOptions={});slot.id="flxfm-app";slot.opts=o;function sync(){var el=document.getElementById("flxfm-app");if(el)el.dataset.theme=h.classList.contains("flxa-dark")?"dark":"light";}new MutationObserver(sync).observe(h,{attributes:true,attributeFilter:["class"]});function go(){if(slot.done||!window.FluxModules)return;var el=document.getElementById(slot.id);if(!el)return;slot.done=true;try{window.FluxModules.mount(el,slot.opts);}catch(e){el.textContent=String(e&&e.message||e);}}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);go();})();',
+		'before'
+	);
 }
 
 /** Parça boyutu: sunucunun izin verdiği yükleme sınırının biraz altı, en fazla 8 MB. */
@@ -101,6 +186,14 @@ function flxfm_enqueue() {
 function flxfm_render_page() {
 	if ( ! current_user_can( 'flxfm_manage' ) ) {
 		wp_die( esc_html__( 'You are not allowed to do this.', 'flx-files' ) );
+	}
+	if ( flxfm_flux_ui() ) {
+		echo '<style>#flxfm-app.flux-root{background:transparent;font-family:inherit;padding:0}</style>';
+		echo '<div class="wrap flxfm-wrap"><h1 class="screen-reader-text">Flux Files</h1><div id="flxfm-app"><noscript>' . esc_html__( 'Flux Files needs JavaScript.', 'flx-files' ) . '</noscript></div></div>';
+		return;
+	}
+	if ( flxfm_flux_available() ) {
+		echo '<p class="flxfm-newview"><a class="button" href="' . esc_url( flxfm_ui_switch_url( 'flux' ) ) . '">' . esc_html__( 'New view', 'flx-files' ) . '</a></p>';
 	}
 	echo '<div class="wrap flxfm-wrap"><h1 class="screen-reader-text">Flux Files</h1><div id="flxfm-app" class="flxfm" data-mode="browse"><div class="flxfm-boot">' . esc_html__( 'Loading…', 'flx-files' ) . '</div></div><noscript>' . esc_html__( 'Flux Files needs JavaScript.', 'flx-files' ) . '</noscript></div>';
 }
@@ -393,6 +486,8 @@ function flxfm_js_strings() {
 		'ai_edit_hint'        => __( 'AI suggests a change and shows the difference. Nothing is saved until you apply it and press Save.', 'flx-files' ),
 		'ai_suggest'          => __( 'Suggest a change', 'flx-files' ),
 		'ai_apply'            => __( 'Apply in editor', 'flx-files' ),
+		'classic_view'        => __( 'Classic view', 'flx-files' ),
+		'up_level'            => __( 'Up one level', 'flx-files' ),
 		'ai_applied'          => __( 'Applied in the editor. Review it and press Save.', 'flx-files' ),
 	);
 }

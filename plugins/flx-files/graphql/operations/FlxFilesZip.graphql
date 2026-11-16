@@ -1,0 +1,10 @@
+mutation FlxFilesZip($input: FlxFilesZipInput!) {
+  flxFilesZip(input: $input) {
+    item {
+      ...FlxFilesItemFields
+    }
+    errors {
+      ...FlxFilesUserError
+    }
+  }
+}

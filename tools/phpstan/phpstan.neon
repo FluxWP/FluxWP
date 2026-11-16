@@ -42,6 +42,7 @@ parameters:
     - ../../plugins/flx-wiki/includes
     - ../../plugins/flx-crm/includes
     - ../../plugins/flx-social/includes
+    - ../../plugins/flx-files/includes
   paths:
     - ../../plugins/flx-graphql/flx-graphql.php
     - ../../plugins/flx-graphql/uninstall.php
@@ -97,6 +98,9 @@ parameters:
     # Flux Social (Faz 1)
     - ../../plugins/flx-social/includes/services
     - ../../plugins/flx-social/includes/graphql
+    # Flux Files (Faz 1)
+    - ../../plugins/flx-files/includes/services
+    - ../../plugins/flx-files/includes/graphql
   excludePaths:
     - ../../plugins/flx-graphql/includes/flx-brand
   treatPhpDocTypesAsCertain: false

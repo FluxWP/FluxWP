@@ -15,6 +15,8 @@ paket GraphQL'e geçerken taşınır (geçiş süresince REST de çalışır).
 | Ziyaret toplama `POST /flxan/v1/c` ve telemetri alımı `POST /flxan/v1/telemetry` | flx-analytics | Herkese açık, her sayfada tarayıcıdan gelen yüksek hacimli yazma; ayrı hafif uç (`endpoint.php`/`collect.php`) | Raporlar ve ayarlar GraphQL'de |
 | CSV indirme (admin-post `flxan_export`), WP Pano widget'ları ve `GET /flxan/v1/dashboard` | flx-analytics | Dosya akışı; Pano widget'ı sunucuda çizilir ve sekme açıkken yenilenir | Veri GraphQL raporlarıyla aynı servisten |
 | Dosya yükleme `POST /wp-json/flx/v1/upload` | flx-graphql | Multipart; tek ortak uç | Mutation `uploadId` alır |
+| Flux Files parçalı yükleme `POST /wp-json/flx-files/v1/upload` | flx-files | Parçalı, devam ettirilebilir, klasör yapılı yükleme; ortak `/flx/v1/upload` tek parça | Mutation'lar yol alır; yükleme sonrası `flxFilesFolder` |
+| Flux Files indirme/önizleme `admin-post.php?action=flxfm_file` | flx-files | Dosya baytı akışı (GraphQL JSON döner); çerez + nonce | `flxFilesFile` içerik/metadata |
 | WooCommerce Store API (sepet / checkout) | flx-commerce, flx-donate | Gateway'ler Store API'ye bağlı (EsnekPOS `PaymentContext`, iyzico) | `flxCart*` mutation'ları içeride `rest_do_request` ile Store API'yi çağırır |
 | Flux Chatbot ziyaretçi uçları `flx-chatbot/v1` (session, message NDJSON akışı, poll, handoff, contact, upload, file, rate, close, typing) | flx-chatbot | Herkese açık widget protokolü: anonim ziyaretçi, NDJSON akışı, multipart yükleme, dosya servisi; GraphQL burada akış ve anonim çağrı için uygun değil | Temsilci/yönetici yüzü GraphQL'de: `flxChatbotConversations`, `flxChatbotConversationReply`, `flxChatbotSettingsSave` |
 | PWA protokol uçları: `admin-ajax.php?action=flxa_manifest`, `flxa_sw`, `flxa_offline`, `flxa_splash`, `flxa_auth` | flx-admin | Tarayıcı ve service worker'ın beklediği dosya/yanıt biçimi (manifest, JS, HTML, görsel) ve oturum köprüsü; oturum kontrolünden önce çalışır | PWA ayarları (`pwa`, `pwaName`, `pwaShort`) `flxAdminSettings` içinde |
@@ -42,6 +44,7 @@ Kaldırılma koşulu olan uçlar. Koşul gerçekleşince satır silinir, uç kal
 | FluxApp OAuth (`/oauth/*`), OTP (`/otp/*`), telefon (`/me/phone*`), cihazlar (`/devices*`), ayar köprüsü (`/settings*`), marka (`/app/brand`) | flx-app | OAuth/OTP protokol uçları; cihaz ve ayar köprüsü ekran akışı yok | Bootstrap, me, sync, config, manifest, dashboard, prefs, oturum GraphQL'de (`docs/flx-app/GRAPHQL.md`) |
 | FluxApp bootstrap/me/sync/config/manifest/dashboard/prefs/session REST uçları | flx-app | Mağazadaki eski uygulama sürümleri | Faz 7 (satır 1 ile birlikte kalkar) |
 | Flux Social `/flx-social/v1/calendar` ve FluxApp modül kimliği `social` | flx-social | FluxApp eski sürümleri bu uca ve eski modül kimliğine bağlı (yeni kimlik `flxsm-social`) | En düşük desteklenen uygulama sürümü GraphQL istemcisine geçince |
+| Flux Files `flx-files/v1/op` | flx-files | Klasik ekran ve eski FluxApp sürümleri; servisi çağırır, çıktı aynı | Eski sürümler desteklenmeyince kalkar |
 
 ## Satır ekleme
 

@@ -39,5 +39,6 @@ export const moduleScreens: Record<string, ComponentType> = {
   'flxseo-seo': lazyScreen(() => import('./seo/SeoScreen').then((m) => ({ default: m.SeoScreen }))),
   'flxwk-wiki': lazyScreen(() => import('./wiki/WikiScreen').then((m) => ({ default: m.WikiScreen }))),
   'flxsm-social': lazyScreen(() => import('./social/SocialScreen').then((m) => ({ default: m.SocialScreen }))),
+  'flxfm-files': lazyScreen(() => import('./files/FilesScreen').then((m) => ({ default: m.FilesScreen }))),
   'flxc-inbox': lazyScreen(() => import('./whatsapp/WhatsAppScreen').then((m) => ({ default: m.WhatsAppScreen }))),
 };

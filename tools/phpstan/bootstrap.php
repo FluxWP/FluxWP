@@ -74,3 +74,7 @@ defined( 'FLXSM_FILE' ) || define( 'FLXSM_FILE', __FILE__ );
 defined( 'FLXSM_DIR' ) || define( 'FLXSM_DIR', __DIR__ . '/' );
 defined( 'FLXSM_URL' ) || define( 'FLXSM_URL', 'https://example.com/' );
 defined( 'FLXSM_NS' ) || define( 'FLXSM_NS', 'flx-social/v1' );
+defined( 'FLXFM_VERSION' ) || define( 'FLXFM_VERSION', '0.0.0' );
+defined( 'FLXFM_FILE' ) || define( 'FLXFM_FILE', __FILE__ );
+defined( 'FLXFM_DIR' ) || define( 'FLXFM_DIR', __DIR__ . '/' );
+defined( 'FLXFM_URL' ) || define( 'FLXFM_URL', 'https://example.com/' );
