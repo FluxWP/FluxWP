@@ -1,0 +1,38 @@
+mutation FlxCrmSettingsSave($input: FlxCrmSettingsSaveInput!) {
+  flxCrmSettingsSave(input: $input) {
+    settings {
+      chatEvents
+      aiTools
+      aiWrite
+      aiDestructive
+      riskThreshold
+      activeDays
+      baseCurrency
+      currency
+      sources {
+        key
+        label
+        description
+        installed
+        enabled
+        hasRole
+        role
+      }
+      roles {
+        key
+        label
+        color
+        builtin
+      }
+      syncedAt {
+        ...FlxCrmWhen
+      }
+      scoredAt {
+        ...FlxCrmWhen
+      }
+    }
+    errors {
+      ...FlxCrmUserError
+    }
+  }
+}

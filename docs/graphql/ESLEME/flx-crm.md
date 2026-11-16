@@ -1,6 +1,6 @@
 # Flux CRM (flx-crm): REST → GraphQL eşlemesi
 
-Paket sürümü: 0.9.4 · Önek: `flxcrm_` (sınıf `FLXCRM_`) · Cap: `flxcrm_view` (okuma), `flxcrm_manage` (yazma) · Sahip thread: envanter (Faz 1) · Durum: taslak
+Paket sürümü: 0.10.0 · Önek: `flxcrm_` (sınıf `FLXCRM_`) · Cap: `flxcrm_view` (okuma), `flxcrm_manage` (yazma) · Durum: uygulandı (gql/flx-crm-1), ayrıntı `docs/flx-crm/GRAPHQL.md`
 
 Not: Bu dosya yalnız envanterdir, kod yazılmadı. "belirsiz" işaretli satırlar uygulayıcıdan önce karar ister.
 
