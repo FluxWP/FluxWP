@@ -1122,7 +1122,7 @@ final class FLXK_Packages_Service {
 			$ids = array_slice( $ids, 0, 1 );
 		}
 		$n      = 0;
-		$delete = 'flxy_backup_delete'; // Flux Backup API, may not be installed.
+		$delete = FLXK_Val::str( 'flxy_backup_delete' ); // Flux Backup API, may not be installed.
 		foreach ( array_unique( array_filter( array_map( static fn( $i ): string => sanitize_text_field( FLXK_Val::str( $i ) ), $ids ) ) ) as $id ) {
 			$r = self::backup_record( $id );
 			if ( null !== $r && 'pre_update' === FLXK_Val::str( $r['type'] ?? '' ) && empty( $r['locked'] ) && is_callable( $delete ) && (bool) $delete( $id ) ) {
