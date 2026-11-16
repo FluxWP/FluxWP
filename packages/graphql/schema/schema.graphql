@@ -136,7 +136,25 @@ type DefaultTemplate implements ContentTemplate {
 }
 
 "The template assigned to the node"
+type Template_SingleWithSidebar implements ContentTemplate {
+  "The name of the template"
+  templateName: String
+}
+
+"The template assigned to the node"
+type Template_PageWithWideImage implements ContentTemplate {
+  "The name of the template"
+  templateName: String
+}
+
+"The template assigned to the node"
 type Template_PageNoTitle implements ContentTemplate {
+  "The name of the template"
+  templateName: String
+}
+
+"The template assigned to the node"
+type Template_PageWithSidebar implements ContentTemplate {
   "The name of the template"
   templateName: String
 }
@@ -284,6 +302,18 @@ type RootQuery {
   "The FluxWP capability catalog, with what the current user has."
   flxCapabilities: [FlxCapability!]!
 
+  "An AI translation job you started (it stays readable for a few minutes after it finishes)."
+  flxLanguageJob(
+    "Job key."
+    id: ID!
+  ): FlxLanguageJob
+
+  "The Languages settings: every language, content types, switcher, automatic language, site texts and what the screen needs to edit them."
+  flxLanguageSettings: FlxLanguageSettings!
+
+  "The languages visitors can open, default first. Public: the language switcher shows the same list."
+  flxLanguages: [FlxLanguage!]!
+
   "One role; empty when the key is unknown."
   flxRole(
     "Role key."
@@ -337,6 +367,9 @@ type RootQuery {
 
   "The user making the request. A visitor gets loggedIn false and no capabilities."
   flxViewer: FlxViewer!
+
+  "The visitor&#039;s country from the server&#039;s CDN / GeoIP header. Never cached. Public: it only returns the caller&#039;s own country."
+  flxVisitorCountry: FlxVisitorCountry!
 
   "Fields of the &#039;GeneralSettings&#039; settings group"
   generalSettings: GeneralSettings
@@ -2467,6 +2500,15 @@ enum ContentTemplateEnum {
 
   "The \"Page No Title\" template."
   PAGE_NO_TITLE_BLOCK_TEMPLATE
+
+  "The \"Page with Wide Image\" template."
+  PAGE_WIDE_BLOCK_TEMPLATE
+
+  "The \"Page with Sidebar\" template."
+  PAGE_WITH_SIDEBAR_BLOCK_TEMPLATE
+
+  "The \"Single with Sidebar\" template."
+  SINGLE_WITH_SIDEBAR_BLOCK_TEMPLATE
 }
 
 "Connection between the Category type and the ContentNode type"
@@ -2563,6 +2605,12 @@ interface ContentNode implements Node & UniformResourceIdentifiable {
     "Arguments for filtering the connection"
     where: ContentNodeToEnqueuedStylesheetConnectionWhereArgs
   ): ContentNodeToEnqueuedStylesheetConnection
+
+  "Language code of this content. Empty for a type that is not translated and for shared pages (cart, checkout, my account)."
+  flxLanguage: String
+
+  "The language versions of this content, in language order, including itself. Drafts and private versions are listed only for people who can edit them. Empty for a type that is not translated."
+  flxTranslations: [FlxTranslation!]!
 
   "The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes."
   guid: String
@@ -4514,6 +4562,12 @@ type MediaItem implements Node & ContentNode & UniformResourceIdentifiable & Dat
     size: MediaItemSizeEnum
   ): Int
 
+  "Language code of this content. Empty for a type that is not translated and for shared pages (cart, checkout, my account)."
+  flxLanguage: String
+
+  "The language versions of this content, in language order, including itself. Drafts and private versions are listed only for people who can edit them. Empty for a type that is not translated."
+  flxTranslations: [FlxTranslation!]!
+
   "The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes."
   guid: String
 
@@ -4780,6 +4834,12 @@ interface HierarchicalContentNode implements Node & ContentNode & UniformResourc
     "Arguments for filtering the connection"
     where: ContentNodeToEnqueuedStylesheetConnectionWhereArgs
   ): ContentNodeToEnqueuedStylesheetConnection
+
+  "Language code of this content. Empty for a type that is not translated and for shared pages (cart, checkout, my account)."
+  flxLanguage: String
+
+  "The language versions of this content, in language order, including itself. Drafts and private versions are listed only for people who can edit them. Empty for a type that is not translated."
+  flxTranslations: [FlxTranslation!]!
 
   "The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes."
   guid: String
@@ -5128,6 +5188,33 @@ type ContentNodeToEnqueuedStylesheetConnectionPageInfo implements EnqueuedStyles
 
   "When paginating backwards, the cursor to continue."
   startCursor: String
+}
+
+"One language version of a content."
+type FlxTranslation {
+  "Post ID of this version."
+  databaseId: Int!
+
+  "Editor address. Empty when the viewer cannot edit this version."
+  editUrl: String
+
+  "Global ID of the post (the same as the id of the content node)."
+  id: ID!
+
+  "This is the content the list was read from."
+  isSelf: Boolean!
+
+  "Language code of this version."
+  lang: String!
+
+  "WordPress post status (publish, draft, pending …). Anyone sees only published versions; people who can edit the version see the others too."
+  status: String!
+
+  "Title of this version."
+  title: String!
+
+  "Public address of this version. Empty until it is published."
+  url: String
 }
 
 "Connection between the ContentNode type and the User type"
@@ -5680,6 +5767,12 @@ type Page implements Node & ContentNode & UniformResourceIdentifiable & Database
 
   "Globally unique ID of the featured image assigned to the node"
   featuredImageId: ID
+
+  "Language code of this content. Empty for a type that is not translated and for shared pages (cart, checkout, my account)."
+  flxLanguage: String
+
+  "The language versions of this content, in language order, including itself. Drafts and private versions are listed only for people who can edit them. Empty for a type that is not translated."
+  flxTranslations: [FlxTranslation!]!
 
   "The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes."
   guid: String
@@ -6442,6 +6535,12 @@ type Post implements Node & ContentNode & UniformResourceIdentifiable & Database
 
   "Globally unique ID of the featured image assigned to the node"
   featuredImageId: ID
+
+  "Language code of this content. Empty for a type that is not translated and for shared pages (cart, checkout, my account)."
+  flxLanguage: String
+
+  "The language versions of this content, in language order, including itself. Drafts and private versions are listed only for people who can edit them. Empty for a type that is not translated."
+  flxTranslations: [FlxTranslation!]!
 
   "The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes."
   guid: String
@@ -9558,6 +9657,222 @@ type FlxCapability {
   package: String!
 }
 
+"An AI translation job: the draft translation plus the parts the AI translates one request at a time (the host stops a request at about 60 seconds)."
+type FlxLanguageJob {
+  "Editor address of the translation."
+  editUrl: String
+
+  "Parts that stayed in the source language (&quot;meta&quot; or a step number). Check them in the editor."
+  errors: [String!]!
+
+  "Job key. Send it to flxLanguageTranslateStep."
+  id: ID!
+
+  "Target language code."
+  lang: String!
+
+  "Post ID of the source content."
+  sourceId: Int!
+
+  "State of the job."
+  status: FlxLanguageJobStatus!
+
+  "Last finished step; -1 before the first. Run steps 0 to total - 1."
+  step: Int!
+
+  "Number of steps: the title/excerpt/SEO step plus one per body part."
+  total: Int!
+
+  "Post ID of the translation being written."
+  translationId: Int!
+}
+
+"State of an AI translation job."
+enum FlxLanguageJobStatus {
+  "The translation is written."
+  DONE
+
+  "The last step failed; running it again retries."
+  FAILED
+
+  "Steps are still to run."
+  RUNNING
+}
+
+"The Languages settings."
+type FlxLanguageSettings {
+  "Flux AI &amp; MCP is installed and ready, so AI translation buttons work."
+  aiAvailable: Boolean!
+
+  "Languages that can still be added."
+  catalog: [FlxLanguageCatalogEntry!]!
+
+  "Code of the default language (no address prefix)."
+  defaultLanguage: String!
+
+  "Show the default-language version when a translation is missing."
+  fallback: Boolean!
+
+  "Country information of this request (does country-based suggestion work on this server?)."
+  geo: FlxLanguageGeo!
+
+  "Two-letter country codes that see the default language when the browser language is not on the site."
+  homeCountries: [String!]!
+
+  "Every language, inactive ones too; the default language first."
+  languages: [FlxLanguage!]!
+
+  "Public content types that can be translated."
+  postTypeChoices: [FlxLanguagePostType!]!
+
+  "Content types that are translated."
+  postTypes: [String!]!
+
+  "Automatic language for first-time visitors."
+  suggest: FlxLanguageSuggestMode!
+
+  "Language used when neither the browser language nor the country&#039;s language is active."
+  suggestTo: String!
+
+  "How the language switcher names languages."
+  switcher: FlxLanguageSwitcherStyle!
+
+  "Where the theme shows the language switcher."
+  switcherPlace: FlxLanguageSwitcherPlace!
+
+  "Site texts that can be translated."
+  textFields: [FlxLanguageTextField!]!
+
+  "Translated site texts. A text that is not listed shows in the default language."
+  texts: [FlxLanguageSiteText!]!
+}
+
+"A language that can be added to the site."
+type FlxLanguageCatalogEntry {
+  "Language code."
+  code: String!
+
+  "Flag emoji."
+  flag: String!
+
+  "WordPress locale."
+  locale: String!
+
+  "Name."
+  name: String!
+}
+
+"Country information of the settings page: the code and the header it came from."
+type FlxLanguageGeo {
+  "Two-letter country code of the current request. Empty when the server sends none."
+  country: String
+
+  "Name of the header the country came from. Empty when none."
+  source: String
+}
+
+"A language of the site."
+type FlxLanguage {
+  "Visitors can open this language. The default language is always active."
+  active: Boolean!
+
+  "Address of the language root: &quot;/&quot; for the default language, &quot;/en/&quot; for the others."
+  address: String!
+
+  "Language code, also the address prefix (en, de, pt-br)."
+  code: String!
+
+  "The default language (no address prefix)."
+  default: Boolean!
+
+  "Flag emoji. Empty when none is set."
+  flag: String
+
+  "hreflang value search engines get."
+  hreflang: String!
+
+  "WordPress locale of the language&#039;s content (en_US)."
+  locale: String!
+
+  "Name people see (English, Deutsch)."
+  name: String!
+}
+
+"A public content type that can be translated."
+type FlxLanguagePostType {
+  "Plural label."
+  label: String!
+
+  "Post type name (post, page …)."
+  name: String!
+
+  "Translated now."
+  selected: Boolean!
+}
+
+"What a first-time visitor gets when their language differs from the page."
+enum FlxLanguageSuggestMode {
+  "A suggestion bar at the top of the page."
+  BANNER
+
+  "Nothing."
+  OFF
+
+  "The site opens directly in their language."
+  REDIRECT
+}
+
+"How the language switcher names the languages."
+enum FlxLanguageSwitcherStyle {
+  "Language codes (TR · EN)."
+  CODE
+
+  "Flags."
+  FLAG
+
+  "Language names."
+  NAME
+}
+
+"Where the theme shows the language switcher."
+enum FlxLanguageSwitcherPlace {
+  "Both."
+  BOTH
+
+  "Footer."
+  FOOTER
+
+  "Header and mobile menu."
+  HEADER
+}
+
+"A site text that can be translated."
+type FlxLanguageTextField {
+  "Text key."
+  key: String!
+
+  "What the text is, in the user&#039;s language."
+  label: String!
+
+  "The text in the default language; shown as a hint while the translation is empty."
+  placeholder: String!
+
+  "A long text (shown in a multi-line box)."
+  textarea: Boolean!
+}
+
+"A site text (site title, tagline, home page title …) in one language."
+type FlxLanguageSiteText {
+  "Text key (blogname, blogdescription, flxseo_home_title …)."
+  key: String!
+
+  "Language code (never the default language)."
+  lang: String!
+
+  "The text in that language."
+  value: String!
+}
+
 "A FluxWP role: Director, Manager, Staff or a role added from the panel."
 type FlxRole {
   "Table permissions that are on for the role."
@@ -10069,6 +10384,12 @@ type FlxViewer {
 
   "Name of the viewer&#039;s FluxWP role; empty without one."
   roleLabel: String
+}
+
+"The country the server sees for the current request."
+type FlxVisitorCountry {
+  "Two-letter country code (TR, DE …). Empty when the server sends no country header; the browser time zone is the fallback then."
+  country: String
 }
 
 "The general setting type"
@@ -12272,6 +12593,36 @@ type RootMutation {
     input: FlxAdminWidgetPrefsSetInput!
   ): FlxAdminWidgetPrefsSetPayload
 
+  "Sets the language of a content (the editor&#039;s Language box). If another content of the same group already has that language, this one leaves the group."
+  flxLanguageSet(
+    "Input for the flxLanguageSet mutation"
+    input: FlxLanguageSetInput!
+  ): FlxLanguageSetPayload
+
+  "Saves the Languages settings. A field that is not sent stays as it is; `languages` and `texts`, when sent, replace the whole list (a language that is not listed is removed). Nothing is written when any part is invalid."
+  flxLanguageSettingsUpdate(
+    "Input for the flxLanguageSettingsUpdate mutation"
+    input: FlxLanguageSettingsUpdateInput!
+  ): FlxLanguageSettingsUpdatePayload
+
+  "Starts an AI translation of a content (needs Flux AI &amp; MCP): creates the draft translation and the list of parts. Run flxLanguageTranslateStep for step 0 to total - 1."
+  flxLanguageTranslateStart(
+    "Input for the flxLanguageTranslateStart mutation"
+    input: FlxLanguageTranslateStartInput!
+  ): FlxLanguageTranslateStartPayload
+
+  "Runs one step of an AI translation job. Each step is one request, so no request runs into the host time limit. The last step writes the body and finishes the job."
+  flxLanguageTranslateStep(
+    "Input for the flxLanguageTranslateStep mutation"
+    input: FlxLanguageTranslateStepInput!
+  ): FlxLanguageTranslateStepPayload
+
+  "Creates the translation of a content in a language: a draft copy to translate by hand (terms, meta and image are copied). Returns the existing one when the language already has a version."
+  flxLanguageTranslationCreate(
+    "Input for the flxLanguageTranslationCreate mutation"
+    input: FlxLanguageTranslationCreateInput!
+  ): FlxLanguageTranslationCreatePayload
+
   "Adds a role from the panel; it starts with admin panel access only."
   flxRoleCreate(
     "Input for the flxRoleCreate mutation"
@@ -13453,6 +13804,186 @@ type FlxAdminWidgetPrefsSetPayload {
 
   "The user&#039;s filters after the change."
   prefs: FlxAdminWidgetPrefs
+}
+
+"Input for the flxLanguageSet mutation."
+input FlxLanguageSetInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Global ID or database ID of the content."
+  id: ID!
+
+  "Language code."
+  lang: String!
+}
+
+"The payload for the flxLanguageSet mutation."
+type FlxLanguageSetPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Language of the content after the change."
+  lang: String
+
+  "Language versions of the content after the change."
+  translations: [FlxTranslation!]
+}
+
+"Input for the flxLanguageSettingsUpdate mutation."
+input FlxLanguageSettingsUpdateInput {
+  "Code of a catalog language to add. It is added inactive: prepare its content, then activate it."
+  addLanguage: String
+
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Code of the default language."
+  defaultLanguage: String
+
+  "Show the default-language version when a translation is missing."
+  fallback: Boolean
+
+  "Two-letter country codes that see the default language."
+  homeCountries: [String!]
+
+  "All languages after the change. The default language cannot be removed."
+  languages: [FlxLanguageInput!]
+
+  "Content types to translate."
+  postTypes: [String!]
+
+  "Automatic language for first-time visitors."
+  suggest: FlxLanguageSuggestMode
+
+  "Language used when neither the browser language nor the country's language is active."
+  suggestTo: String
+
+  "How the language switcher names languages."
+  switcher: FlxLanguageSwitcherStyle
+
+  "Where the theme shows the language switcher."
+  switcherPlace: FlxLanguageSwitcherPlace
+
+  "All translated site texts after the change."
+  texts: [FlxLanguageSiteTextInput!]
+}
+
+"A language of the site."
+input FlxLanguageInput {
+  "Visitors can open it. The default language is always active."
+  active: Boolean
+
+  "Language code and address prefix (en, de, pt-br)."
+  code: String!
+
+  "Flag emoji."
+  flag: String
+
+  "WordPress locale of the content (en_US)."
+  locale: String
+
+  "Name people see. Empty keeps the code."
+  name: String
+}
+
+"A site text in one language. An empty value removes the translation."
+input FlxLanguageSiteTextInput {
+  "Text key from textFields."
+  key: String!
+
+  "Language code (not the default language)."
+  lang: String!
+
+  "The text."
+  value: String!
+}
+
+"The payload for the flxLanguageSettingsUpdate mutation."
+type FlxLanguageSettingsUpdatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The settings after the change."
+  settings: FlxLanguageSettings
+}
+
+"Input for the flxLanguageTranslateStart mutation."
+input FlxLanguageTranslateStartInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Target language code."
+  lang: String!
+
+  "Global ID or database ID of the source content."
+  sourceId: ID!
+}
+
+"The payload for the flxLanguageTranslateStart mutation."
+type FlxLanguageTranslateStartPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The job to step through."
+  job: FlxLanguageJob
+}
+
+"Input for the flxLanguageTranslateStep mutation."
+input FlxLanguageTranslateStepInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Job key from flxLanguageTranslateStart."
+  jobId: ID!
+
+  "Step to run, from 0 to total - 1."
+  step: Int!
+}
+
+"The payload for the flxLanguageTranslateStep mutation."
+type FlxLanguageTranslateStepPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The job after the step."
+  job: FlxLanguageJob
+}
+
+"Input for the flxLanguageTranslationCreate mutation."
+input FlxLanguageTranslationCreateInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Target language code."
+  lang: String!
+
+  "Global ID or database ID of the source content."
+  sourceId: ID!
+}
+
+"The payload for the flxLanguageTranslationCreate mutation."
+type FlxLanguageTranslationCreatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The translation."
+  translation: FlxTranslation
 }
 
 "Input for the flxRoleCreate mutation."

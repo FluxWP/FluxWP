@@ -1,6 +1,6 @@
 # Flux Lang (flx-lang): REST → GraphQL eşlemesi
 
-Paket sürümü: 0.2.12 · Önek: `flxl_` · Cap: içerik düzenleme `edit_post` (AI çeviri), ayar `manage_options` · Sahip thread: envanter (Faz 1) · Durum: taslak
+Paket sürümü: 0.3.0 · Önek: `flxl_` · Cap: içerik düzenleme `edit_post` (AI çeviri), ayar `manage_options` · Sahip thread: envanter (Faz 1) · Durum: uygulandı (`gql/flx-lang-1`; ayrıntı `docs/flx-lang/GRAPHQL.md`)
 
 Not: Bu dosya yalnız envanterdir. "belirsiz" işaretli satırlar uygulayıcıdan önce karar ister.
 
