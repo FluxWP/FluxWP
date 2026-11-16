@@ -3,6 +3,123 @@
 import type { FlxOperation } from '../operation';
 import type * as T from './types';
 
+/** mutation FlxAdminCapsRestore (flx-admin, plugins/flx-admin/graphql/operations/FlxAdminCapsRestore.graphql) */
+export const FlxAdminCapsRestore: FlxOperation<T.FlxAdminCapsRestoreMutation, T.FlxAdminCapsRestoreMutationVariables> = {
+  id: '1ca49b34f117b7ac552c929bde0588899c760959aa9b79609f629786e0b10362',
+  name: 'FlxAdminCapsRestore',
+  kind: 'mutation',
+  plugin: 'flx-admin',
+  document: "mutation FlxAdminCapsRestore($input: FlxAdminCapsRestoreInput!) {\n  flxAdminCapsRestore(input: $input) {\n    caps {\n      ...FlxAdminCapsFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAdminCapsFields on FlxAdminCaps {\n  roles {\n    key\n    label\n    userCount\n    isAdministrator\n    granted\n  }\n  groups {\n    key\n    label\n    capabilities {\n      key\n      label\n    }\n  }\n  backupAt {\n    iso\n    label\n  }\n}",
+};
+
+/** mutation FlxAdminCapsSave (flx-admin, plugins/flx-admin/graphql/operations/FlxAdminCapsSave.graphql) */
+export const FlxAdminCapsSave: FlxOperation<T.FlxAdminCapsSaveMutation, T.FlxAdminCapsSaveMutationVariables> = {
+  id: 'e13320fd86a143dffd7f3d635d5c1d71e5fb878e8704d8d973d71573220d6105',
+  name: 'FlxAdminCapsSave',
+  kind: 'mutation',
+  plugin: 'flx-admin',
+  document: "mutation FlxAdminCapsSave($input: FlxAdminCapsSaveInput!) {\n  flxAdminCapsSave(input: $input) {\n    caps {\n      ...FlxAdminCapsFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAdminCapsFields on FlxAdminCaps {\n  roles {\n    key\n    label\n    userCount\n    isAdministrator\n    granted\n  }\n  groups {\n    key\n    label\n    capabilities {\n      key\n      label\n    }\n  }\n  backupAt {\n    iso\n    label\n  }\n}",
+};
+
+/** query FlxAdminCapsScreen (flx-admin, plugins/flx-admin/graphql/operations/FlxAdminCapsScreen.graphql) */
+export const FlxAdminCapsScreen: FlxOperation<T.FlxAdminCapsScreenQuery, T.FlxAdminCapsScreenQueryVariables> = {
+  id: '0466b867177e171b259ec3667c8becb5d880f4519688510e3af1bbb8e6a7a427',
+  name: 'FlxAdminCapsScreen',
+  kind: 'query',
+  plugin: 'flx-admin',
+  document: "query FlxAdminCapsScreen {\n  flxAdminCaps {\n    ...FlxAdminCapsFields\n  }\n}\n\nfragment FlxAdminCapsFields on FlxAdminCaps {\n  roles {\n    key\n    label\n    userCount\n    isAdministrator\n    granted\n  }\n  groups {\n    key\n    label\n    capabilities {\n      key\n      label\n    }\n  }\n  backupAt {\n    iso\n    label\n  }\n}",
+};
+
+/** mutation FlxAdminMenuLayoutsSave (flx-admin, plugins/flx-admin/graphql/operations/FlxAdminMenuLayoutsSave.graphql) */
+export const FlxAdminMenuLayoutsSave: FlxOperation<T.FlxAdminMenuLayoutsSaveMutation, T.FlxAdminMenuLayoutsSaveMutationVariables> = {
+  id: 'b8757243aa99ee7e2a5a102a2badaeb0fa69f51a6e630fba153831919da6e3d5',
+  name: 'FlxAdminMenuLayoutsSave',
+  kind: 'mutation',
+  plugin: 'flx-admin',
+  document: "mutation FlxAdminMenuLayoutsSave($input: FlxAdminMenuLayoutsSaveInput!) {\n  flxAdminMenuLayoutsSave(input: $input) {\n    layouts {\n      ...FlxAdminMenuLayoutFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAdminMenuEntryFields on FlxAdminMenuEntry {\n  type\n  label\n  collapsed\n  slug\n  hidden\n  blocked\n  subHidden\n  platformsOff\n}\n\nfragment FlxAdminMenuLayoutFields on FlxAdminMenuLayout {\n  role\n  custom\n  entries {\n    ...FlxAdminMenuEntryFields\n  }\n  bottom\n  access\n}",
+};
+
+/** query FlxAdminMenuScreen (flx-admin, plugins/flx-admin/graphql/operations/FlxAdminMenuScreen.graphql) */
+export const FlxAdminMenuScreen: FlxOperation<T.FlxAdminMenuScreenQuery, T.FlxAdminMenuScreenQueryVariables> = {
+  id: '6abf2fee616f4018f122022f2fe89daeeae06431b8ef159b3aa0c5e88a85d27d',
+  name: 'FlxAdminMenuScreen',
+  kind: 'query',
+  plugin: 'flx-admin',
+  document: "query FlxAdminMenuScreen {\n  flxAdminMenuEditor {\n    catalog {\n      slug\n      label\n      capability\n      icon\n      iconSvg\n      url\n      submenu {\n        slug\n        label\n        capability\n      }\n    }\n    roles {\n      key\n      label\n      userCount\n    }\n    layouts {\n      ...FlxAdminMenuLayoutFields\n    }\n    defaults {\n      entries {\n        ...FlxAdminMenuEntryFields\n      }\n      bottom\n    }\n    platforms {\n      key\n      label\n    }\n    unblockable\n  }\n}\n\nfragment FlxAdminMenuEntryFields on FlxAdminMenuEntry {\n  type\n  label\n  collapsed\n  slug\n  hidden\n  blocked\n  subHidden\n  platformsOff\n}\n\nfragment FlxAdminMenuLayoutFields on FlxAdminMenuLayout {\n  role\n  custom\n  entries {\n    ...FlxAdminMenuEntryFields\n  }\n  bottom\n  access\n}",
+};
+
+/** query FlxAdminModeGet (flx-admin, plugins/flx-admin/graphql/operations/FlxAdminModeGet.graphql) */
+export const FlxAdminModeGet: FlxOperation<T.FlxAdminModeGetQuery, T.FlxAdminModeGetQueryVariables> = {
+  id: '7c6231c3b18859775d591b15fcb6436b4d45aafb5dbe9d44324092620144c6bb',
+  name: 'FlxAdminModeGet',
+  kind: 'query',
+  plugin: 'flx-admin',
+  document: "query FlxAdminModeGet {\n  flxAdminMode\n}",
+};
+
+/** mutation FlxAdminModeSet (flx-admin, plugins/flx-admin/graphql/operations/FlxAdminModeSet.graphql) */
+export const FlxAdminModeSet: FlxOperation<T.FlxAdminModeSetMutation, T.FlxAdminModeSetMutationVariables> = {
+  id: '6ba221d2625e49646facae5c4d817832299b5bfc326c0a316be87588516ee78f',
+  name: 'FlxAdminModeSet',
+  kind: 'mutation',
+  plugin: 'flx-admin',
+  document: "mutation FlxAdminModeSet($input: FlxAdminModeSetInput!) {\n  flxAdminModeSet(input: $input) {\n    mode\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxAdminSettingsScreen (flx-admin, plugins/flx-admin/graphql/operations/FlxAdminSettingsScreen.graphql) */
+export const FlxAdminSettingsScreen: FlxOperation<T.FlxAdminSettingsScreenQuery, T.FlxAdminSettingsScreenQueryVariables> = {
+  id: 'c0e62c44430bcb441296f9b3f7f887fbebcb206f051781dcdec9d4ee6fab3265',
+  name: 'FlxAdminSettingsScreen',
+  kind: 'query',
+  plugin: 'flx-admin',
+  document: "query FlxAdminSettingsScreen {\n  flxAdminSettings {\n    ...FlxAdminSettingsFields\n  }\n  flxAdminSettingsConfig {\n    ...FlxAdminSettingsConfigFields\n  }\n}\n\nfragment FlxAdminColorsFields on FlxAdminColors {\n  bg\n  side\n  surface\n  text\n}\n\nfragment FlxAdminSettingsConfigFields on FlxAdminSettingsConfig {\n  siteName\n  defaultAccent\n  colorDefaults {\n    light {\n      ...FlxAdminColorsFields\n    }\n    dark {\n      ...FlxAdminColorsFields\n    }\n  }\n  dashStatChoices {\n    key\n    label\n  }\n  pwaPossible\n  pwaIconUrl\n  pwaDefaultName\n  pwaDefaultShort\n  systemUrl\n}\n\nfragment FlxAdminSettingsFields on FlxAdminSettings {\n  enabled\n  brand\n  subtitle\n  logo {\n    id\n    name\n    thumb\n    url\n  }\n  logoUrl\n  accent\n  mode\n  darkExclude\n  lineIcons\n  logoStyle\n  bottomBar\n  appRail\n  appSwitcher\n  fastNav\n  palette\n  login\n  heartbeat\n  theme {\n    radius\n    font\n    fontCustom\n    fontSize\n    density\n    light {\n      ...FlxAdminColorsFields\n    }\n    dark {\n      ...FlxAdminColorsFields\n    }\n  }\n  dashHeader\n  dashStats\n  quickLinks\n  pwa\n  pwaName\n  pwaShort\n}",
+};
+
+/** mutation FlxAdminSettingsUpdate (flx-admin, plugins/flx-admin/graphql/operations/FlxAdminSettingsUpdate.graphql) */
+export const FlxAdminSettingsUpdate: FlxOperation<T.FlxAdminSettingsUpdateMutation, T.FlxAdminSettingsUpdateMutationVariables> = {
+  id: 'c262d266ac9488a61594ff3814564ee4fa1f1acde705b4fed210d59eca7046bc',
+  name: 'FlxAdminSettingsUpdate',
+  kind: 'mutation',
+  plugin: 'flx-admin',
+  document: "mutation FlxAdminSettingsUpdate($input: FlxAdminSettingsUpdateInput!) {\n  flxAdminSettingsUpdate(input: $input) {\n    settings {\n      ...FlxAdminSettingsFields\n    }\n    config {\n      ...FlxAdminSettingsConfigFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAdminColorsFields on FlxAdminColors {\n  bg\n  side\n  surface\n  text\n}\n\nfragment FlxAdminSettingsConfigFields on FlxAdminSettingsConfig {\n  siteName\n  defaultAccent\n  colorDefaults {\n    light {\n      ...FlxAdminColorsFields\n    }\n    dark {\n      ...FlxAdminColorsFields\n    }\n  }\n  dashStatChoices {\n    key\n    label\n  }\n  pwaPossible\n  pwaIconUrl\n  pwaDefaultName\n  pwaDefaultShort\n  systemUrl\n}\n\nfragment FlxAdminSettingsFields on FlxAdminSettings {\n  enabled\n  brand\n  subtitle\n  logo {\n    id\n    name\n    thumb\n    url\n  }\n  logoUrl\n  accent\n  mode\n  darkExclude\n  lineIcons\n  logoStyle\n  bottomBar\n  appRail\n  appSwitcher\n  fastNav\n  palette\n  login\n  heartbeat\n  theme {\n    radius\n    font\n    fontCustom\n    fontSize\n    density\n    light {\n      ...FlxAdminColorsFields\n    }\n    dark {\n      ...FlxAdminColorsFields\n    }\n  }\n  dashHeader\n  dashStats\n  quickLinks\n  pwa\n  pwaName\n  pwaShort\n}",
+};
+
+/** query FlxAdminUserMenuGet (flx-admin, plugins/flx-admin/graphql/operations/FlxAdminUserMenuGet.graphql) */
+export const FlxAdminUserMenuGet: FlxOperation<T.FlxAdminUserMenuGetQuery, T.FlxAdminUserMenuGetQueryVariables> = {
+  id: 'f5cf7d4c74a6cea999c8c5015c8447aa2955ba7d161f5af7b33b13347adde93f',
+  name: 'FlxAdminUserMenuGet',
+  kind: 'query',
+  plugin: 'flx-admin',
+  document: "query FlxAdminUserMenuGet {\n  flxAdminUserMenu {\n    pins\n    away\n    subAway\n    subKeep\n  }\n}",
+};
+
+/** mutation FlxAdminUserMenuSet (flx-admin, plugins/flx-admin/graphql/operations/FlxAdminUserMenuSet.graphql) */
+export const FlxAdminUserMenuSet: FlxOperation<T.FlxAdminUserMenuSetMutation, T.FlxAdminUserMenuSetMutationVariables> = {
+  id: 'c3eaa922827428200d3a8f46bc84429c695c5e4f2f4a78fdc3d89fa6e3a57918',
+  name: 'FlxAdminUserMenuSet',
+  kind: 'mutation',
+  plugin: 'flx-admin',
+  document: "mutation FlxAdminUserMenuSet($input: FlxAdminUserMenuSetInput!) {\n  flxAdminUserMenuSet(input: $input) {\n    menu {\n      pins\n      away\n      subAway\n      subKeep\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxAdminWidgetPrefsGet (flx-admin, plugins/flx-admin/graphql/operations/FlxAdminWidgetPrefsGet.graphql) */
+export const FlxAdminWidgetPrefsGet: FlxOperation<T.FlxAdminWidgetPrefsGetQuery, T.FlxAdminWidgetPrefsGetQueryVariables> = {
+  id: '795848ccfccb08eedf7bf1f73db9fdf14c524223f4dfdacd05f82677fd3eec2e',
+  name: 'FlxAdminWidgetPrefsGet',
+  kind: 'query',
+  plugin: 'flx-admin',
+  document: "query FlxAdminWidgetPrefsGet {\n  flxAdminWidgetPrefs {\n    tasks {\n      scope\n      list\n      chart\n    }\n    donations {\n      days\n      split\n    }\n    tasksAvailable\n    donationsAvailable\n  }\n}",
+};
+
+/** mutation FlxAdminWidgetPrefsSet (flx-admin, plugins/flx-admin/graphql/operations/FlxAdminWidgetPrefsSet.graphql) */
+export const FlxAdminWidgetPrefsSet: FlxOperation<T.FlxAdminWidgetPrefsSetMutation, T.FlxAdminWidgetPrefsSetMutationVariables> = {
+  id: '86d84ee062992a317e707785f4f0b98941e5664e687b47be01f45a0bc1f6f398',
+  name: 'FlxAdminWidgetPrefsSet',
+  kind: 'mutation',
+  plugin: 'flx-admin',
+  document: "mutation FlxAdminWidgetPrefsSet($input: FlxAdminWidgetPrefsSetInput!) {\n  flxAdminWidgetPrefsSet(input: $input) {\n    html\n    prefs {\n      tasks {\n        scope\n        list\n        chart\n      }\n      donations {\n        days\n        split\n      }\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
 /** mutation FlxRoleCreate (flx-roles, plugins/flx-roles/graphql/operations/FlxRoleCreate.graphql) */
 export const FlxRoleCreate: FlxOperation<T.FlxRoleCreateMutation, T.FlxRoleCreateMutationVariables> = {
   id: '21a336969a0dc41b8caaa1be0a20b9bd740359347ff57bc8cb72f70ca6254f9e',

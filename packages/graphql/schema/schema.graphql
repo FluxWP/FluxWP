@@ -260,6 +260,27 @@ type RootQuery {
   "Fields of the &#039;DiscussionSettings&#039; settings group"
   discussionSettings: DiscussionSettings
 
+  "The role × permission table."
+  flxAdminCaps: FlxAdminCaps!
+
+  "The role layouts of the side menu and the bottom bar."
+  flxAdminMenuEditor: FlxAdminMenuEditor!
+
+  "The signed-in user&#039;s light/dark choice (the site default when they have not chosen)."
+  flxAdminMode: FlxAdminMode!
+
+  "The Admin theme settings."
+  flxAdminSettings: FlxAdminSettings!
+
+  "Defaults, availability and links around the Admin theme settings."
+  flxAdminSettingsConfig: FlxAdminSettingsConfig!
+
+  "The signed-in user&#039;s pinned and moved menu items."
+  flxAdminUserMenu: FlxAdminUserMenu!
+
+  "The signed-in user&#039;s dashboard module filters."
+  flxAdminWidgetPrefs: FlxAdminWidgetPrefs!
+
   "The FluxWP capability catalog, with what the current user has."
   flxCapabilities: [FlxCapability!]!
 
@@ -8958,6 +8979,567 @@ type DiscussionSettings implements Node {
   id: ID!
 }
 
+"The role × permission table (real WordPress permissions)."
+type FlxAdminCaps {
+  "When the backup of the permissions before the first change was taken; empty without a backup."
+  backupAt: FlxDateTime
+
+  "Permission rows by group."
+  groups: [FlxAdminCapGroup!]!
+
+  "Role columns."
+  roles: [FlxAdminCapRole!]!
+}
+
+"A point in time with labels in the user&#039;s language."
+type FlxDateTime {
+  "ISO 8601 in UTC (2026-11-15T14:59:00Z)."
+  iso: String!
+
+  "Date and time for display, in the site time zone and the user&#039;s language."
+  label: String!
+
+  "Relative time for display (&quot;5 minutes ago&quot;)."
+  relative: String!
+
+  "Unix timestamp."
+  timestamp: Int!
+}
+
+"A group of the permissions table."
+type FlxAdminCapGroup {
+  "Permissions of the group."
+  capabilities: [FlxAdminCapRow!]!
+
+  "Group key."
+  key: String!
+
+  "Group name."
+  label: String!
+}
+
+"A permission of the table."
+type FlxAdminCapRow {
+  "Permission name, e.g. edit_posts."
+  key: String!
+
+  "What it allows; empty for permissions without a readable name."
+  label: String!
+}
+
+"A role column of the permissions table."
+type FlxAdminCapRole {
+  "Table permissions this role has."
+  granted: [String!]!
+
+  "The Administrator role; it cannot be changed."
+  isAdministrator: Boolean!
+
+  "Role key."
+  key: String!
+
+  "Role name."
+  label: String!
+
+  "People with the role."
+  userCount: Int!
+}
+
+"Everything the menu editor needs."
+type FlxAdminMenuEditor {
+  "The menu as the administrator sees it. It is rebuilt on the next admin page load after plugins change."
+  catalog: [FlxAdminMenuItem!]!
+
+  "The default layout."
+  defaults: FlxAdminMenuDefaults!
+
+  "The layout of every role."
+  layouts: [FlxAdminMenuLayout!]!
+
+  "Platforms an item can be hidden on; empty without the app package."
+  platforms: [FlxAdminMenuPlatform!]!
+
+  "Roles that can have their own layout, &quot;all other roles&quot; first."
+  roles: [FlxAdminMenuRole!]!
+
+  "Menu links whose access cannot be closed (no lock-out)."
+  unblockable: [String!]!
+}
+
+"A menu item the administrator sees (the editor&#039;s list)."
+type FlxAdminMenuItem {
+  "Permission it needs."
+  capability: String!
+
+  "Icon key; empty when the item has none."
+  icon: String!
+
+  "Inner markup of the 24×24 line icon (shapes only: path, circle, rect, line, polyline)."
+  iconSvg: String!
+
+  "Menu name."
+  label: String!
+
+  "Menu link (what the layout stores)."
+  slug: String!
+
+  "Submenu items."
+  submenu: [FlxAdminMenuSub!]!
+
+  "Where the item opens."
+  url: String!
+}
+
+"A submenu item."
+type FlxAdminMenuSub {
+  "Permission it needs."
+  capability: String!
+
+  "Submenu name."
+  label: String!
+
+  "Submenu link (what the layout stores)."
+  slug: String!
+}
+
+"The default layout (&quot;reset this role&quot;)."
+type FlxAdminMenuDefaults {
+  "Default bottom bar."
+  bottom: [String!]!
+
+  "Default rows."
+  entries: [FlxAdminMenuEntry!]!
+}
+
+"One row of a menu layout: a group heading or a menu item."
+type FlxAdminMenuEntry {
+  "Item only: access is closed; it is not in the menu and opening it by URL shows &quot;no permission&quot;."
+  blocked: Boolean!
+
+  "Group only: starts collapsed."
+  collapsed: Boolean!
+
+  "Item only: hidden from the menu (permissions do not change)."
+  hidden: Boolean!
+
+  "Group name, or the item&#039;s own name; empty = the original name."
+  label: String!
+
+  "Item only: platforms the item is not shown on."
+  platformsOff: [String!]!
+
+  "Item only: the menu link; empty for a group."
+  slug: String
+
+  "Item only: submenu links hidden from the menu."
+  subHidden: [String!]!
+
+  "Group heading or menu item."
+  type: FlxAdminMenuEntryType!
+}
+
+"A group heading or a menu item."
+enum FlxAdminMenuEntryType {
+  ""
+  GROUP
+
+  ""
+  ITEM
+}
+
+"The side menu and bottom bar of one role."
+type FlxAdminMenuLayout {
+  "Menu links this role has permission to open."
+  access: [String!]!
+
+  "Mobile bottom bar items (up to 4 menu links)."
+  bottom: [String!]!
+
+  "The role has its own layout; false = the default layout."
+  custom: Boolean!
+
+  "Rows in order; items new in the menu are at the end under &quot;Other&quot;."
+  entries: [FlxAdminMenuEntry!]!
+
+  "Role key (&quot;_default&quot; = all other roles)."
+  role: String!
+}
+
+"A place a menu item can be hidden on (web, mobile app, desktop app)."
+type FlxAdminMenuPlatform {
+  "Platform key."
+  key: String!
+
+  "Platform name."
+  label: String!
+}
+
+"A role of the menu editor."
+type FlxAdminMenuRole {
+  "Role key; &quot;_default&quot; is the layout of all other roles."
+  key: String!
+
+  "Role name."
+  label: String!
+
+  "People with the role."
+  userCount: Int!
+}
+
+"Light or dark admin theme."
+enum FlxAdminMode {
+  ""
+  AUTO
+
+  ""
+  DARK
+
+  ""
+  LIGHT
+}
+
+"Settings › Admin theme."
+type FlxAdminSettings {
+  "Accent color (hex); the theme color when none is chosen."
+  accent: String!
+
+  "WhatsApp and Tasks open next to the side menu, which shrinks to icons."
+  appRail: Boolean!
+
+  "App switcher on the WhatsApp and Tasks screens on phones."
+  appSwitcher: Boolean!
+
+  "Bottom bar on mobile."
+  bottomBar: Boolean!
+
+  "Name at the top of the side menu; empty = the site name."
+  brand: String!
+
+  "Screen IDs or body classes (one per line) that stay light."
+  darkExclude: String!
+
+  "Greeting, date and summary tiles at the top of the dashboard."
+  dashHeader: Boolean!
+
+  "Summary tiles that show; people only see tiles they have permission for."
+  dashStats: [FlxAdminDashStat!]!
+
+  "The admin theme is on (off restores the standard WordPress dashboard)."
+  enabled: Boolean!
+
+  "Fast navigation: the clicked menu page is prepared in advance."
+  fastNav: Boolean!
+
+  "Seconds between live counter refreshes: 30, 60 or 120."
+  heartbeat: Int!
+
+  "Line icons in WordPress menus."
+  lineIcons: Boolean!
+
+  "Style the login screen too."
+  login: Boolean!
+
+  "The logo chosen here; empty when the site icon or the Flux Admin icon is used."
+  logo: FlxFile
+
+  "Style of the FluxWP package logos."
+  logoStyle: FlxAdminLogoStyle!
+
+  "The logo the panel shows (chosen logo, institution icon, site icon or the Flux Admin icon)."
+  logoUrl: String!
+
+  "Default light/dark choice for everyone."
+  mode: FlxAdminMode!
+
+  "Command palette (Ctrl+K)."
+  palette: Boolean!
+
+  "The dashboard can be installed as an app (PWA)."
+  pwa: Boolean!
+
+  "App name; empty = the panel name."
+  pwaName: String!
+
+  "Short app name under the icon (20 characters at most); empty = made from the name."
+  pwaShort: String!
+
+  "Extra quick actions, one &quot;Label|Address&quot; per line."
+  quickLinks: String!
+
+  "Line under the name; empty = &quot;Admin&quot;."
+  subtitle: String!
+
+  "Colors, font, corners and density."
+  theme: FlxAdminTheme!
+}
+
+"Summary tile of the dashboard."
+enum FlxAdminDashStat {
+  ""
+  DONATIONS_MONTH
+
+  ""
+  DONATIONS_TODAY
+
+  ""
+  PENDING
+
+  ""
+  SYSTEM
+
+  ""
+  TASKS
+
+  ""
+  WHATSAPP
+}
+
+"A stored file."
+type FlxFile {
+  "File ID (upload ID or the package&#039;s own ID)."
+  id: ID!
+
+  "The file is an image."
+  isImage: Boolean!
+
+  "MIME type."
+  mime: String!
+
+  "File name."
+  name: String!
+
+  "Size in bytes."
+  size: Int!
+
+  "Thumbnail address for images."
+  thumb: String
+
+  "Download address (may need the same sign-in)."
+  url: String
+}
+
+"Style of the FluxWP package logos."
+enum FlxAdminLogoStyle {
+  ""
+  GRADIENT
+
+  ""
+  PASTEL
+}
+
+"Look of the admin panel: colors, font, corners, density."
+type FlxAdminTheme {
+  "Colors of the dark theme (the default color when none is chosen)."
+  dark: FlxAdminColors!
+
+  "Menu row height."
+  density: FlxAdminDensity!
+
+  "Font family choice."
+  font: FlxAdminFont!
+
+  "Font name for the custom choice; empty otherwise."
+  fontCustom: String!
+
+  "Base font size in pixels: 13, 14 or 15."
+  fontSize: Int!
+
+  "Colors of the light theme (the default color when none is chosen)."
+  light: FlxAdminColors!
+
+  "Corner roundness."
+  radius: FlxAdminRadius!
+}
+
+"The four colors of one theme (hex)."
+type FlxAdminColors {
+  "Page background."
+  bg: String!
+
+  "Side menu background."
+  side: String!
+
+  "Card background."
+  surface: String!
+
+  "Text color."
+  text: String!
+}
+
+"Menu row height."
+enum FlxAdminDensity {
+  ""
+  COMFORTABLE
+
+  ""
+  COMPACT
+}
+
+"Admin font."
+enum FlxAdminFont {
+  ""
+  CUSTOM
+
+  ""
+  FIGTREE
+
+  ""
+  SYSTEM
+}
+
+"Corner roundness."
+enum FlxAdminRadius {
+  ""
+  LARGE
+
+  ""
+  MEDIUM
+
+  ""
+  NONE
+
+  ""
+  SMALL
+}
+
+"Values around the Admin theme settings: defaults, availability and links."
+type FlxAdminSettingsConfig {
+  "Theme colors used when none is chosen."
+  colorDefaults: FlxAdminColorDefaults!
+
+  "Every summary tile the dashboard can show."
+  dashStatChoices: [FlxAdminDashStatChoice!]!
+
+  "Accent color of the site theme."
+  defaultAccent: String!
+
+  "App name used when the setting is empty."
+  pwaDefaultName: String!
+
+  "Short app name used when the setting is empty."
+  pwaDefaultShort: String!
+
+  "App icon (the site icon, or the Flux Admin icon)."
+  pwaIconUrl: String!
+
+  "The site is served over HTTPS, so browsers allow installing."
+  pwaPossible: Boolean!
+
+  "Site name (the panel name when the name setting is empty)."
+  siteName: String!
+
+  "Page of the system check when Flux Speed hosts it; empty when it is on this page."
+  systemUrl: String
+}
+
+"Colors used when none is chosen."
+type FlxAdminColorDefaults {
+  "Dark theme."
+  dark: FlxAdminColors!
+
+  "Light theme."
+  light: FlxAdminColors!
+}
+
+"A summary tile the dashboard can show."
+type FlxAdminDashStatChoice {
+  "Tile."
+  key: FlxAdminDashStat!
+
+  "Tile name."
+  label: String!
+}
+
+"A person&#039;s own menu choices (right-click menu)."
+type FlxAdminUserMenu {
+  "Menu links moved under &quot;Other&quot;."
+  away: [String!]!
+
+  "Menu links pinned at the top, in order."
+  pins: [String!]!
+
+  "Submenu links moved under &quot;Other&quot;."
+  subAway: [String!]!
+
+  "Submenu links kept in place although they would move under &quot;Other&quot; automatically."
+  subKeep: [String!]!
+}
+
+"The signed-in user&#039;s dashboard module filters."
+type FlxAdminWidgetPrefs {
+  "Donations module."
+  donations: FlxAdminDonationsPrefs!
+
+  "The user can have the Donations module (Flux Donate is installed and they may see donations)."
+  donationsAvailable: Boolean!
+
+  "Tasks module."
+  tasks: FlxAdminTasksPrefs!
+
+  "The user can have the Tasks module (Flux Tasks is installed and they may use it)."
+  tasksAvailable: Boolean!
+}
+
+"Filters of the Donations dashboard module."
+type FlxAdminDonationsPrefs {
+  "Days it covers: 7, 14 or 30."
+  days: Int!
+
+  "How the chart is split."
+  split: FlxAdminDonationsSplit!
+}
+
+"How the Donations module splits the chart."
+enum FlxAdminDonationsSplit {
+  ""
+  NONE
+
+  ""
+  PROVIDER
+
+  ""
+  TYPE
+}
+
+"Filters of the Tasks dashboard module."
+type FlxAdminTasksPrefs {
+  "How the chart is split."
+  chart: FlxAdminTasksChart!
+
+  "Task list ID; 0 = all lists."
+  list: Int!
+
+  "Which tasks it counts."
+  scope: FlxAdminTasksScope!
+}
+
+"How the Tasks module splits the chart."
+enum FlxAdminTasksChart {
+  ""
+  LIST
+
+  ""
+  PERSON
+
+  ""
+  PRIORITY
+
+  ""
+  STATUS
+}
+
+"Which tasks the Tasks module counts."
+enum FlxAdminTasksScope {
+  ""
+  ALL
+
+  ""
+  CREATED
+
+  ""
+  MINE
+}
+
 "A capability a FluxWP package checks."
 type FlxCapability {
   "Whether the current user has it."
@@ -9322,21 +9904,6 @@ type FlxTaskActivity {
 
   "User who made the change."
   userId: Int!
-}
-
-"A point in time with labels in the user&#039;s language."
-type FlxDateTime {
-  "ISO 8601 in UTC (2026-11-15T14:59:00Z)."
-  iso: String!
-
-  "Date and time for display, in the site time zone and the user&#039;s language."
-  label: String!
-
-  "Relative time for display (&quot;5 minutes ago&quot;)."
-  relative: String!
-
-  "Unix timestamp."
-  timestamp: Int!
 }
 
 "Free-form JSON value (object, list, string, number or boolean)."
@@ -11663,6 +12230,48 @@ type RootMutation {
     input: DeleteUserInput!
   ): DeleteUserPayload
 
+  "Returns every role to the backup taken before the first change, then removes the backup."
+  flxAdminCapsRestore(
+    "Input for the flxAdminCapsRestore mutation"
+    input: FlxAdminCapsRestoreInput!
+  ): FlxAdminCapsRestorePayload
+
+  "Changes the permissions of some roles. These are real permissions. The first change backs everything up."
+  flxAdminCapsSave(
+    "Input for the flxAdminCapsSave mutation"
+    input: FlxAdminCapsSaveInput!
+  ): FlxAdminCapsSavePayload
+
+  "Saves the layouts of some roles and sends others back to the default; roles you leave out stay as they are."
+  flxAdminMenuLayoutsSave(
+    "Input for the flxAdminMenuLayoutsSave mutation"
+    input: FlxAdminMenuLayoutsSaveInput!
+  ): FlxAdminMenuLayoutsSavePayload
+
+  "Saves the signed-in user&#039;s light/dark choice."
+  flxAdminModeSet(
+    "Input for the flxAdminModeSet mutation"
+    input: FlxAdminModeSetInput!
+  ): FlxAdminModeSetPayload
+
+  "Changes Admin theme settings. Fields you leave out stay as they are; nothing is written when any field is invalid."
+  flxAdminSettingsUpdate(
+    "Input for the flxAdminSettingsUpdate mutation"
+    input: FlxAdminSettingsUpdateInput!
+  ): FlxAdminSettingsUpdatePayload
+
+  "Pin, unpin or move one menu item of the signed-in user, or reorder the pins."
+  flxAdminUserMenuSet(
+    "Input for the flxAdminUserMenuSet mutation"
+    input: FlxAdminUserMenuSetInput!
+  ): FlxAdminUserMenuSetPayload
+
+  "Saves the filters of one dashboard module and returns the module as the dashboard shows it. Filters you leave out stay as they are."
+  flxAdminWidgetPrefsSet(
+    "Input for the flxAdminWidgetPrefsSet mutation"
+    input: FlxAdminWidgetPrefsSetInput!
+  ): FlxAdminWidgetPrefsSetPayload
+
   "Adds a role from the panel; it starts with admin panel access only."
   flxRoleCreate(
     "Input for the flxRoleCreate mutation"
@@ -12468,6 +13077,384 @@ type DeleteUserPayload {
   user: User
 }
 
+"Input for the flxAdminCapsRestore mutation."
+input FlxAdminCapsRestoreInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Must be true: every role goes back to its state before the first change."
+  confirm: Boolean!
+}
+
+"The payload for the flxAdminCapsRestore mutation."
+type FlxAdminCapsRestorePayload {
+  "The table after the restore."
+  caps: FlxAdminCaps!
+
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"A problem with the input of a mutation, shown next to the form field."
+type FlxUserError {
+  "Stable code: INVALID_INPUT, CONFLICT, …"
+  code: String!
+
+  "Input field (dotted path) the problem belongs to."
+  field: String
+
+  "Message in the user&#039;s language."
+  message: String!
+}
+
+"Input for the flxAdminCapsSave mutation."
+input FlxAdminCapsSaveInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Roles to change; the others stay as they are."
+  roles: [FlxAdminCapsRoleInput!]!
+}
+
+"The table permissions one role should have."
+input FlxAdminCapsRoleInput {
+  "Every table permission that should be on; the other table permissions are turned off."
+  capabilities: [String!]!
+
+  "Role key. The Administrator role is skipped."
+  role: String!
+}
+
+"The payload for the flxAdminCapsSave mutation."
+type FlxAdminCapsSavePayload {
+  "The table after the change."
+  caps: FlxAdminCaps!
+
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"Input for the flxAdminMenuLayoutsSave mutation."
+input FlxAdminMenuLayoutsSaveInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Layouts to save."
+  layouts: [FlxAdminMenuLayoutInput!]
+
+  "Roles that go back to the default layout."
+  reset: [String!]
+}
+
+"A layout to save for one role."
+input FlxAdminMenuLayoutInput {
+  "Mobile bottom bar items (4 at most)."
+  bottom: [String!]
+
+  "Rows in order (300 at most)."
+  entries: [FlxAdminMenuEntryInput!]!
+
+  "Role key (\"_default\" = all other roles)."
+  role: String!
+}
+
+"One row of a menu layout."
+input FlxAdminMenuEntryInput {
+  "Item only: close access (not for the Administrator role or the links in unblockable)."
+  blocked: Boolean
+
+  "Group only: starts collapsed."
+  collapsed: Boolean
+
+  "Item only: hide from the menu."
+  hidden: Boolean
+
+  "Group name, or the item's own name (40 characters at most); empty = the original name."
+  label: String
+
+  "Item only: platforms the item is not shown on."
+  platformsOff: [String!]
+
+  "Item only: the menu link. Links that are not in the menu are dropped."
+  slug: String
+
+  "Item only: submenu links to hide."
+  subHidden: [String!]
+
+  "Group heading or menu item."
+  type: FlxAdminMenuEntryType!
+}
+
+"The payload for the flxAdminMenuLayoutsSave mutation."
+type FlxAdminMenuLayoutsSavePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The layout of every role after the change."
+  layouts: [FlxAdminMenuLayout!]!
+}
+
+"Input for the flxAdminModeSet mutation."
+input FlxAdminModeSetInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Automatic (device setting), light or dark."
+  mode: FlxAdminMode!
+}
+
+"The payload for the flxAdminModeSet mutation."
+type FlxAdminModeSetPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The saved choice."
+  mode: FlxAdminMode
+}
+
+"Input for the flxAdminSettingsUpdate mutation."
+input FlxAdminSettingsUpdateInput {
+  "Accent color (hex); empty or the theme color follows the site theme."
+  accent: String
+
+  "WhatsApp and Tasks open next to the side menu."
+  appRail: Boolean
+
+  "App switcher on the WhatsApp and Tasks screens on phones."
+  appSwitcher: Boolean
+
+  "Bottom bar on mobile."
+  bottomBar: Boolean
+
+  "Name at the top of the side menu; empty = the site name."
+  brand: String
+
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Screen IDs or body classes (one per line) that stay light."
+  darkExclude: String
+
+  "Greeting, date and summary tiles at the top of the dashboard."
+  dashHeader: Boolean
+
+  "Summary tiles that show."
+  dashStats: [FlxAdminDashStat!]
+
+  "Turn the admin theme on or off."
+  enabled: Boolean
+
+  "Fast navigation."
+  fastNav: Boolean
+
+  "Seconds between live counter refreshes: 30, 60 or 120."
+  heartbeat: Int
+
+  "Line icons in WordPress menus."
+  lineIcons: Boolean
+
+  "Style the login screen too."
+  login: Boolean
+
+  "Media library image to use as the logo; 0 removes the logo."
+  logoId: Int
+
+  "Style of the FluxWP package logos."
+  logoStyle: FlxAdminLogoStyle
+
+  "Upload ID of a logo sent to /wp-json/flx/v1/upload (context flx-admin/logo); it joins the media library and becomes the logo."
+  logoUploadId: String
+
+  "Default light/dark choice for everyone."
+  mode: FlxAdminMode
+
+  "Command palette (Ctrl+K)."
+  palette: Boolean
+
+  "Allow installing the dashboard as an app."
+  pwa: Boolean
+
+  "App name; empty = the panel name."
+  pwaName: String
+
+  "Short app name (20 characters at most)."
+  pwaShort: String
+
+  "Extra quick actions, one \"Label|Address\" per line."
+  quickLinks: String
+
+  "Line under the name; empty = \"Admin\"."
+  subtitle: String
+
+  "Colors, font, corners and density."
+  theme: FlxAdminThemeInput
+}
+
+"Changes to the look. Fields you leave out stay as they are."
+input FlxAdminThemeInput {
+  "Dark theme colors."
+  dark: FlxAdminColorsInput
+
+  "Menu row height."
+  density: FlxAdminDensity
+
+  "Font family choice."
+  font: FlxAdminFont
+
+  "Font name for the custom choice (a font installed on the computer or loaded on the site)."
+  fontCustom: String
+
+  "Base font size in pixels: 13, 14 or 15."
+  fontSize: Int
+
+  "Light theme colors."
+  light: FlxAdminColorsInput
+
+  "Corner roundness."
+  radius: FlxAdminRadius
+}
+
+"Colors of one theme. Colors you leave out stay as they are; the default color means &quot;not customised&quot;."
+input FlxAdminColorsInput {
+  "Page background (hex)."
+  bg: String
+
+  "Side menu background (hex)."
+  side: String
+
+  "Card background (hex)."
+  surface: String
+
+  "Text color (hex)."
+  text: String
+}
+
+"The payload for the flxAdminSettingsUpdate mutation."
+type FlxAdminSettingsUpdatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Defaults, availability and links after the change."
+  config: FlxAdminSettingsConfig!
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The settings after the change."
+  settings: FlxAdminSettings!
+}
+
+"Input for the flxAdminUserMenuSet mutation."
+input FlxAdminUserMenuSetInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "What to do."
+  op: FlxAdminMenuOp!
+
+  "ORDER only: the pinned links in the new order."
+  order: [String!]
+
+  "The menu (or submenu) link; not used for ORDER."
+  slug: String
+}
+
+"A change to the user's own menu."
+enum FlxAdminMenuOp {
+  ""
+  AWAY
+
+  ""
+  BACK
+
+  ""
+  ORDER
+
+  ""
+  PIN
+
+  ""
+  SUB_AWAY
+
+  ""
+  SUB_BACK
+
+  ""
+  UNPIN
+}
+
+"The payload for the flxAdminUserMenuSet mutation."
+type FlxAdminUserMenuSetPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The user&#039;s menu choices after the change."
+  menu: FlxAdminUserMenu
+}
+
+"Input for the flxAdminWidgetPrefsSet mutation."
+input FlxAdminWidgetPrefsSetInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Donations: days it covers (7, 14 or 30)."
+  donationsDays: Int
+
+  "Donations: how the chart is split."
+  donationsSplit: FlxAdminDonationsSplit
+
+  "Tasks: how the chart is split."
+  tasksChart: FlxAdminTasksChart
+
+  "Tasks: task list ID; 0 = all lists."
+  tasksList: Int
+
+  "Tasks: which tasks it counts."
+  tasksScope: FlxAdminTasksScope
+
+  "The module."
+  widget: FlxAdminWidget!
+}
+
+"Dashboard module with filters."
+enum FlxAdminWidget {
+  ""
+  DONATIONS
+
+  ""
+  TASKS
+}
+
+"The payload for the flxAdminWidgetPrefsSet mutation."
+type FlxAdminWidgetPrefsSetPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The module&#039;s body as the dashboard shows it (HTML rendered by Flux Admin)."
+  html: String
+
+  "The user&#039;s filters after the change."
+  prefs: FlxAdminWidgetPrefs
+}
+
 "Input for the flxRoleCreate mutation."
 input FlxRoleCreateInput {
   "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
@@ -12487,18 +13474,6 @@ type FlxRoleCreatePayload {
 
   "The new role."
   role: FlxRole
-}
-
-"A problem with the input of a mutation, shown next to the form field."
-type FlxUserError {
-  "Stable code: INVALID_INPUT, CONFLICT, …"
-  code: String!
-
-  "Input field (dotted path) the problem belongs to."
-  field: String
-
-  "Message in the user&#039;s language."
-  message: String!
 }
 
 "Input for the flxRoleDelete mutation."

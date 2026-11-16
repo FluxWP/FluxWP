@@ -30,9 +30,9 @@ function flxa_defaults() {
 	);
 }
 
-function flxa_settings() {
+function flxa_settings( $refresh = false ) {
 	static $s = null;
-	if ( null === $s ) {
+	if ( null === $s || $refresh ) {
 		$saved = get_option( 'flxa_settings', array() );
 		$s     = wp_parse_args( is_array( $saved ) ? $saved : array(), flxa_defaults() );
 	}

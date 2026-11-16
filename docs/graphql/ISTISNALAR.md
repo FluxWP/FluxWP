@@ -14,6 +14,7 @@ paket GraphQL'e geçerken taşınır (geçiş süresince REST de çalışır).
 | AI sohbet akışı (SSE) | flx-ai, flx-chat | WPGraphQL'de subscription/stream yok | Başlatma ve geçmiş GraphQL'de |
 | Dosya yükleme `POST /wp-json/flx/v1/upload` | flx-graphql | Multipart; tek ortak uç | Mutation `uploadId` alır |
 | WooCommerce Store API (sepet / checkout) | flx-commerce, flx-donate | Gateway'ler Store API'ye bağlı (EsnekPOS `PaymentContext`, iyzico) | `flxCart*` mutation'ları içeride `rest_do_request` ile Store API'yi çağırır |
+| PWA protokol uçları: `admin-ajax.php?action=flxa_manifest`, `flxa_sw`, `flxa_offline`, `flxa_splash`, `flxa_auth` | flx-admin | Tarayıcı ve service worker'ın beklediği dosya/yanıt biçimi (manifest, JS, HTML, görsel) ve oturum köprüsü; oturum kontrolünden önce çalışır | PWA ayarları (`pwa`, `pwaName`, `pwaShort`) `flxAdminSettings` içinde |
 | FluxWP/updater, FluxWP/whatsapp-api | — | WordPress eklentisi değil, ayrı servis | Kapsam dışı |
 | FluxWP/quiz (flx-quiz, flx-preset-arifiye) | — | Ahmet kararı: dokunulmaz | Kapsam dışı |
 
@@ -25,6 +26,7 @@ Kaldırılma koşulu olan uçlar. Koşul gerçekleşince satır silinir, uç kal
 |---|---|---|---|
 | FluxApp mobil/masaüstü eski sürümlerinin kullandığı REST uçları | flx-app ve modül paketleri | Mağazadaki eski sürümler | En düşük desteklenen uygulama sürümü GraphQL istemcisine geçince (Faz 7) |
 | Flux Tasks: pilot dışındaki `flx-tasks/v1` uçları (sync, yapı, belgeler, ayarlar, pano, dosya) | flx-tasks | Pilot yalnız görev dilimini taşıdı; ekran REST yedekli adaptörle çalışır | Faz 1 flx-tasks paket PR'ı (ESLEME/flx-tasks.md) |
+| Flux Admin: pano hızlı görev formu `flxa_task_form` + `flxa_task_create` | flx-admin | Pano JS'i (yan kabuk) bu iki AJAX'a bağlı; görev oluşturma zaten `flxTaskCreate` ile GraphQL'de. Çift yol yeni mantık içermez (flx-tasks fonksiyonlarını çağırır) | Pano JS'i GraphQL istemcisine taşınınca (kabuk/tema işi, Faz 2) |
 
 ## Satır ekleme
 

@@ -4,6 +4,68 @@
 type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 /** Internal type. DO NOT USE DIRECTLY. */
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+/** A group heading or a menu item. */
+export type FlxAdminMenuEntryType =
+  | 'GROUP'
+  | 'ITEM';
+
+/** Light or dark admin theme. */
+export type FlxAdminMode =
+  | 'AUTO'
+  | 'DARK'
+  | 'LIGHT';
+
+/** Summary tile of the dashboard. */
+export type FlxAdminDashStat =
+  | 'DONATIONS_MONTH'
+  | 'DONATIONS_TODAY'
+  | 'PENDING'
+  | 'SYSTEM'
+  | 'TASKS'
+  | 'WHATSAPP';
+
+/** Style of the FluxWP package logos. */
+export type FlxAdminLogoStyle =
+  | 'GRADIENT'
+  | 'PASTEL';
+
+/** Menu row height. */
+export type FlxAdminDensity =
+  | 'COMFORTABLE'
+  | 'COMPACT';
+
+/** Admin font. */
+export type FlxAdminFont =
+  | 'CUSTOM'
+  | 'FIGTREE'
+  | 'SYSTEM';
+
+/** Corner roundness. */
+export type FlxAdminRadius =
+  | 'LARGE'
+  | 'MEDIUM'
+  | 'NONE'
+  | 'SMALL';
+
+/** How the Donations module splits the chart. */
+export type FlxAdminDonationsSplit =
+  | 'NONE'
+  | 'PROVIDER'
+  | 'TYPE';
+
+/** How the Tasks module splits the chart. */
+export type FlxAdminTasksChart =
+  | 'LIST'
+  | 'PERSON'
+  | 'PRIORITY'
+  | 'STATUS';
+
+/** Which tasks the Tasks module counts. */
+export type FlxAdminTasksScope =
+  | 'ALL'
+  | 'CREATED'
+  | 'MINE';
+
 /** What a task row is. */
 export type FlxTaskKind =
   /** An agenda item of a meeting. */
@@ -23,6 +85,207 @@ export type FlxTaskRole =
   | 'EDIT'
   /** See tasks. */
   | 'VIEW';
+
+/** Input for the flxAdminCapsRestore mutation. */
+export type FlxAdminCapsRestoreInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Must be true: every role goes back to its state before the first change. */
+  confirm: boolean;
+};
+
+/** Input for the flxAdminCapsSave mutation. */
+export type FlxAdminCapsSaveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Roles to change; the others stay as they are. */
+  roles: Array<FlxAdminCapsRoleInput>;
+};
+
+/** The table permissions one role should have. */
+export type FlxAdminCapsRoleInput = {
+  /** Every table permission that should be on; the other table permissions are turned off. */
+  capabilities: Array<string>;
+  /** Role key. The Administrator role is skipped. */
+  role: string;
+};
+
+/** Input for the flxAdminMenuLayoutsSave mutation. */
+export type FlxAdminMenuLayoutsSaveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Layouts to save. */
+  layouts?: Array<FlxAdminMenuLayoutInput> | null | undefined;
+  /** Roles that go back to the default layout. */
+  reset?: Array<string> | null | undefined;
+};
+
+/** A layout to save for one role. */
+export type FlxAdminMenuLayoutInput = {
+  /** Mobile bottom bar items (4 at most). */
+  bottom?: Array<string> | null | undefined;
+  /** Rows in order (300 at most). */
+  entries: Array<FlxAdminMenuEntryInput>;
+  /** Role key ("_default" = all other roles). */
+  role: string;
+};
+
+/** One row of a menu layout. */
+export type FlxAdminMenuEntryInput = {
+  /** Item only: close access (not for the Administrator role or the links in unblockable). */
+  blocked?: boolean | null | undefined;
+  /** Group only: starts collapsed. */
+  collapsed?: boolean | null | undefined;
+  /** Item only: hide from the menu. */
+  hidden?: boolean | null | undefined;
+  /** Group name, or the item's own name (40 characters at most); empty = the original name. */
+  label?: string | null | undefined;
+  /** Item only: platforms the item is not shown on. */
+  platformsOff?: Array<string> | null | undefined;
+  /** Item only: the menu link. Links that are not in the menu are dropped. */
+  slug?: string | null | undefined;
+  /** Item only: submenu links to hide. */
+  subHidden?: Array<string> | null | undefined;
+  /** Group heading or menu item. */
+  type: FlxAdminMenuEntryType;
+};
+
+/** Input for the flxAdminModeSet mutation. */
+export type FlxAdminModeSetInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Automatic (device setting), light or dark. */
+  mode: FlxAdminMode;
+};
+
+/** Input for the flxAdminSettingsUpdate mutation. */
+export type FlxAdminSettingsUpdateInput = {
+  /** Accent color (hex); empty or the theme color follows the site theme. */
+  accent?: string | null | undefined;
+  /** WhatsApp and Tasks open next to the side menu. */
+  appRail?: boolean | null | undefined;
+  /** App switcher on the WhatsApp and Tasks screens on phones. */
+  appSwitcher?: boolean | null | undefined;
+  /** Bottom bar on mobile. */
+  bottomBar?: boolean | null | undefined;
+  /** Name at the top of the side menu; empty = the site name. */
+  brand?: string | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Screen IDs or body classes (one per line) that stay light. */
+  darkExclude?: string | null | undefined;
+  /** Greeting, date and summary tiles at the top of the dashboard. */
+  dashHeader?: boolean | null | undefined;
+  /** Summary tiles that show. */
+  dashStats?: Array<FlxAdminDashStat> | null | undefined;
+  /** Turn the admin theme on or off. */
+  enabled?: boolean | null | undefined;
+  /** Fast navigation. */
+  fastNav?: boolean | null | undefined;
+  /** Seconds between live counter refreshes: 30, 60 or 120. */
+  heartbeat?: number | null | undefined;
+  /** Line icons in WordPress menus. */
+  lineIcons?: boolean | null | undefined;
+  /** Style the login screen too. */
+  login?: boolean | null | undefined;
+  /** Media library image to use as the logo; 0 removes the logo. */
+  logoId?: number | null | undefined;
+  /** Style of the FluxWP package logos. */
+  logoStyle?: FlxAdminLogoStyle | null | undefined;
+  /** Upload ID of a logo sent to /wp-json/flx/v1/upload (context flx-admin/logo); it joins the media library and becomes the logo. */
+  logoUploadId?: string | null | undefined;
+  /** Default light/dark choice for everyone. */
+  mode?: FlxAdminMode | null | undefined;
+  /** Command palette (Ctrl+K). */
+  palette?: boolean | null | undefined;
+  /** Allow installing the dashboard as an app. */
+  pwa?: boolean | null | undefined;
+  /** App name; empty = the panel name. */
+  pwaName?: string | null | undefined;
+  /** Short app name (20 characters at most). */
+  pwaShort?: string | null | undefined;
+  /** Extra quick actions, one "Label|Address" per line. */
+  quickLinks?: string | null | undefined;
+  /** Line under the name; empty = "Admin". */
+  subtitle?: string | null | undefined;
+  /** Colors, font, corners and density. */
+  theme?: FlxAdminThemeInput | null | undefined;
+};
+
+/** Changes to the look. Fields you leave out stay as they are. */
+export type FlxAdminThemeInput = {
+  /** Dark theme colors. */
+  dark?: FlxAdminColorsInput | null | undefined;
+  /** Menu row height. */
+  density?: FlxAdminDensity | null | undefined;
+  /** Font family choice. */
+  font?: FlxAdminFont | null | undefined;
+  /** Font name for the custom choice (a font installed on the computer or loaded on the site). */
+  fontCustom?: string | null | undefined;
+  /** Base font size in pixels: 13, 14 or 15. */
+  fontSize?: number | null | undefined;
+  /** Light theme colors. */
+  light?: FlxAdminColorsInput | null | undefined;
+  /** Corner roundness. */
+  radius?: FlxAdminRadius | null | undefined;
+};
+
+/** Colors of one theme. Colors you leave out stay as they are; the default color means &quot;not customised&quot;. */
+export type FlxAdminColorsInput = {
+  /** Page background (hex). */
+  bg?: string | null | undefined;
+  /** Side menu background (hex). */
+  side?: string | null | undefined;
+  /** Card background (hex). */
+  surface?: string | null | undefined;
+  /** Text color (hex). */
+  text?: string | null | undefined;
+};
+
+/** Input for the flxAdminUserMenuSet mutation. */
+export type FlxAdminUserMenuSetInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** What to do. */
+  op: FlxAdminMenuOp;
+  /** ORDER only: the pinned links in the new order. */
+  order?: Array<string> | null | undefined;
+  /** The menu (or submenu) link; not used for ORDER. */
+  slug?: string | null | undefined;
+};
+
+/** A change to the user's own menu. */
+export type FlxAdminMenuOp =
+  | 'AWAY'
+  | 'BACK'
+  | 'ORDER'
+  | 'PIN'
+  | 'SUB_AWAY'
+  | 'SUB_BACK'
+  | 'UNPIN';
+
+/** Input for the flxAdminWidgetPrefsSet mutation. */
+export type FlxAdminWidgetPrefsSetInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Donations: days it covers (7, 14 or 30). */
+  donationsDays?: number | null | undefined;
+  /** Donations: how the chart is split. */
+  donationsSplit?: FlxAdminDonationsSplit | null | undefined;
+  /** Tasks: how the chart is split. */
+  tasksChart?: FlxAdminTasksChart | null | undefined;
+  /** Tasks: task list ID; 0 = all lists. */
+  tasksList?: number | null | undefined;
+  /** Tasks: which tasks it counts. */
+  tasksScope?: FlxAdminTasksScope | null | undefined;
+  /** The module. */
+  widget: FlxAdminWidget;
+};
+
+/** Dashboard module with filters. */
+export type FlxAdminWidget =
+  | 'DONATIONS'
+  | 'TASKS';
 
 /** Input for the flxRoleCreate mutation. */
 export type FlxRoleCreateInput = {
@@ -185,6 +448,97 @@ export type FlxTaskWatchInput = {
   /** Follow (true) or stop following (false). */
   watch: boolean;
 };
+
+export type FlxAdminCapsRestoreMutationVariables = Exact<{
+  input: FlxAdminCapsRestoreInput;
+}>;
+
+
+export type FlxAdminCapsRestoreMutation = { flxAdminCapsRestore: { caps: { roles: Array<{ key: string, label: string, userCount: number, isAdministrator: boolean, granted: Array<string> }>, groups: Array<{ key: string, label: string, capabilities: Array<{ key: string, label: string }> }>, backupAt: { iso: string, label: string } | null }, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAdminCapsFieldsFragment = { roles: Array<{ key: string, label: string, userCount: number, isAdministrator: boolean, granted: Array<string> }>, groups: Array<{ key: string, label: string, capabilities: Array<{ key: string, label: string }> }>, backupAt: { iso: string, label: string } | null };
+
+export type FlxAdminCapsSaveMutationVariables = Exact<{
+  input: FlxAdminCapsSaveInput;
+}>;
+
+
+export type FlxAdminCapsSaveMutation = { flxAdminCapsSave: { caps: { roles: Array<{ key: string, label: string, userCount: number, isAdministrator: boolean, granted: Array<string> }>, groups: Array<{ key: string, label: string, capabilities: Array<{ key: string, label: string }> }>, backupAt: { iso: string, label: string } | null }, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAdminCapsScreenQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAdminCapsScreenQuery = { flxAdminCaps: { roles: Array<{ key: string, label: string, userCount: number, isAdministrator: boolean, granted: Array<string> }>, groups: Array<{ key: string, label: string, capabilities: Array<{ key: string, label: string }> }>, backupAt: { iso: string, label: string } | null } };
+
+export type FlxAdminMenuLayoutsSaveMutationVariables = Exact<{
+  input: FlxAdminMenuLayoutsSaveInput;
+}>;
+
+
+export type FlxAdminMenuLayoutsSaveMutation = { flxAdminMenuLayoutsSave: { layouts: Array<{ role: string, custom: boolean, bottom: Array<string>, access: Array<string>, entries: Array<{ type: FlxAdminMenuEntryType, label: string, collapsed: boolean, slug: string | null, hidden: boolean, blocked: boolean, subHidden: Array<string>, platformsOff: Array<string> }> }>, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAdminMenuEntryFieldsFragment = { type: FlxAdminMenuEntryType, label: string, collapsed: boolean, slug: string | null, hidden: boolean, blocked: boolean, subHidden: Array<string>, platformsOff: Array<string> };
+
+export type FlxAdminMenuLayoutFieldsFragment = { role: string, custom: boolean, bottom: Array<string>, access: Array<string>, entries: Array<{ type: FlxAdminMenuEntryType, label: string, collapsed: boolean, slug: string | null, hidden: boolean, blocked: boolean, subHidden: Array<string>, platformsOff: Array<string> }> };
+
+export type FlxAdminMenuScreenQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAdminMenuScreenQuery = { flxAdminMenuEditor: { unblockable: Array<string>, catalog: Array<{ slug: string, label: string, capability: string, icon: string, iconSvg: string, url: string, submenu: Array<{ slug: string, label: string, capability: string }> }>, roles: Array<{ key: string, label: string, userCount: number }>, layouts: Array<{ role: string, custom: boolean, bottom: Array<string>, access: Array<string>, entries: Array<{ type: FlxAdminMenuEntryType, label: string, collapsed: boolean, slug: string | null, hidden: boolean, blocked: boolean, subHidden: Array<string>, platformsOff: Array<string> }> }>, defaults: { bottom: Array<string>, entries: Array<{ type: FlxAdminMenuEntryType, label: string, collapsed: boolean, slug: string | null, hidden: boolean, blocked: boolean, subHidden: Array<string>, platformsOff: Array<string> }> }, platforms: Array<{ key: string, label: string }> } };
+
+export type FlxAdminModeGetQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAdminModeGetQuery = { flxAdminMode: FlxAdminMode };
+
+export type FlxAdminModeSetMutationVariables = Exact<{
+  input: FlxAdminModeSetInput;
+}>;
+
+
+export type FlxAdminModeSetMutation = { flxAdminModeSet: { mode: FlxAdminMode | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAdminSettingsScreenQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAdminSettingsScreenQuery = { flxAdminSettings: { enabled: boolean, brand: string, subtitle: string, logoUrl: string, accent: string, mode: FlxAdminMode, darkExclude: string, lineIcons: boolean, logoStyle: FlxAdminLogoStyle, bottomBar: boolean, appRail: boolean, appSwitcher: boolean, fastNav: boolean, palette: boolean, login: boolean, heartbeat: number, dashHeader: boolean, dashStats: Array<FlxAdminDashStat>, quickLinks: string, pwa: boolean, pwaName: string, pwaShort: string, logo: { id: string, name: string, thumb: string | null, url: string | null } | null, theme: { radius: FlxAdminRadius, font: FlxAdminFont, fontCustom: string, fontSize: number, density: FlxAdminDensity, light: { bg: string, side: string, surface: string, text: string }, dark: { bg: string, side: string, surface: string, text: string } } }, flxAdminSettingsConfig: { siteName: string, defaultAccent: string, pwaPossible: boolean, pwaIconUrl: string, pwaDefaultName: string, pwaDefaultShort: string, systemUrl: string | null, colorDefaults: { light: { bg: string, side: string, surface: string, text: string }, dark: { bg: string, side: string, surface: string, text: string } }, dashStatChoices: Array<{ key: FlxAdminDashStat, label: string }> } };
+
+export type FlxAdminColorsFieldsFragment = { bg: string, side: string, surface: string, text: string };
+
+export type FlxAdminSettingsConfigFieldsFragment = { siteName: string, defaultAccent: string, pwaPossible: boolean, pwaIconUrl: string, pwaDefaultName: string, pwaDefaultShort: string, systemUrl: string | null, colorDefaults: { light: { bg: string, side: string, surface: string, text: string }, dark: { bg: string, side: string, surface: string, text: string } }, dashStatChoices: Array<{ key: FlxAdminDashStat, label: string }> };
+
+export type FlxAdminSettingsFieldsFragment = { enabled: boolean, brand: string, subtitle: string, logoUrl: string, accent: string, mode: FlxAdminMode, darkExclude: string, lineIcons: boolean, logoStyle: FlxAdminLogoStyle, bottomBar: boolean, appRail: boolean, appSwitcher: boolean, fastNav: boolean, palette: boolean, login: boolean, heartbeat: number, dashHeader: boolean, dashStats: Array<FlxAdminDashStat>, quickLinks: string, pwa: boolean, pwaName: string, pwaShort: string, logo: { id: string, name: string, thumb: string | null, url: string | null } | null, theme: { radius: FlxAdminRadius, font: FlxAdminFont, fontCustom: string, fontSize: number, density: FlxAdminDensity, light: { bg: string, side: string, surface: string, text: string }, dark: { bg: string, side: string, surface: string, text: string } } };
+
+export type FlxAdminSettingsUpdateMutationVariables = Exact<{
+  input: FlxAdminSettingsUpdateInput;
+}>;
+
+
+export type FlxAdminSettingsUpdateMutation = { flxAdminSettingsUpdate: { settings: { enabled: boolean, brand: string, subtitle: string, logoUrl: string, accent: string, mode: FlxAdminMode, darkExclude: string, lineIcons: boolean, logoStyle: FlxAdminLogoStyle, bottomBar: boolean, appRail: boolean, appSwitcher: boolean, fastNav: boolean, palette: boolean, login: boolean, heartbeat: number, dashHeader: boolean, dashStats: Array<FlxAdminDashStat>, quickLinks: string, pwa: boolean, pwaName: string, pwaShort: string, logo: { id: string, name: string, thumb: string | null, url: string | null } | null, theme: { radius: FlxAdminRadius, font: FlxAdminFont, fontCustom: string, fontSize: number, density: FlxAdminDensity, light: { bg: string, side: string, surface: string, text: string }, dark: { bg: string, side: string, surface: string, text: string } } }, config: { siteName: string, defaultAccent: string, pwaPossible: boolean, pwaIconUrl: string, pwaDefaultName: string, pwaDefaultShort: string, systemUrl: string | null, colorDefaults: { light: { bg: string, side: string, surface: string, text: string }, dark: { bg: string, side: string, surface: string, text: string } }, dashStatChoices: Array<{ key: FlxAdminDashStat, label: string }> }, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAdminUserMenuGetQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAdminUserMenuGetQuery = { flxAdminUserMenu: { pins: Array<string>, away: Array<string>, subAway: Array<string>, subKeep: Array<string> } };
+
+export type FlxAdminUserMenuSetMutationVariables = Exact<{
+  input: FlxAdminUserMenuSetInput;
+}>;
+
+
+export type FlxAdminUserMenuSetMutation = { flxAdminUserMenuSet: { menu: { pins: Array<string>, away: Array<string>, subAway: Array<string>, subKeep: Array<string> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAdminWidgetPrefsGetQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAdminWidgetPrefsGetQuery = { flxAdminWidgetPrefs: { tasksAvailable: boolean, donationsAvailable: boolean, tasks: { scope: FlxAdminTasksScope, list: number, chart: FlxAdminTasksChart }, donations: { days: number, split: FlxAdminDonationsSplit } } };
+
+export type FlxAdminWidgetPrefsSetMutationVariables = Exact<{
+  input: FlxAdminWidgetPrefsSetInput;
+}>;
+
+
+export type FlxAdminWidgetPrefsSetMutation = { flxAdminWidgetPrefsSet: { html: string | null, prefs: { tasks: { scope: FlxAdminTasksScope, list: number, chart: FlxAdminTasksChart }, donations: { days: number, split: FlxAdminDonationsSplit } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
 
 export type FlxRoleCreateMutationVariables = Exact<{
   input: FlxRoleCreateInput;

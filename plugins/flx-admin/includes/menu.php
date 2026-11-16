@@ -656,47 +656,17 @@ function flxa_block_die() {
 add_action( 'wp_ajax_flxa_menu_user', 'flxa_ajax_menu_user' );
 function flxa_ajax_menu_user() {
 	check_ajax_referer( 'flxa', 'nonce' );
-	$op   = sanitize_key( wp_unslash( $_POST['op'] ?? '' ) );
-	$slug = (string) wp_unslash( $_POST['slug'] ?? '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-	$slug = substr( wp_strip_all_tags( $slug ), 0, 200 );
-	$uid  = get_current_user_id();
-	$pins = flxa_user_pins( $uid );
-	$away = flxa_user_list( 'flxa_away' );
+	$op    = sanitize_key( wp_unslash( $_POST['op'] ?? '' ) );
+	$slug  = (string) wp_unslash( $_POST['slug'] ?? '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+	$order = array();
 	if ( 'order' === $op ) {
-		$want = json_decode( (string) wp_unslash( $_POST['pins'] ?? '[]' ), true ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-		$want = is_array( $want ) ? array_map( 'strval', $want ) : array();
-		$pins = array_values( array_merge( array_intersect( $want, $pins ), array_diff( $pins, $want ) ) );
-	} elseif ( '' === $slug ) {
-		wp_send_json_error( null, 400 );
-	} elseif ( 'pin' === $op ) {
-		$pins[] = $slug;
-		$away   = array_diff( $away, array( $slug ) );
-	} elseif ( 'unpin' === $op ) {
-		$pins = array_diff( $pins, array( $slug ) );
-	} elseif ( 'away' === $op ) {
-		$away[] = $slug;
-		$pins   = array_diff( $pins, array( $slug ) );
-	} elseif ( 'back' === $op ) {
-		$away = array_diff( $away, array( $slug ) );
-	} elseif ( 'subaway' === $op || 'subback' === $op ) {
-		// Alt menü öğesi (bağlantısıyla): "Diğer" altına taşı / yerine al. Otomatik "Diğer"e düşenleri geri alma `flxa_sub_keep`te.
-		$sa = flxa_user_list( 'flxa_sub_away', $uid );
-		$sk = flxa_user_list( 'flxa_sub_keep', $uid );
-		if ( 'subaway' === $op ) {
-			$sa[] = $slug;
-			$sk   = array_diff( $sk, array( $slug ) );
-		} else {
-			$sa   = array_diff( $sa, array( $slug ) );
-			$sk[] = $slug;
-		}
-		update_user_meta( $uid, 'flxa_sub_away', array_slice( array_values( array_unique( $sa ) ), -150 ) );
-		update_user_meta( $uid, 'flxa_sub_keep', array_slice( array_values( array_unique( $sk ) ), -150 ) );
-		wp_send_json_success();
-	} else {
+		$want  = json_decode( (string) wp_unslash( $_POST['pins'] ?? '[]' ), true ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$order = is_array( $want ) ? array_map( 'strval', $want ) : array();
+	}
+	$r = FLXA_Menu_Service::user_set( $op, $slug, array_values( $order ) );
+	if ( is_wp_error( $r ) ) {
 		wp_send_json_error( null, 400 );
 	}
-	update_user_meta( $uid, 'flxa_pins', array_slice( array_values( array_unique( $pins ) ), 0, 30 ) );
-	update_user_meta( $uid, 'flxa_away', array_slice( array_values( array_unique( $away ) ), 0, 80 ) );
 	wp_send_json_success();
 }
 

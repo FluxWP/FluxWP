@@ -1,5 +1,8 @@
 # @fluxwp/modules
 
+## 0.3.7
+- Admin theme: new `flxa-admin` screen for Flux Admin (General, Appearance, Menu and bottom bar, Permissions, Dashboard, App (PWA)). Same look and features as the classic page, including the role menu editor (drag and drop, groups, rename, hide, block, platforms, copy from role, preview, bottom bar) and the permissions table with backup/restore; data over GraphQL; texts from the plugin's language packs (`plugins/flx-admin/tools/i18n.py`).
+
 ## 0.3.6
 - Roles: new `flxr-roles` screen for Flux Roles (role cards, new role, permission table, screen after login, referral link lifetime, people). Same look as the classic page on FluxWP tokens, light and dark; data over GraphQL; texts from the plugin's language packs (`plugins/flx-roles/tools/i18n.py`).
 

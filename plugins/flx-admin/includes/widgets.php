@@ -406,14 +406,11 @@ function flxa_ajax_widget() {
 	check_ajax_referer( 'flxa', 'nonce' );
 	$id    = sanitize_key( wp_unslash( $_POST['widget'] ?? '' ) );
 	$prefs = json_decode( (string) wp_unslash( $_POST['prefs'] ?? '{}' ), true ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-	$prefs = is_array( $prefs ) ? $prefs : array();
-	if ( 'tasks' === $id && flxa_task_available() ) {
-		wp_send_json_success( array( 'html' => flxa_render_tasks( flxa_widget_prefs_save( 'tasks', $prefs ) ) ) );
+	$r     = FLXA_User_Service::set_widget( $id, is_array( $prefs ) ? FLXA_Util::arr( $prefs ) : array() );
+	if ( is_wp_error( $r ) ) {
+		wp_send_json_error( null, 403 );
 	}
-	if ( 'donations' === $id && function_exists( 'flxb_table' ) && flxa_can_view_donations() ) {
-		wp_send_json_success( array( 'html' => flxa_render_donations( flxa_widget_prefs_save( 'donations', $prefs ) ) ) );
-	}
-	wp_send_json_error( null, 403 );
+	wp_send_json_success( array( 'html' => $r['html'] ) );
 }
 
 /** Hızlı görev formu: düzenlenebilir listeler ve öncelikler. */
