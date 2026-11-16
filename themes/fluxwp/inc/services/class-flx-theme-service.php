@@ -12,18 +12,6 @@
 
 defined( 'ABSPATH' ) || exit;
 
-/**
- * @phpstan-type FlxThemeChanges array{
- *   visibility?: string|null, coming_soon_title?: string|null, coming_soon_text?: string|null,
- *   store_title?: string|null, store_text?: string|null, contact_email?: string|null, site_type?: string|null,
- *   pattern?: string|null, table_head?: string|null, news_intro?: string|null, dark_mode?: string|null,
- *   animations?: bool|null, pagination?: string|null, active_card?: bool|null, active_campaign?: int|null,
- *   cookie_enabled?: bool|null, cookie_title?: string|null, cookie_text?: string|null, cookie_accept?: string|null,
- *   cookie_reject?: string|null, cookie_more?: string|null, cookie_page?: int|null, cookie_position?: string|null,
- *   cookie_reset?: bool|null, ga4_id?: string|null, ga_mode?: string|null, consent_scripts?: string|null,
- *   bank_holder?: string|null, bank_iban?: string|null
- * }
- */
 final class FLX_Theme_Service {
 
 	public const CACHE_TAG = 'flx-theme:settings';
@@ -84,11 +72,36 @@ final class FLX_Theme_Service {
 	 * @return array<string,mixed>
 	 */
 	private static function stored(): array {
-		return wp_parse_args( (array) get_option( 'flx_ayarlar', array() ), flx_ayar_defaults() );
+		/** @var array<string,mixed> $defaults */
+		$defaults = flx_ayar_defaults();
+		/** @var array<string,mixed> $saved */
+		$saved = (array) get_option( 'flx_ayarlar', array() );
+		return wp_parse_args( $saved, $defaults );
 	}
 
 	private static function str( mixed $v ): string {
 		return is_scalar( $v ) ? (string) $v : '';
+	}
+
+	private static function int( mixed $v ): int {
+		return is_scalar( $v ) ? absint( $v ) : 0;
+	}
+
+	/**
+	 * Rows of a legacy list (array of arrays); anything else is dropped.
+	 *
+	 * @return list<array<string,mixed>>
+	 */
+	private static function rows( mixed $v ): array {
+		$out = array();
+		if ( is_array( $v ) ) {
+			foreach ( $v as $row ) {
+				if ( is_array( $row ) ) {
+					$out[] = $row;
+				}
+			}
+		}
+		return $out;
 	}
 
 	/**
@@ -97,6 +110,7 @@ final class FLX_Theme_Service {
 	public static function settings(): FLX_Theme_Settings {
 		$o        = self::stored();
 		$can_js   = current_user_can( 'unfiltered_html' );
+		/** @var array{title:string,text:string} $defaults */
 		$defaults = flx_coming_soon_store_texts( false );
 		$own_iban = self::str( $o['bank_iban'] );
 		$use      = function_exists( 'flxb_bank_account' ) ? flxb_bank_account() : null;
@@ -108,7 +122,7 @@ final class FLX_Theme_Service {
 		if ( class_exists( 'FLXB_Types' ) ) {
 			foreach ( array_slice( (array) FLXB_Types::all(), 0, self::LIST_MAX ) as $t ) {
 				if ( is_array( $t ) && isset( $t['id'] ) ) {
-					$campaigns[] = new FLX_Theme_Option( (int) $t['id'], self::str( $t['title'] ?? '' ) );
+					$campaigns[] = new FLX_Theme_Option( self::int( $t['id'] ), self::str( $t['title'] ?? '' ) );
 				}
 			}
 		}
@@ -129,16 +143,16 @@ final class FLX_Theme_Service {
 			animations: 'off' !== $o['animasyon'],
 			pagination: 'numara' === $o['sayfalama'] ? 'numara' : 'sonsuz',
 			active_card: 'off' !== $o['aktif_kart'],
-			active_campaign: absint( $o['aktif_kampanya'] ),
+			active_campaign: self::int( $o['aktif_kampanya'] ),
 			cookie_enabled: (bool) $o['cookie_enabled'],
 			cookie_title: self::str( $o['cookie_title'] ),
 			cookie_text: self::str( $o['cookie_text'] ),
 			cookie_accept: self::str( $o['cookie_accept'] ),
 			cookie_reject: self::str( $o['cookie_reject'] ),
 			cookie_more: self::str( $o['cookie_more'] ),
-			cookie_page: absint( $o['cookie_page'] ),
+			cookie_page: self::int( $o['cookie_page'] ),
 			cookie_position: 'bar' === $o['cookie_position'] ? 'bar' : 'card',
-			cookie_revision: max( 1, absint( $o['cookie_rev'] ) ),
+			cookie_revision: max( 1, self::int( $o['cookie_rev'] ) ),
 			ga4_id: self::str( $o['ga4_id'] ),
 			ga_mode: 'after' === $o['ga_mode'] ? 'after' : 'consent',
 			consent_scripts: $can_js ? self::str( $o['consent_scripts'] ) : null,
@@ -156,7 +170,7 @@ final class FLX_Theme_Service {
 	/**
 	 * Saves the fields that are given (null / missing = unchanged). Nothing is written when any field is invalid.
 	 *
-	 * @param FlxThemeChanges $in Changes by service key.
+	 * @param array<string,mixed> $in Changes by service key (see FIELDS, plus visibility, cookie_reset, consent_scripts).
 	 * @return FLX_Theme_Settings|WP_Error The settings after the change, or the field errors.
 	 */
 	public static function save( array $in ): FLX_Theme_Settings|WP_Error {
@@ -168,7 +182,7 @@ final class FLX_Theme_Service {
 		$given  = static fn( string $key ): bool => array_key_exists( $key, $in ) && null !== $in[ $key ];
 
 		foreach ( self::CHOICES as $key => $choices ) {
-			if ( $given( $key ) && ! in_array( $in[ $key ], $choices, true ) ) {
+			if ( $given( $key ) && ! in_array( $in[ $key ] ?? null, $choices, true ) ) {
 				$fail( $key, __( 'This choice is not available.', 'fluxwp' ) );
 			}
 		}
@@ -214,7 +228,7 @@ final class FLX_Theme_Service {
 					$store[ $f[0] ] = $v ? 'on' : 'off';
 					break;
 				case 'int':
-					$store[ $f[0] ] = absint( $v );
+					$store[ $f[0] ] = self::int( $v );
 					break;
 				default:
 					$store[ $f[0] ] = self::str( $v );
@@ -239,7 +253,7 @@ final class FLX_Theme_Service {
 	 * Merges the origins of a theme.json list (Site Editor changes > theme.json > WordPress defaults).
 	 *
 	 * @param mixed $raw `wp_get_global_settings()` value: [ origin => list ] or a plain list.
-	 * @return list<array<string,mixed>>
+	 * @return list<array<mixed,mixed>>
 	 */
 	private static function merge_origins( mixed $raw ): array {
 		if ( ! is_array( $raw ) ) {
@@ -295,13 +309,17 @@ final class FLX_Theme_Service {
 
 	public static function pay_logos(): FLX_Theme_Pay_Logos {
 		$current = array();
-		foreach ( flx_pay_logos() as $l ) {
+		foreach ( self::rows( flx_pay_logos() ) as $l ) {
 			$current[] = self::logo( $l );
 		}
 		$builtin = array();
 		$auto    = array();
-		foreach ( flx_pay_logos_builtin() as $key => $b ) {
-			$logo      = self::logo( array( 'key' => (string) $key ) + $b );
+		$defs = flx_pay_logos_builtin();
+		foreach ( is_array( $defs ) ? $defs : array() as $key => $b ) {
+			if ( ! is_array( $b ) ) {
+				continue;
+			}
+			$logo      = self::logo( array( 'key' => self::str( $key ) ) + $b );
 			$builtin[] = $logo;
 			if ( ! empty( $b['default'] ) ) {
 				$auto[] = $logo;
@@ -339,18 +357,19 @@ final class FLX_Theme_Service {
 	public static function system(): FLX_Theme_System {
 		$order  = array( 'error' => 0, 'warning' => 1, 'info' => 2, 'ok' => 3 );
 		$groups = array();
-		foreach ( flx_sk_collect() as $c ) {
-			$source           = self::str( $c['source'] );
-			$groups[ $c['group'] ][] = new FLX_Theme_Check(
-				self::str( $c['id'] ),
+		foreach ( self::rows( flx_sk_collect() ) as $c ) {
+			$source               = self::str( $c['source'] ?? '' );
+			$group                = self::str( $c['group'] ?? '' );
+			$groups[ $group ][] = new FLX_Theme_Check(
+				self::str( $c['id'] ?? '' ),
 				$source,
 				'' !== $source && 'theme' !== $source ? self::str( flx_sk_source_label( $source ) ) : '',
-				self::str( $c['group'] ),
-				self::str( $c['label'] ),
-				self::str( $c['status'] ),
-				self::str( $c['message'] ),
-				self::str( $c['action_url'] ),
-				self::str( $c['action_label'] ),
+				$group,
+				self::str( $c['label'] ?? '' ),
+				self::str( $c['status'] ?? '' ),
+				self::str( $c['message'] ?? '' ),
+				self::str( $c['action_url'] ?? '' ),
+				self::str( $c['action_label'] ?? '' ),
 			);
 		}
 		$checks = array();
@@ -360,13 +379,10 @@ final class FLX_Theme_Service {
 		}
 		$log = array();
 		if ( function_exists( 'flxseo_system_fix_log' ) ) {
-			foreach ( (array) flxseo_system_fix_log( 20 ) as $r ) {
-				if ( ! is_array( $r ) ) {
-					continue;
-				}
-				$u     = get_userdata( absint( $r['u'] ?? 0 ) );
+			foreach ( self::rows( flxseo_system_fix_log( 20 ) ) as $r ) {
+				$u     = get_userdata( self::int( $r['u'] ?? 0 ) );
 				$log[] = new FLX_Theme_Fix_Entry(
-					absint( $r['t'] ?? 0 ),
+					self::int( $r['t'] ?? 0 ),
 					$u ? $u->user_login : '?',
 					self::str( $r['label'] ?? '' ),
 					self::str( $r['value'] ?? '' ),
@@ -390,9 +406,11 @@ final class FLX_Theme_Service {
 	public static function migration_sources(): array {
 		$done = (array) get_option( 'flx_tasi_done', array() );
 		$out  = array();
-		foreach ( flx_tasi_sources() as $src ) {
+		$sources = flx_tasi_sources();
+		foreach ( is_array( $sources ) ? $sources : array() as $src ) {
+			$src = self::str( $src );
 			if ( get_stylesheet() !== $src && false !== get_option( 'theme_mods_' . $src ) ) {
-				$out[] = new FLX_Theme_Migration_Source( (string) $src, empty( $done[ $src ] ) ? null : absint( $done[ $src ] ) );
+				$out[] = new FLX_Theme_Migration_Source( $src, empty( $done[ $src ] ) ? null : self::int( $done[ $src ] ) );
 			}
 		}
 		return $out;

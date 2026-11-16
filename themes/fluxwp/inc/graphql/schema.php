@@ -47,7 +47,11 @@ function flx_theme_gql_prop( string $class, string $prop, string $type, string $
 	);
 }
 
-/** FlxDateTime value of a Unix time; null for an empty one. */
+/**
+ * FlxDateTime value of a Unix time; null for an empty one.
+ *
+ * @return array<string,mixed>|null
+ */
 function flx_theme_gql_time( ?int $ts ): ?array {
 	return null === $ts || $ts <= 0 ? null : flx_gql_datetime( $ts );
 }
@@ -308,7 +312,6 @@ flx_gql_mutation(
 					$changes[ $key ] = $input[ $gql ];
 				}
 			}
-			/** @var FlxThemeChanges $changes */
 			$r = FLX_Theme_Service::save( $changes );
 			return $r instanceof WP_Error ? $r : array( 'settings' => $r );
 		},
