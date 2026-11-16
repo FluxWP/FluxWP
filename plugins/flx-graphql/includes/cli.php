@@ -34,8 +34,8 @@ WP_CLI::add_command(
 	 */
 	static function ( array $args, array $assoc_args ): void {
 		unset( $args );
-		$output = $assoc_args['output'] ?? '';
-		$owners = $assoc_args['owners'] ?? '';
+		$output = is_string( $assoc_args['output'] ?? null ) ? $assoc_args['output'] : '';
+		$owners = is_string( $assoc_args['owners'] ?? null ) ? $assoc_args['owners'] : '';
 		if ( '' === $output || '' === $owners ) {
 			WP_CLI::error( '--output and --owners are required.' );
 		}

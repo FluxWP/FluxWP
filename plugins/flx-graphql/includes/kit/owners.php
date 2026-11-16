@@ -133,7 +133,7 @@ function flx_gql_schema_owned_by( string $owner, callable $register ): void {
  */
 function flx_gql_settings_owners(): array {
 	global $wp_filter;
-	$hook = $wp_filter['flx_settings_schema'] ?? null;
+	$hook = is_array( $wp_filter ) ? ( $wp_filter['flx_settings_schema'] ?? null ) : null;
 	if ( ! flx_gql_schema_owners_on() || ! $hook instanceof WP_Hook ) {
 		return array();
 	}
