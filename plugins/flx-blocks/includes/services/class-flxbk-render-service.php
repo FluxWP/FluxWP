@@ -273,8 +273,10 @@ final class FLXBK_Render_Service {
 
 		$fonts  = self::font_urls();
 		$schema = array();
-		if ( class_exists( 'Flx_Blocks_Frontend' ) && is_string( Flx_Blocks_Frontend::$faq_schema ) && '' !== Flx_Blocks_Frontend::$faq_schema ) {
-			if ( preg_match_all( '#<script[^>]*type=["\']application/ld\+json["\'][^>]*>(.*?)</script>#is', (string) apply_filters( 'flxbk_faq_schema', Flx_Blocks_Frontend::$faq_schema ), $m ) ) {
+		/** @var mixed $faq Built by the FAQ blocks while rendering (null when none). */
+		$faq = class_exists( 'Flx_Blocks_Frontend' ) ? Flx_Blocks_Frontend::$faq_schema : null;
+		if ( is_string( $faq ) && '' !== $faq ) {
+			if ( preg_match_all( '#<script[^>]*type=["\']application/ld\+json["\'][^>]*>(.*?)</script>#is', (string) apply_filters( 'flxbk_faq_schema', $faq ), $m ) ) {
 				foreach ( $m[1] as $doc ) {
 					$schema[] = trim( $doc );
 				}
@@ -534,11 +536,7 @@ final class FLXBK_Render_Service {
 		}
 		if ( function_exists( 'wp_interactivity' ) ) {
 			$ia = wp_interactivity();
-			foreach ( array( 'print_client_interactivity_data' ) as $method ) {
-				if ( method_exists( $ia, $method ) ) {
-					$ia->$method();
-				}
-			}
+			$ia->print_client_interactivity_data();
 		}
 		return (string) ob_get_clean();
 	}

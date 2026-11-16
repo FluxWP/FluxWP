@@ -34,7 +34,7 @@ final class FLXBK_Library_Service {
 		foreach ( self::source_rows() as $row ) {
 			if ( $row['id'] === $id ) {
 				$data = Flx_Blocks_Design_Library::fetch_remote( $row, $refresh );
-				return $data instanceof WP_Error ? $data : self::library( is_array( $data ) ? $data : array(), $id );
+				return $data instanceof WP_Error ? $data : self::library( $data, $id );
 			}
 		}
 		return new WP_Error( 'flxbk_library_source', __( 'Library not found.', 'flx-blocks' ), array( 'status' => 404 ) );
@@ -138,7 +138,7 @@ final class FLXBK_Library_Service {
 			$test->add_data( array_merge( (array) $test->get_error_data(), array( 'graphql_code' => 'INVALID_INPUT', 'field' => 'url' ) ) );
 			return $test;
 		}
-		if ( '' === $name && is_array( $test ) && ! empty( $test['name'] ) && is_string( $test['name'] ) ) {
+		if ( '' === $name && ! empty( $test['name'] ) && is_string( $test['name'] ) ) {
 			$row['name'] = sanitize_text_field( $test['name'] );
 		}
 		$rows   = self::source_rows();
