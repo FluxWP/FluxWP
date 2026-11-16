@@ -56,7 +56,7 @@ final class FLXWK_Page_Service {
 			flxwk_i( $p->post_parent ),
 			flxwk_i( $p->menu_order ),
 			$term instanceof WP_Term ? self::section_of_term( $term ) : null,
-			is_string( $link ) ? $link : '',
+			flxwk_s( $link ),
 			$md_url,
 			flxwk_s( $p->post_modified_gmt ),
 			flxwk_i( flxwk_read_minutes( $content ) ),
