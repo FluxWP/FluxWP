@@ -12,6 +12,7 @@
 #   PACKAGES           space separated plugin slugs to activate besides flx-graphql
 #                      (default: every plugin whose header says "Requires Plugins: … flx-graphql",
 #                      and every plugin whose main file hooks flx_gql_register, like flx-setup)
+#   THEME              theme slug to activate (default fluxwp; empty = keep the default theme)
 #   WOOCOMMERCE_ZIP    optional WooCommerce zip (path or URL), activated before the packages; without it
 #                      the cart bridge tests run against a Store API stand-in (fixtures/mu-fake-store-api.php)
 #   SQLITE_VERSION     sqlite-database-integration version to download (default 3.1.3)
@@ -90,6 +91,10 @@ for dir in "$root"/plugins/*/; do
   slug="$(basename "$dir")"
   ln -s "$root/plugins/$slug" "$site/wp-content/plugins/$slug"
 done
+# Themes are linked too; THEME (default fluxwp) is activated after the plugins.
+for dir in "$root"/themes/*/; do
+  ln -s "$root/themes/$(basename "$dir")" "$site/wp-content/themes/$(basename "$dir")"
+done
 packages="${PACKAGES:-}"
 if [ -z "$packages" ]; then
   for main in "$root"/plugins/*/*.php; do
@@ -106,6 +111,9 @@ for slug in $packages; do
   [ "$slug" = flx-graphql ] && continue
   $WP plugin activate "$slug" --path="$site" || { echo "::error::$slug could not be activated" >&2; exit 1; }
 done
+if [ -d "$root/themes/${THEME:-fluxwp}" ]; then
+  $WP theme activate "${THEME:-fluxwp}" --path="$site" || { echo "::error::theme ${THEME:-fluxwp} could not be activated" >&2; exit 1; }
+fi
 for hook in "$root"/tools/tests/wp-graphql/*/site.sh; do
   # shellcheck source=/dev/null
   [ -f "$hook" ] && . "$hook"

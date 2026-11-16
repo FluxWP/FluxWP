@@ -136,7 +136,13 @@ type DefaultTemplate implements ContentTemplate {
 }
 
 "The template assigned to the node"
-type Template_PageNoTitle implements ContentTemplate {
+type Template_Pagecheckout implements ContentTemplate {
+  "The name of the template"
+  templateName: String
+}
+
+"The template assigned to the node"
+type Template_TamGenilikSayfa implements ContentTemplate {
   "The name of the template"
   templateName: String
 }
@@ -259,6 +265,27 @@ type RootQuery {
 
   "Fields of the &#039;DiscussionSettings&#039; settings group"
   discussionSettings: DiscussionSettings
+
+  "The role × permission table."
+  flxAdminCaps: FlxAdminCaps!
+
+  "The role layouts of the side menu and the bottom bar."
+  flxAdminMenuEditor: FlxAdminMenuEditor!
+
+  "The signed-in user&#039;s light/dark choice (the site default when they have not chosen)."
+  flxAdminMode: FlxAdminMode!
+
+  "The Admin theme settings."
+  flxAdminSettings: FlxAdminSettings!
+
+  "Defaults, availability and links around the Admin theme settings."
+  flxAdminSettingsConfig: FlxAdminSettingsConfig!
+
+  "The signed-in user&#039;s pinned and moved menu items."
+  flxAdminUserMenu: FlxAdminUserMenu!
+
+  "The signed-in user&#039;s dashboard module filters."
+  flxAdminWidgetPrefs: FlxAdminWidgetPrefs!
 
   "Devices, sessions and keys of the signed-in user, or of everyone (`all`, administrators)."
   flxAppAccess(
@@ -604,6 +631,21 @@ type RootQuery {
     "Archived tasks instead of active ones."
     archived: Boolean
   ): FlxTaskConnection!
+
+  "Public design tokens of the site (palette, fonts, dark mode)."
+  flxThemeGlobalStyles: FlxThemeGlobalStyles!
+
+  "Previous themes that have data to copy (usually none)."
+  flxThemeMigrationSources: [FlxThemeMigrationSource!]!
+
+  "Footer payment logos and the ones that can be added."
+  flxThemePayLogos: FlxThemePayLogos!
+
+  "Theme Settings and the context the Theme Settings screen needs."
+  flxThemeSettings: FlxThemeSettings!
+
+  "Runs the System Check."
+  flxThemeSystem: FlxThemeSystem!
 
   "The user making the request. A visitor gets loggedIn false and no capabilities."
   flxViewer: FlxViewer!
@@ -2771,8 +2813,11 @@ enum ContentTemplateEnum {
   "The default template, applied when no specific template is assigned."
   DEFAULT_TEMPLATE
 
-  "The \"Page No Title\" template."
-  PAGE_NO_TITLE_BLOCK_TEMPLATE
+  "The \"page-checkout\" template."
+  PAGE_CHECKOUT_BLOCK_TEMPLATE
+
+  "The \"Tam genişlik sayfa\" template."
+  PAGE_FULL_BLOCK_TEMPLATE
 }
 
 "Connection between the Category type and the ContentNode type"
@@ -7531,7 +7576,7 @@ interface PostFormatConnectionEdge implements Edge {
 }
 
 "A standardized classification system for content presentation styles. These formats can be used to display content differently based on type, such as &quot;standard&quot;, &quot;gallery&quot;, &quot;video&quot;, etc."
-type PostFormat implements Node & TermNode & UniformResourceIdentifiable & DatabaseIdentifier & MenuItemLinkable {
+type PostFormat implements Node & TermNode & UniformResourceIdentifiable & DatabaseIdentifier {
   "Connection between the PostFormat type and the ContentNode type"
   contentNodes(
     "The number of items to return after the referenced \"after\" cursor"
@@ -9486,6 +9531,567 @@ type DiscussionSettings implements Node {
   id: ID!
 }
 
+"The role × permission table (real WordPress permissions)."
+type FlxAdminCaps {
+  "When the backup of the permissions before the first change was taken; empty without a backup."
+  backupAt: FlxDateTime
+
+  "Permission rows by group."
+  groups: [FlxAdminCapGroup!]!
+
+  "Role columns."
+  roles: [FlxAdminCapRole!]!
+}
+
+"A point in time with labels in the user&#039;s language."
+type FlxDateTime {
+  "ISO 8601 in UTC (2026-11-15T14:59:00Z)."
+  iso: String!
+
+  "Date and time for display, in the site time zone and the user&#039;s language."
+  label: String!
+
+  "Relative time for display (&quot;5 minutes ago&quot;)."
+  relative: String!
+
+  "Unix timestamp."
+  timestamp: Int!
+}
+
+"A group of the permissions table."
+type FlxAdminCapGroup {
+  "Permissions of the group."
+  capabilities: [FlxAdminCapRow!]!
+
+  "Group key."
+  key: String!
+
+  "Group name."
+  label: String!
+}
+
+"A permission of the table."
+type FlxAdminCapRow {
+  "Permission name, e.g. edit_posts."
+  key: String!
+
+  "What it allows; empty for permissions without a readable name."
+  label: String!
+}
+
+"A role column of the permissions table."
+type FlxAdminCapRole {
+  "Table permissions this role has."
+  granted: [String!]!
+
+  "The Administrator role; it cannot be changed."
+  isAdministrator: Boolean!
+
+  "Role key."
+  key: String!
+
+  "Role name."
+  label: String!
+
+  "People with the role."
+  userCount: Int!
+}
+
+"Everything the menu editor needs."
+type FlxAdminMenuEditor {
+  "The menu as the administrator sees it. It is rebuilt on the next admin page load after plugins change."
+  catalog: [FlxAdminMenuItem!]!
+
+  "The default layout."
+  defaults: FlxAdminMenuDefaults!
+
+  "The layout of every role."
+  layouts: [FlxAdminMenuLayout!]!
+
+  "Platforms an item can be hidden on; empty without the app package."
+  platforms: [FlxAdminMenuPlatform!]!
+
+  "Roles that can have their own layout, &quot;all other roles&quot; first."
+  roles: [FlxAdminMenuRole!]!
+
+  "Menu links whose access cannot be closed (no lock-out)."
+  unblockable: [String!]!
+}
+
+"A menu item the administrator sees (the editor&#039;s list)."
+type FlxAdminMenuItem {
+  "Permission it needs."
+  capability: String!
+
+  "Icon key; empty when the item has none."
+  icon: String!
+
+  "Inner markup of the 24×24 line icon (shapes only: path, circle, rect, line, polyline)."
+  iconSvg: String!
+
+  "Menu name."
+  label: String!
+
+  "Menu link (what the layout stores)."
+  slug: String!
+
+  "Submenu items."
+  submenu: [FlxAdminMenuSub!]!
+
+  "Where the item opens."
+  url: String!
+}
+
+"A submenu item."
+type FlxAdminMenuSub {
+  "Permission it needs."
+  capability: String!
+
+  "Submenu name."
+  label: String!
+
+  "Submenu link (what the layout stores)."
+  slug: String!
+}
+
+"The default layout (&quot;reset this role&quot;)."
+type FlxAdminMenuDefaults {
+  "Default bottom bar."
+  bottom: [String!]!
+
+  "Default rows."
+  entries: [FlxAdminMenuEntry!]!
+}
+
+"One row of a menu layout: a group heading or a menu item."
+type FlxAdminMenuEntry {
+  "Item only: access is closed; it is not in the menu and opening it by URL shows &quot;no permission&quot;."
+  blocked: Boolean!
+
+  "Group only: starts collapsed."
+  collapsed: Boolean!
+
+  "Item only: hidden from the menu (permissions do not change)."
+  hidden: Boolean!
+
+  "Group name, or the item&#039;s own name; empty = the original name."
+  label: String!
+
+  "Item only: platforms the item is not shown on."
+  platformsOff: [String!]!
+
+  "Item only: the menu link; empty for a group."
+  slug: String
+
+  "Item only: submenu links hidden from the menu."
+  subHidden: [String!]!
+
+  "Group heading or menu item."
+  type: FlxAdminMenuEntryType!
+}
+
+"A group heading or a menu item."
+enum FlxAdminMenuEntryType {
+  ""
+  GROUP
+
+  ""
+  ITEM
+}
+
+"The side menu and bottom bar of one role."
+type FlxAdminMenuLayout {
+  "Menu links this role has permission to open."
+  access: [String!]!
+
+  "Mobile bottom bar items (up to 4 menu links)."
+  bottom: [String!]!
+
+  "The role has its own layout; false = the default layout."
+  custom: Boolean!
+
+  "Rows in order; items new in the menu are at the end under &quot;Other&quot;."
+  entries: [FlxAdminMenuEntry!]!
+
+  "Role key (&quot;_default&quot; = all other roles)."
+  role: String!
+}
+
+"A place a menu item can be hidden on (web, mobile app, desktop app)."
+type FlxAdminMenuPlatform {
+  "Platform key."
+  key: String!
+
+  "Platform name."
+  label: String!
+}
+
+"A role of the menu editor."
+type FlxAdminMenuRole {
+  "Role key; &quot;_default&quot; is the layout of all other roles."
+  key: String!
+
+  "Role name."
+  label: String!
+
+  "People with the role."
+  userCount: Int!
+}
+
+"Light or dark admin theme."
+enum FlxAdminMode {
+  ""
+  AUTO
+
+  ""
+  DARK
+
+  ""
+  LIGHT
+}
+
+"Settings › Admin theme."
+type FlxAdminSettings {
+  "Accent color (hex); the theme color when none is chosen."
+  accent: String!
+
+  "WhatsApp and Tasks open next to the side menu, which shrinks to icons."
+  appRail: Boolean!
+
+  "App switcher on the WhatsApp and Tasks screens on phones."
+  appSwitcher: Boolean!
+
+  "Bottom bar on mobile."
+  bottomBar: Boolean!
+
+  "Name at the top of the side menu; empty = the site name."
+  brand: String!
+
+  "Screen IDs or body classes (one per line) that stay light."
+  darkExclude: String!
+
+  "Greeting, date and summary tiles at the top of the dashboard."
+  dashHeader: Boolean!
+
+  "Summary tiles that show; people only see tiles they have permission for."
+  dashStats: [FlxAdminDashStat!]!
+
+  "The admin theme is on (off restores the standard WordPress dashboard)."
+  enabled: Boolean!
+
+  "Fast navigation: the clicked menu page is prepared in advance."
+  fastNav: Boolean!
+
+  "Seconds between live counter refreshes: 30, 60 or 120."
+  heartbeat: Int!
+
+  "Line icons in WordPress menus."
+  lineIcons: Boolean!
+
+  "Style the login screen too."
+  login: Boolean!
+
+  "The logo chosen here; empty when the site icon or the Flux Admin icon is used."
+  logo: FlxFile
+
+  "Style of the FluxWP package logos."
+  logoStyle: FlxAdminLogoStyle!
+
+  "The logo the panel shows (chosen logo, institution icon, site icon or the Flux Admin icon)."
+  logoUrl: String!
+
+  "Default light/dark choice for everyone."
+  mode: FlxAdminMode!
+
+  "Command palette (Ctrl+K)."
+  palette: Boolean!
+
+  "The dashboard can be installed as an app (PWA)."
+  pwa: Boolean!
+
+  "App name; empty = the panel name."
+  pwaName: String!
+
+  "Short app name under the icon (20 characters at most); empty = made from the name."
+  pwaShort: String!
+
+  "Extra quick actions, one &quot;Label|Address&quot; per line."
+  quickLinks: String!
+
+  "Line under the name; empty = &quot;Admin&quot;."
+  subtitle: String!
+
+  "Colors, font, corners and density."
+  theme: FlxAdminTheme!
+}
+
+"Summary tile of the dashboard."
+enum FlxAdminDashStat {
+  ""
+  DONATIONS_MONTH
+
+  ""
+  DONATIONS_TODAY
+
+  ""
+  PENDING
+
+  ""
+  SYSTEM
+
+  ""
+  TASKS
+
+  ""
+  WHATSAPP
+}
+
+"A stored file."
+type FlxFile {
+  "File ID (upload ID or the package&#039;s own ID)."
+  id: ID!
+
+  "The file is an image."
+  isImage: Boolean!
+
+  "MIME type."
+  mime: String!
+
+  "File name."
+  name: String!
+
+  "Size in bytes."
+  size: Int!
+
+  "Thumbnail address for images."
+  thumb: String
+
+  "Download address (may need the same sign-in)."
+  url: String
+}
+
+"Style of the FluxWP package logos."
+enum FlxAdminLogoStyle {
+  ""
+  GRADIENT
+
+  ""
+  PASTEL
+}
+
+"Look of the admin panel: colors, font, corners, density."
+type FlxAdminTheme {
+  "Colors of the dark theme (the default color when none is chosen)."
+  dark: FlxAdminColors!
+
+  "Menu row height."
+  density: FlxAdminDensity!
+
+  "Font family choice."
+  font: FlxAdminFont!
+
+  "Font name for the custom choice; empty otherwise."
+  fontCustom: String!
+
+  "Base font size in pixels: 13, 14 or 15."
+  fontSize: Int!
+
+  "Colors of the light theme (the default color when none is chosen)."
+  light: FlxAdminColors!
+
+  "Corner roundness."
+  radius: FlxAdminRadius!
+}
+
+"The four colors of one theme (hex)."
+type FlxAdminColors {
+  "Page background."
+  bg: String!
+
+  "Side menu background."
+  side: String!
+
+  "Card background."
+  surface: String!
+
+  "Text color."
+  text: String!
+}
+
+"Menu row height."
+enum FlxAdminDensity {
+  ""
+  COMFORTABLE
+
+  ""
+  COMPACT
+}
+
+"Admin font."
+enum FlxAdminFont {
+  ""
+  CUSTOM
+
+  ""
+  FIGTREE
+
+  ""
+  SYSTEM
+}
+
+"Corner roundness."
+enum FlxAdminRadius {
+  ""
+  LARGE
+
+  ""
+  MEDIUM
+
+  ""
+  NONE
+
+  ""
+  SMALL
+}
+
+"Values around the Admin theme settings: defaults, availability and links."
+type FlxAdminSettingsConfig {
+  "Theme colors used when none is chosen."
+  colorDefaults: FlxAdminColorDefaults!
+
+  "Every summary tile the dashboard can show."
+  dashStatChoices: [FlxAdminDashStatChoice!]!
+
+  "Accent color of the site theme."
+  defaultAccent: String!
+
+  "App name used when the setting is empty."
+  pwaDefaultName: String!
+
+  "Short app name used when the setting is empty."
+  pwaDefaultShort: String!
+
+  "App icon (the site icon, or the Flux Admin icon)."
+  pwaIconUrl: String!
+
+  "The site is served over HTTPS, so browsers allow installing."
+  pwaPossible: Boolean!
+
+  "Site name (the panel name when the name setting is empty)."
+  siteName: String!
+
+  "Page of the system check when Flux Speed hosts it; empty when it is on this page."
+  systemUrl: String
+}
+
+"Colors used when none is chosen."
+type FlxAdminColorDefaults {
+  "Dark theme."
+  dark: FlxAdminColors!
+
+  "Light theme."
+  light: FlxAdminColors!
+}
+
+"A summary tile the dashboard can show."
+type FlxAdminDashStatChoice {
+  "Tile."
+  key: FlxAdminDashStat!
+
+  "Tile name."
+  label: String!
+}
+
+"A person&#039;s own menu choices (right-click menu)."
+type FlxAdminUserMenu {
+  "Menu links moved under &quot;Other&quot;."
+  away: [String!]!
+
+  "Menu links pinned at the top, in order."
+  pins: [String!]!
+
+  "Submenu links moved under &quot;Other&quot;."
+  subAway: [String!]!
+
+  "Submenu links kept in place although they would move under &quot;Other&quot; automatically."
+  subKeep: [String!]!
+}
+
+"The signed-in user&#039;s dashboard module filters."
+type FlxAdminWidgetPrefs {
+  "Donations module."
+  donations: FlxAdminDonationsPrefs!
+
+  "The user can have the Donations module (Flux Donate is installed and they may see donations)."
+  donationsAvailable: Boolean!
+
+  "Tasks module."
+  tasks: FlxAdminTasksPrefs!
+
+  "The user can have the Tasks module (Flux Tasks is installed and they may use it)."
+  tasksAvailable: Boolean!
+}
+
+"Filters of the Donations dashboard module."
+type FlxAdminDonationsPrefs {
+  "Days it covers: 7, 14 or 30."
+  days: Int!
+
+  "How the chart is split."
+  split: FlxAdminDonationsSplit!
+}
+
+"How the Donations module splits the chart."
+enum FlxAdminDonationsSplit {
+  ""
+  NONE
+
+  ""
+  PROVIDER
+
+  ""
+  TYPE
+}
+
+"Filters of the Tasks dashboard module."
+type FlxAdminTasksPrefs {
+  "How the chart is split."
+  chart: FlxAdminTasksChart!
+
+  "Task list ID; 0 = all lists."
+  list: Int!
+
+  "Which tasks it counts."
+  scope: FlxAdminTasksScope!
+}
+
+"How the Tasks module splits the chart."
+enum FlxAdminTasksChart {
+  ""
+  LIST
+
+  ""
+  PERSON
+
+  ""
+  PRIORITY
+
+  ""
+  STATUS
+}
+
+"Which tasks the Tasks module counts."
+enum FlxAdminTasksScope {
+  ""
+  ALL
+
+  ""
+  CREATED
+
+  ""
+  MINE
+}
+
 "Devices, sessions and keys."
 type FlxAppAccess {
   "The user may create API keys."
@@ -11101,21 +11707,6 @@ type FlxContactConsent {
 
   "WhatsApp."
   whatsapp: Boolean!
-}
-
-"A point in time with labels in the user&#039;s language."
-type FlxDateTime {
-  "ISO 8601 in UTC (2026-11-15T14:59:00Z)."
-  iso: String!
-
-  "Date and time for display, in the site time zone and the user&#039;s language."
-  label: String!
-
-  "Relative time for display (&quot;5 minutes ago&quot;)."
-  relative: String!
-
-  "Unix timestamp."
-  timestamp: Int!
 }
 
 "Recency, frequency and monetary scores (1–5; 0 = not scored)."
@@ -12823,6 +13414,9 @@ type FlxSettings {
 
   "Flux SEO"
   flxseo: FlxSettingsFlxseo
+
+  "FluxWP theme settings (Appearance &gt; Theme Settings)"
+  themeSettings: FlxSettingsThemeSettings
 }
 
 "Flux App › Görünüm"
@@ -13105,6 +13699,177 @@ enum FlxSettingsFlxseoOrgType {
 
   ""
   ORGANIZATION
+}
+
+"FluxWP theme settings (Appearance &gt; Theme Settings)"
+type FlxSettingsThemeSettings {
+  "Active campaign ID."
+  aktifKampanya: Int
+
+  "Active campaign card."
+  aktifKart: FlxSettingsThemeSettingsAktifKart
+
+  "Scroll reveal animations."
+  animasyon: FlxSettingsThemeSettingsAnimasyon
+
+  "Bank account holder for Havale/EFT."
+  bankHolder: String
+
+  "IBAN (TR + 24 digits)."
+  bankIban: String
+
+  "Optional explicitly public contact email."
+  comingSoonEmail: String
+
+  "Optional plain-text store-only notice message."
+  comingSoonStoreText: String
+
+  "Optional store-only notice heading. Empty uses the translated default for the site type."
+  comingSoonStoreTitle: String
+
+  "Optional plain-text coming-soon message."
+  comingSoonText: String
+
+  "Optional coming-soon heading. Empty uses the translated default."
+  comingSoonTitle: String
+
+  "Accept button label."
+  cookieAccept: String
+
+  "Show the cookie consent banner on the first visit."
+  cookieEnabled: Boolean
+
+  "Policy link label; empty hides the link."
+  cookieMore: String
+
+  "Cookie/privacy policy page (&quot;@page:&lt;key&gt;&quot;)."
+  cookiePage: Int
+
+  "Banner layout."
+  cookiePosition: FlxSettingsThemeSettingsCookiePosition
+
+  "Necessary-only button label."
+  cookieReject: String
+
+  "Banner text; links allowed (Flux Lang: tema_cookie_text)."
+  cookieText: String
+
+  "Banner title (Flux Lang: texts.&lt;lang&gt;.tema_cookie_title)."
+  cookieTitle: String
+
+  "auto follows the visitor system setting."
+  darkMode: FlxSettingsThemeSettingsDarkMode
+
+  "Background decoration for title bands, menus and consent cards."
+  decorationPattern: FlxSettingsThemeSettingsDecorationPattern
+
+  "Google Analytics 4 measurement ID (G-XXXXXXX)."
+  ga4Id: String
+
+  "consent: GA loads in consent mode; after: only after accept."
+  gaMode: FlxSettingsThemeSettingsGaMode
+
+  "Optional news archive introduction. Empty uses the translated generic theme text."
+  newsIntro: String
+
+  "Archive pagination."
+  sayfalama: FlxSettingsThemeSettingsSayfalama
+
+  "shop (WooCommerce store) or donation (Flux Donate)."
+  siteMod: FlxSettingsThemeSettingsSiteMod
+
+  "auto = live; coming-soon = entire public site shows the coming-soon page; store = site stays open, WooCommerce store pages (shop, product, cart, checkout) show a notice inside the header/footer. With WooCommerce this is synced both ways with WooCommerce › Settings › Site visibility; store needs WooCommerce."
+  siteVisibility: FlxSettingsThemeSettingsSiteVisibility
+
+  "Table header cell background hex colour (#RRGGBB), used by core tables, Flux Wiki and WooCommerce. Empty uses the palette &quot;table-head&quot; colour (default light grey)."
+  tableHead: String
+}
+
+""
+enum FlxSettingsThemeSettingsAktifKart {
+  ""
+  OFF
+
+  ""
+  ON
+}
+
+""
+enum FlxSettingsThemeSettingsAnimasyon {
+  ""
+  OFF
+
+  ""
+  ON
+}
+
+""
+enum FlxSettingsThemeSettingsCookiePosition {
+  ""
+  BAR
+
+  ""
+  CARD
+}
+
+""
+enum FlxSettingsThemeSettingsDarkMode {
+  ""
+  AUTO
+
+  ""
+  OFF
+}
+
+""
+enum FlxSettingsThemeSettingsDecorationPattern {
+  ""
+  DOTS
+
+  ""
+  LEAVES
+
+  ""
+  NONE
+}
+
+""
+enum FlxSettingsThemeSettingsGaMode {
+  ""
+  AFTER
+
+  ""
+  CONSENT
+}
+
+""
+enum FlxSettingsThemeSettingsSayfalama {
+  ""
+  NUMARA
+
+  ""
+  SONSUZ
+}
+
+""
+enum FlxSettingsThemeSettingsSiteMod {
+  ""
+  DONATION
+
+  ""
+  SHOP
+}
+
+""
+enum FlxSettingsThemeSettingsSiteVisibility {
+  ""
+  AUTO
+
+  ""
+  COMING_SOON
+
+  ""
+  STORE
 }
 
 "Connection to the main update server."
@@ -14115,6 +14880,366 @@ type FlxTaskEdge {
   node: FlxTask!
 }
 
+"Colours, fonts and the dark-mode switch of the public site, for headless front ends and the app."
+type FlxThemeGlobalStyles {
+  "The site follows the visitor&#039;s dark mode (false = always light)."
+  darkMode: Boolean!
+
+  "Font families; empty when the theme declares none."
+  fonts: [FlxThemeFont!]!
+
+  "Colours: Site Editor changes over theme.json over WordPress defaults."
+  palette: [FlxThemeColor!]!
+
+  "Background decoration."
+  pattern: FlxThemePattern!
+
+  "Table header colour (#RRGGBB); empty uses the palette colour &quot;table-head&quot;."
+  tableHead: String!
+}
+
+"A font family of the site."
+type FlxThemeFont {
+  "CSS font-family value."
+  fontFamily: String!
+
+  "Name."
+  name: String!
+
+  "Font slug (CSS variable --wp--preset--font-family--&lt;slug&gt;)."
+  slug: String!
+}
+
+"A colour of the site palette."
+type FlxThemeColor {
+  "CSS colour value."
+  color: String!
+
+  "Name."
+  name: String!
+
+  "Palette slug (CSS variable --wp--preset--color--&lt;slug&gt;)."
+  slug: String!
+}
+
+"Background decoration of title bands, menus and consent cards."
+enum FlxThemePattern {
+  ""
+  DOTS
+
+  ""
+  LEAVES
+
+  ""
+  NONE
+}
+
+"A previous theme whose settings, templates and styles can be copied to FluxWP."
+type FlxThemeMigrationSource {
+  "Last time it was migrated; null when never."
+  lastRun: FlxDateTime
+
+  "Theme folder name."
+  stylesheet: String!
+}
+
+"The footer payment logos."
+type FlxThemePayLogos {
+  "The list is automatic (iyzico band and the logos of enabled virtual POS plugins), not hand-picked."
+  automatic: Boolean!
+
+  "What the automatic list shows (the iyzico band and the logos of enabled virtual POS plugins)."
+  automaticList: [FlxThemePayLogo!]!
+
+  "Logos the theme and plugins provide."
+  builtin: [FlxThemePayLogo!]!
+
+  "Logos the footer shows, in order."
+  current: [FlxThemePayLogo!]!
+}
+
+"A payment or trust logo shown in the footer."
+type FlxThemePayLogo {
+  "Shown in a white box on a dark footer."
+  chip: Boolean!
+
+  "Built-in key (iyzico …) or a:&lt;attachment ID&gt;."
+  key: String!
+
+  "Name."
+  label: String!
+
+  "Image URL."
+  url: String!
+}
+
+"Theme Settings (Appearance › Theme Settings) with what the screen needs around them."
+type FlxThemeSettings {
+  "Donation type whose progress the card shows; 0 picks the first open type with a goal."
+  activeCampaign: Int!
+
+  "Show the active project card under the home page slider."
+  activeCard: Boolean!
+
+  "The home page campaign card exists (Flux Donate)."
+  activeCardAvailable: Boolean!
+
+  "Scroll reveal animations."
+  animations: Boolean!
+
+  "Account holder for Havale/EFT."
+  bankHolder: String!
+
+  "IBAN without spaces; empty when not set."
+  bankIban: String!
+
+  "The account the site really shows when it is not this one (Flux Donate / WooCommerce transfer settings win); null when the same."
+  bankInUse: String
+
+  "Donation types to pick the home page card from (the first 100); empty without Flux Donate."
+  campaigns: [FlxThemeOption!]!
+
+  "The user may save raw code in consentScripts."
+  canEditScripts: Boolean!
+
+  "Entire-site coming-soon message; empty uses the translated default."
+  comingSoonText: String!
+
+  "Entire-site coming-soon title; empty uses the translated default."
+  comingSoonTitle: String!
+
+  "Extra code added after consent. Null for users who may not add raw code."
+  consentScripts: String
+
+  "Public contact email shown on the coming-soon page; empty shows none."
+  contactEmail: String!
+
+  "Accept button label."
+  cookieAccept: String!
+
+  "Show the cookie banner on the first visit."
+  cookieEnabled: Boolean!
+
+  "Policy link label."
+  cookieMore: String!
+
+  "Cookie policy page ID; 0 finds /cerez-politikasi/."
+  cookiePage: Int!
+
+  "Banner layout."
+  cookiePosition: FlxThemeCookiePosition!
+
+  "Necessary-only button label."
+  cookieReject: String!
+
+  "Consent version; raising it asks everyone again."
+  cookieRevision: Int!
+
+  "Banner text; links allowed."
+  cookieText: String!
+
+  "Banner title."
+  cookieTitle: String!
+
+  "Dark mode of the public site."
+  darkMode: FlxThemeDarkMode!
+
+  "Google Analytics 4 measurement ID (G-XXXXXXX); empty when not set."
+  ga4Id: String!
+
+  "How Google Analytics loads."
+  gaMode: FlxThemeGaMode!
+
+  "News archive introduction; empty uses the translated default."
+  newsIntro: String!
+
+  "Archive pagination."
+  pagination: FlxThemePagination!
+
+  "Background decoration."
+  pattern: FlxThemePattern!
+
+  "Presets tab of Theme Settings; null without Flux Setup."
+  presetsUrl: String
+
+  "Shop or donation wording."
+  siteType: FlxThemeSiteType!
+
+  "Store-notice message; empty uses the default for the site type."
+  storeNoticeText: String!
+
+  "Default store-notice message for the site type."
+  storeNoticeTextDefault: String!
+
+  "Store-notice title; empty uses the default for the site type."
+  storeNoticeTitle: String!
+
+  "Default store-notice title for the site type."
+  storeNoticeTitleDefault: String!
+
+  "Table header colour (#RRGGBB); empty uses the style colour."
+  tableHead: String!
+
+  "Who sees the site. With WooCommerce this is the same setting as WooCommerce › Settings › Site visibility."
+  visibility: FlxThemeVisibility!
+
+  "WooCommerce is active (store-only coming soon needs it)."
+  woocommerceActive: Boolean!
+}
+
+"A page or donation type offered in a select."
+type FlxThemeOption {
+  "Post or donation type ID."
+  databaseId: Int!
+
+  "Name."
+  title: String!
+}
+
+"Cookie banner layout."
+enum FlxThemeCookiePosition {
+  ""
+  BAR
+
+  ""
+  CARD
+}
+
+"Dark mode of the public site."
+enum FlxThemeDarkMode {
+  "Follows the visitor's device."
+  AUTO
+
+  "Always light."
+  OFF
+}
+
+"How Google Analytics loads."
+enum FlxThemeGaMode {
+  "Only after the visitor accepts."
+  AFTER
+
+  "Google tag in the head, cookie-free until consent (Consent Mode v2)."
+  CONSENT
+}
+
+"How archive pages continue."
+enum FlxThemePagination {
+  ""
+  INFINITE
+
+  ""
+  NUMBERED
+}
+
+"Wording of My account, the cart and the mobile menu."
+enum FlxThemeSiteType {
+  ""
+  DONATION
+
+  ""
+  SHOP
+}
+
+"Who sees the public site."
+enum FlxThemeVisibility {
+  "Visitors only see the coming-soon page."
+  COMING_SOON
+
+  "Everyone sees the whole site."
+  LIVE
+
+  "The site is open; store pages show a coming-soon notice (needs WooCommerce)."
+  STORE
+}
+
+"The System Check: every plugin&#039;s checks plus the recent AI fixes. Run when asked."
+type FlxThemeSystem {
+  "When the checks ran."
+  checkedAt: FlxDateTime!
+
+  "Rows in group order, problems first inside a group."
+  checks: [FlxThemeCheck!]!
+
+  "The last 20 fixes made through MCP, newest first."
+  fixLog: [FlxThemeFixEntry!]!
+
+  "Flux SEO &amp; MCP keeps a fix log."
+  fixLogAvailable: Boolean!
+}
+
+"One row of the System Check."
+type FlxThemeCheck {
+  "Button label for actionUrl; null for the default."
+  actionLabel: String
+
+  "Page that fixes it; null when there is none."
+  actionUrl: String
+
+  "Group title."
+  group: String!
+
+  "Check ID."
+  id: String!
+
+  "What is checked."
+  label: String!
+
+  "What was found; may be empty."
+  message: String!
+
+  "Package code; &quot;theme&quot; or empty for the theme."
+  source: String!
+
+  "Readable package name; null for the theme."
+  sourceLabel: String
+
+  "Result."
+  status: FlxThemeCheckStatus!
+}
+
+"Result of a System Check row."
+enum FlxThemeCheckStatus {
+  ""
+  ERROR
+
+  ""
+  INFO
+
+  ""
+  OK
+
+  ""
+  WARNING
+}
+
+"A fix applied through Flux AI / MCP."
+type FlxThemeFixEntry {
+  "Value after."
+  after: String!
+
+  "Value before."
+  before: String!
+
+  "The fix."
+  label: String!
+
+  "Result message."
+  message: String!
+
+  "The fix worked."
+  success: Boolean!
+
+  "When."
+  time: FlxDateTime!
+
+  "User login."
+  user: String!
+
+  "Value sent; empty when none."
+  value: String!
+}
+
 "The user making the request and what they may do."
 type FlxViewer {
   "Whether the user has this capability."
@@ -14617,7 +15742,7 @@ interface MenuItemLinkableConnectionEdge implements Edge {
 }
 
 "Deprecated in favor of MenuItemLinkable Interface"
-union MenuItemObjectUnion = Post | Page | Category | Tag | PostFormat
+union MenuItemObjectUnion = Post | Page | Category | Tag
 
 "Connection between the MenuItem type and the Menu type"
 type MenuItemToMenuConnectionEdge implements OneToOneConnection & Edge & MenuConnectionEdge {
@@ -16313,6 +17438,48 @@ type RootMutation {
     input: DeleteUserInput!
   ): DeleteUserPayload
 
+  "Returns every role to the backup taken before the first change, then removes the backup."
+  flxAdminCapsRestore(
+    "Input for the flxAdminCapsRestore mutation"
+    input: FlxAdminCapsRestoreInput!
+  ): FlxAdminCapsRestorePayload
+
+  "Changes the permissions of some roles. These are real permissions. The first change backs everything up."
+  flxAdminCapsSave(
+    "Input for the flxAdminCapsSave mutation"
+    input: FlxAdminCapsSaveInput!
+  ): FlxAdminCapsSavePayload
+
+  "Saves the layouts of some roles and sends others back to the default; roles you leave out stay as they are."
+  flxAdminMenuLayoutsSave(
+    "Input for the flxAdminMenuLayoutsSave mutation"
+    input: FlxAdminMenuLayoutsSaveInput!
+  ): FlxAdminMenuLayoutsSavePayload
+
+  "Saves the signed-in user&#039;s light/dark choice."
+  flxAdminModeSet(
+    "Input for the flxAdminModeSet mutation"
+    input: FlxAdminModeSetInput!
+  ): FlxAdminModeSetPayload
+
+  "Changes Admin theme settings. Fields you leave out stay as they are; nothing is written when any field is invalid."
+  flxAdminSettingsUpdate(
+    "Input for the flxAdminSettingsUpdate mutation"
+    input: FlxAdminSettingsUpdateInput!
+  ): FlxAdminSettingsUpdatePayload
+
+  "Pin, unpin or move one menu item of the signed-in user, or reorder the pins."
+  flxAdminUserMenuSet(
+    "Input for the flxAdminUserMenuSet mutation"
+    input: FlxAdminUserMenuSetInput!
+  ): FlxAdminUserMenuSetPayload
+
+  "Saves the filters of one dashboard module and returns the module as the dashboard shows it. Filters you leave out stay as they are."
+  flxAdminWidgetPrefsSet(
+    "Input for the flxAdminWidgetPrefsSet mutation"
+    input: FlxAdminWidgetPrefsSetInput!
+  ): FlxAdminWidgetPrefsSetPayload
+
   "Removes a session or key (own, or any as administrator)."
   flxAppAccessRevoke(
     "Input for the flxAppAccessRevoke mutation"
@@ -16792,6 +17959,24 @@ type RootMutation {
     "Input for the flxTaskWatch mutation"
     input: FlxTaskWatchInput!
   ): FlxTaskWatchPayload
+
+  "Copies the previous theme&#039;s settings, templates, parts and styles to this theme. The previous theme is not changed; same-named records here are not overwritten. Safe to repeat."
+  flxThemeMigrate(
+    "Input for the flxThemeMigrate mutation"
+    input: FlxThemeMigrateInput!
+  ): FlxThemeMigratePayload
+
+  "Hand-picks the footer payment logos, or goes back to the automatic list."
+  flxThemePayLogosSave(
+    "Input for the flxThemePayLogosSave mutation"
+    input: FlxThemePayLogosSaveInput!
+  ): FlxThemePayLogosSavePayload
+
+  "Changes Theme Settings. Only the fields you send change; nothing is written when any of them is invalid."
+  flxThemeSettingsSave(
+    "Input for the flxThemeSettingsSave mutation"
+    input: FlxThemeSettingsSaveInput!
+  ): FlxThemeSettingsSavePayload
 
   "Increase the count."
   increaseCount(
@@ -17520,6 +18705,384 @@ type DeleteUserPayload {
   user: User
 }
 
+"Input for the flxAdminCapsRestore mutation."
+input FlxAdminCapsRestoreInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Must be true: every role goes back to its state before the first change."
+  confirm: Boolean!
+}
+
+"The payload for the flxAdminCapsRestore mutation."
+type FlxAdminCapsRestorePayload {
+  "The table after the restore."
+  caps: FlxAdminCaps!
+
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"A problem with the input of a mutation, shown next to the form field."
+type FlxUserError {
+  "Stable code: INVALID_INPUT, CONFLICT, …"
+  code: String!
+
+  "Input field (dotted path) the problem belongs to."
+  field: String
+
+  "Message in the user&#039;s language."
+  message: String!
+}
+
+"Input for the flxAdminCapsSave mutation."
+input FlxAdminCapsSaveInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Roles to change; the others stay as they are."
+  roles: [FlxAdminCapsRoleInput!]!
+}
+
+"The table permissions one role should have."
+input FlxAdminCapsRoleInput {
+  "Every table permission that should be on; the other table permissions are turned off."
+  capabilities: [String!]!
+
+  "Role key. The Administrator role is skipped."
+  role: String!
+}
+
+"The payload for the flxAdminCapsSave mutation."
+type FlxAdminCapsSavePayload {
+  "The table after the change."
+  caps: FlxAdminCaps!
+
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"Input for the flxAdminMenuLayoutsSave mutation."
+input FlxAdminMenuLayoutsSaveInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Layouts to save."
+  layouts: [FlxAdminMenuLayoutInput!]
+
+  "Roles that go back to the default layout."
+  reset: [String!]
+}
+
+"A layout to save for one role."
+input FlxAdminMenuLayoutInput {
+  "Mobile bottom bar items (4 at most)."
+  bottom: [String!]
+
+  "Rows in order (300 at most)."
+  entries: [FlxAdminMenuEntryInput!]!
+
+  "Role key (\"_default\" = all other roles)."
+  role: String!
+}
+
+"One row of a menu layout."
+input FlxAdminMenuEntryInput {
+  "Item only: close access (not for the Administrator role or the links in unblockable)."
+  blocked: Boolean
+
+  "Group only: starts collapsed."
+  collapsed: Boolean
+
+  "Item only: hide from the menu."
+  hidden: Boolean
+
+  "Group name, or the item's own name (40 characters at most); empty = the original name."
+  label: String
+
+  "Item only: platforms the item is not shown on."
+  platformsOff: [String!]
+
+  "Item only: the menu link. Links that are not in the menu are dropped."
+  slug: String
+
+  "Item only: submenu links to hide."
+  subHidden: [String!]
+
+  "Group heading or menu item."
+  type: FlxAdminMenuEntryType!
+}
+
+"The payload for the flxAdminMenuLayoutsSave mutation."
+type FlxAdminMenuLayoutsSavePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The layout of every role after the change."
+  layouts: [FlxAdminMenuLayout!]!
+}
+
+"Input for the flxAdminModeSet mutation."
+input FlxAdminModeSetInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Automatic (device setting), light or dark."
+  mode: FlxAdminMode!
+}
+
+"The payload for the flxAdminModeSet mutation."
+type FlxAdminModeSetPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The saved choice."
+  mode: FlxAdminMode
+}
+
+"Input for the flxAdminSettingsUpdate mutation."
+input FlxAdminSettingsUpdateInput {
+  "Accent color (hex); empty or the theme color follows the site theme."
+  accent: String
+
+  "WhatsApp and Tasks open next to the side menu."
+  appRail: Boolean
+
+  "App switcher on the WhatsApp and Tasks screens on phones."
+  appSwitcher: Boolean
+
+  "Bottom bar on mobile."
+  bottomBar: Boolean
+
+  "Name at the top of the side menu; empty = the site name."
+  brand: String
+
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Screen IDs or body classes (one per line) that stay light."
+  darkExclude: String
+
+  "Greeting, date and summary tiles at the top of the dashboard."
+  dashHeader: Boolean
+
+  "Summary tiles that show."
+  dashStats: [FlxAdminDashStat!]
+
+  "Turn the admin theme on or off."
+  enabled: Boolean
+
+  "Fast navigation."
+  fastNav: Boolean
+
+  "Seconds between live counter refreshes: 30, 60 or 120."
+  heartbeat: Int
+
+  "Line icons in WordPress menus."
+  lineIcons: Boolean
+
+  "Style the login screen too."
+  login: Boolean
+
+  "Media library image to use as the logo; 0 removes the logo."
+  logoId: Int
+
+  "Style of the FluxWP package logos."
+  logoStyle: FlxAdminLogoStyle
+
+  "Upload ID of a logo sent to /wp-json/flx/v1/upload (context flx-admin/logo); it joins the media library and becomes the logo."
+  logoUploadId: String
+
+  "Default light/dark choice for everyone."
+  mode: FlxAdminMode
+
+  "Command palette (Ctrl+K)."
+  palette: Boolean
+
+  "Allow installing the dashboard as an app."
+  pwa: Boolean
+
+  "App name; empty = the panel name."
+  pwaName: String
+
+  "Short app name (20 characters at most)."
+  pwaShort: String
+
+  "Extra quick actions, one \"Label|Address\" per line."
+  quickLinks: String
+
+  "Line under the name; empty = \"Admin\"."
+  subtitle: String
+
+  "Colors, font, corners and density."
+  theme: FlxAdminThemeInput
+}
+
+"Changes to the look. Fields you leave out stay as they are."
+input FlxAdminThemeInput {
+  "Dark theme colors."
+  dark: FlxAdminColorsInput
+
+  "Menu row height."
+  density: FlxAdminDensity
+
+  "Font family choice."
+  font: FlxAdminFont
+
+  "Font name for the custom choice (a font installed on the computer or loaded on the site)."
+  fontCustom: String
+
+  "Base font size in pixels: 13, 14 or 15."
+  fontSize: Int
+
+  "Light theme colors."
+  light: FlxAdminColorsInput
+
+  "Corner roundness."
+  radius: FlxAdminRadius
+}
+
+"Colors of one theme. Colors you leave out stay as they are; the default color means &quot;not customised&quot;."
+input FlxAdminColorsInput {
+  "Page background (hex)."
+  bg: String
+
+  "Side menu background (hex)."
+  side: String
+
+  "Card background (hex)."
+  surface: String
+
+  "Text color (hex)."
+  text: String
+}
+
+"The payload for the flxAdminSettingsUpdate mutation."
+type FlxAdminSettingsUpdatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Defaults, availability and links after the change."
+  config: FlxAdminSettingsConfig!
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The settings after the change."
+  settings: FlxAdminSettings!
+}
+
+"Input for the flxAdminUserMenuSet mutation."
+input FlxAdminUserMenuSetInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "What to do."
+  op: FlxAdminMenuOp!
+
+  "ORDER only: the pinned links in the new order."
+  order: [String!]
+
+  "The menu (or submenu) link; not used for ORDER."
+  slug: String
+}
+
+"A change to the user's own menu."
+enum FlxAdminMenuOp {
+  ""
+  AWAY
+
+  ""
+  BACK
+
+  ""
+  ORDER
+
+  ""
+  PIN
+
+  ""
+  SUB_AWAY
+
+  ""
+  SUB_BACK
+
+  ""
+  UNPIN
+}
+
+"The payload for the flxAdminUserMenuSet mutation."
+type FlxAdminUserMenuSetPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The user&#039;s menu choices after the change."
+  menu: FlxAdminUserMenu
+}
+
+"Input for the flxAdminWidgetPrefsSet mutation."
+input FlxAdminWidgetPrefsSetInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Donations: days it covers (7, 14 or 30)."
+  donationsDays: Int
+
+  "Donations: how the chart is split."
+  donationsSplit: FlxAdminDonationsSplit
+
+  "Tasks: how the chart is split."
+  tasksChart: FlxAdminTasksChart
+
+  "Tasks: task list ID; 0 = all lists."
+  tasksList: Int
+
+  "Tasks: which tasks it counts."
+  tasksScope: FlxAdminTasksScope
+
+  "The module."
+  widget: FlxAdminWidget!
+}
+
+"Dashboard module with filters."
+enum FlxAdminWidget {
+  ""
+  DONATIONS
+
+  ""
+  TASKS
+}
+
+"The payload for the flxAdminWidgetPrefsSet mutation."
+type FlxAdminWidgetPrefsSetPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The module&#039;s body as the dashboard shows it (HTML rendered by Flux Admin)."
+  html: String
+
+  "The user&#039;s filters after the change."
+  prefs: FlxAdminWidgetPrefs
+}
+
 "Input for the flxAppAccessRevoke mutation."
 input FlxAppAccessRevokeInput {
   "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
@@ -17539,18 +19102,6 @@ type FlxAppAccessRevokePayload {
 
   "Removed."
   ok: Boolean!
-}
-
-"A problem with the input of a mutation, shown next to the form field."
-type FlxUserError {
-  "Stable code: INVALID_INPUT, CONFLICT, …"
-  code: String!
-
-  "Input field (dotted path) the problem belongs to."
-  field: String
-
-  "Message in the user&#039;s language."
-  message: String!
 }
 
 "Input for the flxAppAdminAppearanceSave mutation."
@@ -19522,6 +21073,9 @@ input FlxSettingsUpdateInput {
 
   "Flux SEO"
   flxseo: FlxSettingsFlxseoInput
+
+  "FluxWP theme settings (Appearance > Theme Settings)"
+  themeSettings: FlxSettingsThemeSettingsInput
 }
 
 "Changes to Flux App › Görünüm. Only the fields you send are changed."
@@ -19771,6 +21325,90 @@ input FlxSettingsFlxseoInput {
 
   ""
   webmcp: Boolean
+}
+
+"Changes to FluxWP theme settings (Appearance &gt; Theme Settings). Only the fields you send are changed."
+input FlxSettingsThemeSettingsInput {
+  "Active campaign ID."
+  aktifKampanya: Int
+
+  "Active campaign card."
+  aktifKart: FlxSettingsThemeSettingsAktifKart
+
+  "Scroll reveal animations."
+  animasyon: FlxSettingsThemeSettingsAnimasyon
+
+  "Bank account holder for Havale/EFT."
+  bankHolder: String
+
+  "IBAN (TR + 24 digits)."
+  bankIban: String
+
+  "Optional explicitly public contact email."
+  comingSoonEmail: String
+
+  "Optional plain-text store-only notice message."
+  comingSoonStoreText: String
+
+  "Optional store-only notice heading. Empty uses the translated default for the site type."
+  comingSoonStoreTitle: String
+
+  "Optional plain-text coming-soon message."
+  comingSoonText: String
+
+  "Optional coming-soon heading. Empty uses the translated default."
+  comingSoonTitle: String
+
+  "Accept button label."
+  cookieAccept: String
+
+  "Show the cookie consent banner on the first visit."
+  cookieEnabled: Boolean
+
+  "Policy link label; empty hides the link."
+  cookieMore: String
+
+  "Cookie/privacy policy page (\"@page:<key>\")."
+  cookiePage: Int
+
+  "Banner layout."
+  cookiePosition: FlxSettingsThemeSettingsCookiePosition
+
+  "Necessary-only button label."
+  cookieReject: String
+
+  "Banner text; links allowed (Flux Lang: tema_cookie_text)."
+  cookieText: String
+
+  "Banner title (Flux Lang: texts.<lang>.tema_cookie_title)."
+  cookieTitle: String
+
+  "auto follows the visitor system setting."
+  darkMode: FlxSettingsThemeSettingsDarkMode
+
+  "Background decoration for title bands, menus and consent cards."
+  decorationPattern: FlxSettingsThemeSettingsDecorationPattern
+
+  "Google Analytics 4 measurement ID (G-XXXXXXX)."
+  ga4Id: String
+
+  "consent: GA loads in consent mode; after: only after accept."
+  gaMode: FlxSettingsThemeSettingsGaMode
+
+  "Optional news archive introduction. Empty uses the translated generic theme text."
+  newsIntro: String
+
+  "Archive pagination."
+  sayfalama: FlxSettingsThemeSettingsSayfalama
+
+  "shop (WooCommerce store) or donation (Flux Donate)."
+  siteMod: FlxSettingsThemeSettingsSiteMod
+
+  "auto = live; coming-soon = entire public site shows the coming-soon page; store = site stays open, WooCommerce store pages (shop, product, cart, checkout) show a notice inside the header/footer. With WooCommerce this is synced both ways with WooCommerce › Settings › Site visibility; store needs WooCommerce."
+  siteVisibility: FlxSettingsThemeSettingsSiteVisibility
+
+  "Table header cell background hex colour (#RRGGBB), used by core tables, Flux Wiki and WooCommerce. Empty uses the palette \"table-head\" colour (default light grey)."
+  tableHead: String
 }
 
 "The payload for the flxSettingsUpdate mutation."
@@ -20443,6 +22081,156 @@ type FlxTaskWatchPayload {
 
   "Users who follow the task now."
   watcherIds: [Int!]!
+}
+
+"Input for the flxThemeMigrate mutation."
+input FlxThemeMigrateInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Previous theme folder name (flxThemeMigrationSources.stylesheet)."
+  source: String!
+}
+
+"The payload for the flxThemeMigrate mutation."
+type FlxThemeMigratePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "What was done."
+  log: [String!]!
+}
+
+"Input for the flxThemePayLogosSave mutation."
+input FlxThemePayLogosSaveInput {
+  "true returns to the automatic list; keys are then ignored."
+  automatic: Boolean
+
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Logo keys in order (built-in keys and a:<attachment ID>). Unknown keys are dropped."
+  keys: [String!]
+}
+
+"The payload for the flxThemePayLogosSave mutation."
+type FlxThemePayLogosSavePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The logos after the change."
+  logos: FlxThemePayLogos
+}
+
+"Input for the flxThemeSettingsSave mutation."
+input FlxThemeSettingsSaveInput {
+  "Donation type ID of the card; 0 = automatic."
+  activeCampaign: Int
+
+  "Show the active project card on the home page."
+  activeCard: Boolean
+
+  "Scroll reveal animations."
+  animations: Boolean
+
+  "Account holder."
+  bankHolder: String
+
+  "IBAN (TR + 24 digits); empty clears it."
+  bankIban: String
+
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Entire-site coming-soon message."
+  comingSoonText: String
+
+  "Entire-site coming-soon title."
+  comingSoonTitle: String
+
+  "Extra code added after consent; needs the unfiltered_html capability."
+  consentScripts: String
+
+  "Public contact email."
+  contactEmail: String
+
+  "Accept button label."
+  cookieAccept: String
+
+  "Show the cookie banner."
+  cookieEnabled: Boolean
+
+  "Policy link label."
+  cookieMore: String
+
+  "Policy page ID; 0 = automatic."
+  cookiePage: Int
+
+  "Banner layout."
+  cookiePosition: FlxThemeCookiePosition
+
+  "Necessary-only button label."
+  cookieReject: String
+
+  "true asks every visitor again (raises the consent version)."
+  cookieReset: Boolean
+
+  "Banner text; links allowed."
+  cookieText: String
+
+  "Banner title."
+  cookieTitle: String
+
+  "Dark mode of the public site."
+  darkMode: FlxThemeDarkMode
+
+  "GA4 measurement ID (G-XXXXXXX); empty turns it off."
+  ga4Id: String
+
+  "How Google Analytics loads."
+  gaMode: FlxThemeGaMode
+
+  "News archive introduction."
+  newsIntro: String
+
+  "Archive pagination."
+  pagination: FlxThemePagination
+
+  "Background decoration."
+  pattern: FlxThemePattern
+
+  "Shop or donation wording."
+  siteType: FlxThemeSiteType
+
+  "Store-notice message."
+  storeNoticeText: String
+
+  "Store-notice title."
+  storeNoticeTitle: String
+
+  "Table header colour (#RRGGBB); empty clears it."
+  tableHead: String
+
+  "Who sees the site (also updates WooCommerce)."
+  visibility: FlxThemeVisibility
+}
+
+"The payload for the flxThemeSettingsSave mutation."
+type FlxThemeSettingsSavePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The settings after the change; null when something was invalid."
+  settings: FlxThemeSettings
 }
 
 "Input for the registerUser mutation."
