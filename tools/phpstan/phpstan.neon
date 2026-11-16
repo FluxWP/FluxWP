@@ -41,6 +41,10 @@ parameters:
   excludePaths:
     - ../../plugins/flx-graphql/includes/flx-brand
   treatPhpDocTypesAsCertain: false
+  ignoreErrors:
+    # The wizard steps file is loaded on demand (FLXK_DIR points at tools/phpstan here).
+    - message: '#Path in require_once\(\) ".*/includes/onboarding\.php" is not a file#'
+      path: ../../plugins/flx-setup/includes/graphql/schema.php
   typeAliases:
     FlxGqlSettingsField: 'array{key: string, type: string, enum: list<scalar>, default: mixed, desc: string}'
     FlxGqlSettingsGroup: 'array{field: string, type: string, cap: string, label: string, fields: array<string, FlxGqlSettingsField>}'

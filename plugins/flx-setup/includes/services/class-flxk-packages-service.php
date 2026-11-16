@@ -86,7 +86,7 @@ final class FLXK_Packages_Service {
 		$catalog = self::catalog();
 		$updates = 0;
 		foreach ( FLXU_Admin::rows( $catalog ) as $row ) {
-			if ( 'update' === FLXK_Val::str( $row['state'] ?? '' ) ) {
+			if ( 'update' === FLXK_Val::str( FLXK_Val::arr( $row )['state'] ?? '' ) ) {
 				++$updates;
 			}
 		}
@@ -152,7 +152,7 @@ final class FLXK_Packages_Service {
 	 * server did not ask to wait).
 	 */
 	public static function should_auto_check(): bool {
-		$ttl = (int) apply_filters( 'flxk_auto_check_after', 2 * MINUTE_IN_SECONDS );
+		$ttl = FLXK_Val::int( apply_filters( 'flxk_auto_check_after', 2 * MINUTE_IN_SECONDS ) );
 		if ( $ttl <= 0 ) {
 			return false;
 		}
@@ -196,7 +196,24 @@ final class FLXK_Packages_Service {
 	/* The table                                                           */
 	/* ------------------------------------------------------------------ */
 
-	/** Tabs of the table (key => label). */
+	/**
+	 * Installed plugin files by slug.
+	 *
+	 * @return array<string,string>
+	 */
+	private static function plugin_files(): array {
+		$out = array();
+		foreach ( FLXU_Updater::plugin_files() as $k => $v ) {
+			$out[ (string) $k ] = FLXK_Val::str( $v );
+		}
+		return $out;
+	}
+
+	/**
+	 * Tabs of the table (key => label).
+	 *
+	 * @return array<string,string>
+	 */
 	public static function tabs(): array {
 		return array(
 			'all'     => __( 'All', 'flx-setup' ),
@@ -217,7 +234,7 @@ final class FLXK_Packages_Service {
 		$catalog = self::catalog();
 		$flux    = FLXU_Admin::rows( $catalog );
 		$wp      = FLXU_WP::rows( $catalog );
-		$files   = FLXU_Updater::plugin_files();
+		$files   = self::plugin_files();
 		$plugins = array();
 		foreach ( FLXU_Installer::installed_plugins() as $slug => $d ) {
 			$plugins[ (string) $slug ] = FLXK_Val::arr( $d );
@@ -310,7 +327,7 @@ final class FLXK_Packages_Service {
 		$src_main  = FLXK_Val::str( $p['source'] ?? 'main' );
 		$req       = array();
 		foreach ( FLXU_Updater::requires_plugins( $slug, $p ) as $dep ) {
-			$dep   = (string) $dep;
+			$dep   = FLXK_Val::str( $dep );
 			$have  = $plugins[ $dep ] ?? null;
 			$req[] = array(
 				'slug'  => $dep,
@@ -562,7 +579,7 @@ final class FLXK_Packages_Service {
 		$out = array();
 		foreach ( self::tabs() as $key => $label ) {
 			$out[] = array(
-				'tab'     => $key,
+				'tab'     => (string) $key,
 				'label'   => $label,
 				'count'   => $counts[ $key ][0],
 				'updates' => $counts[ $key ][1],
@@ -622,6 +639,7 @@ final class FLXK_Packages_Service {
 		if ( $all ) {
 			$slugs = array();
 			foreach ( $rows as $r ) {
+				$r = FLXK_Val::arr( $r );
 				if ( 'update' === FLXK_Val::str( $r['state'] ?? '' ) ) {
 					$slugs[] = FLXK_Val::str( $r['slug'] ?? '' );
 				}
@@ -750,26 +768,25 @@ final class FLXK_Packages_Service {
 		require_once ABSPATH . 'wp-admin/includes/theme.php';
 
 		$catalog = self::catalog();
-		$files   = FLXU_Updater::plugin_files();
+		$files   = self::plugin_files();
 		$all_pl  = get_plugins();
-		/** @var list<array{0:string,1:string,2:string}> $items type, id, name */
-		$items = array();
-		foreach ( array_unique( array_map( 'sanitize_key', $slugs ) ) as $slug ) {
+		$items   = array(); // Each: type, id, name.
+		foreach ( array_unique( array_map( static fn( $s ): string => sanitize_key( FLXK_Val::str( $s ) ), $slugs ) ) as $slug ) {
 			$p = $catalog[ $slug ] ?? null;
 			if ( null === $p ) {
 				continue;
 			}
 			$name    = FLXK_Val::str( $p['name'] ?? $slug );
 			$items[] = 'theme' === FLXK_Val::str( $p['type'] ?? '' )
-				? array( 'theme', $slug, $name )
-				: array( 'plugin', $files[ $slug ] ?? '', $name );
+				? array( 'type' => 'theme', 'id' => $slug, 'name' => $name )
+				: array( 'type' => 'plugin', 'id' => $files[ $slug ] ?? '', 'name' => $name );
 		}
-		foreach ( array_unique( array_map( 'sanitize_text_field', $wp_keys ) ) as $key ) {
+		foreach ( array_unique( array_map( static fn( $k ): string => sanitize_text_field( FLXK_Val::str( $k ) ), $wp_keys ) ) as $key ) {
 			$id = (string) substr( $key, 2 );
 			if ( 0 === strpos( $key, 'p:' ) && isset( $all_pl[ $id ] ) && ! isset( $catalog[ dirname( $id ) ] ) ) {
-				$items[] = array( 'plugin', $id, FLXK_Val::str( $all_pl[ $id ]['Name'] ?? $id ) );
+				$items[] = array( 'type' => 'plugin', 'id' => $id, 'name' => FLXK_Val::str( $all_pl[ $id ]['Name'] ?? $id ) );
 			} elseif ( 0 === strpos( $key, 't:' ) && wp_get_theme( $id )->exists() && ! isset( $catalog[ $id ] ) ) {
-				$items[] = array( 'theme', $id, FLXK_Val::str( wp_get_theme( $id )->get( 'Name' ) ) );
+				$items[] = array( 'type' => 'theme', 'id' => $id, 'name' => FLXK_Val::str( wp_get_theme( $id )->get( 'Name' ) ) );
 			}
 		}
 
@@ -782,7 +799,9 @@ final class FLXK_Packages_Service {
 			'theme'  => FLXK_Val::strings( get_site_option( 'auto_update_themes', array() ) ),
 		);
 		foreach ( $items as $it ) {
-			list( $type, $id, $name ) = $it;
+			$id   = $it['id'];
+			$name = $it['name'];
+			$type = 'theme' === $it['type'] ? 'theme' : 'plugin';
 			if ( '' === $id ) {
 				$skip[] = $name;
 				continue;
@@ -815,7 +834,7 @@ final class FLXK_Packages_Service {
 				}
 				continue;
 			}
-			if ( plugin_basename( FLXU_FILE ) === $id && 'activate' !== $op ) {
+			if ( plugin_basename( FLXK_FILE ) === $id && 'activate' !== $op ) {
 				$skip[] = $name;
 				continue;
 			}
@@ -1103,9 +1122,9 @@ final class FLXK_Packages_Service {
 			$ids = array_slice( $ids, 0, 1 );
 		}
 		$n = 0;
-		foreach ( array_unique( array_filter( array_map( 'sanitize_text_field', $ids ) ) ) as $id ) {
+		foreach ( array_unique( array_filter( array_map( static fn( $i ): string => sanitize_text_field( FLXK_Val::str( $i ) ), $ids ) ) ) as $id ) {
 			$r = self::backup_record( $id );
-			if ( null !== $r && 'pre_update' === FLXK_Val::str( $r['type'] ?? '' ) && empty( $r['locked'] ) && flxy_backup_delete( $id ) ) {
+			if ( null !== $r && 'pre_update' === FLXK_Val::str( $r['type'] ?? '' ) && empty( $r['locked'] ) && call_user_func( 'flxy_backup_delete', $id ) ) {
 				++$n;
 			}
 		}

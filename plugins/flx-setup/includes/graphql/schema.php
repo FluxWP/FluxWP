@@ -777,7 +777,7 @@ flx_gql_query(
 				! empty( $args['onlyUpdates'] )
 			);
 			return flx_gql_paginate(
-				$args,
+				FLXK_Val::arr( $args ),
 				static fn( int $offset, int $limit ): array => array(
 					'items' => array_slice( $rows, $offset, $limit ),
 					'total' => count( $rows ),
