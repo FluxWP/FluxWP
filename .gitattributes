@@ -3,3 +3,4 @@ packages/graphql/schema/core.graphql linguist-generated=true
 plugins/*/graphql/schema.graphql linguist-generated=true
 themes/*/graphql/schema.graphql linguist-generated=true
 plugins/*/graphql/persisted-queries.json linguist-generated=true
+themes/*/graphql/persisted-queries.json linguist-generated=true
