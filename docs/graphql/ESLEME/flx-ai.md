@@ -1,6 +1,6 @@
 # Flux AI & MCP (flx-ai): klasik → GraphQL eşlemesi
 
-Paket sürümü: 0.25.0 · Önek: `flxai_` · Sahip thread: Faz 1 / flx-ai · Durum: **kısmen bitti** (0.23.0 merge; 0.24.0 merge; `gql/flx-ai-3` 0.25.0 PR'ında; kalan: Skill'ler, MCP)
+Paket sürümü: 0.27.0 · Önek: `flxai_` · Sahip thread: Faz 1 / flx-ai · Durum: **kısmen bitti** (0.23.0–0.26.0 merge; `gql/flx-ai-5` 0.27.0 PR'ında; kalan: sistem başı SDK ayarları, sohbet geçmişi)
 
 ## Özet
 
@@ -20,9 +20,18 @@ Paket sürümü: 0.25.0 · Önek: `flxai_` · Sahip thread: Faz 1 / flx-ai · Du
 | Araçlar (aç/kapa, toplu, çakışma seçimi) | `flxAiTools`, `flxAiToolsUpdate`, `flxAiToolPick` | `ai/Tools.tsx` |
 | Ayarlar (servis + GraphQL hazır) | `flxAiSettings`, `flxAiSecrets`, `flxAiSettingsOptions`, `flxAiModels`, `flxAiSettingsUpdate`, `flxAiModelTest`, `flxAiRenderTest` | `ai/Settings.tsx` (0.24.0; klasik `flxai_save_settings` aynı servisle kaydeder) |
 | Zamanlanmış görevler (liste, form, çalıştır, duraklat, sil, aç/kapa, alıcı arama) | `flxAiTasks`, `flxAiRecipients`, `flxAiTaskSave`, `flxAiTaskRun`, `flxAiTaskSetActive`, `flxAiTaskDelete`, `flxAiTaskMarkRead`, `flxAiTasksToggle` | `ai/Tasks.tsx` (0.25.0; klasik işlemler `FLXAI_Tasks_Service` ile) |
+| Skill'ler (liste, aç/kapat, dışa aktar, sil/sıfırla, form) | `flxAiSkills`, `flxAiSkill`, `flxAiSkillSave`, `flxAiSkillToggle`, `flxAiSkillDelete`, `flxAiSkillsSettings` | `ai/Skills.tsx` (0.26.0) |
+| Skill klasörü (dosya aç/düzenle/sil/yükle) | `flxAiSkillFile`, `flxAiSkillFileSave`, `flxAiSkillFileDelete`, `flxAiSkillFileUpload` (base64) | `ai/Skills.tsx` Dosyalar sekmesi; indirme `downloadUrl` (nonce'lu) |
+| Skill testleri (tetiklenme, fonksiyonel, sonuçlar) | `flxAiSkillEvalsSave`, `flxAiSkillTestRun` (sohbet modelini çağırır), sonuçlar `flxAiSkill.results` | `ai/Skills.tsx` Testler sekmesi (eski REST `skills/<slug>/test` klasikte durur) |
+| İçe aktar | `flxAiSkillImport` (markdown ya da base64 dosya) | `ai/SkillsExtra.tsx` |
+| Marka kiti | `flxAiBrand`, `flxAiBrandSave` | `ai/SkillsExtra.tsx` |
+| MCP sunucusu (aç/kapa, OAuth) | `flxAiMcp`, `flxAiMcpServerUpdate` | `ai/Mcp.tsx` (0.27.0); sunucu, OAuth uçları, SSE GraphQL dışı (ISTISNALAR) |
+| MCP anahtarları (oluştur: bir kez gösterilir, araçla sınırla, iptal, son işlemler) | `flxAiMcpKeyCreate`, `flxAiMcpKeyRevoke` | `ai/Mcp.tsx`; yalnız hash saklanır, anahtar yalnız oluşturma yanıtında |
+| Bağlantılar (dış MCP sunucuları: liste, ekle/düzenle, sil, test) | `flxAiConnections`, `flxAiConnectionSave`, `flxAiConnectionDelete`, `flxAiConnectionRefresh` | `ai/Connections.tsx`; sırlar yazma-yalnız (`hasSecret`, `hasClientSecret`) |
+| Bağlantı OAuth girişi/çıkışı, araç izinleri | `flxAiConnectionSignIn` (sağlayıcı adresini döner), `flxAiConnectionSignOut`, `flxAiConnectionPermissions` | `ai/Connections.tsx`; dönüş `admin-post.php?action=flxai_mcpc_oauth` klasikte durur ve bu ekrana yönlendirir |
 
 Yetki: hepsi `manage_options`. wp-admin'de ekranlar varsayılan, "Klasik görünüm" bağlantısı kullanıcı başına (`flxai_ui` meta). FluxApp modülü `flxai-admin`.
 
 ## Kalanlar
 
-Skill'ler (CRUD, dosyalar, testler, marka kiti), Sohbet geçmişi, MCP anahtarları/bağlantılar, sistem başı SDK ayarları.
+Sohbet geçmişi, sistem başı SDK ayarları.

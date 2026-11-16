@@ -2,4 +2,4 @@
 "@fluxwp/modules": minor
 "@fluxwp/graphql": minor
 ---
-AI: the `flxai-admin` screen of Flux AI now also covers Scheduled tasks (list, form with recipients search, run now, pause, delete; operations `FlxAiTasks`, `FlxAiRecipients`, `FlxAiTaskSave`, `FlxAiTaskRun`, `FlxAiTaskSetActive`, `FlxAiTaskDelete`, `FlxAiTaskMarkRead`, `FlxAiTasksToggle`), Settings (providers and write-only API keys, models and tests, cache, spending limit, shared chat, image and video, web, visuals, logs) and Awaiting approval (actions and change requests, edit before approving). New operations `FlxAiApprovals`, `FlxAiApprovalDecide`, `FlxAiChangeDecide`.
+AI: the `flxai-admin` screen of Flux AI now also covers MCP (server and OAuth switch, keys shown once, revoke, connect snippets, recent activity; operations `FlxAiMcp`, `FlxAiMcpServerUpdate`, `FlxAiMcpKeyCreate`, `FlxAiMcpKeyRevoke`) and Connections (external MCP servers: add, edit, OAuth sign-in and out, test, per-tool permissions, delete; operations `FlxAiConnections`, `FlxAiConnectionSave`, `FlxAiConnectionDelete`, `FlxAiConnectionRefresh`, `FlxAiConnectionSignIn`, `FlxAiConnectionSignOut`, `FlxAiConnectionPermissions`).

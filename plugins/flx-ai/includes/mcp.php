@@ -543,37 +543,18 @@ add_action(
 			wp_die( esc_html__( 'Unauthorized.', 'flx-ai' ) );
 		}
 		check_admin_referer( 'flxai_mcp' );
-		$do   = sanitize_key( $_POST['do'] ?? '' );
-		$keys = flxai_mcp_keys();
+		$do = sanitize_key( $_POST['do'] ?? '' );
 		if ( 'toggle' === $do ) {
-			flxai_update_settings(
-				array(
-					'mcp_enabled' => empty( $_POST['mcp_enabled'] ) ? 0 : 1,
-					'mcp_oauth'   => empty( $_POST['mcp_oauth'] ) ? 0 : 1,
-				)
-			);
+			FLXAI_Mcp_Service::set_server( ! empty( $_POST['mcp_enabled'] ), ! empty( $_POST['mcp_oauth'] ) );
 		} elseif ( 'create' === $do ) {
-			$key         = 'flxmcp_' . wp_generate_password( 40, false, false );
-			$id          = wp_generate_uuid4();
-			$name        = sanitize_text_field( wp_unslash( $_POST['name'] ?? '' ) );
-			$keys[ $id ] = array(
-				'name'      => '' !== $name ? $name : __( 'AI', 'flx-ai' ),
-				'hash'      => hash( 'sha256', $key ),
-				'user'      => get_current_user_id(),
-				'created'   => time(),
-				'last_used' => 0,
-				'hint'      => substr( $key, -4 ),
-			);
 			// Araç seçildiyse anahtar yalnız onlarla sınırlı (ör. TV paneli için yalnız order_summary).
-			$tools = array_values( array_intersect( array_map( 'sanitize_key', (array) wp_unslash( $_POST['tools'] ?? array() ) ), array_map( 'sanitize_key', array_keys( flxai_mcp_tools() ) ) ) );
-			if ( $tools ) {
-				$keys[ $id ]['tools'] = $tools;
-			}
-			update_option( 'flxai_mcp_keys', $keys, false );
-			set_transient( 'flxai_mcp_new_key_' . get_current_user_id(), $key, 300 );
+			$r = FLXAI_Mcp_Service::create_key(
+				sanitize_text_field( wp_unslash( $_POST['name'] ?? '' ) ),
+				array_map( 'sanitize_key', (array) wp_unslash( $_POST['tools'] ?? array() ) )
+			);
+			set_transient( 'flxai_mcp_new_key_' . get_current_user_id(), $r->key, 300 );
 		} elseif ( 'revoke' === $do ) {
-			unset( $keys[ sanitize_text_field( wp_unslash( $_POST['id'] ?? '' ) ) ] );
-			update_option( 'flxai_mcp_keys', $keys, false );
+			FLXAI_Mcp_Service::revoke_key( sanitize_text_field( wp_unslash( $_POST['id'] ?? '' ) ) );
 		}
 		wp_safe_redirect( flxai_mcp_admin_url() );
 		exit;

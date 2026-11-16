@@ -1,0 +1,5 @@
+query FlxAiSkill($slug: String!) {
+  flxAiSkill(slug: $slug) {
+    ...FlxAiSkillDetailFields
+  }
+}

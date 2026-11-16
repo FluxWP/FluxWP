@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.8.2
+- Sayfa başlığı (logo ve açıklama) Flux ekranları arasında sayfa yenilemeden geçişte de güncellenir.
+
 ## 1.8.1
 - Onay kutusu, radyo ve anahtar tek görünüme geçti (flx-brand 1.7.0 ile aynı): yuvarlak köşeli dolgulu kutu, `role="switch"` ile anahtar, kısmen seçili, devre dışı, hata ve klavye odağı, dokunmatikte büyük hedef. Tema ve açık/koyu renklere uyar.
 

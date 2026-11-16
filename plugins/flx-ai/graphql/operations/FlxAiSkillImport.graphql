@@ -1,0 +1,16 @@
+mutation FlxAiSkillImport($input: FlxAiSkillImportInput!) {
+  flxAiSkillImport(input: $input) {
+    result {
+      imported
+      notes
+      overview {
+        ...FlxAiSkillsOverviewFields
+      }
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

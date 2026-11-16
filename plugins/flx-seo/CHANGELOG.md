@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.11.1
+- SEO ekranı Flux GraphQL ekran kabuğuyla açılır: ayarlar PHP'den hazır gelir, diğer Flux ekranlarına menüden geçiş sayfa yenilemeden olur.
+
 ## 1.11.0
 - SEO ekranı yenilendi: Genel, Kurum ve sosyal, SEO kontrolü, Site denetimi ve Ayarlar sekmeleri aynı özelliklerle ortak FluxWP ekranında; açık/koyu temaya uyar ve FluxWP uygulamasında da açılır. wp-admin'de varsayılan budur; eski görünüm "Klasik görünüm" bağlantısıyla açılır (kullanıcı başına hatırlanır). Yapıştırılan `<meta>` doğrulama etiketi yine yalnız içerik değerine indirilir.
 - Tüm işlemler GraphQL'de: ayarlar `flxSettings.flxseo` / `flxSettingsUpdate`, `flxSeoAudit`, `flxSeoAuditHistory`, `flxSeoContentCheck`, `flxSeoSetup`, `flxSeoGuide`, `flxSeoAuditRun`, `flxSeoFixApply`, `flxSeoPsiKeySave`, `flxSeoIndexNowSubmit`, `flxSeoContentSet`. Her içerik türü ve terimde `flxSeo` alanı sayfa başı verisini (başlık, açıklama, noindex, görsel) verir; odak anahtar kelimeyi yalnız editörler okur. PageSpeed anahtarı hiçbir yanıtta dönmez. Belge: docs/flx-seo/GRAPHQL.md.
