@@ -36,6 +36,33 @@ final class FLXFM_Files_Service {
 	}
 
 	/**
+	 * Cleaned relative path as a string ('' when invalid; callers validate first).
+	 */
+	private static function clean_str( string $path ): string {
+		$p = flxfm_clean( $path );
+		return is_string( $p ) ? $p : '';
+	}
+
+	/**
+	 * A number or numeric string as float (anything else: 0).
+	 *
+	 * @param mixed $v Value.
+	 */
+	private static function num( $v ): float {
+		return is_numeric( $v ) ? (float) $v : 0.0;
+	}
+
+	/**
+	 * Stored versions of a file.
+	 *
+	 * @return array<int|string,mixed>
+	 */
+	private static function versions_list( string $path ): array {
+		$v = flxfm_versions( $path );
+		return is_array( $v ) ? $v : array();
+	}
+
+	/**
 	 * Cleaned relative path or the error.
 	 */
 	private static function clean( string $path ): string|WP_Error {
@@ -65,10 +92,10 @@ final class FLXFM_Files_Service {
 		$max  = (int) wp_max_upload_size();
 		$max  = $max > 0 ? $max : 2097152;
 		return new FLXFM_Config(
-			flxfm_writable_mode(),
+			(bool) flxfm_writable_mode(),
 			(bool) flxfm_ai_ready(),
-			basename( flxfm_root() ),
-			flxfm_root(),
+			basename( flx_gql_str( flxfm_root() ) ),
+			flx_gql_str( flxfm_root() ),
 			'' !== $host ? $host : get_bloginfo( 'name' ),
 			trailingslashit( site_url() ),
 			flx_gql_str( flxfm_uploads_rel() ),
@@ -85,7 +112,7 @@ final class FLXFM_Files_Service {
 	}
 
 	public static function settings(): FLXFM_Settings {
-		$s      = flxfm_settings();
+		$s      = flx_gql_arr( flxfm_settings() );
 		$shared = array();
 		foreach ( is_array( $s['shared'] ?? null ) ? $s['shared'] : array() as $rel ) {
 			$shared[] = flx_gql_str( $rel );
@@ -94,7 +121,7 @@ final class FLXFM_Files_Service {
 			! empty( $s['show_hidden'] ),
 			flx_gql_int( $s['trash_days'] ?? 30 ),
 			flx_gql_int( $s['versions'] ?? 10 ),
-			is_numeric( $s['quota_gb'] ?? 0 ) ? (float) $s['quota_gb'] : 0.0,
+			self::num( $s['quota_gb'] ?? 0 ),
 			! empty( $s['mcp_write'] ),
 			! empty( $s['ai_code'] ),
 			$shared,
@@ -202,7 +229,7 @@ final class FLXFM_Files_Service {
 		$items = array();
 		foreach ( array_slice( $entries, max( 0, $offset ), max( 1, $limit ) ) as $e ) {
 			$crel = '' === $rel ? $e['n'] : $rel . '/' . $e['n'];
-			$arr  = FLXFM_FS::item( $abs . '/' . $e['n'], $crel );
+			$arr  = flx_gql_arr( FLXFM_FS::item( $abs . '/' . $e['n'], $crel ) );
 			if ( $e['dir'] && $count ) {
 				$sub          = @scandir( $abs . '/' . $e['n'] ); // phpcs:ignore WordPress.PHP.NoSilencedErrors
 				$arr['count'] = false === $sub ? null : count( $sub ) - 2;
@@ -269,7 +296,7 @@ final class FLXFM_Files_Service {
 			return $r;
 		}
 		$a = flx_gql_arr( $r );
-		return new FLXFM_Size( is_numeric( $a['size'] ?? 0 ) ? (float) $a['size'] : 0.0, flx_gql_int( $a['files'] ?? 0 ), flx_gql_int( $a['dirs'] ?? 0 ), ! empty( $a['partial'] ), $a );
+		return new FLXFM_Size( self::num( $a['size'] ?? 0 ), flx_gql_int( $a['files'] ?? 0 ), flx_gql_int( $a['dirs'] ?? 0 ), ! empty( $a['partial'] ), $a );
 	}
 
 	/**
@@ -326,7 +353,7 @@ final class FLXFM_Files_Service {
 		if ( ! flxfm_valid_name( $name ) ) {
 			return self::err( 'name', __( 'Invalid name.', 'flx-files' ) );
 		}
-		$dir = dirname( (string) flxfm_clean( $path ) );
+		$dir = dirname( self::clean_str( $path ) );
 		return self::item( FLXFM_FS::move( $path, ( '.' === $dir ? '' : $dir . '/' ) . $name ) );
 	}
 
@@ -346,7 +373,7 @@ final class FLXFM_Files_Service {
 		return self::each_item(
 			$paths,
 			static function ( string $src ) use ( $op, $dest, $overwrite ) {
-				$to = ( '' === $dest ? '' : $dest . '/' ) . basename( (string) flxfm_clean( $src ) );
+				$to = ( '' === $dest ? '' : $dest . '/' ) . basename( self::clean_str( $src ) );
 				return 'move' === $op ? FLXFM_FS::move( $src, $to, $overwrite ) : FLXFM_FS::copy( $src, $to, $overwrite );
 			}
 		);
@@ -415,7 +442,7 @@ final class FLXFM_Files_Service {
 	 */
 	public static function zip( array $paths, string $name, string $dir ): FLXFM_Item|WP_Error {
 		if ( '' === $name ) {
-			$name = 1 === count( $paths ) ? basename( (string) flxfm_clean( $paths[0] ) ) . '.zip' : 'archive.zip';
+			$name = 1 === count( $paths ) ? basename( self::clean_str( $paths[0] ) ) . '.zip' : 'archive.zip';
 		}
 		if ( ! flxfm_valid_name( $name ) ) {
 			return self::err( 'name', __( 'Invalid name.', 'flx-files' ) );
@@ -455,7 +482,7 @@ final class FLXFM_Files_Service {
 	 */
 	public static function versions( string $path ): array {
 		$out = array();
-		foreach ( flxfm_versions( (string) flxfm_clean( $path ) ) as $v ) {
+		foreach ( self::versions_list( self::clean_str( $path ) ) as $v ) {
 			$v     = flx_gql_arr( $v );
 			$out[] = new FLXFM_Version(
 				flx_gql_str( $v['id'] ?? '' ),
@@ -474,11 +501,11 @@ final class FLXFM_Files_Service {
 	 * @return list<array<string,mixed>>
 	 */
 	public static function versions_rest( string $path ): array {
-		return array_map( 'flx_gql_arr', array_values( flxfm_versions( (string) flxfm_clean( $path ) ) ) );
+		return array_map( 'flx_gql_arr', array_values( self::versions_list( self::clean_str( $path ) ) ) );
 	}
 
 	public static function version_content( string $path, string $id ): string|WP_Error {
-		$c = flxfm_version_read( (string) flxfm_clean( $path ), $id );
+		$c = flxfm_version_read( self::clean_str( $path ), $id );
 		return $c instanceof WP_Error ? $c : flx_gql_str( $c );
 	}
 
@@ -503,7 +530,8 @@ final class FLXFM_Files_Service {
 
 	public static function trash_list(): FLXFM_Trash {
 		$items = array();
-		foreach ( flxfm_trash_list() as $m ) {
+		$list = flxfm_trash_list();
+		foreach ( is_array( $list ) ? $list : array() as $m ) {
 			$m       = flx_gql_arr( $m );
 			$items[] = new FLXFM_Trash_Item(
 				flx_gql_str( $m['id'] ?? '' ),
@@ -519,7 +547,7 @@ final class FLXFM_Files_Service {
 				$m
 			);
 		}
-		return new FLXFM_Trash( $items, (int) flxfm_opt( 'trash_days' ) );
+		return new FLXFM_Trash( $items, flx_gql_int( flxfm_opt( 'trash_days' ) ) );
 	}
 
 	/**
@@ -539,7 +567,7 @@ final class FLXFM_Files_Service {
 	 */
 	public static function purge( array $ids, bool $all ): FLXFM_Purge_Result {
 		if ( $all ) {
-			return new FLXFM_Purge_Result( (int) flxfm_trash_purge( true ), array() );
+			return new FLXFM_Purge_Result( flx_gql_int( flxfm_trash_purge( true ) ), array() );
 		}
 		$n      = 0;
 		$failed = array();

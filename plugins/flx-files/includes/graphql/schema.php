@@ -13,6 +13,18 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
+ * A list field of a payload array.
+ *
+ * @param mixed  $p   Payload.
+ * @param string $key Field.
+ * @return array<mixed>
+ */
+function flxfm_gql_list( $p, string $key ): array {
+	$v = flx_gql_arr( $p )[ $key ] ?? array();
+	return is_array( $v ) ? $v : array();
+}
+
+/**
  * Service result → value, or the WP_Error as a typed GraphQL error. Too-big / unsupported-file errors
  * (413, 415, 507) are input problems the form shows, not server failures.
  *
@@ -271,7 +283,7 @@ flx_gql_type(
 					$dirs   = ! empty( $args['foldersOnly'] );
 					$count  = ! empty( $args['countItems'] );
 					return flx_gql_paginate(
-						$args,
+						flx_gql_arr( $args ),
 						static function ( int $offset, int $limit ) use ( $f, $hidden, $sort, $desc, $dirs, $count ): array {
 							$page = flxfm_gql_ok( FLXFM_Files_Service::items_page( $f->path, $hidden, $sort, $desc, $dirs, $count, $offset, $limit ) );
 							return array( 'items' => $page->items, 'total' => $page->total );
@@ -412,7 +424,7 @@ flx_gql_type(
 					$t = flxfm_gql_src( $src, FLXFM_Trash::class );
 					flxfm_gql_tag();
 					return flx_gql_paginate(
-						$args,
+						flx_gql_arr( $args ),
 						static fn( int $offset, int $limit ): array => array(
 							'items' => array_slice( $t->items, $offset, $limit ),
 							'total' => count( $t->items ),
@@ -632,7 +644,7 @@ flx_gql_query(
 			$path = flx_gql_str( $args['path'] ?? '' );
 			$via  = flx_gql_str( $args['via'] ?? '' );
 			return flx_gql_paginate(
-				$args,
+				flx_gql_arr( $args ),
 				static function ( int $offset, int $limit ) use ( $path, $via ): array {
 					$page = FLXFM_Files_Service::log( $path, $via, $offset, $limit );
 					return array( 'items' => $page->rows, 'total' => $page->total );
@@ -712,12 +724,12 @@ function flxfm_gql_batch_output(): array {
 		'items'  => array(
 			'type'        => '[FlxFilesItem!]!',
 			'description' => __( 'The entries that were processed, as they are now.', 'flx-files' ),
-			'resolve'     => static fn( $p ): array => flx_gql_arr( $p )['items'] ?? array(),
+			'resolve'     => static fn( $p ): array => flxfm_gql_list( $p, 'items' ),
 		),
 		'failed' => array(
 			'type'        => '[FlxFilesFailure!]!',
 			'description' => __( 'Entries that could not be processed (the rest went through).', 'flx-files' ),
-			'resolve'     => static fn( $p ): array => flx_gql_arr( $p )['failed'] ?? array(),
+			'resolve'     => static fn( $p ): array => flxfm_gql_list( $p, 'failed' ),
 		),
 	);
 }
@@ -773,12 +785,12 @@ flx_gql_mutation(
 			'trashed' => array(
 				'type'        => '[FlxFilesTrashed!]!',
 				'description' => __( 'Entries that are in the trash now.', 'flx-files' ),
-				'resolve'     => static fn( $p ): array => flx_gql_arr( $p )['trashed'] ?? array(),
+				'resolve'     => static fn( $p ): array => flxfm_gql_list( $p, 'trashed' ),
 			),
 			'failed'  => array(
 				'type'        => '[FlxFilesFailure!]!',
 				'description' => __( 'Entries that could not be deleted (the rest went through).', 'flx-files' ),
-				'resolve'     => static fn( $p ): array => flx_gql_arr( $p )['failed'] ?? array(),
+				'resolve'     => static fn( $p ): array => flxfm_gql_list( $p, 'failed' ),
 			),
 		),
 		'resolve'     => static function ( array $input ) {
@@ -841,7 +853,7 @@ flx_gql_mutation(
 			'fileCount' => array( 'type' => 'Int', 'description' => __( 'Files extracted.', 'flx-files' ) ),
 		),
 		'resolve'     => static function ( array $input ) {
-			$dest = isset( $input['destination'] ) && null !== $input['destination'] && '' !== $input['destination'] ? flx_gql_str( $input['destination'] ) : null;
+			$dest = isset( $input['destination'] ) && '' !== $input['destination'] ? flx_gql_str( $input['destination'] ) : null;
 			$r    = flxfm_gql_ok( FLXFM_Files_Service::unzip( flx_gql_str( $input['path'] ?? '' ), $dest ) );
 			return array( 'path' => $r->path, 'fileCount' => $r->files );
 		},
@@ -897,7 +909,7 @@ flx_gql_mutation(
 			'failed'  => array(
 				'type'        => '[FlxFilesFailure!]!',
 				'description' => __( 'Entries that could not be deleted.', 'flx-files' ),
-				'resolve'     => static fn( $p ): array => flx_gql_arr( $p )['failed'] ?? array(),
+				'resolve'     => static fn( $p ): array => flxfm_gql_list( $p, 'failed' ),
 			),
 		),
 		'resolve'     => static function ( array $input ) {
@@ -990,7 +1002,7 @@ flx_gql_mutation(
 			'answer' => array( 'type' => 'String', 'description' => __( 'The explanation, in short Markdown.', 'flx-files' ) ),
 		),
 		'resolve'     => static function ( array $input ) {
-			$content = isset( $input['content'] ) && null !== $input['content'] ? flx_gql_str( $input['content'] ) : null;
+			$content = isset( $input['content'] ) ? flx_gql_str( $input['content'] ) : null;
 			$r       = flxfm_gql_ok( FLXFM_Files_Service::ai_explain( flx_gql_str( $input['path'] ?? '' ), $content, flx_gql_str( $input['selection'] ?? '' ) ) );
 			return array( 'answer' => $r->answer );
 		},
@@ -1012,7 +1024,7 @@ flx_gql_mutation(
 			'note'    => array( 'type' => 'String', 'description' => __( 'A short sentence about the change (or why there is none).', 'flx-files' ) ),
 		),
 		'resolve'     => static function ( array $input ) {
-			$content = isset( $input['content'] ) && null !== $input['content'] ? flx_gql_str( $input['content'] ) : null;
+			$content = isset( $input['content'] ) ? flx_gql_str( $input['content'] ) : null;
 			$r       = flxfm_gql_ok( FLXFM_Files_Service::ai_edit( flx_gql_str( $input['path'] ?? '' ), $content, flx_gql_str( $input['prompt'] ?? '' ) ) );
 			return array( 'content' => $r->content, 'note' => $r->note );
 		},
