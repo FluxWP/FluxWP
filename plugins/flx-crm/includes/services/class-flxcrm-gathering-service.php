@@ -133,7 +133,7 @@ final class FLXCRM_Gathering_Service {
 		if ( $id > 0 && null === self::raw( $id ) ) {
 			return self::missing();
 		}
-		$defined = function_exists( 'flx_event_fields' ) ? flx_event_fields() : array();
+		$defined = flx_event_fields();
 		$data    = array();
 		foreach ( self::field_labels( is_array( $defined ) ? $defined : array() ) as $key => $field ) {
 			if ( ! is_array( $field ) || ! array_key_exists( $key, $values ) ) {
@@ -1009,8 +1009,8 @@ final class FLXCRM_Gathering_Service {
 		require_once ABSPATH . 'wp-admin/includes/file.php';
 		require_once ABSPATH . 'wp-admin/includes/image.php';
 		require_once ABSPATH . 'wp-admin/includes/media.php';
-		$tmp = wp_tempnam( $name );
-		if ( ! is_string( $tmp ) || ! copy( $path, $tmp ) ) {
+		$tmp = FLXCRM_Val::str( wp_tempnam( $name ) );
+		if ( '' === $tmp || ! copy( $path, $tmp ) ) {
 			return self::fail( 'flxcrm_upload', __( 'The event could not be saved.', 'flx-crm' ), 'INTERNAL' );
 		}
 		$id = media_handle_sideload( array( 'name' => $name, 'tmp_name' => $tmp ), 0 );
