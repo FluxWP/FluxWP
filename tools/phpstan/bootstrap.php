@@ -22,3 +22,5 @@ defined( 'FLXAI_CAP_MCP' ) || define( 'FLXAI_CAP_MCP', 'flxai_mcp' );
 defined( 'FLXAI_FILE' ) || define( 'FLXAI_FILE', __FILE__ );
 defined( 'FLXAI_DIR' ) || define( 'FLXAI_DIR', __DIR__ . '/' );
 defined( 'FLXAI_URL' ) || define( 'FLXAI_URL', 'https://example.com/' );
+defined( 'FLXL_VERSION' ) || define( 'FLXL_VERSION', '0.0.0' );
+defined( 'FLXL_DIR' ) || define( 'FLXL_DIR', __DIR__ . '/' );

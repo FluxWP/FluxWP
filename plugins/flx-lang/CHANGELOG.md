@@ -1,5 +1,14 @@
 # Flux Lang
 
+## 0.3.0
+- GraphQL: dil listesi, ayarlar, ziyaretçi ülkesi, çeviri eşleri ve AI çeviri işi Flux GraphQL üzerinden (`flxLanguages`, `flxLanguageSettings`, `flxVisitorCountry`, `flxLanguageJob`; mutation'lar `flxLanguageSettingsUpdate`, `flxLanguageSet`, `flxLanguageTranslationCreate`, `flxLanguageTranslateStart/Step`). Her içerik tipinde `flxLanguage` ve `flxTranslations` alanları; `?lang=` GraphQL isteğinde de çalışır.
+- Yeni React ekranı (Ayarlar > Languages) klasik sayfanın tüm özelliklerini kapsar, wp-admin'de varsayılan açılır; klasik görünüm sayfadaki bağlantıyla erişilir. FluxWP uygulamasında da aynı ekran (`flxl-lang` modülü).
+- Servis katmanı (`FLXL_Language_Service`): klasik form, GraphQL, REST ve AI aracı aynı kodu kullanır. Ayar doğrulaması alan bazında hata kodu döner.
+- AI çeviri işi iki adımlı: başlat + adım; biten iş 10 dk içinde tekrar okunabilir, hata `failed` olarak işaretlenir. İş anahtarı küçük harfe sabitlendi (eski gizli hata).
+- `/flx-lang/v1/geo` ve `flxVisitorCountry` önbelleğe alınmaz (`no-store`).
+- Flux GraphQL (flx-graphql) artık gerekli; PHP en az 8.1, WordPress en az 6.5.
+- Çeviriler: kaynak dil EN, TR çeviri `tools/tr.json`; `tools/i18n.py` ile üretilir.
+
 ## 0.2.12
 - Otomatik dil artık her sitede tarayıcı dilini önce dinliyor: ziyaretçinin tarayıcı dili sitede etkinse (ör. Almanya'dan Almanca tarayıcıyla gelen → Almanca, yurt dışında Türkçe tarayıcı kullanan → Türkçe) o dilde açılır. Tarayıcı dili sitede yoksa ülkeye bakılır: Türkiye/KKTC'den gelen Türkçe, diğer ülkeler ülkenin dili etkinse o dil; hiçbiri yoksa İngilizce. Önceden Türkiye'den gelen herkes tarayıcı dili ne olursa olsun Türkçe görüyordu.
 - Ayar ekranında "Türkiye dışından gelene" yerine "Otomatik dil"; açıklamalar yeni sırayı anlatıyor.

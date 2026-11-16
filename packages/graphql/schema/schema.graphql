@@ -335,6 +335,18 @@ type RootQuery {
   "The FluxWP capability catalog, with what the current user has."
   flxCapabilities: [FlxCapability!]!
 
+  "An AI translation job you started (it stays readable for a few minutes after it finishes)."
+  flxLanguageJob(
+    "Job key."
+    id: ID!
+  ): FlxLanguageJob
+
+  "The Languages settings: every language, content types, switcher, automatic language, site texts and what the screen needs to edit them."
+  flxLanguageSettings: FlxLanguageSettings!
+
+  "The languages visitors can open, default first. Public: the language switcher shows the same list."
+  flxLanguages: [FlxLanguage!]!
+
   "One role; empty when the key is unknown."
   flxRole(
     "Role key."
@@ -388,6 +400,9 @@ type RootQuery {
 
   "The user making the request. A visitor gets loggedIn false and no capabilities."
   flxViewer: FlxViewer!
+
+  "The visitor&#039;s country from the server&#039;s CDN / GeoIP header. Never cached. Public: it only returns the caller&#039;s own country."
+  flxVisitorCountry: FlxVisitorCountry!
 
   "Fields of the &#039;GeneralSettings&#039; settings group"
   generalSettings: GeneralSettings
@@ -2615,6 +2630,12 @@ interface ContentNode implements Node & UniformResourceIdentifiable {
     where: ContentNodeToEnqueuedStylesheetConnectionWhereArgs
   ): ContentNodeToEnqueuedStylesheetConnection
 
+  "Language code of this content. Empty for a type that is not translated and for shared pages (cart, checkout, my account)."
+  flxLanguage: String
+
+  "The language versions of this content, in language order, including itself. Drafts and private versions are listed only for people who can edit them. Empty for a type that is not translated."
+  flxTranslations: [FlxTranslation!]!
+
   "The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes."
   guid: String
 
@@ -4565,6 +4586,12 @@ type MediaItem implements Node & ContentNode & UniformResourceIdentifiable & Dat
     size: MediaItemSizeEnum
   ): Int
 
+  "Language code of this content. Empty for a type that is not translated and for shared pages (cart, checkout, my account)."
+  flxLanguage: String
+
+  "The language versions of this content, in language order, including itself. Drafts and private versions are listed only for people who can edit them. Empty for a type that is not translated."
+  flxTranslations: [FlxTranslation!]!
+
   "The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes."
   guid: String
 
@@ -4831,6 +4858,12 @@ interface HierarchicalContentNode implements Node & ContentNode & UniformResourc
     "Arguments for filtering the connection"
     where: ContentNodeToEnqueuedStylesheetConnectionWhereArgs
   ): ContentNodeToEnqueuedStylesheetConnection
+
+  "Language code of this content. Empty for a type that is not translated and for shared pages (cart, checkout, my account)."
+  flxLanguage: String
+
+  "The language versions of this content, in language order, including itself. Drafts and private versions are listed only for people who can edit them. Empty for a type that is not translated."
+  flxTranslations: [FlxTranslation!]!
 
   "The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes."
   guid: String
@@ -5179,6 +5212,1167 @@ type ContentNodeToEnqueuedStylesheetConnectionPageInfo implements EnqueuedStyles
 
   "When paginating backwards, the cursor to continue."
   startCursor: String
+}
+
+"A billing month: report, provider split, the month list and the credit state."
+type FlxAiBilling {
+  "OpenRouter account state; null before the first refresh."
+  credits: FlxAiCredits
+
+  "Link that downloads the month as CSV (carries a one-time check for the signed-in user)."
+  csvUrl: String!
+
+  "Month as Y-m."
+  month: String!
+
+  "The last 12 months."
+  months: [FlxAiMonth!]!
+
+  "Usage of the month."
+  report: FlxAiReport!
+}
+
+"One row of a usage breakdown (by plugin, model, purpose or provider)."
+type FlxAiBreakdownRow {
+  "Tokens read from the prompt cache."
+  cacheRead: Int!
+
+  "Model requests."
+  calls: Int!
+
+  "Cost in USD."
+  cost: Float!
+
+  "Failed requests and tool calls."
+  errors: Int!
+
+  "Cost in USD without the prompt cache."
+  fullCost: Float!
+
+  "Input tokens."
+  inTokens: Int!
+
+  "Raw key: source id, model id …"
+  key: String!
+
+  "Name for display."
+  label: String!
+
+  "Time spent in models, milliseconds."
+  modelMs: Int!
+
+  "Output tokens."
+  outTokens: Int!
+
+  "Part of the cost is estimated from the price list."
+  partial: Boolean!
+
+  "Time spent in tools, milliseconds."
+  toolMs: Int!
+
+  "Tool calls."
+  tools: Int!
+}
+
+"Spending against one limit period."
+type FlxAiBudgetPeriod {
+  "day, week or month."
+  key: String!
+
+  "Period name in the user&#039;s language."
+  label: String!
+
+  "Limit in USD; 0 means unlimited."
+  limit: Float!
+
+  "The limit is reached."
+  over: Boolean!
+
+  "Share of the limit used, in percent (0 without a limit)."
+  pct: Float!
+
+  "When the period resets."
+  resets: FlxDateTime!
+
+  "Spent this period in USD."
+  spent: Float!
+}
+
+"Claude prompt cache."
+enum FlxAiCacheMode {
+  ""
+  FIVE_MINUTES
+
+  ""
+  OFF
+
+  ""
+  ONE_HOUR
+}
+
+"Default layout of the shared chat."
+enum FlxAiChatMode {
+  ""
+  BUBBLE
+
+  ""
+  DOCK
+
+  ""
+  PAGE
+}
+
+"The OpenRouter account state from the last refresh."
+type FlxAiCredits {
+  "When the state was read."
+  checked: FlxDateTime!
+
+  "Remaining account credit in USD; null when unknown."
+  credits: Float
+
+  "Limit of the key in USD; null when it has none."
+  limit: Float
+
+  "Remaining of the key limit in USD; null when it has none."
+  remaining: Float
+
+  "Total usage of the key in USD; null when unknown."
+  usage: Float
+}
+
+"Input for the flxAiCreditsRefresh mutation."
+input FlxAiCreditsRefreshInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+}
+
+"The payload for the flxAiCreditsRefresh mutation."
+type FlxAiCreditsRefreshPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "The state that was read."
+  credits: FlxAiCredits
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"How deeply Claude thinks."
+enum FlxAiEffort {
+  ""
+  HIGH
+
+  ""
+  LOW
+
+  ""
+  MEDIUM
+}
+
+"What happens when a spending limit is reached."
+enum FlxAiLimitAction {
+  ""
+  BLOCK
+
+  ""
+  WARN
+}
+
+"One model request or tool call."
+type FlxAiLog {
+  "Tokens read from the prompt cache."
+  cacheRead: Int!
+
+  "Tokens written to the prompt cache."
+  cacheWrite: Int!
+
+  "Chat it belongs to; 0 when none."
+  chatId: Int!
+
+  "Cost in USD."
+  cost: Float!
+
+  "Log row ID."
+  databaseId: Int!
+
+  "Raw failure reason; empty when it worked."
+  error: String!
+
+  "Failure for display; empty when it worked."
+  errorLabel: String!
+
+  "The cost is estimated from the price list."
+  estimated: Boolean!
+
+  "The content of the request was stored (flxAiLogBody)."
+  hasBody: Boolean!
+
+  "Input tokens."
+  inTokens: Int!
+
+  "Model request or tool call."
+  kind: FlxAiLogKind!
+
+  "Model id; empty for a tool call."
+  model: String!
+
+  "Model name for display."
+  modelLabel: String!
+
+  "Duration in milliseconds."
+  ms: Int!
+
+  "It worked."
+  ok: Boolean!
+
+  "Output tokens."
+  outTokens: Int!
+
+  "Provider that served it."
+  provider: String!
+
+  "Why it was made (chat, title, test …)."
+  purpose: String!
+
+  "Purpose for display."
+  purposeLabel: String!
+
+  "System that made the request."
+  source: String!
+
+  "System name for display."
+  sourceLabel: String!
+
+  "When it happened."
+  time: FlxDateTime!
+
+  "Tool name; empty for a model request."
+  tool: String!
+
+  "User it ran for; 0 for the system."
+  userId: Int!
+
+  "Name of the user; empty for the system."
+  userName: String!
+}
+
+"The stored content of a log row: the last outgoing messages and the reply, shortened, with e-mail, phone, IBAN and keys masked."
+type FlxAiLogBody {
+  "Failure message; empty when it worked."
+  error: String!
+
+  "Log row ID."
+  logId: Int!
+
+  "The reply text."
+  reply: String!
+
+  "Outgoing messages."
+  request: [FlxAiLogMessage!]!
+
+  "Tool calls the reply asked for."
+  toolCalls: [String!]!
+}
+
+"A page of log rows, newest first."
+type FlxAiLogConnection {
+  "Records with their cursors."
+  edges: [FlxAiLogEdge!]!
+
+  "Records of this page."
+  nodes: [FlxAiLog!]!
+
+  "Paging information."
+  pageInfo: FlxPageInfo!
+
+  "All matching records (null when counting would be slow)."
+  totalCount: Int
+}
+
+"One FlxAiLog in a list, with its cursor."
+type FlxAiLogEdge {
+  "Opaque cursor of this record."
+  cursor: String!
+
+  "The record."
+  node: FlxAiLog!
+}
+
+"What a log row records."
+enum FlxAiLogKind {
+  "A request to a language model."
+  MODEL
+
+  "A tool call."
+  TOOL
+}
+
+"One message of a stored request."
+type FlxAiLogMessage {
+  "system, user, assistant or tool."
+  role: String!
+
+  "Shortened text with personal data masked."
+  text: String!
+}
+
+"Kind of a media model."
+enum FlxAiMediaKind {
+  ""
+  IMAGE
+
+  ""
+  VIDEO
+}
+
+"An image or video model of the catalog."
+type FlxAiMediaModel {
+  "Provider chosen automatically (the first with a key); empty when none has a key."
+  auto: String!
+
+  "Model id to save."
+  id: String!
+
+  "Image or video."
+  kind: FlxAiMediaKind!
+
+  "Name for display."
+  label: String!
+
+  "Provider ids in the order they are tried."
+  routes: [String!]!
+}
+
+"A language model of the catalog."
+type FlxAiModel {
+  "Context window in tokens; 0 when unknown."
+  context: Int!
+
+  "Model family."
+  family: String!
+
+  "Model id as saved (claude:… for Anthropic)."
+  id: String!
+
+  "Name for display."
+  name: String!
+
+  "USD per million input tokens."
+  priceIn: Float!
+
+  "USD per million output tokens."
+  priceOut: Float!
+
+  "Provider that serves it."
+  provider: FlxAiModelProvider!
+
+  "Can think before answering."
+  thinking: Boolean!
+
+  "Supports tools."
+  tools: Boolean!
+
+  "Understands images."
+  vision: Boolean!
+}
+
+"Provider of a language model."
+enum FlxAiModelProvider {
+  ""
+  ANTHROPIC
+
+  ""
+  OPENROUTER
+}
+
+"Input for the flxAiModelTest mutation."
+input FlxAiModelTestInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Model id; empty uses the default model."
+  model: String
+}
+
+"The payload for the flxAiModelTest mutation."
+type FlxAiModelTestPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The reply and the round trip."
+  result: FlxAiTestResult
+}
+
+"A month of the billing list."
+type FlxAiMonth {
+  "Model requests."
+  calls: Int!
+
+  "Cost in USD."
+  cost: Float!
+
+  "Month name for display."
+  label: String!
+
+  "Month as Y-m."
+  month: String!
+
+  "Saved by the prompt cache in USD."
+  saved: Float!
+}
+
+"A choice of a select field."
+type FlxAiOption {
+  "Value to save."
+  id: String!
+
+  "Name for display."
+  label: String!
+}
+
+"Input for the flxAiRenderTest mutation."
+input FlxAiRenderTestInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Gotenberg password; empty uses the saved one."
+  pass: String
+
+  "Gotenberg address; empty tries the local renderer."
+  url: String
+
+  "Gotenberg user name."
+  user: String
+}
+
+"The payload for the flxAiRenderTest mutation."
+type FlxAiRenderTestPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The sample image and the time it took."
+  result: FlxAiTestResult
+}
+
+"Usage of Flux AI over a range: cost, time, tokens and tools."
+type FlxAiReport {
+  "By model."
+  byModel: [FlxAiBreakdownRow!]!
+
+  "By provider (billing months only)."
+  byProvider: [FlxAiBreakdownRow!]!
+
+  "By plugin and purpose."
+  byPurpose: [FlxAiBreakdownRow!]!
+
+  "By plugin."
+  bySource: [FlxAiBreakdownRow!]!
+
+  "Slowest tools first."
+  byTool: [FlxAiToolStat!]!
+
+  "One entry per day."
+  daily: [FlxAiReportDay!]!
+
+  "Start of the range."
+  from: FlxDateTime!
+
+  "End of the range."
+  to: FlxDateTime!
+
+  "Totals of the range."
+  totals: FlxAiReportTotals!
+}
+
+"One day of a usage report."
+type FlxAiReportDay {
+  "Tokens read from the prompt cache."
+  cacheRead: Int!
+
+  "Model requests."
+  calls: Int!
+
+  "Cost in USD."
+  cost: Float!
+
+  "Day as Y-m-d in the site time zone."
+  date: String!
+
+  "Failed requests and tool calls."
+  errors: Int!
+
+  "Input tokens."
+  inTokens: Int!
+
+  "Time spent in models, milliseconds."
+  modelMs: Int!
+
+  "Output tokens."
+  outTokens: Int!
+
+  "Time spent in tools, milliseconds."
+  toolMs: Int!
+
+  "Tool calls."
+  tools: Int!
+}
+
+"Totals of a usage report."
+type FlxAiReportTotals {
+  "Tokens read from the prompt cache."
+  cacheRead: Int!
+
+  "Tokens written to the prompt cache."
+  cacheWrite: Int!
+
+  "Model requests."
+  calls: Int!
+
+  "Cost in USD."
+  cost: Float!
+
+  "Failed requests and tool calls."
+  errors: Int!
+
+  "Cost in USD without the prompt cache."
+  fullCost: Float!
+
+  "Input tokens."
+  inTokens: Int!
+
+  "Time spent in models, milliseconds."
+  modelMs: Int!
+
+  "Output tokens."
+  outTokens: Int!
+
+  "Saved by the prompt cache in USD."
+  saved: Float!
+
+  "Time spent in tools, milliseconds."
+  toolMs: Int!
+
+  "Tool calls."
+  tools: Int!
+}
+
+"An API key: whether it is set, never its value."
+type FlxAiSecret {
+  "A key is saved (or set in wp-config.php)."
+  configured: Boolean!
+
+  "The key comes from a wp-config.php constant."
+  fromConfig: Boolean!
+
+  "Where the key is used."
+  group: FlxAiSecretGroup!
+
+  "Where to get the key; empty when unknown."
+  help: String!
+
+  "Last four characters of a saved key; empty for short keys."
+  hint: String!
+
+  "Provider name for display."
+  label: String!
+
+  "Setting name, e.g. key_openrouter."
+  name: String!
+}
+
+"Where an API key is used."
+enum FlxAiSecretGroup {
+  ""
+  MEDIA
+
+  ""
+  PROVIDER
+
+  ""
+  RENDER
+
+  ""
+  WEB
+}
+
+"Writes or removes one API key."
+input FlxAiSecretInput {
+  "Remove the saved key."
+  clear: Boolean
+
+  "Setting name from flxAiSecrets, e.g. key_openrouter."
+  name: String!
+
+  "The new key. Empty leaves the saved key as it is."
+  value: String
+}
+
+"Flux AI settings. API keys are not here, see flxAiSecrets."
+type FlxAiSettings {
+  "Anthropic workspace ID; only needed when the key is not tied to a workspace."
+  anthropicWorkspace: String!
+
+  "Claude prompt cache."
+  cache: FlxAiCacheMode!
+
+  "Show the shared chat in the admin panel."
+  chatAdmin: Boolean!
+
+  "Show the shared chat on the site for permitted logged-in users."
+  chatFront: Boolean!
+
+  "Most messages sent to the model (6–200)."
+  chatHistory: Int!
+
+  "Extra instructions added to every chat."
+  chatInstructions: String!
+
+  "Most steps the model may take in one turn (2–30)."
+  chatMaxRounds: Int!
+
+  "Default layout of the shared chat."
+  chatMode: FlxAiChatMode!
+
+  "Model of the shared chat; empty uses the default."
+  chatModel: String!
+
+  "WordPress roles that may use the shared chat."
+  chatRoles: [String!]!
+
+  "Let the model draw tables, cards, diagrams and charts as visuals."
+  chatWidgets: Boolean!
+
+  "Delete logs and chats when the plugin is deleted."
+  deleteData: Boolean!
+
+  "How deeply Claude thinks."
+  effort: FlxAiEffort!
+
+  "Chat and agents may generate images (each image is charged)."
+  imageToolOn: Boolean!
+
+  "Stop requests or only warn when a limit is reached."
+  limitAction: FlxAiLimitAction!
+
+  "Daily spending limit in USD; 0 means unlimited."
+  limitDay: Float!
+
+  "Monthly spending limit in USD; 0 means unlimited."
+  limitMonth: Float!
+
+  "E-mail the admin at the threshold and when a limit is reached."
+  limitNotify: Boolean!
+
+  "Warning threshold in percent of a limit (10–99)."
+  limitWarnPct: Int!
+
+  "Weekly spending limit in USD; 0 means unlimited."
+  limitWeek: Float!
+
+  "Also store shortened, masked request and reply content."
+  logBodies: Boolean!
+
+  "Days stored content is kept; 0 keeps it forever."
+  logBodyDays: Int!
+
+  "Days usage logs are kept; 0 keeps them forever."
+  logDays: Int!
+
+  "Days image and video job records are kept (7–1825); generated files are not deleted."
+  mediaDays: Int!
+
+  "Default image model (an id of FlxAiSettingsOptions.mediaModels)."
+  mediaImageModel: String!
+
+  "Default video model (an id of FlxAiSettingsOptions.mediaModels)."
+  mediaVideoModel: String!
+
+  "Default model, used when a plugin names none. Empty picks one from the saved keys."
+  model: String!
+
+  "Gotenberg address that turns visuals into images; empty for none."
+  renderUrl: String!
+
+  "Gotenberg user name (basic authentication)."
+  renderUser: String!
+
+  "Allow the virtual shell tool on the workspace files."
+  shellOn: Boolean!
+
+  "The model each plugin uses; empty means the default model."
+  sourceModels: [FlxAiSourceModel!]!
+
+  "Show the model&#039;s thinking summary in chat."
+  thinking: Boolean!
+
+  "Model that names chats; empty uses the chat model."
+  titleModel: String!
+
+  "Allow the tool that reads public web pages."
+  webFetchOn: Boolean!
+
+  "Allow the web search tool."
+  webOn: Boolean!
+
+  "Search provider id, or auto for the first provider with a key."
+  webProvider: String!
+
+  "Cost per 1,000 searches in USD; above 0 each search is logged and counted in the limit."
+  webSearchCost: Float!
+
+  "Monthly search limit; 0 means unlimited."
+  webSearchMonth: Int!
+}
+
+"Choices of the settings page and facts it shows."
+type FlxAiSettingsOptions {
+  "The model used when none is chosen."
+  defaultModel: String!
+
+  "Image and video catalog."
+  mediaModels: [FlxAiMediaModel!]!
+
+  "Image and video providers."
+  mediaProviders: [FlxAiOption!]!
+
+  "A model provider key is saved."
+  providersReady: Boolean!
+
+  "Visual renderer: gotenberg, imagick or empty for none."
+  renderer: String!
+
+  "WordPress roles."
+  roles: [FlxAiOption!]!
+
+  "Web searches this month."
+  webMonthCount: Int!
+
+  "Web search providers."
+  webProviders: [FlxAiOption!]!
+}
+
+"Input for the flxAiSettingsUpdate mutation."
+input FlxAiSettingsUpdateInput {
+  "Anthropic workspace ID; only needed when the key is not tied to a workspace."
+  anthropicWorkspace: String
+
+  "Claude prompt cache."
+  cache: FlxAiCacheMode
+
+  "Show the shared chat in the admin panel."
+  chatAdmin: Boolean
+
+  "Show the shared chat on the site for permitted logged-in users."
+  chatFront: Boolean
+
+  "Most messages sent to the model (6–200)."
+  chatHistory: Int
+
+  "Extra instructions added to every chat."
+  chatInstructions: String
+
+  "Most steps the model may take in one turn (2–30)."
+  chatMaxRounds: Int
+
+  "Default layout of the shared chat."
+  chatMode: FlxAiChatMode
+
+  "Model of the shared chat; empty uses the default."
+  chatModel: String
+
+  "WordPress roles that may use the shared chat."
+  chatRoles: [String!]
+
+  "Let the model draw tables, cards, diagrams and charts as visuals."
+  chatWidgets: Boolean
+
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Delete logs and chats when the plugin is deleted."
+  deleteData: Boolean
+
+  "How deeply Claude thinks."
+  effort: FlxAiEffort
+
+  "Chat and agents may generate images (each image is charged)."
+  imageToolOn: Boolean
+
+  "Stop requests or only warn when a limit is reached."
+  limitAction: FlxAiLimitAction
+
+  "Daily spending limit in USD; 0 means unlimited."
+  limitDay: Float
+
+  "Monthly spending limit in USD; 0 means unlimited."
+  limitMonth: Float
+
+  "E-mail the admin at the threshold and when a limit is reached."
+  limitNotify: Boolean
+
+  "Warning threshold in percent of a limit (10–99)."
+  limitWarnPct: Int
+
+  "Weekly spending limit in USD; 0 means unlimited."
+  limitWeek: Float
+
+  "Also store shortened, masked request and reply content."
+  logBodies: Boolean
+
+  "Days stored content is kept; 0 keeps it forever."
+  logBodyDays: Int
+
+  "Days usage logs are kept; 0 keeps them forever."
+  logDays: Int
+
+  "Days image and video job records are kept (7–1825); generated files are not deleted."
+  mediaDays: Int
+
+  "Default image model (an id of FlxAiSettingsOptions.mediaModels)."
+  mediaImageModel: String
+
+  "Default video model (an id of FlxAiSettingsOptions.mediaModels)."
+  mediaVideoModel: String
+
+  "Default model, used when a plugin names none. Empty picks one from the saved keys."
+  model: String
+
+  "Gotenberg address that turns visuals into images; empty for none."
+  renderUrl: String
+
+  "Gotenberg user name (basic authentication)."
+  renderUser: String
+
+  "API keys to write or remove; keys you leave out stay as they are."
+  secrets: [FlxAiSecretInput!]
+
+  "Allow the virtual shell tool on the workspace files."
+  shellOn: Boolean
+
+  "The model each plugin uses; plugins you leave out keep theirs."
+  sourceModels: [FlxAiSourceModelInput!]
+
+  "Show the model's thinking summary in chat."
+  thinking: Boolean
+
+  "Model that names chats; empty uses the chat model."
+  titleModel: String
+
+  "Allow the tool that reads public web pages."
+  webFetchOn: Boolean
+
+  "Allow the web search tool."
+  webOn: Boolean
+
+  "Search provider id, or auto for the first provider with a key."
+  webProvider: String
+
+  "Cost per 1,000 searches in USD; above 0 each search is logged and counted in the limit."
+  webSearchCost: Float
+
+  "Monthly search limit; 0 means unlimited."
+  webSearchMonth: Int
+}
+
+"The payload for the flxAiSettingsUpdate mutation."
+type FlxAiSettingsUpdatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The keys after the change (set or not)."
+  secrets: [FlxAiSecret!]!
+
+  "Settings after the change."
+  settings: FlxAiSettings
+}
+
+"The model one plugin uses; empty means the default model."
+type FlxAiSourceModel {
+  "Name for display."
+  label: String!
+
+  "Model id; empty means the default model."
+  model: String!
+
+  "System id, e.g. flx-chat."
+  source: String!
+}
+
+"The model one plugin uses."
+input FlxAiSourceModelInput {
+  "Model id; empty means the default model."
+  model: String!
+
+  "System id."
+  source: String!
+}
+
+"A system (plugin) that uses Flux AI, with its usage of the last 30 days."
+type FlxAiSystem {
+  "The plugin is active."
+  active: Boolean!
+
+  "Model requests in 30 days."
+  calls: Int!
+
+  "Cost in USD in 30 days."
+  cost: Float!
+
+  "Failures in 30 days."
+  errors: Int!
+
+  "The system declares AI settings of its own (classic page)."
+  hasAiSettings: Boolean!
+
+  "The plugin is installed."
+  installed: Boolean!
+
+  "Name for display."
+  label: String!
+
+  "Last use; null when unused in 30 days."
+  lastUsed: FlxDateTime
+
+  "Model the system uses."
+  model: String!
+
+  "Model name for display."
+  modelLabel: String!
+
+  "AI is on for this system. A system that is off cannot send requests."
+  on: Boolean!
+
+  "The system&#039;s own settings page, relative to wp-admin; empty when none."
+  settingsPage: String!
+
+  "System id, e.g. flx-chat."
+  source: String!
+
+  "Tokens in 30 days."
+  tokens: Int!
+
+  "Tool calls in 30 days."
+  tools: Int!
+}
+
+"Whether AI is on for one system."
+input FlxAiSystemStateInput {
+  "AI is on for the system."
+  on: Boolean!
+
+  "System id."
+  source: String!
+}
+
+"Input for the flxAiSystemsUpdate mutation."
+input FlxAiSystemsUpdateInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "States to set."
+  systems: [FlxAiSystemStateInput!]!
+}
+
+"The payload for the flxAiSystemsUpdate mutation."
+type FlxAiSystemsUpdatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Every system after the change."
+  systems: [FlxAiSystem!]!
+}
+
+"Result of a connection test."
+type FlxAiTestResult {
+  "PNG data URI of the sample (renderer test)."
+  image: String!
+
+  "Round trip in milliseconds."
+  ms: Int!
+
+  "Model reply (model test); empty for the renderer test."
+  text: String!
+
+  "Renderer that drew the sample (renderer test)."
+  via: String!
+}
+
+"A tool that the chat and the MCP server can call."
+type FlxAiTool {
+  "Old names that still work."
+  aliases: [String!]!
+
+  "A call waits for approval."
+  approval: Boolean!
+
+  "Average duration in the last 30 days, milliseconds."
+  avgMs: Int!
+
+  "Calls in the last 30 days."
+  calls: Int!
+
+  "Capability the caller needs."
+  capability: String!
+
+  "Offered in the Flux AI chat."
+  chat: Boolean!
+
+  "What the tool does."
+  description: String!
+
+  "Another plugin registered the same name and this one is inactive."
+  duplicate: Boolean!
+
+  "Failed calls in the last 30 days."
+  errors: Int!
+
+  "Offered over MCP."
+  mcp: Boolean!
+
+  "Tool name (with the plugin prefix)."
+  name: String!
+
+  "Switched off by an administrator."
+  off: Boolean!
+
+  "The name carries the plugin prefix."
+  prefixed: Boolean!
+
+  "The tool only reads."
+  readonly: Boolean!
+
+  "Plugins that offer the same name."
+  rivals: [String!]!
+
+  "Plugin folder that provides the tool."
+  source: String!
+
+  "Plugin name for display."
+  sourceLabel: String!
+
+  "Tool title for display."
+  title: String!
+}
+
+"Input for the flxAiToolPick mutation."
+input FlxAiToolPickInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Tool name."
+  name: String!
+
+  "Plugin folder that should provide it."
+  source: String!
+}
+
+"The payload for the flxAiToolPick mutation."
+type FlxAiToolPickPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Every tool after the change; empty when the input was refused."
+  tools: [FlxAiTool!]
+}
+
+"Time and errors of one tool."
+type FlxAiToolStat {
+  "Average duration, milliseconds."
+  avgMs: Int!
+
+  "Calls."
+  calls: Int!
+
+  "Failed calls."
+  errors: Int!
+
+  "Tool name."
+  key: String!
+
+  "Tool title for display."
+  label: String!
+
+  "Longest duration, milliseconds."
+  maxMs: Int!
+
+  "Plugin that provides the tool."
+  source: String!
+
+  "Total duration, milliseconds."
+  totalMs: Int!
+}
+
+"One tool to switch."
+input FlxAiToolStateInput {
+  "Tool name; an old alias works too."
+  name: String!
+
+  "Whether the tool is on."
+  on: Boolean!
+}
+
+"Input for the flxAiToolsUpdate mutation."
+input FlxAiToolsUpdateInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "States to set."
+  tools: [FlxAiToolStateInput!]!
+}
+
+"The payload for the flxAiToolsUpdate mutation."
+type FlxAiToolsUpdatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Every tool after the change; empty when the input was refused."
+  tools: [FlxAiTool!]
+}
+
+"One language version of a content."
+type FlxTranslation {
+  "Post ID of this version."
+  databaseId: Int!
+
+  "Editor address. Empty when the viewer cannot edit this version."
+  editUrl: String
+
+  "Global ID of the post (the same as the id of the content node)."
+  id: ID!
+
+  "This is the content the list was read from."
+  isSelf: Boolean!
+
+  "Language code of this version."
+  lang: String!
+
+  "WordPress post status (publish, draft, pending …). Anyone sees only published versions; people who can edit the version see the others too."
+  status: String!
+
+  "Title of this version."
+  title: String!
+
+  "Public address of this version. Empty until it is published."
+  url: String
 }
 
 "Connection between the ContentNode type and the User type"
@@ -5731,6 +6925,12 @@ type Page implements Node & ContentNode & UniformResourceIdentifiable & Database
 
   "Globally unique ID of the featured image assigned to the node"
   featuredImageId: ID
+
+  "Language code of this content. Empty for a type that is not translated and for shared pages (cart, checkout, my account)."
+  flxLanguage: String
+
+  "The language versions of this content, in language order, including itself. Drafts and private versions are listed only for people who can edit them. Empty for a type that is not translated."
+  flxTranslations: [FlxTranslation!]!
 
   "The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes."
   guid: String
@@ -6493,6 +7693,12 @@ type Post implements Node & ContentNode & UniformResourceIdentifiable & Database
 
   "Globally unique ID of the featured image assigned to the node"
   featuredImageId: ID
+
+  "Language code of this content. Empty for a type that is not translated and for shared pages (cart, checkout, my account)."
+  flxLanguage: String
+
+  "The language versions of this content, in language order, including itself. Drafts and private versions are listed only for people who can edit them. Empty for a type that is not translated."
+  flxTranslations: [FlxTranslation!]!
 
   "The global unique identifier for this content node. This is a stable, unique identifier for the node that does not change even if the node is moved or its url changes."
   guid: String
@@ -9030,846 +10236,6 @@ type DiscussionSettings implements Node {
   id: ID!
 }
 
-"A billing month: report, provider split, the month list and the credit state."
-type FlxAiBilling {
-  "OpenRouter account state; null before the first refresh."
-  credits: FlxAiCredits
-
-  "Link that downloads the month as CSV (carries a one-time check for the signed-in user)."
-  csvUrl: String!
-
-  "Month as Y-m."
-  month: String!
-
-  "The last 12 months."
-  months: [FlxAiMonth!]!
-
-  "Usage of the month."
-  report: FlxAiReport!
-}
-
-"The OpenRouter account state from the last refresh."
-type FlxAiCredits {
-  "When the state was read."
-  checked: FlxDateTime!
-
-  "Remaining account credit in USD; null when unknown."
-  credits: Float
-
-  "Limit of the key in USD; null when it has none."
-  limit: Float
-
-  "Remaining of the key limit in USD; null when it has none."
-  remaining: Float
-
-  "Total usage of the key in USD; null when unknown."
-  usage: Float
-}
-
-"A point in time with labels in the user&#039;s language."
-type FlxDateTime {
-  "ISO 8601 in UTC (2026-11-15T14:59:00Z)."
-  iso: String!
-
-  "Date and time for display, in the site time zone and the user&#039;s language."
-  label: String!
-
-  "Relative time for display (&quot;5 minutes ago&quot;)."
-  relative: String!
-
-  "Unix timestamp."
-  timestamp: Int!
-}
-
-"A month of the billing list."
-type FlxAiMonth {
-  "Model requests."
-  calls: Int!
-
-  "Cost in USD."
-  cost: Float!
-
-  "Month name for display."
-  label: String!
-
-  "Month as Y-m."
-  month: String!
-
-  "Saved by the prompt cache in USD."
-  saved: Float!
-}
-
-"Usage of Flux AI over a range: cost, time, tokens and tools."
-type FlxAiReport {
-  "By model."
-  byModel: [FlxAiBreakdownRow!]!
-
-  "By provider (billing months only)."
-  byProvider: [FlxAiBreakdownRow!]!
-
-  "By plugin and purpose."
-  byPurpose: [FlxAiBreakdownRow!]!
-
-  "By plugin."
-  bySource: [FlxAiBreakdownRow!]!
-
-  "Slowest tools first."
-  byTool: [FlxAiToolStat!]!
-
-  "One entry per day."
-  daily: [FlxAiReportDay!]!
-
-  "Start of the range."
-  from: FlxDateTime!
-
-  "End of the range."
-  to: FlxDateTime!
-
-  "Totals of the range."
-  totals: FlxAiReportTotals!
-}
-
-"One row of a usage breakdown (by plugin, model, purpose or provider)."
-type FlxAiBreakdownRow {
-  "Tokens read from the prompt cache."
-  cacheRead: Int!
-
-  "Model requests."
-  calls: Int!
-
-  "Cost in USD."
-  cost: Float!
-
-  "Failed requests and tool calls."
-  errors: Int!
-
-  "Cost in USD without the prompt cache."
-  fullCost: Float!
-
-  "Input tokens."
-  inTokens: Int!
-
-  "Raw key: source id, model id …"
-  key: String!
-
-  "Name for display."
-  label: String!
-
-  "Time spent in models, milliseconds."
-  modelMs: Int!
-
-  "Output tokens."
-  outTokens: Int!
-
-  "Part of the cost is estimated from the price list."
-  partial: Boolean!
-
-  "Time spent in tools, milliseconds."
-  toolMs: Int!
-
-  "Tool calls."
-  tools: Int!
-}
-
-"Time and errors of one tool."
-type FlxAiToolStat {
-  "Average duration, milliseconds."
-  avgMs: Int!
-
-  "Calls."
-  calls: Int!
-
-  "Failed calls."
-  errors: Int!
-
-  "Tool name."
-  key: String!
-
-  "Tool title for display."
-  label: String!
-
-  "Longest duration, milliseconds."
-  maxMs: Int!
-
-  "Plugin that provides the tool."
-  source: String!
-
-  "Total duration, milliseconds."
-  totalMs: Int!
-}
-
-"One day of a usage report."
-type FlxAiReportDay {
-  "Tokens read from the prompt cache."
-  cacheRead: Int!
-
-  "Model requests."
-  calls: Int!
-
-  "Cost in USD."
-  cost: Float!
-
-  "Day as Y-m-d in the site time zone."
-  date: String!
-
-  "Failed requests and tool calls."
-  errors: Int!
-
-  "Input tokens."
-  inTokens: Int!
-
-  "Time spent in models, milliseconds."
-  modelMs: Int!
-
-  "Output tokens."
-  outTokens: Int!
-
-  "Time spent in tools, milliseconds."
-  toolMs: Int!
-
-  "Tool calls."
-  tools: Int!
-}
-
-"Totals of a usage report."
-type FlxAiReportTotals {
-  "Tokens read from the prompt cache."
-  cacheRead: Int!
-
-  "Tokens written to the prompt cache."
-  cacheWrite: Int!
-
-  "Model requests."
-  calls: Int!
-
-  "Cost in USD."
-  cost: Float!
-
-  "Failed requests and tool calls."
-  errors: Int!
-
-  "Cost in USD without the prompt cache."
-  fullCost: Float!
-
-  "Input tokens."
-  inTokens: Int!
-
-  "Time spent in models, milliseconds."
-  modelMs: Int!
-
-  "Output tokens."
-  outTokens: Int!
-
-  "Saved by the prompt cache in USD."
-  saved: Float!
-
-  "Time spent in tools, milliseconds."
-  toolMs: Int!
-
-  "Tool calls."
-  tools: Int!
-}
-
-"Spending against one limit period."
-type FlxAiBudgetPeriod {
-  "day, week or month."
-  key: String!
-
-  "Period name in the user&#039;s language."
-  label: String!
-
-  "Limit in USD; 0 means unlimited."
-  limit: Float!
-
-  "The limit is reached."
-  over: Boolean!
-
-  "Share of the limit used, in percent (0 without a limit)."
-  pct: Float!
-
-  "When the period resets."
-  resets: FlxDateTime!
-
-  "Spent this period in USD."
-  spent: Float!
-}
-
-"The stored content of a log row: the last outgoing messages and the reply, shortened, with e-mail, phone, IBAN and keys masked."
-type FlxAiLogBody {
-  "Failure message; empty when it worked."
-  error: String!
-
-  "Log row ID."
-  logId: Int!
-
-  "The reply text."
-  reply: String!
-
-  "Outgoing messages."
-  request: [FlxAiLogMessage!]!
-
-  "Tool calls the reply asked for."
-  toolCalls: [String!]!
-}
-
-"One message of a stored request."
-type FlxAiLogMessage {
-  "system, user, assistant or tool."
-  role: String!
-
-  "Shortened text with personal data masked."
-  text: String!
-}
-
-"A choice of a select field."
-type FlxAiOption {
-  "Value to save."
-  id: String!
-
-  "Name for display."
-  label: String!
-}
-
-"What a log row records."
-enum FlxAiLogKind {
-  "A request to a language model."
-  MODEL
-
-  "A tool call."
-  TOOL
-}
-
-"A page of log rows, newest first."
-type FlxAiLogConnection {
-  "Records with their cursors."
-  edges: [FlxAiLogEdge!]!
-
-  "Records of this page."
-  nodes: [FlxAiLog!]!
-
-  "Paging information."
-  pageInfo: FlxPageInfo!
-
-  "All matching records (null when counting would be slow)."
-  totalCount: Int
-}
-
-"One FlxAiLog in a list, with its cursor."
-type FlxAiLogEdge {
-  "Opaque cursor of this record."
-  cursor: String!
-
-  "The record."
-  node: FlxAiLog!
-}
-
-"One model request or tool call."
-type FlxAiLog {
-  "Tokens read from the prompt cache."
-  cacheRead: Int!
-
-  "Tokens written to the prompt cache."
-  cacheWrite: Int!
-
-  "Chat it belongs to; 0 when none."
-  chatId: Int!
-
-  "Cost in USD."
-  cost: Float!
-
-  "Log row ID."
-  databaseId: Int!
-
-  "Raw failure reason; empty when it worked."
-  error: String!
-
-  "Failure for display; empty when it worked."
-  errorLabel: String!
-
-  "The cost is estimated from the price list."
-  estimated: Boolean!
-
-  "The content of the request was stored (flxAiLogBody)."
-  hasBody: Boolean!
-
-  "Input tokens."
-  inTokens: Int!
-
-  "Model request or tool call."
-  kind: FlxAiLogKind!
-
-  "Model id; empty for a tool call."
-  model: String!
-
-  "Model name for display."
-  modelLabel: String!
-
-  "Duration in milliseconds."
-  ms: Int!
-
-  "It worked."
-  ok: Boolean!
-
-  "Output tokens."
-  outTokens: Int!
-
-  "Provider that served it."
-  provider: String!
-
-  "Why it was made (chat, title, test …)."
-  purpose: String!
-
-  "Purpose for display."
-  purposeLabel: String!
-
-  "System that made the request."
-  source: String!
-
-  "System name for display."
-  sourceLabel: String!
-
-  "When it happened."
-  time: FlxDateTime!
-
-  "Tool name; empty for a model request."
-  tool: String!
-
-  "User it ran for; 0 for the system."
-  userId: Int!
-
-  "Name of the user; empty for the system."
-  userName: String!
-}
-
-"Where a page sits in a list."
-type FlxPageInfo {
-  "Cursor of the last record on this page; pass it as &quot;after&quot; for the next page."
-  endCursor: String
-
-  "More records follow this page."
-  hasNextPage: Boolean!
-
-  "Records come before this page."
-  hasPreviousPage: Boolean!
-
-  "Cursor of the first record on this page."
-  startCursor: String
-}
-
-"A language model of the catalog."
-type FlxAiModel {
-  "Context window in tokens; 0 when unknown."
-  context: Int!
-
-  "Model family."
-  family: String!
-
-  "Model id as saved (claude:… for Anthropic)."
-  id: String!
-
-  "Name for display."
-  name: String!
-
-  "USD per million input tokens."
-  priceIn: Float!
-
-  "USD per million output tokens."
-  priceOut: Float!
-
-  "Provider that serves it."
-  provider: FlxAiModelProvider!
-
-  "Can think before answering."
-  thinking: Boolean!
-
-  "Supports tools."
-  tools: Boolean!
-
-  "Understands images."
-  vision: Boolean!
-}
-
-"Provider of a language model."
-enum FlxAiModelProvider {
-  ""
-  ANTHROPIC
-
-  ""
-  OPENROUTER
-}
-
-"An API key: whether it is set, never its value."
-type FlxAiSecret {
-  "A key is saved (or set in wp-config.php)."
-  configured: Boolean!
-
-  "The key comes from a wp-config.php constant."
-  fromConfig: Boolean!
-
-  "Where the key is used."
-  group: FlxAiSecretGroup!
-
-  "Where to get the key; empty when unknown."
-  help: String!
-
-  "Last four characters of a saved key; empty for short keys."
-  hint: String!
-
-  "Provider name for display."
-  label: String!
-
-  "Setting name, e.g. key_openrouter."
-  name: String!
-}
-
-"Where an API key is used."
-enum FlxAiSecretGroup {
-  ""
-  MEDIA
-
-  ""
-  PROVIDER
-
-  ""
-  RENDER
-
-  ""
-  WEB
-}
-
-"Flux AI settings. API keys are not here, see flxAiSecrets."
-type FlxAiSettings {
-  "Anthropic workspace ID; only needed when the key is not tied to a workspace."
-  anthropicWorkspace: String!
-
-  "Claude prompt cache."
-  cache: FlxAiCacheMode!
-
-  "Show the shared chat in the admin panel."
-  chatAdmin: Boolean!
-
-  "Show the shared chat on the site for permitted logged-in users."
-  chatFront: Boolean!
-
-  "Most messages sent to the model (6–200)."
-  chatHistory: Int!
-
-  "Extra instructions added to every chat."
-  chatInstructions: String!
-
-  "Most steps the model may take in one turn (2–30)."
-  chatMaxRounds: Int!
-
-  "Default layout of the shared chat."
-  chatMode: FlxAiChatMode!
-
-  "Model of the shared chat; empty uses the default."
-  chatModel: String!
-
-  "WordPress roles that may use the shared chat."
-  chatRoles: [String!]!
-
-  "Let the model draw tables, cards, diagrams and charts as visuals."
-  chatWidgets: Boolean!
-
-  "Delete logs and chats when the plugin is deleted."
-  deleteData: Boolean!
-
-  "How deeply Claude thinks."
-  effort: FlxAiEffort!
-
-  "Chat and agents may generate images (each image is charged)."
-  imageToolOn: Boolean!
-
-  "Stop requests or only warn when a limit is reached."
-  limitAction: FlxAiLimitAction!
-
-  "Daily spending limit in USD; 0 means unlimited."
-  limitDay: Float!
-
-  "Monthly spending limit in USD; 0 means unlimited."
-  limitMonth: Float!
-
-  "E-mail the admin at the threshold and when a limit is reached."
-  limitNotify: Boolean!
-
-  "Warning threshold in percent of a limit (10–99)."
-  limitWarnPct: Int!
-
-  "Weekly spending limit in USD; 0 means unlimited."
-  limitWeek: Float!
-
-  "Also store shortened, masked request and reply content."
-  logBodies: Boolean!
-
-  "Days stored content is kept; 0 keeps it forever."
-  logBodyDays: Int!
-
-  "Days usage logs are kept; 0 keeps them forever."
-  logDays: Int!
-
-  "Days image and video job records are kept (7–1825); generated files are not deleted."
-  mediaDays: Int!
-
-  "Default image model (an id of FlxAiSettingsOptions.mediaModels)."
-  mediaImageModel: String!
-
-  "Default video model (an id of FlxAiSettingsOptions.mediaModels)."
-  mediaVideoModel: String!
-
-  "Default model, used when a plugin names none. Empty picks one from the saved keys."
-  model: String!
-
-  "Gotenberg address that turns visuals into images; empty for none."
-  renderUrl: String!
-
-  "Gotenberg user name (basic authentication)."
-  renderUser: String!
-
-  "Allow the virtual shell tool on the workspace files."
-  shellOn: Boolean!
-
-  "The model each plugin uses; empty means the default model."
-  sourceModels: [FlxAiSourceModel!]!
-
-  "Show the model&#039;s thinking summary in chat."
-  thinking: Boolean!
-
-  "Model that names chats; empty uses the chat model."
-  titleModel: String!
-
-  "Allow the tool that reads public web pages."
-  webFetchOn: Boolean!
-
-  "Allow the web search tool."
-  webOn: Boolean!
-
-  "Search provider id, or auto for the first provider with a key."
-  webProvider: String!
-
-  "Cost per 1,000 searches in USD; above 0 each search is logged and counted in the limit."
-  webSearchCost: Float!
-
-  "Monthly search limit; 0 means unlimited."
-  webSearchMonth: Int!
-}
-
-"Claude prompt cache."
-enum FlxAiCacheMode {
-  ""
-  FIVE_MINUTES
-
-  ""
-  OFF
-
-  ""
-  ONE_HOUR
-}
-
-"Default layout of the shared chat."
-enum FlxAiChatMode {
-  ""
-  BUBBLE
-
-  ""
-  DOCK
-
-  ""
-  PAGE
-}
-
-"How deeply Claude thinks."
-enum FlxAiEffort {
-  ""
-  HIGH
-
-  ""
-  LOW
-
-  ""
-  MEDIUM
-}
-
-"What happens when a spending limit is reached."
-enum FlxAiLimitAction {
-  ""
-  BLOCK
-
-  ""
-  WARN
-}
-
-"The model one plugin uses; empty means the default model."
-type FlxAiSourceModel {
-  "Name for display."
-  label: String!
-
-  "Model id; empty means the default model."
-  model: String!
-
-  "System id, e.g. flx-chat."
-  source: String!
-}
-
-"Choices of the settings page and facts it shows."
-type FlxAiSettingsOptions {
-  "The model used when none is chosen."
-  defaultModel: String!
-
-  "Image and video catalog."
-  mediaModels: [FlxAiMediaModel!]!
-
-  "Image and video providers."
-  mediaProviders: [FlxAiOption!]!
-
-  "A model provider key is saved."
-  providersReady: Boolean!
-
-  "Visual renderer: gotenberg, imagick or empty for none."
-  renderer: String!
-
-  "WordPress roles."
-  roles: [FlxAiOption!]!
-
-  "Web searches this month."
-  webMonthCount: Int!
-
-  "Web search providers."
-  webProviders: [FlxAiOption!]!
-}
-
-"An image or video model of the catalog."
-type FlxAiMediaModel {
-  "Provider chosen automatically (the first with a key); empty when none has a key."
-  auto: String!
-
-  "Model id to save."
-  id: String!
-
-  "Image or video."
-  kind: FlxAiMediaKind!
-
-  "Name for display."
-  label: String!
-
-  "Provider ids in the order they are tried."
-  routes: [String!]!
-}
-
-"Kind of a media model."
-enum FlxAiMediaKind {
-  ""
-  IMAGE
-
-  ""
-  VIDEO
-}
-
-"A system (plugin) that uses Flux AI, with its usage of the last 30 days."
-type FlxAiSystem {
-  "The plugin is active."
-  active: Boolean!
-
-  "Model requests in 30 days."
-  calls: Int!
-
-  "Cost in USD in 30 days."
-  cost: Float!
-
-  "Failures in 30 days."
-  errors: Int!
-
-  "The system declares AI settings of its own (classic page)."
-  hasAiSettings: Boolean!
-
-  "The plugin is installed."
-  installed: Boolean!
-
-  "Name for display."
-  label: String!
-
-  "Last use; null when unused in 30 days."
-  lastUsed: FlxDateTime
-
-  "Model the system uses."
-  model: String!
-
-  "Model name for display."
-  modelLabel: String!
-
-  "AI is on for this system. A system that is off cannot send requests."
-  on: Boolean!
-
-  "The system&#039;s own settings page, relative to wp-admin; empty when none."
-  settingsPage: String!
-
-  "System id, e.g. flx-chat."
-  source: String!
-
-  "Tokens in 30 days."
-  tokens: Int!
-
-  "Tool calls in 30 days."
-  tools: Int!
-}
-
-"A tool that the chat and the MCP server can call."
-type FlxAiTool {
-  "Old names that still work."
-  aliases: [String!]!
-
-  "A call waits for approval."
-  approval: Boolean!
-
-  "Average duration in the last 30 days, milliseconds."
-  avgMs: Int!
-
-  "Calls in the last 30 days."
-  calls: Int!
-
-  "Capability the caller needs."
-  capability: String!
-
-  "Offered in the Flux AI chat."
-  chat: Boolean!
-
-  "What the tool does."
-  description: String!
-
-  "Another plugin registered the same name and this one is inactive."
-  duplicate: Boolean!
-
-  "Failed calls in the last 30 days."
-  errors: Int!
-
-  "Offered over MCP."
-  mcp: Boolean!
-
-  "Tool name (with the plugin prefix)."
-  name: String!
-
-  "Switched off by an administrator."
-  off: Boolean!
-
-  "The name carries the plugin prefix."
-  prefixed: Boolean!
-
-  "The tool only reads."
-  readonly: Boolean!
-
-  "Plugins that offer the same name."
-  rivals: [String!]!
-
-  "Plugin folder that provides the tool."
-  source: String!
-
-  "Plugin name for display."
-  sourceLabel: String!
-
-  "Tool title for display."
-  title: String!
-}
-
 "A capability a FluxWP package checks."
 type FlxCapability {
   "Whether the current user has it."
@@ -9886,6 +10252,222 @@ type FlxCapability {
 
   "Package slug that declares it; empty when not given."
   package: String!
+}
+
+"An AI translation job: the draft translation plus the parts the AI translates one request at a time (the host stops a request at about 60 seconds)."
+type FlxLanguageJob {
+  "Editor address of the translation."
+  editUrl: String
+
+  "Parts that stayed in the source language (&quot;meta&quot; or a step number). Check them in the editor."
+  errors: [String!]!
+
+  "Job key. Send it to flxLanguageTranslateStep."
+  id: ID!
+
+  "Target language code."
+  lang: String!
+
+  "Post ID of the source content."
+  sourceId: Int!
+
+  "State of the job."
+  status: FlxLanguageJobStatus!
+
+  "Last finished step; -1 before the first. Run steps 0 to total - 1."
+  step: Int!
+
+  "Number of steps: the title/excerpt/SEO step plus one per body part."
+  total: Int!
+
+  "Post ID of the translation being written."
+  translationId: Int!
+}
+
+"State of an AI translation job."
+enum FlxLanguageJobStatus {
+  "The translation is written."
+  DONE
+
+  "The last step failed; running it again retries."
+  FAILED
+
+  "Steps are still to run."
+  RUNNING
+}
+
+"The Languages settings."
+type FlxLanguageSettings {
+  "Flux AI &amp; MCP is installed and ready, so AI translation buttons work."
+  aiAvailable: Boolean!
+
+  "Languages that can still be added."
+  catalog: [FlxLanguageCatalogEntry!]!
+
+  "Code of the default language (no address prefix)."
+  defaultLanguage: String!
+
+  "Show the default-language version when a translation is missing."
+  fallback: Boolean!
+
+  "Country information of this request (does country-based suggestion work on this server?)."
+  geo: FlxLanguageGeo!
+
+  "Two-letter country codes that see the default language when the browser language is not on the site."
+  homeCountries: [String!]!
+
+  "Every language, inactive ones too; the default language first."
+  languages: [FlxLanguage!]!
+
+  "Public content types that can be translated."
+  postTypeChoices: [FlxLanguagePostType!]!
+
+  "Content types that are translated."
+  postTypes: [String!]!
+
+  "Automatic language for first-time visitors."
+  suggest: FlxLanguageSuggestMode!
+
+  "Language used when neither the browser language nor the country&#039;s language is active."
+  suggestTo: String!
+
+  "How the language switcher names languages."
+  switcher: FlxLanguageSwitcherStyle!
+
+  "Where the theme shows the language switcher."
+  switcherPlace: FlxLanguageSwitcherPlace!
+
+  "Site texts that can be translated."
+  textFields: [FlxLanguageTextField!]!
+
+  "Translated site texts. A text that is not listed shows in the default language."
+  texts: [FlxLanguageSiteText!]!
+}
+
+"A language that can be added to the site."
+type FlxLanguageCatalogEntry {
+  "Language code."
+  code: String!
+
+  "Flag emoji."
+  flag: String!
+
+  "WordPress locale."
+  locale: String!
+
+  "Name."
+  name: String!
+}
+
+"Country information of the settings page: the code and the header it came from."
+type FlxLanguageGeo {
+  "Two-letter country code of the current request. Empty when the server sends none."
+  country: String
+
+  "Name of the header the country came from. Empty when none."
+  source: String
+}
+
+"A language of the site."
+type FlxLanguage {
+  "Visitors can open this language. The default language is always active."
+  active: Boolean!
+
+  "Address of the language root: &quot;/&quot; for the default language, &quot;/en/&quot; for the others."
+  address: String!
+
+  "Language code, also the address prefix (en, de, pt-br)."
+  code: String!
+
+  "The default language (no address prefix)."
+  default: Boolean!
+
+  "Flag emoji. Empty when none is set."
+  flag: String
+
+  "hreflang value search engines get."
+  hreflang: String!
+
+  "WordPress locale of the language&#039;s content (en_US)."
+  locale: String!
+
+  "Name people see (English, Deutsch)."
+  name: String!
+}
+
+"A public content type that can be translated."
+type FlxLanguagePostType {
+  "Plural label."
+  label: String!
+
+  "Post type name (post, page …)."
+  name: String!
+
+  "Translated now."
+  selected: Boolean!
+}
+
+"What a first-time visitor gets when their language differs from the page."
+enum FlxLanguageSuggestMode {
+  "A suggestion bar at the top of the page."
+  BANNER
+
+  "Nothing."
+  OFF
+
+  "The site opens directly in their language."
+  REDIRECT
+}
+
+"How the language switcher names the languages."
+enum FlxLanguageSwitcherStyle {
+  "Language codes (TR · EN)."
+  CODE
+
+  "Flags."
+  FLAG
+
+  "Language names."
+  NAME
+}
+
+"Where the theme shows the language switcher."
+enum FlxLanguageSwitcherPlace {
+  "Both."
+  BOTH
+
+  "Footer."
+  FOOTER
+
+  "Header and mobile menu."
+  HEADER
+}
+
+"A site text that can be translated."
+type FlxLanguageTextField {
+  "Text key."
+  key: String!
+
+  "What the text is, in the user&#039;s language."
+  label: String!
+
+  "The text in the default language; shown as a hint while the translation is empty."
+  placeholder: String!
+
+  "A long text (shown in a multi-line box)."
+  textarea: Boolean!
+}
+
+"A site text (site title, tagline, home page title …) in one language."
+type FlxLanguageSiteText {
+  "Text key (blogname, blogdescription, flxseo_home_title …)."
+  key: String!
+
+  "Language code (never the default language)."
+  lang: String!
+
+  "The text in that language."
+  value: String!
 }
 
 "A FluxWP role: Director, Manager, Staff or a role added from the panel."
@@ -9976,6 +10558,21 @@ type FlxPhone {
 
   "E.164 form (+905301234567); empty when the number is not valid."
   e164: String!
+}
+
+"Where a page sits in a list."
+type FlxPageInfo {
+  "Cursor of the last record on this page; pass it as &quot;after&quot; for the next page."
+  endCursor: String
+
+  "More records follow this page."
+  hasNextPage: Boolean!
+
+  "Records come before this page."
+  hasPreviousPage: Boolean!
+
+  "Cursor of the first record on this page."
+  startCursor: String
 }
 
 "A package group of the Roles and access table."
@@ -10221,6 +10818,21 @@ type FlxTaskActivity {
   userId: Int!
 }
 
+"A point in time with labels in the user&#039;s language."
+type FlxDateTime {
+  "ISO 8601 in UTC (2026-11-15T14:59:00Z)."
+  iso: String!
+
+  "Date and time for display, in the site time zone and the user&#039;s language."
+  label: String!
+
+  "Relative time for display (&quot;5 minutes ago&quot;)."
+  relative: String!
+
+  "Unix timestamp."
+  timestamp: Int!
+}
+
 "Free-form JSON value (object, list, string, number or boolean)."
 scalar FlxJSON
 
@@ -10384,6 +10996,12 @@ type FlxViewer {
 
   "Name of the viewer&#039;s FluxWP role; empty without one."
   roleLabel: String
+}
+
+"The country the server sees for the current request."
+type FlxVisitorCountry {
+  "Two-letter country code (TR, DE …). Empty when the server sends no country header; the browser time zone is the fallback then."
+  country: String
 }
 
 "The general setting type"
@@ -12545,6 +13163,36 @@ type RootMutation {
     input: DeleteUserInput!
   ): DeleteUserPayload
 
+  "Sets the language of a content (the editor&#039;s Language box). If another content of the same group already has that language, this one leaves the group."
+  flxLanguageSet(
+    "Input for the flxLanguageSet mutation"
+    input: FlxLanguageSetInput!
+  ): FlxLanguageSetPayload
+
+  "Saves the Languages settings. A field that is not sent stays as it is; `languages` and `texts`, when sent, replace the whole list (a language that is not listed is removed). Nothing is written when any part is invalid."
+  flxLanguageSettingsUpdate(
+    "Input for the flxLanguageSettingsUpdate mutation"
+    input: FlxLanguageSettingsUpdateInput!
+  ): FlxLanguageSettingsUpdatePayload
+
+  "Starts an AI translation of a content (needs Flux AI &amp; MCP): creates the draft translation and the list of parts. Run flxLanguageTranslateStep for step 0 to total - 1."
+  flxLanguageTranslateStart(
+    "Input for the flxLanguageTranslateStart mutation"
+    input: FlxLanguageTranslateStartInput!
+  ): FlxLanguageTranslateStartPayload
+
+  "Runs one step of an AI translation job. Each step is one request, so no request runs into the host time limit. The last step writes the body and finishes the job."
+  flxLanguageTranslateStep(
+    "Input for the flxLanguageTranslateStep mutation"
+    input: FlxLanguageTranslateStepInput!
+  ): FlxLanguageTranslateStepPayload
+
+  "Creates the translation of a content in a language: a draft copy to translate by hand (terms, meta and image are copied). Returns the existing one when the language already has a version."
+  flxLanguageTranslationCreate(
+    "Input for the flxLanguageTranslationCreate mutation"
+    input: FlxLanguageTranslationCreateInput!
+  ): FlxLanguageTranslationCreatePayload
+
   "Asks OpenRouter for the credit and key state and stores it."
   flxAiCreditsRefresh(
     "Input for the flxAiCreditsRefresh mutation"
@@ -13392,22 +14040,31 @@ type DeleteUserPayload {
   user: User
 }
 
-"Input for the flxAiCreditsRefresh mutation."
-input FlxAiCreditsRefreshInput {
+"Input for the flxLanguageSet mutation."
+input FlxLanguageSetInput {
   "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
   clientMutationId: String
+
+  "Global ID or database ID of the content."
+  id: ID!
+
+  "Language code."
+  lang: String!
 }
 
-"The payload for the flxAiCreditsRefresh mutation."
-type FlxAiCreditsRefreshPayload {
+"The payload for the flxLanguageSet mutation."
+type FlxLanguageSetPayload {
   "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
   clientMutationId: String
 
-  "The state that was read."
-  credits: FlxAiCredits
-
   "Input problems to show next to the form fields. Empty when the mutation succeeded."
   errors: [FlxUserError!]!
+
+  "Language of the content after the change."
+  lang: String
+
+  "Language versions of the content after the change."
+  translations: [FlxTranslation!]
 }
 
 "A problem with the input of a mutation, shown next to the form field."
@@ -13422,310 +14079,157 @@ type FlxUserError {
   message: String!
 }
 
-"Input for the flxAiModelTest mutation."
-input FlxAiModelTestInput {
+"Input for the flxLanguageSettingsUpdate mutation."
+input FlxLanguageSettingsUpdateInput {
+  "Code of a catalog language to add. It is added inactive: prepare its content, then activate it."
+  addLanguage: String
+
   "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
   clientMutationId: String
 
-  "Model id; empty uses the default model."
-  model: String
+  "Code of the default language."
+  defaultLanguage: String
+
+  "Show the default-language version when a translation is missing."
+  fallback: Boolean
+
+  "Two-letter country codes that see the default language."
+  homeCountries: [String!]
+
+  "All languages after the change. The default language cannot be removed."
+  languages: [FlxLanguageInput!]
+
+  "Content types to translate."
+  postTypes: [String!]
+
+  "Automatic language for first-time visitors."
+  suggest: FlxLanguageSuggestMode
+
+  "Language used when neither the browser language nor the country's language is active."
+  suggestTo: String
+
+  "How the language switcher names languages."
+  switcher: FlxLanguageSwitcherStyle
+
+  "Where the theme shows the language switcher."
+  switcherPlace: FlxLanguageSwitcherPlace
+
+  "All translated site texts after the change."
+  texts: [FlxLanguageSiteTextInput!]
 }
 
-"The payload for the flxAiModelTest mutation."
-type FlxAiModelTestPayload {
+"A language of the site."
+input FlxLanguageInput {
+  "Visitors can open it. The default language is always active."
+  active: Boolean
+
+  "Language code and address prefix (en, de, pt-br)."
+  code: String!
+
+  "Flag emoji."
+  flag: String
+
+  "WordPress locale of the content (en_US)."
+  locale: String
+
+  "Name people see. Empty keeps the code."
+  name: String
+}
+
+"A site text in one language. An empty value removes the translation."
+input FlxLanguageSiteTextInput {
+  "Text key from textFields."
+  key: String!
+
+  "Language code (not the default language)."
+  lang: String!
+
+  "The text."
+  value: String!
+}
+
+"The payload for the flxLanguageSettingsUpdate mutation."
+type FlxLanguageSettingsUpdatePayload {
   "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
   clientMutationId: String
 
   "Input problems to show next to the form fields. Empty when the mutation succeeded."
   errors: [FlxUserError!]!
 
-  "The reply and the round trip."
-  result: FlxAiTestResult
+  "The settings after the change."
+  settings: FlxLanguageSettings
 }
 
-"Result of a connection test."
-type FlxAiTestResult {
-  "PNG data URI of the sample (renderer test)."
-  image: String!
-
-  "Round trip in milliseconds."
-  ms: Int!
-
-  "Model reply (model test); empty for the renderer test."
-  text: String!
-
-  "Renderer that drew the sample (renderer test)."
-  via: String!
-}
-
-"Input for the flxAiRenderTest mutation."
-input FlxAiRenderTestInput {
+"Input for the flxLanguageTranslateStart mutation."
+input FlxLanguageTranslateStartInput {
   "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
   clientMutationId: String
 
-  "Gotenberg password; empty uses the saved one."
-  pass: String
+  "Target language code."
+  lang: String!
 
-  "Gotenberg address; empty tries the local renderer."
-  url: String
-
-  "Gotenberg user name."
-  user: String
+  "Global ID or database ID of the source content."
+  sourceId: ID!
 }
 
-"The payload for the flxAiRenderTest mutation."
-type FlxAiRenderTestPayload {
+"The payload for the flxLanguageTranslateStart mutation."
+type FlxLanguageTranslateStartPayload {
   "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
   clientMutationId: String
 
   "Input problems to show next to the form fields. Empty when the mutation succeeded."
   errors: [FlxUserError!]!
 
-  "The sample image and the time it took."
-  result: FlxAiTestResult
+  "The job to step through."
+  job: FlxLanguageJob
 }
 
-"Input for the flxAiSettingsUpdate mutation."
-input FlxAiSettingsUpdateInput {
-  "Anthropic workspace ID; only needed when the key is not tied to a workspace."
-  anthropicWorkspace: String
-
-  "Claude prompt cache."
-  cache: FlxAiCacheMode
-
-  "Show the shared chat in the admin panel."
-  chatAdmin: Boolean
-
-  "Show the shared chat on the site for permitted logged-in users."
-  chatFront: Boolean
-
-  "Most messages sent to the model (6–200)."
-  chatHistory: Int
-
-  "Extra instructions added to every chat."
-  chatInstructions: String
-
-  "Most steps the model may take in one turn (2–30)."
-  chatMaxRounds: Int
-
-  "Default layout of the shared chat."
-  chatMode: FlxAiChatMode
-
-  "Model of the shared chat; empty uses the default."
-  chatModel: String
-
-  "WordPress roles that may use the shared chat."
-  chatRoles: [String!]
-
-  "Let the model draw tables, cards, diagrams and charts as visuals."
-  chatWidgets: Boolean
-
+"Input for the flxLanguageTranslateStep mutation."
+input FlxLanguageTranslateStepInput {
   "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
   clientMutationId: String
 
-  "Delete logs and chats when the plugin is deleted."
-  deleteData: Boolean
+  "Job key from flxLanguageTranslateStart."
+  jobId: ID!
 
-  "How deeply Claude thinks."
-  effort: FlxAiEffort
-
-  "Chat and agents may generate images (each image is charged)."
-  imageToolOn: Boolean
-
-  "Stop requests or only warn when a limit is reached."
-  limitAction: FlxAiLimitAction
-
-  "Daily spending limit in USD; 0 means unlimited."
-  limitDay: Float
-
-  "Monthly spending limit in USD; 0 means unlimited."
-  limitMonth: Float
-
-  "E-mail the admin at the threshold and when a limit is reached."
-  limitNotify: Boolean
-
-  "Warning threshold in percent of a limit (10–99)."
-  limitWarnPct: Int
-
-  "Weekly spending limit in USD; 0 means unlimited."
-  limitWeek: Float
-
-  "Also store shortened, masked request and reply content."
-  logBodies: Boolean
-
-  "Days stored content is kept; 0 keeps it forever."
-  logBodyDays: Int
-
-  "Days usage logs are kept; 0 keeps them forever."
-  logDays: Int
-
-  "Days image and video job records are kept (7–1825); generated files are not deleted."
-  mediaDays: Int
-
-  "Default image model (an id of FlxAiSettingsOptions.mediaModels)."
-  mediaImageModel: String
-
-  "Default video model (an id of FlxAiSettingsOptions.mediaModels)."
-  mediaVideoModel: String
-
-  "Default model, used when a plugin names none. Empty picks one from the saved keys."
-  model: String
-
-  "Gotenberg address that turns visuals into images; empty for none."
-  renderUrl: String
-
-  "Gotenberg user name (basic authentication)."
-  renderUser: String
-
-  "API keys to write or remove; keys you leave out stay as they are."
-  secrets: [FlxAiSecretInput!]
-
-  "Allow the virtual shell tool on the workspace files."
-  shellOn: Boolean
-
-  "The model each plugin uses; plugins you leave out keep theirs."
-  sourceModels: [FlxAiSourceModelInput!]
-
-  "Show the model's thinking summary in chat."
-  thinking: Boolean
-
-  "Model that names chats; empty uses the chat model."
-  titleModel: String
-
-  "Allow the tool that reads public web pages."
-  webFetchOn: Boolean
-
-  "Allow the web search tool."
-  webOn: Boolean
-
-  "Search provider id, or auto for the first provider with a key."
-  webProvider: String
-
-  "Cost per 1,000 searches in USD; above 0 each search is logged and counted in the limit."
-  webSearchCost: Float
-
-  "Monthly search limit; 0 means unlimited."
-  webSearchMonth: Int
+  "Step to run, from 0 to total - 1."
+  step: Int!
 }
 
-"Writes or removes one API key."
-input FlxAiSecretInput {
-  "Remove the saved key."
-  clear: Boolean
-
-  "Setting name from flxAiSecrets, e.g. key_openrouter."
-  name: String!
-
-  "The new key. Empty leaves the saved key as it is."
-  value: String
-}
-
-"The model one plugin uses."
-input FlxAiSourceModelInput {
-  "Model id; empty means the default model."
-  model: String!
-
-  "System id."
-  source: String!
-}
-
-"The payload for the flxAiSettingsUpdate mutation."
-type FlxAiSettingsUpdatePayload {
+"The payload for the flxLanguageTranslateStep mutation."
+type FlxLanguageTranslateStepPayload {
   "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
   clientMutationId: String
 
   "Input problems to show next to the form fields. Empty when the mutation succeeded."
   errors: [FlxUserError!]!
 
-  "The keys after the change (set or not)."
-  secrets: [FlxAiSecret!]!
-
-  "Settings after the change."
-  settings: FlxAiSettings
+  "The job after the step."
+  job: FlxLanguageJob
 }
 
-"Input for the flxAiSystemsUpdate mutation."
-input FlxAiSystemsUpdateInput {
+"Input for the flxLanguageTranslationCreate mutation."
+input FlxLanguageTranslationCreateInput {
   "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
   clientMutationId: String
 
-  "States to set."
-  systems: [FlxAiSystemStateInput!]!
+  "Target language code."
+  lang: String!
+
+  "Global ID or database ID of the source content."
+  sourceId: ID!
 }
 
-"Whether AI is on for one system."
-input FlxAiSystemStateInput {
-  "AI is on for the system."
-  on: Boolean!
-
-  "System id."
-  source: String!
-}
-
-"The payload for the flxAiSystemsUpdate mutation."
-type FlxAiSystemsUpdatePayload {
+"The payload for the flxLanguageTranslationCreate mutation."
+type FlxLanguageTranslationCreatePayload {
   "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
   clientMutationId: String
 
   "Input problems to show next to the form fields. Empty when the mutation succeeded."
   errors: [FlxUserError!]!
 
-  "Every system after the change."
-  systems: [FlxAiSystem!]!
-}
-
-"Input for the flxAiToolPick mutation."
-input FlxAiToolPickInput {
-  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
-  clientMutationId: String
-
-  "Tool name."
-  name: String!
-
-  "Plugin folder that should provide it."
-  source: String!
-}
-
-"The payload for the flxAiToolPick mutation."
-type FlxAiToolPickPayload {
-  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
-  clientMutationId: String
-
-  "Input problems to show next to the form fields. Empty when the mutation succeeded."
-  errors: [FlxUserError!]!
-
-  "Every tool after the change; empty when the input was refused."
-  tools: [FlxAiTool!]
-}
-
-"Input for the flxAiToolsUpdate mutation."
-input FlxAiToolsUpdateInput {
-  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
-  clientMutationId: String
-
-  "States to set."
-  tools: [FlxAiToolStateInput!]!
-}
-
-"One tool to switch."
-input FlxAiToolStateInput {
-  "Tool name; an old alias works too."
-  name: String!
-
-  "Whether the tool is on."
-  on: Boolean!
-}
-
-"The payload for the flxAiToolsUpdate mutation."
-type FlxAiToolsUpdatePayload {
-  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
-  clientMutationId: String
-
-  "Input problems to show next to the form fields. Empty when the mutation succeeded."
-  errors: [FlxUserError!]!
-
-  "Every tool after the change; empty when the input was refused."
-  tools: [FlxAiTool!]
+  "The translation."
+  translation: FlxTranslation
 }
 
 "Input for the flxRoleCreate mutation."

@@ -4,25 +4,6 @@
 type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 /** Internal type. DO NOT USE DIRECTLY. */
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
-/** What a log row records. */
-export type FlxAiLogKind =
-  /** A request to a language model. */
-  | 'MODEL'
-  /** A tool call. */
-  | 'TOOL';
-
-/** Provider of a language model. */
-export type FlxAiModelProvider =
-  | 'ANTHROPIC'
-  | 'OPENROUTER';
-
-/** Where an API key is used. */
-export type FlxAiSecretGroup =
-  | 'MEDIA'
-  | 'PROVIDER'
-  | 'RENDER'
-  | 'WEB';
-
 /** Claude prompt cache. */
 export type FlxAiCacheMode =
   | 'FIVE_MINUTES'
@@ -46,30 +27,22 @@ export type FlxAiLimitAction =
   | 'BLOCK'
   | 'WARN';
 
+/** What a log row records. */
+export type FlxAiLogKind =
+  /** A request to a language model. */
+  | 'MODEL'
+  /** A tool call. */
+  | 'TOOL';
+
 /** Kind of a media model. */
 export type FlxAiMediaKind =
   | 'IMAGE'
   | 'VIDEO';
 
-/** What a task row is. */
-export type FlxTaskKind =
-  /** An agenda item of a meeting. */
-  | 'AGENDA'
-  /** A decision taken in a meeting. */
-  | 'DECISION'
-  /** A task. */
-  | 'TASK';
-
-/** What the current user may do on a list. */
-export type FlxTaskRole =
-  /** Manage the list and its members. */
-  | 'ADMIN'
-  /** See and comment. */
-  | 'COMMENT'
-  /** Create and edit tasks. */
-  | 'EDIT'
-  /** See tasks. */
-  | 'VIEW';
+/** Provider of a language model. */
+export type FlxAiModelProvider =
+  | 'ANTHROPIC'
+  | 'OPENROUTER';
 
 /** Input for the flxAiModelTest mutation. */
 export type FlxAiModelTestInput = {
@@ -89,6 +62,23 @@ export type FlxAiRenderTestInput = {
   url?: string | null | undefined;
   /** Gotenberg user name. */
   user?: string | null | undefined;
+};
+
+/** Where an API key is used. */
+export type FlxAiSecretGroup =
+  | 'MEDIA'
+  | 'PROVIDER'
+  | 'RENDER'
+  | 'WEB';
+
+/** Writes or removes one API key. */
+export type FlxAiSecretInput = {
+  /** Remove the saved key. */
+  clear?: boolean | null | undefined;
+  /** Setting name from flxAiSecrets, e.g. key_openrouter. */
+  name: string;
+  /** The new key. Empty leaves the saved key as it is. */
+  value?: string | null | undefined;
 };
 
 /** Input for the flxAiSettingsUpdate mutation. */
@@ -175,20 +165,18 @@ export type FlxAiSettingsUpdateInput = {
   webSearchMonth?: number | null | undefined;
 };
 
-/** Writes or removes one API key. */
-export type FlxAiSecretInput = {
-  /** Remove the saved key. */
-  clear?: boolean | null | undefined;
-  /** Setting name from flxAiSecrets, e.g. key_openrouter. */
-  name: string;
-  /** The new key. Empty leaves the saved key as it is. */
-  value?: string | null | undefined;
-};
-
 /** The model one plugin uses. */
 export type FlxAiSourceModelInput = {
   /** Model id; empty means the default model. */
   model: string;
+  /** System id. */
+  source: string;
+};
+
+/** Whether AI is on for one system. */
+export type FlxAiSystemStateInput = {
+  /** AI is on for the system. */
+  on: boolean;
   /** System id. */
   source: string;
 };
@@ -201,14 +189,6 @@ export type FlxAiSystemsUpdateInput = {
   systems: Array<FlxAiSystemStateInput>;
 };
 
-/** Whether AI is on for one system. */
-export type FlxAiSystemStateInput = {
-  /** AI is on for the system. */
-  on: boolean;
-  /** System id. */
-  source: string;
-};
-
 /** Input for the flxAiToolPick mutation. */
 export type FlxAiToolPickInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -219,6 +199,14 @@ export type FlxAiToolPickInput = {
   source: string;
 };
 
+/** One tool to switch. */
+export type FlxAiToolStateInput = {
+  /** Tool name; an old alias works too. */
+  name: string;
+  /** Whether the tool is on. */
+  on: boolean;
+};
+
 /** Input for the flxAiToolsUpdate mutation. */
 export type FlxAiToolsUpdateInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -227,12 +215,152 @@ export type FlxAiToolsUpdateInput = {
   tools: Array<FlxAiToolStateInput>;
 };
 
-/** One tool to switch. */
-export type FlxAiToolStateInput = {
-  /** Tool name; an old alias works too. */
-  name: string;
-  /** Whether the tool is on. */
-  on: boolean;
+/** State of an AI translation job. */
+export type FlxLanguageJobStatus =
+  /** The translation is written. */
+  | 'DONE'
+  /** The last step failed; running it again retries. */
+  | 'FAILED'
+  /** Steps are still to run. */
+  | 'RUNNING';
+
+/** What a first-time visitor gets when their language differs from the page. */
+export type FlxLanguageSuggestMode =
+  /** A suggestion bar at the top of the page. */
+  | 'BANNER'
+  /** Nothing. */
+  | 'OFF'
+  /** The site opens directly in their language. */
+  | 'REDIRECT';
+
+/** How the language switcher names the languages. */
+export type FlxLanguageSwitcherStyle =
+  /** Language codes (TR · EN). */
+  | 'CODE'
+  /** Flags. */
+  | 'FLAG'
+  /** Language names. */
+  | 'NAME';
+
+/** Where the theme shows the language switcher. */
+export type FlxLanguageSwitcherPlace =
+  /** Both. */
+  | 'BOTH'
+  /** Footer. */
+  | 'FOOTER'
+  /** Header and mobile menu. */
+  | 'HEADER';
+
+/** What a task row is. */
+export type FlxTaskKind =
+  /** An agenda item of a meeting. */
+  | 'AGENDA'
+  /** A decision taken in a meeting. */
+  | 'DECISION'
+  /** A task. */
+  | 'TASK';
+
+/** What the current user may do on a list. */
+export type FlxTaskRole =
+  /** Manage the list and its members. */
+  | 'ADMIN'
+  /** See and comment. */
+  | 'COMMENT'
+  /** Create and edit tasks. */
+  | 'EDIT'
+  /** See tasks. */
+  | 'VIEW';
+
+/** Input for the flxLanguageSet mutation. */
+export type FlxLanguageSetInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Global ID or database ID of the content. */
+  id: string;
+  /** Language code. */
+  lang: string;
+};
+
+/** Input for the flxLanguageSettingsUpdate mutation. */
+export type FlxLanguageSettingsUpdateInput = {
+  /** Code of a catalog language to add. It is added inactive: prepare its content, then activate it. */
+  addLanguage?: string | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Code of the default language. */
+  defaultLanguage?: string | null | undefined;
+  /** Show the default-language version when a translation is missing. */
+  fallback?: boolean | null | undefined;
+  /** Two-letter country codes that see the default language. */
+  homeCountries?: Array<string> | null | undefined;
+  /** All languages after the change. The default language cannot be removed. */
+  languages?: Array<FlxLanguageInput> | null | undefined;
+  /** Content types to translate. */
+  postTypes?: Array<string> | null | undefined;
+  /** Automatic language for first-time visitors. */
+  suggest?: FlxLanguageSuggestMode | null | undefined;
+  /** Language used when neither the browser language nor the country's language is active. */
+  suggestTo?: string | null | undefined;
+  /** How the language switcher names languages. */
+  switcher?: FlxLanguageSwitcherStyle | null | undefined;
+  /** Where the theme shows the language switcher. */
+  switcherPlace?: FlxLanguageSwitcherPlace | null | undefined;
+  /** All translated site texts after the change. */
+  texts?: Array<FlxLanguageSiteTextInput> | null | undefined;
+};
+
+/** A language of the site. */
+export type FlxLanguageInput = {
+  /** Visitors can open it. The default language is always active. */
+  active?: boolean | null | undefined;
+  /** Language code and address prefix (en, de, pt-br). */
+  code: string;
+  /** Flag emoji. */
+  flag?: string | null | undefined;
+  /** WordPress locale of the content (en_US). */
+  locale?: string | null | undefined;
+  /** Name people see. Empty keeps the code. */
+  name?: string | null | undefined;
+};
+
+/** A site text in one language. An empty value removes the translation. */
+export type FlxLanguageSiteTextInput = {
+  /** Text key from textFields. */
+  key: string;
+  /** Language code (not the default language). */
+  lang: string;
+  /** The text. */
+  value: string;
+};
+
+/** Input for the flxLanguageTranslateStart mutation. */
+export type FlxLanguageTranslateStartInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Target language code. */
+  lang: string;
+  /** Global ID or database ID of the source content. */
+  sourceId: string;
+};
+
+/** Input for the flxLanguageTranslateStep mutation. */
+export type FlxLanguageTranslateStepInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Job key from flxLanguageTranslateStart. */
+  jobId: string;
+  /** Step to run, from 0 to total - 1. */
+  step: number;
+};
+
+/** Input for the flxLanguageTranslationCreate mutation. */
+export type FlxLanguageTranslationCreateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Target language code. */
+  lang: string;
+  /** Global ID or database ID of the source content. */
+  sourceId: string;
 };
 
 /** Input for the flxRoleCreate mutation. */
@@ -517,6 +645,77 @@ export type FlxAiToolsUpdateMutationVariables = Exact<{
 
 export type FlxAiToolsUpdateMutation = { flxAiToolsUpdate: { tools: Array<{ name: string, title: string, description: string, source: string, sourceLabel: string, readonly: boolean, approval: boolean, capability: string, mcp: boolean, chat: boolean, off: boolean, aliases: Array<string>, duplicate: boolean, rivals: Array<string>, prefixed: boolean, calls: number, errors: number, avgMs: number }> | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
 
+export type FlxContentLanguageQueryVariables = Exact<{
+  id: string;
+}>;
+
+
+export type FlxContentLanguageQuery = { contentNode:
+    | { databaseId: number, flxLanguage: string | null, flxTranslations: Array<{ lang: string, databaseId: number, id: string, title: string, status: string, url: string | null, editUrl: string | null, isSelf: boolean }> }
+    | { databaseId: number, flxLanguage: string | null, flxTranslations: Array<{ lang: string, databaseId: number, id: string, title: string, status: string, url: string | null, editUrl: string | null, isSelf: boolean }> }
+    | { databaseId: number, flxLanguage: string | null, flxTranslations: Array<{ lang: string, databaseId: number, id: string, title: string, status: string, url: string | null, editUrl: string | null, isSelf: boolean }> }
+   | null };
+
+export type FlxTranslationRowFragment = { lang: string, databaseId: number, id: string, title: string, status: string, url: string | null, editUrl: string | null, isSelf: boolean };
+
+export type FlxLanguageJobQueryVariables = Exact<{
+  id: string;
+}>;
+
+
+export type FlxLanguageJobQuery = { flxLanguageJob: { id: string, status: FlxLanguageJobStatus, step: number, total: number, sourceId: number, translationId: number, lang: string, errors: Array<string>, editUrl: string | null } | null };
+
+export type FlxLanguageJobFieldsFragment = { id: string, status: FlxLanguageJobStatus, step: number, total: number, sourceId: number, translationId: number, lang: string, errors: Array<string>, editUrl: string | null };
+
+export type FlxLanguagesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxLanguagesQuery = { flxLanguages: Array<{ code: string, name: string, locale: string, flag: string | null, active: boolean, default: boolean, address: string, hreflang: string }> };
+
+export type FlxLanguageRowFragment = { code: string, name: string, locale: string, flag: string | null, active: boolean, default: boolean, address: string, hreflang: string };
+
+export type FlxLanguageSetMutationVariables = Exact<{
+  input: FlxLanguageSetInput;
+}>;
+
+
+export type FlxLanguageSetMutation = { flxLanguageSet: { lang: string | null, translations: Array<{ lang: string, databaseId: number, id: string, title: string, status: string, url: string | null, editUrl: string | null, isSelf: boolean }> | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxLanguageSettingsScreenQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxLanguageSettingsScreenQuery = { flxLanguageSettings: { defaultLanguage: string, postTypes: Array<string>, fallback: boolean, suggest: FlxLanguageSuggestMode, suggestTo: string, homeCountries: Array<string>, switcher: FlxLanguageSwitcherStyle, switcherPlace: FlxLanguageSwitcherPlace, aiAvailable: boolean, languages: Array<{ code: string, name: string, locale: string, flag: string | null, active: boolean, default: boolean, address: string, hreflang: string }>, texts: Array<{ lang: string, key: string, value: string }>, catalog: Array<{ code: string, name: string, locale: string, flag: string }>, postTypeChoices: Array<{ name: string, label: string, selected: boolean }>, textFields: Array<{ key: string, label: string, textarea: boolean, placeholder: string }>, geo: { country: string | null, source: string | null } } };
+
+export type FlxLanguageSettingsFieldsFragment = { defaultLanguage: string, postTypes: Array<string>, fallback: boolean, suggest: FlxLanguageSuggestMode, suggestTo: string, homeCountries: Array<string>, switcher: FlxLanguageSwitcherStyle, switcherPlace: FlxLanguageSwitcherPlace, aiAvailable: boolean, languages: Array<{ code: string, name: string, locale: string, flag: string | null, active: boolean, default: boolean, address: string, hreflang: string }>, texts: Array<{ lang: string, key: string, value: string }>, catalog: Array<{ code: string, name: string, locale: string, flag: string }>, postTypeChoices: Array<{ name: string, label: string, selected: boolean }>, textFields: Array<{ key: string, label: string, textarea: boolean, placeholder: string }>, geo: { country: string | null, source: string | null } };
+
+export type FlxLanguageSettingsUpdateMutationVariables = Exact<{
+  input: FlxLanguageSettingsUpdateInput;
+}>;
+
+
+export type FlxLanguageSettingsUpdateMutation = { flxLanguageSettingsUpdate: { settings: { defaultLanguage: string, postTypes: Array<string>, fallback: boolean, suggest: FlxLanguageSuggestMode, suggestTo: string, homeCountries: Array<string>, switcher: FlxLanguageSwitcherStyle, switcherPlace: FlxLanguageSwitcherPlace, aiAvailable: boolean, languages: Array<{ code: string, name: string, locale: string, flag: string | null, active: boolean, default: boolean, address: string, hreflang: string }>, texts: Array<{ lang: string, key: string, value: string }>, catalog: Array<{ code: string, name: string, locale: string, flag: string }>, postTypeChoices: Array<{ name: string, label: string, selected: boolean }>, textFields: Array<{ key: string, label: string, textarea: boolean, placeholder: string }>, geo: { country: string | null, source: string | null } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxLanguageTranslateStartMutationVariables = Exact<{
+  input: FlxLanguageTranslateStartInput;
+}>;
+
+
+export type FlxLanguageTranslateStartMutation = { flxLanguageTranslateStart: { job: { id: string, status: FlxLanguageJobStatus, step: number, total: number, sourceId: number, translationId: number, lang: string, errors: Array<string>, editUrl: string | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxLanguageTranslateStepMutationVariables = Exact<{
+  input: FlxLanguageTranslateStepInput;
+}>;
+
+
+export type FlxLanguageTranslateStepMutation = { flxLanguageTranslateStep: { job: { id: string, status: FlxLanguageJobStatus, step: number, total: number, sourceId: number, translationId: number, lang: string, errors: Array<string>, editUrl: string | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxLanguageTranslationCreateMutationVariables = Exact<{
+  input: FlxLanguageTranslationCreateInput;
+}>;
+
+
+export type FlxLanguageTranslationCreateMutation = { flxLanguageTranslationCreate: { translation: { lang: string, databaseId: number, id: string, title: string, status: string, url: string | null, editUrl: string | null, isSelf: boolean } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
 export type FlxRoleCreateMutationVariables = Exact<{
   input: FlxRoleCreateInput;
 }>;
@@ -665,3 +864,8 @@ export type FlxViewerQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type FlxViewerQuery = { flxViewer: { loggedIn: boolean, databaseId: number | null, name: string | null, isAdmin: boolean, capabilities: Array<string> } };
+
+export type FlxVisitorCountryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxVisitorCountryQuery = { flxVisitorCountry: { country: string | null } };
