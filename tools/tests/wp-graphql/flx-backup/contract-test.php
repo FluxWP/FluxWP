@@ -24,15 +24,17 @@ function flxy_t_op( string $name, array $vars = array(), int $user = 0 ): array 
 	return flxt_gql( $GLOBALS['flxy_ops'][ $name ], $vars, $user );
 }
 
-/** Steps the job until it ends (or 60 steps). */
+/** Steps the job until it ends (or 600 steps). */
 function flxy_t_finish( int $user ): array {
 	$job = array();
-	for ( $i = 0; $i < 60; $i++ ) {
+	remove_all_filters( 'flxy_step_seconds' ); // Finish with the normal budget.
+	for ( $i = 0; $i < 600; $i++ ) {
 		$job = flxy_t_op( 'FlxBackupStep', array(), $user )['data']['flxBackupStep']['job'] ?? array();
 		if ( ! in_array( $job['status'] ?? '', array( 'RUNNING' ), true ) ) {
 			break;
 		}
 	}
+	add_filter( 'flxy_step_seconds', static fn() => 0.0 ); // Back to one unit per step for the next start.
 	return $job;
 }
 
@@ -100,6 +102,9 @@ $r = flxy_t_op( 'FlxBackupSettingsSave', array( 'input' => array( 'safetyRestore
 $s = $r['data']['flxBackupSettingsSave']['settings'] ?? array();
 flxt_same( array( false, 'OFF', 10.0 ), array( $s['safetyRestore'] ?? null, $s['schedule'] ?? null, $s['quotaGb'] ?? null ), 'settings save: a checkbox turns off when false' );
 FLXY_Settings::save( FLXY_Settings::defaults() );
+
+// A step does one small unit of work, so a job is still running after start() on any machine.
+add_filter( 'flxy_step_seconds', static fn() => 0.0 );
 
 // Start a backup, step it to the end.
 $r = flxy_t_op( 'FlxBackupStart', array( 'input' => array( 'type' => 'FILES', 'label' => 'Test files' ) ), $admin );
