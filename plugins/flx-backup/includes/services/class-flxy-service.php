@@ -28,6 +28,21 @@ final class FLXY_Service {
 	/** Backup types a person can start. */
 	const START_TYPES = array( 'full', 'db', 'files' );
 
+	/** Typed access to the untyped legacy records: a scalar as string. */
+	private static function s( $v ): string {
+		return is_scalar( $v ) ? (string) $v : '';
+	}
+
+	/** A number as int. */
+	private static function i( $v ): int {
+		return is_numeric( $v ) || is_bool( $v ) ? (int) $v : 0;
+	}
+
+	/** A number as float. */
+	private static function f( $v ): float {
+		return is_numeric( $v ) ? (float) $v : 0.0;
+	}
+
 	/** Drop cached GraphQL reads after a change. */
 	public static function changed(): void {
 		if ( function_exists( 'flx_gql_purge' ) ) {
@@ -74,17 +89,17 @@ final class FLXY_Service {
 	 */
 	public static function keep( array $r ): array {
 		$ctx    = (array) $r['context'];
-		$source = (string) ( $ctx['source'] ?? '' );
+		$source = self::s( $ctx['source'] ?? '' );
 		if ( ! empty( $r['locked'] ) ) {
 			return array( 'locked', __( 'Locked', 'flx-backup' ) );
 		}
 		if ( ! empty( $r['keep_until'] ) ) {
 			/* translators: %s: date */
-			return array( 'until', sprintf( __( 'Until %s', 'flx-backup' ), flxy_date( (int) $r['keep_until'], 'date' ) ) );
+			return array( 'until', sprintf( __( 'Until %s', 'flx-backup' ), flxy_date( self::i( $r['keep_until'] ), 'date' ) ) );
 		}
 		if ( 'schedule' === $source ) {
 			/* translators: %s: number of backups kept */
-			return array( 'schedule', sprintf( __( 'Last %s scheduled', 'flx-backup' ), number_format_i18n( (int) FLXY_Settings::get( 'schedule_keep' ) ) ) );
+			return array( 'schedule', sprintf( __( 'Last %s scheduled', 'flx-backup' ), number_format_i18n( self::i( FLXY_Settings::get( 'schedule_keep' ) ) ) ) );
 		}
 		return array( 'quota', __( 'Until the quota is full', 'flx-backup' ) );
 	}
@@ -103,7 +118,7 @@ final class FLXY_Service {
 		$content_rel = FLXY_Backup::content_rel();
 		$paths       = (array) $r['paths'];
 		foreach ( $paths as $p ) {
-			$p = (string) $p;
+			$p = self::s( $p );
 			if ( $p === $content_rel ) {
 				$contents[] = 'wp-content';
 			} elseif ( preg_match( '#/(plugins|themes)/([^/]+)$#', $p, $m ) ) {
@@ -143,19 +158,19 @@ final class FLXY_Service {
 	 */
 	public static function present( array $r ): array {
 		$ctx      = (array) $r['context'];
-		$source   = (string) ( $ctx['source'] ?? '' );
+		$source   = self::s( $ctx['source'] ?? '' );
 		$sources  = FLXY_Storage::source_labels();
 		$types    = FLXY_Storage::type_labels();
 		$colors   = FLXY_Storage::type_colors();
-		$type     = (string) $r['type'];
-		$status   = (string) $r['status'];
+		$type     = self::s( $r['type'] );
+		$status   = self::s( $r['status'] );
 		$packages = array();
 		foreach ( (array) ( $ctx['packages'] ?? array() ) as $p ) {
 			$p          = (array) $p;
-			$slug       = (string) ( $p['slug'] ?? '' );
-			$name       = (string) ( $p['name'] ?? '' );
-			$from       = (string) ( $p['from_version'] ?? '' );
-			$to         = (string) ( $p['to_version'] ?? '' );
+			$slug       = self::s( $p['slug'] ?? '' );
+			$name       = self::s( $p['name'] ?? '' );
+			$from       = self::s( $p['from_version'] ?? '' );
+			$to         = self::s( $p['to_version'] ?? '' );
 			$packages[] = array(
 				'slug'        => $slug,
 				'name'        => '' !== $name ? $name : $slug,
@@ -169,42 +184,42 @@ final class FLXY_Service {
 		$text    = '';
 		if ( $running ) {
 			$state = FLXY_Runner::load_backup();
-			if ( is_array( $state ) && (string) ( $state['id'] ?? '' ) === (string) $r['id'] ) {
+			if ( is_array( $state ) && self::s( $state['id'] ?? '' ) === self::s( $r['id'] ) ) {
 				$p       = FLXY_Backup::progress( $state );
-				$percent = (int) $p['percent'];
-				$text    = (string) $p['text'];
+				$percent = self::i( $p['percent'] );
+				$text    = self::s( $p['text'] );
 			}
 		}
 		list( $keep_kind, $keep_label ) = self::keep( $r );
-		$orig = untrailingslashit( (string) ( $ctx['original_site_url'] ?? '' ) );
+		$orig = untrailingslashit( self::s( $ctx['original_site_url'] ?? '' ) );
 		return array(
-			'id'               => (string) $r['id'],
+			'id'               => self::s( $r['id'] ),
 			'type'             => $type,
 			'typeLabel'        => $types[ $type ] ?? $type,
 			'typeColor'        => $colors[ $type ] ?? '#646970',
 			'status'           => $status,
 			'statusLabel'      => self::status_label( $status ),
 			'title'            => FLXY_Storage::title( $r ),
-			'label'            => (string) $r['label'],
-			'created'          => (int) $r['created'],
-			'finished'         => (int) $r['finished'],
-			'size'             => (float) $r['size'],
-			'sizeLabel'        => 'ok' === $status ? (string) size_format( (int) $r['size'], 1 ) : '',
-			'files'            => (int) $r['files'],
+			'label'            => self::s( $r['label'] ),
+			'created'          => self::i( $r['created'] ),
+			'finished'         => self::i( $r['finished'] ),
+			'size'             => self::f( $r['size'] ),
+			'sizeLabel'        => 'ok' === $status ? (string) size_format( self::i( $r['size'] ), 1 ) : '',
+			'files'            => self::i( $r['files'] ),
 			'includesDatabase' => (bool) $r['db'],
 			'contents'         => self::contents( $r ),
 			'source'           => $source,
 			'sourceLabel'      => '' !== $source ? ( $sources[ $source ] ?? $source ) : '',
 			'originalSite'     => 'upload' === $source && '' !== $orig ? self::short_url( $orig ) : null,
-			'originalCreated'  => (int) ( $ctx['original_created'] ?? 0 ),
-			'wpVersion'        => (string) $r['wp_version'],
+			'originalCreated'  => self::i( $ctx['original_created'] ?? 0 ),
+			'wpVersion'        => self::s( $r['wp_version'] ),
 			'locked'           => (bool) $r['locked'],
 			'keepKind'         => $keep_kind,
-			'keepUntil'        => (int) ( $r['keep_until'] ?? 0 ),
+			'keepUntil'        => self::i( $r['keep_until'] ?? 0 ),
 			'keepLabel'        => $keep_label,
-			'error'            => (string) $r['error'],
+			'error'            => self::s( $r['error'] ),
 			'packages'         => $packages,
-			'downloadUrl'      => 'ok' === $status ? self::download_url( (string) $r['id'] ) : '',
+			'downloadUrl'      => 'ok' === $status ? self::download_url( self::s( $r['id'] ) ) : '',
 			'percent'          => $percent,
 			'progress'         => $text,
 			'running'          => $running,
@@ -232,7 +247,7 @@ final class FLXY_Service {
 		$all    = FLXY_Storage::records();
 		$counts = array();
 		foreach ( $all as $r ) {
-			$counts[ $r['type'] ] = ( $counts[ $r['type'] ] ?? 0 ) + 1;
+			$counts[ self::s( $r['type'] ) ] = ( $counts[ self::s( $r['type'] ) ] ?? 0 ) + 1;
 		}
 		$rows = array_values(
 			array_filter(
@@ -250,9 +265,9 @@ final class FLXY_Service {
 		foreach ( FLXY_Storage::type_labels() as $t => $label ) {
 			if ( ! empty( $counts[ $t ] ) ) {
 				$by[] = array(
-					'type'  => (string) $t,
-					'label' => (string) $label,
-					'count' => (int) $counts[ $t ],
+					'type'  => self::s( $t ),
+					'label' => self::s( $label ),
+					'count' => self::i( $counts[ $t ] ),
 				);
 			}
 		}
@@ -262,7 +277,7 @@ final class FLXY_Service {
 			'total'     => count( $rows ),
 			'counts'    => $by,
 			'all'       => count( $all ),
-			'usedBytes' => (float) $used,
+			'usedBytes' => self::f( $used ),
 			'usedLabel' => (string) size_format( $used, 1 ),
 		);
 	}
@@ -281,20 +296,20 @@ final class FLXY_Service {
 		global $wpdb;
 		$ctx     = (array) $r['context'];
 		$foreign = null;
-		$orig    = untrailingslashit( (string) ( $ctx['original_site_url'] ?? '' ) );
+		$orig    = untrailingslashit( self::s( $ctx['original_site_url'] ?? '' ) );
 		if ( '' !== $orig && self::short_url( $orig ) !== self::short_url( home_url() ) ) {
 			$foreign = $orig;
 		}
-		$prefix   = (string) ( $ctx['original_prefix'] ?? '' );
-		$mismatch = '' !== $prefix && $prefix !== $wpdb->base_prefix;
+		$prefix   = self::s( $ctx['original_prefix'] ?? '' );
+		$mismatch = '' !== $prefix && $prefix !== self::s( $wpdb->base_prefix );
 		return array(
-			'id'             => (string) $r['id'],
-			'title'          => FLXY_Storage::title( $r ) . ' · ' . flxy_date( (int) $r['created'] ),
+			'id'             => self::s( $r['id'] ),
+			'title'          => FLXY_Storage::title( $r ) . ' · ' . flxy_date( self::i( $r['created'] ) ),
 			'database'       => $r['db'] && ! $mismatch,
 			'groups'         => self::restore_groups( $r ),
 			'foreignSite'    => $foreign,
 			'prefixInBackup' => $mismatch ? $prefix : null,
-			'prefixOnSite'   => $mismatch ? (string) $wpdb->base_prefix : null,
+			'prefixOnSite'   => $mismatch ? self::s( $wpdb->base_prefix ) : null,
 		);
 	}
 
@@ -327,10 +342,10 @@ final class FLXY_Service {
 		$names = array();
 		foreach ( (array) ( ( (array) $r['context'] )['packages'] ?? array() ) as $p ) {
 			$p                                   = (array) $p;
-			$names[ (string) ( $p['slug'] ?? '' ) ] = (string) ( $p['name'] ?? '' );
+			$names[ self::s( $p['slug'] ?? '' ) ] = self::s( $p['name'] ?? '' );
 		}
 		foreach ( $items as $p ) {
-			$p = (string) $p;
+			$p = self::s( $p );
 			if ( preg_match( '#^' . preg_quote( $c, '#' ) . '/(plugins|themes)/([^/]+)$#', $p, $m ) ) {
 				$slug                       = (string) preg_replace( '/\.php$/', '', $m[2] );
 				$groups[ $m[1] ]['items'][] = array(
@@ -394,10 +409,10 @@ final class FLXY_Service {
 				}
 				foreach ( get_plugins() as $file => $data ) {
 					$slug                        = false === strpos( $file, '/' ) ? (string) preg_replace( '/\.php$/', '', $file ) : dirname( $file );
-					$names[ 'plugins/' . $slug ] = (string) $data['Name'];
+					$names[ 'plugins/' . $slug ] = self::s( $data['Name'] );
 				}
 				foreach ( wp_get_themes() as $slug => $theme ) {
-					$names[ 'themes/' . $slug ] = (string) $theme->get( 'Name' );
+					$names[ 'themes/' . $slug ] = self::s( $theme->get( 'Name' ) );
 				}
 			}
 			$slug = (string) preg_replace( '/\.php$/', '', $n );
@@ -432,11 +447,11 @@ final class FLXY_Service {
 			$items = array();
 			foreach ( (array) $c['items'] as $it ) {
 				$items[] = array(
-					'name'  => (string) $it['n'],
-					'label' => self::item_label( $k, (string) $it['n'] ),
-					'raw'   => (float) $it['raw'],
-					'zip'   => (float) $it['zip'],
-					'count' => (int) $it['c'],
+					'name'  => self::s( $it['n'] ),
+					'label' => self::item_label( $k, self::s( $it['n'] ) ),
+					'raw'   => self::f( $it['raw'] ),
+					'zip'   => self::f( $it['zip'] ),
+					'count' => self::i( $it['c'] ),
 				);
 			}
 			$more   = (array) ( $c['more'] ?? array() );
@@ -445,19 +460,19 @@ final class FLXY_Service {
 				'label'      => $labels[ $k ],
 				'color'      => $colors[ $k ],
 				'isDatabase' => 'db' === $k,
-				'raw'        => (float) $c['raw'],
-				'zip'        => (float) $c['zip'],
-				'count'      => (int) $c['files'],
+				'raw'        => self::f( $c['raw'] ),
+				'zip'        => self::f( $c['zip'] ),
+				'count'      => self::i( $c['files'] ),
 				'items'      => $items,
-				'moreCount'  => (int) ( $more['c'] ?? 0 ),
-				'moreRaw'    => (float) ( $more['raw'] ?? 0 ),
-				'moreZip'    => (float) ( $more['zip'] ?? 0 ),
-				'moreItems'  => (int) ( $more['k'] ?? 0 ),
+				'moreCount'  => self::i( $more['c'] ?? 0 ),
+				'moreRaw'    => self::f( $more['raw'] ?? 0 ),
+				'moreZip'    => self::f( $more['zip'] ?? 0 ),
+				'moreItems'  => self::i( $more['k'] ?? 0 ),
 			);
 		}
 		return array(
-			'raw'        => (float) $b['raw'],
-			'zip'        => (float) $b['zip'],
+			'raw'        => self::f( $b['raw'] ),
+			'zip'        => self::f( $b['zip'] ),
 			'categories' => $cats,
 		);
 	}
@@ -488,7 +503,7 @@ final class FLXY_Service {
 			if ( isset( $hist[ $key ] ) ) {
 				$prev = array();
 				foreach ( $types as $t ) {
-					$prev[ $t ] = (int) ( $hist[ $key ]['by'][ $t ] ?? 0 );
+					$prev[ $t ] = self::i( $hist[ $key ]['by'][ $t ] ?? 0 );
 				}
 				$have = true;
 			}
@@ -497,7 +512,7 @@ final class FLXY_Service {
 			$vlabel = array();
 			foreach ( $types as $t ) {
 				$v        = $have ? $prev[ $t ] : 0;
-				$vals[]   = (float) $v;
+				$vals[]   = self::f( $v );
 				$vlabel[] = (string) size_format( $v, 1 );
 			}
 			$days[] = array(
@@ -522,16 +537,16 @@ final class FLXY_Service {
 		$series = array();
 		foreach ( $types as $t ) {
 			$series[] = array(
-				'key'   => (string) $t,
-				'name'  => (string) $labels[ $t ],
-				'color' => (string) $colors[ $t ],
+				'key'   => self::s( $t ),
+				'name'  => self::s( $labels[ $t ] ),
+				'color' => self::s( $colors[ $t ] ),
 			);
 		}
 		return array(
 			'days'       => $days,
 			'series'     => $series,
 			'ranges'     => $ranges,
-			'quota'      => (float) $quota,
+			'quota'      => self::f( $quota ),
 			'quotaLabel' => __( 'Quota', 'flx-backup' ) . ' ' . size_format( $quota, 1 ),
 		);
 	}
@@ -559,12 +574,12 @@ final class FLXY_Service {
 		$out  = array();
 		for ( $v = 0; $v <= $ymax + 1; $v += $step ) {
 			$out[] = array(
-				'value' => (float) $v,
-				'label' => 0 === (int) $v ? '0' : (string) size_format( (int) $v, $step < $unit ? 1 : 0 ),
+				'value' => self::f( $v ),
+				'label' => 0 === self::i( $v ) ? '0' : (string) size_format( self::i( $v ), $step < $unit ? 1 : 0 ),
 			);
 		}
 		return array(
-			'max'       => (float) $ymax,
+			'max'       => self::f( $ymax ),
 			'showQuota' => $show_quota,
 			'ticks'     => $out,
 		);
@@ -608,17 +623,17 @@ final class FLXY_Service {
 		}
 		$types = array();
 		foreach ( $labels as $t => $label ) {
-			$bytes = (int) ( $by[ $t ] ?? 0 );
+			$bytes = self::i( $by[ $t ] ?? 0 );
 			if ( $bytes <= 0 ) {
 				continue;
 			}
 			$types[] = array(
-				'type'       => (string) $t,
-				'label'      => (string) $label,
-				'color'      => (string) ( $colors[ $t ] ?? '#646970' ),
-				'bytes'      => (float) $bytes,
+				'type'       => self::s( $t ),
+				'label'      => self::s( $label ),
+				'color'      => self::s( $colors[ $t ] ?? '#646970' ),
+				'bytes'      => self::f( $bytes ),
 				'bytesLabel' => (string) size_format( $bytes, 1 ),
-				'count'      => (int) ( $count[ $t ] ?? 0 ),
+				'count'      => self::i( $count[ $t ] ?? 0 ),
 				'share'      => $total > 0 ? round( 100 * $bytes / $total, 1 ) : 0.0,
 			);
 		}
@@ -629,15 +644,15 @@ final class FLXY_Service {
 		$events = array();
 		foreach ( FLXY_Storage::events( 7 ) as $e ) {
 			$events[] = array(
-				'at'      => (int) $e['at'],
-				'level'   => (string) $e['level'],
-				'message' => (string) $e['msg'],
+				'at'      => self::i( $e['at'] ),
+				'level'   => self::s( $e['level'] ),
+				'message' => self::s( $e['msg'] ),
 			);
 		}
 		return array(
-			'usedBytes'    => (float) $used,
+			'usedBytes'    => self::f( $used ),
 			'usedLabel'    => (string) size_format( $used, 1 ),
-			'quotaBytes'   => (float) $quota,
+			'quotaBytes'   => self::f( $quota ),
 			'quotaLabel'   => (string) size_format( $quota, 1 ),
 			'percent'      => round( $pct, 1 ),
 			'level'        => $pct > 95 ? 'error' : ( $pct > 80 ? 'warning' : 'ok' ),
@@ -645,9 +660,9 @@ final class FLXY_Service {
 			'backupCount'  => count( $ok ),
 			'lockedCount'  => $locked,
 			'last'         => $ok ? self::present( $ok[0] ) : null,
-			'nextRun'      => (int) FLXY_Cron::next_scheduled(),
-			'scheduleKind' => (string) FLXY_Settings::get( 'schedule' ),
-			'preScope'     => (string) FLXY_Settings::get( 'pre_scope' ),
+			'nextRun'      => self::i( FLXY_Cron::next_scheduled() ),
+			'scheduleKind' => self::s( FLXY_Settings::get( 'schedule' ) ),
+			'preScope'     => self::s( FLXY_Settings::get( 'pre_scope' ) ),
 			'byType'       => $types,
 			'recent'       => $recent,
 			'events'       => $events,
@@ -668,7 +683,7 @@ final class FLXY_Service {
 			'chunkSize'          => FLXY_Upload::chunk_size(),
 			'nonce'              => wp_create_nonce( 'flxy' ),
 			'ajaxUrl'            => admin_url( 'admin-ajax.php' ),
-			'lastRestore'        => is_array( $last ) && (int) ( $last['at'] ?? 0 ) > time() - 10 * MINUTE_IN_SECONDS ? (string) ( $last['result'] ?? '' ) : null,
+			'lastRestore'        => is_array( $last ) && self::i( $last['at'] ?? 0 ) > time() - 10 * MINUTE_IN_SECONDS ? self::s( $last['result'] ?? '' ) : null,
 			'includeCoreDefault' => (bool) FLXY_Settings::get( 'include_core' ),
 			'safetyDefault'      => (bool) FLXY_Settings::get( 'safety_restore' ),
 		);
@@ -682,15 +697,15 @@ final class FLXY_Service {
 	public static function settings(): array {
 		$s = FLXY_Settings::all();
 		return array(
-			'quotaGb'           => (float) $s['quota_gb'],
-			'preScope'          => (string) $s['pre_scope'],
-			'preKeepDays'       => (int) $s['pre_keep_days'],
-			'schedule'          => (string) $s['schedule'],
-			'scheduleHour'      => (int) $s['schedule_hour'],
-			'scheduleDay'       => (int) $s['schedule_day'],
-			'scheduleKeep'      => (int) $s['schedule_keep'],
+			'quotaGb'           => self::f( $s['quota_gb'] ),
+			'preScope'          => self::s( $s['pre_scope'] ),
+			'preKeepDays'       => self::i( $s['pre_keep_days'] ),
+			'schedule'          => self::s( $s['schedule'] ),
+			'scheduleHour'      => self::i( $s['schedule_hour'] ),
+			'scheduleDay'       => self::i( $s['schedule_day'] ),
+			'scheduleKeep'      => self::i( $s['schedule_keep'] ),
 			'includeCore'       => (bool) $s['include_core'],
-			'exclude'           => (string) $s['exclude'],
+			'exclude'           => self::s( $s['exclude'] ),
 			'safetyRestore'     => (bool) $s['safety_restore'],
 			'deleteOnUninstall' => (bool) $s['delete_on_uninstall'],
 		);
@@ -704,9 +719,9 @@ final class FLXY_Service {
 	 * @return Settings
 	 */
 	public static function save_settings( array $in ): array {
-		$old_keep = (int) FLXY_Settings::get( 'pre_keep_days' );
+		$old_keep = self::i( FLXY_Settings::get( 'pre_keep_days' ) );
 		$saved    = FLXY_Settings::save( $in );
-		if ( (int) $saved['pre_keep_days'] !== $old_keep ) {
+		if ( self::i( $saved['pre_keep_days'] ) !== $old_keep ) {
 			FLXY_Settings::apply_pre_keep_days();
 			FLXY_Cron::cleanup();
 		}
@@ -750,22 +765,22 @@ final class FLXY_Service {
 			);
 		}
 		return array(
-			'status'       => (string) $r['status'],
-			'kind'         => (string) $r['kind'],
-			'id'           => (string) $r['id'],
-			'phase'        => (string) $r['phase'],
-			'percent'      => (int) $r['percent'],
-			'text'         => (string) $r['text'],
-			'error'        => (string) $r['error'],
-			'token'        => (string) $r['token'],
+			'status'       => self::s( $r['status'] ),
+			'kind'         => self::s( $r['kind'] ),
+			'id'           => self::s( $r['id'] ),
+			'phase'        => self::s( $r['phase'] ),
+			'percent'      => self::i( $r['percent'] ),
+			'text'         => self::s( $r['text'] ),
+			'error'        => self::s( $r['error'] ),
+			'token'        => self::s( $r['token'] ),
 			'cancelled'    => (bool) $r['cancelled'],
-			'elapsed'      => (int) $r['elapsed'],
-			'elapsedLabel' => (string) $r['elapsed_h'],
-			'eta'          => null === $r['eta'] ? null : (int) $r['eta'],
-			'etaLabel'     => (string) $r['eta_h'],
-			'title'        => (string) $r['title'],
-			'sizeLabel'    => (string) $r['size_h'],
-			'result'       => 'done' === $state['phase'] && 'restore' === $state['kind'] ? (string) ( $state['result'] ?? '' ) : '',
+			'elapsed'      => self::i( $r['elapsed'] ),
+			'elapsedLabel' => self::s( $r['elapsed_h'] ),
+			'eta'          => null === $r['eta'] ? null : self::i( $r['eta'] ),
+			'etaLabel'     => self::s( $r['eta_h'] ),
+			'title'        => self::s( $r['title'] ),
+			'sizeLabel'    => self::s( $r['size_h'] ),
+			'result'       => 'done' === $state['phase'] && 'restore' === $state['kind'] ? self::s( $state['result'] ?? '' ) : '',
 		);
 	}
 
@@ -855,7 +870,7 @@ final class FLXY_Service {
 	/** A busy runner is a conflict, other start errors are bad input. */
 	private static function busy_status( WP_Error $e ): WP_Error {
 		$status = 'flxy_busy' === $e->get_error_code() ? 409 : 400;
-		return new WP_Error( (string) $e->get_error_code(), $e->get_error_message(), array( 'status' => $status ) );
+		return new WP_Error( $e->get_error_code(), $e->get_error_message(), array( 'status' => $status ) );
 	}
 
 	/* ------------------------------------------------------------------ */

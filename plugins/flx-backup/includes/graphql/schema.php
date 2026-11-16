@@ -26,6 +26,7 @@ function flxy_gql_top_cap(): bool {
  * Unix time → FlxDateTime, null when unset.
  *
  * @param mixed $ts Time.
+ * @return array<string,mixed>|null
  */
 function flxy_gql_time( $ts ): ?array {
 	$n = is_numeric( $ts ) ? (int) $ts : 0;
@@ -567,7 +568,11 @@ flx_gql_query(
 				),
 			)
 		),
-		'resolve'     => static function ( $root, array $args ): array {
+		'resolve'     => /**
+		 * @param mixed               $root Root.
+		 * @param array<string,mixed> $args Args.
+		 */
+		static function ( $root, array $args ): array {
 			flx_gql_cache_tag( FLXY_Service::CACHE_TAG );
 			return flx_gql_paginate(
 				$args,
@@ -964,6 +969,9 @@ flx_gql_mutation(
 				'description' => __( 'The settings after the change.', 'flx-backup' ),
 			),
 		),
-		'resolve'     => static fn( array $input ): array => array( 'settings' => FLXY_Service::save_settings( flxy_gql_settings_form( $input ) ) ),
+		'resolve'     => /**
+		 * @param array<string,mixed> $input Input.
+		 */
+		static fn( array $input ): array => array( 'settings' => FLXY_Service::save_settings( flxy_gql_settings_form( $input ) ) ),
 	)
 );
