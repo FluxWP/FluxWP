@@ -8,6 +8,7 @@
 defined( 'ABSPATH' ) || exit;
 
 /** Seçim kutuları için hedef kataloğu: grup => [ hedef => ad ]. */
+/** @return array<string, array<string, string>> */
 function flxapp_target_catalog() {
 	$out = array(
 		__( 'Application', 'flx-app' ) => array(
@@ -57,6 +58,7 @@ function flxapp_target_select( $name, $value, $empty = '' ) {
 	return $h . '</select>';
 }
 
+/** @return array<string, string> */
 function flxapp_color_labels() {
 	return array(
 		'primary' => __( 'Primary', 'flx-app' ),

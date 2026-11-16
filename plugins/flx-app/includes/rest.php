@@ -15,6 +15,7 @@ function flxapp_logged_in() {
 	return is_user_logged_in() ? true : new WP_Error( 'rest_forbidden', __( 'Sign-in required.', 'flx-app' ), array( 'status' => 401 ) );
 }
 
+/** @return array<string, mixed> */
 function flxapp_counts() {
 	$c = function_exists( 'flxa_counts' ) ? (array) flxa_counts() : array();
 	return (array) apply_filters( 'flxapp_counts', $c );

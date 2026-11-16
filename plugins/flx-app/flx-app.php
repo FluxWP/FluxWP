@@ -131,11 +131,13 @@ add_filter(
 register_activation_hook( FLXAPP_FILE, 'flxapp_install' );
 add_action( 'plugins_loaded', 'flxapp_maybe_upgrade', 5 );
 
+/** @return string */
 function flxapp_table() {
 	global $wpdb;
 	return $wpdb->prefix . 'flxapp_tokens';
 }
 
+/** @return string */
 function flxapp_devices_table() {
 	global $wpdb;
 	return $wpdb->prefix . 'flxapp_devices';

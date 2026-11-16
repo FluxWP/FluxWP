@@ -26,7 +26,7 @@ defined( 'ABSPATH' ) || exit;
  * @phpstan-type FlxappGroupRow array{id: string, label: string, collapsed: bool, items: list<string>}
  * @phpstan-type FlxappLayoutRow array{pins: list<string>, groups: list<FlxappGroupRow>}
  * @phpstan-type FlxappMeRow array{user: FlxappUserRow, site: FlxappSiteRow, auth: FlxappAuthRow, menu: list<FlxappMenuRow>, modules: list<FlxappModuleRow>, counts: list<FlxappCountRow>, bottom: list<string>, webSession: bool, caps: list<array{key: string, granted: bool}>, versions: list<array{slug: string, version: string}>, layout: FlxappLayoutRow|null, hashes: FlxappHashesRow}
- * @phpstan-type FlxappEventRow array{event: string, title: string, body: string, target: string, params: array<string,mixed>, at: int}
+ * @phpstan-type FlxappEventRow array{event: string, title: string, body: string, target: string, params: object|array<mixed>, at: int}
  * @phpstan-type FlxappSyncRow array{counts: list<FlxappCountRow>, hashes: FlxappHashesRow, events: list<FlxappEventRow>, serverTime: int}
  * @phpstan-type FlxappDocument array{hash: string, notModified: bool, document: object|array<mixed>|null}
  * @phpstan-type FlxappManifestModule array{id: string, document: object|array<mixed>}
@@ -503,10 +503,10 @@ final class FLXAPP_Service {
 		if ( ! flxapp_rate( 'session', 30, MINUTE_IN_SECONDS ) ) {
 			return new WP_Error( 'flxapp_rate', __( 'Too many requests. Please wait a moment.', 'flx-app' ), array( 'status' => 429, 'graphql_code' => 'RATE_LIMITED' ) );
 		}
-		$embed = array_key_exists( 'embed', $in ) && null !== $in['embed'] ? rest_sanitize_boolean( $in['embed'] ) : true;
+		$embed = array_key_exists( 'embed', $in ) && null !== $in['embed'] ? rest_sanitize_boolean( flx_gql_str( $in['embed'] ) ) : true;
 		$path  = flx_gql_str( $in['path'] ?? '' );
 		$front = flx_gql_str( $in['url'] ?? '' );
-		if ( '' === $front && ! empty( $in['front'] ) && rest_sanitize_boolean( $in['front'] ) ) {
+		if ( '' === $front && ! empty( $in['front'] ) && rest_sanitize_boolean( flx_gql_str( $in['front'] ) ) ) {
 			$front = '/' . ltrim( $path, '/' );
 			$path  = '';
 		}

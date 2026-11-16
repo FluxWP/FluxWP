@@ -93,7 +93,7 @@ flx_gql_mutation(
 			'settings' => flxapp_gql_f( 'FlxAppAdminSettings', __( 'The settings after the change.', 'flx-app' ) ),
 		),
 		'resolve'     => static function ( array $input ) {
-			$r = FLXAPP_Admin_Service::settings_save( $input );
+			$r = FLXAPP_Admin_Service::settings_save( flx_gql_arr( $input ) );
 			return $r instanceof WP_Error ? $r : array( 'settings' => $r );
 		},
 	)
@@ -139,7 +139,7 @@ flx_gql_mutation(
 			'modules' => flxapp_gql_f( '[FlxAppAdminModule!]', __( 'The modules after the change.', 'flx-app' ) ),
 		),
 		'resolve'     => static function ( array $input ) {
-			$r = FLXAPP_Admin_Service::modules_save( array_map( 'strval', flx_gql_arr( $input['on'] ?? array() ) ) );
+			$r = FLXAPP_Admin_Service::modules_save( FLXAPP_Admin_Service::strs( $input['on'] ?? array() ) );
 			return $r instanceof WP_Error ? $r : array( 'modules' => $r );
 		},
 	)
@@ -240,7 +240,7 @@ flx_gql_mutation(
 		),
 		'resolve'     => static fn( array $input ) => FLXAPP_Admin_Service::client_create(
 			flx_gql_str( $input['name'] ?? '' ),
-			array_map( 'strval', flx_gql_arr( $input['redirectUris'] ?? array() ) ),
+			FLXAPP_Admin_Service::strs( $input['redirectUris'] ?? array() ),
 			! empty( $input['confidential'] )
 		),
 	)
@@ -479,7 +479,7 @@ flx_gql_mutation(
 			'mobile' => flxapp_gql_f( 'FlxAppAdminMobile', __( 'The settings after the change.', 'flx-app' ) ),
 		),
 		'resolve'     => static function ( array $input ) {
-			$r = FLXAPP_Admin_Service::mobile_save( $input );
+			$r = FLXAPP_Admin_Service::mobile_save( flx_gql_arr( $input ) );
 			return $r instanceof WP_Error ? $r : array( 'mobile' => $r );
 		},
 	)
@@ -567,7 +567,7 @@ flx_gql_mutation(
 					'theme'      => FLXAPP_Service::plain( $input['theme'] ?? array() ),
 					'mobile'     => FLXAPP_Service::plain( $input['mobile'] ?? array() ),
 					'desktop'    => FLXAPP_Service::plain( $input['desktop'] ?? array() ),
-					'screens_on' => array_map( 'strval', flx_gql_arr( $input['screensOn'] ?? array() ) ),
+					'screens_on' => FLXAPP_Admin_Service::strs( $input['screensOn'] ?? array() ),
 					'screens_all' => implode( ',', array_keys( flxapp_screen_catalog() ) ),
 				)
 			);

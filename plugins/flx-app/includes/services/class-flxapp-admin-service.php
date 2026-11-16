@@ -54,6 +54,43 @@ final class FLXAPP_Admin_Service {
 		return $out;
 	}
 
+	/**
+	 * String elements of a list-like value (everything else is dropped).
+	 *
+	 * @param mixed $v Value.
+	 * @return list<string>
+	 */
+	public static function strs( $v ): array {
+		$out = array();
+		foreach ( is_array( $v ) ? $v : array() as $x ) {
+			if ( is_scalar( $x ) ) {
+				$out[] = (string) $x;
+			}
+		}
+		return $out;
+	}
+
+	/**
+	 * A nested value of an open document (null when any step is missing).
+	 *
+	 * @param array<string,mixed> $doc  Document.
+	 * @param string              ...$path Keys.
+	 * @return mixed
+	 */
+	private static function dig( array $doc, string ...$path ) {
+		$cur = $doc;
+		foreach ( $path as $i => $key ) {
+			if ( ! array_key_exists( $key, $cur ) ) {
+				return null;
+			}
+			if ( $i === count( $path ) - 1 ) {
+				return $cur[ $key ];
+			}
+			$cur = flx_gql_arr( $cur[ $key ] );
+		}
+		return null;
+	}
+
 	/* ───────── General ───────── */
 
 	/**
@@ -93,7 +130,7 @@ final class FLXAPP_Admin_Service {
 		);
 		foreach ( $map as $k => $def ) {
 			if ( isset( $in[ $k ] ) ) {
-				$s[ $def[0] ] = max( $def[1], min( $def[2], absint( $in[ $k ] ) ) );
+				$s[ $def[0] ] = max( $def[1], min( $def[2], absint( flx_gql_int( $in[ $k ] ) ) ) );
 			}
 		}
 		foreach ( array(
@@ -133,7 +170,7 @@ final class FLXAPP_Admin_Service {
 				'version' => '' === $m['version'] ? null : (string) $m['version'],
 				'kind'    => (string) $m['kind'],
 				'screens' => (int) ( $m['screens'] ?? 0 ),
-				'errors'  => array_values( array_map( 'strval', (array) $m['errors'] ) ),
+				'errors'  => self::strs( $m['errors'] ),
 				'on'      => ! in_array( (string) $id, $off, true ),
 			);
 		}
@@ -152,7 +189,7 @@ final class FLXAPP_Admin_Service {
 		$on  = array_map( 'sanitize_key', $on );
 		$s   = flxapp_settings();
 		// A module whose plugin is off right now keeps its earlier choice.
-		$s['modules_off'] = array_values( array_unique( array_merge( array_diff( (array) $s['modules_off'], $all ), array_diff( $all, $on ) ) ) );
+		$s['modules_off'] = array_values( array_unique( array_merge( array_diff( self::strs( $s['modules_off'] ), $all ), array_diff( $all, $on ) ) ) );
 		update_option( 'flxapp_settings', $s, false );
 		return self::modules();
 	}
@@ -204,7 +241,7 @@ final class FLXAPP_Admin_Service {
 		}
 		return array(
 			'available' => true,
-			'editorUrl' => (string) flxa_settings_url( 'menu' ),
+			'editorUrl' => flx_gql_str( flxa_settings_url( 'menu' ) ),
 			'platforms' => $platforms,
 			'rows'      => $rows,
 		);
@@ -223,7 +260,7 @@ final class FLXAPP_Admin_Service {
 			$out[] = array(
 				'id'           => flx_gql_str( $c['id'] ?? '' ),
 				'name'         => flx_gql_str( $c['name'] ?? '' ),
-				'redirectUris' => array_values( array_map( 'strval', (array) ( $c['redirect_uris'] ?? array() ) ) ),
+				'redirectUris' => self::strs( $c['redirect_uris'] ?? array() ),
 				'kind'         => $kind,
 				'hasSecret'    => ! empty( $c['secret_hash'] ),
 			);
@@ -271,11 +308,11 @@ final class FLXAPP_Admin_Service {
 			'client' => array(
 				'id'           => flx_gql_str( $c['id'] ?? '' ),
 				'name'         => flx_gql_str( $c['name'] ?? '' ),
-				'redirectUris' => array_values( array_map( 'strval', (array) ( $c['redirect_uris'] ?? array() ) ) ),
+				'redirectUris' => self::strs( $c['redirect_uris'] ?? array() ),
 				'kind'         => 'MANUAL',
 				'hasSecret'    => ! empty( $c['secret_hash'] ),
 			),
-			'secret' => '' !== (string) $res[1] ? (string) $res[1] : null,
+			'secret' => '' !== flx_gql_str( $res[1] ) ? flx_gql_str( $res[1] ) : null,
 		);
 	}
 
@@ -413,10 +450,11 @@ final class FLXAPP_Admin_Service {
 	 * @return true|WP_Error
 	 */
 	public static function access_revoke( int $id ) {
+		/** @var wpdb $wpdb */
 		global $wpdb;
 		$t   = flxapp_table();
-		$row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$t} WHERE id = %d", $id ), ARRAY_A ); // phpcs:ignore WordPress.DB
-		if ( ! is_array( $row ) || ( (int) $row['user_id'] !== get_current_user_id() && ! current_user_can( 'manage_options' ) ) ) {
+		$row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$t} WHERE id = %d", $id ), ARRAY_A ); // phpcs:ignore WordPress.DB, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- @phpstan-ignore argument.type (table name is plugin-defined)
+		if ( ! is_array( $row ) || ( flx_gql_int( $row['user_id'] ?? 0 ) !== get_current_user_id() && ! current_user_can( 'manage_options' ) ) ) {
 			return self::forbidden();
 		}
 		if ( '' !== $row['grant_id'] ) {
@@ -433,7 +471,7 @@ final class FLXAPP_Admin_Service {
 	 */
 	public static function device_revoke( int $id ) {
 		$row = flxapp_device_get( $id );
-		if ( ! is_array( $row ) || ( (int) $row['user_id'] !== get_current_user_id() && ! current_user_can( 'manage_options' ) ) ) {
+		if ( ! is_array( $row ) || ( flx_gql_int( $row['user_id'] ?? 0 ) !== get_current_user_id() && ! current_user_can( 'manage_options' ) ) ) {
 			return self::forbidden();
 		}
 		flxapp_device_revoke( $row );
@@ -449,7 +487,7 @@ final class FLXAPP_Admin_Service {
 		$s       = flxapp_settings();
 		$last    = (array) get_option( 'flxapp_push_last', array() );
 		$devices = flxapp_user_devices( 0 );
-		$push    = count( array_filter( $devices, static fn( $d ) => '' !== (string) flx_gql_arr( $d )['token_hash'] ) );
+		$push    = count( array_filter( $devices, static fn( $d ) => '' !== flx_gql_str( flx_gql_arr( $d )['token_hash'] ?? '' ) ) );
 		$apps    = array();
 		foreach ( (array) $s['app_clients'] as $c ) {
 			$c      = flx_gql_arr( $c );
@@ -457,7 +495,7 @@ final class FLXAPP_Admin_Service {
 				'id'           => flx_gql_str( $c['id'] ?? '' ),
 				'name'         => flx_gql_str( $c['name'] ?? '' ),
 				'platform'     => 'desktop' === ( $c['platform'] ?? '' ) ? 'desktop' : 'mobile',
-				'redirectUris' => array_values( array_map( 'strval', (array) ( $c['redirect_uris'] ?? array() ) ) ),
+				'redirectUris' => self::strs( $c['redirect_uris'] ?? array() ),
 			);
 		}
 		$preset = flxapp_site_preset();
@@ -481,7 +519,7 @@ final class FLXAPP_Admin_Service {
 				'error'   => '' !== flx_gql_str( $last['error'] ?? '' ) ? flx_gql_str( $last['error'] ) : null,
 			),
 			'bootstrapUrl' => rest_url( 'flxapp/v1/app/bootstrap' ),
-			'preset'       => $preset ? (string) $preset : null,
+			'preset'       => $preset ? flx_gql_str( $preset ) : null,
 		);
 	}
 
@@ -521,7 +559,7 @@ final class FLXAPP_Admin_Service {
 				if ( '' === $id ) {
 					continue;
 				}
-				$uris      = array_map( 'trim', array_map( 'strval', (array) ( $c['redirectUris'] ?? array() ) ) );
+				$uris      = array_map( 'trim', self::strs( $c['redirectUris'] ?? array() ) );
 				$clients[ $id ] = array(
 					'id'            => $id,
 					'name'          => sanitize_text_field( flx_gql_str( $c['name'] ?? '', $id ) ),
@@ -581,7 +619,7 @@ final class FLXAPP_Admin_Service {
 		foreach ( flxapp_target_catalog() as $group => $items ) {
 			$out[] = array(
 				'label' => (string) $group,
-				'items' => self::choices( array_map( 'strval', $items ) ),
+				'items' => self::choices( $items ),
 			);
 		}
 		return $out;
@@ -597,7 +635,7 @@ final class FLXAPP_Admin_Service {
 		foreach ( flxapp_screen_catalog() as $k => $l ) {
 			$screen[] = array(
 				'key'   => (string) $k,
-				'label' => (string) $l,
+				'label' => flx_gql_str( $l ),
 				'on'    => ! in_array( (string) $k, $off, true ),
 			);
 		}
@@ -620,7 +658,7 @@ final class FLXAPP_Admin_Service {
 		return array(
 			'option'         => FLXAPP_Service::doc( flxapp_app_option() ),
 			'theme'          => FLXAPP_Service::doc( flxapp_theme() ),
-			'fonts'          => array_values( flxapp_fonts() ),
+			'fonts'          => flxapp_fonts(),
 			'colorKeys'      => $labels,
 			'targets'        => self::targets(),
 			'targetLabels'   => $cat,
@@ -642,19 +680,27 @@ final class FLXAPP_Admin_Service {
 			return self::forbidden();
 		}
 		$cur = flxapp_app_option();
-		$mob = (array) ( $p['mobile'] ?? array() );
-		$mob['tabs']                    = array_values( array_filter( (array) ( $mob['tabs'] ?? array() ), static fn( $t ) => '' !== (string) ( flx_gql_arr( $t )['target'] ?? '' ) ) );
-		$mob['drawer']['enabled']       = ! empty( $mob['drawer']['enabled'] );
-		$mob['topbar']['show_logo']     = ! empty( $mob['topbar']['show_logo'] );
-		$mob['topbar']['site_switcher'] = ! empty( $mob['topbar']['site_switcher'] );
-		$mob['drawer']['groups']        = $cur['shell']['mobile']['drawer']['groups'] ?? null;
-		$mob['drawer']['pins']          = $cur['shell']['mobile']['drawer']['pins'] ?? array();
-		$mob['topbar']['actions']       = $cur['shell']['mobile']['topbar']['actions'] ?? null;
-		$desk                           = (array) ( $p['desktop'] ?? array() );
-		$desk['commands']               = array_values( array_filter( (array) ( $desk['commands'] ?? array() ) ) );
-		$desk['topbar']['site_switcher'] = ! empty( $desk['topbar']['site_switcher'] );
-		$desk['sidebar']                = $cur['shell']['desktop']['sidebar'] ?? array();
-		$desk['topbar']['actions']      = $cur['shell']['desktop']['topbar']['actions'] ?? null;
+		$mob = flx_gql_arr( $p['mobile'] ?? array() );
+		$md  = flx_gql_arr( $mob['drawer'] ?? array() );
+		$mt  = flx_gql_arr( $mob['topbar'] ?? array() );
+
+		$mob['tabs']       = array_values( array_filter( (array) ( $mob['tabs'] ?? array() ), static fn( $t ) => '' !== flx_gql_str( flx_gql_arr( $t )['target'] ?? '' ) ) );
+		$md['enabled']     = ! empty( $md['enabled'] );
+		$md['groups']      = self::dig( $cur, 'shell', 'mobile', 'drawer', 'groups' );
+		$md['pins']        = self::dig( $cur, 'shell', 'mobile', 'drawer', 'pins' ) ?? array();
+		$mt['show_logo']   = ! empty( $mt['show_logo'] );
+		$mt['site_switcher'] = ! empty( $mt['site_switcher'] );
+		$mt['actions']     = self::dig( $cur, 'shell', 'mobile', 'topbar', 'actions' );
+		$mob['drawer']     = $md;
+		$mob['topbar']     = $mt;
+
+		$desk = flx_gql_arr( $p['desktop'] ?? array() );
+		$dt   = flx_gql_arr( $desk['topbar'] ?? array() );
+		$desk['commands']  = array_values( array_filter( (array) ( $desk['commands'] ?? array() ) ) );
+		$dt['site_switcher'] = ! empty( $dt['site_switcher'] );
+		$dt['actions']     = self::dig( $cur, 'shell', 'desktop', 'topbar', 'actions' );
+		$desk['topbar']    = $dt;
+		$desk['sidebar']   = self::dig( $cur, 'shell', 'desktop', 'sidebar' ) ?? array();
 		$new                            = flxapp_app_sanitize(
 			array(
 				'theme'    => (array) ( $p['theme'] ?? array() ),
@@ -669,9 +715,9 @@ final class FLXAPP_Admin_Service {
 		);
 		update_option( 'flxapp_app', $new, false );
 		$all              = array_filter( explode( ',', flx_gql_str( $p['screens_all'] ?? '' ) ) );
-		$on               = array_map( 'strval', (array) ( $p['screens_on'] ?? array() ) );
+		$on               = self::strs( $p['screens_on'] ?? array() );
 		$s                = flxapp_settings();
-		$s['screens_off'] = array_values( array_unique( array_merge( array_diff( (array) $s['screens_off'], $all ), array_diff( $all, $on ) ) ) );
+		$s['screens_off'] = array_values( array_unique( array_merge( array_diff( self::strs( $s['screens_off'] ), $all ), array_diff( $all, $on ) ) ) );
 		update_option( 'flxapp_settings', $s, false );
 		return self::appearance();
 	}

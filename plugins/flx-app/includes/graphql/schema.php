@@ -576,7 +576,7 @@ flx_gql_mutation(
 			'url'       => flxapp_gql_f( 'String', __( 'The sign-in address.', 'flx-app' ) ),
 			'expiresIn' => flxapp_gql_f( 'Int', __( 'Seconds the address stays valid.', 'flx-app' ) ),
 		),
-		'resolve'     => static fn( array $input ) => FLXAPP_Service::session_create( $input ),
+		'resolve'     => static fn( array $input ) => FLXAPP_Service::session_create( flx_gql_arr( $input ) ),
 	)
 );
 flx_gql_mutation(

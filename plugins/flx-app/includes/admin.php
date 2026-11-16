@@ -144,6 +144,7 @@ function flxapp_handle_modules() {
 	exit;
 }
 
+/** @return array<string, string> */
 function flxapp_key_cap_choices() {
 	return array(
 		'read'           => __( 'All users', 'flx-app' ),
@@ -223,6 +224,7 @@ function flxapp_render_notices( $uid ) {
  *
  * @param string $os macos | windows | windows-msi
  */
+/** @return string */
 function flxapp_desktop_download_url( $os ) {
 	$server = class_exists( 'FLXU_Updater' ) ? FLXU_Updater::server() : 'https://updater.fluxwp.com';
 	$brand  = sanitize_key( (string) apply_filters( 'flxapp_desktop_brand', 'flux' ) );
@@ -381,6 +383,11 @@ function flxapp_render_settings_page() {
 }
 
 /** Modüller + manifestler, kimliğe göre: [ title, menu, cap, version, kind: manifest|native|web, errors ]. */
+/**
+ * Modules + manifests by id.
+ *
+ * @return array<string, array{title: string, menu: string, cap: string, version: string, kind: string, screens?: int, errors: list<string>}>
+ */
 function flxapp_admin_modules() {
 	$out = array();
 	foreach ( (array) apply_filters( 'flxapp_modules', array() ) as $id => $m ) {

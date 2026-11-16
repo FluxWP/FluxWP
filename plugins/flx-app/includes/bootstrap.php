@@ -144,6 +144,7 @@ function flxapp_rest_bootstrap() {
 
 const FLXAPP_PREF_LISTS = array( 'order', 'hidden', 'pinned', 'forceWeb', 'tabs', 'cardOrder', 'cardHidden' );
 
+/** @return array<string, mixed> */
 function flxapp_user_prefs( $user_id ) {
 	$p = get_user_meta( (int) $user_id, 'flxapp_prefs', true );
 	return is_array( $p ) ? $p : array();

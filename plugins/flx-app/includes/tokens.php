@@ -129,6 +129,7 @@ function flxapp_is_graphql_request() {
 /**
  * Bu istekte kullanılan belirteç kaydı (yoksa null). REST yanıtları ve /me için.
  */
+/** @return array<string, mixed>|null */
 function flxapp_current_token( $set = null ) {
 	static $row = null;
 	if ( null !== $set ) {
@@ -205,6 +206,7 @@ add_filter(
 );
 
 /** Kullanıcının kişisel API anahtarları ve oturumları (yönetim ekranı için). */
+/** @return list<array<string, mixed>> */
 function flxapp_user_tokens( $user_id = 0, $kinds = array( 'key', 'refresh' ) ) {
 	global $wpdb;
 	$t    = flxapp_table();
@@ -221,6 +223,7 @@ function flxapp_user_tokens( $user_id = 0, $kinds = array( 'key', 'refresh' ) ) 
 }
 
 /** Bir grant'ın son kullanım zamanı (erişim belirteçleri dahil). */
+/** @return int */
 function flxapp_grant_last_used( $grant_id ) {
 	global $wpdb;
 	$t = flxapp_table();
