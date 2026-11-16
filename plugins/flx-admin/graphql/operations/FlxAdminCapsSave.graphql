@@ -1,0 +1,12 @@
+mutation FlxAdminCapsSave($input: FlxAdminCapsSaveInput!) {
+  flxAdminCapsSave(input: $input) {
+    caps {
+      ...FlxAdminCapsFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

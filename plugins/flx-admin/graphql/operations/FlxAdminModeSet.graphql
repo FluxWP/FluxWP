@@ -1,0 +1,10 @@
+mutation FlxAdminModeSet($input: FlxAdminModeSetInput!) {
+  flxAdminModeSet(input: $input) {
+    mode
+    errors {
+      code
+      message
+      field
+    }
+  }
+}
