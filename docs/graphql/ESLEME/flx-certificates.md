@@ -1,6 +1,6 @@
 # Flux PDF & Certificates (flx-certificates): REST → GraphQL eşlemesi
 
-Paket sürümü: 2.1.2 · Önek: `flxs_` · Dal: `gql/flx-certificates-1` · Durum: taslak (envanter). `flx_settings_schema` kaydı yok; ayarlar `flxs_settings` ve `flxs_site` seçeneklerinde.
+Paket sürümü: 2.1.2 (kayıtlar bölümü 2.2.0’a çıkar). Önek: `flxs_` · Dal: `gql/flx-certificates-1` · Durum: envanter düzeltildi, kayıtlar yazılıyor. `Requires PHP` 7.4’ten 8.1’e çıkar. `flx_settings_schema` kaydı yok; ayarlar `flxs_settings` ve `flxs_site` seçeneklerinde.
 
 Satır sayıları (GraphQL’e bağlanan / istisna):
 
@@ -11,11 +11,11 @@ Satır sayıları (GraphQL’e bağlanan / istisna):
 | admin-post | 22 (19 action; `flxs_tpl_action` dört satır) | 18 | 4 |
 | Admin sayfası | 16 (12 slug, alt görünümler ayrı) | 15 ekran | 1 yönlendirme (ekran yok) |
 | MCP / AI aracı | 0 | 0 | 0 |
-| Ayar alanı | 24 | 23 | 0 (SMTP şifresi gizli; okunmaz, istisna değil) |
+| Ayar alanı | 25 | 24 | 0 (SMTP şifresi şemaya girmez; istisna değil) |
 | Cron / zamanlanmış kanca | 4 | 0 (adım mutation’ları ayrı) | 4 |
 | Herkese açık uç | 5 | 2 | 3 |
 | Dosya indirme / yükleme | 8 | 2 (kit `uploadId`) | 6 akış |
-| Kısa kod / blok | 5 | 4 | 0 (marka bloğu bu paketin şeması değil) |
+| Kısa kod / blok | 5 | 1 | 0 (üç etkinlik kısa kodu PHP kalır; `[flx_credit]` bu şema değil) |
 
 İstisna satırları `docs/graphql/durum/flx-certificates.md` içindedir. `ISTISNALAR.md` bu PR’da değişmez.
 
@@ -29,7 +29,7 @@ Satır sayıları (GraphQL’e bağlanan / istisna):
 - PDF: TCPDF + FPDI + GD (`includes/render.php`). Gotenberg yok. Tarayıcı yedeği `assets/js/renderer.js` (pdf-lib). Sağlayıcılar e-posta / SMS / WhatsApp gönderimidir.
 - Servisler (sonraki PR’lar, bu dalda yazılmadı): `FLXS_Certificate_Service`, `FLXS_Person_Service`, `FLXS_Template_Service`, `FLXS_Queue_Service`, `FLXS_Event_Service`, `FLXS_Stats_Service`, `FLXS_Settings_Service`, `FLXS_Log_Service`.
 
-Yetkiler (`flx_gql_capabilities`, grup `certificates`): `flxs_use`, `flxs_manage`, `flxs_bulk`, `flxs_dashboard`, `flxs_own_ref`. `flxs_own_ref` ve ayar `staff_own_only` cap değil, loader `can_see` daraltmasıdır (`includes/helpers.php:243-287`).
+Yetkiler (`flx_gql_capabilities`, grup `certificates`): `flxs_use`, `flxs_manage`, `flxs_bulk`, `flxs_dashboard`, `flxs_own_ref`. `flxs_own_ref` ve ayar `staff_own_only` cap değil. Sertifika SQL’i ikisini de uygular (`flxs_scope_sql`, `helpers.php:262-273`). Kişi SQL’i (`flxs_people_scope_sql` / `flxs_can_see_person`, `helpers.php:291-308`) yalnız `flxs_own_ref` bakar; `staff_own_only` açıkken klasik kişi listesi, REST dizini ve sertifika sayıları başkasının kişisini gösterir. Klasik davranış bu PR’da değişmez. GraphQL kişi yükleyicisi, dizin, arama ve sayım sertifikayla aynı kısıtı uygular (`own_ref` veya `own_only`).
 
 ## REST uçları
 
@@ -116,8 +116,8 @@ Menü: `includes/admin/admin.php:20-51`. İstemci klasörü (sonraki PR): `packa
 |---|---|---|---|---|
 | `flxs` | Liste. Filtre: `s`, `status` (active/revoked), `event` (0 = etkinliksiz), `template`, `ref` (0 = referanssız), `by` (kapsamlı kullanıcıda gizli), `person`. Toplu: yukarıdaki sekiz işlem. Excel, satırda sayfa / PDF / referans düzeltme | `flxCertificates`, `flxCertificateBulk`, `flxCertificateSetReferrer`, `flxCertificateSetStatus` | `certificates/List` | `page-certificates.php:67` filtre `export.php:12` |
 | `flxs-dashboard` | Sayaç, seri, tablo. Filtre: preset `today\|7\|30\|90\|month\|year\|all\|custom`, `from`, `to`, `event` (açık + arşiv), `ref`, `template`, metrik `fidan`. CSV tarayıcıda üretilir | `flxCertificateStats`, `flxCertificateOverview` | `certificates/Dashboard` | `page-dashboard.php:5` `assets/js/dashboard.js:10-53` |
-| `flxs-etkinlikler` | CRM yoksa: sekmeler Açık / `tab=arsiv`. Satır: dashboard, sertifikalar, düzenle, sitede yayınla, kapat/aç, arşivde sil. Altta site formu. CRM varken slug `flxcrm_events_url`’e yönlenir, menü gizli | `flxCertificateEvents`, `flxCertificateEventSave`, `flxCertificateEventSetStatus`, `flxCertificateEventDelete`, `flxCertificateEventPublish`, `flxCertificateSite` | `certificates/Events` ya da CRM bağlantısı | `page-events.php:72` `admin.php:27-31` `events-shared.php:217` |
-| `flxs-etkinlikler&add=1` / `&edit=` | Ad, tarih, saat, hedef, ek fidan, özet, görsel, konum adı/adres/harita, duyuru, not. Yeni kayıtta etkinliksiz sertifikaları devralma | `flxCertificateEventSave` | aynı ekranın formu | `page-events.php:74` `flxs_event_form` `:155` |
+| `flxs-etkinlikler` | Etkinlikler `flx_events` tablosunda (`helpers.php:14-20`, `events-shared.php`). CRM varken menü gizlenir, sayfa `flxcrm_events_url`’e gider (`events-shared.php:215-237`). React ekranı Flux CRM’de (`flxGatherings`, PR #333). İkinci ekran ve CRUD burada yok. CRM yokken klasik sayfa kalır; #333 merge olunca CRM bileşeni yeniden kullanılır (açık borç) | sertifikaya özel alanlar: `target`, `baseCount`, `saplingCount`, `certificateCount`, site gösterimi (`flxCertificateSite`). Etkinliğin kendisi CRM | CRM ekranı; CRM yoksa klasik | `page-events.php:72` `events-shared.php:7` `:217` |
+| `flxs-etkinlikler&add=1` / `&edit=` | Aynı karar. Form CRM ekranında. Bu paket yalnız kendi sütunlarını okutur | CRM `flxGathering…`; sertifika alanları yukarıdaki | CRM | `page-events.php:74` |
 | `flxs-yeni` | Yeni: çok satır (kişi başına bir sertifika), şablon, etkinlik, referans, kanal, canlı önizleme. `&id=` düzenleme (tek kayıt, PDF yenileme) | `flxCertificateCreate` / `Update`, `flxCertificatePeople`, `flxCertificateSend`, `flxCertificateQueue` | `certificates/Create` | `page-create.php:8` |
 | `flxs-kisiler` | Arama `s`. Toplu: kanala göre toplu gönderim sayfasına. | `flxCertificateDirectory`, `flxCertificateBulkSend` | `certificates/People` | `page-people.php:82` |
 | `flxs-kisiler&add=1` | Ad, telefon, e-posta, not | `flxCertificatePersonSave` | aynı | `:88` |
@@ -189,7 +189,9 @@ Yok. `flx_mcp_tools`, `flxai_tools`, `flxseo_mcp_tools` pakette geçmiyor.
 | `POST /lookup` | public + limit | `flxCertificateLookup` | `rest.php:342` kısa kod `public.php:358` |
 | `POST /public-files/{code}` | HMAC, oran 12 / 6 saat | **İSTİSNA** | `rest.php:174` |
 
-`flxCertificateVerify` yalnız sayfanın gösterdiği alanlar (`templates/sertifika.php:82-107`): `status`, `title`, `holderName`, `number`, `issuedOn`, `issuer`, `code`, `pageUrl`, `pdfUrl` (iptalde veya dosya yoksa null), `imageUrl`, `imageWidth`, `imageHeight`, `ogTitle`, `ogDescription`. İptalde indirme ve paylaşım yok. Telefon, e-posta, kişi id, iç id, not, referans, oluşturan kullanıcı yok. Bilinmeyen kod `null` (varlık sızmaz). Gerekçe: KURALLAR §3 sertifika doğrulama örneği.
+`flxCertificateVerify` saf, önbellekli okumadır. Alanlar sayfanın gösterdiği kümedir (`templates/sertifika.php:82-107`): `status`, `title`, `holderName`, `number`, `issuedOn`, `issuer`, `code`, `pageUrl`, `pdfUrl` (iptalde veya dosya yoksa null), `imageUrl`, `imageWidth`, `imageHeight`, `ogTitle`, `ogDescription`. Telefon, e-posta, kişi id, iç id, not, referans, oluşturan kullanıcı yok. Bilinmeyen kod `null`. Gerekçe: KURALLAR §3. Klasik sayfa görüntülemede üç iş daha yapar (`public.php:48-102`, `:218-248`): eksik dosyayı çizer (`flxs_render_on_view`), `views` artırır, sunucu çizemezse tarayıcıya HMAC jetonu ve şablon verisi verip `POST /public-files/{code}` ile yükletir. Önbellekli GET bunları yapamaz ve jetonu taşıyamaz. Sayaç ile çizim klasik sayfada kalır; başsız ön yüz isterse ayrı, önbelleksiz, oran sınırlı bir public mutation olur. Tarayıcı yedeği istisnadır, jetonu sorguya girmez.
+
+İptal `pdfUrl`’i ve `/pdf` yolunu kapatır (`certificates.php:270-278`, `public.php:111-114`). `uploads` altındaki `.pdf` / `.jpg` silinmez; dosya adında 6 karakterlik rastgele sonek vardır. Klasik boşluk, bu PR’da dosya silinmez. GraphQL iptal edilmiş sertifika için o statik adresleri döndürmez.
 
 `flxCertificateLookup` yanıtı her zaman aynı cümle (`rest.php:405`). Limit: IP başına saatte 10, adres başına 15 dakikada 1 (`rest.php:356-367`). Bal küpü `website`.
 
@@ -212,11 +214,13 @@ Dosyalar `uploads/flx-certificates/` (`helpers.php:196`).
 
 | Ad | → GraphQL | Kaynak |
 |---|---|---|
-| `[flxs_etkinlikler]` | `flxCertificateEvents` (açık etkinlikler, herkese açık alanlar: ad, tarih, fidan, hedef, konum etiketi) | `site.php:289` |
-| `[flxs_etkinlik id=""]` | `flxCertificateEvent` | `site.php:290` |
-| `[flxs_fidan_sayaci etkinlik="" ek=""]` | `flxCertificateSaplingCount` `public` | `site.php:298` |
 | `[flx_sertifika_sorgula]` | kısa kod kalır; form `flxCertificateLookup` | `public.php:358` |
+| `[flxs_etkinlikler]` | PHP kalır. Etkinlik verisi CRM `flxGatherings` | `site.php:289` |
+| `[flxs_etkinlik id=""]` | PHP kalır | `site.php:290` |
+| `[flxs_fidan_sayaci etkinlik="" ek=""]` | PHP kalır | `site.php:298` |
 | `[flx_credit]` / blok `flx/credit` | bu paketin şeması değil (gömülü marka) | `includes/flx-brand/core.php:134` `:149` |
+
+`[flxs_sertifika]` diye bir kısa kod yok. Herkese açık sertifika sayfası rewrite’dır (`flxCertificateVerify`).
 
 Ayrıca `render_block` ile ana sayfaya etkinlik bölümü (`site.php:274`) ve etkinlik başlığına fidan rozeti (`site.php:319`). Tema kancası, GraphQL değil.
 
@@ -249,17 +253,17 @@ Aynı fonksiyonları Flux Forms (`class-flxf-automations-engine.php`) ve Flux Ch
 
 Kişi: `flxs_upsert_person` → `flx_person_ensure` kaynak `certificates` (`people.php:93`). Silme, başka bağ varsa yalnız bağı keser (`people.php:156`). `flx_person_in_use` sertifikası olan kişiyi silinmez işaretler (`people-shared.php:155`). `flx_person_merged` sertifika ve mesaj `person_id`’sini tutulan kişiye taşır (`people-shared.php:169`).
 
-GraphQL’de `FlxCertificate.person: FlxContact` nullable. Görme: `flxcrm_gql_can_see_contact` içinde `flxs_can_see_person`. CRM alanları (`note`, zaman çizelgesi, …) `flxcrm_view` ister; sertifika personeli onları görmez. Kişi notu sertifika formunda duruyor (`page-people.php:18`): `FlxCertificatePerson.note`, cap `flxs_use` \| `flxs_manage`, CRM not alanının kopyası değil, aynı sütunun bu pakete açık okuması.
+Kişi alanı `FlxPerson` (KURALLAR §6). Sahip Flux CRM: `FlxContact` bu arayüzü uygular. CRM yokken `FlxCertificatePerson` da `FlxPerson` uygular ve `flx_gql_person_type` onu döndürür. Alan nullable. Görme `flxcrm_gql_can_see_contact` üzerinden; filtre sertifika personelinin görebildiği kişiyle sınırlıdır (`own_ref` veya `own_only`, ve sertifika kişisi). CRM alanları (`note` CRM’de, zaman çizelgesi) `flxcrm_view` ister. Sertifika notu `FlxCertificatePerson.note` üzerindedir, CRM notunun kopyası değildir.
 
 ## Tipler
 
 | Tip | Alanlar | Nullable | Loader |
 |---|---|---|---|
-| `FlxCertificate` | id, code, number, title, status, template, values, person, event, referrer, pageUrl, pdfUrl, imageUrl, createdAt | `person` (göremezse), `pdfUrl` / `imageUrl` (dosya yoksa), `event` / `referrer` (yoksa) | `can_see` = `flxs_can_see_certificate` |
-| `FlxCertificateVerification` | yukarıdaki herkese açık küme | `pdfUrl` iptalde null | kod ile; kişi yüklenmez |
-| `FlxCertificatePerson` | id, name, phone, email, note, certificateCount | `phone`, `email`, `note` boşsa | `flxs_can_see_person` |
-| `FlxCertificateTemplate` | id, name, status, config, thumbUrl, donorSelectable | `thumbUrl` | `flxs_manage` |
-| `FlxCertificateMessage` | id, channel, status, recipient, subject, attempts, lastError, sentAt | `lastError`, `sentAt` | kuyruk kapsamı |
+| `FlxCertificate` | id, code, number, title, status, template, values, person (`FlxPerson`), event, referrer, pageUrl, pdfUrl, imageUrl, views, backdated, createdBy, createdAt, kanal özeti | `person` (göremezse), `pdfUrl` / `imageUrl` (dosya yoksa veya iptal) | `can_see` = `flxs_can_see_certificate` (`own_ref` ve `own_only`) |
+| `FlxCertificateVerification` | herkese açık küme; yan etki yok | `pdfUrl` iptalde veya dosya yoksa null | kod ile; kişi yüklenmez |
+| `FlxCertificatePerson` | `FlxPerson` + note, certificateCount, createdAt, createdByName | `phone`, `email`, `note` boşsa | `own_ref` veya `own_only` (klasik `flxs_can_see_person` yalnız `own_ref`) |
+| `FlxCertificateTemplate` | id, name, status, config, thumbUrl, donorSelectable. Okuma `flxs_use` (aktif şablon ve oluşturma/filtre/toplu gönderim). Yazma `flxs_manage` | `thumbUrl` | okuma `flxs_use` |
+| `FlxCertificateMessage` | id, channel, status, recipient, subject, body, response, externalId, attempts, lastError, sentAt, scheduledAt, createdAt, createdBy, source, providerName, certificateId | `lastError`, `sentAt`, `body` | kuyruk kapsamı (`flxs_messages_scope_sql`; klasik retry/cancel/ids bakmaz) |
 | `FlxCertificateEvent` | id, name, status, date, target, counts, location | konum alanları | yönetici; herkese açık sorguda iletişim yok |
 | `FlxCertificateStats` / `Overview` | toplam, seri, kuyruk sayıları | — | dashboard |
 | `FlxCertificateSettings` | yukarıdaki ayar alanları | — | `flxs_manage` |
@@ -270,6 +274,21 @@ Connection’lar `first ≤ 50`: sertifika, kişi dizini, mesaj, log, etkinlik.
 
 Önbellek: `flx-certificates:certificate:{id}`, `flx-certificates:list`, `flx-certificates:person:{id}`, `flx-certificates:queue`, `flx-certificates:settings`, `flx-certificates:events`. Doğrulama sayfası girişsiz persisted GET; iptal ve dosya yazımı purge eder. `noindex` açıksa (varsayılan) herkese açık önbellek süresi kısa tutulur.
 
-## Açık sorular
+## İnceleme düzeltmeleri
 
-Ürün kararları uygulayıcıya bırakılmadı; koordinatör listesinde. Teknik varsayılan: herkese açık doğrulama yalnız sayfadaki alanlar; sağlayıcı ekranı geri gelmez; kuyruk oturumlu adım mutation’ıdır; etkinlik ekranı CRM varken CRM’e bağlanır.
+Envanter `02f12cb8` üzerinde doğrulandı. Klasik kod bu PR’da değişmez.
+
+- Kişi kapsamı: yukarıdaki `flxs_people_scope_sql` boşluğu. Klasik liste (`page-people.php:81`) ve REST dizini sayımı da kapsamsız. GraphQL sayımı `flxs_scope_sql` kullanır.
+- `flxs_handle_people_bulk` (`page-people.php:36`) yetki bakmaz; yalnız toplu sayfaya yönlendirir. Düşük. GraphQL yönlendirmesi `flxs_can_bulk` ister.
+- Alıcı rehberi `flxs_recipients` (`rest.php:337`) tüm personelde ortaktır, kapsamsız. Not. Bu bölümde şemaya girmez.
+- Kuyruk ve toplu gönderim (sonraki bölüm, şimdi kayıt): `flxs_rest_message_op` / `flxs_retry_message` / `flxs_cancel_message` (`rest.php:231`, `queue.php:367-391`) kapsam bakmaz. `flxs_rest_queue_status` `ids` ile `flxs_messages_scope_sql` eklemez (`rest.php:220-228`). `flxs_bulk_send` (`queue.php:463-602`) `certificate_ids`, `template_id`, `person_ids` ve “hepsi” için `flxs_scope_sql` uygulamaz; `dry=true` ilk üçün ad, telefon, e-posta ve mesajını döndürür. GraphQL bunların hepsini kapsar. Önizleme adı `flxCertificateBulkPreview` (`dry` ayrı mutation değil, aynı sorgunun önizleme modu).
+- `FlxCertificateMessage` (kuyruk bölümü): `body`, `response`, `externalId`, `scheduledAt`, `createdAt`, `createdBy`, `source`, `providerName`, `certificateId`. Son partiler `flxs_recent_batches(4)` (`queue.php:626`).
+- `flxCertificateSendTo` girdileri klasik REST ile aynı: `to`, `name`, `body`, `subject`, `provider`, `save` (`rest.php:304-333`). `save` rehbere yazar.
+- `flxCertificates` süzgeçleri: `search`, `status`, `eventId` (0 = etkinliksiz), `templateId`, `referrerId` (0 = referanssız), `createdBy`, `personId`. Açılır liste sayıları `flxs_event_counts` / `flxs_ref_counts`. Geçmiş tarih `issued`, yalnız `flxs_manage`. Canlı önizleme `flxCertificateCreateConfig.rendererConfig` (`flxs_renderer_config`).
+- `flxCertificateTemplates` / `flxCertificateTemplate` okuma cap’i `flxs_use`. Şablon editörü sonraki bölüm.
+- Kuyruk adımı aynı koddan geçer: `flx_background_run` kilidi, `UPDATE … WHERE status = 'queued'` claim (`queue.php:241-270`), 10 dakikadır `processing` kalanın geri alınması (`:247`). `flxCertificateRenderMissing` `flx_bg_time_left()` bitince erken çıkar (`render.php:213` bugün bakmaz; mutation bakacak).
+- Etkinlik ekranı sahibi kararı değil: CRM varken CRM, yokken klasik sayfa borç olarak kalır.
+
+## Açık borç
+
+CRM yokken etkinlik sayfası klasik kalır. #333 merge olunca CRM bileşeni burada yeniden kullanılır; CRUD kopyalanmaz.
