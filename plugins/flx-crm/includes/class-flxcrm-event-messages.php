@@ -721,6 +721,9 @@ final class FLXCRM_Event_Messages {
 		if ( ! is_array( $fresh ) ) {
 			return new WP_Error( 'flxcrm_event', __( 'Event not found.', 'flx-crm' ), array( 'graphql_code' => 'NOT_FOUND' ) );
 		}
+		if ( class_exists( 'FLXCRM_Gathering_Service' ) ) {
+			FLXCRM_Gathering_Service::changed( $id );
+		}
 		return array( 'notice' => $msg, 'row' => $fresh );
 	}
 

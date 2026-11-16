@@ -33,6 +33,22 @@ import { Card, Empty, Head, Ic, errText, href, useCrm, type Route } from './ui';
 type CardNode = FlxCrmGatheringsQuery['flxGatherings']['events']['nodes'][number];
 type Detail = NonNullable<FlxCrmGatheringQuery['flxGathering']>;
 type Messages = NonNullable<FlxCrmGatheringMessagesQuery['flxGatheringMessages']>;
+
+/** datetime-local value in the site timezone, from an FlxDateTime timestamp. */
+function siteLocalInput(timestamp: number, timeZone: string): string {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: timeZone || 'UTC',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    hourCycle: 'h23',
+  }).formatToParts(new Date(timestamp * 1000));
+  const pick = (type: Intl.DateTimeFormatPartTypes) => parts.find((p) => p.type === type)?.value ?? '';
+  const hour = pick('hour') === '24' ? '00' : pick('hour');
+  return `${pick('year')}-${pick('month')}-${pick('day')}T${hour}:${pick('minute')}`;
+}
 type Send = Messages['sends'][number];
 type FormData = NonNullable<FlxCrmGatheringFormQuery['flxGatheringForm']>;
 
@@ -443,7 +459,7 @@ function Overview({ e }: { e: Detail }) {
                       <div>
                         <strong>{s.text}</strong>
                         <small>
-                          {(s.sendAt ? t('Planned for %s', s.sendAt) : s.at?.relative ?? '') + ' · ' + s.channels.map((c) => c.label).join(', ')}
+                          {(s.sendAt ? t('Planned for %s', s.sendAt.label) : s.at?.relative ?? '') + ' · ' + s.channels.map((c) => c.label).join(', ')}
                           {s.eta ? ' · ' + t('Estimated finish: %s', s.eta.label) : ''}
                         </small>
                       </div>
@@ -655,7 +671,7 @@ function SendCard({ id, s, full }: { id: number; s: Send; full?: boolean }) {
           {s.overallLabel}
         </span>
         <span className="flxcrm-badge">{s.kind === 'MARKETING' ? t('Promotion') : t('Information')}</span>
-        <span className="flxcrm-muted">{(s.sendAt ? t('Planned for %s', s.sendAt) : s.at?.label ?? '') + (s.byName ? ' · ' + s.byName : '')}</span>
+        <span className="flxcrm-muted">{(s.sendAt ? t('Planned for %s', s.sendAt.label) : s.at?.label ?? '') + (s.byName ? ' · ' + s.byName : '')}</span>
       </div>
       <div className="flxcrm-sendcard__main">
         {s.thumbUrl ? <img className="flxcrm-sendcard__thumb" src={s.thumbUrl} alt="" /> : s.mediaId ? <span className="flxcrm-sendcard__thumb"><Ic n="link" size={18} /></span> : null}
@@ -822,7 +838,7 @@ function SendDetail({ id, sendKey, route }: { id: number; sendKey: string; route
                     <span className="flxcrm-badge">{r.status}</span>
                     {r.error ? <small className="flxcrm-sendrec__err">{r.error}</small> : null}
                   </td>
-                  <td>{r.sentAt || r.scheduledAt || '—'}</td>
+                  <td>{r.sentAt?.label || r.scheduledAt?.label || '—'}</td>
                 </tr>
               ))}
             </tbody>
@@ -862,8 +878,9 @@ function Composer({ id, name, data, go }: { id: number; name: string; data: Mess
   const [kind, setKind] = useState<FlxGatheringKind>('INFO');
   const [subject, setSubject] = useState('');
   const [body, setBody] = useState('');
-  const [when, setWhen] = useState(data.defaultSendAt ? 'later' : 'now');
-  const [sendAt, setSendAt] = useState(data.defaultSendAt);
+  const planned = data.defaultSendAt ? siteLocalInput(data.defaultSendAt.timestamp, data.timezone) : '';
+  const [when, setWhen] = useState(planned ? 'later' : 'now');
+  const [sendAt, setSendAt] = useState(planned);
   const [mediaId, setMediaId] = useState(0);
   const [mediaUrl, setMediaUrl] = useState('');
   const [who, setWho] = useState(0);

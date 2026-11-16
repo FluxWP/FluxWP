@@ -47,26 +47,26 @@ final class FLXCRM_Page_Events {
 			}
 		}
 		$data['create_post'] = ! empty( $_POST['create_post'] );
-		$r                   = flx_event_save( $data, $id );
+		$r                   = FLXCRM_Gathering_Service::save( $id, $data, ! empty( $_POST['create_post'] ), '' );
 		if ( is_wp_error( $r ) ) {
-			wp_safe_redirect( flxcrm_events_url( array( $id ? 'edit' : 'add' => $id ? $id : 1, 'flxcrm_err' => rawurlencode( __( 'The event name cannot be empty.', 'flx-crm' ) ) ) ) );
+			wp_safe_redirect( flxcrm_events_url( array( $id ? 'edit' : 'add' => $id ? $id : 1, 'flxcrm_err' => rawurlencode( $r->get_error_message() ) ) ) );
 			exit;
 		}
-		wp_safe_redirect( flxcrm_events_url( array( 'id' => (int) $r, 'flxcrm_msg' => 'saved' ) ) );
+		wp_safe_redirect( flxcrm_events_url( array( 'id' => (int) $r['databaseId'], 'flxcrm_msg' => 'saved' ) ) );
 		exit;
 	}
 
 	public static function post_status() {
 		self::guard( 'flxcrm_gathering_status' );
 		$status = isset( $_POST['status'] ) && 'closed' === $_POST['status'] ? 'closed' : 'open';
-		flx_event_set_status( isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0, $status );
+		FLXCRM_Gathering_Service::set_status( isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0, $status );
 		wp_safe_redirect( flxcrm_events_url( array( 'tab' => 'closed' === $status ? 'archive' : '', 'flxcrm_msg' => 'saved' ) ) );
 		exit;
 	}
 
 	public static function post_delete() {
 		self::guard( 'flxcrm_gathering_delete' );
-		flx_event_delete( isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0 );
+		FLXCRM_Gathering_Service::delete( isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0 );
 		wp_safe_redirect( flxcrm_events_url( array( 'tab' => 'archive', 'flxcrm_msg' => 'deleted' ) ) );
 		exit;
 	}
@@ -74,7 +74,8 @@ final class FLXCRM_Page_Events {
 	public static function post_page() {
 		self::guard( 'flxcrm_gathering_page' );
 		$id  = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0;
-		$pid = flx_event_ensure_post( $id, true );
+		$got = FLXCRM_Gathering_Service::ensure_page( $id );
+		$pid = $got instanceof WP_Error ? 0 : (int) $got['postId'];
 		$arg = $pid ? array( 'flxcrm_msg' => 'saved' ) : array( 'flxcrm_err' => rawurlencode( __( 'The page could not be created: the theme has no event post type.', 'flx-crm' ) ) );
 		wp_safe_redirect( flxcrm_events_url( array( 'id' => $id ) + $arg ) );
 		exit;

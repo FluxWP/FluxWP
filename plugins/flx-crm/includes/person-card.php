@@ -79,8 +79,8 @@ function flxcrm_person_card_enqueue() {
  * Block kinds: stats, links, list, table, note, html, actions.
  *   stats|links|list|actions → items: [ { label, value, url, meta, primary } ]
  *   table → columns: [string], rows: [ { cells: [string], url, label, meta } ]
- *   note|html → text. html is trusted the same way as the classic card (the package escapes it).
- * A section whose cap fails is left out. It does not error the card.
+ *   note|html → text. html strips <script>/<style> and runs wp_kses_post on the wire; forms/scripts do not work in React or FluxApp, so owners should move to typed blocks. Item/row urls allow http, https, mailto, tel and relative admin URLs (others become '').
+ * Duplicate ids are not merged (use a unique id per package); a `replaces` value for an unused hook is ignored; a throwing resolver is dropped; check `function_exists( 'flxcrm_register_person_section' )` when CRM may be inactive. A section whose cap fails is left out without failing the card.
  *
  * @param array<string,mixed> $section Section.
  */

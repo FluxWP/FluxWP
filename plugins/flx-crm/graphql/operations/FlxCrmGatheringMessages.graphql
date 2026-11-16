@@ -5,7 +5,9 @@ query FlxCrmGatheringMessages($id: Int!) {
     canPause
     hasMedia
     timezone
-    defaultSendAt
+    defaultSendAt {
+      ...FlxCrmWhen
+    }
     channels {
       key
       label

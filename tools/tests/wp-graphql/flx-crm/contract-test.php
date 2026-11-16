@@ -279,14 +279,61 @@ flxt_same( count( flxcrm_tools() ), count( $ai['tools'] ?? array() ), 'ai: every
 flxt_same( 'FORBIDDEN', flxt_code( flxcrm_t( 'FlxCrmSettingsSave', array( 'input' => array( 'riskThreshold' => 10 ) ), $viewer ) ), 'settings save: a viewer is refused' );
 
 // ---- Events --------------------------------------------------------------------------------------------
+require_once ABSPATH . 'wp-admin/includes/plugin.php';
+if ( ! is_plugin_active( 'flx-certificates/flx-certificates.php' ) ) {
+	$flxcrm_certs = activate_plugin( 'flx-certificates/flx-certificates.php' );
+	flxt_ok( ! is_wp_error( $flxcrm_certs ), 'certificates: active', $flxcrm_certs );
+}
+update_option( 'timezone_string', 'Europe/Istanbul' );
+$flxcrm_caps = flxt_gql( 'query { flxViewer { capabilities } }', array(), $admin );
+$flxcrm_cap_list = $flxcrm_caps['data']['flxViewer']['capabilities'] ?? array();
+flxt_ok( in_array( 'flxcrm_view', $flxcrm_cap_list, true ) && in_array( 'flxcrm_manage', $flxcrm_cap_list, true ), 'viewer: flxcrm_view and flxcrm_manage are in the catalog', $flxcrm_cap_list );
+$flxcrm_view_caps = flxt_gql( 'query { flxViewer { capabilities } }', array(), $viewer );
+flxt_ok( in_array( 'flxcrm_view', $flxcrm_view_caps['data']['flxViewer']['capabilities'] ?? array(), true ) && ! in_array( 'flxcrm_manage', $flxcrm_view_caps['data']['flxViewer']['capabilities'] ?? array(), true ), 'viewer: a CRM viewer has flxcrm_view only', $flxcrm_view_caps );
 flxt_same( 'FORBIDDEN', flxt_code( flxcrm_t( 'FlxCrmGatheringSave', array( 'input' => array( 'fields' => array( array( 'key' => 'name', 'value' => 'X' ) ) ) ), $viewer ) ), 'gathering save: a viewer is refused' );
 $board = flxcrm_t( 'FlxCrmGatherings', array(), $viewer )['data']['flxGatherings'] ?? array();
 flxt_same( array( 0, 0 ), array( $board['openCount'] ?? null, $board['closedCount'] ?? null ), 'gatherings: empty counts' );
 $bad = flxcrm_t( 'FlxCrmGatheringSave', array( 'input' => array( 'fields' => array( array( 'key' => 'name', 'value' => '' ) ) ) ), $editor )['data']['flxGatheringSave'] ?? array();
 flxt_ok( ! empty( $bad['errors'] ), 'gathering: a name is required', $bad );
-$made = flxcrm_t( 'FlxCrmGatheringSave', array( 'input' => array( 'fields' => array( array( 'key' => 'name', 'value' => 'Planting day' ), array( 'key' => 'event_date', 'value' => '2026-12-01' ) ) ) ), $editor )['data']['flxGatheringSave'] ?? array();
+$flxcrm_saved = 0;
+add_action( 'flx_event_saved', static function () use ( &$flxcrm_saved ) {
+	$flxcrm_saved++;
+} );
+$flxcrm_extra = '';
+add_action( 'flx_event_saved', static function () use ( &$flxcrm_extra ) {
+	$flxcrm_extra = isset( $_POST['flxt_extra'] ) ? (string) wp_unslash( $_POST['flxt_extra'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
+} );
+$made = flxcrm_t( 'FlxCrmGatheringSave', array( 'input' => array( 'fields' => array(
+	array( 'key' => 'name', 'value' => 'Planting day' ),
+	array( 'key' => 'event_date', 'value' => '2026-12-01' ),
+	array( 'key' => 'event_time', 'value' => '10:00' ),
+	array( 'key' => 'target', 'value' => '2000' ),
+	array( 'key' => 'base_count', 'value' => '15' ),
+	array( 'key' => 'flxt_extra', 'value' => '1' ),
+) ) ), $editor )['data']['flxGatheringSave'] ?? array();
 $gid  = (int) ( $made['gathering']['databaseId'] ?? 0 );
 flxt_same( array( array(), 'Planting day', 'OPEN' ), array( $made['errors'] ?? null, $made['gathering']['name'] ?? null, $made['gathering']['status'] ?? null ), 'gathering: created' );
+flxt_same( 1, $flxcrm_saved, 'gathering: save runs flx_event_saved once' );
+flxt_same( '1', $flxcrm_extra, 'gathering: a non-column field reaches the classic hook' );
+$flxcrm_start = ( new DateTimeImmutable( '2026-12-01 10:00:00', new DateTimeZone( 'Europe/Istanbul' ) ) )->getTimestamp();
+flxt_same( $flxcrm_start, $made['gathering']['startsAt']['timestamp'] ?? null, 'gathering: startsAt is site-local, not UTC' );
+$stored = flx_event_get( $gid );
+flxt_same( array( 'Planting day', '2026-12-01', '10:00', 2000, 15 ), array( $stored['name'] ?? null, $stored['event_date'] ?? null, $stored['event_time'] ?? null, (int) ( $stored['target'] ?? -1 ), (int) ( $stored['base_count'] ?? -1 ) ), 'gathering: GraphQL save is readable by the classic row' );
+$classic_id = flx_event_save( array( 'name' => 'Classic ridge', 'event_date' => '2026-06-02', 'event_time' => '09:30', 'loc_name' => 'Ridge', 'target' => 40, 'base_count' => 3 ) );
+$classic_id = is_wp_error( $classic_id ) ? 0 : (int) $classic_id;
+$classic_gql = flxcrm_t( 'FlxCrmGathering', array( 'id' => $classic_id ), $admin )['data']['flxGathering'] ?? array();
+$classic_form = flxcrm_t( 'FlxCrmGatheringForm', array( 'id' => $classic_id ), $editor )['data']['flxGatheringForm'] ?? array();
+$classic_values = array();
+foreach ( $classic_form['sections'] ?? array() as $sec ) {
+	foreach ( $sec['fields'] ?? array() as $field ) {
+		$classic_values[ $field['key'] ?? '' ] = $field['value'] ?? null;
+	}
+}
+flxt_same( array( 'Classic ridge', 'Ridge' ), array( $classic_gql['name'] ?? null, $classic_gql['place'] ?? null ), 'gathering: classic save is readable through GraphQL' );
+flxt_same( array( '40', '3' ), array( $classic_values['target'] ?? null, $classic_values['base_count'] ?? null ), 'gathering: certificate fields survive on the form', $classic_values );
+$kept = flxcrm_t( 'FlxCrmGatheringSave', array( 'input' => array( 'id' => $classic_id, 'fields' => array( array( 'key' => 'name', 'value' => 'Classic ridge renamed' ) ) ) ), $editor )['data']['flxGatheringSave'] ?? array();
+$kept_row = flx_event_get( $classic_id );
+flxt_same( array( array(), 'Classic ridge renamed', 40, 3 ), array( $kept['errors'] ?? null, $kept_row['name'] ?? null, (int) ( $kept_row['target'] ?? -1 ), (int) ( $kept_row['base_count'] ?? -1 ) ), 'gathering: omitted certificate fields stay' );
 flxt_same( null, flxcrm_field( flxcrm_t( 'FlxCrmGathering', array( 'id' => 999999 ), $admin ), 'flxGathering' ), 'gathering: unknown id → null' );
 $form = flxcrm_t( 'FlxCrmGatheringForm', array( 'id' => $gid ), $editor )['data']['flxGatheringForm'] ?? array();
 $form_keys = array();
@@ -317,8 +364,42 @@ flxcrm_register_person_section(
 		'package'   => 'test',
 		'title'     => 'Test section',
 		'placement' => 'side',
+		'replaces'  => 'flxcrm_person_card_nonexistent',
 		'resolve'   => static function () {
-			return array( array( 'kind' => 'note', 'text' => 'Hello section' ) );
+			return array(
+				array( 'kind' => 'note', 'text' => 'Hello section' ),
+				array( 'kind' => 'html', 'text' => '<p>Safe note</p><script>alert(1)</script>' ),
+				array(
+					'kind'  => 'links',
+					'items' => array(
+						array( 'label' => 'XSS', 'url' => 'javascript:alert(1)' ),
+						array( 'label' => 'Data', 'url' => 'data:text/html,hi' ),
+						array( 'label' => 'Web', 'url' => 'https://example.com/ok?a=1' ),
+						array( 'label' => 'Mail', 'url' => 'mailto:a@example.com' ),
+						array( 'label' => 'Tel', 'url' => 'tel:+905301213933' ),
+						array( 'label' => 'Admin', 'url' => 'admin.php?page=flx-donate' ),
+					),
+				),
+				array(
+					'kind'    => 'table',
+					'columns' => array( 'Item' ),
+					'rows'    => array(
+						array( 'cells' => array( 'Bad' ), 'url' => 'javascript:alert(2)' ),
+						array( 'cells' => array( 'Good' ), 'url' => 'https://example.com/row' ),
+					),
+				),
+			);
+		},
+	)
+);
+flxcrm_register_person_section(
+	array(
+		'id'        => 'flxt_boom',
+		'package'   => 'test',
+		'title'     => 'Boom',
+		'placement' => 'side',
+		'resolve'   => static function () {
+			throw new RuntimeException( 'boom' );
 		},
 	)
 );
@@ -337,7 +418,7 @@ flxcrm_register_person_section(
 add_action(
 	'flxcrm_person_card_side',
 	static function () {
-		echo '<p>Legacy ads</p>';
+		echo '<p>Legacy ads</p><script>alert(1)</script>';
 	}
 );
 $secs = flxcrm_t( 'FlxCrmContact', array( 'id' => $c['id'] ), $admin )['data']['flxContact']['sections'] ?? array();
@@ -345,12 +426,65 @@ $by   = array();
 foreach ( $secs as $sec ) {
 	$by[ $sec['id'] ] = $sec;
 }
-flxt_same( 'Hello section', $by['flxt_note']['blocks'][0]['text'] ?? null, 'sections: a registered note is returned' );
-flxt_ok( isset( $by['flxt_secret'] ), 'sections: a manager sees a manage-only section', $by );
-flxt_ok( str_contains( (string) ( $by['legacy:flxcrm_person_card_side']['blocks'][0]['text'] ?? '' ), 'Legacy ads' ), 'sections: an unreplaced hook is captured as HTML', $by );
+flxt_same( 'Hello section', $by['flxt_note']['blocks'][0]['text'] ?? null, 'sections: a registered note is returned (even with missing replaces hook)' );
+$flxcrm_html = (string) ( $by['flxt_note']['blocks'][1]['text'] ?? '' );
+flxt_ok( str_contains( $flxcrm_html, 'Safe note' ) && ! str_contains( $flxcrm_html, 'script' ) && ! str_contains( $flxcrm_html, 'alert' ), 'sections: a script tag does not reach the response', $flxcrm_html );
+$flxcrm_links = array_column( $by['flxt_note']['blocks'][2]['items'] ?? array(), 'url', 'label' );
+flxt_same(
+	array(
+		'XSS'   => '',
+		'Data'  => '',
+		'Web'   => 'https://example.com/ok?a=1',
+		'Mail'  => 'mailto:a@example.com',
+		'Tel'   => 'tel:+905301213933',
+		'Admin' => 'admin.php?page=flx-donate',
+	),
+	$flxcrm_links,
+	'sections: item URLs drop javascript/data schemes and keep safe URLs'
+);
+$flxcrm_rows = array_column( $by['flxt_note']['blocks'][3]['rows'] ?? array(), 'url' );
+flxt_same( array( '', 'https://example.com/row' ), $flxcrm_rows, 'sections: table row URLs drop javascript scheme' );
+flxt_ok( ! isset( $by['flxt_boom'] ), 'sections: a throwing resolver is dropped without breaking the card', $by );
+flxt_ok( isset( $by['flxt_secret'] ), 'sections: a manage-only section is shown to a manager', $by );
+$flxcrm_legacy = (string) ( $by['legacy:flxcrm_person_card_side']['blocks'][0]['text'] ?? '' );
+flxt_ok( str_contains( $flxcrm_legacy, 'Legacy ads' ) && ! str_contains( $flxcrm_legacy, 'script' ), 'sections: an unreplaced hook is captured as HTML', $flxcrm_legacy );
 $view_ids = array_column( flxcrm_t( 'FlxCrmContact', array( 'id' => $c['id'] ), $viewer )['data']['flxContact']['sections'] ?? array(), 'id' );
 flxt_ok( ! in_array( 'flxt_secret', $view_ids, true ), 'sections: a viewer does not see a manage-only section', $view_ids );
 remove_all_actions( 'flxcrm_person_card_side' );
+
+// Throwing legacy hooks must close ob_start() via finally, discard partial output, and not break queries.
+$flxcrm_ob_before = ob_get_level();
+add_action(
+	'flxcrm_person_card_side',
+	static function () {
+		echo 'PARTIAL_LEAK_SECTION';
+		throw new RuntimeException( 'legacy section failed' );
+	}
+);
+$flxcrm_after_throw = flxcrm_t( 'FlxCrmContact', array( 'id' => $c['id'] ), $admin )['data']['flxContact']['sections'] ?? array();
+flxt_same( $flxcrm_ob_before, ob_get_level(), 'sections: throwing legacy hook keeps ob_get_level() balanced' );
+$flxcrm_throw_ids = array_column( $flxcrm_after_throw, 'id' );
+flxt_ok( in_array( 'flxt_note', $flxcrm_throw_ids, true ) && ! in_array( 'legacy:flxcrm_person_card_side', $flxcrm_throw_ids, true ), 'sections: throwing legacy hook is skipped while other sections stay', $flxcrm_after_throw );
+remove_all_actions( 'flxcrm_person_card_side' );
+
+$flxcrm_boom_site = static function () {
+	echo 'PARTIAL_LEAK_SITE';
+	throw new RuntimeException( 'site hook failed' );
+};
+$flxcrm_boom_form = static function () {
+	echo 'PARTIAL_LEAK_FORM';
+	throw new RuntimeException( 'form hook failed' );
+};
+add_action( 'flx_events_screen_after', $flxcrm_boom_site, 99 );
+add_action( 'flx_event_form_after', $flxcrm_boom_form, 99 );
+$flxcrm_g_throw = flxcrm_t( 'FlxCrmGatherings', array(), $admin );
+$flxcrm_f_throw = flxcrm_t( 'FlxCrmGatheringForm', array( 'id' => $classic_id ), $editor );
+remove_action( 'flx_events_screen_after', $flxcrm_boom_site, 99 );
+remove_action( 'flx_event_form_after', $flxcrm_boom_form, 99 );
+flxt_same( $flxcrm_ob_before, ob_get_level(), 'gatherings: throwing hooks keep ob_get_level() balanced' );
+flxt_same( '', $flxcrm_g_throw['data']['flxGatherings']['siteHtml'] ?? null, 'gatherings: throwing site hook discards partial output' );
+flxt_same( '', $flxcrm_f_throw['data']['flxGatheringForm']['afterHtml'] ?? null, 'gatherings: throwing form hook discards partial output' );
+flxt_ok( ! empty( $flxcrm_f_throw['data']['flxGatheringForm']['sections'] ), 'gatherings: form query still succeeds when after hook throws', $flxcrm_f_throw );
 
 // ---- Delete -------------------------------------------------------------------------------------------
 $de = flxcrm_t( 'FlxCrmContactDelete', array( 'input' => array( 'id' => $c['id'] ) ), $editor )['data']['flxContactDelete'] ?? array();

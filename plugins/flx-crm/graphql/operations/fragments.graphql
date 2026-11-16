@@ -6,6 +6,7 @@ fragment FlxCrmMoney on FlxMoney {
 
 fragment FlxCrmWhen on FlxDateTime {
   iso
+  timestamp
   label
   relative
 }
@@ -237,6 +238,9 @@ fragment FlxCrmGatheringCard on FlxGathering {
   pageUrl
   pageTitle
   canCreatePage
+  startsAt {
+    ...FlxCrmWhen
+  }
 }
 
 fragment FlxCrmGatheringDetail on FlxGathering {
@@ -268,7 +272,9 @@ fragment FlxCrmGatheringSend on FlxGatheringSend {
   at {
     ...FlxCrmWhen
   }
-  sendAt
+  sendAt {
+    ...FlxCrmWhen
+  }
   byName
   mediaId
   mediaUrl

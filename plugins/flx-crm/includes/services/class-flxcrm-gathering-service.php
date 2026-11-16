@@ -9,6 +9,27 @@
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * @phpstan-type GatheringStat array{label:string,value:string,hint:string,progress:int|null}
+ * @phpstan-type GatheringAction array{label:string,url:string,target:string,primary:bool}
+ * @phpstan-type GatheringReason array{label:string,count:int,percent:int}
+ * @phpstan-type GatheringChannel array{key:string,label:string,missing:bool,sent:int,total:int,failed:int,skipped:int,percent:int,eta:int|null,campaignId?:int}
+ * @phpstan-type GatheringSend array{eventId:int,key:string,overall:string,overallLabel:string,tone:string,kind:string,text:string,at:int,sendAt:DateTimeImmutable|null,byName:string,mediaId:int,mediaUrl:string,mediaIsImage:bool,thumbUrl:string,channels:list<GatheringChannel>,eta:int|null,delivered:int|null,read:int|null,replied:int|null,optout:int|null,failed:int,reachedTotal:int,canPause:bool,pending:bool}
+ * @phpstan-type Gathering array{databaseId:int,name:string,status:string,whenLabel:string,place:string,phaseTone:string,phaseLabel:string,peopleCount:int,coverUrl:string,dateDay:string,dateMonth:string,dateYear:string,stats:list<GatheringStat>,progress:int|null,progressHint:string,actions:list<GatheringAction>,mailReady:bool,postId:int,pageState:string,pageUrl:string,pageTitle:string,canCreatePage:bool,startsAt:DateTimeImmutable|null,summary:string,note:string,address:string,mapUrl:string,deliveredCount:int,sendCount:int,reasons:list<GatheringReason>,recentSends:list<GatheringSend>}
+ * @phpstan-type GatheringFieldOption array{value:string,label:string}
+ * @phpstan-type GatheringField array{key:string,type:string,label:string,placeholder:string,help:string,required:bool,value:string,options:list<GatheringFieldOption>}
+ * @phpstan-type GatheringFormSection array{key:string,title:string,html:string,fields:list<GatheringField>}
+ * @phpstan-type GatheringForm array{databaseId:int,name:string,sections:list<GatheringFormSection>,afterHtml:string,createPost:bool,postType:bool}
+ * @phpstan-type GatheringPerson array{databaseId:int,name:string,email:string,phone:string,why:list<string>}
+ * @phpstan-type GatheringAudience array{key:string,label:string,ready:bool,infoCount:int,marketingCount:int}
+ * @phpstan-type GatheringVariable array{group:string,key:string,label:string,off:bool}
+ * @phpstan-type GatheringSampleValue array{key:string,value:string}
+ * @phpstan-type GatheringSample array{name:string,values:list<GatheringSampleValue>}
+ * @phpstan-type GatheringMessages array{databaseId:int,mailReady:bool,canPause:bool,hasMedia:bool,timezone:string,defaultSendAt:DateTimeImmutable|null,channels:list<GatheringAudience>,variables:list<GatheringVariable>,samples:list<GatheringSample>,sends:list<GatheringSend>}
+ * @phpstan-type GatheringQueued array{send:GatheringSend|null,skipped:list<array{channel:string,reason:string}>}
+ * @phpstan-type GatheringRecipient array{name:string,recipient:string,status:string,error:string,sentAt:array{iso:string,timestamp:int,label:string,relative:string}|null,scheduledAt:array{iso:string,timestamp:int,label:string,relative:string}|null,delivered:bool,read:bool,replied:bool,optout:bool,hasEngagement:bool}
+ * @phpstan-type GatheringRecipients array{channel:string,channels:list<string>,items:list<GatheringRecipient>,total:int,counts:array{sent:int,waiting:int,failed:int,other:int}}
+ */
 final class FLXCRM_Gathering_Service {
 
 	public const TAG_LIST = 'flx-crm:gatherings';
@@ -92,7 +113,7 @@ final class FLXCRM_Gathering_Service {
 	/**
 	 * One page of event rows, then presented as cards.
 	 *
-	 * @return list<array<string,mixed>>
+	 * @return list<Gathering>
 	 */
 	public static function cards( string $status, int $offset, int $limit ): array {
 		$out = array();
@@ -109,13 +130,22 @@ final class FLXCRM_Gathering_Service {
 		if ( ! has_action( 'flx_events_screen_after' ) ) {
 			return '';
 		}
+		$ok  = false;
+		$raw = '';
 		ob_start();
-		do_action( 'flx_events_screen_after' );
-		return trim( (string) ob_get_clean() );
+		try {
+			do_action( 'flx_events_screen_after' );
+			$ok = true;
+		} catch ( Throwable $e ) {
+			unset( $e );
+		} finally {
+			$raw = (string) ob_get_clean();
+		}
+		return $ok ? self::package_html( $raw ) : '';
 	}
 
 	/**
-	 * @return array<string,mixed>|null
+	 * @return Gathering|null
 	 */
 	public static function get( int $id ): ?array {
 		$row = self::raw( $id );
@@ -123,8 +153,8 @@ final class FLXCRM_Gathering_Service {
 	}
 
 	/**
-	 * @param array<string,string> $values     Field key → posted value.
-	 * @return array<string,mixed>|WP_Error
+	 * @param array<string,mixed> $values Field key → posted value.
+	 * @return Gathering|WP_Error
 	 */
 	public static function save( int $id, array $values, bool $create_post, string $image_upload ) {
 		if ( ! self::ready() || ! function_exists( 'flx_event_save' ) || ! function_exists( 'flx_event_fields' ) ) {
@@ -152,17 +182,39 @@ final class FLXCRM_Gathering_Service {
 			$data['image_id'] = $aid;
 		}
 		$data['create_post'] = $create_post;
-		$r                    = flx_event_save( $data, $id );
+		// Keys that are not event columns (Certificates' flxs_adopt checkbox) stay on $_POST so
+		// flx_event_saved listeners see the same request the classic form posts.
+		$defined_keys = is_array( $defined ) ? $defined : array();
+		$posted       = array();
+		foreach ( $values as $key => $value ) {
+			if ( ! preg_match( '/^[a-z][a-z0-9_]*$/', $key ) || isset( $defined_keys[ $key ] ) ) {
+				continue;
+			}
+			$posted[ $key ] = $value;
+		}
+		$old = array();
+		foreach ( $posted as $key => $value ) {
+			$old[ $key ]   = array_key_exists( $key, $_POST ) ? $_POST[ $key ] : null; // phpcs:ignore WordPress.Security.NonceVerification
+			$_POST[ $key ] = $value; // phpcs:ignore WordPress.Security.NonceVerification
+		}
+		$r = flx_event_save( $data, $id );
+		foreach ( $posted as $key => $value ) {
+			unset( $value );
+			if ( null === $old[ $key ] ) {
+				unset( $_POST[ $key ] ); // phpcs:ignore WordPress.Security.NonceVerification
+			} else {
+				$_POST[ $key ] = $old[ $key ]; // phpcs:ignore WordPress.Security.NonceVerification
+			}
+		}
 		if ( is_wp_error( $r ) ) {
 			return self::from_event_error( $r );
 		}
-		self::changed( FLXCRM_Val::int( $r ) );
 		$got = self::get( FLXCRM_Val::int( $r ) );
 		return null === $got ? self::missing() : $got;
 	}
 
 	/**
-	 * @return array<string,mixed>|WP_Error
+	 * @return Gathering|WP_Error
 	 */
 	public static function set_status( int $id, string $status ) {
 		$row = self::raw( $id );
@@ -171,7 +223,6 @@ final class FLXCRM_Gathering_Service {
 		}
 		$next = 'closed' === self::status( $status ) ? 'closed' : 'open';
 		flx_event_set_status( $id, $next );
-		self::changed( $id );
 		$got = self::get( $id );
 		return null === $got ? self::missing() : $got;
 	}
@@ -184,12 +235,11 @@ final class FLXCRM_Gathering_Service {
 			return self::missing();
 		}
 		flx_event_delete( $id );
-		self::changed( $id );
 		return true;
 	}
 
 	/**
-	 * @return array{postId: int, gathering: array<string,mixed>}|WP_Error
+	 * @return array{postId: int, gathering: Gathering}|WP_Error
 	 */
 	public static function ensure_page( int $id ) {
 		if ( null === self::raw( $id ) || ! function_exists( 'flx_event_ensure_post' ) ) {
@@ -210,11 +260,11 @@ final class FLXCRM_Gathering_Service {
 	/**
 	 * Blank form, or the form of one event.
 	 *
-	 * @return array<string,mixed>|null Null when the id does not exist.
+	 * @return GatheringForm|null Null when the id does not exist.
 	 */
 	public static function form( int $id ): ?array {
 		if ( ! self::ready() || ! function_exists( 'flx_event_fields' ) ) {
-			return array( 'databaseId' => 0, 'name' => '', 'sections' => array(), 'createPost' => false, 'postType' => false );
+			return array( 'databaseId' => 0, 'name' => '', 'sections' => array(), 'afterHtml' => '', 'createPost' => false, 'postType' => false );
 		}
 		$row = array( 'id' => 0 );
 		if ( $id > 0 ) {
@@ -274,7 +324,7 @@ final class FLXCRM_Gathering_Service {
 	}
 
 	/**
-	 * @return array{items: list<array<string,mixed>>, total: int}
+	 * @return array{items: list<GatheringPerson>, total: int}
 	 */
 	public static function people( int $id, string $search, int $offset, int $limit ): array {
 		$empty = array( 'items' => array(), 'total' => 0 );
@@ -332,7 +382,7 @@ final class FLXCRM_Gathering_Service {
 	/**
 	 * Compose data and the send history.
 	 *
-	 * @return array<string,mixed>|WP_Error
+	 * @return GatheringMessages|WP_Error
 	 */
 	public static function messages( int $id ) {
 		$row = self::raw( $id );
@@ -361,7 +411,7 @@ final class FLXCRM_Gathering_Service {
 	}
 
 	/**
-	 * @return array<string,mixed>|null
+	 * @return GatheringSend|null
 	 */
 	public static function send( int $id, string $key ): ?array {
 		if ( ! class_exists( 'FLXCRM_Event_Messages' ) ) {
@@ -373,7 +423,7 @@ final class FLXCRM_Gathering_Service {
 
 	/**
 	 * @param list<string>        $channels Channel keys.
-	 * @return array<string,mixed>|WP_Error
+	 * @return GatheringQueued|WP_Error
 	 */
 	public static function queue_message( int $id, array $channels, string $kind, string $text, string $subject, int $media_id, string $media_upload, string $send_at ) {
 		if ( null === self::raw( $id ) ) {
@@ -413,12 +463,11 @@ final class FLXCRM_Gathering_Service {
 		$fresh = FLXCRM_Event_Messages::history( $id );
 		$fresh = is_array( $fresh ) ? $fresh : array();
 		$card  = isset( $fresh[0] ) && is_array( $fresh[0] ) ? self::send_card( FLXCRM_Val::keyed( $fresh[0] ), false, $id ) : null;
-		self::changed( $id );
 		return array( 'send' => $card, 'skipped' => $skipped );
 	}
 
 	/**
-	 * @return array<string,mixed>|WP_Error
+	 * @return GatheringSend|WP_Error
 	 */
 	public static function control( int $id, string $key, string $do ) {
 		if ( ! class_exists( 'FLXCRM_Event_Messages' ) ) {
@@ -428,13 +477,12 @@ final class FLXCRM_Gathering_Service {
 		if ( is_wp_error( $r ) ) {
 			return $r;
 		}
-		self::changed( $id );
 		return self::send_card( FLXCRM_Val::keyed( $r['row'] ), true, $id );
 	}
 
 	/**
 	 * @param array<string,mixed> $row Send row from history/find.
-	 * @return array<string,mixed>
+	 * @return GatheringSend
 	 */
 	public static function send_card( array $row, bool $full = false, int $event_id = 0 ): array {
 		$overall = FLXCRM_Val::str( class_exists( 'FLXCRM_Event_Messages' ) ? FLXCRM_Event_Messages::overall( $row ) : 'unknown', 'unknown' );
@@ -454,6 +502,7 @@ final class FLXCRM_Gathering_Service {
 		$media   = FLXCRM_Val::int( $row['media'] ?? 0 );
 		$eng     = class_exists( 'FLXCRM_Event_Messages' ) ? FLXCRM_Event_Messages::send_engagement( $row ) : array();
 		$eng     = is_array( $eng ) ? $eng : array();
+		/** @var list<GatheringChannel> $channels */
 		$channels = array();
 		$eta      = 0;
 		foreach ( FLXCRM_Val::arr( $row['state'] ?? array() ) as $ch => $s ) {
@@ -487,7 +536,7 @@ final class FLXCRM_Gathering_Service {
 			'kind'          => 'marketing' === ( $row['kind'] ?? '' ) ? 'marketing' : 'info',
 			'text'          => FLXCRM_Val::str( $row['text'] ?? '' ),
 			'at'            => FLXCRM_Val::int( $row['at'] ?? 0 ),
-			'sendAt'        => FLXCRM_Val::str( $row['send_at'] ?? '' ),
+			'sendAt'        => self::local_clock( FLXCRM_Val::str( $row['send_at'] ?? '' ) ),
 			'byName'        => $by ? FLXCRM_Val::str( get_the_author_meta( 'display_name', $by ) ) : '',
 			'mediaId'       => $media,
 			'mediaUrl'      => $media ? FLXCRM_Val::str( wp_get_attachment_url( $media ) ) : '',
@@ -536,8 +585,8 @@ final class FLXCRM_Gathering_Service {
 				'recipient'   => FLXCRM_Val::str( $r['recipient'] ?? '' ),
 				'status'      => FLXCRM_Val::str( $r['status'] ?? '' ),
 				'error'       => FLXCRM_Val::str( $r['error'] ?? '' ),
-				'sentAt'      => FLXCRM_Val::str( $r['sent_at'] ?? '' ),
-				'scheduledAt' => FLXCRM_Val::str( $r['scheduled_at'] ?? '' ),
+				'sentAt'      => function_exists( 'flx_gql_datetime' ) ? flx_gql_datetime( $r['sent_at'] ?? '' ) : null,
+				'scheduledAt' => function_exists( 'flx_gql_datetime' ) ? flx_gql_datetime( $r['scheduled_at'] ?? '' ) : null,
 				'delivered'   => ! empty( $r['delivered'] ),
 				'read'        => ! empty( $r['read'] ),
 				'replied'     => ! empty( $r['replied'] ),
@@ -564,13 +613,14 @@ final class FLXCRM_Gathering_Service {
 
 	/**
 	 * @param array<string,mixed> $row Event row.
-	 * @return array<string,mixed>
+	 * @return Gathering
 	 */
 	private static function card( array $row ): array {
 		$id     = FLXCRM_Val::int( $row['id'] ?? 0 );
 		$people = function_exists( 'flx_event_people' ) ? flx_event_people( $id ) : array();
 		$phase  = self::phase( $row );
 		$image  = FLXCRM_Val::int( $row['image_id'] ?? 0 );
+		/** @var list<GatheringStat> $stats */
 		$stats  = array();
 		$bar    = null;
 		if ( function_exists( 'flx_event_stats' ) ) {
@@ -592,6 +642,7 @@ final class FLXCRM_Gathering_Service {
 				}
 			}
 		}
+		/** @var list<GatheringAction> $actions */
 		$actions = array();
 		if ( function_exists( 'flx_event_actions' ) ) {
 			$raw_actions = flx_event_actions( $row );
@@ -620,9 +671,9 @@ final class FLXCRM_Gathering_Service {
 			'phaseLabel'    => $phase[1],
 			'peopleCount'   => is_array( $people ) ? count( $people ) : 0,
 			'coverUrl'      => $image ? FLXCRM_Val::str( wp_get_attachment_image_url( $image, 'medium_large' ) ) : '',
-			'dateDay'       => '' !== $date && function_exists( 'flx_date' ) ? flx_date( $date . ' 12:00:00', 'j' ) : '',
-			'dateMonth'     => '' !== $date && function_exists( 'flx_date' ) ? flx_date( $date . ' 12:00:00', 'F' ) : '',
-			'dateYear'      => '' !== $date && function_exists( 'flx_date' ) ? flx_date( $date . ' 12:00:00', 'Y' ) : '',
+			'dateDay'       => '' !== $date && function_exists( 'flx_date' ) ? FLXCRM_Val::str( flx_date( $date . ' 12:00:00', 'j' ) ) : '',
+			'dateMonth'     => '' !== $date && function_exists( 'flx_date' ) ? FLXCRM_Val::str( flx_date( $date . ' 12:00:00', 'F' ) ) : '',
+			'dateYear'      => '' !== $date && function_exists( 'flx_date' ) ? FLXCRM_Val::str( flx_date( $date . ' 12:00:00', 'Y' ) ) : '',
 			'stats'         => $stats,
 			'progress'      => null === $bar ? null : $bar['progress'],
 			'progressHint'  => null === $bar ? '' : trim( FLXCRM_Val::str( $bar['progress'] ) . ( '' !== FLXCRM_Val::str( $bar['hint'] ) ? ' · ' . FLXCRM_Val::str( $bar['hint'] ) : '' ), ' ·' ),
@@ -633,6 +684,7 @@ final class FLXCRM_Gathering_Service {
 			'pageUrl'       => $pid && 'publish' === $pst ? FLXCRM_Val::str( get_permalink( $pid ) ) : '',
 			'pageTitle'      => $pid ? FLXCRM_Val::str( get_the_title( $pid ) ) : '',
 			'canCreatePage'  => '' !== self::event_post_type() && post_type_exists( self::event_post_type() ),
+			'startsAt'       => self::starts_at( $row ),
 			'summary'        => '',
 			'note'           => '',
 			'address'        => '',
@@ -646,7 +698,7 @@ final class FLXCRM_Gathering_Service {
 
 	/**
 	 * @param array<string,mixed> $row Event row.
-	 * @return array<string,mixed>
+	 * @return Gathering
 	 */
 	private static function detail( array $row ): array {
 		$card   = self::card( $row );
@@ -659,6 +711,7 @@ final class FLXCRM_Gathering_Service {
 			}
 		}
 		arsort( $why );
+		/** @var list<GatheringReason> $groups */
 		$groups = array();
 		$max    = $why ? max( $why ) : 1;
 		foreach ( array_slice( $why, 0, 8, true ) as $label => $n ) {
@@ -666,6 +719,7 @@ final class FLXCRM_Gathering_Service {
 		}
 		$log   = class_exists( 'FLXCRM_Event_Messages' ) ? FLXCRM_Event_Messages::history( $id ) : array();
 		$log   = is_array( $log ) ? $log : array();
+		/** @var list<GatheringSend> $sends */
 		$sends = array();
 		$sent  = 0;
 		foreach ( $log as $r ) {
@@ -684,19 +738,15 @@ final class FLXCRM_Gathering_Service {
 		if ( '' !== $map ) {
 			$href = preg_match( '#^https?://#i', $map ) ? $map : 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode( $map );
 		}
-		return array_merge(
-			$card,
-			array(
-			'summary'        => FLXCRM_Val::str( $row['summary'] ?? '' ),
-			'note'           => FLXCRM_Val::str( $row['note'] ?? '' ),
-			'address'        => FLXCRM_Val::str( $row['loc_address'] ?? '' ),
-			'mapUrl'         => $href,
-			'deliveredCount' => $sent,
-			'sendCount'      => count( $log ),
-			'reasons'        => $groups,
-			'recentSends'    => $sends,
-			)
-		);
+		$card['summary']        = FLXCRM_Val::str( $row['summary'] ?? '' );
+		$card['note']           = FLXCRM_Val::str( $row['note'] ?? '' );
+		$card['address']        = FLXCRM_Val::str( $row['loc_address'] ?? '' );
+		$card['mapUrl']         = $href;
+		$card['deliveredCount'] = $sent;
+		$card['sendCount']      = count( $log );
+		$card['reasons']        = $groups;
+		$card['recentSends']    = $sends;
+		return $card;
 	}
 
 	/**
@@ -791,14 +841,16 @@ final class FLXCRM_Gathering_Service {
 	/**
 	 * @param array<string,array<string,mixed>> $fields Fields of one section.
 	 * @param array<string,mixed>               $row    Event row.
-	 * @return list<array<string,mixed>>
+	 * @return list<GatheringField>
 	 */
 	private static function form_fields( array $fields, array $row ): array {
+		/** @var list<GatheringField> $out */
 		$out = array();
 		foreach ( $fields as $key => $field ) {
 			$value = $row[ $key ] ?? '';
 			$type  = FLXCRM_Val::str( $field['type'] ?? 'text' );
-			$opts  = array();
+			/** @var list<GatheringFieldOption> $opts */
+			$opts      = array();
 			$post_type = self::event_post_type();
 			if ( 'post' === $type && '' !== $post_type && post_type_exists( $post_type ) ) {
 				$posts = get_posts(
@@ -843,33 +895,127 @@ final class FLXCRM_Gathering_Service {
 		if ( '' === $hook || ! has_action( $hook ) ) {
 			return '';
 		}
+		$ok  = false;
+		$raw = '';
 		ob_start();
-		do_action( $hook, $row );
-		return trim( (string) ob_get_clean() );
+		try {
+			do_action( $hook, $row );
+			$ok = true;
+		} catch ( Throwable $e ) {
+			unset( $e );
+		} finally {
+			$raw = (string) ob_get_clean();
+		}
+		return $ok ? self::package_html( $raw ) : '';
+	}
+
+	/**
+	 * Package HTML on the wire: post HTML plus the form controls and QR SVG Certificates prints, never script.
+	 */
+	private static function package_html( string $html ): string {
+		/** @var array<string, array<string, bool>> $allowed */
+		$allowed             = wp_kses_allowed_html( 'post' );
+		$allowed['form']     = array(
+			'method'  => true,
+			'action'  => true,
+			'class'   => true,
+			'id'      => true,
+			'style'   => true,
+			'enctype' => true,
+		);
+		$allowed['label']    = array( 'class' => true, 'for' => true );
+		$allowed['input']    = array(
+			'type'        => true,
+			'name'        => true,
+			'value'       => true,
+			'checked'     => true,
+			'placeholder' => true,
+			'min'         => true,
+			'max'         => true,
+			'step'        => true,
+			'class'       => true,
+			'id'          => true,
+		);
+		$allowed['select']   = array( 'name' => true, 'class' => true, 'id' => true );
+		$allowed['option']   = array( 'value' => true, 'selected' => true );
+		$allowed['textarea'] = array( 'name' => true, 'class' => true, 'id' => true, 'rows' => true );
+		$allowed['svg']      = array(
+			'version'     => true,
+			'xmlns'       => true,
+			'width'       => true,
+			'height'      => true,
+			'viewbox'     => true,
+			'class'       => true,
+			'aria-hidden' => true,
+		);
+		$allowed['g']        = array( 'id' => true, 'fill' => true, 'stroke' => true, 'transform' => true );
+		$allowed['rect']     = array( 'x' => true, 'y' => true, 'width' => true, 'height' => true, 'fill' => true );
+		$allowed['path']     = array( 'd' => true, 'fill' => true, 'stroke' => true );
+		$allowed['circle']   = array( 'cx' => true, 'cy' => true, 'r' => true, 'fill' => true );
+		$allowed['polygon']  = array( 'points' => true, 'fill' => true );
+		$html = preg_replace( '#<(script|style)\b[^>]*>.*?</\1>#is', '', $html );
+		return trim( wp_kses( is_string( $html ) ? $html : '', $allowed ) );
+	}
+
+	/**
+	 * Site-local clock. Event dates and planned sends are stored as local strings, not GMT.
+	 */
+	private static function local_clock( string $local ): ?DateTimeImmutable {
+		$local = trim( str_replace( 'T', ' ', $local ) );
+		if ( '' === $local ) {
+			return null;
+		}
+		if ( preg_match( '/^\d{4}-\d{2}-\d{2}$/', $local ) ) {
+			$local .= ' 12:00:00';
+		} elseif ( preg_match( '/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/', $local ) ) {
+			$local .= ':00';
+		}
+		try {
+			return new DateTimeImmutable( $local, wp_timezone() );
+		} catch ( Exception $e ) {
+			unset( $e );
+			return null;
+		}
 	}
 
 	/**
 	 * @param array<string,mixed> $row Event row.
 	 */
-	private static function default_send_at( array $row ): string {
+	private static function starts_at( array $row ): ?DateTimeImmutable {
 		$date = FLXCRM_Val::str( $row['event_date'] ?? '' );
 		if ( '' === $date ) {
-			return '';
+			return null;
 		}
-		$d = date_create_immutable( $date . ' 20:00', wp_timezone() );
-		if ( $d && $d->getTimestamp() > time() + 120 ) {
-			return $d->format( 'Y-m-d\TH:i' );
+		$time = FLXCRM_Val::str( $row['event_time'] ?? '' );
+		if ( ! preg_match( '/^\d{2}:\d{2}/', $time ) ) {
+			$time = '12:00:00';
 		}
-		return '';
+		return self::local_clock( $date . ' ' . $time );
 	}
 
 	/**
-	 * @return list<array<string,mixed>>
+	 * @param array<string,mixed> $row Event row.
+	 */
+	private static function default_send_at( array $row ): ?DateTimeImmutable {
+		$date = FLXCRM_Val::str( $row['event_date'] ?? '' );
+		if ( '' === $date ) {
+			return null;
+		}
+		$d = self::local_clock( $date . ' 20:00' );
+		if ( $d && $d->getTimestamp() > time() + 120 ) {
+			return $d;
+		}
+		return null;
+	}
+
+	/**
+	 * @return list<GatheringAudience>
 	 */
 	private static function channel_counts( int $id ): array {
 		if ( ! class_exists( 'FLXCRM_Event_Messages' ) ) {
 			return array();
 		}
+		/** @var list<GatheringAudience> $out */
 		$out = array();
 		$chs = FLXCRM_Event_Messages::channels();
 		foreach ( is_array( $chs ) ? $chs : array() as $ch => $label ) {
@@ -878,7 +1024,7 @@ final class FLXCRM_Gathering_Service {
 			$out[] = array(
 				'key'        => is_int( $ch ) ? (string) $ch : $ch,
 				'label'      => FLXCRM_Val::str( $label ),
-				'ready'      => FLXCRM_Event_Messages::ready( $ch ),
+				'ready'          => FLXCRM_Val::bool( FLXCRM_Event_Messages::ready( $ch ) ),
 				'infoCount'  => count( FLXCRM_Val::arr( $info['list'] ?? array() ) ),
 				'marketingCount' => count( FLXCRM_Val::arr( $mkt['list'] ?? array() ) ),
 			);
@@ -888,7 +1034,7 @@ final class FLXCRM_Gathering_Service {
 
 	/**
 	 * @param array<string,mixed> $row Event row.
-	 * @return list<array<string,mixed>>
+	 * @return list<GatheringVariable>
 	 */
 	private static function variables( array $row ): array {
 		if ( ! class_exists( 'FLXCRM_Event_Messages' ) ) {
@@ -910,6 +1056,7 @@ final class FLXCRM_Gathering_Service {
 				}
 			}
 		}
+		/** @var list<GatheringVariable> $out */
 		$out = array();
 		foreach ( $pvars as $k => $d ) {
 			if ( ! is_array( $d ) ) {
@@ -928,7 +1075,7 @@ final class FLXCRM_Gathering_Service {
 
 	/**
 	 * @param array<string,mixed> $row Event row.
-	 * @return list<array<string,mixed>>
+	 * @return list<GatheringSample>
 	 */
 	private static function samples( array $row ): array {
 		if ( ! class_exists( 'FLXCRM_Event_Messages' ) ) {
@@ -950,6 +1097,7 @@ final class FLXCRM_Gathering_Service {
 				return strcasecmp( $an, $bn );
 			}
 		);
+		/** @var list<GatheringSampleValue> $shared */
 		$shared = array();
 		foreach ( $evars as $k => $d ) {
 			$shared[] = array( 'key' => (string) $k, 'value' => is_array( $d ) ? FLXCRM_Val::str( $d[1] ?? '' ) : '' );
@@ -959,11 +1107,13 @@ final class FLXCRM_Gathering_Service {
 				$shared[] = array( 'key' => $k, 'value' => FLXCRM_Val::str( $gvars[ $k ] ) );
 			}
 		}
+		/** @var list<GatheringSample> $out */
 		$out = array();
 		foreach ( array_slice( $people, 0, 40 ) as $p ) {
 			if ( ! is_array( $p ) ) {
 				continue;
 			}
+			/** @var list<GatheringSampleValue> $values */
 			$values = $shared;
 			foreach ( $pvars as $k => $d ) {
 				if ( ! is_array( $d ) ) {
@@ -1042,3 +1192,34 @@ final class FLXCRM_Gathering_Service {
 		return self::fail( 'flxcrm_event', __( 'The event could not be saved.', 'flx-crm' ), 'INVALID_INPUT' );
 	}
 }
+
+// Classic admin-post and GraphQL both end in flx_event_save / set_status / delete, so the cache
+// clears from those hooks once, not from each caller.
+add_action(
+	'flx_event_saved',
+	static function ( $id ): void {
+		FLXCRM_Gathering_Service::changed( FLXCRM_Val::int( $id ) );
+	},
+	20
+);
+add_action(
+	'flx_event_status',
+	static function ( $id ): void {
+		FLXCRM_Gathering_Service::changed( FLXCRM_Val::int( $id ) );
+	},
+	20
+);
+add_action(
+	'flx_event_deleting',
+	static function ( $id ): void {
+		FLXCRM_Gathering_Service::changed( FLXCRM_Val::int( $id ) );
+	},
+	20
+);
+add_action(
+	'flxcrm_event_message_queued',
+	static function ( $id ): void {
+		FLXCRM_Gathering_Service::changed( FLXCRM_Val::int( $id ) );
+	},
+	20
+);

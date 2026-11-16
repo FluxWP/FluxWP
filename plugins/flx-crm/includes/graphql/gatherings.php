@@ -14,9 +14,11 @@ defined( 'ABSPATH' ) || exit;
  * @return array<string,mixed>
  */
 function flxcrm_gql_send( array $send ): array {
-	$send        = FLXCRM_Val::keyed( $send );
-	$send['at']  = flxcrm_gql_ts( $send['at'] ?? 0 );
-	$send['eta'] = flxcrm_gql_ts( $send['eta'] ?? 0 );
+	$send            = FLXCRM_Val::keyed( $send );
+	$send['at']      = flxcrm_gql_ts( $send['at'] ?? 0 );
+	$send['eta']     = flxcrm_gql_ts( $send['eta'] ?? 0 );
+	$planned         = $send['sendAt'] ?? null;
+	$send['sendAt']  = $planned instanceof DateTimeInterface ? flx_gql_datetime( $planned ) : null;
 	$channels    = array();
 	foreach ( FLXCRM_Val::arr( $send['channels'] ?? array() ) as $ch ) {
 		if ( ! is_array( $ch ) ) {
@@ -42,6 +44,10 @@ function flxcrm_gql_gathering( array $gathering ): array {
 	}
 	if ( array_key_exists( 'recentSends', $gathering ) ) {
 		$gathering['recentSends'] = $sends;
+	}
+	$starts = $gathering['startsAt'] ?? null;
+	if ( array_key_exists( 'startsAt', $gathering ) ) {
+		$gathering['startsAt'] = $starts instanceof DateTimeInterface ? flx_gql_datetime( $starts ) : null;
 	}
 	return $gathering;
 }
@@ -188,7 +194,7 @@ flx_gql_type(
 			'kind'         => array( 'type' => 'FlxGatheringKind!', 'description' => __( 'Information or marketing.', 'flx-crm' ) ),
 			'text'         => array( 'type' => 'String!', 'description' => __( 'Message text (stored up to 300 characters).', 'flx-crm' ) ),
 			'at'           => array( 'type' => 'FlxDateTime', 'description' => __( 'When it was queued.', 'flx-crm' ) ),
-			'sendAt'       => array( 'type' => 'String!', 'description' => __( 'Planned time (site time, Y-m-dTH:i). Empty sends now.', 'flx-crm' ) ),
+			'sendAt'       => array( 'type' => 'FlxDateTime', 'description' => __( 'Planned time in the site timezone. Empty sends now.', 'flx-crm' ) ),
 			'byName'       => array( 'type' => 'String!', 'description' => __( 'Who queued it.', 'flx-crm' ) ),
 			'mediaId'      => array( 'type' => 'Int!', 'description' => __( 'Attached file. 0 when there is none.', 'flx-crm' ) ),
 			'mediaUrl'     => array( 'type' => 'String!', 'description' => __( 'File address.', 'flx-crm' ) ),
@@ -247,8 +253,8 @@ flx_gql_type(
 			'recipient'     => array( 'type' => 'String!', 'description' => __( 'Address or phone.', 'flx-crm' ) ),
 			'status'        => array( 'type' => 'String!', 'description' => __( 'Queue status.', 'flx-crm' ) ),
 			'error'         => array( 'type' => 'String!', 'description' => __( 'Why it failed.', 'flx-crm' ) ),
-			'sentAt'        => array( 'type' => 'String!', 'description' => __( 'When it was sent.', 'flx-crm' ) ),
-			'scheduledAt'   => array( 'type' => 'String!', 'description' => __( 'When it is planned.', 'flx-crm' ) ),
+			'sentAt'        => array( 'type' => 'FlxDateTime', 'description' => __( 'When it was sent (GMT storage).', 'flx-crm' ) ),
+			'scheduledAt'   => array( 'type' => 'FlxDateTime', 'description' => __( 'When it is planned (GMT storage).', 'flx-crm' ) ),
 			'delivered'     => array( 'type' => 'Boolean!', 'description' => __( 'Delivered.', 'flx-crm' ) ),
 			'read'          => array( 'type' => 'Boolean!', 'description' => __( 'Read.', 'flx-crm' ) ),
 			'replied'       => array( 'type' => 'Boolean!', 'description' => __( 'Replied.', 'flx-crm' ) ),
@@ -298,6 +304,7 @@ flx_gql_type(
 			'pageUrl'        => array( 'type' => 'String!', 'description' => __( 'Public page. Empty until it is published.', 'flx-crm' ) ),
 			'pageTitle'      => array( 'type' => 'String!', 'description' => __( 'Page title.', 'flx-crm' ) ),
 			'canCreatePage'  => array( 'type' => 'Boolean!', 'description' => __( 'The theme has an event post type.', 'flx-crm' ) ),
+			'startsAt'       => array( 'type' => 'FlxDateTime', 'description' => __( 'Site-local start. Empty when the event has no date.', 'flx-crm' ) ),
 			'summary'        => array( 'type' => 'String!', 'description' => __( 'Short description. Empty on a list card.', 'flx-crm' ) ),
 			'note'           => array(
 				'type'        => 'String',
@@ -490,7 +497,7 @@ flx_gql_type(
 			'canPause'     => array( 'type' => 'Boolean!', 'description' => __( 'Flux Mail can pause a send.', 'flx-crm' ) ),
 			'hasMedia'     => array( 'type' => 'Boolean!', 'description' => __( 'WhatsApp can take a file, not only a link.', 'flx-crm' ) ),
 			'timezone'     => array( 'type' => 'String!', 'description' => __( 'Site timezone.', 'flx-crm' ) ),
-			'defaultSendAt' => array( 'type' => 'String!', 'description' => __( 'Suggested time: the event date at 20:00, if it is still ahead.', 'flx-crm' ) ),
+			'defaultSendAt' => array( 'type' => 'FlxDateTime', 'description' => __( 'Suggested time: the event date at 20:00, if it is still ahead.', 'flx-crm' ) ),
 			'channels'     => array( 'type' => '[FlxGatheringAudience!]!', 'description' => __( 'Channels and how many people each reaches.', 'flx-crm' ) ),
 			'variables'    => array( 'type' => '[FlxGatheringVariable!]!', 'description' => __( 'Tokens.', 'flx-crm' ) ),
 			'samples'      => array( 'type' => '[FlxGatheringSample!]!', 'description' => __( 'Up to 40 people for the preview.', 'flx-crm' ) ),
@@ -610,11 +617,11 @@ flx_gql_query(
 			if ( $r instanceof WP_Error ) {
 				throw flx_gql_from_wp_error( $r );
 			}
-			$sends = array();
-			foreach ( FLXCRM_Val::arr( $r['sends'] ?? array() ) as $send ) {
-				if ( is_array( $send ) ) {
-					$sends[] = flxcrm_gql_send( $send );
-				}
+			$when               = $r['defaultSendAt'];
+			$r['defaultSendAt'] = $when instanceof DateTimeInterface ? flx_gql_datetime( $when ) : null;
+			$sends              = array();
+			foreach ( $r['sends'] as $send ) {
+				$sends[] = flxcrm_gql_send( $send );
 			}
 			$r['sends'] = $sends;
 			flx_gql_cache_tag( FLXCRM_Gathering_Service::tag( $id ) );
@@ -753,8 +760,8 @@ flx_gql_mutation(
 			if ( $r instanceof WP_Error ) {
 				return $r;
 			}
-			$send = is_array( $r['send'] ?? null ) ? flxcrm_gql_send( $r['send'] ) : null;
-			return array( 'send' => $send, 'skipped' => FLXCRM_Val::arr( $r['skipped'] ?? array() ) );
+			$send = null !== $r['send'] ? flxcrm_gql_send( $r['send'] ) : null;
+			return array( 'send' => $send, 'skipped' => $r['skipped'] );
 		},
 	)
 );

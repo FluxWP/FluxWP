@@ -1105,6 +1105,8 @@ type FlxGathering {
   recentSends: [FlxGatheringSend!]!
   """Sends. 0 on a list card."""
   sendCount: Int!
+  """Site-local start. Empty when the event has no date."""
+  startsAt: FlxDateTime
   """Numbers from packages."""
   stats: [FlxGatheringStat!]!
   """Open or archived."""
@@ -1391,7 +1393,7 @@ type FlxGatheringMessages {
   """Event ID."""
   databaseId: Int!
   """Suggested time: the event date at 20:00, if it is still ahead."""
-  defaultSendAt: String!
+  defaultSendAt: FlxDateTime
   """WhatsApp can take a file, not only a link."""
   hasMedia: Boolean!
   """Flux Mail can send."""
@@ -1496,10 +1498,10 @@ type FlxGatheringRecipient {
   recipient: String!
   """Replied."""
   replied: Boolean!
-  """When it is planned."""
-  scheduledAt: String!
-  """When it was sent."""
-  sentAt: String!
+  """When it is planned (GMT storage)."""
+  scheduledAt: FlxDateTime
+  """When it was sent (GMT storage)."""
+  sentAt: FlxDateTime
   """Queue status."""
   status: String!
 }
@@ -1627,8 +1629,8 @@ type FlxGatheringSend {
   ): FlxGatheringRecipientConnection!
   """Replied. Empty when no channel reports it."""
   replied: Int
-  """Planned time (site time, Y-m-dTH:i). Empty sends now."""
-  sendAt: String!
+  """Planned time in the site timezone. Empty sends now."""
+  sendAt: FlxDateTime
   """Message text (stored up to 300 characters)."""
   text: String!
   """Picture preview."""

@@ -14,8 +14,12 @@ query FlxCrmGatheringSendView($id: Int!, $key: String!, $channel: String, $statu
         recipient
         status
         error
-        sentAt
-        scheduledAt
+        sentAt {
+          ...FlxCrmWhen
+        }
+        scheduledAt {
+          ...FlxCrmWhen
+        }
         delivered
         read
         replied
