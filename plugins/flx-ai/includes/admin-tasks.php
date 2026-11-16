@@ -42,28 +42,27 @@ add_action(
 		$back = admin_url( 'admin.php?page=flx-ai-tasks' );
 		$msg  = 'saved';
 		if ( 'toggle_system' === $do ) {
-			flxai_update_settings( array( 'tasks_enabled' => empty( $post['enabled'] ) ? 0 : 1 ) );
+			FLXAI_Tasks_Service::toggle( ! empty( $post['enabled'] ) );
 		} elseif ( 'save' === $do ) {
-			$sched = array(
-				'freq'  => sanitize_key( $post['freq'] ?? 'daily' ),
-				'time'  => sanitize_text_field( $post['time'] ?? '09:00' ),
-				'days'  => array_map( 'intval', (array) ( $post['days'] ?? array() ) ),
-				'day'   => (int) ( $post['day'] ?? 1 ),
-				'every' => (int) ( $post['every'] ?? 1 ),
-				'at'    => sanitize_text_field( $post['at'] ?? '' ),
-			);
-			$t     = flxai_task_save(
+			$t = FLXAI_Tasks_Service::save(
 				array(
-					'title'    => (string) ( $post['title'] ?? '' ),
-					'prompt'   => (string) ( $post['prompt'] ?? '' ),
-					'status'   => empty( $post['active'] ) ? 'paused' : 'active',
-					'schedule' => $sched,
-					'skill'    => (string) ( $post['skill'] ?? '' ),
-					'ws'       => array(
-						'access'  => sanitize_key( $post['ws_access'] ?? 'workspace' ),
-						'folders' => (string) ( $post['ws_folders'] ?? '' ),
+					'title'     => (string) ( $post['title'] ?? '' ),
+					'prompt'    => (string) ( $post['prompt'] ?? '' ),
+					'active'    => ! empty( $post['active'] ),
+					'skill'     => (string) ( $post['skill'] ?? '' ),
+					'schedule'  => array(
+						'freq'  => sanitize_key( $post['freq'] ?? 'daily' ),
+						'time'  => sanitize_text_field( $post['time'] ?? '09:00' ),
+						'days'  => array_map( 'intval', (array) ( $post['days'] ?? array() ) ),
+						'day'   => (int) ( $post['day'] ?? 1 ),
+						'every' => (int) ( $post['every'] ?? 1 ),
+						'at'    => sanitize_text_field( $post['at'] ?? '' ),
 					),
-					'notify'   => array(
+					'workspace' => array(
+						'access'  => sanitize_key( $post['ws_access'] ?? 'workspace' ),
+						'folders' => preg_split( '/\R/', (string) ( $post['ws_folders'] ?? '' ), -1, PREG_SPLIT_NO_EMPTY ) ?: array(),
+					),
+					'notify'    => array(
 						'mode'     => sanitize_key( $post['notify'] ?? 'none' ),
 						'email'    => ! empty( $post['notify_email'] ),
 						'panel'    => ! empty( $post['notify_panel'] ),
@@ -80,18 +79,19 @@ add_action(
 				exit;
 			}
 		} elseif ( $id && flxai_task_get( $id ) ) {
+			$r = null;
 			if ( 'run' === $do ) {
-				flxai_task_queue_now( $id );
+				$r   = FLXAI_Tasks_Service::run( $id );
 				$msg = 'queued';
 			} elseif ( 'pause' === $do || 'resume' === $do ) {
-				$t = flxai_task_save( array( 'status' => 'pause' === $do ? 'paused' : 'active' ), $id );
-				if ( is_wp_error( $t ) ) {
-					set_transient( 'flxai_tasks_err_' . get_current_user_id(), $t->get_error_message(), 60 );
-					$msg = 'error';
-				}
+				$r = FLXAI_Tasks_Service::set_active( $id, 'resume' === $do );
 			} elseif ( 'delete' === $do ) {
-				flxai_task_delete( $id );
+				$r   = FLXAI_Tasks_Service::delete( $id );
 				$msg = 'deleted';
+			}
+			if ( is_wp_error( $r ) ) {
+				set_transient( 'flxai_tasks_err_' . get_current_user_id(), $r->get_error_message(), 60 );
+				$msg = 'error';
 			}
 		}
 		wp_safe_redirect( add_query_arg( 'msg', $msg, $back ) );
@@ -131,6 +131,9 @@ function flxai_task_open_url( array $t ) {
 }
 
 function flxai_page_tasks() {
+	if ( flxai_flux_render() ) {
+		return;
+	}
 	$on   = (bool) flxai_setting( 'tasks_enabled', 1 );
 	$edit = isset( $_GET['edit'] ) ? sanitize_key( wp_unslash( $_GET['edit'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 	flxai_page_head( __( 'Scheduled tasks', 'flx-ai' ), __( 'Instructions the assistant runs on its own at set times: a daily briefing, a weekly donor review, a site performance check. Each task runs with its owner\'s permissions and writes its report to its own chat; changes wait for approval.', 'flx-ai' ) );
@@ -209,32 +212,6 @@ function flxai_page_tasks() {
 	echo '</div>';
 	echo '<p class="flxai-note flxai-tasks-tip">' . esc_html__( 'Tip: you can also create and change tasks from the chat, e.g. "move my daily briefing to 8:30 and add the weather".', 'flx-ai' ) . '</p>';
 	echo '</section></div>';
-}
-
-/** Bildirim alıcılarının kısa özeti. */
-function flxai_task_notify_label( array $t ) {
-	$n = flxai_task_notify_cfg( $t );
-	if ( 'none' === $n['mode'] ) {
-		return '';
-	}
-	$who = array();
-	if ( $n['panel'] ) {
-		$who[] = __( 'panel', 'flx-ai' );
-	}
-	if ( $n['email'] ) {
-		$who[] = __( 'my e-mail', 'flx-ai' );
-	}
-	if ( '' !== $n['whatsapp'] ) {
-		$who[] = 'WhatsApp';
-	}
-	foreach ( $n['to'] as $r ) {
-		$who[] = $r['name'];
-	}
-	if ( ! $who ) {
-		return '';
-	}
-	$more = count( $who ) > 3 ? ' +' . number_format_i18n( count( $who ) - 3 ) : '';
-	return implode( ', ', array_slice( $who, 0, 3 ) ) . $more;
 }
 
 /** Görev kartı: başlık, zamanlama, işlemler, son çıktı (açılır). */

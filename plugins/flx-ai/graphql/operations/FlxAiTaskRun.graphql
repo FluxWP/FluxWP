@@ -1,0 +1,12 @@
+mutation FlxAiTaskRun($input: FlxAiTaskRunInput!) {
+  flxAiTaskRun(input: $input) {
+    task {
+      ...FlxAiTaskFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

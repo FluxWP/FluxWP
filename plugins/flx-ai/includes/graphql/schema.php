@@ -74,3 +74,4 @@ require_once __DIR__ . '/schema-usage.php';
 require_once __DIR__ . '/schema-settings.php';
 require_once __DIR__ . '/schema-tools.php';
 require_once __DIR__ . '/schema-approvals.php';
+require_once __DIR__ . '/schema-tasks.php';
