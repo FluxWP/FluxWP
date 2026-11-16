@@ -97,7 +97,7 @@ $p    = $r['data']['flxWikiPage'] ?? array();
 flxt_same( array( $post->ID, get_the_title( $post ), 'PUBLISH' ), array( $p['databaseId'] ?? null, $p['title'] ?? null, $p['status'] ?? null ), 'page: by path' );
 flxt_ok( str_contains( (string) ( $p['html'] ?? '' ), '<h' ) && ! str_contains( (string) ( $p['html'] ?? '' ), '<script' ), 'page: rendered HTML' );
 flxt_same( false, $p['canEdit'] ?? null, 'page: a visitor cannot edit' );
-flxt_same( null, $p['editUrl'] ?? 'x', 'page: no edit link for a visitor' );
+flxt_ok( array_key_exists( 'editUrl', $p ) && null === $p['editUrl'], 'page: no edit link for a visitor' );
 $r = flxt_gql( 'query($id: ID!) { flxWikiPage(id: $id) { databaseId markdown } }', array( 'id' => $p['id'] ?? '' ) );
 flxt_same( flxwk_md( $post ), $r['data']['flxWikiPage']['markdown'] ?? null, 'page: Markdown source by global ID' );
 $r = flxt_gql( 'query($id: ID!) { node(id: $id) { ... on FlxWikiPage { title } } }', array( 'id' => $p['id'] ?? '' ) );
@@ -106,16 +106,17 @@ $r = flxt_gql( '{ flxWikiPage(path: "no/such/page") { title } }' );
 flxt_ok( array_key_exists( 'flxWikiPage', $r['data'] ?? array() ) && null === $r['data']['flxWikiPage'] && empty( $r['errors'] ), 'page: unknown path → null' );
 
 // Drafts are for editors only.
+wp_set_current_user( $admin );
 $draft = FLXWK_Page_Service::save( array( 'title' => 'Hidden draft', 'markdown' => "## Secret\n\nbody", 'status' => 'draft' ) );
 flxt_ok( $draft instanceof FLXWK_Page, 'service: draft created' );
 wp_set_current_user( $admin );
 $did = $draft instanceof FLXWK_Page ? $draft->id : 0;
 $r   = flxt_gql( 'query($id: ID!) { flxWikiPage(id: $id) { title } }', array( 'id' => $did ), 0 );
-flxt_same( null, $r['data']['flxWikiPage'] ?? 'x', 'draft: a visitor gets null' );
+flxt_ok( array_key_exists( 'flxWikiPage', $r['data'] ?? array() ) && null === $r['data']['flxWikiPage'], 'draft: a visitor gets null' );
 $r = flxt_gql( 'query($id: ID!) { flxWikiPage(id: $id) { title markdown canEdit } }', array( 'id' => $did ), $admin );
 flxt_same( array( 'Hidden draft', "## Secret\n\nbody", true ), array( $r['data']['flxWikiPage']['title'] ?? null, $r['data']['flxWikiPage']['markdown'] ?? null, $r['data']['flxWikiPage']['canEdit'] ?? null ), 'draft: an editor reads it' );
 $r = flxt_gql( 'query($id: ID!) { node(id: $id) { ... on FlxWikiPage { title } } }', array( 'id' => flx_gql_global_id( 'FlxWikiPage', $did ) ), 0 );
-flxt_same( null, $r['data']['node'] ?? 'x', 'draft: node(id:) hides it from a visitor' );
+flxt_ok( array_key_exists( 'node', $r['data'] ?? array() ) && null === $r['data']['node'], 'draft: node(id:) hides it from a visitor' );
 $r = flxwk_t_op( 'FlxWikiSearch', array( 'query' => 'Secret' ), 0 );
 flxt_same( 0, $r['data']['flxWikiSearch']['total'] ?? null, 'draft: not searchable' );
 
@@ -154,7 +155,7 @@ flxt_same( array( 'GraphQL page', 'changed', 'PUBLISH', 7 ), array( $u['title'] 
 $r = flxwk_t_op( 'FlxWikiPageSave', array( 'input' => array( 'markdown' => 'x' ) ), $admin );
 flxt_same( array( array( 'INVALID_INPUT', 'title' ) ), flxwk_t_errs( $r, 'flxWikiPageSave' ), 'save: a new page needs a title' );
 $r = flxwk_t_op( 'FlxWikiPageSave', array( 'input' => array( 'id' => '99999999', 'title' => 'x' ) ), $admin );
-flxt_same( array( array( 'NOT_FOUND', 'id' ) ), flxwk_t_errs( $r, 'flxWikiPageSave' ), 'save: unknown page' );
+flxt_same( 'NOT_FOUND', flxt_code( $r ), 'save: unknown page' );
 $r = flxwk_t_op( 'FlxWikiPageSave', array( 'input' => array( 'id' => (string) $nid, 'parentId' => $nid ) ), $admin );
 flxt_same( array( array( 'INVALID_INPUT', 'parent' ) ), flxwk_t_errs( $r, 'flxWikiPageSave' ), 'save: a page cannot be its own parent' );
 $r = flxwk_t_op( 'FlxWikiPageSave', array( 'input' => array( 'title' => 'Child', 'parentId' => $nid ) ), $admin );
@@ -163,7 +164,7 @@ flxt_same( array( $nid, 'DRAFT' ), array( $child['parentId'] ?? null, $child['st
 $r = flxwk_t_op( 'FlxWikiPageSave', array( 'input' => array( 'id' => (string) $nid, 'parentId' => (int) ( $child['databaseId'] ?? 0 ) ) ), $admin );
 flxt_same( array( array( 'INVALID_INPUT', 'parent' ) ), flxwk_t_errs( $r, 'flxWikiPageSave' ), 'save: a page cannot go under its own child' );
 $r = flxwk_t_op( 'FlxWikiPageSave', array( 'input' => array( 'id' => (string) ( $child['databaseId'] ?? 0 ), 'parentId' => 0 ) ), $admin );
-flxt_same( null, $r['data']['flxWikiPageSave']['page']['parentId'] ?? 'x', 'save: parentId 0 makes it a top-level page' );
+flxt_ok( array_key_exists( 'parentId', $r['data']['flxWikiPageSave']['page'] ?? array() ) && null === $r['data']['flxWikiPageSave']['page']['parentId'], 'save: parentId 0 makes it a top-level page' );
 
 // Permissions of the author roles.
 $r = flxwk_t_op( 'FlxWikiPageSave', array( 'input' => array( 'title' => 'By contributor', 'status' => 'PUBLISH' ) ), $contr );
@@ -185,7 +186,7 @@ flxt_same( 'FORBIDDEN', flxt_code( $r ), "trash: a contributor cannot delete som
 $r = flxwk_t_op( 'FlxWikiPageTrash', array( 'input' => array( 'id' => (string) $cid ) ), $admin );
 flxt_same( array( $cid, 'trash' ), array( $r['data']['flxWikiPageTrash']['trashedId'] ?? null, get_post_status( $cid ) ), 'trash: moved to the trash' );
 $r = flxwk_t_op( 'FlxWikiPageTrash', array( 'input' => array( 'id' => '99999999' ) ), $admin );
-flxt_same( array( array( 'NOT_FOUND', 'id' ) ), flxwk_t_errs( $r, 'flxWikiPageTrash' ), 'trash: unknown page' );
+flxt_same( 'NOT_FOUND', flxt_code( $r ), 'trash: unknown page' );
 
 // Sections.
 $r = flxwk_t_op( 'FlxWikiSectionSave', array( 'input' => array( 'name' => 'Guides', 'order' => 3 ) ), $edit );
@@ -201,7 +202,7 @@ flxt_same( 'FORBIDDEN', flxt_code( $r ), 'section: a contributor cannot manage s
 $r = flxwk_t_op( 'FlxWikiSectionDelete', array( 'input' => array( 'id' => $sid ) ), $edit );
 flxt_same( array( $sid, false ), array( $r['data']['flxWikiSectionDelete']['deletedId'] ?? null, (bool) get_term( $sid, FLXWK_TAX ) instanceof WP_Term ), 'section: deleted' );
 $r = flxwk_t_op( 'FlxWikiSectionDelete', array( 'input' => array( 'id' => 99999999 ) ), $edit );
-flxt_same( array( array( 'NOT_FOUND', 'id' ) ), flxwk_t_errs( $r, 'flxWikiSectionDelete' ), 'section: unknown section' );
+flxt_same( 'NOT_FOUND', flxt_code( $r ), 'section: unknown section' );
 
 // Preview.
 $r = flxwk_t_op( 'FlxWikiPreview', array( 'input' => array( 'markdown' => "## One\n\n### Two\n\n<script>x</script>" ) ), $edit );
