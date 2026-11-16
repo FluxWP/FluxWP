@@ -6,6 +6,21 @@
  * @package FLX_Chat
  */
 
+/**
+ * Named here because a stub file cannot reference a class that exists only in a bootstrap file.
+ * PHPStan merges this declaration with the WordPress class.
+ */
+class WP_Error {
+	/** @return string */
+	public function get_error_code() {}
+
+	/** @return string */
+	public function get_error_message() {}
+
+	/** @param mixed $data */
+	public function add_data( $data ): void {}
+}
+
 /** @return string */
 function flxc_table( mixed $name ) {}
 
@@ -68,8 +83,6 @@ function flxc_lookup_contact_name( mixed $phone ) {}
 function flxc_update_chat( mixed $id, array $fields, array $by = array() ) {}
 
 /** @return string
- * @param array<mixed> $fields
- * @param array<mixed> $by
  */
 function flxc_chat_title( mixed $chat ) {}
 
@@ -93,7 +106,6 @@ function flxc_unread_total() {}
 function flxc_chats_for_js( array $rows ) {}
 
 /** @return array<string, mixed>
- * @param array<mixed> $rows
  */
 function flxc_chat_for_js( mixed $r, mixed $last = null ) {}
 
@@ -112,12 +124,11 @@ function flxc_insert_message( array $m, mixed $chat = null ) {}
  */
 function flxc_update_message( mixed $id, array $fields ) {}
 
-/** @return array<string, mixed>|\WP_Error
- * @param array<mixed> $fields
+/** @return array<string, mixed>|WP_Error
  */
 function flxc_apply_edit( mixed $m, mixed $body, mixed $user_id = 0 ) {}
 
-/** @return array<string, mixed>|\WP_Error */
+/** @return array<string, mixed>|WP_Error */
 function flxc_soft_delete_message( mixed $m, mixed $scope, mixed $user_id = 0 ) {}
 
 /** @return int */
@@ -139,14 +150,12 @@ function flxc_messages_since( mixed $chat_id, mixed $since, mixed $after_id = 0,
 function flxc_new_incoming_since( mixed $since ) {}
 
 /**
-* @param list<array<string, mixed>> $rows
+ * @param list<array<string, mixed>> $rows
  * @return non-empty-list<array<string, mixed>>
- * @param array<mixed> $rows
  */
 function flxc_messages_for_js( array $rows ) {}
 
 /** @return string
- * @param array<mixed> $rows
  */
 function flxc_chat_number( mixed $chat ) {}
 
@@ -154,17 +163,16 @@ function flxc_chat_number( mixed $chat ) {}
 function flxc_fill_vars( mixed $text, mixed $chat, mixed $user_id = 0 ) {}
 
 /**
-* @return array<string, mixed>|\WP_Error
+* @return array<string, mixed>|WP_Error
  * @param array<mixed> $args
  */
 function flxc_send( mixed $chat, array $args ) {}
 
 /** @return array<string, mixed>|null
- * @param array<mixed> $args
  */
 function flxc_ai_active() {}
 
-/** @return string|\WP_Error */
+/** @return string|WP_Error */
 function flxc_ai_suggest( mixed $chat, mixed $hint = '' ) {}
 
 /** @return bool */
@@ -180,13 +188,13 @@ function flxc_can_record_certificate() {}
 function flxc_records_boot() {}
 
 /**
-* @return array<string, mixed>|\WP_Error
+* @return array<string, mixed>|WP_Error
  * @param array<mixed> $p
  */
 function flxc_create_donation( array $p, mixed $chat = null ) {}
 
 /**
-* @return array<string, mixed>|\WP_Error
+* @return array<string, mixed>|WP_Error
  * @param array<mixed> $a
  */
 function flxc_make_certificate( array $a ) {}
@@ -197,18 +205,17 @@ function flxc_make_certificate( array $a ) {}
  */
 function flxc_certificate_for_js( array $c ) {}
 
-/** @return array<string, mixed>|\WP_Error
- * @param array<mixed> $c
+/** @return array<string, mixed>|WP_Error
  */
 function flxc_attach_receipt( mixed $message_id, mixed $kind, mixed $ref_id, mixed $mark_paid = false, mixed $note = '' ) {}
 
-/** @return array<string, mixed>|\WP_Error */
-function flxc_rest_attach_receipt( \WP_REST_Request $req ) {}
+/** @return array<string, mixed>|WP_Error */
+function flxc_rest_attach_receipt( mixed $req ) {}
 
-/** @return array<string, mixed>|\WP_Error */
-function flxc_rest_detach_receipt( \WP_REST_Request $req ) {}
+/** @return array<string, mixed>|WP_Error */
+function flxc_rest_detach_receipt( mixed $req ) {}
 
-/** @return array<string, mixed>|\WP_Error */
+/** @return array<string, mixed>|WP_Error */
 function flxc_rest_chat_or_error( mixed $id ) {}
 
 /** @return list<array<string, mixed>> */
@@ -226,12 +233,11 @@ function flxc_contact_sections( mixed $chat ) {}
  */
 function flxc_system_message( mixed $chat, mixed $text, array $meta = array() ) {}
 
-/** @return array<string, mixed>|\WP_Error
- * @param array<mixed> $meta
+/** @return array<string, mixed>|WP_Error
  */
 function flxc_upload_check( mixed $f, mixed $name, mixed $type ) {}
 
-/** @return array<string, mixed>|\WP_Error */
+/** @return array<string, mixed>|WP_Error */
 function flxc_upload_take( mixed $token ) {}
 
 /**
@@ -248,14 +254,13 @@ function flxc_export_chat( array $chat, array $o ) {}
 function flxc_export_md( array $c ) {}
 
 /** @return int
- * @param array<mixed> $c
  */
 function flxc_clear_chat_history( mixed $chat_id, mixed $keep_receipts = true ) {}
 
 /** @return array<string, mixed>|null */
 function flxc_block_find( mixed $phone = '', mixed $email = '', mixed $jid = '' ) {}
 
-/** @return array<string, mixed>|\WP_Error */
+/** @return array<string, mixed>|WP_Error */
 function flxc_block_add( mixed $phone, mixed $email = '', mixed $reason = '', mixed $source = 'agent', mixed $chat = null ) {}
 
 /** @return bool */
@@ -280,7 +285,6 @@ function flxc_bot_state( mixed $chat ) {}
 function flxc_bot_save_state( mixed $chat_id, array $state ) {}
 
 /** @return int
- * @param array<mixed> $state
  */
 function flxc_bot_last_in_id( mixed $chat_id ) {}
 
@@ -300,20 +304,19 @@ function flxc_rem_get( mixed $id ) {}
 function flxc_rem_for_chat( mixed $chat_id, mixed $status = 'active' ) {}
 
 /**
-* @return array<string, mixed>|\WP_Error
+* @return array<string, mixed>|WP_Error
  * @param array<mixed> $a
  * @param array<mixed> $base
  */
 function flxc_rem_build( array $a, array $base = array() ) {}
 
 /**
-* @return array<string, mixed>|\WP_Error
+* @return array<string, mixed>|WP_Error
  * @param array<mixed> $r
  */
 function flxc_rem_save( mixed $chat, array $r, mixed $id = 0, mixed $source = 'bot' ) {}
 
 /** @return bool
- * @param array<mixed> $r
  */
 function flxc_rem_set_status( mixed $id, mixed $status ) {}
 
@@ -356,10 +359,10 @@ function flxc_connections_for_js() {}
 /** @return array<string, mixed>|null */
 function flxc_chat_usage_for_js( mixed $chat ) {}
 
-/** @return array<string, mixed>|\WP_Error */
+/** @return array<string, mixed>|WP_Error */
 function flxc_link_preview( mixed $url, mixed $fresh = false ) {}
 
-/** @return array<string, mixed>|\WP_Error */
+/** @return array<string, mixed>|WP_Error */
 function flxc_fetch_chat_history( mixed $chat, mixed $per = 50 ) {}
 
 /** @return array<string, mixed> */
@@ -385,11 +388,11 @@ function flxc_evo_presence( mixed $conn, mixed $number, mixed $presence = 'compo
 
 /**
  * @param array<mixed> $numbers Numbers.
- * @return array<string, mixed>
+ * @return array<string, mixed>|WP_Error
  */
 function flxc_evo_check_numbers( mixed $conn, array $numbers ) {}
 
-/** @return array<string, mixed>|\WP_Error */
+/** @return array<string, mixed>|WP_Error */
 function flxc_staff_link_chat( mixed $chat, mixed $user_id ) {}
 
 /** @return list<array<string, mixed>> */

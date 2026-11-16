@@ -145,7 +145,10 @@ final class FLXC_Chat_Service {
 		$jid      = $phone . '@s.whatsapp.net';
 		if ( $req->get_param( 'check' ) ) {
 			$chk = flxc_evo_check_numbers( $conn_key, array( $phone ) );
-			$one = is_array( $chk[ $phone ] ?? null ) ? $chk[ $phone ] : null;
+			$one = null;
+			if ( is_array( $chk ) ) {
+				$one = is_array( $chk[ $phone ] ?? null ) ? $chk[ $phone ] : null;
+			}
 			if ( is_array( $one ) ) {
 				if ( empty( $one['exists'] ) ) {
 					return new WP_Error( 'flxc_no_wa', __( 'This number is not on WhatsApp.', 'flx-chat' ), array( 'status' => 400 ) );
@@ -183,9 +186,11 @@ final class FLXC_Chat_Service {
 		$exists = null;
 		if ( is_array( $conn ) ) {
 			$chk = flxc_evo_check_numbers( FLXC_Val::str( $conn['id'] ?? '' ), array( $phone ) );
-			$one = is_array( $chk[ $phone ] ?? null ) ? $chk[ $phone ] : null;
-			if ( is_array( $one ) ) {
-				$exists = $one['exists'];
+			if ( is_array( $chk ) ) {
+				$one = is_array( $chk[ $phone ] ?? null ) ? $chk[ $phone ] : null;
+				if ( is_array( $one ) ) {
+					$exists = $one['exists'];
+				}
 			}
 		}
 		$found = is_array( $conn ) ? flxc_find_chat_by_phone( FLXC_Val::str( $conn['id'] ?? '' ), $phone ) : null;
