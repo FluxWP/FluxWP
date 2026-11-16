@@ -1,0 +1,12 @@
+mutation FlxAiToolPick($input: FlxAiToolPickInput!) {
+  flxAiToolPick(input: $input) {
+    tools {
+      ...FlxAiToolRow
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

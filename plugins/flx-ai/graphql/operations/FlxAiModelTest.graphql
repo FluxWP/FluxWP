@@ -1,0 +1,13 @@
+mutation FlxAiModelTest($input: FlxAiModelTestInput!) {
+  flxAiModelTest(input: $input) {
+    result {
+      text
+      ms
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}
