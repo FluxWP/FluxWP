@@ -1640,7 +1640,7 @@ flx_gql_mutation(
 		),
 		'output'      => array(
 			'deletedIds' => array(
-				'type'        => '[Int!]!',
+				'type'        => '[Int!]',
 				'description' => __( 'Items that were deleted.', 'flx-studio' ),
 			),
 		),
@@ -1665,7 +1665,7 @@ flx_gql_mutation(
 		),
 		'output'      => array(
 			'movedIds' => array(
-				'type'        => '[Int!]!',
+				'type'        => '[Int!]',
 				'description' => __( 'Items that were moved.', 'flx-studio' ),
 			),
 		),
@@ -1799,7 +1799,7 @@ flx_gql_mutation(
 		),
 		'output'      => array(
 			'items' => array(
-				'type'        => '[FlxStudioItem!]!',
+				'type'        => '[FlxStudioItem!]',
 				'description' => __( 'The queued items (state QUEUED).', 'flx-studio' ),
 			),
 		),
@@ -1856,7 +1856,7 @@ flx_gql_mutation(
 		),
 		'output'      => array(
 			'items' => array(
-				'type'        => '[FlxStudioItem!]!',
+				'type'        => '[FlxStudioItem!]',
 				'description' => __( 'Items of the jobs after the refresh.', 'flx-studio' ),
 			),
 		),
@@ -1877,7 +1877,7 @@ flx_gql_mutation(
 		),
 		'output'      => array(
 			'items' => array(
-				'type'        => '[FlxStudioItem!]!',
+				'type'        => '[FlxStudioItem!]',
 				'description' => __( 'Items of the job after the cancel.', 'flx-studio' ),
 			),
 		),

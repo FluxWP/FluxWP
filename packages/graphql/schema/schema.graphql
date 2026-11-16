@@ -281,6 +281,51 @@ type RootQuery {
   "Panel settings of the installed FluxWP packages."
   flxSettings: FlxSettings!
 
+  "Everything the Studio screen needs when it opens: models, settings, folders, people, references, templates and spending limits."
+  flxStudio: FlxStudioWorkspace!
+
+  "Flux AI spending limits, counted fresh."
+  flxStudioBudget: [FlxStudioBudget!]!
+
+  "One gallery item; empty when it is not found or the user may not see it."
+  flxStudioItem(
+    "Item ID."
+    id: Int!
+  ): FlxStudioItem
+
+  "The gallery, newest first: the user&#039;s own items and those in shared folders (every item for Studio administrators with allOwners)."
+  flxStudioItems(
+    "Records per page (at most 50)."
+    first: Int
+
+    "Cursor to continue after (pageInfo.endCursor)."
+    after: String
+
+    "Only this folder (0 is the items outside any folder); leave out for every folder."
+    folderId: Int
+
+    "Only images or only videos."
+    kind: FlxStudioKind
+
+    "Only starred items."
+    favorite: Boolean
+
+    "Only one Brainstorm batch."
+    batch: String
+
+    "Words in the prompt, title or model."
+    search: String
+
+    "Studio administrators: every user's items."
+    allOwners: Boolean
+  ): FlxStudioItemConnection!
+
+  "Usage and spending dashboard."
+  flxStudioStats(
+    "Days to cover (1–365, default 30)."
+    days: Int
+  ): FlxStudioStats!
+
   "One task; empty when it does not exist or the user may not see it."
   flxTask(
     "Global ID or task number."
@@ -9145,6 +9190,9 @@ type FlxRoleHomeChoice {
 type FlxSettings {
   "Flux GraphQL"
   flxgqlSettings: FlxSettingsFlxgqlSettings
+
+  "Flux Studio"
+  studio: FlxSettingsStudio
 }
 
 "Flux GraphQL"
@@ -9184,6 +9232,699 @@ enum FlxSettingsFlxgqlSettingsQueryMode {
 
   ""
   STRICT
+}
+
+"Flux Studio"
+type FlxSettingsStudio {
+  "Default image model id (empty: the Flux AI default)."
+  imageModel: String
+
+  "Most ideas one Brainstorm may return (1-40)."
+  maxBatch: Int
+
+  "Most images one request may ask for (1-8)."
+  maxN: Int
+
+  "People are shared with every Studio user."
+  sharedPeople: Boolean
+
+  "Text model for Enhance and Brainstorm (empty: the Flux AI default)."
+  textModel: String
+
+  "Default video model id (empty: the Flux AI default)."
+  videoModel: String
+}
+
+"Everything the Studio screen needs when it opens."
+type FlxStudioWorkspace {
+  "Flux AI image and video backend is installed and on."
+  aiMedia: Boolean!
+
+  "A Flux AI text model is ready (Enhance, Brainstorm)."
+  aiText: Boolean!
+
+  "Flux AI spending limits."
+  budget: [FlxStudioBudget!]!
+
+  "May add files to the Media Library."
+  canLibrary: Boolean!
+
+  "Sees every gallery, the dashboard and the settings."
+  canManage: Boolean!
+
+  "Models and providers."
+  catalog: FlxStudioCatalog!
+
+  "Folders the user sees."
+  folders: [FlxStudioFolder!]!
+
+  "People the user sees, with their photos."
+  people: [FlxStudioPerson!]!
+
+  "Saved references."
+  refs: [FlxStudioRef!]!
+
+  "Studio settings."
+  settings: FlxStudioSettings!
+
+  "Flux AI settings page; empty unless the user is an administrator."
+  setupUrl: String
+
+  "Templates of the user and the shared ones."
+  templates: [FlxStudioTemplate!]!
+
+  "The signed-in user."
+  userId: Int!
+
+  "Display name of the signed-in user."
+  userName: String!
+
+  "Plugin version."
+  version: String!
+}
+
+"One Flux AI spending limit."
+type FlxStudioBudget {
+  "Period name."
+  label: String!
+
+  "Limit in USD; 0 is no limit."
+  limit: Float!
+
+  "The limit is reached; generating is paused."
+  over: Boolean!
+
+  "Spent against the limit, in percent."
+  pct: Float!
+
+  "Period key (daily …)."
+  period: String!
+
+  "Spent in USD."
+  spent: Float!
+}
+
+"Models and providers of Flux AI (no keys)."
+type FlxStudioCatalog {
+  "Default image model of Flux AI."
+  defaultImage: String
+
+  "Default video model of Flux AI."
+  defaultVideo: String
+
+  "Image and video models."
+  models: [FlxStudioModel!]!
+
+  "Providers."
+  providers: [FlxStudioProvider!]!
+}
+
+"An image or video model of the Flux AI catalog."
+type FlxStudioModel {
+  "Aspect ratios."
+  aspects: [String!]!
+
+  "Provider used for Auto."
+  auto: String
+
+  "Default video length in seconds; empty for images."
+  durationDefault: Int
+
+  "Longest video in seconds; empty for images."
+  durationMax: Int
+
+  "Shortest video in seconds; empty for images."
+  durationMin: Int
+
+  "Model ID."
+  id: String!
+
+  "Image or video."
+  kind: FlxStudioKind!
+
+  "Name."
+  label: String!
+
+  "Area editing is supported."
+  mask: Boolean!
+
+  "Most images per request."
+  maxCount: Int!
+
+  "Most references one request takes."
+  maxRefs: Int!
+
+  "Price by resolution."
+  prices: [FlxStudioPrice!]!
+
+  "Providers with a key entered."
+  providers: [String!]!
+
+  "Quality levels."
+  qualities: [String!]!
+
+  "Resolutions."
+  resolutions: [String!]!
+
+  "Providers that can serve the model."
+  routes: [String!]!
+}
+
+"What a generation makes."
+enum FlxStudioKind {
+  "An image."
+  IMAGE
+
+  "A video."
+  VIDEO
+}
+
+"Price of a model at one resolution."
+type FlxStudioPrice {
+  "Resolution key."
+  resolution: String!
+
+  "USD per image, or per second for video."
+  usd: Float!
+}
+
+"A generation provider (fal.ai, EvoLink …)."
+type FlxStudioProvider {
+  "Provider ID."
+  id: String!
+
+  "Name."
+  label: String!
+
+  "A key is entered in Flux AI."
+  ready: Boolean!
+}
+
+"A gallery folder."
+type FlxStudioFolder {
+  "When the folder was made."
+  createdAt: FlxDateTime
+
+  "Folder ID."
+  databaseId: Int!
+
+  "Name."
+  name: String!
+
+  "Owner user."
+  ownerId: Int!
+
+  "Parent folder; empty for the top level."
+  parentId: Int
+
+  "Visible to the whole team."
+  shared: Boolean!
+}
+
+"A point in time with labels in the user&#039;s language."
+type FlxDateTime {
+  "ISO 8601 in UTC (2026-11-15T14:59:00Z)."
+  iso: String!
+
+  "Date and time for display, in the site time zone and the user&#039;s language."
+  label: String!
+
+  "Relative time for display (&quot;5 minutes ago&quot;)."
+  relative: String!
+
+  "Unix timestamp."
+  timestamp: Int!
+}
+
+"A person whose photos are used as identity references."
+type FlxStudioPerson {
+  "Person ID."
+  databaseId: Int!
+
+  "Name."
+  name: String!
+
+  "Owner user."
+  ownerId: Int!
+
+  "Photos."
+  photos: [FlxStudioRef!]!
+}
+
+"A saved reference image or a photo of a person."
+type FlxStudioRef {
+  "Reference ID."
+  databaseId: Int!
+
+  "Height in pixels."
+  height: Int!
+
+  "MIME type."
+  mime: String
+
+  "Name."
+  name: String!
+
+  "Person it belongs to; empty for a saved reference."
+  personId: Int
+
+  "Role (identity, style, product, background, composition, first_frame, last_frame); empty for general."
+  role: String
+
+  "Kept in the saved references list."
+  saved: Boolean!
+
+  "Small image (falls back to the file)."
+  thumb: String!
+
+  "File address."
+  url: String!
+
+  "Width in pixels."
+  width: Int!
+}
+
+"Studio settings. API keys and the spending limit are in Flux AI."
+type FlxStudioSettings {
+  "Image model the screen starts with."
+  imageModel: String
+
+  "Most ideas per Brainstorm (1–40)."
+  maxBatch: Int!
+
+  "Most images per request (1–8)."
+  maxCount: Int!
+
+  "People are shared with every Studio user."
+  sharedPeople: Boolean!
+
+  "Model for Enhance and Brainstorm; empty uses the Flux AI default. Studio administrators only."
+  textModel: String
+
+  "Video model the screen starts with."
+  videoModel: String
+}
+
+"A saved set of generation settings."
+type FlxStudioTemplate {
+  "Template ID."
+  databaseId: Int!
+
+  "Name."
+  name: String!
+
+  "Owner user."
+  ownerId: Int!
+
+  "Kept settings."
+  params: FlxStudioTemplateParams!
+
+  "Prompt."
+  prompt: String!
+
+  "Visible to the whole team."
+  shared: Boolean!
+}
+
+"Generation settings a template keeps."
+type FlxStudioTemplateParams {
+  "Aspect ratio."
+  aspect: String
+
+  "Video with sound."
+  audio: Boolean
+
+  "Images per request."
+  count: Int
+
+  "Video seconds."
+  duration: Int
+
+  "Image or video."
+  kind: FlxStudioKind
+
+  "Video mode (auto, text, image …)."
+  mode: String
+
+  "Model ID."
+  model: String
+
+  "Quality level."
+  quality: String
+
+  "References the template adds."
+  refs: [FlxStudioItemRef!]!
+
+  "Resolution."
+  resolution: String
+
+  "Exact size, e.g. 1024x1536."
+  size: String
+}
+
+"A reference a generation was made with."
+type FlxStudioItemRef {
+  "Record ID of the item, reference or person."
+  id: Int!
+
+  "Person name; empty for images."
+  name: String
+
+  "Photos used (people only)."
+  photos: Int!
+
+  "Role (identity, style, edit …); empty for a general reference."
+  role: String
+
+  "Small image address."
+  thumb: String
+
+  "Item, saved reference or person."
+  type: FlxStudioRefType!
+}
+
+"What a reference points to."
+enum FlxStudioRefType {
+  "A gallery item."
+  ITEM
+
+  "A person (their photos are used)."
+  PERSON
+
+  "A saved reference image."
+  REF
+}
+
+"One generation (image or video) of the gallery."
+type FlxStudioItem implements Node {
+  "Media Library copy; empty when none."
+  attachmentId: Int
+
+  "Brainstorm batch the item belongs to."
+  batch: String
+
+  "File size in bytes."
+  bytes: Int!
+
+  "Cost in USD."
+  cost: Float!
+
+  "When it was queued."
+  createdAt: FlxDateTime
+
+  "Database ID."
+  databaseId: Int!
+
+  "Why it failed."
+  error: String
+
+  "Starred."
+  favorite: Boolean!
+
+  "Folder; empty for none."
+  folderId: Int
+
+  "Height in pixels."
+  height: Int!
+
+  "Global ID."
+  id: ID!
+
+  "Flux AI job; flxd_… until sent, then flxm_…. Pass it to flxStudioPoll while running."
+  job: String
+
+  "Image or video."
+  kind: FlxStudioKind!
+
+  "MIME type of the file."
+  mime: String
+
+  "Model ID."
+  model: String!
+
+  "User who made it."
+  ownerId: Int!
+
+  "Display name of the user who made it."
+  ownerName: String!
+
+  "What the generation was asked for."
+  params: FlxStudioItemParams!
+
+  "Source item of an area edit."
+  parentId: Int
+
+  "Prompt."
+  prompt: String!
+
+  "Provider that made it."
+  provider: String
+
+  "Where the generation is."
+  state: FlxStudioItemState!
+
+  "Small image (falls back to the file)."
+  thumb: String
+
+  "Title."
+  title: String!
+
+  "Last change."
+  updatedAt: FlxDateTime
+
+  "File address; empty until done."
+  url: String
+
+  "Width in pixels."
+  width: Int!
+}
+
+"What a generation was asked for."
+type FlxStudioItemParams {
+  "Aspect ratio, e.g. 16:9."
+  aspect: String
+
+  "Video with sound; empty for images."
+  audio: Boolean
+
+  "Images asked for."
+  count: Int!
+
+  "First draft before Enhance."
+  draft: String
+
+  "Video length in seconds; empty for the model default and for images."
+  duration: Int
+
+  "An area edit (masked)."
+  edit: Boolean!
+
+  "The prompt came from Enhance."
+  enhanced: Boolean!
+
+  "Brainstorm idea title."
+  idea: String
+
+  "Progress from 0 to 1 while running."
+  progress: Float!
+
+  "The provider marked the file protected."
+  protected: Boolean!
+
+  "Quality level."
+  quality: String
+
+  "References used."
+  refs: [FlxStudioItemRef!]!
+
+  "Resolution, e.g. 2K."
+  resolution: String
+}
+
+"Where a generation is."
+enum FlxStudioItemState {
+  "Cancelled by the user."
+  CANCELLED
+
+  "Finished; the file is ready."
+  DONE
+
+  "Failed; see the error."
+  FAILED
+
+  "Waiting to be sent to Flux AI."
+  QUEUED
+
+  "Being made; follow it with flxStudioPoll."
+  RUNNING
+}
+
+"A page of the gallery."
+type FlxStudioItemConnection {
+  "Records with their cursors."
+  edges: [FlxStudioItemEdge!]!
+
+  "Records of this page."
+  nodes: [FlxStudioItem!]!
+
+  "Paging information."
+  pageInfo: FlxPageInfo!
+
+  "All matching records (null when counting would be slow)."
+  totalCount: Int
+}
+
+"One FlxStudioItem in a list, with its cursor."
+type FlxStudioItemEdge {
+  "Opaque cursor of this record."
+  cursor: String!
+
+  "The record."
+  node: FlxStudioItem!
+}
+
+"Usage and spending dashboard for Studio administrators."
+type FlxStudioStats {
+  "Flux AI spending limits."
+  budget: [FlxStudioBudget!]!
+
+  "Storage used, in bytes."
+  bytes: Float!
+
+  "Cancelled."
+  cancelled: Int!
+
+  "Per day."
+  daily: [FlxStudioStatsDay!]!
+
+  "Days covered."
+  days: Int!
+
+  "Recent failures."
+  errors: [FlxStudioStatsError!]!
+
+  "Failures."
+  failed: Int!
+
+  "Images made."
+  image: Int!
+
+  "Flux AI log page; empty without access."
+  logUrl: String
+
+  "Per model."
+  models: [FlxStudioStatsRow!]!
+
+  "Waiting or running."
+  pending: Int!
+
+  "Per person."
+  people: [FlxStudioStatsUser!]!
+
+  "Per provider."
+  providers: [FlxStudioStatsRow!]!
+
+  "Some amounts are estimates."
+  spendEstimated: Boolean!
+
+  "Where the amounts come from: flx-ai or flx-studio."
+  spendFrom: String!
+
+  "Spent on images and videos, in USD."
+  spendMedia: Float!
+
+  "Spent on text (Enhance, Brainstorm), in USD."
+  spendText: Float!
+
+  "Spent in USD."
+  spendTotal: Float!
+
+  "People who generated."
+  users: Int!
+
+  "Videos made."
+  video: Int!
+}
+
+"Dashboard: one day."
+type FlxStudioStatsDay {
+  "Cost in USD."
+  cost: Float!
+
+  "Day (YYYY-MM-DD)."
+  date: String!
+
+  "Failures."
+  failed: Int!
+
+  "Images made."
+  image: Int!
+
+  "Videos made."
+  video: Int!
+}
+
+"Dashboard: a recent failure."
+type FlxStudioStatsError {
+  "When it failed."
+  createdAt: FlxDateTime
+
+  "Message."
+  error: String!
+
+  "Item ID."
+  itemId: Int!
+
+  "Model name."
+  model: String!
+
+  "Provider name."
+  provider: String
+}
+
+"Dashboard: a model or provider."
+type FlxStudioStatsRow {
+  "Cost in USD."
+  cost: Float!
+
+  "Made."
+  done: Int!
+
+  "Failed."
+  failed: Int!
+
+  "Model or provider ID."
+  id: String!
+
+  "Image or video; empty for providers."
+  kind: FlxStudioKind
+
+  "Name."
+  label: String!
+}
+
+"Dashboard: one person&#039;s usage."
+type FlxStudioStatsUser {
+  "Avatar address."
+  avatar: String
+
+  "Cost in USD."
+  cost: Float!
+
+  "Images made."
+  image: Int!
+
+  "Last generation."
+  lastAt: FlxDateTime
+
+  "Display name."
+  name: String!
+
+  "User ID."
+  userId: Int!
+
+  "Videos made."
+  video: Int!
 }
 
 "A task, agenda item or decision."
@@ -9322,21 +10063,6 @@ type FlxTaskActivity {
 
   "User who made the change."
   userId: Int!
-}
-
-"A point in time with labels in the user&#039;s language."
-type FlxDateTime {
-  "ISO 8601 in UTC (2026-11-15T14:59:00Z)."
-  iso: String!
-
-  "Date and time for display, in the site time zone and the user&#039;s language."
-  label: String!
-
-  "Relative time for display (&quot;5 minutes ago&quot;)."
-  relative: String!
-
-  "Unix timestamp."
-  timestamp: Int!
 }
 
 "Free-form JSON value (object, list, string, number or boolean)."
@@ -11705,6 +12431,132 @@ type RootMutation {
     input: FlxSettingsUpdateInput!
   ): FlxSettingsUpdatePayload
 
+  "Writes several different prompts from one idea with the Flux AI text model. Uses Flux AI&#039;s budget."
+  flxStudioBrainstorm(
+    "Input for the flxStudioBrainstorm mutation"
+    input: FlxStudioBrainstormInput!
+  ): FlxStudioBrainstormPayload
+
+  "Cancels a job: one not yet sent is dropped, a running one is stopped at the provider."
+  flxStudioCancel(
+    "Input for the flxStudioCancel mutation"
+    input: FlxStudioCancelInput!
+  ): FlxStudioCancelPayload
+
+  "Turns a short draft into a detailed prompt with the Flux AI text model. Uses Flux AI&#039;s budget."
+  flxStudioEnhance(
+    "Input for the flxStudioEnhance mutation"
+    input: FlxStudioEnhanceInput!
+  ): FlxStudioEnhancePayload
+
+  "Adds a folder. A parent the user cannot write to becomes the top level."
+  flxStudioFolderCreate(
+    "Input for the flxStudioFolderCreate mutation"
+    input: FlxStudioFolderCreateInput!
+  ): FlxStudioFolderCreatePayload
+
+  "Deletes a folder; its items and subfolders move up one level (no file is deleted)."
+  flxStudioFolderDelete(
+    "Input for the flxStudioFolderDelete mutation"
+    input: FlxStudioFolderDeleteInput!
+  ): FlxStudioFolderDeletePayload
+
+  "Renames, shares or moves a folder (the owner or a Studio administrator). Fields you leave out stay as they are."
+  flxStudioFolderUpdate(
+    "Input for the flxStudioFolderUpdate mutation"
+    input: FlxStudioFolderUpdateInput!
+  ): FlxStudioFolderUpdatePayload
+
+  "Queues a generation: one item per output, sent to Flux AI after the response. Follow the items with flxStudioPoll until they finish. For an area edit give parentId (the image) and maskUploadId."
+  flxStudioGenerate(
+    "Input for the flxStudioGenerate mutation"
+    input: FlxStudioGenerateInput!
+  ): FlxStudioGeneratePayload
+
+  "Copies a finished item into the WordPress Media Library."
+  flxStudioItemToLibrary(
+    "Input for the flxStudioItemToLibrary mutation"
+    input: FlxStudioItemToLibraryInput!
+  ): FlxStudioItemToLibraryPayload
+
+  "Stars an item, renames it or moves it to a folder. Fields you leave out stay as they are."
+  flxStudioItemUpdate(
+    "Input for the flxStudioItemUpdate mutation"
+    input: FlxStudioItemUpdateInput!
+  ): FlxStudioItemUpdatePayload
+
+  "Deletes items and their files; running ones are cancelled at the provider. Items that are not the user&#039;s own are skipped."
+  flxStudioItemsDelete(
+    "Input for the flxStudioItemsDelete mutation"
+    input: FlxStudioItemsDeleteInput!
+  ): FlxStudioItemsDeletePayload
+
+  "Moves items to a folder. Items that are not the user&#039;s own are skipped."
+  flxStudioItemsMove(
+    "Input for the flxStudioItemsMove mutation"
+    input: FlxStudioItemsMoveInput!
+  ): FlxStudioItemsMovePayload
+
+  "Adds a person whose photos can be used as identity references."
+  flxStudioPersonCreate(
+    "Input for the flxStudioPersonCreate mutation"
+    input: FlxStudioPersonCreateInput!
+  ): FlxStudioPersonCreatePayload
+
+  "Deletes a person and their photos; earlier generations stay."
+  flxStudioPersonDelete(
+    "Input for the flxStudioPersonDelete mutation"
+    input: FlxStudioPersonDeleteInput!
+  ): FlxStudioPersonDeletePayload
+
+  "Renames a person (the owner or a Studio administrator). An empty name changes nothing."
+  flxStudioPersonRename(
+    "Input for the flxStudioPersonRename mutation"
+    input: FlxStudioPersonRenameInput!
+  ): FlxStudioPersonRenamePayload
+
+  "Follows running jobs (at most 8): asks Flux AI and writes finished files into the items. A mutation because it changes items; the screen calls it every few seconds while something runs."
+  flxStudioPoll(
+    "Input for the flxStudioPoll mutation"
+    input: FlxStudioPollInput!
+  ): FlxStudioPollPayload
+
+  "Saves an uploaded image as a reference or as a photo of a person. Upload it first with POST /wp-json/flx/v1/upload (context flx-studio/reference)."
+  flxStudioRefCreate(
+    "Input for the flxStudioRefCreate mutation"
+    input: FlxStudioRefCreateInput!
+  ): FlxStudioRefCreatePayload
+
+  "Deletes a reference or a person&#039;s photo and its files."
+  flxStudioRefDelete(
+    "Input for the flxStudioRefDelete mutation"
+    input: FlxStudioRefDeleteInput!
+  ): FlxStudioRefDeletePayload
+
+  "Renames a reference, sets its role, or keeps / drops it in the saved list. Fields you leave out stay as they are."
+  flxStudioRefUpdate(
+    "Input for the flxStudioRefUpdate mutation"
+    input: FlxStudioRefUpdateInput!
+  ): FlxStudioRefUpdatePayload
+
+  "Saves the Studio settings (Studio administrators). Fields you leave out stay as they are; values are clamped. API keys and the spending limit are in Flux AI."
+  flxStudioSettingsUpdate(
+    "Input for the flxStudioSettingsUpdate mutation"
+    input: FlxStudioSettingsUpdateInput!
+  ): FlxStudioSettingsUpdatePayload
+
+  "Saves the current generation settings as a template."
+  flxStudioTemplateCreate(
+    "Input for the flxStudioTemplateCreate mutation"
+    input: FlxStudioTemplateCreateInput!
+  ): FlxStudioTemplateCreatePayload
+
+  "Deletes a template (the owner or a Studio administrator)."
+  flxStudioTemplateDelete(
+    "Input for the flxStudioTemplateDelete mutation"
+    input: FlxStudioTemplateDeleteInput!
+  ): FlxStudioTemplateDeletePayload
+
   "Adds a comment to a task."
   flxTaskCommentCreate(
     "Input for the flxTaskCommentCreate mutation"
@@ -12643,6 +13495,9 @@ input FlxSettingsUpdateInput {
 
   "Flux GraphQL"
   flxgqlSettings: FlxSettingsFlxgqlSettingsInput
+
+  "Flux Studio"
+  studio: FlxSettingsStudioInput
 }
 
 "Changes to Flux GraphQL. Only the fields you send are changed."
@@ -12672,6 +13527,27 @@ input FlxSettingsFlxgqlSettingsInput {
   queryMode: FlxSettingsFlxgqlSettingsQueryMode
 }
 
+"Changes to Flux Studio. Only the fields you send are changed."
+input FlxSettingsStudioInput {
+  "Default image model id (empty: the Flux AI default)."
+  imageModel: String
+
+  "Most ideas one Brainstorm may return (1-40)."
+  maxBatch: Int
+
+  "Most images one request may ask for (1-8)."
+  maxN: Int
+
+  "People are shared with every Studio user."
+  sharedPeople: Boolean
+
+  "Text model for Enhance and Brainstorm (empty: the Flux AI default)."
+  textModel: String
+
+  "Default video model id (empty: the Flux AI default)."
+  videoModel: String
+}
+
 "The payload for the flxSettingsUpdate mutation."
 type FlxSettingsUpdatePayload {
   "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
@@ -12682,6 +13558,699 @@ type FlxSettingsUpdatePayload {
 
   "Settings after the change."
   settings: FlxSettings
+}
+
+"Input for the flxStudioBrainstorm mutation."
+input FlxStudioBrainstormInput {
+  "The idea."
+  brief: String!
+
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Ideas wanted; limited by the Studio setting."
+  count: Int
+
+  "Ideas for images or videos (default image)."
+  kind: FlxStudioKind
+
+  "References the ideas should take into account."
+  refs: [FlxStudioRefInput!]
+
+  "How the ideas are written (default simple)."
+  style: FlxStudioBrainstormStyle
+}
+
+"A reference to generate with."
+input FlxStudioRefInput {
+  "Record ID."
+  id: Int!
+
+  "Role (identity, style, product, background, composition, first_frame, last_frame); empty for general."
+  role: String
+
+  "Item, saved reference or person."
+  type: FlxStudioRefType!
+}
+
+"How Brainstorm writes the ideas."
+enum FlxStudioBrainstormStyle {
+  "Plain prompts."
+  SIMPLE
+
+  "Thumbnail-style prompts."
+  YOUTUBE
+}
+
+"The payload for the flxStudioBrainstorm mutation."
+type FlxStudioBrainstormPayload {
+  "Batch ID to pass to flxStudioGenerate so the results group together."
+  batch: String
+
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The ideas."
+  ideas: [FlxStudioIdea!]
+}
+
+"One Brainstorm idea."
+type FlxStudioIdea {
+  "Production prompt."
+  prompt: String!
+
+  "Short title."
+  title: String!
+}
+
+"Input for the flxStudioCancel mutation."
+input FlxStudioCancelInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Job ID of the item."
+  job: String!
+}
+
+"The payload for the flxStudioCancel mutation."
+type FlxStudioCancelPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Items of the job after the cancel."
+  items: [FlxStudioItem!]
+}
+
+"Input for the flxStudioEnhance mutation."
+input FlxStudioEnhanceInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "What the prompt is for (default image)."
+  mode: FlxStudioEnhanceMode
+
+  "Name of the model the prompt is for."
+  modelLabel: String
+
+  "Draft."
+  prompt: String!
+
+  "References the prompt should take into account."
+  refs: [FlxStudioRefInput!]
+}
+
+"What the prompt is written for."
+enum FlxStudioEnhanceMode {
+  "Area edit of an image."
+  EDIT
+
+  "Image generation."
+  IMAGE
+
+  "Video generation."
+  VIDEO
+}
+
+"The payload for the flxStudioEnhance mutation."
+type FlxStudioEnhancePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The detailed prompt."
+  prompt: String
+}
+
+"Input for the flxStudioFolderCreate mutation."
+input FlxStudioFolderCreateInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Name (up to 120 characters)."
+  name: String!
+
+  "Parent folder; empty for the top level."
+  parentId: Int
+
+  "Visible to the whole team."
+  shared: Boolean
+}
+
+"The payload for the flxStudioFolderCreate mutation."
+type FlxStudioFolderCreatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The new folder."
+  folder: FlxStudioFolder
+}
+
+"Input for the flxStudioFolderDelete mutation."
+input FlxStudioFolderDeleteInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Folder ID."
+  id: Int!
+}
+
+"The payload for the flxStudioFolderDelete mutation."
+type FlxStudioFolderDeletePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Folder that was deleted."
+  deletedId: Int
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"Input for the flxStudioFolderUpdate mutation."
+input FlxStudioFolderUpdateInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Folder ID."
+  id: Int!
+
+  "New name; an empty name changes nothing."
+  name: String
+
+  "New parent; 0 for the top level. A folder cannot move into itself."
+  parentId: Int
+
+  "Visible to the whole team."
+  shared: Boolean
+}
+
+"The payload for the flxStudioFolderUpdate mutation."
+type FlxStudioFolderUpdatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The folder after the change."
+  folder: FlxStudioFolder
+}
+
+"Input for the flxStudioGenerate mutation."
+input FlxStudioGenerateInput {
+  "Aspect ratio."
+  aspect: String
+
+  "Video with sound (default on)."
+  audio: Boolean
+
+  "Brainstorm batch the results belong to."
+  batch: String
+
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Images to make (video is always one); limited by the model and the Studio setting."
+  count: Int
+
+  "First draft before Enhance."
+  draft: String
+
+  "Video length in seconds."
+  duration: Int
+
+  "The prompt came from Enhance."
+  enhanced: Boolean
+
+  "Folder for the results; 0 or a folder the user cannot write to means none."
+  folderId: Int
+
+  "Brainstorm idea title."
+  idea: String
+
+  "Image or video; the model decides when left out."
+  kind: FlxStudioKind
+
+  "Tools used in the mask editor (kept with the item)."
+  layers: [String!]
+
+  "Upload ID of the mask PNG (context flx-studio/mask); transparent pixels are changed. Needs parentId."
+  maskUploadId: String
+
+  "Video mode (auto, text, image …)."
+  mode: String
+
+  "Model ID; empty uses the Studio default."
+  model: String
+
+  "Image to edit (area edit)."
+  parentId: Int
+
+  "What to generate."
+  prompt: String!
+
+  "Provider ID, or auto."
+  provider: String
+
+  "Quality level."
+  quality: String
+
+  "References to generate with."
+  refs: [FlxStudioRefInput!]
+
+  "Resolution."
+  resolution: String
+
+  "Exact size such as 1024x1536."
+  size: String
+
+  "Title for the results."
+  title: String
+}
+
+"The payload for the flxStudioGenerate mutation."
+type FlxStudioGeneratePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The queued items (state QUEUED)."
+  items: [FlxStudioItem!]
+}
+
+"Input for the flxStudioItemToLibrary mutation."
+input FlxStudioItemToLibraryInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Item ID."
+  id: Int!
+}
+
+"The payload for the flxStudioItemToLibrary mutation."
+type FlxStudioItemToLibraryPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The attachment that was made."
+  library: FlxStudioLibraryResult
+}
+
+"An item added to the Media Library."
+type FlxStudioLibraryResult {
+  "Attachment ID."
+  attachmentId: Int!
+
+  "Edit screen of the attachment."
+  editUrl: String
+
+  "File address."
+  url: String
+}
+
+"Input for the flxStudioItemUpdate mutation."
+input FlxStudioItemUpdateInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Starred."
+  favorite: Boolean
+
+  "Folder to move to; 0 for none. A folder the user cannot write to leaves the item where it is."
+  folderId: Int
+
+  "Item ID."
+  id: Int!
+
+  "Title (up to 190 characters)."
+  title: String
+}
+
+"The payload for the flxStudioItemUpdate mutation."
+type FlxStudioItemUpdatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The item after the change."
+  item: FlxStudioItem
+}
+
+"Input for the flxStudioItemsDelete mutation."
+input FlxStudioItemsDeleteInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Item IDs (at most 500 are looked at)."
+  ids: [Int!]!
+}
+
+"The payload for the flxStudioItemsDelete mutation."
+type FlxStudioItemsDeletePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Items that were deleted."
+  deletedIds: [Int!]
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"Input for the flxStudioItemsMove mutation."
+input FlxStudioItemsMoveInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Target folder; 0 for none."
+  folderId: Int!
+
+  "Item IDs."
+  ids: [Int!]!
+}
+
+"The payload for the flxStudioItemsMove mutation."
+type FlxStudioItemsMovePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Items that were moved."
+  movedIds: [Int!]
+}
+
+"Input for the flxStudioPersonCreate mutation."
+input FlxStudioPersonCreateInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Name (up to 120 characters)."
+  name: String!
+}
+
+"The payload for the flxStudioPersonCreate mutation."
+type FlxStudioPersonCreatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The new person."
+  person: FlxStudioPerson
+}
+
+"Input for the flxStudioPersonDelete mutation."
+input FlxStudioPersonDeleteInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Person ID."
+  id: Int!
+}
+
+"The payload for the flxStudioPersonDelete mutation."
+type FlxStudioPersonDeletePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Person that was deleted."
+  deletedId: Int
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"Input for the flxStudioPersonRename mutation."
+input FlxStudioPersonRenameInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Person ID."
+  id: Int!
+
+  "New name."
+  name: String!
+}
+
+"The payload for the flxStudioPersonRename mutation."
+type FlxStudioPersonRenamePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The person after the change."
+  person: FlxStudioPerson
+}
+
+"Input for the flxStudioPoll mutation."
+input FlxStudioPollInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Job IDs of the items (flxd_… or flxm_…)."
+  jobs: [String!]!
+}
+
+"The payload for the flxStudioPoll mutation."
+type FlxStudioPollPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Items of the jobs after the refresh."
+  items: [FlxStudioItem!]
+}
+
+"Input for the flxStudioRefCreate mutation."
+input FlxStudioRefCreateInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Name (up to 190 characters)."
+  name: String
+
+  "Person the photo belongs to; empty for a plain reference."
+  personId: Int
+
+  "Role (identity, style, product, background, composition, first_frame, last_frame); empty for general."
+  role: String
+
+  "Keep in the saved references list (always for a person's photo)."
+  saved: Boolean
+
+  "Upload ID."
+  uploadId: String!
+}
+
+"The payload for the flxStudioRefCreate mutation."
+type FlxStudioRefCreatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The new reference."
+  ref: FlxStudioRef
+}
+
+"Input for the flxStudioRefDelete mutation."
+input FlxStudioRefDeleteInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Reference ID."
+  id: Int!
+}
+
+"The payload for the flxStudioRefDelete mutation."
+type FlxStudioRefDeletePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Reference that was deleted."
+  deletedId: Int
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"Input for the flxStudioRefUpdate mutation."
+input FlxStudioRefUpdateInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Reference ID."
+  id: Int!
+
+  "Name."
+  name: String
+
+  "Role key; empty for general."
+  role: String
+
+  "Kept in the saved references list."
+  saved: Boolean
+}
+
+"The payload for the flxStudioRefUpdate mutation."
+type FlxStudioRefUpdatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The reference after the change."
+  ref: FlxStudioRef
+}
+
+"Input for the flxStudioSettingsUpdate mutation."
+input FlxStudioSettingsUpdateInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Image model the screen starts with; empty uses the Flux AI default."
+  imageModel: String
+
+  "Most ideas per Brainstorm (1–40)."
+  maxBatch: Int
+
+  "Most images per request (1–8)."
+  maxCount: Int
+
+  "Share people with every Studio user."
+  sharedPeople: Boolean
+
+  "Model for Enhance and Brainstorm; empty uses the Flux AI default."
+  textModel: String
+
+  "Video model the screen starts with; empty uses the Flux AI default."
+  videoModel: String
+}
+
+"The payload for the flxStudioSettingsUpdate mutation."
+type FlxStudioSettingsUpdatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Settings after the change."
+  settings: FlxStudioSettings
+}
+
+"Input for the flxStudioTemplateCreate mutation."
+input FlxStudioTemplateCreateInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Name (up to 120 characters)."
+  name: String!
+
+  "Settings to keep."
+  params: FlxStudioTemplateParamsInput
+
+  "Prompt."
+  prompt: String
+
+  "Visible to the whole team."
+  shared: Boolean
+}
+
+"Generation settings a template keeps. Unknown settings are not kept."
+input FlxStudioTemplateParamsInput {
+  "Aspect ratio."
+  aspect: String
+
+  "Video with sound."
+  audio: Boolean
+
+  "Images per request."
+  count: Int
+
+  "Video seconds."
+  duration: Int
+
+  "Image or video."
+  kind: FlxStudioKind
+
+  "Video mode."
+  mode: String
+
+  "Model ID."
+  model: String
+
+  "Quality level."
+  quality: String
+
+  "References the template adds."
+  refs: [FlxStudioRefInput!]
+
+  "Resolution."
+  resolution: String
+
+  "Exact size."
+  size: String
+}
+
+"The payload for the flxStudioTemplateCreate mutation."
+type FlxStudioTemplateCreatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "All templates after the change."
+  templates: [FlxStudioTemplate!]
+}
+
+"Input for the flxStudioTemplateDelete mutation."
+input FlxStudioTemplateDeleteInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Template ID."
+  id: Int!
+}
+
+"The payload for the flxStudioTemplateDelete mutation."
+type FlxStudioTemplateDeletePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "All templates after the change."
+  templates: [FlxStudioTemplate!]
 }
 
 "Input for the flxTaskCommentCreate mutation."

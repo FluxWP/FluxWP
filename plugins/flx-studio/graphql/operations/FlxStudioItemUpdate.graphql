@@ -1,0 +1,12 @@
+mutation FlxStudioItemUpdate($input: FlxStudioItemUpdateInput!) {
+  flxStudioItemUpdate(input: $input) {
+    item {
+      ...FlxStudioItemRow
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

@@ -1,0 +1,10 @@
+mutation FlxStudioItemsDelete($input: FlxStudioItemsDeleteInput!) {
+  flxStudioItemsDelete(input: $input) {
+    deletedIds
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

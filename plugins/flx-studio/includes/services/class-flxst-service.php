@@ -43,8 +43,9 @@ final class FLXST_Service {
 	 * @param int $id User id.
 	 */
 	public static function user_name( int $id ): string {
+		/** @var array<int,string> $names */
 		static $names = array();
-		if ( ! isset( $names[ $id ] ) ) {
+		if ( ! array_key_exists( $id, $names ) ) {
 			$u            = get_userdata( $id );
 			$names[ $id ] = $u ? $u->display_name : '';
 		}
@@ -486,7 +487,7 @@ final class FLXST_Service {
 		$t    = FLXST_Util::str( flxst_table( 'items' ) );
 		$real = 0 === strpos( $job, 'flxd_' ) ? get_transient( 'flxst_map_' . $job ) : '';
 		$job  = $real ? FLXST_Util::str( $real ) : $job; // Sent in the meantime: the real job.
-		$row  = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$t} WHERE job = %s LIMIT 1", $job ), ARRAY_A ); // phpcs:ignore WordPress.DB
+		$row  = $wpdb->get_row( $wpdb->prepare( 'SELECT * FROM %i WHERE job = %s LIMIT 1', $t, $job ), ARRAY_A ); // phpcs:ignore WordPress.DB
 		$row  = is_array( $row ) ? FLXST_Util::arr( $row ) : null;
 		if ( ! $row || ! flxst_item_editable( $row, get_current_user_id() ) ) {
 			return self::not_found();
@@ -494,7 +495,7 @@ final class FLXST_Service {
 		$job = FLXST_Util::str( $row['job'] ?? '' );
 		if ( 0 === strpos( $job, 'flxd_' ) ) {
 			// Not sent yet: items are cancelled and nothing is sent (a send in progress is stopped afterwards).
-			$wpdb->query( $wpdb->prepare( "UPDATE {$t} SET state = 'cancelled', error = %s WHERE job = %s AND state IN ('queued','running')", __( 'Cancelled.', 'flx-studio' ), $job ) ); // phpcs:ignore WordPress.DB
+			$wpdb->query( (string) $wpdb->prepare( "UPDATE %i SET state = 'cancelled', error = %s WHERE job = %s AND state IN ('queued','running')", $t, __( 'Cancelled.', 'flx-studio' ), $job ) ); // phpcs:ignore WordPress.DB
 			delete_transient( 'flxst_' . $job );
 		} else {
 			$st = function_exists( 'flxai_media_cancel' ) ? flxai_media_cancel( $job ) : null;
@@ -717,9 +718,9 @@ final class FLXST_Service {
 		$uid  = get_current_user_id();
 		$t    = FLXST_Util::str( flxst_table( 'people' ) );
 		$shr  = (int) FLXST_Util::int( flxst_settings()['shared_people'] ?? 1, 1 );
-		$sql  = flxst_can_manage() || $shr ? "SELECT * FROM {$t} ORDER BY name" : $wpdb->prepare( "SELECT * FROM {$t} WHERE user_id = %d OR shared = 1 ORDER BY name", $uid ); // phpcs:ignore WordPress.DB
+		$sql  = flxst_can_manage() || $shr ? $wpdb->prepare( 'SELECT * FROM %i ORDER BY name', $t ) : $wpdb->prepare( 'SELECT * FROM %i WHERE user_id = %d OR shared = 1 ORDER BY name', $t, $uid ); // phpcs:ignore WordPress.DB
 		$out  = array();
-		foreach ( (array) $wpdb->get_results( $sql, ARRAY_A ) as $r ) { // phpcs:ignore WordPress.DB
+		foreach ( (array) $wpdb->get_results( (string) $sql, ARRAY_A ) as $r ) { // phpcs:ignore WordPress.DB
 			$r     = FLXST_Util::arr( $r );
 			$id    = FLXST_Util::int( $r['id'] ?? 0 );
 			$out[] = new FLXST_Person( $id, FLXST_Util::str( $r['name'] ?? '' ), FLXST_Util::int( $r['user_id'] ?? 0 ), self::refs( $id ) );
@@ -945,7 +946,7 @@ final class FLXST_Service {
 	public static function template_delete( int $id ): array|WP_Error {
 		$wpdb = FLXST_Util::db();
 		$t   = FLXST_Util::str( flxst_table( 'templates' ) );
-		$row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$t} WHERE id = %d", $id ), ARRAY_A ); // phpcs:ignore WordPress.DB
+		$row = $wpdb->get_row( $wpdb->prepare( 'SELECT * FROM %i WHERE id = %d', $t, $id ), ARRAY_A ); // phpcs:ignore WordPress.DB
 		$row = is_array( $row ) ? FLXST_Util::arr( $row ) : null;
 		if ( ! $row || ( FLXST_Util::int( $row['user_id'] ?? 0 ) !== get_current_user_id() && ! flxst_can_manage() ) ) {
 			return self::not_found();

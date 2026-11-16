@@ -75,6 +75,240 @@ export const FlxRolesScreen: FlxOperation<T.FlxRolesScreenQuery, T.FlxRolesScree
   document: "query FlxRolesScreen($members: Int = 50) {\n  flxRoles {\n    ...FlxRoleRow\n    members(first: $members) {\n      ...FlxRoleMemberPage\n    }\n  }\n  flxRoleCapabilityGroups {\n    key\n    label\n    plugin\n    active\n    capabilities {\n      key\n      label\n      locked\n      broad\n      pending\n    }\n  }\n  flxRolesConfig {\n    ...FlxRolesConfigFields\n  }\n}\n\nfragment FlxRoleMemberPage on FlxRoleMemberConnection {\n  nodes {\n    ...FlxRoleMemberRow\n  }\n  pageInfo {\n    hasNextPage\n    endCursor\n  }\n  totalCount\n}\n\nfragment FlxRoleMemberRow on FlxRoleMember {\n  databaseId\n  name\n  email\n  phone {\n    display\n    e164\n  }\n  editUrl\n  referralLink\n}\n\nfragment FlxRoleRow on FlxRole {\n  key\n  label\n  description\n  custom\n  memberCount\n  capabilities\n  home\n}\n\nfragment FlxRolesConfigFields on FlxRolesConfig {\n  referralDays\n  newUserUrl\n  permissionsUrl\n  homeChoices {\n    key\n    label\n  }\n}",
 };
 
+/** mutation FlxStudioBrainstorm (flx-studio, plugins/flx-studio/graphql/operations/FlxStudioBrainstorm.graphql) */
+export const FlxStudioBrainstorm: FlxOperation<T.FlxStudioBrainstormMutation, T.FlxStudioBrainstormMutationVariables> = {
+  id: '7e536f64c2f2071ee080da4c303e3ff3df331d4ee5454e2d32e6ca2cfa558491',
+  name: 'FlxStudioBrainstorm',
+  kind: 'mutation',
+  plugin: 'flx-studio',
+  document: "mutation FlxStudioBrainstorm($input: FlxStudioBrainstormInput!) {\n  flxStudioBrainstorm(input: $input) {\n    batch\n    ideas {\n      title\n      prompt\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxStudioBudget (flx-studio, plugins/flx-studio/graphql/operations/FlxStudioBudget.graphql) */
+export const FlxStudioBudget: FlxOperation<T.FlxStudioBudgetQuery, T.FlxStudioBudgetQueryVariables> = {
+  id: '0e590d16239c2aa16d95fede793b907b63cd52f38418466e3a26216daf432d18',
+  name: 'FlxStudioBudget',
+  kind: 'query',
+  plugin: 'flx-studio',
+  document: "query FlxStudioBudget {\n  flxStudioBudget {\n    ...FlxStudioBudgetRow\n  }\n}\n\nfragment FlxStudioBudgetRow on FlxStudioBudget {\n  period\n  label\n  limit\n  spent\n  pct\n  over\n}",
+};
+
+/** mutation FlxStudioCancel (flx-studio, plugins/flx-studio/graphql/operations/FlxStudioCancel.graphql) */
+export const FlxStudioCancel: FlxOperation<T.FlxStudioCancelMutation, T.FlxStudioCancelMutationVariables> = {
+  id: '164e3eaaab653626f4560a3b3c33be0334bea85986ca1777daa2d7b6bd689aab',
+  name: 'FlxStudioCancel',
+  kind: 'mutation',
+  plugin: 'flx-studio',
+  document: "mutation FlxStudioCancel($input: FlxStudioCancelInput!) {\n  flxStudioCancel(input: $input) {\n    items {\n      ...FlxStudioItemRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxStudioItemRow on FlxStudioItem {\n  id\n  databaseId\n  kind\n  state\n  job\n  batch\n  parentId\n  folderId\n  title\n  prompt\n  model\n  provider\n  params {\n    aspect\n    resolution\n    quality\n    count\n    duration\n    audio\n    progress\n    draft\n    edit\n    enhanced\n    idea\n    protected\n    refs {\n      type\n      id\n      role\n      name\n      thumb\n      photos\n    }\n  }\n  url\n  thumb\n  mime\n  width\n  height\n  bytes\n  cost\n  error\n  favorite\n  attachmentId\n  ownerId\n  ownerName\n  createdAt {\n    timestamp\n  }\n  updatedAt {\n    timestamp\n  }\n}",
+};
+
+/** mutation FlxStudioEnhance (flx-studio, plugins/flx-studio/graphql/operations/FlxStudioEnhance.graphql) */
+export const FlxStudioEnhance: FlxOperation<T.FlxStudioEnhanceMutation, T.FlxStudioEnhanceMutationVariables> = {
+  id: '412a1cf0eb420e33030acdc395810cb1317af6d7530bddff047baab4845ff908',
+  name: 'FlxStudioEnhance',
+  kind: 'mutation',
+  plugin: 'flx-studio',
+  document: "mutation FlxStudioEnhance($input: FlxStudioEnhanceInput!) {\n  flxStudioEnhance(input: $input) {\n    prompt\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxStudioFolderCreate (flx-studio, plugins/flx-studio/graphql/operations/FlxStudioFolderCreate.graphql) */
+export const FlxStudioFolderCreate: FlxOperation<T.FlxStudioFolderCreateMutation, T.FlxStudioFolderCreateMutationVariables> = {
+  id: '93c9aa7f8a19fc0358f9c0f5fce98107b3cb6406d5c75a3e23d35bafc2030270',
+  name: 'FlxStudioFolderCreate',
+  kind: 'mutation',
+  plugin: 'flx-studio',
+  document: "mutation FlxStudioFolderCreate($input: FlxStudioFolderCreateInput!) {\n  flxStudioFolderCreate(input: $input) {\n    folder {\n      ...FlxStudioFolderRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxStudioFolderRow on FlxStudioFolder {\n  databaseId\n  parentId\n  name\n  shared\n  ownerId\n}",
+};
+
+/** mutation FlxStudioFolderDelete (flx-studio, plugins/flx-studio/graphql/operations/FlxStudioFolderDelete.graphql) */
+export const FlxStudioFolderDelete: FlxOperation<T.FlxStudioFolderDeleteMutation, T.FlxStudioFolderDeleteMutationVariables> = {
+  id: '9ecd95b4c0e16c01a049c04b82f79013ad067a1dd99cd5a8186be641a6f36288',
+  name: 'FlxStudioFolderDelete',
+  kind: 'mutation',
+  plugin: 'flx-studio',
+  document: "mutation FlxStudioFolderDelete($input: FlxStudioFolderDeleteInput!) {\n  flxStudioFolderDelete(input: $input) {\n    deletedId\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxStudioFolderUpdate (flx-studio, plugins/flx-studio/graphql/operations/FlxStudioFolderUpdate.graphql) */
+export const FlxStudioFolderUpdate: FlxOperation<T.FlxStudioFolderUpdateMutation, T.FlxStudioFolderUpdateMutationVariables> = {
+  id: 'ac9f3ba4ecb20b0da721b057651d3f6d4670fade63fa567ffff21a55bbfa1e4f',
+  name: 'FlxStudioFolderUpdate',
+  kind: 'mutation',
+  plugin: 'flx-studio',
+  document: "mutation FlxStudioFolderUpdate($input: FlxStudioFolderUpdateInput!) {\n  flxStudioFolderUpdate(input: $input) {\n    folder {\n      ...FlxStudioFolderRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxStudioFolderRow on FlxStudioFolder {\n  databaseId\n  parentId\n  name\n  shared\n  ownerId\n}",
+};
+
+/** mutation FlxStudioGenerate (flx-studio, plugins/flx-studio/graphql/operations/FlxStudioGenerate.graphql) */
+export const FlxStudioGenerate: FlxOperation<T.FlxStudioGenerateMutation, T.FlxStudioGenerateMutationVariables> = {
+  id: '9bc13e2c994ded586d4eee73ff381a8d1e21c82a079689d5e02053485353496a',
+  name: 'FlxStudioGenerate',
+  kind: 'mutation',
+  plugin: 'flx-studio',
+  document: "mutation FlxStudioGenerate($input: FlxStudioGenerateInput!) {\n  flxStudioGenerate(input: $input) {\n    items {\n      ...FlxStudioItemRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxStudioItemRow on FlxStudioItem {\n  id\n  databaseId\n  kind\n  state\n  job\n  batch\n  parentId\n  folderId\n  title\n  prompt\n  model\n  provider\n  params {\n    aspect\n    resolution\n    quality\n    count\n    duration\n    audio\n    progress\n    draft\n    edit\n    enhanced\n    idea\n    protected\n    refs {\n      type\n      id\n      role\n      name\n      thumb\n      photos\n    }\n  }\n  url\n  thumb\n  mime\n  width\n  height\n  bytes\n  cost\n  error\n  favorite\n  attachmentId\n  ownerId\n  ownerName\n  createdAt {\n    timestamp\n  }\n  updatedAt {\n    timestamp\n  }\n}",
+};
+
+/** query FlxStudioItem (flx-studio, plugins/flx-studio/graphql/operations/FlxStudioItem.graphql) */
+export const FlxStudioItem: FlxOperation<T.FlxStudioItemQuery, T.FlxStudioItemQueryVariables> = {
+  id: '19313362363818c338a708eff16a7c434b9eadcea3fe0354ae4a297934b4f1ae',
+  name: 'FlxStudioItem',
+  kind: 'query',
+  plugin: 'flx-studio',
+  document: "query FlxStudioItem($id: Int!) {\n  flxStudioItem(id: $id) {\n    ...FlxStudioItemRow\n  }\n}\n\nfragment FlxStudioItemRow on FlxStudioItem {\n  id\n  databaseId\n  kind\n  state\n  job\n  batch\n  parentId\n  folderId\n  title\n  prompt\n  model\n  provider\n  params {\n    aspect\n    resolution\n    quality\n    count\n    duration\n    audio\n    progress\n    draft\n    edit\n    enhanced\n    idea\n    protected\n    refs {\n      type\n      id\n      role\n      name\n      thumb\n      photos\n    }\n  }\n  url\n  thumb\n  mime\n  width\n  height\n  bytes\n  cost\n  error\n  favorite\n  attachmentId\n  ownerId\n  ownerName\n  createdAt {\n    timestamp\n  }\n  updatedAt {\n    timestamp\n  }\n}",
+};
+
+/** query FlxStudioItems (flx-studio, plugins/flx-studio/graphql/operations/FlxStudioItems.graphql) */
+export const FlxStudioItems: FlxOperation<T.FlxStudioItemsQuery, T.FlxStudioItemsQueryVariables> = {
+  id: '639f7d0675693c31cb95b48aabe5b674671e4f6df5db262ee98e9354c4f2941f',
+  name: 'FlxStudioItems',
+  kind: 'query',
+  plugin: 'flx-studio',
+  document: "query FlxStudioItems($first: Int = 60, $after: String, $folderId: Int, $kind: FlxStudioKind, $favorite: Boolean, $batch: String, $search: String, $allOwners: Boolean) {\n  flxStudioItems(\n    first: $first\n    after: $after\n    folderId: $folderId\n    kind: $kind\n    favorite: $favorite\n    batch: $batch\n    search: $search\n    allOwners: $allOwners\n  ) {\n    ...FlxStudioItemPage\n  }\n}\n\nfragment FlxStudioItemPage on FlxStudioItemConnection {\n  nodes {\n    ...FlxStudioItemRow\n  }\n  pageInfo {\n    hasNextPage\n    endCursor\n  }\n}\n\nfragment FlxStudioItemRow on FlxStudioItem {\n  id\n  databaseId\n  kind\n  state\n  job\n  batch\n  parentId\n  folderId\n  title\n  prompt\n  model\n  provider\n  params {\n    aspect\n    resolution\n    quality\n    count\n    duration\n    audio\n    progress\n    draft\n    edit\n    enhanced\n    idea\n    protected\n    refs {\n      type\n      id\n      role\n      name\n      thumb\n      photos\n    }\n  }\n  url\n  thumb\n  mime\n  width\n  height\n  bytes\n  cost\n  error\n  favorite\n  attachmentId\n  ownerId\n  ownerName\n  createdAt {\n    timestamp\n  }\n  updatedAt {\n    timestamp\n  }\n}",
+};
+
+/** mutation FlxStudioItemsDelete (flx-studio, plugins/flx-studio/graphql/operations/FlxStudioItemsDelete.graphql) */
+export const FlxStudioItemsDelete: FlxOperation<T.FlxStudioItemsDeleteMutation, T.FlxStudioItemsDeleteMutationVariables> = {
+  id: '5c12139fff325a5d541ffe31a43bbdab23d6b3e372fff9323d164547a5d0c353',
+  name: 'FlxStudioItemsDelete',
+  kind: 'mutation',
+  plugin: 'flx-studio',
+  document: "mutation FlxStudioItemsDelete($input: FlxStudioItemsDeleteInput!) {\n  flxStudioItemsDelete(input: $input) {\n    deletedIds\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxStudioItemsMove (flx-studio, plugins/flx-studio/graphql/operations/FlxStudioItemsMove.graphql) */
+export const FlxStudioItemsMove: FlxOperation<T.FlxStudioItemsMoveMutation, T.FlxStudioItemsMoveMutationVariables> = {
+  id: 'ed4c508fa39d29a80a706703e8aecf3b0830064acc79dc3824204f955ee94ae1',
+  name: 'FlxStudioItemsMove',
+  kind: 'mutation',
+  plugin: 'flx-studio',
+  document: "mutation FlxStudioItemsMove($input: FlxStudioItemsMoveInput!) {\n  flxStudioItemsMove(input: $input) {\n    movedIds\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxStudioItemToLibrary (flx-studio, plugins/flx-studio/graphql/operations/FlxStudioItemToLibrary.graphql) */
+export const FlxStudioItemToLibrary: FlxOperation<T.FlxStudioItemToLibraryMutation, T.FlxStudioItemToLibraryMutationVariables> = {
+  id: 'b6814f6729f348c9e0b952a2b4487db6976a118af605e0a4a6f300163c33332e',
+  name: 'FlxStudioItemToLibrary',
+  kind: 'mutation',
+  plugin: 'flx-studio',
+  document: "mutation FlxStudioItemToLibrary($input: FlxStudioItemToLibraryInput!) {\n  flxStudioItemToLibrary(input: $input) {\n    library {\n      attachmentId\n      editUrl\n      url\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxStudioItemUpdate (flx-studio, plugins/flx-studio/graphql/operations/FlxStudioItemUpdate.graphql) */
+export const FlxStudioItemUpdate: FlxOperation<T.FlxStudioItemUpdateMutation, T.FlxStudioItemUpdateMutationVariables> = {
+  id: '82ed1fcbf3ca9509636cc0cc2917dc945f9c446c42ee0461571e8e6826727144',
+  name: 'FlxStudioItemUpdate',
+  kind: 'mutation',
+  plugin: 'flx-studio',
+  document: "mutation FlxStudioItemUpdate($input: FlxStudioItemUpdateInput!) {\n  flxStudioItemUpdate(input: $input) {\n    item {\n      ...FlxStudioItemRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxStudioItemRow on FlxStudioItem {\n  id\n  databaseId\n  kind\n  state\n  job\n  batch\n  parentId\n  folderId\n  title\n  prompt\n  model\n  provider\n  params {\n    aspect\n    resolution\n    quality\n    count\n    duration\n    audio\n    progress\n    draft\n    edit\n    enhanced\n    idea\n    protected\n    refs {\n      type\n      id\n      role\n      name\n      thumb\n      photos\n    }\n  }\n  url\n  thumb\n  mime\n  width\n  height\n  bytes\n  cost\n  error\n  favorite\n  attachmentId\n  ownerId\n  ownerName\n  createdAt {\n    timestamp\n  }\n  updatedAt {\n    timestamp\n  }\n}",
+};
+
+/** mutation FlxStudioPersonCreate (flx-studio, plugins/flx-studio/graphql/operations/FlxStudioPersonCreate.graphql) */
+export const FlxStudioPersonCreate: FlxOperation<T.FlxStudioPersonCreateMutation, T.FlxStudioPersonCreateMutationVariables> = {
+  id: 'df8d9048b9a909150a5b758644ccfaae13f920a46ff85df0a5de0a5edef196d5',
+  name: 'FlxStudioPersonCreate',
+  kind: 'mutation',
+  plugin: 'flx-studio',
+  document: "mutation FlxStudioPersonCreate($input: FlxStudioPersonCreateInput!) {\n  flxStudioPersonCreate(input: $input) {\n    person {\n      ...FlxStudioPersonRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxStudioPersonRow on FlxStudioPerson {\n  databaseId\n  name\n  ownerId\n  photos {\n    ...FlxStudioRefRow\n  }\n}\n\nfragment FlxStudioRefRow on FlxStudioRef {\n  databaseId\n  personId\n  name\n  role\n  url\n  thumb\n  mime\n  width\n  height\n  saved\n}",
+};
+
+/** mutation FlxStudioPersonDelete (flx-studio, plugins/flx-studio/graphql/operations/FlxStudioPersonDelete.graphql) */
+export const FlxStudioPersonDelete: FlxOperation<T.FlxStudioPersonDeleteMutation, T.FlxStudioPersonDeleteMutationVariables> = {
+  id: '715fd6d84c8d95994b9cf336dfa63288931d4f28adc31c3b5e0074cba19aa55c',
+  name: 'FlxStudioPersonDelete',
+  kind: 'mutation',
+  plugin: 'flx-studio',
+  document: "mutation FlxStudioPersonDelete($input: FlxStudioPersonDeleteInput!) {\n  flxStudioPersonDelete(input: $input) {\n    deletedId\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxStudioPersonRename (flx-studio, plugins/flx-studio/graphql/operations/FlxStudioPersonRename.graphql) */
+export const FlxStudioPersonRename: FlxOperation<T.FlxStudioPersonRenameMutation, T.FlxStudioPersonRenameMutationVariables> = {
+  id: 'b929a0c4365da430782991c15105207e5722bfaa9c23583e7535c6a823c9b8a8',
+  name: 'FlxStudioPersonRename',
+  kind: 'mutation',
+  plugin: 'flx-studio',
+  document: "mutation FlxStudioPersonRename($input: FlxStudioPersonRenameInput!) {\n  flxStudioPersonRename(input: $input) {\n    person {\n      ...FlxStudioPersonRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxStudioPersonRow on FlxStudioPerson {\n  databaseId\n  name\n  ownerId\n  photos {\n    ...FlxStudioRefRow\n  }\n}\n\nfragment FlxStudioRefRow on FlxStudioRef {\n  databaseId\n  personId\n  name\n  role\n  url\n  thumb\n  mime\n  width\n  height\n  saved\n}",
+};
+
+/** mutation FlxStudioPoll (flx-studio, plugins/flx-studio/graphql/operations/FlxStudioPoll.graphql) */
+export const FlxStudioPoll: FlxOperation<T.FlxStudioPollMutation, T.FlxStudioPollMutationVariables> = {
+  id: '8592ab98d0e723bac97426d1c9853126e94192f67de8787c77cf8a65a5707321',
+  name: 'FlxStudioPoll',
+  kind: 'mutation',
+  plugin: 'flx-studio',
+  document: "mutation FlxStudioPoll($input: FlxStudioPollInput!) {\n  flxStudioPoll(input: $input) {\n    items {\n      ...FlxStudioItemRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxStudioItemRow on FlxStudioItem {\n  id\n  databaseId\n  kind\n  state\n  job\n  batch\n  parentId\n  folderId\n  title\n  prompt\n  model\n  provider\n  params {\n    aspect\n    resolution\n    quality\n    count\n    duration\n    audio\n    progress\n    draft\n    edit\n    enhanced\n    idea\n    protected\n    refs {\n      type\n      id\n      role\n      name\n      thumb\n      photos\n    }\n  }\n  url\n  thumb\n  mime\n  width\n  height\n  bytes\n  cost\n  error\n  favorite\n  attachmentId\n  ownerId\n  ownerName\n  createdAt {\n    timestamp\n  }\n  updatedAt {\n    timestamp\n  }\n}",
+};
+
+/** mutation FlxStudioRefCreate (flx-studio, plugins/flx-studio/graphql/operations/FlxStudioRefCreate.graphql) */
+export const FlxStudioRefCreate: FlxOperation<T.FlxStudioRefCreateMutation, T.FlxStudioRefCreateMutationVariables> = {
+  id: '076f0f83b765ad61ba0d1034777af88df4d15742683110a1390fc3320e815248',
+  name: 'FlxStudioRefCreate',
+  kind: 'mutation',
+  plugin: 'flx-studio',
+  document: "mutation FlxStudioRefCreate($input: FlxStudioRefCreateInput!) {\n  flxStudioRefCreate(input: $input) {\n    ref {\n      ...FlxStudioRefRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxStudioRefRow on FlxStudioRef {\n  databaseId\n  personId\n  name\n  role\n  url\n  thumb\n  mime\n  width\n  height\n  saved\n}",
+};
+
+/** mutation FlxStudioRefDelete (flx-studio, plugins/flx-studio/graphql/operations/FlxStudioRefDelete.graphql) */
+export const FlxStudioRefDelete: FlxOperation<T.FlxStudioRefDeleteMutation, T.FlxStudioRefDeleteMutationVariables> = {
+  id: '4cc7a8b993dd67b840279ee0ecdb4ad0059d3de9fb975053551e0907c9b35778',
+  name: 'FlxStudioRefDelete',
+  kind: 'mutation',
+  plugin: 'flx-studio',
+  document: "mutation FlxStudioRefDelete($input: FlxStudioRefDeleteInput!) {\n  flxStudioRefDelete(input: $input) {\n    deletedId\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxStudioRefUpdate (flx-studio, plugins/flx-studio/graphql/operations/FlxStudioRefUpdate.graphql) */
+export const FlxStudioRefUpdate: FlxOperation<T.FlxStudioRefUpdateMutation, T.FlxStudioRefUpdateMutationVariables> = {
+  id: '7bcbc27e22f195e5ce14ab38eedd554807ce1e4f5d27c4bd6837a7f823fed355',
+  name: 'FlxStudioRefUpdate',
+  kind: 'mutation',
+  plugin: 'flx-studio',
+  document: "mutation FlxStudioRefUpdate($input: FlxStudioRefUpdateInput!) {\n  flxStudioRefUpdate(input: $input) {\n    ref {\n      ...FlxStudioRefRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxStudioRefRow on FlxStudioRef {\n  databaseId\n  personId\n  name\n  role\n  url\n  thumb\n  mime\n  width\n  height\n  saved\n}",
+};
+
+/** mutation FlxStudioSettingsUpdate (flx-studio, plugins/flx-studio/graphql/operations/FlxStudioSettingsUpdate.graphql) */
+export const FlxStudioSettingsUpdate: FlxOperation<T.FlxStudioSettingsUpdateMutation, T.FlxStudioSettingsUpdateMutationVariables> = {
+  id: '5658cd768af0cfcae70f66f69eab5a1f47657f446c922a166dcb4249182de2e6',
+  name: 'FlxStudioSettingsUpdate',
+  kind: 'mutation',
+  plugin: 'flx-studio',
+  document: "mutation FlxStudioSettingsUpdate($input: FlxStudioSettingsUpdateInput!) {\n  flxStudioSettingsUpdate(input: $input) {\n    settings {\n      ...FlxStudioSettingsRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxStudioSettingsRow on FlxStudioSettings {\n  imageModel\n  videoModel\n  textModel\n  maxCount\n  maxBatch\n  sharedPeople\n}",
+};
+
+/** query FlxStudioStats (flx-studio, plugins/flx-studio/graphql/operations/FlxStudioStats.graphql) */
+export const FlxStudioStats: FlxOperation<T.FlxStudioStatsQuery, T.FlxStudioStatsQueryVariables> = {
+  id: '2b2f30d9b3b3929647767a5232da353836f4ffcc9bab3945162b4237ad8aa50a',
+  name: 'FlxStudioStats',
+  kind: 'query',
+  plugin: 'flx-studio',
+  document: "query FlxStudioStats($days: Int = 30) {\n  flxStudioStats(days: $days) {\n    days\n    image\n    video\n    failed\n    cancelled\n    pending\n    users\n    bytes\n    spendTotal\n    spendMedia\n    spendText\n    spendEstimated\n    spendFrom\n    logUrl\n    daily {\n      date\n      image\n      video\n      failed\n      cost\n    }\n    models {\n      id\n      label\n      kind\n      done\n      failed\n      cost\n    }\n    providers {\n      id\n      label\n      done\n      failed\n      cost\n    }\n    people {\n      userId\n      name\n      avatar\n      image\n      video\n      cost\n      lastAt {\n        timestamp\n      }\n    }\n    errors {\n      itemId\n      model\n      provider\n      error\n      createdAt {\n        timestamp\n      }\n    }\n    budget {\n      ...FlxStudioBudgetRow\n    }\n  }\n}\n\nfragment FlxStudioBudgetRow on FlxStudioBudget {\n  period\n  label\n  limit\n  spent\n  pct\n  over\n}",
+};
+
+/** mutation FlxStudioTemplateCreate (flx-studio, plugins/flx-studio/graphql/operations/FlxStudioTemplateCreate.graphql) */
+export const FlxStudioTemplateCreate: FlxOperation<T.FlxStudioTemplateCreateMutation, T.FlxStudioTemplateCreateMutationVariables> = {
+  id: 'f3d78587f86d7f71592a658e92d7281ccb4626ba12a84ac511a444c7cd8df6ba',
+  name: 'FlxStudioTemplateCreate',
+  kind: 'mutation',
+  plugin: 'flx-studio',
+  document: "mutation FlxStudioTemplateCreate($input: FlxStudioTemplateCreateInput!) {\n  flxStudioTemplateCreate(input: $input) {\n    templates {\n      ...FlxStudioTemplateRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxStudioTemplateRow on FlxStudioTemplate {\n  databaseId\n  name\n  prompt\n  shared\n  ownerId\n  params {\n    kind\n    model\n    aspect\n    resolution\n    quality\n    size\n    count\n    duration\n    audio\n    mode\n    refs {\n      type\n      id\n      role\n      name\n      thumb\n      photos\n    }\n  }\n}",
+};
+
+/** mutation FlxStudioTemplateDelete (flx-studio, plugins/flx-studio/graphql/operations/FlxStudioTemplateDelete.graphql) */
+export const FlxStudioTemplateDelete: FlxOperation<T.FlxStudioTemplateDeleteMutation, T.FlxStudioTemplateDeleteMutationVariables> = {
+  id: 'ddb8a4be1c12b292124e41747f467cc316dbb805cd3949d366715dabf5be628e',
+  name: 'FlxStudioTemplateDelete',
+  kind: 'mutation',
+  plugin: 'flx-studio',
+  document: "mutation FlxStudioTemplateDelete($input: FlxStudioTemplateDeleteInput!) {\n  flxStudioTemplateDelete(input: $input) {\n    templates {\n      ...FlxStudioTemplateRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxStudioTemplateRow on FlxStudioTemplate {\n  databaseId\n  name\n  prompt\n  shared\n  ownerId\n  params {\n    kind\n    model\n    aspect\n    resolution\n    quality\n    size\n    count\n    duration\n    audio\n    mode\n    refs {\n      type\n      id\n      role\n      name\n      thumb\n      photos\n    }\n  }\n}",
+};
+
+/** query FlxStudioWorkspace (flx-studio, plugins/flx-studio/graphql/operations/FlxStudioWorkspace.graphql) */
+export const FlxStudioWorkspace: FlxOperation<T.FlxStudioWorkspaceQuery, T.FlxStudioWorkspaceQueryVariables> = {
+  id: '2bacebe6d3f0fa55575f79f7abb0d22d42c7def0e3bf004c11657ff248dd3bcc',
+  name: 'FlxStudioWorkspace',
+  kind: 'query',
+  plugin: 'flx-studio',
+  document: "query FlxStudioWorkspace {\n  flxStudio {\n    version\n    userId\n    userName\n    canManage\n    canLibrary\n    aiMedia\n    aiText\n    setupUrl\n    catalog {\n      defaultImage\n      defaultVideo\n      providers {\n        id\n        label\n        ready\n      }\n      models {\n        id\n        label\n        kind\n        routes\n        providers\n        auto\n        aspects\n        resolutions\n        qualities\n        durationMin\n        durationMax\n        durationDefault\n        maxRefs\n        maxCount\n        mask\n        prices {\n          resolution\n          usd\n        }\n      }\n    }\n    settings {\n      ...FlxStudioSettingsRow\n    }\n    folders {\n      ...FlxStudioFolderRow\n    }\n    people {\n      ...FlxStudioPersonRow\n    }\n    refs {\n      ...FlxStudioRefRow\n    }\n    templates {\n      ...FlxStudioTemplateRow\n    }\n    budget {\n      ...FlxStudioBudgetRow\n    }\n  }\n}\n\nfragment FlxStudioBudgetRow on FlxStudioBudget {\n  period\n  label\n  limit\n  spent\n  pct\n  over\n}\n\nfragment FlxStudioFolderRow on FlxStudioFolder {\n  databaseId\n  parentId\n  name\n  shared\n  ownerId\n}\n\nfragment FlxStudioPersonRow on FlxStudioPerson {\n  databaseId\n  name\n  ownerId\n  photos {\n    ...FlxStudioRefRow\n  }\n}\n\nfragment FlxStudioRefRow on FlxStudioRef {\n  databaseId\n  personId\n  name\n  role\n  url\n  thumb\n  mime\n  width\n  height\n  saved\n}\n\nfragment FlxStudioSettingsRow on FlxStudioSettings {\n  imageModel\n  videoModel\n  textModel\n  maxCount\n  maxBatch\n  sharedPeople\n}\n\nfragment FlxStudioTemplateRow on FlxStudioTemplate {\n  databaseId\n  name\n  prompt\n  shared\n  ownerId\n  params {\n    kind\n    model\n    aspect\n    resolution\n    quality\n    size\n    count\n    duration\n    audio\n    mode\n    refs {\n      type\n      id\n      role\n      name\n      thumb\n      photos\n    }\n  }\n}",
+};
+
 /** mutation FlxTaskCommentCreate (flx-tasks, plugins/flx-tasks/graphql/operations/FlxTaskCommentCreate.graphql) */
 export const FlxTaskCommentCreate: FlxOperation<T.FlxTaskCommentCreateMutation, T.FlxTaskCommentCreateMutationVariables> = {
   id: 'fca51d9372f393736cd5c7f3cc3a6c6f76bc42c714907f05360f59ce43283d8b',

@@ -4,6 +4,35 @@
 type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 /** Internal type. DO NOT USE DIRECTLY. */
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+/** What a generation makes. */
+export type FlxStudioKind =
+  /** An image. */
+  | 'IMAGE'
+  /** A video. */
+  | 'VIDEO';
+
+/** What a reference points to. */
+export type FlxStudioRefType =
+  /** A gallery item. */
+  | 'ITEM'
+  /** A person (their photos are used). */
+  | 'PERSON'
+  /** A saved reference image. */
+  | 'REF';
+
+/** Where a generation is. */
+export type FlxStudioItemState =
+  /** Cancelled by the user. */
+  | 'CANCELLED'
+  /** Finished; the file is ready. */
+  | 'DONE'
+  /** Failed; see the error. */
+  | 'FAILED'
+  /** Waiting to be sent to Flux AI. */
+  | 'QUEUED'
+  /** Being made; follow it with flxStudioPoll. */
+  | 'RUNNING';
+
 /** What a task row is. */
 export type FlxTaskKind =
   /** An agenda item of a meeting. */
@@ -86,6 +115,332 @@ export type FlxRolesSaveRoleInput = {
   home?: string | null | undefined;
   /** Role key. */
   key: string;
+};
+
+/** Input for the flxStudioBrainstorm mutation. */
+export type FlxStudioBrainstormInput = {
+  /** The idea. */
+  brief: string;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Ideas wanted; limited by the Studio setting. */
+  count?: number | null | undefined;
+  /** Ideas for images or videos (default image). */
+  kind?: FlxStudioKind | null | undefined;
+  /** References the ideas should take into account. */
+  refs?: Array<FlxStudioRefInput> | null | undefined;
+  /** How the ideas are written (default simple). */
+  style?: FlxStudioBrainstormStyle | null | undefined;
+};
+
+/** A reference to generate with. */
+export type FlxStudioRefInput = {
+  /** Record ID. */
+  id: number;
+  /** Role (identity, style, product, background, composition, first_frame, last_frame); empty for general. */
+  role?: string | null | undefined;
+  /** Item, saved reference or person. */
+  type: FlxStudioRefType;
+};
+
+/** How Brainstorm writes the ideas. */
+export type FlxStudioBrainstormStyle =
+  /** Plain prompts. */
+  | 'SIMPLE'
+  /** Thumbnail-style prompts. */
+  | 'YOUTUBE';
+
+/** Input for the flxStudioCancel mutation. */
+export type FlxStudioCancelInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Job ID of the item. */
+  job: string;
+};
+
+/** Input for the flxStudioEnhance mutation. */
+export type FlxStudioEnhanceInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** What the prompt is for (default image). */
+  mode?: FlxStudioEnhanceMode | null | undefined;
+  /** Name of the model the prompt is for. */
+  modelLabel?: string | null | undefined;
+  /** Draft. */
+  prompt: string;
+  /** References the prompt should take into account. */
+  refs?: Array<FlxStudioRefInput> | null | undefined;
+};
+
+/** What the prompt is written for. */
+export type FlxStudioEnhanceMode =
+  /** Area edit of an image. */
+  | 'EDIT'
+  /** Image generation. */
+  | 'IMAGE'
+  /** Video generation. */
+  | 'VIDEO';
+
+/** Input for the flxStudioFolderCreate mutation. */
+export type FlxStudioFolderCreateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Name (up to 120 characters). */
+  name: string;
+  /** Parent folder; empty for the top level. */
+  parentId?: number | null | undefined;
+  /** Visible to the whole team. */
+  shared?: boolean | null | undefined;
+};
+
+/** Input for the flxStudioFolderDelete mutation. */
+export type FlxStudioFolderDeleteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Folder ID. */
+  id: number;
+};
+
+/** Input for the flxStudioFolderUpdate mutation. */
+export type FlxStudioFolderUpdateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Folder ID. */
+  id: number;
+  /** New name; an empty name changes nothing. */
+  name?: string | null | undefined;
+  /** New parent; 0 for the top level. A folder cannot move into itself. */
+  parentId?: number | null | undefined;
+  /** Visible to the whole team. */
+  shared?: boolean | null | undefined;
+};
+
+/** Input for the flxStudioGenerate mutation. */
+export type FlxStudioGenerateInput = {
+  /** Aspect ratio. */
+  aspect?: string | null | undefined;
+  /** Video with sound (default on). */
+  audio?: boolean | null | undefined;
+  /** Brainstorm batch the results belong to. */
+  batch?: string | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Images to make (video is always one); limited by the model and the Studio setting. */
+  count?: number | null | undefined;
+  /** First draft before Enhance. */
+  draft?: string | null | undefined;
+  /** Video length in seconds. */
+  duration?: number | null | undefined;
+  /** The prompt came from Enhance. */
+  enhanced?: boolean | null | undefined;
+  /** Folder for the results; 0 or a folder the user cannot write to means none. */
+  folderId?: number | null | undefined;
+  /** Brainstorm idea title. */
+  idea?: string | null | undefined;
+  /** Image or video; the model decides when left out. */
+  kind?: FlxStudioKind | null | undefined;
+  /** Tools used in the mask editor (kept with the item). */
+  layers?: Array<string> | null | undefined;
+  /** Upload ID of the mask PNG (context flx-studio/mask); transparent pixels are changed. Needs parentId. */
+  maskUploadId?: string | null | undefined;
+  /** Video mode (auto, text, image …). */
+  mode?: string | null | undefined;
+  /** Model ID; empty uses the Studio default. */
+  model?: string | null | undefined;
+  /** Image to edit (area edit). */
+  parentId?: number | null | undefined;
+  /** What to generate. */
+  prompt: string;
+  /** Provider ID, or auto. */
+  provider?: string | null | undefined;
+  /** Quality level. */
+  quality?: string | null | undefined;
+  /** References to generate with. */
+  refs?: Array<FlxStudioRefInput> | null | undefined;
+  /** Resolution. */
+  resolution?: string | null | undefined;
+  /** Exact size such as 1024x1536. */
+  size?: string | null | undefined;
+  /** Title for the results. */
+  title?: string | null | undefined;
+};
+
+/** Input for the flxStudioItemToLibrary mutation. */
+export type FlxStudioItemToLibraryInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Item ID. */
+  id: number;
+};
+
+/** Input for the flxStudioItemUpdate mutation. */
+export type FlxStudioItemUpdateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Starred. */
+  favorite?: boolean | null | undefined;
+  /** Folder to move to; 0 for none. A folder the user cannot write to leaves the item where it is. */
+  folderId?: number | null | undefined;
+  /** Item ID. */
+  id: number;
+  /** Title (up to 190 characters). */
+  title?: string | null | undefined;
+};
+
+/** Input for the flxStudioItemsDelete mutation. */
+export type FlxStudioItemsDeleteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Item IDs (at most 500 are looked at). */
+  ids: Array<number>;
+};
+
+/** Input for the flxStudioItemsMove mutation. */
+export type FlxStudioItemsMoveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Target folder; 0 for none. */
+  folderId: number;
+  /** Item IDs. */
+  ids: Array<number>;
+};
+
+/** Input for the flxStudioPersonCreate mutation. */
+export type FlxStudioPersonCreateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Name (up to 120 characters). */
+  name: string;
+};
+
+/** Input for the flxStudioPersonDelete mutation. */
+export type FlxStudioPersonDeleteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Person ID. */
+  id: number;
+};
+
+/** Input for the flxStudioPersonRename mutation. */
+export type FlxStudioPersonRenameInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Person ID. */
+  id: number;
+  /** New name. */
+  name: string;
+};
+
+/** Input for the flxStudioPoll mutation. */
+export type FlxStudioPollInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Job IDs of the items (flxd_… or flxm_…). */
+  jobs: Array<string>;
+};
+
+/** Input for the flxStudioRefCreate mutation. */
+export type FlxStudioRefCreateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Name (up to 190 characters). */
+  name?: string | null | undefined;
+  /** Person the photo belongs to; empty for a plain reference. */
+  personId?: number | null | undefined;
+  /** Role (identity, style, product, background, composition, first_frame, last_frame); empty for general. */
+  role?: string | null | undefined;
+  /** Keep in the saved references list (always for a person's photo). */
+  saved?: boolean | null | undefined;
+  /** Upload ID. */
+  uploadId: string;
+};
+
+/** Input for the flxStudioRefDelete mutation. */
+export type FlxStudioRefDeleteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Reference ID. */
+  id: number;
+};
+
+/** Input for the flxStudioRefUpdate mutation. */
+export type FlxStudioRefUpdateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Reference ID. */
+  id: number;
+  /** Name. */
+  name?: string | null | undefined;
+  /** Role key; empty for general. */
+  role?: string | null | undefined;
+  /** Kept in the saved references list. */
+  saved?: boolean | null | undefined;
+};
+
+/** Input for the flxStudioSettingsUpdate mutation. */
+export type FlxStudioSettingsUpdateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Image model the screen starts with; empty uses the Flux AI default. */
+  imageModel?: string | null | undefined;
+  /** Most ideas per Brainstorm (1–40). */
+  maxBatch?: number | null | undefined;
+  /** Most images per request (1–8). */
+  maxCount?: number | null | undefined;
+  /** Share people with every Studio user. */
+  sharedPeople?: boolean | null | undefined;
+  /** Model for Enhance and Brainstorm; empty uses the Flux AI default. */
+  textModel?: string | null | undefined;
+  /** Video model the screen starts with; empty uses the Flux AI default. */
+  videoModel?: string | null | undefined;
+};
+
+/** Input for the flxStudioTemplateCreate mutation. */
+export type FlxStudioTemplateCreateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Name (up to 120 characters). */
+  name: string;
+  /** Settings to keep. */
+  params?: FlxStudioTemplateParamsInput | null | undefined;
+  /** Prompt. */
+  prompt?: string | null | undefined;
+  /** Visible to the whole team. */
+  shared?: boolean | null | undefined;
+};
+
+/** Generation settings a template keeps. Unknown settings are not kept. */
+export type FlxStudioTemplateParamsInput = {
+  /** Aspect ratio. */
+  aspect?: string | null | undefined;
+  /** Video with sound. */
+  audio?: boolean | null | undefined;
+  /** Images per request. */
+  count?: number | null | undefined;
+  /** Video seconds. */
+  duration?: number | null | undefined;
+  /** Image or video. */
+  kind?: FlxStudioKind | null | undefined;
+  /** Video mode. */
+  mode?: string | null | undefined;
+  /** Model ID. */
+  model?: string | null | undefined;
+  /** Quality level. */
+  quality?: string | null | undefined;
+  /** References the template adds. */
+  refs?: Array<FlxStudioRefInput> | null | undefined;
+  /** Resolution. */
+  resolution?: string | null | undefined;
+  /** Exact size. */
+  size?: string | null | undefined;
+};
+
+/** Input for the flxStudioTemplateDelete mutation. */
+export type FlxStudioTemplateDeleteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Template ID. */
+  id: number;
 };
 
 /** Input for the flxTaskCommentCreate mutation. */
@@ -251,6 +606,207 @@ export type FlxRolesScreenQueryVariables = Exact<{
 
 
 export type FlxRolesScreenQuery = { flxRoles: Array<{ key: string, label: string, description: string, custom: boolean, memberCount: number, capabilities: Array<string>, home: string, members: { totalCount: number | null, nodes: Array<{ databaseId: number, name: string, email: string, editUrl: string, referralLink: string | null, phone: { display: string, e164: string } | null }>, pageInfo: { hasNextPage: boolean, endCursor: string | null } } }>, flxRoleCapabilityGroups: Array<{ key: string, label: string, plugin: string | null, active: boolean, capabilities: Array<{ key: string, label: string, locked: boolean, broad: boolean, pending: boolean }> }>, flxRolesConfig: { referralDays: number, newUserUrl: string, permissionsUrl: string | null, homeChoices: Array<{ key: string, label: string }> } };
+
+export type FlxStudioBrainstormMutationVariables = Exact<{
+  input: FlxStudioBrainstormInput;
+}>;
+
+
+export type FlxStudioBrainstormMutation = { flxStudioBrainstorm: { batch: string | null, ideas: Array<{ title: string, prompt: string }> | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxStudioBudgetQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxStudioBudgetQuery = { flxStudioBudget: Array<{ period: string, label: string, limit: number, spent: number, pct: number, over: boolean }> };
+
+export type FlxStudioBudgetRowFragment = { period: string, label: string, limit: number, spent: number, pct: number, over: boolean };
+
+export type FlxStudioCancelMutationVariables = Exact<{
+  input: FlxStudioCancelInput;
+}>;
+
+
+export type FlxStudioCancelMutation = { flxStudioCancel: { items: Array<{ id: string, databaseId: number, kind: FlxStudioKind, state: FlxStudioItemState, job: string | null, batch: string | null, parentId: number | null, folderId: number | null, title: string, prompt: string, model: string, provider: string | null, url: string | null, thumb: string | null, mime: string | null, width: number, height: number, bytes: number, cost: number, error: string | null, favorite: boolean, attachmentId: number | null, ownerId: number, ownerName: string, params: { aspect: string | null, resolution: string | null, quality: string | null, count: number, duration: number | null, audio: boolean | null, progress: number, draft: string | null, edit: boolean, enhanced: boolean, idea: string | null, protected: boolean, refs: Array<{ type: FlxStudioRefType, id: number, role: string | null, name: string | null, thumb: string | null, photos: number }> }, createdAt: { timestamp: number } | null, updatedAt: { timestamp: number } | null }> | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxStudioItemRowFragment = { id: string, databaseId: number, kind: FlxStudioKind, state: FlxStudioItemState, job: string | null, batch: string | null, parentId: number | null, folderId: number | null, title: string, prompt: string, model: string, provider: string | null, url: string | null, thumb: string | null, mime: string | null, width: number, height: number, bytes: number, cost: number, error: string | null, favorite: boolean, attachmentId: number | null, ownerId: number, ownerName: string, params: { aspect: string | null, resolution: string | null, quality: string | null, count: number, duration: number | null, audio: boolean | null, progress: number, draft: string | null, edit: boolean, enhanced: boolean, idea: string | null, protected: boolean, refs: Array<{ type: FlxStudioRefType, id: number, role: string | null, name: string | null, thumb: string | null, photos: number }> }, createdAt: { timestamp: number } | null, updatedAt: { timestamp: number } | null };
+
+export type FlxStudioEnhanceMutationVariables = Exact<{
+  input: FlxStudioEnhanceInput;
+}>;
+
+
+export type FlxStudioEnhanceMutation = { flxStudioEnhance: { prompt: string | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxStudioFolderCreateMutationVariables = Exact<{
+  input: FlxStudioFolderCreateInput;
+}>;
+
+
+export type FlxStudioFolderCreateMutation = { flxStudioFolderCreate: { folder: { databaseId: number, parentId: number | null, name: string, shared: boolean, ownerId: number } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxStudioFolderRowFragment = { databaseId: number, parentId: number | null, name: string, shared: boolean, ownerId: number };
+
+export type FlxStudioFolderDeleteMutationVariables = Exact<{
+  input: FlxStudioFolderDeleteInput;
+}>;
+
+
+export type FlxStudioFolderDeleteMutation = { flxStudioFolderDelete: { deletedId: number | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxStudioFolderUpdateMutationVariables = Exact<{
+  input: FlxStudioFolderUpdateInput;
+}>;
+
+
+export type FlxStudioFolderUpdateMutation = { flxStudioFolderUpdate: { folder: { databaseId: number, parentId: number | null, name: string, shared: boolean, ownerId: number } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxStudioGenerateMutationVariables = Exact<{
+  input: FlxStudioGenerateInput;
+}>;
+
+
+export type FlxStudioGenerateMutation = { flxStudioGenerate: { items: Array<{ id: string, databaseId: number, kind: FlxStudioKind, state: FlxStudioItemState, job: string | null, batch: string | null, parentId: number | null, folderId: number | null, title: string, prompt: string, model: string, provider: string | null, url: string | null, thumb: string | null, mime: string | null, width: number, height: number, bytes: number, cost: number, error: string | null, favorite: boolean, attachmentId: number | null, ownerId: number, ownerName: string, params: { aspect: string | null, resolution: string | null, quality: string | null, count: number, duration: number | null, audio: boolean | null, progress: number, draft: string | null, edit: boolean, enhanced: boolean, idea: string | null, protected: boolean, refs: Array<{ type: FlxStudioRefType, id: number, role: string | null, name: string | null, thumb: string | null, photos: number }> }, createdAt: { timestamp: number } | null, updatedAt: { timestamp: number } | null }> | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxStudioItemQueryVariables = Exact<{
+  id: number;
+}>;
+
+
+export type FlxStudioItemQuery = { flxStudioItem: { id: string, databaseId: number, kind: FlxStudioKind, state: FlxStudioItemState, job: string | null, batch: string | null, parentId: number | null, folderId: number | null, title: string, prompt: string, model: string, provider: string | null, url: string | null, thumb: string | null, mime: string | null, width: number, height: number, bytes: number, cost: number, error: string | null, favorite: boolean, attachmentId: number | null, ownerId: number, ownerName: string, params: { aspect: string | null, resolution: string | null, quality: string | null, count: number, duration: number | null, audio: boolean | null, progress: number, draft: string | null, edit: boolean, enhanced: boolean, idea: string | null, protected: boolean, refs: Array<{ type: FlxStudioRefType, id: number, role: string | null, name: string | null, thumb: string | null, photos: number }> }, createdAt: { timestamp: number } | null, updatedAt: { timestamp: number } | null } | null };
+
+export type FlxStudioItemsQueryVariables = Exact<{
+  first?: number | null | undefined;
+  after?: string | null | undefined;
+  folderId?: number | null | undefined;
+  kind?: FlxStudioKind | null | undefined;
+  favorite?: boolean | null | undefined;
+  batch?: string | null | undefined;
+  search?: string | null | undefined;
+  allOwners?: boolean | null | undefined;
+}>;
+
+
+export type FlxStudioItemsQuery = { flxStudioItems: { nodes: Array<{ id: string, databaseId: number, kind: FlxStudioKind, state: FlxStudioItemState, job: string | null, batch: string | null, parentId: number | null, folderId: number | null, title: string, prompt: string, model: string, provider: string | null, url: string | null, thumb: string | null, mime: string | null, width: number, height: number, bytes: number, cost: number, error: string | null, favorite: boolean, attachmentId: number | null, ownerId: number, ownerName: string, params: { aspect: string | null, resolution: string | null, quality: string | null, count: number, duration: number | null, audio: boolean | null, progress: number, draft: string | null, edit: boolean, enhanced: boolean, idea: string | null, protected: boolean, refs: Array<{ type: FlxStudioRefType, id: number, role: string | null, name: string | null, thumb: string | null, photos: number }> }, createdAt: { timestamp: number } | null, updatedAt: { timestamp: number } | null }>, pageInfo: { hasNextPage: boolean, endCursor: string | null } } };
+
+export type FlxStudioItemPageFragment = { nodes: Array<{ id: string, databaseId: number, kind: FlxStudioKind, state: FlxStudioItemState, job: string | null, batch: string | null, parentId: number | null, folderId: number | null, title: string, prompt: string, model: string, provider: string | null, url: string | null, thumb: string | null, mime: string | null, width: number, height: number, bytes: number, cost: number, error: string | null, favorite: boolean, attachmentId: number | null, ownerId: number, ownerName: string, params: { aspect: string | null, resolution: string | null, quality: string | null, count: number, duration: number | null, audio: boolean | null, progress: number, draft: string | null, edit: boolean, enhanced: boolean, idea: string | null, protected: boolean, refs: Array<{ type: FlxStudioRefType, id: number, role: string | null, name: string | null, thumb: string | null, photos: number }> }, createdAt: { timestamp: number } | null, updatedAt: { timestamp: number } | null }>, pageInfo: { hasNextPage: boolean, endCursor: string | null } };
+
+export type FlxStudioItemsDeleteMutationVariables = Exact<{
+  input: FlxStudioItemsDeleteInput;
+}>;
+
+
+export type FlxStudioItemsDeleteMutation = { flxStudioItemsDelete: { deletedIds: Array<number> | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxStudioItemsMoveMutationVariables = Exact<{
+  input: FlxStudioItemsMoveInput;
+}>;
+
+
+export type FlxStudioItemsMoveMutation = { flxStudioItemsMove: { movedIds: Array<number> | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxStudioItemToLibraryMutationVariables = Exact<{
+  input: FlxStudioItemToLibraryInput;
+}>;
+
+
+export type FlxStudioItemToLibraryMutation = { flxStudioItemToLibrary: { library: { attachmentId: number, editUrl: string | null, url: string | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxStudioItemUpdateMutationVariables = Exact<{
+  input: FlxStudioItemUpdateInput;
+}>;
+
+
+export type FlxStudioItemUpdateMutation = { flxStudioItemUpdate: { item: { id: string, databaseId: number, kind: FlxStudioKind, state: FlxStudioItemState, job: string | null, batch: string | null, parentId: number | null, folderId: number | null, title: string, prompt: string, model: string, provider: string | null, url: string | null, thumb: string | null, mime: string | null, width: number, height: number, bytes: number, cost: number, error: string | null, favorite: boolean, attachmentId: number | null, ownerId: number, ownerName: string, params: { aspect: string | null, resolution: string | null, quality: string | null, count: number, duration: number | null, audio: boolean | null, progress: number, draft: string | null, edit: boolean, enhanced: boolean, idea: string | null, protected: boolean, refs: Array<{ type: FlxStudioRefType, id: number, role: string | null, name: string | null, thumb: string | null, photos: number }> }, createdAt: { timestamp: number } | null, updatedAt: { timestamp: number } | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxStudioPersonCreateMutationVariables = Exact<{
+  input: FlxStudioPersonCreateInput;
+}>;
+
+
+export type FlxStudioPersonCreateMutation = { flxStudioPersonCreate: { person: { databaseId: number, name: string, ownerId: number, photos: Array<{ databaseId: number, personId: number | null, name: string, role: string | null, url: string, thumb: string, mime: string | null, width: number, height: number, saved: boolean }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxStudioPersonRowFragment = { databaseId: number, name: string, ownerId: number, photos: Array<{ databaseId: number, personId: number | null, name: string, role: string | null, url: string, thumb: string, mime: string | null, width: number, height: number, saved: boolean }> };
+
+export type FlxStudioRefRowFragment = { databaseId: number, personId: number | null, name: string, role: string | null, url: string, thumb: string, mime: string | null, width: number, height: number, saved: boolean };
+
+export type FlxStudioPersonDeleteMutationVariables = Exact<{
+  input: FlxStudioPersonDeleteInput;
+}>;
+
+
+export type FlxStudioPersonDeleteMutation = { flxStudioPersonDelete: { deletedId: number | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxStudioPersonRenameMutationVariables = Exact<{
+  input: FlxStudioPersonRenameInput;
+}>;
+
+
+export type FlxStudioPersonRenameMutation = { flxStudioPersonRename: { person: { databaseId: number, name: string, ownerId: number, photos: Array<{ databaseId: number, personId: number | null, name: string, role: string | null, url: string, thumb: string, mime: string | null, width: number, height: number, saved: boolean }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxStudioPollMutationVariables = Exact<{
+  input: FlxStudioPollInput;
+}>;
+
+
+export type FlxStudioPollMutation = { flxStudioPoll: { items: Array<{ id: string, databaseId: number, kind: FlxStudioKind, state: FlxStudioItemState, job: string | null, batch: string | null, parentId: number | null, folderId: number | null, title: string, prompt: string, model: string, provider: string | null, url: string | null, thumb: string | null, mime: string | null, width: number, height: number, bytes: number, cost: number, error: string | null, favorite: boolean, attachmentId: number | null, ownerId: number, ownerName: string, params: { aspect: string | null, resolution: string | null, quality: string | null, count: number, duration: number | null, audio: boolean | null, progress: number, draft: string | null, edit: boolean, enhanced: boolean, idea: string | null, protected: boolean, refs: Array<{ type: FlxStudioRefType, id: number, role: string | null, name: string | null, thumb: string | null, photos: number }> }, createdAt: { timestamp: number } | null, updatedAt: { timestamp: number } | null }> | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxStudioRefCreateMutationVariables = Exact<{
+  input: FlxStudioRefCreateInput;
+}>;
+
+
+export type FlxStudioRefCreateMutation = { flxStudioRefCreate: { ref: { databaseId: number, personId: number | null, name: string, role: string | null, url: string, thumb: string, mime: string | null, width: number, height: number, saved: boolean } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxStudioRefDeleteMutationVariables = Exact<{
+  input: FlxStudioRefDeleteInput;
+}>;
+
+
+export type FlxStudioRefDeleteMutation = { flxStudioRefDelete: { deletedId: number | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxStudioRefUpdateMutationVariables = Exact<{
+  input: FlxStudioRefUpdateInput;
+}>;
+
+
+export type FlxStudioRefUpdateMutation = { flxStudioRefUpdate: { ref: { databaseId: number, personId: number | null, name: string, role: string | null, url: string, thumb: string, mime: string | null, width: number, height: number, saved: boolean } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxStudioSettingsUpdateMutationVariables = Exact<{
+  input: FlxStudioSettingsUpdateInput;
+}>;
+
+
+export type FlxStudioSettingsUpdateMutation = { flxStudioSettingsUpdate: { settings: { imageModel: string | null, videoModel: string | null, textModel: string | null, maxCount: number, maxBatch: number, sharedPeople: boolean } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxStudioSettingsRowFragment = { imageModel: string | null, videoModel: string | null, textModel: string | null, maxCount: number, maxBatch: number, sharedPeople: boolean };
+
+export type FlxStudioStatsQueryVariables = Exact<{
+  days?: number | null | undefined;
+}>;
+
+
+export type FlxStudioStatsQuery = { flxStudioStats: { days: number, image: number, video: number, failed: number, cancelled: number, pending: number, users: number, bytes: number, spendTotal: number, spendMedia: number, spendText: number, spendEstimated: boolean, spendFrom: string, logUrl: string | null, daily: Array<{ date: string, image: number, video: number, failed: number, cost: number }>, models: Array<{ id: string, label: string, kind: FlxStudioKind | null, done: number, failed: number, cost: number }>, providers: Array<{ id: string, label: string, done: number, failed: number, cost: number }>, people: Array<{ userId: number, name: string, avatar: string | null, image: number, video: number, cost: number, lastAt: { timestamp: number } | null }>, errors: Array<{ itemId: number, model: string, provider: string | null, error: string, createdAt: { timestamp: number } | null }>, budget: Array<{ period: string, label: string, limit: number, spent: number, pct: number, over: boolean }> } };
+
+export type FlxStudioTemplateCreateMutationVariables = Exact<{
+  input: FlxStudioTemplateCreateInput;
+}>;
+
+
+export type FlxStudioTemplateCreateMutation = { flxStudioTemplateCreate: { templates: Array<{ databaseId: number, name: string, prompt: string, shared: boolean, ownerId: number, params: { kind: FlxStudioKind | null, model: string | null, aspect: string | null, resolution: string | null, quality: string | null, size: string | null, count: number | null, duration: number | null, audio: boolean | null, mode: string | null, refs: Array<{ type: FlxStudioRefType, id: number, role: string | null, name: string | null, thumb: string | null, photos: number }> } }> | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxStudioTemplateRowFragment = { databaseId: number, name: string, prompt: string, shared: boolean, ownerId: number, params: { kind: FlxStudioKind | null, model: string | null, aspect: string | null, resolution: string | null, quality: string | null, size: string | null, count: number | null, duration: number | null, audio: boolean | null, mode: string | null, refs: Array<{ type: FlxStudioRefType, id: number, role: string | null, name: string | null, thumb: string | null, photos: number }> } };
+
+export type FlxStudioTemplateDeleteMutationVariables = Exact<{
+  input: FlxStudioTemplateDeleteInput;
+}>;
+
+
+export type FlxStudioTemplateDeleteMutation = { flxStudioTemplateDelete: { templates: Array<{ databaseId: number, name: string, prompt: string, shared: boolean, ownerId: number, params: { kind: FlxStudioKind | null, model: string | null, aspect: string | null, resolution: string | null, quality: string | null, size: string | null, count: number | null, duration: number | null, audio: boolean | null, mode: string | null, refs: Array<{ type: FlxStudioRefType, id: number, role: string | null, name: string | null, thumb: string | null, photos: number }> } }> | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxStudioWorkspaceQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxStudioWorkspaceQuery = { flxStudio: { version: string, userId: number, userName: string, canManage: boolean, canLibrary: boolean, aiMedia: boolean, aiText: boolean, setupUrl: string | null, catalog: { defaultImage: string | null, defaultVideo: string | null, providers: Array<{ id: string, label: string, ready: boolean }>, models: Array<{ id: string, label: string, kind: FlxStudioKind, routes: Array<string>, providers: Array<string>, auto: string | null, aspects: Array<string>, resolutions: Array<string>, qualities: Array<string>, durationMin: number | null, durationMax: number | null, durationDefault: number | null, maxRefs: number, maxCount: number, mask: boolean, prices: Array<{ resolution: string, usd: number }> }> }, settings: { imageModel: string | null, videoModel: string | null, textModel: string | null, maxCount: number, maxBatch: number, sharedPeople: boolean }, folders: Array<{ databaseId: number, parentId: number | null, name: string, shared: boolean, ownerId: number }>, people: Array<{ databaseId: number, name: string, ownerId: number, photos: Array<{ databaseId: number, personId: number | null, name: string, role: string | null, url: string, thumb: string, mime: string | null, width: number, height: number, saved: boolean }> }>, refs: Array<{ databaseId: number, personId: number | null, name: string, role: string | null, url: string, thumb: string, mime: string | null, width: number, height: number, saved: boolean }>, templates: Array<{ databaseId: number, name: string, prompt: string, shared: boolean, ownerId: number, params: { kind: FlxStudioKind | null, model: string | null, aspect: string | null, resolution: string | null, quality: string | null, size: string | null, count: number | null, duration: number | null, audio: boolean | null, mode: string | null, refs: Array<{ type: FlxStudioRefType, id: number, role: string | null, name: string | null, thumb: string | null, photos: number }> } }>, budget: Array<{ period: string, label: string, limit: number, spent: number, pct: number, over: boolean }> } };
 
 export type FlxTaskCommentCreateMutationVariables = Exact<{
   input: FlxTaskCommentCreateInput;

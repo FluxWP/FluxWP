@@ -1,0 +1,64 @@
+# Usage and spending dashboard.
+query FlxStudioStats($days: Int = 30) {
+  flxStudioStats(days: $days) {
+    days
+    image
+    video
+    failed
+    cancelled
+    pending
+    users
+    bytes
+    spendTotal
+    spendMedia
+    spendText
+    spendEstimated
+    spendFrom
+    logUrl
+    daily {
+      date
+      image
+      video
+      failed
+      cost
+    }
+    models {
+      id
+      label
+      kind
+      done
+      failed
+      cost
+    }
+    providers {
+      id
+      label
+      done
+      failed
+      cost
+    }
+    people {
+      userId
+      name
+      avatar
+      image
+      video
+      cost
+      lastAt {
+        timestamp
+      }
+    }
+    errors {
+      itemId
+      model
+      provider
+      error
+      createdAt {
+        timestamp
+      }
+    }
+    budget {
+      ...FlxStudioBudgetRow
+    }
+  }
+}

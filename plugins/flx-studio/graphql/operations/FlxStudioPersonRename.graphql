@@ -1,0 +1,12 @@
+mutation FlxStudioPersonRename($input: FlxStudioPersonRenameInput!) {
+  flxStudioPersonRename(input: $input) {
+    person {
+      ...FlxStudioPersonRow
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

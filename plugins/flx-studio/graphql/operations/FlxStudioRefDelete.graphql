@@ -1,0 +1,10 @@
+mutation FlxStudioRefDelete($input: FlxStudioRefDeleteInput!) {
+  flxStudioRefDelete(input: $input) {
+    deletedId
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

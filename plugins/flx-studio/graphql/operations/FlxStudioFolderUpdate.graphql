@@ -1,0 +1,12 @@
+mutation FlxStudioFolderUpdate($input: FlxStudioFolderUpdateInput!) {
+  flxStudioFolderUpdate(input: $input) {
+    folder {
+      ...FlxStudioFolderRow
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

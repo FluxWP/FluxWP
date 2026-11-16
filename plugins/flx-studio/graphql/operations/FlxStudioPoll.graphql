@@ -1,0 +1,13 @@
+# Follows running jobs and writes finished files into the items.
+mutation FlxStudioPoll($input: FlxStudioPollInput!) {
+  flxStudioPoll(input: $input) {
+    items {
+      ...FlxStudioItemRow
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

@@ -1,0 +1,6 @@
+# Spending limits, counted fresh.
+query FlxStudioBudget {
+  flxStudioBudget {
+    ...FlxStudioBudgetRow
+  }
+}
