@@ -1,5 +1,12 @@
 # Değişiklik günlüğü
 
+## 0.3.0
+- GraphQL: gönderi, hesap, ayar, istatistik, medya ve yazım yardımı alanları `/graphql` üzerinden (13 sorgu, 22 mutation, 34 kayıtlı işlem). Belirteç, uygulama anahtarı ve hesap meta'sı hiçbir alanda dönmez; dış zamanlayıcı adresi maskeli gelir, tam adres yalnız yöneticiye `flxSocialTickKeyReveal` ile. Servis katmanı ve readonly DTO'lar (`includes/services`); REST uçları aynı servisleri çağırır, çıktı değişmedi.
+- Yeni Sosyal Medya ekranı (React): pano, gönderiler ve toplu işlemler, onaylar, takvim (sürükle bırak), hesaplar (bağlama, seçim adımı, WhatsApp), ayarlar, oluşturucu (hesap başına metin/ortam/seçenek, AI, önizleme) ve gönderi ayrıntısı. wp-admin'de varsayılan; "Klasik görünüm" bağlantısıyla eski ekrana dönülür. FluxApp modül kimliği `flxsm-social` (eski sürümler yönetim sayfasını açar).
+- REST'te kalanlar: OAuth, dış cron `/tick`, dosya yükleme (`/flx/v1/upload`, bağlam `flx-social/media`), eski `/calendar`.
+- Gereksinim: PHP 8.1, WordPress 6.5, Flux GraphQL (`Requires Plugins`).
+- Türkçe çeviriler ve 10 dillik ekran sözlükleri güncellendi.
+
 ## 0.2.7
 - Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
 

@@ -3,6 +3,9 @@
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * @return bool
+ */
 function flxsm_ai_ready() {
 	return function_exists( 'flxai_complete' ) && function_exists( 'flxai_ready' ) && flxai_ready( 'flx-social' );
 }

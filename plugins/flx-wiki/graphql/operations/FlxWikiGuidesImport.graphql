@@ -1,0 +1,14 @@
+mutation FlxWikiGuidesImport {
+  flxWikiGuidesImport(input: {}) {
+    result {
+      created
+      updated
+      skipped
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

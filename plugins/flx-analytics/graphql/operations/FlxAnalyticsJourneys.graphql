@@ -1,0 +1,25 @@
+# Flow chart, summary and frequent paths.
+query FlxAnalyticsJourneys($filter: FlxAnalyticsFilterInput, $options: FlxAnalyticsJourneysInput) {
+  flxAnalyticsJourneys(filter: $filter, options: $options) {
+    range { ...FlxAnalyticsRangeFields }
+    options { steps from to goal group top }
+    goals { value label }
+    summary {
+      sessions multi multiPct multiChange avgLen avgLenChange
+      topEntry { key label count pct }
+      topExit { key label count pct }
+      goalRate goalReached goalChange
+    }
+    flow {
+      columns { nodes { key label path ev count ends } }
+      links { step from to count }
+    }
+    paths {
+      top total
+      items {
+        sessions reached share prev change rate
+        steps { key label path ev }
+      }
+    }
+  }
+}

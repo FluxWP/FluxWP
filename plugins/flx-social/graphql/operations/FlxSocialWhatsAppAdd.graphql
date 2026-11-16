@@ -1,0 +1,6 @@
+mutation FlxSocialWhatsAppAdd($input: FlxSocialWhatsAppAddInput!) {
+  flxSocialWhatsAppAdd(input: $input) {
+    added accounts { ...FlxSocialAccountRow }
+    errors { code message field }
+  }
+}

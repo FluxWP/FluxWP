@@ -224,6 +224,9 @@ function flxwk_bump() {
 	delete_transient( 'flxwk_index' );
 	delete_transient( 'flxwk_vocab' );
 	delete_transient( 'flxseo_llms' );
+	if ( function_exists( 'flx_gql_purge' ) ) {
+		flx_gql_purge( array( FLXWK_Page_Service::CACHE_TAG ) ); // GraphQL responses of the public wiki.
+	}
 }
 
 add_action(

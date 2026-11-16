@@ -1,0 +1,6 @@
+mutation FlxSocialStatsRefresh($input: FlxSocialStatsRefreshInput!) {
+  flxSocialStatsRefresh(input: $input) {
+    updated
+    errors { code message field }
+  }
+}

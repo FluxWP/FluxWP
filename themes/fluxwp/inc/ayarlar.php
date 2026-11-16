@@ -203,7 +203,8 @@ function flx_ayar_register() {
 		)
 	);
 }
-add_action( 'admin_init', 'flx_ayar_register' );
+// Registered on init (not admin_init) so every write path (GraphQL, presets, Flux AI) is sanitised the same way.
+add_action( 'init', 'flx_ayar_register' );
 
 function flx_ayar_sanitize( $in ) {
 	$in  = (array) $in;
@@ -280,6 +281,11 @@ function flx_ayar_page() {
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	$bolum = sanitize_key( $_GET['bolum'] ?? 'genel' );
 	$has_presets = function_exists( 'flxk_render_panel' );
+	// New view (0.8.0, GraphQL): the shared React screen is the default; the Presets tab stays here.
+	if ( 'onayarlar' !== $bolum && function_exists( 'flx_flux_ui' ) && flx_flux_ui() ) {
+		flx_flux_root( 'flx-theme-settings-app' );
+		return;
+	}
 	?>
 	<div class="wrap<?php echo 'onayarlar' === $bolum ? ' flxk' : ''; ?>">
 		<h1><?php esc_html_e( 'Theme Settings', 'fluxwp' ); ?></h1>
@@ -297,6 +303,7 @@ function flx_ayar_page() {
 			return;
 		}
 		?>
+		<?php flx_flux_new_view_link( 'flx-ayarlar' ); ?>
 		<?php settings_errors( 'flx_ayarlar' ); ?>
 		<form method="post" action="options.php">
 			<?php settings_fields( 'flx_ayarlar' ); ?>
@@ -586,6 +593,7 @@ add_filter(
 			$fields[ $k ]['default'] = $d[ $k ] ?? null;
 		}
 		$s['flx_ayarlar'] = array(
+			'graphql' => 'theme_settings', // flxSettings { themeSettings { … } } for presets and AI; the Theme Settings screen uses flxThemeSettings.
 			'label'  => 'FluxWP theme settings (Appearance > Theme Settings)',
 			'fields' => $fields,
 		);

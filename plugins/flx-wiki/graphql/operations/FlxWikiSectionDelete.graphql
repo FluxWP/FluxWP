@@ -1,0 +1,10 @@
+mutation FlxWikiSectionDelete($input: FlxWikiSectionDeleteInput!) {
+  flxWikiSectionDelete(input: $input) {
+    deletedId
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

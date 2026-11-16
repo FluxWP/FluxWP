@@ -1,0 +1,61 @@
+fragment FlxAnalyticsRangeFields on FlxAnalyticsRange {
+  preset start end label days prevStart prevEnd
+}
+
+fragment FlxAnalyticsKpiFields on FlxAnalyticsKpi {
+  totals { visitors pageviews }
+  prev { visitors pageviews }
+  visits { sessions avgDuration bounceRate pagesPer }
+  visitsPrev { sessions avgDuration bounceRate pagesPer }
+  change { visitors pageviews sessions avgDuration bounceRate pagesPer }
+  series { group items { date visitors pageviews } }
+}
+
+fragment FlxAnalyticsPageRowFields on FlxAnalyticsPageRow {
+  path url postId title is404 visitors pageviews
+}
+
+fragment FlxAnalyticsReferrerRowFields on FlxAnalyticsReferrerRow {
+  host channel channelLabel visitors pageviews
+}
+
+fragment FlxAnalyticsDimRowFields on FlxAnalyticsDimRow {
+  value label visitors pageviews
+}
+
+fragment FlxAnalyticsEventRowFields on FlxAnalyticsEventRow {
+  name label param hits uniques amount
+}
+
+fragment FlxAnalyticsRefFields on FlxAnalyticsRef {
+  code name label url visitors pageviews sessions pagesPer avgDuration donations amount deepest deepestLabel completed
+}
+
+fragment FlxAnalyticsFunnelFields on FlxAnalyticsFunnel {
+  found id name by
+  steps { label type value count rate drop }
+  groups { value label counts rate }
+  funnels { id name }
+}
+
+fragment FlxAnalyticsRealtimeFields on FlxAnalyticsRealtime {
+  minutes active visitors pageviews perMinute updated { iso label relative }
+  pages { path title pageviews }
+  referrers { host pageviews }
+  countries { value label visitors }
+  codes { code label visitors }
+}
+
+fragment FlxAnalyticsSettingsFields on FlxAnalyticsSettings {
+  on method methodNow dnt excludeRoles excludeIps
+  evOutbound evDownload evContact evSearch evDonation
+  postsColumn adminbar keepMonths tmHub hubEndpoint
+  lastAggregated { iso label relative } pendingBytes pendingLabel fastPossible fastTest
+  roles { value label }
+  funnels { id name steps { label type value } }
+  funnelDefaults { id name steps { label type value } }
+  funnelEvents { value label }
+  funnelPages { path title }
+  koko { days first last }
+  exportUrl
+}

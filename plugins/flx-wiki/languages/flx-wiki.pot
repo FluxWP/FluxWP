@@ -100,6 +100,9 @@ msgstr ""
 msgid "Lower numbers come first on the wiki home and in the menu."
 msgstr ""
 
+msgid "JavaScript is required for this screen."
+msgstr ""
+
 msgid "General"
 msgstr ""
 
@@ -110,6 +113,9 @@ msgid "AI"
 msgstr ""
 
 msgid "Add page"
+msgstr ""
+
+msgid "New view"
 msgstr ""
 
 msgid "The wiki is closed to visitors; only people who can write pages see it."
@@ -411,9 +417,6 @@ msgstr ""
 msgid "Wiki section"
 msgstr ""
 
-msgid "The question is too short."
-msgstr ""
-
 msgid "You have reached the question limit for this hour. Try again later."
 msgstr ""
 
@@ -529,5 +532,404 @@ msgstr ""
 msgid "close"
 msgstr ""
 
-msgid "Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. \"Ask the Wiki\" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered."
+msgid "The question is too short."
+msgstr ""
+
+msgid "You cannot edit this page."
+msgstr ""
+
+msgid "The parent page was not found."
+msgstr ""
+
+msgid "A page cannot be placed under itself."
+msgstr ""
+
+msgid "This status is not available."
+msgstr ""
+
+msgid "You cannot delete this page."
+msgstr ""
+
+msgid "The page could not be deleted."
+msgstr ""
+
+msgid "You cannot manage sections."
+msgstr ""
+
+msgid "A section name is required."
+msgstr ""
+
+msgid "Section not found."
+msgstr ""
+
+msgid "The section could not be deleted."
+msgstr ""
+
+msgid "Publishing state of a wiki page."
+msgstr ""
+
+msgid "Published."
+msgstr ""
+
+msgid "Draft; only editors see it."
+msgstr ""
+
+msgid "Waiting for review."
+msgstr ""
+
+msgid "Private; only people who may read private pages see it."
+msgstr ""
+
+msgid "A wiki section: a group of top-level pages on the wiki home and in the menu."
+msgstr ""
+
+msgid "Section ID."
+msgstr ""
+
+msgid "Short name used in addresses and the section filter."
+msgstr ""
+
+msgid "Section name."
+msgstr ""
+
+msgid "Short description; empty when none is written."
+msgstr ""
+
+msgid "Sort order; lower numbers come first."
+msgstr ""
+
+msgid "Published pages in the section."
+msgstr ""
+
+msgid "Section address on the wiki."
+msgstr ""
+
+msgid "A wiki page."
+msgstr ""
+
+msgid "Page title."
+msgstr ""
+
+msgid "Short name (last part of the path); empty for a draft without one."
+msgstr ""
+
+msgid "Path below the wiki address, e.g. plugins/ai-enabled; empty for a draft without a short name."
+msgstr ""
+
+msgid "Publishing state."
+msgstr ""
+
+msgid "Hand-written summary (search engine description); empty when the first paragraph is used."
+msgstr ""
+
+msgid "The summary, or the first paragraph, shortened."
+msgstr ""
+
+msgid "Parent page; empty for a top-level page."
+msgstr ""
+
+msgid "Sort order inside the parent; lower numbers come first."
+msgstr ""
+
+msgid "Section of the top-level page this page belongs to; empty when it has none."
+msgstr ""
+
+msgid "Page address on the site."
+msgstr ""
+
+msgid "Address of the page as Markdown (.md); empty for a draft."
+msgstr ""
+
+msgid "Last change."
+msgstr ""
+
+msgid "Reading time in minutes."
+msgstr ""
+
+msgid "WordPress edit screen of the page; empty when the viewer may not edit it."
+msgstr ""
+
+msgid "Whether the viewer may edit the page."
+msgstr ""
+
+msgid "Markdown source of the page."
+msgstr ""
+
+msgid "The page rendered to sanitized HTML (the same markup the wiki shows)."
+msgstr ""
+
+msgid "A page of wiki pages."
+msgstr ""
+
+msgid "One page of the tree with its depth."
+msgstr ""
+
+msgid "The page."
+msgstr ""
+
+msgid "Depth in the tree: 0 for a top-level page."
+msgstr ""
+
+msgid "A section with its pages in reading order."
+msgstr ""
+
+msgid "The section; empty for the pages that have none."
+msgstr ""
+
+msgid "Published pages: each parent comes before its children."
+msgstr ""
+
+msgid "A wiki search hit."
+msgstr ""
+
+msgid "ID of the page that matched."
+msgstr ""
+
+msgid "Address of the page, with #heading when a heading matched."
+msgstr ""
+
+msgid "Section name; empty when the page has none."
+msgstr ""
+
+msgid "Best matching heading; empty when the match is in the introduction."
+msgstr ""
+
+msgid "Excerpt around the match. Text is escaped; matches are wrapped in <mark>."
+msgstr ""
+
+msgid "Rank; higher is better."
+msgstr ""
+
+msgid "Result of a wiki search."
+msgstr ""
+
+msgid "Pages that match."
+msgstr ""
+
+msgid "Best matches first."
+msgstr ""
+
+msgid "The corrected words when a typo was fixed (the hits are for these words); empty otherwise."
+msgstr ""
+
+msgid "A heading of the contents list."
+msgstr ""
+
+msgid "Heading level (2 or 3)."
+msgstr ""
+
+msgid "Anchor id of the heading."
+msgstr ""
+
+msgid "Heading text."
+msgstr ""
+
+msgid "Markdown rendered like the wiki renders a page."
+msgstr ""
+
+msgid "Sanitized HTML."
+msgstr ""
+
+msgid "Contents list (level 2 and 3 headings)."
+msgstr ""
+
+msgid "A wiki page an answer cites."
+msgstr ""
+
+msgid "Page address."
+msgstr ""
+
+msgid "An answer of \"Ask the wiki\"."
+msgstr ""
+
+msgid "The answer in Markdown."
+msgstr ""
+
+msgid "The answer as sanitized HTML; only links to the cited wiki pages stay clickable."
+msgstr ""
+
+msgid "Pages the answer is based on."
+msgstr ""
+
+msgid "Counts of a bundled guide import."
+msgstr ""
+
+msgid "Pages created."
+msgstr ""
+
+msgid "Pages updated."
+msgstr ""
+
+msgid "Pages left as they are (edited by hand or already up to date)."
+msgstr ""
+
+msgid "Addresses, AI state and counts shown next to the wiki settings."
+msgstr ""
+
+msgid "Wiki address."
+msgstr ""
+
+msgid "Site address; the wiki base comes after it."
+msgstr ""
+
+msgid "Address base of the wiki, e.g. wiki."
+msgstr ""
+
+msgid "llms.txt address."
+msgstr ""
+
+msgid "llms-full.txt address."
+msgstr ""
+
+msgid "REST search address."
+msgstr ""
+
+msgid "Flux AI MCP is on."
+msgstr ""
+
+msgid "MCP tools the wiki adds."
+msgstr ""
+
+msgid "Flux AI is installed."
+msgstr ""
+
+msgid "Flux AI has a key and the Flux Wiki system is on."
+msgstr ""
+
+msgid "Bundled guides."
+msgstr ""
+
+msgid "Published pages."
+msgstr ""
+
+msgid "Wiki name used when the setting is empty."
+msgstr ""
+
+msgid "Intro used when the setting is empty."
+msgstr ""
+
+msgid "WordPress screen that adds a page."
+msgstr ""
+
+msgid "Addresses, AI state and counts of the wiki settings page."
+msgstr ""
+
+msgid "Wiki pages of any status for editors, most recently changed first."
+msgstr ""
+
+msgid "Words to look for in titles and content."
+msgstr ""
+
+msgid "Only pages in these states; all states when empty."
+msgstr ""
+
+msgid "Section short name."
+msgstr ""
+
+msgid "One wiki page by ID or path; empty when it does not exist or the viewer may not read it."
+msgstr ""
+
+msgid "Global ID or database ID."
+msgstr ""
+
+msgid "Path below the wiki address (plugins/ai-enabled), short name or title."
+msgstr ""
+
+msgid "The published wiki as sections with their pages in reading order (the wiki menu)."
+msgstr ""
+
+msgid "Wiki sections in menu order."
+msgstr ""
+
+msgid "Searches the wiki. Turkish letters are folded (ı=i, ş=s), simple typos are corrected."
+msgstr ""
+
+msgid "Words to search for."
+msgstr ""
+
+msgid "Section short name to limit the search."
+msgstr ""
+
+msgid "Best hits to return (1–50, default 10)."
+msgstr ""
+
+msgid "Creates a page (without id) or updates one. Fields you leave out stay as they are; a new page is a draft unless a status is given. Editors who cannot publish send a published page for review instead."
+msgstr ""
+
+msgid "Page to update (global ID or database ID); leave out to create a page."
+msgstr ""
+
+msgid "Page title; required for a new page."
+msgstr ""
+
+msgid "Page body in Markdown. Do not repeat the title as a heading. [[slug]] links to a wiki page, > [!NOTE] makes a callout."
+msgstr ""
+
+msgid "Short name used in the address."
+msgstr ""
+
+msgid "Parent page; 0 makes it a top-level page."
+msgstr ""
+
+msgid "Section name or short name (created when missing); empty removes the page from its section. Only top-level pages need one."
+msgstr ""
+
+msgid "One-sentence summary used as the search engine description."
+msgstr ""
+
+msgid "The saved page."
+msgstr ""
+
+msgid "Moves a page to the trash (restorable from the WordPress trash)."
+msgstr ""
+
+msgid "Page ID (global ID or database ID)."
+msgstr ""
+
+msgid "Database ID of the page that was moved to the trash."
+msgstr ""
+
+msgid "Creates a section (without id) or renames one and sets its order."
+msgstr ""
+
+msgid "Section to change; leave out to create one."
+msgstr ""
+
+msgid "Sort order; lower numbers come first. Left as it is when omitted."
+msgstr ""
+
+msgid "The saved section."
+msgstr ""
+
+msgid "Deletes a section. Its pages stay and move to \"no section\"."
+msgstr ""
+
+msgid "ID of the section that was deleted."
+msgstr ""
+
+msgid "Renders Markdown the way the wiki shows it (editor preview). A mutation only because the text can be long; nothing is saved."
+msgstr ""
+
+msgid "Markdown to render."
+msgstr ""
+
+msgid "The rendered page."
+msgstr ""
+
+msgid "Asks the wiki a question; the answer comes from the wiki pages only (Flux AI). Counts towards the hourly question limit."
+msgstr ""
+
+msgid "The question (3–1000 characters)."
+msgstr ""
+
+msgid "Page the visitor is reading; its content is used first."
+msgstr ""
+
+msgid "The answer."
+msgstr ""
+
+msgid "Imports the bundled guides: missing pages are added, pages nobody edited are updated."
+msgstr ""
+
+msgid "What was created, updated and skipped."
 msgstr ""
