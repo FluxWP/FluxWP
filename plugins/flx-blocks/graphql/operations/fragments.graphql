@@ -1,0 +1,85 @@
+# Shared selections of the Flux Block Editor operations.
+fragment FlxBlocksAssetFields on FlxBlocksAsset {
+  kind
+  handle
+  src
+  version
+  media
+  dependencies
+  inlineBefore
+  inlineAfter
+  data
+  footer
+  strategy
+}
+
+fragment FlxBlocksContentFields on FlxBlocksContent {
+  html
+  css
+  fonts
+  schema
+  headHtml
+  footerHtml
+  styles {
+    ...FlxBlocksAssetFields
+  }
+  scripts {
+    ...FlxBlocksAssetFields
+  }
+}
+
+fragment FlxBlocksBlockFields on FlxBlock {
+  clientId
+  parentClientId
+  order
+  depth
+  name
+  attributes
+  innerHtml
+  dynamic
+}
+
+fragment FlxBlocksBlockTypeRow on FlxBlocksBlockType {
+  slug
+  name
+  description
+  active
+  link
+  linkText
+}
+
+fragment FlxBlocksSettingsFields on FlxBlocksSettings {
+  showHeadersInAdminBar
+  showAdminBarSetting
+  styleLibraryUrl
+  editorWidth {
+    enabled
+    small
+    large
+    postDefault
+    pageDefault
+    contentWidth
+  }
+}
+
+fragment FlxBlocksSourceRow on FlxBlocksLibrarySource {
+  id
+  name
+  url
+  hasKey
+}
+
+fragment FlxBlocksShareFields on FlxBlocksLibraryShare {
+  enabled
+  key
+  url
+}
+
+fragment FlxBlocksPatternRow on FlxBlocksPattern {
+  id
+  title
+  description
+  categories
+  viewportWidth
+  source
+}
