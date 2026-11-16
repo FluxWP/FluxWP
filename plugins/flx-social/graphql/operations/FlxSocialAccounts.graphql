@@ -1,0 +1,3 @@
+query FlxSocialAccounts {
+  flxSocialAccounts { ...FlxSocialAccountRow }
+}

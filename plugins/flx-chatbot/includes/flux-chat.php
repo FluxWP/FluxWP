@@ -12,7 +12,11 @@ defined( 'ABSPATH' ) || exit;
 
 const FLXCB_FC_CONN = 'flx-web';
 
-/** Flux Chat bu köprüyü destekliyor mu (1.37.0+). */
+/**
+ * Flux Chat bu köprüyü destekliyor mu (1.37.0+).
+ *
+ * @return bool
+ */
 function flxcb_fc_ready() {
 	return flxcb_flux_chat_active() && function_exists( 'flxc_is_virtual_conn' );
 }

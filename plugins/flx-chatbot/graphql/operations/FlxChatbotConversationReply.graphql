@@ -1,0 +1,12 @@
+mutation FlxChatbotConversationReply($input: FlxChatbotConversationReplyInput!) {
+  flxChatbotConversationReply(input: $input) {
+    conversation {
+      ...FlxChatbotConversationRow
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

@@ -1,0 +1,6 @@
+mutation FlxSocialPostBulkAct($input: FlxSocialPostBulkActInput!) {
+  flxSocialPostBulkAct(input: $input) {
+    done issues
+    errors { code message field }
+  }
+}

@@ -1,0 +1,9 @@
+query FlxChatbotInbox {
+  flxChatbotInbox {
+    fluxChatUrl
+    settingsUrl
+    canDelete
+    agentName
+    maxUploadMb
+  }
+}

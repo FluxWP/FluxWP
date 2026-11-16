@@ -18,6 +18,9 @@ function flxcb_new_token() {
 	return wp_generate_password( 40, false, false );
 }
 
+/**
+ * @return array<string,mixed>|null
+ */
 function flxcb_get_conversation( $id ) {
 	global $wpdb;
 	$r = $wpdb->get_row( $wpdb->prepare( 'SELECT * FROM ' . flxcb_table( 'conversations' ) . ' WHERE id = %d', (int) $id ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
@@ -178,7 +181,11 @@ function flxcb_message_by_ext( $ext_id ) {
 	return $r ? $r : null;
 }
 
-/** Sohbet mesajları (id sırasıyla). $after verilirse yalnız sonrakiler. */
+/**
+ * Sohbet mesajları (id sırasıyla). $after verilirse yalnız sonrakiler.
+ *
+ * @return list<array<string,mixed>>
+ */
 function flxcb_messages( $conv_id, $after = 0, $limit = 200 ) {
 	global $wpdb;
 	$rows = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM ' . flxcb_table( 'messages' ) . ' WHERE conv_id = %d AND id > %d ORDER BY id DESC LIMIT %d', (int) $conv_id, (int) $after, (int) $limit ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
@@ -267,7 +274,11 @@ function flxcb_queue_position( $conv ) {
 	return $n + 1;
 }
 
-/** Yönetim listesi. */
+/**
+ * Yönetim listesi.
+ *
+ * @return list<array<string,mixed>>
+ */
 function flxcb_query_conversations( array $args = array() ) {
 	global $wpdb;
 	$args  = wp_parse_args( $args, array( 'status' => '', 'q' => '', 'limit' => 50, 'offset' => 0 ) );
@@ -290,7 +301,11 @@ function flxcb_query_conversations( array $args = array() ) {
 	return (array) $wpdb->get_results( $wpdb->prepare( $sql, $prm ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 }
 
-/** Sayaçlar: son N gün. */
+/**
+ * Sayaçlar: son N gün.
+ *
+ * @return array{total:int,human:int,resolved:int,leads:int,orders:int,rating:int|float,rated:int,open:int}
+ */
 function flxcb_stats( $days = 30 ) {
 	global $wpdb;
 	$since = current_time( 'mysql', true );
@@ -301,7 +316,7 @@ function flxcb_stats( $days = 30 ) {
 		$wpdb->prepare(
 			"SELECT COUNT(*) AS total,
 				SUM(flxc_chat > 0 OR assigned_to > 0 OR status IN ('queued','agent','offline')) AS human,
-				SUM(lead > 0) AS leads,
+				SUM(`lead` > 0) AS leads,
 				SUM(order_id > 0) AS orders,
 				SUM(rating > 0) AS rated,
 				AVG(NULLIF(rating,0)) AS rating
@@ -326,7 +341,11 @@ function flxcb_stats( $days = 30 ) {
 	);
 }
 
-/** Ziyaretçi adı (boşsa "Ziyaretçi #id"). */
+/**
+ * Ziyaretçi adı (boşsa "Ziyaretçi #id").
+ *
+ * @return string
+ */
 function flxcb_conv_title( $conv ) {
 	if ( '' !== (string) $conv['name'] ) {
 		return $conv['name'];
