@@ -1,5 +1,8 @@
 # @fluxwp/modules
 
+## 0.3.16
+- Analytics: `flxan-stats`, `flxan-journeys`, `flxan-settings`, `flxan-telemetry` screens for Flux Analytics (KPIs, chart, live panel, world map, funnels, referral links, journeys, settings with the visual funnel editor, telemetry hub). Same look as the classic page on FluxWP tokens; data over GraphQL; texts from the plugin's language packs (`plugins/flx-analytics/tools/i18n.py`).
+
 ## 0.3.15
 - reCAPTCHA: new `flxrc-recaptcha` screen for Flux reCAPTCHA (status, keys with Google test, protected forms, settings, allowed IPs). Data over GraphQL; texts from the plugin's language packs (`plugins/flx-recaptcha/tools/i18n.py`).
 

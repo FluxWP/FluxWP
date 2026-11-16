@@ -1,0 +1,6 @@
+mutation FlxAnalyticsRefSave($input: FlxAnalyticsRefSaveInput!) {
+  flxAnalyticsRefSave(input: $input) {
+    ref { code name url }
+    errors { code message field }
+  }
+}

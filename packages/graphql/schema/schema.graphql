@@ -359,6 +359,153 @@ type RootQuery {
   "Every tool with its state and use over the last 30 days."
   flxAiTools: [FlxAiTool!]!
 
+  "Traffic split by channel, device, browser, country or campaign, a page at a time."
+  flxAnalyticsBreakdown(
+    "Records per page (at most 50)."
+    first: Int
+
+    "Cursor to continue after (pageInfo.endCursor)."
+    after: String
+
+    "Date range and visitor filters."
+    filter: FlxAnalyticsFilterInput
+
+    "What to split by."
+    kind: FlxAnalyticsDimKind!
+  ): FlxAnalyticsDimRowConnection!
+
+  "Option lists, permissions and links the statistics screens need."
+  flxAnalyticsConfig: FlxAnalyticsConfig!
+
+  "Events (clicks, downloads, donations …), a page at a time."
+  flxAnalyticsEvents(
+    "Records per page (at most 50)."
+    first: Int
+
+    "Cursor to continue after (pageInfo.endCursor)."
+    after: String
+
+    "Date range and visitor filters."
+    filter: FlxAnalyticsFilterInput
+
+    "Only this event; empty = all."
+    name: String
+  ): FlxAnalyticsEventRowConnection!
+
+  "A funnel, optionally split by channel, site, code, role or country."
+  flxAnalyticsFunnel(
+    "Date range and visitor filters."
+    filter: FlxAnalyticsFilterInput
+
+    "Funnel number; 0 or none = the first."
+    id: Int = 0
+
+    "How to split it (default total)."
+    by: FlxAnalyticsFunnelBy = TOTAL
+  ): FlxAnalyticsFunnel!
+
+  "How visitors move through the site: flow chart and frequent paths."
+  flxAnalyticsJourneys(
+    "Date range and visitor filters."
+    filter: FlxAnalyticsFilterInput
+
+    "Steps, filters, goal and grouping."
+    options: FlxAnalyticsJourneysInput
+  ): FlxAnalyticsJourneys!
+
+  "Views of one page or post."
+  flxAnalyticsPage(
+    "Date range and visitor filters."
+    filter: FlxAnalyticsFilterInput
+
+    "Post ID, path or address."
+    target: String!
+  ): FlxAnalyticsPageStats!
+
+  "Pages by views, a page at a time."
+  flxAnalyticsPages(
+    "Records per page (at most 50)."
+    first: Int
+
+    "Cursor to continue after (pageInfo.endCursor)."
+    after: String
+
+    "Date range and visitor filters."
+    filter: FlxAnalyticsFilterInput
+
+    "Text in the address."
+    q: String
+
+    "Only addresses that were not found."
+    only404: Boolean = false
+  ): FlxAnalyticsPageRowConnection!
+
+  "Who is on the site now; with kpi the headline numbers and chart too (a light query to repeat every few seconds)."
+  flxAnalyticsRealtime(
+    "Date range and visitor filters."
+    filter: FlxAnalyticsFilterInput
+
+    "Window in minutes, 1–60 (default 30)."
+    minutes: Int = 30
+
+    "Include the headline numbers and chart."
+    kpi: Boolean = false
+  ): FlxAnalyticsRealtime!
+
+  "Referring sites by visitors, a page at a time."
+  flxAnalyticsReferrers(
+    "Records per page (at most 50)."
+    first: Int
+
+    "Cursor to continue after (pageInfo.endCursor)."
+    after: String
+
+    "Date range and visitor filters."
+    filter: FlxAnalyticsFilterInput
+
+    "Text in the domain name."
+    q: String
+  ): FlxAnalyticsReferrerRowConnection!
+
+  "Referral links with what their visitors did (50 at most)."
+  flxAnalyticsRefs(
+    "Date range and visitor filters."
+    filter: FlxAnalyticsFilterInput
+  ): [FlxAnalyticsRef!]!
+
+  "Everything the Statistics screen shows for a date range."
+  flxAnalyticsReport(
+    "Date range and visitor filters."
+    filter: FlxAnalyticsFilterInput
+  ): FlxAnalyticsReport!
+
+  "Flux Analytics settings and the data status."
+  flxAnalyticsSettings: FlxAnalyticsSettings!
+
+  "Anonymous product telemetry from FluxWP installs: usage, versions and the setup wizard."
+  flxAnalyticsTelemetry(
+    "Range in days: 7, 30 (default) or 90."
+    days: Int = 30
+
+    "Only installs of this country (two-letter code)."
+    country: String
+  ): FlxAnalyticsTelemetry!
+
+  "Errors FluxWP installs reported, fatal first."
+  flxAnalyticsTelemetryErrors(
+    "Range in days: 7, 30 (default) or 90."
+    days: Int = 30
+
+    "Only errors seen on installs of this country."
+    country: String
+
+    "Only this package."
+    plugin: String
+
+    "fatal, or one PHP error type such as E_WARNING."
+    type: String
+  ): FlxAnalyticsTmErrors!
+
   "Devices, sessions and keys of the signed-in user, or of everyone (`all`, administrators)."
   flxAppAccess(
     "Everyone (administrators only)."
@@ -11073,6 +11220,1458 @@ type FlxAiTool {
   title: String!
 }
 
+"Date range and visitor filters shared by every report."
+input FlxAnalyticsFilterInput {
+  "Last day (YYYY-MM-DD) when the range is custom."
+  end: String
+
+  "Ready-made range; default is the last 30 days."
+  range: FlxAnalyticsRangePreset
+
+  "Referral code filter: empty = all, * = only referral links, or a code."
+  rc: String
+
+  "Visitor type: all (default), guest, members or a role name."
+  seg: String
+
+  "First day (YYYY-MM-DD) when the range is custom."
+  start: String
+}
+
+"Ready-made date range of a report."
+enum FlxAnalyticsRangePreset {
+  ""
+  ALL
+
+  ""
+  CUSTOM
+
+  ""
+  DAYS_30
+
+  ""
+  DAYS_7
+
+  ""
+  DAYS_90
+
+  ""
+  LAST_MONTH
+
+  ""
+  LAST_YEAR
+
+  ""
+  MONTHS_12
+
+  ""
+  THIS_MONTH
+
+  ""
+  THIS_YEAR
+
+  ""
+  TODAY
+
+  ""
+  YESTERDAY
+}
+
+"What a breakdown splits the traffic by."
+enum FlxAnalyticsDimKind {
+  ""
+  BROWSER
+
+  ""
+  CHANNEL
+
+  ""
+  COUNTRY
+
+  ""
+  DEVICE
+
+  ""
+  LANG
+
+  ""
+  OS
+
+  ""
+  UTM_CAMPAIGN
+
+  ""
+  UTM_MEDIUM
+
+  ""
+  UTM_SOURCE
+}
+
+"A page of FlxAnalyticsDimRow records."
+type FlxAnalyticsDimRowConnection {
+  "Records with their cursors."
+  edges: [FlxAnalyticsDimRowEdge!]!
+
+  "Records of this page."
+  nodes: [FlxAnalyticsDimRow!]!
+
+  "Paging information."
+  pageInfo: FlxPageInfo!
+
+  "All matching records (null when counting would be slow)."
+  totalCount: Int
+}
+
+"One FlxAnalyticsDimRow in a list, with its cursor."
+type FlxAnalyticsDimRowEdge {
+  "Opaque cursor of this record."
+  cursor: String!
+
+  "The record."
+  node: FlxAnalyticsDimRow!
+}
+
+"One value of a breakdown (a browser, a country …)."
+type FlxAnalyticsDimRow {
+  "Name in the user&#039;s language."
+  label: String!
+
+  "Page views."
+  pageviews: Int!
+
+  "Stored value."
+  value: String!
+
+  "Visitors."
+  visitors: Int!
+}
+
+"What the screens need once: option lists, permissions and links."
+type FlxAnalyticsConfig {
+  "The user manages the site (settings, data)."
+  canManage: Boolean!
+
+  "The user may add and rename referral links."
+  canManageRefs: Boolean!
+
+  "Channel names."
+  channels: [FlxAnalyticsOption!]!
+
+  "The goal used when none is chosen."
+  defaultGoal: String!
+
+  "Event names."
+  events: [FlxAnalyticsOption!]!
+
+  "CSV download address (add type, range, start, end, seg, rc, kind)."
+  exportUrl: String!
+
+  "Address of the fast endpoint to test now; empty when no test is due."
+  fastEndpoint: String!
+
+  "Ways to split a funnel."
+  funnelBy: [FlxAnalyticsOption!]!
+
+  "Funnel settings address; empty without permission."
+  funnelSettingsUrl: String!
+
+  "Journey goals (funnel steps)."
+  goals: [FlxAnalyticsOption!]!
+
+  "The world map file is installed."
+  hasWorldMap: Boolean!
+
+  "Site address."
+  homeUrl: String!
+
+  "This browser is not counted (the user&#039;s role is excluded)."
+  ignoreBrowser: Boolean!
+
+  "Breakdown names (value is the breakdown key)."
+  kinds: [FlxAnalyticsOption!]!
+
+  "Date range names (value is the range key)."
+  presets: [FlxAnalyticsOption!]!
+
+  "Visitor types for the filter."
+  segments: [FlxAnalyticsOption!]!
+
+  "Settings page address; empty without permission."
+  settingsUrl: String!
+}
+
+"A value with its label."
+type FlxAnalyticsOption {
+  "Label in the user&#039;s language."
+  label: String!
+
+  "Value."
+  value: String!
+}
+
+"A page of FlxAnalyticsEventRow records."
+type FlxAnalyticsEventRowConnection {
+  "Records with their cursors."
+  edges: [FlxAnalyticsEventRowEdge!]!
+
+  "Records of this page."
+  nodes: [FlxAnalyticsEventRow!]!
+
+  "Paging information."
+  pageInfo: FlxPageInfo!
+
+  "All matching records (null when counting would be slow)."
+  totalCount: Int
+}
+
+"One FlxAnalyticsEventRow in a list, with its cursor."
+type FlxAnalyticsEventRowEdge {
+  "Opaque cursor of this record."
+  cursor: String!
+
+  "The record."
+  node: FlxAnalyticsEventRow!
+}
+
+"An event and its detail (the link, the file, the search term …)."
+type FlxAnalyticsEventRow {
+  "Total amount."
+  amount: Float!
+
+  "Times it happened."
+  hits: Int!
+
+  "Event name in the user&#039;s language."
+  label: String!
+
+  "Event name."
+  name: String!
+
+  "Detail; empty when the event has none."
+  param: String!
+
+  "Distinct visitors."
+  uniques: Int!
+}
+
+"How a funnel is split into groups."
+enum FlxAnalyticsFunnelBy {
+  ""
+  CHANNEL
+
+  ""
+  COUNTRY
+
+  ""
+  RC
+
+  ""
+  REF
+
+  ""
+  SEG
+
+  ""
+  TOTAL
+}
+
+"A funnel report."
+type FlxAnalyticsFunnel {
+  "How the groups were formed."
+  by: FlxAnalyticsFunnelBy!
+
+  "A funnel is defined."
+  found: Boolean!
+
+  "Every defined funnel."
+  funnels: [FlxAnalyticsFunnelName!]!
+
+  "Groups (up to 8) when the funnel is split."
+  groups: [FlxAnalyticsFunnelGroup!]!
+
+  "Funnel number; empty when none is defined."
+  id: Int
+
+  "Funnel name; empty when none is defined."
+  name: String
+
+  "Steps."
+  steps: [FlxAnalyticsFunnelStep!]!
+}
+
+"A defined funnel."
+type FlxAnalyticsFunnelName {
+  "Funnel number."
+  id: Int!
+
+  "Funnel name."
+  name: String!
+}
+
+"A group (channel, site, code …) with its funnel counts."
+type FlxAnalyticsFunnelGroup {
+  "Visits per step."
+  counts: [Int!]!
+
+  "Group name."
+  label: String!
+
+  "Percent that completed the funnel."
+  rate: Float!
+
+  "Group key."
+  value: String!
+}
+
+"One funnel step with the visits that reached it."
+type FlxAnalyticsFunnelStep {
+  "Visits that reached this step or went further."
+  count: Int!
+
+  "Percent lost since the previous step."
+  drop: Float!
+
+  "Step name."
+  label: String!
+
+  "Percent of the first step."
+  rate: Float!
+
+  "What the step matches."
+  type: FlxAnalyticsStepType!
+
+  "Path or event of the step."
+  value: String!
+}
+
+"What a funnel step matches."
+enum FlxAnalyticsStepType {
+  ""
+  ANY
+
+  ""
+  EVENT
+
+  ""
+  PATH
+}
+
+"Options of the journeys report."
+input FlxAnalyticsJourneysInput {
+  "Only journeys that start on this path."
+  from: String
+
+  "Goal \"funnel:step\"; empty = no goal; not given = the default goal."
+  goal: String
+
+  "Group sub pages (/news/…) into one box."
+  group: Boolean
+
+  "Steps to show, 2–6 (default 4)."
+  steps: Int
+
+  "Only journeys that end on this path."
+  to: String
+
+  "Paths to list, 5–100 (default 15)."
+  top: Int
+}
+
+"The journeys report."
+type FlxAnalyticsJourneys {
+  "The flow chart."
+  flow: FlxAnalyticsFlow!
+
+  "Goals to choose from (funnel steps)."
+  goals: [FlxAnalyticsOption!]!
+
+  "Options in effect."
+  options: FlxAnalyticsJourneyOptions!
+
+  "Frequent paths."
+  paths: FlxAnalyticsJourneyPaths!
+
+  "The date range."
+  range: FlxAnalyticsRange!
+
+  "Headline numbers."
+  summary: FlxAnalyticsJourneySummary!
+}
+
+"The flow chart."
+type FlxAnalyticsFlow {
+  "Steps from the entry page."
+  columns: [FlxAnalyticsFlowColumn!]!
+
+  "Bands between steps."
+  links: [FlxAnalyticsFlowLink!]!
+}
+
+"One step of the flow chart."
+type FlxAnalyticsFlowColumn {
+  "Boxes, busiest first."
+  nodes: [FlxAnalyticsFlowNode!]!
+}
+
+"A box of the flow chart."
+type FlxAnalyticsFlowNode {
+  "Visits through this box."
+  count: Int!
+
+  "Visits that ended here."
+  ends: Int!
+
+  "The step is an event (add to cart …), not a page."
+  ev: Boolean!
+
+  "Path key; ~ is &quot;other pages&quot;."
+  key: String!
+
+  "Page title."
+  label: String!
+
+  "Path; empty for events and other pages."
+  path: String!
+}
+
+"A band between two boxes."
+type FlxAnalyticsFlowLink {
+  "Visits."
+  count: Int!
+
+  "Key of the box it starts in."
+  from: String!
+
+  "Column the band starts in (0 = first)."
+  step: Int!
+
+  "Key of the box it ends in."
+  to: String!
+}
+
+"Options the journeys report used."
+type FlxAnalyticsJourneyOptions {
+  "Start path filter; empty = all."
+  from: String!
+
+  "Goal &quot;funnel:step&quot;; empty = none."
+  goal: String!
+
+  "Sub pages are grouped."
+  group: Boolean!
+
+  "Steps shown."
+  steps: Int!
+
+  "End path filter; empty = all."
+  to: String!
+
+  "Paths listed."
+  top: Int!
+}
+
+"The most frequent paths."
+type FlxAnalyticsJourneyPaths {
+  "Paths (up to 200; the screen filters them)."
+  items: [FlxAnalyticsJourneyPath!]!
+
+  "Paths asked for."
+  top: Int!
+
+  "Distinct paths."
+  total: Int!
+}
+
+"A frequent path."
+type FlxAnalyticsJourneyPath {
+  "Percent change; empty when the path is new."
+  change: Float
+
+  "Visits in the previous equal period."
+  prev: Int!
+
+  "Percent that reached the goal."
+  rate: Float!
+
+  "Of them, visits that reached the goal."
+  reached: Int!
+
+  "Visits that took this path."
+  sessions: Int!
+
+  "Percent of multi-page visits."
+  share: Float!
+
+  "Steps in order."
+  steps: [FlxAnalyticsJourneyStep!]!
+}
+
+"A step of a path."
+type FlxAnalyticsJourneyStep {
+  "The step is an event."
+  ev: Boolean!
+
+  "Path key."
+  key: String!
+
+  "Page title or event name."
+  label: String!
+
+  "Path; empty for events."
+  path: String!
+}
+
+"The resolved date range and the equal period before it."
+type FlxAnalyticsRange {
+  "Days in the range."
+  days: Int!
+
+  "Last day (YYYY-MM-DD, site time zone)."
+  end: String!
+
+  "Name of the range."
+  label: String!
+
+  "Range preset."
+  preset: FlxAnalyticsRangePreset!
+
+  "Last day of the previous equal period."
+  prevEnd: String!
+
+  "First day of the previous equal period."
+  prevStart: String!
+
+  "First day (YYYY-MM-DD, site time zone)."
+  start: String!
+}
+
+"Headline numbers of the journeys report."
+type FlxAnalyticsJourneySummary {
+  "Average journey length in pages."
+  avgLen: Float!
+
+  "Percent change of the average length."
+  avgLenChange: Float
+
+  "Percent change of the goal rate."
+  goalChange: Float
+
+  "Percent that reached the goal; empty when no goal is chosen."
+  goalRate: Float
+
+  "Visits that reached the goal."
+  goalReached: Int!
+
+  "Visits with at least two pages."
+  multi: Int!
+
+  "Percent change of multi-page visits."
+  multiChange: Float
+
+  "Percent of all visits."
+  multiPct: Float!
+
+  "All visits."
+  sessions: Int!
+
+  "Most common first page; empty without data."
+  topEntry: FlxAnalyticsJourneyNode
+
+  "Most common last page after two or more pages; empty without data."
+  topExit: FlxAnalyticsJourneyNode
+}
+
+"A page with its visit count."
+type FlxAnalyticsJourneyNode {
+  "Visits."
+  count: Int!
+
+  "Path key."
+  key: String!
+
+  "Page title."
+  label: String!
+
+  "Percent of multi-page visits."
+  pct: Float!
+}
+
+"One page or post."
+type FlxAnalyticsPageStats {
+  "The page has any recorded views."
+  found: Boolean!
+
+  "Page views in the range."
+  pageviews: Int!
+
+  "Address paths that count for this page."
+  paths: [String!]!
+
+  "Days with views; days without are left out."
+  series: [FlxAnalyticsPoint!]!
+
+  "Visitors in the range."
+  visitors: Int!
+}
+
+"One bar of the visitors chart."
+type FlxAnalyticsPoint {
+  "First day of the bar (YYYY-MM-DD)."
+  date: String!
+
+  "Page views."
+  pageviews: Int!
+
+  "Visitors."
+  visitors: Int!
+}
+
+"A page of FlxAnalyticsPageRow records."
+type FlxAnalyticsPageRowConnection {
+  "Records with their cursors."
+  edges: [FlxAnalyticsPageRowEdge!]!
+
+  "Records of this page."
+  nodes: [FlxAnalyticsPageRow!]!
+
+  "Paging information."
+  pageInfo: FlxPageInfo!
+
+  "All matching records (null when counting would be slow)."
+  totalCount: Int
+}
+
+"One FlxAnalyticsPageRow in a list, with its cursor."
+type FlxAnalyticsPageRowEdge {
+  "Opaque cursor of this record."
+  cursor: String!
+
+  "The record."
+  node: FlxAnalyticsPageRow!
+}
+
+"A page and its views."
+type FlxAnalyticsPageRow {
+  "The address was not found."
+  is404: Boolean!
+
+  "Page views."
+  pageviews: Int!
+
+  "Address path."
+  path: String!
+
+  "Post ID; 0 when the address is not a post."
+  postId: Int!
+
+  "Page title (the path when the page has none)."
+  title: String!
+
+  "Full address."
+  url: String!
+
+  "Visitors."
+  visitors: Int!
+}
+
+"Who is on the site now."
+type FlxAnalyticsRealtime {
+  "People on the site in the last 5 minutes."
+  active: Int!
+
+  "Referral codes (5)."
+  codes: [FlxAnalyticsLiveCode!]!
+
+  "Countries (10)."
+  countries: [FlxAnalyticsLiveCountry!]!
+
+  "Headline numbers and chart, when asked for."
+  kpi: FlxAnalyticsKpi
+
+  "Window in minutes."
+  minutes: Int!
+
+  "Busiest pages (5)."
+  pages: [FlxAnalyticsLivePage!]!
+
+  "Page views in the window."
+  pageviews: Int!
+
+  "Page views per minute, oldest first."
+  perMinute: [Int!]!
+
+  "Busiest referring sites (5)."
+  referrers: [FlxAnalyticsLiveReferrer!]!
+
+  "When the visit queue was last processed; empty when never."
+  updated: FlxDateTime
+
+  "Visitors in the window."
+  visitors: Int!
+}
+
+"A referral code of the people on the site now."
+type FlxAnalyticsLiveCode {
+  "Referral code."
+  code: String!
+
+  "Name, or the code."
+  label: String!
+
+  "Visitors in the window."
+  visitors: Int!
+}
+
+"A country people are visiting from now."
+type FlxAnalyticsLiveCountry {
+  "Country name in the user&#039;s language."
+  label: String!
+
+  "Country code."
+  value: String!
+
+  "Visitors in the window."
+  visitors: Int!
+}
+
+"Headline numbers and the chart."
+type FlxAnalyticsKpi {
+  "Percent changes."
+  change: FlxAnalyticsChange!
+
+  "Totals in the previous equal period."
+  prev: FlxAnalyticsTotals!
+
+  "Chart data."
+  series: FlxAnalyticsSeries!
+
+  "Totals in the range."
+  totals: FlxAnalyticsTotals!
+
+  "Visit measures in the range."
+  visits: FlxAnalyticsVisits!
+
+  "Visit measures in the previous period."
+  visitsPrev: FlxAnalyticsVisits!
+}
+
+"Percent change against the previous equal period; empty when that period had no data."
+type FlxAnalyticsChange {
+  "Average visit length change."
+  avgDuration: Float
+
+  "Bounce rate change."
+  bounceRate: Float
+
+  "Pages per visit change."
+  pagesPer: Float
+
+  "Page views change."
+  pageviews: Float
+
+  "Visits change."
+  sessions: Float
+
+  "Visitors change."
+  visitors: Float
+}
+
+"Visitors and page views."
+type FlxAnalyticsTotals {
+  "Page views."
+  pageviews: Int!
+
+  "Sum of each day&#039;s unique visitors."
+  visitors: Int!
+}
+
+"Visitors over time; missing days are zero."
+type FlxAnalyticsSeries {
+  "Bar size (day for up to 92 days, week up to 400, then month)."
+  group: FlxAnalyticsSeriesGroup!
+
+  "Bars, oldest first."
+  items: [FlxAnalyticsPoint!]!
+}
+
+"How a time series is grouped."
+enum FlxAnalyticsSeriesGroup {
+  ""
+  DAY
+
+  ""
+  MONTH
+
+  ""
+  WEEK
+}
+
+"Visit (session) measures."
+type FlxAnalyticsVisits {
+  "Average visit length in seconds."
+  avgDuration: Int!
+
+  "Percent of visits that saw one page."
+  bounceRate: Float!
+
+  "Pages per visit."
+  pagesPer: Float!
+
+  "Visits."
+  sessions: Int!
+}
+
+"A page people are on now."
+type FlxAnalyticsLivePage {
+  "Page views in the window."
+  pageviews: Int!
+
+  "Address path."
+  path: String!
+
+  "Page title."
+  title: String!
+}
+
+"A site people came from just now."
+type FlxAnalyticsLiveReferrer {
+  "Domain name."
+  host: String!
+
+  "Page views in the window."
+  pageviews: Int!
+}
+
+"A page of FlxAnalyticsReferrerRow records."
+type FlxAnalyticsReferrerRowConnection {
+  "Records with their cursors."
+  edges: [FlxAnalyticsReferrerRowEdge!]!
+
+  "Records of this page."
+  nodes: [FlxAnalyticsReferrerRow!]!
+
+  "Paging information."
+  pageInfo: FlxPageInfo!
+
+  "All matching records (null when counting would be slow)."
+  totalCount: Int
+}
+
+"One FlxAnalyticsReferrerRow in a list, with its cursor."
+type FlxAnalyticsReferrerRowEdge {
+  "Opaque cursor of this record."
+  cursor: String!
+
+  "The record."
+  node: FlxAnalyticsReferrerRow!
+}
+
+"A site that sent visitors."
+type FlxAnalyticsReferrerRow {
+  "Channel key (search, social, ai, referral …)."
+  channel: String!
+
+  "Channel name in the user&#039;s language."
+  channelLabel: String!
+
+  "Domain name."
+  host: String!
+
+  "Page views."
+  pageviews: Int!
+
+  "Visitors."
+  visitors: Int!
+}
+
+"A referral link (?r=code) and what its visitors did."
+type FlxAnalyticsRef {
+  "Donated amount."
+  amount: Float!
+
+  "Average visit length in seconds."
+  avgDuration: Int!
+
+  "Referral code."
+  code: String!
+
+  "Visits that completed the first funnel."
+  completed: Int!
+
+  "Furthest first-funnel step reached (0 = none)."
+  deepest: Int!
+
+  "Name of that step."
+  deepestLabel: String!
+
+  "Paid donations."
+  donations: Int!
+
+  "Name, or the code when there is no name."
+  label: String!
+
+  "Name given to the code; empty when none."
+  name: String!
+
+  "Pages per visit."
+  pagesPer: Float!
+
+  "Page views."
+  pageviews: Int!
+
+  "Visits."
+  sessions: Int!
+
+  "The link to share."
+  url: String!
+
+  "Visitors."
+  visitors: Int!
+}
+
+"Everything the Statistics screen shows."
+type FlxAnalyticsReport {
+  "Breakdowns: channel, device, browser, system, language, country and campaign values."
+  dims: [FlxAnalyticsDimList!]!
+
+  "Event totals."
+  eventSummary: [FlxAnalyticsEventSum!]!
+
+  "Event details (10)."
+  events: FlxAnalyticsEventList!
+
+  "Visitor filters in effect."
+  filter: FlxAnalyticsFilterState!
+
+  "The first funnel, split by channel."
+  funnel: FlxAnalyticsFunnel!
+
+  "Headline numbers and the chart."
+  kpi: FlxAnalyticsKpi!
+
+  "Addresses that were not found (5)."
+  notFound: FlxAnalyticsPageList!
+
+  "Most viewed pages (10)."
+  pages: FlxAnalyticsPageList!
+
+  "The date range."
+  range: FlxAnalyticsRange!
+
+  "Who is on the site now (30 minutes)."
+  realtime: FlxAnalyticsRealtime!
+
+  "Referring sites (10)."
+  referrers: FlxAnalyticsReferrerList!
+
+  "Referral links (20)."
+  refs: [FlxAnalyticsRef!]!
+
+  "Traffic by visitor type."
+  segments: [FlxAnalyticsSegment!]!
+}
+
+"The top values of one breakdown."
+type FlxAnalyticsDimList {
+  "The top values."
+  items: [FlxAnalyticsDimRow!]!
+
+  "What the traffic is split by."
+  kind: FlxAnalyticsDimKind!
+
+  "All distinct values."
+  total: Int!
+}
+
+"Total of one event type."
+type FlxAnalyticsEventSum {
+  "Total amount (donations and orders)."
+  amount: Float!
+
+  "Times it happened."
+  hits: Int!
+
+  "Event name in the user&#039;s language."
+  label: String!
+
+  "Event name."
+  name: String!
+
+  "Distinct visitors."
+  uniques: Int!
+}
+
+"The first events of a list and how many there are."
+type FlxAnalyticsEventList {
+  "The first events."
+  items: [FlxAnalyticsEventRow!]!
+
+  "All matching events."
+  total: Int!
+}
+
+"The visitor filters in effect."
+type FlxAnalyticsFilterState {
+  "Referral code filter."
+  rc: String!
+
+  "Visitor type filter."
+  seg: String!
+}
+
+"The first pages of a list and how many there are."
+type FlxAnalyticsPageList {
+  "The first pages."
+  items: [FlxAnalyticsPageRow!]!
+
+  "All matching pages."
+  total: Int!
+}
+
+"The first referring sites of a list and how many there are."
+type FlxAnalyticsReferrerList {
+  "The first sites."
+  items: [FlxAnalyticsReferrerRow!]!
+
+  "All matching sites."
+  total: Int!
+}
+
+"Traffic of one visitor type."
+type FlxAnalyticsSegment {
+  "Name in the user&#039;s language."
+  label: String!
+
+  "Page views."
+  pageviews: Int!
+
+  "Role name; empty for outside visitors."
+  value: String!
+
+  "Visitors."
+  visitors: Int!
+}
+
+"Flux Analytics settings and the data status."
+type FlxAnalyticsSettings {
+  "The admin bar shows the page&#039;s views."
+  adminbar: Boolean!
+
+  "Visitors who send &quot;Do Not Track&quot; are not counted."
+  dnt: Boolean!
+
+  "Phone, email and WhatsApp clicks are tracked."
+  evContact: Boolean!
+
+  "Paid donations and orders are tracked."
+  evDonation: Boolean!
+
+  "File downloads are tracked."
+  evDownload: Boolean!
+
+  "Outbound link clicks are tracked."
+  evOutbound: Boolean!
+
+  "Site searches are tracked."
+  evSearch: Boolean!
+
+  "IP addresses that are not counted, one per line."
+  excludeIps: String!
+
+  "Roles that are not counted."
+  excludeRoles: [String!]!
+
+  "CSV download address."
+  exportUrl: String!
+
+  "The fast endpoint can be used on this install."
+  fastPossible: Boolean!
+
+  "Result of the last fast endpoint test: ok, fail or empty."
+  fastTest: String!
+
+  "The default funnel (for quick steps and reset)."
+  funnelDefaults: [FlxAnalyticsFunnelDef!]!
+
+  "Events a funnel step can use."
+  funnelEvents: [FlxAnalyticsOption!]!
+
+  "Pages a funnel step can suggest."
+  funnelPages: [FlxAnalyticsPageOption!]!
+
+  "Funnels in use."
+  funnels: [FlxAnalyticsFunnelDef!]!
+
+  "Telemetry collection address; empty when the hub code is missing."
+  hubEndpoint: String
+
+  "Months to keep data; 0 = forever."
+  keepMonths: Int!
+
+  "Koko Analytics data to import; empty when there is none."
+  koko: FlxAnalyticsKoko
+
+  "When the visit queue was last processed; empty when never."
+  lastAggregated: FlxDateTime
+
+  "Collection method setting."
+  method: FlxAnalyticsCollectMethod!
+
+  "Method in use now (fast or rest)."
+  methodNow: FlxAnalyticsCollectMethod!
+
+  "Visits are counted."
+  on: Boolean!
+
+  "Bytes waiting in the visit queue."
+  pendingBytes: Int!
+
+  "The same as text (12 KB)."
+  pendingLabel: String!
+
+  "The post and page lists have a views column."
+  postsColumn: Boolean!
+
+  "Roles to exclude from counting."
+  roles: [FlxAnalyticsOption!]!
+
+  "This site receives telemetry from FluxWP installs."
+  tmHub: Boolean!
+}
+
+"A funnel as stored."
+type FlxAnalyticsFunnelDef {
+  "Funnel number."
+  id: Int!
+
+  "Funnel name."
+  name: String!
+
+  "Steps in order."
+  steps: [FlxAnalyticsFunnelStepDef!]!
+}
+
+"A funnel step as stored."
+type FlxAnalyticsFunnelStepDef {
+  "Step name."
+  label: String!
+
+  "What the step matches."
+  type: FlxAnalyticsStepType!
+
+  "Path or event."
+  value: String!
+}
+
+"A page the funnel editor suggests."
+type FlxAnalyticsPageOption {
+  "Path."
+  path: String!
+
+  "Title."
+  title: String!
+}
+
+"Koko Analytics data that can be imported."
+type FlxAnalyticsKoko {
+  "Days of data."
+  days: Int!
+
+  "First day."
+  first: String!
+
+  "Last day."
+  last: String!
+}
+
+"How visits are sent to the site."
+enum FlxAnalyticsCollectMethod {
+  ""
+  AUTO
+
+  ""
+  FAST
+
+  ""
+  REST
+}
+
+"Product telemetry received from FluxWP installs."
+type FlxAnalyticsTelemetry {
+  "Countries to filter by."
+  countries: [FlxAnalyticsTmCountry!]!
+
+  "Country filter; empty = all."
+  country: String!
+
+  "Range in days."
+  days: Int!
+
+  "The hub is on."
+  enabled: Boolean!
+
+  "Address FluxWP Panel sends to."
+  endpoint: String!
+
+  "Setup wizard numbers."
+  onboarding: FlxAnalyticsTmOnboarding!
+
+  "Overview numbers."
+  overview: FlxAnalyticsTmOverview!
+}
+
+"A country that reported."
+type FlxAnalyticsTmCountry {
+  "Lower case country code."
+  code: String!
+
+  "Country name."
+  name: String!
+
+  "Sites."
+  sites: Int!
+}
+
+"Setup wizard numbers."
+type FlxAnalyticsTmOnboarding {
+  "Card choices."
+  cards: [FlxAnalyticsTmCard!]!
+
+  "Finished."
+  done: Int!
+
+  "Closed before the end."
+  left: Int!
+
+  "Median time of the runs that finished, in seconds."
+  medianSeconds: Int!
+
+  "Presets of finished runs."
+  presets: [FlxAnalyticsTmChoice!]!
+
+  "Steps reached."
+  reach: [FlxAnalyticsTmReach!]!
+
+  "Wizard runs (latest run per install)."
+  runs: Int!
+
+  "Skipped."
+  skipped: Int!
+
+  "Where runs stopped."
+  stops: [FlxAnalyticsTmStop!]!
+
+  "Colour styles of finished runs."
+  styles: [FlxAnalyticsTmChoice!]!
+}
+
+"A wizard card and its choices."
+type FlxAnalyticsTmCard {
+  "Runs that picked it and removed it."
+  dropped: Int!
+
+  "Card name."
+  name: String!
+
+  "Runs that picked it."
+  picked: Int!
+
+  "Runs that removed it from the suggestions."
+  recOff: Int!
+
+  "Card key."
+  slug: String!
+}
+
+"A choice and how many runs made it."
+type FlxAnalyticsTmChoice {
+  "Runs."
+  count: Int!
+
+  "Choice."
+  key: String!
+}
+
+"A wizard step and how many runs reached it."
+type FlxAnalyticsTmReach {
+  "Runs."
+  count: Int!
+
+  "Step name."
+  label: String!
+
+  "Step key."
+  step: String!
+}
+
+"Where wizard runs stopped."
+type FlxAnalyticsTmStop {
+  "Runs."
+  count: Int!
+
+  "Step name."
+  label: String!
+
+  "skip (skipped) or left (closed)."
+  outcome: String!
+
+  "Step key."
+  step: String!
+}
+
+"Telemetry overview."
+type FlxAnalyticsTmOverview {
+  "Mobile app daily active accounts."
+  appUsage: [FlxAnalyticsTmAppUsage!]!
+
+  "Most common package sets (10)."
+  combos: [FlxAnalyticsTmCombo!]!
+
+  "Countries (15)."
+  countries: [FlxAnalyticsTmCount!]!
+
+  "Distinct errors."
+  errorsOpen: Int!
+
+  "Error occurrences."
+  events: Int!
+
+  "Distinct fatal errors."
+  fatalOpen: Int!
+
+  "Reporting sites."
+  installs: Int!
+
+  "Site languages (8)."
+  locales: [FlxAnalyticsTmCount!]!
+
+  "Packages used together (15)."
+  pairs: [FlxAnalyticsTmPair!]!
+
+  "PHP versions."
+  php: [FlxAnalyticsTmCount!]!
+
+  "Reports received."
+  reports: Int!
+
+  "Package usage (25)."
+  usage: [FlxAnalyticsTmUsage!]!
+
+  "WordPress versions."
+  wp: [FlxAnalyticsTmCount!]!
+}
+
+"Daily active accounts of the mobile app."
+type FlxAnalyticsTmAppUsage {
+  "Consenting accounts."
+  accounts: Int!
+
+  "UTC day."
+  day: String!
+
+  "ios or android."
+  platform: String!
+}
+
+"A set of packages."
+type FlxAnalyticsTmCombo {
+  "Package names; empty = FluxWP Panel only."
+  names: [String!]!
+
+  "Sites."
+  sites: Int!
+}
+
+"A value and the sites that have it."
+type FlxAnalyticsTmCount {
+  "Value."
+  key: String!
+
+  "Name."
+  label: String!
+
+  "Sites."
+  sites: Int!
+}
+
+"Two packages used together."
+type FlxAnalyticsTmPair {
+  "First package."
+  aName: String!
+
+  "Second package."
+  bName: String!
+
+  "Sites."
+  sites: Int!
+}
+
+"A package and how many sites use it."
+type FlxAnalyticsTmUsage {
+  "Package name."
+  name: String!
+
+  "Sites."
+  sites: Int!
+
+  "Package slug."
+  slug: String!
+
+  "Most common version."
+  topVersion: String!
+}
+
+"Error records and the packages to filter by."
+type FlxAnalyticsTmErrors {
+  "Records, fatal first (300 at most)."
+  items: [FlxAnalyticsTmError!]!
+
+  "Packages that have errors."
+  plugins: [FlxAnalyticsOption!]!
+}
+
+"An error FluxWP installs reported."
+type FlxAnalyticsTmError {
+  "Occurrences."
+  count: Int!
+
+  "The error stops the request."
+  fatal: Boolean!
+
+  "File inside the package."
+  file: String!
+
+  "Record key."
+  hash: String!
+
+  "When it last happened."
+  last: FlxDateTime!
+
+  "Line; 0 when unknown."
+  line: Int!
+
+  "First line of the message (paths, domains, emails and IPs removed)."
+  message: String!
+
+  "The rest of the message."
+  more: String!
+
+  "Package key."
+  plugin: String!
+
+  "Package name."
+  pluginName: String!
+
+  "Different installs that saw it."
+  sites: Int!
+
+  "PHP error type (E_WARNING …)."
+  type: String!
+
+  "Package version."
+  version: String!
+}
+
 "Devices, sessions and keys."
 type FlxAppAccess {
   "The user may create API keys."
@@ -19886,6 +21485,48 @@ type RootMutation {
     input: FlxAiToolsUpdateInput!
   ): FlxAiToolsUpdatePayload
 
+  "Processes the waiting visits now."
+  flxAnalyticsAggregate(
+    "Input for the flxAnalyticsAggregate mutation"
+    input: FlxAnalyticsAggregateInput!
+  ): FlxAnalyticsAggregatePayload
+
+  "Records whether this browser reached the fast endpoint."
+  flxAnalyticsFastTest(
+    "Input for the flxAnalyticsFastTest mutation"
+    input: FlxAnalyticsFastTestInput!
+  ): FlxAnalyticsFastTestPayload
+
+  "Imports Koko Analytics history from before Flux Analytics was installed."
+  flxAnalyticsKokoImport(
+    "Input for the flxAnalyticsKokoImport mutation"
+    input: FlxAnalyticsKokoImportInput!
+  ): FlxAnalyticsKokoImportPayload
+
+  "Adds a referral link name, renames it, or removes the name (the statistics stay)."
+  flxAnalyticsRefSave(
+    "Input for the flxAnalyticsRefSave mutation"
+    input: FlxAnalyticsRefSaveInput!
+  ): FlxAnalyticsRefSavePayload
+
+  "Deletes all statistics permanently."
+  flxAnalyticsReset(
+    "Input for the flxAnalyticsReset mutation"
+    input: FlxAnalyticsResetInput!
+  ): FlxAnalyticsResetPayload
+
+  "Changes settings and funnels. Fields you do not send stay as they are."
+  flxAnalyticsSettingsSave(
+    "Input for the flxAnalyticsSettingsSave mutation"
+    input: FlxAnalyticsSettingsSaveInput!
+  ): FlxAnalyticsSettingsSavePayload
+
+  "Removes one telemetry error record, or all of them with &quot;all&quot;. A record returns when the error happens again."
+  flxAnalyticsTelemetryForget(
+    "Input for the flxAnalyticsTelemetryForget mutation"
+    input: FlxAnalyticsTelemetryForgetInput!
+  ): FlxAnalyticsTelemetryForgetPayload
+
   "Removes a session or key (own, or any as administrator)."
   flxAppAccessRevoke(
     "Input for the flxAppAccessRevoke mutation"
@@ -21865,6 +23506,231 @@ type FlxAiToolsUpdatePayload {
 
   "Every tool after the change; empty when the input was refused."
   tools: [FlxAiTool!]
+}
+
+"Input for the flxAnalyticsAggregate mutation."
+input FlxAnalyticsAggregateInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+}
+
+"The payload for the flxAnalyticsAggregate mutation."
+type FlxAnalyticsAggregatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Visit rows processed."
+  processed: Int!
+
+  "Settings and data status after the run."
+  settings: FlxAnalyticsSettings
+}
+
+"Input for the flxAnalyticsFastTest mutation."
+input FlxAnalyticsFastTestInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "The endpoint answered."
+  ok: Boolean!
+}
+
+"The payload for the flxAnalyticsFastTest mutation."
+type FlxAnalyticsFastTestPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Collection method in use now."
+  method: FlxAnalyticsCollectMethod!
+}
+
+"Input for the flxAnalyticsKokoImport mutation."
+input FlxAnalyticsKokoImportInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+}
+
+"The payload for the flxAnalyticsKokoImport mutation."
+type FlxAnalyticsKokoImportPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Rows imported."
+  rows: Int!
+
+  "Settings and data status after the import."
+  settings: FlxAnalyticsSettings
+}
+
+"Input for the flxAnalyticsRefSave mutation."
+input FlxAnalyticsRefSaveInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Referral code (letters, digits, - and _)."
+  code: String!
+
+  "Remove the name."
+  delete: Boolean = false
+
+  "Name shown in reports."
+  name: String
+}
+
+"The payload for the flxAnalyticsRefSave mutation."
+type FlxAnalyticsRefSavePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The saved code and its link."
+  ref: FlxAnalyticsRefSaved
+}
+
+"A saved referral code."
+type FlxAnalyticsRefSaved {
+  "Referral code."
+  code: String!
+
+  "Name; empty when removed."
+  name: String!
+
+  "The link to share."
+  url: String!
+}
+
+"Input for the flxAnalyticsReset mutation."
+input FlxAnalyticsResetInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+}
+
+"The payload for the flxAnalyticsReset mutation."
+type FlxAnalyticsResetPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Settings and data status after the reset."
+  settings: FlxAnalyticsSettings
+}
+
+"Input for the flxAnalyticsSettingsSave mutation."
+input FlxAnalyticsSettingsSaveInput {
+  "Show the page's views in the admin bar."
+  adminbar: Boolean
+
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Do not count visitors who send \"Do Not Track\"."
+  dnt: Boolean
+
+  "Track phone, email and WhatsApp clicks."
+  evContact: Boolean
+
+  "Track paid donations and orders."
+  evDonation: Boolean
+
+  "Track file downloads."
+  evDownload: Boolean
+
+  "Track outbound link clicks."
+  evOutbound: Boolean
+
+  "Track site searches."
+  evSearch: Boolean
+
+  "IP addresses that are not counted, one per line (* and CIDR work)."
+  excludeIps: String
+
+  "Roles that are not counted."
+  excludeRoles: [String!]
+
+  "Replaces the funnels (5 at most); an empty list or the default set goes back to the defaults."
+  funnels: [FlxAnalyticsFunnelInput!]
+
+  "Months to keep data (0–120); 0 = forever."
+  keepMonths: Int
+
+  "Collection method."
+  method: FlxAnalyticsCollectMethod
+
+  "Count visits."
+  on: Boolean
+
+  "Show a views column in the post and page lists."
+  postsColumn: Boolean
+
+  "Receive telemetry from FluxWP installs."
+  tmHub: Boolean
+}
+
+"A funnel: steps visitors go through in order."
+input FlxAnalyticsFunnelInput {
+  "Funnel name."
+  name: String!
+
+  "Steps, 10 at most."
+  steps: [FlxAnalyticsFunnelStepInput!]!
+}
+
+"One funnel step."
+input FlxAnalyticsFunnelStepInput {
+  "Name shown in the report."
+  label: String!
+
+  "Site entry, a page path prefix or an event."
+  type: FlxAnalyticsStepType!
+
+  "Path (/donate/) or event (name or name:detail); empty for site entry."
+  value: String
+}
+
+"The payload for the flxAnalyticsSettingsSave mutation."
+type FlxAnalyticsSettingsSavePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Settings after the change."
+  settings: FlxAnalyticsSettings
+}
+
+"Input for the flxAnalyticsTelemetryForget mutation."
+input FlxAnalyticsTelemetryForgetInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Record key, or \"all\"."
+  hash: String!
+}
+
+"The payload for the flxAnalyticsTelemetryForget mutation."
+type FlxAnalyticsTelemetryForgetPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The record was removed."
+  removed: Boolean
 }
 
 "Input for the flxAppAccessRevoke mutation."
