@@ -38,7 +38,7 @@ final class FLXC_Chat_Node implements FLXGQL_Node {
 	}
 
 	public function gql_id(): int {
-		return (int) $this->row['id'];
+		return FLXC_Val::int($this->row['id']);
 	}
 
 	/**
@@ -64,9 +64,9 @@ final class FLXC_Chat_Loader extends FLXGQL_Loader {
 	protected function fetch( array $ids ): array {
 		$out = array();
 		foreach ( $ids as $id ) {
-			$row = flxc_get_chat( (int) $id );
+			$row = flxc_get_chat( FLXC_Val::int($id) );
 			if ( is_array( $row ) ) {
-				$out[ (int) $id ] = new FLXC_Chat_Node( $row );
+				$out[ FLXC_Val::int($id) ] = new FLXC_Chat_Node( $row );
 			}
 		}
 		return $out;
@@ -93,7 +93,7 @@ final class FLXC_Phone_Person_Loader extends \WPGraphQL\Data\Loader\AbstractData
 	protected function loadKeys( array $keys ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid
 		$want = array();
 		foreach ( $keys as $key ) {
-			$digits = preg_replace( '/\D+/', '', (string) $key );
+			$digits = preg_replace( '/\D+/', '', FLXC_Val::str($key) );
 			if ( is_string( $digits ) && '' !== $digits ) {
 				$want[ $digits ] = $digits;
 			}
@@ -101,23 +101,24 @@ final class FLXC_Phone_Person_Loader extends \WPGraphQL\Data\Loader\AbstractData
 		$found = array();
 		if ( $want && class_exists( 'FLXCRM_Contact' ) && class_exists( 'FLXCRM_Contact_Node' ) && function_exists( 'flx_people_table' ) && function_exists( 'flxcrm_display_name' ) ) {
 			global $wpdb;
+			/** @var wpdb $wpdb */
 			$visible = array();
 			$place   = implode( ',', array_fill( 0, count( $want ), '%s' ) );
-			$chats   = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM ' . flxc_table( 'chats' ) . " WHERE phone IN ($place)", array_values( $want ) ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare
+			$chats   = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM ' . flxc_table( 'chats' ) . " WHERE phone IN ($place)", array_values( $want ) ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare // @phpstan-ignore argument.type
 			foreach ( (array) $chats as $chat ) {
 				if ( is_array( $chat ) && flxc_user_can_see_chat( $chat ) ) {
-					$visible[ (string) $chat['phone'] ] = true;
+					$visible[ FLXC_Val::str($chat['phone']) ] = true;
 				}
 			}
 			$phones = array_keys( array_intersect_key( $want, $visible ) );
 			if ( $phones ) {
 				$place = implode( ',', array_fill( 0, count( $phones ), '%s' ) );
-				$rows  = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM ' . flx_people_table() . " WHERE phone IN ($place)", $phones ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare
+				$rows  = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM ' . FLXC_Val::str( flx_people_table() ) . " WHERE phone IN ($place)", $phones ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare // @phpstan-ignore argument.type
 				foreach ( (array) $rows as $row ) {
 					if ( ! is_array( $row ) ) {
 						continue;
 					}
-					$phone = preg_replace( '/\D+/', '', (string) ( $row['phone'] ?? '' ) );
+					$phone = preg_replace( '/\D+/', '', FLXC_Val::str(( $row['phone'] ?? '' )) );
 					if ( is_string( $phone ) && '' !== $phone && isset( $visible[ $phone ] ) ) {
 						$found[ $phone ] = new FLXCRM_Contact_Node( FLXCRM_Contact::from_row( $row ) );
 					}
@@ -126,8 +127,9 @@ final class FLXC_Phone_Person_Loader extends \WPGraphQL\Data\Loader\AbstractData
 		}
 		$out = array();
 		foreach ( $keys as $key ) {
-			$digits    = preg_replace( '/\D+/', '', (string) $key );
-			$out[ $key ] = is_string( $digits ) ? ( $found[ $digits ] ?? null ) : null;
+			$digits = preg_replace( '/\D+/', '', FLXC_Val::str($key) );
+			$idx    = is_int( $key ) || is_string( $key ) ? $key : FLXC_Val::str( $key );
+			$out[ $idx ] = is_string( $digits ) ? ( $found[ $digits ] ?? null ) : null;
 		}
 		return $out;
 	}
@@ -149,7 +151,7 @@ function flxc_gql_chat( $source ): FLXC_Chat_Node {
 function flxc_gql_req( array $params ): WP_REST_Request {
 	$req = new WP_REST_Request( 'POST' );
 	foreach ( $params as $key => $value ) {
-		$req->set_param( (string) $key, $value );
+		$req->set_param( FLXC_Val::str($key), $value );
 	}
 	return $req;
 }
@@ -180,7 +182,7 @@ function flxc_gql_chat_id( $id ): int {
  * @param mixed $ms Milliseconds.
  */
 function flxc_gql_ms( $ms ): string {
-	return (string) (int) $ms;
+	return FLXC_Val::str(FLXC_Val::int($ms));
 }
 
 /**
@@ -188,19 +190,19 @@ function flxc_gql_ms( $ms ): string {
  * @return array{iso:string,timestamp:int,label:string,relative:string}|null
  */
 function flxc_gql_ms_time( $ms ): ?array {
-	$ms = (int) $ms;
+	$ms = FLXC_Val::int($ms);
 	if ( $ms < 1 ) {
 		return null;
 	}
-	return flx_gql_datetime( (int) floor( $ms / 1000 ) );
+	return flx_gql_datetime( FLXC_Val::int(floor( $ms / 1000 )) );
 }
 
 /**
- * @param array<string,mixed> $js Message for the classic client.
+ * @param array<mixed,mixed> $js Message for the classic client.
  * @return array<string,mixed>
  */
 function flxc_gql_message( array $js ): array {
-	$status = (string) ( $js['status'] ?? '' );
+	$status = FLXC_Val::str(( $js['status'] ?? '' ));
 	$react  = array();
 	$raw    = $js['react'] ?? array();
 	if ( $raw instanceof stdClass ) {
@@ -210,7 +212,7 @@ function flxc_gql_message( array $js ): array {
 		foreach ( $raw as $side => $emoji ) {
 			if ( is_string( $emoji ) && '' !== $emoji ) {
 				$react[] = array(
-					'side'  => (string) $side,
+					'side'  => FLXC_Val::str($side),
 					'emoji' => $emoji,
 				);
 			}
@@ -222,35 +224,35 @@ function flxc_gql_message( array $js ): array {
 		$media = array(
 			'file'  => flx_gql_file(
 				array(
-					'id'   => (string) ( $js['id'] ?? '' ),
-					'name' => (string) ( $m['name'] ?? '' ),
-					'mime' => (string) ( $m['mime'] ?? '' ),
-					'size' => (int) ( $m['size'] ?? 0 ),
-					'url'  => (string) ( $m['url'] ?? '' ),
+					'id'   => FLXC_Val::str(( $js['id'] ?? '' )),
+					'name' => FLXC_Val::str(( $m['name'] ?? '' )),
+					'mime' => FLXC_Val::str(( $m['mime'] ?? '' )),
+					'size' => FLXC_Val::int(( $m['size'] ?? 0 )),
+					'url'  => FLXC_Val::str(( $m['url'] ?? '' )),
 				)
 			),
 			'ready' => ! empty( $m['ready'] ),
 			'ptt'   => ! empty( $m['ptt'] ),
-			'secs'  => (int) ( $m['secs'] ?? 0 ),
-			'w'     => (int) ( $m['w'] ?? 0 ),
-			'h'     => (int) ( $m['h'] ?? 0 ),
-			'thumb' => (string) ( $m['thumb'] ?? '' ),
+			'secs'  => FLXC_Val::int(( $m['secs'] ?? 0 )),
+			'w'     => FLXC_Val::int(( $m['w'] ?? 0 )),
+			'h'     => FLXC_Val::int(( $m['h'] ?? 0 )),
+			'thumb' => FLXC_Val::str(( $m['thumb'] ?? '' )),
 		);
 	}
 	$del = isset( $js['del'] ) && is_array( $js['del'] ) ? $js['del'] : null;
 	return array(
-		'databaseId'   => (int) ( $js['id'] ?? 0 ),
-		'chatId'       => (int) ( $js['chat'] ?? 0 ),
-		'wa'           => (string) ( $js['wa'] ?? '' ),
-		'dir'          => (string) ( $js['dir'] ?? 'in' ),
-		'type'         => (string) ( $js['type'] ?? 'text' ),
-		'body'         => (string) ( $js['body'] ?? '' ),
+		'databaseId'   => FLXC_Val::int(( $js['id'] ?? 0 )),
+		'chatId'       => FLXC_Val::int(( $js['chat'] ?? 0 )),
+		'wa'           => FLXC_Val::str(( $js['wa'] ?? '' )),
+		'dir'          => FLXC_Val::str(( $js['dir'] ?? 'in' )),
+		'type'         => FLXC_Val::str(( $js['type'] ?? 'text' )),
+		'body'         => FLXC_Val::str(( $js['body'] ?? '' )),
 		'status'       => '' !== $status ? $status : null,
-		'error'        => (string) ( $js['error'] ?? '' ),
-		'author'       => (string) ( $js['user'] ?? '' ),
-		'authorId'     => (int) ( $js['userId'] ?? 0 ),
-		'source'       => (string) ( $js['source'] ?? '' ),
-		'sender'       => (string) ( $js['sender'] ?? '' ),
+		'error'        => FLXC_Val::str(( $js['error'] ?? '' )),
+		'author'       => FLXC_Val::str(( $js['user'] ?? '' )),
+		'authorId'     => FLXC_Val::int(( $js['userId'] ?? 0 )),
+		'source'       => FLXC_Val::str(( $js['source'] ?? '' )),
+		'sender'       => FLXC_Val::str(( $js['sender'] ?? '' )),
 		'sentAt'       => flxc_gql_ms_time( $js['ts'] ?? 0 ),
 		'ts'           => flxc_gql_ms( $js['ts'] ?? 0 ),
 		'rev'          => flxc_gql_ms( $js['rev'] ?? 0 ),
@@ -259,8 +261,8 @@ function flxc_gql_message( array $js ): array {
 		'revokeUntil'  => isset( $js['revokeUntil'] ) ? flxc_gql_ms_time( $js['revokeUntil'] ) : null,
 		'deleted'      => ! empty( $js['deleted'] ),
 		'deletion'     => $del ? array(
-			'scope' => (string) ( $del['scope'] ?? '' ),
-			'by'    => (string) ( $del['by'] ?? '' ),
+			'scope' => FLXC_Val::str(( $del['scope'] ?? '' )),
+			'by'    => FLXC_Val::str(( $del['by'] ?? '' )),
 			'at'    => flxc_gql_ms_time( $del['at'] ?? 0 ),
 			'empty' => ! empty( $del['empty'] ),
 		) : null,
@@ -269,21 +271,21 @@ function flxc_gql_message( array $js ): array {
 		'linkPreviewSkipped' => isset( $js['lp'] ) && false === $js['lp'],
 		'receipts'     => isset( $js['receipts'] ) && is_array( $js['receipts'] ) ? array_values( $js['receipts'] ) : array(),
 		'rcheck'       => isset( $js['rcheck'] ) && is_array( $js['rcheck'] ) ? array(
-			'verdict' => (string) ( $js['rcheck']['v'] ?? '' ),
-			'summary' => (string) ( $js['rcheck']['s'] ?? '' ),
+			'verdict' => FLXC_Val::str(( $js['rcheck']['v'] ?? '' )),
+			'summary' => FLXC_Val::str(( $js['rcheck']['s'] ?? '' )),
 		) : null,
 		'origin'       => isset( $js['origin'] ) && is_array( $js['origin'] ) ? array(
-			'label' => (string) ( $js['origin']['label'] ?? '' ),
-			'url'   => (string) ( $js['origin']['url'] ?? '' ),
-			'kind'  => (string) ( $js['origin']['kind'] ?? '' ),
+			'label' => FLXC_Val::str(( $js['origin']['label'] ?? '' )),
+			'url'   => FLXC_Val::str(( $js['origin']['url'] ?? '' )),
+			'kind'  => FLXC_Val::str(( $js['origin']['kind'] ?? '' )),
 		) : null,
 		'media'        => $media,
 		'quoted'       => isset( $js['quoted'] ) && is_array( $js['quoted'] ) ? array(
-			'databaseId' => (int) ( $js['quoted']['id'] ?? 0 ),
-			'dir'        => (string) ( $js['quoted']['dir'] ?? 'in' ),
-			'type'       => (string) ( $js['quoted']['type'] ?? 'text' ),
-			'body'       => (string) ( $js['quoted']['body'] ?? '' ),
-			'author'     => (string) ( $js['quoted']['user'] ?? '' ),
+			'databaseId' => FLXC_Val::int(( $js['quoted']['id'] ?? 0 )),
+			'dir'        => FLXC_Val::str(( $js['quoted']['dir'] ?? 'in' )),
+			'type'       => FLXC_Val::str(( $js['quoted']['type'] ?? 'text' )),
+			'body'       => FLXC_Val::str(( $js['quoted']['body'] ?? '' )),
+			'author'     => FLXC_Val::str(( $js['quoted']['user'] ?? '' )),
 		) : null,
 	);
 }
@@ -443,8 +445,8 @@ flx_gql_type(
 	array(
 		'description' => __( 'A donation or certificate matched to a message.', 'flx-chat' ),
 		'fields'      => array(
-			'k'  => array( 'type' => 'String!', 'description' => __( 'donation or certificate.', 'flx-chat' ), 'resolve' => static fn( $r ): string => (string) ( is_array( $r ) ? ( $r['k'] ?? '' ) : '' ) ),
-			'id' => array( 'type' => 'Int!', 'description' => __( 'Record id.', 'flx-chat' ), 'resolve' => static fn( $r ): int => (int) ( is_array( $r ) ? ( $r['id'] ?? 0 ) : 0 ) ),
+			'k'  => array( 'type' => 'String!', 'description' => __( 'donation or certificate.', 'flx-chat' ), 'resolve' => static fn( $r ): string => FLXC_Val::str(( is_array( $r ) ? ( $r['k'] ?? '' ) : '' )) ),
+			'id' => array( 'type' => 'Int!', 'description' => __( 'Record id.', 'flx-chat' ), 'resolve' => static fn( $r ): int => FLXC_Val::int(( is_array( $r ) ? ( $r['id'] ?? 0 ) : 0 )) ),
 		),
 	)
 );
@@ -531,8 +533,8 @@ flx_gql_type(
 	array(
 		'description' => __( 'A block in the contact panel of one chat.', 'flx-chat' ),
 		'fields'      => array(
-			'id'    => array( 'type' => 'String!', 'description' => __( 'Id.', 'flx-chat' ), 'resolve' => static fn( $s ): string => (string) ( is_array( $s ) ? ( $s['id'] ?? '' ) : '' ) ),
-			'title' => array( 'type' => 'String!', 'description' => __( 'Title.', 'flx-chat' ), 'resolve' => static fn( $s ): string => (string) ( is_array( $s ) ? ( $s['title'] ?? '' ) : '' ) ),
+			'id'    => array( 'type' => 'String!', 'description' => __( 'Id.', 'flx-chat' ), 'resolve' => static fn( $s ): string => FLXC_Val::str(( is_array( $s ) ? ( $s['id'] ?? '' ) : '' )) ),
+			'title' => array( 'type' => 'String!', 'description' => __( 'Title.', 'flx-chat' ), 'resolve' => static fn( $s ): string => FLXC_Val::str(( is_array( $s ) ? ( $s['title'] ?? '' ) : '' )) ),
 			'items' => array(
 				'type'        => '[FlxChatSectionItem!]!',
 				'description' => __( 'Rows.', 'flx-chat' ),
@@ -544,10 +546,10 @@ flx_gql_type(
 							continue;
 						}
 						$out[] = array(
-							'label' => (string) ( $item['label'] ?? '' ),
-							'sub'   => (string) ( $item['sub'] ?? '' ),
-							'url'   => (string) ( $item['url'] ?? '' ),
-							'tone'  => (string) ( $item['tone'] ?? '' ),
+							'label' => FLXC_Val::str(( $item['label'] ?? '' )),
+							'sub'   => FLXC_Val::str(( $item['sub'] ?? '' )),
+							'url'   => FLXC_Val::str(( $item['url'] ?? '' )),
+							'tone'  => FLXC_Val::str(( $item['tone'] ?? '' )),
 						);
 					}
 					return $out;
@@ -561,7 +563,7 @@ flx_gql_type(
 	array(
 		'description' => __( 'A change to the contact on this chat.', 'flx-chat' ),
 		'fields'      => array(
-			'text' => array( 'type' => 'String!', 'description' => __( 'What changed.', 'flx-chat' ), 'resolve' => static fn( $e ): string => (string) ( is_array( $e ) ? ( $e['text'] ?? $e['note'] ?? '' ) : '' ) ),
+			'text' => array( 'type' => 'String!', 'description' => __( 'What changed.', 'flx-chat' ), 'resolve' => static fn( $e ): string => FLXC_Val::str(( is_array( $e ) ? ( $e['text'] ?? $e['note'] ?? '' ) : '' )) ),
 			'at'   => array(
 				'type'        => 'FlxDateTime',
 				'description' => __( 'When. Null when unknown.', 'flx-chat' ),
@@ -569,9 +571,9 @@ flx_gql_type(
 					if ( ! is_array( $e ) ) {
 						return null;
 					}
-					$ts = (int) ( $e['ts'] ?? $e['at'] ?? 0 );
+					$ts = FLXC_Val::int(( $e['ts'] ?? $e['at'] ?? 0 ));
 					if ( $ts > 100000000000 ) {
-						$ts = (int) floor( $ts / 1000 );
+						$ts = FLXC_Val::int(floor( $ts / 1000 ));
 					}
 					return $ts > 0 ? flx_gql_datetime( $ts ) : null;
 				},
@@ -586,28 +588,36 @@ flx_gql_type(
 		'description' => __( 'A WhatsApp or site chat the viewer is allowed to see.', 'flx-chat' ),
 		'node'        => FLXC_Chat_Loader::class,
 		'fields'      => array(
-			'connectionId' => array( 'type' => 'String!', 'description' => __( 'Connection id.', 'flx-chat' ), 'resolve' => static fn( $c ): string => (string) flxc_gql_chat( $c )->js()['conn'] ),
-			'jid'          => array( 'type' => 'String!', 'description' => __( 'Provider id.', 'flx-chat' ), 'resolve' => static fn( $c ): string => (string) flxc_gql_chat( $c )->js()['jid'] ),
-			'phoneDigits'  => array( 'type' => 'String!', 'description' => __( 'Digits. Empty for a hidden or group number.', 'flx-chat' ), 'resolve' => static fn( $c ): string => (string) flxc_gql_chat( $c )->js()['phone'] ),
-			'phoneFmt'     => array( 'type' => 'String!', 'description' => __( 'Number as shown.', 'flx-chat' ), 'resolve' => static fn( $c ): string => (string) flxc_gql_chat( $c )->js()['phoneFmt'] ),
+			'connectionId' => array( 'type' => 'String!', 'description' => __( 'Connection id.', 'flx-chat' ), 'resolve' => static fn( $c ): string => FLXC_Val::str(flxc_gql_chat( $c )->js()['conn']) ),
+			'jid'          => array( 'type' => 'String!', 'description' => __( 'Provider id.', 'flx-chat' ), 'resolve' => static fn( $c ): string => FLXC_Val::str(flxc_gql_chat( $c )->js()['jid']) ),
+			'phoneDigits'  => array( 'type' => 'String!', 'description' => __( 'Digits. Empty for a hidden or group number.', 'flx-chat' ), 'resolve' => static fn( $c ): string => FLXC_Val::str(flxc_gql_chat( $c )->js()['phone']) ),
+			'phoneFmt'     => array( 'type' => 'String!', 'description' => __( 'Number as shown.', 'flx-chat' ), 'resolve' => static fn( $c ): string => FLXC_Val::str(flxc_gql_chat( $c )->js()['phoneFmt']) ),
 			'phone'        => array(
 				'type'        => 'FlxPhone',
 				'description' => __( 'Number. Null when the chat has none.', 'flx-chat' ),
 				'resolve'     => static function ( $c ): ?array {
-					$digits = (string) flxc_gql_chat( $c )->js()['phone'];
+					$digits = FLXC_Val::str(flxc_gql_chat( $c )->js()['phone']);
 					return '' !== $digits ? flx_gql_phone( $digits ) : null;
 				},
 			),
-			'channel'      => array( 'type' => 'String!', 'description' => __( 'Channel id.', 'flx-chat' ), 'resolve' => static fn( $c ): string => (string) flxc_gql_chat( $c )->js()['channel'] ),
-			'title'        => array( 'type' => 'String!', 'description' => __( 'Title.', 'flx-chat' ), 'resolve' => static fn( $c ): string => (string) flxc_gql_chat( $c )->js()['title'] ),
-			'name'         => array( 'type' => 'String!', 'description' => __( 'Saved name.', 'flx-chat' ), 'resolve' => static fn( $c ): string => (string) flxc_gql_chat( $c )->js()['name'] ),
-			'pushName'     => array( 'type' => 'String!', 'description' => __( 'Name from WhatsApp.', 'flx-chat' ), 'resolve' => static fn( $c ): string => (string) flxc_gql_chat( $c )->js()['pushName'] ),
-			'avatarUrl'    => array( 'type' => 'String!', 'description' => __( 'Photo for this viewer. Empty when none.', 'flx-chat' ), 'resolve' => static fn( $c ): string => (string) flxc_gql_chat( $c )->js()['avatar'] ),
-			'avatarAt'     => array( 'type' => 'FlxDateTime', 'description' => __( 'When the photo was fetched. Null when never.', 'flx-chat' ), 'resolve' => static fn( $c ): ?array => flxc_gql_ms_time( (int) flxc_gql_chat( $c )->js()['avatarAt'] * 1000 ) ),
-			'labels'       => array( 'type' => '[String!]!', 'description' => __( 'Label ids.', 'flx-chat' ), 'resolve' => static fn( $c ): array => array_values( array_map( 'strval', (array) flxc_gql_chat( $c )->js()['labels'] ) ) ),
-			'notes'        => array( 'type' => 'String!', 'description' => __( 'Internal notes.', 'flx-chat' ), 'resolve' => static fn( $c ): string => (string) flxc_gql_chat( $c )->js()['notes'] ),
-			'status'       => array( 'type' => 'FlxChatStatus!', 'description' => __( 'Open or closed.', 'flx-chat' ), 'resolve' => static fn( $c ): string => (string) flxc_gql_chat( $c )->js()['status'] ),
-			'assignedTo'   => array( 'type' => 'Int!', 'description' => __( 'Agent user id. 0 when unassigned.', 'flx-chat' ), 'resolve' => static fn( $c ): int => (int) flxc_gql_chat( $c )->js()['assigned'] ),
+			'channel'      => array( 'type' => 'String!', 'description' => __( 'Channel id.', 'flx-chat' ), 'resolve' => static fn( $c ): string => FLXC_Val::str(flxc_gql_chat( $c )->js()['channel']) ),
+			'title'        => array( 'type' => 'String!', 'description' => __( 'Title.', 'flx-chat' ), 'resolve' => static fn( $c ): string => FLXC_Val::str(flxc_gql_chat( $c )->js()['title']) ),
+			'name'         => array( 'type' => 'String!', 'description' => __( 'Saved name.', 'flx-chat' ), 'resolve' => static fn( $c ): string => FLXC_Val::str(flxc_gql_chat( $c )->js()['name']) ),
+			'pushName'     => array( 'type' => 'String!', 'description' => __( 'Name from WhatsApp.', 'flx-chat' ), 'resolve' => static fn( $c ): string => FLXC_Val::str(flxc_gql_chat( $c )->js()['pushName']) ),
+			'avatarUrl'    => array( 'type' => 'String!', 'description' => __( 'Photo for this viewer. Empty when none.', 'flx-chat' ), 'resolve' => static fn( $c ): string => FLXC_Val::str(flxc_gql_chat( $c )->js()['avatar']) ),
+			'avatarAt'     => array( 'type' => 'FlxDateTime', 'description' => __( 'When the photo was fetched. Null when never.', 'flx-chat' ), 'resolve' => static fn( $c ): ?array => flxc_gql_ms_time( FLXC_Val::int(flxc_gql_chat( $c )->js()['avatarAt']) * 1000 ) ),
+			'labels'       => array(
+				'type'        => '[String!]!',
+				'description' => __( 'Label ids.', 'flx-chat' ),
+				'resolve'     => static function ( $c ): array {
+					$labels = flxc_gql_chat( $c )->js()['labels'] ?? array();
+					$labels = is_array( $labels ) ? $labels : array();
+					return array_values( array_map( static fn( $v ): string => FLXC_Val::str( $v ), $labels ) );
+				},
+			),
+			'notes'        => array( 'type' => 'String!', 'description' => __( 'Internal notes.', 'flx-chat' ), 'resolve' => static fn( $c ): string => FLXC_Val::str(flxc_gql_chat( $c )->js()['notes']) ),
+			'status'       => array( 'type' => 'FlxChatStatus!', 'description' => __( 'Open or closed.', 'flx-chat' ), 'resolve' => static fn( $c ): string => FLXC_Val::str(flxc_gql_chat( $c )->js()['status']) ),
+			'assignedTo'   => array( 'type' => 'Int!', 'description' => __( 'Agent user id. 0 when unassigned.', 'flx-chat' ), 'resolve' => static fn( $c ): int => FLXC_Val::int(flxc_gql_chat( $c )->js()['assigned']) ),
 			'staffUser'    => array(
 				'type'        => 'Int',
 				'description' => __( 'Linked staff user. Null for an agent; only a manager sees it.', 'flx-chat' ),
@@ -616,32 +626,39 @@ flx_gql_type(
 						return null;
 					}
 					$js = flxc_gql_chat( $c )->js();
-					return isset( $js['staffUser'] ) ? (int) $js['staffUser'] : 0;
+					return isset( $js['staffUser'] ) ? FLXC_Val::int($js['staffUser']) : 0;
 				},
 			),
-			'unread'       => array( 'type' => 'Int!', 'description' => __( 'Unread count.', 'flx-chat' ), 'resolve' => static fn( $c ): int => (int) flxc_gql_chat( $c )->js()['unread'] ),
-			'pinned'       => array( 'type' => 'Boolean!', 'description' => __( 'Pinned.', 'flx-chat' ), 'resolve' => static fn( $c ): bool => (bool) flxc_gql_chat( $c )->js()['pinned'] ),
+			'unread'       => array( 'type' => 'Int!', 'description' => __( 'Unread count.', 'flx-chat' ), 'resolve' => static fn( $c ): int => FLXC_Val::int(flxc_gql_chat( $c )->js()['unread']) ),
+			'pinned'       => array( 'type' => 'Boolean!', 'description' => __( 'Pinned.', 'flx-chat' ), 'resolve' => static fn( $c ): bool => FLXC_Val::bool(flxc_gql_chat( $c )->js()['pinned']) ),
 			'lastMs'       => array( 'type' => 'String!', 'description' => __( 'Last message time, milliseconds.', 'flx-chat' ), 'resolve' => static fn( $c ): string => flxc_gql_ms( flxc_gql_chat( $c )->js()['lastTs'] ) ),
 			'lastAt'       => array( 'type' => 'FlxDateTime', 'description' => __( 'Last message time. Null when the chat is empty.', 'flx-chat' ), 'resolve' => static fn( $c ): ?array => flxc_gql_ms_time( flxc_gql_chat( $c )->js()['lastTs'] ) ),
 			'lastInMs'     => array( 'type' => 'String!', 'description' => __( 'Last incoming time, milliseconds.', 'flx-chat' ), 'resolve' => static fn( $c ): string => flxc_gql_ms( flxc_gql_chat( $c )->js()['lastInTs'] ) ),
-			'group'        => array( 'type' => 'Boolean!', 'description' => __( 'Group chat.', 'flx-chat' ), 'resolve' => static fn( $c ): bool => (bool) flxc_gql_chat( $c )->js()['group'] ),
-			'typing'       => array( 'type' => 'Int!', 'description' => __( '0 idle, 1 composing, 2 recording.', 'flx-chat' ), 'resolve' => static fn( $c ): int => (int) flxc_gql_chat( $c )->js()['typing'] ),
+			'group'        => array( 'type' => 'Boolean!', 'description' => __( 'Group chat.', 'flx-chat' ), 'resolve' => static fn( $c ): bool => FLXC_Val::bool(flxc_gql_chat( $c )->js()['group']) ),
+			'typing'       => array( 'type' => 'Int!', 'description' => __( '0 idle, 1 composing, 2 recording.', 'flx-chat' ), 'resolve' => static fn( $c ): int => FLXC_Val::int(flxc_gql_chat( $c )->js()['typing']) ),
 			'rev'          => array( 'type' => 'String!', 'description' => __( 'Revision milliseconds.', 'flx-chat' ), 'resolve' => static fn( $c ): string => flxc_gql_ms( flxc_gql_chat( $c )->js()['rev'] ) ),
 			'createdMs'    => array( 'type' => 'String!', 'description' => __( 'Created at, milliseconds.', 'flx-chat' ), 'resolve' => static fn( $c ): string => flxc_gql_ms( flxc_gql_chat( $c )->js()['created'] ) ),
 			'createdAt'    => array( 'type' => 'FlxDateTime', 'description' => __( 'Created at.', 'flx-chat' ), 'resolve' => static fn( $c ): ?array => flxc_gql_ms_time( flxc_gql_chat( $c )->js()['created'] ) ),
-			'unknownName'  => array( 'type' => 'Boolean!', 'description' => __( 'No saved name.', 'flx-chat' ), 'resolve' => static fn( $c ): bool => (bool) ( flxc_gql_chat( $c )->js()['unknownName'] ?? false ) ),
-			'blocked'      => array( 'type' => 'Boolean!', 'description' => __( 'On the block list.', 'flx-chat' ), 'resolve' => static fn( $c ): bool => ! empty( flxc_gql_chat( $c )->js()['meta']['blocked'] ) ),
-			'optOut'       => array( 'type' => 'Boolean!', 'description' => __( 'The contact opted out.', 'flx-chat' ), 'resolve' => static fn( $c ): bool => (bool) ( flxc_gql_chat( $c )->js()['optout'] ?? false ) ),
+			'unknownName'  => array( 'type' => 'Boolean!', 'description' => __( 'No saved name.', 'flx-chat' ), 'resolve' => static fn( $c ): bool => FLXC_Val::bool(( flxc_gql_chat( $c )->js()['unknownName'] ?? false )) ),
+			'blocked'      => array(
+				'type'        => 'Boolean!',
+				'description' => __( 'On the block list.', 'flx-chat' ),
+				'resolve'     => static function ( $c ): bool {
+					$meta = flxc_gql_chat( $c )->js()['meta'] ?? null;
+					return is_array( $meta ) && ! empty( $meta['blocked'] );
+				},
+			),
+			'optOut'       => array( 'type' => 'Boolean!', 'description' => __( 'The contact opted out.', 'flx-chat' ), 'resolve' => static fn( $c ): bool => FLXC_Val::bool(( flxc_gql_chat( $c )->js()['optout'] ?? false )) ),
 			'bot'          => array(
 				'type'        => 'FlxChatBot',
 				'description' => __( 'Assistant state. Null when the assistant is not in use on this chat.', 'flx-chat' ),
 				'resolve'     => static function ( $c ): ?string {
-					$bot = (string) ( flxc_gql_chat( $c )->js()['bot'] ?? '' );
+					$bot = FLXC_Val::str(( flxc_gql_chat( $c )->js()['bot'] ?? '' ));
 					return '' !== $bot ? $bot : null;
 				},
 			),
-			'botBusy'      => array( 'type' => 'Boolean!', 'description' => __( 'The assistant is writing.', 'flx-chat' ), 'resolve' => static fn( $c ): bool => (bool) ( flxc_gql_chat( $c )->js()['botBusy'] ?? false ) ),
-			'ai'           => array( 'type' => 'Boolean!', 'description' => __( 'The assistant has handled this chat.', 'flx-chat' ), 'resolve' => static fn( $c ): bool => (bool) ( flxc_gql_chat( $c )->js()['ai'] ?? false ) ),
+			'botBusy'      => array( 'type' => 'Boolean!', 'description' => __( 'The assistant is writing.', 'flx-chat' ), 'resolve' => static fn( $c ): bool => FLXC_Val::bool(( flxc_gql_chat( $c )->js()['botBusy'] ?? false )) ),
+			'ai'           => array( 'type' => 'Boolean!', 'description' => __( 'The assistant has handled this chat.', 'flx-chat' ), 'resolve' => static fn( $c ): bool => FLXC_Val::bool(( flxc_gql_chat( $c )->js()['ai'] ?? false )) ),
 			'lastMessage'  => array(
 				'type'        => 'FlxChatLastMessage',
 				'description' => __( 'Latest line. Null when the chat is empty.', 'flx-chat' ),
@@ -650,13 +667,13 @@ flx_gql_type(
 					if ( ! is_array( $last ) ) {
 						return null;
 					}
-					$status = (string) ( $last['status'] ?? '' );
+					$status = FLXC_Val::str(( $last['status'] ?? '' ));
 					return array(
-						'dir'    => (string) ( $last['dir'] ?? 'in' ),
-						'type'   => (string) ( $last['type'] ?? 'text' ),
-						'body'   => (string) ( $last['body'] ?? '' ),
+						'dir'    => FLXC_Val::str(( $last['dir'] ?? 'in' )),
+						'type'   => FLXC_Val::str(( $last['type'] ?? 'text' )),
+						'body'   => FLXC_Val::str(( $last['body'] ?? '' )),
 						'status' => '' !== $status ? $status : null,
-						'user'   => (string) ( $last['user'] ?? '' ),
+						'user'   => FLXC_Val::str(( $last['user'] ?? '' )),
 					);
 				},
 			),
@@ -665,11 +682,12 @@ flx_gql_type(
 				'description' => __( 'Shared person for this phone. Null when CRM has no record or the viewer cannot see a chat with this phone.', 'flx-chat' ),
 				'resolve'     => static function ( $c, array $args, $context ) {
 					unset( $args );
-					$phone = (string) flxc_gql_chat( $c )->js()['phone'];
+					$phone = FLXC_Val::str(flxc_gql_chat( $c )->js()['phone']);
 					if ( '' === $phone || ! is_object( $context ) || ! method_exists( $context, 'get_loader' ) || ! class_exists( 'FLXCRM_Contact_Node' ) ) {
 						return null;
 					}
-					return $context->get_loader( 'flxcPhonePerson' )->load_deferred( $phone );
+					$loader = $context->get_loader( 'flxcPhonePerson' );
+					return is_object( $loader ) && method_exists( $loader, 'load_deferred' ) ? $loader->load_deferred( $phone ) : null;
 				},
 			),
 			'sections'     => array(
@@ -692,7 +710,7 @@ flx_gql_type(
 					if ( ! $node->panel || ! function_exists( 'flxc_clog_for_js' ) ) {
 						return array();
 					}
-					$log = flxc_clog_for_js( (int) $node->row['id'], 100 );
+					$log = flxc_clog_for_js( FLXC_Val::int($node->row['id']), 100 );
 					return is_array( $log ) ? $log : array();
 				},
 			),
@@ -735,7 +753,16 @@ flx_gql_type(
 			'label' => array( 'type' => 'String!', 'description' => __( 'Label.', 'flx-chat' ) ),
 			'color' => array( 'type' => 'String!', 'description' => __( 'Color.', 'flx-chat' ) ),
 			'state' => array( 'type' => 'String!', 'description' => __( 'State.', 'flx-chat' ) ),
-			'at'    => array( 'type' => 'FlxDateTime', 'description' => __( 'When the state changed. Null when unknown.', 'flx-chat' ), 'resolve' => static fn( $c ): ?array => ! empty( $c['at'] ) ? flx_gql_datetime( (int) $c['at'] ) : null ),
+			'at'    => array(
+				'type'        => 'FlxDateTime',
+				'description' => __( 'When the state changed. Null when unknown.', 'flx-chat' ),
+				'resolve'     => static function ( $c ): ?array {
+					if ( ! is_array( $c ) || empty( $c['at'] ) ) {
+						return null;
+					}
+					return flx_gql_datetime( FLXC_Val::int( $c['at'] ) );
+				},
+			),
 		),
 	)
 );
@@ -763,8 +790,8 @@ flx_gql_type(
 	array(
 		'description' => __( 'Someone who can be assigned a chat.', 'flx-chat' ),
 		'fields'      => array(
-			'databaseId' => array( 'type' => 'Int!', 'description' => __( 'User id.', 'flx-chat' ), 'resolve' => static fn( $a ): int => (int) ( is_array( $a ) ? ( $a['id'] ?? 0 ) : 0 ) ),
-			'name'       => array( 'type' => 'String!', 'description' => __( 'Name.', 'flx-chat' ), 'resolve' => static fn( $a ): string => (string) ( is_array( $a ) ? ( $a['name'] ?? '' ) : '' ) ),
+			'databaseId' => array( 'type' => 'Int!', 'description' => __( 'User id.', 'flx-chat' ), 'resolve' => static fn( $a ): int => FLXC_Val::int(( is_array( $a ) ? ( $a['id'] ?? 0 ) : 0 )) ),
+			'name'       => array( 'type' => 'String!', 'description' => __( 'Name.', 'flx-chat' ), 'resolve' => static fn( $a ): string => FLXC_Val::str(( is_array( $a ) ? ( $a['name'] ?? '' ) : '' )) ),
 		),
 	)
 );
@@ -784,10 +811,10 @@ flx_gql_type(
 	array(
 		'description' => __( 'A quick reply.', 'flx-chat' ),
 		'fields'      => array(
-			'databaseId' => array( 'type' => 'Int!', 'description' => __( 'Id.', 'flx-chat' ), 'resolve' => static fn( $r ): int => (int) ( is_array( $r ) ? ( $r['id'] ?? 0 ) : 0 ) ),
-			'shortcut'   => array( 'type' => 'String!', 'description' => __( 'Shortcut.', 'flx-chat' ), 'resolve' => static fn( $r ): string => (string) ( is_array( $r ) ? ( $r['shortcut'] ?? '' ) : '' ) ),
-			'title'      => array( 'type' => 'String!', 'description' => __( 'Title.', 'flx-chat' ), 'resolve' => static fn( $r ): string => (string) ( is_array( $r ) ? ( $r['title'] ?? '' ) : '' ) ),
-			'body'       => array( 'type' => 'String!', 'description' => __( 'Body.', 'flx-chat' ), 'resolve' => static fn( $r ): string => (string) ( is_array( $r ) ? ( $r['body'] ?? '' ) : '' ) ),
+			'databaseId' => array( 'type' => 'Int!', 'description' => __( 'Id.', 'flx-chat' ), 'resolve' => static fn( $r ): int => FLXC_Val::int(( is_array( $r ) ? ( $r['id'] ?? 0 ) : 0 )) ),
+			'shortcut'   => array( 'type' => 'String!', 'description' => __( 'Shortcut.', 'flx-chat' ), 'resolve' => static fn( $r ): string => FLXC_Val::str(( is_array( $r ) ? ( $r['shortcut'] ?? '' ) : '' )) ),
+			'title'      => array( 'type' => 'String!', 'description' => __( 'Title.', 'flx-chat' ), 'resolve' => static fn( $r ): string => FLXC_Val::str(( is_array( $r ) ? ( $r['title'] ?? '' ) : '' )) ),
+			'body'       => array( 'type' => 'String!', 'description' => __( 'Body.', 'flx-chat' ), 'resolve' => static fn( $r ): string => FLXC_Val::str(( is_array( $r ) ? ( $r['body'] ?? '' ) : '' )) ),
 		),
 	)
 );
@@ -807,7 +834,18 @@ flx_gql_type(
 	array(
 		'description' => __( 'What the chat page needs to open. No secrets.', 'flx-chat' ),
 		'fields'      => array(
-			'me'          => array( 'type' => 'FlxChatMe!', 'description' => __( 'Viewer.', 'flx-chat' ), 'resolve' => static fn( $b ): array => array( 'databaseId' => (int) ( $b['me']['id'] ?? 0 ), 'name' => (string) ( $b['me']['name'] ?? '' ), 'manage' => (bool) ( $b['me']['manage'] ?? false ) ) ),
+			'me'          => array(
+				'type'        => 'FlxChatMe!',
+				'description' => __( 'Viewer.', 'flx-chat' ),
+				'resolve'     => static function ( $b ): array {
+					$me = flx_gql_arr( flx_gql_arr( $b )['me'] ?? null );
+					return array(
+						'databaseId' => FLXC_Val::int( $me['id'] ?? 0 ),
+						'name'        => FLXC_Val::str( $me['name'] ?? '' ),
+						'manage'      => FLXC_Val::bool( $me['manage'] ?? false ),
+					);
+				},
+			),
 			'delHours'    => array( 'type' => 'Int!', 'description' => __( 'Hours a line can be deleted for everyone.', 'flx-chat' ) ),
 			'agents'      => array( 'type' => '[FlxChatAgent!]!', 'description' => __( 'Assignees.', 'flx-chat' ) ),
 			'labels'      => array( 'type' => '[FlxChatLabel!]!', 'description' => __( 'Labels.', 'flx-chat' ) ),
@@ -817,10 +855,13 @@ flx_gql_type(
 			'ai'          => array(
 				'type'        => 'String',
 				'description' => __( 'AI provider label. Null when AI is off.', 'flx-chat' ),
-				'resolve'     => static fn( $b ): ?string => isset( $b['ai']['label'] ) ? (string) $b['ai']['label'] : null,
+				'resolve'     => static function ( $b ): ?string {
+					$ai = flx_gql_arr( flx_gql_arr( $b )['ai'] ?? null );
+					return isset( $ai['label'] ) ? FLXC_Val::str( $ai['label'] ) : null;
+				},
 			),
 			'bot'         => array( 'type' => 'Boolean!', 'description' => __( 'The assistant is enabled.', 'flx-chat' ) ),
-			'rev'         => array( 'type' => 'String!', 'description' => __( 'Current revision.', 'flx-chat' ), 'resolve' => static fn( $b ): string => flxc_gql_ms( $b['rev'] ?? 0 ) ),
+			'rev'         => array( 'type' => 'String!', 'description' => __( 'Current revision.', 'flx-chat' ), 'resolve' => static fn( $b ): string => flxc_gql_ms( flx_gql_arr( $b )['rev'] ?? 0 ) ),
 			'classicUrl'  => array( 'type' => 'String!', 'description' => __( 'Classic chat page.', 'flx-chat' ), 'resolve' => static fn(): string => admin_url( 'admin.php?page=flx-chat' ) ),
 		),
 	)
@@ -832,11 +873,11 @@ flx_gql_type(
 		'description' => __( 'Whether a number is on WhatsApp. A chat the viewer cannot see is omitted.', 'flx-chat' ),
 		'fields'      => array(
 			'valid'    => array( 'type' => 'Boolean!', 'description' => __( 'The number could be parsed.', 'flx-chat' ) ),
-			'phone'    => array( 'type' => 'String!', 'description' => __( 'Digits. Empty when invalid.', 'flx-chat' ), 'resolve' => static fn( $r ): string => (string) ( $r['phone'] ?? '' ) ),
-			'phoneFmt' => array( 'type' => 'String!', 'description' => __( 'Display. Empty when invalid.', 'flx-chat' ), 'resolve' => static fn( $r ): string => (string) ( $r['phoneFmt'] ?? '' ) ),
+			'phone'    => array( 'type' => 'String!', 'description' => __( 'Digits. Empty when invalid.', 'flx-chat' ), 'resolve' => static fn( $r ): string => FLXC_Val::str( flx_gql_arr( $r )['phone'] ?? '' ) ),
+			'phoneFmt' => array( 'type' => 'String!', 'description' => __( 'Display. Empty when invalid.', 'flx-chat' ), 'resolve' => static fn( $r ): string => FLXC_Val::str( flx_gql_arr( $r )['phoneFmt'] ?? '' ) ),
 			'exists'   => array( 'type' => 'Boolean', 'description' => __( 'On WhatsApp. Null when the connection could not be asked.', 'flx-chat' ) ),
-			'chatId'   => array( 'type' => 'Int!', 'description' => __( 'Existing visible chat. 0 when none.', 'flx-chat' ), 'resolve' => static fn( $r ): int => (int) ( $r['chat'] ?? 0 ) ),
-			'name'     => array( 'type' => 'String!', 'description' => __( 'Name. Not the title of a hidden chat.', 'flx-chat' ), 'resolve' => static fn( $r ): string => (string) ( $r['name'] ?? '' ) ),
+			'chatId'   => array( 'type' => 'Int!', 'description' => __( 'Existing visible chat. 0 when none.', 'flx-chat' ), 'resolve' => static fn( $r ): int => FLXC_Val::int( flx_gql_arr( $r )['chat'] ?? 0 ) ),
+			'name'     => array( 'type' => 'String!', 'description' => __( 'Name. Not the title of a hidden chat.', 'flx-chat' ), 'resolve' => static fn( $r ): string => FLXC_Val::str( flx_gql_arr( $r )['name'] ?? '' ) ),
 		),
 	)
 );
@@ -899,14 +940,14 @@ flx_gql_query(
 		'resolve'     => static function ( $root, array $args ): array {
 			unset( $root );
 			$filter = array(
-				'filter'  => sanitize_key( (string) ( $args['filter'] ?? 'all' ) ),
-				'q'       => sanitize_text_field( (string) ( $args['search'] ?? '' ) ),
-				'label'   => sanitize_key( (string) ( $args['label'] ?? '' ) ),
-				'channel' => sanitize_key( (string) ( $args['channel'] ?? '' ) ),
+				'filter'  => sanitize_key( FLXC_Val::str(( $args['filter'] ?? 'all' )) ),
+				'q'       => sanitize_text_field( FLXC_Val::str(( $args['search'] ?? '' )) ),
+				'label'   => sanitize_key( FLXC_Val::str(( $args['label'] ?? '' )) ),
+				'channel' => sanitize_key( FLXC_Val::str(( $args['channel'] ?? '' )) ),
 			);
 			flx_gql_cache_tag( FLXC_Chat_Service::CACHE );
 			return flx_gql_paginate(
-				$args,
+				flx_gql_arr( $args ),
 				static function ( int $offset, int $limit ) use ( $filter ): array {
 					$rows = FLXC_Chat_Service::query_rows( $filter + array( 'offset' => $offset, 'limit' => $limit ) );
 					return array(
@@ -952,7 +993,7 @@ flx_gql_query(
 			unset( $root );
 			$id = flxc_gql_chat_id( $args['chatId'] );
 			flxc_gql_visible( $id );
-			$page = FLXC_Message_Service::list_for( flxc_gql_req( array( 'id' => $id, 'before' => (int) ( $args['before'] ?? 0 ) ) ), flx_gql_page_size( $args, 40 ) );
+			$page = FLXC_Message_Service::list_for( flxc_gql_req( array( 'id' => $id, 'before' => FLXC_Val::int( flx_gql_arr( $args )['before'] ?? 0 ) ) ), flx_gql_page_size( flx_gql_arr( $args ), 40 ) );
 			if ( $page instanceof WP_Error ) {
 				throw flx_gql_from_wp_error( $page );
 			}
@@ -965,8 +1006,8 @@ flx_gql_query(
 			}
 			return array(
 				'messages' => $msgs,
-				'hasMore'  => (bool) ( $page['more'] ?? false ),
-				'note'     => (string) ( $page['note'] ?? '' ),
+				'hasMore'  => FLXC_Val::bool(( $page['more'] ?? false )),
+				'note'     => FLXC_Val::str(( $page['note'] ?? '' )),
 			);
 		},
 	)
@@ -986,9 +1027,9 @@ flx_gql_query(
 		),
 		'resolve'     => static function ( $root, array $args ): array {
 			unset( $root );
-			$since = (int) preg_replace( '/\D+/', '', (string) $args['since'] );
-			$after = (int) ( $args['after'] ?? 0 );
-			$hold  = (int) ( $args['afterChat'] ?? 0 );
+			$since = FLXC_Val::int(preg_replace( '/\D+/', '', FLXC_Val::str($args['since']) ));
+			$after = FLXC_Val::int(( $args['after'] ?? 0 ));
+			$hold  = FLXC_Val::int(( $args['afterChat'] ?? 0 ));
 			$rows  = $since > 0 ? FLXC_Chat_Service::changes_since( $since, $hold, 51 ) : array();
 			$cut   = count( $rows ) > 50;
 			$rows  = array_slice( $rows, 0, 50 );
@@ -1015,17 +1056,17 @@ flx_gql_query(
 						continue;
 					}
 					$incoming[] = array(
-						'databaseId' => (int) ( $in['id'] ?? 0 ),
-						'chatId'     => (int) ( $in['chat'] ?? 0 ),
-						'title'      => (string) ( $in['title'] ?? '' ),
-						'body'       => (string) ( $in['body'] ?? '' ),
+						'databaseId' => FLXC_Val::int(( $in['id'] ?? 0 )),
+						'chatId'     => FLXC_Val::int(( $in['chat'] ?? 0 )),
+						'title'      => FLXC_Val::str(( $in['title'] ?? '' )),
+						'body'       => FLXC_Val::str(( $in['body'] ?? '' )),
 					);
 				}
 			}
 			return array(
 				'rev'               => flxc_gql_ms( flxc_rev() ),
 				'continueRev'       => $cut && is_array( $last ) ? flxc_gql_ms( $last['rev'] ) : flxc_gql_ms( flxc_rev() ),
-				'continueId'        => $cut && is_array( $last ) ? (int) $last['id'] : 0,
+				'continueId'        => $cut && is_array( $last ) ? FLXC_Val::int($last['id']) : 0,
 				'truncated'         => $cut,
 				'messagesTruncated' => $mcut,
 				'chats'             => $nodes,
@@ -1050,7 +1091,7 @@ flx_gql_query(
 		),
 		'resolve'     => static function ( $root, array $args ): array {
 			unset( $root );
-			return FLXC_Chat_Service::check_number_for_viewer( flxc_gql_req( array( 'phone' => (string) $args['phone'], 'conn' => (string) ( $args['conn'] ?? '' ) ) ) );
+			return FLXC_Chat_Service::check_number_for_viewer( flxc_gql_req( array( 'phone' => FLXC_Val::str($args['phone']), 'conn' => FLXC_Val::str(( $args['conn'] ?? '' )) ) ) );
 		},
 	)
 );
@@ -1066,17 +1107,17 @@ flx_gql_query(
 		),
 		'resolve'     => static function ( $root, array $args ): ?array {
 			unset( $root );
-			$r = flxc_link_preview( (string) $args['url'] );
+			$r = flxc_link_preview( FLXC_Val::str($args['url']) );
 			if ( ! is_array( $r ) || empty( $r['ok'] ) ) {
 				return null;
 			}
 			return array(
-				'url'    => (string) ( $r['url'] ?? $args['url'] ),
-				'title'  => (string) ( $r['title'] ?? '' ),
-				'desc'   => (string) ( $r['desc'] ?? '' ),
-				'image'  => (string) ( $r['image'] ?? '' ),
-				'site'   => (string) ( $r['site'] ?? '' ),
-				'domain' => (string) ( $r['domain'] ?? '' ),
+				'url'    => FLXC_Val::str(( $r['url'] ?? $args['url'] )),
+				'title'  => FLXC_Val::str(( $r['title'] ?? '' )),
+				'desc'   => FLXC_Val::str(( $r['desc'] ?? '' )),
+				'image'  => FLXC_Val::str(( $r['image'] ?? '' )),
+				'site'   => FLXC_Val::str(( $r['site'] ?? '' )),
+				'domain' => FLXC_Val::str(( $r['domain'] ?? '' )),
 			);
 		},
 	)
@@ -1099,9 +1140,9 @@ flx_gql_query(
 			}
 			$u = flxc_chat_usage_for_js( $row );
 			return array(
-				'replies' => (int) ( $u['replies'] ?? 0 ),
-				'limit'   => (int) ( $u['limit'] ?? 0 ),
-				'limited' => (bool) ( $u['limited'] ?? false ),
+				'replies' => FLXC_Val::int(( $u['replies'] ?? 0 )),
+				'limit'   => FLXC_Val::int(( $u['limit'] ?? 0 )),
+				'limited' => FLXC_Val::bool(( $u['limited'] ?? false )),
 				'days'    => (array) ( $u['days'] ?? array() ),
 			);
 		},
@@ -1135,7 +1176,7 @@ function flxc_gql_chat_payload( $result ) {
 	if ( ! isset( $result['chat'] ) || ! is_array( $result['chat'] ) ) {
 		return array();
 	}
-	$id  = (int) ( $result['chat']['id'] ?? 0 );
+	$id  = FLXC_Val::int(( $result['chat']['id'] ?? 0 ));
 	$row = flxc_get_chat( $id );
 	return array( 'chat' => is_array( $row ) ? new FLXC_Chat_Node( $row, true ) : null );
 }
@@ -1154,7 +1195,7 @@ flx_gql_mutation(
 		'output'      => array(
 			'chat' => array( 'type' => 'FlxChat', 'description' => __( 'The chat.', 'flx-chat' ) ),
 		),
-		'resolve'     => static fn( array $input ) => flxc_gql_chat_payload( FLXC_Chat_Service::create( flxc_gql_req( $input ) ) ),
+		'resolve'     => static fn( array $input ) => flxc_gql_chat_payload( FLXC_Chat_Service::create( flxc_gql_req( flx_gql_arr( $input ) ) ) ),
 	)
 );
 
@@ -1183,7 +1224,7 @@ flx_gql_mutation(
 			if ( isset( $input['staffUser'] ) ) {
 				$params['staff_user'] = $input['staffUser'];
 			}
-			return flxc_gql_chat_payload( FLXC_Chat_Service::update( flxc_gql_req( $params ) ) );
+			return flxc_gql_chat_payload( FLXC_Chat_Service::update( flxc_gql_req( flx_gql_arr( $params ) ) ) );
 		},
 	)
 );
@@ -1208,7 +1249,7 @@ flx_gql_mutation(
 		),
 		'resolve'     => static function ( array $input ) {
 			$chat = flxc_gql_visible( flxc_gql_chat_id( $input['chatId'] ) );
-			$upload = trim( (string) ( $input['uploadId'] ?? '' ) );
+			$upload = trim( FLXC_Val::str(( $input['uploadId'] ?? '' )) );
 			if ( '' !== $upload ) {
 				$file = flx_gql_upload_take( $upload, 'flx-chat/outbound' );
 				if ( $file instanceof WP_Error ) {
@@ -1216,12 +1257,16 @@ flx_gql_mutation(
 				}
 				$result = FLXC_Message_Service::send_upload(
 					$chat,
-					(string) ( $input['type'] ?? '' ),
-					(string) ( $input['body'] ?? '' ),
-					(int) ( $input['quoted'] ?? 0 ),
-					(string) ( $input['source'] ?? 'agent' ),
-					! isset( $input['preview'] ) || (bool) $input['preview'],
-					$file,
+					FLXC_Val::str(( $input['type'] ?? '' )),
+					FLXC_Val::str(( $input['body'] ?? '' )),
+					FLXC_Val::int(( $input['quoted'] ?? 0 )),
+					FLXC_Val::str(( $input['source'] ?? 'agent' )),
+					! isset( $input['preview'] ) || FLXC_Val::bool($input['preview']),
+					array(
+						'path' => FLXC_Val::str( $file['path'] ?? '' ),
+						'name' => FLXC_Val::str( $file['name'] ?? '' ),
+						'mime' => FLXC_Val::str( $file['mime'] ?? '' ),
+					),
 					! empty( $input['voice'] )
 				);
 				return flxc_gql_message_payload( $result );
@@ -1229,12 +1274,12 @@ flx_gql_mutation(
 			$result = FLXC_Message_Service::send(
 				flxc_gql_req(
 					array(
-						'id'      => (int) $chat['id'],
-						'body'    => (string) ( $input['body'] ?? '' ),
-						'type'    => (string) ( $input['type'] ?? 'text' ),
-						'quoted'  => (int) ( $input['quoted'] ?? 0 ),
-						'source'  => (string) ( $input['source'] ?? 'agent' ),
-						'preview' => ! isset( $input['preview'] ) || (bool) $input['preview'],
+						'id'      => FLXC_Val::int($chat['id']),
+						'body'    => FLXC_Val::str(( $input['body'] ?? '' )),
+						'type'    => FLXC_Val::str(( $input['type'] ?? 'text' )),
+						'quoted'  => FLXC_Val::int(( $input['quoted'] ?? 0 )),
+						'source'  => FLXC_Val::str(( $input['source'] ?? 'agent' )),
+						'preview' => ! isset( $input['preview'] ) || FLXC_Val::bool($input['preview']),
 					)
 				)
 			);
@@ -1249,11 +1294,11 @@ flx_gql_mutation(
  * @return array<string,mixed>|WP_Error
  */
 function flxc_gql_message_op( callable $call, array $params ) {
-	$m = flxc_get_message( (int) ( $params['id'] ?? 0 ) );
+	$m = flxc_get_message( FLXC_Val::int(( $params['id'] ?? 0 )) );
 	if ( ! is_array( $m ) ) {
 		throw flx_gql_error( 'NOT_FOUND', __( 'Message not found.', 'flx-chat' ) );
 	}
-	flxc_gql_visible( (int) $m['chat_id'] );
+	flxc_gql_visible( FLXC_Val::int($m['chat_id']) );
 	return flxc_gql_message_payload( $call( flxc_gql_req( $params ) ) );
 }
 
@@ -1264,7 +1309,7 @@ flx_gql_mutation(
 		'cap'         => $flxc_gql_use,
 		'input'       => array( 'id' => array( 'type' => 'Int!', 'description' => __( 'Message id.', 'flx-chat' ) ) ),
 		'output'      => array( 'message' => array( 'type' => 'FlxChatMessage', 'description' => __( 'The line.', 'flx-chat' ) ) ),
-		'resolve'     => static fn( array $input ) => flxc_gql_message_op( array( FLXC_Message_Service::class, 'retry' ), $input ),
+		'resolve'     => static fn( array $input ) => flxc_gql_message_op( array( FLXC_Message_Service::class, 'retry' ), flx_gql_arr( $input ) ),
 	)
 );
 flx_gql_mutation(
@@ -1277,7 +1322,7 @@ flx_gql_mutation(
 			'emoji' => array( 'type' => 'String!', 'description' => __( 'Emoji. Empty removes it.', 'flx-chat' ) ),
 		),
 		'output'      => array( 'message' => array( 'type' => 'FlxChatMessage', 'description' => __( 'The line.', 'flx-chat' ) ) ),
-		'resolve'     => static fn( array $input ) => flxc_gql_message_op( array( FLXC_Message_Service::class, 'react' ), $input ),
+		'resolve'     => static fn( array $input ) => flxc_gql_message_op( array( FLXC_Message_Service::class, 'react' ), flx_gql_arr( $input ) ),
 	)
 );
 flx_gql_mutation(
@@ -1291,15 +1336,15 @@ flx_gql_mutation(
 		),
 		'output'      => array( 'message' => array( 'type' => 'FlxChatMessage', 'description' => __( 'The line.', 'flx-chat' ) ) ),
 		'resolve'     => static function ( array $input ) {
-			$m = flxc_get_message( (int) $input['id'] );
+			$m = flxc_get_message( FLXC_Val::int($input['id']) );
 			if ( ! is_array( $m ) ) {
 				throw flx_gql_error( 'NOT_FOUND', __( 'Message not found.', 'flx-chat' ) );
 			}
-			flxc_gql_visible( (int) $m['chat_id'] );
-			if ( (int) $m['user_id'] !== get_current_user_id() && ! flxc_can_manage() ) {
+			flxc_gql_visible( FLXC_Val::int($m['chat_id']) );
+			if ( FLXC_Val::int($m['user_id']) !== get_current_user_id() && ! flxc_can_manage() ) {
 				throw flx_gql_error( 'FORBIDDEN', __( 'You do not have permission for this action.', 'flx-chat' ) );
 			}
-			return flxc_gql_message_payload( FLXC_Message_Service::edit( flxc_gql_req( array( 'id' => (int) $input['id'], 'text' => (string) $input['text'] ) ) ) );
+			return flxc_gql_message_payload( FLXC_Message_Service::edit( flxc_gql_req( array( 'id' => FLXC_Val::int($input['id']), 'text' => FLXC_Val::str($input['text']) ) ) ) );
 		},
 	)
 );
@@ -1314,17 +1359,17 @@ flx_gql_mutation(
 		),
 		'output'      => array( 'message' => array( 'type' => 'FlxChatMessage', 'description' => __( 'The line.', 'flx-chat' ) ) ),
 		'resolve'     => static function ( array $input ) {
-			$m = flxc_get_message( (int) $input['id'] );
+			$m = flxc_get_message( FLXC_Val::int($input['id']) );
 			if ( ! is_array( $m ) ) {
 				throw flx_gql_error( 'NOT_FOUND', __( 'Message not found.', 'flx-chat' ) );
 			}
-			flxc_gql_visible( (int) $m['chat_id'] );
-			$scope = (string) ( $input['scope'] ?? 'panel' );
-			$note  = 'note' === (string) $m['direction'];
-			if ( ( $note || 'everyone' === $scope ) && (int) $m['user_id'] !== get_current_user_id() && ! flxc_can_manage() ) {
+			flxc_gql_visible( FLXC_Val::int($m['chat_id']) );
+			$scope = FLXC_Val::str(( $input['scope'] ?? 'panel' ));
+			$note  = 'note' === FLXC_Val::str($m['direction']);
+			if ( ( $note || 'everyone' === $scope ) && FLXC_Val::int($m['user_id']) !== get_current_user_id() && ! flxc_can_manage() ) {
 				throw flx_gql_error( 'FORBIDDEN', __( 'You do not have permission for this action.', 'flx-chat' ) );
 			}
-			return flxc_gql_message_payload( FLXC_Message_Service::delete( flxc_gql_req( array( 'id' => (int) $input['id'], 'scope' => $scope ) ) ) );
+			return flxc_gql_message_payload( FLXC_Message_Service::delete( flxc_gql_req( array( 'id' => FLXC_Val::int($input['id']), 'scope' => $scope ) ) ) );
 		},
 	)
 );
@@ -1357,7 +1402,7 @@ flx_gql_mutation(
 		),
 		'output'      => array( 'ok' => array( 'type' => 'Boolean!', 'description' => __( 'Accepted.', 'flx-chat' ) ) ),
 		'resolve'     => static function ( array $input ) {
-			$r = FLXC_Message_Service::typing( flxc_gql_req( array( 'id' => flxc_gql_chat_id( $input['id'] ), 'state' => (string) ( $input['state'] ?? 'composing' ) ) ) );
+			$r = FLXC_Message_Service::typing( flxc_gql_req( array( 'id' => flxc_gql_chat_id( $input['id'] ), 'state' => FLXC_Val::str(( $input['state'] ?? 'composing' )) ) ) );
 			if ( $r instanceof WP_Error ) {
 				throw flx_gql_from_wp_error( $r );
 			}
@@ -1378,11 +1423,11 @@ flx_gql_mutation(
 		'output'      => array( 'text' => array( 'type' => 'String', 'description' => __( 'Suggestion. Null on failure.', 'flx-chat' ) ) ),
 		'resolve'     => static function ( array $input ) {
 			flxc_gql_visible( flxc_gql_chat_id( $input['id'] ) );
-			$r = FLXC_Message_Service::suggest( flxc_gql_req( array( 'id' => flxc_gql_chat_id( $input['id'] ), 'fresh' => ! empty( $input['fresh'] ), 'hint' => (string) ( $input['hint'] ?? '' ) ) ) );
+			$r = FLXC_Message_Service::suggest( flxc_gql_req( array( 'id' => flxc_gql_chat_id( $input['id'] ), 'fresh' => ! empty( $input['fresh'] ), 'hint' => FLXC_Val::str(( $input['hint'] ?? '' )) ) ) );
 			if ( $r instanceof WP_Error ) {
 				return $r;
 			}
-			return array( 'text' => (string) ( $r['text'] ?? '' ) );
+			return array( 'text' => FLXC_Val::str(( $r['text'] ?? '' )) );
 		},
 	)
 );
@@ -1416,11 +1461,8 @@ flx_gql_mutation(
 		'resolve'     => static function ( array $input ) {
 			$chat = flxc_gql_chat_id( $input['chatId'] );
 			flxc_gql_visible( $chat );
-			$r = FLXC_Desk_Service::use_reply( flxc_gql_req( array( 'id' => (int) $input['id'], 'chat' => $chat ) ) );
-			if ( $r instanceof WP_Error ) {
-				return $r;
-			}
-			return array( 'text' => (string) ( $r['text'] ?? '' ) );
+			$r = FLXC_Desk_Service::use_reply( flxc_gql_req( array( 'id' => FLXC_Val::int($input['id']), 'chat' => $chat ) ) );
+			return array( 'text' => FLXC_Val::str(( $r['text'] ?? '' )) );
 		},
 	)
 );
@@ -1443,13 +1485,13 @@ flx_gql_mutation(
 			$chat = flxc_gql_visible( flxc_gql_chat_id( $input['id'] ) );
 			$o    = array(
 				'format' => 'json' === ( $input['format'] ?? '' ) ? 'json' : 'md',
-				'mask'   => ! isset( $input['mask'] ) || (bool) $input['mask'],
-				'notes'  => ! isset( $input['notes'] ) || (bool) $input['notes'],
+				'mask'   => ! isset( $input['mask'] ) || FLXC_Val::bool($input['mask']),
+				'notes'  => ! isset( $input['notes'] ) || FLXC_Val::bool($input['notes']),
 			);
 			$c    = flxc_export_chat( $chat, $o );
-			$name = 'sohbet-' . (int) $chat['id'] . '-' . wp_date( 'Ymd-Hi' ) . '.' . $o['format'];
+			$name = 'sohbet-' . FLXC_Val::int($chat['id']) . '-' . wp_date( 'Ymd-Hi' ) . '.' . $o['format'];
 			if ( 'json' === $o['format'] ) {
-				$body = (string) wp_json_encode( array( 'items' => array( $c ) ), JSON_UNESCAPED_UNICODE );
+				$body = FLXC_Val::str(wp_json_encode( array( 'items' => array( $c ) ), JSON_UNESCAPED_UNICODE ));
 			} else {
 				$body = flxc_export_md( $c );
 			}
@@ -1473,12 +1515,12 @@ flx_gql_mutation(
 		),
 		'output'      => array( 'ok' => array( 'type' => 'Boolean!', 'description' => __( 'Matched.', 'flx-chat' ) ) ),
 		'resolve'     => static function ( array $input ) {
-			$m = flxc_get_message( (int) $input['id'] );
+			$m = flxc_get_message( FLXC_Val::int($input['id']) );
 			if ( ! is_array( $m ) ) {
 				throw flx_gql_error( 'NOT_FOUND', __( 'Message not found.', 'flx-chat' ) );
 			}
-			flxc_gql_visible( (int) $m['chat_id'] );
-			$r = flxc_rest_attach_receipt( flxc_gql_req( $input ) );
+			flxc_gql_visible( FLXC_Val::int($m['chat_id']) );
+			$r = flxc_rest_attach_receipt( flxc_gql_req( flx_gql_arr( $input ) ) );
 			if ( $r instanceof WP_Error ) {
 				throw flx_gql_from_wp_error( $r );
 			}
@@ -1498,17 +1540,17 @@ flx_gql_mutation(
 		),
 		'output'      => array( 'ok' => array( 'type' => 'Boolean!', 'description' => __( 'Removed.', 'flx-chat' ) ) ),
 		'resolve'     => static function ( array $input ) {
-			$m = flxc_get_message( (int) $input['id'] );
+			$m = flxc_get_message( FLXC_Val::int($input['id']) );
 			if ( ! is_array( $m ) ) {
 				throw flx_gql_error( 'NOT_FOUND', __( 'Message not found.', 'flx-chat' ) );
 			}
-			flxc_gql_visible( (int) $m['chat_id'] );
+			flxc_gql_visible( FLXC_Val::int($m['chat_id']) );
 			$kind = 'certificate' === ( $input['kind'] ?? '' ) ? 'certificate' : 'donation';
 			$ok   = 'donation' === $kind ? flxc_can_record_donation() : flxc_can_record_certificate();
 			if ( ! $ok ) {
 				throw flx_gql_error( 'FORBIDDEN', __( 'You are not allowed to do this.', 'flx-chat' ) );
 			}
-			$r = flxc_rest_detach_receipt( flxc_gql_req( $input ) );
+			$r = flxc_rest_detach_receipt( flxc_gql_req( flx_gql_arr( $input ) ) );
 			if ( $r instanceof WP_Error ) {
 				throw flx_gql_from_wp_error( $r );
 			}
@@ -1537,12 +1579,12 @@ flx_gql_mutation(
 				$chat = flxc_gql_visible( flxc_gql_chat_id( $input['chatId'] ) );
 			}
 			$p = array(
-				'chat'     => $chat ? (int) $chat['id'] : 0,
-				'type_id'  => (int) ( $input['typeId'] ?? 0 ),
+				'chat'     => $chat ? FLXC_Val::int($chat['id']) : 0,
+				'type_id'  => FLXC_Val::int(( $input['typeId'] ?? 0 )),
 				'amount'   => $input['amount'] ?? 0,
-				'name'     => (string) ( $input['name'] ?? '' ),
-				'phone'    => (string) ( $input['phone'] ?? '' ),
-				'note'     => (string) ( $input['note'] ?? '' ),
+				'name'     => FLXC_Val::str(( $input['name'] ?? '' )),
+				'phone'    => FLXC_Val::str(( $input['phone'] ?? '' )),
+				'note'     => FLXC_Val::str(( $input['note'] ?? '' )),
 			);
 			$r = FLXC_Desk_Service::create_donation( $p, $chat );
 			if ( $r instanceof WP_Error ) {
@@ -1566,7 +1608,7 @@ flx_gql_mutation(
 		'resolve'     => static function ( array $input ) {
 			$id = flxc_gql_chat_id( $input['id'] );
 			flxc_gql_visible( $id );
-			$r = FLXC_Desk_Service::clear( flxc_gql_req( array( 'id' => $id, 'confirm' => (string) $input['confirm'] ) ) );
+			$r = FLXC_Desk_Service::clear( flxc_gql_req( array( 'id' => $id, 'confirm' => FLXC_Val::str($input['confirm']) ) ) );
 			if ( $r instanceof WP_Error ) {
 				return $r;
 			}

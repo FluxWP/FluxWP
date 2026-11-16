@@ -24,6 +24,7 @@ define( 'FLXC_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXC_URL', plugin_dir_url( __FILE__ ) );
 
 require_once FLXC_DIR . 'includes/helpers.php';
+require_once FLXC_DIR . 'includes/services/class-flxc-val.php';
 require_once FLXC_DIR . 'includes/services/class-flxc-chat-service.php';
 require_once FLXC_DIR . 'includes/services/class-flxc-message-service.php';
 require_once FLXC_DIR . 'includes/services/class-flxc-desk-service.php';

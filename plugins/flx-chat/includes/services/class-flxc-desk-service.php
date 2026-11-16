@@ -25,11 +25,12 @@ final class FLXC_Desk_Service {
 	 */
 	public static function save_reply( WP_REST_Request $req ) {
 		global $wpdb;
-		$id    = (int) $req->get_param( 'id' );
-		$title = mb_substr( sanitize_text_field( (string) $req->get_param( 'title' ) ), 0, 190 );
-		$body  = sanitize_textarea_field( (string) $req->get_param( 'body' ) );
-		$short = mb_substr( (string) preg_replace( '/[^\p{L}\p{N}_-]+/u', '', mb_strtolower( (string) $req->get_param( 'shortcut' ) ) ), 0, 60 );
-		$cat   = mb_substr( sanitize_text_field( (string) $req->get_param( 'category' ) ), 0, 100 );
+		/** @var wpdb $wpdb */
+		$id    = FLXC_Val::int($req->get_param( 'id' ));
+		$title = mb_substr( sanitize_text_field( FLXC_Val::str($req->get_param( 'title' )) ), 0, 190 );
+		$body  = sanitize_textarea_field( FLXC_Val::str($req->get_param( 'body' )) );
+		$short = mb_substr( FLXC_Val::str(preg_replace( '/[^\p{L}\p{N}_-]+/u', '', mb_strtolower( FLXC_Val::str($req->get_param( 'shortcut' )) ) )), 0, 60 );
+		$cat   = mb_substr( sanitize_text_field( FLXC_Val::str($req->get_param( 'category' )) ), 0, 100 );
 		if ( '' === trim( $body ) ) {
 			return new WP_Error( 'flxc_reply', __( 'Reply text cannot be empty.', 'flx-chat' ), array( 'status' => 400 ) );
 		}
@@ -47,7 +48,7 @@ final class FLXC_Desk_Service {
 			$wpdb->update( flxc_table( 'replies' ), $data, array( 'id' => $id ) );
 		} else {
 			$data['created_by'] = get_current_user_id();
-			$data['sort']       = (int) $wpdb->get_var( 'SELECT COALESCE(MAX(sort),0)+1 FROM ' . flxc_table( 'replies' ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+			$data['sort']       = FLXC_Val::int($wpdb->get_var( 'SELECT COALESCE(MAX(sort),0)+1 FROM ' . flxc_table( 'replies' ) )); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 			$wpdb->insert( flxc_table( 'replies' ), $data );
 		}
 		FLXC_Chat_Service::changed();
@@ -59,7 +60,8 @@ final class FLXC_Desk_Service {
 	 */
 	public static function delete_reply( WP_REST_Request $req ): array {
 		global $wpdb;
-		$wpdb->delete( flxc_table( 'replies' ), array( 'id' => (int) $req['id'] ) );
+		/** @var wpdb $wpdb */
+		$wpdb->delete( flxc_table( 'replies' ), array( 'id' => FLXC_Val::int($req['id']) ) );
 		FLXC_Chat_Service::changed();
 		return array( 'replies' => flxc_replies_for_js() );
 	}
@@ -69,10 +71,14 @@ final class FLXC_Desk_Service {
 	 */
 	public static function use_reply( WP_REST_Request $req ): array {
 		global $wpdb;
-		$wpdb->query( $wpdb->prepare( 'UPDATE ' . flxc_table( 'replies' ) . ' SET uses = uses + 1 WHERE id = %d', (int) $req['id'] ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-		$chat_id = (int) $req->get_param( 'chat' );
+		/** @var wpdb $wpdb */
+		$used = $wpdb->prepare( 'UPDATE ' . flxc_table( 'replies' ) . ' SET uses = uses + 1 WHERE id = %d', FLXC_Val::int($req['id']) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared // @phpstan-ignore argument.type
+		if ( is_string( $used ) ) {
+			$wpdb->query( $used );
+		}
+		$chat_id = FLXC_Val::int($req->get_param( 'chat' ));
 		$text    = '';
-		$row     = $wpdb->get_row( $wpdb->prepare( 'SELECT body FROM ' . flxc_table( 'replies' ) . ' WHERE id = %d', (int) $req['id'] ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		$row     = $wpdb->get_row( $wpdb->prepare( 'SELECT body FROM ' . flxc_table( 'replies' ) . ' WHERE id = %d', FLXC_Val::int($req['id']) ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared // @phpstan-ignore argument.type
 		if ( $row && $chat_id ) {
 			$chat = flxc_get_chat( $chat_id );
 			if ( $chat && flxc_user_can_see_chat( $chat ) ) {
@@ -87,18 +93,19 @@ final class FLXC_Desk_Service {
 	 */
 	public static function block_list( WP_REST_Request $req ): array {
 		global $wpdb;
+		/** @var wpdb $wpdb */
 		$t = flxc_table( 'blocklist' );
-		$q = trim( sanitize_text_field( (string) $req->get_param( 'q' ) ) );
+		$q = trim( sanitize_text_field( FLXC_Val::str($req->get_param( 'q' )) ) );
 		if ( '' !== $q ) {
 			$like = '%' . $wpdb->esc_like( $q ) . '%';
-			$dig  = (string) preg_replace( '/\D+/', '', $q );
-			$rows = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $t WHERE email LIKE %s OR reason LIKE %s OR ( %s <> '' AND phone LIKE %s ) ORDER BY id DESC LIMIT 200", $like, $like, $dig, '%' . $dig . '%' ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+			$dig  = FLXC_Val::str(preg_replace( '/\D+/', '', $q ));
+			$rows = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $t WHERE email LIKE %s OR reason LIKE %s OR ( %s <> '' AND phone LIKE %s ) ORDER BY id DESC LIMIT 200", $like, $like, $dig, '%' . $dig . '%' ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared // @phpstan-ignore argument.type
 		} else {
 			$rows = $wpdb->get_results( "SELECT * FROM $t ORDER BY id DESC LIMIT 200", ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 		}
 		return array(
 			'items' => array_map( 'flxc_block_for_js', (array) $rows ),
-			'total' => (int) $wpdb->get_var( "SELECT COUNT(*) FROM $t" ), // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+			'total' => FLXC_Val::int($wpdb->get_var( "SELECT COUNT(*) FROM $t" )), // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 		);
 	}
 
@@ -106,8 +113,8 @@ final class FLXC_Desk_Service {
 	 * @return array<string,mixed>|WP_Error
 	 */
 	public static function block_add( WP_REST_Request $req ) {
-		$reason = (string) $req->get_param( 'reason' );
-		$cid    = (int) $req->get_param( 'chat' );
+		$reason = FLXC_Val::str($req->get_param( 'reason' ));
+		$cid    = FLXC_Val::int($req->get_param( 'chat' ));
 		if ( $cid ) {
 			$chat = flxc_get_chat( $cid );
 			if ( ! $chat || ! flxc_user_can_see_chat( $chat ) ) {
@@ -120,7 +127,7 @@ final class FLXC_Desk_Service {
 			FLXC_Chat_Service::changed();
 			return array( 'id' => $id, 'chat' => flxc_chat_for_js( flxc_get_chat( $cid ) ) );
 		}
-		$id = flxc_block_add( (string) $req->get_param( 'phone' ), (string) $req->get_param( 'email' ), $reason, 'agent' );
+		$id = flxc_block_add( FLXC_Val::str($req->get_param( 'phone' )), FLXC_Val::str($req->get_param( 'email' )), $reason, 'agent' );
 		if ( is_wp_error( $id ) ) {
 			return $id;
 		}
@@ -132,7 +139,7 @@ final class FLXC_Desk_Service {
 	 * @return array{ok: true}|WP_Error
 	 */
 	public static function block_remove( WP_REST_Request $req ) {
-		$ok = flxc_block_remove( (int) $req['id'] );
+		$ok = flxc_block_remove( FLXC_Val::int($req['id']) );
 		if ( ! $ok ) {
 			return new WP_Error( 'flxc_404', __( 'No records found.', 'flx-chat' ), array( 'status' => 404 ) );
 		}
@@ -144,7 +151,7 @@ final class FLXC_Desk_Service {
 	 * @return array{chat: array<string,mixed>}|WP_Error
 	 */
 	public static function unblock( WP_REST_Request $req ) {
-		$chat = flxc_get_chat( (int) $req['id'] );
+		$chat = flxc_get_chat( FLXC_Val::int($req['id']) );
 		if ( ! $chat || ! flxc_user_can_see_chat( $chat ) ) {
 			return new WP_Error( 'flxc_404', __( 'Chat not found.', 'flx-chat' ), array( 'status' => 404 ) );
 		}
@@ -159,9 +166,9 @@ final class FLXC_Desk_Service {
 
 	/**
 	 * @param array<string,mixed> $chat Chat row.
-	 * @return array<string,mixed>|WP_Error
+	 * @return array<string,mixed>
 	 */
-	public static function memory( array $chat ) {
+	public static function memory( array $chat ): array {
 		return flxc_mem_for_js( $chat );
 	}
 
@@ -171,24 +178,29 @@ final class FLXC_Desk_Service {
 	 */
 	public static function memory_save( array $chat, WP_REST_Request $req ) {
 		global $wpdb;
+		/** @var wpdb $wpdb */
 		$k = flxc_mem_key( $req->get_param( 'key' ) );
 		$v = flxc_mem_value( $req->get_param( 'value' ) );
 		if ( '' === $k || '' === $v ) {
 			return new WP_Error( 'flxc_mem', __( 'Key and value are required.', 'flx-chat' ), array( 'status' => 400 ) );
 		}
-		$item = (int) $req->get_param( 'item' );
+		$item = FLXC_Val::int($req->get_param( 'item' ));
 		$t    = flxc_table( 'memory' );
 		if ( $item ) {
-			$row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $t WHERE id = %d AND who = %s", $item, flxc_mem_who( $chat ) ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+			$row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $t WHERE id = %d AND who = %s", $item, flxc_mem_who( $chat ) ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared // @phpstan-ignore argument.type
 			if ( ! $row ) {
 				return new WP_Error( 'flxc_404', __( 'No records found.', 'flx-chat' ), array( 'status' => 404 ) );
 			}
 			if ( 'fact' === $row['kind'] && $k !== $row['k'] ) {
-				$wpdb->query( $wpdb->prepare( "DELETE FROM $t WHERE who = %s AND kind = 'fact' AND k = %s AND id <> %d", $row['who'], $k, $item ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+				$gone = $wpdb->prepare( "DELETE FROM $t WHERE who = %s AND kind = 'fact' AND k = %s AND id <> %d", FLXC_Val::str( $row['who'] ?? '' ), $k, $item ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared // @phpstan-ignore argument.type
+				if ( is_string( $gone ) ) {
+					$wpdb->query( $gone );
+				}
 			}
 			$wpdb->update( $t, array( 'k' => 'summary' === $row['kind'] ? $row['k'] : $k, 'v' => $v, 'source' => 'agent', 'updated_at' => time() ), array( 'id' => $item ) );
 			if ( 'fact' === $row['kind'] ) {
-				flxc_mem_log( $chat, $k, $k !== $row['k'] ? $row['k'] . ': ' . $row['v'] : $row['v'], $v, 'agent' );
+				$old = FLXC_Val::str( $row['k'] ?? '' ) !== $k ? FLXC_Val::str( $row['k'] ?? '' ) . ': ' . FLXC_Val::str( $row['v'] ?? '' ) : FLXC_Val::str( $row['v'] ?? '' );
+				flxc_mem_log( $chat, $k, $old, $v, 'agent' );
 			}
 		} else {
 			flxc_mem_set( $chat, $k, $v, 'agent' );
@@ -215,6 +227,7 @@ final class FLXC_Desk_Service {
 	 */
 	public static function reminders( int $chat_id ): array {
 		global $wpdb;
+		/** @var wpdb $wpdb */
 		$t    = flxc_table( 'reminders' );
 		$rows = $chat_id
 			? flxc_rem_for_chat( $chat_id, 'all' )
@@ -233,11 +246,12 @@ final class FLXC_Desk_Service {
 			return new WP_Error( 'flxc_rem', __( 'The reminder could not be updated.', 'flx-chat' ), array( 'status' => 400 ) );
 		}
 		FLXC_Chat_Service::changed();
-		return flxc_rem_for_js( flxc_rem_get( $id ) );
+		$row = flxc_rem_get( $id );
+		return is_array( $row ) ? flxc_rem_for_js( $row ) : array();
 	}
 
 	public static function reminder_delete( int $id ): bool {
-		$ok = (bool) flxc_rem_set_status( $id, 'deleted' );
+		$ok = FLXC_Val::bool(flxc_rem_set_status( $id, 'deleted' ));
 		if ( $ok ) {
 			FLXC_Chat_Service::changed();
 		}
@@ -260,7 +274,7 @@ final class FLXC_Desk_Service {
 			return $saved;
 		}
 		FLXC_Chat_Service::changed();
-		$row = flxc_rem_get( (int) $saved );
+		$row = flxc_rem_get( FLXC_Val::int($saved) );
 		return is_array( $row ) ? flxc_rem_for_js( $row ) : new WP_Error( 'flxc_rem', __( 'The reminder could not be updated.', 'flx-chat' ), array( 'status' => 400 ) );
 	}
 
@@ -268,15 +282,15 @@ final class FLXC_Desk_Service {
 	 * @return array{deleted: int, chat: array<string,mixed>}|WP_Error
 	 */
 	public static function clear( WP_REST_Request $req ) {
-		$id   = (int) $req['id'];
+		$id   = FLXC_Val::int($req['id']);
 		$chat = flxc_get_chat( $id );
 		if ( ! $chat || ! flxc_user_can_see_chat( $chat ) ) {
 			return new WP_Error( 'flxc_404', __( 'Chat not found.', 'flx-chat' ), array( 'status' => 404 ) );
 		}
-		if ( 'yes' !== (string) $req->get_param( 'confirm' ) ) {
+		if ( 'yes' !== FLXC_Val::str($req->get_param( 'confirm' )) ) {
 			return new WP_Error( 'flxc_confirm', __( 'Confirmation text is wrong.', 'flx-chat' ), array( 'status' => 400 ) );
 		}
-		$n = flxc_clear_chat_history( $id, (bool) $req->get_param( 'keep_receipts' ) );
+		$n = flxc_clear_chat_history( $id, FLXC_Val::bool($req->get_param( 'keep_receipts' )) );
 		if ( $req->get_param( 'forget_memory' ) && function_exists( 'flxc_mem_forget' ) ) {
 			flxc_mem_forget( $chat );
 		}
@@ -301,23 +315,24 @@ final class FLXC_Desk_Service {
 			$b['off']     = 0;
 			$b['until']   = 0;
 			$b['last_in'] = flxc_bot_last_in_id( $chat['id'] );
-			if ( $b['day'] === wp_date( 'Y-m-d' ) && (int) $b['n'] >= flxc_bot_daily_limit() ) {
+			if ( $b['day'] === wp_date( 'Y-m-d' ) && FLXC_Val::int($b['n']) >= flxc_bot_daily_limit() ) {
 				$b['n']   = 0;
 				$b['lim'] = '';
 			}
 			global $wpdb;
+			/** @var wpdb $wpdb */
 			$mt   = flxc_table( 'messages' );
-			$last = $wpdb->get_row( $wpdb->prepare( "SELECT id, direction, ts FROM $mt WHERE chat_id = %d AND direction IN ('in','out') ORDER BY id DESC LIMIT 1", (int) $chat['id'] ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-			$wake = $last && 'in' === $last['direction'] && (int) $last['ts'] > ( time() - 30 * MINUTE_IN_SECONDS ) * 1000;
+			$last = $wpdb->get_row( $wpdb->prepare( "SELECT id, direction, ts FROM $mt WHERE chat_id = %d AND direction IN ('in','out') ORDER BY id DESC LIMIT 1", FLXC_Val::int($chat['id']) ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared // @phpstan-ignore argument.type
+			$wake = $last && 'in' === $last['direction'] && FLXC_Val::int($last['ts']) > ( time() - 30 * MINUTE_IN_SECONDS ) * 1000;
 			if ( $wake ) {
-				$b['last_in'] = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COALESCE(MAX(id),0) FROM $mt WHERE chat_id = %d AND direction = 'in' AND id < (SELECT COALESCE(MAX(id),0) FROM $mt WHERE chat_id = %d AND direction = 'out')", (int) $chat['id'], (int) $chat['id'] ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+				$b['last_in'] = FLXC_Val::int($wpdb->get_var( $wpdb->prepare( "SELECT COALESCE(MAX(id),0) FROM $mt WHERE chat_id = %d AND direction = 'in' AND id < (SELECT COALESCE(MAX(id),0) FROM $mt WHERE chat_id = %d AND direction = 'out')", FLXC_Val::int($chat['id']), FLXC_Val::int($chat['id']) ) )); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared // @phpstan-ignore argument.type
 			}
 		} else {
 			$b['off'] = 1;
 		}
 		flxc_bot_save_state( $chat['id'], $b );
 		if ( $wake ) {
-			flxc_bot_queue( (int) $chat['id'] );
+			flxc_bot_queue( FLXC_Val::int($chat['id']) );
 		}
 		/* translators: %s: user */
 		flxc_system_message( $chat, sprintf( 'on' === $req->get_param( 'state' ) ? __( 'Assistant turned on (%s)', 'flx-chat' ) : __( 'Assistant turned off (%s)', 'flx-chat' ), flxc_user_name( get_current_user_id() ) ) );
@@ -336,7 +351,7 @@ final class FLXC_Desk_Service {
 		$changed = flxc_avatar_check( $chat, $req->get_param( 'force' ) ? 0 : flxc_avatar_open_ttl() );
 		return array(
 			'avatar'  => flxc_avatar_url( flxc_get_chat( $chat['id'] ) ),
-			'changed' => (bool) $changed,
+			'changed' => FLXC_Val::bool($changed),
 		);
 	}
 
@@ -365,34 +380,34 @@ final class FLXC_Desk_Service {
 			return new WP_Error( 'flxc_forbidden', __( 'You are not allowed to create certificates.', 'flx-chat' ), array( 'status' => 403 ) );
 		}
 		$p    = (array) $req->get_json_params();
-		$chat = ! empty( $p['chat'] ) ? flxc_rest_chat_or_error( (int) $p['chat'] ) : null;
+		$chat = ! empty( $p['chat'] ) ? flxc_rest_chat_or_error( FLXC_Val::int($p['chat']) ) : null;
 		if ( is_wp_error( $chat ) ) {
 			return $chat;
 		}
-		$phone = (string) ( $p['phone'] ?? ( $chat ? $chat['phone'] : '' ) );
+		$phone = FLXC_Val::str(( $p['phone'] ?? ( $chat ? $chat['phone'] : '' ) ));
 		$cert  = flxc_make_certificate(
 			array(
-				'template_id' => (int) ( $p['template_id'] ?? 0 ),
+				'template_id' => FLXC_Val::int(( $p['template_id'] ?? 0 )),
 				'values'      => (array) ( $p['values'] ?? array() ),
-				'event_id'    => (int) ( $p['event_id'] ?? 0 ),
-				'name'        => (string) ( $p['name'] ?? '' ),
+				'event_id'    => FLXC_Val::int(( $p['event_id'] ?? 0 )),
+				'name'        => FLXC_Val::str(( $p['name'] ?? '' )),
 				'phone'       => $phone,
-				'email'       => (string) ( $p['email'] ?? '' ),
+				'email'       => FLXC_Val::str(( $p['email'] ?? '' )),
 			)
 		);
 		if ( is_wp_error( $cert ) ) {
 			$cert->add_data( array( 'status' => 400 ) );
 			return $cert;
 		}
-		if ( ! empty( $p['donation_id'] ) && flxc_flxb_on() ) {
-			FLXB_Donations::set_certificate( (int) $p['donation_id'], $cert['code'] );
+		if ( ! empty( $p['donation_id'] ) && flxc_flxb_on() && class_exists( 'FLXB_Donations' ) ) {
+			FLXB_Donations::set_certificate( FLXC_Val::int($p['donation_id']), FLXC_Val::str( $cert['code'] ?? '' ) );
 		}
 		if ( ! empty( $p['receipt'] ) ) {
-			flxc_attach_receipt( (int) $p['receipt'], 'certificate', (int) $cert['id'], false );
+			flxc_attach_receipt( FLXC_Val::int($p['receipt']), 'certificate', FLXC_Val::int($cert['id']), false );
 		}
 		if ( $chat ) {
 			/* translators: %s: certificate number */
-			flxc_system_message( $chat, sprintf( __( 'Certificate created: %s', 'flx-chat' ), $cert['number'] ) );
+			flxc_system_message( $chat, sprintf( __( 'Certificate created: %s', 'flx-chat' ), FLXC_Val::str( $cert['number'] ?? '' ) ) );
 		}
 		FLXC_Chat_Service::changed();
 		return array( 'certificate' => flxc_certificate_for_js( $cert ) );

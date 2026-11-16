@@ -199,7 +199,6 @@ export class WaEngine {
       const b = r.flxChatInbox;
       const boot: FlxcBootstrap = {
         me: { id: b.me.databaseId, name: b.me.name, manage: b.me.manage },
-        delHours: b.delHours,
         agents: b.agents.map((a) => ({ id: a.databaseId, name: a.name })),
         labels: b.labels.map((l) => ({ id: l.id, name: l.name, color: l.color })),
         connections: b.connections.map(connOf),
