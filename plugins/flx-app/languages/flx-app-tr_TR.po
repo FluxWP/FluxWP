@@ -1,15 +1,6 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: tr_TR\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Aggregate mobile app usage"
-msgstr "Mobil uygulama kullanım toplamları"
-
-msgid "Optional and off by default. Only accounts that also opt in inside the app are counted. Completed UTC-day iOS/Android totals go to your telemetry hub only for cohorts of at least five accounts. No names, account IDs, content, site URLs or GPS location are included. Country comes from site settings. General usage sharing must also be on. Sign-in and app features do not depend on this choice."
-msgstr "İsteğe bağlıdır ve varsayılan kapalıdır. Yalnız uygulamada ayrıca izin veren hesaplar sayılır. Her tamamlanmış UTC günü için iOS/Android toplamları, en az beş hesap varsa telemetri merkezinize gönderilir. Kişi adları, hesap kimlikleri, içerik, site adresi ve GPS konumu bu rapora eklenmez. Ülke, sitenin ayarından gelir. Genel kullanım verisi izni de açık olmalıdır. Giriş ve uygulama özellikleri bu seçime bağlı değildir."
-
-msgid "Share aggregate mobile app usage"
-msgstr "Mobil uygulamanın toplam kullanımını paylaş"
-
 msgid "Application"
 msgstr "Uygulama"
 
@@ -256,9 +247,6 @@ msgstr "Etkin ön ayar"
 msgid "Send me a test notification"
 msgstr "Kendime deneme bildirimi gönder"
 
-msgid "Test notification: this device receives notifications."
-msgstr "Deneme bildirimi: bu cihaz bildirim alıyor."
-
 msgid "No device is signed in to the app."
 msgstr "Uygulamada oturum açılmış cihaz yok."
 
@@ -447,8 +435,26 @@ msgstr "Uygulama, yerel ekranı olmayan menüleri panel sayfası olarak açabils
 msgid "Sign in with code"
 msgstr "Kodla giriş"
 
+msgid "Let donors sign in with a code sent to their email, or to the phone number saved on their account"
+msgstr "Bağışçılar e-postalarına ya da hesaplarındaki telefon numarasına gelen kodla giriş yapabilsin"
+
+msgid "Create a customer account for an email after its sign-in code is confirmed"
+msgstr "Giriş kodu doğrulandıktan sonra bu e-posta için müşteri hesabı aç"
+
 msgid "Let staff sign in with a code too (not recommended; staff use OAuth in the browser)"
 msgstr "Personel de kodla girebilsin (önerilmez; personel tarayıcıyla OAuth kullanır)"
+
+msgid "Phone codes go out through Flux Call Center (WhatsApp) when that channel is available; otherwise the code is emailed to the account. A phone code signs in only the account whose saved number is exactly that full number. Donations and orders never open or claim an account."
+msgstr "Telefon kodu, kanal hazırsa Flux Chat (WhatsApp) üzerinden gider; değilse kod hesaba e-posta ile gönderilir. Telefon kodu yalnız kayıtlı numarası bu tam numarayla birebir aynı olan hesabın girişini açar. Bağışlar ve siparişler hesap açmaz ve hesaba sahip çıkmaz."
+
+msgid "Own phone number"
+msgstr "Kendi telefon numarası"
+
+msgid "Let a signed-in donor confirm a phone number and save it on their account"
+msgstr "Giriş yapmış bağışçı telefon numarasını doğrulayıp hesabına kaydedebilsin"
+
+msgid "The code is sent only to that phone (WhatsApp or an SMS provider), never by email. People who can edit posts keep an administrator-managed number unless staff code sign-in is turned on."
+msgstr "Kod yalnız o telefona gider (WhatsApp ya da bir SMS sağlayıcısı), e-posta ile gitmez. Yazı düzenleyebilenler, personel kodla girişi açılmadıkça yönetici tarafından tutulan numarayı korur."
 
 msgid "Can create API keys"
 msgstr "API anahtarı oluşturabilir"
@@ -627,8 +633,20 @@ msgstr "Push belirteci tanınmadı."
 msgid "Device not found."
 msgstr "Cihaz bulunamadı."
 
+msgid "JavaScript is required for this screen."
+msgstr "Bu ekran için JavaScript gerekli."
+
+msgid "New view"
+msgstr "Yeni görünüm"
+
+msgid "Open the new view (same features, works in the FluxWP app too)."
+msgstr "Yeni görünümü aç (aynı özellikler, FluxWP uygulamasında da çalışır)."
+
 msgid "Manifest not found."
 msgstr "Manifest bulunamadı."
+
+msgid "The token does not include the scope this request needs."
+msgstr "Belirteç, bu isteğin gerektirdiği kapsamı içermiyor."
 
 msgid "App connection"
 msgstr "Uygulama bağlantısı"
@@ -699,17 +717,44 @@ msgstr "Çok fazla deneme. Biraz sonra tekrar deneyin."
 msgid "The code is wrong or has expired."
 msgstr "Kod yanlış ya da süresi dolmuş."
 
+msgid "Phone confirmation is not available."
+msgstr "Telefon doğrulama kullanılamıyor."
+
+msgid "%1$s is your code to confirm the phone number on %2$s. Valid for 10 minutes. Do not share this code with anyone."
+msgstr "%1$s, %2$s sitesinde telefon numaranızı doğrulama kodunuz. 10 dakika geçerli. Bu kodu kimseyle paylaşmayın."
+
+msgid "The phone number on your %s account was changed"
+msgstr "%s hesabınızdaki telefon numarası değişti"
+
+msgid "The phone number on your account now ends in %s. If you did not do this, contact the site administrator."
+msgstr "Hesabınızdaki telefon numarası artık %s ile bitiyor. Bunu siz yapmadıysanız site yöneticisine başvurun."
+
+msgid "The phone number was removed from your %s account"
+msgstr "%s hesabınızdan telefon numarası kaldırıldı"
+
+msgid "The phone number ending in %s was removed from your account. If you did not do this, contact the site administrator."
+msgstr "Sonu %s ile biten telefon numarası hesabınızdan kaldırıldı. Bunu siz yapmadıysanız site yöneticisine başvurun."
+
+msgid "A phone number was added to your %s account"
+msgstr "%s hesabınıza bir telefon numarası eklendi"
+
+msgid "A phone number ending in %s was added to your account. If you did not do this, contact the site administrator."
+msgstr "Sonu %s ile biten bir telefon numarası hesabınıza eklendi. Bunu siz yapmadıysanız site yöneticisine başvurun."
+
+msgid "Enter a valid phone number."
+msgstr "Geçerli bir telefon numarası yazın."
+
+msgid "The phone number could not be saved."
+msgstr "Telefon numarası kaydedilemedi."
+
+msgid "No phone number is saved on this account."
+msgstr "Bu hesapta kayıtlı telefon numarası yok."
+
+msgid "An administrator manages this phone number."
+msgstr "Bu telefon numarasını bir yönetici yönetir."
+
 msgid "Other"
 msgstr "Diğer"
-
-msgid "Admin sessions are turned off in settings."
-msgstr "Panel oturumu ayarlardan kapalı."
-
-msgid "Too many requests. Please wait a moment."
-msgstr "Çok fazla istek. Biraz bekleyin."
-
-msgid "Invalid admin path."
-msgstr "Geçersiz panel yolu."
 
 msgid "This setting cannot be opened from the app."
 msgstr "Bu ayar uygulamadan açılamaz."
@@ -785,6 +830,975 @@ msgstr "Geliştirici modu açık (exp:// dönüşleri); canlıda kapatın."
 
 msgid "The token is invalid or expired."
 msgstr "Belirteç geçersiz ya da süresi dolmuş."
+
+msgid "Aggregate mobile app usage"
+msgstr "Mobil uygulama kullanım toplamları"
+
+msgid "Optional and off by default. Only accounts that also opt in inside the app are counted. Completed UTC-day iOS/Android totals go to your telemetry hub only for cohorts of at least five accounts. No names, account IDs, content, site URLs or GPS location are included. Country comes from site settings. General usage sharing must also be on. Sign-in and app features do not depend on this choice."
+msgstr "İsteğe bağlıdır ve varsayılan kapalıdır. Yalnız uygulamada ayrıca izin veren hesaplar sayılır. Her tamamlanmış UTC günü için iOS/Android toplamları, en az beş hesap varsa telemetri merkezinize gönderilir. Kişi adları, hesap kimlikleri, içerik, site adresi ve GPS konumu bu rapora eklenmez. Ülke, sitenin ayarından gelir. Genel kullanım verisi izni de açık olmalıdır. Giriş ve uygulama özellikleri bu seçime bağlı değildir."
+
+msgid "Share aggregate mobile app usage"
+msgstr "Mobil uygulamanın toplam kullanımını paylaş"
+
+msgid "Yetkiniz yok."
+msgstr "Yetkiniz yok."
+
+msgid "Test notification: this device receives notifications."
+msgstr "Deneme bildirimi: bu cihaz bildirim alıyor."
+
+msgid "Admin sessions are turned off in settings."
+msgstr "Panel oturumu ayarlardan kapalı."
+
+msgid "Too many requests. Please wait a moment."
+msgstr "Çok fazla istek. Biraz bekleyin."
+
+msgid "Invalid admin path."
+msgstr "Geçersiz panel yolu."
+
+msgid "Where an OAuth client comes from."
+msgstr "OAuth istemcisinin nereden geldiği."
+
+msgid "A personal API key or an app session."
+msgstr "Kişisel API anahtarı ya da uygulama oturumu."
+
+msgid "A key with a label."
+msgstr "Etiketli bir anahtar."
+
+msgid "Key."
+msgstr "Anahtar."
+
+msgid "Label."
+msgstr "Etiket."
+
+msgid "Sign-in, session and panel settings of the app."
+msgstr "Uygulamanın giriş, oturum ve panel ayarları."
+
+msgid "Access token lifetime in minutes (5 to 1440)."
+msgstr "Erişim belirteci ömrü, dakika (5 ile 1440)."
+
+msgid "Session lifetime in days when unused (1 to 365)."
+msgstr "Kullanılmayan oturumun ömrü, gün (1 ile 365)."
+
+msgid "MCP clients may register themselves."
+msgstr "MCP istemcileri kendini kaydedebilir."
+
+msgid "The app may open admin pages with a one-time sign-in link."
+msgstr "Uygulama, tek kullanımlık giriş bağlantısıyla yönetim sayfalarını açabilir."
+
+msgid "Donors may sign in with an emailed or phone code."
+msgstr "Bağışçılar e-postayla ya da telefonla gelen kodla giriş yapabilir."
+
+msgid "Create a customer account for a confirmed email."
+msgstr "Doğrulanan e-posta için müşteri hesabı oluştur."
+
+msgid "Staff may sign in with a code too."
+msgstr "Personel de kodla giriş yapabilir."
+
+msgid "A signed-in donor may confirm a phone number."
+msgstr "Giriş yapmış bağışçı telefon numarasını doğrulayabilir."
+
+msgid "Who can create API keys (a capability)."
+msgstr "API anahtarı kimler oluşturabilir (bir yetki)."
+
+msgid "The choices for keysCap."
+msgstr "keysCap için seçenekler."
+
+msgid "Flux App version."
+msgstr "Flux App sürümü."
+
+msgid "The General settings."
+msgstr "Genel ayarlar."
+
+msgid "Saves the General settings; only the sent fields change."
+msgstr "Genel ayarları kaydeder; yalnız gönderilen alanlar değişir."
+
+msgid "The settings after the change."
+msgstr "Değişiklikten sonraki ayarlar."
+
+msgid "A package module of the app."
+msgstr "Uygulamanın bir paket modülü."
+
+msgid "Module key."
+msgstr "Modül anahtarı."
+
+msgid "Module title."
+msgstr "Modül başlığı."
+
+msgid "Panel menu slug; empty for a separate item."
+msgstr "Panel menü kısa adı; ayrı öğeyse boş."
+
+msgid "Capability needed to open it."
+msgstr "Açmak için gereken yetki."
+
+msgid "Package version; empty when not reported."
+msgstr "Paket sürümü; bildirilmediyse boş."
+
+msgid "native, manifest or web."
+msgstr "native, manifest ya da web."
+
+msgid "Number of manifest screens."
+msgstr "Manifest ekran sayısı."
+
+msgid "Manifest problems."
+msgstr "Manifest sorunları."
+
+msgid "The module is on in the app."
+msgstr "Modül uygulamada açık."
+
+msgid "Modules the app can show, with their on/off state."
+msgstr "Uygulamanın gösterebileceği modüller, açık/kapalı durumlarıyla."
+
+msgid "Sets which modules are on; the others turn off (their menu opens as an admin page)."
+msgstr "Hangi modüllerin açık kalacağını belirler; diğerleri kapanır (menüleri yönetim sayfası olarak açılır)."
+
+msgid "Module keys that stay on."
+msgstr "Açık kalacak modül anahtarları."
+
+msgid "The modules after the change."
+msgstr "Değişiklikten sonraki modüller."
+
+msgid "Whether a menu item shows on a platform."
+msgstr "Bir menü öğesinin bir platformda görünüp görünmediği."
+
+msgid "Platform key."
+msgstr "Platform anahtarı."
+
+msgid "The item shows there."
+msgstr "Öğe orada görünür."
+
+msgid "A menu item hidden on some platform for a role."
+msgstr "Bir rol için bir platformda gizlenen menü öğesi."
+
+msgid "Role name."
+msgstr "Rol adı."
+
+msgid "Menu item name."
+msgstr "Menü öğesi adı."
+
+msgid "Visibility per platform."
+msgstr "Platforma göre görünürlük."
+
+msgid "Menu items hidden by platform (the menu itself is edited in Flux Admin)."
+msgstr "Platforma göre gizlenen menü öğeleri (menünün kendisi Flux Admin'de düzenlenir)."
+
+msgid "Flux Admin 1.3.0 or later is active."
+msgstr "Flux Admin 1.3.0 ya da sonrası etkin."
+
+msgid "The menu editor address."
+msgstr "Menü düzenleyici adresi."
+
+msgid "Platforms."
+msgstr "Platformlar."
+
+msgid "Hidden items."
+msgstr "Gizlenen öğeler."
+
+msgid "Menu items hidden by platform."
+msgstr "Platforma göre gizlenen menü öğeleri."
+
+msgid "An OAuth client."
+msgstr "Bir OAuth istemcisi."
+
+msgid "client_id."
+msgstr "client_id."
+
+msgid "Name."
+msgstr "Ad."
+
+msgid "Redirect URIs."
+msgstr "Yönlendirme adresleri."
+
+msgid "Where it comes from."
+msgstr "Nereden geldiği."
+
+msgid "It has a client secret."
+msgstr "İstemci gizli anahtarı var."
+
+msgid "OAuth clients and the connection details."
+msgstr "OAuth istemcileri ve bağlantı bilgileri."
+
+msgid "Clients."
+msgstr "İstemciler."
+
+msgid "Connection details (label holds the address)."
+msgstr "Bağlantı bilgileri (etiket adresi taşır)."
+
+msgid "Adds an OAuth client; a client secret is shown once."
+msgstr "Bir OAuth istemcisi ekler; istemci gizli anahtarı bir kez gösterilir."
+
+msgid "Generate a client secret."
+msgstr "İstemci gizli anahtarı üret."
+
+msgid "The new client."
+msgstr "Yeni istemci."
+
+msgid "The client secret; shown only now."
+msgstr "İstemci gizli anahtarı; yalnız şimdi gösterilir."
+
+msgid "Deletes an OAuth client and all of its sessions."
+msgstr "Bir OAuth istemcisini ve tüm oturumlarını siler."
+
+msgid "Deleted."
+msgstr "Silindi."
+
+msgid "An app session or a personal API key."
+msgstr "Bir uygulama oturumu ya da kişisel API anahtarı."
+
+msgid "Row ID."
+msgstr "Satır kimliği."
+
+msgid "Session or key."
+msgstr "Oturum ya da anahtar."
+
+msgid "Last characters of a key; empty for a session."
+msgstr "Anahtarın son karakterleri; oturumda boş."
+
+msgid "User ID."
+msgstr "Kullanıcı kimliği."
+
+msgid "Display name."
+msgstr "Görünen ad."
+
+msgid "Unix time."
+msgstr "Unix zamanı."
+
+msgid "Unix time of the last use; 0 = never."
+msgstr "Son kullanımın Unix zamanı; 0 = hiç."
+
+msgid "Last IP of a key; empty for a session."
+msgstr "Anahtarın son IP adresi; oturumda boş."
+
+msgid "Unix time it expires; 0 = never."
+msgstr "Sona erme Unix zamanı; 0 = hiç."
+
+msgid "A device signed in to the app."
+msgstr "Uygulamada oturum açmış bir cihaz."
+
+msgid "Device ID."
+msgstr "Cihaz kimliği."
+
+msgid "Device name."
+msgstr "Cihaz adı."
+
+msgid "Platform and model."
+msgstr "Platform ve model."
+
+msgid "Application and version."
+msgstr "Uygulama ve sürüm."
+
+msgid "Brand of a branded app."
+msgstr "Markalı uygulamanın markası."
+
+msgid "Notifications are on."
+msgstr "Bildirimler açık."
+
+msgid "Unix time last seen."
+msgstr "Son görülmenin Unix zamanı."
+
+msgid "Last seen, in words."
+msgstr "Son görülme, yazıyla."
+
+msgid "This is the device that asks."
+msgstr "Soruyu soran cihaz bu."
+
+msgid "Desktop app download addresses."
+msgstr "Masaüstü uygulaması indirme adresleri."
+
+msgid "macOS."
+msgstr "macOS."
+
+msgid "Windows."
+msgstr "Windows."
+
+msgid "Windows MSI package."
+msgstr "Windows MSI paketi."
+
+msgid "Devices, sessions and keys."
+msgstr "Cihazlar, oturumlar ve anahtarlar."
+
+msgid "Devices."
+msgstr "Cihazlar."
+
+msgid "Sessions and keys."
+msgstr "Oturumlar ve anahtarlar."
+
+msgid "The user may create API keys."
+msgstr "Kullanıcı API anahtarı oluşturabilir."
+
+msgid "The user manages the app settings."
+msgstr "Kullanıcı uygulama ayarlarını yönetir."
+
+msgid "Desktop app downloads."
+msgstr "Masaüstü uygulaması indirmeleri."
+
+msgid "Devices, sessions and keys of the signed-in user, or of everyone (`all`, administrators)."
+msgstr "Giriş yapmış kullanıcının ya da herkesin (`all`, yöneticiler) cihazları, oturumları ve anahtarları."
+
+msgid "Everyone (administrators only)."
+msgstr "Herkes (yalnız yöneticiler)."
+
+msgid "Creates a personal API key; it is shown only now."
+msgstr "Kişisel bir API anahtarı oluşturur; yalnız şimdi gösterilir."
+
+msgid "Valid for 30, 90 or 365 days; 0 = never expires."
+msgstr "30, 90 ya da 365 gün geçerli; 0 = süresiz."
+
+msgid "The key; shown only now."
+msgstr "Anahtar; yalnız şimdi gösterilir."
+
+msgid "Removes a session or key (own, or any as administrator)."
+msgstr "Bir oturumu ya da anahtarı kaldırır (kendi, yönetici olarak herhangi biri)."
+
+msgid "Removed."
+msgstr "Kaldırıldı."
+
+msgid "Signs a device out (own, or any as administrator)."
+msgstr "Bir cihazın oturumunu kapatır (kendi, yönetici olarak herhangi biri)."
+
+msgid "Signed out."
+msgstr "Oturum kapatıldı."
+
+msgid "An app published under the organisation's own name."
+msgstr "Kurumun kendi adıyla yayımlanan uygulama."
+
+msgid "mobile or desktop."
+msgstr "mobile ya da desktop."
+
+msgid "A branded app."
+msgstr "Markalı bir uygulama."
+
+msgid "The last push send."
+msgstr "Son push gönderimi."
+
+msgid "In words."
+msgstr "Yazıyla."
+
+msgid "Sent."
+msgstr "Gönderildi."
+
+msgid "Failed."
+msgstr "Başarısız."
+
+msgid "Error text."
+msgstr "Hata metni."
+
+msgid "Which apps may connect, store links and notifications."
+msgstr "Hangi uygulamaların bu siteye bağlanabileceği, mağaza bağlantıları ve bildirimler."
+
+msgid "The main FluxWP app may connect."
+msgstr "Ana FluxWP uygulaması bağlanabilir."
+
+msgid "App Store link."
+msgstr "App Store bağlantısı."
+
+msgid "Google Play link."
+msgstr "Google Play bağlantısı."
+
+msgid "Push notifications are sent."
+msgstr "Push bildirimleri gönderilir."
+
+msgid "Hide content on the lock screen."
+msgstr "Kilit ekranında içeriği gizle."
+
+msgid "An Expo access token is saved (never shown)."
+msgstr "Expo erişim belirteci kayıtlı (hiç gösterilmez)."
+
+msgid "Hide the admin bar on site pages opened in the app."
+msgstr "Uygulamada açılan site sayfalarında yönetim çubuğunu gizle."
+
+msgid "Allow Expo development redirects."
+msgstr "Expo geliştirme yönlendirmelerine izin ver."
+
+msgid "Branded apps."
+msgstr "Markalı uygulamalar."
+
+msgid "Devices signed in."
+msgstr "Oturum açmış cihazlar."
+
+msgid "Devices with notifications on."
+msgstr "Bildirimi açık cihazlar."
+
+msgid "Bootstrap address."
+msgstr "Bootstrap adresi."
+
+msgid "Active preset."
+msgstr "Etkin ön ayar."
+
+msgid "The Applications settings."
+msgstr "Uygulamalar ayarları."
+
+msgid "Saves the Applications settings; only the sent fields change."
+msgstr "Uygulamalar ayarlarını kaydeder; yalnız gönderilen alanlar değişir."
+
+msgid "A new Expo access token."
+msgstr "Yeni Expo erişim belirteci."
+
+msgid "Delete the saved Expo access token."
+msgstr "Kayıtlı Expo erişim belirtecini sil."
+
+msgid "The branded apps (replaces the list)."
+msgstr "Markalı uygulamalar (listeyi değiştirir)."
+
+msgid "Sends a test notification to the administrator's devices."
+msgstr "Yöneticinin cihazlarına deneme bildirimi gönderir."
+
+msgid "Skipped."
+msgstr "Atlandı."
+
+msgid "A group of targets the pickers offer."
+msgstr "Seçicilerin sunduğu hedef grubu."
+
+msgid "Group name."
+msgstr "Grup adı."
+
+msgid "Targets."
+msgstr "Hedefler."
+
+msgid "A native screen that can be turned off."
+msgstr "Kapatılabilen yerel bir ekran."
+
+msgid "module/screen."
+msgstr "modül/ekran."
+
+msgid "It opens natively in the app."
+msgstr "Uygulamada yerel olarak açılır."
+
+msgid "Appearance of the desktop and mobile app. `option` is the flxapp_app site layer and `theme` the resolved theme; both are open documents the client validates."
+msgstr "Masaüstü ve mobil uygulamanın görünümü. `option` flxapp_app site katmanı, `theme` çözümlenmiş temadır; ikisi de istemcinin doğruladığı açık belgelerdir."
+
+msgid "The site layer (theme, shell, features, links, brand); open and versioned."
+msgstr "Site katmanı (tema, kabuk, özellikler, bağlantılar, marka); açık ve sürümlü."
+
+msgid "The resolved theme (colours by mode, fonts); open."
+msgstr "Çözümlenmiş tema (moda göre renkler, yazı tipleri); açık."
+
+msgid "Fonts to choose from."
+msgstr "Seçilebilecek yazı tipleri."
+
+msgid "Theme colours and their names."
+msgstr "Tema renkleri ve adları."
+
+msgid "Targets for tabs, home screens and shortcuts."
+msgstr "Sekmeler, ana ekranlar ve kısayollar için hedefler."
+
+msgid "Short names of all targets."
+msgstr "Tüm hedeflerin kısa adları."
+
+msgid "Screens that can be turned off."
+msgstr "Kapatılabilen ekranlar."
+
+msgid "The resolved mobile config for the preview (flx-app-config/1)."
+msgstr "Önizleme için çözümlenmiş mobil config (flx-app-config/1)."
+
+msgid "The resolved desktop config for the preview (flx-app-config/1)."
+msgstr "Önizleme için çözümlenmiş masaüstü config (flx-app-config/1)."
+
+msgid "The Appearance settings and what the pickers need."
+msgstr "Görünüm ayarları ve seçicilerin ihtiyaç duyduğu her şey."
+
+msgid "Saves the theme, the mobile and desktop shell and the enabled screens (the same sanitizing as presets)."
+msgstr "Temayı, mobil ve masaüstü kabuğunu ve açık ekranları kaydeder (ön ayarlarla aynı temizleme)."
+
+msgid "Theme overrides: mode, radius, density, font, light/dark colours."
+msgstr "Tema geçersiz kılmaları: mod, köşe, yoğunluk, yazı tipi, açık/koyu renkler."
+
+msgid "Mobile shell: nav, home, tabs, drawer, topbar."
+msgstr "Mobil kabuk: gezinme, ana ekran, sekmeler, çekmece, üst çubuk."
+
+msgid "Desktop shell: home, topbar, commands."
+msgstr "Masaüstü kabuk: ana ekran, üst çubuk, komutlar."
+
+msgid "Screens that open natively; the others open in the web view."
+msgstr "Yerel açılacak ekranlar; diğerleri web görünümünde açılır."
+
+msgid "Platform of the asking app; decides which menu and screens are sent."
+msgstr "Uygulamanın platformu; hangi menü ve ekranların gönderileceğini belirler."
+
+msgid "How the request signed in."
+msgstr "İsteğin nasıl oturum açtığı."
+
+msgid "A counter shown as a badge (unread messages, open tasks …)."
+msgstr "Rozet olarak gösterilen sayaç (okunmamış mesaj, açık görev …)."
+
+msgid "Counter name."
+msgstr "Sayaç adı."
+
+msgid "Current number."
+msgstr "Güncel sayı."
+
+msgid "Short digests of the documents the app caches; a changed digest means refetch."
+msgstr "Uygulamanın önbelleğe aldığı belgelerin kısa özetleri; özet değiştiyse belge yeniden alınır."
+
+msgid "Digest of flxAppMe."
+msgstr "flxAppMe özeti."
+
+msgid "Digest of flxAppConfig."
+msgstr "flxAppConfig özeti."
+
+msgid "Digest of flxAppManifest."
+msgstr "flxAppManifest özeti."
+
+msgid "A role of the user."
+msgstr "Kullanıcının bir rolü."
+
+msgid "Role key."
+msgstr "Rol anahtarı."
+
+msgid "Role name in the user's language."
+msgstr "Rol adı, kullanıcının dilinde."
+
+msgid "The signed-in user."
+msgstr "Oturum açmış kullanıcı."
+
+msgid "Username."
+msgstr "Kullanıcı adı."
+
+msgid "E-mail address."
+msgstr "E-posta adresi."
+
+msgid "Avatar image address."
+msgstr "Avatar görsel adresi."
+
+msgid "Roles of the user."
+msgstr "Kullanıcının rolleri."
+
+msgid "Language of the user (profile language)."
+msgstr "Kullanıcının dili (profil dili)."
+
+msgid "Can manage the site settings."
+msgstr "Site ayarlarını yönetebilir."
+
+msgid "Profile page in the panel."
+msgstr "Panelde profil sayfası."
+
+msgid "The site the app is connected to."
+msgstr "Uygulamanın bağlı olduğu site."
+
+msgid "Site name."
+msgstr "Site adı."
+
+msgid "Home address."
+msgstr "Ana sayfa adresi."
+
+msgid "Panel address."
+msgstr "Panel adresi."
+
+msgid "REST API root."
+msgstr "REST API kökü."
+
+msgid "Site icon address; empty when none."
+msgstr "Site simgesi adresi; yoksa boş."
+
+msgid "Site language."
+msgstr "Site dili."
+
+msgid "Site time zone."
+msgstr "Site saat dilimi."
+
+msgid "How this request signed in."
+msgstr "Bu isteğin nasıl oturum açtığı."
+
+msgid "Cookie session, app access token or personal API key."
+msgstr "Çerez oturumu, uygulama erişim belirteci ya da kişisel API anahtarı."
+
+msgid "OAuth client of the token; empty for a cookie session."
+msgstr "Belirtecin OAuth istemcisi; çerez oturumunda boş."
+
+msgid "Scopes of the token; empty for a cookie session."
+msgstr "Belirtecin kapsamları; çerez oturumunda boş."
+
+msgid "Unix time the token expires; empty when it does not or for a cookie session."
+msgstr "Belirtecin sona erdiği Unix zamanı; süresi yoksa ya da çerez oturumunda boş."
+
+msgid "A sub item of a menu entry."
+msgstr "Menü girdisinin alt öğesi."
+
+msgid "Menu slug."
+msgstr "Menü kısa adı."
+
+msgid "Title in the user's language."
+msgstr "Başlık, kullanıcının dilinde."
+
+msgid "Badge text (a count); empty when none."
+msgstr "Rozet metni (sayı); yoksa boş."
+
+msgid "A panel menu entry the user may open."
+msgstr "Kullanıcının açabileceği bir panel menü girdisi."
+
+msgid "Entry ID."
+msgstr "Girdi kimliği."
+
+msgid "Icon name."
+msgstr "Simge adı."
+
+msgid "Coloured package logo; empty when the package has none (use icon)."
+msgstr "Renkli paket logosu; paketin yoksa boş (simgeyi kullanın)."
+
+msgid "Sub items."
+msgstr "Alt öğeler."
+
+msgid "A package module with a native screen in the app."
+msgstr "Uygulamada yerel ekranı olan paket modülü."
+
+msgid "Panel menu slug the module replaces; empty when none."
+msgstr "Modülün yerine geçtiği panel menü kısa adı; yoksa boş."
+
+msgid "REST root of the module; empty when none."
+msgstr "Modülün REST kökü; yoksa boş."
+
+msgid "Icon name; empty when none."
+msgstr "Simge adı; yoksa boş."
+
+msgid "Sort order; empty = default."
+msgstr "Sıralama; boş = varsayılan."
+
+msgid "Panel page an app without the native screen opens."
+msgstr "Yerel ekranı olmayan uygulamanın açtığı panel sayfası."
+
+msgid "The module has a manifest (flxAppManifest) and opens with it."
+msgstr "Modülün manifest'i var (flxAppManifest) ve onunla açılır."
+
+msgid "Further keys a package adds to its module entry (open map)."
+msgstr "Paketin modül girdisine eklediği diğer anahtarlar (açık harita)."
+
+msgid "One core WordPress permission, for the app's screen and menu decisions."
+msgstr "Uygulamanın ekran ve menü kararları için WordPress çekirdek yetkilerinden biri."
+
+msgid "Capability name."
+msgstr "Yetki adı."
+
+msgid "The user has it. The server still checks every field."
+msgstr "Kullanıcıda var. Sunucu her alanı yine de denetler."
+
+msgid "An installed FluxWP package and its version."
+msgstr "Kurulu bir FluxWP paketi ve sürümü."
+
+msgid "Package slug."
+msgstr "Paket kısa adı."
+
+msgid "Version."
+msgstr "Sürüm."
+
+msgid "A group of the left menu."
+msgstr "Sol menünün bir grubu."
+
+msgid "Group key."
+msgstr "Grup anahtarı."
+
+msgid "Group name; empty for the first unnamed group."
+msgstr "Grup adı; ilk adsız grup için boş."
+
+msgid "Starts collapsed."
+msgstr "Kapalı başlar."
+
+msgid "Menu slugs in the group."
+msgstr "Gruptaki menü kısa adları."
+
+msgid "The menu layout as in the panel (Flux Admin)."
+msgstr "Paneldeki gibi menü düzeni (Flux Admin)."
+
+msgid "Menu slugs the person pinned."
+msgstr "Kişinin sabitlediği menü kısa adları."
+
+msgid "Menu groups."
+msgstr "Menü grupları."
+
+msgid "Everything the app needs after sign-in: user, site, menu, modules, counters and digests."
+msgstr "Girişten sonra uygulamanın ihtiyaç duyduğu her şey: kullanıcı, site, menü, modüller, sayaçlar ve özetler."
+
+msgid "The site."
+msgstr "Site."
+
+msgid "Menu the user may open."
+msgstr "Kullanıcının açabileceği menü."
+
+msgid "Modules with native screens, by sort order."
+msgstr "Sıraya göre yerel ekranlı modüller."
+
+msgid "Badge counters."
+msgstr "Rozet sayaçları."
+
+msgid "Menu slugs of the phone bottom bar."
+msgstr "Telefon alt çubuğunun menü kısa adları."
+
+msgid "The app may open panel pages in a web view (admin sessions are on)."
+msgstr "Uygulama panel sayfalarını web görünümünde açabilir (yönetici oturumları açık)."
+
+msgid "Core permissions summary."
+msgstr "Çekirdek yetkiler özeti."
+
+msgid "Installed FluxWP packages."
+msgstr "Kurulu FluxWP paketleri."
+
+msgid "Menu layout; empty without Flux Admin."
+msgstr "Menü düzeni; Flux Admin yoksa boş."
+
+msgid "Digests for the cached documents."
+msgstr "Önbellekteki belgelerin özetleri."
+
+msgid "The signed-in user, site, menu, modules and layout (REST GET /flxapp/v1/me)."
+msgstr "Oturum açmış kullanıcı, site, menü, modüller ve düzen (REST GET /flxapp/v1/me)."
+
+msgid "Only the badge counters (light poll; REST GET /flxapp/v1/counts)."
+msgstr "Yalnız rozet sayaçları (hafif yoklama; REST GET /flxapp/v1/counts)."
+
+msgid "A notification event for the desktop app."
+msgstr "Masaüstü uygulaması için bir bildirim olayı."
+
+msgid "Event type, e.g. flxg.assigned."
+msgstr "Olay türü, ör. flxg.assigned."
+
+msgid "Title."
+msgstr "Başlık."
+
+msgid "Text; empty when the site hides notification text."
+msgstr "Metin; site bildirim metnini gizliyorsa boş."
+
+msgid "Where the app opens when the event is clicked."
+msgstr "Olaya tıklanınca uygulamanın açılacağı yer."
+
+msgid "Parameters of the target (open map)."
+msgstr "Hedefin parametreleri (açık harita)."
+
+msgid "Light poll: counters, digests of the cached documents and the new events."
+msgstr "Hafif yoklama: sayaçlar, önbellekteki belgelerin özetleri ve yeni olaylar."
+
+msgid "Digests; a changed one means refetch that document."
+msgstr "Özetler; değişen bir özet o belgenin yeniden alınması demektir."
+
+msgid "Events after the asked time (the last 20 are kept)."
+msgstr "İstenen zamandan sonraki olaylar (son 20 saklanır)."
+
+msgid "Server Unix time; send it back as `since`."
+msgstr "Sunucunun Unix zamanı; `since` olarak geri gönderin."
+
+msgid "Light poll (REST GET /flxapp/v1/sync). Poll no faster than every 10 seconds and stop while the app is hidden."
+msgstr "Hafif yoklama (REST GET /flxapp/v1/sync). 10 saniyeden sık yoklamayın, uygulama gizliyken durdurun."
+
+msgid "Unix time of the last poll; events after it are returned."
+msgstr "Son yoklamanın Unix zamanı; ondan sonraki olaylar döner."
+
+msgid "The resolved look and behaviour of the app (flx-app-config/1)."
+msgstr "Uygulamanın çözümlenmiş görünüm ve davranışı (flx-app-config/1)."
+
+msgid "Digest of the document; send it as ifHash next time."
+msgstr "Belgenin özeti; bir sonraki sefer ifHash olarak gönderin."
+
+msgid "ifHash matched: keep the cached document."
+msgstr "ifHash eşleşti: önbellekteki belgeyi koruyun."
+
+msgid "The flx-app-config/1 document (brand, theme, shell, features …); empty when not modified. Open and versioned, validated by the client."
+msgstr "flx-app-config/1 belgesi (marka, tema, kabuk, özellikler …); değişmediyse boş. Açık ve sürümlü, istemci doğrular."
+
+msgid "The app look for the asking platform (REST GET /flxapp/v1/config, with ETag semantics via ifHash)."
+msgstr "Soran platform için uygulama görünümü (REST GET /flxapp/v1/config, ifHash ile ETag anlamı)."
+
+msgid "Digest the app already has; a match returns notModified and no document."
+msgstr "Uygulamanın zaten sahip olduğu özet; eşleşme belge değil notModified döner."
+
+msgid "The screens of one package (flx-app-manifest/1)."
+msgstr "Bir paketin ekranları (flx-app-manifest/1)."
+
+msgid "The module manifest (screens, actions, fields); open and versioned, validated by the client."
+msgstr "Modül manifest'i (ekranlar, eylemler, alanlar); açık ve sürümlü, istemci doğrular."
+
+msgid "Screens of the packages the user may open."
+msgstr "Kullanıcının açabileceği paketlerin ekranları."
+
+msgid "Manifest format, flx-app-manifest/1."
+msgstr "Manifest biçimi, flx-app-manifest/1."
+
+msgid "Digest; send it as ifHash next time."
+msgstr "Özet; bir sonraki sefer ifHash olarak gönderin."
+
+msgid "ifHash matched: keep the cached manifests."
+msgstr "ifHash eşleşti: önbellekteki manifest'leri koruyun."
+
+msgid "Platform the list was filtered for; empty when the app did not say."
+msgstr "Listenin süzüldüğü platform; uygulama söylemediyse boş."
+
+msgid "Module manifests by sort order; empty when not modified."
+msgstr "Sıraya göre modül manifest'leri; değişmediyse boş."
+
+msgid "Screens of the packages for the user and platform (REST GET /flxapp/v1/manifest, ETag via ifHash)."
+msgstr "Kullanıcı ve platform için paketlerin ekranları (REST GET /flxapp/v1/manifest, ifHash ile ETag)."
+
+msgid "Digest the app already has; a match returns notModified and no modules."
+msgstr "Uygulamanın zaten sahip olduğu özet; eşleşme modül değil notModified döner."
+
+msgid "Public discovery of the site for the app."
+msgstr "Sitenin uygulama için herkese açık keşfi."
+
+msgid "The flx-app-bootstrap/1 document: site, sign-in methods, apps, brand, theme, packages. Public, no secrets; open and versioned, validated by the client."
+msgstr "flx-app-bootstrap/1 belgesi: site, giriş yöntemleri, uygulamalar, marka, tema, paketler. Herkese açık, gizli bilgi yok; açık ve sürümlü, istemci doğrular."
+
+msgid "What the app learns before signing in (REST GET /flxapp/v1/app/bootstrap; cached 5 minutes)."
+msgstr "Uygulamanın giriş yapmadan önce öğrendikleri (REST GET /flxapp/v1/app/bootstrap; 5 dakika önbellek)."
+
+msgid "A figure card of the app home."
+msgstr "Uygulama ana sayfasının bir sayı kartı."
+
+msgid "Card key."
+msgstr "Kart anahtarı."
+
+msgid "Formatted number or amount."
+msgstr "Biçimlenmiş sayı ya da tutar."
+
+msgid "Small text under the value."
+msgstr "Değerin altında küçük metin."
+
+msgid "accent, warn, danger or ok; empty = default."
+msgstr "accent, warn, danger ya da ok; boş = varsayılan."
+
+msgid "Panel page that opens in a web view."
+msgstr "Web görünümünde açılan panel sayfası."
+
+msgid "App target (menu:<slug>, module:<id>, web:<path>)."
+msgstr "Uygulama hedefi (menu:<slug>, module:<id>, web:<path>)."
+
+msgid "Sort order."
+msgstr "Sıralama."
+
+msgid "A row of a home list."
+msgstr "Ana sayfa listesinin bir satırı."
+
+msgid "Second line."
+msgstr "İkinci satır."
+
+msgid "Right-hand text (time, amount)."
+msgstr "Sağdaki metin (zaman, tutar)."
+
+msgid "A list of the app home."
+msgstr "Uygulama ana sayfasının bir listesi."
+
+msgid "List key."
+msgstr "Liste anahtarı."
+
+msgid "Rows."
+msgstr "Satırlar."
+
+msgid "The app home: cards and lists the user's permissions allow."
+msgstr "Uygulama ana sayfası: kullanıcının yetkilerinin izin verdiği kartlar ve listeler."
+
+msgid "Figure cards by sort order."
+msgstr "Sıraya göre sayı kartları."
+
+msgid "Lists by sort order."
+msgstr "Sıraya göre listeler."
+
+msgid "The app home (REST GET /flxapp/v1/dashboard)."
+msgstr "Uygulama ana sayfası (REST GET /flxapp/v1/dashboard)."
+
+msgid "Whether the person wants one notification type."
+msgstr "Kişinin bir bildirim türünü isteyip istemediği."
+
+msgid "Event type."
+msgstr "Olay türü."
+
+msgid "Notifications of this type are on."
+msgstr "Bu türün bildirimleri açık."
+
+msgid "A notification type the person may switch on or off."
+msgstr "Kişinin açıp kapatabileceği bildirim türü."
+
+msgid "Name in the user's language."
+msgstr "Ad, kullanıcının dilinde."
+
+msgid "Package that sends it; empty for core."
+msgstr "Gönderen paket; çekirdek için boş."
+
+msgid "On until the person changes it."
+msgstr "Kişi değiştirene kadar açık."
+
+msgid "Currently on for this person."
+msgstr "Şu an bu kişi için açık."
+
+msgid "The person's app preferences, shared by all their devices."
+msgstr "Kişinin tüm cihazlarında ortak uygulama tercihleri."
+
+msgid "Menu order (slugs)."
+msgstr "Menü sırası (kısa adlar)."
+
+msgid "Hidden menu entries."
+msgstr "Gizli menü girdileri."
+
+msgid "Pinned menu entries."
+msgstr "Sabitlenmiş menü girdileri."
+
+msgid "Entries always opened in the web view."
+msgstr "Her zaman web görünümünde açılan girdiler."
+
+msgid "Bottom bar entries (at most 5)."
+msgstr "Alt çubuk girdileri (en fazla 5)."
+
+msgid "Home card order."
+msgstr "Ana sayfa kart sırası."
+
+msgid "Hidden home cards."
+msgstr "Gizli ana sayfa kartları."
+
+msgid "Notification choices the person made."
+msgstr "Kişinin yaptığı bildirim seçimleri."
+
+msgid "Notification types the person may choose from."
+msgstr "Kişinin seçebileceği bildirim türleri."
+
+msgid "Unix time of the last change; 0 = never."
+msgstr "Son değişikliğin Unix zamanı; 0 = hiç."
+
+msgid "The person's app preferences (REST GET /flxapp/v1/prefs)."
+msgstr "Kişinin uygulama tercihleri (REST GET /flxapp/v1/prefs)."
+
+msgid "A notification choice."
+msgstr "Bir bildirim seçimi."
+
+msgid "Event type (a flxAppPrefs.events id)."
+msgstr "Olay türü (flxAppPrefs.events kimliği)."
+
+msgid "Turn it on or off."
+msgstr "Aç ya da kapat."
+
+msgid "Changes the preferences that are sent; the others stay as they are (REST POST /flxapp/v1/prefs)."
+msgstr "Gönderilen tercihleri değiştirir; diğerleri olduğu gibi kalır (REST POST /flxapp/v1/prefs)."
+
+msgid "Notification choices to change."
+msgstr "Değiştirilecek bildirim seçimleri."
+
+msgid "The preferences after the change."
+msgstr "Değişiklikten sonraki tercihler."
+
+msgid "A one-time panel sign-in address (valid 60 seconds) for the app's web view (REST POST /flxapp/v1/session)."
+msgstr "Uygulamanın web görünümü için tek kullanımlık panel giriş adresi (60 saniye geçerli; REST POST /flxapp/v1/session)."
+
+msgid "Panel path, e.g. admin.php?page=flx-crm."
+msgstr "Panel yolu, ör. admin.php?page=flx-crm."
+
+msgid "Site address to open instead of a panel path."
+msgstr "Panel yolu yerine açılacak site adresi."
+
+msgid "Treat `path` as a site (front end) path."
+msgstr "`path` değerini site (ön yüz) yolu say."
+
+msgid "Open without the panel chrome (default true)."
+msgstr "Panel çerçevesi olmadan aç (varsayılan true)."
+
+msgid "The sign-in address."
+msgstr "Giriş adresi."
+
+msgid "Seconds the address stays valid."
+msgstr "Adresin geçerli kaldığı saniye."
+
+msgid "Ends the web view cookie sessions this app session opened (REST POST /flxapp/v1/session/end)."
+msgstr "Bu uygulama oturumunun açtığı web görünümü çerez oturumlarını sonlandırır (REST POST /flxapp/v1/session/end)."
+
+msgid "Number of sessions ended."
+msgstr "Sonlandırılan oturum sayısı."
+
+msgid "Signs this app session out: its tokens, devices and web sessions (REST POST /flxapp/v1/logout)."
+msgstr "Bu uygulama oturumunu kapatır: belirteçleri, cihazları ve web oturumları (REST POST /flxapp/v1/logout)."
+
+msgid "The session is closed."
+msgstr "Oturum kapatıldı."
 
 msgid "Draft"
 msgstr "Taslak"
@@ -1286,66 +2300,3 @@ msgstr "Notlar"
 
 msgid "Call"
 msgstr "Ara"
-
-msgid "Yetkiniz yok."
-msgstr "Yetkiniz yok."
-
-msgid "Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth."
-msgstr "FluxWP masaüstü ve mobil uygulamasının sunucu tarafı: OAuth 2.0 (PKCE) giriş, cihazlar ve push, uygulama görünümü (config), eklenti ekranları (manifest), panel oturumu. MCP istemcileri de OAuth ile bağlanır."
-
-msgid "%1$s is your code to confirm the phone number on %2$s. Valid for 10 minutes. Do not share this code with anyone."
-msgstr "%1$s, %2$s sitesinde telefon numaranızı doğrulama kodunuz. 10 dakika geçerli. Bu kodu kimseyle paylaşmayın."
-
-msgid "A phone number ending in %s was added to your account. If you did not do this, contact the site administrator."
-msgstr "Sonu %s ile biten bir telefon numarası hesabınıza eklendi. Bunu siz yapmadıysanız site yöneticisine başvurun."
-
-msgid "A phone number was added to your %s account"
-msgstr "%s hesabınıza bir telefon numarası eklendi"
-
-msgid "An administrator manages this phone number."
-msgstr "Bu telefon numarasını bir yönetici yönetir."
-
-msgid "Create a customer account for an email after its sign-in code is confirmed"
-msgstr "Giriş kodu doğrulandıktan sonra bu e-posta için müşteri hesabı aç"
-
-msgid "Enter a valid phone number."
-msgstr "Geçerli bir telefon numarası yazın."
-
-msgid "Let a signed-in donor confirm a phone number and save it on their account"
-msgstr "Giriş yapmış bağışçı telefon numarasını doğrulayıp hesabına kaydedebilsin"
-
-msgid "Let donors sign in with a code sent to their email, or to the phone number saved on their account"
-msgstr "Bağışçılar e-postalarına ya da hesaplarındaki telefon numarasına gelen kodla giriş yapabilsin"
-
-msgid "No phone number is saved on this account."
-msgstr "Bu hesapta kayıtlı telefon numarası yok."
-
-msgid "Own phone number"
-msgstr "Kendi telefon numarası"
-
-msgid "Phone codes go out through Flux Call Center (WhatsApp) when that channel is available; otherwise the code is emailed to the account. A phone code signs in only the account whose saved number is exactly that full number. Donations and orders never open or claim an account."
-msgstr "Telefon kodu, kanal hazırsa Flux Chat (WhatsApp) üzerinden gider; değilse kod hesaba e-posta ile gönderilir. Telefon kodu yalnız kayıtlı numarası bu tam numarayla birebir aynı olan hesabın girişini açar. Bağışlar ve siparişler hesap açmaz ve hesaba sahip çıkmaz."
-
-msgid "Phone confirmation is not available."
-msgstr "Telefon doğrulama kullanılamıyor."
-
-msgid "The code is sent only to that phone (WhatsApp or an SMS provider), never by email. People who can edit posts keep an administrator-managed number unless staff code sign-in is turned on."
-msgstr "Kod yalnız o telefona gider (WhatsApp ya da bir SMS sağlayıcısı), e-posta ile gitmez. Yazı düzenleyebilenler, personel kodla girişi açılmadıkça yönetici tarafından tutulan numarayı korur."
-
-msgid "The phone number could not be saved."
-msgstr "Telefon numarası kaydedilemedi."
-
-msgid "The phone number ending in %s was removed from your account. If you did not do this, contact the site administrator."
-msgstr "Sonu %s ile biten telefon numarası hesabınızdan kaldırıldı. Bunu siz yapmadıysanız site yöneticisine başvurun."
-
-msgid "The phone number on your %s account was changed"
-msgstr "%s hesabınızdaki telefon numarası değişti"
-
-msgid "The phone number on your account now ends in %s. If you did not do this, contact the site administrator."
-msgstr "Hesabınızdaki telefon numarası artık %s ile bitiyor. Bunu siz yapmadıysanız site yöneticisine başvurun."
-
-msgid "The phone number was removed from your %s account"
-msgstr "%s hesabınızdan telefon numarası kaldırıldı"
-
-msgid "The token does not include the scope this request needs."
-msgstr "Belirteç, bu isteğin gerektirdiği kapsamı içermiyor."

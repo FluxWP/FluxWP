@@ -20,7 +20,9 @@ function flxseo_audit_menu_badge() {
 	return $n ? ' <span class="awaiting-mod count-' . $n . '"><span class="pending-count">' . number_format_i18n( $n ) . '</span></span>' : '';
 }
 
-/** Ajan uyumu özeti: geçen / toplam. */
+/** Ajan uyumu özeti: geçen / toplam.
+ * @return array<string, array{0: string, 1: bool}>
+ */
 function flxseo_audit_agentic( array $report ) {
 	$ids    = wp_list_pluck( $report['findings'], 'id' );
 	$checks = array(
@@ -449,11 +451,8 @@ add_action(
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_send_json_error( __( 'You do not have permission.', 'flx-seo' ), 403 );
 		}
-		$r = flxseo_audit_run_local( isset( $_POST['url'] ) ? flxseo_audit_url( wp_unslash( $_POST['url'] ) ) : '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-		if ( ! is_wp_error( $r ) ) {
-			do_action( 'flxseo_audit_done', 'manual' );
-		}
-		is_wp_error( $r ) ? wp_send_json_error( $r->get_error_message() ) : wp_send_json_success( array( 'count' => count( $r['findings'] ) ) );
+		$r = FLXSEO_Audit_Service::run_local( isset( $_POST['url'] ) ? (string) wp_unslash( $_POST['url'] ) : '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		is_wp_error( $r ) ? wp_send_json_error( $r->get_error_message() ) : wp_send_json_success( array( 'count' => count( $r->findings ) ) );
 	}
 );
 
@@ -465,8 +464,24 @@ add_action(
 			wp_send_json_error( __( 'You do not have permission.', 'flx-seo' ), 403 );
 		}
 		$strategy = isset( $_POST['strategy'] ) && 'desktop' === $_POST['strategy'] ? 'desktop' : 'mobile';
-		$r        = flxseo_psi_run( $strategy, isset( $_POST['url'] ) ? flxseo_audit_url( wp_unslash( $_POST['url'] ) ) : '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-		is_wp_error( $r ) ? wp_send_json_error( $r->get_error_message() ) : wp_send_json_success( array( 'scores' => $r['scores'] ) );
+		$r        = FLXSEO_Audit_Service::run_pagespeed( $strategy, isset( $_POST['url'] ) ? (string) wp_unslash( $_POST['url'] ) : '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		if ( is_wp_error( $r ) ) {
+			wp_send_json_error( $r->get_error_message() );
+		}
+		$scores = array();
+		foreach ( $r->page_speed as $run ) {
+			if ( $run->strategy === $strategy ) {
+				foreach ( $run->scores as $sc ) {
+					$scores[ $sc->category ] = array(
+						'title'  => $sc->label,
+						'score'  => $sc->score,
+						'passed' => $sc->passed,
+						'total'  => $sc->total,
+					);
+				}
+			}
+		}
+		wp_send_json_success( array( 'scores' => $scores ) );
 	}
 );
 
@@ -498,11 +513,7 @@ add_action(
 		$o['audit_hour']    = (string) max( 0, min( 23, (int) ( $in['audit_hour'] ?? 3 ) ) );
 		$o['audit_mail_to'] = sanitize_email( $in['audit_mail_to'] ?? '' );
 		update_option( 'flxseo', $o );
-		if ( ! empty( $_POST['psi_key_clear'] ) ) {
-			delete_option( 'flxseo_psi_key' );
-		} elseif ( ! empty( $_POST['psi_key'] ) ) {
-			update_option( 'flxseo_psi_key', sanitize_text_field( wp_unslash( $_POST['psi_key'] ) ), false ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-		}
+		FLXSEO_Audit_Service::set_psi_key( ! empty( $_POST['psi_key'] ) ? sanitize_text_field( wp_unslash( $_POST['psi_key'] ) ) : null, ! empty( $_POST['psi_key_clear'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 		flxseo_llms_flush();
 		set_transient( 'flxseo_audit_msg_' . get_current_user_id(), array( 'success', __( 'Saved.', 'flx-seo' ) ), 60 );
 		wp_safe_redirect( flxseo_admin_url( 'ayarlar' ) );
@@ -517,27 +528,10 @@ add_action(
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_die( esc_html__( 'You do not have permission.', 'flx-seo' ) );
 		}
-		$id = sanitize_key( wp_unslash( $_POST['fix'] ?? '' ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-		try {
-			$keys = flxseo_fix_apply( $id );
-			if ( function_exists( 'flxseo_system_fix_log_add' ) ) {
-				flxseo_system_fix_log_add(
-					array(
-						't'   => time(),
-						'u'   => get_current_user_id(),
-						'fix' => $id,
-						'ok'  => true,
-						'via' => 'audit',
-						'new' => implode( ',', $keys ),
-					)
-				);
-			}
-			flxseo_audit_run_local();
-			do_action( 'flxseo_audit_done', 'fix' );
-			$msg = array( 'success', __( 'Turned on and the audit was refreshed. If a page cache (LiteSpeed) is on, run Purge All.', 'flx-seo' ) );
-		} catch ( Exception $e ) {
-			$msg = array( 'error', $e->getMessage() );
-		}
+		$r   = FLXSEO_Audit_Service::apply_fix( sanitize_key( wp_unslash( $_POST['fix'] ?? '' ) ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		$msg = is_wp_error( $r )
+			? array( 'error', $r->get_error_message() )
+			: array( 'success', __( 'Turned on and the audit was refreshed. If a page cache (LiteSpeed) is on, run Purge All.', 'flx-seo' ) );
 		set_transient( 'flxseo_audit_msg_' . get_current_user_id(), $msg, 60 );
 		wp_safe_redirect( flxseo_admin_url( 'denetim' ) );
 		exit;
@@ -555,7 +549,7 @@ add_action(
 		nocache_headers();
 		header( 'Content-Type: text/markdown; charset=utf-8' );
 		header( 'Content-Disposition: attachment; filename="site-build-guide.' . $lang . '.md"' );
-		echo flxseo_guide( 'all', $lang ); // phpcs:ignore WordPress.Security.EscapeOutput
+		echo FLXSEO_Audit_Service::guide( $lang )->markdown; // phpcs:ignore WordPress.Security.EscapeOutput
 		exit;
 	}
 );

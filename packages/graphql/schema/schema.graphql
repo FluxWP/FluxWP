@@ -332,6 +332,63 @@ type RootQuery {
   "Every tool with its state and use over the last 30 days."
   flxAiTools: [FlxAiTool!]!
 
+  "Devices, sessions and keys of the signed-in user, or of everyone (`all`, administrators)."
+  flxAppAccess(
+    "Everyone (administrators only)."
+    all: Boolean
+  ): FlxAppAccess!
+
+  "The Appearance settings and what the pickers need."
+  flxAppAdminAppearance: FlxAppAdminAppearance!
+
+  "OAuth clients and the connection details."
+  flxAppAdminClients: FlxAppAdminClients!
+
+  "Menu items hidden by platform."
+  flxAppAdminMenu: FlxAppAdminMenu!
+
+  "The Applications settings."
+  flxAppAdminMobile: FlxAppAdminMobile!
+
+  "Modules the app can show, with their on/off state."
+  flxAppAdminModules: [FlxAppAdminModule!]!
+
+  "The General settings."
+  flxAppAdminSettings: FlxAppAdminSettings!
+
+  "What the app learns before signing in (REST GET /flxapp/v1/app/bootstrap; cached 5 minutes)."
+  flxAppBootstrap: FlxAppBootstrap!
+
+  "The app look for the asking platform (REST GET /flxapp/v1/config, with ETag semantics via ifHash)."
+  flxAppConfig(
+    "Digest the app already has; a match returns notModified and no document."
+    ifHash: String
+  ): FlxAppConfig!
+
+  "Only the badge counters (light poll; REST GET /flxapp/v1/counts)."
+  flxAppCounts: [FlxAppCount!]!
+
+  "The app home (REST GET /flxapp/v1/dashboard)."
+  flxAppDashboard: FlxAppDashboard!
+
+  "Screens of the packages for the user and platform (REST GET /flxapp/v1/manifest, ETag via ifHash)."
+  flxAppManifest(
+    "Digest the app already has; a match returns notModified and no modules."
+    ifHash: String
+  ): FlxAppManifest!
+
+  "The signed-in user, site, menu, modules and layout (REST GET /flxapp/v1/me)."
+  flxAppMe: FlxAppMe!
+
+  "The person&#039;s app preferences (REST GET /flxapp/v1/prefs)."
+  flxAppPrefs: FlxAppPrefs!
+
+  "Light poll (REST GET /flxapp/v1/sync). Poll no faster than every 10 seconds and stop while the app is hidden."
+  flxAppSync(
+    "Unix time of the last poll; events after it are returned."
+    since: Int
+  ): FlxAppSync!
+
   "The FluxWP capability catalog, with what the current user has."
   flxCapabilities: [FlxCapability!]!
 
@@ -361,6 +418,33 @@ type RootQuery {
 
   "Settings and links of the Roles and access page."
   flxRolesConfig: FlxRolesConfig!
+
+  "The current site audit report."
+  flxSeoAudit: FlxSeoAudit!
+
+  "Saved audit reports (newest first) and the automatic schedule."
+  flxSeoAuditHistory(
+    "Reports to return (1–90). Default 30."
+    limit: Int
+  ): FlxSeoHistory!
+
+  "SEO check of the published content: what is missing or too long, per item."
+  flxSeoContentCheck(
+    "Check one post type only. Default: every public type."
+    postType: String
+
+    "Items to check (1–500). Default 300."
+    limit: Int
+  ): FlxSeoContentCheck!
+
+  "The new site build guide (rules and checklist for SEO, speed, accessibility, security and agent readiness)."
+  flxSeoGuide(
+    "Language. Default: the user's language (Turkish or English)."
+    lang: FlxSeoGuideLang
+  ): FlxSeoGuide!
+
+  "What the settings tabs show besides the setting values: search engines, sitemap, IndexNow state."
+  flxSeoSetup: FlxSeoSetup!
 
   "Panel settings of the installed FluxWP packages."
   flxSettings: FlxSettings!
@@ -1211,6 +1295,9 @@ type Category implements Node & TermNode & UniformResourceIdentifiable & Databas
     where: TermNodeToEnqueuedStylesheetConnectionWhereArgs
   ): TermNodeToEnqueuedStylesheetConnection
 
+  "SEO title and description of this term."
+  flxSeo: FlxSeoMeta
+
   "The globally unique ID for the object"
   id: ID!
 
@@ -1330,6 +1417,9 @@ interface TermNode implements Node & UniformResourceIdentifiable {
     "Arguments for filtering the connection"
     where: TermNodeToEnqueuedStylesheetConnectionWhereArgs
   ): TermNodeToEnqueuedStylesheetConnection
+
+  "SEO title and description of this term."
+  flxSeo: FlxSeoMeta
 
   "The globally unique ID for the object"
   id: ID!
@@ -1722,6 +1812,30 @@ type TermNodeToEnqueuedStylesheetConnectionPageInfo implements EnqueuedStyleshee
   startCursor: String
 }
 
+"SEO fields of a page, post or term (the data in the page head)."
+type FlxSeoMeta {
+  "Own meta description; empty = the automatic one."
+  description: String!
+
+  "Description the page uses."
+  effectiveDescription: String!
+
+  "Title the page uses."
+  effectiveTitle: String!
+
+  "Focus keyword the editor set; only editors can read it."
+  focusKeyword: String!
+
+  "Hidden from search engines."
+  noindex: Boolean!
+
+  "Own share image address; empty = the featured or default image."
+  ogImage: String!
+
+  "Own SEO title; empty = the automatic one."
+  title: String!
+}
+
 "Term node with hierarchical (parent/child) relationships"
 interface HierarchicalTermNode implements Node & TermNode & UniformResourceIdentifiable & DatabaseIdentifier & HierarchicalNode {
   "The number of objects connected to the object"
@@ -1768,6 +1882,9 @@ interface HierarchicalTermNode implements Node & TermNode & UniformResourceIdent
     "Arguments for filtering the connection"
     where: TermNodeToEnqueuedStylesheetConnectionWhereArgs
   ): TermNodeToEnqueuedStylesheetConnection
+
+  "SEO title and description of this term."
+  flxSeo: FlxSeoMeta
 
   "The globally unique ID for the object"
   id: ID!
@@ -2632,6 +2749,9 @@ interface ContentNode implements Node & UniformResourceIdentifiable {
 
   "Language code of this content. Empty for a type that is not translated and for shared pages (cart, checkout, my account)."
   flxLanguage: String
+
+  "SEO fields of this content (the data in the page head). Empty only when the SEO fields cannot be read."
+  flxSeo: FlxSeoMeta
 
   "The language versions of this content, in language order, including itself. Drafts and private versions are listed only for people who can edit them. Empty for a type that is not translated."
   flxTranslations: [FlxTranslation!]!
@@ -4589,6 +4709,9 @@ type MediaItem implements Node & ContentNode & UniformResourceIdentifiable & Dat
   "Language code of this content. Empty for a type that is not translated and for shared pages (cart, checkout, my account)."
   flxLanguage: String
 
+  "SEO fields of this content (the data in the page head). Empty only when the SEO fields cannot be read."
+  flxSeo: FlxSeoMeta
+
   "The language versions of this content, in language order, including itself. Drafts and private versions are listed only for people who can edit them. Empty for a type that is not translated."
   flxTranslations: [FlxTranslation!]!
 
@@ -4861,6 +4984,9 @@ interface HierarchicalContentNode implements Node & ContentNode & UniformResourc
 
   "Language code of this content. Empty for a type that is not translated and for shared pages (cart, checkout, my account)."
   flxLanguage: String
+
+  "SEO fields of this content (the data in the page head). Empty only when the SEO fields cannot be read."
+  flxSeo: FlxSeoMeta
 
   "The language versions of this content, in language order, including itself. Drafts and private versions are listed only for people who can edit them. Empty for a type that is not translated."
   flxTranslations: [FlxTranslation!]!
@@ -5795,6 +5921,9 @@ type Page implements Node & ContentNode & UniformResourceIdentifiable & Database
   "Language code of this content. Empty for a type that is not translated and for shared pages (cart, checkout, my account)."
   flxLanguage: String
 
+  "SEO fields of this content (the data in the page head). Empty only when the SEO fields cannot be read."
+  flxSeo: FlxSeoMeta
+
   "The language versions of this content, in language order, including itself. Drafts and private versions are listed only for people who can edit them. Empty for a type that is not translated."
   flxTranslations: [FlxTranslation!]!
 
@@ -6563,6 +6692,9 @@ type Post implements Node & ContentNode & UniformResourceIdentifiable & Database
   "Language code of this content. Empty for a type that is not translated and for shared pages (cart, checkout, my account)."
   flxLanguage: String
 
+  "SEO fields of this content (the data in the page head). Empty only when the SEO fields cannot be read."
+  flxSeo: FlxSeoMeta
+
   "The language versions of this content, in language order, including itself. Drafts and private versions are listed only for people who can edit them. Empty for a type that is not translated."
   flxTranslations: [FlxTranslation!]!
 
@@ -7216,6 +7348,9 @@ type PostFormat implements Node & TermNode & UniformResourceIdentifiable & Datab
     "Arguments for filtering the connection"
     where: TermNodeToEnqueuedStylesheetConnectionWhereArgs
   ): TermNodeToEnqueuedStylesheetConnection
+
+  "SEO title and description of this term."
+  flxSeo: FlxSeoMeta
 
   "The globally unique ID for the object"
   id: ID!
@@ -7885,6 +8020,9 @@ type Tag implements Node & TermNode & UniformResourceIdentifiable & DatabaseIden
     "Arguments for filtering the connection"
     where: TermNodeToEnqueuedStylesheetConnectionWhereArgs
   ): TermNodeToEnqueuedStylesheetConnection
+
+  "SEO title and description of this term."
+  flxSeo: FlxSeoMeta
 
   "The globally unique ID for the object"
   id: ID!
@@ -9138,286 +9276,1165 @@ type FlxAiCredits {
   usage: Float
 }
 
-"A point in time with labels in the user&#039;s language."
-type FlxDateTime {
-  "ISO 8601 in UTC (2026-11-15T14:59:00Z)."
-  iso: String!
+"Devices, sessions and keys."
+type FlxAppAccess {
+  "The user may create API keys."
+  canCreateKeys: Boolean!
 
-  "Date and time for display, in the site time zone and the user&#039;s language."
-  label: String!
+  "The user manages the app settings."
+  canManage: Boolean!
 
-  "Relative time for display (&quot;5 minutes ago&quot;)."
-  relative: String!
+  "Devices."
+  devices: [FlxAppDeviceRow!]!
 
-  "Unix timestamp."
-  timestamp: Int!
+  "Desktop app downloads."
+  downloads: FlxAppDownloads!
+
+  "Sessions and keys."
+  rows: [FlxAppAccessRow!]!
 }
 
-"A month of the billing list."
-type FlxAiMonth {
-  "Model requests."
-  calls: Int!
+"A device signed in to the app."
+type FlxAppDeviceRow {
+  "Application and version."
+  app: String!
 
-  "Cost in USD."
-  cost: Float!
+  "Brand of a branded app."
+  brand: String
 
-  "Month name for display."
-  label: String!
+  "This is the device that asks."
+  current: Boolean!
 
-  "Month as Y-m."
-  month: String!
+  "Device ID."
+  id: Int!
 
-  "Saved by the prompt cache in USD."
-  saved: Float!
+  "Unix time last seen."
+  lastSeen: Int!
+
+  "Last seen, in words."
+  lastSeenAgo: String!
+
+  "Device name."
+  name: String!
+
+  "Platform and model."
+  platform: String!
+
+  "Notifications are on."
+  push: Boolean!
+
+  "Display name."
+  user: String!
+
+  "User ID."
+  userId: Int!
 }
 
-"Usage of Flux AI over a range: cost, time, tokens and tools."
-type FlxAiReport {
-  "By model."
-  byModel: [FlxAiBreakdownRow!]!
+"Desktop app download addresses."
+type FlxAppDownloads {
+  "macOS."
+  macos: String!
 
-  "By provider (billing months only)."
-  byProvider: [FlxAiBreakdownRow!]!
+  "Windows."
+  windows: String!
 
-  "By plugin and purpose."
-  byPurpose: [FlxAiBreakdownRow!]!
-
-  "By plugin."
-  bySource: [FlxAiBreakdownRow!]!
-
-  "Slowest tools first."
-  byTool: [FlxAiToolStat!]!
-
-  "One entry per day."
-  daily: [FlxAiReportDay!]!
-
-  "Start of the range."
-  from: FlxDateTime!
-
-  "End of the range."
-  to: FlxDateTime!
-
-  "Totals of the range."
-  totals: FlxAiReportTotals!
+  "Windows MSI package."
+  windowsMsi: String!
 }
 
-"One row of a usage breakdown (by plugin, model, purpose or provider)."
-type FlxAiBreakdownRow {
-  "Tokens read from the prompt cache."
-  cacheRead: Int!
+"An app session or a personal API key."
+type FlxAppAccessRow {
+  "Unix time."
+  created: Int!
 
-  "Model requests."
-  calls: Int!
+  "Unix time it expires; 0 = never."
+  expires: Int!
 
-  "Cost in USD."
-  cost: Float!
+  "Last characters of a key; empty for a session."
+  hint: String!
 
-  "Failed requests and tool calls."
-  errors: Int!
+  "Row ID."
+  id: Int!
 
-  "Cost in USD without the prompt cache."
-  fullCost: Float!
+  "Session or key."
+  kind: FlxAppAccessKind!
 
-  "Input tokens."
-  inTokens: Int!
+  "Last IP of a key; empty for a session."
+  lastIp: String!
 
-  "Raw key: source id, model id …"
+  "Unix time of the last use; 0 = never."
+  lastUsed: Int!
+
+  "Name."
+  name: String!
+
+  "Display name."
+  user: String!
+
+  "User ID."
+  userId: Int!
+}
+
+"A personal API key or an app session."
+enum FlxAppAccessKind {
+  ""
+  KEY
+
+  ""
+  SESSION
+}
+
+"Appearance of the desktop and mobile app. `option` is the flxapp_app site layer and `theme` the resolved theme; both are open documents the client validates."
+type FlxAppAdminAppearance {
+  "Theme colours and their names."
+  colorKeys: [FlxAppChoice!]!
+
+  "Fonts to choose from."
+  fonts: [String!]!
+
+  "The site layer (theme, shell, features, links, brand); open and versioned."
+  option: FlxJSON!
+
+  "The resolved desktop config for the preview (flx-app-config/1)."
+  previewDesktop: FlxJSON!
+
+  "The resolved mobile config for the preview (flx-app-config/1)."
+  previewMobile: FlxJSON!
+
+  "Screens that can be turned off."
+  screens: [FlxAppScreenChoice!]!
+
+  "Short names of all targets."
+  targetLabels: [FlxAppChoice!]!
+
+  "Targets for tabs, home screens and shortcuts."
+  targets: [FlxAppTargetGroup!]!
+
+  "The resolved theme (colours by mode, fonts); open."
+  theme: FlxJSON!
+}
+
+"A key with a label."
+type FlxAppChoice {
+  "Key."
   key: String!
 
-  "Name for display."
+  "Label."
   label: String!
-
-  "Time spent in models, milliseconds."
-  modelMs: Int!
-
-  "Output tokens."
-  outTokens: Int!
-
-  "Part of the cost is estimated from the price list."
-  partial: Boolean!
-
-  "Time spent in tools, milliseconds."
-  toolMs: Int!
-
-  "Tool calls."
-  tools: Int!
 }
 
-"Time and errors of one tool."
-type FlxAiToolStat {
-  "Average duration, milliseconds."
-  avgMs: Int!
+"Free-form JSON value (object, list, string, number or boolean)."
+scalar FlxJSON
 
-  "Calls."
-  calls: Int!
-
-  "Failed calls."
-  errors: Int!
-
-  "Tool name."
+"A native screen that can be turned off."
+type FlxAppScreenChoice {
+  "module/screen."
   key: String!
 
-  "Tool title for display."
+  "Name."
   label: String!
 
-  "Longest duration, milliseconds."
-  maxMs: Int!
-
-  "Plugin that provides the tool."
-  source: String!
-
-  "Total duration, milliseconds."
-  totalMs: Int!
+  "It opens natively in the app."
+  on: Boolean!
 }
 
-"One day of a usage report."
-type FlxAiReportDay {
-  "Tokens read from the prompt cache."
-  cacheRead: Int!
+"A group of targets the pickers offer."
+type FlxAppTargetGroup {
+  "Targets."
+  items: [FlxAppChoice!]!
 
-  "Model requests."
-  calls: Int!
-
-  "Cost in USD."
-  cost: Float!
-
-  "Day as Y-m-d in the site time zone."
-  date: String!
-
-  "Failed requests and tool calls."
-  errors: Int!
-
-  "Input tokens."
-  inTokens: Int!
-
-  "Time spent in models, milliseconds."
-  modelMs: Int!
-
-  "Output tokens."
-  outTokens: Int!
-
-  "Time spent in tools, milliseconds."
-  toolMs: Int!
-
-  "Tool calls."
-  tools: Int!
-}
-
-"Totals of a usage report."
-type FlxAiReportTotals {
-  "Tokens read from the prompt cache."
-  cacheRead: Int!
-
-  "Tokens written to the prompt cache."
-  cacheWrite: Int!
-
-  "Model requests."
-  calls: Int!
-
-  "Cost in USD."
-  cost: Float!
-
-  "Failed requests and tool calls."
-  errors: Int!
-
-  "Cost in USD without the prompt cache."
-  fullCost: Float!
-
-  "Input tokens."
-  inTokens: Int!
-
-  "Time spent in models, milliseconds."
-  modelMs: Int!
-
-  "Output tokens."
-  outTokens: Int!
-
-  "Saved by the prompt cache in USD."
-  saved: Float!
-
-  "Time spent in tools, milliseconds."
-  toolMs: Int!
-
-  "Tool calls."
-  tools: Int!
-}
-
-"Spending against one limit period."
-type FlxAiBudgetPeriod {
-  "day, week or month."
-  key: String!
-
-  "Period name in the user&#039;s language."
+  "Group name."
   label: String!
-
-  "Limit in USD; 0 means unlimited."
-  limit: Float!
-
-  "The limit is reached."
-  over: Boolean!
-
-  "Share of the limit used, in percent (0 without a limit)."
-  pct: Float!
-
-  "When the period resets."
-  resets: FlxDateTime!
-
-  "Spent this period in USD."
-  spent: Float!
 }
 
-"The stored content of a log row: the last outgoing messages and the reply, shortened, with e-mail, phone, IBAN and keys masked."
-type FlxAiLogBody {
-  "Failure message; empty when it worked."
-  error: String!
+"OAuth clients and the connection details."
+type FlxAppAdminClients {
+  "Clients."
+  clients: [FlxAppAdminClient!]!
 
-  "Log row ID."
-  logId: Int!
-
-  "The reply text."
-  reply: String!
-
-  "Outgoing messages."
-  request: [FlxAiLogMessage!]!
-
-  "Tool calls the reply asked for."
-  toolCalls: [String!]!
+  "Connection details (label holds the address)."
+  connection: [FlxAppChoice!]!
 }
 
-"One message of a stored request."
-type FlxAiLogMessage {
-  "system, user, assistant or tool."
-  role: String!
+"An OAuth client."
+type FlxAppAdminClient {
+  "It has a client secret."
+  hasSecret: Boolean!
 
-  "Shortened text with personal data masked."
-  text: String!
-}
-
-"A choice of a select field."
-type FlxAiOption {
-  "Value to save."
+  "client_id."
   id: String!
 
-  "Name for display."
+  "Where it comes from."
+  kind: FlxAppClientKind!
+
+  "Name."
+  name: String!
+
+  "Redirect URIs."
+  redirectUris: [String!]!
+}
+
+"Where an OAuth client comes from."
+enum FlxAppClientKind {
+  ""
+  BUILTIN
+
+  ""
+  DYNAMIC
+
+  ""
+  MANUAL
+}
+
+"Menu items hidden by platform (the menu itself is edited in Flux Admin)."
+type FlxAppAdminMenu {
+  "Flux Admin 1.3.0 or later is active."
+  available: Boolean!
+
+  "The menu editor address."
+  editorUrl: String
+
+  "Platforms."
+  platforms: [FlxAppChoice!]!
+
+  "Hidden items."
+  rows: [FlxAppAdminMenuRow!]!
+}
+
+"A menu item hidden on some platform for a role."
+type FlxAppAdminMenuRow {
+  "Menu item name."
+  menu: String!
+
+  "Visibility per platform."
+  platforms: [FlxAppAdminMenuPlatform!]!
+
+  "Role name."
+  role: String!
+}
+
+"Whether a menu item shows on a platform."
+type FlxAppAdminMenuPlatform {
+  "Platform key."
+  key: String!
+
+  "The item shows there."
+  visible: Boolean!
+}
+
+"Which apps may connect, store links and notifications."
+type FlxAppAdminMobile {
+  "Branded apps."
+  apps: [FlxAppBrandedApp!]!
+
+  "Bootstrap address."
+  bootstrapUrl: String!
+
+  "Allow Expo development redirects."
+  devRedirects: Boolean!
+
+  "Devices signed in."
+  deviceCount: Int!
+
+  "Hide the admin bar on site pages opened in the app."
+  embedFront: Boolean!
+
+  "The main FluxWP app may connect."
+  genericApp: Boolean!
+
+  "An Expo access token is saved (never shown)."
+  hasExpoToken: Boolean!
+
+  "The last push send."
+  lastPush: FlxAppLastPush
+
+  "Active preset."
+  preset: String
+
+  "Devices with notifications on."
+  pushCount: Int!
+
+  "Push notifications are sent."
+  pushEnabled: Boolean!
+
+  "Hide content on the lock screen."
+  pushHide: Boolean!
+
+  "Google Play link."
+  storeAndroid: String!
+
+  "App Store link."
+  storeIos: String!
+}
+
+"An app published under the organisation&#039;s own name."
+type FlxAppBrandedApp {
+  "client_id."
+  id: String!
+
+  "Name."
+  name: String!
+
+  "mobile or desktop."
+  platform: String!
+
+  "Redirect URIs."
+  redirectUris: [String!]!
+}
+
+"The last push send."
+type FlxAppLastPush {
+  "In words."
+  ago: String!
+
+  "Unix time."
+  at: Int!
+
+  "Error text."
+  error: String
+
+  "Failed."
+  failed: Int!
+
+  "Sent."
+  sent: Int!
+}
+
+"A package module of the app."
+type FlxAppAdminModule {
+  "Capability needed to open it."
+  cap: String
+
+  "Manifest problems."
+  errors: [String!]!
+
+  "Module key."
+  id: String!
+
+  "native, manifest or web."
+  kind: String!
+
+  "Panel menu slug; empty for a separate item."
+  menu: String
+
+  "The module is on in the app."
+  on: Boolean!
+
+  "Number of manifest screens."
+  screens: Int!
+
+  "Module title."
+  title: String!
+
+  "Package version; empty when not reported."
+  version: String
+}
+
+"Sign-in, session and panel settings of the app."
+type FlxAppAdminSettings {
+  "Access token lifetime in minutes (5 to 1440)."
+  accessMinutes: Int!
+
+  "MCP clients may register themselves."
+  dynamicClients: Boolean!
+
+  "Who can create API keys (a capability)."
+  keysCap: String!
+
+  "The choices for keysCap."
+  keysCapChoices: [FlxAppChoice!]!
+
+  "Create a customer account for a confirmed email."
+  otpCreate: Boolean!
+
+  "Donors may sign in with an emailed or phone code."
+  otpEnabled: Boolean!
+
+  "Staff may sign in with a code too."
+  otpStaff: Boolean!
+
+  "A signed-in donor may confirm a phone number."
+  phoneSelfVerify: Boolean!
+
+  "Session lifetime in days when unused (1 to 365)."
+  refreshDays: Int!
+
+  "Flux App version."
+  version: String!
+
+  "The app may open admin pages with a one-time sign-in link."
+  webSession: Boolean!
+}
+
+"Public discovery of the site for the app."
+type FlxAppBootstrap {
+  "The flx-app-bootstrap/1 document: site, sign-in methods, apps, brand, theme, packages. Public, no secrets; open and versioned, validated by the client."
+  document: FlxJSON!
+}
+
+"The resolved look and behaviour of the app (flx-app-config/1)."
+type FlxAppConfig {
+  "The flx-app-config/1 document (brand, theme, shell, features …); empty when not modified. Open and versioned, validated by the client."
+  document: FlxJSON
+
+  "Digest of the document; send it as ifHash next time."
+  hash: String!
+
+  "ifHash matched: keep the cached document."
+  notModified: Boolean!
+}
+
+"A counter shown as a badge (unread messages, open tasks …)."
+type FlxAppCount {
+  "Counter name."
+  key: String!
+
+  "Current number."
+  value: Int!
+}
+
+"The app home: cards and lists the user&#039;s permissions allow."
+type FlxAppDashboard {
+  "Figure cards by sort order."
+  cards: [FlxAppDashboardCard!]!
+
+  "Lists by sort order."
+  lists: [FlxAppDashboardList!]!
+}
+
+"A figure card of the app home."
+type FlxAppDashboardCard {
+  "Icon name."
+  icon: String
+
+  "Card key."
+  id: String!
+
+  "App target (menu:&lt;slug&gt;, module:&lt;id&gt;, web:&lt;path&gt;)."
+  open: String
+
+  "Sort order."
+  order: Int
+
+  "Small text under the value."
+  sub: String
+
+  "Title."
+  title: String!
+
+  "accent, warn, danger or ok; empty = default."
+  tone: String
+
+  "Panel page that opens in a web view."
+  url: String
+
+  "Formatted number or amount."
+  value: String!
+}
+
+"A list of the app home."
+type FlxAppDashboardList {
+  "Icon name."
+  icon: String
+
+  "List key."
+  id: String!
+
+  "Rows."
+  items: [FlxAppDashboardItem!]!
+
+  "App target (menu:&lt;slug&gt;, module:&lt;id&gt;, web:&lt;path&gt;)."
+  open: String
+
+  "Sort order."
+  order: Int
+
+  "Title."
+  title: String!
+
+  "Panel page that opens in a web view."
+  url: String
+}
+
+"A row of a home list."
+type FlxAppDashboardItem {
+  "Right-hand text (time, amount)."
+  meta: String
+
+  "Second line."
+  sub: String
+
+  "Title."
+  title: String!
+
+  "Panel page that opens in a web view."
+  url: String
+}
+
+"Screens of the packages the user may open."
+type FlxAppManifest {
+  "Digest; send it as ifHash next time."
+  hash: String!
+
+  "Module manifests by sort order; empty when not modified."
+  modules: [FlxAppManifestModule!]!
+
+  "ifHash matched: keep the cached manifests."
+  notModified: Boolean!
+
+  "Platform the list was filtered for; empty when the app did not say."
+  platform: FlxAppPlatform
+
+  "Manifest format, flx-app-manifest/1."
+  schema: String!
+}
+
+"The screens of one package (flx-app-manifest/1)."
+type FlxAppManifestModule {
+  "The module manifest (screens, actions, fields); open and versioned, validated by the client."
+  document: FlxJSON!
+
+  "Module key."
+  id: ID!
+}
+
+"Platform of the asking app; decides which menu and screens are sent."
+enum FlxAppPlatform {
+  ""
+  DESKTOP
+
+  ""
+  MOBILE
+}
+
+"Everything the app needs after sign-in: user, site, menu, modules, counters and digests."
+type FlxAppMe {
+  "How this request signed in."
+  auth: FlxAppAuth!
+
+  "Menu slugs of the phone bottom bar."
+  bottom: [String!]!
+
+  "Core permissions summary."
+  caps: [FlxAppCapability!]!
+
+  "Badge counters."
+  counts: [FlxAppCount!]!
+
+  "Digests for the cached documents."
+  hashes: FlxAppHashes!
+
+  "Menu layout; empty without Flux Admin."
+  layout: FlxAppLayout
+
+  "Menu the user may open."
+  menu: [FlxAppMenuItem!]!
+
+  "Modules with native screens, by sort order."
+  modules: [FlxAppModule!]!
+
+  "The site."
+  site: FlxAppSite!
+
+  "The signed-in user."
+  user: FlxAppUser!
+
+  "Installed FluxWP packages."
+  versions: [FlxAppVersion!]!
+
+  "The app may open panel pages in a web view (admin sessions are on)."
+  webSession: Boolean!
+}
+
+"How this request signed in."
+type FlxAppAuth {
+  "OAuth client of the token; empty for a cookie session."
+  client: String
+
+  "Unix time the token expires; empty when it does not or for a cookie session."
+  expires: Int
+
+  "Cookie session, app access token or personal API key."
+  kind: FlxAppAuthKind!
+
+  "Scopes of the token; empty for a cookie session."
+  scope: String
+}
+
+"How the request signed in."
+enum FlxAppAuthKind {
+  ""
+  ACCESS
+
+  ""
+  COOKIE
+
+  ""
+  KEY
+}
+
+"One core WordPress permission, for the app&#039;s screen and menu decisions."
+type FlxAppCapability {
+  "The user has it. The server still checks every field."
+  granted: Boolean!
+
+  "Capability name."
+  key: String!
+}
+
+"Short digests of the documents the app caches; a changed digest means refetch."
+type FlxAppHashes {
+  "Digest of flxAppConfig."
+  config: String!
+
+  "Digest of flxAppManifest."
+  manifest: String!
+
+  "Digest of flxAppMe."
+  me: String!
+}
+
+"The menu layout as in the panel (Flux Admin)."
+type FlxAppLayout {
+  "Menu groups."
+  groups: [FlxAppLayoutGroup!]!
+
+  "Menu slugs the person pinned."
+  pins: [String!]!
+}
+
+"A group of the left menu."
+type FlxAppLayoutGroup {
+  "Starts collapsed."
+  collapsed: Boolean!
+
+  "Group key."
+  id: String!
+
+  "Menu slugs in the group."
+  items: [String!]!
+
+  "Group name; empty for the first unnamed group."
   label: String!
 }
 
-"What a log row records."
-enum FlxAiLogKind {
-  "A request to a language model."
-  MODEL
+"A panel menu entry the user may open."
+type FlxAppMenuItem {
+  "Badge text (a count); empty when none."
+  badge: String
 
-  "A tool call."
-  TOOL
+  "Icon name."
+  icon: String!
+
+  "Coloured package logo; empty when the package has none (use icon)."
+  iconUrl: String
+
+  "Entry ID."
+  id: String!
+
+  "Sub items."
+  items: [FlxAppMenuSubItem!]!
+
+  "Menu slug."
+  slug: String!
+
+  "Title in the user&#039;s language."
+  title: String!
+
+  "Panel address."
+  url: String!
 }
 
-"A page of log rows, newest first."
-type FlxAiLogConnection {
+"A sub item of a menu entry."
+type FlxAppMenuSubItem {
+  "Badge text (a count); empty when none."
+  badge: String
+
+  "Menu slug."
+  slug: String!
+
+  "Title in the user&#039;s language."
+  title: String!
+
+  "Panel address."
+  url: String!
+}
+
+"A package module with a native screen in the app."
+type FlxAppModule {
+  "REST root of the module; empty when none."
+  api: String
+
+  "Further keys a package adds to its module entry (open map)."
+  extra: FlxJSON!
+
+  "The module has a manifest (flxAppManifest) and opens with it."
+  hasManifest: Boolean!
+
+  "Icon name; empty when none."
+  icon: String
+
+  "Module key."
+  id: String!
+
+  "Panel menu slug the module replaces; empty when none."
+  menu: String
+
+  "Sort order; empty = default."
+  order: Int
+
+  "Module title."
+  title: String!
+
+  "Panel page an app without the native screen opens."
+  url: String
+
+  "Package version; empty when not reported."
+  version: String
+}
+
+"The site the app is connected to."
+type FlxAppSite {
+  "Panel address."
+  adminUrl: String!
+
+  "Site icon address; empty when none."
+  icon: String!
+
+  "Site language."
+  locale: String!
+
+  "Site name."
+  name: String!
+
+  "REST API root."
+  restUrl: String!
+
+  "Site time zone."
+  timezone: String!
+
+  "Home address."
+  url: String!
+}
+
+"The signed-in user."
+type FlxAppUser {
+  "Avatar image address."
+  avatar: String!
+
+  "User ID."
+  databaseId: Int!
+
+  "E-mail address."
+  email: String!
+
+  "Can manage the site settings."
+  isAdmin: Boolean!
+
+  "Language of the user (profile language)."
+  locale: String!
+
+  "Username."
+  login: String!
+
+  "Display name."
+  name: String!
+
+  "Profile page in the panel."
+  profileUrl: String!
+
+  "Roles of the user."
+  roles: [FlxAppRole!]!
+}
+
+"A role of the user."
+type FlxAppRole {
+  "Role key."
+  id: String!
+
+  "Role name in the user&#039;s language."
+  name: String!
+}
+
+"An installed FluxWP package and its version."
+type FlxAppVersion {
+  "Package slug."
+  slug: String!
+
+  "Version."
+  version: String!
+}
+
+"The person&#039;s app preferences, shared by all their devices."
+type FlxAppPrefs {
+  "Hidden home cards."
+  cardHidden: [String!]!
+
+  "Home card order."
+  cardOrder: [String!]!
+
+  "Notification types the person may choose from."
+  events: [FlxAppPushEvent!]!
+
+  "Entries always opened in the web view."
+  forceWeb: [String!]!
+
+  "Hidden menu entries."
+  hidden: [String!]!
+
+  "Menu order (slugs)."
+  order: [String!]!
+
+  "Pinned menu entries."
+  pinned: [String!]!
+
+  "Notification choices the person made."
+  push: [FlxAppPushPref!]!
+
+  "Bottom bar entries (at most 5)."
+  tabs: [String!]!
+
+  "Unix time of the last change; 0 = never."
+  updated: Int!
+}
+
+"A notification type the person may switch on or off."
+type FlxAppPushEvent {
+  "On until the person changes it."
+  default: Boolean!
+
+  "Event type."
+  id: String!
+
+  "Currently on for this person."
+  on: Boolean!
+
+  "Package that sends it; empty for core."
+  source: String!
+
+  "Name in the user&#039;s language."
+  title: String!
+}
+
+"Whether the person wants one notification type."
+type FlxAppPushPref {
+  "Event type."
+  event: String!
+
+  "Notifications of this type are on."
+  on: Boolean!
+}
+
+"Light poll: counters, digests of the cached documents and the new events."
+type FlxAppSync {
+  "Badge counters."
+  counts: [FlxAppCount!]!
+
+  "Events after the asked time (the last 20 are kept)."
+  events: [FlxAppEvent!]!
+
+  "Digests; a changed one means refetch that document."
+  hashes: FlxAppHashes!
+
+  "Server Unix time; send it back as `since`."
+  serverTime: Int!
+}
+
+"A notification event for the desktop app."
+type FlxAppEvent {
+  "Unix time."
+  at: Int!
+
+  "Text; empty when the site hides notification text."
+  body: String!
+
+  "Event type, e.g. flxg.assigned."
+  event: String!
+
+  "Parameters of the target (open map)."
+  params: FlxJSON!
+
+  "Where the app opens when the event is clicked."
+  target: String!
+
+  "Title."
+  title: String!
+}
+
+"A capability a FluxWP package checks."
+type FlxCapability {
+  "Whether the current user has it."
+  granted: Boolean!
+
+  "Group label (usually the package); empty when not given."
+  group: String!
+
+  "Capability name, e.g. flxg_use."
+  key: String!
+
+  "What the capability allows, in the user&#039;s language."
+  label: String!
+
+  "Package slug that declares it; empty when not given."
+  package: String!
+}
+
+"An AI translation job: the draft translation plus the parts the AI translates one request at a time (the host stops a request at about 60 seconds)."
+type FlxLanguageJob {
+  "Editor address of the translation."
+  editUrl: String
+
+  "Parts that stayed in the source language (&quot;meta&quot; or a step number). Check them in the editor."
+  errors: [String!]!
+
+  "Job key. Send it to flxLanguageTranslateStep."
+  id: ID!
+
+  "Target language code."
+  lang: String!
+
+  "Post ID of the source content."
+  sourceId: Int!
+
+  "State of the job."
+  status: FlxLanguageJobStatus!
+
+  "Last finished step; -1 before the first. Run steps 0 to total - 1."
+  step: Int!
+
+  "Number of steps: the title/excerpt/SEO step plus one per body part."
+  total: Int!
+
+  "Post ID of the translation being written."
+  translationId: Int!
+}
+
+"State of an AI translation job."
+enum FlxLanguageJobStatus {
+  "The translation is written."
+  DONE
+
+  "The last step failed; running it again retries."
+  FAILED
+
+  "Steps are still to run."
+  RUNNING
+}
+
+"The Languages settings."
+type FlxLanguageSettings {
+  "Flux AI &amp; MCP is installed and ready, so AI translation buttons work."
+  aiAvailable: Boolean!
+
+  "Languages that can still be added."
+  catalog: [FlxLanguageCatalogEntry!]!
+
+  "Code of the default language (no address prefix)."
+  defaultLanguage: String!
+
+  "Show the default-language version when a translation is missing."
+  fallback: Boolean!
+
+  "Country information of this request (does country-based suggestion work on this server?)."
+  geo: FlxLanguageGeo!
+
+  "Two-letter country codes that see the default language when the browser language is not on the site."
+  homeCountries: [String!]!
+
+  "Every language, inactive ones too; the default language first."
+  languages: [FlxLanguage!]!
+
+  "Public content types that can be translated."
+  postTypeChoices: [FlxLanguagePostType!]!
+
+  "Content types that are translated."
+  postTypes: [String!]!
+
+  "Automatic language for first-time visitors."
+  suggest: FlxLanguageSuggestMode!
+
+  "Language used when neither the browser language nor the country&#039;s language is active."
+  suggestTo: String!
+
+  "How the language switcher names languages."
+  switcher: FlxLanguageSwitcherStyle!
+
+  "Where the theme shows the language switcher."
+  switcherPlace: FlxLanguageSwitcherPlace!
+
+  "Site texts that can be translated."
+  textFields: [FlxLanguageTextField!]!
+
+  "Translated site texts. A text that is not listed shows in the default language."
+  texts: [FlxLanguageSiteText!]!
+}
+
+"A language that can be added to the site."
+type FlxLanguageCatalogEntry {
+  "Language code."
+  code: String!
+
+  "Flag emoji."
+  flag: String!
+
+  "WordPress locale."
+  locale: String!
+
+  "Name."
+  name: String!
+}
+
+"Country information of the settings page: the code and the header it came from."
+type FlxLanguageGeo {
+  "Two-letter country code of the current request. Empty when the server sends none."
+  country: String
+
+  "Name of the header the country came from. Empty when none."
+  source: String
+}
+
+"A language of the site."
+type FlxLanguage {
+  "Visitors can open this language. The default language is always active."
+  active: Boolean!
+
+  "Address of the language root: &quot;/&quot; for the default language, &quot;/en/&quot; for the others."
+  address: String!
+
+  "Language code, also the address prefix (en, de, pt-br)."
+  code: String!
+
+  "The default language (no address prefix)."
+  default: Boolean!
+
+  "Flag emoji. Empty when none is set."
+  flag: String
+
+  "hreflang value search engines get."
+  hreflang: String!
+
+  "WordPress locale of the language&#039;s content (en_US)."
+  locale: String!
+
+  "Name people see (English, Deutsch)."
+  name: String!
+}
+
+"A public content type that can be translated."
+type FlxLanguagePostType {
+  "Plural label."
+  label: String!
+
+  "Post type name (post, page …)."
+  name: String!
+
+  "Translated now."
+  selected: Boolean!
+}
+
+"What a first-time visitor gets when their language differs from the page."
+enum FlxLanguageSuggestMode {
+  "A suggestion bar at the top of the page."
+  BANNER
+
+  "Nothing."
+  OFF
+
+  "The site opens directly in their language."
+  REDIRECT
+}
+
+"How the language switcher names the languages."
+enum FlxLanguageSwitcherStyle {
+  "Language codes (TR · EN)."
+  CODE
+
+  "Flags."
+  FLAG
+
+  "Language names."
+  NAME
+}
+
+"Where the theme shows the language switcher."
+enum FlxLanguageSwitcherPlace {
+  "Both."
+  BOTH
+
+  "Footer."
+  FOOTER
+
+  "Header and mobile menu."
+  HEADER
+}
+
+"A site text that can be translated."
+type FlxLanguageTextField {
+  "Text key."
+  key: String!
+
+  "What the text is, in the user&#039;s language."
+  label: String!
+
+  "The text in the default language; shown as a hint while the translation is empty."
+  placeholder: String!
+
+  "A long text (shown in a multi-line box)."
+  textarea: Boolean!
+}
+
+"A site text (site title, tagline, home page title …) in one language."
+type FlxLanguageSiteText {
+  "Text key (blogname, blogdescription, flxseo_home_title …)."
+  key: String!
+
+  "Language code (never the default language)."
+  lang: String!
+
+  "The text in that language."
+  value: String!
+}
+
+"A FluxWP role: Director, Manager, Staff or a role added from the panel."
+type FlxRole {
+  "Table permissions that are on for the role."
+  capabilities: [String!]!
+
+  "Added from the panel; can be deleted."
+  custom: Boolean!
+
+  "What the role is for."
+  description: String!
+
+  "Screen after login (a key of flxRolesConfig.homeChoices)."
+  home: String!
+
+  "Role key, e.g. flx_personel."
+  key: String!
+
+  "Role name in the user&#039;s language."
+  label: String!
+
+  "Number of people with the role."
+  memberCount: Int!
+
+  "People in the role by name (the first 300)."
+  members(
+    "Records per page (at most 50)."
+    first: Int
+
+    "Cursor to continue after (pageInfo.endCursor)."
+    after: String
+  ): FlxRoleMemberConnection!
+}
+
+"A page of the people in a role."
+type FlxRoleMemberConnection {
   "Records with their cursors."
-  edges: [FlxAiLogEdge!]!
+  edges: [FlxRoleMemberEdge!]!
 
   "Records of this page."
-  nodes: [FlxAiLog!]!
+  nodes: [FlxRoleMember!]!
 
   "Paging information."
   pageInfo: FlxPageInfo!
@@ -9426,91 +10443,46 @@ type FlxAiLogConnection {
   totalCount: Int
 }
 
-"One FlxAiLog in a list, with its cursor."
-type FlxAiLogEdge {
+"One FlxRoleMember in a list, with its cursor."
+type FlxRoleMemberEdge {
   "Opaque cursor of this record."
   cursor: String!
 
   "The record."
-  node: FlxAiLog!
+  node: FlxRoleMember!
 }
 
-"One model request or tool call."
-type FlxAiLog {
-  "Tokens read from the prompt cache."
-  cacheRead: Int!
-
-  "Tokens written to the prompt cache."
-  cacheWrite: Int!
-
-  "Chat it belongs to; 0 when none."
-  chatId: Int!
-
-  "Cost in USD."
-  cost: Float!
-
-  "Log row ID."
+"A person in a role."
+type FlxRoleMember {
+  "User ID."
   databaseId: Int!
 
-  "Raw failure reason; empty when it worked."
-  error: String!
+  "Profile edit page."
+  editUrl: String!
 
-  "Failure for display; empty when it worked."
-  errorLabel: String!
+  "E-mail address."
+  email: String!
 
-  "The cost is estimated from the price list."
-  estimated: Boolean!
+  "Display name."
+  name: String!
 
-  "The content of the request was stored (flxAiLogBody)."
-  hasBody: Boolean!
+  "WhatsApp number; empty when none is saved on the profile."
+  phone: FlxPhone
 
-  "Input tokens."
-  inTokens: Int!
+  "Personal referral link; empty when the person cannot be a referrer."
+  referralLink: String
+}
 
-  "Model request or tool call."
-  kind: FlxAiLogKind!
+"A phone number."
+type FlxPhone {
+  "Digits only (905301234567)."
+  digits: String!
 
-  "Model id; empty for a tool call."
-  model: String!
+  "Number as entered, for display."
+  display: String!
 
-  "Model name for display."
-  modelLabel: String!
-
-  "Duration in milliseconds."
-  ms: Int!
-
-  "It worked."
-  ok: Boolean!
-
-  "Output tokens."
-  outTokens: Int!
-
-  "Provider that served it."
-  provider: String!
-
-  "Why it was made (chat, title, test …)."
-  purpose: String!
-
-  "Purpose for display."
-  purposeLabel: String!
-
-  "System that made the request."
-  source: String!
-
-  "System name for display."
-  sourceLabel: String!
-
-  "When it happened."
-  time: FlxDateTime!
-
-  "Tool name; empty for a model request."
-  tool: String!
-
-  "User it ran for; 0 for the system."
-  userId: Int!
-
-  "Name of the user; empty for the system."
-  userName: String!
+  "E.164 form (+905301234567); empty when the number is not valid."
+  e164: String!
 }
 
 "Where a page sits in a list."
@@ -9942,330 +10914,6 @@ type FlxAiTool {
   title: String!
 }
 
-"A capability a FluxWP package checks."
-type FlxCapability {
-  "Whether the current user has it."
-  granted: Boolean!
-
-  "Group label (usually the package); empty when not given."
-  group: String!
-
-  "Capability name, e.g. flxg_use."
-  key: String!
-
-  "What the capability allows, in the user&#039;s language."
-  label: String!
-
-  "Package slug that declares it; empty when not given."
-  package: String!
-}
-
-"An AI translation job: the draft translation plus the parts the AI translates one request at a time (the host stops a request at about 60 seconds)."
-type FlxLanguageJob {
-  "Editor address of the translation."
-  editUrl: String
-
-  "Parts that stayed in the source language (&quot;meta&quot; or a step number). Check them in the editor."
-  errors: [String!]!
-
-  "Job key. Send it to flxLanguageTranslateStep."
-  id: ID!
-
-  "Target language code."
-  lang: String!
-
-  "Post ID of the source content."
-  sourceId: Int!
-
-  "State of the job."
-  status: FlxLanguageJobStatus!
-
-  "Last finished step; -1 before the first. Run steps 0 to total - 1."
-  step: Int!
-
-  "Number of steps: the title/excerpt/SEO step plus one per body part."
-  total: Int!
-
-  "Post ID of the translation being written."
-  translationId: Int!
-}
-
-"State of an AI translation job."
-enum FlxLanguageJobStatus {
-  "The translation is written."
-  DONE
-
-  "The last step failed; running it again retries."
-  FAILED
-
-  "Steps are still to run."
-  RUNNING
-}
-
-"The Languages settings."
-type FlxLanguageSettings {
-  "Flux AI &amp; MCP is installed and ready, so AI translation buttons work."
-  aiAvailable: Boolean!
-
-  "Languages that can still be added."
-  catalog: [FlxLanguageCatalogEntry!]!
-
-  "Code of the default language (no address prefix)."
-  defaultLanguage: String!
-
-  "Show the default-language version when a translation is missing."
-  fallback: Boolean!
-
-  "Country information of this request (does country-based suggestion work on this server?)."
-  geo: FlxLanguageGeo!
-
-  "Two-letter country codes that see the default language when the browser language is not on the site."
-  homeCountries: [String!]!
-
-  "Every language, inactive ones too; the default language first."
-  languages: [FlxLanguage!]!
-
-  "Public content types that can be translated."
-  postTypeChoices: [FlxLanguagePostType!]!
-
-  "Content types that are translated."
-  postTypes: [String!]!
-
-  "Automatic language for first-time visitors."
-  suggest: FlxLanguageSuggestMode!
-
-  "Language used when neither the browser language nor the country&#039;s language is active."
-  suggestTo: String!
-
-  "How the language switcher names languages."
-  switcher: FlxLanguageSwitcherStyle!
-
-  "Where the theme shows the language switcher."
-  switcherPlace: FlxLanguageSwitcherPlace!
-
-  "Site texts that can be translated."
-  textFields: [FlxLanguageTextField!]!
-
-  "Translated site texts. A text that is not listed shows in the default language."
-  texts: [FlxLanguageSiteText!]!
-}
-
-"A language that can be added to the site."
-type FlxLanguageCatalogEntry {
-  "Language code."
-  code: String!
-
-  "Flag emoji."
-  flag: String!
-
-  "WordPress locale."
-  locale: String!
-
-  "Name."
-  name: String!
-}
-
-"Country information of the settings page: the code and the header it came from."
-type FlxLanguageGeo {
-  "Two-letter country code of the current request. Empty when the server sends none."
-  country: String
-
-  "Name of the header the country came from. Empty when none."
-  source: String
-}
-
-"A language of the site."
-type FlxLanguage {
-  "Visitors can open this language. The default language is always active."
-  active: Boolean!
-
-  "Address of the language root: &quot;/&quot; for the default language, &quot;/en/&quot; for the others."
-  address: String!
-
-  "Language code, also the address prefix (en, de, pt-br)."
-  code: String!
-
-  "The default language (no address prefix)."
-  default: Boolean!
-
-  "Flag emoji. Empty when none is set."
-  flag: String
-
-  "hreflang value search engines get."
-  hreflang: String!
-
-  "WordPress locale of the language&#039;s content (en_US)."
-  locale: String!
-
-  "Name people see (English, Deutsch)."
-  name: String!
-}
-
-"A public content type that can be translated."
-type FlxLanguagePostType {
-  "Plural label."
-  label: String!
-
-  "Post type name (post, page …)."
-  name: String!
-
-  "Translated now."
-  selected: Boolean!
-}
-
-"What a first-time visitor gets when their language differs from the page."
-enum FlxLanguageSuggestMode {
-  "A suggestion bar at the top of the page."
-  BANNER
-
-  "Nothing."
-  OFF
-
-  "The site opens directly in their language."
-  REDIRECT
-}
-
-"How the language switcher names the languages."
-enum FlxLanguageSwitcherStyle {
-  "Language codes (TR · EN)."
-  CODE
-
-  "Flags."
-  FLAG
-
-  "Language names."
-  NAME
-}
-
-"Where the theme shows the language switcher."
-enum FlxLanguageSwitcherPlace {
-  "Both."
-  BOTH
-
-  "Footer."
-  FOOTER
-
-  "Header and mobile menu."
-  HEADER
-}
-
-"A site text that can be translated."
-type FlxLanguageTextField {
-  "Text key."
-  key: String!
-
-  "What the text is, in the user&#039;s language."
-  label: String!
-
-  "The text in the default language; shown as a hint while the translation is empty."
-  placeholder: String!
-
-  "A long text (shown in a multi-line box)."
-  textarea: Boolean!
-}
-
-"A site text (site title, tagline, home page title …) in one language."
-type FlxLanguageSiteText {
-  "Text key (blogname, blogdescription, flxseo_home_title …)."
-  key: String!
-
-  "Language code (never the default language)."
-  lang: String!
-
-  "The text in that language."
-  value: String!
-}
-
-"A FluxWP role: Director, Manager, Staff or a role added from the panel."
-type FlxRole {
-  "Table permissions that are on for the role."
-  capabilities: [String!]!
-
-  "Added from the panel; can be deleted."
-  custom: Boolean!
-
-  "What the role is for."
-  description: String!
-
-  "Screen after login (a key of flxRolesConfig.homeChoices)."
-  home: String!
-
-  "Role key, e.g. flx_personel."
-  key: String!
-
-  "Role name in the user&#039;s language."
-  label: String!
-
-  "Number of people with the role."
-  memberCount: Int!
-
-  "People in the role by name (the first 300)."
-  members(
-    "Records per page (at most 50)."
-    first: Int
-
-    "Cursor to continue after (pageInfo.endCursor)."
-    after: String
-  ): FlxRoleMemberConnection!
-}
-
-"A page of the people in a role."
-type FlxRoleMemberConnection {
-  "Records with their cursors."
-  edges: [FlxRoleMemberEdge!]!
-
-  "Records of this page."
-  nodes: [FlxRoleMember!]!
-
-  "Paging information."
-  pageInfo: FlxPageInfo!
-
-  "All matching records (null when counting would be slow)."
-  totalCount: Int
-}
-
-"One FlxRoleMember in a list, with its cursor."
-type FlxRoleMemberEdge {
-  "Opaque cursor of this record."
-  cursor: String!
-
-  "The record."
-  node: FlxRoleMember!
-}
-
-"A person in a role."
-type FlxRoleMember {
-  "User ID."
-  databaseId: Int!
-
-  "Profile edit page."
-  editUrl: String!
-
-  "E-mail address."
-  email: String!
-
-  "Display name."
-  name: String!
-
-  "WhatsApp number; empty when none is saved on the profile."
-  phone: FlxPhone
-
-  "Personal referral link; empty when the person cannot be a referrer."
-  referralLink: String
-}
-
-"A phone number."
-type FlxPhone {
-  "Digits only (905301234567)."
-  digits: String!
-
-  "Number as entered, for display."
-  display: String!
-
-  "E.164 form (+905301234567); empty when the number is not valid."
-  e164: String!
-}
-
 "A package group of the Roles and access table."
 type FlxRoleCapabilityGroup {
   "Whether the package is installed."
@@ -10326,10 +10974,931 @@ type FlxRoleHomeChoice {
   label: String!
 }
 
+"The current site audit report: scores, agent readiness and recommendations by priority."
+type FlxSeoAudit {
+  "Agent readiness checks."
+  agentic: [FlxSeoAgenticCheck!]!
+
+  "Agent readiness checks the site passes."
+  agenticPassed: Int!
+
+  "Address the audit form starts with."
+  auditUrl: String!
+
+  "Recommendation counts by priority."
+  counts: FlxSeoCounts!
+
+  "Recommendations, most important first."
+  findings: [FlxSeoFinding!]!
+
+  "Address of /llms.txt."
+  llmsUrl: String!
+
+  "Last on-site audit; null before the first audit."
+  local: FlxSeoLocalRun
+
+  "The MCP server is on."
+  mcpServerOn: Boolean!
+
+  "Last PageSpeed run per device (none before the first run)."
+  pageSpeed: [FlxSeoPageSpeedRun!]!
+}
+
+"One agent readiness check."
+type FlxSeoAgenticCheck {
+  "Check id (llms, webmcp, md …)."
+  id: String!
+
+  "What is checked."
+  label: String!
+
+  "Whether the site passes."
+  passed: Boolean!
+}
+
+"Recommendation counts by priority."
+type FlxSeoCounts {
+  "Critical recommendations."
+  critical: Int!
+
+  "High priority recommendations."
+  high: Int!
+
+  "Low priority recommendations."
+  low: Int!
+
+  "Medium priority recommendations."
+  medium: Int!
+}
+
+"One audit recommendation."
+type FlxSeoFinding {
+  "Other sections the recommendation counts in."
+  also: [String!]!
+
+  "Section: performance, accessibility, best-practices, seo or agentic (packages may add more)."
+  category: String!
+
+  "Section name in the user&#039;s language."
+  categoryLabel: String!
+
+  "Short detail such as a measured value; empty when none."
+  detail: String!
+
+  "How to fix it; empty when unknown."
+  fix: String!
+
+  "One-click fix id; null when there is none or it is already on."
+  fixId: String
+
+  "Name of the one-click fix; null when there is none."
+  fixLabel: String
+
+  "Finding id (a Lighthouse audit id or a Flux SEO check)."
+  id: String!
+
+  "Affected elements or addresses (at most 10)."
+  items: [String!]!
+
+  "Who fixes it (theme, content, server …); null when unknown."
+  owner: String
+
+  "Name of the owner; null when unknown."
+  ownerLabel: String
+
+  "How important it is."
+  priority: FlxSeoPriority!
+
+  "Priority name in the user&#039;s language."
+  priorityLabel: String!
+
+  "Which audits found it."
+  sources: [FlxSeoAuditSource!]!
+
+  "Title in the user&#039;s language."
+  title: String!
+}
+
+"How important an audit recommendation is."
+enum FlxSeoPriority {
+  ""
+  CRITICAL
+
+  ""
+  HIGH
+
+  ""
+  LOW
+
+  ""
+  MEDIUM
+}
+
+"Where a recommendation came from."
+enum FlxSeoAuditSource {
+  ""
+  LOCAL
+
+  ""
+  PSI_DESKTOP
+
+  ""
+  PSI_MOBILE
+}
+
+"The last on-site audit run."
+type FlxSeoLocalRun {
+  "How long the page took to answer (ms)."
+  durationMs: Int!
+
+  "HTTP status the page answered with."
+  httpStatus: Int!
+
+  "When it ran."
+  time: FlxDateTime!
+
+  "Audited address."
+  url: String!
+}
+
+"A point in time with labels in the user&#039;s language."
+type FlxDateTime {
+  "ISO 8601 in UTC (2026-11-15T14:59:00Z)."
+  iso: String!
+
+  "Date and time for display, in the site time zone and the user&#039;s language."
+  label: String!
+
+  "Relative time for display (&quot;5 minutes ago&quot;)."
+  relative: String!
+
+  "Unix timestamp."
+  timestamp: Int!
+}
+
+"A month of the billing list."
+type FlxAiMonth {
+  "Model requests."
+  calls: Int!
+
+  "Cost in USD."
+  cost: Float!
+
+  "Month name for display."
+  label: String!
+
+  "Month as Y-m."
+  month: String!
+
+  "Saved by the prompt cache in USD."
+  saved: Float!
+}
+
+"Usage of Flux AI over a range: cost, time, tokens and tools."
+type FlxAiReport {
+  "By model."
+  byModel: [FlxAiBreakdownRow!]!
+
+  "By provider (billing months only)."
+  byProvider: [FlxAiBreakdownRow!]!
+
+  "By plugin and purpose."
+  byPurpose: [FlxAiBreakdownRow!]!
+
+  "By plugin."
+  bySource: [FlxAiBreakdownRow!]!
+
+  "Slowest tools first."
+  byTool: [FlxAiToolStat!]!
+
+  "One entry per day."
+  daily: [FlxAiReportDay!]!
+
+  "Start of the range."
+  from: FlxDateTime!
+
+  "End of the range."
+  to: FlxDateTime!
+
+  "Totals of the range."
+  totals: FlxAiReportTotals!
+}
+
+"One row of a usage breakdown (by plugin, model, purpose or provider)."
+type FlxAiBreakdownRow {
+  "Tokens read from the prompt cache."
+  cacheRead: Int!
+
+  "Model requests."
+  calls: Int!
+
+  "Cost in USD."
+  cost: Float!
+
+  "Failed requests and tool calls."
+  errors: Int!
+
+  "Cost in USD without the prompt cache."
+  fullCost: Float!
+
+  "Input tokens."
+  inTokens: Int!
+
+  "Raw key: source id, model id …"
+  key: String!
+
+  "Name for display."
+  label: String!
+
+  "Time spent in models, milliseconds."
+  modelMs: Int!
+
+  "Output tokens."
+  outTokens: Int!
+
+  "Part of the cost is estimated from the price list."
+  partial: Boolean!
+
+  "Time spent in tools, milliseconds."
+  toolMs: Int!
+
+  "Tool calls."
+  tools: Int!
+}
+
+"Time and errors of one tool."
+type FlxAiToolStat {
+  "Average duration, milliseconds."
+  avgMs: Int!
+
+  "Calls."
+  calls: Int!
+
+  "Failed calls."
+  errors: Int!
+
+  "Tool name."
+  key: String!
+
+  "Tool title for display."
+  label: String!
+
+  "Longest duration, milliseconds."
+  maxMs: Int!
+
+  "Plugin that provides the tool."
+  source: String!
+
+  "Total duration, milliseconds."
+  totalMs: Int!
+}
+
+"One day of a usage report."
+type FlxAiReportDay {
+  "Tokens read from the prompt cache."
+  cacheRead: Int!
+
+  "Model requests."
+  calls: Int!
+
+  "Cost in USD."
+  cost: Float!
+
+  "Day as Y-m-d in the site time zone."
+  date: String!
+
+  "Failed requests and tool calls."
+  errors: Int!
+
+  "Input tokens."
+  inTokens: Int!
+
+  "Time spent in models, milliseconds."
+  modelMs: Int!
+
+  "Output tokens."
+  outTokens: Int!
+
+  "Time spent in tools, milliseconds."
+  toolMs: Int!
+
+  "Tool calls."
+  tools: Int!
+}
+
+"Totals of a usage report."
+type FlxAiReportTotals {
+  "Tokens read from the prompt cache."
+  cacheRead: Int!
+
+  "Tokens written to the prompt cache."
+  cacheWrite: Int!
+
+  "Model requests."
+  calls: Int!
+
+  "Cost in USD."
+  cost: Float!
+
+  "Failed requests and tool calls."
+  errors: Int!
+
+  "Cost in USD without the prompt cache."
+  fullCost: Float!
+
+  "Input tokens."
+  inTokens: Int!
+
+  "Time spent in models, milliseconds."
+  modelMs: Int!
+
+  "Output tokens."
+  outTokens: Int!
+
+  "Saved by the prompt cache in USD."
+  saved: Float!
+
+  "Time spent in tools, milliseconds."
+  toolMs: Int!
+
+  "Tool calls."
+  tools: Int!
+}
+
+"Spending against one limit period."
+type FlxAiBudgetPeriod {
+  "day, week or month."
+  key: String!
+
+  "Period name in the user&#039;s language."
+  label: String!
+
+  "Limit in USD; 0 means unlimited."
+  limit: Float!
+
+  "The limit is reached."
+  over: Boolean!
+
+  "Share of the limit used, in percent (0 without a limit)."
+  pct: Float!
+
+  "When the period resets."
+  resets: FlxDateTime!
+
+  "Spent this period in USD."
+  spent: Float!
+}
+
+"The stored content of a log row: the last outgoing messages and the reply, shortened, with e-mail, phone, IBAN and keys masked."
+type FlxAiLogBody {
+  "Failure message; empty when it worked."
+  error: String!
+
+  "Log row ID."
+  logId: Int!
+
+  "The reply text."
+  reply: String!
+
+  "Outgoing messages."
+  request: [FlxAiLogMessage!]!
+
+  "Tool calls the reply asked for."
+  toolCalls: [String!]!
+}
+
+"One message of a stored request."
+type FlxAiLogMessage {
+  "system, user, assistant or tool."
+  role: String!
+
+  "Shortened text with personal data masked."
+  text: String!
+}
+
+"A choice of a select field."
+type FlxAiOption {
+  "Value to save."
+  id: String!
+
+  "Name for display."
+  label: String!
+}
+
+"What a log row records."
+enum FlxAiLogKind {
+  "A request to a language model."
+  MODEL
+
+  "A tool call."
+  TOOL
+}
+
+"A page of log rows, newest first."
+type FlxAiLogConnection {
+  "Records with their cursors."
+  edges: [FlxAiLogEdge!]!
+
+  "Records of this page."
+  nodes: [FlxAiLog!]!
+
+  "Paging information."
+  pageInfo: FlxPageInfo!
+
+  "All matching records (null when counting would be slow)."
+  totalCount: Int
+}
+
+"One FlxAiLog in a list, with its cursor."
+type FlxAiLogEdge {
+  "Opaque cursor of this record."
+  cursor: String!
+
+  "The record."
+  node: FlxAiLog!
+}
+
+"One model request or tool call."
+type FlxAiLog {
+  "Tokens read from the prompt cache."
+  cacheRead: Int!
+
+  "Tokens written to the prompt cache."
+  cacheWrite: Int!
+
+  "Chat it belongs to; 0 when none."
+  chatId: Int!
+
+  "Cost in USD."
+  cost: Float!
+
+  "Log row ID."
+  databaseId: Int!
+
+  "Raw failure reason; empty when it worked."
+  error: String!
+
+  "Failure for display; empty when it worked."
+  errorLabel: String!
+
+  "The cost is estimated from the price list."
+  estimated: Boolean!
+
+  "The content of the request was stored (flxAiLogBody)."
+  hasBody: Boolean!
+
+  "Input tokens."
+  inTokens: Int!
+
+  "Model request or tool call."
+  kind: FlxAiLogKind!
+
+  "Model id; empty for a tool call."
+  model: String!
+
+  "Model name for display."
+  modelLabel: String!
+
+  "Duration in milliseconds."
+  ms: Int!
+
+  "It worked."
+  ok: Boolean!
+
+  "Output tokens."
+  outTokens: Int!
+
+  "Provider that served it."
+  provider: String!
+
+  "Why it was made (chat, title, test …)."
+  purpose: String!
+
+  "Purpose for display."
+  purposeLabel: String!
+
+  "System that made the request."
+  source: String!
+
+  "System name for display."
+  sourceLabel: String!
+
+  "When it happened."
+  time: FlxDateTime!
+
+  "Tool name; empty for a model request."
+  tool: String!
+
+  "User it ran for; 0 for the system."
+  userId: Int!
+
+  "Name of the user; empty for the system."
+  userName: String!
+}
+
+"The last PageSpeed Insights run of one device."
+type FlxSeoPageSpeedRun {
+  "Lighthouse version; empty when unknown."
+  lighthouse: String!
+
+  "Core Web Vitals and speed metrics."
+  metrics: [FlxSeoMetric!]!
+
+  "Section scores."
+  scores: [FlxSeoScore!]!
+
+  "Device measured."
+  strategy: FlxSeoStrategy!
+
+  "When it ran."
+  time: FlxDateTime!
+
+  "Measured address."
+  url: String!
+}
+
+"A Core Web Vitals style metric of a PageSpeed run."
+type FlxSeoMetric {
+  "Lighthouse audit id (largest-contentful-paint …)."
+  key: String!
+
+  "Name."
+  label: String!
+
+  "0–1; null when none."
+  score: Float
+
+  "Display value such as &quot;2.3 s&quot;."
+  value: String!
+}
+
+"A PageSpeed score of one section."
+type FlxSeoScore {
+  "Section key."
+  category: String!
+
+  "Section name."
+  label: String!
+
+  "Audits passed."
+  passed: Int!
+
+  "0–100; null when Lighthouse gave none."
+  score: Int
+
+  "Audits that count."
+  total: Int!
+}
+
+"Device a PageSpeed run measures."
+enum FlxSeoStrategy {
+  ""
+  DESKTOP
+
+  ""
+  MOBILE
+}
+
+"Saved audit reports (newest first) and the automatic schedule."
+type FlxSeoHistory {
+  "Reports, newest first."
+  entries: [FlxSeoHistoryEntry!]!
+
+  "Problems of the last automatic audit."
+  errors: [String!]!
+
+  "Next automatic audit; null when automatic audits are off."
+  next: FlxDateTime
+
+  "An automatic audit is running now."
+  running: Boolean!
+
+  "Saved reports (at most 90)."
+  total: Int!
+}
+
+"One saved audit report."
+type FlxSeoHistoryEntry {
+  "Recommendations that are new since the previous report."
+  added: [FlxSeoFindingRef!]!
+
+  "Agent readiness as &quot;passed/total&quot;; empty for old reports."
+  agentic: String!
+
+  "Recommendation counts by priority."
+  counts: FlxSeoCounts!
+
+  "Speed metrics per device."
+  metrics: [FlxSeoHistoryMetrics!]!
+
+  "Recommendations gone since the previous report."
+  resolved: [FlxSeoFindingRef!]!
+
+  "PageSpeed scores (none when PageSpeed did not run)."
+  scores: [FlxSeoHistoryScore!]!
+
+  "When the report was saved."
+  time: FlxDateTime!
+
+  "What started the audit."
+  trigger: FlxSeoAuditTrigger!
+
+  "Trigger name in the user&#039;s language."
+  triggerLabel: String!
+
+  "Audited address."
+  url: String!
+}
+
+"A recommendation named in a report change list."
+type FlxSeoFindingRef {
+  "Finding id."
+  id: String!
+
+  "Title in the user&#039;s language."
+  title: String!
+}
+
+"Speed metrics of one device in a saved report."
+type FlxSeoHistoryMetrics {
+  "Cumulative Layout Shift; empty when not measured."
+  cls: String!
+
+  "First Contentful Paint; empty when not measured."
+  fcp: String!
+
+  "Largest Contentful Paint; empty when not measured."
+  lcp: String!
+
+  "Speed Index; empty when not measured."
+  si: String!
+
+  "Device."
+  strategy: FlxSeoStrategy!
+
+  "Total Blocking Time; empty when not measured."
+  tbt: String!
+}
+
+"A PageSpeed score in a saved report."
+type FlxSeoHistoryScore {
+  "Section key."
+  category: String!
+
+  "Section name."
+  label: String!
+
+  "0–100; null when none."
+  score: Int
+
+  "Device."
+  strategy: FlxSeoStrategy!
+}
+
+"What started a saved audit report."
+enum FlxSeoAuditTrigger {
+  ""
+  AUTO
+
+  ""
+  FIX
+
+  ""
+  MANUAL
+
+  ""
+  MCP
+}
+
+"SEO check of the published content."
+type FlxSeoContentCheck {
+  "Published items checked."
+  checked: Int!
+
+  "The 100 items with the most recommendations."
+  items: [FlxSeoContentRow!]!
+
+  "Items with at least one recommendation."
+  total: Int!
+}
+
+"A published content item with recommendations."
+type FlxSeoContentRow {
+  "Post ID."
+  databaseId: Int!
+
+  "Editor address; null when the user cannot edit it."
+  editUrl: String
+
+  "Recommendations."
+  issues: [FlxSeoContentIssue!]!
+
+  "Post type."
+  postType: String!
+
+  "Title."
+  title: String!
+
+  "Public address."
+  url: String!
+}
+
+"A recommendation for one content item."
+type FlxSeoContentIssue {
+  "Stable code (title_long, desc_missing, img_alt …)."
+  code: String!
+
+  "How serious it is."
+  level: FlxSeoIssueLevel!
+
+  "What is wrong, in the user&#039;s language."
+  message: String!
+}
+
+"How serious a content recommendation is."
+enum FlxSeoIssueLevel {
+  ""
+  ERROR
+
+  ""
+  WARNING
+}
+
+"Language of the build guide."
+enum FlxSeoGuideLang {
+  ""
+  EN
+
+  ""
+  TR
+}
+
+"The new site build guide (rules and checklist) as Markdown."
+type FlxSeoGuide {
+  "Language of the text."
+  lang: FlxSeoGuideLang!
+
+  "Guide text."
+  markdown: String!
+
+  "Section titles."
+  sections: [String!]!
+}
+
+"What the settings tabs show besides the setting values."
+type FlxSeoSetup {
+  "Site admin email (default report address)."
+  adminEmail: String!
+
+  "Flux AI &amp; MCP (the shared MCP server) is installed."
+  aiReady: Boolean!
+
+  "WordPress site name (placeholder of the site name field)."
+  blogName: String!
+
+  "Search engines that take a verification tag."
+  engines: [FlxSeoSearchEngine!]!
+
+  "Section titles of the new site build guide."
+  guideSections: [String!]!
+
+  "Home page description in use (placeholder)."
+  homeDesc: String!
+
+  "Home page title in use (placeholder)."
+  homeTitle: String!
+
+  "Site address."
+  homeUrl: String!
+
+  "Share image used when none is set."
+  imageDefault: String!
+
+  "IndexNow key file name (without .txt). It is public: search engines read it."
+  indexnowKey: String!
+
+  "Text of the last bulk submission; empty when none."
+  indexnowLast: String!
+
+  "IndexNow can send now (on, site public, not a local site)."
+  indexnowReady: Boolean!
+
+  "IndexNow key file address."
+  indexnowUrl: String!
+
+  "Logo used when none is set."
+  logoDefault: String!
+
+  "Another SEO plugin is active; this plugin&#039;s meta and schema output is off."
+  otherPlugin: Boolean!
+
+  "A PageSpeed API key is saved. The key itself is never returned."
+  psiKeySaved: Boolean!
+
+  "The site is visible to search engines (Settings › Reading)."
+  sitePublic: Boolean!
+
+  "Google Site Kit is connected to a Google account."
+  sitekit: Boolean!
+
+  "Sitemap address."
+  sitemapUrl: String!
+}
+
+"A search engine that takes a verification tag."
+type FlxSeoSearchEngine {
+  "Field of flxSettings.flxseo that holds the verification code (verifyGoogle …)."
+  field: String!
+
+  "How to verify the site."
+  help: String!
+
+  "Setting key (verify_google …)."
+  key: String!
+
+  "Link text."
+  link: String!
+
+  "Search engine name."
+  name: String!
+
+  "Example tag."
+  placeholder: String!
+
+  "Webmaster panel address."
+  url: String!
+}
+
 "Panel settings of the installed FluxWP packages (from flx_settings_schema)."
 type FlxSettings {
+  "Flux App › Görünüm"
+  flxappApp: FlxSettingsFlxappApp
+
+  "Flux App"
+  flxappSettings: FlxSettingsFlxappSettings
+
   "Flux GraphQL"
   flxgqlSettings: FlxSettingsFlxgqlSettings
+
+  "Flux SEO"
+  flxseo: FlxSettingsFlxseo
+}
+
+"Flux App › Görünüm"
+type FlxSettingsFlxappApp {
+  "name, short_name, logo, logo_dark, icon (URLs)."
+  brand: FlxJSON
+
+  "search, biometric_lock."
+  features: FlxJSON
+
+  "privacy, support."
+  links: FlxJSON
+
+  "App shell: mobile {nav, home, tabs[], drawer, topbar}, desktop {home, sidebar, topbar, commands[]}. Targets: screen:, module:, menu:, web:, url:."
+  shell: FlxJSON
+
+  "App theme overrides: mode, light/dark {primary, accent, bg, surface, text}, radius, density, font {body, heading}."
+  theme: FlxJSON
+}
+
+"Flux App"
+type FlxSettingsFlxappSettings {
+  "Brand OAuth clients: [{id, name, platform: mobile|desktop, redirect_uris[]}]."
+  appClients: FlxJSON
+
+  "Allow OAuth dynamic client registration (RFC 7591). Built-in clients stay available when this is off."
+  dynamicClients: Boolean
+
+  "Main FluxWP apps (flx-mobil, flx-masaustu) may connect."
+  genericApp: Boolean
+
+  "Disabled app modules."
+  modulesOff: FlxJSON
+
+  ""
+  otpEnabled: Boolean
+
+  "Signed-in donors may confirm and save their own phone number."
+  phoneSelfVerify: Boolean
+
+  ""
+  pushEnabled: Boolean
+
+  "Hide notification body on the lock screen."
+  pushHide: Boolean
+
+  "Disabled manifest screens: [&quot;core/plugins&quot;]."
+  screensOff: FlxJSON
+
+  ""
+  storeAndroid: String
+
+  ""
+  storeIos: String
+
+  ""
+  webSession: Boolean
 }
 
 "Flux GraphQL"
@@ -10369,6 +11938,192 @@ enum FlxSettingsFlxgqlSettingsQueryMode {
 
   ""
   STRICT
+}
+
+"Flux SEO"
+type FlxSettingsFlxseo {
+  ""
+  altName: String
+
+  ""
+  areaServed: String
+
+  ""
+  auditDay: String
+
+  ""
+  auditFreq: FlxSettingsFlxseoAuditFreq
+
+  ""
+  auditHour: String
+
+  ""
+  auditMail: Boolean
+
+  ""
+  auditMailTo: String
+
+  ""
+  auditPsi: Boolean
+
+  ""
+  autoAlt: Boolean
+
+  ""
+  contentSignal: Boolean
+
+  ""
+  country: String
+
+  ""
+  csAiInput: String
+
+  ""
+  csAiTrain: String
+
+  ""
+  csSearch: String
+
+  ""
+  donateLabel: String
+
+  ""
+  donateUrl: String
+
+  ""
+  email: String
+
+  ""
+  enabled: Boolean
+
+  ""
+  founding: String
+
+  ""
+  hdrCoop: Boolean
+
+  ""
+  hdrCsp: Boolean
+
+  ""
+  hdrFrame: Boolean
+
+  ""
+  homeDesc: String
+
+  ""
+  homeTitle: String
+
+  ""
+  hstsPreload: Boolean
+
+  ""
+  hstsSub: Boolean
+
+  ""
+  indexnow: Boolean
+
+  ""
+  knowsAbout: String
+
+  ""
+  llms: Boolean
+
+  ""
+  llmsIntro: String
+
+  ""
+  locality: String
+
+  ""
+  logo: String
+
+  ""
+  markdown: Boolean
+
+  ""
+  noindexAuthor: Boolean
+
+  ""
+  noindexSearch: Boolean
+
+  ""
+  noindexShop: Boolean
+
+  ""
+  noindexTags: Boolean
+
+  ""
+  ogImage: String
+
+  ""
+  orgName: String
+
+  ""
+  orgType: FlxSettingsFlxseoOrgType
+
+  ""
+  phone: String
+
+  ""
+  postal: String
+
+  ""
+  sameAs: String
+
+  ""
+  sep: String
+
+  ""
+  siteName: String
+
+  ""
+  street: String
+
+  ""
+  twitter: String
+
+  ""
+  verifyBaidu: String
+
+  ""
+  verifyBing: String
+
+  ""
+  verifyGoogle: String
+
+  ""
+  verifyNaver: String
+
+  ""
+  verifySeznam: String
+
+  ""
+  verifyYandex: String
+
+  ""
+  webmcp: Boolean
+}
+
+""
+enum FlxSettingsFlxseoAuditFreq {
+  ""
+  DAILY
+
+  ""
+  OFF
+
+  ""
+  WEEKLY
+}
+
+""
+enum FlxSettingsFlxseoOrgType {
+  ""
+  NGO
+
+  ""
+  ORGANIZATION
 }
 
 "A task, agenda item or decision."
@@ -10508,9 +12263,6 @@ type FlxTaskActivity {
   "User who made the change."
   userId: Int!
 }
-
-"Free-form JSON value (object, list, string, number or boolean)."
-scalar FlxJSON
 
 "A file attached to a task, a comment or a custom field."
 type FlxTaskFile {
@@ -12839,6 +14591,90 @@ type RootMutation {
     input: DeleteUserInput!
   ): DeleteUserPayload
 
+  "Removes a session or key (own, or any as administrator)."
+  flxAppAccessRevoke(
+    "Input for the flxAppAccessRevoke mutation"
+    input: FlxAppAccessRevokeInput!
+  ): FlxAppAccessRevokePayload
+
+  "Saves the theme, the mobile and desktop shell and the enabled screens (the same sanitizing as presets)."
+  flxAppAdminAppearanceSave(
+    "Input for the flxAppAdminAppearanceSave mutation"
+    input: FlxAppAdminAppearanceSaveInput!
+  ): FlxAppAdminAppearanceSavePayload
+
+  "Adds an OAuth client; a client secret is shown once."
+  flxAppAdminClientCreate(
+    "Input for the flxAppAdminClientCreate mutation"
+    input: FlxAppAdminClientCreateInput!
+  ): FlxAppAdminClientCreatePayload
+
+  "Deletes an OAuth client and all of its sessions."
+  flxAppAdminClientDelete(
+    "Input for the flxAppAdminClientDelete mutation"
+    input: FlxAppAdminClientDeleteInput!
+  ): FlxAppAdminClientDeletePayload
+
+  "Saves the Applications settings; only the sent fields change."
+  flxAppAdminMobileSave(
+    "Input for the flxAppAdminMobileSave mutation"
+    input: FlxAppAdminMobileSaveInput!
+  ): FlxAppAdminMobileSavePayload
+
+  "Sets which modules are on; the others turn off (their menu opens as an admin page)."
+  flxAppAdminModulesSave(
+    "Input for the flxAppAdminModulesSave mutation"
+    input: FlxAppAdminModulesSaveInput!
+  ): FlxAppAdminModulesSavePayload
+
+  "Sends a test notification to the administrator&#039;s devices."
+  flxAppAdminPushTest(
+    "Input for the flxAppAdminPushTest mutation"
+    input: FlxAppAdminPushTestInput!
+  ): FlxAppAdminPushTestPayload
+
+  "Saves the General settings; only the sent fields change."
+  flxAppAdminSettingsSave(
+    "Input for the flxAppAdminSettingsSave mutation"
+    input: FlxAppAdminSettingsSaveInput!
+  ): FlxAppAdminSettingsSavePayload
+
+  "Signs a device out (own, or any as administrator)."
+  flxAppDeviceRevoke(
+    "Input for the flxAppDeviceRevoke mutation"
+    input: FlxAppDeviceRevokeInput!
+  ): FlxAppDeviceRevokePayload
+
+  "Creates a personal API key; it is shown only now."
+  flxAppKeyCreate(
+    "Input for the flxAppKeyCreate mutation"
+    input: FlxAppKeyCreateInput!
+  ): FlxAppKeyCreatePayload
+
+  "Signs this app session out: its tokens, devices and web sessions (REST POST /flxapp/v1/logout)."
+  flxAppLogout(
+    "Input for the flxAppLogout mutation"
+    input: FlxAppLogoutInput!
+  ): FlxAppLogoutPayload
+
+  "Changes the preferences that are sent; the others stay as they are (REST POST /flxapp/v1/prefs)."
+  flxAppPrefsUpdate(
+    "Input for the flxAppPrefsUpdate mutation"
+    input: FlxAppPrefsUpdateInput!
+  ): FlxAppPrefsUpdatePayload
+
+  "A one-time panel sign-in address (valid 60 seconds) for the app&#039;s web view (REST POST /flxapp/v1/session)."
+  flxAppSessionCreate(
+    "Input for the flxAppSessionCreate mutation"
+    input: FlxAppSessionCreateInput!
+  ): FlxAppSessionCreatePayload
+
+  "Ends the web view cookie sessions this app session opened (REST POST /flxapp/v1/session/end)."
+  flxAppSessionEnd(
+    "Input for the flxAppSessionEnd mutation"
+    input: FlxAppSessionEndInput!
+  ): FlxAppSessionEndPayload
+
   "Sets the language of a content (the editor&#039;s Language box). If another content of the same group already has that language, this one leaves the group."
   flxLanguageSet(
     "Input for the flxLanguageSet mutation"
@@ -12946,6 +14782,36 @@ type RootMutation {
     "Input for the flxRolesSave mutation"
     input: FlxRolesSaveInput!
   ): FlxRolesSavePayload
+
+  "Runs an audit: the on-site audit, or one PageSpeed measurement (15–40 s; call it for mobile, then desktop, then run the on-site audit)."
+  flxSeoAuditRun(
+    "Input for the flxSeoAuditRun mutation"
+    input: FlxSeoAuditRunInput!
+  ): FlxSeoAuditRunPayload
+
+  "Changes the SEO fields of a post or page. Fields you leave out stay as they are."
+  flxSeoContentSet(
+    "Input for the flxSeoContentSet mutation"
+    input: FlxSeoContentSetInput!
+  ): FlxSeoContentSetPayload
+
+  "Turns on a one-click fix a recommendation offers, then refreshes the on-site audit."
+  flxSeoFixApply(
+    "Input for the flxSeoFixApply mutation"
+    input: FlxSeoFixApplyInput!
+  ): FlxSeoFixApplyPayload
+
+  "Sends every public address of the site to Bing, Yandex and the other IndexNow search engines now."
+  flxSeoIndexNowSubmit(
+    "Input for the flxSeoIndexNowSubmit mutation"
+    input: FlxSeoIndexNowSubmitInput!
+  ): FlxSeoIndexNowSubmitPayload
+
+  "Saves or deletes the PageSpeed Insights API key. The key is never returned."
+  flxSeoPsiKeySave(
+    "Input for the flxSeoPsiKeySave mutation"
+    input: FlxSeoPsiKeySaveInput!
+  ): FlxSeoPsiKeySavePayload
 
   "Changes panel settings. Only the groups and fields you send are written."
   flxSettingsUpdate(
@@ -13734,6 +15600,27 @@ type FlxAiCreditsRefreshPayload {
   errors: [FlxUserError!]!
 }
 
+"Input for the flxAppAccessRevoke mutation."
+input FlxAppAccessRevokeInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Row ID."
+  id: Int!
+}
+
+"The payload for the flxAppAccessRevoke mutation."
+type FlxAppAccessRevokePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Removed."
+  ok: Boolean!
+}
+
 "A problem with the input of a mutation, shown next to the form field."
 type FlxUserError {
   "Stable code: INVALID_INPUT, CONFLICT, …"
@@ -14050,6 +15937,405 @@ type FlxAiToolsUpdatePayload {
 
   "Every tool after the change; empty when the input was refused."
   tools: [FlxAiTool!]
+}
+
+"Input for the flxAppAdminAppearanceSave mutation."
+input FlxAppAdminAppearanceSaveInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Desktop shell: home, topbar, commands."
+  desktop: FlxJSON!
+
+  "Mobile shell: nav, home, tabs, drawer, topbar."
+  mobile: FlxJSON!
+
+  "Screens that open natively; the others open in the web view."
+  screensOn: [String!]!
+
+  "Theme overrides: mode, radius, density, font, light/dark colours."
+  theme: FlxJSON!
+}
+
+"The payload for the flxAppAdminAppearanceSave mutation."
+type FlxAppAdminAppearanceSavePayload {
+  "The settings after the change."
+  appearance: FlxAppAdminAppearance
+
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"Input for the flxAppAdminClientCreate mutation."
+input FlxAppAdminClientCreateInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Generate a client secret."
+  confidential: Boolean
+
+  "Name."
+  name: String!
+
+  "Redirect URIs."
+  redirectUris: [String!]!
+}
+
+"The payload for the flxAppAdminClientCreate mutation."
+type FlxAppAdminClientCreatePayload {
+  "The new client."
+  client: FlxAppAdminClient
+
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The client secret; shown only now."
+  secret: String
+}
+
+"Input for the flxAppAdminClientDelete mutation."
+input FlxAppAdminClientDeleteInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "client_id."
+  id: String!
+}
+
+"The payload for the flxAppAdminClientDelete mutation."
+type FlxAppAdminClientDeletePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Deleted."
+  ok: Boolean!
+}
+
+"Input for the flxAppAdminMobileSave mutation."
+input FlxAppAdminMobileSaveInput {
+  "The branded apps (replaces the list)."
+  apps: [FlxAppBrandedAppInput!]
+
+  "Delete the saved Expo access token."
+  clearExpoToken: Boolean
+
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Allow Expo development redirects."
+  devRedirects: Boolean
+
+  "Hide the admin bar on site pages opened in the app."
+  embedFront: Boolean
+
+  "A new Expo access token."
+  expoToken: String
+
+  "The main FluxWP app may connect."
+  genericApp: Boolean
+
+  "Push notifications are sent."
+  pushEnabled: Boolean
+
+  "Hide content on the lock screen."
+  pushHide: Boolean
+
+  "Google Play link."
+  storeAndroid: String
+
+  "App Store link."
+  storeIos: String
+}
+
+"A branded app."
+input FlxAppBrandedAppInput {
+  "client_id."
+  id: String!
+
+  "Name."
+  name: String
+
+  "mobile or desktop."
+  platform: String
+
+  "Redirect URIs."
+  redirectUris: [String!]
+}
+
+"The payload for the flxAppAdminMobileSave mutation."
+type FlxAppAdminMobileSavePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The settings after the change."
+  mobile: FlxAppAdminMobile
+}
+
+"Input for the flxAppAdminModulesSave mutation."
+input FlxAppAdminModulesSaveInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Module keys that stay on."
+  on: [String!]!
+}
+
+"The payload for the flxAppAdminModulesSave mutation."
+type FlxAppAdminModulesSavePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The modules after the change."
+  modules: [FlxAppAdminModule!]
+}
+
+"Input for the flxAppAdminPushTest mutation."
+input FlxAppAdminPushTestInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+}
+
+"The payload for the flxAppAdminPushTest mutation."
+type FlxAppAdminPushTestPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Failed."
+  failed: Int
+
+  "Sent."
+  sent: Int
+
+  "Skipped."
+  skipped: Int
+}
+
+"Input for the flxAppAdminSettingsSave mutation."
+input FlxAppAdminSettingsSaveInput {
+  "Access token lifetime in minutes (5 to 1440)."
+  accessMinutes: Int
+
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "MCP clients may register themselves."
+  dynamicClients: Boolean
+
+  "Who can create API keys (a capability)."
+  keysCap: String
+
+  "Create a customer account for a confirmed email."
+  otpCreate: Boolean
+
+  "Donors may sign in with an emailed or phone code."
+  otpEnabled: Boolean
+
+  "Staff may sign in with a code too."
+  otpStaff: Boolean
+
+  "A signed-in donor may confirm a phone number."
+  phoneSelfVerify: Boolean
+
+  "Session lifetime in days when unused (1 to 365)."
+  refreshDays: Int
+
+  "The app may open admin pages with a one-time sign-in link."
+  webSession: Boolean
+}
+
+"The payload for the flxAppAdminSettingsSave mutation."
+type FlxAppAdminSettingsSavePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The settings after the change."
+  settings: FlxAppAdminSettings
+}
+
+"Input for the flxAppDeviceRevoke mutation."
+input FlxAppDeviceRevokeInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Device ID."
+  id: Int!
+}
+
+"The payload for the flxAppDeviceRevoke mutation."
+type FlxAppDeviceRevokePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Signed out."
+  ok: Boolean!
+}
+
+"Input for the flxAppKeyCreate mutation."
+input FlxAppKeyCreateInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Valid for 30, 90 or 365 days; 0 = never expires."
+  days: Int
+
+  "Name."
+  name: String!
+}
+
+"The payload for the flxAppKeyCreate mutation."
+type FlxAppKeyCreatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The key; shown only now."
+  key: String
+}
+
+"Input for the flxAppLogout mutation."
+input FlxAppLogoutInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+}
+
+"The payload for the flxAppLogout mutation."
+type FlxAppLogoutPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The session is closed."
+  ok: Boolean!
+}
+
+"Input for the flxAppPrefsUpdate mutation."
+input FlxAppPrefsUpdateInput {
+  "Hidden home cards."
+  cardHidden: [String!]
+
+  "Home card order."
+  cardOrder: [String!]
+
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Entries always opened in the web view."
+  forceWeb: [String!]
+
+  "Hidden menu entries."
+  hidden: [String!]
+
+  "Menu order (slugs)."
+  order: [String!]
+
+  "Pinned menu entries."
+  pinned: [String!]
+
+  "Notification choices to change."
+  push: [FlxAppPushPrefInput!]
+
+  "Bottom bar entries (at most 5)."
+  tabs: [String!]
+}
+
+"A notification choice."
+input FlxAppPushPrefInput {
+  "Event type (a flxAppPrefs.events id)."
+  event: String!
+
+  "Turn it on or off."
+  on: Boolean!
+}
+
+"The payload for the flxAppPrefsUpdate mutation."
+type FlxAppPrefsUpdatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The preferences after the change."
+  prefs: FlxAppPrefs
+}
+
+"Input for the flxAppSessionCreate mutation."
+input FlxAppSessionCreateInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Open without the panel chrome (default true)."
+  embed: Boolean
+
+  "Treat `path` as a site (front end) path."
+  front: Boolean
+
+  "Panel path, e.g. admin.php?page=flx-crm."
+  path: String
+
+  "Site address to open instead of a panel path."
+  url: String
+}
+
+"The payload for the flxAppSessionCreate mutation."
+type FlxAppSessionCreatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Seconds the address stays valid."
+  expiresIn: Int
+
+  "The sign-in address."
+  url: String
+}
+
+"Input for the flxAppSessionEnd mutation."
+input FlxAppSessionEndInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+}
+
+"The payload for the flxAppSessionEnd mutation."
+type FlxAppSessionEndPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Number of sessions ended."
+  ended: Int!
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
 }
 
 "Input for the flxLanguageSet mutation."
@@ -14388,13 +16674,220 @@ type FlxRolesSavePayload {
   roles: [FlxRole!]!
 }
 
+"Input for the flxSeoAuditRun mutation."
+input FlxSeoAuditRunInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Kind of audit."
+  mode: FlxSeoAuditMode!
+
+  "Device for a PageSpeed run. Default mobile."
+  strategy: FlxSeoStrategy
+
+  "Address of this site to audit. Any other address audits the home page."
+  url: String
+}
+
+"Kind of audit to run."
+enum FlxSeoAuditMode {
+  "On-site audit of the page; needs no key."
+  LOCAL
+
+  "One PageSpeed Insights measurement (strategy required)."
+  PAGESPEED
+}
+
+"The payload for the flxSeoAuditRun mutation."
+type FlxSeoAuditRunPayload {
+  "The report after the run."
+  audit: FlxSeoAudit
+
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Saved reports after the run."
+  history: FlxSeoHistory
+}
+
+"Input for the flxSeoContentSet mutation."
+input FlxSeoContentSetInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Post ID."
+  databaseId: Int!
+
+  "Own meta description; empty = automatic."
+  description: String
+
+  "Focus keyword."
+  focusKeyword: String
+
+  "Hide from search engines."
+  noindex: Boolean
+
+  "Own share image address; empty = automatic."
+  ogImage: String
+
+  "Own SEO title; empty = automatic."
+  title: String
+}
+
+"The payload for the flxSeoContentSet mutation."
+type FlxSeoContentSetPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "SEO fields after the change."
+  seo: FlxSeoMeta
+}
+
+"Input for the flxSeoFixApply mutation."
+input FlxSeoFixApplyInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Fix id (a finding's fixId)."
+  id: String!
+}
+
+"The payload for the flxSeoFixApply mutation."
+type FlxSeoFixApplyPayload {
+  "The report after the fix."
+  audit: FlxSeoAudit
+
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"Input for the flxSeoIndexNowSubmit mutation."
+input FlxSeoIndexNowSubmitInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+}
+
+"The payload for the flxSeoIndexNowSubmit mutation."
+type FlxSeoIndexNowSubmitPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Setup info after the submission (last submission text)."
+  setup: FlxSeoSetup
+
+  "Addresses sent."
+  submitted: Int
+}
+
+"Input for the flxSeoPsiKeySave mutation."
+input FlxSeoPsiKeySaveInput {
+  "Delete the saved key."
+  clear: Boolean
+
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "New key. Empty keeps the saved key."
+  key: String
+}
+
+"The payload for the flxSeoPsiKeySave mutation."
+type FlxSeoPsiKeySavePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "A key is saved after the change."
+  saved: Boolean!
+}
+
 "Input for the flxSettingsUpdate mutation."
 input FlxSettingsUpdateInput {
   "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
   clientMutationId: String
 
+  "Flux App › Görünüm"
+  flxappApp: FlxSettingsFlxappAppInput
+
+  "Flux App"
+  flxappSettings: FlxSettingsFlxappSettingsInput
+
   "Flux GraphQL"
   flxgqlSettings: FlxSettingsFlxgqlSettingsInput
+
+  "Flux SEO"
+  flxseo: FlxSettingsFlxseoInput
+}
+
+"Changes to Flux App › Görünüm. Only the fields you send are changed."
+input FlxSettingsFlxappAppInput {
+  "name, short_name, logo, logo_dark, icon (URLs)."
+  brand: FlxJSON
+
+  "search, biometric_lock."
+  features: FlxJSON
+
+  "privacy, support."
+  links: FlxJSON
+
+  "App shell: mobile {nav, home, tabs[], drawer, topbar}, desktop {home, sidebar, topbar, commands[]}. Targets: screen:, module:, menu:, web:, url:."
+  shell: FlxJSON
+
+  "App theme overrides: mode, light/dark {primary, accent, bg, surface, text}, radius, density, font {body, heading}."
+  theme: FlxJSON
+}
+
+"Changes to Flux App. Only the fields you send are changed."
+input FlxSettingsFlxappSettingsInput {
+  "Brand OAuth clients: [{id, name, platform: mobile|desktop, redirect_uris[]}]."
+  appClients: FlxJSON
+
+  "Allow OAuth dynamic client registration (RFC 7591). Built-in clients stay available when this is off."
+  dynamicClients: Boolean
+
+  "Main FluxWP apps (flx-mobil, flx-masaustu) may connect."
+  genericApp: Boolean
+
+  "Disabled app modules."
+  modulesOff: FlxJSON
+
+  ""
+  otpEnabled: Boolean
+
+  "Signed-in donors may confirm and save their own phone number."
+  phoneSelfVerify: Boolean
+
+  ""
+  pushEnabled: Boolean
+
+  "Hide notification body on the lock screen."
+  pushHide: Boolean
+
+  "Disabled manifest screens: [\"core/plugins\"]."
+  screensOff: FlxJSON
+
+  ""
+  storeAndroid: String
+
+  ""
+  storeIos: String
+
+  ""
+  webSession: Boolean
 }
 
 "Changes to Flux GraphQL. Only the fields you send are changed."
@@ -14422,6 +16915,171 @@ input FlxSettingsFlxgqlSettingsInput {
 
   "Which GraphQL queries run: strict (only queries shipped by FluxWP packages), admins (administrators may also send any query), open (anyone may send any query)."
   queryMode: FlxSettingsFlxgqlSettingsQueryMode
+}
+
+"Changes to Flux SEO. Only the fields you send are changed."
+input FlxSettingsFlxseoInput {
+  ""
+  altName: String
+
+  ""
+  areaServed: String
+
+  ""
+  auditDay: String
+
+  ""
+  auditFreq: FlxSettingsFlxseoAuditFreq
+
+  ""
+  auditHour: String
+
+  ""
+  auditMail: Boolean
+
+  ""
+  auditMailTo: String
+
+  ""
+  auditPsi: Boolean
+
+  ""
+  autoAlt: Boolean
+
+  ""
+  contentSignal: Boolean
+
+  ""
+  country: String
+
+  ""
+  csAiInput: String
+
+  ""
+  csAiTrain: String
+
+  ""
+  csSearch: String
+
+  ""
+  donateLabel: String
+
+  ""
+  donateUrl: String
+
+  ""
+  email: String
+
+  ""
+  enabled: Boolean
+
+  ""
+  founding: String
+
+  ""
+  hdrCoop: Boolean
+
+  ""
+  hdrCsp: Boolean
+
+  ""
+  hdrFrame: Boolean
+
+  ""
+  homeDesc: String
+
+  ""
+  homeTitle: String
+
+  ""
+  hstsPreload: Boolean
+
+  ""
+  hstsSub: Boolean
+
+  ""
+  indexnow: Boolean
+
+  ""
+  knowsAbout: String
+
+  ""
+  llms: Boolean
+
+  ""
+  llmsIntro: String
+
+  ""
+  locality: String
+
+  ""
+  logo: String
+
+  ""
+  markdown: Boolean
+
+  ""
+  noindexAuthor: Boolean
+
+  ""
+  noindexSearch: Boolean
+
+  ""
+  noindexShop: Boolean
+
+  ""
+  noindexTags: Boolean
+
+  ""
+  ogImage: String
+
+  ""
+  orgName: String
+
+  ""
+  orgType: FlxSettingsFlxseoOrgType
+
+  ""
+  phone: String
+
+  ""
+  postal: String
+
+  ""
+  sameAs: String
+
+  ""
+  sep: String
+
+  ""
+  siteName: String
+
+  ""
+  street: String
+
+  ""
+  twitter: String
+
+  ""
+  verifyBaidu: String
+
+  ""
+  verifyBing: String
+
+  ""
+  verifyGoogle: String
+
+  ""
+  verifyNaver: String
+
+  ""
+  verifySeznam: String
+
+  ""
+  verifyYandex: String
+
+  ""
+  webmcp: Boolean
 }
 
 "The payload for the flxSettingsUpdate mutation."

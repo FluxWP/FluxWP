@@ -15,6 +15,7 @@ function flxapp_logged_in() {
 	return is_user_logged_in() ? true : new WP_Error( 'rest_forbidden', __( 'Sign-in required.', 'flx-app' ), array( 'status' => 401 ) );
 }
 
+/** @return array<string, mixed> */
 function flxapp_counts() {
 	$c = function_exists( 'flxa_counts' ) ? (array) flxa_counts() : array();
 	return (array) apply_filters( 'flxapp_counts', $c );
@@ -224,54 +225,27 @@ function flxapp_user_bottom( $user ) {
 }
 
 function flxapp_rest_session( WP_REST_Request $req ) {
-	if ( ! flxapp_opt( 'web_session' ) ) {
-		return new WP_Error( 'flxapp_web_session_off', __( 'Admin sessions are turned off in settings.', 'flx-app' ), array( 'status' => 403 ) );
-	}
-	if ( ! flxapp_rate( 'session', 30, MINUTE_IN_SECONDS ) ) {
-		return new WP_Error( 'flxapp_rate', __( 'Too many requests. Please wait a moment.', 'flx-app' ), array( 'status' => 429 ) );
-	}
-	$embed = $req->get_param( 'embed' );
-	$path  = (string) $req->get_param( 'path' );
-	$front = (string) $req->get_param( 'url' );
-	if ( '' === $front && rest_sanitize_boolean( $req->get_param( 'front' ) ) ) {
-		$front = '/' . ltrim( $path, '/' );
-		$path  = '';
-	}
-	if ( '' !== $front && '' === flxapp_clean_front_url( $front ) ) {
-		return new WP_Error( 'flxapp_bad_path', __( 'Invalid admin path.', 'flx-app' ), array( 'status' => 400 ) );
-	}
-	$tok = flxapp_current_token();
-	$url = flxapp_sso_url(
-		get_current_user_id(),
-		$path,
+	$r = FLXAPP_Service::session_create(
 		array(
-			'url'   => $front,
-			'embed' => null === $embed ? true : rest_sanitize_boolean( $embed ),
-			'grant' => $tok ? (string) $tok['grant_id'] : '',
+			'embed' => $req->get_param( 'embed' ),
+			'path'  => (string) $req->get_param( 'path' ),
+			'url'   => (string) $req->get_param( 'url' ),
+			'front' => $req->get_param( 'front' ),
 		)
 	);
-	if ( '' === $url ) {
-		return new WP_Error( 'flxapp_bad_path', __( 'Invalid admin path.', 'flx-app' ), array( 'status' => 400 ) );
+	if ( is_wp_error( $r ) ) {
+		return $r;
 	}
-	return array( 'url' => $url, 'expires_in' => 60 );
+	return array( 'url' => $r['url'], 'expires_in' => $r['expiresIn'] );
 }
 
 /** Bu oturumun (grant) açtığı webview çerez oturumlarını bitirir. */
 function flxapp_rest_session_end() {
-	$tok = flxapp_current_token();
-	$n   = flxapp_end_web_sessions( get_current_user_id(), $tok ? (string) $tok['grant_id'] : '' );
-	return array( 'ok' => true, 'ended' => $n );
+	return array( 'ok' => true, 'ended' => FLXAPP_Service::session_end() );
 }
 
 function flxapp_rest_logout() {
-	$tok = flxapp_current_token();
-	if ( $tok ) {
-		if ( '' !== $tok['grant_id'] ) {
-			flxapp_revoke_grant( $tok['grant_id'] );
-		} elseif ( 'access' === $tok['kind'] ) {
-			flxapp_revoke_id( $tok['id'] );
-		}
-	}
+	FLXAPP_Service::logout();
 	return array( 'ok' => true );
 }
 

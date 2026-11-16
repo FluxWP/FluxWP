@@ -1,0 +1,13 @@
+# Changes the sent preferences; the others stay as they are.
+mutation FlxAppPrefsUpdate($input: FlxAppPrefsUpdateInput!) {
+  flxAppPrefsUpdate(input: $input) {
+    prefs {
+      ...FlxAppPrefsFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

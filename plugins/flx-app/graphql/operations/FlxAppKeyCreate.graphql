@@ -1,0 +1,11 @@
+# Creates a personal API key; it is shown only now.
+mutation FlxAppKeyCreate($input: FlxAppKeyCreateInput!) {
+  flxAppKeyCreate(input: $input) {
+    key
+    errors {
+      code
+      message
+      field
+    }
+  }
+}
