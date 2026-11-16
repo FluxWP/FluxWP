@@ -1,0 +1,12 @@
+mutation FlxLanguageSettingsUpdate($input: FlxLanguageSettingsUpdateInput!) {
+  flxLanguageSettingsUpdate(input: $input) {
+    settings {
+      ...FlxLanguageSettingsFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

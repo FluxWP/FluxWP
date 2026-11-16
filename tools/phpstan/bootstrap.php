@@ -20,3 +20,5 @@ defined( 'FLXRC_VERSION' ) || define( 'FLXRC_VERSION', '0.0.0' );
 defined( 'FLXRC_FILE' ) || define( 'FLXRC_FILE', __FILE__ );
 defined( 'FLXRC_DIR' ) || define( 'FLXRC_DIR', __DIR__ . '/' );
 defined( 'FLXRC_URL' ) || define( 'FLXRC_URL', 'https://example.com/' );
+defined( 'FLXL_VERSION' ) || define( 'FLXL_VERSION', '0.0.0' );
+defined( 'FLXL_DIR' ) || define( 'FLXL_DIR', __DIR__ . '/' );

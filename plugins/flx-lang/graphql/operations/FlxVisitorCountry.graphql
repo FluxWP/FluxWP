@@ -1,0 +1,6 @@
+# The visitor's country from the server's CDN / GeoIP header. Never cached.
+query FlxVisitorCountry {
+  flxVisitorCountry {
+    country
+  }
+}
