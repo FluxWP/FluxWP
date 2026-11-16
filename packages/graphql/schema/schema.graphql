@@ -317,6 +317,48 @@ type RootQuery {
     since: Int
   ): FlxAppSync!
 
+  "Blocks of the Block Editor dashboard (a short list)."
+  flxBlocksBlockTypes: [FlxBlocksBlockType!]!
+
+  "This site&#039;s design library, or a linked library&#039;s."
+  flxBlocksLibrary(
+    "Linked library id; leave empty for this site."
+    source: ID
+
+    "Fetch a linked library again instead of using the 30 minute copy."
+    refresh: Boolean
+  ): FlxBlocksLibrary!
+
+  "Sharing of this site&#039;s design library."
+  flxBlocksLibraryShare: FlxBlocksLibraryShare!
+
+  "Linked design libraries (a short list)."
+  flxBlocksLibrarySources: [FlxBlocksLibrarySource!]!
+
+  "One design library pattern (for its preview)."
+  flxBlocksPattern(
+    "Pattern id."
+    id: String!
+
+    "Linked library id; leave empty for this site."
+    source: ID
+  ): FlxBlocksPattern
+
+  "Renders block markup (a pattern or an unsaved draft) as the site would."
+  flxBlocksRender(
+    "Block markup."
+    content: String!
+
+    "Post the markup belongs to; dynamic blocks read it. The user must be able to edit it."
+    postId: Int
+  ): FlxBlocksContent!
+
+  "Block Editor dashboard settings."
+  flxBlocksSettings: FlxBlocksSettings!
+
+  "Site-wide styles block pages share. Load once per page, before the content styles."
+  flxBlocksSiteStyles: FlxBlocksSiteStyles!
+
   "The FluxWP capability catalog, with what the current user has."
   flxCapabilities: [FlxCapability!]!
 
@@ -2738,6 +2780,9 @@ interface ContentNode implements Node & UniformResourceIdentifiable {
     where: ContentNodeToEnqueuedStylesheetConnectionWhereArgs
   ): ContentNodeToEnqueuedStylesheetConnection
 
+  "The blocks of this content rendered as on the site, with the CSS and files the page needs. Null when the content is password protected."
+  flxBlocks: FlxBlocksContent
+
   "Language code of this content. Empty for a type that is not translated and for shared pages (cart, checkout, my account)."
   flxLanguage: String
 
@@ -4697,6 +4742,9 @@ type MediaItem implements Node & ContentNode & UniformResourceIdentifiable & Dat
     size: MediaItemSizeEnum
   ): Int
 
+  "The blocks of this content rendered as on the site, with the CSS and files the page needs. Null when the content is password protected."
+  flxBlocks: FlxBlocksContent
+
   "Language code of this content. Empty for a type that is not translated and for shared pages (cart, checkout, my account)."
   flxLanguage: String
 
@@ -4972,6 +5020,9 @@ interface HierarchicalContentNode implements Node & ContentNode & UniformResourc
     "Arguments for filtering the connection"
     where: ContentNodeToEnqueuedStylesheetConnectionWhereArgs
   ): ContentNodeToEnqueuedStylesheetConnection
+
+  "The blocks of this content rendered as on the site, with the CSS and files the page needs. Null when the content is password protected."
+  flxBlocks: FlxBlocksContent
 
   "Language code of this content. Empty for a type that is not translated and for shared pages (cart, checkout, my account)."
   flxLanguage: String
@@ -5329,6 +5380,114 @@ type ContentNodeToEnqueuedStylesheetConnectionPageInfo implements EnqueuedStyles
 
   "When paginating backwards, the cursor to continue."
   startCursor: String
+}
+
+"Block content rendered as on the site, with everything the page needs for it. Either put headHtml in &lt;head&gt; and footerHtml at the end of &lt;body&gt;, or load css, styles, scripts and fonts yourself; not both."
+type FlxBlocksContent {
+  "Block tree as a flat list in document order."
+  blocks: [FlxBlock!]!
+
+  "CSS generated for these blocks (block styles, custom CSS, layout). Not in styles."
+  css: String!
+
+  "Font stylesheet URLs (served from the site when local fonts are on)."
+  fonts: [String!]!
+
+  "Ready end-of-body markup: footer scripts, script modules and their data."
+  footerHtml: String!
+
+  "Ready &lt;head&gt; markup: stylesheets, fonts, css, schema and head scripts, printed by WordPress."
+  headHtml: String!
+
+  "Rendered HTML (the_content)."
+  html: String!
+
+  "JSON-LD documents for the page head (e.g. FAQ schema of accordions)."
+  schema: [String!]!
+
+  "Scripts and script modules, dependencies first."
+  scripts: [FlxBlocksAsset!]!
+
+  "Stylesheets, dependencies first."
+  styles: [FlxBlocksAsset!]!
+}
+
+"One block of the content. The tree is flat: inner blocks point to their parent with parentClientId."
+type FlxBlock {
+  "Attributes saved in the block comment (each block type has its own)."
+  attributes: FlxJSON!
+
+  "Position path, the same for the same content (&quot;0&quot;, &quot;0.2&quot;, &quot;0.2.1&quot;)."
+  clientId: String!
+
+  "Nesting level; 0 for a top-level block."
+  depth: Int!
+
+  "Rendered on the server; its saved HTML is not what visitors see."
+  dynamic: Boolean!
+
+  "The block&#039;s own saved HTML, without its inner blocks."
+  innerHtml: String!
+
+  "Block name, e.g. flx/rowlayout; core/freeform for loose HTML."
+  name: String!
+
+  "Position among its siblings, from 0."
+  order: Int!
+
+  "Parent block; null for a top-level block."
+  parentClientId: String
+}
+
+"Free-form JSON value (object, list, string, number or boolean)."
+scalar FlxJSON
+
+"A stylesheet or script rendered blocks need, as WordPress registered it."
+type FlxBlocksAsset {
+  "Localized data script (var x = {...}) to run before the file; empty when none."
+  data: String!
+
+  "Handles this asset needs; they come earlier in the same list."
+  dependencies: [String!]!
+
+  "Loaded at the end of the body."
+  footer: Boolean!
+
+  "Registered handle (module id for modules). Use it to load each file once per page."
+  handle: String!
+
+  "Inline CSS or script to add after the file; empty when none."
+  inlineAfter: String!
+
+  "Inline script to run before the file; empty when none."
+  inlineBefore: String!
+
+  "Stylesheet, script or script module."
+  kind: FlxBlocksAssetKind!
+
+  "Stylesheet media; null for scripts."
+  media: String
+
+  "Absolute URL without the version; null for an inline-only asset."
+  src: String
+
+  "Loading strategy: defer, async or empty."
+  strategy: String!
+
+  "Version WordPress adds as ?ver=; null when it adds none."
+  version: String
+}
+
+"What kind of file an asset is."
+enum FlxBlocksAssetKind {
+  "Script module (type=\"module\", uses the import map in footerHtml)."
+  MODULE
+
+  "Classic script."
+  SCRIPT
+
+  "Stylesheet."
+  STYLE
 }
 
 "One language version of a content."
@@ -5908,6 +6067,9 @@ type Page implements Node & ContentNode & UniformResourceIdentifiable & Database
 
   "Globally unique ID of the featured image assigned to the node"
   featuredImageId: ID
+
+  "The blocks of this content rendered as on the site, with the CSS and files the page needs. Null when the content is password protected."
+  flxBlocks: FlxBlocksContent
 
   "Language code of this content. Empty for a type that is not translated and for shared pages (cart, checkout, my account)."
   flxLanguage: String
@@ -6679,6 +6841,9 @@ type Post implements Node & ContentNode & UniformResourceIdentifiable & Database
 
   "Globally unique ID of the featured image assigned to the node"
   featuredImageId: ID
+
+  "The blocks of this content rendered as on the site, with the CSS and files the page needs. Null when the content is password protected."
+  flxBlocks: FlxBlocksContent
 
   "Language code of this content. Empty for a type that is not translated and for shared pages (cart, checkout, my account)."
   flxLanguage: String
@@ -9378,9 +9543,6 @@ type FlxAppChoice {
   label: String!
 }
 
-"Free-form JSON value (object, list, string, number or boolean)."
-scalar FlxJSON
-
 "A native screen that can be turned off."
 type FlxAppScreenChoice {
   "module/screen."
@@ -10116,6 +10278,228 @@ type FlxAppEvent {
   title: String!
 }
 
+"A block on the Block Editor dashboard."
+type FlxBlocksBlockType {
+  "The block is offered in the editor."
+  active: Boolean!
+
+  "What the block does."
+  description: String!
+
+  "Admin page of the block&#039;s items (e.g. Lottie animations); null when none."
+  link: String
+
+  "Text of that link."
+  linkText: String
+
+  "Block title."
+  name: String!
+
+  "Block name, e.g. flx/rowlayout."
+  slug: String!
+}
+
+"A design library: this site&#039;s or a linked Flux site&#039;s."
+type FlxBlocksLibrary {
+  "Categories in use (a short list)."
+  categories: [FlxBlocksPatternCategory!]!
+
+  "Site name."
+  name: String!
+
+  "Patterns, filtered by category and search words."
+  patterns(
+    "Records per page (at most 50)."
+    first: Int
+
+    "Cursor to continue after (pageInfo.endCursor)."
+    after: String
+
+    "Category slug."
+    category: String
+
+    "Words to look for in the title, description and keywords."
+    search: String
+  ): FlxBlocksPatternConnection!
+
+  "Linked library id; null for this site."
+  source: ID
+
+  "Site address."
+  url: String!
+}
+
+"A design library category."
+type FlxBlocksPatternCategory {
+  "Patterns in the category."
+  count: Int!
+
+  "Category name."
+  label: String!
+
+  "Category slug."
+  slug: String!
+}
+
+"Design library patterns."
+type FlxBlocksPatternConnection {
+  "Records with their cursors."
+  edges: [FlxBlocksPatternEdge!]!
+
+  "Records of this page."
+  nodes: [FlxBlocksPattern!]!
+
+  "Paging information."
+  pageInfo: FlxPageInfo!
+
+  "All matching records (null when counting would be slow)."
+  totalCount: Int
+}
+
+"One FlxBlocksPattern in a list, with its cursor."
+type FlxBlocksPatternEdge {
+  "Opaque cursor of this record."
+  cursor: String!
+
+  "The record."
+  node: FlxBlocksPattern!
+}
+
+"A design library pattern (a ready section or page)."
+type FlxBlocksPattern {
+  "Category slugs."
+  categories: [String!]!
+
+  "Block markup to insert."
+  content: String!
+
+  "Description; empty when none."
+  description: String!
+
+  "Pattern name (e.g. flx-preset/hero) or user/&lt;post id&gt; for My patterns."
+  id: String!
+
+  "Search keywords."
+  keywords: [String!]!
+
+  "The pattern rendered on this site (preview). Ask for it on one pattern at a time."
+  rendered: FlxBlocksContent!
+
+  "Linked library the pattern comes from; null for this site."
+  source: ID
+
+  "Title."
+  title: String!
+
+  "Width to preview the pattern at (px)."
+  viewportWidth: Int!
+}
+
+"Where a page sits in a list."
+type FlxPageInfo {
+  "Cursor of the last record on this page; pass it as &quot;after&quot; for the next page."
+  endCursor: String
+
+  "More records follow this page."
+  hasNextPage: Boolean!
+
+  "Records come before this page."
+  hasPreviousPage: Boolean!
+
+  "Cursor of the first record on this page."
+  startCursor: String
+}
+
+"Sharing this site&#039;s design library with other Flux sites."
+type FlxBlocksLibraryShare {
+  "Other sites can add this library."
+  enabled: Boolean!
+
+  "Key the other site enters; empty until sharing is turned on."
+  key: String!
+
+  "Address the other site enters."
+  url: String!
+}
+
+"A linked design library (another Flux site). Its key never leaves the server."
+type FlxBlocksLibrarySource {
+  "A library key is saved for it."
+  hasKey: Boolean!
+
+  "Source id."
+  id: ID!
+
+  "Name."
+  name: String!
+
+  "Site address."
+  url: String!
+}
+
+"Block Editor dashboard settings."
+type FlxBlocksSettings {
+  "Editor widths; null when the theme does not use them."
+  editorWidth: FlxBlocksEditorWidth
+
+  "The admin bar setting is offered (filter flxbk_show_admin_bar)."
+  showAdminBarSetting: Boolean!
+
+  "Show the page&#039;s header blocks in the admin bar."
+  showHeadersInAdminBar: Boolean!
+
+  "Admin address of the Style Library."
+  styleLibraryUrl: String!
+}
+
+"Editor widths (only for themes that use them)."
+type FlxBlocksEditorWidth {
+  "The theme&#039;s content width (px); 0 when it sets none."
+  contentWidth: Int!
+
+  "Width can be chosen per page and post."
+  enabled: Boolean!
+
+  "Large template width (px)."
+  large: Int!
+
+  "Width of new pages."
+  pageDefault: FlxBlocksEditorWidthMode!
+
+  "Width of new posts."
+  postDefault: FlxBlocksEditorWidthMode!
+
+  "Small template width (px)."
+  small: Int!
+}
+
+"Editor width of a page or post."
+enum FlxBlocksEditorWidthMode {
+  "Full width."
+  FULL_WIDTH
+
+  "Large template."
+  LARGE
+
+  "Small template."
+  SMALL
+}
+
+"Site-wide styles every block page needs once."
+type FlxBlocksSiteStyles {
+  "Flux Block Editor variables, theme palette and palette color classes."
+  css: String!
+
+  "The theme&#039;s global styles (theme.json presets and styles)."
+  globalStylesheet: String!
+
+  "Ready &lt;head&gt; markup of all of the above."
+  headHtml: String!
+
+  "Base block library stylesheets."
+  styles: [FlxBlocksAsset!]!
+}
+
 "A capability a FluxWP package checks."
 type FlxCapability {
   "Whether the current user has it."
@@ -10438,21 +10822,6 @@ type FlxPhone {
 
   "E.164 form (+905301234567); empty when the number is not valid."
   e164: String!
-}
-
-"Where a page sits in a list."
-type FlxPageInfo {
-  "Cursor of the last record on this page; pass it as &quot;after&quot; for the next page."
-  endCursor: String
-
-  "More records follow this page."
-  hasNextPage: Boolean!
-
-  "Records come before this page."
-  hasPreviousPage: Boolean!
-
-  "Cursor of the first record on this page."
-  startCursor: String
 }
 
 "A package group of the Roles and access table."
@@ -14597,6 +14966,36 @@ type RootMutation {
     input: FlxAppSessionEndInput!
   ): FlxAppSessionEndPayload
 
+  "Turns a block on or off in the editor. Content that already uses it keeps working."
+  flxBlocksBlockTypeSetActive(
+    "Input for the flxBlocksBlockTypeSetActive mutation"
+    input: FlxBlocksBlockTypeSetActiveInput!
+  ): FlxBlocksBlockTypeSetActivePayload
+
+  "Turns sharing of this site&#039;s design library on or off, or makes a new key."
+  flxBlocksLibraryShareUpdate(
+    "Input for the flxBlocksLibraryShareUpdate mutation"
+    input: FlxBlocksLibraryShareUpdateInput!
+  ): FlxBlocksLibraryShareUpdatePayload
+
+  "Links another Flux site&#039;s design library. The site is asked once to check the address and key."
+  flxBlocksLibrarySourceAdd(
+    "Input for the flxBlocksLibrarySourceAdd mutation"
+    input: FlxBlocksLibrarySourceAddInput!
+  ): FlxBlocksLibrarySourceAddPayload
+
+  "Removes a linked design library."
+  flxBlocksLibrarySourceRemove(
+    "Input for the flxBlocksLibrarySourceRemove mutation"
+    input: FlxBlocksLibrarySourceRemoveInput!
+  ): FlxBlocksLibrarySourceRemovePayload
+
+  "Saves Block Editor dashboard settings; a field left out stays as it is."
+  flxBlocksSettingsUpdate(
+    "Input for the flxBlocksSettingsUpdate mutation"
+    input: FlxBlocksSettingsUpdateInput!
+  ): FlxBlocksSettingsUpdatePayload
+
   "Sets the language of a content (the editor&#039;s Language box). If another content of the same group already has that language, this one leaves the group."
   flxLanguageSet(
     "Input for the flxLanguageSet mutation"
@@ -15964,6 +16363,147 @@ type FlxAppSessionEndPayload {
 
   "Input problems to show next to the form fields. Empty when the mutation succeeded."
   errors: [FlxUserError!]!
+}
+
+"Input for the flxBlocksBlockTypeSetActive mutation."
+input FlxBlocksBlockTypeSetActiveInput {
+  "On."
+  active: Boolean!
+
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Block name."
+  slug: String!
+}
+
+"The payload for the flxBlocksBlockTypeSetActive mutation."
+type FlxBlocksBlockTypeSetActivePayload {
+  "The block after the change."
+  blockType: FlxBlocksBlockType
+
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"Input for the flxBlocksLibraryShareUpdate mutation."
+input FlxBlocksLibraryShareUpdateInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Share the library; leave out to keep it as it is."
+  enabled: Boolean
+
+  "Make a new key; sites using the old key lose access."
+  regenerateKey: Boolean
+}
+
+"The payload for the flxBlocksLibraryShareUpdate mutation."
+type FlxBlocksLibraryShareUpdatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Sharing after the change."
+  share: FlxBlocksLibraryShare!
+}
+
+"Input for the flxBlocksLibrarySourceAdd mutation."
+input FlxBlocksLibrarySourceAddInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Library key given by the other site."
+  key: String
+
+  "Name; leave empty to use the site's own name."
+  name: String
+
+  "Site address."
+  url: String!
+}
+
+"The payload for the flxBlocksLibrarySourceAdd mutation."
+type FlxBlocksLibrarySourceAddPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The added library."
+  source: FlxBlocksLibrarySource
+
+  "All linked libraries."
+  sources: [FlxBlocksLibrarySource!]!
+}
+
+"Input for the flxBlocksLibrarySourceRemove mutation."
+input FlxBlocksLibrarySourceRemoveInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Source id."
+  id: ID!
+}
+
+"The payload for the flxBlocksLibrarySourceRemove mutation."
+type FlxBlocksLibrarySourceRemovePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Remaining linked libraries."
+  sources: [FlxBlocksLibrarySource!]!
+}
+
+"Input for the flxBlocksSettingsUpdate mutation."
+input FlxBlocksSettingsUpdateInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Editor widths."
+  editorWidth: FlxBlocksEditorWidthInput
+
+  "Show the page's header blocks in the admin bar."
+  showHeadersInAdminBar: Boolean
+}
+
+"Editor widths; a field left out stays as it is."
+input FlxBlocksEditorWidthInput {
+  "Width can be chosen per page and post."
+  enabled: Boolean
+
+  "Large template width (px, 200–4000)."
+  large: Int
+
+  "Width of new pages."
+  pageDefault: FlxBlocksEditorWidthMode
+
+  "Width of new posts."
+  postDefault: FlxBlocksEditorWidthMode
+
+  "Small template width (px, 200–4000)."
+  small: Int
+}
+
+"The payload for the flxBlocksSettingsUpdate mutation."
+type FlxBlocksSettingsUpdatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Settings after the change."
+  settings: FlxBlocksSettings
 }
 
 "Input for the flxLanguageSet mutation."
