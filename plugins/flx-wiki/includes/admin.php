@@ -456,7 +456,7 @@ final class FLXWK_Admin {
 		}
 		check_admin_referer( 'flxwk_save' );
 		$p   = wp_unslash( $_POST ); // phpcs:ignore WordPress.Security.NonceVerification, WordPress.Security.ValidatedSanitizedInput -- verified above; the service sanitises every field.
-		$tab = ( new FLXWK_Admin_Service() )->save_tab( sanitize_key( is_string( $p['tab'] ?? null ) ? $p['tab'] : 'general' ), is_array( $p ) ? $p : array() );
+		$tab = ( new FLXWK_Admin_Service() )->save_tab( sanitize_key( is_string( $p['tab'] ?? null ) ? $p['tab'] : 'general' ), $p );
 		wp_safe_redirect( add_query_arg( array( 'flxwk_msg' => 'saved', 'tab' => $tab ), flxwk_admin_url() ) );
 		exit;
 	}

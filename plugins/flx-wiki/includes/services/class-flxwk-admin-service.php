@@ -37,7 +37,7 @@ final class FLXWK_Admin_Service {
 			function_exists( 'flxai_chat' ),
 			(bool) flxwk_ai_ready(),
 			count( (array) flxwk_seed_files() ),
-			is_object( $count ) && isset( $count->publish ) ? flxwk_i( $count->publish ) : 0,
+			flxwk_i( $count->publish ?? 0 ),
 			__( 'Developer Wiki', 'flx-wiki' ),
 			flxwk_s( flxwk_intro_default() ),
 			admin_url( 'post-new.php?post_type=' . FLXWK_PT )

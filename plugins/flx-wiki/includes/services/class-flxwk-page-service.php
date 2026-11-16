@@ -57,7 +57,7 @@ final class FLXWK_Page_Service {
 			flxwk_i( $p->menu_order ),
 			$term instanceof WP_Term ? self::section_of_term( $term ) : null,
 			is_string( $link ) ? $link : '',
-			is_string( $md_url ) ? $md_url : '',
+			$md_url,
 			flxwk_s( $p->post_modified_gmt ),
 			flxwk_i( flxwk_read_minutes( $content ) ),
 			is_string( $edit ) ? $edit : '',
@@ -130,7 +130,7 @@ final class FLXWK_Page_Service {
 			return '';
 		}
 		$r = flxwk_page_html( $p );
-		return is_array( $r ) ? flxwk_s( $r['html'] ?? '' ) : '';
+		return flxwk_s( $r['html'] ?? '' );
 	}
 
 	/**
@@ -190,9 +190,7 @@ final class FLXWK_Page_Service {
 		);
 		$out   = array();
 		foreach ( is_array( $terms ) ? $terms : array() as $t ) {
-			if ( $t instanceof WP_Term ) {
-				$out[] = self::section_of_term( $t );
-			}
+			$out[] = self::section_of_term( $t );
 		}
 		usort( $out, static fn( FLXWK_Section $a, FLXWK_Section $b ): int => $a->order === $b->order ? strcmp( $a->name, $b->name ) : $a->order <=> $b->order );
 		return $out;
