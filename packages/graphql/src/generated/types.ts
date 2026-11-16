@@ -13,72 +13,6 @@ export type FlxBlocksAssetKind =
   /** Stylesheet. */
   | 'STYLE';
 
-/** What a folder listing is sorted by (folders always come first). */
-export type FlxFilesSort =
-  /** Last modified. */
-  | 'MODIFIED'
-  /** Name. */
-  | 'NAME'
-  /** Size. */
-  | 'SIZE'
-  /** File extension. */
-  | 'TYPE';
-
-/** Sort direction. */
-export type FlxFilesOrder =
-  /** Ascending. */
-  | 'ASC'
-  /** Descending. */
-  | 'DESC';
-
-/** Where a change came from. */
-export type FlxFilesVia =
-  /** The Flux AI chat. */
-  | 'AI'
-  /** The site (shared folder shortcode). */
-  | 'FRONT'
-  /** An external MCP client. */
-  | 'MCP'
-  /** The Flux Files screen. */
-  | 'PANEL';
-
-/** What an Activity row records. */
-export type FlxFilesLogAction =
-  /** Permissions changed. */
-  | 'CHMOD'
-  /** Copied. */
-  | 'COPY'
-  /** A file was created. */
-  | 'CREATE'
-  /** A file was changed. */
-  | 'EDIT'
-  /** A folder was created. */
-  | 'MKDIR'
-  /** Moved. */
-  | 'MOVE'
-  /** Deleted for good. */
-  | 'PURGE'
-  /** Renamed. */
-  | 'RENAME'
-  /** Restored from the trash. */
-  | 'RESTORE'
-  /** An earlier version was restored. */
-  | 'REVERT'
-  /** Settings changed. */
-  | 'SETTINGS'
-  /** A folder was shared on the site. */
-  | 'SHARE'
-  /** Moved to the trash. */
-  | 'TRASH'
-  /** Sharing stopped. */
-  | 'UNSHARE'
-  /** Extracted. */
-  | 'UNZIP'
-  /** Uploaded. */
-  | 'UPLOAD'
-  /** Archived. */
-  | 'ZIP';
-
 /** A group heading or a menu item. */
 export type FlxAdminMenuEntryType =
   | 'GROUP'
@@ -303,31 +237,6 @@ export type FlxBlocksEditorWidthMode =
   /** Small template. */
   | 'SMALL';
 
-/** What a file or folder is, for its icon and preview. */
-export type FlxFilesKind =
-  /** Archive (ZIP, TAR, …). */
-  | 'ARCHIVE'
-  /** Audio. */
-  | 'AUDIO'
-  /** Source code or data file. */
-  | 'CODE'
-  /** Folder. */
-  | 'DIR'
-  /** Office document or spreadsheet. */
-  | 'DOC'
-  /** Any other file. */
-  | 'FILE'
-  /** Font. */
-  | 'FONT'
-  /** Image. */
-  | 'IMAGE'
-  /** PDF document. */
-  | 'PDF'
-  /** Plain text. */
-  | 'TEXT'
-  /** Video. */
-  | 'VIDEO';
-
 /** Size of the v2 checkbox. */
 export type FlxRecaptchaSize =
   /** Compact. */
@@ -461,6 +370,97 @@ export type FlxContactOrder =
   | 'ASC'
   /** Largest first. */
   | 'DESC';
+
+/** What a file or folder is, for its icon and preview. */
+export type FlxFilesKind =
+  /** Archive (ZIP, TAR, …). */
+  | 'ARCHIVE'
+  /** Audio. */
+  | 'AUDIO'
+  /** Source code or data file. */
+  | 'CODE'
+  /** Folder. */
+  | 'DIR'
+  /** Office document or spreadsheet. */
+  | 'DOC'
+  /** Any other file. */
+  | 'FILE'
+  /** Font. */
+  | 'FONT'
+  /** Image. */
+  | 'IMAGE'
+  /** PDF document. */
+  | 'PDF'
+  /** Plain text. */
+  | 'TEXT'
+  /** Video. */
+  | 'VIDEO';
+
+/** What a folder listing is sorted by (folders always come first). */
+export type FlxFilesSort =
+  /** Last modified. */
+  | 'MODIFIED'
+  /** Name. */
+  | 'NAME'
+  /** Size. */
+  | 'SIZE'
+  /** File extension. */
+  | 'TYPE';
+
+/** Sort direction. */
+export type FlxFilesOrder =
+  /** Ascending. */
+  | 'ASC'
+  /** Descending. */
+  | 'DESC';
+
+/** Where a change came from. */
+export type FlxFilesVia =
+  /** The Flux AI chat. */
+  | 'AI'
+  /** The site (shared folder shortcode). */
+  | 'FRONT'
+  /** An external MCP client. */
+  | 'MCP'
+  /** The Flux Files screen. */
+  | 'PANEL';
+
+/** What an Activity row records. */
+export type FlxFilesLogAction =
+  /** Permissions changed. */
+  | 'CHMOD'
+  /** Copied. */
+  | 'COPY'
+  /** A file was created. */
+  | 'CREATE'
+  /** A file was changed. */
+  | 'EDIT'
+  /** A folder was created. */
+  | 'MKDIR'
+  /** Moved. */
+  | 'MOVE'
+  /** Deleted for good. */
+  | 'PURGE'
+  /** Renamed. */
+  | 'RENAME'
+  /** Restored from the trash. */
+  | 'RESTORE'
+  /** An earlier version was restored. */
+  | 'REVERT'
+  /** Settings changed. */
+  | 'SETTINGS'
+  /** A folder was shared on the site. */
+  | 'SHARE'
+  /** Moved to the trash. */
+  | 'TRASH'
+  /** Sharing stopped. */
+  | 'UNSHARE'
+  /** Extracted. */
+  | 'UNZIP'
+  /** Uploaded. */
+  | 'UPLOAD'
+  /** Archived. */
+  | 'ZIP';
 
 /** State of a journey. Only an active journey sends. */
 export type FlxJourneyStatus =
@@ -1734,198 +1734,6 @@ export type FlxBlocksEditorWidthInput = {
   small?: number | null | undefined;
 };
 
-/** Input for the flxFilesAiEdit mutation. */
-export type FlxFilesAiEditInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** The text as it is in the editor. Empty: the file on disk. */
-  content?: string | null | undefined;
-  /** Path from the site folder. */
-  path: string;
-  /** What should change. */
-  prompt: string;
-};
-
-/** Input for the flxFilesAiExplain mutation. */
-export type FlxFilesAiExplainInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** The text as it is in the editor. Empty: the file on disk. */
-  content?: string | null | undefined;
-  /** Path from the site folder. */
-  path: string;
-  /** Part of the text to explain. */
-  selection?: string | null | undefined;
-};
-
-/** Input for the flxFilesChmod mutation. */
-export type FlxFilesChmodInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Three octal digits, e.g. 644 or 755. */
-  mode: string;
-  /** Path from the site folder. */
-  path: string;
-};
-
-/** Input for the flxFilesCopy mutation. */
-export type FlxFilesCopyInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Target folder. Empty for the site folder. */
-  destination: string;
-  /** Replace entries that already exist (the replaced ones go to the trash). */
-  overwrite?: boolean | null | undefined;
-  /** Entries to process (at most 1000). */
-  paths: Array<string>;
-};
-
-/** Input for the flxFilesDuplicate mutation. */
-export type FlxFilesDuplicateInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Entries to duplicate (at most 1000). */
-  paths: Array<string>;
-};
-
-/** Input for the flxFilesFolderCreate mutation. */
-export type FlxFilesFolderCreateInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Path of the new folder from the site folder. */
-  path: string;
-};
-
-/** Input for the flxFilesMove mutation. */
-export type FlxFilesMoveInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Target folder. Empty for the site folder. */
-  destination: string;
-  /** Replace entries that already exist (the replaced ones go to the trash). */
-  overwrite?: boolean | null | undefined;
-  /** Entries to process (at most 1000). */
-  paths: Array<string>;
-};
-
-/** Input for the flxFilesRename mutation. */
-export type FlxFilesRenameInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** New name (no slashes). */
-  name: string;
-  /** Path from the site folder. */
-  path: string;
-};
-
-/** Input for the flxFilesRevert mutation. */
-export type FlxFilesRevertInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Path from the site folder. */
-  path: string;
-  /** Version id (flxFilesVersions). */
-  versionId: string;
-};
-
-/** Input for the flxFilesSettingsUpdate mutation. */
-export type FlxFilesSettingsUpdateInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Settings to change. */
-  settings: FlxFilesSettingsInput;
-};
-
-/** Settings to change. A field left out stays as it is. */
-export type FlxFilesSettingsInput = {
-  /** AI and MCP may change code files. */
-  aiCode?: boolean | null | undefined;
-  /** External MCP clients may change files. */
-  mcpWrite?: boolean | null | undefined;
-  /** Hosting disk quota in GB. */
-  quotaGb?: number | null | undefined;
-  /** Shared folders (replaces the list). */
-  shared?: Array<string> | null | undefined;
-  /** Show files that start with a dot. */
-  showHidden?: boolean | null | undefined;
-  /** Days the trash keeps entries (0–365). */
-  trashDays?: number | null | undefined;
-  /** Earlier versions kept per file (0–50). */
-  versions?: number | null | undefined;
-};
-
-/** Input for the flxFilesShare mutation. */
-export type FlxFilesShareInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Share (true) or stop sharing (false). */
-  on: boolean;
-  /** A folder inside the uploads folder. */
-  path: string;
-};
-
-/** Input for the flxFilesTrash mutation. */
-export type FlxFilesTrashInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Entries to delete (at most 1000). */
-  paths: Array<string>;
-};
-
-/** Input for the flxFilesTrashPurge mutation. */
-export type FlxFilesTrashPurgeInput = {
-  /** Empty the whole trash (ids are ignored). */
-  all?: boolean | null | undefined;
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Trash ids to delete. */
-  ids?: Array<string> | null | undefined;
-};
-
-/** Input for the flxFilesTrashRestore mutation. */
-export type FlxFilesTrashRestoreInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Trash ids (flxFilesTrash). */
-  ids: Array<string>;
-};
-
-/** Input for the flxFilesUnzip mutation. */
-export type FlxFilesUnzipInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Folder to extract into. Empty: a new folder named after the archive. */
-  destination?: string | null | undefined;
-  /** The ZIP file. */
-  path: string;
-};
-
-/** Input for the flxFilesWrite mutation. */
-export type FlxFilesWriteInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** The new content. */
-  content: string;
-  /** Refuse when a file with this name already exists. */
-  createOnly?: boolean | null | undefined;
-  /** Fingerprint of the content that was opened (FlxFilesFile.hash). When the file changed on the server since, the save is refused (CONFLICT). */
-  hash?: string | null | undefined;
-  /** Path from the site folder. */
-  path: string;
-};
-
-/** Input for the flxFilesZip mutation. */
-export type FlxFilesZipInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Folder to create the archive in. Empty for the site folder. */
-  folder?: string | null | undefined;
-  /** File name of the archive (".zip" is added). Empty: named after the entry. */
-  name?: string | null | undefined;
-  /** Entries to archive. */
-  paths: Array<string>;
-};
-
 /** Input for the flxCartClear mutation. */
 export type FlxCartClearInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -2458,6 +2266,198 @@ export type FlxCrmSyncStepInput = {
   page?: number | null | undefined;
   /** Step key from the previous result (empty = the first). */
   step?: string | null | undefined;
+};
+
+/** Input for the flxFilesAiEdit mutation. */
+export type FlxFilesAiEditInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** The text as it is in the editor. Empty: the file on disk. */
+  content?: string | null | undefined;
+  /** Path from the site folder. */
+  path: string;
+  /** What should change. */
+  prompt: string;
+};
+
+/** Input for the flxFilesAiExplain mutation. */
+export type FlxFilesAiExplainInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** The text as it is in the editor. Empty: the file on disk. */
+  content?: string | null | undefined;
+  /** Path from the site folder. */
+  path: string;
+  /** Part of the text to explain. */
+  selection?: string | null | undefined;
+};
+
+/** Input for the flxFilesChmod mutation. */
+export type FlxFilesChmodInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Three octal digits, e.g. 644 or 755. */
+  mode: string;
+  /** Path from the site folder. */
+  path: string;
+};
+
+/** Input for the flxFilesCopy mutation. */
+export type FlxFilesCopyInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Target folder. Empty for the site folder. */
+  destination: string;
+  /** Replace entries that already exist (the replaced ones go to the trash). */
+  overwrite?: boolean | null | undefined;
+  /** Entries to process (at most 1000). */
+  paths: Array<string>;
+};
+
+/** Input for the flxFilesDuplicate mutation. */
+export type FlxFilesDuplicateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Entries to duplicate (at most 1000). */
+  paths: Array<string>;
+};
+
+/** Input for the flxFilesFolderCreate mutation. */
+export type FlxFilesFolderCreateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Path of the new folder from the site folder. */
+  path: string;
+};
+
+/** Input for the flxFilesMove mutation. */
+export type FlxFilesMoveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Target folder. Empty for the site folder. */
+  destination: string;
+  /** Replace entries that already exist (the replaced ones go to the trash). */
+  overwrite?: boolean | null | undefined;
+  /** Entries to process (at most 1000). */
+  paths: Array<string>;
+};
+
+/** Input for the flxFilesRename mutation. */
+export type FlxFilesRenameInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** New name (no slashes). */
+  name: string;
+  /** Path from the site folder. */
+  path: string;
+};
+
+/** Input for the flxFilesRevert mutation. */
+export type FlxFilesRevertInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Path from the site folder. */
+  path: string;
+  /** Version id (flxFilesVersions). */
+  versionId: string;
+};
+
+/** Input for the flxFilesSettingsUpdate mutation. */
+export type FlxFilesSettingsUpdateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Settings to change. */
+  settings: FlxFilesSettingsInput;
+};
+
+/** Settings to change. A field left out stays as it is. */
+export type FlxFilesSettingsInput = {
+  /** AI and MCP may change code files. */
+  aiCode?: boolean | null | undefined;
+  /** External MCP clients may change files. */
+  mcpWrite?: boolean | null | undefined;
+  /** Hosting disk quota in GB. */
+  quotaGb?: number | null | undefined;
+  /** Shared folders (replaces the list). */
+  shared?: Array<string> | null | undefined;
+  /** Show files that start with a dot. */
+  showHidden?: boolean | null | undefined;
+  /** Days the trash keeps entries (0–365). */
+  trashDays?: number | null | undefined;
+  /** Earlier versions kept per file (0–50). */
+  versions?: number | null | undefined;
+};
+
+/** Input for the flxFilesShare mutation. */
+export type FlxFilesShareInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Share (true) or stop sharing (false). */
+  on: boolean;
+  /** A folder inside the uploads folder. */
+  path: string;
+};
+
+/** Input for the flxFilesTrash mutation. */
+export type FlxFilesTrashInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Entries to delete (at most 1000). */
+  paths: Array<string>;
+};
+
+/** Input for the flxFilesTrashPurge mutation. */
+export type FlxFilesTrashPurgeInput = {
+  /** Empty the whole trash (ids are ignored). */
+  all?: boolean | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Trash ids to delete. */
+  ids?: Array<string> | null | undefined;
+};
+
+/** Input for the flxFilesTrashRestore mutation. */
+export type FlxFilesTrashRestoreInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Trash ids (flxFilesTrash). */
+  ids: Array<string>;
+};
+
+/** Input for the flxFilesUnzip mutation. */
+export type FlxFilesUnzipInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Folder to extract into. Empty: a new folder named after the archive. */
+  destination?: string | null | undefined;
+  /** The ZIP file. */
+  path: string;
+};
+
+/** Input for the flxFilesWrite mutation. */
+export type FlxFilesWriteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** The new content. */
+  content: string;
+  /** Refuse when a file with this name already exists. */
+  createOnly?: boolean | null | undefined;
+  /** Fingerprint of the content that was opened (FlxFilesFile.hash). When the file changed on the server since, the save is refused (CONFLICT). */
+  hash?: string | null | undefined;
+  /** Path from the site folder. */
+  path: string;
+};
+
+/** Input for the flxFilesZip mutation. */
+export type FlxFilesZipInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Folder to create the archive in. Empty for the site folder. */
+  folder?: string | null | undefined;
+  /** File name of the archive (".zip" is added). Empty: named after the entry. */
+  name?: string | null | undefined;
+  /** Entries to archive. */
+  paths: Array<string>;
 };
 
 /** Input for the flxJourneyDelete mutation. */
