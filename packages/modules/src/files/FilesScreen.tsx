@@ -632,7 +632,8 @@ function Files({ t, classicUrl, onSettings }: { t: Translate; classicUrl: string
   const upCtl = useRef({ queue: [] as Array<{ id: number; file: File; name: string; dest: string }>, active: 0, choice: '' as '' | 'over' | 'skip', seq: 0, total: 0, done: 0 });
   const patchJob = (id: number, v: Partial<UpJob>) => setJobs((l) => l.map((j) => (j.id === id ? { ...j, ...v } : j)));
   const uploadOne = async (job: { id: number; file: File; name: string; dest: string }, overwrite = false): Promise<void> => {
-    const uid = (Date.now().toString(36) + Math.random().toString(36).slice(2, 10)).replace(/[^a-z0-9]/g, '');
+    const rnd = crypto.getRandomValues(new Uint8Array(8));
+    const uid = Date.now().toString(36) + Array.from(rnd, (b) => b.toString(16).padStart(2, '0')).join('');
     const f = job.file;
     let off = 0;
     patchJob(job.id, { state: 'run' });
