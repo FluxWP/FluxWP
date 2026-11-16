@@ -84,7 +84,7 @@ final class FLXCM_Receipt_Service {
 	 * (`edit_shop_orders`, the same check as FLXCM_Receipts::serve()). A shop manager
 	 * with only manage_woocommerce still sees the receipt, with an empty URL.
 	 *
-	 * @return array<string,mixed>|null
+	 * @return array{id:string,number:string,name:string,email:string,phone:string,total:array{amount:float,currency:string,formatted:string},reference:string,status:string,statusLabel:string,files:list<array{name:string,url:string}>,createdAt:array{iso:string,timestamp:int,label:string,relative:string}|null}|null
 	 */
 	public static function map( WC_Order $order ): ?array {
 		$row = self::rest_row( $order );

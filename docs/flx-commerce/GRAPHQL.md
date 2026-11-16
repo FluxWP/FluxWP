@@ -10,7 +10,7 @@ Yetkiler mevcut WooCommerce yetkileridir (yeni yetki yok):
 - Hesabım abonelikleri: `read`, artı satırın sahibi (kullanıcı ya da e-posta)
 - `flxCommerceSubscriptionOffer` ve `flxSubscriptionCartAdd`: herkese açık. Ürün sayfası zaten misafire dönemi seçtirir. Ekleme `FLXGQL_Cart::add_item()` üzerinden gider; ödeme WooCommerce Store API'de kalır.
 
-İşlemler `plugins/flx-commerce/graphql/operations/*.graphql` (30 işlem). Tarihler `FlxDateTime` (`flx_gql_datetime` / `flx_date`), paralar `FlxMoney`.
+İşlemler `plugins/flx-commerce/graphql/operations/*.graphql` (30 işlem). Anlar `FlxDateTime` (`flx_gql_datetime` / `flx_date`), paralar `FlxMoney`. Satış serisindeki `FlxCommerceDay.date` bir an değildir; site saat diliminde `Y-m-d` gün kovasıdır ve `String` kalır.
 
 ## Okuma
 

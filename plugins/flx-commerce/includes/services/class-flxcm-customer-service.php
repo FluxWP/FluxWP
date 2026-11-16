@@ -84,9 +84,10 @@ final class FLXCM_Customer_Service {
 
 	/**
 	 * GraphQL customer. Card blocks are not on this row.
+	 * Times are GMT mysql strings from the summary table, passed through flx_gql_datetime().
 	 *
 	 * @param array<string,mixed> $r Customer row.
-	 * @return array<string,mixed>
+	 * @return array{id:string,name:string,email:string,phone:string,city:string,orders:int,total:array{amount:float,currency:string,formatted:string},note:string,firstAt:array{iso:string,timestamp:int,label:string,relative:string}|null,lastAt:array{iso:string,timestamp:int,label:string,relative:string}|null,userId:int,guest:bool}
 	 */
 	public static function map( array $r ): array {
 		return array(

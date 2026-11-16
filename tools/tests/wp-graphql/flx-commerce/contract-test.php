@@ -49,6 +49,27 @@ flxt_ok( isset( $settings['data']['flxCommerceSettings']['feedUrl'] ), 'manager 
 flxt_same( '', (string) ( $settings['data']['flxCommerceSettings']['feedUrl'] ?? 'x' ), 'feed off means an empty address' );
 flxt_ok( ! flxcm_test_leaks( $settings ), 'settings hide the card block', $settings );
 
+set_transient( 'flxcm_free_min', 'stale', MINUTE_IN_SECONDS );
+FLXCM_Settings_Service::save( FLXCM_Settings_Service::from_request( array( 'low_stock' => '21' ) ) );
+$from_classic = flxt_gql( '{ flxCommerceSettings { lowStock } }', array(), $mgr );
+flxt_same( 21, (int) ( $from_classic['data']['flxCommerceSettings']['lowStock'] ?? -1 ), 'graphql reads the classic settings save' );
+$from_gql = flxt_gql(
+	'mutation($input: FlxCommerceSettingsSaveInput!){ flxCommerceSettingsSave(input: $input){ settings { lowStock } errors { code } } }',
+	array( 'input' => array( 'lowStock' => 14 ) ),
+	$mgr
+);
+flxt_same( 14, (int) ( flxcm_settings()['low_stock'] ?? -1 ), 'classic reader sees the graphql settings save' );
+flxt_same( 14, (int) ( $from_gql['data']['flxCommerceSettingsSave']['settings']['lowStock'] ?? -1 ), 'graphql settings payload' );
+flxt_ok( 'stale' !== get_transient( 'flxcm_free_min' ), 'settings save drops the stale free-shipping cache' );
+
+foreach ( array( 'view_woocommerce_reports', 'manage_woocommerce', 'edit_shop_orders' ) as $cap ) {
+	flxt_ok( isset( flx_gql_capabilities()[ $cap ] ), 'catalog keeps ' . $cap );
+}
+$viewer = flxt_gql( '{ flxViewer { capabilities } }', array(), $mgr );
+$viewer_caps = $viewer['data']['flxViewer']['capabilities'] ?? array();
+flxt_ok( in_array( 'manage_woocommerce', $viewer_caps, true ), 'viewer lists manage_woocommerce', $viewer );
+flxt_ok( ! in_array( 'edit_shop_orders', $viewer_caps, true ), 'viewer omits a cap the user does not have', $viewer );
+
 global $wpdb;
 $email = 'flxcm-contract@example.test';
 $wpdb->delete( FLXCM_Install::table(), array( 'email' => $email ) );
@@ -69,6 +90,28 @@ $cid = (int) $wpdb->insert_id;
 $one = flxt_gql( 'query($id: ID!){ flxCommerceCustomer(id: $id) { id email guest userId openOrders } }', array( 'id' => (string) $cid ), $view );
 flxt_same( $email, $one['data']['flxCommerceCustomer']['email'] ?? '', 'filled customer' );
 flxt_same( true, $one['data']['flxCommerceCustomer']['guest'] ?? false, 'guest badge' );
+
+$noted = flxt_gql(
+	'mutation($input: FlxCommerceCustomerNoteInput!){ flxCommerceCustomerNote(input: $input){ customer { note } errors { code } } }',
+	array( 'input' => array( 'id' => (string) $cid, 'note' => 'Round trip' ) ),
+	$mgr
+);
+$stored_customer = FLXCM_Customers::get( $cid );
+flxt_same( 'Round trip', is_array( $stored_customer ) ? (string) $stored_customer['note'] : '', 'classic reader sees the graphql note' );
+flxt_same( 'Round trip', $noted['data']['flxCommerceCustomerNote']['customer']['note'] ?? '', 'graphql note payload' );
+FLXCM_Customer_Service::save_note( $cid, 'Classic note', true );
+$reread = flxt_gql( 'query($id: ID!){ flxCommerceCustomer(id: $id) { note } }', array( 'id' => (string) $cid ), $view );
+flxt_same( 'Classic note', $reread['data']['flxCommerceCustomer']['note'] ?? '', 'graphql reads the classic note' );
+
+$tz = get_option( 'timezone_string' );
+update_option( 'timezone_string', 'Europe/Istanbul' );
+$gmt = '2020-06-01 15:04:05';
+$wpdb->update( FLXCM_Install::table(), array( 'first_at' => $gmt ), array( 'id' => $cid ) );
+flxcm_gql_purge( array( 'flx-commerce:customer:' . $cid, 'flx-commerce:customers' ) );
+$when = flxt_gql( 'query($id: ID!){ flxCommerceCustomer(id: $id) { firstAt { timestamp iso } } }', array( 'id' => (string) $cid ), $view );
+flxt_same( strtotime( $gmt . ' UTC' ), (int) ( $when['data']['flxCommerceCustomer']['firstAt']['timestamp'] ?? 0 ), 'stored gmt time is not shifted by the site timezone' );
+flxt_same( '2020-06-01T15:04:05Z', (string) ( $when['data']['flxCommerceCustomer']['firstAt']['iso'] ?? '' ), 'customer time iso is utc' );
+update_option( 'timezone_string', $tz );
 
 $missing = flxt_gql( 'query($id: ID!){ flxCommerceCustomer(id: $id) { id } }', array( 'id' => '999999' ), $view );
 flxt_same( null, array_key_exists( 'flxCommerceCustomer', $missing['data'] ?? array() ) ? $missing['data']['flxCommerceCustomer'] : 'missing', 'missing customer is null' );
@@ -137,6 +180,25 @@ $steal = flxt_gql(
 	$other
 );
 flxt_same( 'FORBIDDEN', flxt_code( $steal ), 'cannot cancel someone elses subscription' );
+
+$cancelled_hooks = 0;
+add_action(
+	'flxcm_subscription_cancelled',
+	static function () use ( &$cancelled_hooks ) {
+		++$cancelled_hooks;
+	},
+	10,
+	2
+);
+$cancelled = flxt_gql(
+	'mutation($input: FlxCommerceSubscriptionCancelInput!){ flxCommerceSubscriptionCancel(input: $input){ subscription { status } errors { code } } }',
+	array( 'input' => array( 'id' => (string) $sid ) ),
+	$mgr
+);
+flxt_same( 1, $cancelled_hooks, 'cancel runs the classic hook once' );
+$after_cancel = FLXCM_Subscriptions::export( $sid );
+flxt_same( 'cancelled', is_array( $after_cancel ) ? (string) $after_cancel['status'] : '', 'classic export reads the graphql cancel' );
+flxt_same( 'cancelled', $cancelled['data']['flxCommerceSubscriptionCancel']['subscription']['status'] ?? '', 'graphql cancel payload' );
 
 $run = 'mutation($input: FlxCommerceRenewalsRunInput!){ flxCommerceRenewalsRun(input: $input){ status { ran } errors { code } } }';
 $first = flxt_gql( $run, array( 'input' => array() ), $admin );
@@ -230,6 +292,25 @@ if ( function_exists( 'wc_create_order' ) && class_exists( 'WC_Order' ) ) {
 		flxt_same( '', (string) ( $mgr_r['data']['flxCommerceReceipt']['files'][0]['url'] ?? 'x' ), 'manage_woocommerce alone does not get a file url', $mgr_r );
 		$rest = FLXCM_Receipt_Service::rest_row( $order );
 		flxt_ok( is_array( $rest ) && str_contains( (string) ( $rest['files'][0]['url'] ?? '' ), 'flxcm_dekont' ), 'REST still returns the admin file url' );
+
+		$written = wc_create_order();
+		if ( $written instanceof WC_Order ) {
+			$written->set_billing_email( 'flxcm-written@example.test' );
+			$written->set_billing_first_name( 'Written' );
+			$written->set_billing_last_name( 'By order' );
+			$written->set_status( 'processing' );
+			$written->set_total( '18' );
+			$written->save();
+			FLXCM_Customers::recompute( 'flxcm-written@example.test' );
+			$wrote = FLXCM_Customers::by_email( 'flxcm-written@example.test' );
+			flxt_ok( is_array( $wrote ), 'classic recompute wrote the customer from the order', $wrote );
+			if ( is_array( $wrote ) ) {
+				$via = flxt_gql( 'query($id: ID!){ flxCommerceCustomer(id: $id) { email orders guest } }', array( 'id' => (string) $wrote['id'] ), $view );
+				flxt_same( 'flxcm-written@example.test', $via['data']['flxCommerceCustomer']['email'] ?? '', 'graphql reads the customer the order writer stored' );
+				flxt_same( (int) $wrote['orders'], (int) ( $via['data']['flxCommerceCustomer']['orders'] ?? -1 ), 'graphql order count matches the classic row' );
+				flxt_same( 0 === (int) $wrote['user_id'], (bool) ( $via['data']['flxCommerceCustomer']['guest'] ?? false ), 'graphql guest flag matches the classic row' );
+			}
+		}
 	}
 }
 

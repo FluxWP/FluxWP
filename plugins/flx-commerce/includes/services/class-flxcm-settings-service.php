@@ -112,7 +112,7 @@ final class FLXCM_Settings_Service {
 
 	/**
 	 * @param array<string,mixed> $values Values to merge.
-	 * @return array<string,mixed> GraphQL settings.
+	 * @return array{paidStatuses:list<string>,excludeDonations:bool,lowStock:int,hideCompany:bool,hideAddress2:bool,virtualNoAddress:bool,orderNotes:bool,stickyPay:bool,freeShipBar:bool,freeShipAmount:float,freeShipThreshold:array{amount:float,currency:string,formatted:string},receiptMaxMb:int,receiptNotify:string,deferToDonate:bool,cancelAfterDays:int,feed:bool,feedBrand:string,feedUrl:string,notifyCustomerWa:bool,notifyAdminPhone:string,notifyAdminOrder:bool,subRenewDays:int,subGraceDays:int,hiddenRedirect:string,orderStatuses:list<array{slug:string,label:string}>,cardProviders:list<string>,whatsappReady:bool,donateCart:bool,donateHavale:bool}
 	 */
 	public static function save( array $values ): array {
 		flxcm_save_settings( $values );
@@ -127,7 +127,7 @@ final class FLXCM_Settings_Service {
 	/**
 	 * Settings for a shop manager. `feedUrl` is the full address, including the key, as on the classic screen.
 	 *
-	 * @return array<string,mixed>
+	 * @return array{paidStatuses:list<string>,excludeDonations:bool,lowStock:int,hideCompany:bool,hideAddress2:bool,virtualNoAddress:bool,orderNotes:bool,stickyPay:bool,freeShipBar:bool,freeShipAmount:float,freeShipThreshold:array{amount:float,currency:string,formatted:string},receiptMaxMb:int,receiptNotify:string,deferToDonate:bool,cancelAfterDays:int,feed:bool,feedBrand:string,feedUrl:string,notifyCustomerWa:bool,notifyAdminPhone:string,notifyAdminOrder:bool,subRenewDays:int,subGraceDays:int,hiddenRedirect:string,orderStatuses:list<array{slug:string,label:string}>,cardProviders:list<string>,whatsappReady:bool,donateCart:bool,donateHavale:bool}
 	 */
 	public static function read(): array {
 		$s    = FLXCM_Val::map( flxcm_settings() );
@@ -151,7 +151,7 @@ final class FLXCM_Settings_Service {
 			'cancelAfterDays'   => FLXCM_Val::int($s['cancel_after_days']),
 			'feed'              => $feed,
 			'feedBrand'         => FLXCM_Val::str($s['feed_brand']),
-			'feedUrl'           => ( $feed && class_exists( 'FLXCM_Feed' ) ) ? FLXCM_Feed::url() : '',
+			'feedUrl'           => ( $feed && class_exists( 'FLXCM_Feed' ) ) ? FLXCM_Val::str( FLXCM_Feed::url() ) : '',
 			'notifyCustomerWa'  => (bool) $s['notify_customer_wa'],
 			'notifyAdminPhone'  => FLXCM_Val::str($s['notify_admin_phone']),
 			'notifyAdminOrder'  => (bool) $s['notify_admin_order'],

@@ -15,8 +15,8 @@ final class FLXCM_Subscription_Service {
 	/**
 	 * GraphQL subscription. `cardLabel` is the brand and last four digits only.
 	 *
-	 * @param array<string,mixed> $row Export row from FLXCM_Subscriptions::export().
-	 * @return array<string,mixed>
+	 * @param array<string,mixed> $row Export row from FLXCM_Subscriptions::export(). Times are Unix timestamps.
+	 * @return array{id:string,status:string,hasAccess:bool,autoRenew:bool,userId:int,email:string,name:string,productId:int,productName:string,period:string,amount:array{amount:float,currency:string,formatted:string},paymentMethod:string,parentOrderId:int,lastOrderId:int,renewalOrderId:int,renewals:int,startedAt:array{iso:string,timestamp:int,label:string,relative:string}|null,periodEnd:array{iso:string,timestamp:int,label:string,relative:string}|null,cancelledAt:array{iso:string,timestamp:int,label:string,relative:string}|null,endedAt:array{iso:string,timestamp:int,label:string,relative:string}|null,endReason:string,cardLabel:string,autoCharge:bool,createdAt:array{iso:string,timestamp:int,label:string,relative:string}|null,productUrl:string,nextChargeAt:array{iso:string,timestamp:int,label:string,relative:string}|null,renewNow:bool,payUrl:string,lastOrderUrl:string}
 	 */
 	public static function map( array $row ): array {
 		return array_merge(
