@@ -40,6 +40,10 @@ final class FLXCB_Admin {
 
 	public static function assets() {
 		$page = self::page();
+		if ( ( 'flx-chatbot' === $page || 'flx-chatbot-inbox' === $page ) && flxcb_flux_ui() ) {
+			flxcb_flux_assets( $page );
+			return;
+		}
 		if ( 'flx-chatbot' === $page ) {
 			wp_enqueue_media();
 			wp_enqueue_style( 'flxcb-admin', FLXCB_URL . 'assets/admin.css', array(), FLXCB_VERSION );
@@ -154,6 +158,10 @@ final class FLXCB_Admin {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-chatbot' ), 403 );
 		}
+		if ( flxcb_flux_ui() ) {
+			flxcb_flux_mount();
+			return;
+		}
 		$s     = flxcb_settings();
 		$st    = flxcb_stats( 30 );
 		$tabs  = array(
@@ -169,6 +177,7 @@ final class FLXCB_Admin {
 		$fc    = flxcb_fc_ready();
 
 		echo '<div class="wrap flxcb">';
+		flxcb_flux_switch_link( 'flx-chatbot' );
 		echo '<div class="flxcb-head"><div><h1>' . esc_html__( 'Flux AI Chatbot', 'flx-chatbot' ) . '</h1><p class="flxcb-lead">' . esc_html__( 'An AI chat window for your site: it answers from your content and products and hands the chat to a live agent when needed. Changes show up in the preview on the right right away.', 'flx-chatbot' ) . '</p></div>';
 		echo '<div class="flxcb-head__actions"><a class="button" href="' . esc_url( flxcb_inbox_url() ) . '">' . flxcb_icon( 'inbox', 14 ) . esc_html__( 'Chats', 'flx-chatbot' ) . '</a><a class="button" href="' . esc_url( add_query_arg( 'flxcb_preview', '1', home_url( '/' ) ) ) . '" target="_blank" rel="noopener">' . flxcb_icon( 'ext', 14 ) . esc_html__( 'Try on site', 'flx-chatbot' ) . '</a></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
 

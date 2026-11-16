@@ -62,8 +62,13 @@ final class FLXCB_Inbox {
 		if ( ! flxcb_can_reply() ) {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-chatbot' ), 403 );
 		}
+		if ( flxcb_flux_ui() ) {
+			flxcb_flux_mount();
+			return;
+		}
 		$fc = 'flx-chat' === flxcb_handoff_target();
 		echo '<div class="wrap flxcb flxcb-inbox-wrap">';
+		flxcb_flux_switch_link( 'flx-chatbot-inbox' );
 		echo '<div class="flxcb-head"><div><h1>' . esc_html__( 'Site chats', 'flx-chatbot' ) . '</h1><p class="flxcb-lead">' . esc_html__( 'Conversations from the chat window on your site. Chats the assistant answered are here too; visitors asking for an agent are on top.', 'flx-chatbot' ) . '</p></div>';
 		echo '<div class="flxcb-head__actions">';
 		if ( $fc ) {

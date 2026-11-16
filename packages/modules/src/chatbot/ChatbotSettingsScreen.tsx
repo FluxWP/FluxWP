@@ -2,7 +2,7 @@
 // goes through the Flux AI Chatbot GraphQL operations (plugins/flx-chatbot/graphql/operations).
 // It has everything the classic page has: six tabs, figures, connections, the live preview with the
 // real chat window, colours, avatar, launcher, texts, AI, live chat hours and visibility.
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from '@tanstack/react-query';
 import {
@@ -171,7 +171,7 @@ function ChatbotSettings() {
     }
   };
 
-  const tabs: Array<[Tab, string, JSX.Element]> = [
+  const tabs: Array<[Tab, string, ReactNode]> = [
     ['general', t('General'), <Settings key="g" size={SIZE} />],
     ['look', t('Appearance'), <Palette key="l" size={SIZE} />],
     ['texts', t('Texts'), <Type key="x" size={SIZE} />],

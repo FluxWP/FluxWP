@@ -1,6 +1,9 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: en_US\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Answers site chats"
+msgstr ""
+
 msgid "Settings"
 msgstr ""
 
@@ -157,15 +160,6 @@ msgstr ""
 msgid "You have unsaved changes"
 msgstr ""
 
-msgid "Hi, how long does shipping take?"
-msgstr ""
-
-msgid "Orders ship within **1-3 business days**. Here is a product you might like:"
-msgstr ""
-
-msgid "Orders ship within **1-3 business days**; shipping is free over $50. Anything else I can help with?"
-msgstr ""
-
 msgid "General"
 msgstr ""
 
@@ -251,69 +245,6 @@ msgid "No assistant; messages go straight to agents."
 msgstr ""
 
 msgid "Connections"
-msgstr ""
-
-msgid "Flux AI & MCP connected"
-msgstr ""
-
-msgid "Key, model, spending limit and logs come from Flux AI."
-msgstr ""
-
-msgid "Choose model"
-msgstr ""
-
-msgid "Flux AI is not ready"
-msgstr ""
-
-msgid "Enter an API key in Flux AI & MCP or turn on Flux AI Chatbot under Connected systems."
-msgstr ""
-
-msgid "Flux AI"
-msgstr ""
-
-msgid "Flux AI & MCP is not installed"
-msgstr ""
-
-msgid "Install the Flux AI & MCP plugin for the assistant. Until then the window works as live chat only."
-msgstr ""
-
-msgid "Live chat off"
-msgstr ""
-
-msgid "Mode is \"AI only\"."
-msgstr ""
-
-msgid "Flux Chat inbox"
-msgstr ""
-
-msgid "All site chats (including the ones the assistant answered) appear in the call center with the site chat icon; agents reply from the same screen as WhatsApp and other channels."
-msgstr ""
-
-msgid "Plugin inbox"
-msgstr ""
-
-msgid "Handed-over chats land on the Chatbot › Chats screen."
-msgstr ""
-
-msgid "Handed-over chats land on the Chatbot › Chats screen. With Flux Chat (1.37+) installed they can also be answered from the call center."
-msgstr ""
-
-msgid "Online now"
-msgstr ""
-
-msgid "Outside working hours now"
-msgstr ""
-
-msgid "Working hours: %s"
-msgstr ""
-
-msgid "Working hours come from the Flux Chat settings."
-msgstr ""
-
-msgid "Agents always count as online."
-msgstr ""
-
-msgid "Hours"
 msgstr ""
 
 msgid "Open from a page"
@@ -665,6 +596,9 @@ msgid "Call center inbox, together with WhatsApp chats."
 msgstr ""
 
 msgid "Flux Chat 1.37+ is not installed; the inbox is used."
+msgstr ""
+
+msgid "Plugin inbox"
 msgstr ""
 
 msgid "Chatbot › Chats screen, with email notification."
@@ -1129,6 +1063,9 @@ msgstr ""
 msgid "Could not start the chat."
 msgstr ""
 
+msgid "Still answering. Please wait a moment."
+msgstr ""
+
 msgid "I can't answer right now. Please write again in a moment or reach us through our contact details."
 msgstr ""
 
@@ -1182,6 +1119,9 @@ msgstr ""
 msgid "Flux AI is not ready; messages go to an agent instead of the assistant."
 msgstr ""
 
+msgid "Flux AI"
+msgstr ""
+
 msgid "Handoffs go to the Flux Chat inbox."
 msgstr ""
 
@@ -1194,8 +1134,479 @@ msgstr ""
 msgid "Placed after site chat #%d"
 msgstr ""
 
-msgid "Artificial intelligence-supported chat window to the site: With Flux AI, 24/7 responses from your site's content and products, potential customer collection, WooCommerce information, one-click transfer to a live representative (Flux Chat inbox or the plugin's own inbox), file sharing, read receipts, end-of-chat scoring and leaving messages after hours. Color, position, avatar, texts and visibility are customized from the panel."
+msgid "Flux AI & MCP connected"
 msgstr ""
 
-msgid "Still answering. Please wait a moment."
+msgid "Key, model, spending limit and logs come from Flux AI."
+msgstr ""
+
+msgid "Choose model"
+msgstr ""
+
+msgid "Flux AI is not ready"
+msgstr ""
+
+msgid "Enter an API key in Flux AI & MCP or turn on Flux AI Chatbot under Connected systems."
+msgstr ""
+
+msgid "Flux AI & MCP is not installed"
+msgstr ""
+
+msgid "Install the Flux AI & MCP plugin for the assistant. Until then the window works as live chat only."
+msgstr ""
+
+msgid "Live chat off"
+msgstr ""
+
+msgid "Mode is \"AI only\"."
+msgstr ""
+
+msgid "Flux Chat inbox"
+msgstr ""
+
+msgid "All site chats (including the ones the assistant answered) appear in the call center with the site chat icon; agents reply from the same screen as WhatsApp and other channels."
+msgstr ""
+
+msgid "Handed-over chats land on the Chatbot › Chats screen."
+msgstr ""
+
+msgid "Handed-over chats land on the Chatbot › Chats screen. With Flux Chat (1.37+) installed they can also be answered from the call center."
+msgstr ""
+
+msgid "Working hours: %s"
+msgstr ""
+
+msgid "Working hours come from the Flux Chat settings."
+msgstr ""
+
+msgid "Agents always count as online."
+msgstr ""
+
+msgid "Online now"
+msgstr ""
+
+msgid "Outside working hours now"
+msgstr ""
+
+msgid "Hours"
+msgstr ""
+
+msgid "Hi, how long does shipping take?"
+msgstr ""
+
+msgid "Orders ship within **1-3 business days**. Here is a product you might like:"
+msgstr ""
+
+msgid "Orders ship within **1-3 business days**; shipping is free over $50. Anything else I can help with?"
+msgstr ""
+
+msgid "Where a chat is."
+msgstr ""
+
+msgid "The assistant is answering."
+msgstr ""
+
+msgid "Waiting for an agent."
+msgstr ""
+
+msgid "An agent is talking with the visitor."
+msgstr ""
+
+msgid "The visitor left a message outside working hours."
+msgstr ""
+
+msgid "The chat ended."
+msgstr ""
+
+msgid "Which chats the list shows."
+msgstr ""
+
+msgid "Waiting for an agent, in conversation or left a message."
+msgstr ""
+
+msgid "With the assistant."
+msgstr ""
+
+msgid "In conversation."
+msgstr ""
+
+msgid "Left a message."
+msgstr ""
+
+msgid "Closed."
+msgstr ""
+
+msgid "Every chat."
+msgstr ""
+
+msgid "Who wrote a message."
+msgstr ""
+
+msgid "The assistant."
+msgstr ""
+
+msgid "An event line (handed over, ended, …)."
+msgstr ""
+
+msgid "What a message carries."
+msgstr ""
+
+msgid "State of a connection line."
+msgstr ""
+
+msgid "A product the assistant suggested."
+msgstr ""
+
+msgid "Product name."
+msgstr ""
+
+msgid "Product page."
+msgstr ""
+
+msgid "Product image; empty when it has none."
+msgstr ""
+
+msgid "Price as shown in the shop."
+msgstr ""
+
+msgid "The product is in stock."
+msgstr ""
+
+msgid "Add-to-cart address; empty when the product cannot be added directly."
+msgstr ""
+
+msgid "One message of a chat."
+msgstr ""
+
+msgid "Message number; grows with time."
+msgstr ""
+
+msgid "Who wrote it."
+msgstr ""
+
+msgid "What it carries."
+msgstr ""
+
+msgid "Text (assistant replies use a small Markdown subset); a file caption for files."
+msgstr ""
+
+msgid "When it was sent."
+msgstr ""
+
+msgid "Agent first name or the assistant's name; empty for the visitor and event lines."
+msgstr ""
+
+msgid "Attached file; the address works for signed-in agents only."
+msgstr ""
+
+msgid "Products the assistant suggested in this message."
+msgstr ""
+
+msgid "Messages after a given message, oldest first (the chat screen asks again with the last number to get what is new)."
+msgstr ""
+
+msgid "The messages."
+msgstr ""
+
+msgid "Number of the last returned message; pass it as afterId next time."
+msgstr ""
+
+msgid "More messages follow; ask again with lastId."
+msgstr ""
+
+msgid "The last line of a chat, for the list."
+msgstr ""
+
+msgid "First 120 characters (the file name for a file)."
+msgstr ""
+
+msgid "A chat between a site visitor and the assistant or an agent."
+msgstr ""
+
+msgid "Visitor name, else email, else \"Visitor #n\"."
+msgstr ""
+
+msgid "Name the visitor gave; empty when none."
+msgstr ""
+
+msgid "Visitor email; empty when not given."
+msgstr ""
+
+msgid "Visitor phone; empty when not given."
+msgstr ""
+
+msgid "Where the chat is."
+msgstr ""
+
+msgid "Visitor messages no agent has read."
+msgstr ""
+
+msgid "Stars (1-5) the visitor gave; empty when not rated."
+msgstr ""
+
+msgid "Note that came with the rating; empty when none."
+msgstr ""
+
+msgid "The visitor left contact details."
+msgstr ""
+
+msgid "WooCommerce order placed after the chat; empty when none."
+msgstr ""
+
+msgid "Edit screen of that order; empty when none or WooCommerce is off."
+msgstr ""
+
+msgid "Page the visitor is on; empty when unknown."
+msgstr ""
+
+msgid "Title of that page; empty when unknown."
+msgstr ""
+
+msgid "Site member id when the visitor was signed in; empty for guests."
+msgstr ""
+
+msgid "First name of the agent the chat is assigned to; empty when none."
+msgstr ""
+
+msgid "The same chat in the Flux Chat inbox; empty when it is not there."
+msgstr ""
+
+msgid "Note the assistant wrote for the agent when it handed over; empty when none."
+msgstr ""
+
+msgid "Time of the last message; empty for a chat without messages."
+msgstr ""
+
+msgid "The visitor is on the page now."
+msgstr ""
+
+msgid "The visitor is typing."
+msgstr ""
+
+msgid "The last message; empty for a chat without messages."
+msgstr ""
+
+msgid "A page of chats."
+msgstr ""
+
+msgid "Site chats, newest activity first."
+msgstr ""
+
+msgid "Which chats to list; open chats when left out."
+msgstr ""
+
+msgid "Words in the name, email, phone or page title."
+msgstr ""
+
+msgid "One chat; empty when it does not exist or the user is not an agent."
+msgstr ""
+
+msgid "Global ID or chat number."
+msgstr ""
+
+msgid "Messages of a chat after a message number, oldest first. Unless peek is on, opening the chat marks the visitor's messages as read."
+msgstr ""
+
+msgid "Only messages after this message number (0: from the start)."
+msgstr ""
+
+msgid "How many messages (at most 100)."
+msgstr ""
+
+msgid "Read without marking the chat as read."
+msgstr ""
+
+msgid "What the Site chats screen needs besides the chats."
+msgstr ""
+
+msgid "Flux Chat inbox; empty when handed-over chats do not go there."
+msgstr ""
+
+msgid "Chatbot settings page; empty for agents who may not change settings."
+msgstr ""
+
+msgid "The user may delete chats (administrators)."
+msgstr ""
+
+msgid "Name replies are signed with."
+msgstr ""
+
+msgid "Largest file an agent can attach (MB)."
+msgstr ""
+
+msgid "Settings of the Site chats screen."
+msgstr ""
+
+msgid "Answers a chat as an agent. The visitor sees it right away."
+msgstr ""
+
+msgid "Reply text."
+msgstr ""
+
+msgid "File sent first to /wp-json/flx/v1/upload (context flx-chatbot/reply)."
+msgstr ""
+
+msgid "The chat after the reply."
+msgstr ""
+
+msgid "Ends a chat. It reopens when the visitor writes again."
+msgstr ""
+
+msgid "The chat after it ended."
+msgstr ""
+
+msgid "Deletes a chat and its files for good."
+msgstr ""
+
+msgid "Number of the deleted chat."
+msgstr ""
+
+msgid "Shows the visitor that an agent is typing (for 8 seconds)."
+msgstr ""
+
+msgid "Always true."
+msgstr ""
+
+msgid "Chat figures of the last days."
+msgstr ""
+
+msgid "Chats started."
+msgstr ""
+
+msgid "Chats an agent was needed for."
+msgstr ""
+
+msgid "Percent solved by the assistant alone."
+msgstr ""
+
+msgid "Chats where the visitor left contact details."
+msgstr ""
+
+msgid "Orders placed within 7 days of a chat."
+msgstr ""
+
+msgid "Average stars; empty when nothing is rated."
+msgstr ""
+
+msgid "Number of ratings."
+msgstr ""
+
+msgid "Chats waiting for an agent or in conversation now."
+msgstr ""
+
+msgid "One line of the Connections card."
+msgstr ""
+
+msgid "Line: ai, live or hours."
+msgstr ""
+
+msgid "Good, needs attention, or just information."
+msgstr ""
+
+msgid "Headline."
+msgstr ""
+
+msgid "Explanation."
+msgstr ""
+
+msgid "Where to fix or change it; empty when there is nothing to open."
+msgstr ""
+
+msgid "Label of that link."
+msgstr ""
+
+msgid "The text a field uses while it is left empty."
+msgstr ""
+
+msgid "Setting key, e.g. welcome."
+msgstr ""
+
+msgid "Default text in the admin's language."
+msgstr ""
+
+msgid "A key with its label (page type, weekday)."
+msgstr ""
+
+msgid "Key; weekdays are 1 (Monday) to 7 (Sunday)."
+msgstr ""
+
+msgid "Name in the admin's language."
+msgstr ""
+
+msgid "What the live preview needs to show the real chat window."
+msgstr ""
+
+msgid "Window configuration the widget script reads (free-form: it is the widget's own contract, not an API)."
+msgstr ""
+
+msgid "The widget script."
+msgstr ""
+
+msgid "Everything the Chatbot settings screen shows besides the settings values."
+msgstr ""
+
+msgid "Chat figures."
+msgstr ""
+
+msgid "How many days back (default 30)."
+msgstr ""
+
+msgid "The Connections card."
+msgstr ""
+
+msgid "Texts used while a text field is empty."
+msgstr ""
+
+msgid "Page types of the Visibility tab (setting showOn<Type>)."
+msgstr ""
+
+msgid "Weekdays of the working hours table."
+msgstr ""
+
+msgid "Thumbnail of the chosen avatar image; empty when none."
+msgstr ""
+
+msgid "Address used for notifications while the field is empty (the site admin)."
+msgstr ""
+
+msgid "Flux AI & MCP is connected for the assistant."
+msgstr ""
+
+msgid "Where the model for this plugin is chosen (Flux AI); empty without Flux AI."
+msgstr ""
+
+msgid "Flux Chat can take handed-over chats."
+msgstr ""
+
+msgid "Flux Chat is installed (its working hours can be used)."
+msgstr ""
+
+msgid "WooCommerce is active (product cards, order status, orders after chat)."
+msgstr ""
+
+msgid "WooCommerce orders can be looked up."
+msgstr ""
+
+msgid "Flux Wiki is active (its pages can be a knowledge source)."
+msgstr ""
+
+msgid "Where the chats are answered."
+msgstr ""
+
+msgid "Front page, to try the window on the site."
+msgstr ""
+
+msgid "Data of the live preview."
+msgstr ""
+
+msgid "Data of the Chatbot settings screen (the values are in flxSettings.chatbot)."
+msgstr ""
+
+msgid "Saves chatbot settings the way the settings form does (values are cleaned and limited). Only the fields you send change."
+msgstr ""
+
+msgid "The settings to change."
+msgstr ""
+
+msgid "Settings after saving."
 msgstr ""

@@ -14,7 +14,7 @@ paket GraphQL'e geçerken taşınır (geçiş süresince REST de çalışır).
 | AI sohbet akışı (SSE) | flx-ai, flx-chat | WPGraphQL'de subscription/stream yok | Başlatma ve geçmiş GraphQL'de |
 | Dosya yükleme `POST /wp-json/flx/v1/upload` | flx-graphql | Multipart; tek ortak uç | Mutation `uploadId` alır |
 | WooCommerce Store API (sepet / checkout) | flx-commerce, flx-donate | Gateway'ler Store API'ye bağlı (EsnekPOS `PaymentContext`, iyzico) | `flxCart*` mutation'ları içeride `rest_do_request` ile Store API'yi çağırır |
-| Flux Chatbot ziyaretçi uçları `flxcb/v1` (session, message NDJSON akışı, poll, handoff, contact, upload, file, rate, close, typing) | flx-chatbot | Herkese açık widget protokolü: anonim ziyaretçi, NDJSON akışı, multipart yükleme, dosya servisi; GraphQL burada akış ve anonim çağrı için uygun değil | Temsilci/yönetici yüzü GraphQL'de: `flxChatbotConversations`, `flxChatbotConversationReply`, `flxChatbotSettingsSave` |
+| Flux Chatbot ziyaretçi uçları `flx-chatbot/v1` (session, message NDJSON akışı, poll, handoff, contact, upload, file, rate, close, typing) | flx-chatbot | Herkese açık widget protokolü: anonim ziyaretçi, NDJSON akışı, multipart yükleme, dosya servisi; GraphQL burada akış ve anonim çağrı için uygun değil | Temsilci/yönetici yüzü GraphQL'de: `flxChatbotConversations`, `flxChatbotConversationReply`, `flxChatbotSettingsSave` |
 | FluxWP/updater, FluxWP/whatsapp-api | — | WordPress eklentisi değil, ayrı servis | Kapsam dışı |
 | FluxWP/quiz (flx-quiz, flx-preset-arifiye) | — | Ahmet kararı: dokunulmaz | Kapsam dışı |
 
