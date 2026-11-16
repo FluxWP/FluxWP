@@ -1,0 +1,37 @@
+# Devices, sessions and keys of the user, or of everyone.
+query FlxAppAccess($all: Boolean) {
+  flxAppAccess(all: $all) {
+    devices {
+      id
+      name
+      platform
+      app
+      brand
+      push
+      lastSeen
+      lastSeenAgo
+      userId
+      user
+      current
+    }
+    rows {
+      id
+      kind
+      name
+      hint
+      userId
+      user
+      created
+      lastUsed
+      lastIp
+      expires
+    }
+    canCreateKeys
+    canManage
+    downloads {
+      macos
+      windows
+      windowsMsi
+    }
+  }
+}

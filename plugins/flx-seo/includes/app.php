@@ -1,30 +1,13 @@
 <?php
 /**
- * Flux App: SEO ayarları (ayar köprüsü) ve site denetimi.
+ * Flux App: SEO is a native screen (the same React screen as wp-admin, data over GraphQL). The REST route
+ * flx-seo/v1/audit stays for older app versions that read the manifest screens (docs/graphql/ISTISNALAR.md).
  * REST: flx-seo/v1/audit
  *
  * @package flx-seo
  */
 
 defined( 'ABSPATH' ) || exit;
-
-/**
- * @param mixed $node
- * @return mixed
- */
-function flxseo_app_texts( $node, $domain ) {
-	if ( ! is_array( $node ) ) {
-		return $node;
-	}
-	foreach ( $node as $k => $v ) {
-		if ( 'text' === $k && is_string( $v ) && false === strpos( $v, '{{' ) ) {
-			$node[ $k ] = translate( $v, $domain ); // phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralText, WordPress.WP.I18n.NonSingularStringLiteralDomain
-		} else {
-			$node[ $k ] = flxseo_app_texts( $v, $domain );
-		}
-	}
-	return $node;
-}
 
 function flxseo_app_can() {
 	return current_user_can( 'manage_options' );
@@ -126,29 +109,21 @@ add_action(
 	}
 );
 
-add_action(
-	'plugins_loaded',
-	function () {
-		if ( ! function_exists( 'flxapp_manifest_file' ) ) {
-			return;
-		}
-		add_filter(
-			'flxapp_manifest',
-			function ( $m ) {
-				$loaded    = flxapp_manifest_file(
-					FLXSEO_DIR . 'app/manifest.json',
-					'flx-seo',
-					array(
-						'version' => FLXSEO_VERSION,
-						'caps'    => array( 'view' => 'manage_options' ),
-					)
-				);
-				$m['seo'] = flxseo_app_texts( $loaded, 'flx-seo' );
-				return $m;
-			},
-			10,
-			2
+/* Native module screen: the same React screen as wp-admin (@fluxwp/modules `flxseo-seo`), data over GraphQL. */
+add_filter(
+	'flxapp_modules',
+	static function ( $m ) {
+		$m                = is_array( $m ) ? $m : array();
+		$m['flxseo-seo'] = array(
+			'title'   => 'SEO',
+			'cap'     => 'manage_options',
+			'menu'    => 'flxseo',
+			'url'     => admin_url( 'admin.php?page=flxseo' ),
+			'api'     => home_url( '/graphql' ),
+			'icon'    => 'search',
+			'version' => FLXSEO_VERSION,
+			'order'   => 70,
 		);
-	},
-	20
+		return $m;
+	}
 );

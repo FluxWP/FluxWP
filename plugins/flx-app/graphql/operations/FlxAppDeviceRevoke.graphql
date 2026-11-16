@@ -1,0 +1,11 @@
+# Signs a device out.
+mutation FlxAppDeviceRevoke($input: FlxAppDeviceRevokeInput!) {
+  flxAppDeviceRevoke(input: $input) {
+    ok
+    errors {
+      code
+      message
+      field
+    }
+  }
+}
