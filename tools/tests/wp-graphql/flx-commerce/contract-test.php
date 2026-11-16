@@ -62,6 +62,19 @@ flxt_same( 14, (int) ( flxcm_settings()['low_stock'] ?? -1 ), 'classic reader se
 flxt_same( 14, (int) ( $from_gql['data']['flxCommerceSettingsSave']['settings']['lowStock'] ?? -1 ), 'graphql settings payload' );
 flxt_ok( 'stale' !== get_transient( 'flxcm_free_min' ), 'settings save drops the stale free-shipping cache' );
 
+FLXCM_Settings_Service::bank_save( array( 'enabled' => true, 'title' => 'Classic Bank', 'iban' => 'TR000000000000000000000001' ) );
+$bank_from_classic = flxt_gql( '{ flxCommerceBankSettings { enabled title iban } }', array(), $mgr );
+flxt_same( 'Classic Bank', $bank_from_classic['data']['flxCommerceBankSettings']['title'] ?? '', 'graphql reads the classic bank settings save' );
+flxt_same( true, $bank_from_classic['data']['flxCommerceBankSettings']['enabled'] ?? false, 'graphql reads the classic bank enabled flag' );
+$bank_from_gql = flxt_gql(
+	'mutation($input: FlxCommerceBankSettingsSaveInput!){ flxCommerceBankSettingsSave(input: $input){ settings { title iban } errors { code } } }',
+	array( 'input' => array( 'title' => 'GQL Bank', 'iban' => 'TR000000000000000000000002' ) ),
+	$mgr
+);
+$stored_bank = get_option( FLXCM_Settings_Service::BANK_OPTION, array() );
+flxt_same( 'GQL Bank', is_array( $stored_bank ) ? (string) ( $stored_bank['title'] ?? '' ) : '', 'classic option sees the graphql bank settings save' );
+flxt_same( 'TR000000000000000000000002', $bank_from_gql['data']['flxCommerceBankSettingsSave']['settings']['iban'] ?? '', 'graphql bank settings payload' );
+
 foreach ( array( 'view_woocommerce_reports', 'manage_woocommerce', 'edit_shop_orders' ) as $cap ) {
 	flxt_ok( isset( flx_gql_capabilities()[ $cap ] ), 'catalog keeps ' . $cap );
 }
@@ -200,6 +213,12 @@ $after_cancel = FLXCM_Subscriptions::export( $sid );
 flxt_same( 'cancelled', is_array( $after_cancel ) ? (string) $after_cancel['status'] : '', 'classic export reads the graphql cancel' );
 flxt_same( 'cancelled', $cancelled['data']['flxCommerceSubscriptionCancel']['subscription']['status'] ?? '', 'graphql cancel payload' );
 
+$classic_resume = FLXCM_Subscription_Service::admin_act( $sid, 'resume' );
+flxt_same( 'resume', $classic_resume['done'] ?? '', 'classic admin_act resumes subscription' );
+$after_resume = flxt_gql( 'query($id: ID!){ flxCommerceSubscription(id: $id) { status autoRenew } }', array( 'id' => (string) $sid ), $view );
+flxt_same( 'active', $after_resume['data']['flxCommerceSubscription']['status'] ?? '', 'graphql reads the classic subscription resume' );
+flxt_same( true, $after_resume['data']['flxCommerceSubscription']['autoRenew'] ?? false, 'graphql reads autoRenew true after classic resume' );
+
 $run = 'mutation($input: FlxCommerceRenewalsRunInput!){ flxCommerceRenewalsRun(input: $input){ status { ran } errors { code } } }';
 $first = flxt_gql( $run, array( 'input' => array() ), $admin );
 $second = flxt_gql( $run, array( 'input' => array() ), $admin );
@@ -292,6 +311,25 @@ if ( function_exists( 'wc_create_order' ) && class_exists( 'WC_Order' ) ) {
 		flxt_same( '', (string) ( $mgr_r['data']['flxCommerceReceipt']['files'][0]['url'] ?? 'x' ), 'manage_woocommerce alone does not get a file url', $mgr_r );
 		$rest = FLXCM_Receipt_Service::rest_row( $order );
 		flxt_ok( is_array( $rest ) && str_contains( (string) ( $rest['files'][0]['url'] ?? '' ), 'flxcm_dekont' ), 'REST still returns the admin file url' );
+
+		$approved = flxt_gql(
+			'mutation($input: FlxCommerceReceiptApproveInput!){ flxCommerceReceiptApprove(input: $input){ receipt { status } errors { code } } }',
+			array( 'input' => array( 'id' => $oid ) ),
+			$shop
+		);
+		$reloaded = wc_get_order( (int) $oid );
+		flxt_same( 'processing', $approved['data']['flxCommerceReceiptApprove']['receipt']['status'] ?? '', 'graphql approve returns processing status' );
+		flxt_ok( $reloaded instanceof WC_Order && 'processing' === $reloaded->get_status(), 'classic order reflects graphql receipt approval' );
+
+		$order2 = wc_create_order( array( 'customer_id' => $owner ) );
+		if ( $order2 instanceof WC_Order ) {
+			$order2->set_payment_method( FLXCM_Bank::ID );
+			$order2->set_status( 'on-hold' );
+			$order2->save();
+			FLXCM_Bank::mark_paid( $order2 );
+			$reread2 = flxt_gql( 'query($id: ID!){ flxCommerceReceipt(id: $id){ status } }', array( 'id' => (string) $order2->get_id() ), $shop );
+			flxt_same( 'processing', $reread2['data']['flxCommerceReceipt']['status'] ?? '', 'graphql reads classic FLXCM_Bank::mark_paid status' );
+		}
 
 		$written = wc_create_order();
 		if ( $written instanceof WC_Order ) {
