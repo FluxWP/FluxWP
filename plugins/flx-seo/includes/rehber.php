@@ -13,7 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/** Rehber dili: tr ya da en (istenmezse kullanıcı/site dili). */
+/** Rehber dili: tr ya da en (istenmezse kullanıcı/site dili).
+ * @return string
+ */
 function flxseo_guide_lang( $lang = '' ) {
 	$lang = strtolower( (string) $lang );
 	if ( ! in_array( $lang, array( 'tr', 'en' ), true ) ) {
@@ -31,6 +33,7 @@ function flxseo_guide_topics() {
  *
  * @param string $topic flxseo_guide_topics() içinden; 'all' tümü.
  * @param string $lang  tr|en.
+ * @return string
  */
 function flxseo_guide( $topic = 'all', $lang = '' ) {
 	$lang = flxseo_guide_lang( $lang );
@@ -51,7 +54,9 @@ function flxseo_guide( $topic = 'all', $lang = '' ) {
 	return (string) apply_filters( 'flxseo_guide', $md, $topic, $lang );
 }
 
-/** Bölüm başlıkları (panelde içindekiler). */
+/** Bölüm başlıkları (panelde içindekiler).
+ * @return list<string>
+ */
 function flxseo_guide_sections( $lang = '' ) {
 	preg_match_all( '/^## (.+)$/m', flxseo_guide( 'all', $lang ), $m );
 	return $m[1];

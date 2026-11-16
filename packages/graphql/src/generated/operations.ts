@@ -417,6 +417,87 @@ export const FlxRolesScreen: FlxOperation<T.FlxRolesScreenQuery, T.FlxRolesScree
   document: "query FlxRolesScreen($members: Int = 50) {\n  flxRoles {\n    ...FlxRoleRow\n    members(first: $members) {\n      ...FlxRoleMemberPage\n    }\n  }\n  flxRoleCapabilityGroups {\n    key\n    label\n    plugin\n    active\n    capabilities {\n      key\n      label\n      locked\n      broad\n      pending\n    }\n  }\n  flxRolesConfig {\n    ...FlxRolesConfigFields\n  }\n}\n\nfragment FlxRoleMemberPage on FlxRoleMemberConnection {\n  nodes {\n    ...FlxRoleMemberRow\n  }\n  pageInfo {\n    hasNextPage\n    endCursor\n  }\n  totalCount\n}\n\nfragment FlxRoleMemberRow on FlxRoleMember {\n  databaseId\n  name\n  email\n  phone {\n    display\n    e164\n  }\n  editUrl\n  referralLink\n}\n\nfragment FlxRoleRow on FlxRole {\n  key\n  label\n  description\n  custom\n  memberCount\n  capabilities\n  home\n}\n\nfragment FlxRolesConfigFields on FlxRolesConfig {\n  referralDays\n  newUserUrl\n  permissionsUrl\n  homeChoices {\n    key\n    label\n  }\n}",
 };
 
+/** mutation FlxSeoAuditRun (flx-seo, plugins/flx-seo/graphql/operations/FlxSeoAuditRun.graphql) */
+export const FlxSeoAuditRun: FlxOperation<T.FlxSeoAuditRunMutation, T.FlxSeoAuditRunMutationVariables> = {
+  id: '24ef9e0380385f71b2af51a8163f15a8362c7a02a3fee076051efdd289a4d7a4',
+  name: 'FlxSeoAuditRun',
+  kind: 'mutation',
+  plugin: 'flx-seo',
+  document: "mutation FlxSeoAuditRun($input: FlxSeoAuditRunInput!) {\n  flxSeoAuditRun(input: $input) {\n    audit {\n      ...FlxSeoAuditFields\n    }\n    history {\n      ...FlxSeoHistoryFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxSeoAuditFields on FlxSeoAudit {\n  counts {\n    ...FlxSeoCountsFields\n  }\n  local {\n    time {\n      iso\n      label\n      relative\n    }\n    url\n    durationMs\n    httpStatus\n  }\n  pageSpeed {\n    strategy\n    time {\n      iso\n      label\n      relative\n    }\n    url\n    lighthouse\n    scores {\n      category\n      label\n      score\n      passed\n      total\n    }\n    metrics {\n      key\n      label\n      value\n      score\n    }\n  }\n  agentic {\n    id\n    label\n    passed\n  }\n  agenticPassed\n  auditUrl\n  mcpServerOn\n  llmsUrl\n  findings {\n    id\n    title\n    priority\n    priorityLabel\n    category\n    categoryLabel\n    also\n    detail\n    fix\n    owner\n    ownerLabel\n    items\n    sources\n    fixId\n    fixLabel\n  }\n}\n\nfragment FlxSeoCountsFields on FlxSeoCounts {\n  critical\n  high\n  medium\n  low\n}\n\nfragment FlxSeoHistoryFields on FlxSeoHistory {\n  total\n  running\n  errors\n  next {\n    iso\n    label\n  }\n  entries {\n    time {\n      iso\n      label\n      relative\n    }\n    trigger\n    triggerLabel\n    url\n    counts {\n      ...FlxSeoCountsFields\n    }\n    scores {\n      strategy\n      category\n      label\n      score\n    }\n    metrics {\n      strategy\n      fcp\n      lcp\n      tbt\n      cls\n      si\n    }\n    agentic\n    added {\n      id\n      title\n    }\n    resolved {\n      id\n      title\n    }\n  }\n}",
+};
+
+/** query FlxSeoAuditScreen (flx-seo, plugins/flx-seo/graphql/operations/FlxSeoAuditScreen.graphql) */
+export const FlxSeoAuditScreen: FlxOperation<T.FlxSeoAuditScreenQuery, T.FlxSeoAuditScreenQueryVariables> = {
+  id: '25585531a77819b9e9b681a85e767cb408d01dcab0ecb5e5e3717d30b20fb89e',
+  name: 'FlxSeoAuditScreen',
+  kind: 'query',
+  plugin: 'flx-seo',
+  document: "query FlxSeoAuditScreen($history: Int = 30) {\n  flxSeoAudit {\n    ...FlxSeoAuditFields\n  }\n  flxSeoAuditHistory(limit: $history) {\n    ...FlxSeoHistoryFields\n  }\n}\n\nfragment FlxSeoAuditFields on FlxSeoAudit {\n  counts {\n    ...FlxSeoCountsFields\n  }\n  local {\n    time {\n      iso\n      label\n      relative\n    }\n    url\n    durationMs\n    httpStatus\n  }\n  pageSpeed {\n    strategy\n    time {\n      iso\n      label\n      relative\n    }\n    url\n    lighthouse\n    scores {\n      category\n      label\n      score\n      passed\n      total\n    }\n    metrics {\n      key\n      label\n      value\n      score\n    }\n  }\n  agentic {\n    id\n    label\n    passed\n  }\n  agenticPassed\n  auditUrl\n  mcpServerOn\n  llmsUrl\n  findings {\n    id\n    title\n    priority\n    priorityLabel\n    category\n    categoryLabel\n    also\n    detail\n    fix\n    owner\n    ownerLabel\n    items\n    sources\n    fixId\n    fixLabel\n  }\n}\n\nfragment FlxSeoCountsFields on FlxSeoCounts {\n  critical\n  high\n  medium\n  low\n}\n\nfragment FlxSeoHistoryFields on FlxSeoHistory {\n  total\n  running\n  errors\n  next {\n    iso\n    label\n  }\n  entries {\n    time {\n      iso\n      label\n      relative\n    }\n    trigger\n    triggerLabel\n    url\n    counts {\n      ...FlxSeoCountsFields\n    }\n    scores {\n      strategy\n      category\n      label\n      score\n    }\n    metrics {\n      strategy\n      fcp\n      lcp\n      tbt\n      cls\n      si\n    }\n    agentic\n    added {\n      id\n      title\n    }\n    resolved {\n      id\n      title\n    }\n  }\n}",
+};
+
+/** query FlxSeoContentCheck (flx-seo, plugins/flx-seo/graphql/operations/FlxSeoContentCheck.graphql) */
+export const FlxSeoContentCheck: FlxOperation<T.FlxSeoContentCheckQuery, T.FlxSeoContentCheckQueryVariables> = {
+  id: '97d49670dd4df105502f5013764c377eaadec82d4f58ba3d9d0f8d3a00566bd2',
+  name: 'FlxSeoContentCheck',
+  kind: 'query',
+  plugin: 'flx-seo',
+  document: "query FlxSeoContentCheck($limit: Int = 300) {\n  flxSeoContentCheck(limit: $limit) {\n    checked\n    total\n    items {\n      databaseId\n      title\n      postType\n      url\n      editUrl\n      issues {\n        level\n        code\n        message\n      }\n    }\n  }\n}",
+};
+
+/** mutation FlxSeoFixApply (flx-seo, plugins/flx-seo/graphql/operations/FlxSeoFixApply.graphql) */
+export const FlxSeoFixApply: FlxOperation<T.FlxSeoFixApplyMutation, T.FlxSeoFixApplyMutationVariables> = {
+  id: 'aca5c530650ff0a558a94968a069e5d1d183315910cf69556396462fb63d557a',
+  name: 'FlxSeoFixApply',
+  kind: 'mutation',
+  plugin: 'flx-seo',
+  document: "mutation FlxSeoFixApply($input: FlxSeoFixApplyInput!) {\n  flxSeoFixApply(input: $input) {\n    audit {\n      ...FlxSeoAuditFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxSeoAuditFields on FlxSeoAudit {\n  counts {\n    ...FlxSeoCountsFields\n  }\n  local {\n    time {\n      iso\n      label\n      relative\n    }\n    url\n    durationMs\n    httpStatus\n  }\n  pageSpeed {\n    strategy\n    time {\n      iso\n      label\n      relative\n    }\n    url\n    lighthouse\n    scores {\n      category\n      label\n      score\n      passed\n      total\n    }\n    metrics {\n      key\n      label\n      value\n      score\n    }\n  }\n  agentic {\n    id\n    label\n    passed\n  }\n  agenticPassed\n  auditUrl\n  mcpServerOn\n  llmsUrl\n  findings {\n    id\n    title\n    priority\n    priorityLabel\n    category\n    categoryLabel\n    also\n    detail\n    fix\n    owner\n    ownerLabel\n    items\n    sources\n    fixId\n    fixLabel\n  }\n}\n\nfragment FlxSeoCountsFields on FlxSeoCounts {\n  critical\n  high\n  medium\n  low\n}",
+};
+
+/** query FlxSeoGuide (flx-seo, plugins/flx-seo/graphql/operations/FlxSeoGuide.graphql) */
+export const FlxSeoGuide: FlxOperation<T.FlxSeoGuideQuery, T.FlxSeoGuideQueryVariables> = {
+  id: 'fa7f2e42636c7fd69983e7637be5625f01102cc336c76b7e751dfc6b25299aea',
+  name: 'FlxSeoGuide',
+  kind: 'query',
+  plugin: 'flx-seo',
+  document: "query FlxSeoGuide($lang: FlxSeoGuideLang) {\n  flxSeoGuide(lang: $lang) {\n    lang\n    markdown\n    sections\n  }\n}",
+};
+
+/** mutation FlxSeoIndexNowSubmit (flx-seo, plugins/flx-seo/graphql/operations/FlxSeoIndexNowSubmit.graphql) */
+export const FlxSeoIndexNowSubmit: FlxOperation<T.FlxSeoIndexNowSubmitMutation, T.FlxSeoIndexNowSubmitMutationVariables> = {
+  id: '84dfec5a3b859e284998fc8124abae04e2fdd4419dac91ab6cb5971882673a9d',
+  name: 'FlxSeoIndexNowSubmit',
+  kind: 'mutation',
+  plugin: 'flx-seo',
+  document: "mutation FlxSeoIndexNowSubmit($input: FlxSeoIndexNowSubmitInput!) {\n  flxSeoIndexNowSubmit(input: $input) {\n    submitted\n    setup {\n      ...FlxSeoSetupFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxSeoSetupFields on FlxSeoSetup {\n  otherPlugin\n  aiReady\n  blogName\n  homeUrl\n  sitemapUrl\n  logoDefault\n  imageDefault\n  homeTitle\n  homeDesc\n  sitekit\n  sitePublic\n  indexnowKey\n  indexnowUrl\n  indexnowLast\n  indexnowReady\n  psiKeySaved\n  adminEmail\n  guideSections\n  engines {\n    key\n    field\n    name\n    url\n    link\n    placeholder\n    help\n  }\n}",
+};
+
+/** mutation FlxSeoPsiKeySave (flx-seo, plugins/flx-seo/graphql/operations/FlxSeoPsiKeySave.graphql) */
+export const FlxSeoPsiKeySave: FlxOperation<T.FlxSeoPsiKeySaveMutation, T.FlxSeoPsiKeySaveMutationVariables> = {
+  id: '59e6780cadb6bc0d4dcecc09e482056c52aeb00879b5b1c00fa35049f815dea2',
+  name: 'FlxSeoPsiKeySave',
+  kind: 'mutation',
+  plugin: 'flx-seo',
+  document: "mutation FlxSeoPsiKeySave($input: FlxSeoPsiKeySaveInput!) {\n  flxSeoPsiKeySave(input: $input) {\n    saved\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxSeoSettingsSave (flx-seo, plugins/flx-seo/graphql/operations/FlxSeoSettingsSave.graphql) */
+export const FlxSeoSettingsSave: FlxOperation<T.FlxSeoSettingsSaveMutation, T.FlxSeoSettingsSaveMutationVariables> = {
+  id: 'ffd79b34482e7fd6c534446f2a81d044658a4eea3fafffa2d65eb14c8b4101fd',
+  name: 'FlxSeoSettingsSave',
+  kind: 'mutation',
+  plugin: 'flx-seo',
+  document: "mutation FlxSeoSettingsSave($flxseo: FlxSettingsFlxseoInput!) {\n  flxSettingsUpdate(input: { flxseo: $flxseo }) {\n    settings {\n      flxseo {\n        ...FlxSeoSettingsFields\n      }\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxSeoSettingsFields on FlxSettingsFlxseo {\n  enabled\n  siteName\n  altName\n  sep\n  homeTitle\n  homeDesc\n  ogImage\n  verifyGoogle\n  verifyBing\n  verifyYandex\n  verifyNaver\n  verifySeznam\n  verifyBaidu\n  indexnow\n  noindexShop\n  noindexSearch\n  noindexAuthor\n  noindexTags\n  autoAlt\n  orgName\n  orgType\n  founding\n  logo\n  street\n  locality\n  postal\n  country\n  phone\n  email\n  sameAs\n  twitter\n  knowsAbout\n  areaServed\n  donateLabel\n  donateUrl\n  llms\n  llmsIntro\n  webmcp\n  markdown\n  contentSignal\n  csSearch\n  csAiInput\n  csAiTrain\n  hdrFrame\n  hdrCoop\n  hdrCsp\n  hstsSub\n  hstsPreload\n  auditFreq\n  auditDay\n  auditHour\n  auditPsi\n  auditMail\n  auditMailTo\n}",
+};
+
+/** query FlxSeoSettingsScreen (flx-seo, plugins/flx-seo/graphql/operations/FlxSeoSettingsScreen.graphql) */
+export const FlxSeoSettingsScreen: FlxOperation<T.FlxSeoSettingsScreenQuery, T.FlxSeoSettingsScreenQueryVariables> = {
+  id: '86bc810d43babcb5cefcbb0d86511dc9661c0d5431662164e77220a7f6f5e3b8',
+  name: 'FlxSeoSettingsScreen',
+  kind: 'query',
+  plugin: 'flx-seo',
+  document: "query FlxSeoSettingsScreen {\n  flxSettings {\n    flxseo {\n      ...FlxSeoSettingsFields\n    }\n  }\n  flxSeoSetup {\n    ...FlxSeoSetupFields\n  }\n}\n\nfragment FlxSeoSettingsFields on FlxSettingsFlxseo {\n  enabled\n  siteName\n  altName\n  sep\n  homeTitle\n  homeDesc\n  ogImage\n  verifyGoogle\n  verifyBing\n  verifyYandex\n  verifyNaver\n  verifySeznam\n  verifyBaidu\n  indexnow\n  noindexShop\n  noindexSearch\n  noindexAuthor\n  noindexTags\n  autoAlt\n  orgName\n  orgType\n  founding\n  logo\n  street\n  locality\n  postal\n  country\n  phone\n  email\n  sameAs\n  twitter\n  knowsAbout\n  areaServed\n  donateLabel\n  donateUrl\n  llms\n  llmsIntro\n  webmcp\n  markdown\n  contentSignal\n  csSearch\n  csAiInput\n  csAiTrain\n  hdrFrame\n  hdrCoop\n  hdrCsp\n  hstsSub\n  hstsPreload\n  auditFreq\n  auditDay\n  auditHour\n  auditPsi\n  auditMail\n  auditMailTo\n}\n\nfragment FlxSeoSetupFields on FlxSeoSetup {\n  otherPlugin\n  aiReady\n  blogName\n  homeUrl\n  sitemapUrl\n  logoDefault\n  imageDefault\n  homeTitle\n  homeDesc\n  sitekit\n  sitePublic\n  indexnowKey\n  indexnowUrl\n  indexnowLast\n  indexnowReady\n  psiKeySaved\n  adminEmail\n  guideSections\n  engines {\n    key\n    field\n    name\n    url\n    link\n    placeholder\n    help\n  }\n}",
+};
+
 /** mutation FlxTaskCommentCreate (flx-tasks, plugins/flx-tasks/graphql/operations/FlxTaskCommentCreate.graphql) */
 export const FlxTaskCommentCreate: FlxOperation<T.FlxTaskCommentCreateMutation, T.FlxTaskCommentCreateMutationVariables> = {
   id: 'fca51d9372f393736cd5c7f3cc3a6c6f76bc42c714907f05360f59ce43283d8b',
