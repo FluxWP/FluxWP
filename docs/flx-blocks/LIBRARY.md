@@ -13,7 +13,7 @@ Bir siteyi kütüphane olarak açmak için pencerede **Kütüphane ekle › Bu s
 
 ## REST
 
-Ad alanı `flx-blocks/v1`.
+Ad alanı `flx-blocks/v1`. Bu sitenin kendi ekranları (pano, FluxApp) GraphQL kullanır (`flxBlocksLibrary`, `flxBlocksLibrarySources`, `flxBlocksLibraryShare` …, `GRAPHQL.md`); siteler arası `GET /library` REST'te kalır.
 
 | Uç | Yetki | Ne yapar |
 |---|---|---|

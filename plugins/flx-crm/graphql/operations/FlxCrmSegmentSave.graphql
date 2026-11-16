@@ -1,0 +1,10 @@
+mutation FlxCrmSegmentSave($input: FlxSegmentSaveInput!) {
+  flxSegmentSave(input: $input) {
+    segment {
+      ...FlxCrmSegmentRow
+    }
+    errors {
+      ...FlxCrmUserError
+    }
+  }
+}
