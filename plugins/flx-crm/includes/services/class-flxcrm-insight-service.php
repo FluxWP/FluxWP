@@ -142,7 +142,7 @@ final class FLXCRM_Insight_Service {
 			'scored'  => FLXCRM_Val::int( $r['scored'] ),
 			'changed' => FLXCRM_Val::int( $r['changed'] ),
 			'done'    => FLXCRM_Val::bool( $r['done'] ),
-			'total'   => FLXCRM_Val::int( $r['total'] ?? 0 ),
+			'total'   => FLXCRM_Val::int( $r['total'] ),
 		);
 	}
 
