@@ -1,0 +1,9 @@
+mutation FlxSetupWizardLogo($input: FlxSetupWizardLogoInput!) {
+  flxSetupWizardLogo(input: $input) {
+    attachmentId
+    url
+    errors {
+      ...FlxSetupErrors
+    }
+  }
+}

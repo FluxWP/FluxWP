@@ -1,0 +1,10 @@
+query FlxSetupPlan($slugs: [String!], $wpKeys: [String!], $all: Boolean, $activate: Boolean) {
+  flxSetupPlan(slugs: $slugs, wpKeys: $wpKeys, all: $all, activate: $activate) {
+    kind
+    slug
+    id
+    name
+    why
+    version
+  }
+}

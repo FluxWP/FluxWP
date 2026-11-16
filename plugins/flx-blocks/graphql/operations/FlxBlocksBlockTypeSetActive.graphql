@@ -1,0 +1,12 @@
+mutation FlxBlocksBlockTypeSetActive($input: FlxBlocksBlockTypeSetActiveInput!) {
+  flxBlocksBlockTypeSetActive(input: $input) {
+    blockType {
+      ...FlxBlocksBlockTypeRow
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

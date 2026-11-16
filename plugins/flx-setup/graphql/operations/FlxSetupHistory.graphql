@@ -1,0 +1,36 @@
+query FlxSetupHistory($page: Int) {
+  flxSetupHistory(page: $page) {
+    rows {
+      time {
+        iso
+        label
+        relative
+      }
+      name
+      action
+      success
+      message
+      by
+      backup {
+        id
+        deleted
+        size
+        locked
+        keepUntil {
+          label
+        }
+        deletable
+        selectable
+        url
+      }
+    }
+    total
+    pages
+    page
+    canDelete
+    backupPage
+    retention {
+      ...FlxSetupRetentionFields
+    }
+  }
+}

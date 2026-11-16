@@ -317,11 +317,116 @@ type RootQuery {
     since: Int
   ): FlxAppSync!
 
+  "Blocks of the Block Editor dashboard (a short list)."
+  flxBlocksBlockTypes: [FlxBlocksBlockType!]!
+
+  "This site&#039;s design library, or a linked library&#039;s."
+  flxBlocksLibrary(
+    "Linked library id; leave empty for this site."
+    source: ID
+
+    "Fetch a linked library again instead of using the 30 minute copy."
+    refresh: Boolean
+  ): FlxBlocksLibrary!
+
+  "Sharing of this site&#039;s design library."
+  flxBlocksLibraryShare: FlxBlocksLibraryShare!
+
+  "Linked design libraries (a short list)."
+  flxBlocksLibrarySources: [FlxBlocksLibrarySource!]!
+
+  "One design library pattern (for its preview)."
+  flxBlocksPattern(
+    "Pattern id."
+    id: String!
+
+    "Linked library id; leave empty for this site."
+    source: ID
+  ): FlxBlocksPattern
+
+  "Renders block markup (a pattern or an unsaved draft) as the site would."
+  flxBlocksRender(
+    "Block markup."
+    content: String!
+
+    "Post the markup belongs to; dynamic blocks read it. The user must be able to edit it."
+    postId: Int
+  ): FlxBlocksContent!
+
+  "Block Editor dashboard settings."
+  flxBlocksSettings: FlxBlocksSettings!
+
+  "Site-wide styles block pages share. Load once per page, before the content styles."
+  flxBlocksSiteStyles: FlxBlocksSiteStyles!
+
   "The FluxWP capability catalog, with what the current user has."
   flxCapabilities: [FlxCapability!]!
 
   "The shopper&#039;s cart (Cart-Token session or the WooCommerce session cookie). Never cached."
   flxCart: FlxCart!
+
+  "One contact; empty when it does not exist."
+  flxContact(
+    "Global ID or contact ID."
+    id: ID!
+  ): FlxContact
+
+  "Groups of likely duplicate contacts (at most 50 groups)."
+  flxContactDuplicates: [FlxDuplicateGroup!]!
+
+  "Contacts, filtered and sorted."
+  flxContacts(
+    "Records per page (at most 50)."
+    first: Int
+
+    "Cursor to continue after (pageInfo.endCursor)."
+    after: String
+
+    "Filter."
+    filter: FlxContactFilterInput
+
+    "Sort field (default: last activity)."
+    orderBy: FlxContactOrderBy
+
+    "Sort direction (default: largest first)."
+    order: FlxContactOrder
+  ): FlxContactConnection!
+
+  "How Flux AI and MCP are connected to CRM, and the tool list."
+  flxCrmAi: FlxCrmAi!
+
+  "Recent changes made with Flux AI, MCP or automation."
+  flxCrmAiLog(
+    "Entries (1–50, default 15)."
+    limit: Int
+  ): [FlxCrmAiLogEntry!]!
+
+  "Vocabulary the CRM screens share: roles, value segments, timeline types, sources."
+  flxCrmMeta: FlxCrmMeta!
+
+  "The CRM overview numbers and distributions."
+  flxCrmOverview: FlxCrmOverview!
+
+  "The newest timeline entries of every contact."
+  flxCrmRecentEvents(
+    "Entries (1–50, default 10)."
+    limit: Int
+  ): [FlxContactEvent!]!
+
+  "Flux CRM settings."
+  flxCrmSettings: FlxCrmSettings!
+
+  "One journey; empty when it does not exist."
+  flxJourney(
+    "Journey ID."
+    id: Int!
+  ): FlxJourney
+
+  "Triggers, step types, conditions and templates of the journey editor."
+  flxJourneyConfig: FlxJourneyConfig!
+
+  "Journeys with their numbers."
+  flxJourneys: [FlxJourney!]!
 
   "An AI translation job you started (it stays readable for a few minutes after it finishes)."
   flxLanguageJob(
@@ -349,6 +454,27 @@ type RootQuery {
 
   "Settings and links of the Roles and access page."
   flxRolesConfig: FlxRolesConfig!
+
+  "One saved segment; empty when it does not exist."
+  flxSegment(
+    "Segment ID."
+    id: Int!
+  ): FlxSegment
+
+  "Fields, operators and choices of the segment rule editor."
+  flxSegmentEditor: FlxSegmentEditor!
+
+  "Counts the contacts a rule list would match, without saving it."
+  flxSegmentPreview(
+    "All rules or any rule (default: all)."
+    match: FlxSegmentMatch
+
+    "Rules."
+    rules: [FlxSegmentRuleInput!]!
+  ): FlxSegmentPreview!
+
+  "Saved segments."
+  flxSegments: [FlxSegment!]!
 
   "The current site audit report."
   flxSeoAudit: FlxSeoAudit!
@@ -379,6 +505,72 @@ type RootQuery {
 
   "Panel settings of the installed FluxWP packages."
   flxSettings: FlxSettings!
+
+  "Connection to the main update server."
+  flxSetupConnection: FlxSetupConnection!
+
+  "Flux GraphQL on this site and the PHP version it needs."
+  flxSetupGraphqlStatus: FlxSetupGraphqlStatus!
+
+  "A page of the update history with the backup of each record."
+  flxSetupHistory(
+    "Page, from 1 (20 records per page)."
+    page: Int
+  ): FlxSetupHistory!
+
+  "Connection state, tab counts and strips of the Packages screen."
+  flxSetupOverview: FlxSetupOverview!
+
+  "One row of the package table; empty when the key is unknown."
+  flxSetupPackage(
+    "Row key."
+    key: String!
+  ): FlxSetupPackage
+
+  "The package table: FluxWP packages, plugins and themes of other makers, translations and WordPress core, in the order the classic page shows them."
+  flxSetupPackages(
+    "Records per page (at most 50)."
+    first: Int
+
+    "Cursor to continue after (pageInfo.endCursor)."
+    after: String
+
+    "Only this tab (default: all)."
+    tab: FlxSetupPackageTab
+
+    "Only rows that match this text (name, slug, author, category)."
+    search: String
+
+    "Only rows with an update."
+    onlyUpdates: Boolean
+  ): FlxSetupPackageConnection!
+
+  "The steps to install or update a selection: required plugins first, then installs, then updates. Nothing runs; send each step to flxSetupStepRun."
+  flxSetupPlan(
+    "FluxWP packages to install or update."
+    slugs: [String!]
+
+    "Rows of other makers to update (keys like p:folder/file.php, t:folder or lang)."
+    wpKeys: [String!]
+
+    "Every row with an update (not WordPress core)."
+    all: Boolean
+
+    "Activate the installed plugins (default: yes)."
+    activate: Boolean
+  ): [FlxSetupStep!]!
+
+  "Connection and update settings."
+  flxSetupSettings: FlxSetupSettings!
+
+  "The main update server and the other sources, in priority order."
+  flxSetupSources: [FlxSetupSource!]!
+
+  "The rows FluxWP Panel adds to the system check: PHP version, Flux GraphQL, update server, other sources and packages waiting for an update."
+  flxSetupSystemChecks: [FlxSetupSystemCheck!]!
+
+  "Every tag with its contact count."
+  flxTags: [FlxTag!]!
 
   "One task; empty when it does not exist or the user may not see it."
   flxTask(
@@ -2678,6 +2870,9 @@ interface ContentNode implements Node & UniformResourceIdentifiable {
     where: ContentNodeToEnqueuedStylesheetConnectionWhereArgs
   ): ContentNodeToEnqueuedStylesheetConnection
 
+  "The blocks of this content rendered as on the site, with the CSS and files the page needs. Null when the content is password protected."
+  flxBlocks: FlxBlocksContent
+
   "Language code of this content. Empty for a type that is not translated and for shared pages (cart, checkout, my account)."
   flxLanguage: String
 
@@ -4637,6 +4832,9 @@ type MediaItem implements Node & ContentNode & UniformResourceIdentifiable & Dat
     size: MediaItemSizeEnum
   ): Int
 
+  "The blocks of this content rendered as on the site, with the CSS and files the page needs. Null when the content is password protected."
+  flxBlocks: FlxBlocksContent
+
   "Language code of this content. Empty for a type that is not translated and for shared pages (cart, checkout, my account)."
   flxLanguage: String
 
@@ -4912,6 +5110,9 @@ interface HierarchicalContentNode implements Node & ContentNode & UniformResourc
     "Arguments for filtering the connection"
     where: ContentNodeToEnqueuedStylesheetConnectionWhereArgs
   ): ContentNodeToEnqueuedStylesheetConnection
+
+  "The blocks of this content rendered as on the site, with the CSS and files the page needs. Null when the content is password protected."
+  flxBlocks: FlxBlocksContent
 
   "Language code of this content. Empty for a type that is not translated and for shared pages (cart, checkout, my account)."
   flxLanguage: String
@@ -5269,6 +5470,114 @@ type ContentNodeToEnqueuedStylesheetConnectionPageInfo implements EnqueuedStyles
 
   "When paginating backwards, the cursor to continue."
   startCursor: String
+}
+
+"Block content rendered as on the site, with everything the page needs for it. Either put headHtml in &lt;head&gt; and footerHtml at the end of &lt;body&gt;, or load css, styles, scripts and fonts yourself; not both."
+type FlxBlocksContent {
+  "Block tree as a flat list in document order."
+  blocks: [FlxBlock!]!
+
+  "CSS generated for these blocks (block styles, custom CSS, layout). Not in styles."
+  css: String!
+
+  "Font stylesheet URLs (served from the site when local fonts are on)."
+  fonts: [String!]!
+
+  "Ready end-of-body markup: footer scripts, script modules and their data."
+  footerHtml: String!
+
+  "Ready &lt;head&gt; markup: stylesheets, fonts, css, schema and head scripts, printed by WordPress."
+  headHtml: String!
+
+  "Rendered HTML (the_content)."
+  html: String!
+
+  "JSON-LD documents for the page head (e.g. FAQ schema of accordions)."
+  schema: [String!]!
+
+  "Scripts and script modules, dependencies first."
+  scripts: [FlxBlocksAsset!]!
+
+  "Stylesheets, dependencies first."
+  styles: [FlxBlocksAsset!]!
+}
+
+"One block of the content. The tree is flat: inner blocks point to their parent with parentClientId."
+type FlxBlock {
+  "Attributes saved in the block comment (each block type has its own)."
+  attributes: FlxJSON!
+
+  "Position path, the same for the same content (&quot;0&quot;, &quot;0.2&quot;, &quot;0.2.1&quot;)."
+  clientId: String!
+
+  "Nesting level; 0 for a top-level block."
+  depth: Int!
+
+  "Rendered on the server; its saved HTML is not what visitors see."
+  dynamic: Boolean!
+
+  "The block&#039;s own saved HTML, without its inner blocks."
+  innerHtml: String!
+
+  "Block name, e.g. flx/rowlayout; core/freeform for loose HTML."
+  name: String!
+
+  "Position among its siblings, from 0."
+  order: Int!
+
+  "Parent block; null for a top-level block."
+  parentClientId: String
+}
+
+"Free-form JSON value (object, list, string, number or boolean)."
+scalar FlxJSON
+
+"A stylesheet or script rendered blocks need, as WordPress registered it."
+type FlxBlocksAsset {
+  "Localized data script (var x = {...}) to run before the file; empty when none."
+  data: String!
+
+  "Handles this asset needs; they come earlier in the same list."
+  dependencies: [String!]!
+
+  "Loaded at the end of the body."
+  footer: Boolean!
+
+  "Registered handle (module id for modules). Use it to load each file once per page."
+  handle: String!
+
+  "Inline CSS or script to add after the file; empty when none."
+  inlineAfter: String!
+
+  "Inline script to run before the file; empty when none."
+  inlineBefore: String!
+
+  "Stylesheet, script or script module."
+  kind: FlxBlocksAssetKind!
+
+  "Stylesheet media; null for scripts."
+  media: String
+
+  "Absolute URL without the version; null for an inline-only asset."
+  src: String
+
+  "Loading strategy: defer, async or empty."
+  strategy: String!
+
+  "Version WordPress adds as ?ver=; null when it adds none."
+  version: String
+}
+
+"What kind of file an asset is."
+enum FlxBlocksAssetKind {
+  "Script module (type=\"module\", uses the import map in footerHtml)."
+  MODULE
+
+  "Classic script."
+  SCRIPT
+
+  "Stylesheet."
+  STYLE
 }
 
 "One language version of a content."
@@ -5848,6 +6157,9 @@ type Page implements Node & ContentNode & UniformResourceIdentifiable & Database
 
   "Globally unique ID of the featured image assigned to the node"
   featuredImageId: ID
+
+  "The blocks of this content rendered as on the site, with the CSS and files the page needs. Null when the content is password protected."
+  flxBlocks: FlxBlocksContent
 
   "Language code of this content. Empty for a type that is not translated and for shared pages (cart, checkout, my account)."
   flxLanguage: String
@@ -6619,6 +6931,9 @@ type Post implements Node & ContentNode & UniformResourceIdentifiable & Database
 
   "Globally unique ID of the featured image assigned to the node"
   featuredImageId: ID
+
+  "The blocks of this content rendered as on the site, with the CSS and files the page needs. Null when the content is password protected."
+  flxBlocks: FlxBlocksContent
 
   "Language code of this content. Empty for a type that is not translated and for shared pages (cart, checkout, my account)."
   flxLanguage: String
@@ -9318,9 +9633,6 @@ type FlxAppChoice {
   label: String!
 }
 
-"Free-form JSON value (object, list, string, number or boolean)."
-scalar FlxJSON
-
 "A native screen that can be turned off."
 type FlxAppScreenChoice {
   "module/screen."
@@ -10056,6 +10368,228 @@ type FlxAppEvent {
   title: String!
 }
 
+"A block on the Block Editor dashboard."
+type FlxBlocksBlockType {
+  "The block is offered in the editor."
+  active: Boolean!
+
+  "What the block does."
+  description: String!
+
+  "Admin page of the block&#039;s items (e.g. Lottie animations); null when none."
+  link: String
+
+  "Text of that link."
+  linkText: String
+
+  "Block title."
+  name: String!
+
+  "Block name, e.g. flx/rowlayout."
+  slug: String!
+}
+
+"A design library: this site&#039;s or a linked Flux site&#039;s."
+type FlxBlocksLibrary {
+  "Categories in use (a short list)."
+  categories: [FlxBlocksPatternCategory!]!
+
+  "Site name."
+  name: String!
+
+  "Patterns, filtered by category and search words."
+  patterns(
+    "Records per page (at most 50)."
+    first: Int
+
+    "Cursor to continue after (pageInfo.endCursor)."
+    after: String
+
+    "Category slug."
+    category: String
+
+    "Words to look for in the title, description and keywords."
+    search: String
+  ): FlxBlocksPatternConnection!
+
+  "Linked library id; null for this site."
+  source: ID
+
+  "Site address."
+  url: String!
+}
+
+"A design library category."
+type FlxBlocksPatternCategory {
+  "Patterns in the category."
+  count: Int!
+
+  "Category name."
+  label: String!
+
+  "Category slug."
+  slug: String!
+}
+
+"Design library patterns."
+type FlxBlocksPatternConnection {
+  "Records with their cursors."
+  edges: [FlxBlocksPatternEdge!]!
+
+  "Records of this page."
+  nodes: [FlxBlocksPattern!]!
+
+  "Paging information."
+  pageInfo: FlxPageInfo!
+
+  "All matching records (null when counting would be slow)."
+  totalCount: Int
+}
+
+"One FlxBlocksPattern in a list, with its cursor."
+type FlxBlocksPatternEdge {
+  "Opaque cursor of this record."
+  cursor: String!
+
+  "The record."
+  node: FlxBlocksPattern!
+}
+
+"A design library pattern (a ready section or page)."
+type FlxBlocksPattern {
+  "Category slugs."
+  categories: [String!]!
+
+  "Block markup to insert."
+  content: String!
+
+  "Description; empty when none."
+  description: String!
+
+  "Pattern name (e.g. flx-preset/hero) or user/&lt;post id&gt; for My patterns."
+  id: String!
+
+  "Search keywords."
+  keywords: [String!]!
+
+  "The pattern rendered on this site (preview). Ask for it on one pattern at a time."
+  rendered: FlxBlocksContent!
+
+  "Linked library the pattern comes from; null for this site."
+  source: ID
+
+  "Title."
+  title: String!
+
+  "Width to preview the pattern at (px)."
+  viewportWidth: Int!
+}
+
+"Where a page sits in a list."
+type FlxPageInfo {
+  "Cursor of the last record on this page; pass it as &quot;after&quot; for the next page."
+  endCursor: String
+
+  "More records follow this page."
+  hasNextPage: Boolean!
+
+  "Records come before this page."
+  hasPreviousPage: Boolean!
+
+  "Cursor of the first record on this page."
+  startCursor: String
+}
+
+"Sharing this site&#039;s design library with other Flux sites."
+type FlxBlocksLibraryShare {
+  "Other sites can add this library."
+  enabled: Boolean!
+
+  "Key the other site enters; empty until sharing is turned on."
+  key: String!
+
+  "Address the other site enters."
+  url: String!
+}
+
+"A linked design library (another Flux site). Its key never leaves the server."
+type FlxBlocksLibrarySource {
+  "A library key is saved for it."
+  hasKey: Boolean!
+
+  "Source id."
+  id: ID!
+
+  "Name."
+  name: String!
+
+  "Site address."
+  url: String!
+}
+
+"Block Editor dashboard settings."
+type FlxBlocksSettings {
+  "Editor widths; null when the theme does not use them."
+  editorWidth: FlxBlocksEditorWidth
+
+  "The admin bar setting is offered (filter flxbk_show_admin_bar)."
+  showAdminBarSetting: Boolean!
+
+  "Show the page&#039;s header blocks in the admin bar."
+  showHeadersInAdminBar: Boolean!
+
+  "Admin address of the Style Library."
+  styleLibraryUrl: String!
+}
+
+"Editor widths (only for themes that use them)."
+type FlxBlocksEditorWidth {
+  "The theme&#039;s content width (px); 0 when it sets none."
+  contentWidth: Int!
+
+  "Width can be chosen per page and post."
+  enabled: Boolean!
+
+  "Large template width (px)."
+  large: Int!
+
+  "Width of new pages."
+  pageDefault: FlxBlocksEditorWidthMode!
+
+  "Width of new posts."
+  postDefault: FlxBlocksEditorWidthMode!
+
+  "Small template width (px)."
+  small: Int!
+}
+
+"Editor width of a page or post."
+enum FlxBlocksEditorWidthMode {
+  "Full width."
+  FULL_WIDTH
+
+  "Large template."
+  LARGE
+
+  "Small template."
+  SMALL
+}
+
+"Site-wide styles every block page needs once."
+type FlxBlocksSiteStyles {
+  "Flux Block Editor variables, theme palette and palette color classes."
+  css: String!
+
+  "The theme&#039;s global styles (theme.json presets and styles)."
+  globalStylesheet: String!
+
+  "Ready &lt;head&gt; markup of all of the above."
+  headHtml: String!
+
+  "Base block library stylesheets."
+  styles: [FlxBlocksAsset!]!
+}
+
 "A capability a FluxWP package checks."
 type FlxCapability {
   "Whether the current user has it."
@@ -10389,6 +10923,945 @@ type FlxCartTaxLine {
   rate: String!
 }
 
+"A person in the shared people table with the CRM columns: donor, customer, volunteer, lead. Implements FlxPerson; other packages add their own fields with flx_gql_field( &#039;FlxContact&#039;, … )."
+type FlxContact implements FlxPerson & Node {
+  "The churn risk is at or above the threshold of the settings."
+  atRisk: Boolean
+
+  "Picture address (from the e-mail address)."
+  avatar: String
+
+  "Average days between payments."
+  avgGapDays: Int
+
+  "Churn risk 0–100."
+  churn: Int
+
+  "City."
+  city: String
+
+  "Organisation."
+  company: String
+
+  "Channel permissions."
+  consent: FlxContactConsent
+
+  "Last permission change."
+  consentAt: FlxDateTime
+
+  "ISO country code."
+  country: String
+
+  "When the contact was added."
+  createdAt: FlxDateTime
+
+  "Database ID."
+  databaseId: Int!
+
+  "Number of donations."
+  donations: Int
+
+  "The classic contact card in wp-admin (with the sections other packages add)."
+  editUrl: String
+
+  "E-mail address (lower case)."
+  email: String
+
+  "First payment."
+  firstPaidAt: FlxDateTime
+
+  "Global ID."
+  id: ID!
+
+  "Last activity; empty when there is none yet."
+  lastActivityAt: FlxDateTime
+
+  "Last payment."
+  lastPaidAt: FlxDateTime
+
+  "Total value in the reporting currency."
+  ltv: FlxMoney
+
+  "Display name: the name, else the e-mail, else the phone."
+  name: String!
+
+  "Short note."
+  note: String
+
+  "Number of orders."
+  orders: Int
+
+  "Owner (user ID); empty when none."
+  ownerId: Int
+
+  "Owner&#039;s name."
+  ownerName: String
+
+  "Days with a payment."
+  paidDays: Int
+
+  "Phone number."
+  phone: FlxPhone
+
+  "Name as saved (may be empty)."
+  rawName: String!
+
+  "Recency, frequency and monetary scores."
+  rfm: FlxContactRfm
+
+  "Role keys (flxCrmMeta.roles)."
+  roles: [String!]
+
+  "Value segment key (flxCrmMeta.rfm); empty before the first scoring."
+  segment: String
+
+  "Name of the value segment."
+  segmentLabel: String
+
+  "First source key."
+  source: String
+
+  "First source name."
+  sourceLabel: String
+
+  "Package records the contact came from."
+  sources: [FlxContactSource!]
+
+  "Working list or archive."
+  status: FlxContactStatus
+
+  "Tags on the contact."
+  tags: [FlxTag!]
+
+  "Timeline, newest first."
+  timeline(
+    "Records per page (at most 50)."
+    first: Int
+
+    "Cursor to continue after (pageInfo.endCursor)."
+    after: String
+
+    "Timeline filter key (flxCrmMeta.timelineFilters); empty = all."
+    filter: String
+  ): FlxContactEventConnection
+
+  "Linked WordPress user; empty when none."
+  userId: Int
+
+  "First campaign."
+  utmCampaign: String
+
+  "First campaign source."
+  utmSource: String
+}
+
+"A person (donor, customer, contact). Flux CRM owns the record; other packages return it."
+interface FlxPerson {
+  "Picture address."
+  avatar: String
+
+  "Person ID in the shared people table."
+  databaseId: Int!
+
+  "E-mail address."
+  email: String
+
+  "Global ID."
+  id: ID!
+
+  "Full name."
+  name: String!
+
+  "Phone number."
+  phone: FlxPhone
+}
+
+"A phone number."
+type FlxPhone {
+  "Digits only (905301234567)."
+  digits: String!
+
+  "Number as entered, for display."
+  display: String!
+
+  "E.164 form (+905301234567); empty when the number is not valid."
+  e164: String!
+}
+
+"Which channels the contact gave permission for."
+type FlxContactConsent {
+  "Ad audiences."
+  ads: Boolean!
+
+  "E-mail."
+  email: Boolean!
+
+  "SMS."
+  sms: Boolean!
+
+  "WhatsApp."
+  whatsapp: Boolean!
+}
+
+"A point in time with labels in the user&#039;s language."
+type FlxDateTime {
+  "ISO 8601 in UTC (2026-11-15T14:59:00Z)."
+  iso: String!
+
+  "Date and time for display, in the site time zone and the user&#039;s language."
+  label: String!
+
+  "Relative time for display (&quot;5 minutes ago&quot;)."
+  relative: String!
+
+  "Unix timestamp."
+  timestamp: Int!
+}
+
+"Recency, frequency and monetary scores (1–5; 0 = not scored)."
+type FlxContactRfm {
+  "How often they pay."
+  frequency: Int!
+
+  "How much they pay."
+  monetary: Int!
+
+  "How recently they paid."
+  recency: Int!
+}
+
+"A package record the contact came from."
+type FlxContactSource {
+  "When it was linked, for display."
+  date: String
+
+  "Source name."
+  label: String!
+
+  "Admin page of the record; empty when there is none."
+  url: String
+}
+
+"Whether a contact is in the working list or archived."
+enum FlxContactStatus {
+  "In the working list."
+  ACTIVE
+
+  "Hidden from the working list; the history stays."
+  ARCHIVED
+}
+
+"A label on contacts."
+type FlxTag {
+  "Hex colour; empty for the default."
+  color: String
+
+  "Contacts with the tag (0 when not counted)."
+  count: Int!
+
+  "Tag ID."
+  databaseId: Int!
+
+  "Name."
+  name: String!
+}
+
+"A page of timeline entries, newest first."
+type FlxContactEventConnection {
+  "Records with their cursors."
+  edges: [FlxContactEventEdge!]!
+
+  "Records of this page."
+  nodes: [FlxContactEvent!]!
+
+  "Paging information."
+  pageInfo: FlxPageInfo!
+
+  "All matching records (null when counting would be slow)."
+  totalCount: Int
+}
+
+"One FlxContactEvent in a list, with its cursor."
+type FlxContactEventEdge {
+  "Opaque cursor of this record."
+  cursor: String!
+
+  "The record."
+  node: FlxContactEvent!
+}
+
+"One line of a contact&#039;s timeline: a payment, message, form entry, note …"
+type FlxContactEvent {
+  "Amount; empty for entries without one."
+  amount: FlxMoney
+
+  "Answers of a form entry."
+  answers: [FlxContactEventAnswer!]!
+
+  "When."
+  at: FlxDateTime!
+
+  "Text (notes, messages)."
+  body: String
+
+  "Contact ID."
+  contactId: Int!
+
+  "Contact name; filled in the recent-events feed."
+  contactName: String
+
+  "Entry ID."
+  databaseId: Int!
+
+  "A manual entry the viewer may delete."
+  deletable: Boolean!
+
+  "Icon key."
+  icon: String!
+
+  "The payment is complete."
+  paid: Boolean!
+
+  "Source key."
+  source: String
+
+  "Payment status in words when it is not paid."
+  status: String
+
+  "Title."
+  title: String!
+
+  "Type key (see flxCrmMeta.eventTypes)."
+  type: String!
+
+  "Name of the type."
+  typeLabel: String!
+
+  "Link to the record (absolute)."
+  url: String
+
+  "Who made it (user ID); empty for the system."
+  userId: Int
+
+  "Who made it."
+  userName: String
+}
+
+"A question and its answer from a form entry."
+type FlxContactEventAnswer {
+  "Answer."
+  answer: String!
+
+  "Question."
+  question: String!
+}
+
+"Cards that are probably the same person."
+type FlxDuplicateGroup {
+  "The cards (2–10)."
+  items: [FlxDuplicateItem!]!
+
+  "Why they match: name or phone."
+  why: String!
+}
+
+"A card in a group of likely duplicates."
+type FlxDuplicateItem {
+  "The card."
+  contact: FlxContact!
+
+  "Packages that still use the card (donations, orders …)."
+  usedBy: [String!]!
+}
+
+"Narrows the contact list."
+input FlxContactFilterInput {
+  "Only contacts at or above the churn threshold."
+  atRisk: Boolean
+
+  "Only contacts who gave permission for the channel."
+  consent: FlxConsentChannel
+
+  "Role key."
+  role: String
+
+  "Name, e-mail, phone or company contains."
+  search: String
+
+  "Value segment key."
+  segment: String
+
+  "Only contacts that match a saved segment."
+  segmentId: Int
+
+  "Working list (default) or archive."
+  status: FlxContactStatus
+
+  "Tag ID."
+  tagId: Int
+}
+
+"A channel a contact gives or withholds permission for."
+enum FlxConsentChannel {
+  "Ad audiences."
+  ADS
+
+  "E-mail."
+  EMAIL
+
+  "SMS."
+  SMS
+
+  "WhatsApp."
+  WHATSAPP
+}
+
+"What the contact list is sorted by."
+enum FlxContactOrderBy {
+  "Churn risk."
+  CHURN
+
+  "Date added."
+  CREATED
+
+  "Last activity."
+  LAST_ACTIVITY
+
+  "Last payment."
+  LAST_PAID
+
+  "Total value."
+  LTV
+
+  "Name."
+  NAME
+}
+
+"Sort direction of the contact list."
+enum FlxContactOrder {
+  "Smallest first."
+  ASC
+
+  "Largest first."
+  DESC
+}
+
+"A page of contacts."
+type FlxContactConnection {
+  "Records with their cursors."
+  edges: [FlxContactEdge!]!
+
+  "Records of this page."
+  nodes: [FlxContact!]!
+
+  "Paging information."
+  pageInfo: FlxPageInfo!
+
+  "All matching records (null when counting would be slow)."
+  totalCount: Int
+}
+
+"One FlxContact in a list, with its cursor."
+type FlxContactEdge {
+  "Opaque cursor of this record."
+  cursor: String!
+
+  "The record."
+  node: FlxContact!
+}
+
+"How Flux AI and MCP are connected to CRM."
+type FlxCrmAi {
+  "Flux AI is active."
+  aiInstalled: Boolean!
+
+  "MCP settings page (administrators only)."
+  mcpAdminUrl: String
+
+  "The MCP server is on."
+  mcpEnabled: Boolean!
+
+  "The MCP server is available."
+  mcpInstalled: Boolean!
+
+  "MCP address."
+  mcpUrl: String
+
+  "Every tool."
+  tools: [FlxCrmAiTool!]!
+
+  "Tools that are on."
+  toolsOn: Int!
+}
+
+"A CRM tool Flux AI and MCP can call."
+type FlxCrmAiTool {
+  "The tool is on under the current settings."
+  enabled: Boolean!
+
+  "read, write or destructive."
+  kind: String!
+
+  "Name of the kind."
+  kindLabel: String!
+
+  "Tool name."
+  name: String!
+
+  "What it does."
+  title: String!
+}
+
+"A change made with Flux AI, MCP or automation."
+type FlxCrmAiLogEntry {
+  "What was done."
+  action: String!
+
+  "When."
+  at: FlxDateTime!
+
+  "Channel key."
+  channel: String!
+
+  "Channel name."
+  channelLabel: String!
+
+  "Why it failed."
+  error: String
+
+  "It worked."
+  ok: Boolean!
+
+  "What it was done to."
+  target: String
+
+  "Who asked."
+  who: String
+}
+
+"Vocabulary the CRM screens share: roles, value segments, timeline types, sources and permissions."
+type FlxCrmMeta {
+  "The viewer may change contacts."
+  canWrite: Boolean!
+
+  "Permission channels."
+  consents: [FlxCrmChoice!]!
+
+  "Reporting currency (ISO 4217)."
+  currency: String!
+
+  "Kinds of timeline entry."
+  eventTypes: [FlxCrmEventType!]!
+
+  "Other packages add sections (donations, certificates …) to the classic contact card; the classic card shows them."
+  hasPackageSections: Boolean!
+
+  "People who can own a contact."
+  owners: [FlxCrmOwner!]!
+
+  "Value segments the scoring assigns."
+  rfm: [FlxCrmRfmSegment!]!
+
+  "Contact roles."
+  roles: [FlxCrmRole!]!
+
+  "Where contacts come from."
+  sources: [FlxCrmChoice!]!
+
+  "Timeline filters (the empty key is &quot;All&quot;)."
+  timelineFilters: [FlxCrmChoice!]!
+}
+
+"A key with its name in the user&#039;s language."
+type FlxCrmChoice {
+  "Key."
+  key: String!
+
+  "Name."
+  label: String!
+}
+
+"A kind of timeline entry."
+type FlxCrmEventType {
+  "Icon key."
+  icon: String!
+
+  "Type key."
+  key: String!
+
+  "Name."
+  label: String!
+
+  "A person can add this kind by hand."
+  manual: Boolean!
+}
+
+"A person who can own contacts."
+type FlxCrmOwner {
+  "User ID."
+  databaseId: Int!
+
+  "Display name."
+  name: String!
+}
+
+"A customer value segment (champion, loyal, at risk …) the scoring assigns."
+type FlxCrmRfmSegment {
+  "What it means."
+  hint: String!
+
+  "Segment key."
+  key: String!
+
+  "Name."
+  label: String!
+
+  "Colour tone: good, warn, bad or neutral."
+  tone: String!
+}
+
+"A contact role (donor, customer, volunteer … or one added in the settings)."
+type FlxCrmRole {
+  "Comes with the package; cannot be deleted."
+  builtin: Boolean!
+
+  "Hex colour."
+  color: String!
+
+  "Not shown in pickers."
+  hidden: Boolean!
+
+  "Role key."
+  key: String!
+
+  "Name."
+  label: String!
+}
+
+"The CRM overview numbers and distributions."
+type FlxCrmOverview {
+  "Active in the last &quot;active days&quot;."
+  active: Int!
+
+  "Days a contact counts as active."
+  activeDays: Int!
+
+  "Reporting currency."
+  currency: String!
+
+  "Total value of all contacts."
+  ltv: FlxMoney!
+
+  "Past records have never been imported."
+  needsSync: Boolean!
+
+  "Added in the last 30 days."
+  new30: Int!
+
+  "Added in the 30 days before that."
+  newPrev: Int!
+
+  "Contacts who paid at least once."
+  paying: Int!
+
+  "Contacts who paid more than once."
+  repeat: Int!
+
+  "Contacts at or above the churn threshold."
+  risk: Int!
+
+  "Churn risk at which a contact counts as at risk."
+  riskThreshold: Int!
+
+  "Contacts per role."
+  roles: [FlxCrmRoleCount!]!
+
+  "Last scoring run."
+  scoredAt: FlxDateTime
+
+  "Contacts per value segment."
+  segments: [FlxCrmSegmentCount!]!
+
+  "Contacts per first source."
+  sources: [FlxCrmSourceCount!]!
+
+  "Names of the sources the import reads."
+  syncSources: [String!]!
+
+  "Last full import of past records."
+  syncedAt: FlxDateTime
+
+  "All contacts."
+  total: Int!
+}
+
+"Contacts per role."
+type FlxCrmRoleCount {
+  "Hex colour."
+  color: String!
+
+  "Contacts."
+  count: Int!
+
+  "Role key."
+  key: String!
+
+  "Name."
+  label: String!
+}
+
+"Contacts and value per value segment."
+type FlxCrmSegmentCount {
+  "Contacts."
+  count: Int!
+
+  "What it means."
+  hint: String!
+
+  "Segment key."
+  key: String!
+
+  "Name."
+  label: String!
+
+  "Colour tone."
+  tone: String!
+
+  "Total value of the segment."
+  value: FlxMoney!
+}
+
+"Contacts per first source."
+type FlxCrmSourceCount {
+  "Contacts."
+  count: Int!
+
+  "Source key."
+  key: String!
+
+  "Name."
+  label: String!
+}
+
+"Flux CRM settings."
+type FlxCrmSettings {
+  "Days a contact counts as active (7–730)."
+  activeDays: Int!
+
+  "Flux AI and MCP may delete (with confirmation)."
+  aiDestructive: Boolean!
+
+  "Flux AI and MCP may read CRM data."
+  aiTools: Boolean!
+
+  "Flux AI and MCP may change CRM data."
+  aiWrite: Boolean!
+
+  "Reporting currency set here; empty = the store currency."
+  baseCurrency: String
+
+  "Chat messages appear on the timeline."
+  chatEvents: Boolean!
+
+  "Reporting currency in use."
+  currency: String!
+
+  "Churn risk at which a contact counts as at risk (10–100)."
+  riskThreshold: Int!
+
+  "Contact roles."
+  roles: [FlxCrmRole!]!
+
+  "Last scoring run."
+  scoredAt: FlxDateTime
+
+  "Sources CRM reads from."
+  sources: [FlxCrmSource!]!
+
+  "Last full import of past records."
+  syncedAt: FlxDateTime
+}
+
+"A package Flux CRM reads people from."
+type FlxCrmSource {
+  "What it brings in."
+  description: String!
+
+  "CRM reads from it."
+  enabled: Boolean!
+
+  "The source gives its people a role."
+  hasRole: Boolean!
+
+  "The package is active."
+  installed: Boolean!
+
+  "Source key."
+  key: String!
+
+  "Name."
+  label: String!
+
+  "Role key given to its people."
+  role: String
+}
+
+"An automatic flow for contacts: a trigger, steps and rules."
+type FlxJourney {
+  "Journey ID."
+  databaseId: Int!
+
+  "Trigger, steps and goal in words."
+  description: String!
+
+  "Name."
+  name: String!
+
+  "Rules."
+  opts: FlxJourneyOptions!
+
+  "Numbers."
+  stats: FlxJourneyStats!
+
+  "Draft, active or paused."
+  status: FlxJourneyStatus!
+
+  "Steps in order."
+  steps: [FlxJourneyStep!]!
+
+  "What starts the journey (flxJourneyConfig.triggers)."
+  triggerType: String!
+
+  "Segment, tag, role or event the trigger watches."
+  triggerValue: String!
+}
+
+"Rules of a journey: goal, re-entry, quiet hours and the weekly message cap."
+type FlxJourneyOptions {
+  "Most messages a person gets per week from journeys."
+  capWeek: Int!
+
+  "Event that ends the journey for a person (flxJourneyConfig.goals); empty = none."
+  goal: String!
+
+  "Quiet hours start (hour, 0–23)."
+  quietFrom: Int!
+
+  "Quiet hours end (hour, 0–23)."
+  quietTo: Int!
+
+  "Days before a person can enter again (0 = never)."
+  reenterDays: Int!
+}
+
+"How a journey is doing."
+type FlxJourneyStats {
+  "People inside now."
+  active: Int!
+
+  "People who entered."
+  entered: Int!
+
+  "People who went through every step."
+  finished: Int!
+
+  "People who reached the goal."
+  goal: Int!
+
+  "Messages sent."
+  sent: Int!
+
+  "Messages skipped (quiet hours, cap, no permission)."
+  skipped: Int!
+}
+
+"State of a journey. Only an active journey sends."
+enum FlxJourneyStatus {
+  "Running."
+  ACTIVE
+
+  "Not started."
+  DRAFT
+
+  "Stopped; people already inside wait."
+  PAUSED
+}
+
+"One step of a journey: wait, e-mail, WhatsApp, tag or condition."
+type FlxJourneyStep {
+  "Condition key (flxJourneyConfig.conditions)."
+  condition: String
+
+  "Days to wait."
+  days: Int
+
+  "Hours to wait."
+  hours: Int
+
+  "E-mail subject."
+  subject: String
+
+  "Tag to add."
+  tag: String
+
+  "Message text."
+  text: String
+
+  "Step type (flxJourneyConfig.stepTypes)."
+  type: String!
+
+  "Value of the condition."
+  value: String
+}
+
+"What the journey editor offers."
+type FlxJourneyConfig {
+  "Conditions a step can test."
+  conditions: [FlxCrmChoice!]!
+
+  "Rules a new journey starts with."
+  defaults: FlxJourneyOptions!
+
+  "Events that can end a journey."
+  goals: [FlxCrmChoice!]!
+
+  "Flux Mail is active; without it e-mail steps cannot send."
+  mailActive: Boolean!
+
+  "States with their names."
+  statuses: [FlxCrmChoice!]!
+
+  "Kinds of step."
+  stepTypes: [FlxCrmChoice!]!
+
+  "Ready-made journeys."
+  templates: [FlxCrmChoice!]!
+
+  "Values each trigger type can watch."
+  triggerValues: [FlxJourneyTriggerValues!]!
+
+  "What can start a journey."
+  triggers: [FlxCrmChoice!]!
+}
+
+"The values a trigger type can watch."
+type FlxJourneyTriggerValues {
+  "Trigger type."
+  trigger: String!
+
+  "Choices."
+  values: [FlxCrmOption!]!
+}
+
+"A value a rule or trigger can take, with its name."
+type FlxCrmOption {
+  "Name."
+  label: String!
+
+  "Value."
+  value: String!
+}
+
 "An AI translation job: the draft translation plus the parts the AI translates one request at a time (the host stops a request at about 60 seconds)."
 type FlxLanguageJob {
   "Editor address of the translation."
@@ -10683,33 +12156,6 @@ type FlxRoleMember {
   referralLink: String
 }
 
-"A phone number."
-type FlxPhone {
-  "Digits only (905301234567)."
-  digits: String!
-
-  "Number as entered, for display."
-  display: String!
-
-  "E.164 form (+905301234567); empty when the number is not valid."
-  e164: String!
-}
-
-"Where a page sits in a list."
-type FlxPageInfo {
-  "Cursor of the last record on this page; pass it as &quot;after&quot; for the next page."
-  endCursor: String
-
-  "More records follow this page."
-  hasNextPage: Boolean!
-
-  "Records come before this page."
-  hasPreviousPage: Boolean!
-
-  "Cursor of the first record on this page."
-  startCursor: String
-}
-
 "A package group of the Roles and access table."
 type FlxRoleCapabilityGroup {
   "Whether the package is installed."
@@ -10768,6 +12214,120 @@ type FlxRoleHomeChoice {
 
   "Screen name."
   label: String!
+}
+
+"A saved list of contacts that match rules."
+type FlxSegment {
+  "Matching contacts (counted when saved and scored)."
+  count: Int!
+
+  "Segment ID."
+  databaseId: Int!
+
+  "Description."
+  description: String
+
+  "All rules or any rule."
+  match: FlxSegmentMatch!
+
+  "Name."
+  name: String!
+
+  "Rules."
+  rules: [FlxSegmentRule!]!
+
+  "The rules in words."
+  summary: String!
+}
+
+"Whether a contact must meet all rules or any rule."
+enum FlxSegmentMatch {
+  "All rules."
+  ALL
+
+  "Any rule."
+  ANY
+}
+
+"One rule of a segment."
+type FlxSegmentRule {
+  "Field key (flxSegmentEditor.fields)."
+  field: String!
+
+  "Operator key."
+  op: String!
+
+  "Value."
+  value: String!
+}
+
+"What the segment rule editor offers."
+type FlxSegmentEditor {
+  "Fields a rule can test."
+  fields: [FlxSegmentField!]!
+
+  "Operators with their names."
+  ops: [FlxCrmChoice!]!
+
+  "Choices of each value type."
+  options: [FlxSegmentOptionSet!]!
+}
+
+"A field a segment rule can test."
+type FlxSegmentField {
+  "Field key."
+  key: String!
+
+  "Name."
+  label: String!
+
+  "Operator keys the field accepts."
+  ops: [String!]!
+
+  "Value type: number, days, role, tag, rfm, consent, source, text …"
+  type: String!
+}
+
+"The choices of one value type."
+type FlxSegmentOptionSet {
+  "Value type (role, tag, rfm, consent, source)."
+  type: String!
+
+  "Choices."
+  values: [FlxCrmOption!]!
+}
+
+"One rule of a segment."
+input FlxSegmentRuleInput {
+  "Field key."
+  field: String!
+
+  "Operator key."
+  op: String!
+
+  "Value."
+  value: String
+}
+
+"Live result of a rule list while it is edited."
+type FlxSegmentPreview {
+  "Matching contacts."
+  count: Int!
+
+  "The five most valuable matches."
+  sample: [FlxSegmentSample!]!
+
+  "The rules in words."
+  summary: String!
+}
+
+"A contact in a segment preview."
+type FlxSegmentSample {
+  "Contact ID."
+  databaseId: Int!
+
+  "Name."
+  name: String!
 }
 
 "The current site audit report: scores, agent readiness and recommendations by priority."
@@ -10915,21 +12475,6 @@ type FlxSeoLocalRun {
 
   "Audited address."
   url: String!
-}
-
-"A point in time with labels in the user&#039;s language."
-type FlxDateTime {
-  "ISO 8601 in UTC (2026-11-15T14:59:00Z)."
-  iso: String!
-
-  "Date and time for display, in the site time zone and the user&#039;s language."
-  label: String!
-
-  "Relative time for display (&quot;5 minutes ago&quot;)."
-  relative: String!
-
-  "Unix timestamp."
-  timestamp: Int!
 }
 
 "The last PageSpeed Insights run of one device."
@@ -11560,6 +13105,747 @@ enum FlxSettingsFlxseoOrgType {
 
   ""
   ORGANIZATION
+}
+
+"Connection to the main update server."
+type FlxSetupConnection {
+  "The server asked the site to wait before the next check."
+  backingOff: Boolean!
+
+  "Last check; empty when never checked."
+  checked: FlxDateTime
+
+  "Last check as a sentence (&quot;Last check: …&quot;)."
+  checkedLabel: String!
+
+  "A site key is in use (the key itself is never returned)."
+  hasKey: Boolean!
+
+  "Server host."
+  host: String!
+
+  "The key comes from wp-config.php."
+  keyFromConfig: Boolean!
+
+  "What the state means."
+  message: String!
+
+  "Packages in the catalog."
+  packageCount: Int!
+
+  "Site name the server knows this site by; empty without a key."
+  site: String!
+
+  "State."
+  state: FlxSetupConnectionState!
+
+  "Short state title."
+  title: String!
+
+  "FluxWP packages with an update."
+  updateCount: Int!
+}
+
+"State of the connection to the update server."
+enum FlxSetupConnectionState {
+  "The server answered."
+  CONNECTED
+
+  "The server could not be reached or refused the site."
+  ERROR
+
+  "The server paused updates for this site; checks wait."
+  PAUSED
+
+  "Not checked yet."
+  UNKNOWN
+}
+
+"Flux GraphQL on this site and the PHP version it needs."
+type FlxSetupGraphqlStatus {
+  "Name of that link."
+  actionLabel: String!
+
+  "Where the admin installs, activates or fixes it; empty when there is nothing to do."
+  actionUrl: String!
+
+  "Lowest PHP version of the GraphQL packages."
+  phpMin: String!
+
+  "The site PHP is new enough."
+  phpOk: Boolean!
+
+  "PHP version of the site."
+  phpVersion: String!
+
+  "State of Flux GraphQL."
+  state: FlxSetupGraphqlState!
+
+  "Installed version; empty when not running."
+  version: String!
+}
+
+"State of Flux GraphQL on the site."
+enum FlxSetupGraphqlState {
+  "Active, but its GraphQL server is not running."
+  CONFLICT
+
+  "Installed, not active."
+  INACTIVE
+
+  "Not installed."
+  MISSING
+
+  "Installed and working."
+  OK
+}
+
+"A page of the update history."
+type FlxSetupHistory {
+  "Flux Backup list page; empty without Flux Backup."
+  backupPage: String!
+
+  "The viewer may delete update backups."
+  canDelete: Boolean!
+
+  "This page, from 1."
+  page: Int!
+
+  "Number of pages."
+  pages: Int!
+
+  "How long update backups are kept."
+  retention: FlxSetupRetention!
+
+  "Records of this page, newest first."
+  rows: [FlxSetupHistoryRow!]!
+
+  "All records."
+  total: Int!
+}
+
+"How long update backups are kept."
+type FlxSetupRetention {
+  "The viewer can manage update backups here."
+  available: Boolean!
+
+  "Day choices to offer."
+  choices: [Int!]!
+
+  "Update backups now."
+  count: Int!
+
+  "Days update backups are kept; 0 when Flux Backup does not allow setting it here."
+  days: Int!
+
+  "Flux Backup settings page."
+  settingsUrl: String!
+
+  "Space they take, for display."
+  size: String!
+}
+
+"A record of the update history."
+type FlxSetupHistoryRow {
+  "What was done (&quot;updated (1.0 → 1.1)&quot;)."
+  action: String!
+
+  "Backup taken before it; empty when none."
+  backup: FlxSetupHistoryBackup
+
+  "Who did it (&quot;Automatic&quot; or a name)."
+  by: String!
+
+  "What went wrong or was rolled back; empty on success."
+  message: String!
+
+  "Package name."
+  name: String!
+
+  "It succeeded."
+  success: Boolean!
+
+  "When it happened."
+  time: FlxDateTime!
+}
+
+"The backup taken before an update."
+type FlxSetupHistoryBackup {
+  "The viewer may delete it."
+  deletable: Boolean!
+
+  "The backup was deleted."
+  deleted: Boolean!
+
+  "Backup id."
+  id: String!
+
+  "When it is deleted automatically; empty when never."
+  keepUntil: FlxDateTime
+
+  "Locked backups are never deleted automatically."
+  locked: Boolean!
+
+  "Shows a checkbox (the first row of a bulk update that shares the backup)."
+  selectable: Boolean!
+
+  "Size to show; empty when deleted."
+  size: String!
+
+  "Where to open it in Flux Backup; empty without Flux Backup."
+  url: String!
+}
+
+"What the top of the Packages screen shows."
+type FlxSetupOverview {
+  "The screen should check for updates by itself now (the last check is not recent)."
+  autoCheck: Boolean!
+
+  "Backup before updates."
+  backup: FlxSetupBackupState!
+
+  "Flux Backup page."
+  backupUrl: String!
+
+  "The viewer may open the settings."
+  canManageSources: Boolean!
+
+  "Connection to the update server."
+  connection: FlxSetupConnection!
+
+  "Other sources that could not be reached."
+  failingSources: [FlxSetupFailingSource!]!
+
+  "FluxWP Panel settings page; empty when the viewer may not open it."
+  settingsUrl: String
+
+  "Tabs with their counts."
+  tabs(
+    "Count only the rows that match this text."
+    search: String
+  ): [FlxSetupTabCount!]!
+
+  "Updates the &quot;Update all&quot; button installs (FluxWP and others, not WordPress core)."
+  updateCount: Int!
+
+  "WordPress updates screen (core updates run there)."
+  wordpressUpdatesUrl: String!
+}
+
+"Whether a backup is taken before updates (Flux Backup)."
+type FlxSetupBackupState {
+  "It is installed and the viewer may activate it."
+  activatable: Boolean!
+
+  "It is not installed, the catalog has it and the viewer may install it."
+  installable: Boolean!
+
+  "Flux Backup is installed."
+  installed: Boolean!
+
+  "Flux Backup is active."
+  ready: Boolean!
+}
+
+"An update source that could not be reached."
+type FlxSetupFailingSource {
+  "What went wrong."
+  error: String!
+
+  "Source name."
+  name: String!
+}
+
+"Row and update counts of a tab."
+type FlxSetupTabCount {
+  "Rows."
+  count: Int!
+
+  "Tab name."
+  label: String!
+
+  "Tab."
+  tab: FlxSetupPackageTab!
+
+  "Rows with an update."
+  updates: Int!
+}
+
+"A tab of the package table."
+enum FlxSetupPackageTab {
+  "Every row."
+  ALL
+
+  "WordPress core and translations."
+  CORE
+
+  "FluxWP packages."
+  FLUX
+
+  "Plugins of other makers."
+  PLUGINS
+
+  "Themes of other makers."
+  THEMES
+}
+
+"A row of the package table: a FluxWP package, a plugin or theme of another maker, translations or WordPress core."
+type FlxSetupPackage {
+  "The plugin is active (the theme in use)."
+  active: Boolean!
+
+  "Author; empty when unknown."
+  author: String!
+
+  "Automatic update switch."
+  autoUpdate: FlxSetupAutoUpdate!
+
+  "The viewer may switch to another version of the package."
+  canChangeVersion: Boolean!
+
+  "Not installed and the viewer may install it."
+  canInstall: Boolean!
+
+  "The row can be selected for bulk actions."
+  canManage: Boolean!
+
+  "An update is waiting and the viewer may install it."
+  canUpdate: Boolean!
+
+  "FluxWP category name; empty for other rows."
+  category: String!
+
+  "Short description for the details window."
+  description: String!
+
+  "Tab the row belongs to."
+  group: FlxSetupPackageGroup!
+
+  "Icon address; empty shows a placeholder."
+  iconUrl: String
+
+  "Slug (FluxWP), plugin file, theme folder; empty for translations and core."
+  id: String!
+
+  "Example screenshots (https only)."
+  images: [String!]!
+
+  "Technical details for the details window."
+  info: [FlxSetupInfoRow!]!
+
+  "Installed version; empty when not installed."
+  installed: String!
+
+  "Row key: the slug of a FluxWP package, p:&lt;plugin file&gt;, t:&lt;theme folder&gt;, lang or core."
+  key: String!
+
+  "What the row is."
+  kind: FlxSetupPackageKind!
+
+  "Latest version."
+  latest: String!
+
+  "Name."
+  name: String!
+
+  "Release date of the latest version; empty when unknown."
+  released: FlxDateTime
+
+  "Plugins the package needs."
+  requires: [FlxSetupRequirement!]!
+
+  "The source is worth showing (not the main server, or several sources offer it)."
+  showSource: Boolean!
+
+  "How many sources offer the package."
+  sourceCount: Int!
+
+  "Update source of a FluxWP package; empty for other rows."
+  sourceName: String!
+
+  "Extra line, e.g. which translations are waiting."
+  sourceNote: String!
+
+  "Install state."
+  state: FlxSetupPackageState!
+
+  "Slug, folder or a short status line."
+  subtitle: String!
+
+  "Labels under the name."
+  tags: [FlxSetupTag!]!
+
+  "Other versions the site can switch to."
+  versions: [FlxSetupVersion!]!
+
+  "Web page of the package; empty when there is none."
+  website: String!
+}
+
+"The automatic update switch of a row."
+type FlxSetupAutoUpdate {
+  "The viewer may change it."
+  canChange: Boolean!
+
+  "Plugin file or theme folder to pass to flxSetupAutoUpdateSet; empty when there is no switch."
+  id: String
+
+  "Current setting."
+  mode: FlxSetupAutoUpdateMode!
+
+  "plugin or theme; empty when there is no switch."
+  type: FlxSetupAutoUpdateType
+}
+
+"Automatic update setting of a plugin or theme."
+enum FlxSetupAutoUpdateMode {
+  "On for every FluxWP package (FluxWP Panel setting); cannot be changed per package."
+  LOCKED
+
+  "Off."
+  OFF
+
+  "On."
+  ON
+
+  "Not applicable: not installed, not a plugin or theme, or automatic updates are off for the site."
+  UNAVAILABLE
+}
+
+"What an automatic update setting belongs to."
+enum FlxSetupAutoUpdateType {
+  "A plugin (id is the plugin file)."
+  PLUGIN
+
+  "A theme (id is the theme folder)."
+  THEME
+}
+
+"Where a package row belongs in the table."
+enum FlxSetupPackageGroup {
+  "WordPress core and translations."
+  CORE
+
+  "FluxWP package."
+  FLUX
+
+  "Plugin of another maker."
+  PLUGINS
+
+  "Theme of another maker."
+  THEMES
+}
+
+"A label and value of the package details."
+type FlxSetupInfoRow {
+  "Label."
+  label: String!
+
+  "Value."
+  value: String!
+}
+
+"What a package row is."
+enum FlxSetupPackageKind {
+  "FluxWP plugin."
+  FLUX_PLUGIN
+
+  "FluxWP theme."
+  FLUX_THEME
+
+  "WordPress itself; it updates on the WordPress updates screen."
+  WP_CORE
+
+  "Plugin of another maker."
+  WP_PLUGIN
+
+  "Theme of another maker."
+  WP_THEME
+
+  "Translation updates of WordPress, plugins and themes (one row)."
+  WP_TRANSLATIONS
+}
+
+"A plugin a package needs."
+type FlxSetupRequirement {
+  "It is a FluxWP package (else it comes from wordpress.org)."
+  flux: Boolean!
+
+  "Plugin name."
+  name: String!
+
+  "Plugin folder."
+  slug: String!
+
+  "Whether it is installed and active."
+  state: FlxSetupRequirementState!
+}
+
+"State of a plugin another package needs."
+enum FlxSetupRequirementState {
+  "Installed and active."
+  ACTIVE
+
+  "Installed, not active."
+  INACTIVE
+
+  "Not installed."
+  MISSING
+}
+
+"Install state of a package."
+enum FlxSetupPackageState {
+  "Installed and up to date."
+  CURRENT
+
+  "Not installed."
+  MISSING
+
+  "Installed, a newer version is available."
+  UPDATE
+}
+
+"A label under a package name."
+type FlxSetupTag {
+  "Style: flux, cat, general or type."
+  kind: String!
+
+  "Text."
+  label: String!
+}
+
+"Another version of a package the site can switch to."
+type FlxSetupVersion {
+  "Older than the installed version."
+  older: Boolean!
+
+  "Release date; empty when the server did not say."
+  released: FlxDateTime
+
+  "Version number."
+  version: String!
+}
+
+"A page of the package table."
+type FlxSetupPackageConnection {
+  "Records with their cursors."
+  edges: [FlxSetupPackageEdge!]!
+
+  "Records of this page."
+  nodes: [FlxSetupPackage!]!
+
+  "Paging information."
+  pageInfo: FlxPageInfo!
+
+  "All matching records (null when counting would be slow)."
+  totalCount: Int
+}
+
+"One FlxSetupPackage in a list, with its cursor."
+type FlxSetupPackageEdge {
+  "Opaque cursor of this record."
+  cursor: String!
+
+  "The record."
+  node: FlxSetupPackage!
+}
+
+"One step of an install or update plan."
+type FlxSetupStep {
+  "Plugin file or theme folder of a row of another maker; empty for FluxWP packages."
+  id: String!
+
+  "What the step does."
+  kind: FlxSetupStepKind!
+
+  "Name to show."
+  name: String!
+
+  "Row key of the package (pass it back to flxSetupStepRun)."
+  slug: String!
+
+  "Version for a version step."
+  version: String!
+
+  "The package that asked for this one; empty when it was chosen."
+  why: String!
+}
+
+"One step of an install or update."
+enum FlxSetupStepKind {
+  "Activate a plugin."
+  ACTIVATE
+
+  "Install a FluxWP package."
+  INSTALL
+
+  "Update a FluxWP package (a backup is taken first)."
+  UPDATE
+
+  "Install a chosen version of a FluxWP package (a backup is taken first)."
+  VERSION
+
+  "Install a required plugin from wordpress.org."
+  WPORG
+
+  "Update translations."
+  WP_LANG
+
+  "Update a plugin of another maker."
+  WP_PLUGIN
+
+  "Update a theme of another maker."
+  WP_THEME
+}
+
+"Connection and update settings. The site key is never returned."
+type FlxSetupSettings {
+  "Install new versions of FluxWP packages automatically."
+  auto: Boolean!
+
+  "Default server address."
+  defaultServer: String!
+
+  "Server address in use."
+  effectiveServer: String!
+
+  "A site key is saved."
+  hasKey: Boolean!
+
+  "Check that the site still loads after an update and roll the package back if it fails."
+  health: Boolean!
+
+  "The key comes from wp-config.php (FLX_UPDATE_KEY)."
+  keyFromConfig: Boolean!
+
+  "Legal pages."
+  legal: FlxSetupLegalLinks!
+
+  "Server address typed in the settings; empty uses the default."
+  server: String!
+
+  "The server address comes from wp-config.php (FLX_UPDATE_SERVER) and cannot be changed here."
+  serverFromConfig: Boolean!
+
+  "Usage data is sent."
+  usage: Boolean!
+
+  "The usage data consent can be changed here."
+  usageAvailable: Boolean!
+}
+
+"Legal pages the usage data consent refers to."
+type FlxSetupLegalLinks {
+  "KVKK Privacy Notice."
+  kvkk: String!
+
+  "Privacy Policy."
+  privacy: String!
+
+  "Terms of Use."
+  terms: String!
+}
+
+"An update source: the main server or one added in the settings. Its key is never returned."
+type FlxSetupSource {
+  "It is not the first added source."
+  canMoveUp: Boolean!
+
+  "Turned on."
+  enabled: Boolean!
+
+  "A site key is saved for it."
+  hasKey: Boolean!
+
+  "Source id; &quot;main&quot; for the main server."
+  id: String!
+
+  "The main server (set under Connection)."
+  main: Boolean!
+
+  "State as a sentence; empty when not checked or off."
+  message: String!
+
+  "Name."
+  name: String!
+
+  "Packages it offers."
+  packageCount: Int!
+
+  "Last known state."
+  state: FlxSetupSourceState!
+
+  "Kind of source."
+  type: FlxSetupSourceType!
+
+  "Address."
+  url: String!
+}
+
+"State of an update source."
+enum FlxSetupSourceState {
+  "Could not be reached or refused the site."
+  ERROR
+
+  "Turned off."
+  OFF
+
+  "Connected."
+  OK
+
+  "Not checked yet."
+  UNCHECKED
+}
+
+"Kind of an update source."
+enum FlxSetupSourceType {
+  "A public GitHub repository."
+  GITHUB
+
+  "A FluxWP update server."
+  SERVER
+}
+
+"A row FluxWP Panel adds to the system check."
+type FlxSetupSystemCheck {
+  "Name of the fix link."
+  actionLabel: String!
+
+  "Where to fix it; empty when there is nothing to do."
+  actionUrl: String!
+
+  "Group (Config, Plugins …)."
+  group: String!
+
+  "Row id."
+  id: String!
+
+  "What is checked."
+  label: String!
+
+  "Explanation."
+  message: String!
+
+  "Package that reports it."
+  source: String!
+
+  "Result."
+  status: FlxSetupCheckStatus!
+}
+
+"Result of a system check row."
+enum FlxSetupCheckStatus {
+  "Broken."
+  ERROR
+
+  "For information."
+  INFO
+
+  "Fine."
+  OK
+
+  "Needs attention."
+  WARNING
 }
 
 "A task, agenda item or decision."
@@ -14111,6 +16397,36 @@ type RootMutation {
     input: FlxAppSessionEndInput!
   ): FlxAppSessionEndPayload
 
+  "Turns a block on or off in the editor. Content that already uses it keeps working."
+  flxBlocksBlockTypeSetActive(
+    "Input for the flxBlocksBlockTypeSetActive mutation"
+    input: FlxBlocksBlockTypeSetActiveInput!
+  ): FlxBlocksBlockTypeSetActivePayload
+
+  "Turns sharing of this site&#039;s design library on or off, or makes a new key."
+  flxBlocksLibraryShareUpdate(
+    "Input for the flxBlocksLibraryShareUpdate mutation"
+    input: FlxBlocksLibraryShareUpdateInput!
+  ): FlxBlocksLibraryShareUpdatePayload
+
+  "Links another Flux site&#039;s design library. The site is asked once to check the address and key."
+  flxBlocksLibrarySourceAdd(
+    "Input for the flxBlocksLibrarySourceAdd mutation"
+    input: FlxBlocksLibrarySourceAddInput!
+  ): FlxBlocksLibrarySourceAddPayload
+
+  "Removes a linked design library."
+  flxBlocksLibrarySourceRemove(
+    "Input for the flxBlocksLibrarySourceRemove mutation"
+    input: FlxBlocksLibrarySourceRemoveInput!
+  ): FlxBlocksLibrarySourceRemovePayload
+
+  "Saves Block Editor dashboard settings; a field left out stays as it is."
+  flxBlocksSettingsUpdate(
+    "Input for the flxBlocksSettingsUpdate mutation"
+    input: FlxBlocksSettingsUpdateInput!
+  ): FlxBlocksSettingsUpdatePayload
+
   "Empties the cart."
   flxCartClear(
     "Input for the flxCartClear mutation"
@@ -14158,6 +16474,102 @@ type RootMutation {
     "Input for the flxCartShippingRateSelect mutation"
     input: FlxCartShippingRateSelectInput!
   ): FlxCartShippingRateSelectPayload
+
+  "Applies one action to up to 500 contacts: tag, role, archive, restore or delete."
+  flxContactBulk(
+    "Input for the flxContactBulk mutation"
+    input: FlxContactBulkInput!
+  ): FlxContactBulkPayload
+
+  "Adds a contact by hand. A contact with the same e-mail or phone is not changed: it comes back with existed = true."
+  flxContactCreate(
+    "Input for the flxContactCreate mutation"
+    input: FlxContactCreateInput!
+  ): FlxContactCreatePayload
+
+  "Deletes a contact with its timeline, tags and links. Donations and orders stay in their packages; a contact a package still uses cannot be deleted."
+  flxContactDelete(
+    "Input for the flxContactDelete mutation"
+    input: FlxContactDeleteInput!
+  ): FlxContactDeletePayload
+
+  "Adds a note, call, meeting or sent e-mail to the timeline."
+  flxContactEventAdd(
+    "Input for the flxContactEventAdd mutation"
+    input: FlxContactEventAddInput!
+  ): FlxContactEventAddPayload
+
+  "Deletes a timeline entry added by hand. Entries that come from a source (payments, messages) cannot be deleted."
+  flxContactEventDelete(
+    "Input for the flxContactEventDelete mutation"
+    input: FlxContactEventDeleteInput!
+  ): FlxContactEventDeletePayload
+
+  "Merges duplicate cards into the one to keep; every package moves its records to it."
+  flxContactMerge(
+    "Input for the flxContactMerge mutation"
+    input: FlxContactMergeInput!
+  ): FlxContactMergePayload
+
+  "Puts a tag on a contact, by ID or by name (a new name creates the tag)."
+  flxContactTagAdd(
+    "Input for the flxContactTagAdd mutation"
+    input: FlxContactTagAddInput!
+  ): FlxContactTagAddPayload
+
+  "Takes a tag off a contact."
+  flxContactTagRemove(
+    "Input for the flxContactTagRemove mutation"
+    input: FlxContactTagRemoveInput!
+  ): FlxContactTagRemovePayload
+
+  "Changes a contact. Fields you leave out stay as they are; an empty value clears the field."
+  flxContactUpdate(
+    "Input for the flxContactUpdate mutation"
+    input: FlxContactUpdateInput!
+  ): FlxContactUpdatePayload
+
+  "Recalculates the value scores and churn risk. Call again until done is true."
+  flxCrmScoreRun(
+    "Input for the flxCrmScoreRun mutation"
+    input: FlxCrmScoreRunInput!
+  ): FlxCrmScoreRunPayload
+
+  "Saves the settings. Values you leave out stay as they are."
+  flxCrmSettingsSave(
+    "Input for the flxCrmSettingsSave mutation"
+    input: FlxCrmSettingsSaveInput!
+  ): FlxCrmSettingsSavePayload
+
+  "Imports past records one step at a time. Start with no step; follow next and page until finished."
+  flxCrmSyncStep(
+    "Input for the flxCrmSyncStep mutation"
+    input: FlxCrmSyncStepInput!
+  ): FlxCrmSyncStepPayload
+
+  "Deletes a journey and the progress of the people inside it."
+  flxJourneyDelete(
+    "Input for the flxJourneyDelete mutation"
+    input: FlxJourneyDeleteInput!
+  ): FlxJourneyDeletePayload
+
+  "Adds a ready-made journey as a draft."
+  flxJourneyFromTemplate(
+    "Input for the flxJourneyFromTemplate mutation"
+    input: FlxJourneyFromTemplateInput!
+  ): FlxJourneyFromTemplatePayload
+
+  "Creates a journey as a draft, or changes one when an ID is given (saving an active journey pauses it)."
+  flxJourneySave(
+    "Input for the flxJourneySave mutation"
+    input: FlxJourneySaveInput!
+  ): FlxJourneySavePayload
+
+  "Turns a journey on, pauses it or puts it back to draft. Only an active journey sends."
+  flxJourneySetStatus(
+    "Input for the flxJourneySetStatus mutation"
+    input: FlxJourneySetStatusInput!
+  ): FlxJourneySetStatusPayload
 
   "Sets the language of a content (the editor&#039;s Language box). If another content of the same group already has that language, this one leaves the group."
   flxLanguageSet(
@@ -14225,6 +16637,18 @@ type RootMutation {
     input: FlxRolesSaveInput!
   ): FlxRolesSavePayload
 
+  "Deletes a segment. The contacts stay."
+  flxSegmentDelete(
+    "Input for the flxSegmentDelete mutation"
+    input: FlxSegmentDeleteInput!
+  ): FlxSegmentDeletePayload
+
+  "Creates a segment, or changes one when an ID is given."
+  flxSegmentSave(
+    "Input for the flxSegmentSave mutation"
+    input: FlxSegmentSaveInput!
+  ): FlxSegmentSavePayload
+
   "Runs an audit: the on-site audit, or one PageSpeed measurement (15–40 s; call it for mobile, then desktop, then run the on-site audit)."
   flxSeoAuditRun(
     "Input for the flxSeoAuditRun mutation"
@@ -14260,6 +16684,78 @@ type RootMutation {
     "Input for the flxSettingsUpdate mutation"
     input: FlxSettingsUpdateInput!
   ): FlxSettingsUpdatePayload
+
+  "Turns WordPress&#039; automatic updates of one plugin or theme on or off."
+  flxSetupAutoUpdateSet(
+    "Input for the flxSetupAutoUpdateSet mutation"
+    input: FlxSetupAutoUpdateSetInput!
+  ): FlxSetupAutoUpdateSetPayload
+
+  "Deletes update backups. Locked backups and other kinds of backups are never deleted."
+  flxSetupBackupsDelete(
+    "Input for the flxSetupBackupsDelete mutation"
+    input: FlxSetupBackupsDeleteInput!
+  ): FlxSetupBackupsDeletePayload
+
+  "Asks every update source for the latest versions (&quot;Check for updates&quot;)."
+  flxSetupCheck(
+    "Input for the flxSetupCheck mutation"
+    input: FlxSetupCheckInput!
+  ): FlxSetupCheckPayload
+
+  "Activates, deactivates or deletes installed packages, or turns their automatic updates on or off. FluxWP Panel does not close or delete itself and the active theme is not deleted."
+  flxSetupManage(
+    "Input for the flxSetupManage mutation"
+    input: FlxSetupManageInput!
+  ): FlxSetupManagePayload
+
+  "Sets how long update backups are kept and applies it to the existing ones."
+  flxSetupRetentionSave(
+    "Input for the flxSetupRetentionSave mutation"
+    input: FlxSetupRetentionSaveInput!
+  ): FlxSetupRetentionSavePayload
+
+  "Saves the connection settings and checks the server. Fields you leave out stay as they are; an empty key keeps the saved one."
+  flxSetupSettingsSave(
+    "Input for the flxSetupSettingsSave mutation"
+    input: FlxSetupSettingsSaveInput!
+  ): FlxSetupSettingsSavePayload
+
+  "Tests and adds an update source (a public GitHub repository or a FluxWP update server) and loads its packages."
+  flxSetupSourceAdd(
+    "Input for the flxSetupSourceAdd mutation"
+    input: FlxSetupSourceAddInput!
+  ): FlxSetupSourceAddPayload
+
+  "Removes, turns on or off, or moves up an update source. Packages installed from a removed source stay on the site."
+  flxSetupSourceChange(
+    "Input for the flxSetupSourceChange mutation"
+    input: FlxSetupSourceChangeInput!
+  ): FlxSetupSourceChangePayload
+
+  "Runs one install, update or version step. A backup is taken before updates. Send the steps of flxSetupPlan one by one."
+  flxSetupStepRun(
+    "Input for the flxSetupStepRun mutation"
+    input: FlxSetupStepRunInput!
+  ): FlxSetupStepRunPayload
+
+  "Adds an uploaded image (POST /wp-json/flx/v1/upload, context flx-setup/logo) to the media library for the logo."
+  flxSetupWizardLogo(
+    "Input for the flxSetupWizardLogo mutation"
+    input: FlxSetupWizardLogoInput!
+  ): FlxSetupWizardLogoPayload
+
+  "Runs one step of the setup wizard (site name, tagline, logo, pages, theme, colour, preset, consent, finish or skip)."
+  flxSetupWizardStep(
+    "Input for the flxSetupWizardStep mutation"
+    input: FlxSetupWizardStepInput!
+  ): FlxSetupWizardStepPayload
+
+  "Asks the update server and lists the installed packages that have an update, before the wizard installs anything."
+  flxSetupWizardUpdates(
+    "Input for the flxSetupWizardUpdates mutation"
+    input: FlxSetupWizardUpdatesInput!
+  ): FlxSetupWizardUpdatesPayload
 
   "Adds a comment to a task."
   flxTaskCommentCreate(
@@ -15684,6 +18180,801 @@ type FlxCartShippingRateSelectPayload {
   errors: [FlxUserError!]!
 }
 
+"Input for the flxBlocksBlockTypeSetActive mutation."
+input FlxBlocksBlockTypeSetActiveInput {
+  "On."
+  active: Boolean!
+
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Block name."
+  slug: String!
+}
+
+"The payload for the flxBlocksBlockTypeSetActive mutation."
+type FlxBlocksBlockTypeSetActivePayload {
+  "The block after the change."
+  blockType: FlxBlocksBlockType
+
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"Input for the flxBlocksLibraryShareUpdate mutation."
+input FlxBlocksLibraryShareUpdateInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Share the library; leave out to keep it as it is."
+  enabled: Boolean
+
+  "Make a new key; sites using the old key lose access."
+  regenerateKey: Boolean
+}
+
+"The payload for the flxBlocksLibraryShareUpdate mutation."
+type FlxBlocksLibraryShareUpdatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Sharing after the change."
+  share: FlxBlocksLibraryShare!
+}
+
+"Input for the flxBlocksLibrarySourceAdd mutation."
+input FlxBlocksLibrarySourceAddInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Library key given by the other site."
+  key: String
+
+  "Name; leave empty to use the site's own name."
+  name: String
+
+  "Site address."
+  url: String!
+}
+
+"The payload for the flxBlocksLibrarySourceAdd mutation."
+type FlxBlocksLibrarySourceAddPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The added library."
+  source: FlxBlocksLibrarySource
+
+  "All linked libraries."
+  sources: [FlxBlocksLibrarySource!]!
+}
+
+"Input for the flxBlocksLibrarySourceRemove mutation."
+input FlxBlocksLibrarySourceRemoveInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Source id."
+  id: ID!
+}
+
+"The payload for the flxBlocksLibrarySourceRemove mutation."
+type FlxBlocksLibrarySourceRemovePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Remaining linked libraries."
+  sources: [FlxBlocksLibrarySource!]!
+}
+
+"Input for the flxBlocksSettingsUpdate mutation."
+input FlxBlocksSettingsUpdateInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Editor widths."
+  editorWidth: FlxBlocksEditorWidthInput
+
+  "Show the page's header blocks in the admin bar."
+  showHeadersInAdminBar: Boolean
+}
+
+"Editor widths; a field left out stays as it is."
+input FlxBlocksEditorWidthInput {
+  "Width can be chosen per page and post."
+  enabled: Boolean
+
+  "Large template width (px, 200–4000)."
+  large: Int
+
+  "Width of new pages."
+  pageDefault: FlxBlocksEditorWidthMode
+
+  "Width of new posts."
+  postDefault: FlxBlocksEditorWidthMode
+
+  "Small template width (px, 200–4000)."
+  small: Int
+}
+
+"The payload for the flxBlocksSettingsUpdate mutation."
+type FlxBlocksSettingsUpdatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Settings after the change."
+  settings: FlxBlocksSettings
+}
+
+"Input for the flxContactBulk mutation."
+input FlxContactBulkInput {
+  "What to do."
+  action: FlxContactBulkAction!
+
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Global IDs or contact IDs."
+  ids: [ID!]!
+
+  "Tag name or role key (for TAG and ROLE)."
+  value: String
+}
+
+"An action applied to many contacts at once."
+enum FlxContactBulkAction {
+  "Archive."
+  ARCHIVE
+
+  "Delete (a contact a package still uses stays)."
+  DELETE
+
+  "Take out of the archive."
+  RESTORE
+
+  "Add a role (the value is the role key)."
+  ROLE
+
+  "Add a tag (the value is the tag name)."
+  TAG
+}
+
+"The payload for the flxContactBulk mutation."
+type FlxContactBulkPayload {
+  "Contacts that were changed."
+  changed: Int
+
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"Input for the flxContactCreate mutation."
+input FlxContactCreateInput {
+  "City."
+  city: String
+
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Organisation."
+  company: String
+
+  "Channel permissions."
+  consent: FlxContactConsentInput
+
+  "ISO country code."
+  country: String
+
+  "E-mail address."
+  email: String
+
+  "Name."
+  name: String
+
+  "Short note."
+  note: String
+
+  "Owner (user ID); 0 clears it."
+  ownerId: Int
+
+  "Phone number (any format; saved as digits)."
+  phone: String
+
+  "Every role the contact should have (replaces the list)."
+  roles: [String!]
+
+  "Working list or archive."
+  status: FlxContactStatus
+
+  "Tag names to add (a new name creates the tag)."
+  tags: [String!]
+}
+
+"Channel permissions; channels you leave out stay as they are."
+input FlxContactConsentInput {
+  "Ad audiences."
+  ads: Boolean
+
+  "E-mail."
+  email: Boolean
+
+  "SMS."
+  sms: Boolean
+
+  "WhatsApp."
+  whatsapp: Boolean
+}
+
+"The payload for the flxContactCreate mutation."
+type FlxContactCreatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "The new contact, or the existing one."
+  contact: FlxContact
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "A contact with this e-mail or phone already existed."
+  existed: Boolean
+}
+
+"Input for the flxContactDelete mutation."
+input FlxContactDeleteInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Global ID or contact ID."
+  id: ID!
+}
+
+"The payload for the flxContactDelete mutation."
+type FlxContactDeletePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Global ID of the deleted contact."
+  deletedId: ID
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"Input for the flxContactEventAdd mutation."
+input FlxContactEventAddInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Global ID or contact ID."
+  contactId: ID!
+
+  "Text."
+  text: String!
+
+  "Kind of entry (default: note)."
+  type: FlxContactNoteType
+}
+
+"Kinds of timeline entry a person adds by hand."
+enum FlxContactNoteType {
+  "Phone call."
+  CALL
+
+  "E-mail sent."
+  EMAIL_SENT
+
+  "Meeting."
+  MEETING
+
+  "Note."
+  NOTE
+}
+
+"The payload for the flxContactEventAdd mutation."
+type FlxContactEventAddPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "The contact (its last activity changed)."
+  contact: FlxContact
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The new entry."
+  event: FlxContactEvent
+}
+
+"Input for the flxContactEventDelete mutation."
+input FlxContactEventDeleteInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Entry ID (FlxContactEvent.databaseId)."
+  id: Int!
+}
+
+"The payload for the flxContactEventDelete mutation."
+type FlxContactEventDeletePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "The contact the entry belonged to."
+  contact: FlxContact
+
+  "ID of the deleted entry."
+  deletedId: Int
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"Input for the flxContactMerge mutation."
+input FlxContactMergeInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Cards merged into it (they are deleted)."
+  duplicateIds: [ID!]!
+
+  "The card to keep."
+  keepId: ID!
+}
+
+"The payload for the flxContactMerge mutation."
+type FlxContactMergePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "The kept card."
+  contact: FlxContact
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Cards merged."
+  merged: Int
+}
+
+"Input for the flxContactTagAdd mutation."
+input FlxContactTagAddInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Global ID or contact ID."
+  contactId: ID!
+
+  "Tag name; used when there is no tag ID."
+  name: String
+
+  "Tag ID."
+  tagId: Int
+}
+
+"The payload for the flxContactTagAdd mutation."
+type FlxContactTagAddPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "The contact after the change."
+  contact: FlxContact
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The tag."
+  tag: FlxTag
+}
+
+"Input for the flxContactTagRemove mutation."
+input FlxContactTagRemoveInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Global ID or contact ID."
+  contactId: ID!
+
+  "Tag ID."
+  tagId: Int!
+}
+
+"The payload for the flxContactTagRemove mutation."
+type FlxContactTagRemovePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "The contact after the change."
+  contact: FlxContact
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"Input for the flxContactUpdate mutation."
+input FlxContactUpdateInput {
+  "City."
+  city: String
+
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Organisation."
+  company: String
+
+  "Channel permissions."
+  consent: FlxContactConsentInput
+
+  "ISO country code."
+  country: String
+
+  "E-mail address."
+  email: String
+
+  "Global ID or contact ID."
+  id: ID!
+
+  "Name."
+  name: String
+
+  "Short note."
+  note: String
+
+  "Owner (user ID); 0 clears it."
+  ownerId: Int
+
+  "Phone number (any format; saved as digits)."
+  phone: String
+
+  "Every role the contact should have (replaces the list)."
+  roles: [String!]
+
+  "Working list or archive."
+  status: FlxContactStatus
+}
+
+"The payload for the flxContactUpdate mutation."
+type FlxContactUpdatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "The contact after the change."
+  contact: FlxContact
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"Input for the flxCrmScoreRun mutation."
+input FlxCrmScoreRunInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+}
+
+"The payload for the flxCrmScoreRun mutation."
+type FlxCrmScoreRunPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Progress of the run."
+  result: FlxCrmScoreResult
+}
+
+"One slice of a scoring run."
+type FlxCrmScoreResult {
+  "Contacts whose score changed."
+  changed: Int!
+
+  "The run is complete; otherwise call again."
+  done: Boolean!
+
+  "Contacts scored in this slice."
+  scored: Int!
+
+  "Contacts to score."
+  total: Int!
+}
+
+"Input for the flxCrmSettingsSave mutation."
+input FlxCrmSettingsSaveInput {
+  "Active days (7–730)."
+  activeDays: Int
+
+  "Flux AI and MCP may delete (with confirmation)."
+  aiDestructive: Boolean
+
+  "Flux AI and MCP may read CRM data."
+  aiTools: Boolean
+
+  "Flux AI and MCP may change CRM data."
+  aiWrite: Boolean
+
+  "Reporting currency (3 letters); empty = the store currency."
+  baseCurrency: String
+
+  "Chat messages appear on the timeline."
+  chatEvents: Boolean
+
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "A role to add."
+  newRole: FlxCrmNewRoleInput
+
+  "Churn threshold (10–100)."
+  riskThreshold: Int
+
+  "Roles to change; roles you leave out are deleted when they are not built in."
+  roles: [FlxCrmRoleInput!]
+
+  "Sources to change."
+  sources: [FlxCrmSourceInput!]
+}
+
+"A new role."
+input FlxCrmNewRoleInput {
+  "Hex colour."
+  color: String
+
+  "Name (1–40 characters)."
+  label: String!
+}
+
+"Changes a role."
+input FlxCrmRoleInput {
+  "Hex colour."
+  color: String
+
+  "Delete the role (not for built-in roles)."
+  delete: Boolean
+
+  "Role key."
+  key: String!
+
+  "Name (1–40 characters)."
+  label: String
+}
+
+"Switches a source on or off and sets the role its people get."
+input FlxCrmSourceInput {
+  "CRM reads from the source."
+  enabled: Boolean
+
+  "Source key."
+  key: String!
+
+  "Role key (empty = none)."
+  role: String
+}
+
+"The payload for the flxCrmSettingsSave mutation."
+type FlxCrmSettingsSavePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Settings after the change."
+  settings: FlxCrmSettings
+}
+
+"Input for the flxCrmSyncStep mutation."
+input FlxCrmSyncStepInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Page within the step (1 = first)."
+  page: Int
+
+  "Step key from the previous result (empty = the first)."
+  step: String
+}
+
+"The payload for the flxCrmSyncStep mutation."
+type FlxCrmSyncStepPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Progress of the import."
+  result: FlxCrmSyncResult
+}
+
+"One step of the import of past records."
+type FlxCrmSyncResult {
+  "Every step is complete."
+  finished: Boolean!
+
+  "What the step does, in words."
+  label: String!
+
+  "Next step key; empty when this step is not finished."
+  next: String
+
+  "Page to ask for next within the step."
+  page: Int!
+
+  "Records read so far in this step."
+  scanned: Int!
+
+  "Source key, recalc or score."
+  step: String!
+
+  "Records in this step."
+  total: Int!
+}
+
+"Input for the flxJourneyDelete mutation."
+input FlxJourneyDeleteInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Journey ID."
+  id: Int!
+}
+
+"The payload for the flxJourneyDelete mutation."
+type FlxJourneyDeletePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "ID of the deleted journey."
+  deletedId: Int
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"Input for the flxJourneyFromTemplate mutation."
+input FlxJourneyFromTemplateInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Template key (flxJourneyConfig.templates)."
+  template: String!
+}
+
+"The payload for the flxJourneyFromTemplate mutation."
+type FlxJourneyFromTemplatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The new draft."
+  journey: FlxJourney
+}
+
+"Input for the flxJourneySave mutation."
+input FlxJourneySaveInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Journey ID; leave out to create."
+  id: Int
+
+  "Name."
+  name: String!
+
+  "Rules."
+  opts: FlxJourneyOptionsInput
+
+  "Steps in order."
+  steps: [FlxJourneyStepInput!]!
+
+  "What starts the journey."
+  triggerType: String!
+
+  "Segment, tag, role or event the trigger watches."
+  triggerValue: String
+}
+
+"Rules of a journey; rules you leave out get the defaults."
+input FlxJourneyOptionsInput {
+  "Most messages per person per week."
+  capWeek: Int
+
+  "Goal event key; empty = none."
+  goal: String
+
+  "Quiet hours start (0–23)."
+  quietFrom: Int
+
+  "Quiet hours end (0–23)."
+  quietTo: Int
+
+  "Days before a person can enter again."
+  reenterDays: Int
+}
+
+"One step of a journey."
+input FlxJourneyStepInput {
+  "Condition key."
+  condition: String
+
+  "Days to wait."
+  days: Int
+
+  "Hours to wait."
+  hours: Int
+
+  "E-mail subject."
+  subject: String
+
+  "Tag to add."
+  tag: String
+
+  "Message text."
+  text: String
+
+  "Step type."
+  type: String!
+
+  "Value of the condition."
+  value: String
+}
+
+"The payload for the flxJourneySave mutation."
+type FlxJourneySavePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The saved journey."
+  journey: FlxJourney
+}
+
+"Input for the flxJourneySetStatus mutation."
+input FlxJourneySetStatusInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Journey ID."
+  id: Int!
+
+  "New state."
+  status: FlxJourneyStatus!
+}
+
+"The payload for the flxJourneySetStatus mutation."
+type FlxJourneySetStatusPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The journey after the change."
+  journey: FlxJourney
+}
+
 "Input for the flxLanguageSet mutation."
 input FlxLanguageSetInput {
   "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
@@ -16018,6 +19309,60 @@ type FlxRolesSavePayload {
 
   "Every role after the change."
   roles: [FlxRole!]!
+}
+
+"Input for the flxSegmentDelete mutation."
+input FlxSegmentDeleteInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Segment ID."
+  id: Int!
+}
+
+"The payload for the flxSegmentDelete mutation."
+type FlxSegmentDeletePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "ID of the deleted segment."
+  deletedId: Int
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"Input for the flxSegmentSave mutation."
+input FlxSegmentSaveInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Description."
+  description: String
+
+  "Segment ID; leave out to create."
+  id: Int
+
+  "All rules or any rule (default: all)."
+  match: FlxSegmentMatch
+
+  "Name."
+  name: String!
+
+  "Rules."
+  rules: [FlxSegmentRuleInput!]!
+}
+
+"The payload for the flxSegmentSave mutation."
+type FlxSegmentSavePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The saved segment."
+  segment: FlxSegment
 }
 
 "Input for the flxSeoAuditRun mutation."
@@ -16438,6 +19783,465 @@ type FlxSettingsUpdatePayload {
 
   "Settings after the change."
   settings: FlxSettings
+}
+
+"Input for the flxSetupAutoUpdateSet mutation."
+input FlxSetupAutoUpdateSetInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Plugin file or theme folder (FlxSetupAutoUpdate.id)."
+  id: String!
+
+  "Turn on."
+  on: Boolean!
+
+  "Plugin or theme."
+  type: FlxSetupAutoUpdateType!
+}
+
+"The payload for the flxSetupAutoUpdateSet mutation."
+type FlxSetupAutoUpdateSetPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "On or Off, in the user&#039;s language."
+  label: String
+
+  "The setting now."
+  on: Boolean
+}
+
+"Input for the flxSetupBackupsDelete mutation."
+input FlxSetupBackupsDeleteInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Backup ids for one or selected."
+  ids: [String!]
+
+  "Which backups."
+  mode: FlxSetupBackupDeleteMode!
+}
+
+"Which update backups to delete."
+enum FlxSetupBackupDeleteMode {
+  "Every unlocked update backup."
+  ALL
+
+  "The first id of the list."
+  ONE
+
+  "The listed ids."
+  SELECTED
+}
+
+"The payload for the flxSetupBackupsDelete mutation."
+type FlxSetupBackupsDeletePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Backups deleted."
+  deleted: Int
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Update backups left."
+  retention: FlxSetupRetention
+}
+
+"Input for the flxSetupCheck mutation."
+input FlxSetupCheckInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+}
+
+"The payload for the flxSetupCheck mutation."
+type FlxSetupCheckPayload {
+  "Last check as a sentence."
+  checkedLabel: String
+
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The main server answered."
+  ok: Boolean
+
+  "FluxWP updates waiting (the menu badge)."
+  pendingCount: Int
+
+  "Result in one line."
+  summary: String
+}
+
+"Input for the flxSetupManage mutation."
+input FlxSetupManageInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "What to do."
+  op: FlxSetupManageOp!
+
+  "FluxWP packages."
+  slugs: [String!]
+
+  "Rows of other makers (keys like p:folder/file.php or t:folder)."
+  wpKeys: [String!]
+}
+
+"Bulk action on installed packages."
+enum FlxSetupManageOp {
+  "Activate plugins."
+  ACTIVATE
+
+  "Turn off automatic updates."
+  AUTO_OFF
+
+  "Turn on automatic updates."
+  AUTO_ON
+
+  "Deactivate plugins."
+  DEACTIVATE
+
+  "Delete plugins and themes from the site."
+  DELETE
+}
+
+"The payload for the flxSetupManage mutation."
+type FlxSetupManagePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Packages changed."
+  done: Int
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Names that failed."
+  failed: [String!]
+
+  "Names skipped (already in that state, active theme or FluxWP Panel)."
+  skipped: [String!]
+
+  "Result in one line."
+  summary: String
+}
+
+"Input for the flxSetupRetentionSave mutation."
+input FlxSetupRetentionSaveInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Days (1–365)."
+  days: Int!
+}
+
+"The payload for the flxSetupRetentionSave mutation."
+type FlxSetupRetentionSavePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Expired backups deleted now."
+  deleted: Int
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Retention after the change."
+  retention: FlxSetupRetention
+}
+
+"Input for the flxSetupSettingsSave mutation."
+input FlxSetupSettingsSaveInput {
+  "Install new versions of FluxWP packages automatically."
+  auto: Boolean
+
+  "Remove the saved key."
+  clearKey: Boolean
+
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Check the site after an update and roll back on a critical error."
+  health: Boolean
+
+  "New site key; empty keeps the saved one."
+  key: String
+
+  "Server address (https); empty uses the default server."
+  server: String
+
+  "Send usage data (consent)."
+  usage: Boolean
+}
+
+"The payload for the flxSetupSettingsSave mutation."
+type FlxSetupSettingsSavePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "The connection after the check."
+  connection: FlxSetupConnection
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The settings after the change."
+  settings: FlxSetupSettings
+
+  "The sources after the check."
+  sources: [FlxSetupSource!]
+}
+
+"Input for the flxSetupSourceAdd mutation."
+input FlxSetupSourceAddInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Site key, only for servers that need one; sent only to that server."
+  key: String
+
+  "Name; taken from the address when empty."
+  name: String
+
+  "Repository or server address (https only)."
+  url: String!
+}
+
+"The payload for the flxSetupSourceAdd mutation."
+type FlxSetupSourceAddPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The sources after the change."
+  sources: [FlxSetupSource!]
+}
+
+"Input for the flxSetupSourceChange mutation."
+input FlxSetupSourceChangeInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Source id."
+  id: String!
+
+  "What to do."
+  op: FlxSetupSourceOp!
+}
+
+"Change of an update source."
+enum FlxSetupSourceOp {
+  "Remove the source."
+  REMOVE
+
+  "Turn the source on or off."
+  TOGGLE
+
+  "Move the source up (higher sources win)."
+  UP
+}
+
+"The payload for the flxSetupSourceChange mutation."
+type FlxSetupSourceChangePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The sources after the change."
+  sources: [FlxSetupSource!]
+}
+
+"Input for the flxSetupStepRun mutation."
+input FlxSetupStepRunInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Plugin file or theme folder for the steps of other makers."
+  id: String
+
+  "Step kind."
+  kind: FlxSetupStepKind!
+
+  "Package slug (or the row key of another maker)."
+  slug: String!
+
+  "Version for a version step."
+  version: String
+}
+
+"The payload for the flxSetupStepRun mutation."
+type FlxSetupStepRunPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "What happened."
+  lines: [FlxSetupLine!]
+
+  "The step succeeded."
+  ok: Boolean
+
+  "The FluxWP package row after the step; empty for rows of other makers."
+  package: FlxSetupPackage
+
+  "FluxWP updates waiting after the step (the menu badge)."
+  pendingCount: Int
+}
+
+"A line of a step result."
+type FlxSetupLine {
+  "It succeeded."
+  ok: Boolean!
+
+  "What happened."
+  text: String!
+}
+
+"Input for the flxSetupWizardLogo mutation."
+input FlxSetupWizardLogoInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Upload id returned by the upload endpoint."
+  uploadId: String!
+}
+
+"The payload for the flxSetupWizardLogo mutation."
+type FlxSetupWizardLogoPayload {
+  "Media library id; pass it to the logo step."
+  attachmentId: Int
+
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Medium size image address."
+  url: String
+}
+
+"Input for the flxSetupWizardStep mutation."
+input FlxSetupWizardStepInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Step."
+  kind: FlxSetupWizardStepKind!
+
+  "Value of the step; see the step kinds."
+  value: String
+}
+
+"A step of the setup wizard."
+enum FlxSetupWizardStepKind {
+  "Accept the terms and set the usage data consent (value: 1 or 0)."
+  CONSENT
+
+  "Finish the wizard."
+  DONE
+
+  "Use a media library image as the logo (value: attachment id)."
+  LOGO
+
+  "Set the site name."
+  NAME
+
+  "Create starter pages (value: comma separated page keys)."
+  PAGES
+
+  "Apply a preset (value: preset id)."
+  PRESET
+
+  "Skip the wizard."
+  SKIP
+
+  "Apply a colour style of the theme (value: style key)."
+  STYLE
+
+  "Set the tagline."
+  TAGLINE
+
+  "Activate the FluxWP theme."
+  THEME
+}
+
+"The payload for the flxSetupWizardStep mutation."
+type FlxSetupWizardStepPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "What happened."
+  lines: [FlxSetupLine!]
+
+  "The step succeeded."
+  ok: Boolean
+
+  "Published pages after the step, when it changes them."
+  pages: Int
+}
+
+"Input for the flxSetupWizardUpdates mutation."
+input FlxSetupWizardUpdatesInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+}
+
+"The payload for the flxSetupWizardUpdates mutation."
+type FlxSetupWizardUpdatesPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Why it did not; empty when it did."
+  error: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Packages with an update; FluxWP Panel itself first."
+  items: [FlxSetupWizardUpdate!]
+
+  "The server answered."
+  ok: Boolean
+}
+
+"An installed package that has an update before the wizard starts."
+type FlxSetupWizardUpdate {
+  "Installed version."
+  from: String!
+
+  "Icon address; empty for a placeholder."
+  icon: String!
+
+  "Name."
+  name: String!
+
+  "It is FluxWP Panel itself (the wizard reopens after it updates)."
+  self: Boolean!
+
+  "Package slug."
+  slug: String!
+
+  "New version."
+  to: String!
 }
 
 "Input for the flxTaskCommentCreate mutation."

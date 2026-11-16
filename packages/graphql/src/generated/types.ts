@@ -4,6 +4,15 @@
 type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 /** Internal type. DO NOT USE DIRECTLY. */
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+/** What kind of file an asset is. */
+export type FlxBlocksAssetKind =
+  /** Script module (type="module", uses the import map in footerHtml). */
+  | 'MODULE'
+  /** Classic script. */
+  | 'SCRIPT'
+  /** Stylesheet. */
+  | 'STYLE';
+
 /** A personal API key or an app session. */
 export type FlxAppAccessKind =
   | 'KEY'
@@ -25,6 +34,84 @@ export type FlxAppAuthKind =
   | 'ACCESS'
   | 'COOKIE'
   | 'KEY';
+
+/** Editor width of a page or post. */
+export type FlxBlocksEditorWidthMode =
+  /** Full width. */
+  | 'FULL_WIDTH'
+  /** Large template. */
+  | 'LARGE'
+  /** Small template. */
+  | 'SMALL';
+
+/** Whether a contact is in the working list or archived. */
+export type FlxContactStatus =
+  /** In the working list. */
+  | 'ACTIVE'
+  /** Hidden from the working list; the history stays. */
+  | 'ARCHIVED';
+
+/** Narrows the contact list. */
+export type FlxContactFilterInput = {
+  /** Only contacts at or above the churn threshold. */
+  atRisk?: boolean | null | undefined;
+  /** Only contacts who gave permission for the channel. */
+  consent?: FlxConsentChannel | null | undefined;
+  /** Role key. */
+  role?: string | null | undefined;
+  /** Name, e-mail, phone or company contains. */
+  search?: string | null | undefined;
+  /** Value segment key. */
+  segment?: string | null | undefined;
+  /** Only contacts that match a saved segment. */
+  segmentId?: number | null | undefined;
+  /** Working list (default) or archive. */
+  status?: FlxContactStatus | null | undefined;
+  /** Tag ID. */
+  tagId?: number | null | undefined;
+};
+
+/** A channel a contact gives or withholds permission for. */
+export type FlxConsentChannel =
+  /** Ad audiences. */
+  | 'ADS'
+  /** E-mail. */
+  | 'EMAIL'
+  /** SMS. */
+  | 'SMS'
+  /** WhatsApp. */
+  | 'WHATSAPP';
+
+/** What the contact list is sorted by. */
+export type FlxContactOrderBy =
+  /** Churn risk. */
+  | 'CHURN'
+  /** Date added. */
+  | 'CREATED'
+  /** Last activity. */
+  | 'LAST_ACTIVITY'
+  /** Last payment. */
+  | 'LAST_PAID'
+  /** Total value. */
+  | 'LTV'
+  /** Name. */
+  | 'NAME';
+
+/** Sort direction of the contact list. */
+export type FlxContactOrder =
+  /** Smallest first. */
+  | 'ASC'
+  /** Largest first. */
+  | 'DESC';
+
+/** State of a journey. Only an active journey sends. */
+export type FlxJourneyStatus =
+  /** Running. */
+  | 'ACTIVE'
+  /** Not started. */
+  | 'DRAFT'
+  /** Stopped; people already inside wait. */
+  | 'PAUSED';
 
 /** State of an AI translation job. */
 export type FlxLanguageJobStatus =
@@ -61,6 +148,23 @@ export type FlxLanguageSwitcherPlace =
   | 'FOOTER'
   /** Header and mobile menu. */
   | 'HEADER';
+
+/** Whether a contact must meet all rules or any rule. */
+export type FlxSegmentMatch =
+  /** All rules. */
+  | 'ALL'
+  /** Any rule. */
+  | 'ANY';
+
+/** One rule of a segment. */
+export type FlxSegmentRuleInput = {
+  /** Field key. */
+  field: string;
+  /** Operator key. */
+  op: string;
+  /** Value. */
+  value?: string | null | undefined;
+};
 
 /** How important an audit recommendation is. */
 export type FlxSeoPriority =
@@ -105,6 +209,151 @@ export type FlxSettingsFlxseoAuditFreq =
 export type FlxSettingsFlxseoOrgType =
   | 'NGO'
   | 'ORGANIZATION';
+
+/** State of the connection to the update server. */
+export type FlxSetupConnectionState =
+  /** The server answered. */
+  | 'CONNECTED'
+  /** The server could not be reached or refused the site. */
+  | 'ERROR'
+  /** The server paused updates for this site; checks wait. */
+  | 'PAUSED'
+  /** Not checked yet. */
+  | 'UNKNOWN';
+
+/** State of Flux GraphQL on the site. */
+export type FlxSetupGraphqlState =
+  /** Active, but its GraphQL server is not running. */
+  | 'CONFLICT'
+  /** Installed, not active. */
+  | 'INACTIVE'
+  /** Not installed. */
+  | 'MISSING'
+  /** Installed and working. */
+  | 'OK';
+
+/** A tab of the package table. */
+export type FlxSetupPackageTab =
+  /** Every row. */
+  | 'ALL'
+  /** WordPress core and translations. */
+  | 'CORE'
+  /** FluxWP packages. */
+  | 'FLUX'
+  /** Plugins of other makers. */
+  | 'PLUGINS'
+  /** Themes of other makers. */
+  | 'THEMES';
+
+/** Automatic update setting of a plugin or theme. */
+export type FlxSetupAutoUpdateMode =
+  /** On for every FluxWP package (FluxWP Panel setting); cannot be changed per package. */
+  | 'LOCKED'
+  /** Off. */
+  | 'OFF'
+  /** On. */
+  | 'ON'
+  /** Not applicable: not installed, not a plugin or theme, or automatic updates are off for the site. */
+  | 'UNAVAILABLE';
+
+/** What an automatic update setting belongs to. */
+export type FlxSetupAutoUpdateType =
+  /** A plugin (id is the plugin file). */
+  | 'PLUGIN'
+  /** A theme (id is the theme folder). */
+  | 'THEME';
+
+/** Where a package row belongs in the table. */
+export type FlxSetupPackageGroup =
+  /** WordPress core and translations. */
+  | 'CORE'
+  /** FluxWP package. */
+  | 'FLUX'
+  /** Plugin of another maker. */
+  | 'PLUGINS'
+  /** Theme of another maker. */
+  | 'THEMES';
+
+/** What a package row is. */
+export type FlxSetupPackageKind =
+  /** FluxWP plugin. */
+  | 'FLUX_PLUGIN'
+  /** FluxWP theme. */
+  | 'FLUX_THEME'
+  /** WordPress itself; it updates on the WordPress updates screen. */
+  | 'WP_CORE'
+  /** Plugin of another maker. */
+  | 'WP_PLUGIN'
+  /** Theme of another maker. */
+  | 'WP_THEME'
+  /** Translation updates of WordPress, plugins and themes (one row). */
+  | 'WP_TRANSLATIONS';
+
+/** State of a plugin another package needs. */
+export type FlxSetupRequirementState =
+  /** Installed and active. */
+  | 'ACTIVE'
+  /** Installed, not active. */
+  | 'INACTIVE'
+  /** Not installed. */
+  | 'MISSING';
+
+/** Install state of a package. */
+export type FlxSetupPackageState =
+  /** Installed and up to date. */
+  | 'CURRENT'
+  /** Not installed. */
+  | 'MISSING'
+  /** Installed, a newer version is available. */
+  | 'UPDATE';
+
+/** One step of an install or update. */
+export type FlxSetupStepKind =
+  /** Activate a plugin. */
+  | 'ACTIVATE'
+  /** Install a FluxWP package. */
+  | 'INSTALL'
+  /** Update a FluxWP package (a backup is taken first). */
+  | 'UPDATE'
+  /** Install a chosen version of a FluxWP package (a backup is taken first). */
+  | 'VERSION'
+  /** Install a required plugin from wordpress.org. */
+  | 'WPORG'
+  /** Update translations. */
+  | 'WP_LANG'
+  /** Update a plugin of another maker. */
+  | 'WP_PLUGIN'
+  /** Update a theme of another maker. */
+  | 'WP_THEME';
+
+/** State of an update source. */
+export type FlxSetupSourceState =
+  /** Could not be reached or refused the site. */
+  | 'ERROR'
+  /** Turned off. */
+  | 'OFF'
+  /** Connected. */
+  | 'OK'
+  /** Not checked yet. */
+  | 'UNCHECKED';
+
+/** Kind of an update source. */
+export type FlxSetupSourceType =
+  /** A public GitHub repository. */
+  | 'GITHUB'
+  /** A FluxWP update server. */
+  | 'SERVER';
+
+/** Result of a system check row. */
+export type FlxSetupCheckStatus =
+  /** Broken. */
+  | 'ERROR'
+  /** For information. */
+  | 'INFO'
+  /** Fine. */
+  | 'OK'
+  /** Needs attention. */
+  | 'WARNING';
 
 /** What a task row is. */
 export type FlxTaskKind =
@@ -406,6 +655,388 @@ export type FlxCartShippingRateSelectInput = {
   rateId: string;
 };
 
+/** Input for the flxBlocksBlockTypeSetActive mutation. */
+export type FlxBlocksBlockTypeSetActiveInput = {
+  /** On. */
+  active: boolean;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Block name. */
+  slug: string;
+};
+
+/** Input for the flxBlocksLibraryShareUpdate mutation. */
+export type FlxBlocksLibraryShareUpdateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Share the library; leave out to keep it as it is. */
+  enabled?: boolean | null | undefined;
+  /** Make a new key; sites using the old key lose access. */
+  regenerateKey?: boolean | null | undefined;
+};
+
+/** Input for the flxBlocksLibrarySourceAdd mutation. */
+export type FlxBlocksLibrarySourceAddInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Library key given by the other site. */
+  key?: string | null | undefined;
+  /** Name; leave empty to use the site's own name. */
+  name?: string | null | undefined;
+  /** Site address. */
+  url: string;
+};
+
+/** Input for the flxBlocksLibrarySourceRemove mutation. */
+export type FlxBlocksLibrarySourceRemoveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Source id. */
+  id: string;
+};
+
+/** Input for the flxBlocksSettingsUpdate mutation. */
+export type FlxBlocksSettingsUpdateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Editor widths. */
+  editorWidth?: FlxBlocksEditorWidthInput | null | undefined;
+  /** Show the page's header blocks in the admin bar. */
+  showHeadersInAdminBar?: boolean | null | undefined;
+};
+
+/** Editor widths; a field left out stays as it is. */
+export type FlxBlocksEditorWidthInput = {
+  /** Width can be chosen per page and post. */
+  enabled?: boolean | null | undefined;
+  /** Large template width (px, 200–4000). */
+  large?: number | null | undefined;
+  /** Width of new pages. */
+  pageDefault?: FlxBlocksEditorWidthMode | null | undefined;
+  /** Width of new posts. */
+  postDefault?: FlxBlocksEditorWidthMode | null | undefined;
+  /** Small template width (px, 200–4000). */
+  small?: number | null | undefined;
+};
+
+/** Input for the flxContactBulk mutation. */
+export type FlxContactBulkInput = {
+  /** What to do. */
+  action: FlxContactBulkAction;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Global IDs or contact IDs. */
+  ids: Array<string>;
+  /** Tag name or role key (for TAG and ROLE). */
+  value?: string | null | undefined;
+};
+
+/** An action applied to many contacts at once. */
+export type FlxContactBulkAction =
+  /** Archive. */
+  | 'ARCHIVE'
+  /** Delete (a contact a package still uses stays). */
+  | 'DELETE'
+  /** Take out of the archive. */
+  | 'RESTORE'
+  /** Add a role (the value is the role key). */
+  | 'ROLE'
+  /** Add a tag (the value is the tag name). */
+  | 'TAG';
+
+/** Input for the flxContactCreate mutation. */
+export type FlxContactCreateInput = {
+  /** City. */
+  city?: string | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Organisation. */
+  company?: string | null | undefined;
+  /** Channel permissions. */
+  consent?: FlxContactConsentInput | null | undefined;
+  /** ISO country code. */
+  country?: string | null | undefined;
+  /** E-mail address. */
+  email?: string | null | undefined;
+  /** Name. */
+  name?: string | null | undefined;
+  /** Short note. */
+  note?: string | null | undefined;
+  /** Owner (user ID); 0 clears it. */
+  ownerId?: number | null | undefined;
+  /** Phone number (any format; saved as digits). */
+  phone?: string | null | undefined;
+  /** Every role the contact should have (replaces the list). */
+  roles?: Array<string> | null | undefined;
+  /** Working list or archive. */
+  status?: FlxContactStatus | null | undefined;
+  /** Tag names to add (a new name creates the tag). */
+  tags?: Array<string> | null | undefined;
+};
+
+/** Channel permissions; channels you leave out stay as they are. */
+export type FlxContactConsentInput = {
+  /** Ad audiences. */
+  ads?: boolean | null | undefined;
+  /** E-mail. */
+  email?: boolean | null | undefined;
+  /** SMS. */
+  sms?: boolean | null | undefined;
+  /** WhatsApp. */
+  whatsapp?: boolean | null | undefined;
+};
+
+/** Input for the flxContactDelete mutation. */
+export type FlxContactDeleteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Global ID or contact ID. */
+  id: string;
+};
+
+/** Input for the flxContactEventAdd mutation. */
+export type FlxContactEventAddInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Global ID or contact ID. */
+  contactId: string;
+  /** Text. */
+  text: string;
+  /** Kind of entry (default: note). */
+  type?: FlxContactNoteType | null | undefined;
+};
+
+/** Kinds of timeline entry a person adds by hand. */
+export type FlxContactNoteType =
+  /** Phone call. */
+  | 'CALL'
+  /** E-mail sent. */
+  | 'EMAIL_SENT'
+  /** Meeting. */
+  | 'MEETING'
+  /** Note. */
+  | 'NOTE';
+
+/** Input for the flxContactEventDelete mutation. */
+export type FlxContactEventDeleteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Entry ID (FlxContactEvent.databaseId). */
+  id: number;
+};
+
+/** Input for the flxContactMerge mutation. */
+export type FlxContactMergeInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Cards merged into it (they are deleted). */
+  duplicateIds: Array<string>;
+  /** The card to keep. */
+  keepId: string;
+};
+
+/** Input for the flxContactTagAdd mutation. */
+export type FlxContactTagAddInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Global ID or contact ID. */
+  contactId: string;
+  /** Tag name; used when there is no tag ID. */
+  name?: string | null | undefined;
+  /** Tag ID. */
+  tagId?: number | null | undefined;
+};
+
+/** Input for the flxContactTagRemove mutation. */
+export type FlxContactTagRemoveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Global ID or contact ID. */
+  contactId: string;
+  /** Tag ID. */
+  tagId: number;
+};
+
+/** Input for the flxContactUpdate mutation. */
+export type FlxContactUpdateInput = {
+  /** City. */
+  city?: string | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Organisation. */
+  company?: string | null | undefined;
+  /** Channel permissions. */
+  consent?: FlxContactConsentInput | null | undefined;
+  /** ISO country code. */
+  country?: string | null | undefined;
+  /** E-mail address. */
+  email?: string | null | undefined;
+  /** Global ID or contact ID. */
+  id: string;
+  /** Name. */
+  name?: string | null | undefined;
+  /** Short note. */
+  note?: string | null | undefined;
+  /** Owner (user ID); 0 clears it. */
+  ownerId?: number | null | undefined;
+  /** Phone number (any format; saved as digits). */
+  phone?: string | null | undefined;
+  /** Every role the contact should have (replaces the list). */
+  roles?: Array<string> | null | undefined;
+  /** Working list or archive. */
+  status?: FlxContactStatus | null | undefined;
+};
+
+/** Input for the flxCrmScoreRun mutation. */
+export type FlxCrmScoreRunInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+};
+
+/** Input for the flxCrmSettingsSave mutation. */
+export type FlxCrmSettingsSaveInput = {
+  /** Active days (7–730). */
+  activeDays?: number | null | undefined;
+  /** Flux AI and MCP may delete (with confirmation). */
+  aiDestructive?: boolean | null | undefined;
+  /** Flux AI and MCP may read CRM data. */
+  aiTools?: boolean | null | undefined;
+  /** Flux AI and MCP may change CRM data. */
+  aiWrite?: boolean | null | undefined;
+  /** Reporting currency (3 letters); empty = the store currency. */
+  baseCurrency?: string | null | undefined;
+  /** Chat messages appear on the timeline. */
+  chatEvents?: boolean | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** A role to add. */
+  newRole?: FlxCrmNewRoleInput | null | undefined;
+  /** Churn threshold (10–100). */
+  riskThreshold?: number | null | undefined;
+  /** Roles to change; roles you leave out are deleted when they are not built in. */
+  roles?: Array<FlxCrmRoleInput> | null | undefined;
+  /** Sources to change. */
+  sources?: Array<FlxCrmSourceInput> | null | undefined;
+};
+
+/** A new role. */
+export type FlxCrmNewRoleInput = {
+  /** Hex colour. */
+  color?: string | null | undefined;
+  /** Name (1–40 characters). */
+  label: string;
+};
+
+/** Changes a role. */
+export type FlxCrmRoleInput = {
+  /** Hex colour. */
+  color?: string | null | undefined;
+  /** Delete the role (not for built-in roles). */
+  delete?: boolean | null | undefined;
+  /** Role key. */
+  key: string;
+  /** Name (1–40 characters). */
+  label?: string | null | undefined;
+};
+
+/** Switches a source on or off and sets the role its people get. */
+export type FlxCrmSourceInput = {
+  /** CRM reads from the source. */
+  enabled?: boolean | null | undefined;
+  /** Source key. */
+  key: string;
+  /** Role key (empty = none). */
+  role?: string | null | undefined;
+};
+
+/** Input for the flxCrmSyncStep mutation. */
+export type FlxCrmSyncStepInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Page within the step (1 = first). */
+  page?: number | null | undefined;
+  /** Step key from the previous result (empty = the first). */
+  step?: string | null | undefined;
+};
+
+/** Input for the flxJourneyDelete mutation. */
+export type FlxJourneyDeleteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Journey ID. */
+  id: number;
+};
+
+/** Input for the flxJourneyFromTemplate mutation. */
+export type FlxJourneyFromTemplateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Template key (flxJourneyConfig.templates). */
+  template: string;
+};
+
+/** Input for the flxJourneySave mutation. */
+export type FlxJourneySaveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Journey ID; leave out to create. */
+  id?: number | null | undefined;
+  /** Name. */
+  name: string;
+  /** Rules. */
+  opts?: FlxJourneyOptionsInput | null | undefined;
+  /** Steps in order. */
+  steps: Array<FlxJourneyStepInput>;
+  /** What starts the journey. */
+  triggerType: string;
+  /** Segment, tag, role or event the trigger watches. */
+  triggerValue?: string | null | undefined;
+};
+
+/** Rules of a journey; rules you leave out get the defaults. */
+export type FlxJourneyOptionsInput = {
+  /** Most messages per person per week. */
+  capWeek?: number | null | undefined;
+  /** Goal event key; empty = none. */
+  goal?: string | null | undefined;
+  /** Quiet hours start (0–23). */
+  quietFrom?: number | null | undefined;
+  /** Quiet hours end (0–23). */
+  quietTo?: number | null | undefined;
+  /** Days before a person can enter again. */
+  reenterDays?: number | null | undefined;
+};
+
+/** One step of a journey. */
+export type FlxJourneyStepInput = {
+  /** Condition key. */
+  condition?: string | null | undefined;
+  /** Days to wait. */
+  days?: number | null | undefined;
+  /** Hours to wait. */
+  hours?: number | null | undefined;
+  /** E-mail subject. */
+  subject?: string | null | undefined;
+  /** Tag to add. */
+  tag?: string | null | undefined;
+  /** Message text. */
+  text?: string | null | undefined;
+  /** Step type. */
+  type: string;
+  /** Value of the condition. */
+  value?: string | null | undefined;
+};
+
+/** Input for the flxJourneySetStatus mutation. */
+export type FlxJourneySetStatusInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Journey ID. */
+  id: number;
+  /** New state. */
+  status: FlxJourneyStatus;
+};
+
 /** Input for the flxLanguageSet mutation. */
 export type FlxLanguageSetInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -562,6 +1193,30 @@ export type FlxRolesSaveRoleInput = {
   key: string;
 };
 
+/** Input for the flxSegmentDelete mutation. */
+export type FlxSegmentDeleteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Segment ID. */
+  id: number;
+};
+
+/** Input for the flxSegmentSave mutation. */
+export type FlxSegmentSaveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Description. */
+  description?: string | null | undefined;
+  /** Segment ID; leave out to create. */
+  id?: number | null | undefined;
+  /** All rules or any rule (default: all). */
+  match?: FlxSegmentMatch | null | undefined;
+  /** Name. */
+  name: string;
+  /** Rules. */
+  rules: Array<FlxSegmentRuleInput>;
+};
+
 /** Input for the flxSeoAuditRun mutation. */
 export type FlxSeoAuditRunInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -662,6 +1317,174 @@ export type FlxSettingsFlxseoInput = {
   verifyYandex?: string | null | undefined;
   webmcp?: boolean | null | undefined;
 };
+
+/** Input for the flxSetupAutoUpdateSet mutation. */
+export type FlxSetupAutoUpdateSetInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Plugin file or theme folder (FlxSetupAutoUpdate.id). */
+  id: string;
+  /** Turn on. */
+  on: boolean;
+  /** Plugin or theme. */
+  type: FlxSetupAutoUpdateType;
+};
+
+/** Input for the flxSetupBackupsDelete mutation. */
+export type FlxSetupBackupsDeleteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Backup ids for one or selected. */
+  ids?: Array<string> | null | undefined;
+  /** Which backups. */
+  mode: FlxSetupBackupDeleteMode;
+};
+
+/** Which update backups to delete. */
+export type FlxSetupBackupDeleteMode =
+  /** Every unlocked update backup. */
+  | 'ALL'
+  /** The first id of the list. */
+  | 'ONE'
+  /** The listed ids. */
+  | 'SELECTED';
+
+/** Input for the flxSetupManage mutation. */
+export type FlxSetupManageInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** What to do. */
+  op: FlxSetupManageOp;
+  /** FluxWP packages. */
+  slugs?: Array<string> | null | undefined;
+  /** Rows of other makers (keys like p:folder/file.php or t:folder). */
+  wpKeys?: Array<string> | null | undefined;
+};
+
+/** Bulk action on installed packages. */
+export type FlxSetupManageOp =
+  /** Activate plugins. */
+  | 'ACTIVATE'
+  /** Turn off automatic updates. */
+  | 'AUTO_OFF'
+  /** Turn on automatic updates. */
+  | 'AUTO_ON'
+  /** Deactivate plugins. */
+  | 'DEACTIVATE'
+  /** Delete plugins and themes from the site. */
+  | 'DELETE';
+
+/** Input for the flxSetupRetentionSave mutation. */
+export type FlxSetupRetentionSaveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Days (1–365). */
+  days: number;
+};
+
+/** Input for the flxSetupSettingsSave mutation. */
+export type FlxSetupSettingsSaveInput = {
+  /** Install new versions of FluxWP packages automatically. */
+  auto?: boolean | null | undefined;
+  /** Remove the saved key. */
+  clearKey?: boolean | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Check the site after an update and roll back on a critical error. */
+  health?: boolean | null | undefined;
+  /** New site key; empty keeps the saved one. */
+  key?: string | null | undefined;
+  /** Server address (https); empty uses the default server. */
+  server?: string | null | undefined;
+  /** Send usage data (consent). */
+  usage?: boolean | null | undefined;
+};
+
+/** Input for the flxSetupSourceAdd mutation. */
+export type FlxSetupSourceAddInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Site key, only for servers that need one; sent only to that server. */
+  key?: string | null | undefined;
+  /** Name; taken from the address when empty. */
+  name?: string | null | undefined;
+  /** Repository or server address (https only). */
+  url: string;
+};
+
+/** Input for the flxSetupSourceChange mutation. */
+export type FlxSetupSourceChangeInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Source id. */
+  id: string;
+  /** What to do. */
+  op: FlxSetupSourceOp;
+};
+
+/** Change of an update source. */
+export type FlxSetupSourceOp =
+  /** Remove the source. */
+  | 'REMOVE'
+  /** Turn the source on or off. */
+  | 'TOGGLE'
+  /** Move the source up (higher sources win). */
+  | 'UP';
+
+/** Input for the flxSetupStepRun mutation. */
+export type FlxSetupStepRunInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Plugin file or theme folder for the steps of other makers. */
+  id?: string | null | undefined;
+  /** Step kind. */
+  kind: FlxSetupStepKind;
+  /** Package slug (or the row key of another maker). */
+  slug: string;
+  /** Version for a version step. */
+  version?: string | null | undefined;
+};
+
+/** Input for the flxSetupWizardLogo mutation. */
+export type FlxSetupWizardLogoInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Upload id returned by the upload endpoint. */
+  uploadId: string;
+};
+
+/** Input for the flxSetupWizardStep mutation. */
+export type FlxSetupWizardStepInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Step. */
+  kind: FlxSetupWizardStepKind;
+  /** Value of the step; see the step kinds. */
+  value?: string | null | undefined;
+};
+
+/** A step of the setup wizard. */
+export type FlxSetupWizardStepKind =
+  /** Accept the terms and set the usage data consent (value: 1 or 0). */
+  | 'CONSENT'
+  /** Finish the wizard. */
+  | 'DONE'
+  /** Use a media library image as the logo (value: attachment id). */
+  | 'LOGO'
+  /** Set the site name. */
+  | 'NAME'
+  /** Create starter pages (value: comma separated page keys). */
+  | 'PAGES'
+  /** Apply a preset (value: preset id). */
+  | 'PRESET'
+  /** Skip the wizard. */
+  | 'SKIP'
+  /** Apply a colour style of the theme (value: style key). */
+  | 'STYLE'
+  /** Set the tagline. */
+  | 'TAGLINE'
+  /** Activate the FluxWP theme. */
+  | 'THEME';
 
 /** Input for the flxTaskCommentCreate mutation. */
 export type FlxTaskCommentCreateInput = {
@@ -948,6 +1771,130 @@ export type FlxAppSyncQueryVariables = Exact<{
 
 export type FlxAppSyncQuery = { flxAppSync: { serverTime: number, counts: Array<{ key: string, value: number }>, hashes: { me: string, config: string, manifest: string }, events: Array<{ event: string, title: string, body: string, target: string, params: unknown, at: number }> } };
 
+export type FlxBlocksBlockTypeSetActiveMutationVariables = Exact<{
+  input: FlxBlocksBlockTypeSetActiveInput;
+}>;
+
+
+export type FlxBlocksBlockTypeSetActiveMutation = { flxBlocksBlockTypeSetActive: { blockType: { slug: string, name: string, description: string, active: boolean, link: string | null, linkText: string | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxBlocksBlockTypeRowFragment = { slug: string, name: string, description: string, active: boolean, link: string | null, linkText: string | null };
+
+export type FlxBlocksContentByIdQueryVariables = Exact<{
+  id: string;
+  withBlocks?: boolean | null | undefined;
+}>;
+
+
+export type FlxBlocksContentByIdQuery = { contentNode:
+    | { __typename: 'MediaItem', databaseId: number, uri: string | null, flxBlocks: { html: string, css: string, fonts: Array<string>, schema: Array<string>, headHtml: string, footerHtml: string, blocks?: Array<{ clientId: string, parentClientId: string | null, order: number, depth: number, name: string, attributes: unknown, innerHtml: string, dynamic: boolean }>, styles: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }>, scripts: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }> } | null }
+    | { __typename: 'Page', databaseId: number, uri: string | null, flxBlocks: { html: string, css: string, fonts: Array<string>, schema: Array<string>, headHtml: string, footerHtml: string, blocks?: Array<{ clientId: string, parentClientId: string | null, order: number, depth: number, name: string, attributes: unknown, innerHtml: string, dynamic: boolean }>, styles: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }>, scripts: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }> } | null }
+    | { __typename: 'Post', databaseId: number, uri: string | null, flxBlocks: { html: string, css: string, fonts: Array<string>, schema: Array<string>, headHtml: string, footerHtml: string, blocks?: Array<{ clientId: string, parentClientId: string | null, order: number, depth: number, name: string, attributes: unknown, innerHtml: string, dynamic: boolean }>, styles: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }>, scripts: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }> } | null }
+   | null };
+
+export type FlxBlocksAssetFieldsFragment = { kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string };
+
+export type FlxBlocksBlockFieldsFragment = { clientId: string, parentClientId: string | null, order: number, depth: number, name: string, attributes: unknown, innerHtml: string, dynamic: boolean };
+
+export type FlxBlocksContentFieldsFragment = { html: string, css: string, fonts: Array<string>, schema: Array<string>, headHtml: string, footerHtml: string, styles: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }>, scripts: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }> };
+
+export type FlxBlocksContentByUriQueryVariables = Exact<{
+  uri: string;
+  withBlocks?: boolean | null | undefined;
+}>;
+
+
+export type FlxBlocksContentByUriQuery = { nodeByUri:
+    | { __typename: 'Category' }
+    | { __typename: 'ContentType' }
+    | { __typename: 'User' }
+    | { __typename: 'Comment' }
+    | { __typename: 'MediaItem', databaseId: number, uri: string | null, flxBlocks: { html: string, css: string, fonts: Array<string>, schema: Array<string>, headHtml: string, footerHtml: string, blocks?: Array<{ clientId: string, parentClientId: string | null, order: number, depth: number, name: string, attributes: unknown, innerHtml: string, dynamic: boolean }>, styles: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }>, scripts: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }> } | null }
+    | { __typename: 'Page', databaseId: number, uri: string | null, flxBlocks: { html: string, css: string, fonts: Array<string>, schema: Array<string>, headHtml: string, footerHtml: string, blocks?: Array<{ clientId: string, parentClientId: string | null, order: number, depth: number, name: string, attributes: unknown, innerHtml: string, dynamic: boolean }>, styles: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }>, scripts: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }> } | null }
+    | { __typename: 'Post', databaseId: number, uri: string | null, flxBlocks: { html: string, css: string, fonts: Array<string>, schema: Array<string>, headHtml: string, footerHtml: string, blocks?: Array<{ clientId: string, parentClientId: string | null, order: number, depth: number, name: string, attributes: unknown, innerHtml: string, dynamic: boolean }>, styles: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }>, scripts: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }> } | null }
+    | { __typename: 'PostFormat' }
+    | { __typename: 'Tag' }
+   | null };
+
+export type FlxBlocksDashboardQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxBlocksDashboardQuery = { flxBlocksBlockTypes: Array<{ slug: string, name: string, description: string, active: boolean, link: string | null, linkText: string | null }>, flxBlocksSettings: { showHeadersInAdminBar: boolean, showAdminBarSetting: boolean, styleLibraryUrl: string, editorWidth: { enabled: boolean, small: number, large: number, postDefault: FlxBlocksEditorWidthMode, pageDefault: FlxBlocksEditorWidthMode, contentWidth: number } | null }, flxBlocksLibrarySources: Array<{ id: string, name: string, url: string, hasKey: boolean }>, flxViewer: { canManageOptions: boolean } };
+
+export type FlxBlocksSettingsFieldsFragment = { showHeadersInAdminBar: boolean, showAdminBarSetting: boolean, styleLibraryUrl: string, editorWidth: { enabled: boolean, small: number, large: number, postDefault: FlxBlocksEditorWidthMode, pageDefault: FlxBlocksEditorWidthMode, contentWidth: number } | null };
+
+export type FlxBlocksSourceRowFragment = { id: string, name: string, url: string, hasKey: boolean };
+
+export type FlxBlocksLibraryPatternsQueryVariables = Exact<{
+  source?: string | null | undefined;
+  category?: string | null | undefined;
+  search?: string | null | undefined;
+  first?: number | null | undefined;
+  after?: string | null | undefined;
+  refresh?: boolean | null | undefined;
+}>;
+
+
+export type FlxBlocksLibraryPatternsQuery = { flxBlocksLibrary: { name: string, url: string, source: string | null, categories: Array<{ slug: string, label: string, count: number }>, patterns: { totalCount: number | null, nodes: Array<{ id: string, title: string, description: string, categories: Array<string>, viewportWidth: number, source: string | null }>, pageInfo: { hasNextPage: boolean, endCursor: string | null } } } };
+
+export type FlxBlocksPatternRowFragment = { id: string, title: string, description: string, categories: Array<string>, viewportWidth: number, source: string | null };
+
+export type FlxBlocksLibraryShareQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxBlocksLibraryShareQuery = { flxBlocksLibraryShare: { enabled: boolean, key: string, url: string } };
+
+export type FlxBlocksShareFieldsFragment = { enabled: boolean, key: string, url: string };
+
+export type FlxBlocksLibraryShareUpdateMutationVariables = Exact<{
+  input: FlxBlocksLibraryShareUpdateInput;
+}>;
+
+
+export type FlxBlocksLibraryShareUpdateMutation = { flxBlocksLibraryShareUpdate: { share: { enabled: boolean, key: string, url: string }, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxBlocksLibrarySourceAddMutationVariables = Exact<{
+  input: FlxBlocksLibrarySourceAddInput;
+}>;
+
+
+export type FlxBlocksLibrarySourceAddMutation = { flxBlocksLibrarySourceAdd: { source: { id: string, name: string, url: string, hasKey: boolean } | null, sources: Array<{ id: string, name: string, url: string, hasKey: boolean }>, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxBlocksLibrarySourceRemoveMutationVariables = Exact<{
+  input: FlxBlocksLibrarySourceRemoveInput;
+}>;
+
+
+export type FlxBlocksLibrarySourceRemoveMutation = { flxBlocksLibrarySourceRemove: { sources: Array<{ id: string, name: string, url: string, hasKey: boolean }>, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxBlocksPatternPreviewQueryVariables = Exact<{
+  id: string;
+  source?: string | null | undefined;
+}>;
+
+
+export type FlxBlocksPatternPreviewQuery = { flxBlocksPattern: { content: string, id: string, title: string, description: string, categories: Array<string>, viewportWidth: number, source: string | null, rendered: { html: string, headHtml: string, footerHtml: string } } | null };
+
+export type FlxBlocksRenderQueryVariables = Exact<{
+  content: string;
+  postId?: number | null | undefined;
+}>;
+
+
+export type FlxBlocksRenderQuery = { flxBlocksRender: { html: string, css: string, fonts: Array<string>, schema: Array<string>, headHtml: string, footerHtml: string, styles: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }>, scripts: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }> } };
+
+export type FlxBlocksSettingsUpdateMutationVariables = Exact<{
+  input: FlxBlocksSettingsUpdateInput;
+}>;
+
+
+export type FlxBlocksSettingsUpdateMutation = { flxBlocksSettingsUpdate: { settings: { showHeadersInAdminBar: boolean, showAdminBarSetting: boolean, styleLibraryUrl: string, editorWidth: { enabled: boolean, small: number, large: number, postDefault: FlxBlocksEditorWidthMode, pageDefault: FlxBlocksEditorWidthMode, contentWidth: number } | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxBlocksSiteStylesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxBlocksSiteStylesQuery = { flxBlocksSiteStyles: { css: string, globalStylesheet: string, headHtml: string, styles: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }> } };
+
 export type FlxCartQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1027,6 +1974,216 @@ export type FlxContentLanguageQuery = { contentNode:
    | null };
 
 export type FlxTranslationRowFragment = { lang: string, databaseId: number, id: string, title: string, status: string, url: string | null, editUrl: string | null, isSelf: boolean };
+
+export type FlxCrmContactQueryVariables = Exact<{
+  id: string;
+}>;
+
+
+export type FlxCrmContactQuery = { flxContact: { rawName: string, country: string | null, source: string | null, sourceLabel: string | null, utmSource: string | null, utmCampaign: string | null, userId: number | null, ownerId: number | null, ownerName: string | null, note: string | null, paidDays: number | null, avgGapDays: number | null, editUrl: string | null, id: string, databaseId: number, name: string, email: string | null, avatar: string | null, company: string | null, city: string | null, roles: Array<string> | null, donations: number | null, orders: number | null, segment: string | null, segmentLabel: string | null, churn: number | null, atRisk: boolean | null, status: FlxContactStatus | null, firstPaidAt: { iso: string, label: string, relative: string } | null, rfm: { recency: number, frequency: number, monetary: number } | null, consentAt: { iso: string, label: string, relative: string } | null, sources: Array<{ label: string, url: string | null, date: string | null }> | null, phone: { e164: string, display: string } | null, ltv: { amount: number, currency: string, formatted: string } | null, lastActivityAt: { iso: string, label: string, relative: string } | null, lastPaidAt: { iso: string, label: string, relative: string } | null, createdAt: { iso: string, label: string, relative: string } | null, consent: { email: boolean, sms: boolean, whatsapp: boolean, ads: boolean } | null, tags: Array<{ databaseId: number, name: string, color: string | null, count: number }> | null } | null };
+
+export type FlxCrmContactCardFragment = { rawName: string, country: string | null, source: string | null, sourceLabel: string | null, utmSource: string | null, utmCampaign: string | null, userId: number | null, ownerId: number | null, ownerName: string | null, note: string | null, paidDays: number | null, avgGapDays: number | null, editUrl: string | null, id: string, databaseId: number, name: string, email: string | null, avatar: string | null, company: string | null, city: string | null, roles: Array<string> | null, donations: number | null, orders: number | null, segment: string | null, segmentLabel: string | null, churn: number | null, atRisk: boolean | null, status: FlxContactStatus | null, firstPaidAt: { iso: string, label: string, relative: string } | null, rfm: { recency: number, frequency: number, monetary: number } | null, consentAt: { iso: string, label: string, relative: string } | null, sources: Array<{ label: string, url: string | null, date: string | null }> | null, phone: { e164: string, display: string } | null, ltv: { amount: number, currency: string, formatted: string } | null, lastActivityAt: { iso: string, label: string, relative: string } | null, lastPaidAt: { iso: string, label: string, relative: string } | null, createdAt: { iso: string, label: string, relative: string } | null, consent: { email: boolean, sms: boolean, whatsapp: boolean, ads: boolean } | null, tags: Array<{ databaseId: number, name: string, color: string | null, count: number }> | null };
+
+export type FlxCrmContactRowFragment = { id: string, databaseId: number, name: string, email: string | null, avatar: string | null, company: string | null, city: string | null, roles: Array<string> | null, donations: number | null, orders: number | null, segment: string | null, segmentLabel: string | null, churn: number | null, atRisk: boolean | null, status: FlxContactStatus | null, phone: { e164: string, display: string } | null, ltv: { amount: number, currency: string, formatted: string } | null, lastActivityAt: { iso: string, label: string, relative: string } | null, lastPaidAt: { iso: string, label: string, relative: string } | null, createdAt: { iso: string, label: string, relative: string } | null, consent: { email: boolean, sms: boolean, whatsapp: boolean, ads: boolean } | null, tags: Array<{ databaseId: number, name: string, color: string | null, count: number }> | null };
+
+export type FlxCrmMoneyFragment = { amount: number, currency: string, formatted: string };
+
+export type FlxCrmTagFragment = { databaseId: number, name: string, color: string | null, count: number };
+
+export type FlxCrmWhenFragment = { iso: string, label: string, relative: string };
+
+export type FlxCrmContactBulkMutationVariables = Exact<{
+  input: FlxContactBulkInput;
+}>;
+
+
+export type FlxCrmContactBulkMutation = { flxContactBulk: { changed: number | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxCrmUserErrorFragment = { code: string, message: string, field: string | null };
+
+export type FlxCrmContactCreateMutationVariables = Exact<{
+  input: FlxContactCreateInput;
+}>;
+
+
+export type FlxCrmContactCreateMutation = { flxContactCreate: { existed: boolean | null, contact: { rawName: string, country: string | null, source: string | null, sourceLabel: string | null, utmSource: string | null, utmCampaign: string | null, userId: number | null, ownerId: number | null, ownerName: string | null, note: string | null, paidDays: number | null, avgGapDays: number | null, editUrl: string | null, id: string, databaseId: number, name: string, email: string | null, avatar: string | null, company: string | null, city: string | null, roles: Array<string> | null, donations: number | null, orders: number | null, segment: string | null, segmentLabel: string | null, churn: number | null, atRisk: boolean | null, status: FlxContactStatus | null, firstPaidAt: { iso: string, label: string, relative: string } | null, rfm: { recency: number, frequency: number, monetary: number } | null, consentAt: { iso: string, label: string, relative: string } | null, sources: Array<{ label: string, url: string | null, date: string | null }> | null, phone: { e164: string, display: string } | null, ltv: { amount: number, currency: string, formatted: string } | null, lastActivityAt: { iso: string, label: string, relative: string } | null, lastPaidAt: { iso: string, label: string, relative: string } | null, createdAt: { iso: string, label: string, relative: string } | null, consent: { email: boolean, sms: boolean, whatsapp: boolean, ads: boolean } | null, tags: Array<{ databaseId: number, name: string, color: string | null, count: number }> | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxCrmContactDeleteMutationVariables = Exact<{
+  input: FlxContactDeleteInput;
+}>;
+
+
+export type FlxCrmContactDeleteMutation = { flxContactDelete: { deletedId: string | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxCrmContactMergeMutationVariables = Exact<{
+  input: FlxContactMergeInput;
+}>;
+
+
+export type FlxCrmContactMergeMutation = { flxContactMerge: { merged: number | null, contact: { id: string, databaseId: number } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxCrmContactsQueryVariables = Exact<{
+  filter?: FlxContactFilterInput | null | undefined;
+  orderBy?: FlxContactOrderBy | null | undefined;
+  order?: FlxContactOrder | null | undefined;
+  first?: number | null | undefined;
+  after?: string | null | undefined;
+}>;
+
+
+export type FlxCrmContactsQuery = { flxContacts: { totalCount: number | null, nodes: Array<{ id: string, databaseId: number, name: string, email: string | null, avatar: string | null, company: string | null, city: string | null, roles: Array<string> | null, donations: number | null, orders: number | null, segment: string | null, segmentLabel: string | null, churn: number | null, atRisk: boolean | null, status: FlxContactStatus | null, phone: { e164: string, display: string } | null, ltv: { amount: number, currency: string, formatted: string } | null, lastActivityAt: { iso: string, label: string, relative: string } | null, lastPaidAt: { iso: string, label: string, relative: string } | null, createdAt: { iso: string, label: string, relative: string } | null, consent: { email: boolean, sms: boolean, whatsapp: boolean, ads: boolean } | null, tags: Array<{ databaseId: number, name: string, color: string | null, count: number }> | null }>, pageInfo: { hasNextPage: boolean, hasPreviousPage: boolean, startCursor: string | null, endCursor: string | null } } };
+
+export type FlxCrmContactUpdateMutationVariables = Exact<{
+  input: FlxContactUpdateInput;
+}>;
+
+
+export type FlxCrmContactUpdateMutation = { flxContactUpdate: { contact: { rawName: string, country: string | null, source: string | null, sourceLabel: string | null, utmSource: string | null, utmCampaign: string | null, userId: number | null, ownerId: number | null, ownerName: string | null, note: string | null, paidDays: number | null, avgGapDays: number | null, editUrl: string | null, id: string, databaseId: number, name: string, email: string | null, avatar: string | null, company: string | null, city: string | null, roles: Array<string> | null, donations: number | null, orders: number | null, segment: string | null, segmentLabel: string | null, churn: number | null, atRisk: boolean | null, status: FlxContactStatus | null, firstPaidAt: { iso: string, label: string, relative: string } | null, rfm: { recency: number, frequency: number, monetary: number } | null, consentAt: { iso: string, label: string, relative: string } | null, sources: Array<{ label: string, url: string | null, date: string | null }> | null, phone: { e164: string, display: string } | null, ltv: { amount: number, currency: string, formatted: string } | null, lastActivityAt: { iso: string, label: string, relative: string } | null, lastPaidAt: { iso: string, label: string, relative: string } | null, createdAt: { iso: string, label: string, relative: string } | null, consent: { email: boolean, sms: boolean, whatsapp: boolean, ads: boolean } | null, tags: Array<{ databaseId: number, name: string, color: string | null, count: number }> | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxCrmDuplicatesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxCrmDuplicatesQuery = { flxContactDuplicates: Array<{ why: string, items: Array<{ usedBy: Array<string>, contact: { id: string, databaseId: number, name: string, email: string | null, avatar: string | null, company: string | null, city: string | null, roles: Array<string> | null, donations: number | null, orders: number | null, segment: string | null, segmentLabel: string | null, churn: number | null, atRisk: boolean | null, status: FlxContactStatus | null, phone: { e164: string, display: string } | null, ltv: { amount: number, currency: string, formatted: string } | null, lastActivityAt: { iso: string, label: string, relative: string } | null, lastPaidAt: { iso: string, label: string, relative: string } | null, createdAt: { iso: string, label: string, relative: string } | null, consent: { email: boolean, sms: boolean, whatsapp: boolean, ads: boolean } | null, tags: Array<{ databaseId: number, name: string, color: string | null, count: number }> | null } }> }> };
+
+export type FlxCrmEventAddMutationVariables = Exact<{
+  input: FlxContactEventAddInput;
+}>;
+
+
+export type FlxCrmEventAddMutation = { flxContactEventAdd: { event: { databaseId: number, contactId: number, contactName: string | null, type: string, typeLabel: string, icon: string, source: string | null, title: string, body: string | null, paid: boolean, status: string | null, url: string | null, userName: string | null, deletable: boolean, amount: { amount: number, currency: string, formatted: string } | null, at: { iso: string, label: string, relative: string }, answers: Array<{ question: string, answer: string }> } | null, contact: { id: string, lastActivityAt: { iso: string, label: string, relative: string } | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxCrmEventFragment = { databaseId: number, contactId: number, contactName: string | null, type: string, typeLabel: string, icon: string, source: string | null, title: string, body: string | null, paid: boolean, status: string | null, url: string | null, userName: string | null, deletable: boolean, amount: { amount: number, currency: string, formatted: string } | null, at: { iso: string, label: string, relative: string }, answers: Array<{ question: string, answer: string }> };
+
+export type FlxCrmEventDeleteMutationVariables = Exact<{
+  input: FlxContactEventDeleteInput;
+}>;
+
+
+export type FlxCrmEventDeleteMutation = { flxContactEventDelete: { deletedId: number | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxCrmJourneyDeleteMutationVariables = Exact<{
+  input: FlxJourneyDeleteInput;
+}>;
+
+
+export type FlxCrmJourneyDeleteMutation = { flxJourneyDelete: { deletedId: number | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxCrmJourneyFromTemplateMutationVariables = Exact<{
+  input: FlxJourneyFromTemplateInput;
+}>;
+
+
+export type FlxCrmJourneyFromTemplateMutation = { flxJourneyFromTemplate: { journey: { databaseId: number, name: string, status: FlxJourneyStatus, description: string, triggerType: string, triggerValue: string, steps: Array<{ type: string, days: number | null, hours: number | null, subject: string | null, text: string | null, condition: string | null, value: string | null, tag: string | null }>, opts: { goal: string, reenterDays: number, quietFrom: number, quietTo: number, capWeek: number }, stats: { entered: number, finished: number, goal: number, sent: number, skipped: number, active: number } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxCrmJourneyRowFragment = { databaseId: number, name: string, status: FlxJourneyStatus, description: string, triggerType: string, triggerValue: string, steps: Array<{ type: string, days: number | null, hours: number | null, subject: string | null, text: string | null, condition: string | null, value: string | null, tag: string | null }>, opts: { goal: string, reenterDays: number, quietFrom: number, quietTo: number, capWeek: number }, stats: { entered: number, finished: number, goal: number, sent: number, skipped: number, active: number } };
+
+export type FlxCrmJourneysQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxCrmJourneysQuery = { flxJourneys: Array<{ databaseId: number, name: string, status: FlxJourneyStatus, description: string, triggerType: string, triggerValue: string, steps: Array<{ type: string, days: number | null, hours: number | null, subject: string | null, text: string | null, condition: string | null, value: string | null, tag: string | null }>, opts: { goal: string, reenterDays: number, quietFrom: number, quietTo: number, capWeek: number }, stats: { entered: number, finished: number, goal: number, sent: number, skipped: number, active: number } }>, flxJourneyConfig: { mailActive: boolean, triggers: Array<{ key: string, label: string }>, stepTypes: Array<{ key: string, label: string }>, conditions: Array<{ key: string, label: string }>, statuses: Array<{ key: string, label: string }>, goals: Array<{ key: string, label: string }>, templates: Array<{ key: string, label: string }>, defaults: { goal: string, reenterDays: number, quietFrom: number, quietTo: number, capWeek: number }, triggerValues: Array<{ trigger: string, values: Array<{ value: string, label: string }> }> } };
+
+export type FlxCrmJourneySaveMutationVariables = Exact<{
+  input: FlxJourneySaveInput;
+}>;
+
+
+export type FlxCrmJourneySaveMutation = { flxJourneySave: { journey: { databaseId: number, name: string, status: FlxJourneyStatus, description: string, triggerType: string, triggerValue: string, steps: Array<{ type: string, days: number | null, hours: number | null, subject: string | null, text: string | null, condition: string | null, value: string | null, tag: string | null }>, opts: { goal: string, reenterDays: number, quietFrom: number, quietTo: number, capWeek: number }, stats: { entered: number, finished: number, goal: number, sent: number, skipped: number, active: number } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxCrmJourneySetStatusMutationVariables = Exact<{
+  input: FlxJourneySetStatusInput;
+}>;
+
+
+export type FlxCrmJourneySetStatusMutation = { flxJourneySetStatus: { journey: { databaseId: number, name: string, status: FlxJourneyStatus, description: string, triggerType: string, triggerValue: string, steps: Array<{ type: string, days: number | null, hours: number | null, subject: string | null, text: string | null, condition: string | null, value: string | null, tag: string | null }>, opts: { goal: string, reenterDays: number, quietFrom: number, quietTo: number, capWeek: number }, stats: { entered: number, finished: number, goal: number, sent: number, skipped: number, active: number } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxCrmOverviewQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxCrmOverviewQuery = { flxCrmOverview: { total: number, new30: number, newPrev: number, active: number, risk: number, paying: number, repeat: number, currency: string, activeDays: number, riskThreshold: number, needsSync: boolean, syncSources: Array<string>, ltv: { amount: number, currency: string, formatted: string }, scoredAt: { iso: string, label: string, relative: string } | null, syncedAt: { iso: string, label: string, relative: string } | null, roles: Array<{ key: string, label: string, color: string, count: number }>, segments: Array<{ key: string, label: string, hint: string, tone: string, count: number, value: { amount: number, currency: string, formatted: string } }>, sources: Array<{ key: string, label: string, count: number }> }, flxCrmRecentEvents: Array<{ databaseId: number, contactId: number, contactName: string | null, type: string, typeLabel: string, icon: string, source: string | null, title: string, body: string | null, paid: boolean, status: string | null, url: string | null, userName: string | null, deletable: boolean, amount: { amount: number, currency: string, formatted: string } | null, at: { iso: string, label: string, relative: string }, answers: Array<{ question: string, answer: string }> }>, atRisk: { nodes: Array<{ id: string, databaseId: number, name: string, email: string | null, avatar: string | null, company: string | null, city: string | null, roles: Array<string> | null, donations: number | null, orders: number | null, segment: string | null, segmentLabel: string | null, churn: number | null, atRisk: boolean | null, status: FlxContactStatus | null, phone: { e164: string, display: string } | null, ltv: { amount: number, currency: string, formatted: string } | null, lastActivityAt: { iso: string, label: string, relative: string } | null, lastPaidAt: { iso: string, label: string, relative: string } | null, createdAt: { iso: string, label: string, relative: string } | null, consent: { email: boolean, sms: boolean, whatsapp: boolean, ads: boolean } | null, tags: Array<{ databaseId: number, name: string, color: string | null, count: number }> | null }> } };
+
+export type FlxCrmScoreRunMutationVariables = Exact<{
+  input: FlxCrmScoreRunInput;
+}>;
+
+
+export type FlxCrmScoreRunMutation = { flxCrmScoreRun: { result: { scored: number, changed: number, done: boolean, total: number } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxCrmSegmentDeleteMutationVariables = Exact<{
+  input: FlxSegmentDeleteInput;
+}>;
+
+
+export type FlxCrmSegmentDeleteMutation = { flxSegmentDelete: { deletedId: number | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxCrmSegmentEditorQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxCrmSegmentEditorQuery = { flxSegmentEditor: { fields: Array<{ key: string, label: string, type: string, ops: Array<string> }>, ops: Array<{ key: string, label: string }>, options: Array<{ type: string, values: Array<{ value: string, label: string }> }> } };
+
+export type FlxCrmSegmentPreviewQueryVariables = Exact<{
+  match?: FlxSegmentMatch | null | undefined;
+  rules: Array<FlxSegmentRuleInput> | FlxSegmentRuleInput;
+}>;
+
+
+export type FlxCrmSegmentPreviewQuery = { flxSegmentPreview: { count: number, summary: string, sample: Array<{ databaseId: number, name: string }> } };
+
+export type FlxCrmSegmentSaveMutationVariables = Exact<{
+  input: FlxSegmentSaveInput;
+}>;
+
+
+export type FlxCrmSegmentSaveMutation = { flxSegmentSave: { segment: { databaseId: number, name: string, description: string | null, count: number, summary: string, match: FlxSegmentMatch, rules: Array<{ field: string, op: string, value: string }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxCrmSegmentRowFragment = { databaseId: number, name: string, description: string | null, count: number, summary: string, match: FlxSegmentMatch, rules: Array<{ field: string, op: string, value: string }> };
+
+export type FlxCrmSettingsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxCrmSettingsQuery = { flxCrmSettings: { chatEvents: boolean, aiTools: boolean, aiWrite: boolean, aiDestructive: boolean, riskThreshold: number, activeDays: number, baseCurrency: string | null, currency: string, sources: Array<{ key: string, label: string, description: string, installed: boolean, enabled: boolean, hasRole: boolean, role: string | null }>, roles: Array<{ key: string, label: string, color: string, builtin: boolean }>, syncedAt: { iso: string, label: string, relative: string } | null, scoredAt: { iso: string, label: string, relative: string } | null }, flxCrmAi: { aiInstalled: boolean, mcpInstalled: boolean, mcpEnabled: boolean, mcpUrl: string | null, mcpAdminUrl: string | null, toolsOn: number, tools: Array<{ name: string, title: string, kind: string, kindLabel: string, enabled: boolean }> }, flxCrmAiLog: Array<{ who: string | null, channel: string, channelLabel: string, action: string, target: string | null, ok: boolean, error: string | null, at: { iso: string, label: string, relative: string } }> };
+
+export type FlxCrmSettingsSaveMutationVariables = Exact<{
+  input: FlxCrmSettingsSaveInput;
+}>;
+
+
+export type FlxCrmSettingsSaveMutation = { flxCrmSettingsSave: { settings: { chatEvents: boolean, aiTools: boolean, aiWrite: boolean, aiDestructive: boolean, riskThreshold: number, activeDays: number, baseCurrency: string | null, currency: string, sources: Array<{ key: string, label: string, description: string, installed: boolean, enabled: boolean, hasRole: boolean, role: string | null }>, roles: Array<{ key: string, label: string, color: string, builtin: boolean }>, syncedAt: { iso: string, label: string, relative: string } | null, scoredAt: { iso: string, label: string, relative: string } | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxCrmShellQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxCrmShellQuery = { flxCrmMeta: { currency: string, canWrite: boolean, hasPackageSections: boolean, roles: Array<{ key: string, label: string, color: string, builtin: boolean, hidden: boolean }>, rfm: Array<{ key: string, label: string, hint: string, tone: string }>, eventTypes: Array<{ key: string, label: string, icon: string, manual: boolean }>, sources: Array<{ key: string, label: string }>, consents: Array<{ key: string, label: string }>, timelineFilters: Array<{ key: string, label: string }>, owners: Array<{ databaseId: number, name: string }> }, flxTags: Array<{ databaseId: number, name: string, color: string | null, count: number }>, flxSegments: Array<{ databaseId: number, name: string, description: string | null, count: number, summary: string, match: FlxSegmentMatch, rules: Array<{ field: string, op: string, value: string }> }> };
+
+export type FlxCrmSyncStepMutationVariables = Exact<{
+  input: FlxCrmSyncStepInput;
+}>;
+
+
+export type FlxCrmSyncStepMutation = { flxCrmSyncStep: { result: { step: string, label: string, scanned: number, total: number, next: string | null, page: number, finished: boolean } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxCrmTagAddMutationVariables = Exact<{
+  input: FlxContactTagAddInput;
+}>;
+
+
+export type FlxCrmTagAddMutation = { flxContactTagAdd: { tag: { databaseId: number, name: string, color: string | null, count: number } | null, contact: { id: string, tags: Array<{ databaseId: number, name: string, color: string | null, count: number }> | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxCrmTagRemoveMutationVariables = Exact<{
+  input: FlxContactTagRemoveInput;
+}>;
+
+
+export type FlxCrmTagRemoveMutation = { flxContactTagRemove: { contact: { id: string, tags: Array<{ databaseId: number, name: string, color: string | null, count: number }> | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxCrmTimelineQueryVariables = Exact<{
+  id: string;
+  filter?: string | null | undefined;
+  first?: number | null | undefined;
+  after?: string | null | undefined;
+}>;
+
+
+export type FlxCrmTimelineQuery = { flxContact: { id: string, timeline: { nodes: Array<{ databaseId: number, contactId: number, contactName: string | null, type: string, typeLabel: string, icon: string, source: string | null, title: string, body: string | null, paid: boolean, status: string | null, url: string | null, userName: string | null, deletable: boolean, amount: { amount: number, currency: string, formatted: string } | null, at: { iso: string, label: string, relative: string }, answers: Array<{ question: string, answer: string }> }>, pageInfo: { hasNextPage: boolean, endCursor: string | null } } | null } | null };
 
 export type FlxLanguageJobQueryVariables = Exact<{
   id: string;
@@ -1222,6 +2379,143 @@ export type FlxSeoSettingsScreenQueryVariables = Exact<{ [key: string]: never; }
 
 
 export type FlxSeoSettingsScreenQuery = { flxSettings: { flxseo: { enabled: boolean | null, siteName: string | null, altName: string | null, sep: string | null, homeTitle: string | null, homeDesc: string | null, ogImage: string | null, verifyGoogle: string | null, verifyBing: string | null, verifyYandex: string | null, verifyNaver: string | null, verifySeznam: string | null, verifyBaidu: string | null, indexnow: boolean | null, noindexShop: boolean | null, noindexSearch: boolean | null, noindexAuthor: boolean | null, noindexTags: boolean | null, autoAlt: boolean | null, orgName: string | null, orgType: FlxSettingsFlxseoOrgType | null, founding: string | null, logo: string | null, street: string | null, locality: string | null, postal: string | null, country: string | null, phone: string | null, email: string | null, sameAs: string | null, twitter: string | null, knowsAbout: string | null, areaServed: string | null, donateLabel: string | null, donateUrl: string | null, llms: boolean | null, llmsIntro: string | null, webmcp: boolean | null, markdown: boolean | null, contentSignal: boolean | null, csSearch: string | null, csAiInput: string | null, csAiTrain: string | null, hdrFrame: boolean | null, hdrCoop: boolean | null, hdrCsp: boolean | null, hstsSub: boolean | null, hstsPreload: boolean | null, auditFreq: FlxSettingsFlxseoAuditFreq | null, auditDay: string | null, auditHour: string | null, auditPsi: boolean | null, auditMail: boolean | null, auditMailTo: string | null } | null }, flxSeoSetup: { otherPlugin: boolean, aiReady: boolean, blogName: string, homeUrl: string, sitemapUrl: string, logoDefault: string, imageDefault: string, homeTitle: string, homeDesc: string, sitekit: boolean, sitePublic: boolean, indexnowKey: string, indexnowUrl: string, indexnowLast: string, indexnowReady: boolean, psiKeySaved: boolean, adminEmail: string, guideSections: Array<string>, engines: Array<{ key: string, field: string, name: string, url: string, link: string, placeholder: string, help: string }> } };
+
+export type FlxSetupAutoUpdateSetMutationVariables = Exact<{
+  input: FlxSetupAutoUpdateSetInput;
+}>;
+
+
+export type FlxSetupAutoUpdateSetMutation = { flxSetupAutoUpdateSet: { on: boolean | null, label: string | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSetupErrorsFragment = { code: string, message: string, field: string | null };
+
+export type FlxSetupBackupsDeleteMutationVariables = Exact<{
+  input: FlxSetupBackupsDeleteInput;
+}>;
+
+
+export type FlxSetupBackupsDeleteMutation = { flxSetupBackupsDelete: { deleted: number | null, retention: { available: boolean, days: number, choices: Array<number>, count: number, size: string, settingsUrl: string } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSetupRetentionFieldsFragment = { available: boolean, days: number, choices: Array<number>, count: number, size: string, settingsUrl: string };
+
+export type FlxSetupCheckMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxSetupCheckMutation = { flxSetupCheck: { ok: boolean | null, pendingCount: number | null, checkedLabel: string | null, summary: string | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSetupHistoryQueryVariables = Exact<{
+  page?: number | null | undefined;
+}>;
+
+
+export type FlxSetupHistoryQuery = { flxSetupHistory: { total: number, pages: number, page: number, canDelete: boolean, backupPage: string, rows: Array<{ name: string, action: string, success: boolean, message: string, by: string, time: { iso: string, label: string, relative: string }, backup: { id: string, deleted: boolean, size: string, locked: boolean, deletable: boolean, selectable: boolean, url: string, keepUntil: { label: string } | null } | null }>, retention: { available: boolean, days: number, choices: Array<number>, count: number, size: string, settingsUrl: string } } };
+
+export type FlxSetupManageMutationVariables = Exact<{
+  input: FlxSetupManageInput;
+}>;
+
+
+export type FlxSetupManageMutation = { flxSetupManage: { done: number | null, skipped: Array<string> | null, failed: Array<string> | null, summary: string | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSetupOverviewQueryVariables = Exact<{
+  search?: string | null | undefined;
+}>;
+
+
+export type FlxSetupOverviewQuery = { flxSetupOverview: { updateCount: number, autoCheck: boolean, backupUrl: string, settingsUrl: string | null, wordpressUpdatesUrl: string, canManageSources: boolean, connection: { state: FlxSetupConnectionState, title: string, message: string, host: string, site: string, checkedLabel: string, backingOff: boolean, hasKey: boolean, keyFromConfig: boolean, packageCount: number, updateCount: number, checked: { iso: string, label: string, relative: string } | null }, tabs: Array<{ tab: FlxSetupPackageTab, label: string, count: number, updates: number }>, failingSources: Array<{ name: string, error: string }>, backup: { ready: boolean, installed: boolean, activatable: boolean, installable: boolean } } };
+
+export type FlxSetupConnectionFieldsFragment = { state: FlxSetupConnectionState, title: string, message: string, host: string, site: string, checkedLabel: string, backingOff: boolean, hasKey: boolean, keyFromConfig: boolean, packageCount: number, updateCount: number, checked: { iso: string, label: string, relative: string } | null };
+
+export type FlxSetupPackagesQueryVariables = Exact<{
+  tab?: FlxSetupPackageTab | null | undefined;
+  search?: string | null | undefined;
+  onlyUpdates?: boolean | null | undefined;
+  first?: number | null | undefined;
+  after?: string | null | undefined;
+}>;
+
+
+export type FlxSetupPackagesQuery = { flxSetupPackages: { totalCount: number | null, nodes: Array<{ key: string, group: FlxSetupPackageGroup, kind: FlxSetupPackageKind, id: string, name: string, subtitle: string, author: string, state: FlxSetupPackageState, installed: string, latest: string, active: boolean, iconUrl: string | null, category: string, sourceName: string, showSource: boolean, sourceCount: number, sourceNote: string, canUpdate: boolean, canInstall: boolean, canManage: boolean, canChangeVersion: boolean, description: string, website: string, images: Array<string>, released: { iso: string, label: string, relative: string } | null, tags: Array<{ label: string, kind: string }>, requires: Array<{ slug: string, name: string, state: FlxSetupRequirementState, flux: boolean }>, autoUpdate: { mode: FlxSetupAutoUpdateMode, type: FlxSetupAutoUpdateType | null, id: string | null, canChange: boolean }, versions: Array<{ version: string, older: boolean, released: { iso: string, label: string } | null }>, info: Array<{ label: string, value: string }> }>, pageInfo: { hasNextPage: boolean, endCursor: string | null } } };
+
+export type FlxSetupPackageRowFragment = { key: string, group: FlxSetupPackageGroup, kind: FlxSetupPackageKind, id: string, name: string, subtitle: string, author: string, state: FlxSetupPackageState, installed: string, latest: string, active: boolean, iconUrl: string | null, category: string, sourceName: string, showSource: boolean, sourceCount: number, sourceNote: string, canUpdate: boolean, canInstall: boolean, canManage: boolean, canChangeVersion: boolean, description: string, website: string, images: Array<string>, released: { iso: string, label: string, relative: string } | null, tags: Array<{ label: string, kind: string }>, requires: Array<{ slug: string, name: string, state: FlxSetupRequirementState, flux: boolean }>, autoUpdate: { mode: FlxSetupAutoUpdateMode, type: FlxSetupAutoUpdateType | null, id: string | null, canChange: boolean }, versions: Array<{ version: string, older: boolean, released: { iso: string, label: string } | null }>, info: Array<{ label: string, value: string }> };
+
+export type FlxSetupPlanQueryVariables = Exact<{
+  slugs?: Array<string> | string | null | undefined;
+  wpKeys?: Array<string> | string | null | undefined;
+  all?: boolean | null | undefined;
+  activate?: boolean | null | undefined;
+}>;
+
+
+export type FlxSetupPlanQuery = { flxSetupPlan: Array<{ kind: FlxSetupStepKind, slug: string, id: string, name: string, why: string, version: string }> };
+
+export type FlxSetupRetentionSaveMutationVariables = Exact<{
+  input: FlxSetupRetentionSaveInput;
+}>;
+
+
+export type FlxSetupRetentionSaveMutation = { flxSetupRetentionSave: { deleted: number | null, retention: { available: boolean, days: number, choices: Array<number>, count: number, size: string, settingsUrl: string } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSetupSettingsSaveMutationVariables = Exact<{
+  input: FlxSetupSettingsSaveInput;
+}>;
+
+
+export type FlxSetupSettingsSaveMutation = { flxSetupSettingsSave: { settings: { server: string, defaultServer: string, serverFromConfig: boolean, effectiveServer: string, hasKey: boolean, keyFromConfig: boolean, auto: boolean, health: boolean, usageAvailable: boolean, usage: boolean, legal: { kvkk: string, privacy: string, terms: string } } | null, connection: { state: FlxSetupConnectionState, title: string, message: string, host: string, site: string, checkedLabel: string, backingOff: boolean, hasKey: boolean, keyFromConfig: boolean, packageCount: number, updateCount: number, checked: { iso: string, label: string, relative: string } | null } | null, sources: Array<{ id: string, name: string, url: string, type: FlxSetupSourceType, main: boolean, enabled: boolean, hasKey: boolean, state: FlxSetupSourceState, message: string, packageCount: number, canMoveUp: boolean }> | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSetupSettingsFieldsFragment = { server: string, defaultServer: string, serverFromConfig: boolean, effectiveServer: string, hasKey: boolean, keyFromConfig: boolean, auto: boolean, health: boolean, usageAvailable: boolean, usage: boolean, legal: { kvkk: string, privacy: string, terms: string } };
+
+export type FlxSetupSourceFieldsFragment = { id: string, name: string, url: string, type: FlxSetupSourceType, main: boolean, enabled: boolean, hasKey: boolean, state: FlxSetupSourceState, message: string, packageCount: number, canMoveUp: boolean };
+
+export type FlxSetupSettingsScreenQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxSetupSettingsScreenQuery = { flxSetupSettings: { server: string, defaultServer: string, serverFromConfig: boolean, effectiveServer: string, hasKey: boolean, keyFromConfig: boolean, auto: boolean, health: boolean, usageAvailable: boolean, usage: boolean, legal: { kvkk: string, privacy: string, terms: string } }, flxSetupConnection: { state: FlxSetupConnectionState, title: string, message: string, host: string, site: string, checkedLabel: string, backingOff: boolean, hasKey: boolean, keyFromConfig: boolean, packageCount: number, updateCount: number, checked: { iso: string, label: string, relative: string } | null }, flxSetupSources: Array<{ id: string, name: string, url: string, type: FlxSetupSourceType, main: boolean, enabled: boolean, hasKey: boolean, state: FlxSetupSourceState, message: string, packageCount: number, canMoveUp: boolean }>, flxSetupGraphqlStatus: { state: FlxSetupGraphqlState, version: string, phpVersion: string, phpMin: string, phpOk: boolean, actionUrl: string, actionLabel: string } };
+
+export type FlxSetupSourceAddMutationVariables = Exact<{
+  input: FlxSetupSourceAddInput;
+}>;
+
+
+export type FlxSetupSourceAddMutation = { flxSetupSourceAdd: { sources: Array<{ id: string, name: string, url: string, type: FlxSetupSourceType, main: boolean, enabled: boolean, hasKey: boolean, state: FlxSetupSourceState, message: string, packageCount: number, canMoveUp: boolean }> | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSetupSourceChangeMutationVariables = Exact<{
+  input: FlxSetupSourceChangeInput;
+}>;
+
+
+export type FlxSetupSourceChangeMutation = { flxSetupSourceChange: { sources: Array<{ id: string, name: string, url: string, type: FlxSetupSourceType, main: boolean, enabled: boolean, hasKey: boolean, state: FlxSetupSourceState, message: string, packageCount: number, canMoveUp: boolean }> | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSetupStepRunMutationVariables = Exact<{
+  input: FlxSetupStepRunInput;
+}>;
+
+
+export type FlxSetupStepRunMutation = { flxSetupStepRun: { ok: boolean | null, pendingCount: number | null, lines: Array<{ ok: boolean, text: string }> | null, package: { key: string, group: FlxSetupPackageGroup, kind: FlxSetupPackageKind, id: string, name: string, subtitle: string, author: string, state: FlxSetupPackageState, installed: string, latest: string, active: boolean, iconUrl: string | null, category: string, sourceName: string, showSource: boolean, sourceCount: number, sourceNote: string, canUpdate: boolean, canInstall: boolean, canManage: boolean, canChangeVersion: boolean, description: string, website: string, images: Array<string>, released: { iso: string, label: string, relative: string } | null, tags: Array<{ label: string, kind: string }>, requires: Array<{ slug: string, name: string, state: FlxSetupRequirementState, flux: boolean }>, autoUpdate: { mode: FlxSetupAutoUpdateMode, type: FlxSetupAutoUpdateType | null, id: string | null, canChange: boolean }, versions: Array<{ version: string, older: boolean, released: { iso: string, label: string } | null }>, info: Array<{ label: string, value: string }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSetupSystemChecksQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxSetupSystemChecksQuery = { flxSetupSystemChecks: Array<{ id: string, source: string, group: string, label: string, status: FlxSetupCheckStatus, message: string, actionUrl: string, actionLabel: string }> };
+
+export type FlxSetupWizardLogoMutationVariables = Exact<{
+  input: FlxSetupWizardLogoInput;
+}>;
+
+
+export type FlxSetupWizardLogoMutation = { flxSetupWizardLogo: { attachmentId: number | null, url: string | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSetupWizardStepMutationVariables = Exact<{
+  input: FlxSetupWizardStepInput;
+}>;
+
+
+export type FlxSetupWizardStepMutation = { flxSetupWizardStep: { ok: boolean | null, pages: number | null, lines: Array<{ ok: boolean, text: string }> | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSetupWizardUpdatesMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxSetupWizardUpdatesMutation = { flxSetupWizardUpdates: { ok: boolean | null, error: string | null, items: Array<{ slug: string, name: string, from: string, to: string, icon: string, self: boolean }> | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
 
 export type FlxTaskCommentCreateMutationVariables = Exact<{
   input: FlxTaskCommentCreateInput;

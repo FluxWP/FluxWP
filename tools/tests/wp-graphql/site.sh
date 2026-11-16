@@ -10,7 +10,8 @@
 #                      must not depend on translations)
 #   SQLITE_PLUGIN_DIR  sqlite-database-integration folder (else downloaded with wp-cli)
 #   PACKAGES           space separated plugin slugs to activate besides flx-graphql
-#                      (default: every plugin whose header says "Requires Plugins: … flx-graphql")
+#                      (default: every plugin whose header says "Requires Plugins: … flx-graphql",
+#                      and every plugin whose main file hooks flx_gql_register, like flx-setup)
 #   WOOCOMMERCE_ZIP    optional WooCommerce zip (path or URL), activated before the packages; without it
 #                      the cart bridge tests run against a Store API stand-in (fixtures/mu-fake-store-api.php)
 #   SQLITE_VERSION     sqlite-database-integration version to download (default 3.1.3)
@@ -91,7 +92,8 @@ if [ -z "$packages" ]; then
   for main in "$root"/plugins/*/*.php; do
     slug="$(basename "$(dirname "$main")")"
     [ "$(basename "$main" .php)" = "$slug" ] || continue
-    if head -c 4096 "$main" | grep -qE '^[[:space:]*]*Requires Plugins:.*flx-graphql'; then
+    # Packages that need Flux GraphQL, and packages that work without it but register a schema when it is there.
+    if head -c 4096 "$main" | grep -qE '^[[:space:]*]*Requires Plugins:.*flx-graphql' || grep -q "'flx_gql_register'" "$main"; then
       packages="$packages $slug"
     fi
   done
