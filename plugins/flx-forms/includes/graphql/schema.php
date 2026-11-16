@@ -44,7 +44,7 @@ flx_gql_type(
 		'description' => __( 'One drawing field. Hidden and read-only fields are left out.', 'flx-forms' ),
 		'fields'      => array(
 			'id'          => array( 'type' => 'ID!', 'description' => __( 'Field id to send back on submit.', 'flx-forms' ) ),
-			'type'        => array( 'type' => 'String!', 'description' => __( 'Field type, such as text, email or select.', 'flx-forms' ) ),
+			'type'        => array( 'type' => 'String!', 'description' => __( 'Editor field type. The editor type list is open, because add-ons and the form builder add types, so this is a string rather than an enum.', 'flx-forms' ) ),
 			'label'       => array( 'type' => 'String!', 'description' => __( 'Label.', 'flx-forms' ) ),
 			'required'    => array( 'type' => 'Boolean!', 'description' => __( 'The visitor must fill this in.', 'flx-forms' ) ),
 			'placeholder' => array( 'type' => 'String!', 'description' => __( 'Placeholder. Empty when the field has none.', 'flx-forms' ) ),
@@ -86,8 +86,9 @@ flx_gql_type(
 	array(
 		'description' => __( 'One reply on a tracked submission.', 'flx-forms' ),
 		'fields'      => array(
-			'body'      => array( 'type' => 'String!', 'description' => __( 'Reply text.', 'flx-forms' ) ),
-			'createdAt' => array( 'type' => 'String!', 'description' => __( 'When the reply was stored, in the site timezone.', 'flx-forms' ) ),
+			'body'        => array( 'type' => 'String!', 'description' => __( 'Reply text.', 'flx-forms' ) ),
+			'createdAt'   => array( 'type' => 'FlxDateTime!', 'description' => __( 'When the reply was stored.', 'flx-forms' ) ),
+			'attachments' => array( 'type' => '[String!]!', 'description' => __( 'File URLs attached to the reply. Empty when there are none.', 'flx-forms' ) ),
 		),
 	)
 );
@@ -99,7 +100,7 @@ flx_gql_type(
 		'fields'      => array(
 			'trackCode'   => array( 'type' => 'String!', 'description' => __( 'Tracking code.', 'flx-forms' ) ),
 			'formTitle'   => array( 'type' => 'String!', 'description' => __( 'Form name stored with the submission.', 'flx-forms' ) ),
-			'submittedAt' => array( 'type' => 'String!', 'description' => __( 'When the submission was stored, in the site timezone.', 'flx-forms' ) ),
+			'submittedAt' => array( 'type' => 'FlxDateTime!', 'description' => __( 'When the submission was stored.', 'flx-forms' ) ),
 			'fields'      => array( 'type' => '[FlxFormAnswer!]!', 'description' => __( 'Answers.', 'flx-forms' ) ),
 			'replies'     => array( 'type' => '[FlxFormReply!]!', 'description' => __( 'Replies, oldest first.', 'flx-forms' ) ),
 		),

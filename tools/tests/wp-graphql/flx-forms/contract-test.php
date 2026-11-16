@@ -213,6 +213,23 @@ $tracked = (string) ( $r['data']['flxFormSubmit']['submission']['trackCode'] ?? 
 $r = flxf_t_op( 'FlxFormTrack', array( 'code' => $tracked ) );
 flxt_same( null, $r['errors'] ?? null, 'track: valid code' );
 flxt_same( 'Ada', $r['data']['flxFormTrack']['fields'][0]['value'] ?? null, 'track: first answer' );
+flxt_ok( is_string( $r['data']['flxFormTrack']['submittedAt']['iso'] ?? null ) && '' !== ( $r['data']['flxFormTrack']['submittedAt']['iso'] ?? '' ), 'track: submittedAt iso' );
+flxt_ok( (int) ( $r['data']['flxFormTrack']['submittedAt']['timestamp'] ?? 0 ) > 0, 'track: submittedAt timestamp' );
+$track_labels = array_column( is_array( $r['data']['flxFormTrack']['fields'] ?? null ) ? $r['data']['flxFormTrack']['fields'] : array(), 'value' );
+flxt_ok( in_array( (string) ( $ok_bits['url'] ?? '' ), $track_labels, true ), 'track: file answer unwraps @file@ to url' );
+
+global $wpdb;
+$saved_content = (string) $wpdb->get_var( $wpdb->prepare( "SELECT content FROM {$wpdb->prefix}emsfb_msg_ WHERE track = %s LIMIT 1", $tracked ) );
+$saved_rows    = json_decode( str_replace( '\\', '', $saved_content ), true );
+flxt_ok( is_array( $saved_rows ), 'submit: stored message decodes via classic stripslashes' );
+$file_rows = array_values( array_filter( is_array( $saved_rows ) ? $saved_rows : array(), static fn( $item ) => is_array( $item ) && 'file' === ( $item['id_'] ?? '' ) ) );
+flxt_same( '@file@', $file_rows[0]['value'] ?? null, 'submit: file row stores @file@ value' );
+flxt_same( (string) ( $ok_bits['url'] ?? '' ), $file_rows[0]['url'] ?? null, 'submit: file row stores url key' );
+$last_row = is_array( $saved_rows ) && $saved_rows ? end( $saved_rows ) : array();
+flxt_same( 'w_link', is_array( $last_row ) ? ( $last_row['type'] ?? null ) : null, 'submit: trailing row is classic w_link' );
+$field_values_only = array_column( is_array( $r['data']['flxFormTrack']['fields'] ?? null ) ? $r['data']['flxFormTrack']['fields'] : array(), 'value' );
+flxt_ok( ! in_array( home_url(), $field_values_only, true ), 'track: w_link marker is omitted from answers' );
+
 $r = flxf_t_op( 'FlxFormTrack', array( 'code' => 'not-a-code' ) );
 flxt_same( 'NOT_FOUND', flxt_code( $r ), 'track: invalid code' );
 
@@ -220,8 +237,317 @@ $r = flxf_t_op( 'FlxFormTrackReply', array( 'input' => array( 'trackCode' => $tr
 flxt_same( array(), flxf_t_errs( $r, 'flxFormTrackReply' ), 'reply: stored' );
 $r = flxf_t_op( 'FlxFormTrack', array( 'code' => $tracked ) );
 flxt_same( 'Following up', $r['data']['flxFormTrack']['replies'][0]['body'] ?? null, 'reply: visible on the track query' );
+flxt_ok( (int) ( $r['data']['flxFormTrack']['replies'][0]['createdAt']['timestamp'] ?? 0 ) > 0, 'reply: createdAt timestamp' );
 $r = flxf_t_op( 'FlxFormTrackReply', array( 'input' => array( 'trackCode' => $tracked, 'message' => 'See file', 'attachments' => array( (string) ( $bits['url'] ?? '' ) ) ) ) );
 flxt_same( array( array( 'INVALID_INPUT', 'attachments' ) ), flxf_t_errs( $r, 'flxFormTrackReply' ), 'reply: unreserved attachment is rejected' );
+
+// Configure plugin settings for reply adminCode + submit/reply side-effect tests.
+$email_key   = 'contractemailkey123';
+$cfg_setting = array(
+	'smtp'           => '1',
+	'emailSupporter' => 'supporter@example.com',
+	'femail'         => 'noreply@example.com',
+	'email_key'      => $email_key,
+	'emailTemp'      => '',
+);
+$wpdb->insert(
+	$wpdb->prefix . 'emsfb_setting',
+	array(
+		'setting' => (string) wp_json_encode( $cfg_setting ),
+		'email'   => 'supporter@example.com',
+		'date'    => current_time( 'mysql' ),
+	)
+);
+if ( class_exists( '\Emsfb\Emsfb' ) ) {
+	\Emsfb\Emsfb::get_setting_Emsfb( '_clear_cache' );
+}
+delete_transient( 'emsfb_settings_transient' );
+wp_cache_delete( 'settings:decoded', 'emsfb' );
+wp_cache_delete( 'settings:raw', 'emsfb' );
+wp_cache_delete( 'emsfb_settings', 'emsfb' );
+
+// Reply with reserved attachment + adminCode + quote handling, and classic-format reply interop.
+$tracked_msg_id = (int) $wpdb->get_var( $wpdb->prepare( "SELECT msg_id FROM {$wpdb->prefix}emsfb_msg_ WHERE track = %s LIMIT 1", $tracked ) );
+$reply_bits     = wp_upload_bits( 'efb-PLG-reply.gif', null, $gif );
+$reply_url      = (string) ( $reply_bits['url'] ?? '' );
+flxt_ok( \Emsfb\Upload_Guard::reserve_response_attachment( $reply_url, $tracked_msg_id, $tracked ), 'reply: reserve attachment for ticket' );
+
+$r = flxf_t_op(
+	'FlxFormTrackReply',
+	array(
+		'input' => array(
+			'trackCode' => $tracked,
+			'message'   => 'Bad admin code',
+			'adminCode' => 'deadbeef0000',
+		),
+	)
+);
+flxt_same( array( array( 'INVALID_INPUT', 'adminCode' ) ), flxf_t_errs( $r, 'flxFormTrackReply' ), 'reply: wrong adminCode is rejected' );
+
+$r = flxf_t_op(
+	'FlxFormTrackReply',
+	array(
+		'input' => array(
+			'trackCode'   => $tracked,
+			'message'     => 'Admin "quoted" reply',
+			'attachments' => array( $reply_url ),
+			'adminCode'   => md5( $tracked . $email_key ),
+		),
+	)
+);
+flxt_same( array(), flxf_t_errs( $r, 'flxFormTrackReply' ), 'reply: adminCode with reserved attachment is accepted' );
+$rsp_id  = (int) ( $r['data']['flxFormTrackReply']['submission']['id'] ?? 0 );
+$rsp_row = $wpdb->get_row( $wpdb->prepare( "SELECT content, read_ FROM {$wpdb->prefix}emsfb_rsp_ WHERE rsp_id = %d LIMIT 1", $rsp_id ), ARRAY_A );
+flxt_same( '1', (string) ( $rsp_row['read_'] ?? '' ), 'reply: adminCode marks reply read' );
+$rsp_decoded = json_decode( str_replace( '\\', '', (string) ( $rsp_row['content'] ?? '' ) ), true );
+flxt_ok( is_array( $rsp_decoded ) && isset( $rsp_decoded[0]['id_'], $rsp_decoded[1]['id_'] ), 'reply: stored as classic JSON array' );
+flxt_same( '@file@', $rsp_decoded[1]['value'] ?? null, 'reply: stored attachment uses @file@' );
+flxt_same( $reply_url, $rsp_decoded[1]['url'] ?? null, 'reply: stored attachment includes url' );
+
+$classic_rsp_payload = str_replace(
+	'"',
+	'\\"',
+	(string) wp_json_encode(
+		array(
+			array( 'id_' => 'message', 'name' => 'Message', 'type' => 'text', 'value' => 'Classic response text' ),
+			array( 'id_' => 'file', 'name' => 'File', 'type' => 'allformat', 'value' => '@file@', 'url' => 'https://example.com/classic-attachment.pdf' ),
+		)
+	)
+);
+$wpdb->insert(
+	$wpdb->prefix . 'emsfb_rsp_',
+	array(
+		'msg_id'    => $tracked_msg_id,
+		'ip'        => '127.0.0.1',
+		'content'   => $classic_rsp_payload,
+		'date'      => current_time( 'mysql' ),
+		'read_by'   => '',
+		'read_'     => 0,
+		'reader_ip' => '',
+		'rsp_by'    => 0,
+	)
+);
+$r = flxf_t_op( 'FlxFormTrack', array( 'code' => $tracked ) );
+flxt_same( array( $reply_url ), $r['data']['flxFormTrack']['replies'][1]['attachments'] ?? null, 'track: GraphQL reply attachments returned' );
+flxt_same( 'Classic response text', $r['data']['flxFormTrack']['replies'][2]['body'] ?? null, 'track: reads classic JSON array reply body' );
+flxt_same( array( 'https://example.com/classic-attachment.pdf' ), $r['data']['flxFormTrack']['replies'][2]['attachments'] ?? null, 'track: reads classic JSON array reply attachments' );
+
+// Builder / block-converter form shape + validation + booking + side effects.
+$b_head = array(
+	'type'               => 'form',
+	'steps'              => 1,
+	'formName'           => 'Builder Form',
+	'email'              => 'formowner@example.com',
+	'email_to'           => 'bemail',
+	'sendEmail'          => true,
+	'trackingCode'       => true,
+	'booking'            => 1,
+	'button_single_text' => 'Submit',
+	'thank_you_message'  => array( 'thankYou' => 'Done', 'done' => 'Saved' ),
+	'stateForm'          => 0,
+);
+$b_rows = array(
+	$b_head,
+	array( 'id_' => '1', 'type' => 'step', 'name' => 'Step 1' ),
+	array( 'id_' => 'bname', 'type' => 'text', 'name' => 'Name', 'required' => 1, 'milen' => 3, 'mlen' => 12 ),
+	array( 'id_' => 'bemail', 'type' => 'email', 'name' => 'Email', 'required' => 1, 'noti' => 1 ),
+	array( 'id_' => 'burl', 'type' => 'url', 'name' => 'Website', 'required' => 0 ),
+	array( 'id_' => 'bcolor', 'type' => 'color', 'name' => 'Color', 'required' => 0 ),
+	array( 'id_' => 'bdate', 'type' => 'date', 'name' => 'Date', 'required' => 0, 'milen' => '2025-01-01', 'mlen' => '2025-12-31' ),
+	array( 'id_' => 'brange', 'type' => 'range', 'name' => 'Range', 'required' => 0, 'milen' => 1, 'mlen' => 10 ),
+	array( 'id_' => 'bnum', 'type' => 'number', 'name' => 'Code', 'required' => 0, 'milen' => 2, 'mlen' => 4 ),
+	array( 'id_' => 'brat', 'type' => 'rating', 'name' => 'Rating', 'required' => 0 ),
+	array( 'id_' => 'bp5', 'type' => 'pointr5', 'name' => 'Score 5', 'required' => 0 ),
+	array( 'id_' => 'bp10', 'type' => 'pointr10', 'name' => 'NPS', 'required' => 0 ),
+	array( 'id_' => 'bpick', 'type' => 'select', 'name' => 'Slot', 'required' => 0 ),
+	array( 'id_' => 'opt_red', 'type' => 'option', 'parent' => 'bpick', 'value' => 'Red', 'mlen' => 1, 'registered_count' => 0, 'dateExp' => '2099-01-01' ),
+	array( 'id_' => 'opt_exp', 'type' => 'option', 'parent' => 'bpick', 'value' => 'Expired', 'mlen' => 5, 'registered_count' => 0, 'dateExp' => '2000-01-01' ),
+	array( 'id_' => 'bmulti', 'type' => 'multiselect', 'name' => 'Tags', 'required' => 0 ),
+	array( 'id_' => 'opt_m1', 'type' => 'option', 'parent' => 'bmulti', 'value' => 'm1' ),
+	array( 'id_' => 'opt_m2', 'type' => 'option', 'parent' => 'bmulti', 'value' => 'm2' ),
+	array( 'id_' => 'bmtx', 'type' => 'table_matrix', 'name' => 'Matrix', 'required' => 0 ),
+	array( 'id_' => 'rm1', 'type' => 'r_matrix', 'parent' => 'bmtx', 'value' => 'Row 1' ),
+	array( 'id_' => 'bpdf', 'type' => 'file', 'name' => 'PDF Only', 'required' => 0, 'file' => 'customize', 'file_ctype' => 'pdf', 'max_fsize' => 1 ),
+	array( 'id_' => 'brec', 'type' => 'audio_recorder', 'name' => 'Voice', 'required' => 0 ),
+);
+$builder_id = flxf_t_form( 'Builder Form', 'form', $b_rows );
+
+$r      = flxf_t_op( 'FlxForm', array( 'id' => (string) $builder_id ) );
+$b_form = $r['data']['flxForm'] ?? array();
+$b_fids = array();
+$b_opts = array();
+foreach ( is_array( $b_form['fields'] ?? null ) ? $b_form['fields'] : array() as $bf ) {
+	if ( is_array( $bf ) ) {
+		$b_fids[] = $bf['id'] ?? '';
+		if ( 'bpick' === ( $bf['id'] ?? '' ) ) {
+			$b_opts = $bf['options'] ?? array();
+		}
+	}
+}
+flxt_same( array( 'bname', 'bemail', 'burl', 'bcolor', 'bdate', 'brange', 'bnum', 'brat', 'bp5', 'bp10', 'bpick', 'bmulti', 'bmtx', 'bpdf', 'brec' ), $b_fids, 'builder form: option, r_matrix and step rows do not leak into fields' );
+flxt_same( array( array( 'value' => 'Red', 'label' => 'Red' ), array( 'value' => 'Expired', 'label' => 'Expired' ) ), $b_opts, 'builder form: sibling option rows attach to parent choice field' );
+
+$b_base = array(
+	array( 'fieldId' => 'bname', 'value' => 'Grace' ),
+	array( 'fieldId' => 'bemail', 'value' => 'grace@example.com' ),
+);
+$r = flxf_t_op( 'FlxFormSubmit', array( 'input' => array( 'formId' => (string) $builder_id, 'fields' => array() ) ) );
+flxt_same( array( array( 'INVALID_INPUT', 'fields.bname' ), array( 'INVALID_INPUT', 'fields.bemail' ) ), flxf_t_errs( $r, 'flxFormSubmit' ), 'validation: required fields rejected when empty' );
+
+$opt_only_id = flxf_t_form( 'Optional Only', 'form', array( array( 'type' => 'form', 'stateForm' => 0 ), array( 'id_' => 'optnote', 'type' => 'text', 'name' => 'Note', 'required' => 0 ) ) );
+$r           = flxf_t_op( 'FlxFormSubmit', array( 'input' => array( 'formId' => (string) $opt_only_id, 'fields' => array() ) ) );
+flxt_same( array( array( 'INVALID_INPUT', 'fields' ) ), flxf_t_errs( $r, 'flxFormSubmit' ), 'validation: empty fields rejected' );
+
+$invalid_cases = array(
+	'bname'  => array( array( 'fieldId' => 'bname', 'value' => 'Hi' ), array( 'fieldId' => 'bemail', 'value' => 'grace@example.com' ) ),
+	'burl'   => array_merge( $b_base, array( array( 'fieldId' => 'burl', 'value' => 'not-a-url' ) ) ),
+	'bcolor' => array_merge( $b_base, array( array( 'fieldId' => 'bcolor', 'value' => 'red' ) ) ),
+	'bdate'  => array_merge( $b_base, array( array( 'fieldId' => 'bdate', 'value' => '2024-05-01' ) ) ),
+	'brange' => array_merge( $b_base, array( array( 'fieldId' => 'brange', 'value' => '99' ) ) ),
+	'bnum'   => array_merge( $b_base, array( array( 'fieldId' => 'bnum', 'value' => '1' ) ) ),
+	'brat'   => array_merge( $b_base, array( array( 'fieldId' => 'brat', 'value' => '6' ) ) ),
+	'bp5'    => array_merge( $b_base, array( array( 'fieldId' => 'bp5', 'value' => '0' ) ) ),
+	'bp10'   => array_merge( $b_base, array( array( 'fieldId' => 'bp10', 'value' => '11' ) ) ),
+	'bpick'  => array_merge( $b_base, array( array( 'fieldId' => 'bpick', 'value' => 'Blue' ) ) ),
+);
+foreach ( $invalid_cases as $fid => $case_fields ) {
+	$r = flxf_t_op( 'FlxFormSubmit', array( 'input' => array( 'formId' => (string) $builder_id, 'fields' => $case_fields ) ) );
+	flxt_same( array( array( 'INVALID_INPUT', 'fields.' . $fid ) ), flxf_t_errs( $r, 'flxFormSubmit' ), 'validation: rejects invalid ' . $fid );
+}
+
+$r = flxf_t_op( 'FlxFormSubmit', array( 'input' => array( 'formId' => (string) $builder_id, 'fields' => array_merge( $b_base, array( array( 'fieldId' => 'bpick', 'value' => 'Expired' ) ) ) ) ) );
+flxt_same( array( array( 'INVALID_INPUT', 'fields.bpick' ) ), flxf_t_errs( $r, 'flxFormSubmit' ), 'booking: rejects expired choice' );
+
+// Upload guard check on a restricted field and recorder field using a pending GIF.
+$gif2_bits = wp_upload_bits( 'efb-PLG-wrongtype.gif', null, $gif );
+$pending   = get_option( 'emsfb_pending_uploads', array() );
+$pending   = is_array( $pending ) ? $pending : array();
+$pending[ wp_basename( (string) ( $gif2_bits['file'] ?? '' ) ) ] = time();
+update_option( 'emsfb_pending_uploads', $pending, false );
+
+$r = flxf_t_op( 'FlxFormSubmit', array( 'input' => array( 'formId' => (string) $builder_id, 'fields' => array_merge( $b_base, array( array( 'fieldId' => 'bpdf', 'value' => (string) ( $gif2_bits['url'] ?? '' ) ) ) ) ) ) );
+flxt_same( array( array( 'INVALID_INPUT', 'fields.bpdf' ) ), flxf_t_errs( $r, 'flxFormSubmit' ), 'upload guard: rejects disallowed extension for field' );
+
+$r = flxf_t_op( 'FlxFormSubmit', array( 'input' => array( 'formId' => (string) $builder_id, 'fields' => array_merge( $b_base, array( array( 'fieldId' => 'brec', 'value' => (string) ( $gif2_bits['url'] ?? '' ) ) ) ) ) ) );
+flxt_same( array( array( 'INVALID_INPUT', 'fields.brec' ) ), flxf_t_errs( $r, 'flxFormSubmit' ), 'upload guard: rejects non-audio file on audio_recorder' );
+
+// Side effects: wp_mail, 3rd-party integration, survey transient clear, booking increment.
+$sent_mails   = array();
+$integrations = array();
+$mail_spy     = static function ( $null, $atts ) use ( &$sent_mails ) {
+	unset( $null );
+	$sent_mails[] = $atts;
+	return true;
+};
+$int_spy = static function ( $ctx ) use ( &$integrations ) {
+	$integrations[] = $ctx;
+};
+add_filter( 'pre_wp_mail', $mail_spy, 10, 2 );
+add_action( 'efb_after_form_integration', $int_spy, 10, 1 );
+set_transient( 'emsfb_survey_' . $builder_id, array( 'cached' => 1 ), 120 );
+
+$valid_builder_fields = array_merge(
+	$b_base,
+	array(
+		array( 'fieldId' => 'burl', 'value' => 'https://example.com' ),
+		array( 'fieldId' => 'bcolor', 'value' => '#ff00aa' ),
+		array( 'fieldId' => 'bdate', 'value' => '2025-06-15' ),
+		array( 'fieldId' => 'brange', 'value' => '5' ),
+		array( 'fieldId' => 'bnum', 'value' => '42' ),
+		array( 'fieldId' => 'brat', 'value' => '5' ),
+		array( 'fieldId' => 'bp5', 'value' => '4' ),
+		array( 'fieldId' => 'bp10', 'value' => '9' ),
+		array( 'fieldId' => 'bpick', 'value' => 'Red' ),
+		array( 'fieldId' => 'bmulti', 'value' => 'm1, m2, m1' ),
+	)
+);
+$r = flxf_t_op( 'FlxFormSubmit', array( 'input' => array( 'formId' => (string) $builder_id, 'fields' => $valid_builder_fields ) ) );
+flxt_same( array(), flxf_t_errs( $r, 'flxFormSubmit' ), 'builder form: valid submission accepted' );
+$builder_track = (string) ( $r['data']['flxFormSubmit']['submission']['trackCode'] ?? '' );
+
+flxt_same( false, get_transient( 'emsfb_survey_' . $builder_id ), 'effects: survey transient cleared on submit' );
+flxt_ok( count( $sent_mails ) >= 1, 'effects: wp_mail fires on submit', count( $sent_mails ) );
+$mail_to_list = implode( ',', array_map( static fn( $m ) => is_array( $m['to'] ?? null ) ? implode( ',', $m['to'] ) : (string) ( $m['to'] ?? '' ), $sent_mails ) );
+flxt_ok( str_contains( $mail_to_list, 'formowner@example.com' ) || str_contains( $mail_to_list, 'supporter@example.com' ), 'effects: admin email notified', $mail_to_list );
+flxt_ok( str_contains( $mail_to_list, 'grace@example.com' ), 'effects: visitor email notified', $mail_to_list );
+flxt_same( 1, count( $integrations ), 'effects: efb_after_form_integration fires once on submit' );
+flxt_same( 'form_submit', $integrations[0]['event_type'] ?? null, 'effects: integration event_type' );
+flxt_same( $builder_track, $integrations[0]['track_code'] ?? null, 'effects: integration track_code' );
+
+$b_msg_content = (string) $wpdb->get_var( $wpdb->prepare( "SELECT content FROM {$wpdb->prefix}emsfb_msg_ WHERE track = %s LIMIT 1", $builder_track ) );
+$b_msg_rows    = json_decode( str_replace( '\\', '', $b_msg_content ), true );
+$b_by_id       = array();
+foreach ( is_array( $b_msg_rows ) ? $b_msg_rows : array() as $mr ) {
+	if ( is_array( $mr ) && isset( $mr['id_'] ) ) {
+		$b_by_id[ (string) $mr['id_'] ] = $mr;
+	}
+}
+flxt_same( 'opt_red', $b_by_id['bpick']['id_ob'] ?? null, 'builder form: stored option carries id_ob' );
+flxt_same( 'm1@efb!m2@efb!', $b_by_id['bmulti']['value'] ?? null, 'builder form: multiselect dedupes and uses @efb! delimiter' );
+
+$updated_struct = json_decode( (string) $wpdb->get_var( $wpdb->prepare( "SELECT form_structer FROM {$wpdb->prefix}emsfb_form WHERE form_id = %d", $builder_id ) ), true );
+$opt_red_count  = null;
+foreach ( is_array( $updated_struct ) ? $updated_struct : array() as $sr ) {
+	if ( is_array( $sr ) && 'opt_red' === ( $sr['id_'] ?? '' ) ) {
+		$opt_red_count = (int) ( $sr['registered_count'] ?? 0 );
+	}
+}
+flxt_same( 1, $opt_red_count, 'booking: registered_count increments after submit' );
+
+$r = flxf_t_op( 'FlxFormSubmit', array( 'input' => array( 'formId' => (string) $builder_id, 'fields' => array_merge( $b_base, array( array( 'fieldId' => 'bpick', 'value' => 'Red' ) ) ) ) ) );
+flxt_same( array( array( 'INVALID_INPUT', 'fields.bpick' ) ), flxf_t_errs( $r, 'flxFormSubmit' ), 'booking: rejects choice once mlen quota is full' );
+
+// Reply side effects + Human Shield veto.
+$sent_mails   = array();
+$integrations = array();
+$r = flxf_t_op( 'FlxFormTrackReply', array( 'input' => array( 'trackCode' => $builder_track, 'message' => 'Follow up' ) ) );
+flxt_same( array(), flxf_t_errs( $r, 'flxFormTrackReply' ), 'effects: reply succeeds' );
+flxt_ok( count( $sent_mails ) >= 1, 'effects: wp_mail fires on reply' );
+flxt_same( 'received_reply', $integrations[0]['event_type'] ?? null, 'effects: integration fires received_reply' );
+
+$integrations = array();
+$shield_veto  = static fn() => false;
+add_filter( 'efb_shield_allow_side_effect', $shield_veto );
+$r = flxf_t_op( 'FlxFormSubmit', array( 'input' => array( 'formId' => (string) $builder_id, 'fields' => $b_base ) ) );
+flxt_same( array(), flxf_t_errs( $r, 'flxFormSubmit' ), 'shield: submit succeeds when side effect vetoed' );
+flxt_same( array(), $integrations, 'shield: efb_shield_allow_side_effect blocks integration dispatch' );
+remove_filter( 'efb_shield_allow_side_effect', $shield_veto );
+remove_filter( 'pre_wp_mail', $mail_spy, 10 );
+remove_action( 'efb_after_form_integration', $int_spy, 10 );
+
+// Non-UTC timezone conversion for FlxDateTime on FlxFormTrack.
+$old_tz = (string) get_option( 'timezone_string', '' );
+update_option( 'timezone_string', 'Europe/Istanbul' );
+$r = flxf_t_op( 'FlxFormSubmit', array( 'input' => array( 'formId' => (string) $builder_id, 'fields' => $b_base ) ) );
+$tz_track = (string) ( $r['data']['flxFormSubmit']['submission']['trackCode'] ?? '' );
+flxf_t_op( 'FlxFormTrackReply', array( 'input' => array( 'trackCode' => $tz_track, 'message' => 'TZ check' ) ) );
+$tz_msg_date = (string) $wpdb->get_var( $wpdb->prepare( "SELECT date FROM {$wpdb->prefix}emsfb_msg_ WHERE track = %s LIMIT 1", $tz_track ) );
+$tz_msg_id   = (int) $wpdb->get_var( $wpdb->prepare( "SELECT msg_id FROM {$wpdb->prefix}emsfb_msg_ WHERE track = %s LIMIT 1", $tz_track ) );
+$tz_rsp_date = (string) $wpdb->get_var( $wpdb->prepare( "SELECT date FROM {$wpdb->prefix}emsfb_rsp_ WHERE msg_id = %d ORDER BY rsp_id DESC LIMIT 1", $tz_msg_id ) );
+$r_tz        = flxf_t_op( 'FlxFormTrack', array( 'code' => $tz_track ) );
+$want_sub_ts = strtotime( get_gmt_from_date( $tz_msg_date ) . ' UTC' );
+$want_rsp_ts = strtotime( get_gmt_from_date( $tz_rsp_date ) . ' UTC' );
+flxt_same( $want_sub_ts, $r_tz['data']['flxFormTrack']['submittedAt']['timestamp'] ?? null, 'timezone: submittedAt converts site-local MySQL date to UTC' );
+flxt_same( $want_rsp_ts, $r_tz['data']['flxFormTrack']['replies'][0]['createdAt']['timestamp'] ?? null, 'timezone: reply createdAt converts site-local MySQL date to UTC' );
+update_option( 'timezone_string', $old_tz );
+
+// Track brute force uses classic legacy limiter.
+$prev_remote              = $_SERVER['REMOTE_ADDR'] ?? null;
+$_SERVER['REMOTE_ADDR']   = '198.51.100.77';
+$legacy_max_filter        = static fn() => 2;
+add_filter( 'efb_track_legacy_fail_max', $legacy_max_filter );
+$r = flxf_t_op( 'FlxFormTrack', array( 'code' => 'bad1' ) );
+flxt_same( 'NOT_FOUND', flxt_code( $r ), 'track rate limit: miss 1 allowed' );
+$r = flxf_t_op( 'FlxFormTrack', array( 'code' => 'bad2' ) );
+flxt_same( 'NOT_FOUND', flxt_code( $r ), 'track rate limit: miss 2 allowed' );
+$r = flxf_t_op( 'FlxFormTrack', array( 'code' => 'bad3' ) );
+flxt_same( 'RATE_LIMITED', flxt_code( $r ), 'track rate limit: miss 3 returns RATE_LIMITED' );
+remove_filter( 'efb_track_legacy_fail_max', $legacy_max_filter );
+if ( null === $prev_remote ) {
+	unset( $_SERVER['REMOTE_ADDR'] );
+} else {
+	$_SERVER['REMOTE_ADDR'] = $prev_remote;
+}
 
 if ( function_exists( 'flxrc_update_settings' ) && function_exists( 'flxrc_seal' ) && function_exists( 'flxrc_key_fingerprint' ) ) {
 	$plain = 'contractsecret123456';

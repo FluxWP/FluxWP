@@ -3,14 +3,15 @@ query FlxFormTrack($code: String!) {
   flxFormTrack(code: $code) {
     trackCode
     formTitle
-    submittedAt
+    submittedAt { iso timestamp }
     fields {
       label
       value
     }
     replies {
       body
-      createdAt
+      createdAt { iso timestamp }
+      attachments
     }
   }
 }

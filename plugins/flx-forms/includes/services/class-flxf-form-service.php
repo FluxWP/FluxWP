@@ -11,6 +11,11 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Reads one form for anonymous visitors and the block editor.
+ *
+ * @phpstan-type FlxfFormOption array{value:string,label:string}
+ * @phpstan-type FlxfFormField array{id:string,type:string,label:string,required:bool,placeholder:string,options:list<FlxfFormOption>}
+ * @phpstan-type FlxfPublicForm array{id:string,title:string,formType:string,steps:int,buttonLabel:string,successTitle:string,successMessage:string,fields:list<FlxfFormField>}
+ * @phpstan-type FlxfLoadedForm array{row:array<string,string>,structure:array<int,array<string,mixed>>}
  */
 class FLXF_Form_Service {
 
@@ -57,7 +62,7 @@ class FLXF_Form_Service {
 	 * One public form, or null when it is missing or private to this visitor.
 	 *
 	 * @param int $id Form id.
-	 * @return array<string,mixed>|null
+	 * @return FlxfPublicForm|null
 	 */
 	public static function public_form( int $id ): ?array {
 		$row = self::row( $id );
@@ -75,7 +80,7 @@ class FLXF_Form_Service {
 	 * Stored row plus the decoded structure, for the submission service.
 	 *
 	 * @param int $id Form id.
-	 * @return array{row:array<string,string>,structure:array<int,array<string,mixed>>}|null
+	 * @return FlxfLoadedForm|null
 	 */
 	public static function load( int $id ): ?array {
 		$row = self::row( $id );
@@ -102,17 +107,17 @@ class FLXF_Form_Service {
 	/**
 	 * @param array<string,string>           $row       Form row.
 	 * @param array<int,array<string,mixed>> $structure Decoded structure.
-	 * @return array<string,mixed>
+	 * @return FlxfPublicForm
 	 */
 	private static function allow( array $row, array $structure ): array {
 		$head    = $structure[0] ?? array();
 		$thanks  = isset( $head['thank_you_message'] ) && is_array( $head['thank_you_message'] ) ? $head['thank_you_message'] : array();
 		$fields  = array();
 		foreach ( $structure as $i => $field ) {
-			if ( 0 === $i ) {
+			if ( 0 === $i || self::is_child_row( $field ) ) {
 				continue;
 			}
-			$drawn = self::field( $field );
+			$drawn = self::field( $field, $structure );
 			if ( null !== $drawn ) {
 				$fields[] = $drawn;
 			}
@@ -130,15 +135,16 @@ class FLXF_Form_Service {
 	}
 
 	/**
-	 * @param array<string,mixed> $field One structure row.
-	 * @return array<string,mixed>|null
+	 * @param array<string,mixed>            $field     One structure row.
+	 * @param array<int,array<string,mixed>> $structure Whole structure, so sibling option rows can be attached.
+	 * @return FlxfFormField|null
 	 */
-	private static function field( array $field ): ?array {
+	private static function field( array $field, array $structure ): ?array {
 		if ( self::flag( $field['hidden'] ?? false ) || self::flag( $field['disabled'] ?? false ) ) {
 			return null;
 		}
 		$type = sanitize_key( self::str( $field['type'] ?? '' ) );
-		if ( '' === $type || 'step' === $type ) {
+		if ( '' === $type || 'step' === $type || self::is_child_row( $field ) ) {
 			return null;
 		}
 		$id = self::field_id( $field );
@@ -151,26 +157,75 @@ class FLXF_Form_Service {
 			'label'       => self::text( $field['name'] ?? $field['label'] ?? '' ),
 			'required'    => self::flag( $field['required'] ?? false ),
 			'placeholder' => self::text( $field['placeholder'] ?? '' ),
-			'options'     => self::options( $field ),
+			'options'     => self::public_options( $field, $structure ),
 		);
 	}
 
 	/**
-	 * @param array<string,mixed> $field Field row.
-	 * @return list<array{value:string,label:string}>
+	 * Choice rows for one field. The builder stores them as sibling rows
+	 * (`type: option`, `parent: <field id>`). Older rows keep an `options` or
+	 * `choices` list on the field. Both shapes are returned.
+	 *
+	 * @param array<string,mixed>            $field     Parent field.
+	 * @param array<int,array<string,mixed>> $structure Whole structure.
+	 * @return list<array<string,mixed>>
 	 */
-	private static function options( array $field ): array {
-		$raw = $field['options'] ?? $field['choices'] ?? array();
-		if ( ! is_array( $raw ) ) {
-			return array();
-		}
+	public static function choice_rows( array $field, array $structure ): array {
 		$out = array();
-		foreach ( $raw as $option ) {
-			if ( ! is_array( $option ) ) {
+		$raw = $field['options'] ?? $field['choices'] ?? array();
+		if ( is_array( $raw ) ) {
+			foreach ( $raw as $option ) {
+				if ( is_array( $option ) ) {
+					$clean = array();
+					foreach ( $option as $key => $value ) {
+						if ( is_string( $key ) ) {
+							$clean[ $key ] = $value;
+						}
+					}
+					$out[] = $clean;
+				}
+			}
+		}
+		$id = self::field_id( $field );
+		if ( '' === $id ) {
+			return $out;
+		}
+		foreach ( $structure as $row ) {
+			if ( 'option' !== sanitize_key( self::str( $row['type'] ?? '' ) ) ) {
 				continue;
 			}
-			$value = self::text( $option['value'] ?? $option['id'] ?? '' );
+			if ( sanitize_text_field( self::str( $row['parent'] ?? '' ) ) !== $id ) {
+				continue;
+			}
+			$out[] = $row;
+		}
+		return $out;
+	}
+
+	/**
+	 * Drop the GraphQL cache tag for one form. Called from the save and delete
+	 * paths that already clear the classic form cache.
+	 */
+	public static function purge( int $id ): void {
+		if ( $id < 1 || ! function_exists( 'flx_gql_purge' ) ) {
+			return;
+		}
+		flx_gql_purge( 'flx-forms:form:' . (string) $id );
+	}
+
+	/**
+	 * @param array<string,mixed>            $field     Parent field.
+	 * @param array<int,array<string,mixed>> $structure Whole structure.
+	 * @return list<FlxfFormOption>
+	 */
+	private static function public_options( array $field, array $structure ): array {
+		$out = array();
+		foreach ( self::choice_rows( $field, $structure ) as $option ) {
+			$value = self::text( $option['value'] ?? '' );
 			$label = self::text( $option['label'] ?? $option['name'] ?? $value );
+			if ( '' === $value ) {
+				$value = self::field_id( $option );
+			}
 			if ( '' === $value && '' === $label ) {
 				continue;
 			}
@@ -180,6 +235,16 @@ class FLXF_Form_Service {
 			);
 		}
 		return $out;
+	}
+
+	/**
+	 * Option and matrix rows belong to their parent. They are not fields.
+	 *
+	 * @param array<string,mixed> $field Structure row.
+	 */
+	public static function is_child_row( array $field ): bool {
+		$type = sanitize_key( self::str( $field['type'] ?? '' ) );
+		return 'option' === $type || 'r_matrix' === $type;
 	}
 
 	/**

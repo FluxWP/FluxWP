@@ -254,15 +254,15 @@ Seçenek satırından yalnız `value` ve görünen etiket kopyalanır; sayaçlar
 | `FlxForm` | `id`, `name`, `type: FlxFormType!`, `fields`, `updatedAt` | `updatedAt` yoksa null | form id |
 | `FlxFormPublic` | `id`, `name`, `type`, `fields` (etiket, tür, zorunlu, seçenekler) | form yoksa veya gizliyse kök `null` | form id |
 | `FlxFormType` | `FORM`, `SURVEY`, `SUBSCRIBE`, `PAYMENT`, `REGISTER`, `LOGIN` | — | `blocks.php:42` |
-| `FlxFormField` | `id`, `type`, `label`, `required`, `options` | `options` seçimsiz alanda null | yapıdan |
+| `FlxFormField` | `id`, `type` (`String!`, açık tür listesi), `label`, `required`, `options` | `options` seçimsiz alanda boş liste | yapıdan |
 | `FlxFormResponse` | `id`, `form`, `trackCode`, `status: FlxFormResponseStatus!`, `createdAt`, `fields`, `replies`, `preview` | `form` silinmişse null | msg id |
 | `FlxFormResponseStatus` | `UNREAD` (0), `READ` (1), `PENDING_PAYMENT` (2), `UNREAD_FOLLOWUP` (3), `READ_FOLLOWUP` (4) | — | `read_` |
-| `FlxFormReply` | `id`, `body`, `authorName`, `createdAt` | yazar yoksa `authorName` null | rsp id |
+| `FlxFormReply` | `body`, `createdAt: FlxDateTime!`, `attachments: [String!]!` | `attachments` boş liste | rsp id |
 | `FlxFormsDashboard` | aralık, kartlar (yanıt, okunmamış, görüntüleme, dönüşüm, ödeme), `series`, `byForm`, `payStatus`, `heat`, `recent`, `topForms` | görüntüleme tablosu yoksa ilgili kart null | — |
 | `FlxFormsWidgetPeriod` | `DAY`, `WEEK` | — | widget `period` |
 | `FlxFormsWidgetStats` | ziyaret, gönderim, gönderilen e-posta, başarısız e-posta | veri yoksa sayılar 0 | — |
 | `FlxFormsEmailError` | `date`, `recipient`, `detail` | — | — |
-| `FlxFormTrack` | `trackCode`, `formTitle`, `submittedAt`, `fields`, `replies` | kod yoksa kök hata `NOT_FOUND` (payload değil) | track |
+| `FlxFormTrack` | `trackCode`, `formTitle`, `submittedAt: FlxDateTime!`, `fields`, `replies` | kod yoksa kök hata `NOT_FOUND` (payload değil) | track |
 | `FlxFormTrackReply` | `id`, `body`, `createdAt` | — | rsp id |
 | `FlxFormSubmitPayload` | `submission { id, trackCode }`, `errors: [FlxUserError!]!` | başarıda `submission`, hatada null | — |
 
@@ -272,12 +272,12 @@ Kökler:
 
 | Alan | cap | Not |
 |---|---|---|
-| `flxForm(id: ID!): FlxForm` | `public` | Allowlist. Gerekçe: shortcode zaten herkese aynı çizim alanlarını basar. Gizli form anonime `null` |
+| `flxForm(id: ID!): FlxForm` | `public` | Allowlist. Gerekçe: shortcode zaten herkese aynı çizim alanlarını basar. Gizli form anonime `null`. `option`/`r_matrix` satırları sızmaz |
 | `flxFormPicker: [FlxFormPickerItem!]!` | `flx_gql_any_cap( 'edit_posts', 'Emsfb', 'manage_options' )` | Blok seçici. Yalnız `id` + `title`. Bugünkü `edit_posts` |
 | `flxForms: FlxFormConnection!` | `flx_gql_any_cap( 'Emsfb', 'manage_options' )` | Yönetici listesi. Seçici bu sorgu değildir |
-| `flxFormSubmit(input: FlxFormSubmitInput!): FlxFormSubmitPayload!` | `public` | `form` / `survey` / `subscribe`. `captchaToken`, honeypot, `flx_rate_limit`. Dosya: aşağıda |
-| `flxFormTrack(code: String!): FlxFormTrack` | `public` | Kod yoksa `NOT_FOUND`. Captcha token yok (klasik API doğrulamaz). IP sınırı |
-| `flxFormTrackReply(input: FlxFormTrackReplyInput!): FlxFormSubmitPayload!` | `public` | `message`, `attachments` (yalnız bu bilet için ayrılmış), `adminCode` (`sc`). Captcha token yok |
+| `flxFormSubmit(input: FlxFormSubmitInput!): FlxFormSubmitPayload!` | `public` | `form` / `survey` / `subscribe`. `captchaToken`, honeypot, `flx_rate_limit`, klasik `flxf_dispatch_submit_effects`. Dosya: aşağıda |
+| `flxFormTrack(code: String!): FlxFormTrack` | `public` | Kod yoksa `NOT_FOUND`. Captcha token yok (klasik API doğrulamaz). Klasik `efb_track_lookup_allowed` / `efb_track_legacy_lookup_allowed` sınırı |
+| `flxFormTrackReply(input: FlxFormTrackReplyInput!): FlxFormSubmitPayload!` | `public` | `message`, `attachments` (yalnız bu bilet için ayrılmış), `adminCode` (`sc`), klasik `flxf_dispatch_reply_effects`. Captcha token yok |
 | `flxFormResponses(...): FlxFormResponseConnection!` | `Emsfb` veya `manage_options` | `formId`, `unread`, `search` |
 | `flxFormResponse(id: ID!): FlxFormResponse` | aynı | Yoksa `NOT_FOUND` |
 | `flxFormResponseByTrack(code: String!): FlxFormResponse` | aynı | |
@@ -294,17 +294,17 @@ Kökler:
 
 ### Yükleme bağlama
 
-Klasik gönderim `validate_submitted_upload_url_efb` (`class-Emsfb-public.php:4708`, çağrı `:2943`) dosyayı `wp_upload_dir()` altında, tür ve boyut `Upload_Guard::validate_stored_file` geçiyorsa kabul eder. `emsfb_pending_uploads` (`Upload_Guard::PENDING_OPTION`, `class-Emsfb-upload-guard.php:58`) bakmaz. Defter `basename => zaman` (`track_pending_upload`, `:1068`); form id tutmaz. Yazılış: yükleme (`class-Emsfb-public.php:4370` ve çevresi) ve `file_upload_public` (`class-Emsfb-admin.php:3143`). `claim_uploaded_files_efb` (`:4158`) `insert_message_db` (`:4193`) sonrasında eşleşen adları `release_pending_uploads` ile düşer. Yetki kontrolü değil, yetim süpürgesi (`emsfb_cleanup_orphan_uploads`).
+Klasik gönderim `validate_submitted_upload_url_efb` (`class-Emsfb-public.php:4635`, çağrı `:2947`) dosyayı `wp_upload_dir()` altında, tür ve boyut `Upload_Guard::validate_stored_file` ve kaydedici kuralları geçiyorsa kabul eder. `emsfb_pending_uploads` (`Upload_Guard::PENDING_OPTION`, `class-Emsfb-upload-guard.php:58`) defter `basename => zaman` tutar; form id tutmaz. `claim_uploaded_files_efb` `insert_message_db` sonrasında eşleşen adları `release_pending_uploads` ile düşer.
 
-Yanıt kutusu ayrı: `reserve_response_attachment` (`:875`) transient'a `message_id` + `sha256(track)` yazar. `response_attachments_are_reserved_efb` (`class-Emsfb-public.php:4014`) **çağrılır** (`:5179`). "Hiç çağrılmıyor" iddiası yanlış.
+Yanıt kutusu ayrı: `reserve_response_attachment` (`:875`) transient'a `message_id` + `sha256(track)` yazar. `response_attachments_are_reserved_efb` (`class-Emsfb-public.php:4014`) **çağrılır**.
 
-GraphQL: `flxFormSubmit` URL'yi ancak basename `emsfb_pending_uploads` içindeyse ve tür/boyut kontrolü geçtiyse alır. Defterde form id olmadığı için "bu form" bağını klasik veri tutmaz; rastgele uploads URL'si reddedilir, bekleyen başka bir formun dosyası hâlâ yapışabilir (klasik zayıflık, bu PR klasik yolu değiştirmez). `flxFormTrackReply` yalnız `Upload_Guard::response_attachment_is_reserved` geçen ekleri alır (bilet bağı var).
+GraphQL: `flxFormSubmit` URL'yi ancak basename `emsfb_pending_uploads` içindeyse VE `_Public::flxf_validate_submitted_upload` (`validate_submitted_upload_url_efb`) geçiyorsa alır; satırı `@file@` + `url` biçiminde yazar. `flxFormTrackReply` yalnız `Upload_Guard::response_attachment_is_reserved` geçen ekleri alır (bilet bağı var).
 
 Hatalar: `UNAUTHENTICATED`, `FORBIDDEN`, `NOT_FOUND`, `INVALID_INPUT`, `CONFLICT`, `RATE_LIMITED`, `INTERNAL`. Yazmalarda `INVALID_INPUT` ve `CONFLICT` payload `errors` içine.
 
 ## Yetkiler (`flx_gql_capabilities`)
 
-Yeni cap açılmaz. Katalogya mevcut cap'ler yazılır ki `useFlxCan` çalışsın:
+Yeni cap açılmaz. Katalogda mevcut cap'ler gerekir (`useFlxCan` için), ancak kit (`plugins/flx-graphql/includes/kit/caps.php:85`) şu an `^[a-z0-9_]+$` doğruladığı için büyük harfli `Emsfb*` cap'leri dilim 2'de kaydedilmeden önce kit izni / eşlemesi gerekir:
 
 | Cap | Kimde | Ne için |
 |---|---|---|
@@ -315,20 +315,20 @@ Yeni cap açılmaz. Katalogya mevcut cap'ler yazılır ki `useFlxCan` çalışs�
 
 `edit_posts` blok seçicisinde kalır: `flxFormPicker` `flx_gql_any_cap( 'edit_posts', 'Emsfb', 'manage_options' )` ve yalnız id + başlık. Tam liste `flxForms` `Emsfb` veya `manage_options`. Pano cap'i filtreli değil (`FLXF_Dashboard::can`). Otomasyon cap'i `flxf_automations_capability` filtresi.
 
-## Servisler (sonraki PR, bu turda yazılmayacak)
+## Servisler
 
 | Sınıf | Ne taşır | Kim çağırır |
 |---|---|---|
-| `FLXF_Form_Service` | `get`, `list`. Ham JSON'u alan listesine çevirir | `flxForm`, `flxForms`, Gutenberg/blok GET (REST gövdesi aynı kalır) |
-| `FLXF_Submission_Service` | `submit` (form/survey/subscribe), honeypot, `flx_captcha_gql_verify`, `flx_rate_limit` | `flxFormSubmit`. REST `get_form_public_efb` baytları değişmeden servise delege edilir; login/ödeme dalları REST'te kalır |
-| `FLXF_Response_Service` | liste, tekil, yazışma, okundu, sil, yanıt, onay kodu | Panel AJAX + `flx-forms/v1` + GraphQL |
-| `FLXF_Dashboard_Service` | `FLXF_Dashboard::stats` ve widget'ın gün/hafta hesabı | `flxf_dash_stats`, `efb_dashboard_stats`, `efb_dashboard_email_errors`, `flxFormsDashboard`, `flxFormsWidgetStats` |
+| `FLXF_Form_Service` | `public_form`, `load`, `choice_rows`, `purge`. Ham JSON'u alan listesine çevirir | `flxForm`, `FLXF_Submission_Service`, `update_form_cache_efb` / `clear_form_cache_efb` / `blocks.php::flush` |
+| `FLXF_Submission_Service` | `submit` (form/survey/subscribe), `track`, `reply`, honeypot, `flx_captcha_gql_verify`, `flx_rate_limit`, klasik `flxf_dispatch_*_effects` | `flxFormSubmit`, `flxFormTrack`, `flxFormTrackReply` |
+| `FLXF_Response_Service` | liste, tekil, yazışma, okundu, sil, yanıt, onay kodu (dilim 2) | Panel AJAX + `flx-forms/v1` + GraphQL |
+| `FLXF_Dashboard_Service` | `FLXF_Dashboard::stats` ve widget'ın gün/hafta hesabı (dilim 3) | `flxf_dash_stats`, `efb_dashboard_stats`, `efb_dashboard_email_errors`, `flxFormsDashboard`, `flxFormsWidgetStats` |
 
 ## Önbellek tag'leri
 
 | Tag | Okuyan | Temizleyen |
 |---|---|---|
-| `flx-forms:form:{id}` | `flxForm` | form kaydı (REST editör, servis çağrılırsa) |
+| `flx-forms:form:{id}` | `flxForm` | form kaydı/silme (`update_form_cache_efb`, `clear_form_cache_efb`, `blocks.php::flush` → `FLXF_Form_Service::purge`) |
 | `flx-forms:list` | `flxForms` | form kaydı / silme |
 | `flx-forms:responses` | `flxFormResponses` | `flxFormSubmit`, sil, okundu, yanıt |
 | `flx-forms:response:{id}` | `flxFormResponse` | aynı |

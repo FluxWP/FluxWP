@@ -29,7 +29,11 @@ class _Public {
 	private $head_slot_efb        = '';
 	private $head_hoist_ready_efb = false;
 
+	/** @var self|null The instance created when the plugin loads. */
+	private static $flxf_live = null;
+
 	public function __construct() {
+		self::$flxf_live = $this;
 		global $wpdb;
 		$this->db = $wpdb;
 		$this->id =-1;
@@ -3371,68 +3375,9 @@ public function check_nonce_permission_efb($request) {
 							/* Flux Forms: lets the Automations module add a certificate card (flxf_html) to the done screen. */
 							$response = apply_filters( 'flxf_submit_response', $response, array( 'event_type' => 'form_submit', 'track_code' => $track_code, 'form_id' => intval( $this->id ), 'submitted_values' => $submitted_values, 'form_fields' => $form_fields_array ) );
 							$this->efb_send_json_and_continue($response, 200);
-							$this->efb_intgrate_with_3rd_party_services_efb($track_code, $submitted_values, $form_fields_array);
-
-							if (isset($form_fields_array[0]['smsnoti']) && $form_fields_array[0]['smsnoti'] == 1) {
-								$smsSendResult = $this->efbFunction->sms_ready_for_send_efb($this->id, $phone_numbers, $url, 'fform', 'wpsms', $track_code);
-								if($smsSendResult !== true) {
-
-									$m =  $this->lanText['msgSndBut'];
-									$m = sprintf($m,  '<b>'.$this->lanText['smsWPN'] .'<b>' , ''.$this->lanText['trackNo'] . '(' .$track_code.')' );
-									$response = ['success' => false, 'm' => $m];
-									wp_send_json_success($response, 200);
-								}
-							}
-							if ($should_send_email) {
-
-								// Active email notification rules replace the standard admin
-								// notification: admin recipients are dropped so only rule
-								// recipients get notified; the user email (index 1) still goes out.
-								$has_active_email_rules = isset($form_fields_array[0]['notification_rules'])
-									&& is_array($form_fields_array[0]['notification_rules'])
-									&& count($this->efb_conditional_sorted_rules($form_fields_array[0]['notification_rules'])) > 0;
-
-								if ($has_active_email_rules) {
-									$email_recipients[0] = [];
-									$this->efb_email_debug_log('admin-email-suppressed', [
-										'track' => $track_code,
-										'form_id' => intval($this->id),
-										'reason' => 'active_notification_rules',
-									]);
-								} else {
-									$this->email_list_efb($email_recipients, 0, $form_admin_email, true);
-								}
-								$state_email_user = $has_tracking_code == 1 ? 'notiToUserFormFilled_TrackingCode' : 'notiToUserFormFilled';
-								$msg_content = 'null';
-								if (isset($form_fields_array[0]['email_noti_type']) && $form_fields_array[0]['email_noti_type'] == 'msg') {
-									$msg_content = $this->email_get_content_efb($submitted_values, $track_code);
-									$msg_content = str_replace("\"", "'", $msg_content);
-								}
-								$status_email = $this->email_status_efb($form_fields_array,$submitted_values,$track_code);
-								$state_of_email = ['newMessage',$state_email_user,$status_email['type']];
-
-								/* Last checkpoint before the mailer runs. If the trace shows
-								   this line but no wp_mail.args after it, the send was stopped
-								   inside send_email_Emsfb_ (empty recipient slot, or an
-								   email_key/template guard) rather than by the transport. */
-								$this->efb_trace('submit.dispatch', [
-									'form_id'          => intval($this->id),
-									'track'            => $track_code,
-									'admin_recipients' => $email_recipients[0] ?? [],
-									'user_recipients'  => $email_recipients[1] ?? [],
-									'from_override'    => $email_recipients[2] ?? null,
-									'states'           => $state_of_email,
-									'has_active_email_rules' => $has_active_email_rules,
-								]);
-
-								$this->send_email_Emsfb_( $email_recipients,$track_code ,$is_pro,$state_of_email,$url,$status_email['content'], $status_email['subject'] );
-								$this->process_conditional_notification_rules($form_fields_array, $submitted_values, $track_code, $is_pro, $url, $status_email);
-
-								$this->efb_trace('submit.dispatch-done', [
-									'form_id' => intval($this->id),
-									'track'   => $track_code,
-									'note'    => 'send_email_Emsfb_ returned. Check the wp_mail.args / phpmailer.init / wp_mail.failed lines above for the transport result.',
-								]);
+							$sms_fail = $this->flxf_dispatch_submit_effects($track_code, $submitted_values, $form_fields_array, $phone_numbers, $url, $should_send_email, $email_recipients, $has_tracking_code, $form_admin_email, $is_pro);
+							if (is_array($sms_fail)) {
+								wp_send_json_success($sms_fail, 200);
 							}
 
 						exit;
@@ -3792,13 +3737,7 @@ public function check_nonce_permission_efb($request) {
 									$this->efbFunction->efb_code_validate_update($session_id ,'nwltr' ,'nwltr' );
 
 									$this->efb_send_json_and_continue($response, 200);
-									$this->efb_intgrate_with_3rd_party_services_efb($track_code, $submitted_values, $form_fields_array, 'subscribe');
-
-									if($should_send_email){
-										$status_email = $this->email_status_efb($form_fields_array,$submitted_values,$track_code);
-										$state_of_email = ['newMessage','subscribe',$status_email['type']];
-										$this->send_email_Emsfb_( $email_recipients,$track_code ,$is_pro,$state_of_email,$url,$status_email['content'],$status_email['subject'] );
-									}
+									$this->flxf_dispatch_submit_effects($track_code, $submitted_values, $form_fields_array, $phone_numbers, $url, $should_send_email, $email_recipients, $has_tracking_code, $form_admin_email, $is_pro, 'subscribe');
 									exit;
 							break;
 						case "survey":
@@ -3823,19 +3762,7 @@ public function check_nonce_permission_efb($request) {
 									}
 									$this->efbFunction->efb_code_validate_update($session_id ,'poll' ,'poll' );
 									$this->efb_send_json_and_continue($response, 200);
-									$this->efb_intgrate_with_3rd_party_services_efb($track_code, $submitted_values, $form_fields_array, 'survey');
-
-									if($should_send_email){
-										$status_email = $this->email_status_efb($form_fields_array,$submitted_values,$track_code);
-										$state_of_email = ['newMessage',"survey",$status_email['type']];
-										$this->send_email_Emsfb_( $email_recipients,$track_code ,$is_pro,$state_of_email,$url,$status_email['content'],$status_email['subject'] );
-									}
-
-									if(isset($form_fields_array[0]['smsnoti']) && $form_fields_array[0]['smsnoti']==1 ) {
-										$smsSendResult = $this->efbFunction->sms_ready_for_send_efb($this->id, $phone_numbers,$url,'fform' ,'wpsms' ,$track_code);
-										if($smsSendResult !== true) {
-										}
-									}
+									$this->flxf_dispatch_submit_effects($track_code, $submitted_values, $form_fields_array, $phone_numbers, $url, $should_send_email, $email_recipients, $has_tracking_code, $form_admin_email, $is_pro, 'survey');
 									exit;
 							break;
 						case "reservation":
@@ -5103,8 +5030,7 @@ public function check_nonce_permission_efb($request) {
 						}
 				}
 				$message = array_values($message);
-				$m = json_encode($message,JSON_UNESCAPED_UNICODE);
-				$m = str_replace('"', '\\"', $m);
+				$m = $this->flxf_encode_reply_payload($message);
 				$ip =$this->ip= $this->get_ip_address();
 				$id = preg_replace('/[,]+/','',$id);
 				if(empty($this->db)){
@@ -5241,88 +5167,10 @@ public function check_nonce_permission_efb($request) {
 				);
 				$valb =str_replace('\\', '', $vald[0]->form_structer);
 				$valn= json_decode($valb,true);
-				$usr;
-				$email_noti_ids=[] ;
-				$users_email =array();
-				$valb=null;
-				$email_to = isset($valn[0]["email_to"]) ? $valn[0]["email_to"] : '';
-				$emailsId = [];
-				if($email_actived){
-						foreach($valn as $key=>$val){
-							if($val['type']=="email" && isset($val['noti']) && in_array($val['noti'] ,[1,'1',true,'true'],true) ){
-								$emailsId[]=$val['id_'];
-							}else if ($val['type']=="email" &&  $val['id_']==$email_to ){
-								$emailsId[]=$val['id_'];
-							}
-						}
-						if(!empty($emailsId)){
-							foreach ($msg_obj as $value) {
-								if(isset($value['id_']) && in_array($value['id_'],$emailsId)){
-									array_push($users_email,$value["value"]);
-								}
-							}
-						}
-
+				$reply_fail = $this->flxf_dispatch_reply_effects($valn, $msg_obj, $setting, ! empty($email_actived), $form_id, $rsp_by, $link_w, $track, $pro);
+				if (is_array($reply_fail)) {
+					wp_send_json_success($reply_fail, 200);
 				}
-				$smsnoti = (isset($valn[0]['smsnoti']) && intval($valn[0]['smsnoti'])==1) ? 1 :0;
-				if($smsnoti){
-					$phone_numbers=[[],[]];
-					if(isset($setting->sms_config) && isset($setting->phnNo) && strlen($setting->phnNo)>5){
-						$phone_numbers[0] =explode(',',$setting->phnNo);
-					}
-					$have_noti_id=[];
-
-					foreach($valn as $val){
-						if($val['type']=="mobile" && isset($val['smsnoti']) && intval($val['smsnoti'])==1){
-							array_push($have_noti_id,$val['id_']);
-						}
-					}
-
-					if(!empty($have_noti_id)){
-						foreach ($msg_obj as $value) {
-							if($value['type']=="mobile" && in_array($value['id_'],$have_noti_id)){
-								array_push($phone_numbers[1],$value['value']);
-							}
-						}
-					}
-				$tt = $rsp_by=='admin' ? 'respadmin' : 'resppa';
-				if(isset($setting->sms_config) && ($setting->sms_config=="wpsms" || $setting->sms_config=='ws.team') ) {
-					// Delivery always goes through WP-SMS for now; ws.team has no gateway implementation yet
-					$smsSendResult = $this->efbFunction->sms_ready_for_send_efb($form_id, $phone_numbers,$link_w,$tt ,'wpsms' ,$track);
-					if($smsSendResult !== true) {
-						$m =  $this->lanText['msgSndBut'];
-						$m = sprintf($m,  '<b>'.$this->lanText['smsWPN'] .'<b>' , '' );
-						$response = ['success' => false, 'm' => $m];
-						wp_send_json_success($response, 200);
-					}
-				}
-
-				}
-				$user_eamil=[[],[],null];
-				if (isset($setting->emailSupporter) && strlen($setting->emailSupporter)>5){
-					$this->email_list_efb($user_eamil , 0 , $setting->emailSupporter ,true);
-				}
-				if(isset($setting->femail)) $user_eamil[2]=$setting->femail;
-				$email_fa = $valn[0]['email'];
-				if (isset($email_fa) && strlen($email_fa)>5){
-					$this->email_list_efb($user_eamil , 0 , $email_fa ,true);
-				}
-				$links=$link_w;
-				$email_status =["",""];
-			    !empty($users_email) ? $user_eamil[1]= $users_email : 0;
-				if($rsp_by=='admin'){
-					$email_status[1]= "newMessage";
-					$email_status[0] ='respRecivedMessage';
-					$user_eamil[0]=[null];
-				}else{
-					$email_status[1]= "respRecivedMessage";
-					$email_status[0] ='newMessage';
-				}
-				if(emsfb_is_email_sending_enabled_efb($setting)) $this->send_email_Emsfb_($user_eamil,$track,$pro,$email_status,$links ,'null','null');
-
-				$reply_event_type = ($rsp_by == 'admin') ? 'admin_reply' : 'received_reply';
-				$this->id = $form_id;
-				$this->efb_intgrate_with_3rd_party_services_efb($track, $valobj ?? [], $valn, $reply_event_type);
 
 				$response = array(
 				'success' => true , "m"=>$this->lanText['messageSent'] , "by"=>$by,
@@ -8953,6 +8801,229 @@ public function check_nonce_permission_efb($request) {
 			do_action('efb_after_form_integration', $context);
 		}
 
+	}
+
+	/**
+	 * The instance that registered the public routes. GraphQL uses it so submit,
+	 * reply and track share these methods instead of a second copy.
+	 */
+	public static function flxf_live(): self {
+		if ( ! self::$flxf_live instanceof self ) {
+			self::$flxf_live = new self();
+		}
+		if ( empty( self::$flxf_live->db ) ) {
+			global $wpdb;
+			self::$flxf_live->db = $wpdb;
+		}
+		return self::$flxf_live;
+	}
+
+	/**
+	 * Stored reply body. The same escaped JSON the tracker and the response viewer parse.
+	 *
+	 * @param array<int,mixed> $message Reply rows.
+	 */
+	public function flxf_encode_reply_payload( array $message ): string {
+		$encoded = json_encode( array_values( $message ), JSON_UNESCAPED_UNICODE );
+		$encoded = is_string( $encoded ) ? $encoded : '[]';
+		return str_replace( '"', '\\"', $encoded );
+	}
+
+	/**
+	 * Post-save mail, SMS, webhooks and the survey cache clear. Classic submit
+	 * calls this once after the JSON response has already been flushed.
+	 *
+	 * @param array<int,mixed> $submitted_values Stored rows.
+	 * @param array<int,mixed> $form_fields_array Structure.
+	 * @param array<int,mixed> $phone_numbers SMS recipients.
+	 * @param array<int,mixed> $email_recipients Mail recipients.
+	 * @return array<string,mixed>|null SMS failure payload. Null when nothing else must be printed.
+	 */
+	public function flxf_dispatch_submit_effects( $track_code, $submitted_values, $form_fields_array, $phone_numbers, $url, $should_send_email, $email_recipients, $has_tracking_code, $form_admin_email, $is_pro, $form_type = 'form' ) {
+		delete_transient( 'emsfb_survey_' . (int) $this->id );
+		$event_type = ( 'subscribe' === $form_type || 'survey' === $form_type ) ? $form_type : 'form_submit';
+		$this->efb_intgrate_with_3rd_party_services_efb( $track_code, $submitted_values, $form_fields_array, $event_type );
+
+		if ( 'subscribe' !== $form_type && isset( $form_fields_array[0]['smsnoti'] ) && $form_fields_array[0]['smsnoti'] == 1 ) {
+			$smsSendResult = $this->efbFunction->sms_ready_for_send_efb( $this->id, $phone_numbers, $url, 'fform', 'wpsms', $track_code );
+			if ( 'form' === $form_type && $smsSendResult !== true ) {
+				$m = $this->lanText['msgSndBut'];
+				$m = sprintf( $m, '<b>' . $this->lanText['smsWPN'] . '<b>', '' . $this->lanText['trackNo'] . '(' . $track_code . ')' );
+				return array( 'success' => false, 'm' => $m );
+			}
+		}
+		if ( $should_send_email ) {
+			$has_active_email_rules = 'form' === $form_type
+				&& isset( $form_fields_array[0]['notification_rules'] )
+				&& is_array( $form_fields_array[0]['notification_rules'] )
+				&& count( $this->efb_conditional_sorted_rules( $form_fields_array[0]['notification_rules'] ) ) > 0;
+
+			if ( $has_active_email_rules ) {
+				$email_recipients[0] = array();
+				$this->efb_email_debug_log( 'admin-email-suppressed', array(
+					'track'   => $track_code,
+					'form_id' => intval( $this->id ),
+					'reason'  => 'active_notification_rules',
+				) );
+			} else {
+				$this->email_list_efb( $email_recipients, 0, $form_admin_email, true );
+			}
+			$state_email_user = ( 'subscribe' === $form_type || 'survey' === $form_type )
+				? $form_type
+				: ( $has_tracking_code == 1 ? 'notiToUserFormFilled_TrackingCode' : 'notiToUserFormFilled' );
+			$status_email     = $this->email_status_efb( $form_fields_array, $submitted_values, $track_code );
+			$state_of_email   = array( 'newMessage', $state_email_user, $status_email['type'] );
+
+			if ( 'form' === $form_type ) {
+				$this->efb_trace( 'submit.dispatch', array(
+					'form_id'                => intval( $this->id ),
+					'track'                  => $track_code,
+					'admin_recipients'       => $email_recipients[0] ?? array(),
+					'user_recipients'        => $email_recipients[1] ?? array(),
+					'from_override'          => $email_recipients[2] ?? null,
+					'states'                 => $state_of_email,
+					'has_active_email_rules' => $has_active_email_rules,
+				) );
+			}
+
+			$this->send_email_Emsfb_( $email_recipients, $track_code, $is_pro, $state_of_email, $url, $status_email['content'], $status_email['subject'] );
+			if ( 'form' === $form_type ) {
+				$this->process_conditional_notification_rules( $form_fields_array, $submitted_values, $track_code, $is_pro, $url, $status_email );
+				$this->efb_trace( 'submit.dispatch-done', array(
+					'form_id' => intval( $this->id ),
+					'track'   => $track_code,
+					'note'    => 'send_email_Emsfb_ returned. Check the wp_mail.args / phpmailer.init / wp_mail.failed lines above for the transport result.',
+				) );
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Reply notifications. Same mail, SMS and integration the classic reply sends.
+	 *
+	 * @param array<int,mixed> $valn Form structure.
+	 * @param array<int,mixed> $msg_obj Submission rows.
+	 * @param object|null      $setting Plugin settings.
+	 * @return array<string,mixed>|null SMS failure payload.
+	 */
+	public function flxf_dispatch_reply_effects( $valn, $msg_obj, $setting, $email_actived, $form_id, $rsp_by, $link_w, $track, $pro ) {
+		$users_email = array();
+		$email_to    = isset( $valn[0]['email_to'] ) ? $valn[0]['email_to'] : '';
+		$emailsId    = array();
+		if ( $email_actived ) {
+			foreach ( $valn as $val ) {
+				if ( ! is_array( $val ) ) {
+					continue;
+				}
+				$vtype = $val['type'] ?? '';
+				$vid   = $val['id_'] ?? $val['id'] ?? '';
+				if ( $vtype == 'email' && isset( $val['noti'] ) && in_array( $val['noti'], array( 1, '1', true, 'true' ), true ) ) {
+					$emailsId[] = $vid;
+				} elseif ( $vtype == 'email' && '' !== $vid && $vid == $email_to ) {
+					$emailsId[] = $vid;
+				}
+			}
+			if ( ! empty( $emailsId ) ) {
+				foreach ( $msg_obj as $value ) {
+					if ( is_array( $value ) && isset( $value['id_'], $value['value'] ) && in_array( $value['id_'], $emailsId ) ) {
+						array_push( $users_email, $value['value'] );
+					}
+				}
+			}
+		}
+		$smsnoti = ( isset( $valn[0]['smsnoti'] ) && intval( $valn[0]['smsnoti'] ) == 1 ) ? 1 : 0;
+		if ( $smsnoti ) {
+			$phone_numbers = array( array(), array() );
+			if ( isset( $setting->sms_config ) && isset( $setting->phnNo ) && strlen( $setting->phnNo ) > 5 ) {
+				$phone_numbers[0] = explode( ',', $setting->phnNo );
+			}
+			$have_noti_id = array();
+			foreach ( $valn as $val ) {
+				if ( ! is_array( $val ) ) {
+					continue;
+				}
+				if ( ( $val['type'] ?? '' ) == 'mobile' && isset( $val['smsnoti'] ) && intval( $val['smsnoti'] ) == 1 ) {
+					$vid = $val['id_'] ?? $val['id'] ?? '';
+					if ( '' !== $vid ) {
+						array_push( $have_noti_id, $vid );
+					}
+				}
+			}
+			if ( ! empty( $have_noti_id ) ) {
+				foreach ( $msg_obj as $value ) {
+					if ( is_array( $value ) && ( $value['type'] ?? '' ) == 'mobile' && isset( $value['id_'], $value['value'] ) && in_array( $value['id_'], $have_noti_id ) ) {
+						array_push( $phone_numbers[1], $value['value'] );
+					}
+				}
+			}
+			$tt = $rsp_by == 'admin' ? 'respadmin' : 'resppa';
+			if ( isset( $setting->sms_config ) && ( $setting->sms_config == 'wpsms' || $setting->sms_config == 'ws.team' ) ) {
+				$smsSendResult = $this->efbFunction->sms_ready_for_send_efb( $form_id, $phone_numbers, $link_w, $tt, 'wpsms', $track );
+				if ( $smsSendResult !== true ) {
+					$m = $this->lanText['msgSndBut'];
+					$m = sprintf( $m, '<b>' . $this->lanText['smsWPN'] . '<b>', '' );
+					return array( 'success' => false, 'm' => $m );
+				}
+			}
+		}
+		$user_eamil = array( array(), array(), null );
+		if ( isset( $setting->emailSupporter ) && strlen( $setting->emailSupporter ) > 5 ) {
+			$this->email_list_efb( $user_eamil, 0, $setting->emailSupporter, true );
+		}
+		if ( isset( $setting->femail ) ) {
+			$user_eamil[2] = $setting->femail;
+		}
+		$email_fa = $valn[0]['email'] ?? '';
+		if ( is_string( $email_fa ) && strlen( $email_fa ) > 5 ) {
+			$this->email_list_efb( $user_eamil, 0, $email_fa, true );
+		}
+		$links        = $link_w;
+		$email_status = array( '', '' );
+		! empty( $users_email ) ? $user_eamil[1] = $users_email : 0;
+		if ( $rsp_by == 'admin' ) {
+			$email_status[1] = 'newMessage';
+			$email_status[0] = 'respRecivedMessage';
+			$user_eamil[0]   = array( null );
+		} else {
+			$email_status[1] = 'respRecivedMessage';
+			$email_status[0] = 'newMessage';
+		}
+		if ( emsfb_is_email_sending_enabled_efb( $setting ) ) {
+			$this->send_email_Emsfb_( $user_eamil, $track, $pro, $email_status, $links, 'null', 'null' );
+		}
+		$reply_event_type = ( $rsp_by == 'admin' ) ? 'admin_reply' : 'received_reply';
+		$this->id         = $form_id;
+		$this->efb_intgrate_with_3rd_party_services_efb( $track, array(), $valn, $reply_event_type );
+		return null;
+	}
+
+	public function flxf_track_lookup_allowed() {
+		return $this->efb_track_lookup_allowed();
+	}
+
+	public function flxf_track_legacy_lookup_allowed() {
+		return $this->efb_track_legacy_lookup_allowed();
+	}
+
+	public function flxf_track_register_failure() {
+		$this->efb_track_register_failure();
+	}
+
+	public function flxf_track_register_legacy_failure() {
+		$this->efb_track_register_legacy_failure();
+	}
+
+	public function flxf_is_strong_track_code( $code ) {
+		return $this->is_strong_track_code_efb( $code );
+	}
+
+	/**
+	 * @param array<string,mixed> $field Field definition.
+	 * @return true|string|false
+	 */
+	public function flxf_validate_submitted_upload( $url, $field ) {
+		return $this->validate_submitted_upload_url_efb( $url, $field );
 	}
 
 }

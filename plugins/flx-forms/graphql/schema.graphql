@@ -43,7 +43,9 @@ type FlxFormField {
   placeholder: String!
   """The visitor must fill this in."""
   required: Boolean!
-  """Field type, such as text, email or select."""
+  """
+  Editor field type. The editor type list is open, because add-ons and the form builder add types, so this is a string rather than an enum.
+  """
   type: String!
 }
 
@@ -65,10 +67,12 @@ type FlxFormOption {
 
 """One reply on a tracked submission."""
 type FlxFormReply {
+  """File URLs attached to the reply. Empty when there are none."""
+  attachments: [String!]!
   """Reply text."""
   body: String!
-  """When the reply was stored, in the site timezone."""
-  createdAt: String!
+  """When the reply was stored."""
+  createdAt: FlxDateTime!
 }
 
 """A stored submission or reply."""
@@ -117,8 +121,8 @@ type FlxFormTrack {
   formTitle: String!
   """Replies, oldest first."""
   replies: [FlxFormReply!]!
-  """When the submission was stored, in the site timezone."""
-  submittedAt: String!
+  """When the submission was stored."""
+  submittedAt: FlxDateTime!
   """Tracking code."""
   trackCode: String!
 }
