@@ -2282,15 +2282,6 @@ enum MimeTypeEnum {
   "audio/aac mime type."
   AUDIO_AAC
 
-  "image/heic-sequence mime type."
-  IMAGE_HEIC_SEQUENCE
-
-  "image/heif mime type."
-  IMAGE_HEIF
-
-  "image/heif-sequence mime type."
-  IMAGE_HEIF_SEQUENCE
-
   "audio/flac mime type."
   AUDIO_FLAC
 
@@ -2329,6 +2320,15 @@ enum MimeTypeEnum {
 
   "image/heic mime type."
   IMAGE_HEIC
+
+  "image/heic-sequence mime type."
+  IMAGE_HEIC_SEQUENCE
+
+  "image/heif mime type."
+  IMAGE_HEIF
+
+  "image/heif-sequence mime type."
+  IMAGE_HEIF_SEQUENCE
 
   "image/jpeg mime type."
   IMAGE_JPEG
