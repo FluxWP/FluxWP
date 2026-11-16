@@ -118,7 +118,7 @@ final class FLXY_Service {
 			$contents   = array_values( array_diff( $contents, array( 'wp-admin', 'wp-includes' ) ) );
 			$contents[] = __( 'WordPress core', 'flx-backup' );
 		}
-		return array_values( $contents );
+		return $contents;
 	}
 
 	/** Signed download link (the file itself is streamed by admin-post, not GraphQL). */
@@ -813,7 +813,7 @@ final class FLXY_Service {
 			$id,
 			array(
 				'db'     => $db,
-				'paths'  => array_values( array_map( 'sanitize_text_field', $paths ) ),
+				'paths'  => array_map( 'sanitize_text_field', $paths ),
 				'safety' => null === $safety ? (bool) FLXY_Settings::get( 'safety_restore' ) : $safety,
 			),
 			false
