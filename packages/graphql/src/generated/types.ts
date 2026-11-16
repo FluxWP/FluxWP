@@ -35,6 +35,58 @@ export type FlxAppAuthKind =
   | 'COOKIE'
   | 'KEY';
 
+/** Editor width of a page or post. */
+export type FlxBlocksEditorWidthMode =
+  /** Full width. */
+  | 'FULL_WIDTH'
+  /** Large template. */
+  | 'LARGE'
+  /** Small template. */
+  | 'SMALL';
+
+/** What a file or folder is, for its icon and preview. */
+export type FlxFilesKind =
+  /** Archive (ZIP, TAR, …). */
+  | 'ARCHIVE'
+  /** Audio. */
+  | 'AUDIO'
+  /** Source code or data file. */
+  | 'CODE'
+  /** Folder. */
+  | 'DIR'
+  /** Office document or spreadsheet. */
+  | 'DOC'
+  /** Any other file. */
+  | 'FILE'
+  /** Font. */
+  | 'FONT'
+  /** Image. */
+  | 'IMAGE'
+  /** PDF document. */
+  | 'PDF'
+  /** Plain text. */
+  | 'TEXT'
+  /** Video. */
+  | 'VIDEO';
+
+/** What a folder listing is sorted by (folders always come first). */
+export type FlxFilesSort =
+  /** Last modified. */
+  | 'MODIFIED'
+  /** Name. */
+  | 'NAME'
+  /** Size. */
+  | 'SIZE'
+  /** File extension. */
+  | 'TYPE';
+
+/** Sort direction. */
+export type FlxFilesOrder =
+  /** Ascending. */
+  | 'ASC'
+  /** Descending. */
+  | 'DESC';
+
 /** Where a change came from. */
 export type FlxFilesVia =
   /** The Flux AI chat. */
@@ -82,40 +134,6 @@ export type FlxFilesLogAction =
   | 'UPLOAD'
   /** Archived. */
   | 'ZIP';
-
-/** Editor width of a page or post. */
-export type FlxBlocksEditorWidthMode =
-  /** Full width. */
-  | 'FULL_WIDTH'
-  /** Large template. */
-  | 'LARGE'
-  /** Small template. */
-  | 'SMALL';
-
-/** What a file or folder is, for its icon and preview. */
-export type FlxFilesKind =
-  /** Archive (ZIP, TAR, …). */
-  | 'ARCHIVE'
-  /** Audio. */
-  | 'AUDIO'
-  /** Source code or data file. */
-  | 'CODE'
-  /** Folder. */
-  | 'DIR'
-  /** Office document or spreadsheet. */
-  | 'DOC'
-  /** Any other file. */
-  | 'FILE'
-  /** Font. */
-  | 'FONT'
-  /** Image. */
-  | 'IMAGE'
-  /** PDF document. */
-  | 'PDF'
-  /** Plain text. */
-  | 'TEXT'
-  /** Video. */
-  | 'VIDEO';
 
 /** State of an AI translation job. */
 export type FlxLanguageJobStatus =
@@ -165,24 +183,6 @@ export type FlxSeoAuditSource =
   | 'LOCAL'
   | 'PSI_DESKTOP'
   | 'PSI_MOBILE';
-
-/** What a folder listing is sorted by (folders always come first). */
-export type FlxFilesSort =
-  /** Last modified. */
-  | 'MODIFIED'
-  /** Name. */
-  | 'NAME'
-  /** Size. */
-  | 'SIZE'
-  /** File extension. */
-  | 'TYPE';
-
-/** Sort direction. */
-export type FlxFilesOrder =
-  /** Ascending. */
-  | 'ASC'
-  /** Descending. */
-  | 'DESC';
 
 /** Device a PageSpeed run measures. */
 export type FlxSeoStrategy =
@@ -554,6 +554,70 @@ export type FlxAppSessionCreateInput = {
   url?: string | null | undefined;
 };
 
+/** Input for the flxBlocksBlockTypeSetActive mutation. */
+export type FlxBlocksBlockTypeSetActiveInput = {
+  /** On. */
+  active: boolean;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Block name. */
+  slug: string;
+};
+
+/** Input for the flxBlocksLibraryShareUpdate mutation. */
+export type FlxBlocksLibraryShareUpdateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Share the library; leave out to keep it as it is. */
+  enabled?: boolean | null | undefined;
+  /** Make a new key; sites using the old key lose access. */
+  regenerateKey?: boolean | null | undefined;
+};
+
+/** Input for the flxBlocksLibrarySourceAdd mutation. */
+export type FlxBlocksLibrarySourceAddInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Library key given by the other site. */
+  key?: string | null | undefined;
+  /** Name; leave empty to use the site's own name. */
+  name?: string | null | undefined;
+  /** Site address. */
+  url: string;
+};
+
+/** Input for the flxBlocksLibrarySourceRemove mutation. */
+export type FlxBlocksLibrarySourceRemoveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Source id. */
+  id: string;
+};
+
+/** Input for the flxBlocksSettingsUpdate mutation. */
+export type FlxBlocksSettingsUpdateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Editor widths. */
+  editorWidth?: FlxBlocksEditorWidthInput | null | undefined;
+  /** Show the page's header blocks in the admin bar. */
+  showHeadersInAdminBar?: boolean | null | undefined;
+};
+
+/** Editor widths; a field left out stays as it is. */
+export type FlxBlocksEditorWidthInput = {
+  /** Width can be chosen per page and post. */
+  enabled?: boolean | null | undefined;
+  /** Large template width (px, 200–4000). */
+  large?: number | null | undefined;
+  /** Width of new pages. */
+  pageDefault?: FlxBlocksEditorWidthMode | null | undefined;
+  /** Width of new posts. */
+  postDefault?: FlxBlocksEditorWidthMode | null | undefined;
+  /** Small template width (px, 200–4000). */
+  small?: number | null | undefined;
+};
+
 /** Input for the flxFilesAiEdit mutation. */
 export type FlxFilesAiEditInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -744,70 +808,6 @@ export type FlxFilesZipInput = {
   name?: string | null | undefined;
   /** Entries to archive. */
   paths: Array<string>;
-};
-
-/** Input for the flxBlocksBlockTypeSetActive mutation. */
-export type FlxBlocksBlockTypeSetActiveInput = {
-  /** On. */
-  active: boolean;
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Block name. */
-  slug: string;
-};
-
-/** Input for the flxBlocksLibraryShareUpdate mutation. */
-export type FlxBlocksLibraryShareUpdateInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Share the library; leave out to keep it as it is. */
-  enabled?: boolean | null | undefined;
-  /** Make a new key; sites using the old key lose access. */
-  regenerateKey?: boolean | null | undefined;
-};
-
-/** Input for the flxBlocksLibrarySourceAdd mutation. */
-export type FlxBlocksLibrarySourceAddInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Library key given by the other site. */
-  key?: string | null | undefined;
-  /** Name; leave empty to use the site's own name. */
-  name?: string | null | undefined;
-  /** Site address. */
-  url: string;
-};
-
-/** Input for the flxBlocksLibrarySourceRemove mutation. */
-export type FlxBlocksLibrarySourceRemoveInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Source id. */
-  id: string;
-};
-
-/** Input for the flxBlocksSettingsUpdate mutation. */
-export type FlxBlocksSettingsUpdateInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Editor widths. */
-  editorWidth?: FlxBlocksEditorWidthInput | null | undefined;
-  /** Show the page's header blocks in the admin bar. */
-  showHeadersInAdminBar?: boolean | null | undefined;
-};
-
-/** Editor widths; a field left out stays as it is. */
-export type FlxBlocksEditorWidthInput = {
-  /** Width can be chosen per page and post. */
-  enabled?: boolean | null | undefined;
-  /** Large template width (px, 200–4000). */
-  large?: number | null | undefined;
-  /** Width of new pages. */
-  pageDefault?: FlxBlocksEditorWidthMode | null | undefined;
-  /** Width of new posts. */
-  postDefault?: FlxBlocksEditorWidthMode | null | undefined;
-  /** Small template width (px, 200–4000). */
-  small?: number | null | undefined;
 };
 
 /** Input for the flxLanguageSet mutation. */
