@@ -205,7 +205,7 @@ final class FLXCM_Sub_Product {
 			$prices = self::prices_of( wc_get_product( $item['product_id'] ) );
 			$p      = $item['flxcm_sub']['period'];
 			if ( isset( $prices[ $p ] ) ) {
-				$item['data']->set_price( $prices[ $p ] );
+				$item['data']->set_price( (string) $prices[ $p ] );
 			}
 		}
 	}

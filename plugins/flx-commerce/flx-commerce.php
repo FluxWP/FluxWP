@@ -56,6 +56,8 @@ require_once FLXCM_DIR . 'includes/services/class-flxcm-receipt-service.php';
 require_once FLXCM_DIR . 'includes/services/class-flxcm-settings-service.php';
 require_once FLXCM_DIR . 'includes/services/class-flxcm-store-service.php';
 require_once FLXCM_DIR . 'includes/services/class-flxcm-cart-service.php';
+// Customer profile data is shared with GraphQL, which is not an admin request.
+require_once FLXCM_DIR . 'includes/admin/page-customer.php';
 if ( is_admin() ) {
 	require_once FLXCM_DIR . 'includes/admin/class-flxcm-admin.php';
 }

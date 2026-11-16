@@ -73,7 +73,11 @@ function flxcm_order( $id ) {
 		return null;
 	}
 	$order = wc_get_order( FLXCM_Val::int( $id ) );
-	if ( ! $order instanceof WC_Order || $order instanceof WC_Order_Refund ) {
+	if ( ! $order instanceof WC_Order ) {
+		return null;
+	}
+	// Refunds extend WC_Order. The stub types them as unrelated, so a class check is not used.
+	if ( 'shop_order_refund' === $order->get_type() ) {
 		return null;
 	}
 	return $order;
@@ -93,11 +97,7 @@ function flxcm_wc_cart() {
 	if ( ! function_exists( 'WC' ) ) {
 		return null;
 	}
-	$wc = WC();
-	if ( ! is_object( $wc ) || ! isset( $wc->cart ) || ! $wc->cart instanceof WC_Cart ) {
-		return null;
-	}
-	return $wc->cart;
+	return WC()->cart;
 }
 
 /**
@@ -134,14 +134,12 @@ function flxcm_cart_lines(): array {
 		return array();
 	}
 	$cart = FLXGQL_Cart::get();
-	if ( ! is_array( $cart ) || empty( $cart['items'] ) || ! is_array( $cart['items'] ) ) {
+	if ( $cart instanceof WP_Error || ! $cart['items'] ) {
 		return array();
 	}
 	$out = array();
 	foreach ( $cart['items'] as $item ) {
-		if ( is_array( $item ) ) {
-			$out[] = FLXCM_Val::map( $item );
-		}
+		$out[] = FLXCM_Val::map( $item );
 	}
 	return $out;
 }
@@ -166,8 +164,7 @@ function flxcm_gql_type_exists( string $name ): bool {
 	if ( ! class_exists( 'WPGraphQL' ) ) {
 		return false;
 	}
-	$reg = WPGraphQL::get_type_registry();
-	return $reg instanceof WPGraphQL\Registry\TypeRegistry && (bool) $reg->get_type( $name );
+	return (bool) WPGraphQL::get_type_registry()->get_type( $name );
 }
 
 /**

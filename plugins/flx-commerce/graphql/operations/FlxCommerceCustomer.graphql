@@ -6,6 +6,5 @@ query FlxCommerceCustomer($id: ID!) {
     products { productId name quantity total { ...FlxCommerceMoney } }
     recentOrders { id number status statusLabel paid url total { ...FlxCommerceMoney } createdAt { ...FlxCommerceWhen } }
     timeline { type label title text url paid at { ...FlxCommerceWhen } }
-    person { databaseId email }
   }
 }

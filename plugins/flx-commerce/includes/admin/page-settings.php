@@ -132,8 +132,7 @@ final class FLXCM_Page_Settings {
 		if ( ! current_user_can( FLXCM_Admin::CAP_MANAGE ) ) {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-commerce' ), 403 );
 		}
-		$in = wp_unslash( $_POST );
-		FLXCM_Settings_Service::save( FLXCM_Settings_Service::from_request( is_array( $in ) ? $in : array() ) );
+		FLXCM_Settings_Service::save( FLXCM_Settings_Service::from_request( FLXCM_Val::map( wp_unslash( $_POST ) ) ) );
 		wp_safe_redirect( flxcm_admin_url( 'settings', array( 'saved' => 1 ) ) );
 		exit;
 	}
