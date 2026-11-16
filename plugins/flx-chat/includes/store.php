@@ -640,11 +640,12 @@ function flxc_recent_messages( $chat_id, $hours = 24, $min = 10, $max = 120 ) {
 	return array_reverse( $out );
 }
 
-function flxc_messages_since( $chat_id, $since, $after_id = 0 ) {
+function flxc_messages_since( $chat_id, $since, $after_id = 0, $limit = 200 ) {
 	global $wpdb;
 	$t = flxc_table( 'messages' );
 	// after_id: istemcinin gördüğü en büyük id; geç yazılan satır rev penceresini kaçırsa da gelir.
-	return $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $t WHERE chat_id = %d AND (rev > %d OR id > %d) AND type <> 'reaction' ORDER BY ts ASC, id ASC LIMIT 200", $chat_id, $since, $after_id ? $after_id : PHP_INT_MAX ), ARRAY_A ); // phpcs:ignore
+	// The default limit is the REST sync page (200). GraphQL asks for at most 50.
+	return $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $t WHERE chat_id = %d AND (rev > %d OR id > %d) AND type <> 'reaction' ORDER BY ts ASC, id ASC LIMIT %d", $chat_id, $since, $after_id ? $after_id : PHP_INT_MAX, max( 1, (int) $limit ) ), ARRAY_A ); // phpcs:ignore
 }
 
 /** Gelen yeni mesajlar (bildirim için): verilen rev'den sonra eklenen, gelen yönlü mesajlar. */

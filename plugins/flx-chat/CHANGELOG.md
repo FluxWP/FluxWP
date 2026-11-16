@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.49.0
+- Sohbet, mesaj ve canlı güncelleme GraphQL'de (`flxChats`, `flxChat`, `flxChatMessages`, `flxChatUpdates`). Temsilci başkasının sohbetine liste, sayım, `node`, güncelleme veya mesaj sorgusuyla ulaşamaz.
+- `flxChatUpdates` kesilince `rev` artan sırayla devam rev'i verir. İstemci 10 saniyede bir sorar, sekme gizliyken durur.
+- React WhatsApp ekranı bu sorguları kullanır. wp-admin varsayılanı klasik sayfadır.
+- Bağış ve sertifika kaydı mevcut PHP'yi çağırır. Rapor, ayar ve asistan sayfası sonraki bölüm.
+
 ## 1.48.0
 - Düzeltme: kişi bilgisinde fotoğrafın üzerine gelince çıkan halka tam daire değildi (alttaki boşluk yüzünden aşağı kayıyordu).
 - Toplu gönderimden (Flux Mail kampanyası, CRM etkinlik gönderimi) gelen mesajın balonunun üstünde gönderim başlığı küçük bir etiket olarak görünür; uzunsa "…" ile kesilir, tamamı üzerine gelince görünür. Tıklayınca gönderim detayı yeni sekmede açılır.

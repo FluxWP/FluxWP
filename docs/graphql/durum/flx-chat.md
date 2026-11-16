@@ -1,10 +1,10 @@
-# flx-chat 1.48.0
+# flx-chat 1.49.0
 
 - Faz: 2
 - Durum: ✱
 - PR: #337
 
-Envanter, inceleme sonrası. REST `flx-chat/v1` 101 satır (94 GraphQL, 7 istisna), AJAX yok, admin-post 4 (2 GraphQL, 2 dosya istisnası), menü 4 sayfa. `flx_settings_schema` yok; ayarlar `flxc_settings`. MCP filtresi yok; asistan 35 function-call aracı (`set_email_notify`). SSE ucu yok. Her sohbet bağlı GraphQL alanı `flxc_user_can_see_chat` süzer. Rapor gönderimi jobs ile aynı jetonlu loopback (kalıcı istisna) + durum sorgusu + çalıştırma. Eşleme `docs/graphql/ESLEME/flx-chat.md`. Kişi kartı bölümü `gql/flx-crm-2` (PR #333) sonra.
+Bölüm 1: sohbet, mesaj, `flxChatUpdates` ve sohbet sayfasının işlemleri GraphQL'de. React WhatsApp ekranı GraphQL kullanır. wp-admin varsayılanı klasik sayfadır (bağış/sertifika sihirbazı, dekont, hafıza, hatırlatıcı, kara liste, temizlik, toplu dışa aktarma, asistan kullanımı klasikte). REST duruyor. Asistan, ayar ve rapor ekranı sonraki bölüm. Rapor gönderimi jetonlu loopback (kalıcı istisna) + durum sorgusu + çalıştırma. Eşleme `docs/graphql/ESLEME/flx-chat.md`. Kişi kartı bölümü `gql/flx-crm-2` (PR #333) sonra.
 
 ## İstisnalar
 

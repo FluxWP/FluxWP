@@ -1,4 +1,4 @@
-// Flux Chat WhatsApp ekranı (tam REST). Uygulamada ve WP admin'de aynı kod.
+// Flux Chat WhatsApp screen. Conversations, messages and live updates go through GraphQL.
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useStore } from 'zustand';
