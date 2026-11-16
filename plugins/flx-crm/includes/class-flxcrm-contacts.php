@@ -666,5 +666,6 @@ final class FLXCRM_Contacts {
 
 	public static function flush_stats() {
 		delete_transient( 'flxcrm_stats' );
+		flxcrm_purge( array( 'flx-crm:contacts', 'flx-crm:overview' ) ); // GraphQL results that count contacts.
 	}
 }

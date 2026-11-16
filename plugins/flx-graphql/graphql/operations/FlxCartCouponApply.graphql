@@ -1,0 +1,12 @@
+mutation FlxCartCouponApply($input: FlxCartCouponApplyInput!) {
+  flxCartCouponApply(input: $input) {
+    cart {
+      ...FlxCartFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

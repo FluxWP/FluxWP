@@ -1,0 +1,12 @@
+mutation FlxCartCouponRemove($input: FlxCartCouponRemoveInput!) {
+  flxCartCouponRemove(input: $input) {
+    cart {
+      ...FlxCartFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

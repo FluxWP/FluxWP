@@ -26,6 +26,23 @@ defined( 'FLXAN_DB_VERSION' ) || define( 'FLXAN_DB_VERSION', 3 );
 defined( 'FLXAN_FILE' ) || define( 'FLXAN_FILE', __FILE__ );
 defined( 'FLXAN_DIR' ) || define( 'FLXAN_DIR', __DIR__ . '/' );
 defined( 'FLXAN_URL' ) || define( 'FLXAN_URL', 'https://example.com/' );
+defined( 'FLXRC_VERSION' ) || define( 'FLXRC_VERSION', '0.0.0' );
+defined( 'FLXRC_FILE' ) || define( 'FLXRC_FILE', __FILE__ );
+defined( 'FLXRC_DIR' ) || define( 'FLXRC_DIR', __DIR__ . '/' );
+defined( 'FLXRC_URL' ) || define( 'FLXRC_URL', 'https://example.com/' );
+defined( 'FLXP_VERSION' ) || define( 'FLXP_VERSION', '0.0.0' );
+defined( 'FLXP_FILE' ) || define( 'FLXP_FILE', __FILE__ );
+defined( 'FLXP_DIR' ) || define( 'FLXP_DIR', __DIR__ . '/' );
+defined( 'FLXP_URL' ) || define( 'FLXP_URL', 'https://example.com/' );
+defined( 'FLXAI_VERSION' ) || define( 'FLXAI_VERSION', '0.0.0' );
+defined( 'FLXAI_DB_VERSION' ) || define( 'FLXAI_DB_VERSION', '7' );
+defined( 'FLXAI_CAP_MCP' ) || define( 'FLXAI_CAP_MCP', 'flxai_mcp' );
+defined( 'FLXAI_FILE' ) || define( 'FLXAI_FILE', __FILE__ );
+defined( 'FLXAI_DIR' ) || define( 'FLXAI_DIR', __DIR__ . '/' );
+defined( 'FLXAI_URL' ) || define( 'FLXAI_URL', 'https://example.com/' );
+defined( 'FLXBK_VERSION' ) || define( 'FLXBK_VERSION', '0.0.0' );
+defined( 'FLXBK_PATH' ) || define( 'FLXBK_PATH', __DIR__ . '/' );
+defined( 'FLXBK_URL' ) || define( 'FLXBK_URL', 'https://example.com/' );
 
 // FluxWP Panel (flx-setup).
 defined( 'FLXK_VERSION' ) || define( 'FLXK_VERSION', '0.0.0' );

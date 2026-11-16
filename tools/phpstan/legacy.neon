@@ -37,6 +37,8 @@ parameters:
       - ../../plugins/*/includes/services
       - ../../plugins/*/includes/graphql
       - ../../plugins/*/includes/flx-brand
+      - ../../themes/*/inc/services
+      - ../../themes/*/inc/graphql
       - ../../themes/*/inc/flx-brand
       - ../../themes/*/includes/flx-brand
       - ../../plugins/*/vendor

@@ -1,6 +1,6 @@
 {
   "name": "@fluxwp/graphql",
-  "version": "0.3.3",
+  "version": "0.3.6",
   "private": true,
   "type": "module",
   "main": "src/index.ts",
@@ -11,7 +11,8 @@
     "./operations": "./src/generated/operations.ts",
     "./types": "./src/generated/types.ts",
     "./flx-tasks": "./src/adapters/flx-tasks.ts",
-    "./flx-app": "./src/adapters/flx-app.ts"
+    "./flx-app": "./src/adapters/flx-app.ts",
+    "./flx-cart": "./src/adapters/flx-cart.ts"
   },
   "scripts": {
     "generate": "bun scripts/generate.ts",

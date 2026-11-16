@@ -80,6 +80,7 @@ function flxai_page_head( $title, $sub = '' ) {
 		echo '<p class="flxai-sub">' . esc_html( $sub ) . '</p>';
 	}
 	echo '</div></div>';
+	flxai_flux_new_link();
 }
 
 function flxai_kpi( $label, $value, $sub = '', $pct = null, $over = false ) {
@@ -111,6 +112,9 @@ function flxai_budget_cards() {
  * ------------------------------------------------------------------------- */
 
 function flxai_page_overview() {
+	if ( flxai_flux_render() ) {
+		return;
+	}
 	if ( 'log' === sanitize_key( $_GET['tab'] ?? '' ) ) { // phpcs:ignore -- eski bağlantılar
 		flxai_page_log();
 		return;
@@ -203,6 +207,9 @@ function flxai_breakdown_table( $title, $rows, $raw_label = false ) {
  * ------------------------------------------------------------------------- */
 
 function flxai_page_log() {
+	if ( flxai_flux_render() ) {
+		return;
+	}
 	global $wpdb;
 	flxai_page_head( __( 'Logs', 'flx-ai' ), __( 'Every model request and tool call: which system, for whom, which model, tokens, time and cost. Content is stored with personal data masked.', 'flx-ai' ) );
 	$kind   = sanitize_key( $_GET['kind'] ?? '' ); // phpcs:ignore
@@ -328,6 +335,9 @@ function flxai_page_log() {
  * ------------------------------------------------------------------------- */
 
 function flxai_page_systems() {
+	if ( flxai_flux_render() ) {
+		return;
+	}
 	if ( ! empty( $_GET['system'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		flxai_page_system_settings( sanitize_key( wp_unslash( $_GET['system'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		return;
@@ -392,6 +402,9 @@ function flxai_page_systems() {
  * ------------------------------------------------------------------------- */
 
 function flxai_page_billing() {
+	if ( flxai_flux_render() ) {
+		return;
+	}
 	$ym   = sanitize_text_field( wp_unslash( $_GET['ym'] ?? wp_date( 'Y-m' ) ) ); // phpcs:ignore
 	$bill = flxai_billing( $ym );
 	$ym   = $bill['ym'];
