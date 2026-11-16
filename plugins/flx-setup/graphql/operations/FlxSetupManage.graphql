@@ -1,0 +1,11 @@
+mutation FlxSetupManage($input: FlxSetupManageInput!) {
+  flxSetupManage(input: $input) {
+    done
+    skipped
+    failed
+    summary
+    errors {
+      ...FlxSetupErrors
+    }
+  }
+}

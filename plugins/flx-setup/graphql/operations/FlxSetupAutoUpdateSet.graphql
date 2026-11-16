@@ -1,0 +1,9 @@
+mutation FlxSetupAutoUpdateSet($input: FlxSetupAutoUpdateSetInput!) {
+  flxSetupAutoUpdateSet(input: $input) {
+    on
+    label
+    errors {
+      ...FlxSetupErrors
+    }
+  }
+}
