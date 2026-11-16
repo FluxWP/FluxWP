@@ -13,7 +13,7 @@ body="$(mktemp)"; hdr="$(mktemp)"
 trap 'rm -f "$body" "$hdr"' EXIT
 pass=0; fail=0
 ok()  { pass=$((pass+1)); echo "  ok   $1"; }
-bad() { fail=$((fail+1)); echo "  FAIL $1"; [ -n "${2:-}" ] && echo "       $(head -c 600 "$2")"; }
+bad() { fail=$((fail+1)); echo "  FAIL $1"; [ -n "${2:-}" ] && echo "       $(php -r '$j = json_decode( file_get_contents( $argv[1] ), true ); $c = is_array( $j ) ? ( array_values( (array) ( $j["data"] ?? array() ) )[0] ?? null ) : null; $c = is_array( $c ) && isset( $c["cart"] ) ? array( "totals" => $c["cart"]["totals"]["total"] ?? null, "items" => array_map( fn( $i ) => array( $i["kind"] ?? "", $i["quantity"] ?? 0, $i["unitPrice"]["amount"] ?? null, $i["quantityLimits"] ?? null ), (array) ( $c["cart"]["items"] ?? array() ) ), "coupons" => $c["cart"]["coupons"] ?? null, "errors" => $c["errors"] ?? null ) : $j; echo substr( (string) json_encode( $c ), 0, 1500 );' "$2" 2>/dev/null || head -c 600 "$2")"; }
 # json <file> <php expression on $j>
 json() { php -r '$j = json_decode( file_get_contents( $argv[1] ), true ); $v = '"$2"'; echo is_scalar( $v ) || null === $v ? var_export( $v, true ) : json_encode( $v );' "$1"; }
 qid() { php -r 'foreach ( json_decode( file_get_contents( $argv[1] ), true ) as $k => $d ) { if ( preg_match( "/^(?:query|mutation) " . $argv[2] . "\\b/", $d ) ) { echo $k; } }' "$root/plugins/flx-graphql/graphql/persisted-queries.json" "$1"; }
@@ -96,7 +96,7 @@ op FlxCartItemAdd '{"input":{"productId":'"$p1"',"quantity":0}}' "${T[@]}"
 [ "$(json "$body" '$j["data"]["flxCartItemAdd"]["errors"][0]["field"] ?? null')" = "'quantity'" ] && ok "flxCartItemAdd: quantity 0 → payload error on quantity" || bad "quantity 0" "$body"
 
 # 5. Address.
-op FlxCartCustomerUpdate '{"input":{"billingAddress":{"firstName":"Ayşe","email":"ayse@example.com","country":"TR"}}}' "${T[@]}"
+op FlxCartCustomerUpdate '{"input":{"billingAddress":{"firstName":"Ayşe","email":"ayse@example.com","country":"TR","state":"TR34","city":"İstanbul","postcode":"34000"}}}' "${T[@]}"
 [ "$(json "$body" '$j["data"]["flxCartCustomerUpdate"]["cart"]["billingAddress"]["firstName"] ?? null')" = "'Ayşe'" ] && [ "$(json "$body" 'array_key_exists( "email", $j["data"]["flxCartCustomerUpdate"]["cart"]["shippingAddress"] ?? array() ) ? $j["data"]["flxCartCustomerUpdate"]["cart"]["shippingAddress"]["email"] : "x"')" = NULL ] && ok "flxCartCustomerUpdate: billing address kept, shipping e-mail null" || bad "customer update" "$body"
 
 # 6. Package extension point: a line with its own cart item data (as a donation), fixed quantity, own kind.

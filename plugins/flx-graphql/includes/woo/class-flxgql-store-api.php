@@ -212,6 +212,14 @@ final class FLXGQL_Store_Api {
 			str_contains( $code, 'shipping' ) || str_contains( $code, 'rate' ) => 'rateId',
 			default => null,
 		};
+		// REST argument validation: name the argument and use its own message.
+		$raw = $e->get_error_data();
+		if ( 'rest_invalid_param' === $code && is_array( $raw ) && ! empty( $raw['params'] ) && is_array( $raw['params'] ) ) {
+			$param = (string) array_key_first( $raw['params'] );
+			$field = flx_gql_camel( $param );
+			$one   = trim( html_entity_decode( wp_strip_all_tags( flx_gql_str( $raw['params'][ $param ] ) ), ENT_QUOTES, 'UTF-8' ) );
+			$msg   = '' !== $one ? $one : $msg;
+		}
 		$data = array(
 			'graphql_code' => $gql,
 			'status'       => $status,

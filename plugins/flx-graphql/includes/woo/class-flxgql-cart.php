@@ -201,15 +201,20 @@ final class FLXGQL_Cart {
 	 * @return FlxCartShape|WP_Error
 	 */
 	public static function update_customer( ?array $billing, ?array $shipping ) {
+		if ( null === $billing && null === $shipping ) {
+			return self::get();
+		}
+		// The Store API validates whole addresses: start from the current ones, change only the given fields.
+		$now = FLXGQL_Store_Api::request( 'GET', '/cart' );
+		if ( $now instanceof WP_Error ) {
+			return $now;
+		}
 		$params = array();
 		if ( null !== $billing ) {
-			$params['billing_address'] = self::address_in( $billing );
+			$params['billing_address'] = array_merge( self::address_raw( flx_gql_arr( $now['billing_address'] ?? array() ), true ), self::address_in( $billing ) );
 		}
 		if ( null !== $shipping ) {
-			$params['shipping_address'] = self::address_in( $shipping );
-		}
-		if ( ! $params ) {
-			return self::get();
+			$params['shipping_address'] = array_merge( self::address_raw( flx_gql_arr( $now['shipping_address'] ?? array() ), false ), self::address_in( $shipping ) );
 		}
 		return self::cart_of( FLXGQL_Store_Api::request( 'POST', '/cart/update-customer', $params ) );
 	}
@@ -493,6 +498,24 @@ final class FLXGQL_Cart {
 	 */
 	private static function strings( $v ): array {
 		return array_values( array_filter( array_map( 'flx_gql_str', flx_gql_arr( $v ) ), static fn( string $s ): bool => '' !== $s ) );
+	}
+
+	/**
+	 * Store API address as the Store API accepts it back (every key, strings).
+	 *
+	 * @param array<string,mixed> $a       Store API address.
+	 * @param bool                $billing Billing (has e-mail).
+	 * @return array<string,string>
+	 */
+	private static function address_raw( array $a, bool $billing ): array {
+		$out = array();
+		foreach ( self::ADDRESS as $gql => $store ) {
+			if ( 'email' === $gql && ! $billing ) {
+				continue;
+			}
+			$out[ $store ] = flx_gql_str( $a[ $store ] ?? '' );
+		}
+		return $out;
 	}
 
 	/**
