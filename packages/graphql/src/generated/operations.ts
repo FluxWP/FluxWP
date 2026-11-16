@@ -1362,6 +1362,186 @@ export const FlxSetupWizardUpdates: FlxOperation<T.FlxSetupWizardUpdatesMutation
   document: "mutation FlxSetupWizardUpdates {\n  flxSetupWizardUpdates(input: {  }) {\n    ok\n    error\n    items {\n      slug\n      name\n      from\n      to\n      icon\n      self\n    }\n    errors {\n      ...FlxSetupErrors\n    }\n  }\n}\n\nfragment FlxSetupErrors on FlxUserError {\n  code\n  message\n  field\n}",
 };
 
+/** query FlxSpeedAutoload (flx-speed, plugins/flx-speed/graphql/operations/FlxSpeedAutoload.graphql) */
+export const FlxSpeedAutoload: FlxOperation<T.FlxSpeedAutoloadQuery, T.FlxSpeedAutoloadQueryVariables> = {
+  id: 'c0c034497a50d8f207d50ee8d53dee71fb810f0dfd57c6163345be91a32f0a5b',
+  name: 'FlxSpeedAutoload',
+  kind: 'query',
+  plugin: 'flx-speed',
+  document: "query FlxSpeedAutoload {\n  flxSpeedAutoload {\n    count\n    totalKb\n    tone\n    largest {\n      name\n      owner\n      kb\n    }\n  }\n}",
+};
+
+/** query FlxSpeedCache (flx-speed, plugins/flx-speed/graphql/operations/FlxSpeedCache.graphql) */
+export const FlxSpeedCache: FlxOperation<T.FlxSpeedCacheQuery, T.FlxSpeedCacheQueryVariables> = {
+  id: '8d270a918a41d495c99f9871ce13a133eade0ce31328d7c2bd4123e82cb5e2c6',
+  name: 'FlxSpeedCache',
+  kind: 'query',
+  plugin: 'flx-speed',
+  document: "query FlxSpeedCache {\n  flxSpeedCache {\n    ...FlxSpeedCacheFields\n  }\n}\n\nfragment FlxSpeedCacheFields on FlxSpeedCache {\n  pendingError\n  litespeedServer\n  extensions {\n    memcached\n    redis\n    sqlite3\n    igbinary\n  }\n  litespeed {\n    name\n    installed\n    active\n    version\n    pageCache\n    object\n    objectKind\n    objectHost\n  }\n  sqlite {\n    name\n    installed\n    active\n    version\n    fileName\n    fileSize\n  }\n  dropinExists\n  dropinOwner\n  dropinName\n  provider\n  persistent\n  conflicts {\n    code\n    text\n    repairable\n  }\n  test {\n    at {\n      ...FlxSpeedWhenFields\n    }\n    provider\n    persistent\n    ms\n    error\n  }\n  settingsUrls {\n    litespeedPage\n    litespeedObject\n    sqlitePlugin\n  }\n  canInstall\n}\n\nfragment FlxSpeedWhenFields on FlxSpeedWhen {\n  timestamp\n  short\n  date\n  relative\n}",
+};
+
+/** mutation FlxSpeedCacheRun (flx-speed, plugins/flx-speed/graphql/operations/FlxSpeedCacheRun.graphql) */
+export const FlxSpeedCacheRun: FlxOperation<T.FlxSpeedCacheRunMutation, T.FlxSpeedCacheRunMutationVariables> = {
+  id: 'd977b224915686fef097ececbb92793cf30eced524668174faa48191478ee08f',
+  name: 'FlxSpeedCacheRun',
+  kind: 'mutation',
+  plugin: 'flx-speed',
+  document: "mutation FlxSpeedCacheRun($input: FlxSpeedCacheRunInput!) {\n  flxSpeedCacheRun(input: $input) {\n    message\n    cache {\n      ...FlxSpeedCacheFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxSpeedCacheFields on FlxSpeedCache {\n  pendingError\n  litespeedServer\n  extensions {\n    memcached\n    redis\n    sqlite3\n    igbinary\n  }\n  litespeed {\n    name\n    installed\n    active\n    version\n    pageCache\n    object\n    objectKind\n    objectHost\n  }\n  sqlite {\n    name\n    installed\n    active\n    version\n    fileName\n    fileSize\n  }\n  dropinExists\n  dropinOwner\n  dropinName\n  provider\n  persistent\n  conflicts {\n    code\n    text\n    repairable\n  }\n  test {\n    at {\n      ...FlxSpeedWhenFields\n    }\n    provider\n    persistent\n    ms\n    error\n  }\n  settingsUrls {\n    litespeedPage\n    litespeedObject\n    sqlitePlugin\n  }\n  canInstall\n}\n\nfragment FlxSpeedWhenFields on FlxSpeedWhen {\n  timestamp\n  short\n  date\n  relative\n}",
+};
+
+/** mutation FlxSpeedCleanup (flx-speed, plugins/flx-speed/graphql/operations/FlxSpeedCleanup.graphql) */
+export const FlxSpeedCleanup: FlxOperation<T.FlxSpeedCleanupMutation, T.FlxSpeedCleanupMutationVariables> = {
+  id: 'fcd076afcbd146a9e6ca574ba597984e1637eee1b8f35aa9b512e428916aaa43',
+  name: 'FlxSpeedCleanup',
+  kind: 'mutation',
+  plugin: 'flx-speed',
+  document: "mutation FlxSpeedCleanup($input: FlxSpeedCleanupInput!) {\n  flxSpeedCleanup(input: $input) {\n    done\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxSpeedConfig (flx-speed, plugins/flx-speed/graphql/operations/FlxSpeedConfig.graphql) */
+export const FlxSpeedConfig: FlxOperation<T.FlxSpeedConfigQuery, T.FlxSpeedConfigQueryVariables> = {
+  id: '48d2ae9c4348a0b4300b2fc4b0254b07472858e0e5f65eaddd4996ce4801bb4d',
+  name: 'FlxSpeedConfig',
+  kind: 'query',
+  plugin: 'flx-speed',
+  document: "query FlxSpeedConfig {\n  flxSpeedConfig {\n    canManage\n    recording\n    classicUrl\n    adminUrl\n    tabs {\n      key\n      label\n      adminOnly\n    }\n    flags {\n      key\n      label\n    }\n    types {\n      key\n      label\n    }\n  }\n}",
+};
+
+/** query FlxSpeedCron (flx-speed, plugins/flx-speed/graphql/operations/FlxSpeedCron.graphql) */
+export const FlxSpeedCron: FlxOperation<T.FlxSpeedCronQuery, T.FlxSpeedCronQueryVariables> = {
+  id: '58ed686173cd507ef595683e7cbf4b30ed514b82612dd1caa4e75a2199f885f0',
+  name: 'FlxSpeedCron',
+  kind: 'query',
+  plugin: 'flx-speed',
+  document: "query FlxSpeedCron {\n  flxSpeedCron {\n    disabled\n    events\n    overdue\n    lastSeen {\n      ...FlxSpeedWhenFields\n    }\n    lastWarn\n    timings {\n      hook\n      component\n      runs\n      avgMs\n      maxMs\n      lastMs\n      lastAt {\n        ...FlxSpeedWhenFields\n      }\n      cut\n      slow\n    }\n    items {\n      hook\n      next {\n        ...FlxSpeedWhenFields\n      }\n      schedule\n      args\n      overdue\n    }\n  }\n}\n\nfragment FlxSpeedWhenFields on FlxSpeedWhen {\n  timestamp\n  short\n  date\n  relative\n}",
+};
+
+/** query FlxSpeedDatabase (flx-speed, plugins/flx-speed/graphql/operations/FlxSpeedDatabase.graphql) */
+export const FlxSpeedDatabase: FlxOperation<T.FlxSpeedDatabaseQuery, T.FlxSpeedDatabaseQueryVariables> = {
+  id: '8de800753b00b5e90b240028948dd2ee2a99c1c6e89ef22b03eae970f15f2a3f',
+  name: 'FlxSpeedDatabase',
+  kind: 'query',
+  plugin: 'flx-speed',
+  document: "query FlxSpeedDatabase {\n  flxSpeedDatabase {\n    cards {\n      label\n      value\n      tone\n    }\n    sections {\n      ...FlxSpeedSectionFields\n    }\n    jobs {\n      key\n      label\n      count\n      runnable\n    }\n    info {\n      label\n      count\n    }\n    tables {\n      name\n      engine\n      rows\n      data\n      index\n      free\n      collate\n    }\n  }\n}\n\nfragment FlxSpeedSectionFields on FlxSpeedSection {\n  key\n  title\n  rows {\n    label\n    value\n  }\n}",
+};
+
+/** query FlxSpeedLive (flx-speed, plugins/flx-speed/graphql/operations/FlxSpeedLive.graphql) */
+export const FlxSpeedLive: FlxOperation<T.FlxSpeedLiveQuery, T.FlxSpeedLiveQueryVariables> = {
+  id: '7d247ff1bb9def8192c868f601c45a17feed2dfb10ea254afa0b785be069a8c8',
+  name: 'FlxSpeedLive',
+  kind: 'query',
+  plugin: 'flx-speed',
+  document: "query FlxSpeedLive {\n  flxSpeedLive {\n    meters {\n      key\n      label\n      text\n      sub\n      pct\n    }\n    note\n  }\n}",
+};
+
+/** query FlxSpeedPageSpeed (flx-speed, plugins/flx-speed/graphql/operations/FlxSpeedPageSpeed.graphql) */
+export const FlxSpeedPageSpeed: FlxOperation<T.FlxSpeedPageSpeedQuery, T.FlxSpeedPageSpeedQueryVariables> = {
+  id: 'f053efbf67cf7f284fd5c1efd1a0157d89c3beedf57981dde2a693e1b6567f7f',
+  name: 'FlxSpeedPageSpeed',
+  kind: 'query',
+  plugin: 'flx-speed',
+  document: "query FlxSpeedPageSpeed {\n  flxSpeedPageSpeed {\n    ...FlxSpeedPageSpeedFields\n  }\n}\n\nfragment FlxSpeedPageSpeedFields on FlxSpeedPageSpeed {\n  toggles {\n    key\n    on\n    forced\n  }\n  cssScope\n  inlineKb\n  safelist\n  exclude\n  skipUrls\n  cssFiles\n  jsFiles\n  cacheBytes\n  homeUrl\n  offUrl\n  auditUrl\n  animations {\n    name\n    props\n    file\n    reduced\n  }\n  seenFiles\n  seenAt {\n    ...FlxSpeedWhenFields\n  }\n}\n\nfragment FlxSpeedWhenFields on FlxSpeedWhen {\n  timestamp\n  short\n  date\n  relative\n}",
+};
+
+/** mutation FlxSpeedPageSpeedClear (flx-speed, plugins/flx-speed/graphql/operations/FlxSpeedPageSpeedClear.graphql) */
+export const FlxSpeedPageSpeedClear: FlxOperation<T.FlxSpeedPageSpeedClearMutation, T.FlxSpeedPageSpeedClearMutationVariables> = {
+  id: 'b375ed8680d809378b5e9616f1f1bc440c2e912041b84d39d6df690eb4de4c09',
+  name: 'FlxSpeedPageSpeedClear',
+  kind: 'mutation',
+  plugin: 'flx-speed',
+  document: "mutation FlxSpeedPageSpeedClear {\n  flxSpeedPageSpeedClear(input: {  }) {\n    pageSpeed {\n      ...FlxSpeedPageSpeedFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxSpeedPageSpeedFields on FlxSpeedPageSpeed {\n  toggles {\n    key\n    on\n    forced\n  }\n  cssScope\n  inlineKb\n  safelist\n  exclude\n  skipUrls\n  cssFiles\n  jsFiles\n  cacheBytes\n  homeUrl\n  offUrl\n  auditUrl\n  animations {\n    name\n    props\n    file\n    reduced\n  }\n  seenFiles\n  seenAt {\n    ...FlxSpeedWhenFields\n  }\n}\n\nfragment FlxSpeedWhenFields on FlxSpeedWhen {\n  timestamp\n  short\n  date\n  relative\n}",
+};
+
+/** mutation FlxSpeedPageSpeedSave (flx-speed, plugins/flx-speed/graphql/operations/FlxSpeedPageSpeedSave.graphql) */
+export const FlxSpeedPageSpeedSave: FlxOperation<T.FlxSpeedPageSpeedSaveMutation, T.FlxSpeedPageSpeedSaveMutationVariables> = {
+  id: 'e4e117cb961c1485e8fd5b4c322f34231ddec9056751ec79317e99985fca16bc',
+  name: 'FlxSpeedPageSpeedSave',
+  kind: 'mutation',
+  plugin: 'flx-speed',
+  document: "mutation FlxSpeedPageSpeedSave($input: FlxSpeedPageSpeedSaveInput!) {\n  flxSpeedPageSpeedSave(input: $input) {\n    pageSpeed {\n      ...FlxSpeedPageSpeedFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxSpeedPageSpeedFields on FlxSpeedPageSpeed {\n  toggles {\n    key\n    on\n    forced\n  }\n  cssScope\n  inlineKb\n  safelist\n  exclude\n  skipUrls\n  cssFiles\n  jsFiles\n  cacheBytes\n  homeUrl\n  offUrl\n  auditUrl\n  animations {\n    name\n    props\n    file\n    reduced\n  }\n  seenFiles\n  seenAt {\n    ...FlxSpeedWhenFields\n  }\n}\n\nfragment FlxSpeedWhenFields on FlxSpeedWhen {\n  timestamp\n  short\n  date\n  relative\n}",
+};
+
+/** mutation FlxSpeedProfile (flx-speed, plugins/flx-speed/graphql/operations/FlxSpeedProfile.graphql) */
+export const FlxSpeedProfile: FlxOperation<T.FlxSpeedProfileMutation, T.FlxSpeedProfileMutationVariables> = {
+  id: '7dbefa1a379a4febe1f2eb7c39c6f399f2bfa417df3cd57c8cf0ede758a3b3c7',
+  name: 'FlxSpeedProfile',
+  kind: 'mutation',
+  plugin: 'flx-speed',
+  document: "mutation FlxSpeedProfile($input: FlxSpeedProfileInput!) {\n  flxSpeedProfile(input: $input) {\n    recordId\n    status\n    url\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxSpeedRecord (flx-speed, plugins/flx-speed/graphql/operations/FlxSpeedRecord.graphql) */
+export const FlxSpeedRecord: FlxOperation<T.FlxSpeedRecordQuery, T.FlxSpeedRecordQueryVariables> = {
+  id: 'd43528eacd33ad43a20ded425950c72cfe41d37466f94418bbb5a91d9bd39bd1',
+  name: 'FlxSpeedRecord',
+  kind: 'query',
+  plugin: 'flx-speed',
+  document: "query FlxSpeedRecord($id: Int!) {\n  flxSpeedRecord(id: $id) {\n    record {\n      ...FlxSpeedRecordRow\n    }\n    data\n    labels\n    panel {\n      slowQueryMs\n      slowMs\n      strings\n      scriptUrl\n      styleUrl\n    }\n  }\n}\n\nfragment FlxSpeedRecordRow on FlxSpeedRecord {\n  databaseId\n  at {\n    ...FlxSpeedWhenFields\n  }\n  url\n  method\n  type\n  typeLabel\n  status\n  ms\n  memKb\n  queries\n  queryMs\n  http\n  errors\n  flags {\n    key\n    label\n  }\n  failed\n}\n\nfragment FlxSpeedWhenFields on FlxSpeedWhen {\n  timestamp\n  short\n  date\n  relative\n}",
+};
+
+/** query FlxSpeedRecords (flx-speed, plugins/flx-speed/graphql/operations/FlxSpeedRecords.graphql) */
+export const FlxSpeedRecords: FlxOperation<T.FlxSpeedRecordsQuery, T.FlxSpeedRecordsQueryVariables> = {
+  id: 'b6692580ef2fbfa27c06265ef8f344b27cc749cd14f6cfb2725953194ca7909a',
+  name: 'FlxSpeedRecords',
+  kind: 'query',
+  plugin: 'flx-speed',
+  document: "query FlxSpeedRecords($first: Int = 25, $after: String, $hours: Int, $flag: String, $type: String, $q: String, $slow: Boolean) {\n  flxSpeedRecords(\n    first: $first\n    after: $after\n    hours: $hours\n    flag: $flag\n    type: $type\n    q: $q\n    slow: $slow\n  ) {\n    nodes {\n      ...FlxSpeedRecordRow\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    totalCount\n  }\n}\n\nfragment FlxSpeedRecordRow on FlxSpeedRecord {\n  databaseId\n  at {\n    ...FlxSpeedWhenFields\n  }\n  url\n  method\n  type\n  typeLabel\n  status\n  ms\n  memKb\n  queries\n  queryMs\n  http\n  errors\n  flags {\n    key\n    label\n  }\n  failed\n}\n\nfragment FlxSpeedWhenFields on FlxSpeedWhen {\n  timestamp\n  short\n  date\n  relative\n}",
+};
+
+/** mutation FlxSpeedRecordsClear (flx-speed, plugins/flx-speed/graphql/operations/FlxSpeedRecordsClear.graphql) */
+export const FlxSpeedRecordsClear: FlxOperation<T.FlxSpeedRecordsClearMutation, T.FlxSpeedRecordsClearMutationVariables> = {
+  id: '845b54851a74fba07a12deeefeb2c7b71f6ecfaaa759daa50c6041a482dddb25',
+  name: 'FlxSpeedRecordsClear',
+  kind: 'mutation',
+  plugin: 'flx-speed',
+  document: "mutation FlxSpeedRecordsClear {\n  flxSpeedRecordsClear(input: {  }) {\n    cleared\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxSpeedServer (flx-speed, plugins/flx-speed/graphql/operations/FlxSpeedServer.graphql) */
+export const FlxSpeedServer: FlxOperation<T.FlxSpeedServerQuery, T.FlxSpeedServerQueryVariables> = {
+  id: '9234ad49b162d1b924b722bc341baff844c5c5fe32121c5f3c604fc0d018b89a',
+  name: 'FlxSpeedServer',
+  kind: 'query',
+  plugin: 'flx-speed',
+  document: "query FlxSpeedServer {\n  flxSpeedServer {\n    ...FlxSpeedSectionFields\n  }\n}\n\nfragment FlxSpeedSectionFields on FlxSpeedSection {\n  key\n  title\n  rows {\n    label\n    value\n  }\n}",
+};
+
+/** query FlxSpeedSettings (flx-speed, plugins/flx-speed/graphql/operations/FlxSpeedSettings.graphql) */
+export const FlxSpeedSettings: FlxOperation<T.FlxSpeedSettingsQuery, T.FlxSpeedSettingsQueryVariables> = {
+  id: '3ed06bef7eb6f4c9e11545d09afef2ce9ff9cbc1fd38115124ff2b649e3d630f',
+  name: 'FlxSpeedSettings',
+  kind: 'query',
+  plugin: 'flx-speed',
+  document: "query FlxSpeedSettings {\n  flxSpeedSettings {\n    ...FlxSpeedSettingsFields\n  }\n}\n\nfragment FlxSpeedSettingsFields on FlxSpeedSettings {\n  panel\n  panelFront\n  caps\n  record\n  recordAdmins\n  sample\n  slowMs\n  slowQueryMs\n  keepDays\n  maxRows\n  diskQuotaGb\n  loginSlug\n  loginBlocked\n  loginSlugLocked\n  loginDisabled\n  loginActive\n  loginUrl\n  loginPrefix\n  loginMovedUrl\n  mcpActive\n  mcpTools\n}",
+};
+
+/** mutation FlxSpeedSettingsSave (flx-speed, plugins/flx-speed/graphql/operations/FlxSpeedSettingsSave.graphql) */
+export const FlxSpeedSettingsSave: FlxOperation<T.FlxSpeedSettingsSaveMutation, T.FlxSpeedSettingsSaveMutationVariables> = {
+  id: 'ae1ea2b03f50ac55abebc5ae0a507d77e463e14edae360feaf1646ebd2ddaac4',
+  name: 'FlxSpeedSettingsSave',
+  kind: 'mutation',
+  plugin: 'flx-speed',
+  document: "mutation FlxSpeedSettingsSave($input: FlxSpeedSettingsSaveInput!) {\n  flxSpeedSettingsSave(input: $input) {\n    settings {\n      ...FlxSpeedSettingsFields\n    }\n    loginChanged\n    loginRemoved\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxSpeedSettingsFields on FlxSpeedSettings {\n  panel\n  panelFront\n  caps\n  record\n  recordAdmins\n  sample\n  slowMs\n  slowQueryMs\n  keepDays\n  maxRows\n  diskQuotaGb\n  loginSlug\n  loginBlocked\n  loginSlugLocked\n  loginDisabled\n  loginActive\n  loginUrl\n  loginPrefix\n  loginMovedUrl\n  mcpActive\n  mcpTools\n}",
+};
+
+/** query FlxSpeedSummary (flx-speed, plugins/flx-speed/graphql/operations/FlxSpeedSummary.graphql) */
+export const FlxSpeedSummary: FlxOperation<T.FlxSpeedSummaryQuery, T.FlxSpeedSummaryQueryVariables> = {
+  id: '29e3951ab3ac534d8bc6a7abc8e6aaa037842a052d95472eddaa6c714ad66e7e',
+  name: 'FlxSpeedSummary',
+  kind: 'query',
+  plugin: 'flx-speed',
+  document: "query FlxSpeedSummary($hours: Int = 24) {\n  flxSpeedHints {\n    status\n    label\n    message\n    actionUrl\n    actionLabel\n  }\n  flxSpeedSummary(hours: $hours) {\n    hours\n    recorded\n    msAvg\n    msP95\n    msMax\n    flags {\n      key\n      label\n      count\n      tone\n    }\n    byType {\n      type\n      label\n      count\n      msAvg\n      msP50\n      msP95\n      msMax\n    }\n    slowestUrls {\n      url\n      count\n      msAvg\n      msMax\n      errors\n    }\n    components {\n      component\n      requests\n      queries\n      msPerRequest\n    }\n    slowQueries {\n      sql\n      error\n      component\n      count\n      msAvg\n      msMax\n      lastId\n    }\n    phpErrors {\n      level\n      message\n      file\n      component\n      requests\n      lastId\n    }\n    httpCalls {\n      endpoint\n      component\n      count\n      failed\n      msAvg\n      lastError\n    }\n  }\n}",
+};
+
+/** query FlxSpeedSystem (flx-speed, plugins/flx-speed/graphql/operations/FlxSpeedSystem.graphql) */
+export const FlxSpeedSystem: FlxOperation<T.FlxSpeedSystemQuery, T.FlxSpeedSystemQueryVariables> = {
+  id: 'a6ad626fabff2f9904a2f88aec77a49b4dfd900c575ea7fd357b0234aca73d82',
+  name: 'FlxSpeedSystem',
+  kind: 'query',
+  plugin: 'flx-speed',
+  document: "query FlxSpeedSystem {\n  flxSpeedSystem {\n    checks {\n      id\n      source\n      group\n      groupLabel\n      label\n      status\n      message\n      actionUrl\n      actionLabel\n    }\n    summary {\n      ok\n      warning\n      error\n      info\n    }\n    fixes {\n      at {\n        ...FlxSpeedWhenFields\n      }\n      user\n      label\n      value\n      before\n      after\n      ok\n      message\n    }\n    hasFixes\n  }\n}\n\nfragment FlxSpeedWhenFields on FlxSpeedWhen {\n  timestamp\n  short\n  date\n  relative\n}",
+};
+
 /** mutation FlxTaskCommentCreate (flx-tasks, plugins/flx-tasks/graphql/operations/FlxTaskCommentCreate.graphql) */
 export const FlxTaskCommentCreate: FlxOperation<T.FlxTaskCommentCreateMutation, T.FlxTaskCommentCreateMutationVariables> = {
   id: 'fca51d9372f393736cd5c7f3cc3a6c6f76bc42c714907f05360f59ce43283d8b',

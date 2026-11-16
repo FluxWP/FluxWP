@@ -464,6 +464,34 @@ export type FlxSetupCheckStatus =
   /** Needs attention. */
   | 'WARNING';
 
+/** How much attention a figure needs. */
+export type FlxSpeedTone =
+  | 'ERROR'
+  | 'NONE'
+  | 'WARNING';
+
+/** Backend of the LiteSpeed object cache. */
+export type FlxSpeedCacheKind =
+  | 'MEMCACHED'
+  | 'REDIS';
+
+/** Result of a system check line. */
+export type FlxSpeedStatus =
+  | 'ERROR'
+  | 'INFO'
+  | 'OK'
+  | 'WARNING';
+
+/** Which CSS files the unused CSS trimming looks at. */
+export type FlxSpeedCssScope =
+  | 'LOCAL'
+  | 'THEME';
+
+/** What visitors of the old login addresses see. */
+export type FlxSpeedLoginBlocked =
+  | 'HOME'
+  | 'NOT_FOUND';
+
 /** What a task row is. */
 export type FlxTaskKind =
   /** An agenda item of a meeting. */
@@ -2011,6 +2039,112 @@ export type FlxSetupWizardStepKind =
   /** Activate the FluxWP theme. */
   | 'THEME';
 
+/** Input for the flxSpeedCacheRun mutation. */
+export type FlxSpeedCacheRunInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** The operation. */
+  op: FlxSpeedCacheOp;
+};
+
+/** An operation of the Cache tab. */
+export type FlxSpeedCacheOp =
+  | 'ACTIVATE_LITESPEED'
+  | 'ACTIVATE_SQLITE'
+  | 'FLUSH'
+  | 'INSTALL_LITESPEED'
+  | 'INSTALL_SQLITE'
+  | 'OBJECT_OFF'
+  | 'PAGE_OFF'
+  | 'PAGE_ON'
+  | 'PURGE'
+  | 'REPAIR'
+  | 'TEST'
+  | 'USE_LITESPEED'
+  | 'USE_SQLITE';
+
+/** Input for the flxSpeedCleanup mutation. */
+export type FlxSpeedCleanupInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Job key from flxSpeedDatabase.jobs. */
+  job: string;
+};
+
+/** Input for the flxSpeedPageSpeedSave mutation. */
+export type FlxSpeedPageSpeedSaveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Remove unused CSS and inline it. */
+  css?: boolean | null | undefined;
+  /** Which CSS the trimming covers. */
+  cssScope?: FlxSpeedCssScope | null | undefined;
+  /** Defer head scripts. */
+  defer?: boolean | null | undefined;
+  /** Defer jQuery too. */
+  deferJquery?: boolean | null | undefined;
+  /** Remove the emoji script. */
+  emoji?: boolean | null | undefined;
+  /** Files to leave alone, one per line. */
+  exclude?: string | null | undefined;
+  /** Remove unused fonts. */
+  fonts?: boolean | null | undefined;
+  /** Inline limit in kilobytes (0–500). */
+  inlineKb?: number | null | undefined;
+  /** Minify CSS files. */
+  minCss?: boolean | null | undefined;
+  /** Minify JS files. */
+  minJs?: boolean | null | undefined;
+  /** Preload the above-the-fold font. */
+  preload?: boolean | null | undefined;
+  /** Classes and ids that are always kept, one per line. */
+  safelist?: string | null | undefined;
+  /** Pages to leave alone, one per line. */
+  skipUrls?: string | null | undefined;
+  /** Remove the zoom lock. */
+  viewport?: boolean | null | undefined;
+};
+
+/** Input for the flxSpeedProfile mutation. */
+export type FlxSpeedProfileInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Path or address on this site, e.g. /donate/. Empty profiles the home page. */
+  url?: string | null | undefined;
+};
+
+/** Input for the flxSpeedSettingsSave mutation. */
+export type FlxSpeedSettingsSaveInput = {
+  /** Collect capability checks. */
+  caps?: boolean | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Disk limit of the hosting plan in GB; 0 when unknown. */
+  diskQuotaGb?: number | null | undefined;
+  /** Days records are kept (1–90). */
+  keepDays?: number | null | undefined;
+  /** What visitors of wp-login.php see. */
+  loginBlocked?: FlxSpeedLoginBlocked | null | undefined;
+  /** Custom login address: 3–40 lowercase letters, digits, hyphen or underscore. Empty goes back to wp-login.php. */
+  loginSlug?: string | null | undefined;
+  /** Most records kept (100–50000). */
+  maxRows?: number | null | undefined;
+  /** Show a summary in the admin bar and a bottom panel to authorized users. */
+  panel?: boolean | null | undefined;
+  /** Show the panel on the front end too. */
+  panelFront?: boolean | null | undefined;
+  /** Record slow and failing requests. */
+  record?: boolean | null | undefined;
+  /** Also record the admin's own requests while the panel is on. */
+  recordAdmins?: boolean | null | undefined;
+  /** Share of requests collected in detail, 0–100 percent. */
+  sample?: number | null | undefined;
+  /** Slow request threshold in milliseconds (100–60000). */
+  slowMs?: number | null | undefined;
+  /** Slow query threshold in milliseconds (1–10000). */
+  slowQueryMs?: number | null | undefined;
+};
+
 /** Input for the flxTaskCommentCreate mutation. */
 export type FlxTaskCommentCreateInput = {
   /** Comment text (limited HTML, @mentions). */
@@ -3334,6 +3468,140 @@ export type FlxSetupWizardUpdatesMutationVariables = Exact<{ [key: string]: neve
 
 
 export type FlxSetupWizardUpdatesMutation = { flxSetupWizardUpdates: { ok: boolean | null, error: string | null, items: Array<{ slug: string, name: string, from: string, to: string, icon: string, self: boolean }> | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSpeedAutoloadQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxSpeedAutoloadQuery = { flxSpeedAutoload: { count: number, totalKb: number, tone: FlxSpeedTone, largest: Array<{ name: string, owner: string | null, kb: number }> } };
+
+export type FlxSpeedCacheQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxSpeedCacheQuery = { flxSpeedCache: { pendingError: string | null, litespeedServer: boolean, dropinExists: boolean, dropinOwner: string, dropinName: string, provider: string, persistent: boolean, canInstall: boolean, extensions: { memcached: boolean, redis: boolean, sqlite3: boolean, igbinary: boolean }, litespeed: { name: string, installed: boolean, active: boolean, version: string, pageCache: boolean, object: boolean, objectKind: FlxSpeedCacheKind, objectHost: string }, sqlite: { name: string, installed: boolean, active: boolean, version: string, fileName: string | null, fileSize: number }, conflicts: Array<{ code: string, text: string, repairable: boolean }>, test: { provider: string, persistent: boolean, ms: number, error: string | null, at: { timestamp: number, short: string, date: string, relative: string } } | null, settingsUrls: { litespeedPage: string, litespeedObject: string, sqlitePlugin: string } } };
+
+export type FlxSpeedCacheFieldsFragment = { pendingError: string | null, litespeedServer: boolean, dropinExists: boolean, dropinOwner: string, dropinName: string, provider: string, persistent: boolean, canInstall: boolean, extensions: { memcached: boolean, redis: boolean, sqlite3: boolean, igbinary: boolean }, litespeed: { name: string, installed: boolean, active: boolean, version: string, pageCache: boolean, object: boolean, objectKind: FlxSpeedCacheKind, objectHost: string }, sqlite: { name: string, installed: boolean, active: boolean, version: string, fileName: string | null, fileSize: number }, conflicts: Array<{ code: string, text: string, repairable: boolean }>, test: { provider: string, persistent: boolean, ms: number, error: string | null, at: { timestamp: number, short: string, date: string, relative: string } } | null, settingsUrls: { litespeedPage: string, litespeedObject: string, sqlitePlugin: string } };
+
+export type FlxSpeedWhenFieldsFragment = { timestamp: number, short: string, date: string, relative: string };
+
+export type FlxSpeedCacheRunMutationVariables = Exact<{
+  input: FlxSpeedCacheRunInput;
+}>;
+
+
+export type FlxSpeedCacheRunMutation = { flxSpeedCacheRun: { message: string | null, cache: { pendingError: string | null, litespeedServer: boolean, dropinExists: boolean, dropinOwner: string, dropinName: string, provider: string, persistent: boolean, canInstall: boolean, extensions: { memcached: boolean, redis: boolean, sqlite3: boolean, igbinary: boolean }, litespeed: { name: string, installed: boolean, active: boolean, version: string, pageCache: boolean, object: boolean, objectKind: FlxSpeedCacheKind, objectHost: string }, sqlite: { name: string, installed: boolean, active: boolean, version: string, fileName: string | null, fileSize: number }, conflicts: Array<{ code: string, text: string, repairable: boolean }>, test: { provider: string, persistent: boolean, ms: number, error: string | null, at: { timestamp: number, short: string, date: string, relative: string } } | null, settingsUrls: { litespeedPage: string, litespeedObject: string, sqlitePlugin: string } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSpeedCleanupMutationVariables = Exact<{
+  input: FlxSpeedCleanupInput;
+}>;
+
+
+export type FlxSpeedCleanupMutation = { flxSpeedCleanup: { done: number | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSpeedConfigQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxSpeedConfigQuery = { flxSpeedConfig: { canManage: boolean, recording: boolean, classicUrl: string, adminUrl: string, tabs: Array<{ key: string, label: string, adminOnly: boolean }>, flags: Array<{ key: string, label: string }>, types: Array<{ key: string, label: string }> } };
+
+export type FlxSpeedCronQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxSpeedCronQuery = { flxSpeedCron: { disabled: boolean, events: number, overdue: number, lastWarn: boolean, lastSeen: { timestamp: number, short: string, date: string, relative: string } | null, timings: Array<{ hook: string, component: string, runs: number, avgMs: number, maxMs: number, lastMs: number, cut: boolean, slow: boolean, lastAt: { timestamp: number, short: string, date: string, relative: string } | null }>, items: Array<{ hook: string, schedule: string, args: number, overdue: boolean, next: { timestamp: number, short: string, date: string, relative: string } }> } };
+
+export type FlxSpeedDatabaseQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxSpeedDatabaseQuery = { flxSpeedDatabase: { cards: Array<{ label: string, value: string, tone: FlxSpeedTone }>, sections: Array<{ key: string, title: string, rows: Array<{ label: string, value: string }> }>, jobs: Array<{ key: string, label: string, count: number, runnable: boolean }>, info: Array<{ label: string, count: number }>, tables: Array<{ name: string, engine: string, rows: number, data: number, index: number, free: number, collate: string }> } };
+
+export type FlxSpeedSectionFieldsFragment = { key: string, title: string, rows: Array<{ label: string, value: string }> };
+
+export type FlxSpeedLiveQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxSpeedLiveQuery = { flxSpeedLive: { note: string, meters: Array<{ key: string, label: string, text: string, sub: string, pct: number | null }> } };
+
+export type FlxSpeedPageSpeedQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxSpeedPageSpeedQuery = { flxSpeedPageSpeed: { cssScope: FlxSpeedCssScope, inlineKb: number, safelist: string, exclude: string, skipUrls: string, cssFiles: number, jsFiles: number, cacheBytes: number, homeUrl: string, offUrl: string, auditUrl: string | null, seenFiles: number | null, toggles: Array<{ key: string, on: boolean, forced: boolean }>, animations: Array<{ name: string, props: Array<string>, file: string, reduced: boolean }>, seenAt: { timestamp: number, short: string, date: string, relative: string } | null } };
+
+export type FlxSpeedPageSpeedFieldsFragment = { cssScope: FlxSpeedCssScope, inlineKb: number, safelist: string, exclude: string, skipUrls: string, cssFiles: number, jsFiles: number, cacheBytes: number, homeUrl: string, offUrl: string, auditUrl: string | null, seenFiles: number | null, toggles: Array<{ key: string, on: boolean, forced: boolean }>, animations: Array<{ name: string, props: Array<string>, file: string, reduced: boolean }>, seenAt: { timestamp: number, short: string, date: string, relative: string } | null };
+
+export type FlxSpeedPageSpeedClearMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxSpeedPageSpeedClearMutation = { flxSpeedPageSpeedClear: { pageSpeed: { cssScope: FlxSpeedCssScope, inlineKb: number, safelist: string, exclude: string, skipUrls: string, cssFiles: number, jsFiles: number, cacheBytes: number, homeUrl: string, offUrl: string, auditUrl: string | null, seenFiles: number | null, toggles: Array<{ key: string, on: boolean, forced: boolean }>, animations: Array<{ name: string, props: Array<string>, file: string, reduced: boolean }>, seenAt: { timestamp: number, short: string, date: string, relative: string } | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSpeedPageSpeedSaveMutationVariables = Exact<{
+  input: FlxSpeedPageSpeedSaveInput;
+}>;
+
+
+export type FlxSpeedPageSpeedSaveMutation = { flxSpeedPageSpeedSave: { pageSpeed: { cssScope: FlxSpeedCssScope, inlineKb: number, safelist: string, exclude: string, skipUrls: string, cssFiles: number, jsFiles: number, cacheBytes: number, homeUrl: string, offUrl: string, auditUrl: string | null, seenFiles: number | null, toggles: Array<{ key: string, on: boolean, forced: boolean }>, animations: Array<{ name: string, props: Array<string>, file: string, reduced: boolean }>, seenAt: { timestamp: number, short: string, date: string, relative: string } | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSpeedProfileMutationVariables = Exact<{
+  input: FlxSpeedProfileInput;
+}>;
+
+
+export type FlxSpeedProfileMutation = { flxSpeedProfile: { recordId: number | null, status: number | null, url: string | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSpeedRecordQueryVariables = Exact<{
+  id: number;
+}>;
+
+
+export type FlxSpeedRecordQuery = { flxSpeedRecord: { data: unknown, labels: unknown, record: { databaseId: number, url: string, method: string, type: string, typeLabel: string, status: number, ms: number, memKb: number, queries: number, queryMs: number, http: number, errors: number, failed: boolean, at: { timestamp: number, short: string, date: string, relative: string }, flags: Array<{ key: string, label: string }> }, panel: { slowQueryMs: number, slowMs: number, strings: unknown, scriptUrl: string, styleUrl: string } } | null };
+
+export type FlxSpeedRecordRowFragment = { databaseId: number, url: string, method: string, type: string, typeLabel: string, status: number, ms: number, memKb: number, queries: number, queryMs: number, http: number, errors: number, failed: boolean, at: { timestamp: number, short: string, date: string, relative: string }, flags: Array<{ key: string, label: string }> };
+
+export type FlxSpeedRecordsQueryVariables = Exact<{
+  first?: number | null | undefined;
+  after?: string | null | undefined;
+  hours?: number | null | undefined;
+  flag?: string | null | undefined;
+  type?: string | null | undefined;
+  q?: string | null | undefined;
+  slow?: boolean | null | undefined;
+}>;
+
+
+export type FlxSpeedRecordsQuery = { flxSpeedRecords: { totalCount: number | null, nodes: Array<{ databaseId: number, url: string, method: string, type: string, typeLabel: string, status: number, ms: number, memKb: number, queries: number, queryMs: number, http: number, errors: number, failed: boolean, at: { timestamp: number, short: string, date: string, relative: string }, flags: Array<{ key: string, label: string }> }>, pageInfo: { hasNextPage: boolean, endCursor: string | null } } };
+
+export type FlxSpeedRecordsClearMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxSpeedRecordsClearMutation = { flxSpeedRecordsClear: { cleared: boolean, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSpeedServerQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxSpeedServerQuery = { flxSpeedServer: Array<{ key: string, title: string, rows: Array<{ label: string, value: string }> }> };
+
+export type FlxSpeedSettingsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxSpeedSettingsQuery = { flxSpeedSettings: { panel: boolean, panelFront: boolean, caps: boolean, record: boolean, recordAdmins: boolean, sample: number, slowMs: number, slowQueryMs: number, keepDays: number, maxRows: number, diskQuotaGb: number, loginSlug: string, loginBlocked: FlxSpeedLoginBlocked, loginSlugLocked: boolean, loginDisabled: boolean, loginActive: boolean, loginUrl: string, loginPrefix: string, loginMovedUrl: string, mcpActive: boolean, mcpTools: string } };
+
+export type FlxSpeedSettingsFieldsFragment = { panel: boolean, panelFront: boolean, caps: boolean, record: boolean, recordAdmins: boolean, sample: number, slowMs: number, slowQueryMs: number, keepDays: number, maxRows: number, diskQuotaGb: number, loginSlug: string, loginBlocked: FlxSpeedLoginBlocked, loginSlugLocked: boolean, loginDisabled: boolean, loginActive: boolean, loginUrl: string, loginPrefix: string, loginMovedUrl: string, mcpActive: boolean, mcpTools: string };
+
+export type FlxSpeedSettingsSaveMutationVariables = Exact<{
+  input: FlxSpeedSettingsSaveInput;
+}>;
+
+
+export type FlxSpeedSettingsSaveMutation = { flxSpeedSettingsSave: { loginChanged: boolean | null, loginRemoved: boolean | null, settings: { panel: boolean, panelFront: boolean, caps: boolean, record: boolean, recordAdmins: boolean, sample: number, slowMs: number, slowQueryMs: number, keepDays: number, maxRows: number, diskQuotaGb: number, loginSlug: string, loginBlocked: FlxSpeedLoginBlocked, loginSlugLocked: boolean, loginDisabled: boolean, loginActive: boolean, loginUrl: string, loginPrefix: string, loginMovedUrl: string, mcpActive: boolean, mcpTools: string } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSpeedSummaryQueryVariables = Exact<{
+  hours?: number | null | undefined;
+}>;
+
+
+export type FlxSpeedSummaryQuery = { flxSpeedHints: Array<{ status: FlxSpeedStatus, label: string, message: string, actionUrl: string | null, actionLabel: string | null }>, flxSpeedSummary: { hours: number, recorded: number, msAvg: number, msP95: number, msMax: number, flags: Array<{ key: string, label: string, count: number, tone: FlxSpeedTone }>, byType: Array<{ type: string, label: string, count: number, msAvg: number, msP50: number, msP95: number, msMax: number }>, slowestUrls: Array<{ url: string, count: number, msAvg: number, msMax: number, errors: number }>, components: Array<{ component: string, requests: number, queries: number, msPerRequest: number }>, slowQueries: Array<{ sql: string, error: string | null, component: string, count: number, msAvg: number, msMax: number, lastId: number }>, phpErrors: Array<{ level: string, message: string, file: string, component: string, requests: number, lastId: number }>, httpCalls: Array<{ endpoint: string, component: string, count: number, failed: number, msAvg: number, lastError: string }> } };
+
+export type FlxSpeedSystemQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxSpeedSystemQuery = { flxSpeedSystem: { hasFixes: boolean, checks: Array<{ id: string, source: string, group: string, groupLabel: string, label: string, status: FlxSpeedStatus, message: string, actionUrl: string | null, actionLabel: string | null }>, summary: { ok: number, warning: number, error: number, info: number }, fixes: Array<{ user: string, label: string, value: string, before: string, after: string, ok: boolean, message: string, at: { timestamp: number, short: string, date: string, relative: string } }> } };
 
 export type FlxTaskCommentCreateMutationVariables = Exact<{
   input: FlxTaskCommentCreateInput;

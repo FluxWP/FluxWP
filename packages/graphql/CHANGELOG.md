@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.3.4
+- Flux Speed işlemleri (`FlxSpeedConfig`, `FlxSpeedSummary`, `FlxSpeedRecords`, `FlxSpeedRecord`, `FlxSpeedCache`, `FlxSpeedSettings` ve diğerleri, 20 işlem) ve tipleri.
+
 ## 0.3.3
 - `@fluxwp/graphql/flx-cart`: `flxCart(gql, { store, nonce })` sepet istemcisi (Flux GraphQL 0.3.0 `flxCart*`); sepet belirtecini saklar ve `Cart-Token` başlığıyla geri gönderir, hatalı girdide `FlxCartInputError`, Store API checkout'u için `checkoutHeaders()`.
 - Sepet işlemleri (`FlxCart`, `FlxCartItemAdd`, `FlxCartItemUpdate`, `FlxCartItemRemove`, `FlxCartClear`, `FlxCartCouponApply`, `FlxCartCouponRemove`, `FlxCartShippingRateSelect`, `FlxCartCustomerUpdate`) ve `FlxCartFields` fragment'ı.

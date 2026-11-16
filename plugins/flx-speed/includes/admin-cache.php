@@ -302,60 +302,9 @@ class FLXP_Admin_Cache {
 			wp_die( '', 403 );
 		}
 		check_admin_referer( 'flxp_cache' );
-		$op  = isset( $_POST['op'] ) ? sanitize_key( wp_unslash( $_POST['op'] ) ) : ''; // phpcs:ignore
-		$msg = '';
-		$r   = true;
-		switch ( $op ) {
-			case 'install_litespeed':
-			case 'install_sqlite':
-				$key = substr( $op, 8 );
-				$r   = FLXP_Cache::install( $key );
-				if ( ! is_wp_error( $r ) ) {
-					$r = 'sqlite' === $key ? FLXP_Cache::use_sqlite() : FLXP_Cache::activate( $key );
-				}
-				$msg = 'sqlite' === $key ? 'sqlite' : 'installed';
-				break;
-			case 'activate_litespeed':
-			case 'activate_sqlite':
-				$key = substr( $op, 9 );
-				$r   = 'sqlite' === $key ? FLXP_Cache::use_sqlite() : FLXP_Cache::activate( $key );
-				$msg = 'sqlite' === $key ? 'sqlite' : 'activated';
-				break;
-			case 'use_sqlite':
-				$r   = FLXP_Cache::use_sqlite();
-				$msg = 'sqlite';
-				break;
-			case 'use_litespeed':
-				$r   = FLXP_Cache::use_litespeed();
-				$msg = 'pending' === $r ? 'pending' : 'litespeed';
-				break;
-			case 'object_off':
-				$r   = FLXP_Cache::object_off();
-				$msg = 'object_off';
-				break;
-			case 'repair':
-				$r   = FLXP_Cache::repair();
-				$msg = 'repaired';
-				break;
-			case 'page_on':
-			case 'page_off':
-				$r   = FLXP_Cache::page_cache( 'page_on' === $op );
-				$msg = $op;
-				break;
-			case 'purge':
-				$r   = FLXP_Cache::purge_all();
-				$msg = 'purged';
-				break;
-			case 'flush':
-				wp_cache_flush();
-				$msg = 'flushed';
-				break;
-			case 'test':
-				FLXP_Cache::run_test();
-				$msg = 'tested';
-				break;
-		}
-		$args = is_wp_error( $r ) ? array( 'flxp_c_err' => rawurlencode( $r->get_error_message() ) ) : array( 'flxp_c' => $msg );
+		$op   = isset( $_POST['op'] ) ? sanitize_key( wp_unslash( $_POST['op'] ) ) : ''; // phpcs:ignore
+		$r    = FLXP_Speed_Service::cache_run( $op );
+		$args = is_wp_error( $r ) ? array( 'flxp_c_err' => rawurlencode( $r->get_error_message() ) ) : array( 'flxp_c' => $r['code'] );
 		wp_safe_redirect( self::url( $args ) );
 		exit;
 	}
