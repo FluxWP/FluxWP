@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.0
+
+- Ekran kabuğu: wp-admin'deki Flux React ekranları `flx_admin_screen()` ile kaydedilir, `flx_admin_screen_render()` ile basılır. Sol menüden başka bir Flux ekranına geçiş sayfayı yenilemez: hedef paketin bundle'ı bir kez yüklenir, ilk sorgular üzerine gelince tek istekte önceden çekilir, ekran hazır olunca yer değiştirir; adres, başlık ve menü vurgusu güncellenir, geri/ileri çalışır. Kayıtlı olmayan sayfalar normal açılır.
+- İlk açılışta ekranın ilk sorguları PHP'de çalışır ve sonucu sayfaya basılır; ekran veriyle açılır, yükleniyor göstergesi görünmez.
+- `flx_admin_screens_navigation` (kabuğu kapatır) ve `flx_admin_screen_route` filtreleri, `flx-screens:navigate` olayı. Kurallar: docs/graphql/EKRAN-KABUGU.md.
+
 ## 0.3.1
 
 - Geliştirici: `wp flx-gql schema --output=… --owners=…` şemayı ve her tip/alanın hangi paketten geldiğini yazar. Şema snapshot'ı paket başına dosyalara bölünür (`plugins/<slug>/graphql/schema.graphql`), paralel paket PR'ları aynı dosyaya dokunmaz. Sahip kaydı yalnız bu komutta açılır; normal GraphQL isteklerinin davranışı ve hızı değişmez.

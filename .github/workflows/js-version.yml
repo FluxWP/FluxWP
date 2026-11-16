@@ -2,8 +2,9 @@ name: JS package versions
 
 # @fluxwp/modules and @fluxwp/graphql are versioned at release time, not in PRs:
 #   PR   -> adds .changes/<name>.md; this workflow only checks the notes and that nobody bumped versions.
-#   Run  -> (workflow_dispatch) bumps package.json, writes CHANGELOG, deletes the notes, pushes to main,
-#           tags modules-v<ver> / graphql-v<ver> and creates GitHub releases.
+#   Run  -> (workflow_dispatch) bumps package.json, writes CHANGELOG, deletes the notes and opens a
+#           "Release JS packages" PR (main is protected, no direct push). Merging it tags
+#           modules-v<ver> / graphql-v<ver> and creates the GitHub releases (job "tag").
 # Details: .changes/README.md
 
 on:
@@ -16,6 +17,11 @@ on:
       - 'packages/graphql/CHANGELOG.md'
       - 'tools/release/version-packages*.mjs'
       - '.github/workflows/js-version.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'packages/modules/package.json'
+      - 'packages/graphql/package.json'
   workflow_dispatch:
 
 concurrency:
@@ -45,6 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v5
         with:
@@ -58,40 +65,49 @@ jobs:
       - name: Bump versions
         id: bump
         run: node tools/release/version-packages.mjs
-      - name: Commit and push to main
+      - name: Open release PR
         if: steps.bump.outputs.summary != ''
         env:
+          GH_TOKEN: ${{ github.token }}
           SUMMARY: ${{ steps.bump.outputs.summary }}
         run: |
           set -euo pipefail
+          branch="release/js-packages-$(date -u +%Y%m%d-%H%M%S)"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -q -b "$branch"
           git add -A .changes packages/modules packages/graphql
           git commit -q -m "Release JS packages: $SUMMARY"
-          for i in 1 2 3; do
-            if git push -q origin HEAD:main; then exit 0; fi
-            # main moved: re-apply on top of it (notes may have been added meanwhile, versions are recomputed).
-            git reset -q --hard HEAD~1 && git fetch -q origin main && git reset -q --hard origin/main
-            node tools/release/version-packages.mjs >/dev/null
-            git add -A .changes packages/modules packages/graphql
-            git commit -q -m "Release JS packages: $SUMMARY"
-            sleep $((i * 5))
-          done
-          echo "::error::push to main failed"; exit 1
+          git push -q origin "$branch"
+          gh pr create --base main --head "$branch" \
+            --title "Release JS packages: $SUMMARY" \
+            --body "Versions and CHANGELOGs computed from the pending \`.changes\` notes. Merging tags the releases."
+          echo "::notice::Release PR opened for: $SUMMARY"
+
+  tag:
+    # Runs when a merged commit changed a package version: tag + GitHub release per package.
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
       - name: Tags and GitHub releases
-        if: steps.bump.outputs.summary != ''
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           for entry in "modules packages/modules" "graphql packages/graphql"; do
             set -- $entry
             ver="$(node -p "require('./$2/package.json').version")"
             tag="$1-v$ver"
             if git rev-parse -q --verify "refs/tags/$tag" >/dev/null; then continue; fi
-            # Only tag packages whose CHANGELOG got this version in the release commit.
-            git show --format= HEAD -- "$2/package.json" | grep -q '^+.*"version"' || continue
             awk -v v="## $ver" '$0==v{f=1;next} /^## /{f=0} f' "$2/CHANGELOG.md" > "notes-$1.md"
+            [ -s "notes-$1.md" ] || echo "- $1 $ver" > "notes-$1.md"
             git tag "$tag" HEAD
             git push -q origin "$tag"
             gh release create "$tag" --title "@fluxwp/$1 $ver" --notes-file "notes-$1.md" --target "$(git rev-parse HEAD)"

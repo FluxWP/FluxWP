@@ -173,6 +173,12 @@ msgstr "Yalnız FluxWP paketleriyle gelen sorgular çalışır (%d tanınan)."
 msgid "You are not allowed to manage plugins."
 msgstr "Eklentileri yönetmeye yetkiniz yok."
 
+msgid "This screen needs JavaScript."
+msgstr "Bu ekran JavaScript gerektirir."
+
+msgid "Loading the screen…"
+msgstr "Ekran yükleniyor…"
+
 msgid "Uploads are not accepted for this screen."
 msgstr "Bu ekran için dosya yüklenemez."
 

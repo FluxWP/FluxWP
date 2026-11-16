@@ -1,7 +1,7 @@
 # flx-chatbot 0.2.0
 
 - Faz: 1
-- Durum: 👀
+- Durum: ✓
 - PR: #315
 
 `gql/flx-chatbot-1`: servis katmanı, 5 sorgu + 5 mutation (+ `flxSettings.chatbot`), 9 kayıtlı işlem, sözleşme testi 84/84. React ekranları (`flxcb-settings`, `flxcb-inbox`) klasikle eşit, wp-admin varsayılanı; klasik bağlantıyla. Ziyaretçi uçları REST istisnası. Sonraki adım: FlxPerson (Flux CRM) bağı. Eşleme `ESLEME/flx-chatbot.md`

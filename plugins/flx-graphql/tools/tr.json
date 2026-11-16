@@ -279,5 +279,7 @@
   "Enter a coupon code.": "Kupon kodu girin.",
   "The shop is not available on this site.": "Bu sitede mağaza kullanılamıyor.",
   "Your cart has expired. Please reload the page.": "Sepetinizin süresi doldu. Lütfen sayfayı yenileyin.",
-  "The cart could not be changed. Please reload the page.": "Sepet değiştirilemedi. Lütfen sayfayı yenileyin."
+  "The cart could not be changed. Please reload the page.": "Sepet değiştirilemedi. Lütfen sayfayı yenileyin.",
+  "This screen needs JavaScript.": "Bu ekran JavaScript gerektirir.",
+  "Loading the screen…": "Ekran yükleniyor…"
 }

@@ -1,0 +1,12 @@
+mutation FlxAiSkillFileDelete($input: FlxAiSkillFileDeleteInput!) {
+  flxAiSkillFileDelete(input: $input) {
+    skill {
+      ...FlxAiSkillDetailFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

@@ -1,7 +1,7 @@
-# flx-ai 0.25.0
+# flx-ai 0.27.0
 
 - Faz: 1
 - Durum: 👀
-- PR: #329
+- PR: #342
 
-`gql/flx-ai-3`: Zamanlanmış görevler React ekranı (+ `flxAiTasks`, `flxAiRecipients`, `flxAiTaskSave/Run/SetActive/Delete/MarkRead`, `flxAiTasksToggle`), klasik sayfa aynı servise bağlı, sözleşme testi 215/215. 0.24.0 (Ayarlar, Onaylar) main'de. **Kalan:** Skill'ler, MCP, sistem başı SDK ayarları. Eşleme `ESLEME/flx-ai.md`
+`gql/flx-ai-5`: MCP ve Bağlantılar React ekranları (`flxAiMcp*`, `flxAiConnection*`), sözleşme testi 410/410. 0.24.0–0.26.0 main'de. **Kalan:** sistem başı SDK ayarları, sohbet geçmişi. Eşleme `ESLEME/flx-ai.md`

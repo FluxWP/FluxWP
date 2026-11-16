@@ -1,0 +1,6 @@
+# The MCP page: server state, keys and recent activity.
+query FlxAiMcp {
+  flxAiMcp {
+    ...FlxAiMcpOverviewFields
+  }
+}

@@ -1,0 +1,10 @@
+mutation FlxAiSkillDelete($input: FlxAiSkillDeleteInput!) {
+  flxAiSkillDelete(input: $input) {
+    deleted
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

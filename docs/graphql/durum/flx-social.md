@@ -1,7 +1,7 @@
 # flx-social 0.3.0
 
 - Faz: 2
-- Durum: 👀
+- Durum: ✓
 - PR: #323
 
 `claude/project-thread-yhevwp`: servis katmanı + DTO, 13 sorgu + 22 mutation, 34 kayıtlı işlem, sözleşme testi 70/70, strict PHPStan (services + graphql). React ekranı (`flxsm-social`) klasikle eşit (pano, gönderiler, onaylar, takvim, hesaplar, ayarlar, oluşturucu, ayrıntı), wp-admin varsayılanı; klasik görünüm bağlantısıyla. OAuth, `/tick`, yükleme istisna. Eşleme `ESLEME/flx-social.md`
