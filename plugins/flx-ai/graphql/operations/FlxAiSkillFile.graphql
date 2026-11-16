@@ -1,0 +1,9 @@
+query FlxAiSkillFile($slug: String!, $path: String!) {
+  flxAiSkillFile(slug: $slug, path: $path) {
+    path
+    size
+    text
+    content
+    note
+  }
+}
