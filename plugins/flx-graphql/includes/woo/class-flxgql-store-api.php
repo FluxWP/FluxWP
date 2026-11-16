@@ -178,7 +178,10 @@ final class FLXGQL_Store_Api {
 				self::$nonce = flx_gql_str( $value );
 			}
 		}
-		$data = $res->get_data();
+		// The Store API schemas return nested blocks (prices, totals, quantity_limits, addresses) as objects;
+		// read the data exactly as it goes over HTTP.
+		$json = wp_json_encode( $res->get_data() );
+		$data = is_string( $json ) ? json_decode( $json, true ) : null;
 		if ( ! is_array( $data ) ) {
 			return new WP_Error( 'flx_cart', flx_gql_error_message( 'INTERNAL' ) );
 		}

@@ -90,7 +90,7 @@ namespace {
 					'id'                => (int) $it['id'],
 					'type'              => 'simple',
 					'quantity'          => (int) $it['quantity'],
-					'quantity_limits'   => array( 'minimum' => 1, 'maximum' => $fixed ? 1 : 9999, 'multiple_of' => 1, 'editable' => ! $fixed ),
+					'quantity_limits'   => (object) array( 'minimum' => 1, 'maximum' => $fixed ? 1 : 9999, 'multiple_of' => 1, 'editable' => ! $fixed ),
 					'name'              => get_the_title( (int) $it['id'] ),
 					'sku'               => (string) get_post_meta( (int) $it['id'], '_sku', true ),
 					'permalink'         => (string) get_permalink( (int) $it['id'] ),
@@ -98,8 +98,8 @@ namespace {
 					'variation'         => array(),
 					'item_data'         => array_values( (array) apply_filters( 'woocommerce_get_item_data', array(), array( 'key' => $key, 'product_id' => (int) $it['id'] ) + $it['data'] ) ),
 					'sold_individually' => false,
-					'prices'            => array( 'price' => self::minor( $price ), 'regular_price' => self::minor( $price ) ) + self::cur(),
-					'totals'            => array( 'line_subtotal' => self::minor( $line ), 'line_subtotal_tax' => '0', 'line_total' => self::minor( $line ), 'line_total_tax' => '0' ) + self::cur(),
+					'prices'            => (object) ( array( 'price' => self::minor( $price ), 'regular_price' => self::minor( $price ) ) + self::cur() ),
+					'totals'            => (object) ( array( 'line_subtotal' => self::minor( $line ), 'line_subtotal_tax' => '0', 'line_total' => self::minor( $line ), 'line_total_tax' => '0' ) + self::cur() ),
 				);
 			}
 			$discount = 0.0;
@@ -107,7 +107,7 @@ namespace {
 			foreach ( $c['coupons'] as $code => $amount ) {
 				$d         = min( (float) $amount, $sum - $discount );
 				$discount += $d;
-				$coupons[] = array( 'code' => $code, 'discount_type' => 'fixed_cart', 'totals' => array( 'total_discount' => self::minor( $d ), 'total_discount_tax' => '0' ) + self::cur() );
+				$coupons[] = array( 'code' => $code, 'discount_type' => 'fixed_cart', 'totals' => (object) ( array( 'total_discount' => self::minor( $d ), 'total_discount_tax' => '0' ) + self::cur() ) );
 			}
 			$addr = static function ( array $a, bool $billing ): array {
 				$keys = array( 'first_name', 'last_name', 'company', 'address_1', 'address_2', 'city', 'state', 'postcode', 'country', 'phone' );
@@ -124,7 +124,7 @@ namespace {
 				'items'                   => $items,
 				'coupons'                 => $coupons,
 				'fees'                    => array(),
-				'totals'                  => array(
+				'totals'                  => (object) ( array(
 					'total_items'     => self::minor( $sum ),
 					'total_items_tax' => '0',
 					'total_fees'      => '0',
@@ -133,9 +133,9 @@ namespace {
 					'total_tax'       => '0',
 					'total_price'     => self::minor( $sum - $discount ),
 					'tax_lines'       => array(),
-				) + self::cur(),
-				'shipping_address'        => $addr( (array) $c['shipping'], false ),
-				'billing_address'         => $addr( (array) $c['billing'], true ),
+				) + self::cur() ),
+				'shipping_address'        => (object) $addr( (array) $c['shipping'], false ),
+				'billing_address'         => (object) $addr( (array) $c['billing'], true ),
 				'needs_payment'           => $sum - $discount > 0,
 				'needs_shipping'          => false,
 				'has_calculated_shipping' => false,
