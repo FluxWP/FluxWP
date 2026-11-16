@@ -136,25 +136,7 @@ type DefaultTemplate implements ContentTemplate {
 }
 
 "The template assigned to the node"
-type Template_SingleWithSidebar implements ContentTemplate {
-  "The name of the template"
-  templateName: String
-}
-
-"The template assigned to the node"
-type Template_PageWithWideImage implements ContentTemplate {
-  "The name of the template"
-  templateName: String
-}
-
-"The template assigned to the node"
 type Template_PageNoTitle implements ContentTemplate {
-  "The name of the template"
-  templateName: String
-}
-
-"The template assigned to the node"
-type Template_PageWithSidebar implements ContentTemplate {
   "The name of the template"
   templateName: String
 }
@@ -2354,6 +2336,15 @@ enum MimeTypeEnum {
   "image/heic mime type."
   IMAGE_HEIC
 
+  "image/heic-sequence mime type."
+  IMAGE_HEIC_SEQUENCE
+
+  "image/heif mime type."
+  IMAGE_HEIF
+
+  "image/heif-sequence mime type."
+  IMAGE_HEIF_SEQUENCE
+
   "image/jpeg mime type."
   IMAGE_JPEG
 
@@ -2524,15 +2515,6 @@ enum ContentTemplateEnum {
 
   "The \"Page No Title\" template."
   PAGE_NO_TITLE_BLOCK_TEMPLATE
-
-  "The \"Page with Wide Image\" template."
-  PAGE_WIDE_BLOCK_TEMPLATE
-
-  "The \"Page with Sidebar\" template."
-  PAGE_WITH_SIDEBAR_BLOCK_TEMPLATE
-
-  "The \"Single with Sidebar\" template."
-  SINGLE_WITH_SIDEBAR_BLOCK_TEMPLATE
 }
 
 "Connection between the Category type and the ContentNode type"
@@ -7096,7 +7078,7 @@ interface PostFormatConnectionEdge implements Edge {
 }
 
 "A standardized classification system for content presentation styles. These formats can be used to display content differently based on type, such as &quot;standard&quot;, &quot;gallery&quot;, &quot;video&quot;, etc."
-type PostFormat implements Node & TermNode & UniformResourceIdentifiable & DatabaseIdentifier {
+type PostFormat implements Node & TermNode & UniformResourceIdentifiable & DatabaseIdentifier & MenuItemLinkable {
   "Connection between the PostFormat type and the ContentNode type"
   contentNodes(
     "The number of items to return after the referenced \"after\" cursor"
