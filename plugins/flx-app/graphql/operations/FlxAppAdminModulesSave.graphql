@@ -1,0 +1,13 @@
+# Sets which modules stay on.
+mutation FlxAppAdminModulesSave($input: FlxAppAdminModulesSaveInput!) {
+  flxAppAdminModulesSave(input: $input) {
+    modules {
+      ...FlxAppAdminModuleFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

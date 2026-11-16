@@ -1,0 +1,19 @@
+# Menu items hidden by platform.
+query FlxAppAdminMenu {
+  flxAppAdminMenu {
+    available
+    editorUrl
+    platforms {
+      key
+      label
+    }
+    rows {
+      role
+      menu
+      platforms {
+        key
+        visible
+      }
+    }
+  }
+}

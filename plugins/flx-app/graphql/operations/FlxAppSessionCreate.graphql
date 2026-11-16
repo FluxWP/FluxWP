@@ -1,0 +1,12 @@
+# One-time panel sign-in address (60 s) for the web view.
+mutation FlxAppSessionCreate($input: FlxAppSessionCreateInput!) {
+  flxAppSessionCreate(input: $input) {
+    url
+    expiresIn
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

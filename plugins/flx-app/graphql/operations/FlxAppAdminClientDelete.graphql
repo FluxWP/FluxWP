@@ -1,0 +1,11 @@
+# Deletes an OAuth client and all of its sessions.
+mutation FlxAppAdminClientDelete($input: FlxAppAdminClientDeleteInput!) {
+  flxAppAdminClientDelete(input: $input) {
+    ok
+    errors {
+      code
+      message
+      field
+    }
+  }
+}
