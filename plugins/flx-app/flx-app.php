@@ -2,9 +2,10 @@
 /**
  * Plugin Name:       Flux App
  * Description:       FluxWP masaüstü ve mobil uygulamasının sunucu tarafı: OAuth 2.0 (PKCE) giriş, cihazlar ve push, uygulama görünümü (config), eklenti ekranları (manifest), panel oturumu. MCP istemcileri de OAuth ile bağlanır.
- * Version:           0.4.16
- * Requires at least: 6.4
- * Requires PHP:      7.4
+ * Version:           0.6.0
+ * Requires at least: 6.5
+ * Requires PHP:      8.1
+ * Requires Plugins:  flx-graphql
  * Author:            FluxWP
  * License:           GPL-2.0-or-later
  * Text Domain:       flx-app
@@ -21,13 +22,15 @@ if ( defined( 'FLXAPP_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXAPP_VERSION', '0.4.16' );
+define( 'FLXAPP_VERSION', '0.6.0' );
 define( 'FLXAPP_DB_VERSION', 2 );
 define( 'FLXAPP_FILE', __FILE__ );
 define( 'FLXAPP_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXAPP_URL', plugin_dir_url( __FILE__ ) );
 
 require_once FLXAPP_DIR . 'includes/settings.php';
+require_once FLXAPP_DIR . 'includes/services/class-flxapp-service.php';
+require_once FLXAPP_DIR . 'includes/services/class-flxapp-admin-service.php';
 require_once FLXAPP_DIR . 'includes/tokens.php';
 require_once FLXAPP_DIR . 'includes/request-locale.php';
 require_once FLXAPP_DIR . 'includes/clients.php';
@@ -35,6 +38,7 @@ require_once FLXAPP_DIR . 'includes/apps.php';
 require_once FLXAPP_DIR . 'includes/oauth.php';
 require_once FLXAPP_DIR . 'includes/otp.php';
 require_once FLXAPP_DIR . 'includes/menu.php';
+require_once FLXAPP_DIR . 'includes/app-modules.php';
 require_once FLXAPP_DIR . 'includes/embed.php';
 require_once FLXAPP_DIR . 'includes/rest.php';
 require_once FLXAPP_DIR . 'includes/devices.php';
@@ -47,9 +51,63 @@ require_once FLXAPP_DIR . 'includes/settings-bridge.php';
 require_once FLXAPP_DIR . 'includes/dashboard.php';
 require_once FLXAPP_DIR . 'includes/system-checks.php';
 if ( is_admin() ) {
+	require_once FLXAPP_DIR . 'includes/flux-ui.php';
 	require_once FLXAPP_DIR . 'includes/admin.php';
 	require_once FLXAPP_DIR . 'includes/admin-appearance.php';
 }
+
+/*
+ * GraphQL (Flux GraphQL): schema only inside a GraphQL request; the persisted operations the app sends.
+ * Without Flux GraphQL (0.2.0+) the schema is left out and REST keeps serving every app version.
+ */
+add_action(
+	'flx_gql_register',
+	static function () {
+		if ( ! function_exists( 'flx_gql_all_caps' ) ) {
+			return;
+		}
+		require_once FLXAPP_DIR . 'includes/graphql/schema.php';
+		// The admin service reads the catalogs the classic pages define (they are only loaded in wp-admin).
+		require_once FLXAPP_DIR . 'includes/admin.php';
+		require_once FLXAPP_DIR . 'includes/admin-appearance.php';
+		require_once FLXAPP_DIR . 'includes/graphql/admin-schema.php';
+	}
+);
+add_filter(
+	'flx_gql_persisted_manifests',
+	static function ( $m ) {
+		$m            = is_array( $m ) ? $m : array();
+		$m['flx-app'] = FLXAPP_DIR . 'graphql/persisted-queries.json';
+		return $m;
+	}
+);
+/*
+ * The bootstrap document depends on the X-Flux-Locale header, so a shared (LiteSpeed/CDN) cache must not keep it
+ * by URL. The server already caches it for 5 minutes per language (transient).
+ */
+add_filter(
+	'graphql_response_headers_to_send',
+	static function ( $headers ) {
+		$headers = is_array( $headers ) ? $headers : array();
+		$op      = isset( $_GET['operationName'] ) ? sanitize_text_field( wp_unslash( (string) $_GET['operationName'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
+		if ( 'FlxAppBootstrap' === $op ) {
+			$headers['Cache-Control']             = 'private, no-store';
+			$headers['X-LiteSpeed-Cache-Control'] = 'no-cache';
+			unset( $headers['X-LiteSpeed-Tag'] );
+		}
+		return $headers;
+	},
+	40
+);
+/* The public bootstrap document changes with settings and packages: drop its GraphQL cache with the transient. */
+add_action(
+	'flxapp_bootstrap_flushed',
+	static function () {
+		if ( function_exists( 'flx_gql_purge' ) ) {
+			flx_gql_purge( array( 'flx-app:bootstrap' ) );
+		}
+	}
+);
 
 add_action(
 	'init',
@@ -73,11 +131,13 @@ add_filter(
 register_activation_hook( FLXAPP_FILE, 'flxapp_install' );
 add_action( 'plugins_loaded', 'flxapp_maybe_upgrade', 5 );
 
+/** @return string */
 function flxapp_table() {
 	global $wpdb;
 	return $wpdb->prefix . 'flxapp_tokens';
 }
 
+/** @return string */
 function flxapp_devices_table() {
 	global $wpdb;
 	return $wpdb->prefix . 'flxapp_devices';

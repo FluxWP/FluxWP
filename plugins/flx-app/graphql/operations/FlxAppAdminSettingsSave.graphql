@@ -1,0 +1,13 @@
+# Saves the General settings; only the sent fields change.
+mutation FlxAppAdminSettingsSave($input: FlxAppAdminSettingsSaveInput!) {
+  flxAppAdminSettingsSave(input: $input) {
+    settings {
+      ...FlxAppAdminSettingsFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}
