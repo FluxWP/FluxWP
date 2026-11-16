@@ -21,6 +21,9 @@ final class FLXCM_Page_Subscriptions {
 		if ( ! current_user_can( FLXCM_Admin::CAP_VIEW ) ) {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-commerce' ), 403 );
 		}
+		if ( FLXCM_Admin::render_flux() ) {
+			return;
+		}
 		// phpcs:disable WordPress.Security.NonceVerification
 		$args = array(
 			'status'   => isset( $_GET['status'] ) ? sanitize_key( $_GET['status'] ) : 'all',
@@ -144,26 +147,12 @@ final class FLXCM_Page_Subscriptions {
 		if ( ! current_user_can( FLXCM_Admin::CAP_MANAGE ) ) {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-commerce' ), 403 );
 		}
+		$act  = FLXCM_Subscription_Service::admin_act( $id, $do );
 		$args = array();
-		switch ( $do ) {
-			case 'renewal':
-				$r = FLXCM_Subscriptions::create_renewal( $id, true );
-				if ( is_wp_error( $r ) ) {
-					$args['err'] = $r->get_error_message();
-				}
-				break;
-			case 'cancel':
-				FLXCM_Subscriptions::cancel( $id, false, 'admin' );
-				break;
-			case 'end':
-				FLXCM_Subscriptions::cancel( $id, true, 'admin' );
-				break;
-			case 'resume':
-				FLXCM_Subscriptions::resume( $id );
-				break;
-		}
-		if ( empty( $args['err'] ) ) {
-			$args['done'] = $do;
+		if ( '' !== $act['err'] ) {
+			$args['err'] = $act['err'];
+		} elseif ( '' !== $act['done'] ) {
+			$args['done'] = $act['done'];
 		}
 		$back = wp_get_referer();
 		wp_safe_redirect( add_query_arg( $args, remove_query_arg( array( 'done', 'err' ), $back ? $back : flxcm_admin_url( 'subscriptions' ) ) ) );

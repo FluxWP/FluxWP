@@ -1,5 +1,14 @@
 # Değişiklikler
 
+## 0.6.0
+- **GraphQL API.** Satış özeti, müşteriler, abonelikler, raporlar, ayarlar, havale kuyruğu ve Hesabım abonelikleri Flux GraphQL üzerinden okunur ve yazılır. Yetkiler mevcut WooCommerce yetkileridir. `flx-graphql` yokken şema kaydı atlanır; REST cevapları aynı kalır.
+- **React yönetim ekranı** (`flxcm-store`): Genel bakış, Müşteriler, Abonelikler, Satış raporu, Ayarlar. wp-admin varsayılanı budur; klasik sayfalar kullanıcı tercihiyle durur.
+- Ürün feed adresi yalnız mağazayı yönetene, feed açıkken, klasik ekrandaki tam adres olarak verilir.
+- Dekont dosya adresi GraphQL'de yalnız dosyayı açabilene (`edit_shop_orders`) dolu döner.
+- Kart sağlayıcısının mühürlü `d` bloğu GraphQL, REST ve dışa aktarmada yoktur. Depolama değişmedi.
+- `flxCommerceRenewalsRun` yalnız saatlik yenileme turunu (`tick`) çalıştırır. Günlük müşteri özeti ve süresi geçen havale iptali cron'da kalır.
+- Misafir dekont yükleme (multipart) ve feed XML'i yerinde durur.
+
 ## 0.5.0
 - **Kartla otomatik yenileme (Faz 2).** Ortak kart sağlayıcı katmanı: ödeme eklentileri `flxcm_card_providers` ile sağlayıcı kaydeder (Flux Donate 2.31.0 iyzico'yu ekler). İlk sipariş ya da elle ödenen yenileme kart sağlayıcısıyla ödenirse kart (sağlayıcının mühürlü token'ı) aboneliğe yazılır.
 - Kartlı abonelikte yenileme siparişi yine dönem bitmeden 7 gün önce açılır ama müşteriye "kartınızdan şu tarihte çekilecek" e-postası gider (yeni şablon `flx-commerce/sub-card-notice`). Dönem bitince kart çekilir, sipariş ödenir, dönem uzar. Çekilemezse ertesi gün ve bir sonraki gün yeniden denenir (`flxcm_card_retry_days`); son denemede de olmazsa ödeme bağlantılı e-posta gider (`flx-commerce/sub-card-failed`) ve ek süre işler. Sağlayıcı cevabı gelmezse deneme sayılmaz, bir saat sonra durum sorulur.

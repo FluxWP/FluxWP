@@ -13,6 +13,47 @@ function flxcm_wc_ready() {
 	return class_exists( 'WooCommerce' ) && function_exists( 'wc_get_orders' );
 }
 
+/**
+ * Drops GraphQL cache tags. No-op until Flux GraphQL is loaded.
+ *
+ * @param list<string> $tags Tag names.
+ */
+function flxcm_gql_purge( array $tags ): void {
+	if ( function_exists( 'flx_gql_purge' ) ) {
+		flx_gql_purge( $tags );
+	}
+}
+
+/**
+ * Money value for GraphQL. Falls back to a plain triple when the kit is absent.
+ *
+ * @return array{amount:float,currency:string,formatted:string}
+ */
+function flxcm_gql_money( $amount, string $currency = '' ): array {
+	if ( function_exists( 'flx_gql_money' ) ) {
+		return flx_gql_money( $amount, $currency );
+	}
+	$amount = (float) $amount;
+	return array(
+		'amount'    => $amount,
+		'currency'  => '' !== $currency ? $currency : 'TRY',
+		'formatted' => number_format_i18n( $amount, 2 ),
+	);
+}
+
+/**
+ * Date value for GraphQL. Null when the time is empty.
+ *
+ * @param mixed $time Unix timestamp or GMT mysql.
+ * @return array{iso:string,timestamp:int,label:string,relative:string}|null
+ */
+function flxcm_gql_time( $time ): ?array {
+	if ( ! function_exists( 'flx_gql_datetime' ) ) {
+		return null;
+	}
+	return flx_gql_datetime( $time );
+}
+
 /** Varsayılan ayarlar. Filtre `flxcm_default_settings`. */
 function flxcm_defaults() {
 	return (array) apply_filters(

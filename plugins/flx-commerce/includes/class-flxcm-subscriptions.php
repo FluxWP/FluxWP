@@ -187,11 +187,12 @@ final class FLXCM_Subscriptions {
 		}
 		$per   = max( 1, min( 200, (int) ( $args['per_page'] ?? 25 ) ) );
 		$paged = max( 1, (int) ( $args['paged'] ?? 1 ) );
+		$off   = array_key_exists( 'offset', $args ) ? max( 0, (int) $args['offset'] ) : ( $paged - 1 ) * $per;
 		$order = 'period_end' === ( $args['orderby'] ?? '' ) ? 'period_end IS NULL, period_end ASC' : 'id DESC';
 		$sql_w = implode( ' AND ', $where );
 		// phpcs:disable WordPress.DB
 		$total = (int) $wpdb->get_var( $vals ? $wpdb->prepare( "SELECT COUNT(*) FROM {$t} WHERE {$sql_w}", $vals ) : "SELECT COUNT(*) FROM {$t} WHERE {$sql_w}" );
-		$rows  = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$t} WHERE {$sql_w} ORDER BY {$order} LIMIT %d OFFSET %d", array_merge( $vals, array( $per, ( $paged - 1 ) * $per ) ) ), ARRAY_A );
+		$rows  = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$t} WHERE {$sql_w} ORDER BY {$order} LIMIT %d OFFSET %d", array_merge( $vals, array( $per, $off ) ) ), ARRAY_A );
 		// phpcs:enable WordPress.DB
 		return array(
 			'rows'  => $rows ? $rows : array(),
@@ -223,6 +224,7 @@ final class FLXCM_Subscriptions {
 		global $wpdb;
 		$data['updated_at'] = self::now();
 		$wpdb->update( self::table(), $data, array( 'id' => (int) $id ) ); // phpcs:ignore WordPress.DB
+		flxcm_gql_purge( array( 'flx-commerce:subscriptions', 'flx-commerce:subscription:' . (int) $id ) );
 	}
 
 	/** Durumu değiştirir ve flxcm_subscription_status_changed olayını yayar. */

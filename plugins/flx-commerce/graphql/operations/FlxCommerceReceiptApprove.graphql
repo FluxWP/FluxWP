@@ -1,0 +1,3 @@
+mutation FlxCommerceReceiptApprove($input: FlxCommerceReceiptApproveInput!) {
+  flxCommerceReceiptApprove(input: $input) { receipt { id status } errors { code message field } }
+}

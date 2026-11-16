@@ -1,22 +1,22 @@
-# flx-commerce 0.5.0
+# flx-commerce 0.6.0
 
-- Faz: 2
-- Durum: ✱
+- Faz: 1
+- Durum: 👀
 - PR: #339
 
-Envanter (`gql/flx-commerce-1`). Servis, şema ve ekran yok. Eşleme `docs/graphql/ESLEME/flx-commerce.md`. REST 7 (1 istisna), AJAX 2, admin-post 8, menü 5, ayar 31 (`feed_key` gizli). Kişi kartı `FlxContact` alanı olarak planlandı; `origin/gql/flx-crm-2` bölüm kaydı henüz yok. Sepete ekleme GraphQL'de `FLXGQL_Cart::add_item`. Checkout Store API'de kalır.
+`gql/flx-commerce-1`: servis katmanı, GraphQL şeması (30 kayıtlı işlem), sözleşme testi, beş yönetim ekranı (`flxcm-store`). wp-admin varsayılanı React; klasik görünüm kullanıcı metası `flxcm_ui` ile. Eşleme `docs/graphql/ESLEME/flx-commerce.md`. Müşteri alanı `FlxContact.flxCommerce`; CRM bölüm kaydı PR #333 gelince aynı alana bağlanacak.
 
 ## İstisnalar
 
 | Uç / akış | Paket | Neden | GraphQL tarafı |
 |---|---|---|---|
-| Dekont yükleme `POST /wp-json/flx-commerce/v1/receipt` ve form POST `flxcm_action=receipt` | flx-commerce | Multipart; misafir sipariş anahtarıyla yükler, sayfa önbellekli olabilir | Liste `flxCommerceReceipts`, onay `flxCommerceReceiptApprove` |
-| Dekont dosyası `GET /?flxcm_dekont=&i=` | flx-commerce | İkili dosya; yönetici nonce veya sipariş anahtarı | Liste `files.url` bu adresi verir |
-| Ürün feed'i `GET /?flxcm_feed=google&key=` | flx-commerce | Google Merchant ve Meta katalog RSS XML bekler | `feedEnabled` / `feedBrand`; `feed_key` yalnız set/mask |
-| `flxcm_subs_tick` (saatlik), `flxcm_daily` (günlük), `shutdown` pompası | flx-commerce | Hostinger WP cron tetiklemez; pompa GET sonunda saatte bir döner. PHP ~60 sn, adım 50/25 | `flxCommerceRenewalStatus`, tek adım `flxCommerceRenewalsRun` |
-| Shortcode `[flx_credit]` ve blok `flx/credit` | flx-commerce | Ortak FluxWP imzası (footer), mağaza verisi değil | — |
-| Havale teşekkür / Hesabım sipariş / sipariş e-postası paneli ve `flxcm_bank` gateway | flx-commerce | Checkout WooCommerce Store API'de kalır; HTML ödeme talimatıdır | Onay `flxCommerceReceiptApprove` |
-| Yenileme ödeme adresi (`pay_url`: WC ödeme veya teşekkür) | flx-commerce | WooCommerce ödeme sayfası, sipariş anahtarı | `flxMySubscriptionRenew` siparişi açar; adres WC'de kalır |
-| Gizli ürün `template_redirect` | flx-commerce | Herkese açık ürün adresini tarayıcıda yönlendirir | Ayar `hiddenRedirect` |
-| WP pano widget'ı `flxcm_today` | flx-commerce | Pano HTML'i sunucuda basılır | `flxCommerceSummary(range: TODAY)` |
-| FluxApp manifest kaynakları (`summary`, `customers`, `receipts`) | flx-commerce | Eski FluxApp REST okur (ortak geçici istisna) | Aynı servisler; REST cevabı değişmez |
+| Dekont yükleme `POST /wp-json/flx-commerce/v1/receipt` ve form POST `flxcm_action=receipt` | flx-commerce | Multipart; misafir sipariş anahtarıyla yükler | Liste `flxCommerceReceipts`, onay `flxCommerceReceiptApprove` |
+| Dekont dosyası `GET /?flxcm_dekont=&i=` | flx-commerce | İkili dosya. `serve()` yalnız `edit_shop_orders` (onay yetkisi ayrıca `manage_woocommerce`) | `files.url` yalnız `edit_shop_orders` olana dolu |
+| Ürün feed'i `GET /?flxcm_feed=google&key=` | flx-commerce | Google Merchant ve Meta katalog RSS XML bekler | `feedUrl` tam adres, yalnız `manage_woocommerce`; feed kapalıyken boş |
+| `flxcm_subs_tick`, `flxcm_daily`, `shutdown` pompası | flx-commerce | Saatlik tick, günlük `flush_dirty` / `cancel_stale`, GET sonu pompası | `flxCommerceRenewalsRun` yalnız `tick()` |
+| Shortcode `[flx_credit]` ve blok `flx/credit` | flx-commerce | Ortak FluxWP imzası | — |
+| Havale teşekkür / Hesabım sipariş / sipariş e-postası ve `flxcm_bank` | flx-commerce | Checkout Store API'de kalır | Onay `flxCommerceReceiptApprove` |
+| Yenileme ödeme adresi | flx-commerce | WooCommerce ödeme sayfası | `flxMySubscriptionRenew` adresi döndürür; sayfa WC'de |
+| Gizli ürün `template_redirect`, `_flxcm_hidden`, `_flxcm_no_feed`, sepet `validate` / `individually` | flx-commerce | WooCommerce kancaları | Ayar `hiddenRedirect`; sepet köprüsü adet 1 |
+| WP pano widget'ı `flxcm_today` | flx-commerce | Pano HTML'i | `flxCommerceSummary(days: 1)` |
+| FluxApp manifest REST'i ve CSV admin-post | flx-commerce | Eski istemci ve dosya indirme | REST cevabı aynı; CSV admin-post |
