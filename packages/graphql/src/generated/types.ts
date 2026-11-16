@@ -4,6 +4,15 @@
 type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 /** Internal type. DO NOT USE DIRECTLY. */
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+/** What kind of file an asset is. */
+export type FlxBlocksAssetKind =
+  /** Script module (type="module", uses the import map in footerHtml). */
+  | 'MODULE'
+  /** Classic script. */
+  | 'SCRIPT'
+  /** Stylesheet. */
+  | 'STYLE';
+
 /** A personal API key or an app session. */
 export type FlxAppAccessKind =
   | 'KEY'
@@ -25,6 +34,15 @@ export type FlxAppAuthKind =
   | 'ACCESS'
   | 'COOKIE'
   | 'KEY';
+
+/** Editor width of a page or post. */
+export type FlxBlocksEditorWidthMode =
+  /** Full width. */
+  | 'FULL_WIDTH'
+  /** Large template. */
+  | 'LARGE'
+  /** Small template. */
+  | 'SMALL';
 
 /** State of an AI translation job. */
 export type FlxLanguageJobStatus =
@@ -105,6 +123,151 @@ export type FlxSettingsFlxseoAuditFreq =
 export type FlxSettingsFlxseoOrgType =
   | 'NGO'
   | 'ORGANIZATION';
+
+/** State of the connection to the update server. */
+export type FlxSetupConnectionState =
+  /** The server answered. */
+  | 'CONNECTED'
+  /** The server could not be reached or refused the site. */
+  | 'ERROR'
+  /** The server paused updates for this site; checks wait. */
+  | 'PAUSED'
+  /** Not checked yet. */
+  | 'UNKNOWN';
+
+/** State of Flux GraphQL on the site. */
+export type FlxSetupGraphqlState =
+  /** Active, but its GraphQL server is not running. */
+  | 'CONFLICT'
+  /** Installed, not active. */
+  | 'INACTIVE'
+  /** Not installed. */
+  | 'MISSING'
+  /** Installed and working. */
+  | 'OK';
+
+/** A tab of the package table. */
+export type FlxSetupPackageTab =
+  /** Every row. */
+  | 'ALL'
+  /** WordPress core and translations. */
+  | 'CORE'
+  /** FluxWP packages. */
+  | 'FLUX'
+  /** Plugins of other makers. */
+  | 'PLUGINS'
+  /** Themes of other makers. */
+  | 'THEMES';
+
+/** Automatic update setting of a plugin or theme. */
+export type FlxSetupAutoUpdateMode =
+  /** On for every FluxWP package (FluxWP Panel setting); cannot be changed per package. */
+  | 'LOCKED'
+  /** Off. */
+  | 'OFF'
+  /** On. */
+  | 'ON'
+  /** Not applicable: not installed, not a plugin or theme, or automatic updates are off for the site. */
+  | 'UNAVAILABLE';
+
+/** What an automatic update setting belongs to. */
+export type FlxSetupAutoUpdateType =
+  /** A plugin (id is the plugin file). */
+  | 'PLUGIN'
+  /** A theme (id is the theme folder). */
+  | 'THEME';
+
+/** Where a package row belongs in the table. */
+export type FlxSetupPackageGroup =
+  /** WordPress core and translations. */
+  | 'CORE'
+  /** FluxWP package. */
+  | 'FLUX'
+  /** Plugin of another maker. */
+  | 'PLUGINS'
+  /** Theme of another maker. */
+  | 'THEMES';
+
+/** What a package row is. */
+export type FlxSetupPackageKind =
+  /** FluxWP plugin. */
+  | 'FLUX_PLUGIN'
+  /** FluxWP theme. */
+  | 'FLUX_THEME'
+  /** WordPress itself; it updates on the WordPress updates screen. */
+  | 'WP_CORE'
+  /** Plugin of another maker. */
+  | 'WP_PLUGIN'
+  /** Theme of another maker. */
+  | 'WP_THEME'
+  /** Translation updates of WordPress, plugins and themes (one row). */
+  | 'WP_TRANSLATIONS';
+
+/** State of a plugin another package needs. */
+export type FlxSetupRequirementState =
+  /** Installed and active. */
+  | 'ACTIVE'
+  /** Installed, not active. */
+  | 'INACTIVE'
+  /** Not installed. */
+  | 'MISSING';
+
+/** Install state of a package. */
+export type FlxSetupPackageState =
+  /** Installed and up to date. */
+  | 'CURRENT'
+  /** Not installed. */
+  | 'MISSING'
+  /** Installed, a newer version is available. */
+  | 'UPDATE';
+
+/** One step of an install or update. */
+export type FlxSetupStepKind =
+  /** Activate a plugin. */
+  | 'ACTIVATE'
+  /** Install a FluxWP package. */
+  | 'INSTALL'
+  /** Update a FluxWP package (a backup is taken first). */
+  | 'UPDATE'
+  /** Install a chosen version of a FluxWP package (a backup is taken first). */
+  | 'VERSION'
+  /** Install a required plugin from wordpress.org. */
+  | 'WPORG'
+  /** Update translations. */
+  | 'WP_LANG'
+  /** Update a plugin of another maker. */
+  | 'WP_PLUGIN'
+  /** Update a theme of another maker. */
+  | 'WP_THEME';
+
+/** State of an update source. */
+export type FlxSetupSourceState =
+  /** Could not be reached or refused the site. */
+  | 'ERROR'
+  /** Turned off. */
+  | 'OFF'
+  /** Connected. */
+  | 'OK'
+  /** Not checked yet. */
+  | 'UNCHECKED';
+
+/** Kind of an update source. */
+export type FlxSetupSourceType =
+  /** A public GitHub repository. */
+  | 'GITHUB'
+  /** A FluxWP update server. */
+  | 'SERVER';
+
+/** Result of a system check row. */
+export type FlxSetupCheckStatus =
+  /** Broken. */
+  | 'ERROR'
+  /** For information. */
+  | 'INFO'
+  /** Fine. */
+  | 'OK'
+  /** Needs attention. */
+  | 'WARNING';
 
 /** What a generation makes. */
 export type FlxStudioKind =
@@ -327,6 +490,70 @@ export type FlxAppSessionCreateInput = {
   path?: string | null | undefined;
   /** Site address to open instead of a panel path. */
   url?: string | null | undefined;
+};
+
+/** Input for the flxBlocksBlockTypeSetActive mutation. */
+export type FlxBlocksBlockTypeSetActiveInput = {
+  /** On. */
+  active: boolean;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Block name. */
+  slug: string;
+};
+
+/** Input for the flxBlocksLibraryShareUpdate mutation. */
+export type FlxBlocksLibraryShareUpdateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Share the library; leave out to keep it as it is. */
+  enabled?: boolean | null | undefined;
+  /** Make a new key; sites using the old key lose access. */
+  regenerateKey?: boolean | null | undefined;
+};
+
+/** Input for the flxBlocksLibrarySourceAdd mutation. */
+export type FlxBlocksLibrarySourceAddInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Library key given by the other site. */
+  key?: string | null | undefined;
+  /** Name; leave empty to use the site's own name. */
+  name?: string | null | undefined;
+  /** Site address. */
+  url: string;
+};
+
+/** Input for the flxBlocksLibrarySourceRemove mutation. */
+export type FlxBlocksLibrarySourceRemoveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Source id. */
+  id: string;
+};
+
+/** Input for the flxBlocksSettingsUpdate mutation. */
+export type FlxBlocksSettingsUpdateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Editor widths. */
+  editorWidth?: FlxBlocksEditorWidthInput | null | undefined;
+  /** Show the page's header blocks in the admin bar. */
+  showHeadersInAdminBar?: boolean | null | undefined;
+};
+
+/** Editor widths; a field left out stays as it is. */
+export type FlxBlocksEditorWidthInput = {
+  /** Width can be chosen per page and post. */
+  enabled?: boolean | null | undefined;
+  /** Large template width (px, 200–4000). */
+  large?: number | null | undefined;
+  /** Width of new pages. */
+  pageDefault?: FlxBlocksEditorWidthMode | null | undefined;
+  /** Width of new posts. */
+  postDefault?: FlxBlocksEditorWidthMode | null | undefined;
+  /** Small template width (px, 200–4000). */
+  small?: number | null | undefined;
 };
 
 /** Input for the flxLanguageSet mutation. */
@@ -585,6 +812,174 @@ export type FlxSettingsFlxseoInput = {
   verifyYandex?: string | null | undefined;
   webmcp?: boolean | null | undefined;
 };
+
+/** Input for the flxSetupAutoUpdateSet mutation. */
+export type FlxSetupAutoUpdateSetInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Plugin file or theme folder (FlxSetupAutoUpdate.id). */
+  id: string;
+  /** Turn on. */
+  on: boolean;
+  /** Plugin or theme. */
+  type: FlxSetupAutoUpdateType;
+};
+
+/** Input for the flxSetupBackupsDelete mutation. */
+export type FlxSetupBackupsDeleteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Backup ids for one or selected. */
+  ids?: Array<string> | null | undefined;
+  /** Which backups. */
+  mode: FlxSetupBackupDeleteMode;
+};
+
+/** Which update backups to delete. */
+export type FlxSetupBackupDeleteMode =
+  /** Every unlocked update backup. */
+  | 'ALL'
+  /** The first id of the list. */
+  | 'ONE'
+  /** The listed ids. */
+  | 'SELECTED';
+
+/** Input for the flxSetupManage mutation. */
+export type FlxSetupManageInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** What to do. */
+  op: FlxSetupManageOp;
+  /** FluxWP packages. */
+  slugs?: Array<string> | null | undefined;
+  /** Rows of other makers (keys like p:folder/file.php or t:folder). */
+  wpKeys?: Array<string> | null | undefined;
+};
+
+/** Bulk action on installed packages. */
+export type FlxSetupManageOp =
+  /** Activate plugins. */
+  | 'ACTIVATE'
+  /** Turn off automatic updates. */
+  | 'AUTO_OFF'
+  /** Turn on automatic updates. */
+  | 'AUTO_ON'
+  /** Deactivate plugins. */
+  | 'DEACTIVATE'
+  /** Delete plugins and themes from the site. */
+  | 'DELETE';
+
+/** Input for the flxSetupRetentionSave mutation. */
+export type FlxSetupRetentionSaveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Days (1–365). */
+  days: number;
+};
+
+/** Input for the flxSetupSettingsSave mutation. */
+export type FlxSetupSettingsSaveInput = {
+  /** Install new versions of FluxWP packages automatically. */
+  auto?: boolean | null | undefined;
+  /** Remove the saved key. */
+  clearKey?: boolean | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Check the site after an update and roll back on a critical error. */
+  health?: boolean | null | undefined;
+  /** New site key; empty keeps the saved one. */
+  key?: string | null | undefined;
+  /** Server address (https); empty uses the default server. */
+  server?: string | null | undefined;
+  /** Send usage data (consent). */
+  usage?: boolean | null | undefined;
+};
+
+/** Input for the flxSetupSourceAdd mutation. */
+export type FlxSetupSourceAddInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Site key, only for servers that need one; sent only to that server. */
+  key?: string | null | undefined;
+  /** Name; taken from the address when empty. */
+  name?: string | null | undefined;
+  /** Repository or server address (https only). */
+  url: string;
+};
+
+/** Input for the flxSetupSourceChange mutation. */
+export type FlxSetupSourceChangeInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Source id. */
+  id: string;
+  /** What to do. */
+  op: FlxSetupSourceOp;
+};
+
+/** Change of an update source. */
+export type FlxSetupSourceOp =
+  /** Remove the source. */
+  | 'REMOVE'
+  /** Turn the source on or off. */
+  | 'TOGGLE'
+  /** Move the source up (higher sources win). */
+  | 'UP';
+
+/** Input for the flxSetupStepRun mutation. */
+export type FlxSetupStepRunInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Plugin file or theme folder for the steps of other makers. */
+  id?: string | null | undefined;
+  /** Step kind. */
+  kind: FlxSetupStepKind;
+  /** Package slug (or the row key of another maker). */
+  slug: string;
+  /** Version for a version step. */
+  version?: string | null | undefined;
+};
+
+/** Input for the flxSetupWizardLogo mutation. */
+export type FlxSetupWizardLogoInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Upload id returned by the upload endpoint. */
+  uploadId: string;
+};
+
+/** Input for the flxSetupWizardStep mutation. */
+export type FlxSetupWizardStepInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Step. */
+  kind: FlxSetupWizardStepKind;
+  /** Value of the step; see the step kinds. */
+  value?: string | null | undefined;
+};
+
+/** A step of the setup wizard. */
+export type FlxSetupWizardStepKind =
+  /** Accept the terms and set the usage data consent (value: 1 or 0). */
+  | 'CONSENT'
+  /** Finish the wizard. */
+  | 'DONE'
+  /** Use a media library image as the logo (value: attachment id). */
+  | 'LOGO'
+  /** Set the site name. */
+  | 'NAME'
+  /** Create starter pages (value: comma separated page keys). */
+  | 'PAGES'
+  /** Apply a preset (value: preset id). */
+  | 'PRESET'
+  /** Skip the wizard. */
+  | 'SKIP'
+  /** Apply a colour style of the theme (value: style key). */
+  | 'STYLE'
+  /** Set the tagline. */
+  | 'TAGLINE'
+  /** Activate the FluxWP theme. */
+  | 'THEME';
 
 /** Input for the flxStudioBrainstorm mutation. */
 export type FlxStudioBrainstormInput = {
@@ -1197,6 +1592,130 @@ export type FlxAppSyncQueryVariables = Exact<{
 
 export type FlxAppSyncQuery = { flxAppSync: { serverTime: number, counts: Array<{ key: string, value: number }>, hashes: { me: string, config: string, manifest: string }, events: Array<{ event: string, title: string, body: string, target: string, params: unknown, at: number }> } };
 
+export type FlxBlocksBlockTypeSetActiveMutationVariables = Exact<{
+  input: FlxBlocksBlockTypeSetActiveInput;
+}>;
+
+
+export type FlxBlocksBlockTypeSetActiveMutation = { flxBlocksBlockTypeSetActive: { blockType: { slug: string, name: string, description: string, active: boolean, link: string | null, linkText: string | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxBlocksBlockTypeRowFragment = { slug: string, name: string, description: string, active: boolean, link: string | null, linkText: string | null };
+
+export type FlxBlocksContentByIdQueryVariables = Exact<{
+  id: string;
+  withBlocks?: boolean | null | undefined;
+}>;
+
+
+export type FlxBlocksContentByIdQuery = { contentNode:
+    | { __typename: 'MediaItem', databaseId: number, uri: string | null, flxBlocks: { html: string, css: string, fonts: Array<string>, schema: Array<string>, headHtml: string, footerHtml: string, blocks?: Array<{ clientId: string, parentClientId: string | null, order: number, depth: number, name: string, attributes: unknown, innerHtml: string, dynamic: boolean }>, styles: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }>, scripts: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }> } | null }
+    | { __typename: 'Page', databaseId: number, uri: string | null, flxBlocks: { html: string, css: string, fonts: Array<string>, schema: Array<string>, headHtml: string, footerHtml: string, blocks?: Array<{ clientId: string, parentClientId: string | null, order: number, depth: number, name: string, attributes: unknown, innerHtml: string, dynamic: boolean }>, styles: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }>, scripts: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }> } | null }
+    | { __typename: 'Post', databaseId: number, uri: string | null, flxBlocks: { html: string, css: string, fonts: Array<string>, schema: Array<string>, headHtml: string, footerHtml: string, blocks?: Array<{ clientId: string, parentClientId: string | null, order: number, depth: number, name: string, attributes: unknown, innerHtml: string, dynamic: boolean }>, styles: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }>, scripts: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }> } | null }
+   | null };
+
+export type FlxBlocksAssetFieldsFragment = { kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string };
+
+export type FlxBlocksBlockFieldsFragment = { clientId: string, parentClientId: string | null, order: number, depth: number, name: string, attributes: unknown, innerHtml: string, dynamic: boolean };
+
+export type FlxBlocksContentFieldsFragment = { html: string, css: string, fonts: Array<string>, schema: Array<string>, headHtml: string, footerHtml: string, styles: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }>, scripts: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }> };
+
+export type FlxBlocksContentByUriQueryVariables = Exact<{
+  uri: string;
+  withBlocks?: boolean | null | undefined;
+}>;
+
+
+export type FlxBlocksContentByUriQuery = { nodeByUri:
+    | { __typename: 'Category' }
+    | { __typename: 'ContentType' }
+    | { __typename: 'User' }
+    | { __typename: 'Comment' }
+    | { __typename: 'MediaItem', databaseId: number, uri: string | null, flxBlocks: { html: string, css: string, fonts: Array<string>, schema: Array<string>, headHtml: string, footerHtml: string, blocks?: Array<{ clientId: string, parentClientId: string | null, order: number, depth: number, name: string, attributes: unknown, innerHtml: string, dynamic: boolean }>, styles: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }>, scripts: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }> } | null }
+    | { __typename: 'Page', databaseId: number, uri: string | null, flxBlocks: { html: string, css: string, fonts: Array<string>, schema: Array<string>, headHtml: string, footerHtml: string, blocks?: Array<{ clientId: string, parentClientId: string | null, order: number, depth: number, name: string, attributes: unknown, innerHtml: string, dynamic: boolean }>, styles: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }>, scripts: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }> } | null }
+    | { __typename: 'Post', databaseId: number, uri: string | null, flxBlocks: { html: string, css: string, fonts: Array<string>, schema: Array<string>, headHtml: string, footerHtml: string, blocks?: Array<{ clientId: string, parentClientId: string | null, order: number, depth: number, name: string, attributes: unknown, innerHtml: string, dynamic: boolean }>, styles: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }>, scripts: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }> } | null }
+    | { __typename: 'PostFormat' }
+    | { __typename: 'Tag' }
+   | null };
+
+export type FlxBlocksDashboardQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxBlocksDashboardQuery = { flxBlocksBlockTypes: Array<{ slug: string, name: string, description: string, active: boolean, link: string | null, linkText: string | null }>, flxBlocksSettings: { showHeadersInAdminBar: boolean, showAdminBarSetting: boolean, styleLibraryUrl: string, editorWidth: { enabled: boolean, small: number, large: number, postDefault: FlxBlocksEditorWidthMode, pageDefault: FlxBlocksEditorWidthMode, contentWidth: number } | null }, flxBlocksLibrarySources: Array<{ id: string, name: string, url: string, hasKey: boolean }>, flxViewer: { canManageOptions: boolean } };
+
+export type FlxBlocksSettingsFieldsFragment = { showHeadersInAdminBar: boolean, showAdminBarSetting: boolean, styleLibraryUrl: string, editorWidth: { enabled: boolean, small: number, large: number, postDefault: FlxBlocksEditorWidthMode, pageDefault: FlxBlocksEditorWidthMode, contentWidth: number } | null };
+
+export type FlxBlocksSourceRowFragment = { id: string, name: string, url: string, hasKey: boolean };
+
+export type FlxBlocksLibraryPatternsQueryVariables = Exact<{
+  source?: string | null | undefined;
+  category?: string | null | undefined;
+  search?: string | null | undefined;
+  first?: number | null | undefined;
+  after?: string | null | undefined;
+  refresh?: boolean | null | undefined;
+}>;
+
+
+export type FlxBlocksLibraryPatternsQuery = { flxBlocksLibrary: { name: string, url: string, source: string | null, categories: Array<{ slug: string, label: string, count: number }>, patterns: { totalCount: number | null, nodes: Array<{ id: string, title: string, description: string, categories: Array<string>, viewportWidth: number, source: string | null }>, pageInfo: { hasNextPage: boolean, endCursor: string | null } } } };
+
+export type FlxBlocksPatternRowFragment = { id: string, title: string, description: string, categories: Array<string>, viewportWidth: number, source: string | null };
+
+export type FlxBlocksLibraryShareQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxBlocksLibraryShareQuery = { flxBlocksLibraryShare: { enabled: boolean, key: string, url: string } };
+
+export type FlxBlocksShareFieldsFragment = { enabled: boolean, key: string, url: string };
+
+export type FlxBlocksLibraryShareUpdateMutationVariables = Exact<{
+  input: FlxBlocksLibraryShareUpdateInput;
+}>;
+
+
+export type FlxBlocksLibraryShareUpdateMutation = { flxBlocksLibraryShareUpdate: { share: { enabled: boolean, key: string, url: string }, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxBlocksLibrarySourceAddMutationVariables = Exact<{
+  input: FlxBlocksLibrarySourceAddInput;
+}>;
+
+
+export type FlxBlocksLibrarySourceAddMutation = { flxBlocksLibrarySourceAdd: { source: { id: string, name: string, url: string, hasKey: boolean } | null, sources: Array<{ id: string, name: string, url: string, hasKey: boolean }>, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxBlocksLibrarySourceRemoveMutationVariables = Exact<{
+  input: FlxBlocksLibrarySourceRemoveInput;
+}>;
+
+
+export type FlxBlocksLibrarySourceRemoveMutation = { flxBlocksLibrarySourceRemove: { sources: Array<{ id: string, name: string, url: string, hasKey: boolean }>, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxBlocksPatternPreviewQueryVariables = Exact<{
+  id: string;
+  source?: string | null | undefined;
+}>;
+
+
+export type FlxBlocksPatternPreviewQuery = { flxBlocksPattern: { content: string, id: string, title: string, description: string, categories: Array<string>, viewportWidth: number, source: string | null, rendered: { html: string, headHtml: string, footerHtml: string } } | null };
+
+export type FlxBlocksRenderQueryVariables = Exact<{
+  content: string;
+  postId?: number | null | undefined;
+}>;
+
+
+export type FlxBlocksRenderQuery = { flxBlocksRender: { html: string, css: string, fonts: Array<string>, schema: Array<string>, headHtml: string, footerHtml: string, styles: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }>, scripts: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }> } };
+
+export type FlxBlocksSettingsUpdateMutationVariables = Exact<{
+  input: FlxBlocksSettingsUpdateInput;
+}>;
+
+
+export type FlxBlocksSettingsUpdateMutation = { flxBlocksSettingsUpdate: { settings: { showHeadersInAdminBar: boolean, showAdminBarSetting: boolean, styleLibraryUrl: string, editorWidth: { enabled: boolean, small: number, large: number, postDefault: FlxBlocksEditorWidthMode, pageDefault: FlxBlocksEditorWidthMode, contentWidth: number } | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxBlocksSiteStylesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxBlocksSiteStylesQuery = { flxBlocksSiteStyles: { css: string, globalStylesheet: string, headHtml: string, styles: Array<{ kind: FlxBlocksAssetKind, handle: string, src: string | null, version: string | null, media: string | null, dependencies: Array<string>, inlineBefore: string, inlineAfter: string, data: string, footer: boolean, strategy: string }> } };
+
 export type FlxContentLanguageQueryVariables = Exact<{
   id: string;
 }>;
@@ -1404,6 +1923,143 @@ export type FlxSeoSettingsScreenQueryVariables = Exact<{ [key: string]: never; }
 
 
 export type FlxSeoSettingsScreenQuery = { flxSettings: { flxseo: { enabled: boolean | null, siteName: string | null, altName: string | null, sep: string | null, homeTitle: string | null, homeDesc: string | null, ogImage: string | null, verifyGoogle: string | null, verifyBing: string | null, verifyYandex: string | null, verifyNaver: string | null, verifySeznam: string | null, verifyBaidu: string | null, indexnow: boolean | null, noindexShop: boolean | null, noindexSearch: boolean | null, noindexAuthor: boolean | null, noindexTags: boolean | null, autoAlt: boolean | null, orgName: string | null, orgType: FlxSettingsFlxseoOrgType | null, founding: string | null, logo: string | null, street: string | null, locality: string | null, postal: string | null, country: string | null, phone: string | null, email: string | null, sameAs: string | null, twitter: string | null, knowsAbout: string | null, areaServed: string | null, donateLabel: string | null, donateUrl: string | null, llms: boolean | null, llmsIntro: string | null, webmcp: boolean | null, markdown: boolean | null, contentSignal: boolean | null, csSearch: string | null, csAiInput: string | null, csAiTrain: string | null, hdrFrame: boolean | null, hdrCoop: boolean | null, hdrCsp: boolean | null, hstsSub: boolean | null, hstsPreload: boolean | null, auditFreq: FlxSettingsFlxseoAuditFreq | null, auditDay: string | null, auditHour: string | null, auditPsi: boolean | null, auditMail: boolean | null, auditMailTo: string | null } | null }, flxSeoSetup: { otherPlugin: boolean, aiReady: boolean, blogName: string, homeUrl: string, sitemapUrl: string, logoDefault: string, imageDefault: string, homeTitle: string, homeDesc: string, sitekit: boolean, sitePublic: boolean, indexnowKey: string, indexnowUrl: string, indexnowLast: string, indexnowReady: boolean, psiKeySaved: boolean, adminEmail: string, guideSections: Array<string>, engines: Array<{ key: string, field: string, name: string, url: string, link: string, placeholder: string, help: string }> } };
+
+export type FlxSetupAutoUpdateSetMutationVariables = Exact<{
+  input: FlxSetupAutoUpdateSetInput;
+}>;
+
+
+export type FlxSetupAutoUpdateSetMutation = { flxSetupAutoUpdateSet: { on: boolean | null, label: string | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSetupErrorsFragment = { code: string, message: string, field: string | null };
+
+export type FlxSetupBackupsDeleteMutationVariables = Exact<{
+  input: FlxSetupBackupsDeleteInput;
+}>;
+
+
+export type FlxSetupBackupsDeleteMutation = { flxSetupBackupsDelete: { deleted: number | null, retention: { available: boolean, days: number, choices: Array<number>, count: number, size: string, settingsUrl: string } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSetupRetentionFieldsFragment = { available: boolean, days: number, choices: Array<number>, count: number, size: string, settingsUrl: string };
+
+export type FlxSetupCheckMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxSetupCheckMutation = { flxSetupCheck: { ok: boolean | null, pendingCount: number | null, checkedLabel: string | null, summary: string | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSetupHistoryQueryVariables = Exact<{
+  page?: number | null | undefined;
+}>;
+
+
+export type FlxSetupHistoryQuery = { flxSetupHistory: { total: number, pages: number, page: number, canDelete: boolean, backupPage: string, rows: Array<{ name: string, action: string, success: boolean, message: string, by: string, time: { iso: string, label: string, relative: string }, backup: { id: string, deleted: boolean, size: string, locked: boolean, deletable: boolean, selectable: boolean, url: string, keepUntil: { label: string } | null } | null }>, retention: { available: boolean, days: number, choices: Array<number>, count: number, size: string, settingsUrl: string } } };
+
+export type FlxSetupManageMutationVariables = Exact<{
+  input: FlxSetupManageInput;
+}>;
+
+
+export type FlxSetupManageMutation = { flxSetupManage: { done: number | null, skipped: Array<string> | null, failed: Array<string> | null, summary: string | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSetupOverviewQueryVariables = Exact<{
+  search?: string | null | undefined;
+}>;
+
+
+export type FlxSetupOverviewQuery = { flxSetupOverview: { updateCount: number, autoCheck: boolean, backupUrl: string, settingsUrl: string | null, wordpressUpdatesUrl: string, canManageSources: boolean, connection: { state: FlxSetupConnectionState, title: string, message: string, host: string, site: string, checkedLabel: string, backingOff: boolean, hasKey: boolean, keyFromConfig: boolean, packageCount: number, updateCount: number, checked: { iso: string, label: string, relative: string } | null }, tabs: Array<{ tab: FlxSetupPackageTab, label: string, count: number, updates: number }>, failingSources: Array<{ name: string, error: string }>, backup: { ready: boolean, installed: boolean, activatable: boolean, installable: boolean } } };
+
+export type FlxSetupConnectionFieldsFragment = { state: FlxSetupConnectionState, title: string, message: string, host: string, site: string, checkedLabel: string, backingOff: boolean, hasKey: boolean, keyFromConfig: boolean, packageCount: number, updateCount: number, checked: { iso: string, label: string, relative: string } | null };
+
+export type FlxSetupPackagesQueryVariables = Exact<{
+  tab?: FlxSetupPackageTab | null | undefined;
+  search?: string | null | undefined;
+  onlyUpdates?: boolean | null | undefined;
+  first?: number | null | undefined;
+  after?: string | null | undefined;
+}>;
+
+
+export type FlxSetupPackagesQuery = { flxSetupPackages: { totalCount: number | null, nodes: Array<{ key: string, group: FlxSetupPackageGroup, kind: FlxSetupPackageKind, id: string, name: string, subtitle: string, author: string, state: FlxSetupPackageState, installed: string, latest: string, active: boolean, iconUrl: string | null, category: string, sourceName: string, showSource: boolean, sourceCount: number, sourceNote: string, canUpdate: boolean, canInstall: boolean, canManage: boolean, canChangeVersion: boolean, description: string, website: string, images: Array<string>, released: { iso: string, label: string, relative: string } | null, tags: Array<{ label: string, kind: string }>, requires: Array<{ slug: string, name: string, state: FlxSetupRequirementState, flux: boolean }>, autoUpdate: { mode: FlxSetupAutoUpdateMode, type: FlxSetupAutoUpdateType | null, id: string | null, canChange: boolean }, versions: Array<{ version: string, older: boolean, released: { iso: string, label: string } | null }>, info: Array<{ label: string, value: string }> }>, pageInfo: { hasNextPage: boolean, endCursor: string | null } } };
+
+export type FlxSetupPackageRowFragment = { key: string, group: FlxSetupPackageGroup, kind: FlxSetupPackageKind, id: string, name: string, subtitle: string, author: string, state: FlxSetupPackageState, installed: string, latest: string, active: boolean, iconUrl: string | null, category: string, sourceName: string, showSource: boolean, sourceCount: number, sourceNote: string, canUpdate: boolean, canInstall: boolean, canManage: boolean, canChangeVersion: boolean, description: string, website: string, images: Array<string>, released: { iso: string, label: string, relative: string } | null, tags: Array<{ label: string, kind: string }>, requires: Array<{ slug: string, name: string, state: FlxSetupRequirementState, flux: boolean }>, autoUpdate: { mode: FlxSetupAutoUpdateMode, type: FlxSetupAutoUpdateType | null, id: string | null, canChange: boolean }, versions: Array<{ version: string, older: boolean, released: { iso: string, label: string } | null }>, info: Array<{ label: string, value: string }> };
+
+export type FlxSetupPlanQueryVariables = Exact<{
+  slugs?: Array<string> | string | null | undefined;
+  wpKeys?: Array<string> | string | null | undefined;
+  all?: boolean | null | undefined;
+  activate?: boolean | null | undefined;
+}>;
+
+
+export type FlxSetupPlanQuery = { flxSetupPlan: Array<{ kind: FlxSetupStepKind, slug: string, id: string, name: string, why: string, version: string }> };
+
+export type FlxSetupRetentionSaveMutationVariables = Exact<{
+  input: FlxSetupRetentionSaveInput;
+}>;
+
+
+export type FlxSetupRetentionSaveMutation = { flxSetupRetentionSave: { deleted: number | null, retention: { available: boolean, days: number, choices: Array<number>, count: number, size: string, settingsUrl: string } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSetupSettingsSaveMutationVariables = Exact<{
+  input: FlxSetupSettingsSaveInput;
+}>;
+
+
+export type FlxSetupSettingsSaveMutation = { flxSetupSettingsSave: { settings: { server: string, defaultServer: string, serverFromConfig: boolean, effectiveServer: string, hasKey: boolean, keyFromConfig: boolean, auto: boolean, health: boolean, usageAvailable: boolean, usage: boolean, legal: { kvkk: string, privacy: string, terms: string } } | null, connection: { state: FlxSetupConnectionState, title: string, message: string, host: string, site: string, checkedLabel: string, backingOff: boolean, hasKey: boolean, keyFromConfig: boolean, packageCount: number, updateCount: number, checked: { iso: string, label: string, relative: string } | null } | null, sources: Array<{ id: string, name: string, url: string, type: FlxSetupSourceType, main: boolean, enabled: boolean, hasKey: boolean, state: FlxSetupSourceState, message: string, packageCount: number, canMoveUp: boolean }> | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSetupSettingsFieldsFragment = { server: string, defaultServer: string, serverFromConfig: boolean, effectiveServer: string, hasKey: boolean, keyFromConfig: boolean, auto: boolean, health: boolean, usageAvailable: boolean, usage: boolean, legal: { kvkk: string, privacy: string, terms: string } };
+
+export type FlxSetupSourceFieldsFragment = { id: string, name: string, url: string, type: FlxSetupSourceType, main: boolean, enabled: boolean, hasKey: boolean, state: FlxSetupSourceState, message: string, packageCount: number, canMoveUp: boolean };
+
+export type FlxSetupSettingsScreenQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxSetupSettingsScreenQuery = { flxSetupSettings: { server: string, defaultServer: string, serverFromConfig: boolean, effectiveServer: string, hasKey: boolean, keyFromConfig: boolean, auto: boolean, health: boolean, usageAvailable: boolean, usage: boolean, legal: { kvkk: string, privacy: string, terms: string } }, flxSetupConnection: { state: FlxSetupConnectionState, title: string, message: string, host: string, site: string, checkedLabel: string, backingOff: boolean, hasKey: boolean, keyFromConfig: boolean, packageCount: number, updateCount: number, checked: { iso: string, label: string, relative: string } | null }, flxSetupSources: Array<{ id: string, name: string, url: string, type: FlxSetupSourceType, main: boolean, enabled: boolean, hasKey: boolean, state: FlxSetupSourceState, message: string, packageCount: number, canMoveUp: boolean }>, flxSetupGraphqlStatus: { state: FlxSetupGraphqlState, version: string, phpVersion: string, phpMin: string, phpOk: boolean, actionUrl: string, actionLabel: string } };
+
+export type FlxSetupSourceAddMutationVariables = Exact<{
+  input: FlxSetupSourceAddInput;
+}>;
+
+
+export type FlxSetupSourceAddMutation = { flxSetupSourceAdd: { sources: Array<{ id: string, name: string, url: string, type: FlxSetupSourceType, main: boolean, enabled: boolean, hasKey: boolean, state: FlxSetupSourceState, message: string, packageCount: number, canMoveUp: boolean }> | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSetupSourceChangeMutationVariables = Exact<{
+  input: FlxSetupSourceChangeInput;
+}>;
+
+
+export type FlxSetupSourceChangeMutation = { flxSetupSourceChange: { sources: Array<{ id: string, name: string, url: string, type: FlxSetupSourceType, main: boolean, enabled: boolean, hasKey: boolean, state: FlxSetupSourceState, message: string, packageCount: number, canMoveUp: boolean }> | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSetupStepRunMutationVariables = Exact<{
+  input: FlxSetupStepRunInput;
+}>;
+
+
+export type FlxSetupStepRunMutation = { flxSetupStepRun: { ok: boolean | null, pendingCount: number | null, lines: Array<{ ok: boolean, text: string }> | null, package: { key: string, group: FlxSetupPackageGroup, kind: FlxSetupPackageKind, id: string, name: string, subtitle: string, author: string, state: FlxSetupPackageState, installed: string, latest: string, active: boolean, iconUrl: string | null, category: string, sourceName: string, showSource: boolean, sourceCount: number, sourceNote: string, canUpdate: boolean, canInstall: boolean, canManage: boolean, canChangeVersion: boolean, description: string, website: string, images: Array<string>, released: { iso: string, label: string, relative: string } | null, tags: Array<{ label: string, kind: string }>, requires: Array<{ slug: string, name: string, state: FlxSetupRequirementState, flux: boolean }>, autoUpdate: { mode: FlxSetupAutoUpdateMode, type: FlxSetupAutoUpdateType | null, id: string | null, canChange: boolean }, versions: Array<{ version: string, older: boolean, released: { iso: string, label: string } | null }>, info: Array<{ label: string, value: string }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSetupSystemChecksQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxSetupSystemChecksQuery = { flxSetupSystemChecks: Array<{ id: string, source: string, group: string, label: string, status: FlxSetupCheckStatus, message: string, actionUrl: string, actionLabel: string }> };
+
+export type FlxSetupWizardLogoMutationVariables = Exact<{
+  input: FlxSetupWizardLogoInput;
+}>;
+
+
+export type FlxSetupWizardLogoMutation = { flxSetupWizardLogo: { attachmentId: number | null, url: string | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSetupWizardStepMutationVariables = Exact<{
+  input: FlxSetupWizardStepInput;
+}>;
+
+
+export type FlxSetupWizardStepMutation = { flxSetupWizardStep: { ok: boolean | null, pages: number | null, lines: Array<{ ok: boolean, text: string }> | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSetupWizardUpdatesMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxSetupWizardUpdatesMutation = { flxSetupWizardUpdates: { ok: boolean | null, error: string | null, items: Array<{ slug: string, name: string, from: string, to: string, icon: string, self: boolean }> | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
 
 export type FlxStudioBrainstormMutationVariables = Exact<{
   input: FlxStudioBrainstormInput;

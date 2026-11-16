@@ -46,7 +46,7 @@ jobs:
       - name: Install PHPStan
         working-directory: tools/phpstan
         run: composer install --no-interaction --no-progress
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: tools/phpstan/.cache
           key: phpstan-${{ matrix.config }}-${{ github.sha }}

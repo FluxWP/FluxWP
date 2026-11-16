@@ -1,0 +1,17 @@
+mutation FlxSetupWizardUpdates {
+  flxSetupWizardUpdates(input: {}) {
+    ok
+    error
+    items {
+      slug
+      name
+      from
+      to
+      icon
+      self
+    }
+    errors {
+      ...FlxSetupErrors
+    }
+  }
+}

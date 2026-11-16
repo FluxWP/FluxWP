@@ -1,5 +1,12 @@
 # Değişiklikler
 
+## 1.4.0
+- GraphQL geçişi (Faz 1): Paketler ve Ayarlar ekranları Flux GraphQL ile çalışan ortak React ekranı (FluxWP uygulamasıyla aynı kod) oldu ve wp-admin'de varsayılan açılır. Klasik sayfanın tüm özellikleri var: bağlantı kartı, sekmeler + sayaçlar, arama, "Yalnız güncellemeler", kur/güncelle, toplu işlem, "Tümünü güncelle", sürüm değiştirme, otomatik güncelleme anahtarı, canlı adım günlüğü, ayrıntı penceresi, yedek şeridi, geçmiş + saklama süresi + yedek silme; Ayarlar'da bağlantı formu ve diğer kaynaklar. Başlıktaki "Klasik görünüm" bağlantısıyla klasik sayfa kullanılabilir (kullanıcı başına).
+- Flux GraphQL kurulu değilken klasik sayfalar açılır ve "Flux GraphQL'i kur" düğmeli uyarı gösterilir; sistem kontrolü satırları değişmez.
+- Kurulum sihirbazı adımlarını, güncelleme listesini, planı ve adım çalıştırmayı GraphQL ile yapar (Flux GraphQL yoksa admin-ajax); logo ortak yükleme ucuyla (`flx-setup/logo`).
+- Servis katmanı (`includes/services`): klasik işleyiciler ve GraphQL aynı kodu çağırır, davranış aynı. Site anahtarı ve kaynak anahtarları GraphQL'den asla dönmez.
+- Güncelleme sunucusu protokolü değişmedi. Gereken PHP 8.1. Yeni metinler Türkçe + İngilizce.
+
 ## 1.3.0
 - Flux GraphQL hazırlığı (GraphQL geçişi Faz 0): sistem kontrolünde "PHP sürümü" satırı (yeni FluxWP paketleri PHP 8.1+ ister) ve "Flux GraphQL" satırı (kurulu mu, çalışıyor mu, ayrı WPGraphQL çakışması var mı).
 - Flux GraphQL isteyen bir paket etkinken Flux GraphQL kurulu ya da etkin değilse yönetim panelinde uyarı ve tek tıkla "Flux GraphQL'i kur" / "Etkinleştir" düğmesi. Paketler kendi ekranlarında aynı uyarıyı `flxk_graphql_notice( 'Paket adı' )` ile gösterebilir.
