@@ -1,6 +1,6 @@
 # Flux AI & MCP (flx-ai): klasik → GraphQL eşlemesi
 
-Paket sürümü: 0.26.0 · Önek: `flxai_` · Sahip thread: Faz 1 / flx-ai · Durum: **kısmen bitti** (0.23.0–0.25.0 merge; `gql/flx-ai-4` 0.26.0 PR'ında; kalan: MCP, sistem başı SDK ayarları, sohbet geçmişi)
+Paket sürümü: 0.27.0 · Önek: `flxai_` · Sahip thread: Faz 1 / flx-ai · Durum: **kısmen bitti** (0.23.0–0.26.0 merge; `gql/flx-ai-5` 0.27.0 PR'ında; kalan: sistem başı SDK ayarları, sohbet geçmişi)
 
 ## Özet
 
@@ -25,9 +25,13 @@ Paket sürümü: 0.26.0 · Önek: `flxai_` · Sahip thread: Faz 1 / flx-ai · Du
 | Skill testleri (tetiklenme, fonksiyonel, sonuçlar) | `flxAiSkillEvalsSave`, `flxAiSkillTestRun` (sohbet modelini çağırır), sonuçlar `flxAiSkill.results` | `ai/Skills.tsx` Testler sekmesi (eski REST `skills/<slug>/test` klasikte durur) |
 | İçe aktar | `flxAiSkillImport` (markdown ya da base64 dosya) | `ai/SkillsExtra.tsx` |
 | Marka kiti | `flxAiBrand`, `flxAiBrandSave` | `ai/SkillsExtra.tsx` |
+| MCP sunucusu (aç/kapa, OAuth) | `flxAiMcp`, `flxAiMcpServerUpdate` | `ai/Mcp.tsx` (0.27.0); sunucu, OAuth uçları, SSE GraphQL dışı (ISTISNALAR) |
+| MCP anahtarları (oluştur: bir kez gösterilir, araçla sınırla, iptal, son işlemler) | `flxAiMcpKeyCreate`, `flxAiMcpKeyRevoke` | `ai/Mcp.tsx`; yalnız hash saklanır, anahtar yalnız oluşturma yanıtında |
+| Bağlantılar (dış MCP sunucuları: liste, ekle/düzenle, sil, test) | `flxAiConnections`, `flxAiConnectionSave`, `flxAiConnectionDelete`, `flxAiConnectionRefresh` | `ai/Connections.tsx`; sırlar yazma-yalnız (`hasSecret`, `hasClientSecret`) |
+| Bağlantı OAuth girişi/çıkışı, araç izinleri | `flxAiConnectionSignIn` (sağlayıcı adresini döner), `flxAiConnectionSignOut`, `flxAiConnectionPermissions` | `ai/Connections.tsx`; dönüş `admin-post.php?action=flxai_mcpc_oauth` klasikte durur ve bu ekrana yönlendirir |
 
 Yetki: hepsi `manage_options`. wp-admin'de ekranlar varsayılan, "Klasik görünüm" bağlantısı kullanıcı başına (`flxai_ui` meta). FluxApp modülü `flxai-admin`.
 
 ## Kalanlar
 
-Sohbet geçmişi, MCP anahtarları/bağlantılar, sistem başı SDK ayarları.
+Sohbet geçmişi, sistem başı SDK ayarları.

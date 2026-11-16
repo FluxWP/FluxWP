@@ -1,0 +1,12 @@
+mutation FlxAiConnectionSave($input: FlxAiConnectionSaveInput!) {
+  flxAiConnectionSave(input: $input) {
+    connection {
+      ...FlxAiConnectionFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

@@ -76,3 +76,4 @@ require_once __DIR__ . '/schema-tools.php';
 require_once __DIR__ . '/schema-approvals.php';
 require_once __DIR__ . '/schema-tasks.php';
 require_once __DIR__ . '/schema-skills.php';
+require_once __DIR__ . '/schema-mcp.php';

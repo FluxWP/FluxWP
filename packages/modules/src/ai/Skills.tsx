@@ -39,7 +39,7 @@ export function Field({ label, children, hint }: { label: string; children: Reac
 }
 
 /** First error of a mutation payload, or null when it went through. */
-export function firstError(errors: { message: string; field?: string | null }[] | undefined | null): { text: string; field?: string } | null {
+export function firstError(errors: ReadonlyArray<{ message: string; field?: string | null }> | undefined | null): { text: string; field?: string } | null {
   return errors?.length ? { text: errors.map((e) => e.message).join(' '), field: errors[0]?.field ?? undefined } : null;
 }
 

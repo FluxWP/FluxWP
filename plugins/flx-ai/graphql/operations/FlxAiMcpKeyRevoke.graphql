@@ -1,0 +1,12 @@
+mutation FlxAiMcpKeyRevoke($input: FlxAiMcpKeyRevokeInput!) {
+  flxAiMcpKeyRevoke(input: $input) {
+    overview {
+      ...FlxAiMcpOverviewFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}
