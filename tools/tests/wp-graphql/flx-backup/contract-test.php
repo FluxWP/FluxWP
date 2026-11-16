@@ -28,6 +28,7 @@ function flxy_t_op( string $name, array $vars = array(), int $user = 0 ): array 
 function flxy_t_finish( int $user ): array {
 	$job = array();
 	remove_all_filters( 'flxy_step_seconds' ); // Finish with the normal budget.
+	remove_all_filters( 'flxy_step_bytes' );
 	for ( $i = 0; $i < 600; $i++ ) {
 		$job = flxy_t_op( 'FlxBackupStep', array(), $user )['data']['flxBackupStep']['job'] ?? array();
 		if ( ! in_array( $job['status'] ?? '', array( 'RUNNING' ), true ) ) {
@@ -35,6 +36,7 @@ function flxy_t_finish( int $user ): array {
 		}
 	}
 	add_filter( 'flxy_step_seconds', static fn() => 0.0 ); // Back to one unit per step for the next start.
+	add_filter( 'flxy_step_bytes', static fn() => MB_IN_BYTES );
 	return $job;
 }
 
@@ -51,6 +53,8 @@ FLXY_Runner::save_restore( null );
 $dir = WP_CONTENT_DIR . '/flxy-test';
 wp_mkdir_p( $dir );
 file_put_contents( $dir . '/a.txt', 'original' );
+// Incompressible bytes: with one unit of work per step a job needs several steps on any machine.
+file_put_contents( $dir . '/big.bin', random_bytes( 5 * MB_IN_BYTES ) );
 
 // Permissions.
 foreach ( array( 'FlxBackupDashboard', 'FlxBackupList', 'FlxBackupSettingsScreen', 'FlxBackupJobRead' ) as $op ) {
@@ -105,6 +109,7 @@ FLXY_Settings::save( FLXY_Settings::defaults() );
 
 // A step does one small unit of work, so a job is still running after start() on any machine.
 add_filter( 'flxy_step_seconds', static fn() => 0.0 );
+add_filter( 'flxy_step_bytes', static fn() => MB_IN_BYTES );
 
 // Start a backup, step it to the end.
 $r = flxy_t_op( 'FlxBackupStart', array( 'input' => array( 'type' => 'FILES', 'label' => 'Test files' ) ), $admin );
