@@ -1,0 +1,19 @@
+# SEO check tab: published content with recommendations.
+query FlxSeoContentCheck($limit: Int = 300) {
+  flxSeoContentCheck(limit: $limit) {
+    checked
+    total
+    items {
+      databaseId
+      title
+      postType
+      url
+      editUrl
+      issues {
+        level
+        code
+        message
+      }
+    }
+  }
+}

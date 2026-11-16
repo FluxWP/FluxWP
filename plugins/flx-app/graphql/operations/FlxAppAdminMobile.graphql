@@ -1,0 +1,6 @@
+# Applications settings.
+query FlxAppAdminMobile {
+  flxAppAdminMobile {
+    ...FlxAppAdminMobileFields
+  }
+}
