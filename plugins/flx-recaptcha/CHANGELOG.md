@@ -1,5 +1,11 @@
 # Flux reCAPTCHA
 
+## 0.3.0
+- Ayarlar, korunan formlar, durum ve anahtar testi GraphQL'de (Flux GraphQL gerekir). Gizli anahtar hiçbir yanıtta dönmez.
+- Yeni ortak React ekranı wp-admin'de varsayılan; klasik görünüm bağlantıyla açılır (kullanıcı başına).
+- Başka paketler için: `flx_captcha_gql_verify()` GraphQL mutation'ında token'ı doğrular, herkese açık `flxCaptcha(context)` sorgusu istemciye site anahtarı ve betik adresini verir.
+- PHP 8.1 ve WordPress 6.5 gerekir.
+
 ## 0.2.5
 - Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
 

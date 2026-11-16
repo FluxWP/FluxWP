@@ -2,9 +2,10 @@
 /**
  * Plugin Name:       Flux Wiki
  * Description:       Sitede /wiki altında geliştirici wiki'si: Markdown sayfalar, bölümler, sayfa ağacı ve içindekiler, ayrıntılı anlık arama, SEO uyumlu çıktı. LLM dostu: her sayfa .md olarak açılır ve kopyalanır, /wiki/llms.txt ve llms-full.txt, ChatGPT / Claude'da aç. Flux AI ile "Wiki'ye sor" ve MCP araçları (ara, oku, listele, yaz). Eklenti ve tema yazma, eklentileri AI destekli yapma rehberleriyle gelir.
- * Version:           0.2.11
- * Requires at least: 6.4
- * Requires PHP:      7.4
+ * Version:           0.3.0
+ * Requires at least: 6.5
+ * Requires PHP:      8.1
+ * Requires Plugins:  flx-graphql
  * Author:            FluxWP
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -24,7 +25,7 @@ if ( defined( 'FLXWK_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXWK_VERSION', '0.2.11' );
+define( 'FLXWK_VERSION', '0.3.0' );
 define( 'FLXWK_FILE', __FILE__ );
 define( 'FLXWK_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXWK_URL', plugin_dir_url( __FILE__ ) );
@@ -32,6 +33,11 @@ define( 'FLXWK_PT', 'flx_wiki' );
 define( 'FLXWK_TAX', 'flx_wiki_section' );
 
 require_once FLXWK_DIR . 'includes/helpers.php';
+require_once FLXWK_DIR . 'includes/services/class-flxwk-dto.php';
+require_once FLXWK_DIR . 'includes/services/class-flxwk-page-service.php';
+require_once FLXWK_DIR . 'includes/services/class-flxwk-search-service.php';
+require_once FLXWK_DIR . 'includes/services/class-flxwk-ask-service.php';
+require_once FLXWK_DIR . 'includes/services/class-flxwk-admin-service.php';
 require_once FLXWK_DIR . 'includes/markdown.php';
 require_once FLXWK_DIR . 'includes/post-type.php';
 require_once FLXWK_DIR . 'includes/search.php';
@@ -47,6 +53,35 @@ require_once FLXWK_DIR . 'includes/app.php';
 if ( is_admin() ) {
 	require_once FLXWK_DIR . 'includes/admin.php';
 }
+
+/*
+ * GraphQL (Flux GraphQL): schema only inside a GraphQL request, plus the persisted operations the wiki
+ * screen and the visitor-facing reads send. Without Flux GraphQL (0.2.0+) the schema is left out; REST,
+ * the classic settings page and MCP keep working.
+ */
+add_action(
+	'flx_gql_register',
+	static function () {
+		if ( ! function_exists( 'flx_gql_any_cap' ) ) {
+			return;
+		}
+		require_once FLXWK_DIR . 'includes/graphql/schema.php';
+	}
+);
+add_action(
+	'flx_gql_loaders',
+	static function () {
+		flx_gql_node_loader( 'FlxWikiPage', 'FLXWK_Page_Loader' );
+	}
+);
+add_filter(
+	'flx_gql_persisted_manifests',
+	static function ( $m ) {
+		$m             = is_array( $m ) ? $m : array();
+		$m['flx-wiki'] = FLXWK_DIR . 'graphql/persisted-queries.json';
+		return $m;
+	}
+);
 
 /*
  * Çeviri: kaynak metinler Türkçe; site/kullanıcı dili İngilizce olduğunda languages/ içindeki çeviri kullanılır.

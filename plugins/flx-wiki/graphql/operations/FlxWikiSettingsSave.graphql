@@ -1,0 +1,15 @@
+# Saves the wiki settings (the generic settings mutation, the `wiki` group of flx_settings_schema).
+mutation FlxWikiSettingsSave($input: FlxSettingsUpdateInput!) {
+  flxSettingsUpdate(input: $input) {
+    settings {
+      wiki {
+        ...FlxWikiSettingsFields
+      }
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

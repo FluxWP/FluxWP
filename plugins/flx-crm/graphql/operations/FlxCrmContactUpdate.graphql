@@ -1,0 +1,10 @@
+mutation FlxCrmContactUpdate($input: FlxContactUpdateInput!) {
+  flxContactUpdate(input: $input) {
+    contact {
+      ...FlxCrmContactCard
+    }
+    errors {
+      ...FlxCrmUserError
+    }
+  }
+}

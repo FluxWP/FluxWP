@@ -1,5 +1,13 @@
 # Değişiklikler
 
+## 0.9.0
+- Flux GraphQL desteği (Flux GraphQL eklentisi gerekir, PHP 8.1+): özet, kayıtlar, sunucu, veritabanı, cron, sistem kontrolü, PageSpeed, önbellek ve ayarlar `/graphql` üzerinden okunur ve yazılır; 14 sorgu, 7 mutation, 20 kayıtlı işlem.
+- Yeni React ekranı wp-admin'de varsayılan açılır: klasik ekranın tüm sekmeleri (Özet, Kayıtlar, Sunucu, Veritabanı, Cron, Sistem, PageSpeed, Önbellek, Ayarlar), kayıt ayrıntısı ve istek paneli, koyu mod ve mobil. Klasik ekrana sayfadaki bağlantıyla dönülür.
+- FluxApp'te Flux Speed modülü aynı React ekranını kullanır; REST uçları ve yapay zekâ araçları değişmedi.
+- `/graphql` istekleri kayıtta ayrı `graphql` türüyle görünür; ekranın kendi sorguları kayda girmez, PageSpeed iyileştirmesi GraphQL yanıtına dokunmaz.
+- Bayrak süzgeci SQLite'ta da çalışır; veritabanı boyutu okunamazsa ekran uyarı vermeden boş gösterir.
+- Giriş akışı ve önbellek davranışı değişmedi.
+
 ## 0.8.0
 - PageSpeed › JavaScript'e "jQuery'yi de ertele" (varsayılan kapalı, "Önce deneyin"): jQuery ve jQuery Migrate head'de defer ile yüklenir, ana sayfada kalan en büyük engelleyen istek kalkar. Engelleyen bir betik jQuery'ye bağlıysa WordPress, sayfada `jQuery(...)` / `$(...)` çağıran satır içi betik varsa Flux Speed jQuery'yi o sayfada engelleyen bırakır (filtre `flxp_inline_jquery_found`).
 

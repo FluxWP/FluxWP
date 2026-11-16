@@ -109,7 +109,7 @@ add_filter( 'flx_gql_capabilities', function ( array $caps ): array {
 
 ## 5. Servis katmanı ve tipler
 
-- Mantık `includes/services/class-<önek>-<alan>-service.php`. GraphQL `includes/graphql/`. İkisi de **PHPStan level max** (`tools/phpstan/phpstan.neon` `paths`'e eklenir, bkz. `tools/phpstan/README.md`).
+- Mantık `includes/services/class-<önek>-<alan>-service.php`. GraphQL `includes/graphql/`. İkisi de **PHPStan level max**: klasör var olduğu için strict analize kendiliğinden girer (`tools/phpstan/strict-packages.php`), `phpstan.neon`'a satır eklenmez. Pakete özel ayar `tools/phpstan/packages/<slug>.php`, sabit `packages/<slug>.bootstrap.php` (§12).
 - Servis girdisi/çıktısı tipli: DTO sınıfı (`readonly` özellikler, PHP 8.1) ya da `@phpstan-type` dizi şekli. `array` / `mixed` döndüren servis kabul edilmez.
 - Resolver servisten gelen DTO'yu döner; alan resolver'ları DTO özelliklerini okur.
 - Ortak tipler: `FlxDateTime` (`flx_gql_datetime()`; `label` `flx_date()` ile), `FlxMoney` (`flx_gql_money()`), `FlxPhone` (`flx_gql_phone()`),
@@ -136,7 +136,10 @@ add_filter( 'flx_gql_capabilities', function ( array $caps ): array {
 ## 7. Kırıcı değişiklik
 
 - Alan/argüman/enum değeri **silinmez, adı değişmez, tipi daralmaz**. Önce `deprecationReason`, en az 2 paket sürümü sonra silinir.
-- CI (`graphql.yml`) şema snapshot'ını yeniden üretir; snapshot commit edilmemişse ya da kırıcı fark varsa kırılır.
+- Şema snapshot'ı sahibine göre parçalı (§12): `packages/graphql/schema/core.graphql` (WordPress / WPGraphQL) ve
+  `plugins/<slug>/graphql/schema.graphql` (paketin tipleri; başka tipe eklediği alanlar `extend type …`).
+- CI (`graphql.yml`) parçaları yeniden üretir; paketin parçası commit edilmemişse ya da base commit'e göre kırıcı fark varsa kırılır.
+  `core.graphql` farkı yalnız uyarıdır (CI'nın indirdiği WordPress sürümüne bağlı); onu Flux GraphQL sahibi tazeler.
   Bilinçli kırıcı değişiklik yalnız `graphql-breaking` etiketiyle ve PR'da gerekçeyle.
 
 ## 8. Önbellek ve performans
@@ -150,10 +153,9 @@ add_filter( 'flx_gql_capabilities', function ( array $caps ): array {
 ## 9. İstemci (TypeScript)
 
 - Operasyonlar `plugins/<slug>/graphql/operations/*.graphql`. Dosya başına tek operasyon, adı `Flx…`.
-- `bun run --filter @fluxwp/graphql generate` üretir:
-  - `plugins/<slug>/graphql/persisted-queries.json` (sha256 → belge; paket bunu `flx_gql_persisted_manifests` filtresiyle kaydeder),
-  - `packages/graphql/src/generated/{types,operations}.ts`.
-  Üretilen dosyalar commit edilir; elle düzenlenmez (CI `generate:check`).
+- `bun run --filter @fluxwp/graphql generate` (`bun install` de çalıştırır) üretir:
+  - `plugins/<slug>/graphql/persisted-queries.json` (sha256 → belge; paket bunu `flx_gql_persisted_manifests` filtresiyle kaydeder). **Commit edilir**, elle düzenlenmez (CI `generate:check`).
+  - `packages/graphql/src/generated/{types,operations}.ts` ve `packages/graphql/schema/full.graphql`. **Commit edilmez** (`.gitignore`); şema parçalarından ve operasyonlardan her kurulumda yeniden üretilir, CI typecheck'i bunlarla yapar.
 - Ekranlar yalnız üretilmiş operasyonları kullanır: `useFlxQuery(FlxTaskList, vars)`, `useFlxMutation(FlxTaskUpdate)`.
   Okuma persisted GET, yazma POST. Serbest belge (`gql\`…\``) yazılmaz; strict kipte sunucu reddeder.
 - API verisi için elle tip yazılmaz; `ResultOf<typeof Op>` / `VariablesOf<typeof Op>`.
@@ -171,3 +173,26 @@ add_filter( 'flx_gql_capabilities', function ( array $caps ): array {
 
 - Sözleşme testleri `tools/tests/wp-graphql/<slug>/`: yetkili / yetkisiz / girişsiz kullanıcı, boş ve dolu veri, hata kodları, mutation `errors`.
 - `tools/tests/wp-graphql/run.sh` hepsini PHP 8.1–8.5 matrisinde koşar (`flx-graphql.yml`).
+- Pakete özel test kurulumu ortak betiklere yazılmaz: `tools/tests/wp-graphql/<slug>/site.sh` (site kurulunca source edilir; `$WP`, `$site`, `$root`, `$url`, `FIXTURES` hazır) ve `<slug>/wp-args` (sözleşme testinin `wp eval-file` ek argümanları, ör. `--skip-plugins=flx-ai`).
+
+## 12. Paralel PR düzeni (ortak dosya yok)
+
+Paket PR'ları aynı anda açılır ve birbirini beklemeden merge edilir. Bunun için **paket PR'ı yalnız kendi dosyalarına yazar**; ortak bir listeye satır eklemez.
+
+| Eskiden ortak | Şimdi | Paket PR'ı ne yapar |
+|---|---|---|
+| `packages/graphql/schema/schema.graphql` | `plugins/<slug>/graphql/schema.graphql` (+ `core.graphql`) | Yalnız kendi parçasını commit eder: `bun run --filter @fluxwp/graphql schema -- plugins/<slug>`, CI'nın `graphql-schema-ci` artifact'ındaki kendi dosyası ya da (artifact indirilemiyorsa) `gh api repos/FluxWP/FluxWP/actions/jobs/<job id>/logs \| bash tools/graphql/ci-parts.sh plugins/<slug>`. Başka paketin parçası ya da `core.graphql` farkı commit edilmez. |
+| `packages/graphql/src/generated/*.ts` | commit dışı (`bun install` üretir) | Hiçbir şey; `persisted-queries.json` yine commit edilir. |
+| `@fluxwp/graphql` sürümü + CHANGELOG | değişmez | Operasyonlar paketin kendi CHANGELOG'una yazılır. `packages/graphql`'in sürümü yalnız istemci/kit kodu değişince (Faz 0 sahibi). |
+| `packages/modules/src/index.ts` | `packages/modules/src/<klasör>/screens.ts` | Ekranını kendi klasöründeki `screens.ts`'e yazar (`registry.ts`). `index.ts`'e dokunmaz. |
+| `@fluxwp/modules` sürümü + CHANGELOG | değişmez | Ekran değişikliği paketin kendi CHANGELOG'una. Modül sürümü yalnız ortak modül kodu (`host.tsx`, `registry.ts`, `index.ts`) değişince. |
+| `tools/phpstan/phpstan.neon` `paths` | otomatik (`strict-packages.php`) | Hiçbir şey; özel ayar gerekirse `tools/phpstan/packages/<slug>.php`. |
+| `tools/phpstan/bootstrap.php` sabitleri | otomatik (`strict-bootstrap.php`, ana dosya + `includes/*.php` `define`'ları) | Hiçbir şey; değeri önemli sabit için `tools/phpstan/packages/<slug>.bootstrap.php`. |
+| `tools/tests/wp-graphql/site.sh`, `run.sh` | paket kancaları (§11) | `<slug>/site.sh`, `<slug>/wp-args`. |
+| `docs/graphql/DURUM.md` tablosu | `docs/graphql/durum/<slug>.md` | Yalnız kendi durum dosyası. Tablo: `bun tools/graphql/durum.ts`. |
+| `docs/graphql/ISTISNALAR.md` paket satırları | `docs/graphql/durum/<slug>.md` → `## İstisnalar` | Pakete özel istisna kendi durum dosyasına. `ISTISNALAR.md` yalnız birden çok paketi ilgilendiren satırlar (Faz 0 sahibi). Liste: `bun tools/graphql/durum.ts --istisnalar`. |
+
+- Merge sırası önemsiz: GitHub PR CI'ı main ile birleşmiş hali koşar; yeni main'i almak için yeniden koşturmak gerekmez. Paket gerçekten başka paketin kodunu kullanıyorsa (ör. `FlxPerson`) bağımlılık PR'da yazılır, o merge edilince yeniden koşulur.
+- main'e push'ta `graphql.yml` yine tam koşar; iki PR'ın birlikte bozduğu bir şey (aynı operasyon adı, aynı ekran id'si) orada görünür.
+- Ortak dosyayı değiştirmek gerekirse (kit, `@fluxwp/graphql` çekirdeği, `registry.ts`, workflow) iş koordinatör üzerinden Faz 0 sahibine gider; paket PR'ına girmez.
+- Lockfile (`bun.lock`): paket PR'ı yeni bağımlılık eklemez; gerekiyorsa ayrı küçük PR.

@@ -5,10 +5,10 @@ Typed client for Flux GraphQL (`/graphql`, plugin `flx-graphql`). Every screen (
 ## Writing an operation
 
 1. Put the operation in the plugin that ships it: `plugins/<slug>/graphql/operations/<name>.graphql`. Name it PascalCase with the `Flx` prefix (`FlxTasksList`); fragments are shared inside the plugin.
-2. `bun run --filter @fluxwp/graphql generate` writes:
-   - `src/generated/operations.ts`: one `FlxOperation<Result, Variables>` constant per operation;
-   - `src/generated/types.ts`: result, variable, input and enum types;
-   - `plugins/<slug>/graphql/persisted-queries.json`: `{ sha256: document }`.
+2. `bun run --filter @fluxwp/graphql generate` (also run by `bun install`) writes:
+   - `src/generated/operations.ts`: one `FlxOperation<Result, Variables>` constant per operation (not committed);
+   - `src/generated/types.ts`: result, variable, input and enum types (not committed);
+   - `plugins/<slug>/graphql/persisted-queries.json`: `{ sha256: document }` (committed: the plugin ships it).
 3. The plugin registers its manifest so the server runs the operation by id:
 
 ```php
@@ -37,4 +37,20 @@ Reads go out as `GET /graphql?queryId=…` (LiteSpeed can cache public ones), wr
 
 ## Schema
 
-`schema/schema.graphql` is a snapshot of a test site with every GraphQL package. Refresh it with `bun run --filter @fluxwp/graphql schema` (needs PHP + wp-cli; see `tools/tests/wp-graphql/site.sh`). CI (`.github/workflows/graphql.yml`) fails when the snapshot, the generated files or a client's types are out of date, and on a breaking schema change unless the PR has the `graphql-breaking` label.
+The schema snapshot of a test site with every GraphQL package is split by owner, so parallel package pull requests never edit the same file:
+
+| File | Holds |
+|---|---|
+| `schema/core.graphql` | WordPress / WPGraphQL types and anything without an owner |
+| `plugins/<slug>/graphql/schema.graphql` | the plugin's types; fields it adds to other types as `extend type …` |
+| `themes/<slug>/graphql/schema.graphql` | the same for a theme |
+
+The kit records who registered each type and field (`wp flx-gql schema --owners`, Flux GraphQL 0.3.1); `scripts/parts.ts` splits and assembles. `generate` builds the full schema from the parts (`schema/full.graphql`, not committed).
+
+```sh
+bun run --filter @fluxwp/graphql schema                        # every part (needs PHP + wp-cli, tools/tests/wp-graphql/site.sh)
+bun run --filter @fluxwp/graphql schema -- plugins/flx-tasks   # only that plugin's part
+bun packages/graphql/scripts/schema-parts.ts assemble          # print the full schema
+```
+
+CI (`.github/workflows/graphql.yml`) regenerates the parts and fails when a package part is out of date (the CI parts are the `graphql-schema-ci` artifact; `core.graphql` only warns, it follows the WordPress release CI downloads), on a breaking change against the base commit unless the PR has the `graphql-breaking` label, when a committed manifest is stale, and when a client does not typecheck against the generated types.
