@@ -1,0 +1,99 @@
+name: JS package versions
+
+# @fluxwp/modules and @fluxwp/graphql are versioned at release time, not in PRs:
+#   PR   -> adds .changes/<name>.md; this workflow only checks the notes and that nobody bumped versions.
+#   Run  -> (workflow_dispatch) bumps package.json, writes CHANGELOG, deletes the notes, pushes to main,
+#           tags modules-v<ver> / graphql-v<ver> and creates GitHub releases.
+# Details: .changes/README.md
+
+on:
+  pull_request:
+    paths:
+      - '.changes/**'
+      - 'packages/modules/package.json'
+      - 'packages/modules/CHANGELOG.md'
+      - 'packages/graphql/package.json'
+      - 'packages/graphql/CHANGELOG.md'
+      - 'tools/release/version-packages*.mjs'
+      - '.github/workflows/js-version.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: js-version-${{ github.event_name }}
+  cancel-in-progress: false
+
+jobs:
+  check:
+    if: github.event_name == 'pull_request' && !startsWith(github.head_ref, 'release/')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Unit tests
+        run: node --test tools/release/version-packages.test.mjs
+      - name: Notes valid, versions untouched
+        run: node tools/release/version-packages.mjs --check "origin/${{ github.base_ref }}"
+
+  version:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Unit tests
+        run: node --test tools/release/version-packages.test.mjs
+      - name: Bump versions
+        id: bump
+        run: node tools/release/version-packages.mjs
+      - name: Commit and push to main
+        if: steps.bump.outputs.summary != ''
+        env:
+          SUMMARY: ${{ steps.bump.outputs.summary }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A .changes packages/modules packages/graphql
+          git commit -q -m "Release JS packages: $SUMMARY"
+          for i in 1 2 3; do
+            if git push -q origin HEAD:main; then exit 0; fi
+            # main moved: re-apply on top of it (notes may have been added meanwhile, versions are recomputed).
+            git reset -q --hard HEAD~1 && git fetch -q origin main && git reset -q --hard origin/main
+            node tools/release/version-packages.mjs >/dev/null
+            git add -A .changes packages/modules packages/graphql
+            git commit -q -m "Release JS packages: $SUMMARY"
+            sleep $((i * 5))
+          done
+          echo "::error::push to main failed"; exit 1
+      - name: Tags and GitHub releases
+        if: steps.bump.outputs.summary != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          for entry in "modules packages/modules" "graphql packages/graphql"; do
+            set -- $entry
+            ver="$(node -p "require('./$2/package.json').version")"
+            tag="$1-v$ver"
+            if git rev-parse -q --verify "refs/tags/$tag" >/dev/null; then continue; fi
+            # Only tag packages whose CHANGELOG got this version in the release commit.
+            git show --format= HEAD -- "$2/package.json" | grep -q '^+.*"version"' || continue
+            awk -v v="## $ver" '$0==v{f=1;next} /^## /{f=0} f' "$2/CHANGELOG.md" > "notes-$1.md"
+            git tag "$tag" HEAD
+            git push -q origin "$tag"
+            gh release create "$tag" --title "@fluxwp/$1 $ver" --notes-file "notes-$1.md" --target "$(git rev-parse HEAD)"
+            echo "::notice::$tag released"
+          done

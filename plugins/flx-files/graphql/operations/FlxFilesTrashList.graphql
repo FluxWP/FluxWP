@@ -1,0 +1,28 @@
+query FlxFilesTrashList($first: Int = 200, $after: String) {
+  flxFilesTrash {
+    days
+    items(first: $first, after: $after) {
+      totalCount
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      nodes {
+        id
+        name
+        path
+        isDir
+        kind
+        size
+        deleted {
+          iso
+          label
+          relative
+        }
+        until
+        user
+        via
+      }
+    }
+  }
+}

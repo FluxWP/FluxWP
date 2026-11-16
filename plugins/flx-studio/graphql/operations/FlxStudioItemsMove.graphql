@@ -1,0 +1,10 @@
+mutation FlxStudioItemsMove($input: FlxStudioItemsMoveInput!) {
+  flxStudioItemsMove(input: $input) {
+    movedIds
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

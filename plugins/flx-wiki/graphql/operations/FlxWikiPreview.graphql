@@ -1,0 +1,17 @@
+mutation FlxWikiPreview($input: FlxWikiPreviewInput!) {
+  flxWikiPreview(input: $input) {
+    rendered {
+      html
+      toc {
+        level
+        id
+        text
+      }
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

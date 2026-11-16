@@ -1,0 +1,6 @@
+mutation FlxSocialAccountUpdate($input: FlxSocialAccountUpdateInput!) {
+  flxSocialAccountUpdate(input: $input) {
+    account { ...FlxSocialAccountRow }
+    errors { code message field }
+  }
+}

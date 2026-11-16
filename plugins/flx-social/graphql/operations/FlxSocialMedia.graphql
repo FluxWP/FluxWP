@@ -1,0 +1,6 @@
+query FlxSocialMedia($ids: [Int!], $search: String, $page: Int) {
+  flxSocialMedia(ids: $ids, search: $search, page: $page) {
+    pages
+    items { ...FlxSocialMediaRow }
+  }
+}

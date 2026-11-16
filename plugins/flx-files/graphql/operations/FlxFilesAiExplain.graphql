@@ -1,0 +1,8 @@
+mutation FlxFilesAiExplain($input: FlxFilesAiExplainInput!) {
+  flxFilesAiExplain(input: $input) {
+    answer
+    errors {
+      ...FlxFilesUserError
+    }
+  }
+}

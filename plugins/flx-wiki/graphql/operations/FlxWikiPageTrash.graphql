@@ -1,0 +1,10 @@
+mutation FlxWikiPageTrash($input: FlxWikiPageTrashInput!) {
+  flxWikiPageTrash(input: $input) {
+    trashedId
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

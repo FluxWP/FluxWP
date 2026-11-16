@@ -1,0 +1,37 @@
+# Settings › Admin theme › Menu and bottom bar.
+query FlxAdminMenuScreen {
+  flxAdminMenuEditor {
+    catalog {
+      slug
+      label
+      capability
+      icon
+      iconSvg
+      url
+      submenu {
+        slug
+        label
+        capability
+      }
+    }
+    roles {
+      key
+      label
+      userCount
+    }
+    layouts {
+      ...FlxAdminMenuLayoutFields
+    }
+    defaults {
+      entries {
+        ...FlxAdminMenuEntryFields
+      }
+      bottom
+    }
+    platforms {
+      key
+      label
+    }
+    unblockable
+  }
+}

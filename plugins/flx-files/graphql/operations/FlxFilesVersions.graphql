@@ -1,0 +1,13 @@
+query FlxFilesVersions($path: String!) {
+  flxFilesVersions(path: $path) {
+    id
+    saved {
+      iso
+      label
+      relative
+    }
+    size
+    user
+    via
+  }
+}

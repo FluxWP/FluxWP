@@ -1,0 +1,6 @@
+mutation FlxSocialAiWrite($input: FlxSocialAiWriteInput!) {
+  flxSocialAiWrite(input: $input) {
+    text texts { provider text }
+    errors { code message field }
+  }
+}

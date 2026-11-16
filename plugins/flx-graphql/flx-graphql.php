@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux GraphQL
  * Description:       Shared GraphQL API for FluxWP plugins: an embedded, pinned WPGraphQL, the Flux GraphQL kit (typed registration, permissions, errors, pagination, persisted queries, cache tags) and one upload endpoint for every package.
- * Version:           0.2.1
+ * Version:           0.3.0
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Author:            FluxWP
@@ -23,7 +23,7 @@ if ( defined( 'FLXGQL_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXGQL_VERSION', '0.2.1' );
+define( 'FLXGQL_VERSION', '0.3.0' );
 define( 'FLXGQL_FILE', __FILE__ );
 define( 'FLXGQL_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXGQL_URL', plugin_dir_url( __FILE__ ) );
@@ -53,6 +53,12 @@ require_once FLXGQL_DIR . 'includes/kit/persisted.php';
 require_once FLXGQL_DIR . 'includes/kit/cache.php';
 require_once FLXGQL_DIR . 'includes/kit/cors.php';
 require_once FLXGQL_DIR . 'includes/upload.php';
+// WooCommerce cart bridge (flxCart*): Store API under GraphQL (docs/graphql/SEPET.md).
+require_once FLXGQL_DIR . 'includes/woo/class-flxgql-store-api.php';
+require_once FLXGQL_DIR . 'includes/woo/class-flxgql-cart.php';
+require_once FLXGQL_DIR . 'includes/woo/cart-schema.php';
+FLXGQL_Store_Api::init();
+add_action( 'flx_gql_register_core', 'flx_gql_register_cart_schema', 40 );
 require_once FLXGQL_DIR . 'includes/checks.php';
 if ( is_admin() ) {
 	require_once FLXGQL_DIR . 'includes/admin.php';

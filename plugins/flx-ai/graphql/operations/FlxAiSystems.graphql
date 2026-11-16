@@ -1,0 +1,6 @@
+# Plugins that use Flux AI.
+query FlxAiSystems {
+  flxAiSystems {
+    ...FlxAiSystemRow
+  }
+}

@@ -1,0 +1,12 @@
+mutation FlxChatbotConversationClose($input: FlxChatbotConversationCloseInput!) {
+  flxChatbotConversationClose(input: $input) {
+    conversation {
+      ...FlxChatbotConversationRow
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

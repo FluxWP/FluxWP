@@ -1,0 +1,10 @@
+mutation FlxFilesRename($input: FlxFilesRenameInput!) {
+  flxFilesRename(input: $input) {
+    item {
+      ...FlxFilesItemFields
+    }
+    errors {
+      ...FlxFilesUserError
+    }
+  }
+}

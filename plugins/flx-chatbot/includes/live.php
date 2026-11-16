@@ -263,11 +263,32 @@ function flxcb_store_upload( array $f ) {
 		/* translators: %d: megabytes */
 		return new WP_Error( 'flxcb_file', sprintf( __( 'Files can be up to %d MB.', 'flx-chatbot' ), (int) flxcb_setting( 'upload_mb' ) ), array( 'status' => 413 ) );
 	}
-	$typed = flxcb_upload_type( $f['tmp_name'], (string) $f['name'] );
+	return flxcb_store_local( (string) $f['tmp_name'], (string) $f['name'], (int) $f['size'] );
+}
+
+/**
+ * Stores a file that is already on the server (a browser upload that passed the checks above, or a Flux GraphQL
+ * upload the agent sent first): size and type are checked, the extension comes from the detected type.
+ *
+ * @param string $path Local file.
+ * @param string $name Client file name (not used for the extension).
+ * @param int    $size Size in bytes.
+ * @return array|WP_Error Stored file (path, name, mime, size).
+ */
+function flxcb_store_local( $path, $name, $size ) {
+	$max = max( 1, (int) flxcb_setting( 'upload_mb' ) ) * MB_IN_BYTES;
+	if ( $size <= 0 || ! is_readable( $path ) ) {
+		return new WP_Error( 'flxcb_file', __( 'The file could not be uploaded.', 'flx-chatbot' ), array( 'status' => 400 ) );
+	}
+	if ( $size > $max ) {
+		/* translators: %d: megabytes */
+		return new WP_Error( 'flxcb_file', sprintf( __( 'Files can be up to %d MB.', 'flx-chatbot' ), (int) flxcb_setting( 'upload_mb' ) ), array( 'status' => 413 ) );
+	}
+	$typed = flxcb_upload_type( $path, $name );
 	if ( is_wp_error( $typed ) ) {
 		return $typed;
 	}
-	return flxcb_store_bytes( file_get_contents( $f['tmp_name'] ), $typed['mime'], (string) $f['name'] ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+	return flxcb_store_bytes( file_get_contents( $path ), $typed['mime'], $name ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 }
 
 /**

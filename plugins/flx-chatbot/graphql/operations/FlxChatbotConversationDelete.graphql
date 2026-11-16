@@ -1,0 +1,10 @@
+mutation FlxChatbotConversationDelete($input: FlxChatbotConversationDeleteInput!) {
+  flxChatbotConversationDelete(input: $input) {
+    deletedId
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

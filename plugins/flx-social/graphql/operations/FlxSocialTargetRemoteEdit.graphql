@@ -1,0 +1,6 @@
+mutation FlxSocialTargetRemoteEdit($input: FlxSocialTargetRemoteEditInput!) {
+  flxSocialTargetRemoteEdit(input: $input) {
+    post { ...FlxSocialPostRow }
+    errors { code message field }
+  }
+}

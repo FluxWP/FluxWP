@@ -1,0 +1,16 @@
+# The signed-in user's dashboard module filters.
+query FlxAdminWidgetPrefsGet {
+  flxAdminWidgetPrefs {
+    tasks {
+      scope
+      list
+      chart
+    }
+    donations {
+      days
+      split
+    }
+    tasksAvailable
+    donationsAvailable
+  }
+}

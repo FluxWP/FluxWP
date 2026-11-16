@@ -1,0 +1,3 @@
+query FlxSocialStudioMedia {
+  flxSocialStudioMedia { databaseId kind url thumb title prompt attachmentId width height }
+}

@@ -55,6 +55,10 @@ function flxsm_rest_tick( WP_REST_Request $req ) {
 }
 
 /** Kaç hedef işlenmeyi bekliyor (şimdi ya da 1 dk içinde). */
+/**
+ * @param int $within Seconds ahead.
+ * @return int
+ */
 function flxsm_due_count( $within = 60 ) {
 	global $wpdb;
 	return (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM ' . flxsm_table( 'targets' ) . " WHERE status IN ('scheduled','processing') AND next_at <= %d", time() + $within ) ); // phpcs:ignore WordPress.DB

@@ -1,0 +1,13 @@
+mutation FlxFilesTrashRestore($input: FlxFilesTrashRestoreInput!) {
+  flxFilesTrashRestore(input: $input) {
+    items {
+      ...FlxFilesItemFields
+    }
+    failed {
+      ...FlxFilesFailureFields
+    }
+    errors {
+      ...FlxFilesUserError
+    }
+  }
+}

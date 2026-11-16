@@ -1,0 +1,10 @@
+mutation FlxStudioEnhance($input: FlxStudioEnhanceInput!) {
+  flxStudioEnhance(input: $input) {
+    prompt
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

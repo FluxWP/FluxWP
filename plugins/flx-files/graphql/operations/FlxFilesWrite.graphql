@@ -1,0 +1,13 @@
+mutation FlxFilesWrite($input: FlxFilesWriteInput!) {
+  flxFilesWrite(input: $input) {
+    file {
+      hash
+      item {
+        ...FlxFilesItemFields
+      }
+    }
+    errors {
+      ...FlxFilesUserError
+    }
+  }
+}

@@ -1,0 +1,13 @@
+mutation FlxFilesMove($input: FlxFilesMoveInput!) {
+  flxFilesMove(input: $input) {
+    items {
+      ...FlxFilesItemFields
+    }
+    failed {
+      ...FlxFilesFailureFields
+    }
+    errors {
+      ...FlxFilesUserError
+    }
+  }
+}

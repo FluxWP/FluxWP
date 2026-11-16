@@ -1,8 +1,63 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: tr_TR\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Full backup"
+msgstr "Tam yedek"
+
+msgid "Database"
+msgstr "Veritabanı"
+
+msgid "Files"
+msgstr "Dosya"
+
+msgid "Pre-update"
+msgstr "Güncelleme öncesi"
+
+msgid "Manual"
+msgstr "Elle"
+
+msgid "Running"
+msgstr "Sürüyor"
+
+msgid "Done"
+msgstr "Tamam"
+
+msgid "Error"
+msgstr "Hata"
+
+msgid "Backup not found."
+msgstr "Yedek bulunamadı."
+
 msgid "Backups"
 msgstr "Yedekleme"
+
+msgid "%s locked"
+msgid_plural "%s locked"
+msgstr[0] "%s kilitli"
+msgstr[1] "%s kilitli"
+
+msgid "%s backup"
+msgid_plural "%s backups"
+msgstr[0] "%s yedek"
+msgstr[1] "%s yedek"
+
+msgid "%s file"
+msgid_plural "%s files"
+msgstr[0] "%s dosya"
+msgstr[1] "%s dosya"
+
+msgid "%s other item"
+msgid_plural "%s other items"
+msgstr[0] "Diğer %s öğe"
+msgstr[1] "Diğer %s öğe"
+
+msgid "%s row"
+msgid_plural "%s rows"
+msgstr[0] "%s satır"
+msgstr[1] "%s satır"
+
+msgid "JavaScript is required for this screen."
+msgstr "Bu ekran için JavaScript gerekir."
 
 msgid "Backups › Dashboard"
 msgstr "Yedekler › Panel"
@@ -124,6 +179,12 @@ msgstr "Yedek yükle"
 msgid "Back up now"
 msgstr "Şimdi yedekle"
 
+msgid "New view"
+msgstr "Yeni görünüm"
+
+msgid "Open the new view (same features, works in the FluxWP app too)."
+msgstr "Yeni görünümü aç (aynı özellikler, FluxWP uygulamasında da çalışır)."
+
 msgid "Settings saved."
 msgstr "Ayarlar kaydedildi."
 
@@ -135,9 +196,6 @@ msgstr "Yedek klasörü yazılabilir değil: %s"
 
 msgid "Backup type"
 msgstr "Yedek türü"
-
-msgid "Full backup"
-msgstr "Tam yedek"
 
 msgid "Database + wp-content (plugins, themes, uploads)"
 msgstr "Veritabanı + wp-content (eklentiler, temalar, yüklemeler)"
@@ -196,9 +254,6 @@ msgstr "%%%1$s dolu · %2$s boş"
 msgid "Last successful backup"
 msgstr "Son başarılı yedek"
 
-msgid "%s ago"
-msgstr "%s önce"
-
 msgid "No backups yet."
 msgstr "Henüz yedek yok."
 
@@ -249,9 +304,6 @@ msgstr "Tümünü gör"
 
 msgid "No backups yet. Take the first one with \"Back up now\"; a backup is taken automatically before plugin and theme updates."
 msgstr "Henüz yedek yok. \"Şimdi yedek al\" ile ilk yedeği alın; eklenti ve tema güncellemelerinden önce yedek kendiliğinden alınır."
-
-msgid "Running"
-msgstr "Sürüyor"
 
 msgid "Recent events"
 msgstr "Son olaylar"
@@ -313,9 +365,6 @@ msgstr "Yedek yok."
 msgid "Backups are stored in %s. Hostinger does not include this folder in its own backups: download important backups to your computer."
 msgstr "Yedekler %s klasöründe. Hostinger bu klasörü kendi yedeklerine almaz: önemli yedekleri bilgisayarınıza indirin."
 
-msgid "Database"
-msgstr "Veritabanı"
-
 msgid "Plugin"
 msgstr "Eklenti"
 
@@ -364,17 +413,11 @@ msgstr "Sil"
 msgid "All backups"
 msgstr "Tüm yedekler"
 
-msgid "Backup not found."
-msgstr "Yedek bulunamadı."
-
 msgid "Backup file"
 msgstr "Yedek dosyası"
 
 msgid "Uncompressed size"
 msgstr "Açılmış boyut"
-
-msgid "Files"
-msgstr "Dosya"
 
 msgid "%1$s tables, %2$s rows"
 msgstr "%1$s tablo, %2$s satır"
@@ -571,12 +614,6 @@ msgstr "Kapalıysa (varsayılan) eklenti silindiğinde yalnız ayarlar silinir, 
 msgid "Save settings"
 msgstr "Ayarları kaydet"
 
-msgid "Could not delete."
-msgstr "Silinemedi."
-
-msgid "No operation is running."
-msgstr "Çalışan bir işlem yok."
-
 msgid "Nothing was selected to back up."
 msgstr "Yedeklenecek bir şey seçilmedi."
 
@@ -595,6 +632,9 @@ msgstr "Geçersiz yol."
 msgid "Path not found: %s"
 msgstr "Yol bulunamadı: %s"
 
+msgid "The backup was cut off %s times at the same point (server time limit). Try with fewer folders or add large folders to the exclusions."
+msgstr "Yedek aynı noktada %s kez yarıda kesildi (sunucunun süre sınırı). Daha az klasörle deneyin veya hariç tutulanlara büyük klasörleri ekleyin."
+
 msgid "Could not write a temporary file."
 msgstr "Geçici dosya yazılamadı."
 
@@ -610,17 +650,14 @@ msgstr "Zip yazılamadı: %s"
 msgid "The backup record was deleted."
 msgstr "Yedek kaydı silinmiş."
 
-msgid "Could not open the zip file."
-msgstr "Zip dosyası açılamadı."
-
 msgid "Could not add the database dump to the archive."
 msgstr "Veritabanı dökümü arşive eklenemedi."
 
 msgid "Could not write the zip (the disk may be full)."
 msgstr "Zip yazılamadı (disk dolu olabilir)."
 
-msgid "The backup was cut off %s times at the same point (server time limit). Try with fewer folders or add large folders to the exclusions."
-msgstr "Yedek aynı noktada %s kez yarıda kesildi (sunucunun süre sınırı). Daha az klasörle deneyin veya hariç tutulanlara büyük klasörleri ekleyin."
+msgid "Could not open the zip file."
+msgstr "Zip dosyası açılamadı."
 
 msgid "Backup taken: %1$s (%2$s)"
 msgstr "Yedek alındı: %1$s (%2$s)"
@@ -711,6 +748,11 @@ msgstr "Günlük görev 2 gündür çalışmadı; WP-Cron ziyaretle tetiklenir. 
 
 msgid "Flux Backup scheduled tasks"
 msgstr "Flux Backup zamanlanmış görevleri"
+
+msgid "%s backup past its retention period was deleted."
+msgid_plural "%s backups past their retention period were deleted."
+msgstr[0] "Saklama süresi dolan %s yedek silindi."
+msgstr[1] "Saklama süresi dolan %s yedek silindi."
 
 msgid "Could not start the scheduled backup: %s"
 msgstr "Zamanlanmış yedek başlatılamadı: %s"
@@ -865,6 +907,16 @@ msgstr "İptal edildi."
 msgid "Could not verify the session. Reload the page."
 msgstr "Oturum doğrulanamadı. Sayfayı yenileyin."
 
+msgid "Before updating %s package"
+msgid_plural "Before updating %s packages"
+msgstr[0] "%s paket güncellemesi öncesi"
+msgstr[1] "%s paket güncellemesi öncesi"
+
+msgid "%1$s old backup deleted for the quota: %2$s"
+msgid_plural "%1$s old backups deleted for the quota: %2$s"
+msgstr[0] "Kota için %1$s eski yedek silindi: %2$s"
+msgstr[1] "Kota için %1$s eski yedek silindi: %2$s"
+
 msgid "Backup deleted: %s"
 msgstr "Yedek silindi: %s"
 
@@ -873,12 +925,6 @@ msgstr "%1$s %2$s → %3$s öncesi"
 
 msgid "Before updating %s"
 msgstr "%s güncellemesi öncesi"
-
-msgid "Pre-update"
-msgstr "Güncelleme öncesi"
-
-msgid "Manual"
-msgstr "Elle"
 
 msgid "Scheduled"
 msgstr "Zamanlanmış"
@@ -961,91 +1007,659 @@ msgstr "Yedek boş görünüyor."
 msgid "The uncompressed size of the backup is not plausible; the file was not accepted."
 msgstr "Yedeğin açılmış boyutu makul değil; dosya yüklenmedi."
 
-msgid "%s file"
-msgid_plural "%s files"
-msgstr[0] "%s dosya"
-msgstr[1] "%s dosya"
+msgid "No operation is running."
+msgstr "Çalışan bir işlem yok."
 
-msgid "%s locked"
-msgid_plural "%s locked"
-msgstr[0] "%s kilitli"
-msgstr[1] "%s kilitli"
+msgid "Could not delete."
+msgstr "Silinemedi."
 
-msgid "Before updating %s package"
-msgid_plural "Before updating %s packages"
-msgstr[0] "%s paket güncellemesi öncesi"
-msgstr[1] "%s paket güncellemesi öncesi"
+msgid "What a backup holds or why it was taken."
+msgstr "Yedeğin neyi içerdiği ya da neden alındığı."
 
-msgid "%s row"
-msgid_plural "%s rows"
-msgstr[0] "%s satır"
-msgstr[1] "%s satır"
+msgid "Backup types a person can start."
+msgstr "Bir kişinin başlatabileceği yedek türleri."
 
-msgid "%s backup"
-msgid_plural "%s backups"
-msgstr[0] "%s yedek"
-msgstr[1] "%s yedek"
+msgid "State of a backup."
+msgstr "Yedeğin durumu."
 
-msgid "%s other item"
-msgid_plural "%s other items"
-msgstr[0] "Diğer %s öğe"
-msgstr[1] "Diğer %s öğe"
+msgid "How long a backup is kept."
+msgstr "Yedeğin ne kadar saklanacağı."
 
-msgid "%1$s old backup deleted for the quota: %2$s"
-msgid_plural "%1$s old backups deleted for the quota: %2$s"
-msgstr[0] "Kota için %1$s eski yedek silindi: %2$s"
-msgstr[1] "Kota için %1$s eski yedek silindi: %2$s"
+msgid "State of the background job."
+msgstr "Arka plan işinin durumu."
 
-msgid "%s backup past its retention period was deleted."
-msgid_plural "%s backups past their retention period were deleted."
-msgstr[0] "Saklama süresi dolan %s yedek silindi."
-msgstr[1] "Saklama süresi dolan %s yedek silindi."
+msgid "What the background job does."
+msgstr "Arka plan işinin yaptığı iş."
 
-msgid "Takes an automatic backup before every plugin/theme update, scheduled full backups, quota and retention management, a storage dashboard with charts and selective restore. Compatible with Hostinger shared hosting."
-msgstr "Her eklenti/tema güncellemesinden önce otomatik yedek alır, zamanlanmış tam yedekler, kota ve saklama süresi yönetimi, grafikli depolama paneli ve seçerek geri yükleme. Hostinger paylaşımlı barındırma ile uyumludur."
+msgid "Which updates are backed up first."
+msgstr "Hangi güncellemelerin önce yedeklendiği."
 
-msgctxt "context_fd86717aca41"
-msgid "%s%%"
-msgstr "%%%s"
+msgid "How often a full backup is scheduled."
+msgstr "Tam yedeğin ne sıklıkla alındığı."
 
-msgid "The archive file is deleted too."
-msgstr "Arşiv dosyası da silinir."
+msgid "A package updated right after a pre-update backup."
+msgstr "Güncelleme öncesi yedekten hemen sonra güncellenen paket."
 
-msgid "Status"
-msgstr "Durum"
+msgid "Package slug."
+msgstr "Paket kısa adı (slug)."
 
-msgid "Restore is only available in the panel."
-msgstr "Geri yükleme yalnız panelde yapılır."
+msgid "Package name (the slug when unknown)."
+msgstr "Paket adı (bilinmiyorsa slug)."
 
-msgid "Error"
-msgstr "Hata"
+msgid "Version before the update; empty when unknown."
+msgstr "Güncellemeden önceki sürüm; bilinmiyorsa boş."
 
-msgid "Deleted"
-msgstr "Silindi"
+msgid "Version after the update; empty when unknown."
+msgstr "Güncellemeden sonraki sürüm; bilinmiyorsa boş."
 
-msgid "Take a full backup?"
-msgstr "Tam yedek alınsın mı?"
+msgid "Name and versions as one line."
+msgstr "Ad ve sürümler tek satırda."
 
-msgid "Done"
-msgstr "Tamam"
+msgid "One folder of a backup that can be restored."
+msgstr "Bir yedeğin geri yüklenebilen tek klasörü."
 
-msgid "The backup runs in the background and shows up in the list when it finishes."
-msgstr "Yedek arka planda hazırlanır. Bitince listede görünür."
+msgid "Path relative to the WordPress root folder."
+msgstr "WordPress kök klasörüne göre yol."
 
-msgid "Backup started"
-msgstr "Yedek başladı"
+msgid "Name shown in the dialog."
+msgstr "Pencerede gösterilen ad."
 
-msgid "Delete this backup?"
-msgstr "Yedek silinsin mi?"
+msgid "Restore choices of one kind: plugins, themes or other folders."
+msgstr "Aynı türden geri yükleme seçenekleri: eklentiler, temalar ya da diğer klasörler."
 
-msgid "No backups"
-msgstr "Yedek yok"
+msgid "Group key: plugins, themes or other."
+msgstr "Grup anahtarı: plugins, themes ya da other."
 
-msgid "Back up"
-msgstr "Yedekle"
+msgid "Group name."
+msgstr "Grup adı."
 
-msgid "Progress"
-msgstr "İlerleme"
+msgid "Folders in the group."
+msgstr "Gruptaki klasörler."
 
-msgid "Take the first backup with Back up now. Restore is done in the panel."
-msgstr "Şimdi yedekle ile ilk yedeği alın. Geri yükleme panelde yapılır."
+msgid "What the restore dialog offers for a backup."
+msgstr "Geri yükleme penceresinin bir yedek için sunduğu seçenekler."
+
+msgid "Backup ID."
+msgstr "Yedek kimliği."
+
+msgid "Backup name and date."
+msgstr "Yedek adı ve tarihi."
+
+msgid "The database can be restored (it is in the backup and the table prefix matches)."
+msgstr "Veritabanı geri yüklenebilir (yedekte var ve tablo öneki uyuyor)."
+
+msgid "Folders that can be restored, by kind."
+msgstr "Türüne göre geri yüklenebilen klasörler."
+
+msgid "Address of the site the backup was taken on, when it is another site."
+msgstr "Yedeğin alındığı sitenin adresi; başka bir siteyse."
+
+msgid "Table prefix in the backup when it differs from this site's."
+msgstr "Yedekteki tablo öneki; bu sitenin önekinden farklıysa."
+
+msgid "This site's table prefix when it differs from the backup's."
+msgstr "Bu sitenin tablo öneki; yedektekinden farklıysa."
+
+msgid "One plugin, theme, table or folder in the size breakdown."
+msgstr "Boyut dökümünde tek bir eklenti, tema, tablo ya da klasör."
+
+msgid "Path or table name in the backup."
+msgstr "Yedekteki yol ya da tablo adı."
+
+msgid "Name shown on the screen."
+msgstr "Ekranda gösterilen ad."
+
+msgid "Size on the site in bytes (for the database, the SQL dump)."
+msgstr "Sitedeki boyut, bayt olarak (veritabanında SQL dökümünün boyutu)."
+
+msgid "Compressed size in the archive in bytes."
+msgstr "Arşivdeki sıkıştırılmış boyut, bayt olarak."
+
+msgid "Number of files (rows for the database)."
+msgstr "Dosya sayısı (veritabanında satır sayısı)."
+
+msgid "A section of the size breakdown: database, core, plugins, themes, media or other."
+msgstr "Boyut dökümünün bir bölümü: veritabanı, çekirdek, eklentiler, temalar, medya ya da diğer."
+
+msgid "Section key."
+msgstr "Bölüm anahtarı."
+
+msgid "Section name."
+msgstr "Bölüm adı."
+
+msgid "Chart colour."
+msgstr "Grafik rengi."
+
+msgid "Counts are rows, not files."
+msgstr "Sayılar dosya değil satırdır."
+
+msgid "Size on the site in bytes."
+msgstr "Sitedeki boyut, bayt olarak."
+
+msgid "Compressed size in bytes."
+msgstr "Sıkıştırılmış boyut, bayt olarak."
+
+msgid "The biggest items of the section."
+msgstr "Bölümün en büyük öğeleri."
+
+msgid "Files or rows in the items not listed."
+msgstr "Listelenmeyen öğelerdeki dosya ya da satır sayısı."
+
+msgid "Size of the items not listed in bytes."
+msgstr "Listelenmeyen öğelerin boyutu, bayt olarak."
+
+msgid "Compressed size of the items not listed in bytes."
+msgstr "Listelenmeyen öğelerin sıkıştırılmış boyutu, bayt olarak."
+
+msgid "How many items are not listed."
+msgstr "Kaç öğenin listelenmediği."
+
+msgid "Where the size of a backup goes."
+msgstr "Bir yedeğin boyutunun nereye gittiği."
+
+msgid "Total size on the site in bytes."
+msgstr "Sitedeki toplam boyut, bayt olarak."
+
+msgid "Total size in the archive in bytes."
+msgstr "Arşivdeki toplam boyut, bayt olarak."
+
+msgid "Sections, in display order."
+msgstr "Bölümler, gösterim sırasına göre."
+
+msgid "A backup: a zip with the database and/or files, kept in the backup folder."
+msgstr "Yedek: veritabanı ve/veya dosyaları içeren, yedek klasöründe tutulan bir zip."
+
+msgid "Backup ID (not a global ID)."
+msgstr "Yedek kimliği (genel kimlik değil)."
+
+msgid "What the backup holds or why it was taken."
+msgstr "Yedeğin neyi içerdiği ya da neden alındığı."
+
+msgid "Type name in the user's language."
+msgstr "Türün kullanıcının dilindeki adı."
+
+msgid "Chart colour of the type."
+msgstr "Türün grafik rengi."
+
+msgid "Running, finished or failed."
+msgstr "Çalışıyor, bitti ya da başarısız."
+
+msgid "Status name in the user's language."
+msgstr "Durumun kullanıcının dilindeki adı."
+
+msgid "Description, or a generated name such as \"Before Plugin 1.0 → 1.1\"."
+msgstr "Açıklama ya da \"Eklenti 1.0 → 1.1 öncesi\" gibi üretilmiş bir ad."
+
+msgid "Description the person typed; empty when none."
+msgstr "Kişinin yazdığı açıklama; yoksa boş."
+
+msgid "Size of the zip in bytes (0 while running)."
+msgstr "Zip'in boyutu, bayt olarak (çalışırken 0)."
+
+msgid "Size as text; empty unless finished."
+msgstr "Metin olarak boyut; bitmediyse boş."
+
+msgid "Number of files in the backup."
+msgstr "Yedekteki dosya sayısı."
+
+msgid "The database is in the backup."
+msgstr "Veritabanı yedekte var."
+
+msgid "What the backup holds, as short names."
+msgstr "Yedeğin içerdikleri, kısa adlarla."
+
+msgid "Where it came from: manual, schedule, auto, update, cli, safety, api, upload; empty when unknown."
+msgstr "Nereden geldiği: manual, schedule, auto, update, cli, safety, api, upload; bilinmiyorsa boş."
+
+msgid "Source name in the user's language."
+msgstr "Kaynağın kullanıcının dilindeki adı."
+
+msgid "Site the backup was taken on; set for uploaded backups only."
+msgstr "Yedeğin alındığı site; yalnızca yüklenen yedeklerde dolu."
+
+msgid "WordPress version when the backup was taken; empty when unknown."
+msgstr "Yedek alındığında WordPress sürümü; bilinmiyorsa boş."
+
+msgid "Never deleted automatically."
+msgstr "Otomatik olarak asla silinmez."
+
+msgid "How long the backup is kept."
+msgstr "Yedeğin ne kadar saklanacağı."
+
+msgid "Retention as text."
+msgstr "Saklama süresi, metin olarak."
+
+msgid "Why it failed; empty otherwise."
+msgstr "Neden başarısız olduğu; değilse boş."
+
+msgid "Packages a pre-update backup was taken for."
+msgstr "Güncelleme öncesi yedeğin alındığı paketler."
+
+msgid "Signed link that downloads the zip (the file is not sent through GraphQL); empty unless finished."
+msgstr "Zip'i indiren imzalı bağlantı (dosya GraphQL'den geçmez); bitmediyse boş."
+
+msgid "Progress of a running backup; empty otherwise."
+msgstr "Çalışan yedeğin ilerlemesi; değilse boş."
+
+msgid "Progress text of a running backup."
+msgstr "Çalışan yedeğin ilerleme metni."
+
+msgid "The backup is still being taken."
+msgstr "Yedek hâlâ alınıyor."
+
+msgid "When the backup was started."
+msgstr "Yedeğin başlatıldığı an."
+
+msgid "When the backup was finished; empty while running."
+msgstr "Yedeğin bittiği an; çalışırken boş."
+
+msgid "Date the backup is kept until; empty when there is no date."
+msgstr "Yedeğin saklanacağı son tarih; tarih yoksa boş."
+
+msgid "When an uploaded backup was originally taken."
+msgstr "Yüklenen bir yedeğin aslında alındığı an."
+
+msgid "What can be restored; empty unless the backup is finished."
+msgstr "Geri yüklenebilecekler; yedek bitmediyse boş."
+
+msgid "Where the size goes. Reading the zip takes a while the first time, so ask for it on the detail page only."
+msgstr "Boyutun nereye gittiği. Zip'i ilk okumak zaman alır, bu yüzden yalnızca ayrıntı sayfasında isteyin."
+
+msgid "A page of backups, newest first."
+msgstr "Yedek sayfası, en yeniden en eskiye."
+
+msgid "Number of backups of one type."
+msgstr "Bir türdeki yedek sayısı."
+
+msgid "Type."
+msgstr "Tür."
+
+msgid "Backups of the type."
+msgstr "Türdeki yedekler."
+
+msgid "Totals for the filter links and the footer of the backup list."
+msgstr "Yedek listesindeki süzgeç bağlantıları ve altbilgi için toplamlar."
+
+msgid "Number of backups."
+msgstr "Yedek sayısı."
+
+msgid "Total size of the backups in bytes."
+msgstr "Yedeklerin toplam boyutu, bayt olarak."
+
+msgid "Total size as text."
+msgstr "Metin olarak toplam boyut."
+
+msgid "Backups by type; types without a backup are left out."
+msgstr "Türe göre yedekler; yedeği olmayan türler listelenmez."
+
+msgid "Storage used by one backup type."
+msgstr "Bir yedek türünün kullandığı depolama."
+
+msgid "Bytes used."
+msgstr "Kullanılan bayt."
+
+msgid "Bytes used as text."
+msgstr "Metin olarak kullanılan bayt."
+
+msgid "Finished backups of the type."
+msgstr "Türdeki bitmiş yedekler."
+
+msgid "Percent of all backup storage."
+msgstr "Tüm yedek depolamasının yüzdesi."
+
+msgid "A line of the backup event log."
+msgstr "Yedek olay günlüğünün bir satırı."
+
+msgid "info, warning or error."
+msgstr "info, warning ya da error."
+
+msgid "What happened."
+msgstr "Ne oldu."
+
+msgid "When it happened."
+msgstr "Ne zaman oldu."
+
+msgid "The dashboard: storage, counts, last and next backup, by type, recent backups and events."
+msgstr "Pano: depolama, sayılar, son ve sonraki yedek, türe göre dağılım, son yedekler ve olaylar."
+
+msgid "Storage used by backups in bytes."
+msgstr "Yedeklerin kullandığı depolama, bayt olarak."
+
+msgid "Storage used as text."
+msgstr "Metin olarak kullanılan depolama."
+
+msgid "Storage quota in bytes."
+msgstr "Depolama kotası, bayt olarak."
+
+msgid "Storage quota as text."
+msgstr "Metin olarak depolama kotası."
+
+msgid "Percent of the quota used (0–100)."
+msgstr "Kotanın kullanılan yüzdesi (0–100)."
+
+msgid "ok, warning (over 80%) or error (over 95%)."
+msgstr "ok, warning (%80 üstü) ya da error (%95 üstü)."
+
+msgid "Free quota as text."
+msgstr "Metin olarak boş kota."
+
+msgid "Finished backups."
+msgstr "Biten yedekler."
+
+msgid "Finished backups that are locked."
+msgstr "Kilitli biten yedekler."
+
+msgid "Last finished backup; empty when there is none."
+msgstr "Son biten yedek; yoksa boş."
+
+msgid "Scheduled backup frequency."
+msgstr "Zamanlanmış yedek sıklığı."
+
+msgid "Storage by type."
+msgstr "Türe göre depolama."
+
+msgid "The six newest backups."
+msgstr "En yeni altı yedek."
+
+msgid "The seven latest events."
+msgstr "Son yedi olay."
+
+msgid "Next scheduled backup; empty when the schedule is off."
+msgstr "Sonraki zamanlanmış yedek; zamanlama kapalıysa boş."
+
+msgid "Storage on one day of the history chart."
+msgstr "Geçmiş grafiğinin bir gününde depolama."
+
+msgid "Date, YYYY-MM-DD."
+msgstr "Tarih, YYYY-AA-GG."
+
+msgid "Short date for the axis."
+msgstr "Eksen için kısa tarih."
+
+msgid "Date for the tooltip."
+msgstr "İpucu balonu için tarih."
+
+msgid "Bytes by type, in the order of the series."
+msgstr "Türe göre bayt, serilerin sırasıyla."
+
+msgid "Bytes by type as text."
+msgstr "Türe göre bayt, metin olarak."
+
+msgid "Total bytes as text."
+msgstr "Metin olarak toplam bayt."
+
+msgid "A measurement exists for the day; false before the first one."
+msgstr "O gün için ölçüm var; ilk ölçümden önce false."
+
+msgid "A backup type in the history chart."
+msgstr "Geçmiş grafiğindeki bir yedek türü."
+
+msgid "Type key."
+msgstr "Tür anahtarı."
+
+msgid "A mark on the Y axis."
+msgstr "Y ekseninde bir işaret."
+
+msgid "Bytes."
+msgstr "Bayt."
+
+msgid "Bytes as text."
+msgstr "Metin olarak bayt."
+
+msgid "Y axis of the chart for the last 30, 90 or 180 days."
+msgstr "Son 30, 90 ya da 180 gün için grafiğin Y ekseni."
+
+msgid "Number of days."
+msgstr "Gün sayısı."
+
+msgid "Top of the axis in bytes."
+msgstr "Eksenin üst sınırı, bayt olarak."
+
+msgid "Usage is near the quota, so the quota line is drawn."
+msgstr "Kullanım kotaya yakın, bu yüzden kota çizgisi çizilir."
+
+msgid "Marks of the axis."
+msgstr "Eksenin işaretleri."
+
+msgid "Storage history: one measurement a day for 180 days."
+msgstr "Depolama geçmişi: 180 gün boyunca günde bir ölçüm."
+
+msgid "The last 180 days, oldest first; days without a measurement repeat the previous one."
+msgstr "Son 180 gün, en eskiden başlayarak; ölçümü olmayan günler öncekini tekrarlar."
+
+msgid "Backup types, in the order of each day's values."
+msgstr "Yedek türleri, her günün değerlerinin sırasıyla."
+
+msgid "Axis for each range."
+msgstr "Her aralık için eksen."
+
+msgid "Quota in bytes."
+msgstr "Bayt olarak kota."
+
+msgid "Quota as a chart label."
+msgstr "Grafik etiketi olarak kota."
+
+msgid "Flux Backup settings."
+msgstr "Flux Backup ayarları."
+
+msgid "Storage quota in GB."
+msgstr "GB olarak depolama kotası."
+
+msgid "Days a pre-update backup is kept."
+msgstr "Güncelleme öncesi yedeğin saklandığı gün sayısı."
+
+msgid "Scheduled full backup frequency."
+msgstr "Zamanlanmış tam yedek sıklığı."
+
+msgid "Hour of the day (0–23) in the site's time zone."
+msgstr "Sitenin saat diliminde günün saati (0–23)."
+
+msgid "Day of the week for weekly backups: 0 = Sunday … 6 = Saturday."
+msgstr "Haftalık yedekler için haftanın günü: 0 = Pazar … 6 = Cumartesi."
+
+msgid "How many scheduled backups are kept."
+msgstr "Zamanlanmış yedeklerden kaç tanesinin saklanacağı."
+
+msgid "WordPress core files are added to full backups."
+msgstr "WordPress çekirdek dosyaları tam yedeklere eklenir."
+
+msgid "Extra paths left out, one per line."
+msgstr "Dışarıda bırakılacak ek yollar, satır başına bir tane."
+
+msgid "A safety backup of the database is taken before restoring it."
+msgstr "Veritabanı geri yüklenmeden önce güvenlik yedeği alınır."
+
+msgid "Backup files are deleted when the plugin is deleted."
+msgstr "Eklenti silinince yedek dosyaları da silinir."
+
+msgid "Server state and the values the upload and start dialogs need."
+msgstr "Sunucu durumu ve yükleme ile başlatma pencerelerinin ihtiyaç duyduğu değerler."
+
+msgid "The PHP zip extension is available."
+msgstr "PHP zip eklentisi kullanılabilir."
+
+msgid "The backup folder is writable."
+msgstr "Yedek klasörü yazılabilir."
+
+msgid "Backup folder relative to the WordPress root folder."
+msgstr "WordPress kök klasörüne göre yedek klasörü."
+
+msgid "Size in bytes of the pieces a backup is uploaded in."
+msgstr "Bir yedeğin yüklendiği parçaların bayt cinsinden boyutu."
+
+msgid "Token the chunked upload (admin-ajax flxy_upload_*) needs."
+msgstr "Parçalı yüklemenin (admin-ajax flxy_upload_*) ihtiyaç duyduğu belirteç."
+
+msgid "admin-ajax address of the chunked upload."
+msgstr "Parçalı yüklemenin admin-ajax adresi."
+
+msgid "Result of a restore finished in the last 10 minutes."
+msgstr "Son 10 dakikada biten bir geri yüklemenin sonucu."
+
+msgid "Default of the \"include WordPress core\" choice."
+msgstr "\"WordPress çekirdeğini ekle\" seçeneğinin varsayılanı."
+
+msgid "Default of the \"safety backup\" choice."
+msgstr "\"Güvenlik yedeği\" seçeneğinin varsayılanı."
+
+msgid "The backup or restore running in the background (one at a time)."
+msgstr "Arka planda çalışan yedek ya da geri yükleme (aynı anda bir tane)."
+
+msgid "Idle, running, done or failed."
+msgstr "Boşta, çalışıyor, bitti ya da başarısız."
+
+msgid "Backup or restore; empty when idle."
+msgstr "Yedek ya da geri yükleme; boştayken boş."
+
+msgid "ID of the backup the job makes or restores; empty when idle."
+msgstr "İşin yaptığı ya da geri yüklediği yedeğin kimliği; boştayken boş."
+
+msgid "Internal phase name."
+msgstr "Dahili aşama adı."
+
+msgid "Progress, 0–100."
+msgstr "İlerleme, 0–100."
+
+msgid "What the job is doing now."
+msgstr "İşin şu an yaptığı."
+
+msgid "Why the job failed; empty otherwise."
+msgstr "İşin neden başarısız olduğu; değilse boş."
+
+msgid "Job token. After a database restore the login session may be gone; the screen then keeps stepping through admin-ajax flxy_step with this token."
+msgstr "İş belirteci. Veritabanı geri yüklemesinden sonra oturum kapanmış olabilir; ekran bu belirteçle admin-ajax flxy_step üzerinden adımlamayı sürdürür."
+
+msgid "The job was cancelled."
+msgstr "İş iptal edildi."
+
+msgid "Seconds since the job started."
+msgstr "İşin başlamasından bu yana geçen saniye."
+
+msgid "Elapsed time as text."
+msgstr "Geçen süre, metin olarak."
+
+msgid "Estimated seconds left; empty until it can be estimated."
+msgstr "Tahmini kalan saniye; tahmin edilebilene kadar boş."
+
+msgid "Estimated time left as text."
+msgstr "Tahmini kalan süre, metin olarak."
+
+msgid "Name of the backup."
+msgstr "Yedeğin adı."
+
+msgid "Size of the backup as text; empty until known."
+msgstr "Metin olarak yedeğin boyutu; bilinene kadar boş."
+
+msgid "Result text of a finished restore."
+msgstr "Biten bir geri yüklemenin sonuç metni."
+
+msgid "Backups, newest first."
+msgstr "Yedekler, en yeniden en eskiye."
+
+msgid "Only backups of this type."
+msgstr "Yalnızca bu türdeki yedekler."
+
+msgid "Only backups in this state."
+msgstr "Yalnızca bu durumdaki yedekler."
+
+msgid "One backup; empty when the ID is unknown."
+msgstr "Bir yedek; kimlik bilinmiyorsa boş."
+
+msgid "Storage history for the dashboard chart."
+msgstr "Pano grafiği için depolama geçmişi."
+
+msgid "State of the running or just finished backup or restore. Only reads: use flxBackupStep to advance it."
+msgstr "Çalışan ya da yeni biten yedek veya geri yüklemenin durumu. Yalnızca okur: ilerletmek için flxBackupStep kullanın."
+
+msgid "Starts a backup in the background; poll flxBackupJob and call flxBackupStep to keep it moving. Conflict (errors) while another job runs."
+msgstr "Arka planda yedek başlatır; flxBackupJob'u yoklayın ve ilerlemesi için flxBackupStep çağırın. Başka bir iş çalışırken çakışma (errors) döner."
+
+msgid "What to back up. Default: full."
+msgstr "Neyin yedekleneceği. Varsayılan: tam."
+
+msgid "Description (up to 120 characters)."
+msgstr "Açıklama (en çok 120 karakter)."
+
+msgid "Add WordPress core files (full backups only). Default: the setting."
+msgstr "WordPress çekirdek dosyalarını ekle (yalnızca tam yedek). Varsayılan: ayar."
+
+msgid "Never delete automatically, even when the quota is full."
+msgstr "Kota dolsa bile otomatik olarak asla silme."
+
+msgid "The job that was started."
+msgstr "Başlatılan iş."
+
+msgid "Starts restoring the chosen parts of a backup in the background. Overwrites the current database and files; needs the highest permission."
+msgstr "Bir yedeğin seçilen parçalarını arka planda geri yüklemeye başlar. Geçerli veritabanının ve dosyaların üzerine yazar; en yüksek yetkiyi ister."
+
+msgid "Restore the whole database."
+msgstr "Veritabanının tamamını geri yükle."
+
+msgid "Paths to restore (the path values of flxBackup.restore.groups); the backup's own paths or folders below them."
+msgstr "Geri yüklenecek yollar (flxBackup.restore.groups'taki path değerleri); yedeğin kendi yolları ya da altındaki klasörler."
+
+msgid "Take a safety backup of the current database first. Default: the setting."
+msgstr "Önce geçerli veritabanının güvenlik yedeğini al. Varsayılan: ayar."
+
+msgid "Advances the running job by one time budget (about 8 seconds) and returns its state. Does nothing when no job runs."
+msgstr "Çalışan işi bir zaman bütçesi kadar (yaklaşık 8 saniye) ilerletir ve durumunu döndürür. İş çalışmıyorsa bir şey yapmaz."
+
+msgid "The job after the step."
+msgstr "Adımdan sonra iş."
+
+msgid "Cancels the running backup or restore. A step in progress finishes first (pending)."
+msgstr "Çalışan yedeği ya da geri yüklemeyi iptal eder. Süren adım önce biter (pending)."
+
+msgid "A step is running; the job is cancelled when it ends."
+msgstr "Bir adım çalışıyor; iş bittiğinde iptal edilir."
+
+msgid "The job after the cancel."
+msgstr "İptalden sonra iş."
+
+msgid "Permanently deletes backups; a running one is cancelled first. Needs the highest permission."
+msgstr "Yedekleri kalıcı olarak siler; çalışan varsa önce iptal edilir. En yüksek yetkiyi ister."
+
+msgid "Backup IDs."
+msgstr "Yedek kimlikleri."
+
+msgid "IDs that were deleted."
+msgstr "Silinen kimlikler."
+
+msgid "Totals after the delete."
+msgstr "Silmeden sonra toplamlar."
+
+msgid "Locks a backup so the quota and retention never delete it, or unlocks it."
+msgstr "Kota ve saklama süresi hiçbir zaman silmesin diye yedeği kilitler ya da kilidini açar."
+
+msgid "true locks, false unlocks."
+msgstr "true kilitler, false kilidi açar."
+
+msgid "The backup after the change."
+msgstr "Değişiklikten sonra yedek."
+
+msgid "Saves Flux Backup settings. Fields you leave out stay as they are; values are limited to their range."
+msgstr "Flux Backup ayarlarını kaydeder. Bıraktığınız alanlar olduğu gibi kalır; değerler aralıklarıyla sınırlanır."
+
+msgid "Storage quota in GB (0.1–10000)."
+msgstr "GB olarak depolama kotası (0,1–10000)."
+
+msgid "Days a pre-update backup is kept (1–365)."
+msgstr "Güncelleme öncesi yedeğin saklandığı gün sayısı (1–365)."
+
+msgid "How many scheduled backups are kept (1–100)."
+msgstr "Zamanlanmış yedeklerden kaç tanesinin saklanacağı (1–100)."
+
+msgid "Add WordPress core files to full backups."
+msgstr "Tam yedeklere WordPress çekirdek dosyalarını ekle."
+
+msgid "Extra paths left out, one per line, relative to the WordPress root folder; * works as a wildcard."
+msgstr "Dışarıda bırakılacak ek yollar, satır başına bir tane, WordPress kök klasörüne göreli; * joker olarak çalışır."
+
+msgid "Take a safety backup of the database before restoring it."
+msgstr "Veritabanı geri yüklenmeden önce güvenlik yedeği al."
+
+msgid "Delete backup files when the plugin is deleted."
+msgstr "Eklenti silinince yedek dosyalarını sil."
+
+msgid "The settings after the change."
+msgstr "Değişiklikten sonra ayarlar."

@@ -1,0 +1,10 @@
+mutation FlxFilesFolderCreate($input: FlxFilesFolderCreateInput!) {
+  flxFilesFolderCreate(input: $input) {
+    item {
+      ...FlxFilesItemFields
+    }
+    errors {
+      ...FlxFilesUserError
+    }
+  }
+}

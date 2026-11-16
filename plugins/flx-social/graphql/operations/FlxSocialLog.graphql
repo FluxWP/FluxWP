@@ -1,0 +1,3 @@
+query FlxSocialLog {
+  flxSocialLog { databaseId time { timestamp } level accountId message }
+}

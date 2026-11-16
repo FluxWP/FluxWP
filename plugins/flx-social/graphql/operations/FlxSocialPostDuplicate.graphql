@@ -1,0 +1,6 @@
+mutation FlxSocialPostDuplicate($input: FlxSocialPostDuplicateInput!) {
+  flxSocialPostDuplicate(input: $input) {
+    post { ...FlxSocialPostRow }
+    errors { code message field }
+  }
+}

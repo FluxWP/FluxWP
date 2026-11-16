@@ -1,0 +1,33 @@
+query FlxSpeedCron {
+  flxSpeedCron {
+    disabled
+    events
+    overdue
+    lastSeen {
+      ...FlxSpeedWhenFields
+    }
+    lastWarn
+    timings {
+      hook
+      component
+      runs
+      avgMs
+      maxMs
+      lastMs
+      lastAt {
+        ...FlxSpeedWhenFields
+      }
+      cut
+      slow
+    }
+    items {
+      hook
+      next {
+        ...FlxSpeedWhenFields
+      }
+      schedule
+      args
+      overdue
+    }
+  }
+}

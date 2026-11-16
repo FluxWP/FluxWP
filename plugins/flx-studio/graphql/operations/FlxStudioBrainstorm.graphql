@@ -1,0 +1,14 @@
+mutation FlxStudioBrainstorm($input: FlxStudioBrainstormInput!) {
+  flxStudioBrainstorm(input: $input) {
+    batch
+    ideas {
+      title
+      prompt
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

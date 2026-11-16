@@ -29,13 +29,25 @@ parameters:
     # Legacy code the strict folders call (scanned for symbols only).
     - ../../plugins/flx-tasks/includes
     - ../../plugins/flx-roles/includes
+    - ../../plugins/flx-studio/includes
+    - ../../plugins/flx-chatbot/includes
+    - ../../plugins/flx-analytics/includes
+    - ../../plugins/flx-recaptcha/includes
+    - ../../plugins/flx-speed/includes
+    - ../../plugins/flx-ai/includes
+    - ../../plugins/flx-admin/includes
+    - ../../themes/fluxwp/inc
     - ../../plugins/flx-blocks/includes
     - ../../plugins/flx-setup/includes
     - ../../plugins/flx-app/includes
+    - ../../plugins/flx-backup/includes
     - ../../plugins/flx-ads/includes
     - ../../plugins/flx-lang/includes
     - ../../plugins/flx-seo/includes
+    - ../../plugins/flx-wiki/includes
     - ../../plugins/flx-crm/includes
+    - ../../plugins/flx-social/includes
+    - ../../plugins/flx-files/includes
   paths:
     - ../../plugins/flx-graphql/flx-graphql.php
     - ../../plugins/flx-graphql/uninstall.php
@@ -46,6 +58,30 @@ parameters:
     # Flux Roles (Faz 1)
     - ../../plugins/flx-roles/includes/services
     - ../../plugins/flx-roles/includes/graphql
+    # Flux Studio (Faz 1)
+    - ../../plugins/flx-studio/includes/services
+    - ../../plugins/flx-studio/includes/graphql
+    # Flux AI Chatbot (Faz 3)
+    - ../../plugins/flx-chatbot/includes/services
+    - ../../plugins/flx-chatbot/includes/graphql
+    # Flux Analytics (Faz 1)
+    - ../../plugins/flx-analytics/includes/services
+    - ../../plugins/flx-analytics/includes/graphql
+    # Flux reCAPTCHA (Faz 1)
+    - ../../plugins/flx-recaptcha/includes/services
+    - ../../plugins/flx-recaptcha/includes/graphql
+    # Flux Speed (Faz 1)
+    - ../../plugins/flx-speed/includes/services
+    - ../../plugins/flx-speed/includes/graphql
+    # Flux AI (Faz 1)
+    - ../../plugins/flx-ai/includes/services
+    - ../../plugins/flx-ai/includes/graphql
+    # Flux Admin (Faz 1)
+    - ../../plugins/flx-admin/includes/services
+    - ../../plugins/flx-admin/includes/graphql
+    # FluxWP theme
+    - ../../themes/fluxwp/inc/services
+    - ../../themes/fluxwp/inc/graphql
     # Flux Block Editor (Faz 4)
     - ../../plugins/flx-blocks/includes/services
     - ../../plugins/flx-blocks/includes/graphql
@@ -55,6 +91,9 @@ parameters:
     # Flux App (Faz 1)
     - ../../plugins/flx-app/includes/services
     - ../../plugins/flx-app/includes/graphql
+    # Flux Backup (Faz 1)
+    - ../../plugins/flx-backup/includes/services
+    - ../../plugins/flx-backup/includes/graphql
     # Flux Ads (Faz 1)
     - ../../plugins/flx-ads/includes/services
     - ../../plugins/flx-ads/includes/graphql
@@ -64,9 +103,18 @@ parameters:
     # Flux SEO (Faz 1)
     - ../../plugins/flx-seo/includes/services
     - ../../plugins/flx-seo/includes/graphql
+    # Flux Wiki (Faz 1)
+    - ../../plugins/flx-wiki/includes/services
+    - ../../plugins/flx-wiki/includes/graphql
     # Flux CRM (Faz 1)
     - ../../plugins/flx-crm/includes/services
     - ../../plugins/flx-crm/includes/graphql
+    # Flux Social (Faz 1)
+    - ../../plugins/flx-social/includes/services
+    - ../../plugins/flx-social/includes/graphql
+    # Flux Files (Faz 1)
+    - ../../plugins/flx-files/includes/services
+    - ../../plugins/flx-files/includes/graphql
   excludePaths:
     - ../../plugins/flx-graphql/includes/flx-brand
   treatPhpDocTypesAsCertain: false

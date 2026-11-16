@@ -1,0 +1,6 @@
+mutation FlxSocialPostCreate($input: FlxSocialPostCreateInput!) {
+  flxSocialPostCreate(input: $input) {
+    post { ...FlxSocialPostRow }
+    errors { code message field }
+  }
+}

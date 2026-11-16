@@ -1,7 +1,28 @@
 # @fluxwp/modules
 
+## 0.3.19
+- Studio: new `studio` screen for Flux Studio (gallery, folders, favorites, composer with references/people/@mention, enhance, brainstorm, templates, viewer, compare, mask editor, dashboard, settings). Data over GraphQL, uploads over `/flx/v1/upload`.
+
+## 0.3.18
+- Backup: new `flxy-backup` screen for Flux Backup (dashboard with history chart, backup list with filters/bulk delete/lock/upload, detail with size breakdown, settings, back up now, restore, job progress). Same look as the classic pages on FluxWP tokens, light and dark; data over GraphQL (the job is advanced with `flxBackupStep`); texts from the plugin's language packs (`plugins/flx-backup/tools/i18n.py`).
+
+## 0.3.17
+- Wiki: new `flxwk-wiki` screen for Flux Wiki (page list with filters and trash, sections, Markdown editor with preview, General / Appearance / AI settings, addresses and guide import). Same look as the classic page on FluxWP tokens, light and dark; data over GraphQL; texts from the plugin's language packs (`plugins/flx-wiki/tools/i18n.py`).
+
+## 0.3.16
+- Analytics: `flxan-stats`, `flxan-journeys`, `flxan-settings`, `flxan-telemetry` screens for Flux Analytics (KPIs, chart, live panel, world map, funnels, referral links, journeys, settings with the visual funnel editor, telemetry hub). Same look as the classic page on FluxWP tokens; data over GraphQL; texts from the plugin's language packs (`plugins/flx-analytics/tools/i18n.py`).
+
+## 0.3.15
+- reCAPTCHA: new `flxrc-recaptcha` screen for Flux reCAPTCHA (status, keys with Google test, protected forms, settings, allowed IPs). Data over GraphQL; texts from the plugin's language packs (`plugins/flx-recaptcha/tools/i18n.py`).
+
+## 0.3.14
+- Speed: new `flxp-speed` screen for Flux Speed (summary, records with detail and request panel, server, database, cron, system check, PageSpeed, cache, settings). Same look as the classic page on FluxWP tokens, light and dark; data over GraphQL; texts from the plugin's language packs (`plugins/flx-speed/tools/i18n.py`).
+
+## 0.3.13
+- AI: new `flxai-admin` screen for Flux AI (Overview, Logs, Billing, Systems, Tools). Same look as the classic pages; data over GraphQL; texts from the module's own en/tr packs.
+
 ## 0.3.12
-- Ads: new `flxads-ads` screen for Flux Ads (report, campaigns, suggestions, Studio, season plan, tests, donor value, ad spend, audiences, send log, ad link, settings). Same look as the classic page on FluxWP tokens; data over GraphQL; texts from the plugin's language packs (`plugins/flx-ads/tools/screen-i18n.py`).
+- Admin theme: new `flxa-admin` screen for Flux Admin (General, Appearance, Menu and bottom bar, Permissions, Dashboard, App (PWA)). Same look and features as the classic page, including the role menu editor (drag and drop, groups, rename, hide, block, platforms, copy from role, preview, bottom bar) and the permissions table with backup/restore; data over GraphQL; texts from the plugin's language packs (`plugins/flx-admin/tools/i18n.py`).
 
 ## 0.3.11
 - CRM: new `crm` screen for Flux CRM (overview, contacts, contact card, segments, journeys, duplicates, settings). Same look as the classic pages on FluxWP tokens, light and dark; data over GraphQL; texts from the plugin's language packs (`plugins/flx-crm/tools/i18n-screen.py`).

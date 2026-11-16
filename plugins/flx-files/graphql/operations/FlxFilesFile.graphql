@@ -1,0 +1,9 @@
+query FlxFilesFile($path: String!) {
+  flxFilesFile(path: $path) {
+    hash
+    content
+    item {
+      ...FlxFilesItemFields
+    }
+  }
+}

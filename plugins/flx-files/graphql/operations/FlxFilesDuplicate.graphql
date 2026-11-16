@@ -1,0 +1,13 @@
+mutation FlxFilesDuplicate($input: FlxFilesDuplicateInput!) {
+  flxFilesDuplicate(input: $input) {
+    items {
+      ...FlxFilesItemFields
+    }
+    failed {
+      ...FlxFilesFailureFields
+    }
+    errors {
+      ...FlxFilesUserError
+    }
+  }
+}

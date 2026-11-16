@@ -158,6 +158,7 @@ add_filter( 'flx_gql_capabilities', function ( array $caps ): array {
   Okuma persisted GET, yazma POST. Serbest belge (`gql\`…\``) yazılmaz; strict kipte sunucu reddeder.
 - API verisi için elle tip yazılmaz; `ResultOf<typeof Op>` / `VariablesOf<typeof Op>`.
 - Strict TS: paket `tsconfig.strict.json`'dan türer, `any` yok (`tools/ts-strict/README.md`).
+- `@fluxwp/modules` ve `@fluxwp/graphql` sürümü PR'da artmaz (`package.json` ve CHANGELOG'a dokunulmaz, CI reddeder). PR `.changes/<ad>.md` notu bırakır; sürümü ve CHANGELOG'u release anında "JS package versions" workflow'u yazar (`.changes/README.md`).
 
 ## 10. PHP sürümü
 
