@@ -13,13 +13,6 @@ export type FlxBlocksAssetKind =
   /** Stylesheet. */
   | 'STYLE';
 
-/** What a log row records. */
-export type FlxAiLogKind =
-  /** A request to a language model. */
-  | 'MODEL'
-  /** A tool call. */
-  | 'TOOL';
-
 /** A group heading or a menu item. */
 export type FlxAdminMenuEntryType =
   | 'GROUP'
@@ -82,27 +75,12 @@ export type FlxAdminTasksScope =
   | 'CREATED'
   | 'MINE';
 
-/** A personal API key or an app session. */
-export type FlxAppAccessKind =
-  | 'KEY'
-  | 'SESSION';
-
-/** Where an OAuth client comes from. */
-export type FlxAppClientKind =
-  | 'BUILTIN'
-  | 'DYNAMIC'
-  | 'MANUAL';
-
-/** Platform of the asking app; decides which menu and screens are sent. */
-export type FlxAppPlatform =
-  | 'DESKTOP'
-  | 'MOBILE';
-
-/** How the request signed in. */
-export type FlxAppAuthKind =
-  | 'ACCESS'
-  | 'COOKIE'
-  | 'KEY';
+/** What a log row records. */
+export type FlxAiLogKind =
+  /** A request to a language model. */
+  | 'MODEL'
+  /** A tool call. */
+  | 'TOOL';
 
 /** Provider of a language model. */
 export type FlxAiModelProvider =
@@ -143,6 +121,28 @@ export type FlxAiLimitAction =
 export type FlxAiMediaKind =
   | 'IMAGE'
   | 'VIDEO';
+
+/** A personal API key or an app session. */
+export type FlxAppAccessKind =
+  | 'KEY'
+  | 'SESSION';
+
+/** Where an OAuth client comes from. */
+export type FlxAppClientKind =
+  | 'BUILTIN'
+  | 'DYNAMIC'
+  | 'MANUAL';
+
+/** Platform of the asking app; decides which menu and screens are sent. */
+export type FlxAppPlatform =
+  | 'DESKTOP'
+  | 'MOBILE';
+
+/** How the request signed in. */
+export type FlxAppAuthKind =
+  | 'ACCESS'
+  | 'COOKIE'
+  | 'KEY';
 
 /** Editor width of a page or post. */
 export type FlxBlocksEditorWidthMode =
@@ -543,170 +543,6 @@ export type FlxAdminCapsRestoreInput = {
   confirm: boolean;
 };
 
-/** Input for the flxAiModelTest mutation. */
-export type FlxAiModelTestInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Model id; empty uses the default model. */
-  model?: string | null | undefined;
-};
-
-/** Input for the flxAiRenderTest mutation. */
-export type FlxAiRenderTestInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Gotenberg password; empty uses the saved one. */
-  pass?: string | null | undefined;
-  /** Gotenberg address; empty tries the local renderer. */
-  url?: string | null | undefined;
-  /** Gotenberg user name. */
-  user?: string | null | undefined;
-};
-
-/** Input for the flxAiSettingsUpdate mutation. */
-export type FlxAiSettingsUpdateInput = {
-  /** Anthropic workspace ID; only needed when the key is not tied to a workspace. */
-  anthropicWorkspace?: string | null | undefined;
-  /** Claude prompt cache. */
-  cache?: FlxAiCacheMode | null | undefined;
-  /** Show the shared chat in the admin panel. */
-  chatAdmin?: boolean | null | undefined;
-  /** Show the shared chat on the site for permitted logged-in users. */
-  chatFront?: boolean | null | undefined;
-  /** Most messages sent to the model (6–200). */
-  chatHistory?: number | null | undefined;
-  /** Extra instructions added to every chat. */
-  chatInstructions?: string | null | undefined;
-  /** Most steps the model may take in one turn (2–30). */
-  chatMaxRounds?: number | null | undefined;
-  /** Default layout of the shared chat. */
-  chatMode?: FlxAiChatMode | null | undefined;
-  /** Model of the shared chat; empty uses the default. */
-  chatModel?: string | null | undefined;
-  /** WordPress roles that may use the shared chat. */
-  chatRoles?: Array<string> | null | undefined;
-  /** Let the model draw tables, cards, diagrams and charts as visuals. */
-  chatWidgets?: boolean | null | undefined;
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Delete logs and chats when the plugin is deleted. */
-  deleteData?: boolean | null | undefined;
-  /** How deeply Claude thinks. */
-  effort?: FlxAiEffort | null | undefined;
-  /** Chat and agents may generate images (each image is charged). */
-  imageToolOn?: boolean | null | undefined;
-  /** Stop requests or only warn when a limit is reached. */
-  limitAction?: FlxAiLimitAction | null | undefined;
-  /** Daily spending limit in USD; 0 means unlimited. */
-  limitDay?: number | null | undefined;
-  /** Monthly spending limit in USD; 0 means unlimited. */
-  limitMonth?: number | null | undefined;
-  /** E-mail the admin at the threshold and when a limit is reached. */
-  limitNotify?: boolean | null | undefined;
-  /** Warning threshold in percent of a limit (10–99). */
-  limitWarnPct?: number | null | undefined;
-  /** Weekly spending limit in USD; 0 means unlimited. */
-  limitWeek?: number | null | undefined;
-  /** Also store shortened, masked request and reply content. */
-  logBodies?: boolean | null | undefined;
-  /** Days stored content is kept; 0 keeps it forever. */
-  logBodyDays?: number | null | undefined;
-  /** Days usage logs are kept; 0 keeps them forever. */
-  logDays?: number | null | undefined;
-  /** Days image and video job records are kept (7–1825); generated files are not deleted. */
-  mediaDays?: number | null | undefined;
-  /** Default image model (an id of FlxAiSettingsOptions.mediaModels). */
-  mediaImageModel?: string | null | undefined;
-  /** Default video model (an id of FlxAiSettingsOptions.mediaModels). */
-  mediaVideoModel?: string | null | undefined;
-  /** Default model, used when a plugin names none. Empty picks one from the saved keys. */
-  model?: string | null | undefined;
-  /** Gotenberg address that turns visuals into images; empty for none. */
-  renderUrl?: string | null | undefined;
-  /** Gotenberg user name (basic authentication). */
-  renderUser?: string | null | undefined;
-  /** API keys to write or remove; keys you leave out stay as they are. */
-  secrets?: Array<FlxAiSecretInput> | null | undefined;
-  /** Allow the virtual shell tool on the workspace files. */
-  shellOn?: boolean | null | undefined;
-  /** The model each plugin uses; plugins you leave out keep theirs. */
-  sourceModels?: Array<FlxAiSourceModelInput> | null | undefined;
-  /** Show the model's thinking summary in chat. */
-  thinking?: boolean | null | undefined;
-  /** Model that names chats; empty uses the chat model. */
-  titleModel?: string | null | undefined;
-  /** Allow the tool that reads public web pages. */
-  webFetchOn?: boolean | null | undefined;
-  /** Allow the web search tool. */
-  webOn?: boolean | null | undefined;
-  /** Search provider id, or auto for the first provider with a key. */
-  webProvider?: string | null | undefined;
-  /** Cost per 1,000 searches in USD; above 0 each search is logged and counted in the limit. */
-  webSearchCost?: number | null | undefined;
-  /** Monthly search limit; 0 means unlimited. */
-  webSearchMonth?: number | null | undefined;
-};
-
-/** Writes or removes one API key. */
-export type FlxAiSecretInput = {
-  /** Remove the saved key. */
-  clear?: boolean | null | undefined;
-  /** Setting name from flxAiSecrets, e.g. key_openrouter. */
-  name: string;
-  /** The new key. Empty leaves the saved key as it is. */
-  value?: string | null | undefined;
-};
-
-/** The model one plugin uses. */
-export type FlxAiSourceModelInput = {
-  /** Model id; empty means the default model. */
-  model: string;
-  /** System id. */
-  source: string;
-};
-
-/** Input for the flxAiSystemsUpdate mutation. */
-export type FlxAiSystemsUpdateInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** States to set. */
-  systems: Array<FlxAiSystemStateInput>;
-};
-
-/** Whether AI is on for one system. */
-export type FlxAiSystemStateInput = {
-  /** AI is on for the system. */
-  on: boolean;
-  /** System id. */
-  source: string;
-};
-
-/** Input for the flxAiToolPick mutation. */
-export type FlxAiToolPickInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Tool name. */
-  name: string;
-  /** Plugin folder that should provide it. */
-  source: string;
-};
-
-/** Input for the flxAiToolsUpdate mutation. */
-export type FlxAiToolsUpdateInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** States to set. */
-  tools: Array<FlxAiToolStateInput>;
-};
-
-/** One tool to switch. */
-export type FlxAiToolStateInput = {
-  /** Tool name; an old alias works too. */
-  name: string;
-  /** Whether the tool is on. */
-  on: boolean;
-};
-
 /** Input for the flxAdminCapsSave mutation. */
 export type FlxAdminCapsSaveInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -899,6 +735,170 @@ export type FlxAdminWidgetPrefsSetInput = {
 export type FlxAdminWidget =
   | 'DONATIONS'
   | 'TASKS';
+
+/** Input for the flxAiModelTest mutation. */
+export type FlxAiModelTestInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Model id; empty uses the default model. */
+  model?: string | null | undefined;
+};
+
+/** Input for the flxAiRenderTest mutation. */
+export type FlxAiRenderTestInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Gotenberg password; empty uses the saved one. */
+  pass?: string | null | undefined;
+  /** Gotenberg address; empty tries the local renderer. */
+  url?: string | null | undefined;
+  /** Gotenberg user name. */
+  user?: string | null | undefined;
+};
+
+/** Input for the flxAiSettingsUpdate mutation. */
+export type FlxAiSettingsUpdateInput = {
+  /** Anthropic workspace ID; only needed when the key is not tied to a workspace. */
+  anthropicWorkspace?: string | null | undefined;
+  /** Claude prompt cache. */
+  cache?: FlxAiCacheMode | null | undefined;
+  /** Show the shared chat in the admin panel. */
+  chatAdmin?: boolean | null | undefined;
+  /** Show the shared chat on the site for permitted logged-in users. */
+  chatFront?: boolean | null | undefined;
+  /** Most messages sent to the model (6–200). */
+  chatHistory?: number | null | undefined;
+  /** Extra instructions added to every chat. */
+  chatInstructions?: string | null | undefined;
+  /** Most steps the model may take in one turn (2–30). */
+  chatMaxRounds?: number | null | undefined;
+  /** Default layout of the shared chat. */
+  chatMode?: FlxAiChatMode | null | undefined;
+  /** Model of the shared chat; empty uses the default. */
+  chatModel?: string | null | undefined;
+  /** WordPress roles that may use the shared chat. */
+  chatRoles?: Array<string> | null | undefined;
+  /** Let the model draw tables, cards, diagrams and charts as visuals. */
+  chatWidgets?: boolean | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Delete logs and chats when the plugin is deleted. */
+  deleteData?: boolean | null | undefined;
+  /** How deeply Claude thinks. */
+  effort?: FlxAiEffort | null | undefined;
+  /** Chat and agents may generate images (each image is charged). */
+  imageToolOn?: boolean | null | undefined;
+  /** Stop requests or only warn when a limit is reached. */
+  limitAction?: FlxAiLimitAction | null | undefined;
+  /** Daily spending limit in USD; 0 means unlimited. */
+  limitDay?: number | null | undefined;
+  /** Monthly spending limit in USD; 0 means unlimited. */
+  limitMonth?: number | null | undefined;
+  /** E-mail the admin at the threshold and when a limit is reached. */
+  limitNotify?: boolean | null | undefined;
+  /** Warning threshold in percent of a limit (10–99). */
+  limitWarnPct?: number | null | undefined;
+  /** Weekly spending limit in USD; 0 means unlimited. */
+  limitWeek?: number | null | undefined;
+  /** Also store shortened, masked request and reply content. */
+  logBodies?: boolean | null | undefined;
+  /** Days stored content is kept; 0 keeps it forever. */
+  logBodyDays?: number | null | undefined;
+  /** Days usage logs are kept; 0 keeps them forever. */
+  logDays?: number | null | undefined;
+  /** Days image and video job records are kept (7–1825); generated files are not deleted. */
+  mediaDays?: number | null | undefined;
+  /** Default image model (an id of FlxAiSettingsOptions.mediaModels). */
+  mediaImageModel?: string | null | undefined;
+  /** Default video model (an id of FlxAiSettingsOptions.mediaModels). */
+  mediaVideoModel?: string | null | undefined;
+  /** Default model, used when a plugin names none. Empty picks one from the saved keys. */
+  model?: string | null | undefined;
+  /** Gotenberg address that turns visuals into images; empty for none. */
+  renderUrl?: string | null | undefined;
+  /** Gotenberg user name (basic authentication). */
+  renderUser?: string | null | undefined;
+  /** API keys to write or remove; keys you leave out stay as they are. */
+  secrets?: Array<FlxAiSecretInput> | null | undefined;
+  /** Allow the virtual shell tool on the workspace files. */
+  shellOn?: boolean | null | undefined;
+  /** The model each plugin uses; plugins you leave out keep theirs. */
+  sourceModels?: Array<FlxAiSourceModelInput> | null | undefined;
+  /** Show the model's thinking summary in chat. */
+  thinking?: boolean | null | undefined;
+  /** Model that names chats; empty uses the chat model. */
+  titleModel?: string | null | undefined;
+  /** Allow the tool that reads public web pages. */
+  webFetchOn?: boolean | null | undefined;
+  /** Allow the web search tool. */
+  webOn?: boolean | null | undefined;
+  /** Search provider id, or auto for the first provider with a key. */
+  webProvider?: string | null | undefined;
+  /** Cost per 1,000 searches in USD; above 0 each search is logged and counted in the limit. */
+  webSearchCost?: number | null | undefined;
+  /** Monthly search limit; 0 means unlimited. */
+  webSearchMonth?: number | null | undefined;
+};
+
+/** Writes or removes one API key. */
+export type FlxAiSecretInput = {
+  /** Remove the saved key. */
+  clear?: boolean | null | undefined;
+  /** Setting name from flxAiSecrets, e.g. key_openrouter. */
+  name: string;
+  /** The new key. Empty leaves the saved key as it is. */
+  value?: string | null | undefined;
+};
+
+/** The model one plugin uses. */
+export type FlxAiSourceModelInput = {
+  /** Model id; empty means the default model. */
+  model: string;
+  /** System id. */
+  source: string;
+};
+
+/** Input for the flxAiSystemsUpdate mutation. */
+export type FlxAiSystemsUpdateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** States to set. */
+  systems: Array<FlxAiSystemStateInput>;
+};
+
+/** Whether AI is on for one system. */
+export type FlxAiSystemStateInput = {
+  /** AI is on for the system. */
+  on: boolean;
+  /** System id. */
+  source: string;
+};
+
+/** Input for the flxAiToolPick mutation. */
+export type FlxAiToolPickInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Tool name. */
+  name: string;
+  /** Plugin folder that should provide it. */
+  source: string;
+};
+
+/** Input for the flxAiToolsUpdate mutation. */
+export type FlxAiToolsUpdateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** States to set. */
+  tools: Array<FlxAiToolStateInput>;
+};
+
+/** One tool to switch. */
+export type FlxAiToolStateInput = {
+  /** Tool name; an old alias works too. */
+  name: string;
+  /** Whether the tool is on. */
+  on: boolean;
+};
 
 /** Input for the flxAppAccessRevoke mutation. */
 export type FlxAppAccessRevokeInput = {
