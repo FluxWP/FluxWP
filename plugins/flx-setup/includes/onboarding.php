@@ -360,6 +360,29 @@ final class FLXK_Onboarding {
 	/* Ekran                                                               */
 	/* ------------------------------------------------------------------ */
 
+	/**
+	 * Persisted operations the wizard sends when Flux GraphQL runs (null: admin-ajax is used).
+	 *
+	 * @return array<string,mixed>|null
+	 */
+	private static function gql_config(): ?array {
+		if ( ! function_exists( 'flx_gql_ready' ) || ! function_exists( 'flx_gql_all_caps' ) || ! flx_gql_ready() ) {
+			return null;
+		}
+		$ids = array();
+		foreach ( (array) json_decode( (string) file_get_contents( FLXK_DIR . 'graphql/persisted-queries.json' ), true ) as $id => $doc ) {
+			if ( is_string( $doc ) && preg_match( '/^(?:query|mutation) (Flx\w+)/', $doc, $m ) ) {
+				$ids[ $m[1] ] = (string) $id;
+			}
+		}
+		return array(
+			'url'   => home_url( '/graphql' ),
+			'rest'  => rest_url(),
+			'nonce' => wp_create_nonce( 'wp_rest' ),
+			'ids'   => $ids,
+		);
+	}
+
 	public static function render(): void {
 		if ( ! current_user_can( self::cap() ) ) {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-setup' ) );
@@ -369,6 +392,7 @@ final class FLXK_Onboarding {
 		$status  = FLXU_Updater::status();
 		$data    = array(
 			'ajax'      => admin_url( 'admin-ajax.php' ),
+			'gql'       => self::gql_config(),
 			'nonce'     => wp_create_nonce( self::NONCE ),
 			'flxuNonce' => wp_create_nonce( FLXU_Ajax::NONCE ),
 			'lang'      => self::lang(),
@@ -485,47 +509,23 @@ final class FLXK_Onboarding {
 	/**
 	 * Kuruluma başlamadan önce: sunucuya sorar, yüklü paketlerden güncellemesi bekleyenleri döndürür.
 	 * FluxWP Panel'in kendisi varsa en başta ve self: true ile gelir (güncellenince sihirbaz yeniden açılır).
+	 * Mantık FLXK_Wizard_Service'te (GraphQL ile ortak).
 	 */
 	public static function ajax_updates(): void {
 		check_ajax_referer( self::NONCE, 'nonce' );
 		if ( ! current_user_can( self::cap() ) ) {
 			wp_send_json_error( array( 'message' => __( 'You are not allowed to do this.', 'flx-setup' ) ), 403 );
 		}
-		@set_time_limit( 120 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
-		FLXU_Updater::instance()->check_now();
-		$status = FLXU_Updater::status();
-		$items  = array();
-		if ( ! empty( $status['ok'] ) ) {
-			foreach ( FLXU_Admin::rows( FLXU_Updater::instance()->catalog() ) as $r ) {
-				if ( 'update' !== $r['state'] || ! current_user_can( 'theme' === $r['type'] ? 'update_themes' : 'update_plugins' ) ) {
-					continue;
-				}
-				$items[] = array(
-					'slug' => $r['slug'],
-					'name' => $r['name'],
-					'from' => $r['installed'],
-					'to'   => $r['latest'],
-					'icon' => (string) ( FLXU_Updater::icons( $r['slug'] )['svg'] ?? '' ),
-					'self' => 'flx-setup' === $r['slug'],
-				);
-			}
-			usort(
-				$items,
-				static function ( $a, $b ) {
-					return array( ! $a['self'], $a['name'] ) <=> array( ! $b['self'], $b['name'] );
-				}
-			);
-		}
-		wp_send_json_success(
-			array(
-				'ok'    => ! empty( $status['ok'] ),
-				'error' => (string) ( $status['error'] ?? '' ),
-				'items' => $items,
-			)
-		);
+		wp_send_json_success( FLXK_Wizard_Service::updates() );
 	}
 
-	private static function run( string $kind, string $value ): array {
+	/**
+	 * Bir sihirbaz adımı (ad, slogan, logo, sayfalar, tema, renk, ön ayar, onay, bitir/atla).
+	 * Yetki denetimi çağıranda (cap()); FLXK_Wizard_Service ve ajax_step buradan geçer.
+	 *
+	 * @return array<string,mixed> ok, lines, pages?
+	 */
+	public static function run( string $kind, string $value ): array {
 		switch ( $kind ) {
 			case 'name':
 				if ( '' !== $value && current_user_can( 'manage_options' ) ) {

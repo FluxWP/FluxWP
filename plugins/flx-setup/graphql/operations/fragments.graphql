@@ -1,0 +1,125 @@
+fragment FlxSetupPackageRow on FlxSetupPackage {
+  key
+  group
+  kind
+  id
+  name
+  subtitle
+  author
+  state
+  installed
+  latest
+  released {
+    iso
+    label
+    relative
+  }
+  active
+  iconUrl
+  tags {
+    label
+    kind
+  }
+  category
+  sourceName
+  showSource
+  sourceCount
+  sourceNote
+  requires {
+    slug
+    name
+    state
+    flux
+  }
+  autoUpdate {
+    mode
+    type
+    id
+    canChange
+  }
+  canUpdate
+  canInstall
+  canManage
+  canChangeVersion
+  versions {
+    version
+    older
+    released {
+      iso
+      label
+    }
+  }
+  description
+  website
+  images
+  info {
+    label
+    value
+  }
+}
+
+fragment FlxSetupConnectionFields on FlxSetupConnection {
+  state
+  title
+  message
+  host
+  site
+  checked {
+    iso
+    label
+    relative
+  }
+  checkedLabel
+  backingOff
+  hasKey
+  keyFromConfig
+  packageCount
+  updateCount
+}
+
+fragment FlxSetupSettingsFields on FlxSetupSettings {
+  server
+  defaultServer
+  serverFromConfig
+  effectiveServer
+  hasKey
+  keyFromConfig
+  auto
+  health
+  usageAvailable
+  usage
+  legal {
+    kvkk
+    privacy
+    terms
+  }
+}
+
+fragment FlxSetupSourceFields on FlxSetupSource {
+  id
+  name
+  url
+  type
+  main
+  enabled
+  hasKey
+  state
+  message
+  packageCount
+  canMoveUp
+}
+
+fragment FlxSetupRetentionFields on FlxSetupRetention {
+  available
+  days
+  choices
+  count
+  size
+  settingsUrl
+}
+
+fragment FlxSetupErrors on FlxUserError {
+  code
+  message
+  field
+}

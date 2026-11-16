@@ -1,0 +1,16 @@
+mutation FlxSetupSettingsSave($input: FlxSetupSettingsSaveInput!) {
+  flxSetupSettingsSave(input: $input) {
+    settings {
+      ...FlxSetupSettingsFields
+    }
+    connection {
+      ...FlxSetupConnectionFields
+    }
+    sources {
+      ...FlxSetupSourceFields
+    }
+    errors {
+      ...FlxSetupErrors
+    }
+  }
+}
