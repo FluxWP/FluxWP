@@ -198,6 +198,7 @@
       "version": "0.3.5",
       "dependencies": {
         "@fluxwp/core": "workspace:*",
+        "@fluxwp/graphql": "workspace:*",
         "@fluxwp/manifest": "workspace:*",
         "@fluxwp/modules": "workspace:*",
         "@fluxwp/render-web": "workspace:*",

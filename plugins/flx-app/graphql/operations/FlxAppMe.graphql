@@ -1,0 +1,89 @@
+# What the app needs after sign-in: user, site, menu, modules, layout, counters and digests.
+query FlxAppMe {
+  flxAppMe {
+    user {
+      databaseId
+      login
+      name
+      email
+      avatar
+      roles {
+        id
+        name
+      }
+      locale
+      isAdmin
+      profileUrl
+    }
+    site {
+      name
+      url
+      adminUrl
+      restUrl
+      icon
+      locale
+      timezone
+    }
+    auth {
+      kind
+      client
+      scope
+      expires
+    }
+    menu {
+      id
+      slug
+      title
+      url
+      icon
+      iconUrl
+      badge
+      items {
+        slug
+        title
+        url
+        badge
+      }
+    }
+    modules {
+      id
+      title
+      menu
+      api
+      icon
+      version
+      order
+      url
+      hasManifest
+      extra
+    }
+    counts {
+      key
+      value
+    }
+    bottom
+    webSession
+    caps {
+      key
+      granted
+    }
+    versions {
+      slug
+      version
+    }
+    layout {
+      pins
+      groups {
+        id
+        label
+        collapsed
+        items
+      }
+    }
+    hashes {
+      me
+      config
+      manifest
+    }
+  }
+}

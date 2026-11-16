@@ -1,0 +1,13 @@
+# Package screens (flx-app-manifest/1). ifHash = the digest the app already holds.
+query FlxAppManifest($ifHash: String) {
+  flxAppManifest(ifHash: $ifHash) {
+    schema
+    hash
+    notModified
+    platform
+    modules {
+      id
+      document
+    }
+  }
+}

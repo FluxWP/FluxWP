@@ -22,5 +22,7 @@ export const moduleScreens: Record<string, ComponentType> = {
   'flxan-journeys': lazyScreen(() => import('./analytics/JourneysScreen').then((m) => ({ default: m.JourneysScreen }))),
   'flxan-settings': lazyScreen(() => import('./analytics/SettingsScreen').then((m) => ({ default: m.SettingsScreen }))),
   'flxan-telemetry': lazyScreen(() => import('./analytics/TelemetryScreen').then((m) => ({ default: m.TelemetryScreen }))),
+  'flxapp-settings': lazyScreen(() => import('./app-settings/AppSettingsScreen').then((m) => ({ default: m.AppSettingsScreen }))),
+  'flxapp-access': lazyScreen(() => import('./app-settings/AccessScreen').then((m) => ({ default: m.AccessScreen }))),
   'flxc-inbox': lazyScreen(() => import('./whatsapp/WhatsAppScreen').then((m) => ({ default: m.WhatsAppScreen }))),
 };

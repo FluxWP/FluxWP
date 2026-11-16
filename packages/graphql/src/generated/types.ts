@@ -4,89 +4,27 @@
 type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 /** Internal type. DO NOT USE DIRECTLY. */
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
-/** Date range and visitor filters shared by every report. */
-export type FlxAnalyticsFilterInput = {
-  /** Last day (YYYY-MM-DD) when the range is custom. */
-  end?: string | null | undefined;
-  /** Ready-made range; default is the last 30 days. */
-  range?: FlxAnalyticsRangePreset | null | undefined;
-  /** Referral code filter: empty = all, * = only referral links, or a code. */
-  rc?: string | null | undefined;
-  /** Visitor type: all (default), guest, members or a role name. */
-  seg?: string | null | undefined;
-  /** First day (YYYY-MM-DD) when the range is custom. */
-  start?: string | null | undefined;
-};
+/** A personal API key or an app session. */
+export type FlxAppAccessKind =
+  | 'KEY'
+  | 'SESSION';
 
-/** Ready-made date range of a report. */
-export type FlxAnalyticsRangePreset =
-  | 'ALL'
-  | 'CUSTOM'
-  | 'DAYS_30'
-  | 'DAYS_7'
-  | 'DAYS_90'
-  | 'LAST_MONTH'
-  | 'LAST_YEAR'
-  | 'MONTHS_12'
-  | 'THIS_MONTH'
-  | 'THIS_YEAR'
-  | 'TODAY'
-  | 'YESTERDAY';
+/** Where an OAuth client comes from. */
+export type FlxAppClientKind =
+  | 'BUILTIN'
+  | 'DYNAMIC'
+  | 'MANUAL';
 
-/** What a breakdown splits the traffic by. */
-export type FlxAnalyticsDimKind =
-  | 'BROWSER'
-  | 'CHANNEL'
-  | 'COUNTRY'
-  | 'DEVICE'
-  | 'LANG'
-  | 'OS'
-  | 'UTM_CAMPAIGN'
-  | 'UTM_MEDIUM'
-  | 'UTM_SOURCE';
+/** Platform of the asking app; decides which menu and screens are sent. */
+export type FlxAppPlatform =
+  | 'DESKTOP'
+  | 'MOBILE';
 
-/** How a funnel is split into groups. */
-export type FlxAnalyticsFunnelBy =
-  | 'CHANNEL'
-  | 'COUNTRY'
-  | 'RC'
-  | 'REF'
-  | 'SEG'
-  | 'TOTAL';
-
-/** What a funnel step matches. */
-export type FlxAnalyticsStepType =
-  | 'ANY'
-  | 'EVENT'
-  | 'PATH';
-
-/** Options of the journeys report. */
-export type FlxAnalyticsJourneysInput = {
-  /** Only journeys that start on this path. */
-  from?: string | null | undefined;
-  /** Goal "funnel:step"; empty = no goal; not given = the default goal. */
-  goal?: string | null | undefined;
-  /** Group sub pages (/news/…) into one box. */
-  group?: boolean | null | undefined;
-  /** Steps to show, 2–6 (default 4). */
-  steps?: number | null | undefined;
-  /** Only journeys that end on this path. */
-  to?: string | null | undefined;
-  /** Paths to list, 5–100 (default 15). */
-  top?: number | null | undefined;
-};
-
-/** How a time series is grouped. */
-export type FlxAnalyticsSeriesGroup =
-  | 'DAY'
-  | 'MONTH'
-  | 'WEEK';
-
-/** How visits are sent to the site. */
-export type FlxAnalyticsCollectMethod =
-  | 'AUTO'
-  | 'FAST'
-  | 'REST';
+/** How the request signed in. */
+export type FlxAppAuthKind =
+  | 'ACCESS'
+  | 'COOKIE'
+  | 'KEY';
 
 /** State of an AI translation job. */
 export type FlxLanguageJobStatus =
@@ -144,104 +82,178 @@ export type FlxTaskRole =
   /** See tasks. */
   | 'VIEW';
 
-/** Input for the flxAnalyticsAggregate mutation. */
-export type FlxAnalyticsAggregateInput = {
+/** Input for the flxAppAccessRevoke mutation. */
+export type FlxAppAccessRevokeInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId?: string | null | undefined;
+  /** Row ID. */
+  id: number;
 };
 
-/** Input for the flxAnalyticsFastTest mutation. */
-export type FlxAnalyticsFastTestInput = {
+/** Input for the flxAppAdminAppearanceSave mutation. */
+export type FlxAppAdminAppearanceSaveInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId?: string | null | undefined;
-  /** The endpoint answered. */
-  ok: boolean;
+  /** Desktop shell: home, topbar, commands. */
+  desktop: unknown;
+  /** Mobile shell: nav, home, tabs, drawer, topbar. */
+  mobile: unknown;
+  /** Screens that open natively; the others open in the web view. */
+  screensOn: Array<string>;
+  /** Theme overrides: mode, radius, density, font, light/dark colours. */
+  theme: unknown;
 };
 
-/** Input for the flxAnalyticsKokoImport mutation. */
-export type FlxAnalyticsKokoImportInput = {
+/** Input for the flxAppAdminClientCreate mutation. */
+export type FlxAppAdminClientCreateInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId?: string | null | undefined;
-};
-
-/** Input for the flxAnalyticsRefSave mutation. */
-export type FlxAnalyticsRefSaveInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Referral code (letters, digits, - and _). */
-  code: string;
-  /** Remove the name. */
-  delete?: boolean | null | undefined;
-  /** Name shown in reports. */
-  name?: string | null | undefined;
-};
-
-/** Input for the flxAnalyticsReset mutation. */
-export type FlxAnalyticsResetInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-};
-
-/** Input for the flxAnalyticsSettingsSave mutation. */
-export type FlxAnalyticsSettingsSaveInput = {
-  /** Show the page's views in the admin bar. */
-  adminbar?: boolean | null | undefined;
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-  /** Do not count visitors who send "Do Not Track". */
-  dnt?: boolean | null | undefined;
-  /** Track phone, email and WhatsApp clicks. */
-  evContact?: boolean | null | undefined;
-  /** Track paid donations and orders. */
-  evDonation?: boolean | null | undefined;
-  /** Track file downloads. */
-  evDownload?: boolean | null | undefined;
-  /** Track outbound link clicks. */
-  evOutbound?: boolean | null | undefined;
-  /** Track site searches. */
-  evSearch?: boolean | null | undefined;
-  /** IP addresses that are not counted, one per line (* and CIDR work). */
-  excludeIps?: string | null | undefined;
-  /** Roles that are not counted. */
-  excludeRoles?: Array<string> | null | undefined;
-  /** Replaces the funnels (5 at most); an empty list or the default set goes back to the defaults. */
-  funnels?: Array<FlxAnalyticsFunnelInput> | null | undefined;
-  /** Months to keep data (0–120); 0 = forever. */
-  keepMonths?: number | null | undefined;
-  /** Collection method. */
-  method?: FlxAnalyticsCollectMethod | null | undefined;
-  /** Count visits. */
-  on?: boolean | null | undefined;
-  /** Show a views column in the post and page lists. */
-  postsColumn?: boolean | null | undefined;
-  /** Receive telemetry from FluxWP installs. */
-  tmHub?: boolean | null | undefined;
-};
-
-/** A funnel: steps visitors go through in order. */
-export type FlxAnalyticsFunnelInput = {
-  /** Funnel name. */
+  /** Generate a client secret. */
+  confidential?: boolean | null | undefined;
+  /** Name. */
   name: string;
-  /** Steps, 10 at most. */
-  steps: Array<FlxAnalyticsFunnelStepInput>;
+  /** Redirect URIs. */
+  redirectUris: Array<string>;
 };
 
-/** One funnel step. */
-export type FlxAnalyticsFunnelStepInput = {
-  /** Name shown in the report. */
-  label: string;
-  /** Site entry, a page path prefix or an event. */
-  type: FlxAnalyticsStepType;
-  /** Path (/donate/) or event (name or name:detail); empty for site entry. */
-  value?: string | null | undefined;
-};
-
-/** Input for the flxAnalyticsTelemetryForget mutation. */
-export type FlxAnalyticsTelemetryForgetInput = {
+/** Input for the flxAppAdminClientDelete mutation. */
+export type FlxAppAdminClientDeleteInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId?: string | null | undefined;
-  /** Record key, or "all". */
-  hash: string;
+  /** client_id. */
+  id: string;
+};
+
+/** Input for the flxAppAdminMobileSave mutation. */
+export type FlxAppAdminMobileSaveInput = {
+  /** The branded apps (replaces the list). */
+  apps?: Array<FlxAppBrandedAppInput> | null | undefined;
+  /** Delete the saved Expo access token. */
+  clearExpoToken?: boolean | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Allow Expo development redirects. */
+  devRedirects?: boolean | null | undefined;
+  /** Hide the admin bar on site pages opened in the app. */
+  embedFront?: boolean | null | undefined;
+  /** A new Expo access token. */
+  expoToken?: string | null | undefined;
+  /** The main FluxWP app may connect. */
+  genericApp?: boolean | null | undefined;
+  /** Push notifications are sent. */
+  pushEnabled?: boolean | null | undefined;
+  /** Hide content on the lock screen. */
+  pushHide?: boolean | null | undefined;
+  /** Google Play link. */
+  storeAndroid?: string | null | undefined;
+  /** App Store link. */
+  storeIos?: string | null | undefined;
+};
+
+/** A branded app. */
+export type FlxAppBrandedAppInput = {
+  /** client_id. */
+  id: string;
+  /** Name. */
+  name?: string | null | undefined;
+  /** mobile or desktop. */
+  platform?: string | null | undefined;
+  /** Redirect URIs. */
+  redirectUris?: Array<string> | null | undefined;
+};
+
+/** Input for the flxAppAdminModulesSave mutation. */
+export type FlxAppAdminModulesSaveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Module keys that stay on. */
+  on: Array<string>;
+};
+
+/** Input for the flxAppAdminSettingsSave mutation. */
+export type FlxAppAdminSettingsSaveInput = {
+  /** Access token lifetime in minutes (5 to 1440). */
+  accessMinutes?: number | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** MCP clients may register themselves. */
+  dynamicClients?: boolean | null | undefined;
+  /** Who can create API keys (a capability). */
+  keysCap?: string | null | undefined;
+  /** Create a customer account for a confirmed email. */
+  otpCreate?: boolean | null | undefined;
+  /** Donors may sign in with an emailed or phone code. */
+  otpEnabled?: boolean | null | undefined;
+  /** Staff may sign in with a code too. */
+  otpStaff?: boolean | null | undefined;
+  /** A signed-in donor may confirm a phone number. */
+  phoneSelfVerify?: boolean | null | undefined;
+  /** Session lifetime in days when unused (1 to 365). */
+  refreshDays?: number | null | undefined;
+  /** The app may open admin pages with a one-time sign-in link. */
+  webSession?: boolean | null | undefined;
+};
+
+/** Input for the flxAppDeviceRevoke mutation. */
+export type FlxAppDeviceRevokeInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Device ID. */
+  id: number;
+};
+
+/** Input for the flxAppKeyCreate mutation. */
+export type FlxAppKeyCreateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Valid for 30, 90 or 365 days; 0 = never expires. */
+  days?: number | null | undefined;
+  /** Name. */
+  name: string;
+};
+
+/** Input for the flxAppPrefsUpdate mutation. */
+export type FlxAppPrefsUpdateInput = {
+  /** Hidden home cards. */
+  cardHidden?: Array<string> | null | undefined;
+  /** Home card order. */
+  cardOrder?: Array<string> | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Entries always opened in the web view. */
+  forceWeb?: Array<string> | null | undefined;
+  /** Hidden menu entries. */
+  hidden?: Array<string> | null | undefined;
+  /** Menu order (slugs). */
+  order?: Array<string> | null | undefined;
+  /** Pinned menu entries. */
+  pinned?: Array<string> | null | undefined;
+  /** Notification choices to change. */
+  push?: Array<FlxAppPushPrefInput> | null | undefined;
+  /** Bottom bar entries (at most 5). */
+  tabs?: Array<string> | null | undefined;
+};
+
+/** A notification choice. */
+export type FlxAppPushPrefInput = {
+  /** Event type (a flxAppPrefs.events id). */
+  event: string;
+  /** Turn it on or off. */
+  on: boolean;
+};
+
+/** Input for the flxAppSessionCreate mutation. */
+export type FlxAppSessionCreateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Open without the panel chrome (default true). */
+  embed?: boolean | null | undefined;
+  /** Treat `path` as a site (front end) path. */
+  front?: boolean | null | undefined;
+  /** Panel path, e.g. admin.php?page=flx-crm. */
+  path?: string | null | undefined;
+  /** Site address to open instead of a panel path. */
+  url?: string | null | undefined;
 };
 
 /** Input for the flxLanguageSet mutation. */
@@ -498,191 +510,192 @@ export type FlxTaskWatchInput = {
   watch: boolean;
 };
 
-export type FlxAnalyticsAggregateMutationVariables = Exact<{
-  input: FlxAnalyticsAggregateInput;
+export type FlxAppAccessQueryVariables = Exact<{
+  all?: boolean | null | undefined;
 }>;
 
 
-export type FlxAnalyticsAggregateMutation = { flxAnalyticsAggregate: { processed: number, settings: { on: boolean, method: FlxAnalyticsCollectMethod, methodNow: FlxAnalyticsCollectMethod, dnt: boolean, excludeRoles: Array<string>, excludeIps: string, evOutbound: boolean, evDownload: boolean, evContact: boolean, evSearch: boolean, evDonation: boolean, postsColumn: boolean, adminbar: boolean, keepMonths: number, tmHub: boolean, hubEndpoint: string | null, pendingBytes: number, pendingLabel: string, fastPossible: boolean, fastTest: string, exportUrl: string, lastAggregated: { iso: string, label: string, relative: string } | null, roles: Array<{ value: string, label: string }>, funnels: Array<{ id: number, name: string, steps: Array<{ label: string, type: FlxAnalyticsStepType, value: string }> }>, funnelDefaults: Array<{ id: number, name: string, steps: Array<{ label: string, type: FlxAnalyticsStepType, value: string }> }>, funnelEvents: Array<{ value: string, label: string }>, funnelPages: Array<{ path: string, title: string }>, koko: { days: number, first: string, last: string } | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+export type FlxAppAccessQuery = { flxAppAccess: { canCreateKeys: boolean, canManage: boolean, devices: Array<{ id: number, name: string, platform: string, app: string, brand: string | null, push: boolean, lastSeen: number, lastSeenAgo: string, userId: number, user: string, current: boolean }>, rows: Array<{ id: number, kind: FlxAppAccessKind, name: string, hint: string, userId: number, user: string, created: number, lastUsed: number, lastIp: string, expires: number }>, downloads: { macos: string, windows: string, windowsMsi: string } } };
 
-export type FlxAnalyticsSettingsFieldsFragment = { on: boolean, method: FlxAnalyticsCollectMethod, methodNow: FlxAnalyticsCollectMethod, dnt: boolean, excludeRoles: Array<string>, excludeIps: string, evOutbound: boolean, evDownload: boolean, evContact: boolean, evSearch: boolean, evDonation: boolean, postsColumn: boolean, adminbar: boolean, keepMonths: number, tmHub: boolean, hubEndpoint: string | null, pendingBytes: number, pendingLabel: string, fastPossible: boolean, fastTest: string, exportUrl: string, lastAggregated: { iso: string, label: string, relative: string } | null, roles: Array<{ value: string, label: string }>, funnels: Array<{ id: number, name: string, steps: Array<{ label: string, type: FlxAnalyticsStepType, value: string }> }>, funnelDefaults: Array<{ id: number, name: string, steps: Array<{ label: string, type: FlxAnalyticsStepType, value: string }> }>, funnelEvents: Array<{ value: string, label: string }>, funnelPages: Array<{ path: string, title: string }>, koko: { days: number, first: string, last: string } | null };
-
-export type FlxAnalyticsBreakdownQueryVariables = Exact<{
-  filter?: FlxAnalyticsFilterInput | null | undefined;
-  kind: FlxAnalyticsDimKind;
-  first?: number | null | undefined;
-  after?: string | null | undefined;
+export type FlxAppAccessRevokeMutationVariables = Exact<{
+  input: FlxAppAccessRevokeInput;
 }>;
 
 
-export type FlxAnalyticsBreakdownQuery = { flxAnalyticsBreakdown: { totalCount: number | null, pageInfo: { hasNextPage: boolean, endCursor: string | null }, nodes: Array<{ value: string, label: string, visitors: number, pageviews: number }> } };
+export type FlxAppAccessRevokeMutation = { flxAppAccessRevoke: { ok: boolean, errors: Array<{ code: string, message: string, field: string | null }> } | null };
 
-export type FlxAnalyticsDimRowFieldsFragment = { value: string, label: string, visitors: number, pageviews: number };
-
-export type FlxAnalyticsConfigQueryVariables = Exact<{ [key: string]: never; }>;
+export type FlxAppAdminAppearanceQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type FlxAnalyticsConfigQuery = { flxAnalyticsConfig: { defaultGoal: string, canManageRefs: boolean, canManage: boolean, ignoreBrowser: boolean, fastEndpoint: string, exportUrl: string, homeUrl: string, settingsUrl: string, funnelSettingsUrl: string, hasWorldMap: boolean, presets: Array<{ value: string, label: string }>, kinds: Array<{ value: string, label: string }>, events: Array<{ value: string, label: string }>, channels: Array<{ value: string, label: string }>, segments: Array<{ value: string, label: string }>, funnelBy: Array<{ value: string, label: string }>, goals: Array<{ value: string, label: string }> } };
+export type FlxAppAdminAppearanceQuery = { flxAppAdminAppearance: { option: unknown, theme: unknown, fonts: Array<string>, previewMobile: unknown, previewDesktop: unknown, colorKeys: Array<{ key: string, label: string }>, targets: Array<{ label: string, items: Array<{ key: string, label: string }> }>, targetLabels: Array<{ key: string, label: string }>, screens: Array<{ key: string, label: string, on: boolean }> } };
 
-export type FlxAnalyticsEventsQueryVariables = Exact<{
-  filter?: FlxAnalyticsFilterInput | null | undefined;
-  name?: string | null | undefined;
-  first?: number | null | undefined;
-  after?: string | null | undefined;
+export type FlxAppAdminAppearanceFieldsFragment = { option: unknown, theme: unknown, fonts: Array<string>, previewMobile: unknown, previewDesktop: unknown, colorKeys: Array<{ key: string, label: string }>, targets: Array<{ label: string, items: Array<{ key: string, label: string }> }>, targetLabels: Array<{ key: string, label: string }>, screens: Array<{ key: string, label: string, on: boolean }> };
+
+export type FlxAppAdminAppearanceSaveMutationVariables = Exact<{
+  input: FlxAppAdminAppearanceSaveInput;
 }>;
 
 
-export type FlxAnalyticsEventsQuery = { flxAnalyticsEvents: { totalCount: number | null, pageInfo: { hasNextPage: boolean, endCursor: string | null }, nodes: Array<{ name: string, label: string, param: string, hits: number, uniques: number, amount: number }> } };
+export type FlxAppAdminAppearanceSaveMutation = { flxAppAdminAppearanceSave: { appearance: { option: unknown, theme: unknown, fonts: Array<string>, previewMobile: unknown, previewDesktop: unknown, colorKeys: Array<{ key: string, label: string }>, targets: Array<{ label: string, items: Array<{ key: string, label: string }> }>, targetLabels: Array<{ key: string, label: string }>, screens: Array<{ key: string, label: string, on: boolean }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
 
-export type FlxAnalyticsEventRowFieldsFragment = { name: string, label: string, param: string, hits: number, uniques: number, amount: number };
-
-export type FlxAnalyticsFastTestMutationVariables = Exact<{
-  input: FlxAnalyticsFastTestInput;
+export type FlxAppAdminClientCreateMutationVariables = Exact<{
+  input: FlxAppAdminClientCreateInput;
 }>;
 
 
-export type FlxAnalyticsFastTestMutation = { flxAnalyticsFastTest: { method: FlxAnalyticsCollectMethod, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+export type FlxAppAdminClientCreateMutation = { flxAppAdminClientCreate: { secret: string | null, client: { id: string, name: string, redirectUris: Array<string>, kind: FlxAppClientKind, hasSecret: boolean } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
 
-export type FlxAnalyticsFunnelQueryVariables = Exact<{
-  filter?: FlxAnalyticsFilterInput | null | undefined;
-  id?: number | null | undefined;
-  by?: FlxAnalyticsFunnelBy | null | undefined;
+export type FlxAppAdminClientFieldsFragment = { id: string, name: string, redirectUris: Array<string>, kind: FlxAppClientKind, hasSecret: boolean };
+
+export type FlxAppAdminClientDeleteMutationVariables = Exact<{
+  input: FlxAppAdminClientDeleteInput;
 }>;
 
 
-export type FlxAnalyticsFunnelQuery = { flxAnalyticsFunnel: { found: boolean, id: number | null, name: string | null, by: FlxAnalyticsFunnelBy, steps: Array<{ label: string, type: FlxAnalyticsStepType, value: string, count: number, rate: number, drop: number }>, groups: Array<{ value: string, label: string, counts: Array<number>, rate: number }>, funnels: Array<{ id: number, name: string }> } };
+export type FlxAppAdminClientDeleteMutation = { flxAppAdminClientDelete: { ok: boolean, errors: Array<{ code: string, message: string, field: string | null }> } | null };
 
-export type FlxAnalyticsFunnelFieldsFragment = { found: boolean, id: number | null, name: string | null, by: FlxAnalyticsFunnelBy, steps: Array<{ label: string, type: FlxAnalyticsStepType, value: string, count: number, rate: number, drop: number }>, groups: Array<{ value: string, label: string, counts: Array<number>, rate: number }>, funnels: Array<{ id: number, name: string }> };
+export type FlxAppAdminClientsQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type FlxAnalyticsJourneysQueryVariables = Exact<{
-  filter?: FlxAnalyticsFilterInput | null | undefined;
-  options?: FlxAnalyticsJourneysInput | null | undefined;
+
+export type FlxAppAdminClientsQuery = { flxAppAdminClients: { clients: Array<{ id: string, name: string, redirectUris: Array<string>, kind: FlxAppClientKind, hasSecret: boolean }>, connection: Array<{ key: string, label: string }> } };
+
+export type FlxAppAdminMenuQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAppAdminMenuQuery = { flxAppAdminMenu: { available: boolean, editorUrl: string | null, platforms: Array<{ key: string, label: string }>, rows: Array<{ role: string, menu: string, platforms: Array<{ key: string, visible: boolean }> }> } };
+
+export type FlxAppAdminMobileQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAppAdminMobileQuery = { flxAppAdminMobile: { genericApp: boolean, storeIos: string, storeAndroid: string, pushEnabled: boolean, pushHide: boolean, hasExpoToken: boolean, embedFront: boolean, devRedirects: boolean, deviceCount: number, pushCount: number, bootstrapUrl: string, preset: string | null, apps: Array<{ id: string, name: string, platform: string, redirectUris: Array<string> }>, lastPush: { at: number, ago: string, sent: number, failed: number, error: string | null } | null } };
+
+export type FlxAppAdminMobileFieldsFragment = { genericApp: boolean, storeIos: string, storeAndroid: string, pushEnabled: boolean, pushHide: boolean, hasExpoToken: boolean, embedFront: boolean, devRedirects: boolean, deviceCount: number, pushCount: number, bootstrapUrl: string, preset: string | null, apps: Array<{ id: string, name: string, platform: string, redirectUris: Array<string> }>, lastPush: { at: number, ago: string, sent: number, failed: number, error: string | null } | null };
+
+export type FlxAppAdminMobileSaveMutationVariables = Exact<{
+  input: FlxAppAdminMobileSaveInput;
 }>;
 
 
-export type FlxAnalyticsJourneysQuery = { flxAnalyticsJourneys: { range: { preset: FlxAnalyticsRangePreset, start: string, end: string, label: string, days: number, prevStart: string, prevEnd: string }, options: { steps: number, from: string, to: string, goal: string, group: boolean, top: number }, goals: Array<{ value: string, label: string }>, summary: { sessions: number, multi: number, multiPct: number, multiChange: number | null, avgLen: number, avgLenChange: number | null, goalRate: number | null, goalReached: number, goalChange: number | null, topEntry: { key: string, label: string, count: number, pct: number } | null, topExit: { key: string, label: string, count: number, pct: number } | null }, flow: { columns: Array<{ nodes: Array<{ key: string, label: string, path: string, ev: boolean, count: number, ends: number }> }>, links: Array<{ step: number, from: string, to: string, count: number }> }, paths: { top: number, total: number, items: Array<{ sessions: number, reached: number, share: number, prev: number, change: number | null, rate: number, steps: Array<{ key: string, label: string, path: string, ev: boolean }> }> } } };
+export type FlxAppAdminMobileSaveMutation = { flxAppAdminMobileSave: { mobile: { genericApp: boolean, storeIos: string, storeAndroid: string, pushEnabled: boolean, pushHide: boolean, hasExpoToken: boolean, embedFront: boolean, devRedirects: boolean, deviceCount: number, pushCount: number, bootstrapUrl: string, preset: string | null, apps: Array<{ id: string, name: string, platform: string, redirectUris: Array<string> }>, lastPush: { at: number, ago: string, sent: number, failed: number, error: string | null } | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
 
-export type FlxAnalyticsRangeFieldsFragment = { preset: FlxAnalyticsRangePreset, start: string, end: string, label: string, days: number, prevStart: string, prevEnd: string };
+export type FlxAppAdminModulesQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type FlxAnalyticsKokoImportMutationVariables = Exact<{
-  input: FlxAnalyticsKokoImportInput;
+
+export type FlxAppAdminModulesQuery = { flxAppAdminModules: Array<{ id: string, title: string, menu: string | null, cap: string | null, version: string | null, kind: string, screens: number, errors: Array<string>, on: boolean }> };
+
+export type FlxAppAdminModuleFieldsFragment = { id: string, title: string, menu: string | null, cap: string | null, version: string | null, kind: string, screens: number, errors: Array<string>, on: boolean };
+
+export type FlxAppAdminModulesSaveMutationVariables = Exact<{
+  input: FlxAppAdminModulesSaveInput;
 }>;
 
 
-export type FlxAnalyticsKokoImportMutation = { flxAnalyticsKokoImport: { rows: number, settings: { on: boolean, method: FlxAnalyticsCollectMethod, methodNow: FlxAnalyticsCollectMethod, dnt: boolean, excludeRoles: Array<string>, excludeIps: string, evOutbound: boolean, evDownload: boolean, evContact: boolean, evSearch: boolean, evDonation: boolean, postsColumn: boolean, adminbar: boolean, keepMonths: number, tmHub: boolean, hubEndpoint: string | null, pendingBytes: number, pendingLabel: string, fastPossible: boolean, fastTest: string, exportUrl: string, lastAggregated: { iso: string, label: string, relative: string } | null, roles: Array<{ value: string, label: string }>, funnels: Array<{ id: number, name: string, steps: Array<{ label: string, type: FlxAnalyticsStepType, value: string }> }>, funnelDefaults: Array<{ id: number, name: string, steps: Array<{ label: string, type: FlxAnalyticsStepType, value: string }> }>, funnelEvents: Array<{ value: string, label: string }>, funnelPages: Array<{ path: string, title: string }>, koko: { days: number, first: string, last: string } | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+export type FlxAppAdminModulesSaveMutation = { flxAppAdminModulesSave: { modules: Array<{ id: string, title: string, menu: string | null, cap: string | null, version: string | null, kind: string, screens: number, errors: Array<string>, on: boolean }> | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
 
-export type FlxAnalyticsPageQueryVariables = Exact<{
-  filter?: FlxAnalyticsFilterInput | null | undefined;
-  target: string;
+export type FlxAppAdminPushTestMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAppAdminPushTestMutation = { flxAppAdminPushTest: { sent: number | null, failed: number | null, skipped: number | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAppAdminSettingsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAppAdminSettingsQuery = { flxAppAdminSettings: { accessMinutes: number, refreshDays: number, dynamicClients: boolean, webSession: boolean, otpEnabled: boolean, otpCreate: boolean, otpStaff: boolean, phoneSelfVerify: boolean, keysCap: string, version: string, keysCapChoices: Array<{ key: string, label: string }> } };
+
+export type FlxAppAdminSettingsFieldsFragment = { accessMinutes: number, refreshDays: number, dynamicClients: boolean, webSession: boolean, otpEnabled: boolean, otpCreate: boolean, otpStaff: boolean, phoneSelfVerify: boolean, keysCap: string, version: string, keysCapChoices: Array<{ key: string, label: string }> };
+
+export type FlxAppAdminSettingsSaveMutationVariables = Exact<{
+  input: FlxAppAdminSettingsSaveInput;
 }>;
 
 
-export type FlxAnalyticsPageQuery = { flxAnalyticsPage: { found: boolean, paths: Array<string>, visitors: number, pageviews: number, series: Array<{ date: string, visitors: number, pageviews: number }> } };
+export type FlxAppAdminSettingsSaveMutation = { flxAppAdminSettingsSave: { settings: { accessMinutes: number, refreshDays: number, dynamicClients: boolean, webSession: boolean, otpEnabled: boolean, otpCreate: boolean, otpStaff: boolean, phoneSelfVerify: boolean, keysCap: string, version: string, keysCapChoices: Array<{ key: string, label: string }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
 
-export type FlxAnalyticsPagesQueryVariables = Exact<{
-  filter?: FlxAnalyticsFilterInput | null | undefined;
-  q?: string | null | undefined;
-  only404?: boolean | null | undefined;
-  first?: number | null | undefined;
-  after?: string | null | undefined;
+export type FlxAppBootstrapQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAppBootstrapQuery = { flxAppBootstrap: { document: unknown } };
+
+export type FlxAppConfigQueryVariables = Exact<{
+  ifHash?: string | null | undefined;
 }>;
 
 
-export type FlxAnalyticsPagesQuery = { flxAnalyticsPages: { totalCount: number | null, pageInfo: { hasNextPage: boolean, endCursor: string | null }, nodes: Array<{ path: string, url: string, postId: number, title: string, is404: boolean, visitors: number, pageviews: number }> } };
+export type FlxAppConfigQuery = { flxAppConfig: { hash: string, notModified: boolean, document: unknown } };
 
-export type FlxAnalyticsPageRowFieldsFragment = { path: string, url: string, postId: number, title: string, is404: boolean, visitors: number, pageviews: number };
+export type FlxAppCountsQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type FlxAnalyticsRealtimeQueryVariables = Exact<{
-  filter?: FlxAnalyticsFilterInput | null | undefined;
-  minutes?: number | null | undefined;
-  kpi?: boolean | null | undefined;
+
+export type FlxAppCountsQuery = { flxAppCounts: Array<{ key: string, value: number }> };
+
+export type FlxAppDashboardQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAppDashboardQuery = { flxAppDashboard: { cards: Array<{ id: string, title: string, value: string, sub: string | null, icon: string | null, tone: string | null, url: string | null, open: string | null, order: number | null }>, lists: Array<{ id: string, title: string, icon: string | null, url: string | null, open: string | null, order: number | null, items: Array<{ title: string, sub: string | null, meta: string | null, url: string | null }> }> } };
+
+export type FlxAppDeviceRevokeMutationVariables = Exact<{
+  input: FlxAppDeviceRevokeInput;
 }>;
 
 
-export type FlxAnalyticsRealtimeQuery = { flxAnalyticsRealtime: { minutes: number, active: number, visitors: number, pageviews: number, perMinute: Array<number>, kpi: { totals: { visitors: number, pageviews: number }, prev: { visitors: number, pageviews: number }, visits: { sessions: number, avgDuration: number, bounceRate: number, pagesPer: number }, visitsPrev: { sessions: number, avgDuration: number, bounceRate: number, pagesPer: number }, change: { visitors: number | null, pageviews: number | null, sessions: number | null, avgDuration: number | null, bounceRate: number | null, pagesPer: number | null }, series: { group: FlxAnalyticsSeriesGroup, items: Array<{ date: string, visitors: number, pageviews: number }> } } | null, updated: { iso: string, label: string, relative: string } | null, pages: Array<{ path: string, title: string, pageviews: number }>, referrers: Array<{ host: string, pageviews: number }>, countries: Array<{ value: string, label: string, visitors: number }>, codes: Array<{ code: string, label: string, visitors: number }> } };
+export type FlxAppDeviceRevokeMutation = { flxAppDeviceRevoke: { ok: boolean, errors: Array<{ code: string, message: string, field: string | null }> } | null };
 
-export type FlxAnalyticsKpiFieldsFragment = { totals: { visitors: number, pageviews: number }, prev: { visitors: number, pageviews: number }, visits: { sessions: number, avgDuration: number, bounceRate: number, pagesPer: number }, visitsPrev: { sessions: number, avgDuration: number, bounceRate: number, pagesPer: number }, change: { visitors: number | null, pageviews: number | null, sessions: number | null, avgDuration: number | null, bounceRate: number | null, pagesPer: number | null }, series: { group: FlxAnalyticsSeriesGroup, items: Array<{ date: string, visitors: number, pageviews: number }> } };
-
-export type FlxAnalyticsRealtimeFieldsFragment = { minutes: number, active: number, visitors: number, pageviews: number, perMinute: Array<number>, updated: { iso: string, label: string, relative: string } | null, pages: Array<{ path: string, title: string, pageviews: number }>, referrers: Array<{ host: string, pageviews: number }>, countries: Array<{ value: string, label: string, visitors: number }>, codes: Array<{ code: string, label: string, visitors: number }> };
-
-export type FlxAnalyticsReferrersQueryVariables = Exact<{
-  filter?: FlxAnalyticsFilterInput | null | undefined;
-  q?: string | null | undefined;
-  first?: number | null | undefined;
-  after?: string | null | undefined;
+export type FlxAppKeyCreateMutationVariables = Exact<{
+  input: FlxAppKeyCreateInput;
 }>;
 
 
-export type FlxAnalyticsReferrersQuery = { flxAnalyticsReferrers: { totalCount: number | null, pageInfo: { hasNextPage: boolean, endCursor: string | null }, nodes: Array<{ host: string, channel: string, channelLabel: string, visitors: number, pageviews: number }> } };
+export type FlxAppKeyCreateMutation = { flxAppKeyCreate: { key: string | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
 
-export type FlxAnalyticsReferrerRowFieldsFragment = { host: string, channel: string, channelLabel: string, visitors: number, pageviews: number };
+export type FlxAppLogoutMutationVariables = Exact<{ [key: string]: never; }>;
 
-export type FlxAnalyticsRefsQueryVariables = Exact<{
-  filter?: FlxAnalyticsFilterInput | null | undefined;
+
+export type FlxAppLogoutMutation = { flxAppLogout: { ok: boolean } | null };
+
+export type FlxAppManifestQueryVariables = Exact<{
+  ifHash?: string | null | undefined;
 }>;
 
 
-export type FlxAnalyticsRefsQuery = { flxAnalyticsRefs: Array<{ code: string, name: string, label: string, url: string, visitors: number, pageviews: number, sessions: number, pagesPer: number, avgDuration: number, donations: number, amount: number, deepest: number, deepestLabel: string, completed: number }> };
+export type FlxAppManifestQuery = { flxAppManifest: { schema: string, hash: string, notModified: boolean, platform: FlxAppPlatform | null, modules: Array<{ id: string, document: unknown }> } };
 
-export type FlxAnalyticsRefFieldsFragment = { code: string, name: string, label: string, url: string, visitors: number, pageviews: number, sessions: number, pagesPer: number, avgDuration: number, donations: number, amount: number, deepest: number, deepestLabel: string, completed: number };
+export type FlxAppMeQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type FlxAnalyticsRefSaveMutationVariables = Exact<{
-  input: FlxAnalyticsRefSaveInput;
+
+export type FlxAppMeQuery = { flxAppMe: { bottom: Array<string>, webSession: boolean, user: { databaseId: number, login: string, name: string, email: string, avatar: string, locale: string, isAdmin: boolean, profileUrl: string, roles: Array<{ id: string, name: string }> }, site: { name: string, url: string, adminUrl: string, restUrl: string, icon: string, locale: string, timezone: string }, auth: { kind: FlxAppAuthKind, client: string | null, scope: string | null, expires: number | null }, menu: Array<{ id: string, slug: string, title: string, url: string, icon: string, iconUrl: string | null, badge: string | null, items: Array<{ slug: string, title: string, url: string, badge: string | null }> }>, modules: Array<{ id: string, title: string, menu: string | null, api: string | null, icon: string | null, version: string | null, order: number | null, url: string | null, hasManifest: boolean, extra: unknown }>, counts: Array<{ key: string, value: number }>, caps: Array<{ key: string, granted: boolean }>, versions: Array<{ slug: string, version: string }>, layout: { pins: Array<string>, groups: Array<{ id: string, label: string, collapsed: boolean, items: Array<string> }> } | null, hashes: { me: string, config: string, manifest: string } } };
+
+export type FlxAppPrefsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAppPrefsQuery = { flxAppPrefs: { order: Array<string>, hidden: Array<string>, pinned: Array<string>, forceWeb: Array<string>, tabs: Array<string>, cardOrder: Array<string>, cardHidden: Array<string>, updated: number, push: Array<{ event: string, on: boolean }>, events: Array<{ id: string, title: string, source: string, default: boolean, on: boolean }> } };
+
+export type FlxAppPrefsFieldsFragment = { order: Array<string>, hidden: Array<string>, pinned: Array<string>, forceWeb: Array<string>, tabs: Array<string>, cardOrder: Array<string>, cardHidden: Array<string>, updated: number, push: Array<{ event: string, on: boolean }>, events: Array<{ id: string, title: string, source: string, default: boolean, on: boolean }> };
+
+export type FlxAppPrefsUpdateMutationVariables = Exact<{
+  input: FlxAppPrefsUpdateInput;
 }>;
 
 
-export type FlxAnalyticsRefSaveMutation = { flxAnalyticsRefSave: { ref: { code: string, name: string, url: string } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+export type FlxAppPrefsUpdateMutation = { flxAppPrefsUpdate: { prefs: { order: Array<string>, hidden: Array<string>, pinned: Array<string>, forceWeb: Array<string>, tabs: Array<string>, cardOrder: Array<string>, cardHidden: Array<string>, updated: number, push: Array<{ event: string, on: boolean }>, events: Array<{ id: string, title: string, source: string, default: boolean, on: boolean }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
 
-export type FlxAnalyticsReportQueryVariables = Exact<{
-  filter?: FlxAnalyticsFilterInput | null | undefined;
+export type FlxAppSessionCreateMutationVariables = Exact<{
+  input: FlxAppSessionCreateInput;
 }>;
 
 
-export type FlxAnalyticsReportQuery = { flxAnalyticsReport: { range: { preset: FlxAnalyticsRangePreset, start: string, end: string, label: string, days: number, prevStart: string, prevEnd: string }, filter: { seg: string, rc: string }, kpi: { totals: { visitors: number, pageviews: number }, prev: { visitors: number, pageviews: number }, visits: { sessions: number, avgDuration: number, bounceRate: number, pagesPer: number }, visitsPrev: { sessions: number, avgDuration: number, bounceRate: number, pagesPer: number }, change: { visitors: number | null, pageviews: number | null, sessions: number | null, avgDuration: number | null, bounceRate: number | null, pagesPer: number | null }, series: { group: FlxAnalyticsSeriesGroup, items: Array<{ date: string, visitors: number, pageviews: number }> } }, pages: { total: number, items: Array<{ path: string, url: string, postId: number, title: string, is404: boolean, visitors: number, pageviews: number }> }, notFound: { total: number, items: Array<{ path: string, url: string, postId: number, title: string, is404: boolean, visitors: number, pageviews: number }> }, referrers: { total: number, items: Array<{ host: string, channel: string, channelLabel: string, visitors: number, pageviews: number }> }, dims: Array<{ kind: FlxAnalyticsDimKind, total: number, items: Array<{ value: string, label: string, visitors: number, pageviews: number }> }>, segments: Array<{ value: string, label: string, visitors: number, pageviews: number }>, refs: Array<{ code: string, name: string, label: string, url: string, visitors: number, pageviews: number, sessions: number, pagesPer: number, avgDuration: number, donations: number, amount: number, deepest: number, deepestLabel: string, completed: number }>, funnel: { found: boolean, id: number | null, name: string | null, by: FlxAnalyticsFunnelBy, steps: Array<{ label: string, type: FlxAnalyticsStepType, value: string, count: number, rate: number, drop: number }>, groups: Array<{ value: string, label: string, counts: Array<number>, rate: number }>, funnels: Array<{ id: number, name: string }> }, eventSummary: Array<{ name: string, label: string, hits: number, uniques: number, amount: number }>, events: { total: number, items: Array<{ name: string, label: string, param: string, hits: number, uniques: number, amount: number }> }, realtime: { minutes: number, active: number, visitors: number, pageviews: number, perMinute: Array<number>, updated: { iso: string, label: string, relative: string } | null, pages: Array<{ path: string, title: string, pageviews: number }>, referrers: Array<{ host: string, pageviews: number }>, countries: Array<{ value: string, label: string, visitors: number }>, codes: Array<{ code: string, label: string, visitors: number }> } } };
+export type FlxAppSessionCreateMutation = { flxAppSessionCreate: { url: string | null, expiresIn: number | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
 
-export type FlxAnalyticsResetMutationVariables = Exact<{
-  input: FlxAnalyticsResetInput;
+export type FlxAppSessionEndMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAppSessionEndMutation = { flxAppSessionEnd: { ended: number } | null };
+
+export type FlxAppSyncQueryVariables = Exact<{
+  since?: number | null | undefined;
 }>;
 
 
-export type FlxAnalyticsResetMutation = { flxAnalyticsReset: { settings: { on: boolean, method: FlxAnalyticsCollectMethod, methodNow: FlxAnalyticsCollectMethod, dnt: boolean, excludeRoles: Array<string>, excludeIps: string, evOutbound: boolean, evDownload: boolean, evContact: boolean, evSearch: boolean, evDonation: boolean, postsColumn: boolean, adminbar: boolean, keepMonths: number, tmHub: boolean, hubEndpoint: string | null, pendingBytes: number, pendingLabel: string, fastPossible: boolean, fastTest: string, exportUrl: string, lastAggregated: { iso: string, label: string, relative: string } | null, roles: Array<{ value: string, label: string }>, funnels: Array<{ id: number, name: string, steps: Array<{ label: string, type: FlxAnalyticsStepType, value: string }> }>, funnelDefaults: Array<{ id: number, name: string, steps: Array<{ label: string, type: FlxAnalyticsStepType, value: string }> }>, funnelEvents: Array<{ value: string, label: string }>, funnelPages: Array<{ path: string, title: string }>, koko: { days: number, first: string, last: string } | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
-
-export type FlxAnalyticsSettingsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type FlxAnalyticsSettingsQuery = { flxAnalyticsSettings: { on: boolean, method: FlxAnalyticsCollectMethod, methodNow: FlxAnalyticsCollectMethod, dnt: boolean, excludeRoles: Array<string>, excludeIps: string, evOutbound: boolean, evDownload: boolean, evContact: boolean, evSearch: boolean, evDonation: boolean, postsColumn: boolean, adminbar: boolean, keepMonths: number, tmHub: boolean, hubEndpoint: string | null, pendingBytes: number, pendingLabel: string, fastPossible: boolean, fastTest: string, exportUrl: string, lastAggregated: { iso: string, label: string, relative: string } | null, roles: Array<{ value: string, label: string }>, funnels: Array<{ id: number, name: string, steps: Array<{ label: string, type: FlxAnalyticsStepType, value: string }> }>, funnelDefaults: Array<{ id: number, name: string, steps: Array<{ label: string, type: FlxAnalyticsStepType, value: string }> }>, funnelEvents: Array<{ value: string, label: string }>, funnelPages: Array<{ path: string, title: string }>, koko: { days: number, first: string, last: string } | null } };
-
-export type FlxAnalyticsSettingsSaveMutationVariables = Exact<{
-  input: FlxAnalyticsSettingsSaveInput;
-}>;
-
-
-export type FlxAnalyticsSettingsSaveMutation = { flxAnalyticsSettingsSave: { settings: { on: boolean, method: FlxAnalyticsCollectMethod, methodNow: FlxAnalyticsCollectMethod, dnt: boolean, excludeRoles: Array<string>, excludeIps: string, evOutbound: boolean, evDownload: boolean, evContact: boolean, evSearch: boolean, evDonation: boolean, postsColumn: boolean, adminbar: boolean, keepMonths: number, tmHub: boolean, hubEndpoint: string | null, pendingBytes: number, pendingLabel: string, fastPossible: boolean, fastTest: string, exportUrl: string, lastAggregated: { iso: string, label: string, relative: string } | null, roles: Array<{ value: string, label: string }>, funnels: Array<{ id: number, name: string, steps: Array<{ label: string, type: FlxAnalyticsStepType, value: string }> }>, funnelDefaults: Array<{ id: number, name: string, steps: Array<{ label: string, type: FlxAnalyticsStepType, value: string }> }>, funnelEvents: Array<{ value: string, label: string }>, funnelPages: Array<{ path: string, title: string }>, koko: { days: number, first: string, last: string } | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
-
-export type FlxAnalyticsTelemetryQueryVariables = Exact<{
-  days?: number | null | undefined;
-  country?: string | null | undefined;
-}>;
-
-
-export type FlxAnalyticsTelemetryQuery = { flxAnalyticsTelemetry: { enabled: boolean, endpoint: string, days: number, country: string, countries: Array<{ code: string, name: string, sites: number }>, overview: { installs: number, reports: number, errorsOpen: number, fatalOpen: number, events: number, appUsage: Array<{ day: string, platform: string, accounts: number }>, usage: Array<{ slug: string, name: string, sites: number, topVersion: string }>, pairs: Array<{ aName: string, bName: string, sites: number }>, combos: Array<{ names: Array<string>, sites: number }>, php: Array<{ key: string, label: string, sites: number }>, wp: Array<{ key: string, label: string, sites: number }>, locales: Array<{ key: string, label: string, sites: number }>, countries: Array<{ key: string, label: string, sites: number }> }, onboarding: { runs: number, done: number, skipped: number, left: number, medianSeconds: number, reach: Array<{ step: string, label: string, count: number }>, stops: Array<{ step: string, label: string, outcome: string, count: number }>, cards: Array<{ slug: string, name: string, picked: number, dropped: number, recOff: number }>, presets: Array<{ key: string, count: number }>, styles: Array<{ key: string, count: number }> } } };
-
-export type FlxAnalyticsTelemetryErrorsQueryVariables = Exact<{
-  days?: number | null | undefined;
-  country?: string | null | undefined;
-  plugin?: string | null | undefined;
-  type?: string | null | undefined;
-}>;
-
-
-export type FlxAnalyticsTelemetryErrorsQuery = { flxAnalyticsTelemetryErrors: { plugins: Array<{ value: string, label: string }>, items: Array<{ hash: string, type: string, fatal: boolean, message: string, more: string, file: string, line: number, plugin: string, pluginName: string, version: string, sites: number, count: number, last: { iso: string, label: string, relative: string } }> } };
-
-export type FlxAnalyticsTelemetryForgetMutationVariables = Exact<{
-  input: FlxAnalyticsTelemetryForgetInput;
-}>;
-
-
-export type FlxAnalyticsTelemetryForgetMutation = { flxAnalyticsTelemetryForget: { removed: boolean | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+export type FlxAppSyncQuery = { flxAppSync: { serverTime: number, counts: Array<{ key: string, value: number }>, hashes: { me: string, config: string, manifest: string }, events: Array<{ event: string, title: string, body: string, target: string, params: unknown, at: number }> } };
 
 export type FlxContentLanguageQueryVariables = Exact<{
   id: string;
