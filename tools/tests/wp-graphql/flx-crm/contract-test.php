@@ -112,6 +112,17 @@ flxt_same( array( 'FlxContact', $id, 'Ayşe Yılmaz', 'ayse@example.com' ), arra
 $byid = flxcrm_t( 'FlxCrmContact', array( 'id' => (string) $id ), $admin )['data']['flxContact'] ?? array();
 flxt_same( $c['id'], $byid['id'] ?? null, 'contact: plain database id works too' );
 flxt_same( null, flxcrm_field( flxt_gql( 'query($id: ID!){ node(id:$id){ __typename } }', array( 'id' => $c['id'] ), $sub ), 'node' ), 'FlxPerson: node is hidden from a user without CRM access' );
+// A package may open a contact to its own users (flxcrm_gql_can_see_contact); the CRM-only fields stay closed.
+$flxt_open = static fn( $ok, $contact, $uid ) => $uid === $sub ? true : $ok;
+add_filter( 'flxcrm_gql_can_see_contact', $flxt_open, 10, 3 );
+$q  = 'query($id: ID!){ node(id:$id){ ... on FlxContact { name email ltv { formatted } note timeline { nodes { type } } consent { email } tags { name } } } }';
+$ns = flxt_gql( $q, array( 'id' => $c['id'] ), $sub );
+remove_filter( 'flxcrm_gql_can_see_contact', $flxt_open, 10 );
+flxt_same( true, ! empty( $ns['data']['node']['name'] ), 'can_see filter: the package user loads the person' );
+flxt_same( true, array_key_exists( 'ltv', (array) $ns['data']['node'] ) && null === $ns['data']['node']['ltv'], 'can_see filter: ltv is null without flxcrm_view' );
+flxt_same( true, array_key_exists( 'timeline', (array) $ns['data']['node'] ) && null === $ns['data']['node']['timeline'], 'can_see filter: timeline is null without flxcrm_view' );
+flxt_same( true, array_key_exists( 'consent', (array) $ns['data']['node'] ) && null === $ns['data']['node']['consent'], 'can_see filter: consent is null without flxcrm_view' );
+flxt_same( 'FORBIDDEN', $ns['errors'][0]['extensions']['code'] ?? null, 'can_see filter: the closed fields report FORBIDDEN' );
 flxt_same( (string) $byid['editUrl'], flxcrm_contact_url( $id ), 'contact: editUrl is the classic card' );
 
 // ---- List, filters, sorting --------------------------------------------------------------------------

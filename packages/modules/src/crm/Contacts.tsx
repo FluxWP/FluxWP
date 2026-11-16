@@ -118,9 +118,9 @@ export function Contacts({ route, go }: { route: Route; go: (to: string) => void
           c.phone?.e164 ?? '',
           c.company ?? '',
           c.city ?? '',
-          c.roles.join(', '),
+          (c.roles ?? []).join(', '),
           c.segmentLabel ?? '',
-          String(c.ltv.amount),
+          String(c.ltv?.amount ?? 0),
           String(c.donations),
           String(c.orders),
           String(c.churn),
@@ -309,9 +309,9 @@ export function Contacts({ route, go }: { route: Route; go: (to: string) => void
                         <span>
                           <strong>{c.name}</strong>
                           <small>{[c.email, c.phone?.display, c.city].filter(Boolean).join(' · ')}</small>
-                          {c.tags.length > 0 && (
+                          {(c.tags ?? []).length > 0 && (
                             <span className="flxcrm-tags">
-                              {c.tags.slice(0, 3).map((x) => (
+                              {(c.tags ?? []).slice(0, 3).map((x) => (
                                 <span key={x.databaseId} className="flxcrm-tag" style={{ ['--tc' as string]: x.color ?? '#64748b' }}>
                                   {x.name}
                                 </span>
@@ -323,22 +323,22 @@ export function Contacts({ route, go }: { route: Route; go: (to: string) => void
                     </td>
                     <td data-label={t('Role and segment')}>
                       <span className="flxcrm-pills">
-                        <RolePills keys={c.roles} />
-                        {c.ltv.amount > 0 && <SegmentBadge segment={c.segment} label={c.segmentLabel} />}
+                        <RolePills keys={c.roles ?? []} />
+                        {(c.ltv?.amount ?? 0) > 0 && <SegmentBadge segment={c.segment} label={c.segmentLabel} />}
                       </span>
                     </td>
                     <td className="num" data-label={t('Value')}>
-                      {c.ltv.amount > 0 ? (
+                      {c.ltv && c.ltv.amount > 0 ? (
                         <>
                           <strong>{c.ltv.formatted}</strong>
-                          <small>{countsLabel(crm, c.donations, c.orders)}</small>
+                          <small>{countsLabel(crm, c.donations ?? 0, c.orders ?? 0)}</small>
                         </>
                       ) : (
                         <span className="flxcrm-muted">—</span>
                       )}
                     </td>
                     <td data-label={t('Churn risk')}>
-                      <ChurnMeter churn={c.churn} paid={c.ltv.amount > 0} risk={c.atRisk} />
+                      <ChurnMeter churn={c.churn ?? 0} paid={(c.ltv?.amount ?? 0) > 0} risk={!!c.atRisk} />
                     </td>
                     <td data-label={t('Last activity')}>
                       <span title={c.lastActivityAt?.label}>{c.lastActivityAt?.relative ?? '—'}</span>

@@ -195,7 +195,7 @@ export function Overview(_props: { go: (to: string) => void }) {
                       <small>{t('last payment %s', c.lastPaidAt?.relative ?? '—')}</small>
                     </span>
                     <span className="flxcrm-list__side">
-                      <Money value={c.ltv} />
+                      {c.ltv && <Money value={c.ltv} />}
                       <span className="flxcrm-badge is-bad">%{c.churn}</span>
                     </span>
                   </a>

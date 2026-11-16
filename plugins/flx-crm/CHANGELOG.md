@@ -4,7 +4,8 @@
 - GraphQL: kişi, zaman çizgisi, segment, yolculuk, kopya, ayar, AI ve senkron işlemleri `/graphql` üzerinde (28 işlem). `FlxContact`, ortak `FlxPerson` arayüzünün tek uygulaması; diğer paketler alanı `flx_gql_field('FlxContact', ...)` ile ekler.
 - Yeni React ekranı: Genel bakış, Kişiler, kişi kartı, Segmentler, Yolculuklar, Kopyalar, Ayarlar klasikle aynı özellik ve görünümde; wp-admin'de varsayılan. Klasik görünüm başlıktaki bağlantıyla açılır.
 - Servis katmanı (`includes/services`); klasik yazıcılar GraphQL önbelleğini temizler.
-- Kalan klasik: Olaylar sayfası ve kişi kartı eklenti bölümleri.
+- `FlxContact`: CRM'e özel alanlar `flxcrm_view` ister ve nullable; `flxcrm_gql_can_see_contact` filtresi paketlere kendi kişilerini açar; avatar yalnız site avatarları açıksa döner.
+- Kalan klasik (sonraki sürümde kapanacak): Olaylar sayfası ve kişi kartı eklenti bölümleri.
 
 ## 0.9.4
 - Telefon alanındaki doğrulama işareti sade: arka plansız, hafif kıvrımlı yeşil tik; geçersizde küçük kırmızı çarpı (flx-brand 1.6.3).

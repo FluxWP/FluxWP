@@ -53,7 +53,17 @@ final class FLXCRM_Contact_Loader extends FLXGQL_Loader {
 	 * @param mixed $record Record.
 	 */
 	protected function can_see( $record ): bool {
-		return flxcrm_can();
+		$ok = flxcrm_can();
+		/**
+		 * Whether the viewer may load this contact (node lookups and FlxContact fields of other packages).
+		 * Packages return true only for contacts the viewer owns or handles (a donor's own record, a chat agent's
+		 * conversation). The CRM-only fields of FlxContact keep their own flxcrm_view check.
+		 *
+		 * @param bool          $ok      The viewer has the CRM permission.
+		 * @param FLXCRM_Contact $contact The contact.
+		 * @param int           $user_id Current user.
+		 */
+		return (bool) apply_filters( 'flxcrm_gql_can_see_contact', $ok, $record instanceof FLXCRM_Contact_Node ? $record->contact : $record, get_current_user_id() );
 	}
 }
 
@@ -518,31 +528,31 @@ flx_gql_type(
 				'description' => __( 'Picture address (from the e-mail address).', 'flx-crm' ),
 				'resolve'     => static function ( $s ): ?string {
 					$c = flxcrm_gql_c( $s );
-					if ( '' === $c->email ) {
+					if ( '' === $c->email || ! get_option( 'show_avatars' ) ) { // No e-mail hash leaves the site when avatars are off.
 						return null;
 					}
 					$u = get_avatar_url( $c->email, array( 'size' => 96 ) );
 					return is_string( $u ) && '' !== $u ? $u : null;
 				},
 			),
-			'company'        => array( 'type' => 'String', 'description' => __( 'Organisation.', 'flx-crm' ), 'resolve' => static fn( $s ): ?string => flxcrm_gql_opt( flxcrm_gql_c( $s )->company ) ),
-			'city'           => array( 'type' => 'String', 'description' => __( 'City.', 'flx-crm' ), 'resolve' => static fn( $s ): ?string => flxcrm_gql_opt( flxcrm_gql_c( $s )->city ) ),
-			'country'        => array( 'type' => 'String', 'description' => __( 'ISO country code.', 'flx-crm' ), 'resolve' => static fn( $s ): ?string => flxcrm_gql_opt( flxcrm_gql_c( $s )->country ) ),
-			'source'         => array( 'type' => 'String', 'description' => __( 'First source key.', 'flx-crm' ), 'resolve' => static fn( $s ): ?string => flxcrm_gql_opt( flxcrm_gql_c( $s )->source ) ),
+			'company'        => array( 'type' => 'String', 'cap' => flxcrm_gql_view(), 'description' => __( 'Organisation.', 'flx-crm' ), 'resolve' => static fn( $s ): ?string => flxcrm_gql_opt( flxcrm_gql_c( $s )->company ) ),
+			'city'           => array( 'type' => 'String', 'cap' => flxcrm_gql_view(), 'description' => __( 'City.', 'flx-crm' ), 'resolve' => static fn( $s ): ?string => flxcrm_gql_opt( flxcrm_gql_c( $s )->city ) ),
+			'country'        => array( 'type' => 'String', 'cap' => flxcrm_gql_view(), 'description' => __( 'ISO country code.', 'flx-crm' ), 'resolve' => static fn( $s ): ?string => flxcrm_gql_opt( flxcrm_gql_c( $s )->country ) ),
+			'source'         => array( 'type' => 'String', 'cap' => flxcrm_gql_view(), 'description' => __( 'First source key.', 'flx-crm' ), 'resolve' => static fn( $s ): ?string => flxcrm_gql_opt( flxcrm_gql_c( $s )->source ) ),
 			'sourceLabel'    => array(
-				'type'        => 'String',
+				'type'        => 'String', 'cap' => flxcrm_gql_view(),
 				'description' => __( 'First source name.', 'flx-crm' ),
 				'resolve'     => static function ( $s ): ?string {
 					$k = flxcrm_gql_c( $s )->source;
 					return '' === $k ? null : flx_gql_str( flxcrm_source_label( $k ) );
 				},
 			),
-			'utmSource'      => array( 'type' => 'String', 'description' => __( 'First campaign source.', 'flx-crm' ), 'resolve' => static fn( $s ): ?string => flxcrm_gql_opt( flxcrm_gql_c( $s )->utm_source ) ),
-			'utmCampaign'    => array( 'type' => 'String', 'description' => __( 'First campaign.', 'flx-crm' ), 'resolve' => static fn( $s ): ?string => flxcrm_gql_opt( flxcrm_gql_c( $s )->utm_campaign ) ),
-			'userId'         => array( 'type' => 'Int', 'description' => __( 'Linked WordPress user; empty when none.', 'flx-crm' ), 'resolve' => static fn( $s ): ?int => flxcrm_gql_c( $s )->user_id > 0 ? flxcrm_gql_c( $s )->user_id : null ),
-			'ownerId'        => array( 'type' => 'Int', 'description' => __( 'Owner (user ID); empty when none.', 'flx-crm' ), 'resolve' => static fn( $s ): ?int => flxcrm_gql_c( $s )->owner_id > 0 ? flxcrm_gql_c( $s )->owner_id : null ),
+			'utmSource'      => array( 'type' => 'String', 'cap' => flxcrm_gql_view(), 'description' => __( 'First campaign source.', 'flx-crm' ), 'resolve' => static fn( $s ): ?string => flxcrm_gql_opt( flxcrm_gql_c( $s )->utm_source ) ),
+			'utmCampaign'    => array( 'type' => 'String', 'cap' => flxcrm_gql_view(), 'description' => __( 'First campaign.', 'flx-crm' ), 'resolve' => static fn( $s ): ?string => flxcrm_gql_opt( flxcrm_gql_c( $s )->utm_campaign ) ),
+			'userId'         => array( 'type' => 'Int', 'cap' => flxcrm_gql_view(), 'description' => __( 'Linked WordPress user; empty when none.', 'flx-crm' ), 'resolve' => static fn( $s ): ?int => flxcrm_gql_c( $s )->user_id > 0 ? flxcrm_gql_c( $s )->user_id : null ),
+			'ownerId'        => array( 'type' => 'Int', 'cap' => flxcrm_gql_view(), 'description' => __( 'Owner (user ID); empty when none.', 'flx-crm' ), 'resolve' => static fn( $s ): ?int => flxcrm_gql_c( $s )->owner_id > 0 ? flxcrm_gql_c( $s )->owner_id : null ),
 			'ownerName'      => array(
-				'type'        => 'String',
+				'type'        => 'String', 'cap' => flxcrm_gql_view(),
 				'description' => __( 'Owner\'s name.', 'flx-crm' ),
 				'resolve'     => static function ( $s ): ?string {
 					$id = flxcrm_gql_c( $s )->owner_id;
@@ -550,33 +560,33 @@ flx_gql_type(
 					return $u ? $u->display_name : null;
 				},
 			),
-			'status'         => array( 'type' => 'FlxContactStatus!', 'description' => __( 'Working list or archive.', 'flx-crm' ), 'resolve' => static fn( $s ): string => flxcrm_gql_c( $s )->status ),
-			'note'           => array( 'type' => 'String', 'description' => __( 'Short note.', 'flx-crm' ), 'resolve' => static fn( $s ): ?string => flxcrm_gql_opt( flxcrm_gql_c( $s )->note ) ),
-			'roles'          => array( 'type' => '[String!]!', 'description' => __( 'Role keys (flxCrmMeta.roles).', 'flx-crm' ), 'resolve' => static fn( $s ): array => flxcrm_gql_c( $s )->roles ),
-			'segment'        => array( 'type' => 'String', 'description' => __( 'Value segment key (flxCrmMeta.rfm); empty before the first scoring.', 'flx-crm' ), 'resolve' => static fn( $s ): ?string => flxcrm_gql_opt( flxcrm_gql_c( $s )->segment ) ),
+			'status'         => array( 'type' => 'FlxContactStatus', 'cap' => flxcrm_gql_view(), 'description' => __( 'Working list or archive.', 'flx-crm' ), 'resolve' => static fn( $s ): string => flxcrm_gql_c( $s )->status ),
+			'note'           => array( 'type' => 'String', 'cap' => flxcrm_gql_view(), 'description' => __( 'Short note.', 'flx-crm' ), 'resolve' => static fn( $s ): ?string => flxcrm_gql_opt( flxcrm_gql_c( $s )->note ) ),
+			'roles'          => array( 'type' => '[String!]', 'cap' => flxcrm_gql_view(), 'description' => __( 'Role keys (flxCrmMeta.roles).', 'flx-crm' ), 'resolve' => static fn( $s ): array => flxcrm_gql_c( $s )->roles ),
+			'segment'        => array( 'type' => 'String', 'cap' => flxcrm_gql_view(), 'description' => __( 'Value segment key (flxCrmMeta.rfm); empty before the first scoring.', 'flx-crm' ), 'resolve' => static fn( $s ): ?string => flxcrm_gql_opt( flxcrm_gql_c( $s )->segment ) ),
 			'segmentLabel'   => array(
-				'type'        => 'String',
+				'type'        => 'String', 'cap' => flxcrm_gql_view(),
 				'description' => __( 'Name of the value segment.', 'flx-crm' ),
 				'resolve'     => static function ( $s ): ?string {
 					$k = flxcrm_gql_c( $s )->segment;
 					return '' === $k ? null : flx_gql_str( flx_gql_arr( flxcrm_rfm_segments()[ $k ] ?? array() )[0] ?? $k );
 				},
 			),
-			'ltv'            => array( 'type' => 'FlxMoney!', 'description' => __( 'Total value in the reporting currency.', 'flx-crm' ), 'resolve' => static fn( $s ): array => flx_gql_money( flxcrm_gql_c( $s )->ltv, flxcrm_currency() ) ),
-			'churn'          => array( 'type' => 'Int!', 'description' => __( 'Churn risk 0–100.', 'flx-crm' ), 'resolve' => static fn( $s ): int => flxcrm_gql_c( $s )->churn ),
+			'ltv'            => array( 'type' => 'FlxMoney', 'cap' => flxcrm_gql_view(), 'description' => __( 'Total value in the reporting currency.', 'flx-crm' ), 'resolve' => static fn( $s ): array => flx_gql_money( flxcrm_gql_c( $s )->ltv, flxcrm_currency() ) ),
+			'churn'          => array( 'type' => 'Int', 'cap' => flxcrm_gql_view(), 'description' => __( 'Churn risk 0–100.', 'flx-crm' ), 'resolve' => static fn( $s ): int => flxcrm_gql_c( $s )->churn ),
 			'atRisk'         => array(
-				'type'        => 'Boolean!',
+				'type'        => 'Boolean', 'cap' => flxcrm_gql_view(),
 				'description' => __( 'The churn risk is at or above the threshold of the settings.', 'flx-crm' ),
 				'resolve'     => static fn( $s ): bool => flxcrm_gql_c( $s )->churn > 0 && flxcrm_gql_c( $s )->churn >= FLXCRM_Val::int( flxcrm_setting( 'risk_threshold' ), 70 ),
 			),
-			'paidDays'       => array( 'type' => 'Int!', 'description' => __( 'Days with a payment.', 'flx-crm' ), 'resolve' => static fn( $s ): int => flxcrm_gql_c( $s )->paid_days ),
-			'donations'      => array( 'type' => 'Int!', 'description' => __( 'Number of donations.', 'flx-crm' ), 'resolve' => static fn( $s ): int => flxcrm_gql_c( $s )->donations ),
-			'orders'         => array( 'type' => 'Int!', 'description' => __( 'Number of orders.', 'flx-crm' ), 'resolve' => static fn( $s ): int => flxcrm_gql_c( $s )->orders ),
-			'firstPaidAt'    => array( 'type' => 'FlxDateTime', 'description' => __( 'First payment.', 'flx-crm' ), 'resolve' => static fn( $s ): ?array => flx_gql_datetime( flxcrm_gql_c( $s )->first_paid_at ) ),
-			'lastPaidAt'     => array( 'type' => 'FlxDateTime', 'description' => __( 'Last payment.', 'flx-crm' ), 'resolve' => static fn( $s ): ?array => flx_gql_datetime( flxcrm_gql_c( $s )->last_paid_at ) ),
-			'avgGapDays'     => array( 'type' => 'Int!', 'description' => __( 'Average days between payments.', 'flx-crm' ), 'resolve' => static fn( $s ): int => flxcrm_gql_c( $s )->avg_gap_days ),
+			'paidDays'       => array( 'type' => 'Int', 'cap' => flxcrm_gql_view(), 'description' => __( 'Days with a payment.', 'flx-crm' ), 'resolve' => static fn( $s ): int => flxcrm_gql_c( $s )->paid_days ),
+			'donations'      => array( 'type' => 'Int', 'cap' => flxcrm_gql_view(), 'description' => __( 'Number of donations.', 'flx-crm' ), 'resolve' => static fn( $s ): int => flxcrm_gql_c( $s )->donations ),
+			'orders'         => array( 'type' => 'Int', 'cap' => flxcrm_gql_view(), 'description' => __( 'Number of orders.', 'flx-crm' ), 'resolve' => static fn( $s ): int => flxcrm_gql_c( $s )->orders ),
+			'firstPaidAt'    => array( 'type' => 'FlxDateTime', 'cap' => flxcrm_gql_view(), 'description' => __( 'First payment.', 'flx-crm' ), 'resolve' => static fn( $s ): ?array => flx_gql_datetime( flxcrm_gql_c( $s )->first_paid_at ) ),
+			'lastPaidAt'     => array( 'type' => 'FlxDateTime', 'cap' => flxcrm_gql_view(), 'description' => __( 'Last payment.', 'flx-crm' ), 'resolve' => static fn( $s ): ?array => flx_gql_datetime( flxcrm_gql_c( $s )->last_paid_at ) ),
+			'avgGapDays'     => array( 'type' => 'Int', 'cap' => flxcrm_gql_view(), 'description' => __( 'Average days between payments.', 'flx-crm' ), 'resolve' => static fn( $s ): int => flxcrm_gql_c( $s )->avg_gap_days ),
 			'rfm'            => array(
-				'type'        => 'FlxContactRfm!',
+				'type'        => 'FlxContactRfm', 'cap' => flxcrm_gql_view(),
 				'description' => __( 'Recency, frequency and monetary scores.', 'flx-crm' ),
 				'resolve'     => static fn( $s ): array => array(
 					'recency'   => flxcrm_gql_c( $s )->r_score,
@@ -584,13 +594,13 @@ flx_gql_type(
 					'monetary'  => flxcrm_gql_c( $s )->m_score,
 				),
 			),
-			'consent'        => array( 'type' => 'FlxContactConsent!', 'description' => __( 'Channel permissions.', 'flx-crm' ), 'resolve' => static fn( $s ): array => flxcrm_gql_c( $s )->consent ),
-			'consentAt'      => array( 'type' => 'FlxDateTime', 'description' => __( 'Last permission change.', 'flx-crm' ), 'resolve' => static fn( $s ): ?array => flx_gql_datetime( flxcrm_gql_c( $s )->consent_at ) ),
-			'lastActivityAt' => array( 'type' => 'FlxDateTime', 'description' => __( 'Last activity; empty when there is none yet.', 'flx-crm' ), 'resolve' => static fn( $s ): ?array => flx_gql_datetime( flxcrm_gql_c( $s )->last_activity_at ) ),
-			'createdAt'      => array( 'type' => 'FlxDateTime!', 'description' => __( 'When the contact was added.', 'flx-crm' ), 'resolve' => static fn( $s ): ?array => flx_gql_datetime( flxcrm_gql_c( $s )->created_at ) ),
-			'editUrl'        => array( 'type' => 'String!', 'description' => __( 'The classic contact card in wp-admin (with the sections other packages add).', 'flx-crm' ), 'resolve' => static fn( $s ): string => flx_gql_str( flxcrm_contact_url( flxcrm_gql_c( $s )->id ) ) ),
+			'consent'        => array( 'type' => 'FlxContactConsent', 'cap' => flxcrm_gql_view(), 'description' => __( 'Channel permissions.', 'flx-crm' ), 'resolve' => static fn( $s ): array => flxcrm_gql_c( $s )->consent ),
+			'consentAt'      => array( 'type' => 'FlxDateTime', 'cap' => flxcrm_gql_view(), 'description' => __( 'Last permission change.', 'flx-crm' ), 'resolve' => static fn( $s ): ?array => flx_gql_datetime( flxcrm_gql_c( $s )->consent_at ) ),
+			'lastActivityAt' => array( 'type' => 'FlxDateTime', 'cap' => flxcrm_gql_view(), 'description' => __( 'Last activity; empty when there is none yet.', 'flx-crm' ), 'resolve' => static fn( $s ): ?array => flx_gql_datetime( flxcrm_gql_c( $s )->last_activity_at ) ),
+			'createdAt'      => array( 'type' => 'FlxDateTime', 'cap' => flxcrm_gql_view(), 'description' => __( 'When the contact was added.', 'flx-crm' ), 'resolve' => static fn( $s ): ?array => flx_gql_datetime( flxcrm_gql_c( $s )->created_at ) ),
+			'editUrl'        => array( 'type' => 'String', 'cap' => flxcrm_gql_view(), 'description' => __( 'The classic contact card in wp-admin (with the sections other packages add).', 'flx-crm' ), 'resolve' => static fn( $s ): string => flx_gql_str( flxcrm_contact_url( flxcrm_gql_c( $s )->id ) ) ),
 			'tags'           => array(
-				'type'        => '[FlxTag!]!',
+				'type'        => '[FlxTag!]', 'cap' => flxcrm_gql_view(),
 				'description' => __( 'Tags on the contact.', 'flx-crm' ),
 				'resolve'     => static function ( $s ): array {
 					$id = flxcrm_gql_c( $s )->id;
@@ -598,12 +608,12 @@ flx_gql_type(
 				},
 			),
 			'sources'        => array(
-				'type'        => '[FlxContactSource!]!',
+				'type'        => '[FlxContactSource!]', 'cap' => flxcrm_gql_view(),
 				'description' => __( 'Package records the contact came from.', 'flx-crm' ),
 				'resolve'     => static fn( $s ): array => FLXCRM_Contact_Service::sources( flxcrm_gql_c( $s )->id ),
 			),
 			'timeline'       => array(
-				'type'        => 'FlxContactEventConnection!',
+				'type'        => 'FlxContactEventConnection', 'cap' => flxcrm_gql_view(),
 				'description' => __( 'Timeline, newest first.', 'flx-crm' ),
 				'args'        => flx_gql_connection_args(
 					array(

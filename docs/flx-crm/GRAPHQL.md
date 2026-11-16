@@ -16,6 +16,10 @@ flx_gql_field( 'FlxContact', 'donationTotal', array(
 ) );
 ```
 
+- **Kural: başka paketin `FlxContact` döndüren alanı her zaman nullable'dır** (`'type' => 'FlxContact'`, `!` yok). Kişiyi göremeyen kullanıcıda loader `null` döner; non-null alan tüm üst nesneyi siler.
+- Görünürlük: loader `flxcrm_can()` ister. Donate (bağışçının kendi kaydı), Chat temsilcisi gibi CRM yetkisi olmayan paket kullanıcıları için `flxcrm_gql_can_see_contact( bool $ok, FLXCRM_Contact $contact, int $user_id )` filtresi true dönebilir; yalnız kendi kayıtları için true dönün.
+- Ortak `FlxPerson` alanları (`databaseId`, `name`, `email`, `phone`, `avatar`) kaydı görebilene açıktır. CRM'e özel tüm alanlar (`note`, `timeline`, `ltv`, `rfm`, `churn`, `atRisk`, `consent`, `owner*`, `sources`, `tags`, `utm*`, `segment*`, `editUrl` …) alan düzeyinde `flxcrm_view` ister ve **nullable**'dır; yetkisiz kişide `null` + `FORBIDDEN` hatası döner.
+- `avatar`: Gravatar adresi yalnız Ayarlar > Tartışma'da avatarlar açıksa döner; kapalıysa `null` (e-posta özeti siteden çıkmaz). İstemci baş harfleri gösterir.
 - Başka tipten kişiye bağlanırken `$context->get_loader( 'FlxContact' )->load_deferred( $id )` kullan (N+1 olmaz).
 - Kişi değişince önbellek etiketleri `flx-crm:contact:<id>`, `flx-crm:contacts` ve `flx-crm:overview` temizlenir (`flx_gql_purge`). Yeni yazarlar bunu bozmaz: klasik REST/AJAX/admin yazıcıları da aynı kancalarla temizler.
 - Kişi kartının eklenti bölümleri (`flxcrm_person_card_main_before/main/side`) hâlâ klasik PHP kancasıdır (aşağıda İstisnalar).
@@ -48,8 +52,8 @@ Toplu iş ve skorlama sayfalı: `flxCrmScoreRun` `{ done, scored, total }`, `flx
 
 ## İstisnalar (bu sürümde klasik)
 
-- **Olaylar sayfası** (`flx-crm-events`): klasik PHP; React sekmesi bağlantı verir. Sonraki paket: `gql/flx-crm-2`.
-- **Kişi kartı eklenti bölümleri**: kancalar PHP; React kartında "More sections" kartı klasik karta bağlar.
+- **Olaylar sayfası** (`flx-crm-events`): klasik PHP; React sekmesi bağlantı verir. Ahmet'in ekran kuralına aykırıdır, `gql/flx-crm-2`'de MUTLAKA React'e taşınacak.
+- **Kişi kartı eklenti bölümleri**: kancalar PHP; `gql/flx-crm-2`'de zorunlu kapanacak (kanca → GraphQL alanı/bölüm kaydı). Bu sürümde React kartında "More sections" kartı klasik karta bağlar.
 - Klasik REST/AJAX/admin işleyicileri servislere taşınmadı, çalışmaya devam eder.
 
 ## React

@@ -9066,16 +9066,16 @@ type FlxCapability {
 "A person in the shared people table with the CRM columns: donor, customer, volunteer, lead. Implements FlxPerson; other packages add their own fields with flx_gql_field( &#039;FlxContact&#039;, … )."
 type FlxContact implements FlxPerson & Node {
   "The churn risk is at or above the threshold of the settings."
-  atRisk: Boolean!
+  atRisk: Boolean
 
   "Picture address (from the e-mail address)."
   avatar: String
 
   "Average days between payments."
-  avgGapDays: Int!
+  avgGapDays: Int
 
   "Churn risk 0–100."
-  churn: Int!
+  churn: Int
 
   "City."
   city: String
@@ -9084,7 +9084,7 @@ type FlxContact implements FlxPerson & Node {
   company: String
 
   "Channel permissions."
-  consent: FlxContactConsent!
+  consent: FlxContactConsent
 
   "Last permission change."
   consentAt: FlxDateTime
@@ -9093,16 +9093,16 @@ type FlxContact implements FlxPerson & Node {
   country: String
 
   "When the contact was added."
-  createdAt: FlxDateTime!
+  createdAt: FlxDateTime
 
   "Database ID."
   databaseId: Int!
 
   "Number of donations."
-  donations: Int!
+  donations: Int
 
   "The classic contact card in wp-admin (with the sections other packages add)."
-  editUrl: String!
+  editUrl: String
 
   "E-mail address (lower case)."
   email: String
@@ -9120,7 +9120,7 @@ type FlxContact implements FlxPerson & Node {
   lastPaidAt: FlxDateTime
 
   "Total value in the reporting currency."
-  ltv: FlxMoney!
+  ltv: FlxMoney
 
   "Display name: the name, else the e-mail, else the phone."
   name: String!
@@ -9129,7 +9129,7 @@ type FlxContact implements FlxPerson & Node {
   note: String
 
   "Number of orders."
-  orders: Int!
+  orders: Int
 
   "Owner (user ID); empty when none."
   ownerId: Int
@@ -9138,7 +9138,7 @@ type FlxContact implements FlxPerson & Node {
   ownerName: String
 
   "Days with a payment."
-  paidDays: Int!
+  paidDays: Int
 
   "Phone number."
   phone: FlxPhone
@@ -9147,10 +9147,10 @@ type FlxContact implements FlxPerson & Node {
   rawName: String!
 
   "Recency, frequency and monetary scores."
-  rfm: FlxContactRfm!
+  rfm: FlxContactRfm
 
   "Role keys (flxCrmMeta.roles)."
-  roles: [String!]!
+  roles: [String!]
 
   "Value segment key (flxCrmMeta.rfm); empty before the first scoring."
   segment: String
@@ -9165,13 +9165,13 @@ type FlxContact implements FlxPerson & Node {
   sourceLabel: String
 
   "Package records the contact came from."
-  sources: [FlxContactSource!]!
+  sources: [FlxContactSource!]
 
   "Working list or archive."
-  status: FlxContactStatus!
+  status: FlxContactStatus
 
   "Tags on the contact."
-  tags: [FlxTag!]!
+  tags: [FlxTag!]
 
   "Timeline, newest first."
   timeline(
@@ -9183,7 +9183,7 @@ type FlxContact implements FlxPerson & Node {
 
     "Timeline filter key (flxCrmMeta.timelineFilters); empty = all."
     filter: String
-  ): FlxContactEventConnection!
+  ): FlxContactEventConnection
 
   "Linked WordPress user; empty when none."
   userId: Int

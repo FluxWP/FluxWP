@@ -39,8 +39,8 @@ const formOf = (c: Card_): Form => ({
   phone: c.phone ? '+' + c.phone.e164.replace(/\D/g, '') : '',
   company: c.company ?? '',
   city: c.city ?? '',
-  roles: [...c.roles],
-  consent: { ...c.consent },
+  roles: [...(c.roles ?? [])],
+  consent: { email: false, sms: false, whatsapp: false, ads: false, ...c.consent },
   ownerId: String(c.ownerId ?? 0),
   note: c.note ?? '',
   tags: '',
@@ -248,7 +248,7 @@ export function ContactCard({ id, go }: { id: string; go: (to: string) => void }
       </>
     );
   }
-  const paid = c.paidDays > 0;
+  const paid = (c.paidDays ?? 0) > 0;
   const manual = shell.flxCrmMeta.eventTypes.filter((e) => e.manual);
   const wa = c.phone ? c.phone.e164.replace(/\D/g, '') : '';
 
@@ -333,7 +333,7 @@ export function ContactCard({ id, go }: { id: string; go: (to: string) => void }
         <div className="flxcrm-hero__main">
           <h1 className="flxcrm-hero__name">{c.name}</h1>
           <span className="flxcrm-pills">
-            <RolePills keys={c.roles} />
+            <RolePills keys={c.roles ?? []} />
             {c.status === 'ARCHIVED' && <span className="flxcrm-badge">{t('Archived')}</span>}
             {c.segmentLabel && paid && <span className="flxcrm-badge is-info">{c.segmentLabel}</span>}
           </span>
@@ -352,7 +352,7 @@ export function ContactCard({ id, go }: { id: string; go: (to: string) => void }
             )}
             {c.company && <span>{c.company}</span>}
             {c.city && <span>{c.city}</span>}
-            <span className="flxcrm-muted">{t('Since %1$s · %2$s', c.createdAt.label, c.sourceLabel ?? t('Added by hand.'))}</span>
+            <span className="flxcrm-muted">{t('Since %1$s · %2$s', c.createdAt?.label ?? '—', c.sourceLabel ?? t('Added by hand.'))}</span>
           </p>
         </div>
         <div className="flxcrm-hero__actions">
@@ -392,10 +392,10 @@ export function ContactCard({ id, go }: { id: string; go: (to: string) => void }
       </header>
 
       <div className="flxcrm-kpis flxcrm-kpis--6">
-        <Kpi icon="coins" label={t('Total value')} value={paid ? c.ltv.formatted : '—'} hint={[c.donations ? t('%s donations', num(c.donations)) : '', c.orders ? t('%s orders', num(c.orders)) : ''].filter(Boolean).join(' · ')} />
+        <Kpi icon="coins" label={t('Total value')} value={paid && c.ltv ? c.ltv.formatted : '—'} hint={[c.donations ? t('%s donations', num(c.donations)) : '', c.orders ? t('%s orders', num(c.orders)) : ''].filter(Boolean).join(' · ')} />
         <Kpi icon="heart" label={t('First payment')} value={paid && c.firstPaidAt ? c.firstPaidAt.label.split(' ')[0] : '—'} />
         <Kpi icon="clock" label={t('Last payment')} value={paid && c.lastPaidAt ? c.lastPaidAt.relative : '—'} hint={c.avgGapDays ? t('once every %s days on average', num(c.avgGapDays)) : ''} />
-        <Kpi icon="alert" label={t('Churn risk')} value={paid ? '%' + c.churn : '—'} warn={paid && c.atRisk} />
+        <Kpi icon="alert" label={t('Churn risk')} value={paid ? '%' + c.churn : '—'} warn={paid && !!c.atRisk} />
         <Kpi icon="chart" label={t('RFM')} value={paid && c.rfm && c.rfm.recency ? `${c.rfm.recency} · ${c.rfm.frequency} · ${c.rfm.monetary}` : '—'} hint={t('recency · frequency · value (1–5)')} />
         <Kpi icon="trend" label={t('Last activity')} value={c.lastActivityAt?.relative ?? '—'} />
       </div>
@@ -513,7 +513,7 @@ export function ContactCard({ id, go }: { id: string; go: (to: string) => void }
           {shell.flxCrmMeta.hasPackageSections && (
             <Card title={t('More sections')} icon="link">
               <p className="flxcrm-muted">{t('Recurring donations, orders, certificates and other sections from other plugins are on the classic card.')}</p>
-              <a className="button" href={c.editUrl}>
+              <a className="button" href={c.editUrl ?? undefined}>
                 {t('CRM card')} <Ic n="arrow" />
               </a>
             </Card>
@@ -575,14 +575,14 @@ export function ContactCard({ id, go }: { id: string; go: (to: string) => void }
                 </div>
                 <div>
                   <dt>{t('Roles')}</dt>
-                  <dd>{c.roles.length ? <span className="flxcrm-chips"><RolePills keys={c.roles} /></span> : none}</dd>
+                  <dd>{c.roles?.length ? <span className="flxcrm-chips"><RolePills keys={c.roles} /></span> : none}</dd>
                 </div>
                 <div>
                   <dt>{t('Contact consents')}</dt>
                   <dd>
                     <span className="flxcrm-consents">
                       {shell.flxCrmMeta.consents.map((x) => {
-                        const on = c.consent[x.key as keyof Form['consent']] ?? false;
+                        const on = c.consent?.[x.key as keyof Form['consent']] ?? false;
                         return (
                           <span key={x.key} className={'flxcrm-consent' + (on ? ' is-on' : '')}>
                             <Ic n={on ? 'check' : 'alert'} size={13} />
@@ -609,8 +609,8 @@ export function ContactCard({ id, go }: { id: string; go: (to: string) => void }
 
           <Card title={t('Tags')} icon="badge">
             <div className="flxcrm-tags flxcrm-tags--edit">
-              {c.tags.length === 0 && <span className="flxcrm-muted">{t('No tags.')}</span>}
-              {c.tags.map((x) => (
+              {(c.tags ?? []).length === 0 && <span className="flxcrm-muted">{t('No tags.')}</span>}
+              {(c.tags ?? []).map((x) => (
                 <span key={x.databaseId} className="flxcrm-tag" style={{ ['--tc' as string]: x.color ?? '#64748b' }}>
                   <a href={href('contacts?tag=' + x.databaseId)}>{x.name}</a>
                   {can && (
@@ -638,8 +638,8 @@ export function ContactCard({ id, go }: { id: string; go: (to: string) => void }
 
           <Card title={t('Sources')} icon="link">
             <ul className="flxcrm-list flxcrm-list--plain">
-              {c.sources.length === 0 && !c.userId && <li className="flxcrm-muted">{t('Added by hand.')}</li>}
-              {c.sources.map((s, i) => (
+              {(c.sources ?? []).length === 0 && !c.userId && <li className="flxcrm-muted">{t('Added by hand.')}</li>}
+              {(c.sources ?? []).map((s, i) => (
                 <li key={i}>
                   {s.url ? (
                     <a href={s.url}>
