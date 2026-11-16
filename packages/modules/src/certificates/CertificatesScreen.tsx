@@ -80,6 +80,12 @@ function admin(base: string | undefined, query: string): string {
   return root + 'admin.php?' + query;
 }
 
+function bulkChannel(value: string): string {
+  if (value === 'whatsapp') return 'whatsapp';
+  if (value === 'email') return 'email';
+  return 'sms';
+}
+
 function personBits(row: Row): { name: string; email: string; phone: string } {
   const p = row.person;
   if (!p || !('name' in p)) return { name: '', email: '', phone: '' };
@@ -656,14 +662,15 @@ function People({ t, onNotice, onOpen, onAdd }: { t: Translate; onNotice: (n: No
       </form>
       {canBulk && (
         <div className="flxs-bulk">
-          <select value={channel} onChange={(e) => setChannel(e.target.value)}>
+          <select value={channel} onChange={(e) => setChannel(bulkChannel(e.target.value))}>
             <option value="whatsapp">WhatsApp</option>
             <option value="sms">SMS</option>
             <option value="email">{t('E-mail')}</option>
           </select>
           <button type="button" onClick={() => {
             if (!picked.length) { onNotice({ kind: 'err', text: t('Nothing selected.') }); return; }
-            window.location.href = admin(host.adminUrl, 'page=flxs-toplu&people=' + picked.join(',') + '&channel=' + channel);
+            const people = picked.filter((id) => Number.isInteger(id) && id > 0).join(',');
+            window.location.href = admin(host.adminUrl, 'page=flxs-toplu&people=' + people + '&channel=' + bulkChannel(channel));
           }}>{t('Message selected')}</button>
         </div>
       )}
