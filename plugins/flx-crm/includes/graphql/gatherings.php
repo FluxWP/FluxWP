@@ -10,10 +10,11 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Unix time on a send → FlxDateTime.
  *
- * @param array<string,mixed> $send Send card.
+ * @param array<mixed,mixed> $send Send card.
  * @return array<string,mixed>
  */
 function flxcrm_gql_send( array $send ): array {
+	$send        = FLXCRM_Val::keyed( $send );
 	$send['at']  = flxcrm_gql_ts( $send['at'] ?? 0 );
 	$send['eta'] = flxcrm_gql_ts( $send['eta'] ?? 0 );
 	$channels    = array();
@@ -224,13 +225,13 @@ flx_gql_type(
 							return is_array( $page ) ? array( 'items' => $page['items'], 'total' => $page['total'] ) : array( 'items' => array(), 'total' => 0 );
 						}
 					);
-					$counts = is_array( $page ) ? FLXCRM_Val::arr( $page['counts'] ?? array() ) : array();
-					$conn['channel']      = is_array( $page ) ? FLXCRM_Val::str( $page['channel'] ?? '' ) : '';
-					$conn['channels']     = is_array( $page ) ? array_values( array_map( 'strval', (array) ( $page['channels'] ?? array() ) ) ) : array();
-					$conn['countSent']    = (int) ( $counts['sent'] ?? 0 );
-					$conn['countWaiting'] = (int) ( $counts['waiting'] ?? 0 );
-					$conn['countFailed']  = (int) ( $counts['failed'] ?? 0 );
-					$conn['countOther']   = (int) ( $counts['other'] ?? 0 );
+					$counts = is_array( $page ) ? $page['counts'] : array( 'sent' => 0, 'waiting' => 0, 'failed' => 0, 'other' => 0 );
+					$conn['channel']      = is_array( $page ) ? $page['channel'] : '';
+					$conn['channels']     = is_array( $page ) ? $page['channels'] : array();
+					$conn['countSent']    = $counts['sent'];
+					$conn['countWaiting'] = $counts['waiting'];
+					$conn['countFailed']  = $counts['failed'];
+					$conn['countOther']   = $counts['other'];
 					return $conn;
 				},
 			),
@@ -657,7 +658,7 @@ flx_gql_mutation(
 			'imageUploadId' => array( 'type' => 'String', 'description' => __( 'Upload id from flx-crm/event-image.', 'flx-crm' ) ),
 		),
 		'output'      => array( 'gathering' => array( 'type' => 'FlxGathering', 'description' => __( 'The event after the change.', 'flx-crm' ) ) ),
-		'resolve'     => static function ( array $input ): array {
+		'resolve'     => static function ( array $input ) {
 			$r = FLXCRM_Gathering_Service::save( flx_gql_int( $input['id'] ?? 0 ), flxcrm_gql_field_values( $input['fields'] ?? array() ), ! empty( $input['createPost'] ), flx_gql_str( $input['imageUploadId'] ?? '' ) );
 			return $r instanceof WP_Error ? $r : array( 'gathering' => flxcrm_gql_gathering( $r ) );
 		},

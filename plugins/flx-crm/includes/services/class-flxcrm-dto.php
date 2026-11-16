@@ -68,6 +68,26 @@ final class FLXCRM_Val {
 	public static function strings( $v ): array {
 		return array_values( array_map( array( __CLASS__, 'str' ), self::arr( $v ) ) );
 	}
+
+	/**
+	 * String keys only. is_array() leaves the key type mixed, which PHPStan max rejects.
+	 *
+	 * @param array<mixed,mixed> $row Row.
+	 * @return array<string,mixed>
+	 */
+	public static function keyed( array $row ): array {
+		$out = array();
+		foreach ( $row as $key => $value ) {
+			if ( is_int( $key ) ) {
+				$out[ (string) $key ] = $value;
+				continue;
+			}
+			if ( is_string( $key ) ) {
+				$out[ $key ] = $value;
+			}
+		}
+		return $out;
+	}
 }
 
 /**

@@ -2071,8 +2071,6 @@ type FlxPersonRow {
 type FlxPersonSection {
   """What to draw."""
   blocks: [FlxPersonBlock!]!
-  """Caller context. Empty is the CRM card."""
-  context: String
   """Stable id. legacy: plus the hook name is the unmigrated HTML."""
   id: String!
   """Package slug. Empty for a legacy hook."""

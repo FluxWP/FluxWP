@@ -82,7 +82,7 @@ final class FLXCRM_Section_Service {
 		$out = array();
 		foreach ( (array) apply_filters( 'flxcrm_gql_person_sections', array() ) as $section ) {
 			if ( is_array( $section ) && is_callable( $section['resolve'] ?? null ) ) {
-				$out[] = $section;
+				$out[] = FLXCRM_Val::keyed( $section );
 			}
 		}
 		return $out;
@@ -97,7 +97,7 @@ final class FLXCRM_Section_Service {
 			return current_user_can( 'manage_options' ) || current_user_can( $cap ) || ( FLXCRM_CAP_VIEW === $cap && flxcrm_can() );
 		}
 		if ( is_callable( $cap ) ) {
-			return (bool) call_user_func( $cap, $contact );
+			return FLXCRM_Val::bool( call_user_func( $cap, $contact ) );
 		}
 		return flxcrm_can();
 	}
@@ -124,7 +124,7 @@ final class FLXCRM_Section_Service {
 		$blocks = array();
 		foreach ( FLXCRM_Val::arr( $built['blocks'] ?? array() ) as $block ) {
 			if ( is_array( $block ) ) {
-				$blocks[] = self::block( $block );
+				$blocks[] = self::block( FLXCRM_Val::keyed( $block ) );
 			}
 		}
 		if ( ! $blocks ) {
