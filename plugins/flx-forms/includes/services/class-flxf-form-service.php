@@ -109,7 +109,7 @@ class FLXF_Form_Service {
 		$thanks  = isset( $head['thank_you_message'] ) && is_array( $head['thank_you_message'] ) ? $head['thank_you_message'] : array();
 		$fields  = array();
 		foreach ( $structure as $i => $field ) {
-			if ( 0 === $i || ! is_array( $field ) ) {
+			if ( 0 === $i ) {
 				continue;
 			}
 			$drawn = self::field( $field );
@@ -121,7 +121,7 @@ class FLXF_Form_Service {
 			'id'              => (string) (int) $row['form_id'],
 			'title'           => (string) $row['form_name'],
 			'formType'        => self::form_type( (string) $row['form_type'] ),
-			'steps'           => max( 1, (int) ( $head['steps'] ?? 1 ) ),
+			'steps'           => max( 1, self::num( $head['steps'] ?? 1 ) ),
 			'buttonLabel'     => self::text( $head['button_single_text'] ?? '' ),
 			'successTitle'    => self::text( $thanks['thankYou'] ?? '' ),
 			'successMessage'  => self::text( $thanks['done'] ?? '' ),
@@ -137,7 +137,7 @@ class FLXF_Form_Service {
 		if ( self::flag( $field['hidden'] ?? false ) || self::flag( $field['disabled'] ?? false ) ) {
 			return null;
 		}
-		$type = sanitize_key( (string) ( $field['type'] ?? '' ) );
+		$type = sanitize_key( self::str( $field['type'] ?? '' ) );
 		if ( '' === $type || 'step' === $type ) {
 			return null;
 		}
@@ -186,9 +186,9 @@ class FLXF_Form_Service {
 	 * @param array<string,mixed> $field Field row.
 	 */
 	public static function field_id( array $field ): string {
-		$id = sanitize_text_field( (string) ( $field['id'] ?? '' ) );
+		$id = sanitize_text_field( self::str( $field['id'] ?? '' ) );
 		if ( '' === $id ) {
-			$id = sanitize_text_field( (string) ( $field['id_'] ?? '' ) );
+			$id = sanitize_text_field( self::str( $field['id_'] ?? '' ) );
 		}
 		return $id;
 	}
@@ -201,6 +201,7 @@ class FLXF_Form_Service {
 			return null;
 		}
 		global $wpdb;
+		/** @var wpdb $wpdb */
 		$table = $wpdb->prefix . 'emsfb_form';
 		$found = $wpdb->get_row(
 			$wpdb->prepare( "SELECT form_id, form_name, form_type, form_structer FROM `{$table}` WHERE form_id = %d", $id ),
@@ -210,10 +211,10 @@ class FLXF_Form_Service {
 			return null;
 		}
 		return array(
-			'form_id'       => (string) $found['form_id'],
-			'form_name'     => (string) ( $found['form_name'] ?? '' ),
-			'form_type'     => (string) ( $found['form_type'] ?? 'form' ),
-			'form_structer' => (string) ( $found['form_structer'] ?? '' ),
+			'form_id'       => self::str( $found['form_id'] ),
+			'form_name'     => self::str( $found['form_name'] ?? '' ),
+			'form_type'     => self::str( $found['form_type'] ?? 'form' ),
+			'form_structer' => self::str( $found['form_structer'] ?? '' ),
 		);
 	}
 
@@ -253,7 +254,27 @@ class FLXF_Form_Service {
 	/**
 	 * @param mixed $value Stored text.
 	 */
-	private static function text( $value ): string {
-		return sanitize_text_field( is_scalar( $value ) ? (string) $value : '' );
+	private static function text( mixed $value ): string {
+		return sanitize_text_field( self::str( $value ) );
+	}
+
+	/**
+	 * A stored scalar as text. Arrays and objects become an empty string.
+	 */
+	private static function str( mixed $value ): string {
+		return is_scalar( $value ) ? (string) $value : '';
+	}
+
+	/**
+	 * A stored number as int. Anything else is 0.
+	 */
+	private static function num( mixed $value ): int {
+		if ( is_int( $value ) ) {
+			return $value;
+		}
+		if ( is_float( $value ) || ( is_string( $value ) && is_numeric( $value ) ) ) {
+			return (int) $value;
+		}
+		return 0;
 	}
 }

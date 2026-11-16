@@ -146,10 +146,11 @@ flx_gql_query(
 		),
 		'resolve'     => static function ( mixed $root, array $args ): ?array {
 			unset( $root );
+			$form_id = absint( flx_gql_int( $args['id'] ?? 0 ) );
 			if ( function_exists( 'flx_gql_cache_tag' ) ) {
-				flx_gql_cache_tag( 'flx-forms:form:' . absint( $args['id'] ?? 0 ) );
+				flx_gql_cache_tag( 'flx-forms:form:' . (string) $form_id );
 			}
-			return FLXF_Form_Service::public_form( absint( $args['id'] ?? 0 ) );
+			return FLXF_Form_Service::public_form( $form_id );
 		},
 	)
 );
@@ -173,7 +174,7 @@ flx_gql_mutation(
 			'submission' => array( 'type' => 'FlxFormSubmission', 'description' => __( 'Stored submission. Null when the input was rejected.', 'flx-forms' ) ),
 		),
 		'resolve'     => static function ( array $input ): array|WP_Error {
-			return FLXF_Submission_Service::submit( $input );
+			return FLXF_Submission_Service::submit( flx_gql_arr( $input ) );
 		},
 	)
 );
@@ -196,7 +197,7 @@ flx_gql_query(
 		),
 		'resolve'     => static function ( mixed $root, array $args ): array {
 			unset( $root );
-			$result = FLXF_Submission_Service::track( (string) ( $args['code'] ?? '' ) );
+			$result = FLXF_Submission_Service::track( flx_gql_str( $args['code'] ?? '' ) );
 			if ( $result instanceof WP_Error ) {
 				throw flx_gql_from_wp_error( $result );
 			}
@@ -224,7 +225,7 @@ flx_gql_mutation(
 			'submission' => array( 'type' => 'FlxFormSubmission', 'description' => __( 'Stored reply. Null when the input was rejected.', 'flx-forms' ) ),
 		),
 		'resolve'     => static function ( array $input ): array|WP_Error {
-			return FLXF_Submission_Service::reply( $input );
+			return FLXF_Submission_Service::reply( flx_gql_arr( $input ) );
 		},
 	)
 );

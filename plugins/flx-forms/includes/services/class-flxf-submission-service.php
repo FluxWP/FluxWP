@@ -57,7 +57,7 @@ class FLXF_Submission_Service {
 		if ( $limited instanceof WP_Error ) {
 			return $limited;
 		}
-		if ( '' !== trim( (string) ( $input['honeypot'] ?? '' ) ) ) {
+		if ( '' !== trim( self::str( $input['honeypot'] ?? '' ) ) ) {
 			return self::invalid( 'honeypot', __( 'The form could not be sent.', 'flx-forms' ) );
 		}
 		if ( function_exists( 'flx_captcha_gql_verify' ) ) {
@@ -67,7 +67,7 @@ class FLXF_Submission_Service {
 			flx_captcha_gql_verify( 'flxf_submit', $token, 'captchaToken' );
 		}
 
-		$id   = absint( $input['formId'] ?? 0 );
+		$id   = absint( self::num( $input['formId'] ?? 0 ) );
 		$load = FLXF_Form_Service::load( $id );
 		if ( null === $load ) {
 			return self::error( 'NOT_FOUND', __( 'The form was not found.', 'flx-forms' ), 404 );
@@ -75,7 +75,7 @@ class FLXF_Submission_Service {
 		if ( FLXF_Form_Service::is_private( $load['structure'] ) && ! is_user_logged_in() ) {
 			return self::error( 'NOT_FOUND', __( 'The form was not found.', 'flx-forms' ), 404 );
 		}
-		$type = (string) $load['row']['form_type'];
+		$type = self::str( $load['row']['form_type'] );
 		if ( ! in_array( $type, array( 'form', 'survey', 'subscribe' ), true ) ) {
 			return self::invalid( 'formId', __( 'This form cannot be sent here.', 'flx-forms' ) );
 		}
@@ -86,13 +86,13 @@ class FLXF_Submission_Service {
 		$errors = new WP_Error();
 		$n      = 0;
 		foreach ( $load['structure'] as $i => $field ) {
-			if ( 0 === $i || ! is_array( $field ) ) {
+			if ( 0 === $i ) {
 				continue;
 			}
 			if ( FLXF_Form_Service::flag( $field['hidden'] ?? false ) || FLXF_Form_Service::flag( $field['disabled'] ?? false ) ) {
 				continue;
 			}
-			$ftype = sanitize_key( (string) ( $field['type'] ?? '' ) );
+			$ftype = sanitize_key( self::str( $field['type'] ?? '' ) );
 			if ( '' === $ftype || in_array( $ftype, self::SKIP_TYPES, true ) ) {
 				continue;
 			}
@@ -126,7 +126,7 @@ class FLXF_Submission_Service {
 			}
 			$stored[] = array(
 				'id_'   => $fid,
-				'name'  => sanitize_text_field( (string) ( $field['name'] ?? $field['label'] ?? $fid ) ),
+				'name'  => sanitize_text_field( self::str( $field['name'] ?? $field['label'] ?? $fid ) ),
 				'type'  => $ftype,
 				'value' => $value,
 			);
@@ -136,7 +136,7 @@ class FLXF_Submission_Service {
 		}
 
 		$track = self::track_code();
-		$msg   = self::insert_message( $id, (string) $load['row']['form_name'], $track, $stored );
+		$msg   = self::insert_message( $id, self::str( $load['row']['form_name'] ), $track, $stored );
 		if ( $msg < 1 ) {
 			return self::error( 'INTERNAL', __( 'The form could not be sent.', 'flx-forms' ), 500 );
 		}
@@ -176,6 +176,7 @@ class FLXF_Submission_Service {
 			return self::error( 'NOT_FOUND', __( 'The tracking code was not found.', 'flx-forms' ), 404 );
 		}
 		global $wpdb;
+		/** @var wpdb $wpdb */
 		$table = $wpdb->prefix . 'emsfb_msg_';
 		$row   = $wpdb->get_row(
 			$wpdb->prepare( "SELECT msg_id, track, content, date, form_title_x FROM `{$table}` WHERE track = %s LIMIT 1", $code ),
@@ -184,7 +185,7 @@ class FLXF_Submission_Service {
 		if ( ! is_array( $row ) ) {
 			return self::error( 'NOT_FOUND', __( 'The tracking code was not found.', 'flx-forms' ), 404 );
 		}
-		$msg_id = (int) $row['msg_id'];
+		$msg_id = self::num( $row['msg_id'] );
 		$rsp    = $wpdb->prefix . 'emsfb_rsp_';
 		$replies = $wpdb->get_results(
 			$wpdb->prepare( "SELECT content, date FROM `{$rsp}` WHERE msg_id = %d ORDER BY rsp_id ASC", $msg_id ),
@@ -196,15 +197,15 @@ class FLXF_Submission_Service {
 				continue;
 			}
 			$out[] = array(
-				'body'      => self::reply_text( (string) ( $reply['content'] ?? '' ) ),
-				'createdAt' => (string) ( $reply['date'] ?? '' ),
+				'body'      => self::reply_text( self::str( $reply['content'] ?? '' ) ),
+				'createdAt' => self::str( $reply['date'] ?? '' ),
 			);
 		}
 		return array(
-			'trackCode'   => (string) $row['track'],
-			'formTitle'   => (string) ( $row['form_title_x'] ?? '' ),
-			'submittedAt' => (string) ( $row['date'] ?? '' ),
-			'fields'      => self::answers( (string) ( $row['content'] ?? '' ) ),
+			'trackCode'   => self::str( $row['track'] ),
+			'formTitle'   => self::str( $row['form_title_x'] ?? '' ),
+			'submittedAt' => self::str( $row['date'] ?? '' ),
+			'fields'      => self::answers( self::str( $row['content'] ?? '' ) ),
 			'replies'     => $out,
 		);
 	}
@@ -218,8 +219,8 @@ class FLXF_Submission_Service {
 		if ( $limited instanceof WP_Error ) {
 			return $limited;
 		}
-		$code = sanitize_text_field( (string) ( $input['trackCode'] ?? '' ) );
-		$body = sanitize_textarea_field( (string) ( $input['message'] ?? '' ) );
+		$code = sanitize_text_field( self::str( $input['trackCode'] ?? '' ) );
+		$body = sanitize_textarea_field( self::str( $input['message'] ?? '' ) );
 		if ( strlen( $body ) > self::TEXT_MAX ) {
 			$body = substr( $body, 0, self::TEXT_MAX );
 		}
@@ -227,6 +228,7 @@ class FLXF_Submission_Service {
 			return self::invalid( 'message', __( 'Write a reply.', 'flx-forms' ) );
 		}
 		global $wpdb;
+		/** @var wpdb $wpdb */
 		$table = $wpdb->prefix . 'emsfb_msg_';
 		$row   = $wpdb->get_row(
 			$wpdb->prepare( "SELECT msg_id, track FROM `{$table}` WHERE track = %s LIMIT 1", $code ),
@@ -235,16 +237,16 @@ class FLXF_Submission_Service {
 		if ( ! is_array( $row ) ) {
 			return self::error( 'NOT_FOUND', __( 'The tracking code was not found.', 'flx-forms' ), 404 );
 		}
-		$msg_id = (int) $row['msg_id'];
-		$track  = (string) $row['track'];
-		$admin  = self::admin_reply( $track, (string) ( $input['adminCode'] ?? '' ) );
+		$msg_id = self::num( $row['msg_id'] );
+		$track  = self::str( $row['track'] );
+		$admin  = self::admin_reply( $track, self::str( $input['adminCode'] ?? '' ) );
 		if ( $admin instanceof WP_Error ) {
 			return $admin;
 		}
 
 		$files = array();
 		foreach ( (array) ( $input['attachments'] ?? array() ) as $url ) {
-			$url = esc_url_raw( (string) $url );
+			$url = esc_url_raw( self::str( $url ) );
 			if ( '' === $url ) {
 				continue;
 			}
@@ -280,7 +282,7 @@ class FLXF_Submission_Service {
 		}
 		return array(
 			'submission' => array(
-				'id'        => (string) (int) $wpdb->insert_id,
+				'id'        => (string) $wpdb->insert_id,
 				'trackCode' => $track,
 			),
 		);
@@ -299,7 +301,7 @@ class FLXF_Submission_Service {
 			if ( ! is_array( $field ) ) {
 				continue;
 			}
-			$id = sanitize_text_field( (string) ( $field['fieldId'] ?? '' ) );
+			$id = sanitize_text_field( self::str( $field['fieldId'] ?? '' ) );
 			if ( '' === $id ) {
 				continue;
 			}
@@ -341,8 +343,8 @@ class FLXF_Submission_Service {
 			return false;
 		}
 		$uploads = wp_upload_dir();
-		$baseurl = (string) ( $uploads['baseurl'] ?? '' );
-		$basedir = (string) ( $uploads['basedir'] ?? '' );
+		$baseurl = $uploads['baseurl'];
+		$basedir = $uploads['basedir'];
 		if ( '' === $baseurl || '' === $basedir || ! str_starts_with( $url, $baseurl ) ) {
 			return false;
 		}
@@ -362,30 +364,33 @@ class FLXF_Submission_Service {
 	 */
 	private static function insert_message( int $form_id, string $title, string $track, array $stored ): int {
 		global $wpdb;
-		$table = $wpdb->prefix . 'emsfb_msg_';
-		$ok    = $wpdb->insert(
+		/** @var wpdb $wpdb */
+		$table   = $wpdb->prefix . 'emsfb_msg_';
+		$encoded = wp_json_encode( $stored );
+		$ok      = $wpdb->insert(
 			$table,
 			array(
 				'form_id'      => $form_id,
 				'track'        => $track,
 				'ip'           => self::ip(),
 				'form_title_x' => $title,
-				'content'      => (string) wp_json_encode( $stored ),
+				'content'      => is_string( $encoded ) ? $encoded : '[]',
 				'date'         => current_time( 'mysql' ),
 				'read_'        => 0,
 				'read_by'      => '',
 			),
 			array( '%d', '%s', '%s', '%s', '%s', '%s', '%d', '%s' )
 		);
-		return false === $ok ? 0 : (int) $wpdb->insert_id;
+		return false === $ok ? 0 : $wpdb->insert_id;
 	}
 
 	private static function track_code(): string {
 		global $wpdb;
+		/** @var wpdb $wpdb */
 		$table = $wpdb->prefix . 'emsfb_msg_';
 		for ( $i = 0; $i < 5; $i++ ) {
 			$code = wp_generate_password( 12, false, false );
-			$have = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM `{$table}` WHERE track = %s", $code ) );
+			$have = self::num( $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM `{$table}` WHERE track = %s", $code ) ) );
 			if ( 0 === $have ) {
 				return $code;
 			}
@@ -413,7 +418,7 @@ class FLXF_Submission_Service {
 			if ( '' === $value ) {
 				continue;
 			}
-			$label = sanitize_text_field( (string) ( $row['name'] ?? $row['label'] ?? $row['id_'] ?? '' ) );
+			$label = sanitize_text_field( self::str( $row['name'] ?? $row['label'] ?? $row['id_'] ?? '' ) );
 			$out[] = array(
 				'label' => $label,
 				'value' => $value,
@@ -457,6 +462,7 @@ class FLXF_Submission_Service {
 
 	private static function email_key(): string {
 		global $wpdb;
+		/** @var wpdb $wpdb */
 		$table = $wpdb->prefix . 'emsfb_setting';
 		$raw   = $wpdb->get_var( "SELECT setting FROM `{$table}` ORDER BY id DESC LIMIT 1" );
 		if ( ! is_string( $raw ) || '' === $raw ) {
@@ -476,7 +482,7 @@ class FLXF_Submission_Service {
 	 * flx_rate_limit returns true while the bucket still has room.
 	 */
 	private static function limit( string $bucket, int $max, int $window, string $message ): ?WP_Error {
-		$max = (int) apply_filters( 'flxf_gql_rate_max', $max, $bucket );
+		$max = self::num( apply_filters( 'flxf_gql_rate_max', $max, $bucket ) );
 		if ( $max < 1 ) {
 			$max = 1;
 		}
@@ -490,6 +496,26 @@ class FLXF_Submission_Service {
 	private static function ip(): string {
 		$ip = function_exists( 'flx_client_ip' ) ? flx_client_ip() : '0.0.0.0';
 		return substr( $ip, 0, 45 );
+	}
+
+	/**
+	 * A stored scalar as text. Arrays and objects become an empty string.
+	 */
+	private static function str( mixed $value ): string {
+		return is_scalar( $value ) ? (string) $value : '';
+	}
+
+	/**
+	 * A stored number as int. Anything else is 0.
+	 */
+	private static function num( mixed $value ): int {
+		if ( is_int( $value ) ) {
+			return $value;
+		}
+		if ( is_float( $value ) || ( is_string( $value ) && is_numeric( $value ) ) ) {
+			return (int) $value;
+		}
+		return 0;
 	}
 
 	/**
