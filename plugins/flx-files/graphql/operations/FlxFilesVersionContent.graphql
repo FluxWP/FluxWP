@@ -1,0 +1,3 @@
+query FlxFilesVersionContent($path: String!, $versionId: String!) {
+  flxFilesVersionContent(path: $path, versionId: $versionId)
+}

@@ -1,5 +1,12 @@
 # Flux AI — Değişiklikler
 
+## 0.23.0
+- **GraphQL (Faz 1):** harcama, rapor, faturalama, kayıtlar, bağlı sistemler, ayarlar ve araçlar `Flux GraphQL` üzerinden okunur ve yazılır (`flxAi*` sorguları ve mutation'ları, `plugins/flx-ai/graphql/operations/`). Klasik sayfalar, REST ve GraphQL aynı servis katmanını (`includes/services/`) kullanır. Gereksinimler: PHP 8.1, `Requires Plugins: flx-graphql`.
+- **API anahtarları yalnız yazılır:** GraphQL anahtarı asla geri vermez; yalnız "tanımlı mı", son 4 karakter ve `wp-config` kaynaklı mı bilgisi döner. Genel ayar türlerinin `key_*` alanlarını göstermemesi için `flxai_settings` genel şemadan çıkarıldı.
+- **Yeni React ekranları** (FluxWP uygulamasıyla aynı kod, wp-admin'de varsayılan; klasik görünüme bağlantı var): Genel bakış, Kayıtlar, Faturalama, Bağlı sistemler, Araçlar. Ayarlar, Sohbet, Zamanlanmış görevler, Onay bekleyenler, Skill'ler ve MCP sayfaları şimdilik klasik (sonraki PR).
+- MCP sunucusu, OAuth ve sohbet akışı (SSE) olduğu gibi kalır (`docs/graphql/ISTISNALAR.md`).
+- Sözleşme testi: `tools/tests/wp-graphql/flx-ai/contract-test.php` (147 kontrol).
+
 ## 0.22.0
 - **MCP Server Card:** MCP sunucusu açıkken `/.well-known/mcp/server-card.json` (ayrıca `server-cards.json`, `/.well-known/mcp.json` ve `/mcp/server-card`) ajanlara sunucunun adını, sürümünü, adresini (streamable-http), desteklenen protokol sürümlerini, yeteneklerini ve kimlik doğrulamasını (OAuth/bearer) verir. CORS açık, 1 saat önbellek. Ana sayfada `<link rel="mcp-server-card">`. Filtreler `flx_mcp_server_card`, `flx_mcp_server_card_name`. MCP kapalıysa kart yoktur.
 

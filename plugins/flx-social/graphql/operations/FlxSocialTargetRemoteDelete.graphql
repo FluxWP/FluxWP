@@ -1,0 +1,6 @@
+mutation FlxSocialTargetRemoteDelete($input: FlxSocialTargetRemoteDeleteInput!) {
+  flxSocialTargetRemoteDelete(input: $input) {
+    post { ...FlxSocialPostRow }
+    errors { code message field }
+  }
+}

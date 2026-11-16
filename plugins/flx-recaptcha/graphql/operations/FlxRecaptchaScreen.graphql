@@ -1,0 +1,12 @@
+# Everything the reCAPTCHA screen shows: keys and options, the forms with the last 30 days, the state.
+query FlxRecaptchaScreen {
+  flxRecaptchaSettings {
+    ...FlxRecaptchaSettingsFields
+  }
+  flxRecaptchaForms {
+    ...FlxRecaptchaFormRow
+  }
+  flxRecaptchaStatus {
+    ...FlxRecaptchaStatusFields
+  }
+}

@@ -1,0 +1,10 @@
+mutation FlxFilesSettingsUpdate($input: FlxFilesSettingsUpdateInput!) {
+  flxFilesSettingsUpdate(input: $input) {
+    settings {
+      ...FlxFilesSettingsFields
+    }
+    errors {
+      ...FlxFilesUserError
+    }
+  }
+}

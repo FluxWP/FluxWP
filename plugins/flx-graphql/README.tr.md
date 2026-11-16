@@ -38,6 +38,7 @@ Her FluxWP eklentisi kendi REST uçlarını, yanıt biçimini ve hata metinlerin
 - Kayıt yardımcıları: `flx_gql_type`, `flx_gql_input`, `flx_gql_enum`, `flx_gql_query`, `flx_gql_field`, `flx_gql_mutation`, `flx_gql_connection`, `flx_gql_node_loader`.
 - Hatalarda `extensions.code` (`UNAUTHENTICATED`, `FORBIDDEN`, `NOT_FOUND`, `INVALID_INPUT`, `CONFLICT`, `RATE_LIMITED`, `INTERNAL`); doğrulama hataları mutation yanıtındaki `errors` listesinde döner.
 - `flx_settings_schema`'da bildirilen her ayar için `flxSettings` / `flxSettingsUpdate` (gizli değerler asla açılmaz).
+- WooCommerce sepet köprüsü: Store API üstünde `flxCart` ve `flxCart*` mutation'ları; headless ön yüz ve uygulamalar için `Cart-Token` oturumu. Ödeme Store API checkout'unda kalır, kart verisi GraphQL'den geçmez.
 - Tüm paketler için tek yükleme ucu: `POST /wp-json/flx/v1/upload` bir `uploadId` döner, mutation dosyayı devralır.
 - Ön yüz adresleri için CORS izin listesi; GraphiQL IDE ve herkese açık introspection açılmadıkça kapalı.
 - PHP 8.1–8.5: yeni fonksiyonlar polyfill ile gelir.

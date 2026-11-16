@@ -1,0 +1,14 @@
+mutation FlxFilesTrash($input: FlxFilesTrashInput!) {
+  flxFilesTrash(input: $input) {
+    trashed {
+      path
+      trashId
+    }
+    failed {
+      ...FlxFilesFailureFields
+    }
+    errors {
+      ...FlxFilesUserError
+    }
+  }
+}

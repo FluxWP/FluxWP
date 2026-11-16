@@ -1,0 +1,6 @@
+mutation FlxSocialTickRun($input: FlxSocialTickRunInput!) {
+  flxSocialTickRun(input: $input) {
+    processed due
+    errors { code message field }
+  }
+}

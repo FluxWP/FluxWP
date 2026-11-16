@@ -140,24 +140,16 @@ add_action(
 			'/accounts/(?P<id>\d+)',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				$a = flxsm_account_row( $r['id'] );
-				if ( ! $a ) {
-					return flxsm_nf();
+				$res = FLXSM_Accounts_Service::update(
+					(int) $r['id'],
+					null === $r->get_param( 'disabled' ) ? null : (bool) $r->get_param( 'disabled' ),
+					null === $r->get_param( 'name' ) ? null : (string) $r->get_param( 'name' ),
+					null === $r->get_param( 'sort' ) ? null : (int) $r->get_param( 'sort' )
+				);
+				if ( is_wp_error( $res ) ) {
+					return $res;
 				}
-				$patch = array();
-				if ( null !== $r->get_param( 'disabled' ) ) {
-					$patch['status'] = $r->get_param( 'disabled' ) ? 'disabled' : 'active';
-				}
-				if ( null !== $r->get_param( 'name' ) ) {
-					$patch['name'] = mb_substr( sanitize_text_field( (string) $r->get_param( 'name' ) ), 0, 190 );
-				}
-				if ( null !== $r->get_param( 'sort' ) ) {
-					$patch['sort'] = (int) $r->get_param( 'sort' );
-				}
-				if ( $patch ) {
-					flxsm_update_account( $a['id'], $patch );
-				}
-				return rest_ensure_response( flxsm_account_public( flxsm_account_row( $a['id'] ) ) );
+				return rest_ensure_response( flxsm_account_public( flxsm_account_row( (int) $r['id'] ) ) );
 			},
 			'flxsm_perm_manage'
 		);
@@ -165,9 +157,7 @@ add_action(
 			'/accounts/order',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				foreach ( array_values( (array) $r->get_param( 'ids' ) ) as $i => $id ) {
-					flxsm_update_account( (int) $id, array( 'sort' => $i + 1 ) );
-				}
+				FLXSM_Accounts_Service::reorder( array_map( 'intval', array_values( (array) $r->get_param( 'ids' ) ) ) );
 				return rest_ensure_response( flxsm_accounts() );
 			},
 			'flxsm_perm_manage'
@@ -176,7 +166,7 @@ add_action(
 			'/accounts/(?P<id>\d+)/delete',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				flxsm_delete_account( (int) $r['id'] );
+				FLXSM_Accounts_Service::delete( (int) $r['id'] );
 				return rest_ensure_response( array( 'deleted' => true ) );
 			},
 			'flxsm_perm_manage'
@@ -185,34 +175,11 @@ add_action(
 			'/accounts/(?P<id>\d+)/refresh',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				$acc  = flxsm_account( $r['id'] );
-				$prov = $acc ? flxsm_provider( $acc['provider'] ) : null;
-				if ( ! $prov ) {
-					return flxsm_nf();
+				$res = FLXSM_Accounts_Service::refresh( (int) $r['id'] );
+				if ( is_wp_error( $res ) ) {
+					return $res;
 				}
-				$acc = $prov->ensure( $acc );
-				if ( is_wp_error( $acc ) ) {
-					flxsm_account_failed( (int) $r['id'], $acc->get_error_message(), true );
-					return new WP_Error( 'flxsm_expired', $acc->get_error_message(), array( 'status' => 400 ) );
-				}
-				if ( $prov instanceof FLXSM_Pinterest ) {
-					$prov->reload_boards( $acc );
-				}
-				$m = $prov->account_metrics( $acc );
-				if ( is_wp_error( $m ) && 'flxsm_unsupported' !== $m->get_error_code() ) {
-					$d = (array) $m->get_error_data();
-					flxsm_account_failed( $acc['id'], $m->get_error_message(), ! empty( $d['auth'] ) );
-					return new WP_Error( 'flxsm_api', $m->get_error_message(), array( 'status' => 400 ) );
-				}
-				flxsm_update_account(
-					$acc['id'],
-					array(
-						'last_error' => '',
-						'status'     => 'disabled' === $acc['status'] ? 'disabled' : 'active',
-					)
-				);
-				flxsm_collect_metrics( 20, (int) $acc['id'] );
-				return rest_ensure_response( flxsm_account_public( flxsm_account_row( $acc['id'] ) ) );
+				return rest_ensure_response( flxsm_account_public( flxsm_account_row( (int) $r['id'] ) ) );
 			},
 			'flxsm_perm_manage'
 		);
@@ -222,14 +189,21 @@ add_action(
 			'/whatsapp/targets',
 			'GET',
 			function () {
-				$t = flxsm_provider( 'whatsapp' )->targets();
+				$t = FLXSM_Accounts_Service::whatsapp_targets();
 				if ( is_wp_error( $t ) ) {
-					return new WP_Error( $t->get_error_code(), $t->get_error_message(), array( 'status' => 400 ) );
+					return $t;
 				}
-				foreach ( $t as &$x ) {
-					$x['exists'] = flxsm_account_exists( 'whatsapp', $x['ext_id'] );
+				$items = array();
+				foreach ( $t as $x ) {
+					$items[] = array(
+						'ext_id' => $x->ext_id,
+						'name'   => $x->name,
+						'kind'   => $x->kind,
+						'avatar' => $x->avatar,
+						'exists' => $x->exists,
+					);
 				}
-				return rest_ensure_response( array( 'items' => $t ) );
+				return rest_ensure_response( array( 'items' => $items ) );
 			},
 			'flxsm_perm_manage'
 		);
@@ -237,30 +211,18 @@ add_action(
 			'/whatsapp/add',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				$cfg = flxsm_wa_config();
-				if ( is_wp_error( $cfg ) ) {
-					return $cfg;
-				}
-				$n = 0;
+				$items = array();
 				foreach ( (array) $r->get_param( 'items' ) as $it ) {
-					$ext = sanitize_text_field( (string) ( $it['ext_id'] ?? '' ) );
-					if ( '' === $ext ) {
-						continue;
-					}
-					flxsm_upsert_account(
-						array(
-							'provider' => 'whatsapp',
-							'via'      => 'evolution',
-							'ext_id'   => $ext,
-							'name'     => sanitize_text_field( (string) ( $it['name'] ?? $ext ) ),
-							'username' => $cfg['instance'],
-							'avatar'   => esc_url_raw( (string) ( $it['avatar'] ?? '' ) ),
-							'token'    => array(),
-							'expires'  => 0,
-							'meta'     => array( 'kind' => 'status' === ( $it['kind'] ?? '' ) ? 'status' : 'group' ),
-						)
+					$items[] = array(
+						'ext_id' => (string) ( $it['ext_id'] ?? '' ),
+						'name'   => (string) ( $it['name'] ?? ( $it['ext_id'] ?? '' ) ),
+						'kind'   => (string) ( $it['kind'] ?? '' ),
+						'avatar' => (string) ( $it['avatar'] ?? '' ),
 					);
-					++$n;
+				}
+				$n = FLXSM_Accounts_Service::whatsapp_add( $items );
+				if ( is_wp_error( $n ) ) {
+					return $n;
 				}
 				return rest_ensure_response(
 					array(
@@ -301,7 +263,7 @@ add_action(
 			'/posts',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				$id = flxsm_save_post( flxsm_post_input( $r ) );
+				$id = FLXSM_Posts_Service::save( flxsm_post_input( $r ) );
 				if ( is_wp_error( $id ) ) {
 					return $id;
 				}
@@ -320,14 +282,7 @@ add_action(
 			'/posts/(?P<id>\d+)',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				$p = flxsm_post_row( $r['id'] );
-				if ( ! $p ) {
-					return flxsm_nf();
-				}
-				if ( ! flxsm_can_edit_post( $p ) ) {
-					return new WP_Error( 'rest_forbidden', __( 'You cannot change this post.', 'flx-social' ), array( 'status' => 403 ) );
-				}
-				$id = flxsm_save_post( flxsm_post_input( $r ), (int) $p['id'] );
+				$id = FLXSM_Posts_Service::save( flxsm_post_input( $r ), (int) $r['id'] );
 				if ( is_wp_error( $id ) ) {
 					return $id;
 				}
@@ -338,49 +293,20 @@ add_action(
 			'/posts/(?P<id>\d+)/action',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				$p = flxsm_post_row( $r['id'] );
-				if ( ! $p ) {
-					return flxsm_nf();
+				$id = FLXSM_Posts_Service::act( (int) $r['id'], (string) $r->get_param( 'action' ), (string) $r->get_param( 'note' ) );
+				if ( is_wp_error( $id ) ) {
+					return $id;
 				}
-				$act = sanitize_key( (string) $r->get_param( 'action' ) );
-				if ( ( 'approve' === $act && ! flxsm_can_publish() ) || ! flxsm_can_edit_post( $p ) ) {
-					return new WP_Error( 'rest_forbidden', __( 'You do not have permission for this action.', 'flx-social' ), array( 'status' => 403 ) );
-				}
-				if ( 'reject' === $act ) {
-					global $wpdb;
-					$wpdb->update( // phpcs:ignore WordPress.DB
-						flxsm_table( 'posts' ),
-						array(
-							'status' => 'draft',
-							'note'   => sanitize_textarea_field( (string) $r->get_param( 'note' ) ),
-						),
-						array( 'id' => (int) $p['id'] )
-					);
-					do_action( 'flxsm_post_rejected', (int) $p['id'] );
-				} else {
-					$res = flxsm_apply_action( (int) $p['id'], $act );
-					if ( is_wp_error( $res ) ) {
-						return $res;
-					}
-					flxsm_refresh_post_status( (int) $p['id'] );
-				}
-				return rest_ensure_response( flxsm_post_public( flxsm_post_row( $p['id'] ) ) );
+				return rest_ensure_response( flxsm_post_public( flxsm_post_row( $id ) ) );
 			}
 		);
 		flxsm_route(
 			'/posts/(?P<id>\d+)/delete',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				$p = flxsm_post_row( $r['id'] );
-				if ( ! $p ) {
-					return flxsm_nf();
-				}
-				if ( ! flxsm_can_edit_post( $p ) ) {
-					return new WP_Error( 'rest_forbidden', __( 'You cannot delete this post.', 'flx-social' ), array( 'status' => 403 ) );
-				}
-				$left = flxsm_delete_post( (int) $p['id'], (bool) $r->get_param( 'remote' ) );
-				if ( $left ) {
-					return new WP_Error( 'flxsm_remote', __( 'Could not delete on some networks; the post stays in the list.', 'flx-social' ) . "\n" . implode( "\n", $left ), array( 'status' => 400 ) );
+				$res = FLXSM_Posts_Service::delete( (int) $r['id'], (bool) $r->get_param( 'remote' ) );
+				if ( is_wp_error( $res ) ) {
+					return $res;
 				}
 				return rest_ensure_response( array( 'deleted' => true ) );
 			}
@@ -389,30 +315,11 @@ add_action(
 			'/posts/bulk',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				$act  = sanitize_key( (string) $r->get_param( 'action' ) );
-				$done = 0;
-				$errs = array();
-				foreach ( array_map( 'intval', (array) $r->get_param( 'ids' ) ) as $id ) {
-					$p = flxsm_post_row( $id );
-					if ( ! $p || ! flxsm_can_edit_post( $p ) ) {
-						continue;
-					}
-					if ( 'delete' === $act ) {
-						$left = flxsm_delete_post( $id, false );
-					} else {
-						$left = flxsm_apply_action( $id, $act );
-						flxsm_refresh_post_status( $id );
-					}
-					if ( is_wp_error( $left ) ) {
-						$errs[] = '#' . $id . ': ' . $left->get_error_message();
-					} else {
-						++$done;
-					}
-				}
+				$res = FLXSM_Posts_Service::bulk( array_map( 'intval', (array) $r->get_param( 'ids' ) ), (string) $r->get_param( 'action' ) );
 				return rest_ensure_response(
 					array(
-						'done'   => $done,
-						'errors' => $errs,
+						'done'   => $res->done,
+						'errors' => $res->errors,
 					)
 				);
 			}
@@ -421,30 +328,7 @@ add_action(
 			'/posts/(?P<id>\d+)/duplicate',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				$p = flxsm_post_row( $r['id'] );
-				if ( ! $p ) {
-					return flxsm_nf();
-				}
-				$targets = array();
-				foreach ( flxsm_targets_of( $p['id'] ) as $t ) {
-					$targets[] = array(
-						'account_id' => (int) $t['account_id'],
-						'content'    => $t['content'],
-						'media'      => null === $t['media'] ? null : flxsm_dec( $t['media'] ),
-						'options'    => flxsm_dec( $t['options'] ),
-					);
-				}
-				$id = flxsm_save_post(
-					array(
-						/* translators: %s: title */
-						'title'   => $p['title'] ? sprintf( __( '%s (copy)', 'flx-social' ), $p['title'] ) : '',
-						'content' => $p['content'],
-						'media'   => flxsm_dec( $p['media'] ),
-						'tags'    => explode( ',', (string) $p['tags'] ),
-						'targets' => $targets,
-						'source'  => 'duplicate',
-					)
-				);
+				$id = FLXSM_Posts_Service::duplicate( (int) $r['id'] );
 				return is_wp_error( $id ) ? $id : rest_ensure_response( flxsm_post_public( flxsm_post_row( $id ) ) );
 			}
 		);
@@ -454,45 +338,24 @@ add_action(
 			'/targets/(?P<id>\d+)/retry',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				if ( ! flxsm_can_publish() ) {
-					return new WP_Error( 'rest_forbidden', __( 'You do not have permission for this action.', 'flx-social' ), array( 'status' => 403 ) );
-				}
-				$res = flxsm_retry_target( (int) $r['id'] );
-				if ( is_wp_error( $res ) ) {
-					return $res;
-				}
-				$t = flxsm_target_row( $r['id'] );
-				return rest_ensure_response( flxsm_post_public( flxsm_post_row( $t['post_id'] ) ) );
+				$id = FLXSM_Posts_Service::retry_target( (int) $r['id'] );
+				return is_wp_error( $id ) ? $id : rest_ensure_response( flxsm_post_public( flxsm_post_row( $id ) ) );
 			}
 		);
 		flxsm_route(
 			'/targets/(?P<id>\d+)/remote-edit',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				if ( ! flxsm_can_publish() ) {
-					return new WP_Error( 'rest_forbidden', __( 'You do not have permission for this action.', 'flx-social' ), array( 'status' => 403 ) );
-				}
-				$res = flxsm_remote_edit( (int) $r['id'], null === $r->get_param( 'content' ) ? null : (string) $r->get_param( 'content' ), (array) $r->get_param( 'options' ) );
-				if ( is_wp_error( $res ) ) {
-					return new WP_Error( $res->get_error_code(), $res->get_error_message(), array( 'status' => 400 ) );
-				}
-				$t = flxsm_target_row( $r['id'] );
-				return rest_ensure_response( flxsm_post_public( flxsm_post_row( $t['post_id'] ) ) );
+				$id = FLXSM_Posts_Service::remote_edit( (int) $r['id'], null === $r->get_param( 'content' ) ? null : (string) $r->get_param( 'content' ), (array) $r->get_param( 'options' ) );
+				return is_wp_error( $id ) ? $id : rest_ensure_response( flxsm_post_public( flxsm_post_row( $id ) ) );
 			}
 		);
 		flxsm_route(
 			'/targets/(?P<id>\d+)/remote-delete',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				if ( ! flxsm_can_publish() ) {
-					return new WP_Error( 'rest_forbidden', __( 'You do not have permission for this action.', 'flx-social' ), array( 'status' => 403 ) );
-				}
-				$res = flxsm_remote_delete( (int) $r['id'] );
-				if ( is_wp_error( $res ) ) {
-					return new WP_Error( $res->get_error_code(), $res->get_error_message(), array( 'status' => 400 ) );
-				}
-				$t = flxsm_target_row( $r['id'] );
-				return rest_ensure_response( flxsm_post_public( flxsm_post_row( $t['post_id'] ) ) );
+				$id = FLXSM_Posts_Service::remote_delete( (int) $r['id'] );
+				return is_wp_error( $id ) ? $id : rest_ensure_response( flxsm_post_public( flxsm_post_row( $id ) ) );
 			}
 		);
 
@@ -519,20 +382,17 @@ add_action(
 			'/ai',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				$res = flxsm_ai_write(
-					sanitize_key( (string) $r->get_param( 'mode' ) ),
-					array(
-						'text'      => (string) $r->get_param( 'text' ),
-						'brief'     => (string) $r->get_param( 'brief' ),
-						'providers' => array_map( 'sanitize_key', (array) $r->get_param( 'providers' ) ),
-						'tone'      => sanitize_text_field( (string) $r->get_param( 'tone' ) ),
-						'limit'     => (int) $r->get_param( 'limit' ),
-						'to'        => sanitize_text_field( (string) $r->get_param( 'to' ) ),
-					)
+				$res = FLXSM_Posts_Service::ai(
+					(string) $r->get_param( 'mode' ),
+					(string) $r->get_param( 'text' ),
+					(string) $r->get_param( 'brief' ),
+					array_map( 'strval', (array) $r->get_param( 'providers' ) ),
+					(string) $r->get_param( 'tone' ),
+					(int) $r->get_param( 'limit' ),
+					(string) $r->get_param( 'to' )
 				);
 				if ( is_wp_error( $res ) ) {
-					$d = (array) $res->get_error_data();
-					return new WP_Error( $res->get_error_code(), $res->get_error_message(), array( 'status' => (int) ( $d['status'] ?? 400 ) ) );
+					return $res;
 				}
 				return rest_ensure_response( array( 'result' => $res ) );
 			}
@@ -632,45 +492,10 @@ add_action(
 			'/settings',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				$in    = (array) $r->get_json_params();
-				$patch = array();
-				foreach ( array( 'approval', 'utm', 'x_premium', 'pin_sandbox', 'li_org' ) as $k ) {
-					if ( isset( $in[ $k ] ) ) {
-						$patch[ $k ] = $in[ $k ] ? 1 : 0;
-					}
-				}
-				foreach ( array( 'x_month_limit', 'wa_conn' ) as $k ) {
-					if ( isset( $in[ $k ] ) ) {
-						$patch[ $k ] = absint( $in[ $k ] );
-					}
-				}
-				if ( isset( $in['signature'] ) ) {
-					$patch['signature'] = sanitize_textarea_field( (string) $in['signature'] );
-				}
-				if ( isset( $in['meta_version'] ) && preg_match( '/^v\d+\.\d+$/', (string) $in['meta_version'] ) ) {
-					$patch['meta_version'] = (string) $in['meta_version'];
-				}
-				if ( isset( $in['x_tier'] ) && isset( FLXSM_X::tiers()[ $in['x_tier'] ] ) ) {
-					$patch['x_tier'] = (string) $in['x_tier'];
-				}
-				if ( isset( $in['tiktok_mode'] ) ) {
-					$patch['tiktok_mode'] = 'direct' === $in['tiktok_mode'] ? 'direct' : 'inbox';
-				}
-				if ( isset( $in['auto'] ) && is_array( $in['auto'] ) ) {
-					$a             = $in['auto'];
-					$patch['auto'] = array(
-						'enabled'    => ! empty( $a['enabled'] ) ? 1 : 0,
-						'post_types' => array_values( array_filter( array_map( 'sanitize_key', (array) ( $a['post_types'] ?? array() ) ) ) ),
-						'accounts'   => array_values( array_filter( array_map( 'absint', (array) ( $a['accounts'] ?? array() ) ) ) ),
-						'template'   => sanitize_textarea_field( (string) ( $a['template'] ?? '' ) ),
-						'mode'       => 'schedule' === ( $a['mode'] ?? '' ) ? 'schedule' : 'draft',
-						'delay'      => min( 1440, absint( $a['delay'] ?? 10 ) ),
-						'image'      => ! empty( $a['image'] ) ? 1 : 0,
-					);
-				}
-				flxsm_save_settings( $patch );
+				$in = (array) $r->get_json_params();
+				FLXSM_Admin_Service::save_settings( $in );
 				if ( ! empty( $in['regen_key'] ) ) {
-					update_option( 'flxsm_tick_key', wp_generate_password( 32, false ), false );
+					FLXSM_Admin_Service::regenerate_tick_key();
 				}
 				return rest_ensure_response( flxsm_boot_data() );
 			},
@@ -680,7 +505,7 @@ add_action(
 			'/settings/app/(?P<app>[a-z]+)',
 			'POST',
 			function ( WP_REST_Request $r ) {
-				$res = flxsm_save_app( (string) $r['app'], (array) $r->get_json_params() );
+				$res = FLXSM_Admin_Service::save_app( (string) $r['app'], (array) $r->get_json_params() );
 				return is_wp_error( $res ) ? $res : rest_ensure_response( flxsm_apps_public() );
 			},
 			'flxsm_perm_manage'

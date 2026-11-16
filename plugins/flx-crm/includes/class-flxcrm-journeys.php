@@ -254,6 +254,7 @@ final class FLXCRM_Journeys {
 				$row['status'] = 'paused';
 			}
 			$wpdb->update( $t, $row, array( 'id' => (int) $id ) ); // phpcs:ignore WordPress.DB
+			flxcrm_purge( 'flx-crm:journeys' );
 			return (int) $id;
 		}
 		$row += array(
@@ -263,6 +264,7 @@ final class FLXCRM_Journeys {
 			'created_at' => flxcrm_now(),
 		);
 		$wpdb->insert( $t, $row ); // phpcs:ignore WordPress.DB
+		flxcrm_purge( 'flx-crm:journeys' );
 		return (int) $wpdb->insert_id;
 	}
 
@@ -272,13 +274,16 @@ final class FLXCRM_Journeys {
 			return false;
 		}
 		$wpdb->update( flxcrm_table( 'journeys' ), array( 'status' => $status, 'updated_at' => flxcrm_now() ), array( 'id' => (int) $id ) ); // phpcs:ignore WordPress.DB
+		flxcrm_purge( 'flx-crm:journeys' );
 		return true;
 	}
 
 	public static function delete( $id ) {
 		global $wpdb;
 		$wpdb->delete( flxcrm_table( 'journey_runs' ), array( 'journey_id' => (int) $id ) ); // phpcs:ignore WordPress.DB
-		return (bool) $wpdb->delete( flxcrm_table( 'journeys' ), array( 'id' => (int) $id ) ); // phpcs:ignore WordPress.DB
+		$ok = (bool) $wpdb->delete( flxcrm_table( 'journeys' ), array( 'id' => (int) $id ) ); // phpcs:ignore WordPress.DB
+		flxcrm_purge( 'flx-crm:journeys' );
+		return $ok;
 	}
 
 	private static function bump( $jid, $key, $n = 1 ) {

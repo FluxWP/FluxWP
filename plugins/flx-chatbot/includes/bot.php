@@ -8,7 +8,11 @@
 
 defined( 'ABSPATH' ) || exit;
 
-/** Flux AI hazır ve bu eklenti için açık mı. */
+/**
+ * Flux AI hazır ve bu eklenti için açık mı.
+ *
+ * @return bool
+ */
 function flxcb_ai_ready() {
 	return function_exists( 'flx_ai_available' ) && flx_ai_available( 'flx-chatbot' );
 }

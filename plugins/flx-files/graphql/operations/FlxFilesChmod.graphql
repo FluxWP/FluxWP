@@ -1,0 +1,10 @@
+mutation FlxFilesChmod($input: FlxFilesChmodInput!) {
+  flxFilesChmod(input: $input) {
+    item {
+      ...FlxFilesItemFields
+    }
+    errors {
+      ...FlxFilesUserError
+    }
+  }
+}

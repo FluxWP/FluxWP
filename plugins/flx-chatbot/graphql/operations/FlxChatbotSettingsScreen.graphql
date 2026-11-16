@@ -1,0 +1,55 @@
+# Everything the Chatbot settings screen shows: values, figures, connections, preview data.
+query FlxChatbotSettingsScreen($days: Int = 30) {
+  flxSettings {
+    chatbot {
+      ...FlxChatbotSettingsFields
+    }
+  }
+  flxChatbotAdmin {
+    stats(days: $days) {
+      total
+      human
+      resolved
+      leads
+      orders
+      rating
+      rated
+      open
+    }
+    status {
+      key
+      state
+      title
+      text
+      url
+      urlLabel
+    }
+    textDefaults {
+      key
+      text
+    }
+    pageTypes {
+      key
+      label
+    }
+    weekdays {
+      key
+      label
+    }
+    avatarUrl
+    notifyEmailDefault
+    aiReady
+    aiSettingsUrl
+    fluxChatReady
+    fluxChatActive
+    shopActive
+    ordersActive
+    wikiActive
+    inboxUrl
+    siteUrl
+    preview {
+      config
+      scriptUrl
+    }
+  }
+}

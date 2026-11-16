@@ -1,0 +1,12 @@
+mutation FlxSpeedPageSpeedClear {
+  flxSpeedPageSpeedClear(input: {}) {
+    pageSpeed {
+      ...FlxSpeedPageSpeedFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

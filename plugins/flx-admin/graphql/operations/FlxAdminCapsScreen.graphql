@@ -1,0 +1,6 @@
+# Settings › Admin theme › Permissions.
+query FlxAdminCapsScreen {
+  flxAdminCaps {
+    ...FlxAdminCapsFields
+  }
+}

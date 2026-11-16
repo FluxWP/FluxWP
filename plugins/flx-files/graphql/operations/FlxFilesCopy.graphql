@@ -1,0 +1,13 @@
+mutation FlxFilesCopy($input: FlxFilesCopyInput!) {
+  flxFilesCopy(input: $input) {
+    items {
+      ...FlxFilesItemFields
+    }
+    failed {
+      ...FlxFilesFailureFields
+    }
+    errors {
+      ...FlxFilesUserError
+    }
+  }
+}

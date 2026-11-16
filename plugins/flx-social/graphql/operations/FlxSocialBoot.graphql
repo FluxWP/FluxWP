@@ -1,0 +1,8 @@
+query FlxSocialBoot {
+  flxSocialConfig {
+    userId userName canPublish canManage canUpload ai studio approval signature xTier timezone tzOffset weekStart version
+    networks { id label color caps { ...FlxSocialCapsFields } }
+  }
+  flxSocialAccounts { ...FlxSocialAccountRow }
+  flxSocialCounts { pending scheduled failed due }
+}

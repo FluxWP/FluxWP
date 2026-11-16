@@ -38,6 +38,7 @@ Every FluxWP plugin used to bring its own REST routes, response shapes and error
 - Registration helpers: `flx_gql_type`, `flx_gql_input`, `flx_gql_enum`, `flx_gql_query`, `flx_gql_field`, `flx_gql_mutation`, `flx_gql_connection`, `flx_gql_node_loader`.
 - Errors carry `extensions.code` (`UNAUTHENTICATED`, `FORBIDDEN`, `NOT_FOUND`, `INVALID_INPUT`, `CONFLICT`, `RATE_LIMITED`, `INTERNAL`); validation errors come back in the mutation payload's `errors` list.
 - `flxSettings` / `flxSettingsUpdate` for every option declared in `flx_settings_schema` (secrets are never exposed).
+- WooCommerce cart bridge: `flxCart` and `flxCart*` mutations over the Store API, with `Cart-Token` sessions for headless front ends and apps. Payment stays on the Store API checkout; card data never passes through GraphQL.
 - One upload endpoint for every package: `POST /wp-json/flx/v1/upload` returns an `uploadId` that a mutation takes over.
 - CORS allowlist for front-end origins; the GraphiQL IDE and public introspection are off unless turned on.
 - PHP 8.1 to 8.5: newer functions come with polyfills.

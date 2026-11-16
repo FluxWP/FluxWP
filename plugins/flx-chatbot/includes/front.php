@@ -136,7 +136,11 @@ function flxcb_js_strings() {
 	);
 }
 
-/** Pencere ayarları (ön yüz ve yönetim önizlemesi aynı nesneyi kullanır). */
+/**
+ * Pencere ayarları (ön yüz ve yönetim önizlemesi aynı nesneyi kullanır).
+ *
+ * @return array<string,mixed>
+ */
 function flxcb_widget_config() {
 	$s      = flxcb_settings();
 	$color  = sanitize_hex_color( (string) $s['color'] );

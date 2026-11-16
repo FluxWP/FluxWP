@@ -1,0 +1,18 @@
+# The wiki menu: sections with their published pages in reading order (also the parent choices of the editor).
+query FlxWikiTree {
+  flxWikiTree {
+    section {
+      ...FlxWikiSectionRow
+    }
+    pages {
+      depth
+      page {
+        databaseId
+        title
+        path
+        excerpt
+        url
+      }
+    }
+  }
+}

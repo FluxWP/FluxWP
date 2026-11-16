@@ -1,0 +1,10 @@
+mutation FlxSpeedCleanup($input: FlxSpeedCleanupInput!) {
+  flxSpeedCleanup(input: $input) {
+    done
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

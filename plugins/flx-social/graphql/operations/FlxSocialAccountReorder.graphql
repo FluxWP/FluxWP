@@ -1,0 +1,6 @@
+mutation FlxSocialAccountReorder($input: FlxSocialAccountReorderInput!) {
+  flxSocialAccountReorder(input: $input) {
+    accounts { ...FlxSocialAccountRow }
+    errors { code message field }
+  }
+}

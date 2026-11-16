@@ -2,9 +2,10 @@
 /**
  * Plugin Name:       Flux reCAPTCHA
  * Description:       Google reCAPTCHA (v3 görünmez ya da v2 kutucuk) ile giriş, kayıt, şifre sıfırlama, yorum, WooCommerce hesap ve ödeme, Flux Donate bağış formu ve Flux Forms gönderimlerini spam ve bot saldırılarına karşı korur. Hangi formun korunacağı panelden açılıp kapanır; Flux Speed özel giriş adresiyle uyumludur.
- * Version:           0.2.5
- * Requires at least: 6.4
- * Requires PHP:      7.4
+ * Version:           0.3.0
+ * Requires at least: 6.5
+ * Requires PHP:      8.1
+ * Requires Plugins:  flx-graphql
  * Author:            FluxWP
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -24,7 +25,7 @@ if ( defined( 'FLXRC_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXRC_VERSION', '0.2.5' );
+define( 'FLXRC_VERSION', '0.3.0' );
 define( 'FLXRC_FILE', __FILE__ );
 define( 'FLXRC_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXRC_URL', plugin_dir_url( __FILE__ ) );
@@ -32,6 +33,9 @@ define( 'FLXRC_URL', plugin_dir_url( __FILE__ ) );
 require_once FLXRC_DIR . 'includes/helpers.php';
 require_once FLXRC_DIR . 'includes/contexts.php';
 require_once FLXRC_DIR . 'includes/class-flxrc-verify.php';
+require_once FLXRC_DIR . 'includes/services/class-flxrc-dto.php';
+require_once FLXRC_DIR . 'includes/services/class-flxrc-settings-service.php';
+require_once FLXRC_DIR . 'includes/services/class-flxrc-captcha-service.php';
 require_once FLXRC_DIR . 'includes/class-flxrc-front.php';
 require_once FLXRC_DIR . 'includes/integrations.php';
 require_once FLXRC_DIR . 'includes/api.php';
@@ -40,6 +44,39 @@ require_once FLXRC_DIR . 'includes/app.php';
 if ( is_admin() ) {
 	require_once FLXRC_DIR . 'includes/admin.php';
 }
+
+/*
+ * GraphQL (Flux GraphQL): schema only inside a GraphQL request; the persisted operations the reCAPTCHA
+ * screen sends. Without Flux GraphQL (0.2.0+) the schema is left out; protection and the classic page
+ * keep working.
+ */
+add_action(
+	'flx_gql_register',
+	static function () {
+		if ( ! function_exists( 'flx_gql_all_caps' ) ) {
+			return;
+		}
+		require_once FLXRC_DIR . 'includes/graphql/schema.php';
+	}
+);
+add_filter(
+	'flx_gql_persisted_manifests',
+	static function ( $m ) {
+		$m                   = is_array( $m ) ? $m : array();
+		$m['flx-recaptcha'] = FLXRC_DIR . 'graphql/persisted-queries.json';
+		return $m;
+	}
+);
+/* The public captcha configuration is cached per tag; any settings change drops it. */
+foreach ( array( 'add_option_flxrc_settings', 'update_option_flxrc_settings' ) as $flxrc_hook ) {
+	add_action(
+		$flxrc_hook,
+		static function () {
+			FLXRC_Settings_Service::changed();
+		}
+	);
+}
+unset( $flxrc_hook );
 
 /*
  * Çeviri: kaynak metinler Türkçe; site/kullanıcı dili İngilizce olduğunda languages/ içindeki çeviri kullanılır.
