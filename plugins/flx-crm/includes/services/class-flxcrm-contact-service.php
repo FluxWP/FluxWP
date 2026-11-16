@@ -131,6 +131,7 @@ final class FLXCRM_Contact_Service {
 		$p = FLXCRM_Val::arr( $p0 );
 		$nulls = 'DESC' === $dir ? "c.$ord IS NULL, " : '';
 		$sql   = "SELECT c.* FROM $t c WHERE 1=1 $w ORDER BY {$nulls}c.$ord $dir, c.id DESC LIMIT %d OFFSET %d";
+		// @phpstan-ignore-next-line argument.type -- the WHERE part is built with placeholders by FLXCRM_Contacts::where().
 		$rows  = $wpdb->get_results( $wpdb->prepare( $sql, array_merge( $p, array( max( 1, $limit ), max( 0, $offset ) ) ) ), ARRAY_A ); // phpcs:ignore WordPress.DB
 		$items = array();
 		foreach ( (array) $rows as $row ) {
@@ -354,7 +355,7 @@ final class FLXCRM_Contact_Service {
 	 */
 	public static function recent_events( int $limit ): array {
 		$out = array();
-		foreach ( FLXCRM_Events::recent( $limit ) as $r ) {
+		foreach ( FLXCRM_Val::arr( FLXCRM_Events::recent( $limit ) ) as $r ) {
 			$out[] = self::event( FLXCRM_Val::arr( $r ) );
 		}
 		return $out;
@@ -454,7 +455,7 @@ final class FLXCRM_Contact_Service {
 	public static function add_note( int $id, string $type, string $text ) {
 		$type = sanitize_key( $type );
 		$text = sanitize_textarea_field( $text );
-		if ( ! in_array( $type, flxcrm_manual_event_types(), true ) ) {
+		if ( ! in_array( $type, (array) flxcrm_manual_event_types(), true ) ) {
 			$type = 'note';
 		}
 		if ( null === FLXCRM_Contacts::get( $id ) ) {
@@ -476,7 +477,8 @@ final class FLXCRM_Contact_Service {
 		);
 		self::changed( $id );
 		global $wpdb;
-		$row = $wpdb->get_row( $wpdb->prepare( 'SELECT * FROM ' . flxcrm_table( 'events' ) . ' WHERE id = %d', (int) $eid ), ARRAY_A ); // phpcs:ignore WordPress.DB
+		/** @var wpdb $wpdb */
+		$row = $wpdb->get_row( $wpdb->prepare( 'SELECT * FROM %i WHERE id = %d', FLXCRM_Val::str( flxcrm_table( 'events' ) ), FLXCRM_Val::int( $eid ) ), ARRAY_A ); // phpcs:ignore WordPress.DB
 		return is_array( $row ) ? self::event( $row ) : self::error( 'flxcrm_event', __( 'The entry could not be saved.', 'flx-crm' ), 'INVALID_INPUT' );
 	}
 
@@ -487,7 +489,8 @@ final class FLXCRM_Contact_Service {
 	 */
 	public static function delete_event( int $event_id ) {
 		global $wpdb;
-		$cid = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT contact_id FROM ' . flxcrm_table( 'events' ) . ' WHERE id = %d', $event_id ) ); // phpcs:ignore WordPress.DB
+		/** @var wpdb $wpdb */
+		$cid = FLXCRM_Val::int( $wpdb->get_var( $wpdb->prepare( 'SELECT contact_id FROM %i WHERE id = %d', FLXCRM_Val::str( flxcrm_table( 'events' ) ), $event_id ) ) ); // phpcs:ignore WordPress.DB
 		if ( $cid < 1 ) {
 			return self::error( 'flxcrm_missing', __( 'The entry was not found.', 'flx-crm' ), 'NOT_FOUND' );
 		}
@@ -618,16 +621,19 @@ final class FLXCRM_Contact_Service {
 	 */
 	public static function duplicate_groups( int $limit = 50 ): array {
 		global $wpdb;
-		$t     = flxcrm_table( 'contacts' );
+		/** @var wpdb $wpdb */
+		$t     = FLXCRM_Val::str( flxcrm_table( 'contacts' ) );
 		$byk   = array();
 		$after = 0;
 		// Light columns only, in pages; grouping is done here so the query runs the same on MySQL and SQLite.
 		do {
-			$batch = (array) $wpdb->get_results( $wpdb->prepare( "SELECT id, name, phone FROM $t WHERE status <> 'deleted' AND id > %d ORDER BY id LIMIT 5000", $after ), ARRAY_A ); // phpcs:ignore WordPress.DB
+			$batch = (array) $wpdb->get_results( $wpdb->prepare( "SELECT id, name, phone FROM %i WHERE status <> 'deleted' AND id > %d ORDER BY id LIMIT 5000", $t, $after ), ARRAY_A ); // phpcs:ignore WordPress.DB
 			foreach ( $batch as $r ) {
-				$after = (int) $r['id'];
-				$name  = function_exists( 'mb_strtolower' ) ? mb_strtolower( trim( (string) $r['name'] ) ) : strtolower( trim( (string) $r['name'] ) );
-				$digits = preg_replace( '/\D+/', '', (string) $r['phone'] );
+				$r      = FLXCRM_Val::arr( $r );
+				$after  = FLXCRM_Val::int( $r['id'] ?? 0 );
+				$nm     = trim( FLXCRM_Val::str( $r['name'] ?? '' ) );
+				$name   = function_exists( 'mb_strtolower' ) ? mb_strtolower( $nm ) : strtolower( $nm );
+				$digits = (string) preg_replace( '/\D+/', '', FLXCRM_Val::str( $r['phone'] ?? '' ) );
 				if ( '' !== $name ) {
 					$byk[ 'name|' . $name ][] = $after;
 				}
