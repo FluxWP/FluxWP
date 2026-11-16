@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.5
+- `setClientEnhancer()`: bir paket, hesap istemcisini (`clientFor`) saran bir taşıyıcı kaydedebilir (FluxApp GraphQL taşıyıcısı). Kayıtlı yoksa davranış aynı.
+
+
 ## 0.4.4
 - API client: `throwOnError: false` returns a 4xx/5xx JSON body as a `raw` result (GraphQL error bodies). `../graphql` reaches `/graphql` next to `/wp-json/`, also under a subdirectory install.
 - Strict TS (`tsconfig.strict.json`): optional fields that may be `undefined` say so; `fetch` gets no `undefined` init keys. No behaviour change.
