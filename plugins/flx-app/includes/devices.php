@@ -74,6 +74,7 @@ function flxapp_push_clean( $token, $provider = '' ) {
 	return array( $token, $provider );
 }
 
+/** @return array<string, mixed>|null */
 function flxapp_device_get( $id ) {
 	global $wpdb;
 	$t = flxapp_devices_table();
@@ -90,7 +91,7 @@ function flxapp_device_by_grant( $grant ) {
  * Bu oturumun cihazını kaydeder ya da günceller. Aynı kullanıcının aynı `device_id`'li eski kaydı (önceki giriş)
  * kaldırılır, eski oturumu da kapanır.
  *
- * @return array|WP_Error satır
+ * @return array<string, mixed> satır
  */
 function flxapp_device_save( $user_id, array $tok, array $data ) {
 	global $wpdb;
@@ -139,6 +140,7 @@ function flxapp_device_save( $user_id, array $tok, array $data ) {
 }
 
 /** Oturumu açık cihazlar. $user_id 0 = herkes (yönetici ekranı). */
+/** @return list<array<string, mixed>> */
 function flxapp_user_devices( $user_id = 0 ) {
 	global $wpdb;
 	$d    = flxapp_devices_table();
@@ -165,6 +167,7 @@ function flxapp_platform_label( $p ) {
 	return $l[ $p ] ?? $p;
 }
 
+/** @return array<string, mixed> */
 function flxapp_device_out( array $r ) {
 	$cur    = flxapp_current_grant();
 	$client = flxapp_client( (string) $r['client_id'] );
@@ -233,7 +236,7 @@ function flxapp_rest_device_save( WP_REST_Request $req ) {
 		list( $data['token'], $data['provider'] ) = $p;
 	}
 	$row = flxapp_device_save( get_current_user_id(), flxapp_current_grant(), $data );
-	return is_wp_error( $row ) ? $row : flxapp_device_out( $row );
+	return flxapp_device_out( $row );
 }
 
 function flxapp_rest_devices() {

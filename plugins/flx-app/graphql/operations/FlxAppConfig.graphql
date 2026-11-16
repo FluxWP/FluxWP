@@ -1,0 +1,8 @@
+# The app look (flx-app-config/1). ifHash = the digest the app already holds.
+query FlxAppConfig($ifHash: String) {
+  flxAppConfig(ifHash: $ifHash) {
+    hash
+    notModified
+    document
+  }
+}

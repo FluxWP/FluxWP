@@ -1,6 +1,24 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: en_US\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Searches this website and returns matching pages and posts with their title and address."
+msgstr ""
+
+msgid "Words to search for"
+msgstr ""
+
+msgid "How many results to return (1-20)"
+msgstr ""
+
+msgid "Reads a page of this website as Markdown (title, description and main content). Without an address, reads the current page."
+msgstr ""
+
+msgid "Page address on this website; empty for the current page"
+msgstr ""
+
+msgid "Returns a short overview of this website (llms.txt): what it is about and its main pages."
+msgstr ""
+
 msgid "Pages"
 msgstr ""
 
@@ -23,9 +41,6 @@ msgid "RSS feed"
 msgstr ""
 
 msgid "Searches the site and opens the results page."
-msgstr ""
-
-msgid "Words to search for"
 msgstr ""
 
 msgid "Unknown fix."
@@ -55,7 +70,76 @@ msgstr ""
 msgid "If every subdomain is HTTPS, HSTS also covers subdomains."
 msgstr ""
 
+msgid "Turn on Content-Signal in robots.txt"
+msgstr ""
+
+msgid "Adds a Content-Signal line (search, ai-input, ai-train) to robots.txt so crawlers know how the content may be used. The values are set in SEO › Settings."
+msgstr ""
+
+msgid "Serve Markdown to agents"
+msgstr ""
+
+msgid "Pages answer Accept: text/markdown with a Markdown version of the main content; far fewer tokens than HTML."
+msgstr ""
+
+msgid "Turn on IndexNow"
+msgstr ""
+
+msgid "New and updated pages are sent instantly to Bing, Yandex, Seznam and Naver; the whole site is submitted once automatically."
+msgstr ""
+
 msgid "Turned on. Run the site audit again."
+msgstr ""
+
+msgid "Open Search Console"
+msgstr ""
+
+msgid "Add property › URL prefix › HTML tag. Leave empty if you verified with DNS."
+msgstr ""
+
+msgid "Open Bing Webmaster"
+msgstr ""
+
+msgid "The easiest path is \"Import from Google Search Console\": verification and the sitemap arrive on their own, no code. If you add it by hand, paste the HTML meta tag. DuckDuckGo, Yahoo and Ecosia results come from Bing."
+msgstr ""
+
+msgid "Open Yandex Webmaster"
+msgstr ""
+
+msgid "Add site › Meta tag. After verifying, add the sitemap URL under Indexing › Sitemap files."
+msgstr ""
+
+msgid "Open Naver Search Advisor"
+msgstr ""
+
+msgid "Korea's largest search engine. Add site › HTML tag; then Request › Submit sitemap. Optional."
+msgstr ""
+
+msgid "Open Seznam Webmaster"
+msgstr ""
+
+msgid "Czech search engine (Webmaster link at the bottom of the page). Meta tag method. Optional."
+msgstr ""
+
+msgid "Open Baidu Webmaster"
+msgstr ""
+
+msgid "China's search engine; sign-up may need a Chinese phone number. Not needed unless you target China."
+msgstr ""
+
+msgid "%1$s · %2$d URLs · HTTP %3$d"
+msgstr ""
+
+msgid "key file could not be verified"
+msgstr ""
+
+msgid "URLs do not match the site domain"
+msgstr ""
+
+msgid "too many requests, try again later"
+msgstr ""
+
+msgid "error"
 msgstr ""
 
 msgid "General"
@@ -70,7 +154,205 @@ msgstr ""
 msgid "Site audit"
 msgstr ""
 
-msgid "AI (MCP)"
+msgid "Settings"
+msgstr ""
+
+msgid "JavaScript is required for this screen."
+msgstr ""
+
+msgid "New view"
+msgstr ""
+
+msgid "Open the new view (same features, works in the FluxWP app too)."
+msgstr ""
+
+msgid "Flux SEO's AI (MCP) tools run through the shared MCP server. The server, keys and settings are in Flux AI & MCP › MCP; install and activate Flux AI 0.7.0 or later."
+msgstr ""
+
+msgid "Search engines"
+msgstr ""
+
+msgid "Search engines other than Google (Bing, Yandex, DuckDuckGo, Yahoo, Ecosia) crawl a site quickly only once it is introduced to them. Add the site in each one's webmaster panel, paste the verification code below and submit the sitemap URL."
+msgstr ""
+
+msgid "Sitemap URL"
+msgstr ""
+
+msgid "Also listed in robots.txt; add this URL in Search Console, Bing and Yandex."
+msgstr ""
+
+msgid "Verification tag is on the site"
+msgstr ""
+
+msgid "Connected with Google Site Kit; Search Console verification and the sitemap are handled there. You can leave this empty."
+msgstr ""
+
+msgid "Instantly notify Bing, Yandex, DuckDuckGo (via Bing), Seznam and Naver about published and updated pages"
+msgstr ""
+
+msgid "Key file:"
+msgstr ""
+
+msgid "When on, the whole site is submitted once automatically. Google does not use IndexNow; add your sitemap in Search Console for Google."
+msgstr ""
+
+msgid "The site is hidden from search engines (Settings › Reading); IndexNow sends nothing."
+msgstr ""
+
+msgid "Last bulk submission:"
+msgstr ""
+
+msgid "Submit the whole site now"
+msgstr ""
+
+msgid "Country code"
+msgstr ""
+
+msgid "Country is a two-letter code (TR, US, DE). Empty fields are filled from the organization profile (Flux Setup) when it has an address or phone."
+msgstr ""
+
+msgid "Areas of expertise"
+msgstr ""
+
+msgid "One topic per line"
+msgstr ""
+
+msgid "Topics the organization is an expert in (schema knowsAbout). Search engines and AI assistants match the organization to these topics. Left out when empty."
+msgstr ""
+
+msgid "Area served"
+msgstr ""
+
+msgid "e.g. United States"
+msgstr ""
+
+msgid "Country served (schema areaServed). Left out when empty."
+msgstr ""
+
+msgid "Donation call to action"
+msgstr ""
+
+msgid "e.g. Donate"
+msgstr ""
+
+msgid "For organizations that accept donations (schema DonateAction). Left out when the label is empty; when the URL is empty the donation page is found automatically."
+msgstr ""
+
+msgid "Daily"
+msgstr ""
+
+msgid "Weekly"
+msgstr ""
+
+msgid "Off"
+msgstr ""
+
+msgid "Monday"
+msgstr ""
+
+msgid "Tuesday"
+msgstr ""
+
+msgid "Wednesday"
+msgstr ""
+
+msgid "Thursday"
+msgstr ""
+
+msgid "Friday"
+msgstr ""
+
+msgid "Saturday"
+msgstr ""
+
+msgid "Sunday"
+msgstr ""
+
+msgid "[%1$s] Site audit: %2$d new critical/high recommendations"
+msgstr ""
+
+msgid "The automatic site audit found new recommendations:"
+msgstr ""
+
+msgid "Total: critical %1$d, high %2$d, medium %3$d, low %4$d."
+msgstr ""
+
+msgid "Resolved since the previous audit: %d."
+msgstr ""
+
+msgid "Details and fixes:"
+msgstr ""
+
+msgid "Automatic"
+msgstr ""
+
+msgid "Manual"
+msgstr ""
+
+msgid "AI"
+msgstr ""
+
+msgid "After fix"
+msgstr ""
+
+msgid "Report history"
+msgstr ""
+
+msgid "Next automatic audit: %s"
+msgstr ""
+
+msgid "Automatic audit is off."
+msgstr ""
+
+msgid "No reports yet. Every audit (manual, automatic or by AI) is saved here."
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "Trigger"
+msgstr ""
+
+msgid "Recommendations"
+msgstr ""
+
+msgid "PageSpeed scores"
+msgstr ""
+
+msgid "Change"
+msgstr ""
+
+msgid "No change"
+msgstr ""
+
+msgid "new"
+msgstr ""
+
+msgid "resolved"
+msgstr ""
+
+msgid "PageSpeed not run"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Desktop"
+msgstr ""
+
+msgid "Number of recommendations over time"
+msgstr ""
+
+msgid "Device"
+msgstr ""
+
+msgid "No report with a PageSpeed run yet. Enter the API key and turn on PageSpeed in the automatic audit."
+msgstr ""
+
+msgid "%s PageSpeed scores over time"
+msgstr ""
+
+msgid "Site audit history"
 msgstr ""
 
 msgid "llms.txt follows recommendations"
@@ -79,7 +361,19 @@ msgstr ""
 msgid "Accessibility tree is well-formed"
 msgstr ""
 
-msgid "Forms are WebMCP tools"
+msgid "WebMCP tools are registered"
+msgstr ""
+
+msgid "Markdown is served to agents"
+msgstr ""
+
+msgid "Content signals are declared"
+msgstr ""
+
+msgid "Organization and contact pages are complete"
+msgstr ""
+
+msgid "MCP Server Card is published"
 msgstr ""
 
 msgid "Low layout shift (CLS)"
@@ -94,7 +388,7 @@ msgstr ""
 msgid "PageSpeed desktop"
 msgstr ""
 
-msgid "The five PageSpeed Insights sections (Performance, Accessibility, Best Practices, SEO, Agentic Browsing) by priority. The on-site audit needs no key and runs by itself every day; a PageSpeed run adds Google's real Lighthouse result."
+msgid "The five PageSpeed Insights sections (Performance, Accessibility, Best Practices, SEO, Agentic Browsing) by priority. The on-site audit needs no key; a PageSpeed run adds Google's real Lighthouse result. Automatic audit, API key and security headers are in the Settings tab."
 msgstr ""
 
 msgid "On-site audit: %1$s · %2$s"
@@ -112,12 +406,6 @@ msgstr ""
 msgid "Measure with PageSpeed"
 msgstr ""
 
-msgid "Mobile"
-msgstr ""
-
-msgid "Desktop"
-msgstr ""
-
 msgid "No PageSpeed run yet. Press \"Measure with PageSpeed\" (mobile + desktop takes about 1 minute)."
 msgstr ""
 
@@ -128,9 +416,6 @@ msgid "MCP server on"
 msgstr ""
 
 msgid "MCP server off"
-msgstr ""
-
-msgid "Recommendations"
 msgstr ""
 
 msgid "Filter by priority"
@@ -160,7 +445,7 @@ msgstr ""
 msgid "Fix"
 msgstr ""
 
-msgid "Settings"
+msgid "Site audit and agent readiness"
 msgstr ""
 
 msgid "PageSpeed Insights API key"
@@ -184,7 +469,34 @@ msgstr ""
 msgid "E.g. who your organization is, what it does, which pages agents should read first."
 msgstr ""
 
-msgid "WebMCP: expose the search form to browser agents as a tool"
+msgid "WebMCP: register site tools for browser agents (search, read page as Markdown, site overview) and mark the search form as a tool"
+msgstr ""
+
+msgid "Serve Markdown when an agent asks for it (Accept: text/markdown)"
+msgstr ""
+
+msgid "Declare Content-Signal in robots.txt"
+msgstr ""
+
+msgid "Search (search)"
+msgstr ""
+
+msgid "AI answers (ai-input)"
+msgstr ""
+
+msgid "AI training (ai-train)"
+msgstr ""
+
+msgid "Allowed"
+msgstr ""
+
+msgid "Not allowed"
+msgstr ""
+
+msgid "Not stated"
+msgstr ""
+
+msgid "Content signals tell crawlers how your content may be used: in search results, as live input to AI answers, and for training AI models. They are a stated preference; crawlers are not forced to follow them."
 msgstr ""
 
 msgid "Security headers"
@@ -203,6 +515,30 @@ msgid "HSTS covers subdomains (includeSubDomains)"
 msgstr ""
 
 msgid "HSTS preload (takes months to undo; every subdomain must be HTTPS)"
+msgstr ""
+
+msgid "Automatic audit"
+msgstr ""
+
+msgid "Frequency"
+msgstr ""
+
+msgid "Day"
+msgstr ""
+
+msgid "Time"
+msgstr ""
+
+msgid "Runs in the background and saves the result to Report history. The time uses the site time zone; if the site gets no visit at that time, it starts on the next request."
+msgstr ""
+
+msgid "Also run PageSpeed Insights (mobile + desktop; needs the API key)"
+msgstr ""
+
+msgid "Send an email when a new critical or high priority recommendation appears"
+msgstr ""
+
+msgid "Email address (empty: site admin)"
 msgstr ""
 
 msgid "Save"
@@ -280,7 +616,13 @@ msgstr ""
 msgid "Flux SEO (one click)"
 msgstr ""
 
+msgid "Flux Speed (one click)"
+msgstr ""
+
 msgid "WordPress setting"
+msgstr ""
+
+msgid "Flux AI & MCP"
 msgstr ""
 
 msgid "Home page does not return a successful status code"
@@ -299,6 +641,48 @@ msgid "robots.txt blocks the whole site"
 msgstr ""
 
 msgid "The robots.txt file in the site root must not have \"Disallow: /\" under \"User-agent: *\". Delete or fix the file; WordPress generates its own robots.txt."
+msgstr ""
+
+msgid "robots.txt blocks the Bing or Yandex crawler"
+msgstr ""
+
+msgid "Search crawlers such as Bingbot, YandexBot and DuckDuckBot must not have \"Disallow: /\"; otherwise the site only appears on Google. Fix the robots.txt file in the site root."
+msgstr ""
+
+msgid "robots.txt has no Sitemap line"
+msgstr ""
+
+msgid "Bing and Yandex find the sitemap from the \"Sitemap:\" line in robots.txt. If a hand-written robots.txt sits in the root, delete it (Flux SEO adds the line) or add the line yourself."
+msgstr ""
+
+msgid "IndexNow is off"
+msgstr ""
+
+msgid "IndexNow instantly notifies Bing, Yandex, Seznam and Naver about new and updated pages; it is the fastest way to show up outside Google. One click to turn it on."
+msgstr ""
+
+msgid "IndexNow submission failed"
+msgstr ""
+
+msgid "The key file (/<key>.txt) must be reachable from outside. If a cache or security plugin blocks it, add an exception, then use SEO › General › IndexNow › \"Submit the whole site now\"."
+msgstr ""
+
+msgid "No Bing / Yandex verification code"
+msgstr ""
+
+msgid "The site may not be added to Bing Webmaster Tools and Yandex Webmaster; without that it appears late or not at all there. On Bing, \"Import from Google Search Console\" needs no code; ignore this if you already imported. The codes are under SEO › General › Search engines."
+msgstr ""
+
+msgid "PHP version is missing a security patch"
+msgstr ""
+
+msgid "The server's PHP is unpatched against a known hole or no longer supported. Upgrade PHP to the current patch release from the hosting panel."
+msgstr ""
+
+msgid "session.upload_progress is on"
+msgstr ""
+
+msgid "WordPress does not use this PHP feature; it is the exploit path for holes such as PHP2Shell. Set session.upload_progress.enabled = Off in php.ini or the hosting panel."
 msgstr ""
 
 msgid "Page has no <title>"
@@ -673,6 +1057,48 @@ msgstr ""
 msgid "WebMCP lets browser agents call forms as tools (form toolname/tooldescription). Flux SEO adds it to the search form; add it to your own forms too."
 msgstr ""
 
+msgid "No Content-Signal in robots.txt"
+msgstr ""
+
+msgid "A Content-Signal line (e.g. search=yes, ai-input=yes, ai-train=no) tells crawlers how your content may be used. Flux SEO adds it to the generated robots.txt; set the values in SEO › Settings. If a hand-written robots.txt sits in the site root, add the line under \"User-agent: *\" yourself."
+msgstr ""
+
+msgid "Sitemap has no lastmod dates"
+msgstr ""
+
+msgid "Each sitemap entry should carry <lastmod> so search engines and agents know what changed. Flux SEO adds it to the WordPress sitemap and its index; if another plugin builds the sitemap, turn on lastmod there."
+msgstr ""
+
+msgid "Organization schema is missing contact details"
+msgstr ""
+
+msgid "Fill in the phone and address so an agent can answer questions about the organization without guessing: SEO › Organization, or the organization profile in Flux Setup (Flux SEO reads it when its own fields are empty)."
+msgstr ""
+
+msgid "About, contact or legal page is not linked from the home page"
+msgstr ""
+
+msgid "Link the about, contact and privacy/terms pages from the home page (usually the footer). A mailto: link does not count as a contact page; agents look for a page they can read."
+msgstr ""
+
+msgid "Markdown is not served when an agent asks for it"
+msgstr ""
+
+msgid "For Accept: text/markdown the page should answer with a Markdown version; it costs agents far fewer tokens than HTML. Flux SEO does this when \"Serve Markdown\" is on. If HTML still comes back, a page cache is answering first: purge the cache (LiteSpeed: Purge All) and check that the \"Flux SEO Markdown\" block is at the top of .htaccess."
+msgstr ""
+
+msgid "No WebMCP tools are registered on page load"
+msgstr ""
+
+msgid "Browser agents look for tools registered with navigator.modelContext.registerTool() or forms marked with toolname/tooldescription. Flux SEO registers search, read-page and site-overview tools when WebMCP is on."
+msgstr ""
+
+msgid "No MCP Server Card"
+msgstr ""
+
+msgid "Agents discover the site's MCP server from /.well-known/mcp/server-card.json (name, version, endpoint, capabilities). Flux AI & MCP publishes it when its MCP server is on (Flux AI & MCP › MCP). Without Flux AI & MCP the site has no MCP server; you can ignore this."
+msgstr ""
+
 msgid "robots.txt blocks AI crawlers"
 msgstr ""
 
@@ -733,6 +1159,9 @@ msgstr ""
 msgid "PageSpeed Insights can only measure addresses reachable from the internet."
 msgstr ""
 
+msgid "PageSpeed timed out; this step was skipped."
+msgstr ""
+
 msgid "The PageSpeed daily quota is used up. Enter a free Google API key in SEO › Settings."
 msgstr ""
 
@@ -745,171 +1174,6 @@ msgstr ""
 msgid "Critical %1$d, high %2$d, medium %3$d, low %4$d recommendations."
 msgstr ""
 
-msgid "Site build guide"
-msgstr ""
-
-msgid "SEO output"
-msgstr ""
-
-msgid "Another SEO plugin is active; meta, Open Graph and schema come from it. Flux SEO turned its own output off to avoid conflicts."
-msgstr ""
-
-msgid "Meta description, Open Graph and schema are added to every page."
-msgstr ""
-
-msgid "Off. Page descriptions, images and organization details will not show on Google and social shares. Turn it on if you want to be found on Google."
-msgstr ""
-
-msgid "SEO settings"
-msgstr ""
-
-msgid "Daily"
-msgstr ""
-
-msgid "Weekly"
-msgstr ""
-
-msgid "Off"
-msgstr ""
-
-msgid "Monday"
-msgstr ""
-
-msgid "Tuesday"
-msgstr ""
-
-msgid "Wednesday"
-msgstr ""
-
-msgid "Thursday"
-msgstr ""
-
-msgid "Friday"
-msgstr ""
-
-msgid "Saturday"
-msgstr ""
-
-msgid "Sunday"
-msgstr ""
-
-msgid "[%1$s] Site audit: %2$d new critical/high recommendations"
-msgstr ""
-
-msgid "The automatic site audit found new recommendations:"
-msgstr ""
-
-msgid "Total: critical %1$d, high %2$d, medium %3$d, low %4$d."
-msgstr ""
-
-msgid "Resolved since the previous audit: %d."
-msgstr ""
-
-msgid "Details and fixes:"
-msgstr ""
-
-msgid "Automatic"
-msgstr ""
-
-msgid "Manual"
-msgstr ""
-
-msgid "AI"
-msgstr ""
-
-msgid "After fix"
-msgstr ""
-
-msgid "Report history"
-msgstr ""
-
-msgid "Next automatic audit: %s"
-msgstr ""
-
-msgid "Automatic audit is off."
-msgstr ""
-
-msgid "No reports yet. Every audit (manual, automatic or by AI) is saved here."
-msgstr ""
-
-msgid "Number of recommendations over time"
-msgstr ""
-
-msgid "Date"
-msgstr ""
-
-msgid "Trigger"
-msgstr ""
-
-msgid "Mobile scores"
-msgstr ""
-
-msgid "Change"
-msgstr ""
-
-msgid "No change"
-msgstr ""
-
-msgid "new"
-msgstr ""
-
-msgid "resolved"
-msgstr ""
-
-msgid "Site audit history"
-msgstr ""
-
-msgid "Automatic audit"
-msgstr ""
-
-msgid "Frequency"
-msgstr ""
-
-msgid "Day"
-msgstr ""
-
-msgid "Time"
-msgstr ""
-
-msgid "Runs in the background and saves the result to Report history. The time uses the site time zone; if the site gets no visit at that time, it starts on the next request."
-msgstr ""
-
-msgid "Also run PageSpeed Insights (mobile + desktop; needs the API key)"
-msgstr ""
-
-msgid "Send an email when a new critical or high priority recommendation appears"
-msgstr ""
-
-msgid "Email address (empty: site admin)"
-msgstr ""
-
-msgid "Flux Speed (one click)"
-msgstr ""
-
-msgid "The five PageSpeed Insights sections (Performance, Accessibility, Best Practices, SEO, Agentic Browsing) by priority. The on-site audit needs no key; a PageSpeed run adds Google's real Lighthouse result. Automatic audit, API key and security headers are in the Settings tab."
-msgstr ""
-
-msgid "PageSpeed scores"
-msgstr ""
-
-msgid "PageSpeed not run"
-msgstr ""
-
-msgid "Device"
-msgstr ""
-
-msgid "No report with a PageSpeed run yet. Enter the API key and turn on PageSpeed in the automatic audit."
-msgstr ""
-
-msgid "%s PageSpeed scores over time"
-msgstr ""
-
-msgid "Site audit and agent readiness"
-msgstr ""
-
-msgid "Flux SEO's AI (MCP) tools run through the shared MCP server. The server, keys and settings are in Flux AI & MCP › MCP; install and activate Flux AI 0.7.0 or later."
-msgstr ""
-
 msgid "No URLs to submit."
 msgstr ""
 
@@ -919,259 +1183,58 @@ msgstr ""
 msgid "Not allowed."
 msgstr ""
 
-msgid "IndexNow is off or the site is hidden from search engines (Settings › Reading)."
-msgstr ""
-
 msgid "%d URLs submitted to Bing, Yandex and the other IndexNow search engines."
 msgstr ""
 
-msgid "Open Search Console"
+msgid "Hidden from search engines (noindex)."
 msgstr ""
 
-msgid "Add property › URL prefix › HTML tag. Leave empty if you verified with DNS."
+msgid "Title is long (%d characters); Google cuts after about 60."
 msgstr ""
 
-msgid "Open Bing Webmaster"
+msgid "Title is very short; write a title that describes the topic."
 msgstr ""
 
-msgid "The easiest path is \"Import from Google Search Console\": verification and the sitemap arrive on their own, no code. If you add it by hand, paste the HTML meta tag. DuckDuckGo, Yahoo and Ecosia results come from Bing."
+msgid "No meta description; it is built from the content automatically."
 msgstr ""
 
-msgid "Open Yandex Webmaster"
+msgid "Meta description is long (%d characters)."
 msgstr ""
 
-msgid "Add site › Meta tag. After verifying, add the sitemap URL under Indexing › Sitemap files."
+msgid "Meta description is short (%d characters)."
 msgstr ""
 
-msgid "%1$s · %2$d URLs · HTTP %3$d"
+msgid "No featured image (it will not show in shares or Google Discover)."
 msgstr ""
 
-msgid "key file could not be verified"
+msgid "%d images have no alt text (filled in automatically from the image name; write a meaningful alt text)."
 msgstr ""
 
-msgid "URLs do not match the site domain"
+msgid "%d images have no alt text."
 msgstr ""
 
-msgid "too many requests, try again later"
+msgid "The page has %d H1 headings; there must be only one."
 msgstr ""
 
-msgid "error"
+msgid "The page has no main heading (H1)."
 msgstr ""
 
-msgid "Search engines"
+msgid "The content has an H1; the page title is already the H1. Make sub-headings H2."
 msgstr ""
 
-msgid "Search engines other than Google (Bing, Yandex, DuckDuckGo, Yahoo, Ecosia) crawl a site quickly only once it is introduced to them. Add the site in each one's webmaster panel, paste the verification code below and submit the sitemap URL."
+msgid "The content is short (%d words). 300+ words are recommended."
 msgstr ""
 
-msgid "Sitemap URL"
+msgid "Long content has no sub-heading (H2)."
 msgstr ""
 
-msgid "Also listed in robots.txt; add this URL in Search Console, Bing and Yandex."
+msgid "The focus keyword is not in the title."
 msgstr ""
 
-msgid "Verification tag is on the site"
+msgid "The focus keyword is not in the description."
 msgstr ""
 
-msgid "Instantly notify Bing, Yandex, DuckDuckGo (via Bing), Seznam and Naver about published and updated pages"
-msgstr ""
-
-msgid "Key file:"
-msgstr ""
-
-msgid "When on, the whole site is submitted once automatically. Google does not use IndexNow; add your sitemap in Search Console for Google."
-msgstr ""
-
-msgid "The site is hidden from search engines (Settings › Reading); IndexNow sends nothing."
-msgstr ""
-
-msgid "Last bulk submission:"
-msgstr ""
-
-msgid "Submit the whole site now"
-msgstr ""
-
-msgid "robots.txt blocks the Bing or Yandex crawler"
-msgstr ""
-
-msgid "Search crawlers such as Bingbot, YandexBot and DuckDuckBot must not have \"Disallow: /\"; otherwise the site only appears on Google. Fix the robots.txt file in the site root."
-msgstr ""
-
-msgid "robots.txt has no Sitemap line"
-msgstr ""
-
-msgid "Bing and Yandex find the sitemap from the \"Sitemap:\" line in robots.txt. If a hand-written robots.txt sits in the root, delete it (Flux SEO adds the line) or add the line yourself."
-msgstr ""
-
-msgid "IndexNow is off"
-msgstr ""
-
-msgid "IndexNow instantly notifies Bing, Yandex, Seznam and Naver about new and updated pages; it is the fastest way to show up outside Google. One click to turn it on."
-msgstr ""
-
-msgid "IndexNow submission failed"
-msgstr ""
-
-msgid "The key file (/<key>.txt) must be reachable from outside. If a cache or security plugin blocks it, add an exception, then use SEO › General › IndexNow › \"Submit the whole site now\"."
-msgstr ""
-
-msgid "No Bing / Yandex verification code"
-msgstr ""
-
-msgid "The site may not be added to Bing Webmaster Tools and Yandex Webmaster; without that it appears late or not at all there. On Bing, \"Import from Google Search Console\" needs no code; ignore this if you already imported. The codes are under SEO › General › Search engines."
-msgstr ""
-
-msgid "Turn on IndexNow"
-msgstr ""
-
-msgid "New and updated pages are sent instantly to Bing, Yandex, Seznam and Naver; the whole site is submitted once automatically."
-msgstr ""
-
-msgid "Bing and Yandex"
-msgstr ""
-
-msgid "No verification code: %s. Add the site in these search engines' webmaster panels (Bing's import from Google Search Console needs no code)."
-msgstr ""
-
-msgid "Bing and Yandex verification codes are set."
-msgstr ""
-
-msgid "On; the site has been submitted to Bing and Yandex."
-msgstr ""
-
-msgid "On; the first bulk submission is sent on the next admin page load."
-msgstr ""
-
-msgid "Off; new pages are not sent to Bing and Yandex."
-msgstr ""
-
-msgid "Open Naver Search Advisor"
-msgstr ""
-
-msgid "Korea's largest search engine. Add site › HTML tag; then Request › Submit sitemap. Optional."
-msgstr ""
-
-msgid "Open Seznam Webmaster"
-msgstr ""
-
-msgid "Czech search engine (Webmaster link at the bottom of the page). Meta tag method. Optional."
-msgstr ""
-
-msgid "Open Baidu Webmaster"
-msgstr ""
-
-msgid "China's search engine; sign-up may need a Chinese phone number. Not needed unless you target China."
-msgstr ""
-
-msgid "Connected with Google Site Kit; Search Console verification and the sitemap are handled there. You can leave this empty."
-msgstr ""
-
-msgid "Connected with Google Site Kit."
-msgstr ""
-
-msgid "Areas of expertise"
-msgstr ""
-
-msgid "One topic per line"
-msgstr ""
-
-msgid "Topics the organization is an expert in (schema knowsAbout). Search engines and AI assistants match the organization to these topics. Left out when empty."
-msgstr ""
-
-msgid "Area served"
-msgstr ""
-
-msgid "e.g. United States"
-msgstr ""
-
-msgid "Country served (schema areaServed). Left out when empty."
-msgstr ""
-
-msgid "Donation call to action"
-msgstr ""
-
-msgid "e.g. Donate"
-msgstr ""
-
-msgid "For organizations that accept donations (schema DonateAction). Left out when the label is empty; when the URL is empty the donation page is found automatically."
-msgstr ""
-
-msgid "Address"
-msgstr ""
-
-msgid "Homepage description"
-msgstr ""
-
-msgid "Homepage title"
-msgstr ""
-
-msgid "Don't index search"
-msgstr ""
-
-msgid "Separator"
-msgstr ""
-
-msgid "No findings"
-msgstr ""
-
-msgid "Findings"
-msgstr ""
-
-msgid "Audit email"
-msgstr ""
-
-msgid "Audit updated"
-msgstr ""
-
-msgid "Audit schedule"
-msgstr ""
-
-msgid "Findings show up here after an audit runs."
-msgstr ""
-
-msgid "Run audit"
-msgstr ""
-
-msgid "Email"
-msgstr ""
-
-msgid "Don't index tags"
-msgstr ""
-
-msgid "IndexNow"
-msgstr ""
-
-msgid "Organization"
-msgstr ""
-
-msgid "Organization name"
-msgstr ""
-
-msgid "Organization type"
-msgstr ""
-
-msgid "Open in panel"
-msgstr ""
-
-msgid "Scores"
-msgstr ""
-
-msgid "NGO"
-msgstr ""
-
-msgid "Site name"
-msgstr ""
-
-msgid "Last local audit"
-msgstr ""
-
-msgid "Phone"
-msgstr ""
-
-msgid "WebMCP"
-msgstr ""
-
-msgid "llms.txt"
+msgid "No internal links (link to related pages)."
 msgstr ""
 
 msgid "PHP %1$s is not patched against %2$s. Update to at least %3$s (hosting panel › PHP version). A distribution package may carry the fix without changing the version number; ask your provider if unsure."
@@ -1195,20 +1258,587 @@ msgstr ""
 msgid "session.upload_progress.enabled is on. WordPress does not use it; turning it off shrinks the attack surface. Set \"session.upload_progress.enabled = Off\" in php.ini or the hosting panel."
 msgstr ""
 
-msgid "PHP version is missing a security patch"
+msgid "Site build guide"
 msgstr ""
 
-msgid "The server's PHP is unpatched against a known hole or no longer supported. Upgrade PHP to the current patch release from the hosting panel."
+msgid "SEO output"
 msgstr ""
 
-msgid "session.upload_progress is on"
+msgid "Another SEO plugin is active; meta, Open Graph and schema come from it. Flux SEO turned its own output off to avoid conflicts."
 msgstr ""
 
-msgid "WordPress does not use this PHP feature; it is the exploit path for holes such as PHP2Shell. Set session.upload_progress.enabled = Off in php.ini or the hosting panel."
+msgid "Meta description, Open Graph and schema are added to every page."
 msgstr ""
 
-msgid "Meta title/description, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap settings, favicon and SEO control. Content and SEO tools for AI assistants (on MCP server Flux AI)."
+msgid "Off. Page descriptions, images and organization details will not show on Google and social shares. Turn it on if you want to be found on Google."
 msgstr ""
 
-msgid "PageSpeed timed out; this step was skipped."
+msgid "SEO settings"
+msgstr ""
+
+msgid "Connected with Google Site Kit."
+msgstr ""
+
+msgid "Bing and Yandex"
+msgstr ""
+
+msgid "No verification code: %s. Add the site in these search engines' webmaster panels (Bing's import from Google Search Console needs no code)."
+msgstr ""
+
+msgid "Bing and Yandex verification codes are set."
+msgstr ""
+
+msgid "On; the site has been submitted to Bing and Yandex."
+msgstr ""
+
+msgid "On; the first bulk submission is sent on the next admin page load."
+msgstr ""
+
+msgid "Off; new pages are not sent to Bing and Yandex."
+msgstr ""
+
+msgid "Content not found."
+msgstr ""
+
+msgid "You are not allowed to edit this content."
+msgstr ""
+
+msgid "IndexNow is off or the site is hidden from search engines (Settings › Reading)."
+msgstr ""
+
+msgid "How important an audit recommendation is."
+msgstr ""
+
+msgid "Where a recommendation came from."
+msgstr ""
+
+msgid "Device a PageSpeed run measures."
+msgstr ""
+
+msgid "Kind of audit to run."
+msgstr ""
+
+msgid "On-site audit of the page; needs no key."
+msgstr ""
+
+msgid "One PageSpeed Insights measurement (strategy required)."
+msgstr ""
+
+msgid "What started a saved audit report."
+msgstr ""
+
+msgid "How serious a content recommendation is."
+msgstr ""
+
+msgid "Language of the build guide."
+msgstr ""
+
+msgid "Recommendation counts by priority."
+msgstr ""
+
+msgid "Critical recommendations."
+msgstr ""
+
+msgid "High priority recommendations."
+msgstr ""
+
+msgid "Medium priority recommendations."
+msgstr ""
+
+msgid "Low priority recommendations."
+msgstr ""
+
+msgid "One audit recommendation."
+msgstr ""
+
+msgid "Finding id (a Lighthouse audit id or a Flux SEO check)."
+msgstr ""
+
+msgid "Title in the user's language."
+msgstr ""
+
+msgid "How important it is."
+msgstr ""
+
+msgid "Priority name in the user's language."
+msgstr ""
+
+msgid "Section: performance, accessibility, best-practices, seo or agentic (packages may add more)."
+msgstr ""
+
+msgid "Section name in the user's language."
+msgstr ""
+
+msgid "Other sections the recommendation counts in."
+msgstr ""
+
+msgid "Short detail such as a measured value; empty when none."
+msgstr ""
+
+msgid "How to fix it; empty when unknown."
+msgstr ""
+
+msgid "Who fixes it (theme, content, server …); null when unknown."
+msgstr ""
+
+msgid "Name of the owner; null when unknown."
+msgstr ""
+
+msgid "Affected elements or addresses (at most 10)."
+msgstr ""
+
+msgid "Which audits found it."
+msgstr ""
+
+msgid "One-click fix id; null when there is none or it is already on."
+msgstr ""
+
+msgid "Name of the one-click fix; null when there is none."
+msgstr ""
+
+msgid "A PageSpeed score of one section."
+msgstr ""
+
+msgid "Section key."
+msgstr ""
+
+msgid "Section name."
+msgstr ""
+
+msgid "0–100; null when Lighthouse gave none."
+msgstr ""
+
+msgid "Audits passed."
+msgstr ""
+
+msgid "Audits that count."
+msgstr ""
+
+msgid "A Core Web Vitals style metric of a PageSpeed run."
+msgstr ""
+
+msgid "Lighthouse audit id (largest-contentful-paint …)."
+msgstr ""
+
+msgid "Name."
+msgstr ""
+
+msgid "Display value such as \"2.3 s\"."
+msgstr ""
+
+msgid "0–1; null when none."
+msgstr ""
+
+msgid "The last PageSpeed Insights run of one device."
+msgstr ""
+
+msgid "Device measured."
+msgstr ""
+
+msgid "When it ran."
+msgstr ""
+
+msgid "Measured address."
+msgstr ""
+
+msgid "Lighthouse version; empty when unknown."
+msgstr ""
+
+msgid "Section scores."
+msgstr ""
+
+msgid "Core Web Vitals and speed metrics."
+msgstr ""
+
+msgid "One agent readiness check."
+msgstr ""
+
+msgid "Check id (llms, webmcp, md …)."
+msgstr ""
+
+msgid "What is checked."
+msgstr ""
+
+msgid "Whether the site passes."
+msgstr ""
+
+msgid "The last on-site audit run."
+msgstr ""
+
+msgid "Audited address."
+msgstr ""
+
+msgid "How long the page took to answer (ms)."
+msgstr ""
+
+msgid "HTTP status the page answered with."
+msgstr ""
+
+msgid "The current site audit report: scores, agent readiness and recommendations by priority."
+msgstr ""
+
+msgid "Last on-site audit; null before the first audit."
+msgstr ""
+
+msgid "Last PageSpeed run per device (none before the first run)."
+msgstr ""
+
+msgid "Agent readiness checks."
+msgstr ""
+
+msgid "Recommendations, most important first."
+msgstr ""
+
+msgid "Address the audit form starts with."
+msgstr ""
+
+msgid "The MCP server is on."
+msgstr ""
+
+msgid "Address of /llms.txt."
+msgstr ""
+
+msgid "Agent readiness checks the site passes."
+msgstr ""
+
+msgid "A recommendation named in a report change list."
+msgstr ""
+
+msgid "Finding id."
+msgstr ""
+
+msgid "A PageSpeed score in a saved report."
+msgstr ""
+
+msgid "Device."
+msgstr ""
+
+msgid "0–100; null when none."
+msgstr ""
+
+msgid "Speed metrics of one device in a saved report."
+msgstr ""
+
+msgid "First Contentful Paint; empty when not measured."
+msgstr ""
+
+msgid "Largest Contentful Paint; empty when not measured."
+msgstr ""
+
+msgid "Total Blocking Time; empty when not measured."
+msgstr ""
+
+msgid "Cumulative Layout Shift; empty when not measured."
+msgstr ""
+
+msgid "Speed Index; empty when not measured."
+msgstr ""
+
+msgid "One saved audit report."
+msgstr ""
+
+msgid "When the report was saved."
+msgstr ""
+
+msgid "What started the audit."
+msgstr ""
+
+msgid "Trigger name in the user's language."
+msgstr ""
+
+msgid "PageSpeed scores (none when PageSpeed did not run)."
+msgstr ""
+
+msgid "Speed metrics per device."
+msgstr ""
+
+msgid "Agent readiness as \"passed/total\"; empty for old reports."
+msgstr ""
+
+msgid "Recommendations that are new since the previous report."
+msgstr ""
+
+msgid "Recommendations gone since the previous report."
+msgstr ""
+
+msgid "Saved audit reports (newest first) and the automatic schedule."
+msgstr ""
+
+msgid "Reports, newest first."
+msgstr ""
+
+msgid "Saved reports (at most 90)."
+msgstr ""
+
+msgid "Next automatic audit; null when automatic audits are off."
+msgstr ""
+
+msgid "An automatic audit is running now."
+msgstr ""
+
+msgid "Problems of the last automatic audit."
+msgstr ""
+
+msgid "A recommendation for one content item."
+msgstr ""
+
+msgid "How serious it is."
+msgstr ""
+
+msgid "Stable code (title_long, desc_missing, img_alt …)."
+msgstr ""
+
+msgid "What is wrong, in the user's language."
+msgstr ""
+
+msgid "A published content item with recommendations."
+msgstr ""
+
+msgid "Post ID."
+msgstr ""
+
+msgid "Title."
+msgstr ""
+
+msgid "Post type."
+msgstr ""
+
+msgid "Public address."
+msgstr ""
+
+msgid "Editor address; null when the user cannot edit it."
+msgstr ""
+
+msgid "Recommendations."
+msgstr ""
+
+msgid "SEO check of the published content."
+msgstr ""
+
+msgid "Published items checked."
+msgstr ""
+
+msgid "Items with at least one recommendation."
+msgstr ""
+
+msgid "The 100 items with the most recommendations."
+msgstr ""
+
+msgid "A search engine that takes a verification tag."
+msgstr ""
+
+msgid "Setting key (verify_google …)."
+msgstr ""
+
+msgid "Search engine name."
+msgstr ""
+
+msgid "Webmaster panel address."
+msgstr ""
+
+msgid "Link text."
+msgstr ""
+
+msgid "Example tag."
+msgstr ""
+
+msgid "How to verify the site."
+msgstr ""
+
+msgid "Field of flxSettings.flxseo that holds the verification code (verifyGoogle …)."
+msgstr ""
+
+msgid "What the settings tabs show besides the setting values."
+msgstr ""
+
+msgid "Another SEO plugin is active; this plugin's meta and schema output is off."
+msgstr ""
+
+msgid "Flux AI & MCP (the shared MCP server) is installed."
+msgstr ""
+
+msgid "WordPress site name (placeholder of the site name field)."
+msgstr ""
+
+msgid "Site address."
+msgstr ""
+
+msgid "Sitemap address."
+msgstr ""
+
+msgid "Logo used when none is set."
+msgstr ""
+
+msgid "Share image used when none is set."
+msgstr ""
+
+msgid "Home page title in use (placeholder)."
+msgstr ""
+
+msgid "Home page description in use (placeholder)."
+msgstr ""
+
+msgid "Google Site Kit is connected to a Google account."
+msgstr ""
+
+msgid "The site is visible to search engines (Settings › Reading)."
+msgstr ""
+
+msgid "IndexNow key file name (without .txt). It is public: search engines read it."
+msgstr ""
+
+msgid "IndexNow key file address."
+msgstr ""
+
+msgid "Text of the last bulk submission; empty when none."
+msgstr ""
+
+msgid "IndexNow can send now (on, site public, not a local site)."
+msgstr ""
+
+msgid "A PageSpeed API key is saved. The key itself is never returned."
+msgstr ""
+
+msgid "Site admin email (default report address)."
+msgstr ""
+
+msgid "Search engines that take a verification tag."
+msgstr ""
+
+msgid "Section titles of the new site build guide."
+msgstr ""
+
+msgid "The new site build guide (rules and checklist) as Markdown."
+msgstr ""
+
+msgid "Guide text."
+msgstr ""
+
+msgid "Section titles."
+msgstr ""
+
+msgid "Language of the text."
+msgstr ""
+
+msgid "SEO fields of a page, post or term (the data in the page head)."
+msgstr ""
+
+msgid "Own SEO title; empty = the automatic one."
+msgstr ""
+
+msgid "Own meta description; empty = the automatic one."
+msgstr ""
+
+msgid "Hidden from search engines."
+msgstr ""
+
+msgid "Own share image address; empty = the featured or default image."
+msgstr ""
+
+msgid "Title the page uses."
+msgstr ""
+
+msgid "Description the page uses."
+msgstr ""
+
+msgid "Focus keyword the editor set; only editors can read it."
+msgstr ""
+
+msgid "SEO fields of this content (the data in the page head). Empty only when the SEO fields cannot be read."
+msgstr ""
+
+msgid "SEO title and description of this term."
+msgstr ""
+
+msgid "The current site audit report."
+msgstr ""
+
+msgid "Reports to return (1–90). Default 30."
+msgstr ""
+
+msgid "SEO check of the published content: what is missing or too long, per item."
+msgstr ""
+
+msgid "Check one post type only. Default: every public type."
+msgstr ""
+
+msgid "Items to check (1–500). Default 300."
+msgstr ""
+
+msgid "What the settings tabs show besides the setting values: search engines, sitemap, IndexNow state."
+msgstr ""
+
+msgid "The new site build guide (rules and checklist for SEO, speed, accessibility, security and agent readiness)."
+msgstr ""
+
+msgid "Language. Default: the user's language (Turkish or English)."
+msgstr ""
+
+msgid "Runs an audit: the on-site audit, or one PageSpeed measurement (15–40 s; call it for mobile, then desktop, then run the on-site audit)."
+msgstr ""
+
+msgid "Kind of audit."
+msgstr ""
+
+msgid "Device for a PageSpeed run. Default mobile."
+msgstr ""
+
+msgid "Address of this site to audit. Any other address audits the home page."
+msgstr ""
+
+msgid "The report after the run."
+msgstr ""
+
+msgid "Saved reports after the run."
+msgstr ""
+
+msgid "Turns on a one-click fix a recommendation offers, then refreshes the on-site audit."
+msgstr ""
+
+msgid "Fix id (a finding's fixId)."
+msgstr ""
+
+msgid "The report after the fix."
+msgstr ""
+
+msgid "Saves or deletes the PageSpeed Insights API key. The key is never returned."
+msgstr ""
+
+msgid "New key. Empty keeps the saved key."
+msgstr ""
+
+msgid "Delete the saved key."
+msgstr ""
+
+msgid "A key is saved after the change."
+msgstr ""
+
+msgid "Sends every public address of the site to Bing, Yandex and the other IndexNow search engines now."
+msgstr ""
+
+msgid "Addresses sent."
+msgstr ""
+
+msgid "Setup info after the submission (last submission text)."
+msgstr ""
+
+msgid "Changes the SEO fields of a post or page. Fields you leave out stay as they are."
+msgstr ""
+
+msgid "Own SEO title; empty = automatic."
+msgstr ""
+
+msgid "Own meta description; empty = automatic."
+msgstr ""
+
+msgid "Focus keyword."
+msgstr ""
+
+msgid "Hide from search engines."
+msgstr ""
+
+msgid "Own share image address; empty = automatic."
+msgstr ""
+
+msgid "SEO fields after the change."
 msgstr ""

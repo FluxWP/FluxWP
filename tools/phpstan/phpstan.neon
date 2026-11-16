@@ -2,6 +2,7 @@
 # Level max, PHP 8.1–8.5. Every GraphQL work package adds its folders under `paths` (plan §2.7).
 #   tools/phpstan/vendor/bin/phpstan analyse -c tools/phpstan/phpstan.neon
 includes:
+  - types.neon
   - vendor/szepeviktor/phpstan-wordpress/extension.neon
 
 parameters:
@@ -14,6 +15,8 @@ parameters:
     - bootstrap.php
   scanFiles:
     - ../../plugins/flx-graphql/vendor/wp-graphql/access-functions.php
+    - ../../plugins/flx-app/flx-app.php
+    - ../../plugins/flx-seo/flx-seo.php
     - vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
     - vendor/php-stubs/wp-cli-stubs/wp-cli-stubs.php
   scanDirectories:
@@ -24,7 +27,9 @@ parameters:
     # Legacy code the strict folders call (scanned for symbols only).
     - ../../plugins/flx-tasks/includes
     - ../../plugins/flx-roles/includes
+    - ../../plugins/flx-app/includes
     - ../../plugins/flx-lang/includes
+    - ../../plugins/flx-seo/includes
     - ../../plugins/flx-social/includes
   paths:
     - ../../plugins/flx-graphql/flx-graphql.php
@@ -36,16 +41,18 @@ parameters:
     # Flux Roles (Faz 1)
     - ../../plugins/flx-roles/includes/services
     - ../../plugins/flx-roles/includes/graphql
+    # Flux App (Faz 1)
+    - ../../plugins/flx-app/includes/services
+    - ../../plugins/flx-app/includes/graphql
     # Flux Lang (Faz 1)
     - ../../plugins/flx-lang/includes/services
     - ../../plugins/flx-lang/includes/graphql
+    # Flux SEO (Faz 1)
+    - ../../plugins/flx-seo/includes/services
+    - ../../plugins/flx-seo/includes/graphql
     # Flux Social (Faz 1)
     - ../../plugins/flx-social/includes/services
     - ../../plugins/flx-social/includes/graphql
   excludePaths:
     - ../../plugins/flx-graphql/includes/flx-brand
   treatPhpDocTypesAsCertain: false
-  typeAliases:
-    FlxGqlSettingsField: 'array{key: string, type: string, enum: list<scalar>, default: mixed, desc: string}'
-    FlxGqlSettingsGroup: 'array{field: string, type: string, cap: string, label: string, fields: array<string, FlxGqlSettingsField>}'
-    FlxGqlSettings: 'array{query_mode: string, ide: bool, introspection: bool, debug: bool, max_depth: int, max_complexity: int, max_page: int, batch_limit: int, cache_ttl: int, cors_origins: string, upload_max_mb: int}'

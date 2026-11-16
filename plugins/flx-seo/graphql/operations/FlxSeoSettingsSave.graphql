@@ -1,0 +1,14 @@
+mutation FlxSeoSettingsSave($flxseo: FlxSettingsFlxseoInput!) {
+  flxSettingsUpdate(input: { flxseo: $flxseo }) {
+    settings {
+      flxseo {
+        ...FlxSeoSettingsFields
+      }
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

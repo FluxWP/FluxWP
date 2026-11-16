@@ -1,0 +1,7 @@
+# Shared array shapes of the Flux GraphQL kit. Included by phpstan.neon and legacy.neon:
+# legacy code that calls kit functions sees these names in their return types and must resolve them too.
+parameters:
+  typeAliases:
+    FlxGqlSettingsField: 'array{key: string, type: string, enum: list<scalar>, default: mixed, desc: string}'
+    FlxGqlSettingsGroup: 'array{field: string, type: string, cap: string, label: string, fields: array<string, FlxGqlSettingsField>}'
+    FlxGqlSettings: 'array{query_mode: string, ide: bool, introspection: bool, debug: bool, max_depth: int, max_complexity: int, max_page: int, batch_limit: int, cache_ttl: int, cors_origins: string, upload_max_mb: int}'
