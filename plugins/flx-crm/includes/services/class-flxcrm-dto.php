@@ -78,7 +78,11 @@ final class FLXCRM_Val {
 	public static function keyed( array $row ): array {
 		$out = array();
 		foreach ( $row as $key => $value ) {
-			$out[ is_int( $key ) ? (string) $key : $key ] = $value;
+			// Integer keys would come back as int|string (PHP stores numeric strings as ints). These maps use string keys.
+			if ( is_int( $key ) ) {
+				continue;
+			}
+			$out[ $key ] = $value;
 		}
 		return $out;
 	}

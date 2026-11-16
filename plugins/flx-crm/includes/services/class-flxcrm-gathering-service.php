@@ -876,8 +876,8 @@ final class FLXCRM_Gathering_Service {
 			$info = FLXCRM_Event_Messages::audience( $id, $ch, false );
 			$mkt  = FLXCRM_Event_Messages::audience( $id, $ch, flxcrm_mail_requires_consent( $ch ) );
 			$out[] = array(
-				'key'        => (string) $ch,
-				'label'      => (string) $label,
+				'key'        => is_int( $ch ) ? (string) $ch : $ch,
+				'label'      => FLXCRM_Val::str( $label ),
 				'ready'      => FLXCRM_Event_Messages::ready( $ch ),
 				'infoCount'  => count( FLXCRM_Val::arr( $info['list'] ?? array() ) ),
 				'marketingCount' => count( FLXCRM_Val::arr( $mkt['list'] ?? array() ) ),

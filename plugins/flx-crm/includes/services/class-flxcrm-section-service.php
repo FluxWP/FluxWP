@@ -99,7 +99,7 @@ final class FLXCRM_Section_Service {
 		if ( is_callable( $cap ) ) {
 			return FLXCRM_Val::bool( call_user_func( $cap, $contact ) );
 		}
-		return flxcrm_can();
+		return FLXCRM_Val::bool( flxcrm_can() );
 	}
 
 	/**
