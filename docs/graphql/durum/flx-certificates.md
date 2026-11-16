@@ -2,7 +2,7 @@
 
 - Faz: 1
 - Durum: ✱
-- PR:
+- PR: #338
 
 Envanter (`gql/flx-certificates-1`). REST tablosunda 27 satır GraphQL, 1 istisna. AJAX kaydı yok. 12 admin slug’ından 11’i ekran, sağlayıcılar yönlendirme. MCP aracı yok. Servis, şema ve ekran bu PR’da yok. Eşleme `docs/graphql/ESLEME/flx-certificates.md`.
 
