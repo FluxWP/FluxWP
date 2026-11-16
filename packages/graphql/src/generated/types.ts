@@ -620,6 +620,14 @@ export type FlxFilesTrashMutationVariables = Exact<{
 
 export type FlxFilesTrashMutation = { flxFilesTrash: { trashed: Array<{ path: string, trashId: string }>, failed: Array<{ path: string, message: string }>, errors: Array<{ code: string, message: string, field: string | null }> } | null };
 
+export type FlxFilesTrashListQueryVariables = Exact<{
+  first?: number | null | undefined;
+  after?: string | null | undefined;
+}>;
+
+
+export type FlxFilesTrashListQuery = { flxFilesTrash: { days: number, items: { totalCount: number | null, pageInfo: { hasNextPage: boolean, endCursor: string | null }, nodes: Array<{ id: string, name: string, path: string, isDir: boolean, kind: FlxFilesKind, size: number | null, until: string, user: string, via: FlxFilesVia, deleted: { iso: string, label: string, relative: string } }> } } };
+
 export type FlxFilesTrashPurgeMutationVariables = Exact<{
   input: FlxFilesTrashPurgeInput;
 }>;

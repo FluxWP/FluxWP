@@ -174,6 +174,15 @@ export const FlxFilesTrash: FlxOperation<T.FlxFilesTrashMutation, T.FlxFilesTras
   document: "mutation FlxFilesTrash($input: FlxFilesTrashInput!) {\n  flxFilesTrash(input: $input) {\n    trashed {\n      path\n      trashId\n    }\n    failed {\n      ...FlxFilesFailureFields\n    }\n    errors {\n      ...FlxFilesUserError\n    }\n  }\n}\n\nfragment FlxFilesFailureFields on FlxFilesFailure {\n  path\n  message\n}\n\nfragment FlxFilesUserError on FlxUserError {\n  code\n  message\n  field\n}",
 };
 
+/** query FlxFilesTrashList (flx-files, plugins/flx-files/graphql/operations/FlxFilesTrashList.graphql) */
+export const FlxFilesTrashList: FlxOperation<T.FlxFilesTrashListQuery, T.FlxFilesTrashListQueryVariables> = {
+  id: 'e7695dfcf0d582a7b2aac6dff97e29d64d15b8aacebe1bb54905fc69dac327a1',
+  name: 'FlxFilesTrashList',
+  kind: 'query',
+  plugin: 'flx-files',
+  document: "query FlxFilesTrashList($first: Int = 200, $after: String) {\n  flxFilesTrash {\n    days\n    items(first: $first, after: $after) {\n      totalCount\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      nodes {\n        id\n        name\n        path\n        isDir\n        kind\n        size\n        deleted {\n          iso\n          label\n          relative\n        }\n        until\n        user\n        via\n      }\n    }\n  }\n}",
+};
+
 /** mutation FlxFilesTrashPurge (flx-files, plugins/flx-files/graphql/operations/FlxFilesTrashPurge.graphql) */
 export const FlxFilesTrashPurge: FlxOperation<T.FlxFilesTrashPurgeMutation, T.FlxFilesTrashPurgeMutationVariables> = {
   id: '2f986646c02a7e0cbfc324e66a5f57e02434a3b14c8137f0586fb3800647cb98',

@@ -17,7 +17,7 @@ foreach ( (array) json_decode( (string) file_get_contents( FLXFM_DIR . 'graphql/
 		$GLOBALS['flxf_ops'][ $m[1] ] = $doc;
 	}
 }
-flxt_same( 26, count( $GLOBALS['flxf_ops'] ), 'Flux Files ships 26 persisted operations' );
+flxt_same( 27, count( $GLOBALS['flxf_ops'] ), 'Flux Files ships 27 persisted operations' );
 
 function flxf_op( string $name, array $vars = array(), int $user = 0 ): array {
 	return flxt_gql( $GLOBALS['flxf_ops'][ $name ], $vars, $user );
@@ -86,8 +86,8 @@ flxt_same( "hello\nworld 2\n", $r['data']['flxFilesFile']['content'] ?? null, 'f
 $r = flxf_op( 'FlxFilesFolder', array( 'path' => $B, 'sort' => 'NAME', 'order' => 'ASC' ), $admin );
 $nodes = $r['data']['flxFilesFolder']['items']['nodes'] ?? array();
 flxt_same( array( 'd1' ), array_column( $nodes, 'name' ), 'folder: lists the folder' );
-$rest = FLXFM_Files_Service::list_folder( $B, true );
-flxt_ok( $rest instanceof FLXFM_Listing && count( $rest->items ) === 1, 'service: same folder through the service' );
+$rest = FLXFM_Files_Service::listing( $B, true, false );
+flxt_ok( $rest instanceof FLXFM_Listing && 1 === count( (array) ( $rest->rest["items"] ?? array() ) ), 'service: same folder through the service' );
 $r = flxf_op( 'FlxFilesFolder', array( 'path' => "$B/missing" ), $admin );
 flxt_same( 'NOT_FOUND', flxt_code( $r ), 'folder: missing → NOT_FOUND' );
 $r = flxf_op( 'FlxFilesFolder', array( 'path' => '../../etc' ), $admin );
@@ -155,7 +155,7 @@ if ( $vers ) {
 $r = flxf_in( 'FlxFilesTrash', array( 'paths' => array( "$B/d1/b.txt", "$B/nope" ) ) );
 flxt_same( 1, count( $r['data']['flxFilesTrash']['trashed'] ?? array() ), 'trash: one trashed' );
 flxt_same( "$B/nope", $r['data']['flxFilesTrash']['failed'][0]['path'] ?? null, 'trash: missing path in failed' );
-$r   = flxf_op( 'FlxFilesTrash', array(), $admin );
+$r   = flxf_op( 'FlxFilesTrashList', array(), $admin );
 $tn  = $r['data']['flxFilesTrash']['items']['nodes'] ?? array();
 flxt_same( 1, count( $tn ), 'trash list: one item' );
 $id = $tn[0]['id'] ?? 'x';
