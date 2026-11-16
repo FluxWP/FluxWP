@@ -1,0 +1,18 @@
+# Config + settings the file manager screen needs once on mount.
+query FlxFilesBootstrap {
+  flxFilesConfig {
+    rootPath
+    rootName
+    uploadsPath
+    uploadsUrl
+    homeUrl
+    fileUrl
+    host
+    writable
+    chunkSize
+    aiReady
+  }
+  flxFilesSettings {
+    ...FlxFilesSettingsFields
+  }
+}

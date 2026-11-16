@@ -1,0 +1,14 @@
+mutation FlxFilesRevert($input: FlxFilesRevertInput!) {
+  flxFilesRevert(input: $input) {
+    file {
+      hash
+      content
+      item {
+        ...FlxFilesItemFields
+      }
+    }
+    errors {
+      ...FlxFilesUserError
+    }
+  }
+}
