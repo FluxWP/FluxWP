@@ -69,7 +69,7 @@ const entries = existsSync(dir)
       .map((f) => parse(`docs/graphql/durum/${f}`, readFileSync(join(dir, f), 'utf8')))
   : [];
 
-const cell = (s: string) => s.replace(/\|/g, '\\|');
+const cell = (s: string) => s.replace(/\\/g, '\\\\').replace(/\|/g, '\\|');
 
 if (process.argv.includes('--check')) {
   let bad = 0;
