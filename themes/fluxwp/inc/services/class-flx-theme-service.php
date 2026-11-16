@@ -115,8 +115,8 @@ final class FLX_Theme_Service {
 		$own_iban = self::str( $o['bank_iban'] );
 		$use      = function_exists( 'flxb_bank_account' ) ? flxb_bank_account() : null;
 		$in_use   = '';
-		if ( is_array( $use ) && flx_iban_temizle( self::str( $use['iban'] ?? '' ) ) !== flx_iban_temizle( $own_iban ) ) {
-			$in_use = self::str( $use['iban_display'] ?? '' ) . ( '' !== self::str( $use['holder'] ?? '' ) ? ' · ' . self::str( $use['holder'] ) : '' );
+		if ( is_array( $use ) && flx_iban_temizle( self::str( $use['iban'] ) ) !== flx_iban_temizle( $own_iban ) ) {
+			$in_use = self::str( $use['iban_display'] ) . ( '' !== self::str( $use['holder'] ) ? ' · ' . self::str( $use['holder'] ) : '' );
 		}
 		$campaigns = array();
 		if ( class_exists( 'FLXB_Types' ) ) {
