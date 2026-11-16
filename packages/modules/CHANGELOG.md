@@ -1,7 +1,13 @@
 # @fluxwp/modules
 
-## 0.3.8
+## 0.3.10
 - Admin theme: new `flxa-admin` screen for Flux Admin (General, Appearance, Menu and bottom bar, Permissions, Dashboard, App (PWA)). Same look and features as the classic page, including the role menu editor (drag and drop, groups, rename, hide, block, platforms, copy from role, preview, bottom bar) and the permissions table with backup/restore; data over GraphQL; texts from the plugin's language packs (`plugins/flx-admin/tools/i18n.py`).
+
+## 0.3.9
+- SEO: new `flxseo-seo` screen for Flux SEO (General, Organization and social, SEO check, Site audit with PageSpeed, agent readiness, recommendations and report history charts, Settings). Same features as the classic tabs on FluxWP tokens; data over GraphQL; texts from the plugin's language packs (`plugins/flx-seo/tools/i18n.py`).
+
+## 0.3.8
+- FluxApp: new `flxapp-settings` (Application settings, 7 tabs) and `flxapp-access` (App access) screens. Same look as the classic pages on FluxWP tokens, light and dark; data over GraphQL; texts from the plugin's language packs (`plugins/flx-app/tools/i18n.py`).
 
 ## 0.3.7
 - Lang: new `flxl-lang` screen for Flux Lang (languages table, content types, fallback, switcher, visitor suggestion, site texts per language, AI translation info). Same look as the classic page, light and dark; data over GraphQL; texts from the plugin's language packs (`plugins/flx-lang/tools/i18n.py`).

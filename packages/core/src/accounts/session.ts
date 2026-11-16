@@ -37,6 +37,21 @@ async function refresh(a: Account): Promise<Credentials | null> {
   return p;
 }
 
+/**
+ * Lets a transport (Flux App over GraphQL, `@fluxwp/graphql/flx-app`) wrap every account client. Without one
+ * the client is plain REST. Demo accounts are never wrapped.
+ */
+export type ClientEnhancer = (api: ApiClient, account: Account | null) => ApiClient;
+let enhancer: ClientEnhancer | null = null;
+
+export function setClientEnhancer(next: ClientEnhancer | null): void {
+  enhancer = next;
+  clients.clear();
+}
+
+/** Applies the installed enhancer (anonymous discovery passes `null` for the account). */
+export const enhanceClient = (api: ApiClient, account: Account | null): ApiClient => (enhancer && account?.authKind !== 'demo' ? enhancer(api, account) : api);
+
 export function clientFor(a: Account): ApiClient {
   const hit = clients.get(a.id);
   if (hit) return hit;
@@ -63,8 +78,9 @@ export function clientFor(a: Account): ApiClient {
       return null;
     },
   });
-  clients.set(a.id, c);
-  return c;
+  const wrapped = enhanceClient(c, a);
+  clients.set(a.id, wrapped);
+  return wrapped;
 }
 
 export const dropClient = (id: string) => clients.delete(id);

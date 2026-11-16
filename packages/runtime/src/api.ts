@@ -1,6 +1,6 @@
 // flx-app contract calls (bootstrap, config, manifest) and manifest requests over @fluxwp/core's client.
 // Endpoints follow docs/mobile-app-plan.md §12.1; until flx-app ships them a 404 means "use the defaults".
-import { ApiError, clientFor, createClient, platform, type Account, type ApiClient, type ApiResult } from '@fluxwp/core';
+import { ApiError, clientFor, createClient, enhanceClient, platform, type Account, type ApiClient, type ApiResult } from '@fluxwp/core';
 import { demoShellFetch } from './demo/fetch';
 import type { PlannedRequest } from './source';
 import { CORE_MANIFEST, parseBootstrap, parseConfig, parseManifestBundle, type AppConfig, type Bootstrap, type ManifestBundle, type ParseIssue } from '@fluxwp/manifest';
@@ -22,7 +22,7 @@ const missing = (e: unknown) => e instanceof ApiError && (e.status === 404 || e.
 
 export async function loadBootstrap(siteUrl: string, fetchImpl?: typeof fetch): Promise<Bootstrap | null> {
   try {
-    const api = createClient({ siteUrl, fetchImpl, getCredentials: async () => null });
+    const api = enhanceClient(createClient({ siteUrl, fetchImpl, getCredentials: async () => null }), null);
     return parseBootstrap(await api<unknown>('flxapp/v1/app/bootstrap', { anonymous: true }));
   } catch (e) {
     if (missing(e)) return null;

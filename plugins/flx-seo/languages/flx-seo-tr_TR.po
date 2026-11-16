@@ -1,6 +1,24 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: tr_TR\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Searches this website and returns matching pages and posts with their title and address."
+msgstr "Bu sitede arama yapar; eşleşen sayfa ve yazıları başlık ve adresleriyle döndürür."
+
+msgid "Words to search for"
+msgstr "Aranacak kelimeler"
+
+msgid "How many results to return (1-20)"
+msgstr "Kaç sonuç dönsün (1-20)"
+
+msgid "Reads a page of this website as Markdown (title, description and main content). Without an address, reads the current page."
+msgstr "Bu sitedeki bir sayfayı Markdown olarak okur (başlık, açıklama ve ana içerik). Adres verilmezse açık sayfayı okur."
+
+msgid "Page address on this website; empty for the current page"
+msgstr "Bu sitedeki sayfa adresi; boşsa açık sayfa"
+
+msgid "Returns a short overview of this website (llms.txt): what it is about and its main pages."
+msgstr "Bu sitenin kısa özetini (llms.txt) verir: ne hakkında olduğu ve ana sayfaları."
+
 msgid "Pages"
 msgstr "Sayfalar"
 
@@ -24,9 +42,6 @@ msgstr "RSS beslemesi"
 
 msgid "Searches the site and opens the results page."
 msgstr "Sitede arama yapar ve sonuç sayfasını açar."
-
-msgid "Words to search for"
-msgstr "Aranacak kelimeler"
 
 msgid "Unknown fix."
 msgstr "Bilinmeyen düzeltme."
@@ -55,8 +70,77 @@ msgstr "HSTS includeSubDomains"
 msgid "If every subdomain is HTTPS, HSTS also covers subdomains."
 msgstr "Tüm alt alan adları HTTPS ise HSTS alt alan adlarını da kapsar."
 
+msgid "Turn on Content-Signal in robots.txt"
+msgstr "robots.txt'de Content-Signal'ı aç"
+
+msgid "Adds a Content-Signal line (search, ai-input, ai-train) to robots.txt so crawlers know how the content may be used. The values are set in SEO › Settings."
+msgstr "robots.txt'ye Content-Signal satırı (search, ai-input, ai-train) ekler; tarayıcılar içeriğin nasıl kullanılabileceğini bilir. Değerler SEO › Ayarlar'da."
+
+msgid "Serve Markdown to agents"
+msgstr "Ajanlara Markdown sun"
+
+msgid "Pages answer Accept: text/markdown with a Markdown version of the main content; far fewer tokens than HTML."
+msgstr "Sayfalar Accept: text/markdown isteğine ana içeriğin Markdown hâliyle yanıt verir; HTML'den çok daha az token."
+
+msgid "Turn on IndexNow"
+msgstr "IndexNow'u aç"
+
+msgid "New and updated pages are sent instantly to Bing, Yandex, Seznam and Naver; the whole site is submitted once automatically."
+msgstr "Yeni ve güncellenen sayfalar Bing, Yandex, Seznam ve Naver'e anında bildirilir; tüm site bir kez kendiliğinden gönderilir."
+
 msgid "Turned on. Run the site audit again."
 msgstr "Açıldı. Site denetimini yeniden çalıştırın."
+
+msgid "Open Search Console"
+msgstr "Search Console'u aç"
+
+msgid "Add property › URL prefix › HTML tag. Leave empty if you verified with DNS."
+msgstr "Özellik ekle › URL öneki › HTML etiketi. DNS ile doğruladıysanız boş bırakın."
+
+msgid "Open Bing Webmaster"
+msgstr "Bing Webmaster'ı aç"
+
+msgid "The easiest path is \"Import from Google Search Console\": verification and the sitemap arrive on their own, no code. If you add it by hand, paste the HTML meta tag. DuckDuckGo, Yahoo and Ecosia results come from Bing."
+msgstr "En kolayı \"Google Search Console'dan içe aktar\": doğrulama ve sitemap kendiliğinden gelir, kod gerekmez. Elle eklerken HTML Meta Tag kodunu yapıştırın. DuckDuckGo, Yahoo ve Ecosia sonuçları Bing'den gelir."
+
+msgid "Open Yandex Webmaster"
+msgstr "Yandex Webmaster'ı aç"
+
+msgid "Add site › Meta tag. After verifying, add the sitemap URL under Indexing › Sitemap files."
+msgstr "Site ekle › Meta etiketi. Doğruladıktan sonra Indexing › Sitemap files bölümüne sitemap adresini ekleyin."
+
+msgid "Open Naver Search Advisor"
+msgstr "Naver Search Advisor'ı aç"
+
+msgid "Korea's largest search engine. Add site › HTML tag; then Request › Submit sitemap. Optional."
+msgstr "Kore'nin en büyük arama motoru. Site ekle › HTML etiketi; sonra Request › Submit sitemap. İsteğe bağlı."
+
+msgid "Open Seznam Webmaster"
+msgstr "Seznam Webmaster'ı aç"
+
+msgid "Czech search engine (Webmaster link at the bottom of the page). Meta tag method. Optional."
+msgstr "Çekya'nın arama motoru (Webmaster bağlantısı sayfa altında). Meta etiketi yöntemi. İsteğe bağlı."
+
+msgid "Open Baidu Webmaster"
+msgstr "Baidu Webmaster'ı aç"
+
+msgid "China's search engine; sign-up may need a Chinese phone number. Not needed unless you target China."
+msgstr "Çin'in arama motoru; kayıt için Çin telefon numarası gerekebilir. Çin'e hitap etmiyorsanız gerek yok."
+
+msgid "%1$s · %2$d URLs · HTTP %3$d"
+msgstr "%1$s · %2$d adres · HTTP %3$d"
+
+msgid "key file could not be verified"
+msgstr "anahtar dosyası doğrulanamadı"
+
+msgid "URLs do not match the site domain"
+msgstr "adresler site alan adıyla eşleşmiyor"
+
+msgid "too many requests, try again later"
+msgstr "çok sık istek, sonra tekrar deneyin"
+
+msgid "error"
+msgstr "hata"
 
 msgid "General"
 msgstr "Genel"
@@ -70,8 +154,206 @@ msgstr "SEO kontrolü"
 msgid "Site audit"
 msgstr "Site denetimi"
 
-msgid "AI (MCP)"
-msgstr "Yapay zekâ (MCP)"
+msgid "Settings"
+msgstr "Ayarlar"
+
+msgid "JavaScript is required for this screen."
+msgstr "Bu ekran için JavaScript gerekli."
+
+msgid "New view"
+msgstr "Yeni görünüm"
+
+msgid "Open the new view (same features, works in the FluxWP app too)."
+msgstr "Yeni görünümü aç (aynı özellikler, FluxWP uygulamasında da çalışır)."
+
+msgid "Flux SEO's AI (MCP) tools run through the shared MCP server. The server, keys and settings are in Flux AI & MCP › MCP; install and activate Flux AI 0.7.0 or later."
+msgstr "Flux SEO'nun yapay zekâ (MCP) araçları ortak MCP sunucusu üzerinden çalışır. Sunucu, anahtarlar ve ayarlar Flux AI & MCP › MCP ekranındadır; Flux AI 0.7.0 ve üstünü kurup etkinleştirin."
+
+msgid "Search engines"
+msgstr "Arama motorları"
+
+msgid "Search engines other than Google (Bing, Yandex, DuckDuckGo, Yahoo, Ecosia) crawl a site quickly only once it is introduced to them. Add the site in each one's webmaster panel, paste the verification code below and submit the sitemap URL."
+msgstr "Google dışındaki arama motorları (Bing, Yandex, DuckDuckGo, Yahoo, Ecosia) siteyi ancak tanıtılınca hızlı tarar. Her birinin kendi panelinde siteyi ekleyin; doğrulama kodunu aşağıya yapıştırın, sitemap adresini gönderin."
+
+msgid "Sitemap URL"
+msgstr "Sitemap adresi"
+
+msgid "Also listed in robots.txt; add this URL in Search Console, Bing and Yandex."
+msgstr "robots.txt'de de yazılı; Search Console, Bing ve Yandex panellerine bu adresi ekleyin."
+
+msgid "Verification tag is on the site"
+msgstr "Doğrulama etiketi sitede"
+
+msgid "Connected with Google Site Kit; Search Console verification and the sitemap are handled there. You can leave this empty."
+msgstr "Google Site Kit ile bağlı; Search Console doğrulaması ve sitemap Site Kit'te. Bu alanı boş bırakabilirsiniz."
+
+msgid "Instantly notify Bing, Yandex, DuckDuckGo (via Bing), Seznam and Naver about published and updated pages"
+msgstr "Yayınlanan ve güncellenen sayfaları Bing, Yandex, DuckDuckGo (Bing üzerinden), Seznam ve Naver'e anında bildir"
+
+msgid "Key file:"
+msgstr "Anahtar dosyası:"
+
+msgid "When on, the whole site is submitted once automatically. Google does not use IndexNow; add your sitemap in Search Console for Google."
+msgstr "Açıkken tüm site bir kez kendiliğinden bildirilir. Google IndexNow kullanmaz; Google için Search Console'a sitemap ekleyin."
+
+msgid "The site is hidden from search engines (Settings › Reading); IndexNow sends nothing."
+msgstr "Site arama motorlarına kapalı (Ayarlar › Okuma); IndexNow bildirim göndermez."
+
+msgid "Last bulk submission:"
+msgstr "Son toplu bildirim:"
+
+msgid "Submit the whole site now"
+msgstr "Tüm siteyi şimdi bildir"
+
+msgid "Country code"
+msgstr "Ülke kodu"
+
+msgid "Country is a two-letter code (TR, US, DE). Empty fields are filled from the organization profile (Flux Setup) when it has an address or phone."
+msgstr "Ülke iki harfli koddur (TR, US, DE). Boş alanlar, kurum profilinde (Flux Setup) adres ya da telefon varsa oradan doldurulur."
+
+msgid "Areas of expertise"
+msgstr "Uzmanlık konuları"
+
+msgid "One topic per line"
+msgstr "Her satıra bir konu"
+
+msgid "Topics the organization is an expert in (schema knowsAbout). Search engines and AI assistants match the organization to these topics. Left out when empty."
+msgstr "Kurumun uzman olduğu konular (schema knowsAbout). Arama motorları ve yapay zekâ asistanları kurumu bu konularla eşleştirir. Boşsa eklenmez."
+
+msgid "Area served"
+msgstr "Hizmet bölgesi"
+
+msgid "e.g. United States"
+msgstr "ör. Türkiye"
+
+msgid "Country served (schema areaServed). Left out when empty."
+msgstr "Hizmet verilen ülke (schema areaServed). Boşsa eklenmez."
+
+msgid "Donation call to action"
+msgstr "Bağış çağrısı"
+
+msgid "e.g. Donate"
+msgstr "ör. Bağış yap"
+
+msgid "For organizations that accept donations (schema DonateAction). Left out when the label is empty; when the URL is empty the donation page is found automatically."
+msgstr "Bağış kabul eden kurumlar için (schema DonateAction). Ad boşsa eklenmez; adres boşsa bağış sayfası kendiliğinden bulunur."
+
+msgid "Daily"
+msgstr "Her gün"
+
+msgid "Weekly"
+msgstr "Her hafta"
+
+msgid "Off"
+msgstr "Kapalı"
+
+msgid "Monday"
+msgstr "Pazartesi"
+
+msgid "Tuesday"
+msgstr "Salı"
+
+msgid "Wednesday"
+msgstr "Çarşamba"
+
+msgid "Thursday"
+msgstr "Perşembe"
+
+msgid "Friday"
+msgstr "Cuma"
+
+msgid "Saturday"
+msgstr "Cumartesi"
+
+msgid "Sunday"
+msgstr "Pazar"
+
+msgid "[%1$s] Site audit: %2$d new critical/high recommendations"
+msgstr "[%1$s] Site denetimi: %2$d yeni kritik/yüksek öneri"
+
+msgid "The automatic site audit found new recommendations:"
+msgstr "Otomatik site denetiminde yeni öneriler çıktı:"
+
+msgid "Total: critical %1$d, high %2$d, medium %3$d, low %4$d."
+msgstr "Toplam: kritik %1$d, yüksek %2$d, orta %3$d, düşük %4$d."
+
+msgid "Resolved since the previous audit: %d."
+msgstr "Önceki denetimden bu yana çözülen: %d."
+
+msgid "Details and fixes:"
+msgstr "Ayrıntılar ve düzeltmeler:"
+
+msgid "Automatic"
+msgstr "Otomatik"
+
+msgid "Manual"
+msgstr "Elle"
+
+msgid "AI"
+msgstr "Yapay zekâ"
+
+msgid "After fix"
+msgstr "Düzeltme sonrası"
+
+msgid "Report history"
+msgstr "Rapor geçmişi"
+
+msgid "Next automatic audit: %s"
+msgstr "Sonraki otomatik denetim: %s"
+
+msgid "Automatic audit is off."
+msgstr "Otomatik denetim kapalı."
+
+msgid "No reports yet. Every audit (manual, automatic or by AI) is saved here."
+msgstr "Henüz rapor yok. Her denetim (elle, otomatik ya da yapay zekâ ile) burada saklanır."
+
+msgid "Date"
+msgstr "Tarih"
+
+msgid "Trigger"
+msgstr "Nasıl"
+
+msgid "Recommendations"
+msgstr "Öneri sayısı"
+
+msgid "PageSpeed scores"
+msgstr "PageSpeed puanları"
+
+msgid "Change"
+msgstr "Değişim"
+
+msgid "No change"
+msgstr "Değişiklik yok"
+
+msgid "new"
+msgstr "yeni"
+
+msgid "resolved"
+msgstr "çözüldü"
+
+msgid "PageSpeed not run"
+msgstr "PageSpeed çalışmadı"
+
+msgid "Mobile"
+msgstr "Mobil"
+
+msgid "Desktop"
+msgstr "Masaüstü"
+
+msgid "Number of recommendations over time"
+msgstr "Öneri sayısının zaman içindeki değişimi"
+
+msgid "Device"
+msgstr "Cihaz"
+
+msgid "No report with a PageSpeed run yet. Enter the API key and turn on PageSpeed in the automatic audit."
+msgstr "PageSpeed ölçümü olan rapor yok. API anahtarı girip otomatik denetimde PageSpeed'i açın."
+
+msgid "%s PageSpeed scores over time"
+msgstr "%s PageSpeed puanlarının zaman içindeki değişimi"
+
+msgid "Site audit history"
+msgstr "Site denetimi geçmişi"
 
 msgid "llms.txt follows recommendations"
 msgstr "llms.txt önerilere uygun"
@@ -79,8 +361,20 @@ msgstr "llms.txt önerilere uygun"
 msgid "Accessibility tree is well-formed"
 msgstr "Erişilebilirlik ağacı düzgün"
 
-msgid "Forms are WebMCP tools"
-msgstr "Formlar WebMCP aracı"
+msgid "WebMCP tools are registered"
+msgstr "WebMCP araçları kayıtlı"
+
+msgid "Markdown is served to agents"
+msgstr "Ajanlara Markdown sunuluyor"
+
+msgid "Content signals are declared"
+msgstr "İçerik sinyalleri bildirilmiş"
+
+msgid "Organization and contact pages are complete"
+msgstr "Kurum bilgisi ve iletişim sayfaları tam"
+
+msgid "MCP Server Card is published"
+msgstr "MCP Server Card yayında"
 
 msgid "Low layout shift (CLS)"
 msgstr "Yerleşim kayması düşük (CLS)"
@@ -94,8 +388,8 @@ msgstr "PageSpeed mobil"
 msgid "PageSpeed desktop"
 msgstr "PageSpeed masaüstü"
 
-msgid "The five PageSpeed Insights sections (Performance, Accessibility, Best Practices, SEO, Agentic Browsing) by priority. The on-site audit needs no key and runs by itself every day; a PageSpeed run adds Google's real Lighthouse result."
-msgstr "PageSpeed Insights'ın beş başlığı (Performans, Erişilebilirlik, En iyi uygulamalar, SEO, Ajan uyumu) önceliğe göre. Site içi denetim anahtarsız ve her gün kendiliğinden çalışır; PageSpeed ölçümü Google'ın gerçek Lighthouse sonucunu ekler."
+msgid "The five PageSpeed Insights sections (Performance, Accessibility, Best Practices, SEO, Agentic Browsing) by priority. The on-site audit needs no key; a PageSpeed run adds Google's real Lighthouse result. Automatic audit, API key and security headers are in the Settings tab."
+msgstr "PageSpeed Insights'ın beş başlığı (Performans, Erişilebilirlik, En iyi uygulamalar, SEO, Ajan uyumu) önceliğe göre. Site içi denetim anahtarsızdır; PageSpeed ölçümü Google'ın gerçek Lighthouse sonucunu ekler. Otomatik denetim, API anahtarı ve güvenlik başlıkları Ayarlar sekmesinde."
 
 msgid "On-site audit: %1$s · %2$s"
 msgstr "Site içi denetim: %1$s · %2$s"
@@ -112,12 +406,6 @@ msgstr "Site içi denetim"
 msgid "Measure with PageSpeed"
 msgstr "PageSpeed ile ölç"
 
-msgid "Mobile"
-msgstr "Mobil"
-
-msgid "Desktop"
-msgstr "Masaüstü"
-
 msgid "No PageSpeed run yet. Press \"Measure with PageSpeed\" (mobile + desktop takes about 1 minute)."
 msgstr "PageSpeed ölçümü yok. \"PageSpeed ile ölç\" düğmesine basın (mobil + masaüstü yaklaşık 1 dakika)."
 
@@ -129,9 +417,6 @@ msgstr "MCP sunucusu açık"
 
 msgid "MCP server off"
 msgstr "MCP sunucusu kapalı"
-
-msgid "Recommendations"
-msgstr "Öneri sayısı"
 
 msgid "Filter by priority"
 msgstr "Önceliğe göre süz"
@@ -160,8 +445,8 @@ msgstr "Düzeltme yeri: %s"
 msgid "Fix"
 msgstr "Düzelt"
 
-msgid "Settings"
-msgstr "Ayarlar"
+msgid "Site audit and agent readiness"
+msgstr "Site denetimi ve ajan uyumu"
 
 msgid "PageSpeed Insights API key"
 msgstr "PageSpeed Insights API anahtarı"
@@ -184,8 +469,35 @@ msgstr "llms.txt giriş metni (isteğe bağlı)"
 msgid "E.g. who your organization is, what it does, which pages agents should read first."
 msgstr "Ör. Kurumumuz kimdir, ne yapar, ajanlar hangi sayfaları öncelikle okumalı."
 
-msgid "WebMCP: expose the search form to browser agents as a tool"
-msgstr "WebMCP: arama formunu tarayıcı ajanlarına araç olarak tanıt"
+msgid "WebMCP: register site tools for browser agents (search, read page as Markdown, site overview) and mark the search form as a tool"
+msgstr "WebMCP: tarayıcı ajanlarına site araçlarını kaydet (arama, sayfayı Markdown olarak okuma, site özeti) ve arama formunu araç olarak işaretle"
+
+msgid "Serve Markdown when an agent asks for it (Accept: text/markdown)"
+msgstr "Ajan isteyince Markdown sun (Accept: text/markdown)"
+
+msgid "Declare Content-Signal in robots.txt"
+msgstr "robots.txt'de Content-Signal bildir"
+
+msgid "Search (search)"
+msgstr "Arama (search)"
+
+msgid "AI answers (ai-input)"
+msgstr "AI yanıtları (ai-input)"
+
+msgid "AI training (ai-train)"
+msgstr "AI eğitimi (ai-train)"
+
+msgid "Allowed"
+msgstr "İzinli"
+
+msgid "Not allowed"
+msgstr "İzin yok"
+
+msgid "Not stated"
+msgstr "Belirtilmedi"
+
+msgid "Content signals tell crawlers how your content may be used: in search results, as live input to AI answers, and for training AI models. They are a stated preference; crawlers are not forced to follow them."
+msgstr "İçerik sinyalleri tarayıcılara içeriğinizin nasıl kullanılabileceğini söyler: arama sonuçlarında, AI yanıtlarına anlık girdi olarak ve AI modellerini eğitmek için. Bu bir tercih bildirimidir; tarayıcılar uymak zorunda değildir."
 
 msgid "Security headers"
 msgstr "Güvenlik başlıkları"
@@ -204,6 +516,30 @@ msgstr "HSTS alt alan adlarını kapsasın (includeSubDomains)"
 
 msgid "HSTS preload (takes months to undo; every subdomain must be HTTPS)"
 msgstr "HSTS preload (geri alması aylar sürer; tüm alt alan adları HTTPS olmalı)"
+
+msgid "Automatic audit"
+msgstr "Otomatik denetim"
+
+msgid "Frequency"
+msgstr "Sıklık"
+
+msgid "Day"
+msgstr "Gün"
+
+msgid "Time"
+msgstr "Saat"
+
+msgid "Runs in the background and saves the result to Report history. The time uses the site time zone; if the site gets no visit at that time, it starts on the next request."
+msgstr "Arka planda çalışır, sonuç Rapor geçmişine yazılır. Saat sitenin saat dilimine göredir; site o saatte ziyaret almazsa ilk istekte başlar."
+
+msgid "Also run PageSpeed Insights (mobile + desktop; needs the API key)"
+msgstr "PageSpeed Insights (mobil + masaüstü) da çalışsın (API anahtarı gerekir)"
+
+msgid "Send an email when a new critical or high priority recommendation appears"
+msgstr "Yeni kritik ya da yüksek öncelikli öneri çıkınca e-posta gönder"
+
+msgid "Email address (empty: site admin)"
+msgstr "E-posta adresi (boşsa site yöneticisi)"
 
 msgid "Save"
 msgstr "Kaydet"
@@ -280,8 +616,14 @@ msgstr "Sunucu"
 msgid "Flux SEO (one click)"
 msgstr "Flux SEO (tek tık)"
 
+msgid "Flux Speed (one click)"
+msgstr "Flux Speed (tek tık)"
+
 msgid "WordPress setting"
 msgstr "WordPress ayarı"
+
+msgid "Flux AI & MCP"
+msgstr "Flux AI & MCP"
 
 msgid "Home page does not return a successful status code"
 msgstr "Ana sayfa başarılı durum kodu döndürmüyor"
@@ -300,6 +642,48 @@ msgstr "robots.txt tüm siteyi engelliyor"
 
 msgid "The robots.txt file in the site root must not have \"Disallow: /\" under \"User-agent: *\". Delete or fix the file; WordPress generates its own robots.txt."
 msgstr "Kökteki robots.txt dosyasında \"User-agent: *\" altında \"Disallow: /\" olmamalı. Dosyayı silin ya da düzeltin; WordPress kendi robots.txt'sini üretir."
+
+msgid "robots.txt blocks the Bing or Yandex crawler"
+msgstr "robots.txt Bing ya da Yandex tarayıcısını engelliyor"
+
+msgid "Search crawlers such as Bingbot, YandexBot and DuckDuckBot must not have \"Disallow: /\"; otherwise the site only appears on Google. Fix the robots.txt file in the site root."
+msgstr "Bingbot, YandexBot, DuckDuckBot gibi arama motoru tarayıcıları için \"Disallow: /\" olmamalı; site yalnız Google'da görünür. Kökteki robots.txt dosyasını düzeltin."
+
+msgid "robots.txt has no Sitemap line"
+msgstr "robots.txt'de Sitemap satırı yok"
+
+msgid "Bing and Yandex find the sitemap from the \"Sitemap:\" line in robots.txt. If a hand-written robots.txt sits in the root, delete it (Flux SEO adds the line) or add the line yourself."
+msgstr "Bing ve Yandex sitemap'i robots.txt'deki \"Sitemap:\" satırından bulur. Kökte elle konmuş bir robots.txt varsa silin (Flux SEO satırı ekler) ya da satırı elle ekleyin."
+
+msgid "IndexNow is off"
+msgstr "IndexNow kapalı"
+
+msgid "IndexNow instantly notifies Bing, Yandex, Seznam and Naver about new and updated pages; it is the fastest way to show up outside Google. One click to turn it on."
+msgstr "IndexNow yeni ve güncellenen sayfaları Bing, Yandex, Seznam ve Naver'e anında bildirir; Google dışındaki arama motorlarında görünmenin en hızlı yolu. Açmak için tek tık."
+
+msgid "IndexNow submission failed"
+msgstr "IndexNow bildirimi başarısız"
+
+msgid "The key file (/<key>.txt) must be reachable from outside. If a cache or security plugin blocks it, add an exception, then use SEO › General › IndexNow › \"Submit the whole site now\"."
+msgstr "Anahtar dosyasına (/ <key> .txt) dışarıdan ulaşılabilir olmalıdır. Bir önbellek veya güvenlik eklentisi bunu engelliyorsa bir istisna ekleyin ve ardından SEO › Genel › IndexNow › \"Sitenin tamamını şimdi gönder\" seçeneğini kullanın."
+
+msgid "No Bing / Yandex verification code"
+msgstr "Bing / Yandex doğrulama kodu girilmemiş"
+
+msgid "The site may not be added to Bing Webmaster Tools and Yandex Webmaster; without that it appears late or not at all there. On Bing, \"Import from Google Search Console\" needs no code; ignore this if you already imported. The codes are under SEO › General › Search engines."
+msgstr "Site Bing Webmaster Tools ve Yandex Webmaster'a eklenmemiş olabilir; eklenmezse bu arama motorlarında geç ya da hiç görünmez. Bing'de \"Google Search Console'dan içe aktar\" ile kod gerekmez; o yolla eklediyseniz yok sayın. Kodlar SEO › Genel › Arama motorları'nda."
+
+msgid "PHP version is missing a security patch"
+msgstr "PHP sürümü güvenlik yaması almamış"
+
+msgid "The server's PHP is unpatched against a known hole or no longer supported. Upgrade PHP to the current patch release from the hosting panel."
+msgstr "Sunucudaki PHP bilinen bir açığa karşı yamasız ya da artık desteklenmiyor. Hosting panelinden PHP'yi güncel yama sürümüne yükseltin."
+
+msgid "session.upload_progress is on"
+msgstr "session.upload_progress açık"
+
+msgid "WordPress does not use this PHP feature; it is the exploit path for holes such as PHP2Shell. Set session.upload_progress.enabled = Off in php.ini or the hosting panel."
+msgstr "WordPress bu PHP özelliğini kullanmaz; PHP2Shell gibi açıklarda istismar yolu olur. php.ini ya da hosting panelinde session.upload_progress.enabled = Off yapın."
 
 msgid "Page has no <title>"
 msgstr "Sayfa başlığı (<title>) yok"
@@ -673,6 +1057,48 @@ msgstr "Formlar WebMCP aracı olarak tanımlı değil"
 msgid "WebMCP lets browser agents call forms as tools (form toolname/tooldescription). Flux SEO adds it to the search form; add it to your own forms too."
 msgstr "WebMCP, tarayıcıdaki ajanların formları araç olarak çağırmasını sağlar (form toolname/tooldescription). Flux SEO arama formuna kendiliğinden ekler; kendi formlarınıza da ekleyin."
 
+msgid "No Content-Signal in robots.txt"
+msgstr "robots.txt'de Content-Signal yok"
+
+msgid "A Content-Signal line (e.g. search=yes, ai-input=yes, ai-train=no) tells crawlers how your content may be used. Flux SEO adds it to the generated robots.txt; set the values in SEO › Settings. If a hand-written robots.txt sits in the site root, add the line under \"User-agent: *\" yourself."
+msgstr "Content-Signal satırı (ör. search=yes, ai-input=yes, ai-train=no) tarayıcılara içeriğin nasıl kullanılabileceğini söyler. Flux SEO bunu ürettiği robots.txt'ye ekler; değerleri SEO › Ayarlar'dan seçin. Site kökünde elle yazılmış bir robots.txt varsa satırı \"User-agent: *\" altına kendiniz ekleyin."
+
+msgid "Sitemap has no lastmod dates"
+msgstr "Sitemap'te lastmod tarihi yok"
+
+msgid "Each sitemap entry should carry <lastmod> so search engines and agents know what changed. Flux SEO adds it to the WordPress sitemap and its index; if another plugin builds the sitemap, turn on lastmod there."
+msgstr "Her sitemap kaydında <lastmod> olmalı; arama motorları ve ajanlar neyin değiştiğini böyle anlar. Flux SEO bunu WordPress sitemap'ine ve dizinine ekler; sitemap'i başka bir eklenti üretiyorsa lastmod'u orada açın."
+
+msgid "Organization schema is missing contact details"
+msgstr "Kurum schema'sında iletişim bilgisi eksik"
+
+msgid "Fill in the phone and address so an agent can answer questions about the organization without guessing: SEO › Organization, or the organization profile in Flux Setup (Flux SEO reads it when its own fields are empty)."
+msgstr "Telefon ve adresi doldurun; ajan kurumla ilgili soruları tahmin etmeden yanıtlasın: SEO › Kurum ya da Flux Setup'taki kurum profili (Flux SEO kendi alanları boşsa oradan okur)."
+
+msgid "About, contact or legal page is not linked from the home page"
+msgstr "Hakkımızda, iletişim ya da yasal sayfa ana sayfadan bağlanmamış"
+
+msgid "Link the about, contact and privacy/terms pages from the home page (usually the footer). A mailto: link does not count as a contact page; agents look for a page they can read."
+msgstr "Hakkımızda, iletişim ve gizlilik/kullanım koşulları sayfalarını ana sayfadan (genelde alt bilgiden) bağlayın. mailto: bağlantısı iletişim sayfası sayılmaz; ajanlar okuyabilecekleri bir sayfa arar."
+
+msgid "Markdown is not served when an agent asks for it"
+msgstr "Ajan isteyince Markdown sunulmuyor"
+
+msgid "For Accept: text/markdown the page should answer with a Markdown version; it costs agents far fewer tokens than HTML. Flux SEO does this when \"Serve Markdown\" is on. If HTML still comes back, a page cache is answering first: purge the cache (LiteSpeed: Purge All) and check that the \"Flux SEO Markdown\" block is at the top of .htaccess."
+msgstr "Accept: text/markdown isteğine sayfa Markdown hâliyle yanıt vermeli; ajanlara HTML'den çok daha az token harcatır. \"Markdown sun\" açıkken Flux SEO bunu yapar. Yine HTML dönüyorsa önce sayfa önbelleği yanıt veriyordur: önbelleği temizleyin (LiteSpeed: Purge All) ve .htaccess'in başında \"Flux SEO Markdown\" bloğu olduğunu kontrol edin."
+
+msgid "No WebMCP tools are registered on page load"
+msgstr "Sayfa açılınca WebMCP aracı kaydedilmiyor"
+
+msgid "Browser agents look for tools registered with navigator.modelContext.registerTool() or forms marked with toolname/tooldescription. Flux SEO registers search, read-page and site-overview tools when WebMCP is on."
+msgstr "Tarayıcı ajanları navigator.modelContext.registerTool() ile kaydedilmiş araçları ya da toolname/tooldescription işaretli formları arar. WebMCP açıkken Flux SEO arama, sayfa okuma ve site özeti araçlarını kaydeder."
+
+msgid "No MCP Server Card"
+msgstr "MCP Server Card yok"
+
+msgid "Agents discover the site's MCP server from /.well-known/mcp/server-card.json (name, version, endpoint, capabilities). Flux AI & MCP publishes it when its MCP server is on (Flux AI & MCP › MCP). Without Flux AI & MCP the site has no MCP server; you can ignore this."
+msgstr "Ajanlar sitenin MCP sunucusunu /.well-known/mcp/server-card.json kartından bulur (ad, sürüm, adres, yetenekler). Flux AI & MCP, MCP sunucusu açıkken kartı yayınlar (Flux AI & MCP › MCP). Flux AI & MCP yoksa sitede MCP sunucusu da yoktur; bu öneriyi geçebilirsiniz."
+
 msgid "robots.txt blocks AI crawlers"
 msgstr "robots.txt yapay zekâ tarayıcılarını engelliyor"
 
@@ -733,6 +1159,9 @@ msgstr "bağlantı listesi yok"
 msgid "PageSpeed Insights can only measure addresses reachable from the internet."
 msgstr "PageSpeed Insights yalnız internetten erişilebilen adresleri ölçebilir."
 
+msgid "PageSpeed timed out; this step was skipped."
+msgstr "PageSpeed zaman aşımına uğradı; bu adım atlandı."
+
 msgid "The PageSpeed daily quota is used up. Enter a free Google API key in SEO › Settings."
 msgstr "PageSpeed günlük kotası doldu. SEO › Ayarlar'a ücretsiz bir Google API anahtarı girin."
 
@@ -745,171 +1174,6 @@ msgstr "Henüz çalıştırılmadı. Performans, erişilebilirlik, SEO, güvenli
 msgid "Critical %1$d, high %2$d, medium %3$d, low %4$d recommendations."
 msgstr "Kritik %1$d, yüksek %2$d, orta %3$d, düşük %4$d öneri."
 
-msgid "Site build guide"
-msgstr "Site yapım rehberi"
-
-msgid "SEO output"
-msgstr "SEO çıktısı"
-
-msgid "Another SEO plugin is active; meta, Open Graph and schema come from it. Flux SEO turned its own output off to avoid conflicts."
-msgstr "Başka bir SEO eklentisi etkin; meta, Open Graph ve schema onun üzerinden. Flux SEO çakışmasın diye kendi çıktısını kapattı."
-
-msgid "Meta description, Open Graph and schema are added to every page."
-msgstr "Meta açıklama, Open Graph ve schema her sayfada ekleniyor."
-
-msgid "Off. Page descriptions, images and organization details will not show on Google and social shares. Turn it on if you want to be found on Google."
-msgstr "Kapalı. Google ve sosyal paylaşımlarda sayfa açıklaması, görsel ve kurum bilgisi görünmez. Google'da bulunmak istiyorsanız açın."
-
-msgid "SEO settings"
-msgstr "SEO ayarları"
-
-msgid "Daily"
-msgstr "Her gün"
-
-msgid "Weekly"
-msgstr "Her hafta"
-
-msgid "Off"
-msgstr "Kapalı"
-
-msgid "Monday"
-msgstr "Pazartesi"
-
-msgid "Tuesday"
-msgstr "Salı"
-
-msgid "Wednesday"
-msgstr "Çarşamba"
-
-msgid "Thursday"
-msgstr "Perşembe"
-
-msgid "Friday"
-msgstr "Cuma"
-
-msgid "Saturday"
-msgstr "Cumartesi"
-
-msgid "Sunday"
-msgstr "Pazar"
-
-msgid "[%1$s] Site audit: %2$d new critical/high recommendations"
-msgstr "[%1$s] Site denetimi: %2$d yeni kritik/yüksek öneri"
-
-msgid "The automatic site audit found new recommendations:"
-msgstr "Otomatik site denetiminde yeni öneriler çıktı:"
-
-msgid "Total: critical %1$d, high %2$d, medium %3$d, low %4$d."
-msgstr "Toplam: kritik %1$d, yüksek %2$d, orta %3$d, düşük %4$d."
-
-msgid "Resolved since the previous audit: %d."
-msgstr "Önceki denetimden bu yana çözülen: %d."
-
-msgid "Details and fixes:"
-msgstr "Ayrıntılar ve düzeltmeler:"
-
-msgid "Automatic"
-msgstr "Otomatik"
-
-msgid "Manual"
-msgstr "Elle"
-
-msgid "AI"
-msgstr "Yapay zekâ"
-
-msgid "After fix"
-msgstr "Düzeltme sonrası"
-
-msgid "Report history"
-msgstr "Rapor geçmişi"
-
-msgid "Next automatic audit: %s"
-msgstr "Sonraki otomatik denetim: %s"
-
-msgid "Automatic audit is off."
-msgstr "Otomatik denetim kapalı."
-
-msgid "No reports yet. Every audit (manual, automatic or by AI) is saved here."
-msgstr "Henüz rapor yok. Her denetim (elle, otomatik ya da yapay zekâ ile) burada saklanır."
-
-msgid "Number of recommendations over time"
-msgstr "Öneri sayısının zaman içindeki değişimi"
-
-msgid "Date"
-msgstr "Tarih"
-
-msgid "Trigger"
-msgstr "Nasıl"
-
-msgid "Mobile scores"
-msgstr "Mobil puanlar"
-
-msgid "Change"
-msgstr "Değişim"
-
-msgid "No change"
-msgstr "Değişiklik yok"
-
-msgid "new"
-msgstr "yeni"
-
-msgid "resolved"
-msgstr "çözüldü"
-
-msgid "Site audit history"
-msgstr "Site denetimi geçmişi"
-
-msgid "Automatic audit"
-msgstr "Otomatik denetim"
-
-msgid "Frequency"
-msgstr "Sıklık"
-
-msgid "Day"
-msgstr "Gün"
-
-msgid "Time"
-msgstr "Saat"
-
-msgid "Runs in the background and saves the result to Report history. The time uses the site time zone; if the site gets no visit at that time, it starts on the next request."
-msgstr "Arka planda çalışır, sonuç Rapor geçmişine yazılır. Saat sitenin saat dilimine göredir; site o saatte ziyaret almazsa ilk istekte başlar."
-
-msgid "Also run PageSpeed Insights (mobile + desktop; needs the API key)"
-msgstr "PageSpeed Insights (mobil + masaüstü) da çalışsın (API anahtarı gerekir)"
-
-msgid "Send an email when a new critical or high priority recommendation appears"
-msgstr "Yeni kritik ya da yüksek öncelikli öneri çıkınca e-posta gönder"
-
-msgid "Email address (empty: site admin)"
-msgstr "E-posta adresi (boşsa site yöneticisi)"
-
-msgid "Flux Speed (one click)"
-msgstr "Flux Speed (tek tık)"
-
-msgid "The five PageSpeed Insights sections (Performance, Accessibility, Best Practices, SEO, Agentic Browsing) by priority. The on-site audit needs no key; a PageSpeed run adds Google's real Lighthouse result. Automatic audit, API key and security headers are in the Settings tab."
-msgstr "PageSpeed Insights'ın beş başlığı (Performans, Erişilebilirlik, En iyi uygulamalar, SEO, Ajan uyumu) önceliğe göre. Site içi denetim anahtarsızdır; PageSpeed ölçümü Google'ın gerçek Lighthouse sonucunu ekler. Otomatik denetim, API anahtarı ve güvenlik başlıkları Ayarlar sekmesinde."
-
-msgid "PageSpeed scores"
-msgstr "PageSpeed puanları"
-
-msgid "PageSpeed not run"
-msgstr "PageSpeed çalışmadı"
-
-msgid "Device"
-msgstr "Cihaz"
-
-msgid "No report with a PageSpeed run yet. Enter the API key and turn on PageSpeed in the automatic audit."
-msgstr "PageSpeed ölçümü olan rapor yok. API anahtarı girip otomatik denetimde PageSpeed'i açın."
-
-msgid "%s PageSpeed scores over time"
-msgstr "%s PageSpeed puanlarının zaman içindeki değişimi"
-
-msgid "Site audit and agent readiness"
-msgstr "Site denetimi ve ajan uyumu"
-
-msgid "Flux SEO's AI (MCP) tools run through the shared MCP server. The server, keys and settings are in Flux AI & MCP › MCP; install and activate Flux AI 0.7.0 or later."
-msgstr "Flux SEO'nun yapay zekâ (MCP) araçları ortak MCP sunucusu üzerinden çalışır. Sunucu, anahtarlar ve ayarlar Flux AI & MCP › MCP ekranındadır; Flux AI 0.7.0 ve üstünü kurup etkinleştirin."
-
 msgid "No URLs to submit."
 msgstr "Gönderilecek adres yok."
 
@@ -919,260 +1183,59 @@ msgstr "IndexNow %d döndü."
 msgid "Not allowed."
 msgstr "Yetki yok."
 
-msgid "IndexNow is off or the site is hidden from search engines (Settings › Reading)."
-msgstr "IndexNow kapalı ya da site arama motorlarına kapalı (Ayarlar › Okuma)."
-
 msgid "%d URLs submitted to Bing, Yandex and the other IndexNow search engines."
 msgstr "%d adres Bing, Yandex ve diğer IndexNow arama motorlarına bildirildi."
 
-msgid "Open Search Console"
-msgstr "Search Console'u aç"
+msgid "Hidden from search engines (noindex)."
+msgstr "Arama motorlarından gizli (noindex)."
 
-msgid "Add property › URL prefix › HTML tag. Leave empty if you verified with DNS."
-msgstr "Özellik ekle › URL öneki › HTML etiketi. DNS ile doğruladıysanız boş bırakın."
+msgid "Title is long (%d characters); Google cuts after about 60."
+msgstr "Başlık uzun (%d karakter); Google yaklaşık 60 karakterden sonra keser."
 
-msgid "Open Bing Webmaster"
-msgstr "Bing Webmaster'ı aç"
+msgid "Title is very short; write a title that describes the topic."
+msgstr "Başlık çok kısa; konuyu anlatan bir başlık yazın."
 
-msgid "The easiest path is \"Import from Google Search Console\": verification and the sitemap arrive on their own, no code. If you add it by hand, paste the HTML meta tag. DuckDuckGo, Yahoo and Ecosia results come from Bing."
-msgstr "En kolayı \"Google Search Console'dan içe aktar\": doğrulama ve sitemap kendiliğinden gelir, kod gerekmez. Elle eklerken HTML Meta Tag kodunu yapıştırın. DuckDuckGo, Yahoo ve Ecosia sonuçları Bing'den gelir."
+msgid "No meta description; it is built from the content automatically."
+msgstr "Meta açıklama yok; içerikten otomatik oluşturulur."
 
-msgid "Open Yandex Webmaster"
-msgstr "Yandex Webmaster'ı aç"
+msgid "Meta description is long (%d characters)."
+msgstr "Meta açıklama uzun (%d karakter)."
 
-msgid "Add site › Meta tag. After verifying, add the sitemap URL under Indexing › Sitemap files."
-msgstr "Site ekle › Meta etiketi. Doğruladıktan sonra Indexing › Sitemap files bölümüne sitemap adresini ekleyin."
+msgid "Meta description is short (%d characters)."
+msgstr "Meta açıklama kısa (%d karakter)."
 
-msgid "%1$s · %2$d URLs · HTTP %3$d"
-msgstr "%1$s · %2$d adres · HTTP %3$d"
+msgid "No featured image (it will not show in shares or Google Discover)."
+msgstr "Öne çıkan görsel yok (paylaşımlarda ve Google Discover'da görünmez)."
 
-msgid "key file could not be verified"
-msgstr "anahtar dosyası doğrulanamadı"
+msgid "%d images have no alt text (filled in automatically from the image name; write a meaningful alt text)."
+msgstr "%d görselin alt metni yok (görsel adından otomatik doldurulur; anlamlı bir alt metin yazın)."
 
-msgid "URLs do not match the site domain"
-msgstr "adresler site alan adıyla eşleşmiyor"
+msgid "%d images have no alt text."
+msgstr "%d görselin alt metni yok."
 
-msgid "too many requests, try again later"
-msgstr "çok sık istek, sonra tekrar deneyin"
+msgid "The page has %d H1 headings; there must be only one."
+msgstr "Sayfada %d H1 başlığı var; yalnız bir tane olmalı."
 
-msgid "error"
-msgstr "hata"
+msgid "The page has no main heading (H1)."
+msgstr "Sayfada ana başlık (H1) yok."
 
-msgid "Search engines"
-msgstr "Arama motorları"
+msgid "The content has an H1; the page title is already the H1. Make sub-headings H2."
+msgstr "İçerikte H1 var; sayfa başlığı zaten H1. Alt başlıkları H2 yapın."
 
-msgid "Search engines other than Google (Bing, Yandex, DuckDuckGo, Yahoo, Ecosia) crawl a site quickly only once it is introduced to them. Add the site in each one's webmaster panel, paste the verification code below and submit the sitemap URL."
-msgstr "Google dışındaki arama motorları (Bing, Yandex, DuckDuckGo, Yahoo, Ecosia) siteyi ancak tanıtılınca hızlı tarar. Her birinin kendi panelinde siteyi ekleyin; doğrulama kodunu aşağıya yapıştırın, sitemap adresini gönderin."
+msgid "The content is short (%d words). 300+ words are recommended."
+msgstr "İçerik kısa (%d kelime). 300+ kelime önerilir."
 
-msgid "Sitemap URL"
-msgstr "Sitemap adresi"
+msgid "Long content has no sub-heading (H2)."
+msgstr "Uzun içerikte alt başlık (H2) yok."
 
-msgid "Also listed in robots.txt; add this URL in Search Console, Bing and Yandex."
-msgstr "robots.txt'de de yazılı; Search Console, Bing ve Yandex panellerine bu adresi ekleyin."
+msgid "The focus keyword is not in the title."
+msgstr "Odak anahtar kelime başlıkta yok."
 
-msgid "Verification tag is on the site"
-msgstr "Doğrulama etiketi sitede"
+msgid "The focus keyword is not in the description."
+msgstr "Odak anahtar kelime açıklamada yok."
 
-msgid "Instantly notify Bing, Yandex, DuckDuckGo (via Bing), Seznam and Naver about published and updated pages"
-msgstr "Yayınlanan ve güncellenen sayfaları Bing, Yandex, DuckDuckGo (Bing üzerinden), Seznam ve Naver'e anında bildir"
-
-msgid "Key file:"
-msgstr "Anahtar dosyası:"
-
-msgid "When on, the whole site is submitted once automatically. Google does not use IndexNow; add your sitemap in Search Console for Google."
-msgstr "Açıkken tüm site bir kez kendiliğinden bildirilir. Google IndexNow kullanmaz; Google için Search Console'a sitemap ekleyin."
-
-msgid "The site is hidden from search engines (Settings › Reading); IndexNow sends nothing."
-msgstr "Site arama motorlarına kapalı (Ayarlar › Okuma); IndexNow bildirim göndermez."
-
-msgid "Last bulk submission:"
-msgstr "Son toplu bildirim:"
-
-msgid "Submit the whole site now"
-msgstr "Tüm siteyi şimdi bildir"
-
-msgid "robots.txt blocks the Bing or Yandex crawler"
-msgstr "robots.txt Bing ya da Yandex tarayıcısını engelliyor"
-
-msgid "Search crawlers such as Bingbot, YandexBot and DuckDuckBot must not have \"Disallow: /\"; otherwise the site only appears on Google. Fix the robots.txt file in the site root."
-msgstr "Bingbot, YandexBot, DuckDuckBot gibi arama motoru tarayıcıları için \"Disallow: /\" olmamalı; site yalnız Google'da görünür. Kökteki robots.txt dosyasını düzeltin."
-
-msgid "robots.txt has no Sitemap line"
-msgstr "robots.txt'de Sitemap satırı yok"
-
-msgid "Bing and Yandex find the sitemap from the \"Sitemap:\" line in robots.txt. If a hand-written robots.txt sits in the root, delete it (Flux SEO adds the line) or add the line yourself."
-msgstr "Bing ve Yandex sitemap'i robots.txt'deki \"Sitemap:\" satırından bulur. Kökte elle konmuş bir robots.txt varsa silin (Flux SEO satırı ekler) ya da satırı elle ekleyin."
-
-msgid "IndexNow is off"
-msgstr "IndexNow kapalı"
-
-msgid "IndexNow instantly notifies Bing, Yandex, Seznam and Naver about new and updated pages; it is the fastest way to show up outside Google. One click to turn it on."
-msgstr "IndexNow yeni ve güncellenen sayfaları Bing, Yandex, Seznam ve Naver'e anında bildirir; Google dışındaki arama motorlarında görünmenin en hızlı yolu. Açmak için tek tık."
-
-msgid "IndexNow submission failed"
-msgstr "IndexNow bildirimi başarısız"
-
-msgid "The key file (/<key>.txt) must be reachable from outside. If a cache or security plugin blocks it, add an exception, then use SEO › General › IndexNow › \"Submit the whole site now\"."
-msgstr "Anahtar dosyasına (/ <key> .txt) dışarıdan ulaşılabilir olmalıdır. Bir önbellek veya güvenlik eklentisi bunu engelliyorsa bir istisna ekleyin ve ardından SEO › Genel › IndexNow › \"Sitenin tamamını şimdi gönder\" seçeneğini kullanın."
-
-msgid "No Bing / Yandex verification code"
-msgstr "Bing / Yandex doğrulama kodu girilmemiş"
-
-msgid "The site may not be added to Bing Webmaster Tools and Yandex Webmaster; without that it appears late or not at all there. On Bing, \"Import from Google Search Console\" needs no code; ignore this if you already imported. The codes are under SEO › General › Search engines."
-msgstr "Site Bing Webmaster Tools ve Yandex Webmaster'a eklenmemiş olabilir; eklenmezse bu arama motorlarında geç ya da hiç görünmez. Bing'de \"Google Search Console'dan içe aktar\" ile kod gerekmez; o yolla eklediyseniz yok sayın. Kodlar SEO › Genel › Arama motorları'nda."
-
-msgid "Turn on IndexNow"
-msgstr "IndexNow'u aç"
-
-msgid "New and updated pages are sent instantly to Bing, Yandex, Seznam and Naver; the whole site is submitted once automatically."
-msgstr "Yeni ve güncellenen sayfalar Bing, Yandex, Seznam ve Naver'e anında bildirilir; tüm site bir kez kendiliğinden gönderilir."
-
-msgid "Bing and Yandex"
-msgstr "Bing ve Yandex"
-
-msgid "No verification code: %s. Add the site in these search engines' webmaster panels (Bing's import from Google Search Console needs no code)."
-msgstr "Doğrulama kodu girilmemiş: %s. Siteyi bu arama motorlarının panellerine ekleyin (Bing'de Google Search Console'dan içe aktarma kod istemez)."
-
-msgid "Bing and Yandex verification codes are set."
-msgstr "Bing ve Yandex doğrulama kodları girili."
-
-msgid "On; the site has been submitted to Bing and Yandex."
-msgstr "Açık; site Bing ve Yandex'e bildirildi."
-
-msgid "On; the first bulk submission is sent on the next admin page load."
-msgstr "Açık; ilk toplu bildirim yönetim panelinde bir sonraki istekte gönderilir."
-
-msgid "Off; new pages are not sent to Bing and Yandex."
-msgstr "Kapalı; yeni sayfalar Bing ve Yandex'e bildirilmiyor."
-
-msgid "Open Naver Search Advisor"
-msgstr "Naver Search Advisor'ı aç"
-
-msgid "Korea's largest search engine. Add site › HTML tag; then Request › Submit sitemap. Optional."
-msgstr "Kore'nin en büyük arama motoru. Site ekle › HTML etiketi; sonra Request › Submit sitemap. İsteğe bağlı."
-
-msgid "Open Seznam Webmaster"
-msgstr "Seznam Webmaster'ı aç"
-
-msgid "Czech search engine (Webmaster link at the bottom of the page). Meta tag method. Optional."
-msgstr "Çekya'nın arama motoru (Webmaster bağlantısı sayfa altında). Meta etiketi yöntemi. İsteğe bağlı."
-
-msgid "Open Baidu Webmaster"
-msgstr "Baidu Webmaster'ı aç"
-
-msgid "China's search engine; sign-up may need a Chinese phone number. Not needed unless you target China."
-msgstr "Çin'in arama motoru; kayıt için Çin telefon numarası gerekebilir. Çin'e hitap etmiyorsanız gerek yok."
-
-msgid "Connected with Google Site Kit; Search Console verification and the sitemap are handled there. You can leave this empty."
-msgstr "Google Site Kit ile bağlı; Search Console doğrulaması ve sitemap Site Kit'te. Bu alanı boş bırakabilirsiniz."
-
-msgid "Connected with Google Site Kit."
-msgstr "Google Site Kit ile bağlı."
-
-msgid "Areas of expertise"
-msgstr "Uzmanlık konuları"
-
-msgid "One topic per line"
-msgstr "Her satıra bir konu"
-
-msgid "Topics the organization is an expert in (schema knowsAbout). Search engines and AI assistants match the organization to these topics. Left out when empty."
-msgstr "Kurumun uzman olduğu konular (schema knowsAbout). Arama motorları ve yapay zekâ asistanları kurumu bu konularla eşleştirir. Boşsa eklenmez."
-
-msgid "Area served"
-msgstr "Hizmet bölgesi"
-
-msgid "e.g. United States"
-msgstr "ör. Türkiye"
-
-msgid "Country served (schema areaServed). Left out when empty."
-msgstr "Hizmet verilen ülke (schema areaServed). Boşsa eklenmez."
-
-msgid "Donation call to action"
-msgstr "Bağış çağrısı"
-
-msgid "e.g. Donate"
-msgstr "ör. Bağış yap"
-
-msgid "For organizations that accept donations (schema DonateAction). Left out when the label is empty; when the URL is empty the donation page is found automatically."
-msgstr "Bağış kabul eden kurumlar için (schema DonateAction). Ad boşsa eklenmez; adres boşsa bağış sayfası kendiliğinden bulunur."
-
-msgid "Address"
-msgstr "Adres"
-
-msgid "Homepage description"
-msgstr "Ana sayfa açıklaması"
-
-msgid "Homepage title"
-msgstr "Ana sayfa başlığı"
-
-msgid "Don't index search"
-msgstr "Aramayı dizine ekleme"
-
-msgid "Separator"
-msgstr "Ayırıcı"
-
-msgid "No findings"
-msgstr "Bulgu yok"
-
-msgid "Findings"
-msgstr "Bulgular"
-
-msgid "Audit email"
-msgstr "Denetim e-postası"
-
-msgid "Audit updated"
-msgstr "Denetim güncellendi"
-
-msgid "Audit schedule"
-msgstr "Denetim sıklığı"
-
-msgid "Findings show up here after an audit runs."
-msgstr "Denetim çalışınca bulgular burada listelenir."
-
-msgid "Run audit"
-msgstr "Denetimi çalıştır"
-
-msgid "Email"
-msgstr "E-posta"
-
-msgid "Don't index tags"
-msgstr "Etiketleri dizine ekleme"
-
-msgid "IndexNow"
-msgstr "IndexNow"
-
-msgid "Organization"
-msgstr "Kuruluş"
-
-msgid "Organization name"
-msgstr "Kurum adı"
-
-msgid "Organization type"
-msgstr "Kurum türü"
-
-msgid "Open in panel"
-msgstr "Panelde aç"
-
-msgid "Scores"
-msgstr "Puanlar"
-
-msgid "NGO"
-msgstr "STK"
-
-msgid "Site name"
-msgstr "Site adı"
-
-msgid "Last local audit"
-msgstr "Son yerel denetim"
-
-msgid "Phone"
-msgstr "Telefon"
-
-msgid "WebMCP"
-msgstr "WebMCP"
-
-msgid "llms.txt"
-msgstr "llms.txt"
+msgid "No internal links (link to related pages)."
+msgstr "İç bağlantı yok (ilgili sayfalara bağlantı verin)."
 
 msgid "PHP %1$s is not patched against %2$s. Update to at least %3$s (hosting panel › PHP version). A distribution package may carry the fix without changing the version number; ask your provider if unsure."
 msgstr "PHP %1$s, %2$s açığına karşı yamasız. En az %3$s sürümüne güncelleyin (hosting paneli › PHP sürümü). Dağıtım paketi yamayı sürüm numarasını değiştirmeden almış olabilir; emin değilseniz sağlayıcınıza sorun."
@@ -1195,143 +1258,587 @@ msgstr "Sürüm notları"
 msgid "session.upload_progress.enabled is on. WordPress does not use it; turning it off shrinks the attack surface. Set \"session.upload_progress.enabled = Off\" in php.ini or the hosting panel."
 msgstr "session.upload_progress.enabled açık. WordPress bunu kullanmaz; kapatmak saldırı yüzeyini küçültür. php.ini ya da hosting panelinde \"session.upload_progress.enabled = Off\" yapın."
 
-msgid "PHP version is missing a security patch"
-msgstr "PHP sürümü güvenlik yaması almamış"
+msgid "Site build guide"
+msgstr "Site yapım rehberi"
 
-msgid "The server's PHP is unpatched against a known hole or no longer supported. Upgrade PHP to the current patch release from the hosting panel."
-msgstr "Sunucudaki PHP bilinen bir açığa karşı yamasız ya da artık desteklenmiyor. Hosting panelinden PHP'yi güncel yama sürümüne yükseltin."
+msgid "SEO output"
+msgstr "SEO çıktısı"
 
-msgid "session.upload_progress is on"
-msgstr "session.upload_progress açık"
+msgid "Another SEO plugin is active; meta, Open Graph and schema come from it. Flux SEO turned its own output off to avoid conflicts."
+msgstr "Başka bir SEO eklentisi etkin; meta, Open Graph ve schema onun üzerinden. Flux SEO çakışmasın diye kendi çıktısını kapattı."
 
-msgid "WordPress does not use this PHP feature; it is the exploit path for holes such as PHP2Shell. Set session.upload_progress.enabled = Off in php.ini or the hosting panel."
-msgstr "WordPress bu PHP özelliğini kullanmaz; PHP2Shell gibi açıklarda istismar yolu olur. php.ini ya da hosting panelinde session.upload_progress.enabled = Off yapın."
+msgid "Meta description, Open Graph and schema are added to every page."
+msgstr "Meta açıklama, Open Graph ve schema her sayfada ekleniyor."
 
-msgid "Meta title/description, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap settings, favicon and SEO control. Content and SEO tools for AI assistants (on MCP server Flux AI)."
-msgstr "Meta başlık/açıklama, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap ayarları, favicon ve SEO kontrolü. Yapay zekâ asistanları için içerik ve SEO araçları (MCP sunucusu Flux AI'da)."
+msgid "Off. Page descriptions, images and organization details will not show on Google and social shares. Turn it on if you want to be found on Google."
+msgstr "Kapalı. Google ve sosyal paylaşımlarda sayfa açıklaması, görsel ve kurum bilgisi görünmez. Google'da bulunmak istiyorsanız açın."
 
-msgid "PageSpeed timed out; this step was skipped."
-msgstr "PageSpeed zaman aşımına uğradı; bu adım atlandı."
+msgid "SEO settings"
+msgstr "SEO ayarları"
 
-msgid "A Content-Signal line (e.g. search=yes, ai-input=yes, ai-train=no) tells crawlers how your content may be used. Flux SEO adds it to the generated robots.txt; set the values in SEO › Settings. If a hand-written robots.txt sits in the site root, add the line under \"User-agent: *\" yourself."
-msgstr "Content-Signal satırı (ör. search=yes, ai-input=yes, ai-train=no) tarayıcılara içeriğin nasıl kullanılabileceğini söyler. Flux SEO bunu ürettiği robots.txt'ye ekler; değerleri SEO › Ayarlar'dan seçin. Site kökünde elle yazılmış bir robots.txt varsa satırı \"User-agent: *\" altına kendiniz ekleyin."
+msgid "Connected with Google Site Kit."
+msgstr "Google Site Kit ile bağlı."
 
-msgid "AI answers (ai-input)"
-msgstr "AI yanıtları (ai-input)"
+msgid "Bing and Yandex"
+msgstr "Bing ve Yandex"
 
-msgid "AI training (ai-train)"
-msgstr "AI eğitimi (ai-train)"
+msgid "No verification code: %s. Add the site in these search engines' webmaster panels (Bing's import from Google Search Console needs no code)."
+msgstr "Doğrulama kodu girilmemiş: %s. Siteyi bu arama motorlarının panellerine ekleyin (Bing'de Google Search Console'dan içe aktarma kod istemez)."
 
-msgid "About, contact or legal page is not linked from the home page"
-msgstr "Hakkımızda, iletişim ya da yasal sayfa ana sayfadan bağlanmamış"
+msgid "Bing and Yandex verification codes are set."
+msgstr "Bing ve Yandex doğrulama kodları girili."
 
-msgid "Adds a Content-Signal line (search, ai-input, ai-train) to robots.txt so crawlers know how the content may be used. The values are set in SEO › Settings."
-msgstr "robots.txt'ye Content-Signal satırı (search, ai-input, ai-train) ekler; tarayıcılar içeriğin nasıl kullanılabileceğini bilir. Değerler SEO › Ayarlar'da."
+msgid "On; the site has been submitted to Bing and Yandex."
+msgstr "Açık; site Bing ve Yandex'e bildirildi."
 
-msgid "Agents discover the site's MCP server from /.well-known/mcp/server-card.json (name, version, endpoint, capabilities). Flux AI & MCP publishes it when its MCP server is on (Flux AI & MCP › MCP). Without Flux AI & MCP the site has no MCP server; you can ignore this."
-msgstr "Ajanlar sitenin MCP sunucusunu /.well-known/mcp/server-card.json kartından bulur (ad, sürüm, adres, yetenekler). Flux AI & MCP, MCP sunucusu açıkken kartı yayınlar (Flux AI & MCP › MCP). Flux AI & MCP yoksa sitede MCP sunucusu da yoktur; bu öneriyi geçebilirsiniz."
+msgid "On; the first bulk submission is sent on the next admin page load."
+msgstr "Açık; ilk toplu bildirim yönetim panelinde bir sonraki istekte gönderilir."
 
-msgid "Browser agents look for tools registered with navigator.modelContext.registerTool() or forms marked with toolname/tooldescription. Flux SEO registers search, read-page and site-overview tools when WebMCP is on."
-msgstr "Tarayıcı ajanları navigator.modelContext.registerTool() ile kaydedilmiş araçları ya da toolname/tooldescription işaretli formları arar. WebMCP açıkken Flux SEO arama, sayfa okuma ve site özeti araçlarını kaydeder."
+msgid "Off; new pages are not sent to Bing and Yandex."
+msgstr "Kapalı; yeni sayfalar Bing ve Yandex'e bildirilmiyor."
 
-msgid "Content signals are declared"
-msgstr "İçerik sinyalleri bildirilmiş"
+msgid "Content not found."
+msgstr "İçerik bulunamadı."
 
-msgid "Each sitemap entry should carry <lastmod> so search engines and agents know what changed. Flux SEO adds it to the WordPress sitemap and its index; if another plugin builds the sitemap, turn on lastmod there."
-msgstr "Her sitemap kaydında <lastmod> olmalı; arama motorları ve ajanlar neyin değiştiğini böyle anlar. Flux SEO bunu WordPress sitemap'ine ve dizinine ekler; sitemap'i başka bir eklenti üretiyorsa lastmod'u orada açın."
+msgid "You are not allowed to edit this content."
+msgstr "Bu içeriği düzenleme yetkiniz yok."
 
-msgid "Fill in the phone and address so an agent can answer questions about the organization without guessing: SEO › Organization, or the organization profile in Flux Setup (Flux SEO reads it when its own fields are empty)."
-msgstr "Telefon ve adresi doldurun; ajan kurumla ilgili soruları tahmin etmeden yanıtlasın: SEO › Kurum ya da Flux Setup'taki kurum profili (Flux SEO kendi alanları boşsa oradan okur)."
+msgid "IndexNow is off or the site is hidden from search engines (Settings › Reading)."
+msgstr "IndexNow kapalı ya da site arama motorlarına kapalı (Ayarlar › Okuma)."
 
-msgid "Flux AI & MCP"
-msgstr "Flux AI & MCP"
+msgid "How important an audit recommendation is."
+msgstr "Bir denetim önerisinin önemi."
 
-msgid "For Accept: text/markdown the page should answer with a Markdown version; it costs agents far fewer tokens than HTML. Flux SEO does this when \"Serve Markdown\" is on. If HTML still comes back, a page cache is answering first: purge the cache (LiteSpeed: Purge All) and check that the \"Flux SEO Markdown\" block is at the top of .htaccess."
-msgstr "Accept: text/markdown isteğine sayfa Markdown hâliyle yanıt vermeli; ajanlara HTML'den çok daha az token harcatır. \"Markdown sun\" açıkken Flux SEO bunu yapar. Yine HTML dönüyorsa önce sayfa önbelleği yanıt veriyordur: önbelleği temizleyin (LiteSpeed: Purge All) ve .htaccess'in başında \"Flux SEO Markdown\" bloğu olduğunu kontrol edin."
+msgid "Where a recommendation came from."
+msgstr "Önerinin kaynağı."
 
-msgid "Link the about, contact and privacy/terms pages from the home page (usually the footer). A mailto: link does not count as a contact page; agents look for a page they can read."
-msgstr "Hakkımızda, iletişim ve gizlilik/kullanım koşulları sayfalarını ana sayfadan (genelde alt bilgiden) bağlayın. mailto: bağlantısı iletişim sayfası sayılmaz; ajanlar okuyabilecekleri bir sayfa arar."
+msgid "Device a PageSpeed run measures."
+msgstr "PageSpeed ölçümünün yapıldığı cihaz."
 
-msgid "MCP Server Card is published"
-msgstr "MCP Server Card yayında"
+msgid "Kind of audit to run."
+msgstr "Çalıştırılacak denetim türü."
 
-msgid "Markdown is not served when an agent asks for it"
-msgstr "Ajan isteyince Markdown sunulmuyor"
+msgid "On-site audit of the page; needs no key."
+msgstr "Sayfanın site içi denetimi; anahtar gerekmez."
 
-msgid "Markdown is served to agents"
-msgstr "Ajanlara Markdown sunuluyor"
+msgid "One PageSpeed Insights measurement (strategy required)."
+msgstr "Tek bir PageSpeed Insights ölçümü (cihaz gerekli)."
 
-msgid "No Content-Signal in robots.txt"
-msgstr "robots.txt'de Content-Signal yok"
+msgid "What started a saved audit report."
+msgstr "Kayıtlı denetim raporunu başlatan şey."
 
-msgid "No MCP Server Card"
-msgstr "MCP Server Card yok"
+msgid "How serious a content recommendation is."
+msgstr "İçerik önerisinin ciddiyeti."
 
-msgid "No WebMCP tools are registered on page load"
-msgstr "Sayfa açılınca WebMCP aracı kaydedilmiyor"
+msgid "Language of the build guide."
+msgstr "Kurulum rehberinin dili."
 
-msgid "Organization and contact pages are complete"
-msgstr "Kurum bilgisi ve iletişim sayfaları tam"
+msgid "Recommendation counts by priority."
+msgstr "Önceliğe göre öneri sayıları."
 
-msgid "Organization schema is missing contact details"
-msgstr "Kurum schema'sında iletişim bilgisi eksik"
+msgid "Critical recommendations."
+msgstr "Kritik öneriler."
 
-msgid "Pages answer Accept: text/markdown with a Markdown version of the main content; far fewer tokens than HTML."
-msgstr "Sayfalar Accept: text/markdown isteğine ana içeriğin Markdown hâliyle yanıt verir; HTML'den çok daha az token."
+msgid "High priority recommendations."
+msgstr "Yüksek öncelikli öneriler."
 
-msgid "Search (search)"
-msgstr "Arama (search)"
+msgid "Medium priority recommendations."
+msgstr "Orta öncelikli öneriler."
 
-msgid "Serve Markdown to agents"
-msgstr "Ajanlara Markdown sun"
+msgid "Low priority recommendations."
+msgstr "Düşük öncelikli öneriler."
 
-msgid "Sitemap has no lastmod dates"
-msgstr "Sitemap'te lastmod tarihi yok"
+msgid "One audit recommendation."
+msgstr "Bir denetim önerisi."
 
-msgid "Turn on Content-Signal in robots.txt"
-msgstr "robots.txt'de Content-Signal'ı aç"
+msgid "Finding id (a Lighthouse audit id or a Flux SEO check)."
+msgstr "Bulgu kimliği (bir Lighthouse denetim kimliği ya da Flux SEO kontrolü)."
 
-msgid "WebMCP tools are registered"
-msgstr "WebMCP araçları kayıtlı"
+msgid "Title in the user's language."
+msgstr "Kullanıcının dilinde başlık."
 
-msgid "Allowed"
-msgstr "İzinli"
+msgid "How important it is."
+msgstr "Önemi."
 
-msgid "Content signals tell crawlers how your content may be used: in search results, as live input to AI answers, and for training AI models. They are a stated preference; crawlers are not forced to follow them."
-msgstr "İçerik sinyalleri tarayıcılara içeriğinizin nasıl kullanılabileceğini söyler: arama sonuçlarında, AI yanıtlarına anlık girdi olarak ve AI modellerini eğitmek için. Bu bir tercih bildirimidir; tarayıcılar uymak zorunda değildir."
+msgid "Priority name in the user's language."
+msgstr "Kullanıcının dilinde öncelik adı."
 
-msgid "Country code"
-msgstr "Ülke kodu"
+msgid "Section: performance, accessibility, best-practices, seo or agentic (packages may add more)."
+msgstr "Bölüm: performance, accessibility, best-practices, seo ya da agentic (paketler yenisini ekleyebilir)."
 
-msgid "Country is a two-letter code (TR, US, DE). Empty fields are filled from the organization profile (Flux Setup) when it has an address or phone."
-msgstr "Ülke iki harfli koddur (TR, US, DE). Boş alanlar, kurum profilinde (Flux Setup) adres ya da telefon varsa oradan doldurulur."
+msgid "Section name in the user's language."
+msgstr "Kullanıcının dilinde bölüm adı."
 
-msgid "Declare Content-Signal in robots.txt"
-msgstr "robots.txt'de Content-Signal bildir"
+msgid "Other sections the recommendation counts in."
+msgstr "Önerinin sayıldığı diğer bölümler."
 
-msgid "Not allowed"
-msgstr "İzin yok"
+msgid "Short detail such as a measured value; empty when none."
+msgstr "Ölçülen değer gibi kısa ayrıntı; yoksa boş."
 
-msgid "Not stated"
-msgstr "Belirtilmedi"
+msgid "How to fix it; empty when unknown."
+msgstr "Nasıl düzeltilir; bilinmiyorsa boş."
 
-msgid "Serve Markdown when an agent asks for it (Accept: text/markdown)"
-msgstr "Ajan isteyince Markdown sun (Accept: text/markdown)"
+msgid "Who fixes it (theme, content, server …); null when unknown."
+msgstr "Kim düzeltir (tema, içerik, sunucu …); bilinmiyorsa null."
 
-msgid "WebMCP: register site tools for browser agents (search, read page as Markdown, site overview) and mark the search form as a tool"
-msgstr "WebMCP: tarayıcı ajanlarına site araçlarını kaydet (arama, sayfayı Markdown olarak okuma, site özeti) ve arama formunu araç olarak işaretle"
+msgid "Name of the owner; null when unknown."
+msgstr "Sahibin adı; bilinmiyorsa null."
 
-msgid "How many results to return (1-20)"
-msgstr "Kaç sonuç dönsün (1-20)"
+msgid "Affected elements or addresses (at most 10)."
+msgstr "Etkilenen öğeler ya da adresler (en fazla 10)."
 
-msgid "Page address on this website; empty for the current page"
-msgstr "Bu sitedeki sayfa adresi; boşsa açık sayfa"
+msgid "Which audits found it."
+msgstr "Hangi denetimler buldu."
 
-msgid "Reads a page of this website as Markdown (title, description and main content). Without an address, reads the current page."
-msgstr "Bu sitedeki bir sayfayı Markdown olarak okur (başlık, açıklama ve ana içerik). Adres verilmezse açık sayfayı okur."
+msgid "One-click fix id; null when there is none or it is already on."
+msgstr "Tek tıkla düzeltme kimliği; yoksa ya da zaten açıksa null."
 
-msgid "Returns a short overview of this website (llms.txt): what it is about and its main pages."
-msgstr "Bu sitenin kısa özetini (llms.txt) verir: ne hakkında olduğu ve ana sayfaları."
+msgid "Name of the one-click fix; null when there is none."
+msgstr "Tek tıkla düzeltmenin adı; yoksa null."
 
-msgid "Searches this website and returns matching pages and posts with their title and address."
-msgstr "Bu sitede arama yapar; eşleşen sayfa ve yazıları başlık ve adresleriyle döndürür."
+msgid "A PageSpeed score of one section."
+msgstr "Bir bölümün PageSpeed puanı."
+
+msgid "Section key."
+msgstr "Bölüm anahtarı."
+
+msgid "Section name."
+msgstr "Bölüm adı."
+
+msgid "0–100; null when Lighthouse gave none."
+msgstr "0–100; Lighthouse vermediyse null."
+
+msgid "Audits passed."
+msgstr "Geçen denetimler."
+
+msgid "Audits that count."
+msgstr "Sayılan denetimler."
+
+msgid "A Core Web Vitals style metric of a PageSpeed run."
+msgstr "PageSpeed ölçümünün Core Web Vitals türü bir metriği."
+
+msgid "Lighthouse audit id (largest-contentful-paint …)."
+msgstr "Lighthouse denetim kimliği (largest-contentful-paint …)."
+
+msgid "Name."
+msgstr "Ad."
+
+msgid "Display value such as \"2.3 s\"."
+msgstr "Gösterilen değer, ör. \"2.3 s\"."
+
+msgid "0–1; null when none."
+msgstr "0–1; yoksa null."
+
+msgid "The last PageSpeed Insights run of one device."
+msgstr "Bir cihazın son PageSpeed Insights ölçümü."
+
+msgid "Device measured."
+msgstr "Ölçülen cihaz."
+
+msgid "When it ran."
+msgstr "Ne zaman çalıştı."
+
+msgid "Measured address."
+msgstr "Ölçülen adres."
+
+msgid "Lighthouse version; empty when unknown."
+msgstr "Lighthouse sürümü; bilinmiyorsa boş."
+
+msgid "Section scores."
+msgstr "Bölüm puanları."
+
+msgid "Core Web Vitals and speed metrics."
+msgstr "Core Web Vitals ve hız metrikleri."
+
+msgid "One agent readiness check."
+msgstr "Bir ajan hazırlık kontrolü."
+
+msgid "Check id (llms, webmcp, md …)."
+msgstr "Kontrol kimliği (llms, webmcp, md …)."
+
+msgid "What is checked."
+msgstr "Neyin kontrol edildiği."
+
+msgid "Whether the site passes."
+msgstr "Sitenin geçip geçmediği."
+
+msgid "The last on-site audit run."
+msgstr "Son site içi denetim."
+
+msgid "Audited address."
+msgstr "Denetlenen adres."
+
+msgid "How long the page took to answer (ms)."
+msgstr "Sayfanın yanıt süresi (ms)."
+
+msgid "HTTP status the page answered with."
+msgstr "Sayfanın döndürdüğü HTTP durumu."
+
+msgid "The current site audit report: scores, agent readiness and recommendations by priority."
+msgstr "Güncel site denetim raporu: puanlar, ajan hazırlığı ve önceliğe göre öneriler."
+
+msgid "Last on-site audit; null before the first audit."
+msgstr "Son site içi denetim; ilk denetimden önce null."
+
+msgid "Last PageSpeed run per device (none before the first run)."
+msgstr "Cihaz başına son PageSpeed ölçümü (ilk ölçümden önce yok)."
+
+msgid "Agent readiness checks."
+msgstr "Ajan hazırlık kontrolleri."
+
+msgid "Recommendations, most important first."
+msgstr "Öneriler, en önemlisi başta."
+
+msgid "Address the audit form starts with."
+msgstr "Denetim formunun başladığı adres."
+
+msgid "The MCP server is on."
+msgstr "MCP sunucusu açık."
+
+msgid "Address of /llms.txt."
+msgstr "/llms.txt adresi."
+
+msgid "Agent readiness checks the site passes."
+msgstr "Sitenin geçtiği ajan hazırlık kontrolleri."
+
+msgid "A recommendation named in a report change list."
+msgstr "Rapor değişiklik listesinde geçen bir öneri."
+
+msgid "Finding id."
+msgstr "Bulgu kimliği."
+
+msgid "A PageSpeed score in a saved report."
+msgstr "Kayıtlı bir rapordaki PageSpeed puanı."
+
+msgid "Device."
+msgstr "Cihaz."
+
+msgid "0–100; null when none."
+msgstr "0–100; yoksa null."
+
+msgid "Speed metrics of one device in a saved report."
+msgstr "Kayıtlı bir rapordaki bir cihazın hız metrikleri."
+
+msgid "First Contentful Paint; empty when not measured."
+msgstr "First Contentful Paint; ölçülmediyse boş."
+
+msgid "Largest Contentful Paint; empty when not measured."
+msgstr "Largest Contentful Paint; ölçülmediyse boş."
+
+msgid "Total Blocking Time; empty when not measured."
+msgstr "Total Blocking Time; ölçülmediyse boş."
+
+msgid "Cumulative Layout Shift; empty when not measured."
+msgstr "Cumulative Layout Shift; ölçülmediyse boş."
+
+msgid "Speed Index; empty when not measured."
+msgstr "Speed Index; ölçülmediyse boş."
+
+msgid "One saved audit report."
+msgstr "Kayıtlı bir denetim raporu."
+
+msgid "When the report was saved."
+msgstr "Raporun kaydedildiği zaman."
+
+msgid "What started the audit."
+msgstr "Denetimi başlatan şey."
+
+msgid "Trigger name in the user's language."
+msgstr "Kullanıcının dilinde tetikleyici adı."
+
+msgid "PageSpeed scores (none when PageSpeed did not run)."
+msgstr "PageSpeed puanları (PageSpeed çalışmadıysa yok)."
+
+msgid "Speed metrics per device."
+msgstr "Cihaz başına hız metrikleri."
+
+msgid "Agent readiness as \"passed/total\"; empty for old reports."
+msgstr "Ajan hazırlığı \"geçen/toplam\" olarak; eski raporlarda boş."
+
+msgid "Recommendations that are new since the previous report."
+msgstr "Önceki rapordan beri yeni öneriler."
+
+msgid "Recommendations gone since the previous report."
+msgstr "Önceki rapordan beri çözülen öneriler."
+
+msgid "Saved audit reports (newest first) and the automatic schedule."
+msgstr "Kayıtlı denetim raporları (yeniden eskiye) ve otomatik zamanlama."
+
+msgid "Reports, newest first."
+msgstr "Raporlar, en yeni başta."
+
+msgid "Saved reports (at most 90)."
+msgstr "Kayıtlı raporlar (en fazla 90)."
+
+msgid "Next automatic audit; null when automatic audits are off."
+msgstr "Sonraki otomatik denetim; otomatik denetim kapalıysa null."
+
+msgid "An automatic audit is running now."
+msgstr "Şu an bir otomatik denetim çalışıyor."
+
+msgid "Problems of the last automatic audit."
+msgstr "Son otomatik denetimin sorunları."
+
+msgid "A recommendation for one content item."
+msgstr "Bir içerik için öneri."
+
+msgid "How serious it is."
+msgstr "Ciddiyeti."
+
+msgid "Stable code (title_long, desc_missing, img_alt …)."
+msgstr "Sabit kod (title_long, desc_missing, img_alt …)."
+
+msgid "What is wrong, in the user's language."
+msgstr "Neyin yanlış olduğu, kullanıcının dilinde."
+
+msgid "A published content item with recommendations."
+msgstr "Önerisi olan yayındaki bir içerik."
+
+msgid "Post ID."
+msgstr "Yazı kimliği."
+
+msgid "Title."
+msgstr "Başlık."
+
+msgid "Post type."
+msgstr "İçerik türü."
+
+msgid "Public address."
+msgstr "Herkese açık adres."
+
+msgid "Editor address; null when the user cannot edit it."
+msgstr "Düzenleme adresi; kullanıcı düzenleyemiyorsa null."
+
+msgid "Recommendations."
+msgstr "Öneriler."
+
+msgid "SEO check of the published content."
+msgstr "Yayındaki içeriğin SEO kontrolü."
+
+msgid "Published items checked."
+msgstr "Kontrol edilen yayındaki içerik."
+
+msgid "Items with at least one recommendation."
+msgstr "En az bir önerisi olan içerik."
+
+msgid "The 100 items with the most recommendations."
+msgstr "En çok önerisi olan 100 içerik."
+
+msgid "A search engine that takes a verification tag."
+msgstr "Doğrulama etiketi alan bir arama motoru."
+
+msgid "Setting key (verify_google …)."
+msgstr "Ayar anahtarı (verify_google …)."
+
+msgid "Search engine name."
+msgstr "Arama motoru adı."
+
+msgid "Webmaster panel address."
+msgstr "Webmaster panel adresi."
+
+msgid "Link text."
+msgstr "Bağlantı metni."
+
+msgid "Example tag."
+msgstr "Örnek etiket."
+
+msgid "How to verify the site."
+msgstr "Site nasıl doğrulanır."
+
+msgid "Field of flxSettings.flxseo that holds the verification code (verifyGoogle …)."
+msgstr "Doğrulama kodunu tutan flxSettings.flxseo alanı (verifyGoogle …)."
+
+msgid "What the settings tabs show besides the setting values."
+msgstr "Ayar sekmelerinin ayar değerleri dışında gösterdikleri."
+
+msgid "Another SEO plugin is active; this plugin's meta and schema output is off."
+msgstr "Başka bir SEO eklentisi etkin; bu eklentinin meta ve schema çıktısı kapalı."
+
+msgid "Flux AI & MCP (the shared MCP server) is installed."
+msgstr "Flux AI & MCP (ortak MCP sunucusu) kurulu."
+
+msgid "WordPress site name (placeholder of the site name field)."
+msgstr "WordPress site adı (site adı alanının örneği)."
+
+msgid "Site address."
+msgstr "Site adresi."
+
+msgid "Sitemap address."
+msgstr "Sitemap adresi."
+
+msgid "Logo used when none is set."
+msgstr "Ayarlı logo yoksa kullanılan logo."
+
+msgid "Share image used when none is set."
+msgstr "Ayarlı paylaşım görseli yoksa kullanılan görsel."
+
+msgid "Home page title in use (placeholder)."
+msgstr "Kullanılan ana sayfa başlığı (örnek)."
+
+msgid "Home page description in use (placeholder)."
+msgstr "Kullanılan ana sayfa açıklaması (örnek)."
+
+msgid "Google Site Kit is connected to a Google account."
+msgstr "Google Site Kit bir Google hesabına bağlı."
+
+msgid "The site is visible to search engines (Settings › Reading)."
+msgstr "Site arama motorlarına açık (Ayarlar › Okuma)."
+
+msgid "IndexNow key file name (without .txt). It is public: search engines read it."
+msgstr "IndexNow anahtar dosyasının adı (.txt olmadan). Herkese açıktır: arama motorları okur."
+
+msgid "IndexNow key file address."
+msgstr "IndexNow anahtar dosyası adresi."
+
+msgid "Text of the last bulk submission; empty when none."
+msgstr "Son toplu gönderimin metni; yoksa boş."
+
+msgid "IndexNow can send now (on, site public, not a local site)."
+msgstr "IndexNow şimdi gönderebilir (açık, site herkese açık, yerel site değil)."
+
+msgid "A PageSpeed API key is saved. The key itself is never returned."
+msgstr "Bir PageSpeed API anahtarı kayıtlı. Anahtarın kendisi asla döndürülmez."
+
+msgid "Site admin email (default report address)."
+msgstr "Site yöneticisinin e-postası (varsayılan rapor adresi)."
+
+msgid "Search engines that take a verification tag."
+msgstr "Doğrulama etiketi alan arama motorları."
+
+msgid "Section titles of the new site build guide."
+msgstr "Yeni site kurulum rehberinin bölüm başlıkları."
+
+msgid "The new site build guide (rules and checklist) as Markdown."
+msgstr "Yeni site kurulum rehberi (kurallar ve kontrol listesi), Markdown olarak."
+
+msgid "Guide text."
+msgstr "Rehber metni."
+
+msgid "Section titles."
+msgstr "Bölüm başlıkları."
+
+msgid "Language of the text."
+msgstr "Metnin dili."
+
+msgid "SEO fields of a page, post or term (the data in the page head)."
+msgstr "Bir sayfa, yazı ya da terimin SEO alanları (sayfa başındaki veriler)."
+
+msgid "Own SEO title; empty = the automatic one."
+msgstr "Kendi SEO başlığı; boş = otomatik olan."
+
+msgid "Own meta description; empty = the automatic one."
+msgstr "Kendi meta açıklaması; boş = otomatik olan."
+
+msgid "Hidden from search engines."
+msgstr "Arama motorlarından gizli."
+
+msgid "Own share image address; empty = the featured or default image."
+msgstr "Kendi paylaşım görseli adresi; boş = öne çıkan ya da varsayılan görsel."
+
+msgid "Title the page uses."
+msgstr "Sayfanın kullandığı başlık."
+
+msgid "Description the page uses."
+msgstr "Sayfanın kullandığı açıklama."
+
+msgid "Focus keyword the editor set; only editors can read it."
+msgstr "Editörün ayarladığı odak anahtar kelime; yalnız editörler okuyabilir."
+
+msgid "SEO fields of this content (the data in the page head). Empty only when the SEO fields cannot be read."
+msgstr "Bu içeriğin SEO alanları (sayfa başındaki veriler). Yalnız SEO alanları okunamıyorsa boş."
+
+msgid "SEO title and description of this term."
+msgstr "Bu terimin SEO başlığı ve açıklaması."
+
+msgid "The current site audit report."
+msgstr "Güncel site denetim raporu."
+
+msgid "Reports to return (1–90). Default 30."
+msgstr "Döndürülecek rapor sayısı (1–90). Varsayılan 30."
+
+msgid "SEO check of the published content: what is missing or too long, per item."
+msgstr "Yayındaki içeriğin SEO kontrolü: içerik başına eksik ya da çok uzun olanlar."
+
+msgid "Check one post type only. Default: every public type."
+msgstr "Yalnız bir içerik türünü kontrol et. Varsayılan: her herkese açık tür."
+
+msgid "Items to check (1–500). Default 300."
+msgstr "Kontrol edilecek içerik sayısı (1–500). Varsayılan 300."
+
+msgid "What the settings tabs show besides the setting values: search engines, sitemap, IndexNow state."
+msgstr "Ayar sekmelerinin ayar değerleri dışında gösterdikleri: arama motorları, sitemap, IndexNow durumu."
+
+msgid "The new site build guide (rules and checklist for SEO, speed, accessibility, security and agent readiness)."
+msgstr "Yeni site kurulum rehberi (SEO, hız, erişilebilirlik, güvenlik ve ajan hazırlığı için kurallar ve kontrol listesi)."
+
+msgid "Language. Default: the user's language (Turkish or English)."
+msgstr "Dil. Varsayılan: kullanıcının dili (Türkçe ya da İngilizce)."
+
+msgid "Runs an audit: the on-site audit, or one PageSpeed measurement (15–40 s; call it for mobile, then desktop, then run the on-site audit)."
+msgstr "Bir denetim çalıştırır: site içi denetim ya da tek bir PageSpeed ölçümü (15–40 sn; önce mobil, sonra masaüstü için çağırın, ardından site içi denetimi çalıştırın)."
+
+msgid "Kind of audit."
+msgstr "Denetim türü."
+
+msgid "Device for a PageSpeed run. Default mobile."
+msgstr "PageSpeed ölçümü için cihaz. Varsayılan mobil."
+
+msgid "Address of this site to audit. Any other address audits the home page."
+msgstr "Bu sitenin denetlenecek adresi. Başka bir adres ana sayfayı denetler."
+
+msgid "The report after the run."
+msgstr "Çalıştırmadan sonraki rapor."
+
+msgid "Saved reports after the run."
+msgstr "Çalıştırmadan sonraki kayıtlı raporlar."
+
+msgid "Turns on a one-click fix a recommendation offers, then refreshes the on-site audit."
+msgstr "Önerinin sunduğu tek tıkla düzeltmeyi açar, sonra site içi denetimi yeniler."
+
+msgid "Fix id (a finding's fixId)."
+msgstr "Düzeltme kimliği (bulgunun fixId değeri)."
+
+msgid "The report after the fix."
+msgstr "Düzeltmeden sonraki rapor."
+
+msgid "Saves or deletes the PageSpeed Insights API key. The key is never returned."
+msgstr "PageSpeed Insights API anahtarını kaydeder ya da siler. Anahtar asla döndürülmez."
+
+msgid "New key. Empty keeps the saved key."
+msgstr "Yeni anahtar. Boş bırakılırsa kayıtlı anahtar kalır."
+
+msgid "Delete the saved key."
+msgstr "Kayıtlı anahtarı sil."
+
+msgid "A key is saved after the change."
+msgstr "Değişiklikten sonra bir anahtar kayıtlı."
+
+msgid "Sends every public address of the site to Bing, Yandex and the other IndexNow search engines now."
+msgstr "Sitenin tüm herkese açık adreslerini şimdi Bing, Yandex ve diğer IndexNow arama motorlarına gönderir."
+
+msgid "Addresses sent."
+msgstr "Gönderilen adres sayısı."
+
+msgid "Setup info after the submission (last submission text)."
+msgstr "Gönderimden sonraki kurulum bilgisi (son gönderim metni)."
+
+msgid "Changes the SEO fields of a post or page. Fields you leave out stay as they are."
+msgstr "Bir yazı ya da sayfanın SEO alanlarını değiştirir. Göndermediğiniz alanlar olduğu gibi kalır."
+
+msgid "Own SEO title; empty = automatic."
+msgstr "Kendi SEO başlığı; boş = otomatik."
+
+msgid "Own meta description; empty = automatic."
+msgstr "Kendi meta açıklaması; boş = otomatik."
+
+msgid "Focus keyword."
+msgstr "Odak anahtar kelime."
+
+msgid "Hide from search engines."
+msgstr "Arama motorlarından gizle."
+
+msgid "Own share image address; empty = automatic."
+msgstr "Kendi paylaşım görseli adresi; boş = otomatik."
+
+msgid "SEO fields after the change."
+msgstr "Değişiklikten sonraki SEO alanları."
