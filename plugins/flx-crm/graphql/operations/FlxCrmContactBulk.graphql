@@ -1,0 +1,8 @@
+mutation FlxCrmContactBulk($input: FlxContactBulkInput!) {
+  flxContactBulk(input: $input) {
+    changed
+    errors {
+      ...FlxCrmUserError
+    }
+  }
+}

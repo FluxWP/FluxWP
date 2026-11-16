@@ -1,0 +1,8 @@
+mutation FlxCrmEventDelete($input: FlxContactEventDeleteInput!) {
+  flxContactEventDelete(input: $input) {
+    deletedId
+    errors {
+      ...FlxCrmUserError
+    }
+  }
+}

@@ -390,6 +390,258 @@ export const FlxContentLanguage: FlxOperation<T.FlxContentLanguageQuery, T.FlxCo
   document: "query FlxContentLanguage($id: ID!) {\n  contentNode(id: $id, idType: DATABASE_ID) {\n    databaseId\n    flxLanguage\n    flxTranslations {\n      ...FlxTranslationRow\n    }\n  }\n}\n\nfragment FlxTranslationRow on FlxTranslation {\n  lang\n  databaseId\n  id\n  title\n  status\n  url\n  editUrl\n  isSelf\n}",
 };
 
+/** query FlxCrmContact (flx-crm, plugins/flx-crm/graphql/operations/FlxCrmContact.graphql) */
+export const FlxCrmContact: FlxOperation<T.FlxCrmContactQuery, T.FlxCrmContactQueryVariables> = {
+  id: '7a2703962a923dbd66bbb68ae1b67a23777d1f64cd8eebb3f7f7e3ac839725c7',
+  name: 'FlxCrmContact',
+  kind: 'query',
+  plugin: 'flx-crm',
+  document: "query FlxCrmContact($id: ID!) {\n  flxContact(id: $id) {\n    ...FlxCrmContactCard\n  }\n}\n\nfragment FlxCrmContactCard on FlxContact {\n  ...FlxCrmContactRow\n  rawName\n  country\n  source\n  sourceLabel\n  utmSource\n  utmCampaign\n  userId\n  ownerId\n  ownerName\n  note\n  paidDays\n  firstPaidAt {\n    ...FlxCrmWhen\n  }\n  avgGapDays\n  rfm {\n    recency\n    frequency\n    monetary\n  }\n  consentAt {\n    ...FlxCrmWhen\n  }\n  editUrl\n  sources {\n    label\n    url\n    date\n  }\n}\n\nfragment FlxCrmContactRow on FlxContact {\n  id\n  databaseId\n  name\n  email\n  phone {\n    e164\n    display\n  }\n  avatar\n  company\n  city\n  roles\n  donations\n  orders\n  segment\n  segmentLabel\n  ltv {\n    ...FlxCrmMoney\n  }\n  churn\n  atRisk\n  status\n  lastActivityAt {\n    ...FlxCrmWhen\n  }\n  lastPaidAt {\n    ...FlxCrmWhen\n  }\n  createdAt {\n    ...FlxCrmWhen\n  }\n  consent {\n    email\n    sms\n    whatsapp\n    ads\n  }\n  tags {\n    ...FlxCrmTag\n  }\n}\n\nfragment FlxCrmMoney on FlxMoney {\n  amount\n  currency\n  formatted\n}\n\nfragment FlxCrmTag on FlxTag {\n  databaseId\n  name\n  color\n  count\n}\n\nfragment FlxCrmWhen on FlxDateTime {\n  iso\n  label\n  relative\n}",
+};
+
+/** mutation FlxCrmContactBulk (flx-crm, plugins/flx-crm/graphql/operations/FlxCrmContactBulk.graphql) */
+export const FlxCrmContactBulk: FlxOperation<T.FlxCrmContactBulkMutation, T.FlxCrmContactBulkMutationVariables> = {
+  id: 'd64b39e87439228efb39cf454ec4b8156cf3e0fd2704751e0c30f58a4d4e8698',
+  name: 'FlxCrmContactBulk',
+  kind: 'mutation',
+  plugin: 'flx-crm',
+  document: "mutation FlxCrmContactBulk($input: FlxContactBulkInput!) {\n  flxContactBulk(input: $input) {\n    changed\n    errors {\n      ...FlxCrmUserError\n    }\n  }\n}\n\nfragment FlxCrmUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** mutation FlxCrmContactCreate (flx-crm, plugins/flx-crm/graphql/operations/FlxCrmContactCreate.graphql) */
+export const FlxCrmContactCreate: FlxOperation<T.FlxCrmContactCreateMutation, T.FlxCrmContactCreateMutationVariables> = {
+  id: '1ddbb8969d399e686efebc66dfd2669494b2a20c18beffe637a9d26bba6c9e94',
+  name: 'FlxCrmContactCreate',
+  kind: 'mutation',
+  plugin: 'flx-crm',
+  document: "mutation FlxCrmContactCreate($input: FlxContactCreateInput!) {\n  flxContactCreate(input: $input) {\n    contact {\n      ...FlxCrmContactCard\n    }\n    existed\n    errors {\n      ...FlxCrmUserError\n    }\n  }\n}\n\nfragment FlxCrmContactCard on FlxContact {\n  ...FlxCrmContactRow\n  rawName\n  country\n  source\n  sourceLabel\n  utmSource\n  utmCampaign\n  userId\n  ownerId\n  ownerName\n  note\n  paidDays\n  firstPaidAt {\n    ...FlxCrmWhen\n  }\n  avgGapDays\n  rfm {\n    recency\n    frequency\n    monetary\n  }\n  consentAt {\n    ...FlxCrmWhen\n  }\n  editUrl\n  sources {\n    label\n    url\n    date\n  }\n}\n\nfragment FlxCrmContactRow on FlxContact {\n  id\n  databaseId\n  name\n  email\n  phone {\n    e164\n    display\n  }\n  avatar\n  company\n  city\n  roles\n  donations\n  orders\n  segment\n  segmentLabel\n  ltv {\n    ...FlxCrmMoney\n  }\n  churn\n  atRisk\n  status\n  lastActivityAt {\n    ...FlxCrmWhen\n  }\n  lastPaidAt {\n    ...FlxCrmWhen\n  }\n  createdAt {\n    ...FlxCrmWhen\n  }\n  consent {\n    email\n    sms\n    whatsapp\n    ads\n  }\n  tags {\n    ...FlxCrmTag\n  }\n}\n\nfragment FlxCrmMoney on FlxMoney {\n  amount\n  currency\n  formatted\n}\n\nfragment FlxCrmTag on FlxTag {\n  databaseId\n  name\n  color\n  count\n}\n\nfragment FlxCrmUserError on FlxUserError {\n  code\n  message\n  field\n}\n\nfragment FlxCrmWhen on FlxDateTime {\n  iso\n  label\n  relative\n}",
+};
+
+/** mutation FlxCrmContactDelete (flx-crm, plugins/flx-crm/graphql/operations/FlxCrmContactDelete.graphql) */
+export const FlxCrmContactDelete: FlxOperation<T.FlxCrmContactDeleteMutation, T.FlxCrmContactDeleteMutationVariables> = {
+  id: 'e5ac09b6da29cd8a29870ad1eeecceb4e0930a083afacb5cb0f0823727443497',
+  name: 'FlxCrmContactDelete',
+  kind: 'mutation',
+  plugin: 'flx-crm',
+  document: "mutation FlxCrmContactDelete($input: FlxContactDeleteInput!) {\n  flxContactDelete(input: $input) {\n    deletedId\n    errors {\n      ...FlxCrmUserError\n    }\n  }\n}\n\nfragment FlxCrmUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** mutation FlxCrmContactMerge (flx-crm, plugins/flx-crm/graphql/operations/FlxCrmContactMerge.graphql) */
+export const FlxCrmContactMerge: FlxOperation<T.FlxCrmContactMergeMutation, T.FlxCrmContactMergeMutationVariables> = {
+  id: '5b37df020f5fcf7eb644d59e7d43255a10daf12b3e1e81becfe80e6be2b63666',
+  name: 'FlxCrmContactMerge',
+  kind: 'mutation',
+  plugin: 'flx-crm',
+  document: "mutation FlxCrmContactMerge($input: FlxContactMergeInput!) {\n  flxContactMerge(input: $input) {\n    merged\n    contact {\n      id\n      databaseId\n    }\n    errors {\n      ...FlxCrmUserError\n    }\n  }\n}\n\nfragment FlxCrmUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** query FlxCrmContacts (flx-crm, plugins/flx-crm/graphql/operations/FlxCrmContacts.graphql) */
+export const FlxCrmContacts: FlxOperation<T.FlxCrmContactsQuery, T.FlxCrmContactsQueryVariables> = {
+  id: '78fef294f41cc0264573687c40208fb3d18ade9ed42cf1d4328c25414ceb2aa3',
+  name: 'FlxCrmContacts',
+  kind: 'query',
+  plugin: 'flx-crm',
+  document: "query FlxCrmContacts($filter: FlxContactFilterInput, $orderBy: FlxContactOrderBy, $order: FlxContactOrder, $first: Int = 25, $after: String) {\n  flxContacts(\n    filter: $filter\n    orderBy: $orderBy\n    order: $order\n    first: $first\n    after: $after\n  ) {\n    totalCount\n    nodes {\n      ...FlxCrmContactRow\n    }\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n  }\n}\n\nfragment FlxCrmContactRow on FlxContact {\n  id\n  databaseId\n  name\n  email\n  phone {\n    e164\n    display\n  }\n  avatar\n  company\n  city\n  roles\n  donations\n  orders\n  segment\n  segmentLabel\n  ltv {\n    ...FlxCrmMoney\n  }\n  churn\n  atRisk\n  status\n  lastActivityAt {\n    ...FlxCrmWhen\n  }\n  lastPaidAt {\n    ...FlxCrmWhen\n  }\n  createdAt {\n    ...FlxCrmWhen\n  }\n  consent {\n    email\n    sms\n    whatsapp\n    ads\n  }\n  tags {\n    ...FlxCrmTag\n  }\n}\n\nfragment FlxCrmMoney on FlxMoney {\n  amount\n  currency\n  formatted\n}\n\nfragment FlxCrmTag on FlxTag {\n  databaseId\n  name\n  color\n  count\n}\n\nfragment FlxCrmWhen on FlxDateTime {\n  iso\n  label\n  relative\n}",
+};
+
+/** mutation FlxCrmContactUpdate (flx-crm, plugins/flx-crm/graphql/operations/FlxCrmContactUpdate.graphql) */
+export const FlxCrmContactUpdate: FlxOperation<T.FlxCrmContactUpdateMutation, T.FlxCrmContactUpdateMutationVariables> = {
+  id: '5c13b0d3b065e0dd85f87fc9e53cbb77e20f0338223bcdd15c5a57a504623083',
+  name: 'FlxCrmContactUpdate',
+  kind: 'mutation',
+  plugin: 'flx-crm',
+  document: "mutation FlxCrmContactUpdate($input: FlxContactUpdateInput!) {\n  flxContactUpdate(input: $input) {\n    contact {\n      ...FlxCrmContactCard\n    }\n    errors {\n      ...FlxCrmUserError\n    }\n  }\n}\n\nfragment FlxCrmContactCard on FlxContact {\n  ...FlxCrmContactRow\n  rawName\n  country\n  source\n  sourceLabel\n  utmSource\n  utmCampaign\n  userId\n  ownerId\n  ownerName\n  note\n  paidDays\n  firstPaidAt {\n    ...FlxCrmWhen\n  }\n  avgGapDays\n  rfm {\n    recency\n    frequency\n    monetary\n  }\n  consentAt {\n    ...FlxCrmWhen\n  }\n  editUrl\n  sources {\n    label\n    url\n    date\n  }\n}\n\nfragment FlxCrmContactRow on FlxContact {\n  id\n  databaseId\n  name\n  email\n  phone {\n    e164\n    display\n  }\n  avatar\n  company\n  city\n  roles\n  donations\n  orders\n  segment\n  segmentLabel\n  ltv {\n    ...FlxCrmMoney\n  }\n  churn\n  atRisk\n  status\n  lastActivityAt {\n    ...FlxCrmWhen\n  }\n  lastPaidAt {\n    ...FlxCrmWhen\n  }\n  createdAt {\n    ...FlxCrmWhen\n  }\n  consent {\n    email\n    sms\n    whatsapp\n    ads\n  }\n  tags {\n    ...FlxCrmTag\n  }\n}\n\nfragment FlxCrmMoney on FlxMoney {\n  amount\n  currency\n  formatted\n}\n\nfragment FlxCrmTag on FlxTag {\n  databaseId\n  name\n  color\n  count\n}\n\nfragment FlxCrmUserError on FlxUserError {\n  code\n  message\n  field\n}\n\nfragment FlxCrmWhen on FlxDateTime {\n  iso\n  label\n  relative\n}",
+};
+
+/** query FlxCrmDuplicates (flx-crm, plugins/flx-crm/graphql/operations/FlxCrmDuplicates.graphql) */
+export const FlxCrmDuplicates: FlxOperation<T.FlxCrmDuplicatesQuery, T.FlxCrmDuplicatesQueryVariables> = {
+  id: 'd8cbff1ab3075cba9ae5ea057a6d68195e6aaa27a724bbf9c924efa5974873cd',
+  name: 'FlxCrmDuplicates',
+  kind: 'query',
+  plugin: 'flx-crm',
+  document: "query FlxCrmDuplicates {\n  flxContactDuplicates {\n    why\n    items {\n      usedBy\n      contact {\n        ...FlxCrmContactRow\n      }\n    }\n  }\n}\n\nfragment FlxCrmContactRow on FlxContact {\n  id\n  databaseId\n  name\n  email\n  phone {\n    e164\n    display\n  }\n  avatar\n  company\n  city\n  roles\n  donations\n  orders\n  segment\n  segmentLabel\n  ltv {\n    ...FlxCrmMoney\n  }\n  churn\n  atRisk\n  status\n  lastActivityAt {\n    ...FlxCrmWhen\n  }\n  lastPaidAt {\n    ...FlxCrmWhen\n  }\n  createdAt {\n    ...FlxCrmWhen\n  }\n  consent {\n    email\n    sms\n    whatsapp\n    ads\n  }\n  tags {\n    ...FlxCrmTag\n  }\n}\n\nfragment FlxCrmMoney on FlxMoney {\n  amount\n  currency\n  formatted\n}\n\nfragment FlxCrmTag on FlxTag {\n  databaseId\n  name\n  color\n  count\n}\n\nfragment FlxCrmWhen on FlxDateTime {\n  iso\n  label\n  relative\n}",
+};
+
+/** mutation FlxCrmEventAdd (flx-crm, plugins/flx-crm/graphql/operations/FlxCrmEventAdd.graphql) */
+export const FlxCrmEventAdd: FlxOperation<T.FlxCrmEventAddMutation, T.FlxCrmEventAddMutationVariables> = {
+  id: 'fe10d4a31eedbbd448e3769a47a190a8872c2bdad2256def5f7e54cdf091eae0',
+  name: 'FlxCrmEventAdd',
+  kind: 'mutation',
+  plugin: 'flx-crm',
+  document: "mutation FlxCrmEventAdd($input: FlxContactEventAddInput!) {\n  flxContactEventAdd(input: $input) {\n    event {\n      ...FlxCrmEvent\n    }\n    contact {\n      id\n      lastActivityAt {\n        ...FlxCrmWhen\n      }\n    }\n    errors {\n      ...FlxCrmUserError\n    }\n  }\n}\n\nfragment FlxCrmEvent on FlxContactEvent {\n  databaseId\n  contactId\n  contactName\n  type\n  typeLabel\n  icon\n  source\n  title\n  body\n  amount {\n    ...FlxCrmMoney\n  }\n  paid\n  status\n  url\n  userName\n  at {\n    ...FlxCrmWhen\n  }\n  answers {\n    question\n    answer\n  }\n  deletable\n}\n\nfragment FlxCrmMoney on FlxMoney {\n  amount\n  currency\n  formatted\n}\n\nfragment FlxCrmUserError on FlxUserError {\n  code\n  message\n  field\n}\n\nfragment FlxCrmWhen on FlxDateTime {\n  iso\n  label\n  relative\n}",
+};
+
+/** mutation FlxCrmEventDelete (flx-crm, plugins/flx-crm/graphql/operations/FlxCrmEventDelete.graphql) */
+export const FlxCrmEventDelete: FlxOperation<T.FlxCrmEventDeleteMutation, T.FlxCrmEventDeleteMutationVariables> = {
+  id: 'a76a713193a0c8d25b06c56932ac7a945251d1c2966e1e35351c2b154124d10d',
+  name: 'FlxCrmEventDelete',
+  kind: 'mutation',
+  plugin: 'flx-crm',
+  document: "mutation FlxCrmEventDelete($input: FlxContactEventDeleteInput!) {\n  flxContactEventDelete(input: $input) {\n    deletedId\n    errors {\n      ...FlxCrmUserError\n    }\n  }\n}\n\nfragment FlxCrmUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** mutation FlxCrmJourneyDelete (flx-crm, plugins/flx-crm/graphql/operations/FlxCrmJourneyDelete.graphql) */
+export const FlxCrmJourneyDelete: FlxOperation<T.FlxCrmJourneyDeleteMutation, T.FlxCrmJourneyDeleteMutationVariables> = {
+  id: 'e4410099ca450172284928b787d6653e3a20bb9fea759f3405dcc65b4b2d60fc',
+  name: 'FlxCrmJourneyDelete',
+  kind: 'mutation',
+  plugin: 'flx-crm',
+  document: "mutation FlxCrmJourneyDelete($input: FlxJourneyDeleteInput!) {\n  flxJourneyDelete(input: $input) {\n    deletedId\n    errors {\n      ...FlxCrmUserError\n    }\n  }\n}\n\nfragment FlxCrmUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** mutation FlxCrmJourneyFromTemplate (flx-crm, plugins/flx-crm/graphql/operations/FlxCrmJourneyFromTemplate.graphql) */
+export const FlxCrmJourneyFromTemplate: FlxOperation<T.FlxCrmJourneyFromTemplateMutation, T.FlxCrmJourneyFromTemplateMutationVariables> = {
+  id: '81f33cb7df2b01fe473af742d3664bc98d855fff2d8d6c6bd10bf813b3126a00',
+  name: 'FlxCrmJourneyFromTemplate',
+  kind: 'mutation',
+  plugin: 'flx-crm',
+  document: "mutation FlxCrmJourneyFromTemplate($input: FlxJourneyFromTemplateInput!) {\n  flxJourneyFromTemplate(input: $input) {\n    journey {\n      ...FlxCrmJourneyRow\n    }\n    errors {\n      ...FlxCrmUserError\n    }\n  }\n}\n\nfragment FlxCrmJourneyRow on FlxJourney {\n  databaseId\n  name\n  status\n  description\n  triggerType\n  triggerValue\n  steps {\n    type\n    days\n    hours\n    subject\n    text\n    condition\n    value\n    tag\n  }\n  opts {\n    goal\n    reenterDays\n    quietFrom\n    quietTo\n    capWeek\n  }\n  stats {\n    entered\n    finished\n    goal\n    sent\n    skipped\n    active\n  }\n}\n\nfragment FlxCrmUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** query FlxCrmJourneys (flx-crm, plugins/flx-crm/graphql/operations/FlxCrmJourneys.graphql) */
+export const FlxCrmJourneys: FlxOperation<T.FlxCrmJourneysQuery, T.FlxCrmJourneysQueryVariables> = {
+  id: '1d65e68f34e737d57ba69b8f75f693f31df5df46147478680767d4a886eba9a4',
+  name: 'FlxCrmJourneys',
+  kind: 'query',
+  plugin: 'flx-crm',
+  document: "query FlxCrmJourneys {\n  flxJourneys {\n    ...FlxCrmJourneyRow\n  }\n  flxJourneyConfig {\n    triggers {\n      key\n      label\n    }\n    stepTypes {\n      key\n      label\n    }\n    conditions {\n      key\n      label\n    }\n    statuses {\n      key\n      label\n    }\n    goals {\n      key\n      label\n    }\n    templates {\n      key\n      label\n    }\n    defaults {\n      goal\n      reenterDays\n      quietFrom\n      quietTo\n      capWeek\n    }\n    triggerValues {\n      trigger\n      values {\n        value\n        label\n      }\n    }\n    mailActive\n  }\n}\n\nfragment FlxCrmJourneyRow on FlxJourney {\n  databaseId\n  name\n  status\n  description\n  triggerType\n  triggerValue\n  steps {\n    type\n    days\n    hours\n    subject\n    text\n    condition\n    value\n    tag\n  }\n  opts {\n    goal\n    reenterDays\n    quietFrom\n    quietTo\n    capWeek\n  }\n  stats {\n    entered\n    finished\n    goal\n    sent\n    skipped\n    active\n  }\n}",
+};
+
+/** mutation FlxCrmJourneySave (flx-crm, plugins/flx-crm/graphql/operations/FlxCrmJourneySave.graphql) */
+export const FlxCrmJourneySave: FlxOperation<T.FlxCrmJourneySaveMutation, T.FlxCrmJourneySaveMutationVariables> = {
+  id: 'bb7940aae0aa4487e6596f7310dfe9d6c66cd05f801d9d2571a2fbd024003e89',
+  name: 'FlxCrmJourneySave',
+  kind: 'mutation',
+  plugin: 'flx-crm',
+  document: "mutation FlxCrmJourneySave($input: FlxJourneySaveInput!) {\n  flxJourneySave(input: $input) {\n    journey {\n      ...FlxCrmJourneyRow\n    }\n    errors {\n      ...FlxCrmUserError\n    }\n  }\n}\n\nfragment FlxCrmJourneyRow on FlxJourney {\n  databaseId\n  name\n  status\n  description\n  triggerType\n  triggerValue\n  steps {\n    type\n    days\n    hours\n    subject\n    text\n    condition\n    value\n    tag\n  }\n  opts {\n    goal\n    reenterDays\n    quietFrom\n    quietTo\n    capWeek\n  }\n  stats {\n    entered\n    finished\n    goal\n    sent\n    skipped\n    active\n  }\n}\n\nfragment FlxCrmUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** mutation FlxCrmJourneySetStatus (flx-crm, plugins/flx-crm/graphql/operations/FlxCrmJourneySetStatus.graphql) */
+export const FlxCrmJourneySetStatus: FlxOperation<T.FlxCrmJourneySetStatusMutation, T.FlxCrmJourneySetStatusMutationVariables> = {
+  id: '271eb15db3d24fbf7acc5848820ed761c6fdcece95a02526b41ff2a7316997a2',
+  name: 'FlxCrmJourneySetStatus',
+  kind: 'mutation',
+  plugin: 'flx-crm',
+  document: "mutation FlxCrmJourneySetStatus($input: FlxJourneySetStatusInput!) {\n  flxJourneySetStatus(input: $input) {\n    journey {\n      ...FlxCrmJourneyRow\n    }\n    errors {\n      ...FlxCrmUserError\n    }\n  }\n}\n\nfragment FlxCrmJourneyRow on FlxJourney {\n  databaseId\n  name\n  status\n  description\n  triggerType\n  triggerValue\n  steps {\n    type\n    days\n    hours\n    subject\n    text\n    condition\n    value\n    tag\n  }\n  opts {\n    goal\n    reenterDays\n    quietFrom\n    quietTo\n    capWeek\n  }\n  stats {\n    entered\n    finished\n    goal\n    sent\n    skipped\n    active\n  }\n}\n\nfragment FlxCrmUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** query FlxCrmOverview (flx-crm, plugins/flx-crm/graphql/operations/FlxCrmOverview.graphql) */
+export const FlxCrmOverview: FlxOperation<T.FlxCrmOverviewQuery, T.FlxCrmOverviewQueryVariables> = {
+  id: '172de029371f50368a15f9bd18e6643d27d6d370593aeac6979a894b17a7bf8b',
+  name: 'FlxCrmOverview',
+  kind: 'query',
+  plugin: 'flx-crm',
+  document: "query FlxCrmOverview {\n  flxCrmOverview {\n    total\n    new30\n    newPrev\n    active\n    risk\n    ltv {\n      ...FlxCrmMoney\n    }\n    paying\n    repeat\n    currency\n    activeDays\n    riskThreshold\n    scoredAt {\n      ...FlxCrmWhen\n    }\n    syncedAt {\n      ...FlxCrmWhen\n    }\n    needsSync\n    syncSources\n    roles {\n      key\n      label\n      color\n      count\n    }\n    segments {\n      key\n      label\n      hint\n      tone\n      count\n      value {\n        ...FlxCrmMoney\n      }\n    }\n    sources {\n      key\n      label\n      count\n    }\n  }\n  flxCrmRecentEvents(limit: 8) {\n    ...FlxCrmEvent\n  }\n  atRisk: flxContacts(\n    first: 6\n    filter: { atRisk: true }\n    orderBy: LTV\n    order: DESC\n  ) {\n    nodes {\n      ...FlxCrmContactRow\n    }\n  }\n}\n\nfragment FlxCrmContactRow on FlxContact {\n  id\n  databaseId\n  name\n  email\n  phone {\n    e164\n    display\n  }\n  avatar\n  company\n  city\n  roles\n  donations\n  orders\n  segment\n  segmentLabel\n  ltv {\n    ...FlxCrmMoney\n  }\n  churn\n  atRisk\n  status\n  lastActivityAt {\n    ...FlxCrmWhen\n  }\n  lastPaidAt {\n    ...FlxCrmWhen\n  }\n  createdAt {\n    ...FlxCrmWhen\n  }\n  consent {\n    email\n    sms\n    whatsapp\n    ads\n  }\n  tags {\n    ...FlxCrmTag\n  }\n}\n\nfragment FlxCrmEvent on FlxContactEvent {\n  databaseId\n  contactId\n  contactName\n  type\n  typeLabel\n  icon\n  source\n  title\n  body\n  amount {\n    ...FlxCrmMoney\n  }\n  paid\n  status\n  url\n  userName\n  at {\n    ...FlxCrmWhen\n  }\n  answers {\n    question\n    answer\n  }\n  deletable\n}\n\nfragment FlxCrmMoney on FlxMoney {\n  amount\n  currency\n  formatted\n}\n\nfragment FlxCrmTag on FlxTag {\n  databaseId\n  name\n  color\n  count\n}\n\nfragment FlxCrmWhen on FlxDateTime {\n  iso\n  label\n  relative\n}",
+};
+
+/** mutation FlxCrmScoreRun (flx-crm, plugins/flx-crm/graphql/operations/FlxCrmScoreRun.graphql) */
+export const FlxCrmScoreRun: FlxOperation<T.FlxCrmScoreRunMutation, T.FlxCrmScoreRunMutationVariables> = {
+  id: 'e0edd7dec5bacd4fa0efa1061b492dfd4514405725805c3d2dad8e334f1fa625',
+  name: 'FlxCrmScoreRun',
+  kind: 'mutation',
+  plugin: 'flx-crm',
+  document: "mutation FlxCrmScoreRun($input: FlxCrmScoreRunInput!) {\n  flxCrmScoreRun(input: $input) {\n    result {\n      scored\n      changed\n      done\n      total\n    }\n    errors {\n      ...FlxCrmUserError\n    }\n  }\n}\n\nfragment FlxCrmUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** mutation FlxCrmSegmentDelete (flx-crm, plugins/flx-crm/graphql/operations/FlxCrmSegmentDelete.graphql) */
+export const FlxCrmSegmentDelete: FlxOperation<T.FlxCrmSegmentDeleteMutation, T.FlxCrmSegmentDeleteMutationVariables> = {
+  id: '2f13b0c4d23cfcf18bb040c35a545c3899b8be9c777bef71b9a3a1889584e38c',
+  name: 'FlxCrmSegmentDelete',
+  kind: 'mutation',
+  plugin: 'flx-crm',
+  document: "mutation FlxCrmSegmentDelete($input: FlxSegmentDeleteInput!) {\n  flxSegmentDelete(input: $input) {\n    deletedId\n    errors {\n      ...FlxCrmUserError\n    }\n  }\n}\n\nfragment FlxCrmUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** query FlxCrmSegmentEditor (flx-crm, plugins/flx-crm/graphql/operations/FlxCrmSegmentEditor.graphql) */
+export const FlxCrmSegmentEditor: FlxOperation<T.FlxCrmSegmentEditorQuery, T.FlxCrmSegmentEditorQueryVariables> = {
+  id: 'acc491cf70a4b00af7fce340efd2fd26dc087fe84690b01a364966abf7dea880',
+  name: 'FlxCrmSegmentEditor',
+  kind: 'query',
+  plugin: 'flx-crm',
+  document: "query FlxCrmSegmentEditor {\n  flxSegmentEditor {\n    fields {\n      key\n      label\n      type\n      ops\n    }\n    ops {\n      key\n      label\n    }\n    options {\n      type\n      values {\n        value\n        label\n      }\n    }\n  }\n}",
+};
+
+/** query FlxCrmSegmentPreview (flx-crm, plugins/flx-crm/graphql/operations/FlxCrmSegmentPreview.graphql) */
+export const FlxCrmSegmentPreview: FlxOperation<T.FlxCrmSegmentPreviewQuery, T.FlxCrmSegmentPreviewQueryVariables> = {
+  id: '564b5e761395c08e8045dbc65f96f00b7f4fa14bc2dcfa48e28a0beff5edd00e',
+  name: 'FlxCrmSegmentPreview',
+  kind: 'query',
+  plugin: 'flx-crm',
+  document: "query FlxCrmSegmentPreview($match: FlxSegmentMatch, $rules: [FlxSegmentRuleInput!]!) {\n  flxSegmentPreview(match: $match, rules: $rules) {\n    count\n    summary\n    sample {\n      databaseId\n      name\n    }\n  }\n}",
+};
+
+/** mutation FlxCrmSegmentSave (flx-crm, plugins/flx-crm/graphql/operations/FlxCrmSegmentSave.graphql) */
+export const FlxCrmSegmentSave: FlxOperation<T.FlxCrmSegmentSaveMutation, T.FlxCrmSegmentSaveMutationVariables> = {
+  id: '6035e1dbb5301cebeb87fa3481cf44003f54cdd356668d7d22ff87b96ec87866',
+  name: 'FlxCrmSegmentSave',
+  kind: 'mutation',
+  plugin: 'flx-crm',
+  document: "mutation FlxCrmSegmentSave($input: FlxSegmentSaveInput!) {\n  flxSegmentSave(input: $input) {\n    segment {\n      ...FlxCrmSegmentRow\n    }\n    errors {\n      ...FlxCrmUserError\n    }\n  }\n}\n\nfragment FlxCrmSegmentRow on FlxSegment {\n  databaseId\n  name\n  description\n  count\n  summary\n  match\n  rules {\n    field\n    op\n    value\n  }\n}\n\nfragment FlxCrmUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** query FlxCrmSettings (flx-crm, plugins/flx-crm/graphql/operations/FlxCrmSettings.graphql) */
+export const FlxCrmSettings: FlxOperation<T.FlxCrmSettingsQuery, T.FlxCrmSettingsQueryVariables> = {
+  id: '4e800655079b39d7b0c8f5dca828111815df5e95cd0e91406785150732efd4a3',
+  name: 'FlxCrmSettings',
+  kind: 'query',
+  plugin: 'flx-crm',
+  document: "query FlxCrmSettings {\n  flxCrmSettings {\n    chatEvents\n    aiTools\n    aiWrite\n    aiDestructive\n    riskThreshold\n    activeDays\n    baseCurrency\n    currency\n    sources {\n      key\n      label\n      description\n      installed\n      enabled\n      hasRole\n      role\n    }\n    roles {\n      key\n      label\n      color\n      builtin\n    }\n    syncedAt {\n      ...FlxCrmWhen\n    }\n    scoredAt {\n      ...FlxCrmWhen\n    }\n  }\n  flxCrmAi {\n    aiInstalled\n    mcpInstalled\n    mcpEnabled\n    mcpUrl\n    mcpAdminUrl\n    toolsOn\n    tools {\n      name\n      title\n      kind\n      kindLabel\n      enabled\n    }\n  }\n  flxCrmAiLog(limit: 15) {\n    at {\n      ...FlxCrmWhen\n    }\n    who\n    channel\n    channelLabel\n    action\n    target\n    ok\n    error\n  }\n}\n\nfragment FlxCrmWhen on FlxDateTime {\n  iso\n  label\n  relative\n}",
+};
+
+/** mutation FlxCrmSettingsSave (flx-crm, plugins/flx-crm/graphql/operations/FlxCrmSettingsSave.graphql) */
+export const FlxCrmSettingsSave: FlxOperation<T.FlxCrmSettingsSaveMutation, T.FlxCrmSettingsSaveMutationVariables> = {
+  id: '6a79c573c70d3bbbdef5121997576cc4a22dfbd6b0a88b874a7029fa85cccbea',
+  name: 'FlxCrmSettingsSave',
+  kind: 'mutation',
+  plugin: 'flx-crm',
+  document: "mutation FlxCrmSettingsSave($input: FlxCrmSettingsSaveInput!) {\n  flxCrmSettingsSave(input: $input) {\n    settings {\n      chatEvents\n      aiTools\n      aiWrite\n      aiDestructive\n      riskThreshold\n      activeDays\n      baseCurrency\n      currency\n      sources {\n        key\n        label\n        description\n        installed\n        enabled\n        hasRole\n        role\n      }\n      roles {\n        key\n        label\n        color\n        builtin\n      }\n      syncedAt {\n        ...FlxCrmWhen\n      }\n      scoredAt {\n        ...FlxCrmWhen\n      }\n    }\n    errors {\n      ...FlxCrmUserError\n    }\n  }\n}\n\nfragment FlxCrmUserError on FlxUserError {\n  code\n  message\n  field\n}\n\nfragment FlxCrmWhen on FlxDateTime {\n  iso\n  label\n  relative\n}",
+};
+
+/** query FlxCrmShell (flx-crm, plugins/flx-crm/graphql/operations/FlxCrmShell.graphql) */
+export const FlxCrmShell: FlxOperation<T.FlxCrmShellQuery, T.FlxCrmShellQueryVariables> = {
+  id: '3a59d8e4195bf7ba635933d4e7baafd37f013da4a16f4d4cfc49b7501f3a7de4',
+  name: 'FlxCrmShell',
+  kind: 'query',
+  plugin: 'flx-crm',
+  document: "query FlxCrmShell {\n  flxCrmMeta {\n    roles {\n      key\n      label\n      color\n      builtin\n      hidden\n    }\n    rfm {\n      key\n      label\n      hint\n      tone\n    }\n    eventTypes {\n      key\n      label\n      icon\n      manual\n    }\n    sources {\n      key\n      label\n    }\n    consents {\n      key\n      label\n    }\n    timelineFilters {\n      key\n      label\n    }\n    currency\n    canWrite\n    hasPackageSections\n    owners {\n      databaseId\n      name\n    }\n  }\n  flxTags {\n    ...FlxCrmTag\n  }\n  flxSegments {\n    ...FlxCrmSegmentRow\n  }\n}\n\nfragment FlxCrmSegmentRow on FlxSegment {\n  databaseId\n  name\n  description\n  count\n  summary\n  match\n  rules {\n    field\n    op\n    value\n  }\n}\n\nfragment FlxCrmTag on FlxTag {\n  databaseId\n  name\n  color\n  count\n}",
+};
+
+/** mutation FlxCrmSyncStep (flx-crm, plugins/flx-crm/graphql/operations/FlxCrmSyncStep.graphql) */
+export const FlxCrmSyncStep: FlxOperation<T.FlxCrmSyncStepMutation, T.FlxCrmSyncStepMutationVariables> = {
+  id: '91833bc806371dcec389dec7ee846bdc3806edd84b27da2b516ee064b794c6a5',
+  name: 'FlxCrmSyncStep',
+  kind: 'mutation',
+  plugin: 'flx-crm',
+  document: "mutation FlxCrmSyncStep($input: FlxCrmSyncStepInput!) {\n  flxCrmSyncStep(input: $input) {\n    result {\n      step\n      label\n      scanned\n      total\n      next\n      page\n      finished\n    }\n    errors {\n      ...FlxCrmUserError\n    }\n  }\n}\n\nfragment FlxCrmUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** mutation FlxCrmTagAdd (flx-crm, plugins/flx-crm/graphql/operations/FlxCrmTagAdd.graphql) */
+export const FlxCrmTagAdd: FlxOperation<T.FlxCrmTagAddMutation, T.FlxCrmTagAddMutationVariables> = {
+  id: '803c73840e66e14fc6312eb733e95eb00bb1261c0fcdcaa93508c07d05751c35',
+  name: 'FlxCrmTagAdd',
+  kind: 'mutation',
+  plugin: 'flx-crm',
+  document: "mutation FlxCrmTagAdd($input: FlxContactTagAddInput!) {\n  flxContactTagAdd(input: $input) {\n    tag {\n      ...FlxCrmTag\n    }\n    contact {\n      id\n      tags {\n        ...FlxCrmTag\n      }\n    }\n    errors {\n      ...FlxCrmUserError\n    }\n  }\n}\n\nfragment FlxCrmTag on FlxTag {\n  databaseId\n  name\n  color\n  count\n}\n\nfragment FlxCrmUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** mutation FlxCrmTagRemove (flx-crm, plugins/flx-crm/graphql/operations/FlxCrmTagRemove.graphql) */
+export const FlxCrmTagRemove: FlxOperation<T.FlxCrmTagRemoveMutation, T.FlxCrmTagRemoveMutationVariables> = {
+  id: '68836030d68ed1f45df0595812ec3fbbf361855944537c066a08b8ea641057fa',
+  name: 'FlxCrmTagRemove',
+  kind: 'mutation',
+  plugin: 'flx-crm',
+  document: "mutation FlxCrmTagRemove($input: FlxContactTagRemoveInput!) {\n  flxContactTagRemove(input: $input) {\n    contact {\n      id\n      tags {\n        ...FlxCrmTag\n      }\n    }\n    errors {\n      ...FlxCrmUserError\n    }\n  }\n}\n\nfragment FlxCrmTag on FlxTag {\n  databaseId\n  name\n  color\n  count\n}\n\nfragment FlxCrmUserError on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** query FlxCrmTimeline (flx-crm, plugins/flx-crm/graphql/operations/FlxCrmTimeline.graphql) */
+export const FlxCrmTimeline: FlxOperation<T.FlxCrmTimelineQuery, T.FlxCrmTimelineQueryVariables> = {
+  id: 'b019ec38b06648c194238f86b99019a21dcdd4ae0092c44cddbc896a1421275c',
+  name: 'FlxCrmTimeline',
+  kind: 'query',
+  plugin: 'flx-crm',
+  document: "query FlxCrmTimeline($id: ID!, $filter: String, $first: Int = 20, $after: String) {\n  flxContact(id: $id) {\n    id\n    timeline(filter: $filter, first: $first, after: $after) {\n      nodes {\n        ...FlxCrmEvent\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n    }\n  }\n}\n\nfragment FlxCrmEvent on FlxContactEvent {\n  databaseId\n  contactId\n  contactName\n  type\n  typeLabel\n  icon\n  source\n  title\n  body\n  amount {\n    ...FlxCrmMoney\n  }\n  paid\n  status\n  url\n  userName\n  at {\n    ...FlxCrmWhen\n  }\n  answers {\n    question\n    answer\n  }\n  deletable\n}\n\nfragment FlxCrmMoney on FlxMoney {\n  amount\n  currency\n  formatted\n}\n\nfragment FlxCrmWhen on FlxDateTime {\n  iso\n  label\n  relative\n}",
+};
+
 /** query FlxLanguageJob (flx-lang, plugins/flx-lang/graphql/operations/FlxLanguageJob.graphql) */
 export const FlxLanguageJob: FlxOperation<T.FlxLanguageJobQuery, T.FlxLanguageJobQueryVariables> = {
   id: '66156d0f78ffd2d934aaf886825d8a8be13ec1c5a34eec1a11eaea0804e69359',

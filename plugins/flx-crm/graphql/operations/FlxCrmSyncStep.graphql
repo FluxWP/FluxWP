@@ -1,0 +1,16 @@
+mutation FlxCrmSyncStep($input: FlxCrmSyncStepInput!) {
+  flxCrmSyncStep(input: $input) {
+    result {
+      step
+      label
+      scanned
+      total
+      next
+      page
+      finished
+    }
+    errors {
+      ...FlxCrmUserError
+    }
+  }
+}

@@ -1,5 +1,8 @@
 # @fluxwp/modules
 
+## 0.3.11
+- CRM: new `crm` screen for Flux CRM (overview, contacts, contact card, segments, journeys, duplicates, settings). Same look as the classic pages on FluxWP tokens, light and dark; data over GraphQL; texts from the plugin's language packs (`plugins/flx-crm/tools/i18n-screen.py`).
+
 ## 0.3.10
 - Blocks: new `flxbk-dashboard` screen for the Flux Block Editor (block cards with activate, settings, design library with pattern browser, preview, linked libraries and sharing). Same look as the classic dashboard on FluxWP tokens, light and dark; data over GraphQL; English and Turkish.
 
