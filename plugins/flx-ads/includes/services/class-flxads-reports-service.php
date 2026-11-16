@@ -461,6 +461,7 @@ final class FLXADS_Reports_Service {
 	 */
 	public static function send_log(): array {
 		global $wpdb;
+		/** @var wpdb $wpdb */
 		$c    = FLXADS_Send::counts();
 		$rows = array();
 		foreach ( FLXADS_V::rows( $wpdb->get_results( 'SELECT * FROM ' . flxads_table( 'conversions' ) . ' ORDER BY id DESC LIMIT 100', ARRAY_A ) ) as $r ) { // phpcs:ignore WordPress.DB
@@ -515,12 +516,13 @@ final class FLXADS_Reports_Service {
 	 */
 	public static function link_builder(): array {
 		$pages = array( home_url( '/' ) );
-		foreach ( (array) get_pages(
+		$found = get_pages(
 			array(
 				'number'      => 50,
 				'sort_column' => 'menu_order,post_title',
 			)
-		) as $pg ) {
+		);
+		foreach ( is_array( $found ) ? $found : array() as $pg ) {
 			$u = get_permalink( $pg );
 			if ( is_string( $u ) ) {
 				$pages[] = $u;

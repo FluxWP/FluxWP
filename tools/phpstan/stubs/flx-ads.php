@@ -5,32 +5,32 @@
  */
 
 /** @return string */
-function flxads_table( $name ) {}
+function flxads_table( mixed $name ) {}
 /** @return array<string, mixed> */
 function flxads_settings() {}
 /**
  * @param array<string, mixed> $in
  * @return array<string, mixed>
  */
-function flxads_clean_settings( array $in, $partial = false ) {}
+function flxads_clean_settings( array $in, mixed $partial = false ) {}
 /** @return string */
-function flxads_secret( $key ) {}
+function flxads_secret( mixed $key ) {}
 /** @return string */
-function flxads_mask( $plain ) {}
+function flxads_mask( mixed $plain ) {}
 /** @return array<string, string> */
 function flxads_platforms() {}
 /** @return array<string, string> */
 function flxads_channel_labels() {}
 /** @return string */
-function flxads_channel_label( $ch ) {}
+function flxads_channel_label( mixed $ch ) {}
 /** @return bool */
-function flxads_can( $manage = false ) {}
+function flxads_can( mixed $manage = false ) {}
 /** @return string */
-function flxads_money( $amount, $currency = '' ) {}
+function flxads_money( mixed $amount, mixed $currency = '' ) {}
 /** @return string */
-function flxads_date( $gmt, $format = 'datetime' ) {}
+function flxads_date( mixed $gmt, mixed $format = 'datetime' ) {}
 /** @return string */
-function flxads_ago( $gmt ) {}
+function flxads_ago( mixed $gmt ) {}
 
 class FLXADS_Report {
 	/** @return string */
@@ -46,7 +46,7 @@ class FLXADS_Manager {
 	/** @return array<string, string> */
 	public static function statuses() {}
 	/** @return array<int|string, mixed> */
-	public static function history( $limit = 20 ) {}
+	public static function history( mixed $limit = 20 ) {}
 }
 class FLXADS_Studio {
 	/** @return array<string, string> */
@@ -76,7 +76,7 @@ class FLXADS_Audiences {
 }
 class FLXADS_Spend {
 	/** @return array<string, mixed> */
-	public static function totals( $from, $to, $channel = '' ) {}
+	public static function totals( mixed $from, mixed $to, mixed $channel = '' ) {}
 }
 class FLXADS_Send {
 	/** @return array<string, mixed> */
