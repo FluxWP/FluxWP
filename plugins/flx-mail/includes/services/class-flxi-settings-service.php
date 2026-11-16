@@ -10,6 +10,11 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Flux Mail settings.
+ *
+ * Nested arrays are the secret, last-test, note, quota, choice, DNS and social rows.
+ *
+ * @phpstan-type FlxiSettingsView non-empty-array<string, array|bool|int|string|null>
+ * @phpstan-type FlxiSettingsWrite array<string, string|int|array<string, string>>
  */
 class FLXI_Settings_Service {
 
@@ -120,8 +125,9 @@ class FLXI_Settings_Service {
 
 	/**
 	 * Settings for GraphQL. Secret values are never included.
+	 * Stored values stay in flxi_settings; this is the screen view.
 	 *
-	 * @return array<string,mixed>
+	 * @return FlxiSettingsView
 	 */
 	public static function read(): array {
 		$s   = flxi_arr( flxi_settings() );
@@ -303,12 +309,6 @@ class FLXI_Settings_Service {
 			if ( ! array_key_exists( $k, $in ) ) {
 				continue;
 			}
-			if ( 'graphql' === $mode && in_array( $k, array( 'from_email', 'noreply_email', 'reply_to', 'contact_email' ), true ) ) {
-				$raw = $in[ $k ];
-				if ( ! is_string( $raw ) || ( '' !== trim( $raw ) && ! is_email( trim( $raw ) ) ) ) {
-					return new WP_Error( 'flxi_invalid', __( 'Enter a valid email address.', 'flx-mail' ), array( 'status' => 400, 'field' => self::field_name( $k ) ) );
-				}
-			}
 			try {
 				$clean[ $k ] = flxi_sanitize_setting( $k, $in[ $k ] );
 			} catch ( Exception $e ) {
@@ -364,7 +364,7 @@ class FLXI_Settings_Service {
 	 * GraphQL input (camelCase) → the snake_case array save() expects.
 	 *
 	 * @param array<string,mixed> $input Mutation input.
-	 * @return array<string,mixed>|WP_Error
+	 * @return FlxiSettingsWrite|WP_Error
 	 */
 	public static function from_input( array $input ) {
 		$in = array();
@@ -389,6 +389,10 @@ class FLXI_Settings_Service {
 				$val = $assoc;
 			} elseif ( 'bool' === $row[1] ) {
 				$val = ! empty( $val ) ? 1 : 0;
+			} elseif ( 'int' === $row[1] ) {
+				$val = flxi_int( $val );
+			} else {
+				$val = flxi_str( $val );
 			}
 			$in[ $row[0] ] = $val;
 		}

@@ -9,13 +9,18 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Flux Mail log.
+ *
+ * createdAt is the Unix time of the stored GMT created_at string.
+ *
+ * @phpstan-type FlxiLogRow array{databaseId: int, createdAt: int|null, channel: string, template: string, recipient: string, subject: string, status: string, error: string|null, sender: string, campaignId: int, userId: int, body: string|null, person: object|null}
+ * @phpstan-type FlxiRestLogItem array{id: int, channel: string, template: string, recipient: string, subject: string, status: string, status_label: string, error: string, date_label: string}
  */
 class FLXI_Log_Service {
 
 	/**
 	 * REST GET /log body (items, total, pages). Filters match the route: status, channel, s.
 	 *
-	 * @return array{items:list<array<string,mixed>>,total:int,pages:int}
+	 * @return array{items: list<FlxiRestLogItem>, total: int, pages: int<1, max>}
 	 */
 	public static function rest_list( WP_REST_Request $r ): array {
 		/** @var wpdb $wpdb */
@@ -65,7 +70,7 @@ class FLXI_Log_Service {
 				'status'       => $status,
 				'status_label' => $labels[ $status ] ?? $status,
 				'error'        => flxi_str( $row['error'] ?? '' ),
-				'date_label'   => $ts && function_exists( 'flx_date' ) ? flx_date( $ts, 'datetime' ) : $created,
+				'date_label'   => $ts && function_exists( 'flx_date' ) ? flxi_str( flx_date( $ts, 'datetime' ) ) : $created,
 			);
 		}
 		return array(
@@ -104,7 +109,7 @@ class FLXI_Log_Service {
 	 * One page for flxMailLogs. Adds the template and campaign filters the screen has.
 	 *
 	 * @param array<string,mixed> $filter status, channel, template, campaign, search.
-	 * @return array{items:list<array<string,mixed>>,total:int}
+	 * @return array{items: list<FlxiLogRow>, total: int}
 	 */
 	public static function page( array $filter, int $offset, int $limit ): array {
 		/** @var wpdb $wpdb */
@@ -153,7 +158,7 @@ class FLXI_Log_Service {
 	}
 
 	/**
-	 * @return array<string,mixed>|null
+	 * @return FlxiLogRow|null
 	 */
 	public static function one( int $id ): ?array {
 		/** @var wpdb $wpdb */
@@ -170,7 +175,7 @@ class FLXI_Log_Service {
 
 	/**
 	 * @param array<string,mixed> $row Database row.
-	 * @return array<string,mixed>
+	 * @return FlxiLogRow
 	 */
 	private static function shape( array $row, bool $with_body ): array {
 		$created = flxi_str( $row['created_at'] ?? '' );

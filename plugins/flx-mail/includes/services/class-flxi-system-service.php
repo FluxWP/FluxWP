@@ -9,6 +9,9 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Flux Mail system checks.
+ *
+ * @phpstan-type FlxiDnsStored array{domain: string, spf: string, dmarc: string, mx: list<string>, error: string, checkedAt: int}
+ * @phpstan-type FlxiDnsCheck array{domain: string, at: int, spf: string, dmarc: string, mx: list<string>, error: string}
  */
 class FLXI_System_Service {
 
@@ -47,7 +50,7 @@ class FLXI_System_Service {
 	/**
 	 * Stored DNS result, without a new lookup.
 	 *
-	 * @return array<string,mixed>|null
+	 * @return FlxiDnsStored|null
 	 */
 	public static function stored_dns(): ?array {
 		$dns = get_option( 'flxi_dns_check' );
@@ -69,18 +72,29 @@ class FLXI_System_Service {
 	}
 
 	/**
-	 * Runs the lookup and stores it. Same array POST /dns returns, plus the stored shape is separate.
+	 * Runs the lookup and stores it. Same keys POST /dns returns.
 	 *
-	 * @return array<string,mixed>
+	 * @return FlxiDnsCheck
 	 */
 	public static function check_dns(): array {
 		$raw = flxi_dns_check();
-		/** @var array<string,mixed> $res */
 		$res = is_array( $raw ) ? $raw : array();
-		update_option( 'flxi_dns_check', $res, false );
+		$mx  = array();
+		foreach ( (array) ( $res['mx'] ?? array() ) as $host ) {
+			$mx[] = flxi_str( $host );
+		}
+		$out = array(
+			'domain' => flxi_str( $res['domain'] ?? '' ),
+			'at'     => flxi_int( $res['at'] ?? time() ),
+			'spf'    => flxi_str( $res['spf'] ?? '' ),
+			'dmarc'  => flxi_str( $res['dmarc'] ?? '' ),
+			'mx'     => $mx,
+			'error'  => flxi_str( $res['error'] ?? '' ),
+		);
+		update_option( 'flxi_dns_check', $out, false );
 		if ( function_exists( 'flx_gql_purge' ) ) {
 			flx_gql_purge( 'flx-mail:settings' );
 		}
-		return $res;
+		return $out;
 	}
 }

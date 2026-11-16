@@ -10,7 +10,7 @@ Parça 1 uygulandı: Ayarlar, E-postalar (şablon düzenleyici dahil), Kayıtlar
 
 | Uç / akış | Paket | Neden | GraphQL tarafı |
 |---|---|---|---|
-| WhatsApp Cloud webhook `GET`+`POST /wp-json/flxi/v1/wacloud/{id}/webhook` | flx-mail | Meta belirli URL'e doğrulama GET'i ve imzalı POST atar | `flxMailWacloudSetup` (`webhookVerifyValue`; app secret yok), `flxMailWacloudTemplates` |
-| Posta kutusu eki `GET /wp-json/flxi/v1/mailbox/item/{id}/attachment` | flx-mail | Ham dosya baytı; GraphQL JSON döner | `flxMailMailboxMessage` ek adı, boyutu ve türü |
-| Toplu e-posta çıkışı `/?flxi_unsub=` ve eski `yti_unsub` (`GET`+`POST`) | flx-mail | E-posta istemcisi ve RFC 8058 List-Unsubscribe bu URL'e gider | `flxMailSettings.unsubscribedCount` |
-| WP-Cron `flxi_run_queue`, `flxi_netgsm_poll`, `flxi_mailbox_sync`, `flxi_daily` | flx-mail | Zamanlayıcı kancası. Hostinger cron'u tetiklemez. Nopriv loopback yok; SEO `flxseo_audit_tick` ile aynı uç değil | `flxMailQueue` + `flxMailQueueRun`, `flxMailMailboxStatus` + `flxMailMailboxSync`, `flxMailNetgsmReport`. Günlük temizlik mutation değil |
+| WhatsApp Cloud webhook `GET`+`POST /wp-json/flxi/v1/wacloud/{id}/webhook` | flx-mail | Meta belirli URL'e doğrulama GET'i ve imzalı POST atar | Bu parçada yok. Parça 2’de kurulum alanı; webhook URL’si kalır |
+| Posta kutusu eki `GET /wp-json/flxi/v1/mailbox/item/{id}/attachment` | flx-mail | Ham dosya baytı; GraphQL JSON döner | Bu parçada yok. Parça 4’te ad, boyut ve tür; bayt bu URL’de kalır |
+| Toplu e-posta çıkışı `/?flxi_unsub=` ve eski `yti_unsub` (`GET`+`POST`) | flx-mail | E-posta istemcisi ve RFC 8058 List-Unsubscribe bu URL'e gider | `flxMailSettings.unsubscribedCount` (sayı). Çıkış URL’si kalır |
+| WP-Cron `flxi_run_queue`, `flxi_netgsm_poll`, `flxi_mailbox_sync`, `flxi_daily` | flx-mail | Zamanlayıcı kancası. Hostinger cron'u tetiklemez | Bu parçada yok. Kuyruk parça 3, posta kutusu parça 4. Günlük temizlik mutation değil |

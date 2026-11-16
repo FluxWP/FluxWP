@@ -107,6 +107,8 @@ $r = $run(
 flxt_same( array(), $r['data']['flxMailSettingsUpdate']['errors'] ?? null, 'settings update: no field errors' );
 $saved = $r['data']['flxMailSettingsUpdate']['settings'] ?? array();
 flxt_same( 'Contract Sender', $saved['fromName'] ?? null, 'settings update: name is stored' );
+flxt_same( 'Contract Sender', flxi_setting( 'from_name' ), 'classic reader sees the GraphQL sender name' );
+flxt_same( 'bilgi@example.com', flxi_setting( 'from_email' ), 'classic reader sees the GraphQL sender address' );
 flxt_same( 'SMTP', $saved['mailer'] ?? null, 'settings update: mailer is stored' );
 flxt_same( true, $saved['smtpPassword']['set'] ?? null, 'settings update: password is marked set' );
 flxt_same( false, $saved['smtpPassword']['fromConfig'] ?? null, 'settings update: password is not from wp-config' );
@@ -124,6 +126,12 @@ flxt_same( false, $r['data']['flxMailSettingsUpdate']['settings']['smtpPassword'
 $r = $run( 'FlxMailSettingsUpdate', array( 'input' => array( 'settings' => array( 'fromEmail' => 'not-an-email' ) ) ), $admin );
 flxt_same( null, $r['errors'] ?? null, 'bad email: mutation stays in the payload' );
 flxt_same( 'INVALID_INPUT', $r['data']['flxMailSettingsUpdate']['errors'][0]['code'] ?? null, 'bad email: INVALID_INPUT' );
+flxt_same( 'bilgi@example.com', flxi_setting( 'from_email' ), 'invalid email leaves the classic stored address' );
+
+$classic = FLXI_Settings_Service::save( array( 'from_name' => 'Classic Sender' ), 'form', true );
+flxt_same( true, true === $classic, 'classic settings writer succeeds' );
+$r = $run( 'FlxMailSettings', array(), $admin );
+flxt_same( 'Classic Sender', $r['data']['flxMailSettings']['fromName'] ?? null, 'GraphQL reads the classic sender name' );
 
 // Templates.
 $r = $run( 'FlxMailTemplates', array( 'first' => 50 ), $admin );
@@ -151,6 +159,21 @@ if ( '' !== $key ) {
 	$r = $run( 'FlxMailTemplateUpdate', array( 'input' => array( 'key' => $key, 'subject' => 'Contract subject', 'enabled' => true, 'sender' => 'INFO' ) ), $admin );
 	flxt_same( array(), $r['data']['flxMailTemplateUpdate']['errors'] ?? null, 'template update: no field errors' );
 	flxt_same( 'Contract subject', $r['data']['flxMailTemplateUpdate']['template']['subject'] ?? null, 'template update: subject is stored' );
+	$stored_tpl = flxi_template( $key );
+	flxt_same( 'Contract subject', is_array( $stored_tpl ) ? ( $stored_tpl['subject'] ?? null ) : null, 'classic template reader sees the GraphQL subject' );
+	$fires = 0;
+	$hook  = static function () use ( &$fires ) {
+		++$fires;
+	};
+	add_action( 'flxi_template_saved', $hook );
+	$r = $run( 'FlxMailTemplateUpdate', array( 'input' => array( 'key' => $key, 'subject' => 'Round trip subject', 'enabled' => true, 'sender' => 'INFO' ) ), $admin );
+	remove_action( 'flxi_template_saved', $hook );
+	flxt_same( 1, $fires, 'template save fires flxi_template_saved once' );
+	flxt_same( 'Round trip subject', $r['data']['flxMailTemplateUpdate']['template']['subject'] ?? null, 'second template save is stored' );
+	flxi_save_template( $key, array( 'subject' => 'Classic subject line' ) );
+	$r = $run( 'FlxMailTemplate', array( 'key' => $key ), $admin );
+	$loaded = is_array( $r['data'] ?? null ) ? ( $r['data']['flxMailTemplate'] ?? null ) : null;
+	flxt_same( 'Classic subject line', is_array( $loaded ) ? ( $loaded['subject'] ?? null ) : null, 'GraphQL reads the classic template subject' );
 	$r = $run( 'FlxMailTemplateUpdate', array( 'input' => array( 'key' => '' ) ), $admin );
 	flxt_same( 'INVALID_INPUT', $r['data']['flxMailTemplateUpdate']['errors'][0]['code'] ?? null, 'template update: missing key is INVALID_INPUT' );
 	$r = $run( 'FlxMailTemplateReset', array( 'input' => array( 'key' => $key ) ), $admin );
@@ -172,6 +195,31 @@ flxt_same( null, array_key_exists( 'flxMailLog', $log_data ) ? $log_data['flxMai
 // System checks are a list (empty when Flux Speed owns the screen).
 $r = $run( 'FlxMailSystemChecks', array(), $admin );
 flxt_ok( is_array( $r['data']['flxMailSystemChecks'] ?? null ), 'system checks: a list is returned' );
+
+$viewer = flxt_gql( 'query { flxViewer { capabilities } }', array(), $admin );
+$caps   = $viewer['data']['flxViewer']['capabilities'] ?? null;
+flxt_ok( is_array( $caps ) && in_array( 'flxi_manage', $caps, true ), 'flxi_manage is in flxViewer.capabilities' );
+
+update_option( 'timezone_string', 'Europe/Istanbul' );
+flxi_update_settings( array( 'log_enabled' => 1, 'log_body' => 1 ) );
+$log_id = flxi_log_message( 'email', 'roundtrip@example.com', 'Hello from the contract', true, '', array( 'template' => 'contract', 'source' => 'contract', 'status' => 'sent' ) );
+/** @var wpdb $wpdb */
+global $wpdb;
+$stored = (string) $wpdb->get_var( $wpdb->prepare( 'SELECT created_at FROM ' . flxi_table( 'log' ) . ' WHERE id = %d', $log_id ) ); // phpcs:ignore WordPress.DB.PreparedSQL
+$utc    = new DateTimeImmutable( $stored, new DateTimeZone( 'UTC' ) );
+$local  = new DateTimeImmutable( $stored, wp_timezone() );
+$r      = $run( 'FlxMailLog', array( 'id' => $log_id ), $admin );
+$iso    = $r['data']['flxMailLog']['createdAt']['iso'] ?? null;
+flxt_ok( $log_id > 0, 'the real log writer inserted a row' );
+flxt_ok( 'Europe/Istanbul' === wp_timezone()->getName(), 'the site timezone is Europe/Istanbul' );
+flxt_same( $utc->format( 'Y-m-d\TH:i:s\Z' ), $iso, 'log iso is the stored GMT instant when the site is Europe/Istanbul' );
+flxt_ok( $utc->getTimestamp() !== $local->getTimestamp(), 'reading the stored GMT string in the site timezone is a different instant' );
+
+$r = $run( 'FlxMailTestSend', array( 'input' => array( 'to' => 'bookkeeping@example.com' ) ), $admin );
+flxt_same( true, $r['data']['flxMailTestSend']['ok'] ?? null, 'settings test send is accepted' );
+$last = get_option( 'flxi_last_test' );
+flxt_same( 'bookkeeping@example.com', is_array( $last ) ? ( $last['to'] ?? null ) : null, 'settings test writes flxi_last_test' );
+flxt_ok( is_array( $last ) && is_int( $last['at'] ?? null ) && $last['at'] > 0, 'settings test stores one timestamp' );
 
 // One more pass over every captured response.
 $blob = (string) wp_json_encode( $seen );

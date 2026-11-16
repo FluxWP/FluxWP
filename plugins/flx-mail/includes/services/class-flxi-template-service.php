@@ -9,6 +9,10 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Flux Mail templates.
+ *
+ * @phpstan-type FlxiTemplateRow array{key: string, label: string, description: string, audience: string, enabled: bool, sender: string, editable: bool, canDisable: bool, kind: string, wooUrl: string|null, group: string}
+ * @phpstan-type FlxiTemplateVar array{name: string, description: string}
+ * @phpstan-type FlxiTemplateEditor array{key: string, label: string, group: string, audience: string, description: string, lastSubject: string, enabled: bool, canDisable: bool, sender: string, senderInfo: string, senderNoreply: string, editable: bool, kind: string, subject: string, heading: string, body: string, buttonText: string, buttonUrl: string, wrap: bool, vars: list<FlxiTemplateVar>, wooUrl: string|null}
  */
 class FLXI_Template_Service {
 
@@ -47,7 +51,7 @@ class FLXI_Template_Service {
 	/**
 	 * Every template row the Emails screen lists.
 	 *
-	 * @return list<array<string,mixed>>
+	 * @return list<FlxiTemplateRow>
 	 */
 	public static function rows( string $search = '' ): array {
 		$groups = array();
@@ -116,7 +120,7 @@ class FLXI_Template_Service {
 			foreach ( $rows as $row ) {
 				$row['group'] = flxi_str( $group );
 				if ( '' !== $needle ) {
-					$hay = mb_strtolower( flxi_str( $row['label'] ?? '' ) . ' ' . flxi_str( $row['key'] ?? '' ) . ' ' . flxi_str( $row['group'] ) );
+					$hay = mb_strtolower( $row['label'] . ' ' . $row['key'] . ' ' . $row['group'] );
 					if ( ! str_contains( $hay, $needle ) ) {
 						continue;
 					}
@@ -131,7 +135,7 @@ class FLXI_Template_Service {
 	}
 
 	/**
-	 * @return array<string,mixed>
+	 * @return FlxiTemplateRow
 	 */
 	private static function row( string $key, string $label, string $desc, string $to, bool $enabled, string $sender, bool $editable, bool $lock, string $kind, string $woo_url ): array {
 		return array(
@@ -145,13 +149,14 @@ class FLXI_Template_Service {
 			'canDisable'  => ! $lock,
 			'kind'        => $kind,
 			'wooUrl'      => '' !== $woo_url ? $woo_url : null,
+			'group'       => '',
 		);
 	}
 
 	/**
 	 * Editor payload, or null when the key is unknown.
 	 *
-	 * @return array<string,mixed>|null
+	 * @return FlxiTemplateEditor|null
 	 */
 	public static function one( string $key ): ?array {
 		$key   = sanitize_text_field( $key );
@@ -184,7 +189,7 @@ class FLXI_Template_Service {
 				$vars[] = array( 'name' => flxi_str( $name ), 'description' => flxi_str( $desc ) );
 			}
 		}
-		$label = $type ? flxi_str( $type['label'] ?? '' ) : ( $disc ? flxi_discovered_label( $key, $disc ) : $key );
+		$label = $type ? flxi_str( $type['label'] ?? '' ) : ( $disc ? flxi_str( flxi_discovered_label( $key, $disc ) ) : $key );
 		if ( $type ) {
 			$audience = 'admin' === flxi_str( $type['recipient'] ?? '' ) ? __( 'To admin', 'flx-mail' ) : __( 'To user', 'flx-mail' );
 		} elseif ( $disc ) {
