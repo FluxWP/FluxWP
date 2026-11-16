@@ -2498,11 +2498,17 @@ enum PostStatusEnum {
   "Content that is saved but not yet published or visible to the public"
   DRAFT
 
+  "Objects with the failed status"
+  FAILED
+
   "Objects with the future status"
   FUTURE
 
   "Content that inherits its status from a parent object"
   INHERIT
+
+  "Objects with the in-progress status"
+  IN_PROGRESS
 
   "Content awaiting review before publication"
   PENDING
@@ -2527,6 +2533,30 @@ enum PostStatusEnum {
 
   "Content marked for deletion but still recoverable"
   TRASH
+
+  "Objects with the wc-cancelled status"
+  WC_CANCELLED
+
+  "Objects with the wc-checkout-draft status"
+  WC_CHECKOUT_DRAFT
+
+  "Objects with the wc-completed status"
+  WC_COMPLETED
+
+  "Objects with the wc-failed status"
+  WC_FAILED
+
+  "Objects with the wc-on-hold status"
+  WC_ON_HOLD
+
+  "Objects with the wc-pending status"
+  WC_PENDING
+
+  "Objects with the wc-processing status"
+  WC_PROCESSING
+
+  "Objects with the wc-refunded status"
+  WC_REFUNDED
 }
 
 "The templates that can be assigned to content. Used to filter a connection by the template its content uses."
@@ -5404,6 +5434,15 @@ enum MediaItemSizeEnum {
 
   "Small image preview suitable for thumbnails and listings. (150x150)"
   THUMBNAIL
+
+  "Custom Image Size. (100x100)"
+  WOOCOMMERCE_GALLERY_THUMBNAIL
+
+  "Custom Image Size. (600x0)"
+  WOOCOMMERCE_SINGLE
+
+  "Custom Image Size. (300x300)"
+  WOOCOMMERCE_THUMBNAIL
 
   "Custom Image Size. (1536x1536)"
   _1536X1536
@@ -13325,11 +13364,17 @@ enum UserRoleEnum {
   "Can write and manage their own content but cannot publish."
   CONTRIBUTOR
 
+  "User role with specific capabilities"
+  CUSTOMER
+
   "Content management access without administrative capabilities."
   EDITOR
 
   "User role with specific capabilities"
   PERSONEL
+
+  "User role with specific capabilities"
+  SHOP_MANAGER
 
   "Can only manage their profile and read content."
   SUBSCRIBER
