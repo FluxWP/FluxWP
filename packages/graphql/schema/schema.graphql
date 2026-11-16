@@ -263,6 +263,9 @@ type RootQuery {
   "The FluxWP capability catalog, with what the current user has."
   flxCapabilities: [FlxCapability!]!
 
+  "The shopper&#039;s cart (Cart-Token session or the WooCommerce session cookie). Never cached."
+  flxCart: FlxCart!
+
   "One role; empty when the key is unknown."
   flxRole(
     "Role key."
@@ -8976,6 +8979,321 @@ type FlxCapability {
   package: String!
 }
 
+"The shopper&#039;s WooCommerce cart (Store API)."
+type FlxCart {
+  "Billing address."
+  billingAddress: FlxCartAddress!
+
+  "Where the payment step continues."
+  checkout: FlxCartCheckout!
+
+  "Applied coupons."
+  coupons: [FlxCartCoupon!]!
+
+  "Fees."
+  fees: [FlxCartFee!]!
+
+  "Whether shipping was calculated for the current address."
+  hasCalculatedShipping: Boolean!
+
+  "Lines."
+  items: [FlxCartItem!]!
+
+  "Number of units in the cart (quantities added up)."
+  itemsCount: Int!
+
+  "Whether the order needs a payment (false for a free cart)."
+  needsPayment: Boolean!
+
+  "Whether the order is shipped (false for donations and virtual products)."
+  needsShipping: Boolean!
+
+  "Store API nonce for the same-site cookie session (Nonce header). Null when WooCommerce gave none."
+  nonce: String
+
+  "Problems to fix before paying."
+  notices: [FlxCartNotice!]!
+
+  "IDs of the payment gateways available for this cart (payment_method of the checkout)."
+  paymentMethods: [String!]!
+
+  "Features a gateway must support for this cart (e.g. products, subscriptions)."
+  paymentRequirements: [String!]!
+
+  "Shipping address."
+  shippingAddress: FlxCartAddress!
+
+  "Shipping packages and their options."
+  shippingPackages: [FlxCartShippingPackage!]!
+
+  "Cart token. Send it back as the Cart-Token header (headless front end, mobile); it is also in the Cart-Token response header. Null when WooCommerce gave none."
+  token: String
+
+  "Totals."
+  totals: FlxCartTotals!
+}
+
+"A billing or shipping address of the cart."
+type FlxCartAddress {
+  "Address line 1."
+  address1: String!
+
+  "Address line 2."
+  address2: String!
+
+  "City."
+  city: String!
+
+  "Company."
+  company: String!
+
+  "ISO 3166-1 alpha-2 country code."
+  country: String!
+
+  "E-mail; null on the shipping address."
+  email: String
+
+  "First name."
+  firstName: String!
+
+  "Last name."
+  lastName: String!
+
+  "Phone."
+  phone: String!
+
+  "Postcode."
+  postcode: String!
+
+  "State or province code."
+  state: String!
+}
+
+"Where the payment step continues. Payment stays on the WooCommerce Store API checkout; card data never goes through GraphQL."
+type FlxCartCheckout {
+  "The site&#039;s cart page; null when WooCommerce is not loaded."
+  cartPageUrl: String
+
+  "Store API checkout URL (POST with the same Cart-Token, billing address and payment method)."
+  endpoint: String!
+
+  "The site&#039;s checkout page; null when WooCommerce is not loaded."
+  pageUrl: String
+}
+
+"A coupon applied to the cart."
+type FlxCartCoupon {
+  "Coupon code."
+  code: String!
+
+  "Discount without tax."
+  discount: FlxMoney!
+
+  "Tax part of the discount."
+  discountTax: FlxMoney!
+
+  "WooCommerce discount type (percent, fixed_cart …)."
+  discountType: String!
+}
+
+"An amount of money."
+type FlxMoney {
+  "Amount in the currency unit (150.5)."
+  amount: Float!
+
+  "ISO 4217 code (TRY, USD)."
+  currency: String!
+
+  "Amount with the currency sign for display."
+  formatted: String!
+}
+
+"A fee added to the cart (e.g. a payment fee)."
+type FlxCartFee {
+  "Fee key."
+  key: String!
+
+  "Fee name."
+  name: String!
+
+  "Tax of the fee."
+  tax: FlxMoney!
+
+  "Fee without tax."
+  total: FlxMoney!
+}
+
+"A line in the cart."
+type FlxCartItem {
+  "Alternative text of the image."
+  imageAlt: String!
+
+  "First product image; null without an image."
+  imageUrl: String
+
+  "Line details other plugins add (e.g. a donation&#039;s names and certificate)."
+  itemData: [FlxCartMeta!]!
+
+  "Cart item key; flxCartItemUpdate and flxCartItemRemove take it."
+  key: String!
+
+  "What the line is: &quot;product&quot;, or a name a package gives its own lines (Flux Donate: &quot;donation&quot;). Filter flx_gql_cart_item_kind."
+  kind: String!
+
+  "Product name."
+  name: String!
+
+  "Product page; null for products without a page."
+  permalink: String
+
+  "WooCommerce product (or variation) database ID."
+  productId: Int!
+
+  "Quantity."
+  quantity: Int!
+
+  "Quantities this line accepts."
+  quantityLimits: FlxCartQuantityLimits!
+
+  "Regular price of one unit (before a sale)."
+  regularPrice: FlxMoney!
+
+  "SKU; empty when the product has none."
+  sku: String!
+
+  "Only one of this product per order."
+  soldIndividually: Boolean!
+
+  "Line total before coupons."
+  subtotal: FlxMoney!
+
+  "Tax of the line."
+  tax: FlxMoney!
+
+  "Line total after coupons, without tax."
+  total: FlxMoney!
+
+  "WooCommerce product type (simple, variation …)."
+  type: String!
+
+  "Price of one unit."
+  unitPrice: FlxMoney!
+
+  "Chosen variation attributes."
+  variation: [FlxCartMeta!]!
+}
+
+"A name and value shown under a cart line (variation attribute or line detail)."
+type FlxCartMeta {
+  "Label."
+  name: String!
+
+  "Value as plain text."
+  value: String!
+}
+
+"Quantities a cart line accepts."
+type FlxCartQuantityLimits {
+  "Whether the shopper may change the quantity (false for fixed lines such as a donation)."
+  editable: Boolean!
+
+  "Highest quantity."
+  maximum: Int!
+
+  "Lowest quantity."
+  minimum: Int!
+
+  "The quantity is a multiple of this."
+  multipleOf: Int!
+}
+
+"A problem with the cart the shopper has to fix before paying (e.g. a product went out of stock)."
+type FlxCartNotice {
+  "WooCommerce error code."
+  code: String!
+
+  "Message in the shopper&#039;s language."
+  message: String!
+}
+
+"A group of lines shipped together and its shipping options."
+type FlxCartShippingPackage {
+  "Package name."
+  name: String!
+
+  "Package ID."
+  packageId: Int!
+
+  "Shipping options."
+  rates: [FlxCartShippingRate!]!
+}
+
+"A shipping option."
+type FlxCartShippingRate {
+  "Delivery time; may be empty."
+  deliveryTime: String!
+
+  "Description; may be empty."
+  description: String!
+
+  "Shipping method (flat_rate, free_shipping …)."
+  methodId: String!
+
+  "Name."
+  name: String!
+
+  "Price without tax."
+  price: FlxMoney!
+
+  "Rate ID for flxCartShippingRateSelect."
+  rateId: String!
+
+  "Whether this option is chosen."
+  selected: Boolean!
+}
+
+"Cart totals, as WooCommerce calculated them."
+type FlxCartTotals {
+  "ISO 4217 currency of the cart."
+  currency: String!
+
+  "Coupon discounts without tax."
+  discount: FlxMoney!
+
+  "Fees without tax."
+  fees: FlxMoney!
+
+  "Lines before coupons, without tax."
+  itemsSubtotal: FlxMoney!
+
+  "Tax of the lines."
+  itemsTax: FlxMoney!
+
+  "Shipping without tax; null until shipping is calculated."
+  shipping: FlxMoney
+
+  "All taxes."
+  tax: FlxMoney!
+
+  "Taxes by rate."
+  taxLines: [FlxCartTaxLine!]!
+
+  "Amount to pay."
+  total: FlxMoney!
+}
+
+"One tax rate in the cart totals."
+type FlxCartTaxLine {
+  "Tax name."
+  name: String!
+
+  "Amount."
+  price: FlxMoney!
+
+  "Rate as WooCommerce shows it."
+  rate: String!
+}
+
 "A FluxWP role: Director, Manager, Staff or a role added from the panel."
 type FlxRole {
   "Table permissions that are on for the role."
@@ -11663,6 +11981,54 @@ type RootMutation {
     input: DeleteUserInput!
   ): DeleteUserPayload
 
+  "Empties the cart."
+  flxCartClear(
+    "Input for the flxCartClear mutation"
+    input: FlxCartClearInput!
+  ): FlxCartClearPayload
+
+  "Applies a coupon."
+  flxCartCouponApply(
+    "Input for the flxCartCouponApply mutation"
+    input: FlxCartCouponApplyInput!
+  ): FlxCartCouponApplyPayload
+
+  "Removes a coupon."
+  flxCartCouponRemove(
+    "Input for the flxCartCouponRemove mutation"
+    input: FlxCartCouponRemoveInput!
+  ): FlxCartCouponRemovePayload
+
+  "Changes the billing and/or shipping address; totals, taxes and shipping options follow."
+  flxCartCustomerUpdate(
+    "Input for the flxCartCustomerUpdate mutation"
+    input: FlxCartCustomerUpdateInput!
+  ): FlxCartCustomerUpdatePayload
+
+  "Adds a product to the cart (Store API cart/add-item)."
+  flxCartItemAdd(
+    "Input for the flxCartItemAdd mutation"
+    input: FlxCartItemAddInput!
+  ): FlxCartItemAddPayload
+
+  "Removes a cart line."
+  flxCartItemRemove(
+    "Input for the flxCartItemRemove mutation"
+    input: FlxCartItemRemoveInput!
+  ): FlxCartItemRemovePayload
+
+  "Changes the quantity of a cart line; 0 removes it."
+  flxCartItemUpdate(
+    "Input for the flxCartItemUpdate mutation"
+    input: FlxCartItemUpdateInput!
+  ): FlxCartItemUpdatePayload
+
+  "Chooses a shipping option."
+  flxCartShippingRateSelect(
+    "Input for the flxCartShippingRateSelect mutation"
+    input: FlxCartShippingRateSelectInput!
+  ): FlxCartShippingRateSelectPayload
+
   "Adds a role from the panel; it starts with admin panel access only."
   flxRoleCreate(
     "Input for the flxRoleCreate mutation"
@@ -12468,6 +12834,246 @@ type DeleteUserPayload {
   user: User
 }
 
+"Input for the flxCartClear mutation."
+input FlxCartClearInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+}
+
+"The payload for the flxCartClear mutation."
+type FlxCartClearPayload {
+  "The cart after the change; null when the change failed."
+  cart: FlxCart
+
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"A problem with the input of a mutation, shown next to the form field."
+type FlxUserError {
+  "Stable code: INVALID_INPUT, CONFLICT, …"
+  code: String!
+
+  "Input field (dotted path) the problem belongs to."
+  field: String
+
+  "Message in the user&#039;s language."
+  message: String!
+}
+
+"Input for the flxCartCouponApply mutation."
+input FlxCartCouponApplyInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Coupon code."
+  code: String!
+}
+
+"The payload for the flxCartCouponApply mutation."
+type FlxCartCouponApplyPayload {
+  "The cart after the change; null when the change failed."
+  cart: FlxCart
+
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"Input for the flxCartCouponRemove mutation."
+input FlxCartCouponRemoveInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Coupon code."
+  code: String!
+}
+
+"The payload for the flxCartCouponRemove mutation."
+type FlxCartCouponRemovePayload {
+  "The cart after the change; null when the change failed."
+  cart: FlxCart
+
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"Input for the flxCartCustomerUpdate mutation."
+input FlxCartCustomerUpdateInput {
+  "Billing address fields to change."
+  billingAddress: FlxCartAddressInput
+
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Shipping address fields to change."
+  shippingAddress: FlxCartAddressInput
+}
+
+"Address fields to change; fields left out keep their value."
+input FlxCartAddressInput {
+  "Address line 1."
+  address1: String
+
+  "Address line 2."
+  address2: String
+
+  "City."
+  city: String
+
+  "Company."
+  company: String
+
+  "ISO 3166-1 alpha-2 country code."
+  country: String
+
+  "E-mail."
+  email: String
+
+  "First name."
+  firstName: String
+
+  "Last name."
+  lastName: String
+
+  "Phone."
+  phone: String
+
+  "Postcode."
+  postcode: String
+
+  "State or province code."
+  state: String
+}
+
+"The payload for the flxCartCustomerUpdate mutation."
+type FlxCartCustomerUpdatePayload {
+  "The cart after the change; null when the change failed."
+  cart: FlxCart
+
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"Input for the flxCartItemAdd mutation."
+input FlxCartItemAddInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Product or variation database ID."
+  productId: Int!
+
+  "Quantity; default 1."
+  quantity: Int
+
+  "Variation attributes for a variable product."
+  variation: [FlxCartVariationInput!]
+}
+
+"A variation attribute."
+input FlxCartVariationInput {
+  "Attribute name or taxonomy (e.g. pa_color)."
+  attribute: String!
+
+  "Chosen value."
+  value: String!
+}
+
+"The payload for the flxCartItemAdd mutation."
+type FlxCartItemAddPayload {
+  "The cart after the change; null when the change failed."
+  cart: FlxCart
+
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Key of the line that was added or increased; null when the change failed."
+  itemKey: String
+}
+
+"Input for the flxCartItemRemove mutation."
+input FlxCartItemRemoveInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Cart item key."
+  key: String!
+}
+
+"The payload for the flxCartItemRemove mutation."
+type FlxCartItemRemovePayload {
+  "The cart after the change; null when the change failed."
+  cart: FlxCart
+
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"Input for the flxCartItemUpdate mutation."
+input FlxCartItemUpdateInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Cart item key."
+  key: String!
+
+  "New quantity."
+  quantity: Int!
+}
+
+"The payload for the flxCartItemUpdate mutation."
+type FlxCartItemUpdatePayload {
+  "The cart after the change; null when the change failed."
+  cart: FlxCart
+
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"Input for the flxCartShippingRateSelect mutation."
+input FlxCartShippingRateSelectInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Shipping package; left out = every package."
+  packageId: Int
+
+  "Rate ID (FlxCartShippingRate.rateId)."
+  rateId: String!
+}
+
+"The payload for the flxCartShippingRateSelect mutation."
+type FlxCartShippingRateSelectPayload {
+  "The cart after the change; null when the change failed."
+  cart: FlxCart
+
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
 "Input for the flxRoleCreate mutation."
 input FlxRoleCreateInput {
   "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
@@ -12487,18 +13093,6 @@ type FlxRoleCreatePayload {
 
   "The new role."
   role: FlxRole
-}
-
-"A problem with the input of a mutation, shown next to the form field."
-type FlxUserError {
-  "Stable code: INVALID_INPUT, CONFLICT, …"
-  code: String!
-
-  "Input field (dotted path) the problem belongs to."
-  field: String
-
-  "Message in the user&#039;s language."
-  message: String!
 }
 
 "Input for the flxRoleDelete mutation."

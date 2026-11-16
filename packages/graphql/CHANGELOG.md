@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.0
+- `@fluxwp/graphql/flx-cart`: `flxCart(gql, { store, nonce })` sepet istemcisi (Flux GraphQL 0.3.0 `flxCart*`); sepet belirtecini saklar ve `Cart-Token` başlığıyla geri gönderir, hatalı girdide `FlxCartInputError`, Store API checkout'u için `checkoutHeaders()`.
+- Sepet işlemleri (`FlxCart`, `FlxCartItemAdd`, `FlxCartItemUpdate`, `FlxCartItemRemove`, `FlxCartClear`, `FlxCartCouponApply`, `FlxCartCouponRemove`, `FlxCartShippingRateSelect`, `FlxCartCustomerUpdate`) ve `FlxCartFields` fragment'ı.
+
 ## 0.2.0
 - `useFlxViewer()` ve `useFlxCan(capability)`: giriş yapan kişi ve FluxWP yetkileri (Flux GraphQL 0.2.0 `flxViewer`).
 - Flux Roles işlemleri (`FlxRolesScreen`, `FlxRoleMembers`, `FlxRolesSave`, `FlxRoleCreate`, `FlxRoleDelete`, `FlxRoleReset`, `FlxRoleMemberAdd`, `FlxRoleMemberRemove`).

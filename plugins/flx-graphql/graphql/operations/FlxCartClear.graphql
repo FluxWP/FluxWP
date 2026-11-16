@@ -1,0 +1,12 @@
+mutation FlxCartClear($input: FlxCartClearInput!) {
+  flxCartClear(input: $input) {
+    cart {
+      ...FlxCartFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

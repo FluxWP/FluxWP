@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.0
+
+- GraphQL sepet köprüsü: `flxCart` sorgusu ve `flxCartItemAdd`, `flxCartItemUpdate`, `flxCartItemRemove`, `flxCartClear`, `flxCartCouponApply`, `flxCartCouponRemove`, `flxCartShippingRateSelect`, `flxCartCustomerUpdate`. Hepsi içeride WooCommerce Store API'yi çağırır; fiyat, kupon, stok ve ödeme yöntemleri blok ödeme sayfasındakiyle aynı çalışır.
+- Headless ön yüz ve uygulamalar için `Cart-Token` oturumu (cevapta `cart.token` ve `Cart-Token` başlığı); aynı sitedeki sayfalar için Store API `Nonce`. Çerez oturumunda nonce'suz yazma reddedilir.
+- Ödeme GraphQL'e girmez: checkout Store API'de kalır, kart verisi köprüden geçmez. Sepet cevapları hiçbir zaman önbelleğe alınmaz.
+- Paketler için `FLXGQL_Cart::add_item()` (kendi sepet satırı verisiyle ekleme, ör. bağış), `flx_gql_cart_item_kind` filtresi ve `flx_gql_no_store()`.
+- Kayıtlı işlemler ve Türkçe çeviri.
+
 ## 0.2.0
 
 - Yetki modeli: `flx_gql_any_cap()` (biri yeter) ve `flx_gql_all_caps()` (hepsi gerekir) `cap` yardımcıları; paketler yetkilerini `flx_gql_capabilities` filtresiyle bildirir.

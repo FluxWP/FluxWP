@@ -24,6 +24,112 @@ export type FlxTaskRole =
   /** See tasks. */
   | 'VIEW';
 
+/** Input for the flxCartClear mutation. */
+export type FlxCartClearInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+};
+
+/** Input for the flxCartCouponApply mutation. */
+export type FlxCartCouponApplyInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Coupon code. */
+  code: string;
+};
+
+/** Input for the flxCartCouponRemove mutation. */
+export type FlxCartCouponRemoveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Coupon code. */
+  code: string;
+};
+
+/** Input for the flxCartCustomerUpdate mutation. */
+export type FlxCartCustomerUpdateInput = {
+  /** Billing address fields to change. */
+  billingAddress?: FlxCartAddressInput | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Shipping address fields to change. */
+  shippingAddress?: FlxCartAddressInput | null | undefined;
+};
+
+/** Address fields to change; fields left out keep their value. */
+export type FlxCartAddressInput = {
+  /** Address line 1. */
+  address1?: string | null | undefined;
+  /** Address line 2. */
+  address2?: string | null | undefined;
+  /** City. */
+  city?: string | null | undefined;
+  /** Company. */
+  company?: string | null | undefined;
+  /** ISO 3166-1 alpha-2 country code. */
+  country?: string | null | undefined;
+  /** E-mail. */
+  email?: string | null | undefined;
+  /** First name. */
+  firstName?: string | null | undefined;
+  /** Last name. */
+  lastName?: string | null | undefined;
+  /** Phone. */
+  phone?: string | null | undefined;
+  /** Postcode. */
+  postcode?: string | null | undefined;
+  /** State or province code. */
+  state?: string | null | undefined;
+};
+
+/** Input for the flxCartItemAdd mutation. */
+export type FlxCartItemAddInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Product or variation database ID. */
+  productId: number;
+  /** Quantity; default 1. */
+  quantity?: number | null | undefined;
+  /** Variation attributes for a variable product. */
+  variation?: Array<FlxCartVariationInput> | null | undefined;
+};
+
+/** A variation attribute. */
+export type FlxCartVariationInput = {
+  /** Attribute name or taxonomy (e.g. pa_color). */
+  attribute: string;
+  /** Chosen value. */
+  value: string;
+};
+
+/** Input for the flxCartItemRemove mutation. */
+export type FlxCartItemRemoveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Cart item key. */
+  key: string;
+};
+
+/** Input for the flxCartItemUpdate mutation. */
+export type FlxCartItemUpdateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Cart item key. */
+  key: string;
+  /** New quantity. */
+  quantity: number;
+};
+
+/** Input for the flxCartShippingRateSelect mutation. */
+export type FlxCartShippingRateSelectInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Shipping package; left out = every package. */
+  packageId?: number | null | undefined;
+  /** Rate ID (FlxCartShippingRate.rateId). */
+  rateId: string;
+};
+
 /** Input for the flxRoleCreate mutation. */
 export type FlxRoleCreateInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -185,6 +291,73 @@ export type FlxTaskWatchInput = {
   /** Follow (true) or stop following (false). */
   watch: boolean;
 };
+
+export type FlxCartQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxCartQuery = { flxCart: { token: string | null, nonce: string | null, itemsCount: number, needsPayment: boolean, needsShipping: boolean, hasCalculatedShipping: boolean, paymentMethods: Array<string>, paymentRequirements: Array<string>, items: Array<{ key: string, kind: string, productId: number, type: string, name: string, sku: string, permalink: string | null, imageUrl: string | null, imageAlt: string, quantity: number, soldIndividually: boolean, quantityLimits: { minimum: number, maximum: number, multipleOf: number, editable: boolean }, unitPrice: { amount: number, currency: string, formatted: string }, regularPrice: { amount: number, currency: string, formatted: string }, subtotal: { amount: number, currency: string, formatted: string }, total: { amount: number, currency: string, formatted: string }, tax: { amount: number, currency: string, formatted: string }, variation: Array<{ name: string, value: string }>, itemData: Array<{ name: string, value: string }> }>, coupons: Array<{ code: string, discountType: string, discount: { amount: number, currency: string, formatted: string }, discountTax: { amount: number, currency: string, formatted: string } }>, fees: Array<{ key: string, name: string, total: { amount: number, currency: string, formatted: string }, tax: { amount: number, currency: string, formatted: string } }>, totals: { currency: string, itemsSubtotal: { amount: number, currency: string, formatted: string }, itemsTax: { amount: number, currency: string, formatted: string }, fees: { amount: number, currency: string, formatted: string }, discount: { amount: number, currency: string, formatted: string }, shipping: { amount: number, currency: string, formatted: string } | null, tax: { amount: number, currency: string, formatted: string }, total: { amount: number, currency: string, formatted: string }, taxLines: Array<{ name: string, rate: string, price: { amount: number, currency: string, formatted: string } }> }, shippingPackages: Array<{ packageId: number, name: string, rates: Array<{ rateId: string, methodId: string, name: string, description: string, deliveryTime: string, selected: boolean, price: { amount: number, currency: string, formatted: string } }> }>, notices: Array<{ code: string, message: string }>, billingAddress: { firstName: string, lastName: string, company: string, address1: string, address2: string, city: string, state: string, postcode: string, country: string, email: string | null, phone: string }, shippingAddress: { firstName: string, lastName: string, company: string, address1: string, address2: string, city: string, state: string, postcode: string, country: string, email: string | null, phone: string }, checkout: { endpoint: string, pageUrl: string | null, cartPageUrl: string | null } } };
+
+export type FlxCartAddressFieldsFragment = { firstName: string, lastName: string, company: string, address1: string, address2: string, city: string, state: string, postcode: string, country: string, email: string | null, phone: string };
+
+export type FlxCartFieldsFragment = { token: string | null, nonce: string | null, itemsCount: number, needsPayment: boolean, needsShipping: boolean, hasCalculatedShipping: boolean, paymentMethods: Array<string>, paymentRequirements: Array<string>, items: Array<{ key: string, kind: string, productId: number, type: string, name: string, sku: string, permalink: string | null, imageUrl: string | null, imageAlt: string, quantity: number, soldIndividually: boolean, quantityLimits: { minimum: number, maximum: number, multipleOf: number, editable: boolean }, unitPrice: { amount: number, currency: string, formatted: string }, regularPrice: { amount: number, currency: string, formatted: string }, subtotal: { amount: number, currency: string, formatted: string }, total: { amount: number, currency: string, formatted: string }, tax: { amount: number, currency: string, formatted: string }, variation: Array<{ name: string, value: string }>, itemData: Array<{ name: string, value: string }> }>, coupons: Array<{ code: string, discountType: string, discount: { amount: number, currency: string, formatted: string }, discountTax: { amount: number, currency: string, formatted: string } }>, fees: Array<{ key: string, name: string, total: { amount: number, currency: string, formatted: string }, tax: { amount: number, currency: string, formatted: string } }>, totals: { currency: string, itemsSubtotal: { amount: number, currency: string, formatted: string }, itemsTax: { amount: number, currency: string, formatted: string }, fees: { amount: number, currency: string, formatted: string }, discount: { amount: number, currency: string, formatted: string }, shipping: { amount: number, currency: string, formatted: string } | null, tax: { amount: number, currency: string, formatted: string }, total: { amount: number, currency: string, formatted: string }, taxLines: Array<{ name: string, rate: string, price: { amount: number, currency: string, formatted: string } }> }, shippingPackages: Array<{ packageId: number, name: string, rates: Array<{ rateId: string, methodId: string, name: string, description: string, deliveryTime: string, selected: boolean, price: { amount: number, currency: string, formatted: string } }> }>, notices: Array<{ code: string, message: string }>, billingAddress: { firstName: string, lastName: string, company: string, address1: string, address2: string, city: string, state: string, postcode: string, country: string, email: string | null, phone: string }, shippingAddress: { firstName: string, lastName: string, company: string, address1: string, address2: string, city: string, state: string, postcode: string, country: string, email: string | null, phone: string }, checkout: { endpoint: string, pageUrl: string | null, cartPageUrl: string | null } };
+
+export type FlxCartMoneyFragment = { amount: number, currency: string, formatted: string };
+
+export type FlxCartClearMutationVariables = Exact<{
+  input: FlxCartClearInput;
+}>;
+
+
+export type FlxCartClearMutation = { flxCartClear: { cart: { token: string | null, nonce: string | null, itemsCount: number, needsPayment: boolean, needsShipping: boolean, hasCalculatedShipping: boolean, paymentMethods: Array<string>, paymentRequirements: Array<string>, items: Array<{ key: string, kind: string, productId: number, type: string, name: string, sku: string, permalink: string | null, imageUrl: string | null, imageAlt: string, quantity: number, soldIndividually: boolean, quantityLimits: { minimum: number, maximum: number, multipleOf: number, editable: boolean }, unitPrice: { amount: number, currency: string, formatted: string }, regularPrice: { amount: number, currency: string, formatted: string }, subtotal: { amount: number, currency: string, formatted: string }, total: { amount: number, currency: string, formatted: string }, tax: { amount: number, currency: string, formatted: string }, variation: Array<{ name: string, value: string }>, itemData: Array<{ name: string, value: string }> }>, coupons: Array<{ code: string, discountType: string, discount: { amount: number, currency: string, formatted: string }, discountTax: { amount: number, currency: string, formatted: string } }>, fees: Array<{ key: string, name: string, total: { amount: number, currency: string, formatted: string }, tax: { amount: number, currency: string, formatted: string } }>, totals: { currency: string, itemsSubtotal: { amount: number, currency: string, formatted: string }, itemsTax: { amount: number, currency: string, formatted: string }, fees: { amount: number, currency: string, formatted: string }, discount: { amount: number, currency: string, formatted: string }, shipping: { amount: number, currency: string, formatted: string } | null, tax: { amount: number, currency: string, formatted: string }, total: { amount: number, currency: string, formatted: string }, taxLines: Array<{ name: string, rate: string, price: { amount: number, currency: string, formatted: string } }> }, shippingPackages: Array<{ packageId: number, name: string, rates: Array<{ rateId: string, methodId: string, name: string, description: string, deliveryTime: string, selected: boolean, price: { amount: number, currency: string, formatted: string } }> }>, notices: Array<{ code: string, message: string }>, billingAddress: { firstName: string, lastName: string, company: string, address1: string, address2: string, city: string, state: string, postcode: string, country: string, email: string | null, phone: string }, shippingAddress: { firstName: string, lastName: string, company: string, address1: string, address2: string, city: string, state: string, postcode: string, country: string, email: string | null, phone: string }, checkout: { endpoint: string, pageUrl: string | null, cartPageUrl: string | null } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxCartCouponApplyMutationVariables = Exact<{
+  input: FlxCartCouponApplyInput;
+}>;
+
+
+export type FlxCartCouponApplyMutation = { flxCartCouponApply: { cart: { token: string | null, nonce: string | null, itemsCount: number, needsPayment: boolean, needsShipping: boolean, hasCalculatedShipping: boolean, paymentMethods: Array<string>, paymentRequirements: Array<string>, items: Array<{ key: string, kind: string, productId: number, type: string, name: string, sku: string, permalink: string | null, imageUrl: string | null, imageAlt: string, quantity: number, soldIndividually: boolean, quantityLimits: { minimum: number, maximum: number, multipleOf: number, editable: boolean }, unitPrice: { amount: number, currency: string, formatted: string }, regularPrice: { amount: number, currency: string, formatted: string }, subtotal: { amount: number, currency: string, formatted: string }, total: { amount: number, currency: string, formatted: string }, tax: { amount: number, currency: string, formatted: string }, variation: Array<{ name: string, value: string }>, itemData: Array<{ name: string, value: string }> }>, coupons: Array<{ code: string, discountType: string, discount: { amount: number, currency: string, formatted: string }, discountTax: { amount: number, currency: string, formatted: string } }>, fees: Array<{ key: string, name: string, total: { amount: number, currency: string, formatted: string }, tax: { amount: number, currency: string, formatted: string } }>, totals: { currency: string, itemsSubtotal: { amount: number, currency: string, formatted: string }, itemsTax: { amount: number, currency: string, formatted: string }, fees: { amount: number, currency: string, formatted: string }, discount: { amount: number, currency: string, formatted: string }, shipping: { amount: number, currency: string, formatted: string } | null, tax: { amount: number, currency: string, formatted: string }, total: { amount: number, currency: string, formatted: string }, taxLines: Array<{ name: string, rate: string, price: { amount: number, currency: string, formatted: string } }> }, shippingPackages: Array<{ packageId: number, name: string, rates: Array<{ rateId: string, methodId: string, name: string, description: string, deliveryTime: string, selected: boolean, price: { amount: number, currency: string, formatted: string } }> }>, notices: Array<{ code: string, message: string }>, billingAddress: { firstName: string, lastName: string, company: string, address1: string, address2: string, city: string, state: string, postcode: string, country: string, email: string | null, phone: string }, shippingAddress: { firstName: string, lastName: string, company: string, address1: string, address2: string, city: string, state: string, postcode: string, country: string, email: string | null, phone: string }, checkout: { endpoint: string, pageUrl: string | null, cartPageUrl: string | null } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxCartCouponRemoveMutationVariables = Exact<{
+  input: FlxCartCouponRemoveInput;
+}>;
+
+
+export type FlxCartCouponRemoveMutation = { flxCartCouponRemove: { cart: { token: string | null, nonce: string | null, itemsCount: number, needsPayment: boolean, needsShipping: boolean, hasCalculatedShipping: boolean, paymentMethods: Array<string>, paymentRequirements: Array<string>, items: Array<{ key: string, kind: string, productId: number, type: string, name: string, sku: string, permalink: string | null, imageUrl: string | null, imageAlt: string, quantity: number, soldIndividually: boolean, quantityLimits: { minimum: number, maximum: number, multipleOf: number, editable: boolean }, unitPrice: { amount: number, currency: string, formatted: string }, regularPrice: { amount: number, currency: string, formatted: string }, subtotal: { amount: number, currency: string, formatted: string }, total: { amount: number, currency: string, formatted: string }, tax: { amount: number, currency: string, formatted: string }, variation: Array<{ name: string, value: string }>, itemData: Array<{ name: string, value: string }> }>, coupons: Array<{ code: string, discountType: string, discount: { amount: number, currency: string, formatted: string }, discountTax: { amount: number, currency: string, formatted: string } }>, fees: Array<{ key: string, name: string, total: { amount: number, currency: string, formatted: string }, tax: { amount: number, currency: string, formatted: string } }>, totals: { currency: string, itemsSubtotal: { amount: number, currency: string, formatted: string }, itemsTax: { amount: number, currency: string, formatted: string }, fees: { amount: number, currency: string, formatted: string }, discount: { amount: number, currency: string, formatted: string }, shipping: { amount: number, currency: string, formatted: string } | null, tax: { amount: number, currency: string, formatted: string }, total: { amount: number, currency: string, formatted: string }, taxLines: Array<{ name: string, rate: string, price: { amount: number, currency: string, formatted: string } }> }, shippingPackages: Array<{ packageId: number, name: string, rates: Array<{ rateId: string, methodId: string, name: string, description: string, deliveryTime: string, selected: boolean, price: { amount: number, currency: string, formatted: string } }> }>, notices: Array<{ code: string, message: string }>, billingAddress: { firstName: string, lastName: string, company: string, address1: string, address2: string, city: string, state: string, postcode: string, country: string, email: string | null, phone: string }, shippingAddress: { firstName: string, lastName: string, company: string, address1: string, address2: string, city: string, state: string, postcode: string, country: string, email: string | null, phone: string }, checkout: { endpoint: string, pageUrl: string | null, cartPageUrl: string | null } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxCartCustomerUpdateMutationVariables = Exact<{
+  input: FlxCartCustomerUpdateInput;
+}>;
+
+
+export type FlxCartCustomerUpdateMutation = { flxCartCustomerUpdate: { cart: { token: string | null, nonce: string | null, itemsCount: number, needsPayment: boolean, needsShipping: boolean, hasCalculatedShipping: boolean, paymentMethods: Array<string>, paymentRequirements: Array<string>, items: Array<{ key: string, kind: string, productId: number, type: string, name: string, sku: string, permalink: string | null, imageUrl: string | null, imageAlt: string, quantity: number, soldIndividually: boolean, quantityLimits: { minimum: number, maximum: number, multipleOf: number, editable: boolean }, unitPrice: { amount: number, currency: string, formatted: string }, regularPrice: { amount: number, currency: string, formatted: string }, subtotal: { amount: number, currency: string, formatted: string }, total: { amount: number, currency: string, formatted: string }, tax: { amount: number, currency: string, formatted: string }, variation: Array<{ name: string, value: string }>, itemData: Array<{ name: string, value: string }> }>, coupons: Array<{ code: string, discountType: string, discount: { amount: number, currency: string, formatted: string }, discountTax: { amount: number, currency: string, formatted: string } }>, fees: Array<{ key: string, name: string, total: { amount: number, currency: string, formatted: string }, tax: { amount: number, currency: string, formatted: string } }>, totals: { currency: string, itemsSubtotal: { amount: number, currency: string, formatted: string }, itemsTax: { amount: number, currency: string, formatted: string }, fees: { amount: number, currency: string, formatted: string }, discount: { amount: number, currency: string, formatted: string }, shipping: { amount: number, currency: string, formatted: string } | null, tax: { amount: number, currency: string, formatted: string }, total: { amount: number, currency: string, formatted: string }, taxLines: Array<{ name: string, rate: string, price: { amount: number, currency: string, formatted: string } }> }, shippingPackages: Array<{ packageId: number, name: string, rates: Array<{ rateId: string, methodId: string, name: string, description: string, deliveryTime: string, selected: boolean, price: { amount: number, currency: string, formatted: string } }> }>, notices: Array<{ code: string, message: string }>, billingAddress: { firstName: string, lastName: string, company: string, address1: string, address2: string, city: string, state: string, postcode: string, country: string, email: string | null, phone: string }, shippingAddress: { firstName: string, lastName: string, company: string, address1: string, address2: string, city: string, state: string, postcode: string, country: string, email: string | null, phone: string }, checkout: { endpoint: string, pageUrl: string | null, cartPageUrl: string | null } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxCartItemAddMutationVariables = Exact<{
+  input: FlxCartItemAddInput;
+}>;
+
+
+export type FlxCartItemAddMutation = { flxCartItemAdd: { itemKey: string | null, cart: { token: string | null, nonce: string | null, itemsCount: number, needsPayment: boolean, needsShipping: boolean, hasCalculatedShipping: boolean, paymentMethods: Array<string>, paymentRequirements: Array<string>, items: Array<{ key: string, kind: string, productId: number, type: string, name: string, sku: string, permalink: string | null, imageUrl: string | null, imageAlt: string, quantity: number, soldIndividually: boolean, quantityLimits: { minimum: number, maximum: number, multipleOf: number, editable: boolean }, unitPrice: { amount: number, currency: string, formatted: string }, regularPrice: { amount: number, currency: string, formatted: string }, subtotal: { amount: number, currency: string, formatted: string }, total: { amount: number, currency: string, formatted: string }, tax: { amount: number, currency: string, formatted: string }, variation: Array<{ name: string, value: string }>, itemData: Array<{ name: string, value: string }> }>, coupons: Array<{ code: string, discountType: string, discount: { amount: number, currency: string, formatted: string }, discountTax: { amount: number, currency: string, formatted: string } }>, fees: Array<{ key: string, name: string, total: { amount: number, currency: string, formatted: string }, tax: { amount: number, currency: string, formatted: string } }>, totals: { currency: string, itemsSubtotal: { amount: number, currency: string, formatted: string }, itemsTax: { amount: number, currency: string, formatted: string }, fees: { amount: number, currency: string, formatted: string }, discount: { amount: number, currency: string, formatted: string }, shipping: { amount: number, currency: string, formatted: string } | null, tax: { amount: number, currency: string, formatted: string }, total: { amount: number, currency: string, formatted: string }, taxLines: Array<{ name: string, rate: string, price: { amount: number, currency: string, formatted: string } }> }, shippingPackages: Array<{ packageId: number, name: string, rates: Array<{ rateId: string, methodId: string, name: string, description: string, deliveryTime: string, selected: boolean, price: { amount: number, currency: string, formatted: string } }> }>, notices: Array<{ code: string, message: string }>, billingAddress: { firstName: string, lastName: string, company: string, address1: string, address2: string, city: string, state: string, postcode: string, country: string, email: string | null, phone: string }, shippingAddress: { firstName: string, lastName: string, company: string, address1: string, address2: string, city: string, state: string, postcode: string, country: string, email: string | null, phone: string }, checkout: { endpoint: string, pageUrl: string | null, cartPageUrl: string | null } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxCartItemRemoveMutationVariables = Exact<{
+  input: FlxCartItemRemoveInput;
+}>;
+
+
+export type FlxCartItemRemoveMutation = { flxCartItemRemove: { cart: { token: string | null, nonce: string | null, itemsCount: number, needsPayment: boolean, needsShipping: boolean, hasCalculatedShipping: boolean, paymentMethods: Array<string>, paymentRequirements: Array<string>, items: Array<{ key: string, kind: string, productId: number, type: string, name: string, sku: string, permalink: string | null, imageUrl: string | null, imageAlt: string, quantity: number, soldIndividually: boolean, quantityLimits: { minimum: number, maximum: number, multipleOf: number, editable: boolean }, unitPrice: { amount: number, currency: string, formatted: string }, regularPrice: { amount: number, currency: string, formatted: string }, subtotal: { amount: number, currency: string, formatted: string }, total: { amount: number, currency: string, formatted: string }, tax: { amount: number, currency: string, formatted: string }, variation: Array<{ name: string, value: string }>, itemData: Array<{ name: string, value: string }> }>, coupons: Array<{ code: string, discountType: string, discount: { amount: number, currency: string, formatted: string }, discountTax: { amount: number, currency: string, formatted: string } }>, fees: Array<{ key: string, name: string, total: { amount: number, currency: string, formatted: string }, tax: { amount: number, currency: string, formatted: string } }>, totals: { currency: string, itemsSubtotal: { amount: number, currency: string, formatted: string }, itemsTax: { amount: number, currency: string, formatted: string }, fees: { amount: number, currency: string, formatted: string }, discount: { amount: number, currency: string, formatted: string }, shipping: { amount: number, currency: string, formatted: string } | null, tax: { amount: number, currency: string, formatted: string }, total: { amount: number, currency: string, formatted: string }, taxLines: Array<{ name: string, rate: string, price: { amount: number, currency: string, formatted: string } }> }, shippingPackages: Array<{ packageId: number, name: string, rates: Array<{ rateId: string, methodId: string, name: string, description: string, deliveryTime: string, selected: boolean, price: { amount: number, currency: string, formatted: string } }> }>, notices: Array<{ code: string, message: string }>, billingAddress: { firstName: string, lastName: string, company: string, address1: string, address2: string, city: string, state: string, postcode: string, country: string, email: string | null, phone: string }, shippingAddress: { firstName: string, lastName: string, company: string, address1: string, address2: string, city: string, state: string, postcode: string, country: string, email: string | null, phone: string }, checkout: { endpoint: string, pageUrl: string | null, cartPageUrl: string | null } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxCartItemUpdateMutationVariables = Exact<{
+  input: FlxCartItemUpdateInput;
+}>;
+
+
+export type FlxCartItemUpdateMutation = { flxCartItemUpdate: { cart: { token: string | null, nonce: string | null, itemsCount: number, needsPayment: boolean, needsShipping: boolean, hasCalculatedShipping: boolean, paymentMethods: Array<string>, paymentRequirements: Array<string>, items: Array<{ key: string, kind: string, productId: number, type: string, name: string, sku: string, permalink: string | null, imageUrl: string | null, imageAlt: string, quantity: number, soldIndividually: boolean, quantityLimits: { minimum: number, maximum: number, multipleOf: number, editable: boolean }, unitPrice: { amount: number, currency: string, formatted: string }, regularPrice: { amount: number, currency: string, formatted: string }, subtotal: { amount: number, currency: string, formatted: string }, total: { amount: number, currency: string, formatted: string }, tax: { amount: number, currency: string, formatted: string }, variation: Array<{ name: string, value: string }>, itemData: Array<{ name: string, value: string }> }>, coupons: Array<{ code: string, discountType: string, discount: { amount: number, currency: string, formatted: string }, discountTax: { amount: number, currency: string, formatted: string } }>, fees: Array<{ key: string, name: string, total: { amount: number, currency: string, formatted: string }, tax: { amount: number, currency: string, formatted: string } }>, totals: { currency: string, itemsSubtotal: { amount: number, currency: string, formatted: string }, itemsTax: { amount: number, currency: string, formatted: string }, fees: { amount: number, currency: string, formatted: string }, discount: { amount: number, currency: string, formatted: string }, shipping: { amount: number, currency: string, formatted: string } | null, tax: { amount: number, currency: string, formatted: string }, total: { amount: number, currency: string, formatted: string }, taxLines: Array<{ name: string, rate: string, price: { amount: number, currency: string, formatted: string } }> }, shippingPackages: Array<{ packageId: number, name: string, rates: Array<{ rateId: string, methodId: string, name: string, description: string, deliveryTime: string, selected: boolean, price: { amount: number, currency: string, formatted: string } }> }>, notices: Array<{ code: string, message: string }>, billingAddress: { firstName: string, lastName: string, company: string, address1: string, address2: string, city: string, state: string, postcode: string, country: string, email: string | null, phone: string }, shippingAddress: { firstName: string, lastName: string, company: string, address1: string, address2: string, city: string, state: string, postcode: string, country: string, email: string | null, phone: string }, checkout: { endpoint: string, pageUrl: string | null, cartPageUrl: string | null } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxCartShippingRateSelectMutationVariables = Exact<{
+  input: FlxCartShippingRateSelectInput;
+}>;
+
+
+export type FlxCartShippingRateSelectMutation = { flxCartShippingRateSelect: { cart: { token: string | null, nonce: string | null, itemsCount: number, needsPayment: boolean, needsShipping: boolean, hasCalculatedShipping: boolean, paymentMethods: Array<string>, paymentRequirements: Array<string>, items: Array<{ key: string, kind: string, productId: number, type: string, name: string, sku: string, permalink: string | null, imageUrl: string | null, imageAlt: string, quantity: number, soldIndividually: boolean, quantityLimits: { minimum: number, maximum: number, multipleOf: number, editable: boolean }, unitPrice: { amount: number, currency: string, formatted: string }, regularPrice: { amount: number, currency: string, formatted: string }, subtotal: { amount: number, currency: string, formatted: string }, total: { amount: number, currency: string, formatted: string }, tax: { amount: number, currency: string, formatted: string }, variation: Array<{ name: string, value: string }>, itemData: Array<{ name: string, value: string }> }>, coupons: Array<{ code: string, discountType: string, discount: { amount: number, currency: string, formatted: string }, discountTax: { amount: number, currency: string, formatted: string } }>, fees: Array<{ key: string, name: string, total: { amount: number, currency: string, formatted: string }, tax: { amount: number, currency: string, formatted: string } }>, totals: { currency: string, itemsSubtotal: { amount: number, currency: string, formatted: string }, itemsTax: { amount: number, currency: string, formatted: string }, fees: { amount: number, currency: string, formatted: string }, discount: { amount: number, currency: string, formatted: string }, shipping: { amount: number, currency: string, formatted: string } | null, tax: { amount: number, currency: string, formatted: string }, total: { amount: number, currency: string, formatted: string }, taxLines: Array<{ name: string, rate: string, price: { amount: number, currency: string, formatted: string } }> }, shippingPackages: Array<{ packageId: number, name: string, rates: Array<{ rateId: string, methodId: string, name: string, description: string, deliveryTime: string, selected: boolean, price: { amount: number, currency: string, formatted: string } }> }>, notices: Array<{ code: string, message: string }>, billingAddress: { firstName: string, lastName: string, company: string, address1: string, address2: string, city: string, state: string, postcode: string, country: string, email: string | null, phone: string }, shippingAddress: { firstName: string, lastName: string, company: string, address1: string, address2: string, city: string, state: string, postcode: string, country: string, email: string | null, phone: string }, checkout: { endpoint: string, pageUrl: string | null, cartPageUrl: string | null } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
 
 export type FlxRoleCreateMutationVariables = Exact<{
   input: FlxRoleCreateInput;

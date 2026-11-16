@@ -34,3 +34,11 @@ Faz 0'da 0.4, 0.5 ve 0.6 merge edilince başlar (plan §5).
 | Paket | Durum | PR / not |
 |---|---|---|
 | flx-roles 1.5.0 | 👀 | `gql/flx-roles-1`: servis katmanı, 4 sorgu + 6 mutation, 8 kayıtlı işlem, sözleşme testi 55/55. React ekranı (`flxr-roles`) klasikle eşit, wp-admin varsayılanı; klasik sayfadaki bağlantıyla. Kit 0.2.0 yetki modeli (`flx_gql_any_cap/all_caps`, `flx_gql_capabilities`, `flxViewer`, `useFlxCan`), KURALLAR §3.1. Eşleme `ESLEME/flx-roles.md` |
+
+## Faz 2: ticaret ve bağış
+
+| Paket | Durum | PR / not |
+|---|---|---|
+| `flxCart*` köprüsü (Flux GraphQL 0.3.0) | 👀 | `gql/cart-bridge-1`: Flux GraphQL içinde WooCommerce modülü (karar ve gerekçe `SEPET.md` §1). `flxCart` + 8 mutation, Store API'yi `rest_do_request` ile sarar; Cart-Token / Nonce oturumu, no-store. Paket genişleme noktası `FLXGQL_Cart::add_item()` + `flx_gql_cart_item_kind`. İstemci `@fluxwp/graphql/flx-cart` 0.3.0. HTTP testi 31/31 (yerelde Store API yerine geçen fixture, CI'da gerçek WooCommerce işi). Ödeme (EsnekPOS) Store API'de, köprüye girmez |
+| flx-commerce | ○ | Köprü merge edilince. Kullanacağı API `SEPET.md` §6 |
+| flx-donate | ○ | Köprü merge edilince. Bağış satırı `FLXGQL_Cart::add_item()` ile (`SEPET.md` §6) |
