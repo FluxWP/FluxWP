@@ -77,6 +77,45 @@ update_option( 'flxgql_settings', array() );
 $r = flxt_gql( '{ flxSettings { flxgqlSettings { queryMode } } }', array(), (int) $sub );
 flxt_same( 'FORBIDDEN', flxt_code( $r ), 'settings need manage_options' );
 
+// Secrets in settings (fail closed).
+foreach ( array( 'key_live', 'live_key', 'stripe_key', 'api_key', 'apikey', 'apiKey', 'clientSecret', 'client_secret', 'access-token', 'accessToken', 'refresh_token', 'smtp_password', 'smtp_pass', 'passwd', 'pwd', 'auth', 'private_key', 'privateKey', 'webhook.secret', 'license_key', 'flxai_keys', 'secretkey' ) as $k ) {
+	flxt_ok( flx_gql_is_secret_key( $k ), "secret key: $k" );
+}
+foreach ( array( 'title', 'max_page', 'cookie_text', 'web_session', 'monkey', 'keyboard_hint', 'author', 'passage', 'brand' ) as $k ) {
+	flxt_ok( ! flx_gql_is_secret_key( $k ), "not a secret: $k" );
+}
+update_option(
+	'flxt_conf',
+	array(
+		'title'     => 'Hello',
+		'key_live'  => 'sk_live_1',
+		'api_key'   => 'sk_2',
+		'providers' => array(
+			'openai' => array( 'model' => 'gpt', 'api_key' => 'sk_3', 'token' => 'tk' ),
+			'list'   => array( array( 'name' => 'a', 'secret' => 's1' ) ),
+		),
+	)
+);
+$fields = array();
+foreach ( flx_gql_settings_schema()['flxt_conf']['fields'] ?? array() as $gql => $f ) {
+	$fields[] = $f['key'];
+}
+flxt_same( array( 'title', 'providers' ), $fields, 'only non-secret fields become GraphQL fields' );
+flxt_ok( ! isset( flx_gql_settings_schema()['flxt_api_keys'] ), 'an option whose name is a secret is left out' );
+$r    = flxt_gql( '{ flxSettings { flxtConf { title providers } } }', array(), 1 );
+$json = wp_json_encode( $r );
+flxt_same( 'Hello', $r['data']['flxSettings']['flxtConf']['title'] ?? null, 'secret group: plain field is readable' );
+flxt_ok( false === strpos( (string) $json, 'sk_' ) && false === strpos( (string) $json, '"tk"' ) && false === strpos( (string) $json, 's1' ), 'secrets inside object values are removed', $r );
+flxt_same( 'gpt', $r['data']['flxSettings']['flxtConf']['providers']['openai']['model'] ?? null, 'non-secret nested values stay' );
+$r = flxt_gql( '{ flxSettings { flxtConf { keyLive } } }', array(), 1 );
+flxt_ok( isset( $r['errors'] ), 'a secret field cannot be queried' );
+$r = flxt_gql( 'mutation { flxSettingsUpdate(input:{flxtConf:{providers: {openai: {model: "o4"}, list: [{name: "b"}]}}}) { errors { field } } }', array(), 1 );
+$stored = get_option( 'flxt_conf' );
+flxt_same( array( 'model' => 'o4', 'api_key' => 'sk_3', 'token' => 'tk' ), $stored['providers']['openai'] ?? null, 'writing an object keeps the stored secrets' );
+flxt_same( array( array( 'name' => 'b', 'secret' => 's1' ) ), $stored['providers']['list'] ?? null, 'list items keep their secrets by index' );
+flxt_same( 'sk_live_1', $stored['key_live'] ?? null, 'secret fields are not touched by a write' );
+delete_option( 'flxt_conf' );
+
 // Persisted queries.
 $pq = flx_gql_persisted();
 flxt_ok( isset( $pq['queries']['ffddb6ac5762b8d7ceee75ad414d56112547858efbd5c677d267a7c8c50a11fd'] ), 'fixture manifest is loaded' );
