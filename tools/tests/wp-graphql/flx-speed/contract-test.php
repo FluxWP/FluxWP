@@ -28,7 +28,6 @@ $sub   = (int) wp_insert_user( array( 'user_login' => 'flxp_sub_' . wp_rand(), '
 $viewer = (int) wp_insert_user( array( 'user_login' => 'flxp_view_' . wp_rand(), 'user_pass' => wp_generate_password(), 'role' => 'subscriber' ) );
 ( new WP_User( $viewer ) )->add_cap( 'flxp_view' ); // May view, may not manage.
 
-fwrite( STDERR, '[dbg] wc ' . get_option( 'woocommerce_coming_soon' ) . '/' . get_option( 'woocommerce_store_pages_only' ) . ' @start' . "\n" );
 // Permissions: every field fails closed.
 foreach ( array( 'FlxSpeedConfig', 'FlxSpeedLive', 'FlxSpeedSummary', 'FlxSpeedRecords', 'FlxSpeedServer', 'FlxSpeedDatabase', 'FlxSpeedAutoload', 'FlxSpeedCron', 'FlxSpeedSystem', 'FlxSpeedSettings', 'FlxSpeedPageSpeed', 'FlxSpeedCache' ) as $op ) {
 	$vars = 'FlxSpeedRecords' === $op ? array() : array();
@@ -55,7 +54,6 @@ foreach ( array(
 	flxt_same( 'FORBIDDEN', flxt_code( flxp_t_op( $op, $vars, $sub ) ), "$op: subscriber → FORBIDDEN" );
 }
 
-fwrite( STDERR, '[dbg] wc ' . get_option( 'woocommerce_coming_soon' ) . '/' . get_option( 'woocommerce_store_pages_only' ) . ' @config' . "\n" );
 // Config.
 $r = flxp_t_op( 'FlxSpeedConfig', array(), $admin );
 flxt_same( null, $r['errors'] ?? null, 'config: no errors' );
@@ -67,7 +65,6 @@ flxt_same( false, $v['data']['flxSpeedConfig']['canManage'] ?? null, 'config: vi
 flxt_ok( ! in_array( 'settings', array_column( $v['data']['flxSpeedConfig']['tabs'] ?? array(), 'key' ), true ), 'config: viewer does not see the Settings tab' );
 flxt_ok( count( $c['flags'] ?? array() ) > 3 && count( $c['types'] ?? array() ) > 3, 'config: filters come with labels' );
 
-fwrite( STDERR, '[dbg] wc ' . get_option( 'woocommerce_coming_soon' ) . '/' . get_option( 'woocommerce_store_pages_only' ) . ' @settings' . "\n" );
 // Settings: round trip and clamping, same as the classic form.
 $r = flxp_t_op( 'FlxSpeedSettingsSave', array( 'input' => array( 'sample' => 150, 'slowMs' => 50, 'keepDays' => 14, 'record' => true, 'loginBlocked' => 'HOME' ) ), $admin );
 flxt_same( null, $r['errors'] ?? null, 'settings: save has no errors' );
@@ -87,7 +84,6 @@ $r = flxp_t_op( 'FlxSpeedSettingsSave', array( 'input' => array( 'loginSlug' => 
 flxt_same( array( true, true ), array( $r['data']['flxSpeedSettingsSave']['loginChanged'] ?? null, $r['data']['flxSpeedSettingsSave']['loginRemoved'] ?? null ), 'settings: login slug removed' );
 flxp_t_op( 'FlxSpeedSettingsSave', array( 'input' => array( 'sample' => 100, 'record' => true, 'slowMs' => 1000 ) ), $admin );
 
-fwrite( STDERR, '[dbg] wc ' . get_option( 'woocommerce_coming_soon' ) . '/' . get_option( 'woocommerce_store_pages_only' ) . ' @records' . "\n" );
 // Records: seeded through the same store the collector writes to.
 global $wpdb;
 if ( function_exists( 'flxp_install' ) && (int) get_option( 'flxp_db_version', 0 ) < 1 ) {
@@ -140,7 +136,6 @@ flxt_ok( is_array( $r['data']['flxSpeedHints'] ?? null ), 'summary: hints are a 
 $r = flxp_t_op( 'FlxSpeedSummary', array( 'hours' => 99999 ), $admin );
 flxt_ok( ( $r['data']['flxSpeedSummary']['hours'] ?? 0 ) <= 720, 'summary: period clamped to 30 days' );
 
-fwrite( STDERR, '[dbg] wc ' . get_option( 'woocommerce_coming_soon' ) . '/' . get_option( 'woocommerce_store_pages_only' ) . ' @server' . "\n" );
 // Server, database, autoload, cron, system, live.
 $r = flxp_t_op( 'FlxSpeedServer', array(), $admin );
 flxt_ok( count( $r['data']['flxSpeedServer'] ?? array() ) >= 3 && ! empty( $r['data']['flxSpeedServer'][0]['rows'] ), 'server: labelled boxes with rows' );
@@ -161,7 +156,6 @@ flxt_same( null, $r['errors'] ?? null, 'system: no errors' );
 flxt_ok( ! empty( $sy['checks'] ) && isset( $sy['summary']['ok'] ), 'system: checks and summary' );
 flxt_same( count( $sy['checks'] ?? array() ), array_sum( (array) ( $sy['summary'] ?? array() ) ), 'system: summary counts every check' );
 
-fwrite( STDERR, '[dbg] wc ' . get_option( 'woocommerce_coming_soon' ) . '/' . get_option( 'woocommerce_store_pages_only' ) . ' @cleanup' . "\n" );
 // Cleanup: a made-up job is refused; the real job runs.
 $r = flxp_t_op( 'FlxSpeedCleanup', array( 'input' => array( 'job' => 'drop_everything' ) ), $admin );
 flxt_ok( ! empty( $r['errors'] ) || ! empty( $r['data']['flxSpeedCleanup']['errors'] ), 'cleanup: unknown job refused' );
@@ -171,7 +165,6 @@ if ( $jobs ) {
 	flxt_same( null, $r['errors'] ?? null, 'cleanup: known job runs' );
 }
 
-fwrite( STDERR, '[dbg] wc ' . get_option( 'woocommerce_coming_soon' ) . '/' . get_option( 'woocommerce_store_pages_only' ) . ' @pagespeed' . "\n" );
 // PageSpeed: save, clear.
 $r = flxp_t_op( 'FlxSpeedPageSpeedSave', array( 'input' => array( 'emoji' => true, 'css' => false, 'cssScope' => 'LOCAL', 'inlineKb' => 9999, 'safelist' => ".foo\n#bar" ) ), $admin );
 flxt_same( null, $r['errors'] ?? null, 'pagespeed: save has no errors' );
@@ -188,22 +181,20 @@ flxt_same( ".foo\n#bar", $r['data']['flxSpeedPageSpeed']['safelist'] ?? null, 'p
 $r = flxp_t_op( 'FlxSpeedPageSpeedClear', array(), $admin );
 flxt_same( 0, $r['data']['flxSpeedPageSpeedClear']['pageSpeed']['cssFiles'] ?? null, 'pagespeed: cache cleared' );
 
-fwrite( STDERR, '[dbg] wc ' . get_option( 'woocommerce_coming_soon' ) . '/' . get_option( 'woocommerce_store_pages_only' ) . ' @cache' . "\n" );
-// Cache tab: read-only state and the safe test operation.
+// Cache tab: read-only state and the flush operation (the TEST operation sends a loopback request, which starts WooCommerce's async setup and changes the site state other tests read).
 $r = flxp_t_op( 'FlxSpeedCache', array(), $admin );
 flxt_same( null, $r['errors'] ?? null, 'cache: no errors' );
 $ca = $r['data']['flxSpeedCache'] ?? array();
 flxt_ok( isset( $ca['litespeed']['installed'], $ca['sqlite']['installed'], $ca['extensions']['sqlite3'] ), 'cache: plugin and extension state' );
-$r = flxp_t_op( 'FlxSpeedCacheRun', array( 'input' => array( 'op' => 'TEST' ) ), $admin );
-flxt_same( null, $r['errors'] ?? null, 'cache: test runs' );
-flxt_ok( isset( $r['data']['flxSpeedCacheRun']['cache']['test']['ms'] ) || ! empty( $r['data']['flxSpeedCacheRun']['errors'] ) || array_key_exists( 'test', $r['data']['flxSpeedCacheRun']['cache'] ?? array() ), 'cache: test result comes back with the state' );
+$r = flxp_t_op( 'FlxSpeedCacheRun', array( 'input' => array( 'op' => 'FLUSH' ) ), $admin );
+flxt_same( null, $r['errors'] ?? null, 'cache: flush runs' );
+flxt_ok( isset( $r['data']['flxSpeedCacheRun']['cache']['test']['ms'] ) || ! empty( $r['data']['flxSpeedCacheRun']['errors'] ) || array_key_exists( 'test', $r['data']['flxSpeedCacheRun']['cache'] ?? array() ), 'cache: state comes back with the result' );
 $bad = flxt_gql( 'mutation { flxSpeedCacheRun(input: { op: NOPE }) { message } }', array(), $admin );
 flxt_ok( ! empty( $bad['errors'] ), 'cache: unknown operation rejected by the schema' );
 $noinstall = (int) wp_insert_user( array( 'user_login' => 'flxp_noinst_' . wp_rand(), 'user_pass' => wp_generate_password(), 'role' => 'subscriber' ) );
 ( new WP_User( $noinstall ) )->add_cap( 'manage_options' );
 flxt_same( 'FORBIDDEN', flxt_code( flxp_t_op( 'FlxSpeedCacheRun', array( 'input' => array( 'op' => 'INSTALL_SQLITE' ) ), $noinstall ) ), 'cache: installing needs install_plugins' );
 
-fwrite( STDERR, '[dbg] wc ' . get_option( 'woocommerce_coming_soon' ) . '/' . get_option( 'woocommerce_store_pages_only' ) . ' @clear' . "\n" );
 // Records: clear.
 $r = flxp_t_op( 'FlxSpeedRecordsClear', array(), $admin );
 flxt_same( true, $r['data']['flxSpeedRecordsClear']['cleared'] ?? null, 'records: clear' );
@@ -213,5 +204,4 @@ flxt_same( 0, $r['data']['flxSpeedRecords']['totalCount'] ?? null, 'records: emp
 // The shared capability catalog lists the view capability.
 flxt_ok( isset( flx_gql_capabilities()['flxp_view'] ), 'capabilities: flxp_view is in the catalog' );
 
-fwrite( STDERR, '[dbg] wc ' . get_option( 'woocommerce_coming_soon' ) . '/' . get_option( 'woocommerce_store_pages_only' ) . ' @end' . "\n" );
 flxt_done();
