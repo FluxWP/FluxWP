@@ -54,15 +54,10 @@ final class FLXCRM_Contact_Loader extends FLXGQL_Loader {
 	 */
 	protected function can_see( $record ): bool {
 		$ok = flxcrm_can();
-		/**
-		 * Whether the viewer may load this contact (node lookups and FlxContact fields of other packages).
-		 * Packages return true only for contacts the viewer owns or handles (a donor's own record, a chat agent's
-		 * conversation). The CRM-only fields of FlxContact keep their own flxcrm_view check.
-		 *
-		 * @param bool          $ok      The viewer has the CRM permission.
-		 * @param FLXCRM_Contact $contact The contact.
-		 * @param int           $user_id Current user.
-		 */
+		// Filter flxcrm_gql_can_see_contact( bool $ok, FLXCRM_Contact $contact, int $user_id ): whether the viewer may load
+		// this contact (node lookups and FlxContact fields of other packages). Packages return true only for contacts the
+		// viewer owns or handles (a donor's own record, a chat agent's conversation). The CRM-only fields of FlxContact
+		// keep their own flxcrm_view check.
 		return (bool) apply_filters( 'flxcrm_gql_can_see_contact', $ok, $record instanceof FLXCRM_Contact_Node ? $record->contact : $record, get_current_user_id() );
 	}
 }
@@ -489,7 +484,7 @@ flx_gql_type(
 				'description' => __( 'Amount; empty for entries without one.', 'flx-crm' ),
 				'resolve'     => static function ( $e ): ?array {
 					$e = flxcrm_gql_src( $e, FLXCRM_Event::class );
-					return $e->amount > 0 ? flx_gql_money( $e->amount, '' !== $e->currency ? $e->currency : flxcrm_currency() ) : null;
+					return $e->amount > 0 ? flx_gql_money( $e->amount, flx_gql_str( '' !== $e->currency ? $e->currency : flxcrm_currency() ) ) : null;
 				},
 			),
 			'paid'       => array( 'type' => 'Boolean!', 'description' => __( 'The payment is complete.', 'flx-crm' ) ),
@@ -572,7 +567,7 @@ flx_gql_type(
 					return '' === $k ? null : flx_gql_str( array_values( flx_gql_arr( flxcrm_rfm_segments()[ $k ] ?? array() ) )[0] ?? $k );
 				},
 			),
-			'ltv'            => array( 'type' => 'FlxMoney', 'cap' => flxcrm_gql_view(), 'description' => __( 'Total value in the reporting currency.', 'flx-crm' ), 'resolve' => static fn( $s ): array => flx_gql_money( flxcrm_gql_c( $s )->ltv, flxcrm_currency() ) ),
+			'ltv'            => array( 'type' => 'FlxMoney', 'cap' => flxcrm_gql_view(), 'description' => __( 'Total value in the reporting currency.', 'flx-crm' ), 'resolve' => static fn( $s ): array => flx_gql_money( flxcrm_gql_c( $s )->ltv, flx_gql_str( flxcrm_currency() ) ) ),
 			'churn'          => array( 'type' => 'Int', 'cap' => flxcrm_gql_view(), 'description' => __( 'Churn risk 0–100.', 'flx-crm' ), 'resolve' => static fn( $s ): int => flxcrm_gql_c( $s )->churn ),
 			'atRisk'         => array(
 				'type'        => 'Boolean', 'cap' => flxcrm_gql_view(),
@@ -628,7 +623,7 @@ flx_gql_type(
 					$filter = sanitize_key( flx_gql_str( $args['filter'] ?? '' ) );
 					flx_gql_cache_tag( 'flx-crm:contact:' . $id );
 					return flx_gql_paginate(
-						$args,
+						flx_gql_arr( $args ),
 						static fn( int $offset, int $limit ): array => array( 'items' => FLXCRM_Contact_Service::timeline( $id, $filter, $offset, $limit )['items'] )
 					);
 				},
@@ -710,9 +705,9 @@ flx_gql_query(
 		),
 		'resolve'     => static function ( $root, array $args ): array {
 			flx_gql_cache_tag( FLXCRM_Contact_Service::TAG_CONTACTS );
-			$filter = flxcrm_gql_filter( $args );
+			$filter = flxcrm_gql_filter( flx_gql_arr( $args ) );
 			return flx_gql_paginate(
-				$args,
+				flx_gql_arr( $args ),
 				static function ( int $offset, int $limit ) use ( $filter ): array {
 					$page = FLXCRM_Contact_Service::window( $filter, $offset, $limit );
 					FLXCRM_Contact_Service::tags_of_many( array_map( static fn( FLXCRM_Contact $c ): int => $c->id, $page->items ) );
@@ -860,7 +855,11 @@ function flxcrm_gql_contact_fields( array $in ): array {
 	return $out;
 }
 
-/** Fields both contact inputs share. */
+/**
+ * Fields both contact inputs share.
+ *
+ * @return array<string,array<string,mixed>>
+ */
 function flxcrm_gql_contact_input_fields(): array {
 	return array(
 		'name'    => array( 'type' => 'String', 'description' => __( 'Name.', 'flx-crm' ) ),
@@ -890,8 +889,8 @@ flx_gql_mutation(
 			'existed' => array( 'type' => 'Boolean', 'description' => __( 'A contact with this e-mail or phone already existed.', 'flx-crm' ) ),
 		),
 		'resolve'     => static function ( array $input ) {
-			$tags = array_map( 'flx_gql_str', is_array( $input['tags'] ?? null ) ? $input['tags'] : array() );
-			$r    = FLXCRM_Contact_Service::create( flxcrm_gql_contact_fields( $input ), $tags );
+			$tags = array_values( array_map( 'flx_gql_str', is_array( $input['tags'] ?? null ) ? $input['tags'] : array() ) );
+			$r    = FLXCRM_Contact_Service::create( flxcrm_gql_contact_fields( flx_gql_arr( $input ) ), $tags );
 			return $r instanceof WP_Error ? $r : array( 'contact' => new FLXCRM_Contact_Node( $r['contact'] ), 'existed' => $r['existed'] );
 		},
 	)
@@ -907,7 +906,7 @@ flx_gql_mutation(
 			'contact' => array( 'type' => 'FlxContact', 'description' => __( 'The contact after the change.', 'flx-crm' ) ),
 		),
 		'resolve'     => static function ( array $input ) {
-			$r = FLXCRM_Contact_Service::update( flx_gql_decode_id( $input['id'] ?? 0, 'FlxContact' ), flxcrm_gql_contact_fields( $input ) );
+			$r = FLXCRM_Contact_Service::update( flx_gql_decode_id( $input['id'] ?? 0, 'FlxContact' ), flxcrm_gql_contact_fields( flx_gql_arr( $input ) ) );
 			return $r instanceof WP_Error ? $r : array( 'contact' => new FLXCRM_Contact_Node( $r ) );
 		},
 	)
