@@ -4,14 +4,14 @@ Paket sürümü: 2.4.0 · Önek: `flxf_` / fork `Emsfb` · Dal: `gql/flx-forms-1
 
 Bu dosya yalnız envanterdir. Satırlar koddan okundu (`register_rest_route`, `wp_ajax_`, `add_menu_page` / `add_submenu_page`, `add_shortcode`, `register_block_type`, `flx_mcp_tools`, `flx_settings_schema`). `vendor/stripe` graft indeksinde yoktu; orası ayrıca tarandı. Gizli anahtar değeri yok.
 
-Sahip kararı (bağlayıcı): fork form oluşturucu kendi REST/AJAX'ıyla kalır. GraphQL'e taşınan: form tanımı okuma, public `flxFormSubmit`, yanıtlar/mesajlar ekranı, pano istatistikleri. Ödeme başlatma ve webhook kalıcı istisna. `docs/graphql/ISTISNALAR.md` içindeki geçici "Blok formu gönderimi" satırı (`fxb_process_ajax_submit`, `fxb_process_advanced_form_submit`) bu paketin dosyası değil; silinmesi ayrı küçük PR. Bağlantı `docs/flx-blocks/GRAPHQL.md`.
+Sahip kararı (bağlayıcı, 1–3): fork form oluşturucu kendi REST/AJAX'ıyla kalır. Captcha = `flx_captcha_gql_verify( 'flxf_submit' )` (bağlam `flx_captcha_contexts`; fork `siteverify` REST'te kalır). `flxFormSubmit` yalnız `form` / `survey` / `subscribe`. Yükleme REST istisna kalır; GraphQL yalnız o ucun bu form (veya bilet) için ayırdığı dosyayı kabul eder. Ayarlar ve otomasyonlar karar 4, açık. Ödeme başlatma ve webhook kalıcı istisna. `docs/graphql/ISTISNALAR.md` içindeki geçici "Blok formu gönderimi" satırı bu paketin dosyası değil; silinmesi ayrı küçük PR.
 
 ## Özet
 
 | Kategori | Satır | GraphQL | İstisna | Not |
 |---|---|---|---|---|
-| REST kaydı | 25 | 9 | 16 | 4 ad alanı: `Emsfb/v1` (20), `efb/v1` (2), `flx-forms/v1` (3), `flxf/v1` (3 kayıt / 2 yol) |
-| AJAX | 38 | 12 | 26 | Hepsi `wp_ajax_` (oturumlu). `wp_ajax_nopriv_` yok |
+| REST kaydı | 24 çağrı / 25 yöntem | 9 | 16 | `register_rest_route` 24 kez. `blocks.php:262` tek çağrıda GET ve POST kaydeder, yöntem 25. Ad alanları: `Emsfb/v1` 17 çağrı (çekirdek 8 + ödeme 3 + Stripe 5 + webhook.php 1), `efb/v1` 2, `flx-forms/v1` 3, `flxf/v1` 2 çağrı / 3 yöntem. Brifteki "25 çağrı, 26 yöntem" bir fazla |
+| AJAX | 38 | 14 | 24 | Hepsi `wp_ajax_` (oturumlu). `wp_ajax_nopriv_` yok. `clear_garbeg_Emsfb` ve `emsfb_dismiss_delivery_notice` yönetici dilimine eşlendi |
 | admin-post | 4 | 0 | 4 | Dosya, yönlendirme, webhook sırrı, sistem kontrolü |
 | Admin sayfası | 1 menü + 8 alt menü | 2 ekran | 6 sayfa | Stripe alt menüsü kaydolup silinir. Panel karışık (yanıtlar GraphQL, ayarlar klasik). WP pano widget'ı ayrı |
 | MCP/AI aracı | 0 | 0 | 0 | `flx_mcp_tools` / `flxseo_mcp_tools` yok |
@@ -32,8 +32,8 @@ Sahip kararı (bağlayıcı): fork form oluşturucu kendi REST/AJAX'ıyla kalır
 | POST | `/Emsfb/v1/test/{name}/{id}` | `class-Emsfb-public.php:41` | nonce | **İSTİSNA** | | | Editör/deneme. Fork |
 | GET | `/Emsfb/v1/test/{name}/{id}` | `class-Emsfb-webhook.php:18` | `manage_options` | **İSTİSNA** | | | Aynı yol, ikinci kayıt. Anahtar `method` (WP `methods` bekler); pratikte boş kalabilir. Fork |
 | POST | `/Emsfb/v1/forms/message/add` | `class-Emsfb-public.php:46` | nonce, herkese açık nonce ile | `flxFormSubmit` | `FlxFormSubmitInput` | `FlxFormSubmitPayload` | `get_form_public_efb` (`:2233`). İlk dilim: `form` / `survey` / `subscribe`. `login`, `register`, `logout`, `payment` aynı callback'te kalır (istisna alt kümesi, REST değişmez) |
-| POST | `/Emsfb/v1/forms/response/get` | `class-Emsfb-public.php:54` | nonce | `flxFormTrack` | `code: String!` | `FlxFormTrackResult` | Onay koduyla yanıt okuma. IP başına transient sınır (`efb_track_lookup_allowed`, `:3866`) |
-| POST | `/Emsfb/v1/forms/response/add` | `class-Emsfb-public.php:59` | nonce | `flxFormTrackReply` | `FlxFormTrackReplyInput` | `FlxFormSubmitPayload` | Ziyaretçi yanıt kutusu (`set_rMessage_id_Emsfb_api`, `:4995`). `captchaToken` |
+| POST | `/Emsfb/v1/forms/response/get` | `class-Emsfb-public.php:54` | nonce | `flxFormTrack` | `code: String!` | `FlxFormTrack` | Onay koduyla yanıt okuma. IP başına transient sınır (`efb_track_lookup_allowed`, `:3866`). API captcha doğrulamaz: `$captcha_success = []` ve `$not_captcha = true` sabit (`:4044`). `scaptcha` yalnız takip sayfasında widget basar (`EMS_Form_Builder_track`, `:1925`). GraphQL argümanına captcha token konmaz |
+| POST | `/Emsfb/v1/forms/response/add` | `class-Emsfb-public.php:59` | nonce | `flxFormTrackReply` | `message`, `trackCode`, `attachments`, `adminCode` (`sc`) | `FlxFormSubmitPayload` | Ziyaretçi yanıt kutusu (`set_rMessage_id_Emsfb_api`, `:4995`). Ekler `response_attachments_are_reserved_efb` (`:4014`, çağrı `:5179`). `sc` = `md5(track + email_key)` (`:5148`); yanlış kod yükseltmez |
 | POST | `/Emsfb/v1/autofill/get` | `class-Emsfb-public.php:64` | nonce | **İSTİSNA** | | | `vendor/autofill/autofillefb.php` (`:5354`). Pro eklenti dosyası |
 | POST | `/Emsfb/v1/forms/file/upload` | `class-Emsfb-public.php:69` | nonce | **İSTİSNA** | | | Multipart (`file_upload_api`, `:4818`). `pl` = `msg` veya `resp` |
 | POST | `/Emsfb/v1/forms/recovery/efb_set_password` | `class-Emsfb-public.php:75` | nonce | **İSTİSNA** | | | E-postadaki jetonla WP parolası (`set_password_efb_api`, `:7816`) |
@@ -58,7 +58,7 @@ Kayıt `efb_register_payment_rest_routes` (`class-Emsfb-public.php:52`) üzerind
 
 | Yöntem | Yol | Kayıt | cap | → GraphQL | Girdi | Çıktı | Not |
 |---|---|---|---|---|---|---|---|
-| GET | `/efb/v1/forms` | `class-Emsfb-gutenberg-block.php:91` | `edit_posts` | `flxForms` | `first`, `after` | `FlxFormConnection!` | Blok seçici listesi. Editör REST'i kalır |
+| GET | `/efb/v1/forms` | `class-Emsfb-gutenberg-block.php:91` | `edit_posts` | `flxFormPicker` | — | `FlxFormPickerItem` (`id`, `title`) | Blok seçici. `flxForms` (`Emsfb`) yazar/editörü daraltır. `flx_gql_any_cap( 'edit_posts', 'Emsfb', 'manage_options' )`. Yalnız id + başlık |
 | GET | `/efb/v1/preview/{id}` | `class-Emsfb-gutenberg-block.php:97` | `edit_posts` | **İSTİSNA** | | | `id` = `tracking` veya sayı. Editör önizlemesi |
 
 ### `flx-forms/v1` — FluxApp yanıtları
@@ -75,7 +75,7 @@ Hepsi `flxf_app_can`: `manage_options` veya `Emsfb` (`app.php:42`).
 
 | Yöntem | Yol | Kayıt | cap | → GraphQL | Not |
 |---|---|---|---|---|---|
-| GET | `/flxf/v1/block-forms` | `blocks.php:262` | `edit_posts` | `flxForms` | Liste. Editör REST'i kalır |
+| GET | `/flxf/v1/block-forms` | `blocks.php:262` | `edit_posts` (`can_read`, `:283`) | `flxFormPicker` | Aynı hafif seçici. POST ile aynı `register_rest_route` çağrısı |
 | GET | `/flxf/v1/block-forms/{id}` | `blocks.php:253` | `edit_posts` | `flxForm` | Yapı + `hash`. Ham JSON GraphQL'e konmaz; alan listesi |
 | POST | `/flxf/v1/block-forms` | `blocks.php:271` | `Emsfb` veya `manage_options` | **İSTİSNA** | Blok editörü yazar, 409 `hash`. Fork/ikinci editör; dokunulmaz |
 
@@ -96,7 +96,7 @@ Nonce aksi yazılmadıkça `check_ajax_referer('wp_rest', 'nonce')`. Panel cap'i
 | `set_replyMessage_id_Emsfb` | `:40` | panel | `flxFormResponseReply` | Yönetici yanıtı (`set_replyMessage_id_Emsfb`, `:1453`) |
 | `get_track_id_Emsfb` | `:42` | panel | `flxFormResponseByTrack` | Panel arama kutusu (`get_ajax_track_admin`, `:1767`) |
 | `get_form_id_Emsfb` | `:35` | panel | `flxForm` | Editör formu böyle yükler. AJAX kalır; GraphQL okuma aynı satırı servisten okur |
-| `flxf_dash_stats` | `class-flxf-dashboard.php:44` | `flxf_dash` nonce; `Emsfb` veya `manage_options` | `flxFormsDashboard` | `from`, `to`, `form` (`:369`) |
+| `flxf_dash_stats` | `class-flxf-dashboard.php:44` | `flxf_dash` nonce; `FLXF_Dashboard::can()` (`:49`): giriş + (`manage_options` veya `Emsfb`). `flxf_dashboard_capability` filtresi yok | `flxFormsDashboard` | `from`, `to`, `form` (`:369`). Menü cap dizesi `Emsfb` (`:62`) |
 | `efb_dashboard_stats` | `class-Emsfb-dashboard-widget.php:16` | `efb_dashboard_stats` nonce; `manage_options` (`:150`) | `flxFormsWidgetStats` | WP pano widget'ı. Girdi `period`: `day` veya `week`. Ziyaret, gönderim, e-posta |
 | `efb_dashboard_email_errors` | `:17` | aynı (`:257`) | `flxFormsEmailErrors` | Widget hata listesi. Girdi `period`: `day` veya `week` |
 | `remove_id_Emsfb` | `class-Emsfb-admin.php:33` | panel | **İSTİSNA** | Form sil. Fork editör |
@@ -105,20 +105,20 @@ Nonce aksi yazılmadıkça `check_ajax_referer('wp_rest', 'nonce')`. Panel cap'i
 | `dup_efb` | `class-Emsfb-admin.php:51` | panel | **İSTİSNA** | Form kopyala. Fork editör |
 | `form_preview_efb` | `class-Emsfb-public.php:108` | `wp_rest` + `Emsfb` | **İSTİSNA** | Taslak sayfa yazar (`:7193`). Fork editör |
 | `set_settings_Emsfb` | `class-Emsfb-admin.php:41` | panel | **İSTİSNA** (bu dalga) | Ayarlar paneli. Karar 4. Sırlar gizli anahtar taşır |
-| `clear_garbeg_Emsfb` | `:43` | panel | **İSTİSNA** | Dosya temizliği. Fork panel |
+| `clear_garbeg_Emsfb` | `:43` | panel | `flxFormsStorageClear` | Yanıt sayfası araç çubuğu. Yönetici dilimi (bu dalda yazılmaz) |
 | `check_email_server_efb` | `:44` | panel | **İSTİSNA** | Canlı SMTP denemesi |
 | `efb_save_onboarding_email` | `:45` | panel | **İSTİSNA** | Kurulum. Fork |
 | `efb_complete_onboarding` | `:46` | panel | **İSTİSNA** | Kurulum. Fork |
 | `add_addons_Emsfb` | `:47` | panel | **İSTİSNA** | Eklenti. Fork |
 | `remove_addons_Emsfb` | `:48` | panel | **İSTİSNA** | Eklenti. Fork |
-| `update_file_Emsfb` | `:49` | panel | **İSTİSNA** | Yönetici dosya yükleme (multipart) |
+| `update_file_Emsfb` | `:49` | **nonce only, no cap** | **İSTİSNA** | `file_upload_public` (`:3058`). `check_ajax_referer('public-nonce','nonce')` veya `check_ajax_referer($vl,'nonce_msg')` (`:3083`). `current_user_can` yok. Yorum: eski, gönderilen JS çağırmaz. Multipart. `track_pending_upload` (`:3143`) |
 | `send_sms_pnl_efb` | `:50` | panel (`:3159`) | **İSTİSNA** | `vendor/smssended/smsefb.php` yoksa reddeder. `Emsfb_sms_efb` yalnız rol kurulumu (`:91`) |
 | `heartbeat_Emsfb` | `:55` | panel | **İSTİSNA** | Yeni `wp_rest` nonce (`:3338`) |
 | `report_problem_Emsfb` | `:56` | panel | **İSTİSNA** | Fork "sorun bildir" |
 | `efb_save_plan_selection` | `:57` | panel | **İSTİSNA** | Lisans planı. Fork |
-| `emsfb_dismiss_delivery_notice` | `class-Emsfb-email-monitor.php:36` | panel | **İSTİSNA** | Teslim uyarısını kapat |
+| `emsfb_dismiss_delivery_notice` | `class-Emsfb-email-monitor.php:36` | nonce `emsfb_dismiss_delivery_notice` + yalnız `manage_options` (`:440`). Panel `Emsfb` yetmez | `flxFormsDeliveryNoticeDismiss` | Yanıt sayfası araç çubuğu. Yönetici dilimi |
 | `emsfb_recover_addons` | `class-Emsfb.php:61` | panel | **İSTİSNA** | Kayıp eklenti dosyasını kurtar |
-| `flxf_auto_save` | `class-flxf-automations-admin.php:21` | `flxf_automations` nonce; `manage_options` (filtre `flxf_automations_capability`) | **İSTİSNA** | Otomasyon. Bu dalga dışı |
+| `flxf_auto_save` | `class-flxf-automations-admin.php:21` | `flxf_automations` nonce; cap filtrelenir: `apply_filters( 'flxf_automations_capability', 'manage_options' )` (`class-flxf-automations.php:63`) | **İSTİSNA** | Otomasyon. Karar 4 açık |
 | `flxf_auto_toggle` | `:21` | aynı | **İSTİSNA** | |
 | `flxf_auto_delete` | `:21` | aynı | **İSTİSNA** | |
 | `flxf_auto_duplicate` | `:21` | aynı | **İSTİSNA** | |
@@ -163,30 +163,39 @@ Yok. `flx_mcp_tools` ve `flxseo_mcp_tools` kaydı yok. `mcp` geçen yerler çevi
 
 ## Ayarlar (`flx_settings_schema`)
 
-Şema kaydı yok. Tek JSON satır `{prefix}emsfb_setting` (`functions.php:7529`). Stripe ayrıca `emsfb_settings` seçeneğine bakar (`stripe-handler.php:114`). `set_setting_Emsfb` (`:7480`) gönderilmeyen anahtarı silmez.
+Şema kaydı yok. Okuma `Emsfb::get_setting_Emsfb` (`includes/class-Emsfb.php:894`); sarmalayıcı fonksiyon `flx-forms-load.php:372`. Yazma `set_setting_Emsfb` (`functions.php:7480`). Depo `{prefix}emsfb_setting` tek JSON satırı (`functions.php:7529`). Gönderilmeyen anahtar silinmez. Stripe ayrıca `emsfb_settings` seçeneğine bakar (`stripe-handler.php:114`). Paneldeki DOM id'leri (`apikey_map`, `email`, `showUpfile`, `sms_config_select`, `hostSupportSmtp`) JSON anahtarı değildir.
 
-GraphQL bu dalgada ayar taşımaz (karar 4). Taşınırsa kök `flxFormsSettings` / `flxFormsSettingsUpdate`, cap `flx_gql_any_cap( 'Emsfb', 'manage_options' )`. Gizli alanlar yanıtta olmaz (KURALLAR §6): `secretKey`, `stripeSKey`, `paypalSKey`, `payToken`, `apikey_map` (harita), `activeCode` (lisans). Yazma: boş gönderilirse eskisi kalır.
+GraphQL bu dalgada ayar taşımaz (karar 4, açık). Taşınırsa kök `flxFormsSettings` / `flxFormsSettingsUpdate`, cap `flx_gql_any_cap( 'Emsfb', 'manage_options' )`. Sırlar yanıtta olmaz (KURALLAR §6); yazma write-only, boş gönderilirse eskisi kalır (`plugins/flx-ads` ile aynı).
 
-| Grup (`tab`) | Alan (ayar JSON anahtarı) | Tip | GraphQL'de | Not |
+Varsayılanlar `Emsfb::get_default_settings_efb` (`class-Emsfb.php:1762`).
+
+| Grup (`tab`) | JSON anahtarı | Tip | GraphQL'de | Not |
 |---|---|---|---|---|
-| general | `bootstrap`, `osLocationPicker`, `devMode` | Boolean | öneri, karar 4 | `list_form-efb.js:1368`, `:1389`, `:1401` |
-| general | `activeCode` | String | **yok** | Lisans. `:1344` |
-| responses | `sessionDuration`, `trackCodeStyle` | String | öneri | `:1446`, `:1468` |
-| responses | `scaptcha`, `showUpfile`, `activeDlBtn`, `showIp`, `adminSN` | Boolean | öneri | Yanıt kutusu. `:1484`–`:1510` |
-| responses | `respPrimary`, `respPrimaryDark`, `respAccent`, `respText`, `respTextMuted`, `respBgCard`, `respBgMeta`, `respBgTrack`, `respBgResp`, `respBgEditor`, `respEditorText`, `respEditorPh`, `respBtnText`, `respBrandColor`, `respFontFamily`, `respFontSize`, `respCustomFont`, `respPreset` | String | öneri | `:1528`–`:1545` |
-| captchas | `siteKey` | String | öneri (herkese açık anahtar) | `:1564`. Asıl doğrulama karar 1 |
-| captchas | `secretKey` | String | **yok** | `:1567` |
-| captchas | `shield_silent_captcha` | Boolean | öneri | Shield eklentisi (`class-Emsfb-shield-silentcaptcha.php:8`) |
-| captchas | `apikey_map` | String | **yok** | `:1591` |
-| email | `email`, `femail` | String | öneri | Yönetici ve gönderen (`:1607`, `:1613`) |
-| email | `smtp` / `hostSupportSmtp`, `weeklyEmailReport`, `emailStatsReport` | Boolean | öneri | `:1627`, `:1638`, `:1649`. Sunucu denemesi AJAX istisna |
-| email-template | `emailTemp`, `emailBtnBgColor`, `emailBtnTextColor` | String | öneri | `:1727` |
-| localization | `act_local` + metin sözlüğü | Boolean + JSON | **İSTİSNA** | Fork sözlüğü (`:1277`, `:1672`). i18n paketin `.l10n.php` dosyalarında |
-| payments | `stripePKey`, `paypalPKey` | String | öneri (publishable) | `:1695`, `:1709`. Karar 4 ile bile ödeme başlatma REST'te |
-| payments | `stripeSKey`, `paypalSKey`, `payToken` | String | **yok** | `:1698`, `:1712`, `:1267` |
-| sms | `sms_config_select` = `wp_sms_plugin` | String | öneri | `:1749`. Sağlayıcı sırrı Flux Mail'de kalır; bu JSON'a anahtar konmaz |
+| general | `bootstrap`, `osLocationPicker` | String | öneri, karar 4 | `devMode` varsayılanda yok |
+| general | `activeCode` | String | **yok** (sır) | Lisans |
+| general | `efb_version` | String | okunur | Fork sürümü, sır değil |
+| responses | `sessionDuration`, `trackCodeStyle` | String | öneri | |
+| responses | `scaptcha`, `dsupfile`, `activeDlBtn`, `showIp`, `adminSN` | Boolean / String | öneri | DOM `showUpfile` → JSON `dsupfile` (varsayılan `true`) |
+| responses | `respPrimary`, `respPrimaryDark`, `respAccent`, `respText`, `respTextMuted`, `respBgCard`, `respBgMeta`, `respBgTrack`, `respBgResp`, `respBgEditor`, `respEditorText`, `respEditorPh`, `respBtnText`, `respBrandColor`, `respFontFamily`, `respFontSize`, `respCustomFont`, `respPreset` | String | öneri | `respPreset` public yanıt kutusuna konmaz (`:1833`) |
+| captchas | `siteKey` | String | öneri (herkese açık) | Fork v2. GraphQL doğrulaması `flx_captcha_gql_verify` |
+| captchas | `secretKey` | String | **yok** (sır) | |
+| captchas | `shield_silent_captcha` | String | öneri | |
+| captchas | `apiKeyMap` | String | **yok** (sır) | Public payload'da `mapKey` adıyla gider (`class-Emsfb.php:1021`). GraphQL'e konmaz |
+| email | `emailSupporter`, `femail` | String | öneri | DOM `email` → `emailSupporter` |
+| email | `email_key` | String | **yok** (sır) | `md5(track + email_key)` yönetici kodu (`class-Emsfb-public.php:5149`). HMAC benzeri |
+| email | `smtp` | Boolean | öneri | `wp_mail` var mı. Parola değil. DOM `hostSupportSmtp` |
+| email | `weeklyEmailReport`, `emailStatsReport` | Boolean | öneri | |
+| email-template | `emailTemp`, `emailBtnBgColor`, `emailBtnTextColor` | String | öneri | Şablon gövdesi büyük |
+| localization | `act_local_efb`, `text` | String | **İSTİSNA** | Fork sözlüğü. i18n `.l10n.php` |
+| payments | `flxfPayProvider` | String | öneri | `FLXF_PAY_PROVIDER_SETTING` (`payments.php:39`), varsayılan stripe. Ödeme başlatma REST'te kalır |
+| payments | `stripePKey`, `paypalPKey` | String | öneri (publishable) | |
+| payments | `stripeSKey`, `paypalSKey`, `payToken` | String | **yok** (sır) | |
+| sms | `sms_config`, `phnNo` | String | `sms_config` öneri; `phnNo` **yok** | `sms_config` değeri `wpsms` / `ws.team` / `null`. `phnNo` telefon, sır gibi tutulur |
+| eklenti | `AdnSPF`, `AdnOF`, `AdnPPF`, `AdnATC`, `AdnSS`, `AdnCPF`, `AdnESZ`, `AdnSE`, `AdnWHS`, `AdnPAP`, `AdnWSP`, `AdnSMF`, `AdnPLF`, `AdnMSF`, `AdnBEF`, `AdnPDP`, `AdnADP`, `AdnGoS`, `AdnTLG`, `AdnATF`, `AdnHSH` | `'0'` / `'1'` | öneri (bayrak) | Hepsi varsayılan `'0'` (`:1786`) |
 
-Başka seçenekler (GraphQL ayarı değil): `emsfb_pro`, `emsfb_addons_renew_required`, `emsfb_addons_dl_failures`, `emsfb_cache_plugins`, Stripe webhook sırrı.
+JSON satırında olmayan sırlar: `emsfb_telegram_bot_token` (`class-Emsfb-admin.php:323`), `emsfb_telegram_chat_id` (`:324`), `emsfb_stripe_webhook_secret` (`StripePayment::SECRET_OPTION`, `vendor/stripe/class-Emsfb-stripe-payment.php:29`; `webhook_secret()` `:213`, sabit `EMSFB_STRIPE_WEBHOOK_SECRET` veya filtre `efb_stripe_webhook_secret`).
+
+Başka seçenekler: `emsfb_pro`, `emsfb_addons_renew_required`, `emsfb_addons_dl_failures`, `emsfb_cache_plugins`, `emsfb_pending_uploads`.
 
 ## Shortcode, blok, public akış
 
@@ -211,13 +220,34 @@ Public akış (bugün):
 2. Dosya alanı önce `POST …/forms/file/upload`, sonra gönderim URL'yi yazar.
 3. Ödeme: `quote` / `stripe/card/add` veya `payment/start`, tarayıcı onayı, `confirm` veya webhook, en son `message/add` (Stripe `guard_final_submit`, `stripe-handler.php:17`).
 4. Onay kodu: shortcode veya `POST …/forms/response/get`. Yanıt: `POST …/forms/response/add`.
-5. Captcha bugün formun kendi `captcha` bayrağı + ayarlardaki Google reCAPTCHA v2 (`siteverify`, `class-Emsfb-public.php:3243`). İsteğe bağlı Shield Silent Captcha. `flx_captcha_*` çağrısı yok.
-6. Honeypot alanı yok (yalnız tanıtım metni). Gönderimde `flx_rate_limit` yok; sınır onay kodu aramasında ve ödemede.
+5. Captcha bugün formun kendi `captcha` bayrağı + ayarlardaki Google reCAPTCHA v2 (`siteverify`, `class-Emsfb-public.php:3243`). İsteğe bağlı Shield Silent Captcha. `flx_captcha_*` çağrısı yok. GraphQL `flx_captcha_gql_verify( 'flxf_submit' )` kullanır; REST siteverify aynı kalır.
+6. Honeypot alanı yok (yalnız tanıtım metni). Gönderimde `flx_rate_limit` yok; sınır onay kodu aramasında ve ödemede. GraphQL gönderimine honeypot ve `flx_rate_limit` eklenir; REST'e yeni davranış eklenmez.
 7. `flx/form` ve `flx/advanced-form` (flx-blocks) gönderimi bu pakette değil. Geçici istisna `ISTISNALAR.md`; `flxFormSubmit` açılınca o AJAX'lar ayrı PR ile kalkar.
 
 ## Tipler
 
-Ham `form_structer` GraphQL'e konmaz (bildirim e-postası, mantık, ödeme sırrı). Public tip yalnız çizilecek alanları taşır. `private` form public sorguda `null`.
+Ham `form_structer` GraphQL'e konmaz. Public `flxForm` allowlist'tir (aşağıda). `stateForm` true veya `1` ise anonim ziyaretçiye `null` (`class-Emsfb-public.php:1285`). Giriş yapmış kullanıcıya klasik sayfa formu gösterir; GraphQL de öyle.
+
+### Public allowlist (`flxForm`)
+
+Dönen: `id`, `title` (`form_name`), `formType`, adım sayısı, düğme metni (`button_single_text`), başarı metni (`thank_you_message.thankYou`, `thank_you_message.done`), alanlar. Alan: `id`, `type`, `label` (`name`), `required`, `placeholder`, seçeneklerde yalnız `value` + `label`. `hidden` (`types.js:488`) ve `disabled` (`:489`, salt okunur) alanlar listede yok. Ayrı bir admin-only anahtarı yok.
+
+Sunucudan hiç çıkmayan `form_structer` anahtarları (adlar kodda):
+
+| Anahtar | Yer |
+|---|---|
+| `email`, `email_to` | başlık. `convert.js:32`, `:48`. Public HTML `email`'i boşaltır (`class-Emsfb-public.php:1282`) |
+| `notification_rules` | `recipient`, `cc`, `bcc`, `subject` (`functions.php:3571`, `sanitize_notification_rules` `:3688`) |
+| `webhook_rules` | `url`, `method`, `payload_fields` (`sanitize_webhook_rules` `:3770`) |
+| `confirmation_rules` | `url` ve kuralın kendisi (`sanitize_confirmation_rules` `:3715`). Teşekkür metni allowlist'te; kural değil |
+| `rePage` | `functions.php` yönlendirme; public HTML `thank_you == rdrct` iken temizler (`class-Emsfb-public.php:1291`) |
+| `sendEmail`, `email_temp` | başlık (`convert.js:53`, `:65`) |
+| `smsnoti`, `sms_msg_new_noti`, `sms_msg_responsed_noti`, `sms_msg_recived_usr`, `sms_admins_phone_no` | başlık (`class-Emsfb-admin.php:308`) |
+| `telegramnoti`, `telegram_msg_new_noti`, `telegram_msg_responsed_noti`, `telegram_msg_recived_usr`, `telegram_bot_token`, `telegram_admin_chat_ids` | başlık (`:319`). Seçenek yedeği `emsfb_telegram_bot_token`, `emsfb_telegram_chat_id` |
+| `logic_rules` içinde `scope` = `notification`, `confirmation` veya `webhook` | izinli kapsamlar `functions.php:3612`. Alan kapsamı (`field`) çizim içindir; public listede yine yok (allowlist kural gövdesi taşımaz) |
+| `registered_count`, `mlen`, `dateExp` | rezervasyon sayacı (`class-Emsfb-public.php:2691`, `:2699`) |
+
+Seçenek satırından yalnız `value` ve görünen etiket kopyalanır; sayaçlar kopyalanmaz.
 
 | Tip | Alanlar (kısa) | Nullable ve nedeni | Loader |
 |---|---|---|---|
@@ -232,6 +262,8 @@ Ham `form_structer` GraphQL'e konmaz (bildirim e-postası, mantık, ödeme sırr
 | `FlxFormsWidgetPeriod` | `DAY`, `WEEK` | — | widget `period` |
 | `FlxFormsWidgetStats` | ziyaret, gönderim, gönderilen e-posta, başarısız e-posta | veri yoksa sayılar 0 | — |
 | `FlxFormsEmailError` | `date`, `recipient`, `detail` | — | — |
+| `FlxFormTrack` | `trackCode`, `formTitle`, `submittedAt`, `fields`, `replies` | kod yoksa kök hata `NOT_FOUND` (payload değil) | track |
+| `FlxFormTrackReply` | `id`, `body`, `createdAt` | — | rsp id |
 | `FlxFormSubmitPayload` | `submission { id, trackCode }`, `errors: [FlxUserError!]!` | başarıda `submission`, hatada null | — |
 
 Connection'lar `first` / `after`, üst sınır 50. `flx-forms/v1` bugün 100 ister; REST öyle kalır, GraphQL 50.
@@ -240,11 +272,12 @@ Kökler:
 
 | Alan | cap | Not |
 |---|---|---|
-| `flxForm(id: ID!): FlxFormPublic` | `public` | Çizim alanları. Gerekçe: shortcode zaten herkese aynı alanları basar |
-| `flxForms: FlxFormConnection!` | `flx_gql_any_cap( 'Emsfb', 'manage_options' )` | Yönetici listesi |
-| `flxFormSubmit(input: FlxFormSubmitInput!): FlxFormSubmitPayload!` | `public` | `form` / `survey` / `subscribe`. `captchaToken`, honeypot, oran sınırı |
-| `flxFormTrack(code: String!): FlxFormTrackResult` | `public` | Kod yoksa `NOT_FOUND`. Aynı IP sınırı |
-| `flxFormTrackReply(input: FlxFormTrackReplyInput!): FlxFormSubmitPayload!` | `public` | `captchaToken` |
+| `flxForm(id: ID!): FlxForm` | `public` | Allowlist. Gerekçe: shortcode zaten herkese aynı çizim alanlarını basar. Gizli form anonime `null` |
+| `flxFormPicker: [FlxFormPickerItem!]!` | `flx_gql_any_cap( 'edit_posts', 'Emsfb', 'manage_options' )` | Blok seçici. Yalnız `id` + `title`. Bugünkü `edit_posts` |
+| `flxForms: FlxFormConnection!` | `flx_gql_any_cap( 'Emsfb', 'manage_options' )` | Yönetici listesi. Seçici bu sorgu değildir |
+| `flxFormSubmit(input: FlxFormSubmitInput!): FlxFormSubmitPayload!` | `public` | `form` / `survey` / `subscribe`. `captchaToken`, honeypot, `flx_rate_limit`. Dosya: aşağıda |
+| `flxFormTrack(code: String!): FlxFormTrack` | `public` | Kod yoksa `NOT_FOUND`. Captcha token yok (klasik API doğrulamaz). IP sınırı |
+| `flxFormTrackReply(input: FlxFormTrackReplyInput!): FlxFormSubmitPayload!` | `public` | `message`, `attachments` (yalnız bu bilet için ayrılmış), `adminCode` (`sc`). Captcha token yok |
 | `flxFormResponses(...): FlxFormResponseConnection!` | `Emsfb` veya `manage_options` | `formId`, `unread`, `search` |
 | `flxFormResponse(id: ID!): FlxFormResponse` | aynı | Yoksa `NOT_FOUND` |
 | `flxFormResponseByTrack(code: String!): FlxFormResponse` | aynı | |
@@ -255,7 +288,17 @@ Kökler:
 | `flxFormsWidgetStats(period: FlxFormsWidgetPeriod!): FlxFormsWidgetStats!` | `manage_options` | Widget: ziyaret, gönderim, e-posta. `period` `DAY` veya `WEEK` |
 | `flxFormsEmailErrors(period: FlxFormsWidgetPeriod!): FlxFormsEmailErrorConnection!` | `manage_options` | Widget hata listesi |
 
-`FlxFormSubmitInput`: `formId: ID!`, `fields: [FlxFormFieldValueInput!]!`, `captchaToken: String`, `honeypot: String`, `pageId: ID`. Honeypot doluysa `INVALID_INPUT` (alan `honeypot`), kayıt yazılmaz.
+`FlxFormSubmitInput`: `formId: ID!`, `fields: [FlxFormFieldValueInput!]!`, `captchaToken: String`, `honeypot: String`. Honeypot doluysa `INVALID_INPUT` (alan `honeypot`), kayıt yazılmaz.
+
+`FlxFormTrackReplyInput`: `trackCode: String!`, `message: String!`, `attachments: [String!]`, `adminCode: String`. `adminCode` klasik `sc`: `hash_equals( md5( track + email_key ), adminCode )` ve `email_key` uzunluğu > 3 (`class-Emsfb-public.php:5148`). Yoksa ziyaretçi yanıtı. Yanlış kod `INVALID_INPUT`, yetki yükselmez. `email_key` dönmez.
+
+### Yükleme bağlama
+
+Klasik gönderim `validate_submitted_upload_url_efb` (`class-Emsfb-public.php:4708`, çağrı `:2943`) dosyayı `wp_upload_dir()` altında, tür ve boyut `Upload_Guard::validate_stored_file` geçiyorsa kabul eder. `emsfb_pending_uploads` (`Upload_Guard::PENDING_OPTION`, `class-Emsfb-upload-guard.php:58`) bakmaz. Defter `basename => zaman` (`track_pending_upload`, `:1068`); form id tutmaz. Yazılış: yükleme (`class-Emsfb-public.php:4370` ve çevresi) ve `file_upload_public` (`class-Emsfb-admin.php:3143`). `claim_uploaded_files_efb` (`:4158`) `insert_message_db` (`:4193`) sonrasında eşleşen adları `release_pending_uploads` ile düşer. Yetki kontrolü değil, yetim süpürgesi (`emsfb_cleanup_orphan_uploads`).
+
+Yanıt kutusu ayrı: `reserve_response_attachment` (`:875`) transient'a `message_id` + `sha256(track)` yazar. `response_attachments_are_reserved_efb` (`class-Emsfb-public.php:4014`) **çağrılır** (`:5179`). "Hiç çağrılmıyor" iddiası yanlış.
+
+GraphQL: `flxFormSubmit` URL'yi ancak basename `emsfb_pending_uploads` içindeyse ve tür/boyut kontrolü geçtiyse alır. Defterde form id olmadığı için "bu form" bağını klasik veri tutmaz; rastgele uploads URL'si reddedilir, bekleyen başka bir formun dosyası hâlâ yapışabilir (klasik zayıflık, bu PR klasik yolu değiştirmez). `flxFormTrackReply` yalnız `Upload_Guard::response_attachment_is_reserved` geçen ekleri alır (bilet bağı var).
 
 Hatalar: `UNAUTHENTICATED`, `FORBIDDEN`, `NOT_FOUND`, `INVALID_INPUT`, `CONFLICT`, `RATE_LIMITED`, `INTERNAL`. Yazmalarda `INVALID_INPUT` ve `CONFLICT` payload `errors` içine.
 
@@ -270,7 +313,7 @@ Yeni cap açılmaz. Katalogya mevcut cap'ler yazılır ki `useFlxCan` çalışs�
 | `Emsfb_addon` | yönetici | Yalnız klasik eklenti sayfası |
 | `manage_options` | yönetici | E-posta hataları, ödeme sayfası, otomasyon, sistem kontrolü |
 
-`edit_posts` blok seçicisinin REST'inde kalır; GraphQL listesi `Emsfb` ister (seçici REST'i durur).
+`edit_posts` blok seçicisinde kalır: `flxFormPicker` `flx_gql_any_cap( 'edit_posts', 'Emsfb', 'manage_options' )` ve yalnız id + başlık. Tam liste `flxForms` `Emsfb` veya `manage_options`. Pano cap'i filtreli değil (`FLXF_Dashboard::can`). Otomasyon cap'i `flxf_automations_capability` filtresi.
 
 ## Servisler (sonraki PR, bu turda yazılmayacak)
 
@@ -293,6 +336,25 @@ Yeni cap açılmaz. Katalogya mevcut cap'ler yazılır ki `useFlxCan` çalışs�
 
 Yanıt ve pano girişli istek; önbelleğe alınmaz. `flxForm` (public alan listesi) persisted GET ile önbelleğe girer. Ödeme ve dosya uçları `no-store` kalır.
 
+## Arka plan (GraphQL değil)
+
+| Kanca | Ne | Yer |
+|---|---|---|
+| `emsfb_daily_maintenance` | günlük cron | `class-Emsfb.php:215`, action `:70` |
+| `emsfb_revalidate_license` | günlük cron | aynı |
+| `emsfb_refresh_ir_cdn_status` | saatlik cron | aynı |
+| `emsfb_cleanup_orphan_uploads` | günlük cron | `class-Emsfb-upload-guard.php:75`, zaman `:1223` |
+| `emsfb_email_monitor_weekly` | haftalık cron | `class-Emsfb-email-monitor.php:18`, zaman `:519` |
+| `emsfb_email_monitor_poll`, `emsfb_email_monitor_lifecycle` | tek seferlik | `:873`, `:1887` |
+| `emsfb_check_file_access_after_activation` | tek seferlik, aktivasyon | `flx-forms-load.php:161`. Action `emsfb_file_access_check_after_activation` ayrı (`class-Emsfb.php:54`) |
+| `emsfb_addon_recovery_event` | tek seferlik | `functions.php:5467` |
+| `emsfb_update_cache_plugins_list`, `emsfb_update_security_plugins_list` | action | `class-Emsfb.php:49`. Bu taramada `wp_schedule_*` yok |
+| `flxf_automations_cleanup` | günlük cron | `class-flxf-automations.php:19`, zaman `:34` |
+| `flxf_automations_resume` | tek seferlik | `class-flxf-automations-engine.php:29`, zaman `:423` |
+| `delete_preview_page_efb` | tek seferlik | `class-Emsfb-public.php:7240`. Oluşturucu önizlemesi |
+
+Başlık bugün `Requires PHP: 7.4` (`flx-forms.php`). Uygulama PR'ı KURALLAR §10 ile 8.1 yapar ve `Requires Plugins: flx-graphql` ekler. `flx-graphql` yoksa GraphQL kaydı atlanır, REST durur.
+
 ## PR bölünmesi (uygulama, bu tur değil)
 
 1. Bu envanter.
@@ -302,11 +364,11 @@ Yanıt ve pano girişli istek; önbelleğe alınmaz. `flxForm` (public alan list
 
 Ayarlar ve otomasyonlar karar 4'e bağlı. Tek PR'a sığmaz: `get_form_public_efb` tek başına ~1600 satır (`:2233`–`:3854`).
 
-## Açık sorular
+## Kararlar
 
-1. **Captcha.** A) GraphQL yalnız `flx_captcha_gql_verify( 'flxf_submit', $token )`; fork `siteverify` REST'te kalır. B) GraphQL fork'un `secretKey`'i ile Google v2 doğrular. C) Fork anahtarları kapatılır, formlar Flux reCAPTCHA'ya taşınır. Öneri: **A**. REST baytları değişmez; yeni mutation ortak servisi kullanır. Formda `captcha` açıksa token zorunlu, kapalıysa doğrulama yok.
-2. **`flxFormSubmit` hangi türleri alır?** A) `form`, `survey`, `subscribe`. B) ayrıca `login` / `register` / `logout` / parola. C) ayrıca ödemenin son `message/add` adımı. Öneri: **A**. Kullanıcı açmak ve ödeme onayı ayrı risk; REST o türleri bugünkü gibi işler.
-3. **Public dosya.** A) Yükleme REST istisna kalır; mutation yalnız o ucun yazdığı URL'yi kabul eder. B) Ortak `POST /flx/v1/upload` için public bağlam (kit PR'ı) ve mutation `uploadId` alır. C) İlk mutation dosya alanı taşımaz. Öneri: **A** bu pakette, headless dosya gerekirse **B** ayrı kit işi. Kit bu PR'da değişmez.
-4. **Ayarlar ve otomasyonlar.** A) İkisi de sonraki PR (ayarlarda sırlar write-only). B) Ayarlar pano PR'ına girer; otomasyonlar klasik kalır. C) İkisi de klasik kalır. Öneri: **B**. Ayarlar `page=Emsfb` üzerindedir; otomasyon ayrı Flux sayfası ve sahip listesinde yok.
+1. **Captcha.** Kapandı: **1A**. `flx_captcha_gql_verify( 'flxf_submit' )`. Bağlam `flx_captcha_contexts`. Fork siteverify REST'te kalır.
+2. **Gönderim türü.** Kapandı: **2A**. `form` / `survey` / `subscribe`. `login`, `register`, `logout`, parola kurtarma ve ödemenin son adımı REST istisnası.
+3. **Dosya.** Kapandı: **3A**, yukarıdaki bağlama ile. Klasik `validate_submitted_upload_url_efb` zayıflığı bu PR'da düzeltilmez.
+4. **Ayarlar ve otomasyonlar.** Açık. Sahip kararı beklenir. Öneri duruyor: ayarlar sonraki React diliminde (sırlar write-only), otomasyonlar ayrı.
 
-Teknik karar (soru değil): public `flxForm` ham yapıyı dönmez. Bildirim e-postası ve anahtar sızmaz. Honeypot ve gönderim oran sınırı kodda yok; mutation'a eklenir, REST'e yeni davranış eklenmez.
+Teknik: public `flxForm` ham yapı dönmez. Honeypot ve gönderim oran sınırı GraphQL'e eklenir, REST baytları aynı kalır. `response_attachments_are_reserved_efb` `:5179`'da çağrılır. `flxf_dashboard_capability` diye bir filtre yok. `get_setting_Emsfb` `functions.php` içinde değil.
