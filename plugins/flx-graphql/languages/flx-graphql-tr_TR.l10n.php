@@ -59,6 +59,8 @@ return array(
   'Flux GraphQL: the separately installed WPGraphQL %s is not supported, so FluxWP GraphQL screens are off.' => 'Flux GraphQL: ayrı kurulmuş WPGraphQL %s desteklenmiyor, bu yüzden FluxWP GraphQL ekranları kapalı.',
   'Only queries shipped with FluxWP packages run (%d known).' => 'Yalnız FluxWP paketleriyle gelen sorgular çalışır (%d tanınan).',
   'You are not allowed to manage plugins.' => 'Eklentileri yönetmeye yetkiniz yok.',
+  'This screen needs JavaScript.' => 'Bu ekran JavaScript gerektirir.',
+  'Loading the screen…' => 'Ekran yükleniyor…',
   'Uploads are not accepted for this screen.' => 'Bu ekran için dosya yüklenemez.',
   'You do not have permission to upload files here.' => 'Buraya dosya yüklemeye yetkiniz yok.',
   'Too many uploads. Wait a few minutes and try again.' => 'Çok fazla yükleme. Birkaç dakika bekleyip yeniden deneyin.',

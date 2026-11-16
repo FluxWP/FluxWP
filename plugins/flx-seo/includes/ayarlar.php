@@ -367,9 +367,7 @@ function flxseo_settings_page() {
 		return;
 	}
 	$tab = isset( $_GET['tab'] ) ? sanitize_key( $_GET['tab'] ) : 'genel'; // phpcs:ignore WordPress.Security.NonceVerification
-	if ( flxseo_flux_ui() ) {
-		echo '<style>#flxseo-app.flux-root{height:auto;background:transparent;font-family:inherit}</style>';
-		echo '<div class="wrap flxseo-wrap"><div id="flxseo-app"><noscript>' . esc_html__( 'JavaScript is required for this screen.', 'flx-seo' ) . '</noscript></div></div>';
+	if ( flxseo_flux_ui() && flx_admin_screen_render() ) {
 		return;
 	}
 	$o   = wp_parse_args( (array) get_option( 'flxseo', array() ), flxseo_defaults() );

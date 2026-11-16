@@ -75,6 +75,9 @@ kbd{font-family:var(--flux-font-mono);font-size:11px;padding:1px 6px;border-radi
 .tone-accent .card-icon{background:color-mix(in srgb,var(--flux-primary) 14%,transparent);color:var(--flux-primary)}
 .btn-primary.danger-bg{background:var(--flux-danger);color:#fff}
 .loading{display:grid;place-items:center;padding:40px;color:var(--flux-text-muted)}
+/* A short wait shows no spinner (no flash when a screen opens from the cache or the preload). */
+.loading{animation:flux-loading-in .2s ease-out .25s both}
+@keyframes flux-loading-in{from{opacity:0}to{opacity:1}}
 .empty-mini{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;padding:56px 24px;color:var(--flux-text-muted)}
 .empty-mini strong{color:var(--flux-text)}
 .field textarea{padding:10px 12px;border-radius:var(--flux-radius-md);border:1px solid var(--flux-border);background:var(--flux-bg);font:inherit;color:inherit;resize:vertical;outline:none}
