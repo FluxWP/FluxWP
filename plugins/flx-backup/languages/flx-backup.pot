@@ -1,7 +1,62 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: en_US\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Full backup"
+msgstr ""
+
+msgid "Database"
+msgstr ""
+
+msgid "Files"
+msgstr ""
+
+msgid "Pre-update"
+msgstr ""
+
+msgid "Manual"
+msgstr ""
+
+msgid "Running"
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+msgid "Backup not found."
+msgstr ""
+
 msgid "Backups"
+msgstr ""
+
+msgid "%s locked"
+msgid_plural "%s locked"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%s backup"
+msgid_plural "%s backups"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%s file"
+msgid_plural "%s files"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%s other item"
+msgid_plural "%s other items"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%s row"
+msgid_plural "%s rows"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "JavaScript is required for this screen."
 msgstr ""
 
 msgid "Backups › Dashboard"
@@ -124,6 +179,12 @@ msgstr ""
 msgid "Back up now"
 msgstr ""
 
+msgid "New view"
+msgstr ""
+
+msgid "Open the new view (same features, works in the FluxWP app too)."
+msgstr ""
+
 msgid "Settings saved."
 msgstr ""
 
@@ -134,9 +195,6 @@ msgid "The backup folder is not writable: %s"
 msgstr ""
 
 msgid "Backup type"
-msgstr ""
-
-msgid "Full backup"
 msgstr ""
 
 msgid "Database + wp-content (plugins, themes, uploads)"
@@ -196,9 +254,6 @@ msgstr ""
 msgid "Last successful backup"
 msgstr ""
 
-msgid "%s ago"
-msgstr ""
-
 msgid "No backups yet."
 msgstr ""
 
@@ -248,9 +303,6 @@ msgid "View all"
 msgstr ""
 
 msgid "No backups yet. Take the first one with \"Back up now\"; a backup is taken automatically before plugin and theme updates."
-msgstr ""
-
-msgid "Running"
 msgstr ""
 
 msgid "Recent events"
@@ -313,9 +365,6 @@ msgstr ""
 msgid "Backups are stored in %s. Hostinger does not include this folder in its own backups: download important backups to your computer."
 msgstr ""
 
-msgid "Database"
-msgstr ""
-
 msgid "Plugin"
 msgstr ""
 
@@ -364,16 +413,10 @@ msgstr ""
 msgid "All backups"
 msgstr ""
 
-msgid "Backup not found."
-msgstr ""
-
 msgid "Backup file"
 msgstr ""
 
 msgid "Uncompressed size"
-msgstr ""
-
-msgid "Files"
 msgstr ""
 
 msgid "%1$s tables, %2$s rows"
@@ -571,12 +614,6 @@ msgstr ""
 msgid "Save settings"
 msgstr ""
 
-msgid "Could not delete."
-msgstr ""
-
-msgid "No operation is running."
-msgstr ""
-
 msgid "Nothing was selected to back up."
 msgstr ""
 
@@ -595,6 +632,9 @@ msgstr ""
 msgid "Path not found: %s"
 msgstr ""
 
+msgid "The backup was cut off %s times at the same point (server time limit). Try with fewer folders or add large folders to the exclusions."
+msgstr ""
+
 msgid "Could not write a temporary file."
 msgstr ""
 
@@ -610,16 +650,13 @@ msgstr ""
 msgid "The backup record was deleted."
 msgstr ""
 
-msgid "Could not open the zip file."
-msgstr ""
-
 msgid "Could not add the database dump to the archive."
 msgstr ""
 
 msgid "Could not write the zip (the disk may be full)."
 msgstr ""
 
-msgid "The backup was cut off %s times at the same point (server time limit). Try with fewer folders or add large folders to the exclusions."
+msgid "Could not open the zip file."
 msgstr ""
 
 msgid "Backup taken: %1$s (%2$s)"
@@ -711,6 +748,11 @@ msgstr ""
 
 msgid "Flux Backup scheduled tasks"
 msgstr ""
+
+msgid "%s backup past its retention period was deleted."
+msgid_plural "%s backups past their retention period were deleted."
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Could not start the scheduled backup: %s"
 msgstr ""
@@ -865,6 +907,16 @@ msgstr ""
 msgid "Could not verify the session. Reload the page."
 msgstr ""
 
+msgid "Before updating %s package"
+msgid_plural "Before updating %s packages"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%1$s old backup deleted for the quota: %2$s"
+msgid_plural "%1$s old backups deleted for the quota: %2$s"
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Backup deleted: %s"
 msgstr ""
 
@@ -872,12 +924,6 @@ msgid "Before %1$s %2$s → %3$s"
 msgstr ""
 
 msgid "Before updating %s"
-msgstr ""
-
-msgid "Pre-update"
-msgstr ""
-
-msgid "Manual"
 msgstr ""
 
 msgid "Scheduled"
@@ -961,91 +1007,659 @@ msgstr ""
 msgid "The uncompressed size of the backup is not plausible; the file was not accepted."
 msgstr ""
 
-msgid "%s file"
-msgid_plural "%s files"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "%s locked"
-msgid_plural "%s locked"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "Before updating %s package"
-msgid_plural "Before updating %s packages"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "%s row"
-msgid_plural "%s rows"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "%s backup"
-msgid_plural "%s backups"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "%s other item"
-msgid_plural "%s other items"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "%1$s old backup deleted for the quota: %2$s"
-msgid_plural "%1$s old backups deleted for the quota: %2$s"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "%s backup past its retention period was deleted."
-msgid_plural "%s backups past their retention period were deleted."
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "Takes an automatic backup before every plugin/theme update, scheduled full backups, quota and retention management, a storage dashboard with charts and selective restore. Compatible with Hostinger shared hosting."
+msgid "No operation is running."
 msgstr ""
 
-msgctxt "context_fd86717aca41"
-msgid "%s%%"
+msgid "Could not delete."
 msgstr ""
 
-msgid "The archive file is deleted too."
+msgid "What a backup holds or why it was taken."
 msgstr ""
 
-msgid "Status"
+msgid "Backup types a person can start."
 msgstr ""
 
-msgid "Restore is only available in the panel."
+msgid "State of a backup."
 msgstr ""
 
-msgid "Error"
+msgid "How long a backup is kept."
 msgstr ""
 
-msgid "Deleted"
+msgid "State of the background job."
 msgstr ""
 
-msgid "Take a full backup?"
+msgid "What the background job does."
 msgstr ""
 
-msgid "Done"
+msgid "Which updates are backed up first."
 msgstr ""
 
-msgid "The backup runs in the background and shows up in the list when it finishes."
+msgid "How often a full backup is scheduled."
 msgstr ""
 
-msgid "Backup started"
+msgid "A package updated right after a pre-update backup."
 msgstr ""
 
-msgid "Delete this backup?"
+msgid "Package slug."
 msgstr ""
 
-msgid "No backups"
+msgid "Package name (the slug when unknown)."
 msgstr ""
 
-msgid "Back up"
+msgid "Version before the update; empty when unknown."
 msgstr ""
 
-msgid "Progress"
+msgid "Version after the update; empty when unknown."
 msgstr ""
 
-msgid "Take the first backup with Back up now. Restore is done in the panel."
+msgid "Name and versions as one line."
+msgstr ""
+
+msgid "One folder of a backup that can be restored."
+msgstr ""
+
+msgid "Path relative to the WordPress root folder."
+msgstr ""
+
+msgid "Name shown in the dialog."
+msgstr ""
+
+msgid "Restore choices of one kind: plugins, themes or other folders."
+msgstr ""
+
+msgid "Group key: plugins, themes or other."
+msgstr ""
+
+msgid "Group name."
+msgstr ""
+
+msgid "Folders in the group."
+msgstr ""
+
+msgid "What the restore dialog offers for a backup."
+msgstr ""
+
+msgid "Backup ID."
+msgstr ""
+
+msgid "Backup name and date."
+msgstr ""
+
+msgid "The database can be restored (it is in the backup and the table prefix matches)."
+msgstr ""
+
+msgid "Folders that can be restored, by kind."
+msgstr ""
+
+msgid "Address of the site the backup was taken on, when it is another site."
+msgstr ""
+
+msgid "Table prefix in the backup when it differs from this site's."
+msgstr ""
+
+msgid "This site's table prefix when it differs from the backup's."
+msgstr ""
+
+msgid "One plugin, theme, table or folder in the size breakdown."
+msgstr ""
+
+msgid "Path or table name in the backup."
+msgstr ""
+
+msgid "Name shown on the screen."
+msgstr ""
+
+msgid "Size on the site in bytes (for the database, the SQL dump)."
+msgstr ""
+
+msgid "Compressed size in the archive in bytes."
+msgstr ""
+
+msgid "Number of files (rows for the database)."
+msgstr ""
+
+msgid "A section of the size breakdown: database, core, plugins, themes, media or other."
+msgstr ""
+
+msgid "Section key."
+msgstr ""
+
+msgid "Section name."
+msgstr ""
+
+msgid "Chart colour."
+msgstr ""
+
+msgid "Counts are rows, not files."
+msgstr ""
+
+msgid "Size on the site in bytes."
+msgstr ""
+
+msgid "Compressed size in bytes."
+msgstr ""
+
+msgid "The biggest items of the section."
+msgstr ""
+
+msgid "Files or rows in the items not listed."
+msgstr ""
+
+msgid "Size of the items not listed in bytes."
+msgstr ""
+
+msgid "Compressed size of the items not listed in bytes."
+msgstr ""
+
+msgid "How many items are not listed."
+msgstr ""
+
+msgid "Where the size of a backup goes."
+msgstr ""
+
+msgid "Total size on the site in bytes."
+msgstr ""
+
+msgid "Total size in the archive in bytes."
+msgstr ""
+
+msgid "Sections, in display order."
+msgstr ""
+
+msgid "A backup: a zip with the database and/or files, kept in the backup folder."
+msgstr ""
+
+msgid "Backup ID (not a global ID)."
+msgstr ""
+
+msgid "What the backup holds or why it was taken."
+msgstr ""
+
+msgid "Type name in the user's language."
+msgstr ""
+
+msgid "Chart colour of the type."
+msgstr ""
+
+msgid "Running, finished or failed."
+msgstr ""
+
+msgid "Status name in the user's language."
+msgstr ""
+
+msgid "Description, or a generated name such as \"Before Plugin 1.0 → 1.1\"."
+msgstr ""
+
+msgid "Description the person typed; empty when none."
+msgstr ""
+
+msgid "Size of the zip in bytes (0 while running)."
+msgstr ""
+
+msgid "Size as text; empty unless finished."
+msgstr ""
+
+msgid "Number of files in the backup."
+msgstr ""
+
+msgid "The database is in the backup."
+msgstr ""
+
+msgid "What the backup holds, as short names."
+msgstr ""
+
+msgid "Where it came from: manual, schedule, auto, update, cli, safety, api, upload; empty when unknown."
+msgstr ""
+
+msgid "Source name in the user's language."
+msgstr ""
+
+msgid "Site the backup was taken on; set for uploaded backups only."
+msgstr ""
+
+msgid "WordPress version when the backup was taken; empty when unknown."
+msgstr ""
+
+msgid "Never deleted automatically."
+msgstr ""
+
+msgid "How long the backup is kept."
+msgstr ""
+
+msgid "Retention as text."
+msgstr ""
+
+msgid "Why it failed; empty otherwise."
+msgstr ""
+
+msgid "Packages a pre-update backup was taken for."
+msgstr ""
+
+msgid "Signed link that downloads the zip (the file is not sent through GraphQL); empty unless finished."
+msgstr ""
+
+msgid "Progress of a running backup; empty otherwise."
+msgstr ""
+
+msgid "Progress text of a running backup."
+msgstr ""
+
+msgid "The backup is still being taken."
+msgstr ""
+
+msgid "When the backup was started."
+msgstr ""
+
+msgid "When the backup was finished; empty while running."
+msgstr ""
+
+msgid "Date the backup is kept until; empty when there is no date."
+msgstr ""
+
+msgid "When an uploaded backup was originally taken."
+msgstr ""
+
+msgid "What can be restored; empty unless the backup is finished."
+msgstr ""
+
+msgid "Where the size goes. Reading the zip takes a while the first time, so ask for it on the detail page only."
+msgstr ""
+
+msgid "A page of backups, newest first."
+msgstr ""
+
+msgid "Number of backups of one type."
+msgstr ""
+
+msgid "Type."
+msgstr ""
+
+msgid "Backups of the type."
+msgstr ""
+
+msgid "Totals for the filter links and the footer of the backup list."
+msgstr ""
+
+msgid "Number of backups."
+msgstr ""
+
+msgid "Total size of the backups in bytes."
+msgstr ""
+
+msgid "Total size as text."
+msgstr ""
+
+msgid "Backups by type; types without a backup are left out."
+msgstr ""
+
+msgid "Storage used by one backup type."
+msgstr ""
+
+msgid "Bytes used."
+msgstr ""
+
+msgid "Bytes used as text."
+msgstr ""
+
+msgid "Finished backups of the type."
+msgstr ""
+
+msgid "Percent of all backup storage."
+msgstr ""
+
+msgid "A line of the backup event log."
+msgstr ""
+
+msgid "info, warning or error."
+msgstr ""
+
+msgid "What happened."
+msgstr ""
+
+msgid "When it happened."
+msgstr ""
+
+msgid "The dashboard: storage, counts, last and next backup, by type, recent backups and events."
+msgstr ""
+
+msgid "Storage used by backups in bytes."
+msgstr ""
+
+msgid "Storage used as text."
+msgstr ""
+
+msgid "Storage quota in bytes."
+msgstr ""
+
+msgid "Storage quota as text."
+msgstr ""
+
+msgid "Percent of the quota used (0–100)."
+msgstr ""
+
+msgid "ok, warning (over 80%) or error (over 95%)."
+msgstr ""
+
+msgid "Free quota as text."
+msgstr ""
+
+msgid "Finished backups."
+msgstr ""
+
+msgid "Finished backups that are locked."
+msgstr ""
+
+msgid "Last finished backup; empty when there is none."
+msgstr ""
+
+msgid "Scheduled backup frequency."
+msgstr ""
+
+msgid "Storage by type."
+msgstr ""
+
+msgid "The six newest backups."
+msgstr ""
+
+msgid "The seven latest events."
+msgstr ""
+
+msgid "Next scheduled backup; empty when the schedule is off."
+msgstr ""
+
+msgid "Storage on one day of the history chart."
+msgstr ""
+
+msgid "Date, YYYY-MM-DD."
+msgstr ""
+
+msgid "Short date for the axis."
+msgstr ""
+
+msgid "Date for the tooltip."
+msgstr ""
+
+msgid "Bytes by type, in the order of the series."
+msgstr ""
+
+msgid "Bytes by type as text."
+msgstr ""
+
+msgid "Total bytes as text."
+msgstr ""
+
+msgid "A measurement exists for the day; false before the first one."
+msgstr ""
+
+msgid "A backup type in the history chart."
+msgstr ""
+
+msgid "Type key."
+msgstr ""
+
+msgid "A mark on the Y axis."
+msgstr ""
+
+msgid "Bytes."
+msgstr ""
+
+msgid "Bytes as text."
+msgstr ""
+
+msgid "Y axis of the chart for the last 30, 90 or 180 days."
+msgstr ""
+
+msgid "Number of days."
+msgstr ""
+
+msgid "Top of the axis in bytes."
+msgstr ""
+
+msgid "Usage is near the quota, so the quota line is drawn."
+msgstr ""
+
+msgid "Marks of the axis."
+msgstr ""
+
+msgid "Storage history: one measurement a day for 180 days."
+msgstr ""
+
+msgid "The last 180 days, oldest first; days without a measurement repeat the previous one."
+msgstr ""
+
+msgid "Backup types, in the order of each day's values."
+msgstr ""
+
+msgid "Axis for each range."
+msgstr ""
+
+msgid "Quota in bytes."
+msgstr ""
+
+msgid "Quota as a chart label."
+msgstr ""
+
+msgid "Flux Backup settings."
+msgstr ""
+
+msgid "Storage quota in GB."
+msgstr ""
+
+msgid "Days a pre-update backup is kept."
+msgstr ""
+
+msgid "Scheduled full backup frequency."
+msgstr ""
+
+msgid "Hour of the day (0–23) in the site's time zone."
+msgstr ""
+
+msgid "Day of the week for weekly backups: 0 = Sunday … 6 = Saturday."
+msgstr ""
+
+msgid "How many scheduled backups are kept."
+msgstr ""
+
+msgid "WordPress core files are added to full backups."
+msgstr ""
+
+msgid "Extra paths left out, one per line."
+msgstr ""
+
+msgid "A safety backup of the database is taken before restoring it."
+msgstr ""
+
+msgid "Backup files are deleted when the plugin is deleted."
+msgstr ""
+
+msgid "Server state and the values the upload and start dialogs need."
+msgstr ""
+
+msgid "The PHP zip extension is available."
+msgstr ""
+
+msgid "The backup folder is writable."
+msgstr ""
+
+msgid "Backup folder relative to the WordPress root folder."
+msgstr ""
+
+msgid "Size in bytes of the pieces a backup is uploaded in."
+msgstr ""
+
+msgid "Token the chunked upload (admin-ajax flxy_upload_*) needs."
+msgstr ""
+
+msgid "admin-ajax address of the chunked upload."
+msgstr ""
+
+msgid "Result of a restore finished in the last 10 minutes."
+msgstr ""
+
+msgid "Default of the \"include WordPress core\" choice."
+msgstr ""
+
+msgid "Default of the \"safety backup\" choice."
+msgstr ""
+
+msgid "The backup or restore running in the background (one at a time)."
+msgstr ""
+
+msgid "Idle, running, done or failed."
+msgstr ""
+
+msgid "Backup or restore; empty when idle."
+msgstr ""
+
+msgid "ID of the backup the job makes or restores; empty when idle."
+msgstr ""
+
+msgid "Internal phase name."
+msgstr ""
+
+msgid "Progress, 0–100."
+msgstr ""
+
+msgid "What the job is doing now."
+msgstr ""
+
+msgid "Why the job failed; empty otherwise."
+msgstr ""
+
+msgid "Job token. After a database restore the login session may be gone; the screen then keeps stepping through admin-ajax flxy_step with this token."
+msgstr ""
+
+msgid "The job was cancelled."
+msgstr ""
+
+msgid "Seconds since the job started."
+msgstr ""
+
+msgid "Elapsed time as text."
+msgstr ""
+
+msgid "Estimated seconds left; empty until it can be estimated."
+msgstr ""
+
+msgid "Estimated time left as text."
+msgstr ""
+
+msgid "Name of the backup."
+msgstr ""
+
+msgid "Size of the backup as text; empty until known."
+msgstr ""
+
+msgid "Result text of a finished restore."
+msgstr ""
+
+msgid "Backups, newest first."
+msgstr ""
+
+msgid "Only backups of this type."
+msgstr ""
+
+msgid "Only backups in this state."
+msgstr ""
+
+msgid "One backup; empty when the ID is unknown."
+msgstr ""
+
+msgid "Storage history for the dashboard chart."
+msgstr ""
+
+msgid "State of the running or just finished backup or restore. Only reads: use flxBackupStep to advance it."
+msgstr ""
+
+msgid "Starts a backup in the background; poll flxBackupJob and call flxBackupStep to keep it moving. Conflict (errors) while another job runs."
+msgstr ""
+
+msgid "What to back up. Default: full."
+msgstr ""
+
+msgid "Description (up to 120 characters)."
+msgstr ""
+
+msgid "Add WordPress core files (full backups only). Default: the setting."
+msgstr ""
+
+msgid "Never delete automatically, even when the quota is full."
+msgstr ""
+
+msgid "The job that was started."
+msgstr ""
+
+msgid "Starts restoring the chosen parts of a backup in the background. Overwrites the current database and files; needs the highest permission."
+msgstr ""
+
+msgid "Restore the whole database."
+msgstr ""
+
+msgid "Paths to restore (the path values of flxBackup.restore.groups); the backup's own paths or folders below them."
+msgstr ""
+
+msgid "Take a safety backup of the current database first. Default: the setting."
+msgstr ""
+
+msgid "Advances the running job by one time budget (about 8 seconds) and returns its state. Does nothing when no job runs."
+msgstr ""
+
+msgid "The job after the step."
+msgstr ""
+
+msgid "Cancels the running backup or restore. A step in progress finishes first (pending)."
+msgstr ""
+
+msgid "A step is running; the job is cancelled when it ends."
+msgstr ""
+
+msgid "The job after the cancel."
+msgstr ""
+
+msgid "Permanently deletes backups; a running one is cancelled first. Needs the highest permission."
+msgstr ""
+
+msgid "Backup IDs."
+msgstr ""
+
+msgid "IDs that were deleted."
+msgstr ""
+
+msgid "Totals after the delete."
+msgstr ""
+
+msgid "Locks a backup so the quota and retention never delete it, or unlocks it."
+msgstr ""
+
+msgid "true locks, false unlocks."
+msgstr ""
+
+msgid "The backup after the change."
+msgstr ""
+
+msgid "Saves Flux Backup settings. Fields you leave out stay as they are; values are limited to their range."
+msgstr ""
+
+msgid "Storage quota in GB (0.1–10000)."
+msgstr ""
+
+msgid "Days a pre-update backup is kept (1–365)."
+msgstr ""
+
+msgid "How many scheduled backups are kept (1–100)."
+msgstr ""
+
+msgid "Add WordPress core files to full backups."
+msgstr ""
+
+msgid "Extra paths left out, one per line, relative to the WordPress root folder; * works as a wildcard."
+msgstr ""
+
+msgid "Take a safety backup of the database before restoring it."
+msgstr ""
+
+msgid "Delete backup files when the plugin is deleted."
+msgstr ""
+
+msgid "The settings after the change."
 msgstr ""

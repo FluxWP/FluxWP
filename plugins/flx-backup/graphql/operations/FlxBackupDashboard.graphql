@@ -1,0 +1,93 @@
+# Everything the Backups dashboard shows: storage, counts, last and next backup, chart, recent backups, events.
+query FlxBackupDashboard {
+  flxBackupOverview {
+    usedBytes
+    usedLabel
+    quotaBytes
+    quotaLabel
+    percent
+    level
+    freeLabel
+    backupCount
+    lockedCount
+    last {
+      id
+      title
+      created {
+        timestamp
+        label
+        relative
+      }
+    }
+    nextRun {
+      timestamp
+      label
+    }
+    scheduleKind
+    preScope
+    byType {
+      type
+      label
+      color
+      bytes
+      bytesLabel
+      count
+      share
+    }
+    recent {
+      id
+      type
+      typeLabel
+      typeColor
+      status
+      title
+      sizeLabel
+      error
+      created {
+        timestamp
+        label
+      }
+    }
+    events {
+      level
+      message
+      at {
+        timestamp
+        label
+      }
+    }
+  }
+  flxBackupHistory {
+    days {
+      key
+      label
+      fullLabel
+      values
+      valueLabels
+      totalLabel
+      measured
+    }
+    series {
+      key
+      name
+      color
+    }
+    ranges {
+      days
+      max
+      showQuota
+      ticks {
+        value
+        label
+      }
+    }
+    quota
+    quotaLabel
+  }
+  flxBackupHealth {
+    ...FlxBackupHealthFields
+  }
+  flxBackupSettings {
+    ...FlxBackupSettingsFields
+  }
+}

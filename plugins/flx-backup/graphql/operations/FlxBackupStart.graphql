@@ -1,0 +1,12 @@
+mutation FlxBackupStart($input: FlxBackupStartInput!) {
+  flxBackupStart(input: $input) {
+    job {
+      ...FlxBackupJobFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

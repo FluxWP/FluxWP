@@ -45,6 +45,8 @@ Kaldırılma koşulu olan uçlar. Koşul gerçekleşince satır silinir, uç kal
 | FluxApp bootstrap/me/sync/config/manifest/dashboard/prefs/session REST uçları | flx-app | Mağazadaki eski uygulama sürümleri | Faz 7 (satır 1 ile birlikte kalkar) |
 | Flux Social `/flx-social/v1/calendar` ve FluxApp modül kimliği `social` | flx-social | FluxApp eski sürümleri bu uca ve eski modül kimliğine bağlı (yeni kimlik `flxsm-social`) | En düşük desteklenen uygulama sürümü GraphQL istemcisine geçince |
 | Flux Files `flx-files/v1/op` | flx-files | Klasik ekran ve eski FluxApp sürümleri; servisi çağırır, çıktı aynı | Eski sürümler desteklenmeyince kalkar |
+| Flux Backup: yedek indirme (`admin-post flxy_download`), parçalı yükleme (`admin-ajax flxy_upload_*`) | flx-backup | Dosya akışı; GraphQL yalnız imzalı `downloadUrl` verir, yükleme çok parçalı ikili veri | `FlxBackup.downloadUrl`; yükleme sonrası kayıt `flxBackup` ile okunur |
+| Flux Backup: `admin-ajax flxy_step` belirteç yolu | flx-backup | Veritabanı geri yüklemesi oturumu silebilir; ekran iş belirteciyle adımlamayı sürdürmeli | Oturum açıkken `flxBackupStep` |
 
 ## Satır ekleme
 

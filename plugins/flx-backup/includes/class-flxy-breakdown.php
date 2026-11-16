@@ -21,6 +21,7 @@ final class FLXY_Breakdown {
 	const TOP     = 15;
 	const CATS    = array( 'db', 'core', 'plugins', 'themes', 'uploads', 'other' );
 
+	/** @return array<string,string> */
 	public static function labels(): array {
 		return array(
 			'db'      => __( 'Database', 'flx-backup' ),
@@ -32,6 +33,7 @@ final class FLXY_Breakdown {
 		);
 	}
 
+	/** @return array<string,string> */
 	public static function colors(): array {
 		return array(
 			'db'      => '#2a78d6',
@@ -45,6 +47,9 @@ final class FLXY_Breakdown {
 
 	/**
 	 * Kayıt için dökümü döndürür; yoksa hesaplayıp kayda yazar.
+	 *
+	 * @param array<string,mixed> $rec
+	 * @return array<string,mixed>|null
 	 */
 	public static function for_record( array $rec ): ?array {
 		if ( isset( $rec['breakdown']['v'] ) && (int) $rec['breakdown']['v'] === self::VERSION && (int) ( $rec['breakdown']['size'] ?? 0 ) === (int) $rec['size'] ) {

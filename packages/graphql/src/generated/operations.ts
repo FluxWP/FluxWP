@@ -705,6 +705,114 @@ export const FlxAppSync: FlxOperation<T.FlxAppSyncQuery, T.FlxAppSyncQueryVariab
   document: "query FlxAppSync($since: Int) {\n  flxAppSync(since: $since) {\n    counts {\n      key\n      value\n    }\n    hashes {\n      me\n      config\n      manifest\n    }\n    events {\n      event\n      title\n      body\n      target\n      params\n      at\n    }\n    serverTime\n  }\n}",
 };
 
+/** mutation FlxBackupCancel (flx-backup, plugins/flx-backup/graphql/operations/FlxBackupCancel.graphql) */
+export const FlxBackupCancel: FlxOperation<T.FlxBackupCancelMutation, T.FlxBackupCancelMutationVariables> = {
+  id: '8488b51d8ac2b33ecbd21791e9f59b8915e6afc07bd6bb903a5c002010852316',
+  name: 'FlxBackupCancel',
+  kind: 'mutation',
+  plugin: 'flx-backup',
+  document: "mutation FlxBackupCancel {\n  flxBackupCancel(input: {  }) {\n    pending\n    job {\n      ...FlxBackupJobFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxBackupJobFields on FlxBackupJob {\n  status\n  kind\n  id\n  phase\n  percent\n  text\n  error\n  token\n  cancelled\n  elapsed\n  elapsedLabel\n  eta\n  etaLabel\n  title\n  sizeLabel\n  result\n}",
+};
+
+/** query FlxBackupDashboard (flx-backup, plugins/flx-backup/graphql/operations/FlxBackupDashboard.graphql) */
+export const FlxBackupDashboard: FlxOperation<T.FlxBackupDashboardQuery, T.FlxBackupDashboardQueryVariables> = {
+  id: '5e0c2cbc788253a2687dbd388201e2a17fd45703bb4e80d90ee27db885b7a7dd',
+  name: 'FlxBackupDashboard',
+  kind: 'query',
+  plugin: 'flx-backup',
+  document: "query FlxBackupDashboard {\n  flxBackupOverview {\n    usedBytes\n    usedLabel\n    quotaBytes\n    quotaLabel\n    percent\n    level\n    freeLabel\n    backupCount\n    lockedCount\n    last {\n      id\n      title\n      created {\n        timestamp\n        label\n        relative\n      }\n    }\n    nextRun {\n      timestamp\n      label\n    }\n    scheduleKind\n    preScope\n    byType {\n      type\n      label\n      color\n      bytes\n      bytesLabel\n      count\n      share\n    }\n    recent {\n      id\n      type\n      typeLabel\n      typeColor\n      status\n      title\n      sizeLabel\n      error\n      created {\n        timestamp\n        label\n      }\n    }\n    events {\n      level\n      message\n      at {\n        timestamp\n        label\n      }\n    }\n  }\n  flxBackupHistory {\n    days {\n      key\n      label\n      fullLabel\n      values\n      valueLabels\n      totalLabel\n      measured\n    }\n    series {\n      key\n      name\n      color\n    }\n    ranges {\n      days\n      max\n      showQuota\n      ticks {\n        value\n        label\n      }\n    }\n    quota\n    quotaLabel\n  }\n  flxBackupHealth {\n    ...FlxBackupHealthFields\n  }\n  flxBackupSettings {\n    ...FlxBackupSettingsFields\n  }\n}\n\nfragment FlxBackupHealthFields on FlxBackupHealth {\n  zipAvailable\n  writable\n  folder\n  chunkSize\n  nonce\n  ajaxUrl\n  lastRestore\n  includeCoreDefault\n  safetyDefault\n}\n\nfragment FlxBackupSettingsFields on FlxBackupSettings {\n  quotaGb\n  preScope\n  preKeepDays\n  schedule\n  scheduleHour\n  scheduleDay\n  scheduleKeep\n  includeCore\n  exclude\n  safetyRestore\n  deleteOnUninstall\n}",
+};
+
+/** mutation FlxBackupDelete (flx-backup, plugins/flx-backup/graphql/operations/FlxBackupDelete.graphql) */
+export const FlxBackupDelete: FlxOperation<T.FlxBackupDeleteMutation, T.FlxBackupDeleteMutationVariables> = {
+  id: '762db37c8115f91fa0708dd983e1d5a6497ff9e471a1d48d4736e39b966030c8',
+  name: 'FlxBackupDelete',
+  kind: 'mutation',
+  plugin: 'flx-backup',
+  document: "mutation FlxBackupDelete($input: FlxBackupDeleteInput!) {\n  flxBackupDelete(input: $input) {\n    deletedIds\n    counts {\n      ...FlxBackupCountsFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxBackupCountsFields on FlxBackupCounts {\n  all\n  usedBytes\n  usedLabel\n  types {\n    type\n    label\n    count\n  }\n}",
+};
+
+/** query FlxBackupDetail (flx-backup, plugins/flx-backup/graphql/operations/FlxBackupDetail.graphql) */
+export const FlxBackupDetail: FlxOperation<T.FlxBackupDetailQuery, T.FlxBackupDetailQueryVariables> = {
+  id: '7efa2a37904f7bc808c0c94dd88aad63935b3f1b89f6d6f859769c0ffbfedfe8',
+  name: 'FlxBackupDetail',
+  kind: 'query',
+  plugin: 'flx-backup',
+  document: "query FlxBackupDetail($id: ID!) {\n  flxBackup(id: $id) {\n    ...FlxBackupRow\n    wpVersion\n    originalCreated {\n      timestamp\n      label\n    }\n    finished {\n      timestamp\n      label\n    }\n    keepUntil {\n      timestamp\n      label\n    }\n    breakdown {\n      raw\n      zip\n      categories {\n        key\n        label\n        color\n        isDatabase\n        raw\n        zip\n        count\n        items {\n          name\n          label\n          raw\n          zip\n          count\n        }\n        moreCount\n        moreRaw\n        moreZip\n        moreItems\n      }\n    }\n  }\n}\n\nfragment FlxBackupRow on FlxBackup {\n  id\n  type\n  typeLabel\n  typeColor\n  status\n  statusLabel\n  title\n  label\n  created {\n    iso\n    timestamp\n    label\n    relative\n  }\n  size\n  sizeLabel\n  files\n  includesDatabase\n  contents\n  source\n  sourceLabel\n  originalSite\n  locked\n  keepKind\n  keepLabel\n  error\n  packages {\n    slug\n    name\n    fromVersion\n    toVersion\n    label\n  }\n  downloadUrl\n  percent\n  progress\n  running\n  restore {\n    id\n    title\n    database\n    foreignSite\n    prefixInBackup\n    prefixOnSite\n    groups {\n      key\n      label\n      items {\n        path\n        label\n      }\n    }\n  }\n}",
+};
+
+/** query FlxBackupJobRead (flx-backup, plugins/flx-backup/graphql/operations/FlxBackupJobRead.graphql) */
+export const FlxBackupJobRead: FlxOperation<T.FlxBackupJobReadQuery, T.FlxBackupJobReadQueryVariables> = {
+  id: '3441ccc32a645f6092c405c3bea324de1e67815de578be76bebfeb991c2c0567',
+  name: 'FlxBackupJobRead',
+  kind: 'query',
+  plugin: 'flx-backup',
+  document: "query FlxBackupJobRead {\n  flxBackupJob {\n    ...FlxBackupJobFields\n  }\n}\n\nfragment FlxBackupJobFields on FlxBackupJob {\n  status\n  kind\n  id\n  phase\n  percent\n  text\n  error\n  token\n  cancelled\n  elapsed\n  elapsedLabel\n  eta\n  etaLabel\n  title\n  sizeLabel\n  result\n}",
+};
+
+/** query FlxBackupList (flx-backup, plugins/flx-backup/graphql/operations/FlxBackupList.graphql) */
+export const FlxBackupList: FlxOperation<T.FlxBackupListQuery, T.FlxBackupListQueryVariables> = {
+  id: '444fe54b9b0e5cdeba4d419732fc6004b26926ea3e5ae242b820ccafc8b0d12c',
+  name: 'FlxBackupList',
+  kind: 'query',
+  plugin: 'flx-backup',
+  document: "query FlxBackupList($first: Int = 20, $after: String, $type: FlxBackupType, $status: FlxBackupStatus) {\n  flxBackups(first: $first, after: $after, type: $type, status: $status) {\n    nodes {\n      ...FlxBackupRow\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    totalCount\n  }\n  flxBackupCounts {\n    ...FlxBackupCountsFields\n  }\n  flxBackupHealth {\n    ...FlxBackupHealthFields\n  }\n}\n\nfragment FlxBackupCountsFields on FlxBackupCounts {\n  all\n  usedBytes\n  usedLabel\n  types {\n    type\n    label\n    count\n  }\n}\n\nfragment FlxBackupHealthFields on FlxBackupHealth {\n  zipAvailable\n  writable\n  folder\n  chunkSize\n  nonce\n  ajaxUrl\n  lastRestore\n  includeCoreDefault\n  safetyDefault\n}\n\nfragment FlxBackupRow on FlxBackup {\n  id\n  type\n  typeLabel\n  typeColor\n  status\n  statusLabel\n  title\n  label\n  created {\n    iso\n    timestamp\n    label\n    relative\n  }\n  size\n  sizeLabel\n  files\n  includesDatabase\n  contents\n  source\n  sourceLabel\n  originalSite\n  locked\n  keepKind\n  keepLabel\n  error\n  packages {\n    slug\n    name\n    fromVersion\n    toVersion\n    label\n  }\n  downloadUrl\n  percent\n  progress\n  running\n  restore {\n    id\n    title\n    database\n    foreignSite\n    prefixInBackup\n    prefixOnSite\n    groups {\n      key\n      label\n      items {\n        path\n        label\n      }\n    }\n  }\n}",
+};
+
+/** mutation FlxBackupLock (flx-backup, plugins/flx-backup/graphql/operations/FlxBackupLock.graphql) */
+export const FlxBackupLock: FlxOperation<T.FlxBackupLockMutation, T.FlxBackupLockMutationVariables> = {
+  id: '48e64891298acc8e11a7b7988f76d522414a779aa2ded6cac1b81642c7bd6d87',
+  name: 'FlxBackupLock',
+  kind: 'mutation',
+  plugin: 'flx-backup',
+  document: "mutation FlxBackupLock($input: FlxBackupLockInput!) {\n  flxBackupLock(input: $input) {\n    backup {\n      ...FlxBackupRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxBackupRow on FlxBackup {\n  id\n  type\n  typeLabel\n  typeColor\n  status\n  statusLabel\n  title\n  label\n  created {\n    iso\n    timestamp\n    label\n    relative\n  }\n  size\n  sizeLabel\n  files\n  includesDatabase\n  contents\n  source\n  sourceLabel\n  originalSite\n  locked\n  keepKind\n  keepLabel\n  error\n  packages {\n    slug\n    name\n    fromVersion\n    toVersion\n    label\n  }\n  downloadUrl\n  percent\n  progress\n  running\n  restore {\n    id\n    title\n    database\n    foreignSite\n    prefixInBackup\n    prefixOnSite\n    groups {\n      key\n      label\n      items {\n        path\n        label\n      }\n    }\n  }\n}",
+};
+
+/** mutation FlxBackupRestoreStart (flx-backup, plugins/flx-backup/graphql/operations/FlxBackupRestoreStart.graphql) */
+export const FlxBackupRestoreStart: FlxOperation<T.FlxBackupRestoreStartMutation, T.FlxBackupRestoreStartMutationVariables> = {
+  id: '1f63d67d4775c30a38621420617d5fe48b180e7fcb37ed2548169f8185236331',
+  name: 'FlxBackupRestoreStart',
+  kind: 'mutation',
+  plugin: 'flx-backup',
+  document: "mutation FlxBackupRestoreStart($input: FlxBackupRestoreStartInput!) {\n  flxBackupRestoreStart(input: $input) {\n    job {\n      ...FlxBackupJobFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxBackupJobFields on FlxBackupJob {\n  status\n  kind\n  id\n  phase\n  percent\n  text\n  error\n  token\n  cancelled\n  elapsed\n  elapsedLabel\n  eta\n  etaLabel\n  title\n  sizeLabel\n  result\n}",
+};
+
+/** mutation FlxBackupSettingsSave (flx-backup, plugins/flx-backup/graphql/operations/FlxBackupSettingsSave.graphql) */
+export const FlxBackupSettingsSave: FlxOperation<T.FlxBackupSettingsSaveMutation, T.FlxBackupSettingsSaveMutationVariables> = {
+  id: 'fc5a400fc1bcd3cc9add10409ab93b7e08cff77540a6c3e4c425d4aba82bcd5e',
+  name: 'FlxBackupSettingsSave',
+  kind: 'mutation',
+  plugin: 'flx-backup',
+  document: "mutation FlxBackupSettingsSave($input: FlxBackupSettingsSaveInput!) {\n  flxBackupSettingsSave(input: $input) {\n    settings {\n      ...FlxBackupSettingsFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxBackupSettingsFields on FlxBackupSettings {\n  quotaGb\n  preScope\n  preKeepDays\n  schedule\n  scheduleHour\n  scheduleDay\n  scheduleKeep\n  includeCore\n  exclude\n  safetyRestore\n  deleteOnUninstall\n}",
+};
+
+/** query FlxBackupSettingsScreen (flx-backup, plugins/flx-backup/graphql/operations/FlxBackupSettingsScreen.graphql) */
+export const FlxBackupSettingsScreen: FlxOperation<T.FlxBackupSettingsScreenQuery, T.FlxBackupSettingsScreenQueryVariables> = {
+  id: '0c1e33d45c14005f514bea1ded294ed69a0d03119f779346d180c9953fb404d5',
+  name: 'FlxBackupSettingsScreen',
+  kind: 'query',
+  plugin: 'flx-backup',
+  document: "query FlxBackupSettingsScreen {\n  flxBackupSettings {\n    ...FlxBackupSettingsFields\n  }\n  flxBackupCounts {\n    ...FlxBackupCountsFields\n  }\n  flxBackupHealth {\n    ...FlxBackupHealthFields\n  }\n}\n\nfragment FlxBackupCountsFields on FlxBackupCounts {\n  all\n  usedBytes\n  usedLabel\n  types {\n    type\n    label\n    count\n  }\n}\n\nfragment FlxBackupHealthFields on FlxBackupHealth {\n  zipAvailable\n  writable\n  folder\n  chunkSize\n  nonce\n  ajaxUrl\n  lastRestore\n  includeCoreDefault\n  safetyDefault\n}\n\nfragment FlxBackupSettingsFields on FlxBackupSettings {\n  quotaGb\n  preScope\n  preKeepDays\n  schedule\n  scheduleHour\n  scheduleDay\n  scheduleKeep\n  includeCore\n  exclude\n  safetyRestore\n  deleteOnUninstall\n}",
+};
+
+/** mutation FlxBackupStart (flx-backup, plugins/flx-backup/graphql/operations/FlxBackupStart.graphql) */
+export const FlxBackupStart: FlxOperation<T.FlxBackupStartMutation, T.FlxBackupStartMutationVariables> = {
+  id: '6b6e92e138ef921340c8a8bd7a2c1f56d1fef85f289f28d8552e1a13c2f5afd2',
+  name: 'FlxBackupStart',
+  kind: 'mutation',
+  plugin: 'flx-backup',
+  document: "mutation FlxBackupStart($input: FlxBackupStartInput!) {\n  flxBackupStart(input: $input) {\n    job {\n      ...FlxBackupJobFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxBackupJobFields on FlxBackupJob {\n  status\n  kind\n  id\n  phase\n  percent\n  text\n  error\n  token\n  cancelled\n  elapsed\n  elapsedLabel\n  eta\n  etaLabel\n  title\n  sizeLabel\n  result\n}",
+};
+
+/** mutation FlxBackupStep (flx-backup, plugins/flx-backup/graphql/operations/FlxBackupStep.graphql) */
+export const FlxBackupStep: FlxOperation<T.FlxBackupStepMutation, T.FlxBackupStepMutationVariables> = {
+  id: '3ca258ac5c8de7419cf97041ab75861522f24988dd7c92e5b855a4a785a25b1d',
+  name: 'FlxBackupStep',
+  kind: 'mutation',
+  plugin: 'flx-backup',
+  document: "mutation FlxBackupStep {\n  flxBackupStep(input: {  }) {\n    job {\n      ...FlxBackupJobFields\n    }\n  }\n}\n\nfragment FlxBackupJobFields on FlxBackupJob {\n  status\n  kind\n  id\n  phase\n  percent\n  text\n  error\n  token\n  cancelled\n  elapsed\n  elapsedLabel\n  eta\n  etaLabel\n  title\n  sizeLabel\n  result\n}",
+};
+
 /** mutation FlxBlocksBlockTypeSetActive (flx-blocks, plugins/flx-blocks/graphql/operations/FlxBlocksBlockTypeSetActive.graphql) */
 export const FlxBlocksBlockTypeSetActive: FlxOperation<T.FlxBlocksBlockTypeSetActiveMutation, T.FlxBlocksBlockTypeSetActiveMutationVariables> = {
   id: '0cdd28e36785f9a36c07bcff67a19c55e28b55316009f469fc97857134e4a2b4',

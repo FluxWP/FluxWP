@@ -1,0 +1,43 @@
+# One backup with the size breakdown.
+query FlxBackupDetail($id: ID!) {
+  flxBackup(id: $id) {
+    ...FlxBackupRow
+    wpVersion
+    originalCreated {
+      timestamp
+      label
+    }
+    finished {
+      timestamp
+      label
+    }
+    keepUntil {
+      timestamp
+      label
+    }
+    breakdown {
+      raw
+      zip
+      categories {
+        key
+        label
+        color
+        isDatabase
+        raw
+        zip
+        count
+        items {
+          name
+          label
+          raw
+          zip
+          count
+        }
+        moreCount
+        moreRaw
+        moreZip
+        moreItems
+      }
+    }
+  }
+}

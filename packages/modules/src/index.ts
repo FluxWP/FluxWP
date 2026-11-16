@@ -18,6 +18,7 @@ export const moduleScreens: Record<string, ComponentType> = {
   'flxg-tasks': lazyScreen(() => import('./tasks/TasksScreen').then((m) => ({ default: m.TasksScreen }))),
   'flxrc-recaptcha': lazyScreen(() => import('./recaptcha/RecaptchaScreen').then((m) => ({ default: m.RecaptchaScreen }))),
   'flxbk-dashboard': lazyScreen(() => import('./blocks/BlocksScreen').then((m) => ({ default: m.BlocksScreen }))),
+  'flxy-backup': lazyScreen(() => import('./backup/BackupScreen').then((m) => ({ default: m.BackupScreen }))),
   'flxl-lang': lazyScreen(() => import('./lang/LanguagesScreen').then((m) => ({ default: m.LanguagesScreen }))),
   'flxr-roles': lazyScreen(() => import('./roles/RolesScreen').then((m) => ({ default: m.RolesScreen }))),
   'flxcb-settings': lazyScreen(() => import('./chatbot/ChatbotSettingsScreen').then((m) => ({ default: m.ChatbotSettingsScreen }))),

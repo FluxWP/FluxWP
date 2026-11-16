@@ -563,6 +563,45 @@ type RootQuery {
     since: Int
   ): FlxAppSync!
 
+  "One backup; empty when the ID is unknown."
+  flxBackup(
+    "Backup ID."
+    id: ID!
+  ): FlxBackup
+
+  "Totals for the filter links and the footer of the backup list."
+  flxBackupCounts: FlxBackupCounts!
+
+  "Server state and the values the upload and start dialogs need."
+  flxBackupHealth: FlxBackupHealth!
+
+  "Storage history for the dashboard chart."
+  flxBackupHistory: FlxBackupHistory!
+
+  "State of the running or just finished backup or restore. Only reads: use flxBackupStep to advance it."
+  flxBackupJob: FlxBackupJob!
+
+  "The dashboard: storage, counts, last and next backup, by type, recent backups and events."
+  flxBackupOverview: FlxBackupOverview!
+
+  "Flux Backup settings."
+  flxBackupSettings: FlxBackupSettings!
+
+  "Backups, newest first."
+  flxBackups(
+    "Records per page (at most 50)."
+    first: Int
+
+    "Cursor to continue after (pageInfo.endCursor)."
+    after: String
+
+    "Only backups of this type."
+    type: FlxBackupType
+
+    "Only backups in this state."
+    status: FlxBackupStatus
+  ): FlxBackupConnection!
+
   "Blocks of the Block Editor dashboard (a short list)."
   flxBlocksBlockTypes: [FlxBlocksBlockType!]!
 
@@ -13809,6 +13848,663 @@ type FlxAppEvent {
   title: String!
 }
 
+"A backup: a zip with the database and/or files, kept in the backup folder."
+type FlxBackup {
+  "Where the size goes. Reading the zip takes a while the first time, so ask for it on the detail page only."
+  breakdown: FlxBackupBreakdown
+
+  "What the backup holds, as short names."
+  contents: [String!]!
+
+  "When the backup was started."
+  created: FlxDateTime
+
+  "Signed link that downloads the zip (the file is not sent through GraphQL); empty unless finished."
+  downloadUrl: String!
+
+  "Why it failed; empty otherwise."
+  error: String!
+
+  "Number of files in the backup."
+  files: Int!
+
+  "When the backup was finished; empty while running."
+  finished: FlxDateTime
+
+  "Backup ID (not a global ID)."
+  id: ID!
+
+  "The database is in the backup."
+  includesDatabase: Boolean!
+
+  "How long the backup is kept."
+  keepKind: FlxBackupKeepKind!
+
+  "Retention as text."
+  keepLabel: String!
+
+  "Date the backup is kept until; empty when there is no date."
+  keepUntil: FlxDateTime
+
+  "Description the person typed; empty when none."
+  label: String!
+
+  "Never deleted automatically."
+  locked: Boolean!
+
+  "When an uploaded backup was originally taken."
+  originalCreated: FlxDateTime
+
+  "Site the backup was taken on; set for uploaded backups only."
+  originalSite: String
+
+  "Packages a pre-update backup was taken for."
+  packages: [FlxBackupPackage!]!
+
+  "Progress of a running backup; empty otherwise."
+  percent: Int
+
+  "Progress text of a running backup."
+  progress: String!
+
+  "What can be restored; empty unless the backup is finished."
+  restore: FlxBackupRestoreOptions
+
+  "The backup is still being taken."
+  running: Boolean!
+
+  "Size of the zip in bytes (0 while running)."
+  size: Float!
+
+  "Size as text; empty unless finished."
+  sizeLabel: String!
+
+  "Where it came from: manual, schedule, auto, update, cli, safety, api, upload; empty when unknown."
+  source: String!
+
+  "Source name in the user&#039;s language."
+  sourceLabel: String!
+
+  "Running, finished or failed."
+  status: FlxBackupStatus!
+
+  "Status name in the user&#039;s language."
+  statusLabel: String!
+
+  "Description, or a generated name such as &quot;Before Plugin 1.0 → 1.1&quot;."
+  title: String!
+
+  "What the backup holds or why it was taken."
+  type: FlxBackupType!
+
+  "Chart colour of the type."
+  typeColor: String!
+
+  "Type name in the user&#039;s language."
+  typeLabel: String!
+
+  "WordPress version when the backup was taken; empty when unknown."
+  wpVersion: String!
+}
+
+"Where the size of a backup goes."
+type FlxBackupBreakdown {
+  "Sections, in display order."
+  categories: [FlxBackupBreakdownCategory!]!
+
+  "Total size on the site in bytes."
+  raw: Float!
+
+  "Total size in the archive in bytes."
+  zip: Float!
+}
+
+"A section of the size breakdown: database, core, plugins, themes, media or other."
+type FlxBackupBreakdownCategory {
+  "Chart colour."
+  color: String!
+
+  "Number of files (rows for the database)."
+  count: Int!
+
+  "Counts are rows, not files."
+  isDatabase: Boolean!
+
+  "The biggest items of the section."
+  items: [FlxBackupBreakdownItem!]!
+
+  "Section key."
+  key: String!
+
+  "Section name."
+  label: String!
+
+  "Files or rows in the items not listed."
+  moreCount: Int!
+
+  "How many items are not listed."
+  moreItems: Int!
+
+  "Size of the items not listed in bytes."
+  moreRaw: Float!
+
+  "Compressed size of the items not listed in bytes."
+  moreZip: Float!
+
+  "Size on the site in bytes."
+  raw: Float!
+
+  "Compressed size in bytes."
+  zip: Float!
+}
+
+"One plugin, theme, table or folder in the size breakdown."
+type FlxBackupBreakdownItem {
+  "Number of files (rows for the database)."
+  count: Int!
+
+  "Name shown on the screen."
+  label: String!
+
+  "Path or table name in the backup."
+  name: String!
+
+  "Size on the site in bytes (for the database, the SQL dump)."
+  raw: Float!
+
+  "Compressed size in the archive in bytes."
+  zip: Float!
+}
+
+"How long a backup is kept."
+enum FlxBackupKeepKind {
+  ""
+  LOCKED
+
+  ""
+  QUOTA
+
+  ""
+  SCHEDULE
+
+  ""
+  UNTIL
+}
+
+"A package updated right after a pre-update backup."
+type FlxBackupPackage {
+  "Version before the update; empty when unknown."
+  fromVersion: String!
+
+  "Name and versions as one line."
+  label: String!
+
+  "Package name (the slug when unknown)."
+  name: String!
+
+  "Package slug."
+  slug: String!
+
+  "Version after the update; empty when unknown."
+  toVersion: String!
+}
+
+"What the restore dialog offers for a backup."
+type FlxBackupRestoreOptions {
+  "The database can be restored (it is in the backup and the table prefix matches)."
+  database: Boolean!
+
+  "Address of the site the backup was taken on, when it is another site."
+  foreignSite: String
+
+  "Folders that can be restored, by kind."
+  groups: [FlxBackupRestoreGroup!]!
+
+  "Backup ID."
+  id: ID!
+
+  "Table prefix in the backup when it differs from this site&#039;s."
+  prefixInBackup: String
+
+  "This site&#039;s table prefix when it differs from the backup&#039;s."
+  prefixOnSite: String
+
+  "Backup name and date."
+  title: String!
+}
+
+"Restore choices of one kind: plugins, themes or other folders."
+type FlxBackupRestoreGroup {
+  "Folders in the group."
+  items: [FlxBackupRestoreItem!]!
+
+  "Group key: plugins, themes or other."
+  key: String!
+
+  "Group name."
+  label: String!
+}
+
+"One folder of a backup that can be restored."
+type FlxBackupRestoreItem {
+  "Name shown in the dialog."
+  label: String!
+
+  "Path relative to the WordPress root folder."
+  path: String!
+}
+
+"State of a backup."
+enum FlxBackupStatus {
+  ""
+  FAILED
+
+  ""
+  OK
+
+  ""
+  RUNNING
+}
+
+"What a backup holds or why it was taken."
+enum FlxBackupType {
+  ""
+  DB
+
+  ""
+  FILES
+
+  ""
+  FULL
+
+  ""
+  MANUAL
+
+  ""
+  PRE_UPDATE
+}
+
+"Totals for the filter links and the footer of the backup list."
+type FlxBackupCounts {
+  "Number of backups."
+  all: Int!
+
+  "Backups by type; types without a backup are left out."
+  types: [FlxBackupTypeCount!]!
+
+  "Total size of the backups in bytes."
+  usedBytes: Float!
+
+  "Total size as text."
+  usedLabel: String!
+}
+
+"Number of backups of one type."
+type FlxBackupTypeCount {
+  "Backups of the type."
+  count: Int!
+
+  "Type name in the user&#039;s language."
+  label: String!
+
+  "Type."
+  type: FlxBackupType!
+}
+
+"Server state and the values the upload and start dialogs need."
+type FlxBackupHealth {
+  "admin-ajax address of the chunked upload."
+  ajaxUrl: String!
+
+  "Size in bytes of the pieces a backup is uploaded in."
+  chunkSize: Int!
+
+  "Backup folder relative to the WordPress root folder."
+  folder: String!
+
+  "Default of the &quot;include WordPress core&quot; choice."
+  includeCoreDefault: Boolean!
+
+  "Result of a restore finished in the last 10 minutes."
+  lastRestore: String
+
+  "Token the chunked upload (admin-ajax flxy_upload_*) needs."
+  nonce: String!
+
+  "Default of the &quot;safety backup&quot; choice."
+  safetyDefault: Boolean!
+
+  "The backup folder is writable."
+  writable: Boolean!
+
+  "The PHP zip extension is available."
+  zipAvailable: Boolean!
+}
+
+"Storage history: one measurement a day for 180 days."
+type FlxBackupHistory {
+  "The last 180 days, oldest first; days without a measurement repeat the previous one."
+  days: [FlxBackupHistoryDay!]!
+
+  "Quota in bytes."
+  quota: Float!
+
+  "Quota as a chart label."
+  quotaLabel: String!
+
+  "Axis for each range."
+  ranges: [FlxBackupHistoryRange!]!
+
+  "Backup types, in the order of each day&#039;s values."
+  series: [FlxBackupHistorySeries!]!
+}
+
+"Storage on one day of the history chart."
+type FlxBackupHistoryDay {
+  "Date for the tooltip."
+  fullLabel: String!
+
+  "Date, YYYY-MM-DD."
+  key: String!
+
+  "Short date for the axis."
+  label: String!
+
+  "A measurement exists for the day; false before the first one."
+  measured: Boolean!
+
+  "Total bytes as text."
+  totalLabel: String!
+
+  "Bytes by type as text."
+  valueLabels: [String!]!
+
+  "Bytes by type, in the order of the series."
+  values: [Float!]!
+}
+
+"Y axis of the chart for the last 30, 90 or 180 days."
+type FlxBackupHistoryRange {
+  "Number of days."
+  days: Int!
+
+  "Top of the axis in bytes."
+  max: Float!
+
+  "Usage is near the quota, so the quota line is drawn."
+  showQuota: Boolean!
+
+  "Marks of the axis."
+  ticks: [FlxBackupHistoryTick!]!
+}
+
+"A mark on the Y axis."
+type FlxBackupHistoryTick {
+  "Bytes as text."
+  label: String!
+
+  "Bytes."
+  value: Float!
+}
+
+"A backup type in the history chart."
+type FlxBackupHistorySeries {
+  "Chart colour."
+  color: String!
+
+  "Type key."
+  key: String!
+
+  "Type name in the user&#039;s language."
+  name: String!
+}
+
+"The backup or restore running in the background (one at a time)."
+type FlxBackupJob {
+  "The job was cancelled."
+  cancelled: Boolean!
+
+  "Seconds since the job started."
+  elapsed: Int!
+
+  "Elapsed time as text."
+  elapsedLabel: String!
+
+  "Why the job failed; empty otherwise."
+  error: String!
+
+  "Estimated seconds left; empty until it can be estimated."
+  eta: Int
+
+  "Estimated time left as text."
+  etaLabel: String!
+
+  "ID of the backup the job makes or restores; empty when idle."
+  id: String!
+
+  "Backup or restore; empty when idle."
+  kind: FlxBackupJobKind
+
+  "Progress, 0–100."
+  percent: Int!
+
+  "Internal phase name."
+  phase: String!
+
+  "Result text of a finished restore."
+  result: String!
+
+  "Size of the backup as text; empty until known."
+  sizeLabel: String!
+
+  "Idle, running, done or failed."
+  status: FlxBackupJobStatus!
+
+  "What the job is doing now."
+  text: String!
+
+  "Name of the backup."
+  title: String!
+
+  "Job token. After a database restore the login session may be gone; the screen then keeps stepping through admin-ajax flxy_step with this token."
+  token: String!
+}
+
+"What the background job does."
+enum FlxBackupJobKind {
+  ""
+  BACKUP
+
+  ""
+  RESTORE
+}
+
+"State of the background job."
+enum FlxBackupJobStatus {
+  ""
+  DONE
+
+  ""
+  FAILED
+
+  ""
+  IDLE
+
+  ""
+  RUNNING
+}
+
+"The dashboard: storage, counts, last and next backup, by type, recent backups and events."
+type FlxBackupOverview {
+  "Finished backups."
+  backupCount: Int!
+
+  "Storage by type."
+  byType: [FlxBackupTypeShare!]!
+
+  "The seven latest events."
+  events: [FlxBackupEvent!]!
+
+  "Free quota as text."
+  freeLabel: String!
+
+  "Last finished backup; empty when there is none."
+  last: FlxBackup
+
+  "ok, warning (over 80%) or error (over 95%)."
+  level: String!
+
+  "Finished backups that are locked."
+  lockedCount: Int!
+
+  "Next scheduled backup; empty when the schedule is off."
+  nextRun: FlxDateTime
+
+  "Percent of the quota used (0–100)."
+  percent: Float!
+
+  "Which updates are backed up first."
+  preScope: FlxBackupPreScope!
+
+  "Storage quota in bytes."
+  quotaBytes: Float!
+
+  "Storage quota as text."
+  quotaLabel: String!
+
+  "The six newest backups."
+  recent: [FlxBackup!]!
+
+  "Scheduled backup frequency."
+  scheduleKind: FlxBackupSchedule!
+
+  "Storage used by backups in bytes."
+  usedBytes: Float!
+
+  "Storage used as text."
+  usedLabel: String!
+}
+
+"Storage used by one backup type."
+type FlxBackupTypeShare {
+  "Bytes used."
+  bytes: Float!
+
+  "Bytes used as text."
+  bytesLabel: String!
+
+  "Chart colour."
+  color: String!
+
+  "Finished backups of the type."
+  count: Int!
+
+  "Type name in the user&#039;s language."
+  label: String!
+
+  "Percent of all backup storage."
+  share: Float!
+
+  "Type."
+  type: FlxBackupType!
+}
+
+"A line of the backup event log."
+type FlxBackupEvent {
+  "When it happened."
+  at: FlxDateTime
+
+  "info, warning or error."
+  level: String!
+
+  "What happened."
+  message: String!
+}
+
+"Which updates are backed up first."
+enum FlxBackupPreScope {
+  ""
+  ALL
+
+  ""
+  FLX
+
+  ""
+  OFF
+}
+
+"How often a full backup is scheduled."
+enum FlxBackupSchedule {
+  ""
+  DAILY
+
+  ""
+  OFF
+
+  ""
+  WEEKLY
+}
+
+"Flux Backup settings."
+type FlxBackupSettings {
+  "Backup files are deleted when the plugin is deleted."
+  deleteOnUninstall: Boolean!
+
+  "Extra paths left out, one per line."
+  exclude: String!
+
+  "WordPress core files are added to full backups."
+  includeCore: Boolean!
+
+  "Days a pre-update backup is kept."
+  preKeepDays: Int!
+
+  "Which updates are backed up first."
+  preScope: FlxBackupPreScope!
+
+  "Storage quota in GB."
+  quotaGb: Float!
+
+  "A safety backup of the database is taken before restoring it."
+  safetyRestore: Boolean!
+
+  "Scheduled full backup frequency."
+  schedule: FlxBackupSchedule!
+
+  "Day of the week for weekly backups: 0 = Sunday … 6 = Saturday."
+  scheduleDay: Int!
+
+  "Hour of the day (0–23) in the site&#039;s time zone."
+  scheduleHour: Int!
+
+  "How many scheduled backups are kept."
+  scheduleKeep: Int!
+}
+
+"A page of backups, newest first."
+type FlxBackupConnection {
+  "Records with their cursors."
+  edges: [FlxBackupEdge!]!
+
+  "Records of this page."
+  nodes: [FlxBackup!]!
+
+  "Paging information."
+  pageInfo: FlxPageInfo!
+
+  "All matching records (null when counting would be slow)."
+  totalCount: Int
+}
+
+"One FlxBackup in a list, with its cursor."
+type FlxBackupEdge {
+  "Opaque cursor of this record."
+  cursor: String!
+
+  "The record."
+  node: FlxBackup!
+}
+
 "A block on the Block Editor dashboard."
 type FlxBlocksBlockType {
   "The block is offered in the editor."
@@ -24356,6 +25052,48 @@ type RootMutation {
     input: FlxAppSessionEndInput!
   ): FlxAppSessionEndPayload
 
+  "Cancels the running backup or restore. A step in progress finishes first (pending)."
+  flxBackupCancel(
+    "Input for the flxBackupCancel mutation"
+    input: FlxBackupCancelInput!
+  ): FlxBackupCancelPayload
+
+  "Permanently deletes backups; a running one is cancelled first. Needs the highest permission."
+  flxBackupDelete(
+    "Input for the flxBackupDelete mutation"
+    input: FlxBackupDeleteInput!
+  ): FlxBackupDeletePayload
+
+  "Locks a backup so the quota and retention never delete it, or unlocks it."
+  flxBackupLock(
+    "Input for the flxBackupLock mutation"
+    input: FlxBackupLockInput!
+  ): FlxBackupLockPayload
+
+  "Starts restoring the chosen parts of a backup in the background. Overwrites the current database and files; needs the highest permission."
+  flxBackupRestoreStart(
+    "Input for the flxBackupRestoreStart mutation"
+    input: FlxBackupRestoreStartInput!
+  ): FlxBackupRestoreStartPayload
+
+  "Saves Flux Backup settings. Fields you leave out stay as they are; values are limited to their range."
+  flxBackupSettingsSave(
+    "Input for the flxBackupSettingsSave mutation"
+    input: FlxBackupSettingsSaveInput!
+  ): FlxBackupSettingsSavePayload
+
+  "Starts a backup in the background; poll flxBackupJob and call flxBackupStep to keep it moving. Conflict (errors) while another job runs."
+  flxBackupStart(
+    "Input for the flxBackupStart mutation"
+    input: FlxBackupStartInput!
+  ): FlxBackupStartPayload
+
+  "Advances the running job by one time budget (about 8 seconds) and returns its state. Does nothing when no job runs."
+  flxBackupStep(
+    "Input for the flxBackupStep mutation"
+    input: FlxBackupStepInput!
+  ): FlxBackupStepPayload
+
   "Turns a block on or off in the editor. Content that already uses it keeps working."
   flxBlocksBlockTypeSetActive(
     "Input for the flxBlocksBlockTypeSetActive mutation"
@@ -27202,6 +27940,216 @@ type FlxAppSessionEndPayload {
 
   "Input problems to show next to the form fields. Empty when the mutation succeeded."
   errors: [FlxUserError!]!
+}
+
+"Input for the flxBackupCancel mutation."
+input FlxBackupCancelInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+}
+
+"The payload for the flxBackupCancel mutation."
+type FlxBackupCancelPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The job after the cancel."
+  job: FlxBackupJob
+
+  "A step is running; the job is cancelled when it ends."
+  pending: Boolean
+}
+
+"Input for the flxBackupDelete mutation."
+input FlxBackupDeleteInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Backup IDs."
+  ids: [ID!]!
+}
+
+"The payload for the flxBackupDelete mutation."
+type FlxBackupDeletePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Totals after the delete."
+  counts: FlxBackupCounts
+
+  "IDs that were deleted."
+  deletedIds: [ID!]
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"Input for the flxBackupLock mutation."
+input FlxBackupLockInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Backup ID."
+  id: ID!
+
+  "true locks, false unlocks."
+  locked: Boolean!
+}
+
+"The payload for the flxBackupLock mutation."
+type FlxBackupLockPayload {
+  "The backup after the change."
+  backup: FlxBackup
+
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"Input for the flxBackupRestoreStart mutation."
+input FlxBackupRestoreStartInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Restore the whole database."
+  database: Boolean
+
+  "Backup ID."
+  id: ID!
+
+  "Paths to restore (the path values of flxBackup.restore.groups); the backup's own paths or folders below them."
+  paths: [String!]
+
+  "Take a safety backup of the current database first. Default: the setting."
+  safety: Boolean
+}
+
+"The payload for the flxBackupRestoreStart mutation."
+type FlxBackupRestoreStartPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The job that was started."
+  job: FlxBackupJob
+}
+
+"Input for the flxBackupSettingsSave mutation."
+input FlxBackupSettingsSaveInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Delete backup files when the plugin is deleted."
+  deleteOnUninstall: Boolean
+
+  "Extra paths left out, one per line, relative to the WordPress root folder; * works as a wildcard."
+  exclude: String
+
+  "Add WordPress core files to full backups."
+  includeCore: Boolean
+
+  "Days a pre-update backup is kept (1–365)."
+  preKeepDays: Int
+
+  "Which updates are backed up first."
+  preScope: FlxBackupPreScope
+
+  "Storage quota in GB (0.1–10000)."
+  quotaGb: Float
+
+  "Take a safety backup of the database before restoring it."
+  safetyRestore: Boolean
+
+  "Scheduled full backup frequency."
+  schedule: FlxBackupSchedule
+
+  "Day of the week for weekly backups: 0 = Sunday … 6 = Saturday."
+  scheduleDay: Int
+
+  "Hour of the day (0–23) in the site's time zone."
+  scheduleHour: Int
+
+  "How many scheduled backups are kept (1–100)."
+  scheduleKeep: Int
+}
+
+"The payload for the flxBackupSettingsSave mutation."
+type FlxBackupSettingsSavePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The settings after the change."
+  settings: FlxBackupSettings
+}
+
+"Input for the flxBackupStart mutation."
+input FlxBackupStartInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Add WordPress core files (full backups only). Default: the setting."
+  includeCore: Boolean
+
+  "Description (up to 120 characters)."
+  label: String
+
+  "Never delete automatically, even when the quota is full."
+  lock: Boolean
+
+  "What to back up. Default: full."
+  type: FlxBackupStartType
+}
+
+"Backup types a person can start."
+enum FlxBackupStartType {
+  ""
+  DB
+
+  ""
+  FILES
+
+  ""
+  FULL
+}
+
+"The payload for the flxBackupStart mutation."
+type FlxBackupStartPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The job that was started."
+  job: FlxBackupJob
+}
+
+"Input for the flxBackupStep mutation."
+input FlxBackupStepInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+}
+
+"The payload for the flxBackupStep mutation."
+type FlxBackupStepPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The job after the step."
+  job: FlxBackupJob
 }
 
 "Input for the flxBlocksBlockTypeSetActive mutation."

@@ -228,6 +228,51 @@ export type FlxAppAuthKind =
   | 'COOKIE'
   | 'KEY';
 
+/** How long a backup is kept. */
+export type FlxBackupKeepKind =
+  | 'LOCKED'
+  | 'QUOTA'
+  | 'SCHEDULE'
+  | 'UNTIL';
+
+/** State of a backup. */
+export type FlxBackupStatus =
+  | 'FAILED'
+  | 'OK'
+  | 'RUNNING';
+
+/** What a backup holds or why it was taken. */
+export type FlxBackupType =
+  | 'DB'
+  | 'FILES'
+  | 'FULL'
+  | 'MANUAL'
+  | 'PRE_UPDATE';
+
+/** What the background job does. */
+export type FlxBackupJobKind =
+  | 'BACKUP'
+  | 'RESTORE';
+
+/** State of the background job. */
+export type FlxBackupJobStatus =
+  | 'DONE'
+  | 'FAILED'
+  | 'IDLE'
+  | 'RUNNING';
+
+/** Which updates are backed up first. */
+export type FlxBackupPreScope =
+  | 'ALL'
+  | 'FLX'
+  | 'OFF';
+
+/** How often a full backup is scheduled. */
+export type FlxBackupSchedule =
+  | 'DAILY'
+  | 'OFF'
+  | 'WEEKLY';
+
 /** Editor width of a page or post. */
 export type FlxBlocksEditorWidthMode =
   /** Full width. */
@@ -1669,6 +1714,86 @@ export type FlxAppSessionCreateInput = {
   /** Site address to open instead of a panel path. */
   url?: string | null | undefined;
 };
+
+/** Input for the flxBackupDelete mutation. */
+export type FlxBackupDeleteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Backup IDs. */
+  ids: Array<string>;
+};
+
+/** Input for the flxBackupLock mutation. */
+export type FlxBackupLockInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Backup ID. */
+  id: string;
+  /** true locks, false unlocks. */
+  locked: boolean;
+};
+
+/** Input for the flxBackupRestoreStart mutation. */
+export type FlxBackupRestoreStartInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Restore the whole database. */
+  database?: boolean | null | undefined;
+  /** Backup ID. */
+  id: string;
+  /** Paths to restore (the path values of flxBackup.restore.groups); the backup's own paths or folders below them. */
+  paths?: Array<string> | null | undefined;
+  /** Take a safety backup of the current database first. Default: the setting. */
+  safety?: boolean | null | undefined;
+};
+
+/** Input for the flxBackupSettingsSave mutation. */
+export type FlxBackupSettingsSaveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Delete backup files when the plugin is deleted. */
+  deleteOnUninstall?: boolean | null | undefined;
+  /** Extra paths left out, one per line, relative to the WordPress root folder; * works as a wildcard. */
+  exclude?: string | null | undefined;
+  /** Add WordPress core files to full backups. */
+  includeCore?: boolean | null | undefined;
+  /** Days a pre-update backup is kept (1–365). */
+  preKeepDays?: number | null | undefined;
+  /** Which updates are backed up first. */
+  preScope?: FlxBackupPreScope | null | undefined;
+  /** Storage quota in GB (0.1–10000). */
+  quotaGb?: number | null | undefined;
+  /** Take a safety backup of the database before restoring it. */
+  safetyRestore?: boolean | null | undefined;
+  /** Scheduled full backup frequency. */
+  schedule?: FlxBackupSchedule | null | undefined;
+  /** Day of the week for weekly backups: 0 = Sunday … 6 = Saturday. */
+  scheduleDay?: number | null | undefined;
+  /** Hour of the day (0–23) in the site's time zone. */
+  scheduleHour?: number | null | undefined;
+  /** How many scheduled backups are kept (1–100). */
+  scheduleKeep?: number | null | undefined;
+};
+
+/** Input for the flxBackupStart mutation. */
+export type FlxBackupStartInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Add WordPress core files (full backups only). Default: the setting. */
+  includeCore?: boolean | null | undefined;
+  /** Description (up to 120 characters). */
+  label?: string | null | undefined;
+  /** Never delete automatically, even when the quota is full. */
+  lock?: boolean | null | undefined;
+  /** What to back up. Default: full. */
+  type?: FlxBackupStartType | null | undefined;
+};
+
+/** Backup types a person can start. */
+export type FlxBackupStartType =
+  | 'DB'
+  | 'FILES'
+  | 'FULL';
 
 /** Input for the flxBlocksBlockTypeSetActive mutation. */
 export type FlxBlocksBlockTypeSetActiveInput = {
@@ -4619,6 +4744,93 @@ export type FlxAppSyncQueryVariables = Exact<{
 
 
 export type FlxAppSyncQuery = { flxAppSync: { serverTime: number, counts: Array<{ key: string, value: number }>, hashes: { me: string, config: string, manifest: string }, events: Array<{ event: string, title: string, body: string, target: string, params: unknown, at: number }> } };
+
+export type FlxBackupCancelMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxBackupCancelMutation = { flxBackupCancel: { pending: boolean | null, job: { status: FlxBackupJobStatus, kind: FlxBackupJobKind | null, id: string, phase: string, percent: number, text: string, error: string, token: string, cancelled: boolean, elapsed: number, elapsedLabel: string, eta: number | null, etaLabel: string, title: string, sizeLabel: string, result: string } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxBackupJobFieldsFragment = { status: FlxBackupJobStatus, kind: FlxBackupJobKind | null, id: string, phase: string, percent: number, text: string, error: string, token: string, cancelled: boolean, elapsed: number, elapsedLabel: string, eta: number | null, etaLabel: string, title: string, sizeLabel: string, result: string };
+
+export type FlxBackupDashboardQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxBackupDashboardQuery = { flxBackupOverview: { usedBytes: number, usedLabel: string, quotaBytes: number, quotaLabel: string, percent: number, level: string, freeLabel: string, backupCount: number, lockedCount: number, scheduleKind: FlxBackupSchedule, preScope: FlxBackupPreScope, last: { id: string, title: string, created: { timestamp: number, label: string, relative: string } | null } | null, nextRun: { timestamp: number, label: string } | null, byType: Array<{ type: FlxBackupType, label: string, color: string, bytes: number, bytesLabel: string, count: number, share: number }>, recent: Array<{ id: string, type: FlxBackupType, typeLabel: string, typeColor: string, status: FlxBackupStatus, title: string, sizeLabel: string, error: string, created: { timestamp: number, label: string } | null }>, events: Array<{ level: string, message: string, at: { timestamp: number, label: string } | null }> }, flxBackupHistory: { quota: number, quotaLabel: string, days: Array<{ key: string, label: string, fullLabel: string, values: Array<number>, valueLabels: Array<string>, totalLabel: string, measured: boolean }>, series: Array<{ key: string, name: string, color: string }>, ranges: Array<{ days: number, max: number, showQuota: boolean, ticks: Array<{ value: number, label: string }> }> }, flxBackupHealth: { zipAvailable: boolean, writable: boolean, folder: string, chunkSize: number, nonce: string, ajaxUrl: string, lastRestore: string | null, includeCoreDefault: boolean, safetyDefault: boolean }, flxBackupSettings: { quotaGb: number, preScope: FlxBackupPreScope, preKeepDays: number, schedule: FlxBackupSchedule, scheduleHour: number, scheduleDay: number, scheduleKeep: number, includeCore: boolean, exclude: string, safetyRestore: boolean, deleteOnUninstall: boolean } };
+
+export type FlxBackupHealthFieldsFragment = { zipAvailable: boolean, writable: boolean, folder: string, chunkSize: number, nonce: string, ajaxUrl: string, lastRestore: string | null, includeCoreDefault: boolean, safetyDefault: boolean };
+
+export type FlxBackupSettingsFieldsFragment = { quotaGb: number, preScope: FlxBackupPreScope, preKeepDays: number, schedule: FlxBackupSchedule, scheduleHour: number, scheduleDay: number, scheduleKeep: number, includeCore: boolean, exclude: string, safetyRestore: boolean, deleteOnUninstall: boolean };
+
+export type FlxBackupDeleteMutationVariables = Exact<{
+  input: FlxBackupDeleteInput;
+}>;
+
+
+export type FlxBackupDeleteMutation = { flxBackupDelete: { deletedIds: Array<string> | null, counts: { all: number, usedBytes: number, usedLabel: string, types: Array<{ type: FlxBackupType, label: string, count: number }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxBackupCountsFieldsFragment = { all: number, usedBytes: number, usedLabel: string, types: Array<{ type: FlxBackupType, label: string, count: number }> };
+
+export type FlxBackupDetailQueryVariables = Exact<{
+  id: string;
+}>;
+
+
+export type FlxBackupDetailQuery = { flxBackup: { wpVersion: string, id: string, type: FlxBackupType, typeLabel: string, typeColor: string, status: FlxBackupStatus, statusLabel: string, title: string, label: string, size: number, sizeLabel: string, files: number, includesDatabase: boolean, contents: Array<string>, source: string, sourceLabel: string, originalSite: string | null, locked: boolean, keepKind: FlxBackupKeepKind, keepLabel: string, error: string, downloadUrl: string, percent: number | null, progress: string, running: boolean, originalCreated: { timestamp: number, label: string } | null, finished: { timestamp: number, label: string } | null, keepUntil: { timestamp: number, label: string } | null, breakdown: { raw: number, zip: number, categories: Array<{ key: string, label: string, color: string, isDatabase: boolean, raw: number, zip: number, count: number, moreCount: number, moreRaw: number, moreZip: number, moreItems: number, items: Array<{ name: string, label: string, raw: number, zip: number, count: number }> }> } | null, created: { iso: string, timestamp: number, label: string, relative: string } | null, packages: Array<{ slug: string, name: string, fromVersion: string, toVersion: string, label: string }>, restore: { id: string, title: string, database: boolean, foreignSite: string | null, prefixInBackup: string | null, prefixOnSite: string | null, groups: Array<{ key: string, label: string, items: Array<{ path: string, label: string }> }> } | null } | null };
+
+export type FlxBackupRowFragment = { id: string, type: FlxBackupType, typeLabel: string, typeColor: string, status: FlxBackupStatus, statusLabel: string, title: string, label: string, size: number, sizeLabel: string, files: number, includesDatabase: boolean, contents: Array<string>, source: string, sourceLabel: string, originalSite: string | null, locked: boolean, keepKind: FlxBackupKeepKind, keepLabel: string, error: string, downloadUrl: string, percent: number | null, progress: string, running: boolean, created: { iso: string, timestamp: number, label: string, relative: string } | null, packages: Array<{ slug: string, name: string, fromVersion: string, toVersion: string, label: string }>, restore: { id: string, title: string, database: boolean, foreignSite: string | null, prefixInBackup: string | null, prefixOnSite: string | null, groups: Array<{ key: string, label: string, items: Array<{ path: string, label: string }> }> } | null };
+
+export type FlxBackupJobReadQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxBackupJobReadQuery = { flxBackupJob: { status: FlxBackupJobStatus, kind: FlxBackupJobKind | null, id: string, phase: string, percent: number, text: string, error: string, token: string, cancelled: boolean, elapsed: number, elapsedLabel: string, eta: number | null, etaLabel: string, title: string, sizeLabel: string, result: string } };
+
+export type FlxBackupListQueryVariables = Exact<{
+  first?: number | null | undefined;
+  after?: string | null | undefined;
+  type?: FlxBackupType | null | undefined;
+  status?: FlxBackupStatus | null | undefined;
+}>;
+
+
+export type FlxBackupListQuery = { flxBackups: { totalCount: number | null, nodes: Array<{ id: string, type: FlxBackupType, typeLabel: string, typeColor: string, status: FlxBackupStatus, statusLabel: string, title: string, label: string, size: number, sizeLabel: string, files: number, includesDatabase: boolean, contents: Array<string>, source: string, sourceLabel: string, originalSite: string | null, locked: boolean, keepKind: FlxBackupKeepKind, keepLabel: string, error: string, downloadUrl: string, percent: number | null, progress: string, running: boolean, created: { iso: string, timestamp: number, label: string, relative: string } | null, packages: Array<{ slug: string, name: string, fromVersion: string, toVersion: string, label: string }>, restore: { id: string, title: string, database: boolean, foreignSite: string | null, prefixInBackup: string | null, prefixOnSite: string | null, groups: Array<{ key: string, label: string, items: Array<{ path: string, label: string }> }> } | null }>, pageInfo: { hasNextPage: boolean, endCursor: string | null } }, flxBackupCounts: { all: number, usedBytes: number, usedLabel: string, types: Array<{ type: FlxBackupType, label: string, count: number }> }, flxBackupHealth: { zipAvailable: boolean, writable: boolean, folder: string, chunkSize: number, nonce: string, ajaxUrl: string, lastRestore: string | null, includeCoreDefault: boolean, safetyDefault: boolean } };
+
+export type FlxBackupLockMutationVariables = Exact<{
+  input: FlxBackupLockInput;
+}>;
+
+
+export type FlxBackupLockMutation = { flxBackupLock: { backup: { id: string, type: FlxBackupType, typeLabel: string, typeColor: string, status: FlxBackupStatus, statusLabel: string, title: string, label: string, size: number, sizeLabel: string, files: number, includesDatabase: boolean, contents: Array<string>, source: string, sourceLabel: string, originalSite: string | null, locked: boolean, keepKind: FlxBackupKeepKind, keepLabel: string, error: string, downloadUrl: string, percent: number | null, progress: string, running: boolean, created: { iso: string, timestamp: number, label: string, relative: string } | null, packages: Array<{ slug: string, name: string, fromVersion: string, toVersion: string, label: string }>, restore: { id: string, title: string, database: boolean, foreignSite: string | null, prefixInBackup: string | null, prefixOnSite: string | null, groups: Array<{ key: string, label: string, items: Array<{ path: string, label: string }> }> } | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxBackupRestoreStartMutationVariables = Exact<{
+  input: FlxBackupRestoreStartInput;
+}>;
+
+
+export type FlxBackupRestoreStartMutation = { flxBackupRestoreStart: { job: { status: FlxBackupJobStatus, kind: FlxBackupJobKind | null, id: string, phase: string, percent: number, text: string, error: string, token: string, cancelled: boolean, elapsed: number, elapsedLabel: string, eta: number | null, etaLabel: string, title: string, sizeLabel: string, result: string } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxBackupSettingsSaveMutationVariables = Exact<{
+  input: FlxBackupSettingsSaveInput;
+}>;
+
+
+export type FlxBackupSettingsSaveMutation = { flxBackupSettingsSave: { settings: { quotaGb: number, preScope: FlxBackupPreScope, preKeepDays: number, schedule: FlxBackupSchedule, scheduleHour: number, scheduleDay: number, scheduleKeep: number, includeCore: boolean, exclude: string, safetyRestore: boolean, deleteOnUninstall: boolean } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxBackupSettingsScreenQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxBackupSettingsScreenQuery = { flxBackupSettings: { quotaGb: number, preScope: FlxBackupPreScope, preKeepDays: number, schedule: FlxBackupSchedule, scheduleHour: number, scheduleDay: number, scheduleKeep: number, includeCore: boolean, exclude: string, safetyRestore: boolean, deleteOnUninstall: boolean }, flxBackupCounts: { all: number, usedBytes: number, usedLabel: string, types: Array<{ type: FlxBackupType, label: string, count: number }> }, flxBackupHealth: { zipAvailable: boolean, writable: boolean, folder: string, chunkSize: number, nonce: string, ajaxUrl: string, lastRestore: string | null, includeCoreDefault: boolean, safetyDefault: boolean } };
+
+export type FlxBackupStartMutationVariables = Exact<{
+  input: FlxBackupStartInput;
+}>;
+
+
+export type FlxBackupStartMutation = { flxBackupStart: { job: { status: FlxBackupJobStatus, kind: FlxBackupJobKind | null, id: string, phase: string, percent: number, text: string, error: string, token: string, cancelled: boolean, elapsed: number, elapsedLabel: string, eta: number | null, etaLabel: string, title: string, sizeLabel: string, result: string } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxBackupStepMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxBackupStepMutation = { flxBackupStep: { job: { status: FlxBackupJobStatus, kind: FlxBackupJobKind | null, id: string, phase: string, percent: number, text: string, error: string, token: string, cancelled: boolean, elapsed: number, elapsedLabel: string, eta: number | null, etaLabel: string, title: string, sizeLabel: string, result: string } | null } | null };
 
 export type FlxBlocksBlockTypeSetActiveMutationVariables = Exact<{
   input: FlxBlocksBlockTypeSetActiveInput;

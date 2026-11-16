@@ -1,0 +1,12 @@
+mutation FlxBackupSettingsSave($input: FlxBackupSettingsSaveInput!) {
+  flxBackupSettingsSave(input: $input) {
+    settings {
+      ...FlxBackupSettingsFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}
