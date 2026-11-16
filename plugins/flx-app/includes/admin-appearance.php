@@ -8,6 +8,7 @@
 defined( 'ABSPATH' ) || exit;
 
 /** Seçim kutuları için hedef kataloğu: grup => [ hedef => ad ]. */
+/** @return array<string, array<string, string>> */
 function flxapp_target_catalog() {
 	$out = array(
 		__( 'Application', 'flx-app' ) => array(
@@ -57,6 +58,7 @@ function flxapp_target_select( $name, $value, $empty = '' ) {
 	return $h . '</select>';
 }
 
+/** @return array<string, string> */
 function flxapp_color_labels() {
 	return array(
 		'primary' => __( 'Primary', 'flx-app' ),
@@ -224,36 +226,7 @@ function flxapp_handle_appearance() {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		flxapp_deny();
 	}
-	$p   = wp_unslash( $_POST ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-	$cur = flxapp_app_option();
-	$mob = (array) ( $p['mobile'] ?? array() );
-	$mob['tabs']                  = array_values( array_filter( (array) ( $mob['tabs'] ?? array() ), fn( $t ) => '' !== (string) ( $t['target'] ?? '' ) ) );
-	$mob['drawer']['enabled']     = ! empty( $mob['drawer']['enabled'] );
-	$mob['topbar']['show_logo']   = ! empty( $mob['topbar']['show_logo'] );
-	$mob['topbar']['site_switcher'] = ! empty( $mob['topbar']['site_switcher'] );
-	$mob['drawer']['groups']      = $cur['shell']['mobile']['drawer']['groups'] ?? null;
-	$mob['drawer']['pins']        = $cur['shell']['mobile']['drawer']['pins'] ?? array();
-	$mob['topbar']['actions']     = $cur['shell']['mobile']['topbar']['actions'] ?? null;
-	$desk                         = (array) ( $p['desktop'] ?? array() );
-	$desk['commands']             = array_values( array_filter( (array) ( $desk['commands'] ?? array() ) ) );
-	$desk['topbar']['site_switcher'] = ! empty( $desk['topbar']['site_switcher'] );
-	$desk['sidebar']              = $cur['shell']['desktop']['sidebar'] ?? array();
-	$desk['topbar']['actions']    = $cur['shell']['desktop']['topbar']['actions'] ?? null;
-	$new = flxapp_app_sanitize(
-		array(
-			'theme'    => (array) ( $p['theme'] ?? array() ),
-			'shell'    => array( 'mobile' => $mob, 'desktop' => $desk ),
-			'features' => $cur['features'] ?? array(),
-			'links'    => $cur['links'] ?? array(),
-			'brand'    => $cur['brand'] ?? array(),
-		)
-	);
-	update_option( 'flxapp_app', $new, false );
-	$all = array_filter( explode( ',', (string) ( $p['screens_all'] ?? '' ) ) );
-	$on  = array_map( 'strval', (array) ( $p['screens_on'] ?? array() ) );
-	$s   = flxapp_settings();
-	$s['screens_off'] = array_values( array_unique( array_merge( array_diff( (array) $s['screens_off'], $all ), array_diff( $all, $on ) ) ) );
-	update_option( 'flxapp_settings', $s, false );
+	FLXAPP_Admin_Service::appearance_save( wp_unslash( $_POST ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 	wp_safe_redirect( flxapp_admin_url( array( 'tab' => 'appearance', 'flxapp_msg' => 'saved' ) ) );
 	exit;
 }
@@ -319,53 +292,43 @@ function flxapp_handle_mobile() {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		flxapp_deny();
 	}
-	$p       = wp_unslash( $_POST ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-	$clients = array();
+	$p    = wp_unslash( $_POST ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+	$apps = array();
 	foreach ( (array) ( $p['app_clients'] ?? array() ) as $c ) {
-		$id = sanitize_key( (string) ( $c['id'] ?? '' ) );
-		if ( '' === $id ) {
-			continue;
-		}
-		$clients[] = array(
-			'id'            => $id,
-			'name'          => sanitize_text_field( (string) ( $c['name'] ?? $id ) ),
-			'platform'      => 'desktop' === ( $c['platform'] ?? '' ) ? 'desktop' : 'mobile',
-			'redirect_uris' => array_values( array_filter( array_map( 'trim', preg_split( '/[\r\n]+/', (string) ( $c['redirect_uris'] ?? '' ) ) ), 'flxapp_brand_redirect_ok' ) ),
+		$apps[] = array(
+			'id'           => (string) ( $c['id'] ?? '' ),
+			'name'         => (string) ( $c['name'] ?? '' ),
+			'platform'     => (string) ( $c['platform'] ?? '' ),
+			'redirectUris' => preg_split( '/[\r\n]+/', (string) ( $c['redirect_uris'] ?? '' ) ),
 		);
 	}
-	$s = flxapp_settings();
-	foreach ( array( 'generic_app', 'push_enabled', 'push_hide', 'embed_front', 'dev_redirects' ) as $k ) {
-		$s[ $k ] = empty( $p[ $k ] ) ? 0 : 1;
+	$in = array(
+		'storeIos'       => (string) ( $p['store_ios'] ?? '' ),
+		'storeAndroid'   => (string) ( $p['store_android'] ?? '' ),
+		'apps'           => $apps,
+		'expoToken'      => (string) ( $p['push_expo_token'] ?? '' ),
+		'clearExpoToken' => ! empty( $p['push_expo_token_clear'] ),
+	);
+	foreach ( array(
+		'genericApp'   => 'generic_app',
+		'pushEnabled'  => 'push_enabled',
+		'pushHide'     => 'push_hide',
+		'embedFront'   => 'embed_front',
+		'devRedirects' => 'dev_redirects',
+	) as $k => $f ) {
+		$in[ $k ] = ! empty( $p[ $f ] );
 	}
-	$s['store_ios']     = esc_url_raw( (string) ( $p['store_ios'] ?? '' ), array( 'https' ) );
-	$s['store_android'] = esc_url_raw( (string) ( $p['store_android'] ?? '' ), array( 'https' ) );
-	$s['app_clients']   = $clients;
-	update_option( 'flxapp_settings', $s, false );
-	if ( ! empty( $p['push_expo_token_clear'] ) ) {
-		flxapp_secret_put( 'push_expo_token', '' );
-	} elseif ( '' !== trim( (string) ( $p['push_expo_token'] ?? '' ) ) ) {
-		flxapp_secret_put( 'push_expo_token', preg_replace( '/[^A-Za-z0-9_\-.]/', '', (string) $p['push_expo_token'] ) );
-	}
+	FLXAPP_Admin_Service::mobile_save( $in );
 	wp_safe_redirect( flxapp_admin_url( array( 'tab' => 'mobile', 'flxapp_msg' => 'saved' ) ) );
 	exit;
 }
 
 function flxapp_handle_push_test() {
 	check_admin_referer( 'flxapp_push_test' );
-	if ( ! current_user_can( 'manage_options' ) ) {
+	$r = FLXAPP_Admin_Service::push_test();
+	if ( is_wp_error( $r ) ) {
 		flxapp_deny();
 	}
-	$r = flxapp_push(
-		get_current_user_id(),
-		array(
-			'title'  => get_bloginfo( 'name' ),
-			'body'   => __( 'Test notification: this device receives notifications.', 'flx-app' ),
-			'target' => 'notifications',
-			'now'    => true,
-			'test'   => true,
-			'public' => true,
-		)
-	);
 	set_transient( 'flxapp_push_test_' . get_current_user_id(), $r, MINUTE_IN_SECONDS );
 	wp_safe_redirect( flxapp_admin_url( array( 'tab' => 'mobile', 'flxapp_msg' => 'push' ) ) );
 	exit;
@@ -404,11 +367,9 @@ function flxapp_render_devices( array $rows, $show_user ) {
 
 function flxapp_handle_device() {
 	check_admin_referer( 'flxapp_device' );
-	$row = flxapp_device_get( absint( $_POST['id'] ?? 0 ) );
-	if ( ! $row || ( (int) $row['user_id'] !== get_current_user_id() && ! current_user_can( 'manage_options' ) ) ) {
+	if ( is_wp_error( FLXAPP_Admin_Service::device_revoke( absint( $_POST['id'] ?? 0 ) ) ) ) {
 		flxapp_deny();
 	}
-	flxapp_device_revoke( $row );
 	wp_safe_redirect( wp_get_referer() ? wp_get_referer() : flxapp_admin_url() );
 	exit;
 }

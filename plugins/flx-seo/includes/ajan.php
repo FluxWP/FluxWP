@@ -278,7 +278,9 @@ function flxseo_fix_is_on( $fix_id ) {
 	return true;
 }
 
-/** Düzeltmeyi uygular; açılan ayarların listesini döner. Flux SEO dışındaki düzeltmeler flx_system_fixes üzerinden çalışır. */
+/** Düzeltmeyi uygular; açılan ayarların listesini döner. Flux SEO dışındaki düzeltmeler flx_system_fixes üzerinden çalışır.
+ * @return list<string>
+ */
 function flxseo_fix_apply( $fix_id ) {
 	$keys = flxseo_fix_map()[ $fix_id ] ?? null;
 	if ( ! $keys ) {

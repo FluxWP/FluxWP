@@ -1,0 +1,13 @@
+# Sends a test notification to the administrator's devices.
+mutation FlxAppAdminPushTest {
+  flxAppAdminPushTest(input: {}) {
+    sent
+    failed
+    skipped
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

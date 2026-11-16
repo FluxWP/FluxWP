@@ -399,6 +399,267 @@ export const FlxAdsValue: FlxOperation<T.FlxAdsValueQuery, T.FlxAdsValueQueryVar
   document: "query FlxAdsValue($filter: FlxAdsFilterInput) {\n  flxAdsValue(filter: $filter) {\n    ...FlxAdsValuePage\n  }\n}\n\nfragment FlxAdsCohortRow on FlxAdsCohortRow {\n  month\n  label\n  newCount\n  cells {\n    amount\n    currency\n    formatted\n  }\n}\n\nfragment FlxAdsValuePage on FlxAdsValuePage {\n  range\n  from\n  to\n  kind\n  by\n  base\n  totals {\n    ...FlxAdsValueTotals\n  }\n  rows {\n    ...FlxAdsValueRow\n  }\n  cohortMonths\n  cohort {\n    ...FlxAdsCohortRow\n  }\n}\n\nfragment FlxAdsValueRow on FlxAdsValueRow {\n  key\n  label\n  channel\n  channelLabel\n  newCount\n  first {\n    amount\n    currency\n    formatted\n  }\n  ltv90 {\n    amount\n    currency\n    formatted\n  }\n  ltv {\n    amount\n    currency\n    formatted\n  }\n  avg {\n    amount\n    currency\n    formatted\n  }\n  rate\n  hasSpend\n  spend {\n    amount\n    currency\n    formatted\n  }\n  cac {\n    amount\n    currency\n    formatted\n  }\n  ratio\n  roasLevel\n  payback\n}\n\nfragment FlxAdsValueTotals on FlxAdsValueTotals {\n  newCount\n  adsNew\n  adsAvg {\n    amount\n    currency\n    formatted\n  }\n  cac {\n    amount\n    currency\n    formatted\n  }\n  spend {\n    amount\n    currency\n    formatted\n  }\n  ratio\n  rate\n}",
 };
 
+/** query FlxAppAccess (flx-app, plugins/flx-app/graphql/operations/FlxAppAccess.graphql) */
+export const FlxAppAccess: FlxOperation<T.FlxAppAccessQuery, T.FlxAppAccessQueryVariables> = {
+  id: '1dd252522e2e7e352cbe31ebb7ef763661f7f52d407b0023f418e1365e0d5aa8',
+  name: 'FlxAppAccess',
+  kind: 'query',
+  plugin: 'flx-app',
+  document: "query FlxAppAccess($all: Boolean) {\n  flxAppAccess(all: $all) {\n    devices {\n      id\n      name\n      platform\n      app\n      brand\n      push\n      lastSeen\n      lastSeenAgo\n      userId\n      user\n      current\n    }\n    rows {\n      id\n      kind\n      name\n      hint\n      userId\n      user\n      created\n      lastUsed\n      lastIp\n      expires\n    }\n    canCreateKeys\n    canManage\n    downloads {\n      macos\n      windows\n      windowsMsi\n    }\n  }\n}",
+};
+
+/** mutation FlxAppAccessRevoke (flx-app, plugins/flx-app/graphql/operations/FlxAppAccessRevoke.graphql) */
+export const FlxAppAccessRevoke: FlxOperation<T.FlxAppAccessRevokeMutation, T.FlxAppAccessRevokeMutationVariables> = {
+  id: '0410fe39ca78d5cd046a033c326dd6bd357096aaab36212f8c0f44f9056de2c1',
+  name: 'FlxAppAccessRevoke',
+  kind: 'mutation',
+  plugin: 'flx-app',
+  document: "mutation FlxAppAccessRevoke($input: FlxAppAccessRevokeInput!) {\n  flxAppAccessRevoke(input: $input) {\n    ok\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxAppAdminAppearance (flx-app, plugins/flx-app/graphql/operations/FlxAppAdminAppearance.graphql) */
+export const FlxAppAdminAppearance: FlxOperation<T.FlxAppAdminAppearanceQuery, T.FlxAppAdminAppearanceQueryVariables> = {
+  id: '1860c58a8fdc3e9a90238fafaef5f1ecdc4bcf298ce323ef674dd35eefbe2e6c',
+  name: 'FlxAppAdminAppearance',
+  kind: 'query',
+  plugin: 'flx-app',
+  document: "query FlxAppAdminAppearance {\n  flxAppAdminAppearance {\n    ...FlxAppAdminAppearanceFields\n  }\n}\n\nfragment FlxAppAdminAppearanceFields on FlxAppAdminAppearance {\n  option\n  theme\n  fonts\n  colorKeys {\n    key\n    label\n  }\n  targets {\n    label\n    items {\n      key\n      label\n    }\n  }\n  targetLabels {\n    key\n    label\n  }\n  screens {\n    key\n    label\n    on\n  }\n  previewMobile\n  previewDesktop\n}",
+};
+
+/** mutation FlxAppAdminAppearanceSave (flx-app, plugins/flx-app/graphql/operations/FlxAppAdminAppearanceSave.graphql) */
+export const FlxAppAdminAppearanceSave: FlxOperation<T.FlxAppAdminAppearanceSaveMutation, T.FlxAppAdminAppearanceSaveMutationVariables> = {
+  id: '762de9d5115d73d8f01452c7b5f8a8ac15213df2102f3986d735018483a7670b',
+  name: 'FlxAppAdminAppearanceSave',
+  kind: 'mutation',
+  plugin: 'flx-app',
+  document: "mutation FlxAppAdminAppearanceSave($input: FlxAppAdminAppearanceSaveInput!) {\n  flxAppAdminAppearanceSave(input: $input) {\n    appearance {\n      ...FlxAppAdminAppearanceFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAppAdminAppearanceFields on FlxAppAdminAppearance {\n  option\n  theme\n  fonts\n  colorKeys {\n    key\n    label\n  }\n  targets {\n    label\n    items {\n      key\n      label\n    }\n  }\n  targetLabels {\n    key\n    label\n  }\n  screens {\n    key\n    label\n    on\n  }\n  previewMobile\n  previewDesktop\n}",
+};
+
+/** mutation FlxAppAdminClientCreate (flx-app, plugins/flx-app/graphql/operations/FlxAppAdminClientCreate.graphql) */
+export const FlxAppAdminClientCreate: FlxOperation<T.FlxAppAdminClientCreateMutation, T.FlxAppAdminClientCreateMutationVariables> = {
+  id: '14ba5b9cfa34c05e5bef9a80d5087b56019d5b4c4a5a22ce7810d12dd6089f8c',
+  name: 'FlxAppAdminClientCreate',
+  kind: 'mutation',
+  plugin: 'flx-app',
+  document: "mutation FlxAppAdminClientCreate($input: FlxAppAdminClientCreateInput!) {\n  flxAppAdminClientCreate(input: $input) {\n    client {\n      ...FlxAppAdminClientFields\n    }\n    secret\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAppAdminClientFields on FlxAppAdminClient {\n  id\n  name\n  redirectUris\n  kind\n  hasSecret\n}",
+};
+
+/** mutation FlxAppAdminClientDelete (flx-app, plugins/flx-app/graphql/operations/FlxAppAdminClientDelete.graphql) */
+export const FlxAppAdminClientDelete: FlxOperation<T.FlxAppAdminClientDeleteMutation, T.FlxAppAdminClientDeleteMutationVariables> = {
+  id: '0acad378aa0aa39d0d878475c0e4c2c5e8a5a09045e3bd946641c722c6b0f44b',
+  name: 'FlxAppAdminClientDelete',
+  kind: 'mutation',
+  plugin: 'flx-app',
+  document: "mutation FlxAppAdminClientDelete($input: FlxAppAdminClientDeleteInput!) {\n  flxAppAdminClientDelete(input: $input) {\n    ok\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxAppAdminClients (flx-app, plugins/flx-app/graphql/operations/FlxAppAdminClients.graphql) */
+export const FlxAppAdminClients: FlxOperation<T.FlxAppAdminClientsQuery, T.FlxAppAdminClientsQueryVariables> = {
+  id: '0aa8eaf58f40a410644147b5f052aa2441f94a7c247af742f281bd5590f5b61f',
+  name: 'FlxAppAdminClients',
+  kind: 'query',
+  plugin: 'flx-app',
+  document: "query FlxAppAdminClients {\n  flxAppAdminClients {\n    clients {\n      ...FlxAppAdminClientFields\n    }\n    connection {\n      key\n      label\n    }\n  }\n}\n\nfragment FlxAppAdminClientFields on FlxAppAdminClient {\n  id\n  name\n  redirectUris\n  kind\n  hasSecret\n}",
+};
+
+/** query FlxAppAdminMenu (flx-app, plugins/flx-app/graphql/operations/FlxAppAdminMenu.graphql) */
+export const FlxAppAdminMenu: FlxOperation<T.FlxAppAdminMenuQuery, T.FlxAppAdminMenuQueryVariables> = {
+  id: '67b0edec2f4ef8fb57c5f796df9e32ec167f35dae7bec4196df4edcdff650a82',
+  name: 'FlxAppAdminMenu',
+  kind: 'query',
+  plugin: 'flx-app',
+  document: "query FlxAppAdminMenu {\n  flxAppAdminMenu {\n    available\n    editorUrl\n    platforms {\n      key\n      label\n    }\n    rows {\n      role\n      menu\n      platforms {\n        key\n        visible\n      }\n    }\n  }\n}",
+};
+
+/** query FlxAppAdminMobile (flx-app, plugins/flx-app/graphql/operations/FlxAppAdminMobile.graphql) */
+export const FlxAppAdminMobile: FlxOperation<T.FlxAppAdminMobileQuery, T.FlxAppAdminMobileQueryVariables> = {
+  id: 'e27de38feec02d07f97aa0a6cee1f3782bf39e4b41f0fd3cf84edb52d04a7d74',
+  name: 'FlxAppAdminMobile',
+  kind: 'query',
+  plugin: 'flx-app',
+  document: "query FlxAppAdminMobile {\n  flxAppAdminMobile {\n    ...FlxAppAdminMobileFields\n  }\n}\n\nfragment FlxAppAdminMobileFields on FlxAppAdminMobile {\n  genericApp\n  storeIos\n  storeAndroid\n  pushEnabled\n  pushHide\n  hasExpoToken\n  embedFront\n  devRedirects\n  apps {\n    id\n    name\n    platform\n    redirectUris\n  }\n  deviceCount\n  pushCount\n  lastPush {\n    at\n    ago\n    sent\n    failed\n    error\n  }\n  bootstrapUrl\n  preset\n}",
+};
+
+/** mutation FlxAppAdminMobileSave (flx-app, plugins/flx-app/graphql/operations/FlxAppAdminMobileSave.graphql) */
+export const FlxAppAdminMobileSave: FlxOperation<T.FlxAppAdminMobileSaveMutation, T.FlxAppAdminMobileSaveMutationVariables> = {
+  id: '3140882c7e64b03a33a9bdeaab1dc3b5eb7c50ba5709a2a95778672679795ae2',
+  name: 'FlxAppAdminMobileSave',
+  kind: 'mutation',
+  plugin: 'flx-app',
+  document: "mutation FlxAppAdminMobileSave($input: FlxAppAdminMobileSaveInput!) {\n  flxAppAdminMobileSave(input: $input) {\n    mobile {\n      ...FlxAppAdminMobileFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAppAdminMobileFields on FlxAppAdminMobile {\n  genericApp\n  storeIos\n  storeAndroid\n  pushEnabled\n  pushHide\n  hasExpoToken\n  embedFront\n  devRedirects\n  apps {\n    id\n    name\n    platform\n    redirectUris\n  }\n  deviceCount\n  pushCount\n  lastPush {\n    at\n    ago\n    sent\n    failed\n    error\n  }\n  bootstrapUrl\n  preset\n}",
+};
+
+/** query FlxAppAdminModules (flx-app, plugins/flx-app/graphql/operations/FlxAppAdminModules.graphql) */
+export const FlxAppAdminModules: FlxOperation<T.FlxAppAdminModulesQuery, T.FlxAppAdminModulesQueryVariables> = {
+  id: '23953eab015437dc0f727a62ee3d73cb1e6cb45be22fc7f6b79e101318571d10',
+  name: 'FlxAppAdminModules',
+  kind: 'query',
+  plugin: 'flx-app',
+  document: "query FlxAppAdminModules {\n  flxAppAdminModules {\n    ...FlxAppAdminModuleFields\n  }\n}\n\nfragment FlxAppAdminModuleFields on FlxAppAdminModule {\n  id\n  title\n  menu\n  cap\n  version\n  kind\n  screens\n  errors\n  on\n}",
+};
+
+/** mutation FlxAppAdminModulesSave (flx-app, plugins/flx-app/graphql/operations/FlxAppAdminModulesSave.graphql) */
+export const FlxAppAdminModulesSave: FlxOperation<T.FlxAppAdminModulesSaveMutation, T.FlxAppAdminModulesSaveMutationVariables> = {
+  id: 'a7aad76ad18dbda2567f29ad4d8b488efe4043659ae782a8d0f92eefba54349c',
+  name: 'FlxAppAdminModulesSave',
+  kind: 'mutation',
+  plugin: 'flx-app',
+  document: "mutation FlxAppAdminModulesSave($input: FlxAppAdminModulesSaveInput!) {\n  flxAppAdminModulesSave(input: $input) {\n    modules {\n      ...FlxAppAdminModuleFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAppAdminModuleFields on FlxAppAdminModule {\n  id\n  title\n  menu\n  cap\n  version\n  kind\n  screens\n  errors\n  on\n}",
+};
+
+/** mutation FlxAppAdminPushTest (flx-app, plugins/flx-app/graphql/operations/FlxAppAdminPushTest.graphql) */
+export const FlxAppAdminPushTest: FlxOperation<T.FlxAppAdminPushTestMutation, T.FlxAppAdminPushTestMutationVariables> = {
+  id: 'b9dddc6a4c12070645fd30a6fbdf39863d2b58ea1cbe71f7ebb5ee2db6bc9b3a',
+  name: 'FlxAppAdminPushTest',
+  kind: 'mutation',
+  plugin: 'flx-app',
+  document: "mutation FlxAppAdminPushTest {\n  flxAppAdminPushTest(input: {  }) {\n    sent\n    failed\n    skipped\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxAppAdminSettings (flx-app, plugins/flx-app/graphql/operations/FlxAppAdminSettings.graphql) */
+export const FlxAppAdminSettings: FlxOperation<T.FlxAppAdminSettingsQuery, T.FlxAppAdminSettingsQueryVariables> = {
+  id: 'b7d4bf6833511227a38948aef18cf38f05a29043d4dbfc3b04e49fcc1878ec06',
+  name: 'FlxAppAdminSettings',
+  kind: 'query',
+  plugin: 'flx-app',
+  document: "query FlxAppAdminSettings {\n  flxAppAdminSettings {\n    ...FlxAppAdminSettingsFields\n  }\n}\n\nfragment FlxAppAdminSettingsFields on FlxAppAdminSettings {\n  accessMinutes\n  refreshDays\n  dynamicClients\n  webSession\n  otpEnabled\n  otpCreate\n  otpStaff\n  phoneSelfVerify\n  keysCap\n  keysCapChoices {\n    key\n    label\n  }\n  version\n}",
+};
+
+/** mutation FlxAppAdminSettingsSave (flx-app, plugins/flx-app/graphql/operations/FlxAppAdminSettingsSave.graphql) */
+export const FlxAppAdminSettingsSave: FlxOperation<T.FlxAppAdminSettingsSaveMutation, T.FlxAppAdminSettingsSaveMutationVariables> = {
+  id: 'fc53aca192620408e9133dd653741e741a10c7d19ada18e38845f088b88e1788',
+  name: 'FlxAppAdminSettingsSave',
+  kind: 'mutation',
+  plugin: 'flx-app',
+  document: "mutation FlxAppAdminSettingsSave($input: FlxAppAdminSettingsSaveInput!) {\n  flxAppAdminSettingsSave(input: $input) {\n    settings {\n      ...FlxAppAdminSettingsFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAppAdminSettingsFields on FlxAppAdminSettings {\n  accessMinutes\n  refreshDays\n  dynamicClients\n  webSession\n  otpEnabled\n  otpCreate\n  otpStaff\n  phoneSelfVerify\n  keysCap\n  keysCapChoices {\n    key\n    label\n  }\n  version\n}",
+};
+
+/** query FlxAppBootstrap (flx-app, plugins/flx-app/graphql/operations/FlxAppBootstrap.graphql) */
+export const FlxAppBootstrap: FlxOperation<T.FlxAppBootstrapQuery, T.FlxAppBootstrapQueryVariables> = {
+  id: '4850096db374db9b37d4fc02550c0248242e0adb19015eadc68717b90ac7147d',
+  name: 'FlxAppBootstrap',
+  kind: 'query',
+  plugin: 'flx-app',
+  document: "query FlxAppBootstrap {\n  flxAppBootstrap {\n    document\n  }\n}",
+};
+
+/** query FlxAppConfig (flx-app, plugins/flx-app/graphql/operations/FlxAppConfig.graphql) */
+export const FlxAppConfig: FlxOperation<T.FlxAppConfigQuery, T.FlxAppConfigQueryVariables> = {
+  id: 'd42f09a39296126fd6b968f4640a2f690f247a7b2a205df5df1294039d864d92',
+  name: 'FlxAppConfig',
+  kind: 'query',
+  plugin: 'flx-app',
+  document: "query FlxAppConfig($ifHash: String) {\n  flxAppConfig(ifHash: $ifHash) {\n    hash\n    notModified\n    document\n  }\n}",
+};
+
+/** query FlxAppCounts (flx-app, plugins/flx-app/graphql/operations/FlxAppCounts.graphql) */
+export const FlxAppCounts: FlxOperation<T.FlxAppCountsQuery, T.FlxAppCountsQueryVariables> = {
+  id: '7df2f9c9afbfb4cbf06c341cc448f815650a0e7d7e3d61bdf57a745a3786e397',
+  name: 'FlxAppCounts',
+  kind: 'query',
+  plugin: 'flx-app',
+  document: "query FlxAppCounts {\n  flxAppCounts {\n    key\n    value\n  }\n}",
+};
+
+/** query FlxAppDashboard (flx-app, plugins/flx-app/graphql/operations/FlxAppDashboard.graphql) */
+export const FlxAppDashboard: FlxOperation<T.FlxAppDashboardQuery, T.FlxAppDashboardQueryVariables> = {
+  id: '1eacda91aa4cc35d78858bd1216b721f003177049a5f4070397f9019237b8d2b',
+  name: 'FlxAppDashboard',
+  kind: 'query',
+  plugin: 'flx-app',
+  document: "query FlxAppDashboard {\n  flxAppDashboard {\n    cards {\n      id\n      title\n      value\n      sub\n      icon\n      tone\n      url\n      open\n      order\n    }\n    lists {\n      id\n      title\n      icon\n      url\n      open\n      order\n      items {\n        title\n        sub\n        meta\n        url\n      }\n    }\n  }\n}",
+};
+
+/** mutation FlxAppDeviceRevoke (flx-app, plugins/flx-app/graphql/operations/FlxAppDeviceRevoke.graphql) */
+export const FlxAppDeviceRevoke: FlxOperation<T.FlxAppDeviceRevokeMutation, T.FlxAppDeviceRevokeMutationVariables> = {
+  id: '9f61478d3bc50857048da2499c97ed5de0bdc51362012d2153e2363175cb7d37',
+  name: 'FlxAppDeviceRevoke',
+  kind: 'mutation',
+  plugin: 'flx-app',
+  document: "mutation FlxAppDeviceRevoke($input: FlxAppDeviceRevokeInput!) {\n  flxAppDeviceRevoke(input: $input) {\n    ok\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxAppKeyCreate (flx-app, plugins/flx-app/graphql/operations/FlxAppKeyCreate.graphql) */
+export const FlxAppKeyCreate: FlxOperation<T.FlxAppKeyCreateMutation, T.FlxAppKeyCreateMutationVariables> = {
+  id: '49577b1d3b994160a8f4f89898086f3ffb70db6242a809e48b3515c7268d6e21',
+  name: 'FlxAppKeyCreate',
+  kind: 'mutation',
+  plugin: 'flx-app',
+  document: "mutation FlxAppKeyCreate($input: FlxAppKeyCreateInput!) {\n  flxAppKeyCreate(input: $input) {\n    key\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxAppLogout (flx-app, plugins/flx-app/graphql/operations/FlxAppLogout.graphql) */
+export const FlxAppLogout: FlxOperation<T.FlxAppLogoutMutation, T.FlxAppLogoutMutationVariables> = {
+  id: '581d784d156bdcbf674e74bf80ac014a58a27beb29cb1aefb721ec87150c6386',
+  name: 'FlxAppLogout',
+  kind: 'mutation',
+  plugin: 'flx-app',
+  document: "mutation FlxAppLogout {\n  flxAppLogout(input: {  }) {\n    ok\n  }\n}",
+};
+
+/** query FlxAppManifest (flx-app, plugins/flx-app/graphql/operations/FlxAppManifest.graphql) */
+export const FlxAppManifest: FlxOperation<T.FlxAppManifestQuery, T.FlxAppManifestQueryVariables> = {
+  id: 'be768903018c97df98f3c8a1d6561d546d8d03a9972508ed1a695d85f25fca1c',
+  name: 'FlxAppManifest',
+  kind: 'query',
+  plugin: 'flx-app',
+  document: "query FlxAppManifest($ifHash: String) {\n  flxAppManifest(ifHash: $ifHash) {\n    schema\n    hash\n    notModified\n    platform\n    modules {\n      id\n      document\n    }\n  }\n}",
+};
+
+/** query FlxAppMe (flx-app, plugins/flx-app/graphql/operations/FlxAppMe.graphql) */
+export const FlxAppMe: FlxOperation<T.FlxAppMeQuery, T.FlxAppMeQueryVariables> = {
+  id: 'cba8508c6de751e14f96be2f2c48765115575862f782433e228b516833a1cd5f',
+  name: 'FlxAppMe',
+  kind: 'query',
+  plugin: 'flx-app',
+  document: "query FlxAppMe {\n  flxAppMe {\n    user {\n      databaseId\n      login\n      name\n      email\n      avatar\n      roles {\n        id\n        name\n      }\n      locale\n      isAdmin\n      profileUrl\n    }\n    site {\n      name\n      url\n      adminUrl\n      restUrl\n      icon\n      locale\n      timezone\n    }\n    auth {\n      kind\n      client\n      scope\n      expires\n    }\n    menu {\n      id\n      slug\n      title\n      url\n      icon\n      iconUrl\n      badge\n      items {\n        slug\n        title\n        url\n        badge\n      }\n    }\n    modules {\n      id\n      title\n      menu\n      api\n      icon\n      version\n      order\n      url\n      hasManifest\n      extra\n    }\n    counts {\n      key\n      value\n    }\n    bottom\n    webSession\n    caps {\n      key\n      granted\n    }\n    versions {\n      slug\n      version\n    }\n    layout {\n      pins\n      groups {\n        id\n        label\n        collapsed\n        items\n      }\n    }\n    hashes {\n      me\n      config\n      manifest\n    }\n  }\n}",
+};
+
+/** query FlxAppPrefs (flx-app, plugins/flx-app/graphql/operations/FlxAppPrefs.graphql) */
+export const FlxAppPrefs: FlxOperation<T.FlxAppPrefsQuery, T.FlxAppPrefsQueryVariables> = {
+  id: '1a62c8567390b5db293ddf348d4f16357ebc9674802472d5805b4f576b12d2a0',
+  name: 'FlxAppPrefs',
+  kind: 'query',
+  plugin: 'flx-app',
+  document: "query FlxAppPrefs {\n  flxAppPrefs {\n    ...FlxAppPrefsFields\n  }\n}\n\nfragment FlxAppPrefsFields on FlxAppPrefs {\n  order\n  hidden\n  pinned\n  forceWeb\n  tabs\n  cardOrder\n  cardHidden\n  push {\n    event\n    on\n  }\n  events {\n    id\n    title\n    source\n    default\n    on\n  }\n  updated\n}",
+};
+
+/** mutation FlxAppPrefsUpdate (flx-app, plugins/flx-app/graphql/operations/FlxAppPrefsUpdate.graphql) */
+export const FlxAppPrefsUpdate: FlxOperation<T.FlxAppPrefsUpdateMutation, T.FlxAppPrefsUpdateMutationVariables> = {
+  id: '522afbeb70b132491258fc307b12fa464f70e26adecb04288c562dd6988311bc',
+  name: 'FlxAppPrefsUpdate',
+  kind: 'mutation',
+  plugin: 'flx-app',
+  document: "mutation FlxAppPrefsUpdate($input: FlxAppPrefsUpdateInput!) {\n  flxAppPrefsUpdate(input: $input) {\n    prefs {\n      ...FlxAppPrefsFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAppPrefsFields on FlxAppPrefs {\n  order\n  hidden\n  pinned\n  forceWeb\n  tabs\n  cardOrder\n  cardHidden\n  push {\n    event\n    on\n  }\n  events {\n    id\n    title\n    source\n    default\n    on\n  }\n  updated\n}",
+};
+
+/** mutation FlxAppSessionCreate (flx-app, plugins/flx-app/graphql/operations/FlxAppSessionCreate.graphql) */
+export const FlxAppSessionCreate: FlxOperation<T.FlxAppSessionCreateMutation, T.FlxAppSessionCreateMutationVariables> = {
+  id: '7609ec865712b962f6777d969a7d24945a7b0bcd4d40b6736f9d2eb6da23a88d',
+  name: 'FlxAppSessionCreate',
+  kind: 'mutation',
+  plugin: 'flx-app',
+  document: "mutation FlxAppSessionCreate($input: FlxAppSessionCreateInput!) {\n  flxAppSessionCreate(input: $input) {\n    url\n    expiresIn\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxAppSessionEnd (flx-app, plugins/flx-app/graphql/operations/FlxAppSessionEnd.graphql) */
+export const FlxAppSessionEnd: FlxOperation<T.FlxAppSessionEndMutation, T.FlxAppSessionEndMutationVariables> = {
+  id: 'f44b43d790d42a4e40f3043ef92df28908d2f586405269157b9acf3d70ee64a1',
+  name: 'FlxAppSessionEnd',
+  kind: 'mutation',
+  plugin: 'flx-app',
+  document: "mutation FlxAppSessionEnd {\n  flxAppSessionEnd(input: {  }) {\n    ended\n  }\n}",
+};
+
+/** query FlxAppSync (flx-app, plugins/flx-app/graphql/operations/FlxAppSync.graphql) */
+export const FlxAppSync: FlxOperation<T.FlxAppSyncQuery, T.FlxAppSyncQueryVariables> = {
+  id: '74959c1f5581dbb6bbff6bc34c10bd2f42777d0b33917352eb48b01c75a8b8cd',
+  name: 'FlxAppSync',
+  kind: 'query',
+  plugin: 'flx-app',
+  document: "query FlxAppSync($since: Int) {\n  flxAppSync(since: $since) {\n    counts {\n      key\n      value\n    }\n    hashes {\n      me\n      config\n      manifest\n    }\n    events {\n      event\n      title\n      body\n      target\n      params\n      at\n    }\n    serverTime\n  }\n}",
+};
+
 /** query FlxContentLanguage (flx-lang, plugins/flx-lang/graphql/operations/FlxContentLanguage.graphql) */
 export const FlxContentLanguage: FlxOperation<T.FlxContentLanguageQuery, T.FlxContentLanguageQueryVariables> = {
   id: 'b7b1aa41db2b927353f83e236529cdf7a39dcc18c8091bda379432826fd0ff4d',
@@ -550,6 +811,249 @@ export const FlxRolesScreen: FlxOperation<T.FlxRolesScreenQuery, T.FlxRolesScree
   kind: 'query',
   plugin: 'flx-roles',
   document: "query FlxRolesScreen($members: Int = 50) {\n  flxRoles {\n    ...FlxRoleRow\n    members(first: $members) {\n      ...FlxRoleMemberPage\n    }\n  }\n  flxRoleCapabilityGroups {\n    key\n    label\n    plugin\n    active\n    capabilities {\n      key\n      label\n      locked\n      broad\n      pending\n    }\n  }\n  flxRolesConfig {\n    ...FlxRolesConfigFields\n  }\n}\n\nfragment FlxRoleMemberPage on FlxRoleMemberConnection {\n  nodes {\n    ...FlxRoleMemberRow\n  }\n  pageInfo {\n    hasNextPage\n    endCursor\n  }\n  totalCount\n}\n\nfragment FlxRoleMemberRow on FlxRoleMember {\n  databaseId\n  name\n  email\n  phone {\n    display\n    e164\n  }\n  editUrl\n  referralLink\n}\n\nfragment FlxRoleRow on FlxRole {\n  key\n  label\n  description\n  custom\n  memberCount\n  capabilities\n  home\n}\n\nfragment FlxRolesConfigFields on FlxRolesConfig {\n  referralDays\n  newUserUrl\n  permissionsUrl\n  homeChoices {\n    key\n    label\n  }\n}",
+};
+
+/** mutation FlxSeoAuditRun (flx-seo, plugins/flx-seo/graphql/operations/FlxSeoAuditRun.graphql) */
+export const FlxSeoAuditRun: FlxOperation<T.FlxSeoAuditRunMutation, T.FlxSeoAuditRunMutationVariables> = {
+  id: '24ef9e0380385f71b2af51a8163f15a8362c7a02a3fee076051efdd289a4d7a4',
+  name: 'FlxSeoAuditRun',
+  kind: 'mutation',
+  plugin: 'flx-seo',
+  document: "mutation FlxSeoAuditRun($input: FlxSeoAuditRunInput!) {\n  flxSeoAuditRun(input: $input) {\n    audit {\n      ...FlxSeoAuditFields\n    }\n    history {\n      ...FlxSeoHistoryFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxSeoAuditFields on FlxSeoAudit {\n  counts {\n    ...FlxSeoCountsFields\n  }\n  local {\n    time {\n      iso\n      label\n      relative\n    }\n    url\n    durationMs\n    httpStatus\n  }\n  pageSpeed {\n    strategy\n    time {\n      iso\n      label\n      relative\n    }\n    url\n    lighthouse\n    scores {\n      category\n      label\n      score\n      passed\n      total\n    }\n    metrics {\n      key\n      label\n      value\n      score\n    }\n  }\n  agentic {\n    id\n    label\n    passed\n  }\n  agenticPassed\n  auditUrl\n  mcpServerOn\n  llmsUrl\n  findings {\n    id\n    title\n    priority\n    priorityLabel\n    category\n    categoryLabel\n    also\n    detail\n    fix\n    owner\n    ownerLabel\n    items\n    sources\n    fixId\n    fixLabel\n  }\n}\n\nfragment FlxSeoCountsFields on FlxSeoCounts {\n  critical\n  high\n  medium\n  low\n}\n\nfragment FlxSeoHistoryFields on FlxSeoHistory {\n  total\n  running\n  errors\n  next {\n    iso\n    label\n  }\n  entries {\n    time {\n      iso\n      label\n      relative\n    }\n    trigger\n    triggerLabel\n    url\n    counts {\n      ...FlxSeoCountsFields\n    }\n    scores {\n      strategy\n      category\n      label\n      score\n    }\n    metrics {\n      strategy\n      fcp\n      lcp\n      tbt\n      cls\n      si\n    }\n    agentic\n    added {\n      id\n      title\n    }\n    resolved {\n      id\n      title\n    }\n  }\n}",
+};
+
+/** query FlxSeoAuditScreen (flx-seo, plugins/flx-seo/graphql/operations/FlxSeoAuditScreen.graphql) */
+export const FlxSeoAuditScreen: FlxOperation<T.FlxSeoAuditScreenQuery, T.FlxSeoAuditScreenQueryVariables> = {
+  id: '25585531a77819b9e9b681a85e767cb408d01dcab0ecb5e5e3717d30b20fb89e',
+  name: 'FlxSeoAuditScreen',
+  kind: 'query',
+  plugin: 'flx-seo',
+  document: "query FlxSeoAuditScreen($history: Int = 30) {\n  flxSeoAudit {\n    ...FlxSeoAuditFields\n  }\n  flxSeoAuditHistory(limit: $history) {\n    ...FlxSeoHistoryFields\n  }\n}\n\nfragment FlxSeoAuditFields on FlxSeoAudit {\n  counts {\n    ...FlxSeoCountsFields\n  }\n  local {\n    time {\n      iso\n      label\n      relative\n    }\n    url\n    durationMs\n    httpStatus\n  }\n  pageSpeed {\n    strategy\n    time {\n      iso\n      label\n      relative\n    }\n    url\n    lighthouse\n    scores {\n      category\n      label\n      score\n      passed\n      total\n    }\n    metrics {\n      key\n      label\n      value\n      score\n    }\n  }\n  agentic {\n    id\n    label\n    passed\n  }\n  agenticPassed\n  auditUrl\n  mcpServerOn\n  llmsUrl\n  findings {\n    id\n    title\n    priority\n    priorityLabel\n    category\n    categoryLabel\n    also\n    detail\n    fix\n    owner\n    ownerLabel\n    items\n    sources\n    fixId\n    fixLabel\n  }\n}\n\nfragment FlxSeoCountsFields on FlxSeoCounts {\n  critical\n  high\n  medium\n  low\n}\n\nfragment FlxSeoHistoryFields on FlxSeoHistory {\n  total\n  running\n  errors\n  next {\n    iso\n    label\n  }\n  entries {\n    time {\n      iso\n      label\n      relative\n    }\n    trigger\n    triggerLabel\n    url\n    counts {\n      ...FlxSeoCountsFields\n    }\n    scores {\n      strategy\n      category\n      label\n      score\n    }\n    metrics {\n      strategy\n      fcp\n      lcp\n      tbt\n      cls\n      si\n    }\n    agentic\n    added {\n      id\n      title\n    }\n    resolved {\n      id\n      title\n    }\n  }\n}",
+};
+
+/** query FlxSeoContentCheck (flx-seo, plugins/flx-seo/graphql/operations/FlxSeoContentCheck.graphql) */
+export const FlxSeoContentCheck: FlxOperation<T.FlxSeoContentCheckQuery, T.FlxSeoContentCheckQueryVariables> = {
+  id: '97d49670dd4df105502f5013764c377eaadec82d4f58ba3d9d0f8d3a00566bd2',
+  name: 'FlxSeoContentCheck',
+  kind: 'query',
+  plugin: 'flx-seo',
+  document: "query FlxSeoContentCheck($limit: Int = 300) {\n  flxSeoContentCheck(limit: $limit) {\n    checked\n    total\n    items {\n      databaseId\n      title\n      postType\n      url\n      editUrl\n      issues {\n        level\n        code\n        message\n      }\n    }\n  }\n}",
+};
+
+/** mutation FlxSeoFixApply (flx-seo, plugins/flx-seo/graphql/operations/FlxSeoFixApply.graphql) */
+export const FlxSeoFixApply: FlxOperation<T.FlxSeoFixApplyMutation, T.FlxSeoFixApplyMutationVariables> = {
+  id: 'aca5c530650ff0a558a94968a069e5d1d183315910cf69556396462fb63d557a',
+  name: 'FlxSeoFixApply',
+  kind: 'mutation',
+  plugin: 'flx-seo',
+  document: "mutation FlxSeoFixApply($input: FlxSeoFixApplyInput!) {\n  flxSeoFixApply(input: $input) {\n    audit {\n      ...FlxSeoAuditFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxSeoAuditFields on FlxSeoAudit {\n  counts {\n    ...FlxSeoCountsFields\n  }\n  local {\n    time {\n      iso\n      label\n      relative\n    }\n    url\n    durationMs\n    httpStatus\n  }\n  pageSpeed {\n    strategy\n    time {\n      iso\n      label\n      relative\n    }\n    url\n    lighthouse\n    scores {\n      category\n      label\n      score\n      passed\n      total\n    }\n    metrics {\n      key\n      label\n      value\n      score\n    }\n  }\n  agentic {\n    id\n    label\n    passed\n  }\n  agenticPassed\n  auditUrl\n  mcpServerOn\n  llmsUrl\n  findings {\n    id\n    title\n    priority\n    priorityLabel\n    category\n    categoryLabel\n    also\n    detail\n    fix\n    owner\n    ownerLabel\n    items\n    sources\n    fixId\n    fixLabel\n  }\n}\n\nfragment FlxSeoCountsFields on FlxSeoCounts {\n  critical\n  high\n  medium\n  low\n}",
+};
+
+/** query FlxSeoGuide (flx-seo, plugins/flx-seo/graphql/operations/FlxSeoGuide.graphql) */
+export const FlxSeoGuide: FlxOperation<T.FlxSeoGuideQuery, T.FlxSeoGuideQueryVariables> = {
+  id: 'fa7f2e42636c7fd69983e7637be5625f01102cc336c76b7e751dfc6b25299aea',
+  name: 'FlxSeoGuide',
+  kind: 'query',
+  plugin: 'flx-seo',
+  document: "query FlxSeoGuide($lang: FlxSeoGuideLang) {\n  flxSeoGuide(lang: $lang) {\n    lang\n    markdown\n    sections\n  }\n}",
+};
+
+/** mutation FlxSeoIndexNowSubmit (flx-seo, plugins/flx-seo/graphql/operations/FlxSeoIndexNowSubmit.graphql) */
+export const FlxSeoIndexNowSubmit: FlxOperation<T.FlxSeoIndexNowSubmitMutation, T.FlxSeoIndexNowSubmitMutationVariables> = {
+  id: '84dfec5a3b859e284998fc8124abae04e2fdd4419dac91ab6cb5971882673a9d',
+  name: 'FlxSeoIndexNowSubmit',
+  kind: 'mutation',
+  plugin: 'flx-seo',
+  document: "mutation FlxSeoIndexNowSubmit($input: FlxSeoIndexNowSubmitInput!) {\n  flxSeoIndexNowSubmit(input: $input) {\n    submitted\n    setup {\n      ...FlxSeoSetupFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxSeoSetupFields on FlxSeoSetup {\n  otherPlugin\n  aiReady\n  blogName\n  homeUrl\n  sitemapUrl\n  logoDefault\n  imageDefault\n  homeTitle\n  homeDesc\n  sitekit\n  sitePublic\n  indexnowKey\n  indexnowUrl\n  indexnowLast\n  indexnowReady\n  psiKeySaved\n  adminEmail\n  guideSections\n  engines {\n    key\n    field\n    name\n    url\n    link\n    placeholder\n    help\n  }\n}",
+};
+
+/** mutation FlxSeoPsiKeySave (flx-seo, plugins/flx-seo/graphql/operations/FlxSeoPsiKeySave.graphql) */
+export const FlxSeoPsiKeySave: FlxOperation<T.FlxSeoPsiKeySaveMutation, T.FlxSeoPsiKeySaveMutationVariables> = {
+  id: '59e6780cadb6bc0d4dcecc09e482056c52aeb00879b5b1c00fa35049f815dea2',
+  name: 'FlxSeoPsiKeySave',
+  kind: 'mutation',
+  plugin: 'flx-seo',
+  document: "mutation FlxSeoPsiKeySave($input: FlxSeoPsiKeySaveInput!) {\n  flxSeoPsiKeySave(input: $input) {\n    saved\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxSeoSettingsSave (flx-seo, plugins/flx-seo/graphql/operations/FlxSeoSettingsSave.graphql) */
+export const FlxSeoSettingsSave: FlxOperation<T.FlxSeoSettingsSaveMutation, T.FlxSeoSettingsSaveMutationVariables> = {
+  id: 'ffd79b34482e7fd6c534446f2a81d044658a4eea3fafffa2d65eb14c8b4101fd',
+  name: 'FlxSeoSettingsSave',
+  kind: 'mutation',
+  plugin: 'flx-seo',
+  document: "mutation FlxSeoSettingsSave($flxseo: FlxSettingsFlxseoInput!) {\n  flxSettingsUpdate(input: { flxseo: $flxseo }) {\n    settings {\n      flxseo {\n        ...FlxSeoSettingsFields\n      }\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxSeoSettingsFields on FlxSettingsFlxseo {\n  enabled\n  siteName\n  altName\n  sep\n  homeTitle\n  homeDesc\n  ogImage\n  verifyGoogle\n  verifyBing\n  verifyYandex\n  verifyNaver\n  verifySeznam\n  verifyBaidu\n  indexnow\n  noindexShop\n  noindexSearch\n  noindexAuthor\n  noindexTags\n  autoAlt\n  orgName\n  orgType\n  founding\n  logo\n  street\n  locality\n  postal\n  country\n  phone\n  email\n  sameAs\n  twitter\n  knowsAbout\n  areaServed\n  donateLabel\n  donateUrl\n  llms\n  llmsIntro\n  webmcp\n  markdown\n  contentSignal\n  csSearch\n  csAiInput\n  csAiTrain\n  hdrFrame\n  hdrCoop\n  hdrCsp\n  hstsSub\n  hstsPreload\n  auditFreq\n  auditDay\n  auditHour\n  auditPsi\n  auditMail\n  auditMailTo\n}",
+};
+
+/** query FlxSeoSettingsScreen (flx-seo, plugins/flx-seo/graphql/operations/FlxSeoSettingsScreen.graphql) */
+export const FlxSeoSettingsScreen: FlxOperation<T.FlxSeoSettingsScreenQuery, T.FlxSeoSettingsScreenQueryVariables> = {
+  id: '86bc810d43babcb5cefcbb0d86511dc9661c0d5431662164e77220a7f6f5e3b8',
+  name: 'FlxSeoSettingsScreen',
+  kind: 'query',
+  plugin: 'flx-seo',
+  document: "query FlxSeoSettingsScreen {\n  flxSettings {\n    flxseo {\n      ...FlxSeoSettingsFields\n    }\n  }\n  flxSeoSetup {\n    ...FlxSeoSetupFields\n  }\n}\n\nfragment FlxSeoSettingsFields on FlxSettingsFlxseo {\n  enabled\n  siteName\n  altName\n  sep\n  homeTitle\n  homeDesc\n  ogImage\n  verifyGoogle\n  verifyBing\n  verifyYandex\n  verifyNaver\n  verifySeznam\n  verifyBaidu\n  indexnow\n  noindexShop\n  noindexSearch\n  noindexAuthor\n  noindexTags\n  autoAlt\n  orgName\n  orgType\n  founding\n  logo\n  street\n  locality\n  postal\n  country\n  phone\n  email\n  sameAs\n  twitter\n  knowsAbout\n  areaServed\n  donateLabel\n  donateUrl\n  llms\n  llmsIntro\n  webmcp\n  markdown\n  contentSignal\n  csSearch\n  csAiInput\n  csAiTrain\n  hdrFrame\n  hdrCoop\n  hdrCsp\n  hstsSub\n  hstsPreload\n  auditFreq\n  auditDay\n  auditHour\n  auditPsi\n  auditMail\n  auditMailTo\n}\n\nfragment FlxSeoSetupFields on FlxSeoSetup {\n  otherPlugin\n  aiReady\n  blogName\n  homeUrl\n  sitemapUrl\n  logoDefault\n  imageDefault\n  homeTitle\n  homeDesc\n  sitekit\n  sitePublic\n  indexnowKey\n  indexnowUrl\n  indexnowLast\n  indexnowReady\n  psiKeySaved\n  adminEmail\n  guideSections\n  engines {\n    key\n    field\n    name\n    url\n    link\n    placeholder\n    help\n  }\n}",
+};
+
+/** mutation FlxSetupAutoUpdateSet (flx-setup, plugins/flx-setup/graphql/operations/FlxSetupAutoUpdateSet.graphql) */
+export const FlxSetupAutoUpdateSet: FlxOperation<T.FlxSetupAutoUpdateSetMutation, T.FlxSetupAutoUpdateSetMutationVariables> = {
+  id: 'b8f91c52dab2869ea091bb25833ba93b1b5ba0eb62b369c3cff557466b3478ba',
+  name: 'FlxSetupAutoUpdateSet',
+  kind: 'mutation',
+  plugin: 'flx-setup',
+  document: "mutation FlxSetupAutoUpdateSet($input: FlxSetupAutoUpdateSetInput!) {\n  flxSetupAutoUpdateSet(input: $input) {\n    on\n    label\n    errors {\n      ...FlxSetupErrors\n    }\n  }\n}\n\nfragment FlxSetupErrors on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** mutation FlxSetupBackupsDelete (flx-setup, plugins/flx-setup/graphql/operations/FlxSetupBackupsDelete.graphql) */
+export const FlxSetupBackupsDelete: FlxOperation<T.FlxSetupBackupsDeleteMutation, T.FlxSetupBackupsDeleteMutationVariables> = {
+  id: '327a745eaebc60ab14f76d453be58e38f0399b212c0c15b87d2dbd1488a731c4',
+  name: 'FlxSetupBackupsDelete',
+  kind: 'mutation',
+  plugin: 'flx-setup',
+  document: "mutation FlxSetupBackupsDelete($input: FlxSetupBackupsDeleteInput!) {\n  flxSetupBackupsDelete(input: $input) {\n    deleted\n    retention {\n      ...FlxSetupRetentionFields\n    }\n    errors {\n      ...FlxSetupErrors\n    }\n  }\n}\n\nfragment FlxSetupErrors on FlxUserError {\n  code\n  message\n  field\n}\n\nfragment FlxSetupRetentionFields on FlxSetupRetention {\n  available\n  days\n  choices\n  count\n  size\n  settingsUrl\n}",
+};
+
+/** mutation FlxSetupCheck (flx-setup, plugins/flx-setup/graphql/operations/FlxSetupCheck.graphql) */
+export const FlxSetupCheck: FlxOperation<T.FlxSetupCheckMutation, T.FlxSetupCheckMutationVariables> = {
+  id: '5c3dea411ce3bbfc57b8945d04dd11c857a00fe726bc27e95ea52175cd11ac3f',
+  name: 'FlxSetupCheck',
+  kind: 'mutation',
+  plugin: 'flx-setup',
+  document: "mutation FlxSetupCheck {\n  flxSetupCheck(input: {  }) {\n    ok\n    pendingCount\n    checkedLabel\n    summary\n    errors {\n      ...FlxSetupErrors\n    }\n  }\n}\n\nfragment FlxSetupErrors on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** query FlxSetupHistory (flx-setup, plugins/flx-setup/graphql/operations/FlxSetupHistory.graphql) */
+export const FlxSetupHistory: FlxOperation<T.FlxSetupHistoryQuery, T.FlxSetupHistoryQueryVariables> = {
+  id: 'fea5c46697571e499c36f813537e124a23f33e2a3b616d09264af5ef3fec1d26',
+  name: 'FlxSetupHistory',
+  kind: 'query',
+  plugin: 'flx-setup',
+  document: "query FlxSetupHistory($page: Int) {\n  flxSetupHistory(page: $page) {\n    rows {\n      time {\n        iso\n        label\n        relative\n      }\n      name\n      action\n      success\n      message\n      by\n      backup {\n        id\n        deleted\n        size\n        locked\n        keepUntil {\n          label\n        }\n        deletable\n        selectable\n        url\n      }\n    }\n    total\n    pages\n    page\n    canDelete\n    backupPage\n    retention {\n      ...FlxSetupRetentionFields\n    }\n  }\n}\n\nfragment FlxSetupRetentionFields on FlxSetupRetention {\n  available\n  days\n  choices\n  count\n  size\n  settingsUrl\n}",
+};
+
+/** mutation FlxSetupManage (flx-setup, plugins/flx-setup/graphql/operations/FlxSetupManage.graphql) */
+export const FlxSetupManage: FlxOperation<T.FlxSetupManageMutation, T.FlxSetupManageMutationVariables> = {
+  id: '6c9941eefcb59ba827d304f3336844f4a348ecb3f1b549a96d805b1c48412b6b',
+  name: 'FlxSetupManage',
+  kind: 'mutation',
+  plugin: 'flx-setup',
+  document: "mutation FlxSetupManage($input: FlxSetupManageInput!) {\n  flxSetupManage(input: $input) {\n    done\n    skipped\n    failed\n    summary\n    errors {\n      ...FlxSetupErrors\n    }\n  }\n}\n\nfragment FlxSetupErrors on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** query FlxSetupOverview (flx-setup, plugins/flx-setup/graphql/operations/FlxSetupOverview.graphql) */
+export const FlxSetupOverview: FlxOperation<T.FlxSetupOverviewQuery, T.FlxSetupOverviewQueryVariables> = {
+  id: '1641f892cadf8664b2298b4af2847db998d4c838826ebc0f08572a5ea648e637',
+  name: 'FlxSetupOverview',
+  kind: 'query',
+  plugin: 'flx-setup',
+  document: "query FlxSetupOverview($search: String) {\n  flxSetupOverview {\n    connection {\n      ...FlxSetupConnectionFields\n    }\n    tabs(search: $search) {\n      tab\n      label\n      count\n      updates\n    }\n    updateCount\n    autoCheck\n    failingSources {\n      name\n      error\n    }\n    backup {\n      ready\n      installed\n      activatable\n      installable\n    }\n    backupUrl\n    settingsUrl\n    wordpressUpdatesUrl\n    canManageSources\n  }\n}\n\nfragment FlxSetupConnectionFields on FlxSetupConnection {\n  state\n  title\n  message\n  host\n  site\n  checked {\n    iso\n    label\n    relative\n  }\n  checkedLabel\n  backingOff\n  hasKey\n  keyFromConfig\n  packageCount\n  updateCount\n}",
+};
+
+/** query FlxSetupPackages (flx-setup, plugins/flx-setup/graphql/operations/FlxSetupPackages.graphql) */
+export const FlxSetupPackages: FlxOperation<T.FlxSetupPackagesQuery, T.FlxSetupPackagesQueryVariables> = {
+  id: 'e8e1935e414a5f61d5841b22119e7874da774b8e7905d19e76333469f34eff77',
+  name: 'FlxSetupPackages',
+  kind: 'query',
+  plugin: 'flx-setup',
+  document: "query FlxSetupPackages($tab: FlxSetupPackageTab, $search: String, $onlyUpdates: Boolean, $first: Int = 200, $after: String) {\n  flxSetupPackages(\n    tab: $tab\n    search: $search\n    onlyUpdates: $onlyUpdates\n    first: $first\n    after: $after\n  ) {\n    nodes {\n      ...FlxSetupPackageRow\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    totalCount\n  }\n}\n\nfragment FlxSetupPackageRow on FlxSetupPackage {\n  key\n  group\n  kind\n  id\n  name\n  subtitle\n  author\n  state\n  installed\n  latest\n  released {\n    iso\n    label\n    relative\n  }\n  active\n  iconUrl\n  tags {\n    label\n    kind\n  }\n  category\n  sourceName\n  showSource\n  sourceCount\n  sourceNote\n  requires {\n    slug\n    name\n    state\n    flux\n  }\n  autoUpdate {\n    mode\n    type\n    id\n    canChange\n  }\n  canUpdate\n  canInstall\n  canManage\n  canChangeVersion\n  versions {\n    version\n    older\n    released {\n      iso\n      label\n    }\n  }\n  description\n  website\n  images\n  info {\n    label\n    value\n  }\n}",
+};
+
+/** query FlxSetupPlan (flx-setup, plugins/flx-setup/graphql/operations/FlxSetupPlan.graphql) */
+export const FlxSetupPlan: FlxOperation<T.FlxSetupPlanQuery, T.FlxSetupPlanQueryVariables> = {
+  id: '91629093982ae065468fb3f63497bc77ac4c8950e085938617acebb155eb692e',
+  name: 'FlxSetupPlan',
+  kind: 'query',
+  plugin: 'flx-setup',
+  document: "query FlxSetupPlan($slugs: [String!], $wpKeys: [String!], $all: Boolean, $activate: Boolean) {\n  flxSetupPlan(slugs: $slugs, wpKeys: $wpKeys, all: $all, activate: $activate) {\n    kind\n    slug\n    id\n    name\n    why\n    version\n  }\n}",
+};
+
+/** mutation FlxSetupRetentionSave (flx-setup, plugins/flx-setup/graphql/operations/FlxSetupRetentionSave.graphql) */
+export const FlxSetupRetentionSave: FlxOperation<T.FlxSetupRetentionSaveMutation, T.FlxSetupRetentionSaveMutationVariables> = {
+  id: '20b2e2929728ec932fd886ce76780a3b35a35fc0045391ff82428916aa37984b',
+  name: 'FlxSetupRetentionSave',
+  kind: 'mutation',
+  plugin: 'flx-setup',
+  document: "mutation FlxSetupRetentionSave($input: FlxSetupRetentionSaveInput!) {\n  flxSetupRetentionSave(input: $input) {\n    deleted\n    retention {\n      ...FlxSetupRetentionFields\n    }\n    errors {\n      ...FlxSetupErrors\n    }\n  }\n}\n\nfragment FlxSetupErrors on FlxUserError {\n  code\n  message\n  field\n}\n\nfragment FlxSetupRetentionFields on FlxSetupRetention {\n  available\n  days\n  choices\n  count\n  size\n  settingsUrl\n}",
+};
+
+/** mutation FlxSetupSettingsSave (flx-setup, plugins/flx-setup/graphql/operations/FlxSetupSettingsSave.graphql) */
+export const FlxSetupSettingsSave: FlxOperation<T.FlxSetupSettingsSaveMutation, T.FlxSetupSettingsSaveMutationVariables> = {
+  id: '33e46578e9a32d1bff6a6ad7f8785580eb6208cbc4b806543fc964bf1a3048f7',
+  name: 'FlxSetupSettingsSave',
+  kind: 'mutation',
+  plugin: 'flx-setup',
+  document: "mutation FlxSetupSettingsSave($input: FlxSetupSettingsSaveInput!) {\n  flxSetupSettingsSave(input: $input) {\n    settings {\n      ...FlxSetupSettingsFields\n    }\n    connection {\n      ...FlxSetupConnectionFields\n    }\n    sources {\n      ...FlxSetupSourceFields\n    }\n    errors {\n      ...FlxSetupErrors\n    }\n  }\n}\n\nfragment FlxSetupConnectionFields on FlxSetupConnection {\n  state\n  title\n  message\n  host\n  site\n  checked {\n    iso\n    label\n    relative\n  }\n  checkedLabel\n  backingOff\n  hasKey\n  keyFromConfig\n  packageCount\n  updateCount\n}\n\nfragment FlxSetupErrors on FlxUserError {\n  code\n  message\n  field\n}\n\nfragment FlxSetupSettingsFields on FlxSetupSettings {\n  server\n  defaultServer\n  serverFromConfig\n  effectiveServer\n  hasKey\n  keyFromConfig\n  auto\n  health\n  usageAvailable\n  usage\n  legal {\n    kvkk\n    privacy\n    terms\n  }\n}\n\nfragment FlxSetupSourceFields on FlxSetupSource {\n  id\n  name\n  url\n  type\n  main\n  enabled\n  hasKey\n  state\n  message\n  packageCount\n  canMoveUp\n}",
+};
+
+/** query FlxSetupSettingsScreen (flx-setup, plugins/flx-setup/graphql/operations/FlxSetupSettingsScreen.graphql) */
+export const FlxSetupSettingsScreen: FlxOperation<T.FlxSetupSettingsScreenQuery, T.FlxSetupSettingsScreenQueryVariables> = {
+  id: 'd8622d9c1c248a1d4c9dbc1667856303277e0b4f7b03ae820895203ddc6aa9ee',
+  name: 'FlxSetupSettingsScreen',
+  kind: 'query',
+  plugin: 'flx-setup',
+  document: "query FlxSetupSettingsScreen {\n  flxSetupSettings {\n    ...FlxSetupSettingsFields\n  }\n  flxSetupConnection {\n    ...FlxSetupConnectionFields\n  }\n  flxSetupSources {\n    ...FlxSetupSourceFields\n  }\n  flxSetupGraphqlStatus {\n    state\n    version\n    phpVersion\n    phpMin\n    phpOk\n    actionUrl\n    actionLabel\n  }\n}\n\nfragment FlxSetupConnectionFields on FlxSetupConnection {\n  state\n  title\n  message\n  host\n  site\n  checked {\n    iso\n    label\n    relative\n  }\n  checkedLabel\n  backingOff\n  hasKey\n  keyFromConfig\n  packageCount\n  updateCount\n}\n\nfragment FlxSetupSettingsFields on FlxSetupSettings {\n  server\n  defaultServer\n  serverFromConfig\n  effectiveServer\n  hasKey\n  keyFromConfig\n  auto\n  health\n  usageAvailable\n  usage\n  legal {\n    kvkk\n    privacy\n    terms\n  }\n}\n\nfragment FlxSetupSourceFields on FlxSetupSource {\n  id\n  name\n  url\n  type\n  main\n  enabled\n  hasKey\n  state\n  message\n  packageCount\n  canMoveUp\n}",
+};
+
+/** mutation FlxSetupSourceAdd (flx-setup, plugins/flx-setup/graphql/operations/FlxSetupSourceAdd.graphql) */
+export const FlxSetupSourceAdd: FlxOperation<T.FlxSetupSourceAddMutation, T.FlxSetupSourceAddMutationVariables> = {
+  id: 'f8f67e0723c3045d9ba05b6454009c8f931f5f3a6a25a5680ccb8e478d3b2f3e',
+  name: 'FlxSetupSourceAdd',
+  kind: 'mutation',
+  plugin: 'flx-setup',
+  document: "mutation FlxSetupSourceAdd($input: FlxSetupSourceAddInput!) {\n  flxSetupSourceAdd(input: $input) {\n    sources {\n      ...FlxSetupSourceFields\n    }\n    errors {\n      ...FlxSetupErrors\n    }\n  }\n}\n\nfragment FlxSetupErrors on FlxUserError {\n  code\n  message\n  field\n}\n\nfragment FlxSetupSourceFields on FlxSetupSource {\n  id\n  name\n  url\n  type\n  main\n  enabled\n  hasKey\n  state\n  message\n  packageCount\n  canMoveUp\n}",
+};
+
+/** mutation FlxSetupSourceChange (flx-setup, plugins/flx-setup/graphql/operations/FlxSetupSourceChange.graphql) */
+export const FlxSetupSourceChange: FlxOperation<T.FlxSetupSourceChangeMutation, T.FlxSetupSourceChangeMutationVariables> = {
+  id: '758bf6b4e9d2b43b0a4a2613eb688c94c8b73f0dd94f8e6efafd99fb74d5aa06',
+  name: 'FlxSetupSourceChange',
+  kind: 'mutation',
+  plugin: 'flx-setup',
+  document: "mutation FlxSetupSourceChange($input: FlxSetupSourceChangeInput!) {\n  flxSetupSourceChange(input: $input) {\n    sources {\n      ...FlxSetupSourceFields\n    }\n    errors {\n      ...FlxSetupErrors\n    }\n  }\n}\n\nfragment FlxSetupErrors on FlxUserError {\n  code\n  message\n  field\n}\n\nfragment FlxSetupSourceFields on FlxSetupSource {\n  id\n  name\n  url\n  type\n  main\n  enabled\n  hasKey\n  state\n  message\n  packageCount\n  canMoveUp\n}",
+};
+
+/** mutation FlxSetupStepRun (flx-setup, plugins/flx-setup/graphql/operations/FlxSetupStepRun.graphql) */
+export const FlxSetupStepRun: FlxOperation<T.FlxSetupStepRunMutation, T.FlxSetupStepRunMutationVariables> = {
+  id: '562e895123bcf4698f2e0b64d5f322aeecdf71358e7d66ef3677e3ed3e190a89',
+  name: 'FlxSetupStepRun',
+  kind: 'mutation',
+  plugin: 'flx-setup',
+  document: "mutation FlxSetupStepRun($input: FlxSetupStepRunInput!) {\n  flxSetupStepRun(input: $input) {\n    ok\n    lines {\n      ok\n      text\n    }\n    pendingCount\n    package {\n      ...FlxSetupPackageRow\n    }\n    errors {\n      ...FlxSetupErrors\n    }\n  }\n}\n\nfragment FlxSetupErrors on FlxUserError {\n  code\n  message\n  field\n}\n\nfragment FlxSetupPackageRow on FlxSetupPackage {\n  key\n  group\n  kind\n  id\n  name\n  subtitle\n  author\n  state\n  installed\n  latest\n  released {\n    iso\n    label\n    relative\n  }\n  active\n  iconUrl\n  tags {\n    label\n    kind\n  }\n  category\n  sourceName\n  showSource\n  sourceCount\n  sourceNote\n  requires {\n    slug\n    name\n    state\n    flux\n  }\n  autoUpdate {\n    mode\n    type\n    id\n    canChange\n  }\n  canUpdate\n  canInstall\n  canManage\n  canChangeVersion\n  versions {\n    version\n    older\n    released {\n      iso\n      label\n    }\n  }\n  description\n  website\n  images\n  info {\n    label\n    value\n  }\n}",
+};
+
+/** query FlxSetupSystemChecks (flx-setup, plugins/flx-setup/graphql/operations/FlxSetupSystemChecks.graphql) */
+export const FlxSetupSystemChecks: FlxOperation<T.FlxSetupSystemChecksQuery, T.FlxSetupSystemChecksQueryVariables> = {
+  id: '8a89e4dde8fca6e8d7169b9623b5dfc8d31ce0feeb90882047e5410cc7f2b8c2',
+  name: 'FlxSetupSystemChecks',
+  kind: 'query',
+  plugin: 'flx-setup',
+  document: "query FlxSetupSystemChecks {\n  flxSetupSystemChecks {\n    id\n    source\n    group\n    label\n    status\n    message\n    actionUrl\n    actionLabel\n  }\n}",
+};
+
+/** mutation FlxSetupWizardLogo (flx-setup, plugins/flx-setup/graphql/operations/FlxSetupWizardLogo.graphql) */
+export const FlxSetupWizardLogo: FlxOperation<T.FlxSetupWizardLogoMutation, T.FlxSetupWizardLogoMutationVariables> = {
+  id: 'eed0539d1b32370cf929066afd39ccd6f584fe9910c15c972649d9ba67cef183',
+  name: 'FlxSetupWizardLogo',
+  kind: 'mutation',
+  plugin: 'flx-setup',
+  document: "mutation FlxSetupWizardLogo($input: FlxSetupWizardLogoInput!) {\n  flxSetupWizardLogo(input: $input) {\n    attachmentId\n    url\n    errors {\n      ...FlxSetupErrors\n    }\n  }\n}\n\nfragment FlxSetupErrors on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** mutation FlxSetupWizardStep (flx-setup, plugins/flx-setup/graphql/operations/FlxSetupWizardStep.graphql) */
+export const FlxSetupWizardStep: FlxOperation<T.FlxSetupWizardStepMutation, T.FlxSetupWizardStepMutationVariables> = {
+  id: 'dc049ead979bd6ac985d46315a37d118f05de447075835e4c654b1da8ac0618d',
+  name: 'FlxSetupWizardStep',
+  kind: 'mutation',
+  plugin: 'flx-setup',
+  document: "mutation FlxSetupWizardStep($input: FlxSetupWizardStepInput!) {\n  flxSetupWizardStep(input: $input) {\n    ok\n    lines {\n      ok\n      text\n    }\n    pages\n    errors {\n      ...FlxSetupErrors\n    }\n  }\n}\n\nfragment FlxSetupErrors on FlxUserError {\n  code\n  message\n  field\n}",
+};
+
+/** mutation FlxSetupWizardUpdates (flx-setup, plugins/flx-setup/graphql/operations/FlxSetupWizardUpdates.graphql) */
+export const FlxSetupWizardUpdates: FlxOperation<T.FlxSetupWizardUpdatesMutation, T.FlxSetupWizardUpdatesMutationVariables> = {
+  id: '40d6a3c44e7fc13ce452eb000c89a9737041cef48cc4fef8c2519e1dc9e90c2d',
+  name: 'FlxSetupWizardUpdates',
+  kind: 'mutation',
+  plugin: 'flx-setup',
+  document: "mutation FlxSetupWizardUpdates {\n  flxSetupWizardUpdates(input: {  }) {\n    ok\n    error\n    items {\n      slug\n      name\n      from\n      to\n      icon\n      self\n    }\n    errors {\n      ...FlxSetupErrors\n    }\n  }\n}\n\nfragment FlxSetupErrors on FlxUserError {\n  code\n  message\n  field\n}",
 };
 
 /** mutation FlxTaskCommentCreate (flx-tasks, plugins/flx-tasks/graphql/operations/FlxTaskCommentCreate.graphql) */

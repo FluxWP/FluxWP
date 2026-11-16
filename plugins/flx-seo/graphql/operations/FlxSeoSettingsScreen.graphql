@@ -1,0 +1,11 @@
+# General, Organization and Settings tabs: the `flxseo` option and what the tabs show beside it.
+query FlxSeoSettingsScreen {
+  flxSettings {
+    flxseo {
+      ...FlxSeoSettingsFields
+    }
+  }
+  flxSeoSetup {
+    ...FlxSeoSetupFields
+  }
+}

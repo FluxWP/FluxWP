@@ -1,5 +1,9 @@
 # @fluxwp/panel
 
+## 0.3.6
+- Panel açılışında FluxApp GraphQL taşıyıcısı kurulur (`installFlxAppGraphQL`); web ve masaüstü uygulaması bootstrap/me/sync/config/manifest çağrılarını GraphQL ile yapar, olmayan sitede REST'e döner.
+
+
 ## 0.3.5
 - `react-i18next` and `i18next` are deduplicated, so module screens use the panel language.
 
