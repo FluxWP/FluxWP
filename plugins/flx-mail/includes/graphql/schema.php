@@ -33,16 +33,32 @@ function flxi_gql_f( string $type, string $desc ): array {
  * @return array<string,mixed>
  */
 function flxi_gql_settings(): array {
-	$s = FLXI_Settings_Service::read();
-	if ( is_array( $s['lastTest'] ) ) {
-		$s['lastTest']['at'] = flx_gql_datetime( $s['lastTest']['at'] );
+	$s    = FLXI_Settings_Service::read();
+	$last = $s['lastTest'] ?? null;
+	if ( is_array( $last ) ) {
+		$at = $last['at'] ?? null;
+		$last['at']    = ( is_int( $at ) || is_string( $at ) ) && '' !== $at && 0 !== $at ? flx_gql_datetime( $at ) : null;
+		$s['lastTest'] = $last;
 	}
-	$s['wcBranded'] = flx_gql_datetime( $s['wcBranded'] );
-	foreach ( $s['quota'] as $i => $q ) {
-		$s['quota'][ $i ]['next'] = ! empty( $q['next'] ) ? flx_gql_datetime( $q['next'] ) : null;
+	$branded = $s['wcBranded'] ?? null;
+	$s['wcBranded'] = is_int( $branded ) || is_string( $branded ) ? flx_gql_datetime( $branded ) : null;
+	$quota = $s['quota'] ?? array();
+	if ( is_array( $quota ) ) {
+		foreach ( $quota as $i => $q ) {
+			if ( ! is_array( $q ) ) {
+				continue;
+			}
+			$next = $q['next'] ?? null;
+			$q['next']   = ( is_int( $next ) || is_string( $next ) ) && '' !== $next && 0 !== $next ? flx_gql_datetime( $next ) : null;
+			$quota[ $i ] = $q;
+		}
+		$s['quota'] = $quota;
 	}
-	if ( is_array( $s['dns'] ) ) {
-		$s['dns']['checkedAt'] = ! empty( $s['dns']['checkedAt'] ) ? flx_gql_datetime( $s['dns']['checkedAt'] ) : null;
+	$dns = $s['dns'] ?? null;
+	if ( is_array( $dns ) ) {
+		$at = $dns['checkedAt'] ?? null;
+		$dns['checkedAt'] = ( is_int( $at ) || is_string( $at ) ) && '' !== $at && 0 !== $at ? flx_gql_datetime( $at ) : null;
+		$s['dns']         = $dns;
 	}
 	return $s;
 }
@@ -52,33 +68,43 @@ function flxi_gql_settings(): array {
  * @return array<string,mixed>
  */
 function flxi_gql_content( array $input ): array {
-	$brand = array();
+	$brand_in = isset( $input['brand'] ) && is_array( $input['brand'] ) ? $input['brand'] : array();
+	$brand    = array();
 	foreach ( array(
 		'logo' => 'logo', 'logoWhite' => 'logo_white', 'logoWidth' => 'logo_width',
 		'colorPrimary' => 'color_primary', 'colorDark' => 'color_dark', 'colorBg' => 'color_bg', 'colorText' => 'color_text',
 		'orgName' => 'org_name', 'tagline' => 'tagline', 'address' => 'address', 'phone' => 'phone',
 		'contactEmail' => 'contact_email', 'website' => 'website', 'footerNote' => 'footer_note', 'footerArt' => 'footer_art', 'fromName' => 'from_name',
 	) as $gql => $key ) {
-		if ( isset( $input['brand'][ $gql ] ) && null !== $input['brand'][ $gql ] ) {
-			$brand[ $key ] = 'social' === $key ? $input['brand'][ $gql ] : $input['brand'][ $gql ];
+		if ( array_key_exists( $gql, $brand_in ) && null !== $brand_in[ $gql ] ) {
+			$brand[ $key ] = $brand_in[ $gql ];
 		}
 	}
-	if ( isset( $input['brand']['social'] ) && is_array( $input['brand']['social'] ) ) {
+	if ( isset( $brand_in['social'] ) && is_array( $brand_in['social'] ) ) {
 		$assoc = array();
-		foreach ( $input['brand']['social'] as $item ) {
-			if ( is_array( $item ) && ! empty( $item['network'] ) ) {
-				$assoc[ sanitize_key( (string) $item['network'] ) ] = (string) ( $item['url'] ?? '' );
+		foreach ( $brand_in['social'] as $item ) {
+			if ( ! is_array( $item ) ) {
+				continue;
 			}
+			$net = $item['network'] ?? '';
+			if ( ! is_string( $net ) || '' === $net ) {
+				continue;
+			}
+			$url = $item['url'] ?? '';
+			$assoc[ sanitize_key( $net ) ] = is_scalar( $url ) ? (string) $url : '';
 		}
 		$brand['social'] = $assoc;
 	}
+	$str = static function ( mixed $value ): string {
+		return is_scalar( $value ) ? (string) $value : '';
+	};
 	return array(
-		'subject'     => (string) ( $input['subject'] ?? '' ),
-		'heading'     => (string) ( $input['heading'] ?? '' ),
-		'body'        => (string) ( $input['body'] ?? '' ),
-		'button_text' => (string) ( $input['buttonText'] ?? '' ),
-		'button_url'  => (string) ( $input['buttonUrl'] ?? '' ),
-		'sender'      => (string) ( $input['sender'] ?? 'info' ),
+		'subject'     => $str( $input['subject'] ?? '' ),
+		'heading'     => $str( $input['heading'] ?? '' ),
+		'body'        => $str( $input['body'] ?? '' ),
+		'button_text' => $str( $input['buttonText'] ?? '' ),
+		'button_url'  => $str( $input['buttonUrl'] ?? '' ),
+		'sender'      => $str( $input['sender'] ?? 'info' ),
 		'unsubscribe' => ! empty( $input['unsubscribe'] ),
 		'brand'       => $brand,
 	);
