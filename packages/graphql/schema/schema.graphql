@@ -9105,6 +9105,87 @@ type DiscussionSettings implements Node {
   id: ID!
 }
 
+"The Audiences tab."
+type FlxAdsAudiencesPage {
+  "Audiences."
+  audiences: [FlxAdsAudience!]!
+
+  "Flux CRM is active."
+  crmReady: Boolean!
+
+  "Own audiences a lookalike can start from."
+  customAudiences: [FlxAdsOption!]!
+
+  "The Meta ad account is set up."
+  metaReady: Boolean!
+
+  "What an audience is for."
+  purposes: [FlxAdsOption!]!
+
+  "CRM groups to build from."
+  sources: [FlxAdsAudienceSource!]!
+}
+
+"An audience Flux Ads keeps in Meta."
+type FlxAdsAudience {
+  "People added at the last sync."
+  added: Int
+
+  "It can be synced again."
+  canSync: Boolean!
+
+  "People sent at the last sync."
+  count: Int!
+
+  "Why the last sync failed; empty when it worked."
+  error: String!
+
+  "Source group as text."
+  groupLabel: String!
+
+  "Used by a holdout test."
+  holdout: Boolean!
+
+  "Audience ID in Flux Ads."
+  id: String!
+
+  "custom or lookalike."
+  kind: String!
+
+  "Audience ID in Meta."
+  metaId: String!
+
+  "Name."
+  name: String!
+
+  "Purpose key."
+  purpose: String!
+
+  "Purpose as text."
+  purposeLabel: String!
+
+  "People removed at the last sync."
+  removed: Int
+
+  "Last sync; empty when never."
+  syncedAt: FlxDateTime
+}
+
+"A point in time with labels in the user&#039;s language."
+type FlxDateTime {
+  "ISO 8601 in UTC (2026-11-15T14:59:00Z)."
+  iso: String!
+
+  "Date and time for display, in the site time zone and the user&#039;s language."
+  label: String!
+
+  "Relative time for display (&quot;5 minutes ago&quot;)."
+  relative: String!
+
+  "Unix timestamp."
+  timestamp: Int!
+}
+
 "A key with its label (a filter choice)."
 type FlxAdsOption {
   "Value to send back."
@@ -11122,87 +11203,6 @@ type FlxTaskActivity {
 
   "User who made the change."
   userId: Int!
-}
-
-"The Audiences tab."
-type FlxAdsAudiencesPage {
-  "Audiences."
-  audiences: [FlxAdsAudience!]!
-
-  "Flux CRM is active."
-  crmReady: Boolean!
-
-  "Own audiences a lookalike can start from."
-  customAudiences: [FlxAdsOption!]!
-
-  "The Meta ad account is set up."
-  metaReady: Boolean!
-
-  "What an audience is for."
-  purposes: [FlxAdsOption!]!
-
-  "CRM groups to build from."
-  sources: [FlxAdsAudienceSource!]!
-}
-
-"An audience Flux Ads keeps in Meta."
-type FlxAdsAudience {
-  "People added at the last sync."
-  added: Int
-
-  "It can be synced again."
-  canSync: Boolean!
-
-  "People sent at the last sync."
-  count: Int!
-
-  "Why the last sync failed; empty when it worked."
-  error: String!
-
-  "Source group as text."
-  groupLabel: String!
-
-  "Used by a holdout test."
-  holdout: Boolean!
-
-  "Audience ID in Flux Ads."
-  id: String!
-
-  "custom or lookalike."
-  kind: String!
-
-  "Audience ID in Meta."
-  metaId: String!
-
-  "Name."
-  name: String!
-
-  "Purpose key."
-  purpose: String!
-
-  "Purpose as text."
-  purposeLabel: String!
-
-  "People removed at the last sync."
-  removed: Int
-
-  "Last sync; empty when never."
-  syncedAt: FlxDateTime
-}
-
-"A point in time with labels in the user&#039;s language."
-type FlxDateTime {
-  "ISO 8601 in UTC (2026-11-15T14:59:00Z)."
-  iso: String!
-
-  "Date and time for display, in the site time zone and the user&#039;s language."
-  label: String!
-
-  "Relative time for display (&quot;5 minutes ago&quot;)."
-  relative: String!
-
-  "Unix timestamp."
-  timestamp: Int!
 }
 
 "Free-form JSON value (object, list, string, number or boolean)."
@@ -14532,6 +14532,60 @@ type DeleteUserPayload {
   user: User
 }
 
+"Input for the flxAdsAudienceCreate mutation."
+input FlxAdsAudienceCreateInput {
+  "The audience."
+  audience: FlxAdsAudienceInput!
+
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+}
+
+"A new audience."
+input FlxAdsAudienceInput {
+  "Lookalike country code."
+  country: String
+
+  "Also create a lookalike."
+  lookalike: Boolean
+
+  "Name."
+  name: String!
+
+  "A purpose key from the page."
+  purpose: String!
+
+  "Lookalike size in percent (1–10)."
+  ratio: Float
+
+  "A source key from the page."
+  source: String!
+}
+
+"The payload for the flxAdsAudienceCreate mutation."
+type FlxAdsAudienceCreatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The change was made."
+  ok: Boolean!
+}
+
+"A problem with the input of a mutation, shown next to the form field."
+type FlxUserError {
+  "Stable code: INVALID_INPUT, CONFLICT, …"
+  code: String!
+
+  "Input field (dotted path) the problem belongs to."
+  field: String
+
+  "Message in the user&#039;s language."
+  message: String!
+}
+
 "Input for the flxAdsAudienceDelete mutation."
 input FlxAdsAudienceDeleteInput {
   "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
@@ -15364,60 +15418,6 @@ type FlxLanguageSetPayload {
 
   "Language versions of the content after the change."
   translations: [FlxTranslation!]
-}
-
-"Input for the flxAdsAudienceCreate mutation."
-input FlxAdsAudienceCreateInput {
-  "The audience."
-  audience: FlxAdsAudienceInput!
-
-  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
-  clientMutationId: String
-}
-
-"A new audience."
-input FlxAdsAudienceInput {
-  "Lookalike country code."
-  country: String
-
-  "Also create a lookalike."
-  lookalike: Boolean
-
-  "Name."
-  name: String!
-
-  "A purpose key from the page."
-  purpose: String!
-
-  "Lookalike size in percent (1–10)."
-  ratio: Float
-
-  "A source key from the page."
-  source: String!
-}
-
-"The payload for the flxAdsAudienceCreate mutation."
-type FlxAdsAudienceCreatePayload {
-  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
-  clientMutationId: String
-
-  "Input problems to show next to the form fields. Empty when the mutation succeeded."
-  errors: [FlxUserError!]!
-
-  "The change was made."
-  ok: Boolean!
-}
-
-"A problem with the input of a mutation, shown next to the form field."
-type FlxUserError {
-  "Stable code: INVALID_INPUT, CONFLICT, …"
-  code: String!
-
-  "Input field (dotted path) the problem belongs to."
-  field: String
-
-  "Message in the user&#039;s language."
-  message: String!
 }
 
 "Input for the flxLanguageSettingsUpdate mutation."

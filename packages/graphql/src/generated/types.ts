@@ -76,6 +76,30 @@ export type FlxTaskRole =
   /** See tasks. */
   | 'VIEW';
 
+/** Input for the flxAdsAudienceCreate mutation. */
+export type FlxAdsAudienceCreateInput = {
+  /** The audience. */
+  audience: FlxAdsAudienceInput;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+};
+
+/** A new audience. */
+export type FlxAdsAudienceInput = {
+  /** Lookalike country code. */
+  country?: string | null | undefined;
+  /** Also create a lookalike. */
+  lookalike?: boolean | null | undefined;
+  /** Name. */
+  name: string;
+  /** A purpose key from the page. */
+  purpose: string;
+  /** Lookalike size in percent (1–10). */
+  ratio?: number | null | undefined;
+  /** A source key from the page. */
+  source: string;
+};
+
 /** Input for the flxAdsAudienceDelete mutation. */
 export type FlxAdsAudienceDeleteInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -472,30 +496,6 @@ export type FlxLanguageSetInput = {
   id: string;
   /** Language code. */
   lang: string;
-};
-
-/** Input for the flxAdsAudienceCreate mutation. */
-export type FlxAdsAudienceCreateInput = {
-  /** The audience. */
-  audience: FlxAdsAudienceInput;
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: string | null | undefined;
-};
-
-/** A new audience. */
-export type FlxAdsAudienceInput = {
-  /** Lookalike country code. */
-  country?: string | null | undefined;
-  /** Also create a lookalike. */
-  lookalike?: boolean | null | undefined;
-  /** Name. */
-  name: string;
-  /** A purpose key from the page. */
-  purpose: string;
-  /** Lookalike size in percent (1–10). */
-  ratio?: number | null | undefined;
-  /** A source key from the page. */
-  source: string;
 };
 
 /** Input for the flxLanguageSettingsUpdate mutation. */
