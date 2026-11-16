@@ -1,0 +1,6 @@
+mutation FlxSocialPostDelete($input: FlxSocialPostDeleteInput!) {
+  flxSocialPostDelete(input: $input) {
+    deletedId
+    errors { code message field }
+  }
+}

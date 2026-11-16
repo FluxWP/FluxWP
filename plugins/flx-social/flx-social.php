@@ -2,9 +2,10 @@
 /**
  * Plugin Name:       Flux Social
  * Description:       Sosyal medya yönetimi sitenin içinde: hesap bağlama (anahtarlar panelden), hesap başına içerik, zamanlama, ağda düzenleme/silme, takvim, pano, Flux AI yazım yardımı ve MCP araçları. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google İşletme, WhatsApp.
- * Version:           0.2.7
- * Requires at least: 6.4
- * Requires PHP:      7.4
+ * Version:           0.3.0
+ * Requires at least: 6.5
+ * Requires PHP:      8.1
+ * Requires Plugins:  flx-graphql
  * Author:            FluxWP
  * License:           GPL-2.0-or-later
  * Text Domain:       flx-social
@@ -21,7 +22,7 @@ if ( defined( 'FLXSM_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXSM_VERSION', '0.2.7' );
+define( 'FLXSM_VERSION', '0.3.0' );
 define( 'FLXSM_DB_VERSION', 1 );
 define( 'FLXSM_FILE', __FILE__ );
 define( 'FLXSM_DIR', plugin_dir_path( __FILE__ ) );
@@ -44,6 +45,10 @@ require_once FLXSM_DIR . 'includes/oauth.php';
 require_once FLXSM_DIR . 'includes/engine.php';
 require_once FLXSM_DIR . 'includes/stats.php';
 require_once FLXSM_DIR . 'includes/ai.php';
+require_once FLXSM_DIR . 'includes/services/class-flxsm-dto.php';
+require_once FLXSM_DIR . 'includes/services/class-flxsm-accounts-service.php';
+require_once FLXSM_DIR . 'includes/services/class-flxsm-posts-service.php';
+require_once FLXSM_DIR . 'includes/services/class-flxsm-admin-service.php';
 require_once FLXSM_DIR . 'includes/rest.php';
 require_once FLXSM_DIR . 'includes/mcp.php';
 require_once FLXSM_DIR . 'includes/autopost.php';
@@ -53,6 +58,69 @@ require_once FLXSM_DIR . 'includes/app.php';
 if ( is_admin() ) {
 	require_once FLXSM_DIR . 'includes/admin.php';
 }
+
+/*
+ * GraphQL (Flux GraphQL): schema only inside a GraphQL request; the persisted operations the Social Media
+ * screen sends, the upload context of its media picker and the permission catalog. Without Flux GraphQL
+ * (0.2.0+, capability model) the schema is left out and the classic screen keeps working.
+ */
+add_action(
+	'flx_gql_register',
+	static function () {
+		if ( ! function_exists( 'flx_gql_all_caps' ) ) {
+			return;
+		}
+		require_once FLXSM_DIR . 'includes/graphql/schema.php';
+	}
+);
+add_filter(
+	'flx_gql_persisted_manifests',
+	static function ( $m ) {
+		$m               = is_array( $m ) ? $m : array();
+		$m['flx-social'] = FLXSM_DIR . 'graphql/persisted-queries.json';
+		return $m;
+	}
+);
+add_filter(
+	'flx_gql_upload_contexts',
+	static function ( $c ) {
+		$c                         = is_array( $c ) ? $c : array();
+		$c['flx-social/media']     = array(
+			'cap'    => 'upload_files',
+			'mimes'  => array(
+				'jpg|jpeg|jpe' => 'image/jpeg',
+				'png'          => 'image/png',
+				'gif'          => 'image/gif',
+				'webp'         => 'image/webp',
+				'mp4|m4v'      => 'video/mp4',
+				'mov|qt'       => 'video/quicktime',
+			),
+			'max_mb' => 512,
+		);
+		return $c;
+	}
+);
+add_filter(
+	'flx_gql_capabilities',
+	static function ( $caps ) {
+		$caps = is_array( $caps ) ? $caps : array();
+		$add  = array(
+			FLXSM_CAP_POST    => __( 'Social media: prepare posts', 'flx-social' ),
+			FLXSM_CAP_PUBLISH => __( 'Social media: publish and approve', 'flx-social' ),
+			FLXSM_CAP_MANAGE  => __( 'Social media: accounts and settings', 'flx-social' ),
+		);
+		foreach ( $add as $cap => $label ) {
+			if ( ! isset( $caps[ $cap ] ) ) {
+				$caps[ $cap ] = array(
+					'label'   => $label,
+					'group'   => 'flx-social',
+					'package' => 'flx-social',
+				);
+			}
+		}
+		return $caps;
+	}
+);
 
 add_action(
 	'init',

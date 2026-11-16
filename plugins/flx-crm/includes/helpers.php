@@ -73,6 +73,19 @@ function flxcrm_setting( $key ) {
 function flxcrm_save_settings( array $values ) {
 	$all = array_merge( flxcrm_settings(), $values );
 	update_option( FLXCRM_OPTION, array_intersect_key( $all, flxcrm_defaults() ), false );
+	flxcrm_purge( array( 'flx-crm:meta', 'flx-crm:overview', 'flx-crm:segments' ) );
+}
+
+/**
+ * Drops GraphQL cached results by tag (every writer calls this, so the React screens and the classic pages stay
+ * in step). A no-op without Flux GraphQL.
+ *
+ * @param string|string[] $tags Cache tags.
+ */
+function flxcrm_purge( $tags ) {
+	if ( function_exists( 'flx_gql_purge' ) ) {
+		flx_gql_purge( $tags );
+	}
 }
 
 /** Yetki: yöneticiler (manage_options) her zaman görür ve yönetir. */

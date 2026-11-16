@@ -1,0 +1,14 @@
+query FlxCrmContacts($filter: FlxContactFilterInput, $orderBy: FlxContactOrderBy, $order: FlxContactOrder, $first: Int = 25, $after: String) {
+  flxContacts(filter: $filter, orderBy: $orderBy, order: $order, first: $first, after: $after) {
+    totalCount
+    nodes {
+      ...FlxCrmContactRow
+    }
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+    }
+  }
+}

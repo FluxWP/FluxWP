@@ -5,9 +5,9 @@ Author: FluxWP
 Description: Sade, genel amaçlı WooCommerce block teması. Tüm bölümler Site Editor'den düzenlenebilir desenlerden oluşur. Kuruma özel logo, renk, header/footer, ana sayfa ve sayfalar Flux Setup ön ayarlarından gelir (Görünüm › Tema Ayarları › Ön ayarlar). Mağaza ya da bağış sitesi olarak çalışır.
 Requires at least: 6.6
 Tested up to: 6.8
-Requires PHP: 7.4
+Requires PHP: 8.1
 Requires Plugins: flx-setup
-Version: 0.7.27
+Version: 0.8.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: fluxwp

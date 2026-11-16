@@ -144,7 +144,7 @@ add_shortcode(
 /* ---------- Tema Ayarları ---------- */
 
 add_action(
-	'admin_init',
+	'init',
 	function () {
 		register_setting(
 			'flx_ayarlar',

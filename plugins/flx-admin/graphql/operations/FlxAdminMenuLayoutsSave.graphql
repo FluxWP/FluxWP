@@ -1,0 +1,12 @@
+mutation FlxAdminMenuLayoutsSave($input: FlxAdminMenuLayoutsSaveInput!) {
+  flxAdminMenuLayoutsSave(input: $input) {
+    layouts {
+      ...FlxAdminMenuLayoutFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

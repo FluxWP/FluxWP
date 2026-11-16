@@ -1,0 +1,17 @@
+# Flux AI overview: spending against the limits, the usage report of the last days and the key status.
+query FlxAiOverview($days: Int = 30, $source: String) {
+  flxAiBudget {
+    ...FlxAiBudgetRow
+  }
+  flxAiReport(days: $days, source: $source) {
+    ...FlxAiReportFields
+  }
+  flxAiLogSources {
+    id
+    label
+  }
+  flxAiSecrets {
+    name
+    configured
+  }
+}

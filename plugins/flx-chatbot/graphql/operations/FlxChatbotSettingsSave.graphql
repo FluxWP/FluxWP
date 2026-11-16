@@ -1,0 +1,12 @@
+mutation FlxChatbotSettingsSave($input: FlxChatbotSettingsSaveInput!) {
+  flxChatbotSettingsSave(input: $input) {
+    settings {
+      ...FlxChatbotSettingsFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

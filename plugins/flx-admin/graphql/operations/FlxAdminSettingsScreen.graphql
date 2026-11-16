@@ -1,0 +1,9 @@
+# Settings › Admin theme: General, Appearance, Dashboard and App tabs.
+query FlxAdminSettingsScreen {
+  flxAdminSettings {
+    ...FlxAdminSettingsFields
+  }
+  flxAdminSettingsConfig {
+    ...FlxAdminSettingsConfigFields
+  }
+}

@@ -1,0 +1,12 @@
+mutation FlxCartItemUpdate($input: FlxCartItemUpdateInput!) {
+  flxCartItemUpdate(input: $input) {
+    cart {
+      ...FlxCartFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

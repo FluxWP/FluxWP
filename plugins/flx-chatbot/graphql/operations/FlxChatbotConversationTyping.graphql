@@ -1,0 +1,5 @@
+mutation FlxChatbotConversationTyping($input: FlxChatbotConversationTypingInput!) {
+  flxChatbotConversationTyping(input: $input) {
+    ok
+  }
+}

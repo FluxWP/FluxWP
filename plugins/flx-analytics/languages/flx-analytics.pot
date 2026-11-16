@@ -1,16 +1,7 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: en_US\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Mobile app: daily active accounts"
-msgstr ""
-
-msgid "UTC day / platform"
-msgstr ""
-
-msgid "Consenting accounts"
-msgstr ""
-
-msgid "No eligible totals yet. Both device and site consent are required; cohorts below five accounts per site/platform/day are withheld. Country is the configured site country, not a person’s location. The same person may count on multiple sites or platforms."
+msgid "View statistics"
 msgstr ""
 
 msgid "Statistics"
@@ -355,6 +346,12 @@ msgstr ""
 msgid "%s · last 7 days"
 msgstr ""
 
+msgid "New view"
+msgstr ""
+
+msgid "Open the new view (same features, works in the FluxWP app too)."
+msgstr ""
+
 msgid "No goal"
 msgstr ""
 
@@ -394,19 +391,496 @@ msgstr ""
 msgid "Other pages"
 msgstr ""
 
+msgid "Fast endpoint works"
+msgstr ""
+
+msgid "Fast endpoint unreachable, REST will be used"
+msgstr ""
+
+msgid "%s s"
+msgstr ""
+
+msgid "%1$s min %2$s s"
+msgstr ""
+
+msgid "Copied"
+msgstr ""
+
+msgid "Link"
+msgstr ""
+
+msgid "Date range"
+msgstr ""
+
+msgid "Start"
+msgstr ""
+
+msgid "End"
+msgstr ""
+
+msgid "Apply"
+msgstr ""
+
+msgid "Download CSV"
+msgstr ""
+
+msgid "Visitor type"
+msgstr ""
+
+msgid "All visitors"
+msgstr ""
+
+msgid "Outside visitors"
+msgstr ""
+
+msgid "Logged-in users"
+msgstr ""
+
+msgid "Role: %s"
+msgstr ""
+
+msgid "Referral"
+msgstr ""
+
+msgid "All sources"
+msgstr ""
+
+msgid "Referral links only"
+msgstr ""
+
+msgid "Visitors: the sum of unique people per day. A person is recognised only within the same day; someone arriving via a referral link is credited to that code for 30 days. Country is derived from the browser time zone, not the IP."
+msgstr ""
+
+msgid "Visitors and views chart"
+msgstr ""
+
+msgid "Week of %s"
+msgstr ""
+
+msgid "Compared with the previous period of equal length"
+msgstr ""
+
+msgid "Previous period: %s"
+msgstr ""
+
+msgid "Sessions"
+msgstr ""
+
+msgid "Pages / visitor"
+msgstr ""
+
+msgid "Avg. session duration"
+msgstr ""
+
+msgid "Bounce rate"
+msgstr ""
+
+msgid "Left after viewing one page"
+msgstr ""
+
+msgid "%1$s min ago: %2$s"
+msgstr ""
+
+msgid "Live"
+msgstr ""
+
+msgid "Refreshes every 5 s"
+msgstr ""
+
+msgid "visitors in last %s min"
+msgstr ""
+
+msgid "%s views"
+msgstr ""
+
+msgid "%s min ago"
+msgstr ""
+
+msgid "now"
+msgstr ""
+
+msgid "Pages"
+msgstr ""
+
+msgid "Countries"
+msgstr ""
+
+msgid "See all (%s)"
+msgstr ""
+
+msgid "Traffic sources"
+msgstr ""
+
+msgid "By role"
+msgstr ""
+
+msgid "not logged in"
+msgstr ""
+
+msgid "Click a row to filter the whole screen by that visitor type. For outside traffic only, choose \"Outside visitors\" at the top."
+msgstr ""
+
+msgid "Most viewed pages"
+msgstr ""
+
+msgid "No visits from other sites yet."
+msgstr ""
+
+msgid "Device and browser"
+msgstr ""
+
+msgid "Campaigns (UTM)"
+msgstr ""
+
+msgid "Not found pages (404)"
+msgstr ""
+
+msgid "Visitors by country"
+msgstr ""
+
+msgid "World map"
+msgstr ""
+
+msgid "Few"
+msgstr ""
+
+msgid "Many"
+msgstr ""
+
+msgid "Country"
+msgstr ""
+
+msgid "No country data in this range."
+msgstr ""
+
+msgid "Funnel"
+msgstr ""
+
+msgid "Funnel: %s"
+msgstr ""
+
+msgid "Drop from previous step"
+msgstr ""
+
+msgid "No visits entered the funnel in this range."
+msgstr ""
+
+msgid "Completion"
+msgstr ""
+
+msgid "Counts the furthest step each visitor reached within a day. You can change the steps in Settings › Funnels."
+msgstr ""
+
+msgid "Funnel settings"
+msgstr ""
+
+msgid "New link"
+msgstr ""
+
+msgid "Name (e.g. Ayşe's Instagram)"
+msgstr ""
+
+msgid "Code (e.g. ayse-ig)"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "No referral links yet. Add ?r=code to the site address wherever you share it (e.g. %s); give it a name here and reports will show that name."
+msgstr ""
+
+msgid "Pages / session"
+msgstr ""
+
+msgid "Avg. duration"
+msgstr ""
+
+msgid "Furthest step"
+msgstr ""
+
+msgid "Donations"
+msgstr ""
+
+msgid "Show what visitors from this link did"
+msgstr ""
+
+msgid "Copy link"
+msgstr ""
+
+msgid "Rename"
+msgstr ""
+
+msgid "Remove name"
+msgstr ""
+
+msgid "A visitor arriving via the link gets a 30-day cookie; their later pages, later days and donation are credited to that code. Click a row to filter the whole screen to visitors from that link."
+msgstr ""
+
+msgid "Copy"
+msgstr ""
+
+msgid "Name for \"%s\""
+msgstr ""
+
+msgid "Remove the name? Statistics are kept and shown under the code."
+msgstr ""
+
+msgid "Clicks and conversions"
+msgstr ""
+
+msgid "No events in this range. Outbound links, downloads, phone/WhatsApp clicks, searches and donations appear here."
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "More"
+msgstr ""
+
+msgid "Could not load. Try again in a moment."
+msgstr ""
+
+msgid "No data yet."
+msgstr ""
+
+msgid "Open the site in a browser where you are not logged in (or on your phone); the visit appears here within a few minutes."
+msgstr ""
+
+msgid "Filter:"
+msgstr ""
+
+msgid "Clear filter"
+msgstr ""
+
+msgid "Site entry"
+msgstr ""
+
+msgid "Page"
+msgstr ""
+
+msgid "The first page of every visit counts"
+msgstr ""
+
+msgid "Choose an event…"
+msgstr ""
+
+msgid "Type another event…"
+msgstr ""
+
+msgid "all pages starting with this path"
+msgstr ""
+
+msgid "Funnel name"
+msgstr ""
+
+msgid "%s steps"
+msgstr ""
+
+msgid "Delete funnel"
+msgstr ""
+
+msgid "Drag to move"
+msgstr ""
+
+msgid "Step name"
+msgstr ""
+
+msgid "Step type"
+msgstr ""
+
+msgid "Move up"
+msgstr ""
+
+msgid "Move down"
+msgstr ""
+
+msgid "Delete step"
+msgstr ""
+
+msgid "Add step"
+msgstr ""
+
+msgid "Add preset step"
+msgstr ""
+
+msgid "Add preset step…"
+msgstr ""
+
+msgid "At most %s steps."
+msgstr ""
+
+msgid "New funnel"
+msgstr ""
+
+msgid "Reset to default donation funnel"
+msgstr ""
+
+msgid "Edit as text"
+msgstr ""
+
+msgid "Event name (e.g. donation_form or checkout:submit):"
+msgstr ""
+
+msgid "Delete funnel \"%s\"?"
+msgstr ""
+
+msgid "Funnel %s"
+msgstr ""
+
+msgid "Replace all funnels with the default donation funnel? (Applied when you click Save.)"
+msgstr ""
+
+msgid "Back to visual editor"
+msgstr ""
+
+msgid "Compare previous period"
+msgstr ""
+
+msgid "Goal page"
+msgstr ""
+
+msgid "Combine sub-pages like /news/… into one box"
+msgstr ""
+
+msgid "Group pages"
+msgstr ""
+
+msgid "Paths from session start"
+msgstr ""
+
+msgid "Starts at"
+msgstr ""
+
+msgid "All pages"
+msgstr ""
+
+msgid "Ends at"
+msgstr ""
+
+msgid "Steps"
+msgstr ""
+
+msgid "Fewer steps"
+msgstr ""
+
+msgid "More steps"
+msgstr ""
+
+msgid "Paths shown"
+msgstr ""
+
+msgid "Top %s paths"
+msgstr ""
+
+msgid "Top paths"
+msgstr ""
+
+msgid "Search pages…"
+msgstr ""
+
+msgid "Reach goal"
+msgstr ""
+
+msgid "Never reach"
+msgstr ""
+
+msgid "Journey: the order of pages in one visit (first 8 steps; refreshing the same page counts once). Events such as add to cart, checkout form, \"Place order\", payment method, order, and WhatsApp/phone clicks show as steps marked ⚡. Only visits with at least 2 pages are listed. The goal is chosen from Settings › Funnels. This screen shows visits after version 0.3.0."
+msgstr ""
+
+msgid "Could not load data. Refresh the page."
+msgstr ""
+
+msgid "%1$s visits · %2$s"
+msgstr ""
+
+msgid "No data"
+msgstr ""
+
+msgid "Multi-page sessions"
+msgstr ""
+
+msgid "%s of all visits"
+msgstr ""
+
+msgid "Avg path length"
+msgstr ""
+
+msgid "%s pages"
+msgstr ""
+
+msgid "In multi-page sessions"
+msgstr ""
+
+msgid "Top entry page"
+msgstr ""
+
+msgid "Top exit after 2+ pages"
+msgstr ""
+
+msgid "No goal selected"
+msgstr ""
+
+msgid "No journeys yet"
+msgstr ""
+
+msgid "No visits with at least 2 pages in the selected period. Widen the filters or wait for new visits."
+msgstr ""
+
+msgid "Click a box to filter the paths below by that page. Thickness shows the number of visits."
+msgstr ""
+
+msgid "%s visits"
+msgstr ""
+
+msgid "Entries"
+msgstr ""
+
+msgid "Step %s"
+msgstr ""
+
+msgid "%s end here"
+msgstr ""
+
+msgid "all continue"
+msgstr ""
+
+msgid "continues"
+msgstr ""
+
+msgid "No paths match the search."
+msgstr ""
+
+msgid "No paths to show."
+msgstr ""
+
+msgid "Path"
+msgstr ""
+
+msgid "Share"
+msgstr ""
+
+msgid "vs prev"
+msgstr ""
+
+msgid "new"
+msgstr ""
+
+msgid "Showing %2$s of %1$s paths."
+msgstr ""
+
 msgid "Site traffic summary"
 msgstr ""
 
 msgid "Daily visitor chart data"
 msgstr ""
 
-msgid "Most viewed pages"
-msgstr ""
-
 msgid "Channel, device, browser breakdown"
-msgstr ""
-
-msgid "Clicks and conversions"
 msgstr ""
 
 msgid "How many people are on the site now?"
@@ -439,9 +913,6 @@ msgstr ""
 msgid "Invalid code. Use letters, digits, - and _."
 msgstr ""
 
-msgid "%s views"
-msgstr ""
-
 msgid "Last 30 days (Site Analytics)"
 msgstr ""
 
@@ -463,9 +934,6 @@ msgstr ""
 msgid "Every 5 minutes"
 msgstr ""
 
-msgid "Site entry"
-msgstr ""
-
 msgid "Donation page"
 msgstr ""
 
@@ -479,9 +947,6 @@ msgid "Donation completed"
 msgstr ""
 
 msgid "Donation flow"
-msgstr ""
-
-msgid "Funnel"
 msgstr ""
 
 msgid "First touch on checkout form"
@@ -553,9 +1018,6 @@ msgstr ""
 msgid "Browser language"
 msgstr ""
 
-msgid "Country"
-msgstr ""
-
 msgid "Campaign source"
 msgstr ""
 
@@ -589,9 +1051,6 @@ msgstr ""
 msgid "Home page"
 msgstr ""
 
-msgid "Outside visitors"
-msgstr ""
-
 msgid "Total"
 msgstr ""
 
@@ -602,9 +1061,6 @@ msgid "By referring site"
 msgstr ""
 
 msgid "By referral code"
-msgstr ""
-
-msgid "By role"
 msgstr ""
 
 msgid "By country"
@@ -805,13 +1261,22 @@ msgstr ""
 msgid "FluxWP Panel on sites sends to this URL:"
 msgstr ""
 
+msgid "Mobile app: daily active accounts"
+msgstr ""
+
+msgid "UTC day / platform"
+msgstr ""
+
+msgid "Consenting accounts"
+msgstr ""
+
+msgid "No eligible totals yet. Both device and site consent are required; cohorts below five accounts per site/platform/day are withheld. Country is the configured site country, not a person’s location. The same person may count on multiple sites or platforms."
+msgstr ""
+
 msgid "Plugin usage"
 msgstr ""
 
 msgid "Package"
-msgstr ""
-
-msgid "Share"
 msgstr ""
 
 msgid "Common version"
@@ -913,9 +1378,6 @@ msgstr ""
 msgid "Reached each step"
 msgstr ""
 
-msgid "Steps"
-msgstr ""
-
 msgid "skipped"
 msgstr ""
 
@@ -955,521 +1417,5 @@ msgstr ""
 msgid "Choice"
 msgstr ""
 
-msgid "Fast endpoint works"
-msgstr ""
-
-msgid "Fast endpoint unreachable, REST will be used"
-msgstr ""
-
-msgid "%s s"
-msgstr ""
-
-msgid "%1$s min %2$s s"
-msgstr ""
-
-msgid "Copied"
-msgstr ""
-
-msgid "Link"
-msgstr ""
-
-msgid "Date range"
-msgstr ""
-
-msgid "Start"
-msgstr ""
-
-msgid "End"
-msgstr ""
-
-msgid "Apply"
-msgstr ""
-
-msgid "Download CSV"
-msgstr ""
-
-msgid "Visitor type"
-msgstr ""
-
-msgid "All visitors"
-msgstr ""
-
-msgid "Logged-in users"
-msgstr ""
-
-msgid "Role: %s"
-msgstr ""
-
-msgid "Referral"
-msgstr ""
-
-msgid "All sources"
-msgstr ""
-
-msgid "Referral links only"
-msgstr ""
-
-msgid "Visitors: the sum of unique people per day. A person is recognised only within the same day; someone arriving via a referral link is credited to that code for 30 days. Country is derived from the browser time zone, not the IP."
-msgstr ""
-
-msgid "Visitors and views chart"
-msgstr ""
-
-msgid "Week of %s"
-msgstr ""
-
-msgid "Compared with the previous period of equal length"
-msgstr ""
-
-msgid "Previous period: %s"
-msgstr ""
-
-msgid "Sessions"
-msgstr ""
-
-msgid "Pages / visitor"
-msgstr ""
-
-msgid "Avg. session duration"
-msgstr ""
-
-msgid "Bounce rate"
-msgstr ""
-
-msgid "Left after viewing one page"
-msgstr ""
-
-msgid "%1$s min ago: %2$s"
-msgstr ""
-
-msgid "Live"
-msgstr ""
-
-msgid "Refreshes every 5 s"
-msgstr ""
-
-msgid "visitors in last %s min"
-msgstr ""
-
-msgid "%s min ago"
-msgstr ""
-
-msgid "now"
-msgstr ""
-
-msgid "Pages"
-msgstr ""
-
-msgid "Countries"
-msgstr ""
-
-msgid "See all (%s)"
-msgstr ""
-
-msgid "Traffic sources"
-msgstr ""
-
-msgid "not logged in"
-msgstr ""
-
-msgid "Click a row to filter the whole screen by that visitor type. For outside traffic only, choose \"Outside visitors\" at the top."
-msgstr ""
-
-msgid "No visits from other sites yet."
-msgstr ""
-
-msgid "Device and browser"
-msgstr ""
-
-msgid "Campaigns (UTM)"
-msgstr ""
-
-msgid "Not found pages (404)"
-msgstr ""
-
-msgid "Visitors by country"
-msgstr ""
-
-msgid "World map"
-msgstr ""
-
-msgid "Few"
-msgstr ""
-
-msgid "Many"
-msgstr ""
-
-msgid "No country data in this range."
-msgstr ""
-
-msgid "Funnel: %s"
-msgstr ""
-
-msgid "Drop from previous step"
-msgstr ""
-
-msgid "No visits entered the funnel in this range."
-msgstr ""
-
-msgid "Completion"
-msgstr ""
-
-msgid "Counts the furthest step each visitor reached within a day. You can change the steps in Settings › Funnels."
-msgstr ""
-
-msgid "Funnel settings"
-msgstr ""
-
-msgid "New link"
-msgstr ""
-
-msgid "Name (e.g. Ayşe's Instagram)"
-msgstr ""
-
-msgid "Code (e.g. ayse-ig)"
-msgstr ""
-
-msgid "Save"
-msgstr ""
-
-msgid "No referral links yet. Add ?r=code to the site address wherever you share it (e.g. %s); give it a name here and reports will show that name."
-msgstr ""
-
-msgid "Pages / session"
-msgstr ""
-
-msgid "Avg. duration"
-msgstr ""
-
-msgid "Furthest step"
-msgstr ""
-
-msgid "Donations"
-msgstr ""
-
-msgid "Show what visitors from this link did"
-msgstr ""
-
-msgid "Copy link"
-msgstr ""
-
-msgid "Rename"
-msgstr ""
-
-msgid "Remove name"
-msgstr ""
-
-msgid "A visitor arriving via the link gets a 30-day cookie; their later pages, later days and donation are credited to that code. Click a row to filter the whole screen to visitors from that link."
-msgstr ""
-
-msgid "Copy"
-msgstr ""
-
-msgid "Name for \"%s\""
-msgstr ""
-
-msgid "Remove the name? Statistics are kept and shown under the code."
-msgstr ""
-
-msgid "No events in this range. Outbound links, downloads, phone/WhatsApp clicks, searches and donations appear here."
-msgstr ""
-
-msgid "All"
-msgstr ""
-
-msgid "Close"
-msgstr ""
-
-msgid "Search"
-msgstr ""
-
-msgid "More"
-msgstr ""
-
-msgid "Could not load. Try again in a moment."
-msgstr ""
-
-msgid "No data yet."
-msgstr ""
-
-msgid "Open the site in a browser where you are not logged in (or on your phone); the visit appears here within a few minutes."
-msgstr ""
-
-msgid "Filter:"
-msgstr ""
-
-msgid "Clear filter"
-msgstr ""
-
-msgid "Page"
-msgstr ""
-
-msgid "The first page of every visit counts"
-msgstr ""
-
-msgid "Choose an event…"
-msgstr ""
-
-msgid "Type another event…"
-msgstr ""
-
-msgid "all pages starting with this path"
-msgstr ""
-
-msgid "Funnel name"
-msgstr ""
-
-msgid "%s steps"
-msgstr ""
-
-msgid "Delete funnel"
-msgstr ""
-
-msgid "Drag to move"
-msgstr ""
-
-msgid "Step name"
-msgstr ""
-
-msgid "Step type"
-msgstr ""
-
-msgid "Move up"
-msgstr ""
-
-msgid "Move down"
-msgstr ""
-
-msgid "Delete step"
-msgstr ""
-
-msgid "Add step"
-msgstr ""
-
-msgid "Add preset step"
-msgstr ""
-
-msgid "Add preset step…"
-msgstr ""
-
-msgid "At most %s steps."
-msgstr ""
-
-msgid "New funnel"
-msgstr ""
-
-msgid "Reset to default donation funnel"
-msgstr ""
-
-msgid "Edit as text"
-msgstr ""
-
-msgid "Event name (e.g. donation_form or checkout:submit):"
-msgstr ""
-
-msgid "Delete funnel \"%s\"?"
-msgstr ""
-
-msgid "Funnel %s"
-msgstr ""
-
-msgid "Replace all funnels with the default donation funnel? (Applied when you click Save.)"
-msgstr ""
-
-msgid "Back to visual editor"
-msgstr ""
-
-msgid "Compare previous period"
-msgstr ""
-
-msgid "Goal page"
-msgstr ""
-
-msgid "Combine sub-pages like /news/… into one box"
-msgstr ""
-
-msgid "Group pages"
-msgstr ""
-
-msgid "Paths from session start"
-msgstr ""
-
-msgid "Starts at"
-msgstr ""
-
-msgid "All pages"
-msgstr ""
-
-msgid "Ends at"
-msgstr ""
-
-msgid "Fewer steps"
-msgstr ""
-
-msgid "More steps"
-msgstr ""
-
-msgid "Paths shown"
-msgstr ""
-
-msgid "Top %s paths"
-msgstr ""
-
-msgid "Top paths"
-msgstr ""
-
-msgid "Search pages…"
-msgstr ""
-
-msgid "Reach goal"
-msgstr ""
-
-msgid "Never reach"
-msgstr ""
-
-msgid "Journey: the order of pages in one visit (first 8 steps; refreshing the same page counts once). Events such as add to cart, checkout form, \"Place order\", payment method, order, and WhatsApp/phone clicks show as steps marked ⚡. Only visits with at least 2 pages are listed. The goal is chosen from Settings › Funnels. This screen shows visits after version 0.3.0."
-msgstr ""
-
-msgid "Could not load data. Refresh the page."
-msgstr ""
-
-msgid "%1$s visits · %2$s"
-msgstr ""
-
-msgid "No data"
-msgstr ""
-
-msgid "Multi-page sessions"
-msgstr ""
-
-msgid "%s of all visits"
-msgstr ""
-
-msgid "Avg path length"
-msgstr ""
-
-msgid "%s pages"
-msgstr ""
-
-msgid "In multi-page sessions"
-msgstr ""
-
-msgid "Top entry page"
-msgstr ""
-
-msgid "Top exit after 2+ pages"
-msgstr ""
-
-msgid "No goal selected"
-msgstr ""
-
-msgid "No journeys yet"
-msgstr ""
-
-msgid "No visits with at least 2 pages in the selected period. Widen the filters or wait for new visits."
-msgstr ""
-
-msgid "Click a box to filter the paths below by that page. Thickness shows the number of visits."
-msgstr ""
-
-msgid "%s visits"
-msgstr ""
-
-msgid "Entries"
-msgstr ""
-
-msgid "Step %s"
-msgstr ""
-
-msgid "%s end here"
-msgstr ""
-
-msgid "all continue"
-msgstr ""
-
-msgid "continues"
-msgstr ""
-
-msgid "No paths match the search."
-msgstr ""
-
-msgid "No paths to show."
-msgstr ""
-
-msgid "Path"
-msgstr ""
-
-msgid "vs prev"
-msgstr ""
-
-msgid "new"
-msgstr ""
-
-msgid "Showing %2$s of %1$s paths."
-msgstr ""
-
-msgid "30 days"
-msgstr ""
-
-msgid "7 days"
-msgstr ""
-
-msgid "90 days"
-msgstr ""
-
-msgid "Search the address"
-msgstr ""
-
-msgid "Range"
-msgstr ""
-
-msgid "Pages being viewed"
-msgstr ""
-
-msgid "No external sites in this range."
-msgstr ""
-
-msgid "No pages were viewed in this range."
-msgstr ""
-
-msgid "No channel breakdown in this range."
-msgstr ""
-
-msgid "No channels"
-msgstr ""
-
-msgid "Sources"
-msgstr ""
-
-msgid "Open in panel"
-msgstr ""
-
-msgid "No pages"
-msgstr ""
-
-msgid "Search sites"
-msgstr ""
-
-msgid "Sites"
-msgstr ""
-
-msgid "Last minutes"
-msgstr ""
-
-msgid "No referrers"
-msgstr ""
-
-msgid "Referrers"
-msgstr ""
-
-msgid "Visitors and pageviews"
-msgstr ""
-
-msgid "Analytics"
-msgstr ""
-
-msgid "Right now"
-msgstr ""
-
-msgid "Cookie-free, no-personal data site statistics: visitors, views, most read pages, referring sites, channel, device/browser, campaign (UTM), click events and donation conversions. The data remains on the site; Reads with artificial intelligence Flux AI / Flux AI & MCP tools."
+msgid "Logged-in people"
 msgstr ""

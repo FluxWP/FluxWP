@@ -1,0 +1,130 @@
+fragment FlxChatbotSettingsFields on FlxSettingsChatbot {
+  enabled
+  mode
+  botName
+  avatarId
+  avatarIcon
+  color
+  colorText
+  theme
+  position
+  offsetX
+  offsetY
+  launcherIcon
+  launcherLabel
+  launcherSize
+  radius
+  width
+  headerStyle
+  font
+  mobileFull
+  showBranding
+  sound
+  homeEnabled
+  homeTitle
+  homeText
+  welcome
+  placeholder
+  quickReplies
+  links
+  showTeam
+  teaserEnabled
+  teaserText
+  teaserDelay
+  aiPersona
+  aiInstructions
+  aiKnowledge
+  aiSrcPages
+  aiSrcPosts
+  aiSrcProducts
+  aiSrcWiki
+  aiToolOrders
+  aiToolLead
+  aiCards
+  aiMaxTurns
+  aiHourLimit
+  aiDailyLimit
+  handoffTo
+  hoursMode
+  hours
+  askEmail
+  notifyEmail
+  emailReplies
+  rating
+  uploads
+  uploadMb
+  dictation
+  offlineText
+  audience
+  deviceDesktop
+  deviceMobile
+  excludeUrls
+  retentionDays
+  privacyText
+  showOnHome
+  showOnPosts
+  showOnPages
+  showOnShop
+  showOnCart
+  showOnCheckout
+  showOnAccount
+  showOnOther
+}
+
+fragment FlxChatbotConversationRow on FlxChatbotConversation {
+  id
+  databaseId
+  title
+  name
+  email
+  phone
+  status
+  unread
+  rating
+  ratingNote
+  isLead
+  orderId
+  orderUrl
+  pageUrl
+  pageTitle
+  userId
+  agentName
+  fluxChatUrl
+  summary
+  lastActivity {
+    timestamp
+    label
+    relative
+  }
+  online
+  typing
+  lastMessage {
+    role
+    body
+  }
+}
+
+fragment FlxChatbotMessageFields on FlxChatbotMessage {
+  databaseId
+  role
+  type
+  body
+  sentAt {
+    timestamp
+    label
+  }
+  author
+  file {
+    name
+    mime
+    url
+  }
+  cards {
+    title
+    url
+    image
+    price
+    inStock
+    cartUrl
+  }
+}

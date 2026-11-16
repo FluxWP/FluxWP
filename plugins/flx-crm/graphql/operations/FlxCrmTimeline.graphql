@@ -1,0 +1,15 @@
+# A page of a contact's timeline.
+query FlxCrmTimeline($id: ID!, $filter: String, $first: Int = 20, $after: String) {
+  flxContact(id: $id) {
+    id
+    timeline(filter: $filter, first: $first, after: $after) {
+      nodes {
+        ...FlxCrmEvent
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+    }
+  }
+}

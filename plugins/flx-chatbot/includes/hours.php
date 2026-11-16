@@ -7,7 +7,11 @@
 
 defined( 'ABSPATH' ) || exit;
 
-/** Flux Chat etkin ve sohbet alabilir mi. */
+/**
+ * Flux Chat etkin ve sohbet alabilir mi.
+ *
+ * @return bool
+ */
 function flxcb_flux_chat_active() {
 	return function_exists( 'flxc_insert_message' ) && function_exists( 'flxc_ensure_chat' );
 }
@@ -54,7 +58,11 @@ function flxcb_is_online( $ts = null ) {
 	return (bool) apply_filters( 'flxcb_is_online', $open );
 }
 
-/** Ziyaretçiye gösterilecek "genelde … arası" metni. */
+/**
+ * Ziyaretçiye gösterilecek "genelde … arası" metni.
+ *
+ * @return string
+ */
 function flxcb_hours_text() {
 	if ( 'custom' !== flxcb_setting( 'hours_mode' ) ) {
 		return '';
@@ -89,6 +97,9 @@ function flxcb_hours_text() {
 	return implode( ', ', $parts );
 }
 
+/**
+ * @return array<int,string>
+ */
 function flxcb_day_names( $short = false ) {
 	return $short
 		? array( 1 => __( 'Mon', 'flx-chatbot' ), 2 => __( 'Tue', 'flx-chatbot' ), 3 => __( 'Wed', 'flx-chatbot' ), 4 => __( 'Thu', 'flx-chatbot' ), 5 => __( 'Fri', 'flx-chatbot' ), 6 => __( 'Sat', 'flx-chatbot' ), 7 => __( 'Sun', 'flx-chatbot' ) )

@@ -3,15 +3,17 @@
 
 defined( 'ABSPATH' ) || exit;
 
-/* Flux App: modül. Uygulama bu paketin REST uçlarını belirteçle kullanır. */
+/* Flux App: native screen (the same React screen as wp-admin, @fluxwp/modules `flxsm-social`, data over GraphQL). App versions without the screen open the admin page. */
 add_filter(
 	'flxapp_modules',
 	function ( $m ) {
-		$m['social'] = array(
+		$m                = is_array( $m ) ? $m : array();
+		$m['flxsm-social'] = array(
 			'title'   => __( 'Social Media', 'flx-social' ),
 			'cap'     => FLXSM_CAP_POST,
 			'menu'    => 'flx-social',
-			'api'     => rest_url( FLXSM_NS ),
+			'url'     => admin_url( 'admin.php?page=flx-social' ),
+			'api'     => home_url( '/graphql' ),
 			'icon'    => 'share',
 			'version' => FLXSM_VERSION,
 		);

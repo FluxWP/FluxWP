@@ -1,6 +1,6 @@
 # Flux Admin (flx-admin): REST → GraphQL eşlemesi
 
-Paket sürümü: 1.7.27 · Önek: `flxa_` · Cap: `manage_options` (tema ayarı), kullanıcı bazlı menü/widget · Sahip thread: envanter (Faz 1) · Durum: taslak
+Paket sürümü: 1.8.0 (GraphQL) — önceki: 1.7.27 · Önek: `flxa_` · Cap: `manage_options` (tema ayarı), kullanıcı bazlı menü/widget · Sahip thread: envanter (Faz 1) · Durum: uygulandı (PR `gql/flx-admin-1`)
 
 Not: Bu dosya yalnız envanterdir. "belirsiz" işaretli satırlar uygulayıcıdan önce karar ister.
 
@@ -69,3 +69,11 @@ Not: kullanıcıya özel veri önbelleğe alınmaz (girişli istek, kural gereğ
 - `flxa_task_create`: flx-admin görev oluşturmayı kendisi mi yapıyor, yoksa flx-tasks'a yönlendiriyor mu? Çift kayıt yolu olmamalı.
 - Admin widget veri kaynağı hangi paketler? Her biri kendi GraphQL tipine bağlanmalı.
 - `flxa_menu_user` alan ayrıntısı (menü sırası, gizleme) kod okunarak netleşmeli.
+
+## Uygulama sonucu (1.8.0)
+
+- Ayarlar (`flxAdminSettings`, `flxAdminSettingsConfig`, `flxAdminSettingsUpdate`), menü düzenleyici (`flxAdminMenuEditor`, `flxAdminMenuLayoutsSave`), yetki tablosu (`flxAdminCaps`, `flxAdminCapsSave`, `flxAdminCapsRestore`), kullanıcı tarafı (`flxAdminMode`/`flxAdminModeSet`, `flxAdminUserMenu`/`flxAdminUserMenuSet`, `flxAdminWidgetPrefs`/`flxAdminWidgetPrefsSet`) GraphQL'de. Ayrıntı: docs/flx-admin/GRAPHQL.md.
+- AJAX eşlemesi: `flxa_mode` → `flxAdminModeSet`; `flxa_menu_user` → `flxAdminUserMenuSet`; `flxa_widget` → `flxAdminWidgetPrefsSet` (filtre + modül HTML'i). Üçü de eski AJAX ile aynı servisi (`FLXA_*_Service`) kullanır; AJAX davranışı değişmedi.
+- Kalan AJAX: 5 PWA protokol ucu (kalıcı istisna) ve `flxa_task_form` / `flxa_task_create` (geçici istisna; görev oluşturma `flxTaskCreate` ile zaten GraphQL'de, pano JS'i taşınınca kalkar). Görev formu için ayrı bir flx-admin mutation'ı açılmadı.
+- Widget kararı: pano modülleri HTML olarak sunucuda üretilir; GraphQL yalnız kişi filtresini kaydeder ve modül gövdesini (`html`) döndürür. Veri kaynakları flx-tasks / flx-donate'in kendi servisleridir.
+- Ekran: `flxa-admin` modülü (`packages/modules/src/admin`), Ayarlar › Yönetim teması'nın tüm sekmelerini kapsar; wp-admin'de varsayılan, klasik görünüm sayfadaki bağlantıyla.
