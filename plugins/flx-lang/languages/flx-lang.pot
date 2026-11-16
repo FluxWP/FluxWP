@@ -70,6 +70,15 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
+msgid "JavaScript is required for this screen."
+msgstr ""
+
+msgid "New view"
+msgstr ""
+
+msgid "Open the new view (same features, works in the FluxWP app too)."
+msgstr ""
+
 msgid "Saved."
 msgstr ""
 
@@ -145,7 +154,7 @@ msgstr ""
 msgid "Language suggestion for visitors"
 msgstr ""
 
-msgid "Visitors from outside Türkiye"
+msgid "Automatic language"
 msgstr ""
 
 msgid "Open directly in their language (recommended)"
@@ -157,19 +166,19 @@ msgstr ""
 msgid "Off"
 msgstr ""
 
-msgid "Visitors from outside Türkiye open the version in their language (English if none) before the page renders, and stay in it on later visits. A visitor who picks another language in the switcher stays in it. Search engine bots are never redirected. If the country or time zone is Türkiye, the visitor stays in Turkish. Not applied to logged-in users; use a private window to test."
+msgid "On the first visit, before the page renders, the site opens in the visitor's browser language if it is active here; otherwise in their country's language; otherwise in the suggested language below. The choice is kept on later visits, and a visitor who picks another language in the switcher stays in it. Search engine bots are never redirected. Not applied to logged-in users; use a private window to test."
 msgstr ""
 
 msgid "Suggested language"
 msgstr ""
 
-msgid "If the browser language is one of the active languages (e.g. German once added), that one is suggested; otherwise this one."
+msgid "Used when neither the browser language nor the country's language is active on the site."
 msgstr ""
 
-msgid "Countries that see Turkish"
+msgid "Countries that see the default language"
 msgstr ""
 
-msgid "Two-letter country codes (TR, CY…)."
+msgid "Two-letter country codes (TR, CY…). Used only when the browser language is not on the site."
 msgstr ""
 
 msgid "Country information"
@@ -325,5 +334,395 @@ msgstr ""
 msgid "If left empty, the Turkish name and description are shown."
 msgstr ""
 
-msgid "Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools."
+msgid "A language code has 2–3 letters and, optionally, a region such as pt-br."
+msgstr ""
+
+msgid "A language can be listed only once."
+msgstr ""
+
+msgid "A WordPress locale has letters, digits and an underscore, e.g. en_US."
+msgstr ""
+
+msgid "This language is not in the catalog."
+msgstr ""
+
+msgid "The default language must be one of the listed languages and cannot be removed."
+msgstr ""
+
+msgid "Unknown suggestion mode."
+msgstr ""
+
+msgid "The suggested language must be one of the listed languages."
+msgstr ""
+
+msgid "Unknown switcher style."
+msgstr ""
+
+msgid "Unknown switcher position."
+msgstr ""
+
+msgid "Use two-letter country codes (TR, CY…)."
+msgstr ""
+
+msgid "This content type does not exist."
+msgstr ""
+
+msgid "Unknown site text."
+msgstr ""
+
+msgid "Site texts belong to a language other than the default one."
+msgstr ""
+
+msgid "What a first-time visitor gets when their language differs from the page."
+msgstr ""
+
+msgid "Nothing."
+msgstr ""
+
+msgid "A suggestion bar at the top of the page."
+msgstr ""
+
+msgid "The site opens directly in their language."
+msgstr ""
+
+msgid "How the language switcher names the languages."
+msgstr ""
+
+msgid "Language codes (TR · EN)."
+msgstr ""
+
+msgid "Language names."
+msgstr ""
+
+msgid "Flags."
+msgstr ""
+
+msgid "Where the theme shows the language switcher."
+msgstr ""
+
+msgid "Footer."
+msgstr ""
+
+msgid "Header and mobile menu."
+msgstr ""
+
+msgid "Both."
+msgstr ""
+
+msgid "State of an AI translation job."
+msgstr ""
+
+msgid "Steps are still to run."
+msgstr ""
+
+msgid "The translation is written."
+msgstr ""
+
+msgid "The last step failed; running it again retries."
+msgstr ""
+
+msgid "A language of the site."
+msgstr ""
+
+msgid "Language code, also the address prefix (en, de, pt-br)."
+msgstr ""
+
+msgid "Name people see (English, Deutsch)."
+msgstr ""
+
+msgid "WordPress locale of the language's content (en_US)."
+msgstr ""
+
+msgid "Flag emoji. Empty when none is set."
+msgstr ""
+
+msgid "Visitors can open this language. The default language is always active."
+msgstr ""
+
+msgid "The default language (no address prefix)."
+msgstr ""
+
+msgid "Address of the language root: \"/\" for the default language, \"/en/\" for the others."
+msgstr ""
+
+msgid "hreflang value search engines get."
+msgstr ""
+
+msgid "One language version of a content."
+msgstr ""
+
+msgid "Language code of this version."
+msgstr ""
+
+msgid "Post ID of this version."
+msgstr ""
+
+msgid "Global ID of the post (the same as the id of the content node)."
+msgstr ""
+
+msgid "Title of this version."
+msgstr ""
+
+msgid "WordPress post status (publish, draft, pending …). Anyone sees only published versions; people who can edit the version see the others too."
+msgstr ""
+
+msgid "Public address of this version. Empty until it is published."
+msgstr ""
+
+msgid "Editor address. Empty when the viewer cannot edit this version."
+msgstr ""
+
+msgid "This is the content the list was read from."
+msgstr ""
+
+msgid "A site text (site title, tagline, home page title …) in one language."
+msgstr ""
+
+msgid "Language code (never the default language)."
+msgstr ""
+
+msgid "Text key (blogname, blogdescription, flxseo_home_title …)."
+msgstr ""
+
+msgid "The text in that language."
+msgstr ""
+
+msgid "A site text that can be translated."
+msgstr ""
+
+msgid "Text key."
+msgstr ""
+
+msgid "What the text is, in the user's language."
+msgstr ""
+
+msgid "A long text (shown in a multi-line box)."
+msgstr ""
+
+msgid "The text in the default language; shown as a hint while the translation is empty."
+msgstr ""
+
+msgid "A language that can be added to the site."
+msgstr ""
+
+msgid "Language code."
+msgstr ""
+
+msgid "Name."
+msgstr ""
+
+msgid "WordPress locale."
+msgstr ""
+
+msgid "Flag emoji."
+msgstr ""
+
+msgid "A public content type that can be translated."
+msgstr ""
+
+msgid "Post type name (post, page …)."
+msgstr ""
+
+msgid "Plural label."
+msgstr ""
+
+msgid "Translated now."
+msgstr ""
+
+msgid "The country the server sees for the current request."
+msgstr ""
+
+msgid "Two-letter country code (TR, DE …). Empty when the server sends no country header; the browser time zone is the fallback then."
+msgstr ""
+
+msgid "Country information of the settings page: the code and the header it came from."
+msgstr ""
+
+msgid "Two-letter country code of the current request. Empty when the server sends none."
+msgstr ""
+
+msgid "Name of the header the country came from. Empty when none."
+msgstr ""
+
+msgid "The Languages settings."
+msgstr ""
+
+msgid "Code of the default language (no address prefix)."
+msgstr ""
+
+msgid "Every language, inactive ones too; the default language first."
+msgstr ""
+
+msgid "Content types that are translated."
+msgstr ""
+
+msgid "Show the default-language version when a translation is missing."
+msgstr ""
+
+msgid "Automatic language for first-time visitors."
+msgstr ""
+
+msgid "Language used when neither the browser language nor the country's language is active."
+msgstr ""
+
+msgid "Two-letter country codes that see the default language when the browser language is not on the site."
+msgstr ""
+
+msgid "How the language switcher names languages."
+msgstr ""
+
+msgid "Translated site texts. A text that is not listed shows in the default language."
+msgstr ""
+
+msgid "Languages that can still be added."
+msgstr ""
+
+msgid "Public content types that can be translated."
+msgstr ""
+
+msgid "Site texts that can be translated."
+msgstr ""
+
+msgid "Country information of this request (does country-based suggestion work on this server?)."
+msgstr ""
+
+msgid "Flux AI & MCP is installed and ready, so AI translation buttons work."
+msgstr ""
+
+msgid "An AI translation job: the draft translation plus the parts the AI translates one request at a time (the host stops a request at about 60 seconds)."
+msgstr ""
+
+msgid "Job key. Send it to flxLanguageTranslateStep."
+msgstr ""
+
+msgid "State of the job."
+msgstr ""
+
+msgid "Last finished step; -1 before the first. Run steps 0 to total - 1."
+msgstr ""
+
+msgid "Number of steps: the title/excerpt/SEO step plus one per body part."
+msgstr ""
+
+msgid "Post ID of the source content."
+msgstr ""
+
+msgid "Post ID of the translation being written."
+msgstr ""
+
+msgid "Target language code."
+msgstr ""
+
+msgid "Parts that stayed in the source language (\"meta\" or a step number). Check them in the editor."
+msgstr ""
+
+msgid "Editor address of the translation."
+msgstr ""
+
+msgid "The languages visitors can open, default first. Public: the language switcher shows the same list."
+msgstr ""
+
+msgid "The Languages settings: every language, content types, switcher, automatic language, site texts and what the screen needs to edit them."
+msgstr ""
+
+msgid "The visitor's country from the server's CDN / GeoIP header. Never cached. Public: it only returns the caller's own country."
+msgstr ""
+
+msgid "An AI translation job you started (it stays readable for a few minutes after it finishes)."
+msgstr ""
+
+msgid "Job key."
+msgstr ""
+
+msgid "Language code of this content. Empty for a type that is not translated and for shared pages (cart, checkout, my account)."
+msgstr ""
+
+msgid "The language versions of this content, in language order, including itself. Drafts and private versions are listed only for people who can edit them. Empty for a type that is not translated."
+msgstr ""
+
+msgid "Language code and address prefix (en, de, pt-br)."
+msgstr ""
+
+msgid "Name people see. Empty keeps the code."
+msgstr ""
+
+msgid "WordPress locale of the content (en_US)."
+msgstr ""
+
+msgid "Visitors can open it. The default language is always active."
+msgstr ""
+
+msgid "A site text in one language. An empty value removes the translation."
+msgstr ""
+
+msgid "Language code (not the default language)."
+msgstr ""
+
+msgid "Text key from textFields."
+msgstr ""
+
+msgid "The text."
+msgstr ""
+
+msgid "Saves the Languages settings. A field that is not sent stays as it is; `languages` and `texts`, when sent, replace the whole list (a language that is not listed is removed). Nothing is written when any part is invalid."
+msgstr ""
+
+msgid "All languages after the change. The default language cannot be removed."
+msgstr ""
+
+msgid "Code of a catalog language to add. It is added inactive: prepare its content, then activate it."
+msgstr ""
+
+msgid "Code of the default language."
+msgstr ""
+
+msgid "Content types to translate."
+msgstr ""
+
+msgid "Two-letter country codes that see the default language."
+msgstr ""
+
+msgid "All translated site texts after the change."
+msgstr ""
+
+msgid "The settings after the change."
+msgstr ""
+
+msgid "Sets the language of a content (the editor's Language box). If another content of the same group already has that language, this one leaves the group."
+msgstr ""
+
+msgid "Global ID or database ID of the content."
+msgstr ""
+
+msgid "Language of the content after the change."
+msgstr ""
+
+msgid "Language versions of the content after the change."
+msgstr ""
+
+msgid "Creates the translation of a content in a language: a draft copy to translate by hand (terms, meta and image are copied). Returns the existing one when the language already has a version."
+msgstr ""
+
+msgid "Global ID or database ID of the source content."
+msgstr ""
+
+msgid "The translation."
+msgstr ""
+
+msgid "Starts an AI translation of a content (needs Flux AI & MCP): creates the draft translation and the list of parts. Run flxLanguageTranslateStep for step 0 to total - 1."
+msgstr ""
+
+msgid "The job to step through."
+msgstr ""
+
+msgid "Runs one step of an AI translation job. Each step is one request, so no request runs into the host time limit. The last step writes the body and finishes the job."
+msgstr ""
+
+msgid "Job key from flxLanguageTranslateStart."
+msgstr ""
+
+msgid "Step to run, from 0 to total - 1."
+msgstr ""
+
+msgid "The job after the step."
 msgstr ""
