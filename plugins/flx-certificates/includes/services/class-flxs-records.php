@@ -23,6 +23,19 @@ final class FLXS_Records {
 	 * @param string $gql   INVALID_INPUT | NOT_FOUND | CONFLICT | FORBIDDEN | RATE_LIMITED.
 	 * @param string $field Input field.
 	 */
+	/**
+	 * The classic REST error, typed for the services. flxs_rest_error() is untyped.
+	 *
+	 * @param mixed $e Error or message.
+	 */
+	public static function rest_response( $e, int $status = 400 ): WP_REST_Response {
+		$response = flxs_rest_error( $e, $status );
+		if ( $response instanceof WP_REST_Response ) {
+			return $response;
+		}
+		return new WP_REST_Response( array( 'ok' => false, 'message' => is_string( $e ) ? $e : '' ), $status );
+	}
+
 	public static function error( string $code, string $message, string $gql = 'INVALID_INPUT', string $field = '', int $status = 400 ): WP_Error {
 		$data = array(
 			'graphql_code' => $gql,
@@ -42,7 +55,7 @@ final class FLXS_Records {
 		if ( is_array( $data ) && ! empty( $data['graphql_code'] ) ) {
 			return $e;
 		}
-		$code = (string) $e->get_error_code();
+		$code = FLXS_Val::str($e->get_error_code());
 		$gql  = 'INVALID_INPUT';
 		if ( in_array( $code, array( 'flxs_404', 'flxs_template' ), true ) ) {
 			$gql = 'NOT_FOUND';
@@ -52,13 +65,13 @@ final class FLXS_Records {
 			$gql = 'INTERNAL';
 		}
 		$field = 'flxs_phone' === $code ? 'phone' : ( 'flxs_email' === $code ? 'email' : ( 'flxs_name' === $code ? 'name' : '' ) );
-		return self::error( $code, (string) $e->get_error_message(), $gql, $field );
+		return self::error( $code, FLXS_Val::str($e->get_error_message()), $gql, $field );
 	}
 
 	/**
 	 * Drops the GraphQL cache of the records that changed.
 	 *
-	 * @param string[] $tags Tags.
+	 * @param list<string> $tags Tags.
 	 */
 	public static function purge( array $tags ): void {
 		if ( function_exists( 'flx_gql_purge' ) ) {
@@ -68,7 +81,7 @@ final class FLXS_Records {
 
 	/**
 	 * @param int $id Certificate id.
-	 * @return string[]
+	 * @return list<string>
 	 */
 	public static function certificate_tags( int $id, string $code = '' ): array {
 		$tags = array( self::TAG_LIST, 'flx-certificates:certificate:' . $id );
@@ -76,5 +89,54 @@ final class FLXS_Records {
 			$tags[] = 'flx-certificates:verify:' . $code;
 		}
 		return $tags;
+	}
+}
+
+/**
+ * Scalar coercion for database rows. Services run without the GraphQL kit, so this does not call it.
+ */
+final class FLXS_Val {
+
+	/**
+	 * @param mixed $v Value.
+	 */
+	public static function str( $v, string $default = '' ): string {
+		return is_scalar( $v ) ? (string) $v : $default;
+	}
+
+	/**
+	 * @param mixed $v Value.
+	 */
+	public static function int( $v, int $default = 0 ): int {
+		return is_numeric( $v ) ? (int) $v : $default;
+	}
+
+	/**
+	 * @param mixed $v Value.
+	 * @return array<mixed>
+	 */
+	public static function arr( $v ): array {
+		return is_array( $v ) ? $v : array();
+	}
+
+	/**
+	 * @param mixed $v Value.
+	 */
+	public static function mix( $v ): mixed {
+		return $v;
+	}
+
+	/**
+	 * @param mixed $v Value.
+	 * @return array<string,mixed>
+	 */
+	public static function row( $v ): array {
+		$out = array();
+		if ( is_array( $v ) ) {
+			foreach ( $v as $k => $x ) {
+				$out[ (string) $k ] = $x;
+			}
+		}
+		return $out;
 	}
 }

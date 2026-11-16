@@ -26,6 +26,11 @@ function flxs_t_payload( array $r, string $field ): array {
 	return is_array( $p ) ? $p : array();
 }
 
+/** Null stays null. A missing key is the string "absent", so a real null can be asserted. */
+function flxs_t_get( array $bag, string $key ) {
+	return array_key_exists( $key, $bag ) ? $bag[ $key ] : 'absent';
+}
+
 flxs_install_roles();
 $settings                    = flxs_settings();
 $settings['lookup_enabled']  = 1;
@@ -55,7 +60,7 @@ flxt_same( 'FORBIDDEN', flxt_code( $r ), 'records: subscriber → FORBIDDEN' );
 $r = flxs_t_op( 'FlxCertificateCreate', array( 'input' => array( 'templateId' => $tpl, 'person' => array( 'name' => 'X' ), 'values' => '{}' ) ), $sub );
 flxt_same( 'FORBIDDEN', flxt_code( $r ), 'create: subscriber → FORBIDDEN' );
 $r = flxs_t_op( 'FlxCertificateVerify', array( 'code' => 'no-such-' . $stamp ) );
-flxt_same( null, $r['data']['flxCertificateVerify'] ?? 'missing', 'verify: unknown code is null' );
+flxt_same( null, flxs_t_get( is_array( $r['data'] ?? null ) ? $r['data'] : array(), 'flxCertificateVerify' ), 'verify: unknown code is null' );
 flxt_same( null, $r['errors'] ?? null, 'verify: unknown code is not an error' );
 
 $bad = flxt_gql( '{ flxCertificateVerify(code: "x") { phone email note databaseId person { id } } }' );
@@ -107,7 +112,7 @@ $id   = (int) ( $cert['databaseId'] ?? 0 );
 flxt_ok( $id > 0, 'create: certificate id' );
 flxt_same( 'ACTIVE', $cert['status'] ?? null, 'create: status' );
 flxt_same( 'Holder ' . $stamp, $cert['holderName'] ?? null, 'create: holder' );
-flxt_same( null, $cert['pdfUrl'] ?? 'missing', 'create: no PDF until a file is stored' );
+flxt_same( null, flxs_t_get( $cert, 'pdfUrl' ), 'create: no PDF until a file is stored' );
 flxt_same( 'holder-' . $stamp . '@example.test', $cert['person']['email'] ?? null, 'create: the staff row includes the e-mail' );
 
 $r = flxs_t_op(
@@ -160,12 +165,13 @@ flxt_same( 7, (int) $wpdb->get_var( $wpdb->prepare( 'SELECT views FROM ' . flxs_
 
 $r = flxs_t_op( 'FlxCertificateSetStatus', array( 'input' => array( 'id' => $id, 'status' => 'REVOKED' ) ), $admin );
 flxt_same( 'REVOKED', flxs_t_payload( $r, 'flxCertificateSetStatus' )['certificate']['status'] ?? null, 'status: revoked' );
-flxt_same( null, flxs_t_payload( $r, 'flxCertificateSetStatus' )['certificate']['pdfUrl'] ?? 'missing', 'status: revoked node has no PDF URL' );
-flxt_same( null, flxs_t_payload( $r, 'flxCertificateSetStatus' )['certificate']['imageUrl'] ?? 'missing', 'status: revoked node has no image URL' );
+$revoked_node = flxs_t_payload( $r, 'flxCertificateSetStatus' )['certificate'] ?? array();
+flxt_same( null, flxs_t_get( is_array( $revoked_node ) ? $revoked_node : array(), 'pdfUrl' ), 'status: revoked node has no PDF URL' );
+flxt_same( null, flxs_t_get( is_array( $revoked_node ) ? $revoked_node : array(), 'imageUrl' ), 'status: revoked node has no image URL' );
 $pub = flxs_t_op( 'FlxCertificateVerify', array( 'code' => $code ) )['data']['flxCertificateVerify'] ?? array();
 flxt_same( 'REVOKED', $pub['status'] ?? null, 'verify: revoked' );
-flxt_same( null, $pub['pdfUrl'] ?? 'missing', 'verify: revoked has no PDF URL' );
-flxt_same( null, $pub['imageUrl'] ?? 'missing', 'verify: revoked has no image URL' );
+flxt_same( null, flxs_t_get( $pub, 'pdfUrl' ), 'verify: revoked has no PDF URL' );
+flxt_same( null, flxs_t_get( $pub, 'imageUrl' ), 'verify: revoked has no image URL' );
 $pdf_path = flxs_certificate_file_path( flxs_get_certificate( $id ), 'pdf' );
 flxt_ok( is_string( $pdf_path ) && file_exists( $pdf_path ), 'revoke leaves the static PDF on disk' );
 
@@ -177,7 +183,8 @@ $r = flxs_t_op( 'FlxCertificateDelete', array( 'input' => array( 'id' => $id ) )
 flxt_same( 'FORBIDDEN', flxt_code( $r ), 'delete: subscriber → FORBIDDEN' );
 $r = flxs_t_op( 'FlxCertificateDelete', array( 'input' => array( 'id' => $id ) ), $admin );
 flxt_same( true, flxs_t_payload( $r, 'flxCertificateDelete' )['deleted'] ?? null, 'delete: administrator deletes' );
-flxt_same( null, flxs_t_op( 'FlxCertificateOne', array( 'id' => $id ), $admin )['data']['flxCertificate'] ?? 'missing', 'delete: the node is gone' );
+$gone_cert = flxs_t_op( 'FlxCertificateOne', array( 'id' => $id ), $admin );
+flxt_same( null, flxs_t_get( is_array( $gone_cert['data'] ?? null ) ? $gone_cert['data'] : array(), 'flxCertificate' ), 'delete: the node is gone' );
 
 $back = flxs_t_op(
 	'FlxCertificateCreate',
@@ -242,10 +249,11 @@ $see = static function ( int $user, string $name ): int {
 flxt_same( 1, $see( $staff_a, 'Alpha ' . $stamp ), 'own_ref: staff A sees their certificate' );
 flxt_same( 0, $see( $staff_a, 'Beta ' . $stamp ), 'own_ref: staff A does not see staff B in the list' );
 flxt_same( 0, $see( $staff_b, 'Alpha ' . $stamp ), 'own_ref: staff B does not see staff A in the list' );
-flxt_same( null, flxs_t_op( 'FlxCertificateOne', array( 'id' => $b_id ), $staff_a )['data']['flxCertificate'] ?? 'missing', 'own_ref: staff A node lookup of B is null' );
+$hidden = flxs_t_op( 'FlxCertificateOne', array( 'id' => $b_id ), $staff_a );
+flxt_same( null, flxs_t_get( is_array( $hidden['data'] ?? null ) ? $hidden['data'] : array(), 'flxCertificate' ), 'own_ref: staff A node lookup of B is null' );
 flxt_same( $a_id, flxs_t_op( 'FlxCertificateOne', array( 'id' => $a_id ), $staff_a )['data']['flxCertificate']['databaseId'] ?? null, 'own_ref: staff A node lookup of their own' );
 $person_b = flxs_t_op( 'FlxCertificatePerson', array( 'id' => $b_person ), $staff_a );
-flxt_same( null, $person_b['data']['flxCertificatePerson'] ?? 'missing', 'own_ref: staff A cannot open staff B’s person' );
+flxt_same( null, flxs_t_get( is_array( $person_b['data'] ?? null ) ? $person_b['data'] : array(), 'flxCertificatePerson' ), 'own_ref: staff A cannot open staff B’s person' );
 flxt_same( 0, $person_b['data']['flxCertificates']['totalCount'] ?? null, 'own_ref: staff A’s person filter does not count B’s certificates' );
 $dir = flxs_t_op( 'FlxCertificateDirectory', array( 'first' => 5, 'search' => 'Beta ' . $stamp ), $staff_a );
 flxt_same( 0, $dir['data']['flxCertificateDirectory']['totalCount'] ?? null, 'own_ref: directory hides the other person' );
@@ -276,8 +284,10 @@ $settings['staff_own_only'] = 1;
 update_option( 'flxs_settings', $settings );
 flxt_same( 1, $see( $staff_a, 'Alpha ' . $stamp ), 'own_only: staff A still sees their certificate' );
 flxt_same( 0, $see( $staff_a, 'Beta ' . $stamp ), 'own_only: staff A does not see staff B’s certificate' );
-flxt_same( null, flxs_t_op( 'FlxCertificateOne', array( 'id' => $b_id ), $staff_a )['data']['flxCertificate'] ?? 'missing', 'own_only: node lookup of the other certificate is null' );
-flxt_same( null, flxs_t_op( 'FlxCertificatePerson', array( 'id' => $b_person ), $staff_a )['data']['flxCertificatePerson'] ?? 'missing', 'own_only: the other person is null' );
+$hidden = flxs_t_op( 'FlxCertificateOne', array( 'id' => $b_id ), $staff_a );
+flxt_same( null, flxs_t_get( is_array( $hidden['data'] ?? null ) ? $hidden['data'] : array(), 'flxCertificate' ), 'own_only: node lookup of the other certificate is null' );
+$hidden_person = flxs_t_op( 'FlxCertificatePerson', array( 'id' => $b_person ), $staff_a );
+flxt_same( null, flxs_t_get( is_array( $hidden_person['data'] ?? null ) ? $hidden_person['data'] : array(), 'flxCertificatePerson' ), 'own_only: the other person is null' );
 flxt_same( 0, flxs_t_op( 'FlxCertificateDirectory', array( 'first' => 5, 'search' => 'Beta ' . $stamp ), $staff_a )['data']['flxCertificateDirectory']['totalCount'] ?? null, 'own_only: directory hides the other person' );
 flxt_same( 1, flxs_t_op( 'FlxCertificateDirectory', array( 'first' => 5, 'search' => 'Alpha ' . $stamp ), $staff_a )['data']['flxCertificateDirectory']['nodes'][0]['certificateCount'] ?? null, 'own_only: the certificate count stays scoped' );
 $edit = flxs_t_op( 'FlxCertificatePersonSave', array( 'input' => array( 'id' => $b_person, 'name' => 'Taken ' . $stamp ) ), $staff_a );

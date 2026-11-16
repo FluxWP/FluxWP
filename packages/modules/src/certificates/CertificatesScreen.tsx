@@ -4,7 +4,8 @@ import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from 're
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from '@tanstack/react-query';
 import type { ApiClient } from '@fluxwp/core';
-import { flxQueryKey, useFlxCan, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
+import { createGraphQLClient } from '@fluxwp/graphql';
+import { FlxGraphQLProvider, flxQueryKey, useFlxCan, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
 import {
   FlxCertificateAttachFiles,
   FlxCertificateBulk,
@@ -86,6 +87,16 @@ function personBits(row: Row): { name: string; email: string; phone: string } {
 }
 
 export function CertificatesScreen() {
+  const host = useHost();
+  const client = useMemo(() => createGraphQLClient({ api: host.client }), [host.client]);
+  return (
+    <FlxGraphQLProvider client={client} scope={host.scope}>
+      <Certificates />
+    </FlxGraphQLProvider>
+  );
+}
+
+function Certificates() {
   const host = useHost();
   const { i18n } = useTranslation();
   const { t, tn } = useMemo(() => translator(i18n.language), [i18n.language]);

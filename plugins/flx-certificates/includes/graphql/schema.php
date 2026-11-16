@@ -22,7 +22,7 @@ final class FLXS_Certificate_Node implements FLXGQL_Node {
 	}
 
 	public function gql_id(): int {
-		return (int) $this->row['id'];
+		return FLXS_Val::int($this->row['id']);
 	}
 }
 
@@ -41,7 +41,7 @@ final class FLXS_Person_Node implements FLXGQL_Node {
 	}
 
 	public function gql_id(): int {
-		return (int) $this->row['id'];
+		return FLXS_Val::int($this->row['id']);
 	}
 }
 
@@ -57,9 +57,9 @@ final class FLXS_Certificate_Loader extends FLXGQL_Loader {
 	protected function fetch( array $ids ): array {
 		$out = array();
 		foreach ( $ids as $id ) {
-			$row = flxs_get_certificate( (int) $id );
+			$row = flxs_get_certificate( FLXS_Val::int($id) );
 			if ( is_array( $row ) ) {
-				$out[ (int) $id ] = new FLXS_Certificate_Node( $row );
+				$out[ FLXS_Val::int($id) ] = new FLXS_Certificate_Node( $row );
 			}
 		}
 		return $out;
@@ -86,7 +86,7 @@ final class FLXS_Person_Loader extends FLXGQL_Loader {
 		$counts = FLXS_Person_Service::certificate_counts( $ids );
 		$out    = array();
 		foreach ( FLXS_Person_Service::by_ids( $ids ) as $id => $row ) {
-			$out[ $id ] = new FLXS_Person_Node( $row, (int) ( $counts[ $id ] ?? 0 ) );
+			$out[ $id ] = new FLXS_Person_Node( $row, FLXS_Val::int(( $counts[ $id ] ?? 0 )) );
 		}
 		return $out;
 	}
@@ -138,9 +138,10 @@ function flxs_gql_person( $source ): FLXS_Person_Node {
 
 /**
  * @param array<string,mixed>|null $row Row.
+ * @return array<string,mixed>|null
  */
 function flxs_gql_phone_of( $row ): ?array {
-	$raw = is_array( $row ) ? trim( (string) ( $row['phone'] ?? '' ) ) : '';
+	$raw = is_array( $row ) ? trim( FLXS_Val::str(( $row['phone'] ?? '' )) ) : '';
 	if ( '' === $raw ) {
 		return null;
 	}
@@ -263,19 +264,19 @@ flx_gql_type(
 		'fields'      => array(
 			'code'         => array(
 				'type' => 'String!', 'description' => __( 'Verification code.', 'flx-certificates' ),
-				'resolve' => static fn( $s ): string => (string) flxs_gql_cert( $s )->row['code'],
+				'resolve' => static fn( $s ): string => FLXS_Val::str( flxs_gql_cert( $s )->row['code'] ),
 			),
 			'number'       => array(
 				'type' => 'String!', 'description' => __( 'Certificate number.', 'flx-certificates' ),
-				'resolve' => static fn( $s ): string => (string) flxs_gql_cert( $s )->row['number'],
+				'resolve' => static fn( $s ): string => FLXS_Val::str( flxs_gql_cert( $s )->row['number'] ),
 			),
 			'title'        => array(
 				'type' => 'String!', 'description' => __( 'Title printed on the certificate.', 'flx-certificates' ),
-				'resolve' => static fn( $s ): string => (string) flxs_gql_cert( $s )->row['title'],
+				'resolve' => static fn( $s ): string => FLXS_Val::str( flxs_gql_cert( $s )->row['title'] ),
 			),
 			'status'       => array(
 				'type' => 'FlxCertificateStatus!', 'description' => __( 'Valid or revoked.', 'flx-certificates' ),
-				'resolve' => static fn( $s ): string => (string) flxs_gql_cert( $s )->row['status'],
+				'resolve' => static fn( $s ): string => FLXS_Val::str( flxs_gql_cert( $s )->row['status'] ),
 			),
 			'holderName'   => array(
 				'type' => 'String!', 'description' => __( 'Name printed on the certificate.', 'flx-certificates' ),
@@ -283,17 +284,17 @@ flx_gql_type(
 			),
 			'templateId'   => array(
 				'type' => 'Int!', 'description' => __( 'Template ID.', 'flx-certificates' ),
-				'resolve' => static fn( $s ): int => (int) flxs_gql_cert( $s )->row['template_id'],
+				'resolve' => static fn( $s ): int => FLXS_Val::int( flxs_gql_cert( $s )->row['template_id'] ),
 			),
 			'templateName' => array(
 				'type' => 'String!', 'description' => __( 'Template name.', 'flx-certificates' ),
 				'resolve' => static function ( $s ): string {
 					$row = flxs_gql_cert( $s )->row;
 					if ( isset( $row['template_name'] ) ) {
-						return (string) $row['template_name'];
+						return FLXS_Val::str($row['template_name']);
 					}
-					$t = flxs_get_template( (int) $row['template_id'] );
-					return is_array( $t ) ? (string) $t['name'] : '';
+					$t = flxs_get_template( FLXS_Val::int($row['template_id']) );
+					return is_array( $t ) ? FLXS_Val::str($t['name']) : '';
 				},
 			),
 			'values'       => array(
@@ -325,7 +326,7 @@ flx_gql_type(
 			),
 			'views'        => array(
 				'type' => 'Int!', 'description' => __( 'Times the public page was opened.', 'flx-certificates' ),
-				'resolve' => static fn( $s ): int => (int) flxs_gql_cert( $s )->row['views'],
+				'resolve' => static fn( $s ): int => FLXS_Val::int( flxs_gql_cert( $s )->row['views'] ),
 			),
 			'backdated'    => array(
 				'type' => 'Boolean!', 'description' => __( 'The issue date was set in the past.', 'flx-certificates' ),
@@ -344,37 +345,37 @@ flx_gql_type(
 			),
 			'createdById'  => array(
 				'type' => 'Int!', 'description' => __( 'User who created it.', 'flx-certificates' ),
-				'resolve' => static fn( $s ): int => (int) flxs_gql_cert( $s )->row['created_by'],
+				'resolve' => static fn( $s ): int => FLXS_Val::int( flxs_gql_cert( $s )->row['created_by'] ),
 			),
 			'createdByName' => array(
 				'type' => 'String!', 'description' => __( 'Name of the user who created it.', 'flx-certificates' ),
-				'resolve' => static fn( $s ): string => flxs_user_label( (int) flxs_gql_cert( $s )->row['created_by'] ),
+				'resolve' => static fn( $s ): string => flxs_user_label( FLXS_Val::int( flxs_gql_cert( $s )->row['created_by'] ) ),
 			),
 			'referrerId'   => array(
 				'type' => 'Int!', 'description' => __( 'Referrer user ID, 0 when none.', 'flx-certificates' ),
-				'resolve' => static fn( $s ): int => (int) flxs_gql_cert( $s )->row['ref_user_id'],
+				'resolve' => static fn( $s ): int => FLXS_Val::int( flxs_gql_cert( $s )->row['ref_user_id'] ),
 			),
 			'referrerName' => array(
 				'type' => 'String!', 'description' => __( 'Referrer name. Empty when none.', 'flx-certificates' ),
-				'resolve' => static fn( $s ): string => flxs_ref_label( (int) flxs_gql_cert( $s )->row['ref_user_id'] ),
+				'resolve' => static fn( $s ): string => flxs_ref_label( FLXS_Val::int( flxs_gql_cert( $s )->row['ref_user_id'] ) ),
 			),
 			'eventId'      => array(
 				'type' => 'Int!', 'description' => __( 'Event ID, 0 when none.', 'flx-certificates' ),
-				'resolve' => static fn( $s ): int => (int) ( flxs_gql_cert( $s )->row['event_id'] ?? 0 ),
+				'resolve' => static fn( $s ): int => FLXS_Val::int(( flxs_gql_cert( $s )->row['event_id'] ?? 0 )),
 			),
 			'eventName'    => array(
 				'type' => 'String!', 'description' => __( 'Event name. Empty when none.', 'flx-certificates' ),
-				'resolve' => static fn( $s ): string => (string) flxs_event_label( (int) ( flxs_gql_cert( $s )->row['event_id'] ?? 0 ) ),
+				'resolve' => static fn( $s ): string => flxs_event_label( FLXS_Val::int( flxs_gql_cert( $s )->row['event_id'] ?? 0 ) ),
 			),
 			'person'       => array(
 				'type' => 'FlxPerson', 'description' => __( 'The person. Empty when the viewer cannot see them.', 'flx-certificates' ),
-				'resolve' => static function ( $s, array $args, $context ) {
+				'resolve' => static function ( $s, array $args, \WPGraphQL\AppContext $context ) {
 					unset( $args );
-					$id = (int) flxs_gql_cert( $s )->row['person_id'];
+					$id = FLXS_Val::int( flxs_gql_cert( $s )->row['person_id'] );
 					if ( $id <= 0 || ! FLXS_Person_Service::can_see( $id ) ) {
 						return null;
 					}
-					if ( is_object( $context ) && method_exists( $context, 'get_loader' ) && class_exists( 'FLXCRM_Contact_Loader' ) ) {
+					if ( class_exists( 'FLXCRM_Contact_Loader' ) ) {
 						return $context->get_loader( 'FlxContact' )->load_deferred( $id );
 					}
 					return $context->get_loader( 'FlxCertificatePerson' )->load_deferred( $id );
@@ -388,10 +389,10 @@ flx_gql_type(
 					$out = array();
 					foreach ( $all[ $id ] ?? array() as $ch => $st ) {
 						$out[] = array(
-							'channel' => (string) $ch,
-							'sent'    => (int) ( $st['sent'] ?? 0 ),
-							'failed'  => (int) ( $st['failed'] ?? 0 ),
-							'waiting' => (int) ( $st['queued'] ?? 0 ) + (int) ( $st['processing'] ?? 0 ),
+							'channel' => FLXS_Val::str($ch),
+							'sent'    => FLXS_Val::int(( $st['sent'] ?? 0 )),
+							'failed'  => FLXS_Val::int(( $st['failed'] ?? 0 )),
+							'waiting' => FLXS_Val::int(( $st['queued'] ?? 0 )) + FLXS_Val::int(( $st['processing'] ?? 0 )),
 						);
 					}
 					return $out;
@@ -411,12 +412,12 @@ flx_gql_type(
 		'fields'      => array(
 			'name'             => array(
 				'type' => 'String!', 'description' => __( 'Full name.', 'flx-certificates' ),
-				'resolve' => static fn( $s ): string => (string) ( flxs_gql_person( $s )->row['name'] ?? '' ),
+				'resolve' => static fn( $s ): string => FLXS_Val::str(( flxs_gql_person( $s )->row['name'] ?? '' )),
 			),
 			'email'            => array(
 				'type' => 'String', 'description' => __( 'E-mail.', 'flx-certificates' ),
 				'resolve' => static function ( $s ): ?string {
-					$email = (string) ( flxs_gql_person( $s )->row['email'] ?? '' );
+					$email = FLXS_Val::str(( flxs_gql_person( $s )->row['email'] ?? '' ));
 					return '' !== $email ? $email : null;
 				},
 			),
@@ -431,7 +432,7 @@ flx_gql_type(
 			'note'             => array(
 				'type' => 'String', 'description' => __( 'Note kept on the person for certificate staff. Not the CRM note field.', 'flx-certificates' ),
 				'resolve' => static function ( $s ): ?string {
-					$note = (string) ( flxs_gql_person( $s )->row['note'] ?? '' );
+					$note = FLXS_Val::str(( flxs_gql_person( $s )->row['note'] ?? '' ));
 					return '' !== $note ? $note : null;
 				},
 			),
@@ -445,7 +446,7 @@ flx_gql_type(
 			),
 			'createdByName'    => array(
 				'type' => 'String!', 'description' => __( 'Who added the person.', 'flx-certificates' ),
-				'resolve' => static fn( $s ): string => flxs_user_label( (int) ( flxs_gql_person( $s )->row['created_by'] ?? 0 ) ),
+				'resolve' => static fn( $s ): string => flxs_user_label( FLXS_Val::int(( flxs_gql_person( $s )->row['created_by'] ?? 0 )) ),
 			),
 		),
 	)
@@ -538,9 +539,9 @@ function flxs_gql_providers(): array {
 	foreach ( flxs_provider_options_for_js() as $ch => $rows ) {
 		foreach ( (array) $rows as $row ) {
 			$out[] = array(
-				'channel' => (string) $ch,
-				'id'      => (int) ( $row['id'] ?? 0 ),
-				'name'    => (string) ( $row['name'] ?? '' ),
+				'channel' => FLXS_Val::str($ch),
+				'id'      => FLXS_Val::int(( $row['id'] ?? 0 )),
+				'name'    => FLXS_Val::str(( $row['name'] ?? '' )),
 			);
 		}
 	}
@@ -638,7 +639,7 @@ function flxs_gql_list( array $filter, int $offset, int $limit ): array {
 	foreach ( $q['items'] as $row ) {
 		$items[] = new FLXS_Certificate_Node( $row );
 	}
-	return array( 'items' => $items, 'total' => (int) $q['total'] );
+	return array( 'items' => $items, 'total' => FLXS_Val::int($q['total']) );
 }
 
 flx_gql_query(
@@ -654,8 +655,8 @@ flx_gql_query(
 		),
 		'resolve'     => static function ( $s, array $args ): array {
 			unset( $s );
-			$filter = flxs_gql_cert_filter( $args );
-			return flx_gql_paginate( $args, static fn( int $offset, int $limit ): array => flxs_gql_list( $filter, $offset, $limit ) );
+			$filter = flxs_gql_cert_filter( flx_gql_arr( $args ) );
+			return flx_gql_paginate( flx_gql_arr( $args ), static fn( int $offset, int $limit ): array => flxs_gql_list( $filter, $offset, $limit ) );
 		},
 	)
 );
@@ -669,7 +670,7 @@ flx_gql_query(
 		'args'        => array(
 			'id' => array( 'type' => 'Int!', 'description' => __( 'Certificate ID.', 'flx-certificates' ) ),
 		),
-		'resolve'     => static function ( $s, array $args, $context ) {
+		'resolve'     => static function ( $s, array $args, \WPGraphQL\AppContext $context ) {
 			unset( $s );
 			if ( function_exists( 'flx_gql_cache_tag' ) ) {
 				flx_gql_cache_tag( 'flx-certificates:certificate:' . flx_gql_int( $args['id'] ?? 0 ) );
@@ -696,28 +697,29 @@ flx_gql_query(
 			$m = FLXS_Certificate_Service::meta();
 			$map = static function ( array $rows, bool $event = false ): array {
 				$out = array();
-				foreach ( $rows as $row ) {
+				foreach ( $rows as $raw ) {
+					$row = FLXS_Val::row( $raw );
 					$out[] = array(
-						'id'     => (int) $row['id'],
-						'name'   => (string) $row['name'],
-						'status' => $event ? (string) ( $row['status'] ?? '' ) : null,
+						'id'     => FLXS_Val::int( $row['id'] ),
+						'name'   => FLXS_Val::str( $row['name'] ),
+						'status' => $event ? FLXS_Val::str( $row['status'] ?? '' ) : null,
 						'active' => array_key_exists( 'active', $row ) ? (bool) $row['active'] : null,
-						'count'  => array_key_exists( 'count', $row ) ? (int) $row['count'] : null,
+						'count'  => array_key_exists( 'count', $row ) ? FLXS_Val::int( $row['count'] ) : null,
 					);
 				}
 				return $out;
 			};
 			return array(
-				'templates'       => $map( $m['templates'] ),
-				'events'          => $map( $m['events'], true ),
-				'referrers'       => $map( $m['referrers'] ),
-				'noEventCount'    => (int) $m['noEventCount'],
-				'noReferrerCount' => (int) $m['noReferrerCount'],
+				'templates'       => $map( FLXS_Val::arr( $m['templates'] ) ),
+				'events'          => $map( FLXS_Val::arr( $m['events'] ), true ),
+				'referrers'       => $map( FLXS_Val::arr( $m['referrers'] ) ),
+				'noEventCount'    => FLXS_Val::int($m['noEventCount']),
+				'noReferrerCount' => FLXS_Val::int($m['noReferrerCount']),
 				'canManage'       => (bool) $m['canManage'],
 				'canBulk'         => (bool) $m['canBulk'],
 				'scoped'          => (bool) $m['scoped'],
-				'me'              => (int) $m['me'],
-				'exportUrl'       => flxs_gql_export_url( flxs_gql_cert_filter( $args ) ),
+				'me'              => FLXS_Val::int($m['me']),
+				'exportUrl'       => flxs_gql_export_url( flxs_gql_cert_filter( flx_gql_arr( $args ) ) ),
 				'providers'       => flxs_gql_providers(),
 			);
 		},
@@ -731,26 +733,26 @@ flx_gql_query(
  */
 function flxs_gql_export_url( array $filter ): string {
 	$keep = array();
-	if ( '' !== (string) ( $filter['search'] ?? '' ) ) {
-		$keep['s'] = (string) $filter['search'];
+	if ( '' !== FLXS_Val::str(( $filter['search'] ?? '' )) ) {
+		$keep['s'] = FLXS_Val::str($filter['search']);
 	}
-	if ( '' !== (string) ( $filter['status'] ?? '' ) ) {
-		$keep['status'] = (string) $filter['status'];
+	if ( '' !== FLXS_Val::str(( $filter['status'] ?? '' )) ) {
+		$keep['status'] = FLXS_Val::str($filter['status']);
 	}
 	if ( ! empty( $filter['template_id'] ) ) {
-		$keep['template'] = (int) $filter['template_id'];
+		$keep['template'] = FLXS_Val::int($filter['template_id']);
 	}
 	if ( ! empty( $filter['person_id'] ) ) {
-		$keep['person'] = (int) $filter['person_id'];
+		$keep['person'] = FLXS_Val::int($filter['person_id']);
 	}
 	if ( ! empty( $filter['created_by'] ) ) {
-		$keep['by'] = (int) $filter['created_by'];
+		$keep['by'] = FLXS_Val::int($filter['created_by']);
 	}
 	if ( array_key_exists( 'event_id', $filter ) ) {
-		$keep['event'] = (string) (int) $filter['event_id'];
+		$keep['event'] = (string) FLXS_Val::int( $filter['event_id'] );
 	}
 	if ( array_key_exists( 'ref_user_id', $filter ) ) {
-		$keep['ref'] = (string) (int) $filter['ref_user_id'];
+		$keep['ref'] = (string) FLXS_Val::int( $filter['ref_user_id'] );
 	}
 	return wp_nonce_url( add_query_arg( array_merge( array( 'action' => 'flxs_cert_export' ), $keep ), admin_url( 'admin-post.php' ) ), 'flxs_cert_export' );
 }
@@ -771,7 +773,7 @@ flx_gql_query(
 			}
 			$out = array();
 			foreach ( FLXS_Person_Service::search( flx_gql_str( $args['search'] ?? '' ), 8 ) as $row ) {
-				if ( FLXS_Person_Service::can_see( (int) $row['id'] ) ) {
+				if ( FLXS_Person_Service::can_see( FLXS_Val::int($row['id']) ) ) {
 					$out[] = new FLXS_Person_Node( $row );
 				}
 			}
@@ -795,7 +797,7 @@ flx_gql_query(
 			unset( $s );
 			$search = flx_gql_str( $args['search'] ?? '' );
 			return flx_gql_paginate(
-				$args,
+				flx_gql_arr( $args ),
 				static function ( int $offset, int $limit ) use ( $search ): array {
 					if ( function_exists( 'flx_gql_cache_tag' ) ) {
 						flx_gql_cache_tag( FLXS_Records::TAG_PEOPLE );
@@ -803,9 +805,9 @@ flx_gql_query(
 					$q = FLXS_Person_Service::directory( $search, $offset, $limit );
 					$items = array();
 					foreach ( $q['items'] as $row ) {
-						$items[] = new FLXS_Person_Node( $row, (int) ( $row['certs'] ?? 0 ) );
+						$items[] = new FLXS_Person_Node( $row, FLXS_Val::int(( $row['certs'] ?? 0 )) );
 					}
-					return array( 'items' => $items, 'total' => (int) $q['total'] );
+					return array( 'items' => $items, 'total' => FLXS_Val::int($q['total']) );
 				}
 			);
 		},
@@ -821,7 +823,7 @@ flx_gql_query(
 		'args'        => array(
 			'id' => array( 'type' => 'Int!', 'description' => __( 'Person ID.', 'flx-certificates' ) ),
 		),
-		'resolve'     => static function ( $s, array $args, $context ) {
+		'resolve'     => static function ( $s, array $args, \WPGraphQL\AppContext $context ) {
 			unset( $s );
 			$id = flx_gql_int( $args['id'] ?? 0 );
 			if ( function_exists( 'flx_gql_cache_tag' ) ) {
@@ -850,13 +852,13 @@ flx_gql_query(
 			$q   = flxs_query_messages( array( 'person_id' => $id, 'per_page' => 50, 'scope' => true ) );
 			$out = array();
 			foreach ( $q['items'] as $row ) {
-				$when = (string) ( $row['sent_at'] ? $row['sent_at'] : ( $row['created_at'] ?? '' ) );
+				$when = FLXS_Val::str(( $row['sent_at'] ? $row['sent_at'] : ( $row['created_at'] ?? '' ) ));
 				$out[] = array(
-					'channel'       => (string) $row['channel'],
-					'recipient'     => (string) $row['recipient'],
-					'status'        => (string) $row['status'],
+					'channel'       => FLXS_Val::str($row['channel']),
+					'recipient'     => FLXS_Val::str($row['recipient']),
+					'status'        => FLXS_Val::str($row['status']),
 					'at'            => flx_gql_datetime( $when ),
-					'createdByName' => flxs_user_label( (int) ( $row['created_by'] ?? 0 ) ),
+					'createdByName' => flxs_user_label( FLXS_Val::int(( $row['created_by'] ?? 0 )) ),
 				);
 			}
 			return $out;
@@ -893,20 +895,20 @@ flx_gql_query(
 			$tpls  = array();
 			$seen  = array();
 			foreach ( flxs_list_templates( true ) as $t ) {
-				$seen[ (int) $t['id'] ] = true;
+				$seen[ FLXS_Val::int($t['id']) ] = true;
 				$tpls[] = array(
-					'id'     => (int) $t['id'],
-					'name'   => (string) $t['name'],
+					'id'     => FLXS_Val::int($t['id']),
+					'name'   => FLXS_Val::str($t['name']),
 					'active' => true,
 					'config' => (string) wp_json_encode( $t['config'] ),
 				);
 			}
-			if ( is_array( $edit ) && empty( $seen[ (int) $edit['template_id'] ] ) ) {
-				$t = flxs_get_template( (int) $edit['template_id'] );
+			if ( is_array( $edit ) && empty( $seen[ FLXS_Val::int($edit['template_id']) ] ) ) {
+				$t = flxs_get_template( FLXS_Val::int($edit['template_id']) );
 				if ( is_array( $t ) ) {
 					$tpls[] = array(
-						'id'     => (int) $t['id'],
-						'name'   => (string) $t['name'],
+						'id'     => FLXS_Val::int($t['id']),
+						'name'   => FLXS_Val::str($t['name']),
 						'active' => 'active' === ( $t['status'] ?? '' ),
 						'config' => (string) wp_json_encode( $t['config'] ),
 					);
@@ -914,8 +916,8 @@ flx_gql_query(
 			}
 			$events = array();
 			$open   = flxs_get_events( 'open' );
-			$cur    = is_array( $edit ) ? (int) ( $edit['event_id'] ?? 0 ) : 0;
-			if ( $cur && ! wp_list_filter( $open, array( 'id' => (string) $cur ) ) ) {
+			$cur    = is_array( $edit ) ? FLXS_Val::int(( $edit['event_id'] ?? 0 )) : 0;
+			if ( $cur && ! wp_list_filter( $open, array( 'id' => FLXS_Val::str($cur) ) ) ) {
 				$closed = flxs_get_event( $cur );
 				if ( is_array( $closed ) ) {
 					$open[] = $closed;
@@ -923,8 +925,8 @@ flx_gql_query(
 			}
 			foreach ( $open as $e ) {
 				$events[] = array(
-					'id'     => (int) $e['id'],
-					'name'   => (string) $e['name'],
+					'id'     => FLXS_Val::int($e['id']),
+					'name'   => FLXS_Val::str($e['name']),
 					'status' => 'closed' === ( $e['status'] ?? '' ) ? 'CLOSED' : 'OPEN',
 					'active' => null,
 					'count'  => null,
@@ -932,7 +934,10 @@ flx_gql_query(
 			}
 			$refs = array();
 			foreach ( flxs_users_with_cap() as $u ) {
-				$refs[] = array( 'id' => (int) $u->ID, 'name' => (string) $u->display_name, 'status' => null, 'active' => null, 'count' => null );
+				if ( ! $u instanceof WP_User ) {
+					continue;
+				}
+				$refs[] = array( 'id' => FLXS_Val::int( $u->ID ), 'name' => FLXS_Val::str( $u->display_name ), 'status' => null, 'active' => null, 'count' => null );
 			}
 			return array(
 				'templates'       => $tpls,
@@ -941,7 +946,7 @@ flx_gql_query(
 				'canManage'       => flxs_can_manage(),
 				'today'           => wp_date( 'Y-m-d' ),
 				'me'              => get_current_user_id(),
-				'lastTemplateId'  => (int) get_user_meta( get_current_user_id(), 'flxs_last_template', true ),
+				'lastTemplateId'  => FLXS_Val::int( get_user_meta( get_current_user_id(), 'flxs_last_template', true ) ),
 				'rendererScripts' => flxs_renderer_scripts(),
 				'rendererConfig'  => (string) wp_json_encode( flxs_renderer_config() ),
 				'providers'       => flxs_gql_providers(),
@@ -986,10 +991,15 @@ function flxs_gql_save_input( array $in, int $id = 0 ): array {
  */
 function flxs_gql_saved( $saved ): array {
 	$saved = flxs_gql_ok( $saved );
+	$bag   = is_array( $saved ) ? $saved : array();
+	$notes = array();
+	foreach ( FLXS_Val::arr( $bag['notes'] ?? array() ) as $note ) {
+		$notes[] = FLXS_Val::str( $note );
+	}
 	return array(
-		'certificate' => new FLXS_Certificate_Node( $saved['certificate'] ),
-		'person'      => new FLXS_Person_Node( $saved['person'] ),
-		'notes'       => $saved['notes'],
+		'certificate' => new FLXS_Certificate_Node( FLXS_Val::row( $bag['certificate'] ?? array() ) ),
+		'person'      => new FLXS_Person_Node( FLXS_Val::row( $bag['person'] ?? array() ) ),
+		'notes'       => $notes,
 	);
 }
 
@@ -1012,9 +1022,23 @@ flx_gql_mutation(
 		'output'      => array(
 			'certificate' => array( 'type' => 'FlxCertificate', 'description' => __( 'The certificate.', 'flx-certificates' ) ),
 			'person'      => array( 'type' => 'FlxCertificatePerson', 'description' => __( 'The person.', 'flx-certificates' ) ),
-			'notes'       => array( 'type' => '[String!]!', 'description' => __( 'Fields that were not copied onto an existing person.', 'flx-certificates' ) ),
+			'notes'       => array(
+				'type'        => '[String!]!',
+				'description' => __( 'Fields that were not copied onto an existing person.', 'flx-certificates' ),
+				'resolve'     => static function ( $payload ): array {
+					$notes = is_array( $payload ) ? ( $payload['notes'] ?? array() ) : array();
+					if ( ! is_array( $notes ) ) {
+						return array();
+					}
+					$out = array();
+					foreach ( $notes as $note ) {
+						$out[] = FLXS_Val::str( $note );
+					}
+					return $out;
+				},
+			),
 		),
-		'resolve'     => static fn( array $in ): array => flxs_gql_saved( FLXS_Certificate_Service::save( flxs_gql_save_input( $in ) ) ),
+		'resolve'     => static fn( array $in ): array => flxs_gql_saved( FLXS_Certificate_Service::save( flxs_gql_save_input( flx_gql_arr( $in ) ) ) ),
 	)
 );
 
@@ -1029,9 +1053,23 @@ flx_gql_mutation(
 		'output'      => array(
 			'certificate' => array( 'type' => 'FlxCertificate', 'description' => __( 'The certificate.', 'flx-certificates' ) ),
 			'person'      => array( 'type' => 'FlxCertificatePerson', 'description' => __( 'The person.', 'flx-certificates' ) ),
-			'notes'       => array( 'type' => '[String!]!', 'description' => __( 'Notes.', 'flx-certificates' ) ),
+			'notes'       => array(
+				'type'        => '[String!]!',
+				'description' => __( 'Notes.', 'flx-certificates' ),
+				'resolve'     => static function ( $payload ): array {
+					$notes = is_array( $payload ) ? ( $payload['notes'] ?? array() ) : array();
+					if ( ! is_array( $notes ) ) {
+						return array();
+					}
+					$out = array();
+					foreach ( $notes as $note ) {
+						$out[] = FLXS_Val::str( $note );
+					}
+					return $out;
+				},
+			),
 		),
-		'resolve'     => static fn( array $in ): array => flxs_gql_saved( FLXS_Certificate_Service::save( flxs_gql_save_input( $in, flx_gql_int( $in['id'] ?? 0 ) ) ) ),
+		'resolve'     => static fn( array $in ): array => flxs_gql_saved( FLXS_Certificate_Service::save( flxs_gql_save_input( flx_gql_arr( $in ), flx_gql_int( $in['id'] ?? 0 ) ) ) ),
 	)
 );
 
@@ -1049,7 +1087,7 @@ flx_gql_mutation(
 		),
 		'resolve'     => static function ( array $in ): array {
 			$row = flxs_gql_ok( FLXS_Certificate_Service::set_status( flx_gql_int( $in['id'] ?? 0 ), flx_gql_str( $in['status'] ?? '' ) ) );
-			return array( 'certificate' => new FLXS_Certificate_Node( $row ) );
+			return array( 'certificate' => new FLXS_Certificate_Node( FLXS_Val::row( $row ) ) );
 		},
 	)
 );
@@ -1068,7 +1106,7 @@ flx_gql_mutation(
 		),
 		'resolve'     => static function ( array $in ): array {
 			$row = flxs_gql_ok( FLXS_Certificate_Service::set_referrer( flx_gql_int( $in['id'] ?? 0 ), flx_gql_int( $in['referrerId'] ?? 0 ) ) );
-			return array( 'certificate' => new FLXS_Certificate_Node( $row ) );
+			return array( 'certificate' => new FLXS_Certificate_Node( FLXS_Val::row( $row ) ) );
 		},
 	)
 );
@@ -1085,14 +1123,23 @@ flx_gql_mutation(
 			'referrerId' => array( 'type' => 'Int', 'description' => __( 'Referrer, for REFERRER.', 'flx-certificates' ) ),
 		),
 		'output'      => array(
-			'updated'  => array( 'type' => 'Int!', 'description' => __( 'Rows changed.', 'flx-certificates' ) ),
-			'queued'   => array( 'type' => 'Int!', 'description' => __( 'Messages queued.', 'flx-certificates' ) ),
-			'redirect' => array( 'type' => 'String!', 'description' => __( 'Classic bulk or queue address, or empty.', 'flx-certificates' ) ),
+			'updated'  => array(
+				'type' => 'Int!', 'description' => __( 'Rows changed.', 'flx-certificates' ),
+				'resolve' => static fn( $payload ): int => is_array( $payload ) ? FLXS_Val::int( $payload['updated'] ?? 0 ) : 0,
+			),
+			'queued'   => array(
+				'type' => 'Int!', 'description' => __( 'Messages queued.', 'flx-certificates' ),
+				'resolve' => static fn( $payload ): int => is_array( $payload ) ? FLXS_Val::int( $payload['queued'] ?? 0 ) : 0,
+			),
+			'redirect' => array(
+				'type' => 'String!', 'description' => __( 'Classic bulk or queue address, or empty.', 'flx-certificates' ),
+				'resolve' => static fn( $payload ): string => is_array( $payload ) ? FLXS_Val::str( $payload['redirect'] ?? '' ) : '',
+			),
 		),
 		'resolve'     => static function ( array $in ): array {
 			$ids = array_map( 'flx_gql_int', flx_gql_arr( $in['ids'] ?? array() ) );
-			$r   = flxs_gql_ok( FLXS_Certificate_Service::bulk( $ids, flx_gql_str( $in['action'] ?? '' ), flx_gql_int( $in['eventId'] ?? 0 ), flx_gql_int( $in['referrerId'] ?? 0 ) ) );
-			return $r;
+			$r = flxs_gql_ok( FLXS_Certificate_Service::bulk( $ids, flx_gql_str( $in['action'] ?? '' ), flx_gql_int( $in['eventId'] ?? 0 ), flx_gql_int( $in['referrerId'] ?? 0 ) ) );
+			return is_array( $r ) ? $r : array( 'updated' => 0, 'queued' => 0, 'redirect' => '' );
 		},
 	)
 );
@@ -1106,7 +1153,10 @@ flx_gql_mutation(
 			'id' => array( 'type' => 'Int!', 'description' => __( 'Certificate ID.', 'flx-certificates' ) ),
 		),
 		'output'      => array(
-			'deleted' => array( 'type' => 'Boolean!', 'description' => __( 'Deleted.', 'flx-certificates' ) ),
+			'deleted' => array(
+				'type' => 'Boolean!', 'description' => __( 'Deleted.', 'flx-certificates' ),
+				'resolve' => static fn( $payload ): bool => is_array( $payload ) && ! empty( $payload['deleted'] ),
+			),
 		),
 		'resolve'     => static function ( array $in ): array {
 			flxs_gql_ok( FLXS_Certificate_Service::delete( flx_gql_int( $in['id'] ?? 0 ) ) );
@@ -1125,12 +1175,15 @@ flx_gql_mutation(
 			'channels' => array( 'type' => '[FlxCertificateChannel!]!', 'description' => __( 'Channels.', 'flx-certificates' ) ),
 		),
 		'output'      => array(
-			'results' => array( 'type' => '[FlxCertificateSendResult!]!', 'description' => __( 'One result per channel.', 'flx-certificates' ) ),
+			'results' => array(
+				'type' => '[FlxCertificateSendResult!]!', 'description' => __( 'One result per channel.', 'flx-certificates' ),
+				'resolve' => static fn( $payload ): array => is_array( $payload ) && is_array( $payload['results'] ?? null ) ? $payload['results'] : array(),
+			),
 		),
 		'resolve'     => static function ( array $in ): array {
 			$channels = array_map( 'flx_gql_str', flx_gql_arr( $in['channels'] ?? array() ) );
-			$r        = flxs_gql_ok( FLXS_Certificate_Service::send( flx_gql_int( $in['id'] ?? 0 ), $channels ) );
-			return $r;
+			$r = flxs_gql_ok( FLXS_Certificate_Service::send( flx_gql_int( $in['id'] ?? 0 ), $channels ) );
+			return is_array( $r ) ? $r : array( 'results' => array() );
 		},
 	)
 );
@@ -1151,7 +1204,10 @@ flx_gql_mutation(
 			'save'     => array( 'type' => 'Boolean', 'description' => __( 'Remember this recipient in the shared directory.', 'flx-certificates' ) ),
 		),
 		'output'      => array(
-			'results' => array( 'type' => '[FlxCertificateSendResult!]!', 'description' => __( 'Result.', 'flx-certificates' ) ),
+			'results' => array(
+				'type' => '[FlxCertificateSendResult!]!', 'description' => __( 'Result.', 'flx-certificates' ),
+				'resolve' => static fn( $payload ): array => is_array( $payload ) && is_array( $payload['results'] ?? null ) ? $payload['results'] : array(),
+			),
 		),
 		'resolve'     => static function ( array $in ): array {
 			$ch = flx_gql_str( $in['channel'] ?? '' );
@@ -1176,7 +1232,7 @@ flx_gql_mutation(
 					! empty( $in['save'] )
 				)
 			);
-			return $r;
+			return is_array( $r ) ? $r : array( 'results' => array() );
 		},
 	)
 );
@@ -1210,7 +1266,7 @@ flx_gql_mutation(
 					flx_gql_int( $in['height'] ?? 0 )
 				)
 			);
-			return array( 'certificate' => new FLXS_Certificate_Node( $row ) );
+			return array( 'certificate' => new FLXS_Certificate_Node( FLXS_Val::row( $row ) ) );
 		},
 	)
 );
@@ -1242,8 +1298,9 @@ flx_gql_mutation(
 					)
 				)
 			);
-			$counts = FLXS_Person_Service::certificate_counts( array( (int) $row['id'] ) );
-			return array( 'person' => new FLXS_Person_Node( $row, (int) ( $counts[ (int) $row['id'] ] ?? 0 ) ) );
+			$person = FLXS_Val::row( $row );
+			$counts = FLXS_Person_Service::certificate_counts( array( FLXS_Val::int( $person['id'] ) ) );
+			return array( 'person' => new FLXS_Person_Node( $person, FLXS_Val::int( $counts[ FLXS_Val::int( $person['id'] ) ] ?? 0 ) ) );
 		},
 	)
 );
@@ -1257,7 +1314,10 @@ flx_gql_mutation(
 			'id' => array( 'type' => 'Int!', 'description' => __( 'Person ID.', 'flx-certificates' ) ),
 		),
 		'output'      => array(
-			'deleted' => array( 'type' => 'Boolean!', 'description' => __( 'Removed.', 'flx-certificates' ) ),
+			'deleted' => array(
+				'type' => 'Boolean!', 'description' => __( 'Removed.', 'flx-certificates' ),
+				'resolve' => static fn( $payload ): bool => is_array( $payload ) && ! empty( $payload['deleted'] ),
+			),
 		),
 		'resolve'     => static function ( array $in ): array {
 			flxs_gql_ok( FLXS_Person_Service::delete( flx_gql_int( $in['id'] ?? 0 ) ) );
@@ -1277,8 +1337,14 @@ flx_gql_mutation(
 			'lang'    => array( 'type' => 'String', 'description' => __( 'Locale of the page, such as tr_TR.', 'flx-certificates' ) ),
 		),
 		'output'      => array(
-			'ok'      => array( 'type' => 'Boolean!', 'description' => __( 'Accepted.', 'flx-certificates' ) ),
-			'message' => array( 'type' => 'String!', 'description' => __( 'The sentence shown on the page.', 'flx-certificates' ) ),
+			'ok'      => array(
+				'type' => 'Boolean!', 'description' => __( 'Accepted.', 'flx-certificates' ),
+				'resolve' => static fn( $payload ): bool => is_array( $payload ) && ! empty( $payload['ok'] ),
+			),
+			'message' => array(
+				'type' => 'String!', 'description' => __( 'The sentence shown on the page.', 'flx-certificates' ),
+				'resolve' => static fn( $payload ): string => is_array( $payload ) ? FLXS_Val::str( $payload['message'] ?? '' ) : '',
+			),
 		),
 		'resolve'     => static function ( array $in ): array {
 			$r = FLXS_Public_Service::lookup( flx_gql_str( $in['contact'] ?? '' ), flx_gql_str( $in['website'] ?? '' ), flx_gql_str( $in['lang'] ?? '' ) );

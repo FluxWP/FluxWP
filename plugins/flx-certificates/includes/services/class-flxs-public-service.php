@@ -33,30 +33,30 @@ final class FLXS_Public_Service {
 				$pdf = flxs_certificate_pdf_url( $cert );
 			}
 		}
-		$image = $revoked ? '' : (string) ( $d['image'] ?? '' );
-		$w     = (int) ( $cert['image_w'] ?? 0 );
-		$h     = (int) ( $cert['image_h'] ?? 0 );
+		$image = $revoked ? '' : FLXS_Val::str(( $d['image'] ?? '' ));
+		$w     = FLXS_Val::int(( $cert['image_w'] ?? 0 ));
+		$h     = FLXS_Val::int(( $cert['image_h'] ?? 0 ));
 		$title = $revoked
-			? __( 'Revoked certificate', 'flx-certificates' ) . ' · ' . (string) $cert['number']
-			: trim( (string) ( $d['og_title'] ?? '' ) );
+			? __( 'Revoked certificate', 'flx-certificates' ) . ' · ' . FLXS_Val::str($cert['number'])
+			: trim( FLXS_Val::str(( $d['og_title'] ?? '' )) );
 		if ( function_exists( 'flx_gql_cache_tag' ) ) {
-			flx_gql_cache_tag( array( 'flx-certificates:verify:' . (string) $cert['code'], 'flx-certificates:certificate:' . (int) $cert['id'] ) );
+			flx_gql_cache_tag( array( 'flx-certificates:verify:' . FLXS_Val::str($cert['code']), 'flx-certificates:certificate:' . FLXS_Val::int($cert['id']) ) );
 		}
 		return array(
 			'status'        => $revoked ? 'revoked' : 'active',
-			'title'         => (string) $cert['title'],
-			'holderName'    => (string) ( $vars['ad_soyad'] ?? '' ),
-			'number'        => (string) $cert['number'],
-			'issuedOn'      => (string) ( $vars['tarih'] ?? '' ),
-			'issuer'        => (string) flxs_setting( 'org_name' ),
-			'code'          => (string) $cert['code'],
+			'title'         => FLXS_Val::str($cert['title']),
+			'holderName'    => FLXS_Val::str(( $vars['ad_soyad'] ?? '' )),
+			'number'        => FLXS_Val::str($cert['number']),
+			'issuedOn'      => FLXS_Val::str(( $vars['tarih'] ?? '' )),
+			'issuer'        => FLXS_Val::str( flxs_setting( 'org_name' ) ),
+			'code'          => FLXS_Val::str($cert['code']),
 			'pageUrl'       => flxs_certificate_url( $cert ),
 			'pdfUrl'        => $pdf,
 			'imageUrl'      => '' !== $image ? $image : null,
 			'imageWidth'    => $w > 0 ? $w : null,
 			'imageHeight'   => $h > 0 ? $h : null,
 			'ogTitle'       => $title,
-			'ogDescription' => trim( (string) ( $d['og_desc'] ?? '' ) ),
+			'ogDescription' => trim( FLXS_Val::str(( $d['og_desc'] ?? '' )) ),
 		);
 	}
 
@@ -66,11 +66,11 @@ final class FLXS_Public_Service {
 	 * @return array{ok:bool,message:string}|WP_REST_Response
 	 */
 	public static function lookup_rest( WP_REST_Request $r ) {
-		$res = self::lookup( (string) $r->get_param( 'contact' ), (string) $r->get_param( 'website' ), (string) $r->get_param( 'lang' ) );
+		$res = self::lookup( FLXS_Val::str($r->get_param( 'contact' )), FLXS_Val::str($r->get_param( 'website' )), FLXS_Val::str($r->get_param( 'lang' )) );
 		if ( is_wp_error( $res ) ) {
 			$data   = $res->get_error_data();
-			$status = is_array( $data ) ? (int) ( $data['status'] ?? 400 ) : 400;
-			return flxs_rest_error( $res, $status > 0 ? $status : 400 );
+			$status = is_array( $data ) ? FLXS_Val::int(( $data['status'] ?? 400 )) : 400;
+			return FLXS_Records::rest_response( $res, $status > 0 ? $status : 400 );
 		}
 		return $res;
 	}
@@ -111,7 +111,7 @@ final class FLXS_Public_Service {
 			if ( $q['items'] ) {
 				$lines = array();
 				foreach ( $q['items'] as $c ) {
-					$lines[] = $c['title'] . ': ' . flxs_certificate_url( $c );
+					$lines[] = FLXS_Val::str( $c['title'] ) . ': ' . flxs_certificate_url( $c );
 				}
 				$channel = $is_email ? 'email' : ( in_array( 'whatsapp', $allow, true ) && flxs_resolve_provider( 'whatsapp' ) ? 'whatsapp' : 'sms' );
 				if ( in_array( $channel, $allow, true ) && flxs_resolve_provider( $channel ) ) {
@@ -119,7 +119,7 @@ final class FLXS_Public_Service {
 					$body = sprintf( __( 'Hello %1$s,
 
 Your %2$s certificates:
-%3$s', 'flx-certificates' ), flxs_first_name( $person['name'] ), get_bloginfo( 'name' ), implode( "\n", $lines ) );
+%3$s', 'flx-certificates' ), flxs_first_name( FLXS_Val::str( $person['name'] ) ), get_bloginfo( 'name' ), implode( "\n", $lines ) );
 					flxs_enqueue(
 						array(
 							'channel'        => $channel,

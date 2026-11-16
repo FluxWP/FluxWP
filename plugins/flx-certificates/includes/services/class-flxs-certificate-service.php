@@ -18,12 +18,12 @@ final class FLXS_Certificate_Service {
 	 * @return array{items:array<int,array<string,mixed>>,total:int,pages:int}
 	 */
 	public static function list_rest( WP_REST_Request $r ): array {
-		$per = min( 100, max( 1, absint( $r->get_param( 'per_page' ) ? $r->get_param( 'per_page' ) : 25 ) ) );
+		$per = min( 100, max( 1, FLXS_Val::int( $r->get_param( 'per_page' ) ? $r->get_param( 'per_page' ) : 25 ) ) );
 		$q   = flxs_query_certificates(
 			array(
-				'search'   => sanitize_text_field( (string) $r->get_param( 's' ) ),
-				'status'   => sanitize_key( (string) $r->get_param( 'status' ) ),
-				'page'     => max( 1, absint( $r->get_param( 'page' ) ) ),
+				'search'   => sanitize_text_field( FLXS_Val::str($r->get_param( 's' )) ),
+				'status'   => sanitize_key( FLXS_Val::str($r->get_param( 'status' )) ),
+				'page'     => max( 1, FLXS_Val::int( $r->get_param( 'page' ) ) ),
 				'per_page' => $per,
 				'scope'    => true,
 				'orderby'  => 'created_at',
@@ -31,18 +31,19 @@ final class FLXS_Certificate_Service {
 		);
 		$items = array();
 		foreach ( $q['items'] as $row ) {
-			$js                 = flxs_certificate_for_js( $row );
-			$js['name']         = (string) ( $row['person_name'] ?? ( $js['person']['name'] ?? '' ) );
-			$js['email']        = (string) ( $row['person_email'] ?? ( $js['person']['email'] ?? '' ) );
-			$js['phone']        = (string) ( $js['person']['phone_label'] ?? '' );
-			$js['template']     = (string) ( $row['template_name'] ?? '' );
+			$js     = flxs_certificate_for_js( $row );
+			$person = FLXS_Val::row( $js['person'] ?? array() );
+			$js['name']         = FLXS_Val::str( $row['person_name'] ?? ( $person['name'] ?? '' ) );
+			$js['email']        = FLXS_Val::str( $row['person_email'] ?? ( $person['email'] ?? '' ) );
+			$js['phone']        = FLXS_Val::str( $person['phone_label'] ?? '' );
+			$js['template']     = FLXS_Val::str(( $row['template_name'] ?? '' ));
 			$js['date_label']   = flxs_date( $row['created_at'] );
 			$js['status_label'] = 'revoked' === $row['status'] ? __( 'Cancelled', 'flx-certificates' ) : __( 'Valid', 'flx-certificates' );
 			$items[]            = $js;
 		}
 		return array(
 			'items' => $items,
-			'total' => (int) $q['total'],
+			'total' => FLXS_Val::int($q['total']),
 			'pages' => flxs_rest_pages( $q['total'], $per ),
 		);
 	}
@@ -53,9 +54,9 @@ final class FLXS_Certificate_Service {
 	 * @return array<string,mixed>|WP_REST_Response
 	 */
 	public static function get_rest( WP_REST_Request $r ) {
-		$cert = flxs_get_certificate( (int) $r['id'] );
+		$cert = flxs_get_certificate( FLXS_Val::int($r['id']) );
 		if ( ! flxs_can_see_certificate( $cert ) ) {
-			return flxs_rest_error( 'Sertifika bulunamadı.', 404 );
+			return FLXS_Records::rest_response( 'Sertifika bulunamadı.', 404 );
 		}
 		return flxs_certificate_for_js( $cert );
 	}
@@ -66,56 +67,62 @@ final class FLXS_Certificate_Service {
 	 * @return array<string,mixed>|WP_REST_Response
 	 */
 	public static function save_rest( WP_REST_Request $r ) {
-		$id     = (int) $r['id'];
-		$p      = (array) $r->get_param( 'person' );
-		$values = (array) $r->get_param( 'values' );
+		$id     = FLXS_Val::int($r['id']);
+		$p      = FLXS_Val::row( $r->get_param( 'person' ) );
+		$values = FLXS_Val::row( $r->get_param( 'values' ) );
 		if ( $id ) {
 			$cert = flxs_get_certificate( $id );
 			if ( ! $cert || ! flxs_user_can_edit_certificate( $cert ) ) {
-				return flxs_rest_error( 'Bu sertifikayı düzenleme yetkiniz yok.', 403 );
+				return FLXS_Records::rest_response( 'Bu sertifikayı düzenleme yetkiniz yok.', 403 );
 			}
 		}
-		$name      = $p['name'] ?? ( $values['ad_soyad'] ?? '' );
-		$person_id = (int) ( $p['id'] ?? 0 );
+		$name      = FLXS_Val::str( $p['name'] ?? ( $values['ad_soyad'] ?? '' ) );
+		$person_id = FLXS_Val::int(( $p['id'] ?? 0 ));
 		if ( $person_id && ! flxs_can_see_person( $person_id ) ) {
-			return flxs_rest_error( __( 'Person not found.', 'flx-certificates' ), 404 );
+			return FLXS_Records::rest_response( __( 'Person not found.', 'flx-certificates' ), 404 );
 		}
-		$up = flxs_upsert_person( $name, $p['phone'] ?? '', $p['email'] ?? '', $person_id );
-		if ( is_wp_error( $up ) ) {
-			return flxs_rest_error( $up );
+		$up = FLXS_Val::mix( flxs_upsert_person( $name, $p['phone'] ?? '', $p['email'] ?? '', $person_id ) );
+		if ( is_wp_error( $up ) || ! is_array( $up ) ) {
+			return FLXS_Records::rest_response( is_wp_error( $up ) ? $up : 'Kişi kaydedilemedi.' );
 		}
+		$holder = FLXS_Val::row( $up['person'] ?? null );
 		$values['ad_soyad'] = trim( sanitize_text_field( $name ) );
-		$ref = $r->has_param( 'ref_user' ) ? (int) $r->get_param( 'ref_user' ) : null;
-		$evt = $r->has_param( 'event' ) ? (int) $r->get_param( 'event' ) : null;
-		if ( $evt && ! flxs_valid_event( $evt ) && ( ! $id || (int) ( flxs_get_certificate( $id )['event_id'] ?? 0 ) !== $evt ) ) {
-			return flxs_rest_error( 'Seçilen etkinlik kapatılmış. Açık bir etkinlik seçin.' );
+		$ref = $r->has_param( 'ref_user' ) ? FLXS_Val::int($r->get_param( 'ref_user' )) : null;
+		$evt = $r->has_param( 'event' ) ? FLXS_Val::int($r->get_param( 'event' )) : null;
+		$current = $id ? flxs_get_certificate( $id ) : null;
+		if ( $evt && ! flxs_valid_event( $evt ) && ( ! $id || ( is_array( $current ) ? FLXS_Val::int( $current['event_id'] ?? 0 ) : 0 ) !== $evt ) ) {
+			return FLXS_Records::rest_response( 'Seçilen etkinlik kapatılmış. Açık bir etkinlik seçin.' );
 		}
 		if ( $id ) {
-			$cert = flxs_update_certificate( $id, (int) $up['person']['id'], $values, $ref );
+			$cert = flxs_update_certificate( $id, FLXS_Val::int( $holder['id'] ), $values, $ref );
 		} else {
-			$issued = (string) $r->get_param( 'issued' );
+			$issued = FLXS_Val::str($r->get_param( 'issued' ));
 			if ( '' !== $issued ) {
 				if ( ! flxs_can_manage() ) {
-					return flxs_rest_error( 'Geçmiş tarihli sertifikayı yalnızca yönetici oluşturabilir.', 403 );
+					return FLXS_Records::rest_response( 'Geçmiş tarihli sertifikayı yalnızca yönetici oluşturabilir.', 403 );
 				}
 				if ( ! preg_match( '/^\d{4}-\d{2}-\d{2}$/', $issued ) || $issued > wp_date( 'Y-m-d' ) || $issued < '2015-01-01' ) {
-					return flxs_rest_error( 'Geçmiş tarih geçersiz.' );
+					return FLXS_Records::rest_response( 'Geçmiş tarih geçersiz.' );
 				}
 			}
-			$cert = flxs_create_certificate( (int) $r->get_param( 'template_id' ), (int) $up['person']['id'], $values, (int) $ref, $issued );
+			$cert = flxs_create_certificate( FLXS_Val::int( $r->get_param( 'template_id' ) ), FLXS_Val::int( $holder['id'] ), $values, FLXS_Val::int( $ref ), $issued );
 		}
-		if ( is_wp_error( $cert ) ) {
-			return flxs_rest_error( $cert );
+		if ( is_wp_error( $cert ) || ! is_array( $cert ) ) {
+			return FLXS_Records::rest_response( is_wp_error( $cert ) ? $cert : 'Sertifika kaydedilemedi.' );
 		}
-		if ( null !== $evt && (int) $cert['event_id'] !== $evt ) {
+		$cert = FLXS_Val::row( $cert );
+		if ( null !== $evt && FLXS_Val::int( $cert['event_id'] ) !== $evt ) {
 			flxs_set_certificate_event( $cert['id'], $evt );
-			$cert = flxs_get_certificate( $cert['id'] );
+			$fresh = flxs_get_certificate( $cert['id'] );
+			if ( is_array( $fresh ) ) {
+				$cert = $fresh;
+			}
 		}
 		self::changed( $cert );
 		return array(
 			'ok'          => true,
 			'certificate' => flxs_certificate_for_js( $cert ),
-			'person'      => flxs_person_public( $up['person'] ),
+			'person'      => flxs_person_public( $holder ),
 			'notes'       => $up['notes'],
 		);
 	}
@@ -126,9 +133,9 @@ final class FLXS_Certificate_Service {
 	 * @return array{ok:bool,status:string}|WP_REST_Response
 	 */
 	public static function status_rest( WP_REST_Request $r ) {
-		$cert = flxs_get_certificate( (int) $r['id'] );
+		$cert = flxs_get_certificate( FLXS_Val::int($r['id']) );
 		if ( ! $cert || ! flxs_user_can_edit_certificate( $cert ) ) {
-			return flxs_rest_error( 'Yetki yok.', 403 );
+			return FLXS_Records::rest_response( 'Yetki yok.', 403 );
 		}
 		$status = 'revoked' === $r->get_param( 'status' ) ? 'revoked' : 'active';
 		flxs_set_certificate_status( $cert['id'], $status );
@@ -142,11 +149,11 @@ final class FLXS_Certificate_Service {
 	 * @return array{ok:bool,ref_user_id:int,ref_user:string}|WP_REST_Response
 	 */
 	public static function ref_rest( WP_REST_Request $r ) {
-		$cert = flxs_get_certificate( (int) $r['id'] );
+		$cert = flxs_get_certificate( FLXS_Val::int($r['id']) );
 		if ( ! $cert || ! flxs_user_can_edit_certificate( $cert ) ) {
-			return flxs_rest_error( 'Yetki yok.', 403 );
+			return FLXS_Records::rest_response( 'Yetki yok.', 403 );
 		}
-		$ref = flxs_valid_ref_user( (int) $r->get_param( 'ref_user' ) );
+		$ref = flxs_valid_ref_user( FLXS_Val::int($r->get_param( 'ref_user' )) );
 		flxs_set_certificate_ref( $cert['id'], $ref );
 		self::changed( $cert );
 		return array( 'ok' => true, 'ref_user_id' => $ref, 'ref_user' => flxs_ref_label( $ref ) );
@@ -158,13 +165,13 @@ final class FLXS_Certificate_Service {
 	 * @return array{ok:bool,results:array<string,array<string,mixed>>}|WP_REST_Response
 	 */
 	public static function send_rest( WP_REST_Request $r ) {
-		$cert = flxs_get_certificate( (int) $r['id'] );
+		$cert = flxs_get_certificate( FLXS_Val::int($r['id']) );
 		if ( ! flxs_can_see_certificate( $cert ) ) {
-			return flxs_rest_error( 'Sertifika bulunamadı.', 404 );
+			return FLXS_Records::rest_response( 'Sertifika bulunamadı.', 404 );
 		}
-		$channels  = array_map( 'sanitize_key', (array) $r->get_param( 'channels' ) );
-		$providers = array_map( 'intval', (array) $r->get_param( 'providers' ) );
-		$res       = flxs_send_certificate( $cert, $channels, $providers, (string) $r->get_param( 'source' ) === 'create' ? 'create' : 'manual' );
+		$channels  = array_values( array_map( static fn ( $v ): string => sanitize_key( FLXS_Val::str( $v ) ), (array) $r->get_param( 'channels' ) ) );
+		$providers = array_map( static fn ( $v ): int => FLXS_Val::int( $v ), (array) $r->get_param( 'providers' ) );
+		$res       = flxs_send_certificate( $cert, $channels, $providers, FLXS_Val::str($r->get_param( 'source' )) === 'create' ? 'create' : 'manual' );
 		$out       = array();
 		foreach ( $res as $ch => $v ) {
 			$out[ $ch ] = is_wp_error( $v ) ? array( 'ok' => false, 'message' => $v->get_error_message() ) : array( 'ok' => true, 'message_id' => $v );
@@ -208,13 +215,13 @@ final class FLXS_Certificate_Service {
 	 */
 	public static function query( array $filter, int $offset, int $limit ): array {
 		$args = array(
-			'search'      => sanitize_text_field( (string) ( $filter['search'] ?? '' ) ),
-			'status'      => sanitize_key( (string) ( $filter['status'] ?? '' ) ),
-			'template_id' => (int) ( $filter['template_id'] ?? 0 ),
-			'created_by'  => flxs_scoped() ? 0 : (int) ( $filter['created_by'] ?? 0 ),
-			'person_id'   => (int) ( $filter['person_id'] ?? 0 ),
-			'ref_user_id' => array_key_exists( 'ref_user_id', $filter ) && null !== $filter['ref_user_id'] ? (string) (int) $filter['ref_user_id'] : '',
-			'event_id'    => array_key_exists( 'event_id', $filter ) && null !== $filter['event_id'] ? (string) (int) $filter['event_id'] : '',
+			'search'      => sanitize_text_field( FLXS_Val::str(( $filter['search'] ?? '' )) ),
+			'status'      => sanitize_key( FLXS_Val::str(( $filter['status'] ?? '' )) ),
+			'template_id' => FLXS_Val::int(( $filter['template_id'] ?? 0 )),
+			'created_by'  => flxs_scoped() ? 0 : FLXS_Val::int(( $filter['created_by'] ?? 0 )),
+			'person_id'   => FLXS_Val::int(( $filter['person_id'] ?? 0 )),
+			'ref_user_id' => array_key_exists( 'ref_user_id', $filter ) && null !== $filter['ref_user_id'] ? (string) FLXS_Val::int( $filter['ref_user_id'] ) : '',
+			'event_id'    => array_key_exists( 'event_id', $filter ) && null !== $filter['event_id'] ? (string) FLXS_Val::int( $filter['event_id'] ) : '',
 			'per_page'    => $limit,
 			'offset'      => $offset,
 			'scope'       => true,
@@ -230,14 +237,15 @@ final class FLXS_Certificate_Service {
 	 */
 	public static function deliveries( array $ids ): array {
 		global $wpdb;
-		$ids = array_values( array_filter( array_map( 'intval', $ids ) ) );
+		/** @var wpdb $wpdb */
+		$ids = array_values( array_filter( array_map( static fn ( $v ): int => FLXS_Val::int( $v ), $ids ) ) );
 		if ( ! $ids ) {
 			return array();
 		}
 		$rows = $wpdb->get_results( 'SELECT certificate_id, channel, status, COUNT(*) n FROM ' . flxs_table( 'messages' ) . ' WHERE certificate_id IN (' . implode( ',', $ids ) . ') GROUP BY certificate_id, channel, status', ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL
 		$out  = array();
 		foreach ( (array) $rows as $r ) {
-			$out[ (int) $r['certificate_id'] ][ (string) $r['channel'] ][ (string) $r['status'] ] = (int) $r['n'];
+			$out[ FLXS_Val::int($r['certificate_id']) ][ FLXS_Val::str($r['channel']) ][ FLXS_Val::str($r['status']) ] = FLXS_Val::int($r['n']);
 		}
 		return $out;
 	}
@@ -249,34 +257,36 @@ final class FLXS_Certificate_Service {
 	 * @return array{certificate:array<string,mixed>,person:array<string,mixed>,notes:string[]}|WP_Error
 	 */
 	public static function save( array $in ) {
-		$id     = (int) ( $in['id'] ?? 0 );
+		$id     = FLXS_Val::int(( $in['id'] ?? 0 ));
 		$person = is_array( $in['person'] ?? null ) ? $in['person'] : array();
-		$values = is_array( $in['values'] ?? null ) ? $in['values'] : array();
+		$values = FLXS_Val::row( is_array( $in['values'] ?? null ) ? $in['values'] : array() );
 		if ( $id ) {
 			$existing = self::editable( $id );
 			if ( is_wp_error( $existing ) ) {
 				return $existing;
 			}
 		}
-		$name      = (string) ( $person['name'] ?? ( $values['ad_soyad'] ?? '' ) );
-		$person_id = (int) ( $person['id'] ?? 0 );
+		$name      = FLXS_Val::str(( $person['name'] ?? ( $values['ad_soyad'] ?? '' ) ));
+		$person_id = FLXS_Val::int(( $person['id'] ?? 0 ));
 		if ( $person_id && ! FLXS_Person_Service::can_see( $person_id ) ) {
 			return FLXS_Records::error( 'flxs_404', __( 'Person not found.', 'flx-certificates' ), 'NOT_FOUND', 'personId', 404 );
 		}
-		$up = flxs_upsert_person( $name, (string) ( $person['phone'] ?? '' ), (string) ( $person['email'] ?? '' ), $person_id );
-		if ( is_wp_error( $up ) ) {
-			return FLXS_Records::classify( $up );
+		$up = FLXS_Val::mix( flxs_upsert_person( $name, FLXS_Val::str(( $person['phone'] ?? '' )), FLXS_Val::str(( $person['email'] ?? '' )), $person_id ) );
+		if ( is_wp_error( $up ) || ! is_array( $up ) ) {
+			return is_wp_error( $up ) ? FLXS_Records::classify( $up ) : FLXS_Records::error( 'flxs_person_db', __( 'The person could not be saved.', 'flx-certificates' ), 'INTERNAL' );
 		}
+		$holder = FLXS_Val::row( $up['person'] ?? null );
 		$values['ad_soyad'] = trim( sanitize_text_field( $name ) );
-		$ref = array_key_exists( 'ref_user', $in ) ? (int) $in['ref_user'] : null;
-		$evt = array_key_exists( 'event', $in ) ? (int) $in['event'] : null;
-		if ( $evt && ! flxs_valid_event( $evt ) && ( ! $id || (int) ( flxs_get_certificate( $id )['event_id'] ?? 0 ) !== $evt ) ) {
+		$ref = array_key_exists( 'ref_user', $in ) ? FLXS_Val::int($in['ref_user']) : null;
+		$evt = array_key_exists( 'event', $in ) ? FLXS_Val::int($in['event']) : null;
+		$current = $id ? flxs_get_certificate( $id ) : null;
+		if ( $evt && ! flxs_valid_event( $evt ) && ( ! $id || ( is_array( $current ) ? FLXS_Val::int( $current['event_id'] ?? 0 ) : 0 ) !== $evt ) ) {
 			return FLXS_Records::error( 'flxs_event', __( 'That event is closed. Choose an open event.', 'flx-certificates' ), 'INVALID_INPUT', 'eventId' );
 		}
 		if ( $id ) {
-			$cert = flxs_update_certificate( $id, (int) $up['person']['id'], $values, $ref );
+			$cert = flxs_update_certificate( $id, FLXS_Val::int( $holder['id'] ), $values, $ref );
 		} else {
-			$issued = trim( (string) ( $in['issued'] ?? '' ) );
+			$issued = trim( FLXS_Val::str(( $in['issued'] ?? '' )) );
 			if ( '' !== $issued ) {
 				if ( ! flxs_can_manage() ) {
 					return FLXS_Records::error( 'flxs_forbidden', __( 'Only a manager can backdate a certificate.', 'flx-certificates' ), 'FORBIDDEN', 'issued', 403 );
@@ -285,24 +295,35 @@ final class FLXS_Certificate_Service {
 					return FLXS_Records::error( 'flxs_date', __( 'That issue date is not valid.', 'flx-certificates' ), 'INVALID_INPUT', 'issued' );
 				}
 			}
-			$cert = flxs_create_certificate( (int) ( $in['template_id'] ?? 0 ), (int) $up['person']['id'], $values, (int) $ref, $issued );
+			$cert = flxs_create_certificate( FLXS_Val::int( $in['template_id'] ?? 0 ), FLXS_Val::int( $holder['id'] ), $values, FLXS_Val::int( $ref ), $issued );
 		}
 		if ( is_wp_error( $cert ) ) {
 			return FLXS_Records::classify( $cert );
 		}
-		if ( null !== $evt && (int) $cert['event_id'] !== $evt ) {
+		if ( ! is_array( $cert ) ) {
+			return FLXS_Records::error( 'flxs_db', __( 'The certificate could not be saved.', 'flx-certificates' ), 'INTERNAL' );
+		}
+		$cert = FLXS_Val::row( $cert );
+		if ( null !== $evt && FLXS_Val::int( $cert['event_id'] ) !== $evt ) {
 			flxs_set_certificate_event( $cert['id'], $evt );
-			$cert = flxs_get_certificate( $cert['id'] );
+			$fresh = flxs_get_certificate( $cert['id'] );
+			if ( is_array( $fresh ) ) {
+				$cert = $fresh;
+			}
 		}
 		if ( ! empty( $in['template_id'] ) ) {
-			update_user_meta( get_current_user_id(), 'flxs_last_template', (int) $in['template_id'] );
+			update_user_meta( get_current_user_id(), 'flxs_last_template', FLXS_Val::int($in['template_id']) );
 		}
 		self::changed( $cert );
-		FLXS_Records::purge( array( FLXS_Records::TAG_PEOPLE, 'flx-certificates:person:' . (int) $up['person']['id'] ) );
+		FLXS_Records::purge( array( FLXS_Records::TAG_PEOPLE, 'flx-certificates:person:' . FLXS_Val::int( $holder['id'] ) ) );
+		$notes = array();
+		foreach ( FLXS_Val::arr( $up['notes'] ?? array() ) as $note ) {
+			$notes[] = FLXS_Val::str( $note );
+		}
 		return array(
 			'certificate' => $cert,
-			'person'      => $up['person'],
-			'notes'       => array_map( 'strval', (array) $up['notes'] ),
+			'person'      => $holder,
+			'notes'       => $notes,
 		);
 	}
 
@@ -343,7 +364,7 @@ final class FLXS_Certificate_Service {
 		if ( is_wp_error( $cert ) ) {
 			return $cert;
 		}
-		if ( $event && ! flxs_valid_event( $event ) && (int) ( $cert['event_id'] ?? 0 ) !== $event ) {
+		if ( $event && ! flxs_valid_event( $event ) && FLXS_Val::int(( $cert['event_id'] ?? 0 )) !== $event ) {
 			return FLXS_Records::error( 'flxs_event', __( 'That event is closed. Choose an open event.', 'flx-certificates' ), 'INVALID_INPUT', 'eventId' );
 		}
 		flxs_set_certificate_event( $id, $event );
@@ -375,7 +396,7 @@ final class FLXS_Certificate_Service {
 	 * @return array{page:string,args:array<string,string>}
 	 */
 	public static function bulk_admin( array $ids, string $action, int $event, int $ref ): array {
-		$ids = array_values( array_filter( array_map( 'intval', $ids ) ) );
+		$ids = array_values( array_filter( array_map( static fn ( $v ): int => FLXS_Val::int( $v ), $ids ) ) );
 		if ( ! $ids ) {
 			return array( 'page' => 'flxs', 'args' => array( 'flxs_err' => __( 'No certificates selected.', 'flx-certificates' ) ) );
 		}
@@ -423,8 +444,8 @@ final class FLXS_Certificate_Service {
 	 * @param int[] $ids Ids.
 	 * @return array{updated:int,queued:int,redirect:string}|WP_Error
 	 */
-	public static function bulk( array $ids, string $action, int $event, int $ref ): array {
-		$ids = array_values( array_filter( array_map( 'intval', $ids ) ) );
+	public static function bulk( array $ids, string $action, int $event, int $ref ): array|WP_Error {
+		$ids = array_values( array_filter( array_map( static fn ( $v ): int => FLXS_Val::int( $v ), $ids ) ) );
 		if ( ! $ids ) {
 			return FLXS_Records::error( 'flxs_none', __( 'No certificates selected.', 'flx-certificates' ), 'INVALID_INPUT', 'ids' );
 		}
@@ -476,8 +497,9 @@ final class FLXS_Certificate_Service {
 	/**
 	 * Queues a send. The certificate must be visible.
 	 *
-	 * @param string[]             $channels Channels.
-	 * @param array<string,mixed>  $overrides Recipient overrides for "send to someone else".
+	 * @param string[]              $channels  Channels.
+	 * @param array<string,mixed>   $overrides Recipient overrides for "send to someone else".
+	 * @param array<int|string,int> $providers Provider ids keyed by channel.
 	 * @return array<string,mixed>|WP_Error
 	 */
 	public static function send( int $id, array $channels, array $overrides = array(), string $source = 'manual', array $providers = array(), bool $save_recipient = false ) {
@@ -488,7 +510,7 @@ final class FLXS_Certificate_Service {
 		if ( 'active' !== ( $cert['status'] ?? '' ) ) {
 			return FLXS_Records::error( 'flxs_revoked', __( 'A revoked certificate cannot be sent.', 'flx-certificates' ), 'CONFLICT', 'id' );
 		}
-		$channels = array_values( array_filter( array_map( 'sanitize_key', $channels ) ) );
+		$channels = array_values( array_filter( array_map( static fn ( $v ): string => sanitize_key( FLXS_Val::str( $v ) ), $channels ) ) );
 		foreach ( $channels as $ch ) {
 			if ( ! isset( flxs_channels()[ $ch ] ) ) {
 				return FLXS_Records::error( 'flxs_channel', __( 'That channel is not valid.', 'flx-certificates' ), 'INVALID_INPUT', 'channels' );
@@ -499,18 +521,18 @@ final class FLXS_Certificate_Service {
 		}
 		$res = flxs_send_certificate( $cert, $channels, $providers, $source, 0, $overrides );
 		if ( $save_recipient ) {
-			$ch = (string) ( $channels[0] ?? '' );
+			$ch = $channels[0];
 			$ov = is_array( $overrides[ $ch ] ?? null ) ? $overrides[ $ch ] : array();
-			$to = (string) ( $ov['to'] ?? '' );
+			$to = FLXS_Val::str(( $ov['to'] ?? '' ));
 			if ( '' !== $to ) {
-				flxs_save_recipient( (string) ( $ov['to_name'] ?? '' ), 'email' === $ch ? '' : $to, 'email' === $ch ? $to : '' );
+				flxs_save_recipient( FLXS_Val::str(( $ov['to_name'] ?? '' )), 'email' === $ch ? '' : $to, 'email' === $ch ? $to : '' );
 			}
 		}
 		flxs_kick_queue();
 		$out = array();
 		foreach ( $res as $ch => $v ) {
 			$out[] = array(
-				'channel' => (string) $ch,
+				'channel' => FLXS_Val::str($ch),
 				'ok'      => ! is_wp_error( $v ),
 				'message' => is_wp_error( $v ) ? $v->get_error_message() : '',
 			);
@@ -534,7 +556,7 @@ final class FLXS_Certificate_Service {
 		}
 		$saved = array();
 		foreach ( array( 'pdf', 'image', 'og' ) as $type ) {
-			$uid = trim( (string) ( $uploads[ $type ] ?? '' ) );
+			$uid = trim( FLXS_Val::str(( $uploads[ $type ] ?? '' )) );
 			if ( '' === $uid ) {
 				continue;
 			}
@@ -542,12 +564,15 @@ final class FLXS_Certificate_Service {
 			if ( is_wp_error( $file ) ) {
 				return FLXS_Records::classify( $file );
 			}
-			$res = flxs_store_certificate_file( $cert, $type, (string) ( $file['path'] ?? '' ), $w, $h );
+			$res = flxs_store_certificate_file( $cert, $type, FLXS_Val::str(( $file['path'] ?? '' )), $w, $h );
 			if ( is_wp_error( $res ) ) {
 				return FLXS_Records::classify( $res );
 			}
 			$saved[] = $type;
-			$cert    = flxs_get_certificate( $id );
+			$fresh   = flxs_get_certificate( $id );
+			if ( is_array( $fresh ) ) {
+				$cert = $fresh;
+			}
 		}
 		if ( ! $saved ) {
 			return FLXS_Records::error( 'flxs_file', __( 'No file was uploaded.', 'flx-certificates' ), 'INVALID_INPUT', 'uploadId' );
@@ -564,7 +589,7 @@ final class FLXS_Certificate_Service {
 			FLXS_Records::purge( array( FLXS_Records::TAG_LIST ) );
 			return;
 		}
-		FLXS_Records::purge( FLXS_Records::certificate_tags( (int) $cert['id'], (string) ( $cert['code'] ?? '' ) ) );
+		FLXS_Records::purge( FLXS_Records::certificate_tags( FLXS_Val::int($cert['id']), FLXS_Val::str(( $cert['code'] ?? '' )) ) );
 	}
 
 	/**
@@ -576,8 +601,8 @@ final class FLXS_Certificate_Service {
 		$tpls = array();
 		foreach ( flxs_list_templates() as $t ) {
 			$tpls[] = array(
-				'id'     => (int) $t['id'],
-				'name'   => (string) $t['name'],
+				'id'     => FLXS_Val::int($t['id']),
+				'name'   => FLXS_Val::str($t['name']),
 				'active' => 'active' === ( $t['status'] ?? '' ),
 			);
 		}
@@ -586,26 +611,29 @@ final class FLXS_Certificate_Service {
 		$events = array();
 		foreach ( flxs_get_events() as $e ) {
 			$events[] = array(
-				'id'     => (int) $e['id'],
-				'name'   => (string) $e['name'],
+				'id'     => FLXS_Val::int($e['id']),
+				'name'   => FLXS_Val::str($e['name']),
 				'status' => 'closed' === ( $e['status'] ?? '' ) ? 'CLOSED' : 'OPEN',
-				'count'  => (int) ( $evn[ (int) $e['id'] ] ?? 0 ),
+				'count'  => FLXS_Val::int( $evn[ FLXS_Val::int( $e['id'] ) ] ?? 0 ),
 			);
 		}
 		$users = array();
 		foreach ( flxs_users_with_cap() as $u ) {
+			if ( ! $u instanceof WP_User ) {
+				continue;
+			}
 			$users[] = array(
-				'id'    => (int) $u->ID,
-				'name'  => (string) $u->display_name,
-				'count' => (int) ( $refn[ (int) $u->ID ] ?? 0 ),
+				'id'    => FLXS_Val::int( $u->ID ),
+				'name'  => FLXS_Val::str( $u->display_name ),
+				'count' => FLXS_Val::int( $refn[ FLXS_Val::int( $u->ID ) ] ?? 0 ),
 			);
 		}
 		return array(
 			'templates'      => $tpls,
 			'events'         => $events,
 			'referrers'      => $users,
-			'noEventCount'   => (int) ( $evn[0] ?? 0 ),
-			'noReferrerCount' => (int) ( $refn[0] ?? 0 ),
+			'noEventCount'   => FLXS_Val::int(( $evn[0] ?? 0 )),
+			'noReferrerCount' => FLXS_Val::int(( $refn[0] ?? 0 )),
 			'canManage'      => flxs_can_manage(),
 			'canBulk'        => flxs_can_bulk(),
 			'scoped'         => flxs_scoped(),
@@ -618,10 +646,11 @@ final class FLXS_Certificate_Service {
 	 */
 	private static function event_counts(): array {
 		global $wpdb;
+		/** @var wpdb $wpdb */
 		$out   = array();
 		$where = flxs_scoped() ? ' WHERE ' . flxs_scope_sql( '' ) : '';
 		foreach ( (array) $wpdb->get_results( 'SELECT event_id, COUNT(*) n FROM ' . flxs_table( 'certificates' ) . $where . ' GROUP BY event_id', ARRAY_A ) as $r ) { // phpcs:ignore WordPress.DB.PreparedSQL
-			$out[ (int) $r['event_id'] ] = (int) $r['n'];
+			$out[ FLXS_Val::int($r['event_id']) ] = FLXS_Val::int($r['n']);
 		}
 		return $out;
 	}
@@ -631,10 +660,11 @@ final class FLXS_Certificate_Service {
 	 */
 	private static function ref_counts(): array {
 		global $wpdb;
+		/** @var wpdb $wpdb */
 		$out   = array();
 		$where = flxs_scoped() ? ' WHERE ' . flxs_scope_sql( '' ) : '';
 		foreach ( (array) $wpdb->get_results( 'SELECT ref_user_id, COUNT(*) n FROM ' . flxs_table( 'certificates' ) . $where . ' GROUP BY ref_user_id', ARRAY_A ) as $r ) { // phpcs:ignore WordPress.DB.PreparedSQL
-			$out[ (int) $r['ref_user_id'] ] = (int) $r['n'];
+			$out[ FLXS_Val::int($r['ref_user_id']) ] = FLXS_Val::int($r['n']);
 		}
 		return $out;
 	}
