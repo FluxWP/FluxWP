@@ -1,0 +1,12 @@
+mutation FlxThemePayLogosSave($input: FlxThemePayLogosSaveInput!) {
+  flxThemePayLogosSave(input: $input) {
+    logos {
+      ...FlxThemePayLogosFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

@@ -375,6 +375,57 @@ export type FlxTaskRole =
   /** See tasks. */
   | 'VIEW';
 
+/** Background decoration of title bands, menus and consent cards. */
+export type FlxThemePattern =
+  | 'DOTS'
+  | 'LEAVES'
+  | 'NONE';
+
+/** Cookie banner layout. */
+export type FlxThemeCookiePosition =
+  | 'BAR'
+  | 'CARD';
+
+/** Dark mode of the public site. */
+export type FlxThemeDarkMode =
+  /** Follows the visitor's device. */
+  | 'AUTO'
+  /** Always light. */
+  | 'OFF';
+
+/** How Google Analytics loads. */
+export type FlxThemeGaMode =
+  /** Only after the visitor accepts. */
+  | 'AFTER'
+  /** Google tag in the head, cookie-free until consent (Consent Mode v2). */
+  | 'CONSENT';
+
+/** How archive pages continue. */
+export type FlxThemePagination =
+  | 'INFINITE'
+  | 'NUMBERED';
+
+/** Wording of My account, the cart and the mobile menu. */
+export type FlxThemeSiteType =
+  | 'DONATION'
+  | 'SHOP';
+
+/** Who sees the public site. */
+export type FlxThemeVisibility =
+  /** Visitors only see the coming-soon page. */
+  | 'COMING_SOON'
+  /** Everyone sees the whole site. */
+  | 'LIVE'
+  /** The site is open; store pages show a coming-soon notice (needs WooCommerce). */
+  | 'STORE';
+
+/** Result of a System Check row. */
+export type FlxThemeCheckStatus =
+  | 'ERROR'
+  | 'INFO'
+  | 'OK'
+  | 'WARNING';
+
 /** Input for the flxAppAccessRevoke mutation. */
 export type FlxAppAccessRevokeInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -1584,6 +1635,88 @@ export type FlxTaskWatchInput = {
   watch: boolean;
 };
 
+/** Input for the flxThemeMigrate mutation. */
+export type FlxThemeMigrateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Previous theme folder name (flxThemeMigrationSources.stylesheet). */
+  source: string;
+};
+
+/** Input for the flxThemePayLogosSave mutation. */
+export type FlxThemePayLogosSaveInput = {
+  /** true returns to the automatic list; keys are then ignored. */
+  automatic?: boolean | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Logo keys in order (built-in keys and a:<attachment ID>). Unknown keys are dropped. */
+  keys?: Array<string> | null | undefined;
+};
+
+/** Input for the flxThemeSettingsSave mutation. */
+export type FlxThemeSettingsSaveInput = {
+  /** Donation type ID of the card; 0 = automatic. */
+  activeCampaign?: number | null | undefined;
+  /** Show the active project card on the home page. */
+  activeCard?: boolean | null | undefined;
+  /** Scroll reveal animations. */
+  animations?: boolean | null | undefined;
+  /** Account holder. */
+  bankHolder?: string | null | undefined;
+  /** IBAN (TR + 24 digits); empty clears it. */
+  bankIban?: string | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Entire-site coming-soon message. */
+  comingSoonText?: string | null | undefined;
+  /** Entire-site coming-soon title. */
+  comingSoonTitle?: string | null | undefined;
+  /** Extra code added after consent; needs the unfiltered_html capability. */
+  consentScripts?: string | null | undefined;
+  /** Public contact email. */
+  contactEmail?: string | null | undefined;
+  /** Accept button label. */
+  cookieAccept?: string | null | undefined;
+  /** Show the cookie banner. */
+  cookieEnabled?: boolean | null | undefined;
+  /** Policy link label. */
+  cookieMore?: string | null | undefined;
+  /** Policy page ID; 0 = automatic. */
+  cookiePage?: number | null | undefined;
+  /** Banner layout. */
+  cookiePosition?: FlxThemeCookiePosition | null | undefined;
+  /** Necessary-only button label. */
+  cookieReject?: string | null | undefined;
+  /** true asks every visitor again (raises the consent version). */
+  cookieReset?: boolean | null | undefined;
+  /** Banner text; links allowed. */
+  cookieText?: string | null | undefined;
+  /** Banner title. */
+  cookieTitle?: string | null | undefined;
+  /** Dark mode of the public site. */
+  darkMode?: FlxThemeDarkMode | null | undefined;
+  /** GA4 measurement ID (G-XXXXXXX); empty turns it off. */
+  ga4Id?: string | null | undefined;
+  /** How Google Analytics loads. */
+  gaMode?: FlxThemeGaMode | null | undefined;
+  /** News archive introduction. */
+  newsIntro?: string | null | undefined;
+  /** Archive pagination. */
+  pagination?: FlxThemePagination | null | undefined;
+  /** Background decoration. */
+  pattern?: FlxThemePattern | null | undefined;
+  /** Shop or donation wording. */
+  siteType?: FlxThemeSiteType | null | undefined;
+  /** Store-notice message. */
+  storeNoticeText?: string | null | undefined;
+  /** Store-notice title. */
+  storeNoticeTitle?: string | null | undefined;
+  /** Table header colour (#RRGGBB); empty clears it. */
+  tableHead?: string | null | undefined;
+  /** Who sees the site (also updates WooCommerce). */
+  visibility?: FlxThemeVisibility | null | undefined;
+};
+
 export type FlxAppAccessQueryVariables = Exact<{
   all?: boolean | null | undefined;
 }>;
@@ -2594,6 +2727,53 @@ export type FlxTaskWatchMutationVariables = Exact<{
 
 
 export type FlxTaskWatchMutation = { flxTaskWatch: { watcherIds: Array<number>, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxThemeGlobalStylesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxThemeGlobalStylesQuery = { flxThemeGlobalStyles: { darkMode: boolean, tableHead: string, pattern: FlxThemePattern, palette: Array<{ slug: string, name: string, color: string }>, fonts: Array<{ slug: string, name: string, fontFamily: string }> } };
+
+export type FlxThemeMigrateMutationVariables = Exact<{
+  input: FlxThemeMigrateInput;
+}>;
+
+
+export type FlxThemeMigrateMutation = { flxThemeMigrate: { log: Array<string>, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxThemeMigrationSourcesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxThemeMigrationSourcesQuery = { flxThemeMigrationSources: Array<{ stylesheet: string, lastRun: { label: string } | null }> };
+
+export type FlxThemePayLogosSaveMutationVariables = Exact<{
+  input: FlxThemePayLogosSaveInput;
+}>;
+
+
+export type FlxThemePayLogosSaveMutation = { flxThemePayLogosSave: { logos: { automatic: boolean, current: Array<{ key: string, label: string, url: string, chip: boolean }>, builtin: Array<{ key: string, label: string, url: string, chip: boolean }>, automaticList: Array<{ key: string, label: string, url: string, chip: boolean }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxThemePayLogoRowFragment = { key: string, label: string, url: string, chip: boolean };
+
+export type FlxThemePayLogosFieldsFragment = { automatic: boolean, current: Array<{ key: string, label: string, url: string, chip: boolean }>, builtin: Array<{ key: string, label: string, url: string, chip: boolean }>, automaticList: Array<{ key: string, label: string, url: string, chip: boolean }> };
+
+export type FlxThemeSettingsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxThemeSettingsQuery = { flxThemeSettings: { visibility: FlxThemeVisibility, comingSoonTitle: string, comingSoonText: string, storeNoticeTitle: string, storeNoticeText: string, storeNoticeTitleDefault: string, storeNoticeTextDefault: string, contactEmail: string, siteType: FlxThemeSiteType, pattern: FlxThemePattern, tableHead: string, newsIntro: string, darkMode: FlxThemeDarkMode, animations: boolean, pagination: FlxThemePagination, activeCard: boolean, activeCampaign: number, cookieEnabled: boolean, cookieTitle: string, cookieText: string, cookieAccept: string, cookieReject: string, cookieMore: string, cookiePage: number, cookiePosition: FlxThemeCookiePosition, cookieRevision: number, ga4Id: string, gaMode: FlxThemeGaMode, consentScripts: string | null, bankHolder: string, bankIban: string, bankInUse: string | null, woocommerceActive: boolean, activeCardAvailable: boolean, canEditScripts: boolean, presetsUrl: string | null, campaigns: Array<{ databaseId: number, title: string }> }, pages: { nodes: Array<{ databaseId: number, title: string | null }> } | null, flxThemePayLogos: { automatic: boolean, current: Array<{ key: string, label: string, url: string, chip: boolean }>, builtin: Array<{ key: string, label: string, url: string, chip: boolean }>, automaticList: Array<{ key: string, label: string, url: string, chip: boolean }> } };
+
+export type FlxThemeSettingsFieldsFragment = { visibility: FlxThemeVisibility, comingSoonTitle: string, comingSoonText: string, storeNoticeTitle: string, storeNoticeText: string, storeNoticeTitleDefault: string, storeNoticeTextDefault: string, contactEmail: string, siteType: FlxThemeSiteType, pattern: FlxThemePattern, tableHead: string, newsIntro: string, darkMode: FlxThemeDarkMode, animations: boolean, pagination: FlxThemePagination, activeCard: boolean, activeCampaign: number, cookieEnabled: boolean, cookieTitle: string, cookieText: string, cookieAccept: string, cookieReject: string, cookieMore: string, cookiePage: number, cookiePosition: FlxThemeCookiePosition, cookieRevision: number, ga4Id: string, gaMode: FlxThemeGaMode, consentScripts: string | null, bankHolder: string, bankIban: string, bankInUse: string | null, woocommerceActive: boolean, activeCardAvailable: boolean, canEditScripts: boolean, presetsUrl: string | null, campaigns: Array<{ databaseId: number, title: string }> };
+
+export type FlxThemeSettingsSaveMutationVariables = Exact<{
+  input: FlxThemeSettingsSaveInput;
+}>;
+
+
+export type FlxThemeSettingsSaveMutation = { flxThemeSettingsSave: { settings: { visibility: FlxThemeVisibility, comingSoonTitle: string, comingSoonText: string, storeNoticeTitle: string, storeNoticeText: string, storeNoticeTitleDefault: string, storeNoticeTextDefault: string, contactEmail: string, siteType: FlxThemeSiteType, pattern: FlxThemePattern, tableHead: string, newsIntro: string, darkMode: FlxThemeDarkMode, animations: boolean, pagination: FlxThemePagination, activeCard: boolean, activeCampaign: number, cookieEnabled: boolean, cookieTitle: string, cookieText: string, cookieAccept: string, cookieReject: string, cookieMore: string, cookiePage: number, cookiePosition: FlxThemeCookiePosition, cookieRevision: number, ga4Id: string, gaMode: FlxThemeGaMode, consentScripts: string | null, bankHolder: string, bankIban: string, bankInUse: string | null, woocommerceActive: boolean, activeCardAvailable: boolean, canEditScripts: boolean, presetsUrl: string | null, campaigns: Array<{ databaseId: number, title: string }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxThemeSystemQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxThemeSystemQuery = { flxThemeSystem: { fixLogAvailable: boolean, checkedAt: { iso: string, timestamp: number, label: string }, checks: Array<{ id: string, source: string, sourceLabel: string | null, group: string, label: string, status: FlxThemeCheckStatus, message: string, actionUrl: string | null, actionLabel: string | null }>, fixLog: Array<{ user: string, label: string, value: string, before: string, after: string, success: boolean, message: string, time: { timestamp: number, label: string } }> } };
 
 export type FlxViewerQueryVariables = Exact<{ [key: string]: never; }>;
 

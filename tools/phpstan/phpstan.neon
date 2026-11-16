@@ -27,6 +27,7 @@ parameters:
     # Legacy code the strict folders call (scanned for symbols only).
     - ../../plugins/flx-tasks/includes
     - ../../plugins/flx-roles/includes
+    - ../../themes/fluxwp/inc
     - ../../plugins/flx-blocks/includes
     - ../../plugins/flx-setup/includes
     - ../../plugins/flx-app/includes
@@ -43,6 +44,9 @@ parameters:
     # Flux Roles (Faz 1)
     - ../../plugins/flx-roles/includes/services
     - ../../plugins/flx-roles/includes/graphql
+    # FluxWP theme
+    - ../../themes/fluxwp/inc/services
+    - ../../themes/fluxwp/inc/graphql
     # Flux Block Editor (Faz 4)
     - ../../plugins/flx-blocks/includes/services
     - ../../plugins/flx-blocks/includes/graphql
