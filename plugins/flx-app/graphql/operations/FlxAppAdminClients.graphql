@@ -1,0 +1,12 @@
+# OAuth clients and the connection details.
+query FlxAppAdminClients {
+  flxAppAdminClients {
+    clients {
+      ...FlxAppAdminClientFields
+    }
+    connection {
+      key
+      label
+    }
+  }
+}

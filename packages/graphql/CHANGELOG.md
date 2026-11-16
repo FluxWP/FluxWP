@@ -1,7 +1,14 @@
 # Changelog
 
-## 0.3.0
+## 0.3.2
 - Flux SEO işlemleri (`FlxSeoSettingsScreen`, `FlxSeoSettingsSave`, `FlxSeoAuditScreen`, `FlxSeoAuditRun`, `FlxSeoFixApply`, `FlxSeoPsiKeySave`, `FlxSeoIndexNowSubmit`, `FlxSeoContentCheck`, `FlxSeoGuide`).
+
+## 0.3.1
+- flx-app: admin operations (`FlxAppAdmin*`, `FlxAppAccess`, `FlxAppKeyCreate`, `FlxAppAccessRevoke`, `FlxAppDeviceRevoke`) and their generated types.
+
+## 0.3.0
+- `@fluxwp/graphql/flx-app`: `flxappTransport(api)` ve `installFlxAppGraphQL()`. FluxApp paneli ve istemcisi bootstrap, `me`, sayaçlar, `sync`, config, manifest, pano, tercihler ve oturum çağrılarını GraphQL ile yapar; belge uçları `ifHash` ile ETag/304 davranışını korur. GraphQL'i olmayan sitelerde kalıcı REST yedeği.
+
 
 ## 0.2.0
 - `useFlxViewer()` ve `useFlxCan(capability)`: giriş yapan kişi ve FluxWP yetkileri (Flux GraphQL 0.2.0 `flxViewer`).
