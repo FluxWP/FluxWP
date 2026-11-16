@@ -1,5 +1,8 @@
 # @fluxwp/modules
 
+## 0.3.10
+- Blocks: new `flxbk-dashboard` screen for the Flux Block Editor (block cards with activate, settings, design library with pattern browser, preview, linked libraries and sharing). Same look as the classic dashboard on FluxWP tokens, light and dark; data over GraphQL; English and Turkish.
+
 ## 0.3.9
 - SEO: new `flxseo-seo` screen for Flux SEO (General, Organization and social, SEO check, Site audit with PageSpeed, agent readiness, recommendations and report history charts, Settings). Same features as the classic tabs on FluxWP tokens; data over GraphQL; texts from the plugin's language packs (`plugins/flx-seo/tools/i18n.py`).
 
