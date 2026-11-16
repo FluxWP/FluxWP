@@ -1,0 +1,6 @@
+# Reads the job state without advancing it.
+query FlxBackupJobRead {
+  flxBackupJob {
+    ...FlxBackupJobFields
+  }
+}

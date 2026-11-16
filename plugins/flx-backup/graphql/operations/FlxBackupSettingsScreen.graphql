@@ -1,0 +1,11 @@
+query FlxBackupSettingsScreen {
+  flxBackupSettings {
+    ...FlxBackupSettingsFields
+  }
+  flxBackupCounts {
+    ...FlxBackupCountsFields
+  }
+  flxBackupHealth {
+    ...FlxBackupHealthFields
+  }
+}

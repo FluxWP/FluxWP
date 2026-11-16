@@ -1,0 +1,13 @@
+mutation FlxBackupCancel {
+  flxBackupCancel(input: {}) {
+    pending
+    job {
+      ...FlxBackupJobFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

@@ -25,6 +25,8 @@ Kaldırılma koşulu olan uçlar. Koşul gerçekleşince satır silinir, uç kal
 |---|---|---|---|
 | FluxApp mobil/masaüstü eski sürümlerinin kullandığı REST uçları | flx-app ve modül paketleri | Mağazadaki eski sürümler | En düşük desteklenen uygulama sürümü GraphQL istemcisine geçince (Faz 7) |
 | Flux Tasks: pilot dışındaki `flx-tasks/v1` uçları (sync, yapı, belgeler, ayarlar, pano, dosya) | flx-tasks | Pilot yalnız görev dilimini taşıdı; ekran REST yedekli adaptörle çalışır | Faz 1 flx-tasks paket PR'ı (ESLEME/flx-tasks.md) |
+| Flux Backup: yedek indirme (`admin-post flxy_download`), parçalı yükleme (`admin-ajax flxy_upload_*`) | flx-backup | Dosya akışı; GraphQL yalnız imzalı `downloadUrl` verir, yükleme çok parçalı ikili veri | `FlxBackup.downloadUrl`; yükleme sonrası kayıt `flxBackup` ile okunur |
+| Flux Backup: `admin-ajax flxy_step` belirteç yolu | flx-backup | Veritabanı geri yüklemesi oturumu silebilir; ekran iş belirteciyle adımlamayı sürdürmeli | Oturum açıkken `flxBackupStep` |
 
 ## Satır ekleme
 

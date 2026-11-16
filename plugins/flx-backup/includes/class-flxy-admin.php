@@ -27,6 +27,7 @@ final class FLXY_Admin {
 		add_action( 'admin_menu', array( $this, 'menu' ) );
 		add_action( 'admin_head', array( $this, 'menu_icon_css' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'assets' ) );
+		add_action( 'admin_init', array( $this, 'switch_ui' ) );
 		add_action( 'admin_post_flxy_save_settings', array( $this, 'save_settings' ) );
 		add_action( 'admin_post_flxy_download', array( $this, 'download' ) );
 		add_action( 'wp_ajax_flxy_start', array( $this, 'ajax_start' ) );
@@ -40,6 +41,116 @@ final class FLXY_Admin {
 	public static function url( string $page = '', array $args = array() ): string {
 		$slug = '' === $page ? self::SLUG : self::SLUG . '-' . $page;
 		return add_query_arg( array_merge( array( 'page' => $slug ), $args ), admin_url( 'admin.php' ) );
+	}
+
+	/*
+	 * New view (1.5.0, GraphQL): the pages open the same React screen as the FluxWP app (assets/flux/,
+	 * tools/fluxapp/embed-sync.sh flx-backup). It is the default and has every feature of the classic
+	 * pages; a user can switch back to the classic pages from the screen header for now. Needs Flux GraphQL.
+	 */
+	public static function flux_available(): bool {
+		return file_exists( FLXY_DIR . 'assets/flux/flux-modules.js' ) && function_exists( 'flx_gql_ready' ) && function_exists( 'flx_gql_all_caps' ) && flx_gql_ready();
+	}
+
+	public static function flux_ui(): bool {
+		return self::flux_available() && 'classic' !== get_user_meta( get_current_user_id(), 'flxy_ui', true );
+	}
+
+	/** The page and backup of the request, so a view switch stays where the person is. */
+	private static function current_args(): array {
+		$args = array( 'page' => isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : self::SLUG ); // phpcs:ignore WordPress.Security.NonceVerification
+		if ( isset( $_GET['view'] ) && '' !== $_GET['view'] ) { // phpcs:ignore WordPress.Security.NonceVerification
+			$args['view'] = sanitize_text_field( wp_unslash( $_GET['view'] ) ); // phpcs:ignore WordPress.Security.NonceVerification
+		}
+		return $args;
+	}
+
+	/** Link that switches the current user between the views. */
+	public static function ui_switch_url( string $ui ): string {
+		return wp_nonce_url( add_query_arg( array_merge( self::current_args(), array( 'flxy_ui' => 'flux' === $ui ? 'flux' : 'classic' ) ), admin_url( 'admin.php' ) ), 'flxy_ui' );
+	}
+
+	public function switch_ui(): void {
+		$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
+		if ( ! isset( $_GET['flxy_ui'] ) || 0 !== strpos( $page, self::SLUG ) || ! current_user_can( self::CAP ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+			return;
+		}
+		check_admin_referer( 'flxy_ui' );
+		if ( 'classic' === $_GET['flxy_ui'] ) {
+			update_user_meta( get_current_user_id(), 'flxy_ui', 'classic' );
+		} else {
+			delete_user_meta( get_current_user_id(), 'flxy_ui' );
+		}
+		wp_safe_redirect( add_query_arg( self::current_args(), admin_url( 'admin.php' ) ) );
+		exit;
+	}
+
+	/** Which screen of the React app the current admin page opens. */
+	private static function flux_start_page(): string {
+		$page = self::current_args();
+		if ( ! empty( $page['view'] ) ) {
+			return 'detail:' . $page['view'];
+		}
+		if ( self::SLUG . '-list' === $page['page'] ) {
+			return 'list';
+		}
+		return self::SLUG . '-settings' === $page['page'] ? 'settings' : 'dashboard';
+	}
+
+	/** The chunked bundle loads as an ES module. */
+	public static function flux_module_tag( $tag, $handle ) {
+		if ( 'flxy-flux' !== $handle ) {
+			return $tag;
+		}
+		return (string) preg_replace_callback(
+			'/<script\b[^>]*\ssrc=[^>]*>/',
+			static function ( $m ) {
+				$open = (string) preg_replace( '/\stype=("|\')[^"\']*\1/', '', $m[0] );
+				return (string) preg_replace( '/^<script\b/', '<script type="module"', $open );
+			},
+			$tag,
+			1
+		);
+	}
+
+	private static function flux_assets(): void {
+		$ver    = FLXY_VERSION . '-' . (int) filemtime( FLXY_DIR . 'assets/flux/flux-modules.js' );
+		$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#2c7a64';
+		$opts   = array(
+			'module'     => 'flxy-backup',
+			'rest'       => rest_url(),
+			'nonce'      => wp_create_nonce( 'wp_rest' ),
+			'locale'     => get_user_locale(),
+			'siteName'   => get_bloginfo( 'name' ),
+			'adminUrl'   => admin_url(),
+			'theme'      => 'light',
+			'colors'     => array(
+				'primary'         => $accent,
+				'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
+			),
+			'appIcon'    => FLXY_URL . 'assets/icon.svg',
+			'startPage'  => self::flux_start_page(),
+			'classicUrl' => self::ui_switch_url( 'classic' ),
+		);
+		wp_enqueue_style( 'flxy-flux', FLXY_URL . 'assets/flux/flux-modules.css', array(), $ver );
+		wp_enqueue_script( 'flxy-flux', FLXY_URL . 'assets/flux/flux-modules.js', array(), $ver, true );
+		add_filter( 'script_loader_tag', array( __CLASS__, 'flux_module_tag' ), 10, 2 );
+		// Light / dark follows Flux Admin (html.flxa-dark), also when the user switches it on the page.
+		wp_add_inline_script(
+			'flxy-flux',
+			'(function(){var h=document.documentElement,o=' . wp_json_encode( $opts ) . ';o.theme=h.classList.contains("flxa-dark")?"dark":"light";var slot=window.FluxModulesOptions||(window.FluxModulesOptions={});slot.id="flxy-app";slot.opts=o;function sync(){var el=document.getElementById("flxy-app");if(el)el.dataset.theme=h.classList.contains("flxa-dark")?"dark":"light";}new MutationObserver(sync).observe(h,{attributes:true,attributeFilter:["class"]});function go(){if(slot.done||!window.FluxModules)return;var el=document.getElementById(slot.id);if(!el)return;slot.done=true;try{window.FluxModules.mount(el,slot.opts);}catch(e){el.textContent=String(e&&e.message||e);}}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);go();})();',
+			'before'
+		);
+	}
+
+	/** Prints the React screen's mount point when the new view is on; false means the classic page renders. */
+	private function render_flux(): bool {
+		if ( ! self::flux_ui() ) {
+			return false;
+		}
+		echo '<style>#flxy-app.flux-root{height:auto;background:transparent;font-family:inherit}</style>';
+		echo '<div class="wrap flxy-react"><div id="flxy-app"><noscript>' . esc_html__( 'JavaScript is required for this screen.', 'flx-backup' ) . '</noscript></div></div>';
+		return true;
 	}
 
 	public function menu(): void {
@@ -69,6 +180,10 @@ final class FLXY_Admin {
 
 	public function assets( $hook ): void {
 		if ( ! in_array( $hook, $this->hooks, true ) ) {
+			return;
+		}
+		if ( self::flux_ui() ) {
+			self::flux_assets();
 			return;
 		}
 		wp_enqueue_style( 'flxy-admin', FLXY_URL . 'assets/admin.css', array(), FLXY_VERSION );
@@ -143,6 +258,9 @@ final class FLXY_Admin {
 			echo '</div>';
 		}
 		echo '</div>';
+		if ( self::flux_available() ) {
+			echo '<p class="flxy-newview"><a class="button" href="' . esc_url( self::ui_switch_url( 'flux' ) ) . '">' . esc_html__( 'New view', 'flx-backup' ) . '</a> <span class="flxy-muted">' . esc_html__( 'Open the new view (same features, works in the FluxWP app too).', 'flx-backup' ) . '</span></p>';
+		}
 		echo '<nav class="nav-tab-wrapper flxy-tabs">';
 		foreach ( $tabs as $key => $label ) {
 			printf(
@@ -246,6 +364,9 @@ final class FLXY_Admin {
 	public function render_dashboard(): void {
 		if ( ! current_user_can( self::CAP ) ) {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-backup' ), 403 );
+		}
+		if ( $this->render_flux() ) {
+			return;
 		}
 		FLXY_Storage::sync();
 		FLXY_Storage::sample();
@@ -586,6 +707,9 @@ final class FLXY_Admin {
 	public function render_list(): void {
 		if ( ! current_user_can( self::CAP ) ) {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-backup' ), 403 );
+		}
+		if ( $this->render_flux() ) {
+			return;
 		}
 		FLXY_Storage::sync();
 		$view = isset( $_GET['view'] ) ? sanitize_text_field( wp_unslash( $_GET['view'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
@@ -1155,6 +1279,9 @@ final class FLXY_Admin {
 		if ( ! current_user_can( self::CAP ) ) {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-backup' ), 403 );
 		}
+		if ( $this->render_flux() ) {
+			return;
+		}
 		$s    = FLXY_Settings::all();
 		$days = array(
 			1 => __( 'Monday', 'flx-backup' ),
@@ -1292,14 +1419,7 @@ final class FLXY_Admin {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-backup' ), 403 );
 		}
 		check_admin_referer( 'flxy_save_settings' );
-		$old_keep = (int) FLXY_Settings::get( 'pre_keep_days' );
-		$saved    = FLXY_Settings::save( wp_unslash( $_POST ) );
-		if ( (int) $saved['pre_keep_days'] !== $old_keep ) {
-			FLXY_Settings::apply_pre_keep_days();
-			FLXY_Cron::cleanup();
-		}
-		FLXY_Cron::reschedule();
-		FLXY_Storage::sample();
+		FLXY_Service::save_settings( wp_unslash( $_POST ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		wp_safe_redirect( self::url( 'settings', array( 'flxy_msg' => 'saved' ) ) );
 		exit;
 	}
@@ -1317,62 +1437,37 @@ final class FLXY_Admin {
 
 	public function ajax_start(): void {
 		$this->ajax_guard();
-		$type = sanitize_key( wp_unslash( $_POST['type'] ?? 'full' ) );
-		if ( ! in_array( $type, array( 'full', 'db', 'files' ), true ) ) {
-			$type = 'full';
-		}
-		$args = array(
-			'type'        => $type,
-			'label'       => sanitize_text_field( wp_unslash( $_POST['label'] ?? '' ) ),
-			'context'     => array(
-				'source' => 'manual',
-				'user'   => get_current_user_id(),
-			),
-			'interactive' => false, // Arka planda: loopback + cron + açık sayfalardaki gösterge sürer.
+		$job = FLXY_Service::start_backup(
+			sanitize_key( wp_unslash( $_POST['type'] ?? 'full' ) ),
+			sanitize_text_field( wp_unslash( $_POST['label'] ?? '' ) ),
+			! empty( $_POST['include_core'] ),
+			! empty( $_POST['lock'] )
 		);
-		if ( 'full' === $type ) {
-			$args['include_core'] = ! empty( $_POST['include_core'] );
-		}
-		if ( ! empty( $_POST['lock'] ) ) {
-			$args['keep_days'] = null;
-		}
-		$rec = FLXY_Backup::create( $args );
-		if ( is_wp_error( $rec ) ) {
-			wp_send_json_error( array( 'message' => $rec->get_error_message() ) );
+		if ( is_wp_error( $job ) ) {
+			wp_send_json_error( array( 'message' => $job->get_error_message() ) );
 		}
 		wp_send_json_success( FLXY_Runner::report( FLXY_Runner::current() ) );
 	}
 
 	public function ajax_restore_start(): void {
 		$this->ajax_guard();
-		$id    = sanitize_text_field( wp_unslash( $_POST['id'] ?? '' ) );
-		$paths = array_map( 'sanitize_text_field', (array) wp_unslash( $_POST['paths'] ?? array() ) );
-		$state = FLXY_Restore::start(
-			$id,
-			array(
-				'db'     => ! empty( $_POST['db'] ),
-				'paths'  => $paths,
-				'safety' => ! empty( $_POST['safety'] ),
-			),
-			false
+		$job = FLXY_Service::start_restore(
+			sanitize_text_field( wp_unslash( $_POST['id'] ?? '' ) ),
+			! empty( $_POST['db'] ),
+			array_map( 'sanitize_text_field', (array) wp_unslash( $_POST['paths'] ?? array() ) ),
+			! empty( $_POST['safety'] )
 		);
-		if ( is_wp_error( $state ) ) {
-			wp_send_json_error( array( 'message' => $state->get_error_message() ) );
+		if ( is_wp_error( $job ) ) {
+			wp_send_json_error( array( 'message' => $job->get_error_message() ) );
 		}
-		wp_send_json_success( FLXY_Runner::report( $state ) );
+		wp_send_json_success( FLXY_Runner::report( FLXY_Runner::current() ) );
 	}
 
 	public function ajax_delete(): void {
 		$this->ajax_guard();
-		$ids     = array_map( 'sanitize_text_field', (array) wp_unslash( $_POST['ids'] ?? array() ) );
-		$deleted = array();
-		foreach ( $ids as $id ) {
-			if ( FLXY_Storage::delete( $id ) ) {
-				$deleted[] = $id;
-			}
-		}
-		if ( ! $deleted ) {
-			wp_send_json_error( array( 'message' => __( 'Could not delete.', 'flx-backup' ) ) );
+		$deleted = FLXY_Service::delete( array_map( 'sanitize_text_field', (array) wp_unslash( $_POST['ids'] ?? array() ) ) );
+		if ( is_wp_error( $deleted ) ) {
+			wp_send_json_error( array( 'message' => $deleted->get_error_message() ) );
 		}
 		wp_send_json_success(
 			array(
@@ -1384,26 +1479,15 @@ final class FLXY_Admin {
 
 	public function ajax_lock(): void {
 		$this->ajax_guard();
-		$id   = sanitize_text_field( wp_unslash( $_POST['id'] ?? '' ) );
 		$lock = ! empty( $_POST['lock'] );
-		$rec  = FLXY_Storage::get( $id );
-		if ( ! $rec ) {
-			wp_send_json_error( array( 'message' => __( 'Backup not found.', 'flx-backup' ) ) );
-		}
-		FLXY_Storage::patch( $id, array( 'locked' => $lock ) );
-		$rec = FLXY_Storage::get( $id );
-		if ( $lock ) {
-			$text = __( 'Locked', 'flx-backup' );
-		} elseif ( $rec['keep_until'] ) {
-			/* translators: %s: date */
-			$text = sprintf( __( 'Until %s', 'flx-backup' ), flxy_date( $rec['keep_until'], 'date' ) );
-		} else {
-			$text = __( 'Until the quota is full', 'flx-backup' );
+		$rec  = FLXY_Service::set_lock( sanitize_text_field( wp_unslash( $_POST['id'] ?? '' ) ), $lock );
+		if ( is_wp_error( $rec ) ) {
+			wp_send_json_error( array( 'message' => $rec->get_error_message() ) );
 		}
 		wp_send_json_success(
 			array(
 				'locked' => $lock,
-				'text'   => $text,
+				'text'   => $rec['keepLabel'],
 				'title'  => $lock ? __( 'Locked: never deleted automatically. Click to unlock.', 'flx-backup' ) : __( 'Lock: the quota and retention period will not delete this backup.', 'flx-backup' ),
 			)
 		);
@@ -1411,12 +1495,12 @@ final class FLXY_Admin {
 
 	public function ajax_cancel(): void {
 		$this->ajax_guard();
-		$res = FLXY_Runner::cancel();
-		if ( false === $res ) {
-			wp_send_json_error( array( 'message' => __( 'No operation is running.', 'flx-backup' ) ) );
+		$res = FLXY_Service::cancel();
+		if ( is_wp_error( $res ) ) {
+			wp_send_json_error( array( 'message' => $res->get_error_message() ) );
 		}
-		// 'pending': adım sürüyor, adım bitince iptal edilecek.
-		wp_send_json_success( array( 'pending' => 'pending' === $res ) );
+		// 'pending': the step is running and the job is cancelled when it ends.
+		wp_send_json_success( array( 'pending' => $res['pending'] ) );
 	}
 
 	/* ------------------------------------------------------------------ */
