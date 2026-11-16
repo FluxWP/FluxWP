@@ -25,6 +25,9 @@ function flxwk_defaults() {
 	);
 }
 
+/**
+ * @return array<string,mixed>
+ */
 function flxwk_settings() {
 	$s = get_option( 'flxwk_settings', array() );
 	return array_merge( flxwk_defaults(), is_array( $s ) ? $s : array() );
@@ -35,42 +38,79 @@ function flxwk_opt( $key ) {
 	return $s[ $key ] ?? null;
 }
 
-/** Wiki'nin adres kökü (varsayılan "wiki"). */
+/**
+ * Wiki'nin adres kökü (varsayılan "wiki").
+ *
+ * @return string
+ */
 function flxwk_base() {
 	$o = sanitize_title( (string) flxwk_opt( 'base' ) );
 	$b = trim( (string) apply_filters( 'flxwk_base', '' === $o ? 'wiki' : $o ), '/' );
 	return '' === $b ? 'wiki' : $b;
 }
 
-/** Wiki ziyaretçilere açık mı (Ayarlar › Genel). */
+/**
+ * Wiki ziyaretçilere açık mı (Ayarlar › Genel).
+ *
+ * @return bool
+ */
 function flxwk_enabled() {
 	return (bool) flxwk_opt( 'enabled' );
 }
 
-/** Bu istek wiki'yi görebilir mi: açıksa herkes, kapalıysa yalnız düzenleyebilenler. */
+/**
+ * Bu istek wiki'yi görebilir mi: açıksa herkes, kapalıysa yalnız düzenleyebilenler.
+ *
+ * @return bool
+ */
 function flxwk_visible() {
 	return flxwk_enabled() || current_user_can( 'edit_posts' );
 }
 
+/**
+ * @return string
+ */
 function flxwk_home_url( $path = '' ) {
 	return home_url( user_trailingslashit( '/' . flxwk_base() . ( $path ? '/' . ltrim( $path, '/' ) : '' ) ) );
 }
 
+/**
+ * @return string
+ */
 function flxwk_admin_url() {
 	return admin_url( 'edit.php?post_type=' . FLXWK_PT . '&page=flx-wiki' );
 }
 
+/**
+ * @return string
+ */
 function flxwk_title() {
 	$t = trim( (string) flxwk_opt( 'title' ) );
 	return '' !== $t ? $t : __( 'Developer Wiki', 'flx-wiki' );
 }
 
-function flxwk_intro() {
-	$t = trim( (string) flxwk_opt( 'intro' ) );
-	return (string) apply_filters( 'flxwk_intro', '' !== $t ? $t : __( 'Guides for writing FluxWP plugins and themes, AI-enabled features and the shared platform.', 'flx-wiki' ) );
+/**
+ * Intro shown when the setting is empty.
+ *
+ * @return string
+ */
+function flxwk_intro_default() {
+	return __( 'Guides for writing FluxWP plugins and themes, AI-enabled features and the shared platform.', 'flx-wiki' );
 }
 
-/** Sayfanın Markdown kaynağı. */
+/**
+ * @return string
+ */
+function flxwk_intro() {
+	$t = trim( (string) flxwk_opt( 'intro' ) );
+	return (string) apply_filters( 'flxwk_intro', '' !== $t ? $t : flxwk_intro_default() );
+}
+
+/**
+ * Sayfanın Markdown kaynağı.
+ *
+ * @return string
+ */
 function flxwk_md( $post ) {
 	$post = get_post( $post );
 	if ( ! $post ) {
@@ -80,7 +120,11 @@ function flxwk_md( $post ) {
 	return is_string( $md ) ? $md : '';
 }
 
-/** Sayfanın .md adresi (/wiki/ust/alt.md). */
+/**
+ * Sayfanın .md adresi (/wiki/ust/alt.md).
+ *
+ * @return string
+ */
 function flxwk_md_url( $post ) {
 	$post = get_post( $post );
 	if ( ! $post ) {
@@ -109,7 +153,11 @@ function flxwk_anchor( $text ) {
 	return '' === $s ? 'bolum' : substr( $s, 0, 80 );
 }
 
-/** Okuma süresi (dakika). */
+/**
+ * Okuma süresi (dakika).
+ *
+ * @return int
+ */
 function flxwk_read_minutes( $md ) {
 	$words = str_word_count( wp_strip_all_tags( (string) $md ) );
 	$words = max( $words, (int) ( mb_strlen( (string) $md ) / 7 ) );
@@ -234,7 +282,11 @@ function flxwk_flat() {
 	return $out;
 }
 
-/** Özet: elle yazılan özet ya da Markdown'un ilk paragrafı. */
+/**
+ * Özet: elle yazılan özet ya da Markdown'un ilk paragrafı.
+ *
+ * @return string
+ */
 function flxwk_excerpt( $post, $len = 160 ) {
 	$post = get_post( $post );
 	if ( ! $post ) {
@@ -266,7 +318,11 @@ function flxwk_first_paragraph( $md ) {
 	return '';
 }
 
-/** "Wiki'ye sor" bu ziyaretçiye açık mı. */
+/**
+ * "Wiki'ye sor" bu ziyaretçiye açık mı.
+ *
+ * @return bool
+ */
 function flxwk_can_ask() {
 	$mode = (string) flxwk_opt( 'ask' );
 	if ( 'off' === $mode || ! flxwk_visible() || ! flxwk_ai_ready() ) {
@@ -276,7 +332,11 @@ function flxwk_can_ask() {
 	return (bool) apply_filters( 'flxwk_can_ask', $ok );
 }
 
-/** Flux AI kurulu, anahtarlı ve bu sistem açık mı. */
+/**
+ * Flux AI kurulu, anahtarlı ve bu sistem açık mı.
+ *
+ * @return bool
+ */
 function flxwk_ai_ready() {
 	return function_exists( 'flxai_chat' ) && function_exists( 'flxai_ready' ) && flxai_ready( 'flx-wiki' )
 		&& ( ! function_exists( 'flxai_source_enabled' ) || flxai_source_enabled( 'flx-wiki' ) );
@@ -292,3 +352,28 @@ function flxwk_cache_key( $name ) {
 	$lang = function_exists( 'flxl_current_language' ) ? flxl_current_language() : determine_locale();
 	return 'flxwk_' . $name . '_' . md5( $lang . ':' . get_option( 'flxwk_gen', 0 ) );
 }
+
+/**
+ * Settings written (classic page, GraphQL, panel, preset): caches are cleared, and the address rules
+ * are rewritten once when the address base changed.
+ *
+ * @param mixed $old Old value.
+ * @param mixed $new New value.
+ */
+function flxwk_settings_written( $old, $new ) {
+	$old_base = is_array( $old ) && isset( $old['base'] ) ? (string) $old['base'] : 'wiki';
+	$new_base = is_array( $new ) && isset( $new['base'] ) ? (string) $new['base'] : 'wiki';
+	if ( sanitize_title( $old_base ) !== sanitize_title( $new_base ) ) {
+		update_option( 'flxwk_flush', 1, true );
+	}
+	flxwk_bump();
+}
+add_action( 'update_option_flxwk_settings', 'flxwk_settings_written', 10, 2 );
+add_action(
+	'add_option_flxwk_settings',
+	function ( $option, $value ) {
+		flxwk_settings_written( array(), $value );
+	},
+	10,
+	2
+);

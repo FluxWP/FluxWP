@@ -1928,3 +1928,129 @@ export const FlxVisitorCountry: FlxOperation<T.FlxVisitorCountryQuery, T.FlxVisi
   plugin: 'flx-lang',
   document: "query FlxVisitorCountry {\n  flxVisitorCountry {\n    country\n  }\n}",
 };
+
+/** mutation FlxWikiAsk (flx-wiki, plugins/flx-wiki/graphql/operations/FlxWikiAsk.graphql) */
+export const FlxWikiAsk: FlxOperation<T.FlxWikiAskMutation, T.FlxWikiAskMutationVariables> = {
+  id: '6235a88b2ab67449a16925c7d971451160e14d760ca89d975cbbea0c97a7438b',
+  name: 'FlxWikiAsk',
+  kind: 'mutation',
+  plugin: 'flx-wiki',
+  document: "mutation FlxWikiAsk($input: FlxWikiAskInput!) {\n  flxWikiAsk(input: $input) {\n    answer {\n      answer\n      html\n      sources {\n        title\n        url\n      }\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxWikiGuidesImport (flx-wiki, plugins/flx-wiki/graphql/operations/FlxWikiGuidesImport.graphql) */
+export const FlxWikiGuidesImport: FlxOperation<T.FlxWikiGuidesImportMutation, T.FlxWikiGuidesImportMutationVariables> = {
+  id: 'a722ff87a9ced30ef1b3cd860906049dfb55ce9de492e09647f12fa6702e6897',
+  name: 'FlxWikiGuidesImport',
+  kind: 'mutation',
+  plugin: 'flx-wiki',
+  document: "mutation FlxWikiGuidesImport {\n  flxWikiGuidesImport(input: {  }) {\n    result {\n      created\n      updated\n      skipped\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxWikiPageEdit (flx-wiki, plugins/flx-wiki/graphql/operations/FlxWikiPageEdit.graphql) */
+export const FlxWikiPageEdit: FlxOperation<T.FlxWikiPageEditQuery, T.FlxWikiPageEditQueryVariables> = {
+  id: 'd2e33bfc675984497dcf47d59db70aa05a8a9704a6c16ab10dc7b460f4253382',
+  name: 'FlxWikiPageEdit',
+  kind: 'query',
+  plugin: 'flx-wiki',
+  document: "query FlxWikiPageEdit($id: ID!) {\n  flxWikiPage(id: $id) {\n    ...FlxWikiPageRow\n    markdown\n  }\n}\n\nfragment FlxWikiPageRow on FlxWikiPage {\n  id\n  databaseId\n  title\n  slug\n  path\n  status\n  summary\n  excerpt\n  parentId\n  menuOrder\n  section {\n    ...FlxWikiSectionRow\n  }\n  url\n  markdownUrl\n  modified {\n    iso\n    label\n    relative\n  }\n  readMinutes\n  editUrl\n  canEdit\n}\n\nfragment FlxWikiSectionRow on FlxWikiSection {\n  databaseId\n  slug\n  name\n  description\n  order\n  pageCount\n  url\n}",
+};
+
+/** query FlxWikiPages (flx-wiki, plugins/flx-wiki/graphql/operations/FlxWikiPages.graphql) */
+export const FlxWikiPages: FlxOperation<T.FlxWikiPagesQuery, T.FlxWikiPagesQueryVariables> = {
+  id: '438ecf2d6813eff8606ac244eed7b25027e8df9f8126c21e56be54b6f7342f95',
+  name: 'FlxWikiPages',
+  kind: 'query',
+  plugin: 'flx-wiki',
+  document: "query FlxWikiPages($first: Int = 20, $after: String, $search: String, $statuses: [FlxWikiPageStatus!], $section: String) {\n  flxWikiPages(\n    first: $first\n    after: $after\n    search: $search\n    statuses: $statuses\n    section: $section\n  ) {\n    nodes {\n      ...FlxWikiPageRow\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    totalCount\n  }\n}\n\nfragment FlxWikiPageRow on FlxWikiPage {\n  id\n  databaseId\n  title\n  slug\n  path\n  status\n  summary\n  excerpt\n  parentId\n  menuOrder\n  section {\n    ...FlxWikiSectionRow\n  }\n  url\n  markdownUrl\n  modified {\n    iso\n    label\n    relative\n  }\n  readMinutes\n  editUrl\n  canEdit\n}\n\nfragment FlxWikiSectionRow on FlxWikiSection {\n  databaseId\n  slug\n  name\n  description\n  order\n  pageCount\n  url\n}",
+};
+
+/** mutation FlxWikiPageSave (flx-wiki, plugins/flx-wiki/graphql/operations/FlxWikiPageSave.graphql) */
+export const FlxWikiPageSave: FlxOperation<T.FlxWikiPageSaveMutation, T.FlxWikiPageSaveMutationVariables> = {
+  id: '1663d5b4943b6f754178ebe061036a5405310c8c28eb1b12fe49d3975da909af',
+  name: 'FlxWikiPageSave',
+  kind: 'mutation',
+  plugin: 'flx-wiki',
+  document: "mutation FlxWikiPageSave($input: FlxWikiPageSaveInput!) {\n  flxWikiPageSave(input: $input) {\n    page {\n      ...FlxWikiPageRow\n      markdown\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxWikiPageRow on FlxWikiPage {\n  id\n  databaseId\n  title\n  slug\n  path\n  status\n  summary\n  excerpt\n  parentId\n  menuOrder\n  section {\n    ...FlxWikiSectionRow\n  }\n  url\n  markdownUrl\n  modified {\n    iso\n    label\n    relative\n  }\n  readMinutes\n  editUrl\n  canEdit\n}\n\nfragment FlxWikiSectionRow on FlxWikiSection {\n  databaseId\n  slug\n  name\n  description\n  order\n  pageCount\n  url\n}",
+};
+
+/** mutation FlxWikiPageTrash (flx-wiki, plugins/flx-wiki/graphql/operations/FlxWikiPageTrash.graphql) */
+export const FlxWikiPageTrash: FlxOperation<T.FlxWikiPageTrashMutation, T.FlxWikiPageTrashMutationVariables> = {
+  id: '45ad148e9015ca73a0a7a6b29bdfcd06d601810ba382f318ba7ca618f3bc781b',
+  name: 'FlxWikiPageTrash',
+  kind: 'mutation',
+  plugin: 'flx-wiki',
+  document: "mutation FlxWikiPageTrash($input: FlxWikiPageTrashInput!) {\n  flxWikiPageTrash(input: $input) {\n    trashedId\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxWikiPageView (flx-wiki, plugins/flx-wiki/graphql/operations/FlxWikiPageView.graphql) */
+export const FlxWikiPageView: FlxOperation<T.FlxWikiPageViewQuery, T.FlxWikiPageViewQueryVariables> = {
+  id: '39a57d07f53242404fcc063d65dcbb42af83680fe296383a155e61d88fd577ed',
+  name: 'FlxWikiPageView',
+  kind: 'query',
+  plugin: 'flx-wiki',
+  document: "query FlxWikiPageView($path: String!) {\n  flxWikiPage(path: $path) {\n    ...FlxWikiPageRow\n    html\n  }\n}\n\nfragment FlxWikiPageRow on FlxWikiPage {\n  id\n  databaseId\n  title\n  slug\n  path\n  status\n  summary\n  excerpt\n  parentId\n  menuOrder\n  section {\n    ...FlxWikiSectionRow\n  }\n  url\n  markdownUrl\n  modified {\n    iso\n    label\n    relative\n  }\n  readMinutes\n  editUrl\n  canEdit\n}\n\nfragment FlxWikiSectionRow on FlxWikiSection {\n  databaseId\n  slug\n  name\n  description\n  order\n  pageCount\n  url\n}",
+};
+
+/** mutation FlxWikiPreview (flx-wiki, plugins/flx-wiki/graphql/operations/FlxWikiPreview.graphql) */
+export const FlxWikiPreview: FlxOperation<T.FlxWikiPreviewMutation, T.FlxWikiPreviewMutationVariables> = {
+  id: '0b8b7593708daa39f4935d849e0dcbba9c50bc5f2ebd1400ac7c45646f80a0ac',
+  name: 'FlxWikiPreview',
+  kind: 'mutation',
+  plugin: 'flx-wiki',
+  document: "mutation FlxWikiPreview($input: FlxWikiPreviewInput!) {\n  flxWikiPreview(input: $input) {\n    rendered {\n      html\n      toc {\n        level\n        id\n        text\n      }\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxWikiScreen (flx-wiki, plugins/flx-wiki/graphql/operations/FlxWikiScreen.graphql) */
+export const FlxWikiScreen: FlxOperation<T.FlxWikiScreenQuery, T.FlxWikiScreenQueryVariables> = {
+  id: 'a81958793c487ce071f1c2c4f7f0bd8dc214be127573eb1b85123934c08cebbd',
+  name: 'FlxWikiScreen',
+  kind: 'query',
+  plugin: 'flx-wiki',
+  document: "query FlxWikiScreen {\n  flxWikiOverview {\n    homeUrl\n    siteUrl\n    base\n    llmsUrl\n    llmsFullUrl\n    searchApi\n    mcpEnabled\n    mcpTools\n    aiInstalled\n    aiReady\n    guideCount\n    publishedCount\n    defaultTitle\n    defaultIntro\n    newPageUrl\n  }\n  flxSettings {\n    wiki {\n      ...FlxWikiSettingsFields\n    }\n  }\n  flxWikiSections {\n    ...FlxWikiSectionRow\n  }\n}\n\nfragment FlxWikiSectionRow on FlxWikiSection {\n  databaseId\n  slug\n  name\n  description\n  order\n  pageCount\n  url\n}\n\nfragment FlxWikiSettingsFields on FlxSettingsWiki {\n  enabled\n  title\n  intro\n  base\n  aiLinks\n  editLink\n  accent\n  width\n  nav\n  toc\n  ask\n  askLimit\n}",
+};
+
+/** query FlxWikiSearch (flx-wiki, plugins/flx-wiki/graphql/operations/FlxWikiSearch.graphql) */
+export const FlxWikiSearch: FlxOperation<T.FlxWikiSearchQuery, T.FlxWikiSearchQueryVariables> = {
+  id: 'e5eedd03f9ec9890040f6bfdeccb41becb16ab8897441e260530110fe8270af9',
+  name: 'FlxWikiSearch',
+  kind: 'query',
+  plugin: 'flx-wiki',
+  document: "query FlxWikiSearch($query: String!, $section: String, $limit: Int = 10) {\n  flxWikiSearch(query: $query, section: $section, limit: $limit) {\n    total\n    fixed\n    hits {\n      pageId\n      title\n      url\n      section\n      heading\n      snippet\n      score\n    }\n  }\n}",
+};
+
+/** mutation FlxWikiSectionDelete (flx-wiki, plugins/flx-wiki/graphql/operations/FlxWikiSectionDelete.graphql) */
+export const FlxWikiSectionDelete: FlxOperation<T.FlxWikiSectionDeleteMutation, T.FlxWikiSectionDeleteMutationVariables> = {
+  id: 'e960c92aac1edd40038d31da2506df2a0ac83b057a92d2fd3cae3af316118156',
+  name: 'FlxWikiSectionDelete',
+  kind: 'mutation',
+  plugin: 'flx-wiki',
+  document: "mutation FlxWikiSectionDelete($input: FlxWikiSectionDeleteInput!) {\n  flxWikiSectionDelete(input: $input) {\n    deletedId\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxWikiSectionSave (flx-wiki, plugins/flx-wiki/graphql/operations/FlxWikiSectionSave.graphql) */
+export const FlxWikiSectionSave: FlxOperation<T.FlxWikiSectionSaveMutation, T.FlxWikiSectionSaveMutationVariables> = {
+  id: '8f83641d5dd64bd14dedc7cb6097a02bdc1daa0e13c7b34dfda0f50d8cefc258',
+  name: 'FlxWikiSectionSave',
+  kind: 'mutation',
+  plugin: 'flx-wiki',
+  document: "mutation FlxWikiSectionSave($input: FlxWikiSectionSaveInput!) {\n  flxWikiSectionSave(input: $input) {\n    section {\n      ...FlxWikiSectionRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxWikiSectionRow on FlxWikiSection {\n  databaseId\n  slug\n  name\n  description\n  order\n  pageCount\n  url\n}",
+};
+
+/** mutation FlxWikiSettingsSave (flx-wiki, plugins/flx-wiki/graphql/operations/FlxWikiSettingsSave.graphql) */
+export const FlxWikiSettingsSave: FlxOperation<T.FlxWikiSettingsSaveMutation, T.FlxWikiSettingsSaveMutationVariables> = {
+  id: 'e95a30e9de1775e201bc99018b23d52eb77faed64ff768b865e5ad647509110f',
+  name: 'FlxWikiSettingsSave',
+  kind: 'mutation',
+  plugin: 'flx-wiki',
+  document: "mutation FlxWikiSettingsSave($input: FlxSettingsUpdateInput!) {\n  flxSettingsUpdate(input: $input) {\n    settings {\n      wiki {\n        ...FlxWikiSettingsFields\n      }\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxWikiSettingsFields on FlxSettingsWiki {\n  enabled\n  title\n  intro\n  base\n  aiLinks\n  editLink\n  accent\n  width\n  nav\n  toc\n  ask\n  askLimit\n}",
+};
+
+/** query FlxWikiTree (flx-wiki, plugins/flx-wiki/graphql/operations/FlxWikiTree.graphql) */
+export const FlxWikiTree: FlxOperation<T.FlxWikiTreeQuery, T.FlxWikiTreeQueryVariables> = {
+  id: '69a3c84c1667538d92545f46e1c9ca1c50bee5fbb3154e584c804edbfb5b839e',
+  name: 'FlxWikiTree',
+  kind: 'query',
+  plugin: 'flx-wiki',
+  document: "query FlxWikiTree {\n  flxWikiTree {\n    section {\n      ...FlxWikiSectionRow\n    }\n    pages {\n      depth\n      page {\n        databaseId\n        title\n        path\n        excerpt\n        url\n      }\n    }\n  }\n}\n\nfragment FlxWikiSectionRow on FlxWikiSection {\n  databaseId\n  slug\n  name\n  description\n  order\n  pageCount\n  url\n}",
+};

@@ -58,3 +58,8 @@ defined( 'FLXSEO_FILE' ) || define( 'FLXSEO_FILE', __FILE__ );
 defined( 'FLXSEO_DIR' ) || define( 'FLXSEO_DIR', __DIR__ . '/' );
 defined( 'FLXSEO_HISTORY_MAX' ) || define( 'FLXSEO_HISTORY_MAX', 90 );
 defined( 'FLXSEO_URL' ) || define( 'FLXSEO_URL', 'https://example.com/' );
+defined( 'FLXWK_VERSION' ) || define( 'FLXWK_VERSION', '0.0.0' );
+defined( 'FLXWK_DIR' ) || define( 'FLXWK_DIR', __DIR__ . '/' );
+defined( 'FLXWK_URL' ) || define( 'FLXWK_URL', 'https://example.com/' );
+defined( 'FLXWK_PT' ) || define( 'FLXWK_PT', 'flx_wiki' );
+defined( 'FLXWK_TAX' ) || define( 'FLXWK_TAX', 'flx_wiki_section' );

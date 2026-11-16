@@ -451,6 +451,32 @@ export type FlxSeoGuideLang =
   | 'EN'
   | 'TR';
 
+export type FlxSettingsFlxgqlSettingsQueryMode =
+  | 'ADMINS'
+  | 'OPEN'
+  | 'STRICT';
+
+export type FlxSettingsFlxpSettingsPsCssScope =
+  | 'LOCAL'
+  | 'THEME';
+
+export type FlxSettingsFlxrcSettingsDomain =
+  | 'GOOGLE'
+  | 'RECAPTCHA';
+
+export type FlxSettingsFlxrcSettingsV2Size =
+  | 'COMPACT'
+  | 'NORMAL';
+
+export type FlxSettingsFlxrcSettingsV2Theme =
+  | 'AUTO'
+  | 'DARK'
+  | 'LIGHT';
+
+export type FlxSettingsFlxrcSettingsVersion =
+  | 'V2'
+  | 'V3';
+
 export type FlxSettingsFlxseoAuditFreq =
   | 'DAILY'
   | 'OFF'
@@ -459,6 +485,53 @@ export type FlxSettingsFlxseoAuditFreq =
 export type FlxSettingsFlxseoOrgType =
   | 'NGO'
   | 'ORGANIZATION';
+
+export type FlxSettingsThemeSettingsAktifKart =
+  | 'OFF'
+  | 'ON';
+
+export type FlxSettingsThemeSettingsAnimasyon =
+  | 'OFF'
+  | 'ON';
+
+export type FlxSettingsThemeSettingsCookiePosition =
+  | 'BAR'
+  | 'CARD';
+
+export type FlxSettingsThemeSettingsDarkMode =
+  | 'AUTO'
+  | 'OFF';
+
+export type FlxSettingsThemeSettingsDecorationPattern =
+  | 'DOTS'
+  | 'LEAVES'
+  | 'NONE';
+
+export type FlxSettingsThemeSettingsGaMode =
+  | 'AFTER'
+  | 'CONSENT';
+
+export type FlxSettingsThemeSettingsSayfalama =
+  | 'NUMARA'
+  | 'SONSUZ';
+
+export type FlxSettingsThemeSettingsSiteMod =
+  | 'DONATION'
+  | 'SHOP';
+
+export type FlxSettingsThemeSettingsSiteVisibility =
+  | 'AUTO'
+  | 'COMING_SOON'
+  | 'STORE';
+
+export type FlxSettingsWikiAsk =
+  | 'ALL'
+  | 'OFF'
+  | 'USERS';
+
+export type FlxSettingsWikiWidth =
+  | 'NORMAL'
+  | 'WIDE';
 
 /** State of the connection to the update server. */
 export type FlxSetupConnectionState =
@@ -703,6 +776,17 @@ export type FlxThemeCheckStatus =
   | 'INFO'
   | 'OK'
   | 'WARNING';
+
+/** Publishing state of a wiki page. */
+export type FlxWikiPageStatus =
+  /** Draft; only editors see it. */
+  | 'DRAFT'
+  /** Waiting for review. */
+  | 'PENDING'
+  /** Private; only people who may read private pages see it. */
+  | 'PRIVATE'
+  /** Published. */
+  | 'PUBLISH';
 
 /** Input for the flxAdminCapsRestore mutation. */
 export type FlxAdminCapsRestoreInput = {
@@ -2106,6 +2190,120 @@ export type FlxSeoPsiKeySaveInput = {
   key?: string | null | undefined;
 };
 
+/** Input for the flxSettingsUpdate mutation. */
+export type FlxSettingsUpdateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Flux App › Görünüm */
+  flxappApp?: FlxSettingsFlxappAppInput | null | undefined;
+  /** Flux App */
+  flxappSettings?: FlxSettingsFlxappSettingsInput | null | undefined;
+  /** Flux GraphQL */
+  flxgqlSettings?: FlxSettingsFlxgqlSettingsInput | null | undefined;
+  /** Flux Speed */
+  flxpSettings?: FlxSettingsFlxpSettingsInput | null | undefined;
+  /** Flux reCAPTCHA */
+  flxrcSettings?: FlxSettingsFlxrcSettingsInput | null | undefined;
+  /** Flux SEO */
+  flxseo?: FlxSettingsFlxseoInput | null | undefined;
+  /** FluxWP theme settings (Appearance > Theme Settings) */
+  themeSettings?: FlxSettingsThemeSettingsInput | null | undefined;
+  /** Flux Wiki */
+  wiki?: FlxSettingsWikiInput | null | undefined;
+};
+
+/** Changes to Flux App › Görünüm. Only the fields you send are changed. */
+export type FlxSettingsFlxappAppInput = {
+  /** name, short_name, logo, logo_dark, icon (URLs). */
+  brand?: unknown;
+  /** search, biometric_lock. */
+  features?: unknown;
+  /** privacy, support. */
+  links?: unknown;
+  /** App shell: mobile {nav, home, tabs[], drawer, topbar}, desktop {home, sidebar, topbar, commands[]}. Targets: screen:, module:, menu:, web:, url:. */
+  shell?: unknown;
+  /** App theme overrides: mode, light/dark {primary, accent, bg, surface, text}, radius, density, font {body, heading}. */
+  theme?: unknown;
+};
+
+/** Changes to Flux App. Only the fields you send are changed. */
+export type FlxSettingsFlxappSettingsInput = {
+  /** Brand OAuth clients: [{id, name, platform: mobile|desktop, redirect_uris[]}]. */
+  appClients?: unknown;
+  /** Allow OAuth dynamic client registration (RFC 7591). Built-in clients stay available when this is off. */
+  dynamicClients?: boolean | null | undefined;
+  /** Main FluxWP apps (flx-mobil, flx-masaustu) may connect. */
+  genericApp?: boolean | null | undefined;
+  /** Disabled app modules. */
+  modulesOff?: unknown;
+  otpEnabled?: boolean | null | undefined;
+  /** Signed-in donors may confirm and save their own phone number. */
+  phoneSelfVerify?: boolean | null | undefined;
+  pushEnabled?: boolean | null | undefined;
+  /** Hide notification body on the lock screen. */
+  pushHide?: boolean | null | undefined;
+  /** Disabled manifest screens: ["core/plugins"]. */
+  screensOff?: unknown;
+  storeAndroid?: string | null | undefined;
+  storeIos?: string | null | undefined;
+  webSession?: boolean | null | undefined;
+};
+
+/** Changes to Flux GraphQL. Only the fields you send are changed. */
+export type FlxSettingsFlxgqlSettingsInput = {
+  /** Seconds a public read may be cached by LiteSpeed/CDN (0 = never). */
+  cacheTtl?: number | null | undefined;
+  /** Front-end origins allowed to call /graphql from the browser, one per line (https://www.example.com). */
+  corsOrigins?: string | null | undefined;
+  /** GraphiQL IDE in wp-admin for administrators. */
+  ide?: boolean | null | undefined;
+  /** Public schema introspection (administrators can always introspect). */
+  introspection?: boolean | null | undefined;
+  /** Highest query complexity score allowed (100-20000). */
+  maxComplexity?: number | null | undefined;
+  /** Deepest query nesting allowed (3-50). */
+  maxDepth?: number | null | undefined;
+  /** Most records one page of a list returns (10-100). */
+  maxPage?: number | null | undefined;
+  /** Which GraphQL queries run: strict (only queries shipped by FluxWP packages), admins (administrators may also send any query), open (anyone may send any query). */
+  queryMode?: FlxSettingsFlxgqlSettingsQueryMode | null | undefined;
+};
+
+/** Changes to Flux Speed. Only the fields you send are changed. */
+export type FlxSettingsFlxpSettingsInput = {
+  psCss?: boolean | null | undefined;
+  psCssScope?: FlxSettingsFlxpSettingsPsCssScope | null | undefined;
+  psDefer?: boolean | null | undefined;
+  psDeferJquery?: boolean | null | undefined;
+  psEmoji?: boolean | null | undefined;
+  psExclude?: string | null | undefined;
+  psFonts?: boolean | null | undefined;
+  psInlineKb?: number | null | undefined;
+  psMinCss?: boolean | null | undefined;
+  psMinJs?: boolean | null | undefined;
+  psPreload?: boolean | null | undefined;
+  psSafelist?: string | null | undefined;
+  psSkipUrls?: string | null | undefined;
+  psViewport?: boolean | null | undefined;
+};
+
+/** Changes to Flux reCAPTCHA. Only the fields you send are changed. */
+export type FlxSettingsFlxrcSettingsInput = {
+  /** API host */
+  domain?: FlxSettingsFlxrcSettingsDomain | null | undefined;
+  failOpen?: boolean | null | undefined;
+  /** Protected forms: context key => 0/1 (login, register, lostpassword, comments, wc_login, wc_register, checkout, donate, forms) */
+  forms?: unknown;
+  hideBadge?: boolean | null | undefined;
+  skipLoggedIn?: boolean | null | undefined;
+  /** v3 score threshold 0.1-0.9 */
+  threshold?: string | null | undefined;
+  v2Size?: FlxSettingsFlxrcSettingsV2Size | null | undefined;
+  v2Theme?: FlxSettingsFlxrcSettingsV2Theme | null | undefined;
+  /** reCAPTCHA type */
+  version?: FlxSettingsFlxrcSettingsVersion | null | undefined;
+};
+
 /** Changes to Flux SEO. Only the fields you send are changed. */
 export type FlxSettingsFlxseoInput = {
   altName?: string | null | undefined;
@@ -2162,6 +2360,92 @@ export type FlxSettingsFlxseoInput = {
   verifySeznam?: string | null | undefined;
   verifyYandex?: string | null | undefined;
   webmcp?: boolean | null | undefined;
+};
+
+/** Changes to FluxWP theme settings (Appearance &gt; Theme Settings). Only the fields you send are changed. */
+export type FlxSettingsThemeSettingsInput = {
+  /** Active campaign ID. */
+  aktifKampanya?: number | null | undefined;
+  /** Active campaign card. */
+  aktifKart?: FlxSettingsThemeSettingsAktifKart | null | undefined;
+  /** Scroll reveal animations. */
+  animasyon?: FlxSettingsThemeSettingsAnimasyon | null | undefined;
+  /** Bank account holder for Havale/EFT. */
+  bankHolder?: string | null | undefined;
+  /** IBAN (TR + 24 digits). */
+  bankIban?: string | null | undefined;
+  /** Optional explicitly public contact email. */
+  comingSoonEmail?: string | null | undefined;
+  /** Optional plain-text store-only notice message. */
+  comingSoonStoreText?: string | null | undefined;
+  /** Optional store-only notice heading. Empty uses the translated default for the site type. */
+  comingSoonStoreTitle?: string | null | undefined;
+  /** Optional plain-text coming-soon message. */
+  comingSoonText?: string | null | undefined;
+  /** Optional coming-soon heading. Empty uses the translated default. */
+  comingSoonTitle?: string | null | undefined;
+  /** Accept button label. */
+  cookieAccept?: string | null | undefined;
+  /** Show the cookie consent banner on the first visit. */
+  cookieEnabled?: boolean | null | undefined;
+  /** Policy link label; empty hides the link. */
+  cookieMore?: string | null | undefined;
+  /** Cookie/privacy policy page ("@page:<key>"). */
+  cookiePage?: number | null | undefined;
+  /** Banner layout. */
+  cookiePosition?: FlxSettingsThemeSettingsCookiePosition | null | undefined;
+  /** Necessary-only button label. */
+  cookieReject?: string | null | undefined;
+  /** Banner text; links allowed (Flux Lang: tema_cookie_text). */
+  cookieText?: string | null | undefined;
+  /** Banner title (Flux Lang: texts.<lang>.tema_cookie_title). */
+  cookieTitle?: string | null | undefined;
+  /** auto follows the visitor system setting. */
+  darkMode?: FlxSettingsThemeSettingsDarkMode | null | undefined;
+  /** Background decoration for title bands, menus and consent cards. */
+  decorationPattern?: FlxSettingsThemeSettingsDecorationPattern | null | undefined;
+  /** Google Analytics 4 measurement ID (G-XXXXXXX). */
+  ga4Id?: string | null | undefined;
+  /** consent: GA loads in consent mode; after: only after accept. */
+  gaMode?: FlxSettingsThemeSettingsGaMode | null | undefined;
+  /** Optional news archive introduction. Empty uses the translated generic theme text. */
+  newsIntro?: string | null | undefined;
+  /** Archive pagination. */
+  sayfalama?: FlxSettingsThemeSettingsSayfalama | null | undefined;
+  /** shop (WooCommerce store) or donation (Flux Donate). */
+  siteMod?: FlxSettingsThemeSettingsSiteMod | null | undefined;
+  /** auto = live; coming-soon = entire public site shows the coming-soon page; store = site stays open, WooCommerce store pages (shop, product, cart, checkout) show a notice inside the header/footer. With WooCommerce this is synced both ways with WooCommerce › Settings › Site visibility; store needs WooCommerce. */
+  siteVisibility?: FlxSettingsThemeSettingsSiteVisibility | null | undefined;
+  /** Table header cell background hex colour (#RRGGBB), used by core tables, Flux Wiki and WooCommerce. Empty uses the palette "table-head" colour (default light grey). */
+  tableHead?: string | null | undefined;
+};
+
+/** Changes to Flux Wiki. Only the fields you send are changed. */
+export type FlxSettingsWikiInput = {
+  /** Accent colour (#hex); empty = theme colour. */
+  accent?: string | null | undefined;
+  /** Show the Open in ChatGPT / Claude / Perplexity links. */
+  aiLinks?: boolean | null | undefined;
+  /** Who can use Ask the wiki (Flux AI). */
+  ask?: FlxSettingsWikiAsk | null | undefined;
+  /** Questions per person per hour. */
+  askLimit?: number | null | undefined;
+  /** URL base (lowercase, digits, hyphen). */
+  base?: string | null | undefined;
+  /** Show the Edit button to editors. */
+  editLink?: boolean | null | undefined;
+  /** Wiki open to visitors; off = 404 for everyone except editors. */
+  enabled?: boolean | null | undefined;
+  /** Intro on the wiki home, meta description and llms.txt. */
+  intro?: string | null | undefined;
+  /** Left page menu and search. */
+  nav?: boolean | null | undefined;
+  /** Wiki name; empty = Developer Wiki in the visitor language. */
+  title?: string | null | undefined;
+  /** Right-hand contents list (On this page). */
+  toc?: boolean | null | undefined;
+  /** Layout width. */
+  width?: FlxSettingsWikiWidth | null | undefined;
 };
 
 /** Input for the flxSetupAutoUpdateSet mutation. */
@@ -2616,6 +2900,76 @@ export type FlxThemeSettingsSaveInput = {
   tableHead?: string | null | undefined;
   /** Who sees the site (also updates WooCommerce). */
   visibility?: FlxThemeVisibility | null | undefined;
+};
+
+/** Input for the flxWikiAsk mutation. */
+export type FlxWikiAskInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Page the visitor is reading; its content is used first. */
+  pageId?: number | null | undefined;
+  /** The question (3–1000 characters). */
+  question: string;
+};
+
+/** Input for the flxWikiPageSave mutation. */
+export type FlxWikiPageSaveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Page to update (global ID or database ID); leave out to create a page. */
+  id?: string | null | undefined;
+  /** Page body in Markdown. Do not repeat the title as a heading. [[slug]] links to a wiki page, > [!NOTE] makes a callout. */
+  markdown?: string | null | undefined;
+  /** Sort order inside the parent; lower numbers come first. */
+  menuOrder?: number | null | undefined;
+  /** Parent page; 0 makes it a top-level page. */
+  parentId?: number | null | undefined;
+  /** Section name or short name (created when missing); empty removes the page from its section. Only top-level pages need one. */
+  section?: string | null | undefined;
+  /** Short name used in the address. */
+  slug?: string | null | undefined;
+  /** Publishing state. */
+  status?: FlxWikiPageStatus | null | undefined;
+  /** One-sentence summary used as the search engine description. */
+  summary?: string | null | undefined;
+  /** Page title; required for a new page. */
+  title?: string | null | undefined;
+};
+
+/** Input for the flxWikiPageTrash mutation. */
+export type FlxWikiPageTrashInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Page ID (global ID or database ID). */
+  id: string;
+};
+
+/** Input for the flxWikiPreview mutation. */
+export type FlxWikiPreviewInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Markdown to render. */
+  markdown: string;
+};
+
+/** Input for the flxWikiSectionDelete mutation. */
+export type FlxWikiSectionDeleteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Section ID. */
+  id: number;
+};
+
+/** Input for the flxWikiSectionSave mutation. */
+export type FlxWikiSectionSaveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Section to change; leave out to create one. */
+  id?: number | null | undefined;
+  /** Section name. */
+  name: string;
+  /** Sort order; lower numbers come first. Left as it is when omitted. */
+  order?: number | null | undefined;
 };
 
 export type FlxAdminCapsRestoreMutationVariables = Exact<{
@@ -4248,3 +4602,107 @@ export type FlxVisitorCountryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type FlxVisitorCountryQuery = { flxVisitorCountry: { country: string | null } };
+
+export type FlxWikiAskMutationVariables = Exact<{
+  input: FlxWikiAskInput;
+}>;
+
+
+export type FlxWikiAskMutation = { flxWikiAsk: { answer: { answer: string, html: string, sources: Array<{ title: string, url: string }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxWikiGuidesImportMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxWikiGuidesImportMutation = { flxWikiGuidesImport: { result: { created: number, updated: number, skipped: number } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxWikiPageEditQueryVariables = Exact<{
+  id: string;
+}>;
+
+
+export type FlxWikiPageEditQuery = { flxWikiPage: { markdown: string, id: string, databaseId: number, title: string, slug: string, path: string, status: FlxWikiPageStatus, summary: string, excerpt: string, parentId: number | null, menuOrder: number, url: string, markdownUrl: string | null, readMinutes: number, editUrl: string | null, canEdit: boolean, section: { databaseId: number, slug: string, name: string, description: string, order: number, pageCount: number, url: string } | null, modified: { iso: string, label: string, relative: string } | null } | null };
+
+export type FlxWikiPageRowFragment = { id: string, databaseId: number, title: string, slug: string, path: string, status: FlxWikiPageStatus, summary: string, excerpt: string, parentId: number | null, menuOrder: number, url: string, markdownUrl: string | null, readMinutes: number, editUrl: string | null, canEdit: boolean, section: { databaseId: number, slug: string, name: string, description: string, order: number, pageCount: number, url: string } | null, modified: { iso: string, label: string, relative: string } | null };
+
+export type FlxWikiSectionRowFragment = { databaseId: number, slug: string, name: string, description: string, order: number, pageCount: number, url: string };
+
+export type FlxWikiPagesQueryVariables = Exact<{
+  first?: number | null | undefined;
+  after?: string | null | undefined;
+  search?: string | null | undefined;
+  statuses?: Array<FlxWikiPageStatus> | FlxWikiPageStatus | null | undefined;
+  section?: string | null | undefined;
+}>;
+
+
+export type FlxWikiPagesQuery = { flxWikiPages: { totalCount: number | null, nodes: Array<{ id: string, databaseId: number, title: string, slug: string, path: string, status: FlxWikiPageStatus, summary: string, excerpt: string, parentId: number | null, menuOrder: number, url: string, markdownUrl: string | null, readMinutes: number, editUrl: string | null, canEdit: boolean, section: { databaseId: number, slug: string, name: string, description: string, order: number, pageCount: number, url: string } | null, modified: { iso: string, label: string, relative: string } | null }>, pageInfo: { hasNextPage: boolean, endCursor: string | null } } };
+
+export type FlxWikiPageSaveMutationVariables = Exact<{
+  input: FlxWikiPageSaveInput;
+}>;
+
+
+export type FlxWikiPageSaveMutation = { flxWikiPageSave: { page: { markdown: string, id: string, databaseId: number, title: string, slug: string, path: string, status: FlxWikiPageStatus, summary: string, excerpt: string, parentId: number | null, menuOrder: number, url: string, markdownUrl: string | null, readMinutes: number, editUrl: string | null, canEdit: boolean, section: { databaseId: number, slug: string, name: string, description: string, order: number, pageCount: number, url: string } | null, modified: { iso: string, label: string, relative: string } | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxWikiPageTrashMutationVariables = Exact<{
+  input: FlxWikiPageTrashInput;
+}>;
+
+
+export type FlxWikiPageTrashMutation = { flxWikiPageTrash: { trashedId: number | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxWikiPageViewQueryVariables = Exact<{
+  path: string;
+}>;
+
+
+export type FlxWikiPageViewQuery = { flxWikiPage: { html: string, id: string, databaseId: number, title: string, slug: string, path: string, status: FlxWikiPageStatus, summary: string, excerpt: string, parentId: number | null, menuOrder: number, url: string, markdownUrl: string | null, readMinutes: number, editUrl: string | null, canEdit: boolean, section: { databaseId: number, slug: string, name: string, description: string, order: number, pageCount: number, url: string } | null, modified: { iso: string, label: string, relative: string } | null } | null };
+
+export type FlxWikiPreviewMutationVariables = Exact<{
+  input: FlxWikiPreviewInput;
+}>;
+
+
+export type FlxWikiPreviewMutation = { flxWikiPreview: { rendered: { html: string, toc: Array<{ level: number, id: string, text: string }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxWikiScreenQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxWikiScreenQuery = { flxWikiOverview: { homeUrl: string, siteUrl: string, base: string, llmsUrl: string, llmsFullUrl: string, searchApi: string, mcpEnabled: boolean, mcpTools: Array<string>, aiInstalled: boolean, aiReady: boolean, guideCount: number, publishedCount: number, defaultTitle: string, defaultIntro: string, newPageUrl: string }, flxSettings: { wiki: { enabled: boolean | null, title: string | null, intro: string | null, base: string | null, aiLinks: boolean | null, editLink: boolean | null, accent: string | null, width: FlxSettingsWikiWidth | null, nav: boolean | null, toc: boolean | null, ask: FlxSettingsWikiAsk | null, askLimit: number | null } | null }, flxWikiSections: Array<{ databaseId: number, slug: string, name: string, description: string, order: number, pageCount: number, url: string }> };
+
+export type FlxWikiSettingsFieldsFragment = { enabled: boolean | null, title: string | null, intro: string | null, base: string | null, aiLinks: boolean | null, editLink: boolean | null, accent: string | null, width: FlxSettingsWikiWidth | null, nav: boolean | null, toc: boolean | null, ask: FlxSettingsWikiAsk | null, askLimit: number | null };
+
+export type FlxWikiSearchQueryVariables = Exact<{
+  query: string;
+  section?: string | null | undefined;
+  limit?: number | null | undefined;
+}>;
+
+
+export type FlxWikiSearchQuery = { flxWikiSearch: { total: number, fixed: string | null, hits: Array<{ pageId: number, title: string, url: string, section: string, heading: string, snippet: string, score: number }> } };
+
+export type FlxWikiSectionDeleteMutationVariables = Exact<{
+  input: FlxWikiSectionDeleteInput;
+}>;
+
+
+export type FlxWikiSectionDeleteMutation = { flxWikiSectionDelete: { deletedId: number | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxWikiSectionSaveMutationVariables = Exact<{
+  input: FlxWikiSectionSaveInput;
+}>;
+
+
+export type FlxWikiSectionSaveMutation = { flxWikiSectionSave: { section: { databaseId: number, slug: string, name: string, description: string, order: number, pageCount: number, url: string } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxWikiSettingsSaveMutationVariables = Exact<{
+  input: FlxSettingsUpdateInput;
+}>;
+
+
+export type FlxWikiSettingsSaveMutation = { flxSettingsUpdate: { settings: { wiki: { enabled: boolean | null, title: string | null, intro: string | null, base: string | null, aiLinks: boolean | null, editLink: boolean | null, accent: string | null, width: FlxSettingsWikiWidth | null, nav: boolean | null, toc: boolean | null, ask: FlxSettingsWikiAsk | null, askLimit: number | null } | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxWikiTreeQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxWikiTreeQuery = { flxWikiTree: Array<{ section: { databaseId: number, slug: string, name: string, description: string, order: number, pageCount: number, url: string } | null, pages: Array<{ depth: number, page: { databaseId: number, title: string, path: string, excerpt: string, url: string } }> }> };
