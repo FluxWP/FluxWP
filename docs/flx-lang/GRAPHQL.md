@@ -22,7 +22,7 @@ query { page(id: "/hakkimizda/", idType: URI) { title flxLanguage flxTranslation
 ## Diğer paketler için tasarım
 
 - **Her içerik tipinde** `flxLanguage: String` ve `flxTranslations: [FlxTranslation!]!` var (`ContentNode` arayüzü). Çeviri eşi listesi içerik okuma yetkisini izler; `url` yayınlanmamışsa null, `editUrl` yalnız düzenleyene.
-- **Yeni içerik tipi** (ör. flx-donate kampanyası) bağlanmak için `flxl_gql_content_types` filtresine tip adını ekler: `add_filter( 'flxl_gql_content_types', fn( $t ) => array_merge( $t, [ 'FlxCampaign' ] ) );`
+- **Yeni içerik tipi** (ör. flx-donate kampanyası) bağlanmak için `flxl_gql_content_types` filtresine `GraphQL tip adı => callable( $source ): int` (kaynaktan post ID) ekler: `add_filter( 'flxl_gql_content_types', fn( $t ) => $t + array( 'FlxCampaign' => fn( $c ) => (int) $c->databaseId ) );`
 - **Dil seçimi**: GraphQL isteğinde `?lang=en` verilirse içerik/terim listeleri o dile süzülür; verilmezse REST gibi süzülmez (tüm diller).
 - **Dil servisi**: PHP tarafında `FLXL_Language_Service` (`languages()`, `post_language()`, `translations()`, `set_post_language()`, `create_translation()`, `visitor_country()`) kullanılır; `flxl_*` eski fonksiyonlar çalışmaya devam eder.
 - **Tarayıcı dili önce** davranışı (0.2.12) değişmedi; `flxVisitorCountry` yalnız ülke ipucudur.

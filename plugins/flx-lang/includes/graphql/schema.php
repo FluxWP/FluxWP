@@ -589,10 +589,10 @@ function flxl_gql_content_types(): array {
 	/**
 	 * Types of other packages whose records are posts that Flux Lang translates.
 	 *
-	 * @param array<string,callable> $types GraphQL type name => callable( $source ): int, the post ID.
+	 * @param array<mixed> $types GraphQL type name => callable( $source ): int, the post ID.
 	 */
 	$more = apply_filters( 'flxl_gql_content_types', array() );
-	foreach ( is_array( $more ) ? $more : array() as $type => $cb ) {
+	foreach ( (array) $more as $type => $cb ) {
 		if ( is_string( $type ) && is_callable( $cb ) ) {
 			$types[ $type ] = $cb;
 		}
