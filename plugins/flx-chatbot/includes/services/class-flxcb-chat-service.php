@@ -128,21 +128,23 @@ final class FLXCB_Chat_Service {
 	public static function count( string $status, string $search ): int {
 		/** @var \wpdb $wpdb */
 		global $wpdb;
-		$where = array( '1=1' );
-		$prm   = array();
-		if ( 'open' === $status ) {
-			$where[] = "status IN ('queued','agent','offline')";
-		} elseif ( '' !== $status ) {
-			$where[] = 'status = %s';
-			$prm[]   = $status;
-		}
-		if ( '' !== $search ) {
-			$like    = '%' . $wpdb->esc_like( $search ) . '%';
-			$where[] = '(name LIKE %s OR email LIKE %s OR phone LIKE %s OR page_title LIKE %s)';
-			array_push( $prm, $like, $like, $like, $like );
-		}
-		$sql = 'SELECT COUNT(*) FROM ' . flxcb_table( 'conversations' ) . ' WHERE ' . implode( ' AND ', $where ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-		return (int) ( $prm ? $wpdb->get_var( $wpdb->prepare( $sql, $prm ) ) : $wpdb->get_var( $sql ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		$open = 'open' === $status ? 1 : 0;
+		$stat = $open ? '' : $status;
+		$like = '%' . $wpdb->esc_like( $search ) . '%';
+		return (int) $wpdb->get_var(
+			$wpdb->prepare(
+				"SELECT COUNT(*) FROM %i WHERE ( %d = 0 OR status IN ('queued','agent','offline') ) AND ( %s = '' OR status = %s ) AND ( %s = '' OR name LIKE %s OR email LIKE %s OR phone LIKE %s OR page_title LIKE %s )",
+				flxcb_table( 'conversations' ),
+				$open,
+				$stat,
+				$stat,
+				$search,
+				$like,
+				$like,
+				$like,
+				$like
+			)
+		);
 	}
 
 	/**
@@ -161,8 +163,8 @@ final class FLXCB_Chat_Service {
 		$rows  = array_slice( $rows, 0, $limit );
 		if ( $rows && ! $peek ) {
 			/** @var \wpdb $wpdb */
-		global $wpdb;
-			$last_in = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT MAX(id) FROM ' . flxcb_table( 'messages' ) . " WHERE conv_id = %d AND role = 'visitor'", $conv_id ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+			global $wpdb;
+			$last_in = (int) $wpdb->get_var( $wpdb->prepare( "SELECT MAX(id) FROM %i WHERE conv_id = %d AND role = 'visitor'", flxcb_table( 'messages' ), $conv_id ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 			flxcb_update_conversation( $conv_id, array( 'agent_read' => $last_in, 'unread' => 0 ) );
 		}
 		$out = array();
@@ -229,14 +231,14 @@ final class FLXCB_Chat_Service {
 	public static function stats( int $days = 30 ): FLXCB_Stats {
 		$s = flxcb_stats( max( 1, min( 365, $days ) ) );
 		return new FLXCB_Stats(
-			FLXCB_Val::int( $s['total'] ?? 0 ),
-			FLXCB_Val::int( $s['human'] ?? 0 ),
-			FLXCB_Val::int( $s['resolved'] ?? 0 ),
-			FLXCB_Val::int( $s['leads'] ?? 0 ),
-			FLXCB_Val::int( $s['orders'] ?? 0 ),
-			is_numeric( $s['rating'] ?? 0 ) ? (float) $s['rating'] : 0.0,
-			FLXCB_Val::int( $s['rated'] ?? 0 ),
-			FLXCB_Val::int( $s['open'] ?? 0 )
+			$s['total'],
+			$s['human'],
+			$s['resolved'],
+			$s['leads'],
+			$s['orders'],
+			(float) $s['rating'],
+			$s['rated'],
+			$s['open']
 		);
 	}
 
