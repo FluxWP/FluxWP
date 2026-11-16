@@ -19,9 +19,9 @@ php -d memory_limit=4G vendor/bin/phpstan analyse -c legacy.neon      # ~4 min c
    `- ../../plugins/flx-tasks/includes/services` and `- ../../plugins/flx-tasks/includes/graphql`.
 2. Add the package's constants (`FLXG_VERSION` …) to `bootstrap.php` if the new code reads them.
 3. Fix every error. No `@phpstan-ignore` without a reason in the same comment; no baseline for strict.
-4. Shared array shapes go under `typeAliases` (`FlxGqlSettings` is an example).
+4. Shared array shapes go under `typeAliases` in `types.neon` (`FlxGqlSettings` is an example). Both configs include it, so legacy code that calls a kit function resolves the alias too.
 
-The legacy config excludes nothing automatically; files that move to strict stay in legacy too, which is harmless.
+Legacy does not analyse `plugins/*/includes/services` and `plugins/*/includes/graphql` (the strict folders), so the runtime guards strict asks for (`is_string()` on a PHPDoc `string`) are not reported there as "always true". Keep strict code in those two folders.
 
 ## Baseline
 
