@@ -11,7 +11,10 @@
  * Names: option "flxb_wc_look" → field flxbWcLook, type FlxSettingsFlxbWcLook (input …Input). A schema
  * entry may set 'graphql' => 'DonateLook' for a nicer name (FlxSettingsDonateLook, field donateLook).
  * Field types: bool → Boolean, int/page → Int, number → Float, enum → enum (String when a value is not a
- * valid GraphQL name), object/list → FlxJSON, others → String. Keys that look like secrets are never exposed.
+ * valid GraphQL name), object/list → FlxJSON, others → String.
+ * Secrets are never exposed, fail closed (flx_gql_is_secret_key): a field or option whose name looks like a
+ * secret, a field with 'secret' => true or type password/secret is left out, and keys that look like secrets
+ * are removed from object/list values (and kept as stored when such a value is written).
  * Read and write need `manage_options` (or the entry's 'cap').
  *
  * @package FLX_GraphQL
@@ -20,6 +23,90 @@
 defined( 'ABSPATH' ) || exit;
 
 add_action( 'flx_gql_register_core', 'flx_gql_register_settings_types', 30 );
+
+/**
+ * Whether a settings key looks like a secret (API key, token, password …). Fail closed: when in doubt, yes.
+ *
+ * The key is split into words (snake_case, kebab-case, camelCase, dots): a word such as key, secret, token,
+ * password, pass, pwd, pin, auth, private, credential, salt or signature marks it, and so does a
+ * glued form anywhere in the key (apikey, accesstoken, clientsecret, privatekey, passwd …).
+ * Filter `flx_gql_secret_key` can only add secrets (a true from the kit is never turned off).
+ *
+ * @param string $key Option or field key.
+ */
+function flx_gql_is_secret_key( string $key ): bool {
+	$norm  = strtolower( (string) preg_replace( '/([a-z0-9])([A-Z])/', '$1_$2', $key ) );
+	$words = array_filter( (array) preg_split( '/[^a-z0-9]+/', $norm ) );
+	$hit   = (bool) array_intersect(
+		$words,
+		array( 'key', 'keys', 'secret', 'secrets', 'token', 'tokens', 'password', 'passwords', 'passwd', 'pass', 'passphrase', 'pwd', 'pin', 'auth', 'private', 'credential', 'credentials', 'salt', 'signature', 'bearer', 'dsn' )
+	);
+	if ( ! $hit ) {
+		$hit = (bool) preg_match( '/secret|token|passw|apikey|accesskey|privatekey|secretkey|signingkey|clientkey|licensekey|credential|bearer/', (string) preg_replace( '/[^a-z0-9]/', '', $norm ) );
+	}
+	/**
+	 * Marks more settings keys as secret. Returning false cannot un-hide a key the kit found.
+	 *
+	 * @param bool   $hit Whether the key is a secret.
+	 * @param string $key The key.
+	 */
+	return $hit || (bool) apply_filters( 'flx_gql_secret_key', false, $key );
+}
+
+/**
+ * Whether a schema field must stay out of GraphQL: its name looks like a secret, it says 'secret' => true,
+ * or its type is password/secret.
+ *
+ * @param string              $key Field key.
+ * @param array<mixed,mixed>  $f   Schema field.
+ */
+function flx_gql_is_secret_field( string $key, array $f ): bool {
+	return ! empty( $f['secret'] ) || in_array( $f['type'] ?? '', array( 'password', 'secret' ), true ) || flx_gql_is_secret_key( $key );
+}
+
+/**
+ * An object/list setting without the keys that look like secrets (recursively).
+ *
+ * @param mixed $v Stored value.
+ * @return mixed
+ */
+function flx_gql_settings_redact( $v ) {
+	if ( ! is_array( $v ) ) {
+		return $v;
+	}
+	$out = array();
+	foreach ( $v as $k => $item ) {
+		if ( is_string( $k ) && flx_gql_is_secret_key( $k ) ) {
+			continue;
+		}
+		$out[ $k ] = flx_gql_settings_redact( $item );
+	}
+	return array_is_list( $v ) ? array_values( $out ) : $out;
+}
+
+/**
+ * Written object/list value with the stored secret keys put back (the client never saw them).
+ * Only string keys at the same path are restored; a list item is matched by its index.
+ *
+ * @param mixed $new     Written value.
+ * @param mixed $current Stored value.
+ * @return mixed
+ */
+function flx_gql_settings_keep_secrets( $new, $current ) {
+	if ( ! is_array( $new ) || ! is_array( $current ) ) {
+		return $new;
+	}
+	foreach ( $current as $k => $item ) {
+		if ( is_string( $k ) && flx_gql_is_secret_key( $k ) ) {
+			if ( ! array_key_exists( $k, $new ) ) {
+				$new[ $k ] = $item;
+			}
+		} elseif ( array_key_exists( $k, $new ) ) {
+			$new[ $k ] = flx_gql_settings_keep_secrets( $new[ $k ], $item );
+		}
+	}
+	return $new;
+}
 
 /**
  * Normalised settings schema: [ option => { field, type, cap, label, fields: [ key => { gql, type, enum, default, desc } ] } ].
@@ -38,10 +125,13 @@ function flx_gql_settings_schema(): array {
 		if ( '' === $base || isset( $used[ $base ] ) || ! preg_match( '/^[A-Z]/', $base ) ) {
 			continue;
 		}
+		if ( ! empty( $entry['secret'] ) || flx_gql_is_secret_key( $option ) ) {
+			continue;
+		}
 		$used[ $base ] = true;
 		$fields        = array();
 		foreach ( $entry['fields'] as $key => $f ) {
-			if ( ! is_string( $key ) || ! is_array( $f ) || preg_match( '/secret|password|passwd|token|api_?key|private/i', $key ) ) {
+			if ( ! is_string( $key ) || ! is_array( $f ) || flx_gql_is_secret_field( $key, $f ) ) {
 				continue;
 			}
 			$gql = flx_gql_camel( $key );
@@ -237,6 +327,9 @@ function flx_gql_register_settings_types(): void {
 							$errors->add( 'invalid', $clean->get_error_message(), array( 'field' => $o['field'] . '.' . $gql, 'status' => 400 ) );
 							continue;
 						}
+						if ( in_array( $f['type'], array( 'object', 'list' ), true ) ) {
+							$clean = flx_gql_settings_keep_secrets( $clean, $current[ $f['key'] ] ?? null );
+						}
 						$current[ $f['key'] ] = $clean;
 					}
 					if ( ! $errors->has_errors() ) {
@@ -277,7 +370,7 @@ function flx_gql_settings_out( $v, array $f ) {
 			return is_numeric( $v ) ? (float) $v : null;
 		case 'object':
 		case 'list':
-			return $v;
+			return flx_gql_settings_redact( $v );
 		case 'enum':
 			return null === $v || '' === $v ? null : $v;
 		default:
