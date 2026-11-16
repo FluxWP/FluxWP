@@ -55,6 +55,7 @@ jobs:
           bun run --filter @fluxwp/graphql schema
           if ! git diff --quiet -- packages/graphql/schema; then
             git diff --stat -- packages/graphql/schema
+            git diff -U2 -- packages/graphql/schema | head -600
             echo "::error title=Schema snapshot::packages/graphql/schema/schema.graphql is out of date. Run 'bun run --filter @fluxwp/graphql schema' and commit it."
             exit 1
           fi
