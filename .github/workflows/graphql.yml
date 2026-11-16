@@ -55,9 +55,22 @@ jobs:
           bun run --filter @fluxwp/graphql schema
           if ! git diff --quiet -- packages/graphql/schema; then
             git diff --stat -- packages/graphql/schema
+            # Full diff in the log (local WP / theme / WooCommerce versions can produce a different snapshot);
+            # the CI snapshot is also uploaded as the "graphql-schema-ci" artifact.
+            echo "::group::Schema diff (CI output vs committed)"
+            git diff -- packages/graphql/schema | head -n 2000
+            echo "::endgroup::"
             echo "::error title=Schema snapshot::packages/graphql/schema/schema.graphql is out of date. Run 'bun run --filter @fluxwp/graphql schema' and commit it."
             exit 1
           fi
+
+      - name: Upload the CI schema snapshot
+        if: failure()
+        uses: actions/upload-artifact@v5
+        with:
+          name: graphql-schema-ci
+          path: packages/graphql/schema/
+          if-no-files-found: ignore
 
       - name: Breaking changes
         env:

@@ -2,9 +2,10 @@
 /**
  * Plugin Name:       Flux Speed
  * Description:       Site performansı tek yerde: istek başına sorgular, PHP hataları, dış HTTP istekleri (geliştirici paneli), yavaş/hatalı istek kayıtları, sunucu (CPU, RAM, disk, OPcache), veritabanı, autoload, cron ve Sistem Kontrolü. Yapay zekâ hepsini Flux AI & MCP / Flux AI araçlarıyla okur.
- * Version:           0.8.0
+ * Version:           0.9.0
  * Requires at least: 6.4
- * Requires PHP:      7.4
+ * Requires PHP:      8.1
+ * Requires Plugins:  flx-graphql
  * Author:            FluxWP
  * License:           GPL-2.0-or-later
  * Text Domain:       flx-speed
@@ -21,13 +22,14 @@ if ( defined( 'FLXP_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXP_VERSION', '0.8.0' );
+define( 'FLXP_VERSION', '0.9.0' );
 define( 'FLXP_DB_VERSION', 1 );
 define( 'FLXP_FILE', __FILE__ );
 define( 'FLXP_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXP_URL', plugin_dir_url( __FILE__ ) );
 
 require_once FLXP_DIR . 'includes/settings.php';
+require_once FLXP_DIR . 'includes/services/class-flxp-speed-service.php';
 require_once FLXP_DIR . 'includes/optimize.php';
 require_once FLXP_DIR . 'includes/util.php';
 require_once FLXP_DIR . 'includes/login-url.php';
@@ -53,6 +55,42 @@ if ( is_admin() ) {
 // Toplama mümkün olduğunca erken başlar (yüklenen eklentilerin sorguları da görünsün).
 FLXP_Collector::boot();
 FLXP_Cron_Timing::boot();
+
+/*
+ * GraphQL (Flux GraphQL): schema only inside a GraphQL request; the persisted operations the Speed
+ * screen sends. Without Flux GraphQL (0.2.0+, capability model) the schema is left out and the
+ * classic pages keep working.
+ */
+add_action(
+	'flx_gql_register',
+	static function () {
+		if ( ! function_exists( 'flx_gql_all_caps' ) ) {
+			return;
+		}
+		require_once FLXP_DIR . 'includes/graphql/schema.php';
+	}
+);
+add_filter(
+	'flx_gql_persisted_manifests',
+	static function ( $m ) {
+		$m              = is_array( $m ) ? $m : array();
+		$m['flx-speed'] = FLXP_DIR . 'graphql/persisted-queries.json';
+		return $m;
+	}
+);
+add_filter(
+	'flx_gql_capabilities',
+	static function ( $caps ) {
+		$caps = is_array( $caps ) ? $caps : array();
+		if ( ! isset( $caps['flxp_view'] ) ) {
+			$caps['flxp_view'] = array(
+				'label'   => __( 'View Flux Speed', 'flx-speed' ),
+				'package' => 'flx-speed',
+			);
+		}
+		return $caps;
+	}
+);
 
 /*
  * Çeviri: kaynak metinler Türkçe; kullanıcı dili İngilizce olduğunda languages/ içindeki çeviri kullanılır.

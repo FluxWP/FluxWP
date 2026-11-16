@@ -27,10 +27,19 @@ parameters:
     # Legacy code the strict folders call (scanned for symbols only).
     - ../../plugins/flx-tasks/includes
     - ../../plugins/flx-roles/includes
+    - ../../plugins/flx-analytics/includes
+    - ../../plugins/flx-recaptcha/includes
+    - ../../plugins/flx-speed/includes
+    - ../../plugins/flx-ai/includes
+    - ../../plugins/flx-admin/includes
+    - ../../themes/fluxwp/inc
+    - ../../plugins/flx-blocks/includes
+    - ../../plugins/flx-setup/includes
     - ../../plugins/flx-app/includes
     - ../../plugins/flx-lang/includes
     - ../../plugins/flx-seo/includes
     - ../../plugins/flx-wiki/includes
+    - ../../plugins/flx-crm/includes
   paths:
     - ../../plugins/flx-graphql/flx-graphql.php
     - ../../plugins/flx-graphql/uninstall.php
@@ -41,6 +50,30 @@ parameters:
     # Flux Roles (Faz 1)
     - ../../plugins/flx-roles/includes/services
     - ../../plugins/flx-roles/includes/graphql
+    # Flux Analytics (Faz 1)
+    - ../../plugins/flx-analytics/includes/services
+    - ../../plugins/flx-analytics/includes/graphql
+    # Flux reCAPTCHA (Faz 1)
+    - ../../plugins/flx-recaptcha/includes/services
+    - ../../plugins/flx-recaptcha/includes/graphql
+    # Flux Speed (Faz 1)
+    - ../../plugins/flx-speed/includes/services
+    - ../../plugins/flx-speed/includes/graphql
+    # Flux AI (Faz 1)
+    - ../../plugins/flx-ai/includes/services
+    - ../../plugins/flx-ai/includes/graphql
+    # Flux Admin (Faz 1)
+    - ../../plugins/flx-admin/includes/services
+    - ../../plugins/flx-admin/includes/graphql
+    # FluxWP theme
+    - ../../themes/fluxwp/inc/services
+    - ../../themes/fluxwp/inc/graphql
+    # Flux Block Editor (Faz 4)
+    - ../../plugins/flx-blocks/includes/services
+    - ../../plugins/flx-blocks/includes/graphql
+    # FluxWP Panel (Faz 1)
+    - ../../plugins/flx-setup/includes/services
+    - ../../plugins/flx-setup/includes/graphql
     # Flux App (Faz 1)
     - ../../plugins/flx-app/includes/services
     - ../../plugins/flx-app/includes/graphql
@@ -53,6 +86,13 @@ parameters:
     # Flux Wiki (Faz 1)
     - ../../plugins/flx-wiki/includes/services
     - ../../plugins/flx-wiki/includes/graphql
+    # Flux CRM (Faz 1)
+    - ../../plugins/flx-crm/includes/services
+    - ../../plugins/flx-crm/includes/graphql
   excludePaths:
     - ../../plugins/flx-graphql/includes/flx-brand
   treatPhpDocTypesAsCertain: false
+  ignoreErrors:
+    # The wizard steps file is loaded on demand (FLXK_DIR points at tools/phpstan here).
+    - message: '#Path in require_once\(\) ".*/includes/onboarding\.php" is not a file#'
+      path: ../../plugins/flx-setup/includes/graphql/schema.php

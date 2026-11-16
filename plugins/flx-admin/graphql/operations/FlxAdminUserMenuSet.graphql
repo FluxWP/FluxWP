@@ -1,0 +1,15 @@
+mutation FlxAdminUserMenuSet($input: FlxAdminUserMenuSetInput!) {
+  flxAdminUserMenuSet(input: $input) {
+    menu {
+      pins
+      away
+      subAway
+      subKeep
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

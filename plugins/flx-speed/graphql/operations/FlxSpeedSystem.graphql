@@ -1,0 +1,34 @@
+query FlxSpeedSystem {
+  flxSpeedSystem {
+    checks {
+      id
+      source
+      group
+      groupLabel
+      label
+      status
+      message
+      actionUrl
+      actionLabel
+    }
+    summary {
+      ok
+      warning
+      error
+      info
+    }
+    fixes {
+      at {
+        ...FlxSpeedWhenFields
+      }
+      user
+      label
+      value
+      before
+      after
+      ok
+      message
+    }
+    hasFixes
+  }
+}
