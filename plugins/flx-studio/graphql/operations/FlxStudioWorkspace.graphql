@@ -1,0 +1,61 @@
+# Everything the Studio screen needs on opening.
+query FlxStudioWorkspace {
+  flxStudio {
+    version
+    userId
+    userName
+    canManage
+    canLibrary
+    aiMedia
+    aiText
+    setupUrl
+    catalog {
+      defaultImage
+      defaultVideo
+      providers {
+        id
+        label
+        ready
+      }
+      models {
+        id
+        label
+        kind
+        routes
+        providers
+        auto
+        aspects
+        resolutions
+        qualities
+        durationMin
+        durationMax
+        durationDefault
+        maxRefs
+        maxCount
+        mask
+        prices {
+          resolution
+          usd
+        }
+      }
+    }
+    settings {
+      ...FlxStudioSettingsRow
+    }
+    folders {
+      ...FlxStudioFolderRow
+    }
+    people {
+      ...FlxStudioPersonRow
+    }
+    refs {
+      ...FlxStudioRefRow
+    }
+    templates {
+      ...FlxStudioTemplateRow
+    }
+    budget {
+      ...FlxStudioBudgetRow
+    }
+  }
+}

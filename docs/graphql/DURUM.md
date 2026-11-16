@@ -33,6 +33,7 @@ Faz 0'da 0.4, 0.5 ve 0.6 merge edilince başlar (plan §5).
 
 | Paket | Durum | PR / not |
 |---|---|---|
+| flx-studio 0.5.0 | 👀 | `gql/flx-studio-1`: servis katmanı, 26 kayıtlı işlem (sorgu + mutation), sözleşme testi 90/90, React ekranı (`studio`) klasikle eşit, wp-admin varsayılanı; klasik bağlantıyla. Eşleme `ESLEME/flx-studio.md`, API `docs/flx-studio/GRAPHQL.md` |
 | flx-analytics 0.5.0 | 👀 | `gql/flx-analytics-1`: servis katmanı, 14 sorgu + 7 mutation, 21 kayıtlı işlem, sözleşme testi 75/75. React ekranları (`flxan-stats`, `-journeys`, `-settings`, `-telemetry`) klasikle eşit, wp-admin varsayılanı. Ziyaret toplama ve telemetri alımı istisna (`ISTISNALAR.md`). Eşleme `ESLEME/flx-analytics.md` |
 | flx-seo 1.11.0 | 👀 | `gql/flx-seo-1`: 3 servis, 5 sorgu + 5 mutation + ayar tipi (`flxSettings.flxseo`) + `flxSeo` alanı (her içerik/terim), 9 kayıtlı işlem, sözleşme testi 120/120. React ekranı `flxseo-seo` (5 sekme) klasikle eşit, wp-admin varsayılanı. Eşleme `ESLEME/flx-seo.md` |
 | flx-roles 1.5.0 | 👀 | `gql/flx-roles-1`: servis katmanı, 4 sorgu + 6 mutation, 8 kayıtlı işlem, sözleşme testi 55/55. React ekranı (`flxr-roles`) klasikle eşit, wp-admin varsayılanı; klasik sayfadaki bağlantıyla. Kit 0.2.0 yetki modeli (`flx_gql_any_cap/all_caps`, `flx_gql_capabilities`, `flxViewer`, `useFlxCan`), KURALLAR §3.1. Eşleme `ESLEME/flx-roles.md` |

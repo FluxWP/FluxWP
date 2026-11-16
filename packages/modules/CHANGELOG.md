@@ -1,5 +1,8 @@
 # @fluxwp/modules
 
+## 0.3.19
+- Studio: new `studio` screen for Flux Studio (gallery, folders, favorites, composer with references/people/@mention, enhance, brainstorm, templates, viewer, compare, mask editor, dashboard, settings). Data over GraphQL, uploads over `/flx/v1/upload`.
+
 ## 0.3.18
 - Backup: new `flxy-backup` screen for Flux Backup (dashboard with history chart, backup list with filters/bulk delete/lock/upload, detail with size breakdown, settings, back up now, restore, job progress). Same look as the classic pages on FluxWP tokens, light and dark; data over GraphQL (the job is advanced with `flxBackupStep`); texts from the plugin's language packs (`plugins/flx-backup/tools/i18n.py`).
 

@@ -3,6 +3,7 @@ return array(
  'language' => 'ja',
  'plural-forms' => 'nplurals=1; plural=0;',
  'messages' => array(
+  'New view' => '新しい表示',
   'General' => '一般',
   'Person (face/identity)' => '人物(顔/正体)',
   'Style' => 'スタイル',

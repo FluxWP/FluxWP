@@ -6,15 +6,25 @@
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * @return bool
+ */
 function flxst_ai_ready() {
 	return function_exists( 'flxai_media_submit' ) && function_exists( 'flxai_media_status' );
 }
 
+/**
+ * @return bool
+ */
 function flxst_text_ready() {
 	return function_exists( 'flxai_chat' ) && function_exists( 'flxai_ready' ) && flxai_ready( 'flx-studio' );
 }
 
-/** Flux AI'nin model listesi (anahtar içermez). */
+/**
+ * Flux AI'nin model listesi (anahtar içermez).
+ *
+ * @return array<string,mixed>
+ */
 function flxst_models() {
 	if ( ! function_exists( 'flxai_media_providers' ) ) {
 		return array( 'providers' => array(), 'models' => array() );
@@ -28,11 +38,21 @@ function flxst_models() {
  * ------------------------------------------------------------------------- */
 
 /**
- * Üretim başlatır. Her çıktı için bir kayıt açılır (galeride yer tutucu), iş Flux AI'ye gönderilir.
+ * Üretim başlatır (REST biçimi: kayıtların JSON'u).
  *
  * @return array|WP_Error items[]
  */
 function flxst_generate( array $in, $user_id ) {
+	$ids = flxst_generate_ids( $in, $user_id );
+	return is_wp_error( $ids ) ? $ids : array_map( 'flxst_format_item', array_map( 'flxst_item', $ids ) );
+}
+
+/**
+ * Üretim başlatır. Her çıktı için bir kayıt açılır (galeride yer tutucu), iş Flux AI'ye gönderilir.
+ *
+ * @return list<int>|WP_Error
+ */
+function flxst_generate_ids( array $in, $user_id ) {
 	if ( ! flxst_ai_ready() ) {
 		return new WP_Error( 'flxst_ai', __( 'Flux AI (0.6.0+) is not installed or image generation is off.', 'flx-studio' ), array( 'status' => 503 ) );
 	}
@@ -165,7 +185,7 @@ function flxst_generate( array $in, $user_id ) {
 	}
 	set_transient( 'flxst_' . $tmp, array( 'req' => $req, 'at' => time() ), HOUR_IN_SECONDS );
 	flxst_defer( $tmp );
-	return array_map( 'flxst_format_item', array_map( 'flxst_item', $ids ) );
+	return $ids;
 }
 
 /**
@@ -406,6 +426,15 @@ add_action(
  * @return array items[] (değişenler dahil, istenen işlerin tüm kayıtları)
  */
 function flxst_poll( array $jobs, $user_id ) {
+	return array_map( 'flxst_format_item', flxst_poll_rows( $jobs, $user_id ) );
+}
+
+/**
+ * Aynı sorgu, tablo satırı olarak.
+ *
+ * @return list<array<string,mixed>>
+ */
+function flxst_poll_rows( array $jobs, $user_id ) {
 	global $wpdb;
 	$t   = flxst_table( 'items' );
 	$out = array();
@@ -419,7 +448,7 @@ function flxst_poll( array $jobs, $user_id ) {
 				$rows = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$t} WHERE job = %s ORDER BY out_index", $job ), ARRAY_A ); // phpcs:ignore WordPress.DB
 				if ( $rows && flxst_item_visible( $rows[0], $user_id ) ) {
 					foreach ( $rows as $r ) {
-						$out[] = flxst_format_item( $r );
+						$out[] = $r;
 					}
 				}
 				continue;
@@ -441,7 +470,7 @@ function flxst_poll( array $jobs, $user_id ) {
 		}
 		$rows = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$t} WHERE job = %s ORDER BY out_index", $job ), ARRAY_A ); // phpcs:ignore WordPress.DB
 		foreach ( (array) $rows as $r ) {
-			$out[] = flxst_format_item( $r );
+			$out[] = $r;
 		}
 	}
 	return $out;
@@ -515,6 +544,8 @@ function flxst_chat( array $messages, $purpose, $max = 1500 ) {
 /**
  * Taslağı modele uygun ayrıntılı isteme çevirir.
  * $mode: image | video | edit
+ *
+ * @return string|WP_Error
  */
 function flxst_enhance( $draft, $mode, array $refs, $model_label = '' ) {
 	$draft = trim( (string) $draft );
@@ -539,6 +570,8 @@ function flxst_enhance( $draft, $mode, array $refs, $model_label = '' ) {
 /**
  * Bir brief'ten N farklı fikir: [{title, prompt}].
  * $style: simple | youtube
+ *
+ * @return list<array<string,mixed>>|WP_Error
  */
 function flxst_brainstorm( $brief, $count, $style, array $refs, $mode = 'image' ) {
 	$brief = trim( (string) $brief );

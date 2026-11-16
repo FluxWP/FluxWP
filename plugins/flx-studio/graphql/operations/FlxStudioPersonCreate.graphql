@@ -1,0 +1,12 @@
+mutation FlxStudioPersonCreate($input: FlxStudioPersonCreateInput!) {
+  flxStudioPersonCreate(input: $input) {
+    person {
+      ...FlxStudioPersonRow
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

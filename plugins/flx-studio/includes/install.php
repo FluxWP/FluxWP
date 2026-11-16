@@ -6,6 +6,9 @@ defined( 'ABSPATH' ) || exit;
 const FLXST_CAP_USE    = 'flxst_use';
 const FLXST_CAP_MANAGE = 'flxst_manage';
 
+/**
+ * @return string
+ */
 function flxst_table( $name ) {
 	global $wpdb;
 	return $wpdb->prefix . 'flxst_' . $name;
@@ -139,6 +142,9 @@ add_filter(
 	}
 );
 
+/**
+ * @return array<string,mixed>
+ */
 function flxst_defaults() {
 	return array(
 		'image_model'   => '',
@@ -150,14 +156,64 @@ function flxst_defaults() {
 	);
 }
 
+/**
+ * @return array<string,mixed>
+ */
 function flxst_settings() {
 	return wp_parse_args( (array) get_option( 'flxst_settings', array() ), flxst_defaults() );
 }
 
+/* Every write of the option (Studio, flxSettingsUpdate, presets) is clamped the same way. */
+add_filter(
+	'pre_update_option_flxst_settings',
+	function ( $value ) {
+		return FLXST_Service::sanitize_settings( FLXST_Util::arr( $value ) );
+	}
+);
+
+/* Preset / AI writable settings (flx_settings_schema). Same keys as the panel. */
+add_filter(
+	'flx_settings_schema',
+	function ( $s ) {
+		$s                  = is_array( $s ) ? $s : array();
+		$s['flxst_settings'] = array(
+			'label'   => 'Flux Studio',
+			'graphql' => 'studio',
+			'cap'     => FLXST_CAP_MANAGE,
+			'fields'  => array(
+				'image_model'   => array( 'type' => 'string', 'default' => '', 'desc' => 'Default image model id (empty: the Flux AI default).' ),
+				'video_model'   => array( 'type' => 'string', 'default' => '', 'desc' => 'Default video model id (empty: the Flux AI default).' ),
+				'text_model'    => array( 'type' => 'string', 'default' => '', 'desc' => 'Text model for Enhance and Brainstorm (empty: the Flux AI default).' ),
+				'max_n'         => array( 'type' => 'int', 'default' => 4, 'desc' => 'Most images one request may ask for (1-8).' ),
+				'max_batch'     => array( 'type' => 'int', 'default' => 20, 'desc' => 'Most ideas one Brainstorm may return (1-40).' ),
+				'shared_people' => array( 'type' => 'bool', 'default' => true, 'desc' => 'People are shared with every Studio user.' ),
+			),
+		);
+		return $s;
+	}
+);
+
+/* The screen hides menu entries by capability (flxViewer.capabilities). */
+add_filter(
+	'flx_gql_capabilities',
+	function ( $caps ) {
+		$caps = is_array( $caps ) ? $caps : array();
+		$caps[ FLXST_CAP_USE ]    = array( 'label' => __( 'Studio: generate images/videos', 'flx-studio' ), 'group' => 'studio', 'package' => 'flx-studio' );
+		$caps[ FLXST_CAP_MANAGE ] = array( 'label' => __( 'Studio: all galleries and settings', 'flx-studio' ), 'group' => 'studio', 'package' => 'flx-studio' );
+		return $caps;
+	}
+);
+
+/**
+ * @return bool
+ */
 function flxst_can_use( $user_id = 0 ) {
 	return $user_id ? user_can( $user_id, FLXST_CAP_USE ) || user_can( $user_id, FLXST_CAP_MANAGE ) : ( current_user_can( FLXST_CAP_USE ) || current_user_can( FLXST_CAP_MANAGE ) );
 }
 
+/**
+ * @return bool
+ */
 function flxst_can_manage() {
 	return current_user_can( FLXST_CAP_MANAGE );
 }

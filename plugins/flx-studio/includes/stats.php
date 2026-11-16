@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || exit;
  * Pano verisi.
  *
  * @param int $days 7–365 gün.
- * @return array
+ * @return array<string,mixed>
  */
 function flxst_stats( $days = 30 ) {
 	global $wpdb;

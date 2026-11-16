@@ -3,6 +3,7 @@ return array(
  'language' => 'pt_BR',
  'plural-forms' => 'nplurals=2; plural=(n > 1);',
  'messages' => array(
+  'New view' => 'Nova visualização',
   'General' => 'Geral',
   'Person (face/identity)' => 'Pessoa (rosto/identidade)',
   'Style' => 'Estilo',

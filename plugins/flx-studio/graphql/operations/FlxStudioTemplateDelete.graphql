@@ -1,0 +1,12 @@
+mutation FlxStudioTemplateDelete($input: FlxStudioTemplateDeleteInput!) {
+  flxStudioTemplateDelete(input: $input) {
+    templates {
+      ...FlxStudioTemplateRow
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

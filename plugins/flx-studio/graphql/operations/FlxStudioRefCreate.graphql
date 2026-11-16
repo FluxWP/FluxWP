@@ -1,0 +1,12 @@
+mutation FlxStudioRefCreate($input: FlxStudioRefCreateInput!) {
+  flxStudioRefCreate(input: $input) {
+    ref {
+      ...FlxStudioRefRow
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

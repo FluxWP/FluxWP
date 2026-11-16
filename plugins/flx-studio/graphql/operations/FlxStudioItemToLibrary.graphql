@@ -1,0 +1,14 @@
+mutation FlxStudioItemToLibrary($input: FlxStudioItemToLibraryInput!) {
+  flxStudioItemToLibrary(input: $input) {
+    library {
+      attachmentId
+      editUrl
+      url
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

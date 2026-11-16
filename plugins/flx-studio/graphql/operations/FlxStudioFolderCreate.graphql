@@ -1,0 +1,12 @@
+mutation FlxStudioFolderCreate($input: FlxStudioFolderCreateInput!) {
+  flxStudioFolderCreate(input: $input) {
+    folder {
+      ...FlxStudioFolderRow
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

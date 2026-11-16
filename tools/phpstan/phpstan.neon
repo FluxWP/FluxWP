@@ -27,6 +27,7 @@ parameters:
     # Legacy code the strict folders call (scanned for symbols only).
     - ../../plugins/flx-tasks/includes
     - ../../plugins/flx-roles/includes
+    - ../../plugins/flx-studio/includes
     - ../../plugins/flx-chatbot/includes
     - ../../plugins/flx-analytics/includes
     - ../../plugins/flx-recaptcha/includes
@@ -54,6 +55,9 @@ parameters:
     # Flux Roles (Faz 1)
     - ../../plugins/flx-roles/includes/services
     - ../../plugins/flx-roles/includes/graphql
+    # Flux Studio (Faz 1)
+    - ../../plugins/flx-studio/includes/services
+    - ../../plugins/flx-studio/includes/graphql
     # Flux AI Chatbot (Faz 3)
     - ../../plugins/flx-chatbot/includes/services
     - ../../plugins/flx-chatbot/includes/graphql

@@ -1,0 +1,5 @@
+query FlxStudioItem($id: Int!) {
+  flxStudioItem(id: $id) {
+    ...FlxStudioItemRow
+  }
+}

@@ -3,6 +3,7 @@ return array(
  'language' => 'zh_CN',
  'plural-forms' => 'nplurals=1; plural=0;',
  'messages' => array(
+  'New view' => '新视图',
   'General' => '一般',
   'Person (face/identity)' => '人(面孔/身份)',
   'Style' => '风格',

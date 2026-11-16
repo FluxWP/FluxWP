@@ -47,6 +47,7 @@ Kaldırılma koşulu olan uçlar. Koşul gerçekleşince satır silinir, uç kal
 | Flux Files `flx-files/v1/op` | flx-files | Klasik ekran ve eski FluxApp sürümleri; servisi çağırır, çıktı aynı | Eski sürümler desteklenmeyince kalkar |
 | Flux Backup: yedek indirme (`admin-post flxy_download`), parçalı yükleme (`admin-ajax flxy_upload_*`) | flx-backup | Dosya akışı; GraphQL yalnız imzalı `downloadUrl` verir, yükleme çok parçalı ikili veri | `FlxBackup.downloadUrl`; yükleme sonrası kayıt `flxBackup` ile okunur |
 | Flux Backup: `admin-ajax flxy_step` belirteç yolu | flx-backup | Veritabanı geri yüklemesi oturumu silebilir; ekran iş belirteciyle adımlamayı sürdürmeli | Oturum açıkken `flxBackupStep` |
+| Flux Studio mobil manifest (`flx-studio/v1/boot` mobil alanları) ve referans dosya yükleme `/flx/v1/upload` | flx-studio | FluxApp eski sürümleri; yükleme çok parçalı dosya akışı, GraphQL yalnız `uploadId` alır | Çalışma alanı `flxStudioWorkspace`, yükleme sonrası `flxStudioRef*` |
 
 ## Satır ekleme
 

@@ -1,0 +1,140 @@
+fragment FlxStudioItemRow on FlxStudioItem {
+  id
+  databaseId
+  kind
+  state
+  job
+  batch
+  parentId
+  folderId
+  title
+  prompt
+  model
+  provider
+  params {
+    aspect
+    resolution
+    quality
+    count
+    duration
+    audio
+    progress
+    draft
+    edit
+    enhanced
+    idea
+    protected
+    refs {
+      type
+      id
+      role
+      name
+      thumb
+      photos
+    }
+  }
+  url
+  thumb
+  mime
+  width
+  height
+  bytes
+  cost
+  error
+  favorite
+  attachmentId
+  ownerId
+  ownerName
+  createdAt {
+    timestamp
+  }
+  updatedAt {
+    timestamp
+  }
+}
+
+fragment FlxStudioFolderRow on FlxStudioFolder {
+  databaseId
+  parentId
+  name
+  shared
+  ownerId
+}
+
+fragment FlxStudioRefRow on FlxStudioRef {
+  databaseId
+  personId
+  name
+  role
+  url
+  thumb
+  mime
+  width
+  height
+  saved
+}
+
+fragment FlxStudioPersonRow on FlxStudioPerson {
+  databaseId
+  name
+  ownerId
+  photos {
+    ...FlxStudioRefRow
+  }
+}
+
+fragment FlxStudioTemplateRow on FlxStudioTemplate {
+  databaseId
+  name
+  prompt
+  shared
+  ownerId
+  params {
+    kind
+    model
+    aspect
+    resolution
+    quality
+    size
+    count
+    duration
+    audio
+    mode
+    refs {
+      type
+      id
+      role
+      name
+      thumb
+      photos
+    }
+  }
+}
+
+fragment FlxStudioSettingsRow on FlxStudioSettings {
+  imageModel
+  videoModel
+  textModel
+  maxCount
+  maxBatch
+  sharedPeople
+}
+
+fragment FlxStudioBudgetRow on FlxStudioBudget {
+  period
+  label
+  limit
+  spent
+  pct
+  over
+}
+
+fragment FlxStudioItemPage on FlxStudioItemConnection {
+  nodes {
+    ...FlxStudioItemRow
+  }
+  pageInfo {
+    hasNextPage
+    endCursor
+  }
+}
