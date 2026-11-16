@@ -569,7 +569,7 @@ flx_gql_type(
 				'description' => __( 'Name of the value segment.', 'flx-crm' ),
 				'resolve'     => static function ( $s ): ?string {
 					$k = flxcrm_gql_c( $s )->segment;
-					return '' === $k ? null : flx_gql_str( flx_gql_arr( flxcrm_rfm_segments()[ $k ] ?? array() )[0] ?? $k );
+					return '' === $k ? null : flx_gql_str( array_values( flx_gql_arr( flxcrm_rfm_segments()[ $k ] ?? array() ) )[0] ?? $k );
 				},
 			),
 			'ltv'            => array( 'type' => 'FlxMoney', 'cap' => flxcrm_gql_view(), 'description' => __( 'Total value in the reporting currency.', 'flx-crm' ), 'resolve' => static fn( $s ): array => flx_gql_money( flxcrm_gql_c( $s )->ltv, flxcrm_currency() ) ),
@@ -1018,12 +1018,12 @@ flx_gql_mutation(
 		'output'      => array( 'contact' => array( 'type' => 'FlxContact', 'description' => __( 'The contact after the change.', 'flx-crm' ) ) ),
 		'resolve'     => static function ( array $input ) {
 			$id = flx_gql_decode_id( $input['contactId'] ?? 0, 'FlxContact' );
-			if ( null === FLXCRM_Contact_Service::get( $id ) ) {
+			$before = FLXCRM_Contact_Service::get( $id );
+			if ( null === $before ) {
 				return FLXCRM_Contact_Service::error( 'flxcrm_missing', __( 'Contact not found.', 'flx-crm' ), 'NOT_FOUND' );
 			}
 			FLXCRM_Contact_Service::tag_remove( $id, flx_gql_int( $input['tagId'] ?? 0 ) );
-			$c = FLXCRM_Contact_Service::get( $id );
-			return array( 'contact' => $c ? new FLXCRM_Contact_Node( $c ) : null );
+			return array( 'contact' => new FLXCRM_Contact_Node( FLXCRM_Contact_Service::get( $id ) ?? $before ) );
 		},
 	)
 );

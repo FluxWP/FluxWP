@@ -48,7 +48,7 @@ final class FLXCRM_Val {
 	 * @param mixed $v Value.
 	 */
 	public static function bool( $v ): bool {
-		return ! empty( $v ) && '0' !== $v;
+		return ! empty( $v ); // Empty also covers '0'.
 	}
 
 	/**
@@ -75,7 +75,7 @@ final class FLXCRM_Val {
  *
  * @phpstan-type FlxcrmConsent array{email: bool, sms: bool, whatsapp: bool, ads: bool}
  */
-class FLXCRM_Contact {
+final class FLXCRM_Contact {
 
 	/**
 	 * @param int          $id               Person id.
@@ -151,8 +151,8 @@ class FLXCRM_Contact {
 	 *
 	 * @param array<mixed> $r Row.
 	 */
-	public static function from_row( array $r ): static {
-		return new static(
+	public static function from_row( array $r ): self {
+		return new self(
 			FLXCRM_Val::int( $r['id'] ?? 0 ),
 			FLXCRM_Val::str( $r['name'] ?? '' ),
 			FLXCRM_Val::str( flxcrm_display_name( $r ) ),

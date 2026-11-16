@@ -139,10 +139,10 @@ final class FLXCRM_Insight_Service {
 			flx_gql_purge( array( FLXCRM_Segment_Service::TAG, FLXCRM_Contact_Service::TAG_META ) );
 		}
 		return array(
-			'scored'  => FLXCRM_Val::int( $r['scored'] ?? 0 ),
-			'changed' => FLXCRM_Val::int( $r['changed'] ?? 0 ),
-			'done'    => FLXCRM_Val::bool( $r['done'] ?? false ),
-			'total'   => FLXCRM_Val::int( $r['total'] ?? 0 ),
+			'scored'  => FLXCRM_Val::int( $r['scored'] ),
+			'changed' => FLXCRM_Val::int( $r['changed'] ),
+			'done'    => FLXCRM_Val::bool( $r['done'] ),
+			'total'   => FLXCRM_Val::int( $r['total'] ),
 		);
 	}
 
@@ -163,7 +163,7 @@ final class FLXCRM_Insight_Service {
 			'step'     => FLXCRM_Val::str( $r['step'] ?? '' ),
 			'label'    => FLXCRM_Val::str( $r['label'] ?? '' ),
 			'scanned'  => FLXCRM_Val::int( $r['scanned'] ?? 0 ),
-			'total'    => FLXCRM_Val::int( $r['total'] ?? 0 ),
+			'total'    => FLXCRM_Val::int( $r['total'] ),
 			'next'     => isset( $r['next'] ) && is_string( $r['next'] ) ? $r['next'] : null,
 			'page'     => FLXCRM_Val::int( $r['page'] ?? 1, 1 ),
 			'finished' => FLXCRM_Val::bool( $r['finished'] ?? false ),
