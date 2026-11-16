@@ -513,6 +513,7 @@ flx_gql_type(
 					)
 				),
 				'resolve'     => static function ( $l, array $args ): array {
+					/** @var array<string, mixed> $args */
 					$list = FLXBK_Library_Service::filter( flxbk_gql_src( $l, FLXBK_Library::class ), flxbk_gql_arg( $args, 'category' ), flxbk_gql_arg( $args, 'search' ) );
 					return flx_gql_paginate(
 						$args,

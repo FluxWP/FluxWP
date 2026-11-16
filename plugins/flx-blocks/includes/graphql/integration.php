@@ -15,7 +15,7 @@ add_action(
 		if ( ! function_exists( 'flx_gql_all_caps' ) ) {
 			return;
 		}
-		require_once FLXBK_PATH . 'includes/graphql/schema.php';
+		require_once __DIR__ . '/schema.php';
 	}
 );
 
@@ -44,7 +44,7 @@ function flxbk_gql_purge( array $tags ): void {
 add_action(
 	'save_post',
 	static function ( $post_id, $post ) {
-		if ( ! $post instanceof WP_Post || wp_is_post_revision( $post_id ) ) {
+		if ( ! $post instanceof WP_Post || wp_is_post_revision( $post ) ) {
 			return;
 		}
 		$shared = array( 'wp_block', 'flxbk_header', 'flxbk_navigation', 'flxbk_form', 'wp_template_part', 'wp_global_styles' );
@@ -52,7 +52,7 @@ add_action(
 			flxbk_gql_purge( array( FLXBK_Render_Service::TAG_STYLES, FLXBK_Library_Service::TAG ) );
 			return;
 		}
-		flxbk_gql_purge( array( FLXBK_Render_Service::TAG_POST . (int) $post_id ) );
+		flxbk_gql_purge( array( FLXBK_Render_Service::TAG_POST . $post->ID ) );
 	},
 	10,
 	2
@@ -60,7 +60,9 @@ add_action(
 add_action(
 	'deleted_post',
 	static function ( $post_id ) {
-		flxbk_gql_purge( array( FLXBK_Render_Service::TAG_POST . (int) $post_id ) );
+		if ( is_numeric( $post_id ) ) {
+			flxbk_gql_purge( array( FLXBK_Render_Service::TAG_POST . (int) $post_id ) );
+		}
 	}
 );
 
@@ -89,7 +91,7 @@ add_action(
 add_filter(
 	'register_setting_args',
 	static function ( $args, $defaults, $option_group, $option_name ) {
-		if ( is_array( $args ) && ( str_starts_with( (string) $option_name, 'flxbk_' ) || str_starts_with( (string) $option_name, 'fxt_blocks_' ) ) ) {
+		if ( is_array( $args ) && is_string( $option_name ) && ( str_starts_with( $option_name, 'flxbk_' ) || str_starts_with( $option_name, 'fxt_blocks_' ) ) ) {
 			$args['show_in_graphql'] = false;
 		}
 		return $args;

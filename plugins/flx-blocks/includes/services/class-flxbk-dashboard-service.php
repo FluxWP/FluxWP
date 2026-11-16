@@ -48,7 +48,8 @@ final class FLXBK_Dashboard_Service {
 	public static function block_types(): array {
 		$off = self::off();
 		$out = array();
-		$raw = class_exists( 'Flx_Blocks_Settings' ) ? Flx_Blocks_Settings::get_instance()->blocks_array() : array();
+		$settings = self::legacy();
+		$raw      = $settings ? $settings->blocks_array() : array();
 		foreach ( is_array( $raw ) ? $raw : array() as $b ) {
 			if ( ! is_array( $b ) || empty( $b['slug'] ) || ! is_string( $b['slug'] ) ) {
 				continue;
@@ -105,12 +106,19 @@ final class FLXBK_Dashboard_Service {
 		update_option( self::OPT_OFF, $off );
 	}
 
+	/** The classic settings class, which holds the block list and the theme check. */
+	private static function legacy(): ?Flx_Blocks_Settings {
+		$instance = class_exists( 'Flx_Blocks_Settings' ) ? Flx_Blocks_Settings::get_instance() : null;
+		return $instance instanceof Flx_Blocks_Settings ? $instance : null;
+	}
+
 	/**
 	 * Dashboard settings.
 	 */
 	public static function settings(): FLXBK_Settings {
 		$bar  = self::option_array( self::OPT_ADMIN_BAR );
-		$show = class_exists( 'Flx_Blocks_Settings' ) && (bool) apply_filters( 'flxbk_editor_width', Flx_Blocks_Settings::get_instance()->show_editor_width() );
+		$legacy = self::legacy();
+		$show   = $legacy && (bool) apply_filters( 'flxbk_editor_width', $legacy->show_editor_width() );
 		return new FLXBK_Settings(
 			'true' === ( $bar['show_headers_in_admin_bar'] ?? 'false' ),
 			(bool) apply_filters( 'flxbk_show_admin_bar', true ),

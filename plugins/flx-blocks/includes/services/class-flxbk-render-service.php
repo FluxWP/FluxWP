@@ -141,8 +141,9 @@ final class FLXBK_Render_Service {
 				setup_postdata( $post );
 			}
 			// What the page head does first (wp_enqueue_scripts): every block builds its CSS and enqueues its files.
-			if ( class_exists( 'Flx_Blocks_Frontend' ) ) {
-				Flx_Blocks_Frontend::get_instance()->frontend_css_parse( parse_blocks( $content ) );
+			$frontend = class_exists( 'Flx_Blocks_Frontend' ) ? Flx_Blocks_Frontend::get_instance() : null;
+			if ( $frontend instanceof Flx_Blocks_Frontend ) {
+				$frontend->frontend_css_parse( parse_blocks( $content ) );
 			}
 			/** This filter is documented in wp-includes/post-template.php */
 			$html = (string) apply_filters( 'the_content', $content );
