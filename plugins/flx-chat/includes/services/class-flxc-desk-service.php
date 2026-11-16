@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || exit;
 final class FLXC_Desk_Service {
 
 	/**
-	 * @return array<string,mixed>
+	 * @return array{replies: list<array<string,mixed>>}
 	 */
 	public static function replies(): array {
 		return array( 'replies' => flxc_replies_for_js() );
@@ -67,7 +67,7 @@ final class FLXC_Desk_Service {
 	}
 
 	/**
-	 * @return array<string,mixed>
+	 * @return array{text: string}
 	 */
 	public static function use_reply( WP_REST_Request $req ): array {
 		global $wpdb;

@@ -2,7 +2,7 @@
 
 Uç: `/graphql`. Temsilci `flxc_use`, yönetici `flxc_manage`. Rapor cap'leri (`flx_reports_manage`, `flx_reports_receive`, `flx_reports_view`) bu paketin kataloğunda. İşlemler `plugins/flx-chat/graphql/operations/` (18). Servisler `includes/services/`. Şema `includes/graphql/schema.php`.
 
-REST `flx-chat/v1` duruyor. `apps/mobile` ve `packages/core` aynı uçları kullanır.
+REST `flx-chat/v1` duruyor. `apps/mobile` ve `packages/core` aynı uçları kullanır. GraphQL mutation'ları REST'in çağırdığı servislerden geçer (`FLXC_Chat_Service`, `FLXC_Message_Service`, `FLXC_Desk_Service`); gönderim `flxc_send` içinden yapılır. Tarih alanları `FlxDateTime` (`flx_gql_datetime`). `created_at` GMT'dir (`flxc_now`). Milisaniye sayaçları (`ts`, `rev`, `lastMs`, `since`) `String` kalır çünkü GraphQL `Int` 32 bittir. Gönderimde ayrı bir hız sınırı yok; klasik yol da koymaz.
 
 ## Görünürlük
 

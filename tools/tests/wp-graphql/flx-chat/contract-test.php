@@ -46,6 +46,15 @@ add_filter(
 	'pre_http_request',
 	static function ( $pre, $args, $url ) {
 		unset( $args );
+		if ( ! empty( $GLOBALS['flxc_t_send_ok'] ) && str_contains( (string) $url, '/message/sendText/' ) ) {
+			return array(
+				'headers'  => array(),
+				'body'     => wp_json_encode( array( 'key' => array( 'id' => 'WA-ROUND' ) ) ),
+				'response' => array( 'code' => 200, 'message' => 'OK' ),
+				'cookies'  => array(),
+				'filename' => null,
+			);
+		}
 		if ( str_contains( (string) $url, 'chat/completions' ) ) {
 			return array(
 				'headers'  => array(),
@@ -222,6 +231,104 @@ flxt_same( 'NOT_FOUND', flxt_code( $exp ), 'export: hidden chat → NOT_FOUND' )
 $mid = (int) flxc_insert_message( array( 'chat_id' => $mine_id, 'conn' => 't', 'direction' => 'in', 'type' => 'image', 'body' => '', 'user_id' => 0, 'source' => 'contact' ), flxc_get_chat( $mine_id ) );
 $det = flxt_gql( 'mutation ($id: Int!) { flxChatReceiptDetach(input: { id: $id, kind: "donation", ref: 1 }) { ok } }', array( 'id' => $mid ), $a );
 flxt_same( 'FORBIDDEN', flxt_code( $det ), 'receipt detach: same capability as attach' );
+
+$classic_msgs = flxc_t_op( 'FlxChatMessages', array( 'chatId' => (string) $mine_id ), $a );
+$classic_bodies = array();
+foreach ( $classic_msgs['data']['flxChatMessages']['messages'] ?? array() as $line ) {
+	$classic_bodies[] = (string) ( $line['body'] ?? '' );
+}
+flxt_ok( in_array( 'hello', $classic_bodies, true ), 'round-trip: classic message is read by GraphQL', $classic_bodies );
+
+$sent_ids = array();
+add_action(
+	'flxc_message_sent',
+	static function ( $id ) use ( &$sent_ids ) {
+		$sent_ids[] = (int) $id;
+	}
+);
+$fail_send = flxc_t_op( 'FlxChatMessageSend', array( 'input' => array( 'chatId' => (string) $mine_id, 'body' => 'GQL-ROUND-FAIL', 'type' => 'text' ) ), $a );
+$fail_id   = (int) ( $fail_send['data']['flxChatMessageSend']['message']['databaseId'] ?? 0 );
+$fail_row  = flxc_get_message( $fail_id );
+flxt_same( 'GQL-ROUND-FAIL', is_array( $fail_row ) ? (string) $fail_row['body'] : '', 'round-trip: GraphQL send is stored by the classic writer' );
+flxt_same( 'failed', is_array( $fail_row ) ? (string) $fail_row['status'] : '', 'send: a provider error marks the line failed' );
+flxt_same( array(), $sent_ids, 'send: a provider error does not fire flxc_message_sent' );
+$fail_js = flxc_messages_for_js( is_array( $fail_row ) ? array( $fail_row ) : array() );
+flxt_same( 'GQL-ROUND-FAIL', (string) ( $fail_js[0]['body'] ?? '' ), 'round-trip: classic reader returns the GraphQL body' );
+
+$GLOBALS['flxc_t_send_ok'] = true;
+$ok_send = flxc_t_op( 'FlxChatMessageSend', array( 'input' => array( 'chatId' => (string) $open_id, 'body' => 'GQL-ROUND-OK', 'type' => 'text' ) ), $a );
+$ok_id   = (int) ( $ok_send['data']['flxChatMessageSend']['message']['databaseId'] ?? 0 );
+$ok_row  = flxc_get_message( $ok_id );
+$GLOBALS['flxc_t_send_ok'] = false;
+flxt_same( 'sent', is_array( $ok_row ) ? (string) $ok_row['status'] : '', 'send: a provider success marks the line sent' );
+flxt_same( array( $ok_id ), $sent_ids, 'send: flxc_message_sent fires once' );
+$open_after = flxc_get_chat( $open_id );
+flxt_same( $a, is_array( $open_after ) ? (int) $open_after['assigned_to'] : 0, 'send: the first agent reply assigns the chat once' );
+
+$made = 0;
+add_action(
+	'flxc_chat_created',
+	static function () use ( &$made ) {
+		++$made;
+	}
+);
+$created = flxc_t_op( 'FlxChatCreate', array( 'input' => array( 'phone' => '905559990077', 'name' => 'GQL Created FLXC', 'conn' => 't', 'check' => false ) ), $a );
+$created_id = (int) ( $created['data']['flxChatCreate']['chat']['databaseId'] ?? 0 );
+$created_row = flxc_get_chat( $created_id );
+flxt_same( 'GQL Created FLXC', is_array( $created_row ) ? flxc_chat_title( $created_row ) : '', 'round-trip: GraphQL create is read by flxc_chat_title' );
+flxt_same( 1, $made, 'create: flxc_chat_created fires once' );
+
+update_option( 'timezone_string', 'Europe/Istanbul' );
+update_option( 'gmt_offset', '3' );
+$tz_row = flxc_ensure_chat( 't', '905559990088@s.whatsapp.net', array( 'name' => 'TZ FLXC' ) );
+$tz_id  = (int) $tz_row['id'];
+$tz_stored = flxc_get_chat( $tz_id );
+$tz_expect = is_array( $tz_stored ) ? (int) strtotime( $tz_stored['created_at'] . ' UTC' ) : 0;
+$tz_q = flxt_gql( 'query ($id: ID!) { flxChat(id: $id) { createdAt { timestamp iso } } }', array( 'id' => (string) $tz_id ), $admin );
+flxt_same( $tz_expect, $tz_q['data']['flxChat']['createdAt']['timestamp'] ?? null, 'createdAt is the GMT instant in a non-UTC timezone' );
+flxt_ok( str_ends_with( (string) ( $tz_q['data']['flxChat']['createdAt']['iso'] ?? '' ), 'Z' ), 'createdAt iso is UTC' );
+
+$reply_req = new WP_REST_Request( 'POST' );
+$reply_req->set_param( 'title', 'Round title' );
+$reply_req->set_param( 'body', 'CLASSIC-REPLY-BODY' );
+$reply_req->set_param( 'shortcut', 'roundtrip' );
+wp_set_current_user( $a );
+$reply_saved = FLXC_Desk_Service::save_reply( $reply_req );
+$reply_id = 0;
+foreach ( is_array( $reply_saved ) ? ( $reply_saved['replies'] ?? array() ) : array() as $reply_row ) {
+	if ( is_array( $reply_row ) && 'CLASSIC-REPLY-BODY' === (string) ( $reply_row['body'] ?? '' ) ) {
+		$reply_id = (int) $reply_row['id'];
+	}
+}
+$reply_gql = flxt_gql( 'query { flxChatReplies { databaseId body } }', array(), $a );
+$reply_seen = false;
+foreach ( $reply_gql['data']['flxChatReplies'] ?? array() as $reply_g ) {
+	if ( 'CLASSIC-REPLY-BODY' === (string) ( $reply_g['body'] ?? '' ) ) {
+		$reply_seen = true;
+	}
+}
+flxt_ok( $reply_seen, 'round-trip: a classic quick reply is read by GraphQL' );
+$used = flxc_t_op( 'FlxChatReplyUse', array( 'input' => array( 'id' => $reply_id, 'chatId' => (string) $mine_id ) ), $a );
+flxt_same( 'CLASSIC-REPLY-BODY', $used['data']['flxChatReplyUse']['text'] ?? null, 'reply use fills the classic body' );
+global $wpdb;
+$uses = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT uses FROM ' . flxc_table( 'replies' ) . ' WHERE id = %d', $reply_id ) );
+flxt_same( 1, $uses, 'reply use increments the counter once' );
+
+$cat = flxt_gql( 'query { flxCapabilities { key package } flxViewer { capabilities } }', array(), $a );
+$chat_caps = array();
+foreach ( $cat['data']['flxCapabilities'] ?? array() as $cap_row ) {
+	if ( 'flx-chat' === (string) ( $cap_row['package'] ?? '' ) ) {
+		$chat_caps[] = (string) $cap_row['key'];
+	}
+}
+sort( $chat_caps );
+flxt_same(
+	array( 'flx_reports_manage', 'flx_reports_receive', 'flx_reports_view', 'flxc_manage', 'flxc_use' ),
+	$chat_caps,
+	'catalog keeps every flx-chat capability'
+);
+flxt_ok( in_array( 'flxc_use', $cat['data']['flxViewer']['capabilities'] ?? array(), true ), 'viewer lists flxc_use for an agent' );
+flxt_ok( ! in_array( 'flxc_manage', $cat['data']['flxViewer']['capabilities'] ?? array(), true ), 'viewer omits flxc_manage for an agent' );
 
 if ( function_exists( 'flxai_chat' ) ) {
 	$sug = flxc_t_op( 'FlxChatSuggest', array( 'input' => array( 'id' => (string) $mine_id, 'fresh' => true, 'hint' => 'short' ) ), $a );

@@ -1001,15 +1001,13 @@ flx_gql_query(
 			}
 			flx_gql_cache_tag( FLXC_Chat_Service::CACHE );
 			$msgs = array();
-			foreach ( (array) ( $page['messages'] ?? array() ) as $js ) {
-				if ( is_array( $js ) ) {
-					$msgs[] = flxc_gql_message( $js );
-				}
+			foreach ( $page['messages'] as $js ) {
+				$msgs[] = flxc_gql_message( $js );
 			}
 			return array(
 				'messages' => $msgs,
-				'hasMore'  => FLXC_Val::bool(( $page['more'] ?? false )),
-				'note'     => FLXC_Val::str(( $page['note'] ?? '' )),
+				'hasMore'  => FLXC_Val::bool( $page['more'] ),
+				'note'     => FLXC_Val::str( $page['note'] ),
 			);
 		},
 	)
@@ -1158,9 +1156,7 @@ flx_gql_query(
 		'description' => __( 'Quick replies.', 'flx-chat' ),
 		'cap'         => $flxc_gql_use,
 		'resolve'     => static function (): array {
-			$list = FLXC_Desk_Service::replies();
-			$rows = isset( $list['replies'] ) && is_array( $list['replies'] ) ? $list['replies'] : array();
-			return $rows;
+			return FLXC_Desk_Service::replies()['replies'];
 		},
 	)
 );
@@ -1430,7 +1426,7 @@ flx_gql_mutation(
 			if ( $r instanceof WP_Error ) {
 				return $r;
 			}
-			return array( 'text' => FLXC_Val::str(( $r['text'] ?? '' )) );
+			return array( 'text' => FLXC_Val::str( $r['text'] ) );
 		},
 	)
 );
@@ -1465,7 +1461,7 @@ flx_gql_mutation(
 			$chat = flxc_gql_chat_id( $input['chatId'] );
 			flxc_gql_visible( $chat );
 			$r = FLXC_Desk_Service::use_reply( flxc_gql_req( array( 'id' => FLXC_Val::int($input['id']), 'chat' => $chat ) ) );
-			return array( 'text' => FLXC_Val::str(( $r['text'] ?? '' )) );
+			return array( 'text' => FLXC_Val::str( $r['text'] ) );
 		},
 	)
 );

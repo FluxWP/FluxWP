@@ -11,7 +11,7 @@ defined( 'ABSPATH' ) || exit;
 final class FLXC_Message_Service {
 
 	/**
-	 * @return array<string,mixed>|WP_Error
+	 * @return array{messages: list<array<string,mixed>>, more: bool, note: string}|WP_Error
 	 */
 	public static function list_for( WP_REST_Request $req, int $limit = 40 ) {
 		$chat = flxc_rest_chat_or_error( $req['id'] );
@@ -333,7 +333,7 @@ final class FLXC_Message_Service {
 	}
 
 	/**
-	 * @return array<string,mixed>|WP_Error
+	 * @return array{text: string, cached?: bool, last: int}|WP_Error
 	 */
 	public static function suggest( WP_REST_Request $req ) {
 		$chat = flxc_rest_chat_or_error( $req['id'] );
