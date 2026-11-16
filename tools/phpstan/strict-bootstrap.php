@@ -8,6 +8,8 @@
  *   *_URL → 'https://example.com/', *_DIR / *_PATH → this folder, *_FILE → this file, *_VERSION → '0.0.0'
  *   anything else → ''
  *
+ * Comments and docblocks are removed first, so a define() shown as an example is not a constant.
+ *
  * A constant whose value matters to the analysis goes in packages/<slug>.bootstrap.php.
  */
 require __DIR__ . '/bootstrap.php';
@@ -25,8 +27,15 @@ foreach ( glob( __DIR__ . '/packages/*.bootstrap.php' ) ?: array() as $flx_file 
 		glob( $root . '/themes/*/inc/*.php' ) ?: array()
 	);
 	foreach ( $files as $file ) {
-		$src = (string) file_get_contents( $file );
-		if ( ! preg_match_all( '/define\(\s*([\'"])([A-Z][A-Z0-9_]+)\1\s*,\s*([^;]*?)\s*\)\s*;/', $src, $m, PREG_SET_ORDER ) ) {
+		$src  = (string) file_get_contents( $file );
+		$code = '';
+		foreach ( token_get_all( $src ) as $token ) {
+			if ( is_array( $token ) && in_array( $token[0], array( T_COMMENT, T_DOC_COMMENT ), true ) ) {
+				continue;
+			}
+			$code .= is_array( $token ) ? $token[1] : $token;
+		}
+		if ( ! preg_match_all( '/define\(\s*([\'"])([A-Z][A-Z0-9_]+)\1\s*,\s*([^;]*?)\s*\)\s*;/', $code, $m, PREG_SET_ORDER ) ) {
 			continue;
 		}
 		foreach ( $m as $d ) {
