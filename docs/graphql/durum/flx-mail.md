@@ -2,7 +2,7 @@
 
 - Faz: 3
 - Durum: ✱
-- PR:
+- PR: #332
 
 Envanter (`ESLEME/flx-mail.md`). Servis, şema ve ekran yok. 42 REST ucu (39 GraphQL, 3 istisna), `wp_ajax_` yok, 9 admin sayfası. Kuyruk tetiği nopriv loopback değil: WP-Cron `flxi_run_queue` artı kimlikli `POST /queue/run`. Posta kutusu AI araçları `flxai_tools` üzerinde kalır.
 
