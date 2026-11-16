@@ -70,7 +70,7 @@ final class FLXSM_Posts_Service {
 			}
 		}
 		$saved = flxsm_save_post( $in, $id );
-		return is_wp_error( $saved ) ? $saved : (int) $saved;
+		return is_wp_error( $saved ) ? $saved : FLXSM_Cast::int( $saved );
 	}
 
 	/**
@@ -91,6 +91,7 @@ final class FLXSM_Posts_Service {
 			return self::forbidden( __( 'You do not have permission for this action.', 'flx-social' ) );
 		}
 		if ( 'reject' === $act ) {
+			/** @var wpdb $wpdb */
 			global $wpdb;
 			$wpdb->update( // phpcs:ignore WordPress.DB
 				flxsm_table( 'posts' ),
@@ -196,7 +197,7 @@ final class FLXSM_Posts_Service {
 				'source'  => 'duplicate',
 			)
 		);
-		return is_wp_error( $new ) ? $new : (int) $new;
+		return is_wp_error( $new ) ? $new : FLXSM_Cast::int( $new );
 	}
 
 	/**
@@ -280,7 +281,14 @@ final class FLXSM_Posts_Service {
 			$d = FLXSM_Cast::arr( $res->get_error_data() );
 			return new WP_Error( $res->get_error_code(), $res->get_error_message(), array( 'status' => FLXSM_Cast::int( $d['status'] ?? 400 ) ) );
 		}
-		return is_array( $res ) ? FLXSM_Cast::map( $res ) : FLXSM_Cast::str( $res );
+		if ( is_array( $res ) ) {
+			$texts = array();
+			foreach ( $res as $k => $v ) {
+				$texts[ (string) $k ] = FLXSM_Cast::str( $v );
+			}
+			return $texts;
+		}
+		return FLXSM_Cast::str( $res );
 	}
 
 	/**

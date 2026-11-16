@@ -1,7 +1,7 @@
 <?php
 /**
- * Flux App: gönderi listesi, takvim, hesaplar. Medyalı yazar yerelde sonra açılır (flxsm-composer).
- * REST: flx-social/v1/calendar (bu ayın gönderileri).
+ * Flux App: the Social Media screen is the shared React screen (integrations.php, module `flxsm-social`).
+ * REST: flx-social/v1/calendar (this month's posts) stays for app versions that still use it.
  *
  * @package flx-social
  */
@@ -82,35 +82,4 @@ add_action(
 			)
 		);
 	}
-);
-
-add_action(
-	'plugins_loaded',
-	function () {
-		if ( ! function_exists( 'flxapp_manifest_file' ) ) {
-			return;
-		}
-		add_filter(
-			'flxapp_manifest',
-			function ( $m ) {
-				$loaded       = flxapp_manifest_file(
-					FLXSM_DIR . 'app/manifest.json',
-					'flx-social',
-					array(
-						'version' => FLXSM_VERSION,
-						'caps'    => array(
-							'view'    => array( 'flxsm_post', 'flxsm_publish', 'flxsm_manage' ),
-							'publish' => array( 'flxsm_publish', 'flxsm_manage' ),
-							'manage'  => 'flxsm_manage',
-						),
-					)
-				);
-				$m['social'] = flxsm_app_texts( $loaded, 'flx-social' );
-				return $m;
-			},
-			10,
-			2
-		);
-	},
-	20
 );

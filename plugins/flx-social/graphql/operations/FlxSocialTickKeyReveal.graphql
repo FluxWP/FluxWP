@@ -1,0 +1,6 @@
+mutation FlxSocialTickKeyReveal($input: FlxSocialTickKeyRevealInput!) {
+  flxSocialTickKeyReveal(input: $input) {
+    url
+    errors { code message field }
+  }
+}

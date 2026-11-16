@@ -4,6 +4,51 @@
 type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 /** Internal type. DO NOT USE DIRECTLY. */
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+/** Connection state of an account. */
+export type FlxSocialAccountStatus =
+  /** Connected. */
+  | 'ACTIVE'
+  /** Switched off in the panel. */
+  | 'DISABLED'
+  /** The connection expired; connect again. */
+  | 'EXPIRED';
+
+/** Where a post is in its life. */
+export type FlxSocialPostStatus =
+  /** Called off. */
+  | 'CANCELLED'
+  /** Being prepared. */
+  | 'DRAFT'
+  /** Could not be shared. */
+  | 'FAILED'
+  /** Shared on some accounts, failed on others. */
+  | 'PARTIAL'
+  /** Waiting for approval. */
+  | 'PENDING'
+  /** Shared on every account. */
+  | 'PUBLISHED'
+  /** Being shared now. */
+  | 'PUBLISHING'
+  /** Will be shared at its time. */
+  | 'SCHEDULED';
+
+/** State of a post on one account. */
+export type FlxSocialTargetStatus =
+  /** Called off. */
+  | 'CANCELLED'
+  /** Deleted on the network. */
+  | 'DELETED'
+  /** Being prepared. */
+  | 'DRAFT'
+  /** Could not be shared. */
+  | 'FAILED'
+  /** Being shared now. */
+  | 'PROCESSING'
+  /** Shared. */
+  | 'PUBLISHED'
+  /** Waiting for its time. */
+  | 'SCHEDULED';
+
 /** What a task row is. */
 export type FlxTaskKind =
   /** An agenda item of a meeting. */
@@ -86,6 +131,445 @@ export type FlxRolesSaveRoleInput = {
   home?: string | null | undefined;
   /** Role key. */
   key: string;
+};
+
+/** Input for the flxSocialAccountDelete mutation. */
+export type FlxSocialAccountDeleteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Global ID or account ID. */
+  id: string;
+};
+
+/** Input for the flxSocialAccountRefresh mutation. */
+export type FlxSocialAccountRefreshInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Global ID or account ID. */
+  id: string;
+};
+
+/** Input for the flxSocialAccountReorder mutation. */
+export type FlxSocialAccountReorderInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Accounts in the new order. */
+  ids: Array<string>;
+};
+
+/** Input for the flxSocialAccountUpdate mutation. */
+export type FlxSocialAccountUpdateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Switch off (true) or on (false). */
+  disabled?: boolean | null | undefined;
+  /** Global ID or account ID. */
+  id: string;
+  /** Display name. */
+  name?: string | null | undefined;
+  /** Position. */
+  sort?: number | null | undefined;
+};
+
+/** Input for the flxSocialAiWrite mutation. */
+export type FlxSocialAiWriteInput = {
+  /** Idea to write from. */
+  brief?: string | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Character limit. */
+  limit?: number | null | undefined;
+  /** What to do. */
+  mode: FlxSocialAiMode;
+  /** Networks the text is for. */
+  providers?: Array<string> | null | undefined;
+  /** Current text. */
+  text?: string | null | undefined;
+  /** Language to translate to. */
+  to?: string | null | undefined;
+  /** Tone. */
+  tone?: string | null | undefined;
+};
+
+/** What the writing assistant does. */
+export type FlxSocialAiMode =
+  /** A separate text per network. */
+  | 'ADAPT'
+  /** Suggest hashtags. */
+  | 'HASHTAGS'
+  /** Fix and polish. */
+  | 'IMPROVE'
+  /** Make shorter. */
+  | 'SHORTEN'
+  /** Translate. */
+  | 'TRANSLATE'
+  /** Write from an idea. */
+  | 'WRITE';
+
+/** Input for the flxSocialAppUpdate mutation. */
+export type FlxSocialAppUpdateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** App key (meta, google, x …). */
+  id: string;
+  /** Fields to change. */
+  values: Array<FlxSocialAppValueInput>;
+};
+
+/** One field of a network app. An empty secret keeps the old one; __clear__ removes it. */
+export type FlxSocialAppValueInput = {
+  /** Field key. */
+  key: string;
+  /** Value. */
+  value: string;
+};
+
+/** Input for the flxSocialMediaAdd mutation. */
+export type FlxSocialMediaAddInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Cover image attachment (videos). */
+  poster?: number | null | undefined;
+  /** Upload ID from the upload endpoint. */
+  uploadId: string;
+};
+
+/** Input for the flxSocialMediaImport mutation. */
+export type FlxSocialMediaImportInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Cover image attachment (videos). */
+  poster?: number | null | undefined;
+  /** File address. */
+  url: string;
+};
+
+/** Input for the flxSocialPostAct mutation. */
+export type FlxSocialPostActInput = {
+  /** The state change. */
+  action: FlxSocialPostAction;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Global ID or post ID. */
+  id: string;
+  /** Reason (when sending back). */
+  note?: string | null | undefined;
+};
+
+/** A state change of a post. */
+export type FlxSocialPostAction =
+  /** Approve and share. */
+  | 'APPROVE'
+  /** Call off. */
+  | 'CANCEL'
+  /** Keep as a draft. */
+  | 'DRAFT'
+  /** Share now. */
+  | 'NOW'
+  /** Send back to draft with a note. */
+  | 'REJECT'
+  /** Share at the scheduled time. */
+  | 'SCHEDULE'
+  /** Send for approval. */
+  | 'SUBMIT';
+
+/** Input for the flxSocialPostBulkAct mutation. */
+export type FlxSocialPostBulkActInput = {
+  /** The action. */
+  action: FlxSocialBulkAction;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Posts. */
+  ids: Array<string>;
+};
+
+/** An action on many posts. */
+export type FlxSocialBulkAction =
+  /** Approve and share. */
+  | 'APPROVE'
+  /** Call off. */
+  | 'CANCEL'
+  /** Delete from the panel. */
+  | 'DELETE'
+  /** Back to draft. */
+  | 'DRAFT'
+  /** Share now. */
+  | 'NOW'
+  /** Schedule. */
+  | 'SCHEDULE'
+  /** Send for approval. */
+  | 'SUBMIT';
+
+/** Input for the flxSocialPostCreate mutation. */
+export type FlxSocialPostCreateInput = {
+  /** State change to apply after saving: DRAFT, SUBMIT, SCHEDULE or NOW. */
+  action?: FlxSocialPostAction | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Shared text. */
+  content?: string | null | undefined;
+  /** Shared media (attachment IDs). */
+  media?: Array<number> | null | undefined;
+  /** Note. */
+  note?: string | null | undefined;
+  /** Share again every N days (0: once). */
+  repeatDays?: number | null | undefined;
+  /** When to share (Unix timestamp); 0 clears it. */
+  scheduledAt?: number | null | undefined;
+  /** manual, ai or app (when creating). */
+  source?: string | null | undefined;
+  /** Labels. */
+  tags?: Array<string> | null | undefined;
+  /** Accounts the post goes to (replaces the current ones). */
+  targets?: Array<FlxSocialTargetInput> | null | undefined;
+  /** Internal title. */
+  title?: string | null | undefined;
+};
+
+/** A post on one account: own text, media and options. */
+export type FlxSocialTargetInput = {
+  /** Account ID. */
+  accountId: number;
+  /** Own text; empty uses the shared text. */
+  content?: string | null | undefined;
+  /** Own media (attachment IDs); empty uses the shared media. */
+  media?: Array<number> | null | undefined;
+  /** Network options. */
+  options?: FlxSocialOptionsInput | null | undefined;
+};
+
+/** Options of a post on one account. */
+export type FlxSocialOptionsInput = {
+  /** Network option. */
+  aiGenerated?: boolean | null | undefined;
+  /** Network option. */
+  alt?: string | null | undefined;
+  /** Network option. */
+  autoMusic?: boolean | null | undefined;
+  /** Network option. */
+  board?: string | null | undefined;
+  /** Network option. */
+  brandContent?: boolean | null | undefined;
+  /** Network option. */
+  brandOrganic?: boolean | null | undefined;
+  /** Network option. */
+  disableComment?: boolean | null | undefined;
+  /** Network option. */
+  disableDuet?: boolean | null | undefined;
+  /** Network option. */
+  disableStitch?: boolean | null | undefined;
+  /** Network option. */
+  eventEnd?: string | null | undefined;
+  /** Network option. */
+  eventStart?: string | null | undefined;
+  /** Network option. */
+  eventTitle?: string | null | undefined;
+  /** Network option. */
+  firstComment?: string | null | undefined;
+  /** Network option. */
+  flxCategory?: string | null | undefined;
+  /** Network option. */
+  gbpCta?: string | null | undefined;
+  /** Network option. */
+  gbpCtaUrl?: string | null | undefined;
+  /** Network option. */
+  gbpTopic?: string | null | undefined;
+  /** Network option. */
+  igType?: string | null | undefined;
+  /** Network option. */
+  liVisibility?: string | null | undefined;
+  /** Network option. */
+  link?: string | null | undefined;
+  /** Network option. */
+  madeForKids?: boolean | null | undefined;
+  /** Network option. */
+  notify?: boolean | null | undefined;
+  /** Network option. */
+  offerCode?: string | null | undefined;
+  /** Network option. */
+  playlist?: string | null | undefined;
+  /** Network option. */
+  privacy?: string | null | undefined;
+  /** Network option. */
+  replySettings?: string | null | undefined;
+  /** Network option. */
+  shareToFeed?: boolean | null | undefined;
+  /** Network option. */
+  shorts?: boolean | null | undefined;
+  /** Hashtags of the account. */
+  tags?: Array<string> | null | undefined;
+  /** Network option. */
+  thumbUrl?: string | null | undefined;
+  /** Network option. */
+  tiktokPrivacy?: string | null | undefined;
+  /** Network option. */
+  title?: string | null | undefined;
+  /** Network option. */
+  waKind?: string | null | undefined;
+  /** Network option. */
+  waTo?: string | null | undefined;
+};
+
+/** Input for the flxSocialPostDelete mutation. */
+export type FlxSocialPostDeleteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Global ID or post ID. */
+  id: string;
+  /** Also delete on the networks. */
+  remote?: boolean | null | undefined;
+};
+
+/** Input for the flxSocialPostDuplicate mutation. */
+export type FlxSocialPostDuplicateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Global ID or post ID. */
+  id: string;
+};
+
+/** Input for the flxSocialPostUpdate mutation. */
+export type FlxSocialPostUpdateInput = {
+  /** State change to apply after saving: DRAFT, SUBMIT, SCHEDULE or NOW. */
+  action?: FlxSocialPostAction | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Shared text. */
+  content?: string | null | undefined;
+  /** Global ID or post ID. */
+  id: string;
+  /** Shared media (attachment IDs). */
+  media?: Array<number> | null | undefined;
+  /** Note. */
+  note?: string | null | undefined;
+  /** Share again every N days (0: once). */
+  repeatDays?: number | null | undefined;
+  /** When to share (Unix timestamp); 0 clears it. */
+  scheduledAt?: number | null | undefined;
+  /** manual, ai or app (when creating). */
+  source?: string | null | undefined;
+  /** Labels. */
+  tags?: Array<string> | null | undefined;
+  /** Accounts the post goes to (replaces the current ones). */
+  targets?: Array<FlxSocialTargetInput> | null | undefined;
+  /** Internal title. */
+  title?: string | null | undefined;
+};
+
+/** Input for the flxSocialSettingsUpdate mutation. */
+export type FlxSocialSettingsUpdateInput = {
+  /** Posts of people who cannot publish wait for approval. */
+  approval?: boolean | null | undefined;
+  /** Automatic sharing. */
+  auto?: FlxSocialAutoInput | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** List LinkedIn pages. */
+  liOrg?: boolean | null | undefined;
+  /** Facebook and Instagram API version (v25.0). */
+  metaVersion?: string | null | undefined;
+  /** Pinterest sandbox. */
+  pinSandbox?: boolean | null | undefined;
+  /** Text added to the end of posts. */
+  signature?: string | null | undefined;
+  /** inbox or direct. */
+  tiktokMode?: string | null | undefined;
+  /** Add UTM tags to links of this site. */
+  utm?: boolean | null | undefined;
+  /** WhatsApp connection ID. */
+  waConn?: number | null | undefined;
+  /** Posts per month on X (0: no limit). */
+  xMonthLimit?: number | null | undefined;
+  /** Accounts have the paid tier on X. */
+  xPremium?: boolean | null | undefined;
+  /** X plan key. */
+  xTier?: string | null | undefined;
+};
+
+/** Automatic sharing of new site content. */
+export type FlxSocialAutoInput = {
+  /** Account IDs. */
+  accounts?: Array<number> | null | undefined;
+  /** Minutes to wait. */
+  delay?: number | null | undefined;
+  /** On. */
+  enabled?: boolean | null | undefined;
+  /** Add the featured image. */
+  image?: boolean | null | undefined;
+  /** draft or schedule. */
+  mode?: string | null | undefined;
+  /** Content types. */
+  postTypes?: Array<string> | null | undefined;
+  /** Text template. */
+  template?: string | null | undefined;
+};
+
+/** Input for the flxSocialStatsRefresh mutation. */
+export type FlxSocialStatsRefreshInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+};
+
+/** Input for the flxSocialTargetRemoteDelete mutation. */
+export type FlxSocialTargetRemoteDeleteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Global ID or target ID. */
+  id: string;
+};
+
+/** Input for the flxSocialTargetRemoteEdit mutation. */
+export type FlxSocialTargetRemoteEditInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** New text; empty keeps it. */
+  content?: string | null | undefined;
+  /** Global ID or target ID. */
+  id: string;
+  /** Network options to change. */
+  options?: FlxSocialOptionsInput | null | undefined;
+};
+
+/** Input for the flxSocialTargetRetry mutation. */
+export type FlxSocialTargetRetryInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Global ID or target ID. */
+  id: string;
+};
+
+/** Input for the flxSocialTickKeyReveal mutation. */
+export type FlxSocialTickKeyRevealInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Make a new key first (the old address stops working). */
+  regenerate?: boolean | null | undefined;
+};
+
+/** Input for the flxSocialTickRun mutation. */
+export type FlxSocialTickRunInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+};
+
+/** Input for the flxSocialWhatsAppAdd mutation. */
+export type FlxSocialWhatsAppAddInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Groups or Status to add. */
+  items: Array<FlxSocialWhatsAppTargetInput>;
+};
+
+/** A WhatsApp group or Status to add as an account. */
+export type FlxSocialWhatsAppTargetInput = {
+  /** Picture address. */
+  avatar?: string | null | undefined;
+  /** WhatsApp ID. */
+  extId: string;
+  /** status or group. */
+  kind?: string | null | undefined;
+  /** Name. */
+  name?: string | null | undefined;
 };
 
 /** Input for the flxTaskCommentCreate mutation. */
@@ -251,6 +735,254 @@ export type FlxRolesScreenQueryVariables = Exact<{
 
 
 export type FlxRolesScreenQuery = { flxRoles: Array<{ key: string, label: string, description: string, custom: boolean, memberCount: number, capabilities: Array<string>, home: string, members: { totalCount: number | null, nodes: Array<{ databaseId: number, name: string, email: string, editUrl: string, referralLink: string | null, phone: { display: string, e164: string } | null }>, pageInfo: { hasNextPage: boolean, endCursor: string | null } } }>, flxRoleCapabilityGroups: Array<{ key: string, label: string, plugin: string | null, active: boolean, capabilities: Array<{ key: string, label: string, locked: boolean, broad: boolean, pending: boolean }> }>, flxRolesConfig: { referralDays: number, newUserUrl: string, permissionsUrl: string | null, homeChoices: Array<{ key: string, label: string }> } };
+
+export type FlxSocialAccountDeleteMutationVariables = Exact<{
+  input: FlxSocialAccountDeleteInput;
+}>;
+
+
+export type FlxSocialAccountDeleteMutation = { flxSocialAccountDelete: { deletedId: string | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSocialAccountRefreshMutationVariables = Exact<{
+  input: FlxSocialAccountRefreshInput;
+}>;
+
+
+export type FlxSocialAccountRefreshMutation = { flxSocialAccountRefresh: { account: { id: string, databaseId: number, provider: string, via: string, network: string, name: string, username: string, avatar: string, status: FlxSocialAccountStatus, kind: string, premium: boolean, lastError: string, expires: { timestamp: number } | null, boards: Array<{ id: string, name: string }>, groups: Array<{ id: string, name: string }>, playlists: Array<{ id: string, name: string }>, caps: { text: boolean, image: boolean, video: boolean, gif: boolean, maxText: number, maxImages: number, maxVideos: number, mix: boolean, needsMedia: boolean, edit: boolean, delete: boolean, comment: boolean, metrics: boolean, options: Array<string> } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSocialAccountRowFragment = { id: string, databaseId: number, provider: string, via: string, network: string, name: string, username: string, avatar: string, status: FlxSocialAccountStatus, kind: string, premium: boolean, lastError: string, expires: { timestamp: number } | null, boards: Array<{ id: string, name: string }>, groups: Array<{ id: string, name: string }>, playlists: Array<{ id: string, name: string }>, caps: { text: boolean, image: boolean, video: boolean, gif: boolean, maxText: number, maxImages: number, maxVideos: number, mix: boolean, needsMedia: boolean, edit: boolean, delete: boolean, comment: boolean, metrics: boolean, options: Array<string> } };
+
+export type FlxSocialCapsFieldsFragment = { text: boolean, image: boolean, video: boolean, gif: boolean, maxText: number, maxImages: number, maxVideos: number, mix: boolean, needsMedia: boolean, edit: boolean, delete: boolean, comment: boolean, metrics: boolean, options: Array<string> };
+
+export type FlxSocialAccountReorderMutationVariables = Exact<{
+  input: FlxSocialAccountReorderInput;
+}>;
+
+
+export type FlxSocialAccountReorderMutation = { flxSocialAccountReorder: { accounts: Array<{ id: string, databaseId: number, provider: string, via: string, network: string, name: string, username: string, avatar: string, status: FlxSocialAccountStatus, kind: string, premium: boolean, lastError: string, expires: { timestamp: number } | null, boards: Array<{ id: string, name: string }>, groups: Array<{ id: string, name: string }>, playlists: Array<{ id: string, name: string }>, caps: { text: boolean, image: boolean, video: boolean, gif: boolean, maxText: number, maxImages: number, maxVideos: number, mix: boolean, needsMedia: boolean, edit: boolean, delete: boolean, comment: boolean, metrics: boolean, options: Array<string> } }>, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSocialAccountsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxSocialAccountsQuery = { flxSocialAccounts: Array<{ id: string, databaseId: number, provider: string, via: string, network: string, name: string, username: string, avatar: string, status: FlxSocialAccountStatus, kind: string, premium: boolean, lastError: string, expires: { timestamp: number } | null, boards: Array<{ id: string, name: string }>, groups: Array<{ id: string, name: string }>, playlists: Array<{ id: string, name: string }>, caps: { text: boolean, image: boolean, video: boolean, gif: boolean, maxText: number, maxImages: number, maxVideos: number, mix: boolean, needsMedia: boolean, edit: boolean, delete: boolean, comment: boolean, metrics: boolean, options: Array<string> } }> };
+
+export type FlxSocialAccountUpdateMutationVariables = Exact<{
+  input: FlxSocialAccountUpdateInput;
+}>;
+
+
+export type FlxSocialAccountUpdateMutation = { flxSocialAccountUpdate: { account: { id: string, databaseId: number, provider: string, via: string, network: string, name: string, username: string, avatar: string, status: FlxSocialAccountStatus, kind: string, premium: boolean, lastError: string, expires: { timestamp: number } | null, boards: Array<{ id: string, name: string }>, groups: Array<{ id: string, name: string }>, playlists: Array<{ id: string, name: string }>, caps: { text: boolean, image: boolean, video: boolean, gif: boolean, maxText: number, maxImages: number, maxVideos: number, mix: boolean, needsMedia: boolean, edit: boolean, delete: boolean, comment: boolean, metrics: boolean, options: Array<string> } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSocialAiWriteMutationVariables = Exact<{
+  input: FlxSocialAiWriteInput;
+}>;
+
+
+export type FlxSocialAiWriteMutation = { flxSocialAiWrite: { text: string | null, texts: Array<{ provider: string, text: string }> | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSocialAppUpdateMutationVariables = Exact<{
+  input: FlxSocialAppUpdateInput;
+}>;
+
+
+export type FlxSocialAppUpdateMutation = { flxSocialAppUpdate: { apps: Array<{ id: string, ready: boolean, fields: Array<{ key: string, label: string, secret: boolean, value: string, isSet: boolean, placeholder: string, optional: boolean }> }>, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSocialBootQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxSocialBootQuery = { flxSocialConfig: { userId: number, userName: string, canPublish: boolean, canManage: boolean, canUpload: boolean, ai: boolean, studio: boolean, approval: boolean, signature: string, xTier: string, timezone: string, tzOffset: number, weekStart: number, version: string, networks: Array<{ id: string, label: string, color: string, caps: { text: boolean, image: boolean, video: boolean, gif: boolean, maxText: number, maxImages: number, maxVideos: number, mix: boolean, needsMedia: boolean, edit: boolean, delete: boolean, comment: boolean, metrics: boolean, options: Array<string> } }> }, flxSocialAccounts: Array<{ id: string, databaseId: number, provider: string, via: string, network: string, name: string, username: string, avatar: string, status: FlxSocialAccountStatus, kind: string, premium: boolean, lastError: string, expires: { timestamp: number } | null, boards: Array<{ id: string, name: string }>, groups: Array<{ id: string, name: string }>, playlists: Array<{ id: string, name: string }>, caps: { text: boolean, image: boolean, video: boolean, gif: boolean, maxText: number, maxImages: number, maxVideos: number, mix: boolean, needsMedia: boolean, edit: boolean, delete: boolean, comment: boolean, metrics: boolean, options: Array<string> } }>, flxSocialCounts: { pending: number, scheduled: number, failed: number, due: number } };
+
+export type FlxSocialConnectUrlQueryVariables = Exact<{
+  for: string;
+}>;
+
+
+export type FlxSocialConnectUrlQuery = { flxSocialConnectUrl: string };
+
+export type FlxSocialCountsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxSocialCountsQuery = { flxSocialCounts: { pending: number, scheduled: number, failed: number, due: number } };
+
+export type FlxSocialLogQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxSocialLogQuery = { flxSocialLog: Array<{ databaseId: number, level: string, accountId: number, message: string, time: { timestamp: number } | null }> };
+
+export type FlxSocialMediaQueryVariables = Exact<{
+  ids?: Array<number> | number | null | undefined;
+  search?: string | null | undefined;
+  page?: number | null | undefined;
+}>;
+
+
+export type FlxSocialMediaQuery = { flxSocialMedia: { pages: number, items: Array<{ databaseId: number, url: string, kind: string, mime: string, bytes: number, width: number, height: number, duration: number, thumb: string, name: string, alt: string }> } };
+
+export type FlxSocialMediaRowFragment = { databaseId: number, url: string, kind: string, mime: string, bytes: number, width: number, height: number, duration: number, thumb: string, name: string, alt: string };
+
+export type FlxSocialMediaAddMutationVariables = Exact<{
+  input: FlxSocialMediaAddInput;
+}>;
+
+
+export type FlxSocialMediaAddMutation = { flxSocialMediaAdd: { media: { databaseId: number, url: string, kind: string, mime: string, bytes: number, width: number, height: number, duration: number, thumb: string, name: string, alt: string } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSocialMediaImportMutationVariables = Exact<{
+  input: FlxSocialMediaImportInput;
+}>;
+
+
+export type FlxSocialMediaImportMutation = { flxSocialMediaImport: { media: { databaseId: number, url: string, kind: string, mime: string, bytes: number, width: number, height: number, duration: number, thumb: string, name: string, alt: string } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSocialPostQueryVariables = Exact<{
+  id: string;
+}>;
+
+
+export type FlxSocialPostQuery = { flxSocialPost: { id: string, databaseId: number, status: FlxSocialPostStatus, title: string, content: string, tags: Array<string>, repeatDays: number, source: string, note: string, author: string, authorId: number, approvedBy: number, media: Array<{ databaseId: number, url: string, kind: string, mime: string, bytes: number, width: number, height: number, duration: number, thumb: string, name: string, alt: string }>, scheduledAt: { timestamp: number, label: string } | null, publishedAt: { timestamp: number, label: string } | null, created: { timestamp: number } | null, updated: { timestamp: number } | null, targets: Array<{ id: string, databaseId: number, accountId: number, provider: string, account: string, avatar: string, status: FlxSocialTargetStatus, remoteUrl: string, error: string, content: string | null, publishedAt: { timestamp: number, label: string } | null, metrics: { views: number, impressions: number, reach: number, clicks: number, likes: number, comments: number, shares: number, saves: number }, caps: { text: boolean, image: boolean, video: boolean, gif: boolean, maxText: number, maxImages: number, maxVideos: number, mix: boolean, needsMedia: boolean, edit: boolean, delete: boolean, comment: boolean, metrics: boolean, options: Array<string> }, media: Array<{ databaseId: number, url: string, kind: string, mime: string, bytes: number, width: number, height: number, duration: number, thumb: string, name: string, alt: string }> | null, options: { title: string | null, link: string | null, board: string | null, privacy: string | null, igType: string | null, flxCategory: string | null, playlist: string | null, tiktokPrivacy: string | null, gbpTopic: string | null, gbpCta: string | null, gbpCtaUrl: string | null, waKind: string | null, waTo: string | null, firstComment: string | null, liVisibility: string | null, alt: string | null, thumbUrl: string | null, replySettings: string | null, eventTitle: string | null, eventStart: string | null, eventEnd: string | null, offerCode: string | null, madeForKids: boolean | null, notify: boolean | null, shorts: boolean | null, disableComment: boolean | null, disableDuet: boolean | null, disableStitch: boolean | null, aiGenerated: boolean | null, brandContent: boolean | null, brandOrganic: boolean | null, shareToFeed: boolean | null, autoMusic: boolean | null, tags: Array<string> | null } }> } | null };
+
+export type FlxSocialOptionsFieldsFragment = { title: string | null, link: string | null, board: string | null, privacy: string | null, igType: string | null, flxCategory: string | null, playlist: string | null, tiktokPrivacy: string | null, gbpTopic: string | null, gbpCta: string | null, gbpCtaUrl: string | null, waKind: string | null, waTo: string | null, firstComment: string | null, liVisibility: string | null, alt: string | null, thumbUrl: string | null, replySettings: string | null, eventTitle: string | null, eventStart: string | null, eventEnd: string | null, offerCode: string | null, madeForKids: boolean | null, notify: boolean | null, shorts: boolean | null, disableComment: boolean | null, disableDuet: boolean | null, disableStitch: boolean | null, aiGenerated: boolean | null, brandContent: boolean | null, brandOrganic: boolean | null, shareToFeed: boolean | null, autoMusic: boolean | null, tags: Array<string> | null };
+
+export type FlxSocialPostRowFragment = { id: string, databaseId: number, status: FlxSocialPostStatus, title: string, content: string, tags: Array<string>, repeatDays: number, source: string, note: string, author: string, authorId: number, approvedBy: number, media: Array<{ databaseId: number, url: string, kind: string, mime: string, bytes: number, width: number, height: number, duration: number, thumb: string, name: string, alt: string }>, scheduledAt: { timestamp: number, label: string } | null, publishedAt: { timestamp: number, label: string } | null, created: { timestamp: number } | null, updated: { timestamp: number } | null, targets: Array<{ id: string, databaseId: number, accountId: number, provider: string, account: string, avatar: string, status: FlxSocialTargetStatus, remoteUrl: string, error: string, content: string | null, publishedAt: { timestamp: number, label: string } | null, metrics: { views: number, impressions: number, reach: number, clicks: number, likes: number, comments: number, shares: number, saves: number }, caps: { text: boolean, image: boolean, video: boolean, gif: boolean, maxText: number, maxImages: number, maxVideos: number, mix: boolean, needsMedia: boolean, edit: boolean, delete: boolean, comment: boolean, metrics: boolean, options: Array<string> }, media: Array<{ databaseId: number, url: string, kind: string, mime: string, bytes: number, width: number, height: number, duration: number, thumb: string, name: string, alt: string }> | null, options: { title: string | null, link: string | null, board: string | null, privacy: string | null, igType: string | null, flxCategory: string | null, playlist: string | null, tiktokPrivacy: string | null, gbpTopic: string | null, gbpCta: string | null, gbpCtaUrl: string | null, waKind: string | null, waTo: string | null, firstComment: string | null, liVisibility: string | null, alt: string | null, thumbUrl: string | null, replySettings: string | null, eventTitle: string | null, eventStart: string | null, eventEnd: string | null, offerCode: string | null, madeForKids: boolean | null, notify: boolean | null, shorts: boolean | null, disableComment: boolean | null, disableDuet: boolean | null, disableStitch: boolean | null, aiGenerated: boolean | null, brandContent: boolean | null, brandOrganic: boolean | null, shareToFeed: boolean | null, autoMusic: boolean | null, tags: Array<string> | null } }> };
+
+export type FlxSocialTargetRowFragment = { id: string, databaseId: number, accountId: number, provider: string, account: string, avatar: string, status: FlxSocialTargetStatus, remoteUrl: string, error: string, content: string | null, publishedAt: { timestamp: number, label: string } | null, metrics: { views: number, impressions: number, reach: number, clicks: number, likes: number, comments: number, shares: number, saves: number }, caps: { text: boolean, image: boolean, video: boolean, gif: boolean, maxText: number, maxImages: number, maxVideos: number, mix: boolean, needsMedia: boolean, edit: boolean, delete: boolean, comment: boolean, metrics: boolean, options: Array<string> }, media: Array<{ databaseId: number, url: string, kind: string, mime: string, bytes: number, width: number, height: number, duration: number, thumb: string, name: string, alt: string }> | null, options: { title: string | null, link: string | null, board: string | null, privacy: string | null, igType: string | null, flxCategory: string | null, playlist: string | null, tiktokPrivacy: string | null, gbpTopic: string | null, gbpCta: string | null, gbpCtaUrl: string | null, waKind: string | null, waTo: string | null, firstComment: string | null, liVisibility: string | null, alt: string | null, thumbUrl: string | null, replySettings: string | null, eventTitle: string | null, eventStart: string | null, eventEnd: string | null, offerCode: string | null, madeForKids: boolean | null, notify: boolean | null, shorts: boolean | null, disableComment: boolean | null, disableDuet: boolean | null, disableStitch: boolean | null, aiGenerated: boolean | null, brandContent: boolean | null, brandOrganic: boolean | null, shareToFeed: boolean | null, autoMusic: boolean | null, tags: Array<string> | null } };
+
+export type FlxSocialPostActMutationVariables = Exact<{
+  input: FlxSocialPostActInput;
+}>;
+
+
+export type FlxSocialPostActMutation = { flxSocialPostAct: { post: { id: string, databaseId: number, status: FlxSocialPostStatus, title: string, content: string, tags: Array<string>, repeatDays: number, source: string, note: string, author: string, authorId: number, approvedBy: number, media: Array<{ databaseId: number, url: string, kind: string, mime: string, bytes: number, width: number, height: number, duration: number, thumb: string, name: string, alt: string }>, scheduledAt: { timestamp: number, label: string } | null, publishedAt: { timestamp: number, label: string } | null, created: { timestamp: number } | null, updated: { timestamp: number } | null, targets: Array<{ id: string, databaseId: number, accountId: number, provider: string, account: string, avatar: string, status: FlxSocialTargetStatus, remoteUrl: string, error: string, content: string | null, publishedAt: { timestamp: number, label: string } | null, metrics: { views: number, impressions: number, reach: number, clicks: number, likes: number, comments: number, shares: number, saves: number }, caps: { text: boolean, image: boolean, video: boolean, gif: boolean, maxText: number, maxImages: number, maxVideos: number, mix: boolean, needsMedia: boolean, edit: boolean, delete: boolean, comment: boolean, metrics: boolean, options: Array<string> }, media: Array<{ databaseId: number, url: string, kind: string, mime: string, bytes: number, width: number, height: number, duration: number, thumb: string, name: string, alt: string }> | null, options: { title: string | null, link: string | null, board: string | null, privacy: string | null, igType: string | null, flxCategory: string | null, playlist: string | null, tiktokPrivacy: string | null, gbpTopic: string | null, gbpCta: string | null, gbpCtaUrl: string | null, waKind: string | null, waTo: string | null, firstComment: string | null, liVisibility: string | null, alt: string | null, thumbUrl: string | null, replySettings: string | null, eventTitle: string | null, eventStart: string | null, eventEnd: string | null, offerCode: string | null, madeForKids: boolean | null, notify: boolean | null, shorts: boolean | null, disableComment: boolean | null, disableDuet: boolean | null, disableStitch: boolean | null, aiGenerated: boolean | null, brandContent: boolean | null, brandOrganic: boolean | null, shareToFeed: boolean | null, autoMusic: boolean | null, tags: Array<string> | null } }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSocialPostBulkActMutationVariables = Exact<{
+  input: FlxSocialPostBulkActInput;
+}>;
+
+
+export type FlxSocialPostBulkActMutation = { flxSocialPostBulkAct: { done: number, issues: Array<string>, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSocialPostCreateMutationVariables = Exact<{
+  input: FlxSocialPostCreateInput;
+}>;
+
+
+export type FlxSocialPostCreateMutation = { flxSocialPostCreate: { post: { id: string, databaseId: number, status: FlxSocialPostStatus, title: string, content: string, tags: Array<string>, repeatDays: number, source: string, note: string, author: string, authorId: number, approvedBy: number, media: Array<{ databaseId: number, url: string, kind: string, mime: string, bytes: number, width: number, height: number, duration: number, thumb: string, name: string, alt: string }>, scheduledAt: { timestamp: number, label: string } | null, publishedAt: { timestamp: number, label: string } | null, created: { timestamp: number } | null, updated: { timestamp: number } | null, targets: Array<{ id: string, databaseId: number, accountId: number, provider: string, account: string, avatar: string, status: FlxSocialTargetStatus, remoteUrl: string, error: string, content: string | null, publishedAt: { timestamp: number, label: string } | null, metrics: { views: number, impressions: number, reach: number, clicks: number, likes: number, comments: number, shares: number, saves: number }, caps: { text: boolean, image: boolean, video: boolean, gif: boolean, maxText: number, maxImages: number, maxVideos: number, mix: boolean, needsMedia: boolean, edit: boolean, delete: boolean, comment: boolean, metrics: boolean, options: Array<string> }, media: Array<{ databaseId: number, url: string, kind: string, mime: string, bytes: number, width: number, height: number, duration: number, thumb: string, name: string, alt: string }> | null, options: { title: string | null, link: string | null, board: string | null, privacy: string | null, igType: string | null, flxCategory: string | null, playlist: string | null, tiktokPrivacy: string | null, gbpTopic: string | null, gbpCta: string | null, gbpCtaUrl: string | null, waKind: string | null, waTo: string | null, firstComment: string | null, liVisibility: string | null, alt: string | null, thumbUrl: string | null, replySettings: string | null, eventTitle: string | null, eventStart: string | null, eventEnd: string | null, offerCode: string | null, madeForKids: boolean | null, notify: boolean | null, shorts: boolean | null, disableComment: boolean | null, disableDuet: boolean | null, disableStitch: boolean | null, aiGenerated: boolean | null, brandContent: boolean | null, brandOrganic: boolean | null, shareToFeed: boolean | null, autoMusic: boolean | null, tags: Array<string> | null } }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSocialPostDeleteMutationVariables = Exact<{
+  input: FlxSocialPostDeleteInput;
+}>;
+
+
+export type FlxSocialPostDeleteMutation = { flxSocialPostDelete: { deletedId: string | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSocialPostDuplicateMutationVariables = Exact<{
+  input: FlxSocialPostDuplicateInput;
+}>;
+
+
+export type FlxSocialPostDuplicateMutation = { flxSocialPostDuplicate: { post: { id: string, databaseId: number, status: FlxSocialPostStatus, title: string, content: string, tags: Array<string>, repeatDays: number, source: string, note: string, author: string, authorId: number, approvedBy: number, media: Array<{ databaseId: number, url: string, kind: string, mime: string, bytes: number, width: number, height: number, duration: number, thumb: string, name: string, alt: string }>, scheduledAt: { timestamp: number, label: string } | null, publishedAt: { timestamp: number, label: string } | null, created: { timestamp: number } | null, updated: { timestamp: number } | null, targets: Array<{ id: string, databaseId: number, accountId: number, provider: string, account: string, avatar: string, status: FlxSocialTargetStatus, remoteUrl: string, error: string, content: string | null, publishedAt: { timestamp: number, label: string } | null, metrics: { views: number, impressions: number, reach: number, clicks: number, likes: number, comments: number, shares: number, saves: number }, caps: { text: boolean, image: boolean, video: boolean, gif: boolean, maxText: number, maxImages: number, maxVideos: number, mix: boolean, needsMedia: boolean, edit: boolean, delete: boolean, comment: boolean, metrics: boolean, options: Array<string> }, media: Array<{ databaseId: number, url: string, kind: string, mime: string, bytes: number, width: number, height: number, duration: number, thumb: string, name: string, alt: string }> | null, options: { title: string | null, link: string | null, board: string | null, privacy: string | null, igType: string | null, flxCategory: string | null, playlist: string | null, tiktokPrivacy: string | null, gbpTopic: string | null, gbpCta: string | null, gbpCtaUrl: string | null, waKind: string | null, waTo: string | null, firstComment: string | null, liVisibility: string | null, alt: string | null, thumbUrl: string | null, replySettings: string | null, eventTitle: string | null, eventStart: string | null, eventEnd: string | null, offerCode: string | null, madeForKids: boolean | null, notify: boolean | null, shorts: boolean | null, disableComment: boolean | null, disableDuet: boolean | null, disableStitch: boolean | null, aiGenerated: boolean | null, brandContent: boolean | null, brandOrganic: boolean | null, shareToFeed: boolean | null, autoMusic: boolean | null, tags: Array<string> | null } }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSocialPostsQueryVariables = Exact<{
+  first?: number | null | undefined;
+  after?: string | null | undefined;
+  status?: Array<FlxSocialPostStatus> | FlxSocialPostStatus | null | undefined;
+  accountId?: number | null | undefined;
+  provider?: string | null | undefined;
+  search?: string | null | undefined;
+  tag?: string | null | undefined;
+  mine?: boolean | null | undefined;
+  from?: number | null | undefined;
+  to?: number | null | undefined;
+  ascending?: boolean | null | undefined;
+}>;
+
+
+export type FlxSocialPostsQuery = { flxSocialPosts: { totalCount: number | null, nodes: Array<{ id: string, databaseId: number, status: FlxSocialPostStatus, title: string, content: string, tags: Array<string>, repeatDays: number, source: string, note: string, author: string, authorId: number, approvedBy: number, media: Array<{ databaseId: number, url: string, kind: string, mime: string, bytes: number, width: number, height: number, duration: number, thumb: string, name: string, alt: string }>, scheduledAt: { timestamp: number, label: string } | null, publishedAt: { timestamp: number, label: string } | null, created: { timestamp: number } | null, updated: { timestamp: number } | null, targets: Array<{ id: string, databaseId: number, accountId: number, provider: string, account: string, avatar: string, status: FlxSocialTargetStatus, remoteUrl: string, error: string, content: string | null, publishedAt: { timestamp: number, label: string } | null, metrics: { views: number, impressions: number, reach: number, clicks: number, likes: number, comments: number, shares: number, saves: number }, caps: { text: boolean, image: boolean, video: boolean, gif: boolean, maxText: number, maxImages: number, maxVideos: number, mix: boolean, needsMedia: boolean, edit: boolean, delete: boolean, comment: boolean, metrics: boolean, options: Array<string> }, media: Array<{ databaseId: number, url: string, kind: string, mime: string, bytes: number, width: number, height: number, duration: number, thumb: string, name: string, alt: string }> | null, options: { title: string | null, link: string | null, board: string | null, privacy: string | null, igType: string | null, flxCategory: string | null, playlist: string | null, tiktokPrivacy: string | null, gbpTopic: string | null, gbpCta: string | null, gbpCtaUrl: string | null, waKind: string | null, waTo: string | null, firstComment: string | null, liVisibility: string | null, alt: string | null, thumbUrl: string | null, replySettings: string | null, eventTitle: string | null, eventStart: string | null, eventEnd: string | null, offerCode: string | null, madeForKids: boolean | null, notify: boolean | null, shorts: boolean | null, disableComment: boolean | null, disableDuet: boolean | null, disableStitch: boolean | null, aiGenerated: boolean | null, brandContent: boolean | null, brandOrganic: boolean | null, shareToFeed: boolean | null, autoMusic: boolean | null, tags: Array<string> | null } }> }>, pageInfo: { hasNextPage: boolean, endCursor: string | null } } };
+
+export type FlxSocialPostUpdateMutationVariables = Exact<{
+  input: FlxSocialPostUpdateInput;
+}>;
+
+
+export type FlxSocialPostUpdateMutation = { flxSocialPostUpdate: { post: { id: string, databaseId: number, status: FlxSocialPostStatus, title: string, content: string, tags: Array<string>, repeatDays: number, source: string, note: string, author: string, authorId: number, approvedBy: number, media: Array<{ databaseId: number, url: string, kind: string, mime: string, bytes: number, width: number, height: number, duration: number, thumb: string, name: string, alt: string }>, scheduledAt: { timestamp: number, label: string } | null, publishedAt: { timestamp: number, label: string } | null, created: { timestamp: number } | null, updated: { timestamp: number } | null, targets: Array<{ id: string, databaseId: number, accountId: number, provider: string, account: string, avatar: string, status: FlxSocialTargetStatus, remoteUrl: string, error: string, content: string | null, publishedAt: { timestamp: number, label: string } | null, metrics: { views: number, impressions: number, reach: number, clicks: number, likes: number, comments: number, shares: number, saves: number }, caps: { text: boolean, image: boolean, video: boolean, gif: boolean, maxText: number, maxImages: number, maxVideos: number, mix: boolean, needsMedia: boolean, edit: boolean, delete: boolean, comment: boolean, metrics: boolean, options: Array<string> }, media: Array<{ databaseId: number, url: string, kind: string, mime: string, bytes: number, width: number, height: number, duration: number, thumb: string, name: string, alt: string }> | null, options: { title: string | null, link: string | null, board: string | null, privacy: string | null, igType: string | null, flxCategory: string | null, playlist: string | null, tiktokPrivacy: string | null, gbpTopic: string | null, gbpCta: string | null, gbpCtaUrl: string | null, waKind: string | null, waTo: string | null, firstComment: string | null, liVisibility: string | null, alt: string | null, thumbUrl: string | null, replySettings: string | null, eventTitle: string | null, eventStart: string | null, eventEnd: string | null, offerCode: string | null, madeForKids: boolean | null, notify: boolean | null, shorts: boolean | null, disableComment: boolean | null, disableDuet: boolean | null, disableStitch: boolean | null, aiGenerated: boolean | null, brandContent: boolean | null, brandOrganic: boolean | null, shareToFeed: boolean | null, autoMusic: boolean | null, tags: Array<string> | null } }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSocialSettingsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxSocialSettingsQuery = { flxSocialSettings: { approval: boolean, signature: string, utm: boolean, metaVersion: string, xTier: string, xPremium: boolean, xMonthLimit: number, tiktokMode: string, pinSandbox: boolean, liOrg: boolean, waConn: number, xMonth: number, tickUrl: string, lastTick: { timestamp: number } | null, auto: { enabled: boolean, postTypes: Array<string>, accounts: Array<number>, template: string, mode: string, delay: number, image: boolean }, postTypes: Array<{ id: string, name: string }>, xTiers: Array<{ id: string, name: string }>, waChoices: Array<{ id: string, name: string }> }, flxSocialApps: Array<{ id: string, label: string, console: string, redirect: string, help: string, ready: boolean, fields: Array<{ key: string, label: string, secret: boolean, value: string, isSet: boolean, placeholder: string, optional: boolean }>, connect: Array<{ for: string, label: string, provider: string, local: boolean }> }> };
+
+export type FlxSocialSettingsUpdateMutationVariables = Exact<{
+  input: FlxSocialSettingsUpdateInput;
+}>;
+
+
+export type FlxSocialSettingsUpdateMutation = { flxSocialSettingsUpdate: { settings: { approval: boolean, signature: string, xTier: string, tickUrl: string, auto: { enabled: boolean, postTypes: Array<string>, accounts: Array<number>, template: string, mode: string, delay: number, image: boolean } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSocialStatsQueryVariables = Exact<{
+  days?: number | null | undefined;
+}>;
+
+
+export type FlxSocialStatsQuery = { flxSocialStats: { days: number, lastMetrics: { timestamp: number } | null, totals: { published: number, failed: number, scheduled: number, pending: number, drafts: number, engagement: number, views: number, followers: number, followersDelta: number, successRate: number | null }, byDay: Array<{ day: string, networks: Array<{ provider: string, count: number }> }>, byNetwork: Array<{ provider: string, published: number, failed: number, engagement: number, views: number }>, followers: Array<{ accountId: number, name: string, provider: string, avatar: string, now: number, delta: number, series: Array<{ day: string, count: number }> }>, top: Array<{ targetId: number, postId: number, provider: string, account: string, title: string, engagement: number, views: number, url: string, at: { timestamp: number } | null }>, upcoming: Array<{ id: string, databaseId: number, status: FlxSocialPostStatus, title: string, content: string, tags: Array<string>, repeatDays: number, source: string, note: string, author: string, authorId: number, approvedBy: number, media: Array<{ databaseId: number, url: string, kind: string, mime: string, bytes: number, width: number, height: number, duration: number, thumb: string, name: string, alt: string }>, scheduledAt: { timestamp: number, label: string } | null, publishedAt: { timestamp: number, label: string } | null, created: { timestamp: number } | null, updated: { timestamp: number } | null, targets: Array<{ id: string, databaseId: number, accountId: number, provider: string, account: string, avatar: string, status: FlxSocialTargetStatus, remoteUrl: string, error: string, content: string | null, publishedAt: { timestamp: number, label: string } | null, metrics: { views: number, impressions: number, reach: number, clicks: number, likes: number, comments: number, shares: number, saves: number }, caps: { text: boolean, image: boolean, video: boolean, gif: boolean, maxText: number, maxImages: number, maxVideos: number, mix: boolean, needsMedia: boolean, edit: boolean, delete: boolean, comment: boolean, metrics: boolean, options: Array<string> }, media: Array<{ databaseId: number, url: string, kind: string, mime: string, bytes: number, width: number, height: number, duration: number, thumb: string, name: string, alt: string }> | null, options: { title: string | null, link: string | null, board: string | null, privacy: string | null, igType: string | null, flxCategory: string | null, playlist: string | null, tiktokPrivacy: string | null, gbpTopic: string | null, gbpCta: string | null, gbpCtaUrl: string | null, waKind: string | null, waTo: string | null, firstComment: string | null, liVisibility: string | null, alt: string | null, thumbUrl: string | null, replySettings: string | null, eventTitle: string | null, eventStart: string | null, eventEnd: string | null, offerCode: string | null, madeForKids: boolean | null, notify: boolean | null, shorts: boolean | null, disableComment: boolean | null, disableDuet: boolean | null, disableStitch: boolean | null, aiGenerated: boolean | null, brandContent: boolean | null, brandOrganic: boolean | null, shareToFeed: boolean | null, autoMusic: boolean | null, tags: Array<string> | null } }> }>, errors: Array<{ targetId: number, postId: number, account: string, provider: string, error: string, at: { timestamp: number } | null }> } };
+
+export type FlxSocialStatsRefreshMutationVariables = Exact<{
+  input: FlxSocialStatsRefreshInput;
+}>;
+
+
+export type FlxSocialStatsRefreshMutation = { flxSocialStatsRefresh: { updated: number, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSocialStudioMediaQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxSocialStudioMediaQuery = { flxSocialStudioMedia: Array<{ databaseId: number, kind: string, url: string, thumb: string, title: string, prompt: string, attachmentId: number, width: number, height: number }> };
+
+export type FlxSocialTargetRemoteDeleteMutationVariables = Exact<{
+  input: FlxSocialTargetRemoteDeleteInput;
+}>;
+
+
+export type FlxSocialTargetRemoteDeleteMutation = { flxSocialTargetRemoteDelete: { post: { id: string, databaseId: number, status: FlxSocialPostStatus, title: string, content: string, tags: Array<string>, repeatDays: number, source: string, note: string, author: string, authorId: number, approvedBy: number, media: Array<{ databaseId: number, url: string, kind: string, mime: string, bytes: number, width: number, height: number, duration: number, thumb: string, name: string, alt: string }>, scheduledAt: { timestamp: number, label: string } | null, publishedAt: { timestamp: number, label: string } | null, created: { timestamp: number } | null, updated: { timestamp: number } | null, targets: Array<{ id: string, databaseId: number, accountId: number, provider: string, account: string, avatar: string, status: FlxSocialTargetStatus, remoteUrl: string, error: string, content: string | null, publishedAt: { timestamp: number, label: string } | null, metrics: { views: number, impressions: number, reach: number, clicks: number, likes: number, comments: number, shares: number, saves: number }, caps: { text: boolean, image: boolean, video: boolean, gif: boolean, maxText: number, maxImages: number, maxVideos: number, mix: boolean, needsMedia: boolean, edit: boolean, delete: boolean, comment: boolean, metrics: boolean, options: Array<string> }, media: Array<{ databaseId: number, url: string, kind: string, mime: string, bytes: number, width: number, height: number, duration: number, thumb: string, name: string, alt: string }> | null, options: { title: string | null, link: string | null, board: string | null, privacy: string | null, igType: string | null, flxCategory: string | null, playlist: string | null, tiktokPrivacy: string | null, gbpTopic: string | null, gbpCta: string | null, gbpCtaUrl: string | null, waKind: string | null, waTo: string | null, firstComment: string | null, liVisibility: string | null, alt: string | null, thumbUrl: string | null, replySettings: string | null, eventTitle: string | null, eventStart: string | null, eventEnd: string | null, offerCode: string | null, madeForKids: boolean | null, notify: boolean | null, shorts: boolean | null, disableComment: boolean | null, disableDuet: boolean | null, disableStitch: boolean | null, aiGenerated: boolean | null, brandContent: boolean | null, brandOrganic: boolean | null, shareToFeed: boolean | null, autoMusic: boolean | null, tags: Array<string> | null } }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSocialTargetRemoteEditMutationVariables = Exact<{
+  input: FlxSocialTargetRemoteEditInput;
+}>;
+
+
+export type FlxSocialTargetRemoteEditMutation = { flxSocialTargetRemoteEdit: { post: { id: string, databaseId: number, status: FlxSocialPostStatus, title: string, content: string, tags: Array<string>, repeatDays: number, source: string, note: string, author: string, authorId: number, approvedBy: number, media: Array<{ databaseId: number, url: string, kind: string, mime: string, bytes: number, width: number, height: number, duration: number, thumb: string, name: string, alt: string }>, scheduledAt: { timestamp: number, label: string } | null, publishedAt: { timestamp: number, label: string } | null, created: { timestamp: number } | null, updated: { timestamp: number } | null, targets: Array<{ id: string, databaseId: number, accountId: number, provider: string, account: string, avatar: string, status: FlxSocialTargetStatus, remoteUrl: string, error: string, content: string | null, publishedAt: { timestamp: number, label: string } | null, metrics: { views: number, impressions: number, reach: number, clicks: number, likes: number, comments: number, shares: number, saves: number }, caps: { text: boolean, image: boolean, video: boolean, gif: boolean, maxText: number, maxImages: number, maxVideos: number, mix: boolean, needsMedia: boolean, edit: boolean, delete: boolean, comment: boolean, metrics: boolean, options: Array<string> }, media: Array<{ databaseId: number, url: string, kind: string, mime: string, bytes: number, width: number, height: number, duration: number, thumb: string, name: string, alt: string }> | null, options: { title: string | null, link: string | null, board: string | null, privacy: string | null, igType: string | null, flxCategory: string | null, playlist: string | null, tiktokPrivacy: string | null, gbpTopic: string | null, gbpCta: string | null, gbpCtaUrl: string | null, waKind: string | null, waTo: string | null, firstComment: string | null, liVisibility: string | null, alt: string | null, thumbUrl: string | null, replySettings: string | null, eventTitle: string | null, eventStart: string | null, eventEnd: string | null, offerCode: string | null, madeForKids: boolean | null, notify: boolean | null, shorts: boolean | null, disableComment: boolean | null, disableDuet: boolean | null, disableStitch: boolean | null, aiGenerated: boolean | null, brandContent: boolean | null, brandOrganic: boolean | null, shareToFeed: boolean | null, autoMusic: boolean | null, tags: Array<string> | null } }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSocialTargetRetryMutationVariables = Exact<{
+  input: FlxSocialTargetRetryInput;
+}>;
+
+
+export type FlxSocialTargetRetryMutation = { flxSocialTargetRetry: { post: { id: string, databaseId: number, status: FlxSocialPostStatus, title: string, content: string, tags: Array<string>, repeatDays: number, source: string, note: string, author: string, authorId: number, approvedBy: number, media: Array<{ databaseId: number, url: string, kind: string, mime: string, bytes: number, width: number, height: number, duration: number, thumb: string, name: string, alt: string }>, scheduledAt: { timestamp: number, label: string } | null, publishedAt: { timestamp: number, label: string } | null, created: { timestamp: number } | null, updated: { timestamp: number } | null, targets: Array<{ id: string, databaseId: number, accountId: number, provider: string, account: string, avatar: string, status: FlxSocialTargetStatus, remoteUrl: string, error: string, content: string | null, publishedAt: { timestamp: number, label: string } | null, metrics: { views: number, impressions: number, reach: number, clicks: number, likes: number, comments: number, shares: number, saves: number }, caps: { text: boolean, image: boolean, video: boolean, gif: boolean, maxText: number, maxImages: number, maxVideos: number, mix: boolean, needsMedia: boolean, edit: boolean, delete: boolean, comment: boolean, metrics: boolean, options: Array<string> }, media: Array<{ databaseId: number, url: string, kind: string, mime: string, bytes: number, width: number, height: number, duration: number, thumb: string, name: string, alt: string }> | null, options: { title: string | null, link: string | null, board: string | null, privacy: string | null, igType: string | null, flxCategory: string | null, playlist: string | null, tiktokPrivacy: string | null, gbpTopic: string | null, gbpCta: string | null, gbpCtaUrl: string | null, waKind: string | null, waTo: string | null, firstComment: string | null, liVisibility: string | null, alt: string | null, thumbUrl: string | null, replySettings: string | null, eventTitle: string | null, eventStart: string | null, eventEnd: string | null, offerCode: string | null, madeForKids: boolean | null, notify: boolean | null, shorts: boolean | null, disableComment: boolean | null, disableDuet: boolean | null, disableStitch: boolean | null, aiGenerated: boolean | null, brandContent: boolean | null, brandOrganic: boolean | null, shareToFeed: boolean | null, autoMusic: boolean | null, tags: Array<string> | null } }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSocialTickKeyRevealMutationVariables = Exact<{
+  input: FlxSocialTickKeyRevealInput;
+}>;
+
+
+export type FlxSocialTickKeyRevealMutation = { flxSocialTickKeyReveal: { url: string | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSocialTickRunMutationVariables = Exact<{
+  input: FlxSocialTickRunInput;
+}>;
+
+
+export type FlxSocialTickRunMutation = { flxSocialTickRun: { processed: number, due: number, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSocialWhatsAppAddMutationVariables = Exact<{
+  input: FlxSocialWhatsAppAddInput;
+}>;
+
+
+export type FlxSocialWhatsAppAddMutation = { flxSocialWhatsAppAdd: { added: number, accounts: Array<{ id: string, databaseId: number, provider: string, via: string, network: string, name: string, username: string, avatar: string, status: FlxSocialAccountStatus, kind: string, premium: boolean, lastError: string, expires: { timestamp: number } | null, boards: Array<{ id: string, name: string }>, groups: Array<{ id: string, name: string }>, playlists: Array<{ id: string, name: string }>, caps: { text: boolean, image: boolean, video: boolean, gif: boolean, maxText: number, maxImages: number, maxVideos: number, mix: boolean, needsMedia: boolean, edit: boolean, delete: boolean, comment: boolean, metrics: boolean, options: Array<string> } }>, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSocialWhatsAppTargetsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxSocialWhatsAppTargetsQuery = { flxSocialWhatsAppTargets: Array<{ extId: string, name: string, kind: string, avatar: string, exists: boolean }> };
 
 export type FlxTaskCommentCreateMutationVariables = Exact<{
   input: FlxTaskCommentCreateInput;

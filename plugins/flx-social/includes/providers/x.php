@@ -24,6 +24,9 @@ class FLXSM_X extends FLXSM_Provider {
 		return '#111111';
 	}
 
+	/**
+	 * @return array<string,string>
+	 */
 	public static function tiers() {
 		return array(
 			'free'          => __( 'Free (no cost, low write limit, no metrics)', 'flx-social' ),
@@ -438,6 +441,9 @@ class FLXSM_X extends FLXSM_Provider {
 }
 
 /** Bu ay X'e yapılan başarılı gönderi sayısı (aylık sınır için). */
+/**
+ * @return int
+ */
 function flxsm_x_month_count() {
 	global $wpdb;
 	$from = strtotime( gmdate( 'Y-m-01 00:00:00' ) );

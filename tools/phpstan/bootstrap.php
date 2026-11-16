@@ -16,3 +16,10 @@ defined( 'FLXR_DB_VERSION' ) || define( 'FLXR_DB_VERSION', 3 );
 defined( 'FLXR_FILE' ) || define( 'FLXR_FILE', __FILE__ );
 defined( 'FLXR_DIR' ) || define( 'FLXR_DIR', __DIR__ . '/' );
 defined( 'FLXR_URL' ) || define( 'FLXR_URL', 'https://example.com/' );
+
+defined( 'FLXSM_VERSION' ) || define( 'FLXSM_VERSION', '0.0.0' );
+defined( 'FLXSM_DB_VERSION' ) || define( 'FLXSM_DB_VERSION', 1 );
+defined( 'FLXSM_FILE' ) || define( 'FLXSM_FILE', __FILE__ );
+defined( 'FLXSM_DIR' ) || define( 'FLXSM_DIR', __DIR__ . '/' );
+defined( 'FLXSM_URL' ) || define( 'FLXSM_URL', 'https://example.com/' );
+defined( 'FLXSM_NS' ) || define( 'FLXSM_NS', 'flx-social/v1' );

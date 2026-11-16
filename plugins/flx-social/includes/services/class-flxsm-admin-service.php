@@ -16,12 +16,12 @@ final class FLXSM_Admin_Service {
 	 * What the screen needs to start.
 	 */
 	public static function config(): FLXSM_Config {
-		$s = flxsm_settings();
+		$s = FLXSM_Cast::arr( flxsm_settings() );
 		return new FLXSM_Config(
 			get_current_user_id(),
 			wp_get_current_user()->display_name,
-			flxsm_can_publish(),
-			flxsm_can_manage(),
+			(bool) flxsm_can_publish(),
+			(bool) flxsm_can_manage(),
 			current_user_can( 'upload_files' ),
 			FLXSM_Accounts_Service::networks(),
 			(bool) flxsm_ai_ready(),
@@ -30,8 +30,8 @@ final class FLXSM_Admin_Service {
 			FLXSM_Cast::str( $s['signature'] ),
 			FLXSM_Cast::str( $s['x_tier'] ),
 			wp_timezone_string(),
-			(int) wp_timezone()->getOffset( new DateTime( 'now' ) ),
-			(int) get_option( 'start_of_week', 1 ),
+			FLXSM_Cast::int( wp_timezone()->getOffset( new DateTime( 'now' ) ) ),
+			FLXSM_Cast::int( get_option( 'start_of_week', 1 ) ),
 			FLXSM_VERSION
 		);
 	}
@@ -45,7 +45,7 @@ final class FLXSM_Admin_Service {
 			FLXSM_Cast::int( $c['pending'] ?? 0 ),
 			FLXSM_Cast::int( $c['scheduled'] ?? 0 ),
 			FLXSM_Cast::int( $c['failed'] ?? 0 ),
-			(int) flxsm_due_count( 0 )
+			FLXSM_Cast::int( flxsm_due_count( 0 ) )
 		);
 	}
 
@@ -54,8 +54,8 @@ final class FLXSM_Admin_Service {
 	 */
 	public static function tick(): FLXSM_Tick_Result {
 		ignore_user_abort( true );
-		$n = (int) flxsm_tick( 20, 'panel' );
-		return new FLXSM_Tick_Result( $n, (int) flxsm_due_count() );
+		$n = FLXSM_Cast::int( flxsm_tick( 20, 'panel' ) );
+		return new FLXSM_Tick_Result( $n, FLXSM_Cast::int( flxsm_due_count() ) );
 	}
 
 	/**
@@ -74,7 +74,7 @@ final class FLXSM_Admin_Service {
 	 * @return array{updated:int,stats:FLXSM_Stats}
 	 */
 	public static function refresh_stats(): array {
-		$n = (int) flxsm_collect_metrics( 25 );
+		$n = FLXSM_Cast::int( flxsm_collect_metrics( 25 ) );
 		return array(
 			'updated' => $n,
 			'stats'   => self::stats( 30 ),
@@ -120,7 +120,7 @@ final class FLXSM_Admin_Service {
 			$pts,
 			$tiers,
 			self::wa_choices(),
-			(int) flxsm_x_month_count(),
+			FLXSM_Cast::int( flxsm_x_month_count() ),
 			FLXSM_Cast::int( $last['any'] ?? 0 ),
 			self::tick_url( true )
 		);
@@ -140,7 +140,7 @@ final class FLXSM_Admin_Service {
 		}
 		foreach ( array( 'x_month_limit', 'wa_conn' ) as $k ) {
 			if ( isset( $in[ $k ] ) ) {
-				$patch[ $k ] = absint( $in[ $k ] );
+				$patch[ $k ] = absint( FLXSM_Cast::int( $in[ $k ] ) );
 			}
 		}
 		if ( isset( $in['signature'] ) ) {
@@ -163,7 +163,7 @@ final class FLXSM_Admin_Service {
 				'accounts'   => array_values( array_filter( array_map( 'absint', FLXSM_Cast::ints( $a['accounts'] ?? array() ) ) ) ),
 				'template'   => sanitize_textarea_field( FLXSM_Cast::str( $a['template'] ?? '' ) ),
 				'mode'       => 'schedule' === ( $a['mode'] ?? '' ) ? 'schedule' : 'draft',
-				'delay'      => min( 1440, absint( $a['delay'] ?? 10 ) ),
+				'delay'      => min( 1440, absint( FLXSM_Cast::int( $a['delay'] ?? 10 ) ) ),
 				'image'      => ! empty( $a['image'] ) ? 1 : 0,
 			);
 		}
@@ -249,8 +249,9 @@ final class FLXSM_Admin_Service {
 	 * @return list<FLXSM_Log_Row>
 	 */
 	public static function log( int $limit = 200 ): array {
+		/** @var wpdb $wpdb */
 		global $wpdb;
-		$rows = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM ' . flxsm_table( 'log' ) . ' ORDER BY id DESC LIMIT %d', max( 1, min( 200, $limit ) ) ), ARRAY_A ); // phpcs:ignore WordPress.DB
+		$rows = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM ' . flxsm_table( 'log' ) . ' ORDER BY id DESC LIMIT %d', max( 1, min( 200, $limit ) ) ), ARRAY_A ); // phpcs:ignore WordPress.DB -- @phpstan-ignore argument.type
 		$out  = array();
 		foreach ( FLXSM_Cast::rows( $rows ) as $r ) {
 			$out[] = new FLXSM_Log_Row(
@@ -311,6 +312,7 @@ final class FLXSM_Admin_Service {
 		self::media_includes();
 		$url = esc_url_raw( $url );
 		$id  = media_sideload_image( $url, 0, null, 'id' );
+		$id  = is_wp_error( $id ) ? $id : FLXSM_Cast::int( $id );
 		if ( is_wp_error( $id ) ) {
 			$tmp = download_url( $url, 120 );
 			if ( is_wp_error( $tmp ) ) {
@@ -359,12 +361,13 @@ final class FLXSM_Admin_Service {
 	 * @return list<FLXSM_Studio_Item>
 	 */
 	public static function studio_media(): array {
+		/** @var wpdb $wpdb */
 		global $wpdb;
 		if ( ! function_exists( 'flxst_table' ) ) {
 			return array();
 		}
-		$t    = flxst_table( 'items' );
-		$rows = $wpdb->get_results( $wpdb->prepare( "SELECT id, kind, url, thumb, title, prompt, attachment_id, width, height FROM {$t} WHERE state = 'done' AND url <> '' AND (user_id = %d OR %d = 1) ORDER BY id DESC LIMIT 60", get_current_user_id(), current_user_can( 'flxst_manage' ) ? 1 : 0 ), ARRAY_A ); // phpcs:ignore WordPress.DB
+		$t    = FLXSM_Cast::str( flxst_table( 'items' ) );
+		$rows = $wpdb->get_results( $wpdb->prepare( "SELECT id, kind, url, thumb, title, prompt, attachment_id, width, height FROM {$t} WHERE state = 'done' AND url <> '' AND (user_id = %d OR %d = 1) ORDER BY id DESC LIMIT 60", get_current_user_id(), current_user_can( 'flxst_manage' ) ? 1 : 0 ), ARRAY_A ); // phpcs:ignore WordPress.DB -- @phpstan-ignore argument.type
 		$out  = array();
 		foreach ( FLXSM_Cast::rows( $rows ) as $r ) {
 			$out[] = new FLXSM_Studio_Item(

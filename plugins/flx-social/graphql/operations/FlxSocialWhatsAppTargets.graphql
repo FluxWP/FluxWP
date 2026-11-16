@@ -1,0 +1,3 @@
+query FlxSocialWhatsAppTargets {
+  flxSocialWhatsAppTargets { extId name kind avatar exists }
+}

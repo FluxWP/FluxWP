@@ -7,6 +7,10 @@ const FLXSM_CAP_POST    = 'flxsm_post';    // gönderi hazırla (taslak, onaya g
 const FLXSM_CAP_PUBLISH = 'flxsm_publish'; // yayınla, zamanla, onayla, ağda düzenle/sil
 const FLXSM_CAP_MANAGE  = 'flxsm_manage';  // hesap bağla, anahtarlar, ayarlar
 
+/**
+ * @param string $name Table suffix.
+ * @return string
+ */
 function flxsm_table( $name ) {
 	global $wpdb;
 	return $wpdb->prefix . 'flxsm_' . $name;
@@ -194,6 +198,9 @@ function flxsm_defaults() {
 	);
 }
 
+/**
+ * @return array<string,mixed>
+ */
 function flxsm_settings() {
 	$s = wp_parse_args( (array) get_option( 'flxsm_settings', array() ), flxsm_defaults() );
 	$s['auto'] = wp_parse_args( (array) $s['auto'], flxsm_defaults()['auto'] );
@@ -211,16 +218,28 @@ function flxsm_save_settings( array $patch ) {
 	return $s;
 }
 
+/**
+ * @param int $user_id User (0: current).
+ * @return bool
+ */
 function flxsm_can_post( $user_id = 0 ) {
 	$u = $user_id ? $user_id : get_current_user_id();
 	return user_can( $u, FLXSM_CAP_POST ) || user_can( $u, FLXSM_CAP_PUBLISH ) || user_can( $u, FLXSM_CAP_MANAGE );
 }
 
+/**
+ * @param int $user_id User (0: current).
+ * @return bool
+ */
 function flxsm_can_publish( $user_id = 0 ) {
 	$u = $user_id ? $user_id : get_current_user_id();
 	return user_can( $u, FLXSM_CAP_PUBLISH ) || user_can( $u, FLXSM_CAP_MANAGE );
 }
 
+/**
+ * @param int $user_id User (0: current).
+ * @return bool
+ */
 function flxsm_can_manage( $user_id = 0 ) {
 	return user_can( $user_id ? $user_id : get_current_user_id(), FLXSM_CAP_MANAGE );
 }
