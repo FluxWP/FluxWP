@@ -40,3 +40,11 @@ Faz 0'da 0.4, 0.5 ve 0.6 merge edilince başlar (plan §5).
 | flx-setup 1.4.0 | 👀 | `gql/flx-setup-1` (dal `claude/project-thread-hdhayh`): servis katmanı (`FLXK_Packages/Settings/Wizard/System_Service`), 10 sorgu + 12 mutation, 18 kayıtlı işlem, sözleşme testi 69/69. React ekranları Paketler (`flxk-packages`) ve Ayarlar (`flxk-settings`) klasikle eşit, wp-admin varsayılanı; Flux GraphQL yoksa klasik ekran + kurulum düğmesi. Kurulum sihirbazı GraphQL kullanır (admin-ajax yedek), logo ortak yükleme ucuyla. Presets ekranı kapsam dışı. Eşleme `ESLEME/flx-setup.md` |
 | flx-app 0.6.0 | 👀 | `gql/flx-app-1`: servis katmanı, 8 sorgu + 4 mutation, 12 kayıtlı işlem, sözleşme testi 150/150. Belirteç + `flx` kapsamı + `X-Flux-Locale` GraphQL'de; OAuth/OTP/cihaz/ayar köprüsü REST'te, eski uygulama sürümleri REST'te. İstemci taşıyıcısı `@fluxwp/graphql/flx-app` (panel `mountApp`'te, REST yedekli). "Uygulama" ayar sayfası + "Uygulama erişimi" React ekranları 0.6.0'da (varsayılan, klasik bağlantıyla; 17 yeni işlem). Eşleme `ESLEME/flx-app.md` |
 | flx-lang 0.3.0 | 👀 | `gql/flx-lang-1`: servis katmanı, 4 sorgu + 5 mutation, `flxLanguage`/`flxTranslations` her içerik tipinde, 10 kayıtlı işlem, sözleşme testi 107/107. React ekranı (`flxl-lang`) klasikle eşit, wp-admin varsayılanı. Tasarım `docs/flx-lang/GRAPHQL.md`, eşleme `ESLEME/flx-lang.md` |
+
+## Faz 2: ticaret ve bağış
+
+| Paket | Durum | PR / not |
+|---|---|---|
+| `flxCart*` köprüsü (Flux GraphQL 0.3.0) | 👀 | `gql/cart-bridge-1`: Flux GraphQL içinde WooCommerce modülü (karar ve gerekçe `SEPET.md` §1). `flxCart` + 8 mutation, Store API'yi `rest_do_request` ile sarar; Cart-Token / Nonce oturumu, no-store. Paket genişleme noktası `FLXGQL_Cart::add_item()` + `flx_gql_cart_item_kind`. İstemci `@fluxwp/graphql/flx-cart` 0.3.3. HTTP testi 31/31 (yerelde Store API yerine geçen fixture, CI'da gerçek WooCommerce işi). Ödeme (EsnekPOS) Store API'de, köprüye girmez |
+| flx-commerce | ○ | Köprü merge edilince. Kullanacağı API `SEPET.md` §6 |
+| flx-donate | ○ | Köprü merge edilince. Bağış satırı `FLXGQL_Cart::add_item()` ile (`SEPET.md` §6) |

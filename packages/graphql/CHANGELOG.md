@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.3
+- `@fluxwp/graphql/flx-cart`: `flxCart(gql, { store, nonce })` sepet istemcisi (Flux GraphQL 0.3.0 `flxCart*`); sepet belirtecini saklar ve `Cart-Token` başlığıyla geri gönderir, hatalı girdide `FlxCartInputError`, Store API checkout'u için `checkoutHeaders()`.
+- Sepet işlemleri (`FlxCart`, `FlxCartItemAdd`, `FlxCartItemUpdate`, `FlxCartItemRemove`, `FlxCartClear`, `FlxCartCouponApply`, `FlxCartCouponRemove`, `FlxCartShippingRateSelect`, `FlxCartCustomerUpdate`) ve `FlxCartFields` fragment'ı.
+
 ## 0.3.2
 - Flux SEO işlemleri (`FlxSeoSettingsScreen`, `FlxSeoSettingsSave`, `FlxSeoAuditScreen`, `FlxSeoAuditRun`, `FlxSeoFixApply`, `FlxSeoPsiKeySave`, `FlxSeoIndexNowSubmit`, `FlxSeoContentCheck`, `FlxSeoGuide`).
 

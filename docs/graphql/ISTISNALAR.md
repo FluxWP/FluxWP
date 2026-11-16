@@ -13,7 +13,7 @@ paket GraphQL'e geçerken taşınır (geçiş süresince REST de çalışır).
 | MCP sunucusu `/mcp` (JSON-RPC) | flx-ai | MCP protokolü | Araçlar aynı servisleri çağırır |
 | AI sohbet akışı (SSE) | flx-ai, flx-chat | WPGraphQL'de subscription/stream yok | Başlatma ve geçmiş GraphQL'de |
 | Dosya yükleme `POST /wp-json/flx/v1/upload` | flx-graphql | Multipart; tek ortak uç | Mutation `uploadId` alır |
-| WooCommerce Store API (sepet / checkout) | flx-commerce, flx-donate | Gateway'ler Store API'ye bağlı (EsnekPOS `PaymentContext`, iyzico) | `flxCart*` mutation'ları içeride `rest_do_request` ile Store API'yi çağırır |
+| WooCommerce Store API (sepet / checkout) | flx-commerce, flx-donate | Gateway'ler Store API'ye bağlı (EsnekPOS `PaymentContext`, iyzico) | `flxCart` + `flxCart*` mutation'ları (Flux GraphQL 0.3.0) içeride `rest_do_request` ile Store API'yi çağırır; checkout (ödeme) `POST /wc/store/v1/checkout`'ta kalır. Bkz. `SEPET.md` |
 | Flux SEO `flxseo_audit_tick` (arka plan denetim tetiği, nopriv) | flx-seo | Hostinger'da WP cron tetiklenmiyor; loopback isteği, jetonla doğrulanır | Denetim durumu `flxSeoAuditHistory.running`, çalıştırma `flxSeoAuditRun` |
 | FluxWP/updater, FluxWP/whatsapp-api | — | WordPress eklentisi değil, ayrı servis | Kapsam dışı |
 | FluxWP/quiz (flx-quiz, flx-preset-arifiye) | — | Ahmet kararı: dokunulmaz | Kapsam dışı |
