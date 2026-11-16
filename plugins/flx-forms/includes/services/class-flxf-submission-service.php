@@ -179,7 +179,7 @@ class FLXF_Submission_Service {
 		/** @var wpdb $wpdb */
 		$table = $wpdb->prefix . 'emsfb_msg_';
 		$row   = $wpdb->get_row(
-			$wpdb->prepare( "SELECT msg_id, track, content, date, form_title_x FROM `{$table}` WHERE track = %s LIMIT 1", $code ),
+			$wpdb->prepare( 'SELECT msg_id, track, content, date, form_title_x FROM %i WHERE track = %s LIMIT 1', $table, $code ),
 			ARRAY_A
 		);
 		if ( ! is_array( $row ) ) {
@@ -188,18 +188,17 @@ class FLXF_Submission_Service {
 		$msg_id = self::num( $row['msg_id'] );
 		$rsp    = $wpdb->prefix . 'emsfb_rsp_';
 		$replies = $wpdb->get_results(
-			$wpdb->prepare( "SELECT content, date FROM `{$rsp}` WHERE msg_id = %d ORDER BY rsp_id ASC", $msg_id ),
+			$wpdb->prepare( 'SELECT content, date FROM %i WHERE msg_id = %d ORDER BY rsp_id ASC', $rsp, $msg_id ),
 			ARRAY_A
 		);
 		$out = array();
-		foreach ( is_array( $replies ) ? $replies : array() as $reply ) {
-			if ( ! is_array( $reply ) ) {
-				continue;
+		if ( is_array( $replies ) ) {
+			foreach ( $replies as $reply ) {
+				$out[] = array(
+					'body'      => self::reply_text( self::str( $reply['content'] ?? '' ) ),
+					'createdAt' => self::str( $reply['date'] ?? '' ),
+				);
 			}
-			$out[] = array(
-				'body'      => self::reply_text( self::str( $reply['content'] ?? '' ) ),
-				'createdAt' => self::str( $reply['date'] ?? '' ),
-			);
 		}
 		return array(
 			'trackCode'   => self::str( $row['track'] ),
@@ -231,7 +230,7 @@ class FLXF_Submission_Service {
 		/** @var wpdb $wpdb */
 		$table = $wpdb->prefix . 'emsfb_msg_';
 		$row   = $wpdb->get_row(
-			$wpdb->prepare( "SELECT msg_id, track FROM `{$table}` WHERE track = %s LIMIT 1", $code ),
+			$wpdb->prepare( 'SELECT msg_id, track FROM %i WHERE track = %s LIMIT 1', $table, $code ),
 			ARRAY_A
 		);
 		if ( ! is_array( $row ) ) {
@@ -305,7 +304,7 @@ class FLXF_Submission_Service {
 			if ( '' === $id ) {
 				continue;
 			}
-			$out[ $id ] = is_scalar( $field['value'] ?? '' ) ? (string) $field['value'] : '';
+			$out[ $id ] = self::str( $field['value'] ?? '' );
 		}
 		return $out;
 	}
@@ -390,7 +389,7 @@ class FLXF_Submission_Service {
 		$table = $wpdb->prefix . 'emsfb_msg_';
 		for ( $i = 0; $i < 5; $i++ ) {
 			$code = wp_generate_password( 12, false, false );
-			$have = self::num( $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM `{$table}` WHERE track = %s", $code ) ) );
+			$have = self::num( $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM %i WHERE track = %s', $table, $code ) ) );
 			if ( 0 === $have ) {
 				return $code;
 			}
@@ -414,7 +413,7 @@ class FLXF_Submission_Service {
 			if ( ! is_array( $row ) ) {
 				continue;
 			}
-			$value = sanitize_text_field( is_scalar( $row['value'] ?? '' ) ? (string) $row['value'] : '' );
+			$value = sanitize_text_field( self::str( $row['value'] ?? '' ) );
 			if ( '' === $value ) {
 				continue;
 			}

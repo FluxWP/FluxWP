@@ -204,7 +204,7 @@ class FLXF_Form_Service {
 		/** @var wpdb $wpdb */
 		$table = $wpdb->prefix . 'emsfb_form';
 		$found = $wpdb->get_row(
-			$wpdb->prepare( "SELECT form_id, form_name, form_type, form_structer FROM `{$table}` WHERE form_id = %d", $id ),
+			$wpdb->prepare( 'SELECT form_id, form_name, form_type, form_structer FROM %i WHERE form_id = %d', $table, $id ),
 			ARRAY_A
 		);
 		if ( ! is_array( $found ) || ! isset( $found['form_id'] ) ) {
@@ -231,7 +231,15 @@ class FLXF_Form_Service {
 		}
 		$out = array();
 		foreach ( $decoded as $row ) {
-			$out[] = is_array( $row ) ? $row : array();
+			$clean = array();
+			if ( is_array( $row ) ) {
+				foreach ( $row as $key => $value ) {
+					if ( is_string( $key ) ) {
+						$clean[ $key ] = $value;
+					}
+				}
+			}
+			$out[] = $clean;
 		}
 		return $out;
 	}
