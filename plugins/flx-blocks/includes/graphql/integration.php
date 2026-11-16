@@ -80,3 +80,20 @@ add_action(
 		flxbk_gql_purge( array( FLXBK_Render_Service::TAG_STYLES, FLXBK_Library_Service::TAG ) );
 	}
 );
+
+/*
+ * WPGraphQL turns every setting with show_in_rest into a public settings field. The editor's settings
+ * (API keys and captcha secrets among them) are for the editor's REST calls only; the GraphQL side is
+ * the typed flxBlocks* fields.
+ */
+add_filter(
+	'register_setting_args',
+	static function ( $args, $defaults, $option_group, $option_name ) {
+		if ( is_array( $args ) && ( str_starts_with( (string) $option_name, 'flxbk_' ) || str_starts_with( (string) $option_name, 'fxt_blocks_' ) ) ) {
+			$args['show_in_graphql'] = false;
+		}
+		return $args;
+	},
+	10,
+	4
+);
