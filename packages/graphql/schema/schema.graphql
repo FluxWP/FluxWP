@@ -2653,15 +2653,6 @@ enum ContentTemplateEnum {
 
   "The \"Page No Title\" template."
   PAGE_NO_TITLE_BLOCK_TEMPLATE
-
-  "The \"Page with Wide Image\" template."
-  PAGE_WIDE_BLOCK_TEMPLATE
-
-  "The \"Page with Sidebar\" template."
-  PAGE_WITH_SIDEBAR_BLOCK_TEMPLATE
-
-  "The \"Single with Sidebar\" template."
-  SINGLE_WITH_SIDEBAR_BLOCK_TEMPLATE
 }
 
 "Connection between the Category type and the ContentNode type"
@@ -10314,6 +10305,378 @@ type FlxFilesMatch {
   text: String!
 }
 
+"A point in time with labels in the user&#039;s language."
+type FlxDateTime {
+  "ISO 8601 in UTC (2026-11-15T14:59:00Z)."
+  iso: String!
+
+  "Date and time for display, in the site time zone and the user&#039;s language."
+  label: String!
+
+  "Relative time for display (&quot;5 minutes ago&quot;)."
+  relative: String!
+
+  "Unix timestamp."
+  timestamp: Int!
+}
+
+"A folder and where &quot;up&quot; leads. Its entries come page by page."
+type FlxFilesFolder {
+  "The folder itself."
+  dir: FlxFilesItem!
+
+  "Entries of the folder, folders first."
+  items(
+    "Records per page (at most 50)."
+    first: Int
+
+    "Cursor to continue after (pageInfo.endCursor)."
+    after: String
+
+    "Sort key (default NAME)."
+    sort: FlxFilesSort
+
+    "Sort direction (default ASC)."
+    order: FlxFilesOrder
+
+    "Show files that start with a dot (default: the setting)."
+    hidden: Boolean
+
+    "Only folders (the folder picker and the tree)."
+    foldersOnly: Boolean
+
+    "Count the entries inside each folder of the page."
+    countItems: Boolean
+  ): FlxFilesItemConnection!
+
+  "Path of the parent folder. Empty for the site folder."
+  parent: String
+
+  "Path from the site folder."
+  path: String!
+}
+
+"What a folder listing is sorted by (folders always come first)."
+enum FlxFilesSort {
+  "Last modified."
+  MODIFIED
+
+  "Name."
+  NAME
+
+  "Size."
+  SIZE
+
+  "File extension."
+  TYPE
+}
+
+"Sort direction."
+enum FlxFilesOrder {
+  "Ascending."
+  ASC
+
+  "Descending."
+  DESC
+}
+
+"A page of the entries of a folder."
+type FlxFilesItemConnection {
+  "Records with their cursors."
+  edges: [FlxFilesItemEdge!]!
+
+  "Records of this page."
+  nodes: [FlxFilesItem!]!
+
+  "Paging information."
+  pageInfo: FlxPageInfo!
+
+  "All matching records (null when counting would be slow)."
+  totalCount: Int
+}
+
+"One FlxFilesItem in a list, with its cursor."
+type FlxFilesItemEdge {
+  "Opaque cursor of this record."
+  cursor: String!
+
+  "The record."
+  node: FlxFilesItem!
+}
+
+"Where a page sits in a list."
+type FlxPageInfo {
+  "Cursor of the last record on this page; pass it as &quot;after&quot; for the next page."
+  endCursor: String
+
+  "More records follow this page."
+  hasNextPage: Boolean!
+
+  "Records come before this page."
+  hasPreviousPage: Boolean!
+
+  "Cursor of the first record on this page."
+  startCursor: String
+}
+
+"Where a change came from."
+enum FlxFilesVia {
+  "The Flux AI chat."
+  AI
+
+  "The site (shared folder shortcode)."
+  FRONT
+
+  "An external MCP client."
+  MCP
+
+  "The Flux Files screen."
+  PANEL
+}
+
+"A page of Activity rows."
+type FlxFilesLogEntryConnection {
+  "Records with their cursors."
+  edges: [FlxFilesLogEntryEdge!]!
+
+  "Records of this page."
+  nodes: [FlxFilesLogEntry!]!
+
+  "Paging information."
+  pageInfo: FlxPageInfo!
+
+  "All matching records (null when counting would be slow)."
+  totalCount: Int
+}
+
+"One FlxFilesLogEntry in a list, with its cursor."
+type FlxFilesLogEntryEdge {
+  "Opaque cursor of this record."
+  cursor: String!
+
+  "The record."
+  node: FlxFilesLogEntry!
+}
+
+"One row of the Activity log."
+type FlxFilesLogEntry {
+  "What happened. Empty for an action this version does not know."
+  action: FlxFilesLogAction
+
+  "The path the action was about (or a short text for a bulk purge)."
+  path: String!
+
+  "The target of a move or copy, the new permissions, or the folder an archive was extracted to."
+  to: String!
+
+  "Display name of the user."
+  user: String!
+
+  "User ID. 0 when there is none."
+  userId: Int!
+
+  "Where the change came from. Empty for a source this version does not know."
+  via: FlxFilesVia
+
+  "When it happened."
+  when: FlxDateTime!
+}
+
+"What an Activity row records."
+enum FlxFilesLogAction {
+  "Permissions changed."
+  CHMOD
+
+  "Copied."
+  COPY
+
+  "A file was created."
+  CREATE
+
+  "A file was changed."
+  EDIT
+
+  "A folder was created."
+  MKDIR
+
+  "Moved."
+  MOVE
+
+  "Deleted for good."
+  PURGE
+
+  "Renamed."
+  RENAME
+
+  "Restored from the trash."
+  RESTORE
+
+  "An earlier version was restored."
+  REVERT
+
+  "Settings changed."
+  SETTINGS
+
+  "A folder was shared on the site."
+  SHARE
+
+  "Moved to the trash."
+  TRASH
+
+  "Sharing stopped."
+  UNSHARE
+
+  "Extracted."
+  UNZIP
+
+  "Uploaded."
+  UPLOAD
+
+  "Archived."
+  ZIP
+}
+
+"Entries whose name (or text) holds the searched words."
+type FlxFilesSearchResult {
+  "More hits exist; search in a smaller folder."
+  partial: Boolean!
+
+  "The words searched."
+  query: String!
+
+  "Hits, at most 200."
+  results: [FlxFilesItem!]!
+}
+
+"Flux Files settings."
+type FlxFilesSettings {
+  "AI and MCP may change code files (.php, .js, .css, .htaccess …)."
+  aiCode: Boolean!
+
+  "External MCP clients may change files (otherwise they only read)."
+  mcpWrite: Boolean!
+
+  "Disk space of the hosting plan in GB. 0 shows the usage only."
+  quotaGb: Float!
+
+  "Folders inside the uploads folder shared on the site with the [flx_files] shortcode."
+  shared: [String!]!
+
+  "Show files that start with a dot, such as .htaccess."
+  showHidden: Boolean!
+
+  "Days the trash keeps entries (0–365). 0 keeps them until the trash is emptied."
+  trashDays: Int!
+
+  "Earlier versions kept per file (0–50). 0 turns versions off."
+  versions: Int!
+}
+
+"The size of a file or of everything inside a folder."
+type FlxFilesSize {
+  "Total bytes."
+  bytes: Float!
+
+  "Files counted."
+  files: Int!
+
+  "Folders counted."
+  folders: Int!
+
+  "Counting stopped early because the folder is very large."
+  partial: Boolean!
+}
+
+"The trash: how long it keeps entries and what is in it."
+type FlxFilesTrash {
+  "Days an entry is kept. 0 keeps entries until the trash is emptied."
+  days: Int!
+
+  "Entries, newest first."
+  items(
+    "Records per page (at most 50)."
+    first: Int
+
+    "Cursor to continue after (pageInfo.endCursor)."
+    after: String
+  ): FlxFilesTrashItemConnection!
+}
+
+"A page of the entries in the trash."
+type FlxFilesTrashItemConnection {
+  "Records with their cursors."
+  edges: [FlxFilesTrashItemEdge!]!
+
+  "Records of this page."
+  nodes: [FlxFilesTrashItem!]!
+
+  "Paging information."
+  pageInfo: FlxPageInfo!
+
+  "All matching records (null when counting would be slow)."
+  totalCount: Int
+}
+
+"One FlxFilesTrashItem in a list, with its cursor."
+type FlxFilesTrashItemEdge {
+  "Opaque cursor of this record."
+  cursor: String!
+
+  "The record."
+  node: FlxFilesTrashItem!
+}
+
+"An entry in the trash."
+type FlxFilesTrashItem {
+  "When it was deleted."
+  deleted: FlxDateTime!
+
+  "Trash id."
+  id: String!
+
+  "It is a folder."
+  isDir: Boolean!
+
+  "What it is."
+  kind: FlxFilesKind!
+
+  "Name."
+  name: String!
+
+  "Where it was."
+  path: String!
+
+  "Bytes (files)."
+  size: Float
+
+  "Date it is deleted for good. Empty when the trash keeps entries until it is emptied."
+  until: String!
+
+  "Who deleted it."
+  user: String!
+
+  "Where the deletion came from."
+  via: FlxFilesVia!
+}
+
+"An earlier version of a file, kept when it was overwritten."
+type FlxFilesVersion {
+  "Version id."
+  id: String!
+
+  "When this version was replaced by a newer one."
+  saved: FlxDateTime!
+
+  "Bytes."
+  size: Int!
+
+  "Who made the change."
+  user: String!
+
+  "Where the change came from."
+  via: FlxFilesVia!
+}
+
 "An AI translation job: the draft translation plus the parts the AI translates one request at a time (the host stops a request at about 60 seconds)."
 type FlxLanguageJob {
   "Editor address of the translation."
@@ -10620,279 +10983,6 @@ type FlxPhone {
   e164: String!
 }
 
-"Where a page sits in a list."
-type FlxPageInfo {
-  "Cursor of the last record on this page; pass it as &quot;after&quot; for the next page."
-  endCursor: String
-
-  "More records follow this page."
-  hasNextPage: Boolean!
-
-  "Records come before this page."
-  hasPreviousPage: Boolean!
-
-  "Cursor of the first record on this page."
-  startCursor: String
-}
-
-"Where a change came from."
-enum FlxFilesVia {
-  "The Flux AI chat."
-  AI
-
-  "The site (shared folder shortcode)."
-  FRONT
-
-  "An external MCP client."
-  MCP
-
-  "The Flux Files screen."
-  PANEL
-}
-
-"A page of Activity rows."
-type FlxFilesLogEntryConnection {
-  "Records with their cursors."
-  edges: [FlxFilesLogEntryEdge!]!
-
-  "Records of this page."
-  nodes: [FlxFilesLogEntry!]!
-
-  "Paging information."
-  pageInfo: FlxPageInfo!
-
-  "All matching records (null when counting would be slow)."
-  totalCount: Int
-}
-
-"One FlxFilesLogEntry in a list, with its cursor."
-type FlxFilesLogEntryEdge {
-  "Opaque cursor of this record."
-  cursor: String!
-
-  "The record."
-  node: FlxFilesLogEntry!
-}
-
-"One row of the Activity log."
-type FlxFilesLogEntry {
-  "What happened. Empty for an action this version does not know."
-  action: FlxFilesLogAction
-
-  "The path the action was about (or a short text for a bulk purge)."
-  path: String!
-
-  "The target of a move or copy, the new permissions, or the folder an archive was extracted to."
-  to: String!
-
-  "Display name of the user."
-  user: String!
-
-  "User ID. 0 when there is none."
-  userId: Int!
-
-  "Where the change came from. Empty for a source this version does not know."
-  via: FlxFilesVia
-
-  "When it happened."
-  when: FlxDateTime!
-}
-
-"What an Activity row records."
-enum FlxFilesLogAction {
-  "Permissions changed."
-  CHMOD
-
-  "Copied."
-  COPY
-
-  "A file was created."
-  CREATE
-
-  "A file was changed."
-  EDIT
-
-  "A folder was created."
-  MKDIR
-
-  "Moved."
-  MOVE
-
-  "Deleted for good."
-  PURGE
-
-  "Renamed."
-  RENAME
-
-  "Restored from the trash."
-  RESTORE
-
-  "An earlier version was restored."
-  REVERT
-
-  "Settings changed."
-  SETTINGS
-
-  "A folder was shared on the site."
-  SHARE
-
-  "Moved to the trash."
-  TRASH
-
-  "Sharing stopped."
-  UNSHARE
-
-  "Extracted."
-  UNZIP
-
-  "Uploaded."
-  UPLOAD
-
-  "Archived."
-  ZIP
-}
-
-"Entries whose name (or text) holds the searched words."
-type FlxFilesSearchResult {
-  "More hits exist; search in a smaller folder."
-  partial: Boolean!
-
-  "The words searched."
-  query: String!
-
-  "Hits, at most 200."
-  results: [FlxFilesItem!]!
-}
-
-"Flux Files settings."
-type FlxFilesSettings {
-  "AI and MCP may change code files (.php, .js, .css, .htaccess …)."
-  aiCode: Boolean!
-
-  "External MCP clients may change files (otherwise they only read)."
-  mcpWrite: Boolean!
-
-  "Disk space of the hosting plan in GB. 0 shows the usage only."
-  quotaGb: Float!
-
-  "Folders inside the uploads folder shared on the site with the [flx_files] shortcode."
-  shared: [String!]!
-
-  "Show files that start with a dot, such as .htaccess."
-  showHidden: Boolean!
-
-  "Days the trash keeps entries (0–365). 0 keeps them until the trash is emptied."
-  trashDays: Int!
-
-  "Earlier versions kept per file (0–50). 0 turns versions off."
-  versions: Int!
-}
-
-"The size of a file or of everything inside a folder."
-type FlxFilesSize {
-  "Total bytes."
-  bytes: Float!
-
-  "Files counted."
-  files: Int!
-
-  "Folders counted."
-  folders: Int!
-
-  "Counting stopped early because the folder is very large."
-  partial: Boolean!
-}
-
-"The trash: how long it keeps entries and what is in it."
-type FlxFilesTrash {
-  "Days an entry is kept. 0 keeps entries until the trash is emptied."
-  days: Int!
-
-  "Entries, newest first."
-  items(
-    "Records per page (at most 50)."
-    first: Int
-
-    "Cursor to continue after (pageInfo.endCursor)."
-    after: String
-  ): FlxFilesTrashItemConnection!
-}
-
-"A page of the entries in the trash."
-type FlxFilesTrashItemConnection {
-  "Records with their cursors."
-  edges: [FlxFilesTrashItemEdge!]!
-
-  "Records of this page."
-  nodes: [FlxFilesTrashItem!]!
-
-  "Paging information."
-  pageInfo: FlxPageInfo!
-
-  "All matching records (null when counting would be slow)."
-  totalCount: Int
-}
-
-"One FlxFilesTrashItem in a list, with its cursor."
-type FlxFilesTrashItemEdge {
-  "Opaque cursor of this record."
-  cursor: String!
-
-  "The record."
-  node: FlxFilesTrashItem!
-}
-
-"An entry in the trash."
-type FlxFilesTrashItem {
-  "When it was deleted."
-  deleted: FlxDateTime!
-
-  "Trash id."
-  id: String!
-
-  "It is a folder."
-  isDir: Boolean!
-
-  "What it is."
-  kind: FlxFilesKind!
-
-  "Name."
-  name: String!
-
-  "Where it was."
-  path: String!
-
-  "Bytes (files)."
-  size: Float
-
-  "Date it is deleted for good. Empty when the trash keeps entries until it is emptied."
-  until: String!
-
-  "Who deleted it."
-  user: String!
-
-  "Where the deletion came from."
-  via: FlxFilesVia!
-}
-
-"An earlier version of a file, kept when it was overwritten."
-type FlxFilesVersion {
-  "Version id."
-  id: String!
-
-  "When this version was replaced by a newer one."
-  saved: FlxDateTime!
-
-  "Bytes."
-  size: Int!
-
-  "Who made the change."
-  user: String!
-
-  "Where the change came from."
-  via: FlxFilesVia!
-}
-
 "A package group of the Roles and access table."
 type FlxRoleCapabilityGroup {
   "Whether the package is installed."
@@ -11098,105 +11188,6 @@ type FlxSeoLocalRun {
 
   "Audited address."
   url: String!
-}
-
-"A point in time with labels in the user&#039;s language."
-type FlxDateTime {
-  "ISO 8601 in UTC (2026-11-15T14:59:00Z)."
-  iso: String!
-
-  "Date and time for display, in the site time zone and the user&#039;s language."
-  label: String!
-
-  "Relative time for display (&quot;5 minutes ago&quot;)."
-  relative: String!
-
-  "Unix timestamp."
-  timestamp: Int!
-}
-
-"A folder and where &quot;up&quot; leads. Its entries come page by page."
-type FlxFilesFolder {
-  "The folder itself."
-  dir: FlxFilesItem!
-
-  "Entries of the folder, folders first."
-  items(
-    "Records per page (at most 50)."
-    first: Int
-
-    "Cursor to continue after (pageInfo.endCursor)."
-    after: String
-
-    "Sort key (default NAME)."
-    sort: FlxFilesSort
-
-    "Sort direction (default ASC)."
-    order: FlxFilesOrder
-
-    "Show files that start with a dot (default: the setting)."
-    hidden: Boolean
-
-    "Only folders (the folder picker and the tree)."
-    foldersOnly: Boolean
-
-    "Count the entries inside each folder of the page."
-    countItems: Boolean
-  ): FlxFilesItemConnection!
-
-  "Path of the parent folder. Empty for the site folder."
-  parent: String
-
-  "Path from the site folder."
-  path: String!
-}
-
-"What a folder listing is sorted by (folders always come first)."
-enum FlxFilesSort {
-  "Last modified."
-  MODIFIED
-
-  "Name."
-  NAME
-
-  "Size."
-  SIZE
-
-  "File extension."
-  TYPE
-}
-
-"Sort direction."
-enum FlxFilesOrder {
-  "Ascending."
-  ASC
-
-  "Descending."
-  DESC
-}
-
-"A page of the entries of a folder."
-type FlxFilesItemConnection {
-  "Records with their cursors."
-  edges: [FlxFilesItemEdge!]!
-
-  "Records of this page."
-  nodes: [FlxFilesItem!]!
-
-  "Paging information."
-  pageInfo: FlxPageInfo!
-
-  "All matching records (null when counting would be slow)."
-  totalCount: Int
-}
-
-"One FlxFilesItem in a list, with its cursor."
-type FlxFilesItemEdge {
-  "Opaque cursor of this record."
-  cursor: String!
-
-  "The record."
-  node: FlxFilesItem!
 }
 
 "The last PageSpeed Insights run of one device."

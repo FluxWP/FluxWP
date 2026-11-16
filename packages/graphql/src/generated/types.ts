@@ -51,41 +51,23 @@ export type FlxFilesKind =
   /** Video. */
   | 'VIDEO';
 
-/** State of an AI translation job. */
-export type FlxLanguageJobStatus =
-  /** The translation is written. */
-  | 'DONE'
-  /** The last step failed; running it again retries. */
-  | 'FAILED'
-  /** Steps are still to run. */
-  | 'RUNNING';
+/** What a folder listing is sorted by (folders always come first). */
+export type FlxFilesSort =
+  /** Last modified. */
+  | 'MODIFIED'
+  /** Name. */
+  | 'NAME'
+  /** Size. */
+  | 'SIZE'
+  /** File extension. */
+  | 'TYPE';
 
-/** What a first-time visitor gets when their language differs from the page. */
-export type FlxLanguageSuggestMode =
-  /** A suggestion bar at the top of the page. */
-  | 'BANNER'
-  /** Nothing. */
-  | 'OFF'
-  /** The site opens directly in their language. */
-  | 'REDIRECT';
-
-/** How the language switcher names the languages. */
-export type FlxLanguageSwitcherStyle =
-  /** Language codes (TR · EN). */
-  | 'CODE'
-  /** Flags. */
-  | 'FLAG'
-  /** Language names. */
-  | 'NAME';
-
-/** Where the theme shows the language switcher. */
-export type FlxLanguageSwitcherPlace =
-  /** Both. */
-  | 'BOTH'
-  /** Footer. */
-  | 'FOOTER'
-  /** Header and mobile menu. */
-  | 'HEADER';
+/** Sort direction. */
+export type FlxFilesOrder =
+  /** Ascending. */
+  | 'ASC'
+  /** Descending. */
+  | 'DESC';
 
 /** Where a change came from. */
 export type FlxFilesVia =
@@ -135,6 +117,42 @@ export type FlxFilesLogAction =
   /** Archived. */
   | 'ZIP';
 
+/** State of an AI translation job. */
+export type FlxLanguageJobStatus =
+  /** The translation is written. */
+  | 'DONE'
+  /** The last step failed; running it again retries. */
+  | 'FAILED'
+  /** Steps are still to run. */
+  | 'RUNNING';
+
+/** What a first-time visitor gets when their language differs from the page. */
+export type FlxLanguageSuggestMode =
+  /** A suggestion bar at the top of the page. */
+  | 'BANNER'
+  /** Nothing. */
+  | 'OFF'
+  /** The site opens directly in their language. */
+  | 'REDIRECT';
+
+/** How the language switcher names the languages. */
+export type FlxLanguageSwitcherStyle =
+  /** Language codes (TR · EN). */
+  | 'CODE'
+  /** Flags. */
+  | 'FLAG'
+  /** Language names. */
+  | 'NAME';
+
+/** Where the theme shows the language switcher. */
+export type FlxLanguageSwitcherPlace =
+  /** Both. */
+  | 'BOTH'
+  /** Footer. */
+  | 'FOOTER'
+  /** Header and mobile menu. */
+  | 'HEADER';
+
 /** How important an audit recommendation is. */
 export type FlxSeoPriority =
   | 'CRITICAL'
@@ -147,24 +165,6 @@ export type FlxSeoAuditSource =
   | 'LOCAL'
   | 'PSI_DESKTOP'
   | 'PSI_MOBILE';
-
-/** What a folder listing is sorted by (folders always come first). */
-export type FlxFilesSort =
-  /** Last modified. */
-  | 'MODIFIED'
-  /** Name. */
-  | 'NAME'
-  /** Size. */
-  | 'SIZE'
-  /** File extension. */
-  | 'TYPE';
-
-/** Sort direction. */
-export type FlxFilesOrder =
-  /** Ascending. */
-  | 'ASC'
-  /** Descending. */
-  | 'DESC';
 
 /** Device a PageSpeed run measures. */
 export type FlxSeoStrategy =
