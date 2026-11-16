@@ -55,7 +55,7 @@ final class FLXAI_Tasks_Service {
 	/**
 	 * One task as a value object.
 	 *
-	 * @param array<string,mixed> $t Row from flxai_task_get().
+	 * @param array<mixed> $t Row from flxai_task_get().
 	 */
 	public static function task( array $t, bool $unread = false ): FLXAI_Task {
 		$meta  = FLXAI_Cast::arr( $t['meta'] ?? array() );
@@ -97,7 +97,7 @@ final class FLXAI_Tasks_Service {
 			new FLXAI_Task_Schedule(
 				FLXAI_Cast::str( $s['freq'] ?? 'daily' ),
 				FLXAI_Cast::str( $s['time'] ?? '09:00' ),
-				array_map( 'intval', FLXAI_Cast::arr( $s['days'] ?? array() ) ),
+				array_values( array_map( static fn( $d ): int => FLXAI_Cast::int( $d ), FLXAI_Cast::arr( $s['days'] ?? array() ) ) ),
 				FLXAI_Cast::int( $s['day'] ?? 1 ),
 				FLXAI_Cast::int( $s['every'] ?? 6 ),
 				FLXAI_Cast::str( $s['at'] ?? '' )
@@ -124,14 +124,14 @@ final class FLXAI_Tasks_Service {
 				FLXAI_Cast::str( $n['whatsapp'] ?? '' ),
 				! empty( $n['promo'] ),
 				$to,
-				flxai_task_notify_label( $t )
+				FLXAI_Cast::str( flxai_task_notify_label( $t ) )
 			),
 			$ws
 		);
 	}
 
 	/**
-	 * @param array<string,mixed> $r Recipient row.
+	 * @param array<mixed> $r Recipient row.
 	 */
 	public static function recipient( array $r ): FLXAI_Task_Recipient {
 		return new FLXAI_Task_Recipient(
@@ -158,7 +158,7 @@ final class FLXAI_Tasks_Service {
 	/**
 	 * Creates or changes a task. Fields you leave out keep their value (a new task starts active).
 	 *
-	 * @param array<string,mixed> $in Input.
+	 * @param array<mixed> $in Input.
 	 * @return FLXAI_Task|WP_Error
 	 */
 	public static function save( array $in, int $id = 0 ) {
