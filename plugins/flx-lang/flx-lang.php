@@ -2,9 +2,10 @@
 /**
  * Plugin Name:       Flux Lang
  * Description:       Siteyi çok dilli yapar: /en/ gibi dil adresleri, sayfa, yazı, proje ve etkinlik başına çeviri, dile özgü görsel, hreflang ve canonical, Türkiye dışından gelene İngilizce önerisi, dil seçici; Flux AI & MCP ve Flux AI araçlarına dil desteği.
- * Version:           0.2.12
- * Requires at least: 6.4
- * Requires PHP:      7.4
+ * Version:           0.3.0
+ * Requires at least: 6.5
+ * Requires PHP:      8.1
+ * Requires Plugins:  flx-graphql
  * Author:            FluxWP
  * License:           GPL-2.0-or-later
  * Text Domain:       flx-lang
@@ -21,11 +22,12 @@ if ( defined( 'FLXL_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXL_VERSION', '0.2.12' );
+define( 'FLXL_VERSION', '0.3.0' );
 define( 'FLXL_FILE', __FILE__ );
 define( 'FLXL_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXL_URL', plugin_dir_url( __FILE__ ) );
 
+require_once FLXL_DIR . 'includes/services/class-flxl-dto.php';
 require_once FLXL_DIR . 'includes/diller.php';
 require_once FLXL_DIR . 'includes/istek.php';
 require_once FLXL_DIR . 'includes/direction.php';
@@ -41,12 +43,35 @@ require_once FLXL_DIR . 'includes/ceviri.php';
 require_once FLXL_DIR . 'includes/rest.php';
 require_once FLXL_DIR . 'includes/araclar.php';
 require_once FLXL_DIR . 'includes/woocommerce.php';
+require_once FLXL_DIR . 'includes/services/class-flxl-language-service.php';
 require_once FLXL_DIR . 'includes/sistem.php';
 require_once FLXL_DIR . 'includes/app.php';
 if ( is_admin() ) {
 	require_once FLXL_DIR . 'includes/admin.php';
 	require_once FLXL_DIR . 'includes/ayarlar.php';
 }
+
+/*
+ * GraphQL (Flux GraphQL): the schema loads only inside a GraphQL request; the persisted operations the
+ * Languages screen sends. Without Flux GraphQL the schema is left out and the classic page keeps working.
+ */
+add_action(
+	'flx_gql_register',
+	static function () {
+		if ( ! function_exists( 'flx_gql_all_caps' ) ) {
+			return;
+		}
+		require_once FLXL_DIR . 'includes/graphql/schema.php';
+	}
+);
+add_filter(
+	'flx_gql_persisted_manifests',
+	static function ( $m ) {
+		$m             = is_array( $m ) ? $m : array();
+		$m['flx-lang'] = FLXL_DIR . 'graphql/persisted-queries.json';
+		return $m;
+	}
+);
 
 // İstek dili eklenti dosyası yüklenirken belirlenir: tema ve diğer eklentiler çeviri dosyalarını
 // yüklemeden önce yerel ayar (locale) hazır olmalı.

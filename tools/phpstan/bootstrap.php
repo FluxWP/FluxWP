@@ -24,3 +24,5 @@ defined( 'FLXK_DIR' ) || define( 'FLXK_DIR', __DIR__ . '/' );
 defined( 'FLXK_URL' ) || define( 'FLXK_URL', '' );
 defined( 'FLXU_FILE' ) || define( 'FLXU_FILE', FLXK_FILE );
 defined( 'FLXU_DEFAULT_SERVER' ) || define( 'FLXU_DEFAULT_SERVER', 'https://updater.fluxwp.com' );
+defined( 'FLXL_VERSION' ) || define( 'FLXL_VERSION', '0.0.0' );
+defined( 'FLXL_DIR' ) || define( 'FLXL_DIR', __DIR__ . '/' );

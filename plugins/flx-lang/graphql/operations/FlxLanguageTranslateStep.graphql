@@ -1,0 +1,12 @@
+mutation FlxLanguageTranslateStep($input: FlxLanguageTranslateStepInput!) {
+  flxLanguageTranslateStep(input: $input) {
+    job {
+      ...FlxLanguageJobFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

@@ -1,0 +1,6 @@
+# The languages visitors can open (public, cacheable).
+query FlxLanguages {
+  flxLanguages {
+    ...FlxLanguageRow
+  }
+}

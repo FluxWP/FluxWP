@@ -1,0 +1,6 @@
+# Everything the Languages settings screen shows.
+query FlxLanguageSettingsScreen {
+  flxLanguageSettings {
+    ...FlxLanguageSettingsFields
+  }
+}

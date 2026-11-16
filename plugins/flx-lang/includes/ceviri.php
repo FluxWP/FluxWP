@@ -331,8 +331,10 @@ function flxl_ai_job_start( $source_id, $code ) {
 		'done'  => array(),
 		'user'  => get_current_user_id(),
 		'errors' => array(),
+		'step'  => -1,
 	);
-	$key = wp_generate_password( 12, false );
+	$job['total'] = count( $job['parts'] ) + 1;
+	$key = strtolower( wp_generate_password( 12, false ) ); // Lowercase: the job key travels through sanitize_key().
 	set_transient( 'flxl_job_' . $key, $job, HOUR_IN_SECONDS );
 	return array( 'job' => $key, 'post_id' => (int) $id, 'steps' => count( $job['parts'] ) + 1 );
 }
@@ -347,12 +349,23 @@ function flxl_ai_job_step( $key, $step ) {
 	if ( ! is_array( $job ) || (int) $job['user'] !== get_current_user_id() ) {
 		return new WP_Error( 'flxl_job', __( 'Translation job not found or expired.', 'flx-lang' ) );
 	}
-	$steps = count( $job['parts'] ) + 1;
+	$steps = isset( $job['total'] ) ? (int) $job['total'] : count( $job['parts'] ) + 1;
 	$step  = (int) $step;
+	if ( ! empty( $job['finished'] ) ) {
+		// Already finished (the page asked again): report the result, do not translate twice.
+		return array(
+			'step'     => $steps - 1,
+			'steps'    => $steps,
+			'finished' => true,
+			'errors'   => $job['errors'],
+			'edit_url' => get_edit_post_link( $job['post'], 'raw' ),
+		);
+	}
 	if ( 0 === $step ) {
 		$prompt = "Translate the values of this JSON object. Return only valid JSON with the same keys. Empty values stay empty.\n" . $job['head'];
 		$t      = flxl_ai_translate_text( $prompt, $job['from'], $job['to'], 'translate_meta' );
 		if ( is_wp_error( $t ) ) {
+			flxl_ai_job_failed( $key, $job );
 			return $t;
 		}
 		$j = json_decode( preg_replace( '/^[^{]*|[^}]*$/', '', $t ), true );
@@ -380,6 +393,7 @@ function flxl_ai_job_step( $key, $step ) {
 		$t   = flxl_ai_translate_text( $src, $job['from'], $job['to'] );
 		if ( is_wp_error( $t ) ) {
 			if ( function_exists( 'flxai_is_account_error' ) && flxai_is_account_error( $t ) ) {
+				flxl_ai_job_failed( $key, $job );
 				return $t;
 			}
 			$t               = $src; // Bu parça Türkçe kalır, iş sürer.
@@ -390,7 +404,9 @@ function flxl_ai_job_step( $key, $step ) {
 		}
 		$job['done'][ $i ] = $t;
 	}
-	$finished = $step >= $steps - 1;
+	$finished     = $step >= $steps - 1;
+	$job['step']  = $step;
+	unset( $job['failed'] );
 	if ( $finished ) {
 		ksort( $job['done'] );
 		$body = '';
@@ -398,7 +414,12 @@ function flxl_ai_job_step( $key, $step ) {
 			$body .= $job['done'][ $i ] ?? $p;
 		}
 		flxl_save_translation( $job['src'], $job['to'], array( 'content' => $body ) );
-		delete_transient( 'flxl_job_' . $key );
+		// The finished job stays readable for a few minutes (GraphQL flxLanguageJob); its text is not kept.
+		$job['finished'] = true;
+		$job['parts']    = array();
+		$job['done']     = array();
+		$job['head']     = '';
+		set_transient( 'flxl_job_' . $key, $job, 600 );
 	} else {
 		set_transient( 'flxl_job_' . $key, $job, HOUR_IN_SECONDS );
 	}
@@ -409,4 +430,12 @@ function flxl_ai_job_step( $key, $step ) {
 		'errors'   => $job['errors'],
 		'edit_url' => get_edit_post_link( $job['post'], 'raw' ),
 	);
+}
+
+/**
+ * Marks a job as failed (it can still be retried: the next successful step clears the mark).
+ */
+function flxl_ai_job_failed( $key, array $job ) {
+	$job['failed'] = true;
+	set_transient( 'flxl_job_' . $key, $job, HOUR_IN_SECONDS );
 }
