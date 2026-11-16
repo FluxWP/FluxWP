@@ -153,6 +153,10 @@ function flxrc_groups() {
 }
 
 /** Bu form panelde açık mı (anahtar/test durumuna bakmaz). */
+/**
+ * @param string $ctx Context key.
+ * @return bool
+ */
 function flxrc_context_on( $ctx ) {
 	$all = flxrc_contexts();
 	if ( ! isset( $all[ $ctx ] ) ) {

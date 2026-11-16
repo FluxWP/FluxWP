@@ -30,7 +30,7 @@ final class FLXRC_Settings_Service {
 	 */
 	public static function settings(): FLXRC_Settings {
 		$s    = self::opts();
-		$ips  = array_values( array_filter( preg_split( '/[\s,]+/', self::str( $s['allow_ips'] ?? '' ), -1, PREG_SPLIT_NO_EMPTY ) ?: array(), 'strlen' ) );
+		$ips  = array_values( ( preg_split( '/[\s,]+/', self::str( $s['allow_ips'] ?? '' ), -1, PREG_SPLIT_NO_EMPTY ) ?: array() ) );
 		$sc   = flxrc_secret();
 		$sk_c = defined( 'FLXRC_SITE_KEY' ) && is_string( FLXRC_SITE_KEY ) && '' !== FLXRC_SITE_KEY;
 		$sc_c = defined( 'FLXRC_SECRET_KEY' ) && is_string( FLXRC_SECRET_KEY ) && '' !== FLXRC_SECRET_KEY;
@@ -100,10 +100,10 @@ final class FLXRC_Settings_Service {
 		$totals = flxrc_stats_totals( 30 );
 		$test   = flxrc_status( 'last_test' );
 		$err    = flxrc_status( 'last_error' );
-		$log    = is_array( $test ) && ! empty( $test['time'] ) ? new FLXRC_Test_Log( (int) $test['time'], ! empty( $test['ok'] ), self::str( $test['msg'] ?? '' ) ) : null;
+		$log    = is_array( $test ) && ! empty( $test['time'] ) ? new FLXRC_Test_Log( self::int( $test['time'] ), ! empty( $test['ok'] ), self::str( $test['msg'] ?? '' ) ) : null;
 		$errlog = null;
-		if ( $verified && is_array( $err ) && ! empty( $err['time'] ) && (int) $err['time'] > time() - DAY_IN_SECONDS ) {
-			$errlog = new FLXRC_Error_Log( (int) $err['time'], 'config' === ( $err['kind'] ?? '' ) ? 'config' : 'network', self::str( $err['why'] ?? '' ), (bool) flxrc_settings( 'fail_open' ) );
+		if ( $verified && is_array( $err ) && ! empty( $err['time'] ) && self::int( $err['time'] ) > time() - DAY_IN_SECONDS ) {
+			$errlog = new FLXRC_Error_Log( self::int( $err['time'] ), 'config' === ( $err['kind'] ?? '' ) ? 'config' : 'network', self::str( $err['why'] ?? '' ), (bool) flxrc_settings( 'fail_open' ) );
 		}
 		return new FLXRC_Status(
 			$locked ? 'off' : ( $verified ? 'on' : 'awaiting_test' ),
@@ -256,7 +256,7 @@ final class FLXRC_Settings_Service {
 		// The approval is valid only for the same version + keys.
 		$const_site   = defined( 'FLXRC_SITE_KEY' ) && FLXRC_SITE_KEY ? (string) FLXRC_SITE_KEY : self::str( $s['site_key'] ?? '' );
 		$const_secret = defined( 'FLXRC_SECRET_KEY' ) && FLXRC_SECRET_KEY ? (string) FLXRC_SECRET_KEY : flxrc_unseal( self::str( $s['secret'] ?? '' ) );
-		$fp           = substr( hash( 'sha256', $s['version'] . '|' . $const_site . '|' . $const_secret ), 0, 24 );
+		$fp           = substr( hash( 'sha256', self::str( $s['version'] ) . '|' . $const_site . '|' . $const_secret ), 0, 24 );
 		if ( ! hash_equals( self::str( $s['verified'] ?? '' ), $fp ) ) {
 			$s['verified'] = '';
 		}
@@ -279,7 +279,9 @@ final class FLXRC_Settings_Service {
 	 */
 	private static function opts(): array {
 		$s = flxrc_settings();
-		return array_merge( flxrc_defaults(), is_array( $s ) ? $s : array() );
+		/** @var array<string,mixed> $all */
+		$all = array_merge( flxrc_defaults(), is_array( $s ) ? $s : array() );
+		return $all;
 	}
 
 	private static function invalid( string $field, string $message ): WP_Error {
@@ -291,6 +293,13 @@ final class FLXRC_Settings_Service {
 	 */
 	private static function str( $v ): string {
 		return is_scalar( $v ) ? (string) $v : '';
+	}
+
+	/**
+	 * @param mixed $v Value.
+	 */
+	private static function int( $v ): int {
+		return is_numeric( $v ) ? (int) $v : 0;
 	}
 
 	/**

@@ -57,6 +57,7 @@ function flxrc_update_settings( array $s ) {
 }
 
 /** Kurtarma: wp-config.php'de define( 'FLXRC_DISABLE', true ); tüm koruma kapanır. */
+/** @return bool */
 function flxrc_disabled_by_constant() {
 	return defined( 'FLXRC_DISABLE' ) && FLXRC_DISABLE;
 }
@@ -112,20 +113,24 @@ function flxrc_site_key() {
 	return (string) flxrc_settings( 'site_key' );
 }
 
+/** @return 'v2'|'v3' */
 function flxrc_version() {
 	return 'v2' === flxrc_settings( 'version' ) ? 'v2' : 'v3';
 }
 
 /** Test geçen anahtar özetini üretir (sürüm + iki anahtar). */
+/** @return string */
 function flxrc_key_fingerprint() {
 	return substr( hash( 'sha256', flxrc_version() . '|' . flxrc_site_key() . '|' . flxrc_secret() ), 0, 24 );
 }
 
+/** @return bool */
 function flxrc_has_keys() {
 	return '' !== flxrc_site_key() && '' !== flxrc_secret();
 }
 
 /** Anahtarlar girildi ve panelde test edildi mi. Test edilmemiş anahtarla koruma çalışmaz (yöneticinin kilitlenmemesi için). */
+/** @return bool */
 function flxrc_keys_verified() {
 	return flxrc_has_keys() && hash_equals( (string) flxrc_settings( 'verified' ), flxrc_key_fingerprint() );
 }
@@ -151,6 +156,7 @@ function flxrc_admin_url( $args = array() ) {
 }
 
 /** API sunucusu (www.google.com ya da www.recaptcha.net: Google'ın erişilemediği ağlar için). */
+/** @return string */
 function flxrc_api_host() {
 	return 'recaptcha' === flxrc_settings( 'domain' ) ? 'https://www.recaptcha.net' : 'https://www.google.com';
 }
@@ -285,6 +291,10 @@ function flxrc_status( $key = null, $value = null ) {
 	return null === $key ? $st : ( $st[ $key ] ?? null );
 }
 
+/**
+ * @param string $key Key.
+ * @return void
+ */
 function flxrc_status_clear( $key ) {
 	$st = get_option( 'flxrc_status', array() );
 	if ( is_array( $st ) && isset( $st[ $key ] ) ) {

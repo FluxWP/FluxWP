@@ -574,9 +574,8 @@ flx_gql_input(
 /**
  * Typed update of flxRecaptchaSettingsUpdate.
  *
- * @phpstan-import-type FlxrcUpdate from FLXRC_Settings_Service
  * @param array<string,mixed> $input Mutation input.
- * @return FlxrcUpdate
+ * @return array{version?: string, site_key?: string, secret?: string, threshold?: float, domain?: string, v2_theme?: string, v2_size?: string, hide_badge?: bool, skip_logged_in?: bool, fail_open?: bool, allow_ips?: list<string>, forms?: list<array{key: string, enabled: bool}>}
  */
 function flxrc_gql_update_input( array $input ): array {
 	$out = array();
@@ -692,6 +691,7 @@ flx_gql_mutation(
 		),
 		'output'      => $flxrc_payload_fields,
 		'resolve'     => static function ( array $input ) {
+			/** @var array<string,mixed> $input */
 			$r = FLXRC_Settings_Service::update( flxrc_gql_update_input( $input ) );
 			return $r instanceof WP_Error ? $r : array();
 		},
