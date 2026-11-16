@@ -28,8 +28,34 @@ function flxwk_t_errs( array $r, string $field ): array {
 	return array_map( static fn( $e ) => array( $e['code'], $e['field'] ), $r['data'][ $field ]['errors'] ?? array() );
 }
 
-/* Flux AI is not part of the test site: a stand-in that answers from whatever pages it is given. */
-if ( ! function_exists( 'flxai_chat' ) ) {
+/*
+ * Flux AI: the real plugin is on the test site when flx-ai is a package; the provider is then mocked at
+ * the HTTP layer (a fake key, a canned completion). Without it, a stand-in answers.
+ */
+if ( function_exists( 'flxai_chat' ) && function_exists( 'flxai_openrouter_request' ) ) {
+	if ( ! defined( 'FLXAI_KEY_OPENROUTER' ) ) {
+		define( 'FLXAI_KEY_OPENROUTER', 'test-key' );
+	}
+	update_option( 'flxai_settings', array( 'model' => 'openrouter/test-model' ) );
+	unset( $GLOBALS['flxai_settings_cache'] );
+	add_filter(
+		'pre_http_request',
+		static function ( $pre, $args, $url ) {
+			if ( ! str_contains( (string) $url, 'chat/completions' ) ) {
+				return $pre;
+			}
+			return array(
+				'headers'  => array(),
+				'body'     => wp_json_encode( array( 'choices' => array( array( 'message' => array( 'content' => 'Follow the installation guide.' ), 'finish_reason' => 'stop' ) ), 'usage' => array( 'prompt_tokens' => 1, 'completion_tokens' => 1 ) ) ),
+				'response' => array( 'code' => 200, 'message' => 'OK' ),
+				'cookies'  => array(),
+				'filename' => null,
+			);
+		},
+		10,
+		3
+	);
+} elseif ( ! function_exists( 'flxai_chat' ) ) {
 	function flxai_ready( $source = '' ) {
 		return true;
 	}
