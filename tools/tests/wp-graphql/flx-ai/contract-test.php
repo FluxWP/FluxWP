@@ -157,7 +157,9 @@ flxt_same( false, array_column( $r['data']['flxAiSettingsUpdate']['secrets'] ?? 
 $r = flxai_t_op( 'FlxAiModelTest', array( 'input' => array( 'model' => '' ) ), $admin );
 flxt_ok( ! empty( $r['data']['flxAiModelTest']['errors'] ) || ! empty( $r['errors'] ), 'model test: no key → an error, no provider call', $r );
 $r = flxai_t_op( 'FlxAiRenderTest', array( 'input' => array( 'url' => '' ) ), $admin );
-flxt_ok( ! empty( $r['data']['flxAiRenderTest']['errors'] ) || ! empty( $r['errors'] ), 'render test: no renderer → an error', $r );
+// Without Gotenberg the local Imagick renderer may still work (CI has it), so both outcomes are fine; what matters is a clean answer.
+$rt = $r['data']['flxAiRenderTest'] ?? array();
+flxt_ok( ! empty( $rt['errors'] ) || ! empty( $r['errors'] ) || ! empty( $rt['result']['via'] ), 'render test: an error or a local render, never a crash', $r );
 
 // Usage: log rows (the model test above wrote a failed row of its own).
 $wpdb->query( 'DELETE FROM ' . flxai_table( 'log' ) ); // phpcs:ignore
