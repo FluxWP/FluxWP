@@ -520,7 +520,9 @@ final class FLXY_Service {
 			if ( isset( $hist[ $key ] ) ) {
 				$prev = array();
 				foreach ( $types as $t ) {
-					$prev[ $t ] = self::i( ( (array) ( (array) $hist[ $key ] )['by'] ?? array() )[ $t ] ?? 0 );
+					$row        = (array) $hist[ $key ];
+					$row_by     = (array) ( $row['by'] ?? array() );
+					$prev[ $t ] = self::i( $row_by[ $t ] ?? 0 );
 				}
 				$have = true;
 			}
@@ -534,8 +536,8 @@ final class FLXY_Service {
 			}
 			$days[] = array(
 				'key'         => $key,
-				'label'       => (string) flx_date( $ts, 'short' ),
-				'fullLabel'   => (string) flx_date( $ts ),
+				'label'       => self::s( flx_date( $ts, 'short' ) ),
+				'fullLabel'   => self::s( flx_date( $ts ) ),
 				'values'      => $vals,
 				'valueLabels' => $vlabel,
 				'totalLabel'  => (string) size_format( (int) array_sum( $vals ), 1 ),
