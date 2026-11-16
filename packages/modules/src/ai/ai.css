@@ -52,13 +52,6 @@
 .flxai-pill.is-err{background:color-mix(in srgb,var(--flux-danger) 14%,transparent);color:var(--flux-danger)}
 .flxai-pill.is-warn{background:color-mix(in srgb,var(--flux-warning) 18%,transparent)}
 .flxai-alias{font-size:12px;color:var(--mut)}
-.flxai-switch{position:relative;display:inline-block;width:40px;height:22px;vertical-align:middle}
-.flxai-switch input{position:absolute;inset:0;opacity:0;width:100%;height:100%;margin:0;cursor:pointer}
-.flxai-switch span[aria-hidden]{position:absolute;inset:0;border-radius:99px;background:color-mix(in srgb,var(--flux-text) 22%,transparent);transition:background .15s}
-.flxai-switch span[aria-hidden]::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .15s}
-.flxai-switch input:checked+span{background:var(--ac)}
-.flxai-switch input:checked+span::after{transform:translateX(18px)}
-.flxai-switch input:focus-visible+span{outline:2px solid var(--ac);outline-offset:2px}
 .flxai-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
 .flxai-chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
 .flxai-chip{display:inline-flex;gap:6px;align-items:center;border:1px solid var(--bd);background:var(--flux-surface2);color:var(--flux-text);border-radius:99px;padding:2px 10px;font:inherit;font-size:12.5px;cursor:pointer}

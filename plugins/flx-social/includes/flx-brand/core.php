@@ -1141,7 +1141,7 @@ function flx_field( array $args ) {
  * Onay kutusu / radyo HTML'i.
  *
  * @param array $args name, id, value (1), label (düz metin) ya da label_html (bağlantılı, wp_kses_post'tan geçer), note (alt satır),
- *                    checked, required, disabled, radio (true = radyo), error, messages ([ 'required' => … ]), class, attrs, wrap_attrs.
+ *                    checked, required, disabled, radio (true = radyo), switch (true = anahtar görünümü, role=switch), error, messages ([ 'required' => … ]), class, attrs, wrap_attrs.
  */
 function flx_check( array $args ) {
 	flx_field_enqueue();
@@ -1158,6 +1158,7 @@ function flx_check( array $args ) {
 			'required'   => false,
 			'disabled'   => false,
 			'radio'      => false,
+			'switch'     => false,
 			'error'      => '',
 			'messages'   => array(),
 			'class'      => '',
@@ -1173,12 +1174,14 @@ function flx_check( array $args ) {
 			'required' => $a['required'] ? true : false,
 			'disabled' => $a['disabled'] ? true : false,
 		),
+		( $a['switch'] && ! $a['radio'] ? array( 'role' => 'switch' ) : array() ),
+		( '' !== (string) $a['error'] ? array( 'aria-invalid' => 'true' ) : array() ),
 		(array) $a['attrs']
 	);
 	foreach ( (array) $a['messages'] as $rule => $text ) {
 		$in[ 'data-flx-msg-' . sanitize_key( $rule ) ] = (string) $text;
 	}
-	$cls  = 'flx-chk' . ( $a['radio'] ? ' flx-chk--radio' : '' ) . ( '' !== (string) $a['error'] ? ' is-error' : '' ) . ( $a['disabled'] ? ' is-disabled' : '' ) . ( '' !== (string) $a['class'] ? ' ' . $a['class'] : '' );
+	$cls  = 'flx-chk' . ( $a['radio'] ? ' flx-chk--radio' : ( $a['switch'] ? ' flx-chk--switch' : '' ) ) . ( '' !== (string) $a['error'] ? ' is-error' : '' ) . ( $a['disabled'] ? ' is-disabled' : '' ) . ( '' !== (string) $a['class'] ? ' ' . $a['class'] : '' );
 	$text = '' !== (string) $a['label_html'] ? wp_kses_post( (string) $a['label_html'] ) : esc_html( (string) $a['label'] );
 	$h    = '<label class="' . esc_attr( $cls ) . '"' . flx_field_attrs( $a['wrap_attrs'] ) . '><input class="flx-chk__input" type="' . ( $a['radio'] ? 'radio' : 'checkbox' ) . '" value="' . esc_attr( (string) $a['value'] ) . '"' . flx_field_attrs( $in ) . '>';
 	$h   .= '<span class="flx-chk__box" aria-hidden="true"></span><span class="flx-chk__text">' . $text . ( '' !== (string) $a['note'] ? '<small>' . esc_html( (string) $a['note'] ) . '</small>' : '' ) . '</span></label>';

@@ -35,7 +35,7 @@
 .flxad-app input[type=text].flxad-wide{width:100%;max-width:420px}
 .flxad-app input[type=color]{width:44px;height:30px;padding:2px;border:1px solid var(--flxad-bd);border-radius:6px;background:var(--flux-bg);cursor:pointer}
 .flxad-app input:focus,.flxad-app select:focus,.flxad-app textarea:focus{outline:2px solid color-mix(in srgb,var(--flxad-ac) 45%,transparent);outline-offset:0;border-color:var(--flxad-ac)}
-.flxad-app input[type=checkbox],.flxad-app input[type=radio]{accent-color:var(--flxad-ac);margin:0}
+
 .flxad-desc{margin:6px 0 0;color:var(--flxad-mut);font-size:13px;max-width:640px}
 .flxad-code{font-family:var(--flux-font-mono,monospace);font-size:12px;color:var(--flxad-mut)}
 .flxad-logo{display:flex;align-items:center;gap:10px;flex-wrap:wrap}

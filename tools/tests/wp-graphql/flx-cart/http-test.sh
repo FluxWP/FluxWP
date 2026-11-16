@@ -120,7 +120,21 @@ op FlxCartClear '{"input":{}}' "${T[@]}"
 [ "$(json "$body" '$j["data"]["flxCartClear"]["cart"]["itemsCount"] ?? null')" = 0 ] && ok "flxCartClear" || bad "clear" "$body"
 
 # 9. No card data anywhere: the schema has no card fields; the debug log does not mention the cart token.
-grep -qiE 'card(number|_number|Number)|cvv|cvc' "$root/packages/graphql/schema/schema.graphql" && bad "schema has card fields" || ok "schema: no card number / CVC fields"
+# Only "no match" (grep status 1) is success. A missing part file or a grep error is a failure.
+shopt -s nullglob
+files=( "$root"/packages/graphql/schema/*.graphql "$root"/plugins/*/graphql/schema.graphql "$root"/themes/*/graphql/schema.graphql )
+shopt -u nullglob
+if [ ${#files[@]} -eq 0 ]; then
+  bad "schema parts missing"
+else
+  grep -qiE 'card(number|_number|Number)|cvv|cvc' "${files[@]}"
+  status=$?
+  if [ "$status" -eq 1 ]; then
+    ok "schema: no card number / CVC fields"
+  else
+    bad "schema has card fields"
+  fi
+fi
 [ -f "$site/wp-content/debug.log" ] && grep -q -- "$token" "$site/wp-content/debug.log" && bad "debug.log contains a cart token" || ok "debug.log: no cart token"
 
 echo "$pass passed, $fail failed"

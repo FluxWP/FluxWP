@@ -30,3 +30,7 @@ tools/release/.bundle/
 tools/release/vendor/
 tools/release/fastlane/report.xml
 tools/release/fastlane/README.md
+# packages/graphql/scripts/generate.ts outputs (root postinstall): built from the schema parts and the
+# plugins' operations; one shared file would make parallel package pull requests collide.
+packages/graphql/src/generated/
+packages/graphql/schema/full.graphql
