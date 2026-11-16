@@ -168,7 +168,7 @@ foreach ( $by as $list ) {
 	$sorted = $sorted && $copy === $list;
 }
 flxt_ok( $sorted, 'system: problems come first inside every group' );
-flxt_same( false, $sys['fixLogAvailable'] ?? null, 'system: no fix log without Flux SEO' );
+flxt_same( function_exists( 'flxseo_system_fix_log' ), $sys['fixLogAvailable'] ?? null, 'system: the fix log is available exactly when Flux SEO is active' );
 
 // Migration from a previous theme.
 $r = flxth_op( 'FlxThemeMigrationSources', array(), $admin );

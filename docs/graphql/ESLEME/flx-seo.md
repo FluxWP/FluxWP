@@ -1,6 +1,6 @@
 # Flux SEO (flx-seo): REST → GraphQL eşlemesi
 
-Paket sürümü: 1.10.0 (plan 1.9.1 yazıyordu, güncellenmeli) · Önek: `flxseo_` (fonksiyonel, sınıf yok) · Cap: `manage_options` (ayar/ AJAX), `flxseo_app_can` (REST) · Sahip thread: envanter (Faz 1) · Durum: taslak
+Paket sürümü: 1.11.0 (taşındı) · Önek: `flxseo_` (fonksiyonel, sınıf yok) · Cap: `manage_options` (ayar/ AJAX), `flxseo_app_can` (REST) · Sahip thread: envanter (Faz 1) · Durum: uygulandı (PR `gql/flx-seo-1`). Kararlar: IndexNow bayrağı düz açık/kapalı (anahtar dosyası zaten herkese açık); `indexnowSubmit` sayı döner; ayar alanları yönetici cap'inde
 
 Not: Bu dosya yalnız envanterdir. "belirsiz" işaretli satırlar uygulayıcıdan önce karar ister.
 
