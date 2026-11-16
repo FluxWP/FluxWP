@@ -18,5 +18,7 @@ export const moduleScreens: Record<string, ComponentType> = {
   'flxg-tasks': lazyScreen(() => import('./tasks/TasksScreen').then((m) => ({ default: m.TasksScreen }))),
   'flxl-lang': lazyScreen(() => import('./lang/LanguagesScreen').then((m) => ({ default: m.LanguagesScreen }))),
   'flxr-roles': lazyScreen(() => import('./roles/RolesScreen').then((m) => ({ default: m.RolesScreen }))),
+  'flxapp-settings': lazyScreen(() => import('./app-settings/AppSettingsScreen').then((m) => ({ default: m.AppSettingsScreen }))),
+  'flxapp-access': lazyScreen(() => import('./app-settings/AccessScreen').then((m) => ({ default: m.AccessScreen }))),
   'flxc-inbox': lazyScreen(() => import('./whatsapp/WhatsAppScreen').then((m) => ({ default: m.WhatsAppScreen }))),
 };
