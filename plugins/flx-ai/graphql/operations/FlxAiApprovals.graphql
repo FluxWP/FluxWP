@@ -1,0 +1,6 @@
+# The signed-in user's approval queue: actions waiting for approval and open change requests.
+query FlxAiApprovals {
+  flxAiApprovals {
+    ...FlxAiApprovalQueueFields
+  }
+}

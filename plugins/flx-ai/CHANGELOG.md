@@ -1,5 +1,11 @@
 # Flux AI — Değişiklikler
 
+## 0.24.0
+- **Ayarlar ve Onay bekleyenler React ekranı oldu** (wp-admin'de varsayılan, klasik görünüme bağlantı var): sağlayıcılar ve anahtarlar (yalnız yazılır), modeller ve bağlantı testi, önbellek, harcama limiti, ortak sohbet, görsel/video üretimi, web, Gotenberg, kayıtlar. Onaylar: bekleyen işlemler (girdiyi düzenleyip onayla) ve açık değişiklik istekleri (birleştir/reddet).
+- **GraphQL:** `flxAiApprovals`, `flxAiApprovalDecide` (onayla/reddet/düzenleyip onayla), `flxAiChangeDecide`. Ayar kaydı zaten `flxAiSettingsUpdate`; klasik form da artık aynı servisle (`FLXAI_Settings_Service::save`) kaydeder.
+- Sözleşme testi 165 kontrol (onay kuyruğu, klasik formun servisle kaydı, anahtarın GraphQL'e sızmaması).
+- Skill'ler, Zamanlanmış görevler ve MCP sayfaları ile sohbet henüz klasik (sonraki sürüm).
+
 ## 0.23.0
 - **GraphQL (Faz 1):** harcama, rapor, faturalama, kayıtlar, bağlı sistemler, ayarlar ve araçlar `Flux GraphQL` üzerinden okunur ve yazılır (`flxAi*` sorguları ve mutation'ları, `plugins/flx-ai/graphql/operations/`). Klasik sayfalar, REST ve GraphQL aynı servis katmanını (`includes/services/`) kullanır. Gereksinimler: PHP 8.1, `Requires Plugins: flx-graphql`.
 - **API anahtarları yalnız yazılır:** GraphQL anahtarı asla geri vermez; yalnız "tanımlı mı", son 4 karakter ve `wp-config` kaynaklı mı bilgisi döner. Genel ayar türlerinin `key_*` alanlarını göstermemesi için `flxai_settings` genel şemadan çıkarıldı.

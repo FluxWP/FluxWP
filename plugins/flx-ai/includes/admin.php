@@ -485,81 +485,28 @@ function flxai_save_settings() {
 	if ( ! isset( $_POST['flxai_settings_nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['flxai_settings_nonce'] ), 'flxai_settings' ) || ! flxai_can_manage() ) {
 		return false;
 	}
-	$p   = wp_unslash( $_POST ); // phpcs:ignore
-	$new = array();
-	$flxai_keys = array( 'key_openrouter', 'key_anthropic', 'key_render', 'key_fal', 'key_evolink', 'key_openai', 'key_gemini', 'key_brave' );
-	foreach ( flxai_web_providers() as $flxai_w ) { // eklentilerin eklediği arama sağlayıcılarının anahtarları
-		if ( ! empty( $flxai_w['key'] ) && 0 === strpos( (string) $flxai_w['key'], 'key_' ) ) {
-			$flxai_keys[] = sanitize_key( $flxai_w['key'] );
+	$p = wp_unslash( $_POST ); // phpcs:ignore
+	// The classic form posts every field: unchecked boxes are simply absent, so they count as off here.
+	$in = array();
+	foreach ( array( 'anthropic_workspace', 'model', 'chat_model', 'title_model', 'source_models', 'cache', 'effort', 'limit_day', 'limit_week', 'limit_month', 'limit_action', 'limit_warn_pct', 'chat_roles', 'chat_mode', 'chat_max_rounds', 'chat_history', 'chat_instructions', 'render_url', 'render_user', 'media_image_model', 'media_video_model', 'media_days', 'web_provider', 'web_search_month', 'web_search_cost', 'log_days', 'log_body_days' ) as $k ) {
+		if ( isset( $p[ $k ] ) ) {
+			$in[ $k ] = $p[ $k ];
 		}
 	}
-	foreach ( array_unique( $flxai_keys ) as $k ) {
-		$v = trim( (string) ( $p[ $k ] ?? '' ) );
-		if ( ! empty( $p[ $k . '_clear' ] ) ) {
-			$new[ $k ] = '';
-		} elseif ( '' !== $v ) {
-			$new[ $k ] = sanitize_text_field( $v );
-		}
+	foreach ( array( 'thinking', 'limit_notify', 'chat_admin', 'chat_front', 'chat_widgets', 'web_on', 'web_fetch_on', 'image_tool_on', 'shell_on', 'log_bodies', 'delete_data' ) as $k ) {
+		$in[ $k ] = ! empty( $p[ $k ] );
 	}
-	$new['anthropic_workspace'] = preg_replace( '/[^a-zA-Z0-9_-]/', '', (string) ( $p['anthropic_workspace'] ?? '' ) );
-	foreach ( array( 'model', 'chat_model', 'title_model' ) as $k ) {
-		$new[ $k ] = sanitize_text_field( (string) ( $p[ $k ] ?? '' ) );
+	$in['chat_roles']    = (array) ( $p['chat_roles'] ?? array() );
+	$in['source_models'] = (array) ( $p['source_models'] ?? array() );
+	$in['secrets']       = array();
+	foreach ( array_keys( FLXAI_Settings_Service::key_catalog() ) as $k ) {
+		$in['secrets'][] = array(
+			'name'  => $k,
+			'value' => (string) ( $p[ $k ] ?? '' ),
+			'clear' => ! empty( $p[ $k . '_clear' ] ),
+		);
 	}
-	$map = array();
-	foreach ( (array) ( $p['source_models'] ?? array() ) as $src => $m ) {
-		$m = sanitize_text_field( (string) $m );
-		if ( '' !== $m ) {
-			$map[ sanitize_key( $src ) ] = $m;
-		}
-	}
-	$new['source_models']  = $map;
-	$new['cache']          = in_array( $p['cache'] ?? '', array( 'off', '5m', '1h' ), true ) ? $p['cache'] : '5m';
-	$new['effort']         = in_array( $p['effort'] ?? '', array( 'low', 'medium', 'high' ), true ) ? $p['effort'] : 'low';
-	$new['thinking']       = empty( $p['thinking'] ) ? 0 : 1;
-	foreach ( array( 'limit_day', 'limit_week', 'limit_month' ) as $k ) {
-		$new[ $k ] = max( 0, round( (float) str_replace( ',', '.', (string) ( $p[ $k ] ?? 0 ) ), 2 ) );
-	}
-	$new['limit_action']   = 'warn' === ( $p['limit_action'] ?? '' ) ? 'warn' : 'block';
-	$new['limit_warn_pct'] = max( 10, min( 99, (int) ( $p['limit_warn_pct'] ?? 80 ) ) );
-	$new['limit_notify']   = empty( $p['limit_notify'] ) ? 0 : 1;
-	$roles                 = array_map( 'sanitize_key', (array) ( $p['chat_roles'] ?? array() ) );
-	$new['chat_roles']     = array_values( array_intersect( $roles, array_keys( wp_roles()->get_names() ) ) );
-	$new['chat_admin']     = empty( $p['chat_admin'] ) ? 0 : 1;
-	$new['chat_front']     = empty( $p['chat_front'] ) ? 0 : 1;
-	$new['chat_mode']      = in_array( $p['chat_mode'] ?? '', array( 'dock', 'page' ), true ) ? $p['chat_mode'] : 'bubble';
-	$new['chat_max_rounds'] = max( 2, min( 30, (int) ( $p['chat_max_rounds'] ?? 12 ) ) );
-	$new['chat_history']   = max( 6, min( 200, (int) ( $p['chat_history'] ?? 40 ) ) );
-	$new['chat_instructions'] = sanitize_textarea_field( (string) ( $p['chat_instructions'] ?? '' ) );
-	$new['chat_widgets']   = empty( $p['chat_widgets'] ) ? 0 : 1;
-	$new['render_url']     = esc_url_raw( trim( (string) ( $p['render_url'] ?? '' ) ), array( 'http', 'https' ) );
-	$new['render_user']    = sanitize_text_field( (string) ( $p['render_user'] ?? '' ) );
-	$flxai_cat = flxai_media_catalog();
-	foreach ( array( 'media_image_model' => 'image', 'media_video_model' => 'video' ) as $k => $kind ) {
-		$m = sanitize_text_field( (string) ( $p[ $k ] ?? '' ) );
-		if ( isset( $flxai_cat[ $m ] ) && $kind === $flxai_cat[ $m ]['kind'] ) {
-			$new[ $k ] = $m;
-		}
-	}
-	$new['media_days']     = max( 7, min( 1825, (int) ( $p['media_days'] ?? 90 ) ) );
-	$new['web_on']           = empty( $p['web_on'] ) ? 0 : 1;
-	$new['web_fetch_on']     = empty( $p['web_fetch_on'] ) ? 0 : 1;
-	$new['image_tool_on']    = empty( $p['image_tool_on'] ) ? 0 : 1;
-	$new['shell_on']         = empty( $p['shell_on'] ) ? 0 : 1;
-	$flxai_wp                = sanitize_key( (string) ( $p['web_provider'] ?? 'auto' ) );
-	$new['web_provider']     = ( 'auto' === $flxai_wp || isset( flxai_web_providers()[ $flxai_wp ] ) ) ? $flxai_wp : 'auto';
-	$new['web_search_month'] = max( 0, min( 1000000, (int) ( $p['web_search_month'] ?? 0 ) ) );
-	$new['web_search_cost']  = max( 0, min( 1000, round( (float) str_replace( ',', '.', (string) ( $p['web_search_cost'] ?? 0 ) ), 4 ) ) );
-	// Boş ya da 0 = sınırsız.
-	$new['log_days']       = max( 0, min( 3650, (int) ( $p['log_days'] ?? 0 ) ) );
-	$new['log_bodies']     = empty( $p['log_bodies'] ) ? 0 : 1;
-	$new['log_body_days']  = max( 0, min( 3650, (int) ( $p['log_body_days'] ?? 0 ) ) );
-	$new['delete_data']    = empty( $p['delete_data'] ) ? 0 : 1;
-	$old_keys              = array( flxai_setting( 'key_openrouter' ), flxai_setting( 'key_anthropic' ), flxai_setting( 'anthropic_workspace' ) );
-	flxai_update_settings( $new );
-	if ( array( flxai_setting( 'key_openrouter' ), flxai_setting( 'key_anthropic' ), flxai_setting( 'anthropic_workspace' ) ) !== $old_keys ) {
-		flxai_models_flush();
-	}
-	return true;
+	return ! is_wp_error( FLXAI_Settings_Service::save( $in ) );
 }
 
 /** Model seçici alanı (ortak model-picker.js ile zenginleşir). */
@@ -573,6 +520,9 @@ function flxai_model_field( $name, $value, $placeholder = '' ) {
 }
 
 function flxai_page_settings() {
+	if ( flxai_flux_render() ) {
+		return;
+	}
 	$saved = flxai_save_settings();
 	flxai_page_head( __( 'Flux AI settings', 'flx-ai' ), __( 'Enter keys here once; all FluxWP plugins use this connection.', 'flx-ai' ) );
 	if ( $saved ) {
