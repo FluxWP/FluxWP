@@ -18,15 +18,16 @@ class FLXI_Log_Service {
 	 * @return array{items:list<array<string,mixed>>,total:int,pages:int}
 	 */
 	public static function rest_list( WP_REST_Request $r ): array {
+		/** @var wpdb $wpdb */
 		global $wpdb;
 		$t       = flxi_table( 'log' );
-		$per     = min( 100, max( 1, absint( $r->get_param( 'per_page' ) ? $r->get_param( 'per_page' ) : 25 ) ) );
-		$page    = max( 1, absint( $r->get_param( 'page' ) ) );
+		$per     = min( 100, max( 1, absint( flxi_str( $r->get_param( 'per_page' ) ? $r->get_param( 'per_page' ) : 25 ) ) ) );
+		$page    = max( 1, absint( flxi_str( $r->get_param( 'page' ) ) ) );
 		$where   = array( '1=1' );
 		$prm     = array();
-		$status  = sanitize_key( (string) $r->get_param( 'status' ) );
-		$channel = sanitize_key( (string) $r->get_param( 'channel' ) );
-		$search  = sanitize_text_field( (string) $r->get_param( 's' ) );
+		$status  = sanitize_key( flxi_str( $r->get_param( 'status' ) ) );
+		$channel = sanitize_key( flxi_str( $r->get_param( 'channel' ) ) );
+		$search  = sanitize_text_field( flxi_str( $r->get_param( 's' ) ) );
 		if ( $status ) {
 			$where[] = 'status = %s';
 			$prm[]   = $status;
@@ -41,9 +42,9 @@ class FLXI_Log_Service {
 			array_push( $prm, $like, $like );
 		}
 		$w      = implode( ' AND ', $where );
-		$total  = (int) ( $prm ? $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$t} WHERE {$w}", $prm ) ) : $wpdb->get_var( "SELECT COUNT(*) FROM {$t} WHERE {$w}" ) ); // phpcs:ignore WordPress.DB.PreparedSQL
+		$total  = (int) ( $prm ? $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$t} WHERE {$w}", $prm ) ) : $wpdb->get_var( "SELECT COUNT(*) FROM {$t} WHERE {$w}" ) ); // phpcs:ignore WordPress.DB.PreparedSQL -- @phpstan-ignore argument.type
 		$sql    = "SELECT id, created_at, channel, template, recipient, subject, status, error FROM {$t} WHERE {$w} ORDER BY id DESC" . $wpdb->prepare( ' LIMIT %d OFFSET %d', $per, ( $page - 1 ) * $per );
-		$rows   = $prm ? $wpdb->get_results( $wpdb->prepare( $sql, $prm ), ARRAY_A ) : $wpdb->get_results( $sql, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL
+		$rows   = $prm ? $wpdb->get_results( $wpdb->prepare( $sql, $prm ), ARRAY_A ) : $wpdb->get_results( $sql, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL -- @phpstan-ignore argument.type
 		$labels = array(
 			'sent'    => __( 'Sent', 'flx-mail' ),
 			'failed'  => __( 'Failed', 'flx-mail' ),
@@ -51,18 +52,20 @@ class FLXI_Log_Service {
 			'sending' => __( 'Sending', 'flx-mail' ),
 		);
 		$items  = array();
-		foreach ( (array) $rows as $row ) {
-			$ts      = strtotime( $row['created_at'] . ' UTC' );
+		foreach ( flxi_rows( $rows ) as $row ) {
+			$created = flxi_str( $row['created_at'] ?? '' );
+			$status  = flxi_str( $row['status'] ?? '' );
+			$ts      = strtotime( $created . ' UTC' );
 			$items[] = array(
-				'id'           => (int) $row['id'],
-				'channel'      => (string) $row['channel'],
-				'template'     => (string) $row['template'],
-				'recipient'    => (string) $row['recipient'],
-				'subject'      => (string) $row['subject'],
-				'status'       => (string) $row['status'],
-				'status_label' => isset( $labels[ $row['status'] ] ) ? $labels[ $row['status'] ] : $row['status'],
-				'error'        => (string) $row['error'],
-				'date_label'   => $ts && function_exists( 'flx_date' ) ? flx_date( $ts, 'datetime' ) : (string) $row['created_at'],
+				'id'           => flxi_int( $row['id'] ?? 0 ),
+				'channel'      => flxi_str( $row['channel'] ?? '' ),
+				'template'     => flxi_str( $row['template'] ?? '' ),
+				'recipient'    => flxi_str( $row['recipient'] ?? '' ),
+				'subject'      => flxi_str( $row['subject'] ?? '' ),
+				'status'       => $status,
+				'status_label' => $labels[ $status ] ?? $status,
+				'error'        => flxi_str( $row['error'] ?? '' ),
+				'date_label'   => $ts && function_exists( 'flx_date' ) ? flx_date( $ts, 'datetime' ) : $created,
 			);
 		}
 		return array(
@@ -78,18 +81,22 @@ class FLXI_Log_Service {
 	 * @return array<string,mixed>|WP_Error
 	 */
 	public static function rest_item( WP_REST_Request $r ) {
+		/** @var wpdb $wpdb */
 		global $wpdb;
-		$row = $wpdb->get_row( $wpdb->prepare( 'SELECT * FROM ' . flxi_table( 'log' ) . ' WHERE id = %d', (int) $r['id'] ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL
-		if ( ! $row ) {
+		$row = $wpdb->get_row( $wpdb->prepare( 'SELECT * FROM ' . flxi_table( 'log' ) . ' WHERE id = %d', flxi_int( $r['id'] ?? 0 ) ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL -- @phpstan-ignore argument.type
+		if ( ! is_array( $row ) ) {
 			return new WP_Error( 'flxi_404', 'Not found', array( 'status' => 404 ) );
 		}
-		$body = (string) $row['body'];
-		if ( 'email' !== $row['channel'] || ! preg_match( '~<(html|p|div|table|br)[\s>/]~i', $body ) ) {
+		$row     = flxi_arr( $row );
+		$body    = flxi_str( $row['body'] ?? '' );
+		$channel = flxi_str( $row['channel'] ?? '' );
+		if ( 'email' !== $channel || ! preg_match( '~<(html|p|div|table|br)[\s>/]~i', $body ) ) {
 			$body = '<pre style="white-space:pre-wrap;font:14px/1.5 -apple-system,Segoe UI,sans-serif;margin:16px">' . esc_html( $body ) . '</pre>';
 		}
 		$row['body']       = $body;
-		$ts                = strtotime( $row['created_at'] . ' UTC' );
-		$row['date_label'] = $ts && function_exists( 'flx_date' ) ? flx_date( $ts, 'datetime' ) : (string) $row['created_at'];
+		$created           = flxi_str( $row['created_at'] ?? '' );
+		$ts                = strtotime( $created . ' UTC' );
+		$row['date_label'] = $ts && function_exists( 'flx_date' ) ? flx_date( $ts, 'datetime' ) : $created;
 		return $row;
 	}
 
@@ -100,15 +107,16 @@ class FLXI_Log_Service {
 	 * @return array{items:list<array<string,mixed>>,total:int}
 	 */
 	public static function page( array $filter, int $offset, int $limit ): array {
+		/** @var wpdb $wpdb */
 		global $wpdb;
 		$t     = flxi_table( 'log' );
 		$where = array( '1=1' );
 		$prm   = array();
-		$status  = sanitize_key( (string) ( $filter['status'] ?? '' ) );
-		$channel = sanitize_key( (string) ( $filter['channel'] ?? '' ) );
-		$search  = sanitize_text_field( (string) ( $filter['search'] ?? '' ) );
-		$tpl     = sanitize_text_field( (string) ( $filter['template'] ?? '' ) );
-		$camp    = (int) ( $filter['campaign'] ?? 0 );
+		$status  = sanitize_key( flxi_str( $filter['status'] ?? '' ) );
+		$channel = sanitize_key( flxi_str( $filter['channel'] ?? '' ) );
+		$search  = sanitize_text_field( flxi_str( $filter['search'] ?? '' ) );
+		$tpl     = sanitize_text_field( flxi_str( $filter['template'] ?? '' ) );
+		$camp    = flxi_int( $filter['campaign'] ?? 0 );
 		if ( $status ) {
 			$where[] = 'status = %s';
 			$prm[]   = $status;
@@ -131,11 +139,11 @@ class FLXI_Log_Service {
 			array_push( $prm, $like, $like );
 		}
 		$w     = implode( ' AND ', $where );
-		$total = (int) ( $prm ? $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$t} WHERE {$w}", $prm ) ) : $wpdb->get_var( "SELECT COUNT(*) FROM {$t} WHERE {$w}" ) ); // phpcs:ignore WordPress.DB.PreparedSQL
+		$total = (int) ( $prm ? $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$t} WHERE {$w}", $prm ) ) : $wpdb->get_var( "SELECT COUNT(*) FROM {$t} WHERE {$w}" ) ); // phpcs:ignore WordPress.DB.PreparedSQL -- @phpstan-ignore argument.type
 		$sql   = "SELECT id, created_at, channel, template, recipient, subject, status, error, sender, campaign_id, user_id FROM {$t} WHERE {$w} ORDER BY id DESC" . $wpdb->prepare( ' LIMIT %d OFFSET %d', $limit, max( 0, $offset ) );
-		$rows  = $prm ? $wpdb->get_results( $wpdb->prepare( $sql, $prm ), ARRAY_A ) : $wpdb->get_results( $sql, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL
+		$rows  = $prm ? $wpdb->get_results( $wpdb->prepare( $sql, $prm ), ARRAY_A ) : $wpdb->get_results( $sql, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL -- @phpstan-ignore argument.type
 		$items = array();
-		foreach ( (array) $rows as $row ) {
+		foreach ( flxi_rows( $rows ) as $row ) {
 			$items[] = self::shape( $row, false );
 		}
 		if ( function_exists( 'flx_gql_cache_tag' ) ) {
@@ -148,15 +156,16 @@ class FLXI_Log_Service {
 	 * @return array<string,mixed>|null
 	 */
 	public static function one( int $id ): ?array {
+		/** @var wpdb $wpdb */
 		global $wpdb;
-		$row = $wpdb->get_row( $wpdb->prepare( 'SELECT * FROM ' . flxi_table( 'log' ) . ' WHERE id = %d', $id ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL
-		if ( ! $row ) {
+		$row = $wpdb->get_row( $wpdb->prepare( 'SELECT * FROM ' . flxi_table( 'log' ) . ' WHERE id = %d', $id ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL -- @phpstan-ignore argument.type
+		if ( ! is_array( $row ) ) {
 			return null;
 		}
 		if ( function_exists( 'flx_gql_cache_tag' ) ) {
 			flx_gql_cache_tag( 'flx-mail:log' );
 		}
-		return self::shape( $row, true );
+		return self::shape( flxi_arr( $row ), true );
 	}
 
 	/**
@@ -164,27 +173,30 @@ class FLXI_Log_Service {
 	 * @return array<string,mixed>
 	 */
 	private static function shape( array $row, bool $with_body ): array {
-		$ts   = strtotime( (string) $row['created_at'] . ' UTC' );
-		$body = null;
+		$created = flxi_str( $row['created_at'] ?? '' );
+		$channel = flxi_str( $row['channel'] ?? '' );
+		$error   = flxi_str( $row['error'] ?? '' );
+		$ts      = strtotime( $created . ' UTC' );
+		$body    = null;
 		if ( $with_body && flxi_setting( 'log_body' ) ) {
-			$raw = (string) ( $row['body'] ?? '' );
-			if ( 'email' !== $row['channel'] || ! preg_match( '~<(html|p|div|table|br)[\s>/]~i', $raw ) ) {
+			$raw = flxi_str( $row['body'] ?? '' );
+			if ( 'email' !== $channel || ! preg_match( '~<(html|p|div|table|br)[\s>/]~i', $raw ) ) {
 				$raw = '<pre style="white-space:pre-wrap;font:14px/1.5 -apple-system,Segoe UI,sans-serif;margin:16px">' . esc_html( $raw ) . '</pre>';
 			}
 			$body = $raw;
 		}
 		return array(
-			'databaseId' => (int) $row['id'],
+			'databaseId' => flxi_int( $row['id'] ?? 0 ),
 			'createdAt'  => $ts ? $ts : null,
-			'channel'    => (string) $row['channel'],
-			'template'   => (string) $row['template'],
-			'recipient'  => (string) $row['recipient'],
-			'subject'    => (string) $row['subject'],
-			'status'     => (string) $row['status'],
-			'error'      => '' !== (string) ( $row['error'] ?? '' ) ? (string) $row['error'] : null,
-			'sender'     => (string) ( $row['sender'] ?? '' ),
-			'campaignId' => (int) ( $row['campaign_id'] ?? 0 ),
-			'userId'     => (int) ( $row['user_id'] ?? 0 ),
+			'channel'    => $channel,
+			'template'   => flxi_str( $row['template'] ?? '' ),
+			'recipient'  => flxi_str( $row['recipient'] ?? '' ),
+			'subject'    => flxi_str( $row['subject'] ?? '' ),
+			'status'     => flxi_str( $row['status'] ?? '' ),
+			'error'      => '' !== $error ? $error : null,
+			'sender'     => flxi_str( $row['sender'] ?? '' ),
+			'campaignId' => flxi_int( $row['campaign_id'] ?? 0 ),
+			'userId'     => flxi_int( $row['user_id'] ?? 0 ),
 			'body'       => $body,
 			'person'     => self::person( $row ),
 		);
@@ -202,10 +214,11 @@ class FLXI_Log_Service {
 		}
 		$id = 0;
 		if ( ! empty( $row['user_id'] ) ) {
-			$id = (int) flxcrm_contact_for( array( 'user_id' => (int) $row['user_id'] ) );
+			$id = flxi_int( flxcrm_contact_for( array( 'user_id' => flxi_int( $row['user_id'] ) ) ) );
 		}
-		if ( ! $id && is_email( (string) ( $row['recipient'] ?? '' ) ) ) {
-			$id = (int) flxcrm_contact_for( array( 'email' => (string) $row['recipient'] ) );
+		$recipient = flxi_str( $row['recipient'] ?? '' );
+		if ( ! $id && is_email( $recipient ) ) {
+			$id = flxi_int( flxcrm_contact_for( array( 'email' => $recipient ) ) );
 		}
 		if ( ! $id ) {
 			return null;

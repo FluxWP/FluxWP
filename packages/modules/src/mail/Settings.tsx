@@ -616,8 +616,12 @@ function Color({ label, value, onChange }: { label: string; value: string; onCha
   );
 }
 
+function httpLogo(url: string): string {
+  return /^https?:\/\/[^\s<>"']+$/.test(url) ? url : '';
+}
+
 function Logo({ label, url, file, onFile, onClear, t }: { label: string; url: string; file: File | null; onFile: (f: File) => void; onClear: () => void; t: (s: string) => string }) {
-  const src = file ? URL.createObjectURL(file) : url;
+  const src = file ? URL.createObjectURL(file) : httpLogo(url);
   return (
     <div className="flxmail-field">
       <span>{label}</span>

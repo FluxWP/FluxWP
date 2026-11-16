@@ -464,9 +464,71 @@ function flxi_now() {
 	return current_time( 'mysql', true );
 }
 
-function flxi_table( $name ) {
+function flxi_table( $name ): string {
+	/** @var wpdb $wpdb */
 	global $wpdb;
 	return $wpdb->prefix . 'flxi_' . $name;
+}
+
+/**
+ * A scalar as a string. Arrays and objects become the default.
+ *
+ * @param mixed  $value   Value.
+ * @param string $default Default.
+ */
+function flxi_str( $value, string $default = '' ): string {
+	return is_scalar( $value ) ? (string) $value : $default;
+}
+
+/**
+ * An int, or a numeric string as an int.
+ *
+ * @param mixed $value   Value.
+ * @param int   $default Default.
+ */
+function flxi_int( $value, int $default = 0 ): int {
+	if ( is_int( $value ) ) {
+		return $value;
+	}
+	return is_numeric( $value ) ? (int) $value : $default;
+}
+
+/**
+ * String-keyed array (anything else: empty).
+ *
+ * @param mixed $value Value.
+ * @return array<string,mixed>
+ */
+function flxi_arr( $value ): array {
+	if ( ! is_array( $value ) ) {
+		return array();
+	}
+	$out = array();
+	foreach ( $value as $key => $item ) {
+		if ( is_string( $key ) ) {
+			$out[ $key ] = $item;
+		}
+	}
+	return $out;
+}
+
+/**
+ * A list of string-keyed rows.
+ *
+ * @param mixed $rows Rows.
+ * @return list<array<string,mixed>>
+ */
+function flxi_rows( $rows ): array {
+	if ( ! is_array( $rows ) ) {
+		return array();
+	}
+	$out = array();
+	foreach ( $rows as $row ) {
+		if ( is_array( $row ) ) {
+			$out[] = flxi_arr( $row );
+		}
+	}
+	return $out;
 }
 
 function flxi_json( $v ) {

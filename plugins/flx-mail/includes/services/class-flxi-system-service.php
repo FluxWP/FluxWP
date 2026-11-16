@@ -24,18 +24,18 @@ class FLXI_System_Service {
 			$all = apply_filters( 'flx_system_checks', array() );
 		}
 		$out = array();
-		foreach ( (array) $all as $c ) {
-			if ( ! is_array( $c ) || 0 !== strpos( (string) ( $c['id'] ?? '' ), 'flxi.' ) ) {
+		foreach ( flxi_rows( $all ) as $c ) {
+			if ( 0 !== strpos( flxi_str( $c['id'] ?? '' ), 'flxi.' ) ) {
 				continue;
 			}
 			$out[] = array(
-				'id'          => (string) $c['id'],
-				'group'       => (string) ( $c['group'] ?? '' ),
-				'label'       => (string) ( $c['label'] ?? '' ),
-				'status'      => (string) ( $c['status'] ?? '' ),
-				'message'     => (string) ( $c['message'] ?? '' ),
-				'actionUrl'   => (string) ( $c['action_url'] ?? '' ),
-				'actionLabel' => (string) ( $c['action_label'] ?? '' ),
+				'id'          => flxi_str( $c['id'] ?? '' ),
+				'group'       => flxi_str( $c['group'] ?? '' ),
+				'label'       => flxi_str( $c['label'] ?? '' ),
+				'status'      => flxi_str( $c['status'] ?? '' ),
+				'message'     => flxi_str( $c['message'] ?? '' ),
+				'actionUrl'   => flxi_str( $c['action_url'] ?? '' ),
+				'actionLabel' => flxi_str( $c['action_label'] ?? '' ),
 			);
 		}
 		if ( function_exists( 'flx_gql_cache_tag' ) ) {
@@ -54,13 +54,17 @@ class FLXI_System_Service {
 		if ( ! is_array( $dns ) ) {
 			return null;
 		}
+		$mx = array();
+		foreach ( (array) ( $dns['mx'] ?? array() ) as $host ) {
+			$mx[] = flxi_str( $host );
+		}
 		return array(
-			'domain'    => (string) ( $dns['domain'] ?? '' ),
-			'spf'       => (string) ( $dns['spf'] ?? '' ),
-			'dmarc'     => (string) ( $dns['dmarc'] ?? '' ),
-			'mx'        => array_values( array_map( 'strval', (array) ( $dns['mx'] ?? array() ) ) ),
-			'error'     => (string) ( $dns['error'] ?? '' ),
-			'checkedAt' => (int) ( $dns['at'] ?? 0 ),
+			'domain'    => flxi_str( $dns['domain'] ?? '' ),
+			'spf'       => flxi_str( $dns['spf'] ?? '' ),
+			'dmarc'     => flxi_str( $dns['dmarc'] ?? '' ),
+			'mx'        => $mx,
+			'error'     => flxi_str( $dns['error'] ?? '' ),
+			'checkedAt' => flxi_int( $dns['at'] ?? 0 ),
 		);
 	}
 
@@ -70,7 +74,9 @@ class FLXI_System_Service {
 	 * @return array<string,mixed>
 	 */
 	public static function check_dns(): array {
-		$res = flxi_dns_check();
+		$raw = flxi_dns_check();
+		/** @var array<string,mixed> $res */
+		$res = is_array( $raw ) ? $raw : array();
 		update_option( 'flxi_dns_check', $res, false );
 		if ( function_exists( 'flx_gql_purge' ) ) {
 			flx_gql_purge( 'flx-mail:settings' );

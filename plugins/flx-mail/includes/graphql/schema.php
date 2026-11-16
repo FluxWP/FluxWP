@@ -487,7 +487,8 @@ function flxi_gql_register(): void {
 			'args'        => flx_gql_connection_args( array( 'search' => flxi_gql_f( 'String', __( 'Name, key or group contains.', 'flx-mail' ) ) ) ),
 			'resolve'     => static function ( $root, array $args ): array {
 				unset( $root );
-				$rows = FLXI_Template_Service::rows( sanitize_text_field( (string) ( $args['search'] ?? '' ) ) );
+				$args = flx_gql_arr( $args );
+				$rows = FLXI_Template_Service::rows( sanitize_text_field( flx_gql_str( $args['search'] ?? '' ) ) );
 				return flx_gql_paginate( $args, static fn( int $offset, int $limit ): array => array( 'items' => array_slice( $rows, $offset, $limit ), 'total' => count( $rows ) ) );
 			},
 		)
@@ -501,7 +502,7 @@ function flxi_gql_register(): void {
 			'args'        => array( 'key' => flxi_gql_f( 'ID!', __( 'Template key.', 'flx-mail' ) ) ),
 			'resolve'     => static function ( $root, array $args ) {
 				unset( $root );
-				return FLXI_Template_Service::one( (string) $args['key'] );
+				return FLXI_Template_Service::one( flx_gql_str( flx_gql_arr( $args )['key'] ?? '' ) );
 			},
 		)
 	);
@@ -523,12 +524,13 @@ function flxi_gql_register(): void {
 			),
 			'resolve'     => static function ( $root, array $args ): array {
 				unset( $root );
+				$args   = flx_gql_arr( $args );
 				$filter = array(
-					'status'   => $args['status'] ?? '',
-					'channel'  => $args['channel'] ?? '',
-					'template' => $args['template'] ?? '',
-					'campaign' => $args['campaign'] ?? 0,
-					'search'   => $args['search'] ?? '',
+					'status'   => flx_gql_str( $args['status'] ?? '' ),
+					'channel'  => flx_gql_str( $args['channel'] ?? '' ),
+					'template' => flx_gql_str( $args['template'] ?? '' ),
+					'campaign' => flx_gql_int( $args['campaign'] ?? 0 ),
+					'search'   => flx_gql_str( $args['search'] ?? '' ),
 				);
 				return flx_gql_paginate( $args, static fn( int $offset, int $limit ): array => FLXI_Log_Service::page( $filter, $offset, $limit ) );
 			},
@@ -543,7 +545,7 @@ function flxi_gql_register(): void {
 			'args'        => array( 'id' => flxi_gql_f( 'Int!', __( 'Row id.', 'flx-mail' ) ) ),
 			'resolve'     => static function ( $root, array $args ) {
 				unset( $root );
-				return FLXI_Log_Service::one( (int) $args['id'] );
+				return FLXI_Log_Service::one( flx_gql_int( flx_gql_arr( $args )['id'] ?? 0 ) );
 			},
 		)
 	);
@@ -570,7 +572,7 @@ function flxi_gql_register(): void {
 			'input'       => array( 'settings' => flxi_gql_f( 'FlxMailSettingsInput!', __( 'Fields to save.', 'flx-mail' ) ) ),
 			'output'      => array( 'settings' => flxi_gql_f( 'FlxMailSettings', __( 'Settings after the change.', 'flx-mail' ) ) ),
 			'resolve'     => static function ( array $input ) {
-				$raw = FLXI_Settings_Service::from_input( (array) ( $input['settings'] ?? array() ) );
+				$raw = FLXI_Settings_Service::from_input( flx_gql_arr( flx_gql_arr( $input )['settings'] ?? array() ) );
 				if ( is_wp_error( $raw ) ) {
 					return $raw;
 				}
@@ -601,15 +603,16 @@ function flxi_gql_register(): void {
 			),
 			'output'      => array( 'template' => flxi_gql_f( 'FlxMailTemplate', __( 'Template after the change.', 'flx-mail' ) ) ),
 			'resolve'     => static function ( array $input ) {
+				$input = flx_gql_arr( $input );
 				if ( ! empty( $input['toggleOnly'] ) ) {
-					$r = FLXI_Template_Service::toggle( (string) $input['key'], ! empty( $input['enabled'] ) );
+					$r = FLXI_Template_Service::toggle( flx_gql_str( $input['key'] ?? '' ), ! empty( $input['enabled'] ) );
 				} else {
 					$r = FLXI_Template_Service::save_input( $input );
 				}
 				if ( is_wp_error( $r ) ) {
 					return $r;
 				}
-				return array( 'template' => FLXI_Template_Service::one( (string) $input['key'] ) );
+				return array( 'template' => FLXI_Template_Service::one( flx_gql_str( $input['key'] ?? '' ) ) );
 			},
 		)
 	);
@@ -621,11 +624,13 @@ function flxi_gql_register(): void {
 			'input'       => array( 'key' => flxi_gql_f( 'ID!', __( 'Template key.', 'flx-mail' ) ) ),
 			'output'      => array( 'template' => flxi_gql_f( 'FlxMailTemplate', __( 'Template after the reset.', 'flx-mail' ) ) ),
 			'resolve'     => static function ( array $input ) {
-				$r = FLXI_Template_Service::reset( (string) $input['key'] );
+				$input = flx_gql_arr( $input );
+				$key   = flx_gql_str( $input['key'] ?? '' );
+				$r     = FLXI_Template_Service::reset( $key );
 				if ( is_wp_error( $r ) ) {
 					return $r;
 				}
-				return array( 'template' => FLXI_Template_Service::one( (string) $input['key'] ) );
+				return array( 'template' => FLXI_Template_Service::one( $key ) );
 			},
 		)
 	);
@@ -649,7 +654,8 @@ function flxi_gql_register(): void {
 			'input'       => $preview_in,
 			'output'      => array( 'preview' => flxi_gql_f( 'FlxMailPreview', __( 'Rendered email.', 'flx-mail' ) ) ),
 			'resolve'     => static function ( array $input ) {
-				$p = FLXI_Delivery_Service::preview( array( 'key' => (string) ( $input['key'] ?? '' ), 'fields' => flxi_gql_content( $input ) ) );
+				$input = flx_gql_arr( $input );
+				$p     = FLXI_Delivery_Service::preview( array( 'key' => flx_gql_str( $input['key'] ?? '' ), 'fields' => flxi_gql_content( $input ) ) );
 				return array( 'preview' => $p );
 			},
 		)
@@ -662,7 +668,8 @@ function flxi_gql_register(): void {
 			'input'       => $preview_in,
 			'output'      => array( 'pdf' => flxi_gql_f( 'FlxMailPdf', __( 'PDF file.', 'flx-mail' ) ) ),
 			'resolve'     => static function ( array $input ) {
-				$p = FLXI_Delivery_Service::preview_pdf( array( 'key' => (string) ( $input['key'] ?? '' ), 'dark' => ! empty( $input['dark'] ), 'fields' => flxi_gql_content( $input ) ) );
+				$input = flx_gql_arr( $input );
+				$p     = FLXI_Delivery_Service::preview_pdf( array( 'key' => flx_gql_str( $input['key'] ?? '' ), 'dark' => ! empty( $input['dark'] ), 'fields' => flxi_gql_content( $input ) ) );
 				if ( is_wp_error( $p ) ) {
 					return $p;
 				}
@@ -692,20 +699,21 @@ function flxi_gql_register(): void {
 				),
 			),
 			'resolve'     => static function ( array $input ): array {
-				$in = array(
-					'to'     => (string) ( $input['to'] ?? '' ),
-					'key'    => (string) ( $input['key'] ?? '' ),
-					'sender' => (string) ( $input['sender'] ?? '' ),
+				$input = flx_gql_arr( $input );
+				$in    = array(
+					'to'     => flx_gql_str( $input['to'] ?? '' ),
+					'key'    => flx_gql_str( $input['key'] ?? '' ),
+					'sender' => flx_gql_str( $input['sender'] ?? '' ),
 				);
-				if ( is_array( $input['free'] ?? null ) ) {
-					$f = $input['free'];
+				$free = flx_gql_arr( $input['free'] ?? array() );
+				if ( isset( $input['free'] ) && is_array( $input['free'] ) ) {
 					$in['free'] = array(
-						'subject'     => (string) ( $f['subject'] ?? '' ),
-						'heading'     => (string) ( $f['heading'] ?? '' ),
-						'body'        => (string) ( $f['body'] ?? '' ),
-						'button_text' => (string) ( $f['buttonText'] ?? '' ),
-						'button_url'  => (string) ( $f['buttonUrl'] ?? '' ),
-						'sender'      => (string) ( $f['sender'] ?? 'info' ),
+						'subject'     => flx_gql_str( $free['subject'] ?? '' ),
+						'heading'     => flx_gql_str( $free['heading'] ?? '' ),
+						'body'        => flx_gql_str( $free['body'] ?? '' ),
+						'button_text' => flx_gql_str( $free['buttonText'] ?? '' ),
+						'button_url'  => flx_gql_str( $free['buttonUrl'] ?? '' ),
+						'sender'      => flx_gql_str( $free['sender'] ?? 'info' ),
 					);
 				}
 				return FLXI_Delivery_Service::test_email( $in );
@@ -756,8 +764,8 @@ function flxi_gql_register(): void {
 				'message' => flxi_gql_f( 'String', __( 'What happened.', 'flx-mail' ) ),
 			),
 			'resolve'     => static function (): array {
-				$r = flxi_rest_mb_test();
-				return array( 'ok' => ! empty( $r['ok'] ), 'message' => (string) ( $r['message'] ?? '' ) );
+				$r = flxi_arr( flxi_rest_mb_test() );
+				return array( 'ok' => ! empty( $r['ok'] ), 'message' => flxi_str( $r['message'] ?? '' ) );
 			},
 		)
 	);

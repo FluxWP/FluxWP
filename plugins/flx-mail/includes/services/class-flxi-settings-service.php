@@ -124,7 +124,7 @@ class FLXI_Settings_Service {
 	 * @return array<string,mixed>
 	 */
 	public static function read(): array {
-		$s   = flxi_settings();
+		$s   = flxi_arr( flxi_settings() );
 		$out = array();
 		foreach ( self::map() as $gql => $row ) {
 			$key = $row[0];
@@ -132,40 +132,43 @@ class FLXI_Settings_Service {
 			if ( 'bool' === $row[1] ) {
 				$out[ $gql ] = (bool) $val;
 			} elseif ( 'int' === $row[1] ) {
-				$out[ $gql ] = (int) $val;
+				$out[ $gql ] = flxi_int( $val );
 			} elseif ( 'secure' === $row[1] ) {
 				$out[ $gql ] = in_array( $val, array( 'ssl', 'tls' ), true ) ? $val : 'none';
 			} elseif ( 'mailer' === $row[1] ) {
 				$out[ $gql ] = 'smtp' === $val ? 'smtp' : 'php';
 			} elseif ( 'social' === $row[1] ) {
 				$list = array();
-				foreach ( (array) $val as $net => $url ) {
-					if ( is_string( $net ) && is_string( $url ) && '' !== $url ) {
+				foreach ( flxi_arr( $val ) as $net => $url ) {
+					$url = flxi_str( $url );
+					if ( '' !== $url ) {
 						$list[] = array( 'network' => $net, 'url' => $url );
 					}
 				}
 				$out[ $gql ] = $list;
 			} else {
-				$out[ $gql ] = is_string( $val ) ? $val : ( is_scalar( $val ) ? (string) $val : '' );
+				$out[ $gql ] = flxi_str( $val );
 			}
 		}
 		foreach ( self::secrets() as $gql => $row ) {
 			$out[ $gql ] = self::secret_view( $row[0], $row[1], 'imap_pass' === $row[0] );
 		}
-		$out['unsubscribedCount']   = count( flxi_unsubscribed() );
-		$out['optoutWhatsappCount'] = function_exists( 'flxi_optout_count' ) ? flxi_optout_count( 'whatsapp' ) : 0;
-		$out['optoutSmsCount']      = function_exists( 'flxi_optout_count' ) ? flxi_optout_count( 'sms' ) : 0;
+		$unsub = flxi_unsubscribed();
+		$out['unsubscribedCount']   = is_array( $unsub ) ? count( $unsub ) : 0;
+		$out['optoutWhatsappCount'] = function_exists( 'flxi_optout_count' ) ? flxi_int( flxi_optout_count( 'whatsapp' ) ) : 0;
+		$out['optoutSmsCount']      = function_exists( 'flxi_optout_count' ) ? flxi_int( flxi_optout_count( 'sms' ) ) : 0;
 		$out['wooActive']           = class_exists( 'WooCommerce' );
 		$out['lastTest']            = self::last_test();
 		$out['wcBranded']           = self::wc_branded();
-		$out['otherSmtpPlugin']    = flxi_other_smtp_plugin() ? flxi_other_smtp_plugin() : null;
-		$out['smtpAccountNotes']   = self::notes();
-		$out['activeSocialPlugins'] = array_values( flxi_active_social_plugins() );
-		$out['quota']              = self::quota();
-		$out['quotaFullDays']      = self::full_days();
-		$out['dns']                = FLXI_System_Service::stored_dns();
-		$out['footerArts']         = self::choices( flxi_footer_arts() );
-		$out['socialNetworks']     = self::choices( flxi_social_services() );
+		$out['otherSmtpPlugin']     = flxi_other_smtp_plugin() ? flxi_str( flxi_other_smtp_plugin() ) : null;
+		$out['smtpAccountNotes']    = self::notes();
+		$social                     = flxi_active_social_plugins();
+		$out['activeSocialPlugins'] = is_array( $social ) ? array_map( 'flxi_str', array_values( $social ) ) : array();
+		$out['quota']               = self::quota();
+		$out['quotaFullDays']       = self::full_days();
+		$out['dns']                 = FLXI_System_Service::stored_dns();
+		$out['footerArts']          = self::choices( flxi_footer_arts() );
+		$out['socialNetworks']      = self::choices( flxi_social_services() );
 		if ( function_exists( 'flx_gql_cache_tag' ) ) {
 			flx_gql_cache_tag( 'flx-mail:settings' );
 		}
@@ -173,13 +176,13 @@ class FLXI_Settings_Service {
 	}
 
 	/**
-	 * @param array<string,string> $pairs Key => label.
+	 * @param mixed $pairs Key => label.
 	 * @return list<array{key:string,label:string}>
 	 */
-	private static function choices( array $pairs ): array {
+	private static function choices( $pairs ): array {
 		$out = array();
-		foreach ( $pairs as $k => $label ) {
-			$out[] = array( 'key' => (string) $k, 'label' => (string) $label );
+		foreach ( flxi_arr( $pairs ) as $k => $label ) {
+			$out[] = array( 'key' => flxi_str( $k ), 'label' => flxi_str( $label ) );
 		}
 		return $out;
 	}
@@ -190,15 +193,15 @@ class FLXI_Settings_Service {
 	public static function secret_view( string $key, string $constant, bool $imap ): array {
 		$from = defined( $constant );
 		if ( $from ) {
-			$plain = (string) constant( $constant );
+			$plain = flxi_str( constant( $constant ) );
 		} elseif ( $imap ) {
-			$plain = defined( 'FLXI_IMAP_PASS' ) ? (string) FLXI_IMAP_PASS : flxi_decrypt( (string) flxi_setting( 'imap_pass' ) );
+			$plain = defined( 'FLXI_IMAP_PASS' ) ? flxi_str( FLXI_IMAP_PASS ) : flxi_str( flxi_decrypt( flxi_str( flxi_setting( 'imap_pass' ) ) ) );
 		} else {
-			$plain = flxi_smtp_password( 'smtp_nr_pass' === $key );
+			$plain = flxi_str( flxi_smtp_password( 'smtp_nr_pass' === $key ) );
 		}
 		return array(
 			'set'        => '' !== $plain,
-			'mask'       => flxi_mask( $plain ),
+			'mask'       => flxi_str( flxi_mask( $plain ) ),
 			'fromConfig' => $from,
 		);
 	}
@@ -213,14 +216,14 @@ class FLXI_Settings_Service {
 		}
 		return array(
 			'ok'    => ! empty( $last['ok'] ),
-			'to'    => (string) ( $last['to'] ?? '' ),
-			'error' => (string) ( $last['error'] ?? '' ),
-			'at'    => (int) $last['at'],
+			'to'    => flxi_str( $last['to'] ?? '' ),
+			'error' => flxi_str( $last['error'] ?? '' ),
+			'at'    => flxi_int( $last['at'] ),
 		);
 	}
 
 	public static function wc_branded(): ?int {
-		$t = (int) get_option( 'flxi_wc_branded' );
+		$t = flxi_int( get_option( 'flxi_wc_branded' ) );
 		return $t > 0 ? $t : null;
 	}
 
@@ -229,11 +232,12 @@ class FLXI_Settings_Service {
 	 */
 	public static function notes(): array {
 		$out = array();
-		foreach ( flxi_smtp_account_notes() as $box => $note ) {
+		foreach ( flxi_arr( flxi_smtp_account_notes() ) as $box => $note ) {
+			$note  = flxi_arr( $note );
 			$out[] = array(
-				'mailbox' => (string) $box,
-				'level'   => (string) ( $note['level'] ?? '' ),
-				'text'    => (string) ( $note['text'] ?? '' ),
+				'mailbox' => flxi_str( $box ),
+				'level'   => flxi_str( $note['level'] ?? '' ),
+				'text'    => flxi_str( $note['text'] ?? '' ),
 			);
 		}
 		return $out;
@@ -244,15 +248,16 @@ class FLXI_Settings_Service {
 	 */
 	public static function quota(): array {
 		$out = array();
-		foreach ( flxi_quota_summary() as $q ) {
+		foreach ( flxi_rows( flxi_quota_summary() ) as $q ) {
+			$left = $q['left'] ?? null;
 			$out[] = array(
-				'mailbox' => (string) $q['mailbox'],
-				'type'    => (string) $q['type'],
-				'used'    => (int) $q['used'],
-				'limit'   => (int) $q['limit'],
-				'left'    => null === $q['left'] ? null : (int) $q['left'],
-				'percent' => (int) $q['percent'],
-				'next'    => (int) $q['next'],
+				'mailbox' => flxi_str( $q['mailbox'] ?? '' ),
+				'type'    => flxi_str( $q['type'] ?? '' ),
+				'used'    => flxi_int( $q['used'] ?? 0 ),
+				'limit'   => flxi_int( $q['limit'] ?? 0 ),
+				'left'    => null === $left ? null : flxi_int( $left ),
+				'percent' => flxi_int( $q['percent'] ?? 0 ),
+				'next'    => flxi_int( $q['next'] ?? 0 ),
 			);
 		}
 		return $out;
@@ -263,7 +268,7 @@ class FLXI_Settings_Service {
 		$full = is_array( $full ) ? array_filter(
 			$full,
 			static function ( $x ) {
-				return strtotime( (string) $x ) > time() - 30 * DAY_IN_SECONDS;
+				return strtotime( flxi_str( $x ) ) > time() - 30 * DAY_IN_SECONDS;
 			}
 		) : array();
 		return count( $full );
@@ -276,7 +281,7 @@ class FLXI_Settings_Service {
 	 * @return true|WP_Error
 	 */
 	public static function save( array $in, string $mode, bool $partial ) {
-		$d     = flxi_defaults();
+		$d     = flxi_arr( flxi_defaults() );
 		$clean = array();
 		$bools = self::bools();
 		$keep  = array( 'log_enabled', 'log_body', 'bulk_unsubscribe', 'optout_enabled', 'optout_footer_wa', 'optout_footer_sms' );
@@ -298,6 +303,12 @@ class FLXI_Settings_Service {
 			if ( ! array_key_exists( $k, $in ) ) {
 				continue;
 			}
+			if ( 'graphql' === $mode && in_array( $k, array( 'from_email', 'noreply_email', 'reply_to', 'contact_email' ), true ) ) {
+				$raw = $in[ $k ];
+				if ( ! is_string( $raw ) || ( '' !== trim( $raw ) && ! is_email( trim( $raw ) ) ) ) {
+					return new WP_Error( 'flxi_invalid', __( 'Enter a valid email address.', 'flx-mail' ), array( 'status' => 400, 'field' => self::field_name( $k ) ) );
+				}
+			}
 			try {
 				$clean[ $k ] = flxi_sanitize_setting( $k, $in[ $k ] );
 			} catch ( Exception $e ) {
@@ -312,7 +323,7 @@ class FLXI_Settings_Service {
 			if ( defined( $row[1] ) ) {
 				continue;
 			}
-			$v = trim( (string) $in[ $key ] );
+			$v = trim( flxi_str( $in[ $key ] ) );
 			if ( '' === $v ) {
 				continue;
 			}
@@ -324,23 +335,23 @@ class FLXI_Settings_Service {
 			}
 		}
 		if ( isset( $clean['log_days'] ) ) {
-			$clean['log_days'] = max( 1, min( 3650, (int) $clean['log_days'] ) );
+			$clean['log_days'] = max( 1, min( 3650, flxi_int( $clean['log_days'] ) ) );
 		}
 		foreach ( array( 'limit_daily', 'limit_recipients', 'limit_size_mb', 'limit_attach_mb', 'limit_storage_gb', 'limit_mailbox_emails', 'limit_aliases', 'limit_forwarders', 'limit_reserve' ) as $k ) {
 			if ( isset( $clean[ $k ] ) ) {
-				$clean[ $k ] = max( 0, min( 1000000, (int) $clean[ $k ] ) );
+				$clean[ $k ] = max( 0, min( 1000000, flxi_int( $clean[ $k ] ) ) );
 			}
 		}
 		if ( isset( $clean['limit_reserve'], $clean['limit_daily'] ) && $clean['limit_daily'] ) {
-			$clean['limit_reserve'] = min( $clean['limit_reserve'], max( 0, $clean['limit_daily'] - 1 ) );
+			$clean['limit_reserve'] = min( flxi_int( $clean['limit_reserve'] ), max( 0, flxi_int( $clean['limit_daily'] ) - 1 ) );
 		} elseif ( isset( $clean['limit_reserve'] ) && 'graphql' === $mode ) {
-			$daily = isset( $clean['limit_daily'] ) ? (int) $clean['limit_daily'] : (int) flxi_setting( 'limit_daily' );
+			$daily = isset( $clean['limit_daily'] ) ? flxi_int( $clean['limit_daily'] ) : flxi_int( flxi_setting( 'limit_daily' ) );
 			if ( $daily ) {
-				$clean['limit_reserve'] = min( (int) $clean['limit_reserve'], max( 0, $daily - 1 ) );
+				$clean['limit_reserve'] = min( flxi_int( $clean['limit_reserve'] ), max( 0, $daily - 1 ) );
 			}
 		}
 		if ( isset( $clean['bulk_per_run'] ) ) {
-			$clean['bulk_per_run'] = max( 1, min( 500, (int) $clean['bulk_per_run'] ) );
+			$clean['bulk_per_run'] = max( 1, min( 500, flxi_int( $clean['bulk_per_run'] ) ) );
 		}
 		flxi_update_settings( $clean );
 		if ( function_exists( 'flx_gql_purge' ) ) {
@@ -363,19 +374,16 @@ class FLXI_Settings_Service {
 			}
 			$val = $input[ $gql ];
 			if ( 'secure' === $row[1] ) {
-				$val = strtolower( (string) $val );
+				$val = strtolower( flxi_str( $val ) );
 				$val = in_array( $val, array( 'ssl', 'tls' ), true ) ? $val : '';
 			} elseif ( 'mailer' === $row[1] ) {
-				$val = 'smtp' === strtolower( (string) $val ) ? 'smtp' : 'php';
+				$val = 'smtp' === strtolower( flxi_str( $val ) ) ? 'smtp' : 'php';
 			} elseif ( 'social' === $row[1] ) {
 				$assoc = array();
-				foreach ( (array) $val as $item ) {
-					if ( ! is_array( $item ) ) {
-						continue;
-					}
-					$net = sanitize_key( (string) ( $item['network'] ?? '' ) );
+				foreach ( flxi_rows( $val ) as $item ) {
+					$net = sanitize_key( flxi_str( $item['network'] ?? '' ) );
 					if ( '' !== $net ) {
-						$assoc[ $net ] = (string) ( $item['url'] ?? '' );
+						$assoc[ $net ] = flxi_str( $item['url'] ?? '' );
 					}
 				}
 				$val = $assoc;
@@ -386,7 +394,7 @@ class FLXI_Settings_Service {
 		}
 		foreach ( self::secrets() as $gql => $row ) {
 			if ( array_key_exists( $gql, $input ) && null !== $input[ $gql ] ) {
-				$in[ $row[0] ] = (string) $input[ $gql ];
+				$in[ $row[0] ] = flxi_str( $input[ $gql ] );
 			}
 		}
 		foreach ( array( 'logoUploadId' => 'logo', 'logoWhiteUploadId' => 'logo_white' ) as $gql => $key ) {
@@ -416,11 +424,10 @@ class FLXI_Settings_Service {
 		require_once ABSPATH . 'wp-admin/includes/file.php';
 		require_once ABSPATH . 'wp-admin/includes/media.php';
 		require_once ABSPATH . 'wp-admin/includes/image.php';
+		$name     = is_string( $file['name'] ?? null ) ? $file['name'] : 'logo';
 		$sideload = array(
-			'name'     => (string) ( $file['name'] ?? 'logo' ),
-			'tmp_name' => (string) ( $file['path'] ?? '' ),
-			'error'    => 0,
-			'size'     => (int) ( $file['size'] ?? 0 ),
+			'name'     => '' !== $name ? $name : 'logo',
+			'tmp_name' => is_string( $file['path'] ?? null ) ? $file['path'] : '',
 		);
 		$id = media_handle_sideload( $sideload, 0 );
 		if ( is_wp_error( $id ) ) {

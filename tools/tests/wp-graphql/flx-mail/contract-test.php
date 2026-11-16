@@ -21,7 +21,27 @@ foreach ( (array) json_decode( (string) file_get_contents( FLXI_DIR . 'graphql/p
 		$ops[ $m[1] ] = (string) $doc;
 	}
 }
-flxt_ok( count( $ops ) >= 16, 'persisted operations are shipped (' . count( $ops ) . ')' );
+$want = array(
+	'FlxMailSettings',
+	'FlxMailTemplates',
+	'FlxMailTemplate',
+	'FlxMailLogs',
+	'FlxMailLog',
+	'FlxMailSystemChecks',
+	'FlxMailSettingsUpdate',
+	'FlxMailTemplateUpdate',
+	'FlxMailTemplateReset',
+	'FlxMailPreview',
+	'FlxMailPreviewPdf',
+	'FlxMailTestSend',
+	'FlxMailDnsCheck',
+	'FlxMailWcBrandApply',
+	'FlxMailImapTest',
+);
+foreach ( $want as $name ) {
+	flxt_ok( isset( $ops[ $name ] ), 'operation ' . $name . ' is shipped' );
+}
+flxt_same( count( $want ), count( $ops ), 'persisted operation count' );
 
 $op = static function ( string $name, array $vars = array(), int $user = 0 ) use ( $ops ): array {
 	return flxt_gql( $ops[ $name ], $vars, $user );
@@ -121,11 +141,13 @@ foreach ( $nodes as $node ) {
 flxt_ok( '' !== $key, 'templates: an editable template exists' );
 
 $r = $run( 'FlxMailTemplate', array( 'key' => 'no-such-template' ), $admin );
-flxt_same( null, $r['data']['flxMailTemplate'] ?? 'missing', 'unknown template is null' );
+$template_data = is_array( $r['data'] ?? null ) ? $r['data'] : array();
+flxt_same( null, array_key_exists( 'flxMailTemplate', $template_data ) ? $template_data['flxMailTemplate'] : 'missing', 'unknown template is null' );
 
 if ( '' !== $key ) {
 	$r = $run( 'FlxMailTemplate', array( 'key' => $key ), $admin );
-	flxt_same( $key, $r['data']['flxMailTemplate']['key'] ?? null, 'template: editor loads' );
+	$loaded = is_array( $r['data'] ?? null ) ? ( $r['data']['flxMailTemplate'] ?? null ) : null;
+	flxt_same( $key, is_array( $loaded ) ? ( $loaded['key'] ?? null ) : null, 'template: editor loads' );
 	$r = $run( 'FlxMailTemplateUpdate', array( 'input' => array( 'key' => $key, 'subject' => 'Contract subject', 'enabled' => true, 'sender' => 'INFO' ) ), $admin );
 	flxt_same( array(), $r['data']['flxMailTemplateUpdate']['errors'] ?? null, 'template update: no field errors' );
 	flxt_same( 'Contract subject', $r['data']['flxMailTemplateUpdate']['template']['subject'] ?? null, 'template update: subject is stored' );
@@ -144,7 +166,8 @@ $r = $run( 'FlxMailLogs', array( 'first' => 5, 'status' => 'sent', 'channel' => 
 flxt_same( null, $r['errors'] ?? null, 'log: filters are accepted' );
 flxt_ok( is_array( $r['data']['flxMailLogs']['nodes'] ?? null ), 'log: nodes are a list' );
 $r = $run( 'FlxMailLog', array( 'id' => 99999999 ), $admin );
-flxt_same( null, $r['data']['flxMailLog'] ?? 'missing', 'missing log row is null' );
+$log_data = is_array( $r['data'] ?? null ) ? $r['data'] : array();
+flxt_same( null, array_key_exists( 'flxMailLog', $log_data ) ? $log_data['flxMailLog'] : 'missing', 'missing log row is null' );
 
 // System checks are a list (empty when Flux Speed owns the screen).
 $r = $run( 'FlxMailSystemChecks', array(), $admin );
