@@ -617,6 +617,48 @@ type RootQuery {
   "The shopper&#039;s cart (Cart-Token session or the WooCommerce session cookie). Never cached."
   flxCart: FlxCart!
 
+  "Data of the Chatbot settings screen (the values are in flxSettings.chatbot)."
+  flxChatbotAdmin: FlxChatbotAdmin!
+
+  "One chat; empty when it does not exist or the user is not an agent."
+  flxChatbotConversation(
+    "Global ID or chat number."
+    id: ID!
+  ): FlxChatbotConversation
+
+  "Site chats, newest activity first."
+  flxChatbotConversations(
+    "Records per page (at most 50)."
+    first: Int
+
+    "Cursor to continue after (pageInfo.endCursor)."
+    after: String
+
+    "Which chats to list; open chats when left out."
+    filter: FlxChatbotConversationFilter
+
+    "Words in the name, email, phone or page title."
+    search: String
+  ): FlxChatbotConversationConnection!
+
+  "Settings of the Site chats screen."
+  flxChatbotInbox: FlxChatbotInbox!
+
+  "Messages of a chat after a message number, oldest first. Unless peek is on, opening the chat marks the visitor&#039;s messages as read."
+  flxChatbotMessages(
+    "Global ID or chat number."
+    conversationId: ID!
+
+    "Only messages after this message number (0: from the start)."
+    afterId: Int
+
+    "How many messages (at most 100)."
+    first: Int
+
+    "Read without marking the chat as read."
+    peek: Boolean
+  ): FlxChatbotMessagePage!
+
   "One contact; empty when it does not exist."
   flxContact(
     "Global ID or contact ID."
@@ -14298,6 +14340,402 @@ type FlxCartTaxLine {
   rate: String!
 }
 
+"Everything the Chatbot settings screen shows besides the settings values."
+type FlxChatbotAdmin {
+  "Flux AI &amp; MCP is connected for the assistant."
+  aiReady: Boolean!
+
+  "Where the model for this plugin is chosen (Flux AI); empty without Flux AI."
+  aiSettingsUrl: String
+
+  "Thumbnail of the chosen avatar image; empty when none."
+  avatarUrl: String
+
+  "Flux Chat is installed (its working hours can be used)."
+  fluxChatActive: Boolean!
+
+  "Flux Chat can take handed-over chats."
+  fluxChatReady: Boolean!
+
+  "Where the chats are answered."
+  inboxUrl: String!
+
+  "Address used for notifications while the field is empty (the site admin)."
+  notifyEmailDefault: String!
+
+  "WooCommerce orders can be looked up."
+  ordersActive: Boolean!
+
+  "Page types of the Visibility tab (setting showOn&lt;Type&gt;)."
+  pageTypes: [FlxChatbotChoice!]!
+
+  "Data of the live preview."
+  preview: FlxChatbotPreview!
+
+  "WooCommerce is active (product cards, order status, orders after chat)."
+  shopActive: Boolean!
+
+  "Front page, to try the window on the site."
+  siteUrl: String!
+
+  "Chat figures."
+  stats(
+    "How many days back (default 30)."
+    days: Int
+  ): FlxChatbotStats!
+
+  "The Connections card."
+  status: [FlxChatbotStatusRow!]!
+
+  "Texts used while a text field is empty."
+  textDefaults: [FlxChatbotTextDefault!]!
+
+  "Weekdays of the working hours table."
+  weekdays: [FlxChatbotChoice!]!
+
+  "Flux Wiki is active (its pages can be a knowledge source)."
+  wikiActive: Boolean!
+}
+
+"A key with its label (page type, weekday)."
+type FlxChatbotChoice {
+  "Key; weekdays are 1 (Monday) to 7 (Sunday)."
+  key: String!
+
+  "Name in the admin&#039;s language."
+  label: String!
+}
+
+"What the live preview needs to show the real chat window."
+type FlxChatbotPreview {
+  "Window configuration the widget script reads (free-form: it is the widget&#039;s own contract, not an API)."
+  config: FlxJSON!
+
+  "The widget script."
+  scriptUrl: String!
+}
+
+"Chat figures of the last days."
+type FlxChatbotStats {
+  "Chats an agent was needed for."
+  human: Int!
+
+  "Chats where the visitor left contact details."
+  leads: Int!
+
+  "Chats waiting for an agent or in conversation now."
+  open: Int!
+
+  "Orders placed within 7 days of a chat."
+  orders: Int!
+
+  "Number of ratings."
+  rated: Int!
+
+  "Average stars; empty when nothing is rated."
+  rating: Float
+
+  "Percent solved by the assistant alone."
+  resolved: Int!
+
+  "Chats started."
+  total: Int!
+}
+
+"One line of the Connections card."
+type FlxChatbotStatusRow {
+  "Line: ai, live or hours."
+  key: String!
+
+  "Good, needs attention, or just information."
+  state: FlxChatbotStatusState!
+
+  "Explanation."
+  text: String!
+
+  "Headline."
+  title: String!
+
+  "Where to fix or change it; empty when there is nothing to open."
+  url: String
+
+  "Label of that link."
+  urlLabel: String
+}
+
+"State of a connection line."
+enum FlxChatbotStatusState {
+  ""
+  INFO
+
+  ""
+  OK
+
+  ""
+  WARN
+}
+
+"The text a field uses while it is left empty."
+type FlxChatbotTextDefault {
+  "Setting key, e.g. welcome."
+  key: String!
+
+  "Default text in the admin&#039;s language."
+  text: String!
+}
+
+"A chat between a site visitor and the assistant or an agent."
+type FlxChatbotConversation implements Node {
+  "First name of the agent the chat is assigned to; empty when none."
+  agentName: String
+
+  "Database ID."
+  databaseId: Int!
+
+  "Visitor email; empty when not given."
+  email: String
+
+  "The same chat in the Flux Chat inbox; empty when it is not there."
+  fluxChatUrl: String
+
+  "Global ID."
+  id: ID!
+
+  "The visitor left contact details."
+  isLead: Boolean!
+
+  "Time of the last message; empty for a chat without messages."
+  lastActivity: FlxDateTime
+
+  "The last message; empty for a chat without messages."
+  lastMessage: FlxChatbotLastMessage
+
+  "Name the visitor gave; empty when none."
+  name: String
+
+  "The visitor is on the page now."
+  online: Boolean!
+
+  "WooCommerce order placed after the chat; empty when none."
+  orderId: Int
+
+  "Edit screen of that order; empty when none or WooCommerce is off."
+  orderUrl: String
+
+  "Title of that page; empty when unknown."
+  pageTitle: String
+
+  "Page the visitor is on; empty when unknown."
+  pageUrl: String
+
+  "Visitor phone; empty when not given."
+  phone: String
+
+  "Stars (1-5) the visitor gave; empty when not rated."
+  rating: Int
+
+  "Note that came with the rating; empty when none."
+  ratingNote: String
+
+  "Where the chat is."
+  status: FlxChatbotConversationStatus!
+
+  "Note the assistant wrote for the agent when it handed over; empty when none."
+  summary: String
+
+  "Visitor name, else email, else &quot;Visitor #n&quot;."
+  title: String!
+
+  "The visitor is typing."
+  typing: Boolean!
+
+  "Visitor messages no agent has read."
+  unread: Int!
+
+  "Site member id when the visitor was signed in; empty for guests."
+  userId: Int
+}
+
+"The last line of a chat, for the list."
+type FlxChatbotLastMessage {
+  "First 120 characters (the file name for a file)."
+  body: String!
+
+  "Who wrote it."
+  role: FlxChatbotMessageRole!
+}
+
+"Who wrote a message."
+enum FlxChatbotMessageRole {
+  ""
+  AGENT
+
+  "The assistant."
+  BOT
+
+  "An event line (handed over, ended, …)."
+  SYSTEM
+
+  ""
+  VISITOR
+}
+
+"Where a chat is."
+enum FlxChatbotConversationStatus {
+  "An agent is talking with the visitor."
+  AGENT
+
+  "The assistant is answering."
+  BOT
+
+  "The chat ended."
+  CLOSED
+
+  "The visitor left a message outside working hours."
+  OFFLINE
+
+  "Waiting for an agent."
+  QUEUED
+}
+
+"Which chats the list shows."
+enum FlxChatbotConversationFilter {
+  "In conversation."
+  AGENT
+
+  "Every chat."
+  ALL
+
+  "With the assistant."
+  BOT
+
+  "Closed."
+  CLOSED
+
+  "Left a message."
+  OFFLINE
+
+  "Waiting for an agent, in conversation or left a message."
+  OPEN
+
+  "Waiting for an agent."
+  QUEUED
+}
+
+"A page of chats."
+type FlxChatbotConversationConnection {
+  "Records with their cursors."
+  edges: [FlxChatbotConversationEdge!]!
+
+  "Records of this page."
+  nodes: [FlxChatbotConversation!]!
+
+  "Paging information."
+  pageInfo: FlxPageInfo!
+
+  "All matching records (null when counting would be slow)."
+  totalCount: Int
+}
+
+"One FlxChatbotConversation in a list, with its cursor."
+type FlxChatbotConversationEdge {
+  "Opaque cursor of this record."
+  cursor: String!
+
+  "The record."
+  node: FlxChatbotConversation!
+}
+
+"What the Site chats screen needs besides the chats."
+type FlxChatbotInbox {
+  "Name replies are signed with."
+  agentName: String!
+
+  "The user may delete chats (administrators)."
+  canDelete: Boolean!
+
+  "Flux Chat inbox; empty when handed-over chats do not go there."
+  fluxChatUrl: String
+
+  "Largest file an agent can attach (MB)."
+  maxUploadMb: Int!
+
+  "Chatbot settings page; empty for agents who may not change settings."
+  settingsUrl: String
+}
+
+"Messages after a given message, oldest first (the chat screen asks again with the last number to get what is new)."
+type FlxChatbotMessagePage {
+  "More messages follow; ask again with lastId."
+  hasMore: Boolean!
+
+  "Number of the last returned message; pass it as afterId next time."
+  lastId: Int!
+
+  "The messages."
+  nodes: [FlxChatbotMessage!]!
+}
+
+"One message of a chat."
+type FlxChatbotMessage {
+  "Agent first name or the assistant&#039;s name; empty for the visitor and event lines."
+  author: String
+
+  "Text (assistant replies use a small Markdown subset); a file caption for files."
+  body: String!
+
+  "Products the assistant suggested in this message."
+  cards: [FlxChatbotProductCard!]!
+
+  "Message number; grows with time."
+  databaseId: Int!
+
+  "Attached file; the address works for signed-in agents only."
+  file: FlxFile
+
+  "Who wrote it."
+  role: FlxChatbotMessageRole!
+
+  "When it was sent."
+  sentAt: FlxDateTime!
+
+  "What it carries."
+  type: FlxChatbotMessageType!
+}
+
+"A product the assistant suggested."
+type FlxChatbotProductCard {
+  "Add-to-cart address; empty when the product cannot be added directly."
+  cartUrl: String
+
+  "Product image; empty when it has none."
+  image: String
+
+  "The product is in stock."
+  inStock: Boolean!
+
+  "Price as shown in the shop."
+  price: String!
+
+  "Product name."
+  title: String!
+
+  "Product page."
+  url: String!
+}
+
+"What a message carries."
+enum FlxChatbotMessageType {
+  ""
+  FILE
+
+  ""
+  IMAGE
+
+  ""
+  TEXT
+}
+
 "A person in the shared people table with the CRM columns: donor, customer, volunteer, lead. Implements FlxPerson; other packages add their own fields with flx_gql_field( &#039;FlxContact&#039;, … )."
 type FlxContact implements FlxPerson & Node {
   "The churn risk is at or above the threshold of the settings."
@@ -16358,6 +16796,9 @@ type FlxSeoSearchEngine {
 
 "Panel settings of the installed FluxWP packages (from flx_settings_schema)."
 type FlxSettings {
+  "Flux AI Chatbot"
+  chatbot: FlxSettingsChatbot
+
   "Flux App › Görünüm"
   flxappApp: FlxSettingsFlxappApp
 
@@ -16381,6 +16822,354 @@ type FlxSettings {
 
   "Flux Wiki"
   wiki: FlxSettingsWiki
+}
+
+"Flux AI Chatbot"
+type FlxSettingsChatbot {
+  "Show suggested products as cards in the window."
+  aiCards: Boolean
+
+  "Assistant replies per day on the whole site (0 = unlimited)."
+  aiDailyLimit: Int
+
+  "Assistant replies per chat per hour (0 = unlimited)."
+  aiHourLimit: Int
+
+  "Rules the assistant must follow."
+  aiInstructions: String
+
+  "Free-form knowledge base the assistant may answer from."
+  aiKnowledge: String
+
+  "Assistant replies per chat before it goes to an agent (1-200)."
+  aiMaxTurns: Int
+
+  "Personality and tone of the assistant."
+  aiPersona: String
+
+  "Let the assistant search published pages."
+  aiSrcPages: Boolean
+
+  "Let the assistant search published posts."
+  aiSrcPosts: Boolean
+
+  "Let the assistant look up WooCommerce products (price, stock, link)."
+  aiSrcProducts: Boolean
+
+  "Let the assistant search Flux Wiki pages."
+  aiSrcWiki: Boolean
+
+  "Save contact details a visitor gives (also to Flux CRM when installed)."
+  aiToolLead: Boolean
+
+  "Let a signed-in customer ask about their own orders."
+  aiToolOrders: Boolean
+
+  "When to ask the visitor for an email address."
+  askEmail: FlxSettingsChatbotAskEmail
+
+  "Who sees the window: everyone, guests only, or signed-in members only."
+  audience: FlxSettingsChatbotAudience
+
+  "Avatar icon used when there is no image."
+  avatarIcon: FlxSettingsChatbotAvatarIcon
+
+  "Media library image ID of the assistant avatar (0 = none)."
+  avatarId: Int
+
+  "Assistant name in the window header. Empty uses the default."
+  botName: String
+
+  "Widget main color (hex). Empty follows the theme primary color."
+  color: String
+
+  "Header and button text color (hex). Empty picks a readable color from the main color."
+  colorText: String
+
+  "Show on desktop."
+  deviceDesktop: Boolean
+
+  "Show on mobile."
+  deviceMobile: Boolean
+
+  "Show a voice dictation button in the message field."
+  dictation: Boolean
+
+  "Also email agent replies when the visitor has left the page."
+  emailReplies: Boolean
+
+  "Show the chat window on the site. Off hides it from visitors (admins can still preview)."
+  enabled: Boolean
+
+  "Paths where the window is hidden, one per line; * is a wildcard."
+  excludeUrls: String
+
+  "Window font: same as the site or the system font."
+  font: FlxSettingsChatbotFont
+
+  "Where handed-over chats go: automatic, Flux Chat or the plugin inbox."
+  handoffTo: FlxSettingsChatbotHandoffTo
+
+  "Window header: gradient or solid color."
+  headerStyle: FlxSettingsChatbotHeaderStyle
+
+  "Show the home screen when the window opens (off opens the chat directly)."
+  homeEnabled: Boolean
+
+  "Home screen subtitle. Empty uses the default."
+  homeText: String
+
+  "Home screen headline. Empty uses the default."
+  homeTitle: String
+
+  "Weekly hours: { &quot;1&quot;..&quot;7&quot;: { on: 0|1, from: &quot;HH:MM&quot;, to: &quot;HH:MM&quot; } }, 1 = Monday."
+  hours: FlxJSON
+
+  "Working hours: always open, weekly hours, or Flux Chat hours."
+  hoursMode: FlxSettingsChatbotHoursMode
+
+  "Icon of the open button."
+  launcherIcon: FlxSettingsChatbotLauncherIcon
+
+  "Text next to the open button; empty shows the button only."
+  launcherLabel: String
+
+  "Open button size, px (44-80)."
+  launcherSize: Int
+
+  "Home screen contact links, one per line: Label | URL (https, mailto, tel, wa.me)."
+  links: String
+
+  "Cover the whole screen on small screens."
+  mobileFull: Boolean
+
+  "hybrid = AI first, then human handoff; ai = AI only; live = human agents only."
+  mode: FlxSettingsChatbotMode
+
+  "Address for handoff and after-hours notifications; empty uses the site admin."
+  notifyEmail: String
+
+  "Message shown outside working hours. Empty uses the default."
+  offlineText: String
+
+  "Space from the side edge, px."
+  offsetX: Int
+
+  "Space from the bottom edge, px."
+  offsetY: Int
+
+  "Hint in the message field. Empty uses the default."
+  placeholder: String
+
+  "Side of the screen the button sits on."
+  position: FlxSettingsChatbotPosition
+
+  "Note under the message field; links are allowed."
+  privacyText: String
+
+  "One suggested question per line."
+  quickReplies: String
+
+  "Window corner radius, px."
+  radius: Int
+
+  "Ask for 1-5 stars at the end of a chat."
+  rating: Boolean
+
+  "Delete chats and files after this many days (0 = keep)."
+  retentionDays: Int
+
+  "Show the small &quot;Powered by FluxWP&quot; note."
+  showBranding: Boolean
+
+  "Show the window on this page type: account."
+  showOnAccount: Boolean
+
+  "Show the window on this page type: cart."
+  showOnCart: Boolean
+
+  "Show the window on this page type: checkout."
+  showOnCheckout: Boolean
+
+  "Show the window on this page type: home."
+  showOnHome: Boolean
+
+  "Show the window on this page type: other."
+  showOnOther: Boolean
+
+  "Show the window on this page type: pages."
+  showOnPages: Boolean
+
+  "Show the window on this page type: posts."
+  showOnPosts: Boolean
+
+  "Show the window on this page type: shop."
+  showOnShop: Boolean
+
+  "Show photos of agents who replied recently on the home screen."
+  showTeam: Boolean
+
+  "Play a short sound for a new reply while the window is closed."
+  sound: Boolean
+
+  "Seconds on the page before the teaser shows (0-300)."
+  teaserDelay: Int
+
+  "Pop a short message above the button after the visitor stays a while."
+  teaserEnabled: Boolean
+
+  "Message of the teaser bubble. Empty uses the default."
+  teaserText: String
+
+  "Window colors: follow device and site, or always light or dark."
+  theme: FlxSettingsChatbotTheme
+
+  "Largest file, MB (1-20)."
+  uploadMb: Int
+
+  "Let visitors send images, PDFs and office documents."
+  uploads: Boolean
+
+  "The assistant&#039;s first message. Empty uses the default."
+  welcome: String
+
+  "Window width, px (320-480)."
+  width: Int
+}
+
+""
+enum FlxSettingsChatbotAskEmail {
+  ""
+  ALWAYS
+
+  ""
+  NEVER
+
+  ""
+  OFFLINE
+}
+
+""
+enum FlxSettingsChatbotAudience {
+  ""
+  ALL
+
+  ""
+  GUESTS
+
+  ""
+  MEMBERS
+}
+
+""
+enum FlxSettingsChatbotAvatarIcon {
+  ""
+  BOT
+
+  ""
+  HEADSET
+
+  ""
+  LOGO
+
+  ""
+  SMILE
+
+  ""
+  SPARKLES
+}
+
+""
+enum FlxSettingsChatbotFont {
+  ""
+  INHERIT
+
+  ""
+  SYSTEM
+}
+
+""
+enum FlxSettingsChatbotHandoffTo {
+  ""
+  AUTO
+
+  ""
+  FLX_CHAT
+
+  ""
+  INBOX
+}
+
+""
+enum FlxSettingsChatbotHeaderStyle {
+  ""
+  GRADIENT
+
+  ""
+  SOLID
+}
+
+""
+enum FlxSettingsChatbotHoursMode {
+  ""
+  ALWAYS
+
+  ""
+  CUSTOM
+
+  ""
+  FLX_CHAT
+}
+
+""
+enum FlxSettingsChatbotLauncherIcon {
+  ""
+  AVATAR
+
+  ""
+  CHAT
+
+  ""
+  HEADSET
+
+  ""
+  HELP
+
+  ""
+  SPARKLES
+}
+
+""
+enum FlxSettingsChatbotMode {
+  ""
+  AI
+
+  ""
+  HYBRID
+
+  ""
+  LIVE
+}
+
+""
+enum FlxSettingsChatbotPosition {
+  ""
+  LEFT
+
+  ""
+  RIGHT
+}
+
+""
+enum FlxSettingsChatbotTheme {
+  ""
+  AUTO
+
+  ""
+  DARK
+
+  ""
+  LIGHT
 }
 
 "Flux App › Görünüm"
@@ -23069,6 +23858,36 @@ type RootMutation {
     input: FlxCartShippingRateSelectInput!
   ): FlxCartShippingRateSelectPayload
 
+  "Ends a chat. It reopens when the visitor writes again."
+  flxChatbotConversationClose(
+    "Input for the flxChatbotConversationClose mutation"
+    input: FlxChatbotConversationCloseInput!
+  ): FlxChatbotConversationClosePayload
+
+  "Deletes a chat and its files for good."
+  flxChatbotConversationDelete(
+    "Input for the flxChatbotConversationDelete mutation"
+    input: FlxChatbotConversationDeleteInput!
+  ): FlxChatbotConversationDeletePayload
+
+  "Answers a chat as an agent. The visitor sees it right away."
+  flxChatbotConversationReply(
+    "Input for the flxChatbotConversationReply mutation"
+    input: FlxChatbotConversationReplyInput!
+  ): FlxChatbotConversationReplyPayload
+
+  "Shows the visitor that an agent is typing (for 8 seconds)."
+  flxChatbotConversationTyping(
+    "Input for the flxChatbotConversationTyping mutation"
+    input: FlxChatbotConversationTypingInput!
+  ): FlxChatbotConversationTypingPayload
+
+  "Saves chatbot settings the way the settings form does (values are cleaned and limited). Only the fields you send change."
+  flxChatbotSettingsSave(
+    "Input for the flxChatbotSettingsSave mutation"
+    input: FlxChatbotSettingsSaveInput!
+  ): FlxChatbotSettingsSavePayload
+
   "Applies one action to up to 500 contacts: tag, role, archive, restore or delete."
   flxContactBulk(
     "Input for the flxContactBulk mutation"
@@ -26076,6 +26895,330 @@ type FlxCartShippingRateSelectPayload {
   errors: [FlxUserError!]!
 }
 
+"Input for the flxChatbotConversationClose mutation."
+input FlxChatbotConversationCloseInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Global ID or chat number."
+  id: ID!
+}
+
+"The payload for the flxChatbotConversationClose mutation."
+type FlxChatbotConversationClosePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "The chat after it ended."
+  conversation: FlxChatbotConversation
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"Input for the flxChatbotConversationDelete mutation."
+input FlxChatbotConversationDeleteInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Global ID or chat number."
+  id: ID!
+}
+
+"The payload for the flxChatbotConversationDelete mutation."
+type FlxChatbotConversationDeletePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Number of the deleted chat."
+  deletedId: Int
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"Input for the flxChatbotConversationReply mutation."
+input FlxChatbotConversationReplyInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Global ID or chat number."
+  id: ID!
+
+  "Reply text."
+  text: String
+
+  "File sent first to /wp-json/flx/v1/upload (context flx-chatbot/reply)."
+  uploadId: String
+}
+
+"The payload for the flxChatbotConversationReply mutation."
+type FlxChatbotConversationReplyPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "The chat after the reply."
+  conversation: FlxChatbotConversation
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"Input for the flxChatbotConversationTyping mutation."
+input FlxChatbotConversationTypingInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Global ID or chat number."
+  id: ID!
+}
+
+"The payload for the flxChatbotConversationTyping mutation."
+type FlxChatbotConversationTypingPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Always true."
+  ok: Boolean!
+}
+
+"Input for the flxChatbotSettingsSave mutation."
+input FlxChatbotSettingsSaveInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "The settings to change."
+  settings: FlxSettingsChatbotInput!
+}
+
+"Changes to Flux AI Chatbot. Only the fields you send are changed."
+input FlxSettingsChatbotInput {
+  "Show suggested products as cards in the window."
+  aiCards: Boolean
+
+  "Assistant replies per day on the whole site (0 = unlimited)."
+  aiDailyLimit: Int
+
+  "Assistant replies per chat per hour (0 = unlimited)."
+  aiHourLimit: Int
+
+  "Rules the assistant must follow."
+  aiInstructions: String
+
+  "Free-form knowledge base the assistant may answer from."
+  aiKnowledge: String
+
+  "Assistant replies per chat before it goes to an agent (1-200)."
+  aiMaxTurns: Int
+
+  "Personality and tone of the assistant."
+  aiPersona: String
+
+  "Let the assistant search published pages."
+  aiSrcPages: Boolean
+
+  "Let the assistant search published posts."
+  aiSrcPosts: Boolean
+
+  "Let the assistant look up WooCommerce products (price, stock, link)."
+  aiSrcProducts: Boolean
+
+  "Let the assistant search Flux Wiki pages."
+  aiSrcWiki: Boolean
+
+  "Save contact details a visitor gives (also to Flux CRM when installed)."
+  aiToolLead: Boolean
+
+  "Let a signed-in customer ask about their own orders."
+  aiToolOrders: Boolean
+
+  "When to ask the visitor for an email address."
+  askEmail: FlxSettingsChatbotAskEmail
+
+  "Who sees the window: everyone, guests only, or signed-in members only."
+  audience: FlxSettingsChatbotAudience
+
+  "Avatar icon used when there is no image."
+  avatarIcon: FlxSettingsChatbotAvatarIcon
+
+  "Media library image ID of the assistant avatar (0 = none)."
+  avatarId: Int
+
+  "Assistant name in the window header. Empty uses the default."
+  botName: String
+
+  "Widget main color (hex). Empty follows the theme primary color."
+  color: String
+
+  "Header and button text color (hex). Empty picks a readable color from the main color."
+  colorText: String
+
+  "Show on desktop."
+  deviceDesktop: Boolean
+
+  "Show on mobile."
+  deviceMobile: Boolean
+
+  "Show a voice dictation button in the message field."
+  dictation: Boolean
+
+  "Also email agent replies when the visitor has left the page."
+  emailReplies: Boolean
+
+  "Show the chat window on the site. Off hides it from visitors (admins can still preview)."
+  enabled: Boolean
+
+  "Paths where the window is hidden, one per line; * is a wildcard."
+  excludeUrls: String
+
+  "Window font: same as the site or the system font."
+  font: FlxSettingsChatbotFont
+
+  "Where handed-over chats go: automatic, Flux Chat or the plugin inbox."
+  handoffTo: FlxSettingsChatbotHandoffTo
+
+  "Window header: gradient or solid color."
+  headerStyle: FlxSettingsChatbotHeaderStyle
+
+  "Show the home screen when the window opens (off opens the chat directly)."
+  homeEnabled: Boolean
+
+  "Home screen subtitle. Empty uses the default."
+  homeText: String
+
+  "Home screen headline. Empty uses the default."
+  homeTitle: String
+
+  "Weekly hours: { \"1\"..\"7\": { on: 0|1, from: \"HH:MM\", to: \"HH:MM\" } }, 1 = Monday."
+  hours: FlxJSON
+
+  "Working hours: always open, weekly hours, or Flux Chat hours."
+  hoursMode: FlxSettingsChatbotHoursMode
+
+  "Icon of the open button."
+  launcherIcon: FlxSettingsChatbotLauncherIcon
+
+  "Text next to the open button; empty shows the button only."
+  launcherLabel: String
+
+  "Open button size, px (44-80)."
+  launcherSize: Int
+
+  "Home screen contact links, one per line: Label | URL (https, mailto, tel, wa.me)."
+  links: String
+
+  "Cover the whole screen on small screens."
+  mobileFull: Boolean
+
+  "hybrid = AI first, then human handoff; ai = AI only; live = human agents only."
+  mode: FlxSettingsChatbotMode
+
+  "Address for handoff and after-hours notifications; empty uses the site admin."
+  notifyEmail: String
+
+  "Message shown outside working hours. Empty uses the default."
+  offlineText: String
+
+  "Space from the side edge, px."
+  offsetX: Int
+
+  "Space from the bottom edge, px."
+  offsetY: Int
+
+  "Hint in the message field. Empty uses the default."
+  placeholder: String
+
+  "Side of the screen the button sits on."
+  position: FlxSettingsChatbotPosition
+
+  "Note under the message field; links are allowed."
+  privacyText: String
+
+  "One suggested question per line."
+  quickReplies: String
+
+  "Window corner radius, px."
+  radius: Int
+
+  "Ask for 1-5 stars at the end of a chat."
+  rating: Boolean
+
+  "Delete chats and files after this many days (0 = keep)."
+  retentionDays: Int
+
+  "Show the small \"Powered by FluxWP\" note."
+  showBranding: Boolean
+
+  "Show the window on this page type: account."
+  showOnAccount: Boolean
+
+  "Show the window on this page type: cart."
+  showOnCart: Boolean
+
+  "Show the window on this page type: checkout."
+  showOnCheckout: Boolean
+
+  "Show the window on this page type: home."
+  showOnHome: Boolean
+
+  "Show the window on this page type: other."
+  showOnOther: Boolean
+
+  "Show the window on this page type: pages."
+  showOnPages: Boolean
+
+  "Show the window on this page type: posts."
+  showOnPosts: Boolean
+
+  "Show the window on this page type: shop."
+  showOnShop: Boolean
+
+  "Show photos of agents who replied recently on the home screen."
+  showTeam: Boolean
+
+  "Play a short sound for a new reply while the window is closed."
+  sound: Boolean
+
+  "Seconds on the page before the teaser shows (0-300)."
+  teaserDelay: Int
+
+  "Pop a short message above the button after the visitor stays a while."
+  teaserEnabled: Boolean
+
+  "Message of the teaser bubble. Empty uses the default."
+  teaserText: String
+
+  "Window colors: follow device and site, or always light or dark."
+  theme: FlxSettingsChatbotTheme
+
+  "Largest file, MB (1-20)."
+  uploadMb: Int
+
+  "Let visitors send images, PDFs and office documents."
+  uploads: Boolean
+
+  "The assistant's first message. Empty uses the default."
+  welcome: String
+
+  "Window width, px (320-480)."
+  width: Int
+}
+
+"The payload for the flxChatbotSettingsSave mutation."
+type FlxChatbotSettingsSavePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Settings after saving."
+  settings: FlxSettingsChatbot
+}
+
 "Input for the flxContactBulk mutation."
 input FlxContactBulkInput {
   "What to do."
@@ -27383,6 +28526,9 @@ type FlxSeoPsiKeySavePayload {
 
 "Input for the flxSettingsUpdate mutation."
 input FlxSettingsUpdateInput {
+  "Flux AI Chatbot"
+  chatbot: FlxSettingsChatbotInput
+
   "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
   clientMutationId: String
 

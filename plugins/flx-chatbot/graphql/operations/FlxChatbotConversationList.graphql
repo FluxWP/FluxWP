@@ -1,0 +1,12 @@
+query FlxChatbotConversationList($filter: FlxChatbotConversationFilter, $search: String, $first: Int = 50) {
+  flxChatbotConversations(filter: $filter, search: $search, first: $first) {
+    nodes {
+      ...FlxChatbotConversationRow
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    totalCount
+  }
+}

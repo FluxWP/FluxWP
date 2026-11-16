@@ -20,6 +20,8 @@ export const moduleScreens: Record<string, ComponentType> = {
   'flxbk-dashboard': lazyScreen(() => import('./blocks/BlocksScreen').then((m) => ({ default: m.BlocksScreen }))),
   'flxl-lang': lazyScreen(() => import('./lang/LanguagesScreen').then((m) => ({ default: m.LanguagesScreen }))),
   'flxr-roles': lazyScreen(() => import('./roles/RolesScreen').then((m) => ({ default: m.RolesScreen }))),
+  'flxcb-settings': lazyScreen(() => import('./chatbot/ChatbotSettingsScreen').then((m) => ({ default: m.ChatbotSettingsScreen }))),
+  'flxcb-inbox': lazyScreen(() => import('./chatbot/ChatbotInboxScreen').then((m) => ({ default: m.ChatbotInboxScreen }))),
   'flxan-stats': lazyScreen(() => import('./analytics/StatsScreen').then((m) => ({ default: m.StatsScreen }))),
   'flxan-journeys': lazyScreen(() => import('./analytics/JourneysScreen').then((m) => ({ default: m.JourneysScreen }))),
   'flxan-settings': lazyScreen(() => import('./analytics/SettingsScreen').then((m) => ({ default: m.SettingsScreen }))),

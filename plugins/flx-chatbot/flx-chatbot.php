@@ -2,9 +2,10 @@
 /**
  * Plugin Name:       Flux AI Chatbot, Live Chat & Customer Support
  * Description:       Siteye yapay zekâ destekli sohbet penceresi: Flux AI ile sitenizin içeriğinden ve ürünlerinden 7/24 cevap, potansiyel müşteri toplama, WooCommerce bilgisi, tek tıkla canlı temsilciye devir (Flux Chat gelen kutusu ya da eklentinin kendi gelen kutusu), dosya paylaşımı, okundu bilgisi, sohbet sonu puanlama ve mesai dışında mesaj bırakma. Renk, konum, avatar, metinler ve görünürlük panelden özelleştirilir.
- * Version:           0.1.8
+ * Version:           0.2.0
  * Requires at least: 6.4
- * Requires PHP:      7.4
+ * Requires PHP:      8.1
+ * Requires Plugins:  flx-graphql
  * Author:            FluxWP
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -25,13 +26,15 @@ if ( defined( 'FLXCB_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXCB_VERSION', '0.1.8' );
+define( 'FLXCB_VERSION', '0.2.0' );
 define( 'FLXCB_DB_VERSION', '1' );
 define( 'FLXCB_FILE', __FILE__ );
 define( 'FLXCB_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXCB_URL', plugin_dir_url( __FILE__ ) );
 
+require_once FLXCB_DIR . 'includes/services/class-flxcb-dto.php';
 require_once FLXCB_DIR . 'includes/helpers.php';
+require_once FLXCB_DIR . 'includes/settings.php';
 require_once FLXCB_DIR . 'includes/install.php';
 require_once FLXCB_DIR . 'includes/store.php';
 require_once FLXCB_DIR . 'includes/hours.php';
@@ -39,15 +42,69 @@ require_once FLXCB_DIR . 'includes/knowledge.php';
 require_once FLXCB_DIR . 'includes/bot.php';
 require_once FLXCB_DIR . 'includes/live.php';
 require_once FLXCB_DIR . 'includes/flux-chat.php';
+require_once FLXCB_DIR . 'includes/services/class-flxcb-chat-service.php';
+require_once FLXCB_DIR . 'includes/services/class-flxcb-settings-service.php';
 require_once FLXCB_DIR . 'includes/rest.php';
 require_once FLXCB_DIR . 'includes/front.php';
 require_once FLXCB_DIR . 'includes/woo.php';
 require_once FLXCB_DIR . 'includes/ai.php';
 require_once FLXCB_DIR . 'includes/system-checks.php';
+require_once FLXCB_DIR . 'includes/app.php';
 if ( is_admin() ) {
 	require_once FLXCB_DIR . 'includes/admin.php';
 	require_once FLXCB_DIR . 'includes/admin-inbox.php';
 }
+
+/*
+ * GraphQL (Flux GraphQL 0.2.0+): the schema is only loaded inside a GraphQL request. The agent side of the
+ * chat (list, read, reply, close, delete), the figures and the settings screen read and write through it;
+ * the visitor side of the chat stays on REST. Without Flux GraphQL the classic pages keep working.
+ */
+add_action(
+	'flx_gql_register',
+	static function () {
+		if ( ! function_exists( 'flx_gql_any_cap' ) ) {
+			return;
+		}
+		require_once FLXCB_DIR . 'includes/graphql/schema.php';
+	}
+);
+add_action(
+	'flx_gql_loaders',
+	static function () {
+		flx_gql_node_loader( 'FlxChatbotConversation', 'FLXCB_Conversation_Loader' );
+	}
+);
+add_filter(
+	'flx_gql_persisted_manifests',
+	static function ( $m ) {
+		$m                = is_array( $m ) ? $m : array();
+		$m['flx-chatbot'] = FLXCB_DIR . 'graphql/persisted-queries.json';
+		return $m;
+	}
+);
+add_filter(
+	'flx_gql_capabilities',
+	static function ( $caps ) {
+		$caps = is_array( $caps ) ? $caps : array();
+		if ( ! isset( $caps['flxcb_reply'] ) ) {
+			$caps['flxcb_reply'] = array( 'label' => __( 'Answers site chats', 'flx-chatbot' ), 'group' => 'communication', 'package' => 'flx-chatbot' );
+		}
+		return $caps;
+	}
+);
+/* Agents attach a file to a reply: sent first to /wp-json/flx/v1/upload, then taken over by the mutation. */
+add_filter(
+	'flx_gql_upload_contexts',
+	static function ( $c ) {
+		$c                          = is_array( $c ) ? $c : array();
+		$c['flx-chatbot/reply']     = array(
+			'cap'    => static fn(): bool => flxcb_can_reply(),
+			'max_mb' => max( 1, (int) flxcb_setting( 'upload_mb' ) ),
+		);
+		return $c;
+	}
+);
 
 register_activation_hook( __FILE__, 'flxcb_install' );
 register_deactivation_hook(

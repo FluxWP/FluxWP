@@ -1,5 +1,11 @@
 # Flux AI Chatbot
 
+## 0.2.0
+- Chatbot ayarları ve Site sohbetleri ekranları yenilendi: aynı özellikler (6 sekme, rakamlar, bağlantı durumu, canlı önizleme; sohbet listesi, filtre, arama, yanıt, dosya, kapatma, silme) ortak FluxWP ekranında, açık/koyu temaya uyar ve FluxWP uygulamasında da açılır. wp-admin'de varsayılan budur; eski görünüm sayfadaki "Klasik görünüm" bağlantısıyla açılır (kullanıcı başına hatırlanır).
+- Ayarlar, sohbet kayıtları, yanıt, kapatma, silme ve yazıyor bilgisi GraphQL'de (`flxSettings.chatbot`, `flxChatbotSettingsSave`, `flxChatbotConversations`, `flxChatbotMessages`, `flxChatbotConversationReply` …). Ziyaretçi uçları (`flx-chatbot/v1` session, message, poll …) REST'te kalır. Belge: docs/flx-chatbot/GRAPHQL.md.
+- Temsilci REST uçları ve klasik ayar formu aynı servis katmanını kullanır; davranış değişmedi.
+- Gereksinim: Flux GraphQL, PHP 8.1, WordPress 6.5.
+
 ## 0.1.8
 - Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
 
