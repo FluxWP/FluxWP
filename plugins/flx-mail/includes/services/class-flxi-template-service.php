@@ -312,16 +312,18 @@ class FLXI_Template_Service {
 	 * @return true|WP_Error
 	 */
 	public static function save_input( array $input ) {
+		$key  = sanitize_text_field( flxi_str( $input['key'] ?? '' ) );
+		$cur  = '' !== $key ? flxi_arr( flxi_template( $key ) ) : array();
 		$post = array(
-			'key'         => $input['key'] ?? '',
-			'enabled'     => ! empty( $input['enabled'] ),
-			'sender'      => strtolower( flxi_str( $input['sender'] ?? '' ) ),
-			'subject'     => $input['subject'] ?? '',
-			'heading'     => $input['heading'] ?? '',
-			'body'        => $input['body'] ?? '',
-			'button_text' => $input['buttonText'] ?? '',
-			'button_url'  => $input['buttonUrl'] ?? '',
-			'wrap'        => ! empty( $input['wrap'] ),
+			'key'         => $key,
+			'enabled'     => array_key_exists( 'enabled', $input ) && null !== $input['enabled'] ? ! empty( $input['enabled'] ) : ! empty( $cur['enabled'] ),
+			'sender'      => array_key_exists( 'sender', $input ) && null !== $input['sender'] ? strtolower( flxi_str( $input['sender'] ) ) : flxi_str( $cur['sender'] ?? '' ),
+			'subject'     => array_key_exists( 'subject', $input ) && null !== $input['subject'] ? $input['subject'] : flxi_str( $cur['subject'] ?? '' ),
+			'heading'     => array_key_exists( 'heading', $input ) && null !== $input['heading'] ? $input['heading'] : flxi_str( $cur['heading'] ?? '' ),
+			'body'        => array_key_exists( 'body', $input ) && null !== $input['body'] ? $input['body'] : flxi_str( $cur['body'] ?? '' ),
+			'button_text' => array_key_exists( 'buttonText', $input ) && null !== $input['buttonText'] ? $input['buttonText'] : flxi_str( $cur['button_text'] ?? '' ),
+			'button_url'  => array_key_exists( 'buttonUrl', $input ) && null !== $input['buttonUrl'] ? $input['buttonUrl'] : flxi_str( $cur['button_url'] ?? '' ),
+			'wrap'        => array_key_exists( 'wrap', $input ) && null !== $input['wrap'] ? ! empty( $input['wrap'] ) : ! empty( $cur['wrap'] ),
 		);
 		return self::save_post( $post );
 	}

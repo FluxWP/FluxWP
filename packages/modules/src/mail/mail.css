@@ -5,9 +5,10 @@
 .flxmail-app h3{font-size:14px;font-weight:600;margin:16px 0 8px}
 .flxmail-app a,.flxmail-link{color:var(--ac);background:none;border:0;padding:0;font:inherit;cursor:pointer;text-align:left}
 .flxmail-app button{font:inherit;color:inherit;cursor:pointer}
-.flxmail-app input,.flxmail-app select,.flxmail-app textarea{width:100%;min-height:34px;padding:6px 10px;border:1px solid var(--bd);border-radius:6px;background:var(--flux-bg);color:var(--flux-text);font:inherit}
+.flxmail-app input:not([type="checkbox"]):not([type="radio"]),.flxmail-app select,.flxmail-app textarea{width:100%;min-height:34px;padding:6px 10px;border:1px solid var(--bd);border-radius:6px;background:var(--flux-bg);color:var(--flux-text);font:inherit}
+.flxmail-app input[type="checkbox"],.flxmail-app input[type="radio"]{accent-color:var(--ac)}
 .flxmail-app textarea{resize:vertical}
-.flxmail-app input:focus,.flxmail-app select:focus,.flxmail-app textarea:focus{outline:2px solid color-mix(in srgb,var(--ac) 45%,transparent);border-color:var(--ac)}
+.flxmail-app input:not([type="checkbox"]):not([type="radio"]):focus,.flxmail-app select:focus,.flxmail-app textarea:focus{outline:2px solid color-mix(in srgb,var(--ac) 45%,transparent);border-color:var(--ac)}
 .flxmail-side{position:sticky;top:0;align-self:start;display:flex;flex-direction:column;gap:10px;padding:16px 0}
 .flxmail-brand{display:flex;align-items:center;gap:8px}
 .flxmail-side nav{display:flex;flex-direction:column;gap:2px}
@@ -22,6 +23,7 @@
 .flxmail-bad{color:var(--flux-danger)}
 .flxmail-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:34px;padding:0 12px;border:1px solid var(--bd);border-radius:6px;background:var(--flux-surface2);white-space:nowrap}
 .flxmail-btn.is-primary{background:var(--ac);border-color:var(--ac);color:var(--flux-primary-contrast,#fff);font-weight:600}
+.flxmail-btn.is-danger{background:var(--flux-danger);border-color:var(--flux-danger);color:#fff;font-weight:600}
 .flxmail-btn:disabled{opacity:.55;cursor:not-allowed}
 .flxmail-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:12px 0}
 .flxmail-field{display:flex;flex-direction:column;gap:4px;margin:0 0 12px}
@@ -32,7 +34,7 @@
 .flxmail-grid3{display:grid;grid-template-columns:1fr 120px 160px;gap:0 12px}
 .flxmail-grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:0 12px}
 .flxmail-subnav{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
-.flxmail-subnav a{padding:4px 8px;border-radius:99px;background:var(--flux-surface2);text-decoration:none}
+.flxmail-subnav a,.flxmail-subnav button{padding:4px 8px;border-radius:99px;background:var(--flux-surface2);border:0;color:var(--ac);text-decoration:none}
 .flxmail-seg{display:inline-flex;border:1px solid var(--bd);border-radius:6px;overflow:hidden;margin:0 0 12px}
 .flxmail-seg button{padding:6px 12px;background:none;border:0;border-right:1px solid var(--bd)}
 .flxmail-seg button:last-child{border-right:0}

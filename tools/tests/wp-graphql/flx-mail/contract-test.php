@@ -156,11 +156,42 @@ if ( '' !== $key ) {
 	$r = $run( 'FlxMailTemplate', array( 'key' => $key ), $admin );
 	$loaded = is_array( $r['data'] ?? null ) ? ( $r['data']['flxMailTemplate'] ?? null ) : null;
 	flxt_same( $key, is_array( $loaded ) ? ( $loaded['key'] ?? null ) : null, 'template: editor loads' );
-	$r = $run( 'FlxMailTemplateUpdate', array( 'input' => array( 'key' => $key, 'subject' => 'Contract subject', 'enabled' => true, 'sender' => 'INFO' ) ), $admin );
-	flxt_same( array(), $r['data']['flxMailTemplateUpdate']['errors'] ?? null, 'template update: no field errors' );
-	flxt_same( 'Contract subject', $r['data']['flxMailTemplateUpdate']['template']['subject'] ?? null, 'template update: subject is stored' );
-	$stored_tpl = flxi_template( $key );
-	flxt_same( 'Contract subject', is_array( $stored_tpl ) ? ( $stored_tpl['subject'] ?? null ) : null, 'classic template reader sees the GraphQL subject' );
+
+	// Direction 1: Save all editable fields via GraphQL, verify partial update keeps them, and verify classic renderer matches byte-for-byte.
+	$r = $run(
+		'FlxMailTemplateUpdate',
+		array(
+			'input' => array(
+				'key'        => $key,
+				'enabled'    => true,
+				'sender'     => 'NOREPLY',
+				'subject'    => 'GQL Subject {site}',
+				'heading'    => 'GQL Heading',
+				'body'       => '<p>GQL Body content for {site}</p>',
+				'buttonText' => 'Open Site',
+				'buttonUrl'  => 'https://example.com/go',
+			),
+		),
+		$admin
+	);
+	flxt_same( array(), $r['data']['flxMailTemplateUpdate']['errors'] ?? null, 'template update: full save has no field errors' );
+	flxt_same( 'GQL Subject {site}', $r['data']['flxMailTemplateUpdate']['template']['subject'] ?? null, 'template update: subject is stored' );
+	flxt_same( 'NOREPLY', $r['data']['flxMailTemplateUpdate']['template']['sender'] ?? null, 'template update: sender is stored' );
+
+	// Partial GraphQL save preserves omitted fields.
+	$r = $run( 'FlxMailTemplateUpdate', array( 'input' => array( 'key' => $key, 'subject' => 'Contract subject' ) ), $admin );
+	flxt_same( array(), $r['data']['flxMailTemplateUpdate']['errors'] ?? null, 'template partial update: no field errors' );
+	$tpl_after = $r['data']['flxMailTemplateUpdate']['template'] ?? array();
+	flxt_same( 'Contract subject', $tpl_after['subject'] ?? null, 'template partial update: subject updated' );
+	flxt_same( 'GQL Heading', $tpl_after['heading'] ?? null, 'template partial update: heading preserved' );
+	flxt_same( 'NOREPLY', $tpl_after['sender'] ?? null, 'template partial update: sender preserved' );
+
+	$classic_built = flxi_build_template( $key, array(), array( 'use_sample' => true ) );
+	$gql_preview   = $run( 'FlxMailPreview', array( 'input' => array( 'key' => $key ) ), $admin );
+	flxt_same( $classic_built['subject'] ?? null, $gql_preview['data']['flxMailPreview']['preview']['subject'] ?? null, 'GraphQL-saved template: subject renders identically in classic sender and GraphQL preview' );
+	flxt_same( $classic_built['html'] ?? null, $gql_preview['data']['flxMailPreview']['preview']['html'] ?? null, 'GraphQL-saved template: html renders identically in classic sender and GraphQL preview' );
+	flxt_same( 'noreply', $classic_built['sender'] ?? null, 'GraphQL-saved template: classic sender sees NOREPLY' );
+
 	$fires = 0;
 	$hook  = static function () use ( &$fires ) {
 		++$fires;
@@ -170,18 +201,59 @@ if ( '' !== $key ) {
 	remove_action( 'flxi_template_saved', $hook );
 	flxt_same( 1, $fires, 'template save fires flxi_template_saved once' );
 	flxt_same( 'Round trip subject', $r['data']['flxMailTemplateUpdate']['template']['subject'] ?? null, 'second template save is stored' );
-	flxi_save_template( $key, array( 'subject' => 'Classic subject line' ) );
-	$r = $run( 'FlxMailTemplate', array( 'key' => $key ), $admin );
+
+	// Direction 2: Save via classic service, verify GraphQL reads & renders identically to classic sender.
+	$classic_save = FLXI_Template_Service::save_post(
+		array(
+			'key'         => $key,
+			'enabled'     => 1,
+			'sender'      => 'info',
+			'subject'     => 'Classic subject line',
+			'heading'     => 'Classic heading',
+			'body'        => '<p>Classic body text</p>',
+			'button_text' => 'Classic Button',
+			'button_url'  => 'https://example.com/classic',
+		)
+	);
+	flxt_same( true, true === $classic_save, 'classic template writer succeeds' );
+	$r      = $run( 'FlxMailTemplate', array( 'key' => $key ), $admin );
 	$loaded = is_array( $r['data'] ?? null ) ? ( $r['data']['flxMailTemplate'] ?? null ) : null;
 	flxt_same( 'Classic subject line', is_array( $loaded ) ? ( $loaded['subject'] ?? null ) : null, 'GraphQL reads the classic template subject' );
+	flxt_same( 'Classic heading', is_array( $loaded ) ? ( $loaded['heading'] ?? null ) : null, 'GraphQL reads the classic template heading' );
+	$classic_built = flxi_build_template( $key, array(), array( 'use_sample' => true ) );
+	$gql_preview   = $run( 'FlxMailPreview', array( 'input' => array( 'key' => $key ) ), $admin );
+	flxt_same( $classic_built['subject'] ?? null, $gql_preview['data']['flxMailPreview']['preview']['subject'] ?? null, 'Classic-saved template: subject renders identically in GraphQL preview and classic sender' );
+	flxt_same( $classic_built['html'] ?? null, $gql_preview['data']['flxMailPreview']['preview']['html'] ?? null, 'Classic-saved template: html renders identically in GraphQL preview and classic sender' );
+
+	// Preview with temporary overrides must not leak filters to subsequent classic/GraphQL calls.
+	$r = $run( 'FlxMailPreview', array( 'input' => array( 'key' => $key, 'subject' => 'Temp preview override' ) ), $admin );
+	flxt_ok( is_string( $r['data']['flxMailPreview']['preview']['html'] ?? null ), 'preview: html is returned' );
+	flxt_same( 'Temp preview override', $r['data']['flxMailPreview']['preview']['subject'] ?? null, 'preview: temporary override applied' );
+	$after_preview = flxi_template( $key );
+	flxt_same( 'Classic subject line', is_array( $after_preview ) ? ( $after_preview['subject'] ?? null ) : null, 'preview: temporary template override does not leak' );
+	$brand_preview = $run( 'FlxMailPreview', array( 'input' => array( 'key' => 'brand', 'brand' => array( 'orgName' => 'Temp Preview Org' ) ) ), $admin );
+	flxt_ok( false !== strpos( (string) ( $brand_preview['data']['flxMailPreview']['preview']['html'] ?? '' ), 'Temp Preview Org' ), 'preview: temporary brand override applied' );
+	flxt_ok( 'Temp Preview Org' !== flxi_setting( 'org_name' ), 'preview: temporary brand override does not leak' );
+
 	$r = $run( 'FlxMailTemplateUpdate', array( 'input' => array( 'key' => '' ) ), $admin );
 	flxt_same( 'INVALID_INPUT', $r['data']['flxMailTemplateUpdate']['errors'][0]['code'] ?? null, 'template update: missing key is INVALID_INPUT' );
 	$r = $run( 'FlxMailTemplateReset', array( 'input' => array( 'key' => $key ) ), $admin );
 	flxt_same( array(), $r['data']['flxMailTemplateReset']['errors'] ?? null, 'template reset: no field errors' );
-	$r = $run( 'FlxMailPreview', array( 'input' => array( 'key' => $key, 'subject' => 'Preview subject' ) ), $admin );
-	flxt_ok( is_string( $r['data']['flxMailPreview']['preview']['html'] ?? null ), 'preview: html is returned' );
 	$r = $run( 'FlxMailTestSend', array( 'input' => array( 'key' => $key, 'to' => 'tester@example.com' ) ), $admin );
 	flxt_ok( is_bool( $r['data']['flxMailTestSend']['ok'] ?? null ) || isset( $r['data']['flxMailTestSend']['errors'] ), 'test send: ok or payload errors' );
+}
+
+// Logo upload context is registered and enforces management capability.
+$upload_contexts = function_exists( 'flx_gql_upload_contexts' ) ? flx_gql_upload_contexts() : array();
+flxt_ok( isset( $upload_contexts['flx-mail/logo'] ), 'upload context flx-mail/logo is registered' );
+if ( isset( $upload_contexts['flx-mail/logo'] ) && function_exists( 'flx_gql_rest_upload_permission' ) ) {
+	$req = new WP_REST_Request( 'POST', '/flx/v1/upload' );
+	$req->set_param( 'context', 'flx-mail/logo' );
+	wp_set_current_user( $admin );
+	flxt_same( true, true === flx_gql_rest_upload_permission( $req ), 'upload context flx-mail/logo allows admin' );
+	wp_set_current_user( $sub );
+	flxt_ok( is_wp_error( flx_gql_rest_upload_permission( $req ) ), 'upload context flx-mail/logo denies subscriber' );
+	wp_set_current_user( $admin );
 }
 
 // Log.

@@ -281,7 +281,7 @@ add_action(
 	'admin_post_flxi_wc_brand',
 	function () {
 		flxi_check( 'flxi_wc_brand' );
-		flxi_wc_apply_brand();
+		FLXI_Settings_Service::apply_wc_brand();
 		flxi_redirect( flxi_admin_url( 'flxi-ayarlar' ) . '#woocommerce', __( 'Logo, colors, sender and footer applied to WooCommerce emails.', 'flx-mail' ) );
 	}
 );

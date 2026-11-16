@@ -95,6 +95,24 @@ function flxi_flux_assets( string $page ): void {
 	if ( '' !== $key && 'templates' === $start ) {
 		$start = 'edit:' . $key;
 	}
+	if ( 'logs' === $start ) {
+		$q_args = array();
+		$st     = isset( $_GET['status'] ) ? sanitize_key( wp_unslash( $_GET['status'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$tpl    = isset( $_GET['template'] ) ? sanitize_text_field( wp_unslash( $_GET['template'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$camp   = isset( $_GET['campaign'] ) ? absint( wp_unslash( $_GET['campaign'] ) ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( '' !== $st ) {
+			$q_args['status'] = $st;
+		}
+		if ( '' !== $tpl ) {
+			$q_args['template'] = $tpl;
+		}
+		if ( $camp > 0 ) {
+			$q_args['campaign'] = (string) $camp;
+		}
+		if ( $q_args ) {
+			$start = 'logs?' . http_build_query( $q_args );
+		}
+	}
 	$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#2c7a64';
 	$opts   = array(
 		'module'     => 'flxi-mail',

@@ -198,6 +198,10 @@ const tr: Record<string, string> = {
   'Rows related to email, WhatsApp and SMS. Checks for all plugins are on the system screen.': 'E-posta, WhatsApp ve SMS ile ilgili satırlar. Tüm eklentilerin kontrolleri sistem ekranındadır.',
   Open: 'Aç',
   'No communication checks on this screen.': 'Bu ekranda iletişim kontrolü yok.',
+  Cancel: 'İptal',
+  Clear: 'Temizle',
+  'Will be removed on save': 'Kaydedilince silinecek',
+  'Will be removed on save.': 'Kaydedilince silinecek.',
 };
 
 export type Translate = (source: string, params?: Record<string, string | number>) => string;

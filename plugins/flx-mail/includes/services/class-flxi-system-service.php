@@ -22,7 +22,12 @@ class FLXI_System_Service {
 	 */
 	public static function checks(): array {
 		if ( function_exists( 'flx_system_checks_sorted' ) ) {
-			$all = flx_system_checks_sorted();
+			add_filter( 'flx_system_checks_labels', 'flxi_system_checks_labels', 20 );
+			try {
+				$all = flx_system_checks_sorted();
+			} finally {
+				remove_filter( 'flx_system_checks_labels', 'flxi_system_checks_labels', 20 );
+			}
 		} else {
 			$all = apply_filters( 'flx_system_checks', array() );
 		}

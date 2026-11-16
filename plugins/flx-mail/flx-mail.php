@@ -133,3 +133,18 @@ add_filter(
 		);
 	}
 );
+add_filter(
+	'flx_gql_upload_contexts',
+	static function ( $contexts ) {
+		$contexts                  = is_array( $contexts ) ? $contexts : array();
+		$contexts['flx-mail/logo'] = array(
+			'cap'    => static fn(): bool => (bool) flxi_can_manage(),
+			'mimes'  => array(
+				'jpg|jpeg|jpe' => 'image/jpeg',
+				'png'          => 'image/png',
+			),
+			'max_mb' => 5,
+		);
+		return $contexts;
+	}
+);

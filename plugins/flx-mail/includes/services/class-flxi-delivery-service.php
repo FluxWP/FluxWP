@@ -23,16 +23,18 @@ class FLXI_Delivery_Service {
 		$f   = flxi_arr( $in['fields'] ?? array() );
 		if ( $key && isset( flxi_arr( flxi_email_types() )[ $key ] ) ) {
 			$stored = get_option( 'flxi_templates', array() );
-			add_filter(
-				'pre_option_flxi_templates',
-				static function () use ( $key, $f, $stored ) {
-					$all         = is_array( $stored ) ? $stored : array();
-					$cur         = flxi_arr( $all[ $key ] ?? array() );
-					$all[ $key ] = array_merge( $cur, array_intersect_key( $f, array_flip( array( 'subject', 'heading', 'body', 'button_text', 'button_url', 'sender' ) ) ) );
-					return $all;
-				}
-			);
-			$b = flxi_arr( flxi_build_template( $key, array(), array( 'use_sample' => true ) ) );
+			$cb     = static function () use ( $key, $f, $stored ) {
+				$all         = is_array( $stored ) ? $stored : array();
+				$cur         = flxi_arr( $all[ $key ] ?? array() );
+				$all[ $key ] = array_merge( $cur, array_intersect_key( $f, array_flip( array( 'subject', 'heading', 'body', 'button_text', 'button_url', 'sender' ) ) ) );
+				return $all;
+			};
+			add_filter( 'pre_option_flxi_templates', $cb );
+			try {
+				$b = flxi_arr( flxi_build_template( $key, array(), array( 'use_sample' => true ) ) );
+			} finally {
+				remove_filter( 'pre_option_flxi_templates', $cb );
+			}
 			return array( 'subject' => flxi_str( $b['subject'] ?? '' ), 'html' => flxi_str( $b['html'] ?? '' ) );
 		}
 		$vars = array( 'ad' => 'Ayşe', 'ad_soyad' => 'Ayşe Yılmaz', 'eposta' => 'ayse@example.com', 'telefon' => '905321234567' );
@@ -47,6 +49,7 @@ class FLXI_Delivery_Service {
 		if ( ! empty( $f['unsubscribe'] ) ) {
 			$args['unsubscribe_url'] = home_url( '/' );
 		}
+		$brand_cb = null;
 		if ( 'brand' === $key ) {
 			$brand = (array) ( $f['brand'] ?? array() );
 			$allow = array( 'logo', 'logo_white', 'logo_width', 'color_primary', 'color_dark', 'color_bg', 'color_text', 'org_name', 'tagline', 'address', 'phone', 'contact_email', 'website', 'social', 'footer_note', 'footer_art', 'from_name' );
@@ -60,13 +63,11 @@ class FLXI_Delivery_Service {
 				}
 			}
 			if ( $tmp ) {
-				$saved = get_option( 'flxi_settings', array() );
-				add_filter(
-					'pre_option_flxi_settings',
-					static function () use ( $tmp, $saved ) {
-						return array_merge( is_array( $saved ) ? $saved : array(), $tmp );
-					}
-				);
+				$saved    = get_option( 'flxi_settings', array() );
+				$brand_cb = static function () use ( $tmp, $saved ) {
+					return array_merge( is_array( $saved ) ? $saved : array(), $tmp );
+				};
+				add_filter( 'pre_option_flxi_settings', $brand_cb );
 				flxi_settings( true );
 			}
 			$args = array(
@@ -78,9 +79,15 @@ class FLXI_Delivery_Service {
 				'sender'      => 'info',
 			);
 		}
-		$html = flxi_str( flxi_render_email( $args ) );
-		if ( 'brand' === $key ) {
-			flxi_settings( true );
+		try {
+			$html = flxi_str( flxi_render_email( $args ) );
+		} finally {
+			if ( null !== $brand_cb ) {
+				remove_filter( 'pre_option_flxi_settings', $brand_cb );
+			}
+			if ( 'brand' === $key ) {
+				flxi_settings( true );
+			}
 		}
 		return array( 'subject' => flxi_str( $args['subject'] ), 'html' => $html );
 	}

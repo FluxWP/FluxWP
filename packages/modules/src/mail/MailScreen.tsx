@@ -18,6 +18,9 @@ interface Route {
   page: Page;
   key: string | null;
   status: string;
+  template: string;
+  campaign: string;
+  section: string;
 }
 interface Toast {
   id: number;
@@ -27,16 +30,40 @@ interface Toast {
 
 const PAGES: Page[] = ['templates', 'logs', 'settings', 'system'];
 
-function parseHash(start: string | undefined): Route {
-  const raw = window.location.hash.replace(/^#\/?/, '');
-  if (!raw && start) {
-    if (start.startsWith('edit:')) return { page: 'templates', key: start.slice(5), status: '' };
-    if ((PAGES as string[]).includes(start)) return { page: start as Page, key: null, status: '' };
-  }
-  const [path = '', qs = ''] = raw.split('?');
+function parseStart(start: string | undefined): Route {
+  if (!start) return { page: 'templates', key: null, status: '', template: '', campaign: '', section: '' };
+  if (start.startsWith('edit:')) return { page: 'templates', key: start.slice(5), status: '', template: '', campaign: '', section: '' };
+  const [path = '', qs = ''] = start.split('?');
   const page = (PAGES as string[]).includes(path) ? (path as Page) : 'templates';
   const params = new URLSearchParams(qs);
-  return { page, key: params.get('key'), status: params.get('status') ?? '' };
+  return {
+    page,
+    key: params.get('key'),
+    status: params.get('status') ?? '',
+    template: params.get('template') ?? '',
+    campaign: params.get('campaign') ?? '',
+    section: '',
+  };
+}
+
+function parseHash(start: string | undefined): Route {
+  const raw = window.location.hash.replace(/^#\/?/, '');
+  if (!raw) return parseStart(start);
+  const [path = '', qs = ''] = raw.split('?');
+  if ((PAGES as string[]).includes(path)) {
+    const params = new URLSearchParams(qs);
+    return {
+      page: path as Page,
+      key: params.get('key'),
+      status: params.get('status') ?? '',
+      template: params.get('template') ?? '',
+      campaign: params.get('campaign') ?? '',
+      section: '',
+    };
+  }
+  const base = parseStart(start);
+  if (!window.location.hash.startsWith('#/')) return { ...base, section: raw };
+  return base;
 }
 
 export function MailScreen() {
@@ -68,9 +95,18 @@ function Mail() {
     const params = new URLSearchParams();
     if (query?.key) params.set('key', query.key);
     if (query?.status) params.set('status', query.status);
+    if (query?.template) params.set('template', query.template);
+    if (query?.campaign) params.set('campaign', query.campaign);
     const qs = params.toString();
     window.location.hash = '/' + page + (qs ? '?' + qs : '');
-    setRoute({ page, key: query?.key ?? null, status: query?.status ?? '' });
+    setRoute({
+      page,
+      key: query?.key ?? null,
+      status: query?.status ?? '',
+      template: query?.template ?? '',
+      campaign: query?.campaign ?? '',
+      section: '',
+    });
     setMenu(false);
   }, []);
 
@@ -132,8 +168,8 @@ function Mail() {
           {allowed ? (
             <>
               {route.page === 'templates' ? <TemplatesPage editKey={route.key} onEdit={(key) => go('templates', key ? { key } : undefined)} /> : null}
-              {route.page === 'logs' ? <LogsPage initialStatus={route.status} /> : null}
-              {route.page === 'settings' ? <SettingsPage /> : null}
+              {route.page === 'logs' ? <LogsPage initialStatus={route.status} initialTemplate={route.template} initialCampaign={route.campaign} /> : null}
+              {route.page === 'settings' ? <SettingsPage section={route.section} /> : null}
               {route.page === 'system' ? <SystemPage /> : null}
             </>
           ) : null}

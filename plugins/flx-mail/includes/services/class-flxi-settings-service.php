@@ -233,6 +233,14 @@ class FLXI_Settings_Service {
 		return $t > 0 ? $t : null;
 	}
 
+	public static function apply_wc_brand(): ?int {
+		flxi_wc_apply_brand();
+		if ( function_exists( 'flx_gql_purge' ) ) {
+			flx_gql_purge( 'flx-mail:settings' );
+		}
+		return self::wc_branded();
+	}
+
 	/**
 	 * @return list<array{mailbox:string,level:string,text:string}>
 	 */

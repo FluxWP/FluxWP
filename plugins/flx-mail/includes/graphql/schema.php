@@ -98,16 +98,23 @@ function flxi_gql_content( array $input ): array {
 	$str = static function ( mixed $value ): string {
 		return is_scalar( $value ) ? (string) $value : '';
 	};
-	return array(
-		'subject'     => $str( $input['subject'] ?? '' ),
-		'heading'     => $str( $input['heading'] ?? '' ),
-		'body'        => $str( $input['body'] ?? '' ),
-		'button_text' => $str( $input['buttonText'] ?? '' ),
-		'button_url'  => $str( $input['buttonUrl'] ?? '' ),
-		'sender'      => $str( $input['sender'] ?? 'info' ),
-		'unsubscribe' => ! empty( $input['unsubscribe'] ),
-		'brand'       => $brand,
-	);
+	$out = array( 'brand' => $brand );
+	foreach ( array(
+		'subject'    => 'subject',
+		'heading'    => 'heading',
+		'body'       => 'body',
+		'buttonText' => 'button_text',
+		'buttonUrl'  => 'button_url',
+		'sender'     => 'sender',
+	) as $gql => $field ) {
+		if ( array_key_exists( $gql, $input ) && null !== $input[ $gql ] ) {
+			$out[ $field ] = $str( $input[ $gql ] );
+		}
+	}
+	if ( ! empty( $input['unsubscribe'] ) ) {
+		$out['unsubscribe'] = true;
+	}
+	return $out;
 }
 
 /**
@@ -745,11 +752,7 @@ function flxi_gql_register(): void {
 			'input'       => array(),
 			'output'      => array( 'wcBranded' => flxi_gql_f( 'FlxDateTime', __( 'When it was applied.', 'flx-mail' ) ) ),
 			'resolve'     => static function (): array {
-				flxi_wc_apply_brand();
-				if ( function_exists( 'flx_gql_purge' ) ) {
-					flx_gql_purge( 'flx-mail:settings' );
-				}
-				return array( 'wcBranded' => flx_gql_datetime( FLXI_Settings_Service::wc_branded() ) );
+				return array( 'wcBranded' => flx_gql_datetime( FLXI_Settings_Service::apply_wc_brand() ) );
 			},
 		)
 	);

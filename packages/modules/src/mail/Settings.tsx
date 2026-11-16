@@ -85,7 +85,7 @@ function toDraft(s: Settings): FlxMailSettingsInput {
 
 const EMPTY_SECRETS: Record<SecretKey, string> = { smtpPassword: '', smtpNoreplyPassword: '', imapPassword: '' };
 
-export function SettingsPage() {
+export function SettingsPage({ section = '' }: { section?: string }) {
   const { t, toast } = useMail();
   const host = useHost();
   const { scope } = useGraphQL();
@@ -107,11 +107,25 @@ export function SettingsPage() {
   const [html, setHtml] = useState('');
 
   useEffect(() => {
-    if (q.data && !draft) {
-      setLive(q.data.flxMailSettings);
-      setDraft(toDraft(q.data.flxMailSettings));
-    }
-  }, [q.data, draft]);
+    if (!q.data) return;
+    setLive(q.data.flxMailSettings);
+    setDraft((d) => d ?? toDraft(q.data.flxMailSettings));
+  }, [q.data]);
+
+  const ready = !!live;
+  useEffect(() => {
+    if (!section || !ready) return;
+    const alias: Record<string, string> = {
+      gonderen: 'sender',
+      posta: 'mailbox',
+      gorunum: 'look',
+      woocommerce: 'woo',
+      kayit: 'log',
+      iptal: 'optout',
+      sinirlar: 'limits',
+    };
+    document.getElementById(alias[section] ?? section)?.scrollIntoView({ behavior: 'smooth' });
+  }, [section, ready]);
 
   const appearance = useMemo(() => {
     if (!draft) return '';
@@ -151,7 +165,7 @@ export function SettingsPage() {
           setHtml(device === 'dark' ? body.replace(/@media\s*\(\s*prefers-color-scheme\s*:\s*dark\s*\)/gi, '@media all') : body);
         })
         .catch(() => undefined);
-    }, 600);
+    }, html ? 450 : 0);
     return () => window.clearTimeout(timer);
   }, [appearance, device]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -216,9 +230,9 @@ export function SettingsPage() {
     <div>
       <nav className="flxmail-subnav">
         {sections.map(([id, label]) => (
-          <a key={id} href={'#' + id}>
+          <button key={id} type="button" onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })}>
             {label}
-          </a>
+          </button>
         ))}
       </nav>
       <section className="flxmail-card" id="sender">
@@ -302,10 +316,13 @@ export function SettingsPage() {
             className="flxmail-btn"
             disabled={imap.isPending}
             onClick={() =>
-              void imap.mutateAsync({ input: {} }).then((r) => {
-                const err = payloadError(r.flxMailImapTest?.errors);
-                toast(err || r.flxMailImapTest?.message || (r.flxMailImapTest?.ok ? t('Connected.') : t('Could not connect.')), err || !r.flxMailImapTest?.ok ? 'error' : 'ok');
-              })
+              void imap
+                .mutateAsync({ input: {} })
+                .then((r) => {
+                  const err = payloadError(r.flxMailImapTest?.errors);
+                  toast(err || r.flxMailImapTest?.message || (r.flxMailImapTest?.ok ? t('Connected.') : t('Could not connect.')), err || !r.flxMailImapTest?.ok ? 'error' : 'ok');
+                })
+                .catch((e) => toast(errorText(e, t('Something went wrong.')), 'error'))
             }
           >
             {t('Test connection')}
@@ -340,8 +357,10 @@ export function SettingsPage() {
                   const err = payloadError(r.flxMailTestSend?.errors);
                   const row = r.flxMailTestSend;
                   toast(err || (row?.ok ? t('Sent to {to}', { to: row.to ?? '' }) : row?.error || t('Could not send.')), err || !row?.ok ? 'error' : 'ok');
+                  if (!err && row && row.to != null) {
+                    setLive((prev) => (prev ? { ...prev, lastTest: { ok: !!row.ok, to: row.to ?? '', error: row.error ?? '', at: row.at ?? null } } : prev));
+                  }
                   void qc.invalidateQueries({ queryKey: flxQueryKey(scope, FlxMailSettings) });
-                  setDraft(null);
                 })
                 .catch((e) => toast(errorText(e, t('Something went wrong.')), 'error'))
             }
@@ -354,21 +373,27 @@ export function SettingsPage() {
             {t('Last test: {when} · {to}', { when: live.lastTest.at?.label ?? '', to: live.lastTest.to })} · {live.lastTest.ok ? t('sent') : live.lastTest.error}
           </p>
         ) : null}
-        <h3>{t('Domain records (SPF / DMARC)')}</h3>
+        <h3 id="dns">{t('Domain records (SPF / DMARC)')}</h3>
         <button
           type="button"
           className="flxmail-btn"
           disabled={dns.isPending}
           onClick={() =>
-            void dns.mutateAsync({ input: {} }).then((r) => {
-              const err = payloadError(r.flxMailDnsCheck?.errors);
-              if (err) toast(err, 'error');
-              else {
+            void dns
+              .mutateAsync({ input: {} })
+              .then((r) => {
+                const err = payloadError(r.flxMailDnsCheck?.errors);
+                if (err) {
+                  toast(err, 'error');
+                  return;
+                }
                 toast(t('DNS checked.'));
-                setDraft(null);
+                if (r.flxMailDnsCheck?.dns) {
+                  setLive((prev) => (prev ? { ...prev, dns: r.flxMailDnsCheck?.dns ?? prev.dns } : prev));
+                }
                 void qc.invalidateQueries({ queryKey: flxQueryKey(scope, FlxMailSettings) });
-              }
-            })
+              })
+              .catch((e) => toast(errorText(e, t('Something went wrong.')), 'error'))
           }
         >
           {t('Check DNS')}
@@ -476,15 +501,21 @@ export function SettingsPage() {
               className="flxmail-btn"
               disabled={brand.isPending}
               onClick={() =>
-                void brand.mutateAsync({ input: {} }).then((r) => {
-                  const err = payloadError(r.flxMailWcBrandApply?.errors);
-                  if (err) toast(err, 'error');
-                  else {
+                void brand
+                  .mutateAsync({ input: {} })
+                  .then((r) => {
+                    const err = payloadError(r.flxMailWcBrandApply?.errors);
+                    if (err) {
+                      toast(err, 'error');
+                      return;
+                    }
                     toast(t('Applied.'));
-                    setDraft(null);
+                    if (r.flxMailWcBrandApply?.wcBranded) {
+                      setLive((prev) => (prev ? { ...prev, wcBranded: r.flxMailWcBrandApply?.wcBranded ?? prev.wcBranded } : prev));
+                    }
                     void qc.invalidateQueries({ queryKey: flxQueryKey(scope, FlxMailSettings) });
-                  }
-                })
+                  })
+                  .catch((e) => toast(errorText(e, t('Something went wrong.')), 'error'))
               }
             >
               {t('Apply appearance to WooCommerce')}
@@ -595,12 +626,36 @@ function Secure({ label, value, options, onChange }: { label: string; value: 'SS
 }
 
 function Secret({ label, secret, value, onChange, t }: { label: string; secret: { set: boolean; mask: string; fromConfig: boolean }; value: string; onChange: (v: string) => void; t: (s: string) => string }) {
+  const clearing = value === '__clear__';
   return (
     <label className="flxmail-field">
       <span>{label}</span>
-      <input type="password" value={value} autoComplete="new-password" disabled={secret.fromConfig} placeholder={secret.fromConfig ? t('From wp-config.php') : secret.set ? secret.mask : ''} onChange={(e) => onChange(e.target.value)} />
+      <input
+        type="password"
+        value={clearing ? '' : value}
+        autoComplete="new-password"
+        disabled={secret.fromConfig || clearing}
+        placeholder={clearing ? t('Will be removed on save') : secret.fromConfig ? t('From wp-config.php') : secret.set ? secret.mask : ''}
+        onChange={(e) => onChange(e.target.value)}
+      />
       <small>
-        {t('Empty keeps the stored password.')} {secret.set && !secret.fromConfig ? <button type="button" className="flxmail-link" onClick={() => onChange('__clear__')}>{t('Remove')}</button> : null}
+        {clearing ? (
+          <>
+            {t('Will be removed on save.')}{' '}
+            <button type="button" className="flxmail-link" onClick={() => onChange('')}>
+              {t('Cancel')}
+            </button>
+          </>
+        ) : (
+          <>
+            {t('Empty keeps the stored password.')}{' '}
+            {secret.set && !secret.fromConfig ? (
+              <button type="button" className="flxmail-link" onClick={() => onChange('__clear__')}>
+                {t('Remove')}
+              </button>
+            ) : null}
+          </>
+        )}
       </small>
     </label>
   );
@@ -617,11 +672,18 @@ function Color({ label, value, onChange }: { label: string; value: string; onCha
 }
 
 function httpLogo(url: string): string {
-  return /^https?:\/\/[^\s<>"']+$/.test(url) ? url : '';
+  try {
+    const u = new URL(url);
+    return u.protocol === 'http:' || u.protocol === 'https:' ? u.href : '';
+  } catch {
+    return '';
+  }
 }
 
 function Logo({ label, url, file, onFile, onClear, t }: { label: string; url: string; file: File | null; onFile: (f: File) => void; onClear: () => void; t: (s: string) => string }) {
-  const src = file ? URL.createObjectURL(file) : httpLogo(url);
+  const blobUrl = useMemo(() => (file ? URL.createObjectURL(file) : ''), [file]);
+  useEffect(() => () => void (blobUrl && URL.revokeObjectURL(blobUrl)), [blobUrl]);
+  const src = blobUrl ? encodeURI(blobUrl) : httpLogo(url);
   return (
     <div className="flxmail-field">
       <span>{label}</span>
@@ -629,7 +691,16 @@ function Logo({ label, url, file, onFile, onClear, t }: { label: string; url: st
       <div className="flxmail-inline">
         <label className="flxmail-btn">
           {t('Change')}
-          <input type="file" accept="image/png,image/jpeg" hidden onChange={(e) => { const f = e.target.files?.[0]; if (f) onFile(f); }} />
+          <input
+            type="file"
+            accept="image/png,image/jpeg"
+            hidden
+            onChange={(e) => {
+              const f = e.target.files?.[0];
+              if (f) onFile(f);
+              e.target.value = '';
+            }}
+          />
         </label>
         <button type="button" className="flxmail-link" onClick={onClear}>
           {t('Default')}

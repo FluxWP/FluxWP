@@ -3,7 +3,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import type { FlxMailTemplateFragment } from '@fluxwp/graphql/types';
 import { flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
 import { FlxMailPreview, FlxMailTemplate, FlxMailTemplateReset, FlxMailTemplateUpdate, FlxMailTemplates, FlxMailTestSend } from '@fluxwp/graphql/operations';
-import { Loading } from '@fluxwp/ui';
+import { Loading, Modal } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { errorText, payloadError, useMail } from './common';
 
@@ -91,11 +91,14 @@ function TemplateRow({ row, onEdit }: { row: Row; onEdit: (key: string | null) =
           aria-label={row.label}
           disabled={toggle.isPending}
           onChange={(e) =>
-            void toggle.mutateAsync({ input: { key: row.key, enabled: e.target.checked, toggleOnly: true } }).then((r) => {
-              const err = payloadError(r.flxMailTemplateUpdate?.errors);
-              if (err) toast(err, 'error');
-              else void qc.invalidateQueries({ queryKey: flxQueryKey(scope, FlxMailTemplates) });
-            })
+            void toggle
+              .mutateAsync({ input: { key: row.key, enabled: e.target.checked, toggleOnly: true } })
+              .then((r) => {
+                const err = payloadError(r.flxMailTemplateUpdate?.errors);
+                if (err) toast(err, 'error');
+                else void qc.invalidateQueries({ queryKey: flxQueryKey(scope, FlxMailTemplates) });
+              })
+              .catch((err) => toast(errorText(err, t('Something went wrong.')), 'error'))
           }
         />
       ) : (
@@ -147,18 +150,23 @@ function Editor({ templateKey, onBack }: { templateKey: string; onBack: () => vo
   const [html, setHtml] = useState('');
   const [subjectLine, setSubjectLine] = useState('');
   const [ready, setReady] = useState('');
+  const [confirmReset, setConfirmReset] = useState(false);
+
+  const applyRow = (tpl: Row) => {
+    setSubject(tpl.subject ?? '');
+    setHeading(tpl.heading ?? '');
+    setBody(tpl.body ?? '');
+    setButtonText(tpl.buttonText ?? '');
+    setButtonUrl(tpl.buttonUrl ?? '');
+    setSender(tpl.sender);
+    setEnabled(tpl.enabled);
+    setWrap(!!tpl.wrap);
+    setReady(tpl.key);
+  };
 
   useEffect(() => {
     if (!row || ready === row.key) return;
-    setSubject(row.subject ?? '');
-    setHeading(row.heading ?? '');
-    setBody(row.body ?? '');
-    setButtonText(row.buttonText ?? '');
-    setButtonUrl(row.buttonUrl ?? '');
-    setSender(row.sender);
-    setEnabled(row.enabled);
-    setWrap(!!row.wrap);
-    setReady(row.key);
+    applyRow(row);
   }, [row, ready]);
 
   const sig = useMemo(() => [subject, heading, body, buttonText, buttonUrl, sender, wrap].join('\n'), [subject, heading, body, buttonText, buttonUrl, sender, wrap]);
@@ -174,7 +182,7 @@ function Editor({ templateKey, onBack }: { templateKey: string; onBack: () => vo
           setSubjectLine(p?.subject ?? '');
         })
         .catch(() => undefined);
-    }, 600);
+    }, html ? 450 : 0);
     return () => window.clearTimeout(timer);
   }, [sig, device, ready]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -190,7 +198,9 @@ function Editor({ templateKey, onBack }: { templateKey: string; onBack: () => vo
     if (err) toast(err, 'error');
     else {
       toast(t('Saved'));
-      setReady('');
+      const tpl = r.flxMailTemplateUpdate?.template;
+      if (tpl) applyRow(tpl);
+      else setReady('');
       void qc.invalidateQueries({ queryKey: flxQueryKey(scope, FlxMailTemplate, { key: row.key }) });
       void qc.invalidateQueries({ queryKey: flxQueryKey(scope, FlxMailTemplates) });
     }
@@ -270,24 +280,20 @@ function Editor({ templateKey, onBack }: { templateKey: string; onBack: () => vo
           </button>
           {row.editable ? (
             <>
-              <button type="button" className="flxmail-btn" disabled={test.isPending} onClick={() => void test.mutateAsync({ input: { key: row.key } }).then((r) => toast(payloadError(r.flxMailTestSend?.errors) || (r.flxMailTestSend?.ok ? t('Sent') : r.flxMailTestSend?.error || t('Could not send.')), r.flxMailTestSend?.ok ? 'ok' : 'error'))}>
-                {t('Send me a test')}
-              </button>
               <button
                 type="button"
-                className="flxmail-link"
-                onClick={() => {
-                  if (!window.confirm(t('Reset content to default?'))) return;
-                  void reset.mutateAsync({ input: { key: row.key } }).then((r) => {
-                    const err = payloadError(r.flxMailTemplateReset?.errors);
-                    if (err) toast(err, 'error');
-                    else {
-                      toast(t('Default content restored.'));
-                      setReady('');
-                    }
-                  });
-                }}
+                className="flxmail-btn"
+                disabled={test.isPending}
+                onClick={() =>
+                  void test
+                    .mutateAsync({ input: { key: row.key } })
+                    .then((r) => toast(payloadError(r.flxMailTestSend?.errors) || (r.flxMailTestSend?.ok ? t('Sent') : r.flxMailTestSend?.error || t('Could not send.')), r.flxMailTestSend?.ok ? 'ok' : 'error'))
+                    .catch((e) => toast(errorText(e, t('Something went wrong.')), 'error'))
+                }
               >
+                {t('Send me a test')}
+              </button>
+              <button type="button" className="flxmail-link" onClick={() => setConfirmReset(true)}>
                 {t('Reset to default')}
               </button>
             </>
@@ -311,6 +317,42 @@ function Editor({ templateKey, onBack }: { templateKey: string; onBack: () => vo
         </div>
       ) : null}
       </div>
+      {confirmReset ? (
+        <Modal title={t('Reset to default')} onClose={() => setConfirmReset(false)}>
+          <p>{t('Reset content to default?')}</p>
+          <div className="flxmail-actions">
+            <button type="button" className="flxmail-btn" onClick={() => setConfirmReset(false)}>
+              {t('Cancel')}
+            </button>
+            <button
+              type="button"
+              className="flxmail-btn is-danger"
+              disabled={reset.isPending}
+              onClick={() =>
+                void reset
+                  .mutateAsync({ input: { key: row.key } })
+                  .then((r) => {
+                    const err = payloadError(r.flxMailTemplateReset?.errors);
+                    if (err) {
+                      toast(err, 'error');
+                      return;
+                    }
+                    const tpl = r.flxMailTemplateReset?.template;
+                    if (tpl) applyRow(tpl);
+                    else setReady('');
+                    void qc.invalidateQueries({ queryKey: flxQueryKey(scope, FlxMailTemplate, { key: row.key }) });
+                    void qc.invalidateQueries({ queryKey: flxQueryKey(scope, FlxMailTemplates) });
+                    toast(t('Default content restored.'));
+                    setConfirmReset(false);
+                  })
+                  .catch((e) => toast(errorText(e, t('Something went wrong.')), 'error'))
+              }
+            >
+              {t('Reset to default')}
+            </button>
+          </div>
+        </Modal>
+      ) : null}
     </>
   );
 }

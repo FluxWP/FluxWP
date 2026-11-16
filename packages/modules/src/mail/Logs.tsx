@@ -7,14 +7,14 @@ import { errorText, useMail } from './common';
 
 type Row = FlxMailLogsQuery['flxMailLogs']['nodes'][number];
 
-export function LogsPage({ initialStatus = '' }: { initialStatus?: string }) {
+export function LogsPage({ initialStatus = '', initialTemplate = '', initialCampaign = '' }: { initialStatus?: string; initialTemplate?: string; initialCampaign?: string }) {
   const { t } = useMail();
   const [search, setSearch] = useState('');
   const [q, setQ] = useState('');
   const [status, setStatus] = useState(initialStatus);
   const [channel, setChannel] = useState('');
-  const [template, setTemplate] = useState('');
-  const [campaign, setCampaign] = useState('');
+  const [template, setTemplate] = useState(initialTemplate);
+  const [campaign, setCampaign] = useState(initialCampaign);
   const [cursor, setCursor] = useState<string | undefined>(undefined);
   const [rows, setRows] = useState<Row[]>([]);
   const [open, setOpen] = useState<number | null>(null);
@@ -25,6 +25,12 @@ export function LogsPage({ initialStatus = '' }: { initialStatus?: string }) {
   useEffect(() => {
     setStatus(initialStatus);
   }, [initialStatus]);
+  useEffect(() => {
+    setTemplate(initialTemplate);
+  }, [initialTemplate]);
+  useEffect(() => {
+    setCampaign(initialCampaign);
+  }, [initialCampaign]);
   useEffect(() => {
     setCursor(undefined);
     setRows([]);
@@ -55,6 +61,8 @@ export function LogsPage({ initialStatus = '' }: { initialStatus?: string }) {
     });
   }, [list.dataUpdatedAt]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const filtered = Boolean(search || q || status || channel || template || campaign);
+
   return (
     <div>
       <form
@@ -81,6 +89,22 @@ export function LogsPage({ initialStatus = '' }: { initialStatus?: string }) {
         <input value={template} placeholder={t('Template')} aria-label={t('Template')} onChange={(e) => setTemplate(e.target.value)} />
         <input value={campaign} inputMode="numeric" placeholder={t('Campaign')} aria-label={t('Campaign')} onChange={(e) => setCampaign(e.target.value.replace(/[^\d]/g, ''))} />
         <button type="submit" className="flxmail-btn">{t('Filter')}</button>
+        {filtered ? (
+          <button
+            type="button"
+            className="flxmail-link"
+            onClick={() => {
+              setSearch('');
+              setQ('');
+              setStatus('');
+              setChannel('');
+              setTemplate('');
+              setCampaign('');
+            }}
+          >
+            {t('Clear')}
+          </button>
+        ) : null}
         <span className="flxmail-muted">{t('{n} entries', { n: list.data?.flxMailLogs.totalCount ?? rows.length })}</span>
       </form>
       {list.isLoading && !rows.length ? <Loading /> : null}
