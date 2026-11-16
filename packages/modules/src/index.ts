@@ -18,6 +18,8 @@ export const moduleScreens: Record<string, ComponentType> = {
   'flxg-tasks': lazyScreen(() => import('./tasks/TasksScreen').then((m) => ({ default: m.TasksScreen }))),
   'flxl-lang': lazyScreen(() => import('./lang/LanguagesScreen').then((m) => ({ default: m.LanguagesScreen }))),
   'flxr-roles': lazyScreen(() => import('./roles/RolesScreen').then((m) => ({ default: m.RolesScreen }))),
+  'flxk-packages': lazyScreen(() => import('./setup/PackagesScreen').then((m) => ({ default: m.PackagesScreen }))),
+  'flxk-settings': lazyScreen(() => import('./setup/SettingsScreen').then((m) => ({ default: m.SettingsScreen }))),
   'flxapp-settings': lazyScreen(() => import('./app-settings/AppSettingsScreen').then((m) => ({ default: m.AppSettingsScreen }))),
   'flxapp-access': lazyScreen(() => import('./app-settings/AccessScreen').then((m) => ({ default: m.AccessScreen }))),
   'flxseo-seo': lazyScreen(() => import('./seo/SeoScreen').then((m) => ({ default: m.SeoScreen }))),

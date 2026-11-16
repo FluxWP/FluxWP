@@ -1,0 +1,11 @@
+mutation FlxSetupBackupsDelete($input: FlxSetupBackupsDeleteInput!) {
+  flxSetupBackupsDelete(input: $input) {
+    deleted
+    retention {
+      ...FlxSetupRetentionFields
+    }
+    errors {
+      ...FlxSetupErrors
+    }
+  }
+}

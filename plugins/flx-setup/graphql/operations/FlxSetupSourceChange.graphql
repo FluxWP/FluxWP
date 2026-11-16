@@ -1,0 +1,10 @@
+mutation FlxSetupSourceChange($input: FlxSetupSourceChangeInput!) {
+  flxSetupSourceChange(input: $input) {
+    sources {
+      ...FlxSetupSourceFields
+    }
+    errors {
+      ...FlxSetupErrors
+    }
+  }
+}
