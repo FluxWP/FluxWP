@@ -9632,214 +9632,214 @@ type FlxSettings {
 
 "Flux AI Chatbot"
 type FlxSettingsChatbot {
-  ""
+  "Show suggested products as cards in the window."
   aiCards: Boolean
 
-  ""
+  "Assistant replies per day on the whole site (0 = unlimited)."
   aiDailyLimit: Int
 
-  ""
+  "Assistant replies per chat per hour (0 = unlimited)."
   aiHourLimit: Int
 
-  ""
+  "Rules the assistant must follow."
   aiInstructions: String
 
   "Free-form knowledge base the assistant may answer from."
   aiKnowledge: String
 
-  ""
+  "Assistant replies per chat before it goes to an agent (1-200)."
   aiMaxTurns: Int
 
-  ""
+  "Personality and tone of the assistant."
   aiPersona: String
 
-  ""
+  "Let the assistant search published pages."
   aiSrcPages: Boolean
 
-  ""
+  "Let the assistant search published posts."
   aiSrcPosts: Boolean
 
-  ""
+  "Let the assistant look up WooCommerce products (price, stock, link)."
   aiSrcProducts: Boolean
 
-  ""
+  "Let the assistant search Flux Wiki pages."
   aiSrcWiki: Boolean
 
-  ""
+  "Save contact details a visitor gives (also to Flux CRM when installed)."
   aiToolLead: Boolean
 
-  ""
+  "Let a signed-in customer ask about their own orders."
   aiToolOrders: Boolean
 
-  ""
+  "When to ask the visitor for an email address."
   askEmail: FlxSettingsChatbotAskEmail
 
-  ""
+  "Who sees the window: everyone, guests only, or signed-in members only."
   audience: FlxSettingsChatbotAudience
 
-  ""
+  "Avatar icon used when there is no image."
   avatarIcon: FlxSettingsChatbotAvatarIcon
 
-  ""
+  "Media library image ID of the assistant avatar (0 = none)."
   avatarId: Int
 
-  ""
+  "Assistant name in the window header. Empty uses the default."
   botName: String
 
   "Widget main color (hex). Empty follows the theme primary color."
   color: String
 
-  ""
+  "Header and button text color (hex). Empty picks a readable color from the main color."
   colorText: String
 
-  ""
+  "Show on desktop."
   deviceDesktop: Boolean
 
-  ""
+  "Show on mobile."
   deviceMobile: Boolean
 
-  ""
+  "Show a voice dictation button in the message field."
   dictation: Boolean
 
-  ""
+  "Also email agent replies when the visitor has left the page."
   emailReplies: Boolean
 
-  ""
+  "Show the chat window on the site. Off hides it from visitors (admins can still preview)."
   enabled: Boolean
 
-  ""
+  "Paths where the window is hidden, one per line; * is a wildcard."
   excludeUrls: String
 
-  ""
+  "Window font: same as the site or the system font."
   font: FlxSettingsChatbotFont
 
-  ""
+  "Where handed-over chats go: automatic, Flux Chat or the plugin inbox."
   handoffTo: FlxSettingsChatbotHandoffTo
 
-  ""
+  "Window header: gradient or solid color."
   headerStyle: FlxSettingsChatbotHeaderStyle
 
-  ""
+  "Show the home screen when the window opens (off opens the chat directly)."
   homeEnabled: Boolean
 
-  ""
+  "Home screen subtitle. Empty uses the default."
   homeText: String
 
-  ""
+  "Home screen headline. Empty uses the default."
   homeTitle: String
 
-  ""
+  "Weekly hours: { &quot;1&quot;..&quot;7&quot;: { on: 0|1, from: &quot;HH:MM&quot;, to: &quot;HH:MM&quot; } }, 1 = Monday."
   hours: FlxJSON
 
-  ""
+  "Working hours: always open, weekly hours, or Flux Chat hours."
   hoursMode: FlxSettingsChatbotHoursMode
 
-  ""
+  "Icon of the open button."
   launcherIcon: FlxSettingsChatbotLauncherIcon
 
-  ""
+  "Text next to the open button; empty shows the button only."
   launcherLabel: String
 
-  ""
+  "Open button size, px (44-80)."
   launcherSize: Int
 
   "Home screen contact links, one per line: Label | URL (https, mailto, tel, wa.me)."
   links: String
 
-  ""
+  "Cover the whole screen on small screens."
   mobileFull: Boolean
 
   "hybrid = AI first, then human handoff; ai = AI only; live = human agents only."
   mode: FlxSettingsChatbotMode
 
-  ""
+  "Address for handoff and after-hours notifications; empty uses the site admin."
   notifyEmail: String
 
-  ""
+  "Message shown outside working hours. Empty uses the default."
   offlineText: String
 
-  ""
+  "Space from the side edge, px."
   offsetX: Int
 
-  ""
+  "Space from the bottom edge, px."
   offsetY: Int
 
-  ""
+  "Hint in the message field. Empty uses the default."
   placeholder: String
 
-  ""
+  "Side of the screen the button sits on."
   position: FlxSettingsChatbotPosition
 
-  ""
+  "Note under the message field; links are allowed."
   privacyText: String
 
   "One suggested question per line."
   quickReplies: String
 
-  ""
+  "Window corner radius, px."
   radius: Int
 
-  ""
+  "Ask for 1-5 stars at the end of a chat."
   rating: Boolean
 
-  ""
+  "Delete chats and files after this many days (0 = keep)."
   retentionDays: Int
 
-  ""
+  "Show the small &quot;Powered by FluxWP&quot; note."
   showBranding: Boolean
 
-  ""
+  "Show the window on this page type: account."
   showOnAccount: Boolean
 
-  ""
+  "Show the window on this page type: cart."
   showOnCart: Boolean
 
-  ""
+  "Show the window on this page type: checkout."
   showOnCheckout: Boolean
 
-  ""
+  "Show the window on this page type: home."
   showOnHome: Boolean
 
-  ""
+  "Show the window on this page type: other."
   showOnOther: Boolean
 
-  ""
+  "Show the window on this page type: pages."
   showOnPages: Boolean
 
-  ""
+  "Show the window on this page type: posts."
   showOnPosts: Boolean
 
-  ""
+  "Show the window on this page type: shop."
   showOnShop: Boolean
 
-  ""
+  "Show photos of agents who replied recently on the home screen."
   showTeam: Boolean
 
-  ""
+  "Play a short sound for a new reply while the window is closed."
   sound: Boolean
 
-  ""
+  "Seconds on the page before the teaser shows (0-300)."
   teaserDelay: Int
 
-  ""
+  "Pop a short message above the button after the visitor stays a while."
   teaserEnabled: Boolean
 
-  ""
+  "Message of the teaser bubble. Empty uses the default."
   teaserText: String
 
-  ""
+  "Window colors: follow device and site, or always light or dark."
   theme: FlxSettingsChatbotTheme
 
-  ""
+  "Largest file, MB (1-20)."
   uploadMb: Int
 
-  ""
+  "Let visitors send images, PDFs and office documents."
   uploads: Boolean
 
-  ""
+  "The assistant&#039;s first message. Empty uses the default."
   welcome: String
 
-  ""
+  "Window width, px (320-480)."
   width: Int
 }
 
@@ -13424,214 +13424,214 @@ input FlxChatbotSettingsSaveInput {
 
 "Changes to Flux AI Chatbot. Only the fields you send are changed."
 input FlxSettingsChatbotInput {
-  ""
+  "Show suggested products as cards in the window."
   aiCards: Boolean
 
-  ""
+  "Assistant replies per day on the whole site (0 = unlimited)."
   aiDailyLimit: Int
 
-  ""
+  "Assistant replies per chat per hour (0 = unlimited)."
   aiHourLimit: Int
 
-  ""
+  "Rules the assistant must follow."
   aiInstructions: String
 
   "Free-form knowledge base the assistant may answer from."
   aiKnowledge: String
 
-  ""
+  "Assistant replies per chat before it goes to an agent (1-200)."
   aiMaxTurns: Int
 
-  ""
+  "Personality and tone of the assistant."
   aiPersona: String
 
-  ""
+  "Let the assistant search published pages."
   aiSrcPages: Boolean
 
-  ""
+  "Let the assistant search published posts."
   aiSrcPosts: Boolean
 
-  ""
+  "Let the assistant look up WooCommerce products (price, stock, link)."
   aiSrcProducts: Boolean
 
-  ""
+  "Let the assistant search Flux Wiki pages."
   aiSrcWiki: Boolean
 
-  ""
+  "Save contact details a visitor gives (also to Flux CRM when installed)."
   aiToolLead: Boolean
 
-  ""
+  "Let a signed-in customer ask about their own orders."
   aiToolOrders: Boolean
 
-  ""
+  "When to ask the visitor for an email address."
   askEmail: FlxSettingsChatbotAskEmail
 
-  ""
+  "Who sees the window: everyone, guests only, or signed-in members only."
   audience: FlxSettingsChatbotAudience
 
-  ""
+  "Avatar icon used when there is no image."
   avatarIcon: FlxSettingsChatbotAvatarIcon
 
-  ""
+  "Media library image ID of the assistant avatar (0 = none)."
   avatarId: Int
 
-  ""
+  "Assistant name in the window header. Empty uses the default."
   botName: String
 
   "Widget main color (hex). Empty follows the theme primary color."
   color: String
 
-  ""
+  "Header and button text color (hex). Empty picks a readable color from the main color."
   colorText: String
 
-  ""
+  "Show on desktop."
   deviceDesktop: Boolean
 
-  ""
+  "Show on mobile."
   deviceMobile: Boolean
 
-  ""
+  "Show a voice dictation button in the message field."
   dictation: Boolean
 
-  ""
+  "Also email agent replies when the visitor has left the page."
   emailReplies: Boolean
 
-  ""
+  "Show the chat window on the site. Off hides it from visitors (admins can still preview)."
   enabled: Boolean
 
-  ""
+  "Paths where the window is hidden, one per line; * is a wildcard."
   excludeUrls: String
 
-  ""
+  "Window font: same as the site or the system font."
   font: FlxSettingsChatbotFont
 
-  ""
+  "Where handed-over chats go: automatic, Flux Chat or the plugin inbox."
   handoffTo: FlxSettingsChatbotHandoffTo
 
-  ""
+  "Window header: gradient or solid color."
   headerStyle: FlxSettingsChatbotHeaderStyle
 
-  ""
+  "Show the home screen when the window opens (off opens the chat directly)."
   homeEnabled: Boolean
 
-  ""
+  "Home screen subtitle. Empty uses the default."
   homeText: String
 
-  ""
+  "Home screen headline. Empty uses the default."
   homeTitle: String
 
-  ""
+  "Weekly hours: { \"1\"..\"7\": { on: 0|1, from: \"HH:MM\", to: \"HH:MM\" } }, 1 = Monday."
   hours: FlxJSON
 
-  ""
+  "Working hours: always open, weekly hours, or Flux Chat hours."
   hoursMode: FlxSettingsChatbotHoursMode
 
-  ""
+  "Icon of the open button."
   launcherIcon: FlxSettingsChatbotLauncherIcon
 
-  ""
+  "Text next to the open button; empty shows the button only."
   launcherLabel: String
 
-  ""
+  "Open button size, px (44-80)."
   launcherSize: Int
 
   "Home screen contact links, one per line: Label | URL (https, mailto, tel, wa.me)."
   links: String
 
-  ""
+  "Cover the whole screen on small screens."
   mobileFull: Boolean
 
   "hybrid = AI first, then human handoff; ai = AI only; live = human agents only."
   mode: FlxSettingsChatbotMode
 
-  ""
+  "Address for handoff and after-hours notifications; empty uses the site admin."
   notifyEmail: String
 
-  ""
+  "Message shown outside working hours. Empty uses the default."
   offlineText: String
 
-  ""
+  "Space from the side edge, px."
   offsetX: Int
 
-  ""
+  "Space from the bottom edge, px."
   offsetY: Int
 
-  ""
+  "Hint in the message field. Empty uses the default."
   placeholder: String
 
-  ""
+  "Side of the screen the button sits on."
   position: FlxSettingsChatbotPosition
 
-  ""
+  "Note under the message field; links are allowed."
   privacyText: String
 
   "One suggested question per line."
   quickReplies: String
 
-  ""
+  "Window corner radius, px."
   radius: Int
 
-  ""
+  "Ask for 1-5 stars at the end of a chat."
   rating: Boolean
 
-  ""
+  "Delete chats and files after this many days (0 = keep)."
   retentionDays: Int
 
-  ""
+  "Show the small \"Powered by FluxWP\" note."
   showBranding: Boolean
 
-  ""
+  "Show the window on this page type: account."
   showOnAccount: Boolean
 
-  ""
+  "Show the window on this page type: cart."
   showOnCart: Boolean
 
-  ""
+  "Show the window on this page type: checkout."
   showOnCheckout: Boolean
 
-  ""
+  "Show the window on this page type: home."
   showOnHome: Boolean
 
-  ""
+  "Show the window on this page type: other."
   showOnOther: Boolean
 
-  ""
+  "Show the window on this page type: pages."
   showOnPages: Boolean
 
-  ""
+  "Show the window on this page type: posts."
   showOnPosts: Boolean
 
-  ""
+  "Show the window on this page type: shop."
   showOnShop: Boolean
 
-  ""
+  "Show photos of agents who replied recently on the home screen."
   showTeam: Boolean
 
-  ""
+  "Play a short sound for a new reply while the window is closed."
   sound: Boolean
 
-  ""
+  "Seconds on the page before the teaser shows (0-300)."
   teaserDelay: Int
 
-  ""
+  "Pop a short message above the button after the visitor stays a while."
   teaserEnabled: Boolean
 
-  ""
+  "Message of the teaser bubble. Empty uses the default."
   teaserText: String
 
-  ""
+  "Window colors: follow device and site, or always light or dark."
   theme: FlxSettingsChatbotTheme
 
-  ""
+  "Largest file, MB (1-20)."
   uploadMb: Int
 
-  ""
+  "Let visitors send images, PDFs and office documents."
   uploads: Boolean
 
-  ""
+  "The assistant's first message. Empty uses the default."
   welcome: String
 
-  ""
+  "Window width, px (320-480)."
   width: Int
 }
 
