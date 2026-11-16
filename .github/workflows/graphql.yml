@@ -2,22 +2,15 @@ name: GraphQL schema and types
 
 # Schema snapshot → breaking change check → codegen → typecheck of every client.
 # A breaking change fails the check unless the PR has the "graphql-breaking" label.
-#
-# The snapshot is split by owner (docs/graphql/KURALLAR.md §7): packages/graphql/schema/core.graphql
-# (WordPress / WPGraphQL) and plugins|themes/<slug>/graphql/schema.graphql. Generated TypeScript is not
-# committed (bun install writes it). So parallel package pull requests do not touch the same files.
 
 on:
   pull_request:
     types: [opened, synchronize, reopened, labeled, unlabeled]
     paths:
       - 'plugins/**'
-      - 'themes/**'
       - 'packages/**'
       - 'apps/**'
       - 'tools/tests/wp-graphql/**'
-      - 'tools/graphql/**'
-      - 'docs/graphql/**'
       - 'package.json'
       - 'bun.lock'
       - 'tsconfig*.json'
@@ -27,7 +20,6 @@ on:
     branches: [main]
     paths:
       - 'plugins/**'
-      - 'themes/**'
       - 'packages/graphql/**'
       - '.github/workflows/graphql.yml'
   workflow_dispatch:
@@ -53,68 +45,31 @@ jobs:
       - uses: actions/setup-node@v5
         with: { node-version: 22 }
       - run: bun install --frozen-lockfile
-      - name: Package status files (docs/graphql/durum)
-        run: bun tools/graphql/durum.ts --check
 
       - name: Schema snapshot
         env:
           TEST_ROOT: ${{ runner.temp }}/flx-test
         run: |
-          # Base schema: the parts of the base commit, assembled (an old commit has the single snapshot).
           base="${{ github.event.pull_request.base.sha || github.event.before }}"
-          mkdir -p "$RUNNER_TEMP/base"
-          if git cat-file -e "$base^{commit}" 2>/dev/null; then
-            git ls-tree -r --name-only "$base" \
-              | grep -E '^(packages/graphql/schema/[^/]+\.graphql|(plugins|themes)/[^/]+/graphql/schema\.graphql)$' \
-              | while read -r f; do mkdir -p "$RUNNER_TEMP/base/$(dirname "$f")"; git show "$base:$f" > "$RUNNER_TEMP/base/$f"; done
-            bun packages/graphql/scripts/schema-parts.ts assemble --root "$RUNNER_TEMP/base" --out "$RUNNER_TEMP/base.graphql" \
-              || { echo "::warning::The base schema could not be assembled; the breaking change check is skipped."; rm -f "$RUNNER_TEMP/base.graphql"; }
-          fi
-          SCHEMA_RAW_DIR="$RUNNER_TEMP/schema-raw" bun run --filter @fluxwp/graphql schema
-          parts=(packages/graphql/schema ':(glob)plugins/*/graphql/schema.graphql' ':(glob)themes/*/graphql/schema.graphql')
-          changed="$(git status --porcelain -- "${parts[@]}")"
-          [ -z "$changed" ] && exit 0
-          echo "$changed"
-          # Full diff in the log (local WP / theme / WooCommerce versions can produce a different snapshot);
-          # the CI parts are also uploaded as the "graphql-schema-ci" artifact.
-          echo "::group::Schema diff (CI output vs committed)"
-          git diff -- "${parts[@]}" | head -n 3000
-          git ls-files --others --exclude-standard -- "${parts[@]}" | while read -r f; do echo "+++ new: $f"; head -n 400 "$f"; done
-          echo "::endgroup::"
-          # The changed parts as one base64 tar.gz line, for sessions that cannot download artifacts:
-          #   gh api repos/<owner>/<repo>/actions/jobs/<job id>/logs | bash tools/graphql/ci-parts.sh [plugins/<slug>]
-          echo "$changed" | awk '{print $NF}' | while read -r f; do [ -f "$f" ] && echo "$f"; done > "$RUNNER_TEMP/parts.txt"
-          if [ -s "$RUNNER_TEMP/parts.txt" ]; then
-            echo "FLX-SCHEMA-PARTS-BEGIN $(tar -czf - -T "$RUNNER_TEMP/parts.txt" | base64 -w0) FLX-SCHEMA-PARTS-END"
-          fi
-          # The core part follows the WordPress / WPGraphQL release CI downloads: a difference there is only a
-          # warning (whoever owns Flux GraphQL refreshes it), so a WordPress release does not stop every PR.
-          # The rest of this job uses the CI output, so types and the breaking check still see the real schema.
-          packages="$(echo "$changed" | awk '{print $NF}' | grep -v '^packages/graphql/schema/' | paste -sd ' ' - || true)"
-          if echo "$changed" | awk '{print $NF}' | grep -q '^packages/graphql/schema/'; then
-            echo "::warning title=Schema snapshot (core)::packages/graphql/schema/core.graphql differs from this CI run (WordPress / WPGraphQL version). Refresh it in a Flux GraphQL PR."
-          fi
-          if [ -n "$packages" ]; then
-            echo "::error title=Schema snapshot::Out of date: $packages. Commit your package's part (graphql-schema-ci artifact, or 'bun run --filter @fluxwp/graphql schema -- plugins/<slug>')."
+          git show "$base:packages/graphql/schema/schema.graphql" > "$RUNNER_TEMP/base.graphql" 2>/dev/null || true
+          bun run --filter @fluxwp/graphql schema
+          if ! git diff --quiet -- packages/graphql/schema; then
+            git diff --stat -- packages/graphql/schema
+            # Full diff in the log (local WP / theme / WooCommerce versions can produce a different snapshot);
+            # the CI snapshot is also uploaded as the "graphql-schema-ci" artifact.
+            echo "::group::Schema diff (CI output vs committed)"
+            git diff -- packages/graphql/schema | head -n 2000
+            echo "::endgroup::"
+            echo "::error title=Schema snapshot::packages/graphql/schema/schema.graphql is out of date. Run 'bun run --filter @fluxwp/graphql schema' and commit it."
             exit 1
           fi
 
-      - name: Upload the CI schema parts
-        if: always()
+      - name: Upload the CI schema snapshot
+        if: failure()
         uses: actions/upload-artifact@v5
         with:
           name: graphql-schema-ci
-          path: |
-            packages/graphql/schema/core.graphql
-            plugins/*/graphql/schema.graphql
-            themes/*/graphql/schema.graphql
-          if-no-files-found: ignore
-      - name: Upload the raw CI schema and owners
-        if: always()
-        uses: actions/upload-artifact@v5
-        with:
-          name: graphql-schema-raw
-          path: ${{ runner.temp }}/schema-raw/
+          path: packages/graphql/schema/
           if-no-files-found: ignore
 
       - name: Breaking changes
@@ -127,7 +82,6 @@ jobs:
             echo "No schema on the base commit; nothing to compare."
           fi
 
-      # Writes the (uncommitted) TypeScript from the CI parts; fails when a committed manifest is stale.
       - name: Generated types and persisted manifests are current
         run: bun run --filter @fluxwp/graphql generate:check
 

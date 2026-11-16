@@ -2,9 +2,10 @@
 /**
  * Plugin Name:       Flux Backup
  * Description:       Her eklenti/tema güncellemesinden önce otomatik yedek alır, zamanlanmış tam yedekler, kota ve saklama süresi yönetimi, grafikli depolama paneli ve seçerek geri yükleme. Hostinger paylaşımlı barındırma ile uyumludur.
- * Version:           1.4.10
- * Requires at least: 6.4
- * Requires PHP:      7.4
+ * Version:           1.5.0
+ * Requires at least: 6.5
+ * Requires PHP:      8.1
+ * Requires Plugins:  flx-graphql
  * Author:            FluxWP
  * License:           GPL-2.0-or-later
  * Text Domain:       flx-backup
@@ -22,7 +23,7 @@ if ( defined( 'FLXY_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXY_VERSION', '1.4.10' );
+define( 'FLXY_VERSION', '1.5.0' );
 define( 'FLXY_FILE', __FILE__ );
 define( 'FLXY_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXY_URL', plugin_dir_url( __FILE__ ) );
@@ -40,8 +41,31 @@ require_once FLXY_DIR . 'includes/class-flxy-indicator.php';
 require_once FLXY_DIR . 'includes/class-flxy-pre-update.php';
 require_once FLXY_DIR . 'includes/class-flxy-cron.php';
 require_once FLXY_DIR . 'includes/class-flxy-checks.php';
+require_once FLXY_DIR . 'includes/services/class-flxy-service.php';
 require_once FLXY_DIR . 'includes/api.php';
 require_once FLXY_DIR . 'includes/app.php';
+
+/*
+ * GraphQL (Flux GraphQL): schema only inside a GraphQL request; the persisted operations the Backups
+ * screen sends. Without Flux GraphQL the schema is left out and the classic pages keep working.
+ */
+add_action(
+	'flx_gql_register',
+	static function () {
+		if ( ! function_exists( 'flx_gql_all_caps' ) ) {
+			return;
+		}
+		require_once FLXY_DIR . 'includes/graphql/schema.php';
+	}
+);
+add_filter(
+	'flx_gql_persisted_manifests',
+	static function ( $m ) {
+		$m              = is_array( $m ) ? $m : array();
+		$m['flx-backup'] = FLXY_DIR . 'graphql/persisted-queries.json';
+		return $m;
+	}
+);
 
 add_action(
 	'init',

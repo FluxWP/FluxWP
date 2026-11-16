@@ -1,0 +1,19 @@
+# The backup list: a page of rows, filter counts and the server state the dialogs need.
+query FlxBackupList($first: Int = 20, $after: String, $type: FlxBackupType, $status: FlxBackupStatus) {
+  flxBackups(first: $first, after: $after, type: $type, status: $status) {
+    nodes {
+      ...FlxBackupRow
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    totalCount
+  }
+  flxBackupCounts {
+    ...FlxBackupCountsFields
+  }
+  flxBackupHealth {
+    ...FlxBackupHealthFields
+  }
+}

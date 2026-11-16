@@ -1,0 +1,12 @@
+mutation FlxBackupLock($input: FlxBackupLockInput!) {
+  flxBackupLock(input: $input) {
+    backup {
+      ...FlxBackupRow
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

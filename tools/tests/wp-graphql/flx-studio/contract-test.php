@@ -85,6 +85,68 @@ if ( ! function_exists( 'flxai_media_submit' ) ) {
 	function flxai_budget_status( $fresh = false ) {
 		return array( 'daily' => array( 'label' => 'Daily', 'limit' => 5, 'spent' => 1.5, 'pct' => 30, 'over' => false ) );
 	}
+} else {
+	/*
+	 * The real Flux AI is on the test site: keys are fake and the providers are mocked at the HTTP layer
+	 * (fal.ai queue: submit, status, result; the file download; the OpenRouter chat for Enhance and Brainstorm).
+	 */
+	$GLOBALS['flxst_t_submits'] = 0;
+	foreach ( array( 'FLXAI_KEY_FAL', 'FLXAI_KEY_OPENROUTER' ) as $c ) {
+		if ( ! defined( $c ) ) {
+			define( $c, 'test-key' );
+		}
+	}
+	flxai_update_settings( array( 'model' => 'openrouter/test-model', 'limit_day' => 5 ) );
+	add_filter(
+		'pre_http_request',
+		static function ( $pre, $args, $url ) {
+			$url  = (string) $url;
+			$resp = static function ( $body, string $type = 'application/json' ) {
+				return array( 'headers' => array( 'content-type' => $type ), 'body' => $body, 'response' => array( 'code' => 200, 'message' => 'OK' ), 'cookies' => array(), 'filename' => null );
+			};
+			if ( str_contains( $url, 'queue.fal.run' ) ) {
+				if ( 'POST' === ( $args['method'] ?? '' ) ) {
+					$GLOBALS['flxst_t_submits']++;
+					return $resp( wp_json_encode( array( 'request_id' => 'req' . $GLOBALS['flxst_t_submits'] ) ) );
+				}
+				if ( str_ends_with( $url, '/status' ) ) {
+					return $resp( wp_json_encode( array( 'status' => 'COMPLETED' ) ) );
+				}
+				$img = array( 'url' => 'https://cdn.example.test/out.png', 'content_type' => 'image/png' );
+				return $resp( wp_json_encode( array( 'images' => array( $img, $img ) ) ) );
+			}
+			if ( str_starts_with( $url, 'https://cdn.example.test/' ) ) {
+				ob_start();
+				imagepng( imagecreatetruecolor( 8, 8 ) );
+				$png = (string) ob_get_clean();
+				$out = $resp( $png, 'image/png' );
+				if ( ! empty( $args['stream'] ) && ! empty( $args['filename'] ) ) {
+					file_put_contents( (string) $args['filename'], $png ); // phpcs:ignore
+					$out['filename'] = (string) $args['filename'];
+				}
+				return $out;
+			}
+			if ( str_contains( $url, 'chat/completions' ) ) {
+				$text = str_contains( (string) ( $args['body'] ?? '' ), 'ideas' ) ? '{"ideas":[{"title":"Bir","prompt":"One"},{"title":"İki","prompt":"Two"}]}' : 'A detailed prompt';
+				return $resp( wp_json_encode( array( 'choices' => array( array( 'message' => array( 'content' => $text ), 'finish_reason' => 'stop' ) ), 'usage' => array( 'prompt_tokens' => 1, 'completion_tokens' => 1 ) ) ) );
+			}
+			return $pre;
+		},
+		10,
+		3
+	);
+}
+$flxst_cat = flxst_models();
+$IMG       = (string) ( $flxst_cat['default_image'] ?? '' );
+$VID       = (string) ( $flxst_cat['default_video'] ?? '' );
+$vcat      = $flxst_cat['models'][ $VID ] ?? array();
+$vdur      = array_values( (array) ( $vcat['duration'] ?? array( 4, 10, 6 ) ) );
+$vsec      = (int) ( $vdur[2] ?? 6 );
+/** The poll lock of a Flux AI job (3 s) would hide a second status call in the same second. */
+function flxst_t_unlock( string $job ): void {
+	if ( function_exists( 'flxai_media_job_get' ) && ( $row = flxai_media_job_get( $job ) ) ) {
+		delete_transient( 'flxai_mpoll_' . $row['id'] );
+	}
 }
 
 $GLOBALS['flxst_ops'] = array();
@@ -146,11 +208,12 @@ $r = flxst_t_op( 'FlxStudioWorkspace', array(), $ayse );
 flxt_same( null, $r['errors'] ?? null, 'workspace: no errors for a Studio user' );
 $ws = $r['data']['flxStudio'] ?? array();
 flxt_same( array( true, true, false, FLXST_VERSION ), array( $ws['aiMedia'] ?? null, $ws['aiText'] ?? null, $ws['canManage'] ?? null, $ws['version'] ?? null ), 'workspace: AI flags, canManage false, version' );
-flxt_same( array( 'stub-image', 'stub-video' ), array_column( $ws['catalog']['models'] ?? array(), 'id' ), 'workspace: models from Flux AI' );
-$vid = $ws['catalog']['models'][1] ?? array();
-flxt_same( array( 4, 10, 6 ), array( $vid['durationMin'] ?? null, $vid['durationMax'] ?? null, $vid['durationDefault'] ?? null ), 'workspace: video duration range' );
-flxt_same( array( 'stub-image', 'stub-video' ), array( $ws['settings']['imageModel'] ?? null, $ws['settings']['videoModel'] ?? null ), 'workspace: settings start with the Flux AI defaults' );
-flxt_same( array( 'daily', 1.5 ), array( $ws['budget'][0]['period'] ?? null, $ws['budget'][0]['spent'] ?? null ), 'workspace: spending limit from Flux AI' );
+flxt_same( array_keys( $flxst_cat['models'] ), array_column( $ws['catalog']['models'] ?? array(), 'id' ), 'workspace: models from Flux AI' );
+$vid = array_column( $ws['catalog']['models'] ?? array(), null, 'id' )[ $VID ] ?? array();
+flxt_same( array( (int) ( $vdur[0] ?? 4 ), (int) ( $vdur[1] ?? 10 ), $vsec ), array( $vid['durationMin'] ?? null, $vid['durationMax'] ?? null, $vid['durationDefault'] ?? null ), 'workspace: video duration range' );
+flxt_same( array( $IMG, $VID ), array( $ws['settings']['imageModel'] ?? null, $ws['settings']['videoModel'] ?? null ), 'workspace: settings start with the Flux AI defaults' );
+$bud = flxai_budget_status( true );
+flxt_same( array( (string) array_key_first( $bud ), (float) reset( $bud )['spent'] ), array( $ws['budget'][0]['period'] ?? null, (float) ( $ws['budget'][0]['spent'] ?? -1 ) ), 'workspace: spending limit from Flux AI' );
 $boot = flxst_t_rest( 'GET', '/boot', array(), $ayse );
 flxt_same( 200, $boot['status'], 'REST boot works' );
 flxt_same( array_keys( $boot['data']['models']['models'] ), array_column( $ws['catalog']['models'] ?? array(), 'id' ), 'parity: REST boot and GraphQL list the same models' );
@@ -182,7 +245,7 @@ flxt_ok( 'INVALID_INPUT' === ( $r['data']['flxStudioGenerate']['errors'][0]['cod
 $r = flxst_t_mut( 'FlxStudioGenerate', array( 'prompt' => 'Kırmızı bir elma', 'count' => 2, 'aspect' => '1:1', 'folderId' => $f2['databaseId'], 'title' => 'Elma', 'refs' => array() ), $ayse );
 flxt_same( null, $r['errors'] ?? null, 'generate: no errors' );
 $items = $r['data']['flxStudioGenerate']['items'] ?? array();
-flxt_same( array( 2, 'QUEUED', 'IMAGE', 'stub-image', 'Elma', $f2['databaseId'], 2 ), array( count( $items ), $items[0]['state'] ?? null, $items[0]['kind'] ?? null, $items[0]['model'] ?? null, $items[0]['title'] ?? null, $items[0]['folderId'] ?? null, $items[0]['params']['count'] ?? null ), 'generate: two queued items with the request saved' );
+flxt_same( array( 2, 'QUEUED', 'IMAGE', $IMG, 'Elma', $f2['databaseId'], 2 ), array( count( $items ), $items[0]['state'] ?? null, $items[0]['kind'] ?? null, $items[0]['model'] ?? null, $items[0]['title'] ?? null, $items[0]['folderId'] ?? null, $items[0]['params']['count'] ?? null ), 'generate: two queued items with the request saved' );
 $job = (string) ( $items[0]['job'] ?? '' );
 flxt_ok( 0 === strpos( $job, 'flxd_' ), 'generate: items wait under a flxd_ job until sent', $job );
 flxt_same( 0, $GLOBALS['flxst_t_submits'], 'generate: nothing is sent to Flux AI during the request (deferred)' );
@@ -194,11 +257,13 @@ flxt_same( 1, $GLOBALS['flxst_t_submits'], 'dispatch: one submit for both output
 
 $r = flxst_t_mut( 'FlxStudioPoll', array( 'jobs' => array( $job ) ), $can );
 flxt_same( array(), $r['data']['flxStudioPoll']['items'] ?? null, 'poll: another user gets nothing for a job that is not theirs' );
+flxst_t_unlock( (string) ( flxst_item( (int) ( $items[0]['databaseId'] ?? 0 ) )['job'] ?? '' ) );
 $r = flxst_t_mut( 'FlxStudioPoll', array( 'jobs' => array( $job ) ), $ayse );
 $polled = $r['data']['flxStudioPoll']['items'] ?? array();
 flxt_same( array( 'DONE', 'DONE' ), array_column( $polled, 'state' ), 'poll: finished items' );
 flxt_ok( str_starts_with( (string) ( $polled[0]['job'] ?? '' ), 'flxm_' ) && ! empty( $polled[0]['url'] ), 'poll: real job id and file address', $polled[0] ?? null );
-flxt_same( 0.02, $polled[0]['cost'] ?? null, 'poll: cost split between the outputs' );
+$job_cost = function_exists( 'flxai_media_job_get' ) ? (float) ( flxai_media_job_get( (string) ( $polled[0]['job'] ?? '' ) )['cost'] ?? 0 ) : 0.04;
+flxt_same( array( true, round( $job_cost, 4 ) ), array( ( $polled[0]['cost'] ?? 0 ) > 0 && ( $polled[0]['cost'] ?? 0 ) === ( $polled[1]['cost'] ?? -1 ), round( (float) ( $polled[0]['cost'] ?? 0 ) + (float) ( $polled[1]['cost'] ?? 0 ), 4 ) ), 'poll: cost split between the outputs' );
 $first = (int) ( $polled[0]['databaseId'] ?? 0 );
 
 // Gallery + REST parity + visibility.
@@ -250,9 +315,9 @@ $r = flxst_t_mut( 'FlxStudioItemsDelete', array( 'ids' => array( $first, 999999 
 flxt_same( array( $first ), $r['data']['flxStudioItemsDelete']['deletedIds'] ?? null, 'delete: own item deleted, unknown id skipped' );
 
 // Video, cancel before it is sent.
-$r = flxst_t_mut( 'FlxStudioGenerate', array( 'prompt' => 'Dalgalar', 'kind' => 'VIDEO', 'model' => 'stub-video', 'duration' => 6, 'audio' => false ), $ayse );
+$r = flxst_t_mut( 'FlxStudioGenerate', array( 'prompt' => 'Dalgalar', 'kind' => 'VIDEO', 'model' => $VID, 'duration' => $vsec, 'audio' => false ), $ayse );
 $v = $r['data']['flxStudioGenerate']['items'][0] ?? array();
-flxt_same( array( 'VIDEO', 6, false ), array( $v['kind'] ?? null, $v['params']['duration'] ?? null, $v['params']['audio'] ?? null ), 'video: duration and sound kept' );
+flxt_same( array( 'VIDEO', $vsec, false ), array( $v['kind'] ?? null, $v['params']['duration'] ?? null, $v['params']['audio'] ?? null ), 'video: duration and sound kept' );
 $r = flxst_t_mut( 'FlxStudioCancel', array( 'job' => $v['job'] ?? '' ), $can );
 flxt_same( 'NOT_FOUND', flxt_code( $r ), 'cancel: not the owner → NOT_FOUND' );
 $r = flxst_t_mut( 'FlxStudioCancel', array( 'job' => $v['job'] ?? '' ), $ayse );
@@ -267,7 +332,7 @@ flxt_ok( null !== flxt_code( $r ) || ! empty( $r['data']['flxStudioGenerate']['e
 
 /* ---------------------------------------------------------------- Enhance, Brainstorm */
 
-$r = flxst_t_mut( 'FlxStudioEnhance', array( 'prompt' => 'elma', 'mode' => 'IMAGE', 'modelLabel' => 'Stub image' ), $ayse );
+$r = flxst_t_mut( 'FlxStudioEnhance', array( 'prompt' => 'elma', 'mode' => 'IMAGE', 'modelLabel' => 'Model' ), $ayse );
 flxt_same( 'A detailed prompt', $r['data']['flxStudioEnhance']['prompt'] ?? null, 'enhance: prompt from the text model' );
 $r = flxst_t_mut( 'FlxStudioEnhance', array( 'prompt' => '  ' ), $ayse );
 flxt_same( 'INVALID_INPUT', $r['data']['flxStudioEnhance']['errors'][0]['code'] ?? flxt_code( $r ), 'enhance: empty draft → INVALID_INPUT' );
@@ -323,9 +388,9 @@ flxt_same( $ref2['databaseId'], $r['data']['flxStudioRefDelete']['deletedId'] ??
 
 /* ---------------------------------------------------------------- Templates */
 
-$r = flxst_t_mut( 'FlxStudioTemplateCreate', array( 'name' => 'Kare elma', 'prompt' => 'elma', 'shared' => true, 'params' => array( 'kind' => 'IMAGE', 'model' => 'stub-image', 'aspect' => '1:1', 'count' => 2 ) ), $ayse );
+$r = flxst_t_mut( 'FlxStudioTemplateCreate', array( 'name' => 'Kare elma', 'prompt' => 'elma', 'shared' => true, 'params' => array( 'kind' => 'IMAGE', 'model' => $IMG, 'aspect' => '1:1', 'count' => 2 ) ), $ayse );
 $tpls = $r['data']['flxStudioTemplateCreate']['templates'] ?? array();
-flxt_same( array( 'Kare elma', 'IMAGE', 'stub-image', 2 ), array( $tpls[0]['name'] ?? null, $tpls[0]['params']['kind'] ?? null, $tpls[0]['params']['model'] ?? null, $tpls[0]['params']['count'] ?? null ), 'template: saved with its settings' );
+flxt_same( array( 'Kare elma', 'IMAGE', $IMG, 2 ), array( $tpls[0]['name'] ?? null, $tpls[0]['params']['kind'] ?? null, $tpls[0]['params']['model'] ?? null, $tpls[0]['params']['count'] ?? null ), 'template: saved with its settings' );
 $r = flxst_t_mut( 'FlxStudioTemplateDelete', array( 'id' => $tpls[0]['databaseId'] ?? 0 ), $can );
 flxt_same( 'NOT_FOUND', flxt_code( $r ), 'template: a stranger cannot delete → NOT_FOUND' );
 $r = flxst_t_mut( 'FlxStudioTemplateDelete', array( 'id' => $tpls[0]['databaseId'] ?? 0 ), $ayse );
@@ -354,7 +419,8 @@ flxt_ok( count( $r['data']['flxStudioItems']['nodes'] ?? array() ) >= 2, 'items:
 
 // Budget query.
 $r = flxst_t_op( 'FlxStudioBudget', array(), $ayse );
-flxt_same( 30.0, (float) ( $r['data']['flxStudioBudget'][0]['pct'] ?? 0 ), 'budget: from Flux AI' );
+$bud = flxai_budget_status( true );
+flxt_same( array( (string) array_key_first( $bud ), (float) reset( $bud )['pct'] ), array( $r['data']['flxStudioBudget'][0]['period'] ?? null, (float) ( $r['data']['flxStudioBudget'][0]['pct'] ?? -1 ) ), 'budget: from Flux AI' );
 
 // Folder delete: items move up.
 $r = flxst_t_mut( 'FlxStudioFolderDelete', array( 'id' => $f1['databaseId'] ), $ayse );

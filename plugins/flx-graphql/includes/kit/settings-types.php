@@ -225,17 +225,37 @@ function flx_gql_register_settings_types(): void {
 	}
 	$root_fields  = array();
 	$input_fields = array();
-	// Schema snapshot (wp flx-gql schema): each group belongs to the package that declared the option.
-	$owners = flx_gql_settings_owners();
 	foreach ( $schema as $option => $o ) {
-		$owner = $owners[ $option ] ?? '';
-		flx_gql_schema_owned_by(
-			$owner,
-			static function () use ( $o, $owner ) {
-				flx_gql_settings_group_types( $o );
-				flx_gql_schema_own( 'FlxSettings.' . $o['field'], '' !== $owner ? $owner : null );
-				flx_gql_schema_own( 'FlxSettingsUpdateInput.' . $o['field'], '' !== $owner ? $owner : null );
-			}
+		$fields = array();
+		$inputs = array();
+		foreach ( $o['fields'] as $gql => $f ) {
+			$type            = flx_gql_settings_field_type( $o['type'], $gql, $f );
+			$key             = $f['key'];
+			$default         = $f['default'];
+			$fields[ $gql ]  = array(
+				'type'        => $type,
+				'description' => $f['desc'],
+				'resolve'     => static fn( $values ) => is_array( $values ) && array_key_exists( $key, $values ) ? flx_gql_settings_out( $values[ $key ], $f ) : flx_gql_settings_out( $default, $f ),
+			);
+			$inputs[ $gql ]  = array(
+				'type'        => $type,
+				'description' => $f['desc'],
+			);
+		}
+		flx_gql_type(
+			$o['type'],
+			array(
+				'description' => $o['label'],
+				'fields'      => $fields,
+			)
+		);
+		flx_gql_input(
+			$o['type'] . 'Input',
+			array(
+				/* translators: %s: settings group label. */
+				'description' => sprintf( __( 'Changes to %s. Only the fields you send are changed.', 'flx-graphql' ), $o['label'] ),
+				'fields'      => $inputs,
+			)
 		);
 		$cap                        = $o['cap'];
 		$root_fields[ $o['field'] ] = array(
@@ -327,46 +347,6 @@ function flx_gql_register_settings_types(): void {
 				do_action( 'flx_gql_settings_updated', $input );
 				return array();
 			},
-		)
-	);
-}
-
-/**
- * Registers one settings group's object and input types (and the enums of its fields).
- *
- * @param FlxGqlSettingsGroup $o Normalised group.
- */
-function flx_gql_settings_group_types( array $o ): void {
-	$fields = array();
-	$inputs = array();
-	foreach ( $o['fields'] as $gql => $f ) {
-
-		$type            = flx_gql_settings_field_type( $o['type'], $gql, $f );
-		$key             = $f['key'];
-		$default         = $f['default'];
-		$fields[ $gql ]  = array(
-			'type'        => $type,
-			'description' => $f['desc'],
-			'resolve'     => static fn( $values ) => is_array( $values ) && array_key_exists( $key, $values ) ? flx_gql_settings_out( $values[ $key ], $f ) : flx_gql_settings_out( $default, $f ),
-		);
-		$inputs[ $gql ]  = array(
-			'type'        => $type,
-			'description' => $f['desc'],
-		);
-	}
-	flx_gql_type(
-		$o['type'],
-		array(
-			'description' => $o['label'],
-			'fields'      => $fields,
-		)
-	);
-	flx_gql_input(
-		$o['type'] . 'Input',
-		array(
-			/* translators: %s: settings group label. */
-			'description' => sprintf( __( 'Changes to %s. Only the fields you send are changed.', 'flx-graphql' ), $o['label'] ),
-			'fields'      => $inputs,
 		)
 	);
 }

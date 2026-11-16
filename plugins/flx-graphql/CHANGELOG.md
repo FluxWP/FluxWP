@@ -1,9 +1,5 @@
 # Changelog
 
-## 0.3.1
-
-- Geliştirici: `wp flx-gql schema --output=… --owners=…` şemayı ve her tip/alanın hangi paketten geldiğini yazar. Şema snapshot'ı paket başına dosyalara bölünür (`plugins/<slug>/graphql/schema.graphql`), paralel paket PR'ları aynı dosyaya dokunmaz. Sahip kaydı yalnız bu komutta açılır; normal GraphQL isteklerinin davranışı ve hızı değişmez.
-
 ## 0.3.0
 
 - GraphQL sepet köprüsü: `flxCart` sorgusu ve `flxCartItemAdd`, `flxCartItemUpdate`, `flxCartItemRemove`, `flxCartClear`, `flxCartCouponApply`, `flxCartCouponRemove`, `flxCartShippingRateSelect`, `flxCartCustomerUpdate`. Hepsi içeride WooCommerce Store API'yi çağırır; fiyat, kupon, stok ve ödeme yöntemleri blok ödeme sayfasındakiyle aynı çalışır.
