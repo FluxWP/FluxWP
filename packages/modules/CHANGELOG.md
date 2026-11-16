@@ -1,5 +1,8 @@
 # @fluxwp/modules
 
+## 0.3.14
+- Speed: new `flxp-speed` screen for Flux Speed (summary, records with detail and request panel, server, database, cron, system check, PageSpeed, cache, settings). Same look as the classic page on FluxWP tokens, light and dark; data over GraphQL; texts from the plugin's language packs (`plugins/flx-speed/tools/i18n.py`).
+
 ## 0.3.13
 - AI: new `flxai-admin` screen for Flux AI (Overview, Logs, Billing, Systems, Tools). Same look as the classic pages; data over GraphQL; texts from the module's own en/tr packs.
 

@@ -1,0 +1,13 @@
+# Live server cards; polled every 15 seconds while the tab is open.
+query FlxSpeedLive {
+  flxSpeedLive {
+    meters {
+      key
+      label
+      text
+      sub
+      pct
+    }
+    note
+  }
+}
