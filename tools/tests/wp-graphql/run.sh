@@ -21,6 +21,10 @@ for t in "$here"/*/contract-test.php; do
   [ -f "$t" ] && { $WP eval-file "$t" --path="$site" || fail=1; }
 done
 bash "$here/http-test.sh" "$site" "http://127.0.0.1:$port" || fail=1
+# Package HTTP tests: tools/tests/wp-graphql/<slug>/http-test.sh <site> <url>
+for t in "$here"/*/http-test.sh; do
+  [ -f "$t" ] && { bash "$t" "$site" "http://127.0.0.1:$port" || fail=1; }
+done
 
 if [ -s "$site/wp-content/debug.log" ] && grep -qE 'PHP (Fatal|Parse) error' "$site/wp-content/debug.log"; then
   echo "::error::PHP fatal in debug.log"; grep -E 'PHP (Fatal|Parse) error' "$site/wp-content/debug.log" | head -5; fail=1

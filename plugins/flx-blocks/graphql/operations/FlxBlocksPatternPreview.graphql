@@ -1,0 +1,12 @@
+# One pattern rendered on this site, for its preview.
+query FlxBlocksPatternPreview($id: String!, $source: ID) {
+  flxBlocksPattern(id: $id, source: $source) {
+    ...FlxBlocksPatternRow
+    content
+    rendered {
+      html
+      headHtml
+      footerHtml
+    }
+  }
+}

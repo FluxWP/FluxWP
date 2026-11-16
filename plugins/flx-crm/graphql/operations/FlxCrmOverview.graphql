@@ -1,0 +1,54 @@
+query FlxCrmOverview {
+  flxCrmOverview {
+    total
+    new30
+    newPrev
+    active
+    risk
+    ltv {
+      ...FlxCrmMoney
+    }
+    paying
+    repeat
+    currency
+    activeDays
+    riskThreshold
+    scoredAt {
+      ...FlxCrmWhen
+    }
+    syncedAt {
+      ...FlxCrmWhen
+    }
+    needsSync
+    syncSources
+    roles {
+      key
+      label
+      color
+      count
+    }
+    segments {
+      key
+      label
+      hint
+      tone
+      count
+      value {
+        ...FlxCrmMoney
+      }
+    }
+    sources {
+      key
+      label
+      count
+    }
+  }
+  flxCrmRecentEvents(limit: 8) {
+    ...FlxCrmEvent
+  }
+  atRisk: flxContacts(first: 6, filter: { atRisk: true }, orderBy: LTV, order: DESC) {
+    nodes {
+      ...FlxCrmContactRow
+    }
+  }
+}
