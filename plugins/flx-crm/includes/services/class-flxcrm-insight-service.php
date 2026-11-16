@@ -18,7 +18,7 @@ final class FLXCRM_Insight_Service {
 	public static function overview(): array {
 		$s     = FLXCRM_Val::arr( FLXCRM_Contacts::stats() );
 		$roles = array();
-		foreach ( flxcrm_roles() as $k => $r ) {
+		foreach ( FLXCRM_Val::arr( flxcrm_roles() ) as $k => $r ) {
 			$r = FLXCRM_Val::arr( $r );
 			if ( ! empty( $r['hidden'] ) ) {
 				continue;
@@ -31,7 +31,7 @@ final class FLXCRM_Insight_Service {
 		}
 		$segments = array();
 		$by_seg   = FLXCRM_Val::arr( $s['segments'] ?? array() );
-		foreach ( flxcrm_rfm_segments() as $k => $seg ) {
+		foreach ( FLXCRM_Val::arr( flxcrm_rfm_segments() ) as $k => $seg ) {
 			$seg        = FLXCRM_Val::arr( $seg );
 			$row        = FLXCRM_Val::arr( $by_seg[ $k ] ?? array() );
 			$segments[] = array(
@@ -62,7 +62,7 @@ final class FLXCRM_Insight_Service {
 			'ltv'            => FLXCRM_Val::float( $s['ltv'] ?? 0 ),
 			'paying'         => FLXCRM_Val::int( $s['paying'] ?? 0 ),
 			'repeat'         => FLXCRM_Val::int( $s['repeat'] ?? 0 ),
-			'currency'       => flxcrm_currency(),
+			'currency'       => FLXCRM_Val::str( flxcrm_currency() ),
 			'active_days'    => FLXCRM_Val::int( flxcrm_setting( 'active_days' ) ),
 			'risk_threshold' => FLXCRM_Val::int( flxcrm_setting( 'risk_threshold' ) ),
 			'scored_at'      => $scored > 0 ? $scored : null,
@@ -82,7 +82,7 @@ final class FLXCRM_Insight_Service {
 	 */
 	public static function meta(): array {
 		$roles = array();
-		foreach ( flxcrm_roles() as $k => $r ) {
+		foreach ( FLXCRM_Val::arr( flxcrm_roles() ) as $k => $r ) {
 			$r       = FLXCRM_Val::arr( $r );
 			$roles[] = array(
 				'key'     => (string) $k,
@@ -93,23 +93,23 @@ final class FLXCRM_Insight_Service {
 			);
 		}
 		$rfm = array();
-		foreach ( flxcrm_rfm_segments() as $k => $s ) {
+		foreach ( FLXCRM_Val::arr( flxcrm_rfm_segments() ) as $k => $s ) {
 			$s     = FLXCRM_Val::arr( $s );
 			$rfm[] = array( 'key' => (string) $k, 'label' => FLXCRM_Val::str( $s[0] ?? $k ), 'hint' => FLXCRM_Val::str( $s[1] ?? '' ), 'tone' => FLXCRM_Val::str( $s[2] ?? '' ) );
 		}
-		$manual = flxcrm_manual_event_types();
+		$manual = FLXCRM_Val::arr( flxcrm_manual_event_types() );
 		$types  = array();
-		foreach ( flxcrm_event_types() as $k => $t ) {
+		foreach ( FLXCRM_Val::arr( flxcrm_event_types() ) as $k => $t ) {
 			$t       = FLXCRM_Val::arr( $t );
 			$types[] = array( 'key' => (string) $k, 'label' => FLXCRM_Val::str( $t[0] ?? $k ), 'icon' => FLXCRM_Val::str( $t[1] ?? 'note' ), 'manual' => in_array( $k, $manual, true ) );
 		}
 		$sources = array();
-		foreach ( flxcrm_sources() as $k => $l ) {
+		foreach ( FLXCRM_Val::arr( flxcrm_sources() ) as $k => $l ) {
 			$sources[] = array( 'key' => (string) $k, 'label' => FLXCRM_Val::str( $l ) );
 		}
 		$consents = array();
 		foreach ( FLXCRM_Val::arr( FLXCRM_Contacts::consent_labels() ) as $k => $l ) {
-			$consents[] = array( 'key' => (string) $k, 'label' => $l );
+			$consents[] = array( 'key' => (string) $k, 'label' => FLXCRM_Val::str( $l ) );
 		}
 		$filters = array();
 		foreach ( FLXCRM_Contact_Service::timeline_filters() as $k => $f ) {
@@ -122,8 +122,8 @@ final class FLXCRM_Insight_Service {
 			'sources'          => $sources,
 			'consents'         => $consents,
 			'timeline_filters' => $filters,
-			'currency'         => flxcrm_currency(),
-			'can_write'        => flxcrm_can( true ),
+			'currency'         => FLXCRM_Val::str( flxcrm_currency() ),
+			'can_write'        => FLXCRM_Val::bool( flxcrm_can( true ) ),
 		);
 	}
 
@@ -142,7 +142,7 @@ final class FLXCRM_Insight_Service {
 			'scored'  => FLXCRM_Val::int( $r['scored'] ),
 			'changed' => FLXCRM_Val::int( $r['changed'] ),
 			'done'    => FLXCRM_Val::bool( $r['done'] ),
-			'total'   => FLXCRM_Val::int( $r['total'] ),
+			'total'   => FLXCRM_Val::int( $r['total'] ?? 0 ),
 		);
 	}
 
@@ -157,7 +157,7 @@ final class FLXCRM_Insight_Service {
 		if ( function_exists( 'set_time_limit' ) ) {
 			@set_time_limit( 60 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors
 		}
-		$r = FLXCRM_Sync::step( sanitize_key( $step ), max( 1, $page ) );
+		$r = FLXCRM_Val::arr( FLXCRM_Sync::step( sanitize_key( $step ), max( 1, $page ) ) );
 		FLXCRM_Contact_Service::changed();
 		return array(
 			'step'     => FLXCRM_Val::str( $r['step'] ?? '' ),

@@ -16,9 +16,9 @@ final class FLXCRM_Settings_Service {
 	 * @return array{chat_events: bool, ai_tools: bool, ai_write: bool, ai_destructive: bool, risk_threshold: int, active_days: int, base_currency: string, currency: string, sources: list<array{key: string, label: string, description: string, installed: bool, enabled: bool, has_role: bool, role: string}>, roles: list<array{key: string, label: string, color: string, builtin: bool}>, synced_at: int|null, scored_at: int|null}
 	 */
 	public static function get(): array {
-		$s       = flxcrm_settings();
+		$s       = FLXCRM_Val::arr( flxcrm_settings() );
 		$sources = array();
-		foreach ( flxcrm_registered_sources() as $k => $d ) {
+		foreach ( FLXCRM_Val::arr( flxcrm_registered_sources() ) as $k => $d ) {
 			$d         = FLXCRM_Val::arr( $d );
 			$sources[] = array(
 				'key'         => (string) $k,
@@ -31,7 +31,7 @@ final class FLXCRM_Settings_Service {
 			);
 		}
 		$roles = array();
-		foreach ( flxcrm_roles() as $k => $r ) {
+		foreach ( FLXCRM_Val::arr( flxcrm_roles() ) as $k => $r ) {
 			$r       = FLXCRM_Val::arr( $r );
 			$roles[] = array( 'key' => (string) $k, 'label' => FLXCRM_Val::str( $r['label'] ?? $k ), 'color' => FLXCRM_Val::str( $r['color'] ?? '#64748b' ), 'builtin' => ! empty( $r['builtin'] ) );
 		}
@@ -45,7 +45,7 @@ final class FLXCRM_Settings_Service {
 			'risk_threshold' => FLXCRM_Val::int( $s['risk_threshold'] ?? 70 ),
 			'active_days'    => FLXCRM_Val::int( $s['active_days'] ?? 90 ),
 			'base_currency'  => FLXCRM_Val::str( $s['base_currency'] ?? '' ),
-			'currency'       => flxcrm_currency(),
+			'currency'       => FLXCRM_Val::str( flxcrm_currency() ),
 			'sources'        => $sources,
 			'roles'          => $roles,
 			'synced_at'      => $synced > 0 ? $synced : null,
@@ -60,14 +60,14 @@ final class FLXCRM_Settings_Service {
 	 * @return true|WP_Error
 	 */
 	public static function save( array $in ) {
-		$known = flxcrm_roles();
+		$known = FLXCRM_Val::arr( flxcrm_roles() );
 		$v     = array();
 		foreach ( array( 'chat_events', 'ai_tools', 'ai_write', 'ai_destructive' ) as $k ) {
 			if ( isset( $in[ $k ] ) ) {
 				$v[ $k ] = $in[ $k ] ? 1 : 0;
 			}
 		}
-		$reg = flxcrm_registered_sources();
+		$reg = FLXCRM_Val::arr( flxcrm_registered_sources() );
 		foreach ( $in['sources'] ?? array() as $row ) {
 			$k = sanitize_key( $row['key'] );
 			if ( ! isset( $reg[ $k ] ) ) {
@@ -128,10 +128,10 @@ final class FLXCRM_Settings_Service {
 	 * @return array{ai_installed: bool, mcp_installed: bool, mcp_enabled: bool, mcp_url: string, mcp_admin_url: string, tools_on: int, tools: list<array{name: string, title: string, kind: string, kind_label: string, enabled: bool}>}
 	 */
 	public static function ai(): array {
-		$on     = flxcrm_tools_enabled();
-		$kinds  = flxcrm_kind_labels();
+		$on     = FLXCRM_Val::arr( flxcrm_tools_enabled() );
+		$kinds  = FLXCRM_Val::arr( flxcrm_kind_labels() );
 		$tools  = array();
-		foreach ( flxcrm_tools() as $name => $t ) {
+		foreach ( FLXCRM_Val::arr( flxcrm_tools() ) as $name => $t ) {
 			$t       = FLXCRM_Val::arr( $t );
 			$kind    = FLXCRM_Val::str( $t['kind'] ?? 'read' );
 			$tools[] = array(
@@ -161,17 +161,17 @@ final class FLXCRM_Settings_Service {
 	 * @return list<array{at: string, who: string, channel: string, channel_label: string, action: string, target: string, ok: bool, error: string}>
 	 */
 	public static function ai_log( int $limit = 15 ): array {
-		$tools = flxcrm_tools();
-		$chs   = flxcrm_channel_labels();
+		$tools = FLXCRM_Val::arr( flxcrm_tools() );
+		$chs   = FLXCRM_Val::arr( flxcrm_channel_labels() );
 		$out   = array();
-		foreach ( flxcrm_tool_log_rows( $limit ) as $r ) {
+		foreach ( FLXCRM_Val::arr( flxcrm_tool_log_rows( $limit ) ) as $r ) {
 			$r      = FLXCRM_Val::arr( $r );
 			$u      = get_userdata( FLXCRM_Val::int( $r['u'] ?? 0 ) );
 			$key    = FLXCRM_Val::str( $r['k'] ?? '' );
 			$on     = FLXCRM_Val::str( $r['on'] ?? '' );
 			if ( ctype_digit( $on ) && false === strpos( $key, 'tag' ) && false === strpos( $key, 'segment' ) && false === strpos( $key, 'event' ) ) {
 				$c  = FLXCRM_Contacts::get( (int) $on );
-				$on = $c ? FLXCRM_Val::str( flxcrm_display_name( $c ) ) : '#' . $on;
+				$on = is_array( $c ) ? FLXCRM_Val::str( flxcrm_display_name( $c ) ) : '#' . $on;
 			}
 			$ch    = FLXCRM_Val::str( $r['ch'] ?? '' );
 			$out[] = array(

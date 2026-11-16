@@ -183,11 +183,11 @@ final class FLXCRM_Journey_Service {
 			$tags[] = array( 'value' => FLXCRM_Val::str( $t['id'] ?? '' ), 'label' => FLXCRM_Val::str( $t['name'] ?? '' ) );
 		}
 		$roles = array();
-		foreach ( flxcrm_roles() as $k => $r ) {
+		foreach ( FLXCRM_Val::arr( flxcrm_roles() ) as $k => $r ) {
 			$roles[] = array( 'value' => (string) $k, 'label' => FLXCRM_Val::str( FLXCRM_Val::arr( $r )['label'] ?? $k ) );
 		}
 		$segs = array();
-		foreach ( flxcrm_rfm_segments_labels() as $k => $l ) {
+		foreach ( FLXCRM_Val::arr( flxcrm_rfm_segments_labels() ) as $k => $l ) {
 			$segs[] = array( 'value' => (string) $k, 'label' => FLXCRM_Val::str( $l ) );
 		}
 		$events = array();

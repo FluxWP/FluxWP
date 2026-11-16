@@ -151,21 +151,21 @@ final class FLXCRM_Segment_Service {
 			$ops[] = array( 'key' => (string) $k, 'label' => FLXCRM_Val::str( $l ) );
 		}
 		$opt = array( 'role' => array(), 'tag' => array(), 'rfm' => array(), 'consent' => array(), 'source' => array() );
-		foreach ( flxcrm_roles() as $k => $r ) {
+		foreach ( FLXCRM_Val::arr( flxcrm_roles() ) as $k => $r ) {
 			$opt['role'][] = array( 'value' => (string) $k, 'label' => FLXCRM_Val::str( FLXCRM_Val::arr( $r )['label'] ?? $k ) );
 		}
 		foreach ( FLXCRM_Val::arr( FLXCRM_Tags::all() ) as $t ) {
 			$t             = FLXCRM_Val::arr( $t );
 			$opt['tag'][]  = array( 'value' => FLXCRM_Val::str( $t['id'] ?? '' ), 'label' => FLXCRM_Val::str( $t['name'] ?? '' ) );
 		}
-		foreach ( flxcrm_rfm_segments() as $k => $s ) {
+		foreach ( FLXCRM_Val::arr( flxcrm_rfm_segments() ) as $k => $s ) {
 			$opt['rfm'][] = array( 'value' => (string) $k, 'label' => FLXCRM_Val::str( FLXCRM_Val::arr( $s )[0] ?? $k ) );
 		}
 		$opt['rfm'][] = array( 'value' => 'none', 'label' => __( 'No payments', 'flx-crm' ) );
 		foreach ( FLXCRM_Val::arr( FLXCRM_Contacts::consent_labels() ) as $k => $l ) {
 			$opt['consent'][] = array( 'value' => (string) $k, 'label' => $l );
 		}
-		foreach ( flxcrm_sources() as $k => $l ) {
+		foreach ( FLXCRM_Val::arr( flxcrm_sources() ) as $k => $l ) {
 			$opt['source'][] = array( 'value' => (string) $k, 'label' => FLXCRM_Val::str( $l ) );
 		}
 		$options = array();
