@@ -38,11 +38,12 @@ interface Widget {
   teaser: () => void;
   close: () => void;
 }
-type WpWindow = Window & {
+/** Own view of window (the global Window.wp type is declared by another screen with a narrower media shape). */
+interface WpWindow {
   flxcbConfig?: unknown;
   FluxChatbot?: Widget;
   wp?: { media?: (o: Record<string, unknown>) => MediaFrame };
-};
+}
 interface MediaFrame {
   on: (ev: string, cb: () => void) => void;
   open: () => void;
@@ -375,7 +376,7 @@ function ColorField({ label, help, value, fallback, clearLabel, placeholder, onC
 
 function Look({ t, d, set, avatarUrl, setAvatarUrl, mode }: PaneProps & { avatarUrl: string | null; setAvatarUrl: (u: string | null) => void; mode: 'app' | 'wp' }) {
   const frame = useRef<MediaFrame | null>(null);
-  const media = typeof window !== 'undefined' ? (window as WpWindow).wp?.media : undefined;
+  const media = typeof window !== 'undefined' ? (window as unknown as WpWindow).wp?.media : undefined;
   const pick = () => {
     if (!media) return;
     if (!frame.current) {
@@ -743,7 +744,7 @@ function Preview({ t, a, d, avatarUrl, view, setView }: { t: Tr; a: Admin; d: S;
 
   /* The chat window script builds itself inside the stage; load it fresh each time the screen opens. */
   useEffect(() => {
-    const w = window as WpWindow;
+    const w = window as unknown as WpWindow;
     const el = stage.current;
     if (!el) return;
     delete w.FluxChatbot;
@@ -771,7 +772,7 @@ function Preview({ t, a, d, avatarUrl, view, setView }: { t: Tr; a: Admin; d: S;
   useEffect(() => {
     if (!ready) return;
     const h = window.setTimeout(() => {
-      const f = (window as WpWindow).FluxChatbot;
+      const f = (window as unknown as WpWindow).FluxChatbot;
       if (!f) return;
       f.update(cfg);
       if (view === 'closed') f.close();
