@@ -146,7 +146,7 @@ final class FLXBK_Render_Service {
 				$frontend->frontend_css_parse( parse_blocks( $content ) );
 			}
 			/** This filter is documented in wp-includes/post-template.php */
-			$html = (string) apply_filters( 'the_content', $content );
+			$html = self::text( apply_filters( 'the_content', $content ) );
 			$html = str_replace( ']]>', ']]&gt;', $html );
 
 			$collected = self::collect( $state );
@@ -274,10 +274,9 @@ final class FLXBK_Render_Service {
 
 		$fonts  = self::font_urls();
 		$schema = array();
-		/** @var mixed $faq Built by the FAQ blocks while rendering (null when none). */
 		$faq = class_exists( 'Flx_Blocks_Frontend' ) ? Flx_Blocks_Frontend::$faq_schema : null;
 		if ( is_string( $faq ) && '' !== $faq ) {
-			if ( preg_match_all( '#<script[^>]*type=["\']application/ld\+json["\'][^>]*>(.*?)</script>#is', (string) apply_filters( 'flxbk_faq_schema', $faq ), $m ) ) {
+			if ( preg_match_all( '#<script[^>]*type=["\']application/ld\+json["\'][^>]*>(.*?)</script>#is', self::text( apply_filters( 'flxbk_faq_schema', $faq ) ), $m ) ) {
 				foreach ( $m[1] as $doc ) {
 					$schema[] = trim( $doc );
 				}
@@ -552,8 +551,11 @@ final class FLXBK_Render_Service {
 			return array();
 		}
 		$fe = Flx_Blocks_Frontend::get_instance();
+		if ( ! $fe instanceof Flx_Blocks_Frontend ) {
+			return array();
+		}
 		$gf = class_exists( 'Flx_Blocks_Google_Fonts' ) ? Flx_Blocks_Google_Fonts::get_instance() : null;
-		if ( $gf ) {
+		if ( $gf instanceof Flx_Blocks_Google_Fonts ) {
 			// Moves the fonts the CSS collected over to the front end list, as wp_head / wp_footer do.
 			$gf->frontend_gfonts();
 			$gf->frontend_footer_gfonts();
@@ -574,6 +576,15 @@ final class FLXBK_Render_Service {
 	}
 
 	/**
+	 * A filter result as text.
+	 *
+	 * @param mixed $value Filtered value.
+	 */
+	private static function text( $value ): string {
+		return is_scalar( $value ) ? (string) $value : '';
+	}
+
+	/**
 	 * Selectors in the block-supports style store.
 	 *
 	 * @return list<string>
@@ -582,7 +593,8 @@ final class FLXBK_Render_Service {
 		if ( ! class_exists( 'WP_Style_Engine_CSS_Rules_Store' ) ) {
 			return array();
 		}
-		return self::strings( array_keys( WP_Style_Engine_CSS_Rules_Store::get_store( 'block-supports' )->get_all_rules() ) );
+		$store = WP_Style_Engine_CSS_Rules_Store::get_store( 'block-supports' );
+		return $store ? self::strings( array_keys( $store->get_all_rules() ) ) : array();
 	}
 
 	/**
@@ -594,7 +606,11 @@ final class FLXBK_Render_Service {
 		if ( ! class_exists( 'WP_Style_Engine_CSS_Rules_Store' ) || ! class_exists( 'WP_Style_Engine_Processor' ) ) {
 			return '';
 		}
-		$rules = WP_Style_Engine_CSS_Rules_Store::get_store( 'block-supports' )->get_all_rules();
+		$store = WP_Style_Engine_CSS_Rules_Store::get_store( 'block-supports' );
+		if ( ! $store ) {
+			return '';
+		}
+		$rules = $store->get_all_rules();
 		$new   = array_diff_key( $rules, array_flip( $before ) );
 		if ( ! $new ) {
 			return '';
