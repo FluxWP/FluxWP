@@ -1,5 +1,8 @@
 # @fluxwp/modules
 
+## 0.3.17
+- Wiki: new `flxwk-wiki` screen for Flux Wiki (page list with filters and trash, sections, Markdown editor with preview, General / Appearance / AI settings, addresses and guide import). Same look as the classic page on FluxWP tokens, light and dark; data over GraphQL; texts from the plugin's language packs (`plugins/flx-wiki/tools/i18n.py`).
+
 ## 0.3.16
 - Analytics: `flxan-stats`, `flxan-journeys`, `flxan-settings`, `flxan-telemetry` screens for Flux Analytics (KPIs, chart, live panel, world map, funnels, referral links, journeys, settings with the visual funnel editor, telemetry hub). Same look as the classic page on FluxWP tokens; data over GraphQL; texts from the plugin's language packs (`plugins/flx-analytics/tools/i18n.py`).
 

@@ -129,26 +129,31 @@ add_filter(
 				)
 			),
 			'run'         => function ( $a ) {
-				$args = array();
-				foreach ( array( 'id', 'title', 'slug', 'parent', 'section', 'excerpt', 'status', 'menu_order' ) as $k ) {
+				$in = array();
+				foreach ( array( 'id', 'menu_order' ) as $k ) {
 					if ( isset( $a[ $k ] ) ) {
-						$args[ $k ] = $a[ $k ];
+						$in[ $k ] = (int) $a[ $k ];
 					}
 				}
+				foreach ( array( 'title', 'slug', 'parent', 'section', 'status' ) as $k ) {
+					if ( isset( $a[ $k ] ) ) {
+						$in[ $k ] = is_scalar( $a[ $k ] ) ? (string) $a[ $k ] : '';
+					}
+				}
+				if ( isset( $in['status'] ) && ! in_array( $in['status'], FLXWK_Page_Service::STATUSES, true ) ) {
+					$in['status'] = 'draft'; // As before: an unknown status becomes a draft.
+				}
+				if ( isset( $a['excerpt'] ) ) {
+					$in['summary'] = (string) $a['excerpt'];
+				}
 				if ( isset( $a['markdown'] ) ) {
-					$args['md'] = (string) $a['markdown'];
+					$in['markdown'] = (string) $a['markdown'];
 				}
-				if ( ! empty( $args['id'] ) && ! current_user_can( 'edit_post', (int) $args['id'] ) ) {
-					throw new Exception( 'You cannot edit this page.' );
+				$page = FLXWK_Page_Service::save( $in );
+				if ( is_wp_error( $page ) ) {
+					throw new Exception( $page->get_error_message() );
 				}
-				if ( isset( $args['status'] ) && 'publish' === $args['status'] && ! current_user_can( 'publish_posts' ) ) {
-					$args['status'] = 'pending';
-				}
-				$id = flxwk_save_page( $args );
-				if ( is_wp_error( $id ) ) {
-					throw new Exception( $id->get_error_message() );
-				}
-				return array_merge( flxwk_page_brief( get_post( $id ) ), array( 'edit' => get_edit_post_link( $id, 'raw' ) ) );
+				return array_merge( flxwk_page_brief( get_post( $page->id ) ), array( 'edit' => get_edit_post_link( $page->id, 'raw' ) ) );
 			},
 		);
 		return $tools;
