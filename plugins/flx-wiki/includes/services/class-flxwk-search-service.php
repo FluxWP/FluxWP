@@ -52,8 +52,8 @@ final class FLXWK_Search_Service {
 		$res  = self::run( $query, $section, $limit );
 		$hits = array();
 		foreach ( $res['results'] as $h ) {
-			$hits[] = new FLXWK_Search_Hit( (int) $h['id'], (string) $h['title'], (string) $h['url'], (string) $h['section'], (string) $h['heading'], (string) $h['snippet'], (float) $h['score'] );
+			$hits[] = new FLXWK_Search_Hit( flxwk_i( $h['id'] ), flxwk_s( $h['title'] ), flxwk_s( $h['url'] ), flxwk_s( $h['section'] ), flxwk_s( $h['heading'] ), flxwk_s( $h['snippet'] ), flxwk_f( $h['score'] ) );
 		}
-		return new FLXWK_Search_Result( (int) $res['total'], $hits, isset( $res['fixed'] ) ? (string) $res['fixed'] : null );
+		return new FLXWK_Search_Result( flxwk_i( $res['total'] ), $hits, isset( $res['fixed'] ) ? flxwk_s( $res['fixed'] ) : null );
 	}
 }

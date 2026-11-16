@@ -64,14 +64,14 @@ final class FLXWK_Ask_Service {
 			foreach ( (array) ( $res['sources'] ?? array() ) as $s ) {
 				if ( is_array( $s ) ) {
 					$sources[] = array(
-						'title' => (string) ( $s['title'] ?? '' ),
-						'url'   => (string) ( $s['url'] ?? '' ),
+						'title' => flxwk_s( $s['title'] ?? '' ),
+						'url'   => flxwk_s( $s['url'] ?? '' ),
 					);
 				}
 			}
-			return new FLXWK_Answer( (string) ( $res['answer'] ?? '' ), (string) ( $res['html'] ?? '' ), $sources );
+			return new FLXWK_Answer( flxwk_s( $res['answer'] ?? '' ), flxwk_s( $res['html'] ?? '' ), $sources );
 		} finally {
-			delete_option( (string) $lock );
+			delete_option( flxwk_s( $lock ) );
 		}
 	}
 }

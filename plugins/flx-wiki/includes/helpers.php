@@ -25,6 +25,9 @@ function flxwk_defaults() {
 	);
 }
 
+/**
+ * @return array<string,mixed>
+ */
 function flxwk_settings() {
 	$s = get_option( 'flxwk_settings', array() );
 	return array_merge( flxwk_defaults(), is_array( $s ) ? $s : array() );
@@ -35,47 +38,79 @@ function flxwk_opt( $key ) {
 	return $s[ $key ] ?? null;
 }
 
-/** Wiki'nin adres kökü (varsayılan "wiki"). */
+/**
+ * Wiki'nin adres kökü (varsayılan "wiki").
+ *
+ * @return string
+ */
 function flxwk_base() {
 	$o = sanitize_title( (string) flxwk_opt( 'base' ) );
 	$b = trim( (string) apply_filters( 'flxwk_base', '' === $o ? 'wiki' : $o ), '/' );
 	return '' === $b ? 'wiki' : $b;
 }
 
-/** Wiki ziyaretçilere açık mı (Ayarlar › Genel). */
+/**
+ * Wiki ziyaretçilere açık mı (Ayarlar › Genel).
+ *
+ * @return bool
+ */
 function flxwk_enabled() {
 	return (bool) flxwk_opt( 'enabled' );
 }
 
-/** Bu istek wiki'yi görebilir mi: açıksa herkes, kapalıysa yalnız düzenleyebilenler. */
+/**
+ * Bu istek wiki'yi görebilir mi: açıksa herkes, kapalıysa yalnız düzenleyebilenler.
+ *
+ * @return bool
+ */
 function flxwk_visible() {
 	return flxwk_enabled() || current_user_can( 'edit_posts' );
 }
 
+/**
+ * @return string
+ */
 function flxwk_home_url( $path = '' ) {
 	return home_url( user_trailingslashit( '/' . flxwk_base() . ( $path ? '/' . ltrim( $path, '/' ) : '' ) ) );
 }
 
+/**
+ * @return string
+ */
 function flxwk_admin_url() {
 	return admin_url( 'edit.php?post_type=' . FLXWK_PT . '&page=flx-wiki' );
 }
 
+/**
+ * @return string
+ */
 function flxwk_title() {
 	$t = trim( (string) flxwk_opt( 'title' ) );
 	return '' !== $t ? $t : __( 'Developer Wiki', 'flx-wiki' );
 }
 
-/** Intro shown when the setting is empty. */
+/**
+ * Intro shown when the setting is empty.
+ *
+ * @return string
+ */
 function flxwk_intro_default() {
 	return __( 'Guides for writing FluxWP plugins and themes, AI-enabled features and the shared platform.', 'flx-wiki' );
 }
 
+/**
+ * @return string
+ */
 function flxwk_intro() {
 	$t = trim( (string) flxwk_opt( 'intro' ) );
 	return (string) apply_filters( 'flxwk_intro', '' !== $t ? $t : flxwk_intro_default() );
 }
 
-/** Sayfanın Markdown kaynağı. */
+/**
+ * Sayfanın Markdown kaynağı.
+ *
+ * @return string
+ */
 function flxwk_md( $post ) {
 	$post = get_post( $post );
 	if ( ! $post ) {
@@ -85,7 +120,11 @@ function flxwk_md( $post ) {
 	return is_string( $md ) ? $md : '';
 }
 
-/** Sayfanın .md adresi (/wiki/ust/alt.md). */
+/**
+ * Sayfanın .md adresi (/wiki/ust/alt.md).
+ *
+ * @return string
+ */
 function flxwk_md_url( $post ) {
 	$post = get_post( $post );
 	if ( ! $post ) {
@@ -114,7 +153,11 @@ function flxwk_anchor( $text ) {
 	return '' === $s ? 'bolum' : substr( $s, 0, 80 );
 }
 
-/** Okuma süresi (dakika). */
+/**
+ * Okuma süresi (dakika).
+ *
+ * @return int
+ */
 function flxwk_read_minutes( $md ) {
 	$words = str_word_count( wp_strip_all_tags( (string) $md ) );
 	$words = max( $words, (int) ( mb_strlen( (string) $md ) / 7 ) );
@@ -239,7 +282,11 @@ function flxwk_flat() {
 	return $out;
 }
 
-/** Özet: elle yazılan özet ya da Markdown'un ilk paragrafı. */
+/**
+ * Özet: elle yazılan özet ya da Markdown'un ilk paragrafı.
+ *
+ * @return string
+ */
 function flxwk_excerpt( $post, $len = 160 ) {
 	$post = get_post( $post );
 	if ( ! $post ) {
@@ -271,7 +318,11 @@ function flxwk_first_paragraph( $md ) {
 	return '';
 }
 
-/** "Wiki'ye sor" bu ziyaretçiye açık mı. */
+/**
+ * "Wiki'ye sor" bu ziyaretçiye açık mı.
+ *
+ * @return bool
+ */
 function flxwk_can_ask() {
 	$mode = (string) flxwk_opt( 'ask' );
 	if ( 'off' === $mode || ! flxwk_visible() || ! flxwk_ai_ready() ) {
@@ -281,7 +332,11 @@ function flxwk_can_ask() {
 	return (bool) apply_filters( 'flxwk_can_ask', $ok );
 }
 
-/** Flux AI kurulu, anahtarlı ve bu sistem açık mı. */
+/**
+ * Flux AI kurulu, anahtarlı ve bu sistem açık mı.
+ *
+ * @return bool
+ */
 function flxwk_ai_ready() {
 	return function_exists( 'flxai_chat' ) && function_exists( 'flxai_ready' ) && flxai_ready( 'flx-wiki' )
 		&& ( ! function_exists( 'flxai_source_enabled' ) || flxai_source_enabled( 'flx-wiki' ) );

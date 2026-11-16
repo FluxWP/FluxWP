@@ -9,6 +9,33 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
+ * Scalar to string; anything else becomes an empty string (values from legacy helpers are untyped).
+ *
+ * @param mixed $v Value.
+ */
+function flxwk_s( $v ): string {
+	return is_scalar( $v ) ? (string) $v : '';
+}
+
+/**
+ * Scalar to int; anything else becomes 0.
+ *
+ * @param mixed $v Value.
+ */
+function flxwk_i( $v ): int {
+	return is_scalar( $v ) ? (int) $v : 0;
+}
+
+/**
+ * Scalar to float; anything else becomes 0.
+ *
+ * @param mixed $v Value.
+ */
+function flxwk_f( $v ): float {
+	return is_scalar( $v ) ? (float) $v : 0.0;
+}
+
+/**
  * A wiki section (top level group of pages).
  */
 final class FLXWK_Section {

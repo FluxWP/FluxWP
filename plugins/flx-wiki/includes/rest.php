@@ -3,6 +3,8 @@
  * REST: /flx-wiki/v1/search (herkese açık), /ask (Wiki'ye sor, Flux AI), /preview (düzenleyici önizlemesi).
  *
  * @package FLX_Wiki
+ *
+ * @return bool
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -79,7 +81,11 @@ add_action(
 	}
 );
 
-/** Saatlik soru sınırı (kullanıcı ya da IP başına). */
+/**
+ * Saatlik soru sınırı (kullanıcı ya da IP başına).
+ *
+ * @return true|WP_Error
+ */
 function flxwk_rate_hit() {
 	$max = max( 1, min( 500, (int) flxwk_opt( 'ask_limit' ) ) );
 	if ( current_user_can( 'manage_options' ) ) {

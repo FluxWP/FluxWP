@@ -225,7 +225,7 @@ flx_gql_type(
 			'parentId'     => array(
 				'type'        => 'Int',
 				'description' => __( 'Parent page; empty for a top-level page.', 'flx-wiki' ),
-				'resolve'     => static fn( $p ): ?int => flxwk_gql_src( $p, FLXWK_Page::class )->parent_id > 0 ? $p->parent_id : null,
+				'resolve'     => static fn( $p ): ?int => flxwk_gql_src( $p, FLXWK_Page::class )->parent_id > 0 ? flxwk_gql_src( $p, FLXWK_Page::class )->parent_id : null,
 			),
 			'menuOrder'    => array(
 				'type'        => 'Int!',
@@ -245,7 +245,7 @@ flx_gql_type(
 			'markdownUrl'  => array(
 				'type'        => 'String',
 				'description' => __( 'Address of the page as Markdown (.md); empty for a draft.', 'flx-wiki' ),
-				'resolve'     => static fn( $p ): ?string => '' === flxwk_gql_src( $p, FLXWK_Page::class )->markdown_url ? null : $p->markdown_url,
+				'resolve'     => static fn( $p ): ?string => '' === flxwk_gql_src( $p, FLXWK_Page::class )->markdown_url ? null : flxwk_gql_src( $p, FLXWK_Page::class )->markdown_url,
 			),
 			'modified'     => array(
 				'type'        => 'FlxDateTime',
@@ -260,7 +260,7 @@ flx_gql_type(
 			'editUrl'      => array(
 				'type'        => 'String',
 				'description' => __( 'WordPress edit screen of the page; empty when the viewer may not edit it.', 'flx-wiki' ),
-				'resolve'     => static fn( $p ): ?string => '' === flxwk_gql_src( $p, FLXWK_Page::class )->edit_url ? null : $p->edit_url,
+				'resolve'     => static fn( $p ): ?string => '' === flxwk_gql_src( $p, FLXWK_Page::class )->edit_url ? null : flxwk_gql_src( $p, FLXWK_Page::class )->edit_url,
 			),
 			'canEdit'      => array(
 				'type'        => 'Boolean!',
@@ -616,6 +616,7 @@ flx_gql_query(
 				),
 			)
 		),
+		/** @param array<string,mixed> $args */
 		'resolve'     => static function ( $root, array $args ): array {
 			$filter = array(
 				'search'   => flx_gql_str( $args['search'] ?? '' ),
@@ -652,6 +653,7 @@ flx_gql_query(
 				'description' => __( 'Path below the wiki address (plugins/ai-enabled), short name or title.', 'flx-wiki' ),
 			),
 		),
+		/** @param array<string,mixed> $args */
 		'resolve'     => static function ( $root, array $args ): ?FLXWK_Page_Node {
 			flxwk_gql_tag();
 			$page = null;
@@ -711,6 +713,7 @@ flx_gql_query(
 				'description' => __( 'Best hits to return (1–50, default 10).', 'flx-wiki' ),
 			),
 		),
+		/** @param array<string,mixed> $args */
 		'resolve'     => static function ( $root, array $args ): FLXWK_Search_Result {
 			flxwk_gql_tag();
 			return FLXWK_Search_Service::search( flx_gql_str( $args['query'] ?? '' ), flx_gql_str( $args['section'] ?? '' ), flx_gql_int( $args['limit'] ?? 10, 10 ) );
@@ -771,6 +774,7 @@ flx_gql_mutation(
 				'description' => __( 'The saved page.', 'flx-wiki' ),
 			),
 		),
+		/** @param array<string,mixed> $input */
 		'resolve'     => static function ( array $input ) {
 			$in = array();
 			if ( isset( $input['id'] ) && '' !== $input['id'] ) {
@@ -818,6 +822,7 @@ flx_gql_mutation(
 				'description' => __( 'Database ID of the page that was moved to the trash.', 'flx-wiki' ),
 			),
 		),
+		/** @param array<string,mixed> $input */
 		'resolve'     => static function ( array $input ) {
 			$id = flx_gql_decode_id( $input['id'] ?? 0, 'FlxWikiPage' );
 			$r  = FLXWK_Page_Service::trash( $id );
@@ -851,6 +856,7 @@ flx_gql_mutation(
 				'description' => __( 'The saved section.', 'flx-wiki' ),
 			),
 		),
+		/** @param array<string,mixed> $input */
 		'resolve'     => static function ( array $input ) {
 			$order = array_key_exists( 'order', $input ) && null !== $input['order'] ? flx_gql_int( $input['order'] ) : null;
 			$s     = FLXWK_Page_Service::section_save( flx_gql_int( $input['id'] ?? 0 ), flx_gql_str( $input['name'] ?? '' ), $order );
@@ -876,6 +882,7 @@ flx_gql_mutation(
 				'description' => __( 'ID of the section that was deleted.', 'flx-wiki' ),
 			),
 		),
+		/** @param array<string,mixed> $input */
 		'resolve'     => static function ( array $input ) {
 			$id = flx_gql_int( $input['id'] ?? 0 );
 			$r  = FLXWK_Page_Service::section_delete( $id );
@@ -901,7 +908,7 @@ flx_gql_mutation(
 				'description' => __( 'The rendered page.', 'flx-wiki' ),
 			),
 		),
-		'resolve'     => static fn( array $input ): array => array( 'rendered' => FLXWK_Page_Service::preview( flx_gql_str( $input['markdown'] ?? '' ) ) ),
+		'resolve'     => /** @param array<string,mixed> $input */ static fn( array $input ): array => array( 'rendered' => FLXWK_Page_Service::preview( flx_gql_str( $input['markdown'] ?? '' ) ) ),
 	)
 );
 
@@ -926,6 +933,7 @@ flx_gql_mutation(
 				'description' => __( 'The answer.', 'flx-wiki' ),
 			),
 		),
+		/** @param array<string,mixed> $input */
 		'resolve'     => static function ( array $input ) {
 			$a = FLXWK_Ask_Service::ask( flx_gql_str( $input['question'] ?? '' ), flx_gql_int( $input['pageId'] ?? 0 ) );
 			return $a instanceof WP_Error ? $a : array( 'answer' => $a );

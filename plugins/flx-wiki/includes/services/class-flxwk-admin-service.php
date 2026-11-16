@@ -26,7 +26,7 @@ final class FLXWK_Admin_Service {
 		$count = wp_count_posts( FLXWK_PT );
 		$base  = flxwk_base();
 		return new FLXWK_Overview(
-			(string) flxwk_home_url(),
+			flxwk_s( flxwk_home_url() ),
 			home_url( '/' ),
 			$base,
 			home_url( '/' . $base . '/llms.txt' ),
@@ -37,9 +37,9 @@ final class FLXWK_Admin_Service {
 			function_exists( 'flxai_chat' ),
 			(bool) flxwk_ai_ready(),
 			count( (array) flxwk_seed_files() ),
-			is_object( $count ) && isset( $count->publish ) ? (int) $count->publish : 0,
+			is_object( $count ) && isset( $count->publish ) ? flxwk_i( $count->publish ) : 0,
 			__( 'Developer Wiki', 'flx-wiki' ),
-			(string) flxwk_intro_default(),
+			flxwk_s( flxwk_intro_default() ),
 			admin_url( 'post-new.php?post_type=' . FLXWK_PT )
 		);
 	}
@@ -71,7 +71,7 @@ final class FLXWK_Admin_Service {
 			$new = array_merge(
 				$new,
 				array(
-					'accent' => empty( $p['accent_theme'] ) ? (string) sanitize_hex_color( self::str( $p['accent'] ?? '' ) ) : '',
+					'accent' => empty( $p['accent_theme'] ) ? flxwk_s( sanitize_hex_color( self::str( $p['accent'] ?? '' ) ) ) : '',
 					'width'  => 'wide' === ( $p['width'] ?? '' ) ? 'wide' : 'normal',
 					'nav'    => empty( $p['nav'] ) ? 0 : 1,
 					'toc'    => empty( $p['toc'] ) ? 0 : 1,
@@ -84,7 +84,7 @@ final class FLXWK_Admin_Service {
 				$new,
 				array(
 					'ask'       => in_array( $ask, array( 'off', 'users', 'all' ), true ) ? $ask : 'users',
-					'ask_limit' => max( 1, min( 500, (int) self::str( $p['ask_limit'] ?? 20 ) ) ),
+					'ask_limit' => max( 1, min( 500, flxwk_i( self::str( $p['ask_limit'] ?? 20 ) ) ) ),
 				)
 			);
 		}
@@ -97,7 +97,7 @@ final class FLXWK_Admin_Service {
 	 */
 	public function import_guides(): FLXWK_Import_Result {
 		$s = flxwk_seed_import( true );
-		return new FLXWK_Import_Result( (int) ( $s['created'] ?? 0 ), (int) ( $s['updated'] ?? 0 ), (int) ( $s['skipped'] ?? 0 ) );
+		return new FLXWK_Import_Result( flxwk_i( $s['created'] ?? 0 ), flxwk_i( $s['updated'] ?? 0 ), flxwk_i( $s['skipped'] ?? 0 ) );
 	}
 
 	/**
@@ -106,6 +106,6 @@ final class FLXWK_Admin_Service {
 	 * @param mixed $v Value.
 	 */
 	private static function str( $v ): string {
-		return is_scalar( $v ) ? (string) $v : '';
+		return is_scalar( $v ) ? flxwk_s( $v ) : '';
 	}
 }

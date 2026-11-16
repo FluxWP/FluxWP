@@ -25,12 +25,12 @@ final class FLXWK_Page_Service {
 	public static function section_of_term( WP_Term $t ): FLXWK_Section {
 		$link = get_term_link( $t );
 		return new FLXWK_Section(
-			(int) $t->term_id,
-			(string) $t->slug,
-			(string) $t->name,
-			(string) $t->description,
-			(int) get_term_meta( $t->term_id, 'flxwk_order', true ),
-			(int) $t->count,
+			flxwk_i( $t->term_id ),
+			flxwk_s( $t->slug ),
+			flxwk_s( $t->name ),
+			flxwk_s( $t->description ),
+			flxwk_i( get_term_meta( $t->term_id, 'flxwk_order', true ) ),
+			flxwk_i( $t->count ),
 			is_string( $link ) ? $link : ''
 		);
 	}
@@ -46,20 +46,20 @@ final class FLXWK_Page_Service {
 		$md_url  = flxwk_md_url( $p );
 		$content = flxwk_md( $p );
 		return new FLXWK_Page(
-			(int) $p->ID,
+			flxwk_i( $p->ID ),
 			get_the_title( $p ),
-			(string) $p->post_name,
-			(string) get_page_uri( $p ),
-			(string) $p->post_status,
-			(string) $p->post_excerpt,
-			(string) flxwk_excerpt( $p, 160 ),
-			(int) $p->post_parent,
-			(int) $p->menu_order,
+			flxwk_s( $p->post_name ),
+			flxwk_s( get_page_uri( $p ) ),
+			flxwk_s( $p->post_status ),
+			flxwk_s( $p->post_excerpt ),
+			flxwk_s( flxwk_excerpt( $p, 160 ) ),
+			flxwk_i( $p->post_parent ),
+			flxwk_i( $p->menu_order ),
 			$term instanceof WP_Term ? self::section_of_term( $term ) : null,
 			is_string( $link ) ? $link : '',
 			is_string( $md_url ) ? $md_url : '',
-			(string) $p->post_modified_gmt,
-			(int) flxwk_read_minutes( $content ),
+			flxwk_s( $p->post_modified_gmt ),
+			flxwk_i( flxwk_read_minutes( $content ) ),
 			is_string( $edit ) ? $edit : '',
 			$can
 		);
@@ -118,7 +118,7 @@ final class FLXWK_Page_Service {
 	 * Markdown source of a page the viewer may read.
 	 */
 	public static function markdown( int $id ): string {
-		return self::can_see( $id ) ? (string) flxwk_md( $id ) : '';
+		return self::can_see( $id ) ? flxwk_s( flxwk_md( $id ) ) : '';
 	}
 
 	/**
@@ -130,7 +130,7 @@ final class FLXWK_Page_Service {
 			return '';
 		}
 		$r = flxwk_page_html( $p );
-		return is_array( $r ) ? (string) ( $r['html'] ?? '' ) : '';
+		return is_array( $r ) ? flxwk_s( $r['html'] ?? '' ) : '';
 	}
 
 	/**
@@ -172,7 +172,7 @@ final class FLXWK_Page_Service {
 		}
 		return array(
 			'items' => $items,
-			'total' => (int) $q->found_posts,
+			'total' => flxwk_i( $q->found_posts ),
 		);
 	}
 
@@ -236,7 +236,7 @@ final class FLXWK_Page_Service {
 	 * @return FLXWK_Page|WP_Error
 	 */
 	public static function save( array $in ) {
-		$id = (int) ( $in['id'] ?? 0 );
+		$id = flxwk_i( $in['id'] ?? 0 );
 		if ( $id > 0 ) {
 			if ( ! self::post( $id ) ) {
 				return new WP_Error( 'flxwk_not_found', __( 'Wiki page not found.', 'flx-wiki' ), array( 'graphql_code' => 'NOT_FOUND', 'field' => 'id' ) );
@@ -259,11 +259,11 @@ final class FLXWK_Page_Service {
 		if ( isset( $in['markdown'] ) ) {
 			$args['md'] = $in['markdown'];
 		}
-		if ( 0 === $id && ( ! isset( $args['title'] ) || '' === trim( (string) $args['title'] ) ) ) {
+		if ( 0 === $id && ( ! isset( $args['title'] ) || '' === trim( flxwk_s( $args['title'] ) ) ) ) {
 			return new WP_Error( 'flxwk_title', __( 'A title is required.', 'flx-wiki' ), array( 'graphql_code' => 'INVALID_INPUT', 'field' => 'title' ) );
 		}
-		if ( isset( $args['parent'] ) && (int) $args['parent'] > 0 && ctype_digit( (string) $args['parent'] ) ) {
-			$parent = self::post( (int) $args['parent'] );
+		if ( isset( $args['parent'] ) && flxwk_i( $args['parent'] ) > 0 && ctype_digit( flxwk_s( $args['parent'] ) ) ) {
+			$parent = self::post( flxwk_i( $args['parent'] ) );
 			if ( ! $parent ) {
 				return new WP_Error( 'flxwk_parent', __( 'The parent page was not found.', 'flx-wiki' ), array( 'graphql_code' => 'INVALID_INPUT', 'field' => 'parent' ) );
 			}
@@ -281,7 +281,7 @@ final class FLXWK_Page_Service {
 		if ( is_wp_error( $saved ) ) {
 			return $saved;
 		}
-		$p = self::post( (int) $saved );
+		$p = self::post( flxwk_i( $saved ) );
 		return $p ? self::page_of_post( $p ) : new WP_Error( 'flxwk_not_found', __( 'Wiki page not found.', 'flx-wiki' ), array( 'graphql_code' => 'NOT_FOUND' ) );
 	}
 
@@ -332,7 +332,7 @@ final class FLXWK_Page_Service {
 		if ( is_wp_error( $r ) ) {
 			return new WP_Error( 'flxwk_section_exists', $r->get_error_message(), array( 'graphql_code' => 'INVALID_INPUT', 'field' => 'name' ) );
 		}
-		$term_id = (int) $r['term_id'];
+		$term_id = flxwk_i( $r['term_id'] );
 		if ( null !== $order ) {
 			update_term_meta( $term_id, 'flxwk_order', $order );
 		}
@@ -369,9 +369,9 @@ final class FLXWK_Page_Service {
 		$toc = array();
 		foreach ( (array) ( $r['toc'] ?? array() ) as $item ) {
 			if ( is_array( $item ) ) {
-				$toc[] = new FLXWK_Toc_Item( (int) ( $item['level'] ?? 2 ), (string) ( $item['id'] ?? '' ), (string) ( $item['text'] ?? '' ) );
+				$toc[] = new FLXWK_Toc_Item( flxwk_i( $item['level'] ?? 2 ), flxwk_s( $item['id'] ?? '' ), flxwk_s( $item['text'] ?? '' ) );
 			}
 		}
-		return new FLXWK_Rendered( (string) ( $r['html'] ?? '' ), $toc );
+		return new FLXWK_Rendered( flxwk_s( $r['html'] ?? '' ), $toc );
 	}
 }
