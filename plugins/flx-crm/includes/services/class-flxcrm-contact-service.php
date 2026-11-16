@@ -122,10 +122,12 @@ final class FLXCRM_Contact_Service {
 	 */
 	public static function window( array $filter, int $offset, int $limit ): FLXCRM_Contact_Page {
 		global $wpdb;
-		$t   = flxcrm_table( 'contacts' );
-		$ord = in_array( $filter['orderby'] ?? '', FLXCRM_Contacts::sortable(), true ) ? FLXCRM_Val::str( $filter['orderby'] ) : 'last_activity_at';
+		$t   = FLXCRM_Val::str( flxcrm_table( 'contacts' ) );
+		$ord = in_array( $filter['orderby'] ?? '', (array) FLXCRM_Contacts::sortable(), true ) ? FLXCRM_Val::str( $filter['orderby'] ) : 'last_activity_at';
 		$dir = 'asc' === strtolower( FLXCRM_Val::str( $filter['order'] ?? 'desc' ) ) ? 'ASC' : 'DESC';
-		list( $w, $p ) = FLXCRM_Contacts::where( $filter );
+		list( $w0, $p0 ) = FLXCRM_Contacts::where( $filter );
+		$w = FLXCRM_Val::str( $w0 );
+		$p = FLXCRM_Val::arr( $p0 );
 		$nulls = 'DESC' === $dir ? "c.$ord IS NULL, " : '';
 		$sql   = "SELECT c.* FROM $t c WHERE 1=1 $w ORDER BY {$nulls}c.$ord $dir, c.id DESC LIMIT %d OFFSET %d";
 		$rows  = $wpdb->get_results( $wpdb->prepare( $sql, array_merge( $p, array( max( 1, $limit ), max( 0, $offset ) ) ) ), ARRAY_A ); // phpcs:ignore WordPress.DB

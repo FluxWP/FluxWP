@@ -1162,11 +1162,11 @@ flx_gql_query(
 			$segs  = array();
 			foreach ( flx_gql_arr( $o['segments'] ?? array() ) as $s ) {
 				$s          = flx_gql_arr( $s );
-				$s['value'] = flx_gql_money( $s['value'] ?? 0, $cur );
+				$s['value'] = flx_gql_money( FLXCRM_Val::float( $s['value'] ?? 0 ), $cur );
 				$segs[]     = $s;
 			}
 			$o['segments'] = $segs;
-			$o['ltv']      = flx_gql_money( $o['ltv'] ?? 0, $cur );
+			$o['ltv']      = flx_gql_money( FLXCRM_Val::float( $o['ltv'] ?? 0 ), $cur );
 			$o['scoredAt'] = flxcrm_gql_ts( $o['scoredAt'] ?? null );
 			$o['syncedAt'] = flxcrm_gql_ts( $o['syncedAt'] ?? null );
 			return $o;
@@ -1663,7 +1663,7 @@ flx_gql_mutation(
 				}
 				$steps[] = $step;
 			}
-			$opts = FLXCRM_Journeys::defaults();
+			$opts = FLXCRM_Val::arr( FLXCRM_Journeys::defaults() );
 			foreach ( array( 'goal' => 'goal', 'reenter_days' => 'reenterDays', 'quiet_from' => 'quietFrom', 'quiet_to' => 'quietTo', 'cap_week' => 'capWeek' ) as $to => $from ) {
 				$in = flx_gql_arr( $input['opts'] ?? array() );
 				if ( flxcrm_gql_has( $in, $from ) ) {
@@ -1915,7 +1915,8 @@ flx_gql_mutation(
 		),
 		'output'      => array( 'settings' => array( 'type' => 'FlxCrmSettings', 'description' => __( 'Settings after the change.', 'flx-crm' ) ) ),
 		'resolve'     => static function ( array $input ) {
-			$in = array();
+			$input = flx_gql_arr( $input );
+			$in    = array();
 			foreach ( array( 'chatEvents' => 'chat_events', 'aiTools' => 'ai_tools', 'aiWrite' => 'ai_write', 'aiDestructive' => 'ai_destructive' ) as $from => $to ) {
 				if ( flxcrm_gql_has( $input, $from ) ) {
 					$in[ $to ] = (bool) $input[ $from ];
