@@ -120,7 +120,8 @@ op FlxCartClear '{"input":{}}' "${T[@]}"
 [ "$(json "$body" '$j["data"]["flxCartClear"]["cart"]["itemsCount"] ?? null')" = 0 ] && ok "flxCartClear" || bad "clear" "$body"
 
 # 9. No card data anywhere: the schema has no card fields; the debug log does not mention the cart token.
-grep -qiE 'card(number|_number|Number)|cvv|cvc' "$root/packages/graphql/schema/schema.graphql" && bad "schema has card fields" || ok "schema: no card number / CVC fields"
+# shellcheck disable=SC2046 # the schema parts (packages/graphql/scripts/parts.ts)
+grep -qiE 'card(number|_number|Number)|cvv|cvc' $(ls "$root"/packages/graphql/schema/*.graphql "$root"/plugins/*/graphql/schema.graphql "$root"/themes/*/graphql/schema.graphql 2>/dev/null) && bad "schema has card fields" || ok "schema: no card number / CVC fields"
 [ -f "$site/wp-content/debug.log" ] && grep -q -- "$token" "$site/wp-content/debug.log" && bad "debug.log contains a cart token" || ok "debug.log: no cart token"
 
 echo "$pass passed, $fail failed"

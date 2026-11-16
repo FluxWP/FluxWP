@@ -1,8 +1,16 @@
 # GraphQL istisnaları
 
 GraphQL'e taşınmayan, REST ya da kendi protokolünde kalan uçların **tek** listesi (plan §0).
-Yeni istisna yalnız bu dosyaya satır eklenerek ve PR'da gerekçeyle açılır. Listede olmayan bir REST ucu
-paket GraphQL'e geçerken taşınır (geçiş süresince REST de çalışır).
+Yeni istisna satır eklenerek ve PR'da gerekçeyle açılır. Listede olmayan bir REST ucu paket GraphQL'e geçerken
+taşınır (geçiş süresince REST de çalışır).
+
+**Tek pakete ait istisna bu dosyaya değil, paketin durum dosyasına yazılır:** `docs/graphql/durum/<slug>.md`
+içinde `## İstisnalar` tablosu (aynı sütunlar). Böylece paralel PR'lar bu dosyada çakışmaz (KURALLAR §12).
+Bu dosyada yalnız birden çok paketi ilgilendiren satırlar kalır. Tam liste:
+
+```sh
+bun tools/graphql/durum.ts --istisnalar
+```
 
 ## Kalıcı istisnalar
 

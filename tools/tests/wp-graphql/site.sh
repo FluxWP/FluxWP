@@ -18,6 +18,9 @@
 #   FIXTURES=0         leave the kit test fixtures (mu-plugin) out, e.g. for the schema snapshot
 #   SERVE=1            start `php -S` on the port and wait until it answers (PID in $site/.server.pid)
 #
+# Package hooks: tools/tests/wp-graphql/<slug>/site.sh is sourced after the packages are activated (with
+# $WP, $site, $root, $url and FIXTURES set), so a package can add its own setup without editing this file.
+#
 # Packages are symlinked from the monorepo, so edits show up without reinstalling.
 # The admin user is admin / admin.
 set -euo pipefail
@@ -102,6 +105,10 @@ $WP plugin activate flx-graphql --path="$site"
 for slug in $packages; do
   [ "$slug" = flx-graphql ] && continue
   $WP plugin activate "$slug" --path="$site" || { echo "::error::$slug could not be activated" >&2; exit 1; }
+done
+for hook in "$root"/tools/tests/wp-graphql/*/site.sh; do
+  # shellcheck source=/dev/null
+  [ -f "$hook" ] && . "$hook"
 done
 $WP rewrite flush --path="$site" >/dev/null
 

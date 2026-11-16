@@ -16,9 +16,15 @@ FIXTURES=1 SERVE=1 bash "$here/site.sh" "$site" "$port" || exit 1
 trap 'kill "$(cat "$site/.server.pid" 2>/dev/null)" 2>/dev/null || true' EXIT
 
 $WP eval-file "$here/kit-test.php" --path="$site" || fail=1
-# Package contract tests: tools/tests/wp-graphql/<slug>/contract-test.php
+# Package contract tests: tools/tests/wp-graphql/<slug>/contract-test.php. Extra wp-cli arguments for one
+# package (e.g. --skip-plugins=flx-ai) go in <slug>/wp-args, so a package does not edit this file.
 for t in "$here"/*/contract-test.php; do
-  [ -f "$t" ] && { $WP eval-file "$t" --path="$site" || fail=1; }
+  [ -f "$t" ] || continue
+  extra=()
+  args_file="$(dirname "$t")/wp-args"
+  # shellcheck disable=SC2207 # word splitting is intended: one argument per word.
+  [ -f "$args_file" ] && extra=($(grep -v '^#' "$args_file"))
+  $WP eval-file "$t" --path="$site" "${extra[@]}" || fail=1
 done
 bash "$here/http-test.sh" "$site" "http://127.0.0.1:$port" || fail=1
 # Package HTTP tests: tools/tests/wp-graphql/<slug>/http-test.sh <site> <url>
