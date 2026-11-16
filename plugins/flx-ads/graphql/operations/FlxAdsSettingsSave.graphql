@@ -1,0 +1,12 @@
+mutation FlxAdsSettingsSave($input: FlxAdsSettingsSaveInput!) {
+  flxAdsSettingsSave(input: $input) {
+    settings {
+      ...FlxAdsSettings
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

@@ -1,0 +1,5 @@
+query FlxAdsSpend($filter: FlxAdsFilterInput) {
+  flxAdsSpend(filter: $filter) {
+    ...FlxAdsSpendPage
+  }
+}

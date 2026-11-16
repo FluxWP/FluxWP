@@ -40,6 +40,10 @@ final class FLXADS_Admin {
 		if ( false === strpos( (string) $hook, '_page_flx-ads' ) ) {
 			return;
 		}
+		if ( flxads_flux_ui() ) {
+			flxads_flux_assets( flxads_current_tab() );
+			return;
+		}
 		wp_enqueue_style( 'flxads-admin', FLXADS_URL . 'assets/admin.css', array(), FLXADS_VERSION );
 		wp_enqueue_script( 'flxads-admin', FLXADS_URL . 'assets/admin.js', array(), FLXADS_VERSION, true );
 		wp_localize_script(
@@ -77,6 +81,10 @@ final class FLXADS_Admin {
 		if ( ! flxads_can() ) {
 			wp_die( esc_html__( 'You are not allowed to view this page.', 'flx-ads' ) );
 		}
+		if ( flxads_flux_ui() ) {
+			flxads_flux_render();
+			return;
+		}
 		/* Cron'a güvenilmez: ekran açılınca vadesi gelmiş gönderimler denenir. */
 		if ( (int) get_option( 'flxads_heartbeat' ) < time() - 10 * MINUTE_IN_SECONDS ) {
 			FLXADS_Send::run_queue( 10 );
@@ -89,6 +97,9 @@ final class FLXADS_Admin {
 		echo '<h1 class="flxads-title">' . esc_html( 'report' === $tab ? __( 'Ad conversions', 'flx-ads' ) : $tabs[ $tab ] ) . '</h1>';
 		if ( 'report' === $tab ) {
 			echo '<p class="flxads-lead">' . esc_html__( 'Which ad, campaign and ad text brought which donation. Paid donations and orders only; bank transfers count when approved.', 'flx-ads' ) . '</p>';
+		}
+		if ( flxads_flux_available() ) {
+			echo '<p><a class="button" href="' . esc_url( flxads_ui_switch_url( 'flux', $tab ) ) . '">' . esc_html__( 'New view', 'flx-ads' ) . '</a> <span class="flxads-lead">' . esc_html__( 'Open the new view (same features, works in the FluxWP app too).', 'flx-ads' ) . '</span></p>';
 		}
 		self::notice();
 		call_user_func( array( __CLASS__, 'tab_' . $tab ) );

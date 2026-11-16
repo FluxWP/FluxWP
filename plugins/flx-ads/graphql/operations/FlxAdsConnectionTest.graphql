@@ -1,0 +1,15 @@
+mutation FlxAdsConnectionTest($input: FlxAdsConnectionTestInput!) {
+  flxAdsConnectionTest(input: $input) {
+    test {
+      ...FlxAdsTest
+    }
+    settings {
+      ...FlxAdsSettings
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

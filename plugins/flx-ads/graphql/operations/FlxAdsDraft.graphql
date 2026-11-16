@@ -1,0 +1,5 @@
+query FlxAdsDraft($id: String!) {
+  flxAdsDraft(id: $id) {
+    ...FlxAdsDraft
+  }
+}

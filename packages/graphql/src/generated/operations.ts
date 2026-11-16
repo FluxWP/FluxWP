@@ -120,6 +120,402 @@ export const FlxAdminWidgetPrefsSet: FlxOperation<T.FlxAdminWidgetPrefsSetMutati
   document: "mutation FlxAdminWidgetPrefsSet($input: FlxAdminWidgetPrefsSetInput!) {\n  flxAdminWidgetPrefsSet(input: $input) {\n    html\n    prefs {\n      tasks {\n        scope\n        list\n        chart\n      }\n      donations {\n        days\n        split\n      }\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
 };
 
+/** mutation FlxAdsAudienceCreate (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsAudienceCreate.graphql) */
+export const FlxAdsAudienceCreate: FlxOperation<T.FlxAdsAudienceCreateMutation, T.FlxAdsAudienceCreateMutationVariables> = {
+  id: '15576c276018086831114da1ff501c31ce16011c5c4d42a30db693cc098ad75b',
+  name: 'FlxAdsAudienceCreate',
+  kind: 'mutation',
+  plugin: 'flx-ads',
+  document: "mutation FlxAdsAudienceCreate($input: FlxAdsAudienceCreateInput!) {\n  flxAdsAudienceCreate(input: $input) {\n    ok\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxAdsAudienceDelete (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsAudienceDelete.graphql) */
+export const FlxAdsAudienceDelete: FlxOperation<T.FlxAdsAudienceDeleteMutation, T.FlxAdsAudienceDeleteMutationVariables> = {
+  id: '8e00b2b06e97bddea533211028e4625fbe614cdeff5df60b79721a1bf3a447f8',
+  name: 'FlxAdsAudienceDelete',
+  kind: 'mutation',
+  plugin: 'flx-ads',
+  document: "mutation FlxAdsAudienceDelete($input: FlxAdsAudienceDeleteInput!) {\n  flxAdsAudienceDelete(input: $input) {\n    ok\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxAdsAudienceLookalike (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsAudienceLookalike.graphql) */
+export const FlxAdsAudienceLookalike: FlxOperation<T.FlxAdsAudienceLookalikeMutation, T.FlxAdsAudienceLookalikeMutationVariables> = {
+  id: 'e331debbfac30bc1a1933d4c25decd870765d7d48be844c20f11584aa18854c4',
+  name: 'FlxAdsAudienceLookalike',
+  kind: 'mutation',
+  plugin: 'flx-ads',
+  document: "mutation FlxAdsAudienceLookalike($input: FlxAdsAudienceLookalikeInput!) {\n  flxAdsAudienceLookalike(input: $input) {\n    ok\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxAdsAudiences (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsAudiences.graphql) */
+export const FlxAdsAudiences: FlxOperation<T.FlxAdsAudiencesQuery, T.FlxAdsAudiencesQueryVariables> = {
+  id: '37c074f16556d30dd0de810739258178dbf8ebd7621a828ae9f001843a4b600c',
+  name: 'FlxAdsAudiences',
+  kind: 'query',
+  plugin: 'flx-ads',
+  document: "query FlxAdsAudiences {\n  flxAdsAudiences {\n    ...FlxAdsAudiencesPage\n  }\n}\n\nfragment FlxAdsAudience on FlxAdsAudience {\n  id\n  name\n  kind\n  metaId\n  groupLabel\n  purpose\n  purposeLabel\n  count\n  syncedAt {\n    iso\n    label\n    relative\n  }\n  error\n  added\n  removed\n  canSync\n  holdout\n}\n\nfragment FlxAdsAudienceSource on FlxAdsAudienceSource {\n  key\n  label\n  people\n}\n\nfragment FlxAdsAudiencesPage on FlxAdsAudiencesPage {\n  crmReady\n  metaReady\n  audiences {\n    ...FlxAdsAudience\n  }\n  sources {\n    ...FlxAdsAudienceSource\n  }\n  purposes {\n    ...FlxAdsOption\n  }\n  customAudiences {\n    ...FlxAdsOption\n  }\n}\n\nfragment FlxAdsOption on FlxAdsOption {\n  key\n  label\n}",
+};
+
+/** mutation FlxAdsAudienceSync (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsAudienceSync.graphql) */
+export const FlxAdsAudienceSync: FlxOperation<T.FlxAdsAudienceSyncMutation, T.FlxAdsAudienceSyncMutationVariables> = {
+  id: 'ff4ef120d9023d952ce2d8437b3aa7f42ba9445c11452521e7a9f657ed37cdf0',
+  name: 'FlxAdsAudienceSync',
+  kind: 'mutation',
+  plugin: 'flx-ads',
+  document: "mutation FlxAdsAudienceSync($input: FlxAdsAudienceSyncInput!) {\n  flxAdsAudienceSync(input: $input) {\n    ok\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxAdsCampaign (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsCampaign.graphql) */
+export const FlxAdsCampaign: FlxOperation<T.FlxAdsCampaignQuery, T.FlxAdsCampaignQueryVariables> = {
+  id: '703996eb7a33f7182b5e7467dd8a5c6b40efe23f63ceda425587a57cbcf9f643',
+  name: 'FlxAdsCampaign',
+  kind: 'query',
+  plugin: 'flx-ads',
+  document: "query FlxAdsCampaign($id: String!, $range: String) {\n  flxAdsCampaign(id: $id, range: $range) {\n    ...FlxAdsCampaignDetail\n  }\n}\n\nfragment FlxAdsAdRow on FlxAdsAdRow {\n  id\n  name\n  effective\n  statusLabel\n  statusTone\n  thumb\n  title\n  canPause\n  active\n  spend {\n    amount\n    currency\n    formatted\n  }\n  impressions\n  clicks\n  ctr\n}\n\nfragment FlxAdsAdsetRow on FlxAdsAdsetRow {\n  id\n  name\n  effective\n  statusLabel\n  statusTone\n  budgetLabel\n  who\n  canPause\n  active\n  dailyBudget\n  spend {\n    amount\n    currency\n    formatted\n  }\n  impressions\n  clicks\n  ctr\n  ads {\n    ...FlxAdsAdRow\n  }\n}\n\nfragment FlxAdsBreakdownRow on FlxAdsBreakdownRow {\n  label\n  spend {\n    amount\n    currency\n    formatted\n  }\n  clicks\n  share\n}\n\nfragment FlxAdsCampaignDetail on FlxAdsCampaignDetail {\n  range\n  error\n  currency\n  id\n  name\n  effective\n  statusLabel\n  statusTone\n  summary\n  canPause\n  active\n  dailyBudget\n  adsets {\n    ...FlxAdsAdsetRow\n  }\n  ageGender {\n    ...FlxAdsBreakdownRow\n  }\n  placement {\n    ...FlxAdsBreakdownRow\n  }\n}",
+};
+
+/** mutation FlxAdsCampaignBudget (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsCampaignBudget.graphql) */
+export const FlxAdsCampaignBudget: FlxOperation<T.FlxAdsCampaignBudgetMutation, T.FlxAdsCampaignBudgetMutationVariables> = {
+  id: '7ecd311b8a7e72f9192857c757cd218bc834ec7ffc3d6a498f99fde98c124c54',
+  name: 'FlxAdsCampaignBudget',
+  kind: 'mutation',
+  plugin: 'flx-ads',
+  document: "mutation FlxAdsCampaignBudget($input: FlxAdsCampaignBudgetInput!) {\n  flxAdsCampaignBudget(input: $input) {\n    ok\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxAdsCampaigns (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsCampaigns.graphql) */
+export const FlxAdsCampaigns: FlxOperation<T.FlxAdsCampaignsQuery, T.FlxAdsCampaignsQueryVariables> = {
+  id: '53a30b5fbd31c8b762b44748f6ff3bc66fd2501fceece1d2d19f4bfefc14296a',
+  name: 'FlxAdsCampaigns',
+  kind: 'query',
+  plugin: 'flx-ads',
+  document: "query FlxAdsCampaigns($range: String) {\n  flxAdsCampaigns(range: $range) {\n    ...FlxAdsCampaignList\n  }\n}\n\nfragment FlxAdsCampaignList on FlxAdsCampaignList {\n  range\n  ranges {\n    ...FlxAdsOption\n  }\n  error\n  currency\n  since\n  until\n  sinceLabel\n  untilLabel\n  totals {\n    ...FlxAdsCampaignTotals\n  }\n  rows {\n    ...FlxAdsCampaignRow\n  }\n}\n\nfragment FlxAdsCampaignRow on FlxAdsCampaignRow {\n  id\n  name\n  effective\n  statusLabel\n  statusTone\n  objective\n  objectiveLabel\n  budgetLabel\n  canPause\n  active\n  dailyBudget\n  spend {\n    amount\n    currency\n    formatted\n  }\n  impressions\n  clicks\n  ctr\n  payments\n  income {\n    amount\n    currency\n    formatted\n  }\n  roas\n  roasLevel\n}\n\nfragment FlxAdsCampaignTotals on FlxAdsCampaignTotals {\n  spend {\n    amount\n    currency\n    formatted\n  }\n  income {\n    amount\n    currency\n    formatted\n  }\n  payments\n  roas\n  active\n  count\n}\n\nfragment FlxAdsOption on FlxAdsOption {\n  key\n  label\n}",
+};
+
+/** mutation FlxAdsCampaignStatus (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsCampaignStatus.graphql) */
+export const FlxAdsCampaignStatus: FlxOperation<T.FlxAdsCampaignStatusMutation, T.FlxAdsCampaignStatusMutationVariables> = {
+  id: 'f4fc0945c371238c1d09e1e55c05d2104f3c6ac94ba5ad3df1ebb799eb5ae1bd',
+  name: 'FlxAdsCampaignStatus',
+  kind: 'mutation',
+  plugin: 'flx-ads',
+  document: "mutation FlxAdsCampaignStatus($input: FlxAdsCampaignStatusInput!) {\n  flxAdsCampaignStatus(input: $input) {\n    ok\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxAdsChangeHistory (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsChangeHistory.graphql) */
+export const FlxAdsChangeHistory: FlxOperation<T.FlxAdsChangeHistoryQuery, T.FlxAdsChangeHistoryQueryVariables> = {
+  id: '9366271e73db1168ecb85a047953c4758cbe2dd3a4c91b3cd7fdcbd2f3f79e18',
+  name: 'FlxAdsChangeHistory',
+  kind: 'query',
+  plugin: 'flx-ads',
+  document: "query FlxAdsChangeHistory($limit: Int) {\n  flxAdsChangeHistory(limit: $limit) {\n    ...FlxAdsChange\n  }\n}\n\nfragment FlxAdsChange on FlxAdsChange {\n  at {\n    iso\n    label\n    relative\n  }\n  name\n  change\n  who\n  channel\n}",
+};
+
+/** mutation FlxAdsConnectionTest (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsConnectionTest.graphql) */
+export const FlxAdsConnectionTest: FlxOperation<T.FlxAdsConnectionTestMutation, T.FlxAdsConnectionTestMutationVariables> = {
+  id: 'c862bf2e2dfad06e84f85be950d8696400d6faa25ba3480c36283bcface3e422',
+  name: 'FlxAdsConnectionTest',
+  kind: 'mutation',
+  plugin: 'flx-ads',
+  document: "mutation FlxAdsConnectionTest($input: FlxAdsConnectionTestInput!) {\n  flxAdsConnectionTest(input: $input) {\n    test {\n      ...FlxAdsTest\n    }\n    settings {\n      ...FlxAdsSettings\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAdsPlatformState on FlxAdsPlatformState {\n  key\n  label\n  on\n  ready\n  canTest\n  test {\n    ...FlxAdsTest\n  }\n}\n\nfragment FlxAdsSecret on FlxAdsSecret {\n  set\n  mask\n  fromConfig\n}\n\nfragment FlxAdsSettings on FlxAdsSettings {\n  metaOn\n  metaPixel\n  metaToken {\n    ...FlxAdsSecret\n  }\n  metaTest\n  metaAccount\n  metaPage\n  metaAdsToken {\n    ...FlxAdsSecret\n  }\n  tiktokOn\n  tiktokPixel\n  tiktokToken {\n    ...FlxAdsSecret\n  }\n  tiktokTest\n  ga4On\n  ga4Id\n  ga4ThemeId\n  ga4Secret {\n    ...FlxAdsSecret\n  }\n  consent\n  pii\n  browser\n  windowDays\n  optRoas\n  optMinSpend\n  platforms {\n    ...FlxAdsPlatformState\n  }\n}\n\nfragment FlxAdsTest on FlxAdsTest {\n  ok\n  message\n  at {\n    iso\n    label\n    relative\n  }\n}",
+};
+
+/** query FlxAdsContext (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsContext.graphql) */
+export const FlxAdsContext: FlxOperation<T.FlxAdsContextQuery, T.FlxAdsContextQueryVariables> = {
+  id: '683c3cf442655c7a16dcb6d4f80e8e34076f2d19cc410f7bf1b53f473be0c5d6',
+  name: 'FlxAdsContext',
+  kind: 'query',
+  plugin: 'flx-ads',
+  document: "query FlxAdsContext {\n  flxAdsContext {\n    ...FlxAdsContext\n  }\n}\n\nfragment FlxAdsContext on FlxAdsContext {\n  canManage\n  metaReady\n  aiReady\n  crmReady\n  openSuggestions\n  baseCurrency\n  version\n  tabs\n}",
+};
+
+/** query FlxAdsDraft (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsDraft.graphql) */
+export const FlxAdsDraft: FlxOperation<T.FlxAdsDraftQuery, T.FlxAdsDraftQueryVariables> = {
+  id: '6c177b16c9b3bc709cd8b09885247c84de6832111cc6cf5bf2c628028e13a325',
+  name: 'FlxAdsDraft',
+  kind: 'query',
+  plugin: 'flx-ads',
+  document: "query FlxAdsDraft($id: String!) {\n  flxAdsDraft(id: $id) {\n    ...FlxAdsDraft\n  }\n}\n\nfragment FlxAdsDraft on FlxAdsDraft {\n  id\n  status\n  name\n  objective\n  link\n  dailyBudget\n  start\n  end\n  adsets {\n    ...FlxAdsDraftAdset\n  }\n  ads {\n    ...FlxAdsDraftAd\n  }\n  notes\n  brief\n  sent\n  error\n  sendSummary\n}\n\nfragment FlxAdsDraftAd on FlxAdsDraftAd {\n  name\n  text\n  headline\n  description\n  cta\n  image\n}\n\nfragment FlxAdsDraftAdset on FlxAdsDraftAdset {\n  name\n  ageMin\n  ageMax\n  gender\n  countries\n  audiences\n  exclude\n  share\n}",
+};
+
+/** mutation FlxAdsDraftDelete (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsDraftDelete.graphql) */
+export const FlxAdsDraftDelete: FlxOperation<T.FlxAdsDraftDeleteMutation, T.FlxAdsDraftDeleteMutationVariables> = {
+  id: 'c997b63c709ba8710ac23ba497313e41cd5eee794dfc2325e7a260ec4c663148',
+  name: 'FlxAdsDraftDelete',
+  kind: 'mutation',
+  plugin: 'flx-ads',
+  document: "mutation FlxAdsDraftDelete($input: FlxAdsDraftDeleteInput!) {\n  flxAdsDraftDelete(input: $input) {\n    ok\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxAdsDraftDuplicate (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsDraftDuplicate.graphql) */
+export const FlxAdsDraftDuplicate: FlxOperation<T.FlxAdsDraftDuplicateMutation, T.FlxAdsDraftDuplicateMutationVariables> = {
+  id: '89515abbbb3f4bf1d730ff46dab90bd993a25a75f787d3d80828f561f64922e2',
+  name: 'FlxAdsDraftDuplicate',
+  kind: 'mutation',
+  plugin: 'flx-ads',
+  document: "mutation FlxAdsDraftDuplicate($input: FlxAdsDraftDuplicateInput!) {\n  flxAdsDraftDuplicate(input: $input) {\n    id\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxAdsDraftGenerate (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsDraftGenerate.graphql) */
+export const FlxAdsDraftGenerate: FlxOperation<T.FlxAdsDraftGenerateMutation, T.FlxAdsDraftGenerateMutationVariables> = {
+  id: '5ceedef8952188c75b1fb5538e26d371371a6d0f40200f3828a72655d1927b49',
+  name: 'FlxAdsDraftGenerate',
+  kind: 'mutation',
+  plugin: 'flx-ads',
+  document: "mutation FlxAdsDraftGenerate($input: FlxAdsDraftGenerateInput!) {\n  flxAdsDraftGenerate(input: $input) {\n    id\n    draft {\n      ...FlxAdsDraft\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAdsDraft on FlxAdsDraft {\n  id\n  status\n  name\n  objective\n  link\n  dailyBudget\n  start\n  end\n  adsets {\n    ...FlxAdsDraftAdset\n  }\n  ads {\n    ...FlxAdsDraftAd\n  }\n  notes\n  brief\n  sent\n  error\n  sendSummary\n}\n\nfragment FlxAdsDraftAd on FlxAdsDraftAd {\n  name\n  text\n  headline\n  description\n  cta\n  image\n}\n\nfragment FlxAdsDraftAdset on FlxAdsDraftAdset {\n  name\n  ageMin\n  ageMax\n  gender\n  countries\n  audiences\n  exclude\n  share\n}",
+};
+
+/** mutation FlxAdsDraftSave (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsDraftSave.graphql) */
+export const FlxAdsDraftSave: FlxOperation<T.FlxAdsDraftSaveMutation, T.FlxAdsDraftSaveMutationVariables> = {
+  id: '7879833baa361069f8eca473c5b924722775b589b7abfeaf8b404ca2a3cb76e0',
+  name: 'FlxAdsDraftSave',
+  kind: 'mutation',
+  plugin: 'flx-ads',
+  document: "mutation FlxAdsDraftSave($input: FlxAdsDraftSaveInput!) {\n  flxAdsDraftSave(input: $input) {\n    id\n    draft {\n      ...FlxAdsDraft\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAdsDraft on FlxAdsDraft {\n  id\n  status\n  name\n  objective\n  link\n  dailyBudget\n  start\n  end\n  adsets {\n    ...FlxAdsDraftAdset\n  }\n  ads {\n    ...FlxAdsDraftAd\n  }\n  notes\n  brief\n  sent\n  error\n  sendSummary\n}\n\nfragment FlxAdsDraftAd on FlxAdsDraftAd {\n  name\n  text\n  headline\n  description\n  cta\n  image\n}\n\nfragment FlxAdsDraftAdset on FlxAdsDraftAdset {\n  name\n  ageMin\n  ageMax\n  gender\n  countries\n  audiences\n  exclude\n  share\n}",
+};
+
+/** mutation FlxAdsDraftSend (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsDraftSend.graphql) */
+export const FlxAdsDraftSend: FlxOperation<T.FlxAdsDraftSendMutation, T.FlxAdsDraftSendMutationVariables> = {
+  id: '0430cfde4021f60d470591cea01d3f32d9018718afc438e364d879f2b9ce05a3',
+  name: 'FlxAdsDraftSend',
+  kind: 'mutation',
+  plugin: 'flx-ads',
+  document: "mutation FlxAdsDraftSend($input: FlxAdsDraftSendInput!) {\n  flxAdsDraftSend(input: $input) {\n    ok\n    draft {\n      ...FlxAdsDraft\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAdsDraft on FlxAdsDraft {\n  id\n  status\n  name\n  objective\n  link\n  dailyBudget\n  start\n  end\n  adsets {\n    ...FlxAdsDraftAdset\n  }\n  ads {\n    ...FlxAdsDraftAd\n  }\n  notes\n  brief\n  sent\n  error\n  sendSummary\n}\n\nfragment FlxAdsDraftAd on FlxAdsDraftAd {\n  name\n  text\n  headline\n  description\n  cta\n  image\n}\n\nfragment FlxAdsDraftAdset on FlxAdsDraftAdset {\n  name\n  ageMin\n  ageMax\n  gender\n  countries\n  audiences\n  exclude\n  share\n}",
+};
+
+/** query FlxAdsExperimentChoices (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsExperimentChoices.graphql) */
+export const FlxAdsExperimentChoices: FlxOperation<T.FlxAdsExperimentChoicesQuery, T.FlxAdsExperimentChoicesQueryVariables> = {
+  id: '80e7b7ac54b372c91d5f722cc70b41eabf6ea670420a9cfd1f51b79ae2ea7fee',
+  name: 'FlxAdsExperimentChoices',
+  kind: 'query',
+  plugin: 'flx-ads',
+  document: "query FlxAdsExperimentChoices {\n  flxAdsExperimentChoices {\n    ...FlxAdsExperimentChoices\n  }\n}\n\nfragment FlxAdsAdChoice on FlxAdsAdChoice {\n  key\n  label\n}\n\nfragment FlxAdsAdGroup on FlxAdsAdGroup {\n  campaign\n  ads {\n    ...FlxAdsAdChoice\n  }\n}\n\nfragment FlxAdsExperimentChoices on FlxAdsExperimentChoices {\n  metaReady\n  today\n  defaultEnd\n  adGroups {\n    ...FlxAdsAdGroup\n  }\n  audiences {\n    ...FlxAdsHoldoutAudience\n  }\n}\n\nfragment FlxAdsHoldoutAudience on FlxAdsHoldoutAudience {\n  id\n  label\n}",
+};
+
+/** mutation FlxAdsExperimentCreate (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsExperimentCreate.graphql) */
+export const FlxAdsExperimentCreate: FlxOperation<T.FlxAdsExperimentCreateMutation, T.FlxAdsExperimentCreateMutationVariables> = {
+  id: '033461a44cc988fdecba7a868f94beeae673e05e99e6a0f651dcc6f8ddf15cde',
+  name: 'FlxAdsExperimentCreate',
+  kind: 'mutation',
+  plugin: 'flx-ads',
+  document: "mutation FlxAdsExperimentCreate($input: FlxAdsExperimentCreateInput!) {\n  flxAdsExperimentCreate(input: $input) {\n    id\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxAdsExperimentDelete (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsExperimentDelete.graphql) */
+export const FlxAdsExperimentDelete: FlxOperation<T.FlxAdsExperimentDeleteMutation, T.FlxAdsExperimentDeleteMutationVariables> = {
+  id: 'b4802892f86bf8733e5fc2ecb0b9d2ac6424cb559f383444df60206dbea03941',
+  name: 'FlxAdsExperimentDelete',
+  kind: 'mutation',
+  plugin: 'flx-ads',
+  document: "mutation FlxAdsExperimentDelete($input: FlxAdsExperimentDeleteInput!) {\n  flxAdsExperimentDelete(input: $input) {\n    ok\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxAdsExperimentFinish (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsExperimentFinish.graphql) */
+export const FlxAdsExperimentFinish: FlxOperation<T.FlxAdsExperimentFinishMutation, T.FlxAdsExperimentFinishMutationVariables> = {
+  id: 'c6afed85d499801f21da2e4e8d69e4a9c7369bcfe7a5f3559725e49ec45c846b',
+  name: 'FlxAdsExperimentFinish',
+  kind: 'mutation',
+  plugin: 'flx-ads',
+  document: "mutation FlxAdsExperimentFinish($input: FlxAdsExperimentFinishInput!) {\n  flxAdsExperimentFinish(input: $input) {\n    ok\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxAdsExperimentPauseLoser (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsExperimentPauseLoser.graphql) */
+export const FlxAdsExperimentPauseLoser: FlxOperation<T.FlxAdsExperimentPauseLoserMutation, T.FlxAdsExperimentPauseLoserMutationVariables> = {
+  id: '69240b9776427bfac198af5f47566fdccc7671ccac938c9659fc647594b8f82d',
+  name: 'FlxAdsExperimentPauseLoser',
+  kind: 'mutation',
+  plugin: 'flx-ads',
+  document: "mutation FlxAdsExperimentPauseLoser($input: FlxAdsExperimentPauseLoserInput!) {\n  flxAdsExperimentPauseLoser(input: $input) {\n    ok\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxAdsExperiments (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsExperiments.graphql) */
+export const FlxAdsExperiments: FlxOperation<T.FlxAdsExperimentsQuery, T.FlxAdsExperimentsQueryVariables> = {
+  id: 'a3f180f5122d49e555d7df40fa228d92e2b708ca41c4a91320a077bdeda9b4fa',
+  name: 'FlxAdsExperiments',
+  kind: 'query',
+  plugin: 'flx-ads',
+  document: "query FlxAdsExperiments {\n  flxAdsExperiments {\n    ...FlxAdsExperiment\n  }\n}\n\nfragment FlxAdsExperiment on FlxAdsExperiment {\n  id\n  type\n  typeLabel\n  name\n  status\n  running\n  start\n  end\n  startLabel\n  endLabel\n  subject\n  ok\n  error\n  headA\n  headB\n  table {\n    ...FlxAdsExpTableRow\n  }\n  winner\n  confidence\n  small\n  verdict\n  loserAd {\n    ...FlxAdsLoserAd\n  }\n}\n\nfragment FlxAdsExpTableRow on FlxAdsExpTableRow {\n  label\n  a\n  b\n}\n\nfragment FlxAdsLoserAd on FlxAdsLoserAd {\n  id\n  name\n}",
+};
+
+/** mutation FlxAdsHeartbeat (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsHeartbeat.graphql) */
+export const FlxAdsHeartbeat: FlxOperation<T.FlxAdsHeartbeatMutation, T.FlxAdsHeartbeatMutationVariables> = {
+  id: '5d9d75833ba1fb533a368cd8154d472de9ffe0d605789f804ccc81ebf680b89c',
+  name: 'FlxAdsHeartbeat',
+  kind: 'mutation',
+  plugin: 'flx-ads',
+  document: "mutation FlxAdsHeartbeat($input: FlxAdsHeartbeatInput!) {\n  flxAdsHeartbeat(input: $input) {\n    ok\n    openSuggestions\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxAdsLinkBuilder (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsLinkBuilder.graphql) */
+export const FlxAdsLinkBuilder: FlxOperation<T.FlxAdsLinkBuilderQuery, T.FlxAdsLinkBuilderQueryVariables> = {
+  id: 'e0f9c37d4069b16c70279171e21bb762df8274cb70cf6d2e92170a46624d8530',
+  name: 'FlxAdsLinkBuilder',
+  kind: 'query',
+  plugin: 'flx-ads',
+  document: "query FlxAdsLinkBuilder {\n  flxAdsLinkBuilder {\n    ...FlxAdsLinkBuilder\n  }\n}\n\nfragment FlxAdsLinkBuilder on FlxAdsLinkBuilder {\n  homeUrl\n  pages\n  sources {\n    ...FlxAdsOption\n  }\n  mediums {\n    ...FlxAdsOption\n  }\n}\n\nfragment FlxAdsOption on FlxAdsOption {\n  key\n  label\n}",
+};
+
+/** query FlxAdsReport (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsReport.graphql) */
+export const FlxAdsReport: FlxOperation<T.FlxAdsReportQuery, T.FlxAdsReportQueryVariables> = {
+  id: '19a468a8f6f5ffb5c6da168b2982608ae7d88d44e17d13e372769a1281a300ea',
+  name: 'FlxAdsReport',
+  kind: 'query',
+  plugin: 'flx-ads',
+  document: "query FlxAdsReport($filter: FlxAdsFilterInput) {\n  flxAdsReport(filter: $filter) {\n    ...FlxAdsReport\n  }\n}\n\nfragment FlxAdsOption on FlxAdsOption {\n  key\n  label\n}\n\nfragment FlxAdsRecentOrder on FlxAdsRecentOrder {\n  orderId\n  orderNumber\n  editUrl\n  paidAt {\n    iso\n    label\n    relative\n  }\n  isDonation\n  newPerson\n  channel\n  summary\n  total {\n    amount\n    currency\n    formatted\n  }\n}\n\nfragment FlxAdsReport on FlxAdsReport {\n  range\n  from\n  to\n  fromLabel\n  toLabel\n  kind\n  by\n  byLabel\n  dimensions {\n    ...FlxAdsOption\n  }\n  channel\n  channelLabel\n  base\n  totals {\n    ...FlxAdsReportTotals\n  }\n  showSpendColumns\n  rows {\n    ...FlxAdsReportRow\n  }\n  recent {\n    ...FlxAdsRecentOrder\n  }\n}\n\nfragment FlxAdsReportRow on FlxAdsReportRow {\n  key\n  label\n  channel\n  channelLabel\n  count\n  amount {\n    amount\n    currency\n    formatted\n  }\n  amounts {\n    amount\n    currency\n    formatted\n  }\n  otherCurrency\n  newCount\n  share\n  hasSpend\n  spend {\n    amount\n    currency\n    formatted\n  }\n  cpa {\n    amount\n    currency\n    formatted\n  }\n  roas\n  roasLevel\n}\n\nfragment FlxAdsReportTotals on FlxAdsReportTotals {\n  count\n  amount {\n    amount\n    currency\n    formatted\n  }\n  adsCount\n  adsAmount {\n    amount\n    currency\n    formatted\n  }\n  adsPercent\n  newCount\n  mixed\n  hasSpend\n  spend {\n    amount\n    currency\n    formatted\n  }\n  clicks\n  roas\n  spendIncome {\n    amount\n    currency\n    formatted\n  }\n  spendCount\n  spendNew\n  cpa {\n    amount\n    currency\n    formatted\n  }\n  cpn {\n    amount\n    currency\n    formatted\n  }\n}",
+};
+
+/** mutation FlxAdsSeasonAdd (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsSeasonAdd.graphql) */
+export const FlxAdsSeasonAdd: FlxOperation<T.FlxAdsSeasonAddMutation, T.FlxAdsSeasonAddMutationVariables> = {
+  id: '4d8b9511f7b03e83474289c5bc7ad01f1a223b20e72587dd16d1c9f2cb5f5c5f',
+  name: 'FlxAdsSeasonAdd',
+  kind: 'mutation',
+  plugin: 'flx-ads',
+  document: "mutation FlxAdsSeasonAdd($input: FlxAdsSeasonAddInput!) {\n  flxAdsSeasonAdd(input: $input) {\n    ok\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxAdsSeasonDelete (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsSeasonDelete.graphql) */
+export const FlxAdsSeasonDelete: FlxOperation<T.FlxAdsSeasonDeleteMutation, T.FlxAdsSeasonDeleteMutationVariables> = {
+  id: '78a9c32a2cdfe9c5913dbb26ef15562d0b4ccd3a9415e2fe663a555a09d4b631',
+  name: 'FlxAdsSeasonDelete',
+  kind: 'mutation',
+  plugin: 'flx-ads',
+  document: "mutation FlxAdsSeasonDelete($input: FlxAdsSeasonDeleteInput!) {\n  flxAdsSeasonDelete(input: $input) {\n    ok\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxAdsSeasons (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsSeasons.graphql) */
+export const FlxAdsSeasons: FlxOperation<T.FlxAdsSeasonsQuery, T.FlxAdsSeasonsQueryVariables> = {
+  id: 'dc07f0cade5a2084311ae381d5099ea62c1550aa997fcd471197ccba702f25b8',
+  name: 'FlxAdsSeasons',
+  kind: 'query',
+  plugin: 'flx-ads',
+  document: "query FlxAdsSeasons {\n  flxAdsSeasons {\n    ...FlxAdsSeason\n  }\n}\n\nfragment FlxAdsSeason on FlxAdsSeason {\n  key\n  id\n  name\n  start\n  end\n  startLabel\n  endLabel\n  approx\n  custom\n  state\n  stateLabel\n  tone\n  days\n  whenLabel\n  hasLast\n  last {\n    ...FlxAdsSeasonLast\n  }\n  brief\n}\n\nfragment FlxAdsSeasonLast on FlxAdsSeasonLast {\n  payments\n  income {\n    amount\n    currency\n    formatted\n  }\n  newCount\n  spend {\n    amount\n    currency\n    formatted\n  }\n  roas\n}",
+};
+
+/** query FlxAdsSendLog (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsSendLog.graphql) */
+export const FlxAdsSendLog: FlxOperation<T.FlxAdsSendLogQuery, T.FlxAdsSendLogQueryVariables> = {
+  id: 'c9356d278116835ba38b6650ff12d25e1e61e19d6fae07a5c67f5fc6a7e258dd',
+  name: 'FlxAdsSendLog',
+  kind: 'query',
+  plugin: 'flx-ads',
+  document: "query FlxAdsSendLog {\n  flxAdsSendLog {\n    ...FlxAdsSendLog\n  }\n}\n\nfragment FlxAdsLogRow on FlxAdsLogRow {\n  id\n  platform\n  platformLabel\n  orderId\n  orderNumber\n  editUrl\n  value {\n    amount\n    currency\n    formatted\n  }\n  status\n  statusLabel\n  reason\n  attempts\n  at {\n    iso\n    label\n    relative\n  }\n  canRetry\n}\n\nfragment FlxAdsSendLog on FlxAdsSendLog {\n  sent\n  pending\n  failed\n  skipped\n  rows {\n    ...FlxAdsLogRow\n  }\n}",
+};
+
+/** mutation FlxAdsSendRetry (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsSendRetry.graphql) */
+export const FlxAdsSendRetry: FlxOperation<T.FlxAdsSendRetryMutation, T.FlxAdsSendRetryMutationVariables> = {
+  id: 'f249dbddc4f9f35a4d800d5b883d9f9b403621c899975f4afc4b8868c9f98f0b',
+  name: 'FlxAdsSendRetry',
+  kind: 'mutation',
+  plugin: 'flx-ads',
+  document: "mutation FlxAdsSendRetry($input: FlxAdsSendRetryInput!) {\n  flxAdsSendRetry(input: $input) {\n    ok\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxAdsSettings (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsSettings.graphql) */
+export const FlxAdsSettings: FlxOperation<T.FlxAdsSettingsQuery, T.FlxAdsSettingsQueryVariables> = {
+  id: '79cffe4095d5387aec2dc85c9ee353e8d208749df66181b7062c27e869c1f3ab',
+  name: 'FlxAdsSettings',
+  kind: 'query',
+  plugin: 'flx-ads',
+  document: "query FlxAdsSettings {\n  flxAdsSettings {\n    ...FlxAdsSettings\n  }\n}\n\nfragment FlxAdsPlatformState on FlxAdsPlatformState {\n  key\n  label\n  on\n  ready\n  canTest\n  test {\n    ...FlxAdsTest\n  }\n}\n\nfragment FlxAdsSecret on FlxAdsSecret {\n  set\n  mask\n  fromConfig\n}\n\nfragment FlxAdsSettings on FlxAdsSettings {\n  metaOn\n  metaPixel\n  metaToken {\n    ...FlxAdsSecret\n  }\n  metaTest\n  metaAccount\n  metaPage\n  metaAdsToken {\n    ...FlxAdsSecret\n  }\n  tiktokOn\n  tiktokPixel\n  tiktokToken {\n    ...FlxAdsSecret\n  }\n  tiktokTest\n  ga4On\n  ga4Id\n  ga4ThemeId\n  ga4Secret {\n    ...FlxAdsSecret\n  }\n  consent\n  pii\n  browser\n  windowDays\n  optRoas\n  optMinSpend\n  platforms {\n    ...FlxAdsPlatformState\n  }\n}\n\nfragment FlxAdsTest on FlxAdsTest {\n  ok\n  message\n  at {\n    iso\n    label\n    relative\n  }\n}",
+};
+
+/** mutation FlxAdsSettingsSave (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsSettingsSave.graphql) */
+export const FlxAdsSettingsSave: FlxOperation<T.FlxAdsSettingsSaveMutation, T.FlxAdsSettingsSaveMutationVariables> = {
+  id: '24a9e8646c7d2467c1f9ef0daf4c100a2a4df6971c33343e297b4ecf7582d281',
+  name: 'FlxAdsSettingsSave',
+  kind: 'mutation',
+  plugin: 'flx-ads',
+  document: "mutation FlxAdsSettingsSave($input: FlxAdsSettingsSaveInput!) {\n  flxAdsSettingsSave(input: $input) {\n    settings {\n      ...FlxAdsSettings\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAdsPlatformState on FlxAdsPlatformState {\n  key\n  label\n  on\n  ready\n  canTest\n  test {\n    ...FlxAdsTest\n  }\n}\n\nfragment FlxAdsSecret on FlxAdsSecret {\n  set\n  mask\n  fromConfig\n}\n\nfragment FlxAdsSettings on FlxAdsSettings {\n  metaOn\n  metaPixel\n  metaToken {\n    ...FlxAdsSecret\n  }\n  metaTest\n  metaAccount\n  metaPage\n  metaAdsToken {\n    ...FlxAdsSecret\n  }\n  tiktokOn\n  tiktokPixel\n  tiktokToken {\n    ...FlxAdsSecret\n  }\n  tiktokTest\n  ga4On\n  ga4Id\n  ga4ThemeId\n  ga4Secret {\n    ...FlxAdsSecret\n  }\n  consent\n  pii\n  browser\n  windowDays\n  optRoas\n  optMinSpend\n  platforms {\n    ...FlxAdsPlatformState\n  }\n}\n\nfragment FlxAdsTest on FlxAdsTest {\n  ok\n  message\n  at {\n    iso\n    label\n    relative\n  }\n}",
+};
+
+/** query FlxAdsSpend (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsSpend.graphql) */
+export const FlxAdsSpend: FlxOperation<T.FlxAdsSpendQuery, T.FlxAdsSpendQueryVariables> = {
+  id: 'b7ca184a98d1ee03a35d28f0ff539562795c566ae0e48eec7bc07669e9363747',
+  name: 'FlxAdsSpend',
+  kind: 'query',
+  plugin: 'flx-ads',
+  document: "query FlxAdsSpend($filter: FlxAdsFilterInput) {\n  flxAdsSpend(filter: $filter) {\n    ...FlxAdsSpendPage\n  }\n}\n\nfragment FlxAdsManualSpend on FlxAdsManualSpend {\n  id\n  day\n  dayLabel\n  channel\n  channelLabel\n  campaign\n  ad\n  spend {\n    amount\n    currency\n    formatted\n  }\n}\n\nfragment FlxAdsMetaStatus on FlxAdsMetaStatus {\n  ok\n  at {\n    iso\n    label\n    relative\n  }\n  message\n  rows\n  since\n  until\n  sinceLabel\n  untilLabel\n}\n\nfragment FlxAdsOption on FlxAdsOption {\n  key\n  label\n}\n\nfragment FlxAdsSpendCampaign on FlxAdsSpendCampaign {\n  name\n  channel\n  channelLabel\n  spend {\n    amount\n    currency\n    formatted\n  }\n}\n\nfragment FlxAdsSpendPage on FlxAdsSpendPage {\n  range\n  from\n  to\n  base\n  metaReady\n  metaStatus {\n    ...FlxAdsMetaStatus\n  }\n  campaigns {\n    ...FlxAdsSpendCampaign\n  }\n  total {\n    amount\n    currency\n    formatted\n  }\n  manual {\n    ...FlxAdsManualSpend\n  }\n  channels {\n    ...FlxAdsOption\n  }\n}",
+};
+
+/** mutation FlxAdsSpendAdd (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsSpendAdd.graphql) */
+export const FlxAdsSpendAdd: FlxOperation<T.FlxAdsSpendAddMutation, T.FlxAdsSpendAddMutationVariables> = {
+  id: '3bd3940ea9c4e06b7dbf33031290ab8d9e6ed4fec4b0be7297d064b37f525b0c',
+  name: 'FlxAdsSpendAdd',
+  kind: 'mutation',
+  plugin: 'flx-ads',
+  document: "mutation FlxAdsSpendAdd($input: FlxAdsSpendAddInput!) {\n  flxAdsSpendAdd(input: $input) {\n    ok\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxAdsSpendDelete (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsSpendDelete.graphql) */
+export const FlxAdsSpendDelete: FlxOperation<T.FlxAdsSpendDeleteMutation, T.FlxAdsSpendDeleteMutationVariables> = {
+  id: '4c7a66d6698c203e77643a5486d518bfaab14776558bfa6a7c67ec9a695c2768',
+  name: 'FlxAdsSpendDelete',
+  kind: 'mutation',
+  plugin: 'flx-ads',
+  document: "mutation FlxAdsSpendDelete($input: FlxAdsSpendDeleteInput!) {\n  flxAdsSpendDelete(input: $input) {\n    ok\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxAdsSpendSync (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsSpendSync.graphql) */
+export const FlxAdsSpendSync: FlxOperation<T.FlxAdsSpendSyncMutation, T.FlxAdsSpendSyncMutationVariables> = {
+  id: '321a15204f3a2eeafee102500c9f05985fc678551b77b27bb41ef41ea67ca0c2',
+  name: 'FlxAdsSpendSync',
+  kind: 'mutation',
+  plugin: 'flx-ads',
+  document: "mutation FlxAdsSpendSync($input: FlxAdsSpendSyncInput!) {\n  flxAdsSpendSync(input: $input) {\n    status {\n      ...FlxAdsMetaStatus\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAdsMetaStatus on FlxAdsMetaStatus {\n  ok\n  at {\n    iso\n    label\n    relative\n  }\n  message\n  rows\n  since\n  until\n  sinceLabel\n  untilLabel\n}",
+};
+
+/** query FlxAdsStudio (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsStudio.graphql) */
+export const FlxAdsStudio: FlxOperation<T.FlxAdsStudioQuery, T.FlxAdsStudioQueryVariables> = {
+  id: '6402f8d915ab7a970d1096ef12af62931ed8c50029a1f5490a106a629e625e4b',
+  name: 'FlxAdsStudio',
+  kind: 'query',
+  plugin: 'flx-ads',
+  document: "query FlxAdsStudio {\n  flxAdsStudio {\n    ...FlxAdsStudioPage\n  }\n}\n\nfragment FlxAdsDraftRow on FlxAdsDraftRow {\n  id\n  name\n  status\n  statusLabel\n  statusTone\n  objective\n  objectiveLabel\n  dailyBudget {\n    amount\n    currency\n    formatted\n  }\n  adsetCount\n  adCount\n  updated\n  metaCampaignId\n  error\n}\n\nfragment FlxAdsOption on FlxAdsOption {\n  key\n  label\n}\n\nfragment FlxAdsStudioPage on FlxAdsStudioPage {\n  aiReady\n  missing\n  objectives {\n    ...FlxAdsOption\n  }\n  ctas {\n    ...FlxAdsOption\n  }\n  audiences {\n    ...FlxAdsOption\n  }\n  drafts {\n    ...FlxAdsDraftRow\n  }\n  siteUrl\n}",
+};
+
+/** mutation FlxAdsSuggestionApply (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsSuggestionApply.graphql) */
+export const FlxAdsSuggestionApply: FlxOperation<T.FlxAdsSuggestionApplyMutation, T.FlxAdsSuggestionApplyMutationVariables> = {
+  id: '7d8a60a058ce4b48e7047831db86f4ece1d4aa76a90a5598362e7ffdb1830669',
+  name: 'FlxAdsSuggestionApply',
+  kind: 'mutation',
+  plugin: 'flx-ads',
+  document: "mutation FlxAdsSuggestionApply($input: FlxAdsSuggestionApplyInput!) {\n  flxAdsSuggestionApply(input: $input) {\n    ok\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxAdsSuggestionDismiss (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsSuggestionDismiss.graphql) */
+export const FlxAdsSuggestionDismiss: FlxOperation<T.FlxAdsSuggestionDismissMutation, T.FlxAdsSuggestionDismissMutationVariables> = {
+  id: 'f69a419a23d70261401dc4bc190e759a71413b427c8c58e9e490e32502d1c49a',
+  name: 'FlxAdsSuggestionDismiss',
+  kind: 'mutation',
+  plugin: 'flx-ads',
+  document: "mutation FlxAdsSuggestionDismiss($input: FlxAdsSuggestionDismissInput!) {\n  flxAdsSuggestionDismiss(input: $input) {\n    ok\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxAdsSuggestions (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsSuggestions.graphql) */
+export const FlxAdsSuggestions: FlxOperation<T.FlxAdsSuggestionsQuery, T.FlxAdsSuggestionsQueryVariables> = {
+  id: '0d11b8f455f8a16515111047721b1dfebd7b70f52034cc85ad2c98efdd781972',
+  name: 'FlxAdsSuggestions',
+  kind: 'query',
+  plugin: 'flx-ads',
+  document: "query FlxAdsSuggestions {\n  flxAdsSuggestions {\n    ...FlxAdsSuggestionsPage\n  }\n}\n\nfragment FlxAdsSuggestion on FlxAdsSuggestion {\n  id\n  type\n  typeLabel\n  tone\n  created {\n    iso\n    label\n    relative\n  }\n  name\n  level\n  context\n  reason\n  campaignId\n  action {\n    ...FlxAdsSuggestionAction\n  }\n  brief\n  start\n  end\n  status\n  statusLabel\n  decided {\n    iso\n    label\n    relative\n  }\n  who\n  result\n}\n\nfragment FlxAdsSuggestionAction on FlxAdsSuggestionAction {\n  field\n  to\n  confirm\n  label\n}\n\nfragment FlxAdsSuggestionRun on FlxAdsSuggestionRun {\n  at {\n    iso\n    label\n    relative\n  }\n  ok\n  message\n  newCount\n}\n\nfragment FlxAdsSuggestionsPage on FlxAdsSuggestionsPage {\n  metaReady\n  run {\n    ...FlxAdsSuggestionRun\n  }\n  targetRoas\n  rulesText\n  open {\n    ...FlxAdsSuggestion\n  }\n  earlier {\n    ...FlxAdsSuggestion\n  }\n}",
+};
+
+/** mutation FlxAdsSuggestionsRefresh (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsSuggestionsRefresh.graphql) */
+export const FlxAdsSuggestionsRefresh: FlxOperation<T.FlxAdsSuggestionsRefreshMutation, T.FlxAdsSuggestionsRefreshMutationVariables> = {
+  id: '3311e69615d4f9a6891a6a199712bac121e9397e58daee03f7e4935d5caec43d',
+  name: 'FlxAdsSuggestionsRefresh',
+  kind: 'mutation',
+  plugin: 'flx-ads',
+  document: "mutation FlxAdsSuggestionsRefresh($input: FlxAdsSuggestionsRefreshInput!) {\n  flxAdsSuggestionsRefresh(input: $input) {\n    newCount\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxAdsValue (flx-ads, plugins/flx-ads/graphql/operations/FlxAdsValue.graphql) */
+export const FlxAdsValue: FlxOperation<T.FlxAdsValueQuery, T.FlxAdsValueQueryVariables> = {
+  id: 'e89bbd8ee4c7bf09dcfb37612cbe5859fc64666e6e91b3d6ac45fe9826e684aa',
+  name: 'FlxAdsValue',
+  kind: 'query',
+  plugin: 'flx-ads',
+  document: "query FlxAdsValue($filter: FlxAdsFilterInput) {\n  flxAdsValue(filter: $filter) {\n    ...FlxAdsValuePage\n  }\n}\n\nfragment FlxAdsCohortRow on FlxAdsCohortRow {\n  month\n  label\n  newCount\n  cells {\n    amount\n    currency\n    formatted\n  }\n}\n\nfragment FlxAdsValuePage on FlxAdsValuePage {\n  range\n  from\n  to\n  kind\n  by\n  base\n  totals {\n    ...FlxAdsValueTotals\n  }\n  rows {\n    ...FlxAdsValueRow\n  }\n  cohortMonths\n  cohort {\n    ...FlxAdsCohortRow\n  }\n}\n\nfragment FlxAdsValueRow on FlxAdsValueRow {\n  key\n  label\n  channel\n  channelLabel\n  newCount\n  first {\n    amount\n    currency\n    formatted\n  }\n  ltv90 {\n    amount\n    currency\n    formatted\n  }\n  ltv {\n    amount\n    currency\n    formatted\n  }\n  avg {\n    amount\n    currency\n    formatted\n  }\n  rate\n  hasSpend\n  spend {\n    amount\n    currency\n    formatted\n  }\n  cac {\n    amount\n    currency\n    formatted\n  }\n  ratio\n  roasLevel\n  payback\n}\n\nfragment FlxAdsValueTotals on FlxAdsValueTotals {\n  newCount\n  adsNew\n  adsAvg {\n    amount\n    currency\n    formatted\n  }\n  cac {\n    amount\n    currency\n    formatted\n  }\n  spend {\n    amount\n    currency\n    formatted\n  }\n  ratio\n  rate\n}",
+};
+
 /** query FlxAiBilling (flx-ai, plugins/flx-ai/graphql/operations/FlxAiBilling.graphql) */
 export const FlxAiBilling: FlxOperation<T.FlxAiBillingQuery, T.FlxAiBillingQueryVariables> = {
   id: '2ce74187ffc690342b4345a3cde10aefb9efc6e12ea495d8531228dc9647e8fe',

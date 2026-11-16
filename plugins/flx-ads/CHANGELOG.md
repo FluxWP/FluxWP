@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.8.0
+
+- New view: the Ad conversions screen is now a React screen that reads and writes over GraphQL, with every page of the classic one (report, campaigns, suggestions, Studio, season plan, tests, donor value, ad spend, audiences, send log, ad link, settings). It is the default in wp-admin and works in the FluxWP app as a module (`flxads-ads`). A "Classic view" link opens the old page (per user), and the classic page has a "New view" link.
+- GraphQL: 17 queries and 27 mutations (`flxAds*`), 44 registered operations. Reads need the Flux Ads view permission, changes the manage permission. Secrets (Meta, TikTok, GA4 keys) are write-only: reads return whether one is set and its last four characters.
+- The classic page and the new screen share the same service classes, so both behave the same. Opening the screen still sends due conversions and refreshes spend and suggestions (every 5 minutes while it is open).
+- Requires Flux GraphQL; PHP 8.1 or newer.
+
 ## 0.7.0
 
 - Season plan: new page with the giving seasons of the next 12 months: Ramadan and Eid, Qurban, World Forestry Day, Mother's Day, World Environment Day, 11 November tree day, Teachers' Day, Black Friday and Giving Tuesday, year end, plus your own dates. Each shows what the same period brought last year (payments, income, new donors, ad spend and ROAS) and when to start preparing. "Write a draft" opens Studio with the brief and dates filled in. Hijri dates are approximate.

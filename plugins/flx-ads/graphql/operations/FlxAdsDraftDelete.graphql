@@ -1,0 +1,10 @@
+mutation FlxAdsDraftDelete($input: FlxAdsDraftDeleteInput!) {
+  flxAdsDraftDelete(input: $input) {
+    ok
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

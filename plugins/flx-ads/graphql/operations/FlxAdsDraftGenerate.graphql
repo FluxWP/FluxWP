@@ -1,0 +1,13 @@
+mutation FlxAdsDraftGenerate($input: FlxAdsDraftGenerateInput!) {
+  flxAdsDraftGenerate(input: $input) {
+    id
+    draft {
+      ...FlxAdsDraft
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

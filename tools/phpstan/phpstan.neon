@@ -13,6 +13,8 @@ parameters:
   tmpDir: .cache
   bootstrapFiles:
     - bootstrap.php
+  stubFiles:
+    - stubs/flx-ads.php
   scanFiles:
     - ../../plugins/flx-graphql/vendor/wp-graphql/access-functions.php
     - ../../plugins/flx-app/flx-app.php
@@ -39,6 +41,7 @@ parameters:
     - ../../plugins/flx-setup/includes
     - ../../plugins/flx-app/includes
     - ../../plugins/flx-backup/includes
+    - ../../plugins/flx-ads/includes
     - ../../plugins/flx-lang/includes
     - ../../plugins/flx-seo/includes
     - ../../plugins/flx-wiki/includes
@@ -91,6 +94,9 @@ parameters:
     # Flux Backup (Faz 1)
     - ../../plugins/flx-backup/includes/services
     - ../../plugins/flx-backup/includes/graphql
+    # Flux Ads (Faz 1)
+    - ../../plugins/flx-ads/includes/services
+    - ../../plugins/flx-ads/includes/graphql
     # Flux Lang (Faz 1)
     - ../../plugins/flx-lang/includes/services
     - ../../plugins/flx-lang/includes/graphql

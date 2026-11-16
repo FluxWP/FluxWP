@@ -5,6 +5,15 @@ msgstr ""
 "Language: en_US\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Sees ad conversions"
+msgstr "Sees ad conversions"
+
+msgid "Ads"
+msgstr "Ads"
+
+msgid "Manages ads and tracking settings"
+msgstr "Manages ads and tracking settings"
+
 msgid "Settings"
 msgstr "Settings"
 
@@ -112,6 +121,9 @@ msgstr "Create draft in Meta (paused)"
 
 msgid "Delete a campaign draft"
 msgstr "Delete a campaign draft"
+
+msgid "Ad conversions"
+msgstr "Ad conversions"
 
 msgid "Audience not found."
 msgstr "Audience not found."
@@ -517,6 +529,9 @@ msgstr "First came through: %s"
 msgid "Ad report"
 msgstr "Ad report"
 
+msgid "JavaScript is required for this screen."
+msgstr "JavaScript is required for this screen."
+
 msgid "Other campaigns (UTM)"
 msgstr "Other campaigns (UTM)"
 
@@ -548,9 +563,6 @@ msgstr "Last connection test failed:"
 
 msgid "Pixel and server events are set up. Run \"Test\" once to check the key."
 msgstr "Pixel and server events are set up. Run \"Test\" once to check the key."
-
-msgid "Ads"
-msgstr "Ads"
 
 msgid "Ad platforms"
 msgstr "Ad platforms"
@@ -649,11 +661,14 @@ msgstr "Ad link"
 msgid "You are not allowed to view this page."
 msgstr "You are not allowed to view this page."
 
-msgid "Ad conversions"
-msgstr "Ad conversions"
-
 msgid "Which ad, campaign and ad text brought which donation. Paid donations and orders only; bank transfers count when approved."
 msgstr "Which ad, campaign and ad text brought which donation. Paid donations and orders only; bank transfers count when approved."
+
+msgid "New view"
+msgstr "New view"
+
+msgid "Open the new view (same features, works in the FluxWP app too)."
+msgstr "Open the new view (same features, works in the FluxWP app too)."
 
 msgid "Settings saved."
 msgstr "Settings saved."
@@ -1731,3 +1746,1443 @@ msgstr "How long a click counts for a later donation."
 
 msgid "Save settings"
 msgstr "Save settings"
+
+msgid "Period, kind, channel and grouping. Empty uses the screen's defaults."
+msgstr "Period, kind, channel and grouping. Empty uses the screen's defaults."
+
+msgid "The change was made."
+msgstr "The change was made."
+
+msgid "What the Flux Ads screen needs before it draws."
+msgstr "What the Flux Ads screen needs before it draws."
+
+msgid "The conversion report: which ad, campaign and ad text brought which donation."
+msgstr "The conversion report: which ad, campaign and ad text brought which donation."
+
+msgid "Ad spend by campaign, and the rows entered by hand (managers)."
+msgstr "Ad spend by campaign, and the rows entered by hand (managers)."
+
+msgid "Donor value by acquisition group, and the cohort table."
+msgstr "Donor value by acquisition group, and the cohort table."
+
+msgid "Conversions sent to the ad platforms, and the ones that failed."
+msgstr "Conversions sent to the ad platforms, and the ones that failed."
+
+msgid "What the tracked link builder offers."
+msgstr "What the tracked link builder offers."
+
+msgid "Audiences kept in Meta, and the CRM groups they can be built from."
+msgstr "Audiences kept in Meta, and the CRM groups they can be built from."
+
+msgid "Meta campaigns with their numbers and the income they brought on the site."
+msgstr "Meta campaigns with their numbers and the income they brought on the site."
+
+msgid "Period key from FlxAdsCampaignList.ranges; empty is the default."
+msgstr "Period key from FlxAdsCampaignList.ranges; empty is the default."
+
+msgid "One campaign: ad sets, ads, age/gender and placement."
+msgstr "One campaign: ad sets, ads, age/gender and placement."
+
+msgid "Meta campaign ID."
+msgstr "Meta campaign ID."
+
+msgid "Period key; empty is the default."
+msgstr "Period key; empty is the default."
+
+msgid "Changes made to the ad account from Flux Ads, newest first."
+msgstr "Changes made to the ad account from Flux Ads, newest first."
+
+msgid "How many (1–100). Default 15."
+msgstr "How many (1–100). Default 15."
+
+msgid "Budget and pause suggestions from the optimizer, and season reminders."
+msgstr "Budget and pause suggestions from the optimizer, and season reminders."
+
+msgid "Tests: two ads side by side, or a group held out of the ads."
+msgstr "Tests: two ads side by side, or a group held out of the ads."
+
+msgid "What the new test form offers."
+msgstr "What the new test form offers."
+
+msgid "Periods when giving and sales rise, with last year's numbers."
+msgstr "Periods when giving and sales rise, with last year's numbers."
+
+msgid "Studio: what the editor offers and the drafts."
+msgstr "Studio: what the editor offers and the drafts."
+
+msgid "One Studio draft; empty when it does not exist."
+msgstr "One Studio draft; empty when it does not exist."
+
+msgid "Draft ID."
+msgstr "Draft ID."
+
+msgid "Tracking settings. Secrets are never returned, only whether one is set."
+msgstr "Tracking settings. Secrets are never returned, only whether one is set."
+
+msgid "What the classic page does when it opens: send due conversions and read ad spend. The screen calls it now and then. Nothing is written to an ad account."
+msgstr "What the classic page does when it opens: send due conversions and read ad spend. The screen calls it now and then. Nothing is written to an ad account."
+
+msgid "Suggestions waiting for a decision."
+msgstr "Suggestions waiting for a decision."
+
+msgid "Saves tracking settings. A secret left empty keeps the stored one; \"__clear__\" removes it."
+msgstr "Saves tracking settings. A secret left empty keeps the stored one; \"__clear__\" removes it."
+
+msgid "Settings to save."
+msgstr "Settings to save."
+
+msgid "Settings after the change."
+msgstr "Settings after the change."
+
+msgid "Tests one platform with a test event (Meta, TikTok) or the validation endpoint (GA4); nothing is recorded. Any settings sent are saved first, as the classic Test button does."
+msgstr "Tests one platform with a test event (Meta, TikTok) or the validation endpoint (GA4); nothing is recorded. Any settings sent are saved first, as the classic Test button does."
+
+msgid "Platform to test."
+msgstr "Platform to test."
+
+msgid "Form values to save before testing."
+msgstr "Form values to save before testing."
+
+msgid "What the platform answered."
+msgstr "What the platform answered."
+
+msgid "Settings after the test."
+msgstr "Settings after the test."
+
+msgid "Reads ad spend from Meta now."
+msgstr "Reads ad spend from Meta now."
+
+msgid "The result of the read."
+msgstr "The result of the read."
+
+msgid "Adds a spend row by hand (Google, TikTok or anything not read from Meta)."
+msgstr "Adds a spend row by hand (Google, TikTok or anything not read from Meta)."
+
+msgid "Channel key from FlxAdsSpendPage.channels."
+msgstr "Channel key from FlxAdsSpendPage.channels."
+
+msgid "Day (Y-m-d)."
+msgstr "Day (Y-m-d)."
+
+msgid "Campaign name."
+msgstr "Campaign name."
+
+msgid "Ad name."
+msgstr "Ad name."
+
+msgid "Amount as typed."
+msgstr "Amount as typed."
+
+msgid "ISO currency; empty is the shop currency."
+msgstr "ISO currency; empty is the shop currency."
+
+msgid "Deletes a spend row entered by hand."
+msgstr "Deletes a spend row entered by hand."
+
+msgid "Row ID."
+msgstr "Row ID."
+
+msgid "Sends a failed conversion again."
+msgstr "Sends a failed conversion again."
+
+msgid "Log row ID."
+msgstr "Log row ID."
+
+msgid "Creates an audience in Meta from a CRM group, fills it, and optionally a lookalike."
+msgstr "Creates an audience in Meta from a CRM group, fills it, and optionally a lookalike."
+
+msgid "The audience."
+msgstr "The audience."
+
+msgid "Creates a lookalike audience from one of your own."
+msgstr "Creates a lookalike audience from one of your own."
+
+msgid "Audience ID to start from."
+msgstr "Audience ID to start from."
+
+msgid "Country code."
+msgstr "Country code."
+
+msgid "Size in percent (1–10)."
+msgstr "Size in percent (1–10)."
+
+msgid "Sends the current CRM group to the audience in Meta."
+msgstr "Sends the current CRM group to the audience in Meta."
+
+msgid "Audience ID."
+msgstr "Audience ID."
+
+msgid "Deletes an audience in Meta and in Flux Ads."
+msgstr "Deletes an audience in Meta and in Flux Ads."
+
+msgid "Pauses or resumes a campaign, ad set or ad in Meta."
+msgstr "Pauses or resumes a campaign, ad set or ad in Meta."
+
+msgid "Meta ID."
+msgstr "Meta ID."
+
+msgid "The new status."
+msgstr "The new status."
+
+msgid "Changes the daily budget of a campaign or ad set in Meta."
+msgstr "Changes the daily budget of a campaign or ad set in Meta."
+
+msgid "New daily budget in the ad account currency."
+msgstr "New daily budget in the ad account currency."
+
+msgid "Looks at the numbers again and writes new suggestions."
+msgstr "Looks at the numbers again and writes new suggestions."
+
+msgid "New suggestions."
+msgstr "New suggestions."
+
+msgid "Applies a suggestion to the ad account."
+msgstr "Applies a suggestion to the ad account."
+
+msgid "Suggestion ID."
+msgstr "Suggestion ID."
+
+msgid "Dismisses a suggestion."
+msgstr "Dismisses a suggestion."
+
+msgid "Adds a date of your own to the season plan."
+msgstr "Adds a date of your own to the season plan."
+
+msgid "The date."
+msgstr "The date."
+
+msgid "Deletes a date you added."
+msgstr "Deletes a date you added."
+
+msgid "Season ID (FlxAdsSeason.id)."
+msgstr "Season ID (FlxAdsSeason.id)."
+
+msgid "Starts a test. It only watches; it changes nothing in the ad account."
+msgstr "Starts a test. It only watches; it changes nothing in the ad account."
+
+msgid "The test."
+msgstr "The test."
+
+msgid "New test ID; empty when the input was refused."
+msgstr "New test ID; empty when the input was refused."
+
+msgid "Ends a test now."
+msgstr "Ends a test now."
+
+msgid "Test ID."
+msgstr "Test ID."
+
+msgid "Deletes a test."
+msgstr "Deletes a test."
+
+msgid "Pauses the weaker ad of a finished test in Meta."
+msgstr "Pauses the weaker ad of a finished test in Meta."
+
+msgid "Saves a Studio draft; a new one when no ID is given. Nothing reaches Meta."
+msgstr "Saves a Studio draft; a new one when no ID is given. Nothing reaches Meta."
+
+msgid "Draft ID; empty creates a new draft."
+msgstr "Draft ID; empty creates a new draft."
+
+msgid "The draft."
+msgstr "The draft."
+
+msgid "The saved draft."
+msgstr "The saved draft."
+
+msgid "Flux AI writes a draft from a brief (up to 90 seconds). Nothing reaches Meta."
+msgstr "Flux AI writes a draft from a brief (up to 90 seconds). Nothing reaches Meta."
+
+msgid "What to write from."
+msgstr "What to write from."
+
+msgid "New draft ID."
+msgstr "New draft ID."
+
+msgid "The new draft."
+msgstr "The new draft."
+
+msgid "Copies a draft."
+msgstr "Copies a draft."
+
+msgid "The copy's ID."
+msgstr "The copy's ID."
+
+msgid "Deletes a draft. Nothing changes in Meta."
+msgstr "Deletes a draft. Nothing changes in Meta."
+
+msgid "Creates the draft in Meta. The campaign, ad sets and ads are always created paused."
+msgstr "Creates the draft in Meta. The campaign, ad sets and ads are always created paused."
+
+msgid "The draft after sending."
+msgstr "The draft after sending."
+
+msgid "An audience Flux Ads keeps in Meta."
+msgstr "An audience Flux Ads keeps in Meta."
+
+msgid "Audience ID in Flux Ads."
+msgstr "Audience ID in Flux Ads."
+
+msgid "Name."
+msgstr "Name."
+
+msgid "custom or lookalike."
+msgstr "custom or lookalike."
+
+msgid "Audience ID in Meta."
+msgstr "Audience ID in Meta."
+
+msgid "Source group as text."
+msgstr "Source group as text."
+
+msgid "Purpose key."
+msgstr "Purpose key."
+
+msgid "Purpose as text."
+msgstr "Purpose as text."
+
+msgid "People sent at the last sync."
+msgstr "People sent at the last sync."
+
+msgid "Last sync; empty when never."
+msgstr "Last sync; empty when never."
+
+msgid "Why the last sync failed; empty when it worked."
+msgstr "Why the last sync failed; empty when it worked."
+
+msgid "People added at the last sync."
+msgstr "People added at the last sync."
+
+msgid "People removed at the last sync."
+msgstr "People removed at the last sync."
+
+msgid "It can be synced again."
+msgstr "It can be synced again."
+
+msgid "Used by a holdout test."
+msgstr "Used by a holdout test."
+
+msgid "A CRM group an audience can be built from."
+msgstr "A CRM group an audience can be built from."
+
+msgid "Source key."
+msgstr "Source key."
+
+msgid "People with ad consent (managers only; 0 otherwise)."
+msgstr "People with ad consent (managers only; 0 otherwise)."
+
+msgid "The Audiences tab."
+msgstr "The Audiences tab."
+
+msgid "Flux CRM is active."
+msgstr "Flux CRM is active."
+
+msgid "The Meta ad account is set up."
+msgstr "The Meta ad account is set up."
+
+msgid "Audiences."
+msgstr "Audiences."
+
+msgid "CRM groups to build from."
+msgstr "CRM groups to build from."
+
+msgid "What an audience is for."
+msgstr "What an audience is for."
+
+msgid "Own audiences a lookalike can start from."
+msgstr "Own audiences a lookalike can start from."
+
+msgid "A new audience."
+msgstr "A new audience."
+
+msgid "A source key from the page."
+msgstr "A source key from the page."
+
+msgid "A purpose key from the page."
+msgstr "A purpose key from the page."
+
+msgid "Also create a lookalike."
+msgstr "Also create a lookalike."
+
+msgid "Lookalike country code."
+msgstr "Lookalike country code."
+
+msgid "Lookalike size in percent (1–10)."
+msgstr "Lookalike size in percent (1–10)."
+
+msgid "An ad set of a draft."
+msgstr "An ad set of a draft."
+
+msgid "Youngest age."
+msgstr "Youngest age."
+
+msgid "Oldest age."
+msgstr "Oldest age."
+
+msgid "all, men or women."
+msgstr "all, men or women."
+
+msgid "Country codes."
+msgstr "Country codes."
+
+msgid "Audience IDs to include."
+msgstr "Audience IDs to include."
+
+msgid "Audience IDs to exclude."
+msgstr "Audience IDs to exclude."
+
+msgid "Share of the budget (0–100)."
+msgstr "Share of the budget (0–100)."
+
+msgid "An ad of a draft."
+msgstr "An ad of a draft."
+
+msgid "Main text."
+msgstr "Main text."
+
+msgid "Headline."
+msgstr "Headline."
+
+msgid "Description."
+msgstr "Description."
+
+msgid "Button key."
+msgstr "Button key."
+
+msgid "Image address."
+msgstr "Image address."
+
+msgid "A Studio draft. Nothing reaches Meta until it is sent, and then it is created paused."
+msgstr "A Studio draft. Nothing reaches Meta until it is sent, and then it is created paused."
+
+msgid "draft, sent or failed."
+msgstr "draft, sent or failed."
+
+msgid "Objective key."
+msgstr "Objective key."
+
+msgid "Address the ads open."
+msgstr "Address the ads open."
+
+msgid "Daily budget."
+msgstr "Daily budget."
+
+msgid "Start (Y-m-d)."
+msgstr "Start (Y-m-d)."
+
+msgid "End (Y-m-d)."
+msgstr "End (Y-m-d)."
+
+msgid "Ad sets."
+msgstr "Ad sets."
+
+msgid "Ads."
+msgstr "Ads."
+
+msgid "Notes the AI left for the person."
+msgstr "Notes the AI left for the person."
+
+msgid "The brief it was written from."
+msgstr "The brief it was written from."
+
+msgid "Already created in Meta."
+msgstr "Already created in Meta."
+
+msgid "Why sending failed; empty otherwise."
+msgstr "Why sending failed; empty otherwise."
+
+msgid "What was created in Meta."
+msgstr "What was created in Meta."
+
+msgid "A draft in the list."
+msgstr "A draft in the list."
+
+msgid "Status as text."
+msgstr "Status as text."
+
+msgid "Status colour: ok, warn, bad or off."
+msgstr "Status colour: ok, warn, bad or off."
+
+msgid "Objective as text."
+msgstr "Objective as text."
+
+msgid "Last change as text."
+msgstr "Last change as text."
+
+msgid "Meta campaign ID once sent."
+msgstr "Meta campaign ID once sent."
+
+msgid "The Studio tab: what the editor offers and the drafts."
+msgstr "The Studio tab: what the editor offers and the drafts."
+
+msgid "Flux AI can write drafts."
+msgstr "Flux AI can write drafts."
+
+msgid "What is missing before a draft can be sent (token, ad account, page)."
+msgstr "What is missing before a draft can be sent (token, ad account, page)."
+
+msgid "Objectives."
+msgstr "Objectives."
+
+msgid "Call-to-action buttons."
+msgstr "Call-to-action buttons."
+
+msgid "Audiences a draft can target."
+msgstr "Audiences a draft can target."
+
+msgid "Drafts, newest first."
+msgstr "Drafts, newest first."
+
+msgid "Site address."
+msgstr "Site address."
+
+msgid "A Studio draft to save."
+msgstr "A Studio draft to save."
+
+msgid "What Flux AI writes a draft from."
+msgstr "What Flux AI writes a draft from."
+
+msgid "The brief."
+msgstr "The brief."
+
+msgid "Last year's numbers for the same period."
+msgstr "Last year's numbers for the same period."
+
+msgid "Payments."
+msgstr "Payments."
+
+msgid "Income."
+msgstr "Income."
+
+msgid "New people."
+msgstr "New people."
+
+msgid "Ad spend."
+msgstr "Ad spend."
+
+msgid "Return on ad spend."
+msgstr "Return on ad spend."
+
+msgid "A period when giving and sales rise."
+msgstr "A period when giving and sales rise."
+
+msgid "Key."
+msgstr "Key."
+
+msgid "ID of a date you added; empty for built-in ones."
+msgstr "ID of a date you added; empty for built-in ones."
+
+msgid "Start as text."
+msgstr "Start as text."
+
+msgid "End as text."
+msgstr "End as text."
+
+msgid "The dates follow the moon and can shift by a day."
+msgstr "The dates follow the moon and can shift by a day."
+
+msgid "Added by a person."
+msgstr "Added by a person."
+
+msgid "now, prep or later."
+msgstr "now, prep or later."
+
+msgid "State as text."
+msgstr "State as text."
+
+msgid "Colour: ok, warn, bad or off."
+msgstr "Colour: ok, warn, bad or off."
+
+msgid "Days until it starts; 0 while it runs."
+msgstr "Days until it starts; 0 while it runs."
+
+msgid "When, as text."
+msgstr "When, as text."
+
+msgid "There are numbers from last year."
+msgstr "There are numbers from last year."
+
+msgid "Last year's numbers."
+msgstr "Last year's numbers."
+
+msgid "Ready brief for Studio."
+msgstr "Ready brief for Studio."
+
+msgid "A date of your own."
+msgstr "A date of your own."
+
+msgid "End (Y-m-d); empty is the start day."
+msgstr "End (Y-m-d); empty is the start day."
+
+msgid "Days to prepare before it starts (3–60)."
+msgstr "Days to prepare before it starts (3–60)."
+
+msgid "A Meta campaign with its numbers."
+msgstr "A Meta campaign with its numbers."
+
+msgid "Meta effective status."
+msgstr "Meta effective status."
+
+msgid "Meta objective."
+msgstr "Meta objective."
+
+msgid "Budget as text."
+msgstr "Budget as text."
+
+msgid "The status can be switched."
+msgstr "The status can be switched."
+
+msgid "Delivering now."
+msgstr "Delivering now."
+
+msgid "Daily budget; empty when the budget is on ad sets."
+msgstr "Daily budget; empty when the budget is on ad sets."
+
+msgid "Spend in the period."
+msgstr "Spend in the period."
+
+msgid "Impressions."
+msgstr "Impressions."
+
+msgid "Link clicks."
+msgstr "Link clicks."
+
+msgid "Click rate (0–100)."
+msgstr "Click rate (0–100)."
+
+msgid "Payments on the site from this campaign."
+msgstr "Payments on the site from this campaign."
+
+msgid "Income on the site from this campaign."
+msgstr "Income on the site from this campaign."
+
+msgid "none, bad, mid or good (colour)."
+msgstr "none, bad, mid or good (colour)."
+
+msgid "Totals of the campaign list."
+msgstr "Totals of the campaign list."
+
+msgid "Spend."
+msgstr "Spend."
+
+msgid "Income on the site."
+msgstr "Income on the site."
+
+msgid "Campaigns delivering."
+msgstr "Campaigns delivering."
+
+msgid "Campaigns."
+msgstr "Campaigns."
+
+msgid "The Campaigns tab. Meta problems come back in `error` instead of failing the request."
+msgstr "The Campaigns tab. Meta problems come back in `error` instead of failing the request."
+
+msgid "Period key."
+msgstr "Period key."
+
+msgid "Periods to choose from."
+msgstr "Periods to choose from."
+
+msgid "Why the list is empty (no token, Meta refused …); empty when it worked."
+msgstr "Why the list is empty (no token, Meta refused …); empty when it worked."
+
+msgid "Ad account currency."
+msgstr "Ad account currency."
+
+msgid "Totals; empty when there is an error."
+msgstr "Totals; empty when there is an error."
+
+msgid "The campaigns."
+msgstr "The campaigns."
+
+msgid "An ad with its numbers."
+msgstr "An ad with its numbers."
+
+msgid "Meta ad ID."
+msgstr "Meta ad ID."
+
+msgid "Preview image address."
+msgstr "Preview image address."
+
+msgid "An ad set with its ads."
+msgstr "An ad set with its ads."
+
+msgid "Meta ad set ID."
+msgstr "Meta ad set ID."
+
+msgid "Who it targets, as text."
+msgstr "Who it targets, as text."
+
+msgid "Daily budget; empty when the budget is on the campaign."
+msgstr "Daily budget; empty when the budget is on the campaign."
+
+msgid "Ads of the ad set."
+msgstr "Ads of the ad set."
+
+msgid "One row of an age/gender or placement breakdown."
+msgstr "One row of an age/gender or placement breakdown."
+
+msgid "Group."
+msgstr "Group."
+
+msgid "Share of the spend (0–100)."
+msgstr "Share of the spend (0–100)."
+
+msgid "One campaign: ad sets, ads and breakdowns. Meta problems come back in `error`."
+msgstr "One campaign: ad sets, ads and breakdowns. Meta problems come back in `error`."
+
+msgid "Why the detail is empty; empty when it worked."
+msgstr "Why the detail is empty; empty when it worked."
+
+msgid "Objective and budget in one line."
+msgstr "Objective and budget in one line."
+
+msgid "Spend by age and gender."
+msgstr "Spend by age and gender."
+
+msgid "Spend by placement."
+msgstr "Spend by placement."
+
+msgid "A change made to the ad account from Flux Ads."
+msgstr "A change made to the ad account from Flux Ads."
+
+msgid "When it was made."
+msgstr "When it was made."
+
+msgid "What was changed."
+msgstr "What was changed."
+
+msgid "The change as text."
+msgstr "The change as text."
+
+msgid "Who made it."
+msgstr "Who made it."
+
+msgid "Where it was made: screen, suggestion, AI …"
+msgstr "Where it was made: screen, suggestion, AI …"
+
+msgid "The change a suggestion applies."
+msgstr "The change a suggestion applies."
+
+msgid "What changes (daily budget, status …)."
+msgstr "What changes (daily budget, status …)."
+
+msgid "The new value."
+msgstr "The new value."
+
+msgid "Text to confirm with the user."
+msgstr "Text to confirm with the user."
+
+msgid "Button text."
+msgstr "Button text."
+
+msgid "A suggestion from the optimizer."
+msgstr "A suggestion from the optimizer."
+
+msgid "Type key."
+msgstr "Type key."
+
+msgid "Type as text."
+msgstr "Type as text."
+
+msgid "Colour: ok, warn, bad or info."
+msgstr "Colour: ok, warn, bad or info."
+
+msgid "When it was created."
+msgstr "When it was created."
+
+msgid "Campaign or season name."
+msgstr "Campaign or season name."
+
+msgid "campaign, adset or ad."
+msgstr "campaign, adset or ad."
+
+msgid "The numbers behind it, as text."
+msgstr "The numbers behind it, as text."
+
+msgid "Why, in the user's language."
+msgstr "Why, in the user's language."
+
+msgid "The change it applies; empty for advice only."
+msgstr "The change it applies; empty for advice only."
+
+msgid "Studio brief (season suggestions)."
+msgstr "Studio brief (season suggestions)."
+
+msgid "Season start (Y-m-d)."
+msgstr "Season start (Y-m-d)."
+
+msgid "Season end (Y-m-d)."
+msgstr "Season end (Y-m-d)."
+
+msgid "open, applied or dismissed."
+msgstr "open, applied or dismissed."
+
+msgid "When it was decided; empty while open."
+msgstr "When it was decided; empty while open."
+
+msgid "Who decided."
+msgstr "Who decided."
+
+msgid "What happened when applied."
+msgstr "What happened when applied."
+
+msgid "The last time suggestions were refreshed."
+msgstr "The last time suggestions were refreshed."
+
+msgid "When it ran."
+msgstr "When it ran."
+
+msgid "It worked; empty when still running."
+msgstr "It worked; empty when still running."
+
+msgid "What happened."
+msgstr "What happened."
+
+msgid "The Suggestions tab."
+msgstr "The Suggestions tab."
+
+msgid "The last refresh."
+msgstr "The last refresh."
+
+msgid "Target ROAS."
+msgstr "Target ROAS."
+
+msgid "The rules in one sentence."
+msgstr "The rules in one sentence."
+
+msgid "Waiting for a decision."
+msgstr "Waiting for a decision."
+
+msgid "Already decided."
+msgstr "Already decided."
+
+msgid "A row of the two-sided result table."
+msgstr "A row of the two-sided result table."
+
+msgid "Measure."
+msgstr "Measure."
+
+msgid "Side A value."
+msgstr "Side A value."
+
+msgid "Side B value."
+msgstr "Side B value."
+
+msgid "The weaker ad of a finished test."
+msgstr "The weaker ad of a finished test."
+
+msgid "A test: two ads side by side, or a group held out of the ads."
+msgstr "A test: two ads side by side, or a group held out of the ads."
+
+msgid "ab or holdout."
+msgstr "ab or holdout."
+
+msgid "running or finished."
+msgstr "running or finished."
+
+msgid "Still running."
+msgstr "Still running."
+
+msgid "What is compared, as text."
+msgstr "What is compared, as text."
+
+msgid "The numbers could be read."
+msgstr "The numbers could be read."
+
+msgid "Why they could not; empty when ok."
+msgstr "Why they could not; empty when ok."
+
+msgid "Side A heading."
+msgstr "Side A heading."
+
+msgid "Side B heading."
+msgstr "Side B heading."
+
+msgid "Result table."
+msgstr "Result table."
+
+msgid "a, b or empty."
+msgstr "a, b or empty."
+
+msgid "Confidence of the winner (0–100)."
+msgstr "Confidence of the winner (0–100)."
+
+msgid "Too little data to judge."
+msgstr "Too little data to judge."
+
+msgid "The result in one sentence."
+msgstr "The result in one sentence."
+
+msgid "The weaker ad that can be paused."
+msgstr "The weaker ad that can be paused."
+
+msgid "An ad that can be picked for a test."
+msgstr "An ad that can be picked for a test."
+
+msgid "Value to send back (campaign and ad)."
+msgstr "Value to send back (campaign and ad)."
+
+msgid "The ads of one campaign."
+msgstr "The ads of one campaign."
+
+msgid "Its ads."
+msgstr "Its ads."
+
+msgid "An audience a holdout test can use."
+msgstr "An audience a holdout test can use."
+
+msgid "Audience name."
+msgstr "Audience name."
+
+msgid "Today (Y-m-d)."
+msgstr "Today (Y-m-d)."
+
+msgid "Suggested end date (Y-m-d)."
+msgstr "Suggested end date (Y-m-d)."
+
+msgid "Ads by campaign."
+msgstr "Ads by campaign."
+
+msgid "Audiences for a holdout."
+msgstr "Audiences for a holdout."
+
+msgid "A new test."
+msgstr "A new test."
+
+msgid "Side A: an ad key from the choices."
+msgstr "Side A: an ad key from the choices."
+
+msgid "Side B: an ad key from the choices."
+msgstr "Side B: an ad key from the choices."
+
+msgid "Audience ID for a holdout."
+msgstr "Audience ID for a holdout."
+
+msgid "Share held out (1–50)."
+msgstr "Share held out (1–50)."
+
+msgid "A conversion tracking platform."
+msgstr "A conversion tracking platform."
+
+msgid "Meta Pixel and Conversions API."
+msgstr "Meta Pixel and Conversions API."
+
+msgid "TikTok Pixel and Events API."
+msgstr "TikTok Pixel and Events API."
+
+msgid "Google Analytics 4."
+msgstr "Google Analytics 4."
+
+msgid "The status a campaign, ad set or ad can be set to."
+msgstr "The status a campaign, ad set or ad can be set to."
+
+msgid "Delivering."
+msgstr "Delivering."
+
+msgid "Paused."
+msgstr "Paused."
+
+msgid "A key with its label (a filter choice)."
+msgstr "A key with its label (a filter choice)."
+
+msgid "Value to send back."
+msgstr "Value to send back."
+
+msgid "Text in the user's language."
+msgstr "Text in the user's language."
+
+msgid "Report filter. Empty fields use the screen's defaults."
+msgstr "Report filter. Empty fields use the screen's defaults."
+
+msgid "Period key (7, 30, 90, month, last_month, year or custom)."
+msgstr "Period key (7, 30, 90, month, last_month, year or custom)."
+
+msgid "Start date (Y-m-d) for the custom period."
+msgstr "Start date (Y-m-d) for the custom period."
+
+msgid "End date (Y-m-d) for the custom period."
+msgstr "End date (Y-m-d) for the custom period."
+
+msgid "What to count: all, donations or orders."
+msgstr "What to count: all, donations or orders."
+
+msgid "Limit to one channel key."
+msgstr "Limit to one channel key."
+
+msgid "Grouping key (channel, campaign, content …)."
+msgstr "Grouping key (channel, campaign, content …)."
+
+msgid "The viewer can change settings and the ad account."
+msgstr "The viewer can change settings and the ad account."
+
+msgid "The Meta ad account and token are set."
+msgstr "The Meta ad account and token are set."
+
+msgid "Flux AI can write for Flux Ads."
+msgstr "Flux AI can write for Flux Ads."
+
+msgid "Flux CRM is active (audiences need it)."
+msgstr "Flux CRM is active (audiences need it)."
+
+msgid "Currency the report adds up in."
+msgstr "Currency the report adds up in."
+
+msgid "Flux Ads version."
+msgstr "Flux Ads version."
+
+msgid "Tabs the viewer can open, in order."
+msgstr "Tabs the viewer can open, in order."
+
+msgid "A stored secret. The value is never returned; only whether it is set."
+msgstr "A stored secret. The value is never returned; only whether it is set."
+
+msgid "A value is stored."
+msgstr "A value is stored."
+
+msgid "Last four characters, or empty."
+msgstr "Last four characters, or empty."
+
+msgid "The value comes from a wp-config constant."
+msgstr "The value comes from a wp-config constant."
+
+msgid "The result of the last connection test."
+msgstr "The result of the last connection test."
+
+msgid "The platform accepted the test event."
+msgstr "The platform accepted the test event."
+
+msgid "What the platform answered, in the user's language."
+msgstr "What the platform answered, in the user's language."
+
+msgid "When it ran; empty when never."
+msgstr "When it ran; empty when never."
+
+msgid "One tracking platform and its state."
+msgstr "One tracking platform and its state."
+
+msgid "meta, tiktok or ga4."
+msgstr "meta, tiktok or ga4."
+
+msgid "Platform name."
+msgstr "Platform name."
+
+msgid "Switched on."
+msgstr "Switched on."
+
+msgid "Browser tracking is set up."
+msgstr "Browser tracking is set up."
+
+msgid "Server events are set up, so the test can run."
+msgstr "Server events are set up, so the test can run."
+
+msgid "The last test; empty when none ran."
+msgstr "The last test; empty when none ran."
+
+msgid "Flux Ads settings. Secrets are write-only."
+msgstr "Flux Ads settings. Secrets are write-only."
+
+msgid "Meta tracking on."
+msgstr "Meta tracking on."
+
+msgid "Pixel (dataset) ID."
+msgstr "Pixel (dataset) ID."
+
+msgid "Conversions API access token."
+msgstr "Conversions API access token."
+
+msgid "Test event code."
+msgstr "Test event code."
+
+msgid "Ad account ID."
+msgstr "Ad account ID."
+
+msgid "Facebook Page ID."
+msgstr "Facebook Page ID."
+
+msgid "Marketing API token."
+msgstr "Marketing API token."
+
+msgid "TikTok tracking on."
+msgstr "TikTok tracking on."
+
+msgid "TikTok pixel ID."
+msgstr "TikTok pixel ID."
+
+msgid "Events API access token."
+msgstr "Events API access token."
+
+msgid "GA4 tracking on."
+msgstr "GA4 tracking on."
+
+msgid "Measurement ID; empty uses the theme's."
+msgstr "Measurement ID; empty uses the theme's."
+
+msgid "Measurement ID set in the theme."
+msgstr "Measurement ID set in the theme."
+
+msgid "Measurement Protocol API secret."
+msgstr "Measurement Protocol API secret."
+
+msgid "auto (wait for the cookie banner) or always."
+msgstr "auto (wait for the cookie banner) or always."
+
+msgid "E-mail and phone matching: consent, never or always."
+msgstr "E-mail and phone matching: consent, never or always."
+
+msgid "Load the browser pixels too."
+msgstr "Load the browser pixels too."
+
+msgid "Attribution window in days."
+msgstr "Attribution window in days."
+
+msgid "Target ROAS for suggestions."
+msgstr "Target ROAS for suggestions."
+
+msgid "Spend before judging a campaign; 0 is automatic."
+msgstr "Spend before judging a campaign; 0 is automatic."
+
+msgid "The three platforms and their test results."
+msgstr "The three platforms and their test results."
+
+msgid "Settings to save. Fields you leave out stay as they are. A secret left empty keeps the stored one; \"__clear__\" removes it."
+msgstr "Settings to save. Fields you leave out stay as they are. A secret left empty keeps the stored one; \"__clear__\" removes it."
+
+msgid "Conversions API access token (write-only)."
+msgstr "Conversions API access token (write-only)."
+
+msgid "Marketing API token (write-only)."
+msgstr "Marketing API token (write-only)."
+
+msgid "Events API access token (write-only)."
+msgstr "Events API access token (write-only)."
+
+msgid "Measurement ID."
+msgstr "Measurement ID."
+
+msgid "Measurement Protocol API secret (write-only)."
+msgstr "Measurement Protocol API secret (write-only)."
+
+msgid "auto or always."
+msgstr "auto or always."
+
+msgid "consent, never or always."
+msgstr "consent, never or always."
+
+msgid "Attribution window in days (1–365)."
+msgstr "Attribution window in days (1–365)."
+
+msgid "Spend before judging a campaign."
+msgstr "Spend before judging a campaign."
+
+msgid "Totals of the conversion report."
+msgstr "Totals of the conversion report."
+
+msgid "Payments that came from ads."
+msgstr "Payments that came from ads."
+
+msgid "Income that came from ads."
+msgstr "Income that came from ads."
+
+msgid "Share of income from ads (0–100); empty without income."
+msgstr "Share of income from ads (0–100); empty without income."
+
+msgid "Payments in other currencies are in the totals."
+msgstr "Payments in other currencies are in the totals."
+
+msgid "Ad spend is known for the period."
+msgstr "Ad spend is known for the period."
+
+msgid "Ad spend; empty when unknown."
+msgstr "Ad spend; empty when unknown."
+
+msgid "Income per unit of spend; empty without spend."
+msgstr "Income per unit of spend; empty without spend."
+
+msgid "Income of the rows that have spend."
+msgstr "Income of the rows that have spend."
+
+msgid "Payments of the rows that have spend."
+msgstr "Payments of the rows that have spend."
+
+msgid "New people of the rows that have spend."
+msgstr "New people of the rows that have spend."
+
+msgid "Cost per payment."
+msgstr "Cost per payment."
+
+msgid "Cost per new person."
+msgstr "Cost per new person."
+
+msgid "One group of the conversion report."
+msgstr "One group of the conversion report."
+
+msgid "Group key."
+msgstr "Group key."
+
+msgid "Group name."
+msgstr "Group name."
+
+msgid "Channel key."
+msgstr "Channel key."
+
+msgid "Channel name."
+msgstr "Channel name."
+
+msgid "Income in the base currency."
+msgstr "Income in the base currency."
+
+msgid "Income per currency."
+msgstr "Income per currency."
+
+msgid "Includes another currency."
+msgstr "Includes another currency."
+
+msgid "Share of the income (0–100)."
+msgstr "Share of the income (0–100)."
+
+msgid "Spend is known."
+msgstr "Spend is known."
+
+msgid "A recent attributed payment."
+msgstr "A recent attributed payment."
+
+msgid "Order ID."
+msgstr "Order ID."
+
+msgid "Order number."
+msgstr "Order number."
+
+msgid "Order edit page; empty when the viewer cannot open it."
+msgstr "Order edit page; empty when the viewer cannot open it."
+
+msgid "When it was paid."
+msgstr "When it was paid."
+
+msgid "A donation rather than a shop order."
+msgstr "A donation rather than a shop order."
+
+msgid "First payment of this person."
+msgstr "First payment of this person."
+
+msgid "What was bought or given to."
+msgstr "What was bought or given to."
+
+msgid "Amount."
+msgstr "Amount."
+
+msgid "The conversion report: which ad brought which donation."
+msgstr "The conversion report: which ad brought which donation."
+
+msgid "all, donations or orders."
+msgstr "all, donations or orders."
+
+msgid "Grouping key."
+msgstr "Grouping key."
+
+msgid "Grouping name."
+msgstr "Grouping name."
+
+msgid "Groupings to choose from."
+msgstr "Groupings to choose from."
+
+msgid "Channel filter; empty when none."
+msgstr "Channel filter; empty when none."
+
+msgid "Channel filter name."
+msgstr "Channel filter name."
+
+msgid "Base currency."
+msgstr "Base currency."
+
+msgid "Totals."
+msgstr "Totals."
+
+msgid "Show the spend, cost and ROAS columns."
+msgstr "Show the spend, cost and ROAS columns."
+
+msgid "The groups."
+msgstr "The groups."
+
+msgid "Latest attributed payments."
+msgstr "Latest attributed payments."
+
+msgid "The last read of ad spend from Meta."
+msgstr "The last read of ad spend from Meta."
+
+msgid "The last read worked."
+msgstr "The last read worked."
+
+msgid "What happened, in the user's language."
+msgstr "What happened, in the user's language."
+
+msgid "Rows read."
+msgstr "Rows read."
+
+msgid "First day read (Y-m-d)."
+msgstr "First day read (Y-m-d)."
+
+msgid "Last day read (Y-m-d)."
+msgstr "Last day read (Y-m-d)."
+
+msgid "First day as text."
+msgstr "First day as text."
+
+msgid "Last day as text."
+msgstr "Last day as text."
+
+msgid "Spend of one campaign in the period."
+msgstr "Spend of one campaign in the period."
+
+msgid "Campaign."
+msgstr "Campaign."
+
+msgid "A spend row entered by hand."
+msgstr "A spend row entered by hand."
+
+msgid "Day as text."
+msgstr "Day as text."
+
+msgid "Ad."
+msgstr "Ad."
+
+msgid "The Ad spend tab."
+msgstr "The Ad spend tab."
+
+msgid "Meta spend can be read."
+msgstr "Meta spend can be read."
+
+msgid "The last Meta read; empty when none."
+msgstr "The last Meta read; empty when none."
+
+msgid "Spend per campaign."
+msgstr "Spend per campaign."
+
+msgid "Total spend."
+msgstr "Total spend."
+
+msgid "Rows entered by hand (managers only)."
+msgstr "Rows entered by hand (managers only)."
+
+msgid "Channels a row can be added for."
+msgstr "Channels a row can be added for."
+
+msgid "Totals of the donor value report."
+msgstr "Totals of the donor value report."
+
+msgid "New people from ads."
+msgstr "New people from ads."
+
+msgid "Average lifetime value of people from ads."
+msgstr "Average lifetime value of people from ads."
+
+msgid "Cost to win one person."
+msgstr "Cost to win one person."
+
+msgid "Lifetime value per cost to win."
+msgstr "Lifetime value per cost to win."
+
+msgid "Share who gave again (0–100)."
+msgstr "Share who gave again (0–100)."
+
+msgid "Donor value of one acquisition group."
+msgstr "Donor value of one acquisition group."
+
+msgid "Average first payment."
+msgstr "Average first payment."
+
+msgid "Average value in the first 90 days."
+msgstr "Average value in the first 90 days."
+
+msgid "Average value so far."
+msgstr "Average value so far."
+
+msgid "Average payment."
+msgstr "Average payment."
+
+msgid "Days until the cost to win is paid back; empty when not yet."
+msgstr "Days until the cost to win is paid back; empty when not yet."
+
+msgid "One acquisition month of the cohort table."
+msgstr "One acquisition month of the cohort table."
+
+msgid "Month (Y-m)."
+msgstr "Month (Y-m)."
+
+msgid "Month as text."
+msgstr "Month as text."
+
+msgid "New people that month."
+msgstr "New people that month."
+
+msgid "Cumulative value per person after each month; empty where the month has not come yet."
+msgstr "Cumulative value per person after each month; empty where the month has not come yet."
+
+msgid "The Donor value tab."
+msgstr "The Donor value tab."
+
+msgid "Months in the cohort table."
+msgstr "Months in the cohort table."
+
+msgid "Cohort rows."
+msgstr "Cohort rows."
+
+msgid "One conversion sent (or waiting) to a platform."
+msgstr "One conversion sent (or waiting) to a platform."
+
+msgid "Platform key."
+msgstr "Platform key."
+
+msgid "Conversion value."
+msgstr "Conversion value."
+
+msgid "sent, pending, failed or skipped."
+msgstr "sent, pending, failed or skipped."
+
+msgid "Why it failed or was skipped."
+msgstr "Why it failed or was skipped."
+
+msgid "Attempts."
+msgstr "Attempts."
+
+msgid "Last attempt."
+msgstr "Last attempt."
+
+msgid "It can be sent again."
+msgstr "It can be sent again."
+
+msgid "The conversion send log."
+msgstr "The conversion send log."
+
+msgid "Sent."
+msgstr "Sent."
+
+msgid "Waiting."
+msgstr "Waiting."
+
+msgid "Failed."
+msgstr "Failed."
+
+msgid "Skipped."
+msgstr "Skipped."
+
+msgid "The latest 100 rows."
+msgstr "The latest 100 rows."
+
+msgid "Page addresses to link to."
+msgstr "Page addresses to link to."
+
+msgid "utm_source choices."
+msgstr "utm_source choices."
+
+msgid "utm_medium choices."
+msgstr "utm_medium choices."
+
+msgid "Spend not found."
+msgstr "Spend not found."
+
+msgid "Row not found."
+msgstr "Row not found."
+
+msgid "Unknown platform."
+msgstr "Unknown platform."

@@ -1,0 +1,859 @@
+fragment FlxAdsOption on FlxAdsOption {
+  key
+  label
+}
+
+fragment FlxAdsContext on FlxAdsContext {
+  canManage
+  metaReady
+  aiReady
+  crmReady
+  openSuggestions
+  baseCurrency
+  version
+  tabs
+}
+
+fragment FlxAdsSecret on FlxAdsSecret {
+  set
+  mask
+  fromConfig
+}
+
+fragment FlxAdsTest on FlxAdsTest {
+  ok
+  message
+  at {
+    iso
+    label
+    relative
+  }
+}
+
+fragment FlxAdsPlatformState on FlxAdsPlatformState {
+  key
+  label
+  on
+  ready
+  canTest
+  test {
+    ...FlxAdsTest
+  }
+}
+
+fragment FlxAdsSettings on FlxAdsSettings {
+  metaOn
+  metaPixel
+  metaToken {
+    ...FlxAdsSecret
+  }
+  metaTest
+  metaAccount
+  metaPage
+  metaAdsToken {
+    ...FlxAdsSecret
+  }
+  tiktokOn
+  tiktokPixel
+  tiktokToken {
+    ...FlxAdsSecret
+  }
+  tiktokTest
+  ga4On
+  ga4Id
+  ga4ThemeId
+  ga4Secret {
+    ...FlxAdsSecret
+  }
+  consent
+  pii
+  browser
+  windowDays
+  optRoas
+  optMinSpend
+  platforms {
+    ...FlxAdsPlatformState
+  }
+}
+
+fragment FlxAdsReportTotals on FlxAdsReportTotals {
+  count
+  amount {
+    amount
+    currency
+    formatted
+  }
+  adsCount
+  adsAmount {
+    amount
+    currency
+    formatted
+  }
+  adsPercent
+  newCount
+  mixed
+  hasSpend
+  spend {
+    amount
+    currency
+    formatted
+  }
+  clicks
+  roas
+  spendIncome {
+    amount
+    currency
+    formatted
+  }
+  spendCount
+  spendNew
+  cpa {
+    amount
+    currency
+    formatted
+  }
+  cpn {
+    amount
+    currency
+    formatted
+  }
+}
+
+fragment FlxAdsReportRow on FlxAdsReportRow {
+  key
+  label
+  channel
+  channelLabel
+  count
+  amount {
+    amount
+    currency
+    formatted
+  }
+  amounts {
+    amount
+    currency
+    formatted
+  }
+  otherCurrency
+  newCount
+  share
+  hasSpend
+  spend {
+    amount
+    currency
+    formatted
+  }
+  cpa {
+    amount
+    currency
+    formatted
+  }
+  roas
+  roasLevel
+}
+
+fragment FlxAdsRecentOrder on FlxAdsRecentOrder {
+  orderId
+  orderNumber
+  editUrl
+  paidAt {
+    iso
+    label
+    relative
+  }
+  isDonation
+  newPerson
+  channel
+  summary
+  total {
+    amount
+    currency
+    formatted
+  }
+}
+
+fragment FlxAdsReport on FlxAdsReport {
+  range
+  from
+  to
+  fromLabel
+  toLabel
+  kind
+  by
+  byLabel
+  dimensions {
+    ...FlxAdsOption
+  }
+  channel
+  channelLabel
+  base
+  totals {
+    ...FlxAdsReportTotals
+  }
+  showSpendColumns
+  rows {
+    ...FlxAdsReportRow
+  }
+  recent {
+    ...FlxAdsRecentOrder
+  }
+}
+
+fragment FlxAdsMetaStatus on FlxAdsMetaStatus {
+  ok
+  at {
+    iso
+    label
+    relative
+  }
+  message
+  rows
+  since
+  until
+  sinceLabel
+  untilLabel
+}
+
+fragment FlxAdsSpendCampaign on FlxAdsSpendCampaign {
+  name
+  channel
+  channelLabel
+  spend {
+    amount
+    currency
+    formatted
+  }
+}
+
+fragment FlxAdsManualSpend on FlxAdsManualSpend {
+  id
+  day
+  dayLabel
+  channel
+  channelLabel
+  campaign
+  ad
+  spend {
+    amount
+    currency
+    formatted
+  }
+}
+
+fragment FlxAdsSpendPage on FlxAdsSpendPage {
+  range
+  from
+  to
+  base
+  metaReady
+  metaStatus {
+    ...FlxAdsMetaStatus
+  }
+  campaigns {
+    ...FlxAdsSpendCampaign
+  }
+  total {
+    amount
+    currency
+    formatted
+  }
+  manual {
+    ...FlxAdsManualSpend
+  }
+  channels {
+    ...FlxAdsOption
+  }
+}
+
+fragment FlxAdsValueTotals on FlxAdsValueTotals {
+  newCount
+  adsNew
+  adsAvg {
+    amount
+    currency
+    formatted
+  }
+  cac {
+    amount
+    currency
+    formatted
+  }
+  spend {
+    amount
+    currency
+    formatted
+  }
+  ratio
+  rate
+}
+
+fragment FlxAdsValueRow on FlxAdsValueRow {
+  key
+  label
+  channel
+  channelLabel
+  newCount
+  first {
+    amount
+    currency
+    formatted
+  }
+  ltv90 {
+    amount
+    currency
+    formatted
+  }
+  ltv {
+    amount
+    currency
+    formatted
+  }
+  avg {
+    amount
+    currency
+    formatted
+  }
+  rate
+  hasSpend
+  spend {
+    amount
+    currency
+    formatted
+  }
+  cac {
+    amount
+    currency
+    formatted
+  }
+  ratio
+  roasLevel
+  payback
+}
+
+fragment FlxAdsCohortRow on FlxAdsCohortRow {
+  month
+  label
+  newCount
+  cells {
+    amount
+    currency
+    formatted
+  }
+}
+
+fragment FlxAdsValuePage on FlxAdsValuePage {
+  range
+  from
+  to
+  kind
+  by
+  base
+  totals {
+    ...FlxAdsValueTotals
+  }
+  rows {
+    ...FlxAdsValueRow
+  }
+  cohortMonths
+  cohort {
+    ...FlxAdsCohortRow
+  }
+}
+
+fragment FlxAdsLogRow on FlxAdsLogRow {
+  id
+  platform
+  platformLabel
+  orderId
+  orderNumber
+  editUrl
+  value {
+    amount
+    currency
+    formatted
+  }
+  status
+  statusLabel
+  reason
+  attempts
+  at {
+    iso
+    label
+    relative
+  }
+  canRetry
+}
+
+fragment FlxAdsSendLog on FlxAdsSendLog {
+  sent
+  pending
+  failed
+  skipped
+  rows {
+    ...FlxAdsLogRow
+  }
+}
+
+fragment FlxAdsLinkBuilder on FlxAdsLinkBuilder {
+  homeUrl
+  pages
+  sources {
+    ...FlxAdsOption
+  }
+  mediums {
+    ...FlxAdsOption
+  }
+}
+
+fragment FlxAdsCampaignRow on FlxAdsCampaignRow {
+  id
+  name
+  effective
+  statusLabel
+  statusTone
+  objective
+  objectiveLabel
+  budgetLabel
+  canPause
+  active
+  dailyBudget
+  spend {
+    amount
+    currency
+    formatted
+  }
+  impressions
+  clicks
+  ctr
+  payments
+  income {
+    amount
+    currency
+    formatted
+  }
+  roas
+  roasLevel
+}
+
+fragment FlxAdsCampaignTotals on FlxAdsCampaignTotals {
+  spend {
+    amount
+    currency
+    formatted
+  }
+  income {
+    amount
+    currency
+    formatted
+  }
+  payments
+  roas
+  active
+  count
+}
+
+fragment FlxAdsCampaignList on FlxAdsCampaignList {
+  range
+  ranges {
+    ...FlxAdsOption
+  }
+  error
+  currency
+  since
+  until
+  sinceLabel
+  untilLabel
+  totals {
+    ...FlxAdsCampaignTotals
+  }
+  rows {
+    ...FlxAdsCampaignRow
+  }
+}
+
+fragment FlxAdsAdRow on FlxAdsAdRow {
+  id
+  name
+  effective
+  statusLabel
+  statusTone
+  thumb
+  title
+  canPause
+  active
+  spend {
+    amount
+    currency
+    formatted
+  }
+  impressions
+  clicks
+  ctr
+}
+
+fragment FlxAdsAdsetRow on FlxAdsAdsetRow {
+  id
+  name
+  effective
+  statusLabel
+  statusTone
+  budgetLabel
+  who
+  canPause
+  active
+  dailyBudget
+  spend {
+    amount
+    currency
+    formatted
+  }
+  impressions
+  clicks
+  ctr
+  ads {
+    ...FlxAdsAdRow
+  }
+}
+
+fragment FlxAdsBreakdownRow on FlxAdsBreakdownRow {
+  label
+  spend {
+    amount
+    currency
+    formatted
+  }
+  clicks
+  share
+}
+
+fragment FlxAdsCampaignDetail on FlxAdsCampaignDetail {
+  range
+  error
+  currency
+  id
+  name
+  effective
+  statusLabel
+  statusTone
+  summary
+  canPause
+  active
+  dailyBudget
+  adsets {
+    ...FlxAdsAdsetRow
+  }
+  ageGender {
+    ...FlxAdsBreakdownRow
+  }
+  placement {
+    ...FlxAdsBreakdownRow
+  }
+}
+
+fragment FlxAdsChange on FlxAdsChange {
+  at {
+    iso
+    label
+    relative
+  }
+  name
+  change
+  who
+  channel
+}
+
+fragment FlxAdsSuggestionAction on FlxAdsSuggestionAction {
+  field
+  to
+  confirm
+  label
+}
+
+fragment FlxAdsSuggestion on FlxAdsSuggestion {
+  id
+  type
+  typeLabel
+  tone
+  created {
+    iso
+    label
+    relative
+  }
+  name
+  level
+  context
+  reason
+  campaignId
+  action {
+    ...FlxAdsSuggestionAction
+  }
+  brief
+  start
+  end
+  status
+  statusLabel
+  decided {
+    iso
+    label
+    relative
+  }
+  who
+  result
+}
+
+fragment FlxAdsSuggestionRun on FlxAdsSuggestionRun {
+  at {
+    iso
+    label
+    relative
+  }
+  ok
+  message
+  newCount
+}
+
+fragment FlxAdsSuggestionsPage on FlxAdsSuggestionsPage {
+  metaReady
+  run {
+    ...FlxAdsSuggestionRun
+  }
+  targetRoas
+  rulesText
+  open {
+    ...FlxAdsSuggestion
+  }
+  earlier {
+    ...FlxAdsSuggestion
+  }
+}
+
+fragment FlxAdsExpTableRow on FlxAdsExpTableRow {
+  label
+  a
+  b
+}
+
+fragment FlxAdsLoserAd on FlxAdsLoserAd {
+  id
+  name
+}
+
+fragment FlxAdsExperiment on FlxAdsExperiment {
+  id
+  type
+  typeLabel
+  name
+  status
+  running
+  start
+  end
+  startLabel
+  endLabel
+  subject
+  ok
+  error
+  headA
+  headB
+  table {
+    ...FlxAdsExpTableRow
+  }
+  winner
+  confidence
+  small
+  verdict
+  loserAd {
+    ...FlxAdsLoserAd
+  }
+}
+
+fragment FlxAdsAdChoice on FlxAdsAdChoice {
+  key
+  label
+}
+
+fragment FlxAdsAdGroup on FlxAdsAdGroup {
+  campaign
+  ads {
+    ...FlxAdsAdChoice
+  }
+}
+
+fragment FlxAdsHoldoutAudience on FlxAdsHoldoutAudience {
+  id
+  label
+}
+
+fragment FlxAdsExperimentChoices on FlxAdsExperimentChoices {
+  metaReady
+  today
+  defaultEnd
+  adGroups {
+    ...FlxAdsAdGroup
+  }
+  audiences {
+    ...FlxAdsHoldoutAudience
+  }
+}
+
+fragment FlxAdsAudience on FlxAdsAudience {
+  id
+  name
+  kind
+  metaId
+  groupLabel
+  purpose
+  purposeLabel
+  count
+  syncedAt {
+    iso
+    label
+    relative
+  }
+  error
+  added
+  removed
+  canSync
+  holdout
+}
+
+fragment FlxAdsAudienceSource on FlxAdsAudienceSource {
+  key
+  label
+  people
+}
+
+fragment FlxAdsAudiencesPage on FlxAdsAudiencesPage {
+  crmReady
+  metaReady
+  audiences {
+    ...FlxAdsAudience
+  }
+  sources {
+    ...FlxAdsAudienceSource
+  }
+  purposes {
+    ...FlxAdsOption
+  }
+  customAudiences {
+    ...FlxAdsOption
+  }
+}
+
+fragment FlxAdsDraftAdset on FlxAdsDraftAdset {
+  name
+  ageMin
+  ageMax
+  gender
+  countries
+  audiences
+  exclude
+  share
+}
+
+fragment FlxAdsDraftAd on FlxAdsDraftAd {
+  name
+  text
+  headline
+  description
+  cta
+  image
+}
+
+fragment FlxAdsDraft on FlxAdsDraft {
+  id
+  status
+  name
+  objective
+  link
+  dailyBudget
+  start
+  end
+  adsets {
+    ...FlxAdsDraftAdset
+  }
+  ads {
+    ...FlxAdsDraftAd
+  }
+  notes
+  brief
+  sent
+  error
+  sendSummary
+}
+
+fragment FlxAdsDraftRow on FlxAdsDraftRow {
+  id
+  name
+  status
+  statusLabel
+  statusTone
+  objective
+  objectiveLabel
+  dailyBudget {
+    amount
+    currency
+    formatted
+  }
+  adsetCount
+  adCount
+  updated
+  metaCampaignId
+  error
+}
+
+fragment FlxAdsStudioPage on FlxAdsStudioPage {
+  aiReady
+  missing
+  objectives {
+    ...FlxAdsOption
+  }
+  ctas {
+    ...FlxAdsOption
+  }
+  audiences {
+    ...FlxAdsOption
+  }
+  drafts {
+    ...FlxAdsDraftRow
+  }
+  siteUrl
+}
+
+fragment FlxAdsSeasonLast on FlxAdsSeasonLast {
+  payments
+  income {
+    amount
+    currency
+    formatted
+  }
+  newCount
+  spend {
+    amount
+    currency
+    formatted
+  }
+  roas
+}
+
+fragment FlxAdsSeason on FlxAdsSeason {
+  key
+  id
+  name
+  start
+  end
+  startLabel
+  endLabel
+  approx
+  custom
+  state
+  stateLabel
+  tone
+  days
+  whenLabel
+  hasLast
+  last {
+    ...FlxAdsSeasonLast
+  }
+  brief
+}

@@ -2,10 +2,10 @@
 /**
  * Plugin Name:       Flux Ads
  * Description:       Reklam dönüşüm takibi: Meta Pixel + Conversions API, TikTok Pixel + Events API ve Google Analytics 4 (Measurement Protocol). Meta reklam harcamasını çeker, ROAS ve bağış başı maliyeti gösterir. Bağış ve siparişleri hangi reklamın, kampanyanın ve reklam metninin getirdiğini ölçer; Havale/EFT bağışı onaylanınca dönüşümü sunucudan gönderir. Çerez onayına uyar, kişisel veri yalnız izinle ve hash'li gider. Flux CRM kuruluysa kişi kartına reklam kaynağını yazar.
- * Version:           0.7.0
- * Requires at least: 6.4
- * Requires PHP:      7.4
- * Requires Plugins:  woocommerce
+ * Version:           0.8.0
+ * Requires at least: 6.5
+ * Requires PHP:      8.1
+ * Requires Plugins:  woocommerce, flx-graphql
  * Author:            FluxWP
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -25,7 +25,7 @@ if ( defined( 'FLXADS_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXADS_VERSION', '0.7.0' );
+define( 'FLXADS_VERSION', '0.8.0' );
 define( 'FLXADS_DB_VERSION', 3 );
 define( 'FLXADS_FILE', __FILE__ );
 define( 'FLXADS_DIR', plugin_dir_path( __FILE__ ) );
@@ -45,6 +45,13 @@ require_once FLXADS_DIR . 'includes/class-flxads-studio.php';
 require_once FLXADS_DIR . 'includes/class-flxads-optimizer.php';
 require_once FLXADS_DIR . 'includes/class-flxads-experiments.php';
 require_once FLXADS_DIR . 'includes/class-flxads-planner.php';
+require_once FLXADS_DIR . 'includes/services/class-flxads-view.php';
+require_once FLXADS_DIR . 'includes/services/class-flxads-reports-service.php';
+require_once FLXADS_DIR . 'includes/services/class-flxads-meta-service.php';
+require_once FLXADS_DIR . 'includes/services/class-flxads-creative-service.php';
+require_once FLXADS_DIR . 'includes/services/class-flxads-settings-service.php';
+require_once FLXADS_DIR . 'includes/flux-ui.php';
+require_once FLXADS_DIR . 'includes/app.php';
 require_once FLXADS_DIR . 'includes/crm.php';
 require_once FLXADS_DIR . 'includes/mcp.php';
 require_once FLXADS_DIR . 'includes/ai-write.php';
@@ -58,6 +65,47 @@ register_deactivation_hook(
 	__FILE__,
 	static function () {
 		wp_clear_scheduled_hook( 'flxads_retry' );
+	}
+);
+
+/*
+ * GraphQL (Flux GraphQL): schema only inside a GraphQL request; the persisted operations the Ad conversions
+ * screen sends. Without Flux GraphQL (0.2.0+, capability model) the schema is left out and the classic page
+ * keeps working.
+ */
+add_action(
+	'flx_gql_register',
+	static function () {
+		if ( ! function_exists( 'flx_gql_all_caps' ) ) {
+			return;
+		}
+		require_once FLXADS_DIR . 'includes/graphql/schema.php';
+	}
+);
+add_filter(
+	'flx_gql_persisted_manifests',
+	static function ( $m ) {
+		$m            = is_array( $m ) ? $m : array();
+		$m['flx-ads'] = FLXADS_DIR . 'graphql/persisted-queries.json';
+		return $m;
+	}
+);
+add_filter(
+	'flx_gql_capabilities',
+	static function ( $caps ) {
+		$caps = is_array( $caps ) ? $caps : array();
+		return $caps + array(
+			'flxads_view'   => array(
+				'label'   => __( 'Sees ad conversions', 'flx-ads' ),
+				'group'   => __( 'Ads', 'flx-ads' ),
+				'package' => 'flx-ads',
+			),
+			'flxads_manage' => array(
+				'label'   => __( 'Manages ads and tracking settings', 'flx-ads' ),
+				'group'   => __( 'Ads', 'flx-ads' ),
+				'package' => 'flx-ads',
+			),
+		);
 	}
 );
 

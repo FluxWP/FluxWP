@@ -1,0 +1,10 @@
+mutation FlxAdsSeasonDelete($input: FlxAdsSeasonDeleteInput!) {
+  flxAdsSeasonDelete(input: $input) {
+    ok
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

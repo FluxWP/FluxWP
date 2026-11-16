@@ -1,0 +1,10 @@
+mutation FlxAdsSuggestionDismiss($input: FlxAdsSuggestionDismissInput!) {
+  flxAdsSuggestionDismiss(input: $input) {
+    ok
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

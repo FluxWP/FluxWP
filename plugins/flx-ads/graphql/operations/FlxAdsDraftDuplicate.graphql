@@ -1,0 +1,10 @@
+mutation FlxAdsDraftDuplicate($input: FlxAdsDraftDuplicateInput!) {
+  flxAdsDraftDuplicate(input: $input) {
+    id
+    errors {
+      code
+      message
+      field
+    }
+  }
+}
