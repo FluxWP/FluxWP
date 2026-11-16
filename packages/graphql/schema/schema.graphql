@@ -14343,7 +14343,7 @@ type FlxAnalyticsTelemetryForgetPayload {
   errors: [FlxUserError!]!
 
   "The record was removed."
-  removed: Boolean!
+  removed: Boolean
 }
 
 "Input for the flxRoleCreate mutation."

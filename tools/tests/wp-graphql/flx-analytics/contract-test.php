@@ -136,13 +136,13 @@ flxt_same( 20, count( (array) ( flxan_t_op( 'FlxAnalyticsRefs', array(), $viewer
 flxt_same( 'FORBIDDEN', flxt_code( flxan_t_op( 'FlxAnalyticsRefSave', array( 'input' => array( 'code' => 'ali', 'name' => 'Ali' ) ), $viewer ) ), 'refSave: viewer without edit_posts → FORBIDDEN' );
 $r = flxan_t_op( 'FlxAnalyticsRefSave', array( 'input' => array( 'code' => 'ali', 'name' => 'Ali' ) ), $refer );
 flxt_same( 'Ali', $r['data']['flxAnalyticsRefSave']['ref']['name'] ?? null, 'refSave: name saved' );
-$r = flxan_t_op( 'FlxAnalyticsRefSave', array( 'input' => array( 'code' => 'bad code!', 'name' => 'x' ) ), $refer );
+$r = flxan_t_op( 'FlxAnalyticsRefSave', array( 'input' => array( 'code' => '!!!', 'name' => 'x' ) ), $refer );
 flxt_same( 'code', $r['data']['flxAnalyticsRefSave']['errors'][0]['field'] ?? null, 'refSave: invalid code → errors[].field=code' );
 $r = flxan_t_op( 'FlxAnalyticsRefSave', array( 'input' => array( 'code' => 'ali', 'delete' => true ) ), $refer );
 flxt_same( '', $r['data']['flxAnalyticsRefSave']['ref']['name'] ?? null, 'refSave: name removed' );
 wp_set_current_user( $refer );
 $req = new WP_REST_Request( 'POST', '/flxan/v1/refs/save' );
-$req->set_body_params( array( 'code' => 'bad code!', 'name' => 'x' ) );
+$req->set_body_params( array( 'code' => '!!!', 'name' => 'x' ) );
 $res = rest_do_request( $req );
 flxt_same( 400, $res->get_status(), 'REST refs/save: invalid code still 400' );
 flxt_same( 'flxan_bad_code', $res->get_data()['code'] ?? null, 'REST refs/save: error code unchanged' );

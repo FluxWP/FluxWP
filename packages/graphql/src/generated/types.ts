@@ -554,7 +554,7 @@ export type FlxAnalyticsTelemetryForgetMutationVariables = Exact<{
 }>;
 
 
-export type FlxAnalyticsTelemetryForgetMutation = { flxAnalyticsTelemetryForget: { removed: boolean, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+export type FlxAnalyticsTelemetryForgetMutation = { flxAnalyticsTelemetryForget: { removed: boolean | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
 
 export type FlxRoleCreateMutationVariables = Exact<{
   input: FlxRoleCreateInput;

@@ -1390,7 +1390,7 @@ flx_gql_mutation(
 			'hash' => array( 'type' => 'String!', 'description' => __( 'Record key, or "all".', 'flx-analytics' ) ),
 		),
 		'output'      => array(
-			'removed' => array( 'type' => 'Boolean!', 'description' => __( 'The record was removed.', 'flx-analytics' ) ),
+			'removed' => array( 'type' => 'Boolean', 'description' => __( 'The record was removed.', 'flx-analytics' ) ),
 		),
 		'resolve'     => static function ( array $input ): array {
 			if ( ! FLXAN_Telemetry_Service::forget( FLXAN_Service::str( $input['hash'] ?? '' ) ) ) {
