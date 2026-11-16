@@ -4,6 +4,7 @@
 # Refresh the baseline only when a fix removes entries:
 #   tools/phpstan/vendor/bin/phpstan analyse -c tools/phpstan/legacy.neon --generate-baseline tools/phpstan/legacy-baseline.neon
 includes:
+  - types.neon
   - vendor/szepeviktor/phpstan-wordpress/extension.neon
   - legacy-constants.php
   - legacy-baseline.neon
@@ -45,4 +46,7 @@ parameters:
       - ../brand/tests
   # Inline @phpstan-ignore comments written for stricter levels would show as unmatched at level 5.
   # Fixed baseline entries are still dropped by regenerating the baseline (CI shows the count).
+  # Same as phpstan.neon: strict folders are analysed here too, and their runtime guards on
+  # PHPDoc-typed values must not be reported as "always true".
+  treatPhpDocTypesAsCertain: false
   reportUnmatchedIgnoredErrors: false
