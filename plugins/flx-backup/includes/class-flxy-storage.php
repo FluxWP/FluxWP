@@ -77,7 +77,11 @@ final class FLXY_Storage {
 		return is_array( $all ) ? $all : array();
 	}
 
-	/** Kayıtlar, yeniden eskiye. */
+	/**
+	 * Kayıtlar, yeniden eskiye.
+	 *
+	 * @return list<array<string,mixed>>
+	 */
 	public static function records(): array {
 		$all = array_values( self::index() );
 		usort(
@@ -89,6 +93,7 @@ final class FLXY_Storage {
 		return $all;
 	}
 
+	/** @return array<string,mixed>|null */
 	public static function get( string $id ): ?array {
 		$all = self::index();
 		return isset( $all[ $id ] ) ? self::normalize( $all[ $id ] ) : null;
@@ -151,6 +156,10 @@ final class FLXY_Storage {
 		return 0 === strpos( $path, self::dir() . '/' );
 	}
 
+	/**
+	 * @param array<string,mixed> $r
+	 * @return array<string,mixed>
+	 */
 	public static function normalize( array $r ): array {
 		$r = array_merge(
 			array(
@@ -212,6 +221,7 @@ final class FLXY_Storage {
 		return $labels[ $r['type'] ] ?? (string) $r['type'];
 	}
 
+	/** @return array<string,string> */
 	public static function type_labels(): array {
 		return array(
 			'full'       => __( 'Full backup', 'flx-backup' ),
@@ -222,7 +232,11 @@ final class FLXY_Storage {
 		);
 	}
 
-	/** Sabit sırada kategorik renkler (tür kimliği; sıralamaya göre değişmez). */
+	/**
+	 * Sabit sırada kategorik renkler (tür kimliği; sıralamaya göre değişmez).
+	 *
+	 * @return array<string,string>
+	 */
 	public static function type_colors(): array {
 		return array(
 			'full'       => '#2a78d6',
@@ -233,6 +247,7 @@ final class FLXY_Storage {
 		);
 	}
 
+	/** @return array<string,string> */
 	public static function source_labels(): array {
 		return array(
 			'manual'   => __( 'Manual', 'flx-backup' ),
@@ -384,6 +399,7 @@ final class FLXY_Storage {
 		}
 	}
 
+	/** @return list<array<string,mixed>> */
 	public static function events( int $limit = 8 ): array {
 		$log = get_option( self::LOG, array() );
 		return array_slice( array_reverse( is_array( $log ) ? $log : array() ), 0, $limit );

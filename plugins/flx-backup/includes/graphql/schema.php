@@ -568,11 +568,8 @@ flx_gql_query(
 				),
 			)
 		),
-		'resolve'     => /**
-		 * @param mixed               $root Root.
-		 * @param array<string,mixed> $args Args.
-		 */
-		static function ( $root, array $args ): array {
+		'resolve'     => static function ( $root, array $args ): array {
+			/** @var array<string,mixed> $args */
 			flx_gql_cache_tag( FLXY_Service::CACHE_TAG );
 			return flx_gql_paginate(
 				$args,
@@ -969,9 +966,9 @@ flx_gql_mutation(
 				'description' => __( 'The settings after the change.', 'flx-backup' ),
 			),
 		),
-		'resolve'     => /**
-		 * @param array<string,mixed> $input Input.
-		 */
-		static fn( array $input ): array => array( 'settings' => FLXY_Service::save_settings( flxy_gql_settings_form( $input ) ) ),
+		'resolve'     => static function ( array $input ): array {
+			/** @var array<string,mixed> $input */
+			return array( 'settings' => FLXY_Service::save_settings( flxy_gql_settings_form( $input ) ) );
+		},
 	)
 );

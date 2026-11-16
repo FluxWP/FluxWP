@@ -28,18 +28,21 @@ final class FLXY_Service {
 	/** Backup types a person can start. */
 	const START_TYPES = array( 'full', 'db', 'files' );
 
+	/** @var array<string,string>|null Plugin and theme names by `plugins/slug` or `themes/slug`. */
+	private static ?array $label_names = null;
+
 	/** Typed access to the untyped legacy records: a scalar as string. */
-	private static function s( $v ): string {
+	private static function s( mixed $v ): string {
 		return is_scalar( $v ) ? (string) $v : '';
 	}
 
 	/** A number as int. */
-	private static function i( $v ): int {
+	private static function i( mixed $v ): int {
 		return is_numeric( $v ) || is_bool( $v ) ? (int) $v : 0;
 	}
 
 	/** A number as float. */
-	private static function f( $v ): float {
+	private static function f( mixed $v ): float {
 		return is_numeric( $v ) ? (float) $v : 0.0;
 	}
 
@@ -252,7 +255,7 @@ final class FLXY_Service {
 		$rows = array_values(
 			array_filter(
 				$all,
-				static function ( $r ) use ( $type, $status ) {
+				static function ( array $r ) use ( $type, $status ) {
 					return ( '' === $type || $r['type'] === $type ) && ( '' === $status || $r['status'] === $status );
 				}
 			)
@@ -294,6 +297,7 @@ final class FLXY_Service {
 	 */
 	public static function restore_options( array $r ): array {
 		global $wpdb;
+		$base_prefix = $wpdb instanceof wpdb ? self::s( $wpdb->base_prefix ) : '';
 		$ctx     = (array) $r['context'];
 		$foreign = null;
 		$orig    = untrailingslashit( self::s( $ctx['original_site_url'] ?? '' ) );
@@ -301,15 +305,15 @@ final class FLXY_Service {
 			$foreign = $orig;
 		}
 		$prefix   = self::s( $ctx['original_prefix'] ?? '' );
-		$mismatch = '' !== $prefix && $prefix !== self::s( $wpdb->base_prefix );
+		$mismatch = '' !== $prefix && $prefix !== $base_prefix;
 		return array(
 			'id'             => self::s( $r['id'] ),
 			'title'          => FLXY_Storage::title( $r ) . ' · ' . flxy_date( self::i( $r['created'] ) ),
-			'database'       => $r['db'] && ! $mismatch,
+			'database'       => (bool) $r['db'] && ! $mismatch,
 			'groups'         => self::restore_groups( $r ),
 			'foreignSite'    => $foreign,
 			'prefixInBackup' => $mismatch ? $prefix : null,
-			'prefixOnSite'   => $mismatch ? self::s( $wpdb->base_prefix ) : null,
+			'prefixOnSite'   => $mismatch ? $base_prefix : null,
 		);
 	}
 
@@ -395,26 +399,37 @@ final class FLXY_Service {
 	/* Size breakdown                                                      */
 	/* ------------------------------------------------------------------ */
 
+	/**
+	 * Plugin and theme display names by `plugins/slug` / `themes/slug` (read once per request).
+	 *
+	 * @return array<string,string>
+	 */
+	private static function names(): array {
+		if ( null !== self::$label_names ) {
+			return self::$label_names;
+		}
+		$names = array();
+		if ( ! function_exists( 'get_plugins' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
+		foreach ( get_plugins() as $file => $data ) {
+			$slug                        = false === strpos( $file, '/' ) ? (string) preg_replace( '/\.php$/', '', $file ) : dirname( $file );
+			$names[ 'plugins/' . $slug ] = self::s( $data['Name'] );
+		}
+		foreach ( wp_get_themes() as $slug => $theme ) {
+			$names[ 'themes/' . $slug ] = self::s( $theme->get( 'Name' ) );
+		}
+		self::$label_names = $names;
+		return $names;
+	}
+
 	/** Item name: plugin/theme name, uploads year, root files … */
 	public static function item_label( string $cat, string $n ): string {
 		if ( '/' === $n ) {
 			return 'core' === $cat ? __( 'Root files (wp-config.php, index.php …)', 'flx-backup' ) : __( 'Files directly in this folder', 'flx-backup' );
 		}
 		if ( 'plugins' === $cat || 'themes' === $cat ) {
-			static $names = null;
-			if ( null === $names ) {
-				$names = array();
-				if ( ! function_exists( 'get_plugins' ) ) {
-					require_once ABSPATH . 'wp-admin/includes/plugin.php';
-				}
-				foreach ( get_plugins() as $file => $data ) {
-					$slug                        = false === strpos( $file, '/' ) ? (string) preg_replace( '/\.php$/', '', $file ) : dirname( $file );
-					$names[ 'plugins/' . $slug ] = self::s( $data['Name'] );
-				}
-				foreach ( wp_get_themes() as $slug => $theme ) {
-					$names[ 'themes/' . $slug ] = self::s( $theme->get( 'Name' ) );
-				}
-			}
+			$names = self::names();
 			$slug = (string) preg_replace( '/\.php$/', '', $n );
 			$key  = $cat . '/' . $slug;
 			return isset( $names[ $key ] ) && $names[ $key ] !== $slug ? $names[ $key ] . ' (' . $slug . ')' : $n;
@@ -440,12 +455,14 @@ final class FLXY_Service {
 		$colors = FLXY_Breakdown::colors();
 		$cats   = array();
 		foreach ( FLXY_Breakdown::CATS as $k ) {
-			if ( empty( $b['cats'][ $k ] ) ) {
+			$cats_in = (array) ( $b['cats'] ?? array() );
+			if ( empty( $cats_in[ $k ] ) ) {
 				continue;
 			}
-			$c     = $b['cats'][ $k ];
+			$c     = (array) $cats_in[ $k ];
 			$items = array();
 			foreach ( (array) $c['items'] as $it ) {
+				$it      = (array) $it;
 				$items[] = array(
 					'name'  => self::s( $it['n'] ),
 					'label' => self::item_label( $k, self::s( $it['n'] ) ),
@@ -503,7 +520,7 @@ final class FLXY_Service {
 			if ( isset( $hist[ $key ] ) ) {
 				$prev = array();
 				foreach ( $types as $t ) {
-					$prev[ $t ] = self::i( $hist[ $key ]['by'][ $t ] ?? 0 );
+					$prev[ $t ] = self::i( ( (array) ( (array) $hist[ $key ] )['by'] ?? array() )[ $t ] ?? 0 );
 				}
 				$have = true;
 			}
@@ -600,7 +617,7 @@ final class FLXY_Service {
 		$ok      = array_values(
 			array_filter(
 				$records,
-				static function ( $r ) {
+				static function ( array $r ) {
 					return 'ok' === $r['status'];
 				}
 			)
@@ -608,8 +625,8 @@ final class FLXY_Service {
 		$locked  = count(
 			array_filter(
 				$ok,
-				static function ( $r ) {
-					return $r['locked'];
+				static function ( array $r ) {
+					return (bool) $r['locked'];
 				}
 			)
 		);
@@ -619,7 +636,7 @@ final class FLXY_Service {
 		$colors  = FLXY_Storage::type_colors();
 		$count   = array();
 		foreach ( $ok as $r ) {
-			$count[ $r['type'] ] = ( $count[ $r['type'] ] ?? 0 ) + 1;
+			$count[ self::s( $r['type'] ) ] = ( $count[ self::s( $r['type'] ) ] ?? 0 ) + 1;
 		}
 		$types = array();
 		foreach ( $labels as $t => $label ) {
@@ -738,7 +755,7 @@ final class FLXY_Service {
 	/**
 	 * The running (or just finished) job as the screen shows it.
 	 *
-	 * @param array<string,mixed>|null $state Job state; null = current.
+	 * @param array<mixed>|null $state Job state; null = current.
 	 * @return Job
 	 */
 	public static function job( ?array $state = null ): array {
