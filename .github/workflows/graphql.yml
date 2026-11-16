@@ -59,6 +59,7 @@ jobs:
             # the CI snapshot is also uploaded as the "graphql-schema-ci" artifact.
             echo "::group::Schema diff (CI output vs committed)"
             git diff -- packages/graphql/schema | head -n 2000
+            echo "@@@SCHEMA-BEGIN"; cat packages/graphql/schema/schema.graphql; echo "@@@SCHEMA-END"
             echo "::endgroup::"
             echo "::error title=Schema snapshot::packages/graphql/schema/schema.graphql is out of date. Run 'bun run --filter @fluxwp/graphql schema' and commit it."
             exit 1
