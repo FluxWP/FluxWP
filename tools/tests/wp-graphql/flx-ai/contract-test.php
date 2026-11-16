@@ -63,6 +63,21 @@ $vars = array(
 	'FlxAiTaskDelete'       => array( 'input' => array( 'id' => 1 ) ),
 	'FlxAiTaskMarkRead'     => array( 'input' => array( 'id' => 1 ) ),
 	'FlxAiTasksToggle'      => array( 'input' => array( 'enabled' => true ) ),
+	'FlxAiSkills'           => array(),
+	'FlxAiSkill'            => array( 'slug' => 'x' ),
+	'FlxAiSkillFile'        => array( 'slug' => 'x', 'path' => 'references/a.md' ),
+	'FlxAiBrand'            => array(),
+	'FlxAiSkillSave'        => array( 'input' => array( 'name' => 'x' ) ),
+	'FlxAiSkillToggle'      => array( 'input' => array( 'slug' => 'x' ) ),
+	'FlxAiSkillDelete'      => array( 'input' => array( 'slug' => 'x' ) ),
+	'FlxAiSkillsSettings'   => array( 'input' => array( 'restrict' => true ) ),
+	'FlxAiSkillImport'      => array( 'input' => array( 'markdown' => 'x' ) ),
+	'FlxAiSkillFileSave'    => array( 'input' => array( 'slug' => 'x', 'path' => 'references/a.md', 'content' => 'x' ) ),
+	'FlxAiSkillFileDelete'  => array( 'input' => array( 'slug' => 'x', 'path' => 'references/a.md' ) ),
+	'FlxAiSkillFileUpload'  => array( 'input' => array( 'slug' => 'x', 'fileName' => 'a.md', 'contentBase64' => 'eA==' ) ),
+	'FlxAiSkillEvalsSave'   => array( 'input' => array( 'slug' => 'x' ) ),
+	'FlxAiSkillTestRun'     => array( 'input' => array( 'slug' => 'x', 'kind' => 'trigger' ) ),
+	'FlxAiBrandSave'        => array( 'input' => array( 'name' => 'x' ) ),
 );
 foreach ( $vars as $op => $v ) {
 	flxt_same( 'UNAUTHENTICATED', flxt_code( flxai_t_op( $op, $v ) ), "$op: visitor → UNAUTHENTICATED" );
@@ -390,6 +405,160 @@ foreach ( array( 'FlxAiTaskRun', 'FlxAiTaskSetActive', 'FlxAiTaskDelete', 'FlxAi
 $r = flxai_t_op( 'FlxAiTaskDelete', array( 'input' => array( 'id' => $tid ) ), $admin );
 flxt_same( true, $r['data']['flxAiTaskDelete']['deleted'] ?? null, 'task delete: deleted' );
 flxt_same( null, flxai_task_get( $tid ), 'task delete: gone for the classic reader too' );
+
+// Skills: list, create, validate, change, folder files, tests, import, brand kit.
+$r = flxai_t_op( 'FlxAiSkills', array(), $admin );
+flxt_same( null, $r['errors'] ?? null, 'skills: no errors' );
+$list = array_column( $r['data']['flxAiSkills']['skills'] ?? array(), null, 'slug' );
+flxt_ok( count( $list ) > 3, 'skills: the shipped skills are listed', array_keys( $list ) );
+$shipped = (string) array_key_first( array_filter( $list, fn( $x ) => $x['bundled'] ) );
+flxt_ok( '' !== $shipped && false === $list[ $shipped ]['saved'], 'skills: a shipped skill has no site copy yet', $shipped );
+flxt_ok( false !== strpos( $list[ $shipped ]['exportUrl'] ?? '', '_wpnonce=' ), 'skills: the export link is signed' );
+$sc = static fn( array $r, string $f ) => $r['data'][ $f ]['errors'][0]['code'] ?? $r['errors'][0]['extensions']['code'] ?? null;
+$sf = static fn( array $r, string $f ) => $r['data'][ $f ]['errors'][0]['field'] ?? null;
+
+$r = flxai_t_op( 'FlxAiSkillSave', array( 'input' => array( 'name' => 'Donor review', 'description' => 'Use when asked for a donor review.', 'body' => '   ' ) ), $admin );
+flxt_same( 'INVALID_INPUT', $sc( $r, 'flxAiSkillSave' ), 'skill save: empty instructions are refused' );
+flxt_same( 'body', $sf( $r, 'flxAiSkillSave' ), 'skill save: the field is named' );
+$r = flxai_t_op( 'FlxAiSkillSave', array( 'input' => array( 'name' => 'x', 'slug' => 'my-claude-skill', 'description' => 'd', 'body' => 'b' ) ), $admin );
+flxt_same( 'INVALID_INPUT', $sc( $r, 'flxAiSkillSave' ), 'skill save: a reserved name is refused' );
+$r = flxai_t_op( 'FlxAiSkillSave', array( 'input' => array( 'slug' => $shipped, 'name' => 'x', 'description' => 'd', 'body' => 'b' ) ), $admin );
+flxt_same( 'slug', $sf( $r, 'flxAiSkillSave' ), 'skill save: a taken name is refused on the name field' );
+
+$r = flxai_t_op( 'FlxAiSkillSave', array( 'input' => array(
+	'name'        => 'Donor review',
+	'description' => 'Use when the user asks for a donor review or loyal donors.',
+	'body'        => "# Donor review\n\n1. Look at the donors.",
+	'tools'       => array( 'flxcrm_*', 'flxdonate_list' ),
+	'example'     => 'Example',
+) ), $admin );
+flxt_same( null, $r['errors'] ?? null, 'skill save: no errors' );
+flxt_same( array(), $r['data']['flxAiSkillSave']['errors'] ?? null, 'skill save: accepted' );
+$d = $r['data']['flxAiSkillSave']['skill'] ?? array();
+flxt_same( 'donor-review', $d['skill']['slug'] ?? null, 'skill save: the name comes from the title' );
+flxt_same( array( 'flxcrm_*', 'flxdonate_list' ), $d['tools'] ?? null, 'skill save: allowed tools' );
+flxt_same( 1, $d['skill']['version'] ?? null, 'skill save: version 1' );
+flxt_same( 'active', $d['skill']['status'] ?? null, 'skill save: on by default' );
+flxt_ok( null !== flxai_skill_get( 'donor-review' ), 'skill save: the classic reader sees it' );
+
+$r = flxai_t_op( 'FlxAiSkillSave', array( 'input' => array( 'current' => 'donor-review', 'body' => "# Donor review v2\n\nChanged." ) ), $admin );
+$d = $r['data']['flxAiSkillSave']['skill'] ?? array();
+flxt_same( 2, $d['skill']['version'] ?? null, 'skill update: version grows with the instructions' );
+flxt_same( 'Donor review', $d['skill']['name'] ?? null, 'skill update: fields left out keep their value' );
+flxt_same( array( 'flxcrm_*', 'flxdonate_list' ), $d['tools'] ?? null, 'skill update: tools kept' );
+
+$r = flxai_t_op( 'FlxAiSkillToggle', array( 'input' => array( 'slug' => 'donor-review' ) ), $admin );
+flxt_same( 'off', $r['data']['flxAiSkillToggle']['skill']['skill']['status'] ?? null, 'skill toggle: off' );
+$r = flxai_t_op( 'FlxAiSkillToggle', array( 'input' => array( 'slug' => 'donor-review' ) ), $admin );
+flxt_same( 'active', $r['data']['flxAiSkillToggle']['skill']['skill']['status'] ?? null, 'skill toggle: on again' );
+
+// Folder files.
+$r = flxai_t_op( 'FlxAiSkillFileSave', array( 'input' => array( 'slug' => 'donor-review', 'path' => 'references/guide.md', 'content' => "Line 1\r\nLine 2" ) ), $admin );
+flxt_same( array(), $r['data']['flxAiSkillFileSave']['errors'] ?? null, 'file save: accepted' );
+flxt_ok( in_array( 'references/guide.md', array_column( $r['data']['flxAiSkillFileSave']['skill']['files'] ?? array(), 'path' ), true ), 'file save: listed', $r['data']['flxAiSkillFileSave'] ?? null );
+$r = flxai_t_op( 'FlxAiSkillFile', array( 'slug' => 'donor-review', 'path' => 'references/guide.md' ), $admin );
+flxt_same( "Line 1\nLine 2", $r['data']['flxAiSkillFile']['content'] ?? null, 'file read: line endings are normalised' );
+flxt_same( true, $r['data']['flxAiSkillFile']['text'] ?? null, 'file read: text' );
+$r = flxai_t_op( 'FlxAiSkillFile', array( 'slug' => 'donor-review', 'path' => 'references/none.md' ), $admin );
+flxt_ok( array_key_exists( 'flxAiSkillFile', $r['data'] ?? array() ) && null === $r['data']['flxAiSkillFile'], 'file read: a missing file is null', $r );
+$r = flxai_t_op( 'FlxAiSkillFileSave', array( 'input' => array( 'slug' => 'donor-review', 'path' => '../evil.md', 'content' => 'x' ) ), $admin );
+flxt_same( 'INVALID_INPUT', $sc( $r, 'flxAiSkillFileSave' ), 'file save: a path outside the folder is refused' );
+flxt_same( 'path', $sf( $r, 'flxAiSkillFileSave' ), 'file save: the path field is named' );
+$r = flxai_t_op( 'FlxAiSkillFileSave', array( 'input' => array( 'slug' => 'donor-review', 'path' => 'scripts/run.php', 'content' => '<?php' ) ), $admin );
+flxt_same( 'INVALID_INPUT', $sc( $r, 'flxAiSkillFileSave' ), 'file save: a blocked file type is refused' );
+$r = flxai_t_op( 'FlxAiSkillFileUpload', array( 'input' => array( 'slug' => 'donor-review', 'fileName' => 'notes.txt', 'folder' => 'assets', 'contentBase64' => base64_encode( 'hello' ) ) ), $admin );
+flxt_ok( in_array( 'assets/notes.txt', array_column( $r['data']['flxAiSkillFileUpload']['skill']['files'] ?? array(), 'path' ), true ), 'file upload: stored in the folder', $r['data']['flxAiSkillFileUpload'] ?? null );
+$r = flxai_t_op( 'FlxAiSkillFileUpload', array( 'input' => array( 'slug' => 'donor-review', 'fileName' => 'a.txt', 'contentBase64' => '***' ) ), $admin );
+flxt_same( 'INVALID_INPUT', $sc( $r, 'flxAiSkillFileUpload' ), 'file upload: broken base64 is refused' );
+$r = flxai_t_op( 'FlxAiSkillFileDelete', array( 'input' => array( 'slug' => 'donor-review', 'path' => 'assets/notes.txt' ) ), $admin );
+flxt_ok( ! in_array( 'assets/notes.txt', array_column( $r['data']['flxAiSkillFileDelete']['skill']['files'] ?? array(), 'path' ), true ), 'file delete: gone' );
+$r = flxai_t_op( 'FlxAiSkillFileDelete', array( 'input' => array( 'slug' => 'donor-review', 'path' => 'assets/notes.txt' ) ), $admin );
+flxt_same( 'NOT_FOUND', $sc( $r, 'flxAiSkillFileDelete' ), 'file delete: an unknown file is NOT_FOUND' );
+$r = flxai_t_op( 'FlxAiSkillFileSave', array( 'input' => array( 'slug' => 'nope', 'path' => 'references/a.md', 'content' => 'x' ) ), $admin );
+flxt_same( 'NOT_FOUND', $sc( $r, 'flxAiSkillFileSave' ), 'file save: an unknown skill is NOT_FOUND' );
+
+// A shipped skill gets a site copy when its folder is edited.
+flxt_same( false, flxai_skill_is_saved( $shipped ), 'shipped skill: no copy before' );
+$r = flxai_t_op( 'FlxAiSkillFileSave', array( 'input' => array( 'slug' => $shipped, 'path' => 'references/site-note.md', 'content' => 'note' ) ), $admin );
+flxt_same( array(), $r['data']['flxAiSkillFileSave']['errors'] ?? null, 'shipped skill: a file can be added' );
+flxt_same( true, $r['data']['flxAiSkillFileSave']['skill']['skill']['saved'] ?? null, 'shipped skill: a site copy now exists (can be reset)' );
+$r = flxai_t_op( 'FlxAiSkillDelete', array( 'input' => array( 'slug' => $shipped ) ), $admin );
+flxt_same( true, $r['data']['flxAiSkillDelete']['deleted'] ?? null, 'shipped skill: reset' );
+flxt_same( false, flxai_skill_is_saved( $shipped ), 'shipped skill: the copy is gone after the reset' );
+
+// Tests.
+$r = flxai_t_op( 'FlxAiSkillTestRun', array( 'input' => array( 'slug' => 'donor-review', 'kind' => 'trigger' ) ), $admin );
+flxt_same( 'INVALID_INPUT', $sc( $r, 'flxAiSkillTestRun' ), 'test run: no prompts to run is refused (no model call)' );
+$r = flxai_t_op( 'FlxAiSkillEvalsSave', array( 'input' => array(
+	'slug'     => 'donor-review',
+	'triggers' => array( array( 'query' => 'Who are my loyal donors?' ), array( 'query' => 'Weather tomorrow', 'shouldTrigger' => false ), array( 'query' => '  ' ) ),
+	'cases'    => array( array( 'prompt' => 'Review my donors', 'expectations' => array( 'Lists donors', '' ) ), array( 'prompt' => '' ) ),
+) ), $admin );
+flxt_same( array(), $r['data']['flxAiSkillEvalsSave']['errors'] ?? null, 'evals save: accepted' );
+$ev = $r['data']['flxAiSkillEvalsSave']['skill']['evals'] ?? array();
+flxt_same( 2, count( $ev['triggers'] ?? array() ), 'evals save: empty prompts are dropped' );
+flxt_same( false, $ev['triggers'][1]['shouldTrigger'] ?? null, 'evals save: should-not-trigger kept' );
+flxt_same( true, $ev['triggers'][0]['shouldTrigger'] ?? null, 'evals save: should-trigger is the default' );
+flxt_same( array( 'Lists donors' ), $ev['cases'][0]['expectations'] ?? null, 'evals save: empty checks are dropped' );
+flxt_same( 1, count( $ev['cases'] ?? array() ), 'evals save: empty tests are dropped' );
+$r = flxai_t_op( 'FlxAiSkillTestRun', array( 'input' => array( 'slug' => 'nope', 'kind' => 'trigger' ) ), $admin );
+flxt_same( 'NOT_FOUND', $sc( $r, 'flxAiSkillTestRun' ), 'test run: an unknown skill is NOT_FOUND' );
+$r = flxai_t_op( 'FlxAiSkillTestRun', array( 'input' => array( 'slug' => 'donor-review', 'kind' => 'functional', 'id' => '99' ) ), $admin );
+flxt_same( 'INVALID_INPUT', $sc( $r, 'flxAiSkillTestRun' ), 'test run: an unknown functional test is refused' );
+$r = flxai_t_op( 'FlxAiSkill', array( 'slug' => 'donor-review' ), $admin );
+flxt_ok( array_key_exists( 'trigger', $r['data']['flxAiSkill']['results'] ?? array() ) && null === $r['data']['flxAiSkill']['results']['trigger'], 'skill: no trigger result before a run', $r );
+flxt_same( array(), $r['data']['flxAiSkill']['results']['functional'] ?? null, 'skill: no functional results before a run' );
+$r = flxai_t_op( 'FlxAiSkill', array( 'slug' => 'nope' ), $admin );
+flxt_ok( array_key_exists( 'flxAiSkill', $r['data'] ?? array() ) && null === $r['data']['flxAiSkill'], 'skill: an unknown skill is null', $r );
+
+// Import and the tools setting.
+$r = flxai_t_op( 'FlxAiSkillImport', array( 'input' => array( 'markdown' => "---\nname: imported-one\ndescription: Use when testing imports.\n---\n\n# Imported\n\nBody." ) ), $admin );
+flxt_same( array(), $r['data']['flxAiSkillImport']['errors'] ?? null, 'import: accepted' );
+flxt_same( array( 'imported-one' ), $r['data']['flxAiSkillImport']['result']['imported'] ?? null, 'import: the skill is written' );
+flxt_ok( null !== flxai_skill_get( 'imported-one' ), 'import: the classic reader sees it' );
+$r = flxai_t_op( 'FlxAiSkillImport', array( 'input' => array( 'markdown' => 'no front matter at all' ) ), $admin );
+flxt_same( 'INVALID_INPUT', $sc( $r, 'flxAiSkillImport' ), 'import: a file without front matter is refused' );
+$r = flxai_t_op( 'FlxAiSkillImport', array( 'input' => array( 'contentBase64' => '***', 'fileName' => 'x.zip' ) ), $admin );
+flxt_same( 'INVALID_INPUT', $sc( $r, 'flxAiSkillImport' ), 'import: broken base64 is refused' );
+$r = flxai_t_op( 'FlxAiSkillsSettings', array( 'input' => array( 'restrict' => true ) ), $admin );
+flxt_same( true, $r['data']['flxAiSkillsSettings']['overview']['restrict'] ?? null, 'skills setting: restrict on' );
+flxt_same( true, flxai_skills_restrict_tools(), 'skills setting: the classic reader sees it' );
+flxai_t_op( 'FlxAiSkillsSettings', array( 'input' => array( 'restrict' => false ) ), $admin );
+
+// Delete (the skills of this site go away; tasks that use them keep running without).
+$r = flxai_t_op( 'FlxAiSkillDelete', array( 'input' => array( 'slug' => 'imported-one' ) ), $admin );
+flxt_same( true, $r['data']['flxAiSkillDelete']['deleted'] ?? null, 'skill delete: deleted' );
+$r = flxai_t_op( 'FlxAiSkillDelete', array( 'input' => array( 'slug' => 'donor-review' ) ), $admin );
+flxt_same( null, flxai_skill_get( 'donor-review' ), 'skill delete: gone for the classic reader too' );
+$r = flxai_t_op( 'FlxAiSkillDelete', array( 'input' => array( 'slug' => 'donor-review' ) ), $admin );
+flxt_same( 'NOT_FOUND', $sc( $r, 'flxAiSkillDelete' ), 'skill delete: a second delete is NOT_FOUND' );
+
+// Brand kit.
+delete_option( 'flxai_brand_kit' );
+$r = flxai_t_op( 'FlxAiBrand', array(), $admin );
+flxt_same( null, $r['errors'] ?? null, 'brand: no errors' );
+$b = $r['data']['flxAiBrand'] ?? array();
+flxt_same( '', $b['name'] ?? null, 'brand: empty before the first save' );
+flxt_same( get_bloginfo( 'name' ), $b['defaultName'] ?? null, 'brand: the site name is the default' );
+$r = flxai_t_op( 'FlxAiBrandSave', array( 'input' => array( 'colorPrimary' => 'green' ) ), $admin );
+flxt_same( 'INVALID_INPUT', $sc( $r, 'flxAiBrandSave' ), 'brand save: a color that is not hex is refused' );
+$r = flxai_t_op( 'FlxAiBrandSave', array( 'input' => array(
+	'name'         => 'Green Turkey',
+	'colorPrimary' => '#0A5A40',
+	'partnerIds'   => array( 0, 7, 8 ),
+	'docs'         => array( array( 'name' => 'voice.md', 'content' => "# Voice\n\nWarm." ), array( 'name' => 'about-me.md', 'content' => 'About' ) ),
+) ), $admin );
+flxt_same( array(), $r['data']['flxAiBrandSave']['errors'] ?? null, 'brand save: accepted' );
+$b = $r['data']['flxAiBrandSave']['brand'] ?? array();
+flxt_same( 'Green Turkey', $b['name'] ?? null, 'brand save: name' );
+flxt_same( '#0A5A40', $b['colorPrimary'] ?? null, 'brand save: color' );
+flxt_same( array( 'about-me.md', 'voice.md' ), array_column( $b['docs'] ?? array(), 'name' ), 'brand save: documents' );
+flxt_same( 'Green Turkey', flxai_brand_raw()['profile']['name'] ?? null, 'brand save: the classic reader sees it' );
+$r = flxai_t_op( 'FlxAiBrandSave', array( 'input' => array( 'tagline' => 'Plant a tree', 'docs' => array( array( 'name' => 'voice.md', 'content' => '' ) ) ) ), $admin );
+$b = $r['data']['flxAiBrandSave']['brand'] ?? array();
+flxt_same( 'Green Turkey', $b['name'] ?? null, 'brand save: fields left out keep their value' );
+flxt_same( array( 'about-me.md' ), array_column( $b['docs'] ?? array(), 'name' ), 'brand save: an empty document is deleted' );
+delete_option( 'flxai_brand_kit' );
 
 // The classic settings form saves through the same service.
 if ( ! function_exists( 'flxai_save_settings' ) ) {

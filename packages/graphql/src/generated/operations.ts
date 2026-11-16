@@ -543,6 +543,24 @@ export const FlxAiBilling: FlxOperation<T.FlxAiBillingQuery, T.FlxAiBillingQuery
   document: "query FlxAiBilling($month: String) {\n  flxAiBudget {\n    ...FlxAiBudgetRow\n  }\n  flxAiBilling(month: $month) {\n    month\n    csvUrl\n    report {\n      ...FlxAiReportFields\n    }\n    months {\n      month\n      label\n      cost\n      saved\n      calls\n    }\n    credits {\n      checked {\n        timestamp\n        label\n      }\n      usage\n      limit\n      remaining\n      credits\n    }\n  }\n}\n\nfragment FlxAiBreakdownFields on FlxAiBreakdownRow {\n  key\n  label\n  calls\n  tools\n  cost\n  fullCost\n  inTokens\n  outTokens\n  cacheRead\n  modelMs\n  toolMs\n  errors\n  partial\n}\n\nfragment FlxAiBudgetRow on FlxAiBudgetPeriod {\n  key\n  label\n  limit\n  spent\n  pct\n  over\n  resets {\n    timestamp\n    label\n  }\n}\n\nfragment FlxAiReportFields on FlxAiReport {\n  from {\n    timestamp\n    label\n  }\n  to {\n    timestamp\n    label\n  }\n  totals {\n    calls\n    tools\n    inTokens\n    outTokens\n    cacheRead\n    cacheWrite\n    cost\n    fullCost\n    saved\n    modelMs\n    toolMs\n    errors\n  }\n  daily {\n    date\n    cost\n    inTokens\n    outTokens\n    cacheRead\n    modelMs\n    toolMs\n    calls\n    tools\n    errors\n  }\n  bySource {\n    ...FlxAiBreakdownFields\n  }\n  byModel {\n    ...FlxAiBreakdownFields\n  }\n  byPurpose {\n    ...FlxAiBreakdownFields\n  }\n  byTool {\n    key\n    label\n    source\n    calls\n    avgMs\n    maxMs\n    totalMs\n    errors\n  }\n  byProvider {\n    ...FlxAiBreakdownFields\n  }\n}",
 };
 
+/** query FlxAiBrand (flx-ai, plugins/flx-ai/graphql/operations/FlxAiBrand.graphql) */
+export const FlxAiBrand: FlxOperation<T.FlxAiBrandQuery, T.FlxAiBrandQueryVariables> = {
+  id: 'b3a750b6fd0443498787e2f4e0d3d13b90d91b045d92cac228b455185e51effd',
+  name: 'FlxAiBrand',
+  kind: 'query',
+  plugin: 'flx-ai',
+  document: "query FlxAiBrand {\n  flxAiBrand {\n    ...FlxAiBrandFields\n  }\n}\n\nfragment FlxAiBrandFields on FlxAiBrand {\n  name\n  tagline\n  website\n  phone\n  handle\n  colorPrimary\n  colorAccent\n  colorDark\n  colorLight\n  logoId\n  logoUrl\n  logoLightId\n  logoLightUrl\n  partnerIds\n  partnerUrls\n  notes\n  defaultName\n  defaultTagline\n  defaultWebsite\n  docs {\n    name\n    content\n  }\n  themePalette {\n    slug\n    name\n    color\n  }\n}",
+};
+
+/** mutation FlxAiBrandSave (flx-ai, plugins/flx-ai/graphql/operations/FlxAiBrandSave.graphql) */
+export const FlxAiBrandSave: FlxOperation<T.FlxAiBrandSaveMutation, T.FlxAiBrandSaveMutationVariables> = {
+  id: 'da632a2d2612577c5ac2b5f6dab4e8bf8aca22f001cff20cdb512cada14694a7',
+  name: 'FlxAiBrandSave',
+  kind: 'mutation',
+  plugin: 'flx-ai',
+  document: "mutation FlxAiBrandSave($input: FlxAiBrandSaveInput!) {\n  flxAiBrandSave(input: $input) {\n    brand {\n      ...FlxAiBrandFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAiBrandFields on FlxAiBrand {\n  name\n  tagline\n  website\n  phone\n  handle\n  colorPrimary\n  colorAccent\n  colorDark\n  colorLight\n  logoId\n  logoUrl\n  logoLightId\n  logoLightUrl\n  partnerIds\n  partnerUrls\n  notes\n  defaultName\n  defaultTagline\n  defaultWebsite\n  docs {\n    name\n    content\n  }\n  themePalette {\n    slug\n    name\n    color\n  }\n}",
+};
+
 /** mutation FlxAiChangeDecide (flx-ai, plugins/flx-ai/graphql/operations/FlxAiChangeDecide.graphql) */
 export const FlxAiChangeDecide: FlxOperation<T.FlxAiChangeDecideMutation, T.FlxAiChangeDecideMutationVariables> = {
   id: 'fd799eb314797b602e77f1fee7607668d0d0f868cf45d58fd8f39ffdb0f933a2',
@@ -640,6 +658,123 @@ export const FlxAiSettingsUpdate: FlxOperation<T.FlxAiSettingsUpdateMutation, T.
   kind: 'mutation',
   plugin: 'flx-ai',
   document: "mutation FlxAiSettingsUpdate($input: FlxAiSettingsUpdateInput!) {\n  flxAiSettingsUpdate(input: $input) {\n    settings {\n      ...FlxAiSettingsFields\n    }\n    secrets {\n      ...FlxAiSecretFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAiSecretFields on FlxAiSecret {\n  name\n  group\n  label\n  help\n  configured\n  hint\n  fromConfig\n}\n\nfragment FlxAiSettingsFields on FlxAiSettings {\n  anthropicWorkspace\n  model\n  chatModel\n  titleModel\n  sourceModels {\n    source\n    label\n    model\n  }\n  cache\n  effort\n  thinking\n  limitDay\n  limitWeek\n  limitMonth\n  limitAction\n  limitWarnPct\n  limitNotify\n  chatRoles\n  chatAdmin\n  chatFront\n  chatMode\n  chatMaxRounds\n  chatHistory\n  chatInstructions\n  chatWidgets\n  mediaImageModel\n  mediaVideoModel\n  mediaDays\n  imageToolOn\n  webOn\n  webFetchOn\n  shellOn\n  webProvider\n  webSearchMonth\n  webSearchCost\n  renderUrl\n  renderUser\n  logDays\n  logBodies\n  logBodyDays\n  deleteData\n}",
+};
+
+/** query FlxAiSkill (flx-ai, plugins/flx-ai/graphql/operations/FlxAiSkill.graphql) */
+export const FlxAiSkill: FlxOperation<T.FlxAiSkillQuery, T.FlxAiSkillQueryVariables> = {
+  id: '0487ce458b717192e900f7caef75ddca5d4567a5a6e50fcc2cdff15b640f9bc7',
+  name: 'FlxAiSkill',
+  kind: 'query',
+  plugin: 'flx-ai',
+  document: "query FlxAiSkill($slug: String!) {\n  flxAiSkill(slug: $slug) {\n    ...FlxAiSkillDetailFields\n  }\n}\n\nfragment FlxAiSkillDetailFields on FlxAiSkillDetail {\n  skill {\n    ...FlxAiSkillFields\n  }\n  body\n  tools\n  license\n  compatibility\n  example\n  toolNames\n  files {\n    path\n    size\n    downloadUrl\n  }\n  evals {\n    triggers {\n      query\n      shouldTrigger\n    }\n    cases {\n      id\n      prompt\n      expectations\n    }\n  }\n  results {\n    trigger {\n      ts {\n        timestamp\n        label\n      }\n      model\n      hits\n      total\n      rate\n      cost\n      partial\n      rows {\n        query\n        shouldTrigger\n        triggered\n        picked\n      }\n    }\n    functional {\n      ts {\n        timestamp\n        label\n      }\n      id\n      prompt\n      note\n      judgeCost\n      with {\n        ...FlxAiSkillSideFields\n      }\n      without {\n        ...FlxAiSkillSideFields\n      }\n      checks {\n        text\n        with\n        without\n      }\n    }\n  }\n}\n\nfragment FlxAiSkillFields on FlxAiSkill {\n  slug\n  name\n  description\n  version\n  status\n  bundled\n  source\n  changed\n  saved\n  fileCount\n  hasScripts\n  tasks\n  exportUrl\n}\n\nfragment FlxAiSkillSideFields on FlxAiSkillSide {\n  passed\n  total\n  in\n  out\n  cost\n  ms\n  output\n}",
+};
+
+/** mutation FlxAiSkillDelete (flx-ai, plugins/flx-ai/graphql/operations/FlxAiSkillDelete.graphql) */
+export const FlxAiSkillDelete: FlxOperation<T.FlxAiSkillDeleteMutation, T.FlxAiSkillDeleteMutationVariables> = {
+  id: 'e09f255e7a9396b3fc199130ff80d8fe83b8d433c238f9979b9f8698ba8ee13d',
+  name: 'FlxAiSkillDelete',
+  kind: 'mutation',
+  plugin: 'flx-ai',
+  document: "mutation FlxAiSkillDelete($input: FlxAiSkillDeleteInput!) {\n  flxAiSkillDelete(input: $input) {\n    deleted\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxAiSkillEvalsSave (flx-ai, plugins/flx-ai/graphql/operations/FlxAiSkillEvalsSave.graphql) */
+export const FlxAiSkillEvalsSave: FlxOperation<T.FlxAiSkillEvalsSaveMutation, T.FlxAiSkillEvalsSaveMutationVariables> = {
+  id: '372eef6b1c9464e87ea02994b5fda77f806be1bf15e9b6910fe555ec19080362',
+  name: 'FlxAiSkillEvalsSave',
+  kind: 'mutation',
+  plugin: 'flx-ai',
+  document: "mutation FlxAiSkillEvalsSave($input: FlxAiSkillEvalsSaveInput!) {\n  flxAiSkillEvalsSave(input: $input) {\n    skill {\n      ...FlxAiSkillDetailFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAiSkillDetailFields on FlxAiSkillDetail {\n  skill {\n    ...FlxAiSkillFields\n  }\n  body\n  tools\n  license\n  compatibility\n  example\n  toolNames\n  files {\n    path\n    size\n    downloadUrl\n  }\n  evals {\n    triggers {\n      query\n      shouldTrigger\n    }\n    cases {\n      id\n      prompt\n      expectations\n    }\n  }\n  results {\n    trigger {\n      ts {\n        timestamp\n        label\n      }\n      model\n      hits\n      total\n      rate\n      cost\n      partial\n      rows {\n        query\n        shouldTrigger\n        triggered\n        picked\n      }\n    }\n    functional {\n      ts {\n        timestamp\n        label\n      }\n      id\n      prompt\n      note\n      judgeCost\n      with {\n        ...FlxAiSkillSideFields\n      }\n      without {\n        ...FlxAiSkillSideFields\n      }\n      checks {\n        text\n        with\n        without\n      }\n    }\n  }\n}\n\nfragment FlxAiSkillFields on FlxAiSkill {\n  slug\n  name\n  description\n  version\n  status\n  bundled\n  source\n  changed\n  saved\n  fileCount\n  hasScripts\n  tasks\n  exportUrl\n}\n\nfragment FlxAiSkillSideFields on FlxAiSkillSide {\n  passed\n  total\n  in\n  out\n  cost\n  ms\n  output\n}",
+};
+
+/** query FlxAiSkillFile (flx-ai, plugins/flx-ai/graphql/operations/FlxAiSkillFile.graphql) */
+export const FlxAiSkillFile: FlxOperation<T.FlxAiSkillFileQuery, T.FlxAiSkillFileQueryVariables> = {
+  id: 'a6a472f970cb6325218460eaec9caffcc51c157174dbcb64dd6031019f2e07b7',
+  name: 'FlxAiSkillFile',
+  kind: 'query',
+  plugin: 'flx-ai',
+  document: "query FlxAiSkillFile($slug: String!, $path: String!) {\n  flxAiSkillFile(slug: $slug, path: $path) {\n    path\n    size\n    text\n    content\n    note\n  }\n}",
+};
+
+/** mutation FlxAiSkillFileDelete (flx-ai, plugins/flx-ai/graphql/operations/FlxAiSkillFileDelete.graphql) */
+export const FlxAiSkillFileDelete: FlxOperation<T.FlxAiSkillFileDeleteMutation, T.FlxAiSkillFileDeleteMutationVariables> = {
+  id: 'd373e520e30964f085df84a2ea0884ff1454c19bb21f4fba45a02b72ddf170c5',
+  name: 'FlxAiSkillFileDelete',
+  kind: 'mutation',
+  plugin: 'flx-ai',
+  document: "mutation FlxAiSkillFileDelete($input: FlxAiSkillFileDeleteInput!) {\n  flxAiSkillFileDelete(input: $input) {\n    skill {\n      ...FlxAiSkillDetailFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAiSkillDetailFields on FlxAiSkillDetail {\n  skill {\n    ...FlxAiSkillFields\n  }\n  body\n  tools\n  license\n  compatibility\n  example\n  toolNames\n  files {\n    path\n    size\n    downloadUrl\n  }\n  evals {\n    triggers {\n      query\n      shouldTrigger\n    }\n    cases {\n      id\n      prompt\n      expectations\n    }\n  }\n  results {\n    trigger {\n      ts {\n        timestamp\n        label\n      }\n      model\n      hits\n      total\n      rate\n      cost\n      partial\n      rows {\n        query\n        shouldTrigger\n        triggered\n        picked\n      }\n    }\n    functional {\n      ts {\n        timestamp\n        label\n      }\n      id\n      prompt\n      note\n      judgeCost\n      with {\n        ...FlxAiSkillSideFields\n      }\n      without {\n        ...FlxAiSkillSideFields\n      }\n      checks {\n        text\n        with\n        without\n      }\n    }\n  }\n}\n\nfragment FlxAiSkillFields on FlxAiSkill {\n  slug\n  name\n  description\n  version\n  status\n  bundled\n  source\n  changed\n  saved\n  fileCount\n  hasScripts\n  tasks\n  exportUrl\n}\n\nfragment FlxAiSkillSideFields on FlxAiSkillSide {\n  passed\n  total\n  in\n  out\n  cost\n  ms\n  output\n}",
+};
+
+/** mutation FlxAiSkillFileSave (flx-ai, plugins/flx-ai/graphql/operations/FlxAiSkillFileSave.graphql) */
+export const FlxAiSkillFileSave: FlxOperation<T.FlxAiSkillFileSaveMutation, T.FlxAiSkillFileSaveMutationVariables> = {
+  id: '09c37d0e71eb7657215d6bc698bc8d2db1029394076b3d229df3c9bbd790fe20',
+  name: 'FlxAiSkillFileSave',
+  kind: 'mutation',
+  plugin: 'flx-ai',
+  document: "mutation FlxAiSkillFileSave($input: FlxAiSkillFileSaveInput!) {\n  flxAiSkillFileSave(input: $input) {\n    skill {\n      ...FlxAiSkillDetailFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAiSkillDetailFields on FlxAiSkillDetail {\n  skill {\n    ...FlxAiSkillFields\n  }\n  body\n  tools\n  license\n  compatibility\n  example\n  toolNames\n  files {\n    path\n    size\n    downloadUrl\n  }\n  evals {\n    triggers {\n      query\n      shouldTrigger\n    }\n    cases {\n      id\n      prompt\n      expectations\n    }\n  }\n  results {\n    trigger {\n      ts {\n        timestamp\n        label\n      }\n      model\n      hits\n      total\n      rate\n      cost\n      partial\n      rows {\n        query\n        shouldTrigger\n        triggered\n        picked\n      }\n    }\n    functional {\n      ts {\n        timestamp\n        label\n      }\n      id\n      prompt\n      note\n      judgeCost\n      with {\n        ...FlxAiSkillSideFields\n      }\n      without {\n        ...FlxAiSkillSideFields\n      }\n      checks {\n        text\n        with\n        without\n      }\n    }\n  }\n}\n\nfragment FlxAiSkillFields on FlxAiSkill {\n  slug\n  name\n  description\n  version\n  status\n  bundled\n  source\n  changed\n  saved\n  fileCount\n  hasScripts\n  tasks\n  exportUrl\n}\n\nfragment FlxAiSkillSideFields on FlxAiSkillSide {\n  passed\n  total\n  in\n  out\n  cost\n  ms\n  output\n}",
+};
+
+/** mutation FlxAiSkillFileUpload (flx-ai, plugins/flx-ai/graphql/operations/FlxAiSkillFileUpload.graphql) */
+export const FlxAiSkillFileUpload: FlxOperation<T.FlxAiSkillFileUploadMutation, T.FlxAiSkillFileUploadMutationVariables> = {
+  id: 'ebd8574ac829b2962c165a2746255c9f5ce6cf1e021e1ff970e262bc4da2d3a7',
+  name: 'FlxAiSkillFileUpload',
+  kind: 'mutation',
+  plugin: 'flx-ai',
+  document: "mutation FlxAiSkillFileUpload($input: FlxAiSkillFileUploadInput!) {\n  flxAiSkillFileUpload(input: $input) {\n    skill {\n      ...FlxAiSkillDetailFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAiSkillDetailFields on FlxAiSkillDetail {\n  skill {\n    ...FlxAiSkillFields\n  }\n  body\n  tools\n  license\n  compatibility\n  example\n  toolNames\n  files {\n    path\n    size\n    downloadUrl\n  }\n  evals {\n    triggers {\n      query\n      shouldTrigger\n    }\n    cases {\n      id\n      prompt\n      expectations\n    }\n  }\n  results {\n    trigger {\n      ts {\n        timestamp\n        label\n      }\n      model\n      hits\n      total\n      rate\n      cost\n      partial\n      rows {\n        query\n        shouldTrigger\n        triggered\n        picked\n      }\n    }\n    functional {\n      ts {\n        timestamp\n        label\n      }\n      id\n      prompt\n      note\n      judgeCost\n      with {\n        ...FlxAiSkillSideFields\n      }\n      without {\n        ...FlxAiSkillSideFields\n      }\n      checks {\n        text\n        with\n        without\n      }\n    }\n  }\n}\n\nfragment FlxAiSkillFields on FlxAiSkill {\n  slug\n  name\n  description\n  version\n  status\n  bundled\n  source\n  changed\n  saved\n  fileCount\n  hasScripts\n  tasks\n  exportUrl\n}\n\nfragment FlxAiSkillSideFields on FlxAiSkillSide {\n  passed\n  total\n  in\n  out\n  cost\n  ms\n  output\n}",
+};
+
+/** mutation FlxAiSkillImport (flx-ai, plugins/flx-ai/graphql/operations/FlxAiSkillImport.graphql) */
+export const FlxAiSkillImport: FlxOperation<T.FlxAiSkillImportMutation, T.FlxAiSkillImportMutationVariables> = {
+  id: 'd9191efde70835ba5cfed6ceb69090c4efade488a245e71ab5ebd320914d2ad0',
+  name: 'FlxAiSkillImport',
+  kind: 'mutation',
+  plugin: 'flx-ai',
+  document: "mutation FlxAiSkillImport($input: FlxAiSkillImportInput!) {\n  flxAiSkillImport(input: $input) {\n    result {\n      imported\n      notes\n      overview {\n        ...FlxAiSkillsOverviewFields\n      }\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAiSkillFields on FlxAiSkill {\n  slug\n  name\n  description\n  version\n  status\n  bundled\n  source\n  changed\n  saved\n  fileCount\n  hasScripts\n  tasks\n  exportUrl\n}\n\nfragment FlxAiSkillsOverviewFields on FlxAiSkillsOverview {\n  restrict\n  skills {\n    ...FlxAiSkillFields\n  }\n}",
+};
+
+/** query FlxAiSkills (flx-ai, plugins/flx-ai/graphql/operations/FlxAiSkills.graphql) */
+export const FlxAiSkills: FlxOperation<T.FlxAiSkillsQuery, T.FlxAiSkillsQueryVariables> = {
+  id: 'cf20bd001ca38dfb6cfde68b6cf3c3338b3ec8ab2f1c32c3839bb6e986b2d82f',
+  name: 'FlxAiSkills',
+  kind: 'query',
+  plugin: 'flx-ai',
+  document: "query FlxAiSkills {\n  flxAiSkills {\n    ...FlxAiSkillsOverviewFields\n  }\n}\n\nfragment FlxAiSkillFields on FlxAiSkill {\n  slug\n  name\n  description\n  version\n  status\n  bundled\n  source\n  changed\n  saved\n  fileCount\n  hasScripts\n  tasks\n  exportUrl\n}\n\nfragment FlxAiSkillsOverviewFields on FlxAiSkillsOverview {\n  restrict\n  skills {\n    ...FlxAiSkillFields\n  }\n}",
+};
+
+/** mutation FlxAiSkillSave (flx-ai, plugins/flx-ai/graphql/operations/FlxAiSkillSave.graphql) */
+export const FlxAiSkillSave: FlxOperation<T.FlxAiSkillSaveMutation, T.FlxAiSkillSaveMutationVariables> = {
+  id: '6cde51e04a2e3a47ba5121f5df5cbdc44ff904a6612f8aeabc8e9a962f4a1d90',
+  name: 'FlxAiSkillSave',
+  kind: 'mutation',
+  plugin: 'flx-ai',
+  document: "mutation FlxAiSkillSave($input: FlxAiSkillSaveInput!) {\n  flxAiSkillSave(input: $input) {\n    skill {\n      ...FlxAiSkillDetailFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAiSkillDetailFields on FlxAiSkillDetail {\n  skill {\n    ...FlxAiSkillFields\n  }\n  body\n  tools\n  license\n  compatibility\n  example\n  toolNames\n  files {\n    path\n    size\n    downloadUrl\n  }\n  evals {\n    triggers {\n      query\n      shouldTrigger\n    }\n    cases {\n      id\n      prompt\n      expectations\n    }\n  }\n  results {\n    trigger {\n      ts {\n        timestamp\n        label\n      }\n      model\n      hits\n      total\n      rate\n      cost\n      partial\n      rows {\n        query\n        shouldTrigger\n        triggered\n        picked\n      }\n    }\n    functional {\n      ts {\n        timestamp\n        label\n      }\n      id\n      prompt\n      note\n      judgeCost\n      with {\n        ...FlxAiSkillSideFields\n      }\n      without {\n        ...FlxAiSkillSideFields\n      }\n      checks {\n        text\n        with\n        without\n      }\n    }\n  }\n}\n\nfragment FlxAiSkillFields on FlxAiSkill {\n  slug\n  name\n  description\n  version\n  status\n  bundled\n  source\n  changed\n  saved\n  fileCount\n  hasScripts\n  tasks\n  exportUrl\n}\n\nfragment FlxAiSkillSideFields on FlxAiSkillSide {\n  passed\n  total\n  in\n  out\n  cost\n  ms\n  output\n}",
+};
+
+/** mutation FlxAiSkillsSettings (flx-ai, plugins/flx-ai/graphql/operations/FlxAiSkillsSettings.graphql) */
+export const FlxAiSkillsSettings: FlxOperation<T.FlxAiSkillsSettingsMutation, T.FlxAiSkillsSettingsMutationVariables> = {
+  id: 'da67faeb795417a5c9c511c64f539a783b84b00959f301cdf4bcb51ca83159dd',
+  name: 'FlxAiSkillsSettings',
+  kind: 'mutation',
+  plugin: 'flx-ai',
+  document: "mutation FlxAiSkillsSettings($input: FlxAiSkillsSettingsInput!) {\n  flxAiSkillsSettings(input: $input) {\n    overview {\n      ...FlxAiSkillsOverviewFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAiSkillFields on FlxAiSkill {\n  slug\n  name\n  description\n  version\n  status\n  bundled\n  source\n  changed\n  saved\n  fileCount\n  hasScripts\n  tasks\n  exportUrl\n}\n\nfragment FlxAiSkillsOverviewFields on FlxAiSkillsOverview {\n  restrict\n  skills {\n    ...FlxAiSkillFields\n  }\n}",
+};
+
+/** mutation FlxAiSkillTestRun (flx-ai, plugins/flx-ai/graphql/operations/FlxAiSkillTestRun.graphql) */
+export const FlxAiSkillTestRun: FlxOperation<T.FlxAiSkillTestRunMutation, T.FlxAiSkillTestRunMutationVariables> = {
+  id: 'b1420ef58530cffd638bfb94181dc30468180e48a8d5d28faa50553961fd57d1',
+  name: 'FlxAiSkillTestRun',
+  kind: 'mutation',
+  plugin: 'flx-ai',
+  document: "mutation FlxAiSkillTestRun($input: FlxAiSkillTestRunInput!) {\n  flxAiSkillTestRun(input: $input) {\n    skill {\n      ...FlxAiSkillDetailFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAiSkillDetailFields on FlxAiSkillDetail {\n  skill {\n    ...FlxAiSkillFields\n  }\n  body\n  tools\n  license\n  compatibility\n  example\n  toolNames\n  files {\n    path\n    size\n    downloadUrl\n  }\n  evals {\n    triggers {\n      query\n      shouldTrigger\n    }\n    cases {\n      id\n      prompt\n      expectations\n    }\n  }\n  results {\n    trigger {\n      ts {\n        timestamp\n        label\n      }\n      model\n      hits\n      total\n      rate\n      cost\n      partial\n      rows {\n        query\n        shouldTrigger\n        triggered\n        picked\n      }\n    }\n    functional {\n      ts {\n        timestamp\n        label\n      }\n      id\n      prompt\n      note\n      judgeCost\n      with {\n        ...FlxAiSkillSideFields\n      }\n      without {\n        ...FlxAiSkillSideFields\n      }\n      checks {\n        text\n        with\n        without\n      }\n    }\n  }\n}\n\nfragment FlxAiSkillFields on FlxAiSkill {\n  slug\n  name\n  description\n  version\n  status\n  bundled\n  source\n  changed\n  saved\n  fileCount\n  hasScripts\n  tasks\n  exportUrl\n}\n\nfragment FlxAiSkillSideFields on FlxAiSkillSide {\n  passed\n  total\n  in\n  out\n  cost\n  ms\n  output\n}",
+};
+
+/** mutation FlxAiSkillToggle (flx-ai, plugins/flx-ai/graphql/operations/FlxAiSkillToggle.graphql) */
+export const FlxAiSkillToggle: FlxOperation<T.FlxAiSkillToggleMutation, T.FlxAiSkillToggleMutationVariables> = {
+  id: 'fdb8bd020db940528756b520ebf649d8516754ea03b16bd1d4cf43216eb556f5',
+  name: 'FlxAiSkillToggle',
+  kind: 'mutation',
+  plugin: 'flx-ai',
+  document: "mutation FlxAiSkillToggle($input: FlxAiSkillToggleInput!) {\n  flxAiSkillToggle(input: $input) {\n    skill {\n      ...FlxAiSkillDetailFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAiSkillDetailFields on FlxAiSkillDetail {\n  skill {\n    ...FlxAiSkillFields\n  }\n  body\n  tools\n  license\n  compatibility\n  example\n  toolNames\n  files {\n    path\n    size\n    downloadUrl\n  }\n  evals {\n    triggers {\n      query\n      shouldTrigger\n    }\n    cases {\n      id\n      prompt\n      expectations\n    }\n  }\n  results {\n    trigger {\n      ts {\n        timestamp\n        label\n      }\n      model\n      hits\n      total\n      rate\n      cost\n      partial\n      rows {\n        query\n        shouldTrigger\n        triggered\n        picked\n      }\n    }\n    functional {\n      ts {\n        timestamp\n        label\n      }\n      id\n      prompt\n      note\n      judgeCost\n      with {\n        ...FlxAiSkillSideFields\n      }\n      without {\n        ...FlxAiSkillSideFields\n      }\n      checks {\n        text\n        with\n        without\n      }\n    }\n  }\n}\n\nfragment FlxAiSkillFields on FlxAiSkill {\n  slug\n  name\n  description\n  version\n  status\n  bundled\n  source\n  changed\n  saved\n  fileCount\n  hasScripts\n  tasks\n  exportUrl\n}\n\nfragment FlxAiSkillSideFields on FlxAiSkillSide {\n  passed\n  total\n  in\n  out\n  cost\n  ms\n  output\n}",
 };
 
 /** query FlxAiSystems (flx-ai, plugins/flx-ai/graphql/operations/FlxAiSystems.graphql) */

@@ -11,6 +11,7 @@ import { useAi } from './common';
 import { Logs } from './Logs';
 import { Overview } from './Overview';
 import { Settings } from './Settings';
+import { Skills } from './Skills';
 import { Systems } from './Systems';
 import { Tasks } from './Tasks';
 import { Tools } from './Tools';
@@ -24,6 +25,7 @@ const VIEWS: Record<string, { title: string; sub: string; View: ComponentType }>
   tools: { title: 'Tools', sub: '', View: Tools },
   approvals: { title: 'Awaiting approval', sub: '', View: Approvals },
   tasks: { title: 'Scheduled tasks', sub: '', View: Tasks },
+  skills: { title: 'Skills', sub: '', View: Skills },
   settings: { title: 'Settings', sub: '', View: Settings },
 };
 

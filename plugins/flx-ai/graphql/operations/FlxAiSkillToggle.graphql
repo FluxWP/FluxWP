@@ -1,0 +1,12 @@
+mutation FlxAiSkillToggle($input: FlxAiSkillToggleInput!) {
+  flxAiSkillToggle(input: $input) {
+    skill {
+      ...FlxAiSkillDetailFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

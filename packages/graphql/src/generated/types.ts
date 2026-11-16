@@ -1748,6 +1748,48 @@ export type FlxAiApprovalDecideInput = {
   clientMutationId?: string | null | undefined;
 };
 
+/** Input for the flxAiBrandSave mutation. */
+export type FlxAiBrandSaveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Accent color, #rrggbb. */
+  colorAccent?: string | null | undefined;
+  /** Dark color, #rrggbb. */
+  colorDark?: string | null | undefined;
+  /** Light color, #rrggbb. */
+  colorLight?: string | null | undefined;
+  /** Primary color, #rrggbb. */
+  colorPrimary?: string | null | undefined;
+  /** Documents to write; empty content deletes one. */
+  docs?: Array<FlxAiBrandDocInput> | null | undefined;
+  /** Social media handle or hashtag. */
+  handle?: string | null | undefined;
+  /** Logo media ID. */
+  logoId?: number | null | undefined;
+  /** White logo media ID. */
+  logoLightId?: number | null | undefined;
+  /** Organisation name. */
+  name?: string | null | undefined;
+  /** Design notes. */
+  notes?: string | null | undefined;
+  /** Partner logo media IDs (up to 6). */
+  partnerIds?: Array<number> | null | undefined;
+  /** Phone or WhatsApp. */
+  phone?: string | null | undefined;
+  /** Tagline. */
+  tagline?: string | null | undefined;
+  /** Website shown on visuals. */
+  website?: string | null | undefined;
+};
+
+/** A brand kit document; empty content deletes it. */
+export type FlxAiBrandDocInput = {
+  /** Markdown. */
+  content: string;
+  /** File name, e.g. voice.md. */
+  name: string;
+};
+
 /** Input for the flxAiChangeDecide mutation. */
 export type FlxAiChangeDecideInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -1878,6 +1920,144 @@ export type FlxAiSourceModelInput = {
   model: string;
   /** System id. */
   source: string;
+};
+
+/** Input for the flxAiSkillDelete mutation. */
+export type FlxAiSkillDeleteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Skill folder name. */
+  slug: string;
+};
+
+/** Input for the flxAiSkillEvalsSave mutation. */
+export type FlxAiSkillEvalsSaveInput = {
+  /** Functional tests (up to 10). */
+  cases?: Array<FlxAiSkillCaseInput> | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Skill folder name. */
+  slug: string;
+  /** Trigger test prompts (up to 40). */
+  triggers?: Array<FlxAiSkillTriggerInput> | null | undefined;
+};
+
+/** A functional test. */
+export type FlxAiSkillCaseInput = {
+  /** Checks, one per entry. */
+  expectations?: Array<string> | null | undefined;
+  /** The request. */
+  prompt: string;
+};
+
+/** A trigger test prompt. */
+export type FlxAiSkillTriggerInput = {
+  /** The prompt. */
+  query: string;
+  /** The assistant should pick the skill (default true). */
+  shouldTrigger?: boolean | null | undefined;
+};
+
+/** Input for the flxAiSkillFileDelete mutation. */
+export type FlxAiSkillFileDeleteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Path inside the folder. */
+  path: string;
+  /** Skill folder name. */
+  slug: string;
+};
+
+/** Input for the flxAiSkillFileSave mutation. */
+export type FlxAiSkillFileSaveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Text. */
+  content: string;
+  /** Path, e.g. references/guide.md. */
+  path: string;
+  /** Skill folder name. */
+  slug: string;
+};
+
+/** Input for the flxAiSkillFileUpload mutation. */
+export type FlxAiSkillFileUploadInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** File content, base64. */
+  contentBase64: string;
+  /** File name. */
+  fileName: string;
+  /** references, assets, scripts or evals (default references). */
+  folder?: string | null | undefined;
+  /** Skill folder name. */
+  slug: string;
+};
+
+/** Input for the flxAiSkillImport mutation. */
+export type FlxAiSkillImportInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** File content, base64 (up to 20 MB). */
+  contentBase64?: string | null | undefined;
+  /** File name. */
+  fileName?: string | null | undefined;
+  /** Pasted SKILL.md. */
+  markdown?: string | null | undefined;
+};
+
+/** Input for the flxAiSkillSave mutation. */
+export type FlxAiSkillSaveInput = {
+  /** The skill is on (false turns it off). */
+  active?: boolean | null | undefined;
+  /** SKILL.md instructions (Markdown). */
+  body?: string | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Compatibility note. */
+  compatibility?: string | null | undefined;
+  /** Folder name of the skill to change; leave out to create one. */
+  current?: string | null | undefined;
+  /** What it does and when to use it (up to 1024 characters). */
+  description?: string | null | undefined;
+  /** Example output. */
+  example?: string | null | undefined;
+  /** License. */
+  license?: string | null | undefined;
+  /** Title. */
+  name?: string | null | undefined;
+  /** New folder name (lowercase letters, numbers, dashes); empty takes it from the title. */
+  slug?: string | null | undefined;
+  /** allowed-tools. */
+  tools?: Array<string> | null | undefined;
+};
+
+/** Input for the flxAiSkillTestRun mutation. */
+export type FlxAiSkillTestRunInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Functional test number. */
+  id?: string | null | undefined;
+  /** trigger or functional. */
+  kind: string;
+  /** Skill folder name. */
+  slug: string;
+};
+
+/** Input for the flxAiSkillToggle mutation. */
+export type FlxAiSkillToggleInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Skill folder name. */
+  slug: string;
+};
+
+/** Input for the flxAiSkillsSettings mutation. */
+export type FlxAiSkillsSettingsInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Offer only the allowed tools. */
+  restrict: boolean;
 };
 
 /** Input for the flxAiSystemsUpdate mutation. */
@@ -5615,6 +5795,20 @@ export type FlxAiBudgetRowFragment = { key: string, label: string, limit: number
 
 export type FlxAiReportFieldsFragment = { from: { timestamp: number, label: string }, to: { timestamp: number, label: string }, totals: { calls: number, tools: number, inTokens: number, outTokens: number, cacheRead: number, cacheWrite: number, cost: number, fullCost: number, saved: number, modelMs: number, toolMs: number, errors: number }, daily: Array<{ date: string, cost: number, inTokens: number, outTokens: number, cacheRead: number, modelMs: number, toolMs: number, calls: number, tools: number, errors: number }>, bySource: Array<{ key: string, label: string, calls: number, tools: number, cost: number, fullCost: number, inTokens: number, outTokens: number, cacheRead: number, modelMs: number, toolMs: number, errors: number, partial: boolean }>, byModel: Array<{ key: string, label: string, calls: number, tools: number, cost: number, fullCost: number, inTokens: number, outTokens: number, cacheRead: number, modelMs: number, toolMs: number, errors: number, partial: boolean }>, byPurpose: Array<{ key: string, label: string, calls: number, tools: number, cost: number, fullCost: number, inTokens: number, outTokens: number, cacheRead: number, modelMs: number, toolMs: number, errors: number, partial: boolean }>, byTool: Array<{ key: string, label: string, source: string, calls: number, avgMs: number, maxMs: number, totalMs: number, errors: number }>, byProvider: Array<{ key: string, label: string, calls: number, tools: number, cost: number, fullCost: number, inTokens: number, outTokens: number, cacheRead: number, modelMs: number, toolMs: number, errors: number, partial: boolean }> };
 
+export type FlxAiBrandQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAiBrandQuery = { flxAiBrand: { name: string, tagline: string, website: string, phone: string, handle: string, colorPrimary: string, colorAccent: string, colorDark: string, colorLight: string, logoId: number, logoUrl: string, logoLightId: number, logoLightUrl: string, partnerIds: Array<number>, partnerUrls: Array<string>, notes: string, defaultName: string, defaultTagline: string, defaultWebsite: string, docs: Array<{ name: string, content: string }>, themePalette: Array<{ slug: string, name: string, color: string }> } };
+
+export type FlxAiBrandFieldsFragment = { name: string, tagline: string, website: string, phone: string, handle: string, colorPrimary: string, colorAccent: string, colorDark: string, colorLight: string, logoId: number, logoUrl: string, logoLightId: number, logoLightUrl: string, partnerIds: Array<number>, partnerUrls: Array<string>, notes: string, defaultName: string, defaultTagline: string, defaultWebsite: string, docs: Array<{ name: string, content: string }>, themePalette: Array<{ slug: string, name: string, color: string }> };
+
+export type FlxAiBrandSaveMutationVariables = Exact<{
+  input: FlxAiBrandSaveInput;
+}>;
+
+
+export type FlxAiBrandSaveMutation = { flxAiBrandSave: { brand: { name: string, tagline: string, website: string, phone: string, handle: string, colorPrimary: string, colorAccent: string, colorDark: string, colorLight: string, logoId: number, logoUrl: string, logoLightId: number, logoLightUrl: string, partnerIds: Array<number>, partnerUrls: Array<string>, notes: string, defaultName: string, defaultTagline: string, defaultWebsite: string, docs: Array<{ name: string, content: string }>, themePalette: Array<{ slug: string, name: string, color: string }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
 export type FlxAiChangeDecideMutationVariables = Exact<{
   input: FlxAiChangeDecideInput;
 }>;
@@ -5702,6 +5896,104 @@ export type FlxAiSettingsUpdateMutationVariables = Exact<{
 
 
 export type FlxAiSettingsUpdateMutation = { flxAiSettingsUpdate: { settings: { anthropicWorkspace: string, model: string, chatModel: string, titleModel: string, cache: FlxAiCacheMode, effort: FlxAiEffort, thinking: boolean, limitDay: number, limitWeek: number, limitMonth: number, limitAction: FlxAiLimitAction, limitWarnPct: number, limitNotify: boolean, chatRoles: Array<string>, chatAdmin: boolean, chatFront: boolean, chatMode: FlxAiChatMode, chatMaxRounds: number, chatHistory: number, chatInstructions: string, chatWidgets: boolean, mediaImageModel: string, mediaVideoModel: string, mediaDays: number, imageToolOn: boolean, webOn: boolean, webFetchOn: boolean, shellOn: boolean, webProvider: string, webSearchMonth: number, webSearchCost: number, renderUrl: string, renderUser: string, logDays: number, logBodies: boolean, logBodyDays: number, deleteData: boolean, sourceModels: Array<{ source: string, label: string, model: string }> } | null, secrets: Array<{ name: string, group: FlxAiSecretGroup, label: string, help: string, configured: boolean, hint: string, fromConfig: boolean }>, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAiSkillQueryVariables = Exact<{
+  slug: string;
+}>;
+
+
+export type FlxAiSkillQuery = { flxAiSkill: { body: string, tools: Array<string>, license: string, compatibility: string, example: string, toolNames: Array<string>, skill: { slug: string, name: string, description: string, version: number, status: string, bundled: boolean, source: string, changed: boolean, saved: boolean, fileCount: number, hasScripts: boolean, tasks: number, exportUrl: string }, files: Array<{ path: string, size: number, downloadUrl: string }>, evals: { triggers: Array<{ query: string, shouldTrigger: boolean }>, cases: Array<{ id: string, prompt: string, expectations: Array<string> }> }, results: { trigger: { model: string, hits: number, total: number, rate: number, cost: number, partial: boolean, ts: { timestamp: number, label: string }, rows: Array<{ query: string, shouldTrigger: boolean, triggered: boolean, picked: Array<string> }> } | null, functional: Array<{ id: string, prompt: string, note: string, judgeCost: number, ts: { timestamp: number, label: string }, with: { passed: number, total: number, in: number, out: number, cost: number, ms: number, output: string }, without: { passed: number, total: number, in: number, out: number, cost: number, ms: number, output: string }, checks: Array<{ text: string, with: boolean, without: boolean }> }> } } | null };
+
+export type FlxAiSkillDetailFieldsFragment = { body: string, tools: Array<string>, license: string, compatibility: string, example: string, toolNames: Array<string>, skill: { slug: string, name: string, description: string, version: number, status: string, bundled: boolean, source: string, changed: boolean, saved: boolean, fileCount: number, hasScripts: boolean, tasks: number, exportUrl: string }, files: Array<{ path: string, size: number, downloadUrl: string }>, evals: { triggers: Array<{ query: string, shouldTrigger: boolean }>, cases: Array<{ id: string, prompt: string, expectations: Array<string> }> }, results: { trigger: { model: string, hits: number, total: number, rate: number, cost: number, partial: boolean, ts: { timestamp: number, label: string }, rows: Array<{ query: string, shouldTrigger: boolean, triggered: boolean, picked: Array<string> }> } | null, functional: Array<{ id: string, prompt: string, note: string, judgeCost: number, ts: { timestamp: number, label: string }, with: { passed: number, total: number, in: number, out: number, cost: number, ms: number, output: string }, without: { passed: number, total: number, in: number, out: number, cost: number, ms: number, output: string }, checks: Array<{ text: string, with: boolean, without: boolean }> }> } };
+
+export type FlxAiSkillFieldsFragment = { slug: string, name: string, description: string, version: number, status: string, bundled: boolean, source: string, changed: boolean, saved: boolean, fileCount: number, hasScripts: boolean, tasks: number, exportUrl: string };
+
+export type FlxAiSkillSideFieldsFragment = { passed: number, total: number, in: number, out: number, cost: number, ms: number, output: string };
+
+export type FlxAiSkillDeleteMutationVariables = Exact<{
+  input: FlxAiSkillDeleteInput;
+}>;
+
+
+export type FlxAiSkillDeleteMutation = { flxAiSkillDelete: { deleted: boolean | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAiSkillEvalsSaveMutationVariables = Exact<{
+  input: FlxAiSkillEvalsSaveInput;
+}>;
+
+
+export type FlxAiSkillEvalsSaveMutation = { flxAiSkillEvalsSave: { skill: { body: string, tools: Array<string>, license: string, compatibility: string, example: string, toolNames: Array<string>, skill: { slug: string, name: string, description: string, version: number, status: string, bundled: boolean, source: string, changed: boolean, saved: boolean, fileCount: number, hasScripts: boolean, tasks: number, exportUrl: string }, files: Array<{ path: string, size: number, downloadUrl: string }>, evals: { triggers: Array<{ query: string, shouldTrigger: boolean }>, cases: Array<{ id: string, prompt: string, expectations: Array<string> }> }, results: { trigger: { model: string, hits: number, total: number, rate: number, cost: number, partial: boolean, ts: { timestamp: number, label: string }, rows: Array<{ query: string, shouldTrigger: boolean, triggered: boolean, picked: Array<string> }> } | null, functional: Array<{ id: string, prompt: string, note: string, judgeCost: number, ts: { timestamp: number, label: string }, with: { passed: number, total: number, in: number, out: number, cost: number, ms: number, output: string }, without: { passed: number, total: number, in: number, out: number, cost: number, ms: number, output: string }, checks: Array<{ text: string, with: boolean, without: boolean }> }> } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAiSkillFileQueryVariables = Exact<{
+  slug: string;
+  path: string;
+}>;
+
+
+export type FlxAiSkillFileQuery = { flxAiSkillFile: { path: string, size: number, text: boolean, content: string, note: string } | null };
+
+export type FlxAiSkillFileDeleteMutationVariables = Exact<{
+  input: FlxAiSkillFileDeleteInput;
+}>;
+
+
+export type FlxAiSkillFileDeleteMutation = { flxAiSkillFileDelete: { skill: { body: string, tools: Array<string>, license: string, compatibility: string, example: string, toolNames: Array<string>, skill: { slug: string, name: string, description: string, version: number, status: string, bundled: boolean, source: string, changed: boolean, saved: boolean, fileCount: number, hasScripts: boolean, tasks: number, exportUrl: string }, files: Array<{ path: string, size: number, downloadUrl: string }>, evals: { triggers: Array<{ query: string, shouldTrigger: boolean }>, cases: Array<{ id: string, prompt: string, expectations: Array<string> }> }, results: { trigger: { model: string, hits: number, total: number, rate: number, cost: number, partial: boolean, ts: { timestamp: number, label: string }, rows: Array<{ query: string, shouldTrigger: boolean, triggered: boolean, picked: Array<string> }> } | null, functional: Array<{ id: string, prompt: string, note: string, judgeCost: number, ts: { timestamp: number, label: string }, with: { passed: number, total: number, in: number, out: number, cost: number, ms: number, output: string }, without: { passed: number, total: number, in: number, out: number, cost: number, ms: number, output: string }, checks: Array<{ text: string, with: boolean, without: boolean }> }> } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAiSkillFileSaveMutationVariables = Exact<{
+  input: FlxAiSkillFileSaveInput;
+}>;
+
+
+export type FlxAiSkillFileSaveMutation = { flxAiSkillFileSave: { skill: { body: string, tools: Array<string>, license: string, compatibility: string, example: string, toolNames: Array<string>, skill: { slug: string, name: string, description: string, version: number, status: string, bundled: boolean, source: string, changed: boolean, saved: boolean, fileCount: number, hasScripts: boolean, tasks: number, exportUrl: string }, files: Array<{ path: string, size: number, downloadUrl: string }>, evals: { triggers: Array<{ query: string, shouldTrigger: boolean }>, cases: Array<{ id: string, prompt: string, expectations: Array<string> }> }, results: { trigger: { model: string, hits: number, total: number, rate: number, cost: number, partial: boolean, ts: { timestamp: number, label: string }, rows: Array<{ query: string, shouldTrigger: boolean, triggered: boolean, picked: Array<string> }> } | null, functional: Array<{ id: string, prompt: string, note: string, judgeCost: number, ts: { timestamp: number, label: string }, with: { passed: number, total: number, in: number, out: number, cost: number, ms: number, output: string }, without: { passed: number, total: number, in: number, out: number, cost: number, ms: number, output: string }, checks: Array<{ text: string, with: boolean, without: boolean }> }> } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAiSkillFileUploadMutationVariables = Exact<{
+  input: FlxAiSkillFileUploadInput;
+}>;
+
+
+export type FlxAiSkillFileUploadMutation = { flxAiSkillFileUpload: { skill: { body: string, tools: Array<string>, license: string, compatibility: string, example: string, toolNames: Array<string>, skill: { slug: string, name: string, description: string, version: number, status: string, bundled: boolean, source: string, changed: boolean, saved: boolean, fileCount: number, hasScripts: boolean, tasks: number, exportUrl: string }, files: Array<{ path: string, size: number, downloadUrl: string }>, evals: { triggers: Array<{ query: string, shouldTrigger: boolean }>, cases: Array<{ id: string, prompt: string, expectations: Array<string> }> }, results: { trigger: { model: string, hits: number, total: number, rate: number, cost: number, partial: boolean, ts: { timestamp: number, label: string }, rows: Array<{ query: string, shouldTrigger: boolean, triggered: boolean, picked: Array<string> }> } | null, functional: Array<{ id: string, prompt: string, note: string, judgeCost: number, ts: { timestamp: number, label: string }, with: { passed: number, total: number, in: number, out: number, cost: number, ms: number, output: string }, without: { passed: number, total: number, in: number, out: number, cost: number, ms: number, output: string }, checks: Array<{ text: string, with: boolean, without: boolean }> }> } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAiSkillImportMutationVariables = Exact<{
+  input: FlxAiSkillImportInput;
+}>;
+
+
+export type FlxAiSkillImportMutation = { flxAiSkillImport: { result: { imported: Array<string>, notes: Array<string>, overview: { restrict: boolean, skills: Array<{ slug: string, name: string, description: string, version: number, status: string, bundled: boolean, source: string, changed: boolean, saved: boolean, fileCount: number, hasScripts: boolean, tasks: number, exportUrl: string }> } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAiSkillsOverviewFieldsFragment = { restrict: boolean, skills: Array<{ slug: string, name: string, description: string, version: number, status: string, bundled: boolean, source: string, changed: boolean, saved: boolean, fileCount: number, hasScripts: boolean, tasks: number, exportUrl: string }> };
+
+export type FlxAiSkillsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAiSkillsQuery = { flxAiSkills: { restrict: boolean, skills: Array<{ slug: string, name: string, description: string, version: number, status: string, bundled: boolean, source: string, changed: boolean, saved: boolean, fileCount: number, hasScripts: boolean, tasks: number, exportUrl: string }> } };
+
+export type FlxAiSkillSaveMutationVariables = Exact<{
+  input: FlxAiSkillSaveInput;
+}>;
+
+
+export type FlxAiSkillSaveMutation = { flxAiSkillSave: { skill: { body: string, tools: Array<string>, license: string, compatibility: string, example: string, toolNames: Array<string>, skill: { slug: string, name: string, description: string, version: number, status: string, bundled: boolean, source: string, changed: boolean, saved: boolean, fileCount: number, hasScripts: boolean, tasks: number, exportUrl: string }, files: Array<{ path: string, size: number, downloadUrl: string }>, evals: { triggers: Array<{ query: string, shouldTrigger: boolean }>, cases: Array<{ id: string, prompt: string, expectations: Array<string> }> }, results: { trigger: { model: string, hits: number, total: number, rate: number, cost: number, partial: boolean, ts: { timestamp: number, label: string }, rows: Array<{ query: string, shouldTrigger: boolean, triggered: boolean, picked: Array<string> }> } | null, functional: Array<{ id: string, prompt: string, note: string, judgeCost: number, ts: { timestamp: number, label: string }, with: { passed: number, total: number, in: number, out: number, cost: number, ms: number, output: string }, without: { passed: number, total: number, in: number, out: number, cost: number, ms: number, output: string }, checks: Array<{ text: string, with: boolean, without: boolean }> }> } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAiSkillsSettingsMutationVariables = Exact<{
+  input: FlxAiSkillsSettingsInput;
+}>;
+
+
+export type FlxAiSkillsSettingsMutation = { flxAiSkillsSettings: { overview: { restrict: boolean, skills: Array<{ slug: string, name: string, description: string, version: number, status: string, bundled: boolean, source: string, changed: boolean, saved: boolean, fileCount: number, hasScripts: boolean, tasks: number, exportUrl: string }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAiSkillTestRunMutationVariables = Exact<{
+  input: FlxAiSkillTestRunInput;
+}>;
+
+
+export type FlxAiSkillTestRunMutation = { flxAiSkillTestRun: { skill: { body: string, tools: Array<string>, license: string, compatibility: string, example: string, toolNames: Array<string>, skill: { slug: string, name: string, description: string, version: number, status: string, bundled: boolean, source: string, changed: boolean, saved: boolean, fileCount: number, hasScripts: boolean, tasks: number, exportUrl: string }, files: Array<{ path: string, size: number, downloadUrl: string }>, evals: { triggers: Array<{ query: string, shouldTrigger: boolean }>, cases: Array<{ id: string, prompt: string, expectations: Array<string> }> }, results: { trigger: { model: string, hits: number, total: number, rate: number, cost: number, partial: boolean, ts: { timestamp: number, label: string }, rows: Array<{ query: string, shouldTrigger: boolean, triggered: boolean, picked: Array<string> }> } | null, functional: Array<{ id: string, prompt: string, note: string, judgeCost: number, ts: { timestamp: number, label: string }, with: { passed: number, total: number, in: number, out: number, cost: number, ms: number, output: string }, without: { passed: number, total: number, in: number, out: number, cost: number, ms: number, output: string }, checks: Array<{ text: string, with: boolean, without: boolean }> }> } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAiSkillToggleMutationVariables = Exact<{
+  input: FlxAiSkillToggleInput;
+}>;
+
+
+export type FlxAiSkillToggleMutation = { flxAiSkillToggle: { skill: { body: string, tools: Array<string>, license: string, compatibility: string, example: string, toolNames: Array<string>, skill: { slug: string, name: string, description: string, version: number, status: string, bundled: boolean, source: string, changed: boolean, saved: boolean, fileCount: number, hasScripts: boolean, tasks: number, exportUrl: string }, files: Array<{ path: string, size: number, downloadUrl: string }>, evals: { triggers: Array<{ query: string, shouldTrigger: boolean }>, cases: Array<{ id: string, prompt: string, expectations: Array<string> }> }, results: { trigger: { model: string, hits: number, total: number, rate: number, cost: number, partial: boolean, ts: { timestamp: number, label: string }, rows: Array<{ query: string, shouldTrigger: boolean, triggered: boolean, picked: Array<string> }> } | null, functional: Array<{ id: string, prompt: string, note: string, judgeCost: number, ts: { timestamp: number, label: string }, with: { passed: number, total: number, in: number, out: number, cost: number, ms: number, output: string }, without: { passed: number, total: number, in: number, out: number, cost: number, ms: number, output: string }, checks: Array<{ text: string, with: boolean, without: boolean }> }> } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
 
 export type FlxAiSystemsQueryVariables = Exact<{ [key: string]: never; }>;
 
