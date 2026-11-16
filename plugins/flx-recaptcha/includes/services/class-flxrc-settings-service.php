@@ -30,7 +30,10 @@ final class FLXRC_Settings_Service {
 	 */
 	public static function settings(): FLXRC_Settings {
 		$s    = self::opts();
-		$ips  = array_values( ( preg_split( '/[\s,]+/', self::str( $s['allow_ips'] ?? '' ), -1, PREG_SPLIT_NO_EMPTY ) ?: array() ) );
+		$ips  = array();
+		foreach ( preg_split( '/[\s,]+/', self::str( $s['allow_ips'] ?? '' ), -1, PREG_SPLIT_NO_EMPTY ) ?: array() as $p ) {
+			$ips[] = self::str( $p );
+		}
 		$sc   = flxrc_secret();
 		$sk_c = defined( 'FLXRC_SITE_KEY' ) && is_string( FLXRC_SITE_KEY ) && '' !== FLXRC_SITE_KEY;
 		$sc_c = defined( 'FLXRC_SECRET_KEY' ) && is_string( FLXRC_SECRET_KEY ) && '' !== FLXRC_SECRET_KEY;
@@ -254,8 +257,8 @@ final class FLXRC_Settings_Service {
 			$s['secret'] = flxrc_seal( $secret );
 		}
 		// The approval is valid only for the same version + keys.
-		$const_site   = defined( 'FLXRC_SITE_KEY' ) && FLXRC_SITE_KEY ? (string) FLXRC_SITE_KEY : self::str( $s['site_key'] ?? '' );
-		$const_secret = defined( 'FLXRC_SECRET_KEY' ) && FLXRC_SECRET_KEY ? (string) FLXRC_SECRET_KEY : flxrc_unseal( self::str( $s['secret'] ?? '' ) );
+		$const_site   = defined( 'FLXRC_SITE_KEY' ) && FLXRC_SITE_KEY ? self::str( FLXRC_SITE_KEY ) : self::str( $s['site_key'] ?? '' );
+		$const_secret = defined( 'FLXRC_SECRET_KEY' ) && FLXRC_SECRET_KEY ? self::str( FLXRC_SECRET_KEY ) : self::str( flxrc_unseal( self::str( $s['secret'] ?? '' ) ) );
 		$fp           = substr( hash( 'sha256', self::str( $s['version'] ) . '|' . $const_site . '|' . $const_secret ), 0, 24 );
 		if ( ! hash_equals( self::str( $s['verified'] ?? '' ), $fp ) ) {
 			$s['verified'] = '';

@@ -7,7 +7,11 @@
 
 defined( 'ABSPATH' ) || exit;
 
-/** Varsayılan ayarlar. `forms` bağlam anahtarı → 0/1; listede olmayan bağlam kendi varsayılanını alır. */
+/**
+ * Varsayılan ayarlar. `forms` bağlam anahtarı → 0/1; listede olmayan bağlam kendi varsayılanını alır.
+ *
+ * @return array<string,mixed>
+ */
 function flxrc_defaults() {
 	return array(
 		'version'        => 'v3',      // v3 | v2.
