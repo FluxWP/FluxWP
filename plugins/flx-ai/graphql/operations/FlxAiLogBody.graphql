@@ -1,0 +1,13 @@
+# The stored, masked content of one log row.
+query FlxAiLogBody($id: Int!) {
+  flxAiLogBody(id: $id) {
+    logId
+    request {
+      role
+      text
+    }
+    reply
+    toolCalls
+    error
+  }
+}
