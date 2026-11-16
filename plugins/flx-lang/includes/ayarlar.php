@@ -22,12 +22,105 @@ add_filter(
 	}
 );
 
+/**
+ * Settings page address.
+ *
+ * @param array<string,string> $args Extra query arguments.
+ */
+function flxl_admin_url( array $args = array() ) {
+	return add_query_arg( $args, admin_url( 'options-general.php?page=flx-lang' ) );
+}
+
+/*
+ * New view (0.3.0, GraphQL): the page opens the same React screen as the FluxWP app (assets/flux/,
+ * tools/fluxapp/embed-sync.sh flx-lang). It is the default and has every feature of the classic page;
+ * a user can switch back to the classic page from the screen header for now. Needs Flux GraphQL.
+ */
+function flxl_flux_available() {
+	return file_exists( FLXL_DIR . 'assets/flux/flux-modules.js' ) && function_exists( 'flx_gql_ready' ) && function_exists( 'flx_gql_all_caps' ) && flx_gql_ready();
+}
+
+function flxl_flux_ui() {
+	return flxl_flux_available() && 'classic' !== get_user_meta( get_current_user_id(), 'flxl_ui', true );
+}
+
+/** Link that switches the current user between the views. */
+function flxl_ui_switch_url( $ui ) {
+	return wp_nonce_url( flxl_admin_url( array( 'flxl_ui' => 'flux' === $ui ? 'flux' : 'classic' ) ), 'flxl_ui' );
+}
+
+add_action(
+	'admin_init',
+	function () {
+		if ( ! isset( $_GET['flxl_ui'], $_GET['page'] ) || 'flx-lang' !== $_GET['page'] || ! current_user_can( 'manage_options' ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+			return;
+		}
+		check_admin_referer( 'flxl_ui' );
+		if ( 'classic' === $_GET['flxl_ui'] ) {
+			update_user_meta( get_current_user_id(), 'flxl_ui', 'classic' );
+		} else {
+			delete_user_meta( get_current_user_id(), 'flxl_ui' );
+		}
+		wp_safe_redirect( flxl_admin_url() );
+		exit;
+	}
+);
+
+/** The chunked bundle loads as an ES module. */
+function flxl_flux_module_tag( $tag, $handle ) {
+	if ( 'flxl-flux' !== $handle ) {
+		return $tag;
+	}
+	return (string) preg_replace_callback(
+		'/<script\b[^>]*\ssrc=[^>]*>/',
+		static function ( $m ) {
+			$open = (string) preg_replace( '/\stype=("|\')[^"\']*\1/', '', $m[0] );
+			return (string) preg_replace( '/^<script\b/', '<script type="module"', $open );
+		},
+		$tag,
+		1
+	);
+}
+
+function flxl_flux_assets() {
+	$ver    = FLXL_VERSION . '-' . (int) filemtime( FLXL_DIR . 'assets/flux/flux-modules.js' );
+	$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#2c7a64';
+	$opts   = array(
+		'module'     => 'flxl-lang',
+		'rest'       => rest_url(),
+		'nonce'      => wp_create_nonce( 'wp_rest' ),
+		'locale'     => get_user_locale(),
+		'siteName'   => get_bloginfo( 'name' ),
+		'adminUrl'   => admin_url(),
+		'theme'      => 'light',
+		'colors'     => array(
+			'primary'         => $accent,
+			'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
+		),
+		'classicUrl' => flxl_ui_switch_url( 'classic' ),
+	);
+	wp_enqueue_style( 'flxl-flux', FLXL_URL . 'assets/flux/flux-modules.css', array(), $ver );
+	wp_enqueue_script( 'flxl-flux', FLXL_URL . 'assets/flux/flux-modules.js', array(), $ver, true );
+	add_filter( 'script_loader_tag', 'flxl_flux_module_tag', 10, 2 );
+	// Light / dark follows Flux Admin (html.flxa-dark), also when the user switches it on the page.
+	wp_add_inline_script(
+		'flxl-flux',
+		'(function(){var h=document.documentElement,o=' . wp_json_encode( $opts ) . ';o.theme=h.classList.contains("flxa-dark")?"dark":"light";var slot=window.FluxModulesOptions||(window.FluxModulesOptions={});slot.id="flxl-app";slot.opts=o;function sync(){var el=document.getElementById("flxl-app");if(el)el.dataset.theme=h.classList.contains("flxa-dark")?"dark":"light";}new MutationObserver(sync).observe(h,{attributes:true,attributeFilter:["class"]});function go(){if(slot.done||!window.FluxModules)return;var el=document.getElementById(slot.id);if(!el)return;slot.done=true;try{window.FluxModules.mount(el,slot.opts);}catch(e){el.textContent=String(e&&e.message||e);}}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);go();})();',
+		'before'
+	);
+}
+
 add_action(
 	'admin_enqueue_scripts',
 	function ( $hook ) {
-		if ( 'settings_page_flx-lang' === $hook ) {
-			wp_enqueue_style( 'flxl-admin', FLXL_URL . 'assets/css/admin.css', array(), FLXL_VERSION );
+		if ( 'settings_page_flx-lang' !== $hook ) {
+			return;
 		}
+		if ( flxl_flux_ui() ) {
+			flxl_flux_assets();
+			return;
+		}
+		wp_enqueue_style( 'flxl-admin', FLXL_URL . 'assets/css/admin.css', array(), FLXL_VERSION );
 	}
 );
 
@@ -38,82 +131,69 @@ add_action(
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-lang' ) );
 		}
 		check_admin_referer( 'flxl_save' );
-		$in  = wp_unslash( $_POST ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput -- alan alan temizleniyor.
-		$old = flxl_settings();
-		$s   = $old;
-		$cat = flxl_catalog();
+		$in = wp_unslash( $_POST ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput -- the service cleans every field.
 
 		$langs = array();
 		foreach ( (array) ( $in['langs'] ?? array() ) as $code => $l ) {
-			$code = sanitize_key( $code );
-			if ( ! preg_match( '/^[a-z]{2,3}(?:-[a-z0-9]{2,8})*$/', $code ) || ! empty( $l['remove'] ) ) {
-				continue;
+			if ( ! empty( $l['remove'] ) ) {
+				continue; // A language that is not listed is removed.
 			}
-			$langs[ $code ] = array(
-				'name'   => sanitize_text_field( $l['name'] ?? $code ),
-				'locale' => preg_replace( '/[^A-Za-z0-9_]/', '', (string) ( $l['locale'] ?? '' ) ),
-				'flag'   => sanitize_text_field( $l['flag'] ?? '' ),
-				'active' => empty( $l['active'] ) ? 0 : 1,
+			$langs[] = array(
+				'code'   => (string) $code,
+				'name'   => (string) ( $l['name'] ?? '' ),
+				'locale' => (string) ( $l['locale'] ?? '' ),
+				'flag'   => (string) ( $l['flag'] ?? '' ),
+				'active' => ! empty( $l['active'] ),
 			);
 		}
-		$add = sanitize_key( $in['add_lang'] ?? '' );
-		if ( $add && isset( $cat[ $add ] ) && ! isset( $langs[ $add ] ) ) {
-			$langs[ $add ] = $cat[ $add ] + array( 'active' => 0 ); // Pasif eklenir: önce içerik hazırlanır.
-		}
-		$def = sanitize_key( $in['default'] ?? $old['default'] );
-		if ( ! isset( $langs[ $def ] ) ) {
-			$def = isset( $langs[ $old['default'] ] ) ? $old['default'] : (string) key( $langs );
-		}
-		if ( isset( $langs[ $def ] ) ) {
-			$langs[ $def ]['active'] = 1;
-		}
-		$s['languages'] = $langs ? $langs : $old['languages'];
-		$s['default']   = $def;
-
-		$s['post_types'] = array_values( array_filter( array_map( 'sanitize_key', (array) ( $in['post_types'] ?? array() ) ), 'post_type_exists' ) );
-		$s['fallback']   = empty( $in['fallback'] ) ? 0 : 1;
-		$s['suggest']    = in_array( $in['suggest'] ?? '', array( 'off', 'banner', 'redirect' ), true ) ? $in['suggest'] : 'redirect';
-		$s['suggest_to'] = isset( $s['languages'][ sanitize_key( $in['suggest_to'] ?? '' ) ] ) ? sanitize_key( $in['suggest_to'] ) : 'en';
-		$s['switcher']   = in_array( $in['switcher'] ?? '', array( 'code', 'name', 'flag' ), true ) ? $in['switcher'] : 'code';
-		$s['switcher_place'] = in_array( $in['switcher_place'] ?? '', array( 'footer', 'header', 'both' ), true ) ? $in['switcher_place'] : 'footer';
-		$countries       = preg_split( '/[\s,;]+/', strtoupper( (string) ( $in['home_countries'] ?? '' ) ), -1, PREG_SPLIT_NO_EMPTY );
-		$s['home_countries'] = array_values( array_unique( array_filter( $countries, function ( $c ) {
-			return (bool) preg_match( '/^[A-Z]{2}$/', $c );
-		} ) ) );
-
-		$fields = flxl_text_fields();
-		$texts  = array();
+		$texts = array();
 		foreach ( (array) ( $in['texts'] ?? array() ) as $code => $vals ) {
-			$code = sanitize_key( $code );
-			if ( ! isset( $s['languages'][ $code ] ) || $code === $def ) {
-				continue;
-			}
 			foreach ( (array) $vals as $k => $v ) {
-				if ( isset( $fields[ $k ] ) && '' !== trim( (string) $v ) ) {
-					$texts[ $code ][ $k ] = empty( $fields[ $k ]['textarea'] ) ? sanitize_text_field( $v ) : sanitize_textarea_field( $v );
-				}
+				$texts[] = array( 'lang' => (string) $code, 'key' => (string) $k, 'value' => (string) $v );
 			}
 		}
-		$s['texts'] = $texts;
-
-		update_option( 'flxl_settings', $s, true );
-		flxl_ensure_terms();
-		flxl_index_flush();
+		FLXL_Language_Service::save_settings(
+			array(
+				'languages'      => $langs,
+				'add_language'   => (string) ( $in['add_lang'] ?? '' ),
+				'default'        => isset( $in['default'] ) ? (string) $in['default'] : null,
+				'post_types'     => array_map( 'strval', (array) ( $in['post_types'] ?? array() ) ),
+				'fallback'       => ! empty( $in['fallback'] ),
+				'suggest'        => (string) ( $in['suggest'] ?? '' ),
+				'suggest_to'     => (string) ( $in['suggest_to'] ?? '' ),
+				'switcher'       => (string) ( $in['switcher'] ?? '' ),
+				'switcher_place' => (string) ( $in['switcher_place'] ?? '' ),
+				'home_countries' => (array) preg_split( '/[\s,;]+/', (string) ( $in['home_countries'] ?? '' ), -1, PREG_SPLIT_NO_EMPTY ),
+				'texts'          => $texts,
+			),
+			false
+		);
 		wp_safe_redirect( admin_url( 'options-general.php?page=flx-lang&saved=1' ) );
 		exit;
 	}
 );
 
 function flxl_settings_page() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
 	$s      = flxl_settings();
 	$langs  = flxl_languages( true );
 	$def    = flxl_default_language();
 	$cat    = flxl_catalog();
 	$geo    = flxl_geo_country();
 	$fields = flxl_text_fields();
+	if ( flxl_flux_ui() ) {
+		echo '<style>#flxl-app.flux-root{height:auto;background:transparent;font-family:inherit}</style>';
+		echo '<div class="wrap flxl-settings"><div id="flxl-app"><noscript>' . esc_html__( 'JavaScript is required for this screen.', 'flx-lang' ) . '</noscript></div></div>';
+		return;
+	}
 	?>
 	<div class="wrap flxl-settings">
 		<h1><?php esc_html_e( 'Languages', 'flx-lang' ); ?></h1>
+		<?php if ( flxl_flux_available() ) : ?>
+			<p><a class="button" href="<?php echo esc_url( flxl_ui_switch_url( 'flux' ) ); ?>"><?php esc_html_e( 'New view', 'flx-lang' ); ?></a> <span class="description"><?php esc_html_e( 'Open the new view (same features, works in the FluxWP app too).', 'flx-lang' ); ?></span></p>
+		<?php endif; ?>
 		<?php if ( isset( $_GET['saved'] ) ) : // phpcs:ignore WordPress.Security.NonceVerification ?>
 			<div class="notice notice-success is-dismissible"><p><?php esc_html_e( 'Saved.', 'flx-lang' ); ?></p></div>
 		<?php endif; ?>

@@ -21,3 +21,5 @@ defined( 'FLXADS_DB_VERSION' ) || define( 'FLXADS_DB_VERSION', 3 );
 defined( 'FLXADS_FILE' ) || define( 'FLXADS_FILE', __FILE__ );
 defined( 'FLXADS_DIR' ) || define( 'FLXADS_DIR', __DIR__ . '/' );
 defined( 'FLXADS_URL' ) || define( 'FLXADS_URL', 'https://example.com/' );
+defined( 'FLXL_VERSION' ) || define( 'FLXL_VERSION', '0.0.0' );
+defined( 'FLXL_DIR' ) || define( 'FLXL_DIR', __DIR__ . '/' );
