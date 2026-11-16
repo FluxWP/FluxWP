@@ -336,6 +336,7 @@ function flx_gql_type( string $name, array $config ): bool {
 		) + $fields;
 		flx_gql_node_loader( $name, flx_gql_str( $config['node'] ) );
 	}
+	flx_gql_schema_own( $name );
 	register_graphql_object_type(
 		$name,
 		array(
@@ -419,6 +420,7 @@ function flx_gql_interface( string $name, array $config ): bool {
 			return is_string( $type ) && function_exists( 'graphql' ) ? \WPGraphQL::get_type_registry()->get_type( $type ) : $type;
 		};
 	}
+	flx_gql_schema_own( $name );
 	register_graphql_interface_type( $name, $args );
 	return true;
 }
@@ -433,6 +435,7 @@ function flx_gql_input( string $name, array $config ): bool {
 	if ( ! flx_gql_check_type_name( $name ) ) {
 		return false;
 	}
+	flx_gql_schema_own( $name );
 	register_graphql_input_type(
 		$name,
 		array(
@@ -470,6 +473,7 @@ function flx_gql_enum( string $name, array $config ): bool {
 		}
 		$values[ $key ] = $entry;
 	}
+	flx_gql_schema_own( $name );
 	register_graphql_enum_type(
 		$name,
 		array(
@@ -495,6 +499,7 @@ function flx_gql_query( string $name, array $config ): bool {
 	if ( null === $fields ) {
 		return false;
 	}
+	flx_gql_schema_own( 'RootQuery.' . $name );
 	register_graphql_field( 'RootQuery', $name, $fields[ $name ] );
 	return true;
 }
@@ -516,6 +521,7 @@ function flx_gql_field( string $type, string $name, array $config ): bool {
 	if ( null === $fields ) {
 		return false;
 	}
+	flx_gql_schema_own( $type . '.' . $name );
 	register_graphql_field( $type, $name, $fields[ $name ] );
 	return true;
 }
@@ -552,6 +558,9 @@ function flx_gql_mutation( string $name, array $config ): bool {
 	$owner   = flx_gql_callable( $config['owner'] ?? null );
 	$resolve = flx_gql_callable( $config['resolve'] ?? null );
 
+	flx_gql_schema_own( 'RootMutation.' . $name );
+	flx_gql_schema_own( ucfirst( $name ) . 'Input' );
+	flx_gql_schema_own( ucfirst( $name ) . 'Payload' );
 	register_graphql_mutation(
 		$name,
 		array(

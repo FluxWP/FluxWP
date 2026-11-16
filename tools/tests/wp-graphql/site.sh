@@ -19,6 +19,11 @@
 #   FIXTURES=0         leave the kit test fixtures (mu-plugin) out, e.g. for the schema snapshot
 #   SERVE=1            start `php -S` on the port and wait until it answers (PID in $site/.server.pid)
 #
+# Package hooks, so a package can add its own setup without editing this file:
+#   tools/tests/wp-graphql/<slug>/deps.sh   sourced before activation (Requires Plugins stand-ins)
+#   tools/tests/wp-graphql/<slug>/site.sh   sourced after the packages are activated
+# Both see $WP, $site, $root, $url and FIXTURES.
+#
 # Packages are symlinked from the monorepo, so edits show up without reinstalling.
 # The admin user is admin / admin.
 set -euo pipefail
@@ -64,19 +69,12 @@ $WP config set AUTOMATIC_UPDATER_DISABLED true --raw --path="$site"
 $WP core install --path="$site" --url="$url" --title="Flux GraphQL Test" --admin_user=admin --admin_password=admin --admin_email=test@example.com --skip-email >/dev/null
 $WP rewrite structure '/%postname%/' --path="$site" >/dev/null
 
-# Packages that declare "Requires Plugins: woocommerce" (flx-ads, ...) do not activate without it. An empty stand-in
-# plugin in the woocommerce folder satisfies that dependency when no WooCommerce zip is given, and always for the
-# schema snapshot (FIXTURES=0), so WooCommerce's own types and settings never leak into the shared snapshot. Its
-# file is not woocommerce.php, so "woocommerce/woocommerce.php" stays absent from the active plugins and fixtures
-# that test for the real plugin keep working.
-if grep -lq "Requires Plugins:.*woocommerce" "$root"/plugins/*/*.php 2>/dev/null; then
-  if [ "${FIXTURES:-1}" = 0 ] || [ -z "${WOOCOMMERCE_ZIP:-}" ]; then
-    mkdir -p "$site/wp-content/plugins/woocommerce"
-    printf '<?php\n/**\n * Plugin Name: WooCommerce dependency stand-in\n */\n' > "$site/wp-content/plugins/woocommerce/flxt-standin.php"
-    $WP plugin activate woocommerce/flxt-standin.php --path="$site" >/dev/null 2>&1 || echo "WooCommerce stand-in could not be activated" >&2
-    WOOCOMMERCE_ZIP=""
-  fi
-fi
+# Dependency stand-ins (for example WooCommerce for flx-ads) before activation, and before the
+# optional WooCommerce zip below so a hook can clear WOOCOMMERCE_ZIP for the schema snapshot.
+for hook in "$root"/tools/tests/wp-graphql/*/deps.sh; do
+  # shellcheck source=/dev/null
+  [ -f "$hook" ] && . "$hook"
+done
 wc_zip="${WOOCOMMERCE_ZIP:-}"
 if [[ "$wc_zip" == https://* ]]; then
   # WP_HTTP_BLOCK_EXTERNAL is on, so wp-cli cannot download it: fetch the zip here.
@@ -124,6 +122,10 @@ done
 if [ -d "$root/themes/${THEME:-fluxwp}" ]; then
   $WP theme activate "${THEME:-fluxwp}" --path="$site" || { echo "::error::theme ${THEME:-fluxwp} could not be activated" >&2; exit 1; }
 fi
+for hook in "$root"/tools/tests/wp-graphql/*/site.sh; do
+  # shellcheck source=/dev/null
+  [ -f "$hook" ] && . "$hook"
+done
 $WP rewrite flush --path="$site" >/dev/null
 
 echo "site=$site url=$url packages=flx-graphql$packages"
