@@ -47,6 +47,9 @@ add_action(
 );
 
 function flxai_page_tools() {
+	if ( flxai_flux_render() ) {
+		return;
+	}
 	$rows  = flxai_tools_rows();
 	$stats = array();
 	foreach ( flxai_report( 30 )['by_tool'] as $s ) {

@@ -177,7 +177,8 @@ final class FLXAI_Usage_Service {
 			FLXAI_Cast::str( $bill['ym'] ?? wp_date( 'Y-m' ) ),
 			self::build_report( $bill, FLXAI_Cast::arr( $bill['by_provider'] ?? array() ) ),
 			self::months( 12 ),
-			self::credits()
+			self::credits(),
+			wp_nonce_url( admin_url( 'admin-post.php?action=flxai_csv&ym=' . rawurlencode( FLXAI_Cast::str( $bill['ym'] ?? wp_date( 'Y-m' ) ) ) ), 'flxai_csv' )
 		);
 	}
 

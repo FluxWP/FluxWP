@@ -176,6 +176,7 @@ final class FLXAI_Billing {
 		public readonly FLXAI_Report $report,
 		public readonly array $months,
 		public readonly ?FLXAI_Credits $credits,
+		public readonly string $csv_url,
 	) {}
 }
 

@@ -200,6 +200,7 @@ flx_gql_type(
 				'report'  => array( 'FlxAiReport!', __( 'Usage of the month.', 'flx-ai' ) ),
 				'months'  => array( '[FlxAiMonth!]!', __( 'The last 12 months.', 'flx-ai' ) ),
 				'credits' => array( 'FlxAiCredits', __( 'OpenRouter account state; null before the first refresh.', 'flx-ai' ) ),
+				'csvUrl'  => array( 'String!', __( 'Link that downloads the month as CSV (carries a one-time check for the signed-in user).', 'flx-ai' ), 'csv_url' ),
 			)
 		),
 	)
@@ -364,7 +365,7 @@ flx_gql_query(
 			),
 		),
 		'resolve'     => static function ( $root, array $args ): FLXAI_Billing {
-			flx_gql_cache_tag( FLXAI_Usage_Service::CACHE_TAG );
+			// Not tagged for caching: csvUrl carries a nonce that must stay fresh.
 			return FLXAI_Usage_Service::billing( flx_gql_str( $args['month'] ?? '' ) );
 		},
 	)

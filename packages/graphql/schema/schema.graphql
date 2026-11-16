@@ -9035,6 +9035,9 @@ type FlxAiBilling {
   "OpenRouter account state; null before the first refresh."
   credits: FlxAiCredits
 
+  "Link that downloads the month as CSV (carries a one-time check for the signed-in user)."
+  csvUrl: String!
+
   "Month as Y-m."
   month: String!
 

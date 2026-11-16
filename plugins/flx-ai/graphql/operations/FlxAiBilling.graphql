@@ -5,6 +5,7 @@ query FlxAiBilling($month: String) {
   }
   flxAiBilling(month: $month) {
     month
+    csvUrl
     report {
       ...FlxAiReportFields
     }

@@ -61,6 +61,7 @@ require_once FLXAI_DIR . 'includes/approvals.php';
 require_once FLXAI_DIR . 'includes/reports.php';
 require_once FLXAI_DIR . 'includes/rest.php';
 require_once FLXAI_DIR . 'includes/app.php';
+require_once FLXAI_DIR . 'includes/app-modules.php';
 require_once FLXAI_DIR . 'includes/dock.php';
 require_once FLXAI_DIR . 'includes/checks.php';
 require_once FLXAI_DIR . 'includes/js-strings.php';
@@ -73,6 +74,7 @@ require_once FLXAI_DIR . 'includes/services/class-flxai-tools-dto.php';
 require_once FLXAI_DIR . 'includes/services/class-flxai-tools-service.php';
 
 if ( is_admin() ) {
+	require_once FLXAI_DIR . 'includes/admin-flux.php';
 	require_once FLXAI_DIR . 'includes/admin.php';
 	require_once FLXAI_DIR . 'includes/admin-mcp.php';
 	require_once FLXAI_DIR . 'includes/admin-connections.php';
