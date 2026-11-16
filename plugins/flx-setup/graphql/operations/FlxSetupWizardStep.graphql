@@ -1,0 +1,13 @@
+mutation FlxSetupWizardStep($input: FlxSetupWizardStepInput!) {
+  flxSetupWizardStep(input: $input) {
+    ok
+    lines {
+      ok
+      text
+    }
+    pages
+    errors {
+      ...FlxSetupErrors
+    }
+  }
+}

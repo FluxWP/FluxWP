@@ -16,3 +16,10 @@ defined( 'FLXR_DB_VERSION' ) || define( 'FLXR_DB_VERSION', 3 );
 defined( 'FLXR_FILE' ) || define( 'FLXR_FILE', __FILE__ );
 defined( 'FLXR_DIR' ) || define( 'FLXR_DIR', __DIR__ . '/' );
 defined( 'FLXR_URL' ) || define( 'FLXR_URL', 'https://example.com/' );
+
+// FluxWP Panel (flx-setup).
+defined( 'FLXK_VERSION' ) || define( 'FLXK_VERSION', '0.0.0' );
+defined( 'FLXK_FILE' ) || define( 'FLXK_FILE', __FILE__ );
+defined( 'FLXK_DIR' ) || define( 'FLXK_DIR', __DIR__ . '/' );
+defined( 'FLXK_URL' ) || define( 'FLXK_URL', '' );
+defined( 'FLXU_DEFAULT_SERVER' ) || define( 'FLXU_DEFAULT_SERVER', 'https://updater.fluxwp.com' );
