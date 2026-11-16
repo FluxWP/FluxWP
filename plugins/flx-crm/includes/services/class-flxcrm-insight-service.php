@@ -16,7 +16,7 @@ final class FLXCRM_Insight_Service {
 	 * @return array{total: int, new30: int, new_prev: int, active: int, risk: int, ltv: float, paying: int, repeat: int, currency: string, active_days: int, risk_threshold: int, scored_at: int|null, synced_at: int|null, needs_sync: bool, sync_sources: list<string>, roles: list<array{key: string, label: string, color: string, count: int}>, segments: list<array{key: string, label: string, hint: string, tone: string, count: int, value: float}>, sources: list<array{key: string, label: string, count: int}>}
 	 */
 	public static function overview(): array {
-		$s     = FLXCRM_Contacts::stats();
+		$s     = FLXCRM_Val::arr( FLXCRM_Contacts::stats() );
 		$roles = array();
 		foreach ( flxcrm_roles() as $k => $r ) {
 			$r = FLXCRM_Val::arr( $r );
@@ -48,7 +48,7 @@ final class FLXCRM_Insight_Service {
 			$sources[] = array( 'key' => (string) $k, 'label' => FLXCRM_Val::str( flxcrm_source_label( (string) $k ) ), 'count' => FLXCRM_Val::int( $n ) );
 		}
 		$names = array();
-		foreach ( FLXCRM_Sync::sources() as $src ) {
+		foreach ( FLXCRM_Val::arr( FLXCRM_Sync::sources() ) as $src ) {
 			$names[] = FLXCRM_Val::str( FLXCRM_Val::arr( $src )[0] ?? '' );
 		}
 		$synced = FLXCRM_Val::int( get_option( 'flxcrm_synced_at' ) );
@@ -108,7 +108,7 @@ final class FLXCRM_Insight_Service {
 			$sources[] = array( 'key' => (string) $k, 'label' => FLXCRM_Val::str( $l ) );
 		}
 		$consents = array();
-		foreach ( FLXCRM_Contacts::consent_labels() as $k => $l ) {
+		foreach ( FLXCRM_Val::arr( FLXCRM_Contacts::consent_labels() ) as $k => $l ) {
 			$consents[] = array( 'key' => (string) $k, 'label' => $l );
 		}
 		$filters = array();

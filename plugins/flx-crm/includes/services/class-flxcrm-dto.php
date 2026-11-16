@@ -168,7 +168,7 @@ final class FLXCRM_Contact {
 			FLXCRM_Val::int( $r['owner_id'] ?? 0 ),
 			'archived' === ( $r['status'] ?? '' ) ? 'archived' : 'active',
 			FLXCRM_Val::str( $r['note'] ?? '' ),
-			array_values( array_map( 'strval', flxcrm_unpack_roles( FLXCRM_Val::str( $r['roles'] ?? '' ) ) ) ),
+			array_values( array_map( static fn( $x ): string => FLXCRM_Val::str( $x ), FLXCRM_Val::arr( flxcrm_unpack_roles( FLXCRM_Val::str( $r['roles'] ?? '' ) ) ) ) ),
 			FLXCRM_Val::str( $r['segment'] ?? '' ),
 			FLXCRM_Val::float( $r['ltv'] ?? 0 ),
 			FLXCRM_Val::int( $r['churn'] ?? 0 ),

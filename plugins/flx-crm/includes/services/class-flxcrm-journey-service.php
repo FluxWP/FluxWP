@@ -19,7 +19,7 @@ final class FLXCRM_Journey_Service {
 	 */
 	public static function build( array $j ): FLXCRM_Journey {
 		$id    = FLXCRM_Val::int( $j['id'] ?? 0 );
-		$n     = FLXCRM_Journeys::run_counts( $id );
+		$n     = FLXCRM_Val::arr( FLXCRM_Journeys::run_counts( $id ) );
 		$st    = FLXCRM_Val::arr( $j['stats'] ?? array() );
 		$tr    = FLXCRM_Val::arr( $j['trigger_def'] ?? array() );
 		$o     = FLXCRM_Val::arr( $j['opts'] ?? array() );
@@ -74,7 +74,7 @@ final class FLXCRM_Journey_Service {
 	public static function all(): array {
 		FLXCRM_Journeys::tick();
 		$out = array();
-		foreach ( FLXCRM_Journeys::all() as $j ) {
+		foreach ( FLXCRM_Val::arr( FLXCRM_Journeys::all() ) as $j ) {
 			$out[] = self::build( FLXCRM_Val::arr( $j ) );
 		}
 		return $out;
@@ -137,7 +137,7 @@ final class FLXCRM_Journey_Service {
 	 * @return FLXCRM_Journey|WP_Error
 	 */
 	public static function from_template( string $key ) {
-		$tpl = FLXCRM_Journeys::templates()[ sanitize_key( $key ) ] ?? null;
+		$tpl = FLXCRM_Val::arr( FLXCRM_Journeys::templates() )[ sanitize_key( $key ) ] ?? null;
 		if ( ! is_array( $tpl ) ) {
 			return FLXCRM_Contact_Service::error( 'flxcrm_journey', __( 'Unknown template.', 'flx-crm' ), 'INVALID_INPUT', 'template' );
 		}
@@ -174,11 +174,11 @@ final class FLXCRM_Journey_Service {
 			$goals[] = array( 'key' => $g, 'label' => FLXCRM_Val::str( flxcrm_event_label( $g ) ) );
 		}
 		$tpls = array();
-		foreach ( FLXCRM_Journeys::templates() as $k => $t ) {
+		foreach ( FLXCRM_Val::arr( FLXCRM_Journeys::templates() ) as $k => $t ) {
 			$tpls[] = array( 'key' => (string) $k, 'label' => FLXCRM_Val::str( FLXCRM_Val::arr( $t )['name'] ?? $k ) );
 		}
 		$tags = array();
-		foreach ( FLXCRM_Tags::all() as $t ) {
+		foreach ( FLXCRM_Val::arr( FLXCRM_Tags::all() ) as $t ) {
 			$t      = FLXCRM_Val::arr( $t );
 			$tags[] = array( 'value' => FLXCRM_Val::str( $t['id'] ?? '' ), 'label' => FLXCRM_Val::str( $t['name'] ?? '' ) );
 		}
@@ -194,7 +194,7 @@ final class FLXCRM_Journey_Service {
 		foreach ( array_diff_key( flxcrm_event_types(), array_flip( array( 'journey', 'journey_skip' ) ) ) as $k => $e ) {
 			$events[] = array( 'value' => (string) $k, 'label' => FLXCRM_Val::str( FLXCRM_Val::arr( $e )[0] ?? $k ) );
 		}
-		$d = FLXCRM_Journeys::defaults();
+		$d = FLXCRM_Val::arr( FLXCRM_Journeys::defaults() );
 		return array(
 			'triggers'       => $pairs( FLXCRM_Journeys::triggers() ),
 			'step_types'     => $pairs( FLXCRM_Journeys::step_types() ),

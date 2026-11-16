@@ -104,7 +104,7 @@ final class FLXCRM_Contact_Service {
 	 */
 	public static function page( array $filter, int $offset, int $limit ): FLXCRM_Contact_Page {
 		$limit = max( 1, min( 500, $limit ) );
-		$q     = FLXCRM_Contacts::query( array_merge( $filter, array( 'per_page' => $limit, 'paged' => (int) floor( $offset / $limit ) + 1 ) ) );
+		$q     = FLXCRM_Val::arr( FLXCRM_Contacts::query( array_merge( $filter, array( 'per_page' => $limit, 'paged' => (int) floor( $offset / $limit ) + 1 ) ) ) );
 		$items = array();
 		foreach ( FLXCRM_Val::arr( $q['rows'] ?? array() ) as $row ) {
 			$items[] = FLXCRM_Contact::from_row( FLXCRM_Val::arr( $row ) );
@@ -202,7 +202,7 @@ final class FLXCRM_Contact_Service {
 	 */
 	public static function tags(): array {
 		$out = array();
-		foreach ( FLXCRM_Tags::all( true ) as $row ) {
+		foreach ( FLXCRM_Val::arr( FLXCRM_Tags::all( true ) ) as $row ) {
 			$out[] = FLXCRM_Tag::from_row( FLXCRM_Val::arr( $row ) );
 		}
 		return $out;
@@ -512,12 +512,12 @@ final class FLXCRM_Contact_Service {
 		if ( null === FLXCRM_Contacts::get( $id ) ) {
 			return self::error( 'flxcrm_missing', __( 'Contact not found.', 'flx-crm' ), 'NOT_FOUND' );
 		}
-		$tid = FLXCRM_Tags::attach( $id, is_numeric( $tag ) ? (int) $tag : FLXCRM_Val::str( $tag ) );
+		$tid = FLXCRM_Val::int( FLXCRM_Tags::attach( $id, is_numeric( $tag ) ? (int) $tag : FLXCRM_Val::str( $tag ) ) );
 		if ( $tid < 1 ) {
 			return self::error( 'flxcrm_tag', __( 'The tag could not be added.', 'flx-crm' ), 'INVALID_INPUT', 'tag' );
 		}
 		self::changed( $id );
-		$all = FLXCRM_Tags::all();
+		$all = FLXCRM_Val::arr( FLXCRM_Tags::all() );
 		return FLXCRM_Tag::from_row( FLXCRM_Val::arr( $all[ $tid ] ?? array( 'id' => $tid ) ) );
 	}
 
@@ -692,8 +692,9 @@ final class FLXCRM_Contact_Service {
 	 */
 	public static function owners(): array {
 		$out = array();
-		foreach ( get_users( array( 'capability__in' => array( 'manage_options', FLXCRM_CAP_VIEW ), 'fields' => array( 'ID', 'display_name' ), 'number' => 200 ) ) as $u ) {
-			$out[] = array( 'id' => (int) $u->ID, 'name' => (string) $u->display_name );
+		foreach ( (array) get_users( array( 'capability__in' => array( 'manage_options', FLXCRM_CAP_VIEW ), 'fields' => array( 'ID', 'display_name' ), 'number' => 200 ) ) as $u ) {
+			$row   = is_object( $u ) ? get_object_vars( $u ) : array();
+			$out[] = array( 'id' => FLXCRM_Val::int( $row['ID'] ?? 0 ), 'name' => FLXCRM_Val::str( $row['display_name'] ?? '' ) );
 		}
 		return $out;
 	}
