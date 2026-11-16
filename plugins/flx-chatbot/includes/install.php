@@ -7,6 +7,9 @@
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * @return string
+ */
 function flxcb_table( $name ) {
 	global $wpdb;
 	return $wpdb->prefix . 'flxcb_' . $name;

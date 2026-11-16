@@ -83,7 +83,11 @@ function flxcb_fields() {
 	return $f;
 }
 
-/** Formdan gelen değerleri temizler (yalnız formda olan alanlar). */
+/**
+ * Formdan gelen değerleri temizler (yalnız formda olan alanlar).
+ *
+ * @return array<string,mixed>
+ */
 function flxcb_sanitize( array $in ) {
 	$out = array();
 	foreach ( flxcb_fields() as $k => $def ) {
@@ -93,7 +97,7 @@ function flxcb_sanitize( array $in ) {
 		$v = $in[ $k ];
 		switch ( $def[0] ) {
 			case 'bool':
-				$out[ $k ] = ! empty( $v ) && '0' !== $v ? 1 : 0;
+				$out[ $k ] = ! empty( $v ) ? 1 : 0;
 				break;
 			case 'int':
 			case 'media':

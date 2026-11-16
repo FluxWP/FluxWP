@@ -126,6 +126,7 @@ final class FLXCB_Chat_Service {
 	 * How many conversations match the filter.
 	 */
 	public static function count( string $status, string $search ): int {
+		/** @var \wpdb $wpdb */
 		global $wpdb;
 		$where = array( '1=1' );
 		$prm   = array();
@@ -159,7 +160,8 @@ final class FLXCB_Chat_Service {
 		$more  = count( $rows ) > $limit;
 		$rows  = array_slice( $rows, 0, $limit );
 		if ( $rows && ! $peek ) {
-			global $wpdb;
+			/** @var \wpdb $wpdb */
+		global $wpdb;
 			$last_in = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT MAX(id) FROM ' . flxcb_table( 'messages' ) . " WHERE conv_id = %d AND role = 'visitor'", $conv_id ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 			flxcb_update_conversation( $conv_id, array( 'agent_read' => $last_in, 'unread' => 0 ) );
 		}

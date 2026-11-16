@@ -211,7 +211,7 @@ flx_gql_type(
 			'image'   => array(
 				'type'        => 'String',
 				'description' => __( 'Product image; empty when it has none.', 'flx-chatbot' ),
-				'resolve'     => static fn( $c ): ?string => '' !== flxcb_gql_src( $c, FLXCB_Card::class )->image ? $c->image : null,
+				'resolve'     => static fn( $c ): ?string => '' !== flxcb_gql_src( $c, FLXCB_Card::class )->image ? flxcb_gql_src( $c, FLXCB_Card::class )->image : null,
 			),
 			'price'   => array(
 				'type'        => 'String!',
@@ -226,7 +226,7 @@ flx_gql_type(
 			'cartUrl' => array(
 				'type'        => 'String',
 				'description' => __( 'Add-to-cart address; empty when the product cannot be added directly.', 'flx-chatbot' ),
-				'resolve'     => static fn( $c ): ?string => '' !== flxcb_gql_src( $c, FLXCB_Card::class )->cart ? $c->cart : null,
+				'resolve'     => static fn( $c ): ?string => '' !== flxcb_gql_src( $c, FLXCB_Card::class )->cart ? flxcb_gql_src( $c, FLXCB_Card::class )->cart : null,
 			),
 		),
 	)
@@ -245,12 +245,12 @@ flx_gql_type(
 			'role'       => array(
 				'type'        => 'FlxChatbotMessageRole!',
 				'description' => __( 'Who wrote it.', 'flx-chatbot' ),
-				'resolve'     => static fn( $m ): string => in_array( flxcb_gql_src( $m, FLXCB_Message::class )->role, array( 'visitor', 'bot', 'agent' ), true ) ? $m->role : 'system',
+				'resolve'     => static fn( $m ): string => in_array( flxcb_gql_src( $m, FLXCB_Message::class )->role, array( 'visitor', 'bot', 'agent' ), true ) ? flxcb_gql_src( $m, FLXCB_Message::class )->role : 'system',
 			),
 			'type'       => array(
 				'type'        => 'FlxChatbotMessageType!',
 				'description' => __( 'What it carries.', 'flx-chatbot' ),
-				'resolve'     => static fn( $m ): string => in_array( flxcb_gql_src( $m, FLXCB_Message::class )->type, array( 'image', 'file' ), true ) ? $m->type : 'text',
+				'resolve'     => static fn( $m ): string => in_array( flxcb_gql_src( $m, FLXCB_Message::class )->type, array( 'image', 'file' ), true ) ? flxcb_gql_src( $m, FLXCB_Message::class )->type : 'text',
 			),
 			'body'       => array(
 				'type'        => 'String!',
@@ -265,20 +265,26 @@ flx_gql_type(
 			'author'     => array(
 				'type'        => 'String',
 				'description' => __( 'Agent first name or the assistant\'s name; empty for the visitor and event lines.', 'flx-chatbot' ),
-				'resolve'     => static fn( $m ): ?string => '' !== flxcb_gql_src( $m, FLXCB_Message::class )->author ? $m->author : null,
+				'resolve'     => static fn( $m ): ?string => '' !== flxcb_gql_src( $m, FLXCB_Message::class )->author ? flxcb_gql_src( $m, FLXCB_Message::class )->author : null,
 			),
 			'file'       => array(
 				'type'        => 'FlxFile',
 				'description' => __( 'Attached file; the address works for signed-in agents only.', 'flx-chatbot' ),
-				'resolve'     => static fn( $m ): ?array => '' === flxcb_gql_src( $m, FLXCB_Message::class )->file_url ? null : flx_gql_file(
-					array(
-						'id'   => (string) $m->id,
-						'name' => $m->file_name,
-						'mime' => $m->file_mime,
-						'size' => 0,
-						'url'  => $m->file_url,
-					)
-				),
+				'resolve'     => static function ( $m ): ?array {
+					$msg = flxcb_gql_src( $m, FLXCB_Message::class );
+					if ( '' === $msg->file_url ) {
+						return null;
+					}
+					return flx_gql_file(
+						array(
+							'id'   => (string) $msg->id,
+							'name' => $msg->file_name,
+							'mime' => $msg->file_mime,
+							'size' => 0,
+							'url'  => $msg->file_url,
+						)
+					);
+				},
 			),
 			'cards'      => array(
 				'type'        => '[FlxChatbotProductCard!]!',
@@ -321,7 +327,7 @@ flx_gql_type(
 			'role' => array(
 				'type'        => 'FlxChatbotMessageRole!',
 				'description' => __( 'Who wrote it.', 'flx-chatbot' ),
-				'resolve'     => static fn( $l ): string => in_array( flxcb_gql_src( $l, FLXCB_Last::class )->role, array( 'visitor', 'bot', 'agent' ), true ) ? $l->role : 'system',
+				'resolve'     => static fn( $l ): string => in_array( flxcb_gql_src( $l, FLXCB_Last::class )->role, array( 'visitor', 'bot', 'agent' ), true ) ? flxcb_gql_src( $l, FLXCB_Last::class )->role : 'system',
 			),
 			'body' => array(
 				'type'        => 'String!',
@@ -346,24 +352,24 @@ flx_gql_type(
 			'name'         => array(
 				'type'        => 'String',
 				'description' => __( 'Name the visitor gave; empty when none.', 'flx-chatbot' ),
-				'resolve'     => static fn( $c ): ?string => '' !== flxcb_gql_src( $c, FLXCB_Conversation::class )->name ? $c->name : null,
+				'resolve'     => static fn( $c ): ?string => '' !== flxcb_gql_src( $c, FLXCB_Conversation::class )->name ? flxcb_gql_src( $c, FLXCB_Conversation::class )->name : null,
 			),
 			'email'        => array(
 				'type'        => 'String',
 				'description' => __( 'Visitor email; empty when not given.', 'flx-chatbot' ),
 				'cap'         => $flxcb_gql_reply,
-				'resolve'     => static fn( $c ): ?string => '' !== flxcb_gql_src( $c, FLXCB_Conversation::class )->email ? $c->email : null,
+				'resolve'     => static fn( $c ): ?string => '' !== flxcb_gql_src( $c, FLXCB_Conversation::class )->email ? flxcb_gql_src( $c, FLXCB_Conversation::class )->email : null,
 			),
 			'phone'        => array(
 				'type'        => 'String',
 				'description' => __( 'Visitor phone; empty when not given.', 'flx-chatbot' ),
 				'cap'         => $flxcb_gql_reply,
-				'resolve'     => static fn( $c ): ?string => '' !== flxcb_gql_src( $c, FLXCB_Conversation::class )->phone ? $c->phone : null,
+				'resolve'     => static fn( $c ): ?string => '' !== flxcb_gql_src( $c, FLXCB_Conversation::class )->phone ? flxcb_gql_src( $c, FLXCB_Conversation::class )->phone : null,
 			),
 			'status'       => array(
 				'type'        => 'FlxChatbotConversationStatus!',
 				'description' => __( 'Where the chat is.', 'flx-chatbot' ),
-				'resolve'     => static fn( $c ): string => in_array( flxcb_gql_src( $c, FLXCB_Conversation::class )->status, FLXCB_Chat_Service::STATUSES, true ) ? $c->status : 'bot',
+				'resolve'     => static fn( $c ): string => in_array( flxcb_gql_src( $c, FLXCB_Conversation::class )->status, FLXCB_Chat_Service::STATUSES, true ) ? flxcb_gql_src( $c, FLXCB_Conversation::class )->status : 'bot',
 			),
 			'unread'       => array(
 				'type'        => 'Int!',
@@ -373,12 +379,12 @@ flx_gql_type(
 			'rating'       => array(
 				'type'        => 'Int',
 				'description' => __( 'Stars (1-5) the visitor gave; empty when not rated.', 'flx-chatbot' ),
-				'resolve'     => static fn( $c ): ?int => flxcb_gql_src( $c, FLXCB_Conversation::class )->rating > 0 ? $c->rating : null,
+				'resolve'     => static fn( $c ): ?int => flxcb_gql_src( $c, FLXCB_Conversation::class )->rating > 0 ? flxcb_gql_src( $c, FLXCB_Conversation::class )->rating : null,
 			),
 			'ratingNote'   => array(
 				'type'        => 'String',
 				'description' => __( 'Note that came with the rating; empty when none.', 'flx-chatbot' ),
-				'resolve'     => static fn( $c ): ?string => '' !== flxcb_gql_src( $c, FLXCB_Conversation::class )->note ? $c->note : null,
+				'resolve'     => static fn( $c ): ?string => '' !== flxcb_gql_src( $c, FLXCB_Conversation::class )->note ? flxcb_gql_src( $c, FLXCB_Conversation::class )->note : null,
 			),
 			'isLead'       => array(
 				'type'        => 'Boolean!',
@@ -388,48 +394,48 @@ flx_gql_type(
 			'orderId'      => array(
 				'type'        => 'Int',
 				'description' => __( 'WooCommerce order placed after the chat; empty when none.', 'flx-chatbot' ),
-				'resolve'     => static fn( $c ): ?int => flxcb_gql_src( $c, FLXCB_Conversation::class )->order_id > 0 ? $c->order_id : null,
+				'resolve'     => static fn( $c ): ?int => flxcb_gql_src( $c, FLXCB_Conversation::class )->order_id > 0 ? flxcb_gql_src( $c, FLXCB_Conversation::class )->order_id : null,
 			),
 			'orderUrl'     => array(
 				'type'        => 'String',
 				'description' => __( 'Edit screen of that order; empty when none or WooCommerce is off.', 'flx-chatbot' ),
 				'cap'         => $flxcb_gql_reply,
-				'resolve'     => static fn( $c ): ?string => '' !== flxcb_gql_src( $c, FLXCB_Conversation::class )->order_url ? $c->order_url : null,
+				'resolve'     => static fn( $c ): ?string => '' !== flxcb_gql_src( $c, FLXCB_Conversation::class )->order_url ? flxcb_gql_src( $c, FLXCB_Conversation::class )->order_url : null,
 			),
 			'pageUrl'      => array(
 				'type'        => 'String',
 				'description' => __( 'Page the visitor is on; empty when unknown.', 'flx-chatbot' ),
-				'resolve'     => static fn( $c ): ?string => '' !== flxcb_gql_src( $c, FLXCB_Conversation::class )->page_url ? $c->page_url : null,
+				'resolve'     => static fn( $c ): ?string => '' !== flxcb_gql_src( $c, FLXCB_Conversation::class )->page_url ? flxcb_gql_src( $c, FLXCB_Conversation::class )->page_url : null,
 			),
 			'pageTitle'    => array(
 				'type'        => 'String',
 				'description' => __( 'Title of that page; empty when unknown.', 'flx-chatbot' ),
-				'resolve'     => static fn( $c ): ?string => '' !== flxcb_gql_src( $c, FLXCB_Conversation::class )->page_title ? $c->page_title : null,
+				'resolve'     => static fn( $c ): ?string => '' !== flxcb_gql_src( $c, FLXCB_Conversation::class )->page_title ? flxcb_gql_src( $c, FLXCB_Conversation::class )->page_title : null,
 			),
 			'userId'       => array(
 				'type'        => 'Int',
 				'description' => __( 'Site member id when the visitor was signed in; empty for guests.', 'flx-chatbot' ),
-				'resolve'     => static fn( $c ): ?int => flxcb_gql_src( $c, FLXCB_Conversation::class )->user_id > 0 ? $c->user_id : null,
+				'resolve'     => static fn( $c ): ?int => flxcb_gql_src( $c, FLXCB_Conversation::class )->user_id > 0 ? flxcb_gql_src( $c, FLXCB_Conversation::class )->user_id : null,
 			),
 			'agentName'    => array(
 				'type'        => 'String',
 				'description' => __( 'First name of the agent the chat is assigned to; empty when none.', 'flx-chatbot' ),
-				'resolve'     => static fn( $c ): ?string => '' !== flxcb_gql_src( $c, FLXCB_Conversation::class )->agent ? $c->agent : null,
+				'resolve'     => static fn( $c ): ?string => '' !== flxcb_gql_src( $c, FLXCB_Conversation::class )->agent ? flxcb_gql_src( $c, FLXCB_Conversation::class )->agent : null,
 			),
 			'fluxChatUrl'  => array(
 				'type'        => 'String',
 				'description' => __( 'The same chat in the Flux Chat inbox; empty when it is not there.', 'flx-chatbot' ),
-				'resolve'     => static fn( $c ): ?string => '' !== flxcb_gql_src( $c, FLXCB_Conversation::class )->flux_chat_url ? $c->flux_chat_url : null,
+				'resolve'     => static fn( $c ): ?string => '' !== flxcb_gql_src( $c, FLXCB_Conversation::class )->flux_chat_url ? flxcb_gql_src( $c, FLXCB_Conversation::class )->flux_chat_url : null,
 			),
 			'summary'      => array(
 				'type'        => 'String',
 				'description' => __( 'Note the assistant wrote for the agent when it handed over; empty when none.', 'flx-chatbot' ),
-				'resolve'     => static fn( $c ): ?string => '' !== flxcb_gql_src( $c, FLXCB_Conversation::class )->summary ? $c->summary : null,
+				'resolve'     => static fn( $c ): ?string => '' !== flxcb_gql_src( $c, FLXCB_Conversation::class )->summary ? flxcb_gql_src( $c, FLXCB_Conversation::class )->summary : null,
 			),
 			'lastActivity' => array(
 				'type'        => 'FlxDateTime',
 				'description' => __( 'Time of the last message; empty for a chat without messages.', 'flx-chatbot' ),
-				'resolve'     => static fn( $c ): ?array => flxcb_gql_src( $c, FLXCB_Conversation::class )->last_ts > 0 ? flx_gql_datetime( (int) floor( $c->last_ts / 1000 ) ) : null,
+				'resolve'     => static fn( $c ): ?array => flxcb_gql_src( $c, FLXCB_Conversation::class )->last_ts > 0 ? flx_gql_datetime( (int) floor( flxcb_gql_src( $c, FLXCB_Conversation::class )->last_ts / 1000 ) ) : null,
 			),
 			'online'       => array(
 				'type'        => 'Boolean!',
@@ -565,7 +571,7 @@ flx_gql_type(
 			'maxUploadMb'  => array(
 				'type'        => 'Int!',
 				'description' => __( 'Largest file an agent can attach (MB).', 'flx-chatbot' ),
-				'resolve'     => static fn(): int => max( 1, (int) flxcb_setting( 'upload_mb' ) ),
+				'resolve'     => static fn(): int => max( 1, FLXCB_Val::int( flxcb_setting( 'upload_mb' ) ) ),
 			),
 		),
 	)
@@ -616,7 +622,8 @@ flx_gql_mutation(
 			if ( '' !== $up ) {
 				$taken = flxcb_gql_ok( flx_gql_upload_take( $up, 'flx-chatbot/reply' ) );
 				$path  = flx_gql_str( $taken['path'] ?? '' );
-				$file  = flxcb_gql_ok( flxcb_store_local( $path, flx_gql_str( $taken['name'] ?? '' ), flx_gql_int( $taken['size'] ?? 0 ) ) );
+				/** @var array<string,mixed> $file */
+				$file = flxcb_gql_ok( flxcb_store_local( $path, flx_gql_str( $taken['name'] ?? '' ), flx_gql_int( $taken['size'] ?? 0 ) ) );
 				wp_delete_file( $path );
 			}
 			$c = flxcb_gql_ok( FLXCB_Chat_Service::reply( $id, get_current_user_id(), flx_gql_str( $input['text'] ?? '' ), $file ) );
@@ -738,7 +745,7 @@ flx_gql_type(
 			'rating'   => array(
 				'type'        => 'Float',
 				'description' => __( 'Average stars; empty when nothing is rated.', 'flx-chatbot' ),
-				'resolve'     => static fn( $s ): ?float => flxcb_gql_src( $s, FLXCB_Stats::class )->rated > 0 ? $s->rating : null,
+				'resolve'     => static fn( $s ): ?float => flxcb_gql_src( $s, FLXCB_Stats::class )->rated > 0 ? flxcb_gql_src( $s, FLXCB_Stats::class )->rating : null,
 			),
 			'rated'    => array(
 				'type'        => 'Int!',
@@ -782,12 +789,12 @@ flx_gql_type(
 			'url'       => array(
 				'type'        => 'String',
 				'description' => __( 'Where to fix or change it; empty when there is nothing to open.', 'flx-chatbot' ),
-				'resolve'     => static fn( $r ): ?string => '' !== flxcb_gql_src( $r, FLXCB_Status_Row::class )->url ? $r->url : null,
+				'resolve'     => static fn( $r ): ?string => '' !== flxcb_gql_src( $r, FLXCB_Status_Row::class )->url ? flxcb_gql_src( $r, FLXCB_Status_Row::class )->url : null,
 			),
 			'urlLabel'  => array(
 				'type'        => 'String',
 				'description' => __( 'Label of that link.', 'flx-chatbot' ),
-				'resolve'     => static fn( $r ): ?string => '' !== flxcb_gql_src( $r, FLXCB_Status_Row::class )->url_label ? $r->url_label : null,
+				'resolve'     => static fn( $r ): ?string => '' !== flxcb_gql_src( $r, FLXCB_Status_Row::class )->url_label ? flxcb_gql_src( $r, FLXCB_Status_Row::class )->url_label : null,
 			),
 		),
 	)
@@ -985,6 +992,7 @@ flx_gql_query(
 );
 
 /** Generated settings input (flx_settings_schema): GraphQL field → setting key. */
+/** @var array{type:string,fields:array<string,array{key:string}>}|null $flxcb_gql_group */
 $flxcb_gql_group = flx_gql_settings_schema()['flxcb_settings'] ?? null;
 if ( null !== $flxcb_gql_group ) {
 	flx_gql_mutation(

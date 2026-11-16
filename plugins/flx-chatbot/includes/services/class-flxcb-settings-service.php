@@ -126,7 +126,7 @@ final class FLXCB_Settings_Service {
 	 * Avatar image thumbnail (empty when none).
 	 */
 	public static function avatar_thumb(): string {
-		$id = (int) flxcb_setting( 'avatar_id' );
+		$id = FLXCB_Val::int( flxcb_setting( 'avatar_id' ) );
 		return $id ? FLXCB_Val::str( wp_get_attachment_image_url( $id, 'thumbnail' ) ) : '';
 	}
 }
