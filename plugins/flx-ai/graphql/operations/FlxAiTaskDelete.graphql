@@ -1,0 +1,10 @@
+mutation FlxAiTaskDelete($input: FlxAiTaskDeleteInput!) {
+  flxAiTaskDelete(input: $input) {
+    deleted
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

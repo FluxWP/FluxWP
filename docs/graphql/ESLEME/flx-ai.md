@@ -1,6 +1,6 @@
 # Flux AI & MCP (flx-ai): klasik → GraphQL eşlemesi
 
-Paket sürümü: 0.24.0 · Önek: `flxai_` · Sahip thread: Faz 1 / flx-ai · Durum: **kısmen bitti** (0.23.0 merge; `gql/flx-ai-2` 0.24.0 PR'ında; kalan: Skill'ler, Görevler, MCP)
+Paket sürümü: 0.25.0 · Önek: `flxai_` · Sahip thread: Faz 1 / flx-ai · Durum: **kısmen bitti** (0.23.0 merge; 0.24.0 merge; `gql/flx-ai-3` 0.25.0 PR'ında; kalan: Skill'ler, MCP)
 
 ## Özet
 
@@ -19,9 +19,10 @@ Paket sürümü: 0.24.0 · Önek: `flxai_` · Sahip thread: Faz 1 / flx-ai · Du
 | Onay bekleyenler (bekleyen işlemler, düzenleyip onayla, değişiklik istekleri) | `flxAiApprovals`, `flxAiApprovalDecide`, `flxAiChangeDecide` | `ai/Approvals.tsx` (0.24.0) |
 | Araçlar (aç/kapa, toplu, çakışma seçimi) | `flxAiTools`, `flxAiToolsUpdate`, `flxAiToolPick` | `ai/Tools.tsx` |
 | Ayarlar (servis + GraphQL hazır) | `flxAiSettings`, `flxAiSecrets`, `flxAiSettingsOptions`, `flxAiModels`, `flxAiSettingsUpdate`, `flxAiModelTest`, `flxAiRenderTest` | `ai/Settings.tsx` (0.24.0; klasik `flxai_save_settings` aynı servisle kaydeder) |
+| Zamanlanmış görevler (liste, form, çalıştır, duraklat, sil, aç/kapa, alıcı arama) | `flxAiTasks`, `flxAiRecipients`, `flxAiTaskSave`, `flxAiTaskRun`, `flxAiTaskSetActive`, `flxAiTaskDelete`, `flxAiTaskMarkRead`, `flxAiTasksToggle` | `ai/Tasks.tsx` (0.25.0; klasik işlemler `FLXAI_Tasks_Service` ile) |
 
 Yetki: hepsi `manage_options`. wp-admin'de ekranlar varsayılan, "Klasik görünüm" bağlantısı kullanıcı başına (`flxai_ui` meta). FluxApp modülü `flxai-admin`.
 
 ## Kalanlar
 
-Skill'ler (CRUD, dosyalar, testler, marka kiti), Zamanlanmış görevler, Sohbet geçmişi, MCP anahtarları/bağlantılar, sistem başı SDK ayarları.
+Skill'ler (CRUD, dosyalar, testler, marka kiti), Sohbet geçmişi, MCP anahtarları/bağlantılar, sistem başı SDK ayarları.

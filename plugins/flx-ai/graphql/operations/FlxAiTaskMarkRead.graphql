@@ -1,0 +1,12 @@
+mutation FlxAiTaskMarkRead($input: FlxAiTaskMarkReadInput!) {
+  flxAiTaskMarkRead(input: $input) {
+    task {
+      ...FlxAiTaskFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

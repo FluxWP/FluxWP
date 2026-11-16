@@ -1,5 +1,11 @@
 # Flux AI — Değişiklikler
 
+## 0.25.0
+- **Zamanlanmış görevler React ekranı oldu** (wp-admin'de varsayılan, klasik görünüme bağlantı var): liste ve özet kartları, yeni/düzenle formu (tekrar, skill, bildirim kanalları, ek alıcılar için arama, dosya çalışma alanı), şimdi çalıştır, duraklat/sürdür, sil, tüm görevleri aç/kapat, son çıktı.
+- **GraphQL:** `flxAiTasks`, `flxAiRecipients`, `flxAiTaskSave`, `flxAiTaskRun`, `flxAiTaskSetActive`, `flxAiTaskDelete`, `flxAiTaskMarkRead`, `flxAiTasksToggle`. Klasik sayfanın kaydet/çalıştır/duraklat/sil/aç-kapa işlemleri aynı servisle (`FLXAI_Tasks_Service`) yapılır.
+- Sözleşme testi 215 kontrol (doğrulama hataları, geçmişte tek seferlik görev, bilinmeyen skill, kısmi güncelleme, yetkiler).
+- Skill'ler, MCP sayfaları, sistem başı SDK ayarları ve sohbet geçmişi henüz klasik.
+
 ## 0.24.0
 - **Ayarlar ve Onay bekleyenler React ekranı oldu** (wp-admin'de varsayılan, klasik görünüme bağlantı var): sağlayıcılar ve anahtarlar (yalnız yazılır), modeller ve bağlantı testi, önbellek, harcama limiti, ortak sohbet, görsel/video üretimi, web, Gotenberg, kayıtlar. Onaylar: bekleyen işlemler (girdiyi düzenleyip onayla) ve açık değişiklik istekleri (birleştir/reddet).
 - **GraphQL:** `flxAiApprovals`, `flxAiApprovalDecide` (onayla/reddet/düzenleyip onayla), `flxAiChangeDecide`. Ayar kaydı zaten `flxAiSettingsUpdate`; klasik form da artık aynı servisle (`FLXAI_Settings_Service::save`) kaydeder.

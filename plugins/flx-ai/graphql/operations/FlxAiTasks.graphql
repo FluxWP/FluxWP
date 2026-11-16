@@ -1,0 +1,6 @@
+# Scheduled tasks and what the task form needs.
+query FlxAiTasks {
+  flxAiTasks {
+    ...FlxAiTaskOverviewFields
+  }
+}

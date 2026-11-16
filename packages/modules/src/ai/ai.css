@@ -109,3 +109,23 @@ textarea.flxai-input{width:100%;max-width:560px}
 .flxai-tl-pre{margin:0;padding:8px 10px;border:1px solid var(--bd);border-radius:6px;background:var(--flux-surface2);overflow:auto;max-height:260px;font-size:12px;white-space:pre-wrap;word-break:break-word}
 .flxai-pr-files{list-style:none;margin:0;padding:0}.flxai-pr-files li{padding:3px 0}
 .flxai-pr-n b{color:#16a34a}.flxai-pr-n i{color:#dc2626;font-style:normal}
+
+.flxai-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:0 0 16px}
+.flxai-kpi{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:12px 14px}
+.flxai-kpi.is-warn{border-color:#d97706}
+.flxai-kpi-k{font-size:12px;color:var(--flux-muted,#6b7280)}.flxai-kpi-v{font-size:20px;font-weight:600;margin:2px 0}.flxai-kpi-s{font-size:12px;color:var(--flux-muted,#6b7280)}
+.flxai-card-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.flxai-card-acts{display:inline-flex;gap:8px;font-weight:400}
+.flxai-tc{border-top:1px solid var(--bd);padding:12px 0}.flxai-tc:first-of-type{border-top:0}
+.flxai-tc.is-off{opacity:.7}.flxai-tc.is-err .flxai-tc-title a{color:#dc2626}
+.flxai-tc-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.flxai-tc-main{min-width:0;flex:1 1 320px}.flxai-tc-title{font-weight:600;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.flxai-tc-meta{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--flux-muted,#6b7280);margin-top:4px}
+.flxai-tc-acts{display:flex;flex-wrap:wrap;gap:6px;align-items:flex-start}
+.flxai-tc-prompt,.flxai-tc-err{margin-top:8px;font-size:13px}.flxai-tc-err{color:#dc2626}
+.flxai-tc-out{margin-top:8px}.flxai-tc-out summary{cursor:pointer;display:flex;gap:10px;align-items:baseline}
+.flxai-btn.is-danger{color:#dc2626!important}
+.flxai-skill-slug{font-size:12px}
+.flxai-notice.is-warn{border-color:#d97706}
+.flxai-rcp{display:flex;flex-direction:column;gap:8px;width:100%}.flxai-rcp-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.flxai-rcp-res{display:flex;flex-wrap:wrap;gap:6px}
+.flxai-tasks-empty ul{margin:6px 0 0 18px}

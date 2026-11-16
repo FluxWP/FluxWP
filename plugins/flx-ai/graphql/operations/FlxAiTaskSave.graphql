@@ -1,0 +1,12 @@
+mutation FlxAiTaskSave($input: FlxAiTaskSaveInput!) {
+  flxAiTaskSave(input: $input) {
+    task {
+      ...FlxAiTaskFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

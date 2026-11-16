@@ -1,0 +1,12 @@
+mutation FlxAiTaskSetActive($input: FlxAiTaskSetActiveInput!) {
+  flxAiTaskSetActive(input: $input) {
+    task {
+      ...FlxAiTaskFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

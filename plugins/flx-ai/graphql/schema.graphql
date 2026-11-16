@@ -465,12 +465,70 @@ type FlxAiMonth {
   saved: Float!
 }
 
+"""Which channels can carry a notification."""
+type FlxAiNotifyChannels {
+  """E-mail."""
+  email: Boolean!
+  """SMS (needs a Flux Mail connection)."""
+  sms: Boolean!
+  """WhatsApp (needs a Flux Mail connection)."""
+  whatsapp: Boolean!
+}
+
 """A choice of a select field."""
 type FlxAiOption {
   """Value to save."""
   id: String!
   """Name for display."""
   label: String!
+}
+
+"""A person, address, number or WhatsApp group that can be notified."""
+type FlxAiRecipient {
+  """Channels chosen for this recipient: email, sms, whatsapp."""
+  channels: [String!]!
+  """E-mail address."""
+  email: String!
+  """Contact or user ID; 0 for the other kinds."""
+  id: Int!
+  """WhatsApp group address."""
+  jid: String!
+  """contact, user, email, phone or group."""
+  kind: String!
+  """Name for display."""
+  name: String!
+  """Phone number, digits only."""
+  phone: String!
+  """What kind of recipient this is, for display."""
+  sub: String!
+}
+
+"""A recipient as FlxAiRecipient returned it."""
+input FlxAiRecipientInput {
+  """Channels to use: email, sms, whatsapp."""
+  channels: [String!]
+  """E-mail address."""
+  email: String
+  """Contact or user ID."""
+  id: Int
+  """WhatsApp group address."""
+  jid: String
+  """contact, user, email, phone or group."""
+  kind: String!
+  """Name for display."""
+  name: String
+  """Phone number."""
+  phone: String
+}
+
+"""Recipients that match a search."""
+type FlxAiRecipientSearch {
+  """Channels that can carry a notification."""
+  channels: FlxAiNotifyChannels!
+  """
+  Matches: Flux CRM contacts, site users, WhatsApp groups and typed addresses or numbers.
+  """
+  items: [FlxAiRecipient!]!
 }
 
 """Input for the flxAiRenderTest mutation."""
@@ -921,6 +979,338 @@ type FlxAiSystemsUpdatePayload {
   systems: [FlxAiSystem!]!
 }
 
+"""A scheduled task the assistant runs on its own."""
+type FlxAiTask {
+  """Average duration of the remembered runs, milliseconds."""
+  avgMs: Int!
+  """The task&#039;s own chat; 0 before the first run."""
+  chatId: Int!
+  """Cost of the remembered runs in USD."""
+  cost: Float!
+  """Task ID."""
+  id: Int!
+  """Error of the last run."""
+  lastError: String!
+  """Report of the last run (Markdown)."""
+  lastOutput: String!
+  """Last run; null before the first."""
+  lastRun: FlxDateTime
+  """ok, running, approval, waiting or error; empty before the first run."""
+  lastState: String!
+  """The signed-in user owns it."""
+  mine: Boolean!
+  """Next run; null when paused or finished."""
+  nextRun: FlxDateTime
+  """Who is told about the runs."""
+  notify: FlxAiTaskNotify!
+  """Name of the user the task runs as."""
+  owner: String!
+  """Instructions."""
+  prompt: String!
+  """Number of runs."""
+  runs: Int!
+  """When it repeats."""
+  schedule: FlxAiTaskSchedule!
+  """The schedule in words."""
+  scheduleLabel: String!
+  """Skill slug; empty for none."""
+  skill: String!
+  """active, paused or done."""
+  status: String!
+  """Name."""
+  title: String!
+  """A new report the signed-in user has not opened."""
+  unread: Boolean!
+  """Files; null when Flux Files is not installed."""
+  workspace: FlxAiTaskWorkspace
+}
+
+"""Input for the flxAiTaskDelete mutation."""
+input FlxAiTaskDeleteInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Task."""
+  id: Int!
+}
+
+"""The payload for the flxAiTaskDelete mutation."""
+type FlxAiTaskDeletePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """The task is gone."""
+  deleted: Boolean
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""Input for the flxAiTaskMarkRead mutation."""
+input FlxAiTaskMarkReadInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Task."""
+  id: Int!
+}
+
+"""The payload for the flxAiTaskMarkRead mutation."""
+type FlxAiTaskMarkReadPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The task."""
+  task: FlxAiTask
+}
+
+"""How a task tells people about its runs."""
+type FlxAiTaskNotify {
+  """Also e-mail the owner."""
+  email: Boolean!
+  """Short summary of who is notified."""
+  label: String!
+  """none, important or always."""
+  mode: String!
+  """Show in the admin panel (menu badge)."""
+  panel: Boolean!
+  """
+  Promotional content: skip people who opted out and add an opt-out line.
+  """
+  promo: Boolean!
+  """More recipients."""
+  to: [FlxAiRecipient!]!
+  """WhatsApp number of the owner, digits only; empty for none."""
+  whatsapp: String!
+}
+
+"""
+How a task tells people about its runs. Fields you leave out keep their value.
+"""
+input FlxAiTaskNotifyInput {
+  """Also e-mail the owner."""
+  email: Boolean
+  """none, important or always."""
+  mode: String
+  """Show in the admin panel."""
+  panel: Boolean
+  """Promotional content."""
+  promo: Boolean
+  """The full list of more recipients; it replaces the old one."""
+  to: [FlxAiRecipientInput!]
+  """Owner's WhatsApp number; empty for none."""
+  whatsapp: String
+}
+
+"""The scheduled tasks page: tasks and what the form needs."""
+type FlxAiTaskOverview {
+  """Actions waiting for approval."""
+  awaiting: Int!
+  """Channels that can carry a notification."""
+  channels: FlxAiNotifyChannels!
+  """The task system is on."""
+  enabled: Boolean!
+  """When the schedule was last checked."""
+  lastCheck: FlxDateTime
+  """Next run of any active task."""
+  nextRun: FlxDateTime
+  """The signed-in user&#039;s e-mail address."""
+  ownerEmail: String!
+  """Skills a task can use."""
+  skills: [FlxAiTaskSkill!]!
+  """Tasks, active first."""
+  tasks: [FlxAiTask!]!
+  """Site time zone."""
+  timezone: String!
+  """Flux Mail can send WhatsApp."""
+  whatsappReady: Boolean!
+  """Flux Files is installed, so tasks can have a folder."""
+  workspaceReady: Boolean!
+}
+
+"""Input for the flxAiTaskRun mutation."""
+input FlxAiTaskRunInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Task."""
+  id: Int!
+}
+
+"""The payload for the flxAiTaskRun mutation."""
+type FlxAiTaskRunPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The task."""
+  task: FlxAiTask
+}
+
+"""Input for the flxAiTaskSave mutation."""
+input FlxAiTaskSaveInput {
+  """The task runs (false pauses it)."""
+  active: Boolean
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Task to change; leave out to create one."""
+  id: Int
+  """Who is told about the runs."""
+  notify: FlxAiTaskNotifyInput
+  """Instructions, as if sent in the chat."""
+  prompt: String
+  """When it repeats."""
+  schedule: FlxAiTaskScheduleInput
+  """Skill slug; empty for none."""
+  skill: String
+  """Name; empty takes the first words of the instructions."""
+  title: String
+  """The files it may touch."""
+  workspace: FlxAiTaskWorkspaceInput
+}
+
+"""The payload for the flxAiTaskSave mutation."""
+type FlxAiTaskSavePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The task after saving; null when the input was refused."""
+  task: FlxAiTask
+}
+
+"""When a task repeats."""
+type FlxAiTaskSchedule {
+  """Date and time of a one-time task (Y-m-d H:i)."""
+  at: String!
+  """Day of the month for monthly tasks."""
+  day: Int!
+  """Weekdays for weekly tasks, 1 (Monday) to 7 (Sunday)."""
+  days: [Int!]!
+  """Hours between runs for hourly tasks."""
+  every: Int!
+  """daily, weekdays, weekly, monthly, hourly or once."""
+  freq: String!
+  """Time of day, HH:MM in the site time zone."""
+  time: String!
+}
+
+"""When a task repeats. Fields you leave out keep their value."""
+input FlxAiTaskScheduleInput {
+  """Date and time of a one-time task (Y-m-d H:i or Y-m-dTH:i)."""
+  at: String
+  """Day of the month."""
+  day: Int
+  """Weekdays for weekly tasks, 1 (Monday) to 7 (Sunday)."""
+  days: [Int!]
+  """Hours between runs."""
+  every: Int
+  """daily, weekdays, weekly, monthly, hourly or once."""
+  freq: String
+  """Time of day, HH:MM."""
+  time: String
+}
+
+"""Input for the flxAiTaskSetActive mutation."""
+input FlxAiTaskSetActiveInput {
+  """Resume (false pauses)."""
+  active: Boolean!
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Task."""
+  id: Int!
+}
+
+"""The payload for the flxAiTaskSetActive mutation."""
+type FlxAiTaskSetActivePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The task."""
+  task: FlxAiTask
+}
+
+"""A skill a task can use."""
+type FlxAiTaskSkill {
+  """The skill is on."""
+  active: Boolean!
+  """Name."""
+  name: String!
+  """Skill slug."""
+  slug: String!
+}
+
+"""The files a task may touch."""
+type FlxAiTaskWorkspace {
+  """
+  workspace (own folder and the allowed ones) or site (can read all site files).
+  """
+  access: String!
+  """The task&#039;s own folder."""
+  dir: String!
+  """Allowed folders, relative to the site root."""
+  folders: [String!]!
+}
+
+"""The files a task may touch."""
+input FlxAiTaskWorkspaceInput {
+  """workspace or site."""
+  access: String
+  """Allowed folders, relative to the site root."""
+  folders: [String!]
+}
+
+"""Input for the flxAiTasksToggle mutation."""
+input FlxAiTasksToggleInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """On (false turns all tasks off)."""
+  enabled: Boolean!
+}
+
+"""The payload for the flxAiTasksToggle mutation."""
+type FlxAiTasksTogglePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The page after the change."""
+  overview: FlxAiTaskOverview
+}
+
 """Result of a connection test."""
 type FlxAiTestResult {
   """PNG data URI of the sample (renderer test)."""
@@ -1095,6 +1485,38 @@ extend type RootMutation {
     """Input for the flxAiSystemsUpdate mutation"""
     input: FlxAiSystemsUpdateInput!
   ): FlxAiSystemsUpdatePayload
+  """Deletes a task. Its chat is kept."""
+  flxAiTaskDelete(
+    """Input for the flxAiTaskDelete mutation"""
+    input: FlxAiTaskDeleteInput!
+  ): FlxAiTaskDeletePayload
+  """Marks the report of a task as read."""
+  flxAiTaskMarkRead(
+    """Input for the flxAiTaskMarkRead mutation"""
+    input: FlxAiTaskMarkReadInput!
+  ): FlxAiTaskMarkReadPayload
+  """Starts a task in a few seconds; its report appears in the task chat."""
+  flxAiTaskRun(
+    """Input for the flxAiTaskRun mutation"""
+    input: FlxAiTaskRunInput!
+  ): FlxAiTaskRunPayload
+  """
+  Creates a task, or changes one when `id` is given. Fields you leave out keep their value.
+  """
+  flxAiTaskSave(
+    """Input for the flxAiTaskSave mutation"""
+    input: FlxAiTaskSaveInput!
+  ): FlxAiTaskSavePayload
+  """Pauses or resumes a task."""
+  flxAiTaskSetActive(
+    """Input for the flxAiTaskSetActive mutation"""
+    input: FlxAiTaskSetActiveInput!
+  ): FlxAiTaskSetActivePayload
+  """Turns the whole task system on or off."""
+  flxAiTasksToggle(
+    """Input for the flxAiTasksToggle mutation"""
+    input: FlxAiTasksToggleInput!
+  ): FlxAiTasksTogglePayload
   """
   Chooses which plugin provides a tool when several register the same name.
   """
@@ -1150,6 +1572,11 @@ extend type RootQuery {
     """Part of an id, name or family."""
     search: String
   ): [FlxAiModel!]!
+  """Searches people, addresses, numbers and WhatsApp groups to notify."""
+  flxAiRecipients(
+    """Part of a name, e-mail address, phone number or group name."""
+    search: String
+  ): FlxAiRecipientSearch!
   """Usage of the last days: cost, time, tokens, tools."""
   flxAiReport(
     """Days to look back (1–365); 30 by default."""
@@ -1167,6 +1594,8 @@ extend type RootQuery {
   flxAiSettingsOptions: FlxAiSettingsOptions!
   """Plugins that use Flux AI, with their usage of the last 30 days."""
   flxAiSystems: [FlxAiSystem!]!
+  """Scheduled tasks and what the task form needs."""
+  flxAiTasks: FlxAiTaskOverview!
   """Every tool with its state and use over the last 30 days."""
   flxAiTools: [FlxAiTool!]!
 }
