@@ -28,6 +28,8 @@ Kaldırılma koşulu olan uçlar. Koşul gerçekleşince satır silinir, uç kal
 | FluxApp mobil/masaüstü eski sürümlerinin kullandığı REST uçları | flx-app ve modül paketleri | Mağazadaki eski sürümler | En düşük desteklenen uygulama sürümü GraphQL istemcisine geçince (Faz 7) |
 | Flux Tasks: pilot dışındaki `flx-tasks/v1` uçları (sync, yapı, belgeler, ayarlar, pano, dosya) | flx-tasks | Pilot yalnız görev dilimini taşıdı; ekran REST yedekli adaptörle çalışır | Faz 1 flx-tasks paket PR'ı (ESLEME/flx-tasks.md) |
 | Blok formu gönderimi: admin-ajax `fxb_process_ajax_submit`, `fxb_process_advanced_form_submit` | flx-blocks | Form gönderimi flx-forms paketinin işi | flx-forms GraphQL PR'ı (`flxFormSubmit`), docs/flx-blocks/GRAPHQL.md |
+| FluxApp OAuth (`/oauth/*`), OTP (`/otp/*`), telefon (`/me/phone*`), cihazlar (`/devices*`), ayar köprüsü (`/settings*`), marka (`/app/brand`) | flx-app | OAuth/OTP protokol uçları; cihaz ve ayar köprüsü ekran akışı yok | Bootstrap, me, sync, config, manifest, dashboard, prefs, oturum GraphQL'de (`docs/flx-app/GRAPHQL.md`) |
+| FluxApp bootstrap/me/sync/config/manifest/dashboard/prefs/session REST uçları | flx-app | Mağazadaki eski uygulama sürümleri | Faz 7 (satır 1 ile birlikte kalkar) |
 
 ## Satır ekleme
 

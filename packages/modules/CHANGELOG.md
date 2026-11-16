@@ -1,7 +1,10 @@
 # @fluxwp/modules
 
-## 0.3.8
+## 0.3.9
 - Blocks: new `flxbk-dashboard` screen for the Flux Block Editor (block cards with activate, settings, design library with pattern browser, preview, linked libraries and sharing). Same look as the classic dashboard on FluxWP tokens, light and dark; data over GraphQL; English and Turkish.
+
+## 0.3.8
+- FluxApp: new `flxapp-settings` (Application settings, 7 tabs) and `flxapp-access` (App access) screens. Same look as the classic pages on FluxWP tokens, light and dark; data over GraphQL; texts from the plugin's language packs (`plugins/flx-app/tools/i18n.py`).
 
 ## 0.3.7
 - Lang: new `flxl-lang` screen for Flux Lang (languages table, content types, fallback, switcher, visitor suggestion, site texts per language, AI translation info). Same look as the classic page, light and dark; data over GraphQL; texts from the plugin's language packs (`plugins/flx-lang/tools/i18n.py`).
