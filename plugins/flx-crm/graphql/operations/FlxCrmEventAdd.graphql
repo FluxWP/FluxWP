@@ -1,0 +1,16 @@
+mutation FlxCrmEventAdd($input: FlxContactEventAddInput!) {
+  flxContactEventAdd(input: $input) {
+    event {
+      ...FlxCrmEvent
+    }
+    contact {
+      id
+      lastActivityAt {
+        ...FlxCrmWhen
+      }
+    }
+    errors {
+      ...FlxCrmUserError
+    }
+  }
+}

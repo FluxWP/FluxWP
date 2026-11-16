@@ -1,0 +1,31 @@
+query FlxSpeedDatabase {
+  flxSpeedDatabase {
+    cards {
+      label
+      value
+      tone
+    }
+    sections {
+      ...FlxSpeedSectionFields
+    }
+    jobs {
+      key
+      label
+      count
+      runnable
+    }
+    info {
+      label
+      count
+    }
+    tables {
+      name
+      engine
+      rows
+      data
+      index
+      free
+      collate
+    }
+  }
+}

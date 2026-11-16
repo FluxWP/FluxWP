@@ -1,6 +1,6 @@
 # Flux Tema (fluxwp, themes/fluxwp): REST → GraphQL eşlemesi
 
-Tema sürümü: 0.7.27 · Önek: `flx_` (tema fonksiyonları) · Cap: `manage_options` (ayar, sistem kontrolü) · Sahip thread: envanter (Faz 1) · Durum: taslak
+Tema sürümü: 0.7.27 · Önek: `flx_` (tema fonksiyonları) · Cap: `manage_options` (ayar, sistem kontrolü) · Durum: uygulandı (0.8.0, `gql/theme-1`)
 
 Not: Bu dosya yalnız envanterdir. "belirsiz" işaretli satırlar uygulayıcıdan önce karar ister.
 
@@ -55,3 +55,10 @@ Yok. Tema REST ya da AJAX kaydetmiyor.
 - Global styles kaynağı tek mi olsun: tema ayarı mı, `theme.json` mu?
 - Sistem kontrolü (`flx-sistem`) tek ortak GraphQL tipi mi olacak (flx-seo ve flx-admin ile birlikte)? Ortak kural `flx-wp-eklenti` skill'indeki sistem kontrolüne göre belirlenmeli.
 - Site Kurulumu / ön ayar uygulaması bu envanterde yok; ayrı kalacak mı?
+
+## Kararlar (uygulama)
+
+- Global styles kaynağı: Site Editor değişiklikleri > `theme.json` > WordPress varsayılanı (`wp_get_global_settings`); tablo başlığı, desen ve koyu mod Tema Ayarları'ndan. Tek sorgu `flxThemeGlobalStyles` (cap `public`, önbellek etiketi `flx-theme:settings`).
+- Sistem kontrolü tipi tema'ya özel (`FlxThemeCheck`, `FlxThemeSystem`); ortak tip ileride flx-seo/flx-admin ile birleştirilebilir.
+- Tema ayarları iki yoldan okunur: otomatik `flxSettings.themeSettings` (genel, makine) ve `flxThemeSettings` (ekranın ihtiyaç duyduğu bağlamla, tipli).
+- Ön ayar eşitleme (`flx_settings_schema`) olduğu gibi kaldı.

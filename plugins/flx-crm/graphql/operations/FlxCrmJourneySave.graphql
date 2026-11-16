@@ -1,0 +1,10 @@
+mutation FlxCrmJourneySave($input: FlxJourneySaveInput!) {
+  flxJourneySave(input: $input) {
+    journey {
+      ...FlxCrmJourneyRow
+    }
+    errors {
+      ...FlxCrmUserError
+    }
+  }
+}

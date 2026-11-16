@@ -1,0 +1,12 @@
+query FlxSpeedAutoload {
+  flxSpeedAutoload {
+    count
+    totalKb
+    tone
+    largest {
+      name
+      owner
+      kb
+    }
+  }
+}

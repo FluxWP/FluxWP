@@ -20,26 +20,16 @@ final class FLXU_Ajax {
 		add_action( 'wp_ajax_flxu_auto', array( 'FLXU_WP', 'ajax_auto' ) );
 	}
 
-	/** "Güncellemeleri kontrol et": sunucuya sorar, sayfa yenilenmeden tablo tazelenir. */
+	/** "Güncellemeleri kontrol et": sunucuya sorar, sayfa yenilenmeden tablo tazelenir (FLXK_Packages_Service). */
 	public static function check(): void {
 		self::guard();
-		FLXU_Updater::instance()->check_now();
-		$status  = FLXU_Updater::status();
-		$pending = FLXU_Admin::pending_count();
-		if ( empty( $status['ok'] ) ) {
-			$summary = __( 'Could not connect to the server.', 'flx-setup' );
-		} elseif ( $pending ) {
-			/* translators: %d: number of updates */
-			$summary = sprintf( _n( '%d update available', '%d updates available', $pending, 'flx-setup' ), $pending );
-		} else {
-			$summary = __( 'All up to date ✓', 'flx-setup' );
-		}
+		$res = FLXK_Packages_Service::check();
 		wp_send_json_success(
 			array(
-				'ok'      => ! empty( $status['ok'] ),
-				'pending' => $pending,
-				'label'   => FLXU_Admin::checked_label( $status ),
-				'summary' => $summary,
+				'ok'      => $res['ok'],
+				'pending' => $res['pending'],
+				'label'   => $res['checkedLabel'],
+				'summary' => $res['summary'],
 			)
 		);
 	}
@@ -55,25 +45,8 @@ final class FLXU_Ajax {
 		self::guard();
 		$slugs    = array_map( 'sanitize_key', (array) wp_unslash( $_POST['slugs'] ?? array() ) );
 		$activate = ! empty( $_POST['activate'] );
-		$catalog  = FLXU_Updater::instance()->catalog();
-		$rows     = FLXU_Admin::rows( $catalog );
-		if ( ! empty( $_POST['all'] ) ) {
-			$slugs = wp_list_pluck(
-				array_filter(
-					$rows,
-					static function ( $r ) {
-						return 'update' === $r['state'];
-					}
-				),
-				'slug'
-			);
-		}
-		$plan = FLXU_Installer::plan( $slugs, $catalog, $rows );
-		wp_send_json_success(
-			array(
-				'steps' => FLXU_Installer::steps( $plan, $catalog, $activate ),
-			)
-		);
+		// Üçüncü parti satırlar bu uçta değil, tarayıcıda (extra) sıraya girer.
+		wp_send_json_success( array( 'steps' => FLXK_Packages_Service::plan( $slugs, array(), ! empty( $_POST['all'] ), $activate, false ) ) );
 	}
 
 	public static function step(): void {

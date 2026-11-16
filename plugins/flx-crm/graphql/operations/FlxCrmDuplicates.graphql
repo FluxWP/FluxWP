@@ -1,0 +1,11 @@
+query FlxCrmDuplicates {
+  flxContactDuplicates {
+    why
+    items {
+      usedBy
+      contact {
+        ...FlxCrmContactRow
+      }
+    }
+  }
+}

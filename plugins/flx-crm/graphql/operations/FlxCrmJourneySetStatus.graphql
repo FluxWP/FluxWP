@@ -1,0 +1,10 @@
+mutation FlxCrmJourneySetStatus($input: FlxJourneySetStatusInput!) {
+  flxJourneySetStatus(input: $input) {
+    journey {
+      ...FlxCrmJourneyRow
+    }
+    errors {
+      ...FlxCrmUserError
+    }
+  }
+}

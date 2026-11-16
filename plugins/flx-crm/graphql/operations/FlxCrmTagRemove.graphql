@@ -1,0 +1,13 @@
+mutation FlxCrmTagRemove($input: FlxContactTagRemoveInput!) {
+  flxContactTagRemove(input: $input) {
+    contact {
+      id
+      tags {
+        ...FlxCrmTag
+      }
+    }
+    errors {
+      ...FlxCrmUserError
+    }
+  }
+}
