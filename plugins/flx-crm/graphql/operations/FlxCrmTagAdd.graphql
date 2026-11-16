@@ -1,0 +1,16 @@
+mutation FlxCrmTagAdd($input: FlxContactTagAddInput!) {
+  flxContactTagAdd(input: $input) {
+    tag {
+      ...FlxCrmTag
+    }
+    contact {
+      id
+      tags {
+        ...FlxCrmTag
+      }
+    }
+    errors {
+      ...FlxCrmUserError
+    }
+  }
+}

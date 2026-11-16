@@ -1,0 +1,13 @@
+mutation FlxWikiPageSave($input: FlxWikiPageSaveInput!) {
+  flxWikiPageSave(input: $input) {
+    page {
+      ...FlxWikiPageRow
+      markdown
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

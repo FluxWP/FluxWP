@@ -1,0 +1,8 @@
+mutation FlxCrmSegmentDelete($input: FlxSegmentDeleteInput!) {
+  flxSegmentDelete(input: $input) {
+    deletedId
+    errors {
+      ...FlxCrmUserError
+    }
+  }
+}

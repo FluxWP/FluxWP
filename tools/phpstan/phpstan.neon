@@ -1,8 +1,11 @@
 # Strict analysis: new and migrated code (Flux GraphQL kit, package services/ and graphql/ folders).
-# Level max, PHP 8.1–8.5. Every GraphQL work package adds its folders under `paths` (plan §2.7).
+# Level max, PHP 8.1–8.5. Packages are found on disk (strict-packages.php): a plugin with
+# includes/services or includes/graphql (a theme: inc/…) is analysed there; package specifics go in
+# packages/<slug>.php and constants in packages/<slug>.bootstrap.php. Do not list packages here.
 #   tools/phpstan/vendor/bin/phpstan analyse -c tools/phpstan/phpstan.neon
 includes:
   - types.neon
+  - strict-packages.php
   - vendor/szepeviktor/phpstan-wordpress/extension.neon
 
 parameters:
@@ -12,11 +15,9 @@ parameters:
     max: 80500
   tmpDir: .cache
   bootstrapFiles:
-    - bootstrap.php
+    - strict-bootstrap.php
   scanFiles:
     - ../../plugins/flx-graphql/vendor/wp-graphql/access-functions.php
-    - ../../plugins/flx-app/flx-app.php
-    - ../../plugins/flx-seo/flx-seo.php
     - vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
     - vendor/php-stubs/wp-cli-stubs/wp-cli-stubs.php
   scanDirectories:
@@ -24,47 +25,10 @@ parameters:
     - ../../plugins/flx-graphql/vendor/wp-graphql/src
     - ../../plugins/flx-graphql/vendor/wp-graphql/vendor/webonyx
     - ../../plugins/flx-graphql/vendor/wp-graphql/vendor/ivome
-    # Legacy code the strict folders call (scanned for symbols only).
-    - ../../plugins/flx-tasks/includes
-    - ../../plugins/flx-roles/includes
-    - ../../plugins/flx-blocks/includes
-    - ../../plugins/flx-setup/includes
-    - ../../plugins/flx-app/includes
-    - ../../plugins/flx-lang/includes
-    - ../../plugins/flx-seo/includes
-    - ../../plugins/flx-files/includes
   paths:
     - ../../plugins/flx-graphql/flx-graphql.php
     - ../../plugins/flx-graphql/uninstall.php
     - ../../plugins/flx-graphql/includes
-    # Flux Tasks (GraphQL pilot)
-    - ../../plugins/flx-tasks/includes/services
-    - ../../plugins/flx-tasks/includes/graphql
-    # Flux Roles (Faz 1)
-    - ../../plugins/flx-roles/includes/services
-    - ../../plugins/flx-roles/includes/graphql
-    # Flux Block Editor (Faz 4)
-    - ../../plugins/flx-blocks/includes/services
-    - ../../plugins/flx-blocks/includes/graphql
-    # FluxWP Panel (Faz 1)
-    - ../../plugins/flx-setup/includes/services
-    - ../../plugins/flx-setup/includes/graphql
-    # Flux App (Faz 1)
-    - ../../plugins/flx-app/includes/services
-    - ../../plugins/flx-app/includes/graphql
-    # Flux Lang (Faz 1)
-    - ../../plugins/flx-lang/includes/services
-    - ../../plugins/flx-lang/includes/graphql
-    # Flux SEO (Faz 1)
-    - ../../plugins/flx-seo/includes/services
-    - ../../plugins/flx-seo/includes/graphql
-    # Flux Files (Faz 1)
-    - ../../plugins/flx-files/includes/services
-    - ../../plugins/flx-files/includes/graphql
   excludePaths:
     - ../../plugins/flx-graphql/includes/flx-brand
   treatPhpDocTypesAsCertain: false
-  ignoreErrors:
-    # The wizard steps file is loaded on demand (FLXK_DIR points at tools/phpstan here).
-    - message: '#Path in require_once\(\) ".*/includes/onboarding\.php" is not a file#'
-      path: ../../plugins/flx-setup/includes/graphql/schema.php

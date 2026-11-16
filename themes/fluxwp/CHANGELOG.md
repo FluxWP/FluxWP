@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 0.8.0
+- GraphQL: Tema Ayarları, genel stiller (renk, font, koyu mod), ödeme logoları, Sistem Kontrolü ve eski tema taşıma Flux GraphQL'e açıldı (`flxThemeSettings`, `flxThemeGlobalStyles`, `flxThemePayLogos`, `flxThemeSystem`, `flxThemeMigrationSources` ve kaydetme/taşıma işlemleri). Ayar şemasından otomatik `flxSettings.themeSettings` de kalır.
+- Tema Ayarları ve Sistem Kontrolü yeni React ekranıyla açılır (FluxWP uygulamasında da aynı ekran); tüm alanlar ve görünüm klasik sayfayla aynı. Klasik görünüme sayfadaki "Klasik görünüm" bağlantısıyla geçilir, tercih kullanıcıya özeldir.
+- Kaydetme tek yerde doğrulanır (IBAN, GA4 kimliği, renk, e-posta); geçersiz alan hiçbir şeyi kaydetmez ve hata alan adıyla döner.
+- Gereken PHP sürümü 8.1.
+
 ## 0.7.27
 - Ödeme sayfasında adres kartı ile ödeme/teslimat seçenekleri (Havale/EFT kutusu vb.) bej zemin yerine beyaz kart; koyu modda yüzey rengi.
 

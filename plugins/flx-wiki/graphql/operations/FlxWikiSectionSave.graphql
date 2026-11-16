@@ -1,0 +1,12 @@
+mutation FlxWikiSectionSave($input: FlxWikiSectionSaveInput!) {
+  flxWikiSectionSave(input: $input) {
+    section {
+      ...FlxWikiSectionRow
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

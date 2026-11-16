@@ -1,0 +1,6 @@
+mutation FlxAnalyticsReset($input: FlxAnalyticsResetInput!) {
+  flxAnalyticsReset(input: $input) {
+    settings { ...FlxAnalyticsSettingsFields }
+    errors { code message field }
+  }
+}

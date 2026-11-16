@@ -1,0 +1,16 @@
+# Public: what a client needs to protect one form (headless forms, mobile). Cacheable for visitors.
+query FlxCaptcha($context: String!) {
+  flxCaptcha(context: $context) {
+    context
+    enabled
+    version
+    siteKey
+    action
+    scriptUrl
+    theme
+    size
+    hideBadge
+    tokenField
+    tokenHeader
+  }
+}

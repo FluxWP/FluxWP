@@ -1,0 +1,15 @@
+mutation FlxAiSettingsUpdate($input: FlxAiSettingsUpdateInput!) {
+  flxAiSettingsUpdate(input: $input) {
+    settings {
+      ...FlxAiSettingsFields
+    }
+    secrets {
+      ...FlxAiSecretFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

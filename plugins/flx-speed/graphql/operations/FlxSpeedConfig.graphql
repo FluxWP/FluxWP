@@ -1,0 +1,22 @@
+# Tabs, filters and links; loaded first by the Performance screen.
+query FlxSpeedConfig {
+  flxSpeedConfig {
+    canManage
+    recording
+    classicUrl
+    adminUrl
+    tabs {
+      key
+      label
+      adminOnly
+    }
+    flags {
+      key
+      label
+    }
+    types {
+      key
+      label
+    }
+  }
+}
