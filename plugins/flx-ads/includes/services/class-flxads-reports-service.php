@@ -523,10 +523,7 @@ final class FLXADS_Reports_Service {
 			)
 		);
 		foreach ( is_array( $found ) ? $found : array() as $pg ) {
-			$u = get_permalink( $pg );
-			if ( is_string( $u ) ) {
-				$pages[] = $u;
-			}
+			$pages[] = get_permalink( $pg );
 		}
 		return array(
 			'homeUrl' => home_url( '/' ),
