@@ -228,6 +228,7 @@ final class FLXAI_Usage_Service {
 	 * @return array{items: list<FLXAI_Log_Row>, total: int}
 	 */
 	public static function logs( int $days, string $kind, string $source, bool $errors, int $offset, int $limit ): array {
+		/** @var \wpdb $wpdb */
 		global $wpdb;
 		$days   = max( 1, min( self::MAX_DAYS, $days ) );
 		$t      = flxai_table( 'log' );

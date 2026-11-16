@@ -398,6 +398,7 @@ flx_gql_query(
 			)
 		),
 		'resolve'     => static function ( $root, array $args ): array {
+			/** @var array<string,mixed> $args */
 			flx_gql_cache_tag( FLXAI_Usage_Service::CACHE_TAG );
 			return flx_gql_paginate(
 				$args,

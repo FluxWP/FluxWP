@@ -62,9 +62,9 @@ final class FLXAI_Tools_Service {
 		foreach ( self::all() as $t ) {
 			$known[ $t->name ] = true;
 		}
-		$off = flxai_tools_off();
+		$off = FLXAI_Cast::strings( flxai_tools_off() );
 		foreach ( $states as $name => $on ) {
-			$name = flxai_tool_resolve( (string) $name );
+			$name = FLXAI_Cast::str( flxai_tool_resolve( (string) $name ) );
 			if ( ! isset( $known[ $name ] ) ) {
 				return new WP_Error(
 					'flxai_unknown_tool',
