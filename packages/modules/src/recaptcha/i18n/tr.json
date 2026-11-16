@@ -39,7 +39,7 @@
  "Keys": "Anahtarlar",
  "Tested": "Test edildi",
  "Not tested": "Test edilmedi",
- "Get your keys <a href=\"%s\">from the Google reCAPTCHA console</a>: choose the reCAPTCHA type and add your domain. The site key and the secret key must belong to the same entry.": "Anahtarlarınızı <a href=\"%s\">Google reCAPTCHA konsolundan</a> alın: reCAPTCHA türünü seçin ve alan adınızı ekleyin. Site anahtarı ve gizli anahtar aynı kayda ait olmalı.",
+ "Get your keys <a>from the Google reCAPTCHA console</a>: choose the reCAPTCHA type and add your domain. The site key and the secret key must belong to the same entry.": "Anahtarlarınızı <a>Google reCAPTCHA konsolundan</a> alın: reCAPTCHA türünü seçin ve alan adınızı ekleyin. Site anahtarı ve gizli anahtar aynı kayda ait olmalı.",
  "reCAPTCHA type": "reCAPTCHA türü",
  "v3 · Invisible": "v3 · Görünmez",
  "Visitors are never asked anything; Google returns a score from 0 to 1. Recommended.": "Ziyaretçiye hiçbir şey sorulmaz; Google 0–1 arası puan verir. Önerilen.",

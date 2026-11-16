@@ -341,7 +341,7 @@ function Recaptcha() {
               )}
             </div>
             <p className="flxrc-muted">
-              <Linked text={t('Get your keys <a href="%s">from the Google reCAPTCHA console</a>: choose the reCAPTCHA type and add your domain. The site key and the secret key must belong to the same entry.')} href="https://www.google.com/recaptcha/admin/create" external />
+              <Linked text={t('Get your keys <a>from the Google reCAPTCHA console</a>: choose the reCAPTCHA type and add your domain. The site key and the secret key must belong to the same entry.')} href="https://www.google.com/recaptcha/admin/create" external />
             </p>
             <fieldset className="flxrc-choice">
               <legend className="flxrc-sr">{t('reCAPTCHA type')}</legend>
@@ -571,9 +571,9 @@ function Check({ checked, onChange, label, help }: { checked: boolean; onChange:
 
 /** A translated sentence with one <a href="%s">…</a> link. */
 function Linked({ text, href, external = false }: { text: string; href: string; external?: boolean }) {
-  const m = /^(.*)<a href="%s">(.*)<\/a>(.*)$/s.exec(text);
+  const m = /^(.*)<a>(.*)<\/a>(.*)$/s.exec(text);
   // A translation without the link markup is shown as text; React escapes it, nothing is parsed as HTML.
-  if (!m) return <>{text.split('<a href="%s">').join('').split('</a>').join('')}</>;
+  if (!m) return <>{text.split('<a>').join('').split('</a>').join('')}</>;
   return (
     <>
       {m[1]}
