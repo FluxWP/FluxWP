@@ -25,6 +25,7 @@ Paket: <slug>  ·  Model: <Sonnet/Opus>  ·  Dal: gql/<slug>-<n>  ·  Bağımlı
    - Node tipi için FLXGQL_Loader alt sınıfı (can_see).
    - Okuyan resolver flx_gql_cache_tag, yazan servis flx_gql_purge.
    - Ayarlar flx_settings_schema ile (elle tip yok).
+   - Gizli değer write-only girilir (KURALLAR §6); otomatik ayar tipi fail closed kalır.
 
 4. PHP sürümü: Requires PHP: 8.1 ve Requires Plugins: flx-graphql (+ en düşük sürüm notu CHANGELOG'da).
    - Ana dosyada flx-graphql yoksa GraphQL kaydı atlanır, REST çalışmaya devam eder.
