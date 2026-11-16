@@ -97,7 +97,7 @@ final class FLXAN_Telemetry_Service {
 		foreach ( FLXAN_Service::arr( $S['combos'] ?? array() ) as $k => $n ) {
 			$slugs    = '' === (string) $k ? array() : explode( '|', (string) $k );
 			$combos[] = array(
-				'names' => array_values( array_map( static fn( string $s ): string => FLXAN_Service::str( FLXAN_Telemetry_Hub::name( $s ) ), $slugs ) ),
+				'names' => array_map( static fn( string $s ): string => FLXAN_Service::str( FLXAN_Telemetry_Hub::name( $s ) ), $slugs ),
 				'sites' => FLXAN_Service::int( $n ),
 			);
 		}
