@@ -521,7 +521,7 @@ final class FLXP_Speed_Service {
 			)
 		);
 
-		$fmt = static fn( $b ): string => ( null === $b || self::f( $b ) <= 0 ) ? '—' : size_format( (int) self::f( $b ), 1 );
+		$fmt = static fn( $b ): string => ( null === $b || self::f( $b ) <= 0 ) ? '—' : (string) size_format( (int) self::f( $b ), 1 );
 		$du  = self::a( $live['disk_usage'] ?? array() );
 		if ( $du ) {
 			$out[] = self::section(
@@ -533,7 +533,7 @@ final class FLXP_Speed_Service {
 					__( 'Files and folders (inodes)', 'flx-speed' ) => null === ( $du['files'] ?? null ) ? '—' : number_format_i18n( self::i( $du['files'] ) ),
 					__( 'Database', 'flx-speed' )                   => $fmt( $du['db'] ?? null ),
 					__( 'Disk quota', 'flx-speed' )                 => self::f( flxp_settings( 'disk_quota_gb' ) ) > 0 ? $fmt( self::f( flxp_settings( 'disk_quota_gb' ) ) * 1073741824 ) : __( 'Not set (Settings)', 'flx-speed' ),
-					__( 'Last measured', 'flx-speed' )              => self::i( $du['time'] ?? 0 ) > 0 ? flx_time_ago( self::i( $du['time'] ) ) . ( ! empty( $du['running'] ) ? ' · ' . __( 'refreshing', 'flx-speed' ) : '' ) : '—',
+					__( 'Last measured', 'flx-speed' )              => self::i( $du['time'] ?? 0 ) > 0 ? self::s( flx_time_ago( self::i( $du['time'] ) ) ) . ( ! empty( $du['running'] ) ? ' · ' . __( 'refreshing', 'flx-speed' ) : '' ) : '—',
 				)
 			);
 		}
@@ -658,7 +658,7 @@ final class FLXP_Speed_Service {
 		$s  = self::a( $db['status'] ?? array() );
 		$t  = self::a( $db['totals'] ?? array() );
 		$d  = self::a( $db['derived'] ?? array() );
-		$mb = static fn( $bytes ): string => '' === self::s( $bytes ) ? '—' : size_format( (int) self::f( $bytes ), 1 );
+		$mb = static fn( $bytes ): string => '' === self::s( $bytes ) ? '—' : (string) size_format( (int) self::f( $bytes ), 1 );
 
 		$cards = array(
 			array( 'label' => __( 'Data', 'flx-speed' ), 'value' => number_format_i18n( self::f( $t['data_mb'] ?? 0 ), 1 ) . ' MB', 'tone' => 'NONE' ),
