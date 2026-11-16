@@ -360,48 +360,8 @@ final class FLXWK_Admin {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-wiki' ) );
 		}
 		check_admin_referer( 'flxwk_save' );
-		$p   = wp_unslash( $_POST );
-		$tab = sanitize_key( $p['tab'] ?? 'general' );
-		$cur = flxwk_settings();
-		$new = $cur;
-		if ( 'general' === $tab ) {
-			$base = sanitize_title( (string) ( $p['base'] ?? '' ) );
-			$new  = array_merge(
-				$new,
-				array(
-					'enabled'   => empty( $p['enabled'] ) ? 0 : 1,
-					'title'     => sanitize_text_field( $p['title'] ?? '' ),
-					'intro'     => sanitize_textarea_field( $p['intro'] ?? '' ),
-					'base'      => '' === $base ? 'wiki' : $base,
-					'ai_links'  => empty( $p['ai_links'] ) ? 0 : 1,
-					'edit_link' => empty( $p['edit_link'] ) ? 0 : 1,
-				)
-			);
-		} elseif ( 'look' === $tab ) {
-			$new = array_merge(
-				$new,
-				array(
-					'accent' => empty( $p['accent_theme'] ) ? (string) sanitize_hex_color( (string) ( $p['accent'] ?? '' ) ) : '',
-					'width'  => 'wide' === ( $p['width'] ?? '' ) ? 'wide' : 'normal',
-					'nav'    => empty( $p['nav'] ) ? 0 : 1,
-					'toc'    => empty( $p['toc'] ) ? 0 : 1,
-				)
-			);
-		} else {
-			$tab = 'ai';
-			$new = array_merge(
-				$new,
-				array(
-					'ask'       => isset( $p['ask'] ) && in_array( $p['ask'], array( 'off', 'users', 'all' ), true ) ? $p['ask'] : 'users',
-					'ask_limit' => max( 1, min( 500, (int) ( $p['ask_limit'] ?? 20 ) ) ),
-				)
-			);
-		}
-		update_option( 'flxwk_settings', $new );
-		if ( $new['base'] !== $cur['base'] ) {
-			update_option( 'flxwk_flush', 1, true );
-		}
-		flxwk_bump();
+		$p   = wp_unslash( $_POST ); // phpcs:ignore WordPress.Security.NonceVerification, WordPress.Security.ValidatedSanitizedInput -- verified above; the service sanitises every field.
+		$tab = ( new FLXWK_Admin_Service() )->save_tab( sanitize_key( is_string( $p['tab'] ?? null ) ? $p['tab'] : 'general' ), is_array( $p ) ? $p : array() );
 		wp_safe_redirect( add_query_arg( array( 'flxwk_msg' => 'saved', 'tab' => $tab ), flxwk_admin_url() ) );
 		exit;
 	}
@@ -411,7 +371,16 @@ final class FLXWK_Admin {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-wiki' ) );
 		}
 		check_admin_referer( 'flxwk_seed' );
-		set_transient( 'flxwk_seed_stat', flxwk_seed_import( true ), 300 );
+		$r = ( new FLXWK_Admin_Service() )->import_guides();
+		set_transient(
+			'flxwk_seed_stat',
+			array(
+				'created' => $r->created,
+				'updated' => $r->updated,
+				'skipped' => $r->skipped,
+			),
+			300
+		);
 		wp_safe_redirect( add_query_arg( 'flxwk_msg', 'seeded', flxwk_admin_url() ) );
 		exit;
 	}

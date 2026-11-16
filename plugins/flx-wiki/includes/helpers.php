@@ -65,9 +65,14 @@ function flxwk_title() {
 	return '' !== $t ? $t : __( 'Developer Wiki', 'flx-wiki' );
 }
 
+/** Intro shown when the setting is empty. */
+function flxwk_intro_default() {
+	return __( 'Guides for writing FluxWP plugins and themes, AI-enabled features and the shared platform.', 'flx-wiki' );
+}
+
 function flxwk_intro() {
 	$t = trim( (string) flxwk_opt( 'intro' ) );
-	return (string) apply_filters( 'flxwk_intro', '' !== $t ? $t : __( 'Guides for writing FluxWP plugins and themes, AI-enabled features and the shared platform.', 'flx-wiki' ) );
+	return (string) apply_filters( 'flxwk_intro', '' !== $t ? $t : flxwk_intro_default() );
 }
 
 /** Sayfanın Markdown kaynağı. */
@@ -292,3 +297,28 @@ function flxwk_cache_key( $name ) {
 	$lang = function_exists( 'flxl_current_language' ) ? flxl_current_language() : determine_locale();
 	return 'flxwk_' . $name . '_' . md5( $lang . ':' . get_option( 'flxwk_gen', 0 ) );
 }
+
+/**
+ * Settings written (classic page, GraphQL, panel, preset): caches are cleared, and the address rules
+ * are rewritten once when the address base changed.
+ *
+ * @param mixed $old Old value.
+ * @param mixed $new New value.
+ */
+function flxwk_settings_written( $old, $new ) {
+	$old_base = is_array( $old ) && isset( $old['base'] ) ? (string) $old['base'] : 'wiki';
+	$new_base = is_array( $new ) && isset( $new['base'] ) ? (string) $new['base'] : 'wiki';
+	if ( sanitize_title( $old_base ) !== sanitize_title( $new_base ) ) {
+		update_option( 'flxwk_flush', 1, true );
+	}
+	flxwk_bump();
+}
+add_action( 'update_option_flxwk_settings', 'flxwk_settings_written', 10, 2 );
+add_action(
+	'add_option_flxwk_settings',
+	function ( $option, $value ) {
+		flxwk_settings_written( array(), $value );
+	},
+	10,
+	2
+);

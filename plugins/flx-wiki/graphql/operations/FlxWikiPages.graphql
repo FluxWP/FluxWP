@@ -1,0 +1,13 @@
+# The page list of the Wiki screen: filters and a cursor page.
+query FlxWikiPages($first: Int = 20, $after: String, $search: String, $statuses: [FlxWikiPageStatus!], $section: String) {
+  flxWikiPages(first: $first, after: $after, search: $search, statuses: $statuses, section: $section) {
+    nodes {
+      ...FlxWikiPageRow
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    totalCount
+  }
+}

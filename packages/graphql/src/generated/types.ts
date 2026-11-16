@@ -4,6 +4,20 @@
 type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 /** Internal type. DO NOT USE DIRECTLY. */
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+export type FlxSettingsFlxgqlSettingsQueryMode =
+  | 'ADMINS'
+  | 'OPEN'
+  | 'STRICT';
+
+export type FlxSettingsWikiAsk =
+  | 'ALL'
+  | 'OFF'
+  | 'USERS';
+
+export type FlxSettingsWikiWidth =
+  | 'NORMAL'
+  | 'WIDE';
+
 /** What a task row is. */
 export type FlxTaskKind =
   /** An agenda item of a meeting. */
@@ -23,6 +37,17 @@ export type FlxTaskRole =
   | 'EDIT'
   /** See tasks. */
   | 'VIEW';
+
+/** Publishing state of a wiki page. */
+export type FlxWikiPageStatus =
+  /** Draft; only editors see it. */
+  | 'DRAFT'
+  /** Waiting for review. */
+  | 'PENDING'
+  /** Private; only people who may read private pages see it. */
+  | 'PRIVATE'
+  /** Published. */
+  | 'PUBLISH';
 
 /** Input for the flxRoleCreate mutation. */
 export type FlxRoleCreateInput = {
@@ -86,6 +111,64 @@ export type FlxRolesSaveRoleInput = {
   home?: string | null | undefined;
   /** Role key. */
   key: string;
+};
+
+/** Input for the flxSettingsUpdate mutation. */
+export type FlxSettingsUpdateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Flux GraphQL */
+  flxgqlSettings?: FlxSettingsFlxgqlSettingsInput | null | undefined;
+  /** Flux Wiki */
+  wiki?: FlxSettingsWikiInput | null | undefined;
+};
+
+/** Changes to Flux GraphQL. Only the fields you send are changed. */
+export type FlxSettingsFlxgqlSettingsInput = {
+  /** Seconds a public read may be cached by LiteSpeed/CDN (0 = never). */
+  cacheTtl?: number | null | undefined;
+  /** Front-end origins allowed to call /graphql from the browser, one per line (https://www.example.com). */
+  corsOrigins?: string | null | undefined;
+  /** GraphiQL IDE in wp-admin for administrators. */
+  ide?: boolean | null | undefined;
+  /** Public schema introspection (administrators can always introspect). */
+  introspection?: boolean | null | undefined;
+  /** Highest query complexity score allowed (100-20000). */
+  maxComplexity?: number | null | undefined;
+  /** Deepest query nesting allowed (3-50). */
+  maxDepth?: number | null | undefined;
+  /** Most records one page of a list returns (10-100). */
+  maxPage?: number | null | undefined;
+  /** Which GraphQL queries run: strict (only queries shipped by FluxWP packages), admins (administrators may also send any query), open (anyone may send any query). */
+  queryMode?: FlxSettingsFlxgqlSettingsQueryMode | null | undefined;
+};
+
+/** Changes to Flux Wiki. Only the fields you send are changed. */
+export type FlxSettingsWikiInput = {
+  /** Accent colour (#hex); empty = theme colour. */
+  accent?: string | null | undefined;
+  /** Show the Open in ChatGPT / Claude / Perplexity links. */
+  aiLinks?: boolean | null | undefined;
+  /** Who can use Ask the wiki (Flux AI). */
+  ask?: FlxSettingsWikiAsk | null | undefined;
+  /** Questions per person per hour. */
+  askLimit?: number | null | undefined;
+  /** URL base (lowercase, digits, hyphen). */
+  base?: string | null | undefined;
+  /** Show the Edit button to editors. */
+  editLink?: boolean | null | undefined;
+  /** Wiki open to visitors; off = 404 for everyone except editors. */
+  enabled?: boolean | null | undefined;
+  /** Intro on the wiki home, meta description and llms.txt. */
+  intro?: string | null | undefined;
+  /** Left page menu and search. */
+  nav?: boolean | null | undefined;
+  /** Wiki name; empty = Developer Wiki in the visitor language. */
+  title?: string | null | undefined;
+  /** Right-hand contents list (On this page). */
+  toc?: boolean | null | undefined;
+  /** Layout width. */
+  width?: FlxSettingsWikiWidth | null | undefined;
 };
 
 /** Input for the flxTaskCommentCreate mutation. */
@@ -184,6 +267,76 @@ export type FlxTaskWatchInput = {
   id: string;
   /** Follow (true) or stop following (false). */
   watch: boolean;
+};
+
+/** Input for the flxWikiAsk mutation. */
+export type FlxWikiAskInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Page the visitor is reading; its content is used first. */
+  pageId?: number | null | undefined;
+  /** The question (3–1000 characters). */
+  question: string;
+};
+
+/** Input for the flxWikiPageSave mutation. */
+export type FlxWikiPageSaveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Page to update (global ID or database ID); leave out to create a page. */
+  id?: string | null | undefined;
+  /** Page body in Markdown. Do not repeat the title as a heading. [[slug]] links to a wiki page, > [!NOTE] makes a callout. */
+  markdown?: string | null | undefined;
+  /** Sort order inside the parent; lower numbers come first. */
+  menuOrder?: number | null | undefined;
+  /** Parent page; 0 makes it a top-level page. */
+  parentId?: number | null | undefined;
+  /** Section name or short name (created when missing); empty removes the page from its section. Only top-level pages need one. */
+  section?: string | null | undefined;
+  /** Short name used in the address. */
+  slug?: string | null | undefined;
+  /** Publishing state. */
+  status?: FlxWikiPageStatus | null | undefined;
+  /** One-sentence summary used as the search engine description. */
+  summary?: string | null | undefined;
+  /** Page title; required for a new page. */
+  title?: string | null | undefined;
+};
+
+/** Input for the flxWikiPageTrash mutation. */
+export type FlxWikiPageTrashInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Page ID (global ID or database ID). */
+  id: string;
+};
+
+/** Input for the flxWikiPreview mutation. */
+export type FlxWikiPreviewInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Markdown to render. */
+  markdown: string;
+};
+
+/** Input for the flxWikiSectionDelete mutation. */
+export type FlxWikiSectionDeleteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Section ID. */
+  id: number;
+};
+
+/** Input for the flxWikiSectionSave mutation. */
+export type FlxWikiSectionSaveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Section to change; leave out to create one. */
+  id?: number | null | undefined;
+  /** Section name. */
+  name: string;
+  /** Sort order; lower numbers come first. Left as it is when omitted. */
+  order?: number | null | undefined;
 };
 
 export type FlxRoleCreateMutationVariables = Exact<{
@@ -334,3 +487,107 @@ export type FlxViewerQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type FlxViewerQuery = { flxViewer: { loggedIn: boolean, databaseId: number | null, name: string | null, isAdmin: boolean, capabilities: Array<string> } };
+
+export type FlxWikiAskMutationVariables = Exact<{
+  input: FlxWikiAskInput;
+}>;
+
+
+export type FlxWikiAskMutation = { flxWikiAsk: { answer: { answer: string, html: string, sources: Array<{ title: string, url: string }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxWikiGuidesImportMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxWikiGuidesImportMutation = { flxWikiGuidesImport: { result: { created: number, updated: number, skipped: number } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxWikiPageEditQueryVariables = Exact<{
+  id: string;
+}>;
+
+
+export type FlxWikiPageEditQuery = { flxWikiPage: { markdown: string, id: string, databaseId: number, title: string, slug: string, path: string, status: FlxWikiPageStatus, summary: string, excerpt: string, parentId: number | null, menuOrder: number, url: string, markdownUrl: string | null, readMinutes: number, editUrl: string | null, canEdit: boolean, section: { databaseId: number, slug: string, name: string, description: string, order: number, pageCount: number, url: string } | null, modified: { iso: string, label: string, relative: string } | null } | null };
+
+export type FlxWikiPageRowFragment = { id: string, databaseId: number, title: string, slug: string, path: string, status: FlxWikiPageStatus, summary: string, excerpt: string, parentId: number | null, menuOrder: number, url: string, markdownUrl: string | null, readMinutes: number, editUrl: string | null, canEdit: boolean, section: { databaseId: number, slug: string, name: string, description: string, order: number, pageCount: number, url: string } | null, modified: { iso: string, label: string, relative: string } | null };
+
+export type FlxWikiSectionRowFragment = { databaseId: number, slug: string, name: string, description: string, order: number, pageCount: number, url: string };
+
+export type FlxWikiPagesQueryVariables = Exact<{
+  first?: number | null | undefined;
+  after?: string | null | undefined;
+  search?: string | null | undefined;
+  statuses?: Array<FlxWikiPageStatus> | FlxWikiPageStatus | null | undefined;
+  section?: string | null | undefined;
+}>;
+
+
+export type FlxWikiPagesQuery = { flxWikiPages: { totalCount: number | null, nodes: Array<{ id: string, databaseId: number, title: string, slug: string, path: string, status: FlxWikiPageStatus, summary: string, excerpt: string, parentId: number | null, menuOrder: number, url: string, markdownUrl: string | null, readMinutes: number, editUrl: string | null, canEdit: boolean, section: { databaseId: number, slug: string, name: string, description: string, order: number, pageCount: number, url: string } | null, modified: { iso: string, label: string, relative: string } | null }>, pageInfo: { hasNextPage: boolean, endCursor: string | null } } };
+
+export type FlxWikiPageSaveMutationVariables = Exact<{
+  input: FlxWikiPageSaveInput;
+}>;
+
+
+export type FlxWikiPageSaveMutation = { flxWikiPageSave: { page: { markdown: string, id: string, databaseId: number, title: string, slug: string, path: string, status: FlxWikiPageStatus, summary: string, excerpt: string, parentId: number | null, menuOrder: number, url: string, markdownUrl: string | null, readMinutes: number, editUrl: string | null, canEdit: boolean, section: { databaseId: number, slug: string, name: string, description: string, order: number, pageCount: number, url: string } | null, modified: { iso: string, label: string, relative: string } | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxWikiPageTrashMutationVariables = Exact<{
+  input: FlxWikiPageTrashInput;
+}>;
+
+
+export type FlxWikiPageTrashMutation = { flxWikiPageTrash: { trashedId: number | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxWikiPageViewQueryVariables = Exact<{
+  path: string;
+}>;
+
+
+export type FlxWikiPageViewQuery = { flxWikiPage: { html: string, id: string, databaseId: number, title: string, slug: string, path: string, status: FlxWikiPageStatus, summary: string, excerpt: string, parentId: number | null, menuOrder: number, url: string, markdownUrl: string | null, readMinutes: number, editUrl: string | null, canEdit: boolean, section: { databaseId: number, slug: string, name: string, description: string, order: number, pageCount: number, url: string } | null, modified: { iso: string, label: string, relative: string } | null } | null };
+
+export type FlxWikiPreviewMutationVariables = Exact<{
+  input: FlxWikiPreviewInput;
+}>;
+
+
+export type FlxWikiPreviewMutation = { flxWikiPreview: { rendered: { html: string, toc: Array<{ level: number, id: string, text: string }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxWikiScreenQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxWikiScreenQuery = { flxWikiOverview: { homeUrl: string, siteUrl: string, base: string, llmsUrl: string, llmsFullUrl: string, searchApi: string, mcpEnabled: boolean, mcpTools: Array<string>, aiInstalled: boolean, aiReady: boolean, guideCount: number, publishedCount: number, defaultTitle: string, defaultIntro: string, newPageUrl: string }, flxSettings: { wiki: { enabled: boolean | null, title: string | null, intro: string | null, base: string | null, aiLinks: boolean | null, editLink: boolean | null, accent: string | null, width: FlxSettingsWikiWidth | null, nav: boolean | null, toc: boolean | null, ask: FlxSettingsWikiAsk | null, askLimit: number | null } | null }, flxWikiSections: Array<{ databaseId: number, slug: string, name: string, description: string, order: number, pageCount: number, url: string }> };
+
+export type FlxWikiSettingsFieldsFragment = { enabled: boolean | null, title: string | null, intro: string | null, base: string | null, aiLinks: boolean | null, editLink: boolean | null, accent: string | null, width: FlxSettingsWikiWidth | null, nav: boolean | null, toc: boolean | null, ask: FlxSettingsWikiAsk | null, askLimit: number | null };
+
+export type FlxWikiSearchQueryVariables = Exact<{
+  query: string;
+  section?: string | null | undefined;
+  limit?: number | null | undefined;
+}>;
+
+
+export type FlxWikiSearchQuery = { flxWikiSearch: { total: number, fixed: string | null, hits: Array<{ pageId: number, title: string, url: string, section: string, heading: string, snippet: string, score: number }> } };
+
+export type FlxWikiSectionDeleteMutationVariables = Exact<{
+  input: FlxWikiSectionDeleteInput;
+}>;
+
+
+export type FlxWikiSectionDeleteMutation = { flxWikiSectionDelete: { deletedId: number | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxWikiSectionSaveMutationVariables = Exact<{
+  input: FlxWikiSectionSaveInput;
+}>;
+
+
+export type FlxWikiSectionSaveMutation = { flxWikiSectionSave: { section: { databaseId: number, slug: string, name: string, description: string, order: number, pageCount: number, url: string } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxWikiSettingsSaveMutationVariables = Exact<{
+  input: FlxSettingsUpdateInput;
+}>;
+
+
+export type FlxWikiSettingsSaveMutation = { flxSettingsUpdate: { settings: { wiki: { enabled: boolean | null, title: string | null, intro: string | null, base: string | null, aiLinks: boolean | null, editLink: boolean | null, accent: string | null, width: FlxSettingsWikiWidth | null, nav: boolean | null, toc: boolean | null, ask: FlxSettingsWikiAsk | null, askLimit: number | null } | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxWikiTreeQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxWikiTreeQuery = { flxWikiTree: Array<{ section: { databaseId: number, slug: string, name: string, description: string, order: number, pageCount: number, url: string } | null, pages: Array<{ depth: number, page: { databaseId: number, title: string, path: string, excerpt: string, url: string } }> }> };

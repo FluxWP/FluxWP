@@ -22,17 +22,10 @@ add_action(
 					'limit'   => array( 'type' => 'integer', 'default' => 10 ),
 				),
 				'callback'            => function ( WP_REST_Request $r ) {
-					$q = trim( (string) $r['q'] );
-					if ( '' === $q ) {
-						return rest_ensure_response( array( 'total' => 0, 'results' => array() ) );
+					$res = FLXWK_Search_Service::run( (string) $r['q'], (string) $r['section'], (int) $r['limit'] );
+					if ( '' === trim( (string) $r['q'] ) ) {
+						return rest_ensure_response( $res );
 					}
-					$res = flxwk_search(
-						mb_substr( $q, 0, 200 ),
-						array(
-							'limit'   => (int) $r['limit'],
-							'section' => sanitize_title( (string) $r['section'] ),
-						)
-					);
 					$out = new WP_REST_Response( $res );
 					$out->header( 'Cache-Control', 'public, max-age=60' );
 					return $out;
@@ -46,27 +39,24 @@ add_action(
 			array(
 				'methods'             => 'POST',
 				'permission_callback' => function () {
-					return flxwk_can_ask() ? true : new WP_Error( 'flxwk_ask_off', __( 'Log in to ask a question.', 'flx-wiki' ), array( 'status' => 403 ) );
+					return FLXWK_Ask_Service::allowed() ? true : FLXWK_Ask_Service::denied();
 				},
 				'args'                => array(
 					'q'    => array( 'type' => 'string', 'required' => true, 'maxLength' => 1000 ),
 					'page' => array( 'type' => 'integer', 'default' => 0, 'minimum' => 0 ),
 				),
 				'callback'            => function ( WP_REST_Request $r ) {
-					$q = trim( sanitize_textarea_field( (string) $r['q'] ) );
-					if ( mb_strlen( $q ) < 3 ) {
-						return new WP_Error( 'flxwk_short', __( 'The question is too short.', 'flx-wiki' ), array( 'status' => 400 ) );
+					$res = FLXWK_Ask_Service::ask( (string) $r['q'], (int) $r['page'] );
+					if ( is_wp_error( $res ) ) {
+						return $res;
 					}
-					$lock = flxwk_ask_lock();
-					if ( is_wp_error( $lock ) ) { return $lock; }
-					try {
-						$limit = flxwk_rate_hit();
-						if ( is_wp_error( $limit ) ) { return $limit; }
-						$res = flxwk_ask( $q, (int) $r['page'] );
-						return is_wp_error( $res ) ? $res : rest_ensure_response( $res );
-					} finally {
-						delete_option( $lock );
-					}
+					return rest_ensure_response(
+						array(
+							'answer'  => $res->answer,
+							'html'    => $res->html,
+							'sources' => $res->sources,
+						)
+					);
 				},
 			)
 		);
@@ -91,7 +81,7 @@ add_action(
 
 /** Saatlik soru sınırı (kullanıcı ya da IP başına). */
 function flxwk_rate_hit() {
-	$max = max( 1, (int) flxwk_opt( 'ask_limit' ) );
+	$max = max( 1, min( 500, (int) flxwk_opt( 'ask_limit' ) ) );
 	if ( current_user_can( 'manage_options' ) ) {
 		return true;
 	}
