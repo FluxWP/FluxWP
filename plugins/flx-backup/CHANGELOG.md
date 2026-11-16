@@ -4,6 +4,7 @@
 - Yedekler ekranı yenilendi: pano, liste, ayrıntı (boyut dökümü), ayarlar, şimdi yedekle, geri yükle, sil, kilitle, yedek yükle ve çalışan işin ilerlemesi ortak FluxWP ekranında; klasik sayfalarla aynı özellikler, açık/koyu temaya uyar, FluxWP uygulamasında da açılır. wp-admin'de varsayılan budur; eski görünüm sayfadaki "Klasik görünüm" bağlantısıyla açılır (kullanıcı başına hatırlanır).
 - Tüm okuma ve işlemler GraphQL'de (`flxBackups`, `flxBackup`, `flxBackupOverview`, `flxBackupHistory`, `flxBackupSettings`, `flxBackupStart`, `flxBackupRestoreStart`, `flxBackupStep`, `flxBackupCancel`, `flxBackupDelete`, `flxBackupLock`, `flxBackupSettingsSave` …). Yedek ve geri yükleme adım adım sürer: mutation işi başlatır, durum sorguyla okunur. Geri yükleme ve silme en yüksek yetkiyi ister. Belge: docs/flx-backup/GRAPHQL.md.
 - Klasik sayfalar ve REST uçları aynı servis katmanını kullanır; davranış değişmedi. Yedek dosyası indirme ve parçalı yükleme GraphQL dışında kalır.
+- Ekran metinleri eklentinin dil paketlerinden gelir (`tools/i18n.py`).
 - Gereksinim: Flux GraphQL, PHP 8.1, WordPress 6.5.
 
 ## 1.4.10

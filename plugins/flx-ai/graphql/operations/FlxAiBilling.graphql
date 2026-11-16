@@ -1,0 +1,30 @@
+# A billing month with the limits and the OpenRouter credit.
+query FlxAiBilling($month: String) {
+  flxAiBudget {
+    ...FlxAiBudgetRow
+  }
+  flxAiBilling(month: $month) {
+    month
+    csvUrl
+    report {
+      ...FlxAiReportFields
+    }
+    months {
+      month
+      label
+      cost
+      saved
+      calls
+    }
+    credits {
+      checked {
+        timestamp
+        label
+      }
+      usage
+      limit
+      remaining
+      credits
+    }
+  }
+}

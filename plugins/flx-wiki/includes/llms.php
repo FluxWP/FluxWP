@@ -4,6 +4,8 @@
  * /wiki/llms-full.txt (tüm wiki tek dosyada). Flux SEO'nun kök /llms.txt dosyasına "Wiki" bölümü eklenir.
  *
  * @package FLX_Wiki
+ *
+ * @return bool
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -34,7 +36,11 @@ add_action(
 	0
 );
 
-/** Ziyaretçi bu sayfayı okuyabilir mi (yayında, parolasız ya da düzenleme yetkisi). */
+/**
+ * Ziyaretçi bu sayfayı okuyabilir mi (yayında, parolasız ya da düzenleme yetkisi).
+ *
+ * @return bool
+ */
 function flxwk_readable( $post ) {
 	$post = get_post( $post );
 	if ( ! $post || FLXWK_PT !== $post->post_type ) {

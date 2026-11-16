@@ -1,0 +1,10 @@
+query FlxCrmSegmentPreview($match: FlxSegmentMatch, $rules: [FlxSegmentRuleInput!]!) {
+  flxSegmentPreview(match: $match, rules: $rules) {
+    count
+    summary
+    sample {
+      databaseId
+      name
+    }
+  }
+}

@@ -4,6 +4,7 @@
 # Refresh the baseline only when a fix removes entries:
 #   tools/phpstan/vendor/bin/phpstan analyse -c tools/phpstan/legacy.neon --generate-baseline tools/phpstan/legacy-baseline.neon
 includes:
+  - types.neon
   - vendor/szepeviktor/phpstan-wordpress/extension.neon
   - legacy-constants.php
   - legacy-baseline.neon
@@ -31,7 +32,13 @@ parameters:
   excludePaths:
     analyse:
       - ../../plugins/flx-graphql
+      # Strict folders (phpstan.neon, level max). Analysing them here again flags the runtime
+      # guards strict requires as "always true". Still scanned for symbols.
+      - ../../plugins/*/includes/services
+      - ../../plugins/*/includes/graphql
       - ../../plugins/*/includes/flx-brand
+      - ../../themes/*/inc/services
+      - ../../themes/*/inc/graphql
       - ../../themes/*/inc/flx-brand
       - ../../themes/*/includes/flx-brand
       - ../../plugins/*/vendor

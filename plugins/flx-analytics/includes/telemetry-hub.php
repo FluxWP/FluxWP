@@ -310,7 +310,7 @@ class FLXAN_Telemetry_Hub {
 	}
 
 	/** Ülke adı (site dilinde). */
-	private static function cc_name( $cc ) {
+	public static function cc_name( $cc ) {
 		if ( '' === $cc || '?' === $cc ) {
 			return __( 'Unknown', 'flx-analytics' );
 		}
@@ -616,25 +616,14 @@ class FLXAN_Telemetry_Hub {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-analytics' ) );
 		}
 		check_admin_referer( 'flxan_tm_forget' );
-		global $wpdb;
-		$h = isset( $_POST['h'] ) ? sanitize_key( wp_unslash( $_POST['h'] ) ) : '';
-		// phpcs:disable WordPress.DB
-		if ( 'all' === $h ) {
-			$wpdb->query( 'TRUNCATE TABLE ' . self::t( 'errors' ) );
-			$wpdb->query( 'TRUNCATE TABLE ' . self::t( 'esites' ) );
-		} elseif ( preg_match( '/^[a-f0-9]{16}$/', $h ) ) {
-			$wpdb->delete( self::t( 'errors' ), array( 'h' => $h ) );
-			$wpdb->delete( self::t( 'esites' ), array( 'h' => $h ) );
-		}
-		// phpcs:enable
-		delete_transient( 'flxan_tm_sum' );
+		FLXAN_Telemetry_Service::forget( isset( $_POST['h'] ) ? sanitize_key( wp_unslash( $_POST['h'] ) ) : '' );
 		$back = wp_get_referer() ? wp_get_referer() : self::url( array( 'tab' => 'errors' ) );
 		wp_safe_redirect( add_query_arg( 'flxan_tm', 'forgot', $back ) );
 		exit;
 	}
 
 	/** Paket adı: FluxWP Panel kataloğundan (kuruluysa), yoksa slug. */
-	private static function name( $slug ) {
+	public static function name( $slug ) {
 		static $names = null;
 		if ( null === $names ) {
 			$names = array();
@@ -659,7 +648,7 @@ class FLXAN_Telemetry_Hub {
 		return ( $names[ $s ] ?? $s ) . ( $theme ? ' ' . __( '(theme)', 'flx-analytics' ) : '' );
 	}
 
-	private static function step_name( $key ) {
+	public static function step_name( $key ) {
 		$map = array(
 			'intro'      => __( 'Intro', 'flx-analytics' ),
 			'base'       => __( 'Where to start?', 'flx-analytics' ),
@@ -730,6 +719,10 @@ class FLXAN_Telemetry_Hub {
 			wp_die( esc_html__( 'You are not allowed to view this page.', 'flx-analytics' ) );
 		}
 		self::maybe_install();
+		if ( flxan_flux_ui_active() ) {
+			flxan_flux_mount();
+			return;
+		}
 		// phpcs:disable WordPress.Security.NonceVerification
 		$tab   = isset( $_GET['tab'] ) ? sanitize_key( wp_unslash( $_GET['tab'] ) ) : 'overview';
 		$tab   = in_array( $tab, array( 'overview', 'errors', 'onboarding' ), true ) ? $tab : 'overview';
@@ -746,6 +739,7 @@ class FLXAN_Telemetry_Hub {
 		);
 		?>
 		<div class="wrap flxan flxan-tm">
+			<?php flxan_flux_classic_notice(); ?>
 			<style>
 				.flxan-tm .flxan-tabs a{display:inline-block;color:var(--flxan-muted);border-radius:6px;padding:5px 12px;font-size:13px;text-decoration:none}
 				.flxan-tm .flxan-tabs a[aria-current]{background:var(--flxan-card);color:var(--flxan-text);box-shadow:var(--flxan-shadow)}

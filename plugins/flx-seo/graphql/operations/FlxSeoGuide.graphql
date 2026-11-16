@@ -1,0 +1,8 @@
+# New site build guide (Markdown), downloaded from the Settings tab.
+query FlxSeoGuide($lang: FlxSeoGuideLang) {
+  flxSeoGuide(lang: $lang) {
+    lang
+    markdown
+    sections
+  }
+}

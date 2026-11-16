@@ -1,0 +1,10 @@
+mutation FlxThemeMigrate($input: FlxThemeMigrateInput!) {
+  flxThemeMigrate(input: $input) {
+    log
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

@@ -1,0 +1,17 @@
+# One recorded request with the profile the shared request panel draws.
+query FlxSpeedRecord($id: Int!) {
+  flxSpeedRecord(id: $id) {
+    record {
+      ...FlxSpeedRecordRow
+    }
+    data
+    labels
+    panel {
+      slowQueryMs
+      slowMs
+      strings
+      scriptUrl
+      styleUrl
+    }
+  }
+}

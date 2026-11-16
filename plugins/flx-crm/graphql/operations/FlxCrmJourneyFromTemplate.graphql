@@ -1,0 +1,10 @@
+mutation FlxCrmJourneyFromTemplate($input: FlxJourneyFromTemplateInput!) {
+  flxJourneyFromTemplate(input: $input) {
+    journey {
+      ...FlxCrmJourneyRow
+    }
+    errors {
+      ...FlxCrmUserError
+    }
+  }
+}

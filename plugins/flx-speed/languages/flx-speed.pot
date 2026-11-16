@@ -1,7 +1,223 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: en_US\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "View Flux Speed"
+msgstr ""
+
 msgid "Performance"
+msgstr ""
+
+msgid "%1$s needs the %2$s plugin. It is not installed yet."
+msgstr ""
+
+msgid "Install and activate"
+msgstr ""
+
+msgid "Ask an administrator who can install plugins."
+msgstr ""
+
+msgid "%1$s needs the %2$s plugin to be active. It is installed but turned off."
+msgstr ""
+
+msgid "Activate"
+msgstr ""
+
+msgid "Plugin installed and activated."
+msgstr ""
+
+msgid "Plugin activated."
+msgstr ""
+
+msgid "Object cache is now SQLite Object Cache. Run the test below to confirm."
+msgstr ""
+
+msgid "Object cache is now LiteSpeed Cache. Run the test below to confirm."
+msgstr ""
+
+msgid "LiteSpeed Cache was activated. Its object cache setting is finished when this page loads; run the test below."
+msgstr ""
+
+msgid "Object cache turned off."
+msgstr ""
+
+msgid "Object cache repaired."
+msgstr ""
+
+msgid "Page cache turned on and purged."
+msgstr ""
+
+msgid "Page cache turned off and purged."
+msgstr ""
+
+msgid "All caches cleared (LiteSpeed page, CSS/JS and object cache)."
+msgstr ""
+
+msgid "Object cache emptied."
+msgstr ""
+
+msgid "another plugin"
+msgstr ""
+
+msgid "None"
+msgstr ""
+
+msgid "Two layers make the site fast: the page cache serves ready HTML without running PHP, the object cache keeps database results between requests. Only one object cache can run at a time; this screen keeps it that way."
+msgstr ""
+
+msgid "Cache conflict"
+msgstr ""
+
+msgid "Repair"
+msgstr ""
+
+msgid "Page cache"
+msgstr ""
+
+msgid "LiteSpeed web server"
+msgstr ""
+
+msgid "Not detected: LiteSpeed page cache works only on a LiteSpeed server (or through QUIC.cloud)."
+msgstr ""
+
+msgid "LiteSpeed Cache plugin"
+msgstr ""
+
+msgid "version %s"
+msgstr ""
+
+msgid "installed, not active"
+msgstr ""
+
+msgid "not installed"
+msgstr ""
+
+msgid "On"
+msgstr ""
+
+msgid "Off"
+msgstr ""
+
+msgid "Turn off"
+msgstr ""
+
+msgid "Turn on"
+msgstr ""
+
+msgid "Purge all"
+msgstr ""
+
+msgid "LiteSpeed settings"
+msgstr ""
+
+msgid "Logged-in users, cart and checkout are not cached by LiteSpeed by default. Purge after changing the theme or menus."
+msgstr ""
+
+msgid "Object cache"
+msgstr ""
+
+msgid "In use:"
+msgstr ""
+
+msgid "Persistent"
+msgstr ""
+
+msgid "Not persistent"
+msgstr ""
+
+msgid "Test"
+msgstr ""
+
+msgid "Empty object cache"
+msgstr ""
+
+msgid "Turn object cache off"
+msgstr ""
+
+msgid "Turn the object cache off? The site keeps working, only slower on database-heavy pages."
+msgstr ""
+
+msgid "Test: writes a value in this request and reads it in a separate request. Only then is the cache really shared between visitors."
+msgstr ""
+
+msgid "Last test (%1$s) could not finish: %2$s"
+msgstr ""
+
+msgid "Last test (%1$s): works, %2$s keeps values between requests. 100 writes + 100 reads took %3$s ms."
+msgstr ""
+
+msgid "Last test (%s): values are lost after the request ends, so there is no persistent object cache."
+msgstr ""
+
+msgid "In use"
+msgstr ""
+
+msgid "Recommended here"
+msgstr ""
+
+msgid "Keeps the cache in a SQLite file in wp-content. Needs no extra service, so it fits shared hosting without Redis/Memcached."
+msgstr ""
+
+msgid "PHP sqlite3 extension"
+msgstr ""
+
+msgid "required; enable it in the hosting PHP settings"
+msgstr ""
+
+msgid "PHP igbinary extension"
+msgstr ""
+
+msgid "optional, makes it smaller and faster"
+msgstr ""
+
+msgid "SQLite Object Cache plugin"
+msgstr ""
+
+msgid "not installed, installed from wordpress.org with one click"
+msgstr ""
+
+msgid "Cache file %1$s, %2$s."
+msgstr ""
+
+msgid "Plugin settings"
+msgstr ""
+
+msgid "Cannot be used on this server without the sqlite3 extension."
+msgstr ""
+
+msgid "Use SQLite Object Cache"
+msgstr ""
+
+msgid "Install and use SQLite Object Cache"
+msgstr ""
+
+msgid "The current object cache is turned off and SQLite Object Cache takes over. Continue?"
+msgstr ""
+
+msgid "LiteSpeed Cache + Memcached"
+msgstr ""
+
+msgid "LiteSpeed Cache's own object cache, kept in Memcached memory. On Hostinger, Memcached is switched on per site in hPanel."
+msgstr ""
+
+msgid "Memcached PHP extension"
+msgstr ""
+
+msgid "missing; Redis is used instead"
+msgstr ""
+
+msgid "missing; on Hostinger: hPanel › Advanced › PHP Configuration › Memcached"
+msgstr ""
+
+msgid "Enable Memcached for this site in the hosting panel first; this option unlocks afterwards."
+msgstr ""
+
+msgid "Use LiteSpeed object cache"
+msgstr ""
+
+msgid "Install LiteSpeed Cache and use it"
+msgstr ""
+
+msgid "The current object cache is turned off and LiteSpeed Cache takes over. Continue?"
 msgstr ""
 
 msgid "Safe"
@@ -76,10 +292,19 @@ msgstr ""
 msgid "For theme and plugin scripts, the .min sibling is used if it is newer than the source; otherwise a copy without comments and indentation is generated (line breaks are kept). Bundles that load chunks relative to their own location and scripts with translations are left alone."
 msgstr ""
 
+msgid "jQuery stays blocking unless \"Defer jQuery too\" is on. WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on."
+msgstr ""
+
 msgid "Defer head scripts"
 msgstr ""
 
 msgid "Scripts loaded in the page <head> that hold up rendering get defer (e.g. language suggestion, analytics scripts)."
+msgstr ""
+
+msgid "Defer jQuery too"
+msgstr ""
+
+msgid "jQuery and jQuery Migrate get defer as well. WordPress keeps them blocking when a blocking script depends on them, and Flux Speed keeps them blocking on pages with an inline script that calls jQuery or $ directly."
 msgstr ""
 
 msgid "Fonts"
@@ -475,12 +700,6 @@ msgstr ""
 msgid "Extensions"
 msgstr ""
 
-msgid "On"
-msgstr ""
-
-msgid "Off"
-msgstr ""
-
 msgid "Hit rate"
 msgstr ""
 
@@ -496,13 +715,7 @@ msgstr ""
 msgid "No data (disabled or not allowed by the server)."
 msgstr ""
 
-msgid "Object cache"
-msgstr ""
-
 msgid "External"
-msgstr ""
-
-msgid "None"
 msgstr ""
 
 msgid "Page cache (WP_CACHE)"
@@ -805,6 +1018,78 @@ msgstr ""
 msgid "If you forget the address or login won't open: add the line below to wp-config.php using your file manager (Hostinger hPanel › File Manager). Login goes back to wp-login.php; once you're in, fix the address here and remove the line."
 msgstr ""
 
+msgid "Two object caches are on at the same time: LiteSpeed Cache object cache and SQLite Object Cache. Only one can own object-cache.php; choose one below."
+msgstr ""
+
+msgid "SQLite Object Cache is active but object-cache.php belongs to another plugin, so SQLite is not used. Switch to SQLite below to fix it."
+msgstr ""
+
+msgid "SQLite Object Cache is active but object-cache.php is missing, so nothing is cached. Use \"Repair\" to recreate it."
+msgstr ""
+
+msgid "LiteSpeed Cache object cache is on but object-cache.php belongs to another plugin. Turn one of them off."
+msgstr ""
+
+msgid "LiteSpeed Cache object cache is set to Redis but the server has no Redis PHP extension; WordPress silently falls back to no persistent cache."
+msgstr ""
+
+msgid "LiteSpeed Cache object cache is set to Memcached but the Memcached PHP extension is missing. On Hostinger enable it in hPanel (Advanced › PHP Configuration › Memcached), or use SQLite Object Cache instead."
+msgstr ""
+
+msgid "object-cache.php from SQLite Object Cache is still in wp-content although the plugin is not active. Repair removes it or turns the plugin back on."
+msgstr ""
+
+msgid "Another page cache plugin (%s) is installed next to LiteSpeed Cache (advanced-cache.php). Two page caches serve stale pages; keep only LiteSpeed Cache."
+msgstr ""
+
+msgid "You are not allowed to install plugins."
+msgstr ""
+
+msgid "Plugin installs are disabled on this site (DISALLOW_FILE_MODS). Install it from your hosting panel."
+msgstr ""
+
+msgid "The plugin could not be written to disk (file permissions or FTP credentials). Install it from Plugins › Add New."
+msgstr ""
+
+msgid "You are not allowed to activate plugins."
+msgstr ""
+
+msgid "The plugin is not installed."
+msgstr ""
+
+msgid "LiteSpeed Cache is not active."
+msgstr ""
+
+msgid "The PHP sqlite3 extension is missing. Enable it in your hosting PHP settings first."
+msgstr ""
+
+msgid "object-cache.php belongs to another plugin (%s). Turn that plugin's object cache off first."
+msgstr ""
+
+msgid "SQLite Object Cache is active but it did not write object-cache.php (wp-content may not be writable). Open Settings › Object Cache to finish."
+msgstr ""
+
+msgid "There is no Memcached or Redis PHP extension. On Hostinger enable Memcached in hPanel first, then try again."
+msgstr ""
+
+msgid "The setting was saved but LiteSpeed Cache did not write object-cache.php yet. Open LiteSpeed Cache › Cache › Object and press Save once."
+msgstr ""
+
+msgid "The test request returned HTTP %d."
+msgstr ""
+
+msgid "Persistent object cache is on (%s)."
+msgstr ""
+
+msgid "No persistent object cache: every request reads options and queries from the database again. Turn one on from Performance › Cache."
+msgstr ""
+
+msgid "The server is LiteSpeed but the LiteSpeed Cache page cache is off."
+msgstr ""
+
+msgid "The server is LiteSpeed but the LiteSpeed Cache plugin is not active, so pages are not cached."
+msgstr ""
+
 msgid "Deprecated since %1$s. Use instead: %2$s"
 msgstr ""
 
@@ -883,360 +1168,6 @@ msgstr ""
 msgid "Details"
 msgstr ""
 
-msgid "The login URL must be 3-40 characters; use only lowercase letters (a-z), digits, hyphens and underscores."
-msgstr ""
-
-msgid "WordPress already uses this address; pick another name."
-msgstr ""
-
-msgid "A page or post already uses this address; pick another name."
-msgstr ""
-
-msgid "The login URL has changed. Bookmark this page and log in again."
-msgstr ""
-
-msgid "Performance summary"
-msgstr ""
-
-msgid "List recorded requests"
-msgstr ""
-
-msgid "Record details"
-msgstr ""
-
-msgid "Outgoing HTTP requests"
-msgstr ""
-
-msgid "Server and WordPress environment"
-msgstr ""
-
-msgid "Server status"
-msgstr ""
-
-msgid "Database status"
-msgstr ""
-
-msgid "Flux Speed: remove unused CSS and inline it"
-msgstr ""
-
-msgid "Drops theme CSS rules the page does not use and writes the rest into <head>, removing the render-blocking CSS request. Check a few pages first; if something breaks, turn it off or add the class to the keep list."
-msgstr ""
-
-msgid "Flux Speed: minify CSS and JS files"
-msgstr ""
-
-msgid "Unminified theme and plugin CSS/JS files are served from an up-to-date .min version or a generated copy."
-msgstr ""
-
-msgid "Flux Speed: defer head scripts"
-msgstr ""
-
-msgid "Blocking scripts at the top of the page are loaded with defer. jQuery and excluded scripts are left alone."
-msgstr ""
-
-msgid "Flux Speed: remove the zoom lock"
-msgstr ""
-
-msgid "user-scalable=no and maximum-scale are removed from the viewport tag."
-msgstr ""
-
-msgid "Flux Speed: optimize fonts"
-msgstr ""
-
-msgid "theme.json fonts not used on the page are removed and the above-the-fold font is preloaded."
-msgstr ""
-
-msgid "Flux Speed: remove the emoji script"
-msgstr ""
-
-msgid "WordPress's emoji detection script and style are not loaded; modern browsers render emoji themselves."
-msgstr ""
-
-msgid "Unknown fix."
-msgstr ""
-
-msgid "Flux Speed › PageSpeed lists which animation in which file is the problem."
-msgstr ""
-
-msgid "The matching Flux Speed setting is on; clear the cache (LiteSpeed Purge All) and measure again. Whatever remains is up to the theme/preset."
-msgstr ""
-
-msgid "Turned on. The page cache was cleared; run the site audit or PageSpeed test again."
-msgstr ""
-
-msgid "Animations (GPU)"
-msgstr ""
-
-msgid "Animation not running on the GPU: %s. Should be rewritten with transform/opacity (theme/preset)."
-msgstr ""
-
-msgid "Animations in the CSS files seen use transform/opacity."
-msgstr ""
-
-msgid "PageSpeed"
-msgstr ""
-
-msgid "PageSpeed cache"
-msgstr ""
-
-msgid "uploads/flx-speed is writable."
-msgstr ""
-
-msgid "The uploads/flx-speed folder is not writable: CSS trimming and minifying will not work, pages load the original files."
-msgstr ""
-
-msgid "Expired transients"
-msgstr ""
-
-msgid "Auto-drafts older than 7 days"
-msgstr ""
-
-msgid "Spam comments"
-msgstr ""
-
-msgid "Trashed comments"
-msgstr ""
-
-msgid "Reclaim free space (OPTIMIZE)"
-msgstr ""
-
-msgid "Unknown cleanup job."
-msgstr ""
-
-msgid "Slow"
-msgstr ""
-
-msgid "PHP error"
-msgstr ""
-
-msgid "Fatal error"
-msgstr ""
-
-msgid "Server error (5xx)"
-msgstr ""
-
-msgid "Failed HTTP call"
-msgstr ""
-
-msgid "Slow query"
-msgstr ""
-
-msgid "Query error"
-msgstr ""
-
-msgid "Error log"
-msgstr ""
-
-msgid "Sample"
-msgstr ""
-
-msgid "Profile"
-msgstr ""
-
-msgid "Front end"
-msgstr ""
-
-msgid "Admin"
-msgstr ""
-
-msgid "Only URLs on this site can be profiled."
-msgstr ""
-
-msgid "The records table is not installed."
-msgstr ""
-
-msgid "The page loaded but no record was created. It may have been served from cache, or Flux Performance did not load on that request."
-msgstr ""
-
-msgid "Records table"
-msgstr ""
-
-msgid "The table is not installed. Deactivate and reactivate the plugin."
-msgstr ""
-
-msgid "Request recording"
-msgstr ""
-
-msgid "On: %1$d%% of requests are sampled; requests over %2$d ms and failing requests are recorded."
-msgstr ""
-
-msgid "Off: only the live panel works; AI cannot read history."
-msgstr ""
-
-msgid "Failing requests in the last 24 hours"
-msgstr ""
-
-msgid "%1$d requests with PHP/server errors, %2$d fatal. See Records."
-msgstr ""
-
-msgid "No recorded errors."
-msgstr ""
-
-msgid "Slow requests in the last 24 hours"
-msgstr ""
-
-msgid "%1$d requests exceeded %2$d ms."
-msgstr ""
-
-msgid "%d recorded requests had external service errors in the last 24 hours."
-msgstr ""
-
-msgid "No recorded external service errors."
-msgstr ""
-
-msgid "SAVEQUERIES is on in wp-config.php: every request keeps all queries in memory. Flux Performance turns it on itself when needed; remove it from wp-config."
-msgstr ""
-
-msgid "AI tools (flxp_*)"
-msgstr ""
-
-msgid "MCP and Flux AI chat can read the records."
-msgstr ""
-
-msgid "Flux AI & MCP is not active or MCP is off; tools are not visible."
-msgstr ""
-
-msgid "%1$d KB (%2$d options) is loaded on every request."
-msgstr ""
-
-msgid "Under 800 KB is recommended; check the largest rows."
-msgstr ""
-
-msgid "Last run %s."
-msgstr ""
-
-msgid "Cron has not been seen running yet."
-msgstr ""
-
-msgid "%d events overdue."
-msgstr ""
-
-msgid "Scheduled events are running"
-msgstr ""
-
-msgid "Disk space"
-msgstr ""
-
-msgid "%1$d%% used, %2$s free."
-msgstr ""
-
-msgid "(account usage / quota from Settings)"
-msgstr ""
-
-msgid "%1$d%% of the account CPU limit in use (%2$s cores)."
-msgstr ""
-
-msgid "%1$d%% over the last minute (%2$d cores)."
-msgstr ""
-
-msgid "On: compiled PHP files are kept in memory."
-msgstr ""
-
-msgid "Looks enabled but its status cannot be read (restricted by the server)."
-msgstr ""
-
-msgid "Off: PHP files are compiled again on every request. Turn it on in Hostinger › PHP configuration."
-msgstr ""
-
-msgid "%d expired transients are still in the table."
-msgstr ""
-
-msgid "None."
-msgstr ""
-
-msgid "Delete expired transients"
-msgstr ""
-
-msgid "%d transients deleted."
-msgstr ""
-
-msgid "Each line shows something the site needs and whether it is in place. Fix the errors first; warnings are worth a look."
-msgstr ""
-
-msgid "OK"
-msgstr ""
-
-msgid "Warning"
-msgstr ""
-
-msgid "Info"
-msgstr ""
-
-msgid "%1$d OK · %2$d warnings · %3$d errors"
-msgstr ""
-
-msgid "Check again"
-msgstr ""
-
-msgid "Show only these (click again to show all)"
-msgstr ""
-
-msgid "Checked: %s"
-msgstr ""
-
-msgid "Check"
-msgstr ""
-
-msgid "Source"
-msgstr ""
-
-msgid "Action"
-msgstr ""
-
-msgid "No checks are registered."
-msgstr ""
-
-msgid "System check found %d problem(s) that can stop donations or automations."
-msgstr ""
-
-msgid "Open system check"
-msgstr ""
-
-msgid "Hide until the next update"
-msgstr ""
-
-msgid "System: %d error(s)"
-msgstr ""
-
-msgid "This check could not run: %s"
-msgstr ""
-
-msgid "Scheduled tasks (cron)"
-msgstr ""
-
-msgid "Payments"
-msgstr ""
-
-msgid "Plugins"
-msgstr ""
-
-msgid "E-mail"
-msgstr ""
-
-msgid "Security"
-msgstr ""
-
-msgid "Forms"
-msgstr ""
-
-msgid "Other"
-msgstr ""
-
-msgid "Plugin: %s"
-msgstr ""
-
-msgid "MU plugin: %s"
-msgstr ""
-
-msgid "Theme: %s"
-msgstr ""
-
-msgid "Drop-in: %s"
-msgstr ""
-
-msgid "WordPress core"
-msgstr ""
-
 msgid "Search…"
 msgstr ""
 
@@ -1252,10 +1183,19 @@ msgstr ""
 msgid "Fatal"
 msgstr ""
 
+msgid "Warning"
+msgstr ""
+
 msgid "Notice"
 msgstr ""
 
 msgid "Deprecated"
+msgstr ""
+
+msgid "Front end"
+msgstr ""
+
+msgid "Admin"
 msgstr ""
 
 msgid "Overview"
@@ -1292,6 +1232,9 @@ msgid "Transient updates"
 msgstr ""
 
 msgid "Hooks"
+msgstr ""
+
+msgid "Slow"
 msgstr ""
 
 msgid "Peak memory"
@@ -1414,6 +1357,9 @@ msgstr ""
 msgid "Styles"
 msgstr ""
 
+msgid "Source"
+msgstr ""
+
 msgid "Dependencies"
 msgstr ""
 
@@ -1456,332 +1402,1388 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-msgid "24 hours"
+msgid "The login URL must be 3-40 characters; use only lowercase letters (a-z), digits, hyphens and underscores."
 msgstr ""
 
-msgid "7 days"
+msgid "WordPress already uses this address; pick another name."
 msgstr ""
 
-msgid "No matching requests in this range."
+msgid "A page or post already uses this address; pick another name."
 msgstr ""
 
-msgid "HTTP"
+msgid "The login URL has changed. Bookmark this page and log in again."
 msgstr ""
 
-msgid "No records"
+msgid "Performance summary"
 msgstr ""
 
-msgid "Critical"
+msgid "List recorded requests"
 msgstr ""
 
-msgid "PHP notices"
+msgid "Record details"
 msgstr ""
 
-msgid "Open in panel"
+msgid "Outgoing HTTP requests"
 msgstr ""
 
-msgid "Query time"
+msgid "Server and WordPress environment"
 msgstr ""
 
-msgid "Only slow, failed and sampled PHP requests are recorded. Pages served from cache are not in these numbers."
+msgid "Server status"
 msgstr ""
 
-msgid "Slow requests"
-msgstr ""
-
-msgid "Load"
-msgstr ""
-
-msgid "p95"
-msgstr ""
-
-msgid "Flag"
-msgstr ""
-
-msgid "Site performance in one place: per-request queries, PHP errors, external HTTP requests (developer panel), slow/erroneous request logs, server (CPU, RAM, disk, OPcache), database, autoload, cron and System Check. AI reads them all with Flux AI & MCP / Flux AI tools."
-msgstr ""
-
-msgid "Two object caches are on at the same time: LiteSpeed Cache object cache and SQLite Object Cache. Only one can own object-cache.php; choose one below."
-msgstr ""
-
-msgid "SQLite Object Cache is active but object-cache.php belongs to another plugin, so SQLite is not used. Switch to SQLite below to fix it."
-msgstr ""
-
-msgid "SQLite Object Cache is active but object-cache.php is missing, so nothing is cached. Use \"Repair\" to recreate it."
-msgstr ""
-
-msgid "LiteSpeed Cache object cache is on but object-cache.php belongs to another plugin. Turn one of them off."
-msgstr ""
-
-msgid "LiteSpeed Cache object cache is set to Redis but the server has no Redis PHP extension; WordPress silently falls back to no persistent cache."
-msgstr ""
-
-msgid "LiteSpeed Cache object cache is set to Memcached but the Memcached PHP extension is missing. On Hostinger enable it in hPanel (Advanced › PHP Configuration › Memcached), or use SQLite Object Cache instead."
-msgstr ""
-
-msgid "object-cache.php from SQLite Object Cache is still in wp-content although the plugin is not active. Repair removes it or turns the plugin back on."
-msgstr ""
-
-msgid "Another page cache plugin (%s) is installed next to LiteSpeed Cache (advanced-cache.php). Two page caches serve stale pages; keep only LiteSpeed Cache."
-msgstr ""
-
-msgid "You are not allowed to install plugins."
-msgstr ""
-
-msgid "Plugin installs are disabled on this site (DISALLOW_FILE_MODS). Install it from your hosting panel."
-msgstr ""
-
-msgid "The plugin could not be written to disk (file permissions or FTP credentials). Install it from Plugins › Add New."
-msgstr ""
-
-msgid "You are not allowed to activate plugins."
-msgstr ""
-
-msgid "The plugin is not installed."
-msgstr ""
-
-msgid "LiteSpeed Cache is not active."
-msgstr ""
-
-msgid "The PHP sqlite3 extension is missing. Enable it in your hosting PHP settings first."
-msgstr ""
-
-msgid "object-cache.php belongs to another plugin (%s). Turn that plugin's object cache off first."
-msgstr ""
-
-msgid "SQLite Object Cache is active but it did not write object-cache.php (wp-content may not be writable). Open Settings › Object Cache to finish."
-msgstr ""
-
-msgid "There is no Memcached or Redis PHP extension. On Hostinger enable Memcached in hPanel first, then try again."
-msgstr ""
-
-msgid "The setting was saved but LiteSpeed Cache did not write object-cache.php yet. Open LiteSpeed Cache › Cache › Object and press Save once."
-msgstr ""
-
-msgid "The test request returned HTTP %d."
-msgstr ""
-
-msgid "Cache conflict"
-msgstr ""
-
-msgid "Persistent object cache is on (%s)."
-msgstr ""
-
-msgid "No persistent object cache: every request reads options and queries from the database again. Turn one on from Performance › Cache."
-msgstr ""
-
-msgid "Page cache"
-msgstr ""
-
-msgid "The server is LiteSpeed but the LiteSpeed Cache page cache is off."
-msgstr ""
-
-msgid "The server is LiteSpeed but the LiteSpeed Cache plugin is not active, so pages are not cached."
-msgstr ""
-
-msgid "Install and activate"
-msgstr ""
-
-msgid "Ask an administrator who can install plugins."
-msgstr ""
-
-msgid "Activate"
-msgstr ""
-
-msgid "Plugin installed and activated."
-msgstr ""
-
-msgid "Plugin activated."
-msgstr ""
-
-msgid "Object cache is now SQLite Object Cache. Run the test below to confirm."
-msgstr ""
-
-msgid "Object cache is now LiteSpeed Cache. Run the test below to confirm."
-msgstr ""
-
-msgid "LiteSpeed Cache was activated. Its object cache setting is finished when this page loads; run the test below."
-msgstr ""
-
-msgid "Object cache turned off."
-msgstr ""
-
-msgid "Object cache repaired."
-msgstr ""
-
-msgid "Page cache turned on and purged."
-msgstr ""
-
-msgid "Page cache turned off and purged."
-msgstr ""
-
-msgid "All caches cleared (LiteSpeed page, CSS/JS and object cache)."
-msgstr ""
-
-msgid "Object cache emptied."
-msgstr ""
-
-msgid "another plugin"
-msgstr ""
-
-msgid "Two layers make the site fast: the page cache serves ready HTML without running PHP, the object cache keeps database results between requests. Only one object cache can run at a time; this screen keeps it that way."
-msgstr ""
-
-msgid "Repair"
-msgstr ""
-
-msgid "LiteSpeed web server"
-msgstr ""
-
-msgid "Not detected: LiteSpeed page cache works only on a LiteSpeed server (or through QUIC.cloud)."
-msgstr ""
-
-msgid "LiteSpeed Cache plugin"
-msgstr ""
-
-msgid "version %s"
-msgstr ""
-
-msgid "installed, not active"
-msgstr ""
-
-msgid "not installed"
-msgstr ""
-
-msgid "Turn off"
-msgstr ""
-
-msgid "Turn on"
-msgstr ""
-
-msgid "Purge all"
-msgstr ""
-
-msgid "LiteSpeed settings"
-msgstr ""
-
-msgid "Logged-in users, cart and checkout are not cached by LiteSpeed by default. Purge after changing the theme or menus."
-msgstr ""
-
-msgid "In use:"
-msgstr ""
-
-msgid "Persistent"
-msgstr ""
-
-msgid "Not persistent"
-msgstr ""
-
-msgid "Test"
-msgstr ""
-
-msgid "Empty object cache"
-msgstr ""
-
-msgid "Turn object cache off"
-msgstr ""
-
-msgid "Turn the object cache off? The site keeps working, only slower on database-heavy pages."
-msgstr ""
-
-msgid "Test: writes a value in this request and reads it in a separate request. Only then is the cache really shared between visitors."
-msgstr ""
-
-msgid "Last test (%1$s) could not finish: %2$s"
-msgstr ""
-
-msgid "Last test (%1$s): works, %2$s keeps values between requests. 100 writes + 100 reads took %3$s ms."
-msgstr ""
-
-msgid "Last test (%s): values are lost after the request ends, so there is no persistent object cache."
-msgstr ""
-
-msgid "In use"
-msgstr ""
-
-msgid "Recommended here"
-msgstr ""
-
-msgid "Keeps the cache in a SQLite file in wp-content. Needs no extra service, so it fits shared hosting without Redis/Memcached."
-msgstr ""
-
-msgid "PHP sqlite3 extension"
-msgstr ""
-
-msgid "required; enable it in the hosting PHP settings"
-msgstr ""
-
-msgid "PHP igbinary extension"
-msgstr ""
-
-msgid "optional, makes it smaller and faster"
-msgstr ""
-
-msgid "SQLite Object Cache plugin"
-msgstr ""
-
-msgid "not installed, installed from wordpress.org with one click"
-msgstr ""
-
-msgid "Cache file %1$s, %2$s."
-msgstr ""
-
-msgid "Plugin settings"
-msgstr ""
-
-msgid "Cannot be used on this server without the sqlite3 extension."
-msgstr ""
-
-msgid "Use SQLite Object Cache"
-msgstr ""
-
-msgid "Install and use SQLite Object Cache"
-msgstr ""
-
-msgid "The current object cache is turned off and SQLite Object Cache takes over. Continue?"
-msgstr ""
-
-msgid "LiteSpeed Cache + Memcached"
-msgstr ""
-
-msgid "LiteSpeed Cache's own object cache, kept in Memcached memory. On Hostinger, Memcached is switched on per site in hPanel."
-msgstr ""
-
-msgid "Memcached PHP extension"
-msgstr ""
-
-msgid "missing; Redis is used instead"
-msgstr ""
-
-msgid "missing; on Hostinger: hPanel › Advanced › PHP Configuration › Memcached"
-msgstr ""
-
-msgid "Enable Memcached for this site in the hosting panel first; this option unlocks afterwards."
-msgstr ""
-
-msgid "Use LiteSpeed object cache"
-msgstr ""
-
-msgid "Install LiteSpeed Cache and use it"
-msgstr ""
-
-msgid "The current object cache is turned off and LiteSpeed Cache takes over. Continue?"
+msgid "Database status"
 msgstr ""
 
 msgid "Cache status"
 msgstr ""
 
-msgid "%1$s needs the %2$s plugin. It is not installed yet."
+msgid "Flux Speed: remove unused CSS and inline it"
 msgstr ""
 
-msgid "%1$s needs the %2$s plugin to be active. It is installed but turned off."
+msgid "Drops theme CSS rules the page does not use and writes the rest into <head>, removing the render-blocking CSS request. Check a few pages first; if something breaks, turn it off or add the class to the keep list."
 msgstr ""
 
-msgid "jQuery stays blocking unless \"Defer jQuery too\" is on. WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on."
+msgid "Flux Speed: minify CSS and JS files"
 msgstr ""
 
-msgid "Defer jQuery too"
+msgid "Unminified theme and plugin CSS/JS files are served from an up-to-date .min version or a generated copy."
 msgstr ""
 
-msgid "jQuery and jQuery Migrate get defer as well. WordPress keeps them blocking when a blocking script depends on them, and Flux Speed keeps them blocking on pages with an inline script that calls jQuery or $ directly."
+msgid "Flux Speed: defer head scripts"
+msgstr ""
+
+msgid "Blocking scripts at the top of the page are loaded with defer. jQuery and excluded scripts are left alone."
+msgstr ""
+
+msgid "Flux Speed: remove the zoom lock"
+msgstr ""
+
+msgid "user-scalable=no and maximum-scale are removed from the viewport tag."
+msgstr ""
+
+msgid "Flux Speed: optimize fonts"
+msgstr ""
+
+msgid "theme.json fonts not used on the page are removed and the above-the-fold font is preloaded."
+msgstr ""
+
+msgid "Flux Speed: remove the emoji script"
+msgstr ""
+
+msgid "WordPress's emoji detection script and style are not loaded; modern browsers render emoji themselves."
+msgstr ""
+
+msgid "Unknown fix."
+msgstr ""
+
+msgid "Flux Speed › PageSpeed lists which animation in which file is the problem."
+msgstr ""
+
+msgid "The matching Flux Speed setting is on; clear the cache (LiteSpeed Purge All) and measure again. Whatever remains is up to the theme/preset."
+msgstr ""
+
+msgid "Turned on. The page cache was cleared; run the site audit or PageSpeed test again."
+msgstr ""
+
+msgid "Animations (GPU)"
+msgstr ""
+
+msgid "Animation not running on the GPU: %s. Should be rewritten with transform/opacity (theme/preset)."
+msgstr ""
+
+msgid "Animations in the CSS files seen use transform/opacity."
+msgstr ""
+
+msgid "PageSpeed"
+msgstr ""
+
+msgid "PageSpeed cache"
+msgstr ""
+
+msgid "uploads/flx-speed is writable."
+msgstr ""
+
+msgid "The uploads/flx-speed folder is not writable: CSS trimming and minifying will not work, pages load the original files."
+msgstr ""
+
+msgid "Expired transients"
+msgstr ""
+
+msgid "Auto-drafts older than 7 days"
+msgstr ""
+
+msgid "Spam comments"
+msgstr ""
+
+msgid "Trashed comments"
+msgstr ""
+
+msgid "Reclaim free space (OPTIMIZE)"
+msgstr ""
+
+msgid "Unknown cleanup job."
+msgstr ""
+
+msgid "PHP error"
+msgstr ""
+
+msgid "Fatal error"
+msgstr ""
+
+msgid "Server error (5xx)"
+msgstr ""
+
+msgid "Failed HTTP call"
+msgstr ""
+
+msgid "Slow query"
+msgstr ""
+
+msgid "Query error"
+msgstr ""
+
+msgid "Error log"
+msgstr ""
+
+msgid "Sample"
+msgstr ""
+
+msgid "Profile"
+msgstr ""
+
+msgid "Only URLs on this site can be profiled."
+msgstr ""
+
+msgid "The records table is not installed."
+msgstr ""
+
+msgid "The page loaded but no record was created. It may have been served from cache, or Flux Performance did not load on that request."
+msgstr ""
+
+msgid "Records table"
+msgstr ""
+
+msgid "The table is not installed. Deactivate and reactivate the plugin."
+msgstr ""
+
+msgid "Request recording"
+msgstr ""
+
+msgid "On: %1$d%% of requests are sampled; requests over %2$d ms and failing requests are recorded."
+msgstr ""
+
+msgid "Off: only the live panel works; AI cannot read history."
+msgstr ""
+
+msgid "Failing requests in the last 24 hours"
+msgstr ""
+
+msgid "%1$d requests with PHP/server errors, %2$d fatal. See Records."
+msgstr ""
+
+msgid "No recorded errors."
+msgstr ""
+
+msgid "Slow requests in the last 24 hours"
+msgstr ""
+
+msgid "%1$d requests exceeded %2$d ms."
+msgstr ""
+
+msgid "%d recorded requests had external service errors in the last 24 hours."
+msgstr ""
+
+msgid "No recorded external service errors."
+msgstr ""
+
+msgid "SAVEQUERIES is on in wp-config.php: every request keeps all queries in memory. Flux Performance turns it on itself when needed; remove it from wp-config."
+msgstr ""
+
+msgid "AI tools (flxp_*)"
+msgstr ""
+
+msgid "MCP and Flux AI chat can read the records."
+msgstr ""
+
+msgid "Flux AI & MCP is not active or MCP is off; tools are not visible."
+msgstr ""
+
+msgid "%1$d KB (%2$d options) is loaded on every request."
+msgstr ""
+
+msgid "Under 800 KB is recommended; check the largest rows."
+msgstr ""
+
+msgid "Last run %s."
+msgstr ""
+
+msgid "Cron has not been seen running yet."
+msgstr ""
+
+msgid "%d events overdue."
+msgstr ""
+
+msgid "Scheduled events are running"
+msgstr ""
+
+msgid "Disk space"
+msgstr ""
+
+msgid "%1$d%% used, %2$s free."
+msgstr ""
+
+msgid "(account usage / quota from Settings)"
+msgstr ""
+
+msgid "%1$d%% of the account CPU limit in use (%2$s cores)."
+msgstr ""
+
+msgid "%1$d%% over the last minute (%2$d cores)."
+msgstr ""
+
+msgid "On: compiled PHP files are kept in memory."
+msgstr ""
+
+msgid "Looks enabled but its status cannot be read (restricted by the server)."
+msgstr ""
+
+msgid "Off: PHP files are compiled again on every request. Turn it on in Hostinger › PHP configuration."
+msgstr ""
+
+msgid "%d expired transients are still in the table."
+msgstr ""
+
+msgid "None."
+msgstr ""
+
+msgid "Delete expired transients"
+msgstr ""
+
+msgid "%d transients deleted."
+msgstr ""
+
+msgid "Each line shows something the site needs and whether it is in place. Fix the errors first; warnings are worth a look."
+msgstr ""
+
+msgid "OK"
+msgstr ""
+
+msgid "Info"
+msgstr ""
+
+msgid "%1$d OK · %2$d warnings · %3$d errors"
+msgstr ""
+
+msgid "Check again"
+msgstr ""
+
+msgid "Show only these (click again to show all)"
+msgstr ""
+
+msgid "Checked: %s"
+msgstr ""
+
+msgid "Check"
+msgstr ""
+
+msgid "Action"
+msgstr ""
+
+msgid "No checks are registered."
+msgstr ""
+
+msgid "System check found %d problem(s) that can stop donations or automations."
+msgstr ""
+
+msgid "Open system check"
+msgstr ""
+
+msgid "Hide until the next update"
+msgstr ""
+
+msgid "System: %d error(s)"
+msgstr ""
+
+msgid "This check could not run: %s"
+msgstr ""
+
+msgid "Scheduled tasks (cron)"
+msgstr ""
+
+msgid "Payments"
+msgstr ""
+
+msgid "Plugins"
+msgstr ""
+
+msgid "E-mail"
+msgstr ""
+
+msgid "Security"
+msgstr ""
+
+msgid "Forms"
+msgstr ""
+
+msgid "Other"
+msgstr ""
+
+msgid "Plugin: %s"
+msgstr ""
+
+msgid "MU plugin: %s"
+msgstr ""
+
+msgid "Theme: %s"
+msgstr ""
+
+msgid "Drop-in: %s"
+msgstr ""
+
+msgid "WordPress core"
+msgstr ""
+
+msgid "Unknown operation."
+msgstr ""
+
+msgid "How much attention a figure needs."
+msgstr ""
+
+msgid "Result of a system check line."
+msgstr ""
+
+msgid "A point in time for display."
+msgstr ""
+
+msgid "Unix timestamp."
+msgstr ""
+
+msgid "Day, month and time with seconds, in the site time zone."
+msgstr ""
+
+msgid "Date for display, in the user's language."
+msgstr ""
+
+msgid "Relative time for display (\"5 minutes ago\")."
+msgstr ""
+
+msgid "A key with its label."
+msgstr ""
+
+msgid "Stable key."
+msgstr ""
+
+msgid "Name in the user's language."
+msgstr ""
+
+msgid "A label and its value, both ready for display."
+msgstr ""
+
+msgid "Row name."
+msgstr ""
+
+msgid "Row value."
+msgstr ""
+
+msgid "A titled box of label and value rows."
+msgstr ""
+
+msgid "Stable key of the box."
+msgstr ""
+
+msgid "Box title."
+msgstr ""
+
+msgid "Rows of the box."
+msgstr ""
+
+msgid "A figure card."
+msgstr ""
+
+msgid "Card name."
+msgstr ""
+
+msgid "Figure for display."
+msgstr ""
+
+msgid "How much attention the figure needs."
+msgstr ""
+
+msgid "A tab of the Performance screen the person may open."
+msgstr ""
+
+msgid "Tab key: summary, records, server, database, autoload, cron, system, pagespeed, cache or settings."
+msgstr ""
+
+msgid "Tab name."
+msgstr ""
+
+msgid "Only administrators open the tab."
+msgstr ""
+
+msgid "What the Performance screen needs before it loads any tab."
+msgstr ""
+
+msgid "The person is an administrator (settings, cleanup and cache actions)."
+msgstr ""
+
+msgid "Slow and failing requests are being recorded."
+msgstr ""
+
+msgid "The classic Performance page."
+msgstr ""
+
+msgid "WordPress admin address."
+msgstr ""
+
+msgid "Tabs in display order."
+msgstr ""
+
+msgid "Request flags for the Records filter."
+msgstr ""
+
+msgid "Request types for the Records filter."
+msgstr ""
+
+msgid "A live server card (CPU, memory, disk, PHP memory, uptime)."
+msgstr ""
+
+msgid "Card key: cpu, ram, disk, php or up."
+msgstr ""
+
+msgid "Small line under the figure; may be empty."
+msgstr ""
+
+msgid "Percentage for the bar; empty when the value has no scale."
+msgstr ""
+
+msgid "Live server cards and the note that says whose values they are."
+msgstr ""
+
+msgid "The cards."
+msgstr ""
+
+msgid "Explains whose values the cards show."
+msgstr ""
+
+msgid "A performance check that needs attention."
+msgstr ""
+
+msgid "Warning or error."
+msgstr ""
+
+msgid "What was checked."
+msgstr ""
+
+msgid "What was found and what to do."
+msgstr ""
+
+msgid "Page that fixes it; empty when there is none."
+msgstr ""
+
+msgid "Link text for the page; empty when there is none."
+msgstr ""
+
+msgid "Tabs, filters and links of the Performance screen."
+msgstr ""
+
+msgid "Live server cards. Light enough to poll every 15 seconds or more."
+msgstr ""
+
+msgid "Performance checks that are in warning or error."
+msgstr ""
+
+msgid "How many recorded requests carry a flag."
+msgstr ""
+
+msgid "Flag key."
+msgstr ""
+
+msgid "Flag name."
+msgstr ""
+
+msgid "Requests with the flag."
+msgstr ""
+
+msgid "Errors are ERROR, slowness is WARNING."
+msgstr ""
+
+msgid "Times of one request type."
+msgstr ""
+
+msgid "Type key (front, admin, ajax, rest, cron…)."
+msgstr ""
+
+msgid "Type name."
+msgstr ""
+
+msgid "Recorded requests."
+msgstr ""
+
+msgid "Average time in milliseconds."
+msgstr ""
+
+msgid "Median time in milliseconds."
+msgstr ""
+
+msgid "95th percentile time in milliseconds."
+msgstr ""
+
+msgid "Longest time in milliseconds."
+msgstr ""
+
+msgid "One of the slowest addresses."
+msgstr ""
+
+msgid "Address without the query string."
+msgstr ""
+
+msgid "Errors seen."
+msgstr ""
+
+msgid "Query time of one plugin, theme or core."
+msgstr ""
+
+msgid "Plugin, theme or core name."
+msgstr ""
+
+msgid "Requests it ran queries in."
+msgstr ""
+
+msgid "Number of queries."
+msgstr ""
+
+msgid "Query time per request in milliseconds."
+msgstr ""
+
+msgid "A slow or failed query."
+msgstr ""
+
+msgid "Normalized SQL."
+msgstr ""
+
+msgid "Database error; empty when the query only was slow."
+msgstr ""
+
+msgid "Plugin, theme or core that ran it."
+msgstr ""
+
+msgid "Times seen."
+msgstr ""
+
+msgid "Newest record that has it."
+msgstr ""
+
+msgid "A PHP error seen in recorded requests."
+msgstr ""
+
+msgid "Level: warning, notice, deprecated or fatal."
+msgstr ""
+
+msgid "Error message."
+msgstr ""
+
+msgid "File and line."
+msgstr ""
+
+msgid "Plugin, theme or core it comes from."
+msgstr ""
+
+msgid "Requests it was seen in."
+msgstr ""
+
+msgid "An outgoing HTTP call seen in recorded requests."
+msgstr ""
+
+msgid "Method, host and path."
+msgstr ""
+
+msgid "Plugin, theme or core that made it."
+msgstr ""
+
+msgid "Number of calls."
+msgstr ""
+
+msgid "Failed calls."
+msgstr ""
+
+msgid "Last error; empty when none."
+msgstr ""
+
+msgid "Numbers of the recorded requests in a period."
+msgstr ""
+
+msgid "Period in hours."
+msgstr ""
+
+msgid "Problem flags that occur at least once."
+msgstr ""
+
+msgid "Times by request type."
+msgstr ""
+
+msgid "The ten slowest addresses."
+msgstr ""
+
+msgid "Query time by component, heaviest first."
+msgstr ""
+
+msgid "Slow and failed queries."
+msgstr ""
+
+msgid "PHP errors."
+msgstr ""
+
+msgid "Outgoing HTTP calls."
+msgstr ""
+
+msgid "Summary of the recorded requests: times, flags, slow addresses, queries, errors, HTTP calls."
+msgstr ""
+
+msgid "Period in hours (1–720). Default 24."
+msgstr ""
+
+msgid "A recorded request."
+msgstr ""
+
+msgid "Record number."
+msgstr ""
+
+msgid "When the request happened."
+msgstr ""
+
+msgid "Requested address (secrets masked)."
+msgstr ""
+
+msgid "HTTP method."
+msgstr ""
+
+msgid "HTTP status."
+msgstr ""
+
+msgid "Time in milliseconds."
+msgstr ""
+
+msgid "Peak memory in kilobytes."
+msgstr ""
+
+msgid "Database queries."
+msgstr ""
+
+msgid "Total query time in milliseconds."
+msgstr ""
+
+msgid "Flags of the request."
+msgstr ""
+
+msgid "The request had a fatal error, a PHP error or a server error."
+msgstr ""
+
+msgid "A page of recorded requests."
+msgstr ""
+
+msgid "What the shared request panel needs to draw a record."
+msgstr ""
+
+msgid "Slow query threshold in milliseconds."
+msgstr ""
+
+msgid "Slow request threshold in milliseconds."
+msgstr ""
+
+msgid "Texts of the panel in the user's language (open map)."
+msgstr ""
+
+msgid "Panel script address."
+msgstr ""
+
+msgid "Panel style address."
+msgstr ""
+
+msgid "A recorded request with the full profile the panel draws."
+msgstr ""
+
+msgid "The request."
+msgstr ""
+
+msgid "Stored profile (queries, errors, HTTP calls, assets…). An open structure only the request panel reads."
+msgstr ""
+
+msgid "Readable names of the components in the profile (open map)."
+msgstr ""
+
+msgid "Panel texts, thresholds and assets."
+msgstr ""
+
+msgid "Recorded requests, newest or slowest first."
+msgstr ""
+
+msgid "Only the last N hours; empty or 0 for all time."
+msgstr ""
+
+msgid "Only requests with this flag."
+msgstr ""
+
+msgid "Only this request type."
+msgstr ""
+
+msgid "Only addresses that contain this text."
+msgstr ""
+
+msgid "Slowest first instead of newest first."
+msgstr ""
+
+msgid "One recorded request with its full profile; empty when the record does not exist."
+msgstr ""
+
+msgid "Deletes every recorded request."
+msgstr ""
+
+msgid "The records were deleted."
+msgstr ""
+
+msgid "Opens a page of this site as a visitor (bypassing the cache) and records it in full detail."
+msgstr ""
+
+msgid "Path or address on this site, e.g. /donate/. Empty profiles the home page."
+msgstr ""
+
+msgid "The new record; empty when the request failed."
+msgstr ""
+
+msgid "HTTP status the page answered with."
+msgstr ""
+
+msgid "The profiled address."
+msgstr ""
+
+msgid "Server, PHP, OPcache, cache and WordPress details as labelled boxes."
+msgstr ""
+
+msgid "A safe cleanup job."
+msgstr ""
+
+msgid "Job key."
+msgstr ""
+
+msgid "Job name."
+msgstr ""
+
+msgid "Items it would clean."
+msgstr ""
+
+msgid "The person may run it and there is something to clean."
+msgstr ""
+
+msgid "A label and a number."
+msgstr ""
+
+msgid "Name."
+msgstr ""
+
+msgid "Number."
+msgstr ""
+
+msgid "A database table."
+msgstr ""
+
+msgid "Table name."
+msgstr ""
+
+msgid "Storage engine."
+msgstr ""
+
+msgid "Rows (approximate)."
+msgstr ""
+
+msgid "Data size in bytes."
+msgstr ""
+
+msgid "Index size in bytes."
+msgstr ""
+
+msgid "Free space in bytes."
+msgstr ""
+
+msgid "Collation."
+msgstr ""
+
+msgid "Database size, server settings, status, cleanup jobs and tables."
+msgstr ""
+
+msgid "Size cards."
+msgstr ""
+
+msgid "Server and status boxes."
+msgstr ""
+
+msgid "Safe cleanup jobs."
+msgstr ""
+
+msgid "Counts that are shown but never cleaned here."
+msgstr ""
+
+msgid "Tables, largest first."
+msgstr ""
+
+msgid "Database details and the cleanup jobs."
+msgstr ""
+
+msgid "Runs one safe cleanup job. Posts, pages and revisions are never deleted."
+msgstr ""
+
+msgid "Job key from flxSpeedDatabase.jobs."
+msgstr ""
+
+msgid "Items cleaned."
+msgstr ""
+
+msgid "One of the largest autoloaded options."
+msgstr ""
+
+msgid "Option name."
+msgstr ""
+
+msgid "Plugin or theme the option belongs to; empty when unknown."
+msgstr ""
+
+msgid "Size in kilobytes."
+msgstr ""
+
+msgid "Options WordPress loads from the database on every request."
+msgstr ""
+
+msgid "Autoloaded options."
+msgstr ""
+
+msgid "Total size in kilobytes."
+msgstr ""
+
+msgid "WARNING over 800 KB, ERROR over 1600 KB."
+msgstr ""
+
+msgid "The largest options."
+msgstr ""
+
+msgid "Autoloaded options: total and the largest."
+msgstr ""
+
+msgid "How long one scheduled task takes."
+msgstr ""
+
+msgid "Hook name."
+msgstr ""
+
+msgid "Plugin, theme or core that owns the task."
+msgstr ""
+
+msgid "Times measured."
+msgstr ""
+
+msgid "Last time in milliseconds."
+msgstr ""
+
+msgid "Last run; empty when never."
+msgstr ""
+
+msgid "The task hit the time limit and stopped halfway."
+msgstr ""
+
+msgid "The average is 5 seconds or more."
+msgstr ""
+
+msgid "A scheduled event."
+msgstr ""
+
+msgid "Next run."
+msgstr ""
+
+msgid "Recurrence name; empty for a single run."
+msgstr ""
+
+msgid "Number of arguments."
+msgstr ""
+
+msgid "More than 10 minutes late."
+msgstr ""
+
+msgid "Scheduled tasks (WP-Cron)."
+msgstr ""
+
+msgid "DISABLE_WP_CRON is on: events run only when a server cron job calls wp-cron.php."
+msgstr ""
+
+msgid "Scheduled events."
+msgstr ""
+
+msgid "Events more than 10 minutes late."
+msgstr ""
+
+msgid "Last time cron was seen running; empty when never."
+msgstr ""
+
+msgid "Cron was not seen in the last hour."
+msgstr ""
+
+msgid "Task durations, heaviest first."
+msgstr ""
+
+msgid "Scheduled events and measured task durations."
+msgstr ""
+
+msgid "A line of the shared system check."
+msgstr ""
+
+msgid "Check id, e.g. flxp.cron."
+msgstr ""
+
+msgid "Plugin or theme that registered the check."
+msgstr ""
+
+msgid "Group key."
+msgstr ""
+
+msgid "Group name."
+msgstr ""
+
+msgid "What is checked."
+msgstr ""
+
+msgid "Result."
+msgstr ""
+
+msgid "Link text; empty when there is none."
+msgstr ""
+
+msgid "Counts of the system check results."
+msgstr ""
+
+msgid "Checks that are fine."
+msgstr ""
+
+msgid "Warnings."
+msgstr ""
+
+msgid "Errors."
+msgstr ""
+
+msgid "Information lines."
+msgstr ""
+
+msgid "A fix applied by AI or MCP."
+msgstr ""
+
+msgid "When it ran."
+msgstr ""
+
+msgid "Login of the user it ran as."
+msgstr ""
+
+msgid "Fix name."
+msgstr ""
+
+msgid "Value that was set; empty when none."
+msgstr ""
+
+msgid "State before."
+msgstr ""
+
+msgid "State after."
+msgstr ""
+
+msgid "The fix worked."
+msgstr ""
+
+msgid "Result text."
+msgstr ""
+
+msgid "The shared system check and the recent AI fixes."
+msgstr ""
+
+msgid "Every check, worst first."
+msgstr ""
+
+msgid "Counts by result."
+msgstr ""
+
+msgid "The last 20 fixes."
+msgstr ""
+
+msgid "Fixes are logged (Flux SEO is active)."
+msgstr ""
+
+msgid "The shared system check of every FluxWP plugin and the recent AI fixes."
+msgstr ""
+
+msgid "What visitors of the old login addresses see."
+msgstr ""
+
+msgid "Flux Speed settings and the custom admin login address."
+msgstr ""
+
+msgid "Show a summary in the admin bar and a bottom panel to authorized users."
+msgstr ""
+
+msgid "Show the panel on the front end too."
+msgstr ""
+
+msgid "Collect capability checks."
+msgstr ""
+
+msgid "Record slow and failing requests."
+msgstr ""
+
+msgid "Also record the admin's own requests while the panel is on."
+msgstr ""
+
+msgid "Share of requests collected in detail, 0–100 percent."
+msgstr ""
+
+msgid "Days records are kept."
+msgstr ""
+
+msgid "Most records kept."
+msgstr ""
+
+msgid "Disk limit of the hosting plan in GB; 0 when unknown."
+msgstr ""
+
+msgid "Custom login address (the part after the site address); empty for wp-login.php."
+msgstr ""
+
+msgid "What visitors of wp-login.php see."
+msgstr ""
+
+msgid "The address comes from FLXP_LOGIN_SLUG in wp-config.php and cannot be changed here."
+msgstr ""
+
+msgid "FLXP_LOGIN_DISABLE is defined: the custom address is off."
+msgstr ""
+
+msgid "The custom login address is in use."
+msgstr ""
+
+msgid "The login address in use; empty when none."
+msgstr ""
+
+msgid "Site address that comes before the login slug."
+msgstr ""
+
+msgid "Logs the person out and opens the custom login address; used after the address changed. Empty when none is in use."
+msgstr ""
+
+msgid "Flux AI & MCP is active, so the tools are registered."
+msgstr ""
+
+msgid "Names of the read-only AI tools."
+msgstr ""
+
+msgid "Saves Flux Speed settings. Fields you leave out stay as they are."
+msgstr ""
+
+msgid "Slow request threshold in milliseconds (100–60000)."
+msgstr ""
+
+msgid "Slow query threshold in milliseconds (1–10000)."
+msgstr ""
+
+msgid "Days records are kept (1–90)."
+msgstr ""
+
+msgid "Most records kept (100–50000)."
+msgstr ""
+
+msgid "Custom login address: 3–40 lowercase letters, digits, hyphen or underscore. Empty goes back to wp-login.php."
+msgstr ""
+
+msgid "The settings after saving."
+msgstr ""
+
+msgid "The login address changed."
+msgstr ""
+
+msgid "The custom login address was turned off."
+msgstr ""
+
+msgid "Which CSS files the unused CSS trimming looks at."
+msgstr ""
+
+msgid "A PageSpeed switch."
+msgstr ""
+
+msgid "Setting name: ps_viewport, ps_emoji, ps_css, ps_min_css, ps_min_js, ps_defer, ps_defer_jquery, ps_fonts or ps_preload."
+msgstr ""
+
+msgid "The switch is on."
+msgstr ""
+
+msgid "The theme or a preset overrides this feature in code, so the switch may not take effect."
+msgstr ""
+
+msgid "An animation that does not run on the GPU."
+msgstr ""
+
+msgid "@keyframes name."
+msgstr ""
+
+msgid "Animated properties other than transform and opacity."
+msgstr ""
+
+msgid "CSS file."
+msgstr ""
+
+msgid "The file has a prefers-reduced-motion rule."
+msgstr ""
+
+msgid "PageSpeed switches, their cache and the animation report."
+msgstr ""
+
+msgid "Every on/off switch."
+msgstr ""
+
+msgid "Which CSS the trimming covers."
+msgstr ""
+
+msgid "Trimmed CSS up to this many kilobytes is written into the head; 0 always uses a file."
+msgstr ""
+
+msgid "Classes and ids that are always kept, one per line."
+msgstr ""
+
+msgid "Files to leave alone, one per line."
+msgstr ""
+
+msgid "Pages to leave alone, one per line."
+msgstr ""
+
+msgid "Cached CSS copies."
+msgstr ""
+
+msgid "Cached JS copies."
+msgstr ""
+
+msgid "Cache size in bytes."
+msgstr ""
+
+msgid "Home page address."
+msgstr ""
+
+msgid "Home page address with the optimizations off."
+msgstr ""
+
+msgid "Flux SEO site audit page; empty without Flux SEO."
+msgstr ""
+
+msgid "Animations that repaint every frame."
+msgstr ""
+
+msgid "CSS files seen on the front end; empty when the front end was not seen yet."
+msgstr ""
+
+msgid "When the front end was last seen; empty when never."
+msgstr ""
+
+msgid "PageSpeed switches, cache status and the animation report."
+msgstr ""
+
+msgid "Saves the PageSpeed settings, then clears the PageSpeed cache and the LiteSpeed page cache. Fields you leave out stay as they are."
+msgstr ""
+
+msgid "Remove the zoom lock."
+msgstr ""
+
+msgid "Remove the emoji script."
+msgstr ""
+
+msgid "Remove unused CSS and inline it."
+msgstr ""
+
+msgid "Minify CSS files."
+msgstr ""
+
+msgid "Minify JS files."
+msgstr ""
+
+msgid "Defer head scripts."
+msgstr ""
+
+msgid "Defer jQuery too."
+msgstr ""
+
+msgid "Remove unused fonts."
+msgstr ""
+
+msgid "Preload the above-the-fold font."
+msgstr ""
+
+msgid "Inline limit in kilobytes (0–500)."
+msgstr ""
+
+msgid "Clears the PageSpeed cache and the LiteSpeed page cache."
+msgstr ""
+
+msgid "The status after clearing."
+msgstr ""
+
+msgid "Backend of the LiteSpeed object cache."
+msgstr ""
+
+msgid "An operation of the Cache tab."
+msgstr ""
+
+msgid "A cache plugin Flux Speed can install and drive."
+msgstr ""
+
+msgid "Plugin name."
+msgstr ""
+
+msgid "The plugin is installed."
+msgstr ""
+
+msgid "The plugin is active."
+msgstr ""
+
+msgid "Installed version; empty when not installed."
+msgstr ""
+
+msgid "LiteSpeed Cache: page cache and object cache state."
+msgstr ""
+
+msgid "The page cache is on."
+msgstr ""
+
+msgid "The object cache is on."
+msgstr ""
+
+msgid "Object cache backend."
+msgstr ""
+
+msgid "Object cache host and port."
+msgstr ""
+
+msgid "SQLite Object Cache state."
+msgstr ""
+
+msgid "Cache file name; empty when there is none."
+msgstr ""
+
+msgid "Cache file size in bytes."
+msgstr ""
+
+msgid "PHP extensions the cache options need."
+msgstr ""
+
+msgid "Memcached extension is loaded."
+msgstr ""
+
+msgid "Redis extension is loaded."
+msgstr ""
+
+msgid "SQLite3 extension is loaded."
+msgstr ""
+
+msgid "igbinary extension is loaded."
+msgstr ""
+
+msgid "A problem between the page cache and the object cache."
+msgstr ""
+
+msgid "Conflict code."
+msgstr ""
+
+msgid "What is wrong and what to do."
+msgstr ""
+
+msgid "The Repair operation fixes it."
+msgstr ""
+
+msgid "Result of the last object cache test."
+msgstr ""
+
+msgid "When the test ran."
+msgstr ""
+
+msgid "Object cache owner when it ran."
+msgstr ""
+
+msgid "Values survived between two requests."
+msgstr ""
+
+msgid "Time of 100 writes and 100 reads in milliseconds."
+msgstr ""
+
+msgid "Why the test could not finish; empty when it did."
+msgstr ""
+
+msgid "Settings pages of the cache plugins."
+msgstr ""
+
+msgid "LiteSpeed Cache settings."
+msgstr ""
+
+msgid "LiteSpeed Cache object cache settings."
+msgstr ""
+
+msgid "SQLite Object Cache in the plugin list."
+msgstr ""
+
+msgid "Page cache and object cache state with the options the Cache tab offers."
+msgstr ""
+
+msgid "Why finishing the LiteSpeed setup failed; empty when there is nothing wrong."
+msgstr ""
+
+msgid "The web server is LiteSpeed."
+msgstr ""
+
+msgid "PHP extensions."
+msgstr ""
+
+msgid "LiteSpeed Cache."
+msgstr ""
+
+msgid "SQLite Object Cache."
+msgstr ""
+
+msgid "wp-content/object-cache.php exists."
+msgstr ""
+
+msgid "Who owns object-cache.php: litespeed, sqlite, redis, memcached, other or none."
+msgstr ""
+
+msgid "Name of another plugin that owns object-cache.php; empty otherwise."
+msgstr ""
+
+msgid "The object cache in use."
+msgstr ""
+
+msgid "An external, persistent object cache is in use."
+msgstr ""
+
+msgid "Problems between the caches."
+msgstr ""
+
+msgid "Last object cache test; empty when never run."
+msgstr ""
+
+msgid "Settings pages."
+msgstr ""
+
+msgid "The person may install plugins."
+msgstr ""
+
+msgid "Page cache (LiteSpeed Cache) and object cache (SQLite Object Cache or LiteSpeed + Memcached) state."
+msgstr ""
+
+msgid "Runs one operation of the Cache tab: install or activate a cache plugin, switch the object cache, turn the page cache on or off, purge, flush or test."
+msgstr ""
+
+msgid "The operation."
+msgstr ""
+
+msgid "What happened; empty after a test."
+msgstr ""
+
+msgid "The state after the operation."
 msgstr ""

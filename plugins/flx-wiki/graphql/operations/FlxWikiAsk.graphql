@@ -1,0 +1,18 @@
+# "Ask the wiki" (Flux AI).
+mutation FlxWikiAsk($input: FlxWikiAskInput!) {
+  flxWikiAsk(input: $input) {
+    answer {
+      answer
+      html
+      sources {
+        title
+        url
+      }
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

@@ -90,7 +90,11 @@ function flxa_pwa_short() {
 	return mb_substr( $ini, 0, 6 );
 }
 
-/** Simgeler: site simgesi varsa o, yoksa paketteki Flux Admin simgesi. */
+/**
+ * Simgeler: site simgesi varsa o, yoksa paketteki Flux Admin simgesi.
+ *
+ * @return list<array{src: string, sizes: string, type: string, purpose?: string}>
+ */
 function flxa_pwa_icons() {
 	$icons = array();
 	$id    = (int) get_option( 'site_icon' );

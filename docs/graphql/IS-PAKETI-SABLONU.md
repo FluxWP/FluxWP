@@ -13,7 +13,7 @@ Paket: <slug>  ·  Model: <Sonnet/Opus>  ·  Dal: gql/<slug>-<n>  ·  Bağımlı
 
 1. Envanter: docs/graphql/ESLEME/<slug>.md (ESLEME/_SABLON.md'den)
    - Tüm REST uçları, AJAX handler'ları, admin sayfaları, MCP/AI araçları, ayarlar.
-   - Her satır: → GraphQL adı, cap, girdi/çıktı tipi, ya da İSTİSNA (ISTISNALAR.md'ye satır).
+   - Her satır: → GraphQL adı, cap, girdi/çıktı tipi, ya da İSTİSNA (docs/graphql/durum/<slug>.md "## İstisnalar" satırı).
 
 2. Servis katmanı: includes/services/class-<önek>-<alan>-service.php
    - Mantığı REST/AJAX/MCP callback'lerinden çıkar; callback'ler servise delege etsin.
@@ -34,21 +34,26 @@ Paket: <slug>  ·  Model: <Sonnet/Opus>  ·  Dal: gql/<slug>-<n>  ·  Bağımlı
 
 6. İstemci
    - plugins/<slug>/graphql/operations/*.graphql (dosya başına bir operasyon, Flx… adı).
-   - bun run --filter @fluxwp/graphql generate → persisted-queries.json + types/operations.
+   - bun run --filter @fluxwp/graphql generate → persisted-queries.json (commit) + types/operations (commit dışı).
+   - Şema parçası: bun run --filter @fluxwp/graphql schema -- plugins/<slug> → plugins/<slug>/graphql/schema.graphql
+     (yerelde WP yoksa CI'nın graphql-schema-ci artifact'ından yalnız kendi dosyan). core.graphql commit edilmez.
    - Paket manifesti kaydeder: add_filter( 'flx_gql_persisted_manifests', fn( $m ) => $m + array( '<slug>' => __DIR__ . '/graphql/persisted-queries.json' ) );
    - packages/modules/src/<modül>/ ekranları useFlxQuery/useFlxMutation'a geçer; elle API tipi silinir.
+   - Ekran kaydı packages/modules/src/<modül>/screens.ts (index.ts'e dokunulmaz, KURALLAR §12).
    - wp-admin'de wp-embed ile açılır; PHP ekranı bir sürüm "Klasik görünüm" olarak kalır.
 
 7. Kontroller (hepsi yeşil olmadan PR yok)
    - bun run --filter @fluxwp/graphql generate:check, bunx turbo run typecheck, testler
    - bun tools/ts-strict/no-any.ts (paket strict.json'a eklenir)
-   - PHP lint 8.1–8.5, PHPStan: services/ ve graphql/ phpstan.neon paths'e eklenir, level max 0 hata
+   - PHP lint 8.1–8.5, PHPStan: services/ ve graphql/ kendiliğinden strict'e girer (phpstan.neon'a satır yok), level max 0 hata;
+     özel ayar tools/phpstan/packages/<slug>.php, sabit packages/<slug>.bootstrap.php
    - legacy PHPStan: yeni hata yok
-   - tools/tests/wp-graphql/run.sh
+   - tools/tests/wp-graphql/run.sh (pakete özel kurulum <slug>/site.sh, <slug>/wp-args; ortak betik değişmez)
 
 8. i18n: yeni metinler EN kaynak + TR (paketin çeviri akışı).
 9. Ekran görüntüleri: açık/koyu × masaüstü/mobil → /mnt/project-files/<slug>/ekranlar-<sürüm>/.
-10. Sürüm artır, CHANGELOG, docs/<slug>/GRAPHQL.md (sorgu örnekleri), DURUM.md satırı.
+10. Paketin sürümü + kendi CHANGELOG'u, docs/<slug>/GRAPHQL.md (sorgu örnekleri), docs/graphql/durum/<slug>.md.
+    @fluxwp/graphql ve @fluxwp/modules sürümü/CHANGELOG'u, DURUM.md, ISTISNALAR.md değişmez (KURALLAR §12).
 11. PR: başlıklar, ekranlar, ESLEME bağlantısı. Opus şema incelemesi. Ahmet "al" der, merge.
 
 Durdur ve yükselt: aynı CI hatası 2 kez / ürün kararı / başka paketin koduna dokunmak gerekiyor / kit eksik.

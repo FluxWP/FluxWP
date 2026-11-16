@@ -1,0 +1,10 @@
+mutation FlxSpeedRecordsClear {
+  flxSpeedRecordsClear(input: {}) {
+    cleared
+    errors {
+      code
+      message
+      field
+    }
+  }
+}
