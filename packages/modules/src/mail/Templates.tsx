@@ -197,13 +197,14 @@ function Editor({ templateKey, onBack }: { templateKey: string; onBack: () => vo
   };
 
   return (
-    <div className={row.editable ? 'flxmail-editor' : ''}>
+    <>
       <p>
         <button type="button" className="flxmail-link" onClick={onBack}>
           ← {t('All emails')}
         </button>
         {row.group ? <span className="flxmail-muted"> · {row.group}</span> : null}
       </p>
+      <div className={row.editable ? 'flxmail-editor' : ''}>
       <div className="flxmail-card">
         <h2>{row.label}</h2>
         {row.description ? <p className="flxmail-muted">{row.description}</p> : null}
@@ -309,6 +310,7 @@ function Editor({ templateKey, onBack }: { templateKey: string; onBack: () => vo
           <p className="flxmail-muted">{t('Sample values are used in the preview.')}</p>
         </div>
       ) : null}
-    </div>
+      </div>
+    </>
   );
 }

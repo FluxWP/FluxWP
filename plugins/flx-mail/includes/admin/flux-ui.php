@@ -129,9 +129,8 @@ function flxi_flux_screen( string $start ): bool {
 	if ( ! flxi_flux_ui() ) {
 		return false;
 	}
-	echo '<script>document.documentElement.classList.add("flxi-lock");</script>';
-	echo '<style>html.flxi-lock,html.flxi-lock body{overflow:hidden;height:100%}html.flxi-lock #wpadminbar,html.flxi-lock #adminmenumain,html.flxi-lock #wpfooter,html.flxi-lock .notice,html.flxi-lock .update-nag,html.flxi-lock #screen-meta-links{display:none!important}html.flxi-lock #wpcontent,html.flxi-lock #wpbody-content{margin:0!important;padding:0!important}#flxi-app.flux-root{position:fixed;inset:0;z-index:99990;height:auto}</style>';
-	echo '<div id="flxi-app"><noscript>' . esc_html__( 'Communication requires JavaScript.', 'flx-mail' ) . '</noscript></div>';
+	echo '<style>#flxi-app.flux-root{height:auto;background:transparent;font-family:inherit}</style>';
+	echo '<div class="wrap"><div id="flxi-app"><noscript>' . esc_html__( 'Communication requires JavaScript.', 'flx-mail' ) . '</noscript></div></div>';
 	unset( $start );
 	return true;
 }

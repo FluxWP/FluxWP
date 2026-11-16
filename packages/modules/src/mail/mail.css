@@ -59,6 +59,7 @@
 .flxmail-search{max-width:320px;margin:0 0 12px}
 .flxmail-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
 .flxmail-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;gap:10px;align-items:center;padding:8px 0;border-top:1px solid var(--bd)}
+.flxmail-row>input{width:auto;min-height:0}
 .flxmail-row.is-off{opacity:.65}
 .flxmail-meta{display:flex;flex-wrap:wrap;gap:4px}
 .flxmail-badge{display:inline-block;padding:1px 8px;border-radius:99px;background:var(--flux-surface2);font-size:12px}
