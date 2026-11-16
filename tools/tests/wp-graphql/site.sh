@@ -62,11 +62,20 @@ $WP config set AUTOMATIC_UPDATER_DISABLED true --raw --path="$site"
 $WP core install --path="$site" --url="$url" --title="Flux GraphQL Test" --admin_user=admin --admin_password=admin --admin_email=test@example.com --skip-email >/dev/null
 $WP rewrite structure '/%postname%/' --path="$site" >/dev/null
 
-# Packages that declare "Requires Plugins: woocommerce" (flx-ads, ...) do not activate without it. When no zip is
-# given, a pinned release is downloaded (a failed download only means those packages are skipped).
-if [ -z "${WOOCOMMERCE_ZIP:-}" ] && grep -lq "Requires Plugins:.*woocommerce" "$root"/plugins/*/*.php 2>/dev/null; then
-  WOOCOMMERCE_ZIP="${TEST_ROOT:-/tmp/flx-test}/woocommerce-9.4.3.zip"
-  [ -f "$WOOCOMMERCE_ZIP" ] || curl -fsSL -o "$WOOCOMMERCE_ZIP" "https://downloads.wordpress.org/plugin/woocommerce.9.4.3.zip" || rm -f "$WOOCOMMERCE_ZIP"
+# Packages that declare "Requires Plugins: woocommerce" (flx-ads, ...) do not activate without it.
+# - Schema snapshot (FIXTURES=0): an empty stand-in plugin satisfies the dependency, so WooCommerce's own types and
+#   settings never leak into the snapshot of the other packages.
+# - Tests: a pinned release is downloaded when no zip is given (a failed download only means those packages are skipped).
+if grep -lq "Requires Plugins:.*woocommerce" "$root"/plugins/*/*.php 2>/dev/null; then
+  if [ "${FIXTURES:-1}" = 0 ]; then
+    mkdir -p "$site/wp-content/plugins/woocommerce"
+    printf '<?php\n/**\n * Plugin Name: WooCommerce (stand-in)\n */\n' > "$site/wp-content/plugins/woocommerce/woocommerce.php"
+    $WP plugin activate woocommerce --path="$site" >/dev/null 2>&1 || echo "WooCommerce stand-in could not be activated" >&2
+    WOOCOMMERCE_ZIP=""
+  elif [ -z "${WOOCOMMERCE_ZIP:-}" ]; then
+    WOOCOMMERCE_ZIP="${TEST_ROOT:-/tmp/flx-test}/woocommerce-9.4.3.zip"
+    [ -f "$WOOCOMMERCE_ZIP" ] || curl -fsSL -o "$WOOCOMMERCE_ZIP" "https://downloads.wordpress.org/plugin/woocommerce.9.4.3.zip" || rm -f "$WOOCOMMERCE_ZIP"
+  fi
 fi
 if [ -n "${WOOCOMMERCE_ZIP:-}" ] && [ -f "$WOOCOMMERCE_ZIP" ]; then
   $WP plugin install "$WOOCOMMERCE_ZIP" --activate --path="$site" >/dev/null 2>&1 || echo "WooCommerce could not be activated" >&2
