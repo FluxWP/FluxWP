@@ -1,10 +1,10 @@
-# flx-certificates 2.1.2
+# flx-certificates 2.2.0
 
 - Faz: 1
-- Durum: ✱
+- Durum: 👀
 - PR: #338
 
-Envanter düzeltildi (`02f12cb8` incelemesi). REST 27 GraphQL / 1 istisna. Ayar alanı 25 satır, 24’ü GraphQL; SMTP şifresi şemaya girmez. Kısa kod: yalnız `[flx_sertifika_sorgula]` GraphQL; üç etkinlik kısa kodu PHP kalır; `[flxs_sertifika]` yok (sayfa rewrite). Etkinlik ekranı CRM’de (`flxGatherings`, PR #333). CRM varken bu menü oraya gider; CRM yokken klasik sayfa kalır (#333 sonrası bileşen yeniden kullanılır). Bu pakette etkinlik CRUD yok; okunan alanlar hedef, ek fidan, fidan sayısı, sertifika sayısı ve site gösterimi. `flxCertificateVerify` saf okuma: sayaç, çizim ve public-files jetonu sorguda yok. Kayıtlar bölümü aynı PR’da. Eşleme `docs/graphql/ESLEME/flx-certificates.md`.
+Kayıtlar, kişiler ve herkese açık doğrulama (bölüm 1). 9 sorgu, 12 mutation, 20 kayıtlı işlem, sözleşme testi. React wp-admin varsayılanı: liste, yeni sertifika, kişiler (`flxs-certificates`); klasik `flxs_ui`. `staff_own_only` GraphQL’de sertifikayla aynı kapsam (klasik kişi listesi değişmedi). `flxCertificateVerify` saf okuma. Etkinlik ekranı CRM’de (`flxGatherings`, PR #333); CRM yokken klasik sayfa açık borç. Kuyruk, şablon, ayar, pano, günlük sonraki bölüm. Eşleme `docs/graphql/ESLEME/flx-certificates.md`.
 
 ## İstisnalar
 

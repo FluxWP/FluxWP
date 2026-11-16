@@ -10,52 +10,18 @@ function flxs_handle_person_save() {
 	if ( ! flxs_can_use() ) {
 		wp_die( 'Yetki yok' );
 	}
-	global $wpdb;
-	$id    = (int) ( $_POST['id'] ?? 0 );
-	$name  = sanitize_text_field( wp_unslash( $_POST['name'] ?? '' ) );
-	$phone = sanitize_text_field( wp_unslash( $_POST['phone'] ?? '' ) );
-	$email = sanitize_text_field( wp_unslash( $_POST['email'] ?? '' ) );
-	$note  = sanitize_textarea_field( wp_unslash( $_POST['note'] ?? '' ) );
-
-	if ( ! $id ) {
-		$r = flxs_upsert_person( $name, $phone, $email );
-		if ( is_wp_error( $r ) ) {
-			flxs_redirect( 'flxs-kisiler', array( 'add' => 1, 'flxs_err' => $r->get_error_message() ) );
-		}
-		$id = (int) $r['person']['id'];
-		if ( $note ) {
-			$wpdb->update( flxs_table( 'people' ), array( 'note' => $note ), array( 'id' => $id ) );
-		}
-		flxs_redirect( 'flxs-kisiler', array( 'person' => $id, 'flxs_msg' => $r['created'] ? 'Kişi eklendi.' : 'Bu telefon/e-posta zaten kayıtlıydı, kişi güncellendi.' ) );
-	}
-
-	if ( ! flxs_can_see_person( $id ) ) {
+	$id = (int) ( $_POST['id'] ?? 0 ); // phpcs:ignore WordPress.Security.NonceVerification
+	if ( $id && ! flxs_can_see_person( $id ) ) {
 		wp_die( 'Yetki yok' );
 	}
-	$p      = flxs_get_person( $id );
-	$nphone = flxs_normalize_phone( $phone );
-	$nemail = strtolower( sanitize_email( $email ) );
-	if ( $phone && ! $nphone ) {
-		flxs_redirect( 'flxs-kisiler', array( 'person' => $id, 'flxs_err' => 'Telefon numarası geçersiz.' ) );
-	}
-	if ( $nphone && ( $o = flxs_find_person_by_phone( $nphone ) ) && (int) $o['id'] !== $id ) {
-		flxs_redirect( 'flxs-kisiler', array( 'person' => $id, 'flxs_err' => 'Bu telefon başka bir kişide kayıtlı: ' . $o['name'] ) );
-	}
-	if ( $nemail && ( $o = flxs_find_person_by_email( $nemail ) ) && (int) $o['id'] !== $id ) {
-		flxs_redirect( 'flxs-kisiler', array( 'person' => $id, 'flxs_err' => 'Bu e-posta başka bir kişide kayıtlı: ' . $o['name'] ) );
-	}
-	$data = array( 'name' => $name, 'phone' => $nphone ? $nphone : '', 'email' => $nemail ? $nemail : '', 'note' => $note );
-	if ( function_exists( 'flx_person_update' ) ) {
-		// Shared edit: other packages (and Flux CRM, when active) hear about it through flx_person_updated.
-		$res = flx_person_update( $id, $data );
-		if ( is_wp_error( $res ) ) {
-			flxs_redirect( 'flxs-kisiler', array( 'person' => $id, 'flxs_err' => $res->get_error_message() ) );
-		}
-	} else {
-		$wpdb->update( flxs_table( 'people' ), $data + array( 'updated_at' => flxs_now() ), array( 'id' => $id ) );
-	}
-	flxs_log( 'person_updated', 'person', $id, $name, array( 'before' => array_intersect_key( $p, $data ), 'after' => $data ) );
-	flxs_redirect( 'flxs-kisiler', array( 'person' => $id, 'flxs_msg' => 'Kaydedildi.' ) );
+	$go = FLXS_Person_Service::save_admin(
+		$id,
+		(string) wp_unslash( $_POST['name'] ?? '' ), // phpcs:ignore WordPress.Security.NonceVerification
+		(string) wp_unslash( $_POST['phone'] ?? '' ), // phpcs:ignore WordPress.Security.NonceVerification
+		(string) wp_unslash( $_POST['email'] ?? '' ), // phpcs:ignore WordPress.Security.NonceVerification
+		(string) wp_unslash( $_POST['note'] ?? '' ) // phpcs:ignore WordPress.Security.NonceVerification
+	);
+	flxs_redirect( $go['page'], $go['args'] );
 }
 
 function flxs_handle_person_delete() {
@@ -63,11 +29,8 @@ function flxs_handle_person_delete() {
 	if ( ! flxs_can_manage() ) {
 		wp_die( 'Yetki yok' );
 	}
-	$r = flxs_delete_person( (int) $_POST['id'] );
-	if ( is_wp_error( $r ) ) {
-		flxs_redirect( 'flxs-kisiler', array( 'person' => (int) $_POST['id'], 'flxs_err' => $r->get_error_message() ) );
-	}
-	flxs_redirect( 'flxs-kisiler', array( 'flxs_msg' => 'Kişi silindi.' ) );
+	$go = FLXS_Person_Service::delete_admin( (int) ( $_POST['id'] ?? 0 ) ); // phpcs:ignore WordPress.Security.NonceVerification
+	flxs_redirect( $go['page'], $go['args'] );
 }
 
 function flxs_handle_people_bulk() {
@@ -80,6 +43,9 @@ function flxs_handle_people_bulk() {
 }
 
 function flxs_page_people() {
+	if ( flxs_render_flux() ) {
+		return;
+	}
 	$pid = (int) flxs_get_param( 'person' );
 	if ( $pid ) {
 		flxs_page_person_detail( $pid );
@@ -115,7 +81,7 @@ function flxs_page_people() {
 	$sql   = "SELECT p.*, (SELECT COUNT(*) FROM $ct c WHERE c.person_id = p.id) AS certs FROM $pt p WHERE $where ORDER BY p.id DESC LIMIT %d OFFSET %d";
 	$rows  = $wpdb->get_results( $wpdb->prepare( $sql, array_merge( $prm, array( $per, ( $paged - 1 ) * $per ) ) ), ARRAY_A );
 
-	flxs_admin_header( 'Kişiler', array( array( 'label' => '+ Kişi ekle', 'url' => admin_url( 'admin.php?page=flxs-kisiler&add=1' ), 'class' => 'button-primary' ) ), 'Sertifika alan herkes burada kayıtlı. Aynı telefon ya da e-postayla yeni sertifika verilince mevcut kişiye bağlanır; iletişim bilgisi girilmeyen kişiler ayrı kayıt olur.' );
+	flxs_admin_header( 'Kişiler', flxs_classic_switch( array( array( 'label' => '+ Kişi ekle', 'url' => admin_url( 'admin.php?page=flxs-kisiler&add=1' ), 'class' => 'button-primary' ) ) ), 'Sertifika alan herkes burada kayıtlı. Aynı telefon ya da e-postayla yeni sertifika verilince mevcut kişiye bağlanır; iletişim bilgisi girilmeyen kişiler ayrı kayıt olur.' );
 	?>
 	<form method="get" class="flxs-filters"<?php echo flxs_list_form_attrs( 'flxs-people' ); // phpcs:ignore ?>>
 		<input type="hidden" name="page" value="flxs-kisiler">

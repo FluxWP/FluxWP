@@ -1,6 +1,6 @@
 # Flux PDF & Certificates (flx-certificates): REST → GraphQL eşlemesi
 
-Paket sürümü: 2.1.2 (kayıtlar bölümü 2.2.0’a çıkar). Önek: `flxs_` · Dal: `gql/flx-certificates-1` · Durum: envanter düzeltildi, kayıtlar yazılıyor. `Requires PHP` 7.4’ten 8.1’e çıkar. `flx_settings_schema` kaydı yok; ayarlar `flxs_settings` ve `flxs_site` seçeneklerinde.
+Paket sürümü: 2.2.0. Önek: `flxs_` · Dal: `gql/flx-certificates-1` · Durum: kayıtlar, kişiler ve herkese açık doğrulama GraphQL’de; kalan ekranlar sonraki bölümler. `Requires PHP` 7.4’ten 8.1’e çıkar. `flx_settings_schema` kaydı yok; ayarlar `flxs_settings` ve `flxs_site` seçeneklerinde.
 
 Satır sayıları (GraphQL’e bağlanan / istisna):
 
@@ -27,7 +27,7 @@ Satır sayıları (GraphQL’e bağlanan / istisna):
 - MCP: `flx_mcp_tools`, `flxai_tools`, `flxseo_mcp_tools` yok. FluxApp manifesti REST kaynaklarını tarif eder (`includes/app-manifest.php`).
 - Kişi: `flx_person_ensure` / `flx_person_update`, bağ `certificates`. CRM varken `flx_person_pre_*` CRM’e düşer.
 - PDF: TCPDF + FPDI + GD (`includes/render.php`). Gotenberg yok. Tarayıcı yedeği `assets/js/renderer.js` (pdf-lib). Sağlayıcılar e-posta / SMS / WhatsApp gönderimidir.
-- Servisler (sonraki PR’lar, bu dalda yazılmadı): `FLXS_Certificate_Service`, `FLXS_Person_Service`, `FLXS_Template_Service`, `FLXS_Queue_Service`, `FLXS_Event_Service`, `FLXS_Stats_Service`, `FLXS_Settings_Service`, `FLXS_Log_Service`.
+- Servisler (bu bölüm): `FLXS_Certificate_Service`, `FLXS_Person_Service`, `FLXS_Public_Service`. Sonraki bölümler: `FLXS_Template_Service`, `FLXS_Queue_Service`, `FLXS_Event_Service`, `FLXS_Stats_Service`, `FLXS_Settings_Service`, `FLXS_Log_Service`.
 
 Yetkiler (`flx_gql_capabilities`, grup `certificates`): `flxs_use`, `flxs_manage`, `flxs_bulk`, `flxs_dashboard`, `flxs_own_ref`. `flxs_own_ref` ve ayar `staff_own_only` cap değil. Sertifika SQL’i ikisini de uygular (`flxs_scope_sql`, `helpers.php:262-273`). Kişi SQL’i (`flxs_people_scope_sql` / `flxs_can_see_person`, `helpers.php:291-308`) yalnız `flxs_own_ref` bakar; `staff_own_only` açıkken klasik kişi listesi, REST dizini ve sertifika sayıları başkasının kişisini gösterir. Klasik davranış bu PR’da değişmez. GraphQL kişi yükleyicisi, dizin, arama ve sayım sertifikayla aynı kısıtı uygular (`own_ref` veya `own_only`).
 
@@ -110,7 +110,7 @@ Hepsi nonce + cap. Dosya akışı olanlar istisna; GraphQL imzalı indirme adres
 
 ## Admin sayfaları
 
-Menü: `includes/admin/admin.php:20-51`. İstemci klasörü (sonraki PR): `packages/modules/src/certificates/`. wp-admin varsayılanı React; klasik `flxs_ui` kullanıcı metası (Ads/CRM’deki `flxa_ui` / `flxcrm_ui` kalıbı).
+Menü: `includes/admin/admin.php:20-51`. İstemci: `packages/modules/src/certificates/`. Bu bölümde React varsayılan olan sayfalar `flxs`, `flxs-yeni`, `flxs-kisiler`. Klasik, `flxs_ui` kullanıcı metasıyla (Ads/CRM’deki `flxa_ui` / `flxcrm_ui` kalıbı). Taşınmamış sayfalar klasik açılır.
 
 | Sayfa (`page=`) | Ne gösterir | Sorgular / mutation | İstemci | Kaynak |
 |---|---|---|---|---|

@@ -1,0 +1,390 @@
+# GraphQL schema snapshot: plugins/flx-certificates.
+# Hand-written so codegen can run. CI replaces this file from the schema job.
+
+enum FlxCertificateStatus {
+  ACTIVE
+  REVOKED
+}
+
+enum FlxCertificateChannel {
+  EMAIL
+  SMS
+  WHATSAPP
+}
+
+enum FlxCertificateBulkAction {
+  REVOKE
+  RESTORE
+  EVENT
+  REFERRER
+  DELETE
+  SEND_WHATSAPP
+  SEND_SMS
+  SEND_EMAIL
+}
+
+type FlxCertificateDelivery {
+  channel: FlxCertificateChannel!
+  sent: Int!
+  failed: Int!
+  waiting: Int!
+}
+
+type FlxCertificate implements Node {
+  id: ID!
+  databaseId: Int!
+  code: String!
+  number: String!
+  title: String!
+  status: FlxCertificateStatus!
+  holderName: String!
+  templateId: Int!
+  templateName: String!
+  values: String!
+  pageUrl: String!
+  pdfUrl: String
+  imageUrl: String
+  views: Int!
+  backdated: Boolean!
+  createdAt: FlxDateTime
+  canEdit: Boolean!
+  createdByName: String!
+  referrerId: Int!
+  referrerName: String!
+  eventId: Int!
+  eventName: String!
+  person: FlxPerson
+  deliveries: [FlxCertificateDelivery!]!
+}
+
+type FlxCertificateEdge {
+  cursor: String!
+  node: FlxCertificate!
+}
+
+type FlxCertificateConnection {
+  edges: [FlxCertificateEdge!]!
+  nodes: [FlxCertificate!]!
+  pageInfo: FlxPageInfo!
+  totalCount: Int
+}
+
+type FlxCertificatePerson implements Node & FlxPerson {
+  id: ID!
+  databaseId: Int!
+  name: String!
+  email: String
+  phone: FlxPhone
+  avatar: String
+  note: String
+  certificateCount: Int!
+  createdAt: FlxDateTime
+  createdByName: String!
+}
+
+type FlxCertificatePersonEdge {
+  cursor: String!
+  node: FlxCertificatePerson!
+}
+
+type FlxCertificatePersonConnection {
+  edges: [FlxCertificatePersonEdge!]!
+  nodes: [FlxCertificatePerson!]!
+  pageInfo: FlxPageInfo!
+  totalCount: Int
+}
+
+type FlxCertificateVerification {
+  status: FlxCertificateStatus!
+  title: String!
+  holderName: String!
+  number: String!
+  issuedOn: String!
+  issuer: String!
+  code: String!
+  pageUrl: String!
+  pdfUrl: String
+  imageUrl: String
+  imageWidth: Int
+  imageHeight: Int
+  ogTitle: String!
+  ogDescription: String!
+}
+
+input FlxCertificateFilterInput {
+  search: String
+  status: FlxCertificateStatus
+  templateId: Int
+  eventId: Int
+  referrerId: Int
+  createdBy: Int
+  personId: Int
+}
+
+input FlxCertificatePersonInput {
+  id: Int
+  name: String
+  phone: String
+  email: String
+}
+
+type FlxCertificateChoice {
+  id: Int!
+  name: String!
+  status: String
+  active: Boolean
+  count: Int
+}
+
+type FlxCertificateProviderOption {
+  channel: FlxCertificateChannel!
+  id: Int!
+  name: String!
+}
+
+type FlxCertificateRecordsMeta {
+  templates: [FlxCertificateChoice!]!
+  events: [FlxCertificateChoice!]!
+  referrers: [FlxCertificateChoice!]!
+  noEventCount: Int!
+  noReferrerCount: Int!
+  canManage: Boolean!
+  canBulk: Boolean!
+  scoped: Boolean!
+  me: Int!
+  exportUrl: String!
+  providers: [FlxCertificateProviderOption!]!
+}
+
+type FlxCertificateTemplateOption {
+  id: Int!
+  name: String!
+  active: Boolean!
+  config: String!
+}
+
+type FlxCertificateCreateConfig {
+  templates: [FlxCertificateTemplateOption!]!
+  events: [FlxCertificateChoice!]!
+  referrers: [FlxCertificateChoice!]!
+  canManage: Boolean!
+  today: String!
+  me: Int!
+  lastTemplateId: Int!
+  rendererScripts: [String!]!
+  rendererConfig: String!
+  providers: [FlxCertificateProviderOption!]!
+}
+
+type FlxCertificateSendResult {
+  channel: String!
+  ok: Boolean!
+  message: String!
+}
+
+type FlxCertificateMessagePreview {
+  channel: String!
+  recipient: String!
+  status: String!
+  at: FlxDateTime
+  createdByName: String!
+}
+
+input FlxCertificateCreateInput {
+  templateId: Int!
+  person: FlxCertificatePersonInput
+  values: String
+  eventId: Int
+  referrerId: Int
+  issued: String
+  clientMutationId: String
+}
+
+type FlxCertificateCreatePayload {
+  certificate: FlxCertificate
+  person: FlxCertificatePerson
+  notes: [String!]!
+  errors: [FlxUserError!]!
+  clientMutationId: String
+}
+
+input FlxCertificateUpdateInput {
+  id: Int!
+  person: FlxCertificatePersonInput
+  values: String
+  eventId: Int
+  referrerId: Int
+  clientMutationId: String
+}
+
+type FlxCertificateUpdatePayload {
+  certificate: FlxCertificate
+  person: FlxCertificatePerson
+  notes: [String!]!
+  errors: [FlxUserError!]!
+  clientMutationId: String
+}
+
+input FlxCertificateSetStatusInput {
+  id: Int!
+  status: FlxCertificateStatus!
+  clientMutationId: String
+}
+
+type FlxCertificateSetStatusPayload {
+  certificate: FlxCertificate
+  errors: [FlxUserError!]!
+  clientMutationId: String
+}
+
+input FlxCertificateSetReferrerInput {
+  id: Int!
+  referrerId: Int!
+  clientMutationId: String
+}
+
+type FlxCertificateSetReferrerPayload {
+  certificate: FlxCertificate
+  errors: [FlxUserError!]!
+  clientMutationId: String
+}
+
+input FlxCertificateBulkInput {
+  ids: [Int!]!
+  action: FlxCertificateBulkAction!
+  eventId: Int
+  referrerId: Int
+  clientMutationId: String
+}
+
+type FlxCertificateBulkPayload {
+  updated: Int!
+  queued: Int!
+  redirect: String!
+  errors: [FlxUserError!]!
+  clientMutationId: String
+}
+
+input FlxCertificateDeleteInput {
+  id: Int!
+  clientMutationId: String
+}
+
+type FlxCertificateDeletePayload {
+  deleted: Boolean!
+  errors: [FlxUserError!]!
+  clientMutationId: String
+}
+
+input FlxCertificateSendInput {
+  id: Int!
+  channels: [FlxCertificateChannel!]!
+  clientMutationId: String
+}
+
+type FlxCertificateSendPayload {
+  results: [FlxCertificateSendResult!]!
+  errors: [FlxUserError!]!
+  clientMutationId: String
+}
+
+input FlxCertificateSendToInput {
+  id: Int!
+  channel: FlxCertificateChannel!
+  to: String!
+  name: String
+  subject: String
+  body: String
+  provider: Int
+  save: Boolean
+  clientMutationId: String
+}
+
+type FlxCertificateSendToPayload {
+  results: [FlxCertificateSendResult!]!
+  errors: [FlxUserError!]!
+  clientMutationId: String
+}
+
+input FlxCertificateAttachFilesInput {
+  id: Int!
+  pdfUploadId: String
+  imageUploadId: String
+  ogUploadId: String
+  width: Int
+  height: Int
+  clientMutationId: String
+}
+
+type FlxCertificateAttachFilesPayload {
+  certificate: FlxCertificate
+  errors: [FlxUserError!]!
+  clientMutationId: String
+}
+
+input FlxCertificatePersonSaveInput {
+  id: Int
+  name: String!
+  phone: String
+  email: String
+  note: String
+  clientMutationId: String
+}
+
+type FlxCertificatePersonSavePayload {
+  person: FlxCertificatePerson
+  errors: [FlxUserError!]!
+  clientMutationId: String
+}
+
+input FlxCertificatePersonDeleteInput {
+  id: Int!
+  clientMutationId: String
+}
+
+type FlxCertificatePersonDeletePayload {
+  deleted: Boolean!
+  errors: [FlxUserError!]!
+  clientMutationId: String
+}
+
+input FlxCertificateLookupInput {
+  contact: String
+  website: String
+  lang: String
+  clientMutationId: String
+}
+
+type FlxCertificateLookupPayload {
+  ok: Boolean!
+  message: String!
+  errors: [FlxUserError!]!
+  clientMutationId: String
+}
+
+extend type RootQuery {
+  flxCertificates(first: Int, after: String, filter: FlxCertificateFilterInput): FlxCertificateConnection!
+  flxCertificate(id: Int!): FlxCertificate
+  flxCertificateRecordsMeta(filter: FlxCertificateFilterInput): FlxCertificateRecordsMeta!
+  flxCertificatePeople(search: String): [FlxCertificatePerson!]!
+  flxCertificateDirectory(first: Int, after: String, search: String): FlxCertificatePersonConnection!
+  flxCertificatePerson(id: Int!): FlxCertificatePerson
+  flxCertificatePersonMessages(personId: Int!): [FlxCertificateMessagePreview!]!
+  flxCertificateVerify(code: String!): FlxCertificateVerification
+  flxCertificateCreateConfig(certificateId: Int): FlxCertificateCreateConfig!
+}
+
+extend type RootMutation {
+  flxCertificateCreate(input: FlxCertificateCreateInput!): FlxCertificateCreatePayload
+  flxCertificateUpdate(input: FlxCertificateUpdateInput!): FlxCertificateUpdatePayload
+  flxCertificateSetStatus(input: FlxCertificateSetStatusInput!): FlxCertificateSetStatusPayload
+  flxCertificateSetReferrer(input: FlxCertificateSetReferrerInput!): FlxCertificateSetReferrerPayload
+  flxCertificateBulk(input: FlxCertificateBulkInput!): FlxCertificateBulkPayload
+  flxCertificateDelete(input: FlxCertificateDeleteInput!): FlxCertificateDeletePayload
+  flxCertificateSend(input: FlxCertificateSendInput!): FlxCertificateSendPayload
+  flxCertificateSendTo(input: FlxCertificateSendToInput!): FlxCertificateSendToPayload
+  flxCertificateAttachFiles(input: FlxCertificateAttachFilesInput!): FlxCertificateAttachFilesPayload
+  flxCertificatePersonSave(input: FlxCertificatePersonSaveInput!): FlxCertificatePersonSavePayload
+  flxCertificatePersonDelete(input: FlxCertificatePersonDeleteInput!): FlxCertificatePersonDeletePayload
+  flxCertificateLookup(input: FlxCertificateLookupInput!): FlxCertificateLookupPayload
+}

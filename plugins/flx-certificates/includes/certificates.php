@@ -314,6 +314,7 @@ function flxs_query_certificates( $args = array() ) {
 			'order'       => 'DESC',
 			'ids'         => array(),
 			'scope'       => false, // true: geçerli kullanıcının görebildikleri (flxs_scope_sql)
+			'offset'      => null, // null: sayfa numarası; sayı: GraphQL imleci (REST göndermez)
 		)
 	);
 	$c     = flxs_table( 'certificates' );
@@ -359,7 +360,11 @@ function flxs_query_certificates( $args = array() ) {
 	$w       = implode( ' AND ', $where );
 	$from    = "FROM $c c LEFT JOIN $p p ON p.id = c.person_id LEFT JOIN $t t ON t.id = c.template_id WHERE $w";
 	$total   = (int) $wpdb->get_var( $prm ? $wpdb->prepare( "SELECT COUNT(*) $from", $prm ) : "SELECT COUNT(*) $from" );
-	$limit   = $a['per_page'] > 0 ? $wpdb->prepare( ' LIMIT %d OFFSET %d', $a['per_page'], ( max( 1, $a['page'] ) - 1 ) * $a['per_page'] ) : '';
+	$limit = '';
+	if ( $a['per_page'] > 0 ) {
+		$off   = null === $a['offset'] ? ( max( 1, (int) $a['page'] ) - 1 ) * (int) $a['per_page'] : max( 0, (int) $a['offset'] );
+		$limit = $wpdb->prepare( ' LIMIT %d OFFSET %d', (int) $a['per_page'], $off );
+	}
 	$sql     = "SELECT c.*, p.name AS person_name, p.phone AS person_phone, p.email AS person_email, t.name AS template_name $from ORDER BY $orderby $order" . $limit;
 	$rows    = $wpdb->get_results( $prm ? $wpdb->prepare( $sql, $prm ) : $sql, ARRAY_A );
 	foreach ( $rows as &$r ) {

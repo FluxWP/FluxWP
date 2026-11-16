@@ -669,6 +669,8 @@ return array(
   'fidan toplandı\\x00fidan toplandı' . chr(0) . 'fidan toplandı\\x00fidan toplandı' => 'fidan toplandı' . chr(0) . 'fidan toplandı',
   '%skişi katkıda bulundu\\x00%skişi katkıda bulundu' . chr(0) . '%skişi katkıda bulundu\\x00%skişi katkıda bulundu' => '%s kişi katkıda bulundu' . chr(0) . '%s kişi katkıda bulundu',
   'Person not found.' => 'Kişi bulunamadı.',
+  'New view' => 'Yeni görünüm',
+  'JavaScript is required for this screen.' => 'Bu ekran için JavaScript gerekir.',
 
  ),
 );

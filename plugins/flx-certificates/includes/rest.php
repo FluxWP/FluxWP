@@ -78,72 +78,16 @@ function flxs_rest_can_see( $cert ) {
 }
 
 function flxs_rest_people( WP_REST_Request $r ) {
-	$rows = flxs_search_people( (string) $r->get_param( 'search' ), 8, flxs_own_ref() );
-	return array_map( 'flxs_person_public', $rows );
+	return FLXS_Person_Service::search_rest( $r );
 }
 
 function flxs_rest_cert_get( WP_REST_Request $r ) {
-	$cert = flxs_get_certificate( (int) $r['id'] );
-	if ( ! flxs_rest_can_see( $cert ) ) {
-		return flxs_rest_error( 'Sertifika bulunamadı.', 404 );
-	}
-	return flxs_certificate_for_js( $cert );
+	return FLXS_Certificate_Service::get_rest( $r );
 }
 
 /** Oluştur / güncelle */
 function flxs_rest_cert_save( WP_REST_Request $r ) {
-	$id     = (int) $r['id'];
-	$p      = (array) $r->get_param( 'person' );
-	$values = (array) $r->get_param( 'values' );
-	if ( $id ) {
-		$cert = flxs_get_certificate( $id );
-		if ( ! $cert || ! flxs_user_can_edit_certificate( $cert ) ) {
-			return flxs_rest_error( 'Bu sertifikayı düzenleme yetkiniz yok.', 403 );
-		}
-	}
-	$name      = $p['name'] ?? ( $values['ad_soyad'] ?? '' );
-	$person_id = (int) ( $p['id'] ?? 0 );
-	// Liste/rehber ile aynı kapsam: flxs_own_ref dışında kalan kişi 404 (varlığı sızmasın). Yönetici için flxs_can_see_person her zaman true.
-	if ( $person_id && ! flxs_can_see_person( $person_id ) ) {
-		return flxs_rest_error( __( 'Person not found.', 'flx-certificates' ), 404 );
-	}
-	$up = flxs_upsert_person( $name, $p['phone'] ?? '', $p['email'] ?? '', $person_id );
-	if ( is_wp_error( $up ) ) {
-		return flxs_rest_error( $up );
-	}
-	$values['ad_soyad'] = trim( sanitize_text_field( $name ) );
-	$ref = $r->has_param( 'ref_user' ) ? (int) $r->get_param( 'ref_user' ) : null;
-	$evt = $r->has_param( 'event' ) ? (int) $r->get_param( 'event' ) : null;
-	if ( $evt && ! flxs_valid_event( $evt ) && ( ! $id || (int) ( flxs_get_certificate( $id )['event_id'] ?? 0 ) !== $evt ) ) {
-		return flxs_rest_error( 'Seçilen etkinlik kapatılmış. Açık bir etkinlik seçin.' );
-	}
-	if ( $id ) {
-		$cert = flxs_update_certificate( $id, (int) $up['person']['id'], $values, $ref );
-	} else {
-		$issued = (string) $r->get_param( 'issued' );
-		if ( '' !== $issued ) {
-			if ( ! flxs_can_manage() ) {
-				return flxs_rest_error( 'Geçmiş tarihli sertifikayı yalnızca yönetici oluşturabilir.', 403 );
-			}
-			if ( ! preg_match( '/^\d{4}-\d{2}-\d{2}$/', $issued ) || $issued > wp_date( 'Y-m-d' ) || $issued < '2015-01-01' ) {
-				return flxs_rest_error( 'Geçmiş tarih geçersiz.' );
-			}
-		}
-		$cert = flxs_create_certificate( (int) $r->get_param( 'template_id' ), (int) $up['person']['id'], $values, (int) $ref, $issued );
-	}
-	if ( is_wp_error( $cert ) ) {
-		return flxs_rest_error( $cert );
-	}
-	if ( null !== $evt && (int) $cert['event_id'] !== $evt ) {
-		flxs_set_certificate_event( $cert['id'], $evt );
-		$cert = flxs_get_certificate( $cert['id'] );
-	}
-	return array(
-		'ok'          => true,
-		'certificate' => flxs_certificate_for_js( $cert ),
-		'person'      => flxs_person_public( $up['person'] ),
-		'notes'       => $up['notes'],
-	);
+	return FLXS_Certificate_Service::save_rest( $r );
 }
 
 function flxs_rest_cert_files( WP_REST_Request $r ) {
@@ -220,29 +164,11 @@ function flxs_rest_public_files( WP_REST_Request $r ) {
 }
 
 function flxs_rest_cert_send( WP_REST_Request $r ) {
-	$cert = flxs_get_certificate( (int) $r['id'] );
-	if ( ! flxs_rest_can_see( $cert ) ) {
-		return flxs_rest_error( 'Sertifika bulunamadı.', 404 );
-	}
-	$channels  = array_map( 'sanitize_key', (array) $r->get_param( 'channels' ) );
-	$providers = array_map( 'intval', (array) $r->get_param( 'providers' ) );
-	$res       = flxs_send_certificate( $cert, $channels, $providers, (string) $r->get_param( 'source' ) === 'create' ? 'create' : 'manual' );
-	$out       = array();
-	foreach ( $res as $ch => $v ) {
-		$out[ $ch ] = is_wp_error( $v ) ? array( 'ok' => false, 'message' => $v->get_error_message() ) : array( 'ok' => true, 'message_id' => $v );
-	}
-	flxs_kick_queue();
-	return array( 'ok' => true, 'results' => $out );
+	return FLXS_Certificate_Service::send_rest( $r );
 }
 
 function flxs_rest_cert_status( WP_REST_Request $r ) {
-	$cert = flxs_get_certificate( (int) $r['id'] );
-	if ( ! $cert || ! flxs_user_can_edit_certificate( $cert ) ) {
-		return flxs_rest_error( 'Yetki yok.', 403 );
-	}
-	$status = 'revoked' === $r->get_param( 'status' ) ? 'revoked' : 'active';
-	flxs_set_certificate_status( $cert['id'], $status );
-	return array( 'ok' => true, 'status' => $status );
+	return FLXS_Certificate_Service::status_rest( $r );
 }
 
 function flxs_rest_template_save( WP_REST_Request $r ) {
@@ -340,66 +266,7 @@ function flxs_rest_provider_test( WP_REST_Request $r ) {
  * Sayfada hiçbir kişisel veri gösterilmez; kayıt olsa da olmasa da aynı yanıt döner.
  */
 function flxs_rest_lookup( WP_REST_Request $r ) {
-	// Ziyaretçinin sayfa dili (çok dilli sitelerde REST isteği varsayılan dilde gelir)
-	$lang = (string) $r->get_param( 'lang' );
-	if ( $lang && preg_match( '/^[a-z]{2,3}(_[A-Z]{2})?$/', $lang ) && $lang !== determine_locale() ) {
-		switch_to_locale( $lang );
-	}
-	if ( ! flxs_setting( 'lookup_enabled' ) ) {
-		return flxs_rest_error( __( 'Lookup is disabled.', 'flx-certificates' ), 403 );
-	}
-	// Sayfa önbellekte olabileceği için nonce yerine IP + adres limiti ve bal küpü alanı kullanılıyor.
-	if ( '' !== (string) $r->get_param( 'website' ) ) { // bal küpü
-		return array( 'ok' => true, 'message' => flxs_lookup_message() );
-	}
-	$contact = trim( (string) $r->get_param( 'contact' ) );
-	if ( ! flx_rate_limit( 'flxs_lk_ip|' . flx_client_ip(), 10, HOUR_IN_SECONDS ) ) {
-		return flxs_rest_error( __( 'Too many attempts. Please try again later.', 'flx-certificates' ), 429 );
-	}
-
-	$is_email = (bool) is_email( $contact );
-	$phone    = $is_email ? '' : flxs_normalize_phone( $contact );
-	if ( ! $is_email && ! $phone ) {
-		return flxs_rest_error( __( 'Enter a valid phone number or email address.', 'flx-certificates' ) );
-	}
-	$who = $is_email ? strtolower( $contact ) : $phone;
-	if ( ! flx_rate_limit( 'flxs_lk_c|' . $who, 1, 15 * MINUTE_IN_SECONDS ) ) {
-		return array( 'ok' => true, 'message' => flxs_lookup_message() );
-	}
-
-	$person = $is_email ? flxs_find_person_by_email( $contact ) : flxs_find_person_by_phone( $phone );
-	if ( $person ) {
-		$q     = flxs_query_certificates( array( 'person_id' => $person['id'], 'status' => 'active', 'per_page' => 10 ) );
-		$allow = (array) flxs_setting( 'lookup_channels' );
-		if ( $q['items'] ) {
-			$lines = array();
-			foreach ( $q['items'] as $c ) {
-				$lines[] = $c['title'] . ': ' . flxs_certificate_url( $c );
-			}
-			$channel = $is_email ? 'email' : ( in_array( 'whatsapp', $allow, true ) && flxs_resolve_provider( 'whatsapp' ) ? 'whatsapp' : 'sms' );
-			if ( in_array( $channel, $allow, true ) && flxs_resolve_provider( $channel ) ) {
-				/* translators: 1: ad, 2: site adı, 3: sertifika linkleri (satır satır) */
-				$body = sprintf( __( 'Hello %1$s,
-
-Your %2$s certificates:
-%3$s', 'flx-certificates' ), flxs_first_name( $person['name'] ), get_bloginfo( 'name' ), implode( "\n", $lines ) );
-				flxs_enqueue(
-					array(
-						'channel'        => $channel,
-						'recipient'      => $is_email ? $person['email'] : $person['phone'],
-						'recipient_name' => $person['name'],
-						'person_id'      => $person['id'],
-						'subject'        => __( 'Your certificates', 'flx-certificates' ) . ' · ' . get_bloginfo( 'name' ),
-						'body'           => $body,
-						'source'         => 'lookup',
-					)
-				);
-				flxs_kick_queue();
-			}
-		}
-		flxs_log( 'lookup_request', 'person', $person['id'], 'Sorgulama: ' . count( $q['items'] ) . ' sertifika', array( 'channel' => $is_email ? 'email' : 'sms' ), 0 );
-	}
-	return array( 'ok' => true, 'message' => flxs_lookup_message() );
+	return FLXS_Public_Service::lookup_rest( $r );
 }
 
 function flxs_lookup_message() {
@@ -545,13 +412,7 @@ function flxs_rest_recipient_delete( WP_REST_Request $r ) {
 }
 
 function flxs_rest_cert_ref( WP_REST_Request $r ) {
-	$cert = flxs_get_certificate( (int) $r['id'] );
-	if ( ! $cert || ! flxs_user_can_edit_certificate( $cert ) ) {
-		return flxs_rest_error( 'Yetki yok.', 403 );
-	}
-	$ref = flxs_valid_ref_user( (int) $r->get_param( 'ref_user' ) );
-	flxs_set_certificate_ref( $cert['id'], $ref );
-	return array( 'ok' => true, 'ref_user_id' => $ref, 'ref_user' => flxs_ref_label( $ref ) );
+	return FLXS_Certificate_Service::ref_rest( $r );
 }
 
 
@@ -574,65 +435,12 @@ function flxs_rest_pages( $total, $per ) {
 
 /** Sertifika listesi (uygulama). Oluşturma POST'u aynı yolda durur. */
 function flxs_rest_cert_list( WP_REST_Request $r ) {
-	$per = min( 100, max( 1, absint( $r->get_param( 'per_page' ) ? $r->get_param( 'per_page' ) : 25 ) ) );
-	$q   = flxs_query_certificates(
-		array(
-			'search'   => sanitize_text_field( (string) $r->get_param( 's' ) ),
-			'status'   => sanitize_key( (string) $r->get_param( 'status' ) ),
-			'page'     => max( 1, absint( $r->get_param( 'page' ) ) ),
-			'per_page' => $per,
-			'scope'    => true,
-			'orderby'  => 'created_at',
-		)
-	);
-	$items = array();
-	foreach ( $q['items'] as $row ) {
-		$js              = flxs_certificate_for_js( $row );
-		$js['name']      = (string) ( $row['person_name'] ?? ( $js['person']['name'] ?? '' ) );
-		$js['email']     = (string) ( $row['person_email'] ?? ( $js['person']['email'] ?? '' ) );
-		$js['phone']     = (string) ( $js['person']['phone_label'] ?? '' );
-		$js['template']  = (string) ( $row['template_name'] ?? '' );
-		$js['date_label'] = flxs_date( $row['created_at'] );
-		$js['status_label'] = 'revoked' === $row['status'] ? __( 'Cancelled', 'flx-certificates' ) : __( 'Valid', 'flx-certificates' );
-		$items[]         = $js;
-	}
-	return array(
-		'items' => $items,
-		'total' => (int) $q['total'],
-		'pages' => flxs_rest_pages( $q['total'], $per ),
-	);
+	return FLXS_Certificate_Service::list_rest( $r );
 }
 
 /** Kişiler, sayfalı. Arama ucu `/people` olduğu gibi kalır. */
 function flxs_rest_directory( WP_REST_Request $r ) {
-	global $wpdb;
-	$per  = min( 100, max( 1, absint( $r->get_param( 'per_page' ) ? $r->get_param( 'per_page' ) : 25 ) ) );
-	$page = max( 1, absint( $r->get_param( 'page' ) ) );
-	$s    = sanitize_text_field( (string) $r->get_param( 's' ) );
-	$t     = flxs_table( 'people' );
-	$where = array( flxs_people_mine_sql( 'p' ) );
-	$prm   = array();
-	if ( '' !== $s ) {
-		$like    = '%' . $wpdb->esc_like( $s ) . '%';
-		$where[] = '(p.name LIKE %s OR p.email LIKE %s OR p.phone LIKE %s)';
-		array_push( $prm, $like, $like, $like );
-	}
-	$scope = flxs_people_scope_sql( 'p' );
-	if ( $scope ) {
-		$where[] = $scope;
-	}
-	$w     = implode( ' AND ', $where );
-	$total = (int) ( $prm ? $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$t} p WHERE {$w}", $prm ) ) : $wpdb->get_var( "SELECT COUNT(*) FROM {$t} p WHERE {$w}" ) ); // phpcs:ignore WordPress.DB.PreparedSQL
-	$sql   = "SELECT p.* FROM {$t} p WHERE {$w} ORDER BY p.id DESC" . $wpdb->prepare( ' LIMIT %d OFFSET %d', $per, ( $page - 1 ) * $per );
-	$rows  = $prm ? $wpdb->get_results( $wpdb->prepare( $sql, $prm ), ARRAY_A ) : $wpdb->get_results( $sql, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL
-	$items = array();
-	foreach ( (array) $rows as $row ) {
-		$pub         = flxs_person_public( $row );
-		$pub['date_label'] = flxs_date( $row['created_at'] );
-		$pub['certs'] = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM ' . flxs_table( 'certificates' ) . ' WHERE person_id = %d', (int) $row['id'] ) );
-		$items[]     = $pub;
-	}
-	return array( 'items' => $items, 'total' => $total, 'pages' => flxs_rest_pages( $total, $per ) );
+	return FLXS_Person_Service::directory_rest( $r );
 }
 
 /** Gönderim kuyruğu. */
