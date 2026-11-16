@@ -351,7 +351,7 @@ final class FLXGQL_Cart {
 				'itemsTax'      => self::money( $t['total_items_tax'] ?? 0, $cur ),
 				'fees'          => self::money( $t['total_fees'] ?? 0, $cur ),
 				'discount'      => self::money( $t['total_discount'] ?? 0, $cur ),
-				'shipping'      => isset( $t['total_shipping'] ) && null !== $t['total_shipping'] ? self::money( $t['total_shipping'], $cur ) : null,
+				'shipping'      => isset( $t['total_shipping'] ) ? self::money( $t['total_shipping'], $cur ) : null,
 				'tax'           => self::money( $t['total_tax'] ?? 0, $cur ),
 				'total'         => self::money( $t['total_price'] ?? 0, $cur ),
 				'taxLines'      => $lines,
@@ -504,7 +504,7 @@ final class FLXGQL_Cart {
 	private static function address_in( array $in ): array {
 		$out = array();
 		foreach ( self::ADDRESS as $gql => $store ) {
-			if ( array_key_exists( $gql, $in ) && null !== $in[ $gql ] ) {
+			if ( isset( $in[ $gql ] ) ) {
 				$out[ $store ] = sanitize_text_field( flx_gql_str( $in[ $gql ] ) );
 			}
 		}
