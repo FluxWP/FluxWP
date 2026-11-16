@@ -1,6 +1,7 @@
 // Shared bits of the Flux AI screens: formatters, the switch, notices and the small SVG charts.
 import { useMemo, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Check } from '@fluxwp/ui';
 import { translator } from './i18n';
 
 export interface Notice {
@@ -38,13 +39,7 @@ export function NoticeBar({ notice, onClose, t }: { notice: Notice | null; onClo
 }
 
 export function Switch({ checked, onChange, label, disabled }: { checked: boolean; onChange: (on: boolean) => void; label: string; disabled?: boolean }) {
-  return (
-    <label className="flxai-switch">
-      <input type="checkbox" checked={checked} disabled={disabled} onChange={(e) => onChange(e.target.checked)} />
-      <span aria-hidden="true" />
-      <span className="flxai-sr">{label}</span>
-    </label>
-  );
+  return <Check switch checked={checked} disabled={disabled} aria-label={label} onChange={onChange} />;
 }
 
 export function Card({ title, children, wide }: { title?: ReactNode; children: ReactNode; wide?: boolean }) {
