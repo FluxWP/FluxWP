@@ -4,16 +4,16 @@
 - Durum: ✱
 - PR: #334
 
-Envanter (`gql/flx-forms-1`). Servis, şema ve ekran yok. Taşınacak: form tanımı okuma, `flxFormSubmit`, yanıtlar ekranı, pano. Fork oluşturucu ve ödeme uçları kalır. Eşleme `docs/graphql/ESLEME/flx-forms.md`. Blok formu AJAX istisnası (`fxb_process_ajax_submit`, `fxb_process_advanced_form_submit`) `ISTISNALAR.md` ortak dosyasında; silinmesi ayrı PR.
+Plan: 1 public okuma + gönderim, 2 Panel yanıtlar + ayarlar, 3 Pano + sistem kontrolü, 4 Ödemeler, 5 Otomasyonlar, 6 Eklentiler. Bu dal 1. Oluştur (fork form oluşturucu) klasik kalır. Eşleme `docs/graphql/ESLEME/flx-forms.md`. Blok formu AJAX istisnası (`fxb_process_ajax_submit`, `fxb_process_advanced_form_submit`) `ISTISNALAR.md` ortak dosyasında; silinmesi ayrı PR.
 
 ## İstisnalar
 
 | Uç / akış | Paket | Neden | GraphQL tarafı |
 |---|---|---|---|
-| Fork form oluşturucu: `Emsfb_create`, form kaydet/sil/kopyala/önizle AJAX, `POST /flxf/v1/block-forms`, `GET /efb/v1/preview/{id}`, `Emsfb/v1/test` | flx-forms | Fork editör (ve blok editörü yazması); sahip kararı, içine dokunulmaz | Okuma `flxForm` / `flxForms` |
-| Ödeme: `forms/payment/start`, `confirm`, `quote`, `stripe/card/add`, `stripe/confirm`, `stripe/pkey`, webhook `forms/payment/webhook/{provider}` ve `forms/payment/stripe/webhook`, `admin_post_emsfb_stripe_save` | flx-forms | Sağlayıcı sabit URL'e POST atar veya tarayıcı dönüşünü kendi imzasıyla doğrular; tutar sunucuda | Ödeme toplamları `flxFormsDashboard` |
-| Dosya: `POST /Emsfb/v1/forms/file/upload`, `wp_ajax_update_file_Emsfb` | flx-forms | Multipart | Gönderim kaydı yüklenmiş dosyanın adresini taşır |
+| Fork form oluşturucu: `Emsfb_create`, form kaydet/sil/kopyala/önizle AJAX, `POST /flxf/v1/block-forms`, `GET /efb/v1/preview/{id}`, `Emsfb/v1/test`, `admin_post_flxf_block_edit` | flx-forms | Oluştur sayfası klasik kalır (sahip) | Okuma `flxForm` / `flxFormPicker` |
+| Ödeme callback ve webhook: `forms/payment/start`, `confirm`, `quote`, `stripe/card/add`, `stripe/confirm`, `stripe/pkey`, `forms/payment/webhook/{provider}`, `forms/payment/stripe/webhook`, `admin_post_emsfb_stripe_save` | flx-forms | Sağlayıcı sabit URL'e POST atar veya tarayıcı dönüşünü kendi imzasıyla doğrular | Liste `flxFormsPayments` (dilim 4). Sır write-only |
+| `login` / `register` / `logout` / `forms/recovery/efb_set_password` aynı `message/add` callback'inde | flx-forms | `flxFormSubmit` yalnız form, anket, abonelik | REST aynı kalır |
+| Dosya: `POST /Emsfb/v1/forms/file/upload`, `wp_ajax_update_file_Emsfb` (nonce only, no cap), `admin_post_flxf_dash_csv` | flx-forms | Multipart veya CSV baytı | Gönderim yalnız bekleyen / bu bilete ayrılmış adresi kabul eder |
 | `GET /Emsfb/v1/nonce/refresh`, `wp_ajax_heartbeat_Emsfb` | flx-forms | Eski istemcinin `wp_rest` nonce protokolü | GraphQL WP oturum çerezini kullanır |
-| `POST /Emsfb/v1/forms/recovery/efb_set_password`, `POST /Emsfb/v1/autofill/get` | flx-forms | E-posta jetonuyla WP parolası; vendor autofill dosyası | — |
-| Otomasyonlar `page=flxf_automations` ve `wp_ajax_flxf_auto_*` | flx-forms | Bu dalganın kapsamında değil (ayrı Flux ekranı) | — |
-| `admin_post_flxf_dash_csv`, `admin_post_flxf_block_edit`, `admin_post_flx_system_checks_dismiss` | flx-forms | CSV baytı, editöre yönlendirme, ortak sistem kontrolü | Pano verisi `flxFormsDashboard` |
+| `POST /Emsfb/v1/autofill/get` | flx-forms | Vendor autofill dosyası | — |
+| Ayar sözlüğü `text` / `act_local_efb` | flx-forms | Fork çeviri sözlüğü; i18n `.l10n.php` | Ayar ekranı diğer anahtarları taşır |
