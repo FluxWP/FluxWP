@@ -56,6 +56,7 @@ fragment FlxSpeedSettingsFields on FlxSpeedSettings {
   loginActive
   loginUrl
   loginPrefix
+  loginMovedUrl
   mcpActive
   mcpTools
 }

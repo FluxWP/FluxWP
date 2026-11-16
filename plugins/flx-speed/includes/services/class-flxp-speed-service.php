@@ -924,6 +924,7 @@ final class FLXP_Speed_Service {
 			'loginActive'    => (bool) $active,
 			'loginUrl'       => $active ? FLXP_Login_URL::url() : '',
 			'loginPrefix'    => $prefix,
+			'loginMovedUrl'  => $active ? wp_logout_url( add_query_arg( array( 'flxp_moved' => 1, 'redirect_to' => rawurlencode( admin_url( 'admin.php?page=flx-speed&tab=settings' ) ) ), FLXP_Login_URL::url() ) ) : '',
 			'mcpActive'      => function_exists( 'flxseo_mcp_tools' ),
 			'mcpTools'       => 'flxp_summary, flxp_requests, flxp_request, flxp_slow_queries, flxp_php_errors, flxp_http_calls, flxp_environment, flxp_server, flxp_database, flxp_autoload, flxp_cron, flxp_profile_url',
 		);

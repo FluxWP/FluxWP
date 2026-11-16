@@ -10031,6 +10031,9 @@ type FlxSpeedSettings {
   "FLXP_LOGIN_DISABLE is defined: the custom address is off."
   loginDisabled: Boolean!
 
+  "Logs the person out and opens the custom login address; used after the address changed. Empty when none is in use."
+  loginMovedUrl: String!
+
   "Site address that comes before the login slug."
   loginPrefix: String!
 

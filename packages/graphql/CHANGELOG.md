@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2.1
+- Flux Speed işlemleri (`FlxSpeedConfig`, `FlxSpeedSummary`, `FlxSpeedRecords`, `FlxSpeedRecord`, `FlxSpeedCache`, `FlxSpeedSettings` ve diğerleri, 20 işlem) ve tipleri.
+
 ## 0.2.0
 - `useFlxViewer()` ve `useFlxCan(capability)`: giriş yapan kişi ve FluxWP yetkileri (Flux GraphQL 0.2.0 `flxViewer`).
 - Flux Roles işlemleri (`FlxRolesScreen`, `FlxRoleMembers`, `FlxRolesSave`, `FlxRoleCreate`, `FlxRoleDelete`, `FlxRoleReset`, `FlxRoleMemberAdd`, `FlxRoleMemberRemove`).

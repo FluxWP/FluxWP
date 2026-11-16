@@ -497,16 +497,16 @@ export type FlxSpeedServerQuery = { flxSpeedServer: Array<{ key: string, title: 
 export type FlxSpeedSettingsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type FlxSpeedSettingsQuery = { flxSpeedSettings: { panel: boolean, panelFront: boolean, caps: boolean, record: boolean, recordAdmins: boolean, sample: number, slowMs: number, slowQueryMs: number, keepDays: number, maxRows: number, diskQuotaGb: number, loginSlug: string, loginBlocked: FlxSpeedLoginBlocked, loginSlugLocked: boolean, loginDisabled: boolean, loginActive: boolean, loginUrl: string, loginPrefix: string, mcpActive: boolean, mcpTools: string } };
+export type FlxSpeedSettingsQuery = { flxSpeedSettings: { panel: boolean, panelFront: boolean, caps: boolean, record: boolean, recordAdmins: boolean, sample: number, slowMs: number, slowQueryMs: number, keepDays: number, maxRows: number, diskQuotaGb: number, loginSlug: string, loginBlocked: FlxSpeedLoginBlocked, loginSlugLocked: boolean, loginDisabled: boolean, loginActive: boolean, loginUrl: string, loginPrefix: string, loginMovedUrl: string, mcpActive: boolean, mcpTools: string } };
 
-export type FlxSpeedSettingsFieldsFragment = { panel: boolean, panelFront: boolean, caps: boolean, record: boolean, recordAdmins: boolean, sample: number, slowMs: number, slowQueryMs: number, keepDays: number, maxRows: number, diskQuotaGb: number, loginSlug: string, loginBlocked: FlxSpeedLoginBlocked, loginSlugLocked: boolean, loginDisabled: boolean, loginActive: boolean, loginUrl: string, loginPrefix: string, mcpActive: boolean, mcpTools: string };
+export type FlxSpeedSettingsFieldsFragment = { panel: boolean, panelFront: boolean, caps: boolean, record: boolean, recordAdmins: boolean, sample: number, slowMs: number, slowQueryMs: number, keepDays: number, maxRows: number, diskQuotaGb: number, loginSlug: string, loginBlocked: FlxSpeedLoginBlocked, loginSlugLocked: boolean, loginDisabled: boolean, loginActive: boolean, loginUrl: string, loginPrefix: string, loginMovedUrl: string, mcpActive: boolean, mcpTools: string };
 
 export type FlxSpeedSettingsSaveMutationVariables = Exact<{
   input: FlxSpeedSettingsSaveInput;
 }>;
 
 
-export type FlxSpeedSettingsSaveMutation = { flxSpeedSettingsSave: { loginChanged: boolean | null, loginRemoved: boolean | null, settings: { panel: boolean, panelFront: boolean, caps: boolean, record: boolean, recordAdmins: boolean, sample: number, slowMs: number, slowQueryMs: number, keepDays: number, maxRows: number, diskQuotaGb: number, loginSlug: string, loginBlocked: FlxSpeedLoginBlocked, loginSlugLocked: boolean, loginDisabled: boolean, loginActive: boolean, loginUrl: string, loginPrefix: string, mcpActive: boolean, mcpTools: string } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+export type FlxSpeedSettingsSaveMutation = { flxSpeedSettingsSave: { loginChanged: boolean | null, loginRemoved: boolean | null, settings: { panel: boolean, panelFront: boolean, caps: boolean, record: boolean, recordAdmins: boolean, sample: number, slowMs: number, slowQueryMs: number, keepDays: number, maxRows: number, diskQuotaGb: number, loginSlug: string, loginBlocked: FlxSpeedLoginBlocked, loginSlugLocked: boolean, loginDisabled: boolean, loginActive: boolean, loginUrl: string, loginPrefix: string, loginMovedUrl: string, mcpActive: boolean, mcpTools: string } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
 
 export type FlxSpeedSummaryQueryVariables = Exact<{
   hours?: number | null | undefined;

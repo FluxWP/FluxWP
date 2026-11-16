@@ -221,20 +221,20 @@ export const FlxSpeedServer: FlxOperation<T.FlxSpeedServerQuery, T.FlxSpeedServe
 
 /** query FlxSpeedSettings (flx-speed, plugins/flx-speed/graphql/operations/FlxSpeedSettings.graphql) */
 export const FlxSpeedSettings: FlxOperation<T.FlxSpeedSettingsQuery, T.FlxSpeedSettingsQueryVariables> = {
-  id: '591825d999e56013223c6315b8911ccb95dc39c13d65e475606667d6fd77d490',
+  id: '3ed06bef7eb6f4c9e11545d09afef2ce9ff9cbc1fd38115124ff2b649e3d630f',
   name: 'FlxSpeedSettings',
   kind: 'query',
   plugin: 'flx-speed',
-  document: "query FlxSpeedSettings {\n  flxSpeedSettings {\n    ...FlxSpeedSettingsFields\n  }\n}\n\nfragment FlxSpeedSettingsFields on FlxSpeedSettings {\n  panel\n  panelFront\n  caps\n  record\n  recordAdmins\n  sample\n  slowMs\n  slowQueryMs\n  keepDays\n  maxRows\n  diskQuotaGb\n  loginSlug\n  loginBlocked\n  loginSlugLocked\n  loginDisabled\n  loginActive\n  loginUrl\n  loginPrefix\n  mcpActive\n  mcpTools\n}",
+  document: "query FlxSpeedSettings {\n  flxSpeedSettings {\n    ...FlxSpeedSettingsFields\n  }\n}\n\nfragment FlxSpeedSettingsFields on FlxSpeedSettings {\n  panel\n  panelFront\n  caps\n  record\n  recordAdmins\n  sample\n  slowMs\n  slowQueryMs\n  keepDays\n  maxRows\n  diskQuotaGb\n  loginSlug\n  loginBlocked\n  loginSlugLocked\n  loginDisabled\n  loginActive\n  loginUrl\n  loginPrefix\n  loginMovedUrl\n  mcpActive\n  mcpTools\n}",
 };
 
 /** mutation FlxSpeedSettingsSave (flx-speed, plugins/flx-speed/graphql/operations/FlxSpeedSettingsSave.graphql) */
 export const FlxSpeedSettingsSave: FlxOperation<T.FlxSpeedSettingsSaveMutation, T.FlxSpeedSettingsSaveMutationVariables> = {
-  id: '07b803f86dfad95d544b790ac063e2d25367f29473ee9fad20025dd507d0e7e9',
+  id: 'ae1ea2b03f50ac55abebc5ae0a507d77e463e14edae360feaf1646ebd2ddaac4',
   name: 'FlxSpeedSettingsSave',
   kind: 'mutation',
   plugin: 'flx-speed',
-  document: "mutation FlxSpeedSettingsSave($input: FlxSpeedSettingsSaveInput!) {\n  flxSpeedSettingsSave(input: $input) {\n    settings {\n      ...FlxSpeedSettingsFields\n    }\n    loginChanged\n    loginRemoved\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxSpeedSettingsFields on FlxSpeedSettings {\n  panel\n  panelFront\n  caps\n  record\n  recordAdmins\n  sample\n  slowMs\n  slowQueryMs\n  keepDays\n  maxRows\n  diskQuotaGb\n  loginSlug\n  loginBlocked\n  loginSlugLocked\n  loginDisabled\n  loginActive\n  loginUrl\n  loginPrefix\n  mcpActive\n  mcpTools\n}",
+  document: "mutation FlxSpeedSettingsSave($input: FlxSpeedSettingsSaveInput!) {\n  flxSpeedSettingsSave(input: $input) {\n    settings {\n      ...FlxSpeedSettingsFields\n    }\n    loginChanged\n    loginRemoved\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxSpeedSettingsFields on FlxSpeedSettings {\n  panel\n  panelFront\n  caps\n  record\n  recordAdmins\n  sample\n  slowMs\n  slowQueryMs\n  keepDays\n  maxRows\n  diskQuotaGb\n  loginSlug\n  loginBlocked\n  loginSlugLocked\n  loginDisabled\n  loginActive\n  loginUrl\n  loginPrefix\n  loginMovedUrl\n  mcpActive\n  mcpTools\n}",
 };
 
 /** query FlxSpeedSummary (flx-speed, plugins/flx-speed/graphql/operations/FlxSpeedSummary.graphql) */

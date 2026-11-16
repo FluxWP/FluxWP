@@ -866,6 +866,7 @@ flx_gql_type(
 			'loginActive'     => flxp_gql_f( 'Boolean!', __( 'The custom login address is in use.', 'flx-speed' ) ),
 			'loginUrl'        => flxp_gql_f( 'String!', __( 'The login address in use; empty when none.', 'flx-speed' ) ),
 			'loginPrefix'     => flxp_gql_f( 'String!', __( 'Site address that comes before the login slug.', 'flx-speed' ) ),
+			'loginMovedUrl'   => flxp_gql_f( 'String!', __( 'Logs the person out and opens the custom login address; used after the address changed. Empty when none is in use.', 'flx-speed' ) ),
 			'mcpActive'       => flxp_gql_f( 'Boolean!', __( 'Flux AI & MCP is active, so the tools are registered.', 'flx-speed' ) ),
 			'mcpTools'        => flxp_gql_f( 'String!', __( 'Names of the read-only AI tools.', 'flx-speed' ) ),
 		),
