@@ -295,9 +295,7 @@ final class FLXCRM_Gathering_Service {
 		usort(
 			$rows,
 			static function ( $a, $b ): int {
-				$an = is_array( $a ) ? FLXCRM_Val::str( $a['name'] ?? '' ) : '';
-				$bn = is_array( $b ) ? FLXCRM_Val::str( $b['name'] ?? '' ) : '';
-				return strcasecmp( $an, $bn );
+				return strcasecmp( FLXCRM_Val::str( $a['name'] ?? '' ), FLXCRM_Val::str( $b['name'] ?? '' ) );
 			}
 		);
 		$q = function_exists( 'mb_strtolower' ) ? mb_strtolower( trim( $search ) ) : strtolower( trim( $search ) );
@@ -306,9 +304,6 @@ final class FLXCRM_Gathering_Service {
 				array_filter(
 					$rows,
 					static function ( $p ) use ( $q ): bool {
-						if ( ! is_array( $p ) ) {
-							return false;
-						}
 						$hay = FLXCRM_Val::str( $p['name'] ?? '' ) . ' ' . FLXCRM_Val::str( $p['phone'] ?? '' ) . ' ' . FLXCRM_Val::str( $p['email'] ?? '' );
 						$hay = function_exists( 'mb_strtolower' ) ? mb_strtolower( $hay ) : strtolower( $hay );
 						return false !== strpos( $hay, $q );
@@ -318,9 +313,6 @@ final class FLXCRM_Gathering_Service {
 		}
 		$items = array();
 		foreach ( array_slice( $rows, $offset, $limit ) as $p ) {
-			if ( ! is_array( $p ) ) {
-				continue;
-			}
 			$pid     = FLXCRM_Val::int( $p['id'] ?? 0 );
 			$reasons = array();
 			foreach ( array_unique( FLXCRM_Val::strings( $why[ $pid ] ?? array() ) ) as $r ) {

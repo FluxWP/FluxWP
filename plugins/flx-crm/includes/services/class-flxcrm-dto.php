@@ -78,13 +78,7 @@ final class FLXCRM_Val {
 	public static function keyed( array $row ): array {
 		$out = array();
 		foreach ( $row as $key => $value ) {
-			if ( is_int( $key ) ) {
-				$out[ (string) $key ] = $value;
-				continue;
-			}
-			if ( is_string( $key ) ) {
-				$out[ $key ] = $value;
-			}
+			$out[ is_int( $key ) ? (string) $key : $key ] = $value;
 		}
 		return $out;
 	}
