@@ -1,0 +1,23 @@
+mutation FlxRecaptchaKeysTest($input: FlxRecaptchaKeysTestInput!) {
+  flxRecaptchaKeysTest(input: $input) {
+    result {
+      ok
+      message
+      score
+    }
+    settings {
+      ...FlxRecaptchaSettingsFields
+    }
+    forms {
+      ...FlxRecaptchaFormRow
+    }
+    status {
+      ...FlxRecaptchaStatusFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

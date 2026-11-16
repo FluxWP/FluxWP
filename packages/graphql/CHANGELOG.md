@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.6
+- Flux Analytics operations (`FlxAnalyticsConfig`, `FlxAnalyticsReport`, `FlxAnalyticsRealtime`, `FlxAnalyticsPages`, `FlxAnalyticsReferrers`, `FlxAnalyticsBreakdown`, `FlxAnalyticsEvents`, `FlxAnalyticsPage`, `FlxAnalyticsFunnel`, `FlxAnalyticsRefs`, `FlxAnalyticsJourneys`, `FlxAnalyticsSettings`, `FlxAnalyticsTelemetry`, `FlxAnalyticsTelemetryErrors` and the write operations).
+
+## 0.3.5
+- Flux reCAPTCHA operations (`FlxRecaptchaScreen`, `FlxRecaptchaSettingsUpdate`, `FlxRecaptchaKeysTest`, `FlxCaptcha`).
+
 ## 0.3.4
 - Flux Speed işlemleri (`FlxSpeedConfig`, `FlxSpeedSummary`, `FlxSpeedRecords`, `FlxSpeedRecord`, `FlxSpeedCache`, `FlxSpeedSettings` ve diğerleri, 20 işlem) ve tipleri.
 
