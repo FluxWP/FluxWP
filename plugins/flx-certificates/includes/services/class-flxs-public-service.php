@@ -10,13 +10,17 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Public certificate verification and lookup.
+ *
+ * @phpstan-type FlxsWhen array{iso:string,timestamp:int,label:string,relative:string}
+ * @phpstan-type FlxsVerification array{status:string,title:string,holderName:string,number:string,issuedOn:FlxsWhen,issuer:string,code:string,pageUrl:string,pdfUrl:?string,imageUrl:?string,imageWidth:?int,imageHeight:?int,ogTitle:string,ogDescription:string}
  */
 final class FLXS_Public_Service {
 
 	/**
 	 * Fields the public page shows. Unknown code is null (no existence leak).
+	 * issuedOn is the stored issue instant, the moment the page formats.
 	 *
-	 * @return array<string,mixed>|null
+	 * @return FlxsVerification|null
 	 */
 	public static function verify( string $code ): ?array {
 		$cert = flxs_get_certificate_by_code( $code );
@@ -42,12 +46,16 @@ final class FLXS_Public_Service {
 		if ( function_exists( 'flx_gql_cache_tag' ) ) {
 			flx_gql_cache_tag( array( 'flx-certificates:verify:' . FLXS_Val::str($cert['code']), 'flx-certificates:certificate:' . FLXS_Val::int($cert['id']) ) );
 		}
+		$issued = flx_gql_datetime( FLXS_Val::str( $cert['created_at'] ?? '' ) );
+		if ( ! is_array( $issued ) ) {
+			$issued = array( 'iso' => '', 'timestamp' => 0, 'label' => '', 'relative' => '' );
+		}
 		return array(
 			'status'        => $revoked ? 'revoked' : 'active',
 			'title'         => FLXS_Val::str($cert['title']),
 			'holderName'    => FLXS_Val::str(( $vars['ad_soyad'] ?? '' )),
 			'number'        => FLXS_Val::str($cert['number']),
-			'issuedOn'      => FLXS_Val::str(( $vars['tarih'] ?? '' )),
+			'issuedOn'      => $issued,
 			'issuer'        => FLXS_Val::str( flxs_setting( 'org_name' ) ),
 			'code'          => FLXS_Val::str($cert['code']),
 			'pageUrl'       => flxs_certificate_url( $cert ),

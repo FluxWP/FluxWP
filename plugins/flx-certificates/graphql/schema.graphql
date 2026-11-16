@@ -699,8 +699,8 @@ type FlxCertificateVerification {
   imageUrl: String
   """Image width."""
   imageWidth: Int
-  """Issue date as the public page prints it."""
-  issuedOn: String!
+  """When it was issued. The public page formats this same instant."""
+  issuedOn: FlxDateTime!
   """Issuing organization."""
   issuer: String!
   """Certificate number."""

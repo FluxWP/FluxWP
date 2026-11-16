@@ -9,6 +9,8 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * People reads and writes shared by REST, admin-post and GraphQL.
+ *
+ * @phpstan-type FlxsPersonRow array{id:int,name:string,phone:string,email:string,note:string,created_at:string,created_by:int}
  */
 final class FLXS_Person_Service {
 
@@ -273,7 +275,7 @@ final class FLXS_Person_Service {
 
 	/**
 	 * @param array<string,mixed> $in Input.
-	 * @return array<string,mixed>|WP_Error
+	 * @return FlxsPersonRow|WP_Error
 	 */
 	public static function save( array $in ) {
 		global $wpdb;
@@ -295,7 +297,7 @@ final class FLXS_Person_Service {
 			}
 			self::changed( $id );
 			$row = flxs_get_person( $id );
-			return is_array( $row ) ? $row : FLXS_Records::error( 'flxs_person_db', __( 'The person could not be saved.', 'flx-certificates' ), 'INTERNAL' );
+			return is_array( $row ) ? self::person_row( $row ) : FLXS_Records::error( 'flxs_person_db', __( 'The person could not be saved.', 'flx-certificates' ), 'INTERNAL' );
 		}
 		if ( ! self::can_see( $id ) ) {
 			return FLXS_Records::error( 'flxs_404', __( 'Person not found.', 'flx-certificates' ), 'NOT_FOUND', 'id', 404 );
@@ -324,7 +326,23 @@ final class FLXS_Person_Service {
 		flxs_log( 'person_updated', 'person', $id, $name, array( 'before' => array_intersect_key( (array) $p, $data ), 'after' => $data ) );
 		self::changed( $id );
 		$row = flxs_get_person( $id );
-		return is_array( $row ) ? $row : FLXS_Records::error( 'flxs_404', __( 'Person not found.', 'flx-certificates' ), 'NOT_FOUND', 'id', 404 );
+		return is_array( $row ) ? self::person_row( $row ) : FLXS_Records::error( 'flxs_404', __( 'Person not found.', 'flx-certificates' ), 'NOT_FOUND', 'id', 404 );
+	}
+
+	/**
+	 * @param array<string,mixed> $row Stored person.
+	 * @return FlxsPersonRow
+	 */
+	private static function person_row( array $row ): array {
+		return array(
+			'id'         => FLXS_Val::int( $row['id'] ?? 0 ),
+			'name'       => FLXS_Val::str( $row['name'] ?? '' ),
+			'phone'      => FLXS_Val::str( $row['phone'] ?? '' ),
+			'email'      => FLXS_Val::str( $row['email'] ?? '' ),
+			'note'       => FLXS_Val::str( $row['note'] ?? '' ),
+			'created_at' => FLXS_Val::str( $row['created_at'] ?? '' ),
+			'created_by' => FLXS_Val::int( $row['created_by'] ?? 0 ),
+		);
 	}
 
 	/**

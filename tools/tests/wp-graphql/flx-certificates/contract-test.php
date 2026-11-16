@@ -53,6 +53,26 @@ $tpl   = (int) flxs_save_template(
 );
 flxt_ok( $tpl > 0, 'template: seeded' );
 
+$GLOBALS['flxs_t_created'] = 0;
+add_action(
+	'flxs_certificate_created',
+	static function () {
+		$GLOBALS['flxs_t_created']++;
+	}
+);
+$cap_user = (int) wp_insert_user( array( 'user_login' => 'flxs_caps_' . $stamp, 'user_pass' => wp_generate_password(), 'role' => 'subscriber' ) );
+$cap_obj  = new WP_User( $cap_user );
+foreach ( array( 'flxs_use', 'flxs_manage', 'flxs_bulk', 'flxs_dashboard', 'flxs_own_ref' ) as $cap ) {
+	$cap_obj->add_cap( $cap );
+}
+$viewer = flxt_gql( '{ flxViewer { capabilities } }', array(), $cap_user );
+$have   = $viewer['data']['flxViewer']['capabilities'] ?? array();
+foreach ( array( 'flxs_use', 'flxs_manage', 'flxs_bulk', 'flxs_dashboard', 'flxs_own_ref' ) as $cap ) {
+	flxt_ok( is_array( $have ) && in_array( $cap, $have, true ), 'viewer: ' . $cap . ' is listed' );
+}
+$classic_id = 0;
+$written_id = 0;
+
 $r = flxs_t_op( 'FlxCertificateRecords', array( 'first' => 1 ) );
 flxt_same( 'UNAUTHENTICATED', flxt_code( $r ), 'records: visitor → UNAUTHENTICATED' );
 $r = flxs_t_op( 'FlxCertificateRecords', array( 'first' => 1 ), $sub );
@@ -129,6 +149,25 @@ $r = flxs_t_op(
 );
 flxt_same( array(), flxs_t_payload( $r, 'flxCertificateUpdate' )['errors'] ?? null, 'update: no payload errors' );
 flxt_ok( false !== strpos( (string) ( flxs_t_payload( $r, 'flxCertificateUpdate' )['certificate']['values'] ?? '' ), 'edited' ), 'update: values stored' );
+$stored = flxs_get_certificate( $id );
+$bag    = is_array( $stored ) && is_array( $stored['data'] ?? null ) ? $stored['data'] : array();
+flxt_same( 'active', is_array( $stored ) ? ( $stored['status'] ?? null ) : null, 'round-trip: classic reader sees the GraphQL status' );
+flxt_same( 'edited', $bag['values']['note_field'] ?? null, 'round-trip: classic reader sees the GraphQL values' );
+flxt_same( 'Holder ' . $stamp, flxs_get_person( $holder_id )['name'] ?? null, 'round-trip: classic reader sees the GraphQL person' );
+global $wpdb;
+flxt_same( 1, (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM ' . flxs_table( 'logs' ) . ' WHERE action = %s AND object_id = %d', 'certificate_created', $id ) ), 'create: the classic log is written once' );
+flxt_same( 1, (int) $GLOBALS['flxs_t_created'], 'create: flxs_certificate_created runs once' );
+
+$made_person = flxs_upsert_person( 'Written ' . $stamp, '', 'written-' . $stamp . '@example.test' );
+$written_id  = is_array( $made_person ) ? (int) ( $made_person['person']['id'] ?? 0 ) : 0;
+$made        = $written_id ? flxs_create_certificate( $tpl, $written_id, array( 'ad_soyad' => 'Written ' . $stamp, 'note_field' => 'classic' ) ) : null;
+$classic_id  = is_array( $made ) ? (int) ( $made['id'] ?? 0 ) : 0;
+$via         = flxs_t_op( 'FlxCertificateOne', array( 'id' => $classic_id ), $admin );
+flxt_same( 'ACTIVE', $via['data']['flxCertificate']['status'] ?? null, 'round-trip: GraphQL reads the classic status' );
+flxt_same( 'Written ' . $stamp, $via['data']['flxCertificate']['holderName'] ?? null, 'round-trip: GraphQL reads the classic holder' );
+flxt_ok( false !== strpos( (string) ( $via['data']['flxCertificate']['values'] ?? '' ), 'classic' ), 'round-trip: GraphQL reads the classic values' );
+$seen_person = flxs_t_op( 'FlxCertificatePerson', array( 'id' => $written_id ), $admin );
+flxt_same( 'Written ' . $stamp, $seen_person['data']['flxCertificatePerson']['name'] ?? null, 'round-trip: GraphQL reads the classic person' );
 
 $r = flxs_t_op( 'FlxCertificateSetReferrer', array( 'input' => array( 'id' => $id, 'referrerId' => $admin ) ), $admin );
 flxt_same( $admin, flxs_t_payload( $r, 'flxCertificateSetReferrer' )['certificate']['referrerId'] ?? null, 'referrer: set' );
@@ -187,6 +226,10 @@ flxt_same( true, flxs_t_payload( $r, 'flxCertificateDelete' )['deleted'] ?? null
 $gone_cert = flxs_t_op( 'FlxCertificateOne', array( 'id' => $id ), $admin );
 flxt_same( null, flxs_t_get( is_array( $gone_cert['data'] ?? null ) ? $gone_cert['data'] : array(), 'flxCertificate' ), 'delete: the node is gone' );
 
+$old_tz  = (string) get_option( 'timezone_string' );
+$old_off = get_option( 'gmt_offset' );
+update_option( 'timezone_string', 'Europe/Istanbul' );
+update_option( 'gmt_offset', '3' );
 $back = flxs_t_op(
 	'FlxCertificateCreate',
 	array(
@@ -202,6 +245,13 @@ $back = flxs_t_op(
 flxt_same( true, flxs_t_payload( $back, 'flxCertificateCreate' )['certificate']['backdated'] ?? null, 'create: a manager may backdate' );
 $back_id     = (int) ( flxs_t_payload( $back, 'flxCertificateCreate' )['certificate']['databaseId'] ?? 0 );
 $back_person = (int) ( flxs_t_payload( $back, 'flxCertificateCreate' )['person']['databaseId'] ?? 0 );
+$back_row    = flxs_get_certificate( $back_id );
+flxt_same( get_gmt_from_date( '2020-06-01 12:00:00' ), is_array( $back_row ) ? ( $back_row['created_at'] ?? null ) : null, 'round-trip: classic stores local noon as GMT' );
+$back_code = is_array( $back_row ) ? (string) ( $back_row['code'] ?? '' ) : '';
+$back_pub  = flxs_t_op( 'FlxCertificateVerify', array( 'code' => $back_code ) );
+flxt_same( '2020-06-01T09:00:00Z', $back_pub['data']['flxCertificateVerify']['issuedOn']['iso'] ?? null, 'verify: issuedOn is that instant in Istanbul' );
+update_option( 'timezone_string', $old_tz );
+update_option( 'gmt_offset', $old_off );
 
 $spare = flxs_t_op( 'FlxCertificatePersonSave', array( 'input' => array( 'name' => '' ) ), $admin );
 flxt_same( null, $spare['errors'] ?? null, 'person save: empty name is not a top-level error' );
@@ -210,6 +260,8 @@ $spare = flxs_t_op( 'FlxCertificatePersonSave', array( 'input' => array( 'name' 
 $spare_id = (int) ( flxs_t_payload( $spare, 'flxCertificatePersonSave' )['person']['databaseId'] ?? 0 );
 flxt_ok( $spare_id > 0, 'person save: id' );
 flxt_same( 'desk', flxs_t_payload( $spare, 'flxCertificatePersonSave' )['person']['note'] ?? null, 'person save: note' );
+flxt_same( 'Spare ' . $stamp, flxs_get_person( $spare_id )['name'] ?? null, 'round-trip: classic reader sees the GraphQL person name' );
+flxt_same( 'desk', flxs_get_person( $spare_id )['note'] ?? null, 'round-trip: classic reader sees the GraphQL note' );
 $gone = flxs_t_op( 'FlxCertificatePersonDelete', array( 'input' => array( 'id' => $spare_id ) ), $admin );
 flxt_same( true, flxs_t_payload( $gone, 'flxCertificatePersonDelete' )['deleted'] ?? null, 'person delete: a person with no certificate' );
 
@@ -324,15 +376,19 @@ $limited = flxs_t_op( 'FlxCertificateLookup', array( 'input' => array( 'contact'
 flxt_same( 'RATE_LIMITED', flxt_code( $limited ), 'lookup: the 11th call from one address is RATE_LIMITED' );
 
 // People live in the shared table Flux CRM lists. Leave it as the test found it.
-foreach ( array( $id, $back_id, $a_id, $b_id ) as $cid ) {
+foreach ( array( $id, $back_id, $a_id, $b_id, $classic_id ) as $cid ) {
 	if ( $cid ) {
 		flxs_delete_certificate( $cid );
 	}
 }
-foreach ( array( $holder_id, $back_person, $a_person, $b_person ) as $pid ) {
+foreach ( array( $holder_id, $back_person, $a_person, $b_person, $written_id ) as $pid ) {
 	if ( $pid ) {
 		flxs_delete_person( $pid );
 	}
+}
+if ( $cap_user ) {
+	require_once ABSPATH . 'wp-admin/includes/user.php';
+	wp_delete_user( $cap_user );
 }
 
 flxt_done();

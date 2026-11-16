@@ -133,7 +133,7 @@ query FlxCertificateVerify($code: String!) {
     title
     holderName
     number
-    issuedOn
+    issuedOn { iso label }
     issuer
     code
     pageUrl

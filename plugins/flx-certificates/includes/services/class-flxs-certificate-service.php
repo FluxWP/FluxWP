@@ -500,7 +500,7 @@ final class FLXS_Certificate_Service {
 	 * @param string[]              $channels  Channels.
 	 * @param array<string,mixed>   $overrides Recipient overrides for "send to someone else".
 	 * @param array<int|string,int> $providers Provider ids keyed by channel.
-	 * @return array<string,mixed>|WP_Error
+	 * @return array{results:list<array{channel:string,ok:bool,message:string}>}|WP_Error
 	 */
 	public static function send( int $id, array $channels, array $overrides = array(), string $source = 'manual', array $providers = array(), bool $save_recipient = false ) {
 		$cert = self::visible( $id );

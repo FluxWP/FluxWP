@@ -462,7 +462,7 @@ flx_gql_type(
 			'title'         => array( 'type' => 'String!', 'description' => __( 'Title.', 'flx-certificates' ) ),
 			'holderName'    => array( 'type' => 'String!', 'description' => __( 'Name on the certificate.', 'flx-certificates' ) ),
 			'number'        => array( 'type' => 'String!', 'description' => __( 'Certificate number.', 'flx-certificates' ) ),
-			'issuedOn'      => array( 'type' => 'String!', 'description' => __( 'Issue date as the public page prints it.', 'flx-certificates' ) ),
+			'issuedOn'      => array( 'type' => 'FlxDateTime!', 'description' => __( 'When it was issued. The public page formats this same instant.', 'flx-certificates' ) ),
 			'issuer'        => array( 'type' => 'String!', 'description' => __( 'Issuing organization.', 'flx-certificates' ) ),
 			'code'          => array( 'type' => 'String!', 'description' => __( 'Verification code.', 'flx-certificates' ) ),
 			'pageUrl'       => array( 'type' => 'String!', 'description' => __( 'Public page.', 'flx-certificates' ) ),
