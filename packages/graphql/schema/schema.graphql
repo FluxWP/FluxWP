@@ -17952,6 +17952,147 @@ type FlxAppSessionEndPayload {
   errors: [FlxUserError!]!
 }
 
+"Input for the flxBlocksBlockTypeSetActive mutation."
+input FlxBlocksBlockTypeSetActiveInput {
+  "On."
+  active: Boolean!
+
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Block name."
+  slug: String!
+}
+
+"The payload for the flxBlocksBlockTypeSetActive mutation."
+type FlxBlocksBlockTypeSetActivePayload {
+  "The block after the change."
+  blockType: FlxBlocksBlockType
+
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"Input for the flxBlocksLibraryShareUpdate mutation."
+input FlxBlocksLibraryShareUpdateInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Share the library; leave out to keep it as it is."
+  enabled: Boolean
+
+  "Make a new key; sites using the old key lose access."
+  regenerateKey: Boolean
+}
+
+"The payload for the flxBlocksLibraryShareUpdate mutation."
+type FlxBlocksLibraryShareUpdatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Sharing after the change."
+  share: FlxBlocksLibraryShare!
+}
+
+"Input for the flxBlocksLibrarySourceAdd mutation."
+input FlxBlocksLibrarySourceAddInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Library key given by the other site."
+  key: String
+
+  "Name; leave empty to use the site's own name."
+  name: String
+
+  "Site address."
+  url: String!
+}
+
+"The payload for the flxBlocksLibrarySourceAdd mutation."
+type FlxBlocksLibrarySourceAddPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The added library."
+  source: FlxBlocksLibrarySource
+
+  "All linked libraries."
+  sources: [FlxBlocksLibrarySource!]!
+}
+
+"Input for the flxBlocksLibrarySourceRemove mutation."
+input FlxBlocksLibrarySourceRemoveInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Source id."
+  id: ID!
+}
+
+"The payload for the flxBlocksLibrarySourceRemove mutation."
+type FlxBlocksLibrarySourceRemovePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Remaining linked libraries."
+  sources: [FlxBlocksLibrarySource!]!
+}
+
+"Input for the flxBlocksSettingsUpdate mutation."
+input FlxBlocksSettingsUpdateInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Editor widths."
+  editorWidth: FlxBlocksEditorWidthInput
+
+  "Show the page's header blocks in the admin bar."
+  showHeadersInAdminBar: Boolean
+}
+
+"Editor widths; a field left out stays as it is."
+input FlxBlocksEditorWidthInput {
+  "Width can be chosen per page and post."
+  enabled: Boolean
+
+  "Large template width (px, 200–4000)."
+  large: Int
+
+  "Width of new pages."
+  pageDefault: FlxBlocksEditorWidthMode
+
+  "Width of new posts."
+  postDefault: FlxBlocksEditorWidthMode
+
+  "Small template width (px, 200–4000)."
+  small: Int
+}
+
+"The payload for the flxBlocksSettingsUpdate mutation."
+type FlxBlocksSettingsUpdatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Settings after the change."
+  settings: FlxBlocksSettings
+}
+
 "Input for the flxCartClear mutation."
 input FlxCartClearInput {
   "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
@@ -18178,147 +18319,6 @@ type FlxCartShippingRateSelectPayload {
 
   "Input problems to show next to the form fields. Empty when the mutation succeeded."
   errors: [FlxUserError!]!
-}
-
-"Input for the flxBlocksBlockTypeSetActive mutation."
-input FlxBlocksBlockTypeSetActiveInput {
-  "On."
-  active: Boolean!
-
-  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
-  clientMutationId: String
-
-  "Block name."
-  slug: String!
-}
-
-"The payload for the flxBlocksBlockTypeSetActive mutation."
-type FlxBlocksBlockTypeSetActivePayload {
-  "The block after the change."
-  blockType: FlxBlocksBlockType
-
-  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
-  clientMutationId: String
-
-  "Input problems to show next to the form fields. Empty when the mutation succeeded."
-  errors: [FlxUserError!]!
-}
-
-"Input for the flxBlocksLibraryShareUpdate mutation."
-input FlxBlocksLibraryShareUpdateInput {
-  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
-  clientMutationId: String
-
-  "Share the library; leave out to keep it as it is."
-  enabled: Boolean
-
-  "Make a new key; sites using the old key lose access."
-  regenerateKey: Boolean
-}
-
-"The payload for the flxBlocksLibraryShareUpdate mutation."
-type FlxBlocksLibraryShareUpdatePayload {
-  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
-  clientMutationId: String
-
-  "Input problems to show next to the form fields. Empty when the mutation succeeded."
-  errors: [FlxUserError!]!
-
-  "Sharing after the change."
-  share: FlxBlocksLibraryShare!
-}
-
-"Input for the flxBlocksLibrarySourceAdd mutation."
-input FlxBlocksLibrarySourceAddInput {
-  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
-  clientMutationId: String
-
-  "Library key given by the other site."
-  key: String
-
-  "Name; leave empty to use the site's own name."
-  name: String
-
-  "Site address."
-  url: String!
-}
-
-"The payload for the flxBlocksLibrarySourceAdd mutation."
-type FlxBlocksLibrarySourceAddPayload {
-  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
-  clientMutationId: String
-
-  "Input problems to show next to the form fields. Empty when the mutation succeeded."
-  errors: [FlxUserError!]!
-
-  "The added library."
-  source: FlxBlocksLibrarySource
-
-  "All linked libraries."
-  sources: [FlxBlocksLibrarySource!]!
-}
-
-"Input for the flxBlocksLibrarySourceRemove mutation."
-input FlxBlocksLibrarySourceRemoveInput {
-  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
-  clientMutationId: String
-
-  "Source id."
-  id: ID!
-}
-
-"The payload for the flxBlocksLibrarySourceRemove mutation."
-type FlxBlocksLibrarySourceRemovePayload {
-  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
-  clientMutationId: String
-
-  "Input problems to show next to the form fields. Empty when the mutation succeeded."
-  errors: [FlxUserError!]!
-
-  "Remaining linked libraries."
-  sources: [FlxBlocksLibrarySource!]!
-}
-
-"Input for the flxBlocksSettingsUpdate mutation."
-input FlxBlocksSettingsUpdateInput {
-  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
-  clientMutationId: String
-
-  "Editor widths."
-  editorWidth: FlxBlocksEditorWidthInput
-
-  "Show the page's header blocks in the admin bar."
-  showHeadersInAdminBar: Boolean
-}
-
-"Editor widths; a field left out stays as it is."
-input FlxBlocksEditorWidthInput {
-  "Width can be chosen per page and post."
-  enabled: Boolean
-
-  "Large template width (px, 200–4000)."
-  large: Int
-
-  "Width of new pages."
-  pageDefault: FlxBlocksEditorWidthMode
-
-  "Width of new posts."
-  postDefault: FlxBlocksEditorWidthMode
-
-  "Small template width (px, 200–4000)."
-  small: Int
-}
-
-"The payload for the flxBlocksSettingsUpdate mutation."
-type FlxBlocksSettingsUpdatePayload {
-  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
-  clientMutationId: String
-
-  "Input problems to show next to the form fields. Empty when the mutation succeeded."
-  errors: [FlxUserError!]!
-
-  "Settings after the change."
-  settings: FlxBlocksSettings
 }
 
 "Input for the flxContactBulk mutation."
