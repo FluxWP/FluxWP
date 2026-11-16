@@ -76,7 +76,9 @@ final class FLX_Theme_Service {
 		$defaults = flx_ayar_defaults();
 		/** @var array<string,mixed> $saved */
 		$saved = (array) get_option( 'flx_ayarlar', array() );
-		return wp_parse_args( $saved, $defaults );
+		/** @var array<string,mixed> $merged */
+		$merged = wp_parse_args( $saved, $defaults );
+		return $merged;
 	}
 
 	private static function str( mixed $v ): string {
@@ -90,7 +92,7 @@ final class FLX_Theme_Service {
 	/**
 	 * Rows of a legacy list (array of arrays); anything else is dropped.
 	 *
-	 * @return list<array<string,mixed>>
+	 * @return list<array<mixed,mixed>>
 	 */
 	private static function rows( mixed $v ): array {
 		$out = array();
@@ -301,7 +303,7 @@ final class FLX_Theme_Service {
 	/* ---------- Payment logos ---------- */
 
 	/**
-	 * @param array<string,mixed> $l A logo row of flx_pay_logos().
+	 * @param array<mixed,mixed> $l A logo row of flx_pay_logos().
 	 */
 	private static function logo( array $l ): FLX_Theme_Pay_Logo {
 		return new FLX_Theme_Pay_Logo( self::str( $l['key'] ?? '' ), self::str( $l['label'] ?? '' ), self::str( $l['url'] ?? '' ), ! empty( $l['chip'] ) );
