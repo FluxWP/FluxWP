@@ -1,0 +1,5 @@
+query FlxLanguageJob($id: ID!) {
+  flxLanguageJob(id: $id) {
+    ...FlxLanguageJobFields
+  }
+}

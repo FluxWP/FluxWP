@@ -201,7 +201,126 @@ fragment FlxBlocksSettingsFields on FlxBlocksSettings {
     pageDefault
     contentWidth
   }
-}`},y={id:`21a336969a0dc41b8caaa1be0a20b9bd740359347ff57bc8cb72f70ca6254f9e`,name:`FlxRoleCreate`,kind:`mutation`,plugin:`flx-roles`,document:`mutation FlxRoleCreate($input: FlxRoleCreateInput!) {
+}`},y={id:`14ae18c34134e93d807ec1e3d21907a4c002555d4d327011a6cbdd05c13743ab`,name:`FlxLanguageSettingsScreen`,kind:`query`,plugin:`flx-lang`,document:`query FlxLanguageSettingsScreen {
+  flxLanguageSettings {
+    ...FlxLanguageSettingsFields
+  }
+}
+
+fragment FlxLanguageRow on FlxLanguage {
+  code
+  name
+  locale
+  flag
+  active
+  default
+  address
+  hreflang
+}
+
+fragment FlxLanguageSettingsFields on FlxLanguageSettings {
+  defaultLanguage
+  languages {
+    ...FlxLanguageRow
+  }
+  postTypes
+  fallback
+  suggest
+  suggestTo
+  homeCountries
+  switcher
+  switcherPlace
+  texts {
+    lang
+    key
+    value
+  }
+  catalog {
+    code
+    name
+    locale
+    flag
+  }
+  postTypeChoices {
+    name
+    label
+    selected
+  }
+  textFields {
+    key
+    label
+    textarea
+    placeholder
+  }
+  geo {
+    country
+    source
+  }
+  aiAvailable
+}`},b={id:`0da4e1f193deec851174ea768e4699d956a94e7670b172e44dafe5bf9f788a52`,name:`FlxLanguageSettingsUpdate`,kind:`mutation`,plugin:`flx-lang`,document:`mutation FlxLanguageSettingsUpdate($input: FlxLanguageSettingsUpdateInput!) {
+  flxLanguageSettingsUpdate(input: $input) {
+    settings {
+      ...FlxLanguageSettingsFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}
+
+fragment FlxLanguageRow on FlxLanguage {
+  code
+  name
+  locale
+  flag
+  active
+  default
+  address
+  hreflang
+}
+
+fragment FlxLanguageSettingsFields on FlxLanguageSettings {
+  defaultLanguage
+  languages {
+    ...FlxLanguageRow
+  }
+  postTypes
+  fallback
+  suggest
+  suggestTo
+  homeCountries
+  switcher
+  switcherPlace
+  texts {
+    lang
+    key
+    value
+  }
+  catalog {
+    code
+    name
+    locale
+    flag
+  }
+  postTypeChoices {
+    name
+    label
+    selected
+  }
+  textFields {
+    key
+    label
+    textarea
+    placeholder
+  }
+  geo {
+    country
+    source
+  }
+  aiAvailable
+}`},x={id:`21a336969a0dc41b8caaa1be0a20b9bd740359347ff57bc8cb72f70ca6254f9e`,name:`FlxRoleCreate`,kind:`mutation`,plugin:`flx-roles`,document:`mutation FlxRoleCreate($input: FlxRoleCreateInput!) {
   flxRoleCreate(input: $input) {
     role {
       ...FlxRoleRow
@@ -222,7 +341,7 @@ fragment FlxRoleRow on FlxRole {
   memberCount
   capabilities
   home
-}`},b={id:`2bd5579ac1188eadb0dff5235840b66098c68b1b0d9e5d9a86c1a07b54d3acea`,name:`FlxRoleDelete`,kind:`mutation`,plugin:`flx-roles`,document:`mutation FlxRoleDelete($input: FlxRoleDeleteInput!) {
+}`},S={id:`2bd5579ac1188eadb0dff5235840b66098c68b1b0d9e5d9a86c1a07b54d3acea`,name:`FlxRoleDelete`,kind:`mutation`,plugin:`flx-roles`,document:`mutation FlxRoleDelete($input: FlxRoleDeleteInput!) {
   flxRoleDelete(input: $input) {
     deletedKey
     errors {
@@ -231,7 +350,7 @@ fragment FlxRoleRow on FlxRole {
       field
     }
   }
-}`},x={id:`af09ea3f7594b6e37e1aa272f116e57dd7079ca275a754a8107fc230ce3014df`,name:`FlxRoleMemberAdd`,kind:`mutation`,plugin:`flx-roles`,document:`mutation FlxRoleMemberAdd($input: FlxRoleMemberAddInput!) {
+}`},C={id:`af09ea3f7594b6e37e1aa272f116e57dd7079ca275a754a8107fc230ce3014df`,name:`FlxRoleMemberAdd`,kind:`mutation`,plugin:`flx-roles`,document:`mutation FlxRoleMemberAdd($input: FlxRoleMemberAddInput!) {
   flxRoleMemberAdd(input: $input) {
     member {
       ...FlxRoleMemberRow
@@ -258,7 +377,7 @@ fragment FlxRoleMemberRow on FlxRoleMember {
   }
   editUrl
   referralLink
-}`},S={id:`6eab4d6f1f97457a8679a9b1dd92d47dc2e01a7f41163eff439dc854213b2a7c`,name:`FlxRoleMemberRemove`,kind:`mutation`,plugin:`flx-roles`,document:`mutation FlxRoleMemberRemove($input: FlxRoleMemberRemoveInput!) {
+}`},w={id:`6eab4d6f1f97457a8679a9b1dd92d47dc2e01a7f41163eff439dc854213b2a7c`,name:`FlxRoleMemberRemove`,kind:`mutation`,plugin:`flx-roles`,document:`mutation FlxRoleMemberRemove($input: FlxRoleMemberRemoveInput!) {
   flxRoleMemberRemove(input: $input) {
     removedUserId
     roles {
@@ -271,7 +390,7 @@ fragment FlxRoleMemberRow on FlxRoleMember {
       field
     }
   }
-}`},C={id:`067ae709ce0675a0f8e8ab3ab7d21d722afa9f7449f358767be373133c98de6f`,name:`FlxRoleMembers`,kind:`query`,plugin:`flx-roles`,document:`query FlxRoleMembers($key: String!, $first: Int = 50, $after: String) {
+}`},T={id:`067ae709ce0675a0f8e8ab3ab7d21d722afa9f7449f358767be373133c98de6f`,name:`FlxRoleMembers`,kind:`query`,plugin:`flx-roles`,document:`query FlxRoleMembers($key: String!, $first: Int = 50, $after: String) {
   flxRole(key: $key) {
     key
     members(first: $first, after: $after) {
@@ -301,7 +420,7 @@ fragment FlxRoleMemberRow on FlxRoleMember {
   }
   editUrl
   referralLink
-}`},w={id:`20e6cdbb88f7639a8749e74cf75ef58a4ab704143f0cf0fa3474dbb2366cb1d0`,name:`FlxRoleReset`,kind:`mutation`,plugin:`flx-roles`,document:`mutation FlxRoleReset($input: FlxRoleResetInput!) {
+}`},E={id:`20e6cdbb88f7639a8749e74cf75ef58a4ab704143f0cf0fa3474dbb2366cb1d0`,name:`FlxRoleReset`,kind:`mutation`,plugin:`flx-roles`,document:`mutation FlxRoleReset($input: FlxRoleResetInput!) {
   flxRoleReset(input: $input) {
     role {
       ...FlxRoleRow
@@ -322,7 +441,7 @@ fragment FlxRoleRow on FlxRole {
   memberCount
   capabilities
   home
-}`},T={id:`0a4da13faad85546b92fab5b45716dab5b06e87791475a9dfaa4664888375658`,name:`FlxRolesSave`,kind:`mutation`,plugin:`flx-roles`,document:`mutation FlxRolesSave($input: FlxRolesSaveInput!) {
+}`},D={id:`0a4da13faad85546b92fab5b45716dab5b06e87791475a9dfaa4664888375658`,name:`FlxRolesSave`,kind:`mutation`,plugin:`flx-roles`,document:`mutation FlxRolesSave($input: FlxRolesSaveInput!) {
   flxRolesSave(input: $input) {
     roles {
       ...FlxRoleRow
@@ -356,7 +475,7 @@ fragment FlxRolesConfigFields on FlxRolesConfig {
     key
     label
   }
-}`},E={id:`2c22565866bcebf0aaed510b75bec73444fc8257c8d2b327873e9c2963c59030`,name:`FlxRolesScreen`,kind:`query`,plugin:`flx-roles`,document:`query FlxRolesScreen($members: Int = 50) {
+}`},O={id:`2c22565866bcebf0aaed510b75bec73444fc8257c8d2b327873e9c2963c59030`,name:`FlxRolesScreen`,kind:`query`,plugin:`flx-roles`,document:`query FlxRolesScreen($members: Int = 50) {
   flxRoles {
     ...FlxRoleRow
     members(first: $members) {
@@ -422,7 +541,7 @@ fragment FlxRolesConfigFields on FlxRolesConfig {
     key
     label
   }
-}`},D={id:`fca51d9372f393736cd5c7f3cc3a6c6f76bc42c714907f05360f59ce43283d8b`,name:`FlxTaskCommentCreate`,kind:`mutation`,plugin:`flx-tasks`,document:`mutation FlxTaskCommentCreate($input: FlxTaskCommentCreateInput!) {
+}`},k={id:`fca51d9372f393736cd5c7f3cc3a6c6f76bc42c714907f05360f59ce43283d8b`,name:`FlxTaskCommentCreate`,kind:`mutation`,plugin:`flx-tasks`,document:`mutation FlxTaskCommentCreate($input: FlxTaskCommentCreateInput!) {
   flxTaskCommentCreate(input: $input) {
     comment {
       ...FlxTaskCommentRow
@@ -468,7 +587,7 @@ fragment FlxTaskFileRow on FlxTaskFile {
   createdAt {
     iso
   }
-}`},O={id:`f4712b3032ffaf4580393cf0e6234154fa1eb66399b12784aa29f29b625d34bd`,name:`FlxTaskCreate`,kind:`mutation`,plugin:`flx-tasks`,document:`mutation FlxTaskCreate($input: FlxTaskCreateInput!) {
+}`},A={id:`f4712b3032ffaf4580393cf0e6234154fa1eb66399b12784aa29f29b625d34bd`,name:`FlxTaskCreate`,kind:`mutation`,plugin:`flx-tasks`,document:`mutation FlxTaskCreate($input: FlxTaskCreateInput!) {
   flxTaskCreate(input: $input) {
     task {
       ...FlxTaskRow
@@ -513,7 +632,7 @@ fragment FlxTaskRow on FlxTask {
   coverFileId
   archived
   hasDescription
-}`},k={id:`157053946bdf55aa4bf5f22a676119ec48e7bbe04c053867b7e0eedb11e04ec2`,name:`FlxTaskDelete`,kind:`mutation`,plugin:`flx-tasks`,document:`mutation FlxTaskDelete($input: FlxTaskDeleteInput!) {
+}`},j={id:`157053946bdf55aa4bf5f22a676119ec48e7bbe04c053867b7e0eedb11e04ec2`,name:`FlxTaskDelete`,kind:`mutation`,plugin:`flx-tasks`,document:`mutation FlxTaskDelete($input: FlxTaskDeleteInput!) {
   flxTaskDelete(input: $input) {
     deletedId
     errors {
@@ -522,7 +641,7 @@ fragment FlxTaskRow on FlxTask {
       field
     }
   }
-}`},A={id:`fa1d3f71ca31ab2a7b72c1a987e295f209d6564e8a68e3643dee354a44544ecf`,name:`FlxTaskDetail`,kind:`query`,plugin:`flx-tasks`,document:`query FlxTaskDetail($id: ID!) {
+}`},M={id:`fa1d3f71ca31ab2a7b72c1a987e295f209d6564e8a68e3643dee354a44544ecf`,name:`FlxTaskDetail`,kind:`query`,plugin:`flx-tasks`,document:`query FlxTaskDetail($id: ID!) {
   flxTask(id: $id) {
     ...FlxTaskScreen
   }
@@ -637,7 +756,7 @@ fragment FlxTaskScreen on FlxTask {
       ...FlxTaskFileRow
     }
   }
-}`},j={id:`d357c8fdb6c372508b17bb93fa22ec80224c0ff43854104149816d70a9e80870`,name:`FlxTaskNotificationsRead`,kind:`mutation`,plugin:`flx-tasks`,document:`mutation FlxTaskNotificationsRead($input: FlxTaskNotificationsReadInput!) {
+}`},N={id:`d357c8fdb6c372508b17bb93fa22ec80224c0ff43854104149816d70a9e80870`,name:`FlxTaskNotificationsRead`,kind:`mutation`,plugin:`flx-tasks`,document:`mutation FlxTaskNotificationsRead($input: FlxTaskNotificationsReadInput!) {
   flxTaskNotificationsRead(input: $input) {
     unread
     errors {
@@ -646,7 +765,7 @@ fragment FlxTaskScreen on FlxTask {
       field
     }
   }
-}`},M={id:`004e85b9237b995957f75c2cfe2a996f5d2de6ca98b31c98511cb403df800ae3`,name:`FlxTaskUpdate`,kind:`mutation`,plugin:`flx-tasks`,document:`mutation FlxTaskUpdate($input: FlxTaskUpdateInput!) {
+}`},P={id:`004e85b9237b995957f75c2cfe2a996f5d2de6ca98b31c98511cb403df800ae3`,name:`FlxTaskUpdate`,kind:`mutation`,plugin:`flx-tasks`,document:`mutation FlxTaskUpdate($input: FlxTaskUpdateInput!) {
   flxTaskUpdate(input: $input) {
     task {
       ...FlxTaskRow
@@ -691,7 +810,7 @@ fragment FlxTaskRow on FlxTask {
   coverFileId
   archived
   hasDescription
-}`},N={id:`7c644e53f296f0dbf859b7bfcb4748e8c5be3ef891474fb47a262a2cd993be7a`,name:`FlxTaskUpdateDetail`,kind:`mutation`,plugin:`flx-tasks`,document:`mutation FlxTaskUpdateDetail($input: FlxTaskUpdateInput!) {
+}`},F={id:`7c644e53f296f0dbf859b7bfcb4748e8c5be3ef891474fb47a262a2cd993be7a`,name:`FlxTaskUpdateDetail`,kind:`mutation`,plugin:`flx-tasks`,document:`mutation FlxTaskUpdateDetail($input: FlxTaskUpdateInput!) {
   flxTaskUpdate(input: $input) {
     task {
       ...FlxTaskScreen
@@ -813,7 +932,7 @@ fragment FlxTaskScreen on FlxTask {
       ...FlxTaskFileRow
     }
   }
-}`},P={id:`a2c919c298da71f1634726a7c85c4344cf85f3602cbf54e4175bd8e45578e9b5`,name:`FlxTaskWatch`,kind:`mutation`,plugin:`flx-tasks`,document:`mutation FlxTaskWatch($input: FlxTaskWatchInput!) {
+}`},I={id:`a2c919c298da71f1634726a7c85c4344cf85f3602cbf54e4175bd8e45578e9b5`,name:`FlxTaskWatch`,kind:`mutation`,plugin:`flx-tasks`,document:`mutation FlxTaskWatch($input: FlxTaskWatchInput!) {
   flxTaskWatch(input: $input) {
     watcherIds
     errors {
@@ -822,4 +941,4 @@ fragment FlxTaskScreen on FlxTask {
       field
     }
   }
-}`};export{M as C,i as D,l as E,a as O,j as S,P as T,E as _,m as a,k as b,_ as c,b as d,x as f,T as g,w as h,p as i,v as l,C as m,d as n,h as o,S as p,f as r,g as s,u as t,y as u,D as v,N as w,A as x,O as y};
+}`};export{a as A,M as C,I as D,F as E,l as O,j as S,P as T,E as _,m as a,k as b,_ as c,b as d,x as f,T as g,w as h,p as i,i as k,v as l,C as m,d as n,h as o,S as p,f as r,g as s,u as t,y as u,D as v,N as w,A as x,O as y};

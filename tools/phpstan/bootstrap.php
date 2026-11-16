@@ -19,3 +19,5 @@ defined( 'FLXR_URL' ) || define( 'FLXR_URL', 'https://example.com/' );
 defined( 'FLXBK_VERSION' ) || define( 'FLXBK_VERSION', '0.0.0' );
 defined( 'FLXBK_PATH' ) || define( 'FLXBK_PATH', __DIR__ . '/' );
 defined( 'FLXBK_URL' ) || define( 'FLXBK_URL', 'https://example.com/' );
+defined( 'FLXL_VERSION' ) || define( 'FLXL_VERSION', '0.0.0' );
+defined( 'FLXL_DIR' ) || define( 'FLXL_DIR', __DIR__ . '/' );
