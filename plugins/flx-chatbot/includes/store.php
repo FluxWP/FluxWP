@@ -301,7 +301,7 @@ function flxcb_stats( $days = 30 ) {
 		$wpdb->prepare(
 			"SELECT COUNT(*) AS total,
 				SUM(flxc_chat > 0 OR assigned_to > 0 OR status IN ('queued','agent','offline')) AS human,
-				SUM(lead > 0) AS leads,
+				SUM(`lead` > 0) AS leads,
 				SUM(order_id > 0) AS orders,
 				SUM(rating > 0) AS rated,
 				AVG(NULLIF(rating,0)) AS rating
