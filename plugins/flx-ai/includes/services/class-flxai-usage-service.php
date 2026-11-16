@@ -270,7 +270,7 @@ final class FLXAI_Usage_Service {
 				'' !== $purp ? FLXAI_Cast::str( flxai_purpose_label( $purp ) ) : '',
 				FLXAI_Cast::int( $r['chat_id'] ?? 0 ),
 				$uid,
-				$uid > 0 ? ( $users[ $uid ] ?? '' ) : '',
+				$uid > 0 ? ( $users[ $uid ] ) : '',
 				FLXAI_Cast::str( $r['provider'] ?? '' ),
 				$model,
 				'' !== $model ? FLXAI_Cast::str( flxai_model_label( $model ) ) : '',
