@@ -16,6 +16,8 @@ paket GraphQL'e geçerken taşınır (geçiş süresince REST de çalışır).
 | WooCommerce Store API (sepet / checkout) | flx-commerce, flx-donate | Gateway'ler Store API'ye bağlı (EsnekPOS `PaymentContext`, iyzico) | `flxCart*` mutation'ları içeride `rest_do_request` ile Store API'yi çağırır |
 | FluxWP/updater, FluxWP/whatsapp-api | — | WordPress eklentisi değil, ayrı servis | Kapsam dışı |
 | FluxWP/quiz (flx-quiz, flx-preset-arifiye) | — | Ahmet kararı: dokunulmaz | Kapsam dışı |
+| Blok editörü iç REST uçları: `fxb-design-tokens/v1` (Stil Kütüphanesi), `kbp/v1`, `fxb-lottieanimation/v1`, `fxb-vector/v1`, form entegrasyonları (`fxb-mailerlite/v1`, `fxb-fluentcrm/v1`, `fxb-activecampaign/v1`, `fxb-getresponse/v1`), header/navigasyon/gelişmiş form otomatik taslak | flx-blocks | Fork'un editör içi kodu (plan §5 Faz 4: editöre dokunulmaz); yalnız editör ve Stil Kütüphanesi uygulaması çağırır | İçerik `flxBlocks`, kütüphane ve pano GraphQL'de |
+| Siteler arası tasarım kütüphanesi `GET /wp-json/flx-blocks/v1/library` | flx-blocks | Başka Flux siteleri anahtarla çağırır (sürümden bağımsız protokol, LIBRARY.md) | Sitenin kendi okuması `flxBlocksLibrary` |
 
 ## Geçici istisnalar
 
@@ -25,6 +27,7 @@ Kaldırılma koşulu olan uçlar. Koşul gerçekleşince satır silinir, uç kal
 |---|---|---|---|
 | FluxApp mobil/masaüstü eski sürümlerinin kullandığı REST uçları | flx-app ve modül paketleri | Mağazadaki eski sürümler | En düşük desteklenen uygulama sürümü GraphQL istemcisine geçince (Faz 7) |
 | Flux Tasks: pilot dışındaki `flx-tasks/v1` uçları (sync, yapı, belgeler, ayarlar, pano, dosya) | flx-tasks | Pilot yalnız görev dilimini taşıdı; ekran REST yedekli adaptörle çalışır | Faz 1 flx-tasks paket PR'ı (ESLEME/flx-tasks.md) |
+| Blok formu gönderimi: admin-ajax `fxb_process_ajax_submit`, `fxb_process_advanced_form_submit` | flx-blocks | Form gönderimi flx-forms paketinin işi | flx-forms GraphQL PR'ı (`flxFormSubmit`), docs/flx-blocks/GRAPHQL.md |
 
 ## Satır ekleme
 

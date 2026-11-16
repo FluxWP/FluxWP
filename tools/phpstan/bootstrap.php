@@ -16,3 +16,6 @@ defined( 'FLXR_DB_VERSION' ) || define( 'FLXR_DB_VERSION', 3 );
 defined( 'FLXR_FILE' ) || define( 'FLXR_FILE', __FILE__ );
 defined( 'FLXR_DIR' ) || define( 'FLXR_DIR', __DIR__ . '/' );
 defined( 'FLXR_URL' ) || define( 'FLXR_URL', 'https://example.com/' );
+defined( 'FLXBK_VERSION' ) || define( 'FLXBK_VERSION', '0.0.0' );
+defined( 'FLXBK_PATH' ) || define( 'FLXBK_PATH', __DIR__ . '/' );
+defined( 'FLXBK_URL' ) || define( 'FLXBK_URL', 'https://example.com/' );

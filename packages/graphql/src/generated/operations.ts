@@ -3,6 +3,123 @@
 import type { FlxOperation } from '../operation';
 import type * as T from './types';
 
+/** mutation FlxBlocksBlockTypeSetActive (flx-blocks, plugins/flx-blocks/graphql/operations/FlxBlocksBlockTypeSetActive.graphql) */
+export const FlxBlocksBlockTypeSetActive: FlxOperation<T.FlxBlocksBlockTypeSetActiveMutation, T.FlxBlocksBlockTypeSetActiveMutationVariables> = {
+  id: '0cdd28e36785f9a36c07bcff67a19c55e28b55316009f469fc97857134e4a2b4',
+  name: 'FlxBlocksBlockTypeSetActive',
+  kind: 'mutation',
+  plugin: 'flx-blocks',
+  document: "mutation FlxBlocksBlockTypeSetActive($input: FlxBlocksBlockTypeSetActiveInput!) {\n  flxBlocksBlockTypeSetActive(input: $input) {\n    blockType {\n      ...FlxBlocksBlockTypeRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxBlocksBlockTypeRow on FlxBlocksBlockType {\n  slug\n  name\n  description\n  active\n  link\n  linkText\n}",
+};
+
+/** query FlxBlocksContentById (flx-blocks, plugins/flx-blocks/graphql/operations/FlxBlocksContentById.graphql) */
+export const FlxBlocksContentById: FlxOperation<T.FlxBlocksContentByIdQuery, T.FlxBlocksContentByIdQueryVariables> = {
+  id: 'cdf0088a0f420ee468fe3709ca53737eff466221209a5d017ce6131212035c80',
+  name: 'FlxBlocksContentById',
+  kind: 'query',
+  plugin: 'flx-blocks',
+  document: "query FlxBlocksContentById($id: ID!, $withBlocks: Boolean = false) {\n  contentNode(id: $id, idType: DATABASE_ID) {\n    __typename\n    databaseId\n    uri\n    flxBlocks {\n      ...FlxBlocksContentFields\n      blocks @include(if: $withBlocks) {\n        ...FlxBlocksBlockFields\n      }\n    }\n  }\n}\n\nfragment FlxBlocksAssetFields on FlxBlocksAsset {\n  kind\n  handle\n  src\n  version\n  media\n  dependencies\n  inlineBefore\n  inlineAfter\n  data\n  footer\n  strategy\n}\n\nfragment FlxBlocksBlockFields on FlxBlock {\n  clientId\n  parentClientId\n  order\n  depth\n  name\n  attributes\n  innerHtml\n  dynamic\n}\n\nfragment FlxBlocksContentFields on FlxBlocksContent {\n  html\n  css\n  fonts\n  schema\n  headHtml\n  footerHtml\n  styles {\n    ...FlxBlocksAssetFields\n  }\n  scripts {\n    ...FlxBlocksAssetFields\n  }\n}",
+};
+
+/** query FlxBlocksContentByUri (flx-blocks, plugins/flx-blocks/graphql/operations/FlxBlocksContentByUri.graphql) */
+export const FlxBlocksContentByUri: FlxOperation<T.FlxBlocksContentByUriQuery, T.FlxBlocksContentByUriQueryVariables> = {
+  id: 'e6c367b66248cb3738324a752bb48792d6a39010f71b0107957b7469e304736c',
+  name: 'FlxBlocksContentByUri',
+  kind: 'query',
+  plugin: 'flx-blocks',
+  document: "query FlxBlocksContentByUri($uri: String!, $withBlocks: Boolean = false) {\n  nodeByUri(uri: $uri) {\n    __typename\n    ... on ContentNode {\n      databaseId\n      uri\n      flxBlocks {\n        ...FlxBlocksContentFields\n        blocks @include(if: $withBlocks) {\n          ...FlxBlocksBlockFields\n        }\n      }\n    }\n  }\n}\n\nfragment FlxBlocksAssetFields on FlxBlocksAsset {\n  kind\n  handle\n  src\n  version\n  media\n  dependencies\n  inlineBefore\n  inlineAfter\n  data\n  footer\n  strategy\n}\n\nfragment FlxBlocksBlockFields on FlxBlock {\n  clientId\n  parentClientId\n  order\n  depth\n  name\n  attributes\n  innerHtml\n  dynamic\n}\n\nfragment FlxBlocksContentFields on FlxBlocksContent {\n  html\n  css\n  fonts\n  schema\n  headHtml\n  footerHtml\n  styles {\n    ...FlxBlocksAssetFields\n  }\n  scripts {\n    ...FlxBlocksAssetFields\n  }\n}",
+};
+
+/** query FlxBlocksDashboard (flx-blocks, plugins/flx-blocks/graphql/operations/FlxBlocksDashboard.graphql) */
+export const FlxBlocksDashboard: FlxOperation<T.FlxBlocksDashboardQuery, T.FlxBlocksDashboardQueryVariables> = {
+  id: 'a707f69c55e13b00163c2d5f835704b3a9234102fefdc59f7e9bf0e1861e5d87',
+  name: 'FlxBlocksDashboard',
+  kind: 'query',
+  plugin: 'flx-blocks',
+  document: "query FlxBlocksDashboard {\n  flxBlocksBlockTypes {\n    ...FlxBlocksBlockTypeRow\n  }\n  flxBlocksSettings {\n    ...FlxBlocksSettingsFields\n  }\n  flxBlocksLibrarySources {\n    ...FlxBlocksSourceRow\n  }\n  flxViewer {\n    canManageOptions: can(capability: \"manage_options\")\n  }\n}\n\nfragment FlxBlocksBlockTypeRow on FlxBlocksBlockType {\n  slug\n  name\n  description\n  active\n  link\n  linkText\n}\n\nfragment FlxBlocksSettingsFields on FlxBlocksSettings {\n  showHeadersInAdminBar\n  showAdminBarSetting\n  styleLibraryUrl\n  editorWidth {\n    enabled\n    small\n    large\n    postDefault\n    pageDefault\n    contentWidth\n  }\n}\n\nfragment FlxBlocksSourceRow on FlxBlocksLibrarySource {\n  id\n  name\n  url\n  hasKey\n}",
+};
+
+/** query FlxBlocksLibraryPatterns (flx-blocks, plugins/flx-blocks/graphql/operations/FlxBlocksLibraryPatterns.graphql) */
+export const FlxBlocksLibraryPatterns: FlxOperation<T.FlxBlocksLibraryPatternsQuery, T.FlxBlocksLibraryPatternsQueryVariables> = {
+  id: 'ee8041abf4f646b0db2b506f7ede107c7bf199332d81ac3023f8a0e204408ad3',
+  name: 'FlxBlocksLibraryPatterns',
+  kind: 'query',
+  plugin: 'flx-blocks',
+  document: "query FlxBlocksLibraryPatterns($source: ID, $category: String, $search: String, $first: Int = 24, $after: String, $refresh: Boolean) {\n  flxBlocksLibrary(source: $source, refresh: $refresh) {\n    name\n    url\n    source\n    categories {\n      slug\n      label\n      count\n    }\n    patterns(category: $category, search: $search, first: $first, after: $after) {\n      totalCount\n      nodes {\n        ...FlxBlocksPatternRow\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n    }\n  }\n}\n\nfragment FlxBlocksPatternRow on FlxBlocksPattern {\n  id\n  title\n  description\n  categories\n  viewportWidth\n  source\n}",
+};
+
+/** query FlxBlocksLibraryShare (flx-blocks, plugins/flx-blocks/graphql/operations/FlxBlocksLibraryShare.graphql) */
+export const FlxBlocksLibraryShare: FlxOperation<T.FlxBlocksLibraryShareQuery, T.FlxBlocksLibraryShareQueryVariables> = {
+  id: '340869fd203dcf45e0db366bded93136560b5e3c7b8ee4e7f0efce9a99a933d1',
+  name: 'FlxBlocksLibraryShare',
+  kind: 'query',
+  plugin: 'flx-blocks',
+  document: "query FlxBlocksLibraryShare {\n  flxBlocksLibraryShare {\n    ...FlxBlocksShareFields\n  }\n}\n\nfragment FlxBlocksShareFields on FlxBlocksLibraryShare {\n  enabled\n  key\n  url\n}",
+};
+
+/** mutation FlxBlocksLibraryShareUpdate (flx-blocks, plugins/flx-blocks/graphql/operations/FlxBlocksLibraryShareUpdate.graphql) */
+export const FlxBlocksLibraryShareUpdate: FlxOperation<T.FlxBlocksLibraryShareUpdateMutation, T.FlxBlocksLibraryShareUpdateMutationVariables> = {
+  id: 'a3ae64b495e2c2a1dc0d327b08e2df372ccea65c7c1827f676f6445bd7356177',
+  name: 'FlxBlocksLibraryShareUpdate',
+  kind: 'mutation',
+  plugin: 'flx-blocks',
+  document: "mutation FlxBlocksLibraryShareUpdate($input: FlxBlocksLibraryShareUpdateInput!) {\n  flxBlocksLibraryShareUpdate(input: $input) {\n    share {\n      ...FlxBlocksShareFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxBlocksShareFields on FlxBlocksLibraryShare {\n  enabled\n  key\n  url\n}",
+};
+
+/** mutation FlxBlocksLibrarySourceAdd (flx-blocks, plugins/flx-blocks/graphql/operations/FlxBlocksLibrarySourceAdd.graphql) */
+export const FlxBlocksLibrarySourceAdd: FlxOperation<T.FlxBlocksLibrarySourceAddMutation, T.FlxBlocksLibrarySourceAddMutationVariables> = {
+  id: 'aab0d512355bb050e77a897874c870786b849b10ce29b327b1d353869d17292c',
+  name: 'FlxBlocksLibrarySourceAdd',
+  kind: 'mutation',
+  plugin: 'flx-blocks',
+  document: "mutation FlxBlocksLibrarySourceAdd($input: FlxBlocksLibrarySourceAddInput!) {\n  flxBlocksLibrarySourceAdd(input: $input) {\n    source {\n      ...FlxBlocksSourceRow\n    }\n    sources {\n      ...FlxBlocksSourceRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxBlocksSourceRow on FlxBlocksLibrarySource {\n  id\n  name\n  url\n  hasKey\n}",
+};
+
+/** mutation FlxBlocksLibrarySourceRemove (flx-blocks, plugins/flx-blocks/graphql/operations/FlxBlocksLibrarySourceRemove.graphql) */
+export const FlxBlocksLibrarySourceRemove: FlxOperation<T.FlxBlocksLibrarySourceRemoveMutation, T.FlxBlocksLibrarySourceRemoveMutationVariables> = {
+  id: '5406d45161cd50d86861128e261f0716f087150902c42c151688c7ad997ab317',
+  name: 'FlxBlocksLibrarySourceRemove',
+  kind: 'mutation',
+  plugin: 'flx-blocks',
+  document: "mutation FlxBlocksLibrarySourceRemove($input: FlxBlocksLibrarySourceRemoveInput!) {\n  flxBlocksLibrarySourceRemove(input: $input) {\n    sources {\n      ...FlxBlocksSourceRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxBlocksSourceRow on FlxBlocksLibrarySource {\n  id\n  name\n  url\n  hasKey\n}",
+};
+
+/** query FlxBlocksPatternPreview (flx-blocks, plugins/flx-blocks/graphql/operations/FlxBlocksPatternPreview.graphql) */
+export const FlxBlocksPatternPreview: FlxOperation<T.FlxBlocksPatternPreviewQuery, T.FlxBlocksPatternPreviewQueryVariables> = {
+  id: 'cebc38b2c4a42ddcdabe0145d488d587190ee259688daac8f0b2ea1e7599d82e',
+  name: 'FlxBlocksPatternPreview',
+  kind: 'query',
+  plugin: 'flx-blocks',
+  document: "query FlxBlocksPatternPreview($id: String!, $source: ID) {\n  flxBlocksPattern(id: $id, source: $source) {\n    ...FlxBlocksPatternRow\n    content\n    rendered {\n      html\n      headHtml\n      footerHtml\n    }\n  }\n}\n\nfragment FlxBlocksPatternRow on FlxBlocksPattern {\n  id\n  title\n  description\n  categories\n  viewportWidth\n  source\n}",
+};
+
+/** query FlxBlocksRender (flx-blocks, plugins/flx-blocks/graphql/operations/FlxBlocksRender.graphql) */
+export const FlxBlocksRender: FlxOperation<T.FlxBlocksRenderQuery, T.FlxBlocksRenderQueryVariables> = {
+  id: '7a500b3ff2ef97c9ad62ab035bc2aa780959aaa0c7b9195c629f071279a1d3ac',
+  name: 'FlxBlocksRender',
+  kind: 'query',
+  plugin: 'flx-blocks',
+  document: "query FlxBlocksRender($content: String!, $postId: Int) {\n  flxBlocksRender(content: $content, postId: $postId) {\n    ...FlxBlocksContentFields\n  }\n}\n\nfragment FlxBlocksAssetFields on FlxBlocksAsset {\n  kind\n  handle\n  src\n  version\n  media\n  dependencies\n  inlineBefore\n  inlineAfter\n  data\n  footer\n  strategy\n}\n\nfragment FlxBlocksContentFields on FlxBlocksContent {\n  html\n  css\n  fonts\n  schema\n  headHtml\n  footerHtml\n  styles {\n    ...FlxBlocksAssetFields\n  }\n  scripts {\n    ...FlxBlocksAssetFields\n  }\n}",
+};
+
+/** mutation FlxBlocksSettingsUpdate (flx-blocks, plugins/flx-blocks/graphql/operations/FlxBlocksSettingsUpdate.graphql) */
+export const FlxBlocksSettingsUpdate: FlxOperation<T.FlxBlocksSettingsUpdateMutation, T.FlxBlocksSettingsUpdateMutationVariables> = {
+  id: 'c22bde71875f8c21a1d1477eb43dad65257b059c911c8ad41284ffe3ba8c18e8',
+  name: 'FlxBlocksSettingsUpdate',
+  kind: 'mutation',
+  plugin: 'flx-blocks',
+  document: "mutation FlxBlocksSettingsUpdate($input: FlxBlocksSettingsUpdateInput!) {\n  flxBlocksSettingsUpdate(input: $input) {\n    settings {\n      ...FlxBlocksSettingsFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxBlocksSettingsFields on FlxBlocksSettings {\n  showHeadersInAdminBar\n  showAdminBarSetting\n  styleLibraryUrl\n  editorWidth {\n    enabled\n    small\n    large\n    postDefault\n    pageDefault\n    contentWidth\n  }\n}",
+};
+
+/** query FlxBlocksSiteStyles (flx-blocks, plugins/flx-blocks/graphql/operations/FlxBlocksSiteStyles.graphql) */
+export const FlxBlocksSiteStyles: FlxOperation<T.FlxBlocksSiteStylesQuery, T.FlxBlocksSiteStylesQueryVariables> = {
+  id: 'd2fa6b44bbb3cb4321693e41a8e19cd6b9fd18c376fe08e9249b6b10080c5836',
+  name: 'FlxBlocksSiteStyles',
+  kind: 'query',
+  plugin: 'flx-blocks',
+  document: "query FlxBlocksSiteStyles {\n  flxBlocksSiteStyles {\n    css\n    globalStylesheet\n    headHtml\n    styles {\n      ...FlxBlocksAssetFields\n    }\n  }\n}\n\nfragment FlxBlocksAssetFields on FlxBlocksAsset {\n  kind\n  handle\n  src\n  version\n  media\n  dependencies\n  inlineBefore\n  inlineAfter\n  data\n  footer\n  strategy\n}",
+};
+
 /** mutation FlxRoleCreate (flx-roles, plugins/flx-roles/graphql/operations/FlxRoleCreate.graphql) */
 export const FlxRoleCreate: FlxOperation<T.FlxRoleCreateMutation, T.FlxRoleCreateMutationVariables> = {
   id: '21a336969a0dc41b8caaa1be0a20b9bd740359347ff57bc8cb72f70ca6254f9e',
