@@ -94,7 +94,7 @@ final class FLXSM_Accounts_Service {
 	 * @return list<FLXSM_Account>
 	 */
 	public static function reorder( array $ids ): array {
-		foreach ( array_values( $ids ) as $i => $id ) {
+		foreach ( $ids as $i => $id ) {
 			flxsm_update_account( $id, array( 'sort' => $i + 1 ) );
 		}
 		return self::accounts();

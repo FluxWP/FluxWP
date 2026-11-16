@@ -1,6 +1,156 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: tr_TR\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Social media: prepare posts"
+msgstr "Sosyal medya: gönderi hazırla"
+
+msgid "Social media: publish and approve"
+msgstr "Sosyal medya: yayınla ve onayla"
+
+msgid "Social media: accounts and settings"
+msgstr "Sosyal medya: hesaplar ve ayarlar"
+
+msgid "Social Media"
+msgstr "Sosyal Medya"
+
+msgid "Social Media requires JavaScript."
+msgstr "Sosyal Medya için JavaScript gerekli."
+
+msgid "New view"
+msgstr "Yeni görünüm"
+
+msgid "Flux AI & MCP is not installed or no key has been entered."
+msgstr "Flux AI & MCP kurulu değil ya da anahtar girilmemiş."
+
+msgid "Could not read the AI response, please try again."
+msgstr "AI cevabı okunamadı, tekrar deneyin."
+
+msgid "Social media"
+msgstr "Sosyal medya"
+
+msgid "Open"
+msgstr "Aç"
+
+msgid "Database tables"
+msgstr "Veritabanı tabloları"
+
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
+msgstr "Eksik tablo: %s. Eklentiyi devre dışı bırakıp yeniden etkinleştirin."
+
+msgid "Tables are ready."
+msgstr "Tablolar hazır."
+
+msgid "Key encryption"
+msgstr "Anahtar şifreleme"
+
+msgid "Keys and tokens are stored encrypted (sodium)."
+msgstr "Anahtarlar ve belirteçler şifreli saklanıyor (sodium)."
+
+msgid "The PHP sodium extension is off; keys are stored with a weaker method. Turn on sodium under Hostinger › PHP extensions."
+msgstr "PHP sodium uzantısı kapalı; anahtarlar daha zayıf yöntemle saklanıyor. Hostinger › PHP uzantılarından sodium’u açın."
+
+msgid "Network apps"
+msgstr "Ağ uygulamaları"
+
+msgid "Keys entered: %s."
+msgstr "Anahtarı girilmiş: %s."
+
+msgid "No network app keys entered. Social Media › Settings › Apps."
+msgstr "Hiçbir ağın uygulama anahtarı girilmemiş. Sosyal Medya › Ayarlar › Uygulamalar."
+
+msgid "Settings"
+msgstr "Ayarlar"
+
+msgid "Connected accounts"
+msgstr "Bağlı hesaplar"
+
+msgid "No accounts connected yet."
+msgstr "Henüz hesap bağlanmadı."
+
+msgid "Accounts"
+msgstr "Hesaplar"
+
+msgid "Accounts that need reconnecting: %s."
+msgstr "Yeniden bağlanması gereken hesap: %s."
+
+msgid "%d accounts connected and active."
+msgstr "%d hesap bağlı ve etkin."
+
+msgid "Scheduled posts"
+msgstr "Zamanlanmış gönderiler"
+
+msgid "External per-minute trigger is running."
+msgstr "Dışarıdan dakikalık tetik çalışıyor."
+
+msgid "%d posts have been waiting for more than 5 minutes. Add the trigger URL from Settings › General to cron-job.org (every minute)."
+msgstr "%d gönderi 5 dakikadan uzun süredir sırasını bekliyor. Ayarlar › Genel’deki tetik adresini cron-job.org’a (her dakika) ekleyin."
+
+msgid "Posts are processed via WP-Cron and background requests; to publish on time, adding the trigger URL from Settings › General to cron-job.org (every minute) is recommended."
+msgstr "Gönderiler WP-Cron ve arka plan isteğiyle işleniyor; zamanında çıkması için Ayarlar › Genel’deki tetik adresini cron-job.org’a (her dakika) eklemeniz önerilir."
+
+msgid "The trigger has never run. Add the trigger URL from Settings › General to cron-job.org (every minute)."
+msgstr "Tetik henüz hiç çalışmadı. Ayarlar › Genel’deki tetik adresini cron-job.org’a (her dakika) ekleyin."
+
+msgid "Background request error:"
+msgstr "Arka plan isteği hatası:"
+
+msgid "Failed shares"
+msgstr "Başarısız paylaşımlar"
+
+msgid "%d shares failed in the last 7 days. Posts › Failed."
+msgstr "Son 7 günde %d paylaşım başarısız. Gönderiler › Başarısız."
+
+msgid "No failed shares in the last 7 days."
+msgstr "Son 7 günde başarısız paylaşım yok."
+
+msgid "Media URLs"
+msgstr "Medya adresleri"
+
+msgid "Instagram, TikTok and Facebook fetch images from the site's HTTPS address."
+msgstr "Instagram, TikTok ve Facebook görselleri sitenin HTTPS adresinden çeker."
+
+msgid "The site is not HTTPS; Instagram/TikTok/Facebook cannot fetch images and videos."
+msgstr "Site HTTPS değil; Instagram/TikTok/Facebook görsel ve videoları çekemez."
+
+msgid "Files folder"
+msgstr "Dosya klasörü"
+
+msgid "wp-content/uploads/flxsm is writable (JPEG copies for Instagram)."
+msgstr "wp-content/uploads/flxsm yazılabilir (Instagram için JPEG kopyalar)."
+
+msgid "wp-content/uploads/flxsm is not writable; PNG/WebP images cannot be sent to Instagram."
+msgstr "wp-content/uploads/flxsm yazılamıyor; PNG/WebP görseller Instagram’a gönderilemez."
+
+msgid "AI writing help"
+msgstr "AI yazım yardımı"
+
+msgid "Flux AI ready: writing, shortening, adapting to networks."
+msgstr "Flux AI hazır: metin yazma, kısaltma, ağlara uyarlama."
+
+msgid "Flux AI & MCP is not installed or has no key; AI buttons are hidden, sharing still works."
+msgstr "Flux AI & MCP kurulu değil ya da anahtar yok; AI düğmeleri gizlenir, paylaşım çalışır."
+
+msgid "Account or post not found."
+msgstr "Hesap ya da gönderi bulunamadı."
+
+msgid "Account is off."
+msgstr "Hesap kapalı."
+
+msgid "The connection expired; reconnect it under Accounts."
+msgstr "Bağlantının süresi dolmuş; Hesaplar’dan yeniden bağlayın."
+
+msgid "The post was published but the first comment could not be added: %s"
+msgstr "Gönderi yayınlandı ama ilk yorum eklenemedi: %s"
+
+msgid "Only a failed target can be retried."
+msgstr "Yalnız başarısız hedef yeniden denenir."
+
+msgid "This target is not published on the network."
+msgstr "Bu hedef ağda yayınlanmış değil."
+
+msgid "Account not found."
+msgstr "Hesap bulunamadı."
+
 msgid "Draft"
 msgstr "Taslak"
 
@@ -49,9 +199,6 @@ msgstr "Yeniden dene"
 msgid "Menu"
 msgstr "Menü"
 
-msgid "Social Media"
-msgstr "Sosyal Medya"
-
 msgid "New post"
 msgstr "Yeni gönderi"
 
@@ -63,12 +210,6 @@ msgstr "Paylaşım"
 
 msgid "Calendar"
 msgstr "Takvim"
-
-msgid "Accounts"
-msgstr "Hesaplar"
-
-msgid "Settings"
-msgstr "Ayarlar"
 
 msgid "{n} posts with errors"
 msgstr "{n} gönderide hata"
@@ -850,9 +991,6 @@ msgstr "Dosya yok."
 msgid "Post"
 msgstr "Gönderi"
 
-msgid "Open"
-msgstr "Aç"
-
 msgid "Retry"
 msgstr "Tekrar dene"
 
@@ -1042,9 +1180,6 @@ msgstr "Hazır imza (oluşturucuda tek tıkla eklenir)"
 msgid "Save signature"
 msgstr "İmzayı kaydet"
 
-msgid "Scheduled posts"
-msgstr "Zamanlanmış gönderiler"
-
 msgid "WP-Cron is unreliable on Hostinger, so scheduled posts should be triggered from outside every minute. Create a job on cron-job.org (free) that calls this URL every minute. It also runs on its own while the panel is open and when a post is saved."
 msgstr "Hostinger’da WP-Cron güvenilir çalışmadığı için zamanlanmış gönderiler dışarıdan dakikada bir tetiklenmeli. cron-job.org’da (ücretsiz) bu adresi her dakika çağıran bir görev açın. Panel açıkken ve gönderi kaydedince ayrıca kendiliğinden tetiklenir."
 
@@ -1216,138 +1351,6 @@ msgstr "Son 200 kayıt (45 gün saklanır)."
 msgid "No entries."
 msgstr "Kayıt yok."
 
-msgid "Social Media requires JavaScript."
-msgstr "Sosyal Medya için JavaScript gerekli."
-
-msgid "Flux AI & MCP is not installed or no key has been entered."
-msgstr "Flux AI & MCP kurulu değil ya da anahtar girilmemiş."
-
-msgid "Could not read the AI response, please try again."
-msgstr "AI cevabı okunamadı, tekrar deneyin."
-
-msgid "Social media"
-msgstr "Sosyal medya"
-
-msgid "Database tables"
-msgstr "Veritabanı tabloları"
-
-msgid "Missing table: %s. Deactivate and reactivate the plugin."
-msgstr "Eksik tablo: %s. Eklentiyi devre dışı bırakıp yeniden etkinleştirin."
-
-msgid "Tables are ready."
-msgstr "Tablolar hazır."
-
-msgid "Key encryption"
-msgstr "Anahtar şifreleme"
-
-msgid "Keys and tokens are stored encrypted (sodium)."
-msgstr "Anahtarlar ve belirteçler şifreli saklanıyor (sodium)."
-
-msgid "The PHP sodium extension is off; keys are stored with a weaker method. Turn on sodium under Hostinger › PHP extensions."
-msgstr "PHP sodium uzantısı kapalı; anahtarlar daha zayıf yöntemle saklanıyor. Hostinger › PHP uzantılarından sodium’u açın."
-
-msgid "Network apps"
-msgstr "Ağ uygulamaları"
-
-msgid "Keys entered: %s."
-msgstr "Anahtarı girilmiş: %s."
-
-msgid "No network app keys entered. Social Media › Settings › Apps."
-msgstr "Hiçbir ağın uygulama anahtarı girilmemiş. Sosyal Medya › Ayarlar › Uygulamalar."
-
-msgid "Connected accounts"
-msgstr "Bağlı hesaplar"
-
-msgid "No accounts connected yet."
-msgstr "Henüz hesap bağlanmadı."
-
-msgid "Accounts that need reconnecting: %s."
-msgstr "Yeniden bağlanması gereken hesap: %s."
-
-msgid "%d accounts connected and active."
-msgstr "%d hesap bağlı ve etkin."
-
-msgid "External per-minute trigger is running."
-msgstr "Dışarıdan dakikalık tetik çalışıyor."
-
-msgid "%d posts have been waiting for more than 5 minutes. Add the trigger URL from Settings › General to cron-job.org (every minute)."
-msgstr "%d gönderi 5 dakikadan uzun süredir sırasını bekliyor. Ayarlar › Genel’deki tetik adresini cron-job.org’a (her dakika) ekleyin."
-
-msgid "Posts are processed via WP-Cron and background requests; to publish on time, adding the trigger URL from Settings › General to cron-job.org (every minute) is recommended."
-msgstr "Gönderiler WP-Cron ve arka plan isteğiyle işleniyor; zamanında çıkması için Ayarlar › Genel’deki tetik adresini cron-job.org’a (her dakika) eklemeniz önerilir."
-
-msgid "The trigger has never run. Add the trigger URL from Settings › General to cron-job.org (every minute)."
-msgstr "Tetik henüz hiç çalışmadı. Ayarlar › Genel’deki tetik adresini cron-job.org’a (her dakika) ekleyin."
-
-msgid "Background request error:"
-msgstr "Arka plan isteği hatası:"
-
-msgid "Failed shares"
-msgstr "Başarısız paylaşımlar"
-
-msgid "%d shares failed in the last 7 days. Posts › Failed."
-msgstr "Son 7 günde %d paylaşım başarısız. Gönderiler › Başarısız."
-
-msgid "No failed shares in the last 7 days."
-msgstr "Son 7 günde başarısız paylaşım yok."
-
-msgid "Media URLs"
-msgstr "Medya adresleri"
-
-msgid "Instagram, TikTok and Facebook fetch images from the site's HTTPS address."
-msgstr "Instagram, TikTok ve Facebook görselleri sitenin HTTPS adresinden çeker."
-
-msgid "The site is not HTTPS; Instagram/TikTok/Facebook cannot fetch images and videos."
-msgstr "Site HTTPS değil; Instagram/TikTok/Facebook görsel ve videoları çekemez."
-
-msgid "Files folder"
-msgstr "Dosya klasörü"
-
-msgid "wp-content/uploads/flxsm is writable (JPEG copies for Instagram)."
-msgstr "wp-content/uploads/flxsm yazılabilir (Instagram için JPEG kopyalar)."
-
-msgid "wp-content/uploads/flxsm is not writable; PNG/WebP images cannot be sent to Instagram."
-msgstr "wp-content/uploads/flxsm yazılamıyor; PNG/WebP görseller Instagram’a gönderilemez."
-
-msgid "AI writing help"
-msgstr "AI yazım yardımı"
-
-msgid "Flux AI ready: writing, shortening, adapting to networks."
-msgstr "Flux AI hazır: metin yazma, kısaltma, ağlara uyarlama."
-
-msgid "Flux AI & MCP is not installed or has no key; AI buttons are hidden, sharing still works."
-msgstr "Flux AI & MCP kurulu değil ya da anahtar yok; AI düğmeleri gizlenir, paylaşım çalışır."
-
-msgid "Account or post not found."
-msgstr "Hesap ya da gönderi bulunamadı."
-
-msgid "Account is off."
-msgstr "Hesap kapalı."
-
-msgid "The connection expired; reconnect it under Accounts."
-msgstr "Bağlantının süresi dolmuş; Hesaplar’dan yeniden bağlayın."
-
-msgid "The post was published but the first comment could not be added: %s"
-msgstr "Gönderi yayınlandı ama ilk yorum eklenemedi: %s"
-
-msgid "Only a failed target can be retried."
-msgstr "Yalnız başarısız hedef yeniden denenir."
-
-msgid "This target is not published on the network."
-msgstr "Bu hedef ağda yayınlanmış değil."
-
-msgid "Account not found."
-msgstr "Hesap bulunamadı."
-
-msgid "Social media: prepare posts"
-msgstr "Sosyal medya: gönderi hazırla"
-
-msgid "Social media: publish and approve"
-msgstr "Sosyal medya: yayınla ve onayla"
-
-msgid "Social media: accounts and settings"
-msgstr "Sosyal medya: hesaplar ve ayarlar"
-
 msgid "Unknown network."
 msgstr "Bilinmeyen ağ."
 
@@ -1431,18 +1434,6 @@ msgstr "Bu işlem için yetkiniz yok."
 
 msgid "Record not found."
 msgstr "Kayıt bulunamadı."
-
-msgid "You cannot change this post."
-msgstr "Bu gönderiyi değiştiremezsiniz."
-
-msgid "You cannot delete this post."
-msgstr "Bu gönderiyi silemezsiniz."
-
-msgid "Could not delete on some networks; the post stays in the list."
-msgstr "Bazı ağlarda silinemedi; gönderi listede kaldı."
-
-msgid "%s (copy)"
-msgstr "%s (kopya)"
 
 msgid "You do not have permission to upload files."
 msgstr "Dosya yükleme yetkiniz yok."
@@ -1615,47 +1606,1115 @@ msgstr "Medya dosyası okunamadı."
 msgid "video could not be processed"
 msgstr "video işlenemedi"
 
-msgid "Nothing this month"
-msgstr "Bu ay gönderi yok"
+msgid "You cannot change this post."
+msgstr "Bu gönderiyi değiştiremezsiniz."
 
-msgid "Delete this post?"
-msgstr "Gönderi silinsin mi?"
+msgid "You cannot delete this post."
+msgstr "Bu gönderiyi silemezsiniz."
 
-msgid "Search posts"
-msgstr "Gönderilerde ara"
+msgid "Could not delete on some networks; the post stays in the list."
+msgstr "Bazı ağlarda silinemedi; gönderi listede kaldı."
 
-msgid "Account enabled"
-msgstr "Hesap açıldı"
+msgid "%s (copy)"
+msgstr "%s (kopya)"
 
-msgid "Open the panel to connect an account."
-msgstr "Hesap bağlamak için paneli açın."
+msgid "Where a post is in its life."
+msgstr "Gönderinin yaşam döngüsündeki durumu."
 
-msgid "Account disabled"
-msgstr "Hesap kapatıldı"
+msgid "Being prepared."
+msgstr "Hazırlanıyor."
 
-msgid "No accounts"
-msgstr "Hesap yok"
+msgid "Waiting for approval."
+msgstr "Onay bekliyor."
 
-msgid "Note"
-msgstr "Not"
+msgid "Will be shared at its time."
+msgstr "Zamanı gelince paylaşılacak."
 
-msgid "Review"
-msgstr "Onay"
+msgid "Being shared now."
+msgstr "Şimdi paylaşılıyor."
 
-msgid "Approved"
-msgstr "Onaylandı"
+msgid "Shared on every account."
+msgstr "Her hesapta paylaşıldı."
 
-msgid "Open in panel"
-msgstr "Panelde aç"
+msgid "Shared on some accounts, failed on others."
+msgstr "Bazı hesaplarda paylaşıldı, bazılarında başarısız oldu."
 
-msgid "Deleted"
-msgstr "Silindi"
+msgid "Could not be shared."
+msgstr "Paylaşılamadı."
 
-msgid "New posts are composed in the media composer."
-msgstr "Yeni gönderi medya yazarıyla hazırlanır."
+msgid "Called off."
+msgstr "İptal edildi."
 
-msgid "Scheduled and published posts show up here."
-msgstr "Zamanlanan ve yayımlanan gönderiler burada görünür."
+msgid "State of a post on one account."
+msgstr "Gönderinin bir hesaptaki durumu."
 
-msgid "Social media management within the site: account linking (keys from panel), content per account, scheduling, network edit/delete, calendar, dashboard, Flux AI writing assistance and MCP tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp."
-msgstr "Sosyal medya yönetimi sitenin içinde: hesap bağlama (anahtarlar panelden), hesap başına içerik, zamanlama, ağda düzenleme/silme, takvim, pano, Flux AI yazım yardımı ve MCP araçları. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google İşletme, WhatsApp."
+msgid "Waiting for its time."
+msgstr "Zamanını bekliyor."
+
+msgid "Shared."
+msgstr "Paylaşıldı."
+
+msgid "Deleted on the network."
+msgstr "Ağda silindi."
+
+msgid "Connection state of an account."
+msgstr "Bir hesabın bağlantı durumu."
+
+msgid "Connected."
+msgstr "Bağlı."
+
+msgid "Switched off in the panel."
+msgstr "Panelde kapatıldı."
+
+msgid "The connection expired; connect again."
+msgstr "Bağlantı süresi doldu; yeniden bağlayın."
+
+msgid "A state change of a post."
+msgstr "Gönderinin durum değişikliği."
+
+msgid "Keep as a draft."
+msgstr "Taslak olarak tut."
+
+msgid "Send for approval."
+msgstr "Onaya gönder."
+
+msgid "Share at the scheduled time."
+msgstr "Zamanlanan saatte paylaş."
+
+msgid "Share now."
+msgstr "Şimdi paylaş."
+
+msgid "Approve and share."
+msgstr "Onayla ve paylaş."
+
+msgid "Send back to draft with a note."
+msgstr "Not ile taslağa geri gönder."
+
+msgid "Call off."
+msgstr "İptal et."
+
+msgid "An action on many posts."
+msgstr "Birçok gönderide yapılacak işlem."
+
+msgid "Back to draft."
+msgstr "Taslağa geri al."
+
+msgid "Schedule."
+msgstr "Zamanla."
+
+msgid "Delete from the panel."
+msgstr "Panelden sil."
+
+msgid "What the writing assistant does."
+msgstr "Yazım yardımcısının yaptığı iş."
+
+msgid "Write from an idea."
+msgstr "Bir fikirden yaz."
+
+msgid "Fix and polish."
+msgstr "Düzelt ve güzelleştir."
+
+msgid "Make shorter."
+msgstr "Kısalt."
+
+msgid "Suggest hashtags."
+msgstr "Etiket öner."
+
+msgid "A separate text per network."
+msgstr "Her ağ için ayrı metin."
+
+msgid "Translate."
+msgstr "Çevir."
+
+msgid "What a network can do."
+msgstr "Bir ağın yapabildikleri."
+
+msgid "Text posts."
+msgstr "Metin gönderileri."
+
+msgid "Images."
+msgstr "Görseller."
+
+msgid "Videos."
+msgstr "Videolar."
+
+msgid "GIFs."
+msgstr "GIF’ler."
+
+msgid "Longest text (characters)."
+msgstr "En uzun metin (karakter)."
+
+msgid "Most images in one post."
+msgstr "Bir gönderide en çok görsel."
+
+msgid "Most videos in one post."
+msgstr "Bir gönderide en çok video."
+
+msgid "Images and videos together."
+msgstr "Görsel ve video birlikte."
+
+msgid "A post needs an image or video."
+msgstr "Gönderi için görsel ya da video gerekir."
+
+msgid "A shared post can be edited on the network."
+msgstr "Paylaşılmış gönderi ağda düzenlenebilir."
+
+msgid "A shared post can be deleted on the network."
+msgstr "Paylaşılmış gönderi ağda silinebilir."
+
+msgid "A first comment can be added."
+msgstr "İlk yorum eklenebilir."
+
+msgid "The network reports views and likes."
+msgstr "Ağ görüntülenme ve beğeni bildirir."
+
+msgid "Network options the composer shows (keys of FlxSocialOptions)."
+msgstr "Oluşturucunun gösterdiği ağ seçenekleri (FlxSocialOptions anahtarları)."
+
+msgid "A social network FluxWP can share to."
+msgstr "FluxWP’nin paylaşım yapabildiği bir sosyal ağ."
+
+msgid "Network key: facebook, instagram, x …"
+msgstr "Ağ anahtarı: facebook, instagram, x …"
+
+msgid "Name."
+msgstr "Ad."
+
+msgid "Brand colour."
+msgstr "Marka rengi."
+
+msgid "What the network can do."
+msgstr "Ağın yapabildikleri."
+
+msgid "A board, playlist, group or choice with a name."
+msgstr "Adı olan bir pano, oynatma listesi, grup ya da seçenek."
+
+msgid "Value."
+msgstr "Değer."
+
+msgid "A connected social account (public profile only; tokens never leave the server)."
+msgstr "Bağlı bir sosyal hesap (yalnız herkese açık profil; belirteçler sunucudan çıkmaz)."
+
+msgid "Global ID."
+msgstr "Genel ID."
+
+msgid "Account ID."
+msgstr "Hesap ID’si."
+
+msgid "Network key."
+msgstr "Ağ anahtarı."
+
+msgid "How it is connected (evolution for WhatsApp)."
+msgstr "Nasıl bağlandığı (WhatsApp için evolution)."
+
+msgid "Network name."
+msgstr "Ağ adı."
+
+msgid "Display name."
+msgstr "Görünen ad."
+
+msgid "Handle."
+msgstr "Kullanıcı adı."
+
+msgid "Picture address."
+msgstr "Resim adresi."
+
+msgid "Connection state."
+msgstr "Bağlantı durumu."
+
+msgid "When the connection ends; empty when it does not."
+msgstr "Bağlantının biteceği zaman; bitmiyorsa boş."
+
+msgid "WhatsApp: status or group."
+msgstr "WhatsApp: durum ya da grup."
+
+msgid "Pinterest boards."
+msgstr "Pinterest panoları."
+
+msgid "WhatsApp groups."
+msgstr "WhatsApp grupları."
+
+msgid "YouTube playlists."
+msgstr "YouTube oynatma listeleri."
+
+msgid "The account has the paid tier (longer posts on X)."
+msgstr "Hesapta ücretli katman var (X’te daha uzun gönderi)."
+
+msgid "Last problem the network reported."
+msgstr "Ağın bildirdiği son sorun."
+
+msgid "What this account can do."
+msgstr "Bu hesabın yapabildikleri."
+
+msgid "When it was connected."
+msgstr "Ne zaman bağlandığı."
+
+msgid "An image, video or GIF of the media library."
+msgstr "Ortam kütüphanesinden bir görsel, video ya da GIF."
+
+msgid "Attachment ID."
+msgstr "Ek ID’si."
+
+msgid "File address."
+msgstr "Dosya adresi."
+
+msgid "image, video or gif."
+msgstr "image, video ya da gif."
+
+msgid "File type."
+msgstr "Dosya türü."
+
+msgid "Size in bytes."
+msgstr "Bayt cinsinden boyut."
+
+msgid "Width in pixels."
+msgstr "Piksel cinsinden genişlik."
+
+msgid "Height in pixels."
+msgstr "Piksel cinsinden yükseklik."
+
+msgid "Video length in seconds."
+msgstr "Saniye cinsinden video uzunluğu."
+
+msgid "Small picture address."
+msgstr "Küçük resim adresi."
+
+msgid "File title."
+msgstr "Dosya başlığı."
+
+msgid "Alternative text."
+msgstr "Alternatif metin."
+
+msgid "Network option."
+msgstr "Ağ seçeneği."
+
+msgid "Hashtags of the account."
+msgstr "Hesabın etiketleri."
+
+msgid "Options of a post on one account (what the network asks for: link, board, privacy …)."
+msgstr "Bir gönderinin bir hesaptaki seçenekleri (ağın istedikleri: bağlantı, pano, gizlilik …)."
+
+msgid "Options of a post on one account."
+msgstr "Bir gönderinin bir hesaptaki seçenekleri."
+
+msgid "Numbers the network reported for a shared post."
+msgstr "Ağın paylaşılmış bir gönderi için bildirdiği sayılar."
+
+msgid "Views."
+msgstr "Görüntülenme."
+
+msgid "Impressions."
+msgstr "Gösterim."
+
+msgid "People reached."
+msgstr "Ulaşılan kişi."
+
+msgid "Clicks."
+msgstr "Tıklama."
+
+msgid "Likes."
+msgstr "Beğeni."
+
+msgid "Comments."
+msgstr "Yorum."
+
+msgid "Shares."
+msgstr "Paylaşım."
+
+msgid "Saves."
+msgstr "Kaydetme."
+
+msgid "A post on one account."
+msgstr "Bir gönderinin bir hesaptaki hâli."
+
+msgid "Target ID."
+msgstr "Hedef ID’si."
+
+msgid "Account name."
+msgstr "Hesap adı."
+
+msgid "Account picture address."
+msgstr "Hesap resmi adresi."
+
+msgid "State on this account."
+msgstr "Bu hesaptaki durum."
+
+msgid "Address of the shared post on the network."
+msgstr "Paylaşılan gönderinin ağdaki adresi."
+
+msgid "Why it failed."
+msgstr "Neden başarısız olduğu."
+
+msgid "When it was shared."
+msgstr "Ne zaman paylaşıldığı."
+
+msgid "Network numbers."
+msgstr "Ağ sayıları."
+
+msgid "Own text for this account; empty uses the shared text."
+msgstr "Bu hesaba özel metin; boşsa ortak metin kullanılır."
+
+msgid "Own media for this account; empty uses the shared media."
+msgstr "Bu hesaba özel ortam; boşsa ortak ortam kullanılır."
+
+msgid "Network options."
+msgstr "Ağ seçenekleri."
+
+msgid "A post and the accounts it goes to."
+msgstr "Bir gönderi ve gittiği hesaplar."
+
+msgid "Post ID."
+msgstr "Gönderi ID’si."
+
+msgid "State."
+msgstr "Durum."
+
+msgid "Internal title."
+msgstr "İç başlık."
+
+msgid "Shared text."
+msgstr "Ortak metin."
+
+msgid "Shared images and videos."
+msgstr "Ortak görsel ve videolar."
+
+msgid "Labels."
+msgstr "Etiketler."
+
+msgid "When it will be shared."
+msgstr "Ne zaman paylaşılacağı."
+
+msgid "Share again every N days (0: once)."
+msgstr "Her N günde bir yeniden paylaş (0: bir kez)."
+
+msgid "manual, ai, app, auto or duplicate."
+msgstr "manual, ai, app, auto ya da duplicate."
+
+msgid "Note (the reason when a post was sent back)."
+msgstr "Not (gönderi geri gönderilince gerekçe)."
+
+msgid "Name of the person who prepared it."
+msgstr "Hazırlayan kişinin adı."
+
+msgid "User ID of the author."
+msgstr "Yazarın kullanıcı ID’si."
+
+msgid "User ID of the approver (0: none)."
+msgstr "Onaylayanın kullanıcı ID’si (0: yok)."
+
+msgid "When it was created."
+msgstr "Ne zaman oluşturulduğu."
+
+msgid "When it was last changed."
+msgstr "Son değişiklik zamanı."
+
+msgid "Accounts the post goes to."
+msgstr "Gönderinin gittiği hesaplar."
+
+msgid "A page of posts."
+msgstr "Bir gönderi sayfası."
+
+msgid "What the Social Media screen needs to start."
+msgstr "Sosyal Medya ekranının açılması için gerekenler."
+
+msgid "Current user."
+msgstr "Geçerli kullanıcı."
+
+msgid "Current user name."
+msgstr "Geçerli kullanıcı adı."
+
+msgid "The user can publish and approve."
+msgstr "Kullanıcı yayınlayabilir ve onaylayabilir."
+
+msgid "The user can manage accounts and settings."
+msgstr "Kullanıcı hesapları ve ayarları yönetebilir."
+
+msgid "The user can upload files."
+msgstr "Kullanıcı dosya yükleyebilir."
+
+msgid "Networks."
+msgstr "Ağlar."
+
+msgid "The writing assistant is ready (Flux AI)."
+msgstr "Yazım yardımcısı hazır (Flux AI)."
+
+msgid "The Flux Studio library can be used."
+msgstr "Flux Studio kütüphanesi kullanılabilir."
+
+msgid "Posts of people who cannot publish wait for approval."
+msgstr "Yayın yetkisi olmayanların gönderileri onay bekler."
+
+msgid "Text added to the end of posts."
+msgstr "Gönderilerin sonuna eklenen metin."
+
+msgid "X plan."
+msgstr "X planı."
+
+msgid "Site time zone."
+msgstr "Sitenin saat dilimi."
+
+msgid "Site time zone offset in seconds."
+msgstr "Sitenin saat dilimi farkı (saniye)."
+
+msgid "First day of the week (0: Sunday)."
+msgstr "Haftanın ilk günü (0: Pazar)."
+
+msgid "Plugin version."
+msgstr "Eklenti sürümü."
+
+msgid "Numbers for the sidebar and the scheduler."
+msgstr "Yan menü ve zamanlayıcı için sayılar."
+
+msgid "Posts waiting for approval."
+msgstr "Onay bekleyen gönderiler."
+
+msgid "Scheduled posts."
+msgstr "Zamanlanmış gönderiler."
+
+msgid "Posts that failed."
+msgstr "Başarısız olan gönderiler."
+
+msgid "Accounts waiting to be shared now."
+msgstr "Şimdi paylaşılmayı bekleyen hesaplar."
+
+msgid "Totals of the dashboard."
+msgstr "Gösterge panelinin toplamları."
+
+msgid "Shared in the period."
+msgstr "Dönemde paylaşılan."
+
+msgid "Failed in the period."
+msgstr "Dönemde başarısız olan."
+
+msgid "Scheduled now."
+msgstr "Şu anda zamanlanmış."
+
+msgid "Waiting for approval now."
+msgstr "Şu anda onay bekleyen."
+
+msgid "Drafts."
+msgstr "Taslaklar."
+
+msgid "Likes, comments, shares and saves."
+msgstr "Beğeni, yorum, paylaşım ve kaydetmeler."
+
+msgid "Followers on every account."
+msgstr "Tüm hesaplardaki takipçiler."
+
+msgid "Change of followers in the period."
+msgstr "Dönemdeki takipçi değişimi."
+
+msgid "Share of posts that succeeded (percent); empty without posts."
+msgstr "Başarılı olan gönderilerin oranı (yüzde); gönderi yoksa boş."
+
+msgid "Posts one network shared on a day."
+msgstr "Bir ağın bir günde paylaştığı gönderiler."
+
+msgid "Posts."
+msgstr "Gönderiler."
+
+msgid "One day of the activity chart."
+msgstr "Etkinlik grafiğinin bir günü."
+
+msgid "Date (YYYY-MM-DD, site time zone)."
+msgstr "Tarih (YYYY-MM-DD, sitenin saat dilimi)."
+
+msgid "Posts per network."
+msgstr "Ağ başına gönderiler."
+
+msgid "Numbers of one network in the period."
+msgstr "Bir ağın dönemdeki sayıları."
+
+msgid "Failed."
+msgstr "Başarısız."
+
+msgid "Followers of an account on one day."
+msgstr "Bir hesabın bir günkü takipçisi."
+
+msgid "Date (YYYY-MM-DD)."
+msgstr "Tarih (YYYY-MM-DD)."
+
+msgid "Followers."
+msgstr "Takipçiler."
+
+msgid "Follower series of an account."
+msgstr "Bir hesabın takipçi serisi."
+
+msgid "Followers now."
+msgstr "Şimdiki takipçi."
+
+msgid "Change in the period."
+msgstr "Dönemdeki değişim."
+
+msgid "Daily counts."
+msgstr "Günlük sayılar."
+
+msgid "A post that did well."
+msgstr "İyi giden bir gönderi."
+
+msgid "Title or start of the text."
+msgstr "Başlık ya da metnin başı."
+
+msgid "Address on the network."
+msgstr "Ağdaki adres."
+
+msgid "A recent sharing problem."
+msgstr "Yakın zamandaki bir paylaşım sorunu."
+
+msgid "What the network said."
+msgstr "Ağın söylediği."
+
+msgid "When."
+msgstr "Ne zaman."
+
+msgid "The dashboard of a period."
+msgstr "Bir dönemin gösterge paneli."
+
+msgid "Period in days (7, 30 or 90)."
+msgstr "Gün olarak dönem (7, 30 ya da 90)."
+
+msgid "Totals."
+msgstr "Toplamlar."
+
+msgid "Posts per day."
+msgstr "Günlük gönderiler."
+
+msgid "Numbers per network."
+msgstr "Ağ başına sayılar."
+
+msgid "Followers per account."
+msgstr "Hesap başına takipçiler."
+
+msgid "Best posts."
+msgstr "En iyi gönderiler."
+
+msgid "Next scheduled posts."
+msgstr "Sıradaki zamanlanmış gönderiler."
+
+msgid "Recent problems."
+msgstr "Son sorunlar."
+
+msgid "When the network numbers were last read."
+msgstr "Ağ sayılarının en son okunduğu zaman."
+
+msgid "Automatic sharing of new site content."
+msgstr "Yeni site içeriğinin otomatik paylaşımı."
+
+msgid "On."
+msgstr "Açık."
+
+msgid "Content types."
+msgstr "İçerik türleri."
+
+msgid "Account IDs."
+msgstr "Hesap ID’leri."
+
+msgid "Text template ({title}, {excerpt}, {link})."
+msgstr "Metin şablonu ({title}, {excerpt}, {link})."
+
+msgid "draft or schedule."
+msgstr "draft ya da schedule."
+
+msgid "Minutes to wait before sharing."
+msgstr "Paylaşmadan önce beklenecek dakika."
+
+msgid "Add the featured image."
+msgstr "Öne çıkan görseli ekle."
+
+msgid "Settings of Social Media. Keys and tokens are not part of it."
+msgstr "Sosyal Medya ayarları. Anahtarlar ve belirteçler dahil değildir."
+
+msgid "Add UTM tags to links of this site."
+msgstr "Bu sitenin bağlantılarına UTM etiketi ekle."
+
+msgid "Facebook and Instagram API version."
+msgstr "Facebook ve Instagram API sürümü."
+
+msgid "Accounts have the paid tier on X."
+msgstr "Hesaplar X’te ücretli katmanda."
+
+msgid "Posts per month on X (0: no limit)."
+msgstr "X’te aylık gönderi (0: sınır yok)."
+
+msgid "inbox or direct."
+msgstr "inbox ya da direct."
+
+msgid "Pinterest sandbox."
+msgstr "Pinterest sandbox."
+
+msgid "List LinkedIn pages."
+msgstr "LinkedIn sayfalarını listele."
+
+msgid "WhatsApp connection ID (0: default)."
+msgstr "WhatsApp bağlantı ID’si (0: varsayılan)."
+
+msgid "Automatic sharing."
+msgstr "Otomatik paylaşım."
+
+msgid "Content types that can be shared automatically."
+msgstr "Otomatik paylaşılabilecek içerik türleri."
+
+msgid "X plans."
+msgstr "X planları."
+
+msgid "WhatsApp connections."
+msgstr "WhatsApp bağlantıları."
+
+msgid "Posts shared on X this month."
+msgstr "Bu ay X’te paylaşılan gönderiler."
+
+msgid "When the scheduler last ran."
+msgstr "Zamanlayıcının son çalıştığı zaman."
+
+msgid "Address an external cron calls. The key is hidden; flxSocialTickKeyReveal returns it."
+msgstr "Harici cron’un çağırdığı adres. Anahtar gizlidir; flxSocialTickKeyReveal verir."
+
+msgid "A field of a network app. A secret is never returned, only whether it is set."
+msgstr "Bir ağ uygulamasının alanı. Gizli değer hiç döndürülmez, yalnız ayarlı olup olmadığı bildirilir."
+
+msgid "Field key."
+msgstr "Alan anahtarı."
+
+msgid "The value is a secret."
+msgstr "Değer gizlidir."
+
+msgid "Value; empty for a secret."
+msgstr "Değer; gizli alan için boş."
+
+msgid "The field has a value."
+msgstr "Alanın değeri var."
+
+msgid "Hint."
+msgstr "İpucu."
+
+msgid "The app works without it."
+msgstr "Uygulama bunsuz da çalışır."
+
+msgid "A \"connect account\" button of an app."
+msgstr "Bir uygulamanın “hesap bağla” düğmesi."
+
+msgid "Key to pass to flxSocialConnectUrl."
+msgstr "flxSocialConnectUrl’e verilecek anahtar."
+
+msgid "Button text."
+msgstr "Düğme metni."
+
+msgid "Connected from this site (WhatsApp), not through the network sign-in."
+msgstr "Ağ girişiyle değil, bu siteden bağlanır (WhatsApp)."
+
+msgid "A network developer app (Meta, Google, X …) and whether it is ready."
+msgstr "Bir ağ geliştirici uygulaması (Meta, Google, X …) ve hazır olup olmadığı."
+
+msgid "App key."
+msgstr "Uygulama anahtarı."
+
+msgid "Address of the developer console."
+msgstr "Geliştirici konsolunun adresi."
+
+msgid "Fields."
+msgstr "Alanlar."
+
+msgid "Callback address to enter in the console."
+msgstr "Konsola girilecek geri dönüş adresi."
+
+msgid "Setup help."
+msgstr "Kurulum yardımı."
+
+msgid "Connect buttons."
+msgstr "Bağlama düğmeleri."
+
+msgid "Every required field is filled."
+msgstr "Gerekli her alan dolu."
+
+msgid "A row of the activity log."
+msgstr "Etkinlik günlüğünün bir satırı."
+
+msgid "Row ID."
+msgstr "Satır ID’si."
+
+msgid "info, warning or error."
+msgstr "info, warning ya da error."
+
+msgid "Account ID (0: none)."
+msgstr "Hesap ID’si (0: yok)."
+
+msgid "What happened."
+msgstr "Ne olduğu."
+
+msgid "A WhatsApp group or Status the connection can post to."
+msgstr "WhatsApp bağlantısının paylaşım yapabildiği bir grup ya da Durum."
+
+msgid "WhatsApp ID."
+msgstr "WhatsApp ID’si."
+
+msgid "status or group."
+msgstr "status ya da group."
+
+msgid "Already added as an account."
+msgstr "Hesap olarak zaten eklenmiş."
+
+msgid "A page of the media library."
+msgstr "Ortam kütüphanesinin bir sayfası."
+
+msgid "Media."
+msgstr "Ortam."
+
+msgid "All pages."
+msgstr "Tüm sayfalar."
+
+msgid "A finished item of Flux Studio."
+msgstr "Flux Studio’nun bitmiş bir ögesi."
+
+msgid "Item ID."
+msgstr "Öge ID’si."
+
+msgid "image or video."
+msgstr "image ya da video."
+
+msgid "Title."
+msgstr "Başlık."
+
+msgid "The request it was made from."
+msgstr "Üretildiği istek."
+
+msgid "Media library ID (0: not imported yet)."
+msgstr "Ortam kütüphanesi ID’si (0: henüz alınmadı)."
+
+msgid "The text written for one network."
+msgstr "Bir ağ için yazılan metin."
+
+msgid "Text."
+msgstr "Metin."
+
+msgid "A post on one account: own text, media and options."
+msgstr "Bir gönderinin bir hesaptaki hâli: özel metin, ortam ve seçenekler."
+
+msgid "Own text; empty uses the shared text."
+msgstr "Özel metin; boşsa ortak metin kullanılır."
+
+msgid "Own media (attachment IDs); empty uses the shared media."
+msgstr "Özel ortam (ek ID’leri); boşsa ortak ortam kullanılır."
+
+msgid "A WhatsApp group or Status to add as an account."
+msgstr "Hesap olarak eklenecek bir WhatsApp grubu ya da Durum."
+
+msgid "Text template."
+msgstr "Metin şablonu."
+
+msgid "Minutes to wait."
+msgstr "Beklenecek dakika."
+
+msgid "One field of a network app. An empty secret keeps the old one; __clear__ removes it."
+msgstr "Bir ağ uygulamasının bir alanı. Boş gizli değer eskisini korur; __clear__ siler."
+
+msgid "Connected accounts in the panel order."
+msgstr "Panel sırasıyla bağlı hesaplar."
+
+msgid "Numbers for the sidebar; \"due\" tells whether the scheduler has work. Light enough to poll."
+msgstr "Yan menü için sayılar; “due” zamanlayıcının işi olup olmadığını söyler. Yoklamak için yeterince hafif."
+
+msgid "One post; empty when it does not exist."
+msgstr "Tek bir gönderi; yoksa boş."
+
+msgid "Global ID or post ID."
+msgstr "Genel ID ya da gönderi ID’si."
+
+msgid "Posts, newest first."
+msgstr "Gönderiler, en yeni önce."
+
+msgid "Only these states."
+msgstr "Yalnız bu durumlar."
+
+msgid "Only posts that go to this account."
+msgstr "Yalnız bu hesaba giden gönderiler."
+
+msgid "Only posts that go to this network."
+msgstr "Yalnız bu ağa giden gönderiler."
+
+msgid "Words in the title, text or tags."
+msgstr "Başlıkta, metinde ya da etiketlerde geçen sözcükler."
+
+msgid "Only this label."
+msgstr "Yalnız bu etiket."
+
+msgid "Only posts the current user prepared."
+msgstr "Yalnız geçerli kullanıcının hazırladığı gönderiler."
+
+msgid "Not before this time (Unix timestamp; publish, schedule or creation time)."
+msgstr "Bu zamandan önce değil (Unix zaman damgası; yayın, zamanlama ya da oluşturma zamanı)."
+
+msgid "Before this time (Unix timestamp)."
+msgstr "Bu zamandan önce (Unix zaman damgası)."
+
+msgid "Oldest first."
+msgstr "Eskiden yeniye."
+
+msgid "The dashboard of the last 7, 30 or 90 days."
+msgstr "Son 7, 30 ya da 90 günün gösterge paneli."
+
+msgid "Period: 7, 30 (default) or 90."
+msgstr "Dönem: 7, 30 (varsayılan) ya da 90."
+
+msgid "Settings of Social Media."
+msgstr "Sosyal Medya ayarları."
+
+msgid "Network developer apps and whether they are ready. Secrets are never returned."
+msgstr "Ağ geliştirici uygulamaları ve hazır olup olmadıkları. Gizli değerler hiç döndürülmez."
+
+msgid "The latest 200 rows of the activity log."
+msgstr "Etkinlik günlüğünün son 200 satırı."
+
+msgid "Groups and Status the WhatsApp connection can post to."
+msgstr "WhatsApp bağlantısının paylaşım yapabildiği gruplar ve Durum."
+
+msgid "Address that starts connecting a network; open it in the browser (the sign-in happens on the network)."
+msgstr "Bir ağı bağlamayı başlatan adres; tarayıcıda açın (giriş ağda yapılır)."
+
+msgid "Key from FlxSocialAppConnect.for."
+msgstr "FlxSocialAppConnect.for anahtarı."
+
+msgid "Images and videos of the media library (40 per page), or the ones with the given IDs."
+msgstr "Ortam kütüphanesinin görselleri ve videoları (sayfada 40) ya da verilen ID’dekiler."
+
+msgid "Only these attachments."
+msgstr "Yalnız bu ekler."
+
+msgid "Search words."
+msgstr "Arama sözcükleri."
+
+msgid "Page (from 1)."
+msgstr "Sayfa (1’den)."
+
+msgid "Finished items of Flux Studio (empty without Flux Studio)."
+msgstr "Flux Studio’nun bitmiş ögeleri (Flux Studio yoksa boş)."
+
+msgid "Shared media (attachment IDs)."
+msgstr "Ortak ortam (ek ID’leri)."
+
+msgid "When to share (Unix timestamp); 0 clears it."
+msgstr "Paylaşım zamanı (Unix zaman damgası); 0 temizler."
+
+msgid "Note."
+msgstr "Not."
+
+msgid "Accounts the post goes to (replaces the current ones)."
+msgstr "Gönderinin gittiği hesaplar (mevcutların yerine geçer)."
+
+msgid "State change to apply after saving: DRAFT, SUBMIT, SCHEDULE or NOW."
+msgstr "Kaydettikten sonra uygulanacak durum değişikliği: DRAFT, SUBMIT, SCHEDULE ya da NOW."
+
+msgid "manual, ai or app (when creating)."
+msgstr "manual, ai ya da app (oluştururken)."
+
+msgid "Creates a post."
+msgstr "Gönderi oluşturur."
+
+msgid "The new post."
+msgstr "Yeni gönderi."
+
+msgid "Changes a post. Fields left out stay as they are; accounts that already shared are not touched."
+msgstr "Gönderiyi değiştirir. Verilmeyen alanlar olduğu gibi kalır; paylaşım yapmış hesaplara dokunulmaz."
+
+msgid "The post after the change."
+msgstr "Değişiklikten sonraki gönderi."
+
+msgid "Moves a post to another state: approve, send back, call off …"
+msgstr "Gönderiyi başka bir duruma geçirir: onayla, geri gönder, iptal et …"
+
+msgid "The state change."
+msgstr "Durum değişikliği."
+
+msgid "Reason (when sending back)."
+msgstr "Gerekçe (geri gönderirken)."
+
+msgid "Deletes a post from the panel; with \"remote\" also on the networks that support it."
+msgstr "Gönderiyi panelden siler; “remote” ile destekleyen ağlarda da siler."
+
+msgid "Also delete on the networks."
+msgstr "Ağlarda da sil."
+
+msgid "Global ID of the deleted post."
+msgstr "Silinen gönderinin genel ID’si."
+
+msgid "One action on many posts; posts the user may not change are skipped."
+msgstr "Birçok gönderide tek işlem; kullanıcının değiştiremeyeceği gönderiler atlanır."
+
+msgid "The action."
+msgstr "İşlem."
+
+msgid "How many posts changed."
+msgstr "Kaç gönderi değişti."
+
+msgid "What went wrong, per post."
+msgstr "Gönderi başına ne ters gitti."
+
+msgid "Copies a post as a new draft."
+msgstr "Gönderiyi yeni bir taslak olarak kopyalar."
+
+msgid "The copy."
+msgstr "Kopya."
+
+msgid "Tries a failed account again."
+msgstr "Başarısız bir hesabı yeniden dener."
+
+msgid "Global ID or target ID."
+msgstr "Genel ID ya da hedef ID’si."
+
+msgid "The post."
+msgstr "Gönderi."
+
+msgid "Changes the text of a shared post on the network."
+msgstr "Paylaşılmış bir gönderinin ağdaki metnini değiştirir."
+
+msgid "New text; empty keeps it."
+msgstr "Yeni metin; boşsa korunur."
+
+msgid "Network options to change."
+msgstr "Değiştirilecek ağ seçenekleri."
+
+msgid "Deletes a shared post on the network."
+msgstr "Paylaşılmış bir gönderiyi ağda siler."
+
+msgid "Renames, switches off or on, or moves an account."
+msgstr "Hesabı yeniden adlandırır, kapatır, açar ya da taşır."
+
+msgid "Global ID or account ID."
+msgstr "Genel ID ya da hesap ID’si."
+
+msgid "Switch off (true) or on (false)."
+msgstr "Kapat (true) ya da aç (false)."
+
+msgid "Position."
+msgstr "Konum."
+
+msgid "The account after the change."
+msgstr "Değişiklikten sonraki hesap."
+
+msgid "Saves the order of the accounts."
+msgstr "Hesapların sırasını kaydeder."
+
+msgid "Accounts in the new order."
+msgstr "Yeni sıradaki hesaplar."
+
+msgid "Removes an account. Its open posts are called off."
+msgstr "Hesabı kaldırır. Açık gönderileri iptal edilir."
+
+msgid "Global ID of the removed account."
+msgstr "Kaldırılan hesabın genel ID’si."
+
+msgid "Renews the connection and reads the account numbers again."
+msgstr "Bağlantıyı yeniler ve hesap sayılarını yeniden okur."
+
+msgid "The account."
+msgstr "Hesap."
+
+msgid "Adds WhatsApp groups or Status as accounts."
+msgstr "WhatsApp gruplarını ya da Durum’u hesap olarak ekler."
+
+msgid "Groups or Status to add."
+msgstr "Eklenecek gruplar ya da Durum."
+
+msgid "How many were added."
+msgstr "Kaç tane eklendi."
+
+msgid "Accounts after the change."
+msgstr "Değişiklikten sonraki hesaplar."
+
+msgid "Changes settings. Fields left out stay as they are."
+msgstr "Ayarları değiştirir. Verilmeyen alanlar olduğu gibi kalır."
+
+msgid "Facebook and Instagram API version (v25.0)."
+msgstr "Facebook ve Instagram API sürümü (v25.0)."
+
+msgid "X plan key."
+msgstr "X plan anahtarı."
+
+msgid "WhatsApp connection ID."
+msgstr "WhatsApp bağlantı ID’si."
+
+msgid "Settings after the change."
+msgstr "Değişiklikten sonraki ayarlar."
+
+msgid "Returns the full address an external cron calls (with the key). Managers only."
+msgstr "Harici cron’un çağırdığı tam adresi (anahtarıyla) döndürür. Yalnız yöneticiler."
+
+msgid "Make a new key first (the old address stops working)."
+msgstr "Önce yeni bir anahtar üret (eski adres çalışmaz olur)."
+
+msgid "The address with its key."
+msgstr "Anahtarıyla birlikte adres."
+
+msgid "Saves the fields of a network app. An empty secret keeps the old one; the value __clear__ removes it."
+msgstr "Bir ağ uygulamasının alanlarını kaydeder. Boş gizli değer eskisini korur; __clear__ değeri siler."
+
+msgid "App key (meta, google, x …)."
+msgstr "Uygulama anahtarı (meta, google, x …)."
+
+msgid "Fields to change."
+msgstr "Değiştirilecek alanlar."
+
+msgid "Apps after the change."
+msgstr "Değişiklikten sonraki uygulamalar."
+
+msgid "Reads the numbers of the networks now."
+msgstr "Ağların sayılarını şimdi okur."
+
+msgid "How many records were updated."
+msgstr "Kaç kayıt güncellendi."
+
+msgid "The dashboard of the last 30 days."
+msgstr "Son 30 günün gösterge paneli."
+
+msgid "Runs the scheduler for a moment. The open panel calls it while posts are due."
+msgstr "Zamanlayıcıyı bir an çalıştırır. Gönderi zamanı gelince açık panel bunu çağırır."
+
+msgid "Steps done."
+msgstr "Yapılan adımlar."
+
+msgid "Accounts still waiting."
+msgstr "Hâlâ bekleyen hesaplar."
+
+msgid "Writing help through Flux AI. \"texts\" has one text per network for ADAPT; \"text\" holds the result of the other modes."
+msgstr "Flux AI ile yazım yardımı. “texts” ADAPT için ağ başına bir metin içerir; “text” diğer kiplerin sonucunu tutar."
+
+msgid "What to do."
+msgstr "Yapılacak iş."
+
+msgid "Current text."
+msgstr "Mevcut metin."
+
+msgid "Idea to write from."
+msgstr "Yazılacak fikir."
+
+msgid "Networks the text is for."
+msgstr "Metnin yazıldığı ağlar."
+
+msgid "Tone."
+msgstr "Ton."
+
+msgid "Character limit."
+msgstr "Karakter sınırı."
+
+msgid "Language to translate to."
+msgstr "Çevrilecek dil."
+
+msgid "The written text."
+msgstr "Yazılan metin."
+
+msgid "A text per network (ADAPT)."
+msgstr "Ağ başına metin (ADAPT)."
+
+msgid "Adds a file from an internet address to the media library."
+msgstr "İnternet adresindeki bir dosyayı ortam kütüphanesine ekler."
+
+msgid "Cover image attachment (videos)."
+msgstr "Kapak görseli eki (videolar)."
+
+msgid "The new media."
+msgstr "Yeni ortam."
+
+msgid "Adds a file sent to the upload endpoint (context flx-social/media) to the media library."
+msgstr "Yükleme ucuna gönderilen bir dosyayı (bağlam flx-social/media) ortam kütüphanesine ekler."
+
+msgid "Upload ID from the upload endpoint."
+msgstr "Yükleme ucundan gelen yükleme ID’si."
