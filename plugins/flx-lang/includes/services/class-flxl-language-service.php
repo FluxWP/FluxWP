@@ -50,6 +50,25 @@ final class FLXL_Language_Service {
 	}
 
 	/**
+	 * @param mixed $v Value.
+	 */
+	private static function num( $v ): int {
+		return is_numeric( $v ) ? (int) $v : 0;
+	}
+
+	/**
+	 * @param mixed $v Value.
+	 * @return list<string>
+	 */
+	private static function strings( $v ): array {
+		$out = array();
+		foreach ( self::arr( $v ) as $x ) {
+			$out[] = self::str( $x );
+		}
+		return $out;
+	}
+
+	/**
 	 * Stored settings as a typed array.
 	 *
 	 * @return array<string,mixed>
@@ -131,7 +150,7 @@ final class FLXL_Language_Service {
 	public static function translations( int $post_id ): array {
 		$out = array();
 		foreach ( self::arr( flxl_get_translations( $post_id ) ) as $code => $id ) {
-			$id = (int) $id;
+			$id = self::num( $id );
 			$p  = get_post( $id );
 			if ( ! $p ) {
 				continue;
@@ -181,7 +200,7 @@ final class FLXL_Language_Service {
 			return true;
 		}
 		$tr = self::arr( flxl_get_translations( $post_id ) );
-		if ( isset( $tr[ $code ] ) && (int) $tr[ $code ] !== $post_id ) {
+		if ( isset( $tr[ $code ] ) && self::num( $tr[ $code ] ) !== $post_id ) {
 			flxl_unlink_translation( $post_id );
 		}
 		flxl_set_post_language( $post_id, $code );
@@ -199,7 +218,7 @@ final class FLXL_Language_Service {
 			return self::coded( $id, 'lang' );
 		}
 		foreach ( self::translations( $source_id ) as $t ) {
-			if ( $t->id === (int) $id ) {
+			if ( $t->id === self::num( $id ) ) {
 				return $t;
 			}
 		}
@@ -241,7 +260,7 @@ final class FLXL_Language_Service {
 		$g    = self::geo();
 		$last = get_option( 'flxl_geo_seen' );
 		$now  = '' !== $g->source ? $g->source : 'none';
-		if ( ! is_array( $last ) || self::str( $last['source'] ?? '' ) !== $now || ( time() - (int) ( $last['t'] ?? 0 ) ) > DAY_IN_SECONDS ) {
+		if ( ! is_array( $last ) || self::str( $last['source'] ?? '' ) !== $now || ( time() - self::num( $last['t'] ?? 0 ) ) > DAY_IN_SECONDS ) {
 			update_option( 'flxl_geo_seen', array( 'source' => $now, 't' => time() ), false );
 		}
 		return $g;
@@ -254,7 +273,7 @@ final class FLXL_Language_Service {
 	/**
 	 * Site text fields that can be translated.
 	 *
-	 * @return array<string,array<string,mixed>>
+	 * @return array<string,array<mixed>>
 	 */
 	private static function raw_text_fields(): array {
 		$out = array();
@@ -285,7 +304,7 @@ final class FLXL_Language_Service {
 				$catalog[] = new FLXL_Catalog_Entry( (string) $code, self::str( $c['name'] ?? $code ), self::str( $c['locale'] ?? '' ), self::str( $c['flag'] ?? '' ) );
 			}
 		}
-		$selected = array_map( 'strval', self::arr( $s['post_types'] ?? array() ) );
+		$selected = self::strings( $s['post_types'] ?? array() );
 		$choices  = array();
 		foreach ( get_post_types( array( 'public' => true ), 'objects' ) as $pt ) {
 			if ( in_array( $pt->name, array( 'attachment', 'product' ), true ) ) {
@@ -304,7 +323,7 @@ final class FLXL_Language_Service {
 			! empty( $s['fallback'] ),
 			in_array( $s['suggest'] ?? '', self::SUGGEST, true ) ? self::str( $s['suggest'] ) : 'redirect',
 			self::str( $s['suggest_to'] ?? 'en' ),
-			array_values( array_map( 'strval', self::arr( $s['home_countries'] ?? array() ) ) ),
+			self::strings( $s['home_countries'] ?? array() ),
 			in_array( $s['switcher'] ?? '', self::SWITCHER, true ) ? self::str( $s['switcher'] ) : 'code',
 			in_array( $s['switcher_place'] ?? '', self::SWITCHER_AT, true ) ? self::str( $s['switcher_place'] ) : 'footer',
 			$texts,
@@ -319,7 +338,7 @@ final class FLXL_Language_Service {
 	/**
 	 * Value of a text field in the default language (hint under the empty input).
 	 *
-	 * @param array<string,mixed> $f Field definition.
+	 * @param array<mixed> $f Field definition.
 	 */
 	private static function text_placeholder( array $f ): string {
 		return self::str(
@@ -524,22 +543,22 @@ final class FLXL_Language_Service {
 	 * --------------------------------------------------------------------- */
 
 	/**
-	 * @param array<string,mixed> $job Stored job.
+	 * @param array<mixed> $job Stored job.
 	 */
 	private static function job_of( string $key, array $job ): FLXL_Job {
 		$parts  = self::arr( $job['parts'] ?? array() );
-		$total  = ! empty( $job['total'] ) ? (int) $job['total'] : count( $parts ) + 1;
+		$total  = ! empty( $job['total'] ) ? self::num( $job['total'] ) : count( $parts ) + 1;
 		$status = ! empty( $job['finished'] ) ? 'done' : ( ! empty( $job['failed'] ) ? 'failed' : 'running' );
-		$edit   = get_edit_post_link( (int) ( $job['post'] ?? 0 ), 'raw' );
+		$edit   = get_edit_post_link( self::num( $job['post'] ?? 0 ), 'raw' );
 		return new FLXL_Job(
 			$key,
 			$status,
-			isset( $job['step'] ) ? (int) $job['step'] : -1,
+			isset( $job['step'] ) ? self::num( $job['step'] ) : -1,
 			$total,
-			(int) ( $job['src'] ?? 0 ),
-			(int) ( $job['post'] ?? 0 ),
+			self::num( $job['src'] ?? 0 ),
+			self::num( $job['post'] ?? 0 ),
 			self::str( $job['to'] ?? '' ),
-			array_values( array_map( 'strval', self::arr( $job['errors'] ?? array() ) ) ),
+			self::strings( $job['errors'] ?? array() ),
 			is_string( $edit ) && '' !== $edit ? $edit : null,
 		);
 	}
@@ -575,7 +594,7 @@ final class FLXL_Language_Service {
 	 */
 	public static function job( string $key ): ?FLXL_Job {
 		$job = get_transient( 'flxl_job_' . $key );
-		if ( ! is_array( $job ) || (int) ( $job['user'] ?? 0 ) !== get_current_user_id() ) {
+		if ( ! is_array( $job ) || self::num( $job['user'] ?? 0 ) !== get_current_user_id() ) {
 			return null;
 		}
 		return self::job_of( $key, $job );

@@ -804,7 +804,7 @@ flx_gql_mutation(
 			),
 		),
 		'resolve'     => static function ( array $input ) {
-			// @phpstan-ignore argument.type (the typed shape is built by flxl_gql_settings_input()).
+			// @phpstan-ignore argument.type (the typed shape is built by flxl_gql_settings_input())
 			$r = FLXL_Language_Service::save_settings( flxl_gql_settings_input( $input ) );
 			return $r instanceof WP_Error ? $r : array( 'settings' => $r );
 		},
