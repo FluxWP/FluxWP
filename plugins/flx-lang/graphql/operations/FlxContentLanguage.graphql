@@ -1,0 +1,10 @@
+# Language and language versions of one content (post, page or any translated type).
+query FlxContentLanguage($id: ID!) {
+  contentNode(id: $id, idType: DATABASE_ID) {
+    databaseId
+    flxLanguage
+    flxTranslations {
+      ...FlxTranslationRow
+    }
+  }
+}

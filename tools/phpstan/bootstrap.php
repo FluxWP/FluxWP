@@ -20,3 +20,5 @@ defined( 'FLXP_VERSION' ) || define( 'FLXP_VERSION', '0.0.0' );
 defined( 'FLXP_FILE' ) || define( 'FLXP_FILE', __FILE__ );
 defined( 'FLXP_DIR' ) || define( 'FLXP_DIR', __DIR__ . '/' );
 defined( 'FLXP_URL' ) || define( 'FLXP_URL', 'https://example.com/' );
+defined( 'FLXL_VERSION' ) || define( 'FLXL_VERSION', '0.0.0' );
+defined( 'FLXL_DIR' ) || define( 'FLXL_DIR', __DIR__ . '/' );
