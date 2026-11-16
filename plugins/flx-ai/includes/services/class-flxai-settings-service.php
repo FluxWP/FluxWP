@@ -25,7 +25,7 @@ final class FLXAI_Settings_Service {
 	 *
 	 * @return array<string,array{0:string,1:string,2:string}>
 	 */
-	private static function key_catalog(): array {
+	public static function key_catalog(): array {
 		$list = array(
 			'key_openrouter' => array( 'provider', 'OpenRouter', '' ),
 			'key_anthropic'  => array( 'provider', 'Anthropic (Claude)', '' ),

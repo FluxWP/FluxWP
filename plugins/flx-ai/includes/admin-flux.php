@@ -20,6 +20,8 @@ function flxai_flux_pages() {
 		'flx-ai-billing' => 'billing',
 		'flx-ai-systems' => 'systems',
 		'flx-ai-tools'   => 'tools',
+		'flx-ai-settings' => 'settings',
+		'flx-ai-approvals' => 'approvals',
 	);
 }
 

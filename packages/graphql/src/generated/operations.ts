@@ -516,6 +516,24 @@ export const FlxAdsValue: FlxOperation<T.FlxAdsValueQuery, T.FlxAdsValueQueryVar
   document: "query FlxAdsValue($filter: FlxAdsFilterInput) {\n  flxAdsValue(filter: $filter) {\n    ...FlxAdsValuePage\n  }\n}\n\nfragment FlxAdsCohortRow on FlxAdsCohortRow {\n  month\n  label\n  newCount\n  cells {\n    amount\n    currency\n    formatted\n  }\n}\n\nfragment FlxAdsValuePage on FlxAdsValuePage {\n  range\n  from\n  to\n  kind\n  by\n  base\n  totals {\n    ...FlxAdsValueTotals\n  }\n  rows {\n    ...FlxAdsValueRow\n  }\n  cohortMonths\n  cohort {\n    ...FlxAdsCohortRow\n  }\n}\n\nfragment FlxAdsValueRow on FlxAdsValueRow {\n  key\n  label\n  channel\n  channelLabel\n  newCount\n  first {\n    amount\n    currency\n    formatted\n  }\n  ltv90 {\n    amount\n    currency\n    formatted\n  }\n  ltv {\n    amount\n    currency\n    formatted\n  }\n  avg {\n    amount\n    currency\n    formatted\n  }\n  rate\n  hasSpend\n  spend {\n    amount\n    currency\n    formatted\n  }\n  cac {\n    amount\n    currency\n    formatted\n  }\n  ratio\n  roasLevel\n  payback\n}\n\nfragment FlxAdsValueTotals on FlxAdsValueTotals {\n  newCount\n  adsNew\n  adsAvg {\n    amount\n    currency\n    formatted\n  }\n  cac {\n    amount\n    currency\n    formatted\n  }\n  spend {\n    amount\n    currency\n    formatted\n  }\n  ratio\n  rate\n}",
 };
 
+/** mutation FlxAiApprovalDecide (flx-ai, plugins/flx-ai/graphql/operations/FlxAiApprovalDecide.graphql) */
+export const FlxAiApprovalDecide: FlxOperation<T.FlxAiApprovalDecideMutation, T.FlxAiApprovalDecideMutationVariables> = {
+  id: '6d130e09eecfd7058aed48ff1e920186a016d4213b6a6db97977b95cd0eadc09',
+  name: 'FlxAiApprovalDecide',
+  kind: 'mutation',
+  plugin: 'flx-ai',
+  document: "mutation FlxAiApprovalDecide($input: FlxAiApprovalDecideInput!) {\n  flxAiApprovalDecide(input: $input) {\n    state\n    queue {\n      ...FlxAiApprovalQueueFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAiApprovalQueueFields on FlxAiApprovalQueue {\n  count\n  items {\n    chatId\n    chatTitle\n    callId\n    tool\n    title\n    args\n    note\n    time {\n      timestamp\n      label\n    }\n    taskId\n    taskTitle\n  }\n  changes {\n    id\n    title\n    chatId\n    taskId\n    taskTitle\n    created {\n      timestamp\n      label\n    }\n    files {\n      path\n      op\n      add\n      del\n    }\n  }\n}",
+};
+
+/** query FlxAiApprovals (flx-ai, plugins/flx-ai/graphql/operations/FlxAiApprovals.graphql) */
+export const FlxAiApprovals: FlxOperation<T.FlxAiApprovalsQuery, T.FlxAiApprovalsQueryVariables> = {
+  id: 'c094dd97296a5f7fae585f6813e3e91ba9655b8eebc116746747db54c0c4a842',
+  name: 'FlxAiApprovals',
+  kind: 'query',
+  plugin: 'flx-ai',
+  document: "query FlxAiApprovals {\n  flxAiApprovals {\n    ...FlxAiApprovalQueueFields\n  }\n}\n\nfragment FlxAiApprovalQueueFields on FlxAiApprovalQueue {\n  count\n  items {\n    chatId\n    chatTitle\n    callId\n    tool\n    title\n    args\n    note\n    time {\n      timestamp\n      label\n    }\n    taskId\n    taskTitle\n  }\n  changes {\n    id\n    title\n    chatId\n    taskId\n    taskTitle\n    created {\n      timestamp\n      label\n    }\n    files {\n      path\n      op\n      add\n      del\n    }\n  }\n}",
+};
+
 /** query FlxAiBilling (flx-ai, plugins/flx-ai/graphql/operations/FlxAiBilling.graphql) */
 export const FlxAiBilling: FlxOperation<T.FlxAiBillingQuery, T.FlxAiBillingQueryVariables> = {
   id: '2ce74187ffc690342b4345a3cde10aefb9efc6e12ea495d8531228dc9647e8fe',
@@ -523,6 +541,15 @@ export const FlxAiBilling: FlxOperation<T.FlxAiBillingQuery, T.FlxAiBillingQuery
   kind: 'query',
   plugin: 'flx-ai',
   document: "query FlxAiBilling($month: String) {\n  flxAiBudget {\n    ...FlxAiBudgetRow\n  }\n  flxAiBilling(month: $month) {\n    month\n    csvUrl\n    report {\n      ...FlxAiReportFields\n    }\n    months {\n      month\n      label\n      cost\n      saved\n      calls\n    }\n    credits {\n      checked {\n        timestamp\n        label\n      }\n      usage\n      limit\n      remaining\n      credits\n    }\n  }\n}\n\nfragment FlxAiBreakdownFields on FlxAiBreakdownRow {\n  key\n  label\n  calls\n  tools\n  cost\n  fullCost\n  inTokens\n  outTokens\n  cacheRead\n  modelMs\n  toolMs\n  errors\n  partial\n}\n\nfragment FlxAiBudgetRow on FlxAiBudgetPeriod {\n  key\n  label\n  limit\n  spent\n  pct\n  over\n  resets {\n    timestamp\n    label\n  }\n}\n\nfragment FlxAiReportFields on FlxAiReport {\n  from {\n    timestamp\n    label\n  }\n  to {\n    timestamp\n    label\n  }\n  totals {\n    calls\n    tools\n    inTokens\n    outTokens\n    cacheRead\n    cacheWrite\n    cost\n    fullCost\n    saved\n    modelMs\n    toolMs\n    errors\n  }\n  daily {\n    date\n    cost\n    inTokens\n    outTokens\n    cacheRead\n    modelMs\n    toolMs\n    calls\n    tools\n    errors\n  }\n  bySource {\n    ...FlxAiBreakdownFields\n  }\n  byModel {\n    ...FlxAiBreakdownFields\n  }\n  byPurpose {\n    ...FlxAiBreakdownFields\n  }\n  byTool {\n    key\n    label\n    source\n    calls\n    avgMs\n    maxMs\n    totalMs\n    errors\n  }\n  byProvider {\n    ...FlxAiBreakdownFields\n  }\n}",
+};
+
+/** mutation FlxAiChangeDecide (flx-ai, plugins/flx-ai/graphql/operations/FlxAiChangeDecide.graphql) */
+export const FlxAiChangeDecide: FlxOperation<T.FlxAiChangeDecideMutation, T.FlxAiChangeDecideMutationVariables> = {
+  id: 'fd799eb314797b602e77f1fee7607668d0d0f868cf45d58fd8f39ffdb0f933a2',
+  name: 'FlxAiChangeDecide',
+  kind: 'mutation',
+  plugin: 'flx-ai',
+  document: "mutation FlxAiChangeDecide($input: FlxAiChangeDecideInput!) {\n  flxAiChangeDecide(input: $input) {\n    queue {\n      ...FlxAiApprovalQueueFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAiApprovalQueueFields on FlxAiApprovalQueue {\n  count\n  items {\n    chatId\n    chatTitle\n    callId\n    tool\n    title\n    args\n    note\n    time {\n      timestamp\n      label\n    }\n    taskId\n    taskTitle\n  }\n  changes {\n    id\n    title\n    chatId\n    taskId\n    taskTitle\n    created {\n      timestamp\n      label\n    }\n    files {\n      path\n      op\n      add\n      del\n    }\n  }\n}",
 };
 
 /** mutation FlxAiCreditsRefresh (flx-ai, plugins/flx-ai/graphql/operations/FlxAiCreditsRefresh.graphql) */
