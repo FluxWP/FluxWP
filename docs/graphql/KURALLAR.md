@@ -181,7 +181,7 @@ Paket PR'ları aynı anda açılır ve birbirini beklemeden merge edilir. Bunun 
 
 | Eskiden ortak | Şimdi | Paket PR'ı ne yapar |
 |---|---|---|
-| `packages/graphql/schema/schema.graphql` | `plugins/<slug>/graphql/schema.graphql` (+ `core.graphql`) | Yalnız kendi parçasını commit eder: `bun run --filter @fluxwp/graphql schema -- plugins/<slug>` ya da CI'nın `graphql-schema-ci` artifact'ındaki kendi dosyası. Başka paketin parçası ya da `core.graphql` farkı commit edilmez. |
+| `packages/graphql/schema/schema.graphql` | `plugins/<slug>/graphql/schema.graphql` (+ `core.graphql`) | Yalnız kendi parçasını commit eder: `bun run --filter @fluxwp/graphql schema -- plugins/<slug>`, CI'nın `graphql-schema-ci` artifact'ındaki kendi dosyası ya da (artifact indirilemiyorsa) `gh api repos/FluxWP/FluxWP/actions/jobs/<job id>/logs \| bash tools/graphql/ci-parts.sh plugins/<slug>`. Başka paketin parçası ya da `core.graphql` farkı commit edilmez. |
 | `packages/graphql/src/generated/*.ts` | commit dışı (`bun install` üretir) | Hiçbir şey; `persisted-queries.json` yine commit edilir. |
 | `@fluxwp/graphql` sürümü + CHANGELOG | değişmez | Operasyonlar paketin kendi CHANGELOG'una yazılır. `packages/graphql`'in sürümü yalnız istemci/kit kodu değişince (Faz 0 sahibi). |
 | `packages/modules/src/index.ts` | `packages/modules/src/<klasör>/screens.ts` | Ekranını kendi klasöründeki `screens.ts`'e yazar (`registry.ts`). `index.ts`'e dokunmaz. |

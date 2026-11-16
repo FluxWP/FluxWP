@@ -81,6 +81,12 @@ jobs:
           git diff -- "${parts[@]}" | head -n 3000
           git ls-files --others --exclude-standard -- "${parts[@]}" | while read -r f; do echo "+++ new: $f"; head -n 400 "$f"; done
           echo "::endgroup::"
+          # The changed parts as one base64 tar.gz line, for sessions that cannot download artifacts:
+          #   gh api repos/<owner>/<repo>/actions/jobs/<job id>/logs | bash tools/graphql/ci-parts.sh [plugins/<slug>]
+          echo "$changed" | awk '{print $NF}' | while read -r f; do [ -f "$f" ] && echo "$f"; done > "$RUNNER_TEMP/parts.txt"
+          if [ -s "$RUNNER_TEMP/parts.txt" ]; then
+            echo "FLX-SCHEMA-PARTS-BEGIN $(tar -czf - -T "$RUNNER_TEMP/parts.txt" | base64 -w0) FLX-SCHEMA-PARTS-END"
+          fi
           # The core part follows the WordPress / WPGraphQL release CI downloads: a difference there is only a
           # warning (whoever owns Flux GraphQL refreshes it), so a WordPress release does not stop every PR.
           # The rest of this job uses the CI output, so types and the breaking check still see the real schema.
