@@ -80,7 +80,7 @@ final class FLXAI_Skills_Service {
 			FLXAI_Cast::str( $s['compatibility'] ?? '' ),
 			FLXAI_Cast::str( $s['example'] ?? '' ),
 			$files,
-			array_values( array_map( static fn( $n ): string => FLXAI_Cast::str( $n ), $names ) ),
+			array_map( static fn( $n ): string => FLXAI_Cast::str( $n ), $names ),
 			self::evals( $s ),
 			self::results( $s )
 		);
