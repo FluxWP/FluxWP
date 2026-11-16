@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0
+- New React file manager screen is the default in wp-admin: same features as before (list/grid, tree and editor, search, trash, activity log, versions with diff, sharing, settings, AI explain/edit, chunked uploads), now on GraphQL. The classic screen stays one click away ("Classic view", remembered per user).
+- GraphQL API (Flux GraphQL 0.2+): folder, file, search, size, disk, versions, trash and log queries; write, rename, move, copy, zip, trash and settings mutations. All require `flxfm_manage`. See docs/flx-files/GRAPHQL.md.
+- Service layer shared by REST, GraphQL and the classic screen; REST output unchanged.
+- Uploads and downloads stay on REST/admin-post.
+- Requires PHP 8.1.
+
 ## 0.1.1
 - The screen fits the window: the page no longer scrolls; the file list, the editor's folder tree and the file content scroll on their own. Works on mobile too.
 - AI explain and AI edit open as a panel right under the editor toolbar instead of a modal; the file stays visible.
