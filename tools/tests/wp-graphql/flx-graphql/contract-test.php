@@ -11,8 +11,7 @@ require_once FLXGQL_DIR . 'includes/screens.php'; // Loaded in wp-admin only.
 
 echo "Flux screens shell\n";
 
-// Admin screen hooks below can make other plugins write options (WooCommerce's launch-your-store
-// defaults on current_screen). Later tests share this database: put every option back at the end.
+// Later tests share this database: put every option the admin screen code changed back at the end.
 wp_cache_delete( 'alloptions', 'options' );
 $flxt_options = wp_load_alloptions( true );
 
@@ -120,6 +119,9 @@ flxt_same( false, json_decode( $c[1] ?? '{}', true )['on'] ?? null, 'flx_admin_s
 remove_filter( 'flx_admin_screens_navigation', '__return_false' );
 
 unset( $_GET['page'], $_GET['tab'] );
+// Leave wp-admin: is_admin() stays true for the rest of the process otherwise, and plugins run admin-only
+// work on shutdown (WooCommerce's new-store setup turns on coming soon).
+$GLOBALS['current_screen'] = null; // phpcs:ignore WordPress.WP.GlobalVariablesOverride
 array_map( 'unlink', glob( $dir . '*' ) ?: array() ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 rmdir( $dir ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 
