@@ -26,6 +26,7 @@ parameters:
     - ../../plugins/flx-tasks/includes
     - ../../plugins/flx-roles/includes
     - ../../plugins/flx-app/includes
+    - ../../plugins/flx-lang/includes
   paths:
     - ../../plugins/flx-graphql/flx-graphql.php
     - ../../plugins/flx-graphql/uninstall.php
@@ -39,6 +40,9 @@ parameters:
     # Flux App (Faz 1)
     - ../../plugins/flx-app/includes/services
     - ../../plugins/flx-app/includes/graphql
+    # Flux Lang (Faz 1)
+    - ../../plugins/flx-lang/includes/services
+    - ../../plugins/flx-lang/includes/graphql
   excludePaths:
     - ../../plugins/flx-graphql/includes/flx-brand
   treatPhpDocTypesAsCertain: false

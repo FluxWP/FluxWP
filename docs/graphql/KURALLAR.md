@@ -123,7 +123,14 @@ add_filter( 'flx_gql_capabilities', function ( array $caps ): array {
 - Mutation girdisi tek `input`, çıktı `{ <nesne>, errors }`. Kısmi güncelleme: verilmeyen alan değişmez.
 - İlişki alanları DataLoader'la (`$context->get_loader( 'FlxTask' )->load_deferred( $id )`): N+1 yok.
 - Her alan ve argümanda açıklama: **EN kaynak, `__()` ile**. Hardcoded Türkçe yok.
-- Ayarlar elle tiplenmez: `flx_settings_schema`'daki grup otomatik `flxSettings` / `flxSettingsUpdate` altında görünür. Adında `secret`, `password`, `passwd`, `token`, `api_key` ya da `private` geçen ayarlar şemaya hiç girmez.
+- Ayarlar elle tiplenmez: `flx_settings_schema`'daki grup otomatik `flxSettings` / `flxSettingsUpdate` altında görünür.
+- **Gizli ayarlar GraphQL'e hiç girmez (fail closed, kit 0.2.1, `flx_gql_is_secret_key()`).** Ad kelimelere bölünür (snake, kebab, camelCase, nokta); `key`, `keys`, `secret`, `token`, `password`, `passwd`, `pass`, `passphrase`, `pwd`, `pin`, `auth`, `private`, `credential`, `salt`, `signature`, `bearer`, `dsn` kelimelerinden biri ya da bitişik `apikey`, `accesstoken`, `clientsecret`, `privatekey`, `passw…`, `secret`, `token` geçerse gizli sayılır. Örnek: `key_live`, `stripe_key`, `clientSecret`, `access-token`, `smtp_pass`.
+  - Böyle bir **alan** tipe girmez; okunamaz, yazılamaz (panelden yazılır).
+  - **Seçenek adı** gizli görünüyorsa (`flxai_keys`) grubun tamamı dışarıda kalır. Gruba `'secret' => true` yazmak da aynı.
+  - Alanda `'secret' => true` ya da `'type' => 'password'|'secret'` → dışarıda.
+  - `object`/`list` (FlxJSON) değerlerinde gizli görünen alt anahtarlar okumada silinir; yazmada istemci göndermediği için saklı değerleri korunur (liste öğesi sırasıyla eşlenir).
+  - Paket `flx_gql_secret_key` filtresiyle ek ad gizleyebilir; kit'in gizli bulduğunu açamaz. Yanlışlıkla gizlenen alan (ör. `sort_key`) yeniden adlandırılır (`sort_field`), istisna açılmaz.
+  - Test: `kit-test.php` "Secrets in settings".
 - Dosya: önce `POST /wp-json/flx/v1/upload` (`flx_gql_upload_contexts` filtresiyle `<paket>/<amaç>` bağlamı, `cap`, `mimes`, `max_mb`), sonra mutation `uploadId` alır ve `flx_gql_upload_take( $id, $bağlam )` ile dosyayı devralır.
 
 ## 7. Kırıcı değişiklik
