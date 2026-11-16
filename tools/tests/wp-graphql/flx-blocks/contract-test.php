@@ -125,9 +125,18 @@ $r = flxbk_t_op( 'FlxBlocksLibraryPatterns' );
 flxt_same( 'UNAUTHENTICATED', flxt_code( $r ), 'library: visitor → UNAUTHENTICATED' );
 $r = flxbk_t_op( 'FlxBlocksLibraryPatterns', array(), $sub );
 flxt_same( 'FORBIDDEN', flxt_code( $r ), 'library: subscriber → FORBIDDEN' );
-$r   = flxbk_t_op( 'FlxBlocksLibraryPatterns', array( 'first' => 50 ), $author );
-$lib = $r['data']['flxBlocksLibrary'] ?? array();
-$ids = array_column( $lib['patterns']['nodes'] ?? array(), 'id' );
+// Every page: the theme alone can register more patterns than one page holds.
+$ids   = array();
+$after = null;
+for ( $flxbk_i = 0; $flxbk_i < 20; $flxbk_i++ ) {
+	$r   = flxbk_t_op( 'FlxBlocksLibraryPatterns', array( 'first' => 50, 'after' => $after ), $author );
+	$lib = $r['data']['flxBlocksLibrary'] ?? array();
+	$ids = array_merge( $ids, array_column( $lib['patterns']['nodes'] ?? array(), 'id' ) );
+	if ( empty( $lib['patterns']['pageInfo']['hasNextPage'] ) ) {
+		break;
+	}
+	$after = $lib['patterns']['pageInfo']['endCursor'] ?? null;
+}
 flxt_ok( in_array( 'flx-test/hero', $ids, true ) && in_array( 'user/' . $mine, $ids, true ), 'library: registered and My patterns', $r['errors'] ?? $ids );
 flxt_same( null, $lib['source'] ?? null, 'library: this site has no source id' );
 $cats = array_column( $lib['categories'] ?? array(), 'count', 'slug' );
