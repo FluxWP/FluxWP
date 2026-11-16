@@ -249,6 +249,7 @@ final class FLXAN_Telemetry_Service {
 	 * @return bool False when the key is not valid.
 	 */
 	public static function forget( string $h ): bool {
+		/** @var wpdb $wpdb */
 		global $wpdb;
 		$h = sanitize_key( $h );
 		// phpcs:disable WordPress.DB
