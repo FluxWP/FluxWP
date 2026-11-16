@@ -33,4 +33,5 @@ Faz 0'da 0.4, 0.5 ve 0.6 merge edilince başlar (plan §5).
 
 | Paket | Durum | PR / not |
 |---|---|---|
+| flx-seo 1.11.0 | 👀 | `gql/flx-seo-1`: 3 servis, 5 sorgu + 5 mutation + ayar tipi (`flxSettings.flxseo`) + `flxSeo` alanı (her içerik/terim), 9 kayıtlı işlem, sözleşme testi 120/120. React ekranı `flxseo-seo` (5 sekme) klasikle eşit, wp-admin varsayılanı. Eşleme `ESLEME/flx-seo.md` |
 | flx-roles 1.5.0 | 👀 | `gql/flx-roles-1`: servis katmanı, 4 sorgu + 6 mutation, 8 kayıtlı işlem, sözleşme testi 55/55. React ekranı (`flxr-roles`) klasikle eşit, wp-admin varsayılanı; klasik sayfadaki bağlantıyla. Kit 0.2.0 yetki modeli (`flx_gql_any_cap/all_caps`, `flx_gql_capabilities`, `flxViewer`, `useFlxCan`), KURALLAR §3.1. Eşleme `ESLEME/flx-roles.md` |

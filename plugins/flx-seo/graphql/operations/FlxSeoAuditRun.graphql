@@ -1,0 +1,15 @@
+mutation FlxSeoAuditRun($input: FlxSeoAuditRunInput!) {
+  flxSeoAuditRun(input: $input) {
+    audit {
+      ...FlxSeoAuditFields
+    }
+    history {
+      ...FlxSeoHistoryFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

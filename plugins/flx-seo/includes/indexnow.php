@@ -207,17 +207,9 @@ add_action(
 			wp_die( esc_html__( 'Not allowed.', 'flx-seo' ) );
 		}
 		check_admin_referer( 'flxseo_indexnow_all' );
-		if ( ! flxseo_indexnow_enabled() ) {
-			$msg = array( 'error', __( 'IndexNow is off or the site is hidden from search engines (Settings › Reading).', 'flx-seo' ) );
-		} else {
-			$urls = flxseo_indexnow_all_urls();
-			$r    = flxseo_indexnow_send( $urls, true );
-			if ( ! is_wp_error( $r ) ) {
-				update_option( 'flxseo_indexnow_init', time(), false );
-			}
-			/* translators: %d: adres sayısı */
-			$msg = is_wp_error( $r ) ? array( 'error', $r->get_error_message() ) : array( 'success', sprintf( __( '%d URLs submitted to Bing, Yandex and the other IndexNow search engines.', 'flx-seo' ), count( $urls ) ) );
-		}
+		$r = FLXSEO_Settings_Service::submit_indexnow();
+		/* translators: %d: adres sayısı */
+		$msg = is_wp_error( $r ) ? array( 'error', $r->get_error_message() ) : array( 'success', sprintf( __( '%d URLs submitted to Bing, Yandex and the other IndexNow search engines.', 'flx-seo' ), $r ) );
 		set_transient( 'flxseo_indexnow_msg_' . get_current_user_id(), $msg, 60 );
 		wp_safe_redirect( flxseo_admin_url() . '#indexnow' );
 		exit;

@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.3.0
+- Flux SEO işlemleri (`FlxSeoSettingsScreen`, `FlxSeoSettingsSave`, `FlxSeoAuditScreen`, `FlxSeoAuditRun`, `FlxSeoFixApply`, `FlxSeoPsiKeySave`, `FlxSeoIndexNowSubmit`, `FlxSeoContentCheck`, `FlxSeoGuide`).
+
 ## 0.2.0
 - `useFlxViewer()` ve `useFlxCan(capability)`: giriş yapan kişi ve FluxWP yetkileri (Flux GraphQL 0.2.0 `flxViewer`).
 - Flux Roles işlemleri (`FlxRolesScreen`, `FlxRoleMembers`, `FlxRolesSave`, `FlxRoleCreate`, `FlxRoleDelete`, `FlxRoleReset`, `FlxRoleMemberAdd`, `FlxRoleMemberRemove`).

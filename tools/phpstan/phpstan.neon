@@ -24,6 +24,7 @@ parameters:
     # Legacy code the strict folders call (scanned for symbols only).
     - ../../plugins/flx-tasks/includes
     - ../../plugins/flx-roles/includes
+    - ../../plugins/flx-seo/includes
   paths:
     - ../../plugins/flx-graphql/flx-graphql.php
     - ../../plugins/flx-graphql/uninstall.php
@@ -34,6 +35,9 @@ parameters:
     # Flux Roles (Faz 1)
     - ../../plugins/flx-roles/includes/services
     - ../../plugins/flx-roles/includes/graphql
+    # Flux SEO (Faz 1)
+    - ../../plugins/flx-seo/includes/services
+    - ../../plugins/flx-seo/includes/graphql
   excludePaths:
     - ../../plugins/flx-graphql/includes/flx-brand
   treatPhpDocTypesAsCertain: false
