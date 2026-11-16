@@ -1,0 +1,13 @@
+mutation FlxSeoIndexNowSubmit($input: FlxSeoIndexNowSubmitInput!) {
+  flxSeoIndexNowSubmit(input: $input) {
+    submitted
+    setup {
+      ...FlxSeoSetupFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}
