@@ -53,13 +53,8 @@ add_action(
 				'methods'             => 'GET',
 				'permission_callback' => '__return_true', // Herkese açık; yalnız ziyaretçinin kendi ülke kodu döner, kayıt yok.
 				'callback'            => function () {
-					$g = flxl_geo_country();
-					$last = get_option( 'flxl_geo_seen' );
-					$now  = $g['source'] ? $g['source'] : 'none';
-					if ( ! is_array( $last ) || ( $last['source'] ?? '' ) !== $now || ( time() - (int) ( $last['t'] ?? 0 ) ) > DAY_IN_SECONDS ) {
-						update_option( 'flxl_geo_seen', array( 'source' => $now, 't' => time() ), false );
-					}
-					$res = flx_rest_nocache( new WP_REST_Response( array( 'country' => $g['country'] ) ) );
+					$g = FLXL_Language_Service::visitor_country();
+					$res = flx_rest_nocache( new WP_REST_Response( array( 'country' => $g->country ) ) );
 					$res->header( 'CDN-Cache-Control', 'no-store' );
 					$res->header( 'Vary', 'CF-IPCountry' );
 					do_action( 'litespeed_control_set_nocache', 'flx-lang geo' );
