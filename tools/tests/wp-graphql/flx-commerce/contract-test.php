@@ -317,9 +317,14 @@ if ( function_exists( 'wc_create_order' ) && class_exists( 'WC_Order' ) ) {
 			array( 'input' => array( 'id' => $oid ) ),
 			$shop
 		);
-		$reloaded = wc_get_order( (int) $oid );
-		flxt_same( 'processing', $approved['data']['flxCommerceReceiptApprove']['receipt']['status'] ?? '', 'graphql approve returns processing status' );
-		flxt_ok( $reloaded instanceof WC_Order && 'processing' === $reloaded->get_status(), 'classic order reflects graphql receipt approval' );
+		$reloaded        = wc_get_order( (int) $oid );
+		$approved_status = (string) ( $approved['data']['flxCommerceReceiptApprove']['receipt']['status'] ?? '' );
+		flxt_ok( in_array( $approved_status, array( 'processing', 'completed' ), true ), 'graphql approve transitions to a paid status', $approved );
+		flxt_ok(
+			$reloaded instanceof WC_Order && $reloaded->is_paid() && ! FLXCM_Bank::awaiting( $reloaded ) && '' !== (string) $reloaded->get_meta( '_flxcm_confirmed' ) && $approved_status === $reloaded->get_status(),
+			'classic order reflects graphql receipt approval',
+			$reloaded instanceof WC_Order ? $reloaded->get_status() : null
+		);
 
 		$order2 = wc_create_order( array( 'customer_id' => $owner ) );
 		if ( $order2 instanceof WC_Order ) {
@@ -327,8 +332,14 @@ if ( function_exists( 'wc_create_order' ) && class_exists( 'WC_Order' ) ) {
 			$order2->set_status( 'on-hold' );
 			$order2->save();
 			FLXCM_Bank::mark_paid( $order2 );
-			$reread2 = flxt_gql( 'query($id: ID!){ flxCommerceReceipt(id: $id){ status } }', array( 'id' => (string) $order2->get_id() ), $shop );
-			flxt_same( 'processing', $reread2['data']['flxCommerceReceipt']['status'] ?? '', 'graphql reads classic FLXCM_Bank::mark_paid status' );
+			$reloaded2 = wc_get_order( $order2->get_id() );
+			$reread2   = flxt_gql( 'query($id: ID!){ flxCommerceReceipt(id: $id){ status } }', array( 'id' => (string) $order2->get_id() ), $shop );
+			$status2   = (string) ( $reread2['data']['flxCommerceReceipt']['status'] ?? '' );
+			flxt_ok(
+				in_array( $status2, array( 'processing', 'completed' ), true ) && $reloaded2 instanceof WC_Order && $status2 === $reloaded2->get_status(),
+				'graphql reads classic FLXCM_Bank::mark_paid status',
+				$reread2
+			);
 		}
 
 		$written = wc_create_order();
