@@ -30,7 +30,8 @@ final class FLXC_Chat_Service {
 		}
 		$rows = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM ' . flxc_table( 'chats' ) . ' WHERE phone = %s', $phone ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared // @phpstan-ignore argument.type
 		foreach ( (array) $rows as $row ) {
-			if ( is_array( $row ) && flxc_user_can_see_chat( $row, $user_id ) ) {
+			$row = FLXC_Val::arr( $row );
+			if ( array() !== $row && flxc_user_can_see_chat( $row, $user_id ) ) {
 				return true;
 			}
 		}
@@ -215,7 +216,14 @@ final class FLXC_Chat_Service {
 			return $out;
 		}
 		$out['chat'] = 0;
-		$out['name'] = flxc_lookup_contact_name( FLXC_Val::str(( $out['phone'] ?? '' )) );
+		if ( ! is_array( $row ) ) {
+			$out['name'] = '';
+			return $out;
+		}
+		// CRM copies the chat title onto the person. That string is still the hidden title.
+		$lookup      = flxc_lookup_contact_name( FLXC_Val::str( $out['phone'] ?? '' ) );
+		$titles      = array( flxc_chat_title( $row ), FLXC_Val::str( $row['name'] ?? '' ), FLXC_Val::str( $row['push_name'] ?? '' ) );
+		$out['name'] = in_array( $lookup, $titles, true ) ? '' : $lookup;
 		return $out;
 	}
 

@@ -11,7 +11,7 @@ defined( 'ABSPATH' ) || exit;
 final class FLXC_Message_Service {
 
 	/**
-	 * @return array{messages: array<int,array<string,mixed>>, more: bool, note: string}|WP_Error
+	 * @return array<string,mixed>|WP_Error
 	 */
 	public static function list_for( WP_REST_Request $req, int $limit = 40 ) {
 		$chat = flxc_rest_chat_or_error( $req['id'] );
@@ -109,7 +109,7 @@ final class FLXC_Message_Service {
 	 * Sends a file already taken from the kit upload (GraphQL uploadId). REST keeps its own token.
 	 *
 	 * @param array<string,mixed> $chat Chat row.
-	 * @param array{path:string,name:string,mime:string} $file Taken upload.
+	 * @param array{path:string,name:string,mime:string,size:int} $file Taken upload.
 	 * @return array{message: array<string,mixed>}|WP_Error
 	 */
 	public static function send_upload( array $chat, string $type, string $body, int $quoted, string $source, bool $preview, array $file, bool $voice = false ) {
@@ -132,7 +132,7 @@ final class FLXC_Message_Service {
 		}
 		if ( 'audio' !== $args['type'] ) {
 			$chk = flxc_upload_check(
-				array( 'size' => FLXC_Val::int(( $file['size'] ?? 0 )), 'name' => $file['name'], 'type' => $file['mime'], 'tmp_name' => $file['path'] ),
+				array( 'size' => $file['size'], 'name' => $file['name'], 'type' => $file['mime'], 'tmp_name' => $file['path'] ),
 				$file['name'],
 				$args['type']
 			);
@@ -333,7 +333,7 @@ final class FLXC_Message_Service {
 	}
 
 	/**
-	 * @return array{text: string, cached?: bool, last: int}|WP_Error
+	 * @return array<string,mixed>|WP_Error
 	 */
 	public static function suggest( WP_REST_Request $req ) {
 		$chat = flxc_rest_chat_or_error( $req['id'] );

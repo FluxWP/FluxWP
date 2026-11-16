@@ -106,7 +106,8 @@ final class FLXC_Phone_Person_Loader extends \WPGraphQL\Data\Loader\AbstractData
 			$place   = implode( ',', array_fill( 0, count( $want ), '%s' ) );
 			$chats   = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM ' . flxc_table( 'chats' ) . " WHERE phone IN ($place)", array_values( $want ) ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare // @phpstan-ignore argument.type
 			foreach ( (array) $chats as $chat ) {
-				if ( is_array( $chat ) && flxc_user_can_see_chat( $chat ) ) {
+				$chat = FLXC_Val::arr( $chat );
+				if ( array() !== $chat && flxc_user_can_see_chat( $chat ) ) {
 					$visible[ FLXC_Val::str($chat['phone']) ] = true;
 				}
 			}
@@ -115,7 +116,8 @@ final class FLXC_Phone_Person_Loader extends \WPGraphQL\Data\Loader\AbstractData
 				$place = implode( ',', array_fill( 0, count( $phones ), '%s' ) );
 				$rows  = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM ' . FLXC_Val::str( flx_people_table() ) . " WHERE phone IN ($place)", $phones ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare // @phpstan-ignore argument.type
 				foreach ( (array) $rows as $row ) {
-					if ( ! is_array( $row ) ) {
+					$row = FLXC_Val::arr( $row );
+					if ( array() === $row ) {
 						continue;
 					}
 					$phone = preg_replace( '/\D+/', '', FLXC_Val::str(( $row['phone'] ?? '' )) );
@@ -1107,8 +1109,8 @@ flx_gql_query(
 		),
 		'resolve'     => static function ( $root, array $args ): ?array {
 			unset( $root );
-			$r = flxc_link_preview( FLXC_Val::str($args['url']) );
-			if ( ! is_array( $r ) || empty( $r['ok'] ) ) {
+			$r = FLXC_Val::arr( flxc_link_preview( FLXC_Val::str($args['url']) ) );
+			if ( array() === $r || empty( $r['ok'] ) ) {
 				return null;
 			}
 			return array(
@@ -1266,6 +1268,7 @@ flx_gql_mutation(
 						'path' => FLXC_Val::str( $file['path'] ?? '' ),
 						'name' => FLXC_Val::str( $file['name'] ?? '' ),
 						'mime' => FLXC_Val::str( $file['mime'] ?? '' ),
+						'size' => FLXC_Val::int( $file['size'] ?? 0 ),
 					),
 					! empty( $input['voice'] )
 				);
