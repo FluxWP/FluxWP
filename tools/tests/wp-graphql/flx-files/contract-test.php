@@ -177,4 +177,6 @@ flxt_same( null, $r['errors'] ?? null, 'disk: no errors' );
 // Cleanup.
 flxfm_trash_purge( true );
 flxf_rm( flxfm_root() . '/' . $B );
+require_once ABSPATH . 'wp-admin/includes/user.php';
+wp_delete_user( $sub );
 flxt_done();
