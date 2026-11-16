@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
-"""Flux App translations. Source strings are English (PHP __()).
+"""Flux App translations. Source strings are English (PHP __() and the React screen's t()/tn()).
 
 Writes:
   languages/flx-app.pot                       every PHP string
   languages/flx-app-tr_TR.{po,mo,l10n.php}    Turkish: existing pack + tools/tr.json for new strings
   languages/messages.tr_TR.json                 same, FluxWP package JSON
+  packages/modules/src/app-settings/i18n/<lang>.json   React screen dictionaries from every language pack
+                                                (a string missing in a pack falls back to English)
 Other language packs are left as they are; new strings show in English there until translated.
 
 Usage: python3 plugins/flx-app/tools/i18n.py [--check]   (--check: exit 1 when Turkish is missing)
@@ -15,15 +17,24 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 PKG = os.path.dirname(HERE)
 REPO = os.path.dirname(os.path.dirname(PKG))
 LANG = os.path.join(PKG, 'languages')
+SCREEN = os.path.join(REPO, 'packages/modules/src/app-settings')
 DOMAIN = 'flx-app'
 STR = r"'((?:[^'\\]|\\.)*)'"
 SINGLE = re.compile(r"\b(?:__|esc_html__|esc_attr__|_e|esc_html_e|esc_attr_e)\(\s*" + STR + r"\s*,\s*'" + DOMAIN + "'")
 PLURAL = re.compile(r"\b_n\(\s*" + STR + r"\s*,\s*" + STR + r"\s*,[^;]*?'" + DOMAIN + "'", re.S)
+JS_STR = r"""(?:'((?:[^'\\]|\\.)*)'|"((?:[^"\\]|\\.)*)")"""
+JS_T = re.compile(r"\bt\(\s*" + JS_STR)
+JS_TN = re.compile(r"\btn\(\s*" + JS_STR + r"\s*,\s*" + JS_STR)
 LOCALES = {'en': 'en_US', 'tr': 'tr_TR', 'de': 'de_DE', 'es': 'es_ES', 'fr': 'fr_FR', 'pt-br': 'pt_BR', 'ja': 'ja', 'zh': 'zh_CN', 'ar': 'ar', 'ru': 'ru_RU'}
 
 
 def php_unq(s):
     return s.replace("\\'", "'").replace('\\\\', '\\')
+
+
+def js_unq(m, i):
+    single, double = m.group(i), m.group(i + 1)
+    return php_unq(single) if single is not None else json.loads('"' + double + '"')
 
 
 def php_strings():
@@ -39,6 +50,19 @@ def php_strings():
             for m in SINGLE.finditer(src):
                 out.setdefault(php_unq(m.group(1)), os.path.relpath(os.path.join(d, f), PKG))
     return out
+
+
+def screen_strings():
+    out = []
+    for f in sorted(os.listdir(SCREEN)):
+        if not f.endswith('.tsx'):
+            continue
+        src = open(os.path.join(SCREEN, f), encoding='utf-8').read()
+        for m in JS_TN.finditer(src):
+            out.append(js_unq(m, 1) + '\0' + js_unq(m, 3))
+        for m in JS_T.finditer(src):
+            out.append(js_unq(m, 1))
+    return list(dict.fromkeys(out))
 
 
 def messages(locale):
@@ -77,7 +101,7 @@ def write_mo(path, pairs, header):
 def main():
     check = '--check' in sys.argv
     php = php_strings()
-    screen = []
+    screen = screen_strings()
     tr_new = json.load(open(os.path.join(HERE, 'tr.json'), encoding='utf-8'))
     tr_pack = messages('tr_TR')
     tr_old = tr_pack.get('messages', {})
@@ -91,7 +115,7 @@ def main():
         if check:
             sys.exit(1)
     if check:
-        print(f'{len(php)} PHP strings, Turkish complete')
+        print(f'{len(php)} PHP + {len(screen)} screen strings, Turkish complete')
         return
 
     header = 'Content-Type: text/plain; charset=UTF-8\\nLanguage: {loc}\\nPlural-Forms: nplurals=2; plural=(n != 1);\\n'
@@ -123,7 +147,18 @@ def main():
     tr_pack['messages'] = tr
     json.dump(tr_pack, open(os.path.join(LANG, 'messages.tr_TR.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
 
-    print(f'{len(php)} PHP strings, {len(tr)} Turkish')
+    os.makedirs(os.path.join(SCREEN, 'i18n'), exist_ok=True)
+    for lang, loc in LOCALES.items():
+        pack = {} if lang == 'en' else messages(loc).get('messages', {})
+        out = {}
+        for k in screen:
+            v = tr_of(k) if lang == 'tr' else pack.get(k)
+            if v:
+                out[k] = v
+        with open(os.path.join(SCREEN, 'i18n', lang + '.json'), 'w', encoding='utf-8') as f:
+            json.dump(out, f, ensure_ascii=False, indent=1)
+            f.write('\n')
+    print(f'{len(php)} PHP strings, {len(tr)} Turkish; {len(screen)} screen strings')
 
 
 main()

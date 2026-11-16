@@ -30,7 +30,8 @@ Paket sürümü: 0.5.0 · Önek: `flxapp_` · Sahip thread: Faz 1 / flx-app · D
 
 | Sayfa | Durum |
 |---|---|
-| `admin.php?page=flxapp-settings` ("Uygulama" ayarları) | Henüz React ekranı yok, klasik PHP. Ekran kuralı gereği ayrı iş (açık soru). |
+| `admin.php?page=flxapp-settings` ("Uygulama" ayarları, 7 sekme) | React ekranı `flxapp-settings`, varsayılan; klasik sayfa "Klasik görünüm" bağlantısıyla (0.6.0). `flxAppAdmin*` işlemleri. |
+| `users.php?page=flx-app` / `profile.php?page=flx-app` ("Uygulama erişimi") | React ekranı `flxapp-access`, varsayılan; klasik bağlantıyla. `flxAppAccess`, `flxAppKeyCreate`, `flxAppAccessRevoke`, `flxAppDeviceRevoke`. |
 
 ## Önbellek tag'leri
 
@@ -40,4 +41,4 @@ Paket sürümü: 0.5.0 · Önek: `flxapp_` · Sahip thread: Faz 1 / flx-app · D
 
 ## Açık sorular
 
-- "Uygulama" ayarları sayfasının React ekranı (cihazlar, OTP/telefon, marka, ayar köprüsü ayrı uçlar; ayrı PR).
+Yok.

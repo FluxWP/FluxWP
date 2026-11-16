@@ -19,7 +19,8 @@ foreach ( (array) json_decode( (string) file_get_contents( FLXAPP_DIR . 'graphql
 		$GLOBALS['flxapp_ids'][ $m[1] ] = $id;
 	}
 }
-flxt_same( 12, count( $GLOBALS['flxapp_ops'] ), 'Flux App ships 12 persisted operations' );
+$flxapp_files = array_filter( (array) glob( FLXAPP_DIR . 'graphql/operations/*.graphql' ), static fn( $f ) => 'fragments.graphql' !== basename( $f ) );
+flxt_same( count( $flxapp_files ), count( $GLOBALS['flxapp_ops'] ), 'every operation file is a persisted operation (' . count( $flxapp_files ) . ')' );
 
 function flxapp_t_op( string $name, array $vars = array(), int $user = 0 ): array {
 	return flxt_gql( $GLOBALS['flxapp_ops'][ $name ], $vars, $user );
@@ -241,6 +242,141 @@ $lo = $post( 'FlxAppLogout', array( 'Authorization' => 'Bearer ' . $access ) );
 flxt_same( true, $lo['body']['data']['flxAppLogout']['ok'] ?? null, 'http: logout over GraphQL' );
 $h = $post( 'FlxAppMe', array( 'Authorization' => 'Bearer ' . $access ) );
 flxt_same( 401, $h['status'], 'http: the session is closed, the token no longer works' );
+
+
+// ───────── Admin: the "Application" settings pages and the personal access page ─────────
+$visitor_ops = array( 'FlxAppAdminSettings', 'FlxAppAdminModules', 'FlxAppAdminMenu', 'FlxAppAdminClients', 'FlxAppAdminMobile', 'FlxAppAdminAppearance', 'FlxAppAccess' );
+foreach ( $visitor_ops as $op ) {
+	flxt_same( 'UNAUTHENTICATED', flxt_code( flxapp_t_op( $op ) ), "$op: visitor → UNAUTHENTICATED" );
+}
+foreach ( array_diff( $visitor_ops, array( 'FlxAppAccess' ) ) as $op ) {
+	flxt_same( 'FORBIDDEN', flxt_code( flxapp_t_op( $op, array(), $sub ) ), "$op: subscriber → FORBIDDEN" );
+}
+flxt_same( 'FORBIDDEN', flxt_code( flxapp_t_op( 'FlxAppAccess', array( 'all' => true ), $sub ) ), 'FlxAppAccess(all): subscriber → FORBIDDEN' );
+
+// General.
+$r = flxapp_t_op( 'FlxAppAdminSettings', array(), $admin );
+flxt_same( null, $r['errors'] ?? null, 'settings: no errors' );
+$st = $r['data']['flxAppAdminSettings'] ?? array();
+flxt_same( flxapp_settings()['access_minutes'], $st['accessMinutes'] ?? null, 'settings: reads the option' );
+flxt_same( array( 'read', 'edit_posts', 'manage_options' ), array_column( $st['keysCapChoices'] ?? array(), 'key' ), 'settings: key choices' );
+$r = flxapp_t_op( 'FlxAppAdminSettingsSave', array( 'input' => array( 'accessMinutes' => 1, 'refreshDays' => 9999, 'otpCreate' => true, 'keysCap' => 'manage_options' ) ), $admin );
+flxt_same( array( 5, 365, true, 'manage_options' ), array( $r['data']['flxAppAdminSettingsSave']['settings']['accessMinutes'] ?? null, $r['data']['flxAppAdminSettingsSave']['settings']['refreshDays'] ?? null, $r['data']['flxAppAdminSettingsSave']['settings']['otpCreate'] ?? null, $r['data']['flxAppAdminSettingsSave']['settings']['keysCap'] ?? null ), 'settings save: values clamped, flags and cap saved' );
+flxt_same( array( 5, 365, 1, 'manage_options' ), array( flxapp_opt( 'access_minutes' ), flxapp_opt( 'refresh_days' ), flxapp_opt( 'otp_create' ), flxapp_opt( 'keys_cap' ) ), 'settings save: the same option the classic form writes' );
+flxt_same( 1, (int) flxapp_opt( 'otp_enabled' ), 'settings save: fields that were not sent stay as they are' );
+flxapp_t_op( 'FlxAppAdminSettingsSave', array( 'input' => array( 'keysCap' => 'nonsense' ) ), $admin );
+flxt_same( 'read', flxapp_opt( 'keys_cap' ), 'settings save: an unknown capability falls back to "read"' );
+flxapp_t_op( 'FlxAppAdminSettingsSave', array( 'input' => array( 'accessMinutes' => 60, 'refreshDays' => 60, 'otpCreate' => false ) ), $admin );
+flxt_same( 'FORBIDDEN', flxt_code( flxapp_t_op( 'FlxAppAdminSettingsSave', array( 'input' => array( 'accessMinutes' => 10 ) ), $sub ) ), 'settings save: subscriber → FORBIDDEN' );
+
+// Modules.
+add_filter( 'flxapp_modules', static function ( $m ) {
+	$m['flxt-demo'] = array( 'title' => 'Demo module', 'menu' => 'flxt-demo', 'cap' => 'read', 'version' => '1.2.3' );
+	return $m;
+} );
+$r    = flxapp_t_op( 'FlxAppAdminModules', array(), $admin );
+$mods = array_column( $r['data']['flxAppAdminModules'] ?? array(), null, 'id' );
+flxt_same( array_keys( flxapp_admin_modules() ), array_keys( $mods ), 'modules: same list as the classic page' );
+flxt_same( array( 'Demo module', 'native', true, '1.2.3' ), array( $mods['flxt-demo']['title'] ?? null, $mods['flxt-demo']['kind'] ?? null, $mods['flxt-demo']['on'] ?? null, $mods['flxt-demo']['version'] ?? null ), 'modules: a native module' );
+$on = array_values( array_diff( array_keys( $mods ), array( 'flxt-demo' ) ) );
+$r  = flxapp_t_op( 'FlxAppAdminModulesSave', array( 'input' => array( 'on' => $on ) ), $admin );
+flxt_same( false, array_column( $r['data']['flxAppAdminModulesSave']['modules'] ?? array(), 'on', 'id' )['flxt-demo'] ?? null, 'modules save: a module left out turns off' );
+flxt_ok( in_array( 'flxt-demo', (array) flxapp_opt( 'modules_off' ), true ), 'modules save: stored in modules_off' );
+flxapp_t_op( 'FlxAppAdminModulesSave', array( 'input' => array( 'on' => array_keys( $mods ) ) ), $admin );
+flxt_ok( ! in_array( 'flxt-demo', (array) flxapp_opt( 'modules_off' ), true ), 'modules save: turned on again' );
+
+// Menu.
+$r = flxapp_t_op( 'FlxAppAdminMenu', array(), $admin );
+flxt_same( null, $r['errors'] ?? null, 'menu: no errors' );
+flxt_same( array( 'web', 'mobile', 'desktop' ), array_column( $r['data']['flxAppAdminMenu']['platforms'] ?? array(), 'key' ), 'menu: platforms' );
+flxt_same( function_exists( 'flxa_menus_option' ), $r['data']['flxAppAdminMenu']['available'] ?? null, 'menu: available follows Flux Admin' );
+
+// OAuth clients.
+$r = flxapp_t_op( 'FlxAppAdminClients', array(), $admin );
+flxt_ok( in_array( 'BUILTIN', array_column( $r['data']['flxAppAdminClients']['clients'] ?? array(), 'kind' ), true ), 'clients: built-in clients listed' );
+flxt_ok( in_array( 'MCP', array_column( $r['data']['flxAppAdminClients']['connection'] ?? array(), 'key' ), true ), 'clients: connection details' );
+$r = flxapp_t_op( 'FlxAppAdminClientCreate', array( 'input' => array( 'name' => 'Test app', 'redirectUris' => array( 'https://example.com/cb' ), 'confidential' => true ) ), $admin );
+$c = $r['data']['flxAppAdminClientCreate'] ?? array();
+flxt_same( array( 'Test app', 'MANUAL', true ), array( $c['client']['name'] ?? null, $c['client']['kind'] ?? null, $c['client']['hasSecret'] ?? null ), 'client create: manual client with a secret' );
+flxt_ok( str_starts_with( (string) ( $c['secret'] ?? '' ), 'flxcs_' ), 'client create: the secret is returned once' );
+$r = flxapp_t_op( 'FlxAppAdminClientCreate', array( 'input' => array( 'name' => 'Bad', 'redirectUris' => array( 'http://evil.example/cb' ) ) ), $admin );
+flxt_same( 'INVALID_INPUT', $r['data']['flxAppAdminClientCreate']['errors'][0]['code'] ?? null, 'client create: an insecure redirect URI is rejected (payload error)' );
+flxt_same( 'FORBIDDEN', flxt_code( flxapp_t_op( 'FlxAppAdminClientCreate', array( 'input' => array( 'name' => 'X', 'redirectUris' => array( 'https://example.com/cb' ) ) ), $sub ) ), 'client create: subscriber → FORBIDDEN' );
+$r = flxapp_t_op( 'FlxAppAdminClientDelete', array( 'input' => array( 'id' => $c['client']['id'] ?? 'x' ) ), $admin );
+flxt_same( true, $r['data']['flxAppAdminClientDelete']['ok'] ?? null, 'client delete: ok' );
+flxt_same( false, isset( flxapp_clients()[ $c['client']['id'] ?? 'x' ] ), 'client delete: gone' );
+
+// Access: personal and everyone.
+$r = flxapp_t_op( 'FlxAppKeyCreate', array( 'input' => array( 'name' => 'My key', 'days' => 30 ) ), $sub );
+$k = $r['data']['flxAppKeyCreate'] ?? array();
+flxt_ok( str_starts_with( (string) ( $k['key'] ?? '' ), 'flxak_' ), 'key create: a personal key (keys_cap = read)' );
+flxt_same( 'INVALID_INPUT', flxapp_t_op( 'FlxAppKeyCreate', array( 'input' => array( 'name' => ' ' ) ), $sub )['data']['flxAppKeyCreate']['errors'][0]['code'] ?? null, 'key create: a name is required' );
+$r    = flxapp_t_op( 'FlxAppAccess', array(), $sub );
+$rows = $r['data']['flxAppAccess']['rows'] ?? array();
+flxt_same( array( 'KEY', 'My key', $sub ), array( $rows[0]['kind'] ?? null, $rows[0]['name'] ?? null, $rows[0]['userId'] ?? null ), 'access: the own key is listed' );
+flxt_same( true, $r['data']['flxAppAccess']['canCreateKeys'] ?? null, 'access: canCreateKeys' );
+flxt_same( false, $r['data']['flxAppAccess']['canManage'] ?? null, 'access: a subscriber does not manage the app' );
+flxt_ok( str_contains( (string) ( $r['data']['flxAppAccess']['downloads']['macos'] ?? '' ), '/v1/fluxapp/' ), 'access: desktop app download address' );
+$all = flxapp_t_op( 'FlxAppAccess', array( 'all' => true ), $admin );
+flxt_ok( in_array( $sub, array_column( $all['data']['flxAppAccess']['rows'] ?? array(), 'userId' ), true ), 'access(all): the administrator sees every user' );
+$mine = flxapp_t_op( 'FlxAppAccess', array(), $admin );
+flxt_ok( ! in_array( $sub, array_column( $mine['data']['flxAppAccess']['rows'] ?? array(), 'userId' ), true ), 'access: the administrator\'s own list holds only the own rows' );
+flxapp_t_op( 'FlxAppAdminSettingsSave', array( 'input' => array( 'keysCap' => 'manage_options' ) ), $admin );
+flxt_same( 'FORBIDDEN', flxt_code( flxapp_t_op( 'FlxAppKeyCreate', array( 'input' => array( 'name' => 'Nope' ) ), $sub ) ), 'key create: follows the keys_cap setting' );
+flxapp_t_op( 'FlxAppAdminSettingsSave', array( 'input' => array( 'keysCap' => 'read' ) ), $admin );
+$other = (int) wp_insert_user( array( 'user_login' => 'flxapp_oth_' . wp_rand(), 'user_email' => 'flxapp_oth_' . wp_rand() . '@example.com', 'user_pass' => wp_generate_password(), 'role' => 'subscriber' ) );
+flxt_same( 'FORBIDDEN', flxt_code( flxapp_t_op( 'FlxAppAccessRevoke', array( 'input' => array( 'id' => $rows[0]['id'] ?? 0 ) ), $other ) ), 'revoke: another user cannot remove the key' );
+flxt_same( true, flxapp_t_op( 'FlxAppAccessRevoke', array( 'input' => array( 'id' => $rows[0]['id'] ?? 0 ) ), $sub )['data']['flxAppAccessRevoke']['ok'] ?? null, 'revoke: the owner removes it' );
+flxt_same( array(), flxapp_t_op( 'FlxAppAccess', array(), $sub )['data']['flxAppAccess']['rows'] ?? null, 'revoke: the key is gone' );
+$dev = flxapp_t_op( 'FlxAppAccess', array( 'all' => true ), $admin )['data']['flxAppAccess']['devices'] ?? array();
+flxt_same( 'FORBIDDEN', flxt_code( flxapp_t_op( 'FlxAppDeviceRevoke', array( 'input' => array( 'id' => 999999 ) ), $sub ) ), 'device revoke: unknown device → FORBIDDEN' );
+wp_delete_user( $other );
+
+// Applications.
+$r = flxapp_t_op( 'FlxAppAdminMobile', array(), $admin );
+flxt_same( null, $r['errors'] ?? null, 'mobile: no errors' );
+$r = flxapp_t_op( 'FlxAppAdminMobileSave', array( 'input' => array(
+	'storeIos'     => 'http://apps.example.com/x',
+	'storeAndroid' => 'https://play.google.com/store/apps/details?id=x',
+	'pushHide'     => true,
+	'expoToken'    => 'tok en!',
+	'apps'         => array( array( 'id' => 'Brand_App', 'name' => 'Brand', 'platform' => 'desktop', 'redirectUris' => array( 'brand://oauth/callback', 'javascript:alert(1)' ) ), array( 'id' => '' ) ),
+) ), $admin );
+$m = $r['data']['flxAppAdminMobileSave']['mobile'] ?? array();
+flxt_same( array( true, true, '' ), array( $m['pushHide'] ?? null, $m['hasExpoToken'] ?? null, $m['storeIos'] ?? null ), 'mobile save: flags, the token is kept secret, a non-https store link is dropped' );
+flxt_same( 'https://play.google.com/store/apps/details?id=x', $m['storeAndroid'] ?? null, 'mobile save: https store link kept' );
+flxt_same( array( array( 'id' => 'brand_app', 'name' => 'Brand', 'platform' => 'desktop', 'redirectUris' => array( 'brand://oauth/callback' ) ) ), $m['apps'] ?? null, 'mobile save: branded apps (empty ids and bad redirects dropped)' );
+flxt_same( 'token', flxapp_secret_get( 'push_expo_token' ), 'mobile save: Expo token stored (encrypted at rest), cleaned to its allowed characters' );
+$r = flxapp_t_op( 'FlxAppAdminMobileSave', array( 'input' => array( 'clearExpoToken' => true, 'apps' => array() ) ), $admin );
+flxt_same( array( false, array() ), array( $r['data']['flxAppAdminMobileSave']['mobile']['hasExpoToken'] ?? null, $r['data']['flxAppAdminMobileSave']['mobile']['apps'] ?? null ), 'mobile save: clear the token and the apps' );
+$r = flxapp_t_op( 'FlxAppAdminPushTest', array(), $admin );
+flxt_same( null, $r['errors'] ?? null, 'push test: no errors' );
+flxt_same( 'FORBIDDEN', flxt_code( flxapp_t_op( 'FlxAppAdminPushTest', array(), $sub ) ), 'push test: subscriber → FORBIDDEN' );
+
+// Appearance.
+$r  = flxapp_t_op( 'FlxAppAdminAppearance', array(), $admin );
+$ap = $r['data']['flxAppAdminAppearance'] ?? array();
+flxt_same( null, $r['errors'] ?? null, 'appearance: no errors' );
+flxt_same( array( 'primary', 'accent', 'bg', 'surface', 'text' ), array_column( $ap['colorKeys'] ?? array(), 'key' ), 'appearance: colour keys' );
+flxt_same( flxapp_t_json( flxapp_theme() ), flxapp_t_json( $ap['theme'] ?? null ), 'appearance: the resolved theme is the one the app gets' );
+flxt_same( 'flx-app-config/1', ( (array) ( $ap['previewMobile'] ?? array() ) )['schema'] ?? null, 'appearance: preview config' );
+$r = flxapp_t_op( 'FlxAppAdminAppearanceSave', array( 'input' => array(
+	'theme'     => array( 'mode' => 'dark', 'radius' => 'large', 'light' => array( 'primary' => '#aa11bb', 'accent' => 'nope' ), 'font' => array( 'body' => 'Inter', 'heading' => 'Comic' ) ),
+	'mobile'    => array( 'nav' => 'tabs', 'home' => 'more', 'tabs' => array( array( 'target' => 'search', 'label' => 'Find' ), array( 'target' => '' ) ), 'drawer' => array( 'enabled' => false ), 'topbar' => array( 'style' => 'compact', 'show_logo' => true ) ),
+	'desktop'   => array( 'home' => 'search', 'commands' => array( 'search', '', 'notifications' ), 'topbar' => array( 'site_switcher' => true ) ),
+	'screensOn' => array(),
+) ), $admin );
+$o = flxapp_app_option();
+flxt_same( array( 'dark', 'large', '#AA11BB', 'Inter', '' ), array( $o['theme']['mode'] ?? null, $o['theme']['radius'] ?? null, $o['theme']['light']['primary'] ?? null, $o['theme']['font']['body'] ?? null, $o['theme']['font']['heading'] ?? null ), 'appearance save: theme sanitized as the classic form' );
+flxt_same( false, isset( $o['theme']['light']['accent'] ), 'appearance save: an invalid colour is dropped' );
+flxt_same( array( 'tabs', 'more', 1, false ), array( $o['shell']['mobile']['nav'] ?? null, $o['shell']['mobile']['home'] ?? null, count( $o['shell']['mobile']['tabs'] ?? array() ), $o['shell']['mobile']['drawer']['enabled'] ?? null ), 'appearance save: mobile shell, empty tab rows dropped' );
+flxt_same( array( 'search', 'notifications' ), $o['shell']['desktop']['commands'] ?? null, 'appearance save: desktop shortcuts' );
+flxt_same( null, $r['errors'] ?? null, 'appearance save: no errors' );
+$screens = array_column( $r['data']['flxAppAdminAppearanceSave']['appearance']['screens'] ?? array(), 'on', 'key' );
+flxt_ok( ! in_array( true, $screens, true ), 'appearance save: screens not listed are off' );
+flxt_same( 'FORBIDDEN', flxt_code( flxapp_t_op( 'FlxAppAdminAppearanceSave', array( 'input' => array( 'theme' => array(), 'mobile' => array(), 'desktop' => array(), 'screensOn' => array() ) ), $sub ) ), 'appearance save: subscriber → FORBIDDEN' );
+delete_option( 'flxapp_app' );
+update_option( 'flxapp_settings', array_merge( (array) get_option( 'flxapp_settings', array() ), array( 'screens_off' => array(), 'store_ios' => '', 'store_android' => '', 'push_hide' => 0 ) ) );
 
 // Persisted: the documents are allowed in strict mode.
 wp_set_current_user( $admin );

@@ -51,7 +51,7 @@ final class FLXAPP_Service {
 	 * @param mixed $v Value.
 	 * @return array<string,mixed>
 	 */
-	private static function plain( $v ): array {
+	public static function plain( $v ): array {
 		$j = wp_json_encode( $v );
 		return flx_gql_arr( false === $j ? array() : json_decode( $j, true ) );
 	}
@@ -62,7 +62,7 @@ final class FLXAPP_Service {
 	 * @param mixed $v Value.
 	 * @return object|array<mixed>
 	 */
-	private static function doc( $v ) {
+	public static function doc( $v ) {
 		$j   = wp_json_encode( $v );
 		$out = false === $j ? null : json_decode( $j );
 		return is_object( $out ) || is_array( $out ) ? $out : new stdClass();

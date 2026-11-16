@@ -30,15 +30,21 @@ function flxapp_admin_url( $args = array() ) {
 add_action(
 	'admin_menu',
 	function () {
-		$css   = function () {
-			wp_enqueue_style( 'flxapp-admin', FLXAPP_URL . 'assets/admin.css', array(), FLXAPP_VERSION );
-		};
-		$hooks = array(
-			add_users_page( __( 'App access', 'flx-app' ), __( 'App access', 'flx-app' ), 'read', 'flx-app', 'flxapp_render_page' ),
-			add_menu_page( __( 'Application', 'flx-app' ), __( 'Application', 'flx-app' ), 'manage_options', 'flxapp-settings', 'flxapp_render_settings_page', 'dashicons-smartphone', 72 ),
+		$pages = array(
+			add_users_page( __( 'App access', 'flx-app' ), __( 'App access', 'flx-app' ), 'read', 'flx-app', 'flxapp_render_page' )                                                                                  => 'flx-app',
+			add_menu_page( __( 'Application', 'flx-app' ), __( 'Application', 'flx-app' ), 'manage_options', 'flxapp-settings', 'flxapp_render_settings_page', 'dashicons-smartphone', 72 ) => 'flxapp-settings',
 		);
-		foreach ( $hooks as $hook ) {
-			add_action( 'admin_print_styles-' . $hook, $css );
+		foreach ( $pages as $hook => $page ) {
+			add_action(
+				'admin_print_styles-' . $hook,
+				function () use ( $page ) {
+					if ( function_exists( 'flxapp_flux_ui' ) && flxapp_flux_ui() ) {
+						flxapp_flux_assets( $page );
+						return;
+					}
+					wp_enqueue_style( 'flxapp-admin', FLXAPP_URL . 'assets/admin.css', array(), FLXAPP_VERSION );
+				}
+			);
 		}
 	}
 );
@@ -53,44 +59,24 @@ function flxapp_deny() {
 
 function flxapp_handle_key() {
 	check_admin_referer( 'flxapp_key' );
-	if ( ! current_user_can( (string) flxapp_opt( 'keys_cap' ) ) ) {
+	$res = FLXAPP_Admin_Service::key_create( sanitize_text_field( wp_unslash( $_POST['name'] ?? '' ) ), absint( $_POST['days'] ?? 0 ) );
+	if ( is_wp_error( $res ) ) {
+		if ( 'INVALID_INPUT' === ( $res->get_error_data()['graphql_code'] ?? '' ) ) {
+			wp_safe_redirect( flxapp_admin_url( array( 'flxapp_msg' => 'noname' ) ) );
+			exit;
+		}
 		flxapp_deny();
 	}
-	$name = sanitize_text_field( wp_unslash( $_POST['name'] ?? '' ) );
-	$days = absint( $_POST['days'] ?? 0 );
-	$days = in_array( $days, array( 0, 30, 90, 365 ), true ) ? $days : 0;
-	if ( '' === $name ) {
-		wp_safe_redirect( flxapp_admin_url( array( 'flxapp_msg' => 'noname' ) ) );
-		exit;
-	}
-	$key = flxapp_issue(
-		'key',
-		array(
-			'user_id' => get_current_user_id(),
-			'name'    => $name,
-			'scope'   => 'flx mcp',
-			'ttl'     => $days * DAY_IN_SECONDS,
-		)
-	);
-	// Düz anahtar yalnız bir kez, kısa ömürlü kullanıcıya özel geçici kayıtla gösterilir.
-	set_transient( 'flxapp_show_' . get_current_user_id(), $key, 5 * MINUTE_IN_SECONDS );
+	// The plain key is shown once, from a short-lived per-user transient.
+	set_transient( 'flxapp_show_' . get_current_user_id(), $res['key'], 5 * MINUTE_IN_SECONDS );
 	wp_safe_redirect( flxapp_admin_url( array( 'flxapp_msg' => 'key' ) ) );
 	exit;
 }
 
 function flxapp_handle_revoke() {
-	global $wpdb;
 	check_admin_referer( 'flxapp_revoke' );
-	$id  = absint( $_POST['id'] ?? 0 );
-	$t   = flxapp_table();
-	$row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$t} WHERE id = %d", $id ), ARRAY_A ); // phpcs:ignore WordPress.DB
-	if ( ! $row || ( (int) $row['user_id'] !== get_current_user_id() && ! current_user_can( 'manage_options' ) ) ) {
+	if ( is_wp_error( FLXAPP_Admin_Service::access_revoke( absint( $_POST['id'] ?? 0 ) ) ) ) {
 		flxapp_deny();
-	}
-	if ( '' !== $row['grant_id'] ) {
-		flxapp_revoke_grant( $row['grant_id'] );
-	} else {
-		flxapp_revoke_id( $row['id'] );
 	}
 	wp_safe_redirect( wp_get_referer() ? wp_get_referer() : flxapp_admin_url() );
 	exit;
@@ -102,16 +88,16 @@ function flxapp_handle_client() {
 		flxapp_deny();
 	}
 	$uris = preg_split( '/[\r\n]+/', (string) wp_unslash( $_POST['redirect_uris'] ?? '' ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-	$res  = flxapp_add_client( (string) wp_unslash( $_POST['name'] ?? '' ), array_map( 'esc_url_raw', (array) $uris ), ! empty( $_POST['confidential'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+	$res  = FLXAPP_Admin_Service::client_create( (string) wp_unslash( $_POST['name'] ?? '' ), array_map( 'strval', (array) $uris ), ! empty( $_POST['confidential'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 	if ( is_wp_error( $res ) ) {
 		set_transient( 'flxapp_err_' . get_current_user_id(), $res->get_error_message(), MINUTE_IN_SECONDS );
 		wp_safe_redirect( flxapp_admin_url( array( 'tab' => 'apps', 'flxapp_msg' => 'err' ) ) );
 		exit;
 	}
-	if ( $res[1] ) {
-		set_transient( 'flxapp_show_' . get_current_user_id(), $res[0]['id'] . "\n" . $res[1], 5 * MINUTE_IN_SECONDS );
+	if ( $res['secret'] ) {
+		set_transient( 'flxapp_show_' . get_current_user_id(), $res['client']['id'] . "\n" . $res['secret'], 5 * MINUTE_IN_SECONDS );
 	}
-	wp_safe_redirect( flxapp_admin_url( array( 'tab' => 'apps', 'flxapp_msg' => $res[1] ? 'secret' : 'client' ) ) );
+	wp_safe_redirect( flxapp_admin_url( array( 'tab' => 'apps', 'flxapp_msg' => $res['secret'] ? 'secret' : 'client' ) ) );
 	exit;
 }
 
@@ -120,7 +106,7 @@ function flxapp_handle_client_delete() {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		flxapp_deny();
 	}
-	flxapp_delete_client( sanitize_text_field( wp_unslash( $_POST['id'] ?? '' ) ) );
+	FLXAPP_Admin_Service::client_delete( sanitize_text_field( wp_unslash( $_POST['id'] ?? '' ) ) );
 	wp_safe_redirect( flxapp_admin_url( array( 'tab' => 'apps' ) ) );
 	exit;
 }
@@ -130,25 +116,19 @@ function flxapp_handle_settings() {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		flxapp_deny();
 	}
-	$caps = array_keys( flxapp_key_cap_choices() );
-	$cap  = sanitize_key( wp_unslash( $_POST['keys_cap'] ?? 'read' ) );
-	update_option(
-		'flxapp_settings',
-		array_merge(
-			flxapp_settings(),
-			array(
-			'access_minutes'  => max( 5, min( 1440, absint( $_POST['access_minutes'] ?? 60 ) ) ),
-			'refresh_days'    => max( 1, min( 365, absint( $_POST['refresh_days'] ?? 60 ) ) ),
-			'dynamic_clients' => empty( $_POST['dynamic_clients'] ) ? 0 : 1,
-			'web_session'     => empty( $_POST['web_session'] ) ? 0 : 1,
-			'otp_enabled'       => empty( $_POST['otp_enabled'] ) ? 0 : 1,
-			'otp_create'        => empty( $_POST['otp_create'] ) ? 0 : 1,
-			'otp_staff'         => empty( $_POST['otp_staff'] ) ? 0 : 1,
-			'phone_self_verify' => empty( $_POST['phone_self_verify'] ) ? 0 : 1,
-			'keys_cap'        => in_array( $cap, $caps, true ) ? $cap : 'read',
-			)
-		),
-		false
+	$on = static fn( $k ) => ! empty( $_POST[ $k ] ); // phpcs:ignore WordPress.Security.NonceVerification
+	FLXAPP_Admin_Service::settings_save(
+		array(
+			'accessMinutes'   => absint( $_POST['access_minutes'] ?? 60 ),
+			'refreshDays'     => absint( $_POST['refresh_days'] ?? 60 ),
+			'dynamicClients'  => $on( 'dynamic_clients' ),
+			'webSession'      => $on( 'web_session' ),
+			'otpEnabled'      => $on( 'otp_enabled' ),
+			'otpCreate'       => $on( 'otp_create' ),
+			'otpStaff'        => $on( 'otp_staff' ),
+			'phoneSelfVerify' => $on( 'phone_self_verify' ),
+			'keysCap'         => sanitize_key( wp_unslash( $_POST['keys_cap'] ?? 'read' ) ),
+		)
 	);
 	wp_safe_redirect( flxapp_admin_url( array( 'tab' => 'settings', 'flxapp_msg' => 'saved' ) ) );
 	exit;
@@ -159,12 +139,7 @@ function flxapp_handle_modules() {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		flxapp_deny();
 	}
-	$all = array_map( 'sanitize_key', array_keys( flxapp_admin_modules() ) );
-	$on  = array_map( 'sanitize_key', (array) wp_unslash( $_POST['on'] ?? array() ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-	$s   = flxapp_settings();
-	// Listede olmayan (eklentisi şu an kapalı) modüllerin eski seçimi korunur.
-	$s['modules_off'] = array_values( array_unique( array_merge( array_diff( (array) $s['modules_off'], $all ), array_diff( $all, $on ) ) ) );
-	update_option( 'flxapp_settings', $s, false );
+	FLXAPP_Admin_Service::modules_save( array_map( 'sanitize_key', (array) wp_unslash( $_POST['on'] ?? array() ) ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 	wp_safe_redirect( flxapp_admin_url( array( 'tab' => 'modules', 'flxapp_msg' => 'saved' ) ) );
 	exit;
 }
@@ -273,9 +248,14 @@ function flxapp_render_download() {
 
 /** Kullanıcılar › Uygulama erişimi: kendi oturumları ve API anahtarları. */
 function flxapp_render_page() {
+	if ( flxapp_flux_ui() ) {
+		flxapp_flux_root();
+		return;
+	}
 	$uid = get_current_user_id();
 	$s   = flxapp_settings();
 	echo '<div class="wrap flxapp"><h1>' . esc_html__( 'App access', 'flx-app' ) . '</h1>';
+	flxapp_flux_switch_link( 'flx-app' );
 	if ( current_user_can( 'manage_options' ) ) {
 		echo '<p><a class="button" href="' . esc_url( flxapp_admin_url( array( 'tab' => 'settings' ) ) ) . '">' . esc_html__( 'App settings', 'flx-app' ) . '</a></p>';
 	}
@@ -309,12 +289,17 @@ function flxapp_render_settings_page() {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		return;
 	}
+	if ( flxapp_flux_ui() ) {
+		flxapp_flux_root();
+		return;
+	}
 	$tabs = flxapp_admin_tabs();
 	$tab  = sanitize_key( wp_unslash( $_GET['tab'] ?? 'settings' ) ); // phpcs:ignore WordPress.Security.NonceVerification
 	$tab  = isset( $tabs[ $tab ] ) ? $tab : 'settings';
 	$uid  = get_current_user_id();
 	$s    = flxapp_settings();
 	echo '<div class="wrap flxapp"><h1 class="flxapp-title"><img src="' . esc_url( FLXAPP_URL . 'assets/icon.svg' ) . '" alt="" width="32" height="32"> ' . esc_html__( 'Application', 'flx-app' ) . ' <small>Flux App ' . esc_html( FLXAPP_VERSION ) . '</small></h1>';
+	flxapp_flux_switch_link( 'flxapp-settings' );
 	echo '<nav class="nav-tab-wrapper">';
 	foreach ( $tabs as $k => $label ) {
 		echo '<a class="nav-tab' . ( $k === $tab ? ' nav-tab-active' : '' ) . '" href="' . esc_url( flxapp_admin_url( array( 'tab' => $k ) ) ) . '">' . esc_html( $label ) . '</a>';

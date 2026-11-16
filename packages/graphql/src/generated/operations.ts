@@ -3,6 +3,141 @@
 import type { FlxOperation } from '../operation';
 import type * as T from './types';
 
+/** query FlxAppAccess (flx-app, plugins/flx-app/graphql/operations/FlxAppAccess.graphql) */
+export const FlxAppAccess: FlxOperation<T.FlxAppAccessQuery, T.FlxAppAccessQueryVariables> = {
+  id: '1dd252522e2e7e352cbe31ebb7ef763661f7f52d407b0023f418e1365e0d5aa8',
+  name: 'FlxAppAccess',
+  kind: 'query',
+  plugin: 'flx-app',
+  document: "query FlxAppAccess($all: Boolean) {\n  flxAppAccess(all: $all) {\n    devices {\n      id\n      name\n      platform\n      app\n      brand\n      push\n      lastSeen\n      lastSeenAgo\n      userId\n      user\n      current\n    }\n    rows {\n      id\n      kind\n      name\n      hint\n      userId\n      user\n      created\n      lastUsed\n      lastIp\n      expires\n    }\n    canCreateKeys\n    canManage\n    downloads {\n      macos\n      windows\n      windowsMsi\n    }\n  }\n}",
+};
+
+/** mutation FlxAppAccessRevoke (flx-app, plugins/flx-app/graphql/operations/FlxAppAccessRevoke.graphql) */
+export const FlxAppAccessRevoke: FlxOperation<T.FlxAppAccessRevokeMutation, T.FlxAppAccessRevokeMutationVariables> = {
+  id: '0410fe39ca78d5cd046a033c326dd6bd357096aaab36212f8c0f44f9056de2c1',
+  name: 'FlxAppAccessRevoke',
+  kind: 'mutation',
+  plugin: 'flx-app',
+  document: "mutation FlxAppAccessRevoke($input: FlxAppAccessRevokeInput!) {\n  flxAppAccessRevoke(input: $input) {\n    ok\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxAppAdminAppearance (flx-app, plugins/flx-app/graphql/operations/FlxAppAdminAppearance.graphql) */
+export const FlxAppAdminAppearance: FlxOperation<T.FlxAppAdminAppearanceQuery, T.FlxAppAdminAppearanceQueryVariables> = {
+  id: '1860c58a8fdc3e9a90238fafaef5f1ecdc4bcf298ce323ef674dd35eefbe2e6c',
+  name: 'FlxAppAdminAppearance',
+  kind: 'query',
+  plugin: 'flx-app',
+  document: "query FlxAppAdminAppearance {\n  flxAppAdminAppearance {\n    ...FlxAppAdminAppearanceFields\n  }\n}\n\nfragment FlxAppAdminAppearanceFields on FlxAppAdminAppearance {\n  option\n  theme\n  fonts\n  colorKeys {\n    key\n    label\n  }\n  targets {\n    label\n    items {\n      key\n      label\n    }\n  }\n  targetLabels {\n    key\n    label\n  }\n  screens {\n    key\n    label\n    on\n  }\n  previewMobile\n  previewDesktop\n}",
+};
+
+/** mutation FlxAppAdminAppearanceSave (flx-app, plugins/flx-app/graphql/operations/FlxAppAdminAppearanceSave.graphql) */
+export const FlxAppAdminAppearanceSave: FlxOperation<T.FlxAppAdminAppearanceSaveMutation, T.FlxAppAdminAppearanceSaveMutationVariables> = {
+  id: '762de9d5115d73d8f01452c7b5f8a8ac15213df2102f3986d735018483a7670b',
+  name: 'FlxAppAdminAppearanceSave',
+  kind: 'mutation',
+  plugin: 'flx-app',
+  document: "mutation FlxAppAdminAppearanceSave($input: FlxAppAdminAppearanceSaveInput!) {\n  flxAppAdminAppearanceSave(input: $input) {\n    appearance {\n      ...FlxAppAdminAppearanceFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAppAdminAppearanceFields on FlxAppAdminAppearance {\n  option\n  theme\n  fonts\n  colorKeys {\n    key\n    label\n  }\n  targets {\n    label\n    items {\n      key\n      label\n    }\n  }\n  targetLabels {\n    key\n    label\n  }\n  screens {\n    key\n    label\n    on\n  }\n  previewMobile\n  previewDesktop\n}",
+};
+
+/** mutation FlxAppAdminClientCreate (flx-app, plugins/flx-app/graphql/operations/FlxAppAdminClientCreate.graphql) */
+export const FlxAppAdminClientCreate: FlxOperation<T.FlxAppAdminClientCreateMutation, T.FlxAppAdminClientCreateMutationVariables> = {
+  id: '14ba5b9cfa34c05e5bef9a80d5087b56019d5b4c4a5a22ce7810d12dd6089f8c',
+  name: 'FlxAppAdminClientCreate',
+  kind: 'mutation',
+  plugin: 'flx-app',
+  document: "mutation FlxAppAdminClientCreate($input: FlxAppAdminClientCreateInput!) {\n  flxAppAdminClientCreate(input: $input) {\n    client {\n      ...FlxAppAdminClientFields\n    }\n    secret\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAppAdminClientFields on FlxAppAdminClient {\n  id\n  name\n  redirectUris\n  kind\n  hasSecret\n}",
+};
+
+/** mutation FlxAppAdminClientDelete (flx-app, plugins/flx-app/graphql/operations/FlxAppAdminClientDelete.graphql) */
+export const FlxAppAdminClientDelete: FlxOperation<T.FlxAppAdminClientDeleteMutation, T.FlxAppAdminClientDeleteMutationVariables> = {
+  id: '0acad378aa0aa39d0d878475c0e4c2c5e8a5a09045e3bd946641c722c6b0f44b',
+  name: 'FlxAppAdminClientDelete',
+  kind: 'mutation',
+  plugin: 'flx-app',
+  document: "mutation FlxAppAdminClientDelete($input: FlxAppAdminClientDeleteInput!) {\n  flxAppAdminClientDelete(input: $input) {\n    ok\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxAppAdminClients (flx-app, plugins/flx-app/graphql/operations/FlxAppAdminClients.graphql) */
+export const FlxAppAdminClients: FlxOperation<T.FlxAppAdminClientsQuery, T.FlxAppAdminClientsQueryVariables> = {
+  id: '0aa8eaf58f40a410644147b5f052aa2441f94a7c247af742f281bd5590f5b61f',
+  name: 'FlxAppAdminClients',
+  kind: 'query',
+  plugin: 'flx-app',
+  document: "query FlxAppAdminClients {\n  flxAppAdminClients {\n    clients {\n      ...FlxAppAdminClientFields\n    }\n    connection {\n      key\n      label\n    }\n  }\n}\n\nfragment FlxAppAdminClientFields on FlxAppAdminClient {\n  id\n  name\n  redirectUris\n  kind\n  hasSecret\n}",
+};
+
+/** query FlxAppAdminMenu (flx-app, plugins/flx-app/graphql/operations/FlxAppAdminMenu.graphql) */
+export const FlxAppAdminMenu: FlxOperation<T.FlxAppAdminMenuQuery, T.FlxAppAdminMenuQueryVariables> = {
+  id: '67b0edec2f4ef8fb57c5f796df9e32ec167f35dae7bec4196df4edcdff650a82',
+  name: 'FlxAppAdminMenu',
+  kind: 'query',
+  plugin: 'flx-app',
+  document: "query FlxAppAdminMenu {\n  flxAppAdminMenu {\n    available\n    editorUrl\n    platforms {\n      key\n      label\n    }\n    rows {\n      role\n      menu\n      platforms {\n        key\n        visible\n      }\n    }\n  }\n}",
+};
+
+/** query FlxAppAdminMobile (flx-app, plugins/flx-app/graphql/operations/FlxAppAdminMobile.graphql) */
+export const FlxAppAdminMobile: FlxOperation<T.FlxAppAdminMobileQuery, T.FlxAppAdminMobileQueryVariables> = {
+  id: 'e27de38feec02d07f97aa0a6cee1f3782bf39e4b41f0fd3cf84edb52d04a7d74',
+  name: 'FlxAppAdminMobile',
+  kind: 'query',
+  plugin: 'flx-app',
+  document: "query FlxAppAdminMobile {\n  flxAppAdminMobile {\n    ...FlxAppAdminMobileFields\n  }\n}\n\nfragment FlxAppAdminMobileFields on FlxAppAdminMobile {\n  genericApp\n  storeIos\n  storeAndroid\n  pushEnabled\n  pushHide\n  hasExpoToken\n  embedFront\n  devRedirects\n  apps {\n    id\n    name\n    platform\n    redirectUris\n  }\n  deviceCount\n  pushCount\n  lastPush {\n    at\n    ago\n    sent\n    failed\n    error\n  }\n  bootstrapUrl\n  preset\n}",
+};
+
+/** mutation FlxAppAdminMobileSave (flx-app, plugins/flx-app/graphql/operations/FlxAppAdminMobileSave.graphql) */
+export const FlxAppAdminMobileSave: FlxOperation<T.FlxAppAdminMobileSaveMutation, T.FlxAppAdminMobileSaveMutationVariables> = {
+  id: '3140882c7e64b03a33a9bdeaab1dc3b5eb7c50ba5709a2a95778672679795ae2',
+  name: 'FlxAppAdminMobileSave',
+  kind: 'mutation',
+  plugin: 'flx-app',
+  document: "mutation FlxAppAdminMobileSave($input: FlxAppAdminMobileSaveInput!) {\n  flxAppAdminMobileSave(input: $input) {\n    mobile {\n      ...FlxAppAdminMobileFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAppAdminMobileFields on FlxAppAdminMobile {\n  genericApp\n  storeIos\n  storeAndroid\n  pushEnabled\n  pushHide\n  hasExpoToken\n  embedFront\n  devRedirects\n  apps {\n    id\n    name\n    platform\n    redirectUris\n  }\n  deviceCount\n  pushCount\n  lastPush {\n    at\n    ago\n    sent\n    failed\n    error\n  }\n  bootstrapUrl\n  preset\n}",
+};
+
+/** query FlxAppAdminModules (flx-app, plugins/flx-app/graphql/operations/FlxAppAdminModules.graphql) */
+export const FlxAppAdminModules: FlxOperation<T.FlxAppAdminModulesQuery, T.FlxAppAdminModulesQueryVariables> = {
+  id: '23953eab015437dc0f727a62ee3d73cb1e6cb45be22fc7f6b79e101318571d10',
+  name: 'FlxAppAdminModules',
+  kind: 'query',
+  plugin: 'flx-app',
+  document: "query FlxAppAdminModules {\n  flxAppAdminModules {\n    ...FlxAppAdminModuleFields\n  }\n}\n\nfragment FlxAppAdminModuleFields on FlxAppAdminModule {\n  id\n  title\n  menu\n  cap\n  version\n  kind\n  screens\n  errors\n  on\n}",
+};
+
+/** mutation FlxAppAdminModulesSave (flx-app, plugins/flx-app/graphql/operations/FlxAppAdminModulesSave.graphql) */
+export const FlxAppAdminModulesSave: FlxOperation<T.FlxAppAdminModulesSaveMutation, T.FlxAppAdminModulesSaveMutationVariables> = {
+  id: 'a7aad76ad18dbda2567f29ad4d8b488efe4043659ae782a8d0f92eefba54349c',
+  name: 'FlxAppAdminModulesSave',
+  kind: 'mutation',
+  plugin: 'flx-app',
+  document: "mutation FlxAppAdminModulesSave($input: FlxAppAdminModulesSaveInput!) {\n  flxAppAdminModulesSave(input: $input) {\n    modules {\n      ...FlxAppAdminModuleFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAppAdminModuleFields on FlxAppAdminModule {\n  id\n  title\n  menu\n  cap\n  version\n  kind\n  screens\n  errors\n  on\n}",
+};
+
+/** mutation FlxAppAdminPushTest (flx-app, plugins/flx-app/graphql/operations/FlxAppAdminPushTest.graphql) */
+export const FlxAppAdminPushTest: FlxOperation<T.FlxAppAdminPushTestMutation, T.FlxAppAdminPushTestMutationVariables> = {
+  id: 'b9dddc6a4c12070645fd30a6fbdf39863d2b58ea1cbe71f7ebb5ee2db6bc9b3a',
+  name: 'FlxAppAdminPushTest',
+  kind: 'mutation',
+  plugin: 'flx-app',
+  document: "mutation FlxAppAdminPushTest {\n  flxAppAdminPushTest(input: {  }) {\n    sent\n    failed\n    skipped\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxAppAdminSettings (flx-app, plugins/flx-app/graphql/operations/FlxAppAdminSettings.graphql) */
+export const FlxAppAdminSettings: FlxOperation<T.FlxAppAdminSettingsQuery, T.FlxAppAdminSettingsQueryVariables> = {
+  id: 'b7d4bf6833511227a38948aef18cf38f05a29043d4dbfc3b04e49fcc1878ec06',
+  name: 'FlxAppAdminSettings',
+  kind: 'query',
+  plugin: 'flx-app',
+  document: "query FlxAppAdminSettings {\n  flxAppAdminSettings {\n    ...FlxAppAdminSettingsFields\n  }\n}\n\nfragment FlxAppAdminSettingsFields on FlxAppAdminSettings {\n  accessMinutes\n  refreshDays\n  dynamicClients\n  webSession\n  otpEnabled\n  otpCreate\n  otpStaff\n  phoneSelfVerify\n  keysCap\n  keysCapChoices {\n    key\n    label\n  }\n  version\n}",
+};
+
+/** mutation FlxAppAdminSettingsSave (flx-app, plugins/flx-app/graphql/operations/FlxAppAdminSettingsSave.graphql) */
+export const FlxAppAdminSettingsSave: FlxOperation<T.FlxAppAdminSettingsSaveMutation, T.FlxAppAdminSettingsSaveMutationVariables> = {
+  id: 'fc53aca192620408e9133dd653741e741a10c7d19ada18e38845f088b88e1788',
+  name: 'FlxAppAdminSettingsSave',
+  kind: 'mutation',
+  plugin: 'flx-app',
+  document: "mutation FlxAppAdminSettingsSave($input: FlxAppAdminSettingsSaveInput!) {\n  flxAppAdminSettingsSave(input: $input) {\n    settings {\n      ...FlxAppAdminSettingsFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxAppAdminSettingsFields on FlxAppAdminSettings {\n  accessMinutes\n  refreshDays\n  dynamicClients\n  webSession\n  otpEnabled\n  otpCreate\n  otpStaff\n  phoneSelfVerify\n  keysCap\n  keysCapChoices {\n    key\n    label\n  }\n  version\n}",
+};
+
 /** query FlxAppBootstrap (flx-app, plugins/flx-app/graphql/operations/FlxAppBootstrap.graphql) */
 export const FlxAppBootstrap: FlxOperation<T.FlxAppBootstrapQuery, T.FlxAppBootstrapQueryVariables> = {
   id: '4850096db374db9b37d4fc02550c0248242e0adb19015eadc68717b90ac7147d',
@@ -37,6 +172,24 @@ export const FlxAppDashboard: FlxOperation<T.FlxAppDashboardQuery, T.FlxAppDashb
   kind: 'query',
   plugin: 'flx-app',
   document: "query FlxAppDashboard {\n  flxAppDashboard {\n    cards {\n      id\n      title\n      value\n      sub\n      icon\n      tone\n      url\n      open\n      order\n    }\n    lists {\n      id\n      title\n      icon\n      url\n      open\n      order\n      items {\n        title\n        sub\n        meta\n        url\n      }\n    }\n  }\n}",
+};
+
+/** mutation FlxAppDeviceRevoke (flx-app, plugins/flx-app/graphql/operations/FlxAppDeviceRevoke.graphql) */
+export const FlxAppDeviceRevoke: FlxOperation<T.FlxAppDeviceRevokeMutation, T.FlxAppDeviceRevokeMutationVariables> = {
+  id: '9f61478d3bc50857048da2499c97ed5de0bdc51362012d2153e2363175cb7d37',
+  name: 'FlxAppDeviceRevoke',
+  kind: 'mutation',
+  plugin: 'flx-app',
+  document: "mutation FlxAppDeviceRevoke($input: FlxAppDeviceRevokeInput!) {\n  flxAppDeviceRevoke(input: $input) {\n    ok\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxAppKeyCreate (flx-app, plugins/flx-app/graphql/operations/FlxAppKeyCreate.graphql) */
+export const FlxAppKeyCreate: FlxOperation<T.FlxAppKeyCreateMutation, T.FlxAppKeyCreateMutationVariables> = {
+  id: '49577b1d3b994160a8f4f89898086f3ffb70db6242a809e48b3515c7268d6e21',
+  name: 'FlxAppKeyCreate',
+  kind: 'mutation',
+  plugin: 'flx-app',
+  document: "mutation FlxAppKeyCreate($input: FlxAppKeyCreateInput!) {\n  flxAppKeyCreate(input: $input) {\n    key\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
 };
 
 /** mutation FlxAppLogout (flx-app, plugins/flx-app/graphql/operations/FlxAppLogout.graphql) */

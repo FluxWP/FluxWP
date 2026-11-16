@@ -4,6 +4,17 @@
 type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 /** Internal type. DO NOT USE DIRECTLY. */
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+/** A personal API key or an app session. */
+export type FlxAppAccessKind =
+  | 'KEY'
+  | 'SESSION';
+
+/** Where an OAuth client comes from. */
+export type FlxAppClientKind =
+  | 'BUILTIN'
+  | 'DYNAMIC'
+  | 'MANUAL';
+
 /** Platform of the asking app; decides which menu and screens are sent. */
 export type FlxAppPlatform =
   | 'DESKTOP'
@@ -34,6 +45,136 @@ export type FlxTaskRole =
   | 'EDIT'
   /** See tasks. */
   | 'VIEW';
+
+/** Input for the flxAppAccessRevoke mutation. */
+export type FlxAppAccessRevokeInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Row ID. */
+  id: number;
+};
+
+/** Input for the flxAppAdminAppearanceSave mutation. */
+export type FlxAppAdminAppearanceSaveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Desktop shell: home, topbar, commands. */
+  desktop: unknown;
+  /** Mobile shell: nav, home, tabs, drawer, topbar. */
+  mobile: unknown;
+  /** Screens that open natively; the others open in the web view. */
+  screensOn: Array<string>;
+  /** Theme overrides: mode, radius, density, font, light/dark colours. */
+  theme: unknown;
+};
+
+/** Input for the flxAppAdminClientCreate mutation. */
+export type FlxAppAdminClientCreateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Generate a client secret. */
+  confidential?: boolean | null | undefined;
+  /** Name. */
+  name: string;
+  /** Redirect URIs. */
+  redirectUris: Array<string>;
+};
+
+/** Input for the flxAppAdminClientDelete mutation. */
+export type FlxAppAdminClientDeleteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** client_id. */
+  id: string;
+};
+
+/** Input for the flxAppAdminMobileSave mutation. */
+export type FlxAppAdminMobileSaveInput = {
+  /** The branded apps (replaces the list). */
+  apps?: Array<FlxAppBrandedAppInput> | null | undefined;
+  /** Delete the saved Expo access token. */
+  clearExpoToken?: boolean | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Allow Expo development redirects. */
+  devRedirects?: boolean | null | undefined;
+  /** Hide the admin bar on site pages opened in the app. */
+  embedFront?: boolean | null | undefined;
+  /** A new Expo access token. */
+  expoToken?: string | null | undefined;
+  /** The main FluxWP app may connect. */
+  genericApp?: boolean | null | undefined;
+  /** Push notifications are sent. */
+  pushEnabled?: boolean | null | undefined;
+  /** Hide content on the lock screen. */
+  pushHide?: boolean | null | undefined;
+  /** Google Play link. */
+  storeAndroid?: string | null | undefined;
+  /** App Store link. */
+  storeIos?: string | null | undefined;
+};
+
+/** A branded app. */
+export type FlxAppBrandedAppInput = {
+  /** client_id. */
+  id: string;
+  /** Name. */
+  name?: string | null | undefined;
+  /** mobile or desktop. */
+  platform?: string | null | undefined;
+  /** Redirect URIs. */
+  redirectUris?: Array<string> | null | undefined;
+};
+
+/** Input for the flxAppAdminModulesSave mutation. */
+export type FlxAppAdminModulesSaveInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Module keys that stay on. */
+  on: Array<string>;
+};
+
+/** Input for the flxAppAdminSettingsSave mutation. */
+export type FlxAppAdminSettingsSaveInput = {
+  /** Access token lifetime in minutes (5 to 1440). */
+  accessMinutes?: number | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** MCP clients may register themselves. */
+  dynamicClients?: boolean | null | undefined;
+  /** Who can create API keys (a capability). */
+  keysCap?: string | null | undefined;
+  /** Create a customer account for a confirmed email. */
+  otpCreate?: boolean | null | undefined;
+  /** Donors may sign in with an emailed or phone code. */
+  otpEnabled?: boolean | null | undefined;
+  /** Staff may sign in with a code too. */
+  otpStaff?: boolean | null | undefined;
+  /** A signed-in donor may confirm a phone number. */
+  phoneSelfVerify?: boolean | null | undefined;
+  /** Session lifetime in days when unused (1 to 365). */
+  refreshDays?: number | null | undefined;
+  /** The app may open admin pages with a one-time sign-in link. */
+  webSession?: boolean | null | undefined;
+};
+
+/** Input for the flxAppDeviceRevoke mutation. */
+export type FlxAppDeviceRevokeInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Device ID. */
+  id: number;
+};
+
+/** Input for the flxAppKeyCreate mutation. */
+export type FlxAppKeyCreateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Valid for 30, 90 or 365 days; 0 = never expires. */
+  days?: number | null | undefined;
+  /** Name. */
+  name: string;
+};
 
 /** Input for the flxAppPrefsUpdate mutation. */
 export type FlxAppPrefsUpdateInput = {
@@ -241,6 +382,107 @@ export type FlxTaskWatchInput = {
   watch: boolean;
 };
 
+export type FlxAppAccessQueryVariables = Exact<{
+  all?: boolean | null | undefined;
+}>;
+
+
+export type FlxAppAccessQuery = { flxAppAccess: { canCreateKeys: boolean, canManage: boolean, devices: Array<{ id: number, name: string, platform: string, app: string, brand: string | null, push: boolean, lastSeen: number, lastSeenAgo: string, userId: number, user: string, current: boolean }>, rows: Array<{ id: number, kind: FlxAppAccessKind, name: string, hint: string, userId: number, user: string, created: number, lastUsed: number, lastIp: string, expires: number }>, downloads: { macos: string, windows: string, windowsMsi: string } } };
+
+export type FlxAppAccessRevokeMutationVariables = Exact<{
+  input: FlxAppAccessRevokeInput;
+}>;
+
+
+export type FlxAppAccessRevokeMutation = { flxAppAccessRevoke: { ok: boolean, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAppAdminAppearanceQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAppAdminAppearanceQuery = { flxAppAdminAppearance: { option: unknown, theme: unknown, fonts: Array<string>, previewMobile: unknown, previewDesktop: unknown, colorKeys: Array<{ key: string, label: string }>, targets: Array<{ label: string, items: Array<{ key: string, label: string }> }>, targetLabels: Array<{ key: string, label: string }>, screens: Array<{ key: string, label: string, on: boolean }> } };
+
+export type FlxAppAdminAppearanceFieldsFragment = { option: unknown, theme: unknown, fonts: Array<string>, previewMobile: unknown, previewDesktop: unknown, colorKeys: Array<{ key: string, label: string }>, targets: Array<{ label: string, items: Array<{ key: string, label: string }> }>, targetLabels: Array<{ key: string, label: string }>, screens: Array<{ key: string, label: string, on: boolean }> };
+
+export type FlxAppAdminAppearanceSaveMutationVariables = Exact<{
+  input: FlxAppAdminAppearanceSaveInput;
+}>;
+
+
+export type FlxAppAdminAppearanceSaveMutation = { flxAppAdminAppearanceSave: { appearance: { option: unknown, theme: unknown, fonts: Array<string>, previewMobile: unknown, previewDesktop: unknown, colorKeys: Array<{ key: string, label: string }>, targets: Array<{ label: string, items: Array<{ key: string, label: string }> }>, targetLabels: Array<{ key: string, label: string }>, screens: Array<{ key: string, label: string, on: boolean }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAppAdminClientCreateMutationVariables = Exact<{
+  input: FlxAppAdminClientCreateInput;
+}>;
+
+
+export type FlxAppAdminClientCreateMutation = { flxAppAdminClientCreate: { secret: string | null, client: { id: string, name: string, redirectUris: Array<string>, kind: FlxAppClientKind, hasSecret: boolean } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAppAdminClientFieldsFragment = { id: string, name: string, redirectUris: Array<string>, kind: FlxAppClientKind, hasSecret: boolean };
+
+export type FlxAppAdminClientDeleteMutationVariables = Exact<{
+  input: FlxAppAdminClientDeleteInput;
+}>;
+
+
+export type FlxAppAdminClientDeleteMutation = { flxAppAdminClientDelete: { ok: boolean, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAppAdminClientsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAppAdminClientsQuery = { flxAppAdminClients: { clients: Array<{ id: string, name: string, redirectUris: Array<string>, kind: FlxAppClientKind, hasSecret: boolean }>, connection: Array<{ key: string, label: string }> } };
+
+export type FlxAppAdminMenuQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAppAdminMenuQuery = { flxAppAdminMenu: { available: boolean, editorUrl: string | null, platforms: Array<{ key: string, label: string }>, rows: Array<{ role: string, menu: string, platforms: Array<{ key: string, visible: boolean }> }> } };
+
+export type FlxAppAdminMobileQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAppAdminMobileQuery = { flxAppAdminMobile: { genericApp: boolean, storeIos: string, storeAndroid: string, pushEnabled: boolean, pushHide: boolean, hasExpoToken: boolean, embedFront: boolean, devRedirects: boolean, deviceCount: number, pushCount: number, bootstrapUrl: string, preset: string | null, apps: Array<{ id: string, name: string, platform: string, redirectUris: Array<string> }>, lastPush: { at: number, ago: string, sent: number, failed: number, error: string | null } | null } };
+
+export type FlxAppAdminMobileFieldsFragment = { genericApp: boolean, storeIos: string, storeAndroid: string, pushEnabled: boolean, pushHide: boolean, hasExpoToken: boolean, embedFront: boolean, devRedirects: boolean, deviceCount: number, pushCount: number, bootstrapUrl: string, preset: string | null, apps: Array<{ id: string, name: string, platform: string, redirectUris: Array<string> }>, lastPush: { at: number, ago: string, sent: number, failed: number, error: string | null } | null };
+
+export type FlxAppAdminMobileSaveMutationVariables = Exact<{
+  input: FlxAppAdminMobileSaveInput;
+}>;
+
+
+export type FlxAppAdminMobileSaveMutation = { flxAppAdminMobileSave: { mobile: { genericApp: boolean, storeIos: string, storeAndroid: string, pushEnabled: boolean, pushHide: boolean, hasExpoToken: boolean, embedFront: boolean, devRedirects: boolean, deviceCount: number, pushCount: number, bootstrapUrl: string, preset: string | null, apps: Array<{ id: string, name: string, platform: string, redirectUris: Array<string> }>, lastPush: { at: number, ago: string, sent: number, failed: number, error: string | null } | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAppAdminModulesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAppAdminModulesQuery = { flxAppAdminModules: Array<{ id: string, title: string, menu: string | null, cap: string | null, version: string | null, kind: string, screens: number, errors: Array<string>, on: boolean }> };
+
+export type FlxAppAdminModuleFieldsFragment = { id: string, title: string, menu: string | null, cap: string | null, version: string | null, kind: string, screens: number, errors: Array<string>, on: boolean };
+
+export type FlxAppAdminModulesSaveMutationVariables = Exact<{
+  input: FlxAppAdminModulesSaveInput;
+}>;
+
+
+export type FlxAppAdminModulesSaveMutation = { flxAppAdminModulesSave: { modules: Array<{ id: string, title: string, menu: string | null, cap: string | null, version: string | null, kind: string, screens: number, errors: Array<string>, on: boolean }> | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAppAdminPushTestMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAppAdminPushTestMutation = { flxAppAdminPushTest: { sent: number | null, failed: number | null, skipped: number | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAppAdminSettingsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAppAdminSettingsQuery = { flxAppAdminSettings: { accessMinutes: number, refreshDays: number, dynamicClients: boolean, webSession: boolean, otpEnabled: boolean, otpCreate: boolean, otpStaff: boolean, phoneSelfVerify: boolean, keysCap: string, version: string, keysCapChoices: Array<{ key: string, label: string }> } };
+
+export type FlxAppAdminSettingsFieldsFragment = { accessMinutes: number, refreshDays: number, dynamicClients: boolean, webSession: boolean, otpEnabled: boolean, otpCreate: boolean, otpStaff: boolean, phoneSelfVerify: boolean, keysCap: string, version: string, keysCapChoices: Array<{ key: string, label: string }> };
+
+export type FlxAppAdminSettingsSaveMutationVariables = Exact<{
+  input: FlxAppAdminSettingsSaveInput;
+}>;
+
+
+export type FlxAppAdminSettingsSaveMutation = { flxAppAdminSettingsSave: { settings: { accessMinutes: number, refreshDays: number, dynamicClients: boolean, webSession: boolean, otpEnabled: boolean, otpCreate: boolean, otpStaff: boolean, phoneSelfVerify: boolean, keysCap: string, version: string, keysCapChoices: Array<{ key: string, label: string }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
 export type FlxAppBootstrapQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -262,6 +504,20 @@ export type FlxAppDashboardQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type FlxAppDashboardQuery = { flxAppDashboard: { cards: Array<{ id: string, title: string, value: string, sub: string | null, icon: string | null, tone: string | null, url: string | null, open: string | null, order: number | null }>, lists: Array<{ id: string, title: string, icon: string | null, url: string | null, open: string | null, order: number | null, items: Array<{ title: string, sub: string | null, meta: string | null, url: string | null }> }> } };
+
+export type FlxAppDeviceRevokeMutationVariables = Exact<{
+  input: FlxAppDeviceRevokeInput;
+}>;
+
+
+export type FlxAppDeviceRevokeMutation = { flxAppDeviceRevoke: { ok: boolean, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAppKeyCreateMutationVariables = Exact<{
+  input: FlxAppKeyCreateInput;
+}>;
+
+
+export type FlxAppKeyCreateMutation = { flxAppKeyCreate: { key: string | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
 
 export type FlxAppLogoutMutationVariables = Exact<{ [key: string]: never; }>;
 

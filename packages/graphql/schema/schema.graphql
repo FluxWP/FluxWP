@@ -260,6 +260,30 @@ type RootQuery {
   "Fields of the &#039;DiscussionSettings&#039; settings group"
   discussionSettings: DiscussionSettings
 
+  "Devices, sessions and keys of the signed-in user, or of everyone (`all`, administrators)."
+  flxAppAccess(
+    "Everyone (administrators only)."
+    all: Boolean
+  ): FlxAppAccess!
+
+  "The Appearance settings and what the pickers need."
+  flxAppAdminAppearance: FlxAppAdminAppearance!
+
+  "OAuth clients and the connection details."
+  flxAppAdminClients: FlxAppAdminClients!
+
+  "Menu items hidden by platform."
+  flxAppAdminMenu: FlxAppAdminMenu!
+
+  "The Applications settings."
+  flxAppAdminMobile: FlxAppAdminMobile!
+
+  "Modules the app can show, with their on/off state."
+  flxAppAdminModules: [FlxAppAdminModule!]!
+
+  "The General settings."
+  flxAppAdminSettings: FlxAppAdminSettings!
+
   "What the app learns before signing in (REST GET /flxapp/v1/app/bootstrap; cached 5 minutes)."
   flxAppBootstrap: FlxAppBootstrap!
 
@@ -8991,14 +9015,401 @@ type DiscussionSettings implements Node {
   id: ID!
 }
 
+"Devices, sessions and keys."
+type FlxAppAccess {
+  "The user may create API keys."
+  canCreateKeys: Boolean!
+
+  "The user manages the app settings."
+  canManage: Boolean!
+
+  "Devices."
+  devices: [FlxAppDeviceRow!]!
+
+  "Desktop app downloads."
+  downloads: FlxAppDownloads!
+
+  "Sessions and keys."
+  rows: [FlxAppAccessRow!]!
+}
+
+"A device signed in to the app."
+type FlxAppDeviceRow {
+  "Application and version."
+  app: String!
+
+  "Brand of a branded app."
+  brand: String
+
+  "This is the device that asks."
+  current: Boolean!
+
+  "Device ID."
+  id: Int!
+
+  "Unix time last seen."
+  lastSeen: Int!
+
+  "Last seen, in words."
+  lastSeenAgo: String!
+
+  "Device name."
+  name: String!
+
+  "Platform and model."
+  platform: String!
+
+  "Notifications are on."
+  push: Boolean!
+
+  "Display name."
+  user: String!
+
+  "User ID."
+  userId: Int!
+}
+
+"Desktop app download addresses."
+type FlxAppDownloads {
+  "macOS."
+  macos: String!
+
+  "Windows."
+  windows: String!
+
+  "Windows MSI package."
+  windowsMsi: String!
+}
+
+"An app session or a personal API key."
+type FlxAppAccessRow {
+  "Unix time."
+  created: Int!
+
+  "Unix time it expires; 0 = never."
+  expires: Int!
+
+  "Last characters of a key; empty for a session."
+  hint: String!
+
+  "Row ID."
+  id: Int!
+
+  "Session or key."
+  kind: FlxAppAccessKind!
+
+  "Last IP of a key; empty for a session."
+  lastIp: String!
+
+  "Unix time of the last use; 0 = never."
+  lastUsed: Int!
+
+  "Name."
+  name: String!
+
+  "Display name."
+  user: String!
+
+  "User ID."
+  userId: Int!
+}
+
+"A personal API key or an app session."
+enum FlxAppAccessKind {
+  ""
+  KEY
+
+  ""
+  SESSION
+}
+
+"Appearance of the desktop and mobile app. `option` is the flxapp_app site layer and `theme` the resolved theme; both are open documents the client validates."
+type FlxAppAdminAppearance {
+  "Theme colours and their names."
+  colorKeys: [FlxAppChoice!]!
+
+  "Fonts to choose from."
+  fonts: [String!]!
+
+  "The site layer (theme, shell, features, links, brand); open and versioned."
+  option: FlxJSON!
+
+  "The resolved desktop config for the preview (flx-app-config/1)."
+  previewDesktop: FlxJSON!
+
+  "The resolved mobile config for the preview (flx-app-config/1)."
+  previewMobile: FlxJSON!
+
+  "Screens that can be turned off."
+  screens: [FlxAppScreenChoice!]!
+
+  "Short names of all targets."
+  targetLabels: [FlxAppChoice!]!
+
+  "Targets for tabs, home screens and shortcuts."
+  targets: [FlxAppTargetGroup!]!
+
+  "The resolved theme (colours by mode, fonts); open."
+  theme: FlxJSON!
+}
+
+"A key with a label."
+type FlxAppChoice {
+  "Key."
+  key: String!
+
+  "Label."
+  label: String!
+}
+
+"Free-form JSON value (object, list, string, number or boolean)."
+scalar FlxJSON
+
+"A native screen that can be turned off."
+type FlxAppScreenChoice {
+  "module/screen."
+  key: String!
+
+  "Name."
+  label: String!
+
+  "It opens natively in the app."
+  on: Boolean!
+}
+
+"A group of targets the pickers offer."
+type FlxAppTargetGroup {
+  "Targets."
+  items: [FlxAppChoice!]!
+
+  "Group name."
+  label: String!
+}
+
+"OAuth clients and the connection details."
+type FlxAppAdminClients {
+  "Clients."
+  clients: [FlxAppAdminClient!]!
+
+  "Connection details (label holds the address)."
+  connection: [FlxAppChoice!]!
+}
+
+"An OAuth client."
+type FlxAppAdminClient {
+  "It has a client secret."
+  hasSecret: Boolean!
+
+  "client_id."
+  id: String!
+
+  "Where it comes from."
+  kind: FlxAppClientKind!
+
+  "Name."
+  name: String!
+
+  "Redirect URIs."
+  redirectUris: [String!]!
+}
+
+"Where an OAuth client comes from."
+enum FlxAppClientKind {
+  ""
+  BUILTIN
+
+  ""
+  DYNAMIC
+
+  ""
+  MANUAL
+}
+
+"Menu items hidden by platform (the menu itself is edited in Flux Admin)."
+type FlxAppAdminMenu {
+  "Flux Admin 1.3.0 or later is active."
+  available: Boolean!
+
+  "The menu editor address."
+  editorUrl: String
+
+  "Platforms."
+  platforms: [FlxAppChoice!]!
+
+  "Hidden items."
+  rows: [FlxAppAdminMenuRow!]!
+}
+
+"A menu item hidden on some platform for a role."
+type FlxAppAdminMenuRow {
+  "Menu item name."
+  menu: String!
+
+  "Visibility per platform."
+  platforms: [FlxAppAdminMenuPlatform!]!
+
+  "Role name."
+  role: String!
+}
+
+"Whether a menu item shows on a platform."
+type FlxAppAdminMenuPlatform {
+  "Platform key."
+  key: String!
+
+  "The item shows there."
+  visible: Boolean!
+}
+
+"Which apps may connect, store links and notifications."
+type FlxAppAdminMobile {
+  "Branded apps."
+  apps: [FlxAppBrandedApp!]!
+
+  "Bootstrap address."
+  bootstrapUrl: String!
+
+  "Allow Expo development redirects."
+  devRedirects: Boolean!
+
+  "Devices signed in."
+  deviceCount: Int!
+
+  "Hide the admin bar on site pages opened in the app."
+  embedFront: Boolean!
+
+  "The main FluxWP app may connect."
+  genericApp: Boolean!
+
+  "An Expo access token is saved (never shown)."
+  hasExpoToken: Boolean!
+
+  "The last push send."
+  lastPush: FlxAppLastPush
+
+  "Active preset."
+  preset: String
+
+  "Devices with notifications on."
+  pushCount: Int!
+
+  "Push notifications are sent."
+  pushEnabled: Boolean!
+
+  "Hide content on the lock screen."
+  pushHide: Boolean!
+
+  "Google Play link."
+  storeAndroid: String!
+
+  "App Store link."
+  storeIos: String!
+}
+
+"An app published under the organisation&#039;s own name."
+type FlxAppBrandedApp {
+  "client_id."
+  id: String!
+
+  "Name."
+  name: String!
+
+  "mobile or desktop."
+  platform: String!
+
+  "Redirect URIs."
+  redirectUris: [String!]!
+}
+
+"The last push send."
+type FlxAppLastPush {
+  "In words."
+  ago: String!
+
+  "Unix time."
+  at: Int!
+
+  "Error text."
+  error: String
+
+  "Failed."
+  failed: Int!
+
+  "Sent."
+  sent: Int!
+}
+
+"A package module of the app."
+type FlxAppAdminModule {
+  "Capability needed to open it."
+  cap: String
+
+  "Manifest problems."
+  errors: [String!]!
+
+  "Module key."
+  id: String!
+
+  "native, manifest or web."
+  kind: String!
+
+  "Panel menu slug; empty for a separate item."
+  menu: String
+
+  "The module is on in the app."
+  on: Boolean!
+
+  "Number of manifest screens."
+  screens: Int!
+
+  "Module title."
+  title: String!
+
+  "Package version; empty when not reported."
+  version: String
+}
+
+"Sign-in, session and panel settings of the app."
+type FlxAppAdminSettings {
+  "Access token lifetime in minutes (5 to 1440)."
+  accessMinutes: Int!
+
+  "MCP clients may register themselves."
+  dynamicClients: Boolean!
+
+  "Who can create API keys (a capability)."
+  keysCap: String!
+
+  "The choices for keysCap."
+  keysCapChoices: [FlxAppChoice!]!
+
+  "Create a customer account for a confirmed email."
+  otpCreate: Boolean!
+
+  "Donors may sign in with an emailed or phone code."
+  otpEnabled: Boolean!
+
+  "Staff may sign in with a code too."
+  otpStaff: Boolean!
+
+  "A signed-in donor may confirm a phone number."
+  phoneSelfVerify: Boolean!
+
+  "Session lifetime in days when unused (1 to 365)."
+  refreshDays: Int!
+
+  "Flux App version."
+  version: String!
+
+  "The app may open admin pages with a one-time sign-in link."
+  webSession: Boolean!
+}
+
 "Public discovery of the site for the app."
 type FlxAppBootstrap {
   "The flx-app-bootstrap/1 document: site, sign-in methods, apps, brand, theme, packages. Public, no secrets; open and versioned, validated by the client."
   document: FlxJSON!
 }
-
-"Free-form JSON value (object, list, string, number or boolean)."
-scalar FlxJSON
 
 "The resolved look and behaviour of the app (flx-app-config/1)."
 type FlxAppConfig {
@@ -12254,6 +12665,66 @@ type RootMutation {
     input: DeleteUserInput!
   ): DeleteUserPayload
 
+  "Removes a session or key (own, or any as administrator)."
+  flxAppAccessRevoke(
+    "Input for the flxAppAccessRevoke mutation"
+    input: FlxAppAccessRevokeInput!
+  ): FlxAppAccessRevokePayload
+
+  "Saves the theme, the mobile and desktop shell and the enabled screens (the same sanitizing as presets)."
+  flxAppAdminAppearanceSave(
+    "Input for the flxAppAdminAppearanceSave mutation"
+    input: FlxAppAdminAppearanceSaveInput!
+  ): FlxAppAdminAppearanceSavePayload
+
+  "Adds an OAuth client; a client secret is shown once."
+  flxAppAdminClientCreate(
+    "Input for the flxAppAdminClientCreate mutation"
+    input: FlxAppAdminClientCreateInput!
+  ): FlxAppAdminClientCreatePayload
+
+  "Deletes an OAuth client and all of its sessions."
+  flxAppAdminClientDelete(
+    "Input for the flxAppAdminClientDelete mutation"
+    input: FlxAppAdminClientDeleteInput!
+  ): FlxAppAdminClientDeletePayload
+
+  "Saves the Applications settings; only the sent fields change."
+  flxAppAdminMobileSave(
+    "Input for the flxAppAdminMobileSave mutation"
+    input: FlxAppAdminMobileSaveInput!
+  ): FlxAppAdminMobileSavePayload
+
+  "Sets which modules are on; the others turn off (their menu opens as an admin page)."
+  flxAppAdminModulesSave(
+    "Input for the flxAppAdminModulesSave mutation"
+    input: FlxAppAdminModulesSaveInput!
+  ): FlxAppAdminModulesSavePayload
+
+  "Sends a test notification to the administrator&#039;s devices."
+  flxAppAdminPushTest(
+    "Input for the flxAppAdminPushTest mutation"
+    input: FlxAppAdminPushTestInput!
+  ): FlxAppAdminPushTestPayload
+
+  "Saves the General settings; only the sent fields change."
+  flxAppAdminSettingsSave(
+    "Input for the flxAppAdminSettingsSave mutation"
+    input: FlxAppAdminSettingsSaveInput!
+  ): FlxAppAdminSettingsSavePayload
+
+  "Signs a device out (own, or any as administrator)."
+  flxAppDeviceRevoke(
+    "Input for the flxAppDeviceRevoke mutation"
+    input: FlxAppDeviceRevokeInput!
+  ): FlxAppDeviceRevokePayload
+
+  "Creates a personal API key; it is shown only now."
+  flxAppKeyCreate(
+    "Input for the flxAppKeyCreate mutation"
+    input: FlxAppKeyCreateInput!
+  ): FlxAppKeyCreatePayload
+
   "Signs this app session out: its tokens, devices and web sessions (REST POST /flxapp/v1/logout)."
   flxAppLogout(
     "Input for the flxAppLogout mutation"
@@ -13083,6 +13554,318 @@ type DeleteUserPayload {
   user: User
 }
 
+"Input for the flxAppAccessRevoke mutation."
+input FlxAppAccessRevokeInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Row ID."
+  id: Int!
+}
+
+"The payload for the flxAppAccessRevoke mutation."
+type FlxAppAccessRevokePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Removed."
+  ok: Boolean!
+}
+
+"A problem with the input of a mutation, shown next to the form field."
+type FlxUserError {
+  "Stable code: INVALID_INPUT, CONFLICT, …"
+  code: String!
+
+  "Input field (dotted path) the problem belongs to."
+  field: String
+
+  "Message in the user&#039;s language."
+  message: String!
+}
+
+"Input for the flxAppAdminAppearanceSave mutation."
+input FlxAppAdminAppearanceSaveInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Desktop shell: home, topbar, commands."
+  desktop: FlxJSON!
+
+  "Mobile shell: nav, home, tabs, drawer, topbar."
+  mobile: FlxJSON!
+
+  "Screens that open natively; the others open in the web view."
+  screensOn: [String!]!
+
+  "Theme overrides: mode, radius, density, font, light/dark colours."
+  theme: FlxJSON!
+}
+
+"The payload for the flxAppAdminAppearanceSave mutation."
+type FlxAppAdminAppearanceSavePayload {
+  "The settings after the change."
+  appearance: FlxAppAdminAppearance
+
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+}
+
+"Input for the flxAppAdminClientCreate mutation."
+input FlxAppAdminClientCreateInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Generate a client secret."
+  confidential: Boolean
+
+  "Name."
+  name: String!
+
+  "Redirect URIs."
+  redirectUris: [String!]!
+}
+
+"The payload for the flxAppAdminClientCreate mutation."
+type FlxAppAdminClientCreatePayload {
+  "The new client."
+  client: FlxAppAdminClient
+
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The client secret; shown only now."
+  secret: String
+}
+
+"Input for the flxAppAdminClientDelete mutation."
+input FlxAppAdminClientDeleteInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "client_id."
+  id: String!
+}
+
+"The payload for the flxAppAdminClientDelete mutation."
+type FlxAppAdminClientDeletePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Deleted."
+  ok: Boolean!
+}
+
+"Input for the flxAppAdminMobileSave mutation."
+input FlxAppAdminMobileSaveInput {
+  "The branded apps (replaces the list)."
+  apps: [FlxAppBrandedAppInput!]
+
+  "Delete the saved Expo access token."
+  clearExpoToken: Boolean
+
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Allow Expo development redirects."
+  devRedirects: Boolean
+
+  "Hide the admin bar on site pages opened in the app."
+  embedFront: Boolean
+
+  "A new Expo access token."
+  expoToken: String
+
+  "The main FluxWP app may connect."
+  genericApp: Boolean
+
+  "Push notifications are sent."
+  pushEnabled: Boolean
+
+  "Hide content on the lock screen."
+  pushHide: Boolean
+
+  "Google Play link."
+  storeAndroid: String
+
+  "App Store link."
+  storeIos: String
+}
+
+"A branded app."
+input FlxAppBrandedAppInput {
+  "client_id."
+  id: String!
+
+  "Name."
+  name: String
+
+  "mobile or desktop."
+  platform: String
+
+  "Redirect URIs."
+  redirectUris: [String!]
+}
+
+"The payload for the flxAppAdminMobileSave mutation."
+type FlxAppAdminMobileSavePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The settings after the change."
+  mobile: FlxAppAdminMobile
+}
+
+"Input for the flxAppAdminModulesSave mutation."
+input FlxAppAdminModulesSaveInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Module keys that stay on."
+  on: [String!]!
+}
+
+"The payload for the flxAppAdminModulesSave mutation."
+type FlxAppAdminModulesSavePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The modules after the change."
+  modules: [FlxAppAdminModule!]
+}
+
+"Input for the flxAppAdminPushTest mutation."
+input FlxAppAdminPushTestInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+}
+
+"The payload for the flxAppAdminPushTest mutation."
+type FlxAppAdminPushTestPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Failed."
+  failed: Int
+
+  "Sent."
+  sent: Int
+
+  "Skipped."
+  skipped: Int
+}
+
+"Input for the flxAppAdminSettingsSave mutation."
+input FlxAppAdminSettingsSaveInput {
+  "Access token lifetime in minutes (5 to 1440)."
+  accessMinutes: Int
+
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "MCP clients may register themselves."
+  dynamicClients: Boolean
+
+  "Who can create API keys (a capability)."
+  keysCap: String
+
+  "Create a customer account for a confirmed email."
+  otpCreate: Boolean
+
+  "Donors may sign in with an emailed or phone code."
+  otpEnabled: Boolean
+
+  "Staff may sign in with a code too."
+  otpStaff: Boolean
+
+  "A signed-in donor may confirm a phone number."
+  phoneSelfVerify: Boolean
+
+  "Session lifetime in days when unused (1 to 365)."
+  refreshDays: Int
+
+  "The app may open admin pages with a one-time sign-in link."
+  webSession: Boolean
+}
+
+"The payload for the flxAppAdminSettingsSave mutation."
+type FlxAppAdminSettingsSavePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The settings after the change."
+  settings: FlxAppAdminSettings
+}
+
+"Input for the flxAppDeviceRevoke mutation."
+input FlxAppDeviceRevokeInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Device ID."
+  id: Int!
+}
+
+"The payload for the flxAppDeviceRevoke mutation."
+type FlxAppDeviceRevokePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Signed out."
+  ok: Boolean!
+}
+
+"Input for the flxAppKeyCreate mutation."
+input FlxAppKeyCreateInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Valid for 30, 90 or 365 days; 0 = never expires."
+  days: Int
+
+  "Name."
+  name: String!
+}
+
+"The payload for the flxAppKeyCreate mutation."
+type FlxAppKeyCreatePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The key; shown only now."
+  key: String
+}
+
 "Input for the flxAppLogout mutation."
 input FlxAppLogoutInput {
   "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
@@ -13099,18 +13882,6 @@ type FlxAppLogoutPayload {
 
   "The session is closed."
   ok: Boolean!
-}
-
-"A problem with the input of a mutation, shown next to the form field."
-type FlxUserError {
-  "Stable code: INVALID_INPUT, CONFLICT, …"
-  code: String!
-
-  "Input field (dotted path) the problem belongs to."
-  field: String
-
-  "Message in the user&#039;s language."
-  message: String!
 }
 
 "Input for the flxAppPrefsUpdate mutation."

@@ -37,6 +37,23 @@ query {
 | `flxAppSessionEnd` | — | `ended`, `errors` | `POST /flxapp/v1/session/end` |
 | `flxAppLogout` | — | `ok`, `errors` | `POST /flxapp/v1/logout` |
 
+## Admin sayfaları (0.6.0)
+
+"Uygulama" ayarları ve "Uygulama erişimi" React ekranları bu işlemleri kullanır. Yetki: ayar/yönetim işlemleri `manage_options`, erişim işlemleri `logged_in` (kullanıcı yalnız kendi kayıtlarını görür/iptal eder; anahtar oluşturma `keys_cap` ayarına uyar).
+
+| İşlem | Tür | Cap |
+|---|---|---|
+| `flxAppAdminSettings` / `flxAppAdminSettingsSave` | query / mutation | `manage_options` |
+| `flxAppAdminModules` / `flxAppAdminModulesSave` | query / mutation | `manage_options` |
+| `flxAppAdminMenu` | query | `manage_options` |
+| `flxAppAdminClients` / `flxAppAdminClientCreate` / `flxAppAdminClientDelete` | query / mutation | `manage_options` |
+| `flxAppAdminMobile` / `flxAppAdminMobileSave` / `flxAppAdminPushTest` | query / mutation | `manage_options` (deneme bildirimi `logged_in`) |
+| `flxAppAdminAppearance` / `flxAppAdminAppearanceSave` | query / mutation | `manage_options` |
+| `flxAppAccess` | query | `logged_in` |
+| `flxAppKeyCreate` / `flxAppAccessRevoke` / `flxAppDeviceRevoke` | mutation | `logged_in` |
+
+Klasik `admin-post` işleyicileri ile resolver'lar aynı `FLXAPP_Admin_Service` metotlarını çağırır. Ekran: `packages/modules/src/app-settings/`, paket `plugins/flx-app/assets/flux/` (`tools/fluxapp/embed-sync.sh flx-app`). Kullanıcı başına görünüm `flxapp_ui` user meta (`classic`); bağlantılar `flxapp_ui_switch_url()`.
+
 ## İstemci
 
 `installFlxAppGraphQL()` (panel `mountApp` içinde, web + masaüstü) hesap istemcisini `flxappTransport` ile sarar: `/me`, `/counts`, `/sync`, `/config`, `/manifest`, `/dashboard`, `/prefs`, `/session`, `/session/end`, `/logout`, `/app/bootstrap` çağrıları GraphQL'e gider, REST biçiminde sonuç döner (`config`/`manifest` için ETag ve 304 korunur). GraphQL'i olmayan sitede (404, `QUERY_NOT_ALLOWED`, "Cannot query field") kalıcı REST yedeğine düşer. Diğer yollar dokunulmadan REST'e gider.
@@ -47,4 +64,4 @@ Bootstrap `flx-app:bootstrap` tag'iyle; ön yükleme belgesi değişince (`flxap
 
 ## Test
 
-`tools/tests/wp-graphql/flx-app/contract-test.php` (80 kontrol): ziyaretçi her işlemde UNAUTHENTICATED, bootstrap/me/counts/sync/config/manifest REST ile aynı, `ifHash`, tercihler, oturum, Bearer ve `X-FluxWP-Token`, bilinmeyen belirteç 401, `mcp` belirteci 403, `X-Flux-Locale`. İstemci taşıyıcısı: `packages/graphql/test/flx-app.test.ts`.
+`tools/tests/wp-graphql/flx-app/contract-test.php` (150 kontrol): ziyaretçi her işlemde UNAUTHENTICATED, bootstrap/me/counts/sync/config/manifest REST ile aynı, `ifHash`, tercihler, oturum, Bearer ve `X-FluxWP-Token`, bilinmeyen belirteç 401, `mcp` belirteci 403, `X-Flux-Locale`. İstemci taşıyıcısı: `packages/graphql/test/flx-app.test.ts`.
