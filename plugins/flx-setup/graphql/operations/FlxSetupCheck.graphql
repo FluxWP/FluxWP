@@ -1,0 +1,11 @@
+mutation FlxSetupCheck {
+  flxSetupCheck(input: {}) {
+    ok
+    pendingCount
+    checkedLabel
+    summary
+    errors {
+      ...FlxSetupErrors
+    }
+  }
+}

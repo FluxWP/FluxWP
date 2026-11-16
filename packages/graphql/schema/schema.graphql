@@ -452,6 +452,69 @@ type RootQuery {
   "Panel settings of the installed FluxWP packages."
   flxSettings: FlxSettings!
 
+  "Connection to the main update server."
+  flxSetupConnection: FlxSetupConnection!
+
+  "Flux GraphQL on this site and the PHP version it needs."
+  flxSetupGraphqlStatus: FlxSetupGraphqlStatus!
+
+  "A page of the update history with the backup of each record."
+  flxSetupHistory(
+    "Page, from 1 (20 records per page)."
+    page: Int
+  ): FlxSetupHistory!
+
+  "Connection state, tab counts and strips of the Packages screen."
+  flxSetupOverview: FlxSetupOverview!
+
+  "One row of the package table; empty when the key is unknown."
+  flxSetupPackage(
+    "Row key."
+    key: String!
+  ): FlxSetupPackage
+
+  "The package table: FluxWP packages, plugins and themes of other makers, translations and WordPress core, in the order the classic page shows them."
+  flxSetupPackages(
+    "Records per page (at most 50)."
+    first: Int
+
+    "Cursor to continue after (pageInfo.endCursor)."
+    after: String
+
+    "Only this tab (default: all)."
+    tab: FlxSetupPackageTab
+
+    "Only rows that match this text (name, slug, author, category)."
+    search: String
+
+    "Only rows with an update."
+    onlyUpdates: Boolean
+  ): FlxSetupPackageConnection!
+
+  "The steps to install or update a selection: required plugins first, then installs, then updates. Nothing runs; send each step to flxSetupStepRun."
+  flxSetupPlan(
+    "FluxWP packages to install or update."
+    slugs: [String!]
+
+    "Rows of other makers to update (keys like p:folder/file.php, t:folder or lang)."
+    wpKeys: [String!]
+
+    "Every row with an update (not WordPress core)."
+    all: Boolean
+
+    "Activate the installed plugins (default: yes)."
+    activate: Boolean
+  ): [FlxSetupStep!]!
+
+  "Connection and update settings."
+  flxSetupSettings: FlxSetupSettings!
+
+  "The main update server and the other sources, in priority order."
+  flxSetupSources: [FlxSetupSource!]!
+
+  "The rows FluxWP Panel adds to the system check: PHP version, Flux GraphQL, update server, other sources and packages waiting for an update."
+  flxSetupSystemChecks: [FlxSetupSystemCheck!]!
+
   "One task; empty when it does not exist or the user may not see it."
   flxTask(
     "Global ID or task number."
@@ -11820,6 +11883,747 @@ enum FlxSettingsFlxseoOrgType {
   ORGANIZATION
 }
 
+"Connection to the main update server."
+type FlxSetupConnection {
+  "The server asked the site to wait before the next check."
+  backingOff: Boolean!
+
+  "Last check; empty when never checked."
+  checked: FlxDateTime
+
+  "Last check as a sentence (&quot;Last check: …&quot;)."
+  checkedLabel: String!
+
+  "A site key is in use (the key itself is never returned)."
+  hasKey: Boolean!
+
+  "Server host."
+  host: String!
+
+  "The key comes from wp-config.php."
+  keyFromConfig: Boolean!
+
+  "What the state means."
+  message: String!
+
+  "Packages in the catalog."
+  packageCount: Int!
+
+  "Site name the server knows this site by; empty without a key."
+  site: String!
+
+  "State."
+  state: FlxSetupConnectionState!
+
+  "Short state title."
+  title: String!
+
+  "FluxWP packages with an update."
+  updateCount: Int!
+}
+
+"State of the connection to the update server."
+enum FlxSetupConnectionState {
+  "The server answered."
+  CONNECTED
+
+  "The server could not be reached or refused the site."
+  ERROR
+
+  "The server paused updates for this site; checks wait."
+  PAUSED
+
+  "Not checked yet."
+  UNKNOWN
+}
+
+"Flux GraphQL on this site and the PHP version it needs."
+type FlxSetupGraphqlStatus {
+  "Name of that link."
+  actionLabel: String!
+
+  "Where the admin installs, activates or fixes it; empty when there is nothing to do."
+  actionUrl: String!
+
+  "Lowest PHP version of the GraphQL packages."
+  phpMin: String!
+
+  "The site PHP is new enough."
+  phpOk: Boolean!
+
+  "PHP version of the site."
+  phpVersion: String!
+
+  "State of Flux GraphQL."
+  state: FlxSetupGraphqlState!
+
+  "Installed version; empty when not running."
+  version: String!
+}
+
+"State of Flux GraphQL on the site."
+enum FlxSetupGraphqlState {
+  "Active, but its GraphQL server is not running."
+  CONFLICT
+
+  "Installed, not active."
+  INACTIVE
+
+  "Not installed."
+  MISSING
+
+  "Installed and working."
+  OK
+}
+
+"A page of the update history."
+type FlxSetupHistory {
+  "Flux Backup list page; empty without Flux Backup."
+  backupPage: String!
+
+  "The viewer may delete update backups."
+  canDelete: Boolean!
+
+  "This page, from 1."
+  page: Int!
+
+  "Number of pages."
+  pages: Int!
+
+  "How long update backups are kept."
+  retention: FlxSetupRetention!
+
+  "Records of this page, newest first."
+  rows: [FlxSetupHistoryRow!]!
+
+  "All records."
+  total: Int!
+}
+
+"How long update backups are kept."
+type FlxSetupRetention {
+  "The viewer can manage update backups here."
+  available: Boolean!
+
+  "Day choices to offer."
+  choices: [Int!]!
+
+  "Update backups now."
+  count: Int!
+
+  "Days update backups are kept; 0 when Flux Backup does not allow setting it here."
+  days: Int!
+
+  "Flux Backup settings page."
+  settingsUrl: String!
+
+  "Space they take, for display."
+  size: String!
+}
+
+"A record of the update history."
+type FlxSetupHistoryRow {
+  "What was done (&quot;updated (1.0 → 1.1)&quot;)."
+  action: String!
+
+  "Backup taken before it; empty when none."
+  backup: FlxSetupHistoryBackup
+
+  "Who did it (&quot;Automatic&quot; or a name)."
+  by: String!
+
+  "What went wrong or was rolled back; empty on success."
+  message: String!
+
+  "Package name."
+  name: String!
+
+  "It succeeded."
+  success: Boolean!
+
+  "When it happened."
+  time: FlxDateTime!
+}
+
+"The backup taken before an update."
+type FlxSetupHistoryBackup {
+  "The viewer may delete it."
+  deletable: Boolean!
+
+  "The backup was deleted."
+  deleted: Boolean!
+
+  "Backup id."
+  id: String!
+
+  "When it is deleted automatically; empty when never."
+  keepUntil: FlxDateTime
+
+  "Locked backups are never deleted automatically."
+  locked: Boolean!
+
+  "Shows a checkbox (the first row of a bulk update that shares the backup)."
+  selectable: Boolean!
+
+  "Size to show; empty when deleted."
+  size: String!
+
+  "Where to open it in Flux Backup; empty without Flux Backup."
+  url: String!
+}
+
+"What the top of the Packages screen shows."
+type FlxSetupOverview {
+  "The screen should check for updates by itself now (the last check is not recent)."
+  autoCheck: Boolean!
+
+  "Backup before updates."
+  backup: FlxSetupBackupState!
+
+  "Flux Backup page."
+  backupUrl: String!
+
+  "The viewer may open the settings."
+  canManageSources: Boolean!
+
+  "Connection to the update server."
+  connection: FlxSetupConnection!
+
+  "Other sources that could not be reached."
+  failingSources: [FlxSetupFailingSource!]!
+
+  "FluxWP Panel settings page; empty when the viewer may not open it."
+  settingsUrl: String
+
+  "Tabs with their counts."
+  tabs(
+    "Count only the rows that match this text."
+    search: String
+  ): [FlxSetupTabCount!]!
+
+  "Updates the &quot;Update all&quot; button installs (FluxWP and others, not WordPress core)."
+  updateCount: Int!
+
+  "WordPress updates screen (core updates run there)."
+  wordpressUpdatesUrl: String!
+}
+
+"Whether a backup is taken before updates (Flux Backup)."
+type FlxSetupBackupState {
+  "It is installed and the viewer may activate it."
+  activatable: Boolean!
+
+  "It is not installed, the catalog has it and the viewer may install it."
+  installable: Boolean!
+
+  "Flux Backup is installed."
+  installed: Boolean!
+
+  "Flux Backup is active."
+  ready: Boolean!
+}
+
+"An update source that could not be reached."
+type FlxSetupFailingSource {
+  "What went wrong."
+  error: String!
+
+  "Source name."
+  name: String!
+}
+
+"Row and update counts of a tab."
+type FlxSetupTabCount {
+  "Rows."
+  count: Int!
+
+  "Tab name."
+  label: String!
+
+  "Tab."
+  tab: FlxSetupPackageTab!
+
+  "Rows with an update."
+  updates: Int!
+}
+
+"A tab of the package table."
+enum FlxSetupPackageTab {
+  "Every row."
+  ALL
+
+  "WordPress core and translations."
+  CORE
+
+  "FluxWP packages."
+  FLUX
+
+  "Plugins of other makers."
+  PLUGINS
+
+  "Themes of other makers."
+  THEMES
+}
+
+"A row of the package table: a FluxWP package, a plugin or theme of another maker, translations or WordPress core."
+type FlxSetupPackage {
+  "The plugin is active (the theme in use)."
+  active: Boolean!
+
+  "Author; empty when unknown."
+  author: String!
+
+  "Automatic update switch."
+  autoUpdate: FlxSetupAutoUpdate!
+
+  "The viewer may switch to another version of the package."
+  canChangeVersion: Boolean!
+
+  "Not installed and the viewer may install it."
+  canInstall: Boolean!
+
+  "The row can be selected for bulk actions."
+  canManage: Boolean!
+
+  "An update is waiting and the viewer may install it."
+  canUpdate: Boolean!
+
+  "FluxWP category name; empty for other rows."
+  category: String!
+
+  "Short description for the details window."
+  description: String!
+
+  "Tab the row belongs to."
+  group: FlxSetupPackageGroup!
+
+  "Icon address; empty shows a placeholder."
+  iconUrl: String
+
+  "Slug (FluxWP), plugin file, theme folder; empty for translations and core."
+  id: String!
+
+  "Example screenshots (https only)."
+  images: [String!]!
+
+  "Technical details for the details window."
+  info: [FlxSetupInfoRow!]!
+
+  "Installed version; empty when not installed."
+  installed: String!
+
+  "Row key: the slug of a FluxWP package, p:&lt;plugin file&gt;, t:&lt;theme folder&gt;, lang or core."
+  key: String!
+
+  "What the row is."
+  kind: FlxSetupPackageKind!
+
+  "Latest version."
+  latest: String!
+
+  "Name."
+  name: String!
+
+  "Release date of the latest version; empty when unknown."
+  released: FlxDateTime
+
+  "Plugins the package needs."
+  requires: [FlxSetupRequirement!]!
+
+  "The source is worth showing (not the main server, or several sources offer it)."
+  showSource: Boolean!
+
+  "How many sources offer the package."
+  sourceCount: Int!
+
+  "Update source of a FluxWP package; empty for other rows."
+  sourceName: String!
+
+  "Extra line, e.g. which translations are waiting."
+  sourceNote: String!
+
+  "Install state."
+  state: FlxSetupPackageState!
+
+  "Slug, folder or a short status line."
+  subtitle: String!
+
+  "Labels under the name."
+  tags: [FlxSetupTag!]!
+
+  "Other versions the site can switch to."
+  versions: [FlxSetupVersion!]!
+
+  "Web page of the package; empty when there is none."
+  website: String!
+}
+
+"The automatic update switch of a row."
+type FlxSetupAutoUpdate {
+  "The viewer may change it."
+  canChange: Boolean!
+
+  "Plugin file or theme folder to pass to flxSetupAutoUpdateSet; empty when there is no switch."
+  id: String
+
+  "Current setting."
+  mode: FlxSetupAutoUpdateMode!
+
+  "plugin or theme; empty when there is no switch."
+  type: FlxSetupAutoUpdateType
+}
+
+"Automatic update setting of a plugin or theme."
+enum FlxSetupAutoUpdateMode {
+  "On for every FluxWP package (FluxWP Panel setting); cannot be changed per package."
+  LOCKED
+
+  "Off."
+  OFF
+
+  "On."
+  ON
+
+  "Not applicable: not installed, not a plugin or theme, or automatic updates are off for the site."
+  UNAVAILABLE
+}
+
+"What an automatic update setting belongs to."
+enum FlxSetupAutoUpdateType {
+  "A plugin (id is the plugin file)."
+  PLUGIN
+
+  "A theme (id is the theme folder)."
+  THEME
+}
+
+"Where a package row belongs in the table."
+enum FlxSetupPackageGroup {
+  "WordPress core and translations."
+  CORE
+
+  "FluxWP package."
+  FLUX
+
+  "Plugin of another maker."
+  PLUGINS
+
+  "Theme of another maker."
+  THEMES
+}
+
+"A label and value of the package details."
+type FlxSetupInfoRow {
+  "Label."
+  label: String!
+
+  "Value."
+  value: String!
+}
+
+"What a package row is."
+enum FlxSetupPackageKind {
+  "FluxWP plugin."
+  FLUX_PLUGIN
+
+  "FluxWP theme."
+  FLUX_THEME
+
+  "WordPress itself; it updates on the WordPress updates screen."
+  WP_CORE
+
+  "Plugin of another maker."
+  WP_PLUGIN
+
+  "Theme of another maker."
+  WP_THEME
+
+  "Translation updates of WordPress, plugins and themes (one row)."
+  WP_TRANSLATIONS
+}
+
+"A plugin a package needs."
+type FlxSetupRequirement {
+  "It is a FluxWP package (else it comes from wordpress.org)."
+  flux: Boolean!
+
+  "Plugin name."
+  name: String!
+
+  "Plugin folder."
+  slug: String!
+
+  "Whether it is installed and active."
+  state: FlxSetupRequirementState!
+}
+
+"State of a plugin another package needs."
+enum FlxSetupRequirementState {
+  "Installed and active."
+  ACTIVE
+
+  "Installed, not active."
+  INACTIVE
+
+  "Not installed."
+  MISSING
+}
+
+"Install state of a package."
+enum FlxSetupPackageState {
+  "Installed and up to date."
+  CURRENT
+
+  "Not installed."
+  MISSING
+
+  "Installed, a newer version is available."
+  UPDATE
+}
+
+"A label under a package name."
+type FlxSetupTag {
+  "Style: flux, cat, general or type."
+  kind: String!
+
+  "Text."
+  label: String!
+}
+
+"Another version of a package the site can switch to."
+type FlxSetupVersion {
+  "Older than the installed version."
+  older: Boolean!
+
+  "Release date; empty when the server did not say."
+  released: FlxDateTime
+
+  "Version number."
+  version: String!
+}
+
+"A page of the package table."
+type FlxSetupPackageConnection {
+  "Records with their cursors."
+  edges: [FlxSetupPackageEdge!]!
+
+  "Records of this page."
+  nodes: [FlxSetupPackage!]!
+
+  "Paging information."
+  pageInfo: FlxPageInfo!
+
+  "All matching records (null when counting would be slow)."
+  totalCount: Int
+}
+
+"One FlxSetupPackage in a list, with its cursor."
+type FlxSetupPackageEdge {
+  "Opaque cursor of this record."
+  cursor: String!
+
+  "The record."
+  node: FlxSetupPackage!
+}
+
+"One step of an install or update plan."
+type FlxSetupStep {
+  "Plugin file or theme folder of a row of another maker; empty for FluxWP packages."
+  id: String!
+
+  "What the step does."
+  kind: FlxSetupStepKind!
+
+  "Name to show."
+  name: String!
+
+  "Row key of the package (pass it back to flxSetupStepRun)."
+  slug: String!
+
+  "Version for a version step."
+  version: String!
+
+  "The package that asked for this one; empty when it was chosen."
+  why: String!
+}
+
+"One step of an install or update."
+enum FlxSetupStepKind {
+  "Activate a plugin."
+  ACTIVATE
+
+  "Install a FluxWP package."
+  INSTALL
+
+  "Update a FluxWP package (a backup is taken first)."
+  UPDATE
+
+  "Install a chosen version of a FluxWP package (a backup is taken first)."
+  VERSION
+
+  "Install a required plugin from wordpress.org."
+  WPORG
+
+  "Update translations."
+  WP_LANG
+
+  "Update a plugin of another maker."
+  WP_PLUGIN
+
+  "Update a theme of another maker."
+  WP_THEME
+}
+
+"Connection and update settings. The site key is never returned."
+type FlxSetupSettings {
+  "Install new versions of FluxWP packages automatically."
+  auto: Boolean!
+
+  "Default server address."
+  defaultServer: String!
+
+  "Server address in use."
+  effectiveServer: String!
+
+  "A site key is saved."
+  hasKey: Boolean!
+
+  "Check that the site still loads after an update and roll the package back if it fails."
+  health: Boolean!
+
+  "The key comes from wp-config.php (FLX_UPDATE_KEY)."
+  keyFromConfig: Boolean!
+
+  "Legal pages."
+  legal: FlxSetupLegalLinks!
+
+  "Server address typed in the settings; empty uses the default."
+  server: String!
+
+  "The server address comes from wp-config.php (FLX_UPDATE_SERVER) and cannot be changed here."
+  serverFromConfig: Boolean!
+
+  "Usage data is sent."
+  usage: Boolean!
+
+  "The usage data consent can be changed here."
+  usageAvailable: Boolean!
+}
+
+"Legal pages the usage data consent refers to."
+type FlxSetupLegalLinks {
+  "KVKK Privacy Notice."
+  kvkk: String!
+
+  "Privacy Policy."
+  privacy: String!
+
+  "Terms of Use."
+  terms: String!
+}
+
+"An update source: the main server or one added in the settings. Its key is never returned."
+type FlxSetupSource {
+  "It is not the first added source."
+  canMoveUp: Boolean!
+
+  "Turned on."
+  enabled: Boolean!
+
+  "A site key is saved for it."
+  hasKey: Boolean!
+
+  "Source id; &quot;main&quot; for the main server."
+  id: String!
+
+  "The main server (set under Connection)."
+  main: Boolean!
+
+  "State as a sentence; empty when not checked or off."
+  message: String!
+
+  "Name."
+  name: String!
+
+  "Packages it offers."
+  packageCount: Int!
+
+  "Last known state."
+  state: FlxSetupSourceState!
+
+  "Kind of source."
+  type: FlxSetupSourceType!
+
+  "Address."
+  url: String!
+}
+
+"State of an update source."
+enum FlxSetupSourceState {
+  "Could not be reached or refused the site."
+  ERROR
+
+  "Turned off."
+  OFF
+
+  "Connected."
+  OK
+
+  "Not checked yet."
+  UNCHECKED
+}
+
+"Kind of an update source."
+enum FlxSetupSourceType {
+  "A public GitHub repository."
+  GITHUB
+
+  "A FluxWP update server."
+  SERVER
+}
+
+"A row FluxWP Panel adds to the system check."
+type FlxSetupSystemCheck {
+  "Name of the fix link."
+  actionLabel: String!
+
+  "Where to fix it; empty when there is nothing to do."
+  actionUrl: String!
+
+  "Group (Config, Plugins …)."
+  group: String!
+
+  "Row id."
+  id: String!
+
+  "What is checked."
+  label: String!
+
+  "Explanation."
+  message: String!
+
+  "Package that reports it."
+  source: String!
+
+  "Result."
+  status: FlxSetupCheckStatus!
+}
+
+"Result of a system check row."
+enum FlxSetupCheckStatus {
+  "Broken."
+  ERROR
+
+  "For information."
+  INFO
+
+  "Fine."
+  OK
+
+  "Needs attention."
+  WARNING
+}
+
 "A task, agenda item or decision."
 type FlxTask implements Node {
   "History, oldest first. Ask for it on one task."
@@ -14573,6 +15377,78 @@ type RootMutation {
     input: FlxSettingsUpdateInput!
   ): FlxSettingsUpdatePayload
 
+  "Turns WordPress&#039; automatic updates of one plugin or theme on or off."
+  flxSetupAutoUpdateSet(
+    "Input for the flxSetupAutoUpdateSet mutation"
+    input: FlxSetupAutoUpdateSetInput!
+  ): FlxSetupAutoUpdateSetPayload
+
+  "Deletes update backups. Locked backups and other kinds of backups are never deleted."
+  flxSetupBackupsDelete(
+    "Input for the flxSetupBackupsDelete mutation"
+    input: FlxSetupBackupsDeleteInput!
+  ): FlxSetupBackupsDeletePayload
+
+  "Asks every update source for the latest versions (&quot;Check for updates&quot;)."
+  flxSetupCheck(
+    "Input for the flxSetupCheck mutation"
+    input: FlxSetupCheckInput!
+  ): FlxSetupCheckPayload
+
+  "Activates, deactivates or deletes installed packages, or turns their automatic updates on or off. FluxWP Panel does not close or delete itself and the active theme is not deleted."
+  flxSetupManage(
+    "Input for the flxSetupManage mutation"
+    input: FlxSetupManageInput!
+  ): FlxSetupManagePayload
+
+  "Sets how long update backups are kept and applies it to the existing ones."
+  flxSetupRetentionSave(
+    "Input for the flxSetupRetentionSave mutation"
+    input: FlxSetupRetentionSaveInput!
+  ): FlxSetupRetentionSavePayload
+
+  "Saves the connection settings and checks the server. Fields you leave out stay as they are; an empty key keeps the saved one."
+  flxSetupSettingsSave(
+    "Input for the flxSetupSettingsSave mutation"
+    input: FlxSetupSettingsSaveInput!
+  ): FlxSetupSettingsSavePayload
+
+  "Tests and adds an update source (a public GitHub repository or a FluxWP update server) and loads its packages."
+  flxSetupSourceAdd(
+    "Input for the flxSetupSourceAdd mutation"
+    input: FlxSetupSourceAddInput!
+  ): FlxSetupSourceAddPayload
+
+  "Removes, turns on or off, or moves up an update source. Packages installed from a removed source stay on the site."
+  flxSetupSourceChange(
+    "Input for the flxSetupSourceChange mutation"
+    input: FlxSetupSourceChangeInput!
+  ): FlxSetupSourceChangePayload
+
+  "Runs one install, update or version step. A backup is taken before updates. Send the steps of flxSetupPlan one by one."
+  flxSetupStepRun(
+    "Input for the flxSetupStepRun mutation"
+    input: FlxSetupStepRunInput!
+  ): FlxSetupStepRunPayload
+
+  "Adds an uploaded image (POST /wp-json/flx/v1/upload, context flx-setup/logo) to the media library for the logo."
+  flxSetupWizardLogo(
+    "Input for the flxSetupWizardLogo mutation"
+    input: FlxSetupWizardLogoInput!
+  ): FlxSetupWizardLogoPayload
+
+  "Runs one step of the setup wizard (site name, tagline, logo, pages, theme, colour, preset, consent, finish or skip)."
+  flxSetupWizardStep(
+    "Input for the flxSetupWizardStep mutation"
+    input: FlxSetupWizardStepInput!
+  ): FlxSetupWizardStepPayload
+
+  "Asks the update server and lists the installed packages that have an update, before the wizard installs anything."
+  flxSetupWizardUpdates(
+    "Input for the flxSetupWizardUpdates mutation"
+    input: FlxSetupWizardUpdatesInput!
+  ): FlxSetupWizardUpdatesPayload
+
   "Adds a comment to a task."
   flxTaskCommentCreate(
     "Input for the flxTaskCommentCreate mutation"
@@ -17005,6 +17881,465 @@ type FlxSettingsUpdatePayload {
 
   "Settings after the change."
   settings: FlxSettings
+}
+
+"Input for the flxSetupAutoUpdateSet mutation."
+input FlxSetupAutoUpdateSetInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Plugin file or theme folder (FlxSetupAutoUpdate.id)."
+  id: String!
+
+  "Turn on."
+  on: Boolean!
+
+  "Plugin or theme."
+  type: FlxSetupAutoUpdateType!
+}
+
+"The payload for the flxSetupAutoUpdateSet mutation."
+type FlxSetupAutoUpdateSetPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "On or Off, in the user&#039;s language."
+  label: String
+
+  "The setting now."
+  on: Boolean
+}
+
+"Input for the flxSetupBackupsDelete mutation."
+input FlxSetupBackupsDeleteInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Backup ids for one or selected."
+  ids: [String!]
+
+  "Which backups."
+  mode: FlxSetupBackupDeleteMode!
+}
+
+"Which update backups to delete."
+enum FlxSetupBackupDeleteMode {
+  "Every unlocked update backup."
+  ALL
+
+  "The first id of the list."
+  ONE
+
+  "The listed ids."
+  SELECTED
+}
+
+"The payload for the flxSetupBackupsDelete mutation."
+type FlxSetupBackupsDeletePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Backups deleted."
+  deleted: Int
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Update backups left."
+  retention: FlxSetupRetention
+}
+
+"Input for the flxSetupCheck mutation."
+input FlxSetupCheckInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+}
+
+"The payload for the flxSetupCheck mutation."
+type FlxSetupCheckPayload {
+  "Last check as a sentence."
+  checkedLabel: String
+
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The main server answered."
+  ok: Boolean
+
+  "FluxWP updates waiting (the menu badge)."
+  pendingCount: Int
+
+  "Result in one line."
+  summary: String
+}
+
+"Input for the flxSetupManage mutation."
+input FlxSetupManageInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "What to do."
+  op: FlxSetupManageOp!
+
+  "FluxWP packages."
+  slugs: [String!]
+
+  "Rows of other makers (keys like p:folder/file.php or t:folder)."
+  wpKeys: [String!]
+}
+
+"Bulk action on installed packages."
+enum FlxSetupManageOp {
+  "Activate plugins."
+  ACTIVATE
+
+  "Turn off automatic updates."
+  AUTO_OFF
+
+  "Turn on automatic updates."
+  AUTO_ON
+
+  "Deactivate plugins."
+  DEACTIVATE
+
+  "Delete plugins and themes from the site."
+  DELETE
+}
+
+"The payload for the flxSetupManage mutation."
+type FlxSetupManagePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Packages changed."
+  done: Int
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Names that failed."
+  failed: [String!]
+
+  "Names skipped (already in that state, active theme or FluxWP Panel)."
+  skipped: [String!]
+
+  "Result in one line."
+  summary: String
+}
+
+"Input for the flxSetupRetentionSave mutation."
+input FlxSetupRetentionSaveInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Days (1–365)."
+  days: Int!
+}
+
+"The payload for the flxSetupRetentionSave mutation."
+type FlxSetupRetentionSavePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Expired backups deleted now."
+  deleted: Int
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Retention after the change."
+  retention: FlxSetupRetention
+}
+
+"Input for the flxSetupSettingsSave mutation."
+input FlxSetupSettingsSaveInput {
+  "Install new versions of FluxWP packages automatically."
+  auto: Boolean
+
+  "Remove the saved key."
+  clearKey: Boolean
+
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Check the site after an update and roll back on a critical error."
+  health: Boolean
+
+  "New site key; empty keeps the saved one."
+  key: String
+
+  "Server address (https); empty uses the default server."
+  server: String
+
+  "Send usage data (consent)."
+  usage: Boolean
+}
+
+"The payload for the flxSetupSettingsSave mutation."
+type FlxSetupSettingsSavePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "The connection after the check."
+  connection: FlxSetupConnection
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The settings after the change."
+  settings: FlxSetupSettings
+
+  "The sources after the check."
+  sources: [FlxSetupSource!]
+}
+
+"Input for the flxSetupSourceAdd mutation."
+input FlxSetupSourceAddInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Site key, only for servers that need one; sent only to that server."
+  key: String
+
+  "Name; taken from the address when empty."
+  name: String
+
+  "Repository or server address (https only)."
+  url: String!
+}
+
+"The payload for the flxSetupSourceAdd mutation."
+type FlxSetupSourceAddPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The sources after the change."
+  sources: [FlxSetupSource!]
+}
+
+"Input for the flxSetupSourceChange mutation."
+input FlxSetupSourceChangeInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Source id."
+  id: String!
+
+  "What to do."
+  op: FlxSetupSourceOp!
+}
+
+"Change of an update source."
+enum FlxSetupSourceOp {
+  "Remove the source."
+  REMOVE
+
+  "Turn the source on or off."
+  TOGGLE
+
+  "Move the source up (higher sources win)."
+  UP
+}
+
+"The payload for the flxSetupSourceChange mutation."
+type FlxSetupSourceChangePayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "The sources after the change."
+  sources: [FlxSetupSource!]
+}
+
+"Input for the flxSetupStepRun mutation."
+input FlxSetupStepRunInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Plugin file or theme folder for the steps of other makers."
+  id: String
+
+  "Step kind."
+  kind: FlxSetupStepKind!
+
+  "Package slug (or the row key of another maker)."
+  slug: String!
+
+  "Version for a version step."
+  version: String
+}
+
+"The payload for the flxSetupStepRun mutation."
+type FlxSetupStepRunPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "What happened."
+  lines: [FlxSetupLine!]
+
+  "The step succeeded."
+  ok: Boolean
+
+  "The FluxWP package row after the step; empty for rows of other makers."
+  package: FlxSetupPackage
+
+  "FluxWP updates waiting after the step (the menu badge)."
+  pendingCount: Int
+}
+
+"A line of a step result."
+type FlxSetupLine {
+  "It succeeded."
+  ok: Boolean!
+
+  "What happened."
+  text: String!
+}
+
+"Input for the flxSetupWizardLogo mutation."
+input FlxSetupWizardLogoInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Upload id returned by the upload endpoint."
+  uploadId: String!
+}
+
+"The payload for the flxSetupWizardLogo mutation."
+type FlxSetupWizardLogoPayload {
+  "Media library id; pass it to the logo step."
+  attachmentId: Int
+
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Medium size image address."
+  url: String
+}
+
+"Input for the flxSetupWizardStep mutation."
+input FlxSetupWizardStepInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Step."
+  kind: FlxSetupWizardStepKind!
+
+  "Value of the step; see the step kinds."
+  value: String
+}
+
+"A step of the setup wizard."
+enum FlxSetupWizardStepKind {
+  "Accept the terms and set the usage data consent (value: 1 or 0)."
+  CONSENT
+
+  "Finish the wizard."
+  DONE
+
+  "Use a media library image as the logo (value: attachment id)."
+  LOGO
+
+  "Set the site name."
+  NAME
+
+  "Create starter pages (value: comma separated page keys)."
+  PAGES
+
+  "Apply a preset (value: preset id)."
+  PRESET
+
+  "Skip the wizard."
+  SKIP
+
+  "Apply a colour style of the theme (value: style key)."
+  STYLE
+
+  "Set the tagline."
+  TAGLINE
+
+  "Activate the FluxWP theme."
+  THEME
+}
+
+"The payload for the flxSetupWizardStep mutation."
+type FlxSetupWizardStepPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "What happened."
+  lines: [FlxSetupLine!]
+
+  "The step succeeded."
+  ok: Boolean
+
+  "Published pages after the step, when it changes them."
+  pages: Int
+}
+
+"Input for the flxSetupWizardUpdates mutation."
+input FlxSetupWizardUpdatesInput {
+  "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+}
+
+"The payload for the flxSetupWizardUpdates mutation."
+type FlxSetupWizardUpdatesPayload {
+  "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+  clientMutationId: String
+
+  "Why it did not; empty when it did."
+  error: String
+
+  "Input problems to show next to the form fields. Empty when the mutation succeeded."
+  errors: [FlxUserError!]!
+
+  "Packages with an update; FluxWP Panel itself first."
+  items: [FlxSetupWizardUpdate!]
+
+  "The server answered."
+  ok: Boolean
+}
+
+"An installed package that has an update before the wizard starts."
+type FlxSetupWizardUpdate {
+  "Installed version."
+  from: String!
+
+  "Icon address; empty for a placeholder."
+  icon: String!
+
+  "Name."
+  name: String!
+
+  "It is FluxWP Panel itself (the wizard reopens after it updates)."
+  self: Boolean!
+
+  "Package slug."
+  slug: String!
+
+  "New version."
+  to: String!
 }
 
 "Input for the flxTaskCommentCreate mutation."
