@@ -28,6 +28,7 @@ parameters:
     - ../../plugins/flx-tasks/includes
     - ../../plugins/flx-roles/includes
     - ../../plugins/flx-blocks/includes
+    - ../../plugins/flx-setup/includes
     - ../../plugins/flx-app/includes
     - ../../plugins/flx-lang/includes
     - ../../plugins/flx-seo/includes
@@ -44,6 +45,9 @@ parameters:
     # Flux Block Editor (Faz 4)
     - ../../plugins/flx-blocks/includes/services
     - ../../plugins/flx-blocks/includes/graphql
+    # FluxWP Panel (Faz 1)
+    - ../../plugins/flx-setup/includes/services
+    - ../../plugins/flx-setup/includes/graphql
     # Flux App (Faz 1)
     - ../../plugins/flx-app/includes/services
     - ../../plugins/flx-app/includes/graphql
@@ -56,3 +60,7 @@ parameters:
   excludePaths:
     - ../../plugins/flx-graphql/includes/flx-brand
   treatPhpDocTypesAsCertain: false
+  ignoreErrors:
+    # The wizard steps file is loaded on demand (FLXK_DIR points at tools/phpstan here).
+    - message: '#Path in require_once\(\) ".*/includes/onboarding\.php" is not a file#'
+      path: ../../plugins/flx-setup/includes/graphql/schema.php
