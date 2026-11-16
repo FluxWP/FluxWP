@@ -1,0 +1,10 @@
+mutation FlxAdsExperimentPauseLoser($input: FlxAdsExperimentPauseLoserInput!) {
+  flxAdsExperimentPauseLoser(input: $input) {
+    ok
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

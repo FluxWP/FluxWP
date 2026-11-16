@@ -1,0 +1,10 @@
+mutation FlxAdsAudienceCreate($input: FlxAdsAudienceCreateInput!) {
+  flxAdsAudienceCreate(input: $input) {
+    ok
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

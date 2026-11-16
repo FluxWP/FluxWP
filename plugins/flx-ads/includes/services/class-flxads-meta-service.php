@@ -19,7 +19,7 @@
  * @phpstan-type FlxadsAdRow array{id: string, name: string, effective: string, statusLabel: string, statusTone: string, thumb: string|null, title: string, canPause: bool, active: bool, spend: FlxadsMoney, impressions: int, clicks: int, ctr: float|null}
  * @phpstan-type FlxadsAdsetRow array{id: string, name: string, effective: string, statusLabel: string, statusTone: string, budgetLabel: string, who: string, canPause: bool, active: bool, dailyBudget: float|null, spend: FlxadsMoney, impressions: int, clicks: int, ctr: float|null, ads: list<FlxadsAdRow>}
  * @phpstan-type FlxadsBreakdownRow array{label: string, spend: FlxadsMoney, clicks: int, share: float}
- * @phpstan-type FlxadsCampaignDetail array{range: string, error: string|null, id: string, name: string, effective: string, statusLabel: string, statusTone: string, summary: string, canPause: bool, active: bool, dailyBudget: float|null, adsets: list<FlxadsAdsetRow>, ageGender: list<FlxadsBreakdownRow>, placement: list<FlxadsBreakdownRow>}
+ * @phpstan-type FlxadsCampaignDetail array{range: string, error: string|null, currency: string, id: string, name: string, effective: string, statusLabel: string, statusTone: string, summary: string, canPause: bool, active: bool, dailyBudget: float|null, adsets: list<FlxadsAdsetRow>, ageGender: list<FlxadsBreakdownRow>, placement: list<FlxadsBreakdownRow>}
  * @phpstan-type FlxadsChange array{at: string, name: string, change: string, who: string, channel: string}
  * @phpstan-type FlxadsSuggestionAction array{field: string, to: string, confirm: string, label: string}
  * @phpstan-type FlxadsSuggestion array{id: string, type: string, typeLabel: string, tone: string, created: string, name: string, level: string, context: string, reason: string, campaignId: string, action: FlxadsSuggestionAction|null, brief: string, start: string, end: string, status: string, statusLabel: string, decided: string, who: string, result: string}
@@ -276,6 +276,7 @@ final class FLXADS_Meta_Service {
 		$out   = array(
 			'range'       => $range,
 			'error'       => null,
+			'currency'    => FLXADS_Report::base_currency(),
 			'id'          => (string) preg_replace( '/\D+/', '', $id ),
 			'name'        => '',
 			'effective'   => '',
@@ -328,6 +329,7 @@ final class FLXADS_Meta_Service {
 		return array(
 			'range'       => $range,
 			'error'       => null,
+			'currency'    => $cur,
 			'id'          => $row['id'],
 			'name'        => $row['name'],
 			'effective'   => $row['effective'],

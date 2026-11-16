@@ -1,0 +1,5 @@
+query FlxAdsCampaigns($range: String) {
+  flxAdsCampaigns(range: $range) {
+    ...FlxAdsCampaignList
+  }
+}

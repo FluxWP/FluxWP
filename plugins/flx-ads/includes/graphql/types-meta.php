@@ -122,6 +122,7 @@ flxads_gql_def(
 	array(
 		'range'       => array( 'String!', __( 'Period key.', 'flx-ads' ) ),
 		'error'       => array( 'String', __( 'Why the detail is empty; empty when it worked.', 'flx-ads' ) ),
+		'currency'    => array( 'String!', __( 'Ad account currency.', 'flx-ads' ) ),
 		'id'          => array( 'String!', __( 'Meta campaign ID.', 'flx-ads' ) ),
 		'name'        => array( 'String!', __( 'Name.', 'flx-ads' ) ),
 		'effective'   => array( 'String!', __( 'Meta effective status.', 'flx-ads' ) ),
@@ -141,7 +142,7 @@ flxads_gql_def(
 	'FlxAdsChange',
 	__( 'A change made to the ad account from Flux Ads.', 'flx-ads' ),
 	array(
-		'at'      => array( 'String!', __( 'When (GMT, Y-m-d H:i:s).', 'flx-ads' ) ),
+		'at'      => array( 'FlxDateTime', __( 'When it was made.', 'flx-ads' ), flxads_gql_dt( 'at' ) ),
 		'name'    => array( 'String!', __( 'What was changed.', 'flx-ads' ) ),
 		'change'  => array( 'String!', __( 'The change as text.', 'flx-ads' ) ),
 		'who'     => array( 'String!', __( 'Who made it.', 'flx-ads' ) ),
@@ -170,7 +171,7 @@ flxads_gql_def(
 		'type'        => array( 'String!', __( 'Type key.', 'flx-ads' ) ),
 		'typeLabel'   => array( 'String!', __( 'Type as text.', 'flx-ads' ) ),
 		'tone'        => array( 'String!', __( 'Colour: ok, warn, bad or info.', 'flx-ads' ) ),
-		'created'     => array( 'String!', __( 'Created (GMT, Y-m-d H:i:s).', 'flx-ads' ) ),
+		'created'     => array( 'FlxDateTime', __( 'When it was created.', 'flx-ads' ), flxads_gql_dt( 'created' ) ),
 		'name'        => array( 'String!', __( 'Campaign or season name.', 'flx-ads' ) ),
 		'level'       => array( 'String!', __( 'campaign, adset or ad.', 'flx-ads' ) ),
 		'context'     => array( 'String!', __( 'The numbers behind it, as text.', 'flx-ads' ) ),
@@ -182,7 +183,7 @@ flxads_gql_def(
 		'end'         => array( 'String!', __( 'Season end (Y-m-d).', 'flx-ads' ) ),
 		'status'      => array( 'String!', __( 'open, applied or dismissed.', 'flx-ads' ) ),
 		'statusLabel' => array( 'String!', __( 'Status as text.', 'flx-ads' ) ),
-		'decided'     => array( 'String!', __( 'When it was decided.', 'flx-ads' ) ),
+		'decided'     => array( 'FlxDateTime', __( 'When it was decided; empty while open.', 'flx-ads' ), flxads_gql_dt( 'decided' ) ),
 		'who'         => array( 'String!', __( 'Who decided.', 'flx-ads' ) ),
 		'result'      => array( 'String!', __( 'What happened when applied.', 'flx-ads' ) ),
 	)
@@ -192,7 +193,7 @@ flxads_gql_def(
 	'FlxAdsSuggestionRun',
 	__( 'The last time suggestions were refreshed.', 'flx-ads' ),
 	array(
-		'at'       => array( 'String!', __( 'When it ran.', 'flx-ads' ) ),
+		'at'       => array( 'FlxDateTime', __( 'When it ran.', 'flx-ads' ), flxads_gql_dt( 'at' ) ),
 		'ok'       => array( 'Boolean', __( 'It worked; empty when still running.', 'flx-ads' ) ),
 		'message'  => array( 'String!', __( 'What happened.', 'flx-ads' ) ),
 		'newCount' => array( 'Int!', __( 'New suggestions.', 'flx-ads' ) ),

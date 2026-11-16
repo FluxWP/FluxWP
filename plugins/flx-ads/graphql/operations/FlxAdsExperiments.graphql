@@ -1,0 +1,5 @@
+query FlxAdsExperiments {
+  flxAdsExperiments {
+    ...FlxAdsExperiment
+  }
+}

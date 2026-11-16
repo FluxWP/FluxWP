@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || exit;
  *
  * @param string                           $name   Type name.
  * @param string                           $desc   Description.
- * @param array<string,array{0:string,1:string}> $fields Field => [ type, description ].
+ * @param array<string,array{0:string,1:string,2?:callable}> $fields Field => [ type, description, resolver ].
  */
 function flxads_gql_def( string $name, string $desc, array $fields ): void {
 	$out = array();
@@ -22,6 +22,9 @@ function flxads_gql_def( string $name, string $desc, array $fields ): void {
 			'type'        => $f[0],
 			'description' => $f[1],
 		);
+		if ( isset( $f[2] ) ) {
+			$out[ $key ]['resolve'] = $f[2];
+		}
 	}
 	flx_gql_type(
 		$name,
@@ -30,6 +33,15 @@ function flxads_gql_def( string $name, string $desc, array $fields ): void {
 			'fields'      => $out,
 		)
 	);
+}
+
+/**
+ * Resolver of a GMT time field as FlxDateTime.
+ *
+ * @param string $key Field key in the service array.
+ */
+function flxads_gql_dt( string $key ): Closure {
+	return static fn( $row ): ?array => flx_gql_datetime( flx_gql_arr( $row )[ $key ] ?? '' );
 }
 
 /**
@@ -110,7 +122,7 @@ flxads_gql_in(
 		'range'   => array( 'String', __( 'Period key (7, 30, 90, month, last_month, year or custom).', 'flx-ads' ) ),
 		'from'    => array( 'String', __( 'Start date (Y-m-d) for the custom period.', 'flx-ads' ) ),
 		'to'      => array( 'String', __( 'End date (Y-m-d) for the custom period.', 'flx-ads' ) ),
-		'kind'    => array( 'String', __( 'What to count: all, donation or order.', 'flx-ads' ) ),
+		'kind'    => array( 'String', __( 'What to count: all, donations or orders.', 'flx-ads' ) ),
 		'channel' => array( 'String', __( 'Limit to one channel key.', 'flx-ads' ) ),
 		'by'      => array( 'String', __( 'Grouping key (channel, campaign, content …).', 'flx-ads' ) ),
 	)
@@ -149,8 +161,7 @@ flxads_gql_def(
 	array(
 		'ok'      => array( 'Boolean!', __( 'The platform accepted the test event.', 'flx-ads' ) ),
 		'message' => array( 'String!', __( 'What the platform answered, in the user\'s language.', 'flx-ads' ) ),
-		'at'      => array( 'String', __( 'When it ran (GMT, Y-m-d H:i:s); empty when never.', 'flx-ads' ) ),
-		'ago'     => array( 'String!', __( 'How long ago, as text.', 'flx-ads' ) ),
+		'at'      => array( 'FlxDateTime', __( 'When it ran; empty when never.', 'flx-ads' ), flxads_gql_dt( 'at' ) ),
 	)
 );
 
@@ -277,7 +288,7 @@ flxads_gql_def(
 		'orderId'     => array( 'Int!', __( 'Order ID.', 'flx-ads' ) ),
 		'orderNumber' => array( 'String!', __( 'Order number.', 'flx-ads' ) ),
 		'editUrl'     => array( 'String', __( 'Order edit page; empty when the viewer cannot open it.', 'flx-ads' ) ),
-		'paidAt'      => array( 'String!', __( 'Paid at (GMT, Y-m-d H:i:s).', 'flx-ads' ) ),
+		'paidAt'      => array( 'FlxDateTime', __( 'When it was paid.', 'flx-ads' ), flxads_gql_dt( 'paidAt' ) ),
 		'isDonation'  => array( 'Boolean!', __( 'A donation rather than a shop order.', 'flx-ads' ) ),
 		'newPerson'   => array( 'Boolean!', __( 'First payment of this person.', 'flx-ads' ) ),
 		'channel'     => array( 'String!', __( 'Channel name.', 'flx-ads' ) ),
@@ -295,9 +306,10 @@ flxads_gql_def(
 		'to'               => array( 'String!', __( 'End (Y-m-d).', 'flx-ads' ) ),
 		'fromLabel'        => array( 'String!', __( 'Start as text.', 'flx-ads' ) ),
 		'toLabel'          => array( 'String!', __( 'End as text.', 'flx-ads' ) ),
-		'kind'             => array( 'String!', __( 'all, donation or order.', 'flx-ads' ) ),
+		'kind'             => array( 'String!', __( 'all, donations or orders.', 'flx-ads' ) ),
 		'by'               => array( 'String!', __( 'Grouping key.', 'flx-ads' ) ),
 		'byLabel'          => array( 'String!', __( 'Grouping name.', 'flx-ads' ) ),
+		'dimensions'       => array( '[FlxAdsOption!]!', __( 'Groupings to choose from.', 'flx-ads' ) ),
 		'channel'          => array( 'String', __( 'Channel filter; empty when none.', 'flx-ads' ) ),
 		'channelLabel'     => array( 'String', __( 'Channel filter name.', 'flx-ads' ) ),
 		'base'             => array( 'String!', __( 'Base currency.', 'flx-ads' ) ),
@@ -315,7 +327,7 @@ flxads_gql_def(
 	__( 'The last read of ad spend from Meta.', 'flx-ads' ),
 	array(
 		'ok'         => array( 'Boolean!', __( 'The last read worked.', 'flx-ads' ) ),
-		'at'         => array( 'String!', __( 'When it ran.', 'flx-ads' ) ),
+		'at'         => array( 'FlxDateTime', __( 'When it ran.', 'flx-ads' ), flxads_gql_dt( 'at' ) ),
 		'message'    => array( 'String!', __( 'What happened, in the user\'s language.', 'flx-ads' ) ),
 		'rows'       => array( 'Int!', __( 'Rows read.', 'flx-ads' ) ),
 		'since'      => array( 'String!', __( 'First day read (Y-m-d).', 'flx-ads' ) ),
@@ -425,7 +437,7 @@ flxads_gql_def(
 		'range'        => array( 'String!', __( 'Period key.', 'flx-ads' ) ),
 		'from'         => array( 'String!', __( 'Start (Y-m-d).', 'flx-ads' ) ),
 		'to'           => array( 'String!', __( 'End (Y-m-d).', 'flx-ads' ) ),
-		'kind'         => array( 'String!', __( 'all, donation or order.', 'flx-ads' ) ),
+		'kind'         => array( 'String!', __( 'all, donations or orders.', 'flx-ads' ) ),
 		'by'           => array( 'String!', __( 'Grouping key.', 'flx-ads' ) ),
 		'base'         => array( 'String!', __( 'Base currency.', 'flx-ads' ) ),
 		'totals'       => array( 'FlxAdsValueTotals!', __( 'Totals.', 'flx-ads' ) ),
@@ -452,7 +464,7 @@ flxads_gql_def(
 		'statusLabel'   => array( 'String!', __( 'Status as text.', 'flx-ads' ) ),
 		'reason'        => array( 'String!', __( 'Why it failed or was skipped.', 'flx-ads' ) ),
 		'attempts'      => array( 'Int!', __( 'Attempts.', 'flx-ads' ) ),
-		'at'            => array( 'String!', __( 'Last attempt (GMT, Y-m-d H:i:s).', 'flx-ads' ) ),
+		'at'            => array( 'FlxDateTime', __( 'Last attempt.', 'flx-ads' ), flxads_gql_dt( 'at' ) ),
 		'canRetry'      => array( 'Boolean!', __( 'It can be sent again.', 'flx-ads' ) ),
 	)
 );

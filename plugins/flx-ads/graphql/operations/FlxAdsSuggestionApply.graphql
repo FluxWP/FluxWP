@@ -1,0 +1,10 @@
+mutation FlxAdsSuggestionApply($input: FlxAdsSuggestionApplyInput!) {
+  flxAdsSuggestionApply(input: $input) {
+    ok
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

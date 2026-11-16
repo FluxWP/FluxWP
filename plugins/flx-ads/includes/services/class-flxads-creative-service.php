@@ -233,7 +233,7 @@ final class FLXADS_Creative_Service {
 				'dailyBudget'    => FLXADS_V::money( $d['daily_budget'] ?? 0, $cur ),
 				'adsetCount'     => count( FLXADS_V::l( $d['adsets'] ?? array() ) ),
 				'adCount'        => count( FLXADS_V::l( $d['ads'] ?? array() ) ),
-				'updated'        => FLXADS_V::s( $d['updated'] ?? '' ),
+				'updated'        => '' === FLXADS_V::s( $d['updated'] ?? '' ) ? '' : FLXADS_V::s( flxads_ago( FLXADS_V::s( $d['updated'] ) ) ),
 				'metaCampaignId' => 'sent' === $status ? FLXADS_V::s( $meta['campaign'] ?? '' ) : '',
 				'error'          => FLXADS_V::s( $d['error'] ?? '' ),
 			);

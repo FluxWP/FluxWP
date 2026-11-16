@@ -19,7 +19,7 @@ flxads_gql_def(
 		'purpose'      => array( 'String!', __( 'Purpose key.', 'flx-ads' ) ),
 		'purposeLabel' => array( 'String!', __( 'Purpose as text.', 'flx-ads' ) ),
 		'count'        => array( 'Int!', __( 'People sent at the last sync.', 'flx-ads' ) ),
-		'syncedAt'     => array( 'String!', __( 'Last sync (GMT, Y-m-d H:i:s); empty when never.', 'flx-ads' ) ),
+		'syncedAt'     => array( 'FlxDateTime', __( 'Last sync; empty when never.', 'flx-ads' ), flxads_gql_dt( 'syncedAt' ) ),
 		'error'        => array( 'String!', __( 'Why the last sync failed; empty when it worked.', 'flx-ads' ) ),
 		'added'        => array( 'Int', __( 'People added at the last sync.', 'flx-ads' ) ),
 		'removed'      => array( 'Int', __( 'People removed at the last sync.', 'flx-ads' ) ),

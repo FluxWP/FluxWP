@@ -96,6 +96,7 @@ function flxads_gql_done(): array {
 		'ok' => array(
 			'type'        => 'Boolean!',
 			'description' => __( 'The change was made.', 'flx-ads' ),
+			'resolve'     => static fn( $p ): bool => ! empty( flx_gql_arr( $p )['ok'] ),
 		),
 	);
 }
@@ -579,7 +580,7 @@ flxads_gql_m(
 	array(),
 	array(
 		'newCount' => array(
-			'type'        => 'Int!',
+			'type'        => 'Int',
 			'description' => __( 'New suggestions.', 'flx-ads' ),
 		),
 	),
@@ -661,8 +662,8 @@ flxads_gql_m(
 	),
 	array(
 		'id' => array(
-			'type'        => 'String!',
-			'description' => __( 'New test ID.', 'flx-ads' ),
+			'type'        => 'String',
+			'description' => __( 'New test ID; empty when the input was refused.', 'flx-ads' ),
 		),
 	),
 	static function ( array $input ) {

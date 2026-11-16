@@ -1,0 +1,10 @@
+mutation FlxAdsExperimentFinish($input: FlxAdsExperimentFinishInput!) {
+  flxAdsExperimentFinish(input: $input) {
+    ok
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

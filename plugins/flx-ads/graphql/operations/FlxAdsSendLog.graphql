@@ -1,0 +1,5 @@
+query FlxAdsSendLog {
+  flxAdsSendLog {
+    ...FlxAdsSendLog
+  }
+}

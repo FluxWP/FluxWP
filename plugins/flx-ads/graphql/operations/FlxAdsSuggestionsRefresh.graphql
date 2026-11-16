@@ -1,0 +1,10 @@
+mutation FlxAdsSuggestionsRefresh($input: FlxAdsSuggestionsRefreshInput!) {
+  flxAdsSuggestionsRefresh(input: $input) {
+    newCount
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

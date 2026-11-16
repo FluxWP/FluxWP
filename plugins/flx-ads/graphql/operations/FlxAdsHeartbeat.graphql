@@ -1,0 +1,11 @@
+mutation FlxAdsHeartbeat($input: FlxAdsHeartbeatInput!) {
+  flxAdsHeartbeat(input: $input) {
+    ok
+    openSuggestions
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

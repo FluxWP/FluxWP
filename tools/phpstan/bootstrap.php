@@ -16,3 +16,8 @@ defined( 'FLXR_DB_VERSION' ) || define( 'FLXR_DB_VERSION', 3 );
 defined( 'FLXR_FILE' ) || define( 'FLXR_FILE', __FILE__ );
 defined( 'FLXR_DIR' ) || define( 'FLXR_DIR', __DIR__ . '/' );
 defined( 'FLXR_URL' ) || define( 'FLXR_URL', 'https://example.com/' );
+defined( 'FLXADS_VERSION' ) || define( 'FLXADS_VERSION', '0.0.0' );
+defined( 'FLXADS_DB_VERSION' ) || define( 'FLXADS_DB_VERSION', 3 );
+defined( 'FLXADS_FILE' ) || define( 'FLXADS_FILE', __FILE__ );
+defined( 'FLXADS_DIR' ) || define( 'FLXADS_DIR', __DIR__ . '/' );
+defined( 'FLXADS_URL' ) || define( 'FLXADS_URL', 'https://example.com/' );

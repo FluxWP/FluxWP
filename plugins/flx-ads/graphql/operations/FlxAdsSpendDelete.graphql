@@ -1,0 +1,10 @@
+mutation FlxAdsSpendDelete($input: FlxAdsSpendDeleteInput!) {
+  flxAdsSpendDelete(input: $input) {
+    ok
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

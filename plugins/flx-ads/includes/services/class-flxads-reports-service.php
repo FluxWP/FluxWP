@@ -14,7 +14,7 @@
  * @phpstan-type FlxadsReportTotals array{count: int, amount: FlxadsMoney, adsCount: int, adsAmount: FlxadsMoney, adsPercent: float|null, newCount: int, mixed: bool, hasSpend: bool, spend: FlxadsMoney|null, clicks: int, roas: float|null, spendIncome: FlxadsMoney, spendCount: int, spendNew: int, cpa: FlxadsMoney|null, cpn: FlxadsMoney|null}
  * @phpstan-type FlxadsReportRow array{key: string, label: string, channel: string, channelLabel: string, count: int, amount: FlxadsMoney, amounts: list<FlxadsMoney>, otherCurrency: bool, newCount: int, share: float, hasSpend: bool, spend: FlxadsMoney|null, cpa: FlxadsMoney|null, roas: float|null, roasLevel: string}
  * @phpstan-type FlxadsRecentOrder array{orderId: int, orderNumber: string, editUrl: string|null, paidAt: string, isDonation: bool, newPerson: bool, channel: string, summary: string, total: FlxadsMoney}
- * @phpstan-type FlxadsReport array{range: string, from: string, to: string, fromLabel: string, toLabel: string, kind: string, by: string, byLabel: string, channel: string|null, channelLabel: string|null, base: string, totals: FlxadsReportTotals, showSpendColumns: bool, rows: list<FlxadsReportRow>, recent: list<FlxadsRecentOrder>}
+ * @phpstan-type FlxadsReport array{range: string, from: string, to: string, fromLabel: string, toLabel: string, kind: string, by: string, byLabel: string, dimensions: list<FlxadsOption>, channel: string|null, channelLabel: string|null, base: string, totals: FlxadsReportTotals, showSpendColumns: bool, rows: list<FlxadsReportRow>, recent: list<FlxadsRecentOrder>}
  * @phpstan-type FlxadsMetaStatus array{ok: bool, at: string, message: string, rows: int, since: string, until: string, sinceLabel: string, untilLabel: string}
  * @phpstan-type FlxadsSpendCampaign array{name: string, channel: string, channelLabel: string, spend: FlxadsMoney}
  * @phpstan-type FlxadsManualSpend array{id: int, day: string, dayLabel: string, channel: string, channelLabel: string, campaign: string, ad: string, spend: FlxadsMoney}
@@ -194,6 +194,7 @@ final class FLXADS_Reports_Service {
 			'kind'             => $f['kind'],
 			'by'               => $f['by'],
 			'byLabel'          => $dims[ $f['by'] ] ?? $f['by'],
+			'dimensions'       => self::dimensions(),
 			'channel'          => $ch,
 			'channelLabel'     => null === $ch ? null : flxads_channel_label( '-' === $ch ? '' : $ch ),
 			'base'             => $base,
