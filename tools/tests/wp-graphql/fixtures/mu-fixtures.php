@@ -111,3 +111,34 @@ add_action(
 		);
 	}
 );
+
+// Settings with secrets: none of them may reach GraphQL (kit-test "Secrets in settings").
+add_filter(
+	'flx_settings_schema',
+	static function ( $schema ) {
+		$schema['flxt_conf'] = array(
+			'label'  => 'Secret test',
+			'fields' => array(
+				'title'          => array( 'type' => 'string' ),
+				'key_live'       => array( 'type' => 'string' ),
+				'stripe_key'     => array( 'type' => 'string' ),
+				'api_key'        => array( 'type' => 'string' ),
+				'apikey'         => array( 'type' => 'string' ),
+				'clientSecret'   => array( 'type' => 'string' ),
+				'access-token'   => array( 'type' => 'string' ),
+				'smtp_password'  => array( 'type' => 'string' ),
+				'smtp_pass'      => array( 'type' => 'string' ),
+				'auth'           => array( 'type' => 'string' ),
+				'private_key'    => array( 'type' => 'string' ),
+				'webhook_signing' => array( 'type' => 'string', 'secret' => true ),
+				'login'          => array( 'type' => 'password' ),
+				'providers'      => array( 'type' => 'object' ),
+			),
+		);
+		$schema['flxt_api_keys'] = array(
+			'label'  => 'Whole option is a secret',
+			'fields' => array( 'openrouter' => array( 'type' => 'string' ) ),
+		);
+		return $schema;
+	}
+);
