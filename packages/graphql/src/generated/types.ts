@@ -4,6 +4,42 @@
 type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 /** Internal type. DO NOT USE DIRECTLY. */
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+/** State of an AI translation job. */
+export type FlxLanguageJobStatus =
+  /** The translation is written. */
+  | 'DONE'
+  /** The last step failed; running it again retries. */
+  | 'FAILED'
+  /** Steps are still to run. */
+  | 'RUNNING';
+
+/** What a first-time visitor gets when their language differs from the page. */
+export type FlxLanguageSuggestMode =
+  /** A suggestion bar at the top of the page. */
+  | 'BANNER'
+  /** Nothing. */
+  | 'OFF'
+  /** The site opens directly in their language. */
+  | 'REDIRECT';
+
+/** How the language switcher names the languages. */
+export type FlxLanguageSwitcherStyle =
+  /** Language codes (TR · EN). */
+  | 'CODE'
+  /** Flags. */
+  | 'FLAG'
+  /** Language names. */
+  | 'NAME';
+
+/** Where the theme shows the language switcher. */
+export type FlxLanguageSwitcherPlace =
+  /** Both. */
+  | 'BOTH'
+  /** Footer. */
+  | 'FOOTER'
+  /** Header and mobile menu. */
+  | 'HEADER';
+
 /** What a task row is. */
 export type FlxTaskKind =
   /** An agenda item of a meeting. */
@@ -128,6 +164,98 @@ export type FlxCartShippingRateSelectInput = {
   packageId?: number | null | undefined;
   /** Rate ID (FlxCartShippingRate.rateId). */
   rateId: string;
+};
+
+/** Input for the flxLanguageSet mutation. */
+export type FlxLanguageSetInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Global ID or database ID of the content. */
+  id: string;
+  /** Language code. */
+  lang: string;
+};
+
+/** Input for the flxLanguageSettingsUpdate mutation. */
+export type FlxLanguageSettingsUpdateInput = {
+  /** Code of a catalog language to add. It is added inactive: prepare its content, then activate it. */
+  addLanguage?: string | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Code of the default language. */
+  defaultLanguage?: string | null | undefined;
+  /** Show the default-language version when a translation is missing. */
+  fallback?: boolean | null | undefined;
+  /** Two-letter country codes that see the default language. */
+  homeCountries?: Array<string> | null | undefined;
+  /** All languages after the change. The default language cannot be removed. */
+  languages?: Array<FlxLanguageInput> | null | undefined;
+  /** Content types to translate. */
+  postTypes?: Array<string> | null | undefined;
+  /** Automatic language for first-time visitors. */
+  suggest?: FlxLanguageSuggestMode | null | undefined;
+  /** Language used when neither the browser language nor the country's language is active. */
+  suggestTo?: string | null | undefined;
+  /** How the language switcher names languages. */
+  switcher?: FlxLanguageSwitcherStyle | null | undefined;
+  /** Where the theme shows the language switcher. */
+  switcherPlace?: FlxLanguageSwitcherPlace | null | undefined;
+  /** All translated site texts after the change. */
+  texts?: Array<FlxLanguageSiteTextInput> | null | undefined;
+};
+
+/** A language of the site. */
+export type FlxLanguageInput = {
+  /** Visitors can open it. The default language is always active. */
+  active?: boolean | null | undefined;
+  /** Language code and address prefix (en, de, pt-br). */
+  code: string;
+  /** Flag emoji. */
+  flag?: string | null | undefined;
+  /** WordPress locale of the content (en_US). */
+  locale?: string | null | undefined;
+  /** Name people see. Empty keeps the code. */
+  name?: string | null | undefined;
+};
+
+/** A site text in one language. An empty value removes the translation. */
+export type FlxLanguageSiteTextInput = {
+  /** Text key from textFields. */
+  key: string;
+  /** Language code (not the default language). */
+  lang: string;
+  /** The text. */
+  value: string;
+};
+
+/** Input for the flxLanguageTranslateStart mutation. */
+export type FlxLanguageTranslateStartInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Target language code. */
+  lang: string;
+  /** Global ID or database ID of the source content. */
+  sourceId: string;
+};
+
+/** Input for the flxLanguageTranslateStep mutation. */
+export type FlxLanguageTranslateStepInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Job key from flxLanguageTranslateStart. */
+  jobId: string;
+  /** Step to run, from 0 to total - 1. */
+  step: number;
+};
+
+/** Input for the flxLanguageTranslationCreate mutation. */
+export type FlxLanguageTranslationCreateInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Target language code. */
+  lang: string;
+  /** Global ID or database ID of the source content. */
+  sourceId: string;
 };
 
 /** Input for the flxRoleCreate mutation. */
@@ -359,6 +487,77 @@ export type FlxCartShippingRateSelectMutationVariables = Exact<{
 
 export type FlxCartShippingRateSelectMutation = { flxCartShippingRateSelect: { cart: { token: string | null, nonce: string | null, itemsCount: number, needsPayment: boolean, needsShipping: boolean, hasCalculatedShipping: boolean, paymentMethods: Array<string>, paymentRequirements: Array<string>, items: Array<{ key: string, kind: string, productId: number, type: string, name: string, sku: string, permalink: string | null, imageUrl: string | null, imageAlt: string, quantity: number, soldIndividually: boolean, quantityLimits: { minimum: number, maximum: number, multipleOf: number, editable: boolean }, unitPrice: { amount: number, currency: string, formatted: string }, regularPrice: { amount: number, currency: string, formatted: string }, subtotal: { amount: number, currency: string, formatted: string }, total: { amount: number, currency: string, formatted: string }, tax: { amount: number, currency: string, formatted: string }, variation: Array<{ name: string, value: string }>, itemData: Array<{ name: string, value: string }> }>, coupons: Array<{ code: string, discountType: string, discount: { amount: number, currency: string, formatted: string }, discountTax: { amount: number, currency: string, formatted: string } }>, fees: Array<{ key: string, name: string, total: { amount: number, currency: string, formatted: string }, tax: { amount: number, currency: string, formatted: string } }>, totals: { currency: string, itemsSubtotal: { amount: number, currency: string, formatted: string }, itemsTax: { amount: number, currency: string, formatted: string }, fees: { amount: number, currency: string, formatted: string }, discount: { amount: number, currency: string, formatted: string }, shipping: { amount: number, currency: string, formatted: string } | null, tax: { amount: number, currency: string, formatted: string }, total: { amount: number, currency: string, formatted: string }, taxLines: Array<{ name: string, rate: string, price: { amount: number, currency: string, formatted: string } }> }, shippingPackages: Array<{ packageId: number, name: string, rates: Array<{ rateId: string, methodId: string, name: string, description: string, deliveryTime: string, selected: boolean, price: { amount: number, currency: string, formatted: string } }> }>, notices: Array<{ code: string, message: string }>, billingAddress: { firstName: string, lastName: string, company: string, address1: string, address2: string, city: string, state: string, postcode: string, country: string, email: string | null, phone: string }, shippingAddress: { firstName: string, lastName: string, company: string, address1: string, address2: string, city: string, state: string, postcode: string, country: string, email: string | null, phone: string }, checkout: { endpoint: string, pageUrl: string | null, cartPageUrl: string | null } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
 
+export type FlxContentLanguageQueryVariables = Exact<{
+  id: string;
+}>;
+
+
+export type FlxContentLanguageQuery = { contentNode:
+    | { databaseId: number, flxLanguage: string | null, flxTranslations: Array<{ lang: string, databaseId: number, id: string, title: string, status: string, url: string | null, editUrl: string | null, isSelf: boolean }> }
+    | { databaseId: number, flxLanguage: string | null, flxTranslations: Array<{ lang: string, databaseId: number, id: string, title: string, status: string, url: string | null, editUrl: string | null, isSelf: boolean }> }
+    | { databaseId: number, flxLanguage: string | null, flxTranslations: Array<{ lang: string, databaseId: number, id: string, title: string, status: string, url: string | null, editUrl: string | null, isSelf: boolean }> }
+   | null };
+
+export type FlxTranslationRowFragment = { lang: string, databaseId: number, id: string, title: string, status: string, url: string | null, editUrl: string | null, isSelf: boolean };
+
+export type FlxLanguageJobQueryVariables = Exact<{
+  id: string;
+}>;
+
+
+export type FlxLanguageJobQuery = { flxLanguageJob: { id: string, status: FlxLanguageJobStatus, step: number, total: number, sourceId: number, translationId: number, lang: string, errors: Array<string>, editUrl: string | null } | null };
+
+export type FlxLanguageJobFieldsFragment = { id: string, status: FlxLanguageJobStatus, step: number, total: number, sourceId: number, translationId: number, lang: string, errors: Array<string>, editUrl: string | null };
+
+export type FlxLanguagesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxLanguagesQuery = { flxLanguages: Array<{ code: string, name: string, locale: string, flag: string | null, active: boolean, default: boolean, address: string, hreflang: string }> };
+
+export type FlxLanguageRowFragment = { code: string, name: string, locale: string, flag: string | null, active: boolean, default: boolean, address: string, hreflang: string };
+
+export type FlxLanguageSetMutationVariables = Exact<{
+  input: FlxLanguageSetInput;
+}>;
+
+
+export type FlxLanguageSetMutation = { flxLanguageSet: { lang: string | null, translations: Array<{ lang: string, databaseId: number, id: string, title: string, status: string, url: string | null, editUrl: string | null, isSelf: boolean }> | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxLanguageSettingsScreenQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxLanguageSettingsScreenQuery = { flxLanguageSettings: { defaultLanguage: string, postTypes: Array<string>, fallback: boolean, suggest: FlxLanguageSuggestMode, suggestTo: string, homeCountries: Array<string>, switcher: FlxLanguageSwitcherStyle, switcherPlace: FlxLanguageSwitcherPlace, aiAvailable: boolean, languages: Array<{ code: string, name: string, locale: string, flag: string | null, active: boolean, default: boolean, address: string, hreflang: string }>, texts: Array<{ lang: string, key: string, value: string }>, catalog: Array<{ code: string, name: string, locale: string, flag: string }>, postTypeChoices: Array<{ name: string, label: string, selected: boolean }>, textFields: Array<{ key: string, label: string, textarea: boolean, placeholder: string }>, geo: { country: string | null, source: string | null } } };
+
+export type FlxLanguageSettingsFieldsFragment = { defaultLanguage: string, postTypes: Array<string>, fallback: boolean, suggest: FlxLanguageSuggestMode, suggestTo: string, homeCountries: Array<string>, switcher: FlxLanguageSwitcherStyle, switcherPlace: FlxLanguageSwitcherPlace, aiAvailable: boolean, languages: Array<{ code: string, name: string, locale: string, flag: string | null, active: boolean, default: boolean, address: string, hreflang: string }>, texts: Array<{ lang: string, key: string, value: string }>, catalog: Array<{ code: string, name: string, locale: string, flag: string }>, postTypeChoices: Array<{ name: string, label: string, selected: boolean }>, textFields: Array<{ key: string, label: string, textarea: boolean, placeholder: string }>, geo: { country: string | null, source: string | null } };
+
+export type FlxLanguageSettingsUpdateMutationVariables = Exact<{
+  input: FlxLanguageSettingsUpdateInput;
+}>;
+
+
+export type FlxLanguageSettingsUpdateMutation = { flxLanguageSettingsUpdate: { settings: { defaultLanguage: string, postTypes: Array<string>, fallback: boolean, suggest: FlxLanguageSuggestMode, suggestTo: string, homeCountries: Array<string>, switcher: FlxLanguageSwitcherStyle, switcherPlace: FlxLanguageSwitcherPlace, aiAvailable: boolean, languages: Array<{ code: string, name: string, locale: string, flag: string | null, active: boolean, default: boolean, address: string, hreflang: string }>, texts: Array<{ lang: string, key: string, value: string }>, catalog: Array<{ code: string, name: string, locale: string, flag: string }>, postTypeChoices: Array<{ name: string, label: string, selected: boolean }>, textFields: Array<{ key: string, label: string, textarea: boolean, placeholder: string }>, geo: { country: string | null, source: string | null } } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxLanguageTranslateStartMutationVariables = Exact<{
+  input: FlxLanguageTranslateStartInput;
+}>;
+
+
+export type FlxLanguageTranslateStartMutation = { flxLanguageTranslateStart: { job: { id: string, status: FlxLanguageJobStatus, step: number, total: number, sourceId: number, translationId: number, lang: string, errors: Array<string>, editUrl: string | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxLanguageTranslateStepMutationVariables = Exact<{
+  input: FlxLanguageTranslateStepInput;
+}>;
+
+
+export type FlxLanguageTranslateStepMutation = { flxLanguageTranslateStep: { job: { id: string, status: FlxLanguageJobStatus, step: number, total: number, sourceId: number, translationId: number, lang: string, errors: Array<string>, editUrl: string | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxLanguageTranslationCreateMutationVariables = Exact<{
+  input: FlxLanguageTranslationCreateInput;
+}>;
+
+
+export type FlxLanguageTranslationCreateMutation = { flxLanguageTranslationCreate: { translation: { lang: string, databaseId: number, id: string, title: string, status: string, url: string | null, editUrl: string | null, isSelf: boolean } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
 export type FlxRoleCreateMutationVariables = Exact<{
   input: FlxRoleCreateInput;
 }>;
@@ -507,3 +706,8 @@ export type FlxViewerQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type FlxViewerQuery = { flxViewer: { loggedIn: boolean, databaseId: number | null, name: string | null, isAdmin: boolean, capabilities: Array<string> } };
+
+export type FlxVisitorCountryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxVisitorCountryQuery = { flxVisitorCountry: { country: string | null } };

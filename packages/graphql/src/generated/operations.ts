@@ -84,6 +84,87 @@ export const FlxCartShippingRateSelect: FlxOperation<T.FlxCartShippingRateSelect
   document: "mutation FlxCartShippingRateSelect($input: FlxCartShippingRateSelectInput!) {\n  flxCartShippingRateSelect(input: $input) {\n    cart {\n      ...FlxCartFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxCartAddressFields on FlxCartAddress {\n  firstName\n  lastName\n  company\n  address1\n  address2\n  city\n  state\n  postcode\n  country\n  email\n  phone\n}\n\nfragment FlxCartFields on FlxCart {\n  token\n  nonce\n  itemsCount\n  items {\n    key\n    kind\n    productId\n    type\n    name\n    sku\n    permalink\n    imageUrl\n    imageAlt\n    quantity\n    quantityLimits {\n      minimum\n      maximum\n      multipleOf\n      editable\n    }\n    soldIndividually\n    unitPrice {\n      ...FlxCartMoney\n    }\n    regularPrice {\n      ...FlxCartMoney\n    }\n    subtotal {\n      ...FlxCartMoney\n    }\n    total {\n      ...FlxCartMoney\n    }\n    tax {\n      ...FlxCartMoney\n    }\n    variation {\n      name\n      value\n    }\n    itemData {\n      name\n      value\n    }\n  }\n  coupons {\n    code\n    discountType\n    discount {\n      ...FlxCartMoney\n    }\n    discountTax {\n      ...FlxCartMoney\n    }\n  }\n  fees {\n    key\n    name\n    total {\n      ...FlxCartMoney\n    }\n    tax {\n      ...FlxCartMoney\n    }\n  }\n  totals {\n    currency\n    itemsSubtotal {\n      ...FlxCartMoney\n    }\n    itemsTax {\n      ...FlxCartMoney\n    }\n    fees {\n      ...FlxCartMoney\n    }\n    discount {\n      ...FlxCartMoney\n    }\n    shipping {\n      ...FlxCartMoney\n    }\n    tax {\n      ...FlxCartMoney\n    }\n    total {\n      ...FlxCartMoney\n    }\n    taxLines {\n      name\n      rate\n      price {\n        ...FlxCartMoney\n      }\n    }\n  }\n  needsPayment\n  needsShipping\n  hasCalculatedShipping\n  shippingPackages {\n    packageId\n    name\n    rates {\n      rateId\n      methodId\n      name\n      description\n      deliveryTime\n      price {\n        ...FlxCartMoney\n      }\n      selected\n    }\n  }\n  paymentMethods\n  paymentRequirements\n  notices {\n    code\n    message\n  }\n  billingAddress {\n    ...FlxCartAddressFields\n  }\n  shippingAddress {\n    ...FlxCartAddressFields\n  }\n  checkout {\n    endpoint\n    pageUrl\n    cartPageUrl\n  }\n}\n\nfragment FlxCartMoney on FlxMoney {\n  amount\n  currency\n  formatted\n}",
 };
 
+/** query FlxContentLanguage (flx-lang, plugins/flx-lang/graphql/operations/FlxContentLanguage.graphql) */
+export const FlxContentLanguage: FlxOperation<T.FlxContentLanguageQuery, T.FlxContentLanguageQueryVariables> = {
+  id: 'b7b1aa41db2b927353f83e236529cdf7a39dcc18c8091bda379432826fd0ff4d',
+  name: 'FlxContentLanguage',
+  kind: 'query',
+  plugin: 'flx-lang',
+  document: "query FlxContentLanguage($id: ID!) {\n  contentNode(id: $id, idType: DATABASE_ID) {\n    databaseId\n    flxLanguage\n    flxTranslations {\n      ...FlxTranslationRow\n    }\n  }\n}\n\nfragment FlxTranslationRow on FlxTranslation {\n  lang\n  databaseId\n  id\n  title\n  status\n  url\n  editUrl\n  isSelf\n}",
+};
+
+/** query FlxLanguageJob (flx-lang, plugins/flx-lang/graphql/operations/FlxLanguageJob.graphql) */
+export const FlxLanguageJob: FlxOperation<T.FlxLanguageJobQuery, T.FlxLanguageJobQueryVariables> = {
+  id: '66156d0f78ffd2d934aaf886825d8a8be13ec1c5a34eec1a11eaea0804e69359',
+  name: 'FlxLanguageJob',
+  kind: 'query',
+  plugin: 'flx-lang',
+  document: "query FlxLanguageJob($id: ID!) {\n  flxLanguageJob(id: $id) {\n    ...FlxLanguageJobFields\n  }\n}\n\nfragment FlxLanguageJobFields on FlxLanguageJob {\n  id\n  status\n  step\n  total\n  sourceId\n  translationId\n  lang\n  errors\n  editUrl\n}",
+};
+
+/** query FlxLanguages (flx-lang, plugins/flx-lang/graphql/operations/FlxLanguages.graphql) */
+export const FlxLanguages: FlxOperation<T.FlxLanguagesQuery, T.FlxLanguagesQueryVariables> = {
+  id: 'da403c483519e3d87c1b5567e0787f07dc7f0ddca642f61de7542873acae5e5e',
+  name: 'FlxLanguages',
+  kind: 'query',
+  plugin: 'flx-lang',
+  document: "query FlxLanguages {\n  flxLanguages {\n    ...FlxLanguageRow\n  }\n}\n\nfragment FlxLanguageRow on FlxLanguage {\n  code\n  name\n  locale\n  flag\n  active\n  default\n  address\n  hreflang\n}",
+};
+
+/** mutation FlxLanguageSet (flx-lang, plugins/flx-lang/graphql/operations/FlxLanguageSet.graphql) */
+export const FlxLanguageSet: FlxOperation<T.FlxLanguageSetMutation, T.FlxLanguageSetMutationVariables> = {
+  id: '9e523a5b059c17dffeaa2ea21fbda8f9e57eb1bcfd137c73959c0fbaaeabee03',
+  name: 'FlxLanguageSet',
+  kind: 'mutation',
+  plugin: 'flx-lang',
+  document: "mutation FlxLanguageSet($input: FlxLanguageSetInput!) {\n  flxLanguageSet(input: $input) {\n    lang\n    translations {\n      ...FlxTranslationRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxTranslationRow on FlxTranslation {\n  lang\n  databaseId\n  id\n  title\n  status\n  url\n  editUrl\n  isSelf\n}",
+};
+
+/** query FlxLanguageSettingsScreen (flx-lang, plugins/flx-lang/graphql/operations/FlxLanguageSettingsScreen.graphql) */
+export const FlxLanguageSettingsScreen: FlxOperation<T.FlxLanguageSettingsScreenQuery, T.FlxLanguageSettingsScreenQueryVariables> = {
+  id: '14ae18c34134e93d807ec1e3d21907a4c002555d4d327011a6cbdd05c13743ab',
+  name: 'FlxLanguageSettingsScreen',
+  kind: 'query',
+  plugin: 'flx-lang',
+  document: "query FlxLanguageSettingsScreen {\n  flxLanguageSettings {\n    ...FlxLanguageSettingsFields\n  }\n}\n\nfragment FlxLanguageRow on FlxLanguage {\n  code\n  name\n  locale\n  flag\n  active\n  default\n  address\n  hreflang\n}\n\nfragment FlxLanguageSettingsFields on FlxLanguageSettings {\n  defaultLanguage\n  languages {\n    ...FlxLanguageRow\n  }\n  postTypes\n  fallback\n  suggest\n  suggestTo\n  homeCountries\n  switcher\n  switcherPlace\n  texts {\n    lang\n    key\n    value\n  }\n  catalog {\n    code\n    name\n    locale\n    flag\n  }\n  postTypeChoices {\n    name\n    label\n    selected\n  }\n  textFields {\n    key\n    label\n    textarea\n    placeholder\n  }\n  geo {\n    country\n    source\n  }\n  aiAvailable\n}",
+};
+
+/** mutation FlxLanguageSettingsUpdate (flx-lang, plugins/flx-lang/graphql/operations/FlxLanguageSettingsUpdate.graphql) */
+export const FlxLanguageSettingsUpdate: FlxOperation<T.FlxLanguageSettingsUpdateMutation, T.FlxLanguageSettingsUpdateMutationVariables> = {
+  id: '0da4e1f193deec851174ea768e4699d956a94e7670b172e44dafe5bf9f788a52',
+  name: 'FlxLanguageSettingsUpdate',
+  kind: 'mutation',
+  plugin: 'flx-lang',
+  document: "mutation FlxLanguageSettingsUpdate($input: FlxLanguageSettingsUpdateInput!) {\n  flxLanguageSettingsUpdate(input: $input) {\n    settings {\n      ...FlxLanguageSettingsFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxLanguageRow on FlxLanguage {\n  code\n  name\n  locale\n  flag\n  active\n  default\n  address\n  hreflang\n}\n\nfragment FlxLanguageSettingsFields on FlxLanguageSettings {\n  defaultLanguage\n  languages {\n    ...FlxLanguageRow\n  }\n  postTypes\n  fallback\n  suggest\n  suggestTo\n  homeCountries\n  switcher\n  switcherPlace\n  texts {\n    lang\n    key\n    value\n  }\n  catalog {\n    code\n    name\n    locale\n    flag\n  }\n  postTypeChoices {\n    name\n    label\n    selected\n  }\n  textFields {\n    key\n    label\n    textarea\n    placeholder\n  }\n  geo {\n    country\n    source\n  }\n  aiAvailable\n}",
+};
+
+/** mutation FlxLanguageTranslateStart (flx-lang, plugins/flx-lang/graphql/operations/FlxLanguageTranslateStart.graphql) */
+export const FlxLanguageTranslateStart: FlxOperation<T.FlxLanguageTranslateStartMutation, T.FlxLanguageTranslateStartMutationVariables> = {
+  id: '884288d4f848b9a20a2984b22eb2f473edfdbc3499e101a8feaa3cb204f3fe6a',
+  name: 'FlxLanguageTranslateStart',
+  kind: 'mutation',
+  plugin: 'flx-lang',
+  document: "mutation FlxLanguageTranslateStart($input: FlxLanguageTranslateStartInput!) {\n  flxLanguageTranslateStart(input: $input) {\n    job {\n      ...FlxLanguageJobFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxLanguageJobFields on FlxLanguageJob {\n  id\n  status\n  step\n  total\n  sourceId\n  translationId\n  lang\n  errors\n  editUrl\n}",
+};
+
+/** mutation FlxLanguageTranslateStep (flx-lang, plugins/flx-lang/graphql/operations/FlxLanguageTranslateStep.graphql) */
+export const FlxLanguageTranslateStep: FlxOperation<T.FlxLanguageTranslateStepMutation, T.FlxLanguageTranslateStepMutationVariables> = {
+  id: '7aec3c6af3cc008adc1bfd4546a90bf9cf07eb1e7304c9cafcb4c7de2a0c7c02',
+  name: 'FlxLanguageTranslateStep',
+  kind: 'mutation',
+  plugin: 'flx-lang',
+  document: "mutation FlxLanguageTranslateStep($input: FlxLanguageTranslateStepInput!) {\n  flxLanguageTranslateStep(input: $input) {\n    job {\n      ...FlxLanguageJobFields\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxLanguageJobFields on FlxLanguageJob {\n  id\n  status\n  step\n  total\n  sourceId\n  translationId\n  lang\n  errors\n  editUrl\n}",
+};
+
+/** mutation FlxLanguageTranslationCreate (flx-lang, plugins/flx-lang/graphql/operations/FlxLanguageTranslationCreate.graphql) */
+export const FlxLanguageTranslationCreate: FlxOperation<T.FlxLanguageTranslationCreateMutation, T.FlxLanguageTranslationCreateMutationVariables> = {
+  id: 'd9b2b8226cf586a48f61bbb24d16a70095d2bbb7361004a700023f703f487b8e',
+  name: 'FlxLanguageTranslationCreate',
+  kind: 'mutation',
+  plugin: 'flx-lang',
+  document: "mutation FlxLanguageTranslationCreate($input: FlxLanguageTranslationCreateInput!) {\n  flxLanguageTranslationCreate(input: $input) {\n    translation {\n      ...FlxTranslationRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxTranslationRow on FlxTranslation {\n  lang\n  databaseId\n  id\n  title\n  status\n  url\n  editUrl\n  isSelf\n}",
+};
+
 /** mutation FlxRoleCreate (flx-roles, plugins/flx-roles/graphql/operations/FlxRoleCreate.graphql) */
 export const FlxRoleCreate: FlxOperation<T.FlxRoleCreateMutation, T.FlxRoleCreateMutationVariables> = {
   id: '21a336969a0dc41b8caaa1be0a20b9bd740359347ff57bc8cb72f70ca6254f9e',
@@ -244,4 +325,13 @@ export const FlxViewer: FlxOperation<T.FlxViewerQuery, T.FlxViewerQueryVariables
   kind: 'query',
   plugin: 'flx-graphql',
   document: "query FlxViewer {\n  flxViewer {\n    loggedIn\n    databaseId\n    name\n    isAdmin\n    capabilities\n  }\n}",
+};
+
+/** query FlxVisitorCountry (flx-lang, plugins/flx-lang/graphql/operations/FlxVisitorCountry.graphql) */
+export const FlxVisitorCountry: FlxOperation<T.FlxVisitorCountryQuery, T.FlxVisitorCountryQueryVariables> = {
+  id: '26ded51779287f243874fd6bdc6ad94b26c82ff3fbb02ccc5637621b832ee181',
+  name: 'FlxVisitorCountry',
+  kind: 'query',
+  plugin: 'flx-lang',
+  document: "query FlxVisitorCountry {\n  flxVisitorCountry {\n    country\n  }\n}",
 };
