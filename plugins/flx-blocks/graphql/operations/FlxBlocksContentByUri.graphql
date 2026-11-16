@@ -1,0 +1,16 @@
+# Headless front end: a page or post by its path, with its rendered blocks and what they need.
+query FlxBlocksContentByUri($uri: String!, $withBlocks: Boolean = false) {
+  nodeByUri(uri: $uri) {
+    __typename
+    ... on ContentNode {
+      databaseId
+      uri
+      flxBlocks {
+        ...FlxBlocksContentFields
+        blocks @include(if: $withBlocks) {
+          ...FlxBlocksBlockFields
+        }
+      }
+    }
+  }
+}

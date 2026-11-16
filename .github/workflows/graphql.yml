@@ -53,18 +53,24 @@ jobs:
           base="${{ github.event.pull_request.base.sha || github.event.before }}"
           git show "$base:packages/graphql/schema/schema.graphql" > "$RUNNER_TEMP/base.graphql" 2>/dev/null || true
           bun run --filter @fluxwp/graphql schema
-          cp packages/graphql/schema/schema.graphql "$RUNNER_TEMP/gen.graphql"
-          grep -E '^(type|input|enum|interface|scalar|union) ' "$RUNNER_TEMP/gen.graphql" | awk '{print "ORD " $2}'
-          git diff packages/graphql/schema | grep -E '^[+-]' | grep -vE '^(\+\+\+|---)' | awk '{print "DIFFLINE " $0}' | head -0
           if ! git diff --quiet -- packages/graphql/schema; then
             git diff --stat -- packages/graphql/schema
+            # Full diff in the log (local WP / theme / WooCommerce versions can produce a different snapshot);
+            # the CI snapshot is also uploaded as the "graphql-schema-ci" artifact.
+            echo "::group::Schema diff (CI output vs committed)"
+            git diff -- packages/graphql/schema | head -n 2000
+            echo "::endgroup::"
             echo "::error title=Schema snapshot::packages/graphql/schema/schema.graphql is out of date. Run 'bun run --filter @fluxwp/graphql schema' and commit it."
             exit 1
           fi
 
-      - if: always()
-        uses: actions/upload-artifact@v4
-        with: { name: gen-schema, path: '${{ runner.temp }}/gen.graphql' }
+      - name: Upload the CI schema snapshot
+        if: failure()
+        uses: actions/upload-artifact@v5
+        with:
+          name: graphql-schema-ci
+          path: packages/graphql/schema/
+          if-no-files-found: ignore
 
       - name: Breaking changes
         env:

@@ -1,0 +1,8 @@
+mutation FlxCrmJourneyDelete($input: FlxJourneyDeleteInput!) {
+  flxJourneyDelete(input: $input) {
+    deletedId
+    errors {
+      ...FlxCrmUserError
+    }
+  }
+}

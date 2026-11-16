@@ -1,7 +1,7 @@
 // Operations → typed operations + persisted query manifests.
 //
 //   schema/schema.graphql                          snapshot of the server schema (scripts/schema.ts)
-//   plugins/<slug>/graphql/operations/*.graphql    operations a plugin ships (queries + mutations)
+//   plugins/<slug>/graphql/operations/*.graphql    operations a plugin ships (queries + mutations); themes/<slug> likewise
 //   →  plugins/<slug>/graphql/persisted-queries.json   { sha256: document } read by Flux GraphQL
 //   →  packages/graphql/src/generated/types.ts          schema + operation types (graphql-codegen)
 //   →  packages/graphql/src/generated/operations.ts     FlxOperation constants
@@ -31,9 +31,14 @@ function graphqlFiles(dir: string): string[] {
 const schemaSdl = readFileSync(join(pkg, 'schema/schema.graphql'), 'utf8');
 const schema = buildSchema(schemaSdl);
 
+// Packages are plugins/<slug> and themes/<slug>; a slug is unique across both.
+const packageDirs = (): { slug: string; dir: string }[] =>
+  ['plugins', 'themes'].flatMap((kind) => (existsSync(join(root, kind)) ? readdirSync(join(root, kind)).sort().map((slug) => ({ slug, dir: join(root, kind, slug) })) : []));
+const dirOf = (slug: string): string => packageDirs().find((p) => p.slug === slug)?.dir ?? join(root, 'plugins', slug);
+
 const sources: SourceFile[] = [];
-for (const slug of readdirSync(join(root, 'plugins')).sort()) {
-  for (const path of graphqlFiles(join(root, 'plugins', slug, 'graphql/operations')).sort()) {
+for (const { slug, dir } of packageDirs()) {
+  for (const path of graphqlFiles(join(dir, 'graphql/operations')).sort()) {
     sources.push({ plugin: slug, path: relative(root, path), body: readFileSync(path, 'utf8') });
   }
 }
@@ -50,7 +55,7 @@ try {
 }
 
 const files = new Map<string, string>();
-for (const [plugin, json] of manifests(ops)) files.set(join(root, 'plugins', plugin, 'graphql/persisted-queries.json'), json);
+for (const [plugin, json] of manifests(ops)) files.set(join(dirOf(plugin), 'graphql/persisted-queries.json'), json);
 
 const types = await codegen({
   filename: 'types.ts',
@@ -92,8 +97,8 @@ for (const [path, body] of files) {
   }
 }
 // A plugin that no longer ships operations must not keep an old manifest.
-for (const slug of readdirSync(join(root, 'plugins'))) {
-  const path = join(root, 'plugins', slug, 'graphql/persisted-queries.json');
+for (const { dir } of packageDirs()) {
+  const path = join(dir, 'graphql/persisted-queries.json');
   if (existsSync(path) && !files.has(path)) {
     console.error(`${check ? 'stale' : 'remove'}: ${relative(root, path)} (no operations left)`);
     stale++;
