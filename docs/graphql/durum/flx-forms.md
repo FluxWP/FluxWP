@@ -2,7 +2,7 @@
 
 - Faz: 1
 - Durum: ✱
-- PR: —
+- PR: #334
 
 Envanter (`gql/flx-forms-1`). Servis, şema ve ekran yok. Taşınacak: form tanımı okuma, `flxFormSubmit`, yanıtlar ekranı, pano. Fork oluşturucu ve ödeme uçları kalır. Eşleme `docs/graphql/ESLEME/flx-forms.md`. Blok formu AJAX istisnası (`fxb_process_ajax_submit`, `fxb_process_advanced_form_submit`) `ISTISNALAR.md` ortak dosyasında; silinmesi ayrı PR.
 
