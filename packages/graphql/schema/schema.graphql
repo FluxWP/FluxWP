@@ -12378,33 +12378,6 @@ type FlxContactConsent {
   whatsapp: Boolean!
 }
 
-"A point in time with labels in the user&#039;s language."
-type FlxDateTime {
-  "ISO 8601 in UTC (2026-11-15T14:59:00Z)."
-  iso: String!
-
-  "Date and time for display, in the site time zone and the user&#039;s language."
-  label: String!
-
-  "Relative time for display (&quot;5 minutes ago&quot;)."
-  relative: String!
-
-  "Unix timestamp."
-  timestamp: Int!
-}
-
-"An amount of money."
-type FlxMoney {
-  "Amount in the currency unit (150.5)."
-  amount: Float!
-
-  "ISO 4217 code (TRY, USD)."
-  currency: String!
-
-  "Amount with the currency sign for display."
-  formatted: String!
-}
-
 "Recency, frequency and monetary scores (1–5; 0 = not scored)."
 type FlxContactRfm {
   "How often they pay."
