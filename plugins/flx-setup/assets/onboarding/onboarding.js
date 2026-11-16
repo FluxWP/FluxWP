@@ -42,7 +42,55 @@
 	}
 	function fmt(s) { var a = arguments; var i = 0; return String(s).replace(/%(\d\$)?[sd]/g, function (m, n) { i++; return a[n ? parseInt(n, 10) : i]; }); }
 	function count(o) { return Object.keys(o).length; }
+	/* ---------- Flux GraphQL (persisted operations); admin-ajax stays as the fallback ---------- */
+	var G = D.gql || null;
+	function gql(name, vars) {
+		return fetch(G.url, {
+			method: 'POST', credentials: 'same-origin',
+			headers: { 'Content-Type': 'application/json', 'X-WP-Nonce': G.nonce },
+			body: JSON.stringify({ queryId: G.ids[name], operationName: name, variables: vars || {} })
+		}).then(function (r) { return r.json(); }).then(function (j) {
+			var errs = j && j.errors;
+			if (errs && errs.length) {
+				var e = new Error(errs[0].message || T.netErr);
+				e.fallback = !!(errs[0].extensions && errs[0].extensions.code === 'PERSISTED_QUERY_NOT_FOUND');
+				throw e;
+			}
+			return j.data;
+		});
+	}
+	function payload(p) {
+		if (!p) { throw new Error(T.netErr); }
+		if (p.errors && p.errors.length) { throw new Error(p.errors[0].message); }
+		return p;
+	}
+	/** The GraphQL form of an ajax request, or null when there is none. */
+	function viaGql(data) {
+		switch (data.action) {
+			case 'flxk_onboarding_step':
+				return gql('FlxSetupWizardStep', { input: { kind: String(data.kind).toUpperCase(), value: data.value || null } }).then(function (d) { return payload(d.flxSetupWizardStep); });
+			case 'flxk_onboarding_updates':
+				return gql('FlxSetupWizardUpdates').then(function (d) { return payload(d.flxSetupWizardUpdates); });
+			case 'flxu_plan':
+				return gql('FlxSetupPlan', { slugs: data.slugs || [], activate: !!data.activate }).then(function (d) {
+					return { steps: d.flxSetupPlan.map(function (s) { return { kind: s.kind.toLowerCase(), slug: s.slug, id: s.id, name: s.name, why: s.why, version: s.version }; }) };
+				});
+			case 'flxu_step':
+				return gql('FlxSetupStepRun', { input: { kind: String(data.kind).toUpperCase(), slug: data.slug } }).then(function (d) { return payload(d.flxSetupStepRun); });
+		}
+		return null;
+	}
 	function post(data) {
+		var g = G ? viaGql(data) : null;
+		if (g) {
+			return g.catch(function (e) {
+				if (e.fallback || e instanceof TypeError) { return ajaxPost(data); }
+				throw e;
+			});
+		}
+		return ajaxPost(data);
+	}
+	function ajaxPost(data) {
 		var body = new URLSearchParams();
 		Object.keys(data).forEach(function (k) {
 			var v = data[k];
@@ -329,12 +377,29 @@
 		if (t) { t.textContent = T.uploading; }
 		$('#drop').classList.add('busy');
 		var body = new FormData();
-		body.append('action', 'flxk_onboarding_logo');
-		body.append('nonce', D.nonce);
-		body.append('logo', file);
-		fetch(D.ajax, { method: 'POST', credentials: 'same-origin', body: body }).then(function (r) { return r.json(); }).then(function (j) {
-			if (!j || !j.success) { throw new Error((j && j.data && j.data.message) || T.netErr); }
-			S.logo = { id: j.data.id, url: j.data.url };
+		var done;
+		if (G) {
+			// Flux GraphQL: the file goes to the shared upload endpoint, a mutation adds it to the media library.
+			body.append('context', 'flx-setup/logo');
+			body.append('file', file);
+			done = fetch(G.rest + 'flx/v1/upload', { method: 'POST', credentials: 'same-origin', headers: { 'X-WP-Nonce': G.nonce }, body: body }).then(function (r) { return r.json(); }).then(function (u) {
+				if (!u || !u.uploadId) { throw new Error((u && u.message) || T.netErr); }
+				return gql('FlxSetupWizardLogo', { input: { uploadId: u.uploadId } });
+			}).then(function (d) {
+				var p = payload(d.flxSetupWizardLogo);
+				return { id: p.attachmentId, url: p.url };
+			});
+		} else {
+			body.append('action', 'flxk_onboarding_logo');
+			body.append('nonce', D.nonce);
+			body.append('logo', file);
+			done = fetch(D.ajax, { method: 'POST', credentials: 'same-origin', body: body }).then(function (r) { return r.json(); }).then(function (j) {
+				if (!j || !j.success) { throw new Error((j && j.data && j.data.message) || T.netErr); }
+				return { id: j.data.id, url: j.data.url };
+			});
+		}
+		done.then(function (logo) {
+			S.logo = logo;
 			renderAppearance();
 		}).catch(function (e) {
 			renderAppearance();

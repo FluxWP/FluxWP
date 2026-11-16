@@ -1,7 +1,10 @@
 # Changelog
 
-## 0.3.2
+## 0.3.3
 - Flux Analytics operations (`FlxAnalyticsConfig`, `FlxAnalyticsReport`, `FlxAnalyticsRealtime`, `FlxAnalyticsPages`, `FlxAnalyticsReferrers`, `FlxAnalyticsBreakdown`, `FlxAnalyticsEvents`, `FlxAnalyticsPage`, `FlxAnalyticsFunnel`, `FlxAnalyticsRefs`, `FlxAnalyticsJourneys`, `FlxAnalyticsSettings`, `FlxAnalyticsTelemetry`, `FlxAnalyticsTelemetryErrors` and the write operations).
+
+## 0.3.2
+- Flux SEO işlemleri (`FlxSeoSettingsScreen`, `FlxSeoSettingsSave`, `FlxSeoAuditScreen`, `FlxSeoAuditRun`, `FlxSeoFixApply`, `FlxSeoPsiKeySave`, `FlxSeoIndexNowSubmit`, `FlxSeoContentCheck`, `FlxSeoGuide`).
 
 ## 0.3.1
 - flx-app: admin operations (`FlxAppAdmin*`, `FlxAppAccess`, `FlxAppKeyCreate`, `FlxAppAccessRevoke`, `FlxAppDeviceRevoke`) and their generated types.

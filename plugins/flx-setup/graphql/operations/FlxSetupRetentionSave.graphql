@@ -1,0 +1,11 @@
+mutation FlxSetupRetentionSave($input: FlxSetupRetentionSaveInput!) {
+  flxSetupRetentionSave(input: $input) {
+    deleted
+    retention {
+      ...FlxSetupRetentionFields
+    }
+    errors {
+      ...FlxSetupErrors
+    }
+  }
+}
