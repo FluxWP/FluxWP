@@ -1,0 +1,9 @@
+mutation FlxFilesAiEdit($input: FlxFilesAiEditInput!) {
+  flxFilesAiEdit(input: $input) {
+    content
+    note
+    errors {
+      ...FlxFilesUserError
+    }
+  }
+}

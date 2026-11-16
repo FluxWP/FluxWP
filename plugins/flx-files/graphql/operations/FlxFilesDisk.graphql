@@ -1,0 +1,9 @@
+query FlxFilesDisk($refresh: Boolean) {
+  flxFilesDisk(refresh: $refresh) {
+    usedBytes
+    totalBytes
+    fileCount
+    measured
+    scanning
+  }
+}

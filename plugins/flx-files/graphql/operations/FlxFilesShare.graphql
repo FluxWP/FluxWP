@@ -1,0 +1,9 @@
+mutation FlxFilesShare($input: FlxFilesShareInput!) {
+  flxFilesShare(input: $input) {
+    shared
+    shortcode
+    errors {
+      ...FlxFilesUserError
+    }
+  }
+}

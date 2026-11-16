@@ -65,34 +65,18 @@ function flxfm_rest_out( $r ) {
 	return new WP_REST_Response( array_merge( array( 'ok' => true ), is_array( $r ) ? $r : array( 'result' => $r ) ), 200 );
 }
 
-/** Dizi parametresi → göreli yol listesi. */
-function flxfm_paths_param( $v ) {
-	$out = array();
-	foreach ( (array) $v as $p ) {
-		if ( is_string( $p ) ) {
-			$out[] = $p;
-		}
-	}
-	return array_slice( $out, 0, 1000 );
+/** Servis sonucu (tipli değer ya da WP_Error) → REST yanıtı; gövde eski biçimle aynıdır. */
+function flxfm_rest_svc( $r ) {
+	return flxfm_rest_out( is_object( $r ) && method_exists( $r, 'to_rest' ) ? $r->to_rest() : $r );
 }
 
-/** Birden çok öğede aynı işlemi uygular; hataları toplar. */
-function flxfm_each( array $paths, callable $fn ) {
-	$done = array();
-	$errs = array();
-	foreach ( $paths as $p ) {
-		$r = $fn( $p );
-		if ( is_wp_error( $r ) ) {
-			$errs[] = array( 'path' => $p, 'message' => $r->get_error_message() );
-		} else {
-			$done[] = $r;
-		}
-	}
-	return array( 'done' => $done, 'errors' => $errs );
+/** Dizi parametresi → göreli yol listesi. */
+function flxfm_paths_param( $v ) {
+	return FLXFM_Files_Service::paths( $v );
 }
 
 /**
- * Tek uç, işlem `op` alanında.
+ * Tek uç, işlem `op` alanında. Mantık FLXFM_Files_Service'te; GraphQL ve bu uç aynı servisi kullanır.
  *
  * @param WP_REST_Request $req İstek.
  */
@@ -100,202 +84,93 @@ function flxfm_rest_op( WP_REST_Request $req ) {
 	$p    = (array) $req->get_json_params();
 	$op   = sanitize_key( (string) ( $p['op'] ?? '' ) );
 	$path = (string) ( $p['path'] ?? '' );
-	$s    = flxfm_settings();
 	switch ( $op ) {
 		case 'list':
-			$hidden = array_key_exists( 'hidden', $p ) ? ! empty( $p['hidden'] ) : ! empty( $s['show_hidden'] );
-			$r      = FLXFM_FS::list_dir( $path, array( 'hidden' => $hidden ) );
-			if ( ! is_wp_error( $r ) && ! empty( $p['disk'] ) ) {
-				$r['disk'] = FLXFM_FS::disk();
-			}
-			return flxfm_rest_out( $r );
+			return flxfm_rest_svc( FLXFM_Files_Service::listing( $path, array_key_exists( 'hidden', $p ) ? ! empty( $p['hidden'] ) : null, ! empty( $p['disk'] ) ) );
 
 		case 'tree':
-			$hidden = ! empty( $s['show_hidden'] );
-			$r      = FLXFM_FS::list_dir( $path, array( 'hidden' => $hidden, 'no_count' => true ) );
-			if ( is_wp_error( $r ) ) {
-				return flxfm_rest_out( $r );
-			}
-			$items = array();
-			foreach ( $r['items'] as $it ) {
-				$items[] = array_intersect_key( $it, array_flip( array( 'name', 'path', 'type', 'kind', 'ext', 'locked', 'sensitive' ) ) );
-			}
-			return flxfm_rest_out( array( 'path' => $r['path'], 'items' => $items ) );
+			return flxfm_rest_svc( FLXFM_Files_Service::tree( $path ) );
 
 		case 'read':
-			return flxfm_rest_out( FLXFM_FS::read( $path ) );
+			return flxfm_rest_svc( FLXFM_Files_Service::read( $path ) );
 
 		case 'write':
-			return flxfm_rest_out(
-				FLXFM_FS::write(
-					$path,
-					(string) ( $p['content'] ?? '' ),
-					array(
-						'expect_hash' => (string) ( $p['hash'] ?? '' ),
-						'create_only' => ! empty( $p['create_only'] ),
-					)
-				)
-			);
+			return flxfm_rest_svc( FLXFM_Files_Service::write( $path, (string) ( $p['content'] ?? '' ), (string) ( $p['hash'] ?? '' ), ! empty( $p['create_only'] ) ) );
 
 		case 'mkdir':
-			return flxfm_rest_out( FLXFM_FS::mkdir( $path ) );
+			return flxfm_rest_svc( FLXFM_Files_Service::mkdir( $path ) );
 
 		case 'rename':
-			$name = (string) ( $p['name'] ?? '' );
-			if ( ! flxfm_valid_name( $name ) ) {
-				return flxfm_rest_out( FLXFM_FS::err( 'name', __( 'Invalid name.', 'flx-files' ) ) );
-			}
-			$dir = dirname( flxfm_clean( $path ) );
-			return flxfm_rest_out( FLXFM_FS::move( $path, ( '.' === $dir ? '' : $dir . '/' ) . $name ) );
+			return flxfm_rest_svc( FLXFM_Files_Service::rename( $path, (string) ( $p['name'] ?? '' ) ) );
 
 		case 'move':
 		case 'copy':
-			$dest = flxfm_clean( (string) ( $p['dest'] ?? '' ) );
-			if ( is_wp_error( $dest ) ) {
-				return flxfm_rest_out( $dest );
-			}
-			$overwrite = ! empty( $p['overwrite'] );
-			return flxfm_rest_out(
-				flxfm_each(
-					flxfm_paths_param( $p['paths'] ?? array() ),
-					static function ( $src ) use ( $op, $dest, $overwrite ) {
-						$to = ( '' === $dest ? '' : $dest . '/' ) . basename( (string) flxfm_clean( $src ) );
-						return 'move' === $op ? FLXFM_FS::move( $src, $to, $overwrite ) : FLXFM_FS::copy( $src, $to, $overwrite );
-					}
-				)
-			);
+			return flxfm_rest_svc( FLXFM_Files_Service::transfer( $op, flxfm_paths_param( $p['paths'] ?? array() ), (string) ( $p['dest'] ?? '' ), ! empty( $p['overwrite'] ) ) );
 
 		case 'duplicate':
-			return flxfm_rest_out(
-				flxfm_each(
-					flxfm_paths_param( $p['paths'] ?? array() ),
-					static function ( $src ) {
-						return FLXFM_FS::copy( $src, $src );
-					}
-				)
-			);
+			return flxfm_rest_svc( FLXFM_Files_Service::duplicate( flxfm_paths_param( $p['paths'] ?? array() ) ) );
 
 		case 'trash':
-			return flxfm_rest_out( flxfm_each( flxfm_paths_param( $p['paths'] ?? array() ), array( 'FLXFM_FS', 'trash' ) ) );
+			return flxfm_rest_svc( FLXFM_Files_Service::trash( flxfm_paths_param( $p['paths'] ?? array() ) ) );
 
 		case 'chmod':
-			return flxfm_rest_out( FLXFM_FS::chmod( $path, (string) ( $p['mode'] ?? '' ) ) );
+			return flxfm_rest_svc( FLXFM_Files_Service::chmod( $path, (string) ( $p['mode'] ?? '' ) ) );
 
 		case 'size':
-			return flxfm_rest_out( FLXFM_FS::dir_size( $path ) );
+			return flxfm_rest_svc( FLXFM_Files_Service::size( $path ) );
 
 		case 'search':
-			return flxfm_rest_out(
-				FLXFM_FS::search(
-					$path,
-					(string) ( $p['q'] ?? '' ),
-					array(
-						'content' => ! empty( $p['content'] ),
-						'hidden'  => ! empty( $s['show_hidden'] ),
-					)
-				)
-			);
+			return flxfm_rest_svc( FLXFM_Files_Service::search( $path, (string) ( $p['q'] ?? '' ), ! empty( $p['content'] ) ) );
 
 		case 'zip':
-			$paths = flxfm_paths_param( $p['paths'] ?? array() );
-			$name  = (string) ( $p['name'] ?? '' );
-			if ( '' === $name ) {
-				$name = 1 === count( $paths ) ? basename( (string) flxfm_clean( $paths[0] ) ) . '.zip' : 'archive.zip';
-			}
-			if ( ! flxfm_valid_name( $name ) ) {
-				return flxfm_rest_out( FLXFM_FS::err( 'name', __( 'Invalid name.', 'flx-files' ) ) );
-			}
-			if ( ! preg_match( '/\.zip$/i', $name ) ) {
-				$name .= '.zip';
-			}
-			$dir = flxfm_clean( (string) ( $p['dir'] ?? '' ) );
-			if ( is_wp_error( $dir ) ) {
-				return flxfm_rest_out( $dir );
-			}
-			$r = FLXFM_FS::zip( $paths, ( '' === $dir ? '' : $dir . '/' ) . $name );
-			if ( ! is_wp_error( $r ) ) {
-				$r = array( 'item' => $r['item'] );
-			}
-			return flxfm_rest_out( $r );
+			$r = FLXFM_Files_Service::zip( flxfm_paths_param( $p['paths'] ?? array() ), (string) ( $p['name'] ?? '' ), (string) ( $p['dir'] ?? '' ) );
+			return flxfm_rest_out( is_wp_error( $r ) ? $r : array( 'item' => $r->to_rest() ) );
 
 		case 'unzip':
-			return flxfm_rest_out( FLXFM_FS::unzip( $path, isset( $p['dest'] ) ? (string) $p['dest'] : null ) );
+			return flxfm_rest_svc( FLXFM_Files_Service::unzip( $path, isset( $p['dest'] ) ? (string) $p['dest'] : null ) );
 
 		case 'versions':
-			return flxfm_rest_out( array( 'versions' => flxfm_versions( (string) flxfm_clean( $path ) ) ) );
+			return flxfm_rest_out( array( 'versions' => FLXFM_Files_Service::versions_rest( $path ) ) );
 
 		case 'version':
-			$c = flxfm_version_read( (string) flxfm_clean( $path ), (string) ( $p['id'] ?? '' ) );
+			$c = FLXFM_Files_Service::version_content( $path, (string) ( $p['id'] ?? '' ) );
 			return flxfm_rest_out( is_wp_error( $c ) ? $c : array( 'content' => $c ) );
 
 		case 'revert':
-			$c = flxfm_version_read( (string) flxfm_clean( $path ), (string) ( $p['id'] ?? '' ) );
-			if ( is_wp_error( $c ) ) {
-				return flxfm_rest_out( $c );
-			}
-			$r = FLXFM_FS::write( $path, $c );
-			if ( ! is_wp_error( $r ) ) {
-				flxfm_log( 'revert', $r['path'] );
-			}
-			return flxfm_rest_out( $r );
+			return flxfm_rest_svc( FLXFM_Files_Service::revert( $path, (string) ( $p['id'] ?? '' ) ) );
 
 		case 'usage':
-			return flxfm_rest_out( array( 'disk' => FLXFM_FS::disk( ! empty( $p['force'] ) ) ) );
+			return flxfm_rest_out( array( 'disk' => FLXFM_Files_Service::disk( ! empty( $p['force'] ) )->to_rest() ) );
+
 		case 'trash_list':
-			return flxfm_rest_out( array( 'items' => flxfm_trash_list(), 'days' => (int) $s['trash_days'] ) );
+			return flxfm_rest_svc( FLXFM_Files_Service::trash_list() );
 
 		case 'restore':
-			return flxfm_rest_out(
-				flxfm_each(
-					flxfm_paths_param( $p['ids'] ?? array() ),
-					'flxfm_trash_restore'
-				)
-			);
+			return flxfm_rest_svc( FLXFM_Files_Service::restore( flxfm_paths_param( $p['ids'] ?? array() ) ) );
 
 		case 'purge':
-			if ( ! empty( $p['all'] ) ) {
-				return flxfm_rest_out( array( 'removed' => flxfm_trash_purge( true ) ) );
-			}
-			return flxfm_rest_out( flxfm_each( flxfm_paths_param( $p['ids'] ?? array() ), 'flxfm_trash_delete' ) );
+			$r = FLXFM_Files_Service::purge( flxfm_paths_param( $p['ids'] ?? array() ), ! empty( $p['all'] ) );
+			return flxfm_rest_out( ! empty( $p['all'] ) ? $r->to_rest_all() : $r->to_rest() );
 
 		case 'log':
-			return flxfm_rest_out(
-				flxfm_log_list(
-					array(
-						'path'  => (string) ( $p['filter_path'] ?? '' ),
-						'via'   => sanitize_key( (string) ( $p['via'] ?? '' ) ),
-						'page'  => (int) ( $p['page'] ?? 1 ),
-						'limit' => 50,
-					)
-				)
-			);
+			$page  = max( 1, (int) ( $p['page'] ?? 1 ) );
+			$entry = FLXFM_Files_Service::log( (string) ( $p['filter_path'] ?? '' ), sanitize_key( (string) ( $p['via'] ?? '' ) ), ( $page - 1 ) * 50, 50 );
+			return flxfm_rest_out( $entry->rest );
 
 		case 'settings':
 			if ( isset( $p['settings'] ) && is_array( $p['settings'] ) ) {
-				$s = flxfm_save_settings( $p['settings'] );
-				flxfm_log( 'settings', '' );
+				FLXFM_Files_Service::update_settings( $p['settings'] );
 			}
-			return flxfm_rest_out( array( 'settings' => $s ) );
+			return flxfm_rest_out( array( 'settings' => flxfm_settings() ) );
 
 		case 'share':
-			$rel = flxfm_clean( $path );
-			if ( is_wp_error( $rel ) ) {
-				return flxfm_rest_out( $rel );
-			}
-			if ( ! empty( $p['on'] ) && ! flxfm_shareable( $rel ) ) {
-				return flxfm_rest_out( FLXFM_FS::err( 'share', __( 'Only folders inside the uploads folder can be shared on the site.', 'flx-files' ) ) );
-			}
-			$list = array_values( array_diff( (array) $s['shared'], array( $rel ) ) );
-			if ( ! empty( $p['on'] ) ) {
-				$list[] = $rel;
-			}
-			flxfm_save_settings( array( 'shared' => $list ) );
-			flxfm_log( empty( $p['on'] ) ? 'unshare' : 'share', $rel );
-			return flxfm_rest_out( array( 'shared' => ! empty( $p['on'] ), 'shortcode' => flxfm_shortcode_for( $rel ) ) );
+			return flxfm_rest_svc( FLXFM_Files_Service::share( $path, ! empty( $p['on'] ) ) );
 
 		case 'ai_explain':
+			return flxfm_rest_svc( FLXFM_Files_Service::ai_explain( $path, isset( $p['content'] ) ? (string) $p['content'] : null, (string) ( $p['selection'] ?? '' ) ) );
+
 		case 'ai_edit':
-			return flxfm_rest_out( flxfm_ai_run( $op, $path, $p ) );
+			return flxfm_rest_svc( FLXFM_Files_Service::ai_edit( $path, isset( $p['content'] ) ? (string) $p['content'] : null, (string) ( $p['prompt'] ?? '' ) ) );
 	}
 	return flxfm_rest_out( FLXFM_FS::err( 'op', __( 'Unknown action.', 'flx-files' ) ) );
 }
