@@ -553,9 +553,10 @@ function flxsm_query_posts( array $f ) {
 	$page  = max( 1, (int) ( $f['page'] ?? 1 ) );
 	$order = ! empty( $f['asc'] ) ? 'ASC' : 'DESC';
 	$sqlc  = "SELECT COUNT(*) FROM {$pt} p WHERE {$w}";
+	$off   = isset( $f['offset'] ) ? max( 0, (int) $f['offset'] ) : ( $page - 1 ) * $per;
 	$sql   = "SELECT p.* FROM {$pt} p WHERE {$w} ORDER BY {$timecol} {$order}, p.id {$order} LIMIT %d OFFSET %d";
 	$total = (int) ( $args ? $wpdb->get_var( $wpdb->prepare( $sqlc, $args ) ) : $wpdb->get_var( $sqlc ) ); // phpcs:ignore WordPress.DB
-	$rows  = $wpdb->get_results( $wpdb->prepare( $sql, array_merge( $args, array( $per, ( $page - 1 ) * $per ) ) ), ARRAY_A ); // phpcs:ignore WordPress.DB
+	$rows  = $wpdb->get_results( $wpdb->prepare( $sql, array_merge( $args, array( $per, $off ) ) ), ARRAY_A ); // phpcs:ignore WordPress.DB
 	return array(
 		'total' => $total,
 		'page'  => $page,

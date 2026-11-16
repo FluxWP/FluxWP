@@ -1,0 +1,3 @@
+query FlxSocialConnectUrl($for: String!) {
+  flxSocialConnectUrl(for: $for)
+}

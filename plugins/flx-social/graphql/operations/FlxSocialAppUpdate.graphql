@@ -1,0 +1,6 @@
+mutation FlxSocialAppUpdate($input: FlxSocialAppUpdateInput!) {
+  flxSocialAppUpdate(input: $input) {
+    apps { id ready fields { key label secret value isSet placeholder optional } }
+    errors { code message field }
+  }
+}

@@ -1,0 +1,13 @@
+query FlxSocialStats($days: Int) {
+  flxSocialStats(days: $days) {
+    days
+    lastMetrics { timestamp }
+    totals { published failed scheduled pending drafts engagement views followers followersDelta successRate }
+    byDay { day networks { provider count } }
+    byNetwork { provider published failed engagement views }
+    followers { accountId name provider avatar now delta series { day count } }
+    top { targetId postId provider account title engagement views url at { timestamp } }
+    upcoming { ...FlxSocialPostRow }
+    errors { targetId postId account provider error at { timestamp } }
+  }
+}

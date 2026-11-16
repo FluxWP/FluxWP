@@ -5,3 +5,7 @@ Gönderi, hesap ve onay uçları `flx-social/v1` altındadır (yetki `flxsm_post
 `GET /wp-json/flx-social/v1/calendar` — bu ay (veya `from`/`to` unix) içindeki zamanlanan ve yayımlanan gönderiler. `page`, `per_page`.
 
 Medya yazarı uygulama bileşeni `flxsm-composer` (sonra). Şimdilik panel yedeği `admin.php?page=flx-social`.
+
+## GraphQL
+
+Aynı işler `/graphql` üzerinden de yapılır (0.3.0): bkz. [GRAPHQL.md](GRAPHQL.md). REST uçları geçiş süresince çalışır.

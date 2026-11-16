@@ -18,6 +18,9 @@ paket GraphQL'e geçerken taşınır (geçiş süresince REST de çalışır).
 | PWA protokol uçları: `admin-ajax.php?action=flxa_manifest`, `flxa_sw`, `flxa_offline`, `flxa_splash`, `flxa_auth` | flx-admin | Tarayıcı ve service worker'ın beklediği dosya/yanıt biçimi (manifest, JS, HTML, görsel) ve oturum köprüsü; oturum kontrolünden önce çalışır | PWA ayarları (`pwa`, `pwaName`, `pwaShort`) `flxAdminSettings` içinde |
 | WooCommerce Store API (sepet / checkout) | flx-commerce, flx-donate | Gateway'ler Store API'ye bağlı (EsnekPOS `PaymentContext`, iyzico) | `flxCart` + `flxCart*` mutation'ları (Flux GraphQL 0.3.0) içeride `rest_do_request` ile Store API'yi çağırır; checkout (ödeme) `POST /wc/store/v1/checkout`'ta kalır. Bkz. `SEPET.md` |
 | Flux SEO `flxseo_audit_tick` (arka plan denetim tetiği, nopriv) | flx-seo | Hostinger'da WP cron tetiklenmiyor; loopback isteği, jetonla doğrulanır | Denetim durumu `flxSeoAuditHistory.running`, çalıştırma `flxSeoAuditRun` |
+| Flux Social OAuth (`/flx-social/v1/oauth/start`, `callback/{app}`, `pick/{key}`) | flx-social | Ağ tarayıcıyı bu adrese yönlendirir (standart OAuth); seçim adımı aynı kısa ömürlü kayda bağlı | `flxSocialConnectUrl` başlangıç adresini verir; dönüş `#/accounts?…` ekrana |
+| Flux Social dış zamanlayıcı `/flx-social/v1/tick` | flx-social | Hostinger cron'u anahtarlı adresi çağırır, oturum yok | Açık panel `flxSocialTickRun` ile aynı servisi çağırır |
+| Flux Social dosya yükleme | flx-social | Ortak `/flx/v1/upload` (bağlam `flx-social/media`); GraphQL'de multipart yok | `flxSocialMediaAdd(uploadId)` |
 | FluxWP/updater, FluxWP/whatsapp-api | — | WordPress eklentisi değil, ayrı servis | Kapsam dışı |
 | FluxWP/quiz (flx-quiz, flx-preset-arifiye) | — | Ahmet kararı: dokunulmaz | Kapsam dışı |
 | Blok editörü iç REST uçları: `fxb-design-tokens/v1` (Stil Kütüphanesi), `kbp/v1`, `fxb-lottieanimation/v1`, `fxb-vector/v1`, form entegrasyonları (`fxb-mailerlite/v1`, `fxb-fluentcrm/v1`, `fxb-activecampaign/v1`, `fxb-getresponse/v1`), header/navigasyon/gelişmiş form otomatik taslak | flx-blocks | Fork'un editör içi kodu (plan §5 Faz 4: editöre dokunulmaz); yalnız editör ve Stil Kütüphanesi uygulaması çağırır | İçerik `flxBlocks`, kütüphane ve pano GraphQL'de |
@@ -36,6 +39,7 @@ Kaldırılma koşulu olan uçlar. Koşul gerçekleşince satır silinir, uç kal
 | Blok formu gönderimi: admin-ajax `fxb_process_ajax_submit`, `fxb_process_advanced_form_submit` | flx-blocks | Form gönderimi flx-forms paketinin işi | flx-forms GraphQL PR'ı (`flxFormSubmit`), docs/flx-blocks/GRAPHQL.md |
 | FluxApp OAuth (`/oauth/*`), OTP (`/otp/*`), telefon (`/me/phone*`), cihazlar (`/devices*`), ayar köprüsü (`/settings*`), marka (`/app/brand`) | flx-app | OAuth/OTP protokol uçları; cihaz ve ayar köprüsü ekran akışı yok | Bootstrap, me, sync, config, manifest, dashboard, prefs, oturum GraphQL'de (`docs/flx-app/GRAPHQL.md`) |
 | FluxApp bootstrap/me/sync/config/manifest/dashboard/prefs/session REST uçları | flx-app | Mağazadaki eski uygulama sürümleri | Faz 7 (satır 1 ile birlikte kalkar) |
+| Flux Social `/flx-social/v1/calendar` ve FluxApp modül kimliği `social` | flx-social | FluxApp eski sürümleri bu uca ve eski modül kimliğine bağlı (yeni kimlik `flxsm-social`) | En düşük desteklenen uygulama sürümü GraphQL istemcisine geçince |
 
 ## Satır ekleme
 

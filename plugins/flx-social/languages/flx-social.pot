@@ -1,6 +1,156 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: en_US\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Social media: prepare posts"
+msgstr ""
+
+msgid "Social media: publish and approve"
+msgstr ""
+
+msgid "Social media: accounts and settings"
+msgstr ""
+
+msgid "Social Media"
+msgstr ""
+
+msgid "Social Media requires JavaScript."
+msgstr ""
+
+msgid "New view"
+msgstr ""
+
+msgid "Flux AI & MCP is not installed or no key has been entered."
+msgstr ""
+
+msgid "Could not read the AI response, please try again."
+msgstr ""
+
+msgid "Social media"
+msgstr ""
+
+msgid "Open"
+msgstr ""
+
+msgid "Database tables"
+msgstr ""
+
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
+msgstr ""
+
+msgid "Tables are ready."
+msgstr ""
+
+msgid "Key encryption"
+msgstr ""
+
+msgid "Keys and tokens are stored encrypted (sodium)."
+msgstr ""
+
+msgid "The PHP sodium extension is off; keys are stored with a weaker method. Turn on sodium under Hostinger › PHP extensions."
+msgstr ""
+
+msgid "Network apps"
+msgstr ""
+
+msgid "Keys entered: %s."
+msgstr ""
+
+msgid "No network app keys entered. Social Media › Settings › Apps."
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+msgid "Connected accounts"
+msgstr ""
+
+msgid "No accounts connected yet."
+msgstr ""
+
+msgid "Accounts"
+msgstr ""
+
+msgid "Accounts that need reconnecting: %s."
+msgstr ""
+
+msgid "%d accounts connected and active."
+msgstr ""
+
+msgid "Scheduled posts"
+msgstr ""
+
+msgid "External per-minute trigger is running."
+msgstr ""
+
+msgid "%d posts have been waiting for more than 5 minutes. Add the trigger URL from Settings › General to cron-job.org (every minute)."
+msgstr ""
+
+msgid "Posts are processed via WP-Cron and background requests; to publish on time, adding the trigger URL from Settings › General to cron-job.org (every minute) is recommended."
+msgstr ""
+
+msgid "The trigger has never run. Add the trigger URL from Settings › General to cron-job.org (every minute)."
+msgstr ""
+
+msgid "Background request error:"
+msgstr ""
+
+msgid "Failed shares"
+msgstr ""
+
+msgid "%d shares failed in the last 7 days. Posts › Failed."
+msgstr ""
+
+msgid "No failed shares in the last 7 days."
+msgstr ""
+
+msgid "Media URLs"
+msgstr ""
+
+msgid "Instagram, TikTok and Facebook fetch images from the site's HTTPS address."
+msgstr ""
+
+msgid "The site is not HTTPS; Instagram/TikTok/Facebook cannot fetch images and videos."
+msgstr ""
+
+msgid "Files folder"
+msgstr ""
+
+msgid "wp-content/uploads/flxsm is writable (JPEG copies for Instagram)."
+msgstr ""
+
+msgid "wp-content/uploads/flxsm is not writable; PNG/WebP images cannot be sent to Instagram."
+msgstr ""
+
+msgid "AI writing help"
+msgstr ""
+
+msgid "Flux AI ready: writing, shortening, adapting to networks."
+msgstr ""
+
+msgid "Flux AI & MCP is not installed or has no key; AI buttons are hidden, sharing still works."
+msgstr ""
+
+msgid "Account or post not found."
+msgstr ""
+
+msgid "Account is off."
+msgstr ""
+
+msgid "The connection expired; reconnect it under Accounts."
+msgstr ""
+
+msgid "The post was published but the first comment could not be added: %s"
+msgstr ""
+
+msgid "Only a failed target can be retried."
+msgstr ""
+
+msgid "This target is not published on the network."
+msgstr ""
+
+msgid "Account not found."
+msgstr ""
+
 msgid "Draft"
 msgstr ""
 
@@ -49,9 +199,6 @@ msgstr ""
 msgid "Menu"
 msgstr ""
 
-msgid "Social Media"
-msgstr ""
-
 msgid "New post"
 msgstr ""
 
@@ -62,12 +209,6 @@ msgid "Posts"
 msgstr ""
 
 msgid "Calendar"
-msgstr ""
-
-msgid "Accounts"
-msgstr ""
-
-msgid "Settings"
 msgstr ""
 
 msgid "{n} posts with errors"
@@ -850,9 +991,6 @@ msgstr ""
 msgid "Post"
 msgstr ""
 
-msgid "Open"
-msgstr ""
-
 msgid "Retry"
 msgstr ""
 
@@ -1042,9 +1180,6 @@ msgstr ""
 msgid "Save signature"
 msgstr ""
 
-msgid "Scheduled posts"
-msgstr ""
-
 msgid "WP-Cron is unreliable on Hostinger, so scheduled posts should be triggered from outside every minute. Create a job on cron-job.org (free) that calls this URL every minute. It also runs on its own while the panel is open and when a post is saved."
 msgstr ""
 
@@ -1216,138 +1351,6 @@ msgstr ""
 msgid "No entries."
 msgstr ""
 
-msgid "Social Media requires JavaScript."
-msgstr ""
-
-msgid "Flux AI & MCP is not installed or no key has been entered."
-msgstr ""
-
-msgid "Could not read the AI response, please try again."
-msgstr ""
-
-msgid "Social media"
-msgstr ""
-
-msgid "Database tables"
-msgstr ""
-
-msgid "Missing table: %s. Deactivate and reactivate the plugin."
-msgstr ""
-
-msgid "Tables are ready."
-msgstr ""
-
-msgid "Key encryption"
-msgstr ""
-
-msgid "Keys and tokens are stored encrypted (sodium)."
-msgstr ""
-
-msgid "The PHP sodium extension is off; keys are stored with a weaker method. Turn on sodium under Hostinger › PHP extensions."
-msgstr ""
-
-msgid "Network apps"
-msgstr ""
-
-msgid "Keys entered: %s."
-msgstr ""
-
-msgid "No network app keys entered. Social Media › Settings › Apps."
-msgstr ""
-
-msgid "Connected accounts"
-msgstr ""
-
-msgid "No accounts connected yet."
-msgstr ""
-
-msgid "Accounts that need reconnecting: %s."
-msgstr ""
-
-msgid "%d accounts connected and active."
-msgstr ""
-
-msgid "External per-minute trigger is running."
-msgstr ""
-
-msgid "%d posts have been waiting for more than 5 minutes. Add the trigger URL from Settings › General to cron-job.org (every minute)."
-msgstr ""
-
-msgid "Posts are processed via WP-Cron and background requests; to publish on time, adding the trigger URL from Settings › General to cron-job.org (every minute) is recommended."
-msgstr ""
-
-msgid "The trigger has never run. Add the trigger URL from Settings › General to cron-job.org (every minute)."
-msgstr ""
-
-msgid "Background request error:"
-msgstr ""
-
-msgid "Failed shares"
-msgstr ""
-
-msgid "%d shares failed in the last 7 days. Posts › Failed."
-msgstr ""
-
-msgid "No failed shares in the last 7 days."
-msgstr ""
-
-msgid "Media URLs"
-msgstr ""
-
-msgid "Instagram, TikTok and Facebook fetch images from the site's HTTPS address."
-msgstr ""
-
-msgid "The site is not HTTPS; Instagram/TikTok/Facebook cannot fetch images and videos."
-msgstr ""
-
-msgid "Files folder"
-msgstr ""
-
-msgid "wp-content/uploads/flxsm is writable (JPEG copies for Instagram)."
-msgstr ""
-
-msgid "wp-content/uploads/flxsm is not writable; PNG/WebP images cannot be sent to Instagram."
-msgstr ""
-
-msgid "AI writing help"
-msgstr ""
-
-msgid "Flux AI ready: writing, shortening, adapting to networks."
-msgstr ""
-
-msgid "Flux AI & MCP is not installed or has no key; AI buttons are hidden, sharing still works."
-msgstr ""
-
-msgid "Account or post not found."
-msgstr ""
-
-msgid "Account is off."
-msgstr ""
-
-msgid "The connection expired; reconnect it under Accounts."
-msgstr ""
-
-msgid "The post was published but the first comment could not be added: %s"
-msgstr ""
-
-msgid "Only a failed target can be retried."
-msgstr ""
-
-msgid "This target is not published on the network."
-msgstr ""
-
-msgid "Account not found."
-msgstr ""
-
-msgid "Social media: prepare posts"
-msgstr ""
-
-msgid "Social media: publish and approve"
-msgstr ""
-
-msgid "Social media: accounts and settings"
-msgstr ""
-
 msgid "Unknown network."
 msgstr ""
 
@@ -1430,18 +1433,6 @@ msgid "You do not have permission for this action."
 msgstr ""
 
 msgid "Record not found."
-msgstr ""
-
-msgid "You cannot change this post."
-msgstr ""
-
-msgid "You cannot delete this post."
-msgstr ""
-
-msgid "Could not delete on some networks; the post stays in the list."
-msgstr ""
-
-msgid "%s (copy)"
 msgstr ""
 
 msgid "You do not have permission to upload files."
@@ -1615,47 +1606,1115 @@ msgstr ""
 msgid "video could not be processed"
 msgstr ""
 
-msgid "Nothing this month"
+msgid "You cannot change this post."
 msgstr ""
 
-msgid "Delete this post?"
+msgid "You cannot delete this post."
 msgstr ""
 
-msgid "Search posts"
+msgid "Could not delete on some networks; the post stays in the list."
 msgstr ""
 
-msgid "Account enabled"
+msgid "%s (copy)"
 msgstr ""
 
-msgid "Open the panel to connect an account."
+msgid "Where a post is in its life."
 msgstr ""
 
-msgid "Account disabled"
+msgid "Being prepared."
 msgstr ""
 
-msgid "No accounts"
+msgid "Waiting for approval."
 msgstr ""
 
-msgid "Note"
+msgid "Will be shared at its time."
 msgstr ""
 
-msgid "Review"
+msgid "Being shared now."
 msgstr ""
 
-msgid "Approved"
+msgid "Shared on every account."
 msgstr ""
 
-msgid "Open in panel"
+msgid "Shared on some accounts, failed on others."
 msgstr ""
 
-msgid "Deleted"
+msgid "Could not be shared."
 msgstr ""
 
-msgid "New posts are composed in the media composer."
+msgid "Called off."
 msgstr ""
 
-msgid "Scheduled and published posts show up here."
+msgid "State of a post on one account."
 msgstr ""
 
-msgid "Social media management within the site: account linking (keys from panel), content per account, scheduling, network edit/delete, calendar, dashboard, Flux AI writing assistance and MCP tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp."
+msgid "Waiting for its time."
+msgstr ""
+
+msgid "Shared."
+msgstr ""
+
+msgid "Deleted on the network."
+msgstr ""
+
+msgid "Connection state of an account."
+msgstr ""
+
+msgid "Connected."
+msgstr ""
+
+msgid "Switched off in the panel."
+msgstr ""
+
+msgid "The connection expired; connect again."
+msgstr ""
+
+msgid "A state change of a post."
+msgstr ""
+
+msgid "Keep as a draft."
+msgstr ""
+
+msgid "Send for approval."
+msgstr ""
+
+msgid "Share at the scheduled time."
+msgstr ""
+
+msgid "Share now."
+msgstr ""
+
+msgid "Approve and share."
+msgstr ""
+
+msgid "Send back to draft with a note."
+msgstr ""
+
+msgid "Call off."
+msgstr ""
+
+msgid "An action on many posts."
+msgstr ""
+
+msgid "Back to draft."
+msgstr ""
+
+msgid "Schedule."
+msgstr ""
+
+msgid "Delete from the panel."
+msgstr ""
+
+msgid "What the writing assistant does."
+msgstr ""
+
+msgid "Write from an idea."
+msgstr ""
+
+msgid "Fix and polish."
+msgstr ""
+
+msgid "Make shorter."
+msgstr ""
+
+msgid "Suggest hashtags."
+msgstr ""
+
+msgid "A separate text per network."
+msgstr ""
+
+msgid "Translate."
+msgstr ""
+
+msgid "What a network can do."
+msgstr ""
+
+msgid "Text posts."
+msgstr ""
+
+msgid "Images."
+msgstr ""
+
+msgid "Videos."
+msgstr ""
+
+msgid "GIFs."
+msgstr ""
+
+msgid "Longest text (characters)."
+msgstr ""
+
+msgid "Most images in one post."
+msgstr ""
+
+msgid "Most videos in one post."
+msgstr ""
+
+msgid "Images and videos together."
+msgstr ""
+
+msgid "A post needs an image or video."
+msgstr ""
+
+msgid "A shared post can be edited on the network."
+msgstr ""
+
+msgid "A shared post can be deleted on the network."
+msgstr ""
+
+msgid "A first comment can be added."
+msgstr ""
+
+msgid "The network reports views and likes."
+msgstr ""
+
+msgid "Network options the composer shows (keys of FlxSocialOptions)."
+msgstr ""
+
+msgid "A social network FluxWP can share to."
+msgstr ""
+
+msgid "Network key: facebook, instagram, x …"
+msgstr ""
+
+msgid "Name."
+msgstr ""
+
+msgid "Brand colour."
+msgstr ""
+
+msgid "What the network can do."
+msgstr ""
+
+msgid "A board, playlist, group or choice with a name."
+msgstr ""
+
+msgid "Value."
+msgstr ""
+
+msgid "A connected social account (public profile only; tokens never leave the server)."
+msgstr ""
+
+msgid "Global ID."
+msgstr ""
+
+msgid "Account ID."
+msgstr ""
+
+msgid "Network key."
+msgstr ""
+
+msgid "How it is connected (evolution for WhatsApp)."
+msgstr ""
+
+msgid "Network name."
+msgstr ""
+
+msgid "Display name."
+msgstr ""
+
+msgid "Handle."
+msgstr ""
+
+msgid "Picture address."
+msgstr ""
+
+msgid "Connection state."
+msgstr ""
+
+msgid "When the connection ends; empty when it does not."
+msgstr ""
+
+msgid "WhatsApp: status or group."
+msgstr ""
+
+msgid "Pinterest boards."
+msgstr ""
+
+msgid "WhatsApp groups."
+msgstr ""
+
+msgid "YouTube playlists."
+msgstr ""
+
+msgid "The account has the paid tier (longer posts on X)."
+msgstr ""
+
+msgid "Last problem the network reported."
+msgstr ""
+
+msgid "What this account can do."
+msgstr ""
+
+msgid "When it was connected."
+msgstr ""
+
+msgid "An image, video or GIF of the media library."
+msgstr ""
+
+msgid "Attachment ID."
+msgstr ""
+
+msgid "File address."
+msgstr ""
+
+msgid "image, video or gif."
+msgstr ""
+
+msgid "File type."
+msgstr ""
+
+msgid "Size in bytes."
+msgstr ""
+
+msgid "Width in pixels."
+msgstr ""
+
+msgid "Height in pixels."
+msgstr ""
+
+msgid "Video length in seconds."
+msgstr ""
+
+msgid "Small picture address."
+msgstr ""
+
+msgid "File title."
+msgstr ""
+
+msgid "Alternative text."
+msgstr ""
+
+msgid "Network option."
+msgstr ""
+
+msgid "Hashtags of the account."
+msgstr ""
+
+msgid "Options of a post on one account (what the network asks for: link, board, privacy …)."
+msgstr ""
+
+msgid "Options of a post on one account."
+msgstr ""
+
+msgid "Numbers the network reported for a shared post."
+msgstr ""
+
+msgid "Views."
+msgstr ""
+
+msgid "Impressions."
+msgstr ""
+
+msgid "People reached."
+msgstr ""
+
+msgid "Clicks."
+msgstr ""
+
+msgid "Likes."
+msgstr ""
+
+msgid "Comments."
+msgstr ""
+
+msgid "Shares."
+msgstr ""
+
+msgid "Saves."
+msgstr ""
+
+msgid "A post on one account."
+msgstr ""
+
+msgid "Target ID."
+msgstr ""
+
+msgid "Account name."
+msgstr ""
+
+msgid "Account picture address."
+msgstr ""
+
+msgid "State on this account."
+msgstr ""
+
+msgid "Address of the shared post on the network."
+msgstr ""
+
+msgid "Why it failed."
+msgstr ""
+
+msgid "When it was shared."
+msgstr ""
+
+msgid "Network numbers."
+msgstr ""
+
+msgid "Own text for this account; empty uses the shared text."
+msgstr ""
+
+msgid "Own media for this account; empty uses the shared media."
+msgstr ""
+
+msgid "Network options."
+msgstr ""
+
+msgid "A post and the accounts it goes to."
+msgstr ""
+
+msgid "Post ID."
+msgstr ""
+
+msgid "State."
+msgstr ""
+
+msgid "Internal title."
+msgstr ""
+
+msgid "Shared text."
+msgstr ""
+
+msgid "Shared images and videos."
+msgstr ""
+
+msgid "Labels."
+msgstr ""
+
+msgid "When it will be shared."
+msgstr ""
+
+msgid "Share again every N days (0: once)."
+msgstr ""
+
+msgid "manual, ai, app, auto or duplicate."
+msgstr ""
+
+msgid "Note (the reason when a post was sent back)."
+msgstr ""
+
+msgid "Name of the person who prepared it."
+msgstr ""
+
+msgid "User ID of the author."
+msgstr ""
+
+msgid "User ID of the approver (0: none)."
+msgstr ""
+
+msgid "When it was created."
+msgstr ""
+
+msgid "When it was last changed."
+msgstr ""
+
+msgid "Accounts the post goes to."
+msgstr ""
+
+msgid "A page of posts."
+msgstr ""
+
+msgid "What the Social Media screen needs to start."
+msgstr ""
+
+msgid "Current user."
+msgstr ""
+
+msgid "Current user name."
+msgstr ""
+
+msgid "The user can publish and approve."
+msgstr ""
+
+msgid "The user can manage accounts and settings."
+msgstr ""
+
+msgid "The user can upload files."
+msgstr ""
+
+msgid "Networks."
+msgstr ""
+
+msgid "The writing assistant is ready (Flux AI)."
+msgstr ""
+
+msgid "The Flux Studio library can be used."
+msgstr ""
+
+msgid "Posts of people who cannot publish wait for approval."
+msgstr ""
+
+msgid "Text added to the end of posts."
+msgstr ""
+
+msgid "X plan."
+msgstr ""
+
+msgid "Site time zone."
+msgstr ""
+
+msgid "Site time zone offset in seconds."
+msgstr ""
+
+msgid "First day of the week (0: Sunday)."
+msgstr ""
+
+msgid "Plugin version."
+msgstr ""
+
+msgid "Numbers for the sidebar and the scheduler."
+msgstr ""
+
+msgid "Posts waiting for approval."
+msgstr ""
+
+msgid "Scheduled posts."
+msgstr ""
+
+msgid "Posts that failed."
+msgstr ""
+
+msgid "Accounts waiting to be shared now."
+msgstr ""
+
+msgid "Totals of the dashboard."
+msgstr ""
+
+msgid "Shared in the period."
+msgstr ""
+
+msgid "Failed in the period."
+msgstr ""
+
+msgid "Scheduled now."
+msgstr ""
+
+msgid "Waiting for approval now."
+msgstr ""
+
+msgid "Drafts."
+msgstr ""
+
+msgid "Likes, comments, shares and saves."
+msgstr ""
+
+msgid "Followers on every account."
+msgstr ""
+
+msgid "Change of followers in the period."
+msgstr ""
+
+msgid "Share of posts that succeeded (percent); empty without posts."
+msgstr ""
+
+msgid "Posts one network shared on a day."
+msgstr ""
+
+msgid "Posts."
+msgstr ""
+
+msgid "One day of the activity chart."
+msgstr ""
+
+msgid "Date (YYYY-MM-DD, site time zone)."
+msgstr ""
+
+msgid "Posts per network."
+msgstr ""
+
+msgid "Numbers of one network in the period."
+msgstr ""
+
+msgid "Failed."
+msgstr ""
+
+msgid "Followers of an account on one day."
+msgstr ""
+
+msgid "Date (YYYY-MM-DD)."
+msgstr ""
+
+msgid "Followers."
+msgstr ""
+
+msgid "Follower series of an account."
+msgstr ""
+
+msgid "Followers now."
+msgstr ""
+
+msgid "Change in the period."
+msgstr ""
+
+msgid "Daily counts."
+msgstr ""
+
+msgid "A post that did well."
+msgstr ""
+
+msgid "Title or start of the text."
+msgstr ""
+
+msgid "Address on the network."
+msgstr ""
+
+msgid "A recent sharing problem."
+msgstr ""
+
+msgid "What the network said."
+msgstr ""
+
+msgid "When."
+msgstr ""
+
+msgid "The dashboard of a period."
+msgstr ""
+
+msgid "Period in days (7, 30 or 90)."
+msgstr ""
+
+msgid "Totals."
+msgstr ""
+
+msgid "Posts per day."
+msgstr ""
+
+msgid "Numbers per network."
+msgstr ""
+
+msgid "Followers per account."
+msgstr ""
+
+msgid "Best posts."
+msgstr ""
+
+msgid "Next scheduled posts."
+msgstr ""
+
+msgid "Recent problems."
+msgstr ""
+
+msgid "When the network numbers were last read."
+msgstr ""
+
+msgid "Automatic sharing of new site content."
+msgstr ""
+
+msgid "On."
+msgstr ""
+
+msgid "Content types."
+msgstr ""
+
+msgid "Account IDs."
+msgstr ""
+
+msgid "Text template ({title}, {excerpt}, {link})."
+msgstr ""
+
+msgid "draft or schedule."
+msgstr ""
+
+msgid "Minutes to wait before sharing."
+msgstr ""
+
+msgid "Add the featured image."
+msgstr ""
+
+msgid "Settings of Social Media. Keys and tokens are not part of it."
+msgstr ""
+
+msgid "Add UTM tags to links of this site."
+msgstr ""
+
+msgid "Facebook and Instagram API version."
+msgstr ""
+
+msgid "Accounts have the paid tier on X."
+msgstr ""
+
+msgid "Posts per month on X (0: no limit)."
+msgstr ""
+
+msgid "inbox or direct."
+msgstr ""
+
+msgid "Pinterest sandbox."
+msgstr ""
+
+msgid "List LinkedIn pages."
+msgstr ""
+
+msgid "WhatsApp connection ID (0: default)."
+msgstr ""
+
+msgid "Automatic sharing."
+msgstr ""
+
+msgid "Content types that can be shared automatically."
+msgstr ""
+
+msgid "X plans."
+msgstr ""
+
+msgid "WhatsApp connections."
+msgstr ""
+
+msgid "Posts shared on X this month."
+msgstr ""
+
+msgid "When the scheduler last ran."
+msgstr ""
+
+msgid "Address an external cron calls. The key is hidden; flxSocialTickKeyReveal returns it."
+msgstr ""
+
+msgid "A field of a network app. A secret is never returned, only whether it is set."
+msgstr ""
+
+msgid "Field key."
+msgstr ""
+
+msgid "The value is a secret."
+msgstr ""
+
+msgid "Value; empty for a secret."
+msgstr ""
+
+msgid "The field has a value."
+msgstr ""
+
+msgid "Hint."
+msgstr ""
+
+msgid "The app works without it."
+msgstr ""
+
+msgid "A \"connect account\" button of an app."
+msgstr ""
+
+msgid "Key to pass to flxSocialConnectUrl."
+msgstr ""
+
+msgid "Button text."
+msgstr ""
+
+msgid "Connected from this site (WhatsApp), not through the network sign-in."
+msgstr ""
+
+msgid "A network developer app (Meta, Google, X …) and whether it is ready."
+msgstr ""
+
+msgid "App key."
+msgstr ""
+
+msgid "Address of the developer console."
+msgstr ""
+
+msgid "Fields."
+msgstr ""
+
+msgid "Callback address to enter in the console."
+msgstr ""
+
+msgid "Setup help."
+msgstr ""
+
+msgid "Connect buttons."
+msgstr ""
+
+msgid "Every required field is filled."
+msgstr ""
+
+msgid "A row of the activity log."
+msgstr ""
+
+msgid "Row ID."
+msgstr ""
+
+msgid "info, warning or error."
+msgstr ""
+
+msgid "Account ID (0: none)."
+msgstr ""
+
+msgid "What happened."
+msgstr ""
+
+msgid "A WhatsApp group or Status the connection can post to."
+msgstr ""
+
+msgid "WhatsApp ID."
+msgstr ""
+
+msgid "status or group."
+msgstr ""
+
+msgid "Already added as an account."
+msgstr ""
+
+msgid "A page of the media library."
+msgstr ""
+
+msgid "Media."
+msgstr ""
+
+msgid "All pages."
+msgstr ""
+
+msgid "A finished item of Flux Studio."
+msgstr ""
+
+msgid "Item ID."
+msgstr ""
+
+msgid "image or video."
+msgstr ""
+
+msgid "Title."
+msgstr ""
+
+msgid "The request it was made from."
+msgstr ""
+
+msgid "Media library ID (0: not imported yet)."
+msgstr ""
+
+msgid "The text written for one network."
+msgstr ""
+
+msgid "Text."
+msgstr ""
+
+msgid "A post on one account: own text, media and options."
+msgstr ""
+
+msgid "Own text; empty uses the shared text."
+msgstr ""
+
+msgid "Own media (attachment IDs); empty uses the shared media."
+msgstr ""
+
+msgid "A WhatsApp group or Status to add as an account."
+msgstr ""
+
+msgid "Text template."
+msgstr ""
+
+msgid "Minutes to wait."
+msgstr ""
+
+msgid "One field of a network app. An empty secret keeps the old one; __clear__ removes it."
+msgstr ""
+
+msgid "Connected accounts in the panel order."
+msgstr ""
+
+msgid "Numbers for the sidebar; \"due\" tells whether the scheduler has work. Light enough to poll."
+msgstr ""
+
+msgid "One post; empty when it does not exist."
+msgstr ""
+
+msgid "Global ID or post ID."
+msgstr ""
+
+msgid "Posts, newest first."
+msgstr ""
+
+msgid "Only these states."
+msgstr ""
+
+msgid "Only posts that go to this account."
+msgstr ""
+
+msgid "Only posts that go to this network."
+msgstr ""
+
+msgid "Words in the title, text or tags."
+msgstr ""
+
+msgid "Only this label."
+msgstr ""
+
+msgid "Only posts the current user prepared."
+msgstr ""
+
+msgid "Not before this time (Unix timestamp; publish, schedule or creation time)."
+msgstr ""
+
+msgid "Before this time (Unix timestamp)."
+msgstr ""
+
+msgid "Oldest first."
+msgstr ""
+
+msgid "The dashboard of the last 7, 30 or 90 days."
+msgstr ""
+
+msgid "Period: 7, 30 (default) or 90."
+msgstr ""
+
+msgid "Settings of Social Media."
+msgstr ""
+
+msgid "Network developer apps and whether they are ready. Secrets are never returned."
+msgstr ""
+
+msgid "The latest 200 rows of the activity log."
+msgstr ""
+
+msgid "Groups and Status the WhatsApp connection can post to."
+msgstr ""
+
+msgid "Address that starts connecting a network; open it in the browser (the sign-in happens on the network)."
+msgstr ""
+
+msgid "Key from FlxSocialAppConnect.for."
+msgstr ""
+
+msgid "Images and videos of the media library (40 per page), or the ones with the given IDs."
+msgstr ""
+
+msgid "Only these attachments."
+msgstr ""
+
+msgid "Search words."
+msgstr ""
+
+msgid "Page (from 1)."
+msgstr ""
+
+msgid "Finished items of Flux Studio (empty without Flux Studio)."
+msgstr ""
+
+msgid "Shared media (attachment IDs)."
+msgstr ""
+
+msgid "When to share (Unix timestamp); 0 clears it."
+msgstr ""
+
+msgid "Note."
+msgstr ""
+
+msgid "Accounts the post goes to (replaces the current ones)."
+msgstr ""
+
+msgid "State change to apply after saving: DRAFT, SUBMIT, SCHEDULE or NOW."
+msgstr ""
+
+msgid "manual, ai or app (when creating)."
+msgstr ""
+
+msgid "Creates a post."
+msgstr ""
+
+msgid "The new post."
+msgstr ""
+
+msgid "Changes a post. Fields left out stay as they are; accounts that already shared are not touched."
+msgstr ""
+
+msgid "The post after the change."
+msgstr ""
+
+msgid "Moves a post to another state: approve, send back, call off …"
+msgstr ""
+
+msgid "The state change."
+msgstr ""
+
+msgid "Reason (when sending back)."
+msgstr ""
+
+msgid "Deletes a post from the panel; with \"remote\" also on the networks that support it."
+msgstr ""
+
+msgid "Also delete on the networks."
+msgstr ""
+
+msgid "Global ID of the deleted post."
+msgstr ""
+
+msgid "One action on many posts; posts the user may not change are skipped."
+msgstr ""
+
+msgid "The action."
+msgstr ""
+
+msgid "How many posts changed."
+msgstr ""
+
+msgid "What went wrong, per post."
+msgstr ""
+
+msgid "Copies a post as a new draft."
+msgstr ""
+
+msgid "The copy."
+msgstr ""
+
+msgid "Tries a failed account again."
+msgstr ""
+
+msgid "Global ID or target ID."
+msgstr ""
+
+msgid "The post."
+msgstr ""
+
+msgid "Changes the text of a shared post on the network."
+msgstr ""
+
+msgid "New text; empty keeps it."
+msgstr ""
+
+msgid "Network options to change."
+msgstr ""
+
+msgid "Deletes a shared post on the network."
+msgstr ""
+
+msgid "Renames, switches off or on, or moves an account."
+msgstr ""
+
+msgid "Global ID or account ID."
+msgstr ""
+
+msgid "Switch off (true) or on (false)."
+msgstr ""
+
+msgid "Position."
+msgstr ""
+
+msgid "The account after the change."
+msgstr ""
+
+msgid "Saves the order of the accounts."
+msgstr ""
+
+msgid "Accounts in the new order."
+msgstr ""
+
+msgid "Removes an account. Its open posts are called off."
+msgstr ""
+
+msgid "Global ID of the removed account."
+msgstr ""
+
+msgid "Renews the connection and reads the account numbers again."
+msgstr ""
+
+msgid "The account."
+msgstr ""
+
+msgid "Adds WhatsApp groups or Status as accounts."
+msgstr ""
+
+msgid "Groups or Status to add."
+msgstr ""
+
+msgid "How many were added."
+msgstr ""
+
+msgid "Accounts after the change."
+msgstr ""
+
+msgid "Changes settings. Fields left out stay as they are."
+msgstr ""
+
+msgid "Facebook and Instagram API version (v25.0)."
+msgstr ""
+
+msgid "X plan key."
+msgstr ""
+
+msgid "WhatsApp connection ID."
+msgstr ""
+
+msgid "Settings after the change."
+msgstr ""
+
+msgid "Returns the full address an external cron calls (with the key). Managers only."
+msgstr ""
+
+msgid "Make a new key first (the old address stops working)."
+msgstr ""
+
+msgid "The address with its key."
+msgstr ""
+
+msgid "Saves the fields of a network app. An empty secret keeps the old one; the value __clear__ removes it."
+msgstr ""
+
+msgid "App key (meta, google, x …)."
+msgstr ""
+
+msgid "Fields to change."
+msgstr ""
+
+msgid "Apps after the change."
+msgstr ""
+
+msgid "Reads the numbers of the networks now."
+msgstr ""
+
+msgid "How many records were updated."
+msgstr ""
+
+msgid "The dashboard of the last 30 days."
+msgstr ""
+
+msgid "Runs the scheduler for a moment. The open panel calls it while posts are due."
+msgstr ""
+
+msgid "Steps done."
+msgstr ""
+
+msgid "Accounts still waiting."
+msgstr ""
+
+msgid "Writing help through Flux AI. \"texts\" has one text per network for ADAPT; \"text\" holds the result of the other modes."
+msgstr ""
+
+msgid "What to do."
+msgstr ""
+
+msgid "Current text."
+msgstr ""
+
+msgid "Idea to write from."
+msgstr ""
+
+msgid "Networks the text is for."
+msgstr ""
+
+msgid "Tone."
+msgstr ""
+
+msgid "Character limit."
+msgstr ""
+
+msgid "Language to translate to."
+msgstr ""
+
+msgid "The written text."
+msgstr ""
+
+msgid "A text per network (ADAPT)."
+msgstr ""
+
+msgid "Adds a file from an internet address to the media library."
+msgstr ""
+
+msgid "Cover image attachment (videos)."
+msgstr ""
+
+msgid "The new media."
+msgstr ""
+
+msgid "Adds a file sent to the upload endpoint (context flx-social/media) to the media library."
+msgstr ""
+
+msgid "Upload ID from the upload endpoint."
 msgstr ""

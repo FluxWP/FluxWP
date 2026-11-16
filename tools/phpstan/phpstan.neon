@@ -40,6 +40,7 @@ parameters:
     - ../../plugins/flx-seo/includes
     - ../../plugins/flx-wiki/includes
     - ../../plugins/flx-crm/includes
+    - ../../plugins/flx-social/includes
   paths:
     - ../../plugins/flx-graphql/flx-graphql.php
     - ../../plugins/flx-graphql/uninstall.php
@@ -89,6 +90,9 @@ parameters:
     # Flux CRM (Faz 1)
     - ../../plugins/flx-crm/includes/services
     - ../../plugins/flx-crm/includes/graphql
+    # Flux Social (Faz 1)
+    - ../../plugins/flx-social/includes/services
+    - ../../plugins/flx-social/includes/graphql
   excludePaths:
     - ../../plugins/flx-graphql/includes/flx-brand
   treatPhpDocTypesAsCertain: false

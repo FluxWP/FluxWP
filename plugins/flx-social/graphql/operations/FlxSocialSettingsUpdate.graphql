@@ -1,0 +1,6 @@
+mutation FlxSocialSettingsUpdate($input: FlxSocialSettingsUpdateInput!) {
+  flxSocialSettingsUpdate(input: $input) {
+    settings { approval signature xTier tickUrl auto { enabled postTypes accounts template mode delay image } }
+    errors { code message field }
+  }
+}

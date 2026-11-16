@@ -1587,6 +1587,312 @@ export const FlxSetupWizardUpdates: FlxOperation<T.FlxSetupWizardUpdatesMutation
   document: "mutation FlxSetupWizardUpdates {\n  flxSetupWizardUpdates(input: {  }) {\n    ok\n    error\n    items {\n      slug\n      name\n      from\n      to\n      icon\n      self\n    }\n    errors {\n      ...FlxSetupErrors\n    }\n  }\n}\n\nfragment FlxSetupErrors on FlxUserError {\n  code\n  message\n  field\n}",
 };
 
+/** mutation FlxSocialAccountDelete (flx-social, plugins/flx-social/graphql/operations/FlxSocialAccountDelete.graphql) */
+export const FlxSocialAccountDelete: FlxOperation<T.FlxSocialAccountDeleteMutation, T.FlxSocialAccountDeleteMutationVariables> = {
+  id: 'ac5bddd734508bac19a20d5d020bdbd2ec57e3dd9b351b65d12e009a3cf72068',
+  name: 'FlxSocialAccountDelete',
+  kind: 'mutation',
+  plugin: 'flx-social',
+  document: "mutation FlxSocialAccountDelete($input: FlxSocialAccountDeleteInput!) {\n  flxSocialAccountDelete(input: $input) {\n    deletedId\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxSocialAccountRefresh (flx-social, plugins/flx-social/graphql/operations/FlxSocialAccountRefresh.graphql) */
+export const FlxSocialAccountRefresh: FlxOperation<T.FlxSocialAccountRefreshMutation, T.FlxSocialAccountRefreshMutationVariables> = {
+  id: '9bec0a5cfe1a3cb3321b0913feb2586f8948d0fb81cdfa85c46c0d6c1d380492',
+  name: 'FlxSocialAccountRefresh',
+  kind: 'mutation',
+  plugin: 'flx-social',
+  document: "mutation FlxSocialAccountRefresh($input: FlxSocialAccountRefreshInput!) {\n  flxSocialAccountRefresh(input: $input) {\n    account {\n      ...FlxSocialAccountRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxSocialAccountRow on FlxSocialAccount {\n  id\n  databaseId\n  provider\n  via\n  network\n  name\n  username\n  avatar\n  status\n  expires {\n    timestamp\n  }\n  kind\n  premium\n  lastError\n  boards {\n    id\n    name\n  }\n  groups {\n    id\n    name\n  }\n  playlists {\n    id\n    name\n  }\n  caps {\n    ...FlxSocialCapsFields\n  }\n}\n\nfragment FlxSocialCapsFields on FlxSocialCaps {\n  text\n  image\n  video\n  gif\n  maxText\n  maxImages\n  maxVideos\n  mix\n  needsMedia\n  edit\n  delete\n  comment\n  metrics\n  options\n}",
+};
+
+/** mutation FlxSocialAccountReorder (flx-social, plugins/flx-social/graphql/operations/FlxSocialAccountReorder.graphql) */
+export const FlxSocialAccountReorder: FlxOperation<T.FlxSocialAccountReorderMutation, T.FlxSocialAccountReorderMutationVariables> = {
+  id: 'fb8b8e12765fec1841e78ad598cbabafad6ad06e26ae41571b78081081bb35d0',
+  name: 'FlxSocialAccountReorder',
+  kind: 'mutation',
+  plugin: 'flx-social',
+  document: "mutation FlxSocialAccountReorder($input: FlxSocialAccountReorderInput!) {\n  flxSocialAccountReorder(input: $input) {\n    accounts {\n      ...FlxSocialAccountRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxSocialAccountRow on FlxSocialAccount {\n  id\n  databaseId\n  provider\n  via\n  network\n  name\n  username\n  avatar\n  status\n  expires {\n    timestamp\n  }\n  kind\n  premium\n  lastError\n  boards {\n    id\n    name\n  }\n  groups {\n    id\n    name\n  }\n  playlists {\n    id\n    name\n  }\n  caps {\n    ...FlxSocialCapsFields\n  }\n}\n\nfragment FlxSocialCapsFields on FlxSocialCaps {\n  text\n  image\n  video\n  gif\n  maxText\n  maxImages\n  maxVideos\n  mix\n  needsMedia\n  edit\n  delete\n  comment\n  metrics\n  options\n}",
+};
+
+/** query FlxSocialAccounts (flx-social, plugins/flx-social/graphql/operations/FlxSocialAccounts.graphql) */
+export const FlxSocialAccounts: FlxOperation<T.FlxSocialAccountsQuery, T.FlxSocialAccountsQueryVariables> = {
+  id: 'd5344a4eab19621331d57cf42f8311cc30013ba6725f3a3151c4abc91894c6bd',
+  name: 'FlxSocialAccounts',
+  kind: 'query',
+  plugin: 'flx-social',
+  document: "query FlxSocialAccounts {\n  flxSocialAccounts {\n    ...FlxSocialAccountRow\n  }\n}\n\nfragment FlxSocialAccountRow on FlxSocialAccount {\n  id\n  databaseId\n  provider\n  via\n  network\n  name\n  username\n  avatar\n  status\n  expires {\n    timestamp\n  }\n  kind\n  premium\n  lastError\n  boards {\n    id\n    name\n  }\n  groups {\n    id\n    name\n  }\n  playlists {\n    id\n    name\n  }\n  caps {\n    ...FlxSocialCapsFields\n  }\n}\n\nfragment FlxSocialCapsFields on FlxSocialCaps {\n  text\n  image\n  video\n  gif\n  maxText\n  maxImages\n  maxVideos\n  mix\n  needsMedia\n  edit\n  delete\n  comment\n  metrics\n  options\n}",
+};
+
+/** mutation FlxSocialAccountUpdate (flx-social, plugins/flx-social/graphql/operations/FlxSocialAccountUpdate.graphql) */
+export const FlxSocialAccountUpdate: FlxOperation<T.FlxSocialAccountUpdateMutation, T.FlxSocialAccountUpdateMutationVariables> = {
+  id: 'ddde3fb7af5fc653690c8d162de6a4a70f367d608c25e10e234f43d2b2eeeecb',
+  name: 'FlxSocialAccountUpdate',
+  kind: 'mutation',
+  plugin: 'flx-social',
+  document: "mutation FlxSocialAccountUpdate($input: FlxSocialAccountUpdateInput!) {\n  flxSocialAccountUpdate(input: $input) {\n    account {\n      ...FlxSocialAccountRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxSocialAccountRow on FlxSocialAccount {\n  id\n  databaseId\n  provider\n  via\n  network\n  name\n  username\n  avatar\n  status\n  expires {\n    timestamp\n  }\n  kind\n  premium\n  lastError\n  boards {\n    id\n    name\n  }\n  groups {\n    id\n    name\n  }\n  playlists {\n    id\n    name\n  }\n  caps {\n    ...FlxSocialCapsFields\n  }\n}\n\nfragment FlxSocialCapsFields on FlxSocialCaps {\n  text\n  image\n  video\n  gif\n  maxText\n  maxImages\n  maxVideos\n  mix\n  needsMedia\n  edit\n  delete\n  comment\n  metrics\n  options\n}",
+};
+
+/** mutation FlxSocialAiWrite (flx-social, plugins/flx-social/graphql/operations/FlxSocialAiWrite.graphql) */
+export const FlxSocialAiWrite: FlxOperation<T.FlxSocialAiWriteMutation, T.FlxSocialAiWriteMutationVariables> = {
+  id: '3d420b1c8992d44b15a62c551e463f57a3ff6e9cb8a480d28e5ba6d956724b5a',
+  name: 'FlxSocialAiWrite',
+  kind: 'mutation',
+  plugin: 'flx-social',
+  document: "mutation FlxSocialAiWrite($input: FlxSocialAiWriteInput!) {\n  flxSocialAiWrite(input: $input) {\n    text\n    texts {\n      provider\n      text\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxSocialAppUpdate (flx-social, plugins/flx-social/graphql/operations/FlxSocialAppUpdate.graphql) */
+export const FlxSocialAppUpdate: FlxOperation<T.FlxSocialAppUpdateMutation, T.FlxSocialAppUpdateMutationVariables> = {
+  id: 'd152736fe8890c423eaa3d4481b02a64c2827c46b46be9b2f4111b313b3411e3',
+  name: 'FlxSocialAppUpdate',
+  kind: 'mutation',
+  plugin: 'flx-social',
+  document: "mutation FlxSocialAppUpdate($input: FlxSocialAppUpdateInput!) {\n  flxSocialAppUpdate(input: $input) {\n    apps {\n      id\n      ready\n      fields {\n        key\n        label\n        secret\n        value\n        isSet\n        placeholder\n        optional\n      }\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxSocialBoot (flx-social, plugins/flx-social/graphql/operations/FlxSocialBoot.graphql) */
+export const FlxSocialBoot: FlxOperation<T.FlxSocialBootQuery, T.FlxSocialBootQueryVariables> = {
+  id: '777e5e347a4e283420534a0c3123fcc967ba15ca3e8799e50a3dfd4105fdde68',
+  name: 'FlxSocialBoot',
+  kind: 'query',
+  plugin: 'flx-social',
+  document: "query FlxSocialBoot {\n  flxSocialConfig {\n    userId\n    userName\n    canPublish\n    canManage\n    canUpload\n    ai\n    studio\n    approval\n    signature\n    xTier\n    timezone\n    tzOffset\n    weekStart\n    version\n    networks {\n      id\n      label\n      color\n      caps {\n        ...FlxSocialCapsFields\n      }\n    }\n  }\n  flxSocialAccounts {\n    ...FlxSocialAccountRow\n  }\n  flxSocialCounts {\n    pending\n    scheduled\n    failed\n    due\n  }\n}\n\nfragment FlxSocialAccountRow on FlxSocialAccount {\n  id\n  databaseId\n  provider\n  via\n  network\n  name\n  username\n  avatar\n  status\n  expires {\n    timestamp\n  }\n  kind\n  premium\n  lastError\n  boards {\n    id\n    name\n  }\n  groups {\n    id\n    name\n  }\n  playlists {\n    id\n    name\n  }\n  caps {\n    ...FlxSocialCapsFields\n  }\n}\n\nfragment FlxSocialCapsFields on FlxSocialCaps {\n  text\n  image\n  video\n  gif\n  maxText\n  maxImages\n  maxVideos\n  mix\n  needsMedia\n  edit\n  delete\n  comment\n  metrics\n  options\n}",
+};
+
+/** query FlxSocialConnectUrl (flx-social, plugins/flx-social/graphql/operations/FlxSocialConnectUrl.graphql) */
+export const FlxSocialConnectUrl: FlxOperation<T.FlxSocialConnectUrlQuery, T.FlxSocialConnectUrlQueryVariables> = {
+  id: '7a97a59e91842fa3a8db49e219db99e0cc8df12bccaf04637a5cb01abd82b25f',
+  name: 'FlxSocialConnectUrl',
+  kind: 'query',
+  plugin: 'flx-social',
+  document: "query FlxSocialConnectUrl($for: String!) {\n  flxSocialConnectUrl(for: $for)\n}",
+};
+
+/** query FlxSocialCounts (flx-social, plugins/flx-social/graphql/operations/FlxSocialCounts.graphql) */
+export const FlxSocialCounts: FlxOperation<T.FlxSocialCountsQuery, T.FlxSocialCountsQueryVariables> = {
+  id: 'cefaf931508b3dfca6c7addc0f5c6e7e55091746577f16dcb1de6270fa7606ce',
+  name: 'FlxSocialCounts',
+  kind: 'query',
+  plugin: 'flx-social',
+  document: "query FlxSocialCounts {\n  flxSocialCounts {\n    pending\n    scheduled\n    failed\n    due\n  }\n}",
+};
+
+/** query FlxSocialLog (flx-social, plugins/flx-social/graphql/operations/FlxSocialLog.graphql) */
+export const FlxSocialLog: FlxOperation<T.FlxSocialLogQuery, T.FlxSocialLogQueryVariables> = {
+  id: '05849f5c15939169ff6d203b2ef91e4c8467f528073099294c6c4799af4422fe',
+  name: 'FlxSocialLog',
+  kind: 'query',
+  plugin: 'flx-social',
+  document: "query FlxSocialLog {\n  flxSocialLog {\n    databaseId\n    time {\n      timestamp\n    }\n    level\n    accountId\n    message\n  }\n}",
+};
+
+/** query FlxSocialMedia (flx-social, plugins/flx-social/graphql/operations/FlxSocialMedia.graphql) */
+export const FlxSocialMedia: FlxOperation<T.FlxSocialMediaQuery, T.FlxSocialMediaQueryVariables> = {
+  id: 'ef5f39879b17171c3946b6fe7f72b3ec1a072e805cecc6ab5ead805f804ffd5d',
+  name: 'FlxSocialMedia',
+  kind: 'query',
+  plugin: 'flx-social',
+  document: "query FlxSocialMedia($ids: [Int!], $search: String, $page: Int) {\n  flxSocialMedia(ids: $ids, search: $search, page: $page) {\n    pages\n    items {\n      ...FlxSocialMediaRow\n    }\n  }\n}\n\nfragment FlxSocialMediaRow on FlxSocialMedia {\n  databaseId\n  url\n  kind\n  mime\n  bytes\n  width\n  height\n  duration\n  thumb\n  name\n  alt\n}",
+};
+
+/** mutation FlxSocialMediaAdd (flx-social, plugins/flx-social/graphql/operations/FlxSocialMediaAdd.graphql) */
+export const FlxSocialMediaAdd: FlxOperation<T.FlxSocialMediaAddMutation, T.FlxSocialMediaAddMutationVariables> = {
+  id: '65c5355402f955e3c229ad9d455e6c81023d21f910725625c69d71b1676e95c6',
+  name: 'FlxSocialMediaAdd',
+  kind: 'mutation',
+  plugin: 'flx-social',
+  document: "mutation FlxSocialMediaAdd($input: FlxSocialMediaAddInput!) {\n  flxSocialMediaAdd(input: $input) {\n    media {\n      ...FlxSocialMediaRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxSocialMediaRow on FlxSocialMedia {\n  databaseId\n  url\n  kind\n  mime\n  bytes\n  width\n  height\n  duration\n  thumb\n  name\n  alt\n}",
+};
+
+/** mutation FlxSocialMediaImport (flx-social, plugins/flx-social/graphql/operations/FlxSocialMediaImport.graphql) */
+export const FlxSocialMediaImport: FlxOperation<T.FlxSocialMediaImportMutation, T.FlxSocialMediaImportMutationVariables> = {
+  id: '6be8bb6227b0ea3f5fb3a6b4cf402977622023b1544fde917e0bd16c72506afd',
+  name: 'FlxSocialMediaImport',
+  kind: 'mutation',
+  plugin: 'flx-social',
+  document: "mutation FlxSocialMediaImport($input: FlxSocialMediaImportInput!) {\n  flxSocialMediaImport(input: $input) {\n    media {\n      ...FlxSocialMediaRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxSocialMediaRow on FlxSocialMedia {\n  databaseId\n  url\n  kind\n  mime\n  bytes\n  width\n  height\n  duration\n  thumb\n  name\n  alt\n}",
+};
+
+/** query FlxSocialPost (flx-social, plugins/flx-social/graphql/operations/FlxSocialPost.graphql) */
+export const FlxSocialPost: FlxOperation<T.FlxSocialPostQuery, T.FlxSocialPostQueryVariables> = {
+  id: '17e002c255a2a86aa0d738a5603ec081a9c987125aa1ac32b6cbcd4ae376faff',
+  name: 'FlxSocialPost',
+  kind: 'query',
+  plugin: 'flx-social',
+  document: "query FlxSocialPost($id: ID!) {\n  flxSocialPost(id: $id) {\n    ...FlxSocialPostRow\n  }\n}\n\nfragment FlxSocialCapsFields on FlxSocialCaps {\n  text\n  image\n  video\n  gif\n  maxText\n  maxImages\n  maxVideos\n  mix\n  needsMedia\n  edit\n  delete\n  comment\n  metrics\n  options\n}\n\nfragment FlxSocialMediaRow on FlxSocialMedia {\n  databaseId\n  url\n  kind\n  mime\n  bytes\n  width\n  height\n  duration\n  thumb\n  name\n  alt\n}\n\nfragment FlxSocialOptionsFields on FlxSocialOptions {\n  title\n  link\n  board\n  privacy\n  igType\n  flxCategory\n  playlist\n  tiktokPrivacy\n  gbpTopic\n  gbpCta\n  gbpCtaUrl\n  waKind\n  waTo\n  firstComment\n  liVisibility\n  alt\n  thumbUrl\n  replySettings\n  eventTitle\n  eventStart\n  eventEnd\n  offerCode\n  madeForKids\n  notify\n  shorts\n  disableComment\n  disableDuet\n  disableStitch\n  aiGenerated\n  brandContent\n  brandOrganic\n  shareToFeed\n  autoMusic\n  tags\n}\n\nfragment FlxSocialPostRow on FlxSocialPost {\n  id\n  databaseId\n  status\n  title\n  content\n  tags\n  repeatDays\n  source\n  note\n  author\n  authorId\n  approvedBy\n  media {\n    ...FlxSocialMediaRow\n  }\n  scheduledAt {\n    timestamp\n    label\n  }\n  publishedAt {\n    timestamp\n    label\n  }\n  created {\n    timestamp\n  }\n  updated {\n    timestamp\n  }\n  targets {\n    ...FlxSocialTargetRow\n  }\n}\n\nfragment FlxSocialTargetRow on FlxSocialTarget {\n  id\n  databaseId\n  accountId\n  provider\n  account\n  avatar\n  status\n  remoteUrl\n  error\n  publishedAt {\n    timestamp\n    label\n  }\n  metrics {\n    views\n    impressions\n    reach\n    clicks\n    likes\n    comments\n    shares\n    saves\n  }\n  caps {\n    ...FlxSocialCapsFields\n  }\n  content\n  media {\n    ...FlxSocialMediaRow\n  }\n  options {\n    ...FlxSocialOptionsFields\n  }\n}",
+};
+
+/** mutation FlxSocialPostAct (flx-social, plugins/flx-social/graphql/operations/FlxSocialPostAct.graphql) */
+export const FlxSocialPostAct: FlxOperation<T.FlxSocialPostActMutation, T.FlxSocialPostActMutationVariables> = {
+  id: 'bad63e76be4a72da349259fd37da2b216637760e2043864da9ba72b10c722535',
+  name: 'FlxSocialPostAct',
+  kind: 'mutation',
+  plugin: 'flx-social',
+  document: "mutation FlxSocialPostAct($input: FlxSocialPostActInput!) {\n  flxSocialPostAct(input: $input) {\n    post {\n      ...FlxSocialPostRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxSocialCapsFields on FlxSocialCaps {\n  text\n  image\n  video\n  gif\n  maxText\n  maxImages\n  maxVideos\n  mix\n  needsMedia\n  edit\n  delete\n  comment\n  metrics\n  options\n}\n\nfragment FlxSocialMediaRow on FlxSocialMedia {\n  databaseId\n  url\n  kind\n  mime\n  bytes\n  width\n  height\n  duration\n  thumb\n  name\n  alt\n}\n\nfragment FlxSocialOptionsFields on FlxSocialOptions {\n  title\n  link\n  board\n  privacy\n  igType\n  flxCategory\n  playlist\n  tiktokPrivacy\n  gbpTopic\n  gbpCta\n  gbpCtaUrl\n  waKind\n  waTo\n  firstComment\n  liVisibility\n  alt\n  thumbUrl\n  replySettings\n  eventTitle\n  eventStart\n  eventEnd\n  offerCode\n  madeForKids\n  notify\n  shorts\n  disableComment\n  disableDuet\n  disableStitch\n  aiGenerated\n  brandContent\n  brandOrganic\n  shareToFeed\n  autoMusic\n  tags\n}\n\nfragment FlxSocialPostRow on FlxSocialPost {\n  id\n  databaseId\n  status\n  title\n  content\n  tags\n  repeatDays\n  source\n  note\n  author\n  authorId\n  approvedBy\n  media {\n    ...FlxSocialMediaRow\n  }\n  scheduledAt {\n    timestamp\n    label\n  }\n  publishedAt {\n    timestamp\n    label\n  }\n  created {\n    timestamp\n  }\n  updated {\n    timestamp\n  }\n  targets {\n    ...FlxSocialTargetRow\n  }\n}\n\nfragment FlxSocialTargetRow on FlxSocialTarget {\n  id\n  databaseId\n  accountId\n  provider\n  account\n  avatar\n  status\n  remoteUrl\n  error\n  publishedAt {\n    timestamp\n    label\n  }\n  metrics {\n    views\n    impressions\n    reach\n    clicks\n    likes\n    comments\n    shares\n    saves\n  }\n  caps {\n    ...FlxSocialCapsFields\n  }\n  content\n  media {\n    ...FlxSocialMediaRow\n  }\n  options {\n    ...FlxSocialOptionsFields\n  }\n}",
+};
+
+/** mutation FlxSocialPostBulkAct (flx-social, plugins/flx-social/graphql/operations/FlxSocialPostBulkAct.graphql) */
+export const FlxSocialPostBulkAct: FlxOperation<T.FlxSocialPostBulkActMutation, T.FlxSocialPostBulkActMutationVariables> = {
+  id: '9198337975631125c80b4d3144ff8c95c87f78bcced0a1239a914dfec0fe9053',
+  name: 'FlxSocialPostBulkAct',
+  kind: 'mutation',
+  plugin: 'flx-social',
+  document: "mutation FlxSocialPostBulkAct($input: FlxSocialPostBulkActInput!) {\n  flxSocialPostBulkAct(input: $input) {\n    done\n    issues\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxSocialPostCreate (flx-social, plugins/flx-social/graphql/operations/FlxSocialPostCreate.graphql) */
+export const FlxSocialPostCreate: FlxOperation<T.FlxSocialPostCreateMutation, T.FlxSocialPostCreateMutationVariables> = {
+  id: '6fbb3d188ae4f3ac1afb8bdb803de5afa89ad9d81f4597a97c0c5bf752c43cfc',
+  name: 'FlxSocialPostCreate',
+  kind: 'mutation',
+  plugin: 'flx-social',
+  document: "mutation FlxSocialPostCreate($input: FlxSocialPostCreateInput!) {\n  flxSocialPostCreate(input: $input) {\n    post {\n      ...FlxSocialPostRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxSocialCapsFields on FlxSocialCaps {\n  text\n  image\n  video\n  gif\n  maxText\n  maxImages\n  maxVideos\n  mix\n  needsMedia\n  edit\n  delete\n  comment\n  metrics\n  options\n}\n\nfragment FlxSocialMediaRow on FlxSocialMedia {\n  databaseId\n  url\n  kind\n  mime\n  bytes\n  width\n  height\n  duration\n  thumb\n  name\n  alt\n}\n\nfragment FlxSocialOptionsFields on FlxSocialOptions {\n  title\n  link\n  board\n  privacy\n  igType\n  flxCategory\n  playlist\n  tiktokPrivacy\n  gbpTopic\n  gbpCta\n  gbpCtaUrl\n  waKind\n  waTo\n  firstComment\n  liVisibility\n  alt\n  thumbUrl\n  replySettings\n  eventTitle\n  eventStart\n  eventEnd\n  offerCode\n  madeForKids\n  notify\n  shorts\n  disableComment\n  disableDuet\n  disableStitch\n  aiGenerated\n  brandContent\n  brandOrganic\n  shareToFeed\n  autoMusic\n  tags\n}\n\nfragment FlxSocialPostRow on FlxSocialPost {\n  id\n  databaseId\n  status\n  title\n  content\n  tags\n  repeatDays\n  source\n  note\n  author\n  authorId\n  approvedBy\n  media {\n    ...FlxSocialMediaRow\n  }\n  scheduledAt {\n    timestamp\n    label\n  }\n  publishedAt {\n    timestamp\n    label\n  }\n  created {\n    timestamp\n  }\n  updated {\n    timestamp\n  }\n  targets {\n    ...FlxSocialTargetRow\n  }\n}\n\nfragment FlxSocialTargetRow on FlxSocialTarget {\n  id\n  databaseId\n  accountId\n  provider\n  account\n  avatar\n  status\n  remoteUrl\n  error\n  publishedAt {\n    timestamp\n    label\n  }\n  metrics {\n    views\n    impressions\n    reach\n    clicks\n    likes\n    comments\n    shares\n    saves\n  }\n  caps {\n    ...FlxSocialCapsFields\n  }\n  content\n  media {\n    ...FlxSocialMediaRow\n  }\n  options {\n    ...FlxSocialOptionsFields\n  }\n}",
+};
+
+/** mutation FlxSocialPostDelete (flx-social, plugins/flx-social/graphql/operations/FlxSocialPostDelete.graphql) */
+export const FlxSocialPostDelete: FlxOperation<T.FlxSocialPostDeleteMutation, T.FlxSocialPostDeleteMutationVariables> = {
+  id: '501365bb59297864329d808e41b73469e0fca66f789c2838584ee8464787ae48',
+  name: 'FlxSocialPostDelete',
+  kind: 'mutation',
+  plugin: 'flx-social',
+  document: "mutation FlxSocialPostDelete($input: FlxSocialPostDeleteInput!) {\n  flxSocialPostDelete(input: $input) {\n    deletedId\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxSocialPostDuplicate (flx-social, plugins/flx-social/graphql/operations/FlxSocialPostDuplicate.graphql) */
+export const FlxSocialPostDuplicate: FlxOperation<T.FlxSocialPostDuplicateMutation, T.FlxSocialPostDuplicateMutationVariables> = {
+  id: '4043b0e0cad9ce1b24b08e084041e854742976d792fce3aed127b5e39b3d7076',
+  name: 'FlxSocialPostDuplicate',
+  kind: 'mutation',
+  plugin: 'flx-social',
+  document: "mutation FlxSocialPostDuplicate($input: FlxSocialPostDuplicateInput!) {\n  flxSocialPostDuplicate(input: $input) {\n    post {\n      ...FlxSocialPostRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxSocialCapsFields on FlxSocialCaps {\n  text\n  image\n  video\n  gif\n  maxText\n  maxImages\n  maxVideos\n  mix\n  needsMedia\n  edit\n  delete\n  comment\n  metrics\n  options\n}\n\nfragment FlxSocialMediaRow on FlxSocialMedia {\n  databaseId\n  url\n  kind\n  mime\n  bytes\n  width\n  height\n  duration\n  thumb\n  name\n  alt\n}\n\nfragment FlxSocialOptionsFields on FlxSocialOptions {\n  title\n  link\n  board\n  privacy\n  igType\n  flxCategory\n  playlist\n  tiktokPrivacy\n  gbpTopic\n  gbpCta\n  gbpCtaUrl\n  waKind\n  waTo\n  firstComment\n  liVisibility\n  alt\n  thumbUrl\n  replySettings\n  eventTitle\n  eventStart\n  eventEnd\n  offerCode\n  madeForKids\n  notify\n  shorts\n  disableComment\n  disableDuet\n  disableStitch\n  aiGenerated\n  brandContent\n  brandOrganic\n  shareToFeed\n  autoMusic\n  tags\n}\n\nfragment FlxSocialPostRow on FlxSocialPost {\n  id\n  databaseId\n  status\n  title\n  content\n  tags\n  repeatDays\n  source\n  note\n  author\n  authorId\n  approvedBy\n  media {\n    ...FlxSocialMediaRow\n  }\n  scheduledAt {\n    timestamp\n    label\n  }\n  publishedAt {\n    timestamp\n    label\n  }\n  created {\n    timestamp\n  }\n  updated {\n    timestamp\n  }\n  targets {\n    ...FlxSocialTargetRow\n  }\n}\n\nfragment FlxSocialTargetRow on FlxSocialTarget {\n  id\n  databaseId\n  accountId\n  provider\n  account\n  avatar\n  status\n  remoteUrl\n  error\n  publishedAt {\n    timestamp\n    label\n  }\n  metrics {\n    views\n    impressions\n    reach\n    clicks\n    likes\n    comments\n    shares\n    saves\n  }\n  caps {\n    ...FlxSocialCapsFields\n  }\n  content\n  media {\n    ...FlxSocialMediaRow\n  }\n  options {\n    ...FlxSocialOptionsFields\n  }\n}",
+};
+
+/** query FlxSocialPosts (flx-social, plugins/flx-social/graphql/operations/FlxSocialPosts.graphql) */
+export const FlxSocialPosts: FlxOperation<T.FlxSocialPostsQuery, T.FlxSocialPostsQueryVariables> = {
+  id: '96bfd9683efd78e4c882e801d09d73f2d9600d382fa9c094fc0697b135507705',
+  name: 'FlxSocialPosts',
+  kind: 'query',
+  plugin: 'flx-social',
+  document: "query FlxSocialPosts($first: Int, $after: String, $status: [FlxSocialPostStatus!], $accountId: Int, $provider: String, $search: String, $tag: String, $mine: Boolean, $from: Int, $to: Int, $ascending: Boolean) {\n  flxSocialPosts(\n    first: $first\n    after: $after\n    status: $status\n    accountId: $accountId\n    provider: $provider\n    search: $search\n    tag: $tag\n    mine: $mine\n    from: $from\n    to: $to\n    ascending: $ascending\n  ) {\n    nodes {\n      ...FlxSocialPostRow\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    totalCount\n  }\n}\n\nfragment FlxSocialCapsFields on FlxSocialCaps {\n  text\n  image\n  video\n  gif\n  maxText\n  maxImages\n  maxVideos\n  mix\n  needsMedia\n  edit\n  delete\n  comment\n  metrics\n  options\n}\n\nfragment FlxSocialMediaRow on FlxSocialMedia {\n  databaseId\n  url\n  kind\n  mime\n  bytes\n  width\n  height\n  duration\n  thumb\n  name\n  alt\n}\n\nfragment FlxSocialOptionsFields on FlxSocialOptions {\n  title\n  link\n  board\n  privacy\n  igType\n  flxCategory\n  playlist\n  tiktokPrivacy\n  gbpTopic\n  gbpCta\n  gbpCtaUrl\n  waKind\n  waTo\n  firstComment\n  liVisibility\n  alt\n  thumbUrl\n  replySettings\n  eventTitle\n  eventStart\n  eventEnd\n  offerCode\n  madeForKids\n  notify\n  shorts\n  disableComment\n  disableDuet\n  disableStitch\n  aiGenerated\n  brandContent\n  brandOrganic\n  shareToFeed\n  autoMusic\n  tags\n}\n\nfragment FlxSocialPostRow on FlxSocialPost {\n  id\n  databaseId\n  status\n  title\n  content\n  tags\n  repeatDays\n  source\n  note\n  author\n  authorId\n  approvedBy\n  media {\n    ...FlxSocialMediaRow\n  }\n  scheduledAt {\n    timestamp\n    label\n  }\n  publishedAt {\n    timestamp\n    label\n  }\n  created {\n    timestamp\n  }\n  updated {\n    timestamp\n  }\n  targets {\n    ...FlxSocialTargetRow\n  }\n}\n\nfragment FlxSocialTargetRow on FlxSocialTarget {\n  id\n  databaseId\n  accountId\n  provider\n  account\n  avatar\n  status\n  remoteUrl\n  error\n  publishedAt {\n    timestamp\n    label\n  }\n  metrics {\n    views\n    impressions\n    reach\n    clicks\n    likes\n    comments\n    shares\n    saves\n  }\n  caps {\n    ...FlxSocialCapsFields\n  }\n  content\n  media {\n    ...FlxSocialMediaRow\n  }\n  options {\n    ...FlxSocialOptionsFields\n  }\n}",
+};
+
+/** mutation FlxSocialPostUpdate (flx-social, plugins/flx-social/graphql/operations/FlxSocialPostUpdate.graphql) */
+export const FlxSocialPostUpdate: FlxOperation<T.FlxSocialPostUpdateMutation, T.FlxSocialPostUpdateMutationVariables> = {
+  id: 'b1d81348826f953c3c5c4c13a46de500f7862d6edb2e50b5d892b2b4b9f85d07',
+  name: 'FlxSocialPostUpdate',
+  kind: 'mutation',
+  plugin: 'flx-social',
+  document: "mutation FlxSocialPostUpdate($input: FlxSocialPostUpdateInput!) {\n  flxSocialPostUpdate(input: $input) {\n    post {\n      ...FlxSocialPostRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxSocialCapsFields on FlxSocialCaps {\n  text\n  image\n  video\n  gif\n  maxText\n  maxImages\n  maxVideos\n  mix\n  needsMedia\n  edit\n  delete\n  comment\n  metrics\n  options\n}\n\nfragment FlxSocialMediaRow on FlxSocialMedia {\n  databaseId\n  url\n  kind\n  mime\n  bytes\n  width\n  height\n  duration\n  thumb\n  name\n  alt\n}\n\nfragment FlxSocialOptionsFields on FlxSocialOptions {\n  title\n  link\n  board\n  privacy\n  igType\n  flxCategory\n  playlist\n  tiktokPrivacy\n  gbpTopic\n  gbpCta\n  gbpCtaUrl\n  waKind\n  waTo\n  firstComment\n  liVisibility\n  alt\n  thumbUrl\n  replySettings\n  eventTitle\n  eventStart\n  eventEnd\n  offerCode\n  madeForKids\n  notify\n  shorts\n  disableComment\n  disableDuet\n  disableStitch\n  aiGenerated\n  brandContent\n  brandOrganic\n  shareToFeed\n  autoMusic\n  tags\n}\n\nfragment FlxSocialPostRow on FlxSocialPost {\n  id\n  databaseId\n  status\n  title\n  content\n  tags\n  repeatDays\n  source\n  note\n  author\n  authorId\n  approvedBy\n  media {\n    ...FlxSocialMediaRow\n  }\n  scheduledAt {\n    timestamp\n    label\n  }\n  publishedAt {\n    timestamp\n    label\n  }\n  created {\n    timestamp\n  }\n  updated {\n    timestamp\n  }\n  targets {\n    ...FlxSocialTargetRow\n  }\n}\n\nfragment FlxSocialTargetRow on FlxSocialTarget {\n  id\n  databaseId\n  accountId\n  provider\n  account\n  avatar\n  status\n  remoteUrl\n  error\n  publishedAt {\n    timestamp\n    label\n  }\n  metrics {\n    views\n    impressions\n    reach\n    clicks\n    likes\n    comments\n    shares\n    saves\n  }\n  caps {\n    ...FlxSocialCapsFields\n  }\n  content\n  media {\n    ...FlxSocialMediaRow\n  }\n  options {\n    ...FlxSocialOptionsFields\n  }\n}",
+};
+
+/** query FlxSocialSettings (flx-social, plugins/flx-social/graphql/operations/FlxSocialSettings.graphql) */
+export const FlxSocialSettings: FlxOperation<T.FlxSocialSettingsQuery, T.FlxSocialSettingsQueryVariables> = {
+  id: '6a244ceffd24ffbaa730873fc84b76c1943f19b81f949f48ee591584d5450a38',
+  name: 'FlxSocialSettings',
+  kind: 'query',
+  plugin: 'flx-social',
+  document: "query FlxSocialSettings {\n  flxSocialSettings {\n    approval\n    signature\n    utm\n    metaVersion\n    xTier\n    xPremium\n    xMonthLimit\n    tiktokMode\n    pinSandbox\n    liOrg\n    waConn\n    xMonth\n    tickUrl\n    lastTick {\n      timestamp\n    }\n    auto {\n      enabled\n      postTypes\n      accounts\n      template\n      mode\n      delay\n      image\n    }\n    postTypes {\n      id\n      name\n    }\n    xTiers {\n      id\n      name\n    }\n    waChoices {\n      id\n      name\n    }\n  }\n  flxSocialApps {\n    id\n    label\n    console\n    redirect\n    help\n    ready\n    fields {\n      key\n      label\n      secret\n      value\n      isSet\n      placeholder\n      optional\n    }\n    connect {\n      for\n      label\n      provider\n      local\n    }\n  }\n}",
+};
+
+/** mutation FlxSocialSettingsUpdate (flx-social, plugins/flx-social/graphql/operations/FlxSocialSettingsUpdate.graphql) */
+export const FlxSocialSettingsUpdate: FlxOperation<T.FlxSocialSettingsUpdateMutation, T.FlxSocialSettingsUpdateMutationVariables> = {
+  id: 'dc8548114e3ee4319fb5256091aa79de47ea2bf608ebc84792773869110d7c11',
+  name: 'FlxSocialSettingsUpdate',
+  kind: 'mutation',
+  plugin: 'flx-social',
+  document: "mutation FlxSocialSettingsUpdate($input: FlxSocialSettingsUpdateInput!) {\n  flxSocialSettingsUpdate(input: $input) {\n    settings {\n      approval\n      signature\n      xTier\n      tickUrl\n      auto {\n        enabled\n        postTypes\n        accounts\n        template\n        mode\n        delay\n        image\n      }\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxSocialStats (flx-social, plugins/flx-social/graphql/operations/FlxSocialStats.graphql) */
+export const FlxSocialStats: FlxOperation<T.FlxSocialStatsQuery, T.FlxSocialStatsQueryVariables> = {
+  id: 'f751908be074aa0bf4d1dd045535dd240d0474b9eb994dc13d20449a847acf40',
+  name: 'FlxSocialStats',
+  kind: 'query',
+  plugin: 'flx-social',
+  document: "query FlxSocialStats($days: Int) {\n  flxSocialStats(days: $days) {\n    days\n    lastMetrics {\n      timestamp\n    }\n    totals {\n      published\n      failed\n      scheduled\n      pending\n      drafts\n      engagement\n      views\n      followers\n      followersDelta\n      successRate\n    }\n    byDay {\n      day\n      networks {\n        provider\n        count\n      }\n    }\n    byNetwork {\n      provider\n      published\n      failed\n      engagement\n      views\n    }\n    followers {\n      accountId\n      name\n      provider\n      avatar\n      now\n      delta\n      series {\n        day\n        count\n      }\n    }\n    top {\n      targetId\n      postId\n      provider\n      account\n      title\n      engagement\n      views\n      url\n      at {\n        timestamp\n      }\n    }\n    upcoming {\n      ...FlxSocialPostRow\n    }\n    errors {\n      targetId\n      postId\n      account\n      provider\n      error\n      at {\n        timestamp\n      }\n    }\n  }\n}\n\nfragment FlxSocialCapsFields on FlxSocialCaps {\n  text\n  image\n  video\n  gif\n  maxText\n  maxImages\n  maxVideos\n  mix\n  needsMedia\n  edit\n  delete\n  comment\n  metrics\n  options\n}\n\nfragment FlxSocialMediaRow on FlxSocialMedia {\n  databaseId\n  url\n  kind\n  mime\n  bytes\n  width\n  height\n  duration\n  thumb\n  name\n  alt\n}\n\nfragment FlxSocialOptionsFields on FlxSocialOptions {\n  title\n  link\n  board\n  privacy\n  igType\n  flxCategory\n  playlist\n  tiktokPrivacy\n  gbpTopic\n  gbpCta\n  gbpCtaUrl\n  waKind\n  waTo\n  firstComment\n  liVisibility\n  alt\n  thumbUrl\n  replySettings\n  eventTitle\n  eventStart\n  eventEnd\n  offerCode\n  madeForKids\n  notify\n  shorts\n  disableComment\n  disableDuet\n  disableStitch\n  aiGenerated\n  brandContent\n  brandOrganic\n  shareToFeed\n  autoMusic\n  tags\n}\n\nfragment FlxSocialPostRow on FlxSocialPost {\n  id\n  databaseId\n  status\n  title\n  content\n  tags\n  repeatDays\n  source\n  note\n  author\n  authorId\n  approvedBy\n  media {\n    ...FlxSocialMediaRow\n  }\n  scheduledAt {\n    timestamp\n    label\n  }\n  publishedAt {\n    timestamp\n    label\n  }\n  created {\n    timestamp\n  }\n  updated {\n    timestamp\n  }\n  targets {\n    ...FlxSocialTargetRow\n  }\n}\n\nfragment FlxSocialTargetRow on FlxSocialTarget {\n  id\n  databaseId\n  accountId\n  provider\n  account\n  avatar\n  status\n  remoteUrl\n  error\n  publishedAt {\n    timestamp\n    label\n  }\n  metrics {\n    views\n    impressions\n    reach\n    clicks\n    likes\n    comments\n    shares\n    saves\n  }\n  caps {\n    ...FlxSocialCapsFields\n  }\n  content\n  media {\n    ...FlxSocialMediaRow\n  }\n  options {\n    ...FlxSocialOptionsFields\n  }\n}",
+};
+
+/** mutation FlxSocialStatsRefresh (flx-social, plugins/flx-social/graphql/operations/FlxSocialStatsRefresh.graphql) */
+export const FlxSocialStatsRefresh: FlxOperation<T.FlxSocialStatsRefreshMutation, T.FlxSocialStatsRefreshMutationVariables> = {
+  id: 'cec3bd8f7f67ca6ade378ae4c96239c14fb729e6acb36deaae2f619716abbff3',
+  name: 'FlxSocialStatsRefresh',
+  kind: 'mutation',
+  plugin: 'flx-social',
+  document: "mutation FlxSocialStatsRefresh($input: FlxSocialStatsRefreshInput!) {\n  flxSocialStatsRefresh(input: $input) {\n    updated\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** query FlxSocialStudioMedia (flx-social, plugins/flx-social/graphql/operations/FlxSocialStudioMedia.graphql) */
+export const FlxSocialStudioMedia: FlxOperation<T.FlxSocialStudioMediaQuery, T.FlxSocialStudioMediaQueryVariables> = {
+  id: '66b1e332cd2d0ad55c6d27fe7d60d1b50aadd3cbaa44a561e8029892cd063639',
+  name: 'FlxSocialStudioMedia',
+  kind: 'query',
+  plugin: 'flx-social',
+  document: "query FlxSocialStudioMedia {\n  flxSocialStudioMedia {\n    databaseId\n    kind\n    url\n    thumb\n    title\n    prompt\n    attachmentId\n    width\n    height\n  }\n}",
+};
+
+/** mutation FlxSocialTargetRemoteDelete (flx-social, plugins/flx-social/graphql/operations/FlxSocialTargetRemoteDelete.graphql) */
+export const FlxSocialTargetRemoteDelete: FlxOperation<T.FlxSocialTargetRemoteDeleteMutation, T.FlxSocialTargetRemoteDeleteMutationVariables> = {
+  id: 'b7859e5459cd00b1b2e64810c3eaf209d3a9773569d2667851f5f82371cf11f1',
+  name: 'FlxSocialTargetRemoteDelete',
+  kind: 'mutation',
+  plugin: 'flx-social',
+  document: "mutation FlxSocialTargetRemoteDelete($input: FlxSocialTargetRemoteDeleteInput!) {\n  flxSocialTargetRemoteDelete(input: $input) {\n    post {\n      ...FlxSocialPostRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxSocialCapsFields on FlxSocialCaps {\n  text\n  image\n  video\n  gif\n  maxText\n  maxImages\n  maxVideos\n  mix\n  needsMedia\n  edit\n  delete\n  comment\n  metrics\n  options\n}\n\nfragment FlxSocialMediaRow on FlxSocialMedia {\n  databaseId\n  url\n  kind\n  mime\n  bytes\n  width\n  height\n  duration\n  thumb\n  name\n  alt\n}\n\nfragment FlxSocialOptionsFields on FlxSocialOptions {\n  title\n  link\n  board\n  privacy\n  igType\n  flxCategory\n  playlist\n  tiktokPrivacy\n  gbpTopic\n  gbpCta\n  gbpCtaUrl\n  waKind\n  waTo\n  firstComment\n  liVisibility\n  alt\n  thumbUrl\n  replySettings\n  eventTitle\n  eventStart\n  eventEnd\n  offerCode\n  madeForKids\n  notify\n  shorts\n  disableComment\n  disableDuet\n  disableStitch\n  aiGenerated\n  brandContent\n  brandOrganic\n  shareToFeed\n  autoMusic\n  tags\n}\n\nfragment FlxSocialPostRow on FlxSocialPost {\n  id\n  databaseId\n  status\n  title\n  content\n  tags\n  repeatDays\n  source\n  note\n  author\n  authorId\n  approvedBy\n  media {\n    ...FlxSocialMediaRow\n  }\n  scheduledAt {\n    timestamp\n    label\n  }\n  publishedAt {\n    timestamp\n    label\n  }\n  created {\n    timestamp\n  }\n  updated {\n    timestamp\n  }\n  targets {\n    ...FlxSocialTargetRow\n  }\n}\n\nfragment FlxSocialTargetRow on FlxSocialTarget {\n  id\n  databaseId\n  accountId\n  provider\n  account\n  avatar\n  status\n  remoteUrl\n  error\n  publishedAt {\n    timestamp\n    label\n  }\n  metrics {\n    views\n    impressions\n    reach\n    clicks\n    likes\n    comments\n    shares\n    saves\n  }\n  caps {\n    ...FlxSocialCapsFields\n  }\n  content\n  media {\n    ...FlxSocialMediaRow\n  }\n  options {\n    ...FlxSocialOptionsFields\n  }\n}",
+};
+
+/** mutation FlxSocialTargetRemoteEdit (flx-social, plugins/flx-social/graphql/operations/FlxSocialTargetRemoteEdit.graphql) */
+export const FlxSocialTargetRemoteEdit: FlxOperation<T.FlxSocialTargetRemoteEditMutation, T.FlxSocialTargetRemoteEditMutationVariables> = {
+  id: '5badf33fcf805a44c7c661263f28a611ea7d53e8fd03fecfad7829a2c4c916b6',
+  name: 'FlxSocialTargetRemoteEdit',
+  kind: 'mutation',
+  plugin: 'flx-social',
+  document: "mutation FlxSocialTargetRemoteEdit($input: FlxSocialTargetRemoteEditInput!) {\n  flxSocialTargetRemoteEdit(input: $input) {\n    post {\n      ...FlxSocialPostRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxSocialCapsFields on FlxSocialCaps {\n  text\n  image\n  video\n  gif\n  maxText\n  maxImages\n  maxVideos\n  mix\n  needsMedia\n  edit\n  delete\n  comment\n  metrics\n  options\n}\n\nfragment FlxSocialMediaRow on FlxSocialMedia {\n  databaseId\n  url\n  kind\n  mime\n  bytes\n  width\n  height\n  duration\n  thumb\n  name\n  alt\n}\n\nfragment FlxSocialOptionsFields on FlxSocialOptions {\n  title\n  link\n  board\n  privacy\n  igType\n  flxCategory\n  playlist\n  tiktokPrivacy\n  gbpTopic\n  gbpCta\n  gbpCtaUrl\n  waKind\n  waTo\n  firstComment\n  liVisibility\n  alt\n  thumbUrl\n  replySettings\n  eventTitle\n  eventStart\n  eventEnd\n  offerCode\n  madeForKids\n  notify\n  shorts\n  disableComment\n  disableDuet\n  disableStitch\n  aiGenerated\n  brandContent\n  brandOrganic\n  shareToFeed\n  autoMusic\n  tags\n}\n\nfragment FlxSocialPostRow on FlxSocialPost {\n  id\n  databaseId\n  status\n  title\n  content\n  tags\n  repeatDays\n  source\n  note\n  author\n  authorId\n  approvedBy\n  media {\n    ...FlxSocialMediaRow\n  }\n  scheduledAt {\n    timestamp\n    label\n  }\n  publishedAt {\n    timestamp\n    label\n  }\n  created {\n    timestamp\n  }\n  updated {\n    timestamp\n  }\n  targets {\n    ...FlxSocialTargetRow\n  }\n}\n\nfragment FlxSocialTargetRow on FlxSocialTarget {\n  id\n  databaseId\n  accountId\n  provider\n  account\n  avatar\n  status\n  remoteUrl\n  error\n  publishedAt {\n    timestamp\n    label\n  }\n  metrics {\n    views\n    impressions\n    reach\n    clicks\n    likes\n    comments\n    shares\n    saves\n  }\n  caps {\n    ...FlxSocialCapsFields\n  }\n  content\n  media {\n    ...FlxSocialMediaRow\n  }\n  options {\n    ...FlxSocialOptionsFields\n  }\n}",
+};
+
+/** mutation FlxSocialTargetRetry (flx-social, plugins/flx-social/graphql/operations/FlxSocialTargetRetry.graphql) */
+export const FlxSocialTargetRetry: FlxOperation<T.FlxSocialTargetRetryMutation, T.FlxSocialTargetRetryMutationVariables> = {
+  id: 'c28e9e66d529c5b571ac1c2184279c81c13ac6e28ed1d93b5bdafa8872a1354f',
+  name: 'FlxSocialTargetRetry',
+  kind: 'mutation',
+  plugin: 'flx-social',
+  document: "mutation FlxSocialTargetRetry($input: FlxSocialTargetRetryInput!) {\n  flxSocialTargetRetry(input: $input) {\n    post {\n      ...FlxSocialPostRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxSocialCapsFields on FlxSocialCaps {\n  text\n  image\n  video\n  gif\n  maxText\n  maxImages\n  maxVideos\n  mix\n  needsMedia\n  edit\n  delete\n  comment\n  metrics\n  options\n}\n\nfragment FlxSocialMediaRow on FlxSocialMedia {\n  databaseId\n  url\n  kind\n  mime\n  bytes\n  width\n  height\n  duration\n  thumb\n  name\n  alt\n}\n\nfragment FlxSocialOptionsFields on FlxSocialOptions {\n  title\n  link\n  board\n  privacy\n  igType\n  flxCategory\n  playlist\n  tiktokPrivacy\n  gbpTopic\n  gbpCta\n  gbpCtaUrl\n  waKind\n  waTo\n  firstComment\n  liVisibility\n  alt\n  thumbUrl\n  replySettings\n  eventTitle\n  eventStart\n  eventEnd\n  offerCode\n  madeForKids\n  notify\n  shorts\n  disableComment\n  disableDuet\n  disableStitch\n  aiGenerated\n  brandContent\n  brandOrganic\n  shareToFeed\n  autoMusic\n  tags\n}\n\nfragment FlxSocialPostRow on FlxSocialPost {\n  id\n  databaseId\n  status\n  title\n  content\n  tags\n  repeatDays\n  source\n  note\n  author\n  authorId\n  approvedBy\n  media {\n    ...FlxSocialMediaRow\n  }\n  scheduledAt {\n    timestamp\n    label\n  }\n  publishedAt {\n    timestamp\n    label\n  }\n  created {\n    timestamp\n  }\n  updated {\n    timestamp\n  }\n  targets {\n    ...FlxSocialTargetRow\n  }\n}\n\nfragment FlxSocialTargetRow on FlxSocialTarget {\n  id\n  databaseId\n  accountId\n  provider\n  account\n  avatar\n  status\n  remoteUrl\n  error\n  publishedAt {\n    timestamp\n    label\n  }\n  metrics {\n    views\n    impressions\n    reach\n    clicks\n    likes\n    comments\n    shares\n    saves\n  }\n  caps {\n    ...FlxSocialCapsFields\n  }\n  content\n  media {\n    ...FlxSocialMediaRow\n  }\n  options {\n    ...FlxSocialOptionsFields\n  }\n}",
+};
+
+/** mutation FlxSocialTickKeyReveal (flx-social, plugins/flx-social/graphql/operations/FlxSocialTickKeyReveal.graphql) */
+export const FlxSocialTickKeyReveal: FlxOperation<T.FlxSocialTickKeyRevealMutation, T.FlxSocialTickKeyRevealMutationVariables> = {
+  id: 'f8d604a8bbf847a49e9b83a886cc1f5c1f6bc02be42716dd0ad361dacdfdd65f',
+  name: 'FlxSocialTickKeyReveal',
+  kind: 'mutation',
+  plugin: 'flx-social',
+  document: "mutation FlxSocialTickKeyReveal($input: FlxSocialTickKeyRevealInput!) {\n  flxSocialTickKeyReveal(input: $input) {\n    url\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxSocialTickRun (flx-social, plugins/flx-social/graphql/operations/FlxSocialTickRun.graphql) */
+export const FlxSocialTickRun: FlxOperation<T.FlxSocialTickRunMutation, T.FlxSocialTickRunMutationVariables> = {
+  id: 'df8b65ba6af7222044b383bcd58eb659a7dbcfc1aef6943b475750d6f51562a2',
+  name: 'FlxSocialTickRun',
+  kind: 'mutation',
+  plugin: 'flx-social',
+  document: "mutation FlxSocialTickRun($input: FlxSocialTickRunInput!) {\n  flxSocialTickRun(input: $input) {\n    processed\n    due\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+};
+
+/** mutation FlxSocialWhatsAppAdd (flx-social, plugins/flx-social/graphql/operations/FlxSocialWhatsAppAdd.graphql) */
+export const FlxSocialWhatsAppAdd: FlxOperation<T.FlxSocialWhatsAppAddMutation, T.FlxSocialWhatsAppAddMutationVariables> = {
+  id: '1431f1fc9a3b21f5302c2d3cb267ddc62497d15d14a8c8ea57ce7cb8070d5cd3',
+  name: 'FlxSocialWhatsAppAdd',
+  kind: 'mutation',
+  plugin: 'flx-social',
+  document: "mutation FlxSocialWhatsAppAdd($input: FlxSocialWhatsAppAddInput!) {\n  flxSocialWhatsAppAdd(input: $input) {\n    added\n    accounts {\n      ...FlxSocialAccountRow\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}\n\nfragment FlxSocialAccountRow on FlxSocialAccount {\n  id\n  databaseId\n  provider\n  via\n  network\n  name\n  username\n  avatar\n  status\n  expires {\n    timestamp\n  }\n  kind\n  premium\n  lastError\n  boards {\n    id\n    name\n  }\n  groups {\n    id\n    name\n  }\n  playlists {\n    id\n    name\n  }\n  caps {\n    ...FlxSocialCapsFields\n  }\n}\n\nfragment FlxSocialCapsFields on FlxSocialCaps {\n  text\n  image\n  video\n  gif\n  maxText\n  maxImages\n  maxVideos\n  mix\n  needsMedia\n  edit\n  delete\n  comment\n  metrics\n  options\n}",
+};
+
+/** query FlxSocialWhatsAppTargets (flx-social, plugins/flx-social/graphql/operations/FlxSocialWhatsAppTargets.graphql) */
+export const FlxSocialWhatsAppTargets: FlxOperation<T.FlxSocialWhatsAppTargetsQuery, T.FlxSocialWhatsAppTargetsQueryVariables> = {
+  id: '770bd0bc66b661e8dbf40c7acceacf1953312994effd37432fcfc1edf5ed5bf4',
+  name: 'FlxSocialWhatsAppTargets',
+  kind: 'query',
+  plugin: 'flx-social',
+  document: "query FlxSocialWhatsAppTargets {\n  flxSocialWhatsAppTargets {\n    extId\n    name\n    kind\n    avatar\n    exists\n  }\n}",
+};
+
 /** query FlxSpeedAutoload (flx-speed, plugins/flx-speed/graphql/operations/FlxSpeedAutoload.graphql) */
 export const FlxSpeedAutoload: FlxOperation<T.FlxSpeedAutoloadQuery, T.FlxSpeedAutoloadQueryVariables> = {
   id: 'c0c034497a50d8f207d50ee8d53dee71fb810f0dfd57c6163345be91a32f0a5b',

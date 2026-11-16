@@ -63,3 +63,10 @@ defined( 'FLXWK_DIR' ) || define( 'FLXWK_DIR', __DIR__ . '/' );
 defined( 'FLXWK_URL' ) || define( 'FLXWK_URL', 'https://example.com/' );
 defined( 'FLXWK_PT' ) || define( 'FLXWK_PT', 'flx_wiki' );
 defined( 'FLXWK_TAX' ) || define( 'FLXWK_TAX', 'flx_wiki_section' );
+
+defined( 'FLXSM_VERSION' ) || define( 'FLXSM_VERSION', '0.0.0' );
+defined( 'FLXSM_DB_VERSION' ) || define( 'FLXSM_DB_VERSION', 1 );
+defined( 'FLXSM_FILE' ) || define( 'FLXSM_FILE', __FILE__ );
+defined( 'FLXSM_DIR' ) || define( 'FLXSM_DIR', __DIR__ . '/' );
+defined( 'FLXSM_URL' ) || define( 'FLXSM_URL', 'https://example.com/' );
+defined( 'FLXSM_NS' ) || define( 'FLXSM_NS', 'flx-social/v1' );
