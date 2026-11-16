@@ -136,25 +136,7 @@ type DefaultTemplate implements ContentTemplate {
 }
 
 "The template assigned to the node"
-type Template_SingleWithSidebar implements ContentTemplate {
-  "The name of the template"
-  templateName: String
-}
-
-"The template assigned to the node"
-type Template_PageWithWideImage implements ContentTemplate {
-  "The name of the template"
-  templateName: String
-}
-
-"The template assigned to the node"
 type Template_PageNoTitle implements ContentTemplate {
-  "The name of the template"
-  templateName: String
-}
-
-"The template assigned to the node"
-type Template_PageWithSidebar implements ContentTemplate {
   "The name of the template"
   templateName: String
 }
