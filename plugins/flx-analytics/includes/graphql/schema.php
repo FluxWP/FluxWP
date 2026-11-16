@@ -117,7 +117,7 @@ function flxan_gql_tag(): void {
 flx_gql_enum(
 	'FlxAnalyticsRangePreset',
 	array(
-		'description' => __( 'Ready-made date range of a report.', 'flx-analytics' ),
+		'description' => 'Ready-made date range of a report.',
 		'values'      => array(
 			'TODAY'      => array( 'value' => 'today' ),
 			'YESTERDAY'  => array( 'value' => 'yesterday' ),
@@ -137,7 +137,7 @@ flx_gql_enum(
 flx_gql_enum(
 	'FlxAnalyticsSeriesGroup',
 	array(
-		'description' => __( 'How a time series is grouped.', 'flx-analytics' ),
+		'description' => 'How a time series is grouped.',
 		'values'      => array(
 			'DAY'   => array( 'value' => 'day' ),
 			'WEEK'  => array( 'value' => 'week' ),
@@ -148,7 +148,7 @@ flx_gql_enum(
 flx_gql_enum(
 	'FlxAnalyticsDimKind',
 	array(
-		'description' => __( 'What a breakdown splits the traffic by.', 'flx-analytics' ),
+		'description' => 'What a breakdown splits the traffic by.',
 		'values'      => array(
 			'CHANNEL'      => array( 'value' => 'channel' ),
 			'DEVICE'       => array( 'value' => 'device' ),
@@ -165,7 +165,7 @@ flx_gql_enum(
 flx_gql_enum(
 	'FlxAnalyticsFunnelBy',
 	array(
-		'description' => __( 'How a funnel is split into groups.', 'flx-analytics' ),
+		'description' => 'How a funnel is split into groups.',
 		'values'      => array(
 			'TOTAL'   => array( 'value' => 'total' ),
 			'CHANNEL' => array( 'value' => 'channel' ),
@@ -179,7 +179,7 @@ flx_gql_enum(
 flx_gql_enum(
 	'FlxAnalyticsStepType',
 	array(
-		'description' => __( 'What a funnel step matches.', 'flx-analytics' ),
+		'description' => 'What a funnel step matches.',
 		'values'      => array(
 			'ANY'   => array( 'value' => 'any' ),
 			'PATH'  => array( 'value' => 'path' ),
@@ -190,7 +190,7 @@ flx_gql_enum(
 flx_gql_enum(
 	'FlxAnalyticsCollectMethod',
 	array(
-		'description' => __( 'How visits are sent to the site.', 'flx-analytics' ),
+		'description' => 'How visits are sent to the site.',
 		'values'      => array(
 			'AUTO' => array( 'value' => 'auto' ),
 			'FAST' => array( 'value' => 'fast' ),
@@ -202,48 +202,48 @@ flx_gql_enum(
 flx_gql_input(
 	'FlxAnalyticsFilterInput',
 	array(
-		'description' => __( 'Date range and visitor filters shared by every report.', 'flx-analytics' ),
+		'description' => 'Date range and visitor filters shared by every report.',
 		'fields'      => array(
-			'range' => array( 'type' => 'FlxAnalyticsRangePreset', 'description' => __( 'Ready-made range; default is the last 30 days.', 'flx-analytics' ) ),
-			'start' => array( 'type' => 'String', 'description' => __( 'First day (YYYY-MM-DD) when the range is custom.', 'flx-analytics' ) ),
-			'end'   => array( 'type' => 'String', 'description' => __( 'Last day (YYYY-MM-DD) when the range is custom.', 'flx-analytics' ) ),
-			'seg'   => array( 'type' => 'String', 'description' => __( 'Visitor type: all (default), guest, members or a role name.', 'flx-analytics' ) ),
-			'rc'    => array( 'type' => 'String', 'description' => __( 'Referral code filter: empty = all, * = only referral links, or a code.', 'flx-analytics' ) ),
+			'range' => array( 'type' => 'FlxAnalyticsRangePreset', 'description' => 'Ready-made range; default is the last 30 days.' ),
+			'start' => array( 'type' => 'String', 'description' => 'First day (YYYY-MM-DD) when the range is custom.' ),
+			'end'   => array( 'type' => 'String', 'description' => 'Last day (YYYY-MM-DD) when the range is custom.' ),
+			'seg'   => array( 'type' => 'String', 'description' => 'Visitor type: all (default), guest, members or a role name.' ),
+			'rc'    => array( 'type' => 'String', 'description' => 'Referral code filter: empty = all, * = only referral links, or a code.' ),
 		),
 	)
 );
 flx_gql_input(
 	'FlxAnalyticsJourneysInput',
 	array(
-		'description' => __( 'Options of the journeys report.', 'flx-analytics' ),
+		'description' => 'Options of the journeys report.',
 		'fields'      => array(
-			'steps' => array( 'type' => 'Int', 'description' => __( 'Steps to show, 2–6 (default 4).', 'flx-analytics' ) ),
-			'from'  => array( 'type' => 'String', 'description' => __( 'Only journeys that start on this path.', 'flx-analytics' ) ),
-			'to'    => array( 'type' => 'String', 'description' => __( 'Only journeys that end on this path.', 'flx-analytics' ) ),
-			'goal'  => array( 'type' => 'String', 'description' => __( 'Goal "funnel:step"; empty = no goal; not given = the default goal.', 'flx-analytics' ) ),
-			'group' => array( 'type' => 'Boolean', 'description' => __( 'Group sub pages (/news/…) into one box.', 'flx-analytics' ) ),
-			'top'   => array( 'type' => 'Int', 'description' => __( 'Paths to list, 5–100 (default 15).', 'flx-analytics' ) ),
+			'steps' => array( 'type' => 'Int', 'description' => 'Steps to show, 2–6 (default 4).' ),
+			'from'  => array( 'type' => 'String', 'description' => 'Only journeys that start on this path.' ),
+			'to'    => array( 'type' => 'String', 'description' => 'Only journeys that end on this path.' ),
+			'goal'  => array( 'type' => 'String', 'description' => 'Goal "funnel:step"; empty = no goal; not given = the default goal.' ),
+			'group' => array( 'type' => 'Boolean', 'description' => 'Group sub pages (/news/…) into one box.' ),
+			'top'   => array( 'type' => 'Int', 'description' => 'Paths to list, 5–100 (default 15).' ),
 		),
 	)
 );
 flx_gql_input(
 	'FlxAnalyticsFunnelStepInput',
 	array(
-		'description' => __( 'One funnel step.', 'flx-analytics' ),
+		'description' => 'One funnel step.',
 		'fields'      => array(
-			'label' => array( 'type' => 'String!', 'description' => __( 'Name shown in the report.', 'flx-analytics' ) ),
-			'type'  => array( 'type' => 'FlxAnalyticsStepType!', 'description' => __( 'Site entry, a page path prefix or an event.', 'flx-analytics' ) ),
-			'value' => array( 'type' => 'String', 'description' => __( 'Path (/donate/) or event (name or name:detail); empty for site entry.', 'flx-analytics' ) ),
+			'label' => array( 'type' => 'String!', 'description' => 'Name shown in the report.' ),
+			'type'  => array( 'type' => 'FlxAnalyticsStepType!', 'description' => 'Site entry, a page path prefix or an event.' ),
+			'value' => array( 'type' => 'String', 'description' => 'Path (/donate/) or event (name or name:detail); empty for site entry.' ),
 		),
 	)
 );
 flx_gql_input(
 	'FlxAnalyticsFunnelInput',
 	array(
-		'description' => __( 'A funnel: steps visitors go through in order.', 'flx-analytics' ),
+		'description' => 'A funnel: steps visitors go through in order.',
 		'fields'      => array(
-			'name'  => array( 'type' => 'String!', 'description' => __( 'Funnel name.', 'flx-analytics' ) ),
-			'steps' => array( 'type' => '[FlxAnalyticsFunnelStepInput!]!', 'description' => __( 'Steps, 10 at most.', 'flx-analytics' ) ),
+			'name'  => array( 'type' => 'String!', 'description' => 'Funnel name.' ),
+			'steps' => array( 'type' => '[FlxAnalyticsFunnelStepInput!]!', 'description' => 'Steps, 10 at most.' ),
 		),
 	)
 );
@@ -254,360 +254,360 @@ flx_gql_input(
 
 flxan_gql_t(
 	'FlxAnalyticsOption',
-	__( 'A value with its label.', 'flx-analytics' ),
+	'A value with its label.',
 	array(
-		'value' => array( 'String!', __( 'Value.', 'flx-analytics' ) ),
-		'label' => array( 'String!', __( 'Label in the user\'s language.', 'flx-analytics' ) ),
+		'value' => array( 'String!', 'Value.' ),
+		'label' => array( 'String!', 'Label in the user\'s language.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsRange',
-	__( 'The resolved date range and the equal period before it.', 'flx-analytics' ),
+	'The resolved date range and the equal period before it.',
 	array(
-		'preset'    => array( 'FlxAnalyticsRangePreset!', __( 'Range preset.', 'flx-analytics' ) ),
-		'start'     => array( 'String!', __( 'First day (YYYY-MM-DD, site time zone).', 'flx-analytics' ) ),
-		'end'       => array( 'String!', __( 'Last day (YYYY-MM-DD, site time zone).', 'flx-analytics' ) ),
-		'label'     => array( 'String!', __( 'Name of the range.', 'flx-analytics' ) ),
-		'days'      => array( 'Int!', __( 'Days in the range.', 'flx-analytics' ) ),
-		'prevStart' => array( 'String!', __( 'First day of the previous equal period.', 'flx-analytics' ) ),
-		'prevEnd'   => array( 'String!', __( 'Last day of the previous equal period.', 'flx-analytics' ) ),
+		'preset'    => array( 'FlxAnalyticsRangePreset!', 'Range preset.' ),
+		'start'     => array( 'String!', 'First day (YYYY-MM-DD, site time zone).' ),
+		'end'       => array( 'String!', 'Last day (YYYY-MM-DD, site time zone).' ),
+		'label'     => array( 'String!', 'Name of the range.' ),
+		'days'      => array( 'Int!', 'Days in the range.' ),
+		'prevStart' => array( 'String!', 'First day of the previous equal period.' ),
+		'prevEnd'   => array( 'String!', 'Last day of the previous equal period.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsFilterState',
-	__( 'The visitor filters in effect.', 'flx-analytics' ),
+	'The visitor filters in effect.',
 	array(
-		'seg' => array( 'String!', __( 'Visitor type filter.', 'flx-analytics' ) ),
-		'rc'  => array( 'String!', __( 'Referral code filter.', 'flx-analytics' ) ),
+		'seg' => array( 'String!', 'Visitor type filter.' ),
+		'rc'  => array( 'String!', 'Referral code filter.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsTotals',
-	__( 'Visitors and page views.', 'flx-analytics' ),
+	'Visitors and page views.',
 	array(
-		'visitors'  => array( 'Int!', __( 'Sum of each day\'s unique visitors.', 'flx-analytics' ) ),
-		'pageviews' => array( 'Int!', __( 'Page views.', 'flx-analytics' ) ),
+		'visitors'  => array( 'Int!', 'Sum of each day\'s unique visitors.' ),
+		'pageviews' => array( 'Int!', 'Page views.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsVisits',
-	__( 'Visit (session) measures.', 'flx-analytics' ),
+	'Visit (session) measures.',
 	array(
-		'sessions'    => array( 'Int!', __( 'Visits.', 'flx-analytics' ) ),
-		'avgDuration' => array( 'Int!', __( 'Average visit length in seconds.', 'flx-analytics' ) ),
-		'bounceRate'  => array( 'Float!', __( 'Percent of visits that saw one page.', 'flx-analytics' ) ),
-		'pagesPer'    => array( 'Float!', __( 'Pages per visit.', 'flx-analytics' ) ),
+		'sessions'    => array( 'Int!', 'Visits.' ),
+		'avgDuration' => array( 'Int!', 'Average visit length in seconds.' ),
+		'bounceRate'  => array( 'Float!', 'Percent of visits that saw one page.' ),
+		'pagesPer'    => array( 'Float!', 'Pages per visit.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsChange',
-	__( 'Percent change against the previous equal period; empty when that period had no data.', 'flx-analytics' ),
+	'Percent change against the previous equal period; empty when that period had no data.',
 	array(
-		'visitors'    => array( 'Float', __( 'Visitors change.', 'flx-analytics' ) ),
-		'pageviews'   => array( 'Float', __( 'Page views change.', 'flx-analytics' ) ),
-		'sessions'    => array( 'Float', __( 'Visits change.', 'flx-analytics' ) ),
-		'avgDuration' => array( 'Float', __( 'Average visit length change.', 'flx-analytics' ) ),
-		'bounceRate'  => array( 'Float', __( 'Bounce rate change.', 'flx-analytics' ) ),
-		'pagesPer'    => array( 'Float', __( 'Pages per visit change.', 'flx-analytics' ) ),
+		'visitors'    => array( 'Float', 'Visitors change.' ),
+		'pageviews'   => array( 'Float', 'Page views change.' ),
+		'sessions'    => array( 'Float', 'Visits change.' ),
+		'avgDuration' => array( 'Float', 'Average visit length change.' ),
+		'bounceRate'  => array( 'Float', 'Bounce rate change.' ),
+		'pagesPer'    => array( 'Float', 'Pages per visit change.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsPoint',
-	__( 'One bar of the visitors chart.', 'flx-analytics' ),
+	'One bar of the visitors chart.',
 	array(
-		'date'      => array( 'String!', __( 'First day of the bar (YYYY-MM-DD).', 'flx-analytics' ) ),
-		'visitors'  => array( 'Int!', __( 'Visitors.', 'flx-analytics' ) ),
-		'pageviews' => array( 'Int!', __( 'Page views.', 'flx-analytics' ) ),
+		'date'      => array( 'String!', 'First day of the bar (YYYY-MM-DD).' ),
+		'visitors'  => array( 'Int!', 'Visitors.' ),
+		'pageviews' => array( 'Int!', 'Page views.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsSeries',
-	__( 'Visitors over time; missing days are zero.', 'flx-analytics' ),
+	'Visitors over time; missing days are zero.',
 	array(
-		'group' => array( 'FlxAnalyticsSeriesGroup!', __( 'Bar size (day for up to 92 days, week up to 400, then month).', 'flx-analytics' ) ),
-		'items' => array( '[FlxAnalyticsPoint!]!', __( 'Bars, oldest first.', 'flx-analytics' ) ),
+		'group' => array( 'FlxAnalyticsSeriesGroup!', 'Bar size (day for up to 92 days, week up to 400, then month).' ),
+		'items' => array( '[FlxAnalyticsPoint!]!', 'Bars, oldest first.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsKpi',
-	__( 'Headline numbers and the chart.', 'flx-analytics' ),
+	'Headline numbers and the chart.',
 	array(
-		'totals'     => array( 'FlxAnalyticsTotals!', __( 'Totals in the range.', 'flx-analytics' ) ),
-		'prev'       => array( 'FlxAnalyticsTotals!', __( 'Totals in the previous equal period.', 'flx-analytics' ) ),
-		'visits'     => array( 'FlxAnalyticsVisits!', __( 'Visit measures in the range.', 'flx-analytics' ) ),
-		'visitsPrev' => array( 'FlxAnalyticsVisits!', __( 'Visit measures in the previous period.', 'flx-analytics' ) ),
-		'change'     => array( 'FlxAnalyticsChange!', __( 'Percent changes.', 'flx-analytics' ) ),
-		'series'     => array( 'FlxAnalyticsSeries!', __( 'Chart data.', 'flx-analytics' ) ),
+		'totals'     => array( 'FlxAnalyticsTotals!', 'Totals in the range.' ),
+		'prev'       => array( 'FlxAnalyticsTotals!', 'Totals in the previous equal period.' ),
+		'visits'     => array( 'FlxAnalyticsVisits!', 'Visit measures in the range.' ),
+		'visitsPrev' => array( 'FlxAnalyticsVisits!', 'Visit measures in the previous period.' ),
+		'change'     => array( 'FlxAnalyticsChange!', 'Percent changes.' ),
+		'series'     => array( 'FlxAnalyticsSeries!', 'Chart data.' ),
 	)
 );
 
 flxan_gql_t(
 	'FlxAnalyticsPageRow',
-	__( 'A page and its views.', 'flx-analytics' ),
+	'A page and its views.',
 	array(
-		'path'      => array( 'String!', __( 'Address path.', 'flx-analytics' ) ),
-		'url'       => array( 'String!', __( 'Full address.', 'flx-analytics' ) ),
-		'postId'    => array( 'Int!', __( 'Post ID; 0 when the address is not a post.', 'flx-analytics' ) ),
-		'title'     => array( 'String!', __( 'Page title (the path when the page has none).', 'flx-analytics' ) ),
-		'is404'     => array( 'Boolean!', __( 'The address was not found.', 'flx-analytics' ) ),
-		'visitors'  => array( 'Int!', __( 'Visitors.', 'flx-analytics' ) ),
-		'pageviews' => array( 'Int!', __( 'Page views.', 'flx-analytics' ) ),
+		'path'      => array( 'String!', 'Address path.' ),
+		'url'       => array( 'String!', 'Full address.' ),
+		'postId'    => array( 'Int!', 'Post ID; 0 when the address is not a post.' ),
+		'title'     => array( 'String!', 'Page title (the path when the page has none).' ),
+		'is404'     => array( 'Boolean!', 'The address was not found.' ),
+		'visitors'  => array( 'Int!', 'Visitors.' ),
+		'pageviews' => array( 'Int!', 'Page views.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsPageList',
-	__( 'The first pages of a list and how many there are.', 'flx-analytics' ),
+	'The first pages of a list and how many there are.',
 	array(
-		'total' => array( 'Int!', __( 'All matching pages.', 'flx-analytics' ) ),
-		'items' => array( '[FlxAnalyticsPageRow!]!', __( 'The first pages.', 'flx-analytics' ) ),
+		'total' => array( 'Int!', 'All matching pages.' ),
+		'items' => array( '[FlxAnalyticsPageRow!]!', 'The first pages.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsReferrerRow',
-	__( 'A site that sent visitors.', 'flx-analytics' ),
+	'A site that sent visitors.',
 	array(
-		'host'         => array( 'String!', __( 'Domain name.', 'flx-analytics' ) ),
-		'channel'      => array( 'String!', __( 'Channel key (search, social, ai, referral …).', 'flx-analytics' ) ),
-		'channelLabel' => array( 'String!', __( 'Channel name in the user\'s language.', 'flx-analytics' ) ),
-		'visitors'     => array( 'Int!', __( 'Visitors.', 'flx-analytics' ) ),
-		'pageviews'    => array( 'Int!', __( 'Page views.', 'flx-analytics' ) ),
+		'host'         => array( 'String!', 'Domain name.' ),
+		'channel'      => array( 'String!', 'Channel key (search, social, ai, referral …).' ),
+		'channelLabel' => array( 'String!', 'Channel name in the user\'s language.' ),
+		'visitors'     => array( 'Int!', 'Visitors.' ),
+		'pageviews'    => array( 'Int!', 'Page views.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsReferrerList',
-	__( 'The first referring sites of a list and how many there are.', 'flx-analytics' ),
+	'The first referring sites of a list and how many there are.',
 	array(
-		'total' => array( 'Int!', __( 'All matching sites.', 'flx-analytics' ) ),
-		'items' => array( '[FlxAnalyticsReferrerRow!]!', __( 'The first sites.', 'flx-analytics' ) ),
+		'total' => array( 'Int!', 'All matching sites.' ),
+		'items' => array( '[FlxAnalyticsReferrerRow!]!', 'The first sites.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsDimRow',
-	__( 'One value of a breakdown (a browser, a country …).', 'flx-analytics' ),
+	'One value of a breakdown (a browser, a country …).',
 	array(
-		'value'     => array( 'String!', __( 'Stored value.', 'flx-analytics' ) ),
-		'label'     => array( 'String!', __( 'Name in the user\'s language.', 'flx-analytics' ) ),
-		'visitors'  => array( 'Int!', __( 'Visitors.', 'flx-analytics' ) ),
-		'pageviews' => array( 'Int!', __( 'Page views.', 'flx-analytics' ) ),
+		'value'     => array( 'String!', 'Stored value.' ),
+		'label'     => array( 'String!', 'Name in the user\'s language.' ),
+		'visitors'  => array( 'Int!', 'Visitors.' ),
+		'pageviews' => array( 'Int!', 'Page views.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsDimList',
-	__( 'The top values of one breakdown.', 'flx-analytics' ),
+	'The top values of one breakdown.',
 	array(
-		'kind'  => array( 'FlxAnalyticsDimKind!', __( 'What the traffic is split by.', 'flx-analytics' ) ),
-		'total' => array( 'Int!', __( 'All distinct values.', 'flx-analytics' ) ),
-		'items' => array( '[FlxAnalyticsDimRow!]!', __( 'The top values.', 'flx-analytics' ) ),
+		'kind'  => array( 'FlxAnalyticsDimKind!', 'What the traffic is split by.' ),
+		'total' => array( 'Int!', 'All distinct values.' ),
+		'items' => array( '[FlxAnalyticsDimRow!]!', 'The top values.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsEventSum',
-	__( 'Total of one event type.', 'flx-analytics' ),
+	'Total of one event type.',
 	array(
-		'name'    => array( 'String!', __( 'Event name.', 'flx-analytics' ) ),
-		'label'   => array( 'String!', __( 'Event name in the user\'s language.', 'flx-analytics' ) ),
-		'hits'    => array( 'Int!', __( 'Times it happened.', 'flx-analytics' ) ),
-		'uniques' => array( 'Int!', __( 'Distinct visitors.', 'flx-analytics' ) ),
-		'amount'  => array( 'Float!', __( 'Total amount (donations and orders).', 'flx-analytics' ) ),
+		'name'    => array( 'String!', 'Event name.' ),
+		'label'   => array( 'String!', 'Event name in the user\'s language.' ),
+		'hits'    => array( 'Int!', 'Times it happened.' ),
+		'uniques' => array( 'Int!', 'Distinct visitors.' ),
+		'amount'  => array( 'Float!', 'Total amount (donations and orders).' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsEventRow',
-	__( 'An event and its detail (the link, the file, the search term …).', 'flx-analytics' ),
+	'An event and its detail (the link, the file, the search term …).',
 	array(
-		'name'    => array( 'String!', __( 'Event name.', 'flx-analytics' ) ),
-		'label'   => array( 'String!', __( 'Event name in the user\'s language.', 'flx-analytics' ) ),
-		'param'   => array( 'String!', __( 'Detail; empty when the event has none.', 'flx-analytics' ) ),
-		'hits'    => array( 'Int!', __( 'Times it happened.', 'flx-analytics' ) ),
-		'uniques' => array( 'Int!', __( 'Distinct visitors.', 'flx-analytics' ) ),
-		'amount'  => array( 'Float!', __( 'Total amount.', 'flx-analytics' ) ),
+		'name'    => array( 'String!', 'Event name.' ),
+		'label'   => array( 'String!', 'Event name in the user\'s language.' ),
+		'param'   => array( 'String!', 'Detail; empty when the event has none.' ),
+		'hits'    => array( 'Int!', 'Times it happened.' ),
+		'uniques' => array( 'Int!', 'Distinct visitors.' ),
+		'amount'  => array( 'Float!', 'Total amount.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsEventList',
-	__( 'The first events of a list and how many there are.', 'flx-analytics' ),
+	'The first events of a list and how many there are.',
 	array(
-		'total' => array( 'Int!', __( 'All matching events.', 'flx-analytics' ) ),
-		'items' => array( '[FlxAnalyticsEventRow!]!', __( 'The first events.', 'flx-analytics' ) ),
+		'total' => array( 'Int!', 'All matching events.' ),
+		'items' => array( '[FlxAnalyticsEventRow!]!', 'The first events.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsSegment',
-	__( 'Traffic of one visitor type.', 'flx-analytics' ),
+	'Traffic of one visitor type.',
 	array(
-		'value'     => array( 'String!', __( 'Role name; empty for outside visitors.', 'flx-analytics' ) ),
-		'label'     => array( 'String!', __( 'Name in the user\'s language.', 'flx-analytics' ) ),
-		'visitors'  => array( 'Int!', __( 'Visitors.', 'flx-analytics' ) ),
-		'pageviews' => array( 'Int!', __( 'Page views.', 'flx-analytics' ) ),
+		'value'     => array( 'String!', 'Role name; empty for outside visitors.' ),
+		'label'     => array( 'String!', 'Name in the user\'s language.' ),
+		'visitors'  => array( 'Int!', 'Visitors.' ),
+		'pageviews' => array( 'Int!', 'Page views.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsRef',
-	__( 'A referral link (?r=code) and what its visitors did.', 'flx-analytics' ),
+	'A referral link (?r=code) and what its visitors did.',
 	array(
-		'code'         => array( 'String!', __( 'Referral code.', 'flx-analytics' ) ),
-		'name'         => array( 'String!', __( 'Name given to the code; empty when none.', 'flx-analytics' ) ),
-		'label'        => array( 'String!', __( 'Name, or the code when there is no name.', 'flx-analytics' ) ),
-		'url'          => array( 'String!', __( 'The link to share.', 'flx-analytics' ) ),
-		'visitors'     => array( 'Int!', __( 'Visitors.', 'flx-analytics' ) ),
-		'pageviews'    => array( 'Int!', __( 'Page views.', 'flx-analytics' ) ),
-		'sessions'     => array( 'Int!', __( 'Visits.', 'flx-analytics' ) ),
-		'pagesPer'     => array( 'Float!', __( 'Pages per visit.', 'flx-analytics' ) ),
-		'avgDuration'  => array( 'Int!', __( 'Average visit length in seconds.', 'flx-analytics' ) ),
-		'donations'    => array( 'Int!', __( 'Paid donations.', 'flx-analytics' ) ),
-		'amount'       => array( 'Float!', __( 'Donated amount.', 'flx-analytics' ) ),
-		'deepest'      => array( 'Int!', __( 'Furthest first-funnel step reached (0 = none).', 'flx-analytics' ) ),
-		'deepestLabel' => array( 'String!', __( 'Name of that step.', 'flx-analytics' ) ),
-		'completed'    => array( 'Int!', __( 'Visits that completed the first funnel.', 'flx-analytics' ) ),
+		'code'         => array( 'String!', 'Referral code.' ),
+		'name'         => array( 'String!', 'Name given to the code; empty when none.' ),
+		'label'        => array( 'String!', 'Name, or the code when there is no name.' ),
+		'url'          => array( 'String!', 'The link to share.' ),
+		'visitors'     => array( 'Int!', 'Visitors.' ),
+		'pageviews'    => array( 'Int!', 'Page views.' ),
+		'sessions'     => array( 'Int!', 'Visits.' ),
+		'pagesPer'     => array( 'Float!', 'Pages per visit.' ),
+		'avgDuration'  => array( 'Int!', 'Average visit length in seconds.' ),
+		'donations'    => array( 'Int!', 'Paid donations.' ),
+		'amount'       => array( 'Float!', 'Donated amount.' ),
+		'deepest'      => array( 'Int!', 'Furthest first-funnel step reached (0 = none).' ),
+		'deepestLabel' => array( 'String!', 'Name of that step.' ),
+		'completed'    => array( 'Int!', 'Visits that completed the first funnel.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsRefSaved',
-	__( 'A saved referral code.', 'flx-analytics' ),
+	'A saved referral code.',
 	array(
-		'code' => array( 'String!', __( 'Referral code.', 'flx-analytics' ) ),
-		'name' => array( 'String!', __( 'Name; empty when removed.', 'flx-analytics' ) ),
-		'url'  => array( 'String!', __( 'The link to share.', 'flx-analytics' ) ),
+		'code' => array( 'String!', 'Referral code.' ),
+		'name' => array( 'String!', 'Name; empty when removed.' ),
+		'url'  => array( 'String!', 'The link to share.' ),
 	)
 );
 
 flxan_gql_t(
 	'FlxAnalyticsFunnelStep',
-	__( 'One funnel step with the visits that reached it.', 'flx-analytics' ),
+	'One funnel step with the visits that reached it.',
 	array(
-		'label' => array( 'String!', __( 'Step name.', 'flx-analytics' ) ),
-		'type'  => array( 'FlxAnalyticsStepType!', __( 'What the step matches.', 'flx-analytics' ) ),
-		'value' => array( 'String!', __( 'Path or event of the step.', 'flx-analytics' ) ),
-		'count' => array( 'Int!', __( 'Visits that reached this step or went further.', 'flx-analytics' ) ),
-		'rate'  => array( 'Float!', __( 'Percent of the first step.', 'flx-analytics' ) ),
-		'drop'  => array( 'Float!', __( 'Percent lost since the previous step.', 'flx-analytics' ) ),
+		'label' => array( 'String!', 'Step name.' ),
+		'type'  => array( 'FlxAnalyticsStepType!', 'What the step matches.' ),
+		'value' => array( 'String!', 'Path or event of the step.' ),
+		'count' => array( 'Int!', 'Visits that reached this step or went further.' ),
+		'rate'  => array( 'Float!', 'Percent of the first step.' ),
+		'drop'  => array( 'Float!', 'Percent lost since the previous step.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsFunnelGroup',
-	__( 'A group (channel, site, code …) with its funnel counts.', 'flx-analytics' ),
+	'A group (channel, site, code …) with its funnel counts.',
 	array(
-		'value'  => array( 'String!', __( 'Group key.', 'flx-analytics' ) ),
-		'label'  => array( 'String!', __( 'Group name.', 'flx-analytics' ) ),
-		'counts' => array( '[Int!]!', __( 'Visits per step.', 'flx-analytics' ) ),
-		'rate'   => array( 'Float!', __( 'Percent that completed the funnel.', 'flx-analytics' ) ),
+		'value'  => array( 'String!', 'Group key.' ),
+		'label'  => array( 'String!', 'Group name.' ),
+		'counts' => array( '[Int!]!', 'Visits per step.' ),
+		'rate'   => array( 'Float!', 'Percent that completed the funnel.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsFunnelName',
-	__( 'A defined funnel.', 'flx-analytics' ),
+	'A defined funnel.',
 	array(
-		'id'   => array( 'Int!', __( 'Funnel number.', 'flx-analytics' ) ),
-		'name' => array( 'String!', __( 'Funnel name.', 'flx-analytics' ) ),
+		'id'   => array( 'Int!', 'Funnel number.' ),
+		'name' => array( 'String!', 'Funnel name.' ),
 	)
 );
 flx_gql_type(
 	'FlxAnalyticsFunnel',
 	array(
-		'description' => __( 'A funnel report.', 'flx-analytics' ),
+		'description' => 'A funnel report.',
 		'fields'      => array(
-			'found'   => array( 'type' => 'Boolean!', 'description' => __( 'A funnel is defined.', 'flx-analytics' ) ),
-			'id'      => array( 'type' => 'Int', 'description' => __( 'Funnel number; empty when none is defined.', 'flx-analytics' ) ),
-			'name'    => array( 'type' => 'String', 'description' => __( 'Funnel name; empty when none is defined.', 'flx-analytics' ) ),
+			'found'   => array( 'type' => 'Boolean!', 'description' => 'A funnel is defined.' ),
+			'id'      => array( 'type' => 'Int', 'description' => 'Funnel number; empty when none is defined.' ),
+			'name'    => array( 'type' => 'String', 'description' => 'Funnel name; empty when none is defined.' ),
 			'by'      => array(
 				'type'        => 'FlxAnalyticsFunnelBy!',
-				'description' => __( 'How the groups were formed.', 'flx-analytics' ),
+				'description' => 'How the groups were formed.',
 				'resolve'     => static fn( $f ): string => is_array( $f ) && '' !== FLXAN_Service::str( $f['by'] ?? '' ) ? FLXAN_Service::str( $f['by'] ) : 'total',
 			),
-			'steps'   => array( 'type' => '[FlxAnalyticsFunnelStep!]!', 'description' => __( 'Steps.', 'flx-analytics' ) ),
-			'groups'  => array( 'type' => '[FlxAnalyticsFunnelGroup!]!', 'description' => __( 'Groups (up to 8) when the funnel is split.', 'flx-analytics' ) ),
-			'funnels' => array( 'type' => '[FlxAnalyticsFunnelName!]!', 'description' => __( 'Every defined funnel.', 'flx-analytics' ) ),
+			'steps'   => array( 'type' => '[FlxAnalyticsFunnelStep!]!', 'description' => 'Steps.' ),
+			'groups'  => array( 'type' => '[FlxAnalyticsFunnelGroup!]!', 'description' => 'Groups (up to 8) when the funnel is split.' ),
+			'funnels' => array( 'type' => '[FlxAnalyticsFunnelName!]!', 'description' => 'Every defined funnel.' ),
 		),
 	)
 );
 
 flxan_gql_t(
 	'FlxAnalyticsLivePage',
-	__( 'A page people are on now.', 'flx-analytics' ),
+	'A page people are on now.',
 	array(
-		'path'      => array( 'String!', __( 'Address path.', 'flx-analytics' ) ),
-		'title'     => array( 'String!', __( 'Page title.', 'flx-analytics' ) ),
-		'pageviews' => array( 'Int!', __( 'Page views in the window.', 'flx-analytics' ) ),
+		'path'      => array( 'String!', 'Address path.' ),
+		'title'     => array( 'String!', 'Page title.' ),
+		'pageviews' => array( 'Int!', 'Page views in the window.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsLiveReferrer',
-	__( 'A site people came from just now.', 'flx-analytics' ),
+	'A site people came from just now.',
 	array(
-		'host'      => array( 'String!', __( 'Domain name.', 'flx-analytics' ) ),
-		'pageviews' => array( 'Int!', __( 'Page views in the window.', 'flx-analytics' ) ),
+		'host'      => array( 'String!', 'Domain name.' ),
+		'pageviews' => array( 'Int!', 'Page views in the window.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsLiveCountry',
-	__( 'A country people are visiting from now.', 'flx-analytics' ),
+	'A country people are visiting from now.',
 	array(
-		'value'    => array( 'String!', __( 'Country code.', 'flx-analytics' ) ),
-		'label'    => array( 'String!', __( 'Country name in the user\'s language.', 'flx-analytics' ) ),
-		'visitors' => array( 'Int!', __( 'Visitors in the window.', 'flx-analytics' ) ),
+		'value'    => array( 'String!', 'Country code.' ),
+		'label'    => array( 'String!', 'Country name in the user\'s language.' ),
+		'visitors' => array( 'Int!', 'Visitors in the window.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsLiveCode',
-	__( 'A referral code of the people on the site now.', 'flx-analytics' ),
+	'A referral code of the people on the site now.',
 	array(
-		'code'     => array( 'String!', __( 'Referral code.', 'flx-analytics' ) ),
-		'label'    => array( 'String!', __( 'Name, or the code.', 'flx-analytics' ) ),
-		'visitors' => array( 'Int!', __( 'Visitors in the window.', 'flx-analytics' ) ),
+		'code'     => array( 'String!', 'Referral code.' ),
+		'label'    => array( 'String!', 'Name, or the code.' ),
+		'visitors' => array( 'Int!', 'Visitors in the window.' ),
 	)
 );
 flx_gql_type(
 	'FlxAnalyticsRealtime',
 	array(
-		'description' => __( 'Who is on the site now.', 'flx-analytics' ),
+		'description' => 'Who is on the site now.',
 		'fields'      => array(
-			'minutes'   => array( 'type' => 'Int!', 'description' => __( 'Window in minutes.', 'flx-analytics' ) ),
-			'active'    => array( 'type' => 'Int!', 'description' => __( 'People on the site in the last 5 minutes.', 'flx-analytics' ) ),
-			'visitors'  => array( 'type' => 'Int!', 'description' => __( 'Visitors in the window.', 'flx-analytics' ) ),
-			'pageviews' => array( 'type' => 'Int!', 'description' => __( 'Page views in the window.', 'flx-analytics' ) ),
-			'perMinute' => array( 'type' => '[Int!]!', 'description' => __( 'Page views per minute, oldest first.', 'flx-analytics' ) ),
-			'pages'     => array( 'type' => '[FlxAnalyticsLivePage!]!', 'description' => __( 'Busiest pages (5).', 'flx-analytics' ) ),
-			'referrers' => array( 'type' => '[FlxAnalyticsLiveReferrer!]!', 'description' => __( 'Busiest referring sites (5).', 'flx-analytics' ) ),
-			'countries' => array( 'type' => '[FlxAnalyticsLiveCountry!]!', 'description' => __( 'Countries (10).', 'flx-analytics' ) ),
-			'codes'     => array( 'type' => '[FlxAnalyticsLiveCode!]!', 'description' => __( 'Referral codes (5).', 'flx-analytics' ) ),
+			'minutes'   => array( 'type' => 'Int!', 'description' => 'Window in minutes.' ),
+			'active'    => array( 'type' => 'Int!', 'description' => 'People on the site in the last 5 minutes.' ),
+			'visitors'  => array( 'type' => 'Int!', 'description' => 'Visitors in the window.' ),
+			'pageviews' => array( 'type' => 'Int!', 'description' => 'Page views in the window.' ),
+			'perMinute' => array( 'type' => '[Int!]!', 'description' => 'Page views per minute, oldest first.' ),
+			'pages'     => array( 'type' => '[FlxAnalyticsLivePage!]!', 'description' => 'Busiest pages (5).' ),
+			'referrers' => array( 'type' => '[FlxAnalyticsLiveReferrer!]!', 'description' => 'Busiest referring sites (5).' ),
+			'countries' => array( 'type' => '[FlxAnalyticsLiveCountry!]!', 'description' => 'Countries (10).' ),
+			'codes'     => array( 'type' => '[FlxAnalyticsLiveCode!]!', 'description' => 'Referral codes (5).' ),
 			'updated'   => array(
 				'type'        => 'FlxDateTime',
-				'description' => __( 'When the visit queue was last processed; empty when never.', 'flx-analytics' ),
+				'description' => 'When the visit queue was last processed; empty when never.',
 				'resolve'     => static fn( $r ) => flxan_gql_time( $r, 'updated' ),
 			),
-			'kpi'       => array( 'type' => 'FlxAnalyticsKpi', 'description' => __( 'Headline numbers and chart, when asked for.', 'flx-analytics' ) ),
+			'kpi'       => array( 'type' => 'FlxAnalyticsKpi', 'description' => 'Headline numbers and chart, when asked for.' ),
 		),
 	)
 );
 
 flxan_gql_t(
 	'FlxAnalyticsReport',
-	__( 'Everything the Statistics screen shows.', 'flx-analytics' ),
+	'Everything the Statistics screen shows.',
 	array(
-		'range'        => array( 'FlxAnalyticsRange!', __( 'The date range.', 'flx-analytics' ) ),
-		'filter'       => array( 'FlxAnalyticsFilterState!', __( 'Visitor filters in effect.', 'flx-analytics' ) ),
-		'kpi'          => array( 'FlxAnalyticsKpi!', __( 'Headline numbers and the chart.', 'flx-analytics' ) ),
-		'pages'        => array( 'FlxAnalyticsPageList!', __( 'Most viewed pages (10).', 'flx-analytics' ) ),
-		'notFound'     => array( 'FlxAnalyticsPageList!', __( 'Addresses that were not found (5).', 'flx-analytics' ) ),
-		'referrers'    => array( 'FlxAnalyticsReferrerList!', __( 'Referring sites (10).', 'flx-analytics' ) ),
-		'dims'         => array( '[FlxAnalyticsDimList!]!', __( 'Breakdowns: channel, device, browser, system, language, country and campaign values.', 'flx-analytics' ) ),
-		'segments'     => array( '[FlxAnalyticsSegment!]!', __( 'Traffic by visitor type.', 'flx-analytics' ) ),
-		'refs'         => array( '[FlxAnalyticsRef!]!', __( 'Referral links (20).', 'flx-analytics' ) ),
-		'funnel'       => array( 'FlxAnalyticsFunnel!', __( 'The first funnel, split by channel.', 'flx-analytics' ) ),
-		'eventSummary' => array( '[FlxAnalyticsEventSum!]!', __( 'Event totals.', 'flx-analytics' ) ),
-		'events'       => array( 'FlxAnalyticsEventList!', __( 'Event details (10).', 'flx-analytics' ) ),
-		'realtime'     => array( 'FlxAnalyticsRealtime!', __( 'Who is on the site now (30 minutes).', 'flx-analytics' ) ),
+		'range'        => array( 'FlxAnalyticsRange!', 'The date range.' ),
+		'filter'       => array( 'FlxAnalyticsFilterState!', 'Visitor filters in effect.' ),
+		'kpi'          => array( 'FlxAnalyticsKpi!', 'Headline numbers and the chart.' ),
+		'pages'        => array( 'FlxAnalyticsPageList!', 'Most viewed pages (10).' ),
+		'notFound'     => array( 'FlxAnalyticsPageList!', 'Addresses that were not found (5).' ),
+		'referrers'    => array( 'FlxAnalyticsReferrerList!', 'Referring sites (10).' ),
+		'dims'         => array( '[FlxAnalyticsDimList!]!', 'Breakdowns: channel, device, browser, system, language, country and campaign values.' ),
+		'segments'     => array( '[FlxAnalyticsSegment!]!', 'Traffic by visitor type.' ),
+		'refs'         => array( '[FlxAnalyticsRef!]!', 'Referral links (20).' ),
+		'funnel'       => array( 'FlxAnalyticsFunnel!', 'The first funnel, split by channel.' ),
+		'eventSummary' => array( '[FlxAnalyticsEventSum!]!', 'Event totals.' ),
+		'events'       => array( 'FlxAnalyticsEventList!', 'Event details (10).' ),
+		'realtime'     => array( 'FlxAnalyticsRealtime!', 'Who is on the site now (30 minutes).' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsPageStats',
-	__( 'One page or post.', 'flx-analytics' ),
+	'One page or post.',
 	array(
-		'found'     => array( 'Boolean!', __( 'The page has any recorded views.', 'flx-analytics' ) ),
-		'paths'     => array( '[String!]!', __( 'Address paths that count for this page.', 'flx-analytics' ) ),
-		'visitors'  => array( 'Int!', __( 'Visitors in the range.', 'flx-analytics' ) ),
-		'pageviews' => array( 'Int!', __( 'Page views in the range.', 'flx-analytics' ) ),
-		'series'    => array( '[FlxAnalyticsPoint!]!', __( 'Days with views; days without are left out.', 'flx-analytics' ) ),
+		'found'     => array( 'Boolean!', 'The page has any recorded views.' ),
+		'paths'     => array( '[String!]!', 'Address paths that count for this page.' ),
+		'visitors'  => array( 'Int!', 'Visitors in the range.' ),
+		'pageviews' => array( 'Int!', 'Page views in the range.' ),
+		'series'    => array( '[FlxAnalyticsPoint!]!', 'Days with views; days without are left out.' ),
 	)
 );
 
@@ -622,122 +622,122 @@ flxan_gql_conn( 'FlxAnalyticsEventRow' );
 
 flxan_gql_t(
 	'FlxAnalyticsJourneyOptions',
-	__( 'Options the journeys report used.', 'flx-analytics' ),
+	'Options the journeys report used.',
 	array(
-		'steps' => array( 'Int!', __( 'Steps shown.', 'flx-analytics' ) ),
-		'from'  => array( 'String!', __( 'Start path filter; empty = all.', 'flx-analytics' ) ),
-		'to'    => array( 'String!', __( 'End path filter; empty = all.', 'flx-analytics' ) ),
-		'goal'  => array( 'String!', __( 'Goal "funnel:step"; empty = none.', 'flx-analytics' ) ),
-		'group' => array( 'Boolean!', __( 'Sub pages are grouped.', 'flx-analytics' ) ),
-		'top'   => array( 'Int!', __( 'Paths listed.', 'flx-analytics' ) ),
+		'steps' => array( 'Int!', 'Steps shown.' ),
+		'from'  => array( 'String!', 'Start path filter; empty = all.' ),
+		'to'    => array( 'String!', 'End path filter; empty = all.' ),
+		'goal'  => array( 'String!', 'Goal "funnel:step"; empty = none.' ),
+		'group' => array( 'Boolean!', 'Sub pages are grouped.' ),
+		'top'   => array( 'Int!', 'Paths listed.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsJourneyNode',
-	__( 'A page with its visit count.', 'flx-analytics' ),
+	'A page with its visit count.',
 	array(
-		'key'   => array( 'String!', __( 'Path key.', 'flx-analytics' ) ),
-		'label' => array( 'String!', __( 'Page title.', 'flx-analytics' ) ),
-		'count' => array( 'Int!', __( 'Visits.', 'flx-analytics' ) ),
-		'pct'   => array( 'Float!', __( 'Percent of multi-page visits.', 'flx-analytics' ) ),
+		'key'   => array( 'String!', 'Path key.' ),
+		'label' => array( 'String!', 'Page title.' ),
+		'count' => array( 'Int!', 'Visits.' ),
+		'pct'   => array( 'Float!', 'Percent of multi-page visits.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsJourneySummary',
-	__( 'Headline numbers of the journeys report.', 'flx-analytics' ),
+	'Headline numbers of the journeys report.',
 	array(
-		'sessions'     => array( 'Int!', __( 'All visits.', 'flx-analytics' ) ),
-		'multi'        => array( 'Int!', __( 'Visits with at least two pages.', 'flx-analytics' ) ),
-		'multiPct'     => array( 'Float!', __( 'Percent of all visits.', 'flx-analytics' ) ),
-		'multiChange'  => array( 'Float', __( 'Percent change of multi-page visits.', 'flx-analytics' ) ),
-		'avgLen'       => array( 'Float!', __( 'Average journey length in pages.', 'flx-analytics' ) ),
-		'avgLenChange' => array( 'Float', __( 'Percent change of the average length.', 'flx-analytics' ) ),
-		'topEntry'     => array( 'FlxAnalyticsJourneyNode', __( 'Most common first page; empty without data.', 'flx-analytics' ) ),
-		'topExit'      => array( 'FlxAnalyticsJourneyNode', __( 'Most common last page after two or more pages; empty without data.', 'flx-analytics' ) ),
-		'goalRate'     => array( 'Float', __( 'Percent that reached the goal; empty when no goal is chosen.', 'flx-analytics' ) ),
-		'goalReached'  => array( 'Int!', __( 'Visits that reached the goal.', 'flx-analytics' ) ),
-		'goalChange'   => array( 'Float', __( 'Percent change of the goal rate.', 'flx-analytics' ) ),
+		'sessions'     => array( 'Int!', 'All visits.' ),
+		'multi'        => array( 'Int!', 'Visits with at least two pages.' ),
+		'multiPct'     => array( 'Float!', 'Percent of all visits.' ),
+		'multiChange'  => array( 'Float', 'Percent change of multi-page visits.' ),
+		'avgLen'       => array( 'Float!', 'Average journey length in pages.' ),
+		'avgLenChange' => array( 'Float', 'Percent change of the average length.' ),
+		'topEntry'     => array( 'FlxAnalyticsJourneyNode', 'Most common first page; empty without data.' ),
+		'topExit'      => array( 'FlxAnalyticsJourneyNode', 'Most common last page after two or more pages; empty without data.' ),
+		'goalRate'     => array( 'Float', 'Percent that reached the goal; empty when no goal is chosen.' ),
+		'goalReached'  => array( 'Int!', 'Visits that reached the goal.' ),
+		'goalChange'   => array( 'Float', 'Percent change of the goal rate.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsFlowNode',
-	__( 'A box of the flow chart.', 'flx-analytics' ),
+	'A box of the flow chart.',
 	array(
-		'key'   => array( 'String!', __( 'Path key; ~ is "other pages".', 'flx-analytics' ) ),
-		'label' => array( 'String!', __( 'Page title.', 'flx-analytics' ) ),
-		'path'  => array( 'String!', __( 'Path; empty for events and other pages.', 'flx-analytics' ) ),
-		'ev'    => array( 'Boolean!', __( 'The step is an event (add to cart …), not a page.', 'flx-analytics' ) ),
-		'count' => array( 'Int!', __( 'Visits through this box.', 'flx-analytics' ) ),
-		'ends'  => array( 'Int!', __( 'Visits that ended here.', 'flx-analytics' ) ),
+		'key'   => array( 'String!', 'Path key; ~ is "other pages".' ),
+		'label' => array( 'String!', 'Page title.' ),
+		'path'  => array( 'String!', 'Path; empty for events and other pages.' ),
+		'ev'    => array( 'Boolean!', 'The step is an event (add to cart …), not a page.' ),
+		'count' => array( 'Int!', 'Visits through this box.' ),
+		'ends'  => array( 'Int!', 'Visits that ended here.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsFlowColumn',
-	__( 'One step of the flow chart.', 'flx-analytics' ),
+	'One step of the flow chart.',
 	array(
-		'nodes' => array( '[FlxAnalyticsFlowNode!]!', __( 'Boxes, busiest first.', 'flx-analytics' ) ),
+		'nodes' => array( '[FlxAnalyticsFlowNode!]!', 'Boxes, busiest first.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsFlowLink',
-	__( 'A band between two boxes.', 'flx-analytics' ),
+	'A band between two boxes.',
 	array(
-		'step'  => array( 'Int!', __( 'Column the band starts in (0 = first).', 'flx-analytics' ) ),
-		'from'  => array( 'String!', __( 'Key of the box it starts in.', 'flx-analytics' ) ),
-		'to'    => array( 'String!', __( 'Key of the box it ends in.', 'flx-analytics' ) ),
-		'count' => array( 'Int!', __( 'Visits.', 'flx-analytics' ) ),
+		'step'  => array( 'Int!', 'Column the band starts in (0 = first).' ),
+		'from'  => array( 'String!', 'Key of the box it starts in.' ),
+		'to'    => array( 'String!', 'Key of the box it ends in.' ),
+		'count' => array( 'Int!', 'Visits.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsFlow',
-	__( 'The flow chart.', 'flx-analytics' ),
+	'The flow chart.',
 	array(
-		'columns' => array( '[FlxAnalyticsFlowColumn!]!', __( 'Steps from the entry page.', 'flx-analytics' ) ),
-		'links'   => array( '[FlxAnalyticsFlowLink!]!', __( 'Bands between steps.', 'flx-analytics' ) ),
+		'columns' => array( '[FlxAnalyticsFlowColumn!]!', 'Steps from the entry page.' ),
+		'links'   => array( '[FlxAnalyticsFlowLink!]!', 'Bands between steps.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsJourneyStep',
-	__( 'A step of a path.', 'flx-analytics' ),
+	'A step of a path.',
 	array(
-		'key'   => array( 'String!', __( 'Path key.', 'flx-analytics' ) ),
-		'label' => array( 'String!', __( 'Page title or event name.', 'flx-analytics' ) ),
-		'path'  => array( 'String!', __( 'Path; empty for events.', 'flx-analytics' ) ),
-		'ev'    => array( 'Boolean!', __( 'The step is an event.', 'flx-analytics' ) ),
+		'key'   => array( 'String!', 'Path key.' ),
+		'label' => array( 'String!', 'Page title or event name.' ),
+		'path'  => array( 'String!', 'Path; empty for events.' ),
+		'ev'    => array( 'Boolean!', 'The step is an event.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsJourneyPath',
-	__( 'A frequent path.', 'flx-analytics' ),
+	'A frequent path.',
 	array(
-		'steps'    => array( '[FlxAnalyticsJourneyStep!]!', __( 'Steps in order.', 'flx-analytics' ) ),
-		'sessions' => array( 'Int!', __( 'Visits that took this path.', 'flx-analytics' ) ),
-		'reached'  => array( 'Int!', __( 'Of them, visits that reached the goal.', 'flx-analytics' ) ),
-		'share'    => array( 'Float!', __( 'Percent of multi-page visits.', 'flx-analytics' ) ),
-		'prev'     => array( 'Int!', __( 'Visits in the previous equal period.', 'flx-analytics' ) ),
-		'change'   => array( 'Float', __( 'Percent change; empty when the path is new.', 'flx-analytics' ) ),
-		'rate'     => array( 'Float!', __( 'Percent that reached the goal.', 'flx-analytics' ) ),
+		'steps'    => array( '[FlxAnalyticsJourneyStep!]!', 'Steps in order.' ),
+		'sessions' => array( 'Int!', 'Visits that took this path.' ),
+		'reached'  => array( 'Int!', 'Of them, visits that reached the goal.' ),
+		'share'    => array( 'Float!', 'Percent of multi-page visits.' ),
+		'prev'     => array( 'Int!', 'Visits in the previous equal period.' ),
+		'change'   => array( 'Float', 'Percent change; empty when the path is new.' ),
+		'rate'     => array( 'Float!', 'Percent that reached the goal.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsJourneyPaths',
-	__( 'The most frequent paths.', 'flx-analytics' ),
+	'The most frequent paths.',
 	array(
-		'top'   => array( 'Int!', __( 'Paths asked for.', 'flx-analytics' ) ),
-		'total' => array( 'Int!', __( 'Distinct paths.', 'flx-analytics' ) ),
-		'items' => array( '[FlxAnalyticsJourneyPath!]!', __( 'Paths (up to 200; the screen filters them).', 'flx-analytics' ) ),
+		'top'   => array( 'Int!', 'Paths asked for.' ),
+		'total' => array( 'Int!', 'Distinct paths.' ),
+		'items' => array( '[FlxAnalyticsJourneyPath!]!', 'Paths (up to 200; the screen filters them).' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsJourneys',
-	__( 'The journeys report.', 'flx-analytics' ),
+	'The journeys report.',
 	array(
-		'range'   => array( 'FlxAnalyticsRange!', __( 'The date range.', 'flx-analytics' ) ),
-		'options' => array( 'FlxAnalyticsJourneyOptions!', __( 'Options in effect.', 'flx-analytics' ) ),
-		'goals'   => array( '[FlxAnalyticsOption!]!', __( 'Goals to choose from (funnel steps).', 'flx-analytics' ) ),
-		'summary' => array( 'FlxAnalyticsJourneySummary!', __( 'Headline numbers.', 'flx-analytics' ) ),
-		'flow'    => array( 'FlxAnalyticsFlow!', __( 'The flow chart.', 'flx-analytics' ) ),
-		'paths'   => array( 'FlxAnalyticsJourneyPaths!', __( 'Frequent paths.', 'flx-analytics' ) ),
+		'range'   => array( 'FlxAnalyticsRange!', 'The date range.' ),
+		'options' => array( 'FlxAnalyticsJourneyOptions!', 'Options in effect.' ),
+		'goals'   => array( '[FlxAnalyticsOption!]!', 'Goals to choose from (funnel steps).' ),
+		'summary' => array( 'FlxAnalyticsJourneySummary!', 'Headline numbers.' ),
+		'flow'    => array( 'FlxAnalyticsFlow!', 'The flow chart.' ),
+		'paths'   => array( 'FlxAnalyticsJourneyPaths!', 'Frequent paths.' ),
 	)
 );
 
@@ -747,99 +747,99 @@ flxan_gql_t(
 
 flxan_gql_t(
 	'FlxAnalyticsConfig',
-	__( 'What the screens need once: option lists, permissions and links.', 'flx-analytics' ),
+	'What the screens need once: option lists, permissions and links.',
 	array(
-		'presets'           => array( '[FlxAnalyticsOption!]!', __( 'Date range names (value is the range key).', 'flx-analytics' ) ),
-		'kinds'             => array( '[FlxAnalyticsOption!]!', __( 'Breakdown names (value is the breakdown key).', 'flx-analytics' ) ),
-		'events'            => array( '[FlxAnalyticsOption!]!', __( 'Event names.', 'flx-analytics' ) ),
-		'channels'          => array( '[FlxAnalyticsOption!]!', __( 'Channel names.', 'flx-analytics' ) ),
-		'segments'          => array( '[FlxAnalyticsOption!]!', __( 'Visitor types for the filter.', 'flx-analytics' ) ),
-		'funnelBy'          => array( '[FlxAnalyticsOption!]!', __( 'Ways to split a funnel.', 'flx-analytics' ) ),
-		'goals'             => array( '[FlxAnalyticsOption!]!', __( 'Journey goals (funnel steps).', 'flx-analytics' ) ),
-		'defaultGoal'       => array( 'String!', __( 'The goal used when none is chosen.', 'flx-analytics' ) ),
-		'canManageRefs'     => array( 'Boolean!', __( 'The user may add and rename referral links.', 'flx-analytics' ) ),
-		'canManage'         => array( 'Boolean!', __( 'The user manages the site (settings, data).', 'flx-analytics' ) ),
-		'ignoreBrowser'     => array( 'Boolean!', __( 'This browser is not counted (the user\'s role is excluded).', 'flx-analytics' ) ),
-		'fastEndpoint'      => array( 'String!', __( 'Address of the fast endpoint to test now; empty when no test is due.', 'flx-analytics' ) ),
-		'exportUrl'         => array( 'String!', __( 'CSV download address (add type, range, start, end, seg, rc, kind).', 'flx-analytics' ) ),
-		'homeUrl'           => array( 'String!', __( 'Site address.', 'flx-analytics' ) ),
-		'settingsUrl'       => array( 'String!', __( 'Settings page address; empty without permission.', 'flx-analytics' ) ),
-		'funnelSettingsUrl' => array( 'String!', __( 'Funnel settings address; empty without permission.', 'flx-analytics' ) ),
-		'hasWorldMap'       => array( 'Boolean!', __( 'The world map file is installed.', 'flx-analytics' ) ),
+		'presets'           => array( '[FlxAnalyticsOption!]!', 'Date range names (value is the range key).' ),
+		'kinds'             => array( '[FlxAnalyticsOption!]!', 'Breakdown names (value is the breakdown key).' ),
+		'events'            => array( '[FlxAnalyticsOption!]!', 'Event names.' ),
+		'channels'          => array( '[FlxAnalyticsOption!]!', 'Channel names.' ),
+		'segments'          => array( '[FlxAnalyticsOption!]!', 'Visitor types for the filter.' ),
+		'funnelBy'          => array( '[FlxAnalyticsOption!]!', 'Ways to split a funnel.' ),
+		'goals'             => array( '[FlxAnalyticsOption!]!', 'Journey goals (funnel steps).' ),
+		'defaultGoal'       => array( 'String!', 'The goal used when none is chosen.' ),
+		'canManageRefs'     => array( 'Boolean!', 'The user may add and rename referral links.' ),
+		'canManage'         => array( 'Boolean!', 'The user manages the site (settings, data).' ),
+		'ignoreBrowser'     => array( 'Boolean!', 'This browser is not counted (the user\'s role is excluded).' ),
+		'fastEndpoint'      => array( 'String!', 'Address of the fast endpoint to test now; empty when no test is due.' ),
+		'exportUrl'         => array( 'String!', 'CSV download address (add type, range, start, end, seg, rc, kind).' ),
+		'homeUrl'           => array( 'String!', 'Site address.' ),
+		'settingsUrl'       => array( 'String!', 'Settings page address; empty without permission.' ),
+		'funnelSettingsUrl' => array( 'String!', 'Funnel settings address; empty without permission.' ),
+		'hasWorldMap'       => array( 'Boolean!', 'The world map file is installed.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsFunnelStepDef',
-	__( 'A funnel step as stored.', 'flx-analytics' ),
+	'A funnel step as stored.',
 	array(
-		'label' => array( 'String!', __( 'Step name.', 'flx-analytics' ) ),
-		'type'  => array( 'FlxAnalyticsStepType!', __( 'What the step matches.', 'flx-analytics' ) ),
-		'value' => array( 'String!', __( 'Path or event.', 'flx-analytics' ) ),
+		'label' => array( 'String!', 'Step name.' ),
+		'type'  => array( 'FlxAnalyticsStepType!', 'What the step matches.' ),
+		'value' => array( 'String!', 'Path or event.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsFunnelDef',
-	__( 'A funnel as stored.', 'flx-analytics' ),
+	'A funnel as stored.',
 	array(
-		'id'    => array( 'Int!', __( 'Funnel number.', 'flx-analytics' ) ),
-		'name'  => array( 'String!', __( 'Funnel name.', 'flx-analytics' ) ),
-		'steps' => array( '[FlxAnalyticsFunnelStepDef!]!', __( 'Steps in order.', 'flx-analytics' ) ),
+		'id'    => array( 'Int!', 'Funnel number.' ),
+		'name'  => array( 'String!', 'Funnel name.' ),
+		'steps' => array( '[FlxAnalyticsFunnelStepDef!]!', 'Steps in order.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsPageOption',
-	__( 'A page the funnel editor suggests.', 'flx-analytics' ),
+	'A page the funnel editor suggests.',
 	array(
-		'path'  => array( 'String!', __( 'Path.', 'flx-analytics' ) ),
-		'title' => array( 'String!', __( 'Title.', 'flx-analytics' ) ),
+		'path'  => array( 'String!', 'Path.' ),
+		'title' => array( 'String!', 'Title.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsKoko',
-	__( 'Koko Analytics data that can be imported.', 'flx-analytics' ),
+	'Koko Analytics data that can be imported.',
 	array(
-		'days'  => array( 'Int!', __( 'Days of data.', 'flx-analytics' ) ),
-		'first' => array( 'String!', __( 'First day.', 'flx-analytics' ) ),
-		'last'  => array( 'String!', __( 'Last day.', 'flx-analytics' ) ),
+		'days'  => array( 'Int!', 'Days of data.' ),
+		'first' => array( 'String!', 'First day.' ),
+		'last'  => array( 'String!', 'Last day.' ),
 	)
 );
 flx_gql_type(
 	'FlxAnalyticsSettings',
 	array(
-		'description' => __( 'Flux Analytics settings and the data status.', 'flx-analytics' ),
+		'description' => 'Flux Analytics settings and the data status.',
 		'fields'      => array(
-			'on'             => array( 'type' => 'Boolean!', 'description' => __( 'Visits are counted.', 'flx-analytics' ) ),
-			'method'         => array( 'type' => 'FlxAnalyticsCollectMethod!', 'description' => __( 'Collection method setting.', 'flx-analytics' ) ),
-			'methodNow'      => array( 'type' => 'FlxAnalyticsCollectMethod!', 'description' => __( 'Method in use now (fast or rest).', 'flx-analytics' ) ),
-			'dnt'            => array( 'type' => 'Boolean!', 'description' => __( 'Visitors who send "Do Not Track" are not counted.', 'flx-analytics' ) ),
-			'excludeRoles'   => array( 'type' => '[String!]!', 'description' => __( 'Roles that are not counted.', 'flx-analytics' ) ),
-			'excludeIps'     => array( 'type' => 'String!', 'description' => __( 'IP addresses that are not counted, one per line.', 'flx-analytics' ) ),
-			'evOutbound'     => array( 'type' => 'Boolean!', 'description' => __( 'Outbound link clicks are tracked.', 'flx-analytics' ) ),
-			'evDownload'     => array( 'type' => 'Boolean!', 'description' => __( 'File downloads are tracked.', 'flx-analytics' ) ),
-			'evContact'      => array( 'type' => 'Boolean!', 'description' => __( 'Phone, email and WhatsApp clicks are tracked.', 'flx-analytics' ) ),
-			'evSearch'       => array( 'type' => 'Boolean!', 'description' => __( 'Site searches are tracked.', 'flx-analytics' ) ),
-			'evDonation'     => array( 'type' => 'Boolean!', 'description' => __( 'Paid donations and orders are tracked.', 'flx-analytics' ) ),
-			'postsColumn'    => array( 'type' => 'Boolean!', 'description' => __( 'The post and page lists have a views column.', 'flx-analytics' ) ),
-			'adminbar'       => array( 'type' => 'Boolean!', 'description' => __( 'The admin bar shows the page\'s views.', 'flx-analytics' ) ),
-			'keepMonths'     => array( 'type' => 'Int!', 'description' => __( 'Months to keep data; 0 = forever.', 'flx-analytics' ) ),
-			'tmHub'          => array( 'type' => 'Boolean!', 'description' => __( 'This site receives telemetry from FluxWP installs.', 'flx-analytics' ) ),
-			'hubEndpoint'    => array( 'type' => 'String', 'description' => __( 'Telemetry collection address; empty when the hub code is missing.', 'flx-analytics' ) ),
+			'on'             => array( 'type' => 'Boolean!', 'description' => 'Visits are counted.' ),
+			'method'         => array( 'type' => 'FlxAnalyticsCollectMethod!', 'description' => 'Collection method setting.' ),
+			'methodNow'      => array( 'type' => 'FlxAnalyticsCollectMethod!', 'description' => 'Method in use now (fast or rest).' ),
+			'dnt'            => array( 'type' => 'Boolean!', 'description' => 'Visitors who send "Do Not Track" are not counted.' ),
+			'excludeRoles'   => array( 'type' => '[String!]!', 'description' => 'Roles that are not counted.' ),
+			'excludeIps'     => array( 'type' => 'String!', 'description' => 'IP addresses that are not counted, one per line.' ),
+			'evOutbound'     => array( 'type' => 'Boolean!', 'description' => 'Outbound link clicks are tracked.' ),
+			'evDownload'     => array( 'type' => 'Boolean!', 'description' => 'File downloads are tracked.' ),
+			'evContact'      => array( 'type' => 'Boolean!', 'description' => 'Phone, email and WhatsApp clicks are tracked.' ),
+			'evSearch'       => array( 'type' => 'Boolean!', 'description' => 'Site searches are tracked.' ),
+			'evDonation'     => array( 'type' => 'Boolean!', 'description' => 'Paid donations and orders are tracked.' ),
+			'postsColumn'    => array( 'type' => 'Boolean!', 'description' => 'The post and page lists have a views column.' ),
+			'adminbar'       => array( 'type' => 'Boolean!', 'description' => 'The admin bar shows the page\'s views.' ),
+			'keepMonths'     => array( 'type' => 'Int!', 'description' => 'Months to keep data; 0 = forever.' ),
+			'tmHub'          => array( 'type' => 'Boolean!', 'description' => 'This site receives telemetry from FluxWP installs.' ),
+			'hubEndpoint'    => array( 'type' => 'String', 'description' => 'Telemetry collection address; empty when the hub code is missing.' ),
 			'lastAggregated' => array(
 				'type'        => 'FlxDateTime',
-				'description' => __( 'When the visit queue was last processed; empty when never.', 'flx-analytics' ),
+				'description' => 'When the visit queue was last processed; empty when never.',
 				'resolve'     => static fn( $s ) => flxan_gql_time( $s, 'lastAggregated' ),
 			),
-			'pendingBytes'   => array( 'type' => 'Int!', 'description' => __( 'Bytes waiting in the visit queue.', 'flx-analytics' ) ),
-			'pendingLabel'   => array( 'type' => 'String!', 'description' => __( 'The same as text (12 KB).', 'flx-analytics' ) ),
-			'fastPossible'   => array( 'type' => 'Boolean!', 'description' => __( 'The fast endpoint can be used on this install.', 'flx-analytics' ) ),
-			'fastTest'       => array( 'type' => 'String!', 'description' => __( 'Result of the last fast endpoint test: ok, fail or empty.', 'flx-analytics' ) ),
-			'roles'          => array( 'type' => '[FlxAnalyticsOption!]!', 'description' => __( 'Roles to exclude from counting.', 'flx-analytics' ) ),
-			'funnels'        => array( 'type' => '[FlxAnalyticsFunnelDef!]!', 'description' => __( 'Funnels in use.', 'flx-analytics' ) ),
-			'funnelDefaults' => array( 'type' => '[FlxAnalyticsFunnelDef!]!', 'description' => __( 'The default funnel (for quick steps and reset).', 'flx-analytics' ) ),
-			'funnelEvents'   => array( 'type' => '[FlxAnalyticsOption!]!', 'description' => __( 'Events a funnel step can use.', 'flx-analytics' ) ),
-			'funnelPages'    => array( 'type' => '[FlxAnalyticsPageOption!]!', 'description' => __( 'Pages a funnel step can suggest.', 'flx-analytics' ) ),
-			'koko'           => array( 'type' => 'FlxAnalyticsKoko', 'description' => __( 'Koko Analytics data to import; empty when there is none.', 'flx-analytics' ) ),
-			'exportUrl'      => array( 'type' => 'String!', 'description' => __( 'CSV download address.', 'flx-analytics' ) ),
+			'pendingBytes'   => array( 'type' => 'Int!', 'description' => 'Bytes waiting in the visit queue.' ),
+			'pendingLabel'   => array( 'type' => 'String!', 'description' => 'The same as text (12 KB).' ),
+			'fastPossible'   => array( 'type' => 'Boolean!', 'description' => 'The fast endpoint can be used on this install.' ),
+			'fastTest'       => array( 'type' => 'String!', 'description' => 'Result of the last fast endpoint test: ok, fail or empty.' ),
+			'roles'          => array( 'type' => '[FlxAnalyticsOption!]!', 'description' => 'Roles to exclude from counting.' ),
+			'funnels'        => array( 'type' => '[FlxAnalyticsFunnelDef!]!', 'description' => 'Funnels in use.' ),
+			'funnelDefaults' => array( 'type' => '[FlxAnalyticsFunnelDef!]!', 'description' => 'The default funnel (for quick steps and reset).' ),
+			'funnelEvents'   => array( 'type' => '[FlxAnalyticsOption!]!', 'description' => 'Events a funnel step can use.' ),
+			'funnelPages'    => array( 'type' => '[FlxAnalyticsPageOption!]!', 'description' => 'Pages a funnel step can suggest.' ),
+			'koko'           => array( 'type' => 'FlxAnalyticsKoko', 'description' => 'Koko Analytics data to import; empty when there is none.' ),
+			'exportUrl'      => array( 'type' => 'String!', 'description' => 'CSV download address.' ),
 		),
 	)
 );
@@ -850,164 +850,164 @@ flx_gql_type(
 
 flxan_gql_t(
 	'FlxAnalyticsTmCount',
-	__( 'A value and the sites that have it.', 'flx-analytics' ),
+	'A value and the sites that have it.',
 	array(
-		'key'   => array( 'String!', __( 'Value.', 'flx-analytics' ) ),
-		'label' => array( 'String!', __( 'Name.', 'flx-analytics' ) ),
-		'sites' => array( 'Int!', __( 'Sites.', 'flx-analytics' ) ),
+		'key'   => array( 'String!', 'Value.' ),
+		'label' => array( 'String!', 'Name.' ),
+		'sites' => array( 'Int!', 'Sites.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsTmAppUsage',
-	__( 'Daily active accounts of the mobile app.', 'flx-analytics' ),
+	'Daily active accounts of the mobile app.',
 	array(
-		'day'      => array( 'String!', __( 'UTC day.', 'flx-analytics' ) ),
-		'platform' => array( 'String!', __( 'ios or android.', 'flx-analytics' ) ),
-		'accounts' => array( 'Int!', __( 'Consenting accounts.', 'flx-analytics' ) ),
+		'day'      => array( 'String!', 'UTC day.' ),
+		'platform' => array( 'String!', 'ios or android.' ),
+		'accounts' => array( 'Int!', 'Consenting accounts.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsTmUsage',
-	__( 'A package and how many sites use it.', 'flx-analytics' ),
+	'A package and how many sites use it.',
 	array(
-		'slug'       => array( 'String!', __( 'Package slug.', 'flx-analytics' ) ),
-		'name'       => array( 'String!', __( 'Package name.', 'flx-analytics' ) ),
-		'sites'      => array( 'Int!', __( 'Sites.', 'flx-analytics' ) ),
-		'topVersion' => array( 'String!', __( 'Most common version.', 'flx-analytics' ) ),
+		'slug'       => array( 'String!', 'Package slug.' ),
+		'name'       => array( 'String!', 'Package name.' ),
+		'sites'      => array( 'Int!', 'Sites.' ),
+		'topVersion' => array( 'String!', 'Most common version.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsTmPair',
-	__( 'Two packages used together.', 'flx-analytics' ),
+	'Two packages used together.',
 	array(
-		'aName' => array( 'String!', __( 'First package.', 'flx-analytics' ) ),
-		'bName' => array( 'String!', __( 'Second package.', 'flx-analytics' ) ),
-		'sites' => array( 'Int!', __( 'Sites.', 'flx-analytics' ) ),
+		'aName' => array( 'String!', 'First package.' ),
+		'bName' => array( 'String!', 'Second package.' ),
+		'sites' => array( 'Int!', 'Sites.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsTmCombo',
-	__( 'A set of packages.', 'flx-analytics' ),
+	'A set of packages.',
 	array(
-		'names' => array( '[String!]!', __( 'Package names; empty = FluxWP Panel only.', 'flx-analytics' ) ),
-		'sites' => array( 'Int!', __( 'Sites.', 'flx-analytics' ) ),
+		'names' => array( '[String!]!', 'Package names; empty = FluxWP Panel only.' ),
+		'sites' => array( 'Int!', 'Sites.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsTmOverview',
-	__( 'Telemetry overview.', 'flx-analytics' ),
+	'Telemetry overview.',
 	array(
-		'installs'   => array( 'Int!', __( 'Reporting sites.', 'flx-analytics' ) ),
-		'reports'    => array( 'Int!', __( 'Reports received.', 'flx-analytics' ) ),
-		'errorsOpen' => array( 'Int!', __( 'Distinct errors.', 'flx-analytics' ) ),
-		'fatalOpen'  => array( 'Int!', __( 'Distinct fatal errors.', 'flx-analytics' ) ),
-		'events'     => array( 'Int!', __( 'Error occurrences.', 'flx-analytics' ) ),
-		'appUsage'   => array( '[FlxAnalyticsTmAppUsage!]!', __( 'Mobile app daily active accounts.', 'flx-analytics' ) ),
-		'usage'      => array( '[FlxAnalyticsTmUsage!]!', __( 'Package usage (25).', 'flx-analytics' ) ),
-		'pairs'      => array( '[FlxAnalyticsTmPair!]!', __( 'Packages used together (15).', 'flx-analytics' ) ),
-		'combos'     => array( '[FlxAnalyticsTmCombo!]!', __( 'Most common package sets (10).', 'flx-analytics' ) ),
-		'php'        => array( '[FlxAnalyticsTmCount!]!', __( 'PHP versions.', 'flx-analytics' ) ),
-		'wp'         => array( '[FlxAnalyticsTmCount!]!', __( 'WordPress versions.', 'flx-analytics' ) ),
-		'locales'    => array( '[FlxAnalyticsTmCount!]!', __( 'Site languages (8).', 'flx-analytics' ) ),
-		'countries'  => array( '[FlxAnalyticsTmCount!]!', __( 'Countries (15).', 'flx-analytics' ) ),
+		'installs'   => array( 'Int!', 'Reporting sites.' ),
+		'reports'    => array( 'Int!', 'Reports received.' ),
+		'errorsOpen' => array( 'Int!', 'Distinct errors.' ),
+		'fatalOpen'  => array( 'Int!', 'Distinct fatal errors.' ),
+		'events'     => array( 'Int!', 'Error occurrences.' ),
+		'appUsage'   => array( '[FlxAnalyticsTmAppUsage!]!', 'Mobile app daily active accounts.' ),
+		'usage'      => array( '[FlxAnalyticsTmUsage!]!', 'Package usage (25).' ),
+		'pairs'      => array( '[FlxAnalyticsTmPair!]!', 'Packages used together (15).' ),
+		'combos'     => array( '[FlxAnalyticsTmCombo!]!', 'Most common package sets (10).' ),
+		'php'        => array( '[FlxAnalyticsTmCount!]!', 'PHP versions.' ),
+		'wp'         => array( '[FlxAnalyticsTmCount!]!', 'WordPress versions.' ),
+		'locales'    => array( '[FlxAnalyticsTmCount!]!', 'Site languages (8).' ),
+		'countries'  => array( '[FlxAnalyticsTmCount!]!', 'Countries (15).' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsTmReach',
-	__( 'A wizard step and how many runs reached it.', 'flx-analytics' ),
+	'A wizard step and how many runs reached it.',
 	array(
-		'step'  => array( 'String!', __( 'Step key.', 'flx-analytics' ) ),
-		'label' => array( 'String!', __( 'Step name.', 'flx-analytics' ) ),
-		'count' => array( 'Int!', __( 'Runs.', 'flx-analytics' ) ),
+		'step'  => array( 'String!', 'Step key.' ),
+		'label' => array( 'String!', 'Step name.' ),
+		'count' => array( 'Int!', 'Runs.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsTmStop',
-	__( 'Where wizard runs stopped.', 'flx-analytics' ),
+	'Where wizard runs stopped.',
 	array(
-		'step'    => array( 'String!', __( 'Step key.', 'flx-analytics' ) ),
-		'label'   => array( 'String!', __( 'Step name.', 'flx-analytics' ) ),
-		'outcome' => array( 'String!', __( 'skip (skipped) or left (closed).', 'flx-analytics' ) ),
-		'count'   => array( 'Int!', __( 'Runs.', 'flx-analytics' ) ),
+		'step'    => array( 'String!', 'Step key.' ),
+		'label'   => array( 'String!', 'Step name.' ),
+		'outcome' => array( 'String!', 'skip (skipped) or left (closed).' ),
+		'count'   => array( 'Int!', 'Runs.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsTmCard',
-	__( 'A wizard card and its choices.', 'flx-analytics' ),
+	'A wizard card and its choices.',
 	array(
-		'slug'    => array( 'String!', __( 'Card key.', 'flx-analytics' ) ),
-		'name'    => array( 'String!', __( 'Card name.', 'flx-analytics' ) ),
-		'picked'  => array( 'Int!', __( 'Runs that picked it.', 'flx-analytics' ) ),
-		'dropped' => array( 'Int!', __( 'Runs that picked it and removed it.', 'flx-analytics' ) ),
-		'recOff'  => array( 'Int!', __( 'Runs that removed it from the suggestions.', 'flx-analytics' ) ),
+		'slug'    => array( 'String!', 'Card key.' ),
+		'name'    => array( 'String!', 'Card name.' ),
+		'picked'  => array( 'Int!', 'Runs that picked it.' ),
+		'dropped' => array( 'Int!', 'Runs that picked it and removed it.' ),
+		'recOff'  => array( 'Int!', 'Runs that removed it from the suggestions.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsTmChoice',
-	__( 'A choice and how many runs made it.', 'flx-analytics' ),
+	'A choice and how many runs made it.',
 	array(
-		'key'   => array( 'String!', __( 'Choice.', 'flx-analytics' ) ),
-		'count' => array( 'Int!', __( 'Runs.', 'flx-analytics' ) ),
+		'key'   => array( 'String!', 'Choice.' ),
+		'count' => array( 'Int!', 'Runs.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsTmOnboarding',
-	__( 'Setup wizard numbers.', 'flx-analytics' ),
+	'Setup wizard numbers.',
 	array(
-		'runs'          => array( 'Int!', __( 'Wizard runs (latest run per install).', 'flx-analytics' ) ),
-		'done'          => array( 'Int!', __( 'Finished.', 'flx-analytics' ) ),
-		'skipped'       => array( 'Int!', __( 'Skipped.', 'flx-analytics' ) ),
-		'left'          => array( 'Int!', __( 'Closed before the end.', 'flx-analytics' ) ),
-		'medianSeconds' => array( 'Int!', __( 'Median time of the runs that finished, in seconds.', 'flx-analytics' ) ),
-		'reach'         => array( '[FlxAnalyticsTmReach!]!', __( 'Steps reached.', 'flx-analytics' ) ),
-		'stops'         => array( '[FlxAnalyticsTmStop!]!', __( 'Where runs stopped.', 'flx-analytics' ) ),
-		'cards'         => array( '[FlxAnalyticsTmCard!]!', __( 'Card choices.', 'flx-analytics' ) ),
-		'presets'       => array( '[FlxAnalyticsTmChoice!]!', __( 'Presets of finished runs.', 'flx-analytics' ) ),
-		'styles'        => array( '[FlxAnalyticsTmChoice!]!', __( 'Colour styles of finished runs.', 'flx-analytics' ) ),
+		'runs'          => array( 'Int!', 'Wizard runs (latest run per install).' ),
+		'done'          => array( 'Int!', 'Finished.' ),
+		'skipped'       => array( 'Int!', 'Skipped.' ),
+		'left'          => array( 'Int!', 'Closed before the end.' ),
+		'medianSeconds' => array( 'Int!', 'Median time of the runs that finished, in seconds.' ),
+		'reach'         => array( '[FlxAnalyticsTmReach!]!', 'Steps reached.' ),
+		'stops'         => array( '[FlxAnalyticsTmStop!]!', 'Where runs stopped.' ),
+		'cards'         => array( '[FlxAnalyticsTmCard!]!', 'Card choices.' ),
+		'presets'       => array( '[FlxAnalyticsTmChoice!]!', 'Presets of finished runs.' ),
+		'styles'        => array( '[FlxAnalyticsTmChoice!]!', 'Colour styles of finished runs.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsTmCountry',
-	__( 'A country that reported.', 'flx-analytics' ),
+	'A country that reported.',
 	array(
-		'code'  => array( 'String!', __( 'Lower case country code.', 'flx-analytics' ) ),
-		'name'  => array( 'String!', __( 'Country name.', 'flx-analytics' ) ),
-		'sites' => array( 'Int!', __( 'Sites.', 'flx-analytics' ) ),
+		'code'  => array( 'String!', 'Lower case country code.' ),
+		'name'  => array( 'String!', 'Country name.' ),
+		'sites' => array( 'Int!', 'Sites.' ),
 	)
 );
 flxan_gql_t(
 	'FlxAnalyticsTelemetry',
-	__( 'Product telemetry received from FluxWP installs.', 'flx-analytics' ),
+	'Product telemetry received from FluxWP installs.',
 	array(
-		'enabled'    => array( 'Boolean!', __( 'The hub is on.', 'flx-analytics' ) ),
-		'endpoint'   => array( 'String!', __( 'Address FluxWP Panel sends to.', 'flx-analytics' ) ),
-		'days'       => array( 'Int!', __( 'Range in days.', 'flx-analytics' ) ),
-		'country'    => array( 'String!', __( 'Country filter; empty = all.', 'flx-analytics' ) ),
-		'countries'  => array( '[FlxAnalyticsTmCountry!]!', __( 'Countries to filter by.', 'flx-analytics' ) ),
-		'overview'   => array( 'FlxAnalyticsTmOverview!', __( 'Overview numbers.', 'flx-analytics' ) ),
-		'onboarding' => array( 'FlxAnalyticsTmOnboarding!', __( 'Setup wizard numbers.', 'flx-analytics' ) ),
+		'enabled'    => array( 'Boolean!', 'The hub is on.' ),
+		'endpoint'   => array( 'String!', 'Address FluxWP Panel sends to.' ),
+		'days'       => array( 'Int!', 'Range in days.' ),
+		'country'    => array( 'String!', 'Country filter; empty = all.' ),
+		'countries'  => array( '[FlxAnalyticsTmCountry!]!', 'Countries to filter by.' ),
+		'overview'   => array( 'FlxAnalyticsTmOverview!', 'Overview numbers.' ),
+		'onboarding' => array( 'FlxAnalyticsTmOnboarding!', 'Setup wizard numbers.' ),
 	)
 );
 flx_gql_type(
 	'FlxAnalyticsTmError',
 	array(
-		'description' => __( 'An error FluxWP installs reported.', 'flx-analytics' ),
+		'description' => 'An error FluxWP installs reported.',
 		'fields'      => array(
-			'hash'       => array( 'type' => 'String!', 'description' => __( 'Record key.', 'flx-analytics' ) ),
-			'type'       => array( 'type' => 'String!', 'description' => __( 'PHP error type (E_WARNING …).', 'flx-analytics' ) ),
-			'fatal'      => array( 'type' => 'Boolean!', 'description' => __( 'The error stops the request.', 'flx-analytics' ) ),
-			'message'    => array( 'type' => 'String!', 'description' => __( 'First line of the message (paths, domains, emails and IPs removed).', 'flx-analytics' ) ),
-			'more'       => array( 'type' => 'String!', 'description' => __( 'The rest of the message.', 'flx-analytics' ) ),
-			'file'       => array( 'type' => 'String!', 'description' => __( 'File inside the package.', 'flx-analytics' ) ),
-			'line'       => array( 'type' => 'Int!', 'description' => __( 'Line; 0 when unknown.', 'flx-analytics' ) ),
-			'plugin'     => array( 'type' => 'String!', 'description' => __( 'Package key.', 'flx-analytics' ) ),
-			'pluginName' => array( 'type' => 'String!', 'description' => __( 'Package name.', 'flx-analytics' ) ),
-			'version'    => array( 'type' => 'String!', 'description' => __( 'Package version.', 'flx-analytics' ) ),
-			'sites'      => array( 'type' => 'Int!', 'description' => __( 'Different installs that saw it.', 'flx-analytics' ) ),
-			'count'      => array( 'type' => 'Int!', 'description' => __( 'Occurrences.', 'flx-analytics' ) ),
+			'hash'       => array( 'type' => 'String!', 'description' => 'Record key.' ),
+			'type'       => array( 'type' => 'String!', 'description' => 'PHP error type (E_WARNING …).' ),
+			'fatal'      => array( 'type' => 'Boolean!', 'description' => 'The error stops the request.' ),
+			'message'    => array( 'type' => 'String!', 'description' => 'First line of the message (paths, domains, emails and IPs removed).' ),
+			'more'       => array( 'type' => 'String!', 'description' => 'The rest of the message.' ),
+			'file'       => array( 'type' => 'String!', 'description' => 'File inside the package.' ),
+			'line'       => array( 'type' => 'Int!', 'description' => 'Line; 0 when unknown.' ),
+			'plugin'     => array( 'type' => 'String!', 'description' => 'Package key.' ),
+			'pluginName' => array( 'type' => 'String!', 'description' => 'Package name.' ),
+			'version'    => array( 'type' => 'String!', 'description' => 'Package version.' ),
+			'sites'      => array( 'type' => 'Int!', 'description' => 'Different installs that saw it.' ),
+			'count'      => array( 'type' => 'Int!', 'description' => 'Occurrences.' ),
 			'last'       => array(
 				'type'        => 'FlxDateTime!',
-				'description' => __( 'When it last happened.', 'flx-analytics' ),
+				'description' => 'When it last happened.',
 				'resolve'     => static fn( $e ) => flxan_gql_time( $e, 'lastTs' ) ?? flx_gql_datetime( time() ),
 			),
 		),
@@ -1015,10 +1015,10 @@ flx_gql_type(
 );
 flxan_gql_t(
 	'FlxAnalyticsTmErrors',
-	__( 'Error records and the packages to filter by.', 'flx-analytics' ),
+	'Error records and the packages to filter by.',
 	array(
-		'items'   => array( '[FlxAnalyticsTmError!]!', __( 'Records, fatal first (300 at most).', 'flx-analytics' ) ),
-		'plugins' => array( '[FlxAnalyticsOption!]!', __( 'Packages that have errors.', 'flx-analytics' ) ),
+		'items'   => array( '[FlxAnalyticsTmError!]!', 'Records, fatal first (300 at most).' ),
+		'plugins' => array( '[FlxAnalyticsOption!]!', 'Packages that have errors.' ),
 	)
 );
 
@@ -1026,13 +1026,13 @@ flxan_gql_t(
 /* Queries                                                                 */
 /* ---------------------------------------------------------------------- */
 
-$flxan_filter_arg = array( 'type' => 'FlxAnalyticsFilterInput', 'description' => __( 'Date range and visitor filters.', 'flx-analytics' ) );
+$flxan_filter_arg = array( 'type' => 'FlxAnalyticsFilterInput', 'description' => 'Date range and visitor filters.' );
 
 flx_gql_query(
 	'flxAnalyticsConfig',
 	array(
 		'type'        => 'FlxAnalyticsConfig!',
-		'description' => __( 'Option lists, permissions and links the statistics screens need.', 'flx-analytics' ),
+		'description' => 'Option lists, permissions and links the statistics screens need.',
 		'cap'         => Closure::fromCallable( 'flxan_gql_can_view' ),
 		'resolve'     => static fn(): array => FLXAN_Service::config(),
 	)
@@ -1041,7 +1041,7 @@ flx_gql_query(
 	'flxAnalyticsReport',
 	array(
 		'type'        => 'FlxAnalyticsReport!',
-		'description' => __( 'Everything the Statistics screen shows for a date range.', 'flx-analytics' ),
+		'description' => 'Everything the Statistics screen shows for a date range.',
 		'cap'         => Closure::fromCallable( 'flxan_gql_can_view' ),
 		'args'        => array( 'filter' => $flxan_filter_arg ),
 		'resolve'     => static function ( $root, array $args ): array {
@@ -1054,12 +1054,12 @@ flx_gql_query(
 	'flxAnalyticsRealtime',
 	array(
 		'type'        => 'FlxAnalyticsRealtime!',
-		'description' => __( 'Who is on the site now; with kpi the headline numbers and chart too (a light query to repeat every few seconds).', 'flx-analytics' ),
+		'description' => 'Who is on the site now; with kpi the headline numbers and chart too (a light query to repeat every few seconds).',
 		'cap'         => Closure::fromCallable( 'flxan_gql_can_view' ),
 		'args'        => array(
 			'filter'  => $flxan_filter_arg,
-			'minutes' => array( 'type' => 'Int', 'description' => __( 'Window in minutes, 1–60 (default 30).', 'flx-analytics' ), 'default' => 30 ),
-			'kpi'     => array( 'type' => 'Boolean', 'description' => __( 'Include the headline numbers and chart.', 'flx-analytics' ), 'default' => false ),
+			'minutes' => array( 'type' => 'Int', 'description' => 'Window in minutes, 1–60 (default 30).', 'default' => 30 ),
+			'kpi'     => array( 'type' => 'Boolean', 'description' => 'Include the headline numbers and chart.', 'default' => false ),
 		),
 		'resolve'     => static fn( $root, array $args ): array => FLXAN_Service::realtime( flxan_gql_filter( $args ), max( 1, min( 60, FLXAN_Service::int( $args['minutes'] ?? 30 ) ) ), ! empty( $args['kpi'] ) ),
 	)
@@ -1068,13 +1068,13 @@ flx_gql_query(
 	'flxAnalyticsPages',
 	array(
 		'type'        => 'FlxAnalyticsPageRowConnection!',
-		'description' => __( 'Pages by views, a page at a time.', 'flx-analytics' ),
+		'description' => 'Pages by views, a page at a time.',
 		'cap'         => Closure::fromCallable( 'flxan_gql_can_view' ),
 		'args'        => flx_gql_connection_args(
 			array(
 				'filter'  => $flxan_filter_arg,
-				'q'       => array( 'type' => 'String', 'description' => __( 'Text in the address.', 'flx-analytics' ) ),
-				'only404' => array( 'type' => 'Boolean', 'description' => __( 'Only addresses that were not found.', 'flx-analytics' ), 'default' => false ),
+				'q'       => array( 'type' => 'String', 'description' => 'Text in the address.' ),
+				'only404' => array( 'type' => 'Boolean', 'description' => 'Only addresses that were not found.', 'default' => false ),
 			)
 		),
 		'resolve'     => static function ( $root, array $args ): array {
@@ -1090,12 +1090,12 @@ flx_gql_query(
 	'flxAnalyticsReferrers',
 	array(
 		'type'        => 'FlxAnalyticsReferrerRowConnection!',
-		'description' => __( 'Referring sites by visitors, a page at a time.', 'flx-analytics' ),
+		'description' => 'Referring sites by visitors, a page at a time.',
 		'cap'         => Closure::fromCallable( 'flxan_gql_can_view' ),
 		'args'        => flx_gql_connection_args(
 			array(
 				'filter' => $flxan_filter_arg,
-				'q'      => array( 'type' => 'String', 'description' => __( 'Text in the domain name.', 'flx-analytics' ) ),
+				'q'      => array( 'type' => 'String', 'description' => 'Text in the domain name.' ),
 			)
 		),
 		'resolve'     => static function ( $root, array $args ): array {
@@ -1111,12 +1111,12 @@ flx_gql_query(
 	'flxAnalyticsBreakdown',
 	array(
 		'type'        => 'FlxAnalyticsDimRowConnection!',
-		'description' => __( 'Traffic split by channel, device, browser, country or campaign, a page at a time.', 'flx-analytics' ),
+		'description' => 'Traffic split by channel, device, browser, country or campaign, a page at a time.',
 		'cap'         => Closure::fromCallable( 'flxan_gql_can_view' ),
 		'args'        => flx_gql_connection_args(
 			array(
 				'filter' => $flxan_filter_arg,
-				'kind'   => array( 'type' => 'FlxAnalyticsDimKind!', 'description' => __( 'What to split by.', 'flx-analytics' ) ),
+				'kind'   => array( 'type' => 'FlxAnalyticsDimKind!', 'description' => 'What to split by.' ),
 			)
 		),
 		'resolve'     => static function ( $root, array $args ): array {
@@ -1132,12 +1132,12 @@ flx_gql_query(
 	'flxAnalyticsEvents',
 	array(
 		'type'        => 'FlxAnalyticsEventRowConnection!',
-		'description' => __( 'Events (clicks, downloads, donations …), a page at a time.', 'flx-analytics' ),
+		'description' => 'Events (clicks, downloads, donations …), a page at a time.',
 		'cap'         => Closure::fromCallable( 'flxan_gql_can_view' ),
 		'args'        => flx_gql_connection_args(
 			array(
 				'filter' => $flxan_filter_arg,
-				'name'   => array( 'type' => 'String', 'description' => __( 'Only this event; empty = all.', 'flx-analytics' ) ),
+				'name'   => array( 'type' => 'String', 'description' => 'Only this event; empty = all.' ),
 			)
 		),
 		'resolve'     => static function ( $root, array $args ): array {
@@ -1153,11 +1153,11 @@ flx_gql_query(
 	'flxAnalyticsPage',
 	array(
 		'type'        => 'FlxAnalyticsPageStats!',
-		'description' => __( 'Views of one page or post.', 'flx-analytics' ),
+		'description' => 'Views of one page or post.',
 		'cap'         => Closure::fromCallable( 'flxan_gql_can_view' ),
 		'args'        => array(
 			'filter' => $flxan_filter_arg,
-			'target' => array( 'type' => 'String!', 'description' => __( 'Post ID, path or address.', 'flx-analytics' ) ),
+			'target' => array( 'type' => 'String!', 'description' => 'Post ID, path or address.' ),
 		),
 		'resolve'     => static function ( $root, array $args ): array {
 			flxan_gql_tag();
@@ -1169,12 +1169,12 @@ flx_gql_query(
 	'flxAnalyticsFunnel',
 	array(
 		'type'        => 'FlxAnalyticsFunnel!',
-		'description' => __( 'A funnel, optionally split by channel, site, code, role or country.', 'flx-analytics' ),
+		'description' => 'A funnel, optionally split by channel, site, code, role or country.',
 		'cap'         => Closure::fromCallable( 'flxan_gql_can_view' ),
 		'args'        => array(
 			'filter' => $flxan_filter_arg,
-			'id'     => array( 'type' => 'Int', 'description' => __( 'Funnel number; 0 or none = the first.', 'flx-analytics' ), 'default' => 0 ),
-			'by'     => array( 'type' => 'FlxAnalyticsFunnelBy', 'description' => __( 'How to split it (default total).', 'flx-analytics' ), 'default' => 'total' ),
+			'id'     => array( 'type' => 'Int', 'description' => 'Funnel number; 0 or none = the first.', 'default' => 0 ),
+			'by'     => array( 'type' => 'FlxAnalyticsFunnelBy', 'description' => 'How to split it (default total).', 'default' => 'total' ),
 		),
 		'resolve'     => static function ( $root, array $args ): array {
 			flxan_gql_tag();
@@ -1187,7 +1187,7 @@ flx_gql_query(
 	'flxAnalyticsRefs',
 	array(
 		'type'        => '[FlxAnalyticsRef!]!',
-		'description' => __( 'Referral links with what their visitors did (50 at most).', 'flx-analytics' ),
+		'description' => 'Referral links with what their visitors did (50 at most).',
 		'cap'         => Closure::fromCallable( 'flxan_gql_can_view' ),
 		'args'        => array( 'filter' => $flxan_filter_arg ),
 		'resolve'     => static function ( $root, array $args ): array {
@@ -1200,11 +1200,11 @@ flx_gql_query(
 	'flxAnalyticsJourneys',
 	array(
 		'type'        => 'FlxAnalyticsJourneys!',
-		'description' => __( 'How visitors move through the site: flow chart and frequent paths.', 'flx-analytics' ),
+		'description' => 'How visitors move through the site: flow chart and frequent paths.',
 		'cap'         => Closure::fromCallable( 'flxan_gql_can_view' ),
 		'args'        => array(
 			'filter'  => $flxan_filter_arg,
-			'options' => array( 'type' => 'FlxAnalyticsJourneysInput', 'description' => __( 'Steps, filters, goal and grouping.', 'flx-analytics' ) ),
+			'options' => array( 'type' => 'FlxAnalyticsJourneysInput', 'description' => 'Steps, filters, goal and grouping.' ),
 		),
 		'resolve'     => static function ( $root, array $args ): array {
 			flxan_gql_tag();
@@ -1225,7 +1225,7 @@ flx_gql_query(
 	'flxAnalyticsSettings',
 	array(
 		'type'        => 'FlxAnalyticsSettings!',
-		'description' => __( 'Flux Analytics settings and the data status.', 'flx-analytics' ),
+		'description' => 'Flux Analytics settings and the data status.',
 		'cap'         => Closure::fromCallable( 'flxan_gql_can_manage' ),
 		'resolve'     => static function (): array {
 			flxan_gql_tag();
@@ -1237,11 +1237,11 @@ flx_gql_query(
 	'flxAnalyticsTelemetry',
 	array(
 		'type'        => 'FlxAnalyticsTelemetry!',
-		'description' => __( 'Anonymous product telemetry from FluxWP installs: usage, versions and the setup wizard.', 'flx-analytics' ),
+		'description' => 'Anonymous product telemetry from FluxWP installs: usage, versions and the setup wizard.',
 		'cap'         => Closure::fromCallable( 'flxan_gql_can_hub' ),
 		'args'        => array(
-			'days'    => array( 'type' => 'Int', 'description' => __( 'Range in days: 7, 30 (default) or 90.', 'flx-analytics' ), 'default' => 30 ),
-			'country' => array( 'type' => 'String', 'description' => __( 'Only installs of this country (two-letter code).', 'flx-analytics' ) ),
+			'days'    => array( 'type' => 'Int', 'description' => 'Range in days: 7, 30 (default) or 90.', 'default' => 30 ),
+			'country' => array( 'type' => 'String', 'description' => 'Only installs of this country (two-letter code).' ),
 		),
 		'resolve'     => static fn( $root, array $args ): array => FLXAN_Telemetry_Service::summary( FLXAN_Service::int( $args['days'] ?? 30 ), FLXAN_Service::str( $args['country'] ?? '' ) ),
 	)
@@ -1250,13 +1250,13 @@ flx_gql_query(
 	'flxAnalyticsTelemetryErrors',
 	array(
 		'type'        => 'FlxAnalyticsTmErrors!',
-		'description' => __( 'Errors FluxWP installs reported, fatal first.', 'flx-analytics' ),
+		'description' => 'Errors FluxWP installs reported, fatal first.',
 		'cap'         => Closure::fromCallable( 'flxan_gql_can_hub' ),
 		'args'        => array(
-			'days'    => array( 'type' => 'Int', 'description' => __( 'Range in days: 7, 30 (default) or 90.', 'flx-analytics' ), 'default' => 30 ),
-			'country' => array( 'type' => 'String', 'description' => __( 'Only errors seen on installs of this country.', 'flx-analytics' ) ),
-			'plugin'  => array( 'type' => 'String', 'description' => __( 'Only this package.', 'flx-analytics' ) ),
-			'type'    => array( 'type' => 'String', 'description' => __( 'fatal, or one PHP error type such as E_WARNING.', 'flx-analytics' ) ),
+			'days'    => array( 'type' => 'Int', 'description' => 'Range in days: 7, 30 (default) or 90.', 'default' => 30 ),
+			'country' => array( 'type' => 'String', 'description' => 'Only errors seen on installs of this country.' ),
+			'plugin'  => array( 'type' => 'String', 'description' => 'Only this package.' ),
+			'type'    => array( 'type' => 'String', 'description' => 'fatal, or one PHP error type such as E_WARNING.' ),
 		),
 		'resolve'     => static fn( $root, array $args ): array => FLXAN_Telemetry_Service::errors(
 			FLXAN_Service::int( $args['days'] ?? 30 ),
@@ -1274,20 +1274,20 @@ flx_gql_query(
 flx_gql_mutation(
 	'flxAnalyticsRefSave',
 	array(
-		'description' => __( 'Adds a referral link name, renames it, or removes the name (the statistics stay).', 'flx-analytics' ),
+		'description' => 'Adds a referral link name, renames it, or removes the name (the statistics stay).',
 		'cap'         => Closure::fromCallable( 'flxan_gql_can_refs' ),
 		'input'       => array(
-			'code'   => array( 'type' => 'String!', 'description' => __( 'Referral code (letters, digits, - and _).', 'flx-analytics' ) ),
-			'name'   => array( 'type' => 'String', 'description' => __( 'Name shown in reports.', 'flx-analytics' ) ),
-			'delete' => array( 'type' => 'Boolean', 'description' => __( 'Remove the name.', 'flx-analytics' ), 'default' => false ),
+			'code'   => array( 'type' => 'String!', 'description' => 'Referral code (letters, digits, - and _).' ),
+			'name'   => array( 'type' => 'String', 'description' => 'Name shown in reports.' ),
+			'delete' => array( 'type' => 'Boolean', 'description' => 'Remove the name.', 'default' => false ),
 		),
 		'output'      => array(
-			'ref' => array( 'type' => 'FlxAnalyticsRefSaved', 'description' => __( 'The saved code and its link.', 'flx-analytics' ) ),
+			'ref' => array( 'type' => 'FlxAnalyticsRefSaved', 'description' => 'The saved code and its link.' ),
 		),
 		'resolve'     => static function ( array $input ): array {
 			$ref = FLXAN_Service::ref_save( FLXAN_Service::str( $input['code'] ?? '' ), FLXAN_Service::str( $input['name'] ?? '' ), ! empty( $input['delete'] ) );
 			if ( null === $ref ) {
-				throw flx_gql_error( 'INVALID_INPUT', __( 'Invalid code. Use letters, digits, - and _.', 'flx-analytics' ), 'code' );
+				throw flx_gql_error( 'INVALID_INPUT', 'Invalid code. Use letters, digits, - and _.', 'code' );
 			}
 			return array( 'ref' => $ref );
 		},
@@ -1296,27 +1296,27 @@ flx_gql_mutation(
 flx_gql_mutation(
 	'flxAnalyticsSettingsSave',
 	array(
-		'description' => __( 'Changes settings and funnels. Fields you do not send stay as they are.', 'flx-analytics' ),
+		'description' => 'Changes settings and funnels. Fields you do not send stay as they are.',
 		'cap'         => Closure::fromCallable( 'flxan_gql_can_manage' ),
 		'input'       => array(
-			'on'           => array( 'type' => 'Boolean', 'description' => __( 'Count visits.', 'flx-analytics' ) ),
-			'method'       => array( 'type' => 'FlxAnalyticsCollectMethod', 'description' => __( 'Collection method.', 'flx-analytics' ) ),
-			'dnt'          => array( 'type' => 'Boolean', 'description' => __( 'Do not count visitors who send "Do Not Track".', 'flx-analytics' ) ),
-			'excludeRoles' => array( 'type' => '[String!]', 'description' => __( 'Roles that are not counted.', 'flx-analytics' ) ),
-			'excludeIps'   => array( 'type' => 'String', 'description' => __( 'IP addresses that are not counted, one per line (* and CIDR work).', 'flx-analytics' ) ),
-			'evOutbound'   => array( 'type' => 'Boolean', 'description' => __( 'Track outbound link clicks.', 'flx-analytics' ) ),
-			'evDownload'   => array( 'type' => 'Boolean', 'description' => __( 'Track file downloads.', 'flx-analytics' ) ),
-			'evContact'    => array( 'type' => 'Boolean', 'description' => __( 'Track phone, email and WhatsApp clicks.', 'flx-analytics' ) ),
-			'evSearch'     => array( 'type' => 'Boolean', 'description' => __( 'Track site searches.', 'flx-analytics' ) ),
-			'evDonation'   => array( 'type' => 'Boolean', 'description' => __( 'Track paid donations and orders.', 'flx-analytics' ) ),
-			'postsColumn'  => array( 'type' => 'Boolean', 'description' => __( 'Show a views column in the post and page lists.', 'flx-analytics' ) ),
-			'adminbar'     => array( 'type' => 'Boolean', 'description' => __( 'Show the page\'s views in the admin bar.', 'flx-analytics' ) ),
-			'keepMonths'   => array( 'type' => 'Int', 'description' => __( 'Months to keep data (0–120); 0 = forever.', 'flx-analytics' ) ),
-			'tmHub'        => array( 'type' => 'Boolean', 'description' => __( 'Receive telemetry from FluxWP installs.', 'flx-analytics' ) ),
-			'funnels'      => array( 'type' => '[FlxAnalyticsFunnelInput!]', 'description' => __( 'Replaces the funnels (5 at most); an empty list or the default set goes back to the defaults.', 'flx-analytics' ) ),
+			'on'           => array( 'type' => 'Boolean', 'description' => 'Count visits.' ),
+			'method'       => array( 'type' => 'FlxAnalyticsCollectMethod', 'description' => 'Collection method.' ),
+			'dnt'          => array( 'type' => 'Boolean', 'description' => 'Do not count visitors who send "Do Not Track".' ),
+			'excludeRoles' => array( 'type' => '[String!]', 'description' => 'Roles that are not counted.' ),
+			'excludeIps'   => array( 'type' => 'String', 'description' => 'IP addresses that are not counted, one per line (* and CIDR work).' ),
+			'evOutbound'   => array( 'type' => 'Boolean', 'description' => 'Track outbound link clicks.' ),
+			'evDownload'   => array( 'type' => 'Boolean', 'description' => 'Track file downloads.' ),
+			'evContact'    => array( 'type' => 'Boolean', 'description' => 'Track phone, email and WhatsApp clicks.' ),
+			'evSearch'     => array( 'type' => 'Boolean', 'description' => 'Track site searches.' ),
+			'evDonation'   => array( 'type' => 'Boolean', 'description' => 'Track paid donations and orders.' ),
+			'postsColumn'  => array( 'type' => 'Boolean', 'description' => 'Show a views column in the post and page lists.' ),
+			'adminbar'     => array( 'type' => 'Boolean', 'description' => 'Show the page\'s views in the admin bar.' ),
+			'keepMonths'   => array( 'type' => 'Int', 'description' => 'Months to keep data (0–120); 0 = forever.' ),
+			'tmHub'        => array( 'type' => 'Boolean', 'description' => 'Receive telemetry from FluxWP installs.' ),
+			'funnels'      => array( 'type' => '[FlxAnalyticsFunnelInput!]', 'description' => 'Replaces the funnels (5 at most); an empty list or the default set goes back to the defaults.' ),
 		),
 		'output'      => array(
-			'settings' => array( 'type' => 'FlxAnalyticsSettings', 'description' => __( 'Settings after the change.', 'flx-analytics' ) ),
+			'settings' => array( 'type' => 'FlxAnalyticsSettings', 'description' => 'Settings after the change.' ),
 		),
 		'resolve'     => static function ( array $input ): array {
 			return array( 'settings' => FLXAN_Service::save_settings( $input ) );
@@ -1326,11 +1326,11 @@ flx_gql_mutation(
 flx_gql_mutation(
 	'flxAnalyticsAggregate',
 	array(
-		'description' => __( 'Processes the waiting visits now.', 'flx-analytics' ),
+		'description' => 'Processes the waiting visits now.',
 		'cap'         => Closure::fromCallable( 'flxan_gql_can_manage' ),
 		'output'      => array(
-			'processed' => array( 'type' => 'Int!', 'description' => __( 'Visit rows processed.', 'flx-analytics' ) ),
-			'settings'  => array( 'type' => 'FlxAnalyticsSettings', 'description' => __( 'Settings and data status after the run.', 'flx-analytics' ) ),
+			'processed' => array( 'type' => 'Int!', 'description' => 'Visit rows processed.' ),
+			'settings'  => array( 'type' => 'FlxAnalyticsSettings', 'description' => 'Settings and data status after the run.' ),
 		),
 		'resolve'     => static function (): array {
 			$n = FLXAN_Service::aggregate();
@@ -1341,10 +1341,10 @@ flx_gql_mutation(
 flx_gql_mutation(
 	'flxAnalyticsReset',
 	array(
-		'description' => __( 'Deletes all statistics permanently.', 'flx-analytics' ),
+		'description' => 'Deletes all statistics permanently.',
 		'cap'         => Closure::fromCallable( 'flxan_gql_can_manage' ),
 		'output'      => array(
-			'settings' => array( 'type' => 'FlxAnalyticsSettings', 'description' => __( 'Settings and data status after the reset.', 'flx-analytics' ) ),
+			'settings' => array( 'type' => 'FlxAnalyticsSettings', 'description' => 'Settings and data status after the reset.' ),
 		),
 		'resolve'     => static function (): array {
 			FLXAN_Service::reset();
@@ -1355,11 +1355,11 @@ flx_gql_mutation(
 flx_gql_mutation(
 	'flxAnalyticsKokoImport',
 	array(
-		'description' => __( 'Imports Koko Analytics history from before Flux Analytics was installed.', 'flx-analytics' ),
+		'description' => 'Imports Koko Analytics history from before Flux Analytics was installed.',
 		'cap'         => Closure::fromCallable( 'flxan_gql_can_manage' ),
 		'output'      => array(
-			'rows'     => array( 'type' => 'Int!', 'description' => __( 'Rows imported.', 'flx-analytics' ) ),
-			'settings' => array( 'type' => 'FlxAnalyticsSettings', 'description' => __( 'Settings and data status after the import.', 'flx-analytics' ) ),
+			'rows'     => array( 'type' => 'Int!', 'description' => 'Rows imported.' ),
+			'settings' => array( 'type' => 'FlxAnalyticsSettings', 'description' => 'Settings and data status after the import.' ),
 		),
 		'resolve'     => static function (): array {
 			$n = FLXAN_Service::koko_import();
@@ -1370,13 +1370,13 @@ flx_gql_mutation(
 flx_gql_mutation(
 	'flxAnalyticsFastTest',
 	array(
-		'description' => __( 'Records whether this browser reached the fast endpoint.', 'flx-analytics' ),
+		'description' => 'Records whether this browser reached the fast endpoint.',
 		'cap'         => Closure::fromCallable( 'flxan_gql_can_manage' ),
 		'input'       => array(
-			'ok' => array( 'type' => 'Boolean!', 'description' => __( 'The endpoint answered.', 'flx-analytics' ) ),
+			'ok' => array( 'type' => 'Boolean!', 'description' => 'The endpoint answered.' ),
 		),
 		'output'      => array(
-			'method' => array( 'type' => 'FlxAnalyticsCollectMethod!', 'description' => __( 'Collection method in use now.', 'flx-analytics' ) ),
+			'method' => array( 'type' => 'FlxAnalyticsCollectMethod!', 'description' => 'Collection method in use now.' ),
 		),
 		'resolve'     => static fn( array $input ): array => array( 'method' => FLXAN_Service::fast_test( ! empty( $input['ok'] ) ) ),
 	)
@@ -1384,17 +1384,17 @@ flx_gql_mutation(
 flx_gql_mutation(
 	'flxAnalyticsTelemetryForget',
 	array(
-		'description' => __( 'Removes one telemetry error record, or all of them with "all". A record returns when the error happens again.', 'flx-analytics' ),
+		'description' => 'Removes one telemetry error record, or all of them with "all". A record returns when the error happens again.',
 		'cap'         => Closure::fromCallable( 'flxan_gql_can_hub' ),
 		'input'       => array(
-			'hash' => array( 'type' => 'String!', 'description' => __( 'Record key, or "all".', 'flx-analytics' ) ),
+			'hash' => array( 'type' => 'String!', 'description' => 'Record key, or "all".' ),
 		),
 		'output'      => array(
-			'removed' => array( 'type' => 'Boolean', 'description' => __( 'The record was removed.', 'flx-analytics' ) ),
+			'removed' => array( 'type' => 'Boolean', 'description' => 'The record was removed.' ),
 		),
 		'resolve'     => static function ( array $input ): array {
 			if ( ! FLXAN_Telemetry_Service::forget( FLXAN_Service::str( $input['hash'] ?? '' ) ) ) {
-				throw flx_gql_error( 'INVALID_INPUT', __( 'The record key is not valid.', 'flx-analytics' ), 'hash' );
+				throw flx_gql_error( 'INVALID_INPUT', 'The record key is not valid.', 'hash' );
 			}
 			return array( 'removed' => true );
 		},

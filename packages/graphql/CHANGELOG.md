@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2.1
+- Flux Analytics operations (`FlxAnalyticsConfig`, `FlxAnalyticsReport`, `FlxAnalyticsRealtime`, `FlxAnalyticsPages`, `FlxAnalyticsReferrers`, `FlxAnalyticsBreakdown`, `FlxAnalyticsEvents`, `FlxAnalyticsPage`, `FlxAnalyticsFunnel`, `FlxAnalyticsRefs`, `FlxAnalyticsJourneys`, `FlxAnalyticsSettings`, `FlxAnalyticsTelemetry`, `FlxAnalyticsTelemetryErrors` and the write operations).
+
 ## 0.2.0
 - `useFlxViewer()` ve `useFlxCan(capability)`: giriş yapan kişi ve FluxWP yetkileri (Flux GraphQL 0.2.0 `flxViewer`).
 - Flux Roles işlemleri (`FlxRolesScreen`, `FlxRoleMembers`, `FlxRolesSave`, `FlxRoleCreate`, `FlxRoleDelete`, `FlxRoleReset`, `FlxRoleMemberAdd`, `FlxRoleMemberRemove`).

@@ -12,6 +12,8 @@ paket GraphQL'e geçerken taşınır (geçiş süresince REST de çalışır).
 | OAuth: `.well-known/*`, `/oauth/token`, `/authorize` | flx-app, flx-ai | Standart protokol | — |
 | MCP sunucusu `/mcp` (JSON-RPC) | flx-ai | MCP protokolü | Araçlar aynı servisleri çağırır |
 | AI sohbet akışı (SSE) | flx-ai, flx-chat | WPGraphQL'de subscription/stream yok | Başlatma ve geçmiş GraphQL'de |
+| Ziyaret toplama `POST /flxan/v1/c` ve telemetri alımı `POST /flxan/v1/telemetry` | flx-analytics | Herkese açık, her sayfada tarayıcıdan gelen yüksek hacimli yazma; ayrı hafif uç (`endpoint.php`/`collect.php`) | Raporlar ve ayarlar GraphQL'de |
+| CSV indirme (admin-post `flxan_export`), WP Pano widget'ları ve `GET /flxan/v1/dashboard` | flx-analytics | Dosya akışı; Pano widget'ı sunucuda çizilir ve sekme açıkken yenilenir | Veri GraphQL raporlarıyla aynı servisten |
 | Dosya yükleme `POST /wp-json/flx/v1/upload` | flx-graphql | Multipart; tek ortak uç | Mutation `uploadId` alır |
 | WooCommerce Store API (sepet / checkout) | flx-commerce, flx-donate | Gateway'ler Store API'ye bağlı (EsnekPOS `PaymentContext`, iyzico) | `flxCart*` mutation'ları içeride `rest_do_request` ile Store API'yi çağırır |
 | FluxWP/updater, FluxWP/whatsapp-api | — | WordPress eklentisi değil, ayrı servis | Kapsam dışı |
