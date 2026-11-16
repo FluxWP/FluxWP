@@ -1,5 +1,12 @@
 # Flux AI — Değişiklikler
 
+## 0.28.0
+- **Sistem başı AI ayarları React ekranı oldu** (Bağlı sistemler › eklenti): AI aç/kapa, eklentiye özel model ve eklentinin Flux AI SDK ile tanımladığı alanlar (aç/kapa, metin, uzun metin, sayı, seçim, model); araç sayısı ve "Araçları yönet" bağlantısı. Klasik görünüme bağlantı durur; görünüm değiştirirken eklenti seçimi korunur.
+- **GraphQL:** `flxAiSystemSettings` sorgusu, `flxAiSystemSettingsUpdate` mutation'ı. Bırakılan alanlar eski değerini korur; tanımsız alan reddedilir; sayı alanı min/max'a kırpılır (ekran sunucunun döndürdüğü değeri gösterir).
+- Servis: `FLXAI_System_Settings_Service` (+ DTO'lar); klasik form aynı servisle kaydeder.
+- Sözleşme testi 439 kontrol.
+- Sohbet geçmişi henüz klasik.
+
 ## 0.27.0
 - **MCP sayfası React ekranı oldu** (wp-admin'de varsayılan, klasik görünüme bağlantı var): sunucuyu ve OAuth girişini aç/kapat, anahtar oluştur (yalnız oluşturulduğunda bir kez gösterilir, kopyala düğmesi), araçla sınırla, iptal et, asistana bağlama örnekleri (anahtar yazılı hâlde), son işlemler.
 - **Bağlantılar React ekranı oldu:** dış MCP sunucuları (ekle/düzenle, anahtar/başlık/OAuth girişi, kişisel ya da rollere açık, aç/kapat), OAuth ile giriş/çıkış (sağlayıcı dönüşü bu ekrana gelir), "Test et ve araçları güncelle", araç başına izin (izinli/sor/kapalı; yalnız salt-okunur araç izinli olabilir), silme.

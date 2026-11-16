@@ -78,6 +78,8 @@ $vars = array(
 	'FlxAiSkillEvalsSave'   => array( 'input' => array( 'slug' => 'x' ) ),
 	'FlxAiSkillTestRun'     => array( 'input' => array( 'slug' => 'x', 'kind' => 'trigger' ) ),
 	'FlxAiBrandSave'        => array( 'input' => array( 'name' => 'x' ) ),
+	'FlxAiSystemSettings'   => array( 'source' => 'flx-seo' ),
+	'FlxAiSystemSettingsUpdate' => array( 'input' => array( 'source' => 'flx-seo' ) ),
 	'FlxAiMcp'              => array(),
 	'FlxAiMcpServerUpdate'  => array( 'input' => array( 'enabled' => true, 'oauth' => true ) ),
 	'FlxAiMcpKeyCreate'     => array( 'input' => array( 'name' => 'x' ) ),
@@ -594,6 +596,60 @@ flxt_same( 'sk-or-classic-12345678', flxai_setting( 'key_openrouter' ), 'classic
 $r = flxai_t_op( 'FlxAiSettingsScreen', array(), $admin );
 flxt_ok( false === strpos( flxai_t_json( $r ), 'sk-or-classic-12345678' ), 'classic settings form: the key is not in the GraphQL response' );
 $_POST = array();
+
+// Per-system AI settings: the switch, the model and the fields a plugin declared with the SDK.
+flx_ai_settings( 'flx-test-sys', array(
+	'tone'  => array( 'type' => 'select', 'label' => 'Tone', 'default' => 'plain', 'options' => array( 'plain' => 'Plain', 'warm' => 'Warm' ) ),
+	'limit' => array( 'type' => 'number', 'label' => 'Limit', 'default' => 5, 'min' => 1, 'max' => 10 ),
+	'note'  => array( 'type' => 'textarea', 'label' => 'Note', 'help' => 'Shown to the model', 'default' => '' ),
+) );
+flx_ai_feature( 'flx-test-sys', 'summaries', 'Summaries', 'Write summaries', true );
+delete_option( FLX_AI_SDK_OPTION );
+$r = flxai_t_op( 'FlxAiSystemSettings', array( 'source' => 'flx-test-sys' ), $admin );
+flxt_same( null, $r['errors'] ?? null, 'system settings: no errors' );
+$ss = $r['data']['flxAiSystemSettings'] ?? array();
+flxt_same( true, $ss['on'] ?? null, 'system settings: AI on by default' );
+flxt_same( true, $ss['declared'] ?? null, 'system settings: declared with the SDK' );
+flxt_same( array( 'tone', 'limit', 'note', 'summaries' ), array_column( $ss['fields'] ?? array(), 'key' ), 'system settings: fields listed in order' );
+$byk = array_column( $ss['fields'] ?? array(), null, 'key' );
+flxt_same( 'plain', $byk['tone']['value'] ?? null, 'system settings: select default' );
+flxt_same( array( 'plain', 'warm' ), array_column( $byk['tone']['options'] ?? array(), 'id' ), 'system settings: select options' );
+flxt_same( 1.0, $byk['limit']['min'] ?? null, 'system settings: number min' );
+flxt_same( '1', $byk['summaries']['value'] ?? null, 'system settings: toggle default is "1"' );
+flxt_same( 'toggle', $byk['summaries']['type'] ?? null, 'system settings: toggle type' );
+$r = flxai_t_op( 'FlxAiSystemSettingsUpdate', array( 'input' => array(
+	'source' => 'flx-test-sys', 'on' => false, 'model' => 'claude:claude-haiku-5-5',
+	'values' => array( array( 'key' => 'tone', 'value' => 'warm' ), array( 'key' => 'limit', 'value' => '99' ), array( 'key' => 'summaries', 'value' => '0' ), array( 'key' => 'note', 'value' => 'Be brief' ) ),
+) ), $admin );
+flxt_same( array(), $r['data']['flxAiSystemSettingsUpdate']['errors'] ?? null, 'system settings update: no errors' );
+$ss  = $r['data']['flxAiSystemSettingsUpdate']['settings'] ?? array();
+$byk = array_column( $ss['fields'] ?? array(), null, 'key' );
+flxt_same( false, $ss['on'] ?? null, 'system settings update: AI off' );
+flxt_same( 'claude:claude-haiku-5-5', $ss['model'] ?? null, 'system settings update: model' );
+flxt_same( 'warm', $byk['tone']['value'] ?? null, 'system settings update: select saved' );
+flxt_same( '10', $byk['limit']['value'] ?? null, 'system settings update: a number is clamped to its max' );
+flxt_same( '0', $byk['summaries']['value'] ?? null, 'system settings update: toggle off' );
+flxt_same( false, flxai_source_enabled( 'flx-test-sys' ), 'system settings update: classic reader sees AI off' );
+flxt_same( 'warm', flx_ai_get( 'flx-test-sys', 'tone' ), 'system settings update: the plugin reads the value' );
+flxt_same( false, (bool) flx_ai_get( 'flx-test-sys', 'summaries' ), 'system settings update: the plugin reads the toggle' );
+$r = flxai_t_op( 'FlxAiSystemSettingsUpdate', array( 'input' => array( 'source' => 'flx-test-sys', 'values' => array( array( 'key' => 'tone', 'value' => 'plain' ) ) ) ), $admin );
+$ss = $r['data']['flxAiSystemSettingsUpdate']['settings'] ?? array();
+flxt_same( false, $ss['on'] ?? null, 'system settings update: the switch left out keeps its state' );
+flxt_same( 'claude:claude-haiku-5-5', $ss['model'] ?? null, 'system settings update: the model left out is kept' );
+flxt_same( '10', array_column( $ss['fields'] ?? array(), null, 'key' )['limit']['value'] ?? null, 'system settings update: fields left out keep their value' );
+$r = flxai_t_op( 'FlxAiSystemSettingsUpdate', array( 'input' => array( 'source' => 'flx-test-sys', 'on' => true, 'model' => '' ) ), $admin );
+$ss = $r['data']['flxAiSystemSettingsUpdate']['settings'] ?? array();
+flxt_same( array( true, '' ), array( $ss['on'] ?? null, $ss['model'] ?? null ), 'system settings update: back on, default model' );
+$r = flxai_t_op( 'FlxAiSystemSettingsUpdate', array( 'input' => array( 'source' => 'flx-test-sys', 'values' => array( array( 'key' => 'nope', 'value' => 'x' ) ) ) ), $admin );
+flxt_same( 'INVALID_INPUT', $r['data']['flxAiSystemSettingsUpdate']['errors'][0]['code'] ?? $r['errors'][0]['extensions']['code'] ?? null, 'system settings update: an undeclared setting is refused' );
+$r = flxai_t_op( 'FlxAiSystemSettings', array( 'source' => 'flx-no-sdk' ), $admin );
+flxt_same( false, $r['data']['flxAiSystemSettings']['declared'] ?? null, 'system settings: a plugin without SDK settings is not declared' );
+flxt_same( array(), $r['data']['flxAiSystemSettings']['fields'] ?? null, 'system settings: and has no fields' );
+delete_option( FLX_AI_SDK_OPTION );
+$o = (array) get_option( 'flxai_settings', array() );
+unset( $o['sources_off'], $o['source_models'] );
+update_option( 'flxai_settings', $o );
+$GLOBALS['flxai_settings_cache'] = null;
 
 // MCP server page: switch, keys (shown once), revoke, activity.
 delete_option( 'flxai_mcp_keys' );
