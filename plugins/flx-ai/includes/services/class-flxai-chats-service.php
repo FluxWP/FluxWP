@@ -112,7 +112,7 @@ final class FLXAI_Chats_Service {
 		/** @var wpdb $wpdb */
 		global $wpdb;
 		$table = FLXAI_Cast::str( flxai_table( 'tasks' ) );
-		return FLXAI_Cast::str( $wpdb->get_var( $wpdb->prepare( 'SELECT title FROM ' . $table . ' WHERE chat_id = %d LIMIT 1', $chat_id ) ) ); // phpcs:ignore
+		return FLXAI_Cast::str( $wpdb->get_var( $wpdb->prepare( 'SELECT title FROM %i WHERE chat_id = %d LIMIT 1', $table, $chat_id ) ) ); // phpcs:ignore
 	}
 
 	/** @param array<mixed> $m Stored message (OpenAI shape with `_` fields). */
