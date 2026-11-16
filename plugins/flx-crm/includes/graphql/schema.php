@@ -1663,6 +1663,7 @@ flx_gql_mutation(
 				}
 				$steps[] = $step;
 			}
+			/** @var array<string,mixed> $opts */
 			$opts = FLXCRM_Val::arr( FLXCRM_Journeys::defaults() );
 			foreach ( array( 'goal' => 'goal', 'reenter_days' => 'reenterDays', 'quiet_from' => 'quietFrom', 'quiet_to' => 'quietTo', 'cap_week' => 'capWeek' ) as $to => $from ) {
 				$in = flx_gql_arr( $input['opts'] ?? array() );

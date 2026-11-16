@@ -122,6 +122,7 @@ final class FLXCRM_Contact_Service {
 	 */
 	public static function window( array $filter, int $offset, int $limit ): FLXCRM_Contact_Page {
 		global $wpdb;
+		/** @var wpdb $wpdb */
 		$t   = FLXCRM_Val::str( flxcrm_table( 'contacts' ) );
 		$ord = in_array( $filter['orderby'] ?? '', (array) FLXCRM_Contacts::sortable(), true ) ? FLXCRM_Val::str( $filter['orderby'] ) : 'last_activity_at';
 		$dir = 'asc' === strtolower( FLXCRM_Val::str( $filter['order'] ?? 'desc' ) ) ? 'ASC' : 'DESC';
@@ -135,7 +136,7 @@ final class FLXCRM_Contact_Service {
 		foreach ( (array) $rows as $row ) {
 			$items[] = FLXCRM_Contact::from_row( FLXCRM_Val::arr( $row ) );
 		}
-		return new FLXCRM_Contact_Page( $items, FLXCRM_Contacts::count( $filter ) );
+		return new FLXCRM_Contact_Page( $items, FLXCRM_Val::int( FLXCRM_Contacts::count( $filter ) ) );
 	}
 
 	public static function get( int $id ): ?FLXCRM_Contact {
@@ -169,13 +170,13 @@ final class FLXCRM_Contact_Service {
 	public static function tags_of_many( array $ids ): array {
 		$miss = array_values( array_filter( $ids, static fn( int $id ): bool => ! isset( self::$tag_memo[ $id ] ) ) );
 		if ( $miss ) {
-			$rows = FLXCRM_Tags::of_many( $miss );
+			$rows = FLXCRM_Val::arr( FLXCRM_Tags::of_many( $miss ) );
 			foreach ( $miss as $id ) {
 				self::$tag_memo[ $id ] = array();
 			}
 			foreach ( $rows as $cid => $tags ) {
 				foreach ( FLXCRM_Val::arr( $tags ) as $t ) {
-					self::$tag_memo[ (int) $cid ][] = FLXCRM_Tag::from_row( FLXCRM_Val::arr( $t ) );
+					self::$tag_memo[ FLXCRM_Val::int( $cid ) ][] = FLXCRM_Tag::from_row( FLXCRM_Val::arr( $t ) );
 				}
 			}
 		}
@@ -218,7 +219,7 @@ final class FLXCRM_Contact_Service {
 			return $rows;
 		}
 		$have_user = false;
-		foreach ( FLXCRM_Contacts::links( $id ) as $l ) {
+		foreach ( FLXCRM_Val::arr( FLXCRM_Contacts::links( $id ) ) as $l ) {
 			$l                  = FLXCRM_Val::arr( $l );
 			$source             = FLXCRM_Val::str( $l['source'] ?? '' );
 			$parts              = array_pad( explode( ':', FLXCRM_Val::str( $l['source_id'] ?? '' ), 2 ), 2, '' );
@@ -278,7 +279,7 @@ final class FLXCRM_Contact_Service {
 			$answers[] = array( 'q' => FLXCRM_Val::str( $a[0] ?? '' ), 'a' => FLXCRM_Val::str( $a[1] ?? '' ) );
 		}
 		$type  = FLXCRM_Val::str( $e['type'] ?? '' );
-		$types = flxcrm_event_types();
+		$types = FLXCRM_Val::arr( flxcrm_event_types() );
 		$uid   = FLXCRM_Val::int( $e['user_id'] ?? 0 );
 		$by    = $uid > 0 ? get_userdata( $uid ) : false;
 		$paid  = FLXCRM_Val::bool( $e['paid'] ?? 0 );
@@ -300,7 +301,7 @@ final class FLXCRM_Contact_Service {
 			$by ? $by->display_name : '',
 			FLXCRM_Val::str( $e['at'] ?? '' ),
 			$answers,
-			! array_key_exists( 'uniq', $e ) || null === $e['uniq'] ? in_array( $type, flxcrm_manual_event_types(), true ) : false,
+			! array_key_exists( 'uniq', $e ) || null === $e['uniq'] ? in_array( $type, (array) flxcrm_manual_event_types(), true ) : false,
 			isset( $e['name'] ) || isset( $e['email'] ) || isset( $e['phone'] ) ? FLXCRM_Val::str( flxcrm_display_name( $e ) ) : '',
 		);
 	}
@@ -336,7 +337,7 @@ final class FLXCRM_Contact_Service {
 		$filters = self::timeline_filters();
 		$types   = ( $filters[ $filter ] ?? $filters[''] )[1];
 		$limit   = max( 1, min( 100, $limit ) );
-		$rows    = FLXCRM_Events::timeline( $id, array( 'type' => $types, 'limit' => $limit + 1, 'offset' => max( 0, $offset ) ) );
+		$rows    = FLXCRM_Val::arr( FLXCRM_Events::timeline( $id, array( 'type' => $types, 'limit' => $limit + 1, 'offset' => max( 0, $offset ) ) ) );
 		$more    = count( $rows ) > $limit;
 		$items   = array();
 		foreach ( array_slice( $rows, 0, $limit ) as $r ) {
