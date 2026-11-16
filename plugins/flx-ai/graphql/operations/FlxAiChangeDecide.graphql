@@ -1,0 +1,12 @@
+mutation FlxAiChangeDecide($input: FlxAiChangeDecideInput!) {
+  flxAiChangeDecide(input: $input) {
+    queue {
+      ...FlxAiApprovalQueueFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

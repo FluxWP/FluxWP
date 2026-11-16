@@ -52,6 +52,9 @@ add_action(
 );
 
 function flxai_page_approvals() {
+	if ( flxai_flux_render() ) {
+		return;
+	}
 	flxai_page_head( __( 'Awaiting approval', 'flx-ai' ), __( 'Actions the assistant prepared in your chats and scheduled tasks. Nothing changes on the site until you approve. You can edit the input before approving.', 'flx-ai' ) );
 	// phpcs:disable WordPress.Security.NonceVerification.Recommended
 	$err = get_transient( 'flxai_appr_err_' . get_current_user_id() );

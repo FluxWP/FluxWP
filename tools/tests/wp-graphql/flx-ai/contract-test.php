@@ -52,6 +52,9 @@ $vars = array(
 	'FlxAiModels'           => array(),
 	'FlxAiModelTest'        => array( 'input' => array( 'model' => '' ) ),
 	'FlxAiRenderTest'       => array( 'input' => array( 'url' => '' ) ),
+	'FlxAiApprovals'        => array(),
+	'FlxAiApprovalDecide'   => array( 'input' => array( 'chatId' => 1, 'callId' => 'x', 'approve' => true ) ),
+	'FlxAiChangeDecide'     => array( 'input' => array( 'id' => 1, 'merge' => false ) ),
 );
 foreach ( $vars as $op => $v ) {
 	flxt_same( 'UNAUTHENTICATED', flxt_code( flxai_t_op( $op, $v ) ), "$op: visitor → UNAUTHENTICATED" );
@@ -299,6 +302,41 @@ flxt_same( 'INVALID_INPUT', $r['data']['flxAiToolPick']['errors'][0]['code'] ?? 
 foreach ( array( 'FlxAiTools' => array(), 'FlxAiToolsUpdate' => array( 'input' => array( 'tools' => array() ) ), 'FlxAiToolPick' => array( 'input' => array( 'name' => 'x', 'source' => 'y' ) ) ) as $op => $v ) {
 	flxt_same( 'FORBIDDEN', flxt_code( flxai_t_op( $op, $v, $sub ) ), "$op: subscriber → FORBIDDEN" );
 }
+
+// Approvals: an empty queue, refused decisions and invalid input.
+$r = flxai_t_op( 'FlxAiApprovals', array(), $admin );
+flxt_same( null, $r['errors'] ?? null, 'approvals: no errors' );
+flxt_same( 0, $r['data']['flxAiApprovals']['count'] ?? null, 'approvals: the queue is empty' );
+$r = flxai_t_op( 'FlxAiApprovalDecide', array( 'input' => array( 'chatId' => 999999, 'callId' => 'nope', 'approve' => true ) ), $admin );
+flxt_same( 'NOT_FOUND', $r['data']['flxAiApprovalDecide']['errors'][0]['code'] ?? $r['errors'][0]['extensions']['code'] ?? null, 'approval decide: an unknown action is NOT_FOUND' );
+$r = flxai_t_op( 'FlxAiApprovalDecide', array( 'input' => array( 'chatId' => 1, 'callId' => 'nope', 'approve' => true, 'args' => '{not json' ) ), $admin );
+flxt_same( 'INVALID_INPUT', $r['data']['flxAiApprovalDecide']['errors'][0]['code'] ?? $r['errors'][0]['extensions']['code'] ?? null, 'approval decide: invalid JSON is refused' );
+$r = flxai_t_op( 'FlxAiChangeDecide', array( 'input' => array( 'id' => 999999, 'merge' => false ) ), $admin );
+flxt_same( 'NOT_FOUND', $r['data']['flxAiChangeDecide']['errors'][0]['code'] ?? $r['errors'][0]['extensions']['code'] ?? null, 'change decide: an unknown change request is NOT_FOUND' );
+
+// The classic settings form saves through the same service.
+if ( ! function_exists( 'flxai_save_settings' ) ) {
+	require_once FLXAI_DIR . 'includes/admin.php'; // only loaded in wp-admin requests
+}
+wp_set_current_user( $admin );
+$_POST = array(
+	'flxai_settings_nonce' => wp_create_nonce( 'flxai_settings' ),
+	'model'                => 'anthropic/test-model',
+	'limit_day'            => '2,5',
+	'limit_action'         => 'warn',
+	'web_on'               => '1',
+	'key_openrouter'       => 'sk-or-classic-12345678',
+);
+$GLOBALS['flxai_settings_cache'] = null;
+flxt_same( true, flxai_save_settings(), 'classic settings form: saves' );
+flxt_same( 'anthropic/test-model', flxai_setting( 'model' ), 'classic settings form: model saved' );
+flxt_same( 2.5, (float) flxai_setting( 'limit_day' ), 'classic settings form: a comma decimal is read' );
+flxt_same( 1, (int) flxai_setting( 'web_on' ), 'classic settings form: a ticked box is on' );
+flxt_same( 0, (int) flxai_setting( 'shell_on' ), 'classic settings form: an unticked box is off' );
+flxt_same( 'sk-or-classic-12345678', flxai_setting( 'key_openrouter' ), 'classic settings form: key written' );
+$r = flxai_t_op( 'FlxAiSettingsScreen', array(), $admin );
+flxt_ok( false === strpos( flxai_t_json( $r ), 'sk-or-classic-12345678' ), 'classic settings form: the key is not in the GraphQL response' );
+$_POST = array();
 
 // Persisted operations run by queryId (strict mode).
 $hash = array_search( $GLOBALS['flxai_ops']['FlxAiSystems'], (array) json_decode( (string) file_get_contents( FLXAI_DIR . 'graphql/persisted-queries.json' ), true ), true );

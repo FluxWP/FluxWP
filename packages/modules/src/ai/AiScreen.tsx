@@ -5,10 +5,12 @@ import { useMemo, type ComponentType } from 'react';
 import { createGraphQLClient } from '@fluxwp/graphql';
 import { FlxGraphQLProvider } from '@fluxwp/graphql/react';
 import { useHost } from '../host';
+import { Approvals } from './Approvals';
 import { Billing } from './Billing';
 import { useAi } from './common';
 import { Logs } from './Logs';
 import { Overview } from './Overview';
+import { Settings } from './Settings';
 import { Systems } from './Systems';
 import { Tools } from './Tools';
 import './ai.css';
@@ -19,6 +21,8 @@ const VIEWS: Record<string, { title: string; sub: string; View: ComponentType }>
   billing: { title: 'Billing', sub: 'Monthly breakdown, spending limits and provider credit. Amounts in USD; OpenRouter reports actual cost, Anthropic is computed from the price list.', View: Billing },
   systems: { title: 'Connected systems', sub: '', View: Systems },
   tools: { title: 'Tools', sub: '', View: Tools },
+  approvals: { title: 'Awaiting approval', sub: '', View: Approvals },
+  settings: { title: 'Settings', sub: '', View: Settings },
 };
 
 export function AiScreen() {

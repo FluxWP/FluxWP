@@ -1734,6 +1734,30 @@ export type FlxAdsSuggestionsRefreshInput = {
   clientMutationId?: string | null | undefined;
 };
 
+/** Input for the flxAiApprovalDecide mutation. */
+export type FlxAiApprovalDecideInput = {
+  /** Approve (false rejects). */
+  approve: boolean;
+  /** Edited input as JSON; leave out to run it as prepared. */
+  args?: string | null | undefined;
+  /** Tool call id. */
+  callId: string;
+  /** Chat. */
+  chatId: number;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+};
+
+/** Input for the flxAiChangeDecide mutation. */
+export type FlxAiChangeDecideInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Change request number. */
+  id: number;
+  /** Merge (false rejects). */
+  merge: boolean;
+};
+
 /** Input for the flxAiModelTest mutation. */
 export type FlxAiModelTestInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -5442,6 +5466,20 @@ export type FlxAdsValueRowFragment = { key: string, label: string, channel: stri
 
 export type FlxAdsValueTotalsFragment = { newCount: number, adsNew: number, ratio: number | null, rate: number | null, adsAvg: { amount: number, currency: string, formatted: string } | null, cac: { amount: number, currency: string, formatted: string } | null, spend: { amount: number, currency: string, formatted: string } | null };
 
+export type FlxAiApprovalDecideMutationVariables = Exact<{
+  input: FlxAiApprovalDecideInput;
+}>;
+
+
+export type FlxAiApprovalDecideMutation = { flxAiApprovalDecide: { state: string | null, queue: { count: number, items: Array<{ chatId: number, chatTitle: string, callId: string, tool: string, title: string, args: string, note: string, taskId: number, taskTitle: string, time: { timestamp: number, label: string } }>, changes: Array<{ id: number, title: string, chatId: number, taskId: number, taskTitle: string, created: { timestamp: number, label: string }, files: Array<{ path: string, op: string, add: number, del: number }> }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxAiApprovalQueueFieldsFragment = { count: number, items: Array<{ chatId: number, chatTitle: string, callId: string, tool: string, title: string, args: string, note: string, taskId: number, taskTitle: string, time: { timestamp: number, label: string } }>, changes: Array<{ id: number, title: string, chatId: number, taskId: number, taskTitle: string, created: { timestamp: number, label: string }, files: Array<{ path: string, op: string, add: number, del: number }> }> };
+
+export type FlxAiApprovalsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxAiApprovalsQuery = { flxAiApprovals: { count: number, items: Array<{ chatId: number, chatTitle: string, callId: string, tool: string, title: string, args: string, note: string, taskId: number, taskTitle: string, time: { timestamp: number, label: string } }>, changes: Array<{ id: number, title: string, chatId: number, taskId: number, taskTitle: string, created: { timestamp: number, label: string }, files: Array<{ path: string, op: string, add: number, del: number }> }> } };
+
 export type FlxAiBillingQueryVariables = Exact<{
   month?: string | null | undefined;
 }>;
@@ -5454,6 +5492,13 @@ export type FlxAiBreakdownFieldsFragment = { key: string, label: string, calls: 
 export type FlxAiBudgetRowFragment = { key: string, label: string, limit: number, spent: number, pct: number, over: boolean, resets: { timestamp: number, label: string } };
 
 export type FlxAiReportFieldsFragment = { from: { timestamp: number, label: string }, to: { timestamp: number, label: string }, totals: { calls: number, tools: number, inTokens: number, outTokens: number, cacheRead: number, cacheWrite: number, cost: number, fullCost: number, saved: number, modelMs: number, toolMs: number, errors: number }, daily: Array<{ date: string, cost: number, inTokens: number, outTokens: number, cacheRead: number, modelMs: number, toolMs: number, calls: number, tools: number, errors: number }>, bySource: Array<{ key: string, label: string, calls: number, tools: number, cost: number, fullCost: number, inTokens: number, outTokens: number, cacheRead: number, modelMs: number, toolMs: number, errors: number, partial: boolean }>, byModel: Array<{ key: string, label: string, calls: number, tools: number, cost: number, fullCost: number, inTokens: number, outTokens: number, cacheRead: number, modelMs: number, toolMs: number, errors: number, partial: boolean }>, byPurpose: Array<{ key: string, label: string, calls: number, tools: number, cost: number, fullCost: number, inTokens: number, outTokens: number, cacheRead: number, modelMs: number, toolMs: number, errors: number, partial: boolean }>, byTool: Array<{ key: string, label: string, source: string, calls: number, avgMs: number, maxMs: number, totalMs: number, errors: number }>, byProvider: Array<{ key: string, label: string, calls: number, tools: number, cost: number, fullCost: number, inTokens: number, outTokens: number, cacheRead: number, modelMs: number, toolMs: number, errors: number, partial: boolean }> };
+
+export type FlxAiChangeDecideMutationVariables = Exact<{
+  input: FlxAiChangeDecideInput;
+}>;
+
+
+export type FlxAiChangeDecideMutation = { flxAiChangeDecide: { queue: { count: number, items: Array<{ chatId: number, chatTitle: string, callId: string, tool: string, title: string, args: string, note: string, taskId: number, taskTitle: string, time: { timestamp: number, label: string } }>, changes: Array<{ id: number, title: string, chatId: number, taskId: number, taskTitle: string, created: { timestamp: number, label: string }, files: Array<{ path: string, op: string, add: number, del: number }> }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
 
 export type FlxAiCreditsRefreshMutationVariables = Exact<{ [key: string]: never; }>;
 

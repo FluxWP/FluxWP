@@ -213,3 +213,39 @@ fragment FlxAiToolRow on FlxAiTool {
   errors
   avgMs
 }
+
+fragment FlxAiApprovalQueueFields on FlxAiApprovalQueue {
+  count
+  items {
+    chatId
+    chatTitle
+    callId
+    tool
+    title
+    args
+    note
+    time {
+      timestamp
+      label
+    }
+    taskId
+    taskTitle
+  }
+  changes {
+    id
+    title
+    chatId
+    taskId
+    taskTitle
+    created {
+      timestamp
+      label
+    }
+    files {
+      path
+      op
+      add
+      del
+    }
+  }
+}

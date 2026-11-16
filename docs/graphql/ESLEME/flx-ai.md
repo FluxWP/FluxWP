@@ -1,6 +1,6 @@
 # Flux AI & MCP (flx-ai): klasik → GraphQL eşlemesi
 
-Paket sürümü: 0.23.0 · Önek: `flxai_` · Sahip thread: Faz 1 / flx-ai · Durum: **kısmen bitti** (PR `gql/flx-ai-1`; kalan iş `gql/flx-ai-2`)
+Paket sürümü: 0.24.0 · Önek: `flxai_` · Sahip thread: Faz 1 / flx-ai · Durum: **kısmen bitti** (0.23.0 merge; `gql/flx-ai-2` 0.24.0 PR'ında; kalan: Skill'ler, Görevler, MCP)
 
 ## Özet
 
@@ -16,11 +16,12 @@ Paket sürümü: 0.23.0 · Önek: `flxai_` · Sahip thread: Faz 1 / flx-ai · Du
 | Kayıtlar + içerik penceresi | `flxAiLogs` (connection), `flxAiLogBody` | `ai/Logs.tsx` |
 | Faturalama (aylar, CSV, OpenRouter kredisi) | `flxAiBilling` (`csvUrl` nonce'lu), `flxAiCreditsRefresh` | `ai/Billing.tsx` |
 | Bağlı sistemler (aç/kapa) | `flxAiSystems`, `flxAiSystemsUpdate` | `ai/Systems.tsx` (sistem başı AI ayarı klasikte kalır) |
+| Onay bekleyenler (bekleyen işlemler, düzenleyip onayla, değişiklik istekleri) | `flxAiApprovals`, `flxAiApprovalDecide`, `flxAiChangeDecide` | `ai/Approvals.tsx` (0.24.0) |
 | Araçlar (aç/kapa, toplu, çakışma seçimi) | `flxAiTools`, `flxAiToolsUpdate`, `flxAiToolPick` | `ai/Tools.tsx` |
-| Ayarlar (servis + GraphQL hazır) | `flxAiSettings`, `flxAiSecrets`, `flxAiSettingsOptions`, `flxAiModels`, `flxAiSettingsUpdate`, `flxAiModelTest`, `flxAiRenderTest` | React ekranı **sonraki PR** |
+| Ayarlar (servis + GraphQL hazır) | `flxAiSettings`, `flxAiSecrets`, `flxAiSettingsOptions`, `flxAiModels`, `flxAiSettingsUpdate`, `flxAiModelTest`, `flxAiRenderTest` | `ai/Settings.tsx` (0.24.0; klasik `flxai_save_settings` aynı servisle kaydeder) |
 
 Yetki: hepsi `manage_options`. wp-admin'de ekranlar varsayılan, "Klasik görünüm" bağlantısı kullanıcı başına (`flxai_ui` meta). FluxApp modülü `flxai-admin`.
 
-## Kalanlar (gql/flx-ai-2)
+## Kalanlar
 
-Ayarlar React ekranı (klasik `flxai_save_settings` servise devredilecek), Onay bekleyenler (`flxai_approvals_*`, model adımı çağırır), Skill'ler (CRUD, dosyalar, testler, marka kiti), Zamanlanmış görevler, Sohbet geçmişi, MCP anahtarları/bağlantılar, sistem başı SDK ayarları.
+Skill'ler (CRUD, dosyalar, testler, marka kiti), Zamanlanmış görevler, Sohbet geçmişi, MCP anahtarları/bağlantılar, sistem başı SDK ayarları.
