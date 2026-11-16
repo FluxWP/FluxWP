@@ -21,5 +21,6 @@ export const moduleScreens: Record<string, ComponentType> = {
   'flxr-roles': lazyScreen(() => import('./roles/RolesScreen').then((m) => ({ default: m.RolesScreen }))),
   'flxapp-settings': lazyScreen(() => import('./app-settings/AppSettingsScreen').then((m) => ({ default: m.AppSettingsScreen }))),
   'flxapp-access': lazyScreen(() => import('./app-settings/AccessScreen').then((m) => ({ default: m.AccessScreen }))),
+  'flxseo-seo': lazyScreen(() => import('./seo/SeoScreen').then((m) => ({ default: m.SeoScreen }))),
   'flxc-inbox': lazyScreen(() => import('./whatsapp/WhatsAppScreen').then((m) => ({ default: m.WhatsAppScreen }))),
 };

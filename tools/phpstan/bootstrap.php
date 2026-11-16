@@ -26,3 +26,8 @@ defined( 'FLXBK_PATH' ) || define( 'FLXBK_PATH', __DIR__ . '/' );
 defined( 'FLXBK_URL' ) || define( 'FLXBK_URL', 'https://example.com/' );
 defined( 'FLXL_VERSION' ) || define( 'FLXL_VERSION', '0.0.0' );
 defined( 'FLXL_DIR' ) || define( 'FLXL_DIR', __DIR__ . '/' );
+defined( 'FLXSEO_VERSION' ) || define( 'FLXSEO_VERSION', '0.0.0' );
+defined( 'FLXSEO_FILE' ) || define( 'FLXSEO_FILE', __FILE__ );
+defined( 'FLXSEO_DIR' ) || define( 'FLXSEO_DIR', __DIR__ . '/' );
+defined( 'FLXSEO_HISTORY_MAX' ) || define( 'FLXSEO_HISTORY_MAX', 90 );
+defined( 'FLXSEO_URL' ) || define( 'FLXSEO_URL', 'https://example.com/' );

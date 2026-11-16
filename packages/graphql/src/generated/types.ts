@@ -80,6 +80,50 @@ export type FlxLanguageSwitcherPlace =
   /** Header and mobile menu. */
   | 'HEADER';
 
+/** How important an audit recommendation is. */
+export type FlxSeoPriority =
+  | 'CRITICAL'
+  | 'HIGH'
+  | 'LOW'
+  | 'MEDIUM';
+
+/** Where a recommendation came from. */
+export type FlxSeoAuditSource =
+  | 'LOCAL'
+  | 'PSI_DESKTOP'
+  | 'PSI_MOBILE';
+
+/** Device a PageSpeed run measures. */
+export type FlxSeoStrategy =
+  | 'DESKTOP'
+  | 'MOBILE';
+
+/** What started a saved audit report. */
+export type FlxSeoAuditTrigger =
+  | 'AUTO'
+  | 'FIX'
+  | 'MANUAL'
+  | 'MCP';
+
+/** How serious a content recommendation is. */
+export type FlxSeoIssueLevel =
+  | 'ERROR'
+  | 'WARNING';
+
+/** Language of the build guide. */
+export type FlxSeoGuideLang =
+  | 'EN'
+  | 'TR';
+
+export type FlxSettingsFlxseoAuditFreq =
+  | 'DAILY'
+  | 'OFF'
+  | 'WEEKLY';
+
+export type FlxSettingsFlxseoOrgType =
+  | 'NGO'
+  | 'ORGANIZATION';
+
 /** What a task row is. */
 export type FlxTaskKind =
   /** An agenda item of a meeting. */
@@ -492,6 +536,107 @@ export type FlxRolesSaveRoleInput = {
   home?: string | null | undefined;
   /** Role key. */
   key: string;
+};
+
+/** Input for the flxSeoAuditRun mutation. */
+export type FlxSeoAuditRunInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Kind of audit. */
+  mode: FlxSeoAuditMode;
+  /** Device for a PageSpeed run. Default mobile. */
+  strategy?: FlxSeoStrategy | null | undefined;
+  /** Address of this site to audit. Any other address audits the home page. */
+  url?: string | null | undefined;
+};
+
+/** Kind of audit to run. */
+export type FlxSeoAuditMode =
+  /** On-site audit of the page; needs no key. */
+  | 'LOCAL'
+  /** One PageSpeed Insights measurement (strategy required). */
+  | 'PAGESPEED';
+
+/** Input for the flxSeoFixApply mutation. */
+export type FlxSeoFixApplyInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** Fix id (a finding's fixId). */
+  id: string;
+};
+
+/** Input for the flxSeoIndexNowSubmit mutation. */
+export type FlxSeoIndexNowSubmitInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+};
+
+/** Input for the flxSeoPsiKeySave mutation. */
+export type FlxSeoPsiKeySaveInput = {
+  /** Delete the saved key. */
+  clear?: boolean | null | undefined;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: string | null | undefined;
+  /** New key. Empty keeps the saved key. */
+  key?: string | null | undefined;
+};
+
+/** Changes to Flux SEO. Only the fields you send are changed. */
+export type FlxSettingsFlxseoInput = {
+  altName?: string | null | undefined;
+  areaServed?: string | null | undefined;
+  auditDay?: string | null | undefined;
+  auditFreq?: FlxSettingsFlxseoAuditFreq | null | undefined;
+  auditHour?: string | null | undefined;
+  auditMail?: boolean | null | undefined;
+  auditMailTo?: string | null | undefined;
+  auditPsi?: boolean | null | undefined;
+  autoAlt?: boolean | null | undefined;
+  contentSignal?: boolean | null | undefined;
+  country?: string | null | undefined;
+  csAiInput?: string | null | undefined;
+  csAiTrain?: string | null | undefined;
+  csSearch?: string | null | undefined;
+  donateLabel?: string | null | undefined;
+  donateUrl?: string | null | undefined;
+  email?: string | null | undefined;
+  enabled?: boolean | null | undefined;
+  founding?: string | null | undefined;
+  hdrCoop?: boolean | null | undefined;
+  hdrCsp?: boolean | null | undefined;
+  hdrFrame?: boolean | null | undefined;
+  homeDesc?: string | null | undefined;
+  homeTitle?: string | null | undefined;
+  hstsPreload?: boolean | null | undefined;
+  hstsSub?: boolean | null | undefined;
+  indexnow?: boolean | null | undefined;
+  knowsAbout?: string | null | undefined;
+  llms?: boolean | null | undefined;
+  llmsIntro?: string | null | undefined;
+  locality?: string | null | undefined;
+  logo?: string | null | undefined;
+  markdown?: boolean | null | undefined;
+  noindexAuthor?: boolean | null | undefined;
+  noindexSearch?: boolean | null | undefined;
+  noindexShop?: boolean | null | undefined;
+  noindexTags?: boolean | null | undefined;
+  ogImage?: string | null | undefined;
+  orgName?: string | null | undefined;
+  orgType?: FlxSettingsFlxseoOrgType | null | undefined;
+  phone?: string | null | undefined;
+  postal?: string | null | undefined;
+  sameAs?: string | null | undefined;
+  sep?: string | null | undefined;
+  siteName?: string | null | undefined;
+  street?: string | null | undefined;
+  twitter?: string | null | undefined;
+  verifyBaidu?: string | null | undefined;
+  verifyBing?: string | null | undefined;
+  verifyGoogle?: string | null | undefined;
+  verifyNaver?: string | null | undefined;
+  verifySeznam?: string | null | undefined;
+  verifyYandex?: string | null | undefined;
+  webmcp?: boolean | null | undefined;
 };
 
 /** Input for the flxTaskCommentCreate mutation. */
@@ -1039,6 +1184,77 @@ export type FlxRolesScreenQueryVariables = Exact<{
 
 
 export type FlxRolesScreenQuery = { flxRoles: Array<{ key: string, label: string, description: string, custom: boolean, memberCount: number, capabilities: Array<string>, home: string, members: { totalCount: number | null, nodes: Array<{ databaseId: number, name: string, email: string, editUrl: string, referralLink: string | null, phone: { display: string, e164: string } | null }>, pageInfo: { hasNextPage: boolean, endCursor: string | null } } }>, flxRoleCapabilityGroups: Array<{ key: string, label: string, plugin: string | null, active: boolean, capabilities: Array<{ key: string, label: string, locked: boolean, broad: boolean, pending: boolean }> }>, flxRolesConfig: { referralDays: number, newUserUrl: string, permissionsUrl: string | null, homeChoices: Array<{ key: string, label: string }> } };
+
+export type FlxSeoAuditRunMutationVariables = Exact<{
+  input: FlxSeoAuditRunInput;
+}>;
+
+
+export type FlxSeoAuditRunMutation = { flxSeoAuditRun: { audit: { agenticPassed: number, auditUrl: string, mcpServerOn: boolean, llmsUrl: string, counts: { critical: number, high: number, medium: number, low: number }, local: { url: string, durationMs: number, httpStatus: number, time: { iso: string, label: string, relative: string } } | null, pageSpeed: Array<{ strategy: FlxSeoStrategy, url: string, lighthouse: string, time: { iso: string, label: string, relative: string }, scores: Array<{ category: string, label: string, score: number | null, passed: number, total: number }>, metrics: Array<{ key: string, label: string, value: string, score: number | null }> }>, agentic: Array<{ id: string, label: string, passed: boolean }>, findings: Array<{ id: string, title: string, priority: FlxSeoPriority, priorityLabel: string, category: string, categoryLabel: string, also: Array<string>, detail: string, fix: string, owner: string | null, ownerLabel: string | null, items: Array<string>, sources: Array<FlxSeoAuditSource>, fixId: string | null, fixLabel: string | null }> } | null, history: { total: number, running: boolean, errors: Array<string>, next: { iso: string, label: string } | null, entries: Array<{ trigger: FlxSeoAuditTrigger, triggerLabel: string, url: string, agentic: string, time: { iso: string, label: string, relative: string }, counts: { critical: number, high: number, medium: number, low: number }, scores: Array<{ strategy: FlxSeoStrategy, category: string, label: string, score: number | null }>, metrics: Array<{ strategy: FlxSeoStrategy, fcp: string, lcp: string, tbt: string, cls: string, si: string }>, added: Array<{ id: string, title: string }>, resolved: Array<{ id: string, title: string }> }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSeoAuditFieldsFragment = { agenticPassed: number, auditUrl: string, mcpServerOn: boolean, llmsUrl: string, counts: { critical: number, high: number, medium: number, low: number }, local: { url: string, durationMs: number, httpStatus: number, time: { iso: string, label: string, relative: string } } | null, pageSpeed: Array<{ strategy: FlxSeoStrategy, url: string, lighthouse: string, time: { iso: string, label: string, relative: string }, scores: Array<{ category: string, label: string, score: number | null, passed: number, total: number }>, metrics: Array<{ key: string, label: string, value: string, score: number | null }> }>, agentic: Array<{ id: string, label: string, passed: boolean }>, findings: Array<{ id: string, title: string, priority: FlxSeoPriority, priorityLabel: string, category: string, categoryLabel: string, also: Array<string>, detail: string, fix: string, owner: string | null, ownerLabel: string | null, items: Array<string>, sources: Array<FlxSeoAuditSource>, fixId: string | null, fixLabel: string | null }> };
+
+export type FlxSeoCountsFieldsFragment = { critical: number, high: number, medium: number, low: number };
+
+export type FlxSeoHistoryFieldsFragment = { total: number, running: boolean, errors: Array<string>, next: { iso: string, label: string } | null, entries: Array<{ trigger: FlxSeoAuditTrigger, triggerLabel: string, url: string, agentic: string, time: { iso: string, label: string, relative: string }, counts: { critical: number, high: number, medium: number, low: number }, scores: Array<{ strategy: FlxSeoStrategy, category: string, label: string, score: number | null }>, metrics: Array<{ strategy: FlxSeoStrategy, fcp: string, lcp: string, tbt: string, cls: string, si: string }>, added: Array<{ id: string, title: string }>, resolved: Array<{ id: string, title: string }> }> };
+
+export type FlxSeoAuditScreenQueryVariables = Exact<{
+  history?: number | null | undefined;
+}>;
+
+
+export type FlxSeoAuditScreenQuery = { flxSeoAudit: { agenticPassed: number, auditUrl: string, mcpServerOn: boolean, llmsUrl: string, counts: { critical: number, high: number, medium: number, low: number }, local: { url: string, durationMs: number, httpStatus: number, time: { iso: string, label: string, relative: string } } | null, pageSpeed: Array<{ strategy: FlxSeoStrategy, url: string, lighthouse: string, time: { iso: string, label: string, relative: string }, scores: Array<{ category: string, label: string, score: number | null, passed: number, total: number }>, metrics: Array<{ key: string, label: string, value: string, score: number | null }> }>, agentic: Array<{ id: string, label: string, passed: boolean }>, findings: Array<{ id: string, title: string, priority: FlxSeoPriority, priorityLabel: string, category: string, categoryLabel: string, also: Array<string>, detail: string, fix: string, owner: string | null, ownerLabel: string | null, items: Array<string>, sources: Array<FlxSeoAuditSource>, fixId: string | null, fixLabel: string | null }> }, flxSeoAuditHistory: { total: number, running: boolean, errors: Array<string>, next: { iso: string, label: string } | null, entries: Array<{ trigger: FlxSeoAuditTrigger, triggerLabel: string, url: string, agentic: string, time: { iso: string, label: string, relative: string }, counts: { critical: number, high: number, medium: number, low: number }, scores: Array<{ strategy: FlxSeoStrategy, category: string, label: string, score: number | null }>, metrics: Array<{ strategy: FlxSeoStrategy, fcp: string, lcp: string, tbt: string, cls: string, si: string }>, added: Array<{ id: string, title: string }>, resolved: Array<{ id: string, title: string }> }> } };
+
+export type FlxSeoContentCheckQueryVariables = Exact<{
+  limit?: number | null | undefined;
+}>;
+
+
+export type FlxSeoContentCheckQuery = { flxSeoContentCheck: { checked: number, total: number, items: Array<{ databaseId: number, title: string, postType: string, url: string, editUrl: string | null, issues: Array<{ level: FlxSeoIssueLevel, code: string, message: string }> }> } };
+
+export type FlxSeoFixApplyMutationVariables = Exact<{
+  input: FlxSeoFixApplyInput;
+}>;
+
+
+export type FlxSeoFixApplyMutation = { flxSeoFixApply: { audit: { agenticPassed: number, auditUrl: string, mcpServerOn: boolean, llmsUrl: string, counts: { critical: number, high: number, medium: number, low: number }, local: { url: string, durationMs: number, httpStatus: number, time: { iso: string, label: string, relative: string } } | null, pageSpeed: Array<{ strategy: FlxSeoStrategy, url: string, lighthouse: string, time: { iso: string, label: string, relative: string }, scores: Array<{ category: string, label: string, score: number | null, passed: number, total: number }>, metrics: Array<{ key: string, label: string, value: string, score: number | null }> }>, agentic: Array<{ id: string, label: string, passed: boolean }>, findings: Array<{ id: string, title: string, priority: FlxSeoPriority, priorityLabel: string, category: string, categoryLabel: string, also: Array<string>, detail: string, fix: string, owner: string | null, ownerLabel: string | null, items: Array<string>, sources: Array<FlxSeoAuditSource>, fixId: string | null, fixLabel: string | null }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSeoGuideQueryVariables = Exact<{
+  lang?: FlxSeoGuideLang | null | undefined;
+}>;
+
+
+export type FlxSeoGuideQuery = { flxSeoGuide: { lang: FlxSeoGuideLang, markdown: string, sections: Array<string> } };
+
+export type FlxSeoIndexNowSubmitMutationVariables = Exact<{
+  input: FlxSeoIndexNowSubmitInput;
+}>;
+
+
+export type FlxSeoIndexNowSubmitMutation = { flxSeoIndexNowSubmit: { submitted: number | null, setup: { otherPlugin: boolean, aiReady: boolean, blogName: string, homeUrl: string, sitemapUrl: string, logoDefault: string, imageDefault: string, homeTitle: string, homeDesc: string, sitekit: boolean, sitePublic: boolean, indexnowKey: string, indexnowUrl: string, indexnowLast: string, indexnowReady: boolean, psiKeySaved: boolean, adminEmail: string, guideSections: Array<string>, engines: Array<{ key: string, field: string, name: string, url: string, link: string, placeholder: string, help: string }> } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSeoSetupFieldsFragment = { otherPlugin: boolean, aiReady: boolean, blogName: string, homeUrl: string, sitemapUrl: string, logoDefault: string, imageDefault: string, homeTitle: string, homeDesc: string, sitekit: boolean, sitePublic: boolean, indexnowKey: string, indexnowUrl: string, indexnowLast: string, indexnowReady: boolean, psiKeySaved: boolean, adminEmail: string, guideSections: Array<string>, engines: Array<{ key: string, field: string, name: string, url: string, link: string, placeholder: string, help: string }> };
+
+export type FlxSeoPsiKeySaveMutationVariables = Exact<{
+  input: FlxSeoPsiKeySaveInput;
+}>;
+
+
+export type FlxSeoPsiKeySaveMutation = { flxSeoPsiKeySave: { saved: boolean, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSeoSettingsSaveMutationVariables = Exact<{
+  flxseo: FlxSettingsFlxseoInput;
+}>;
+
+
+export type FlxSeoSettingsSaveMutation = { flxSettingsUpdate: { settings: { flxseo: { enabled: boolean | null, siteName: string | null, altName: string | null, sep: string | null, homeTitle: string | null, homeDesc: string | null, ogImage: string | null, verifyGoogle: string | null, verifyBing: string | null, verifyYandex: string | null, verifyNaver: string | null, verifySeznam: string | null, verifyBaidu: string | null, indexnow: boolean | null, noindexShop: boolean | null, noindexSearch: boolean | null, noindexAuthor: boolean | null, noindexTags: boolean | null, autoAlt: boolean | null, orgName: string | null, orgType: FlxSettingsFlxseoOrgType | null, founding: string | null, logo: string | null, street: string | null, locality: string | null, postal: string | null, country: string | null, phone: string | null, email: string | null, sameAs: string | null, twitter: string | null, knowsAbout: string | null, areaServed: string | null, donateLabel: string | null, donateUrl: string | null, llms: boolean | null, llmsIntro: string | null, webmcp: boolean | null, markdown: boolean | null, contentSignal: boolean | null, csSearch: string | null, csAiInput: string | null, csAiTrain: string | null, hdrFrame: boolean | null, hdrCoop: boolean | null, hdrCsp: boolean | null, hstsSub: boolean | null, hstsPreload: boolean | null, auditFreq: FlxSettingsFlxseoAuditFreq | null, auditDay: string | null, auditHour: string | null, auditPsi: boolean | null, auditMail: boolean | null, auditMailTo: string | null } | null } | null, errors: Array<{ code: string, message: string, field: string | null }> } | null };
+
+export type FlxSeoSettingsFieldsFragment = { enabled: boolean | null, siteName: string | null, altName: string | null, sep: string | null, homeTitle: string | null, homeDesc: string | null, ogImage: string | null, verifyGoogle: string | null, verifyBing: string | null, verifyYandex: string | null, verifyNaver: string | null, verifySeznam: string | null, verifyBaidu: string | null, indexnow: boolean | null, noindexShop: boolean | null, noindexSearch: boolean | null, noindexAuthor: boolean | null, noindexTags: boolean | null, autoAlt: boolean | null, orgName: string | null, orgType: FlxSettingsFlxseoOrgType | null, founding: string | null, logo: string | null, street: string | null, locality: string | null, postal: string | null, country: string | null, phone: string | null, email: string | null, sameAs: string | null, twitter: string | null, knowsAbout: string | null, areaServed: string | null, donateLabel: string | null, donateUrl: string | null, llms: boolean | null, llmsIntro: string | null, webmcp: boolean | null, markdown: boolean | null, contentSignal: boolean | null, csSearch: string | null, csAiInput: string | null, csAiTrain: string | null, hdrFrame: boolean | null, hdrCoop: boolean | null, hdrCsp: boolean | null, hstsSub: boolean | null, hstsPreload: boolean | null, auditFreq: FlxSettingsFlxseoAuditFreq | null, auditDay: string | null, auditHour: string | null, auditPsi: boolean | null, auditMail: boolean | null, auditMailTo: string | null };
+
+export type FlxSeoSettingsScreenQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FlxSeoSettingsScreenQuery = { flxSettings: { flxseo: { enabled: boolean | null, siteName: string | null, altName: string | null, sep: string | null, homeTitle: string | null, homeDesc: string | null, ogImage: string | null, verifyGoogle: string | null, verifyBing: string | null, verifyYandex: string | null, verifyNaver: string | null, verifySeznam: string | null, verifyBaidu: string | null, indexnow: boolean | null, noindexShop: boolean | null, noindexSearch: boolean | null, noindexAuthor: boolean | null, noindexTags: boolean | null, autoAlt: boolean | null, orgName: string | null, orgType: FlxSettingsFlxseoOrgType | null, founding: string | null, logo: string | null, street: string | null, locality: string | null, postal: string | null, country: string | null, phone: string | null, email: string | null, sameAs: string | null, twitter: string | null, knowsAbout: string | null, areaServed: string | null, donateLabel: string | null, donateUrl: string | null, llms: boolean | null, llmsIntro: string | null, webmcp: boolean | null, markdown: boolean | null, contentSignal: boolean | null, csSearch: string | null, csAiInput: string | null, csAiTrain: string | null, hdrFrame: boolean | null, hdrCoop: boolean | null, hdrCsp: boolean | null, hstsSub: boolean | null, hstsPreload: boolean | null, auditFreq: FlxSettingsFlxseoAuditFreq | null, auditDay: string | null, auditHour: string | null, auditPsi: boolean | null, auditMail: boolean | null, auditMailTo: string | null } | null }, flxSeoSetup: { otherPlugin: boolean, aiReady: boolean, blogName: string, homeUrl: string, sitemapUrl: string, logoDefault: string, imageDefault: string, homeTitle: string, homeDesc: string, sitekit: boolean, sitePublic: boolean, indexnowKey: string, indexnowUrl: string, indexnowLast: string, indexnowReady: boolean, psiKeySaved: boolean, adminEmail: string, guideSections: Array<string>, engines: Array<{ key: string, field: string, name: string, url: string, link: string, placeholder: string, help: string }> } };
 
 export type FlxTaskCommentCreateMutationVariables = Exact<{
   input: FlxTaskCommentCreateInput;
