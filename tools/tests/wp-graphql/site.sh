@@ -10,8 +10,11 @@
 #                      must not depend on translations)
 #   SQLITE_PLUGIN_DIR  sqlite-database-integration folder (else downloaded with wp-cli)
 #   PACKAGES           space separated plugin slugs to activate besides flx-graphql
-#                      (default: every plugin whose header says "Requires Plugins: … flx-graphql")
-#   WOOCOMMERCE_ZIP    optional WooCommerce zip, activated before the packages
+#                      (default: every plugin whose header says "Requires Plugins: … flx-graphql",
+#                      and every plugin whose main file hooks flx_gql_register, like flx-setup)
+#   THEME              theme slug to activate (default fluxwp; empty = keep the default theme)
+#   WOOCOMMERCE_ZIP    optional WooCommerce zip (path or URL), activated before the packages; without it
+#                      the cart bridge tests run against a Store API stand-in (fixtures/mu-fake-store-api.php)
 #   SQLITE_VERSION     sqlite-database-integration version to download (default 3.1.3)
 #   FIXTURES=0         leave the kit test fixtures (mu-plugin) out, e.g. for the schema snapshot
 #   SERVE=1            start `php -S` on the port and wait until it answers (PID in $site/.server.pid)
@@ -61,14 +64,23 @@ $WP config set AUTOMATIC_UPDATER_DISABLED true --raw --path="$site"
 $WP core install --path="$site" --url="$url" --title="Flux GraphQL Test" --admin_user=admin --admin_password=admin --admin_email=test@example.com --skip-email >/dev/null
 $WP rewrite structure '/%postname%/' --path="$site" >/dev/null
 
-if [ -n "${WOOCOMMERCE_ZIP:-}" ] && [ -f "$WOOCOMMERCE_ZIP" ]; then
-  $WP plugin install "$WOOCOMMERCE_ZIP" --activate --path="$site" >/dev/null 2>&1 || echo "WooCommerce could not be activated" >&2
+wc_zip="${WOOCOMMERCE_ZIP:-}"
+if [[ "$wc_zip" == https://* ]]; then
+  # WP_HTTP_BLOCK_EXTERNAL is on, so wp-cli cannot download it: fetch the zip here.
+  tmpwc="$(mktemp --suffix=.zip)"
+  curl -fsSL -o "$tmpwc" "$wc_zip" || echo "WooCommerce could not be downloaded" >&2
+  wc_zip="$tmpwc"
+fi
+if [ -n "$wc_zip" ] && [ -s "$wc_zip" ]; then
+  $WP plugin install "$wc_zip" --activate --path="$site" >/dev/null || echo "WooCommerce could not be activated" >&2
 fi
 
 # Kit fixtures (test queries, upload context). FIXTURES=0 leaves them out (schema snapshot).
 if [ "${FIXTURES:-1}" = 1 ]; then
   mkdir -p "$site/wp-content/mu-plugins"
   cp "$root/tools/tests/wp-graphql/fixtures/mu-fixtures.php" "$root/tools/tests/wp-graphql/fixtures/flx-test-persisted.json" "$site/wp-content/mu-plugins/"
+  # Store API stand-in for the cart bridge tests; it switches itself off when WooCommerce is active.
+  cp -r "$root/tools/tests/wp-graphql/fixtures/mu-fake-store-api.php" "$root/tools/tests/wp-graphql/fixtures/flxt-fake-store-api" "$root/tools/tests/wp-graphql/fixtures/mu-cart-fixtures.php" "$root/tools/tests/wp-graphql/fixtures/flx-test-cart-persisted.json" "$site/wp-content/mu-plugins/"
 fi
 
 # Link every monorepo plugin; activate flx-graphql and the GraphQL packages.
@@ -76,12 +88,17 @@ for dir in "$root"/plugins/*/; do
   slug="$(basename "$dir")"
   ln -s "$root/plugins/$slug" "$site/wp-content/plugins/$slug"
 done
+# Themes are linked too; THEME (default fluxwp) is activated after the plugins.
+for dir in "$root"/themes/*/; do
+  ln -s "$root/themes/$(basename "$dir")" "$site/wp-content/themes/$(basename "$dir")"
+done
 packages="${PACKAGES:-}"
 if [ -z "$packages" ]; then
   for main in "$root"/plugins/*/*.php; do
     slug="$(basename "$(dirname "$main")")"
     [ "$(basename "$main" .php)" = "$slug" ] || continue
-    if head -c 4096 "$main" | grep -qE '^[[:space:]*]*Requires Plugins:.*flx-graphql'; then
+    # Packages that need Flux GraphQL, and packages that work without it but register a schema when it is there.
+    if head -c 4096 "$main" | grep -qE '^[[:space:]*]*Requires Plugins:.*flx-graphql' || grep -q "'flx_gql_register'" "$main"; then
       packages="$packages $slug"
     fi
   done
@@ -91,6 +108,9 @@ for slug in $packages; do
   [ "$slug" = flx-graphql ] && continue
   $WP plugin activate "$slug" --path="$site" || { echo "::error::$slug could not be activated" >&2; exit 1; }
 done
+if [ -d "$root/themes/${THEME:-fluxwp}" ]; then
+  $WP theme activate "${THEME:-fluxwp}" --path="$site" || { echo "::error::theme ${THEME:-fluxwp} could not be activated" >&2; exit 1; }
+fi
 $WP rewrite flush --path="$site" >/dev/null
 
 echo "site=$site url=$url packages=flx-graphql$packages"

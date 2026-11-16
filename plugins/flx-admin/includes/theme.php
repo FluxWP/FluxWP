@@ -20,7 +20,11 @@ function flxa_theme_defaults() {
 	);
 }
 
-/** Renk alanlarının varsayılanları (ayar ekranında gösterilir; boş = varsayılan). */
+/**
+ * Renk alanlarının varsayılanları (ayar ekranında gösterilir; boş = varsayılan).
+ *
+ * @return array{light: array{bg: string, side: string, surface: string, text: string}, dark: array{bg: string, side: string, surface: string, text: string}}
+ */
 function flxa_theme_color_defaults() {
 	return array(
 		'light' => array( 'bg' => '#F3F2EF', 'side' => '#FFFFFF', 'surface' => '#FFFFFF', 'text' => '#16181D' ),
@@ -28,6 +32,9 @@ function flxa_theme_color_defaults() {
 	);
 }
 
+/**
+ * @return array<string, mixed>
+ */
 function flxa_theme() {
 	$t = flxa_setting( 'theme' );
 	$t = is_array( $t ) ? $t : array();
@@ -39,6 +46,10 @@ function flxa_theme() {
 	return $o;
 }
 
+/**
+ * @param array<string, mixed> $in Raw theme values.
+ * @return array<string, mixed>
+ */
 function flxa_theme_sanitize( array $in ) {
 	$d = flxa_theme_defaults();
 	$o = array(

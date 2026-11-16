@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.8.0
+- Ayarlar › Yönetim teması ekranı yenilendi: aynı özellikler (genel, görünüm, rol bazlı menü ve alt çubuk düzenleyici, yetkiler ve yedeği geri yükleme, başlangıç, PWA) ortak FluxWP ekranında, açık/koyu temaya uyar ve FluxWP uygulamasında da açılır. wp-admin'de varsayılan budur; eski görünüm sayfadaki "Klasik görünüm" bağlantısıyla açılır (kullanıcı başına hatırlanır).
+- Ayarlar, menü düzenleri, yetki tablosu, koyu/açık tercih, kişisel menü ve pano modülü filtreleri GraphQL'de (`flxAdminSettings`, `flxAdminSettingsUpdate`, `flxAdminMenuEditor`, `flxAdminMenuLayoutsSave`, `flxAdminCaps`, `flxAdminCapsSave`, `flxAdminCapsRestore`, `flxAdminMode`, `flxAdminModeSet`, `flxAdminUserMenu`, `flxAdminUserMenuSet`, `flxAdminWidgetPrefs`, `flxAdminWidgetPrefsSet`). Kaydetme önce her şeyi doğrular, hata varsa hiçbir şey yazılmaz. Belge: docs/flx-admin/GRAPHQL.md.
+- Eski AJAX uçları aynı davranışla çalışır; mantık ortak servis sınıflarına taşındı. PWA uçları ve pano görev formu AJAX'ta kalır.
+- Logo, ayarlar ekranından doğrudan yüklenir (ortam kitaplığına eklenir).
+- "Okunmamış WhatsApp" özet kutusu adı İngilizce kaynak metne çevrildi (Türkçesi aynı).
+- Gereksinim: Flux GraphQL, PHP 8.1, WordPress 6.5.
+
 ## 1.7.27
 - Flux Certificates eklentisinin görünen adı "Flux PDF & Certificates" oldu (yalnız ad; slug, text domain ve güncelleme kimliği aynı).
 

@@ -1,0 +1,21 @@
+# Everything the Settings screen shows.
+query FlxSetupSettingsScreen {
+  flxSetupSettings {
+    ...FlxSetupSettingsFields
+  }
+  flxSetupConnection {
+    ...FlxSetupConnectionFields
+  }
+  flxSetupSources {
+    ...FlxSetupSourceFields
+  }
+  flxSetupGraphqlStatus {
+    state
+    version
+    phpVersion
+    phpMin
+    phpOk
+    actionUrl
+    actionLabel
+  }
+}

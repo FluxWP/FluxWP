@@ -1,0 +1,15 @@
+mutation FlxAdminSettingsUpdate($input: FlxAdminSettingsUpdateInput!) {
+  flxAdminSettingsUpdate(input: $input) {
+    settings {
+      ...FlxAdminSettingsFields
+    }
+    config {
+      ...FlxAdminSettingsConfigFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

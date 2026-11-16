@@ -1,7 +1,19 @@
 # @fluxwp/modules
 
-## 0.3.10
+## 0.3.14
 - Speed: new `flxp-speed` screen for Flux Speed (summary, records with detail and request panel, server, database, cron, system check, PageSpeed, cache, settings). Same look as the classic page on FluxWP tokens, light and dark; data over GraphQL; texts from the plugin's language packs (`plugins/flx-speed/tools/i18n.py`).
+
+## 0.3.13
+- AI: new `flxai-admin` screen for Flux AI (Overview, Logs, Billing, Systems, Tools). Same look as the classic pages; data over GraphQL; texts from the module's own en/tr packs.
+
+## 0.3.12
+- Admin theme: new `flxa-admin` screen for Flux Admin (General, Appearance, Menu and bottom bar, Permissions, Dashboard, App (PWA)). Same look and features as the classic page, including the role menu editor (drag and drop, groups, rename, hide, block, platforms, copy from role, preview, bottom bar) and the permissions table with backup/restore; data over GraphQL; texts from the plugin's language packs (`plugins/flx-admin/tools/i18n.py`).
+
+## 0.3.11
+- CRM: new `crm` screen for Flux CRM (overview, contacts, contact card, segments, journeys, duplicates, settings). Same look as the classic pages on FluxWP tokens, light and dark; data over GraphQL; texts from the plugin's language packs (`plugins/flx-crm/tools/i18n-screen.py`).
+
+## 0.3.10
+- Blocks: new `flxbk-dashboard` screen for the Flux Block Editor (block cards with activate, settings, design library with pattern browser, preview, linked libraries and sharing). Same look as the classic dashboard on FluxWP tokens, light and dark; data over GraphQL; English and Turkish.
 
 ## 0.3.9
 - SEO: new `flxseo-seo` screen for Flux SEO (General, Organization and social, SEO check, Site audit with PageSpeed, agent readiness, recommendations and report history charts, Settings). Same features as the classic tabs on FluxWP tokens; data over GraphQL; texts from the plugin's language packs (`plugins/flx-seo/tools/i18n.py`).

@@ -197,6 +197,405 @@ msgstr "Dosya sunucuya kaydedilemedi."
 msgid "The uploaded file was not found. Upload it again."
 msgstr "Yüklenen dosya bulunamadı. Yeniden yükleyin."
 
+msgid "A name and value shown under a cart line (variation attribute or line detail)."
+msgstr "Sepet satırının altında görünen ad ve değer (varyasyon özelliği ya da satır ayrıntısı)."
+
+msgid "Label."
+msgstr "Etiket."
+
+msgid "Value as plain text."
+msgstr "Düz metin değer."
+
+msgid "Quantities a cart line accepts."
+msgstr "Sepet satırının kabul ettiği adetler."
+
+msgid "Lowest quantity."
+msgstr "En düşük adet."
+
+msgid "Highest quantity."
+msgstr "En yüksek adet."
+
+msgid "The quantity is a multiple of this."
+msgstr "Adet bunun katıdır."
+
+msgid "Whether the shopper may change the quantity (false for fixed lines such as a donation)."
+msgstr "Alışveriş yapan adedi değiştirebilir mi (bağış gibi sabit satırlarda false)."
+
+msgid "A line in the cart."
+msgstr "Sepetteki bir satır."
+
+msgid "Cart item key; flxCartItemUpdate and flxCartItemRemove take it."
+msgstr "Sepet satırı anahtarı; flxCartItemUpdate ve flxCartItemRemove bunu alır."
+
+msgid "What the line is: \"product\", or a name a package gives its own lines (Flux Donate: \"donation\"). Filter flx_gql_cart_item_kind."
+msgstr "Satırın türü: \"product\" ya da bir paketin kendi satırlarına verdiği ad (Flux Donate: \"donation\"). Filtre flx_gql_cart_item_kind."
+
+msgid "WooCommerce product (or variation) database ID."
+msgstr "WooCommerce ürün (ya da varyasyon) veritabanı ID'si."
+
+msgid "WooCommerce product type (simple, variation …)."
+msgstr "WooCommerce ürün türü (simple, variation …)."
+
+msgid "Product name."
+msgstr "Ürün adı."
+
+msgid "SKU; empty when the product has none."
+msgstr "Stok kodu; ürünün yoksa boş."
+
+msgid "Product page; null for products without a page."
+msgstr "Ürün sayfası; sayfası olmayan üründe null."
+
+msgid "First product image; null without an image."
+msgstr "İlk ürün görseli; görsel yoksa null."
+
+msgid "Alternative text of the image."
+msgstr "Görselin alternatif metni."
+
+msgid "Quantity."
+msgstr "Adet."
+
+msgid "Quantities this line accepts."
+msgstr "Bu satırın kabul ettiği adetler."
+
+msgid "Only one of this product per order."
+msgstr "Siparişte bu üründen yalnız bir tane."
+
+msgid "Price of one unit."
+msgstr "Birim fiyat."
+
+msgid "Regular price of one unit (before a sale)."
+msgstr "Birimin normal fiyatı (indirimden önce)."
+
+msgid "Line total before coupons."
+msgstr "Kuponlardan önce satır toplamı."
+
+msgid "Line total after coupons, without tax."
+msgstr "Kuponlardan sonra, vergisiz satır toplamı."
+
+msgid "Tax of the line."
+msgstr "Satırın vergisi."
+
+msgid "Chosen variation attributes."
+msgstr "Seçilen varyasyon özellikleri."
+
+msgid "Line details other plugins add (e.g. a donation's names and certificate)."
+msgstr "Diğer eklentilerin eklediği satır ayrıntıları (ör. bağışın adları ve sertifikası)."
+
+msgid "A coupon applied to the cart."
+msgstr "Sepete uygulanan kupon."
+
+msgid "Coupon code."
+msgstr "Kupon kodu."
+
+msgid "WooCommerce discount type (percent, fixed_cart …)."
+msgstr "WooCommerce indirim türü (percent, fixed_cart …)."
+
+msgid "Discount without tax."
+msgstr "Vergisiz indirim."
+
+msgid "Tax part of the discount."
+msgstr "İndirimin vergi kısmı."
+
+msgid "A fee added to the cart (e.g. a payment fee)."
+msgstr "Sepete eklenen ücret (ör. ödeme ücreti)."
+
+msgid "Fee key."
+msgstr "Ücret anahtarı."
+
+msgid "Fee name."
+msgstr "Ücret adı."
+
+msgid "Fee without tax."
+msgstr "Vergisiz ücret."
+
+msgid "Tax of the fee."
+msgstr "Ücretin vergisi."
+
+msgid "One tax rate in the cart totals."
+msgstr "Sepet toplamındaki bir vergi oranı."
+
+msgid "Tax name."
+msgstr "Vergi adı."
+
+msgid "Rate as WooCommerce shows it."
+msgstr "WooCommerce'in gösterdiği oran."
+
+msgid "Amount."
+msgstr "Tutar."
+
+msgid "Cart totals, as WooCommerce calculated them."
+msgstr "WooCommerce'in hesapladığı sepet toplamları."
+
+msgid "ISO 4217 currency of the cart."
+msgstr "Sepetin ISO 4217 para birimi."
+
+msgid "Lines before coupons, without tax."
+msgstr "Kuponlardan önce, vergisiz satırlar."
+
+msgid "Tax of the lines."
+msgstr "Satırların vergisi."
+
+msgid "Fees without tax."
+msgstr "Vergisiz ücretler."
+
+msgid "Coupon discounts without tax."
+msgstr "Vergisiz kupon indirimleri."
+
+msgid "Shipping without tax; null until shipping is calculated."
+msgstr "Vergisiz kargo; kargo hesaplanana kadar null."
+
+msgid "All taxes."
+msgstr "Tüm vergiler."
+
+msgid "Amount to pay."
+msgstr "Ödenecek tutar."
+
+msgid "Taxes by rate."
+msgstr "Orana göre vergiler."
+
+msgid "A shipping option."
+msgstr "Bir kargo seçeneği."
+
+msgid "Rate ID for flxCartShippingRateSelect."
+msgstr "flxCartShippingRateSelect için seçenek ID'si."
+
+msgid "Shipping method (flat_rate, free_shipping …)."
+msgstr "Kargo yöntemi (flat_rate, free_shipping …)."
+
+msgid "Name."
+msgstr "Ad."
+
+msgid "Description; may be empty."
+msgstr "Açıklama; boş olabilir."
+
+msgid "Delivery time; may be empty."
+msgstr "Teslim süresi; boş olabilir."
+
+msgid "Price without tax."
+msgstr "Vergisiz fiyat."
+
+msgid "Whether this option is chosen."
+msgstr "Bu seçenek seçili mi."
+
+msgid "A group of lines shipped together and its shipping options."
+msgstr "Birlikte gönderilen satırlar ve kargo seçenekleri."
+
+msgid "Package ID."
+msgstr "Paket ID'si."
+
+msgid "Package name."
+msgstr "Paket adı."
+
+msgid "Shipping options."
+msgstr "Kargo seçenekleri."
+
+msgid "E-mail; null on the shipping address."
+msgstr "E-posta; teslimat adresinde null."
+
+msgid "A billing or shipping address of the cart."
+msgstr "Sepetin fatura ya da teslimat adresi."
+
+msgid "A problem with the cart the shopper has to fix before paying (e.g. a product went out of stock)."
+msgstr "Ödemeden önce düzeltilmesi gereken sepet sorunu (ör. ürün stoktan çıktı)."
+
+msgid "WooCommerce error code."
+msgstr "WooCommerce hata kodu."
+
+msgid "Message in the shopper's language."
+msgstr "Alışveriş yapanın dilinde mesaj."
+
+msgid "Where the payment step continues. Payment stays on the WooCommerce Store API checkout; card data never goes through GraphQL."
+msgstr "Ödeme adımının devam ettiği yer. Ödeme WooCommerce Store API checkout'unda kalır; kart verisi hiçbir zaman GraphQL'den geçmez."
+
+msgid "Store API checkout URL (POST with the same Cart-Token, billing address and payment method)."
+msgstr "Store API checkout adresi (aynı Cart-Token, fatura adresi ve ödeme yöntemiyle POST)."
+
+msgid "The site's checkout page; null when WooCommerce is not loaded."
+msgstr "Sitenin ödeme sayfası; WooCommerce yüklü değilse null."
+
+msgid "The site's cart page; null when WooCommerce is not loaded."
+msgstr "Sitenin sepet sayfası; WooCommerce yüklü değilse null."
+
+msgid "The shopper's WooCommerce cart (Store API)."
+msgstr "Alışveriş yapanın WooCommerce sepeti (Store API)."
+
+msgid "Cart token. Send it back as the Cart-Token header (headless front end, mobile); it is also in the Cart-Token response header. Null when WooCommerce gave none."
+msgstr "Sepet belirteci. Cart-Token başlığıyla geri gönderin (headless ön yüz, mobil); Cart-Token yanıt başlığında da gelir. WooCommerce vermediyse null."
+
+msgid "Store API nonce for the same-site cookie session (Nonce header). Null when WooCommerce gave none."
+msgstr "Aynı site çerez oturumu için Store API nonce'u (Nonce başlığı). WooCommerce vermediyse null."
+
+msgid "Number of units in the cart (quantities added up)."
+msgstr "Sepetteki toplam adet."
+
+msgid "Lines."
+msgstr "Satırlar."
+
+msgid "Applied coupons."
+msgstr "Uygulanan kuponlar."
+
+msgid "Fees."
+msgstr "Ücretler."
+
+msgid "Totals."
+msgstr "Toplamlar."
+
+msgid "Whether the order needs a payment (false for a free cart)."
+msgstr "Sipariş ödeme gerektiriyor mu (ücretsiz sepette false)."
+
+msgid "Whether the order is shipped (false for donations and virtual products)."
+msgstr "Sipariş kargoyla gönderilecek mi (bağış ve sanal üründe false)."
+
+msgid "Whether shipping was calculated for the current address."
+msgstr "Kargo mevcut adres için hesaplandı mı."
+
+msgid "Shipping packages and their options."
+msgstr "Kargo paketleri ve seçenekleri."
+
+msgid "IDs of the payment gateways available for this cart (payment_method of the checkout)."
+msgstr "Bu sepet için kullanılabilen ödeme yöntemlerinin ID'leri (checkout'taki payment_method)."
+
+msgid "Features a gateway must support for this cart (e.g. products, subscriptions)."
+msgstr "Bu sepet için ödeme yönteminin desteklemesi gereken özellikler (ör. products, subscriptions)."
+
+msgid "Problems to fix before paying."
+msgstr "Ödemeden önce düzeltilecek sorunlar."
+
+msgid "Billing address."
+msgstr "Fatura adresi."
+
+msgid "Shipping address."
+msgstr "Teslimat adresi."
+
+msgid "Where the payment step continues."
+msgstr "Ödeme adımının devam ettiği yer."
+
+msgid "A variation attribute."
+msgstr "Bir varyasyon özelliği."
+
+msgid "Attribute name or taxonomy (e.g. pa_color)."
+msgstr "Özellik adı ya da taksonomisi (ör. pa_color)."
+
+msgid "Chosen value."
+msgstr "Seçilen değer."
+
+msgid "Address fields to change; fields left out keep their value."
+msgstr "Değişecek adres alanları; verilmeyen alanlar değişmez."
+
+msgid "The shopper's cart (Cart-Token session or the WooCommerce session cookie). Never cached."
+msgstr "Alışveriş yapanın sepeti (Cart-Token oturumu ya da WooCommerce oturum çerezi). Asla önbelleğe alınmaz."
+
+msgid "The cart after the change; null when the change failed."
+msgstr "Değişiklikten sonraki sepet; değişiklik başarısızsa null."
+
+msgid "Adds a product to the cart (Store API cart/add-item)."
+msgstr "Sepete ürün ekler (Store API cart/add-item)."
+
+msgid "Product or variation database ID."
+msgstr "Ürün ya da varyasyon veritabanı ID'si."
+
+msgid "Quantity; default 1."
+msgstr "Adet; varsayılan 1."
+
+msgid "Variation attributes for a variable product."
+msgstr "Varyasyonlu ürün için varyasyon özellikleri."
+
+msgid "Key of the line that was added or increased; null when the change failed."
+msgstr "Eklenen ya da artırılan satırın anahtarı; değişiklik başarısızsa null."
+
+msgid "Changes the quantity of a cart line; 0 removes it."
+msgstr "Sepet satırının adedini değiştirir; 0 satırı siler."
+
+msgid "Cart item key."
+msgstr "Sepet satırı anahtarı."
+
+msgid "New quantity."
+msgstr "Yeni adet."
+
+msgid "Removes a cart line."
+msgstr "Sepet satırını siler."
+
+msgid "Empties the cart."
+msgstr "Sepeti boşaltır."
+
+msgid "Applies a coupon."
+msgstr "Kupon uygular."
+
+msgid "Removes a coupon."
+msgstr "Kuponu kaldırır."
+
+msgid "Chooses a shipping option."
+msgstr "Kargo seçeneği seçer."
+
+msgid "Rate ID (FlxCartShippingRate.rateId)."
+msgstr "Seçenek ID'si (FlxCartShippingRate.rateId)."
+
+msgid "Shipping package; left out = every package."
+msgstr "Kargo paketi; verilmezse tüm paketler."
+
+msgid "Changes the billing and/or shipping address; totals, taxes and shipping options follow."
+msgstr "Fatura ve/veya teslimat adresini değiştirir; toplamlar, vergiler ve kargo seçenekleri buna göre güncellenir."
+
+msgid "Billing address fields to change."
+msgstr "Değişecek fatura adresi alanları."
+
+msgid "Shipping address fields to change."
+msgstr "Değişecek teslimat adresi alanları."
+
+msgid "First name."
+msgstr "Ad."
+
+msgid "Last name."
+msgstr "Soyad."
+
+msgid "Company."
+msgstr "Şirket."
+
+msgid "Address line 1."
+msgstr "Adres satırı 1."
+
+msgid "Address line 2."
+msgstr "Adres satırı 2."
+
+msgid "City."
+msgstr "Şehir."
+
+msgid "State or province code."
+msgstr "İl kodu."
+
+msgid "Postcode."
+msgstr "Posta kodu."
+
+msgid "ISO 3166-1 alpha-2 country code."
+msgstr "ISO 3166-1 alpha-2 ülke kodu."
+
+msgid "E-mail."
+msgstr "E-posta."
+
+msgid "Phone."
+msgstr "Telefon."
+
+msgid "Choose a product."
+msgstr "Bir ürün seçin."
+
+msgid "The quantity must be at least 1."
+msgstr "Adet en az 1 olmalı."
+
+msgid "The quantity cannot be negative."
+msgstr "Adet negatif olamaz."
+
+msgid "Enter a coupon code."
+msgstr "Kupon kodu girin."
+
+msgid "The shop is not available on this site."
+msgstr "Bu sitede mağaza kullanılamıyor."
+
+msgid "Your cart has expired. Please reload the page."
+msgstr "Sepetinizin süresi doldu. Lütfen sayfayı yenileyin."
+
+msgid "The cart could not be changed. Please reload the page."
+msgstr "Sepet değiştirilemedi. Lütfen sayfayı yenileyin."
+
 msgid "The user making the request and what they may do."
 msgstr "İsteği yapan kullanıcı ve yapabildikleri."
 

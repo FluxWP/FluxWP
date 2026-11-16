@@ -28,9 +28,15 @@ parameters:
     - ../../plugins/flx-tasks/includes
     - ../../plugins/flx-roles/includes
     - ../../plugins/flx-speed/includes
+    - ../../plugins/flx-ai/includes
+    - ../../plugins/flx-admin/includes
+    - ../../themes/fluxwp/inc
+    - ../../plugins/flx-blocks/includes
+    - ../../plugins/flx-setup/includes
     - ../../plugins/flx-app/includes
     - ../../plugins/flx-lang/includes
     - ../../plugins/flx-seo/includes
+    - ../../plugins/flx-crm/includes
   paths:
     - ../../plugins/flx-graphql/flx-graphql.php
     - ../../plugins/flx-graphql/uninstall.php
@@ -44,6 +50,21 @@ parameters:
     # Flux Speed (Faz 1)
     - ../../plugins/flx-speed/includes/services
     - ../../plugins/flx-speed/includes/graphql
+    # Flux AI (Faz 1)
+    - ../../plugins/flx-ai/includes/services
+    - ../../plugins/flx-ai/includes/graphql
+    # Flux Admin (Faz 1)
+    - ../../plugins/flx-admin/includes/services
+    - ../../plugins/flx-admin/includes/graphql
+    # FluxWP theme
+    - ../../themes/fluxwp/inc/services
+    - ../../themes/fluxwp/inc/graphql
+    # Flux Block Editor (Faz 4)
+    - ../../plugins/flx-blocks/includes/services
+    - ../../plugins/flx-blocks/includes/graphql
+    # FluxWP Panel (Faz 1)
+    - ../../plugins/flx-setup/includes/services
+    - ../../plugins/flx-setup/includes/graphql
     # Flux App (Faz 1)
     - ../../plugins/flx-app/includes/services
     - ../../plugins/flx-app/includes/graphql
@@ -53,6 +74,13 @@ parameters:
     # Flux SEO (Faz 1)
     - ../../plugins/flx-seo/includes/services
     - ../../plugins/flx-seo/includes/graphql
+    # Flux CRM (Faz 1)
+    - ../../plugins/flx-crm/includes/services
+    - ../../plugins/flx-crm/includes/graphql
   excludePaths:
     - ../../plugins/flx-graphql/includes/flx-brand
   treatPhpDocTypesAsCertain: false
+  ignoreErrors:
+    # The wizard steps file is loaded on demand (FLXK_DIR points at tools/phpstan here).
+    - message: '#Path in require_once\(\) ".*/includes/onboarding\.php" is not a file#'
+      path: ../../plugins/flx-setup/includes/graphql/schema.php

@@ -1,0 +1,12 @@
+mutation FlxThemeSettingsSave($input: FlxThemeSettingsSaveInput!) {
+  flxThemeSettingsSave(input: $input) {
+    settings {
+      ...FlxThemeSettingsFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

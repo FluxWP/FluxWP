@@ -1,0 +1,17 @@
+query FlxThemeGlobalStyles {
+  flxThemeGlobalStyles {
+    palette {
+      slug
+      name
+      color
+    }
+    fonts {
+      slug
+      name
+      fontFamily
+    }
+    darkMode
+    tableHead
+    pattern
+  }
+}

@@ -1,0 +1,11 @@
+# Site-wide block styles; a headless front end loads them once per page.
+query FlxBlocksSiteStyles {
+  flxBlocksSiteStyles {
+    css
+    globalStylesheet
+    headHtml
+    styles {
+      ...FlxBlocksAssetFields
+    }
+  }
+}

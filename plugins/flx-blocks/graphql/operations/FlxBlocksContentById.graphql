@@ -1,0 +1,14 @@
+# A page or post by database id (previews, FluxWP app), with its rendered blocks.
+query FlxBlocksContentById($id: ID!, $withBlocks: Boolean = false) {
+  contentNode(id: $id, idType: DATABASE_ID) {
+    __typename
+    databaseId
+    uri
+    flxBlocks {
+      ...FlxBlocksContentFields
+      blocks @include(if: $withBlocks) {
+        ...FlxBlocksBlockFields
+      }
+    }
+  }
+}

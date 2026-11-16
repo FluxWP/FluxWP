@@ -318,10 +318,16 @@ if ( $started instanceof FLXL_Job ) {
 $base = untrailingslashit( home_url() );
 $get  = static function ( string $op, string $extra = '' ) use ( $base ): array {
 	$res = wp_remote_get( $base . '/graphql?queryId=' . $GLOBALS['flxl_ids'][ $op ] . $extra, array( 'timeout' => 20, 'reject_unsafe_urls' => false ) );
+	if ( is_wp_error( $res ) ) {
+		flxt_ok( false, 'http: ' . $op . ' request failed', $res->get_error_message() );
+	}
+	// A WP_Error (failed request) gives an empty array; a response gives a headers dictionary object.
+	$head = wp_remote_retrieve_headers( $res );
+	$head = is_object( $head ) && method_exists( $head, 'getAll' ) ? $head->getAll() : (array) $head;
 	return array(
 		'code' => (int) wp_remote_retrieve_response_code( $res ),
 		'body' => json_decode( (string) wp_remote_retrieve_body( $res ), true ),
-		'head' => array_change_key_case( (array) wp_remote_retrieve_headers( $res )->getAll(), CASE_LOWER ),
+		'head' => array_change_key_case( $head, CASE_LOWER ),
 	);
 };
 $a = $get( 'FlxLanguages' );
