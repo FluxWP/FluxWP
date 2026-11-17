@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) || exit;
  */
 final class FLXG_Doc_Service {
 
-	/** @var array<int,array<string,mixed>|null> */
+	/** @var array<int,array<mixed>|null> */
 	private static array $pages = array();
 
 	/** @var array<int,array<int,string>> */
@@ -27,6 +27,24 @@ final class FLXG_Doc_Service {
 
 	private static function err( string $code, string $message, int $status = 400 ): WP_Error {
 		return new WP_Error( $code, $message, array( 'status' => $status ) );
+	}
+
+	/** Table name. */
+	private static function t( string $name ): string {
+		$t = flxg_table( $name );
+		return is_string( $t ) ? $t : '';
+	}
+
+	/** MySQL time as ISO 8601 (null when empty). */
+	private static function iso( string $mysql ): ?string {
+		$t = flxg_iso( $mysql );
+		return is_string( $t ) && '' !== $t ? $t : null;
+	}
+
+	/** The user's document role ('' = no access). */
+	private static function drole( int $doc_id, int $uid ): string {
+		$r = flxg_doc_role( $doc_id, $uid );
+		return is_string( $r ) ? $r : '';
 	}
 
 	/** Forget cached rows (after a write). */
@@ -42,7 +60,7 @@ final class FLXG_Doc_Service {
 	/**
 	 * Raw page row (cached for the request).
 	 *
-	 * @return array<string,mixed>|null
+	 * @return array<mixed>|null
 	 */
 	public static function page( int $id ): ?array {
 		if ( $id <= 0 ) {
@@ -63,8 +81,9 @@ final class FLXG_Doc_Service {
 	public static function members( int $page_id ): array {
 		if ( ! isset( self::$members[ $page_id ] ) ) {
 			global $wpdb;
+			/** @var \wpdb $wpdb */
 			$out  = array();
-			$rows = $wpdb->get_results( $wpdb->prepare( 'SELECT user_id, role FROM ' . flxg_table( 'doc_page_members' ) . ' WHERE page_id = %d', $page_id ), ARRAY_A ); // phpcs:ignore
+			$rows = $wpdb->get_results( $wpdb->prepare( 'SELECT user_id, role FROM ' . self::t( 'doc_page_members' ) . ' WHERE page_id = %d', $page_id ), ARRAY_A ); // phpcs:ignore
 			foreach ( is_array( $rows ) ? $rows : array() as $r ) {
 				$r = FLXG_Val::arr( $r );
 				$out[ FLXG_Val::int( $r, 'user_id' ) ] = FLXG_Val::str( $r, 'role' );
@@ -84,7 +103,7 @@ final class FLXG_Doc_Service {
 		if ( ! $p ) {
 			return '';
 		}
-		$role = (string) flxg_doc_role( FLXG_Val::int( $p, 'doc_id' ), $uid );
+		$role = self::drole( FLXG_Val::int( $p, 'doc_id' ), $uid );
 		if ( '' === $role || 'admin' === $role ) {
 			return $role;
 		}
@@ -129,7 +148,7 @@ final class FLXG_Doc_Service {
 	/**
 	 * Protection fields every page row carries.
 	 *
-	 * @param array<string,mixed> $p Raw page row.
+	 * @param array<mixed> $p Raw page row.
 	 * @return array{role: string, locked: array{by: int, at: string|null}|null, restricted: bool, cmRev: int}
 	 */
 	public static function state( array $p, int $uid ): array {
@@ -137,7 +156,7 @@ final class FLXG_Doc_Service {
 		$at = FLXG_Val::nstr( $p, 'locked_at' );
 		return array(
 			'role'       => self::role( FLXG_Val::int( $p, 'id' ), $uid ),
-			'locked'     => $by ? array( 'by' => $by, 'at' => $at ? flxg_iso( $at ) : null ) : null,
+			'locked'     => $by ? array( 'by' => $by, 'at' => $at ? self::iso( $at ) : null ) : null,
 			'restricted' => 'restricted' === FLXG_Val::str( $p, 'access' ),
 			'cmRev'      => FLXG_Val::int( $p, 'cm_rev' ),
 		);
@@ -150,11 +169,12 @@ final class FLXG_Doc_Service {
 	 */
 	public static function lock( int $page_id, bool $lock, int $uid ) {
 		global $wpdb;
+		/** @var \wpdb $wpdb */
 		if ( ! self::can( $page_id, 'edit', $uid ) ) {
 			return self::err( 'flxg_forbidden', __( 'Only people who can edit the page can lock or unlock it.', 'flx-tasks' ), 403 );
 		}
 		$wpdb->update(
-			flxg_table( 'doc_pages' ),
+			self::t( 'doc_pages' ),
 			$lock ? array( 'locked_by' => $uid, 'locked_at' => flxg_now() ) : array( 'locked_by' => 0, 'locked_at' => null ),
 			array( 'id' => $page_id )
 		);
@@ -189,8 +209,8 @@ final class FLXG_Doc_Service {
 		$doc        = FLXG_Val::int( $p, 'doc_id' );
 		$candidates = array();
 		$admins     = array();
-		foreach ( array_keys( flxg_users() ) as $u ) {
-			$r = (string) flxg_doc_role( $doc, (int) $u );
+		foreach ( array_keys( FLXG_Val::arr( flxg_users() ) ) as $u ) {
+			$r = self::drole( $doc, (int) $u );
 			if ( '' !== $r ) {
 				$candidates[] = (int) $u;
 				if ( 'admin' === $r ) {
@@ -216,25 +236,26 @@ final class FLXG_Doc_Service {
 	 */
 	public static function set_access( int $page_id, string $access, array $members, int $uid ) {
 		global $wpdb;
+		/** @var \wpdb $wpdb */
 		$p = self::page( $page_id );
 		if ( ! $p || ! self::can( $page_id, 'edit', $uid ) ) {
 			return self::err( 'flxg_forbidden', __( 'Only people who can edit the page can change who has access.', 'flx-tasks' ), 403 );
 		}
 		$doc    = FLXG_Val::int( $p, 'doc_id' );
 		$access = 'restricted' === $access ? 'restricted' : '';
-		$wpdb->update( flxg_table( 'doc_pages' ), array( 'access' => $access ), array( 'id' => $page_id ) );
-		$wpdb->delete( flxg_table( 'doc_page_members' ), array( 'page_id' => $page_id ) );
+		$wpdb->update( self::t( 'doc_pages' ), array( 'access' => $access ), array( 'id' => $page_id ) );
+		$wpdb->delete( self::t( 'doc_page_members' ), array( 'page_id' => $page_id ) );
 		if ( 'restricted' === $access ) {
 			$keep = array( $uid => 'edit' );
 			foreach ( $members as $m ) {
 				$u    = is_numeric( $m['user'] ?? null ) ? (int) $m['user'] : 0;
 				$role = is_string( $m['role'] ?? null ) ? $m['role'] : 'view';
-				if ( $u > 0 && $u !== $uid && in_array( $role, array( 'view', 'comment', 'edit' ), true ) && '' !== flxg_doc_role( $doc, $u ) ) {
+				if ( $u > 0 && $u !== $uid && in_array( $role, array( 'view', 'comment', 'edit' ), true ) && '' !== self::drole( $doc, $u ) ) {
 					$keep[ $u ] = $role;
 				}
 			}
 			foreach ( array_slice( $keep, 0, 300, true ) as $u => $role ) {
-				$wpdb->insert( flxg_table( 'doc_page_members' ), array( 'page_id' => $page_id, 'user_id' => $u, 'role' => $role ) );
+				$wpdb->insert( self::t( 'doc_page_members' ), array( 'page_id' => $page_id, 'user_id' => $u, 'role' => $role ) );
 			}
 		}
 		self::flush();
@@ -245,8 +266,8 @@ final class FLXG_Doc_Service {
 	/**
 	 * Pages of a document the user can open, with their protection fields.
 	 *
-	 * @param list<array<string,mixed>> $rows flxg_page_row() rows.
-	 * @return list<array<string,mixed>>
+	 * @param list<array<mixed>> $rows flxg_page_row() rows.
+	 * @return list<array<mixed>>
 	 */
 	public static function visible( array $rows, int $uid ): array {
 		$out = array();
@@ -297,7 +318,7 @@ final class FLXG_Doc_Service {
 	}
 
 	/**
-	 * @param array<string,mixed> $r Raw comment row.
+	 * @param array<mixed> $r Raw comment row.
 	 * @return FlxgDocComment
 	 */
 	private static function out( array $r, string $role, int $uid ): array {
@@ -314,9 +335,9 @@ final class FLXG_Doc_Service {
 			'user'       => $author,
 			'body'       => $deleted ? '' : FLXG_Val::str( $r, 'body' ),
 			'anchor'     => $anchor,
-			'created'    => flxg_iso( FLXG_Val::str( $r, 'created_at' ) ),
-			'edited'     => $ed ? flxg_iso( $ed ) : null,
-			'resolved'   => $by ? array( 'by' => $by, 'at' => $at ? flxg_iso( $at ) : null ) : null,
+			'created'    => self::iso( FLXG_Val::str( $r, 'created_at' ) ),
+			'edited'     => $ed ? self::iso( $ed ) : null,
+			'resolved'   => $by ? array( 'by' => $by, 'at' => $at ? self::iso( $at ) : null ) : null,
 			'deleted'    => $deleted,
 			'canEdit'    => ! $deleted && $author === $uid && flxg_role_rank( $role ) >= 2,
 			'canDelete'  => ! $deleted && ( ( $author === $uid && flxg_role_rank( $role ) >= 2 ) || 'admin' === $role ),
@@ -327,17 +348,19 @@ final class FLXG_Doc_Service {
 	/**
 	 * Raw comment row.
 	 *
-	 * @return array<string,mixed>|null
+	 * @return array<mixed>|null
 	 */
 	private static function row( int $id ): ?array {
 		global $wpdb;
-		$r = $wpdb->get_row( $wpdb->prepare( 'SELECT * FROM ' . flxg_table( 'doc_comments' ) . ' WHERE id = %d', $id ), ARRAY_A ); // phpcs:ignore
+		/** @var \wpdb $wpdb */
+		$r = $wpdb->get_row( $wpdb->prepare( 'SELECT * FROM ' . self::t( 'doc_comments' ) . ' WHERE id = %d', $id ), ARRAY_A ); // phpcs:ignore
 		return is_array( $r ) ? $r : null;
 	}
 
 	private static function bump( int $page_id ): void {
 		global $wpdb;
-		$wpdb->query( $wpdb->prepare( 'UPDATE ' . flxg_table( 'doc_pages' ) . ' SET cm_rev = cm_rev + 1 WHERE id = %d', $page_id ) ); // phpcs:ignore
+		/** @var \wpdb $wpdb */
+		$wpdb->query( $wpdb->prepare( 'UPDATE ' . self::t( 'doc_pages' ) . ' SET cm_rev = cm_rev + 1 WHERE id = %d', $page_id ) ); // phpcs:ignore
 		self::flush( $page_id );
 	}
 
@@ -354,11 +377,12 @@ final class FLXG_Doc_Service {
 	 */
 	public static function comments( int $page_id, int $uid ) {
 		global $wpdb;
+		/** @var \wpdb $wpdb */
 		$role = self::role( $page_id, $uid );
 		if ( '' === $role ) {
 			return self::err( 'flxg_404', __( 'Page not found or you have no access.', 'flx-tasks' ), 404 );
 		}
-		$rows = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM ' . flxg_table( 'doc_comments' ) . ' WHERE page_id = %d ORDER BY parent_id > 0, id LIMIT 2000', $page_id ), ARRAY_A ); // phpcs:ignore
+		$rows = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM ' . self::t( 'doc_comments' ) . ' WHERE page_id = %d ORDER BY parent_id > 0, id LIMIT 2000', $page_id ), ARRAY_A ); // phpcs:ignore
 		$out  = array();
 		foreach ( is_array( $rows ) ? $rows : array() as $r ) {
 			$out[] = self::out( FLXG_Val::arr( $r ), $role, $uid );
@@ -374,6 +398,7 @@ final class FLXG_Doc_Service {
 	 */
 	public static function create( int $page_id, int $parent, $anchor, string $body, int $uid ) {
 		global $wpdb;
+		/** @var \wpdb $wpdb */
 		$p    = self::page( $page_id );
 		$role = self::role( $page_id, $uid );
 		if ( ! $p || flxg_role_rank( $role ) < 2 ) {
@@ -396,7 +421,7 @@ final class FLXG_Doc_Service {
 			}
 		}
 		$wpdb->insert(
-			flxg_table( 'doc_comments' ),
+			self::t( 'doc_comments' ),
 			array(
 				'page_id'    => $page_id,
 				'doc_id'     => FLXG_Val::int( $p, 'doc_id' ),
@@ -410,7 +435,7 @@ final class FLXG_Doc_Service {
 		$id = (int) $wpdb->insert_id;
 		if ( $parent ) {
 			// A reply reopens a resolved thread.
-			$wpdb->update( flxg_table( 'doc_comments' ), array( 'resolved_by' => 0, 'resolved_at' => null ), array( 'id' => $parent ) );
+			$wpdb->update( self::t( 'doc_comments' ), array( 'resolved_by' => 0, 'resolved_at' => null ), array( 'id' => $parent ) );
 		}
 		self::bump( $page_id );
 		$r = self::row( $id );
@@ -432,7 +457,7 @@ final class FLXG_Doc_Service {
 	/**
 	 * Comment row + the user's page role, or an error.
 	 *
-	 * @return array{0: array<string,mixed>, 1: string}|WP_Error
+	 * @return array{0: array<mixed>, 1: string}|WP_Error
 	 */
 	private static function own( int $id, int $uid ) {
 		$r = self::row( $id );
@@ -453,8 +478,9 @@ final class FLXG_Doc_Service {
 	 */
 	public static function update( int $id, string $body, int $uid ) {
 		global $wpdb;
+		/** @var \wpdb $wpdb */
 		$o = self::own( $id, $uid );
-		if ( is_wp_error( $o ) ) {
+		if ( $o instanceof WP_Error ) {
 			return $o;
 		}
 		list( $r, $role ) = $o;
@@ -465,7 +491,7 @@ final class FLXG_Doc_Service {
 		if ( '' === $body ) {
 			return self::err( 'flxg_empty', __( 'Write a comment first.', 'flx-tasks' ) );
 		}
-		$wpdb->update( flxg_table( 'doc_comments' ), array( 'body' => $body, 'edited_at' => flxg_now() ), array( 'id' => $id ) );
+		$wpdb->update( self::t( 'doc_comments' ), array( 'body' => $body, 'edited_at' => flxg_now() ), array( 'id' => $id ) );
 		self::bump( FLXG_Val::int( $r, 'page_id' ) );
 		$r = self::row( $id );
 		return $r ? self::out( $r, $role, $uid ) : self::err( 'flxg_404', __( 'Comment not found.', 'flx-tasks' ), 404 );
@@ -479,15 +505,16 @@ final class FLXG_Doc_Service {
 	 */
 	public static function delete( int $id, int $uid ) {
 		global $wpdb;
+		/** @var \wpdb $wpdb */
 		$o = self::own( $id, $uid );
-		if ( is_wp_error( $o ) ) {
+		if ( $o instanceof WP_Error ) {
 			return $o;
 		}
 		list( $r, $role ) = $o;
 		if ( ! self::out( $r, $role, $uid )['canDelete'] ) {
 			return self::err( 'flxg_forbidden', __( 'Only the author or a project admin can delete a comment.', 'flx-tasks' ), 403 );
 		}
-		$t      = flxg_table( 'doc_comments' );
+		$t      = self::t( 'doc_comments' );
 		$page   = FLXG_Val::int( $r, 'page_id' );
 		$parent = FLXG_Val::int( $r, 'parent_id' );
 		if ( ! $parent ) {
@@ -515,15 +542,16 @@ final class FLXG_Doc_Service {
 	 */
 	public static function resolve( int $id, bool $resolved, int $uid ) {
 		global $wpdb;
+		/** @var \wpdb $wpdb */
 		$o = self::own( $id, $uid );
-		if ( is_wp_error( $o ) ) {
+		if ( $o instanceof WP_Error ) {
 			return $o;
 		}
 		list( $r, $role ) = $o;
 		if ( ! self::out( $r, $role, $uid )['canResolve'] ) {
 			return self::err( 'flxg_forbidden', __( 'You are not allowed to resolve this comment.', 'flx-tasks' ), 403 );
 		}
-		$wpdb->update( flxg_table( 'doc_comments' ), $resolved ? array( 'resolved_by' => $uid, 'resolved_at' => flxg_now() ) : array( 'resolved_by' => 0, 'resolved_at' => null ), array( 'id' => $id ) );
+		$wpdb->update( self::t( 'doc_comments' ), $resolved ? array( 'resolved_by' => $uid, 'resolved_at' => flxg_now() ) : array( 'resolved_by' => 0, 'resolved_at' => null ), array( 'id' => $id ) );
 		self::bump( FLXG_Val::int( $r, 'page_id' ) );
 		$r = self::row( $id );
 		return $r ? self::out( $r, $role, $uid ) : self::err( 'flxg_404', __( 'Comment not found.', 'flx-tasks' ), 404 );
@@ -532,8 +560,9 @@ final class FLXG_Doc_Service {
 	/** Page removed: its comments and member rows go too. */
 	public static function purge( int $page_id ): void {
 		global $wpdb;
-		$wpdb->delete( flxg_table( 'doc_comments' ), array( 'page_id' => $page_id ) );
-		$wpdb->delete( flxg_table( 'doc_page_members' ), array( 'page_id' => $page_id ) );
+		/** @var \wpdb $wpdb */
+		$wpdb->delete( self::t( 'doc_comments' ), array( 'page_id' => $page_id ) );
+		$wpdb->delete( self::t( 'doc_page_members' ), array( 'page_id' => $page_id ) );
 		self::flush( $page_id );
 	}
 }
