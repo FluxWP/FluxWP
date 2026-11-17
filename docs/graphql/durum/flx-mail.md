@@ -2,7 +2,7 @@
 
 - Faz: 3
 - Durum: ✱
-- PR: #332
+- PR: #332, #350
 
 Parça 1 uygulandı: Ayarlar, E-postalar (şablon düzenleyici dahil), Kayıtlar ve Sistem kontrolü GraphQL üzerinden (`FlxMailSettings`, şablon, kayıt ve sistem sorguları; ayar, şablon, önizleme, test, DNS, WooCommerce marka ve IMAP test mutasyonları). React ekran `flxi-mail` wp-admin’de varsayılan; klasik görünüm `flxi_ui` ile duruyor. Sözleşme testi `tools/tests/wp-graphql/flx-mail/contract-test.php`. Gizli değerler yazma-yalnız: okuma sabit `••••••••` maskesi döner (parolanın hiçbir karakteri değil), `__clear__` ve wp-config sabit reddi yalnız GraphQL yolunda; klasik form ve MCP main davranışını korur (geçersiz e-posta varsayılana düşer, form kaydı sürer). Keşfedilen e-postalar kaynak eklentiye göre gruplanır, `wc/` anahtarlarında `enabled` WooCommerce'in kendi durumundan okunur. Dar ekranda E-postalar listesi düzeltildi. Parça 2 uygulandı: Bağlantılar (Evolution, Flux WPAPI, Cloud API, Netgsm) ve WhatsApp Cloud kurulumu GraphQL üzerinden (`flxMailConnectionMeta`, `flxMailConnections`, `flxMailConnection`, `flxMailWa*`, `flxMailWacloudSetup`, `flxMailWacloudTemplates`; kaydet, sil, varsayılan yap, test, QR bağlan, yeniden başlat, çıkış, sunucu ayarı mutasyonları). Klasik sayfa, REST ve GraphQL `FLXI_Connection_Service` kullanır. React ekran Bağlantılar sekmesi tam eşdeğer. Bağlantı gizlileri de sabit `••••••••` maskesi okur, `__clear__` yalnız GraphQL yolundadır (klasik form ve REST aynen); `classicUrl` düz URL'dir (`wp_nonce_url()` React href'inde kullanılmaz), TR çeviriler eklendi. parça 3 gönderim / kuyruk / kara liste, parça 4 posta kutusu.
 
