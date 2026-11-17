@@ -1,0 +1,6 @@
+mutation FlxMailWcBrandApply($input: FlxMailWcBrandApplyInput!) {
+  flxMailWcBrandApply(input: $input) {
+    wcBranded { ...FlxMailDate }
+    errors { code message field }
+  }
+}

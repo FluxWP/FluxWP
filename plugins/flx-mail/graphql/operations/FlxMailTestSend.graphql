@@ -1,0 +1,9 @@
+mutation FlxMailTestSend($input: FlxMailTestSendInput!) {
+  flxMailTestSend(input: $input) {
+    ok
+    to
+    error
+    at { ...FlxMailDate }
+    errors { code message field }
+  }
+}
