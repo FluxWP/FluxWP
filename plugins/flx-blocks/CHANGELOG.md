@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.0
+- **Klasik pano kaldırıldı.** Blok Düzenleyici panosu yalnız React ekranıyla açılır; "Klasik görünüm" bağlantısı, görünüm değiştirme (`flxbk_ui`), eski pano betiği (admin-scripts.js) ve admin-ajax işleyicileri (`flxbk_activate_deactivate`, `flxbk_save_config`, `flxbk_post_default_width`) silindi.
+- Ekran açılamazsa (Flux GraphQL hazır değil, paket dosyası eksik, bundle yüklenmedi) boş sayfa yerine "Bu ekran yüklenemedi" kutusu ve **Sayfayı yenile** düğmesi çıkar.
+
 ## 0.4.0
 - FluxWP mobil uygulamasında Blok Düzenleyici native çizilir (ortak manifest `app/manifest.json`, GraphQL): blokları aç/kapat, bağlı desen kütüphaneleri. Masaüstü panel React ekranını kullanmaya devam eder.
 

@@ -166,17 +166,6 @@ function flx_ayar_menu() {
 }
 add_action( 'admin_menu', 'flx_ayar_menu' );
 
-/** Tema Ayarları: renk alanları için WordPress renk seçici. */
-function flx_ayar_assets( $hook ) {
-	if ( 'appearance_page_flx-ayarlar' !== $hook ) {
-		return;
-	}
-	wp_enqueue_style( 'wp-color-picker' );
-	wp_enqueue_script( 'wp-color-picker' );
-	wp_add_inline_script( 'wp-color-picker', 'jQuery(function($){$(".flx-color").wpColorPicker();});' );
-}
-add_action( 'admin_enqueue_scripts', 'flx_ayar_assets' );
-
 /**
  * Tema Ayarları'ndaki tablo başlığı rengi: palet değişkenini ezer (boşsa stil/palet rengi).
  * Koyu modda theme.css kendi tonlarını kullanır.
@@ -276,124 +265,26 @@ function flx_ayar_page() {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		return;
 	}
-	$o = wp_parse_args( (array) get_option( 'flx_ayarlar', array() ), flx_ayar_defaults() );
-	$n = 'flx_ayarlar';
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	$bolum = sanitize_key( $_GET['bolum'] ?? 'genel' );
-	$has_presets = function_exists( 'flxk_render_panel' );
-	// New view (0.8.0, GraphQL): the shared React screen is the default; the Presets tab stays here.
-	if ( 'onayarlar' !== $bolum && function_exists( 'flx_flux_ui' ) && flx_flux_ui() ) {
-		flx_flux_root( 'flx-theme-settings-app' );
-		return;
-	}
-	?>
-	<div class="wrap<?php echo 'onayarlar' === $bolum ? ' flxk' : ''; ?>">
-		<h1><?php esc_html_e( 'Theme Settings', 'fluxwp' ); ?></h1>
-		<?php if ( $has_presets ) : ?>
-		<nav class="nav-tab-wrapper">
-			<a class="nav-tab<?php echo 'onayarlar' !== $bolum ? ' nav-tab-active' : ''; ?>" href="<?php echo esc_url( admin_url( 'themes.php?page=flx-ayarlar' ) ); ?>"><?php esc_html_e( 'General', 'fluxwp' ); ?></a>
-			<a class="nav-tab<?php echo 'onayarlar' === $bolum ? ' nav-tab-active' : ''; ?>" href="<?php echo esc_url( admin_url( 'themes.php?page=flx-ayarlar&bolum=onayarlar' ) ); ?>"><?php esc_html_e( 'Presets', 'fluxwp' ); ?></a>
-		</nav>
-		<?php endif; ?>
-		<?php
-		if ( $has_presets && 'onayarlar' === $bolum ) {
+	// Presets tab (Flux Setup panel) stays a PHP page; everything else is the shared React screen.
+	if ( 'onayarlar' === $bolum && function_exists( 'flxk_render_panel' ) ) {
+		?>
+		<div class="wrap flxk">
+			<h1><?php esc_html_e( 'Theme Settings', 'fluxwp' ); ?></h1>
+			<nav class="nav-tab-wrapper">
+				<a class="nav-tab" href="<?php echo esc_url( admin_url( 'themes.php?page=flx-ayarlar' ) ); ?>"><?php esc_html_e( 'General', 'fluxwp' ); ?></a>
+				<a class="nav-tab nav-tab-active" href="<?php echo esc_url( admin_url( 'themes.php?page=flx-ayarlar&bolum=onayarlar' ) ); ?>"><?php esc_html_e( 'Presets', 'fluxwp' ); ?></a>
+			</nav>
+			<?php
 			echo '<p class="flxk-lead">' . esc_html__( 'A preset sets up the site in one step with the organisation profile, plugin settings, colours, header/footer, templates, pages and menus. Changes you make in the panel are never overwritten; updates are applied one by one with your approval.', 'fluxwp' ) . '</p>';
 			flxk_render_panel();
-			echo '</div>';
-			return;
-		}
-		?>
-		<?php flx_flux_new_view_link( 'flx-ayarlar' ); ?>
-		<?php settings_errors( 'flx_ayarlar' ); ?>
-		<form method="post" action="options.php">
-			<?php settings_fields( 'flx_ayarlar' ); ?>
-			<input type="hidden" name="flx_ayarlar[_form]" value="1">
-			<?php flx_coming_soon_settings( $o ); ?>
-			<h2 class="title"><?php esc_html_e( 'Appearance', 'fluxwp' ); ?></h2>
-			<table class="form-table" role="presentation">
-				<tr><th scope="row"><?php esc_html_e( 'Site type', 'fluxwp' ); ?></th><td>
-					<label><input type="radio" name="<?php echo esc_attr( $n ); ?>[site_mod]" value="shop" <?php checked( $o['site_mod'], 'shop' ); ?>> <?php esc_html_e( 'Shop: Orders, Return to shop', 'fluxwp' ); ?></label><br>
-					<label><input type="radio" name="<?php echo esc_attr( $n ); ?>[site_mod]" value="donation" <?php checked( $o['site_mod'], 'donation' ); ?>> <?php esc_html_e( 'Donation: Donations, Donate button, return to the donation page', 'fluxwp' ); ?></label>
-					<p class="description"><?php esc_html_e( 'Sets the wording in My account, the cart and the mobile menu.', 'fluxwp' ); ?></p></td></tr>
-				<tr><th scope="row"><?php esc_html_e( 'Background pattern', 'fluxwp' ); ?></th><td><select name="<?php echo esc_attr( $n ); ?>[decoration_pattern]">
-                    <?php foreach ( array( 'dots' => __( 'Dots', 'fluxwp' ), 'leaves' => __( 'Leaves', 'fluxwp' ), 'none' => __( 'None', 'fluxwp' ) ) as $value => $label ) : ?><option value="<?php echo esc_attr( $value ); ?>" <?php selected( $o['decoration_pattern'], $value ); ?>><?php echo esc_html( $label ); ?></option><?php endforeach; ?></select></td></tr>
-				<tr><th scope="row"><label for="flx-table-head"><?php esc_html_e( 'Table header background', 'fluxwp' ); ?></label></th><td><input id="flx-table-head" class="flx-color" name="<?php echo esc_attr( $n ); ?>[table_head]" value="<?php echo esc_attr( $o['table_head'] ); ?>" data-default-color="#F1F2F4">
-					<p class="description"><?php esc_html_e( 'Header cells of tables in pages, Wiki and WooCommerce. Pick a tone slightly darker than the page background. Leave empty to use the style colour.', 'fluxwp' ); ?></p></td></tr>
-                <tr><th scope="row"><?php esc_html_e( 'News introduction', 'fluxwp' ); ?></th><td><input class="large-text" name="<?php echo esc_attr( $n ); ?>[news_intro]" value="<?php echo esc_attr( $o['news_intro'] ); ?>" placeholder="<?php esc_attr_e( 'Latest news, updates and articles.', 'fluxwp' ); ?>"></td></tr>
-				<tr><th scope="row">Dark mode</th><td>
-					<label><input type="radio" name="<?php echo esc_attr( $n ); ?>[dark_mode]" value="auto" <?php checked( $o['dark_mode'], 'auto' ); ?>> Otomatik: cihaz koyu moddaysa site de koyu</label><br>
-					<label><input type="radio" name="<?php echo esc_attr( $n ); ?>[dark_mode]" value="off" <?php checked( $o['dark_mode'], 'off' ); ?>> Kapalı: site her zaman açık renk</label>
-					<p class="description">Her iki durumda da tarayıcı eklentilerinin (Dark Reader, Noir vb.) siteyi zorla koyulaştırması engellenir.</p></td></tr>
-				<tr><th scope="row">Kaydırma animasyonları</th><td><label><input type="checkbox" name="<?php echo esc_attr( $n ); ?>[animasyon]" value="1" <?php checked( 'off' !== $o['animasyon'] ); ?>> Başlıklar, kartlar ve görseller sayfa kaydırıldıkça yumuşakça belirsin</label>
-					<p class="description">Cihazında "hareketi azalt" ayarı açık olan ziyaretçilerde animasyon gösterilmez.</p></td></tr>
-				<tr><th scope="row">Liste sayfaları</th><td>
-					<label><input type="radio" name="<?php echo esc_attr( $n ); ?>[sayfalama]" value="sonsuz" <?php checked( $o['sayfalama'], 'sonsuz' ); ?>> Sonsuz kaydırma: aşağı inildikçe sonraki yazılar kendiliğinden yüklenir</label><br>
-					<label><input type="radio" name="<?php echo esc_attr( $n ); ?>[sayfalama]" value="numara" <?php checked( $o['sayfalama'], 'numara' ); ?>> Sayfa numaraları (1 2 3 … Sonraki)</label>
-					<p class="description">Haberler, kategori, etiket, arama ve arşiv sayfaları. Sonsuz kaydırmada da sayfa bağlantıları arka planda kalır (Google ve JavaScript'i kapalı ziyaretçiler için).</p></td></tr>
-				<?php if ( function_exists( 'flx_aktif_kart_html' ) ) : ?>
-				<tr><th scope="row">Ana sayfa: aktif proje kartı</th><td><label><input type="checkbox" name="<?php echo esc_attr( $n ); ?>[aktif_kart]" value="1" <?php checked( 'off' !== $o['aktif_kart'] ); ?>> Slider'ın altında son "devam eden" projeyi bağış düğmesiyle göster</label>
-					<?php if ( class_exists( 'FLXB_Types' ) ) : ?>
-					<p><label>Bağış ilerlemesi: <select name="<?php echo esc_attr( $n ); ?>[aktif_kampanya]"><option value="0"><?php echo esc_html( 'Otomatik (hedefi olan ilk açık bağış türü)' ); ?></option><?php foreach ( FLXB_Types::all() as $flx_t ) : ?><option value="<?php echo (int) $flx_t['id']; ?>" <?php selected( (int) $o['aktif_kampanya'], (int) $flx_t['id'] ); ?>><?php echo esc_html( $flx_t['title'] ); ?></option><?php endforeach; ?></select></label></p>
-					<?php endif; ?>
-					<p class="description">Proje görseli, başlığı ve özeti projenin kendisinden gelir.</p></td></tr>
-				<?php endif; ?>
-			</table>
-
-			<h2 class="title">Çerez banner'ı</h2>
-			<table class="form-table" role="presentation">
-				<tr><th scope="row">Durum</th><td><label><input type="checkbox" name="<?php echo esc_attr( $n ); ?>[cookie_enabled]" value="1" <?php checked( $o['cookie_enabled'] ); ?>> İlk ziyarette çerez banner'ını göster</label></td></tr>
-				<tr><th scope="row"><label for="flx-ct">Başlık</label></th><td><input id="flx-ct" class="regular-text" name="<?php echo esc_attr( $n ); ?>[cookie_title]" value="<?php echo esc_attr( $o['cookie_title'] ); ?>"></td></tr>
-				<tr><th scope="row"><label for="flx-cx">Metin</label></th><td><textarea id="flx-cx" class="large-text" rows="3" name="<?php echo esc_attr( $n ); ?>[cookie_text]"><?php echo esc_textarea( $o['cookie_text'] ); ?></textarea></td></tr>
-				<tr><th scope="row">Butonlar</th><td>
-					<input name="<?php echo esc_attr( $n ); ?>[cookie_accept]" value="<?php echo esc_attr( $o['cookie_accept'] ); ?>" aria-label="Kabul butonu">
-					<input name="<?php echo esc_attr( $n ); ?>[cookie_reject]" value="<?php echo esc_attr( $o['cookie_reject'] ); ?>" aria-label="Reddet butonu">
-					<input name="<?php echo esc_attr( $n ); ?>[cookie_more]" value="<?php echo esc_attr( $o['cookie_more'] ); ?>" aria-label="Politika bağlantısı">
-					<p class="description">Kabul · Reddet · Politika bağlantısı metinleri.</p></td></tr>
-				<tr><th scope="row"><label for="flx-cp">Çerez Politikası sayfası</label></th><td>
-					<?php
-					wp_dropdown_pages(
-						array(
-							'name'              => $n . '[cookie_page]',
-							'id'                => 'flx-cp',
-							'selected'          => (int) $o['cookie_page'],
-							'show_option_none'  => 'Otomatik (/cerez-politikasi/)',
-							'option_none_value' => 0,
-						)
-					);
-					?>
-				</td></tr>
-				<tr><th scope="row">Görünüm</th><td>
-					<label><input type="radio" name="<?php echo esc_attr( $n ); ?>[cookie_position]" value="card" <?php checked( $o['cookie_position'], 'card' ); ?>> Sol altta kart</label>&nbsp;&nbsp;
-					<label><input type="radio" name="<?php echo esc_attr( $n ); ?>[cookie_position]" value="bar" <?php checked( $o['cookie_position'], 'bar' ); ?>> Altta tam genişlik şerit</label></td></tr>
-				<tr><th scope="row">Onayları sıfırla</th><td><label><input type="checkbox" name="<?php echo esc_attr( $n ); ?>[cookie_reset]" value="1"> Kaydedince herkese banner'ı yeniden göster</label> <span class="description">(politika değişince; şu an sürüm <?php echo (int) $o['cookie_rev']; ?>)</span></td></tr>
-			</table>
-
-			<h2 class="title">Google Analytics ve onaylı kodlar</h2>
-			<p>Aşağıdakiler yalnızca ziyaretçi “<?php echo esc_html( $o['cookie_accept'] ); ?>” dedikten sonra yüklenir (Google Consent Mode v2 varsayılanı: reddedildi). Banner kapalıysa doğrudan yüklenir.</p>
-			<table class="form-table" role="presentation">
-				<tr><th scope="row"><label for="flx-ga">GA4 Ölçüm Kimliği</label></th><td><input id="flx-ga" class="regular-text code" placeholder="G-XXXXXXXXXX" name="<?php echo esc_attr( $n ); ?>[ga4_id]" value="<?php echo esc_attr( $o['ga4_id'] ); ?>"><p class="description">Google Analytics › Yönetici › Veri akışları › Ölçüm kimliği.</p></td></tr>
-				<tr><th scope="row">Yükleme</th><td>
-					<label><input type="radio" name="<?php echo esc_attr( $n ); ?>[ga_mode]" value="consent" <?php checked( $o['ga_mode'], 'consent' ); ?>> Google etiketi her sayfada &lt;head&gt; içinde, onaya kadar çerezsiz (Google Consent Mode v2, önerilen; Google'ın etiket testi bunu görür)</label><br>
-					<label><input type="radio" name="<?php echo esc_attr( $n ); ?>[ga_mode]" value="after" <?php checked( $o['ga_mode'], 'after' ); ?>> Etiket yalnızca “Kabul et”ten sonra yüklensin (Google etiket testi bulamaz)</label></td></tr>
-				<tr><th scope="row"><label for="flx-cs">Ek kodlar</label></th><td><textarea id="flx-cs" class="large-text code" rows="6" name="<?php echo esc_attr( $n ); ?>[consent_scripts]" <?php disabled( ! current_user_can( 'unfiltered_html' ) ); ?> placeholder="&lt;script&gt;...&lt;/script&gt; (Meta Pixel, Hotjar, GTM vb.)"><?php echo esc_textarea( $o['consent_scripts'] ); ?></textarea><p class="description">Onaydan sonra sayfaya eklenir.</p></td></tr>
-			</table>
-			<h2 class="title">Banka hesabı (Havale/EFT)</h2>
-			<p>Yedek hesap: IBAN önce WooCommerce › Ayarlar › Ödemeler › <strong>Havale (bağış)</strong>'tan, orada yoksa <strong>Doğrudan banka havalesi</strong> hesaplarından okunur; ikisi de boşsa bu hesap kullanılır (bağış sayfası, ödeme sayfası, Çağrı Merkezi).<?php
-			$flx_h = function_exists( 'flxb_bank_account' ) ? flxb_bank_account() : null;
-			if ( $flx_h && flx_iban_temizle( $flx_h['iban'] ) !== flx_iban_temizle( (string) $o['bank_iban'] ) ) {
-				echo ' <strong>Şu an kullanılan: ' . esc_html( $flx_h['iban_display'] . ( '' !== $flx_h['holder'] ? ' · ' . $flx_h['holder'] : '' ) ) . '</strong>';
-			}
-			?></p>
-			<table class="form-table" role="presentation">
-				<tr><th scope="row"><label for="flx-bh">Alıcı adı</label></th><td><input id="flx-bh" class="large-text" name="<?php echo esc_attr( $n ); ?>[bank_holder]" value="<?php echo esc_attr( $o['bank_holder'] ); ?>"></td></tr>
-				<tr><th scope="row"><label for="flx-bi">TL IBAN</label></th><td><input id="flx-bi" class="regular-text code" name="<?php echo esc_attr( $n ); ?>[bank_iban]" value="<?php echo esc_attr( flx_iban_bicim( $o['bank_iban'] ) ); ?>"></td></tr>
-			</table>
-			<?php flx_pay_logos_admin(); ?>
-			<?php submit_button( __( 'Save settings', 'fluxwp' ) ); ?>
-		</form>
-		<?php flx_tasi_box(); ?>
-	</div>
-	<?php
+			?>
+		</div>
+		<?php
+		return;
+	}
+	flx_flux_root( 'flx-theme-settings-app' );
 }
 
 /* ---------- Ön yüz ---------- */

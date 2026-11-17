@@ -1,5 +1,5 @@
 // Flux Files: dialogs (confirm / prompt / alert, no native ones), toasts, modal and context menu.
-// Styles are the classic screen's (.flxfm-modal, .flxfm-menu, toast) so both screens look the same.
+// Styles: .flxfm-modal, .flxfm-menu, toast (files.css).
 import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { Ic } from './icons';

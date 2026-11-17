@@ -1,6 +1,6 @@
 // Flux Files › file manager. Same screen in wp-admin (wp-embed); every read and write goes through the
 // Flux Files GraphQL operations (plugins/flx-files/graphql/operations). Chunked upload stays on REST
-// (flx-files/v1/upload): see docs/graphql/ISTISNALAR.md. It has every feature of the classic screen:
+// (flx-files/v1/upload): see docs/graphql/ISTISNALAR.md. Features:
 // list and grid, sort, search, selection and shortcuts, context menu, drag and drop, clipboard,
 // new / rename / duplicate / archive / extract, permissions, info, preview, version history, trash,
 // activity, settings and the code editor with find and AI.
@@ -76,7 +76,6 @@ export function FilesScreen() {
 }
 
 function Boot() {
-  const host = useHost();
   const { client, scope } = useGraphQL();
   const { i18n } = useTranslation();
   const t = useMemo(() => translator(i18n.language), [i18n.language]);
@@ -88,13 +87,13 @@ function Boot() {
   return (
     <EnvProvider value={{ cfg, settings, client, scope }}>
       <DialogProvider t={t}>
-        <Files t={t} classicUrl={host.classicUrl} onSettings={() => void q.refetch()} />
+        <Files t={t} onSettings={() => void q.refetch()} />
       </DialogProvider>
     </EnvProvider>
   );
 }
 
-function Files({ t, classicUrl, onSettings }: { t: Translate; classicUrl: string | undefined; onSettings: () => void }) {
+function Files({ t, onSettings }: { t: Translate; onSettings: () => void }) {
   const host = useHost();
   const { cfg, settings, client, scope } = useEnv();
   const qc = useQueryClient();
@@ -939,8 +938,6 @@ function Files({ t, classicUrl, onSettings }: { t: Translate; classicUrl: string
               { icon: 'activity', label: t('activity'), run: () => changeMode('log') },
               '-',
               { icon: 'settings', label: t('settings'), run: () => setModal({ k: 'settings' }) },
-              classicUrl ? '-' : null,
-              classicUrl ? { icon: 'browser', label: t('classic_view'), run: () => { window.location.href = classicUrl; } } : null,
             ], r.right, r.bottom + 6, true);
           }}>
             <Ic n="more" />

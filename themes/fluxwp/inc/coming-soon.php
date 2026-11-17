@@ -176,48 +176,6 @@ add_action( 'add_option_flx_ayarlar', static function ( $option, $value ) {
 	flx_coming_soon_settings_changed( array(), (array) $value );
 }, 10, 2 );
 
-/** Settings live with the rest of the theme; no wp-config constants are needed. */
-function flx_coming_soon_settings( $o ) {
-	$mode   = flx_visibility_mode();
-	$has_wc = class_exists( 'WooCommerce' );
-	$soon   = 'live' === $mode ? '' : ' hidden';
-	?>
-	<h2 class="title"><?php esc_html_e( 'Site visibility', 'fluxwp' ); ?></h2>
-	<table class="form-table flx-visibility" role="presentation">
-		<tr><th scope="row"><?php esc_html_e( 'Visibility', 'fluxwp' ); ?></th><td>
-			<fieldset id="flx-visibility" class="flx-visibility__choices">
-				<legend class="screen-reader-text"><?php esc_html_e( 'Visibility', 'fluxwp' ); ?></legend>
-				<label><input type="radio" name="flx_ayarlar[site_visibility]" value="auto" <?php checked( $mode, 'live' ); ?>> <strong><?php esc_html_e( 'Live', 'fluxwp' ); ?></strong><span class="description"><?php esc_html_e( 'Everyone can see the whole site.', 'fluxwp' ); ?></span></label>
-				<label><input type="radio" name="flx_ayarlar[site_visibility]" value="coming-soon" <?php checked( $mode, 'coming-soon' ); ?>> <strong><?php esc_html_e( 'Coming soon: entire site', 'fluxwp' ); ?></strong><span class="description"><?php esc_html_e( 'Visitors, including signed-in customers, only see the coming-soon page.', 'fluxwp' ); ?></span></label>
-				<label<?php echo $has_wc ? '' : ' class="is-disabled"'; ?>><input type="radio" name="flx_ayarlar[site_visibility]" value="store" <?php checked( $mode, 'store' ); ?><?php disabled( ! $has_wc ); ?>> <strong><?php esc_html_e( 'Coming soon: store pages only', 'fluxwp' ); ?></strong><span class="description"><?php echo $has_wc ? esc_html__( 'The site stays open. Shop, product, cart and checkout pages show a coming-soon notice inside the normal header and footer.', 'fluxwp' ) : esc_html__( 'Requires WooCommerce.', 'fluxwp' ); ?></span></label>
-			</fieldset>
-			<p class="description"><?php echo $has_wc ? esc_html__( 'Administrators, shop managers and editors keep seeing the site. This is the same setting as WooCommerce › Settings › Site visibility; changing either one updates the other, and WooCommerce private preview links keep working.', 'fluxwp' ) : esc_html__( 'Administrators and editors keep seeing the site.', 'fluxwp' ); ?></p>
-		</td></tr>
-		<tr class="flx-visibility__site<?php echo 'coming-soon' === $mode ? '' : ' hidden'; ?>"><th scope="row"><label for="flx-soon-title"><?php esc_html_e( 'Coming-soon title', 'fluxwp' ); ?></label></th><td><input id="flx-soon-title" class="large-text" name="flx_ayarlar[coming_soon_title]" value="<?php echo esc_attr( $o['coming_soon_title'] ); ?>" placeholder="<?php esc_attr_e( 'Something good is on its way.', 'fluxwp' ); ?>"></td></tr>
-		<tr class="flx-visibility__site<?php echo 'coming-soon' === $mode ? '' : ' hidden'; ?>"><th scope="row"><label for="flx-soon-text"><?php esc_html_e( 'Coming-soon message', 'fluxwp' ); ?></label></th><td><textarea id="flx-soon-text" class="large-text" rows="3" name="flx_ayarlar[coming_soon_text]" placeholder="<?php esc_attr_e( "We're putting the finishing touches on our website. Please check back soon.", 'fluxwp' ); ?>"><?php echo esc_textarea( $o['coming_soon_text'] ); ?></textarea><p class="description"><?php esc_html_e( 'Leave the title and message empty to use the translated defaults.', 'fluxwp' ); ?></p></td></tr>
-		<?php $store = flx_coming_soon_store_texts(); ?>
-		<tr class="flx-visibility__store<?php echo 'store' === $mode ? '' : ' hidden'; ?>"><th scope="row"><label for="flx-soon-store-title"><?php esc_html_e( 'Store notice title', 'fluxwp' ); ?></label></th><td><input id="flx-soon-store-title" class="large-text" name="flx_ayarlar[coming_soon_store_title]" value="<?php echo esc_attr( $o['coming_soon_store_title'] ); ?>" placeholder="<?php echo esc_attr( $o['coming_soon_store_title'] ? '' : $store['title'] ); ?>"></td></tr>
-		<tr class="flx-visibility__store<?php echo 'store' === $mode ? '' : ' hidden'; ?>"><th scope="row"><label for="flx-soon-store-text"><?php esc_html_e( 'Store notice message', 'fluxwp' ); ?></label></th><td><textarea id="flx-soon-store-text" class="large-text" rows="3" name="flx_ayarlar[coming_soon_store_text]" placeholder="<?php echo esc_attr( $o['coming_soon_store_text'] ? '' : $store['text'] ); ?>"><?php echo esc_textarea( $o['coming_soon_store_text'] ); ?></textarea><p class="description"><?php esc_html_e( 'Leave the title and message empty to use the translated defaults. The wording follows the site type (shop or donations).', 'fluxwp' ); ?></p></td></tr>
-		<tr class="flx-visibility__email<?php echo esc_attr( $soon ); ?>"><th scope="row"><label for="flx-soon-email"><?php esc_html_e( 'Public contact email', 'fluxwp' ); ?></label></th><td><input id="flx-soon-email" type="email" class="regular-text" name="flx_ayarlar[coming_soon_email]" value="<?php echo esc_attr( $o['coming_soon_email'] ); ?>"><p class="description"><?php esc_html_e( 'Optional. Only this address is shown; the administrator email stays private.', 'fluxwp' ); ?></p></td></tr>
-	</table>
-	<style>.form-table .flx-visibility__choices label{display:block;margin:0 0 12px}.form-table .flx-visibility__choices .description{display:block;margin:2px 0 0;padding-inline-start:24px;overflow-wrap:anywhere}.flx-visibility__choices .is-disabled{opacity:.6}</style>
-	<script>
-	( function () {
-		var box = document.getElementById( 'flx-visibility' );
-		if ( ! box ) { return; }
-		function sync() {
-			var on = box.querySelector( 'input:checked' );
-			var v = on ? on.value : 'auto';
-			document.querySelectorAll( '.flx-visibility__site' ).forEach( function ( r ) { r.classList.toggle( 'hidden', 'coming-soon' !== v ); } );
-			document.querySelectorAll( '.flx-visibility__store' ).forEach( function ( r ) { r.classList.toggle( 'hidden', 'store' !== v ); } );
-			document.querySelectorAll( '.flx-visibility__email' ).forEach( function ( r ) { r.classList.toggle( 'hidden', 'auto' === v ); } );
-		}
-		box.addEventListener( 'change', sync );
-	} )();
-	</script>
-	<?php
-}
-
 /** WooCommerce shows its own badge (Coming soon / Store coming soon / Live); the theme adds one only without it. */
 function flx_coming_soon_admin_badge( $bar ) {
 	$mode = flx_visibility_mode();

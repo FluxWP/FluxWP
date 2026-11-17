@@ -109,27 +109,6 @@ msgstr "Ürünleri düzenleyebilir"
 msgid "FluxWP plugins"
 msgstr "FluxWP eklentileri"
 
-msgid "Changes here are real permissions: a disabled action is not just hidden from the menu, it can't be done even by URL. The Administrator role can't be changed."
-msgstr "Burada yapılan değişiklik gerçek yetkidir: kapatılan işlem menüden gizlenmekle kalmaz, adresle girilse de yapılamaz. Yönetici rolü değiştirilemez."
-
-msgid "Permissions before the first change are backed up (%s)."
-msgstr "İlk değişiklikten önceki yetkiler yedekli (%s)."
-
-msgid "Restore all roles to the backup?"
-msgstr "Tüm roller yedekteki hâline dönsün mü?"
-
-msgid "Restore backup"
-msgstr "Yedeği geri yükle"
-
-msgid "Search permissions…"
-msgstr "Yetki ara…"
-
-msgid "users"
-msgstr "kişi"
-
-msgid "You do not have permission."
-msgstr "Yetkiniz yok."
-
 msgid "Search or type a command…"
 msgstr "Ara veya komut yaz…"
 
@@ -267,21 +246,6 @@ msgstr "Aç"
 
 msgid "None"
 msgstr "Yok"
-
-msgid "Select date"
-msgstr "Tarih seçin"
-
-msgid "Previous month"
-msgstr "Önceki ay"
-
-msgid "Next month"
-msgstr "Sonraki ay"
-
-msgid "Today"
-msgstr "Bugün"
-
-msgid "Clear"
-msgstr "Temizle"
 
 msgid "Switch app"
 msgstr "Uygulama değiştir"
@@ -472,6 +436,9 @@ msgstr "Başlangıç"
 msgid "Filters"
 msgstr "Filtreler"
 
+msgid "Clear"
+msgstr "Temizle"
+
 msgid "Pagination"
 msgstr "Sayfalama"
 
@@ -598,264 +565,6 @@ msgstr "İnternet bağlantısı gelince panel kaldığı yerden açılır."
 msgid "Try again"
 msgstr "Yeniden dene"
 
-msgid "Appearance"
-msgstr "Görünüm"
-
-msgid "Menu and bottom bar"
-msgstr "Menü ve alt bar"
-
-msgid "Permissions"
-msgstr "Yetkiler"
-
-msgid "App (PWA)"
-msgstr "Uygulama (PWA)"
-
-msgid "Choose logo"
-msgstr "Logo seç"
-
-msgid "All other roles"
-msgstr "Diğer tüm roller"
-
-msgid "Custom layout"
-msgstr "Özel düzen"
-
-msgid "Default layout"
-msgstr "Varsayılan düzen"
-
-msgid "Group"
-msgstr "Grup"
-
-msgid "Group name"
-msgstr "Grup adı"
-
-msgid "New group"
-msgstr "Yeni grup"
-
-msgid "+ Add group"
-msgstr "+ Grup ekle"
-
-msgid "Remove group"
-msgstr "Grubu kaldır"
-
-msgid "Menu name (empty = original name)"
-msgstr "Menü adı (boş = özgün ad)"
-
-msgid "Visible"
-msgstr "Görünür"
-
-msgid "Hidden"
-msgstr "Gizli"
-
-msgid "This role has no access"
-msgstr "Bu rol erişemez"
-
-msgid "Submenus"
-msgstr "Alt menüler"
-
-msgid "Reset this role to default"
-msgstr "Bu rolü varsayılana döndür"
-
-msgid "Copy from another role…"
-msgstr "Başka rolden kopyala…"
-
-msgid "Preview"
-msgstr "Önizleme"
-
-msgid "Mobile bottom bar"
-msgstr "Mobil alt bar"
-
-msgid "Up to 4 shortcuts; the fifth button \"More\" opens the side panel."
-msgstr "En fazla 4 kısayol; beşinci düğme \"Daha\" yan paneli açar."
-
-msgid "— empty —"
-msgstr "— boş —"
-
-msgid "Menus of newly installed plugins automatically land in the \"Other\" group."
-msgstr "Yeni kurulan eklentilerin menüleri otomatik \"Diğer\" grubuna düşer."
-
-msgid "You have unsaved changes."
-msgstr "Kaydedilmemiş değişiklik var."
-
-msgid "Block access"
-msgstr "Erişimi engelle"
-
-msgid "Access blocked: not in the menu, opening by URL shows \"no permission\""
-msgstr "Erişim engelli: menüde yok, adresle açılırsa \"yetkiniz yok\" görür"
-
-msgid "Start collapsed"
-msgstr "Kapalı başlasın"
-
-msgid "All permissions: Permissions tab"
-msgstr "Yetkilerin tamamı: Yetkiler sekmesi"
-
-msgid "Access can't be blocked for the Administrator role."
-msgstr "Yönetici rolünde erişim engellenemez."
-
-msgid "Where to show"
-msgstr "Nerede görünsün"
-
-msgid "%s: hidden"
-msgstr "%s: gösterilmez"
-
-msgid "JavaScript is required for this screen."
-msgstr "Bu ekran için JavaScript gerekli."
-
-msgid "New view"
-msgstr "Yeni görünüm"
-
-msgid "Open the new view (same features, works in the FluxWP app too)."
-msgstr "Yeni görünümü aç (aynı özellikler, FluxWP uygulamasında da çalışır)."
-
-msgid "Brand"
-msgstr "Marka"
-
-msgid "On (turning it off restores the standard WordPress dashboard)"
-msgstr "Açık (kapatınca WordPress'in standart paneli döner)"
-
-msgid "Name"
-msgstr "Ad"
-
-msgid "Subtitle"
-msgstr "Alt satır"
-
-msgid "Logo"
-msgstr "Logo"
-
-msgid "Remove"
-msgstr "Kaldır"
-
-msgid "If empty, the site icon is used; if there is none, the Flux Admin icon."
-msgstr "Boşsa site simgesi, o da yoksa Flux Admin simgesi kullanılır."
-
-msgid "Options"
-msgstr "Seçenekler"
-
-msgid "Features"
-msgstr "Özellikler"
-
-msgid "Bottom bar on mobile"
-msgstr "Mobilde alt bar"
-
-msgid "Open WhatsApp and Tasks right next to the side menu (menu shrinks to icons)"
-msgstr "WhatsApp ve Görevler sol menünün hemen sağında açılsın (menü simgelere daralır)"
-
-msgid "Show the app switcher on WhatsApp and Tasks screens on phones"
-msgstr "Telefonda WhatsApp ve Görevler ekranlarında uygulama geçiş düğmesi"
-
-msgid "Fast navigation: the clicked menu page is prepared in advance, transitions are smooth"
-msgstr "Hızlı geçiş: tıklanan menü sayfası önden hazırlanır, geçiş yumuşak olur"
-
-msgid "Command palette (Ctrl+K / ⌘K)"
-msgstr "Komut paleti (Ctrl+K / ⌘K)"
-
-msgid "Style the login screen too"
-msgstr "Giriş ekranını da tasarla"
-
-msgid "Live counter interval"
-msgstr "Canlı sayaç aralığı"
-
-msgid "%d s"
-msgstr "%d sn"
-
-msgid "Badges (WhatsApp, tasks, pending donations, updates) ride on the WordPress Heartbeat request; no extra requests. 60 s is recommended for Hostinger."
-msgstr "Rozetler (WhatsApp, görev, bekleyen bağış, güncelleme) WordPress Heartbeat isteğine eklenir; ayrı istek açılmaz. Hostinger için 60 sn önerilir."
-
-msgid "Each role sees its own side menu and mobile bottom bar. Drag to reorder, rename, hide, group. Hiding does not change permissions; it only removes the item from the menu."
-msgstr "Her rol kendi sol menüsünü ve mobil alt barını görür. Sürükleyip sırala, yeniden adlandır, gizle, grupla. Gizlemek yetkiyi değiştirmez; yalnız menüden kaldırır."
-
-msgid "The menu list is built on the next page load. Reload the page."
-msgstr "Menü listesi bir sonraki sayfa açılışında oluşur. Sayfayı yenileyin."
-
-msgid "\"Block access\" really closes that menu for this role: it isn't shown, and opening it by URL shows a \"no permission\" page. See the Permissions tab for detailed permissions."
-msgstr "\"Erişimi engelle\" o menüyü bu rol için gerçekten kapatır: menüde görünmez, adresle açılırsa \"yetkiniz yok\" sayfası çıkar. Ayrıntılı yetkiler için Yetkiler sekmesi."
-
-msgid "Donation awaiting approval"
-msgstr "Onay bekleyen bağış"
-
-msgid "Unread WhatsApp"
-msgstr "Okunmamış WhatsApp"
-
-msgid "Welcome and summary"
-msgstr "Karşılama ve özet"
-
-msgid "Top section"
-msgstr "Üst bölüm"
-
-msgid "Greeting, date and summary tiles"
-msgstr "Karşılama, tarih ve özet kutucukları"
-
-msgid "Summary tiles"
-msgstr "Özet kutucukları"
-
-msgid "People only see tiles they have permission for. Plugins can add tiles with the `flxa_dashboard_stats` filter."
-msgstr "Kişi yalnız yetkisi olan kutucukları görür. Eklentiler `flxa_dashboard_stats` filtresiyle kutucuk ekleyebilir."
-
-msgid "Extra quick actions"
-msgstr "Ek hızlı işlemler"
-
-msgid "Events|edit.php?post_type=etkinlik\nLive site|https://"
-msgstr "Etkinlikler|edit.php?post_type=etkinlik\nCanlı site|https://"
-
-msgid "One \"Label|Address\" per line. The address can be relative to wp-admin or a full https:// URL."
-msgstr "Satır başına \"Etiket|Adres\". Adres wp-admin'e göre veya tam https:// olabilir."
-
-msgid "Module order and visibility are personal: open \"Edit modules\" on the dashboard and drag the boxes."
-msgstr "Modüllerin sırası ve görünürlüğü kişiye özeldir: Başlangıç'ta \"Modülleri düzenle\" ile açılır, kutular sürüklenerek taşınır."
-
-msgid "Install as an app"
-msgstr "Uygulama olarak yükleme"
-
-msgid "The site is not HTTPS; browsers will not allow installing."
-msgstr "Site HTTPS değil; tarayıcılar yüklemeye izin vermez."
-
-msgid "PWA"
-msgstr "PWA"
-
-msgid "Allow installing the dashboard as an app on phones and computers"
-msgstr "Panel telefona / bilgisayara uygulama gibi yüklenebilsin"
-
-msgid "Opens full screen, shows the unread count on the app icon, and shows an offline screen when the connection drops. Admin pages are never cached."
-msgstr "Tam ekran açılır, uygulama simgesinde okunmamış sayısı görünür, bağlantı kopunca çevrimdışı ekranı çıkar. Panel sayfaları önbelleğe alınmaz."
-
-msgid "App name"
-msgstr "Uygulama adı"
-
-msgid "Short name (under the icon)"
-msgstr "Kısa ad (simge altı)"
-
-msgid "Icon"
-msgstr "Simge"
-
-msgid "The site icon (Appearance › Customize › Site Identity) is used if set."
-msgstr "Site simgesi (Görünüm › Özelleştir › Site kimliği) varsa o kullanılır."
-
-msgid "How to install?"
-msgstr "Nasıl yüklenir?"
-
-msgid "The \"Install\" button on the dashboard, or menu › Install the app."
-msgstr "Başlangıç'taki \"Yükle\" düğmesi veya menü › Uygulamayı yükle."
-
-msgid "Share › Add to Home Screen."
-msgstr "Paylaş › Ana Ekrana Ekle."
-
-msgid "Computer"
-msgstr "Bilgisayar"
-
-msgid "The install icon in the address bar."
-msgstr "Adres çubuğundaki yükle simgesi."
-
-msgid "Save"
-msgstr "Kaydet"
-
-msgid "Check"
-msgstr "Kontrol"
-
-msgid "Status"
-msgstr "Durum"
-
-msgid "Description"
-msgstr "Açıklama"
-
 msgid "%s role has a custom menu layout; other roles use the default grouped menu."
 msgid_plural "%s roles have custom menu layouts; other roles use the default grouped menu."
 msgstr[0] "%s rolünün özel bir menü düzeni vardır; diğer roller varsayılan gruplandırılmış menüyü kullanır."
@@ -921,6 +630,9 @@ msgstr "Yönetim teması açıldı."
 msgid "Admin theme turned off."
 msgstr "Yönetim teması kapatıldı."
 
+msgid "Live counter interval"
+msgstr "Canlı sayaç aralığı"
+
 msgid "Seconds (30, 60 or 120)."
 msgstr "Saniye (30, 60 veya 120)."
 
@@ -947,108 +659,6 @@ msgstr "Rol anahtarı (ör. editor)."
 
 msgid "%s menu reset to default."
 msgstr "%s menüsü varsayılana döndü."
-
-msgid "Background"
-msgstr "Arka plan"
-
-msgid "Side menu"
-msgstr "Sol menü"
-
-msgid "Cards"
-msgstr "Kartlar"
-
-msgid "Text"
-msgstr "Yazı"
-
-msgid "Default theme"
-msgstr "Varsayılan tema"
-
-msgid "Automatic (device setting)"
-msgstr "Otomatik (cihazın ayarı)"
-
-msgid "Everyone can change their own preference with the moon/sun button at the bottom left."
-msgstr "Herkes kendi tercihini sol alttaki ay/güneş düğmesinden değiştirebilir."
-
-msgid "Accent color"
-msgstr "Vurgu rengi"
-
-msgid "Colors"
-msgstr "Renkler"
-
-msgid "Reset colors to default"
-msgstr "Renkleri varsayılana döndür"
-
-msgid "Font"
-msgstr "Yazı tipi"
-
-msgid "System font"
-msgstr "Sistem yazı tipi"
-
-msgid "Custom…"
-msgstr "Özel…"
-
-msgid "Custom: the name of a font installed on the computer or loaded on the site."
-msgstr "Özel: bilgisayarda kurulu ya da sitede yüklü bir yazı tipinin adı."
-
-msgid "Font size"
-msgstr "Yazı boyutu"
-
-msgid "Normal"
-msgstr "Normal"
-
-msgid "Large"
-msgstr "Büyük"
-
-msgid "Larger"
-msgstr "Daha büyük"
-
-msgid "Corners"
-msgstr "Köşeler"
-
-msgid "Sharp"
-msgstr "Keskin"
-
-msgid "Slightly rounded"
-msgstr "Az yuvarlak"
-
-msgid "Rounded"
-msgstr "Yuvarlak"
-
-msgid "Very rounded"
-msgstr "Çok yuvarlak"
-
-msgid "Density"
-msgstr "Yoğunluk"
-
-msgid "Comfortable"
-msgstr "Rahat"
-
-msgid "Compact (more rows in the menu)"
-msgstr "Sıkı (menüde daha çok satır)"
-
-msgid "Icons"
-msgstr "Simgeler"
-
-msgid "Line icons in WordPress menus (FluxWP logos stay in color)"
-msgstr "WordPress menülerinde çizgi simgeler (FluxWP logoları renkli kalır)"
-
-msgid "Package logos"
-msgstr "Paket logoları"
-
-msgid "Gradient (default)"
-msgstr "Degrade (varsayılan)"
-
-msgid "Pastel"
-msgstr "Pastel"
-
-msgid "Used in the side menu, the FluxWP Panel package list and FluxWP App. Colours show the package group: platform, maintenance, communication, content, commerce."
-msgstr "Sol menüde, FluxWP Panel paket listesinde ve FluxWP App'te kullanılır. Renkler paket grubunu gösterir: yönetim, bakım, iletişim, içerik, ticaret."
-
-msgid "Screens without dark theme"
-msgstr "Koyu tema kapalı ekranlar"
-
-msgid "One screen ID or body class per line (may end with *). Complex screens without their own dark theme stay light here."
-msgstr "Satır başına bir ekran kimliği veya gövde sınıfı (sonunda * olabilir). Kendi koyu teması olmayan karmaşık ekranlar burada açık kalır."
 
 msgid "All lists"
 msgstr "Tüm listeler"
@@ -1091,6 +701,9 @@ msgstr "Atanmamış"
 
 msgid "Overdue"
 msgstr "Geciken"
+
+msgid "Today"
+msgstr "Bugün"
 
 msgid "Done in the last 7 days"
 msgstr "Son 7 günde biten"
@@ -1173,6 +786,9 @@ msgstr "Bu yetki tabloda yok."
 msgid "There is no backup to restore."
 msgstr "Geri yüklenecek yedek yok."
 
+msgid "All other roles"
+msgstr "Diğer tüm roller"
+
 msgid "A layout needs at least one menu item."
 msgstr "Bir düzende en az bir menü öğesi olmalı."
 
@@ -1181,6 +797,12 @@ msgstr "Bir menü öğesi seçin."
 
 msgid "Unknown menu action."
 msgstr "Bilinmeyen menü işlemi."
+
+msgid "Donation awaiting approval"
+msgstr "Onay bekleyen bağış"
+
+msgid "Unread WhatsApp"
+msgstr "Okunmamış WhatsApp"
 
 msgid "The logo must be an image from the media library."
 msgstr "Logo, ortam kitaplığından bir görsel olmalı."
@@ -1814,71 +1436,3 @@ msgstr "Modülün gövdesi, başlangıç sayfasının gösterdiği biçimde (Flu
 
 msgid "The user's filters after the change."
 msgstr "Değişiklikten sonra kullanıcının filtreleri."
-
-#: app/manifest.json
-msgid "Use the Flux admin theme"
-msgstr "Flux yönetim temasını kullan"
-
-#: app/manifest.json
-msgid "Brand name"
-msgstr "Marka adı"
-
-#: app/manifest.json
-msgid "Light or dark"
-msgstr "Açık ya da koyu"
-
-#: app/manifest.json
-msgid "Automatic"
-msgstr "Otomatik"
-
-#: app/manifest.json
-msgid "Logo style"
-msgstr "Logo stili"
-
-#: app/manifest.json
-msgid "Gradient"
-msgstr "Degrade"
-
-#: app/manifest.json
-msgid "Line icons"
-msgstr "Çizgi ikonlar"
-
-#: app/manifest.json
-msgid "Bottom bar on phones"
-msgstr "Telefonda alt çubuk"
-
-#: app/manifest.json
-msgid "App rail"
-msgstr "Uygulama rayı"
-
-#: app/manifest.json
-msgid "App switcher"
-msgstr "Uygulama değiştirici"
-
-#: app/manifest.json
-msgid "Fast page changes"
-msgstr "Hızlı sayfa geçişi"
-
-#: app/manifest.json
-msgid "Command palette"
-msgstr "Komut paleti"
-
-#: app/manifest.json
-msgid "Styled login page"
-msgstr "Stilli giriş sayfası"
-
-#: app/manifest.json
-msgid "Dashboard header"
-msgstr "Pano başlığı"
-
-#: app/manifest.json
-msgid "Install wp-admin as an app"
-msgstr "wp-admin'i uygulama olarak kur"
-
-#: app/manifest.json
-msgid "Short name"
-msgstr "Kısa ad"
-
-#: app/manifest.json
-msgid "Saved"
-msgstr "Kaydedildi"

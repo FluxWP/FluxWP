@@ -507,7 +507,8 @@ final class FLXU_Admin {
 		}
 		FLXU_Icon_Cache::warm_missing();
 
-		// The shared React screen is the default when Flux GraphQL runs (classic page: "Classic view" link).
+		// The shared React screen whenever Flux GraphQL runs; the PHP page below is the recovery path without it
+		// (and the installer that its "Install Flux GraphQL" button opens).
 		// phpcs:ignore WordPress.Security.NonceVerification
 		if ( ! isset( $_GET['flxu_install'] ) && empty( $_POST['flxu_do'] ) && flxk_flux_render( 'flxk-packages', self::SLUG ) ) {
 			return;

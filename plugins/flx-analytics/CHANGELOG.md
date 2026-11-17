@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.7.0
+- Klasik (PHP) İstatistikler, Yolculuklar, Ayarlar ve Ürün telemetrisi sayfaları kaldırıldı; wp-admin'de yalnız React ekranları açılır. "Klasik görünüm" bağlantısı, kullanıcı başına görünüm tercihi (`flxan_ui`), eski `admin-post` uçları (`flxan_save`, `flxan_reset`, `flxan_import_koko`, `flxan_aggregate`, `flxan_tm_forget`), `assets/admin.{js,css}`, `assets/journeys.js`, `assets/funnels.js`, `includes/js-strings.php` ve `tools/genstr.py` silindi. CSV indirme (`flxan_export`) ekranlar kullandığı için kaldı. Ekran açılamazsa boş sayfa yerine "Bu ekran yüklenemedi" uyarısı ve yenile düğmesi görünür.
+
 ## 0.6.0
 - Mobil uygulama manifesti GraphQL'e geçti: özet (ziyaretçi, görüntüleme, şu anda), canlı (15 sn yenileme), sayfalar (arama, yalnız 404), yönlendirenler ve kanallar. Metinler İngilizce kaynak + Türkçe çeviri.
 

@@ -1,4 +1,4 @@
-/* Admin theme: the classic page's look (plugins/flx-admin/assets/css/settings.css) on FluxWP tokens. */
+/* Admin theme on FluxWP tokens. */
 .flxad-app{--flxad-bd:var(--flux-border);--flxad-mut:var(--flux-text-muted);--flxad-ac:var(--flux-primary);--flxad-card:var(--flux-surface);max-width:1100px;padding:0 0 24px;color:var(--flux-text);font-size:14px;line-height:1.5;box-sizing:border-box}
 .flxad-app *{box-sizing:border-box}
 .flxad-app h1{font-size:23px;font-weight:600;letter-spacing:0;margin:0}
@@ -9,7 +9,6 @@
 .flxad-title{display:flex;align-items:center;gap:10px}
 .flxad-title img{border-radius:8px}
 .flxad-title small{font-size:13px;font-weight:500;color:var(--flxad-mut)}
-.flxad-classic{font-size:13px}
 .flxad-tabs{display:flex;gap:4px;overflow-x:auto;border-bottom:1px solid var(--flxad-bd);margin:12px 0 18px;padding:0;scrollbar-width:thin}
 .flxad-tab{flex:none;padding:8px 14px;margin:0 0 -1px;border:1px solid transparent;border-bottom:0;border-radius:8px 8px 0 0;color:var(--flxad-mut);font-size:14px;font-weight:500;text-decoration:none;white-space:nowrap;background:none}
 .flxad-tab:hover{color:var(--flux-text)}

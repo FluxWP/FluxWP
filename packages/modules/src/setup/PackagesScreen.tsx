@@ -1,6 +1,5 @@
 // FluxWP Panel › Packages. Same screen in wp-admin (wp-embed) and the FluxWP app; every read and write goes
-// through the FluxWP Panel GraphQL operations (plugins/flx-setup/graphql/operations). It has everything the
-// classic page has: connection card, tabs with counts, search, "only updates", the package table (select,
+// through the FluxWP Panel GraphQL operations (plugins/flx-setup/graphql/operations). Connection card, tabs with counts, search, "only updates", the package table (select,
 // install / update, change version, automatic updates, details), bulk actions, "update all", the step log,
 // the backup strip and the update history.
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -19,7 +18,7 @@ import type { FlxSetupOverviewQuery, FlxSetupPackagesQuery, FlxSetupPackageTab, 
 import { Loading, Modal } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { History } from './History';
-import { ClassicLink, errorText, NoticeBar, SetupProvider, Switch, useSetup, type Notice } from './shared';
+import { errorText, NoticeBar, SetupProvider, Switch, useSetup, type Notice } from './shared';
 
 type Row = FlxSetupPackagesQuery['flxSetupPackages']['nodes'][number];
 type Overview = FlxSetupOverviewQuery['flxSetupOverview'];
@@ -75,7 +74,7 @@ function Packages() {
   const rowsQ = useQuery({
     queryKey: flxQueryKey(scope, FlxSetupPackages, { tab, query, onlyUpdates }),
     placeholderData: keepPreviousData,
-    // The server pages the table (50 at most); the screen shows it whole like the classic page.
+    // The server pages the table (50 at most); the screen shows it whole.
     queryFn: async ({ signal }): Promise<Row[]> => {
       const out: Row[] = [];
       let after: string | null = null;
@@ -273,7 +272,6 @@ function Packages() {
           </button>
           <span className="flxk-muted">{check.data?.flxSetupCheck?.checkedLabel || o?.connection.checkedLabel}</span>
         </div>
-        <ClassicLink t={t} />
       </div>
 
       <NoticeBar notice={notice} onClose={() => setNotice(null)} t={t} />

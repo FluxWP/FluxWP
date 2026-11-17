@@ -7,7 +7,6 @@
  "Settings": "Ayarlar",
  "Flux Backup": "Flux Backup",
  "Automatic pre-update backups, scheduled backups and restore": "Güncelleme öncesi otomatik yedek, zamanlanmış yedek ve geri yükleme",
- "Classic view": "Klasik görünüm",
  "Back up now": "Şimdi yedekle",
  "ZipArchive (PHP zip extension) is not available on the server.": "Sunucuda ZipArchive (PHP zip eklentisi) yok.",
  "The backup folder is not writable: %s": "Yedek klasörü yazılabilir değil: %s",

@@ -1723,5 +1723,6 @@ return array(
   'When' => 'Zaman',
   'No entries' => 'Kayıt yok',
   'Model and tool calls are listed here. Request contents are not sent to the app.' => 'Model ve araç çağrıları burada listelenir. İstek içerikleri uygulamaya gönderilmez.',
+  'Flux GraphQL is not active, so FluxWP screens cannot open.' => 'Flux GraphQL etkin değil, bu yüzden FluxWP ekranları açılamıyor.',
  ),
 );

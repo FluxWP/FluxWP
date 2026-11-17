@@ -526,7 +526,7 @@ html body.flxa .wrap.flxfm-wrap { margin: 0; }
 	.flxfm-aip-ask { flex-direction: column; align-items: stretch; }
 }
 
-/* React screen additions: toasts and the prompt dialog (the classic screen uses Flux Brand's flxDialog). */
+/* React screen additions: toasts and the prompt dialog. */
 .flxfm-toasts { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 100200; display: flex; flex-direction: column; gap: 8px; align-items: center; pointer-events: none; }
 .flxfm-toast { background: #16181d; color: #fff; padding: 10px 16px; border-radius: 12px; font: 14px/1.3 var(--flxa-font, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif); box-shadow: 0 12px 30px -8px rgba(15, 23, 42, .4); max-width: min(520px, 92vw); animation: flxfm-pop .15s ease-out; }
 .flxfm-toast.is-bad { background: #b42318; }

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.6.0
+
+- **Ortak "ekran yüklenemedi" kutusu.** `flx_admin_screen_page()`, `flx_admin_screen_unavailable()` ve `flx_admin_screen_failsafe()`: React ekranı açılamazsa (Flux GraphQL hazır değil, paket dosyası eksik, bundle/parça yüklenemedi, 6 sn sonra ekran hâlâ boş) boş sayfa yerine "Bu ekran yüklenemedi" kutusu ve **Sayfayı yenile** düğmesi çıkar. `flx_admin_screen_render()` bu kutuyu her ekrana kendisi ekler.
+- Ekran kabuğundan klasik sayfa yedeği ve `enabled` örneği kaldırıldı; klasik ekranlar artık yok.
+
 ## 0.5.0
 
 - Eklenti ekranları için ortak runtime (`assets/runtime/`): React, React Query, i18next ve açık `@fluxwp` paketleri sayfaya bir kez yüklenir. `@fluxwp/plugin-kit` ile derlenen bir eklenti yalnız kendi ekranlarını taşır (`assets/flux/flux-screens.js`, birkaç KB) ve `FluxRuntime.register()` ile kaydeder. FluxWP dışındaki eklentiler de wp-admin'e aynı kabukla React ekranı ekleyebilir.

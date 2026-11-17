@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 1.5.0
+- **Klasik görünüm kaldırıldı.** Paketler ve Ayarlar, Flux GraphQL çalıştığı sürece yalnız React ekranıyla açılır; "Klasik görünüm" bağlantısı ve görünüm değiştirme (`flxk_ui`) silindi. Flux GraphQL'i kuran paket Flux Setup olduğu için, Flux GraphQL yokken PHP sayfası yalnız kurtarma yolu olarak kalır ("Flux GraphQL'i kur" düğmesi ve açtığı kurulum adımları).
+- React ekranı açılamazsa (bundle yüklenmedi) boş sayfa yerine "Bu ekran yüklenemedi" kutusu ve **Sayfayı yenile** düğmesi çıkar.
+
 ## 1.4.0
 - GraphQL geçişi (Faz 1): Paketler ve Ayarlar ekranları Flux GraphQL ile çalışan ortak React ekranı (FluxWP uygulamasıyla aynı kod) oldu ve wp-admin'de varsayılan açılır. Klasik sayfanın tüm özellikleri var: bağlantı kartı, sekmeler + sayaçlar, arama, "Yalnız güncellemeler", kur/güncelle, toplu işlem, "Tümünü güncelle", sürüm değiştirme, otomatik güncelleme anahtarı, canlı adım günlüğü, ayrıntı penceresi, yedek şeridi, geçmiş + saklama süresi + yedek silme; Ayarlar'da bağlantı formu ve diğer kaynaklar. Başlıktaki "Klasik görünüm" bağlantısıyla klasik sayfa kullanılabilir (kullanıcı başına).
 - Flux GraphQL kurulu değilken klasik sayfalar açılır ve "Flux GraphQL'i kur" düğmeli uyarı gösterilir; sistem kontrolü satırları değişmez.

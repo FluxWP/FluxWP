@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Wiki
  * Description:       Sitede /wiki altında geliştirici wiki'si: Markdown sayfalar, bölümler, sayfa ağacı ve içindekiler, ayrıntılı anlık arama, SEO uyumlu çıktı. LLM dostu: her sayfa .md olarak açılır ve kopyalanır, /wiki/llms.txt ve llms-full.txt, ChatGPT / Claude'da aç. Flux AI ile "Wiki'ye sor" ve MCP araçları (ara, oku, listele, yaz). Eklenti ve tema yazma, eklentileri AI destekli yapma rehberleriyle gelir.
- * Version:           0.3.1
+ * Version:           0.4.0
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Requires Plugins:  flx-graphql
@@ -25,7 +25,7 @@ if ( defined( 'FLXWK_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXWK_VERSION', '0.3.1' );
+define( 'FLXWK_VERSION', '0.4.0' );
 define( 'FLXWK_FILE', __FILE__ );
 define( 'FLXWK_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXWK_URL', plugin_dir_url( __FILE__ ) );
@@ -56,8 +56,8 @@ if ( is_admin() ) {
 
 /*
  * GraphQL (Flux GraphQL): schema only inside a GraphQL request, plus the persisted operations the wiki
- * screen and the visitor-facing reads send. Without Flux GraphQL (0.2.0+) the schema is left out; REST,
- * the classic settings page and MCP keep working.
+ * screen and the visitor-facing reads send. Without Flux GraphQL (0.2.0+) the schema is left out and the
+ * settings page says it cannot open; REST and MCP keep working.
  */
 add_action(
 	'flx_gql_register',

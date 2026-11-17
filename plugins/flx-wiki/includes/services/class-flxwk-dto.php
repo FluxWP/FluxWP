@@ -1,6 +1,6 @@
 <?php
 /**
- * Typed values the Flux Wiki services return (GraphQL, REST, MCP, Flux AI and the classic pages read
+ * Typed values the Flux Wiki services return (GraphQL, REST, MCP and Flux AI read
  * the same shapes).
  *
  * @package FLX_Wiki

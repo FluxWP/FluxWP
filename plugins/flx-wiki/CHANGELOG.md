@@ -1,5 +1,9 @@
 # Flux Wiki
 
+## 0.4.0
+- **Klasik ayar sayfası kaldırıldı.** Wiki › Ayarlar yalnız React ekranıyla açılır; "Klasik görünüm" bağlantısı, görünüm değiştirme (`flxwk_ui`) ve eski form işleyicileri (`admin_post_flxwk_save`, `admin_post_flxwk_seed`) silindi. Sayfa düzenleyici (WordPress yazı ekranı, Markdown) aynen durur.
+- Ekran açılamazsa (Flux GraphQL hazır değil, paket dosyası eksik, bundle yüklenmedi) boş sayfa yerine "Bu ekran yüklenemedi" kutusu ve **Sayfayı yenile** düğmesi çıkar.
+
 ## 0.3.1
 - FluxWP uygulamasının Wiki ekranları (sayfa listesi, okuma, arama, düzenleme) REST yerine GraphQL kullanır; görünüm aynı. Yeni sorgu `FlxWikiPageRead` (sayfa HTML'i, ID ile). Uygulamanın eski sürümleri Wiki'yi web görünümünde açar.
 

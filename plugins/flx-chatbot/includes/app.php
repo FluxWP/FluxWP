@@ -40,49 +40,20 @@ add_filter(
 );
 
 /*
- * New view (0.2.0, GraphQL): the admin pages open the same React screens as the FluxWP app
- * (assets/flux/, tools/fluxapp/embed-sync.sh flx-chatbot). It is the default and has every feature of the
- * classic pages; a user can switch back to the classic page from the screen header for now.
- * Needs Flux GraphQL.
+ * The admin pages open the same React screens as the FluxWP app (assets/flux/, tools/fluxapp/embed-sync.sh
+ * flx-chatbot). There are no classic pages: without Flux GraphQL or the bundle the page says it cannot open.
  */
 function flxcb_flux_available() {
 	return file_exists( FLXCB_DIR . 'assets/flux/flux-modules.js' ) && function_exists( 'flx_gql_ready' ) && function_exists( 'flx_gql_all_caps' ) && flx_gql_ready();
 }
 
-function flxcb_flux_ui() {
-	return flxcb_flux_available() && 'classic' !== get_user_meta( get_current_user_id(), 'flxcb_ui', true );
-}
-
-/** Page slug => module id of the new view. */
+/** Page slug => module id of the screen. */
 function flxcb_flux_pages() {
 	return array(
 		'flx-chatbot'       => 'flxcb-settings',
 		'flx-chatbot-inbox' => 'flxcb-inbox',
 	);
 }
-
-/** Link that switches the current user between the views, back to the given page. */
-function flxcb_ui_switch_url( $ui, $page = 'flx-chatbot' ) {
-	return wp_nonce_url( admin_url( 'admin.php?page=' . rawurlencode( $page ) . '&flxcb_ui=' . ( 'flux' === $ui ? 'flux' : 'classic' ) ), 'flxcb_ui' );
-}
-
-add_action(
-	'admin_init',
-	static function () {
-		$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-		if ( ! isset( $_GET['flxcb_ui'] ) || ! isset( flxcb_flux_pages()[ $page ] ) || ! is_user_logged_in() ) { // phpcs:ignore WordPress.Security.NonceVerification
-			return;
-		}
-		check_admin_referer( 'flxcb_ui' );
-		if ( 'classic' === $_GET['flxcb_ui'] ) { // phpcs:ignore WordPress.Security.NonceVerification
-			update_user_meta( get_current_user_id(), 'flxcb_ui', 'classic' );
-		} else {
-			delete_user_meta( get_current_user_id(), 'flxcb_ui' );
-		}
-		wp_safe_redirect( admin_url( 'admin.php?page=' . $page ) );
-		exit;
-	}
-);
 
 /** The chunked bundle loads as an ES module. */
 function flxcb_flux_module_tag( $tag, $handle ) {
@@ -121,7 +92,6 @@ function flxcb_flux_assets( $page ) {
 			'primary'         => $accent,
 			'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
 		),
-		'classicUrl' => flxcb_ui_switch_url( 'classic', $page ),
 	);
 	if ( 'flx-chatbot' === $page ) {
 		wp_enqueue_media(); // Avatar picker.
@@ -137,18 +107,20 @@ function flxcb_flux_assets( $page ) {
 	);
 }
 
-/** Markup the screen mounts into. */
+/** Markup the screen mounts into, or the "could not be loaded" box when the screen cannot open. */
 function flxcb_flux_mount() {
-	echo '<style>#flxcb-app.flux-root{height:auto;background:transparent;font-family:inherit}</style>';
-	echo '<div class="wrap flxcb-wrap"><div id="flxcb-app"><noscript>' . esc_html__( 'JavaScript is required for this screen.', 'flx-chatbot' ) . '</noscript></div></div>';
-}
-
-/** "New view" link of the classic pages. */
-function flxcb_flux_switch_link( $page ) {
 	if ( ! flxcb_flux_available() ) {
+		if ( function_exists( 'flx_admin_screen_unavailable' ) ) {
+			flx_admin_screen_unavailable();
+		}
 		return;
 	}
-	echo '<p><a class="button" href="' . esc_url( flxcb_ui_switch_url( 'flux', $page ) ) . '">' . esc_html__( 'New view', 'flx-chatbot' ) . '</a> <span class="flxcb-muted">' . esc_html__( 'Open the new view (same features, works in the FluxWP app too).', 'flx-chatbot' ) . '</span></p>';
+	echo '<style>#flxcb-app.flux-root{height:auto;background:transparent;font-family:inherit}</style>';
+	echo '<div class="wrap flxcb-wrap"><div id="flxcb-app"><noscript>' . esc_html__( 'JavaScript is required for this screen.', 'flx-chatbot' ) . '</noscript></div>';
+	if ( function_exists( 'flx_admin_screen_failsafe' ) ) {
+		flx_admin_screen_failsafe( 'flxcb-app' );
+	}
+	echo '</div>';
 }
 
 /*

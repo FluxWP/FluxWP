@@ -1,4 +1,4 @@
-/* Wiki: the classic settings page's look (plugins/flx-wiki/assets) on FluxWP tokens. */
+/* Wiki screen on FluxWP tokens. */
 .flxw-app{--flxw-bd:var(--flux-border);--flxw-mut:var(--flux-text-muted);--flxw-ac:var(--flux-primary);--flxw-card:var(--flux-surface);max-width:1100px;padding:0 0 24px;color:var(--flux-text);font-size:14px;line-height:1.5}
 .flxw-app h1{font-size:23px;font-weight:600;letter-spacing:0;margin:0}
 .flxw-app h2{font-size:16px;font-weight:600;margin:0 0 8px;display:block}
@@ -6,7 +6,6 @@
 .flxw-app code{background:none;border:0;padding:0;font-family:var(--flux-font-mono,monospace);font-size:12px}
 .flxw-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:9px 0 8px}
 .flxw-links{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.flxw-classic{font-size:13px}
 .flxw-notice{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;background:var(--flxw-card);border:1px solid var(--flxw-bd);border-left:4px solid var(--flux-success);border-radius:6px;padding:10px 12px;margin:12px 0}
 .flxw-notice.is-error{border-left-color:var(--flux-danger)}
 .flxw-notice.is-warn{border-left-color:var(--flux-warning)}

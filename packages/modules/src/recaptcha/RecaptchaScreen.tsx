@@ -1,6 +1,6 @@
 // Flux reCAPTCHA. Same screen in wp-admin (wp-embed) and the FluxWP app; every read and write goes
 // through the Flux reCAPTCHA GraphQL operations (plugins/flx-recaptcha/graphql/operations).
-// It has everything the classic page has: state and last 30 days, keys with the Google test, the
+// It is the only admin page (no classic page): state and last 30 days, keys with the Google test, the
 // protected forms, options, IP allow list. The secret key is write-only: it is typed, sent once and
 // never read back.
 import { useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from 'react';
@@ -83,7 +83,6 @@ export function RecaptchaScreen() {
 }
 
 function Recaptcha() {
-  const host = useHost();
   const { i18n } = useTranslation();
   const { t } = useMemo(() => translator(i18n.language), [i18n.language]);
   const { scope } = useGraphQL();
@@ -280,11 +279,6 @@ function Recaptcha() {
           <h1>{t('reCAPTCHA')}</h1>
           <p className="flxrc-lead">{t('Protects login, registration, comments, checkout, donations and form submissions from bots with Google reCAPTCHA. Choose below which forms to protect.')}</p>
         </div>
-        {host.classicUrl && (
-          <a className="flxrc-classic" href={host.classicUrl}>
-            {t('Classic view')}
-          </a>
-        )}
       </div>
 
       {notice && (

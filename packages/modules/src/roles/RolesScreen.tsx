@@ -1,6 +1,6 @@
 // Flux Roles › Roles and access. Same screen in wp-admin (wp-embed) and the FluxWP app; every read and
 // write goes through the Flux Roles GraphQL operations (plugins/flx-roles/graphql/operations).
-// It has everything the classic page has: role cards, new role, the permission table, screen after
+// It is the only admin page (no classic page): role cards, new role, the permission table, screen after
 // login, referral link lifetime, reset to defaults, people (WhatsApp number, referral link, add/remove).
 import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -133,11 +133,6 @@ function Roles() {
     <div className="flxr-app">
       <div className="flxr-head">
         <h1>{t('Roles and access')}</h1>
-        {host.classicUrl && (
-          <a className="flxr-classic" href={host.classicUrl}>
-            {t('Classic view')}
-          </a>
-        )}
       </div>
       {notice && (
         <div className={'flxr-notice is-' + notice.kind} role={notice.kind === 'error' ? 'alert' : 'status'}>

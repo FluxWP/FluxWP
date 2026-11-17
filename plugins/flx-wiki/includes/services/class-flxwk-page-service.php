@@ -1,6 +1,6 @@
 <?php
 /**
- * Wiki pages and sections: read, list, tree, save, trash, preview. GraphQL, MCP and the classic screens
+ * Wiki pages and sections: read, list, tree, save, trash, preview. GraphQL, MCP and the post editor
  * call these methods; the permission rules live here, so every entry point behaves the same.
  *
  * @package FLX_Wiki

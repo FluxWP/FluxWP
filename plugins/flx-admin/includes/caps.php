@@ -1,13 +1,9 @@
 <?php
 /**
- * Ayarlar › Yönetim teması › Yetkiler: rol × yetki tablosu. Menüde gizlemekten farklı olarak burada
- * yapılan değişiklik WordPress yetkisini gerçekten değiştirir (add_cap/remove_cap).
- * Yönetici (administrator) sütunu salt okunur. İlk değişiklikten önce tüm rollerin yetkileri
- * `flxa_caps_backup` seçeneğine yedeklenir; "Yedeği geri yükle" ile ilk hâline dönülür.
+ * Ayarlar › Yönetim teması › Yetkiler: rol × yetki tablosunun satırları (bilinen yetkiler ve adları).
+ * Tablo React ekranında (CapsTable); kaydetme ve yedekten geri yükleme FLXA_Caps_Service'te.
  */
 defined( 'ABSPATH' ) || exit;
-
-add_action( 'admin_post_flxa_caps_restore', 'flxa_caps_restore' );
 
 /** Bilinen yetkilerin okunur adları, gruplara ayrılmış. */
 function flxa_caps_known() {
@@ -103,76 +99,4 @@ function flxa_caps_rows() {
 		$groups['flx'] = array( 'label' => __( 'FluxWP plugins', 'flx-admin' ), 'caps' => $flx );
 	}
 	return $groups;
-}
-
-function flxa_caps_render() {
-	$roles  = wp_roles()->roles;
-	$groups = flxa_caps_rows();
-	$counts = count_users();
-	$users  = (array) ( $counts['avail_roles'] ?? array() );
-	$backup = get_option( 'flxa_caps_backup' );
-
-	echo '<p class="flxa-lead">' . esc_html__( 'Changes here are real permissions: a disabled action is not just hidden from the menu, it can\'t be done even by URL. The Administrator role can\'t be changed.', 'flx-admin' ) . '</p>';
-	if ( is_array( $backup ) ) {
-		$url = wp_nonce_url( admin_url( 'admin-post.php?action=flxa_caps_restore' ), 'flxa_caps_restore' );
-		echo '<div class="notice notice-info inline flxa-caps-backup"><p>' . esc_html(
-			sprintf(
-				/* translators: %s: date */
-				__( 'Permissions before the first change are backed up (%s).', 'flx-admin' ),
-				flx_date( (int) ( $backup['_time'] ?? 0 ), 'datetime' )
-			)
-		) . ' <a href="' . esc_url( $url ) . '" data-flx-confirm-danger data-flx-confirm="' . esc_attr__( 'Restore all roles to the backup?', 'flx-admin' ) . '">' . esc_html__( 'Restore backup', 'flx-admin' ) . '</a></p></div>';
-	}
-	echo '<div class="flxa-card flxa-caps-wrap"><div class="flxa-caps-scroll"><table class="flxa-caps"><thead><tr><th class="flxa-caps-name"><input type="search" class="flxa-caps-filter" placeholder="' . esc_attr__( 'Search permissions…', 'flx-admin' ) . '" data-flxa-caps-filter></th>';
-	foreach ( $roles as $rk => $r ) {
-		echo '<th class="flxa-caps-role' . ( 'administrator' === $rk ? ' is-admin' : '' ) . '"><span>' . esc_html( translate_user_role( $r['name'] ) ) . '</span><small>' . (int) ( $users[ $rk ] ?? 0 ) . ' ' . esc_html__( 'users', 'flx-admin' ) . '</small></th>';
-	}
-	echo '</tr></thead>';
-	foreach ( $groups as $g ) {
-		echo '<tbody><tr class="flxa-caps-group"><th colspan="' . ( count( $roles ) + 1 ) . '">' . esc_html( $g['label'] ) . '</th></tr>';
-		foreach ( $g['caps'] as $cap => $label ) {
-			echo '<tr data-cap="' . esc_attr( $cap . ' ' . strtolower( $label ) ) . '"><th class="flxa-caps-name" scope="row">' . ( '' !== $label ? esc_html( $label ) . ' ' : '' ) . '<code>' . esc_html( $cap ) . '</code></th>';
-			foreach ( $roles as $rk => $r ) {
-				$on = ! empty( $r['capabilities'][ $cap ] );
-				if ( 'administrator' === $rk ) {
-					echo '<td class="is-admin"><input type="checkbox" disabled ' . checked( $on, true, false ) . ' aria-label="' . esc_attr( $cap ) . '"></td>';
-				} else {
-					echo '<td><input type="checkbox" name="caps[' . esc_attr( $rk ) . '][' . esc_attr( $cap ) . ']" value="1" ' . checked( $on, true, false ) . ' aria-label="' . esc_attr( translate_user_role( $r['name'] ) . ': ' . $cap ) . '"></td>';
-				}
-			}
-			echo '</tr>';
-		}
-		echo '</tbody>';
-	}
-	echo '</table></div></div>';
-	echo '<input type="hidden" name="caps_shown" value="' . esc_attr( implode( ',', array_merge( ...array_values( array_map( static fn( $g ) => array_keys( $g['caps'] ), $groups ) ) ) ) ) . '">';
-	echo '<script>(function(){var f=document.querySelector("[data-flxa-caps-filter]");if(!f)return;f.addEventListener("input",function(){var q=f.value.toLowerCase().trim();document.querySelectorAll(".flxa-caps tr[data-cap]").forEach(function(tr){tr.hidden=q&&tr.getAttribute("data-cap").indexOf(q)<0;});});})();</script>';
-}
-
-/** Kaydet: yalnız tabloda gösterilen yetkiler, yönetici dışındaki roller (FLXA_Caps_Service). */
-function flxa_caps_save() {
-	$shown = array_values( array_filter( array_map( 'sanitize_key', explode( ',', (string) wp_unslash( $_POST['caps_shown'] ?? '' ) ) ) ) ); // phpcs:ignore WordPress.Security.NonceVerification, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-	$in    = isset( $_POST['caps'] ) && is_array( $_POST['caps'] ) ? wp_unslash( $_POST['caps'] ) : array(); // phpcs:ignore WordPress.Security.NonceVerification, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-	if ( ! $shown ) {
-		return;
-	}
-	foreach ( array_keys( wp_roles()->roles ) as $rk ) {
-		$on = array();
-		foreach ( $shown as $cap ) {
-			if ( ! empty( $in[ $rk ][ $cap ] ) ) {
-				$on[] = $cap;
-			}
-		}
-		FLXA_Caps_Service::apply( (string) $rk, $on, $shown );
-	}
-}
-
-function flxa_caps_restore() {
-	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_die( esc_html__( 'You do not have permission.', 'flx-admin' ), 403 );
-	}
-	check_admin_referer( 'flxa_caps_restore' );
-	FLXA_Caps_Service::restore();
-	wp_safe_redirect( add_query_arg( array( 'tab' => 'caps', 'updated' => 1 ), flxa_settings_url() ) );
-	exit;
 }

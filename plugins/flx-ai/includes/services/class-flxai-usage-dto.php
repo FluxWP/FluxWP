@@ -1,7 +1,7 @@
 <?php
 /**
  * Typed values of the usage service: spending, reports, billing, logs and connected systems.
- * GraphQL, the classic pages and Flux AI read the same shapes.
+ * GraphQL, the REST routes and Flux AI read the same shapes.
  *
  * @package FLX_AI
  */

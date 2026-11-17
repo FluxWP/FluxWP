@@ -1,7 +1,7 @@
 <?php
 /**
  * Flux Speed service layer: the data and the actions of the Performance screens, in one place.
- * The classic admin handlers, the GraphQL schema and the AI tools call these methods, so the three
+ * The GraphQL schema, REST and the AI tools call these methods, so the three
  * cannot drift apart. Output is plain arrays whose keys match the GraphQL field names (camelCase);
  * nothing here needs Flux GraphQL.
  *
@@ -19,7 +19,7 @@ final class FLXP_Speed_Service {
 	/** Cache tag of the settings-like data (kept for the GraphQL cache purge convention). */
 	public const CACHE_TAG = 'flx-speed:data';
 
-	/** Page size of the records list (same as the classic list). */
+	/** Page size of the records list (the screen's list). */
 	public const RECORDS_PAGE = 30;
 
 	/* ------------------------------------------------------------ Typed readers */
@@ -131,7 +131,7 @@ final class FLXP_Speed_Service {
 	}
 
 	/**
-	 * Tabs the current person may open, in the classic order.
+	 * Tabs the current person may open, in menu order.
 	 *
 	 * @return list<array{key:string,label:string,adminOnly:bool}>
 	 */
@@ -185,7 +185,7 @@ final class FLXP_Speed_Service {
 		return array(
 			'canManage'  => self::can_manage(),
 			'recording'  => ! empty( flxp_settings( 'record' ) ),
-			'classicUrl' => admin_url( 'admin.php?page=flx-speed' ),
+			'classicUrl' => admin_url( 'admin.php?page=flx-speed' ), // Old field kept for app clients: the same (React) page.
 			'adminUrl'   => admin_url(),
 			'tabs'       => self::tabs(),
 			'flags'      => $flags,
@@ -483,7 +483,7 @@ final class FLXP_Speed_Service {
 	/* ------------------------------------------------------------ Server */
 
 	/**
-	 * Key-value boxes of the Server tab, same rows as the classic tab.
+	 * Key-value boxes of the Server tab, same rows on every client.
 	 *
 	 * @return list<array{key:string,title:string,rows:list<array{label:string,value:string}>}>
 	 */
@@ -929,7 +929,7 @@ final class FLXP_Speed_Service {
 	}
 
 	/**
-	 * Saves the general settings (the same rules as the classic form).
+	 * Saves the general settings (one set of rules for every client).
 	 *
 	 * @param array<string,mixed> $in Raw values with the stored setting names.
 	 * @return array{loginChanged:bool,loginRemoved:bool}|WP_Error
@@ -1115,7 +1115,7 @@ final class FLXP_Speed_Service {
 	}
 
 	/**
-	 * Runs one operation of the Cache tab (the same as the classic buttons).
+	 * Runs one operation of the Cache tab (the screen's buttons).
 	 *
 	 * @return array{code:string,message:string}|WP_Error
 	 */

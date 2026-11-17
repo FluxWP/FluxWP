@@ -1,5 +1,9 @@
 # Flux AI Chatbot
 
+## 0.4.0
+- **Klasik sayfalar kaldırıldı.** Ayarlar ve Site sohbetleri yalnız React ekranıyla açılır; "Klasik görünüm" bağlantısı, görünüm değiştirme (`flxcb_ui`), eski istemci (assets/admin.js, admin.css, inbox.js) ve klasik form kaydı (`admin_post_flxcb_save`) silindi.
+- Ekran açılamazsa (Flux GraphQL hazır değil, paket dosyası eksik, bundle yüklenmedi) boş sayfa yerine "Bu ekran yüklenemedi" kutusu ve **Sayfayı yenile** düğmesi çıkar.
+
 ## 0.3.0
 - FluxWP mobil uygulamasında Sohbet botu native çizilir (ortak manifest `app/manifest.json` + `app/inbox.json`, GraphQL): son 30 gün özeti ve durum, temel ayarlar (kim cevaplar, karşılama, e-posta, puan, dosya), site sohbetleri listesi (arama, filtre), sohbet ayrıntısı (mesajlar, cevapla, kapat, sil, ara/e-posta). Flux Chat birleşik gelen kutusu açıksa sohbetler orada kalır. Masaüstü panel React ekranlarını kullanmaya devam eder.
 

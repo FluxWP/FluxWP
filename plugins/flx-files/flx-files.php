@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Files
  * Description:       Modern dosya yöneticisi: site dosyalarına göz at, yükle (sürükle-bırak, büyük dosyalar parça parça), kod editöründe düzenle, ZIP indir/arşivle/aç, izinleri değiştir. Silinenler Çöp kutusu'nda bekler, her kayıtta önceki sürüm saklanır, tüm işlemler Etkinlik'te. Flux AI ve MCP ile dosya listele, oku, ara; yazma ve silme onayla. Uploads içindeki bir klasör [flx_files] kısa koduyla sitede belge kütüphanesi olur.
- * Version:           0.3.0
+ * Version:           0.4.0
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Requires Plugins:  flx-graphql
@@ -25,7 +25,7 @@ if ( defined( 'FLXFM_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXFM_VERSION', '0.3.0' );
+define( 'FLXFM_VERSION', '0.4.0' );
 define( 'FLXFM_FILE', __FILE__ );
 define( 'FLXFM_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXFM_URL', plugin_dir_url( __FILE__ ) );
@@ -48,7 +48,7 @@ if ( is_admin() ) {
 /*
  * GraphQL (Flux GraphQL): the schema is registered only inside a GraphQL request, with the persisted
  * operations the Flux Files screen sends. Without Flux GraphQL (0.2.0+, capability model) the schema is
- * left out; REST (`flx-files/v1/op`) and the classic screen keep working.
+ * left out, the admin page says it cannot open and REST (`flx-files/v1/op`) keeps working.
  */
 add_action(
 	'flx_gql_register',

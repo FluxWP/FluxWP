@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.13.0
+- Klasik (PHP) SEO sekmeleri (Genel, Kurum ve sosyal, SEO kontrolü, Site denetimi, Ayarlar) kaldırıldı; wp-admin'de yalnız React ekranı açılır. "Klasik görünüm" bağlantısı, kullanıcı başına görünüm tercihi (`flxseo_ui`), `options.php` ayar formu, eski uçlar (`wp_ajax_flxseo_audit_local`, `wp_ajax_flxseo_audit_psi`, `admin-post` `flxseo_audit_settings`, `flxseo_audit_fix`, `flxseo_guide`, `flxseo_indexnow_all`) ve sayfa çizen yardımcılar (geçmiş grafikleri, puan halkaları) silindi. Ekran açılamazsa boş sayfa yerine "Bu ekran yüklenemedi" uyarısı ve yenile düğmesi görünür.
+
 ## 1.12.0
 - FluxWP mobil uygulamasında SEO (denetim özeti, bulgular ve tek dokunuşla düzeltme, içerik kontrolü, denetim geçmişi, ayarlar; denetim ve PageSpeed başlatma) artık web görünümü yerine uygulamanın kendi ekranlarında açılır (manifest `app/manifest.json`, veri GraphQL'den). Masaüstü ve wp-admin aynı React ekranında kalır. Yeni metinlerin Türkçesi eklendi.
 

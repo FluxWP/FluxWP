@@ -6,7 +6,6 @@
  "Role added; it starts with admin panel access only. Turn on its permissions in the table.": "Rol eklendi; yalnız panele girme yetkisiyle başlar. Tablodan yetkilerini açın.",
  "Role deleted; its people moved to the default role.": "Rol silindi; kişileri varsayılan role geçti.",
  "Roles and access": "Roller ve erişim",
- "Classic view": "Klasik görünüm",
  "Close": "Kapat",
  "Turn on and off what each role can access. A disabled action disappears from the menu and can't be done even by URL. The WordPress Administrator sees everything.": "Rollerin neye erişeceğini buradan açıp kapatın. Kapatılan işlem menüden kalkar, adresle girilse de yapılamaz. WordPress yöneticisi (Administrator) her şeyi görür.",
  "Delete this role? Its people move to the default role.": "Bu rol silinsin mi? Kişileri varsayılan role geçer.",

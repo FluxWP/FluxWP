@@ -1,7 +1,7 @@
 <?php
 /**
  * Chatbot settings screen: saving, the Connections card and the data the live preview needs.
- * The classic settings page (admin-post), the GraphQL mutation and the React screen all use this class.
+ * The GraphQL mutation and the React screen use this class.
  *
  * @package FLX_Chatbot
  */

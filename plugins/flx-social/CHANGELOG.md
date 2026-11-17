@@ -1,5 +1,9 @@
 # Değişiklik günlüğü
 
+## 0.5.0
+- **Klasik ekran kaldırıldı.** Sosyal Medya yalnız React ekranıyla açılır; "Klasik görünüm" bağlantısı, görünüm değiştirme (`flxsm_ui`), eski istemci (assets/js, assets/css/app.css) ve includes/js-strings.php silindi.
+- Ekran açılamazsa (Flux GraphQL hazır değil, paket dosyası eksik, bundle yüklenmedi) boş sayfa yerine "Bu ekran yüklenemedi" kutusu ve **Sayfayı yenile** düğmesi çıkar.
+
 ## 0.4.0
 - Mobil uygulama manifesti GraphQL'e geçti: gönderiler (arama, durum filtresi), gönderi ayrıntısı, takvim, hesaplar; onayla, geri gönder, şimdi yayımla, sil, hesabı aç/kapat. Metinler İngilizce kaynak + Türkçe çeviri.
 

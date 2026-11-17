@@ -1,6 +1,6 @@
 // FluxWP theme › Theme Settings. Same screen in wp-admin (wp-embed) and the FluxWP app; every read and
 // write goes through the theme's GraphQL operations (themes/fluxwp/graphql/operations).
-// It has everything the classic page has: site visibility (coming soon, synced with WooCommerce),
+// Site visibility (coming soon, synced with WooCommerce),
 // appearance, cookie banner, Google Analytics and consent scripts, bank account, payment logos and the
 // "migrate from the previous theme" action. The Presets tab stays a WordPress page (Flux Setup).
 import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from 'react';
@@ -89,7 +89,7 @@ declare global {
 
 const draftOf = (s: Settings): Draft => ({ ...(Object.fromEntries(EDITABLE.map((k) => [k, s[k]])) as Pick<Settings, EditKey>), cookieReset: false });
 
-/** IBAN in groups of four, like the classic page. */
+/** IBAN in groups of four. */
 const iban = (v: string) => v.replace(/\s+/g, '').replace(/(.{4})/g, '$1 ').trim();
 
 export function ThemeSettingsScreen() {
@@ -224,11 +224,6 @@ function ThemeSettings() {
     <div className="flxt-app">
       <div className="flxt-head">
         <h1>{t('Theme Settings')}</h1>
-        {host.classicUrl && (
-          <a className="flxt-classic" href={host.classicUrl}>
-            {t('Classic view')}
-          </a>
-        )}
       </div>
       {s.presetsUrl && (
         <nav className="flxt-tabs" aria-label={t('Theme Settings')}>

@@ -253,7 +253,6 @@
     "ai_edit_hint": "AI bir değişiklik önerir ve farkı gösterir. Uygulayıp Kaydet'e basana kadar hiçbir şey kaydedilmez.",
     "ai_suggest": "Değişiklik öner",
     "ai_apply": "Editörde uygula",
-    "classic_view": "Klasik görünüm",
     "up_level": "Bir üst klasör",
     "ai_applied": "Editörde uygulandı. Kontrol edip Kaydet'e basın."
 }

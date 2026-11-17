@@ -1,5 +1,9 @@
 # Flux Studio — Değişiklikler
 
+## 0.7.0
+- **Klasik ekran kaldırıldı.** Stüdyo yalnız React ekranıyla açılır; "Klasik görünüm" düğmesi, görünüm değiştirme (`flxst_ui`), eski istemci (assets/js, assets/css/app.css) ve includes/js-strings.php silindi.
+- Ekran açılamazsa (Flux GraphQL hazır değil, paket dosyası eksik, bundle yüklenmedi) boş sayfa yerine "Bu ekran yüklenemedi" kutusu ve **Sayfayı yenile** düğmesi çıkar.
+
 ## 0.6.0
 - Mobil uygulama manifesti GraphQL'e geçti: galeri (arama, görsel/video, yıldızlı filtresi, sayfalama), öğe ayrıntısı, yıldız ekle/kaldır, dosyayı aç. Metinler İngilizce kaynak + Türkçe çeviri.
 

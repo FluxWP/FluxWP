@@ -1,4 +1,4 @@
-/* Flux Block Editor dashboard: the classic dashboard's look (cards in a grid) on FluxWP tokens. */
+/* Flux Block Editor dashboard (cards in a grid) on FluxWP tokens. */
 .flxbk-app{--flxbk-bd:var(--flux-border);--flxbk-mut:var(--flux-text-muted);--flxbk-ac:var(--flux-primary);--flxbk-card:var(--flux-surface);max-width:1200px;padding:0 0 24px;color:var(--flux-text);font-size:14px;line-height:1.5}
 .flxbk-app h1{font-size:23px;font-weight:600;letter-spacing:0;margin:0}
 .flxbk-app h2{font-size:16px;font-weight:600;margin:0 0 6px;display:block}

@@ -1,7 +1,7 @@
 <?php
 /**
  * The approval queue: actions the assistant prepared that wait for the signed-in user, and open change
- * requests. The classic page and GraphQL share this class.
+ * requests. GraphQL and the REST routes share this class.
  *
  * @package FLX_AI
  */

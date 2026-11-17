@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.11.0
+- Klasik (PHP) Performans sayfası ve sekmeleri (Özet, Kayıtlar, Sunucu, Veritabanı, Autoload, Cron, Sistem kontrolü, PageSpeed, Önbellek, Ayarlar) kaldırıldı; wp-admin'de yalnız React ekranı açılır. "Klasik görünüm" bağlantısı, kullanıcı başına görünüm tercihi (`flxp_ui`), eski `admin-post` uçları (`flxp_save`, `flxp_clear`, `flxp_cleanup`, `flxp_profile`, `flxp_ps_save`, `flxp_ps_clear`, `flxp_cache`) ve `includes/admin-pagespeed.php`, `includes/admin-cache.php` silindi. Pano bileşeni ve ön yüz paneli değişmedi. Ekran açılamazsa boş sayfa yerine "Bu ekran yüklenemedi" uyarısı ve yenile düğmesi görünür.
+- GraphQL `FlxSpeedConfig.classicUrl` alanı uygulama istemcileri için şimdilik duruyor; artık aynı (React) sayfayı gösterir.
+
 ## 0.10.0
 - FluxWP mobil uygulamasında Performans ekranları native çizilir (ortak manifest `app/manifest.json`, GraphQL): son 24 saat özeti, istek kayıtları ve ayrıntısı, önbellek durumu ve işlemleri (boşalt, test, onar, sayfa önbelleği aç/kapat), veritabanı temizliği, ayarlar. Masaüstü panel React ekranını kullanmaya devam eder.
 

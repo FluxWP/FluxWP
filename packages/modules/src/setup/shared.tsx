@@ -1,5 +1,5 @@
 // Pieces both FluxWP Panel screens (Packages, Settings) use: the GraphQL provider, translator,
-// notices, the on/off switch, and the "classic view" link.
+// notices, the on/off switch.
 import { useMemo, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from '@tanstack/react-query';
@@ -53,16 +53,6 @@ export function Switch({ checked, onChange, label, disabled }: { checked: boolea
       <input type="checkbox" role="switch" checked={checked} disabled={disabled} onChange={(e) => onChange(e.target.checked)} aria-label={label} />
       <span aria-hidden="true" />
     </label>
-  );
-}
-
-export function ClassicLink({ t }: { t: Translate }) {
-  const host = useHost();
-  if (!host.classicUrl) return null;
-  return (
-    <a className="flxk-classic" href={host.classicUrl}>
-      {t('Classic view')}
-    </a>
   );
 }
 

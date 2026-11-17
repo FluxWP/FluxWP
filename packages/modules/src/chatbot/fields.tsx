@@ -1,4 +1,4 @@
-// Form controls of the Chatbot settings screen. Same markup and class names as the classic page.
+// Form controls of the Chatbot settings screen.
 import type { ReactNode } from 'react';
 
 export type Tr = (source: string, ...args: (string | number)[]) => string;

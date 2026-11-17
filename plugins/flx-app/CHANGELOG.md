@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.8.0
+- **Klasik sayfalar kaldırıldı.** Uygulama (yönetici) ve Uygulama erişimi sayfaları yalnız React ekranıyla açılır; "Klasik görünüm" bağlantısı, görünüm değiştirme (`flxapp_ui`), klasik formlar ve admin-post işleyicileri (includes/admin-appearance.php, assets/admin.css) silindi. Ekranların okuduğu kataloglar includes/admin-catalogs.php'ye taşındı.
+- Ekran açılamazsa (Flux GraphQL hazır değil, paket dosyası eksik, bundle yüklenmedi) boş sayfa yerine "Bu ekran yüklenemedi" kutusu ve **Sayfayı yenile** düğmesi çıkar.
+
 ## 0.7.1
 - Doğrulama: `request.graphql.op` olan aksiyon `request.path` istemez.
 - Manifest çevirisi `text`, `caption`, `subtitle`, `sub` anahtarlarını da çevirir; şablon içeren metin de çevrilir (`{{passed}} passed` → `{{passed}} geçti`), yalnız şablondan oluşan değer çevrilmez. Kaynaktan gelen seçeneklerin (`options: {source, path, value, label}`) alan yolları çevrilmez.

@@ -1,9 +1,7 @@
 <?php
-/** Yönetim: tam ekran Sosyal Medya uygulaması (wp-admin içinde kendi arayüzü). */
+/** Yönetim: tam ekran Sosyal Medya uygulaması (ortak React ekranı; klasik ekran yoktur). */
 
 defined( 'ABSPATH' ) || exit;
-
-require_once FLXSM_DIR . 'includes/js-strings.php';
 
 add_action(
 	'admin_menu',
@@ -39,39 +37,12 @@ add_action(
 );
 
 /*
- * New view (0.3.0, GraphQL): the screen opens the same React screen as the FluxWP app (assets/flux/,
- * tools/fluxapp/embed-sync.sh flx-social). It is the default and has every feature of the classic screen;
- * a user can switch back to the classic screen from the screen header for now. Needs Flux GraphQL.
+ * The screen is the same React screen as the FluxWP app (assets/flux/, tools/fluxapp/embed-sync.sh
+ * flx-social). Without Flux GraphQL or the bundle the page says it cannot open.
  */
 function flxsm_flux_available() {
 	return file_exists( FLXSM_DIR . 'assets/flux/flux-modules.js' ) && function_exists( 'flx_gql_ready' ) && function_exists( 'flx_gql_all_caps' ) && flx_gql_ready();
 }
-
-function flxsm_flux_ui() {
-	return flxsm_flux_available() && 'classic' !== get_user_meta( get_current_user_id(), 'flxsm_ui', true );
-}
-
-/** Link that switches the current user between the views. */
-function flxsm_ui_switch_url( $ui ) {
-	return wp_nonce_url( admin_url( 'admin.php?page=flx-social&flxsm_ui=' . ( 'flux' === $ui ? 'flux' : 'classic' ) ), 'flxsm_ui' );
-}
-
-add_action(
-	'admin_init',
-	function () {
-		if ( ! isset( $_GET['flxsm_ui'], $_GET['page'] ) || 'flx-social' !== $_GET['page'] || ! flxsm_can_post() ) { // phpcs:ignore WordPress.Security.NonceVerification
-			return;
-		}
-		check_admin_referer( 'flxsm_ui' );
-		if ( 'classic' === $_GET['flxsm_ui'] ) {
-			update_user_meta( get_current_user_id(), 'flxsm_ui', 'classic' );
-		} else {
-			delete_user_meta( get_current_user_id(), 'flxsm_ui' );
-		}
-		wp_safe_redirect( admin_url( 'admin.php?page=flx-social' ) );
-		exit;
-	}
-);
 
 /** The chunked bundle loads as an ES module. */
 function flxsm_flux_module_tag( $tag, $handle ) {
@@ -105,7 +76,6 @@ function flxsm_flux_assets() {
 			'primary'         => $accent,
 			'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
 		),
-		'classicUrl' => flxsm_ui_switch_url( 'classic' ),
 	);
 	wp_enqueue_style( 'flxsm-flux', FLXSM_URL . 'assets/flux/flux-modules.css', array(), $ver );
 	wp_enqueue_script( 'flxsm-flux', FLXSM_URL . 'assets/flux/flux-modules.js', array(), $ver, true );
@@ -121,50 +91,25 @@ function flxsm_flux_assets() {
 add_action(
 	'admin_enqueue_scripts',
 	function () {
-		if ( ! flxsm_is_app_screen() ) {
-			return;
-		}
-		if ( flxsm_flux_ui() ) {
+		if ( flxsm_is_app_screen() && flxsm_flux_available() ) {
 			flxsm_flux_assets();
-			return;
 		}
-		wp_enqueue_style( 'flxsm-app', FLXSM_URL . 'assets/css/app.css', array(), FLXSM_VERSION );
-		wp_enqueue_script( 'flxsm-core', FLXSM_URL . 'assets/js/core.js', array(), FLXSM_VERSION, true );
-		wp_enqueue_script( 'flxsm-dash', FLXSM_URL . 'assets/js/dash.js', array( 'flxsm-core' ), FLXSM_VERSION, true );
-		wp_enqueue_script( 'flxsm-composer', FLXSM_URL . 'assets/js/composer.js', array( 'flxsm-core' ), FLXSM_VERSION, true );
-		wp_enqueue_script( 'flxsm-settings', FLXSM_URL . 'assets/js/settings.js', array( 'flxsm-core' ), FLXSM_VERSION, true );
-		wp_enqueue_script( 'flxsm-app', FLXSM_URL . 'assets/js/app.js', array( 'flxsm-dash', 'flxsm-composer', 'flxsm-settings' ), FLXSM_VERSION, true );
-		wp_localize_script(
-			'flxsm-core',
-			'FLXSM_BOOT',
-			array(
-				'rest'     => trailingslashit( rest_url( FLXSM_NS ) ),
-				'nonce'    => wp_create_nonce( 'wp_rest' ),
-				'locale'   => str_replace( '_', '-', get_user_locale() ),
-				'adminUrl' => admin_url(),
-				'mode'     => function_exists( 'flxa_user_mode' ) ? flxa_user_mode() : 'auto',
-				'icons'    => FLXSM_URL . 'assets/net/',
-				'logo'     => FLXSM_URL . 'assets/icon.svg',
-				'i18n'     => flxsm_js_strings(),
-			)
-		);
 	}
 );
 
 function flxsm_render_app() {
-	if ( flxsm_flux_ui() ) {
-		echo '<script>document.documentElement.classList.add("flxsm-lock");</script>';
-		echo '<style>html.flxsm-lock,html.flxsm-lock body{overflow:hidden;height:100%}html.flxsm-lock #wpadminbar,html.flxsm-lock #adminmenumain,html.flxsm-lock #wpfooter,html.flxsm-lock .notice,html.flxsm-lock .update-nag,html.flxsm-lock #screen-meta-links{display:none!important}html.flxsm-lock #wpcontent,html.flxsm-lock #wpbody-content{margin:0!important;padding:0!important}#flxsm-app.flux-root{position:fixed;inset:0;z-index:99990;height:auto}</style>';
-		echo '<div id="flxsm-app"><noscript>' . esc_html__( 'Social Media requires JavaScript.', 'flx-social' ) . '</noscript></div>';
+	if ( ! flxsm_flux_available() ) {
+		if ( function_exists( 'flx_admin_screen_unavailable' ) ) {
+			flx_admin_screen_unavailable();
+		}
 		return;
 	}
-	if ( flxsm_flux_available() ) {
-		echo '<a class="flxsm-switch" href="' . esc_url( flxsm_ui_switch_url( 'flux' ) ) . '" style="position:fixed;right:16px;bottom:16px;z-index:99999;background:#1f2937;color:#fff;padding:8px 14px;border-radius:999px;font:500 13px/1 system-ui;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.25)">' . esc_html__( 'New view', 'flx-social' ) . '</a>';
-	}
 	echo '<script>document.documentElement.classList.add("flxsm-lock");</script>';
-	echo '<div id="flxsm-app" class="flxsm"><noscript>' . esc_html__( 'Social Media requires JavaScript.', 'flx-social' ) . '</noscript></div>';
-	// Tema div'in hemen ardından, ilk boyamadan önce (app.js yüklenene kadar açık tema görünmesin).
-	printf( "<script>(function(d,w){var m=null;try{m=JSON.parse(localStorage.getItem('flxsm.theme')||'null')}catch(e){}m=m||%s;d.getElementById('flxsm-app').setAttribute('data-theme',m==='dark'||(m==='auto'&&!!w.matchMedia&&w.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light')})(document,window)</script>", wp_json_encode( function_exists( 'flxa_user_mode' ) ? flxa_user_mode() : 'auto' ) ); // phpcs:ignore WordPress.Security.EscapeOutput
+	echo '<style>html.flxsm-lock,html.flxsm-lock body{overflow:hidden;height:100%}html.flxsm-lock #wpadminbar,html.flxsm-lock #adminmenumain,html.flxsm-lock #wpfooter,html.flxsm-lock .notice,html.flxsm-lock .update-nag,html.flxsm-lock #screen-meta-links{display:none!important}html.flxsm-lock #wpcontent,html.flxsm-lock #wpbody-content{margin:0!important;padding:0!important}#flxsm-app.flux-root{position:fixed;inset:0;z-index:99990;height:auto}</style>';
+	echo '<div id="flxsm-app"><noscript>' . esc_html__( 'Social Media requires JavaScript.', 'flx-social' ) . '</noscript></div>';
+	if ( function_exists( 'flx_admin_screen_failsafe' ) ) {
+		flx_admin_screen_failsafe( 'flxsm-app' );
+	}
 }
 
 add_action(

@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.10.0
+- Klasik (PHP) Flux Ads sayfaları (Rapor, Kampanyalar, Öneriler, Stüdyo, Sezon planı, Testler, Bağışçı değeri, Reklam harcaması, Kitleler, Gönderim kaydı, Reklam bağlantısı, Ayarlar) kaldırıldı; wp-admin'de yalnız React ekranı açılır ve artık ortak kabukla (`flx_admin_screen`) basılır. "Klasik görünüm" bağlantısı, kullanıcı başına görünüm tercihi (`flxads_ui`), eski `admin-post` uçları (`flxads_save`, `flxads_retry`, `flxads_spend`, `flxads_aud`, `flxads_mgr`, `flxads_studio`, `flxads_opt`, `flxads_plan`, `flxads_exp`), `includes/flux-ui.php` ve `assets/admin.{js,css}` silindi. Ekran açılamazsa boş sayfa yerine "Bu ekran yüklenemedi" uyarısı ve yenile düğmesi görünür.
+
 ## 0.9.0
 - FluxWP mobil uygulamasında Reklamlar native çizilir (ortak manifest `app/manifest.json`, GraphQL): gelir ve reklam özeti, Meta kampanyaları (dönem, duraklat/devam, günlük bütçe), kampanya ayrıntısı (reklam setleri, yaş/cinsiyet, yerleşim), öneriler (uygula, geç, şimdi kontrol et). Masaüstü panel React ekranını kullanmaya devam eder.
 

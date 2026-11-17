@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Roles
  * Description:       Personel, İdareci ve Yönetici rollerini ekler (panelden yeni rol de eklenir); rollerin Görev, Sertifika, Bağış, Çağrı Merkezi, Stüdyo ve rapor erişimini tek sayfadan açıp kapatırsınız. Kişisel referans linki ve kullanıcı telefonu (WhatsApp asistanı için) burada.
- * Version:           1.6.0
+ * Version:           1.7.0
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Requires Plugins:  flx-graphql
@@ -22,7 +22,7 @@ if ( defined( 'FLXR_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXR_VERSION', '1.6.0' );
+define( 'FLXR_VERSION', '1.7.0' );
 define( 'FLXR_DB_VERSION', 3 );
 define( 'FLXR_FILE', __FILE__ );
 define( 'FLXR_DIR', plugin_dir_path( __FILE__ ) );
@@ -43,7 +43,7 @@ if ( is_admin() ) {
 /*
  * GraphQL (Flux GraphQL): schema only inside a GraphQL request; the persisted operations the Roles and
  * access screen sends. Without Flux GraphQL (0.2.0+, capability model) the schema is left out and the
- * classic page keeps working.
+ * admin screen says it cannot open.
  */
 add_action(
 	'flx_gql_register',

@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Social
  * Description:       Sosyal medya yönetimi sitenin içinde: hesap bağlama (anahtarlar panelden), hesap başına içerik, zamanlama, ağda düzenleme/silme, takvim, pano, Flux AI yazım yardımı ve MCP araçları. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google İşletme, WhatsApp.
- * Version:           0.4.0
+ * Version:           0.5.0
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Requires Plugins:  flx-graphql
@@ -22,7 +22,7 @@ if ( defined( 'FLXSM_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXSM_VERSION', '0.4.0' );
+define( 'FLXSM_VERSION', '0.5.0' );
 define( 'FLXSM_DB_VERSION', 1 );
 define( 'FLXSM_FILE', __FILE__ );
 define( 'FLXSM_DIR', plugin_dir_path( __FILE__ ) );
@@ -62,7 +62,7 @@ if ( is_admin() ) {
 /*
  * GraphQL (Flux GraphQL): schema only inside a GraphQL request; the persisted operations the Social Media
  * screen sends, the upload context of its media picker and the permission catalog. Without Flux GraphQL
- * (0.2.0+, capability model) the schema is left out and the classic screen keeps working.
+ * (0.2.0+, capability model) the schema is left out and the admin page says it cannot open.
  */
 add_action(
 	'flx_gql_register',
