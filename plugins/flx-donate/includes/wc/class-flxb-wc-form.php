@@ -563,9 +563,11 @@ final class FLXB_WC_Form {
 			</div>
 		</fieldset>
 		<?php
+		$consent = '';
 		foreach ( $types as $id => $t ) {
 			if ( ! empty( $data['types'][ $id ]['proxy'] ) ) {
 				self::proxy_fields( $t, $old, $id === $cur, (bool) $look['share_phone'] );
+				$consent .= self::proxy_consent( $t, $old, $id === $cur );
 			}
 		}
 		$sec['who'] = ob_get_clean();
@@ -672,6 +674,7 @@ final class FLXB_WC_Form {
 				<dl class="flxwb-sum__lines" data-flxwb-sum-lines></dl>
 			</div>
 			<?php echo FLXB_WC_Fee::form_box( $old ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped inside ?>
+			<?php echo $consent; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped inside ?>
 			<?php if ( '' !== $err ) : ?>
 			<div class="flxwb-note flxwb-note--err" role="alert"><?php echo esc_html( $err ); ?></div>
 			<?php endif; ?>
@@ -1019,17 +1022,32 @@ final class FLXB_WC_Form {
 				<p class="flxwb-field__help"><?php echo $phones ? esc_html__( 'Shares without a name are given in the name from the checkout. With a phone number we can also send that person the news on WhatsApp.', 'flx-donate' ) : esc_html__( 'Shares without a name are given in the name from the checkout.', 'flx-donate' ); ?></p>
 			</div>
 			<template data-flxwb-share-tpl><?php echo self::share_card( $id, '__N__', '', '', $phones ); // phpcs:ignore WordPress.Security.EscapeOutput ?></template>
-			<?php if ( $text ) : ?>
-			<details class="flxwb-proxy__text">
-				<summary><?php /* translators: %s: version */ echo esc_html( sprintf( __( 'Read the proxy (vekâlet) text (version %s)', 'flx-donate' ), number_format_i18n( (int) $text['version'] ) ) ); ?></summary>
-				<div><?php echo wp_kses_post( wpautop( (string) $text['text'] ) ); ?></div>
-			</details>
-			<label class="flxwb-check flxwb-proxy__ok"><input type="checkbox" name="proxy[<?php echo esc_attr( $id ); ?>]" value="<?php echo esc_attr( (int) $text['version'] ); ?>" required data-flxwb-consent <?php checked( ! empty( $old['proxy'][ $id ] ) ); ?>> <?php esc_html_e( 'I give my proxy (vekâlet) for the sacrifice according to this text.', 'flx-donate' ); ?></label>
-			<?php else : ?>
-			<p class="flxwb-note flxwb-note--err"><?php esc_html_e( 'This donation needs a proxy (vekâlet) consent, but it is not set up yet. Please contact the site administrator.', 'flx-donate' ); ?></p>
-			<?php endif; ?>
 		</fieldset>
 		<?php
+	}
+
+	/**
+	 * 2.32.0: proxy (vekâlet) text and consent, shown in the summary box next to the total and the button,
+	 * so it stays in view (sticky on wide screens). One box per proxy type; the current type's box is shown.
+	 */
+	private static function proxy_consent( array $t, array $old, $current = true ) {
+		$id   = (int) $t['id'];
+		$text = flxb_proxy_text();
+		ob_start();
+		?>
+		<div class="flxwb-consent" data-flxwb-consent-box="<?php echo esc_attr( (string) $id ); ?>"<?php echo $current ? '' : ' hidden'; ?>>
+			<?php if ( $text ) : ?>
+				<details class="flxwb-proxy__text">
+					<summary><?php /* translators: %s: version */ echo esc_html( sprintf( __( 'Read the proxy (vekâlet) text (version %s)', 'flx-donate' ), number_format_i18n( (int) $text['version'] ) ) ); ?></summary>
+					<div><?php echo wp_kses_post( wpautop( (string) $text['text'] ) ); ?></div>
+				</details>
+				<label class="flxwb-check flxwb-proxy__ok"><input type="checkbox" name="proxy[<?php echo esc_attr( (string) $id ); ?>]" value="<?php echo esc_attr( (int) $text['version'] ); ?>" required data-flxwb-consent <?php checked( ! empty( $old['proxy'][ $id ] ) ); ?>> <?php esc_html_e( 'I give my proxy (vekâlet) for the sacrifice according to this text.', 'flx-donate' ); ?></label>
+				<?php else : ?>
+				<p class="flxwb-note flxwb-note--err"><?php esc_html_e( 'This donation needs a proxy (vekâlet) consent, but it is not set up yet. Please contact the site administrator.', 'flx-donate' ); ?></p>
+				<?php endif; ?>
+		</div>
+		<?php
+		return ob_get_clean();
 	}
 
 	/** 2.16.0: one share card (name + phone). $i is 0-based, or "__N__" in the template. */
