@@ -150,6 +150,10 @@ jobs:
           cp "$(ls "$b"/dmg/*.dmg | head -1)" "out/$n.dmg"
           tgz=$(ls "$b"/macos/*.app.tar.gz 2>/dev/null | head -1 || true)
           if [ -n "$tgz" ]; then
+            # Güncelleme imzası uygulamadaki public key ile eşleşmeli; paketin içindeki sürüm package.json ile aynı olmalı.
+            node tools/release/check-updater-sig.mjs "$tgz.sig"
+            pv=$(tar -xzOf "$tgz" --include='*.app/Contents/Info.plist' | plutil -extract CFBundleShortVersionString raw -o - -)
+            [ "$pv" = "$v" ] || { echo "::error::Paket sürümü $pv, beklenen $v"; exit 1; }
             cp "$tgz" "out/$n.app.tar.gz"
             cp "$tgz.sig" "out/$n.app.tar.gz.sig"
           else
@@ -257,6 +261,7 @@ jobs:
           exe=$(ls "$b"/nsis/*-setup.exe | head -1)
           cp "$exe" "out/$n-setup.exe"
           if [ -f "$exe.sig" ]; then
+            node tools/release/check-updater-sig.mjs "$exe.sig"
             cp "$exe.sig" "out/$n-setup.exe.sig"
           else
             echo "::warning::TAURI_SIGNING_PRIVATE_KEY yok, Windows otomatik güncelleme imzası üretilmedi"

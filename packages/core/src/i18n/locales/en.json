@@ -312,7 +312,11 @@
     "restart": "Restart to update",
     "download": "Download",
     "installing": "Installing…",
-    "failed": "Could not check"
+    "failed": "Could not check",
+    "available": "Update available: {{version}}",
+    "downloadFailed": "Download failed",
+    "retry": "Try again",
+    "downloadingShort": "Downloading {{pct}}"
   },
   "legal": {
     "title": "Legal information",

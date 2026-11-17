@@ -312,7 +312,11 @@
     "restart": "更新するには再起動してください",
     "download": "ダウンロード",
     "installing": "インストール中...",
-    "failed": "確認できませんでした"
+    "failed": "確認できませんでした",
+    "available": "アップデートがあります: {{version}}",
+    "downloadFailed": "ダウンロードに失敗しました",
+    "retry": "再試行",
+    "downloadingShort": "ダウンロード中 {{pct}}"
   },
   "legal": {
     "title": "法的情報",

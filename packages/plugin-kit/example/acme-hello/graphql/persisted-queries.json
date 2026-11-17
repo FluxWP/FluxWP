@@ -1,0 +1,3 @@
+{
+  "e53b00d87ae1d34cd4b2e1361918d6e25a2234b217a37c390da654ecf6e8ff6a": "query FlxAcmeHelloViewer {\n  flxViewer {\n    loggedIn\n    name\n  }\n}"
+}

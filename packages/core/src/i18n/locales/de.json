@@ -312,7 +312,11 @@
     "restart": "Zum Aktualisieren neu starten",
     "download": "Herunterladen",
     "installing": "Installieren...",
-    "failed": "Konnte nicht überprüft werden"
+    "failed": "Konnte nicht überprüft werden",
+    "available": "Update verfügbar: {{version}}",
+    "downloadFailed": "Download fehlgeschlagen",
+    "retry": "Erneut versuchen",
+    "downloadingShort": "Wird heruntergeladen {{pct}}"
   },
   "legal": {
     "title": "Rechtliche Informationen",
