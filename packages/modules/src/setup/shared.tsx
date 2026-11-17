@@ -1,5 +1,5 @@
 // Pieces both FluxWP Panel screens (Packages, Settings) use: the GraphQL provider, translator,
-// notices, the on/off switch, and the "classic view" link.
+// notices and the on/off switch.
 import { useMemo, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from '@tanstack/react-query';
@@ -27,7 +27,8 @@ export function useSetup(): { t: Translate; tn: ReturnType<typeof translator>['t
   const { t, tn } = useMemo(() => translator(i18n.language), [i18n.language]);
   const { client, scope } = useGraphQL();
   const qc = useQueryClient();
-  const refresh = () => qc.invalidateQueries({ queryKey: [scope, 'gql'], predicate: (q) => String(q.queryKey[2] ?? '').startsWith('FlxSetup') });
+  // A refetch already running is kept (not restarted): the table does not go back to "Checking…".
+  const refresh = () => qc.invalidateQueries({ queryKey: [scope, 'gql'], predicate: (q) => String(q.queryKey[2] ?? '').startsWith('FlxSetup') }, { cancelRefetch: false });
   return { t, tn, client, scope, locale: i18n.language, refresh };
 }
 
@@ -53,16 +54,6 @@ export function Switch({ checked, onChange, label, disabled }: { checked: boolea
       <input type="checkbox" role="switch" checked={checked} disabled={disabled} onChange={(e) => onChange(e.target.checked)} aria-label={label} />
       <span aria-hidden="true" />
     </label>
-  );
-}
-
-export function ClassicLink({ t }: { t: Translate }) {
-  const host = useHost();
-  if (!host.classicUrl) return null;
-  return (
-    <a className="flxk-classic" href={host.classicUrl}>
-      {t('Classic view')}
-    </a>
   );
 }
 

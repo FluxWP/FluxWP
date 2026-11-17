@@ -96,6 +96,27 @@ export function flxStoreSet(key: string, data: unknown, at = Date.now()): void {
   }
 }
 
+const recordings = new Set<Set<string>>();
+
+/** A query a screen uses (useFlxQuery). Only kept while a recording runs. */
+export function flxStoreNote(key: string): void {
+  for (const r of recordings) r.add(key);
+}
+
+/**
+ * Records the store keys screens use from now on; the returned function stops and gives them in first-use
+ * order. wp-admin uses it to learn a screen's first queries, so the server preloads them next time.
+ * Recordings may overlap (two screens mounting at once); each sees every key.
+ */
+export function flxStoreRecord(): () => string[] {
+  const mine = new Set<string>();
+  recordings.add(mine);
+  return () => {
+    recordings.delete(mine);
+    return [...mine];
+  };
+}
+
 /** After a write: every stored result is still shown, but refreshed on its next use. */
 export function flxStoreMarkStale(): void {
   for (const e of store().values()) e.at = 0;

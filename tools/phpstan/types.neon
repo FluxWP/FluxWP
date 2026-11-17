@@ -6,5 +6,5 @@ parameters:
     FlxGqlSettingsGroup: 'array{field: string, type: string, cap: string, label: string, fields: array<string, FlxGqlSettingsField>}'
     FlxGqlSettings: 'array{query_mode: string, ide: bool, introspection: bool, debug: bool, max_depth: int, max_complexity: int, max_page: int, batch_limit: int, cache_ttl: int, cors_origins: string, upload_max_mb: int}'
     # Flux screens shell (plugins/flx-graphql/includes/screens.php).
-    FlxAdminScreen: 'array{module: string, assets_dir: string, assets_url: string, version: string, enabled: mixed, options: mixed, start: string, start_param: string, layout: string, theme: string, theme_storage: string, preload: mixed, needs: mixed, scripts: mixed, enqueue: mixed, body_class: string, container_id: string}'
+    FlxAdminScreen: 'array{module: string, assets_dir: string, assets_url: string, version: string, enabled: mixed, options: mixed, start: string, start_param: string, layout: string, theme: string, theme_storage: string, preload: mixed, needs: mixed, scripts: mixed, enqueue: mixed, body_class: string, container_id: string, wrap_class: string}'
     FlxAdminScreenPreload: 'array{key: string, id: string, name: string, vars: array<string, mixed>|null}'

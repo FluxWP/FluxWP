@@ -352,5 +352,7 @@
  "%s package\u0000%s packages": "%s paket\u0000%s paket",
  "New view": "Yeni görünüm",
  "Open the new view (same features, works in the FluxWP app too).": "Yeni görünümü aç (aynı özellikler, FluxWP uygulamasında da çalışır).",
- "JavaScript is required for this screen.": "Bu ekran için JavaScript gerekir."
+ "JavaScript is required for this screen.": "Bu ekran için JavaScript gerekir.",
+ "%s selected\u0000%s selected": "%s seçili\u0000%s seçili",
+ "Clear selection": "Seçimi temizle"
 }

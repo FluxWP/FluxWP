@@ -1,5 +1,9 @@
 # Flux Studio — Değişiklikler
 
+## 0.6.1
+- wp-admin ekranı Flux GraphQL ekran kabuğundan açılır: ilk veri PHP'de sayfaya basılır (yükleniyor göstergesi yok), menüden diğer Flux ekranlarına sayfa yenilenmeden geçilir. Ekranın parçaları sayfa başında birlikte iner (modulepreload).
+- Ortak modül paketi yenilendi.
+
 ## 0.6.0
 - Mobil uygulama manifesti GraphQL'e geçti: galeri (arama, görsel/video, yıldızlı filtresi, sayfalama), öğe ayrıntısı, yıldız ekle/kaldır, dosyayı aç. Metinler İngilizce kaynak + Türkçe çeviri.
 

@@ -77,22 +77,58 @@ function flxr_flux_module_tag( $tag, $handle ) {
 	);
 }
 
-function flxr_flux_assets() {
-	$ver    = FLXR_VERSION . '-' . (int) filemtime( FLXR_DIR . 'assets/flux/flux-modules.js' );
+/** Mount options of the screen besides what the shell adds (rest, nonce, locale…). */
+function flxr_flux_options() {
 	$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#2c7a64';
-	$opts   = array(
-		'module'     => 'flxr-roles',
-		'rest'       => rest_url(),
-		'nonce'      => wp_create_nonce( 'wp_rest' ),
-		'locale'     => get_user_locale(),
-		'siteName'   => get_bloginfo( 'name' ),
-		'adminUrl'   => admin_url(),
-		'theme'      => 'light',
+	return array(
 		'colors'     => array(
 			'primary'         => $accent,
 			'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
 		),
 		'classicUrl' => flxr_ui_switch_url( 'classic' ),
+	);
+}
+
+// Flux GraphQL screen shell: first data printed by PHP, in-place navigation from the menu.
+add_action(
+	'admin_menu',
+	function () {
+		if ( function_exists( 'flx_admin_screen' ) && flxr_flux_available() ) {
+			flx_admin_screen(
+				'flx-roles',
+				array(
+					'module'       => 'flxr-roles',
+					'assets_dir'   => FLXR_DIR . 'assets/flux/',
+					'assets_url'   => FLXR_URL . 'assets/flux/',
+					'version'      => FLXR_VERSION,
+					'enabled'      => 'flxr_flux_ui',
+					'options'      => 'flxr_flux_options',
+					'container_id' => 'flxr-app',
+					'wrap_class'   => 'flxr-wrap',
+					'preload'      => array( array( 'FlxRolesScreen' ) ),
+				)
+			);
+		}
+	},
+	20
+);
+
+function flxr_flux_assets() {
+	if ( function_exists( 'flx_admin_screen_current' ) && '' !== flx_admin_screen_current() ) {
+		return; // The screen shell loads it.
+	}
+	$ver  = FLXR_VERSION . '-' . (int) filemtime( FLXR_DIR . 'assets/flux/flux-modules.js' );
+	$opts = array_merge(
+		array(
+			'module'   => 'flxr-roles',
+			'rest'     => rest_url(),
+			'nonce'    => wp_create_nonce( 'wp_rest' ),
+			'locale'   => get_user_locale(),
+			'siteName' => get_bloginfo( 'name' ),
+			'adminUrl' => admin_url(),
+			'theme'    => 'light',
+		),
+		flxr_flux_options()
 	);
 	wp_enqueue_style( 'flxr-flux', FLXR_URL . 'assets/flux/flux-modules.css', array(), $ver );
 	wp_enqueue_script( 'flxr-flux', FLXR_URL . 'assets/flux/flux-modules.js', array(), $ver, true );
@@ -194,6 +230,9 @@ function flxr_handle_user() {
 
 function flxr_render_page() {
 	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+	if ( flxr_flux_ui() && function_exists( 'flx_admin_screen_render' ) && flx_admin_screen_render() ) {
 		return;
 	}
 	if ( flxr_flux_ui() ) {

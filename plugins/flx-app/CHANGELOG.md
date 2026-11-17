@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.7.2
+- wp-admin ekranı Flux GraphQL ekran kabuğundan açılır: ilk veri PHP'de sayfaya basılır (yükleniyor göstergesi yok), menüden diğer Flux ekranlarına sayfa yenilenmeden geçilir. Ekranın parçaları sayfa başında birlikte iner (modulepreload).
+- Ortak modül paketi yenilendi.
+
 ## 0.7.1
 - Doğrulama: `request.graphql.op` olan aksiyon `request.path` istemez.
 - Manifest çevirisi `text`, `caption`, `subtitle`, `sub` anahtarlarını da çevirir; şablon içeren metin de çevrilir (`{{passed}} passed` → `{{passed}} geçti`), yalnız şablondan oluşan değer çevrilmez. Kaynaktan gelen seçeneklerin (`options: {source, path, value, label}`) alan yolları çevrilmez.

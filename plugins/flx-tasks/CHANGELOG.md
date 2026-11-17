@@ -1,7 +1,10 @@
 # Flux Tasks — Değişiklikler
 
 ## 0.13.0
-- Klasik görünüm kaldırıldı: Görevler, Pano ve Ayarlar sayfaları yalnız React ekranıyla açılır (Flux GraphQL gerekir; yoksa sayfada uyarı çıkar). Profil sayfasındaki "Klasik görünüm" kartı ve kullanıcı başına görünüm tercihi gitti; eski klasik JS/CSS dosyaları paketten çıkarıldı.
+- Klasik görünüm kaldırıldı: Görevler, Pano ve Ayarlar sayfaları yalnız React ekranıyla açılır (Flux GraphQL gerekir; yoksa sayfada uyarı çıkar). Profil sayfasındaki "Klasik görünüm" kartı ve kullanıcı başına görünüm tercihi gitti; eski klasik görev uygulaması dosyaları paketten çıkarıldı.
+
+## 0.12.4
+- Ortak modül paketi yenilendi: ekranın parçaları sayfa başında birlikte iner, giriş dosyası iki kez çalışmaz, ayar ekranlarında ilk karede yükleniyor göstergesi çıkmaz.
 
 ## 0.12.3
 - Ekran yüklenemezse (eski önbellek, eksik parça, çalışma hatası) boş sayfa yerine "Bu ekran yüklenemedi" mesajı, sayfayı yenileme düğmesi ve klasik ekrana geçiş bağlantısı gösterilir.

@@ -1,5 +1,8 @@
 # Flux Headless
 
+## 0.3.1
+- Tam sayfa modunda sayfa optimizasyonu çalışır: linkler ön yüze, LiteSpeed / Flux Speed gibi optimizasyon eklentileri sayfayı işledikten sonra çevrilir. Önceden çevrilmiş adresleri "başka site" sayan LiteSpeed CSS/JS birleştirmeyi atlıyordu (fluxwp.com ana sayfası headless'ta 7 CSS + 24 script, WordPress'te 1 + 8). Görünüm değişmez.
+
 ## 0.3.0
 - FluxWP mobil uygulamasında Headless ekranı native çizilir (ortak manifest `app/manifest.json`, GraphQL): ön yüz listesi, yeni ön yüz, aç/kapat, varsayılan yap, test webhook'u, sil, tüm sayfaları yenile, WordPress sayfaları modu, webhook kaydı. Masaüstü panel React ekranını kullanmaya devam eder.
 

@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 1.6.1
+- wp-admin ekranı Flux GraphQL ekran kabuğundan açılır: ilk veri PHP'de sayfaya basılır (yükleniyor göstergesi yok), menüden diğer Flux ekranlarına sayfa yenilenmeden geçilir. Ekranın parçaları sayfa başında birlikte iner (modulepreload).
+- Ortak modül paketi yenilendi.
+
 ## 1.6.0
 - FluxWP mobil uygulamasında Roller ve erişim native çizilir (ortak manifest `app/manifest.json`, GraphQL): rol listesi, yeni rol, sıfırla/sil, roldeki kişiler (ekle, çıkar, ara). Yetki tablosu panelde açılır. Masaüstü panel React ekranını kullanmaya devam eder.
 
