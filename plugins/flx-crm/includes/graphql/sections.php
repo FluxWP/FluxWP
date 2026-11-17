@@ -29,7 +29,7 @@ flx_gql_enum(
 			'LIST'    => array( 'value' => 'list', 'description' => __( 'A list.', 'flx-crm' ) ),
 			'TABLE'   => array( 'value' => 'table', 'description' => __( 'A table.', 'flx-crm' ) ),
 			'NOTE'    => array( 'value' => 'note', 'description' => __( 'A note.', 'flx-crm' ) ),
-			'HTML'    => array( 'value' => 'html', 'description' => __( 'HTML, trusted like the classic card.', 'flx-crm' ) ),
+			'HTML'    => array( 'value' => 'html', 'description' => __( 'HTML, sanitized with wp_kses_post.', 'flx-crm' ) ),
 			'ACTIONS' => array( 'value' => 'actions', 'description' => __( 'Buttons.', 'flx-crm' ) ),
 		),
 	)

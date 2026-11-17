@@ -174,11 +174,13 @@ final class FLXCRM_Gathering_Service {
 		if ( ( ! $id || array_key_exists( 'name', $data ) ) && '' === trim( FLXCRM_Val::str( $data['name'] ?? '' ) ) ) {
 			return self::fail( 'flxcrm_event_name', __( 'The event name cannot be empty.', 'flx-crm' ), 'INVALID_INPUT', 'name' );
 		}
+		$new_attachment = 0;
 		if ( '' !== $image_upload ) {
 			$aid = self::attachment_from_upload( $image_upload, 'flx-crm/event-image' );
 			if ( $aid instanceof WP_Error ) {
 				return $aid;
 			}
+			$new_attachment   = $aid;
 			$data['image_id'] = $aid;
 		}
 		$data['create_post'] = $create_post;
@@ -197,16 +199,22 @@ final class FLXCRM_Gathering_Service {
 			$old[ $key ]   = array_key_exists( $key, $_POST ) ? $_POST[ $key ] : null; // phpcs:ignore WordPress.Security.NonceVerification
 			$_POST[ $key ] = $value; // phpcs:ignore WordPress.Security.NonceVerification
 		}
-		$r = flx_event_save( $data, $id );
-		foreach ( $posted as $key => $value ) {
-			unset( $value );
-			if ( null === $old[ $key ] ) {
-				unset( $_POST[ $key ] ); // phpcs:ignore WordPress.Security.NonceVerification
-			} else {
-				$_POST[ $key ] = $old[ $key ]; // phpcs:ignore WordPress.Security.NonceVerification
+		try {
+			$r = flx_event_save( $data, $id );
+		} finally {
+			foreach ( array_keys( $posted ) as $key ) {
+				if ( null === $old[ $key ] ) {
+					unset( $_POST[ $key ] ); // phpcs:ignore WordPress.Security.NonceVerification
+				} else {
+					$_POST[ $key ] = $old[ $key ]; // phpcs:ignore WordPress.Security.NonceVerification
+				}
 			}
 		}
 		if ( is_wp_error( $r ) ) {
+			// The classic form never sideloads a file, so a failed save would leave an orphan only here.
+			if ( $new_attachment > 0 ) {
+				wp_delete_attachment( $new_attachment, true );
+			}
 			return self::from_event_error( $r );
 		}
 		$got = self::get( FLXCRM_Val::int( $r ) );
@@ -652,7 +660,7 @@ final class FLXCRM_Gathering_Service {
 				}
 				$actions[] = array(
 					'label'   => FLXCRM_Val::str( $a['label'] ?? '' ),
-					'url'     => FLXCRM_Val::str( $a['url'] ?? '' ),
+					'url'     => FLXCRM_Section_Service::safe_url( FLXCRM_Val::str( $a['url'] ?? '' ) ),
 					'target'  => FLXCRM_Val::str( $a['target'] ?? '' ),
 					'primary' => ! empty( $a['primary'] ),
 				);

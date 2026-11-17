@@ -2017,7 +2017,7 @@ type FlxPersonBlock {
 enum FlxPersonBlockKind {
   """Buttons."""
   ACTIONS
-  """HTML, trusted like the classic card."""
+  """HTML, sanitized with wp_kses_post."""
   HTML
   """Links."""
   LINKS

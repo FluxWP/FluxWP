@@ -117,15 +117,6 @@ add_action(
 	2
 );
 unset( $flxcrm_hook );
-foreach ( array( 'flx_event_saved', 'flx_event_status', 'flx_event_deleting' ) as $flxcrm_event_hook ) {
-	add_action(
-		$flxcrm_event_hook,
-		static function ( $id = 0 ) {
-			FLXCRM_Gathering_Service::changed( (int) $id );
-		}
-	);
-}
-unset( $flxcrm_event_hook );
 add_filter(
 	'flx_gql_upload_contexts',
 	static function ( $c ) {

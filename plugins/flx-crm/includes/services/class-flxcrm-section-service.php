@@ -209,7 +209,7 @@ final class FLXCRM_Section_Service {
 		);
 	}
 
-	private static function safe_url( string $url ): string {
+	public static function safe_url( string $url ): string {
 		$url = trim( $url );
 		if ( '' === $url ) {
 			return '';

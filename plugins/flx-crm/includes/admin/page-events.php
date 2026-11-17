@@ -49,7 +49,7 @@ final class FLXCRM_Page_Events {
 		$data['create_post'] = ! empty( $_POST['create_post'] );
 		$r                   = FLXCRM_Gathering_Service::save( $id, $data, ! empty( $_POST['create_post'] ), '' );
 		if ( is_wp_error( $r ) ) {
-			wp_safe_redirect( flxcrm_events_url( array( $id ? 'edit' : 'add' => $id ? $id : 1, 'flxcrm_err' => rawurlencode( $r->get_error_message() ) ) ) );
+			wp_safe_redirect( flxcrm_events_url( array( $id ? 'edit' : 'add' => $id ? $id : 1, 'flxcrm_err' => rawurlencode( __( 'The event name cannot be empty.', 'flx-crm' ) ) ) ) );
 			exit;
 		}
 		wp_safe_redirect( flxcrm_events_url( array( 'id' => (int) $r['databaseId'], 'flxcrm_msg' => 'saved' ) ) );
