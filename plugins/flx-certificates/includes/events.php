@@ -264,6 +264,7 @@ function flxs_set_certificate_event( $cert_id, $event_id ) {
 	}
 	$wpdb->update( flxs_table( 'certificates' ), array( 'event_id' => $event_id, 'updated_at' => flxs_now() ), array( 'id' => (int) $cert_id ) );
 	flxs_log( 'certificate_updated', 'certificate', $cert_id, $cert['number'], array( 'changes' => array( 'etkinlik' => array( flxs_event_label( $cert['event_id'] ), flxs_event_label( $event_id ) ) ) ) );
+	FLXS_Records::purge_certificate( $cert );
 	return true;
 }
 

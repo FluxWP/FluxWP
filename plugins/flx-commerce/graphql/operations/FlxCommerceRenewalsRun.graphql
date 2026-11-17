@@ -1,0 +1,3 @@
+mutation FlxCommerceRenewalsRun($input: FlxCommerceRenewalsRunInput!) {
+  flxCommerceRenewalsRun(input: $input) { status { ran at { ...FlxCommerceWhen } } errors { code message field } }
+}

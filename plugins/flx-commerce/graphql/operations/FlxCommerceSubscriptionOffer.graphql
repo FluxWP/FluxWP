@@ -1,0 +1,3 @@
+query FlxCommerceSubscriptionOffer($productId: Int!) {
+  flxCommerceSubscriptionOffer(productId: $productId) { productId name month { ...FlxCommerceMoney } year { ...FlxCommerceMoney } }
+}

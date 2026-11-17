@@ -226,5 +226,9 @@
  "Yeni sayfa oluşturuldu.": "新しいページが作成されました。",
  "Seçili metin bu arada değişti; sonuç altına eklendi.": "その間、選択は変更されました。結果は以下に挿入されました。",
  "Değiştirildi.": "交換されました。",
- "Sayfaya eklendi.": "ページに追加されました。"
+ "Sayfaya eklendi.": "ページに追加されました。",
+ "Önizle": "プレビュー",
+ "Dosyayı kaldır": "ファイルを削除",
+ "YouTube bağlantılarında önizleme görseli": "YouTube リンクのプレビュー画像",
+ "Dokümanda tek başına duran YouTube bağlantısı video kapağıyla kart olarak görünür. Kapak YouTube'dan yüklenir; kapatırsanız bağlantı düz metin olarak kalır.": "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text."
 }

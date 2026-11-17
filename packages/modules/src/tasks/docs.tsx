@@ -7,7 +7,7 @@ import { useHost, type ModuleHost } from '../host';
 import { rank, between, norm, type FlxgDocRef, type Route } from './engine';
 import { flxgLocale, tt } from './i18n';
 import { openAI } from './pages';
-import { useYtg, type Ctx, type MenuItem } from './ui';
+import { downloadFile, useYtg, type Ctx, type MenuItem } from './ui';
 
 type Fn = (...a: never[]) => unknown;
 /** WP çekirdeğinin (window.FLXG) bu köprünün kullandığı yüzü. */
@@ -125,6 +125,7 @@ function bridge(Y: Legacy) {
   // Dosya adresinde nonce/belirteç taşınmaz (WP'de nonce bu köprüde bilinmez, uygulamada çerez yok): önce boş
   // görsel, sonra istemciden blob (aşağıdaki gözlemci). Önizleme ve indirme de istemciden geçer.
   set('fileUrl', (id: number, size?: string) => 'data:image/gif;base64,R0lGODlhAQABAAAAACw=#flxg-file-' + (parseInt(String(id), 10) || 0) + (size ? '-' + size : ''));
+  set('fileDownload', (id: number, name: string) => void downloadFile(need().e, { id, name } as FlxgFile).catch(need().ui.fail));
   set('filePreview', (id: number, name: string) => {
     const c = need();
     c.ui.lightbox = { files: [{ task: 0, comment: 0, field: 0, context: 'doc', user: 0, name: name || tt('File'), mime: '', size: 0, image: false, created: null, id } as FlxgFile], index: 0 };

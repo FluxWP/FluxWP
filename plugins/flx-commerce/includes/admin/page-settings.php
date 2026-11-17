@@ -32,6 +32,9 @@ final class FLXCM_Page_Settings {
 		if ( ! current_user_can( FLXCM_Admin::CAP_MANAGE ) ) {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-commerce' ), 403 );
 		}
+		if ( FLXCM_Admin::render_flux() ) {
+			return;
+		}
 		FLXCM_Admin::open( __( 'Settings', 'flx-commerce' ), __( 'Dashboard, checkout, bank transfer, subscriptions, product feed and notifications.', 'flx-commerce' ) );
 		if ( isset( $_GET['saved'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 			echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Settings saved.', 'flx-commerce' ) . '</p></div>';
@@ -129,32 +132,7 @@ final class FLXCM_Page_Settings {
 		if ( ! current_user_can( FLXCM_Admin::CAP_MANAGE ) ) {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-commerce' ), 403 );
 		}
-		$in   = wp_unslash( $_POST );
-		$bool = array( 'exclude_donations', 'hide_company', 'hide_address_2', 'virtual_no_address', 'order_notes', 'sticky_pay', 'free_ship_bar', 'defer_to_donate', 'feed', 'notify_customer_wa', 'notify_admin_order' );
-		$out  = array();
-		foreach ( $bool as $k ) {
-			// Ekranda olmayan anahtar (ör. Flux Donate yokken) eski değerini korur.
-			if ( 'exclude_donations' === $k && ! class_exists( 'FLXB_WC_Cart' ) || 'defer_to_donate' === $k && ! class_exists( 'FLXB_WC_Havale' ) ) {
-				continue;
-			}
-			$out[ $k ] = empty( $in[ $k ] ) ? 0 : 1;
-		}
-		$valid = array_map( static function ( $k ) { return substr( $k, 3 ); }, array_keys( wc_get_order_statuses() ) );
-		$paid  = array_values( array_intersect( array_map( 'sanitize_key', (array) ( $in['paid_statuses'] ?? array() ) ), $valid ) );
-		$out['paid_statuses']      = $paid ? $paid : array( 'processing', 'completed' );
-		$out['low_stock']          = min( 9999, absint( $in['low_stock'] ?? 3 ) );
-		$out['free_ship_amount']   = max( 0, (float) wc_format_decimal( $in['free_ship_amount'] ?? 0 ) );
-		$out['receipt_max_mb']     = max( 1, min( 20, absint( $in['receipt_max_mb'] ?? 8 ) ) );
-		$out['receipt_notify']     = sanitize_email( (string) ( $in['receipt_notify'] ?? '' ) );
-		$out['cancel_after_days']  = min( 60, absint( $in['cancel_after_days'] ?? 0 ) );
-		$out['sub_renew_days']     = min( 60, absint( $in['sub_renew_days'] ?? 7 ) );
-		$out['sub_grace_days']     = min( 60, absint( $in['sub_grace_days'] ?? 3 ) );
-		$out['hidden_redirect']    = esc_url_raw( trim( (string) ( $in['hidden_redirect'] ?? '' ) ) );
-		$out['feed_brand']         = sanitize_text_field( (string) ( $in['feed_brand'] ?? '' ) );
-		$out['notify_admin_phone'] = preg_replace( '/[^0-9+ ]/', '', (string) ( $in['notify_admin_phone'] ?? '' ) );
-		flxcm_save_settings( $out );
-		delete_transient( 'flxcm_free_min' );
-		FLXCM_Feed::flush();
+		FLXCM_Settings_Service::save( FLXCM_Settings_Service::from_request( FLXCM_Val::map( wp_unslash( $_POST ) ) ) );
 		wp_safe_redirect( flxcm_admin_url( 'settings', array( 'saved' => 1 ) ) );
 		exit;
 	}

@@ -1826,5 +1826,8 @@ return array(
   'Flux Tasks tools require Flux AI & MCP.' => 'Flux Tasks のツールには Flux AI & MCP が必要です。',
   'MCP' => 'MCP',
 
+  'Preview' => 'プレビュー',
+  'Remove file' => 'ファイルを削除',
+  'Preview image for YouTube links' => 'YouTube リンクのプレビュー画像',
  ),
 );

@@ -226,5 +226,9 @@
  "Yeni sayfa oluşturuldu.": "تم إنشاء صفحة جديدة.",
  "Seçili metin bu arada değişti; sonuç altına eklendi.": "تغير الاختيار في هذه الأثناء. تم إدراج النتيجة أدناه.",
  "Değiştirildi.": "تم استبداله.",
- "Sayfaya eklendi.": "تمت إضافتها إلى الصفحة."
+ "Sayfaya eklendi.": "تمت إضافتها إلى الصفحة.",
+ "Önizle": "معاينة",
+ "Dosyayı kaldır": "إزالة الملف",
+ "YouTube bağlantılarında önizleme görseli": "صورة معاينة لروابط يوتيوب",
+ "Dokümanda tek başına duran YouTube bağlantısı video kapağıyla kart olarak görünür. Kapak YouTube'dan yüklenir; kapatırsanız bağlantı düz metin olarak kalır.": "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text."
 }

@@ -1,0 +1,12 @@
+query FlxCommerceSettings {
+  flxCommerceSettings {
+    paidStatuses excludeDonations lowStock hideCompany hideAddress2 virtualNoAddress orderNotes stickyPay
+    freeShipBar freeShipAmount receiptMaxMb receiptNotify deferToDonate cancelAfterDays
+    feed feedBrand feedUrl notifyCustomerWa notifyAdminPhone notifyAdminOrder subRenewDays subGraceDays hiddenRedirect
+    cardProviders whatsappReady donateCart donateHavale
+    orderStatuses { slug label }
+    freeShipThreshold { ...FlxCommerceMoney }
+  }
+  flxCommerceBankSettings { enabled title description holder iban bank refFormat refPrefix }
+  flxCommerceRenewalStatus { ran at { ...FlxCommerceWhen } }
+}

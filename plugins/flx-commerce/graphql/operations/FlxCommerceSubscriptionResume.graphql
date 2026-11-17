@@ -1,0 +1,3 @@
+mutation FlxCommerceSubscriptionResume($input: FlxCommerceSubscriptionResumeInput!) {
+  flxCommerceSubscriptionResume(input: $input) { subscription { id status } errors { code message field } }
+}

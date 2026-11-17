@@ -775,6 +775,15 @@ function ListRow(o: { task: T; cols: Col[]; depth: number; parent: number; kids:
   const sel = !!S.selected[task.id];
   const dr = useDragItem(task.id);
   const subCount = o.kids > 0 ? o.kids : task.subtasks;
+  const [renaming, setRenaming] = useState(false);
+  const [name, setName] = useState('');
+  const canEdit = e.canList(task.list, 'edit');
+  const tagsCol = o.cols.some((x) => x.key === 'tags');
+  const commitName = () => {
+    const t = name.trim();
+    setRenaming(false);
+    if (t && t !== task.title) void e.patchTask(task.id, { title: t }).catch(() => {});
+  };
   const cls =
     'flxg-row' + (sel ? ' is-selected' : '') + (S.openTask === task.id ? ' is-open' : '') + (task._outside ? ' is-outside' : '') + (depth ? ' is-sub' : '') +
     (task._ctx || o.ctx ? ' is-ctx' : '') + (S.saving[task.id] ? ' is-pending' : '') + (dr.dragging ? ' is-dragging' : '') + (o.hidden ? ' is-drag-hidden' : '');
@@ -824,7 +833,25 @@ function ListRow(o: { task: T; cols: Col[]; depth: number; parent: number; kids:
         >
           {st.type === 'done' ? <Ic n="check" s={11} /> : null}
         </button>
-        <span className={'flxg-title' + (st.type === 'done' ? ' is-done' : '')}>{task.title}</span>
+        {renaming ? (
+          <input
+            className="flxg-input is-sm flxg-title-edit flxg-nodrag"
+            autoFocus
+            value={name}
+            onClick={(ev) => ev.stopPropagation()}
+            onPointerDown={(ev) => ev.stopPropagation()}
+            onChange={(ev) => setName(ev.target.value)}
+            onBlur={commitName}
+            onKeyDown={(ev) => {
+              ev.stopPropagation();
+              if (ev.key === 'Enter') commitName();
+              if (ev.key === 'Escape') setRenaming(false);
+            }}
+          />
+        ) : (
+          <span className={'flxg-title' + (st.type === 'done' ? ' is-done' : '')}>{task.title}</span>
+        )}
+        {!tagsCol && task.tags.length > 0 && <TagChips ids={task.tags} max={3} />}
         <span className="flxg-badges">
           {subCount ? (
             <span className={'flxg-meta' + (o.kids > 0 ? ' is-btn' : '')} title={tt("Subtask")} onClick={o.kids > 0 ? (ev) => (ev.stopPropagation(), o.toggle()) : undefined}>
@@ -837,10 +864,20 @@ function ListRow(o: { task: T; cols: Col[]; depth: number; parent: number; kids:
           {task.hasDesc ? <span className="flxg-meta" title={tt("Has description")}><Ic n="list" s={13} /></span> : null}
         </span>
         {task._outside && <span className="flxg-outside" title={tt("This task no longer matches this view's filter. It will be hidden when you change page.")}>{tt("Outside filter")}</span>}
-        {o.canSub && (
-          <button type="button" className="flxg-row-addsub flxg-nodrag" title={tt("Add subtask")} onPointerDown={(ev) => ev.stopPropagation()} onClick={(ev) => (ev.stopPropagation(), o.addSub())}>
-            <Ic n="plus" s={14} />
-          </button>
+        {canEdit && !renaming && (
+          <span className="flxg-row-actions flxg-nodrag" onPointerDown={(ev) => ev.stopPropagation()} onClick={(ev) => ev.stopPropagation()}>
+            {o.canSub && (
+              <button type="button" className="flxg-row-act" title={tt("Add subtask")} aria-label={tt("Add subtask")} onClick={() => o.addSub()}>
+                <Ic n="plus" s={14} />
+              </button>
+            )}
+            <button type="button" className="flxg-row-act" title={tt("Tags")} aria-label={tt("Tags")} onClick={(ev) => pickTags(c, ev.currentTarget, e.list(task.list)?.space_id ?? 0, task.tags, debounce((ids) => void e.patchTask(task.id, { tags: ids }).catch(() => {}), 400))}>
+              <Ic n="tag" s={14} />
+            </button>
+            <button type="button" className="flxg-row-act" title={tt("Rename")} aria-label={tt("Rename")} onClick={() => (setName(task.title), setRenaming(true))}>
+              <Ic n="edit" s={14} />
+            </button>
+          </span>
         )}
       </div>
       {o.cols.map((col) => (
@@ -892,14 +929,19 @@ function SubAddRow({ parent, depth }: { parent: FlxgTask; depth: number }) {
   );
 }
 
-/** Satır içi görev ekleme. */
+/** Satır içi görev ekleme: ad + atama / tarih / öncelik / etiket simgeleri, İptal ve Kaydet. */
 function InlineAdd({ g, autoOpen }: { g: Group; autoOpen?: boolean }) {
-  const { e, ui } = useYtg();
+  const c = useYtg();
+  const { e, ui } = c;
   const S = e.S;
   const [open, setOpen] = useState(!!autoOpen);
   const [v, setV] = useState('');
+  const [who, setWho] = useState<number[]>([]);
+  const [due, setDue] = useState('');
+  const [prio, setPrio] = useState(0);
+  const [tagIds, setTagIds] = useState<number[]>([]);
   const lists = e.scopeLists().filter((l) => rank(l.role) >= 3);
-  const [list, setList] = useState(g.list || (S.scope?.type === 'list' ? S.scope.id : lists[0]?.id ?? 0));
+  const [list] = useState(g.list || (S.scope?.type === 'list' ? S.scope.id : lists[0]?.id ?? 0));
   const inp = useRef<HTMLInputElement>(null);
   if (!open)
     return (
@@ -910,46 +952,59 @@ function InlineAdd({ g, autoOpen }: { g: Group; autoOpen?: boolean }) {
         </button>
       </div>
     );
+  const reset = () => (setV(''), setWho([]), setDue(''), setPrio(0), setTagIds([]));
   const save = () => {
     const title = v.trim();
     if (!title) return setOpen(false);
     const data: Record<string, unknown> = { list, title };
+    if (who.length) data.assignees = who;
+    if (due) data.due = due;
+    if (prio) data.priority = prio;
+    if (tagIds.length) data.tags = tagIds;
     const fake = { id: 0, list, assignees: [], fields: {}, tags: [], status: '', priority: 0, due: '' } as unknown as FlxgTask;
     const p = g.patch?.(fake, null);
     if (p) Object.assign(data, p);
     if (S.scope?.type === 'home' && !data.assignees) data.assignees = [S.me!.id];
-    setV('');
+    reset();
     e.createTask(data).then(() => inp.current?.focus(), ui.fail);
   };
+  const space = e.list(list)?.space_id ?? 0;
+  const btn = (title: string, on: boolean, onClick: (ev: React.MouseEvent<HTMLButtonElement>) => void, body: ReactNode) => (
+    <button type="button" className={'flxg-qa-btn' + (on ? ' is-on' : '')} title={title} aria-label={title} onMouseDown={(ev) => ev.preventDefault()} onClick={onClick}>
+      {body}
+    </button>
+  );
   return (
     <div className="flxg-inline-add">
-      <div className="flxg-inline-form">
+      <div className="flxg-qa">
+        <span className="flxg-qa-circle" />
         <input
           ref={inp}
-          className="flxg-input"
+          className="flxg-qa-input"
           type="text"
           autoFocus
-          placeholder={tt("Type a task name and press Enter")}
+          placeholder={tt("Task name")}
           value={v}
           onChange={(ev) => setV(ev.target.value)}
           onKeyDown={(ev) => {
             if (ev.key === 'Enter') (ev.preventDefault(), save());
             if (ev.key === 'Escape') setOpen(false);
           }}
-          onBlur={(ev) => setTimeout(() => !v.trim() && !(ev.relatedTarget as HTMLElement | null)?.closest('.flxg-inline-form') && setOpen(false), 150)}
         />
-        {S.scope?.type !== 'list' && !g.list && lists.length > 1 && (
-          <select className="flxg-input is-sm" value={list} onChange={(ev) => setList(+ev.target.value)}>
-            {lists.map((l) => (
-              <option key={l.id} value={l.id}>
-                {l.name}
-              </option>
-            ))}
-          </select>
-        )}
-        <button type="button" className="flxg-btn is-primary is-sm" onMouseDown={(ev) => (ev.preventDefault(), save())}>
-          {tt("Add")}
-        </button>
+        <div className="flxg-qa-right">
+          <div className="flxg-qa-tools">
+            {btn(tt("Assignee"), who.length > 0, (ev) => pickPeople(c, ev.currentTarget, who, setWho), who.length ? <Avatars ids={who} size={18} max={2} /> : <Ic n="user" s={16} />)}
+            {btn(tt("Due date"), !!due, (ev) => pickDate(c, ev.currentTarget, due, setDue), due ? <span className="flxg-qa-val">{fmtDue(due)}</span> : <Ic n="calendar" s={16} />)}
+            {btn(tt("Priority"), prio > 0, (ev) => pickPriority(c, ev.currentTarget, prio, setPrio), prio ? <PrioFlag n={prio} /> : <Ic n="flag" s={16} />)}
+            {btn(tt("Tags"), tagIds.length > 0, (ev) => pickTags(c, ev.currentTarget, space, tagIds, setTagIds), tagIds.length ? <span className="flxg-qa-val">{tagIds.length}</span> : <Ic n="tag" s={16} />)}
+          </div>
+          <button type="button" className="flxg-btn is-sm" onMouseDown={(ev) => ev.preventDefault()} onClick={() => setOpen(false)}>
+            {tt("Cancel")}
+          </button>
+          <button type="button" className="flxg-btn is-primary is-sm" onMouseDown={(ev) => ev.preventDefault()} onClick={save}>
+            {tt("Save")} <span aria-hidden="true">↵</span>
+          </button>
+        </div>
       </div>
     </div>
   );
