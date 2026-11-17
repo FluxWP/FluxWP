@@ -954,18 +954,20 @@ function InlineAdd({ g, autoOpen }: { g: Group; autoOpen?: boolean }) {
             if (ev.key === 'Escape') setOpen(false);
           }}
         />
-        <div className="flxg-qa-tools">
-          {btn(tt("Assignee"), who.length > 0, (ev) => pickPeople(c, ev.currentTarget, who, setWho), who.length ? <Avatars ids={who} size={18} max={2} /> : <Ic n="user" s={16} />)}
-          {btn(tt("Due date"), !!due, (ev) => pickDate(c, ev.currentTarget, due, setDue), due ? <span className="flxg-qa-val">{fmtDue(due)}</span> : <Ic n="calendar" s={16} />)}
-          {btn(tt("Priority"), prio > 0, (ev) => pickPriority(c, ev.currentTarget, prio, setPrio), prio ? <PrioFlag n={prio} /> : <Ic n="flag" s={16} />)}
-          {btn(tt("Tags"), tagIds.length > 0, (ev) => pickTags(c, ev.currentTarget, space, tagIds, setTagIds), tagIds.length ? <span className="flxg-qa-val">{tagIds.length}</span> : <Ic n="tag" s={16} />)}
+        <div className="flxg-qa-right">
+          <div className="flxg-qa-tools">
+            {btn(tt("Assignee"), who.length > 0, (ev) => pickPeople(c, ev.currentTarget, who, setWho), who.length ? <Avatars ids={who} size={18} max={2} /> : <Ic n="user" s={16} />)}
+            {btn(tt("Due date"), !!due, (ev) => pickDate(c, ev.currentTarget, due, setDue), due ? <span className="flxg-qa-val">{fmtDue(due)}</span> : <Ic n="calendar" s={16} />)}
+            {btn(tt("Priority"), prio > 0, (ev) => pickPriority(c, ev.currentTarget, prio, setPrio), prio ? <PrioFlag n={prio} /> : <Ic n="flag" s={16} />)}
+            {btn(tt("Tags"), tagIds.length > 0, (ev) => pickTags(c, ev.currentTarget, space, tagIds, setTagIds), tagIds.length ? <span className="flxg-qa-val">{tagIds.length}</span> : <Ic n="tag" s={16} />)}
+          </div>
+          <button type="button" className="flxg-btn is-sm" onMouseDown={(ev) => ev.preventDefault()} onClick={() => setOpen(false)}>
+            {tt("Cancel")}
+          </button>
+          <button type="button" className="flxg-btn is-primary is-sm" onMouseDown={(ev) => ev.preventDefault()} onClick={save}>
+            {tt("Save")} <span aria-hidden="true">↵</span>
+          </button>
         </div>
-        <button type="button" className="flxg-btn is-sm" onMouseDown={(ev) => ev.preventDefault()} onClick={() => setOpen(false)}>
-          {tt("Cancel")}
-        </button>
-        <button type="button" className="flxg-btn is-primary is-sm" onMouseDown={(ev) => ev.preventDefault()} onClick={save}>
-          {tt("Save")} <span aria-hidden="true">↵</span>
-        </button>
       </div>
     </div>
   );

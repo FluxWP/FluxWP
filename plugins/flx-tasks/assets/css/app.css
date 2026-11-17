@@ -435,7 +435,7 @@ select.flxg-input { padding-right: 28px; }
 .flxg-people { display: flex; flex-wrap: wrap; gap: 6px 12px; }
 
 /* ---------------- Liste görünümü ---------------- */
-.flxg-scroll-x { overflow-x: auto; min-height: 100%; }
+.flxg-scroll-x { overflow-x: auto; min-height: 100%; container-type: inline-size; }
 .flxg-listview { padding: 4px 16px 90px 20px; min-width: min-content; }
 .flxg-group { margin-bottom: 18px; border-radius: var(--r); }
 .flxg-group.is-drop-over { background: var(--accent-soft); }
@@ -1873,9 +1873,9 @@ body.flxg-col-resizing, body.flxg-col-resizing * { cursor: col-resize !important
 .flxg-lightbox .flxg-btn svg { color: #fff !important; }
 
 /* Satır içi görev ekleme (React): ad + simge düğmeleri + İptal / Kaydet. */
-.flxg-qa { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; width: min(100%, 900px); position: sticky; left: 0; min-height: 52px; padding: 8px 14px 8px 12px; background: var(--panel); border-bottom: 1px solid var(--line-2); }
+.flxg-qa { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; width: min(100%, 760px, calc(100cqw - 40px)); position: sticky; left: 0; min-height: 52px; padding: 8px 14px 8px 12px; background: var(--panel); border-bottom: 1px solid var(--line-2); }
 .flxg-qa-circle { flex: none; width: 16px; height: 16px; margin: 0 8px 0 4px; border: 1.6px dashed var(--faint); border-radius: 50%; }
-.flxg .flxg-qa-input { flex: 1 1 220px; min-width: 0; height: 36px; padding: 0; border: 0 !important; outline: 0 !important; box-shadow: none !important; background: transparent !important; color: var(--ink); font: inherit; font-size: 15px; }
+.flxg .flxg-qa-input { flex: 1 1 180px; min-width: 0; height: 36px; padding: 0; border: 0 !important; outline: 0 !important; box-shadow: none !important; background: transparent !important; color: var(--ink); font: inherit; font-size: 15px; }
 .flxg-qa-input::placeholder { color: var(--faint); }
 .flxg-qa-list { width: auto; max-width: 160px; }
 .flxg-qa-tools { display: flex; align-items: center; gap: 6px; }
@@ -1884,7 +1884,8 @@ body.flxg-col-resizing, body.flxg-col-resizing * { cursor: col-resize !important
 .flxg-qa-btn.is-on { color: var(--ink); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
 .flxg-qa-val { font-weight: 600; }
 @media (max-width: 720px) { .flxg-qa-circle { display: none; } }
-.flxg-qa-tools { margin-left: auto; }
+.flxg-qa-right { display: flex; align-items: center; gap: 10px; margin-left: auto; flex: none; }
+.flxg-qa-right .flxg-btn { white-space: nowrap; }
 
 /* Liste görünümü (React): düz satırlar, hap biçimli araç çubuğu düğmeleri. */
 .flxg-flux .flxg-tb-btn { border-color: var(--line); border-radius: 999px; height: 32px; padding: 0 12px; background: var(--panel); }
