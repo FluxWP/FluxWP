@@ -47,8 +47,12 @@ jobs:
         with:
           php-version: '8.1'
           extensions: pdo_sqlite, sqlite3, mbstring, intl
-          tools: wp-cli
           coverage: none
+      - name: WP-CLI
+        run: |
+          sudo curl -fsSL --retry 5 --retry-all-errors --retry-delay 3 -o /usr/local/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+          sudo chmod +x /usr/local/bin/wp
+          wp --version
       - uses: oven-sh/setup-bun@v2
         with: { bun-version: 1.4.4 }
       - uses: actions/setup-node@v5
