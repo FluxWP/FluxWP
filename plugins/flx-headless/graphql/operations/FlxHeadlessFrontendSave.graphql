@@ -1,0 +1,15 @@
+mutation FlxHeadlessFrontendSave($input: FlxHeadlessFrontendSaveInput!) {
+  flxHeadlessFrontendSave(input: $input) {
+    frontend {
+      ...FlxHeadlessFrontendFields
+    }
+    settings {
+      ...FlxHeadlessSettingsFields
+    }
+    errors {
+      code
+      field
+      message
+    }
+  }
+}

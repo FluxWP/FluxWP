@@ -444,6 +444,9 @@ class FLXF_Blocks {
 		}
 		delete_transient( 'emsfb_forms_list' );
 		delete_transient( 'emsfb_survey_' . (int) $id );
+		if ( class_exists( 'FLXF_Form_Service' ) ) {
+			FLXF_Form_Service::purge( (int) $id );
+		}
 	}
 
 	/**

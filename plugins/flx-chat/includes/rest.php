@@ -122,81 +122,22 @@ function flxc_labels_for_js() {
 }
 
 function flxc_rest_bootstrap() {
-	$u  = wp_get_current_user();
-	$ai = flxc_ai_active();
-	return array(
-		'me'          => array(
-			'id'     => (int) $u->ID,
-			'name'   => $u->display_name,
-			'manage' => flxc_can_manage(),
-		),
-		'delHours'    => flxc_revoke_limit_hours(),
-		'agents'      => flxc_agents(),
-		'labels'      => flxc_labels_for_js(),
-		'connections' => flxc_connections_for_js(),
-		'channels'    => flxc_channels_for_js(),
-		'replies'     => flxc_replies_for_js(),
-		'unread'      => flxc_unread_total(),
-		'ai'          => $ai ? array( 'id' => $ai['id'], 'label' => (string) ( $ai['label'] ?? $ai['id'] ), 'auto' => (bool) flxc_setting( 'ai_auto_suggest' ) ) : null,
-		'bot'         => function_exists( 'flxc_bot_enabled' ) && flxc_bot_enabled(),
-		'records'     => flxc_records_boot(),
-		'staff'       => flxc_can_manage() && function_exists( 'flxc_staff_link_users' ) ? flxc_staff_link_users() : array(),
-		'rev'         => flxc_rev(),
-	);
+	return FLXC_Chat_Service::bootstrap();
 }
 
 function flxc_rest_chats( WP_REST_Request $req ) {
-	$rows = flxc_query_chats(
-		array(
-			'filter' => sanitize_key( (string) $req->get_param( 'filter' ) ),
-			'q'      => sanitize_text_field( (string) $req->get_param( 'q' ) ),
-			'label'  => sanitize_key( (string) $req->get_param( 'label' ) ),
-			'channel' => sanitize_key( (string) $req->get_param( 'channel' ) ),
-			'offset' => max( 0, (int) $req->get_param( 'offset' ) ),
-			'limit'  => min( 100, max( 10, (int) ( $req->get_param( 'limit' ) ? $req->get_param( 'limit' ) : 50 ) ) ),
-		)
-	);
-	return array( 'chats' => flxc_chats_for_js( $rows ) );
+	return FLXC_Chat_Service::chats( $req );
 }
 
 /** Canlı güncelleme: istemci birkaç saniyede bir son gördüğü rev ile sorar. */
 function flxc_rest_sync( WP_REST_Request $req ) {
-	$now   = flxc_rev();
-	$since = (int) $req->get_param( 'since' );
-	$chat  = (int) $req->get_param( 'chat' );
-	$out   = array(
-		'rev'         => $now,
-		'chats'       => array(),
-		'messages'    => array(),
-		'incoming'    => array(),
-		'connections' => flxc_connections_for_js(),
-		'unread'      => flxc_unread_total(),
-	);
-	if ( $since > 0 ) {
-		$out['chats']    = flxc_chats_for_js( flxc_query_chats( array( 'since' => $since, 'limit' => 200 ) ) );
-		$out['incoming'] = flxc_new_incoming_since( $since );
-		if ( $chat ) {
-			$c = flxc_get_chat( $chat );
-			if ( $c && flxc_user_can_see_chat( $c ) ) {
-				$out['messages'] = flxc_messages_for_js( flxc_messages_since( $chat, $since, (int) $req->get_param( 'after' ) ) );
-			}
-		}
-	}
-	// Oturum yenilendiğinde istemci yeni nonce'u kullansın.
+	$out          = FLXC_Chat_Service::sync_payload( (int) $req->get_param( 'since' ), (int) $req->get_param( 'chat' ), (int) $req->get_param( 'after' ), 200, 200 );
 	$out['nonce'] = wp_create_nonce( 'wp_rest' );
 	return $out;
 }
 
 function flxc_rest_chat( WP_REST_Request $req ) {
-	$chat = flxc_rest_chat_or_error( $req['id'] );
-	if ( is_wp_error( $chat ) ) {
-		return $chat;
-	}
-	return array(
-		'chat'     => flxc_chats_for_js( array( $chat ) )[0],
-		'sections' => flxc_contact_sections( $chat ),
-		'log'      => function_exists( 'flxc_clog_for_js' ) ? flxc_clog_for_js( (int) $chat['id'], 100 ) : array(),
-	);
+	return FLXC_Chat_Service::chat( $req );
 }
 
 /** Kişi panelindeki ek bölümler (Flux Certificates sertifikaları vb.). */
@@ -241,130 +182,17 @@ function flxc_contact_sections( $chat ) {
 }
 
 function flxc_rest_new_chat( WP_REST_Request $req ) {
-	$phone = flxc_normalize_phone( (string) $req->get_param( 'phone' ) );
-	if ( ! $phone ) {
-		return new WP_Error( 'flxc_phone', __( 'Invalid phone number.', 'flx-chat' ), array( 'status' => 400 ) );
-	}
-	$conn_id = sanitize_key( (string) $req->get_param( 'conn' ) );
-	$conn    = $conn_id ? flxc_get_connection( $conn_id ) : flxc_default_connection();
-	if ( ! $conn ) {
-		return new WP_Error( 'flxc_conn', __( 'First add a WhatsApp connection under Settings › Connections.', 'flx-chat' ), array( 'status' => 400 ) );
-	}
-	$jid    = $phone . '@s.whatsapp.net';
-	$exists = null;
-	if ( $req->get_param( 'check' ) ) {
-		$chk = flxc_evo_check_numbers( $conn['id'], array( $phone ) );
-		if ( ! is_wp_error( $chk ) && isset( $chk[ $phone ] ) ) {
-			$exists = $chk[ $phone ]['exists'];
-			if ( ! $exists ) {
-				return new WP_Error( 'flxc_no_wa', __( 'This number is not on WhatsApp.', 'flx-chat' ), array( 'status' => 400 ) );
-			}
-			if ( $chk[ $phone ]['jid'] ) {
-				$jid = $chk[ $phone ]['jid'];
-			}
-		}
-	}
-	// 1.41.0: the name the agent typed is written (and logged) as the agent's change, not as a record's.
-	$chat = flxc_ensure_chat( $conn['id'], $jid );
-	$name = sanitize_text_field( (string) $req->get_param( 'name' ) );
-	if ( $name && $name !== $chat['name'] ) {
-		flxc_update_chat( $chat['id'], array( 'name' => $name ) );
-	}
-	if ( 'closed' === $chat['status'] ) {
-		flxc_update_chat( $chat['id'], array( 'status' => 'open' ) );
-	}
-	return array( 'chat' => flxc_chats_for_js( array( flxc_get_chat( $chat['id'] ) ) )[0] );
+	return FLXC_Chat_Service::create( $req );
 }
 
 function flxc_rest_check_number( WP_REST_Request $req ) {
-	$phone = flxc_normalize_phone( (string) $req->get_param( 'phone' ) );
-	if ( ! $phone ) {
-		return array( 'valid' => false );
-	}
-	$conn   = flxc_get_connection( sanitize_key( (string) $req->get_param( 'conn' ) ) );
-	$conn   = $conn ? $conn : flxc_default_connection();
-	$exists = null;
-	if ( $conn ) {
-		$chk = flxc_evo_check_numbers( $conn['id'], array( $phone ) );
-		if ( ! is_wp_error( $chk ) && isset( $chk[ $phone ] ) ) {
-			$exists = $chk[ $phone ]['exists'];
-		}
-	}
-	$found = $conn ? flxc_find_chat_by_phone( $conn['id'], $phone ) : null;
-	return array(
-		'valid'    => true,
-		'phone'    => $phone,
-		'phoneFmt' => flxc_format_phone( $phone ),
-		'exists'   => $exists,
-		'chat'     => $found ? (int) $found['id'] : 0,
-		'name'     => $found ? flxc_chat_title( $found ) : flxc_lookup_contact_name( $phone ),
-	);
+	return FLXC_Chat_Service::check_number( $req );
 }
 
 function flxc_rest_update_chat( WP_REST_Request $req ) {
-	$chat = flxc_rest_chat_or_error( $req['id'] );
-	if ( is_wp_error( $chat ) ) {
-		return $chat;
-	}
-	$upd = array();
-	if ( null !== $req->get_param( 'name' ) ) {
-		$upd['name'] = mb_substr( sanitize_text_field( (string) $req->get_param( 'name' ) ), 0, 190 );
-	}
-	if ( null !== $req->get_param( 'notes' ) ) {
-		$upd['notes'] = sanitize_textarea_field( (string) $req->get_param( 'notes' ) );
-	}
-	if ( null !== $req->get_param( 'labels' ) ) {
-		$valid = wp_list_pluck( flxc_labels_for_js(), 'id' );
-		$ls    = array_values( array_intersect( array_map( 'sanitize_key', (array) $req->get_param( 'labels' ) ), $valid ) );
-		$upd['labels'] = implode( ',', $ls );
-	}
-	if ( null !== $req->get_param( 'status' ) ) {
-		$st = sanitize_key( (string) $req->get_param( 'status' ) );
-		if ( in_array( $st, array( 'open', 'closed' ), true ) ) {
-			$upd['status'] = $st;
-			if ( 'closed' === $st ) {
-				$upd['unread'] = 0;
-			}
-		}
-	}
-	if ( null !== $req->get_param( 'assigned' ) ) {
-		$a = (int) $req->get_param( 'assigned' );
-		if ( 0 === $a || in_array( $a, wp_list_pluck( flxc_agents(), 'id' ), true ) ) {
-			$upd['assigned_to'] = $a;
-		}
-	}
-	if ( null !== $req->get_param( 'pinned' ) ) {
-		$upd['pinned'] = $req->get_param( 'pinned' ) ? 1 : 0;
-	}
-	if ( null !== $req->get_param( 'unread' ) ) {
-		$upd['unread'] = max( 0, (int) $req->get_param( 'unread' ) );
-	}
-	// 1.36.0: a manager links a hidden-number chat to a staff user (the assistant then opens staff tools).
-	if ( null !== $req->get_param( 'staff_user' ) && function_exists( 'flxc_staff_link_chat' ) ) {
-		if ( ! flxc_can_manage() ) {
-			return new WP_Error( 'flxc_forbidden', __( 'You do not have permission for this action.', 'flx-chat' ), array( 'status' => 403 ) );
-		}
-		$r = flxc_staff_link_chat( $chat, (int) $req->get_param( 'staff_user' ) );
-		if ( is_wp_error( $r ) ) {
-			return $r;
-		}
-	}
-	if ( $upd ) {
-		flxc_update_chat( $chat['id'], $upd );
-		if ( isset( $upd['assigned_to'] ) && (int) $upd['assigned_to'] !== (int) $chat['assigned_to'] ) {
-			$who = $upd['assigned_to'] ? flxc_user_name( $upd['assigned_to'] ) : '';
-			/* translators: 1: agent who changed, 2: assignee */
-			$txt = $who ? sprintf( __( '%1$s assigned the chat to %2$s', 'flx-chat' ), flxc_user_name( get_current_user_id() ), $who ) : sprintf( __( '%s removed the chat assignment', 'flx-chat' ), flxc_user_name( get_current_user_id() ) );
-			flxc_system_message( $chat, $txt );
-		}
-		if ( isset( $upd['status'] ) && $upd['status'] !== $chat['status'] ) {
-			/* translators: %s: agent name */
-			$txt = 'closed' === $upd['status'] ? sprintf( __( '%s closed the chat', 'flx-chat' ), flxc_user_name( get_current_user_id() ) ) : sprintf( __( '%s reopened the chat', 'flx-chat' ), flxc_user_name( get_current_user_id() ) );
-			flxc_system_message( $chat, $txt );
-		}
-	}
-	return array( 'chat' => flxc_chats_for_js( array( flxc_get_chat( $chat['id'] ) ) )[0] );
+	return FLXC_Chat_Service::update( $req );
 }
+
 
 /** Sohbet akışına sistem satırı (atama, kapatma). Son mesaj önizlemesini değiştirmez. */
 function flxc_system_message( $chat, $text, array $meta = array() ) {
@@ -388,89 +216,14 @@ function flxc_system_message( $chat, $text, array $meta = array() ) {
 }
 
 function flxc_rest_messages( WP_REST_Request $req ) {
-	$chat = flxc_rest_chat_or_error( $req['id'] );
-	if ( is_wp_error( $chat ) ) {
-		return $chat;
-	}
-	$limit  = 40;
-	$before = (int) $req->get_param( 'before' );
-	$rows   = flxc_chat_messages( $chat['id'], $before, $limit );
-	$hist   = (array) ( flxc_decode( $chat['meta'] )['hist'] ?? array() );
-	$note   = '';
-	// Yerelde yeterli mesaj yoksa geçmişi Evolution'dan getir (WhatsApp'taki eski mesajlar).
-	if ( count( $rows ) < $limit && empty( $hist['done'] ) ) {
-		$r = flxc_fetch_chat_history( $chat );
-		if ( is_wp_error( $r ) ) {
-			$note = $r->get_error_message();
-		} elseif ( $r ) {
-			$rows = flxc_chat_messages( $chat['id'], $before, $limit );
-		}
-		$chat = flxc_get_chat( $chat['id'] );
-		$hist = (array) ( flxc_decode( $chat['meta'] )['hist'] ?? array() );
-	}
-	return array(
-		'messages' => flxc_messages_for_js( $rows ),
-		'more'     => count( $rows ) >= $limit || ( empty( $hist['done'] ) && ! $note && $rows ),
-		'note'     => $note,
-	);
+	return FLXC_Message_Service::list_for( $req );
 }
 
+
 function flxc_rest_send( WP_REST_Request $req ) {
-	$chat = flxc_rest_chat_or_error( $req['id'] );
-	if ( is_wp_error( $chat ) ) {
-		return $chat;
-	}
-	$type  = sanitize_key( (string) $req->get_param( 'type' ) );
-	$type  = $type ? $type : 'text';
-	$body  = (string) $req->get_param( 'body' );
-	$body  = str_replace( "\r\n", "\n", wp_check_invalid_utf8( $body ) );
-	$args  = array(
-		'type'      => $type,
-		'body'      => $body,
-		'quoted_id' => (int) $req->get_param( 'quoted' ),
-		'source'    => in_array( $req->get_param( 'source' ), array( 'quick', 'ai' ), true ) ? $req->get_param( 'source' ) : 'agent',
-		'preview'   => false !== $req->get_param( 'preview' ) && '0' !== (string) $req->get_param( 'preview' ),
-	);
-	$files  = $req->get_file_params();
-	$upload = sanitize_key( (string) $req->get_param( 'upload' ) );
-	if ( $upload ) {
-		// 1.46.0: dosya önceden /uploads ile yüklendi (ek kartı ilerleme çubuğuyla); burada yalnız token gelir.
-		$up = flxc_upload_take( $upload );
-		if ( is_wp_error( $up ) ) {
-			return $up;
-		}
-		$type         = 'audio' === $type ? 'audio' : $up['type'];
-		$args['type'] = $type;
-		$args['file'] = $up['file'];
-		$args['mime'] = $up['mime'];
-		$args['name'] = $up['name'];
-		$staged       = $up['file'];
-	} elseif ( ! empty( $files['file'] ) && empty( $files['file']['error'] ) ) {
-		$chk = flxc_upload_check( $files['file'], (string) $req->get_param( 'name' ), $type );
-		if ( is_wp_error( $chk ) ) {
-			return $chk;
-		}
-		$type         = $chk['type'];
-		$args['type'] = $type;
-		$args['file'] = $files['file']['tmp_name'];
-		$args['mime'] = $chk['mime'];
-		$args['name'] = $chk['name'];
-	} elseif ( 'text' !== $type && 'note' !== $type ) {
-		return new WP_Error( 'flxc_file', __( 'File could not be uploaded.', 'flx-chat' ), array( 'status' => 400 ) );
-	}
-	if ( in_array( $type, array( 'text', 'note' ), true ) && '' === trim( $body ) ) {
-		return new WP_Error( 'flxc_empty', __( 'Message is empty.', 'flx-chat' ), array( 'status' => 400 ) );
-	}
-	$m = flxc_send( $chat, $args );
-	if ( ! empty( $staged ) ) {
-		wp_delete_file( $staged );
-	}
-	if ( is_wp_error( $m ) ) {
-		$m->add_data( array( 'status' => 400 ) );
-		return $m;
-	}
-	return array( 'message' => flxc_messages_for_js( array( $m ) )[0] );
+	return FLXC_Message_Service::send( $req );
 }
+
 
 /**
  * Yüklenen dosyayı denetler: boyut, yasak uzantı, gerçek MIME, mesaj türü.
@@ -560,209 +313,52 @@ function flxc_upload_gc( $dir ) {
 }
 
 function flxc_rest_retry( WP_REST_Request $req ) {
-	$m = flxc_get_message( (int) $req['id'] );
-	if ( ! $m || 'out' !== $m['direction'] || 'failed' !== $m['status'] ) {
-		return new WP_Error( 'flxc_retry', __( 'This message cannot be resent.', 'flx-chat' ), array( 'status' => 400 ) );
-	}
-	$chat = flxc_rest_chat_or_error( $m['chat_id'] );
-	if ( is_wp_error( $chat ) ) {
-		return $chat;
-	}
-	$res = flxc_send(
-		$chat,
-		array(
-			'type'      => $m['type'],
-			'body'      => $m['body'],
-			'quoted_id' => (int) $m['quoted_id'],
-			'mime'      => $m['media_mime'],
-			'name'      => $m['media_name'],
-			'retry_id'  => (int) $m['id'],
-			'user_id'   => get_current_user_id(),
-			'preview'   => empty( flxc_decode( $m['meta'] )['nolp'] ),
-		)
-	);
-	if ( is_wp_error( $res ) ) {
-		return $res;
-	}
-	return array( 'message' => flxc_messages_for_js( array( $res ) )[0] );
+	return FLXC_Message_Service::retry( $req );
 }
 
+
 function flxc_rest_react( WP_REST_Request $req ) {
-	$m = flxc_get_message( (int) $req['id'] );
-	if ( ! $m || '' === $m['wa_id'] ) {
-		return new WP_Error( 'flxc_react', __( 'Can\'t react to this message.', 'flx-chat' ), array( 'status' => 400 ) );
-	}
-	$chat = flxc_rest_chat_or_error( $m['chat_id'] );
-	if ( is_wp_error( $chat ) ) {
-		return $chat;
-	}
-	$emoji = mb_substr( (string) $req->get_param( 'emoji' ), 0, 8 );
-	$r     = flxc_evo_send_reaction( $chat['conn'], $chat['jid'], 'out' === $m['direction'], $m['wa_id'], $emoji );
-	if ( ! $r['ok'] ) {
-		return new WP_Error( 'flxc_react', $r['error'], array( 'status' => 400 ) );
-	}
-	flxc_apply_reaction( $chat['conn'], $m['wa_id'], 'out', $emoji );
-	return array( 'message' => flxc_messages_for_js( array( flxc_get_message( $m['id'] ) ) )[0] );
+	return FLXC_Message_Service::react( $req );
 }
+
 
 /**
  * 1.38.0: mesaj silme. scope=everyone WhatsApp'ta karşı taraftan da siler (yalnız giden mesaj, süre sınırı içinde);
  * scope=panel yalnız panelde "Bu mesaj silindi" yapar. Her iki durumda da satır ve dosya sunucuda kalır.
  */
 function flxc_rest_delete_message( WP_REST_Request $req ) {
-	$m = flxc_get_message( (int) $req['id'] );
-	if ( ! $m || 'system' === $m['direction'] ) {
-		return new WP_Error( 'flxc_del', __( 'Message not found.', 'flx-chat' ), array( 'status' => 404 ) );
-	}
-	$chat = flxc_rest_chat_or_error( $m['chat_id'] );
-	if ( is_wp_error( $chat ) ) {
-		return $chat;
-	}
-	if ( 'deleted' === $m['type'] ) {
-		return new WP_Error( 'flxc_del', __( 'This message was already deleted.', 'flx-chat' ), array( 'status' => 400 ) );
-	}
-	$me    = get_current_user_id();
-	$own   = (int) $m['user_id'] === $me;
-	$scope = 'everyone' === $req->get_param( 'scope' ) ? 'everyone' : 'panel';
-	if ( 'note' === $m['direction'] ) {
-		if ( ! $own && ! flxc_can_manage() ) {
-			return new WP_Error( 'flxc_del', __( 'You can only delete your own notes.', 'flx-chat' ), array( 'status' => 403 ) );
-		}
-		$scope = 'panel';
-	}
-	if ( 'everyone' === $scope ) {
-		if ( ! $own && ! flxc_can_manage() ) {
-			return new WP_Error( 'flxc_del', __( 'Only the sender or an administrator can delete this message for everyone.', 'flx-chat' ), array( 'status' => 403 ) );
-		}
-		$until = flxc_revoke_until( $m );
-		if ( ! $until ) {
-			return new WP_Error( 'flxc_del', __( 'This message can\'t be deleted for everyone on this channel. You can hide it in the panel instead.', 'flx-chat' ), array( 'status' => 400 ) );
-		}
-		if ( time() * 1000 > $until ) {
-			return new WP_Error( 'flxc_del', __( 'The time limit for deleting for everyone has passed. You can hide it in the panel instead.', 'flx-chat' ), array( 'status' => 400 ) );
-		}
-		$r = flxc_evo_delete_for_everyone( $chat['conn'], $chat['jid'], $m['wa_id'] );
-		if ( ! $r['ok'] ) {
-			return new WP_Error( 'flxc_del', $r['error'] ? $r['error'] : __( 'WhatsApp did not delete the message.', 'flx-chat' ), array( 'status' => 400 ) );
-		}
-	}
-	flxc_soft_delete_message( $m, $scope, $me );
-	/** 1.38.0: mesaj silindikten sonra (satır sunucuda kalır). */
-	do_action( 'flxc_message_deleted', (int) $m['id'], $scope, $me );
-	return array( 'message' => flxc_messages_for_js( array( flxc_get_message( $m['id'] ) ) )[0] );
+	return FLXC_Message_Service::delete( $req );
 }
+
 
 /**
  * 1.45.0: giden metin mesajını WhatsApp'ta düzenler (WhatsApp süresi içinde, ~15 dk). Kişinin telefonunda da
  * "Düzenlendi" görünür. İlk metin meta'da (orig_body) saklanır.
  */
 function flxc_rest_edit_message( WP_REST_Request $req ) {
-	$m = flxc_get_message( (int) $req['id'] );
-	if ( ! $m || 'out' !== $m['direction'] ) {
-		return new WP_Error( 'flxc_edit', __( 'Message not found.', 'flx-chat' ), array( 'status' => 404 ) );
-	}
-	$chat = flxc_rest_chat_or_error( $m['chat_id'] );
-	if ( is_wp_error( $chat ) ) {
-		return $chat;
-	}
-	$me = get_current_user_id();
-	if ( (int) $m['user_id'] !== $me && ! flxc_can_manage() ) {
-		return new WP_Error( 'flxc_edit', __( 'Only the sender or an administrator can edit this message.', 'flx-chat' ), array( 'status' => 403 ) );
-	}
-	$until = flxc_edit_until( $m );
-	if ( ! $until ) {
-		return new WP_Error( 'flxc_edit', __( 'This message can\'t be edited on this channel.', 'flx-chat' ), array( 'status' => 400 ) );
-	}
-	if ( time() * 1000 > $until ) {
-		return new WP_Error( 'flxc_edit', __( 'The time limit for editing has passed (WhatsApp allows 15 minutes).', 'flx-chat' ), array( 'status' => 400 ) );
-	}
-	$text = trim( (string) $req->get_param( 'text' ) );
-	if ( '' === $text ) {
-		return new WP_Error( 'flxc_edit', __( 'The message can\'t be empty.', 'flx-chat' ), array( 'status' => 400 ) );
-	}
-	if ( $text === $m['body'] ) {
-		return array( 'message' => flxc_messages_for_js( array( $m ) )[0] );
-	}
-	$r = flxc_evo_edit_message( $chat['conn'], $chat['jid'], $m['wa_id'], $text );
-	if ( empty( $r['ok'] ) ) {
-		return new WP_Error( 'flxc_edit', ! empty( $r['error'] ) ? $r['error'] : __( 'WhatsApp did not edit the message.', 'flx-chat' ), array( 'status' => 400 ) );
-	}
-	flxc_apply_edit( $m, $text, $me );
-	/** 1.45.0: giden mesaj panelden düzenlendikten sonra. */
-	do_action( 'flxc_message_edited', (int) $m['id'], $text, $me );
-	return array( 'message' => flxc_messages_for_js( array( flxc_get_message( $m['id'] ) ) )[0] );
+	return FLXC_Message_Service::edit( $req );
 }
+
 
 function flxc_rest_read( WP_REST_Request $req ) {
-	global $wpdb;
-	$chat = flxc_rest_chat_or_error( $req['id'] );
-	if ( is_wp_error( $chat ) ) {
-		return $chat;
-	}
-	$n = (int) $chat['unread'];
-	if ( $n > 0 ) {
-		flxc_update_chat( $chat['id'], array( 'unread' => 0 ) );
-		if ( flxc_setting( 'send_read' ) ) {
-			$ids = $wpdb->get_col( $wpdb->prepare( 'SELECT wa_id FROM ' . flxc_table( 'messages' ) . " WHERE chat_id = %d AND direction = 'in' AND wa_id <> '' ORDER BY ts DESC LIMIT %d", $chat['id'], min( 20, $n ) ) ); // phpcs:ignore
-			if ( $ids ) {
-				flxc_evo_mark_read( $chat['conn'], $chat['jid'], $ids );
-			}
-		}
-	}
-	return array( 'ok' => true );
+	return FLXC_Message_Service::read( $req );
 }
+
 
 function flxc_rest_typing( WP_REST_Request $req ) {
-	$chat = flxc_rest_chat_or_error( $req['id'] );
-	if ( is_wp_error( $chat ) ) {
-		return $chat;
-	}
-	$key = 'flxc_mytyping_' . $chat['id'];
-	if ( ! get_transient( $key ) ) {
-		set_transient( $key, 1, 4 );
-		flxc_evo_presence( $chat['conn'], flxc_chat_number( $chat ), 'recording' === $req->get_param( 'state' ) ? 'recording' : 'composing', 4000 );
-	}
-	return array( 'ok' => true );
+	return FLXC_Message_Service::typing( $req );
 }
+
 
 function flxc_rest_avatar( WP_REST_Request $req ) {
-	$chat = flxc_rest_chat_or_error( $req['id'] );
-	if ( is_wp_error( $chat ) ) {
-		return $chat;
-	}
-	// 1.47.0: sohbet açılınca güncellik sunucuda kontrol edilir (sohbet başına en sık 10 dk'da bir); fotoğraf önbellekten verilir.
-	$changed = flxc_avatar_check( $chat, $req->get_param( 'force' ) ? 0 : flxc_avatar_open_ttl() );
-	return array(
-		'avatar'  => flxc_avatar_url( flxc_get_chat( $chat['id'] ) ),
-		'changed' => (bool) $changed,
-	);
+	return FLXC_Desk_Service::avatar( $req );
 }
 
+
 function flxc_rest_ai( WP_REST_Request $req ) {
-	$chat = flxc_rest_chat_or_error( $req['id'] );
-	if ( is_wp_error( $chat ) ) {
-		return $chat;
-	}
-	$hint = mb_substr( sanitize_text_field( (string) $req->get_param( 'hint' ) ), 0, 300 );
-	// Aynı son mesaj için hazırlanan öneri tekrar ücretlendirilmez (sohbeti yeniden açınca).
-	global $wpdb;
-	$last  = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT MAX(id) FROM ' . flxc_table( 'messages' ) . ' WHERE chat_id = %d', $chat['id'] ) );
-	$ckey  = 'flxc_ais_' . $chat['id'] . '_' . $last;
-	$fresh = (bool) $req->get_param( 'fresh' ) || '' !== $hint;
-	if ( ! $fresh ) {
-		$hit = get_transient( $ckey );
-		if ( is_string( $hit ) && '' !== $hit ) {
-			return array( 'text' => $hit, 'cached' => true, 'last' => $last );
-		}
-	}
-	$r = flxc_ai_suggest( $chat, $hint );
-	if ( is_wp_error( $r ) ) {
-		$r->add_data( array( 'status' => 400 ) );
-		return $r;
-	}
-	set_transient( $ckey, $r, 6 * HOUR_IN_SECONDS );
-	return array( 'text' => $r, 'last' => $last );
+	return FLXC_Message_Service::suggest( $req );
 }
+
 
 /** Medya dosyası: yalnız yetkili temsilciye verilir. Yoksa Evolution'dan indirilip saklanır. */
 function flxc_rest_media( WP_REST_Request $req ) {
@@ -857,59 +453,24 @@ function flxc_stream_file( $path, $mime, $name, $download = false ) {
 /* ---------- Hazır cevaplar ---------- */
 
 function flxc_rest_replies() {
-	return array( 'replies' => flxc_replies_for_js() );
+	return FLXC_Desk_Service::replies();
 }
+
 
 function flxc_rest_save_reply( WP_REST_Request $req ) {
-	global $wpdb;
-	$id    = (int) $req->get_param( 'id' );
-	$title = mb_substr( sanitize_text_field( (string) $req->get_param( 'title' ) ), 0, 190 );
-	$body  = sanitize_textarea_field( (string) $req->get_param( 'body' ) );
-	$short = mb_substr( preg_replace( '/[^\p{L}\p{N}_-]+/u', '', mb_strtolower( (string) $req->get_param( 'shortcut' ) ) ), 0, 60 );
-	$cat   = mb_substr( sanitize_text_field( (string) $req->get_param( 'category' ) ), 0, 100 );
-	if ( '' === trim( $body ) ) {
-		return new WP_Error( 'flxc_reply', __( 'Reply text cannot be empty.', 'flx-chat' ), array( 'status' => 400 ) );
-	}
-	if ( '' === $title ) {
-		$title = mb_substr( $body, 0, 40 );
-	}
-	$data = array(
-		'shortcut'   => $short,
-		'title'      => $title,
-		'body'       => $body,
-		'category'   => $cat,
-		'updated_at' => flxc_now(),
-	);
-	if ( $id ) {
-		$wpdb->update( flxc_table( 'replies' ), $data, array( 'id' => $id ) );
-	} else {
-		$data['created_by'] = get_current_user_id();
-		$data['sort']       = (int) $wpdb->get_var( 'SELECT COALESCE(MAX(sort),0)+1 FROM ' . flxc_table( 'replies' ) );
-		$wpdb->insert( flxc_table( 'replies' ), $data );
-	}
-	return array( 'replies' => flxc_replies_for_js() );
+	return FLXC_Desk_Service::save_reply( $req );
 }
+
 
 function flxc_rest_delete_reply( WP_REST_Request $req ) {
-	global $wpdb;
-	$wpdb->delete( flxc_table( 'replies' ), array( 'id' => (int) $req['id'] ) );
-	return array( 'replies' => flxc_replies_for_js() );
+	return FLXC_Desk_Service::delete_reply( $req );
 }
 
+
 function flxc_rest_use_reply( WP_REST_Request $req ) {
-	global $wpdb;
-	$wpdb->query( $wpdb->prepare( 'UPDATE ' . flxc_table( 'replies' ) . ' SET uses = uses + 1 WHERE id = %d', (int) $req['id'] ) ); // phpcs:ignore
-	$chat_id = (int) $req->get_param( 'chat' );
-	$text    = '';
-	$row     = $wpdb->get_row( $wpdb->prepare( 'SELECT body FROM ' . flxc_table( 'replies' ) . ' WHERE id = %d', (int) $req['id'] ), ARRAY_A ); // phpcs:ignore
-	if ( $row && $chat_id ) {
-		$chat = flxc_get_chat( $chat_id );
-		if ( $chat && flxc_user_can_see_chat( $chat ) ) {
-			$text = flxc_fill_vars( $row['body'], $chat );
-		}
-	}
-	return array( 'text' => $text );
+	return FLXC_Desk_Service::use_reply( $req );
 }
+
 
 /* ---------- Bağlantı yönetimi (ayarlar sayfası) ---------- */
 

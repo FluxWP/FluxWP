@@ -583,8 +583,7 @@ function flxc_rest_create_donation( WP_REST_Request $req ) {
 	if ( is_wp_error( $chat ) ) {
 		return $chat;
 	}
-	$p['user_id'] = get_current_user_id();
-	return flxc_create_donation( $p, $chat );
+	return FLXC_Desk_Service::create_donation( $p, is_array( $chat ) ? $chat : null );
 }
 
 /**
@@ -803,40 +802,7 @@ function flxc_make_certificate( array $a ) {
 }
 
 function flxc_rest_create_certificate( WP_REST_Request $req ) {
-	if ( ! flxc_can_record_certificate() ) {
-		return new WP_Error( 'flxc_forbidden', __( 'You are not allowed to create certificates.', 'flx-chat' ), array( 'status' => 403 ) );
-	}
-	$p    = (array) $req->get_json_params();
-	$chat = ! empty( $p['chat'] ) ? flxc_rest_chat_or_error( (int) $p['chat'] ) : null;
-	if ( is_wp_error( $chat ) ) {
-		return $chat;
-	}
-	$phone = (string) ( $p['phone'] ?? ( $chat ? $chat['phone'] : '' ) );
-	$cert  = flxc_make_certificate(
-		array(
-			'template_id' => (int) ( $p['template_id'] ?? 0 ),
-			'values'      => (array) ( $p['values'] ?? array() ),
-			'event_id'    => (int) ( $p['event_id'] ?? 0 ),
-			'name'        => (string) ( $p['name'] ?? '' ),
-			'phone'       => $phone,
-			'email'       => (string) ( $p['email'] ?? '' ),
-		)
-	);
-	if ( is_wp_error( $cert ) ) {
-		$cert->add_data( array( 'status' => 400 ) );
-		return $cert;
-	}
-	if ( ! empty( $p['donation_id'] ) && flxc_flxb_on() ) {
-		FLXB_Donations::set_certificate( (int) $p['donation_id'], $cert['code'] );
-	}
-	if ( ! empty( $p['receipt'] ) ) {
-		flxc_attach_receipt( (int) $p['receipt'], 'certificate', (int) $cert['id'], false );
-	}
-	if ( $chat ) {
-		/* translators: %s: certificate number */
-		flxc_system_message( $chat, sprintf( __( 'Certificate created: %s', 'flx-chat' ), $cert['number'] ) );
-	}
-	return array( 'certificate' => flxc_certificate_for_js( $cert ) );
+	return FLXC_Desk_Service::create_certificate( $req );
 }
 
 function flxc_rest_get_certificate( WP_REST_Request $req ) {

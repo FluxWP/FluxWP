@@ -584,3 +584,17 @@ fragment FlxAiSystemSettingsFields on FlxAiSystemSettings {
     }
   }
 }
+
+fragment FlxAiChatSummaryFields on FlxAiChatSummary {
+  id
+  title
+  archived
+  status
+  snippet
+  task
+  updated {
+    timestamp
+    label
+    relative
+  }
+}

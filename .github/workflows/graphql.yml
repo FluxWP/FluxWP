@@ -138,5 +138,8 @@ jobs:
       # Packages in tools/ts-strict/strict.json: tsconfig.strict.json + no explicit any.
       - name: No explicit any
         run: bun tools/ts-strict/no-any.ts
+      # Names the shared plugin runtime exports (plugin-kit shims read them; docs/graphql/EKLENTI-EKRANLARI.md).
+      - name: Plugin runtime exports
+        run: bun run --filter @fluxwp/plugin-kit exports:check
       - name: Tests
         run: bunx turbo run test --filter=@fluxwp/graphql --filter=@fluxwp/core

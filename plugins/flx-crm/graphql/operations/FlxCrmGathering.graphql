@@ -1,0 +1,5 @@
+query FlxCrmGathering($id: Int!) {
+  flxGathering(id: $id) {
+    ...FlxCrmGatheringDetail
+  }
+}

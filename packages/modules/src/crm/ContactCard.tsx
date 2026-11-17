@@ -16,6 +16,7 @@ import {
 import type { FlxContactNoteType, FlxCrmContactCardFragment, FlxCrmEventFragment, FlxCrmTimelineQuery } from '@fluxwp/graphql/types';
 import { Loading, Modal } from '@fluxwp/ui';
 import { Avatar, Card, Head, Ic, Kpi, Money, RolePills, errText, href, useCrm } from './ui';
+import { PersonSections } from './Sections';
 
 type Card_ = FlxCrmContactCardFragment;
 const NOTE_TYPES: Record<string, FlxContactNoteType> = { note: 'NOTE', call: 'CALL', meeting: 'MEETING', email_sent: 'EMAIL_SENT' };
@@ -366,6 +367,7 @@ export function ContactCard({ id, go }: { id: string; go: (to: string) => void }
               <Ic n="mail" /> {t('Write an e-mail')}
             </a>
           )}
+          <PersonSections sections={c.sections} placement="ACTIONS" />
           {can && (
             <span style={{ position: 'relative' }}>
               <button type="button" className="button" aria-label={t('More actions')} aria-expanded={menu} onClick={() => setMenu((m) => !m)}>
@@ -402,6 +404,7 @@ export function ContactCard({ id, go }: { id: string; go: (to: string) => void }
 
       <div className="flxcrm-profile">
         <div className="flxcrm-profile__main">
+          <PersonSections sections={c.sections} placement="MAIN_BEFORE" />
           <Card
             title={t('Timeline')}
             icon="clock"
@@ -510,17 +513,11 @@ export function ContactCard({ id, go }: { id: string; go: (to: string) => void }
               </ol>
             )}
           </Card>
-          {shell.flxCrmMeta.hasPackageSections && (
-            <Card title={t('More sections')} icon="link">
-              <p className="flxcrm-muted">{t('Recurring donations, orders, certificates and other sections from other plugins are on the classic card.')}</p>
-              <a className="button" href={c.editUrl ?? undefined}>
-                {t('CRM card')} <Ic n="arrow" />
-              </a>
-            </Card>
-          )}
+          <PersonSections sections={c.sections} placement="MAIN" />
         </div>
 
         <aside className="flxcrm-profile__side">
+          <PersonSections sections={c.sections} placement="SIDE" />
           <Card
             title={t('Details')}
             icon="user"

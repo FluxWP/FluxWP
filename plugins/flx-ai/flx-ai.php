@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux AI & MCP
  * Description:       Tüm FluxWP eklentileri için ortak yapay zekâ merkezi: OpenRouter ve Anthropic anahtarları, model kataloğu ve fiyatlar, prompt önbelleği, araç kaydı, ortak MCP sunucusu, kullanım raporları, faturalandırma ve harcama sınırı; yetkili kullanıcılar için admin ve sitede ortak AI sohbeti.
- * Version:           0.28.1
+ * Version:           0.31.0
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Requires Plugins:  flx-graphql
@@ -22,7 +22,7 @@ if ( defined( 'FLXAI_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXAI_VERSION', '0.28.1' );
+define( 'FLXAI_VERSION', '0.31.0' );
 define( 'FLXAI_DB_VERSION', '7' );
 define( 'FLXAI_CAP_MCP', 'flxai_mcp' );
 define( 'FLXAI_FILE', __FILE__ );
@@ -84,6 +84,8 @@ require_once FLXAI_DIR . 'includes/services/class-flxai-connections-dto.php';
 require_once FLXAI_DIR . 'includes/services/class-flxai-connections-service.php';
 require_once FLXAI_DIR . 'includes/services/class-flxai-system-settings-dto.php';
 require_once FLXAI_DIR . 'includes/services/class-flxai-system-settings-service.php';
+require_once FLXAI_DIR . 'includes/services/class-flxai-chats-dto.php';
+require_once FLXAI_DIR . 'includes/services/class-flxai-chats-service.php';
 
 if ( is_admin() ) {
 	require_once FLXAI_DIR . 'includes/admin-flux.php';
@@ -95,6 +97,7 @@ if ( is_admin() ) {
 	require_once FLXAI_DIR . 'includes/admin-tasks.php';
 	require_once FLXAI_DIR . 'includes/admin-skills.php';
 	require_once FLXAI_DIR . 'includes/admin-approvals.php';
+	require_once FLXAI_DIR . 'includes/admin-history.php';
 }
 
 /*

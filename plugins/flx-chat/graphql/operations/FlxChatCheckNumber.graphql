@@ -1,0 +1,10 @@
+query FlxChatCheckNumber($phone: String!, $conn: String) {
+  flxChatCheckNumber(phone: $phone, conn: $conn) {
+    valid
+    phone
+    phoneFmt
+    exists
+    chatId
+    name
+  }
+}

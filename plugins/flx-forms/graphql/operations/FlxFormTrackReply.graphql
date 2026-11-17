@@ -1,0 +1,14 @@
+# Public: reply on a tracked submission. Attachments must be reserved for that ticket.
+mutation FlxFormTrackReply($input: FlxFormTrackReplyInput!) {
+  flxFormTrackReply(input: $input) {
+    submission {
+      id
+      trackCode
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

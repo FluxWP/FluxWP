@@ -1,5 +1,24 @@
 # Flux AI — Değişiklikler
 
+## 0.31.0
+- **Sohbet ekranında çalışma alanı paneli** (React): Dosyalar (klasör ağacı, izinli klasörler, Markdown/HTML önizleme, renkli kod görünümü ve düzenleyici, kaydet), Değişiklikler (commit ve değişiklik istekleri, satır farkı, dosya dosya ya da toptan birleştir/reddet, çakışma uyarısı), Ayarlar (sohbet/görev dosya erişimi, izinli klasörler, kurallar). Sohbetteki değişiklik ve rapor bağlantıları paneli açar; görsel rapor sandbox'lı iframe'de gösterilir. Her turdan sonra panel yenilenir; onay bekleyen istek sayısı rozette görünür.
+- `boot` yanıtına `cm` (CodeMirror) ve `view` (rapor adresi) eklendi.
+- Sohbet ekranı artık klasik sohbetin tüm özelliklerini kapsar.
+
+## 0.30.0
+- **Canlı sohbet React ekranı oldu** (Flux AI › Sohbet): kenar çubuğunda sohbet listesi (arama, Aktif/Arşiv, yeniden adlandırma, silme, durum işaretleri), mesaj akışı (canlı metin ve düşünme akışı, markdown, widget/mermaid blokları, araç satırları), onay kartları (onayla/reddet), dosya ekleme, slash komutları (yeni, yan sohbet, ara, ekle, model), ses dikte, model seçici, durdurma, geri sarma ve düzenleyip yeniden gönderme. Klasik görünüme bağlantı durur; Flux GraphQL yoksa klasik sohbet açılır.
+- Sohbet sayfasında yüzen sohbet düğmesi yüklenmez (çift sohbet yok). `?flxai_chat=ID` bağlantıları ve görünüm değiştirirken açık sohbet korunur.
+- `boot` yanıtına `maxBytes`, `widgets`, `mermaid`, `suggestions` eklendi.
+- Tur protokolü (gönder/adım/akış/karar) REST/NDJSON olarak kalır; yüzen sohbet, FluxApp ve mobil aynı protokolü kullanır. Geçmiş işlemleri GraphQL.
+- Çalışma alanı paneli (dosyalar, değişiklik istekleri, diff) sonraki sürümde; o zamana dek klasik görünümde.
+
+## 0.29.0
+- **Sohbet geçmişi React ekranı oldu** (yeni "Sohbet geçmişi" sayfası): sohbet listesi, başlıkta ve konuşma metninde arama (eşleşen parça gösterilir), Aktif/Arşiv/Tümü süzgeci, yazışmayı salt okunur açma (araç çağrıları ve sonuçları), yeniden adlandırma, arşivleme/geri alma, silme (dosyalarıyla), "Sohbette devam et" bağlantısı. Her kullanıcı yalnız kendi sohbetlerini görür. Flux GraphQL yoksa klasik liste açılır.
+- **GraphQL:** `flxAiChats` (arama, arşiv süzgeci, sayfalama), `flxAiChat` sorguları; `flxAiChatUpdate`, `flxAiChatDelete` mutation'ları. Sağlayıcının ham blokları ve iç mesajlar yazışmada görünmez; araç çıktısı 4000 karaktere kısaltılır.
+- Servis: `FLXAI_Chats_Service` (+ DTO'lar).
+- Sözleşme testi 479 kontrol.
+- Canlı sohbet (mesaj gönderme, akış, onay kartları, dosya) olduğu gibi klasik; akış GraphQL dışında kalır.
+
 ## 0.28.1
 - Tarih alanları ortak FluxWP tarih seçicisini kullanır: sitenin dilinde ay/gün adları, Pazartesi başlangıç, hızlı seçim listesi, yazılabilir tarih ve saat, Uygula düğmesi, açık/koyu, telefonda alttan açılan pencere. Tarayıcının kendi takvimi (İngilizce çıkan) kalktı.
 

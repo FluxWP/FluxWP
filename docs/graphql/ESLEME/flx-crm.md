@@ -1,8 +1,8 @@
 # Flux CRM (flx-crm): REST → GraphQL eşlemesi
 
-Paket sürümü: 0.10.0 · Önek: `flxcrm_` (sınıf `FLXCRM_`) · Cap: `flxcrm_view` (okuma), `flxcrm_manage` (yazma) · Durum: uygulandı (gql/flx-crm-1), ayrıntı `docs/flx-crm/GRAPHQL.md`
+Paket sürümü: 0.11.0 · Önek: `flxcrm_` (sınıf `FLXCRM_`) · Cap: `flxcrm_view` (okuma), `flxcrm_manage` (yazma) · Durum: kişi, segment, yolculuk, olaylar sayfası ve kişi kartı bölüm kaydı GraphQL + React (`docs/flx-crm/GRAPHQL.md`).
 
-Not: Bu dosya yalnız envanterdir, kod yazılmadı. "belirsiz" işaretli satırlar uygulayıcıdan önce karar ister.
+Not: Üstteki tablolar 0.10.0 envanteridir. Olaylar sayfası ve kişi kartı kancaları aşağıdaki "flx-crm-2" bölümündedir; 0.11.0'da uygulandı.
 
 ## Özet
 
@@ -53,7 +53,7 @@ Girdi/çıktı tipi taslakları içinde tekrar kullanılan tipler: `FlxContact`,
 | `flx-crm-contacts` | Kişi listesi, filtre, kişi detayı (`page-contact.php`), toplu işlem | `flxContacts`, `flxContact`, `flxContactUpdate`, `flxContactTagAdd/Remove`, `flxContactEventAdd`, `flxContactTimeline` | `crm/contacts`, `crm/contact` |
 | `flx-crm-contacts` (`page-duplicates.php`) | Yinelenen kişi birleştirme | belirsiz (birleştirme servisi REST'te yok; bulk/tool üzerinden) | `crm/duplicates` (belirsiz) |
 | `flx-crm-segments` | Kayıtlı segmentler ve kuralları | `flxSegments`, `flxSegmentContacts`, `flxSegmentPreview` | `crm/segments` |
-| `flx-crm-events` | Olay listesi, manuel olay | `flxContactEventAdd`, `flxEventDelete`, sorgu: `flxCrmEvents` (belirsiz; REST'te yok) | `crm/events` |
+| `flx-crm-events` | Etkinlikler (gathering): açık / arşiv / sitede, pano, form, mesaj | `flxGatherings`, `flxGathering`, `flxGatheringForm`, `flxGatheringPeople`, `flxGatheringMessages`, `flxGatheringSend`, yazma: `flxGatheringSave/SetStatus/Delete/EnsurePage/Send/SendControl` | `crm` ekranı, `#/events` ve `#/event/<id>` |
 | `flx-crm-journeys` | Otomasyon akışları (journeys) | Yalnız AI aracı `flxcrm_tools` içinde (journey create/update/status); REST yok → yeni query/mutation gerekir | `crm/journeys` (belirsiz) |
 | `flx-crm-settings` | CRM ayarları | belirsiz (bkz. Ayarlar) | `crm/settings` |
 
@@ -112,3 +112,51 @@ Hassas alanlar (e-posta, telefon, not, consent) için alan düzeyinde cap: `flxc
 - Yolculuk (journeys) için REST yok; yalnız AI aracı var. Ekran portu için query/mutation eklenmeli mi?
 - `FlxPerson` arayüzünün sahibi bu paket (Faz 1 öncelikli); Donate ve Commerce `FlxPerson`'a bağlandığı için tip adı ve alanları Faz 1'de kesinleşmeli.
 - Ayar şeması yok: `flxCrmSettings` elle tanımlansın mı?
+
+## flx-crm-2 — Olaylar sayfası (`page=flx-crm-events`)
+
+Klasik sayfa `FLXCRM_Page_Events` (`includes/admin/page-events.php`). Bu, kişi zaman tüneli değil: ortak etkinlik tablosu (`flx_event_*`, flx-brand). REST ucu yok. Ayrı AJAX action yok. Yazma `admin-post.php` ile. Liste içi toplu işlem yok (kart başına ⋯ menü). Kişi tablosundaki arama tarayıcıda (`data-flxcrm-filter`); çalışan gönderim 60 sn'de sayfayı yeniler (`data-flxcrm-refresh`, `assets/admin.js`).
+
+Sorgu parametreleri: `tab` (`archive`/`arsiv` → kapalı, `site` → sitede, yoksa açık), `add`, `edit`, `id`, `view` (`people` | `message`, yoksa özet), `sub` (`new` | `sent` | `planned`), `send`, `ch`, `st`, `pg`, `flxcrm_msg`, `flxcrm_err`.
+
+| Yüzey | Ne | cap | → GraphQL |
+|---|---|---|---|
+| Sekme Açık | `flx_events_query(status=open)` kart ızgarası | view | `flxGatherings(status: OPEN)` |
+| Sekme Arşiv | status closed | view | `flxGatherings(status: CLOSED)` |
+| Sekme Sitede | yalnız `flx_events_screen_after` HTML basarsa | view | `flxGatherings.siteHtml` (boşsa sekme yok) |
+| Kart | faz, yer, kişi sayısı, `flx_event_stats`, hedef çubuğu, `flx_event_actions` | view | `FlxGathering` kart alanları |
+| ⋯ Düzenle | form | manage | `flxGatheringForm` + `flxGatheringSave` |
+| ⋯ Sitede gör / sayfa oluştur / yayımla | `post_id`, `flx_event_ensure_post` | manage | `pageUrl` / `flxGatheringEnsurePage` |
+| ⋯ Kapat / yeniden aç | `flx_event_set_status` | manage | `flxGatheringSetStatus` |
+| ⋯ Sil | yalnız arşivde düğme; `flx_event_delete` | manage | `flxGatheringDelete` |
+| Yeni etkinlik | `add=1` form | manage | `flxGatheringForm` (id yok) + `flxGatheringSave` |
+| Form alanları | `flx_event_fields` + `flx_event_sections` + `FLXCRM_Page_Events::labels` | manage | `FlxGatheringForm.sections` (paket alanları dahil) |
+| Form HTML | `flx_event_form_location`, `flx_event_form_after` | manage | bölüm `html` (klasikle aynı güven: paket kaçar) |
+| Pano Özet | sayılar, bilgi, kimler, son 3 mesaj, kısayollar | view | `flxGathering` |
+| Pano Kişiler | `flx_event_people` + `flx_people_query`, ad/telefon/e-posta filtresi, ilk 500 | view | `flxGatheringPeople` (sayfalı, arama; 500 kesmesi yok) |
+| Pano Mesajlar | `FLXCRM_Event_Messages` (yeni / gönderilen / planlı, alıcılar, duraklat/sürdür/iptal) | manage | `flxGatheringMessages`, `flxGatheringSend`, `flxGatheringMessageSend`, `flxGatheringSendControl` |
+| Mesaj medyası | `wp.media` ek id | manage | `wp.media` ya da `flx/v1/upload` bağlamı `flx-crm/event-file` |
+| Etkinlik görseli | `wp.media` ek id | manage | `wp.media` ya da `flx-crm/event-image` |
+| admin-post | `flxcrm_gathering_save/status/delete/page`, `flxcrm_event_msg`, `flxcrm_event_msg_control`, `flxcrm_event_msg_cancel` | manage | aynı servis; klasik POST durur |
+
+Paket filtreleri (bu repoda tüketici yok; Sertifikalar dış repoda): `flx_event_fields`, `flx_event_sections`, `flx_event_stats`, `flx_event_actions`, `flx_event_people`, `flx_event_vars`, `flx_event_message_vars`, `flx_events_screen_after`, `flx_event_form_after`, `flx_event_form_location`. Donate yalnız `flx_event_vars` (`plugins/flx-donate/includes/class-flxb-event-vars.php`).
+
+Önbellek: `flx-crm:gatherings`, `flx-crm:gathering:{id}`.
+
+## flx-crm-2 — Kişi kartı kancaları
+
+Klasik kart `FLXCRM_Page_Contact::card` (`includes/admin/page-contact.php`). İmza: `($contact_row, $context)`. CRM'in kendi sayfasında context `''`. `flxcrm_person_card()` çağıran paket context verir (`donate`, `commerce`, …).
+
+| Kanca | Yer | Bu repodaki tüketiciler |
+|---|---|---|
+| `flxcrm_person_card_actions` | başlık düğmeleri | Donate `FLXB_Page_Donors::crm_actions` (yalnız context `donate`); Commerce `FLXCM_Page_Customer::crm_actions` (yalnız context `commerce`) |
+| `flxcrm_person_card_main_before` | zaman tünelinden önce | Donate `crm_main_before` (yalnız context `donate`: düzenli bağış tablosu) |
+| `flxcrm_person_card_main` | zaman tünelinden sonra | Commerce `crm_main` (e-posta eşleşirse sipariş listesi; CRM kartında da) |
+| `flxcrm_person_card_side` | yan sütun | Donate `crm_side` (yalnız `donate`); Commerce `crm_side` (özet, adres, ürün); Ads `FLXADS_CRM::card` (öncelik 15, her context: reklam kaynağı) |
+| `flxcrm_person_card` / `flxcrm_person_card_enqueue` | kartı basma / stil | Donate bağışçı sayfası, Commerce müşteri sayfası |
+
+Chat bu repoda bu kancalara bağlanmıyor.
+
+GraphQL: `FlxContact.sections(placement, context)` ← `flxcrm_gql_person_sections` filtresi ve `flxcrm_register_person_section()`. Kayıtlı bölümü olmayan kanca, CRM context'inde (`''`) basılan HTML'i `kind: HTML` bloğu olarak döner (`legacy:<kanca>`). Paket kendi bölümünü yazınca `replaces` ile o kancanın HTML'ini kapatır. Donate/Commerce/Chat kendi PR'larında kayda geçer; bu PR onların koduna dokunmaz.
+
+Ayrıntılı kayıt sözleşmesi: `docs/flx-crm/GRAPHQL.md`.

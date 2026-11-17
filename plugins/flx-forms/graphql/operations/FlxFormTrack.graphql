@@ -1,0 +1,17 @@
+# Public: open a submission with its tracking code.
+query FlxFormTrack($code: String!) {
+  flxFormTrack(code: $code) {
+    trackCode
+    formTitle
+    submittedAt { iso timestamp }
+    fields {
+      label
+      value
+    }
+    replies {
+      body
+      createdAt { iso timestamp }
+      attachments
+    }
+  }
+}
