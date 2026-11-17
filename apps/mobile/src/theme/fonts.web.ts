@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import { Asset } from 'expo-asset';
 
+/* eslint-disable @typescript-eslint/no-require-imports -- Metro resolves font files only through require(). */
 const files = {
   figtreeExt: require('../../../../plugins/flx-admin/assets/fonts/figtree-latin-ext-wght-normal.woff2'),
   figtree: require('../../../../plugins/flx-admin/assets/fonts/figtree-latin-wght-normal.woff2'),
