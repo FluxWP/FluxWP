@@ -57,7 +57,7 @@ function Roles() {
   const { scope } = useGraphQL();
   const qc = useQueryClient();
   const q = useFlxQuery(FlxRolesScreen, {});
-  const [draft, setDraft] = useState<Draft | null>(null);
+  const [draft, setDraft] = useState<Draft | null>(() => (q.data ? draftOf(q.data) : null));
   const [dirty, setDirty] = useState(false);
   const [notice, setNotice] = useState<Notice | null>(null);
   const [confirm, setConfirm] = useState<Confirm | null>(null);

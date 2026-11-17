@@ -3,6 +3,10 @@
 ## 0.5.0
 - Klasik (PHP) yönetim sayfası kaldırıldı; wp-admin'de yalnız React ekranı açılır. "Klasik görünüm" bağlantısı, kullanıcı başına görünüm tercihi, eski kaydetme/test uçları (`admin-post` `flxrc_save`, `wp_ajax_flxrc_test`) ve `assets/admin.{js,css}` silindi. Ekran ortak kabukla (`flx_admin_screen`) açılır; açılamazsa boş sayfa yerine "Bu ekran yüklenemedi" uyarısı ve yenile düğmesi görünür.
 
+## 0.4.1
+- wp-admin ekranı Flux GraphQL ekran kabuğundan açılır: ilk veri PHP'de sayfaya basılır (yükleniyor göstergesi yok), menüden diğer Flux ekranlarına sayfa yenilenmeden geçilir. Ekranın parçaları sayfa başında birlikte iner (modulepreload).
+- Ortak modül paketi yenilendi.
+
 ## 0.4.0
 - FluxWP mobil uygulamasında reCAPTCHA (genel bakış, form başına aç/kapat, ayarlar) artık web görünümü yerine uygulamanın kendi ekranlarında açılır (manifest `app/manifest.json`, veri GraphQL'den). Masaüstü ve wp-admin aynı React ekranında kalır. Yeni metinlerin Türkçesi eklendi.
 

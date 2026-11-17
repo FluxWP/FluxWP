@@ -78,7 +78,7 @@ export function AppearanceTab() {
   const { scope } = useGraphQL();
   const qc = useQueryClient();
   const q = useFlxQuery(FlxAppAdminAppearance, {});
-  const [draft, setDraft] = useState<Draft | null>(null);
+  const [draft, setDraft] = useState<Draft | null>(() => (q.data ? draftOf(q.data.flxAppAdminAppearance) : null));
   const [dirty, setDirty] = useState(false);
   useEffect(() => {
     if (q.data && !dirty) setDraft(draftOf(q.data.flxAppAdminAppearance));

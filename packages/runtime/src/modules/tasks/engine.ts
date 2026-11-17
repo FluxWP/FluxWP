@@ -166,6 +166,15 @@ export class FlxgEngine {
     if (d.rev !== undefined) S.rev = d.rev;
     this.bump();
   }
+  /** Screen shown again after dispose (kept screens in the app): poll for changes, no fresh boot. */
+  resume() {
+    this.unvis();
+    this.unvis = this.ports.onVisibility((v) => {
+      if (v) this.schedule(500);
+    });
+    this.schedule(0);
+  }
+
   dispose() {
     clearTimeout(this.syncTimer);
     clearTimeout(this.prefTimer);

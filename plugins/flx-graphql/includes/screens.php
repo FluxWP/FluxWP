@@ -17,7 +17,8 @@
  *         )
  *     );
  *
- * More arguments: 'start' (fixed start page), 'layout' ('inline' | 'full': covers wp-admin, always opens as a
+ * More arguments: 'wrap_class' (class of the .wrap around an inline screen, for the package's own CSS),
+ * 'start' (fixed start page), 'layout' ('inline' | 'full': covers wp-admin, always opens as a
  * page load), 'container_id' (id of the screen element when other code styles it), 'theme'
  * ('admin' follows Flux Admin, 'auto', 'light', 'dark'), 'theme_storage' (localStorage key of the screen's
  * own theme switch), 'scripts' (classic scripts the screen needs, loaded before it mounts), 'needs' (window
@@ -90,6 +91,7 @@ function flx_admin_screen( string $page, array $args ): void {
 		'enqueue'       => $args['enqueue'] ?? null,
 		'body_class'    => $str( 'body_class' ),
 		'container_id'  => $str( 'container_id' ),
+		'wrap_class'    => $str( 'wrap_class' ),
 	);
 }
 
@@ -209,6 +211,22 @@ function flx_admin_screen_bundle( array $s ): array {
 }
 
 /**
+ * Chunks a screen's code needs besides the entry (chunks.json "preload", tools/fluxapp/embed-preload.mjs):
+ * printed as <link rel="modulepreload"> so they download together with the entry, not one after another.
+ *
+ * @param FlxAdminScreen $s Screen.
+ * @return list<string> File names in the bundle folder.
+ */
+function flx_admin_screen_chunks( array $s ): array {
+	$raw = @file_get_contents( $s['assets_dir'] . 'chunks.json' ); // phpcs:ignore WordPress.PHP.NoSilencedErrors, WordPress.WP.AlternativeFunctions
+	$cfg = is_string( $raw ) ? json_decode( $raw, true ) : null;
+	$pre = is_array( $cfg ) && isset( $cfg['preload'] ) && is_array( $cfg['preload'] ) ? $cfg['preload'] : array();
+	$scr = isset( $pre['screens'] ) && is_array( $pre['screens'] ) ? $pre['screens'] : array();
+	$out = array_merge( flx_admin_screen_strings( $pre['entry'] ?? null ), flx_admin_screen_strings( $scr[ $s['module'] ] ?? null ) );
+	return array_values( array_filter( array_unique( $out ), static fn ( $f ) => (bool) preg_match( '/^[\w.-]+\.js$/', $f ) ) );
+}
+
+/**
  * Where a page sits in the admin menu: file (admin.php, users.php…), URL, capability, title, hook suffix.
  *
  * @param string $page Page slug.
@@ -313,15 +331,129 @@ function flx_admin_screen_preload_items( array $s, array $query ): array {
 		}
 		$vars  = flx_gql_arr( $p[1] ?? null );
 		$vars  = array() !== $vars ? $vars : null;
-		$out[] = array(
-			'key'  => $ids[ $name ] . ':' . flx_admin_screen_stable_vars( $vars ),
+		$key   = $ids[ $name ] . ':' . flx_admin_screen_stable_vars( $vars );
+		$out[ $key ] = array(
+			'key'  => $key,
 			'id'   => $ids[ $name ],
 			'name' => $name,
 			'vars' => $vars,
 		);
 	}
+	// What this user's screen asked for first last time (learned in the browser, see flx_admin_screen_learn).
+	foreach ( flx_admin_screen_learned( flx_admin_screen_learn_key( $s, $query ) ) as $item ) {
+		$out[ $item['key'] ] ??= $item;
+	}
+	return array_slice( array_values( $out ), 0, FLX_ADMIN_SCREEN_LEARN_MAX );
+}
+
+/** Queries kept per screen and start page. */
+const FLX_ADMIN_SCREEN_LEARN_MAX = 10;
+
+/** User meta: [ "<module>|<start>" => [ "<persisted id>:<variables>", … ] ]. */
+const FLX_ADMIN_SCREEN_LEARN_META = 'flx_gql_screen_queries';
+
+/**
+ * Key of a screen's learned queries: module and start page.
+ *
+ * @param FlxAdminScreen       $s     Screen.
+ * @param array<string,string> $query Query arguments of the page.
+ */
+function flx_admin_screen_learn_key( array $s, array $query ): string {
+	return $s['module'] . '|' . flx_admin_screen_start( $s, $query );
+}
+
+/**
+ * A store key ("<persisted id>:<variables JSON>") as a preload item; null when the id is not a known query.
+ *
+ * @param string $key Store key.
+ * @return FlxAdminScreenPreload|null
+ */
+function flx_admin_screen_item_from_key( string $key ): ?array {
+	/** @var array<string,string>|null $names */
+	static $names = null;
+	$names ??= array_flip( flx_admin_screen_operation_ids() );
+	$at = strpos( $key, ':' );
+	if ( false === $at || strlen( $key ) > 2100 ) {
+		return null;
+	}
+	$id = substr( $key, 0, $at );
+	if ( ! isset( $names[ $id ] ) ) {
+		return null;
+	}
+	$raw  = substr( $key, $at + 1 );
+	$vars = json_decode( $raw, true );
+	if ( ! is_array( $vars ) ) {
+		return null;
+	}
+	$vars = flx_gql_arr( $vars );
+	return array(
+		'key'  => $id . ':' . flx_admin_screen_stable_vars( $vars ),
+		'id'   => $id,
+		'name' => $names[ $id ],
+		'vars' => array() !== $vars ? $vars : null,
+	);
+}
+
+/**
+ * The current user's learned first queries of a screen.
+ *
+ * @param string $key Learn key (flx_admin_screen_learn_key).
+ * @return list<FlxAdminScreenPreload>
+ */
+function flx_admin_screen_learned( string $key ): array {
+	$all = get_user_meta( get_current_user_id(), FLX_ADMIN_SCREEN_LEARN_META, true );
+	$out = array();
+	foreach ( is_array( $all ) && isset( $all[ $key ] ) && is_array( $all[ $key ] ) ? $all[ $key ] : array() as $k ) {
+		$item = flx_admin_screen_item_from_key( flx_gql_str( $k ) );
+		if ( $item ) {
+			$out[] = $item;
+		}
+	}
 	return $out;
 }
+
+/**
+ * Keeps the first queries a screen sent for this user (admin-ajax `flx_screen_learn`, sent by the bundle a
+ * moment after the screen mounted, only when they differ from what was preloaded). Per user: what one user
+ * sends only changes that user's own preload, and every query runs with that user's rights anyway.
+ *
+ * @param string       $key  Learn key.
+ * @param list<string> $keys Store keys.
+ */
+function flx_admin_screen_learn( string $key, array $keys ): bool {
+	if ( ! preg_match( '/^[a-z0-9_-]{1,64}\|[a-z0-9_-]{0,64}$/', $key ) ) {
+		return false;
+	}
+	$clean = array();
+	foreach ( $keys as $k ) {
+		$item = flx_admin_screen_item_from_key( $k );
+		if ( $item && ! in_array( $item['key'], $clean, true ) ) {
+			$clean[] = $item['key'];
+		}
+	}
+	$clean = array_slice( $clean, 0, FLX_ADMIN_SCREEN_LEARN_MAX );
+	$user  = get_current_user_id();
+	$all   = get_user_meta( $user, FLX_ADMIN_SCREEN_LEARN_META, true );
+	$all   = is_array( $all ) ? $all : array();
+	unset( $all[ $key ] );
+	if ( $clean ) {
+		$all[ $key ] = $clean;
+	}
+	$all = array_slice( $all, -60, null, true ); // The most recently learned screens.
+	return (bool) update_user_meta( $user, FLX_ADMIN_SCREEN_LEARN_META, $all );
+}
+
+add_action(
+	'wp_ajax_flx_screen_learn',
+	static function () {
+		if ( ! check_ajax_referer( 'wp_rest', '_wpnonce', false ) ) {
+			wp_send_json_error( null, 403 );
+		}
+		$keys = isset( $_POST['keys'] ) && is_array( $_POST['keys'] ) ? array_map( 'flx_gql_str', wp_unslash( $_POST['keys'] ) ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- each key is parsed and validated (known persisted query id, JSON variables).
+		flx_admin_screen_learn( sanitize_text_field( flx_gql_str( wp_unslash( $_POST['key'] ?? '' ) ) ), array_values( $keys ) );
+		wp_send_json_success();
+	}
+);
 
 /**
  * Mount options of a screen (the bundle's FluxModules.mount options).
@@ -457,6 +589,18 @@ add_action(
 			wp_enqueue_script( $handle . '-s' . $i, $src, array(), null, true ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion -- the URL carries its version.
 		}
 		wp_enqueue_script( 'flx-screens', FLXGQL_URL . 'assets/js/screens.js', array(), FLXGQL_VERSION, true );
+		// The entry and the screen's chunks start downloading with the page head, all at once.
+		$chunks = flx_admin_screen_chunks( $s );
+		add_action(
+			'admin_head',
+			static function () use ( $s, $b, $chunks ) {
+				echo '<link rel="modulepreload" href="' . esc_url( $b['entry'] ) . '">' . "\n";
+				foreach ( $chunks as $f ) {
+					echo '<link rel="modulepreload" href="' . esc_url( $s['assets_url'] . $f ) . '">' . "\n";
+				}
+			},
+			1
+		);
 		wp_enqueue_style( 'flx-screens', FLXGQL_URL . 'assets/css/screens.css', array(), FLXGQL_VERSION );
 		add_filter(
 			'script_loader_tag',
@@ -507,7 +651,13 @@ function flx_admin_screen_render(): bool {
 	$s     = flx_admin_screens()[ $page ];
 	$query = flx_admin_screen_query();
 	$opts  = flx_admin_screen_options( $page, $s, flx_admin_screen_extra() );
-	$opts['startPage'] = flx_admin_screen_start( $s, $query );
+	// A package may pick a deeper start page itself (e.g. one record: ?view=…); else start / start_param.
+	$opts['startPage'] = '' !== flx_gql_str( $opts['startPage'] ?? '' ) ? flx_gql_str( $opts['startPage'] ) : flx_admin_screen_start( $s, $query );
+	$opts['learn']     = array(
+		'url'   => admin_url( 'admin-ajax.php' ),
+		'key'   => flx_admin_screen_learn_key( $s, $query ),
+		'known' => array_column( flx_admin_screen_preload_items( $s, $query ), 'key' ),
+	);
 	$full  = 'full' === $s['layout'];
 	$id    = '' !== $s['container_id'] ? sanitize_html_class( $s['container_id'] ) : 'flx-screen-' . sanitize_html_class( $page );
 
@@ -515,7 +665,7 @@ function flx_admin_screen_render(): bool {
 		echo '<script>document.documentElement.classList.add("flx-screen-full");</script>';
 	}
 	flx_admin_screen_print_preload( $s, $query );
-	echo $full ? '' : '<div class="wrap flx-screen-wrap">';
+	echo $full ? '' : '<div class="wrap flx-screen-wrap' . ( '' !== $s['wrap_class'] ? ' ' . esc_attr( $s['wrap_class'] ) : '' ) . '">';
 	echo '<div id="' . esc_attr( $id ) . '" class="flx-screen" data-layout="' . esc_attr( $full ? 'full' : 'inline' ) . '" tabindex="-1"><noscript>' . esc_html__( 'This screen needs JavaScript.', 'flx-graphql' ) . '</noscript></div>';
 	flx_admin_screen_failsafe( $id );
 	echo $full ? '' : '</div>';
@@ -531,6 +681,9 @@ function flx_admin_screen_render(): bool {
 	return true;
 }
 
+/** Seconds the page spends at most on preloading a screen's queries. */
+const FLX_ADMIN_SCREEN_PRELOAD_BUDGET = 0.8;
+
 /**
  * Runs the screen's first queries here and prints their results (store.ts reads them).
  *
@@ -543,7 +696,12 @@ function flx_admin_screen_print_preload( array $s, array $query ): void {
 	}
 	$docs    = flx_gql_persisted()['queries'];
 	$entries = array();
+	$t0      = microtime( true );
 	foreach ( flx_admin_screen_preload_items( $s, $query ) as $p ) {
+		// A slow query is left to the browser: the page itself must not wait long.
+		if ( microtime( true ) - $t0 > FLX_ADMIN_SCREEN_PRELOAD_BUDGET ) {
+			break;
+		}
 		try {
 			$res = graphql(
 				array(
@@ -589,9 +747,20 @@ function flx_admin_screen_print_routes( string $current, string $el ): void {
 		if ( 'full' === $s['layout'] || ! $m || ! current_user_can( $m['cap'] ) || ! flx_admin_screen_usable( $page ) ) {
 			continue;
 		}
-		$b                = flx_admin_screen_bundle( $s );
+		$b     = flx_admin_screen_bundle( $s );
+		$items = flx_admin_screen_preload_items( $s, array() );
+		$opts  = flx_admin_screen_options( $page, $s, $page === $current ? flx_admin_screen_extra() : array() );
+		$opts['learn'] = array(
+			'url'   => admin_url( 'admin-ajax.php' ),
+			'key'   => flx_admin_screen_learn_key( $s, array() ),
+			'known' => array_column( $items, 'key' ),
+		);
+		// Arguments of the menu address itself besides page (edit.php?post_type=…&page=…).
+		wp_parse_str( (string) wp_parse_url( $m['url'], PHP_URL_QUERY ), $args );
+		unset( $args['page'] );
 		$routes[ $page ] = array(
 			'file'       => $m['file'],
+			'args'       => (object) array_map( 'flx_gql_str', $args ),
 			'module'     => $s['module'],
 			'bundle'     => array_merge(
 				array(
@@ -605,11 +774,11 @@ function flx_admin_screen_print_routes( string $current, string $el ): void {
 					'screensId'  => $b['screensId'] ?? '',
 				) : array()
 			),
-			'opts'       => flx_admin_screen_options( $page, $s, $page === $current ? flx_admin_screen_extra() : array() ),
+			'opts'       => $opts,
 			'start'      => $s['start'],
 			'startParam' => $s['start_param'],
 			'themeStorage' => $s['theme_storage'],
-			'preload'    => flx_admin_screen_preload_items( $s, array() ),
+			'preload'    => $items,
 			'needs'      => flx_admin_screen_strings( flx_admin_screen_arg( $s['needs'], $page ) ),
 			'scripts'    => flx_admin_screen_scripts( $s, $page ),
 			/* translators: Admin screen title. 1: Admin screen name, 2: Site title. */

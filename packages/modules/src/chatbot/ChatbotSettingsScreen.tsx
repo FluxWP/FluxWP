@@ -105,7 +105,7 @@ function ChatbotSettings() {
   const { scope } = useGraphQL();
   const qc = useQueryClient();
   const q = useFlxQuery(FlxChatbotSettingsScreen, {});
-  const [draft, setDraft] = useState<S | null>(null);
+  const [draft, setDraft] = useState<S | null>(() => q.data?.flxSettings.chatbot ?? null);
   const [dirty, setDirty] = useState(false);
   const [notice, setNotice] = useState<Notice | null>(null);
   const [tab, setTab] = useState<Tab>(() => {
@@ -113,7 +113,7 @@ function ChatbotSettings() {
     return TABS.includes(p as Tab) ? (p as Tab) : 'general';
   });
   const [view, setView] = useState<View>('home');
-  const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(() => q.data?.flxChatbotAdmin.avatarUrl ?? null);
 
   useEffect(() => {
     if (q.data && !dirty) {

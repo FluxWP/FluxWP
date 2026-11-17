@@ -71,27 +71,70 @@ function flxcb_flux_module_tag( $tag, $handle ) {
 	);
 }
 
-/** Enqueues the bundle and mounts the screen of this admin page. */
-function flxcb_flux_assets( $page ) {
-	$module = flxcb_flux_pages()[ $page ] ?? '';
-	if ( '' === $module ) {
-		return;
-	}
-	$ver    = FLXCB_VERSION . '-' . (int) filemtime( FLXCB_DIR . 'assets/flux/flux-modules.js' );
+/**
+ * Mount options of the screen besides what the Flux GraphQL shell adds (rest, nonce, locale…).
+ *
+ * @param string $page Page slug.
+ */
+function flxcb_flux_options( $page ) {
 	$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#2c7a64';
-	$opts   = array(
-		'module'     => $module,
-		'rest'       => rest_url(),
-		'nonce'      => wp_create_nonce( 'wp_rest' ),
-		'locale'     => get_user_locale(),
-		'siteName'   => get_bloginfo( 'name' ),
-		'adminUrl'   => admin_url(),
+	return array(
 		'siteUrl'    => home_url( '/' ),
-		'theme'      => 'light',
 		'colors'     => array(
 			'primary'         => $accent,
 			'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
 		),
+	);
+}
+
+// Flux GraphQL screen shell: first data printed by PHP, in-place navigation from the menu.
+add_action(
+	'admin_menu',
+	static function () {
+		if ( ! function_exists( 'flx_admin_screen' ) || ! flxcb_flux_available() ) {
+			return;
+		}
+		foreach ( flxcb_flux_pages() as $page => $module ) {
+			$settings = 'flx-chatbot' === $page;
+			flx_admin_screen(
+				$page,
+				array(
+					'module'       => $module,
+					'assets_dir'   => FLXCB_DIR . 'assets/flux/',
+					'assets_url'   => FLXCB_URL . 'assets/flux/',
+					'version'      => FLXCB_VERSION,
+					'options'      => 'flxcb_flux_options',
+					'container_id' => 'flxcb-app',
+					'preload'      => $settings ? array( array( 'FlxChatbotSettingsScreen' ) ) : array(),
+					'wrap_class'   => 'flxcb-wrap',
+					// Avatar picker: the media library is on its own page; elsewhere the link loads the page.
+					'enqueue'      => $settings ? static fn () => wp_enqueue_media() : null,
+					'needs'        => $settings ? array( 'wp.media' ) : array(),
+				)
+			);
+		}
+	},
+	20
+);
+
+/** Enqueues the bundle and mounts the screen of this admin page. */
+function flxcb_flux_assets( $page ) {
+	$module = flxcb_flux_pages()[ $page ] ?? '';
+	if ( '' === $module || ( function_exists( 'flx_admin_screen_current' ) && '' !== flx_admin_screen_current() ) ) {
+		return; // The Flux GraphQL screen shell loads the bundle.
+	}
+	$ver  = FLXCB_VERSION . '-' . (int) filemtime( FLXCB_DIR . 'assets/flux/flux-modules.js' );
+	$opts = array_merge(
+		array(
+			'module'   => $module,
+			'rest'     => rest_url(),
+			'nonce'    => wp_create_nonce( 'wp_rest' ),
+			'locale'   => get_user_locale(),
+			'siteName' => get_bloginfo( 'name' ),
+			'adminUrl' => admin_url(),
+			'theme'    => 'light',
+		),
+		flxcb_flux_options( $page )
 	);
 	if ( 'flx-chatbot' === $page ) {
 		wp_enqueue_media(); // Avatar picker.
@@ -109,6 +152,9 @@ function flxcb_flux_assets( $page ) {
 
 /** Markup the screen mounts into, or the "could not be loaded" box when the screen cannot open. */
 function flxcb_flux_mount() {
+	if ( function_exists( 'flx_admin_screen_render' ) && flx_admin_screen_render() ) {
+		return;
+	}
 	if ( ! flxcb_flux_available() ) {
 		if ( function_exists( 'flx_admin_screen_unavailable' ) ) {
 			flx_admin_screen_unavailable();

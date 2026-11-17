@@ -29,7 +29,10 @@ final class FLXRC_Admin {
 					'assets_dir' => FLXRC_DIR . 'assets/flux/',
 					'assets_url' => FLXRC_URL . 'assets/flux/',
 					'version'    => FLXRC_VERSION,
-					'options'    => array( __CLASS__, 'flux_options' ),
+					'options'      => array( __CLASS__, 'flux_options' ),
+					'container_id' => 'flxrc-app',
+					'preload'      => array( array( 'FlxRecaptchaScreen' ) ),
+					'wrap_class'   => 'flxrc-wrap',
 				)
 			);
 		}

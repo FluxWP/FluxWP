@@ -34,6 +34,9 @@ add_action(
 						),
 					);
 				},
+				'container_id' => 'flxr-app',
+				'wrap_class'   => 'flxr-wrap',
+				'preload'      => array( array( 'FlxRolesScreen' ) ),
 			)
 		);
 	}

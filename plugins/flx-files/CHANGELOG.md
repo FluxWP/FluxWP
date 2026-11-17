@@ -4,6 +4,10 @@
 - **Klasik ekran kaldırıldı.** Flux Files yalnız React ekranıyla açılır; "Klasik görünüm" menü öğesi, görünüm değiştirme (`flxfm_ui`) ve eski istemci (assets/app.js, app.css) silindi.
 - Ekran açılamazsa (Flux GraphQL hazır değil, paket dosyası eksik, bundle yüklenmedi) boş sayfa yerine "Bu ekran yüklenemedi" kutusu ve **Sayfayı yenile** düğmesi çıkar.
 
+## 0.3.1
+- wp-admin ekranı Flux GraphQL ekran kabuğundan açılır: ilk veri PHP'de sayfaya basılır (yükleniyor göstergesi yok), menüden diğer Flux ekranlarına sayfa yenilenmeden geçilir. Ekranın parçaları sayfa başında birlikte iner (modulepreload).
+- Ortak modül paketi yenilendi.
+
 ## 0.3.0
 - FluxWP mobil uygulamasında Dosyalar native çizilir (ortak manifest `app/manifest.json`, GraphQL): klasörlerde gezinme, dosya içeriği ve bilgisi, yeni klasör, yeniden adlandır, çöp kutusuna taşı, çöp kutusundan geri al. Düzenleme panelde.
 

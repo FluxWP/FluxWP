@@ -121,7 +121,9 @@
     "support": "サポート",
     "contact": "お問い合わせ",
     "logoutConfirm": "{{site}} からログアウトしますか?",
-    "logoutFailed": "サインアウトできませんでした。もう一度試してください。"
+    "logoutFailed": "サインアウトできませんでした。もう一度試してください。",
+    "poweredBy": "Powered by FluxWP",
+    "website": "fluxwp.com を開く"
   },
   "oauth": {
     "doneTitle": "サインインしました",
@@ -322,5 +324,11 @@
     "title": "法的情報",
     "privacy": "プライバシーポリシー",
     "terms": "利用規約"
+  },
+  "boot": {
+    "preparing": "{{name}} を準備しています",
+    "site": "サイト情報を読み込んでいます",
+    "screens": "画面を準備しています ({{n}}/{{total}})",
+    "ready": "準備完了"
   }
 }

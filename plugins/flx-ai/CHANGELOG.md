@@ -5,6 +5,10 @@
 - Ekran açılamazsa (Flux GraphQL hazır değil, paket dosyası eksik, bundle yüklenmedi) boş sayfa yerine "Bu ekran yüklenemedi" kutusu ve **Sayfayı yenile** düğmesi çıkar.
 - Skill zip dışa aktarma, klasör dosyası indirme ve bildirimlerdeki görev raporu bağlantısı aynen çalışır. Ortak model seçici (`flxai_enqueue_model_picker`) diğer eklentiler için durur.
 
+## 0.32.1
+- wp-admin ekranları Flux GraphQL ekran kabuğundan açılır: ilk veri PHP'de sayfaya basılır, Flux AI sayfaları ve diğer Flux ekranları arasında sayfa yenilenmeden geçilir; ekranın parçaları sayfa başında birlikte iner.
+- Ortak modül paketi yenilendi.
+
 ## 0.32.0
 - Mobil uygulama manifesti GraphQL'e geçti: ayarlar formu (model, önbellek, düşünme, harcama sınırları, sohbet, kayıt süresi; anahtarlar panelde kalır) ve kayıt listesi (model/araç, yalnız hatalar). Canlı sohbet ekranı aynen durur.
 

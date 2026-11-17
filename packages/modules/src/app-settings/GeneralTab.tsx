@@ -27,7 +27,7 @@ export function GeneralTab() {
   const { scope } = useGraphQL();
   const qc = useQueryClient();
   const q = useFlxQuery(FlxAppAdminSettings, {});
-  const [draft, setDraft] = useState<Draft | null>(null);
+  const [draft, setDraft] = useState<Draft | null>(() => (q.data ? draftOf(q.data.flxAppAdminSettings) : null));
   const [dirty, setDirty] = useState(false);
   useEffect(() => {
     if (q.data && !dirty) setDraft(draftOf(q.data.flxAppAdminSettings));

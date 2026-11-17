@@ -231,6 +231,26 @@ final class FLXK_Packages_Service {
 	 * @return list<array<string,mixed>>
 	 */
 	public static function all_rows(): array {
+		// While the page is drawn (FLXU_Updater::$offline) the preload asks for the table several times: built once.
+		/** @var list<array<string,mixed>>|null $memo */
+		static $memo = null;
+		if ( FLXU_Updater::$offline && null !== $memo ) {
+			return $memo;
+		}
+		$memo = null;
+		$out  = self::build_rows();
+		if ( FLXU_Updater::$offline ) {
+			$memo = $out;
+		}
+		return $out;
+	}
+
+	/**
+	 * The table rows (see all_rows()).
+	 *
+	 * @return list<array<string,mixed>>
+	 */
+	private static function build_rows(): array {
 		$catalog = self::catalog();
 		$flux    = FLXU_Admin::rows( $catalog );
 		$wp      = FLXU_WP::rows( $catalog );

@@ -160,7 +160,7 @@ function SettingsTabs({ tab, t, onNotice, dirty, setDirty }: { tab: Tab; t: Tran
   const { scope } = useGraphQL();
   const qc = useQueryClient();
   const q = useFlxQuery(FlxSeoSettingsScreen, {});
-  const [draft, setDraft] = useState<Settings | null>(null);
+  const [draft, setDraft] = useState<Settings | null>(() => q.data?.flxSettings.flxseo ?? null);
   const [psiKey, setPsiKey] = useState('');
   const [psiClear, setPsiClear] = useState(false);
 

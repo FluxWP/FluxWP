@@ -34,9 +34,12 @@ final class FLXADS_Admin {
 					'assets_dir' => FLXADS_DIR . 'assets/flux/',
 					'assets_url' => FLXADS_URL . 'assets/flux/',
 					'version'    => FLXADS_VERSION,
-					'start'       => $tab,
-					'start_param' => 'tab',
-					'options'    => array( __CLASS__, 'flux_options' ),
+					'start'        => $tab,
+					'start_param'  => 'report' === $tab ? 'tab' : '',
+					'options'      => array( __CLASS__, 'flux_options' ),
+					'container_id' => 'flxads-app',
+					'preload'      => 'report' === $tab ? array( array( 'FlxAdsContext' ), array( 'FlxAdsReport', array( 'filter' => array( 'by' => 'channel', 'kind' => 'all', 'range' => '30' ) ) ) ) : array( array( 'FlxAdsContext' ) ),
+					'wrap_class'   => 'flxads-wrap',
 				)
 			);
 		}

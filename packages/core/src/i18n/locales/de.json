@@ -121,7 +121,9 @@
     "support": "Unterstützung",
     "contact": "Kontaktieren Sie uns",
     "logoutConfirm": "Von {{site}} abmelden?",
-    "logoutFailed": "Konnte mich nicht abmelden. Bitte versuchen Sie es erneut."
+    "logoutFailed": "Konnte mich nicht abmelden. Bitte versuchen Sie es erneut.",
+    "poweredBy": "Powered by FluxWP",
+    "website": "fluxwp.com öffnen"
   },
   "oauth": {
     "doneTitle": "Angemeldet",
@@ -322,5 +324,11 @@
     "title": "Rechtliche Informationen",
     "privacy": "Datenschutzrichtlinie",
     "terms": "Nutzungsbedingungen"
+  },
+  "boot": {
+    "preparing": "{{name}} wird vorbereitet",
+    "site": "Websitedaten werden geladen",
+    "screens": "Bildschirme werden vorbereitet ({{n}}/{{total}})",
+    "ready": "Bereit"
   }
 }

@@ -121,7 +121,9 @@
     "support": "Destek",
     "contact": "İletişime geç",
     "logoutConfirm": "{{site}} hesabından çıkılsın mı?",
-    "logoutFailed": "Hesaptan çıkış yapılamadı. Lütfen yeniden deneyin."
+    "logoutFailed": "Hesaptan çıkış yapılamadı. Lütfen yeniden deneyin.",
+    "poweredBy": "FluxWP ile çalışır",
+    "website": "fluxwp.com'u aç"
   },
   "oauth": {
     "doneTitle": "Giriş tamamlandı",
@@ -322,5 +324,11 @@
     "title": "Yasal bilgiler",
     "privacy": "Gizlilik politikası",
     "terms": "Kullanım koşulları"
+  },
+  "boot": {
+    "preparing": "{{name}} hazırlanıyor",
+    "site": "Site bilgileri alınıyor",
+    "screens": "Ekranlar hazırlanıyor ({{n}}/{{total}})",
+    "ready": "Hazır"
   }
 }

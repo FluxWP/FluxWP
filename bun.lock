@@ -14,7 +14,7 @@
     },
     "apps/desktop": {
       "name": "@fluxwp/desktop",
-      "version": "0.3.2",
+      "version": "0.3.4",
       "dependencies": {
         "@fluxwp/core": "workspace:*",
         "@fluxwp/panel": "workspace:*",
@@ -122,7 +122,7 @@
     },
     "packages/core": {
       "name": "@fluxwp/core",
-      "version": "0.4.5",
+      "version": "0.4.7",
       "dependencies": {
         "@fluxwp/tokens": "workspace:*",
         "i18next": "^26.6.0",
@@ -160,7 +160,7 @@
     },
     "packages/manifest": {
       "name": "@fluxwp/manifest",
-      "version": "0.2.0",
+      "version": "0.2.1",
       "dependencies": {
         "@fluxwp/core": "workspace:*",
         "@fluxwp/tokens": "workspace:*",
@@ -195,7 +195,7 @@
     },
     "packages/panel": {
       "name": "@fluxwp/panel",
-      "version": "0.3.6",
+      "version": "0.3.7",
       "dependencies": {
         "@fluxwp/core": "workspace:*",
         "@fluxwp/graphql": "workspace:*",
@@ -222,7 +222,7 @@
     },
     "packages/plugin-kit": {
       "name": "@fluxwp/plugin-kit",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "bin": {
         "flx-kit": "./bin/flx-kit.ts",
       },
@@ -270,7 +270,7 @@
     },
     "packages/runtime": {
       "name": "@fluxwp/runtime",
-      "version": "0.4.0",
+      "version": "0.4.3",
       "dependencies": {
         "@fluxwp/core": "workspace:*",
         "@fluxwp/manifest": "workspace:*",
@@ -294,14 +294,14 @@
     },
     "packages/tokens": {
       "name": "@fluxwp/tokens",
-      "version": "0.4.0",
+      "version": "0.4.1",
       "devDependencies": {
         "vitest": "^5.0.5",
       },
     },
     "packages/ui": {
       "name": "@fluxwp/ui",
-      "version": "0.3.2",
+      "version": "0.3.3",
       "dependencies": {
         "@fluxwp/core": "workspace:*",
         "@fluxwp/tokens": "workspace:*",

@@ -294,6 +294,8 @@
     "flxStoreGet",
     "flxStoreKey",
     "flxStoreMarkStale",
+    "flxStoreNote",
+    "flxStoreRecord",
     "flxStoreSet",
     "isFlxGraphQLError",
     "payloadErrors",

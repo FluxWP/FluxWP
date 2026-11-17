@@ -61,6 +61,47 @@ function flxai_flux_module_tag( $tag, $handle ) {
 	);
 }
 
+/**
+ * Mount options of a screen besides what the shell adds (rest, nonce, locale…).
+ *
+ * @param string $page Page slug.
+ */
+function flxai_flux_options( $page = '' ) {
+	$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#2c7a64';
+	return array(
+		'colors' => array(
+			'primary'         => $accent,
+			'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
+		),
+	);
+}
+
+// Flux GraphQL screen shell: first data printed by PHP, in-place navigation between the pages.
+add_action(
+	'admin_menu',
+	static function () {
+		if ( ! function_exists( 'flx_admin_screen' ) || ! flxai_flux_available() ) {
+			return;
+		}
+		foreach ( flxai_flux_pages() as $page => $view ) {
+			flx_admin_screen(
+				$page,
+				array(
+					'module'       => 'flxai-admin',
+					'assets_dir'   => FLXAI_DIR . 'assets/flux/',
+					'assets_url'   => FLXAI_URL . 'assets/flux/',
+					'version'      => FLXAI_VERSION,
+					'options'      => 'flxai_flux_options',
+					'start'        => $view,
+					'container_id' => 'flxai-app',
+					'wrap_class'   => 'flxai-flux',
+				)
+			);
+		}
+	},
+	99
+);
+
 add_action(
 	'admin_enqueue_scripts',
 	function () {
@@ -68,21 +109,22 @@ add_action(
 		if ( '' === $view ) {
 			return;
 		}
-		$ver    = FLXAI_VERSION . '-' . (int) filemtime( FLXAI_DIR . 'assets/flux/flux-modules.js' );
-		$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#2c7a64';
-		$opts   = array(
-			'module'     => 'flxai-admin',
-			'startPage'  => $view,
-			'rest'       => rest_url(),
-			'nonce'      => wp_create_nonce( 'wp_rest' ),
-			'locale'     => get_user_locale(),
-			'siteName'   => get_bloginfo( 'name' ),
-			'adminUrl'   => admin_url(),
-			'theme'      => 'light',
-			'colors'     => array(
-				'primary'         => $accent,
-				'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
+		if ( function_exists( 'flx_admin_screen_current' ) && '' !== flx_admin_screen_current() ) {
+			return; // The screen shell loads it.
+		}
+		$ver  = FLXAI_VERSION . '-' . (int) filemtime( FLXAI_DIR . 'assets/flux/flux-modules.js' );
+		$opts = array_merge(
+			array(
+				'module'    => 'flxai-admin',
+				'startPage' => $view,
+				'rest'      => rest_url(),
+				'nonce'     => wp_create_nonce( 'wp_rest' ),
+				'locale'    => get_user_locale(),
+				'siteName'  => get_bloginfo( 'name' ),
+				'adminUrl'  => admin_url(),
+				'theme'     => 'light',
 			),
+			flxai_flux_options()
 		);
 		wp_enqueue_style( 'flxai-flux', FLXAI_URL . 'assets/flux/flux-modules.css', array(), $ver );
 		wp_enqueue_script( 'flxai-flux', FLXAI_URL . 'assets/flux/flux-modules.js', array(), $ver, true );
@@ -107,6 +149,9 @@ function flxai_flux_render() {
 		} else {
 			echo '<div class="wrap"><div class="notice notice-error"><p>' . esc_html__( 'Flux GraphQL is not active, so FluxWP screens cannot open.', 'flx-ai' ) . '</p></div></div>';
 		}
+		return;
+	}
+	if ( function_exists( 'flx_admin_screen_render' ) && flx_admin_screen_render() ) {
 		return;
 	}
 	echo '<div class="wrap flxai-flux"><div id="flxai-app"></div>';

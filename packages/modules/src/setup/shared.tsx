@@ -27,7 +27,8 @@ export function useSetup(): { t: Translate; tn: ReturnType<typeof translator>['t
   const { t, tn } = useMemo(() => translator(i18n.language), [i18n.language]);
   const { client, scope } = useGraphQL();
   const qc = useQueryClient();
-  const refresh = () => qc.invalidateQueries({ queryKey: [scope, 'gql'], predicate: (q) => String(q.queryKey[2] ?? '').startsWith('FlxSetup') });
+  // A refetch already running is kept (not restarted): the table does not go back to "Checking…".
+  const refresh = () => qc.invalidateQueries({ queryKey: [scope, 'gql'], predicate: (q) => String(q.queryKey[2] ?? '').startsWith('FlxSetup') }, { cancelRefetch: false });
   return { t, tn, client, scope, locale: i18n.language, refresh };
 }
 

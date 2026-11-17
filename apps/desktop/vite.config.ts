@@ -7,7 +7,7 @@ import brand from '../../packages/core/src/brand/current.json';
 export default defineConfig({
   plugins: [
     react(),
-    { name: 'flux-brand-html', transformIndexHtml: (h) => h.replaceAll('%BRAND_NAME%', brand.name) },
+    { name: 'flux-brand-html', transformIndexHtml: (h) => h.replaceAll('%BRAND_NAME%', brand.name).replaceAll('%BRAND_PRIMARY%', brand.colors.primary) },
   ],
   resolve: { dedupe: ['react', 'react-dom', '@tanstack/react-query', 'react-i18next', 'i18next'] },
   publicDir: resolve(__dirname, '../../packages/panel/public'),

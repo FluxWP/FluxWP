@@ -1,9 +1,10 @@
 // Prefs sync (GET/POST /prefs) and desktop notifications from /sync events.
 import { useEffect, useRef } from 'react';
 import { layoutStore, platform } from '@fluxwp/core';
-import { savePrefs, useSync, useUserPrefs, type SyncEvent } from '@fluxwp/runtime';
+import { qk, savePrefs, useMe, useSync, useUserPrefs, type SyncEvent } from '@fluxwp/runtime';
 import { useScope } from '@fluxwp/runtime';
 import { create } from 'zustand';
+import { useWarm } from './warm';
 
 interface NoteLog {
   items: SyncEvent[];
@@ -68,5 +69,39 @@ export function SyncNotifier() {
       void platform().notify?.({ title: ev.title, body: ev.body, data: { target: ev.target, params: ev.params, site: undefined } });
     }
   }, [sync.data, add]);
+  return null;
+}
+
+/**
+ * Keeps the app in step with the site without an app update. `/sync` carries digests of /me, /config and
+ * /manifest; a changed config or manifest (preset or plugin settings) refreshes every cached screen in the
+ * background, and a changed plugin version set (/me `versions`) also remounts the kept screens.
+ */
+export function SiteSync() {
+  const { client } = useScope();
+  const hashes = useSync().data?.hashes;
+  const versions = useMe().data?.versions;
+  const last = useRef<Record<string, string> | null>(null);
+  const lastVersions = useRef('');
+
+  useEffect(() => {
+    if (!hashes) return;
+    const prev = last.current;
+    last.current = hashes;
+    if (!prev) return;
+    if (prev.config !== hashes.config || prev.manifest !== hashes.manifest) void client.invalidateQueries();
+    else if (prev.me !== hashes.me) void client.invalidateQueries({ queryKey: qk.me() });
+  }, [hashes?.me, hashes?.config, hashes?.manifest]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const vkey = versions ? JSON.stringify(Object.entries(versions).sort()) : '';
+  useEffect(() => {
+    if (!vkey) return;
+    const prev = lastVersions.current;
+    lastVersions.current = vkey;
+    if (!prev || prev === vkey) return;
+    void client.invalidateQueries();
+    useWarm.getState().bump();
+  }, [vkey, client]);
+
   return null;
 }

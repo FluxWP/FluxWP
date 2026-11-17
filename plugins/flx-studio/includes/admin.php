@@ -57,22 +57,58 @@ function flxst_flux_module_tag( $tag, $handle ) {
 	);
 }
 
-function flxst_flux_assets() {
-	$ver    = FLXST_VERSION . '-' . (int) filemtime( FLXST_DIR . 'assets/flux/flux-modules.js' );
+/** Mount options of the screen besides what the Flux GraphQL shell adds (rest, nonce, locale…). */
+function flxst_flux_options() {
 	$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#2c7a64';
-	$opts   = array(
-		'module'     => 'studio',
-		'rest'       => rest_url(),
-		'nonce'      => wp_create_nonce( 'wp_rest' ),
-		'locale'     => get_user_locale(),
-		'siteName'   => get_bloginfo( 'name' ),
-		'adminUrl'   => admin_url(),
+	return array(
 		'appIcon'    => FLXST_URL . 'assets/icon.svg',
-		'theme'      => 'light',
 		'colors'     => array(
 			'primary'         => $accent,
 			'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
 		),
+	);
+}
+
+// Flux GraphQL screen shell: first data printed by PHP, in-place navigation from the menu.
+add_action(
+	'admin_menu',
+	function () {
+		if ( ! function_exists( 'flx_admin_screen' ) || ! flxst_flux_available() ) {
+			return;
+		}
+		flx_admin_screen(
+			'flx-studio',
+			array(
+				'module'       => 'studio',
+				'assets_dir'   => FLXST_DIR . 'assets/flux/',
+				'assets_url'   => FLXST_URL . 'assets/flux/',
+				'version'      => FLXST_VERSION,
+				'options'      => 'flxst_flux_options',
+				'container_id' => 'flxst-app',
+				'preload'      => array( array( 'FlxStudioWorkspace' ) ),
+				'layout'       => 'full',
+			)
+		);
+	},
+	20
+);
+
+function flxst_flux_assets() {
+	if ( function_exists( 'flx_admin_screen_current' ) && '' !== flx_admin_screen_current() ) {
+		return; // The Flux GraphQL screen shell loads the bundle.
+	}
+	$ver    = FLXST_VERSION . '-' . (int) filemtime( FLXST_DIR . 'assets/flux/flux-modules.js' );
+	$opts = array_merge(
+		array(
+			'module'     => 'studio',
+			'rest'       => rest_url(),
+			'nonce'      => wp_create_nonce( 'wp_rest' ),
+			'locale'     => get_user_locale(),
+			'siteName'   => get_bloginfo( 'name' ),
+			'adminUrl'   => admin_url(),
+			'theme'      => 'light',
+		),
+		flxst_flux_options()
 	);
 	wp_enqueue_style( 'flxst-flux', FLXST_URL . 'assets/flux/flux-modules.css', array(), $ver );
 	wp_enqueue_script( 'flxst-flux', FLXST_URL . 'assets/flux/flux-modules.js', array(), $ver, true );
@@ -104,6 +140,9 @@ function flxst_render_app() {
 	echo '<script>document.documentElement.classList.add("flxst-lock");</script>';
 	// Page-level rules live here, not in the bundle: the bundle's CSS is scoped under .flux-root.
 	echo '<style>html.flxst-lock,html.flxst-lock body{overflow:hidden;height:100%}html.flxst-lock #wpadminbar,html.flxst-lock #adminmenumain,html.flxst-lock #wpfooter,html.flxst-lock .notice,html.flxst-lock .update-nag,html.flxst-lock #screen-meta-links{display:none!important}html.flxst-lock #wpcontent,html.flxst-lock #wpbody-content{margin:0!important;padding:0!important}#flxst-app{position:fixed;inset:0;z-index:100000;min-height:0}@media screen and (min-width:783px){html body.flxa-appmode #flxst-app{top:var(--wp-admin--admin-bar--height,32px);left:var(--flxa-app-w,0px);transition:left .22s ease}}@media screen and (max-width:782px){html:not(.flxa-kb) body.flxa-appmode.flxa-has-bottom #flxst-app{bottom:calc(67px + env(safe-area-inset-bottom))}}</style>';
+	if ( function_exists( 'flx_admin_screen_render' ) && flx_admin_screen_render() ) {
+		return;
+	}
 	echo '<div id="flxst-app"><noscript>' . esc_html__( 'Studio requires JavaScript.', 'flx-studio' ) . '</noscript></div>';
 	if ( function_exists( 'flx_admin_screen_failsafe' ) ) {
 		flx_admin_screen_failsafe( 'flxst-app' );

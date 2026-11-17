@@ -4,6 +4,10 @@
 - **Klasik sayfalar kaldırıldı.** Panel, Yedekler, yedek ayrıntısı ve Ayarlar yalnız React ekranıyla açılır; "Klasik görünüm" bağlantısı, görünüm değiştirme (`flxy_ui`), eski istemci (assets/admin.js, admin.css), klasik form kaydı ve admin-ajax başlat/geri yükle/sil/kilitle işleyicileri silindi. İndirme bağlantısı ve üst çubuktaki iş göstergesinin iptal düğmesi aynen çalışır.
 - Ekran açılamazsa (Flux GraphQL hazır değil, paket dosyası eksik, bundle yüklenmedi) boş sayfa yerine "Bu ekran yüklenemedi" kutusu ve **Sayfayı yenile** düğmesi çıkar.
 
+## 1.6.1
+- wp-admin ekranı Flux GraphQL ekran kabuğundan açılır: ilk veri PHP'de sayfaya basılır (yükleniyor göstergesi yok), menüden diğer Flux ekranlarına sayfa yenilenmeden geçilir. Ekranın parçaları sayfa başında birlikte iner (modulepreload).
+- Ortak modül paketi yenilendi.
+
 ## 1.6.0
 - FluxWP mobil uygulamasında Yedekleme (özet, yedek listesi ve ayrıntısı, kilitle/kilidi aç, sil, indir, ayarlar). Yeni yedek ve geri yükleme adım adım ilerlediği için panelde açılır artık web görünümü yerine uygulamanın kendi ekranlarında açılır (manifest `app/manifest.json`, veri GraphQL'den). Masaüstü ve wp-admin aynı React ekranında kalır. Yeni metinlerin Türkçesi eklendi.
 

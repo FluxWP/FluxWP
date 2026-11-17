@@ -88,7 +88,7 @@ function Recaptcha() {
   const { scope } = useGraphQL();
   const qc = useQueryClient();
   const q = useFlxQuery(FlxRecaptchaScreen, {});
-  const [draft, setDraft] = useState<Draft | null>(null);
+  const [draft, setDraft] = useState<Draft | null>(() => (q.data ? draftOf(q.data) : null));
   const [dirty, setDirty] = useState(false);
   const [notice, setNotice] = useState<Notice | null>(null);
   const [say, setSay] = useState<Say>({ kind: '', text: '' });

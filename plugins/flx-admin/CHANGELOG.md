@@ -5,6 +5,10 @@
 - Menü düzenleyicideki "Tüm yetkiler" bağlantısı artık klasik sayfaya değil, aynı ekrandaki Yetkiler sekmesine geçer. Sistem kontrolü sekmesi yalnız Flux Speed kuruluyken görünür (kontrol orada).
 - Ekran açılamazsa boş sayfa yerine "Bu ekran yüklenemedi" uyarısı ve yenile düğmesi görünür.
 
+## 1.9.1
+- wp-admin ekranı Flux GraphQL ekran kabuğundan açılır: ilk veri PHP'de sayfaya basılır (yükleniyor göstergesi yok), menüden diğer Flux ekranlarına sayfa yenilenmeden geçilir. Ekranın parçaları sayfa başında birlikte iner (modulepreload).
+- Ortak modül paketi yenilendi.
+
 ## 1.9.0
 - FluxWP mobil uygulamasında Yönetim teması ayarları native çizilir (ortak manifest `app/manifest.json`, GraphQL): marka, vurgu rengi, açık/koyu, logo stili, arayüz anahtarları, PWA. Logo, renk paleti ve menü düzeni panelde kalır. Masaüstü panel React ekranını kullanmaya devam eder.
 

@@ -110,8 +110,8 @@ function ThemeSettings() {
   const qc = useQueryClient();
   const q = useFlxQuery(FlxThemeSettings, {});
   const sources = useFlxQuery(FlxThemeMigrationSources, {}, { retry: false });
-  const [draft, setDraft] = useState<Draft | null>(null);
-  const [logos, setLogos] = useState<LogoDraft | null>(null);
+  const [draft, setDraft] = useState<Draft | null>(() => (q.data ? draftOf(q.data.flxThemeSettings) : null));
+  const [logos, setLogos] = useState<LogoDraft | null>(() => (q.data ? { automatic: q.data.flxThemePayLogos.automatic, list: q.data.flxThemePayLogos.current } : null));
   const [dirty, setDirty] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<EditKey, string>>>({});
   const [notice, setNotice] = useState<Notice | null>(null);

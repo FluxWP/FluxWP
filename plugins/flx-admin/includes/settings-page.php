@@ -48,7 +48,10 @@ add_action(
 						),
 					);
 				},
-				'start_param' => 'tab',
+				'start_param'  => 'tab',
+				'container_id' => 'flxa-app',
+				'preload'      => array( array( 'FlxAdminSettingsScreen' ) ),
+				'wrap_class'   => 'flxa-settings-flux',
 			)
 		);
 	},

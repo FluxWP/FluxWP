@@ -37,21 +37,57 @@ function flxbk_flux_module_tag( $tag, $handle ) {
 }
 
 /** Loads the React screen. */
-function flxbk_flux_assets(): void {
-	$ver    = FLXBK_VERSION . '-' . (int) filemtime( FLXBK_PATH . 'assets/flux/flux-modules.js' );
+/** Mount options of the screen besides what the Flux GraphQL shell adds (rest, nonce, locale…). */
+function flxbk_flux_options() {
 	$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#4338CA';
-	$opts   = array(
-		'module'     => 'flxbk-dashboard',
-		'rest'       => rest_url(),
-		'nonce'      => wp_create_nonce( 'wp_rest' ),
-		'locale'     => get_user_locale(),
-		'siteName'   => get_bloginfo( 'name' ),
-		'adminUrl'   => admin_url(),
-		'theme'      => 'light',
+	return array(
 		'colors'     => array(
 			'primary'         => $accent,
 			'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
 		),
+	);
+}
+
+// Flux GraphQL screen shell: first data printed by PHP, in-place navigation from the menu.
+add_action(
+	'admin_menu',
+	function () {
+		if ( ! function_exists( 'flx_admin_screen' ) || ! flxbk_flux_available() ) {
+			return;
+		}
+		flx_admin_screen(
+			'flx-blocks',
+			array(
+				'module'       => 'flxbk-dashboard',
+				'assets_dir'   => FLXBK_PATH . 'assets/flux/',
+				'assets_url'   => FLXBK_URL . 'assets/flux/',
+				'version'      => FLXBK_VERSION,
+				'options'      => 'flxbk_flux_options',
+				'container_id' => 'flxbk-app',
+				'preload'      => array( array( 'FlxBlocksDashboard' ) ),
+				'wrap_class'   => 'flxbk-wrap',
+			)
+		);
+	},
+	20
+);
+
+function flxbk_flux_assets(): void {
+	if ( function_exists( 'flx_admin_screen_current' ) && '' !== flx_admin_screen_current() ) {
+		return; // The Flux GraphQL screen shell loads the bundle.
+	}
+	$ver    = FLXBK_VERSION . '-' . (int) filemtime( FLXBK_PATH . 'assets/flux/flux-modules.js' );
+	$opts = array_merge(
+		array(
+			'module'     => 'flxbk-dashboard',
+			'rest'       => rest_url(),
+			'nonce'      => wp_create_nonce( 'wp_rest' ),
+			'locale'     => get_user_locale(),
+			'siteName'   => get_bloginfo( 'name' ),
+			'adminUrl'   => admin_url(),
+			'theme'      => 'light',
+		),
+		flxbk_flux_options()
 	);
 	wp_enqueue_style( 'flxbk-flux', FLXBK_URL . 'assets/flux/flux-modules.css', array(), $ver );
 	wp_enqueue_script( 'flxbk-flux', FLXBK_URL . 'assets/flux/flux-modules.js', array(), $ver, true );
@@ -66,13 +102,16 @@ function flxbk_flux_assets(): void {
 
 /** Mount point of the React screen, or the "could not be loaded" box when the screen cannot open. */
 function flxbk_flux_render(): void {
+	echo '<style>#flxbk-app.flux-root{height:auto;background:transparent;font-family:inherit}</style>';
+	if ( function_exists( 'flx_admin_screen_render' ) && flx_admin_screen_render() ) {
+		return;
+	}
 	if ( ! flxbk_flux_available() ) {
 		if ( function_exists( 'flx_admin_screen_unavailable' ) ) {
 			flx_admin_screen_unavailable();
 		}
 		return;
 	}
-	echo '<style>#flxbk-app.flux-root{height:auto;background:transparent;font-family:inherit}</style>';
 	echo '<div class="wrap flxbk-wrap"><div id="flxbk-app"><noscript>' . esc_html__( 'JavaScript is required for this screen.', 'flx-blocks' ) . '</noscript></div>';
 	if ( function_exists( 'flx_admin_screen_failsafe' ) ) {
 		flx_admin_screen_failsafe( 'flxbk-app' );
