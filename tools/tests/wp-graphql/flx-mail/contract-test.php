@@ -293,6 +293,50 @@ $last = get_option( 'flxi_last_test' );
 flxt_same( 'bookkeeping@example.com', is_array( $last ) ? ( $last['to'] ?? null ) : null, 'settings test writes flxi_last_test' );
 flxt_ok( is_array( $last ) && is_int( $last['at'] ?? null ) && $last['at'] > 0, 'settings test stores one timestamp' );
 
+// Secrets: the mask is the fixed classic placeholder, never a piece of the secret.
+$mask   = '••••••••';
+$secs   = array(
+	'smtpPassword'        => 'Smtp-Tail-Secret-AB12',
+	'smtpNoreplyPassword' => 'Noreply-Tail-Secret-CD34',
+	'imapPassword'        => 'Imap-Tail-Secret-EF56',
+);
+$r = $run( 'FlxMailSettingsUpdate', array( 'input' => array( 'settings' => $secs ) ), $admin );
+flxt_same( array(), $r['data']['flxMailSettingsUpdate']['errors'] ?? null, 'secrets: all three are stored' );
+$r = $run( 'FlxMailSettings', array(), $admin );
+foreach ( $secs as $name => $plain ) {
+	$view = $r['data']['flxMailSettings'][ $name ] ?? array();
+	flxt_same( true, $view['set'] ?? null, 'secrets: ' . $name . ' is set' );
+	flxt_same( $mask, $view['mask'] ?? null, 'secrets: ' . $name . ' mask is the fixed placeholder' );
+	flxt_ok( false === strpos( (string) wp_json_encode( $view ), substr( $plain, -2 ) . '"' ), 'secrets: ' . $name . ' view has no tail of the secret' );
+}
+// Classic form: a password field with the GraphQL sentinel is stored as typed, not cleared.
+$classic = FLXI_Settings_Service::save( array( 'imap_pass' => '__clear__' ), 'form', true );
+flxt_same( true, true === $classic, 'classic form: sentinel text is accepted as a password' );
+flxt_same( '__clear__', flxi_decrypt( (string) flxi_setting( 'imap_pass' ) ), 'classic form: __clear__ is stored as typed, only GraphQL treats it as the sentinel' );
+// Classic and MCP: an invalid email is dropped to the default and the rest of the form still saves.
+$classic = FLXI_Settings_Service::save( array( 'from_name' => 'Mixed Save', 'from_email' => 'not-an-email' ), 'form', true );
+flxt_same( true, true === $classic, 'classic form: invalid email does not reject the form' );
+flxt_same( 'Mixed Save', flxi_setting( 'from_name' ), 'classic form: other fields are saved with an invalid email' );
+flxt_same( flxi_defaults()['from_email'], flxi_setting( 'from_email' ), 'classic form: invalid email falls back to the default' );
+flxt_same( '', flxi_sanitize_setting( 'reply_to', 'not-an-email' ), 'MCP and classic sanitizer: invalid email becomes empty' );
+FLXI_Settings_Service::save( array( 'from_email' => 'bilgi@example.com' ), 'form', true );
+
+// wp-config constants: same fixed mask, read-only over GraphQL, classic keeps the main behaviour.
+define( 'FLXI_SMTP_PASS', 'Const-Smtp-Tail-GH78' );
+define( 'FLXI_SMTP_NOREPLY_PASS', 'Const-Noreply-Tail-IJ90' );
+define( 'FLXI_IMAP_PASS', 'Const-Imap-Tail-KL12' );
+$r = $run( 'FlxMailSettings', array(), $admin );
+foreach ( array( 'smtpPassword', 'smtpNoreplyPassword', 'imapPassword' ) as $name ) {
+	$view = $r['data']['flxMailSettings'][ $name ] ?? array();
+	flxt_same( true, $view['fromConfig'] ?? null, 'constant: ' . $name . ' is from wp-config' );
+	flxt_same( $mask, $view['mask'] ?? null, 'constant: ' . $name . ' mask is the fixed placeholder' );
+}
+$r = $run( 'FlxMailSettingsUpdate', array( 'input' => array( 'settings' => array( 'smtpPassword' => 'Typed-Over-Const' ) ) ), $admin );
+flxt_same( 'INVALID_INPUT', $r['data']['flxMailSettingsUpdate']['errors'][0]['code'] ?? null, 'constant: GraphQL refuses a password that wp-config defines' );
+$classic = FLXI_Settings_Service::save( array( 'smtp_nr_pass' => 'Classic-Nr-Pass' ), 'form', true );
+flxt_same( true, true === $classic, 'constant: classic form still saves the no-reply password' );
+flxt_same( 'Classic-Nr-Pass', flxi_decrypt( (string) flxi_setting( 'smtp_nr_pass' ) ), 'constant: classic form stores the posted no-reply password like main' );
+
 // One more pass over every captured response.
 $blob = (string) wp_json_encode( $seen );
 flxt_ok( false === strpos( $blob, $secret ), 'no captured response contains the secret' );

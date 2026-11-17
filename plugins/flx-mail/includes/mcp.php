@@ -295,11 +295,11 @@ function flxi_mcp_tools( $tools ) {
 function flxi_sanitize_setting( $k, $v ) {
 	$d = flxi_defaults();
 	if ( in_array( $k, array( 'from_email', 'noreply_email', 'reply_to', 'contact_email' ), true ) ) {
-		$raw = trim( (string) $v );
-		if ( '' !== $raw && ! is_email( $raw ) ) {
-			throw new Exception( __( 'Enter a valid email address.', 'flx-mail' ) );
+		$v = sanitize_email( (string) $v );
+		if ( '' !== $v && ! is_email( $v ) ) {
+			throw new Exception( 'Geçersiz e-posta: ' . $k );
 		}
-		return sanitize_email( $raw );
+		return $v;
 	}
 	if ( in_array( $k, array( 'color_primary', 'color_dark', 'color_bg', 'color_text' ), true ) ) {
 		$c = sanitize_hex_color( (string) $v );

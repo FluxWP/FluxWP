@@ -20,6 +20,9 @@ class FLXI_Settings_Service {
 
 	public const CLEAR = '__clear__';
 
+	/** What the classic page shows for a stored secret. Never any part of the secret itself. */
+	public const MASK = '••••••••';
+
 	/**
 	 * GraphQL name => stored key and kind.
 	 *
@@ -207,7 +210,7 @@ class FLXI_Settings_Service {
 		}
 		return array(
 			'set'        => '' !== $plain,
-			'mask'       => flxi_str( flxi_mask( $plain ) ),
+			'mask'       => '' !== $plain ? self::MASK : '',
 			'fromConfig' => $from,
 		);
 	}
@@ -317,6 +320,12 @@ class FLXI_Settings_Service {
 			if ( ! array_key_exists( $k, $in ) ) {
 				continue;
 			}
+			if ( 'graphql' === $mode && in_array( $k, array( 'from_email', 'noreply_email', 'reply_to', 'contact_email' ), true ) ) {
+				$raw = trim( flxi_str( $in[ $k ] ) );
+				if ( '' !== $raw && ! is_email( $raw ) ) {
+					return new WP_Error( 'flxi_invalid', __( 'Enter a valid email address.', 'flx-mail' ), array( 'status' => 400, 'field' => self::field_name( $k ) ) );
+				}
+			}
 			try {
 				$clean[ $k ] = flxi_sanitize_setting( $k, $in[ $k ] );
 			} catch ( Exception $e ) {
@@ -328,14 +337,18 @@ class FLXI_Settings_Service {
 			if ( ! array_key_exists( $key, $in ) ) {
 				continue;
 			}
-			if ( defined( $row[1] ) ) {
-				continue;
-			}
 			$v = trim( flxi_str( $in[ $key ] ) );
 			if ( '' === $v ) {
 				continue;
 			}
-			$clean[ $key ] = self::CLEAR === $v ? '' : flxi_encrypt( $v );
+			if ( 'graphql' === $mode ) {
+				if ( defined( $row[1] ) ) {
+					return new WP_Error( 'flxi_invalid', __( 'This password is defined in wp-config.php and cannot be changed here.', 'flx-mail' ), array( 'status' => 400, 'field' => self::field_name_secret( $key ) ) );
+				}
+				$clean[ $key ] = self::CLEAR === $v ? '' : flxi_encrypt( $v );
+				continue;
+			}
+			$clean[ $key ] = flxi_encrypt( $v );
 		}
 		foreach ( array( 'from_name', 'noreply_name', 'from_email', 'noreply_email' ) as $k ) {
 			if ( isset( $clean[ $k ] ) && '' === $clean[ $k ] ) {
@@ -447,6 +460,15 @@ class FLXI_Settings_Service {
 		}
 		$url = wp_get_attachment_url( (int) $id );
 		return is_string( $url ) ? $url : '';
+	}
+
+	private static function field_name_secret( string $key ): string {
+		foreach ( self::secrets() as $gql => $row ) {
+			if ( $row[0] === $key ) {
+				return $gql;
+			}
+		}
+		return $key;
 	}
 
 	private static function field_name( string $key ): string {
