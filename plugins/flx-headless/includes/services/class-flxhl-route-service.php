@@ -207,16 +207,18 @@ final class FLXHL_Route_Service {
 	}
 
 	private static function kind( WP_Query $q ): string {
-		if ( $q->is_404() ) {
+		// WordPress itself answers 404 for these (WP::handle_404); the route runs its own query, so check here.
+		if ( $q->is_404() || ( $q->is_paged() && ! $q->have_posts() ) ) {
 			return 'not_found';
 		}
+		$obj = $q->get_queried_object();
 		return match ( true ) {
 			$q->is_front_page() && ( $q->is_page() || $q->is_home() ) => 'front_page',
 			$q->is_home()              => 'posts_page',
 			$q->is_singular()          => 'singular',
-			$q->is_category() || $q->is_tag() || $q->is_tax() => 'term',
+			$q->is_category() || $q->is_tag() || $q->is_tax() => $obj instanceof WP_Term ? 'term' : 'not_found',
 			$q->is_post_type_archive() => 'post_type_archive',
-			$q->is_author()            => 'author',
+			$q->is_author()            => $obj instanceof WP_User ? 'author' : 'not_found',
 			$q->is_date()              => 'date',
 			$q->is_search()            => 'search',
 			default                    => 'not_found',
@@ -275,7 +277,15 @@ final class FLXHL_Route_Service {
 			return null;
 		}
 		$p = FLXHL_Frontend_Service::front_path( $link );
-		return null === $p ? null : (string) wp_parse_url( $p, PHP_URL_PATH );
+		if ( null === $p ) {
+			return null;
+		}
+		$p = (string) wp_parse_url( $p, PHP_URL_PATH );
+		// Compared with the asked path, which has no language prefix (Flux Lang); redirect() adds it back.
+		if ( function_exists( 'flxl_url_for_language' ) && function_exists( 'flxl_default_language' ) ) {
+			$p = flxhl_str( flxl_url_for_language( $p, flxhl_str( flxl_default_language() ) ) );
+		}
+		return $p;
 	}
 
 	private static function object_type( ?object $obj ): string {
@@ -497,7 +507,7 @@ final class FLXHL_Route_Service {
 	private static function plain_canonical( string $kind, WP_Query $q ): ?string {
 		$obj = $q->get_queried_object();
 		$url = match ( true ) {
-			'front_page' === $kind => home_url( '/' ),
+			'front_page' === $kind => flxhl_home() . '/',
 			$obj instanceof WP_Post => wp_get_canonical_url( $obj ),
 			$obj instanceof WP_Term => get_term_link( $obj ),
 			$obj instanceof WP_Post_Type => get_post_type_archive_link( $obj->name ),
@@ -572,7 +582,7 @@ final class FLXHL_Route_Service {
 				continue;
 			}
 			$p     = flxhl_str( flxl_url_for_language( $path, $l ) );
-			$out[] = array( 'lang' => $l, 'hreflang' => flxhl_str( flxl_hreflang( $l ) ), 'url' => $fe ? $fe->url . $p : home_url( $p ), 'path' => $p );
+			$out[] = array( 'lang' => $l, 'hreflang' => flxhl_str( flxl_hreflang( $l ) ), 'url' => $fe ? $fe->url . $p : flxhl_home() . $p, 'path' => $p );
 		}
 		return $out;
 	}

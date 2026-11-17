@@ -45,8 +45,16 @@ function flxhl_origin( string $url ): string {
 /**
  * Path of the WordPress home URL without the trailing slash ('' at the domain root).
  */
+/**
+ * WordPress address without a language prefix. home_url() carries the current language's prefix (Flux Lang),
+ * which would hide addresses of the other languages from the front-end mapping.
+ */
+function flxhl_home(): string {
+	return untrailingslashit( (string) get_option( 'home' ) );
+}
+
 function flxhl_home_path(): string {
-	$p = wp_parse_url( home_url( '/' ), PHP_URL_PATH );
+	$p = wp_parse_url( flxhl_home() . '/', PHP_URL_PATH );
 	return untrailingslashit( is_string( $p ) ? $p : '' );
 }
 

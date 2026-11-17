@@ -202,7 +202,7 @@ final class FLXHL_Frontend_Service {
 			return self::invalid( 'url', __( 'Enter the front end address with https:// (http:// only for localhost).', 'flx-headless' ) );
 		}
 		$url = flxhl_origin( $url ) . untrailingslashit( flxhl_str( wp_parse_url( $url, PHP_URL_PATH ) ) );
-		if ( untrailingslashit( $url ) === untrailingslashit( flxhl_origin( home_url() ) . flxhl_home_path() ) ) {
+		if ( untrailingslashit( $url ) === untrailingslashit( flxhl_origin( flxhl_home() ) . flxhl_home_path() ) ) {
 			return self::invalid( 'url', __( 'The front end cannot have the same address as this WordPress. Move WordPress to another address (e.g. cms.example.com) first.', 'flx-headless' ) );
 		}
 		foreach ( $raw['frontends'] as $i => $f ) {
@@ -372,7 +372,7 @@ final class FLXHL_Frontend_Service {
 		}
 		$rel = '/' === $url[0] && ( ! isset( $url[1] ) || '/' !== $url[1] );
 		if ( ! $rel ) {
-			$home = preg_replace( '#^https?:#', '', untrailingslashit( home_url() ) );
+			$home = preg_replace( '#^https?:#', '', flxhl_home() );
 			$bare = preg_replace( '#^https?:#', '', $url );
 			if ( ! is_string( $home ) || ! is_string( $bare ) || 0 !== strpos( $bare, $home ) ) {
 				return null;

@@ -222,7 +222,7 @@ add_filter(
 		}
 		// Sub-sitemaps keep the ?flxhl= marker; the front end proxies /wp-sitemap*.xml to WordPress.
 		$loc          = flxhl_str( $entry['loc'] );
-		$home         = untrailingslashit( home_url() );
+		$home         = flxhl_home();
 		$entry['loc'] = add_query_arg( 'flxhl', $fe->id, 0 === strpos( $loc, $home ) ? $fe->url . substr( $loc, strlen( $home ) ) : $loc );
 		return $entry;
 	},

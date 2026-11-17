@@ -44,8 +44,8 @@ final class FLXHL_Site_Service {
 		$data = array(
 			'name'        => html_entity_decode( flxhl_str( get_bloginfo( 'name' ) ), ENT_QUOTES, 'UTF-8' ),
 			'description' => html_entity_decode( flxhl_str( get_bloginfo( 'description' ) ), ENT_QUOTES, 'UTF-8' ),
-			'url'         => $fe ? $fe->url : untrailingslashit( home_url() ),
-			'cms_url'     => untrailingslashit( home_url() ),
+			'url'         => $fe ? $fe->url : flxhl_home(),
+			'cms_url'     => flxhl_home(),
 			'graphql_url' => function_exists( 'graphql_get_endpoint_url' ) ? flxhl_str( graphql_get_endpoint_url() ) : home_url( '/graphql' ),
 			'language'    => $code,
 			'locale'      => str_replace( '_', '-', determine_locale() ),
@@ -76,7 +76,7 @@ final class FLXHL_Site_Service {
 
 	/** @return list<array<string,mixed>> */
 	private static function languages( ?FLXHL_Frontend $fe ): array {
-		$base = $fe ? $fe->url : untrailingslashit( home_url() );
+		$base = $fe ? $fe->url : flxhl_home();
 		if ( ! class_exists( 'FLXL_Language_Service' ) ) {
 			$loc = determine_locale();
 			return array(
@@ -303,7 +303,7 @@ final class FLXHL_Site_Service {
 			'id'       => $id,
 			'parent'   => $parent,
 			'label'    => trim( html_entity_decode( wp_strip_all_tags( $label ), ENT_QUOTES, 'UTF-8' ) ),
-			'url'      => null === $path ? $url : ( $fe ? $fe->url . $path : home_url( $path ) ),
+			'url'      => null === $path ? $url : ( $fe ? $fe->url . $path : flxhl_home() . $path ),
 			'path'     => $path,
 			'target'   => '' === $target ? null : $target,
 			'external' => null === $path && (bool) preg_match( '#^(https?:)?//#', $url ),

@@ -499,7 +499,7 @@ flx_gql_type(
 						if ( class_exists( 'FLXL_Language_Service' ) ) {
 							foreach ( FLXL_Language_Service::languages() as $l ) {
 								if ( $l->active ) {
-									$langs[] = new FLXHL_Language( $l->code, $l->locale, $l->name, $l->hreflang, $l->address, home_url( $l->address ), $l->default );
+									$langs[] = new FLXHL_Language( $l->code, $l->locale, $l->name, $l->hreflang, $l->address, flxhl_home() . $l->address, $l->default );
 								}
 							}
 						}

@@ -117,7 +117,7 @@ final class FLXHL_Revalidate_Service {
 		$body   = (string) wp_json_encode(
 			array(
 				'event'    => $event,
-				'site'     => untrailingslashit( home_url() ),
+				'site'     => flxhl_home(),
 				'frontend' => $fe->id,
 				'tags'     => $tags,
 				'paths'    => self::localize_paths( $paths, $fe ),
