@@ -357,6 +357,204 @@ flxt_same( 'OPEN', $open['gathering']['status'] ?? null, 'gathering: reopened' )
 $gone = flxcrm_t( 'FlxCrmGatheringDelete', array( 'input' => array( 'id' => $gid ) ), $editor )['data']['flxGatheringDelete'] ?? array();
 flxt_same( array( array(), true ), array( $gone['errors'] ?? null, $gone['deleted'] ?? null ), 'gathering: deleted' );
 
+// ---- Events: package controls, action URLs, cache purge, messages, send control, page ------------------
+/** Named, enabled controls of a package-printed HTML block, as the React form collects them (and a classic post sends them). */
+function flxcrm_html_controls( string $html ): array {
+	$out = array();
+	if ( '' === $html ) {
+		return $out;
+	}
+	$doc = new DOMDocument();
+	libxml_use_internal_errors( true );
+	$doc->loadHTML( '<?xml encoding="utf-8"?><div>' . $html . '</div>' );
+	libxml_clear_errors();
+	foreach ( ( new DOMXPath( $doc ) )->query( '//input|//select|//textarea' ) ?: array() as $el ) {
+		$name = $el->getAttribute( 'name' );
+		if ( '' === $name || $el->hasAttribute( 'disabled' ) ) {
+			continue;
+		}
+		if ( in_array( $el->getAttribute( 'type' ), array( 'checkbox', 'radio' ), true ) && ! $el->hasAttribute( 'checked' ) ) {
+			continue;
+		}
+		$out[] = array( 'key' => $name, 'value' => $el->hasAttribute( 'value' ) ? $el->getAttribute( 'value' ) : 'on' );
+	}
+	return $out;
+}
+/** The error code of a mutation: the payload's user error, or the top-level GraphQL error. */
+function flxcrm_err( array $r, string $field ): ?string {
+	return $r['data'][ $field ]['errors'][0]['code'] ?? flxt_code( $r );
+}
+$flxcrm_purged = array();
+add_action( 'flx_gql_purged', static function ( $tags ) use ( &$flxcrm_purged ) {
+	foreach ( (array) $tags as $t ) {
+		$flxcrm_purged[] = (string) $t;
+	}
+} );
+$flxcrm_adopt = null;
+$flxcrm_adopt_listener = static function () use ( &$flxcrm_adopt ) {
+	$flxcrm_adopt = isset( $_POST['flxt_adopt'] ) ? (string) wp_unslash( $_POST['flxt_adopt'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
+};
+add_action( 'flx_event_saved', $flxcrm_adopt_listener );
+$flxcrm_after = static function () {
+	echo '<label><input type="checkbox" name="flxt_adopt" value="1" checked> Adopt</label><input type="checkbox" name="flxt_unchecked" value="1"><input type="text" value="no name">';
+};
+add_action( 'flx_event_form_after', $flxcrm_after, 98 );
+$flxcrm_actions = static function ( $a, $e ) {
+	if ( 'Review event' === ( $e['name'] ?? '' ) ) {
+		$a[] = array( 'label' => 'Bad', 'url' => 'javascript:alert(1)' );
+		$a[] = array( 'label' => 'Web', 'url' => 'https://example.com/e?x=1' );
+		$a[] = array( 'label' => 'Admin', 'url' => 'admin.php?page=flx-crm' );
+	}
+	return $a;
+};
+add_filter( 'flx_event_actions', $flxcrm_actions, 10, 2 );
+
+$new_form  = flxcrm_t( 'FlxCrmGatheringForm', array( 'id' => null ), $editor )['data']['flxGatheringForm'] ?? array();
+$controls  = flxcrm_html_controls( (string) ( $new_form['afterHtml'] ?? '' ) );
+flxt_same( array( array( 'key' => 'flxt_adopt', 'value' => '1' ) ), $controls, 'gathering form: afterHtml carries the package control (checked kept, unchecked and unnamed skipped)', $new_form );
+$review = flxcrm_t( 'FlxCrmGatheringSave', array( 'input' => array( 'fields' => array_merge( array(
+	array( 'key' => 'name', 'value' => 'Review event' ),
+	array( 'key' => 'event_date', 'value' => '2026-12-05' ),
+), $controls ) ) ), $editor )['data']['flxGatheringSave'] ?? array();
+$rid       = (int) ( $review['gathering']['databaseId'] ?? 0 );
+flxt_same( array( array(), true ), array( $review['errors'] ?? null, $rid > 0 ), 'gathering: review event saved', $review );
+flxt_same( '1', $flxcrm_adopt, 'gathering: a control a package printed in afterHtml reaches its flx_event_saved listener' );
+flxt_same( array( 1, 1 ), array( count( array_keys( $flxcrm_purged, 'flx-crm:gathering:' . $rid, true ) ), count( array_keys( $flxcrm_purged, 'flx-crm:gatherings', true ) ) ), 'gathering: one save purges the cache once', $flxcrm_purged );
+flxt_ok( ! isset( $_POST['flxt_adopt'] ), 'gathering: injected $_POST keys are restored after save' );
+remove_action( 'flx_event_saved', $flxcrm_adopt_listener );
+remove_action( 'flx_event_form_after', $flxcrm_after, 98 );
+$urls = array();
+foreach ( flxcrm_t( 'FlxCrmGathering', array( 'id' => $rid ), $editor )['data']['flxGathering']['actions'] ?? array() as $a ) {
+	$urls[ $a['label'] ] = $a['url'];
+}
+flxt_same( array( '', 'https://example.com/e?x=1', 'admin.php?page=flx-crm' ), array( $urls['Bad'] ?? 'missing', $urls['Web'] ?? 'missing', $urls['Admin'] ?? 'missing' ), 'gathering: action URLs are sanitized (javascript: comes back empty)', $urls );
+remove_filter( 'flx_event_actions', $flxcrm_actions, 10 );
+
+// Messages through Flux Mail (not a GraphQL package, so the test site has it off; turn it on for this file only).
+$flxcrm_mail_on = false;
+if ( ! function_exists( 'flxi_create_campaign' ) ) {
+	require_once ABSPATH . 'wp-admin/includes/plugin.php';
+	$flxcrm_mail_on = ! is_wp_error( activate_plugin( 'flx-mail/flx-mail.php' ) );
+}
+flxt_ok( function_exists( 'flxi_create_campaign' ) && function_exists( 'flxi_get_campaign' ), 'flux mail is loaded for the message tests' );
+$flxcrm_person = (int) flxcrm_ensure_contact( array( 'name' => 'Message Person', 'email' => 'message-person@example.com' ) );
+$flxcrm_people = static function ( $out, $id ) use ( $rid, $flxcrm_person ) {
+	if ( (int) $id === $rid ) {
+		$out[ $flxcrm_person ] = array( 'Test' );
+	}
+	return $out;
+};
+add_filter( 'flx_event_people', $flxcrm_people, 10, 2 );
+add_filter( 'pre_wp_mail', '__return_true' );
+$flxcrm_queued = 0;
+add_action( 'flxcrm_event_message_queued', static function () use ( &$flxcrm_queued ) {
+	$flxcrm_queued++;
+} );
+$camp_t  = flxi_table( 'campaigns' );
+$queue_t = flxi_table( 'queue' );
+$camp_n  = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$camp_t}" ); // phpcs:ignore
+$send_in = static function ( string $text ) use ( $rid ): array {
+	return array( 'input' => array( 'id' => $rid, 'channels' => array( 'EMAIL' ), 'kind' => 'INFO', 'text' => $text, 'subject' => 'Review subject' ) );
+};
+flxt_same( 'FORBIDDEN', flxt_code( flxcrm_t( 'FlxCrmGatheringSend', $send_in( 'Hello' ), $viewer ) ), 'gathering send: a viewer is refused' );
+flxt_same( 'UNAUTHENTICATED', flxt_code( flxcrm_t( 'FlxCrmGatheringSend', $send_in( 'Hello' ) ) ), 'gathering send: visitor → UNAUTHENTICATED' );
+flxt_same( $camp_n, (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$camp_t}" ), 'gathering send: a refused call queues nothing' ); // phpcs:ignore
+$sent_a = flxcrm_t( 'FlxCrmGatheringSend', $send_in( 'Hello from the contract test' ), $editor )['data']['flxGatheringMessageSend'] ?? array();
+flxt_same( array(), $sent_a['errors'] ?? null, 'gathering send: queued without errors', $sent_a );
+$key_a = (string) ( $sent_a['send']['key'] ?? '' );
+$cid_a = (int) ( $sent_a['send']['channels'][0]['campaignId'] ?? 0 );
+flxt_ok( '' !== $key_a && $cid_a > 0, 'gathering send: the card names the send key and the Flux Mail campaign', $sent_a );
+flxt_same( $camp_n + 1, (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$camp_t}" ), 'gathering send: exactly one Flux Mail campaign row' ); // phpcs:ignore
+flxt_same( 1, (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$queue_t} WHERE campaign_id = %d AND recipient = %s", $cid_a, 'message-person@example.com' ) ), 'gathering send: exactly one queue row for the person' ); // phpcs:ignore
+flxt_same( 1, $flxcrm_queued, 'gathering send: flxcrm_event_message_queued fires once' );
+$camp_a = flxi_get_campaign( $cid_a );
+flxt_same( array( 'email', 'info' ), array( $camp_a['channel'] ?? null, $camp_a['data']['kind'] ?? null ), 'gathering send: the campaign is the classic shape' );
+$hist = FLXCRM_Event_Messages::history( $rid );
+flxt_same( strtolower( $key_a ), strtolower( (string) ( $hist[0]['id'] ?? '' ) ), 'gathering send: the classic history lists the GraphQL send' );
+
+// Send control: classic admin-post handler and GraphQL see the same campaign.
+$sent_b = flxcrm_t( 'FlxCrmGatheringSend', $send_in( 'Second message' ), $editor )['data']['flxGatheringMessageSend'] ?? array();
+$key_b  = (string) ( $sent_b['send']['key'] ?? '' );
+$cid_b  = (int) ( $sent_b['send']['channels'][0]['campaignId'] ?? 0 );
+$ctl    = static function ( string $key, string $do, int $user ) use ( $rid ): array {
+	return flxcrm_t( 'FlxCrmGatheringSendControl', array( 'input' => array( 'id' => $rid, 'key' => $key, 'do' => $do ) ), $user );
+};
+flxt_same( 'FORBIDDEN', flxt_code( $ctl( $key_a, 'CANCEL', $viewer ) ), 'gathering control: a viewer is refused' );
+flxt_same( 'UNAUTHENTICATED', flxt_code( $ctl( $key_a, 'CANCEL', 0 ) ), 'gathering control: visitor → UNAUTHENTICATED' );
+flxt_same( 'queued', (string) ( flxi_get_campaign( $cid_a )['status'] ?? '' ), 'gathering control: a refused call changes nothing' );
+flxt_same( 'NOT_FOUND', flxcrm_err( $ctl( 'nosuchkey', 'CANCEL', $editor ), 'flxGatheringSendControl' ), 'gathering control: unknown send key → NOT_FOUND' );
+if ( FLXCRM_Event_Messages::can_pause() ) {
+	$paused = $ctl( $key_b, 'PAUSE', $editor )['data']['flxGatheringSendControl'] ?? array();
+	flxt_same( array( array(), 'paused' ), array( $paused['errors'] ?? null, (string) ( flxi_get_campaign( $cid_b )['status'] ?? '' ) ), 'gathering control: pause reaches the campaign', $paused );
+	$resumed = $ctl( $key_b, 'RESUME', $editor )['data']['flxGatheringSendControl'] ?? array();
+	flxt_same( array( array(), true ), array( $resumed['errors'] ?? null, 'paused' !== ( flxi_get_campaign( $cid_b )['status'] ?? 'paused' ) ), 'gathering control: resume reaches the campaign', $resumed );
+}
+// Classic: the real admin-post handler. wp_safe_redirect() ends in exit; the redirect filter turns that into an exception.
+class FlxcrmRedirect extends RuntimeException {}
+if ( ! function_exists( 'flxcrm_events_url' ) ) {
+	require_once FLXCRM_DIR . 'includes/admin/page-events.php'; // The classic screen is admin-only; its handlers are plain static methods.
+}
+wp_set_current_user( $editor );
+$_POST    = array( 'id' => $rid, 'send' => $key_a, 'do' => 'cancel' );
+$_REQUEST = array( '_wpnonce' => wp_create_nonce( 'flxcrm_event_msg_control' ) );
+$flxcrm_redirect = '';
+add_filter( 'wp_redirect', static function ( $loc ) use ( &$flxcrm_redirect ) {
+	$flxcrm_redirect = (string) $loc;
+	throw new FlxcrmRedirect();
+}, 0 );
+try {
+	FLXCRM_Event_Messages::post_control();
+} catch ( FlxcrmRedirect $e ) {
+	unset( $e );
+}
+$_POST = $_REQUEST = array();
+flxt_ok( false !== strpos( $flxcrm_redirect, 'flxcrm_msg=evmsgstop' ), 'gathering control: the classic handler cancelled the send', $flxcrm_redirect );
+flxt_same( 'cancelled', (string) ( flxi_get_campaign( $cid_a )['status'] ?? '' ), 'gathering control: classic cancel is a cancelled campaign' );
+$through = flxcrm_t( 'FlxCrmGathering', array( 'id' => $rid ), $editor )['data']['flxGathering']['recentSends'] ?? array();
+$by_key  = array();
+foreach ( $through as $row ) {
+	$by_key[ $row['key'] ] = $row['overall'];
+}
+flxt_same( 'CANCELLED', $by_key[ $key_a ] ?? null, 'gathering control: GraphQL reads what the classic handler cancelled', $by_key );
+$gql_cancel = $ctl( $key_b, 'CANCEL', $editor )['data']['flxGatheringSendControl'] ?? array();
+flxt_same( array( array(), 'CANCELLED', 'cancelled' ), array( $gql_cancel['errors'] ?? null, $gql_cancel['send']['overall'] ?? null, (string) ( flxi_get_campaign( $cid_b )['status'] ?? '' ) ), 'gathering control: GraphQL cancel is what the classic code reads', $gql_cancel );
+flxt_same( 'cancelled', (string) ( $wpdb->get_var( $wpdb->prepare( "SELECT status FROM {$queue_t} WHERE campaign_id = %d LIMIT 1", $cid_b ) ) ), 'gathering control: the queue rows are cancelled' ); // phpcs:ignore
+// Classic save keeps its redirect message exactly.
+$_POST    = array( 'id' => 0, 'name' => '' );
+$_REQUEST = array( '_wpnonce' => wp_create_nonce( 'flxcrm_gathering_save' ) );
+$flxcrm_redirect = '';
+try {
+	FLXCRM_Page_Events::post_save();
+} catch ( FlxcrmRedirect $e ) {
+	unset( $e );
+}
+$_POST = $_REQUEST = array();
+flxt_ok( false !== strpos( $flxcrm_redirect, 'flxcrm_err=' . rawurlencode( 'The event name cannot be empty.' ) ), 'classic save: the redirect message is unchanged', $flxcrm_redirect );
+remove_filter( 'flx_event_people', $flxcrm_people, 10 );
+remove_filter( 'pre_wp_mail', '__return_true' );
+
+// Event page.
+$page_in = array( 'input' => array( 'id' => $rid ) );
+flxt_same( 'FORBIDDEN', flxt_code( flxcrm_t( 'FlxCrmGatheringPage', $page_in, $viewer ) ), 'gathering page: a viewer is refused' );
+flxt_same( 'UNAUTHENTICATED', flxt_code( flxcrm_t( 'FlxCrmGatheringPage', $page_in ) ), 'gathering page: visitor → UNAUTHENTICATED' );
+flxt_same( 'NOT_FOUND', flxcrm_err( flxcrm_t( 'FlxCrmGatheringPage', array( 'input' => array( 'id' => 999999 ) ), $editor ), 'flxGatheringEnsurePage' ), 'gathering page: unknown id → NOT_FOUND' );
+$flxcrm_pt = flx_event_post_type();
+if ( ! post_type_exists( $flxcrm_pt ) ) {
+	flxt_same( 'INVALID_INPUT', flxcrm_err( flxcrm_t( 'FlxCrmGatheringPage', $page_in, $editor ), 'flxGatheringEnsurePage' ), 'gathering page: no event post type → INVALID_INPUT' );
+	register_post_type( $flxcrm_pt, array( 'public' => true, 'label' => 'Event pages' ) );
+}
+$page = flxcrm_t( 'FlxCrmGatheringPage', $page_in, $editor )['data']['flxGatheringEnsurePage'] ?? array();
+$pid  = (int) ( $page['postId'] ?? 0 );
+flxt_ok( $pid > 0 && $flxcrm_pt === get_post_type( $pid ) && 'publish' === get_post_status( $pid ), 'gathering page: a published event page is created', $page );
+flxt_same( $pid, (int) ( flx_event_get( $rid )['post_id'] ?? 0 ), 'gathering page: the classic row links the page' );
+flxt_same( $pid, (int) ( $page['gathering']['postId'] ?? 0 ), 'gathering page: the returned event names the page' );
+$again = flxcrm_t( 'FlxCrmGatheringPage', $page_in, $editor )['data']['flxGatheringEnsurePage'] ?? array();
+flxt_same( $pid, (int) ( $again['postId'] ?? 0 ), 'gathering page: a second call reuses the page' );
+flx_event_delete( $rid );
+if ( $flxcrm_mail_on ) {
+	deactivate_plugins( 'flx-mail/flx-mail.php' );
+}
+
 // ---- Person-card sections ------------------------------------------------------------------------------
 flxcrm_register_person_section(
 	array(
