@@ -1913,6 +1913,11 @@ body.flxg-col-resizing, body.flxg-col-resizing * { cursor: col-resize !important
 .flxg-pop .flx-dp.flx-dp .flx-dp-act { height: 32px; padding: 0 12px; font-size: 13px; }
 .flxg-pop:has(.flx-dp) { max-width: calc(100vw - 16px); overflow: visible; padding: 0; }
 
+/* Pano: sürüklerken yapışmayı kapat (otomatik kaydırma çalışsın); kart dokunmatikte sürükleme başlayınca sayfa kaymasın. */
+.flxg-dnd-active .flxg-board { scroll-snap-type: none !important; scroll-behavior: auto; }
+.flxg-dnd-active, .flxg-dnd-active body { overscroll-behavior: none; }
+.flxg-card.is-dragging, .flxg-dnd-ghost { touch-action: none; }
+
 /* ---------------- Yalnız React ekranı (FluxApp + wp-admin) ---------------- */
 .flxg.flxg-flux { height: 100%; min-height: 0; position: relative; background: var(--bg); }
 .flxg-doc-host { display: contents; }

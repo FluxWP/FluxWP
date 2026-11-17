@@ -1,5 +1,8 @@
 # Flux Tasks — Değişiklikler
 
+## 0.11.4
+- Mobilde pano (Kanban): bir kartı basılı tutup sürükleyince kart gerçekten sürüklenir (önceden tarayıcı sayfayı kaydırıp sürüklemeyi iptal ediyordu). Kartı ekranın sağ ya da sol kenarında bekletince pano o yöne kayar, kart başka sütuna bırakılabilir. Sürüklerken sütun yapışması kapanır.
+
 ## 0.11.3
 - Tarih seçici açılır kutusu kompakt: ekrana sığar (sağda takvim ve Uygula artık kesilmez), sol hızlı seçim paneli bej yerine temaya uygun gri (açık/koyu). Yalnız Tasks içinde; ortak bileşen değişmedi.
 

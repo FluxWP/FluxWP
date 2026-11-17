@@ -1,6 +1,6 @@
 // Sürükle-bırak (@dnd-kit/core): liste satırları, pano kartları, takvim günleri.
 // Bırakılan bölge + bırakılan yerin öncesi/sonrası (görev kimlikleri) onDrop'a verilir.
-import { createContext, useContext, useRef, useState, type ReactNode } from 'react';
+import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
 import { DndContext, DragOverlay, PointerSensor, TouchSensor, useDraggable, useDroppable, useSensor, useSensors, type DragEndEvent, type DragStartEvent } from '@dnd-kit/core';
 
 export interface DropInfo {
@@ -13,6 +13,16 @@ export interface DropInfo {
   /** Bölgede görünür öğe sırası (DOM'dan). */
   items: HTMLElement[];
   index: number;
+}
+
+/** Fare ve kalem için; dokunmatik işaretçiyi TouchSensor'a bırakır (yoksa ilk kaydırma hareketinde tarayıcı sürüklemeyi iptal eder). */
+class MousePenSensor extends PointerSensor {
+  static activators = [
+    {
+      eventName: 'onPointerDown' as const,
+      handler: ({ nativeEvent }: { nativeEvent: PointerEvent }) => nativeEvent.pointerType !== 'touch' && nativeEvent.isPrimary && nativeEvent.button === 0,
+    },
+  ];
 }
 
 const DragCtx = createContext<{ active: number | null; canStart: (id: number) => boolean }>({ active: null, canStart: () => true });
@@ -33,7 +43,19 @@ export function DndArea({
   onEnd?: () => void;
 }) {
   const [active, setActive] = useState<number | null>(null);
-  const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 6 } }), useSensor(TouchSensor, { activationConstraint: { delay: 350, tolerance: 8 } }));
+  // Sürüklerken pano kaydırma-yapışmasını (scroll-snap) kapat: kenarda beklerken otomatik kaydırma yapışmaya takılmasın.
+  useEffect(() => {
+    if (active === null) return;
+    const root = document.documentElement;
+    root.classList.add('flxg-dnd-active');
+    const boards = [...document.querySelectorAll<HTMLElement>('.flxg-board')];
+    for (const b of boards) b.style.setProperty('scroll-snap-type', 'none', 'important');
+    return () => {
+      root.classList.remove('flxg-dnd-active');
+      for (const b of boards) b.style.removeProperty('scroll-snap-type');
+    };
+  }, [active]);
+  const sensors = useSensors(useSensor(MousePenSensor, { activationConstraint: { distance: 6 } }), useSensor(TouchSensor, { activationConstraint: { delay: 350, tolerance: 8 } }));
   const swallow = () => {
     const stop = (ev: Event) => {
       ev.stopPropagation();
@@ -77,7 +99,7 @@ export function DndArea({
   };
   return (
     <DragCtx.Provider value={{ active, canStart }}>
-      <DndContext sensors={sensors} onDragStart={start} onDragEnd={end} onDragCancel={() => (setActive(null), onEnd?.())} autoScroll>
+      <DndContext sensors={sensors} onDragStart={start} onDragEnd={end} onDragCancel={() => (setActive(null), onEnd?.())} autoScroll={{ threshold: { x: 0.18, y: 0.15 }, acceleration: 5, interval: 16 }}>
         {children}
         <DragOverlay dropAnimation={null}>{active !== null && overlay ? <div className="flxg-dnd-ghost">{overlay(active)}</div> : null}</DragOverlay>
       </DndContext>
