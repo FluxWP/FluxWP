@@ -130,6 +130,21 @@ final class FLXU_Icon_Cache {
 		}
 	}
 
+	/**
+	 * Paketler ekranı gönderildikten sonra (shutdown): yanıt tarayıcıya bitirilir, eksik ikonlar ondan sonra
+	 * iner. Yanıtı erken bitiremeyen sunucuda indirme bir sonraki kontrole kalır (sayfa beklemez).
+	 */
+	public static function warm_missing_after_response(): void {
+		if ( function_exists( 'fastcgi_finish_request' ) ) {
+			fastcgi_finish_request();
+		} elseif ( function_exists( 'litespeed_finish_request' ) ) {
+			litespeed_finish_request();
+		} else {
+			return;
+		}
+		self::warm_missing();
+	}
+
 	/** Paketler ekranı açılırken eksik ikon varsa kısa süreyle indir. */
 	public static function warm_missing(): void {
 		$cat = get_site_option( 'flxu_catalog_last', array() );

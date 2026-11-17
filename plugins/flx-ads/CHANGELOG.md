@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.1
+- wp-admin ekranı Flux GraphQL ekran kabuğundan açılır: ilk veri PHP'de sayfaya basılır (yükleniyor göstergesi yok), menüden diğer Flux ekranlarına sayfa yenilenmeden geçilir. Ekranın parçaları sayfa başında birlikte iner (modulepreload).
+- Ortak modül paketi yenilendi.
+
 ## 0.9.0
 - FluxWP mobil uygulamasında Reklamlar native çizilir (ortak manifest `app/manifest.json`, GraphQL): gelir ve reklam özeti, Meta kampanyaları (dönem, duraklat/devam, günlük bütçe), kampanya ayrıntısı (reklam setleri, yaş/cinsiyet, yerleşim), öneriler (uygula, geç, şimdi kontrol et). Masaüstü panel React ekranını kullanmaya devam eder.
 

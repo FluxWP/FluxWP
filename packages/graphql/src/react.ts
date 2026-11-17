@@ -12,7 +12,7 @@ import {
 import type { GraphQLClient } from './client';
 import type { FlxGraphQLError } from './errors';
 import type { FlxOperation } from './operation';
-import { flxStoreGet, flxStoreKey, flxStoreMarkStale, flxStoreSet } from './store';
+import { flxStoreGet, flxStoreKey, flxStoreMarkStale, flxStoreNote, flxStoreSet } from './store';
 import { FlxViewer } from './generated/operations';
 import type { FlxViewerQuery } from './generated/types';
 
@@ -50,6 +50,7 @@ export function useFlxQuery<R, V, T = R>(
   // bundle on the page read shows at once; React Query refetches it when older than the stale time.
   const storeKey = flxStoreKey(op.id, variables ?? {});
   const seeded = options?.initialData === undefined ? flxStoreGet(storeKey) : undefined;
+  if (options?.enabled !== false) flxStoreNote(storeKey);
   return useQuery<R, FlxGraphQLError, T>({
     ...(seeded ? { initialData: seeded.data as R, initialDataUpdatedAt: seeded.at } : {}),
     ...options,

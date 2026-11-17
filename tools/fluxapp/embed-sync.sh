@@ -11,13 +11,17 @@
 #   tools/fluxapp/embed-sync.sh <eklenti-slug> --single
 #   FLUX_EMBED_CHUNKS=0 tools/fluxapp/embed-sync.sh <eklenti-slug>
 #   Çıktı: flux-modules.js + flux-modules.css. chunks.json yazılmaz; varsa silinir.
+#
+# --no-build: apps/wp-embed/dist'teki son derlemeyi kopyalar (birden çok paketi aynı derlemeyle eşitlemek için).
 set -euo pipefail
 
 slug=""
 single=0
+build=1
 for arg in "$@"; do
 	case "$arg" in
 		--single) single=1 ;;
+		--no-build) build=0 ;;
 		-*) echo "bilinmeyen seçenek: $arg" >&2; exit 1 ;;
 		*)
 			if [ -n "$slug" ]; then
@@ -41,7 +45,9 @@ dest="$root/$base/$slug/assets/flux"
 dist="$root/apps/wp-embed/dist"
 [ -d "$root/$base/$slug" ] || { echo "$base/$slug yok" >&2; exit 1; }
 
-if [ "$single" = 1 ]; then
+if [ "$build" = 0 ]; then
+	:
+elif [ "$single" = 1 ]; then
 	(cd "$root/apps/wp-embed" && FLUX_EMBED_CHUNKS=0 bun run build)
 else
 	(cd "$root/apps/wp-embed" && FLUX_EMBED_CHUNKS=1 bun run build)
@@ -57,10 +63,13 @@ if [ "$single" = 1 ]; then
 	exit 0
 fi
 
-if [ ! -f "$dist/flux-modules.js" ] || [ ! -f "$dist/flux-modules.css" ]; then
+shopt -s nullglob
+mains=( "$dist"/flux-modules-*.js )
+if [ "${#mains[@]}" -ne 1 ] || [ ! -f "$dist/flux-modules.css" ]; then
 	echo "parça çıktısı eksik: $dist" >&2
 	exit 1
 fi
+main="$(basename "${mains[0]}")"
 shopt -s nullglob
 chunks=( "$dist"/flux-*.js )
 if [ "${#chunks[@]}" -eq 0 ]; then
@@ -68,7 +77,9 @@ if [ "${#chunks[@]}" -eq 0 ]; then
 	exit 1
 fi
 cp "${chunks[@]}" "$dist/flux-modules.css" "$dest/"
-bash "$root/tools/fluxapp/version-imports.sh" "$dest"
+# Giriş adı hash taşır (parçalar onu bu adla import eder). flux-modules.js yalnız onu yeniden dışa verir:
+# sayfa flux-modules.js?ver=… yüklese de modül tek kez çalışır (?ver'li ve ?ver'siz iki ayrı modül olurdu).
+printf 'export * from "./%s";\n' "$main" > "$dest/flux-modules.js"
 
 {
 	printf '{\n  "mode": "chunks",\n  "entry": "flux-modules.js",\n  "files": [\n'
@@ -83,4 +94,6 @@ bash "$root/tools/fluxapp/version-imports.sh" "$dest"
 	done < <(find "$dest" -maxdepth 1 -type f \( -name 'flux-*.js' -o -name 'flux-modules.css' \) -exec basename {} \; | LC_ALL=C sort)
 	printf '\n  ]\n}\n'
 } > "$dest/chunks.json"
+# Ekran başına parça listesi (modulepreload, Flux GraphQL ekran kabuğu).
+node "$root/tools/fluxapp/embed-preload.mjs" "$dist" "$dest/chunks.json"
 echo "parçalar kopyalandı: $dest"

@@ -499,6 +499,9 @@ function flx_sk_page() {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		return;
 	}
+	if ( function_exists( 'flx_flux_ui' ) && flx_flux_ui() && function_exists( 'flx_admin_screen_render' ) && flx_admin_screen_render() ) {
+		return;
+	}
 	if ( function_exists( 'flx_flux_ui' ) && flx_flux_ui() ) {
 		flx_flux_root( 'flx-theme-system-app' );
 		return;

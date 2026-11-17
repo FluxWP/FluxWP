@@ -16,6 +16,9 @@ defined( 'ABSPATH' ) || exit;
  */
 final class FLXP_Speed_Service {
 
+	/** Seconds a computed summary is reused. */
+	public const SUMMARY_TTL = 30;
+
 	/** Cache tag of the settings-like data (kept for the GraphQL cache purge convention). */
 	public const CACHE_TAG = 'flx-speed:data';
 
@@ -250,6 +253,13 @@ final class FLXP_Speed_Service {
 	 */
 	public static function summary( int $hours ): array {
 		$hours = max( 1, min( 720, $hours ) );
+		// The summary scans the records and their details (a few hundred ms on a busy log); the screen reads
+		// it on every open, so a result younger than SUMMARY_TTL is reused. Clearing the log drops it.
+		$key = 'flxp_summary_' . self::i( FLXP_Store::generation() ) . '_' . $hours;
+		$hit = get_transient( $key );
+		if ( is_array( $hit ) ) {
+			return self::a( $hit );
+		}
 		$s     = self::a( FLXP_Store::summary( $hours ) );
 		$fl    = self::a( FLXP_Store::flag_labels() );
 		$tl    = self::a( FLXP_Store::type_labels() );
@@ -332,7 +342,7 @@ final class FLXP_Speed_Service {
 				'lastError' => self::s( $h['last_error'] ?? '' ),
 			);
 		}
-		return array(
+		$out = array(
 			'hours'        => $hours,
 			'recorded'     => self::i( $s['recorded'] ?? 0 ),
 			'msAvg'        => self::i( $s['ms_avg'] ?? 0 ),
@@ -346,6 +356,8 @@ final class FLXP_Speed_Service {
 			'phpErrors'    => $errors,
 			'httpCalls'    => $http,
 		);
+		set_transient( $key, $out, self::SUMMARY_TTL );
+		return $out;
 	}
 
 	/* ------------------------------------------------------------ Records */

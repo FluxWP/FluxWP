@@ -13,6 +13,7 @@ final class FLXRC_Admin {
 
 	public static function init() {
 		add_action( 'admin_menu', array( __CLASS__, 'menu' ), 60 );
+		add_action( 'admin_menu', array( __CLASS__, 'register_screen' ), 61 );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'assets' ) );
 		add_action( 'admin_head', array( __CLASS__, 'menu_logo' ) );
 		add_action( 'admin_init', array( __CLASS__, 'ui_switch' ) );
@@ -82,22 +83,55 @@ final class FLXRC_Admin {
 		);
 	}
 
-	public static function flux_assets() {
-		$ver    = FLXRC_VERSION . '-' . (int) filemtime( FLXRC_DIR . 'assets/flux/flux-modules.js' );
+	/** Mount options of the screen besides what the shell adds (rest, nonce, locale…). */
+	public static function flux_options() {
 		$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#2c7a64';
-		$opts   = array(
-			'module'     => 'flxrc-recaptcha',
-			'rest'       => rest_url(),
-			'nonce'      => wp_create_nonce( 'wp_rest' ),
-			'locale'     => get_user_locale(),
-			'siteName'   => get_bloginfo( 'name' ),
-			'adminUrl'   => admin_url(),
-			'theme'      => 'light',
+		return array(
 			'colors'     => array(
 				'primary'         => $accent,
 				'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
 			),
 			'classicUrl' => self::ui_switch_url( 'classic' ),
+		);
+	}
+
+	/** Flux GraphQL screen shell: first data printed by PHP, in-place navigation from the menu. */
+	public static function register_screen() {
+		if ( ! function_exists( 'flx_admin_screen' ) || ! self::flux_available() ) {
+			return;
+		}
+		flx_admin_screen(
+			'flx-recaptcha',
+			array(
+				'module'       => 'flxrc-recaptcha',
+				'assets_dir'   => FLXRC_DIR . 'assets/flux/',
+				'assets_url'   => FLXRC_URL . 'assets/flux/',
+				'version'      => FLXRC_VERSION,
+				'enabled'      => array( __CLASS__, 'flux_ui' ),
+				'options'      => array( __CLASS__, 'flux_options' ),
+				'container_id' => 'flxrc-app',
+				'preload'      => array( array( 'FlxRecaptchaScreen' ) ),
+				'wrap_class'   => 'flxrc-wrap',
+			)
+		);
+	}
+
+	public static function flux_assets() {
+		if ( function_exists( 'flx_admin_screen_current' ) && '' !== flx_admin_screen_current() ) {
+			return; // The screen shell loads it.
+		}
+		$ver  = FLXRC_VERSION . '-' . (int) filemtime( FLXRC_DIR . 'assets/flux/flux-modules.js' );
+		$opts = array_merge(
+			array(
+				'module'   => 'flxrc-recaptcha',
+				'rest'     => rest_url(),
+				'nonce'    => wp_create_nonce( 'wp_rest' ),
+				'locale'   => get_user_locale(),
+				'siteName' => get_bloginfo( 'name' ),
+				'adminUrl' => admin_url(),
+				'theme'    => 'light',
+			),
+			self::flux_options()
 		);
 		wp_enqueue_style( 'flxrc-flux', FLXRC_URL . 'assets/flux/flux-modules.css', array(), $ver );
 		wp_enqueue_script( 'flxrc-flux', FLXRC_URL . 'assets/flux/flux-modules.js', array(), $ver, true );
@@ -160,6 +194,9 @@ final class FLXRC_Admin {
 	public static function render() {
 		if ( ! current_user_can( self::CAP ) ) {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-recaptcha' ), 403 );
+		}
+		if ( self::flux_ui() && function_exists( 'flx_admin_screen_render' ) && flx_admin_screen_render() ) {
+			return;
 		}
 		if ( self::flux_ui() ) {
 			echo '<style>#flxrc-app.flux-root{height:auto;background:transparent;font-family:inherit}</style>';

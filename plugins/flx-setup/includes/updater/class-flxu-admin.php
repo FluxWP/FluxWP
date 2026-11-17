@@ -47,7 +47,8 @@ final class FLXU_Admin {
 	}
 
 	public function menu(): void {
-		$n     = current_user_can( 'update_plugins' ) ? self::pending_count() : 0;
+		// Rozet her yönetim sayfasında hesaplanır: katalog önbelleği bitmişse sayfa sunucuyu beklemez.
+		$n     = current_user_can( 'update_plugins' ) ? FLXU_Updater::offline( static fn(): int => self::pending_count() ) : 0;
 		$badge = $n ? ' <span class="update-plugins count-' . $n . '"><span class="plugin-count">' . number_format_i18n( $n ) . '</span></span>' : '';
 		// Çağrı Merkezi (3) ve Görevler (4) üstünde, Başlangıç (2) altında.
 		add_menu_page(
@@ -505,11 +506,13 @@ final class FLXU_Admin {
 		if ( ! current_user_can( 'update_plugins' ) ) {
 			return;
 		}
-		FLXU_Icon_Cache::warm_missing();
+		// Eksik ikonlar sayfa gönderildikten sonra iner; sayfa onları beklemez.
+		add_action( 'shutdown', array( 'FLXU_Icon_Cache', 'warm_missing_after_response' ), PHP_INT_MAX );
 
-		// The shared React screen is the default when Flux GraphQL runs (classic page: "Classic view" link).
+		// The shared React screen is the default when Flux GraphQL runs. Its first data (overview, table,
+		// history) is printed from cached data only; the screen's own check asks the servers in the background.
 		// phpcs:ignore WordPress.Security.NonceVerification
-		if ( ! isset( $_GET['flxu_install'] ) && empty( $_POST['flxu_do'] ) && flxk_flux_render( 'flxk-packages', self::SLUG ) ) {
+		if ( ! isset( $_GET['flxu_install'] ) && empty( $_POST['flxu_do'] ) && FLXU_Updater::offline( static fn(): bool => flxk_flux_render( 'flxk-packages', self::SLUG ) ) ) {
 			return;
 		}
 

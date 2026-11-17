@@ -6,6 +6,8 @@ import { Loading } from '@fluxwp/ui';
 
 export { ModuleHostProvider, useHost, useModuleApi, type ModuleHost } from './host';
 export type { ModuleScreens, ScreenLoader } from './registry';
+// wp-admin shell (apps/wp-embed): learns a screen's first queries for the server preload.
+export { flxStoreRecord } from '@fluxwp/graphql';
 import { collectScreens, type ModuleScreens } from './registry';
 
 function lazyScreen(load: () => Promise<{ default: ComponentType }>): ComponentType {

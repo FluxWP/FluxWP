@@ -61,7 +61,7 @@ function Settings() {
   const { scope } = useGraphQL();
   const qc = useQueryClient();
   const q = useFlxQuery(FlxAnalyticsSettings, {});
-  const [draft, setDraft] = useState<Draft | null>(null);
+  const [draft, setDraft] = useState<Draft | null>(() => (q.data ? draftOf(q.data.flxAnalyticsSettings) : null));
   const [dirty, setDirty] = useState(false);
   const [notice, setNotice] = useState<Notice | null>(null);
   const [confirm, setConfirm] = useState<'reset' | null>(null);

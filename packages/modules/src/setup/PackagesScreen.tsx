@@ -5,6 +5,7 @@
 // the backup strip and the update history.
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import { flxStoreGet, flxStoreKey, flxStoreNote, flxStoreSet } from '@fluxwp/graphql';
 import { flxQueryKey, useFlxMutation, useFlxQuery } from '@fluxwp/graphql/react';
 import {
   FlxSetupAutoUpdateSet,
@@ -19,7 +20,7 @@ import type { FlxSetupOverviewQuery, FlxSetupPackagesQuery, FlxSetupPackageTab, 
 import { Loading, Modal } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { History } from './History';
-import { ClassicLink, errorText, NoticeBar, SetupProvider, Switch, useSetup, type Notice } from './shared';
+import { errorText, NoticeBar, SetupProvider, Switch, useSetup, type Notice } from './shared';
 
 type Row = FlxSetupPackagesQuery['flxSetupPackages']['nodes'][number];
 type Overview = FlxSetupOverviewQuery['flxSetupOverview'];
@@ -40,6 +41,28 @@ interface Run {
 type Confirm = { text: string; action: string; danger?: boolean; run: () => void };
 
 const TABS: FlxSetupPackageTab[] = ['ALL', 'FLUX', 'PLUGINS', 'THEMES', 'CORE'];
+
+/** Rows per table request (the server's page limit). wp-admin prints the first pages with the same variables (flxk_packages_preload). */
+const PAGE = 50;
+type RowsFilter = { tab: FlxSetupPackageTab; query: string; onlyUpdates: boolean };
+const pageVars = (f: RowsFilter, after: string | null) => ({ tab: f.tab, search: f.query || null, onlyUpdates: f.onlyUpdates || null, first: PAGE, after });
+
+/** Every page of the table from the page-wide store (what wp-admin printed into the page), or nothing when a page is missing. */
+function storedRows(f: RowsFilter): { rows: Row[]; at: number } | undefined {
+  const rows: Row[] = [];
+  let at = Infinity;
+  let after: string | null = null;
+  for (let i = 0; i < 40; i++) {
+    const e = flxStoreGet(flxStoreKey(FlxSetupPackages.id, pageVars(f, after)));
+    if (!e || !e.at) return undefined;
+    const r = (e.data as FlxSetupPackagesQuery).flxSetupPackages;
+    rows.push(...r.nodes);
+    at = Math.min(at, e.at);
+    if (!r.pageInfo.hasNextPage) return { rows, at };
+    after = r.pageInfo.endCursor ?? null;
+  }
+  return undefined;
+}
 
 export function PackagesScreen() {
   return (
@@ -65,6 +88,7 @@ function Packages() {
   const [confirm, setConfirm] = useState<Confirm | null>(null);
   const [busy, setBusy] = useState(false);
   const autoChecked = useRef(false);
+  const autoRun = useRef(false);
 
   useEffect(() => {
     const id = window.setTimeout(() => setQuery(search.trim()), 200);
@@ -72,15 +96,23 @@ function Packages() {
   }, [search]);
 
   const overview = useFlxQuery(FlxSetupOverview, { search: query || null }, { placeholderData: keepPreviousData });
+  const filter: RowsFilter = { tab, query, onlyUpdates };
+  const [seed] = useState(() => storedRows(filter));
+  flxStoreNote(flxStoreKey(FlxSetupPackages.id, pageVars(filter, null)));
   const rowsQ = useQuery({
-    queryKey: flxQueryKey(scope, FlxSetupPackages, { tab, query, onlyUpdates }),
+    queryKey: flxQueryKey(scope, FlxSetupPackages, filter),
     placeholderData: keepPreviousData,
+    // Printed by wp-admin: the table shows at once; the screen's own update check refreshes it.
+    ...(seed && tab === 'ALL' && !query && !onlyUpdates ? { initialData: seed.rows, initialDataUpdatedAt: seed.at } : {}),
+    staleTime: 30_000,
     // The server pages the table (50 at most); the screen shows it whole like the classic page.
     queryFn: async ({ signal }): Promise<Row[]> => {
       const out: Row[] = [];
       let after: string | null = null;
       for (let i = 0; i < 40; i++) {
-        const r: FlxSetupPackagesQuery = await client.request(FlxSetupPackages, { tab, search: query || null, onlyUpdates: onlyUpdates || null, first: 50, after }, { signal });
+        const vars = pageVars(filter, after);
+        const r: FlxSetupPackagesQuery = await client.request(FlxSetupPackages, vars, { signal });
+        flxStoreSet(flxStoreKey(FlxSetupPackages.id, vars), r);
         out.push(...r.flxSetupPackages.nodes);
         if (!r.flxSetupPackages.pageInfo.hasNextPage) break;
         after = r.flxSetupPackages.pageInfo.endCursor;
@@ -98,7 +130,9 @@ function Packages() {
   const check = useFlxMutation(FlxSetupCheck, {
     onSuccess: (r) => {
       const p = r.flxSetupCheck;
-      if (p) setNotice({ kind: p.ok ? 'success' : 'warning', text: p.summary || t('Updates checked.') });
+      // The check the page runs by itself stays quiet when all is well: the header already says so.
+      if (p && !(autoRun.current && p.ok)) setNotice({ kind: p.ok ? 'success' : 'warning', text: p.summary || t('Updates checked.') });
+      autoRun.current = false;
       void afterChange();
     },
     onError: fail,
@@ -108,6 +142,7 @@ function Packages() {
   useEffect(() => {
     if (!autoChecked.current && overview.data?.flxSetupOverview.autoCheck) {
       autoChecked.current = true;
+      autoRun.current = true;
       check.mutate({});
     }
   }, [overview.data, check]);
@@ -266,14 +301,22 @@ function Packages() {
     <div className="flxk-app">
       <div className="flxk-head">
         <h1>{t('Packages')}</h1>
-        <div className="flxk-head__actions">
+      </div>
+      <div className="flxk-top">
+        <div className="flxk-top__check">
           <button type="button" className="flxk-btn" disabled={check.isPending || busy} onClick={() => check.mutate({})}>
             {check.isPending && <span className="flxk-spin" aria-hidden="true" />}
-            {t('Check for updates')}
+            {check.isPending ? t('Checking…') : t('Check for updates')}
           </button>
-          <span className="flxk-muted">{check.data?.flxSetupCheck?.checkedLabel || o?.connection.checkedLabel}</span>
+          <span className="flxk-muted flxk-top__when">{check.data?.flxSetupCheck?.checkedLabel || o?.connection.checkedLabel}</span>
         </div>
-        <ClassicLink t={t} />
+        {updateTotal > 0 ? (
+          <button type="button" className="flxk-btn is-primary flxk-updall" disabled={busy} onClick={() => void updateAll()}>
+            {t('Update all (%s)', count(updateTotal))}
+          </button>
+        ) : (
+          o?.connection.state === 'CONNECTED' && <span className="flxk-allgood">{t('All up to date ✓')}</span>
+        )}
       </div>
 
       <NoticeBar notice={notice} onClose={() => setNotice(null)} t={t} />
@@ -307,46 +350,56 @@ function Packages() {
             );
           })}
         </div>
-        <input
-          type="search"
-          className="flxk-search"
-          value={search}
-          placeholder={t('Search plugins and themes…')}
-          aria-label={t('Search plugins and themes')}
-          onChange={(e) => setSearch(e.target.value)}
-          onKeyDown={(e) => e.key === 'Escape' && setSearch('')}
-        />
-        <label className="flxk-check-label">
-          <input type="checkbox" checked={onlyUpdates} onChange={(e) => setOnlyUpdates(e.target.checked)} /> {t('Only updates')}
-        </label>
+        <div className="flxk-filter__find">
+          <input
+            type="search"
+            className="flxk-search"
+            value={search}
+            placeholder={t('Search plugins and themes…')}
+            aria-label={t('Search plugins and themes')}
+            onChange={(e) => setSearch(e.target.value)}
+            onKeyDown={(e) => e.key === 'Escape' && setSearch('')}
+          />
+          <label className="flxk-check-label">
+            <input type="checkbox" checked={onlyUpdates} onChange={(e) => setOnlyUpdates(e.target.checked)} /> {t('Only updates')}
+          </label>
+        </div>
       </div>
 
-      <div className="flxk-toolbar">
-        <h2>{t('Plugins, themes and updates')}</h2>
-        <span className="flxk-spacer" />
-        <label className="flxk-check-label">
-          <input type="checkbox" checked={activate} onChange={(e) => setActivate(e.target.checked)} /> {t('Activate installed')}
-        </label>
-        <button type="button" className="flxk-btn" disabled={!todo.length || busy} onClick={installSelected}>
-          {t('Install / update selected')}
-        </button>
-        <span className="flxk-bulk">
-          <select value={bulkOp} aria-label={t('Bulk action')} onChange={(e) => setBulkOp(e.target.value)}>
-            <option value="">{t('Bulk actions')}</option>
-            <option value="activate">{t('Activate')}</option>
-            <option value="deactivate">{t('Deactivate')}</option>
-            <option value="delete">{t('Delete')}</option>
-            <option value="auto_on">{t('Turn on automatic updates')}</option>
-            <option value="auto_off">{t('Turn off automatic updates')}</option>
-          </select>
-          <button type="button" className="flxk-btn" disabled={!bulkOp || ![...selected].some((k) => byKey.get(k)?.canManage) || manage.isPending} onClick={applyBulk}>
-            {t('Apply')}
+      {selected.size > 0 && (
+        <div className="flxk-selbar" role="region" aria-label={t('Bulk actions')}>
+          <strong>{tn('%s selected', '%s selected', selected.size, count(selected.size))}</strong>
+          <button type="button" className="flxk-linkbtn" onClick={() => setSelected(new Set())}>
+            {t('Clear selection')}
           </button>
-        </span>
-        <button type="button" className="flxk-btn is-primary" disabled={updateTotal === 0 || busy} onClick={() => void updateAll()}>
-          {t('Update all (%s)', count(updateTotal))}
-        </button>
-      </div>
+          <span className="flxk-spacer" />
+          {todo.length > 0 && (
+            <>
+              <label className="flxk-check-label">
+                <input type="checkbox" checked={activate} onChange={(e) => setActivate(e.target.checked)} /> {t('Activate installed')}
+              </label>
+              <button type="button" className="flxk-btn is-primary" disabled={busy} onClick={installSelected}>
+                {t('Install / update selected')}
+              </button>
+            </>
+          )}
+          {[...selected].some((k) => byKey.get(k)?.canManage) && (
+            <span className="flxk-bulk">
+              <select value={bulkOp} aria-label={t('Bulk action')} onChange={(e) => setBulkOp(e.target.value)}>
+                <option value="">{t('Bulk actions')}</option>
+                <option value="activate">{t('Activate')}</option>
+                <option value="deactivate">{t('Deactivate')}</option>
+                <option value="delete">{t('Delete')}</option>
+                <option value="auto_on">{t('Turn on automatic updates')}</option>
+                <option value="auto_off">{t('Turn off automatic updates')}</option>
+              </select>
+              <button type="button" className="flxk-btn" disabled={!bulkOp || manage.isPending} onClick={applyBulk}>
+                {t('Apply')}
+              </button>
+            </span>
+          )}
+        </div>
+      )}
 
       <div className="flxk-card flxk-table-wrap">
         <table className="flxk-table">
@@ -398,14 +451,6 @@ function Packages() {
           </tbody>
         </table>
       </div>
-
-      <p>
-        {o && (
-          <a href={o.wordpressUpdatesUrl} className="flxk-link">
-            {t('WordPress updates')}
-          </a>
-        )}
-      </p>
 
       {o && <BackupStrip o={o} t={t} onInstall={() => runPlan(t('Install Flux Backup'), { slugs: ['flx-backup'], activate: true })} onActivate={() => runPlan(t('Activate'), { slugs: ['flx-backup'], activate: true })} />}
 
@@ -462,11 +507,17 @@ function StatusCard({ o, t }: { o: Overview; t: ReturnType<typeof useSetup>['t']
 }
 
 function BackupStrip({ o, t, onInstall, onActivate }: { o: Overview; t: ReturnType<typeof useSetup>['t']; onInstall: () => void; onActivate: () => void }) {
+  const wp = (
+    <a href={o.wordpressUpdatesUrl} className="flxk-strip__end">
+      {t('WordPress updates')}
+    </a>
+  );
   if (o.backup.ready) {
     return (
       <div className="flxk-strip is-ok">
         <span>{t('A backup is taken before every update (Flux Backup).')}</span>
         <a href={o.backupUrl}>{t('Backups')}</a>
+        {wp}
       </div>
     );
   }
@@ -483,6 +534,7 @@ function BackupStrip({ o, t, onInstall, onActivate }: { o: Overview; t: ReturnTy
           {t('Install Flux Backup')}
         </button>
       )}
+      {wp}
     </div>
   );
 }
@@ -584,7 +636,7 @@ function PackageRow({
       <th scope="row" className="flxk-c-check">
         {(r.canUpdate || r.canInstall || r.canManage) && <input type="checkbox" checked={selected} aria-label={r.name} onChange={(e) => onPick(e.target.checked)} />}
       </th>
-      <td>
+      <td className="flxk-c-pkg">
         <div className="flxk-pkg">
           {r.iconUrl && !iconBad ? (
             <img src={r.iconUrl} width={40} height={40} alt="" onError={() => setIconBad(true)} />
@@ -635,7 +687,7 @@ function PackageRow({
           </div>
         </div>
       </td>
-      <td>
+      <td className="flxk-c-ver" data-label={t('Installed')}>
         {r.installed || '—'}
         {r.installed && !r.active && r.kind !== 'FLUX_THEME' && r.kind !== 'WP_THEME' && r.kind !== 'WP_TRANSLATIONS' && r.kind !== 'WP_CORE' && (
           <>
@@ -644,7 +696,7 @@ function PackageRow({
           </>
         )}
       </td>
-      <td>
+      <td className="flxk-c-ver" data-label={t('Latest version')}>
         {r.latest}
         {r.released && (
           <>
@@ -653,7 +705,7 @@ function PackageRow({
           </>
         )}
       </td>
-      <td className="flxk-c-auto">
+      <td className="flxk-c-auto" data-label={t('Auto-update')}>
         {a.mode === 'UNAVAILABLE' || (!r.installed && a.mode !== 'LOCKED') ? (
           <span className="flxk-muted" title={r.installed ? t('Automatic updates are turned off for this site.') : undefined}>
             —
@@ -670,7 +722,7 @@ function PackageRow({
           </span>
         )}
       </td>
-      <td className="flxk-actions">
+      <td className="flxk-actions" data-label={t('Status')}>
         {r.state === 'UPDATE' ? (
           <>
             <span className="flxk-badge is-update">{t('Update available')}</span>

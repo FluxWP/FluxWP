@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.1
+- wp-admin ekranı Flux GraphQL ekran kabuğundan açılır: ilk veri PHP'de sayfaya basılır (yükleniyor göstergesi yok), menüden diğer Flux ekranlarına sayfa yenilenmeden geçilir. Ekranın parçaları sayfa başında birlikte iner (modulepreload).
+- Ortak modül paketi yenilendi.
+
 ## 0.3.0
 - FluxWP mobil uygulamasında Dosyalar native çizilir (ortak manifest `app/manifest.json`, GraphQL): klasörlerde gezinme, dosya içeriği ve bilgisi, yeni klasör, yeniden adlandır, çöp kutusuna taşı, çöp kutusundan geri al. Düzenleme panelde.
 

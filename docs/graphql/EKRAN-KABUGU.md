@@ -1,4 +1,4 @@
-# Ekran kabuğu (Flux GraphQL 0.4.0)
+# Ekran kabuğu (Flux GraphQL 0.5.0)
 
 wp-admin'deki her Flux React ekranı tek bir kabuktan açılır: `plugins/flx-graphql/includes/screens.php` +
 `assets/js/screens.js`. Amaç: sol menüden başka bir Flux ekranına geçerken sayfa yenilenmez, ortak sorgular
@@ -22,7 +22,20 @@ tekrar gitmez, ilk açılışta veri PHP'den gelir (spinner yok). Klasik PHP say
    `<persisted id>:<değişkenler, anahtarlar sıralı JSON; boş = {}>` (PHP: `flx_admin_screen_stable_vars()`).
    Her başarılı sorgu yazar; iki pakette iki React Query kopyası olsa da sonuç paylaşılır.
    Mutation sonrası depo "stale" işaretlenir (gösterilir, ilk kullanımda yenilenir).
-4. **Batch.** Aynı tick'te başlayan sorgular tek WPGraphQL batch POST'unda gider (en çok 10). Tek sorgu
+4. **Öğrenen preload (0.5.0).** Ekran mount olunca ilk 2,5 sn'de (ya da sayfadan önce çıkılırsa o ana
+   kadar) gönderdiği sorgular kaydedilir (`flxStoreRecord`). PHP'nin bastığından farklıysa
+   `admin-ajax.php?action=flx_screen_learn` (wp_rest nonce) ile gider; kullanıcı meta
+   `flx_gql_screen_queries` içinde `<modül>|<başlangıç sayfası>` anahtarıyla saklanır (ekran başına 10,
+   en çok 60 ekran). Sonraki açılışta açık `preload` listesine eklenip PHP'de çalışır. Toplam preload
+   süresi 0,8 sn ile sınırlı; aşan sorgular tarayıcıda çalışır.
+5. **Parça önyükleme (0.5.0).** `embed-sync.sh` Vite manifest'inden `chunks.json` `preload`
+   alanını yazar (`entry`: girişin statik parçaları, `screens.<modül>`: ekranın parçaları;
+   `tools/fluxapp/embed-preload.mjs`). Kabuk bunları `<link rel="modulepreload">` olarak `<head>`'e basar:
+   parçalar sırayla değil birlikte iner.
+6. **Tek giriş.** Parça derlemesinde giriş adı hash taşır (`flux-modules-<hash>.js`); `flux-modules.js`
+   yalnız onu yeniden dışa veren tek satırlık dosyadır. Böylece `?ver=` ile yüklenen giriş ve parçaların
+   import ettiği giriş aynı modüldür (önceden 510 KB giriş iki kez çalışıyordu, iki ayrı depo oluşuyordu).
+7. **Batch.** Aynı tick'te başlayan sorgular tek WPGraphQL batch POST'unda gider (en çok 10). Tek sorgu
    persisted GET kalır.
 
 ## Paket kuralları
@@ -41,7 +54,14 @@ tekrar gitmez, ilk açılışta veri PHP'den gelir (spinner yok). Klasik PHP say
   yoksa route listesine girmez.
 - `layout => 'full'` (wp-admin'i örten ekran, örn. Flux Tasks): kendi kabuğu olduğu için SPA geçişine
   girmez, her zaman sayfa olarak açılır. Diğer ekranlardan ona link normal yüklemedir.
-- Ekranın ihtiyaç duyduğu klasik script'ler `scripts`, sayfada olması gereken global'ler `needs`.
+- Ekranın ihtiyaç duyduğu klasik script'ler `scripts`, sayfada olması gereken global'ler `needs`
+  (noktalı yol olabilir: `wp.media`; sayfada yoksa link normal yüklenir). Sayfaya özel enqueue `enqueue`.
+- `wrap_class`: satır içi ekranın `.wrap`'ine eklenen sınıf (paketin eski CSS seçicileri için).
+- `options` içindeki `startPage` boş değilse sayfa argümanından gelen başlangıcı ezer (ör. detay sayfası).
+- Menü adresinin kendi argümanları (edit.php?post_type=…&page=…) route'ta `args` olarak gelir; gezgin
+  bunları bekler, başka argüman varsa normal yükler.
+- Ayar ekranı formu (draft) `useState(() => q.data ? … : null)` ile başlar; yoksa preload'lı veriyle bile
+  ilk karede yükleniyor göstergesi çıkar.
 - Ekran kendi `useFlxQuery` / `useFlxMutation`'ını kullanır; REST ile veri çeken ekran (Tasks şimdilik)
   preload'dan yararlanmaz, yalnız geçişten yararlanır.
 - Bundle `tools/fluxapp/embed-sync.sh` ile senkronlanır; aynı commit'ten gelen paketler tek runtime paylaşır.
@@ -52,7 +72,8 @@ tekrar gitmez, ilk açılışta veri PHP'den gelir (spinner yok). Klasik PHP say
 ## Test
 
 `tools/tests/wp-graphql/flx-graphql/contract-test.php`: preload anahtarı TS ile aynı, kayıt, bundle id,
-render çıktısı, route listesi, navigation filtresi.
+render çıktısı, route listesi, navigation filtresi, parça listesi, öğrenilen sorgular (kullanıcı başına,
+doğrulama, birleşme), `learn` seçenekleri, `wrap_class`.
 
 ## Ölçüm (pilot, yerel test sitesi, hover 150 ms + tık, 3 koşu medyanı)
 
@@ -62,3 +83,25 @@ render çıktısı, route listesi, navigation filtresi.
 | SEO ↔ Speed ↔ Analytics | ~750–850 ms, ~40 istek, tam yükleme | ~110–310 ms, 1–3 istek |
 | Ziyaret edilmiş ekrana dönüş | tam yükleme | ~60 ms, 0 istek |
 | İlk açılış GraphQL isteği | 1–3 | 0 (PHP preload) |
+
+## İlk açılış ölçümü (0.5.0, yerel test sitesi, sıcak önbellek, ilk ziyaret, 3 koşu medyanı)
+
+"Hazır" = ekranda son DOM değişikliği. Önce = main (#336 sonrası, SEO/Speed/Analytics dışı ekranlar kabuksuz).
+
+| Ekran | Önce | Sonra | Spinner önce → sonra |
+|---|---|---|---|
+| Roller | 864 ms | 572 ms | 2 → 0 |
+| Diller | 757 | 463 | 2 → 0 |
+| reCAPTCHA | 879 | 448 | 2 → 0 |
+| Flux Admin ayarları | 801 | 521 | 2 → 0 |
+| Yedekleme | 845 | 503 | 2 → 0 |
+| Wiki | 1037 | 476 | 3 → 0 |
+| Kurulum (Setup) | 1025 | 737 | 2 → 0 |
+| Dosyalar | 938 | 622 | 2 → 0 |
+| Studio | 922 | 514 | 1 → 0 |
+| Chatbot | 836 | 521 | 2 → 0 |
+| Tema Ayarları | 950 | 630 | 2 → 0 |
+| Uygulama ayarları | 773 | 466 | 2 → 0 |
+| Speed | 608 | 468 | 0 → 0 |
+
+Flux AI ekranları da kabukta (0.29.1); ilk sorguları öğrenilerek preload edilir. Genel bakış 596 → 553 ms, spinner 1 → 0.

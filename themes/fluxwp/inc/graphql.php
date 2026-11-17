@@ -127,6 +127,65 @@ function flx_flux_module_tag( $tag, $handle ) {
 }
 
 /**
+ * Mount options of a screen besides what the shell adds (rest, nonce, locale…).
+ *
+ * @param string $page Admin page slug (flx-ayarlar | flx-sistem).
+ */
+function flx_flux_options( $page = '' ) {
+	$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#2c7a64';
+	return array(
+		'colors'     => array(
+			'primary'         => $accent,
+			'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
+		),
+		'classicUrl' => flx_ui_switch_url( '' !== $page ? $page : 'flx-ayarlar', 'classic' ),
+	);
+}
+
+/** Theme Settings opens the React screen except on its Presets tab (a classic page of its own). */
+function flx_flux_settings_ui() {
+	$tab = isset( $_GET['bolum'] ) ? sanitize_key( wp_unslash( $_GET['bolum'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
+	return 'onayarlar' !== $tab && flx_flux_ui();
+}
+
+// Flux GraphQL screen shell: first data printed by PHP, in-place navigation from the menu.
+add_action(
+	'admin_menu',
+	static function () {
+		if ( ! function_exists( 'flx_admin_screen' ) || ! flx_flux_available() ) {
+			return;
+		}
+		$base = array(
+			'assets_dir' => get_theme_file_path( 'assets/flux/' ),
+			'assets_url' => get_theme_file_uri( 'assets/flux/' ),
+			'version'    => FLX_VERSION,
+			'options'    => 'flx_flux_options',
+			'wrap_class' => 'flx-flux-wrap',
+		);
+		flx_admin_screen(
+			'flx-ayarlar',
+			$base + array(
+				'module'       => 'flxt-theme-settings',
+				'enabled'      => 'flx_flux_settings_ui',
+				'container_id' => 'flx-theme-settings-app',
+				'preload'      => array( array( 'FlxThemeSettings' ), array( 'FlxThemeMigrationSources' ) ),
+				'enqueue'      => static fn () => wp_enqueue_media(), // Payment logos come from the media library.
+				'needs'        => array( 'wp.media' ),
+			)
+		);
+		flx_admin_screen(
+			'flx-sistem',
+			$base + array(
+				'module'       => 'flxt-theme-system',
+				'enabled'      => 'flx_flux_ui',
+				'container_id' => 'flx-theme-system-app',
+			)
+		);
+	},
+	20
+);
+
+/**
  * Loads the bundle for one screen.
  *
  * @param string $module  flxt-theme-settings | flxt-theme-system.
@@ -134,21 +193,21 @@ function flx_flux_module_tag( $tag, $handle ) {
  * @param string $root_id Mount element ID.
  */
 function flx_flux_assets( $module, $page, $root_id ) {
-	$ver    = FLX_VERSION . '-' . (int) filemtime( get_theme_file_path( 'assets/flux/flux-modules.js' ) );
-	$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#2c7a64';
-	$opts   = array(
-		'module'     => $module,
-		'rest'       => rest_url(),
-		'nonce'      => wp_create_nonce( 'wp_rest' ),
-		'locale'     => get_user_locale(),
-		'siteName'   => get_bloginfo( 'name' ),
-		'adminUrl'   => admin_url(),
-		'theme'      => 'light',
-		'colors'     => array(
-			'primary'         => $accent,
-			'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
+	if ( function_exists( 'flx_admin_screen_current' ) && '' !== flx_admin_screen_current() ) {
+		return; // The screen shell loads it.
+	}
+	$ver  = FLX_VERSION . '-' . (int) filemtime( get_theme_file_path( 'assets/flux/flux-modules.js' ) );
+	$opts = array_merge(
+		array(
+			'module'   => $module,
+			'rest'     => rest_url(),
+			'nonce'    => wp_create_nonce( 'wp_rest' ),
+			'locale'   => get_user_locale(),
+			'siteName' => get_bloginfo( 'name' ),
+			'adminUrl' => admin_url(),
+			'theme'    => 'light',
 		),
-		'classicUrl' => flx_ui_switch_url( $page, 'classic' ),
+		flx_flux_options( $page )
 	);
 	if ( 'flxt-theme-settings' === $module ) {
 		wp_enqueue_media(); // Payment logos come from the media library.

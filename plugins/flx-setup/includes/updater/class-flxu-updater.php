@@ -24,6 +24,31 @@ final class FLXU_Updater {
 	/** @var array|null İstek içi önbellek. */
 	private $catalog = null;
 
+	/**
+	 * Sayfa çizilirken (menü rozeti, Paketler ekranının PHP ön yüklemesi) sunucuya gidilmez: önbellek
+	 * yoksa son bilinen katalog kullanılır, tazeleme ekranın arka plandaki kontrolüne kalır.
+	 *
+	 * @var bool
+	 */
+	public static $offline = false;
+
+	/**
+	 * Fonksiyonu sunucuya gitmeden çalıştırır (bkz. $offline).
+	 *
+	 * @template T
+	 * @param callable():T $fn Fonksiyon.
+	 * @return T
+	 */
+	public static function offline( callable $fn ) {
+		$was           = self::$offline;
+		self::$offline = true;
+		try {
+			return $fn();
+		} finally {
+			self::$offline = $was;
+		}
+	}
+
 	public static function instance(): self {
 		if ( null === self::$instance ) {
 			self::$instance = new self();
@@ -102,6 +127,11 @@ final class FLXU_Updater {
 		if ( ! $force && is_array( $cached ) ) {
 			$this->catalog = self::without_retired( $cached );
 			return $this->catalog;
+		}
+		if ( ! $force && self::$offline ) {
+			// İstek içi önbelleğe yazılmaz: aynı istekte sonra gelen gerçek kontrol sunucuya gider.
+			$last = get_site_option( 'flxu_catalog_last', array() );
+			return self::without_retired( is_array( $last ) ? $last : array() );
 		}
 
 		$fresh = $this->fetch_catalog( $force );
@@ -966,8 +996,11 @@ final class FLXU_Updater {
 		if ( function_exists( 'wp_version_check' ) ) {
 			wp_version_check( array(), true );
 		}
-		// wp.org'a ulaşılamazsa WP filtreyi çağırmayabilir; katalog yine de tazelensin.
-		$this->catalog( true );
+		// wp.org'a ulaşılamazsa WP filtreyi çağırmayabilir; katalog yine de tazelensin. Filtre bu çağrıda
+		// sunucuya zaten sorduysa ikinci kez sorulmaz (yavaş sunucuda kontrol süresi iki katına çıkıyordu).
+		if ( null === $this->catalog ) {
+			$this->catalog( true );
+		}
 	}
 
 	/* ------------------------------------------------------------------ */

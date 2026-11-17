@@ -25,6 +25,7 @@ final class FLXY_Admin {
 
 	private function __construct() {
 		add_action( 'admin_menu', array( $this, 'menu' ) );
+		add_action( 'admin_menu', array( $this, 'register_screens' ), 20 );
 		add_action( 'admin_head', array( $this, 'menu_icon_css' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'assets' ) );
 		add_action( 'admin_init', array( $this, 'switch_ui' ) );
@@ -113,25 +114,68 @@ final class FLXY_Admin {
 		);
 	}
 
-	private static function flux_assets(): void {
-		$ver    = FLXY_VERSION . '-' . (int) filemtime( FLXY_DIR . 'assets/flux/flux-modules.js' );
+	/**
+	 * Mount options of the screen besides what the Flux GraphQL shell adds (rest, nonce, locale…).
+	 *
+	 * @param string $page Page slug.
+	 */
+	public static function flux_options( string $page = '' ): array {
 		$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#2c7a64';
-		$opts   = array(
-			'module'     => 'flxy-backup',
-			'rest'       => rest_url(),
-			'nonce'      => wp_create_nonce( 'wp_rest' ),
-			'locale'     => get_user_locale(),
-			'siteName'   => get_bloginfo( 'name' ),
-			'adminUrl'   => admin_url(),
-			'theme'      => 'light',
+		$here   = '' === $page || self::current_args()['page'] === $page;
+		return array(
 			'colors'     => array(
 				'primary'         => $accent,
 				'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
 			),
 			'appIcon'    => FLXY_URL . 'assets/icon.svg',
-			'startPage'  => self::flux_start_page(),
+			// One backup (?view=…) opens its detail; the shell starts the pages themselves.
+			'startPage'  => $here && 0 === strpos( self::flux_start_page(), 'detail:' ) ? self::flux_start_page() : '',
 			'classicUrl' => self::ui_switch_url( 'classic' ),
 		);
+	}
+
+	/** Flux GraphQL screen shell: first data printed by PHP, in-place navigation between the pages. */
+	public function register_screens(): void {
+		if ( ! function_exists( 'flx_admin_screen' ) || ! self::flux_available() ) {
+			return;
+		}
+		foreach ( array( self::SLUG => 'dashboard', self::SLUG . '-list' => 'list', self::SLUG . '-settings' => 'settings' ) as $page => $start ) {
+			flx_admin_screen(
+				$page,
+				array(
+					'module'       => 'flxy-backup',
+					'assets_dir'   => FLXY_DIR . 'assets/flux/',
+					'assets_url'   => FLXY_URL . 'assets/flux/',
+					'version'      => FLXY_VERSION,
+					'enabled'      => array( __CLASS__, 'flux_ui' ),
+					'options'      => array( __CLASS__, 'flux_options' ),
+					'start'        => $start,
+					'container_id' => 'flxy-app',
+					'preload'      => 'dashboard' === $start ? array( array( 'FlxBackupSettingsScreen' ), array( 'FlxBackupJobRead' ), array( 'FlxBackupDashboard' ) ) : array( array( 'FlxBackupSettingsScreen' ) ),
+					'wrap_class'   => 'flxy-react',
+				)
+			);
+		}
+	}
+
+	private static function flux_assets(): void {
+		if ( function_exists( 'flx_admin_screen_current' ) && '' !== flx_admin_screen_current() ) {
+			return; // The Flux GraphQL screen shell loads the bundle.
+		}
+		$ver  = FLXY_VERSION . '-' . (int) filemtime( FLXY_DIR . 'assets/flux/flux-modules.js' );
+		$opts = array_merge(
+			array(
+				'module'   => 'flxy-backup',
+				'rest'     => rest_url(),
+				'nonce'    => wp_create_nonce( 'wp_rest' ),
+				'locale'   => get_user_locale(),
+				'siteName' => get_bloginfo( 'name' ),
+				'adminUrl' => admin_url(),
+				'theme'    => 'light',
+			),
+			self::flux_options()
+		);
+		$opts['startPage'] = self::flux_start_page();
 		wp_enqueue_style( 'flxy-flux', FLXY_URL . 'assets/flux/flux-modules.css', array(), $ver );
 		wp_enqueue_script( 'flxy-flux', FLXY_URL . 'assets/flux/flux-modules.js', array(), $ver, true );
 		add_filter( 'script_loader_tag', array( __CLASS__, 'flux_module_tag' ), 10, 2 );
@@ -147,6 +191,9 @@ final class FLXY_Admin {
 	private function render_flux(): bool {
 		if ( ! self::flux_ui() ) {
 			return false;
+		}
+		if ( function_exists( 'flx_admin_screen_render' ) && flx_admin_screen_render() ) {
+			return true;
 		}
 		echo '<style>#flxy-app.flux-root{height:auto;background:transparent;font-family:inherit}</style>';
 		echo '<div class="wrap flxy-react"><div id="flxy-app"><noscript>' . esc_html__( 'JavaScript is required for this screen.', 'flx-backup' ) . '</noscript></div></div>';
