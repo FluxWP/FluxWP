@@ -44,4 +44,36 @@ final class FLXC_Val {
 	public static function arr( $v ): array {
 		return is_array( $v ) ? $v : array();
 	}
+
+	/**
+	 * Plain PHP casts for REST input, so edge inputs behave exactly as the classic callbacks did
+	 * ("12abc" is 12, an array becomes "Array"). GraphQL code uses str()/int() above instead.
+	 *
+	 * @param mixed $v Value.
+	 */
+	public static function raw_int( $v ): int {
+		return (int) $v; // @phpstan-ignore cast.int
+	}
+
+	/**
+	 * @param mixed $v Value.
+	 */
+	public static function raw_str( $v ): string {
+		return (string) $v; // @phpstan-ignore cast.string
+	}
+
+	/**
+	 * @param mixed $v Value.
+	 */
+	public static function raw_bool( $v ): bool {
+		return (bool) $v;
+	}
+
+	/**
+	 * @param mixed $v Value.
+	 * @return array<mixed>
+	 */
+	public static function raw_arr( $v ): array {
+		return (array) $v;
+	}
 }

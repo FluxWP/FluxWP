@@ -19,7 +19,7 @@ final class FLXC_Message_Service {
 			return $chat;
 		}
 		$limit  = max( 1, $limit );
-		$before = FLXC_Val::int($req->get_param( 'before' ));
+		$before = FLXC_Val::raw_int( $req->get_param( 'before' ) );
 		$rows   = flxc_chat_messages( $chat['id'], $before, $limit );
 		$hist   = (array) ( flxc_decode( $chat['meta'] )['hist'] ?? array() );
 		$note   = '';
@@ -34,8 +34,7 @@ final class FLXC_Message_Service {
 			if ( is_array( $fresh ) ) {
 				$chat = $fresh;
 			}
-			$meta = is_array( $chat['meta'] ?? null ) ? $chat['meta'] : array();
-			$hist = (array) ( flxc_decode( $meta )['hist'] ?? array() );
+			$hist = (array) ( flxc_decode( $chat['meta'] )['hist'] ?? array() );
 		}
 		return array(
 			'messages' => flxc_messages_for_js( $rows ),
@@ -52,19 +51,19 @@ final class FLXC_Message_Service {
 		if ( is_wp_error( $chat ) ) {
 			return $chat;
 		}
-		$type  = sanitize_key( FLXC_Val::str($req->get_param( 'type' )) );
+		$type  = sanitize_key( FLXC_Val::raw_str( $req->get_param( 'type' ) ) );
 		$type  = $type ? $type : 'text';
-		$body  = FLXC_Val::str($req->get_param( 'body' ));
+		$body  = FLXC_Val::raw_str( $req->get_param( 'body' ) );
 		$body  = str_replace( "\r\n", "\n", wp_check_invalid_utf8( $body ) );
 		$args  = array(
 			'type'      => $type,
 			'body'      => $body,
-			'quoted_id' => FLXC_Val::int($req->get_param( 'quoted' )),
+			'quoted_id' => FLXC_Val::raw_int( $req->get_param( 'quoted' ) ),
 			'source'    => in_array( $req->get_param( 'source' ), array( 'quick', 'ai' ), true ) ? $req->get_param( 'source' ) : 'agent',
-			'preview'   => false !== $req->get_param( 'preview' ) && '0' !== FLXC_Val::str($req->get_param( 'preview' )),
+			'preview'   => false !== $req->get_param( 'preview' ) && '0' !== FLXC_Val::raw_str( $req->get_param( 'preview' ) ),
 		);
 		$files  = $req->get_file_params();
-		$upload = sanitize_key( FLXC_Val::str($req->get_param( 'upload' )) );
+		$upload = sanitize_key( FLXC_Val::raw_str( $req->get_param( 'upload' ) ) );
 		$staged = '';
 		if ( $upload ) {
 			$up = flxc_upload_take( $upload );
@@ -78,7 +77,7 @@ final class FLXC_Message_Service {
 			$args['name'] = $up['name'];
 			$staged       = FLXC_Val::str($up['file']);
 		} elseif ( is_array( $files['file'] ?? null ) && empty( $files['file']['error'] ) ) {
-			$chk = flxc_upload_check( $files['file'], FLXC_Val::str($req->get_param( 'name' )), $type );
+			$chk = flxc_upload_check( $files['file'], FLXC_Val::raw_str( $req->get_param( 'name' ) ), $type );
 			if ( is_wp_error( $chk ) ) {
 				return $chk;
 			}
@@ -130,19 +129,17 @@ final class FLXC_Message_Service {
 		if ( 'audio' === $args['type'] ) {
 			$args['ptt'] = $voice;
 		}
-		if ( 'audio' !== $args['type'] ) {
-			$chk = flxc_upload_check(
-				array( 'size' => $file['size'], 'name' => $file['name'], 'type' => $file['mime'], 'tmp_name' => $file['path'] ),
-				$file['name'],
-				$args['type']
-			);
-			if ( is_wp_error( $chk ) ) {
-				return $chk;
-			}
-			$args['type'] = $chk['type'];
-			$args['mime'] = $chk['mime'];
-			$args['name'] = $chk['name'];
+		$chk = flxc_upload_check(
+			array( 'size' => $file['size'], 'name' => $file['name'], 'type' => $file['mime'], 'tmp_name' => $file['path'] ),
+			$file['name'],
+			$args['type']
+		);
+		if ( is_wp_error( $chk ) ) {
+			return $chk;
 		}
+		$args['type'] = $chk['type'];
+		$args['mime'] = $chk['mime'];
+		$args['name'] = $chk['name'];
 		$m = flxc_send( $chat, $args );
 		if ( is_wp_error( $m ) ) {
 			$m->add_data( array( 'status' => 400 ) );
@@ -156,7 +153,7 @@ final class FLXC_Message_Service {
 	 * @return array{message: array<string,mixed>}|WP_Error
 	 */
 	public static function retry( WP_REST_Request $req ) {
-		$m = flxc_get_message( FLXC_Val::int($req['id']) );
+		$m = flxc_get_message( FLXC_Val::raw_int( $req['id'] ) );
 		if ( ! $m || 'out' !== $m['direction'] || 'failed' !== $m['status'] ) {
 			return new WP_Error( 'flxc_retry', __( 'This message cannot be resent.', 'flx-chat' ), array( 'status' => 400 ) );
 		}
@@ -188,7 +185,7 @@ final class FLXC_Message_Service {
 	 * @return array{message: array<string,mixed>}|WP_Error
 	 */
 	public static function react( WP_REST_Request $req ) {
-		$m = flxc_get_message( FLXC_Val::int($req['id']) );
+		$m = flxc_get_message( FLXC_Val::raw_int( $req['id'] ) );
 		if ( ! $m || '' === $m['wa_id'] ) {
 			return new WP_Error( 'flxc_react', __( 'Can\'t react to this message.', 'flx-chat' ), array( 'status' => 400 ) );
 		}
@@ -196,7 +193,7 @@ final class FLXC_Message_Service {
 		if ( is_wp_error( $chat ) ) {
 			return $chat;
 		}
-		$emoji = mb_substr( FLXC_Val::str($req->get_param( 'emoji' )), 0, 8 );
+		$emoji = mb_substr( FLXC_Val::raw_str( $req->get_param( 'emoji' ) ), 0, 8 );
 		$r     = flxc_evo_send_reaction( $chat['conn'], $chat['jid'], 'out' === $m['direction'], $m['wa_id'], $emoji );
 		if ( empty( $r['ok'] ) ) {
 			return new WP_Error( 'flxc_react', FLXC_Val::str( $r['error'] ?? '' ), array( 'status' => 400 ) );
@@ -210,7 +207,7 @@ final class FLXC_Message_Service {
 	 * @return array{message: array<string,mixed>}|WP_Error
 	 */
 	public static function delete( WP_REST_Request $req ) {
-		$m = flxc_get_message( FLXC_Val::int($req['id']) );
+		$m = flxc_get_message( FLXC_Val::raw_int( $req['id'] ) );
 		if ( ! $m || 'system' === $m['direction'] ) {
 			return new WP_Error( 'flxc_del', __( 'Message not found.', 'flx-chat' ), array( 'status' => 404 ) );
 		}
@@ -256,7 +253,7 @@ final class FLXC_Message_Service {
 	 * @return array{message: array<string,mixed>}|WP_Error
 	 */
 	public static function edit( WP_REST_Request $req ) {
-		$m = flxc_get_message( FLXC_Val::int($req['id']) );
+		$m = flxc_get_message( FLXC_Val::raw_int( $req['id'] ) );
 		if ( ! $m || 'out' !== $m['direction'] ) {
 			return new WP_Error( 'flxc_edit', __( 'Message not found.', 'flx-chat' ), array( 'status' => 404 ) );
 		}
@@ -275,7 +272,7 @@ final class FLXC_Message_Service {
 		if ( time() * 1000 > $until ) {
 			return new WP_Error( 'flxc_edit', __( 'The time limit for editing has passed (WhatsApp allows 15 minutes).', 'flx-chat' ), array( 'status' => 400 ) );
 		}
-		$text = trim( FLXC_Val::str($req->get_param( 'text' )) );
+		$text = trim( FLXC_Val::raw_str( $req->get_param( 'text' ) ) );
 		if ( '' === $text ) {
 			return new WP_Error( 'flxc_edit', __( 'The message can\'t be empty.', 'flx-chat' ), array( 'status' => 400 ) );
 		}
@@ -340,12 +337,12 @@ final class FLXC_Message_Service {
 		if ( is_wp_error( $chat ) ) {
 			return $chat;
 		}
-		$hint = mb_substr( sanitize_text_field( FLXC_Val::str($req->get_param( 'hint' )) ), 0, 300 );
+		$hint = mb_substr( sanitize_text_field( FLXC_Val::raw_str( $req->get_param( 'hint' ) ) ), 0, 300 );
 		global $wpdb;
 		/** @var wpdb $wpdb */
 		$last  = FLXC_Val::int($wpdb->get_var( $wpdb->prepare( 'SELECT MAX(id) FROM ' . flxc_table( 'messages' ) . ' WHERE chat_id = %d', $chat['id'] ) )); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared // @phpstan-ignore argument.type
 		$ckey  = 'flxc_ais_' . FLXC_Val::int( $chat['id'] ?? 0 ) . '_' . $last;
-		$fresh = FLXC_Val::bool($req->get_param( 'fresh' )) || '' !== $hint;
+		$fresh = FLXC_Val::raw_bool( $req->get_param( 'fresh' ) ) || '' !== $hint;
 		if ( ! $fresh ) {
 			$hit = get_transient( $ckey );
 			if ( is_string( $hit ) && '' !== $hit ) {
