@@ -57,6 +57,44 @@ input FlxFormFieldValueInput {
   value: String
 }
 
+"""One form of the panel list with how many responses it has."""
+type FlxFormListItem {
+  """When the form was created. Null when the date is missing."""
+  createdAt: FlxDateTime
+  """Kind of form."""
+  formType: FlxFormType!
+  """Form id."""
+  id: ID!
+  """Shortcode that puts the form on a page."""
+  shortcode: String!
+  """Form name."""
+  title: String!
+  """Responses received."""
+  total: Int!
+  """Responses nobody has read."""
+  unread: Int!
+}
+
+"""A page of FlxFormListItem records."""
+type FlxFormListItemConnection {
+  """Records with their cursors."""
+  edges: [FlxFormListItemEdge!]!
+  """Records of this page."""
+  nodes: [FlxFormListItem!]!
+  """Paging information."""
+  pageInfo: FlxPageInfo!
+  """All matching records (null when counting would be slow)."""
+  totalCount: Int
+}
+
+"""One FlxFormListItem in a list, with its cursor."""
+type FlxFormListItemEdge {
+  """Opaque cursor of this record."""
+  cursor: String!
+  """The record."""
+  node: FlxFormListItem!
+}
+
 """One choice a visitor can pick."""
 type FlxFormOption {
   """Label on the form."""
@@ -73,6 +111,278 @@ type FlxFormReply {
   body: String!
   """When the reply was stored."""
   createdAt: FlxDateTime!
+}
+
+"""Who wrote a reply."""
+enum FlxFormReplyAuthor {
+  """The visitor."""
+  GUEST
+  """Staff replying with the emailed admin code."""
+  SUPPORT
+  """A signed-in user, usually staff."""
+  USER
+}
+
+"""What a reply row is."""
+enum FlxFormReplyKind {
+  """The ticket was closed."""
+  CLOSED
+  """The ticket was opened again."""
+  OPENED
+  """A message."""
+  REPLY
+}
+
+"""What an administrator reply does to the ticket."""
+enum FlxFormReplyState {
+  """Close the ticket (a message is optional)."""
+  CLOSE
+  """Open a closed ticket again (a message is optional)."""
+  OPEN
+  """Only send the message."""
+  REPLY
+}
+
+"""One response with its answers and the conversation."""
+type FlxFormResponse {
+  """When the response was sent."""
+  createdAt: FlxDateTime!
+  """Answers."""
+  fields: [FlxFormResponseField!]!
+  """Form id."""
+  formId: ID!
+  """Form name. The title saved with the response when the form is gone."""
+  formTitle: String!
+  """Kind of form. A form that is gone reads as a plain form."""
+  formType: FlxFormType!
+  """Response id."""
+  id: ID!
+  """The ticket is open. False after an administrator closed it."""
+  open: Boolean!
+  """The first filled answers, short."""
+  preview: String!
+  """When it was opened. Null while it is unread."""
+  readAt: FlxDateTime
+  """Conversation, oldest first."""
+  replies: [FlxFormResponseReply!]!
+  """Read state."""
+  status: FlxFormResponseStatus!
+  """Tracking code."""
+  trackCode: String!
+}
+
+"""Input for the flxFormResponseDelete mutation."""
+input FlxFormResponseDeleteInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Response id."""
+  id: ID!
+}
+
+"""The payload for the flxFormResponseDelete mutation."""
+type FlxFormResponseDeletePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """The response existed and is gone."""
+  deleted: Boolean!
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""One answer of a response."""
+type FlxFormResponseField {
+  """The value is the URL of an uploaded file."""
+  isFile: Boolean!
+  """Field label."""
+  label: String!
+  """What the visitor sent. A file field carries its URL."""
+  value: String!
+}
+
+"""A response in a list."""
+type FlxFormResponseItem {
+  """When the response was sent."""
+  createdAt: FlxDateTime!
+  """Answers. Survey charts count these."""
+  fields: [FlxFormResponseField!]!
+  """Form id."""
+  formId: ID!
+  """Form name. The title saved with the response when the form is gone."""
+  formTitle: String!
+  """Kind of form. A form that is gone reads as a plain form."""
+  formType: FlxFormType!
+  """Response id."""
+  id: ID!
+  """The first filled answers, short."""
+  preview: String!
+  """Read state."""
+  status: FlxFormResponseStatus!
+  """Tracking code."""
+  trackCode: String!
+}
+
+"""A page of FlxFormResponseItem records."""
+type FlxFormResponseItemConnection {
+  """Records with their cursors."""
+  edges: [FlxFormResponseItemEdge!]!
+  """Records of this page."""
+  nodes: [FlxFormResponseItem!]!
+  """Paging information."""
+  pageInfo: FlxPageInfo!
+  """All matching records (null when counting would be slow)."""
+  totalCount: Int
+}
+
+"""One FlxFormResponseItem in a list, with its cursor."""
+type FlxFormResponseItemEdge {
+  """Opaque cursor of this record."""
+  cursor: String!
+  """The record."""
+  node: FlxFormResponseItem!
+}
+
+"""Input for the flxFormResponseRead mutation."""
+input FlxFormResponseReadInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Response id."""
+  id: ID!
+}
+
+"""The payload for the flxFormResponseRead mutation."""
+type FlxFormResponseReadPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The response after the change."""
+  response: FlxFormResponse
+}
+
+"""One reply of a response conversation."""
+type FlxFormResponseReply {
+  """File URLs. Empty when there are none."""
+  attachments: [String!]!
+  """Kind of author."""
+  author: FlxFormReplyAuthor!
+  """Text. Empty for a reply that only carries files."""
+  body: String!
+  """Display name of the author."""
+  by: String!
+  """When the reply was stored."""
+  createdAt: FlxDateTime!
+  """Reply id."""
+  id: ID!
+  """Message, or a ticket state change."""
+  kind: FlxFormReplyKind!
+}
+
+"""Input for the flxFormResponseReply mutation."""
+input FlxFormResponseReplyInput {
+  """File URLs the upload endpoint reserved for this response."""
+  attachments: [String!]
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Reply text. Plain text only. Needed unless the reply closes or opens the ticket or carries a file.
+  """
+  message: String
+  """What the reply does to the ticket. Defaults to REPLY."""
+  state: FlxFormReplyState
+  """Response id."""
+  submissionId: ID!
+}
+
+"""The payload for the flxFormResponseReply mutation."""
+type FlxFormResponseReplyPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The response with the new reply. Null when the input was rejected."""
+  response: FlxFormResponse
+}
+
+"""Where a response stands in the panel."""
+enum FlxFormResponseStatus {
+  """A payment form that was not paid yet. Never listed."""
+  PENDING_PAYMENT
+  """Opened."""
+  READ
+  """A follow-up that was read, or a closed ticket."""
+  READ_FOLLOWUP
+  """New, nobody has opened it."""
+  UNREAD
+  """The visitor wrote again and nobody has read it."""
+  UNREAD_FOLLOWUP
+}
+
+"""Input for the flxFormResponsesDelete mutation."""
+input FlxFormResponsesDeleteInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Response ids."""
+  ids: [ID!]!
+}
+
+"""The payload for the flxFormResponsesDelete mutation."""
+type FlxFormResponsesDeletePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """How many responses were deleted. Null when the input was rejected."""
+  deleted: Int
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""Input for the flxFormResponsesRead mutation."""
+input FlxFormResponsesReadInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Response ids."""
+  ids: [ID!]!
+}
+
+"""The payload for the flxFormResponsesRead mutation."""
+type FlxFormResponsesReadPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """
+  How many responses exist and were handled. Null when the input was rejected.
+  """
+  updated: Int
 }
 
 """A stored submission or reply."""
@@ -173,7 +483,322 @@ enum FlxFormType {
   SURVEY
 }
 
+"""Colours and fonts of the public response box."""
+type FlxFormsResponseStyle {
+  """Accent colour."""
+  accent: String!
+  """Card background."""
+  bgCard: String!
+  """Editor background."""
+  bgEditor: String!
+  """Meta strip background."""
+  bgMeta: String!
+  """Reply background."""
+  bgResp: String!
+  """Tracker background."""
+  bgTrack: String!
+  """The colour a brand preset derives from."""
+  brandColor: String!
+  """Button text colour."""
+  btnText: String!
+  """Custom font name. Empty when none."""
+  customFont: String!
+  """Editor placeholder colour."""
+  editorPh: String!
+  """Editor text colour."""
+  editorText: String!
+  """Font family. &quot;inherit&quot; follows the site."""
+  fontFamily: String!
+  """Font size, for example 0.9rem."""
+  fontSize: String!
+  """Palette preset the colours came from."""
+  preset: String!
+  """Primary colour."""
+  primary: String!
+  """Primary colour, dark."""
+  primaryDark: String!
+  """Text colour."""
+  text: String!
+  """Muted text colour."""
+  textMuted: String!
+}
+
+"""
+Colours and fonts of the public response box. Fields left out stay as they are. Colours are hex like #3644d2.
+"""
+input FlxFormsResponseStyleInput {
+  """Accent colour."""
+  accent: String
+  """Card background."""
+  bgCard: String
+  """Editor background."""
+  bgEditor: String
+  """Meta strip background."""
+  bgMeta: String
+  """Reply background."""
+  bgResp: String
+  """Tracker background."""
+  bgTrack: String
+  """Brand colour."""
+  brandColor: String
+  """Button text colour."""
+  btnText: String
+  """Custom font name."""
+  customFont: String
+  """Editor placeholder colour."""
+  editorPh: String
+  """Editor text colour."""
+  editorText: String
+  """Font family."""
+  fontFamily: String
+  """Font size."""
+  fontSize: String
+  """Palette preset."""
+  preset: String
+  """Primary colour."""
+  primary: String
+  """Primary colour, dark."""
+  primaryDark: String
+  """Text colour."""
+  text: String
+  """Muted text colour."""
+  textMuted: String
+}
+
+"""
+Panel settings. Keys and tokens are never returned; &quot;saved&quot; flags say whether one is stored.
+"""
+type FlxFormsSettings {
+  """Show a download button on the tracking page."""
+  activeDlBtn: Boolean!
+  """Show the staff name on replies."""
+  adminSN: Boolean!
+  """The theme already loads Bootstrap, so forms use its styles."""
+  bootstrap: Boolean!
+  """Visitors may attach files to replies."""
+  dsupfile: Boolean!
+  """Mail button colour."""
+  emailBtnBgColor: String!
+  """Mail button text colour."""
+  emailBtnTextColor: String!
+  """Include delivery statistics in the report."""
+  emailStatsReport: Boolean!
+  """Address that receives form notices."""
+  emailSupporter: String!
+  """HTML of the notification mail. Empty uses the default."""
+  emailTemp: String!
+  """Sender address of the mails."""
+  femail: String!
+  """A Google Maps key is saved."""
+  mapKeySaved: Boolean!
+  """Use the OpenStreetMap location picker."""
+  osLocationPicker: Boolean!
+  """Payment provider id."""
+  payProvider: String!
+  """A payment gateway token is saved."""
+  payTokenSaved: Boolean!
+  """PayPal client id (public)."""
+  paypalPKey: String!
+  """A PayPal secret is saved."""
+  paypalSecretSaved: Boolean!
+  """Colours and fonts of the public response box."""
+  responseStyle: FlxFormsResponseStyle!
+  """Show a captcha on the tracking page."""
+  scaptcha: Boolean!
+  """A reCAPTCHA secret key is saved."""
+  secretKeySaved: Boolean!
+  """Days a visitor can keep a response session (1 to 7)."""
+  sessionDuration: Int!
+  """Shield is installed and can answer."""
+  shieldAvailable: Boolean!
+  """Ask Shield to judge visitors silently."""
+  shieldSilentCaptcha: Boolean!
+  """Show the sender IP address in responses."""
+  showIp: Boolean!
+  """Google reCAPTCHA site key (public). Empty when none."""
+  siteKey: String!
+  """SMS service in use."""
+  smsConfig: FlxFormsSmsService!
+  """Phone numbers for SMS notices are saved."""
+  smsPhoneSaved: Boolean!
+  """The site can send mail."""
+  smtp: Boolean!
+  """Stripe publishable key (public)."""
+  stripePKey: String!
+  """A Stripe secret key is saved."""
+  stripeSecretSaved: Boolean!
+  """Look of new tracking codes."""
+  trackCodeStyle: FlxFormsTrackCodeStyle!
+  """Form builder version stored with the settings."""
+  version: String!
+  """Send the weekly mail delivery report."""
+  weeklyEmailReport: Boolean!
+}
+
+"""Input for the flxFormsSettingsUpdate mutation."""
+input FlxFormsSettingsUpdateInput {
+  """Show a download button on the tracking page."""
+  activeDlBtn: Boolean
+  """Show the staff name on replies."""
+  adminSN: Boolean
+  """The theme already loads Bootstrap, so forms use its styles."""
+  bootstrap: Boolean
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Visitors may attach files to replies."""
+  dsupfile: Boolean
+  """Mail button colour."""
+  emailBtnBgColor: String
+  """Mail button text colour."""
+  emailBtnTextColor: String
+  """Include delivery statistics in the report."""
+  emailStatsReport: Boolean
+  """Address that receives form notices."""
+  emailSupporter: String
+  """
+  HTML of the notification mail. It has to contain the shortcode_message placeholder. Empty restores the default.
+  """
+  emailTemp: String
+  """Sender address of the mails."""
+  femail: String
+  """Google Maps key. Write-only."""
+  mapKey: String
+  """Use the OpenStreetMap location picker."""
+  osLocationPicker: Boolean
+  """Payment provider id."""
+  payProvider: String
+  """Payment gateway token. Write-only."""
+  payToken: String
+  """PayPal client id (public)."""
+  paypalPKey: String
+  """PayPal secret. Write-only."""
+  paypalSecretKey: String
+  """Colours and fonts of the public response box."""
+  responseStyle: FlxFormsResponseStyleInput
+  """Show a captcha on the tracking page."""
+  scaptcha: Boolean
+  """Google reCAPTCHA secret key. Write-only."""
+  secretKey: String
+  """Days a visitor can keep a response session (1 to 7)."""
+  sessionDuration: Int
+  """Ask Shield to judge visitors silently."""
+  shieldSilentCaptcha: Boolean
+  """Show the sender IP address in responses."""
+  showIp: Boolean
+  """Google reCAPTCHA site key (public)."""
+  siteKey: String
+  """SMS service in use."""
+  smsConfig: FlxFormsSmsService
+  """
+  Phone numbers for SMS notices, with country code, separated by commas. Write-only.
+  """
+  smsPhoneNumbers: String
+  """The site can send mail."""
+  smtp: Boolean
+  """Stripe publishable key (public)."""
+  stripePKey: String
+  """Stripe secret key. Write-only."""
+  stripeSecretKey: String
+  """Look of new tracking codes."""
+  trackCodeStyle: FlxFormsTrackCodeStyle
+  """Send the weekly mail delivery report."""
+  weeklyEmailReport: Boolean
+}
+
+"""The payload for the flxFormsSettingsUpdate mutation."""
+type FlxFormsSettingsUpdatePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The settings after the change. Null when the input was rejected."""
+  settings: FlxFormsSettings
+}
+
+"""Which service sends the SMS notices."""
+enum FlxFormsSmsService {
+  """No SMS."""
+  NONE
+  """The built-in SMS service."""
+  SERVICE
+  """The WP SMS plugin."""
+  WP_SMS
+}
+
+"""Input for the flxFormsStorageClear mutation."""
+input FlxFormsStorageClearInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+}
+
+"""The payload for the flxFormsStorageClear mutation."""
+type FlxFormsStorageClearPayload {
+  """The cleanup ran."""
+  cleared: Boolean!
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""How new tracking codes look."""
+enum FlxFormsTrackCodeStyle {
+  """Date, English letters and numbers."""
+  DATE_EN_MIX
+  """Date and local-language letters."""
+  DATE_LOCAL_ALPHA
+  """Date, local-language letters and numbers."""
+  DATE_LOCAL_MIX
+  """Date, local-language digits."""
+  DATE_LOCAL_NUM
+  """Date and number."""
+  DATE_NUM
+  """Local-language letters and numbers."""
+  LOCAL_MIX
+  """A unique number."""
+  UNIQUE_NUM
+}
+
 extend type RootMutation {
+  """Deletes a response and its replies."""
+  flxFormResponseDelete(
+    """Input for the flxFormResponseDelete mutation"""
+    input: FlxFormResponseDeleteInput!
+  ): FlxFormResponseDeletePayload
+  """Marks a response read."""
+  flxFormResponseRead(
+    """Input for the flxFormResponseRead mutation"""
+    input: FlxFormResponseReadInput!
+  ): FlxFormResponseReadPayload
+  """
+  Replies to a response as the signed-in staff member. The visitor gets the same notification mail as from the classic panel.
+  """
+  flxFormResponseReply(
+    """Input for the flxFormResponseReply mutation"""
+    input: FlxFormResponseReplyInput!
+  ): FlxFormResponseReplyPayload
+  """Deletes several responses and their replies (at most 200)."""
+  flxFormResponsesDelete(
+    """Input for the flxFormResponsesDelete mutation"""
+    input: FlxFormResponsesDeleteInput!
+  ): FlxFormResponsesDeletePayload
+  """Marks several responses read (at most 200)."""
+  flxFormResponsesRead(
+    """Input for the flxFormResponsesRead mutation"""
+    input: FlxFormResponsesReadInput!
+  ): FlxFormResponsesReadPayload
   """Sends a form, survey or subscribe form."""
   flxFormSubmit(
     """Input for the flxFormSubmit mutation"""
@@ -184,6 +809,20 @@ extend type RootMutation {
     """Input for the flxFormTrackReply mutation"""
     input: FlxFormTrackReplyInput!
   ): FlxFormTrackReplyPayload
+  """
+  Changes panel settings. Fields left out stay as they are. Secret fields: empty keeps the saved value, &quot;__clear__&quot; removes it.
+  """
+  flxFormsSettingsUpdate(
+    """Input for the flxFormsSettingsUpdate mutation"""
+    input: FlxFormsSettingsUpdateInput!
+  ): FlxFormsSettingsUpdatePayload
+  """
+  Deletes uploaded response files that no stored response points to any more.
+  """
+  flxFormsStorageClear(
+    """Input for the flxFormsStorageClear mutation"""
+    input: FlxFormsStorageClearInput!
+  ): FlxFormsStorageClearPayload
 }
 
 extend type RootQuery {
@@ -192,9 +831,58 @@ extend type RootQuery {
     """Form id."""
     id: ID!
   ): FlxForm
+  """
+  One response. NOT_FOUND when it does not exist or is an unpaid payment draft.
+  """
+  flxFormResponse(
+    """Response id."""
+    id: ID!
+  ): FlxFormResponse
+  """
+  Opens a response by its tracking code. NOT_FOUND when no response has it.
+  """
+  flxFormResponseByTrack(
+    """Tracking code."""
+    code: String!
+  ): FlxFormResponse
+  """
+  Responses, newest first. Payment forms that were not paid are not listed.
+  """
+  flxFormResponses(
+    """Cursor to continue after (pageInfo.endCursor)."""
+    after: String
+    """Records per page (at most 50)."""
+    first: Int
+    """Only this form."""
+    formId: ID
+    """Text to find in the answers, replies, tracking code or form title."""
+    search: String
+    """Only this read state."""
+    status: FlxFormResponseStatus
+    """Only responses nobody has read (new and new follow-up)."""
+    unread: Boolean
+  ): FlxFormResponseItemConnection!
   """Opens a submission by its tracking code."""
   flxFormTrack(
     """Tracking code."""
     code: String!
   ): FlxFormTrack
+  """
+  Forms of the panel with their response counts. Forms with new responses come first.
+  """
+  flxForms(
+    """Cursor to continue after (pageInfo.endCursor)."""
+    after: String
+    """Records per page (at most 50)."""
+    first: Int
+  ): FlxFormListItemConnection!
+  """
+  Link that downloads the responses as a CSV file (admin-post, with the nonce). The file is built by the dashboard export, so it is the same bytes as before.
+  """
+  flxFormsExportUrl(
+    """Only this form. All forms when left out."""
+    formId: ID
+  ): String!
+  """Panel settings. Keys and tokens are not returned."""
+  flxFormsSettings: FlxFormsSettings!
 }

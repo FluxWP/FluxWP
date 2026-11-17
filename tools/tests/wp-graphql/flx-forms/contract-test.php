@@ -17,7 +17,7 @@ foreach ( (array) json_decode( (string) file_get_contents( $manifest ), true ) a
 		$GLOBALS['flxf_ops'][ $m[1] ] = $doc;
 	}
 }
-flxt_same( 4, count( $GLOBALS['flxf_ops'] ), 'Flux Forms ships 4 persisted operations' );
+flxt_same( 17, count( $GLOBALS['flxf_ops'] ), 'Flux Forms ships 17 persisted operations' );
 
 /**
  * @param array<string,mixed> $vars Variables.
@@ -607,5 +607,7 @@ $r = flxf_t_op( 'FlxFormSubmit', array( 'input' => array( 'formId' => (string) $
 flxt_same( array(), flxf_t_errs( $r, 'flxFormSubmit' ), 'rate limit: first submit is allowed' );
 $r = flxf_t_op( 'FlxFormSubmit', array( 'input' => array( 'formId' => (string) $public_id, 'fields' => $filled ) ) );
 flxt_same( 'RATE_LIMITED', flxt_code( $r ), 'rate limit: second submit' );
+
+require __DIR__ . '/contract-admin-test.php';
 
 flxt_done();

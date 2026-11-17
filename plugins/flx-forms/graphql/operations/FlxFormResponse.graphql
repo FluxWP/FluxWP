@@ -1,0 +1,29 @@
+# Panel: one response with its answers and the conversation.
+query FlxFormResponse($id: ID!) {
+  flxFormResponse(id: $id) {
+    ...FlxFormResponseFull
+  }
+}
+
+fragment FlxFormResponseFull on FlxFormResponse {
+  id
+  formId
+  formTitle
+  formType
+  trackCode
+  status
+  createdAt { iso timestamp label }
+  readAt { iso timestamp label }
+  preview
+  open
+  fields { label value isFile }
+  replies {
+    id
+    by
+    author
+    kind
+    body
+    attachments
+    createdAt { iso timestamp label }
+  }
+}

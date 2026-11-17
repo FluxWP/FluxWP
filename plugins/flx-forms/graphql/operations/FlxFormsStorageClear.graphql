@@ -1,0 +1,6 @@
+mutation FlxFormsStorageClear {
+  flxFormsStorageClear(input: {}) {
+    cleared
+    errors { code message field }
+  }
+}

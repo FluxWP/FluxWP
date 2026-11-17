@@ -1,0 +1,12 @@
+# Panel: find a response by its tracking code.
+query FlxFormResponseByTrack($code: String!) {
+  flxFormResponseByTrack(code: $code) {
+    id
+    formId
+    formTitle
+    trackCode
+    status
+    createdAt { iso timestamp label }
+    preview
+  }
+}

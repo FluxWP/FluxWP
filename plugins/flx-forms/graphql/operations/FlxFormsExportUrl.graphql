@@ -1,0 +1,4 @@
+# Panel: link of the CSV export (admin-post bytes).
+query FlxFormsExportUrl($formId: ID) {
+  flxFormsExportUrl(formId: $formId)
+}

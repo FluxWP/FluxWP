@@ -52,6 +52,11 @@ class Emsfb_Shield_SilentCaptcha_Integration {
 	}
 
 	private function is_shield_available_efb(): bool {
+		return self::shield_available();
+	}
+
+	/** Shield is installed and can say whether an IP is a bot (also read by the GraphQL settings). */
+	public static function shield_available(): bool {
 		return is_callable('\FernleafSystems\Wordpress\Plugin\Shield\Functions\test_ip_is_bot')
 			|| is_callable('shield_test_ip_is_bot');
 	}

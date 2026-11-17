@@ -1,0 +1,16 @@
+# Panel: forms with their response counts.
+query FlxFormsPanel($first: Int, $after: String) {
+  flxForms(first: $first, after: $after) {
+    nodes {
+      id
+      title
+      formType
+      shortcode
+      createdAt { iso timestamp label }
+      total
+      unread
+    }
+    pageInfo { hasNextPage endCursor }
+    totalCount
+  }
+}

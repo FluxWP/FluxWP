@@ -1,0 +1,18 @@
+# Panel: responses, newest first, with the list filters.
+query FlxFormResponses($formId: ID, $unread: Boolean, $status: FlxFormResponseStatus, $search: String, $first: Int, $after: String) {
+  flxFormResponses(formId: $formId, unread: $unread, status: $status, search: $search, first: $first, after: $after) {
+    nodes {
+      id
+      formId
+      formTitle
+      formType
+      trackCode
+      status
+      createdAt { iso timestamp label }
+      preview
+      fields { label value isFile }
+    }
+    pageInfo { hasNextPage endCursor }
+    totalCount
+  }
+}

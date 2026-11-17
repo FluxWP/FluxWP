@@ -93,6 +93,9 @@ class Admin {
     }
 
     public function admin_assets($hook) {
+        if (\FLXF_Panel_UI::active()) {
+            return; // The React panel brings its own assets.
+        }
         global $current_screen;
         $hook = $hook ? $hook : http_build_query($_GET);
         $package_type_efb = (int) get_option('emsfb_pro' ,2);
@@ -192,6 +195,10 @@ class Admin {
     }
 
     public function panel_callback() {
+        if (\FLXF_Panel_UI::active()) {
+            \FLXF_Panel_UI::render();
+            return;
+        }
         include_once EMSFB_PLUGIN_DIRECTORY . "/includes/admin/class-Emsfb-panel.php";
         $list_table = new Panel_edit();
     }
@@ -1529,34 +1536,10 @@ class Admin {
                     global $wpdb;
                     $this->db = $wpdb;
                 }
-        $table_name = $this->db->prefix . "emsfb_msg_";
-        if(strpos($m , '"type\":\"closed\"')){
-            $r = $this->db->update($table_name, ['read_' => 4], ['msg_id' => $id]);
-        }else if(strpos($m , '"type\":\"opened\"')){
-            $r = $this->db->update($table_name, ['read_' => 1], ['msg_id' => $id]);
-        }
-        $table_name = $this->db->prefix . "emsfb_rsp_";
         $ip = $this->ip;
-        $reply_inserted = $this->db->insert(
-            $table_name,
-            [
-                'ip'      => $ip,
-                'content' => $m,
-                'msg_id'  => $id,
-                'rsp_by'  => get_current_user_id(),
-                'read_'   => 1,
-                'date'    => wp_date('Y-m-d H:i:s')
-            ]
-        );
-        if ($reply_inserted === false) {
+        if (!\FLXF_Response_Service::store_reply((int) $id, $m, empty($response_attachment_urls) ? [] : $response_attachment_urls, $ip)) {
             wp_send_json_success(['success' => false, 'm' => $lang['somethingWentWrongPleaseRefresh']], 200);
         }
-        if (!empty($response_attachment_urls)) {
-            \Emsfb\Upload_Guard::release_pending_uploads($response_attachment_urls);
-            \Emsfb\Upload_Guard::release_response_attachment_reservations($response_attachment_urls);
-        }
-        $table_name = $this->db->prefix . "emsfb_msg_";
-        $this->db->update($table_name,array('read_'=>1), array('msg_id' => $id) );
         $m        = $lang['messageSent'];
         /*
          * The viewer appends the new reply straight away instead of reloading,
@@ -1571,15 +1554,10 @@ class Admin {
             "m"       => $m,
             'by'      => $current_user && $current_user->exists() ? $current_user->display_name : $lang['spprt'],
         ];
-        $pro =$efbFunction->is_efb_pro(1);
-
-        $efbFunction->response_to_user_by_msd_id($id ,$pro);
         wp_send_json_success($response, 200);
     }
     public function set_settings_Emsfb() {
         $efbFunction = get_efbFunction();
-        $ac= get_setting_Emsfb('decoded');
-        $stored_active_code = is_object($ac) && isset($ac->activeCode) ? trim((string) $ac->activeCode) : '';
         $text = ["pleaseDoNotAddJsCode","emailTemplate","addSCEmailM","messageSent","activationNcorrect","error403","somethingWentWrongPleaseRefresh","nAllowedUseHtml","PEnterMessage"];
         $lang= $efbFunction->text_efb($text);
          $currrent_user_can = $efbFunction->user_permission_efb_admin_dashboard();
@@ -1613,152 +1591,11 @@ class Admin {
             $response = ['success' => false, "m" =>$m];
             wp_send_json_success($response, 200);
         }
-        $active_code_is_valid = false;
-        $active_code_was_removed = false;
-        foreach ($m as $key => $value) {
-             if (in_array($key ,['emailSupporter','femail'])) {
-                $value = sanitize_text_field($value);
-                $m[$key] = sanitize_email($value);
-                $email =  $value;
-            }else if ($key == "activeCode" ) {
-                if(strlen($value)<1){
-                    /*
-                     * A deliberately cleared field is a licence removal, but
-                     * an already-empty Free/Free Plus field is not.  The
-                     * distinction prevents an ordinary Free Plus settings save
-                     * from being changed to Free while still removing every
-                     * copy of a Pro key when an administrator explicitly
-                     * clears it.
-                     */
-                    if ($stored_active_code !== '') {
-                        $active_code_was_removed = true;
-                        $m['activeCode'] = '';
-                        $m['package_type'] = 2;
-                        update_option('emsfb_pro', 2);
-                        delete_option('emsfb_pro_activeCode');
-                        delete_option('emsfb_pro_ac_date');
-                        delete_option('emsfb_license_failed_since');
-                        delete_option('emsfb_license_fail_reason');
-                        delete_option('emsfb_license_suspend_notified');
-                    }
-                    continue;
-                }
-                $m['activeCode'] = sanitize_text_field($value);
-                $state = $efbFunction->is_efb_pro($m['activeCode']);
-                if ($state==true) {
-                    $active_code_is_valid = true;
-                    $m['package_type'] = 1;
-                    $package_type = 1;
-                    update_option('emsfb_pro', 1);
-                } else {
-                    $active_code_is_valid = false;
-                    $m['package_type'] = 2;
-                    $response = ['success' => false, "m" =>$lang['activationNcorrect']];
-                    if(strlen($value) > 1){ wp_send_json_success($response, 200);}
-                }
-            }else if($key == 'package_type'){
-                // Keep the validated Pro package even if payload contains stale package_type.
-                if ($active_code_is_valid) {
-                    $m[$key] = 1;
-                    continue;
-                }
-                if ($active_code_was_removed) {
-                    $m[$key] = 2;
-                    continue;
-                }
-                $package_type = intval(sanitize_text_field($value));
-                $m[$key] = in_array($package_type, [0, 1, 2, 3], true) ? $package_type : 2;
-            }else if($key == "emailTemp"){
-                if( strlen($value)>5  && strpos($value ,'shortcode_message')===false){
-                    $response = ['success' => false, "m" =>$lang['addSCEmailM']];
-                    wp_send_json_success($response, 200);
-                }else if(strlen($value)<6 && strlen($value)>0 ){
-                    $response = ['success' => false, "m" =>$lang['emailTemplate']];
-                    wp_send_json_success($response, 200);
-                }else if(strlen($value)>50001){
-                    $response = ['success' => false, "m" =>$lang['addSCEmailM']];
-                    wp_send_json_success($response, 200);
-                }
-                  $v = str_replace('@efb@' , '/', $value);
-
-                  $efbdata_comment = '';
-                  if (preg_match('/<!--\s*EFBDATA:([\S]+)\s*-->/', $v, $efb_match)) {
-                      $efbdata_comment = $efb_match[0];
-                      $v = str_replace($efbdata_comment, '', $v);
-                  }
-
-                  $v = preg_replace('/<\s*script[^>]*>.*?<\s*\/\s*script\s*>/is', '', $v);
-                  $v = preg_replace('/<\s*script[^>]*>/i', '', $v);
-                  $v = preg_replace('/\bon\w+\s*=\s*(["\'][^"]*["\']|[^\s>]+)/i', '', $v);
-                  $v = preg_replace('/javascript\s*:/i', '', $v);
-                  $v = preg_replace('/vbscript\s*:/i', '', $v);
-                  $v = preg_replace('/data\s*:\s*text\/html/i', '', $v);
-                  $v = preg_replace('/data\s*:\s*text\/javascript/i', '', $v);
-                  $v = preg_replace('/data\s*:\s*application\//i', '', $v);
-                  $v = preg_replace('/expression\s*\(/i', '', $v);
-                  $v = preg_replace('/-moz-binding\s*:/i', '', $v);
-                  $v = preg_replace('/behavior\s*:/i', '', $v);
-                  $v = preg_replace('/<\s*\/?(iframe|object|embed|form|input|textarea|button|select|svg|path|math|base|link|applet)[^>]*>/i', '', $v);
-                  $v = $efbFunction->sanitize_full_html_efb($v);
-                  $v = str_replace('"', "'", $v);
-
-                  if ($efbdata_comment) {
-                      $v .= "\n" . $efbdata_comment;
-                  }
-
-                  $m[$key] = str_replace('/' , '@efb@', $v);
-            }else if($key == 'weeklyEmailReport'){
-                if (class_exists('\Emsfb\Email_Monitor') && \Emsfb\Email_Monitor::can_manage_setting()) {
-                    \Emsfb\Email_Monitor::update_enabled($value);
-                }
-                $m[$key] = class_exists('\Emsfb\Email_Monitor')
-                    ? \Emsfb\Email_Monitor::is_enabled()
-                    : true;
-            }else if($key == 'emailStatsReport'){
-                if (class_exists('\Emsfb\Email_Monitor') && \Emsfb\Email_Monitor::can_manage_email_stats()) {
-                    \Emsfb\Email_Monitor::update_email_stats_enabled($value);
-                }
-                $m[$key] = class_exists('\Emsfb\Email_Monitor')
-                    ? \Emsfb\Email_Monitor::is_email_stats_enabled()
-                    : true;
-            }else if($key == 'smtp'){
-                if(isset($value) && in_array($value,[1,true,'true','1']) ){
-
-                  $check =  get_option('emsfb_email_status',false);
-                    if($check==false || $check==null){
-                         update_option('emsfb_email_status', $this->build_email_ready_status_efb());
-                    }else if(!is_array($check) || !isset($check['status']) || !in_array($check['status'], ['ok_set_smtp', 'ok'], true)){
-
-                            update_option('emsfb_email_status', $this->build_email_ready_status_efb());
-                    }
-
-                }
-
-            }else{
-                $m[$key] = sanitize_text_field($value);
-            }
+        $err = \FLXF_Settings_Service::save($m);
+        if ($err !== null) {
+            $response = ['success' => false, "m" => $lang[$err]];
+            wp_send_json_success($response, 200);
         }
-
-        if(isset($m['efb_version'])==false){
-           $m['efb_version'] = EMSFB_PLUGIN_VERSION;
-        }
-
-        if(isset($m['devMode'])){
-            $dev_mode_value = in_array($m['devMode'], [true, 'true', 1, '1'], true) ? '1' : '0';
-            update_option('emsfb_dev_mode', $dev_mode_value);
-            unset($m['devMode']);
-        }
-
-        if ($active_code_is_valid) {
-            $m['package_type'] = 1;
-        } elseif ($active_code_was_removed) {
-            $m['package_type'] = 2;
-        }
-        $m['package_type'] = 1; // Flux Forms: lisans yok, her zaman tam sürüm
-
-        $setting = json_encode($m, JSON_UNESCAPED_UNICODE);
-        $email = isset($m['emailSupporter']) ? $m['emailSupporter'] : wp_get_current_user()->user_email;
-        $efbFunction->set_setting_Emsfb( $setting, $email );
         $m = $lang['messageSent'];
         $response = ['success' => true, "m" => $m];
         wp_send_json_success($response, 200);
@@ -1840,34 +1677,7 @@ class Admin {
             global $wpdb;
             $this->db = $wpdb;
         }
-        $table_name = $this->db->prefix . "emsfb_msg_";
-        $value      = $this->db->get_results("SELECT content FROM `$table_name`");
-        $urlsDB     = [];
-        foreach ($value as $v) {
-            if (strpos($v->content, 'url') !== false) {
-                $jsn  = $v->content;
-                $jsn  = str_replace('\\', '', $jsn);
-                $json = json_decode($jsn);
-                foreach ($json as $keyR => $row) {
-                    foreach ($row as $key => $val) {
-                        if ($key == "url" && $val != "" && gettype($val) == 'string') {
-                            array_push($urlsDB, $val);
-                        }
-                    }
-                }
-            }
-        }
-        $upload_dir = wp_upload_dir();
-        $files    = list_files($upload_dir['basedir']);
-        $urlDBStr = json_encode($urlsDB);
-        foreach ($files as &$file) {
-            if (strpos($file, 'emsfb-PLG-') !== false) {
-                $namfile = strrchr($file, '/');
-                if (strpos($urlDBStr, $namfile) === false) {
-                    wp_delete_file($file);
-                }
-            }
-        }
+        \FLXF_Response_Service::clear_orphan_files();
         $m = $lang['fileDeleted'];
         $response = ['success' => true, "m" => $m];
         wp_send_json_success($response, 200);
@@ -3264,14 +3074,7 @@ class Admin {
             }
             $response = ['success' => false, "m" =>$lang['somethingWentWrongPleaseRefresh']];
             if(!empty($msg_id_list)){
-                $placeholders = implode(',', array_fill(0, count($msg_id_list), '%d'));
-                $sql = $this->db->prepare("DELETE FROM `$table_name` WHERE msg_id IN ($placeholders)", ...$msg_id_list);
-                $r = $this->db->query($sql);
-                if($r>0){
-                    $table_name = $this->db->prefix . "emsfb_rsp_";
-                    $sql = $this->db->prepare("DELETE FROM `$table_name` WHERE msg_id IN ($placeholders)", ...$msg_id_list);
-                    $r = $this->db->query($sql);
-                }
+                \FLXF_Response_Service::delete($msg_id_list);
                 $response = ['success' => true, "m" =>$lang['delete']];
             }
             wp_send_json_success($response, 200);

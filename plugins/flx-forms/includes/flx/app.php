@@ -30,6 +30,28 @@ add_action(
 	20
 );
 
+/*
+ * Native screen of the FluxWP app: the same React screen as the wp-admin panel (@fluxwp/modules
+ * `flxf-forms`, data over GraphQL). App versions without it open the admin page instead.
+ */
+add_filter(
+	'flxapp_modules',
+	static function ( $m ) {
+		$m               = is_array( $m ) ? $m : array();
+		$m['flxf-forms'] = array(
+			'title'   => __( 'Forms', 'flx-forms' ),
+			'cap'     => 'Emsfb',
+			'menu'    => 'Emsfb',
+			'url'     => admin_url( 'admin.php?page=Emsfb' ),
+			'api'     => home_url( '/graphql' ),
+			'icon'    => 'note',
+			'version' => flxf_app_version(),
+			'order'   => 24,
+		);
+		return $m;
+	}
+);
+
 function flxf_app_version() {
 	static $v = null;
 	if ( null === $v ) {
@@ -65,14 +87,7 @@ function flxf_app_nocache( $result, $server, $request ) {
 }
 
 function flxf_app_forms_map() {
-	global $wpdb;
-	$out = array();
-	$table = $wpdb->prefix . 'emsfb_form';
-	$rows  = $wpdb->get_results( "SELECT form_id, form_name FROM `{$table}`", ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL
-	foreach ( (array) $rows as $row ) {
-		$out[ (int) $row['form_id'] ] = (string) $row['form_name'];
-	}
-	return $out;
+	return FLXF_Response_Service::forms_map();
 }
 
 function flxf_app_unread( $read ) {
@@ -155,33 +170,23 @@ function flxf_app_row( array $r, array $forms ) {
 }
 
 function flxf_app_responses( WP_REST_Request $r ) {
-	global $wpdb;
-	$table = $wpdb->prefix . 'emsfb_msg_';
-	$per   = (int) $r['per_page'];
-	$page  = (int) $r['page'];
-	$where = array( 'read_ <> 2' );
-	$prm   = array();
-	$form  = absint( $r->get_param( 'form' ) );
-	if ( $form ) {
-		$where[] = 'form_id = %d';
-		$prm[]   = $form;
-	}
-	if ( $r->get_param( 'unread' ) ) {
-		$where[] = 'read_ IN (0, 3)';
-	}
-	$s = sanitize_text_field( (string) $r->get_param( 's' ) );
-	if ( '' !== $s ) {
-		$like    = '%' . $wpdb->esc_like( $s ) . '%';
-		$where[] = '(content LIKE %s OR track LIKE %s OR form_title_x LIKE %s)';
-		array_push( $prm, $like, $like, $like );
-	}
-	$w     = implode( ' AND ', $where );
-	$total = (int) ( $prm ? $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM `{$table}` WHERE {$w}", $prm ) ) : $wpdb->get_var( "SELECT COUNT(*) FROM `{$table}` WHERE {$w}" ) ); // phpcs:ignore WordPress.DB.PreparedSQL
-	$sql   = "SELECT msg_id, form_id, track, content, date, read_, form_title_x FROM `{$table}` WHERE {$w} ORDER BY date DESC, msg_id DESC" . $wpdb->prepare( ' LIMIT %d OFFSET %d', $per, ( $page - 1 ) * $per );
-	$rows  = $prm ? $wpdb->get_results( $wpdb->prepare( $sql, $prm ), ARRAY_A ) : $wpdb->get_results( $sql, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL
+	$per  = (int) $r['per_page'];
+	$page = (int) $r['page'];
+	$out  = FLXF_Response_Service::page(
+		array(
+			'form'    => absint( $r->get_param( 'form' ) ),
+			'unread'  => (bool) $r->get_param( 'unread' ),
+			'status'  => '',
+			'search'  => sanitize_text_field( (string) $r->get_param( 's' ) ),
+			'replies' => false,
+		),
+		( $page - 1 ) * $per,
+		$per
+	);
+	$total = $out['total'];
 	$forms = flxf_app_forms_map();
 	$items = array();
-	foreach ( (array) $rows as $row ) {
+	foreach ( $out['rows'] as $row ) {
 		$item = flxf_app_row( $row, $forms );
 		unset( $item['fields'] );
 		$items[] = $item;
@@ -194,9 +199,7 @@ function flxf_app_responses( WP_REST_Request $r ) {
 }
 
 function flxf_app_response( WP_REST_Request $r ) {
-	global $wpdb;
-	$table = $wpdb->prefix . 'emsfb_msg_';
-	$row   = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM `{$table}` WHERE msg_id = %d", (int) $r['id'] ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL
+	$row = FLXF_Response_Service::row( (int) $r['id'] );
 	if ( ! $row || 2 === (int) $row['read_'] ) {
 		return new WP_Error( 'flxf_missing', __( 'Response not found.', 'flx-forms' ), array( 'status' => 404 ) );
 	}
@@ -204,25 +207,11 @@ function flxf_app_response( WP_REST_Request $r ) {
 }
 
 function flxf_app_response_read( WP_REST_Request $r ) {
-	global $wpdb;
-	$table = $wpdb->prefix . 'emsfb_msg_';
-	$row   = $wpdb->get_row( $wpdb->prepare( "SELECT msg_id, read_ FROM `{$table}` WHERE msg_id = %d", (int) $r['id'] ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL
-	if ( ! $row ) {
+	$id = FLXF_Response_Service::mark_read( (int) $r['id'] );
+	if ( null === $id ) {
 		return new WP_Error( 'flxf_missing', __( 'Response not found.', 'flx-forms' ), array( 'status' => 404 ) );
 	}
-	$next = 3 === (int) $row['read_'] ? 4 : 1;
-	if ( flxf_app_unread( $row['read_'] ) ) {
-		$wpdb->update(
-			$table,
-			array(
-				'read_'     => $next,
-				'read_by'   => wp_get_current_user()->user_login,
-				'read_date' => current_time( 'mysql' ),
-			),
-			array( 'msg_id' => (int) $row['msg_id'] )
-		);
-	}
-	return array( 'ok' => true, 'id' => (int) $row['msg_id'] );
+	return array( 'ok' => true, 'id' => $id );
 }
 
 /**
