@@ -1,5 +1,11 @@
 # Flux Headless
 
+## 0.1.1
+- `flxSite.logoOnDark`: footer gibi koyu zeminler için logo (kurum profilindeki açık renk logo; yoksa site logosu). Logo seçilmemişse kurum profilindeki logo kullanılır.
+- Footer'daki gezinme bloklarının adı, hemen üstlerindeki başlıktan gelir ("Mağaza", "Kurumsal" sütunları).
+- Sayfa listesi yedeği (gezinme bloğunda menü yoksa) Flux Lang ile yalnız o dilin sayfalarını verir.
+- Next.js örneği FluxWP teması görünümünde: tema yazı tipleri ve paleti, koyu çok sütunlu footer (kısa sayfada en altta, telefonda açılır kapanır), açılır alt menüler, bloklarla kurulmuş ana sayfa.
+
 ## 0.1.0
 - İlk sürüm. Bu WordPress'i bir ya da birden fazla headless ön yüze (Next.js, Nuxt, Astro ya da herhangi bir framework) GraphQL ile sunar.
 - `flxRoute(path)`: adresin türü, HTTP durumu, yönlendirme (sonda eğik çizgi, eski slug, canonical), dil, WordPress nesnesi, Flux SEO ile aynı SEO head (ön yüz adresleriyle), hreflang sürümleri ve önbellek etiketleri. Taslak önizleme `previewId` ile, yalnız düzenleyebilen kullanıcıya, önbelleksiz.

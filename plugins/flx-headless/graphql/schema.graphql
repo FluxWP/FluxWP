@@ -527,6 +527,10 @@ type FlxHeadlessSite {
   locale: String!
   """Site logo; empty when none."""
   logo: FlxHeadlessImage
+  """
+  Logo for dark backgrounds such as the footer; the site logo when there is no separate one.
+  """
+  logoOnDark: FlxHeadlessImage
   """Menus of the header, footer and menu locations."""
   menus: [FlxHeadlessMenu!]!
   """Site title."""

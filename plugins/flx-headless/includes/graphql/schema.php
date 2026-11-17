@@ -437,6 +437,7 @@ flx_gql_type(
 					'locale'      => array( 'String!', __( 'Locale of this answer (BCP 47).', 'flx-headless' ), 'locale' ),
 					'languages'   => array( '[FlxHeadlessLanguage!]!', __( 'Languages the front end serves, default first.', 'flx-headless' ), 'languages' ),
 					'logo'        => array( 'FlxHeadlessImage', __( 'Site logo; empty when none.', 'flx-headless' ), 'logo' ),
+					'logoOnDark'  => array( 'FlxHeadlessImage', __( 'Logo for dark backgrounds such as the footer; the site logo when there is no separate one.', 'flx-headless' ), 'logo_on_dark' ),
 					'icon'        => array( 'String', __( 'Site icon (512 px); empty when none.', 'flx-headless' ), 'icon' ),
 					'menus'       => array( '[FlxHeadlessMenu!]!', __( 'Menus of the header, footer and menu locations.', 'flx-headless' ), 'menus' ),
 					'palette'     => array( '[FlxHeadlessColor!]!', __( 'Theme palette.', 'flx-headless' ), 'palette' ),

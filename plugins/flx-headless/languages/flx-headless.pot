@@ -504,6 +504,9 @@ msgstr ""
 msgid "Site logo; empty when none."
 msgstr ""
 
+msgid "Logo for dark backgrounds such as the footer; the site logo when there is no separate one."
+msgstr ""
+
 msgid "Site icon (512 px); empty when none."
 msgstr ""
 

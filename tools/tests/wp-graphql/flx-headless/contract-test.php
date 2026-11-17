@@ -212,6 +212,10 @@ flxt_same( array( null, 'https://front.example.com', $id ), array( $r['errors'] 
 flxt_ok( is_array( $s['menus'] ?? null ) && is_array( $s['palette'] ?? null ) && is_array( $s['languages'] ?? null ), 'flxSite: menus, palette and languages' );
 flxt_ok( str_starts_with( (string) ( $s['sitemapUrl'] ?? '' ), home_url() ), 'flxSite: sitemap on WordPress for the proxy' );
 flxt_ok( ! str_contains( (string) wp_json_encode( $r ), $secret ), 'flxSite: no secret' );
+$names = array_column( array_filter( (array) ( $s['menus'] ?? array() ), static fn( $m ) => str_starts_with( (string) ( $m['location'] ?? '' ), 'footer' ) ), 'name', 'location' );
+// The theme footer has "Mağaza" (WooCommerce links, left out without WooCommerce) and "Kurumsal" columns.
+flxt_ok( in_array( 'Kurumsal', $names, true ) && ! in_array( '', $names, true ) && array_diff( $names, array( 'Mağaza', 'Kurumsal' ) ) === array(), 'flxSite: footer menus are named by the heading above them' );
+flxt_same( $s['logo'] ?? null, $s['logoOnDark'] ?? null, 'flxSite: without a separate light logo, logoOnDark is the site logo' );
 
 // WordPress pages mode.
 $r = flxhl_t_op( 'FlxHeadlessWpFrontSet', array( 'mode' => 'NOINDEX' ), $admin );
