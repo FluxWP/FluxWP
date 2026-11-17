@@ -580,6 +580,23 @@ flx_gql_query(
 	)
 );
 
+flx_gql_input(
+	'FlxDonationContactInput',
+	array(
+		'description' => __( 'Where one certificate is delivered: a WhatsApp number, an e-mail address, or both.', 'flx-donate' ),
+		'fields'      => array(
+			'phone' => array(
+				'type'        => 'String',
+				'description' => __( 'WhatsApp number.', 'flx-donate' ),
+			),
+			'email' => array(
+				'type'        => 'String',
+				'description' => __( 'E-mail address.', 'flx-donate' ),
+			),
+		),
+	)
+);
+
 flx_gql_mutation(
 	'flxDonationCartAdd',
 	array(
@@ -609,6 +626,14 @@ flx_gql_mutation(
 			'names'        => array(
 				'type'        => '[String!]',
 				'description' => __( 'Certificate names. Several names are one cart line, one payment and one certificate each.', 'flx-donate' ),
+			),
+			'contacts'     => array(
+				'type'        => '[FlxDonationContactInput!]',
+				'description' => __( 'Delivery contact of each name, in the same order. A certificate needs a WhatsApp number or an e-mail address (at least one), as on the donation form. Not used for a proxy type.', 'flx-donate' ),
+			),
+			'feeCover'     => array(
+				'type'        => 'Boolean',
+				'description' => __( 'The donor covers the transaction fee, as the checkbox on the donation form.', 'flx-donate' ),
 			),
 			'proxyConsent' => array(
 				'type'        => 'Boolean',

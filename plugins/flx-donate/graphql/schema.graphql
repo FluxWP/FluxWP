@@ -24,9 +24,17 @@ input FlxDonationCartAddInput {
   """
   clientMutationId: String
   """
+  Delivery contact of each name, in the same order. A certificate needs a WhatsApp number or an e-mail address (at least one), as on the donation form. Not used for a proxy type.
+  """
+  contacts: [FlxDonationContactInput!]
+  """
   Currency to switch to before the line is built. Empty keeps the current one.
   """
   currency: String
+  """
+  The donor covers the transaction fee, as the checkbox on the donation form.
+  """
+  feeCover: Boolean
   """
   Certificate names. Several names are one cart line, one payment and one certificate each.
   """
@@ -75,6 +83,16 @@ type FlxDonationCartLine {
   option: String!
   """How many. A free amount is 1."""
   units: Int!
+}
+
+"""
+Where one certificate is delivered: a WhatsApp number, an e-mail address, or both.
+"""
+input FlxDonationContactInput {
+  """E-mail address."""
+  email: String
+  """WhatsApp number."""
+  phone: String
 }
 
 """Input for the flxDonationLookupEnd mutation."""

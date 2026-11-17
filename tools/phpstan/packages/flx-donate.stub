@@ -97,3 +97,28 @@ class FLXB_WC_Currency {
 	/** @return bool */
 	public static function set( mixed $code ) {}
 }
+
+class FLXB_WC_Form {
+	/**
+	 * @param array<string, mixed> $line
+	 * @return string
+	 */
+	public static function contact_missing( array $line ) {}
+
+	/**
+	 * @param array<string, mixed> $line
+	 * @return void
+	 */
+	public static function remember_contact( array $line ) {}
+
+	/** @return string */
+	public static function phone_value( mixed $raw ) {}
+}
+
+class FLXB_WC_Fee {
+	/**
+	 * @param array<string, mixed> $in
+	 * @return void
+	 */
+	public static function remember( array $in ) {}
+}

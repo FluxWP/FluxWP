@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * @phpstan-import-type FlxCartShape from FLXGQL_Cart
- * @phpstan-type FlxbCartAdd array{typeId: int, option: string, units: int, amount: string, names: list<string>, proxyConsent: bool}
+ * @phpstan-type FlxbCartAdd array{typeId: int, option: string, units: int, amount: string, names: list<string>, contacts: list<array{phone?: string, email?: string}>, feeCover: bool, proxyConsent: bool}
  * @phpstan-type FlxbCartResult array{cart: FlxCartShape, itemKey: string}
  * @phpstan-type FlxbStoredLine array{type_id: int, option: string, units: int, currency: string, amount: float|null, beneficiaries: list<string>, ben_name: string, people: list<array{name: string}>}
  */
@@ -101,15 +101,24 @@ final class FLXB_Cart_Service {
 	 * Classic form input for build_line().
 	 *
 	 * @param array<string, mixed> $input GraphQL input.
-	 * @return array{type_id: int, option: string, units: int, amount: string, beneficiaries?: list<string>, proxy_consent?: string, for_other?: bool, ben_name?: string, people?: list<array{name: string, phone: string, email: string}>}
+	 * @return array{type_id: int, option: string, units: int, amount: string, ben_phone?: string, ben_email?: string, beneficiaries?: list<string>, proxy_consent?: string, for_other?: bool, ben_name?: string, people?: list<array{name: string, phone: string, email: string}>}
 	 */
 	public static function classic_input( array $input ): array {
+		self::load_form();
 		$names = array();
 		foreach ( (array) ( $input['names'] ?? array() ) as $n ) {
 			$n = trim( sanitize_text_field( is_scalar( $n ) ? (string) $n : '' ) );
 			if ( '' !== $n ) {
 				$names[] = mb_substr( $n, 0, 80 );
 			}
+		}
+		$contacts = array();
+		foreach ( array_values( (array) ( $input['contacts'] ?? array() ) ) as $c ) {
+			$c          = is_array( $c ) ? $c : array();
+			$contacts[] = array(
+				'phone' => FLXB_WC_Form::phone_value( trim( sanitize_text_field( self::str( $c['phone'] ?? '' ) ) ) ),
+				'email' => trim( sanitize_text_field( self::str( $c['email'] ?? '' ) ) ),
+			);
 		}
 		$units = absint( is_scalar( $input['units'] ?? null ) ? $input['units'] : 0 );
 		if ( $units < 1 ) {
@@ -127,15 +136,17 @@ final class FLXB_Cart_Service {
 			$in['proxy_consent'] = empty( $input['proxyConsent'] ) ? '' : '1';
 			return $in;
 		}
+		$in['ben_phone'] = $contacts[0]['phone'] ?? '';
+		$in['ben_email'] = $contacts[0]['email'] ?? '';
 		if ( $names ) {
 			$in['for_other'] = true;
 			$in['ben_name']  = $names[0];
 			$in['people']    = array();
-			foreach ( array_slice( $names, 1 ) as $n ) {
+			foreach ( array_slice( $names, 1, null, true ) as $i => $n ) {
 				$in['people'][] = array(
 					'name'  => $n,
-					'phone' => '',
-					'email' => '',
+					'phone' => $contacts[ $i ]['phone'] ?? '',
+					'email' => $contacts[ $i ]['email'] ?? '',
 				);
 			}
 			$in['units'] = max( $units, count( $names ) );
@@ -154,9 +165,19 @@ final class FLXB_Cart_Service {
 		if ( ! class_exists( 'FLXGQL_Cart' ) || ! class_exists( 'FLXGQL_Store_Api' ) || ! FLXGQL_Store_Api::available() ) {
 			return self::invalid( 'flxb_cart', __( 'The shop is not available on this site.', 'flx-donate' ), 'typeId' );
 		}
+		self::load_form();
 		$classic = self::classic_input( $input );
 		if ( ! empty( $input['currency'] ) && class_exists( 'FLXB_WC_Currency' ) ) {
-			FLXB_WC_Currency::set( strtoupper( sanitize_text_field( self::str( $input['currency'] ) ) ) );
+			$cur = strtoupper( sanitize_text_field( self::str( $input['currency'] ) ) );
+			if ( ! FLXB_WC_Currency::set( $cur ) ) {
+				/* translators: %s: currency code */
+				return self::invalid( 'flxb_currency', sprintf( __( 'Donations in %s cannot be paid here at the moment.', 'flx-donate' ), $cur ), 'currency' );
+			}
+		}
+		/* The classic form's contact gate: a certificate needs a WhatsApp number or an e-mail address. */
+		$need = FLXB_WC_Form::contact_missing( self::gate_line( $classic ) );
+		if ( '' !== $need ) {
+			return self::invalid( 'flxb_contact', $need, 'contacts' );
 		}
 		$line = FLXB_WC_Cart::build_line( $classic );
 		if ( is_wp_error( $line ) ) {
@@ -172,10 +193,35 @@ final class FLXB_Cart_Service {
 		if ( is_wp_error( $added ) ) {
 			return self::invalid( (string) $added->get_error_code(), $added->get_error_message(), 'typeId' );
 		}
+		/* The classic form's side effects: the donor's contact fills the checkout, the fee choice is kept. */
+		FLXB_WC_Form::remember_contact( self::gate_line( $classic ) );
+		if ( class_exists( 'FLXB_WC_Fee', false ) ) {
+			FLXB_WC_Fee::remember( array( 'fee_cover' => empty( $input['feeCover'] ) ? 0 : 1 ) );
+		}
 		return array(
 			'cart'    => $added['cart'],
 			'itemKey' => $added['itemKey'],
 		);
+	}
+
+	/**
+	 * The classic input with the keys the form's contact helpers read.
+	 *
+	 * @param array<string, mixed> $classic Output of classic_input().
+	 * @return array<string, mixed>
+	 */
+	private static function gate_line( array $classic ): array {
+		return $classic + array(
+			'for_other' => false,
+			'ben_phone' => '',
+			'ben_email' => '',
+		);
+	}
+
+	private static function load_form(): void {
+		if ( ! class_exists( 'FLXB_WC_Form', false ) ) {
+			require_once dirname( __DIR__ ) . '/wc/class-flxb-wc-form.php';
+		}
 	}
 
 	private static function load_cart(): void {
