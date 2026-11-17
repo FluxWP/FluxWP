@@ -14,19 +14,28 @@ final class FLXCM_Receipt_Service {
 	 * @return array{orders:array<mixed>,total:int,pages:int}
 	 */
 	public static function query( int $page, int $per ): array {
+		return self::query_window( array( 'limit' => $per, 'paged' => max( 1, $page ) ) );
+	}
+
+	/**
+	 * @param array<string,int> $window Either limit + paged or limit + offset.
+	 * @return array{orders:array<mixed>,total:int,pages:int}
+	 */
+	private static function query_window( array $window ): array {
 		if ( ! function_exists( 'wc_get_orders' ) ) {
 			return array( 'orders' => array(), 'total' => 0, 'pages' => 1 );
 		}
 		$q = wc_get_orders(
-			array(
-				'type'           => 'shop_order',
-				'status'         => array( 'on-hold', 'pending' ),
-				'payment_method' => FLXCM_Bank::ID,
-				'limit'          => $per,
-				'paged'          => max( 1, $page ),
-				'orderby'        => 'date',
-				'order'          => 'DESC',
-				'paginate'       => true,
+			array_merge(
+				array(
+					'type'           => 'shop_order',
+					'status'         => array( 'on-hold', 'pending' ),
+					'payment_method' => FLXCM_Bank::ID,
+					'orderby'        => 'date',
+					'order'          => 'DESC',
+					'paginate'       => true,
+				),
+				$window
 			)
 		);
 		$orders = array();
@@ -172,20 +181,19 @@ final class FLXCM_Receipt_Service {
 	 * @return array{items:array<int,array<string,mixed>>,total:int}
 	 */
 	public static function page( int $offset, int $limit ): array {
-		$need = $offset + $limit;
-		$q    = self::query( 1, max( 1, $need ) );
-		$all  = array();
+		$q     = self::query_window( array( 'limit' => max( 1, $limit ), 'offset' => max( 0, $offset ) ) );
+		$items = array();
 		foreach ( $q['orders'] as $order ) {
 			if ( ! $order instanceof WC_Order ) {
 				continue;
 			}
 			$row = self::map( $order );
 			if ( $row ) {
-				$all[] = $row;
+				$items[] = $row;
 			}
 		}
 		return array(
-			'items' => array_slice( $all, $offset, $limit ),
+			'items' => $items,
 			'total' => FLXCM_Val::int($q['total']),
 		);
 	}
