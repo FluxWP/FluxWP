@@ -1,5 +1,9 @@
 # Flux Tasks — Değişiklikler
 
+## 0.12.1
+- Gömülü React paketi (assets/flux) yeniden derlendi: 0.9.4'ten beri yapılan tüm yeni ekran düzeltmeleri (açık tema, doküman dosya kartları ve YouTube önizleme, yeni liste tasarımı ve satır içi ekleme, satır hover simgeleri, kompakt tarih seçici) siteye ancak bu sürümle ulaşır; önceki sürümlerde bu paket güncellenmemişti.
+- Mobilde pano (Kanban): bir kartı basılı tutup sürükleyince kart gerçekten sürüklenir (önceden tarayıcı sayfayı kaydırıp sürüklemeyi iptal ediyordu). Kartı ekranın sağ ya da sol kenarında bekletince pano o yöne kayar, kart başka sütuna bırakılabilir. Sürüklerken sütun yapışması kapanır.
+
 ## 0.12.0
 - Doküman yorumları: metin aralığı seçip ya da bir bloğun (dosya, görsel, tablo, liste) menüsünden yorum eklenir. Yorumlar sağdaki panelde belge sırasıyla görünür; yorumlanan metin vurgulanır, kenarda yorum sayısı çıkar. Kısayol Ctrl+Alt+M.
 - Herkes (yorum yetkisi olan) bir konunun altına yanıt yazar. Yazan kendi yorumunu düzenler; yazan ya da proje yöneticisi siler. Yanıtı olan ilk yorum silinince "silindi" olarak kalır. Konular çözülür / yeniden açılır (Çözülmemiş / Çözülen sekmeleri). Metin değişip alıntı bulunamazsa konu "metin değişti" diye işaretlenir.

@@ -2021,6 +2021,12 @@ body.flxg-col-resizing, body.flxg-col-resizing * { cursor: col-resize !important
 }
 @media print { .flxg-doc-cmlayer, .flxg-doc-side, .flxg-doc-banner { display: none !important; } }
 
+
+/* Pano: sürüklerken yapışmayı kapat (otomatik kaydırma çalışsın); kart dokunmatikte sürükleme başlayınca sayfa kaymasın. */
+.flxg-dnd-active .flxg-board { scroll-snap-type: none !important; scroll-behavior: auto; }
+.flxg-dnd-active, .flxg-dnd-active body { overscroll-behavior: none; }
+.flxg-card.is-dragging, .flxg-dnd-ghost { touch-action: none; }
+
 /* ---------------- Yalnız React ekranı (FluxApp + wp-admin) ---------------- */
 .flxg.flxg-flux { height: 100%; min-height: 0; position: relative; background: var(--bg); }
 .flxg-doc-host { display: contents; }

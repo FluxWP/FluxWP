@@ -2046,3 +2046,10 @@ html.flxg-dark .flxg-doc-lockchip { color: #fbbf24; }
 	.flxg-doc-banner.is-on { margin: -4px 0 16px; flex-wrap: wrap; }
 }
 @media print { .flxg-doc-cmlayer, .flxg-doc-side, .flxg-doc-banner { display: none !important; } }
+
+
+/* Pano: sürüklerken yapışmayı kapat (otomatik kaydırma çalışsın); kart dokunmatikte sürükleme başlayınca sayfa kaymasın. */
+.flxg-dnd-active .flxg-board { scroll-snap-type: none !important; scroll-behavior: auto; }
+.flxg-dnd-active, .flxg-dnd-active body { overscroll-behavior: none; }
+.flxg-card.is-dragging, .flxg-dnd-ghost { touch-action: none; }
+
