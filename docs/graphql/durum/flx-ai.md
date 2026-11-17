@@ -1,7 +1,7 @@
-# flx-ai 0.28.0
+# flx-ai 0.29.0
 
 - Faz: 1
 - Durum: 👀
-- PR: #343
+- PR: (açılacak)
 
-`gql/flx-ai-6`: sistem başı AI ayarları React ekranı (`flxAiSystemSettings`, `flxAiSystemSettingsUpdate`), sözleşme testi 439/439. 0.24.0–0.27.0 main'de. **Kalan:** sohbet geçmişi. Eşleme `ESLEME/flx-ai.md`
+`gql/flx-ai-8` (0.30.0): canlı Sohbet sayfası React ekranı (kenar çubuğu, akış, onay kartları, dosya, slash komutları, model seçici). Tur protokolü (gönder/adım/akış/karar) REST/NDJSON, geçmiş işlemleri GraphQL. **Kalan:** çalışma alanı paneli (dosyalar, değişiklik istekleri, diff) 0.31.0; yüzen sohbet ve FluxApp gömmesi chat.js ile kalır. Eşleme `ESLEME/flx-ai.md`

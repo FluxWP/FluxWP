@@ -1,0 +1,15 @@
+mutation FlxHeadlessRevalidateTest($id: ID!) {
+  flxHeadlessRevalidateTest(input: { id: $id }) {
+    delivery {
+      ...FlxHeadlessDeliveryFields
+    }
+    settings {
+      ...FlxHeadlessSettingsFields
+    }
+    errors {
+      code
+      field
+      message
+    }
+  }
+}

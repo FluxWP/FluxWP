@@ -1,4 +1,6 @@
 /* @fluxwp/ui: ortak stiller. Panelde düz, WP admin gömmesinde .flux-root önekiyle derlenir. */
+/* Ortak tarih seçici: tek kaynak flx-brand (DatePicker.tsx aynı sınıfları basar). */
+@import "../../../tools/brand/flx-brand/date/date.css";
 @font-face{font-family:Figtree;font-style:normal;font-weight:300 900;font-display:swap;src:url("../../../plugins/flx-admin/assets/fonts/figtree-latin-ext-wght-normal.woff2") format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
 @font-face{font-family:Figtree;font-style:normal;font-weight:300 900;font-display:swap;src:url("../../../plugins/flx-admin/assets/fonts/figtree-latin-wght-normal.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:Nunito;font-style:normal;font-weight:600 900;font-display:swap;src:url("../../../themes/fluxwp/assets/fonts/nunito-latin-ext.woff2") format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
@@ -383,3 +385,12 @@ input:is([type=checkbox],[type=radio])[type=checkbox][role=switch][aria-invalid=
 .chk__text{flex:1 1 auto;min-width:0;padding-top:2px}
 .chk__text small{display:block;margin-top:2px;font-size:.86em;color:var(--flux-text-muted)}
 .chk__msg{margin:6px 0 0 36px;color:var(--flux-danger);font-size:var(--flux-font-sm);font-weight:700}
+
+/* tarih seçici: React ekranlarında renkler --flux-* belirteçlerinden (koyu renkler date.css'te) */
+.flx-dp:not([data-theme=dark]),.flx-dp-shade:not([data-theme=dark]){--flx-dp-bg:var(--flux-surface,#fff);--flx-dp-ink:var(--flux-text,#0F172A);--flx-dp-muted:var(--flux-text-muted,#64748B);--flx-dp-line:var(--flux-border,#E2E6EC);--flx-dp-p:var(--flux-primary,#1F2937);--flx-dp-on:var(--flux-primary-contrast,#fff);--flx-dp-hov:var(--flux-surface2,#F1F3F5)}
+.flx-dp{--flx-dp-font:var(--flux-font-family,inherit)}
+.flx-dt{min-height:40px;border:1px solid var(--flux-border);border-radius:var(--flux-radius-md);background:var(--flux-bg);color:var(--flux-text);font-size:var(--flux-font-md);font-weight:400}
+.flx-dt:hover:not(:disabled){border-color:color-mix(in srgb,var(--flux-primary) 40%,var(--flux-border))}
+.flx-dt:focus-visible,.flx-dt.is-open{outline:none;border-color:var(--flux-primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--flux-primary) 22%,transparent)}
+.flx-dt.is-empty .flx-dt__val{color:var(--flux-text-muted);opacity:1}
+.flx-dt:disabled{opacity:.55;cursor:default}

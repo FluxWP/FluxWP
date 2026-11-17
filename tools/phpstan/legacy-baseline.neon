@@ -12317,6 +12317,21 @@ parameters:
 			identifier: booleanAnd.rightAlwaysTrue
 			count: 1
 			path: ../../plugins/flx-recaptcha/includes/flx-brand/core.php
+		-
+			message: '#^Call to function is_array\(\) with array\{ext\: string\|false, type\: string\|false\} will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: ../../plugins/flx-headless/includes/flx-brand/core.php
+		-
+			message: '#^Parameter \#2 \$args of function register_block_type expects array\{api_version\?\: string, title\?\: string, category\?\: string\|null, parent\?\: array\<string\>\|null, ancestor\?\: array\<string\>\|null, allowed_blocks\?\: array\<string\>\|null, icon\?\: string\|null, description\?\: string, \.\.\.\}, array\{api_version\: 3, title\: mixed, description\: mixed, category\: ''theme'', keywords\: array\{''fluxwp'', ''credit'', ''powered''\}, editor_script\: ''flx\-credit\-editor'', render_callback\: ''flx_brand_render…'', supports\: array\{html\: false, multiple\: false, reusable\: false, color\: array\{text\: true, background\: false, link\: false\}, typography\: array\{fontSize\: true\}, spacing\: array\{margin\: true\}\}\} given\.$#'
+			identifier: argument.type
+			count: 1
+			path: ../../plugins/flx-headless/includes/flx-brand/core.php
+		-
+			message: '#^Right side of && is always true\.$#'
+			identifier: booleanAnd.rightAlwaysTrue
+			count: 1
+			path: ../../plugins/flx-headless/includes/flx-brand/core.php
 
 		-
 			message: '#^Call to function is_array\(\) with array\<mixed\> will always evaluate to true\.$#'

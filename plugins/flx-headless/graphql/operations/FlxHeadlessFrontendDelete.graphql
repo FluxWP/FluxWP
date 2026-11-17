@@ -1,0 +1,12 @@
+mutation FlxHeadlessFrontendDelete($id: ID!) {
+  flxHeadlessFrontendDelete(input: { id: $id }) {
+    settings {
+      ...FlxHeadlessSettingsFields
+    }
+    errors {
+      code
+      field
+      message
+    }
+  }
+}

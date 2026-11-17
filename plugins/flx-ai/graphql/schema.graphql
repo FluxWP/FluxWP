@@ -323,6 +323,62 @@ type FlxAiChangeFile {
   path: String!
 }
 
+"""A chat with its transcript."""
+type FlxAiChat {
+  """Transcript: user, assistant and tool messages."""
+  messages: [FlxAiChatMessage!]!
+  """Model chosen for this chat; empty for the default."""
+  model: String!
+  """Title, status and time."""
+  summary: FlxAiChatSummary!
+  """Stored messages including internal ones."""
+  total: Int!
+}
+
+"""Input for the flxAiChatDelete mutation."""
+input FlxAiChatDeleteInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Chat id."""
+  id: Int!
+}
+
+"""The payload for the flxAiChatDelete mutation."""
+type FlxAiChatDeletePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Deleted."""
+  deleted: Boolean!
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""A message of a chat transcript."""
+type FlxAiChatMessage {
+  """Error of a failed tool call; empty otherwise."""
+  error: String!
+  """Position in the chat."""
+  index: Int!
+  """Whether a tool result succeeded."""
+  ok: Boolean
+  """user, assistant or tool."""
+  role: String!
+  """Message text; for a tool result the (shortened) output."""
+  text: String!
+  """When it was written, when known."""
+  time: FlxDateTime
+  """Tool name of a tool result; empty otherwise."""
+  tool: String!
+  """Tools an assistant message called, comma separated."""
+  tools: String!
+}
+
 """Default layout of the shared chat."""
 enum FlxAiChatMode {
   """"""
@@ -331,6 +387,62 @@ enum FlxAiChatMode {
   DOCK
   """"""
   PAGE
+}
+
+"""One page of the chat history."""
+type FlxAiChatPage {
+  """More chats follow."""
+  hasMore: Boolean!
+  """Chats, most recent first."""
+  items: [FlxAiChatSummary!]!
+}
+
+"""A chat in the history list."""
+type FlxAiChatSummary {
+  """Archived."""
+  archived: Boolean!
+  """Chat id."""
+  id: Int!
+  """Matching text when a search hit the content, otherwise empty."""
+  snippet: String!
+  """idle, running or approval."""
+  status: String!
+  """
+  Title of the scheduled task this chat belongs to; empty for a normal chat.
+  """
+  task: String!
+  """Title; empty until the assistant names it."""
+  title: String!
+  """Last activity."""
+  updated: FlxDateTime!
+}
+
+"""Input for the flxAiChatUpdate mutation."""
+input FlxAiChatUpdateInput {
+  """Archive (true) or restore (false)."""
+  archived: Boolean
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Chat id."""
+  id: Int!
+  """New title."""
+  title: String
+}
+
+"""The payload for the flxAiChatUpdate mutation."""
+type FlxAiChatUpdatePayload {
+  """The chat after the change."""
+  chat: FlxAiChatSummary
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
 }
 
 """A connected MCP server. Secrets are never returned."""
@@ -2603,6 +2715,16 @@ extend type RootMutation {
     """Input for the flxAiChangeDecide mutation"""
     input: FlxAiChangeDecideInput!
   ): FlxAiChangeDecidePayload
+  """Deletes a chat with its files. This cannot be undone."""
+  flxAiChatDelete(
+    """Input for the flxAiChatDelete mutation"""
+    input: FlxAiChatDeleteInput!
+  ): FlxAiChatDeletePayload
+  """Renames and/or archives a chat; a field left out stays as it is."""
+  flxAiChatUpdate(
+    """Input for the flxAiChatUpdate mutation"""
+    input: FlxAiChatUpdateInput!
+  ): FlxAiChatUpdatePayload
   """
   Deletes a connection. Its tools disappear from chats, tasks and agents.
   """
@@ -2826,6 +2948,24 @@ extend type RootQuery {
   flxAiBrand: FlxAiBrand!
   """Spending against the daily, weekly and monthly limits."""
   flxAiBudget: [FlxAiBudgetPeriod!]!
+  """One chat of the signed-in user with its transcript."""
+  flxAiChat(
+    """Chat id."""
+    id: Int!
+  ): FlxAiChat!
+  """
+  The signed-in user&#039;s chat history. Search looks in titles and message text.
+  """
+  flxAiChats(
+    """0 active chats (default), 1 archived, -1 all."""
+    archived: Int
+    """Page size, 1 to 100 (default 30)."""
+    limit: Int
+    """Chats to skip."""
+    offset: Int
+    """Search text."""
+    q: String
+  ): FlxAiChatPage!
   """The MCP connections and what their form needs."""
   flxAiConnections: FlxAiConnectionsScreen!
   """The stored content of a log row; null when none was stored."""

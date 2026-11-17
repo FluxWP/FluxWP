@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.5.2
+- Tarih alanları ortak FluxWP tarih seçicisini kullanır: sitenin dilinde ay/gün adları, Pazartesi başlangıç, hızlı seçim listesi, yazılabilir tarih ve saat, Uygula düğmesi, açık/koyu, telefonda alttan açılan pencere. Tarayıcının kendi takvimi (İngilizce çıkan) kalktı.
+
 ## 0.5.1
 - İstatistikler, Yolculuklar, Ayarlar ve Telemetri ekranları Flux GraphQL ekran kabuğuyla açılır: ilk rapor PHP'den hazır gelir, ekranlar arası menü geçişi sayfa yenilemeden olur.
 

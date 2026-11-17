@@ -108,7 +108,7 @@ html.flxc-lock #wpfooter, html.flxc-lock .notice, html.flxc-lock #screen-meta-li
 #flxc-app *, #flxc-app *::before, #flxc-app *::after { box-sizing: border-box; }
 #flxc-app button { font: inherit; color: inherit; background: none; border: 0; margin: 0; padding: 0; cursor: pointer; box-shadow: none; min-height: 0; line-height: inherit; text-align: inherit; }
 #flxc-app button:disabled { cursor: default; opacity: .5; }
-#flxc-app input, #flxc-app textarea, #flxc-app select { font: inherit; color: var(--flxc-text); background: transparent; border: 0; box-shadow: none; margin: 0; border-radius: 0; min-height: 0; line-height: 1.4; max-width: none; }
+#flxc-app input:not([type="checkbox"]):not([type="radio"]), #flxc-app textarea, #flxc-app select { font: inherit; color: var(--flxc-text); background: transparent; border: 0; box-shadow: none; margin: 0; border-radius: 0; min-height: 0; line-height: 1.4; max-width: none; }
 #flxc-app input:focus, #flxc-app textarea:focus, #flxc-app select:focus { box-shadow: none; outline: none; }
 #flxc-app a { color: inherit; text-decoration: none; }
 #flxc-app h2, #flxc-app h4, #flxc-app p { margin: 0; color: inherit; }
@@ -812,9 +812,6 @@ html.flxc-lock #wpfooter, html.flxc-lock .notice, html.flxc-lock #screen-meta-li
 @keyframes flxc-row-new { 0% { background: color-mix(in srgb, var(--flxc-accent) 28%, var(--flxc-panel)); transform: translateY(-6px); } 30% { transform: none; } }
 @media (prefers-reduced-motion: reduce) { #flxc-app .flxc-row.is-new { animation: none; } }
 
-/* Onay kutuları: WP'nin özel kutusu sıfırlanınca görünmez oluyordu; tarayıcının kendi kutusu kullanılır. */
-#flxc-app input[type="checkbox"], #flxc-app input[type="radio"] { -webkit-appearance: auto; appearance: auto; width: 18px; height: 18px; min-width: 18px; margin: 1px 0 0; padding: 0; border: 0; background: none; box-shadow: none; accent-color: var(--flxc-accent); flex: none; cursor: pointer; }
-#flxc-app input[type="checkbox"]::before, #flxc-app input[type="radio"]::before { content: none !important; display: none !important; }
 /* Adet: − ve + düğmeleri ortalı, sayı ortada geniş. */
 #flxc-app .flxc-step button { display: inline-flex; align-items: center; justify-content: center; text-align: center; padding: 0; line-height: 1; }
 #flxc-app .flxc-step .flxc-step-in { flex: 1; min-width: 0; width: auto; padding: 0 6px; font-size: 16px; }

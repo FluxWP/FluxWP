@@ -8,7 +8,9 @@ import { useHost } from '../host';
 import { Approvals } from './Approvals';
 import { Billing } from './Billing';
 import { useAi } from './common';
+import { ChatScreen } from './chat/ChatScreen';
 import { Connections } from './Connections';
+import { History } from './History';
 import { Logs } from './Logs';
 import { Mcp } from './Mcp';
 import { Overview } from './Overview';
@@ -31,6 +33,8 @@ const VIEWS: Record<string, { title: string; sub: string; View: ComponentType }>
   settings: { title: 'Settings', sub: '', View: Settings },
   mcp: { title: 'MCP', sub: '', View: Mcp },
   connections: { title: 'Connections', sub: '', View: Connections },
+  history: { title: 'Chat history', sub: '', View: History },
+  chat: { title: 'Chat', sub: '', View: ChatScreen },
 };
 
 export function AiScreen() {

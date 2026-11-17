@@ -1,0 +1,24 @@
+{
+  "name": "@fluxwp/headless-next",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Next.js App Router front end for a WordPress site served by Flux Headless (example).",
+  "scripts": {
+    "dev": "next dev --port 3000",
+    "build:site": "next build",
+    "start": "next start --port 3000",
+    "typecheck": "tsc -p ."
+  },
+  "dependencies": {
+    "next": "16.4.6",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "server-only": "0.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "^5.9.3"
+  }
+}

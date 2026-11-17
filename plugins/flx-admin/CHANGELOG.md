@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.8.4
+- Tarih alanları ortak FluxWP tarih seçicisini kullanır (flx-brand 1.8.0): ay ve gün adları sitenin dilinde (Kasım, Pzt), Pazartesi başlangıç, ay/yıl görünümü, `datetime-local` alanlarında saat, telefonda alttan açılan pencere, açık/koyu. Flux Admin'in kendi takvimi (datepicker.js) kaldırıldı; `window.flxaDate` adı çalışmaya devam eder.
+
+## 1.8.3
+- Onay kutusu, radyo ve anahtar stili Flux uygulama modunda (Call Center gibi tam ekran sayfalar) da uygulanır.
+
 ## 1.8.2
 - Sayfa başlığı (logo ve açıklama) Flux ekranları arasında sayfa yenilemeden geçişte de güncellenir.
 

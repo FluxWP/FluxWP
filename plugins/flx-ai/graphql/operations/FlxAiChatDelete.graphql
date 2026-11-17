@@ -1,0 +1,10 @@
+mutation FlxAiChatDelete($input: FlxAiChatDeleteInput!) {
+  flxAiChatDelete(input: $input) {
+    deleted
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

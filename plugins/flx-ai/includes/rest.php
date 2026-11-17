@@ -124,6 +124,19 @@ function flxai_rest_boot() {
 		'counts'     => flxai_chat_counts(),
 		'budget'     => flxai_can_manage() ? flxai_budget_status() : null,
 		'commands'   => flxai_slash_commands(),
+		'maxBytes'   => flxai_attach_max_bytes(),
+		'widgets'    => (bool) flxai_setting( 'chat_widgets', 1 ),
+		'mermaid'    => FLXAI_URL . 'assets/vendor/mermaid/mermaid.min.js?ver=12.2.0',
+		'suggestions' => flxai_chat_suggestions( flxai_can_manage() ),
+		// Çalışma alanı: renkli editör (WordPress'in CodeMirror'ı) ve görsel rapor adresi (çerez oturumunda).
+		'cm'         => array(
+			'js'  => includes_url( 'js/codemirror/codemirror.min.js' ) . '?ver=' . rawurlencode( get_bloginfo( 'version' ) ),
+			'css' => includes_url( 'js/codemirror/codemirror.min.css' ) . '?ver=' . rawurlencode( get_bloginfo( 'version' ) ),
+		),
+		'view'       => array(
+			'url'   => rest_url( 'flx-ai/v1/chats/%d/ws/view' ),
+			'nonce' => wp_create_nonce( 'wp_rest' ),
+		),
 	);
 }
 

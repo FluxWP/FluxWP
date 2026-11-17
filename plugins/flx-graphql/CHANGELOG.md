@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.0
+
+- Eklenti ekranları için ortak runtime (`assets/runtime/`): React, React Query, i18next ve açık `@fluxwp` paketleri sayfaya bir kez yüklenir. `@fluxwp/plugin-kit` ile derlenen bir eklenti yalnız kendi ekranlarını taşır (`assets/flux/flux-screens.js`, birkaç KB) ve `FluxRuntime.register()` ile kaydeder. FluxWP dışındaki eklentiler de wp-admin'e aynı kabukla React ekranı ekleyebilir.
+- `flx_admin_screen()` klasörde `flux-screens.js` görürse ekranı runtime üzerinden açar; menüden geçiş, ilk sorguların PHP'den gelmesi ve geri/ileri aynı çalışır. FluxWP paketlerinin `flux-modules.js` bundle'ları değişmeden çalışır.
+- Kurallar: docs/graphql/EKLENTI-EKRANLARI.md.
+
 ## 0.4.0
 
 - Ekran kabuğu: wp-admin'deki Flux React ekranları `flx_admin_screen()` ile kaydedilir, `flx_admin_screen_render()` ile basılır. Sol menüden başka bir Flux ekranına geçiş sayfayı yenilemez: hedef paketin bundle'ı bir kez yüklenir, ilk sorgular üzerine gelince tek istekte önceden çekilir, ekran hazır olunca yer değiştirir; adres, başlık ve menü vurgusu güncellenir, geri/ileri çalışır. Kayıtlı olmayan sayfalar normal açılır.

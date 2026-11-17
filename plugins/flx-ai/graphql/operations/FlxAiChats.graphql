@@ -1,0 +1,9 @@
+# The signed-in user's chat history (search, archive filter, paging).
+query FlxAiChats($q: String, $archived: Int, $limit: Int, $offset: Int) {
+  flxAiChats(q: $q, archived: $archived, limit: $limit, offset: $offset) {
+    hasMore
+    items {
+      ...FlxAiChatSummaryFields
+    }
+  }
+}
