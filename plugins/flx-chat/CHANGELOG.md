@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.50.0
+- Ayarlar (yedi sekme), hat işlemleri (test, QR, webhook, içe aktarma), sistem kontrolü, AI model listesi ve WhatsApp raporları GraphQL'de (`flxChatSettings`, `flxChatSettingsSave`, `flxChatReports…`). Klasik sayfa, `flxc_save_settings`, rapor formu ve `flx-chat/v1/admin/*` aynı servisleri çağırır; REST cevapları değişmedi.
+- Ayarlar ve Raporlar sayfaları varsayılan olarak React ekranıdır; Flux GraphQL ya da paket dosyaları yoksa klasik sayfa açılır.
+- API anahtarı ve webhook sırrı hiçbir cevapta yok. Kurulum adresi yalnız yönetici mutation'ı `flxChatWebhookUrlReveal` ile gelir.
+- Rapor gönderimi `spawn_cron` yerine jetonlu loopback (`flx-chat/v1/reports/bg`) kullanır. Durum `flxChatReportStatus`, elle çalıştırma `flxChatReportRun`.
+- Asistan sayfası (stüdyo) klasik kalır; sonraki bölümde taşınır.
+
 ## 1.49.0
 - Sohbet, mesaj ve canlı güncelleme GraphQL'de (`flxChats`, `flxChat`, `flxChatMessages`, `flxChatUpdates`). Temsilci başkasının sohbetine liste, sayım, `node`, güncelleme veya mesaj sorgusuyla ulaşamaz.
 - `flxChatUpdates` kesilince `rev` artan sırayla devam rev'i verir. İstemci 10 saniyede bir sorar, sekme gizliyken durur.

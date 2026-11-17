@@ -2371,6 +2371,10 @@ extend type RootQuery {
     provider: String
     """Text in the id or name."""
     search: String
+    """Only models that call tools."""
+    tools: Boolean
+    """Only models that read images."""
+    vision: Boolean
   ): FlxChatAiModels!
   """Look up a number. Does not reveal a chat the viewer cannot see."""
   flxChatCheckNumber(

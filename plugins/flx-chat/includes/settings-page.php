@@ -66,6 +66,9 @@ function flxc_render_settings() {
 	if ( ! flxc_can_manage() ) {
 		wp_die( esc_html__( 'You do not have permission to access this page.', 'flx-chat' ) );
 	}
+	if ( function_exists( 'flxc_flux_screens_ready' ) && flxc_flux_screens_ready() && function_exists( 'flx_admin_screen_render' ) && flx_admin_screen_render() ) {
+		return;
+	}
 	$tabs = flxc_settings_tabs();
 	$tab  = isset( $_GET['tab'] ) && isset( $tabs[ $_GET['tab'] ] ) ? sanitize_key( $_GET['tab'] ) : 'baglantilar'; // phpcs:ignore
 	$s    = flxc_settings();

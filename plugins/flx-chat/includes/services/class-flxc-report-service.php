@@ -30,6 +30,11 @@ final class FLXC_Report_Service {
 	 * @return list<array<string,mixed>>
 	 */
 	public static function rules(): array {
+		// A site that never saved reports gets the two starter rules with random ids on every call; store them
+		// once so an id the screen shows is the id a later save, preview or delete asks for.
+		if ( null === get_option( 'flxc_reports', null ) ) {
+			update_option( 'flxc_reports', flxc_reports(), false );
+		}
 		$out = array();
 		foreach ( FLXC_Val::arr( flxc_reports() ) as $r ) {
 			if ( is_array( $r ) ) {

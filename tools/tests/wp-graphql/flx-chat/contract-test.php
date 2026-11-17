@@ -557,6 +557,9 @@ $rpt = flxc_t_user( 'flxc_r_', array( 'flx_reports_manage', 'flx_reports_receive
 update_user_meta( $rpt, $phone_meta, '905550001111' );
 update_user_meta( $mgr, $phone_meta, '905550002222' );
 delete_option( 'flxc_reports' );
+$first_ids = array_map( static fn( $r ): string => $r['id'], (array) ( flxc_t_op( 'FlxChatReports', array(), 1 )['data']['flxChatReports']['rules'] ?? array() ) );
+$again_ids = array_map( static fn( $r ): string => $r['id'], (array) ( flxc_t_op( 'FlxChatReports', array(), 1 )['data']['flxChatReports']['rules'] ?? array() ) );
+flxt_ok( 2 === count( $first_ids ) && $first_ids === $again_ids, 'reports: the starter rules keep the same ids between two reads', array( $first_ids, $again_ids ) );
 update_option( 'flxc_reports', array(), false );
 
 $rep_q = 'query { flxChatReports { on days { value } people { databaseId name hasNumber } rules { id title active audience users content period freq weekday monthday time motivation recipientCount lastSent { iso } } } }';

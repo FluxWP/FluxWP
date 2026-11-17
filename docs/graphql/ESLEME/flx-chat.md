@@ -216,7 +216,7 @@ Panel uçları `flxc_manage`. Arka plan ucu anahtarlı.
 | Action | cap / nonce | → GraphQL | Dosya |
 |---|---|---|---|
 | `flxc_save_settings` | `flxc_can_manage` / `flxc_save_settings` | `flxChatSettingsSave` | `settings-page.php:4`, `:670` |
-| `flxc_reports` | `flxc_reports_can_manage` / `flxc_reports` | `flxChatReportSave`, `flxChatReportSend`, `flxChatReportDelete` | `reports.php:361` · `do`: save, add, test, sendnow, delete |
+| `flxc_reports` | `flxc_reports_can_manage` / `flxc_reports` | `flxChatReportsSave`, `flxChatReportAdd`, `flxChatReportSend`, `flxChatReportDelete` (bölüm 2) | `reports.php:361` · `do`: save, add, test, sendnow, delete |
 | `flxc_export` | tek sohbet `flxc_can_use`, toplu `flxc_can_manage` / `flxc_export` | İSTİSNA (dosya indir) | `export.php:166`. Tek sohbetin metni ayrıca `flxChatExport`. Toplu (en çok 1000 sohbet, `:163`) 60 sn sınırına sığmaz |
 | `flxc_receipt` | `flxc_can_use` veya `flxb_can_view` | İSTİSNA (binary) | `integrations.php:1032`. GraphQL aynı `FlxFile.url` |
 
@@ -228,8 +228,8 @@ Toplu seçim (checkbox) yok. Sohbette eylemler satır menüsünde.
 |---|---|---|---|
 | `flx-chat` | `flxc_use` | Sohbetler. `admin.php:30` | React `packages/modules/src/whatsapp` wp-admin varsayılanı olur. Klasik `app.js` kullanıcı meta anahtarıyla kalır |
 | `flx-chat-asistan` | `flxc_manage` | AI asistan = stüdyo. `admin.php:40`, `flxc_render_studio:253` | Yeni React ekranı |
-| `flx-chat-ayarlar` | `flxc_manage` | Ayarlar. `admin.php:41` | Yeni React ekranı |
-| `flx-chat-raporlar` | `flx_reports_manage` yoksa `flxc_manage` | WhatsApp raporları. `reports.php:347` | Yeni React ekranı |
+| `flx-chat-ayarlar` | `flxc_manage` | Ayarlar. `admin.php:41` | React ekranı (bölüm 2, varsayılan) |
+| `flx-chat-raporlar` | `flx_reports_manage` yoksa `flxc_manage` | WhatsApp raporları. `reports.php:347` | React ekranı (bölüm 2, varsayılan) |
 
 ### `flx-chat` alt görünümleri (klasik `app.js`; React bugün bunların bir kısmını yapar)
 
@@ -385,16 +385,16 @@ Bu turda kurulmaz. Eşleme şimdi, ekran kendi parçasında.
 | Ayarlar | `flxChatSettings` | açık ayarlar. Webhook adresi yok | `settings-page.php` |
 | Ayarlar | `flxChatWebhookUrlReveal` | yönetici, bağlantı kurulum adresini bir kez gösterir (`?t=` gizli) | `connections.php:312`. flx-social `flxSocialTickKeyReveal` |
 | Ayarlar | `flxChatSystemChecks` | sistem kontrol listesi | `system-checks.php:47` |
-| Ayarlar | `flxChatConnectionSources` | bağlantı kaynağı seçenekleri | `connections.php` `flxc_channels` |
+| Ayarlar | `FlxChatSettings.context` | bağlantı kaynağı seçenekleri bölüm 2'de ayar bağlamında (`flxChatConnectionSources` ayrı kök olmadı) | `FLXC_Settings_Service::connection_source_choices` |
 | Ayarlar | `FlxChatConnection.lastWebhookAt` | son webhook zamanı | `flxc_last_webhook_{id}` (`webhook.php:44`) |
-| Ayarlar | `flxChatGroups` / `flxChatGroupsRefresh` | WhatsApp grup listesi | `flxc_mirror_groups` (`settings-page.php:633`) |
+| Ayarlar | `flxChatGroups(refresh:)` (bölüm 2) | WhatsApp grup listesi | `flxc_mirror_groups` (`settings-page.php:633`) |
 | Ayarlar | `flxChatMirrorError` | son ayna hatası | `flxc_mirror_error` (`:648`) |
 | Ayarlar | `flxChatPricePreview` | fiyat listesi önizlemesi | `send_price_list` |
 | Ayarlar | `flxChatSearchableTypes` | aranabilir yazı türleri | `site-search.php` |
 | Ayarlar | `flxChatAiUsage` | aylık AI kullanımı | `ai.php` |
 | Raporlar | `flxChatReports` | kurallar | `reports.php` `flxc_report_defaults` |
 | Raporlar | `flxChatReportPreview` | önizleme metni | `flxc_report_text` (`:154`) |
-| Raporlar | `flxChatReportStaff` | seçilebilir personel (`hasNumber`) ve alıcı sayısı | `flxc_report_recipients` (`:107`) |
+| Raporlar | `FlxChatReports.people` / `rules[].recipientCount` (bölüm 2) | seçilebilir personel (`hasNumber`) ve alıcı sayısı | `flxc_report_recipients` (`:107`) |
 | Raporlar | `flxChatReportStatus` / `flxChatReportRun` | jetonlu loopback durumu ve çalıştırma | karar: `spawn_cron` değil |
 | Gelen kutusu | `flxChatInbox` | `delHours`, connections, records açılışı, staff, rev | `flxc_rest_bootstrap` |
 

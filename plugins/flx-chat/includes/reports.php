@@ -435,6 +435,9 @@ function flxc_render_reports() {
 	if ( ! flxc_reports_can_manage() ) {
 		wp_die( esc_html__( 'You do not have permission to access this page.', 'flx-chat' ) );
 	}
+	if ( function_exists( 'flxc_flux_screens_ready' ) && flxc_flux_screens_ready() && function_exists( 'flx_admin_screen_render' ) && flx_admin_screen_render() ) {
+		return;
+	}
 	$list  = flxc_reports();
 	$days  = array();
 	for ( $n = 1; $n <= 7; $n++ ) {

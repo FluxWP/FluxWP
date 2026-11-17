@@ -5823,3 +5823,891 @@ msgstr ""
 
 msgid "Cleared."
 msgstr ""
+
+msgid "Name shown in the panel."
+msgstr ""
+
+msgid "Accent color (hex)."
+msgstr ""
+
+msgid "Send read receipts when a chat is opened."
+msgstr ""
+
+msgid "Prefix agent replies with the agent name."
+msgstr ""
+
+msgid "Agents see only chats assigned to them or to nobody."
+msgstr ""
+
+msgid "Show WhatsApp group chats."
+msgstr ""
+
+msgid "Open the chat page in the React screen."
+msgstr ""
+
+msgid "Delete all chat data when the plugin is removed."
+msgstr ""
+
+msgid "Hours a message can be deleted for everyone."
+msgstr ""
+
+msgid "Seconds between chat refreshes, 3 to 60."
+msgstr ""
+
+msgid "Send a welcome message to new chats."
+msgstr ""
+
+msgid "Welcome message."
+msgstr ""
+
+msgid "Send an away message outside open hours."
+msgstr ""
+
+msgid "Away message."
+msgstr ""
+
+msgid "Open days, 1 (Monday) to 7 (Sunday)."
+msgstr ""
+
+msgid "Opening time, HH:MM."
+msgstr ""
+
+msgid "Closing time, HH:MM."
+msgstr ""
+
+msgid "Hours before the away message is sent to the same chat again."
+msgstr ""
+
+msgid "Agents can record donations."
+msgstr ""
+
+msgid "Agents can issue certificates."
+msgstr ""
+
+msgid "Show the quick action chips."
+msgstr ""
+
+msgid "Message for a donation awaiting payment."
+msgstr ""
+
+msgid "Message for a paid donation."
+msgstr ""
+
+msgid "Message sent with a receipt."
+msgstr ""
+
+msgid "Bank transfer text."
+msgstr ""
+
+msgid "AI provider."
+msgstr ""
+
+msgid "Model for suggestions."
+msgstr ""
+
+msgid "Model for the assistant."
+msgstr ""
+
+msgid "Model for images."
+msgstr ""
+
+msgid "Model for voice notes."
+msgstr ""
+
+msgid "Temperature, 0 to 1."
+msgstr ""
+
+msgid "Suggest a reply for each incoming message."
+msgstr ""
+
+msgid "Extra instructions for suggestions."
+msgstr ""
+
+msgid "The assistant answers chats."
+msgstr ""
+
+msgid "Which chats the assistant answers: all, away or unassigned."
+msgstr ""
+
+msgid "The assistant answers only the test numbers."
+msgstr ""
+
+msgid "Test numbers."
+msgstr ""
+
+msgid "Hours the assistant stays quiet after an agent replies."
+msgstr ""
+
+msgid "Assistant replies per chat per day."
+msgstr ""
+
+msgid "Quick donation amounts."
+msgstr ""
+
+msgid "Hours of history the assistant reads."
+msgstr ""
+
+msgid "Donation types the assistant offers. Empty is all open types."
+msgstr ""
+
+msgid "Read receipts with AI."
+msgstr ""
+
+msgid "Text under the price list."
+msgstr ""
+
+msgid "Bank account holder."
+msgstr ""
+
+msgid "Bank IBAN."
+msgstr ""
+
+msgid "Bank transfer description."
+msgstr ""
+
+msgid "Donation page address."
+msgstr ""
+
+msgid "Message after a payment."
+msgstr ""
+
+msgid "Message when a donation is cancelled."
+msgstr ""
+
+msgid "Message when the daily limit is reached."
+msgstr ""
+
+msgid "Message when a person takes over."
+msgstr ""
+
+msgid "Message when the assistant cannot answer."
+msgstr ""
+
+msgid "Seconds before the fallback message."
+msgstr ""
+
+msgid "Seconds an assistant turn may take."
+msgstr ""
+
+msgid "Numbers told when a person is needed."
+msgstr ""
+
+msgid "Words that hand the chat to a person."
+msgstr ""
+
+msgid "Extra assistant instructions."
+msgstr ""
+
+msgid "Message when a contact opts out."
+msgstr ""
+
+msgid "Summarize chats into contact memory."
+msgstr ""
+
+msgid "Hours of silence before a chat is summarized."
+msgstr ""
+
+msgid "Most background AI jobs at once."
+msgstr ""
+
+msgid "Background jobs kept free for live replies."
+msgstr ""
+
+msgid "Night window start, HH:MM."
+msgstr ""
+
+msgid "Night window end, HH:MM."
+msgstr ""
+
+msgid "The assistant reacts to messages."
+msgstr ""
+
+msgid "The assistant reads voice notes."
+msgstr ""
+
+msgid "Longest voice note in seconds."
+msgstr ""
+
+msgid "The assistant can show widgets."
+msgstr ""
+
+msgid "Tell the beneficiary about a certificate."
+msgstr ""
+
+msgid "Beneficiary certificate message."
+msgstr ""
+
+msgid "Send chat reminders."
+msgstr ""
+
+msgid "Reminder time, HH:MM."
+msgstr ""
+
+msgid "Most reminders per run."
+msgstr ""
+
+msgid "Staff mode."
+msgstr ""
+
+msgid "Tell staff about their referral donations."
+msgstr ""
+
+msgid "Message to a staff donor."
+msgstr ""
+
+msgid "Tell staff about referral certificates."
+msgstr ""
+
+msgid "Referral certificate message."
+msgstr ""
+
+msgid "Most certificates staff may issue at once."
+msgstr ""
+
+msgid "Verify the e-mail before records are shown."
+msgstr ""
+
+msgid "Minutes a verification code is valid."
+msgstr ""
+
+msgid "Wrong codes allowed."
+msgstr ""
+
+msgid "Channel for phone codes: auto, whatsapp or sms."
+msgstr ""
+
+msgid "Message after too many wrong codes."
+msgstr ""
+
+msgid "Verification message."
+msgstr ""
+
+msgid "The assistant searches the site."
+msgstr ""
+
+msgid "Post types the assistant may search."
+msgstr ""
+
+msgid "Addresses the assistant must not share."
+msgstr ""
+
+msgid "WhatsApp group that gets a copy of notifications."
+msgstr ""
+
+msgid "Copy notifications to the group."
+msgstr ""
+
+msgid "Send notifications to the group."
+msgstr ""
+
+msgid "A value and its label."
+msgstr ""
+
+msgid "Value."
+msgstr ""
+
+msgid "A WhatsApp line. The API key is never returned; hasApiKey says whether one is saved."
+msgstr ""
+
+msgid "Line id."
+msgstr ""
+
+msgid "own, flxi (Flux Mail) or flxs (Flux Certificates)."
+msgstr ""
+
+msgid "Selected source: own, flxi:<id> or flxs:<id>."
+msgstr ""
+
+msgid "Where the line details come from."
+msgstr ""
+
+msgid "Evolution API address."
+msgstr ""
+
+msgid "Instance name."
+msgstr ""
+
+msgid "An API key is saved."
+msgstr ""
+
+msgid "Last known state: open, connecting, close, missing or error. Empty when unknown."
+msgstr ""
+
+msgid "When the state was read."
+msgstr ""
+
+msgid "Last webhook received. Null when none yet."
+msgstr ""
+
+msgid "Source choices for this line."
+msgstr ""
+
+msgid "Color (hex)."
+msgstr ""
+
+msgid "AI use of this month."
+msgstr ""
+
+msgid "Month, YYYY-MM."
+msgstr ""
+
+msgid "Tokens."
+msgstr ""
+
+msgid "Cost in US dollars."
+msgstr ""
+
+msgid "Last problem copying a notification to the group."
+msgstr ""
+
+msgid "When."
+msgstr ""
+
+msgid "Message."
+msgstr ""
+
+msgid "An open Flux Donate type."
+msgstr ""
+
+msgid "Type id."
+msgstr ""
+
+msgid "A public post type the assistant may search."
+msgstr ""
+
+msgid "Searched by default."
+msgstr ""
+
+msgid "Flux Mail provides WhatsApp lines."
+msgstr ""
+
+msgid "Flux Mail connections page."
+msgstr ""
+
+msgid "Flux Certificates is active."
+msgstr ""
+
+msgid "Flux Donate is active."
+msgstr ""
+
+msgid "Flux Roles is active."
+msgstr ""
+
+msgid "Flux AI is active."
+msgstr ""
+
+msgid "The assistant model and key are ready."
+msgstr ""
+
+msgid "Why the assistant cannot reply. Empty when fine."
+msgstr ""
+
+msgid "Flux AI settings page."
+msgstr ""
+
+msgid "Assistant page."
+msgstr ""
+
+msgid "Chats page."
+msgstr ""
+
+msgid "New user page."
+msgstr ""
+
+msgid "The widget renderer works."
+msgstr ""
+
+msgid "Flux AI can render widgets."
+msgstr ""
+
+msgid "Site time zone."
+msgstr ""
+
+msgid "It is open hours now."
+msgstr ""
+
+msgid "Price list as the assistant sends it."
+msgstr ""
+
+msgid "Built-in text."
+msgstr ""
+
+msgid "Built-in value."
+msgstr ""
+
+msgid "Built-in words."
+msgstr ""
+
+msgid "People who can be assigned a chat."
+msgstr ""
+
+msgid "AI providers that are ready."
+msgstr ""
+
+msgid "AI use this month. Null when none."
+msgstr ""
+
+msgid "Source for a new line."
+msgstr ""
+
+msgid "Source choices for a new line."
+msgstr ""
+
+msgid "Open donation types."
+msgstr ""
+
+msgid "Public post types."
+msgstr ""
+
+msgid "Last copy problem. Null when none."
+msgstr ""
+
+msgid "An AI provider."
+msgstr ""
+
+msgid "What the settings screen needs to explain itself: what is installed, defaults and choices. Nothing secret."
+msgstr ""
+
+msgid "WhatsApp lines. No keys."
+msgstr ""
+
+msgid "Chat labels."
+msgstr ""
+
+msgid "Installed packages, defaults and choices."
+msgstr ""
+
+msgid "Flux Chat settings. The webhook address and every API key are left out; see flxChatWebhookUrlReveal."
+msgstr ""
+
+msgid "One line of the system check."
+msgstr ""
+
+msgid "Group."
+msgstr ""
+
+msgid "What is checked."
+msgstr ""
+
+msgid "ok, warning, error or info."
+msgstr ""
+
+msgid "Result."
+msgstr ""
+
+msgid "Settings tab that fixes it. Empty when none."
+msgstr ""
+
+msgid "Where to fix it. Empty when none."
+msgstr ""
+
+msgid "Fix link text."
+msgstr ""
+
+msgid "System check of Flux Chat."
+msgstr ""
+
+msgid "Errors."
+msgstr ""
+
+msgid "Warnings."
+msgstr ""
+
+msgid "Passed."
+msgstr ""
+
+msgid "Lines."
+msgstr ""
+
+msgid "A WhatsApp group."
+msgstr ""
+
+msgid "Group id."
+msgstr ""
+
+msgid "Group name."
+msgstr ""
+
+msgid "A model of the Flux AI catalog."
+msgstr ""
+
+msgid "Model id."
+msgstr ""
+
+msgid "Family."
+msgstr ""
+
+msgid "Provider."
+msgstr ""
+
+msgid "Context size in tokens."
+msgstr ""
+
+msgid "US dollars per million input tokens."
+msgstr ""
+
+msgid "US dollars per million output tokens."
+msgstr ""
+
+msgid "Calls tools."
+msgstr ""
+
+msgid "Reads images."
+msgstr ""
+
+msgid "A page of the model catalog."
+msgstr ""
+
+msgid "Models, at most 50."
+msgstr ""
+
+msgid "Models that match."
+msgstr ""
+
+msgid "Providers that are ready."
+msgstr ""
+
+msgid "Result of a line check. The webhook address has its key hidden."
+msgstr ""
+
+msgid "The server answered."
+msgstr ""
+
+msgid "Connection state."
+msgstr ""
+
+msgid "Error. Empty when none."
+msgstr ""
+
+msgid "Messages on the server. -1 when unknown."
+msgstr ""
+
+msgid "The server sends to this site."
+msgstr ""
+
+msgid "Address the server sends to, key hidden."
+msgstr ""
+
+msgid "Server version."
+msgstr ""
+
+msgid "A scheduled WhatsApp report."
+msgstr ""
+
+msgid "Rule id."
+msgstr ""
+
+msgid "Scheduled."
+msgstr ""
+
+msgid "Who gets it."
+msgstr ""
+
+msgid "Selected people when the audience is USERS."
+msgstr ""
+
+msgid "What it says."
+msgstr ""
+
+msgid "Period covered."
+msgstr ""
+
+msgid "How often."
+msgstr ""
+
+msgid "Day of week, 1 Monday to 7 Sunday."
+msgstr ""
+
+msgid "Day of month, 1 to 28."
+msgstr ""
+
+msgid "Send time, HH:MM, site time zone."
+msgstr ""
+
+msgid "Closing lines, one per line."
+msgstr ""
+
+msgid "People with a number and permission."
+msgstr ""
+
+msgid "Day of the last complete send. Null when never."
+msgstr ""
+
+msgid "A person a report can be sent to."
+msgstr ""
+
+msgid "A WhatsApp number is saved on the profile."
+msgstr ""
+
+msgid "A weekday."
+msgstr ""
+
+msgid "1 Monday to 7 Sunday."
+msgstr ""
+
+msgid "Name in the site language."
+msgstr ""
+
+msgid "The reports screen."
+msgstr ""
+
+msgid "Flux Roles and Flux Donate are active, so reports can be sent."
+msgstr ""
+
+msgid "Weekdays."
+msgstr ""
+
+msgid "People who can receive or view reports, at most 300."
+msgstr ""
+
+msgid "Rules."
+msgstr ""
+
+msgid "Delivery state of scheduled reports. Reading it sends nothing."
+msgstr ""
+
+msgid "Reports can be sent."
+msgstr ""
+
+msgid "A report is waiting to be sent."
+msgstr ""
+
+msgid "A send is running."
+msgstr ""
+
+msgid "Next scheduled run. Null when none."
+msgstr ""
+
+msgid "Last problem reaching the background request. Empty when none."
+msgstr ""
+
+msgid "When that problem happened."
+msgstr ""
+
+msgid "Who gets a report."
+msgstr ""
+
+msgid "Everyone who can receive reports."
+msgstr ""
+
+msgid "Those who can see the overall report."
+msgstr ""
+
+msgid "Selected people."
+msgstr ""
+
+msgid "What a report says."
+msgstr ""
+
+msgid "The person's own donations."
+msgstr ""
+
+msgid "Overall totals and per staff."
+msgstr ""
+
+msgid "Period a report covers."
+msgstr ""
+
+msgid "Last 7 days."
+msgstr ""
+
+msgid "This month."
+msgstr ""
+
+msgid "How often a report goes out."
+msgstr ""
+
+msgid "Who a manual send goes to."
+msgstr ""
+
+msgid "Only the viewer."
+msgstr ""
+
+msgid "Every recipient, at most 25 per call."
+msgstr ""
+
+msgid "A label. A blank id makes one from the name."
+msgstr ""
+
+msgid "Name. A blank name drops the label."
+msgstr ""
+
+msgid "A line to keep. Lines left out of the list are removed. The API key is write-only: empty keeps the saved one, \"__clear__\" removes it."
+msgstr ""
+
+msgid "Line id. Blank adds a new line."
+msgstr ""
+
+msgid "Remove this line."
+msgstr ""
+
+msgid "own, flxi:<id> or flxs:<id>."
+msgstr ""
+
+msgid "API key. Write-only."
+msgstr ""
+
+msgid "Make a new webhook key."
+msgstr ""
+
+msgid "The editable fields of a report rule."
+msgstr ""
+
+msgid "Period."
+msgstr ""
+
+msgid "Day of week."
+msgstr ""
+
+msgid "Day of month."
+msgstr ""
+
+msgid "HH:MM."
+msgstr ""
+
+msgid "Closing lines."
+msgstr ""
+
+msgid "Settings. No API key and no webhook address."
+msgstr ""
+
+msgid "The labels to keep. Replaces the list."
+msgstr ""
+
+msgid "The lines to keep. Replaces the list."
+msgstr ""
+
+msgid "Save the fields that are sent; the rest keep their value. Values are limited and cleaned exactly as the classic settings page does."
+msgstr ""
+
+msgid "Settings after the save."
+msgstr ""
+
+msgid "The address Evolution API must send to. It carries the line's secret key, so only a manager gets it and it is never cached or listed with the settings."
+msgstr ""
+
+msgid "Make a new key first. The old address stops working."
+msgstr ""
+
+msgid "Webhook address."
+msgstr ""
+
+msgid "Ask the server for the line state, its webhook and message count."
+msgstr ""
+
+msgid "Point the server's webhook at this site."
+msgstr ""
+
+msgid "The server accepted it."
+msgstr ""
+
+msgid "Ask for a pairing QR code. A line that is already open says so."
+msgstr ""
+
+msgid "QR image as base64. Empty when none."
+msgstr ""
+
+msgid "Pairing code. Empty when none."
+msgstr ""
+
+msgid "Line state."
+msgstr ""
+
+msgid "Bring in the latest chats and their recent messages from the server."
+msgstr ""
+
+msgid "How many chats, 1 to 200. 30 when omitted."
+msgstr ""
+
+msgid "The import ran."
+msgstr ""
+
+msgid "Chats brought in."
+msgstr ""
+
+msgid "Messages brought in."
+msgstr ""
+
+msgid "The system check table. Read only."
+msgstr ""
+
+msgid "WhatsApp groups of the notification line. refresh asks the server again."
+msgstr ""
+
+msgid "Ask the server instead of the cache."
+msgstr ""
+
+msgid "Models of the Flux AI catalog, matching search, at most 50 per call. Models in ids are always included."
+msgstr ""
+
+msgid "Text in the id or name."
+msgstr ""
+
+msgid "Only this provider."
+msgstr ""
+
+msgid "Models to include whatever the search says (the selected ones)."
+msgstr ""
+
+msgid "Only models that call tools."
+msgstr ""
+
+msgid "Only models that read images."
+msgstr ""
+
+msgid "Ask the providers instead of the cache."
+msgstr ""
+
+msgid "Send one short test message to the configured model. It spends a few tokens."
+msgstr ""
+
+msgid "The model's answer."
+msgstr ""
+
+msgid "Milliseconds it took."
+msgstr ""
+
+msgid "Report rules and the people they can reach."
+msgstr ""
+
+msgid "The text of a report as the viewer would get it. Sends nothing."
+msgstr ""
+
+msgid "Report not found."
+msgstr ""
+
+msgid "Whether a report is due, running or waiting for the background request. Sends nothing."
+msgstr ""
+
+msgid "Save the report rules that are sent. Rules not in the list keep their value."
+msgstr ""
+
+msgid "Reports after the save."
+msgstr ""
+
+msgid "Add an inactive report rule."
+msgstr ""
+
+msgid "The new rule."
+msgstr ""
+
+msgid "Reports after the change."
+msgstr ""
+
+msgid "Delete a report rule."
+msgstr ""
+
+msgid "Send a report now: a test to the viewer, or to every recipient (at most 25 per call)."
+msgstr ""
+
+msgid "Messages sent. Null when the request was refused."
+msgstr ""
+
+msgid "Run the report schedule now on the background request (the same one chat jobs use). Reports that are not due are not sent."
+msgstr ""
+
+msgid "The background request was accepted."
+msgstr ""
+
+msgid "State after the request."
+msgstr ""

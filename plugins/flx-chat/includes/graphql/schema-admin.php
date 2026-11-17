@@ -819,6 +819,8 @@ flx_gql_query(
 			'search'   => array( 'type' => 'String', 'description' => __( 'Text in the id or name.', 'flx-chat' ) ),
 			'provider' => array( 'type' => 'String', 'description' => __( 'Only this provider.', 'flx-chat' ) ),
 			'ids'      => array( 'type' => '[String!]', 'description' => __( 'Models to include whatever the search says (the selected ones).', 'flx-chat' ) ),
+			'tools'    => array( 'type' => 'Boolean', 'description' => __( 'Only models that call tools.', 'flx-chat' ) ),
+			'vision'   => array( 'type' => 'Boolean', 'description' => __( 'Only models that read images.', 'flx-chat' ) ),
 			'first'    => array( 'type' => 'Int', 'description' => __( 'Page size, at most 50.', 'flx-chat' ) ),
 			'fresh'    => array( 'type' => 'Boolean', 'description' => __( 'Ask the providers instead of the cache.', 'flx-chat' ) ),
 		),
@@ -844,6 +846,12 @@ flx_gql_query(
 					continue;
 				}
 				if ( '' !== $prov && FLXC_Val::str( $m['provider'] ?? '' ) !== $prov ) {
+					continue;
+				}
+				if ( ! empty( $args['tools'] ) && empty( $m['tools'] ) ) {
+					continue;
+				}
+				if ( ! empty( $args['vision'] ) && empty( $m['vision'] ) ) {
 					continue;
 				}
 				if ( '' !== $search && false === strpos( strtolower( $id . ' ' . FLXC_Val::str( $m['name'] ?? '' ) ), $search ) ) {
