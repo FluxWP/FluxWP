@@ -1,7 +1,7 @@
 // Flux AI › Chat: chat list, conversation, approvals and the message box. Turns run on the chat REST protocol
 // (send → step stream → approval → step …), the same one the floating chat and the FluxWP app use.
 import { useQueryClient } from '@tanstack/react-query';
-import { PanelLeft, SquarePen } from 'lucide-react';
+import { FolderOpen, PanelLeft, SquarePen } from 'lucide-react';
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Modal } from '@fluxwp/ui';
 import { useHost } from '../../host';
@@ -11,6 +11,7 @@ import { Composer, type PendingFile } from './Composer';
 import { Body } from './Messages';
 import { ModelPicker } from './ModelPicker';
 import { Sidebar } from './Sidebar';
+import { Workspace, type WsFocus, type WsTab } from './Workspace';
 import './chat.css';
 import { ChatError, type Boot, type ChatData, type Command, type Decisions, type LiveEvent, type Msg, type Pending, type StepResult } from './types';
 
@@ -38,6 +39,25 @@ export function ChatScreen() {
   const [newModel, setNewModel] = useState('');
   const [models, setModels] = useState(false);
   const [sideOpen, setSideOpen] = useState(true);
+  const [wsOpen, setWsOpenState] = useState<boolean>(() => {
+    try {
+      const v = window.localStorage.getItem('flxai-ws');
+      return v === null ? window.innerWidth >= 1280 : v === '1';
+    } catch {
+      return false;
+    }
+  });
+  const [wsTab, setWsTab] = useState<WsTab>('files');
+  const [wsFocus, setWsFocus] = useState<WsFocus>({ n: 0 });
+  const [wsReload, setWsReload] = useState(0);
+  const setWsOpen = (v: boolean) => {
+    setWsOpenState(v);
+    try {
+      window.localStorage.setItem('flxai-ws', v ? '1' : '0');
+    } catch {
+      /* private mode */
+    }
+  };
   const [asking, setAsking] = useState<string | null>(null);
   const [modelLabels, setModelLabels] = useState<Record<string, string>>({});
 
@@ -361,18 +381,23 @@ export function ChatScreen() {
         window.setTimeout(() => searchRef.current?.focus(), 0);
       } else if (a === 'attach') filePicker.current?.();
       else if (a === 'model' && boot?.canManage) setModels(true);
-      else if (a !== 'ws') window.dispatchEvent(new CustomEvent('flxai:command', { detail: c }));
+      else if (a === 'ws') setWsOpen(!wsOpen);
+      else window.dispatchEvent(new CustomEvent('flxai:command', { detail: c }));
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [boot?.canManage, running],
+    [boot?.canManage, running, wsOpen],
   );
+
+  useEffect(() => {
+    if (!running) setWsReload((n) => n + 1);
+  }, [running, chat?.id]);
 
   const curModel = chat?.model || (!chat ? newModel : '');
   const modelLabel = curModel ? modelLabels[curModel] || curModel : boot?.modelLabel || '';
   const settingsUrl = `${host.adminUrl ?? ''}admin.php?page=flx-ai-settings`;
 
   return (
-    <div className={'flxai-chatpage' + (sideOpen ? ' has-side' : '')}>
+    <div className={'flxai-chatpage' + (sideOpen ? ' has-side' : '') + (wsOpen ? ' has-ws' : '')}>
       {sideOpen && (
         <Sidebar
           current={chat?.id ?? 0}
@@ -394,6 +419,9 @@ export function ChatScreen() {
           <h2>{chat?.title || t('New chat')}</h2>
           <button type="button" className="flxai-ibtn" disabled={running} title={t('New chat')} aria-label={t('New chat')} onClick={newChat}>
             <SquarePen size={16} />
+          </button>
+          <button type="button" className="flxai-ibtn" aria-pressed={wsOpen} title={t('Workspace')} aria-label={t('Workspace')} onClick={() => setWsOpen(!wsOpen)}>
+            <FolderOpen size={16} />
           </button>
         </header>
         <div ref={bodyEl} className="flxai-chatbody">
@@ -427,6 +455,14 @@ export function ChatScreen() {
             onEditSend={editSend}
             onRewind={(id) => setAsking(id)}
             onSuggest={(s) => void send(s)}
+            onChange={(id) => {
+              setWsOpen(true);
+              setWsFocus((f) => ({ change: id, n: f.n + 1 }));
+            }}
+            onReport={(path) => {
+              setWsOpen(true);
+              setWsFocus((f) => ({ report: path, n: f.n + 1 }));
+            }}
           />
         </div>
         {boot && !boot.ready && (
@@ -454,6 +490,9 @@ export function ChatScreen() {
           openFilePicker={filePicker}
         />
       </section>
+      {wsOpen && (
+        <Workspace api={api} boot={boot} chatId={chat?.id ?? 0} tab={wsTab} setTab={setWsTab} focus={wsFocus} reloadKey={wsReload} rest={host.mode === 'wp'} onClose={() => setWsOpen(false)} onDecided={() => chat && void loadChat(chat.id, true)} />
+      )}
       {models && <ModelPicker api={api} current={curModel} defaultLabel={boot?.modelLabel ?? ''} onPick={(id) => void pickModel(id)} onClose={() => setModels(false)} />}
       {asking && (
         <Modal title={t('Go back to this point')} onClose={() => setAsking(null)}>

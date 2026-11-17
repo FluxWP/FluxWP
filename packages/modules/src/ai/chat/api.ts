@@ -2,7 +2,7 @@
 import { useMemo } from 'react';
 import { ApiError } from '@fluxwp/core';
 import { useHost } from '../../host';
-import { ChatError, type Boot, type ChatData, type LiveEvent, type ModelInfo, type StepResult } from './types';
+import { ChatError, type Boot, type Change, type ChatData, type DecideResult, type LiveEvent, type ModelInfo, type StepResult, type WsFile, type WsItem, type WsState } from './types';
 
 const NS = 'flx-ai/v1/';
 
@@ -94,6 +94,13 @@ export function useChatApi(netText: string) {
           throw wrap(e, netText);
         }
       },
+      ws: (id: number) => call<WsState>(`chats/${id}/ws`),
+      wsSettings: (id: number, access: string, folders: string) => call<WsState>(`chats/${id}/ws`, { method: 'POST', body: { access, folders } }),
+      wsList: (id: number, path: string) => call<{ path: string; items: WsItem[] }>(`chats/${id}/ws/list`, { query: { path } }),
+      wsFile: (id: number, path: string) => call<WsFile>(`chats/${id}/ws/file`, { query: { path } }),
+      wsSave: (id: number, path: string, content: string) => call<{ path: string; content: string }>(`chats/${id}/ws/save`, { method: 'POST', body: { path, content } }),
+      change: (cid: number) => call<Change>(`changes/${cid}`),
+      decideChange: (cid: number, merge: boolean, path?: string) => call<DecideResult>(`changes/${cid}/${merge ? 'merge' : 'reject'}`, { method: 'POST', body: path ? { paths: [path] } : {} }),
       file: async (key: string): Promise<Blob> => {
         try {
           return await c<Blob>(NS + 'files/' + encodeURIComponent(key), { as: 'blob' });
