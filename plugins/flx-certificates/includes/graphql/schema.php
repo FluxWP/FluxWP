@@ -99,11 +99,46 @@ final class FLXS_Person_Loader extends FLXGQL_Loader {
 	}
 }
 
+/**
+ * Message counts per channel for a page of certificates, in one query. Not a Node: the key
+ * 'FlxCertificateDeliveries' only names the loader.
+ */
+final class FLXS_Delivery_Loader extends FLXGQL_Loader {
+
+	/**
+	 * @param array<int,int> $ids Certificate ids.
+	 * An empty list is falsy and a loader would load it again, so each entry wraps the rows.
+	 *
+	 * @return array<int,array{rows:list<array{channel:string,sent:int,failed:int,waiting:int}>}>
+	 */
+	protected function fetch( array $ids ): array {
+		$all = FLXS_Certificate_Service::deliveries( $ids );
+		$out = array();
+		foreach ( $ids as $id ) {
+			$rows = array();
+			foreach ( $all[ $id ] ?? array() as $ch => $st ) {
+				$rows[] = array(
+					'channel' => FLXS_Val::str( $ch ),
+					'sent'    => FLXS_Val::int(( $st['sent'] ?? 0 )),
+					'failed'  => FLXS_Val::int(( $st['failed'] ?? 0 )),
+					'waiting' => FLXS_Val::int(( $st['queued'] ?? 0 )) + FLXS_Val::int(( $st['processing'] ?? 0 )),
+				);
+			}
+			$out[ $id ] = array( 'rows' => $rows );
+		}
+		return $out;
+	}
+}
+
+// A Node type names its loader through flx_gql_type( 'node' => … ). This one has no type, so it is named here.
+flx_gql_node_loader( 'FlxCertificateDeliveries', FLXS_Delivery_Loader::class );
+
 add_action(
 	'flx_gql_loaders',
 	static function (): void {
 		flx_gql_node_loader( 'FlxCertificate', FLXS_Certificate_Loader::class );
 		flx_gql_node_loader( 'FlxCertificatePerson', FLXS_Person_Loader::class );
+		flx_gql_node_loader( 'FlxCertificateDeliveries', FLXS_Delivery_Loader::class );
 	}
 );
 
@@ -383,19 +418,13 @@ flx_gql_type(
 			),
 			'deliveries'   => array(
 				'type' => '[FlxCertificateDelivery!]!', 'description' => __( 'Messages grouped by channel.', 'flx-certificates' ),
-				'resolve' => static function ( $s ): array {
-					$id  = flxs_gql_cert( $s )->gql_id();
-					$all = FLXS_Certificate_Service::deliveries( array( $id ) );
-					$out = array();
-					foreach ( $all[ $id ] ?? array() as $ch => $st ) {
-						$out[] = array(
-							'channel' => FLXS_Val::str($ch),
-							'sent'    => FLXS_Val::int(( $st['sent'] ?? 0 )),
-							'failed'  => FLXS_Val::int(( $st['failed'] ?? 0 )),
-							'waiting' => FLXS_Val::int(( $st['queued'] ?? 0 )) + FLXS_Val::int(( $st['processing'] ?? 0 )),
-						);
-					}
-					return $out;
+				'resolve' => static function ( $s, array $args, \WPGraphQL\AppContext $context ) {
+					unset( $args );
+					$id = flxs_gql_cert( $s )->gql_id();
+					// One query per page: every certificate asks the loader, the loader asks the service once.
+					return $context->get_loader( 'FlxCertificateDeliveries' )->load_deferred( $id )->then(
+						static fn( $entry ): array => is_array( $entry ) && is_array( $entry['rows'] ?? null ) ? $entry['rows'] : array()
+					);
 				},
 			),
 		),
