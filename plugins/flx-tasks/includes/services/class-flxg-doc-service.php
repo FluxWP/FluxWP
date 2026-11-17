@@ -83,7 +83,7 @@ final class FLXG_Doc_Service {
 			global $wpdb;
 			/** @var \wpdb $wpdb */
 			$out  = array();
-			$rows = $wpdb->get_results( $wpdb->prepare( 'SELECT user_id, role FROM ' . self::t( 'doc_page_members' ) . ' WHERE page_id = %d', $page_id ), ARRAY_A ); // phpcs:ignore
+			$rows = $wpdb->get_results( $wpdb->prepare( 'SELECT user_id, role FROM %i WHERE page_id = %d', self::t( 'doc_page_members' ), $page_id ), ARRAY_A ); // phpcs:ignore
 			foreach ( is_array( $rows ) ? $rows : array() as $r ) {
 				$r = FLXG_Val::arr( $r );
 				$out[ FLXG_Val::int( $r, 'user_id' ) ] = FLXG_Val::str( $r, 'role' );
@@ -353,14 +353,14 @@ final class FLXG_Doc_Service {
 	private static function row( int $id ): ?array {
 		global $wpdb;
 		/** @var \wpdb $wpdb */
-		$r = $wpdb->get_row( $wpdb->prepare( 'SELECT * FROM ' . self::t( 'doc_comments' ) . ' WHERE id = %d', $id ), ARRAY_A ); // phpcs:ignore
+		$r = $wpdb->get_row( $wpdb->prepare( 'SELECT * FROM %i WHERE id = %d', self::t( 'doc_comments' ), $id ), ARRAY_A ); // phpcs:ignore
 		return is_array( $r ) ? $r : null;
 	}
 
 	private static function bump( int $page_id ): void {
 		global $wpdb;
 		/** @var \wpdb $wpdb */
-		$wpdb->query( $wpdb->prepare( 'UPDATE ' . self::t( 'doc_pages' ) . ' SET cm_rev = cm_rev + 1 WHERE id = %d', $page_id ) ); // phpcs:ignore
+		$wpdb->query( (string) $wpdb->prepare( 'UPDATE %i SET cm_rev = cm_rev + 1 WHERE id = %d', self::t( 'doc_pages' ), $page_id ) ); // phpcs:ignore
 		self::flush( $page_id );
 	}
 
@@ -382,7 +382,7 @@ final class FLXG_Doc_Service {
 		if ( '' === $role ) {
 			return self::err( 'flxg_404', __( 'Page not found or you have no access.', 'flx-tasks' ), 404 );
 		}
-		$rows = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM ' . self::t( 'doc_comments' ) . ' WHERE page_id = %d ORDER BY parent_id > 0, id LIMIT 2000', $page_id ), ARRAY_A ); // phpcs:ignore
+		$rows = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM %i WHERE page_id = %d ORDER BY parent_id > 0, id LIMIT 2000', self::t( 'doc_comments' ), $page_id ), ARRAY_A ); // phpcs:ignore
 		$out  = array();
 		foreach ( is_array( $rows ) ? $rows : array() as $r ) {
 			$out[] = self::out( FLXG_Val::arr( $r ), $role, $uid );
@@ -518,7 +518,7 @@ final class FLXG_Doc_Service {
 		$page   = FLXG_Val::int( $r, 'page_id' );
 		$parent = FLXG_Val::int( $r, 'parent_id' );
 		if ( ! $parent ) {
-			$replies = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $t WHERE parent_id = %d", $id ) ); // phpcs:ignore
+			$replies = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM %i WHERE parent_id = %d', $t, $id ) ); // phpcs:ignore
 			if ( $replies ) {
 				$wpdb->update( $t, array( 'deleted' => 1, 'body' => '' ), array( 'id' => $id ) );
 			} else {
@@ -527,7 +527,7 @@ final class FLXG_Doc_Service {
 		} else {
 			$wpdb->delete( $t, array( 'id' => $id ) );
 			$root = self::row( $parent );
-			if ( $root && FLXG_Val::int( $root, 'deleted' ) && ! (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $t WHERE parent_id = %d", $parent ) ) ) { // phpcs:ignore
+			if ( $root && FLXG_Val::int( $root, 'deleted' ) && ! (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM %i WHERE parent_id = %d', $t, $parent ) ) ) { // phpcs:ignore
 				$wpdb->delete( $t, array( 'id' => $parent ) );
 			}
 		}
