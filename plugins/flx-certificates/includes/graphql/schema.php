@@ -895,6 +895,9 @@ flx_gql_query(
 			unset( $s );
 			$id    = flx_gql_int( $args['certificateId'] ?? 0 );
 			$edit  = $id ? flxs_get_certificate( $id ) : null;
+			if ( ! is_array( $edit ) || ! flxs_can_see_certificate( $edit ) ) {
+				$edit = null; // A certificate outside the viewer's records adds nothing to the lists.
+			}
 			$tpls  = array();
 			$seen  = array();
 			foreach ( flxs_list_templates( true ) as $t ) {
