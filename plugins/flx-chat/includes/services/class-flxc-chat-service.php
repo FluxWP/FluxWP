@@ -73,12 +73,12 @@ final class FLXC_Chat_Service {
 	public static function chats( WP_REST_Request $req ): array {
 		$rows = self::query_rows(
 			array(
-				'filter'  => sanitize_key( FLXC_Val::str($req->get_param( 'filter' )) ),
-				'q'       => sanitize_text_field( FLXC_Val::str($req->get_param( 'q' )) ),
-				'label'   => sanitize_key( FLXC_Val::str($req->get_param( 'label' )) ),
-				'channel' => sanitize_key( FLXC_Val::str($req->get_param( 'channel' )) ),
-				'offset'  => max( 0, FLXC_Val::int($req->get_param( 'offset' )) ),
-				'limit'   => min( 100, max( 10, FLXC_Val::int(( $req->get_param( 'limit' ) ? $req->get_param( 'limit' ) : 50 )) ) ),
+				'filter'  => sanitize_key( FLXC_Val::raw_str( $req->get_param( 'filter' ) ) ),
+				'q'       => sanitize_text_field( FLXC_Val::raw_str( $req->get_param( 'q' ) ) ),
+				'label'   => sanitize_key( FLXC_Val::raw_str( $req->get_param( 'label' ) ) ),
+				'channel' => sanitize_key( FLXC_Val::raw_str( $req->get_param( 'channel' ) ) ),
+				'offset'  => max( 0, FLXC_Val::raw_int( $req->get_param( 'offset' ) ) ),
+				'limit'   => min( 100, max( 10, FLXC_Val::raw_int( ( $req->get_param( 'limit' ) ? $req->get_param( 'limit' ) : 50 ) ) ) ),
 			)
 		);
 		return array( 'chats' => flxc_chats_for_js( $rows ) );
@@ -129,14 +129,16 @@ final class FLXC_Chat_Service {
 	}
 
 	/**
+	 * @param bool $viewer_only GraphQL: refuse (before any change) when the number already has a chat the
+	 *                          viewer may not see. REST keeps the classic behaviour.
 	 * @return array<string,mixed>|WP_Error
 	 */
-	public static function create( WP_REST_Request $req ) {
-		$phone = flxc_normalize_phone( FLXC_Val::str($req->get_param( 'phone' )) );
+	public static function create( WP_REST_Request $req, bool $viewer_only = false ) {
+		$phone = flxc_normalize_phone( FLXC_Val::raw_str( $req->get_param( 'phone' ) ) );
 		if ( ! $phone ) {
 			return new WP_Error( 'flxc_phone', __( 'Invalid phone number.', 'flx-chat' ), array( 'status' => 400 ) );
 		}
-		$conn_id = sanitize_key( FLXC_Val::str($req->get_param( 'conn' )) );
+		$conn_id = sanitize_key( FLXC_Val::raw_str( $req->get_param( 'conn' ) ) );
 		$conn    = $conn_id ? flxc_get_connection( $conn_id ) : flxc_default_connection();
 		if ( ! is_array( $conn ) ) {
 			return new WP_Error( 'flxc_conn', __( 'First add a WhatsApp connection under Settings › Connections.', 'flx-chat' ), array( 'status' => 400 ) );
@@ -162,7 +164,10 @@ final class FLXC_Chat_Service {
 		if ( ! is_array( $chat ) ) {
 			return new WP_Error( 'flxc_chat', __( 'The chat could not be opened.', 'flx-chat' ), array( 'status' => 400 ) );
 		}
-		$name = sanitize_text_field( FLXC_Val::str($req->get_param( 'name' )) );
+		if ( $viewer_only && null === self::visible( FLXC_Val::int( $chat['id'] ?? 0 ) ) ) {
+			return new WP_Error( 'flxc_not_found', __( 'Chat not found.', 'flx-chat' ), array( 'status' => 404 ) );
+		}
+		$name = sanitize_text_field( FLXC_Val::raw_str( $req->get_param( 'name' ) ) );
 		if ( $name && $name !== FLXC_Val::str( $chat['name'] ?? '' ) ) {
 			flxc_update_chat( $chat['id'] ?? 0, array( 'name' => $name ) );
 		}
@@ -177,11 +182,11 @@ final class FLXC_Chat_Service {
 	 * @return array<string,mixed>
 	 */
 	public static function check_number( WP_REST_Request $req ): array {
-		$phone = flxc_normalize_phone( FLXC_Val::str($req->get_param( 'phone' )) );
+		$phone = flxc_normalize_phone( FLXC_Val::raw_str( $req->get_param( 'phone' ) ) );
 		if ( ! $phone ) {
 			return array( 'valid' => false );
 		}
-		$conn   = flxc_get_connection( sanitize_key( FLXC_Val::str($req->get_param( 'conn' )) ) );
+		$conn   = flxc_get_connection( sanitize_key( FLXC_Val::raw_str( $req->get_param( 'conn' ) ) ) );
 		$conn   = is_array( $conn ) ? $conn : flxc_default_connection();
 		$exists = null;
 		if ( is_array( $conn ) ) {
@@ -253,13 +258,9 @@ final class FLXC_Chat_Service {
 			$where[] = 'rev > %d';
 			$prm[]   = $since;
 		}
-		if ( ! flxc_setting( 'show_groups' ) ) {
-			$where[] = "jid NOT LIKE '%@g.us'";
-		}
-		if ( flxc_setting( 'restrict_agents' ) && ! flxc_can_manage() ) {
-			$where[] = '(assigned_to = 0 OR assigned_to = %d)';
-			$prm[]   = get_current_user_id();
-		}
+		$scope = flxc_chat_scope_sql();
+		$where = array_merge( $where, $scope['where'] );
+		$prm   = array_merge( $prm, $scope['prm'] );
 		$prm[] = max( 1, $limit );
 		$sql   = 'SELECT * FROM ' . flxc_table( 'chats' ) . ' WHERE ' . implode( ' AND ', $where ) . ' ORDER BY rev ASC, id ASC LIMIT %d';
 		$rows = $wpdb->get_results( $wpdb->prepare( $sql, $prm ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared // @phpstan-ignore argument.type
@@ -285,23 +286,22 @@ final class FLXC_Chat_Service {
 		}
 		$upd = array();
 		if ( null !== $req->get_param( 'name' ) ) {
-			$upd['name'] = mb_substr( sanitize_text_field( FLXC_Val::str($req->get_param( 'name' )) ), 0, 190 );
+			$upd['name'] = mb_substr( sanitize_text_field( FLXC_Val::raw_str( $req->get_param( 'name' ) ) ), 0, 190 );
 		}
 		if ( null !== $req->get_param( 'notes' ) ) {
-			$upd['notes'] = sanitize_textarea_field( FLXC_Val::str($req->get_param( 'notes' )) );
+			$upd['notes'] = sanitize_textarea_field( FLXC_Val::raw_str( $req->get_param( 'notes' ) ) );
 		}
 		if ( null !== $req->get_param( 'labels' ) ) {
 			$valid = array();
 			foreach ( flxc_labels_for_js() as $lab ) {
 				$valid[] = FLXC_Val::str( $lab['id'] ?? '' );
 			}
-			$picked = $req->get_param( 'labels' );
-			$picked = is_array( $picked ) ? $picked : array();
+			$picked = FLXC_Val::raw_arr( $req->get_param( 'labels' ) );
 			$ls     = array_values( array_intersect( array_map( static fn( $v ): string => sanitize_key( FLXC_Val::str( $v ) ), $picked ), $valid ) );
 			$upd['labels'] = implode( ',', $ls );
 		}
 		if ( null !== $req->get_param( 'status' ) ) {
-			$st = sanitize_key( FLXC_Val::str($req->get_param( 'status' )) );
+			$st = sanitize_key( FLXC_Val::raw_str( $req->get_param( 'status' ) ) );
 			if ( in_array( $st, array( 'open', 'closed' ), true ) ) {
 				$upd['status'] = $st;
 				if ( 'closed' === $st ) {
@@ -310,7 +310,7 @@ final class FLXC_Chat_Service {
 			}
 		}
 		if ( null !== $req->get_param( 'assigned' ) ) {
-			$a = FLXC_Val::int($req->get_param( 'assigned' ));
+			$a = FLXC_Val::raw_int( $req->get_param( 'assigned' ) );
 			if ( 0 === $a || in_array( $a, wp_list_pluck( flxc_agents(), 'id' ), true ) ) {
 				$upd['assigned_to'] = $a;
 			}
@@ -319,13 +319,13 @@ final class FLXC_Chat_Service {
 			$upd['pinned'] = $req->get_param( 'pinned' ) ? 1 : 0;
 		}
 		if ( null !== $req->get_param( 'unread' ) ) {
-			$upd['unread'] = max( 0, FLXC_Val::int($req->get_param( 'unread' )) );
+			$upd['unread'] = max( 0, FLXC_Val::raw_int( $req->get_param( 'unread' ) ) );
 		}
 		if ( null !== $req->get_param( 'staff_user' ) && function_exists( 'flxc_staff_link_chat' ) ) {
 			if ( ! flxc_can_manage() ) {
 				return new WP_Error( 'flxc_forbidden', __( 'You do not have permission for this action.', 'flx-chat' ), array( 'status' => 403 ) );
 			}
-			$r = flxc_staff_link_chat( $chat, FLXC_Val::int($req->get_param( 'staff_user' )) );
+			$r = flxc_staff_link_chat( $chat, FLXC_Val::raw_int( $req->get_param( 'staff_user' ) ) );
 			if ( is_wp_error( $r ) ) {
 				return $r;
 			}

@@ -1174,9 +1174,18 @@ function flxc_gql_chat_payload( $result ) {
 	if ( ! isset( $result['chat'] ) || ! is_array( $result['chat'] ) ) {
 		return array();
 	}
-	$id  = FLXC_Val::int(( $result['chat']['id'] ?? 0 ));
-	$row = flxc_get_chat( $id );
-	return array( 'chat' => is_array( $row ) ? new FLXC_Chat_Node( $row, true ) : null );
+	return array( 'chat' => flxc_gql_visible_node( FLXC_Val::int(( $result['chat']['id'] ?? 0 )) ) );
+}
+
+/**
+ * The chat as a full node, or null when the viewer may not see it (restrict agents). Every mutation
+ * payload goes through this, so a chat that became hidden, or one found by number, never leaks.
+ *
+ * @return FLXC_Chat_Node|null
+ */
+function flxc_gql_visible_node( int $id ) {
+	$row = FLXC_Chat_Service::visible( $id );
+	return null === $row ? null : new FLXC_Chat_Node( $row, true );
 }
 
 flx_gql_mutation(
@@ -1193,7 +1202,7 @@ flx_gql_mutation(
 		'output'      => array(
 			'chat' => array( 'type' => 'FlxChat', 'description' => __( 'The chat.', 'flx-chat' ) ),
 		),
-		'resolve'     => static fn( array $input ) => flxc_gql_chat_payload( FLXC_Chat_Service::create( flxc_gql_req( flx_gql_arr( $input ) ) ) ),
+		'resolve'     => static fn( array $input ) => flxc_gql_chat_payload( FLXC_Chat_Service::create( flxc_gql_req( flx_gql_arr( $input ) ), true ) ),
 	)
 );
 
@@ -1385,8 +1394,7 @@ flx_gql_mutation(
 			if ( $r instanceof WP_Error ) {
 				return $r;
 			}
-			$row = flxc_get_chat( $id );
-			return array( 'chat' => is_array( $row ) ? new FLXC_Chat_Node( $row, true ) : null );
+			return array( 'chat' => flxc_gql_visible_node( $id ) );
 		},
 	)
 );

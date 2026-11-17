@@ -229,6 +229,26 @@ function flxc_user_can_see_chat( $chat, $user_id = 0 ) {
 }
 
 /**
+ * Which chats the current user may list: groups hidden unless enabled, and agents only see their own
+ * or unassigned chats when "restrict agents" is on. One place for flxc_query_chats() and the GraphQL
+ * update feed, so both apply the same visibility rule.
+ *
+ * @return array{where: list<string>, prm: list<int|string>}
+ */
+function flxc_chat_scope_sql() {
+	$where = array();
+	$prm   = array();
+	if ( ! flxc_setting( 'show_groups' ) ) {
+		$where[] = "jid NOT LIKE '%@g.us'";
+	}
+	if ( flxc_setting( 'restrict_agents' ) && ! flxc_can_manage() ) {
+		$where[] = '(assigned_to = 0 OR assigned_to = %d)';
+		$prm[]   = get_current_user_id();
+	}
+	return array( 'where' => $where, 'prm' => $prm );
+}
+
+/**
  * Sohbet listesi.
  * @param array $args filter (all|unread|mine|unassigned|closed), q, label, since (rev), limit, offset, conn
  */
@@ -307,13 +327,9 @@ function flxc_query_chats( $args = array() ) {
 			$prm     = array_merge( $prm, $own );
 		}
 	}
-	if ( ! flxc_setting( 'show_groups' ) ) {
-		$where[] = "jid NOT LIKE '%@g.us'";
-	}
-	if ( flxc_setting( 'restrict_agents' ) && ! flxc_can_manage() ) {
-		$where[] = '(assigned_to = 0 OR assigned_to = %d)';
-		$prm[]   = $uid;
-	}
+	$scope = flxc_chat_scope_sql();
+	$where = array_merge( $where, $scope['where'] );
+	$prm   = array_merge( $prm, $scope['prm'] );
 	if ( ! empty( $args['count'] ) ) {
 		// 1.33.0: sayfalama için toplam (uygulama modülü).
 		$sql = "SELECT COUNT(*) FROM $t WHERE " . implode( ' AND ', $where );
