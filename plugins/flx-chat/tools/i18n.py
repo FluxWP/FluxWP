@@ -109,7 +109,7 @@ def main():
         print(f'{len(php)} PHP + {len(screen)} screen strings, Turkish complete')
         return
 
-    add = {k: new_tr[k] for k in php if new_tr.get(k) and k not in mo}
+    add = {k: new_tr[k] for k in php if new_tr.get(k)}  # each file below skips what it already has
     po_path = os.path.join(LANG, DOMAIN + '-tr_TR.po')
     pot_path = os.path.join(LANG, DOMAIN + '.pot')
     po_txt = open(po_path, encoding='utf-8').read()
@@ -123,7 +123,7 @@ def main():
             if 'msgid ' + po_q(k) + '\n' not in pot_txt:
                 f.write(f'\nmsgid {po_q(k)}\nmsgstr ""\n')
     merged = dict(mo)
-    merged.update({k: v for k, v in add.items()})
+    merged.update({k: v for k, v in add.items() if k not in mo})
     write_mo(mo_path, merged)
     l10n = os.path.join(LANG, DOMAIN + '-tr_TR.l10n.php')
     txt = open(l10n, encoding='utf-8').read()

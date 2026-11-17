@@ -505,7 +505,7 @@ function flxc_ai_types_text() {
 			$l .= "\n  - " . __( 'Custom amount', 'flx-chat' ) . ( $t['min'] > 0 ? ' (en az ' . flxc_money( $t['min'], $t['currency'] ) . ')' : '' );
 		}
 		if ( $t['proxy'] ) {
-			$l .= "\n  - Vekâlet onayı gerekir: bu tür sohbetten kaydedilemez, temsilciye devret.";
+			$l .= "\n  - Vekâlet onayı gerekir: özette vekâlet metni çıkar, kişi açıkça onaylayınca create_donation(proxy_consent=true).";
 		}
 		$lines[] = $l;
 	}

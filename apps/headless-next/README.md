@@ -1,9 +1,19 @@
 # Flux Headless: Next.js example
 
-A Next.js 16 App Router front end for a WordPress site served by **Flux Headless**. It is meant as a
-starting point: copy the folder, point it at your WordPress, then add your own design.
+A Next.js 16 App Router front end for a WordPress site served by **Flux Headless**. It has two ways
+to draw pages, chosen with `FLUX_RENDER`:
 
-What it shows:
+- **`wordpress` (default): looks exactly like the WordPress site.** Each page is the one WordPress
+  renders with its theme, template parts, blocks, styles and scripts. Flux Headless rewrites its links
+  to this site (whole-page mode, `?flxhl_page=<front end id>`), Next caches it under the tags WordPress
+  sends, and the revalidate webhook refreshes it. Theme files, uploads, REST and AJAX are proxied, so
+  fonts, search and forms work same-origin. Cart, checkout, account and visitors with a WordPress
+  session (signed in, a cart, add-to-cart links) are passed through live with their cookies, never
+  cached. Files: `lib/page.ts`, `app/wp-page/[[...path]]/route.ts`, `proxy.ts`, `next.config.ts`.
+- **`react`: your own design from GraphQL data.** The pieces below build every page in React. Use it
+  as a starting point when the front end should look different from WordPress.
+
+The `react` mode shows:
 
 | Piece | File |
 |---|---|
@@ -46,7 +56,9 @@ bun run start      # PORT sets the port, default 3000
 
 **Hosting (Node.js, e.g. Hostinger).** Use the repository and set the root directory to
 `apps/headless-next`, build command `npm run build`, output `.next`, Node 22, and add the two
-environment variables. The app stays outside the monorepo workspace on purpose, so a plain
+environment variables (plus `FLUX_RENDER=react` for the React design). The WordPress address is
+written into the proxy rules at build time, so changing `FLUX_WP_URL` needs a new build. In whole-page mode the build does not call
+WordPress; set `FLUX_SITE_URL` to list the sitemap in `robots.txt`. The app stays outside the monorepo workspace on purpose, so a plain
 `npm install` works there. It still needs the whole repository, because it reads the
 `persisted-queries.json` manifest from `plugins/flx-headless/graphql/`.
 

@@ -235,6 +235,9 @@ add_filter(
 
 /** Whether this front-end request stays on WordPress (cart, checkout, account, previews, editors). */
 function flxhl_keep_wp_page(): bool {
+	if ( null !== flxhl_page_frontend() ) {
+		return true; // The front end's own whole-page request (page-mode.php).
+	}
 	if ( is_admin() || wp_doing_ajax() || wp_doing_cron() || is_preview() || is_robots() || is_feed() || is_trackback() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) || ( function_exists( 'is_graphql_http_request' ) && is_graphql_http_request() ) ) {
 		return true;
 	}

@@ -353,6 +353,10 @@ Giriş ya da doğrulama kodu gibi panelde görünmemesi gereken metin için `flx
 
 **IPTAL (1.44.0, Flux Mail 1.17.0+):** mesajın tamamı IPTAL / BAŞLA ise (`flxi_optout_match()`) asistan ve otomatik yanıt cevap yazmaz, onayı Flux Mail gönderir. `flx-mail` kaynaklı gönderimler asistanı susturmaz. Giden mesajın kaynağı `apply_filters( 'flxc_external_source', $kaynak, $wa_id, $tel, $metin )` ile belirlenir (1.44.0'da numara ve metin eklendi). IPTAL yazmış kişiye (`flxi_optout_has( 'whatsapp', $tel )`) hatırlatıcı gitmez; kişi yazarsa cevap verilir. Yardımcılar: `flxc_optout_chat( $chat )`, `flxc_optout_command( $metin )`. Flux Chat'in kendisi tanıtım mesajı göndermez; tanıtım gönderen paketler `flxi_send_message( …, array( 'kind' => 'marketing' ) )` kullanır (docs/iletisim/API.md).
 
+**Asistana araç eklemek (1.50.0):** başka eklentiler WhatsApp asistanına kendi araçlarını ekleyebilir. `flxc_bot_tools` ( `$list`, `$f` ) listeye `$f( 'ad', 'açıklama', $props, $required )` ile araç ekler; `flxc_bot_tool_call` ( `null`, `$ad`, `$args`, `$chat`, `$state`, `$sandbox` ) aracı cevaplar (dizi döndürün, `null` Flux Chat'e bırakır; `$sandbox` true ise test sohbetidir, kayıt açmayın, mesaj göndermeyin); `flxc_bot_rules` ( `$rules`, `$araç_adları`, `$chat` ) talimatın Güvenlik bölümüne "- …" satırı ekler. Örnek: Flux Qurban `qurban_my_shares` / `qurban_send_video`.
+
+**Vekâlet isteyen türler (1.50.0):** Flux Donate türünde "vekâlet gerekir" açıksa (kurban) asistan artık devretmez: `set_order` özetinin sonuna sitedeki son vekâlet metni (`flxb_proxy_text()`) girer, kişi açıkça onaylayınca `create_donation( confirmed=true, proxy_consent=true )` kaydı açar; onay bağışa `proxy_consent` (sürüm, zaman, kaynak `flx-chat`) olarak yazılır. Sitede vekâlet metni yoksa eski gibi ekibe devreder.
+
 ## 12. Dil
 Arayüz kaynak dili Türkçedir, İngilizce çevirisi pakettedir. Dil, kullanıcının WordPress dil ayarını izler (Profil › Dil).
 

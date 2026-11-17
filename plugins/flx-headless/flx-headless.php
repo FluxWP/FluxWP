@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Headless
  * Description:       Serves one or more headless front ends (Next.js, Nuxt, Astro or any framework) from this WordPress over GraphQL: a page by its address with SEO head, languages and cache tags (flxRoute), the site's logo, menus, colours, languages and contact details (flxSite), and a signed revalidate webhook when content changes.
- * Version:           0.1.3
+ * Version:           0.2.0
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Requires Plugins:  flx-graphql
@@ -26,7 +26,7 @@ if ( defined( 'FLXHL_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXHL_VERSION', '0.1.3' );
+define( 'FLXHL_VERSION', '0.2.0' );
 define( 'FLXHL_FILE', __FILE__ );
 define( 'FLXHL_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXHL_URL', plugin_dir_url( __FILE__ ) );
@@ -38,6 +38,7 @@ require_once FLXHL_DIR . 'includes/services/class-flxhl-route-service.php';
 require_once FLXHL_DIR . 'includes/services/class-flxhl-site-service.php';
 require_once FLXHL_DIR . 'includes/services/class-flxhl-revalidate-service.php';
 require_once FLXHL_DIR . 'includes/hooks.php';
+require_once FLXHL_DIR . 'includes/page-mode.php';
 require_once FLXHL_DIR . 'includes/system-checks.php';
 require_once FLXHL_DIR . 'includes/app.php';
 if ( is_admin() ) {

@@ -336,6 +336,37 @@ The webhook endpoint then calls your CDN's purge-by-tag API with `tags`.
 
 ---
 
+## 9. Whole-page mode (looks exactly like WordPress)
+
+When the front end should look exactly like the WordPress site, with every template, block, style,
+script and plugin feature, it can serve WordPress' own pages instead of building them from GraphQL.
+
+Request a page with `?flxhl_page=<front end id>` (or `default`):
+
+```
+GET https://cms.example.com/about/?flxhl_page=nextjs
+```
+
+WordPress answers the page an anonymous visitor would see, with these changes:
+
+- Links to pages and posts point at the front end (`https://www.example.com/about/`), including
+  canonical, hreflang, Open Graph and JSON-escaped addresses in inline scripts.
+- `/wp-content/`, `/wp-includes/`, `/wp-json/` and `/wp-admin/admin-ajax.php` also point at the front
+  end. **Proxy these four to WordPress**, so fonts, REST and AJAX stay same-origin and share the
+  visitor's cookies.
+- `wp-admin`, `wp-login.php` and other `.php` addresses, feeds and sitemaps stay on WordPress.
+- Redirects (`Location`) already point at the front end; 404s keep their status.
+- `X-Flx-Cache-Tags` lists the cache tags of the page (comma separated). The revalidate webhook names
+  the same tags, so cache the HTML under them.
+- `X-Flx-Live: 1` marks per-visitor pages (cart, checkout, account; more with the
+  `flx_headless_live_paths` filter). Don't cache them. Pass them through with the visitor's cookies,
+  and return `Set-Cookie`.
+
+The "WordPress pages" setting (noindex or redirect to the front end) doesn't apply to these requests.
+Pass a request through live, uncached, when the visitor has a WordPress session cookie
+(`wordpress_logged_in_*`, `wp_woocommerce_session_*`, `woocommerce_items_in_cart`) or the query
+changes state (`add-to-cart`, `wc-ajax`). The Next.js example does all of this in `lib/page.ts`.
+
 ## Troubleshooting
 
 | Symptom | Check |

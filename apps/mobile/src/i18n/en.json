@@ -72,7 +72,12 @@
     "removeConfirm": "Remove the {{site}} account from this device?",
     "current": "Current account",
     "relogin": "Sign in again",
-    "limited": "Limited mode"
+    "limited": "Limited mode",
+    "edit": "Edit",
+    "done": "Done",
+    "cache": "Cache: {{size}}",
+    "clearCache": "Clear cache",
+    "cacheCleared": "{{site}} cache cleared."
   },
   "settings": {
     "title": "Settings",
