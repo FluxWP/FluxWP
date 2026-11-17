@@ -55,6 +55,15 @@ add_filter(
 				'filename' => null,
 			);
 		}
+		if ( ! empty( $GLOBALS['flxc_t_hist_ok'] ) && str_contains( (string) $url, '/chat/findMessages/' ) ) {
+			return array(
+				'headers'  => array(),
+				'body'     => wp_json_encode( array( 'messages' => array( 'records' => array(), 'pages' => 1, 'total' => 0 ) ) ),
+				'response' => array( 'code' => 200, 'message' => 'OK' ),
+				'cookies'  => array(),
+				'filename' => null,
+			);
+		}
 		if ( str_contains( (string) $url, 'chat/completions' ) ) {
 			return array(
 				'headers'  => array(),
@@ -338,5 +347,63 @@ if ( function_exists( 'flxai_chat' ) ) {
 } else {
 	flxt_ok( false, 'suggest: Flux AI is not active on the test site' );
 }
+
+// REST parity: a finished history reports more=false on REST and GraphQL alike.
+$hist_chat = flxc_ensure_chat( 't', '905550000004@s.whatsapp.net', array( 'name' => 'History FLXC' ) );
+$hist_id   = (int) $hist_chat['id'];
+flxc_update_chat( $hist_id, array( 'assigned_to' => $a ) );
+flxc_insert_message( array( 'chat_id' => $hist_id, 'conn' => 't', 'direction' => 'in', 'type' => 'text', 'body' => 'only line', 'user_id' => 0, 'source' => 'contact' ), flxc_get_chat( $hist_id ) );
+$GLOBALS['flxc_t_hist_ok'] = true;
+wp_set_current_user( $a );
+$rest_hist = rest_do_request( new WP_REST_Request( 'GET', '/flx-chat/v1/chats/' . $hist_id . '/messages' ) );
+$rest_data = $rest_hist->get_data();
+flxt_same( false, $rest_data['more'] ?? null, 'REST messages: a history that just finished reports more=false' );
+$hist_row = flxc_get_chat( $hist_id );
+flxt_same( true, ! empty( flxc_decode( is_array( $hist_row ) ? $hist_row['meta'] : '' )['hist']['done'] ), 'REST messages: the history fetch marked the chat done' );
+$gql_hist = flxc_t_op( 'FlxChatMessages', array( 'chatId' => (string) $hist_id ), $a );
+flxt_same( false, $gql_hist['data']['flxChatMessages']['hasMore'] ?? null, 'GraphQL messages: hasMore matches REST' );
+$GLOBALS['flxc_t_hist_ok'] = false;
+
+// The upload gate also covers voice notes: a blocked extension is refused as audio.
+$bad_file = wp_tempnam( 'flxc-voice' );
+file_put_contents( $bad_file, '<html><script>alert(1)</script></html>' );
+wp_set_current_user( $a );
+$voice_bad = FLXC_Message_Service::send_upload(
+	(array) flxc_get_chat( $mine_id ),
+	'audio',
+	'',
+	0,
+	'agent',
+	false,
+	array( 'path' => $bad_file, 'name' => 'voice.html', 'mime' => 'audio/ogg', 'size' => (int) filesize( $bad_file ) ),
+	true
+);
+flxt_same( 'flxc_type', is_wp_error( $voice_bad ) ? $voice_bad->get_error_code() : '', 'send: an .html file sent as a voice note is refused' );
+$big_voice = FLXC_Message_Service::send_upload(
+	(array) flxc_get_chat( $mine_id ),
+	'audio',
+	'',
+	0,
+	'agent',
+	false,
+	array( 'path' => $bad_file, 'name' => 'voice.ogg', 'mime' => 'audio/ogg', 'size' => 99 * MB_IN_BYTES ),
+	true
+);
+flxt_same( 'flxc_big', is_wp_error( $big_voice ) ? $big_voice->get_error_code() : '', 'send: flxc_max_upload applies to voice notes' );
+wp_delete_file( $bad_file );
+
+// Hidden chat: creating a chat for a number whose chat belongs to B must not show it to A.
+$hidden_open = flxt_gql(
+	'mutation ($i: FlxChatCreateInput!) { flxChatCreate(input: $i) { chat { databaseId title notes lastMessage { body } } errors { code } } }',
+	array( 'i' => array( 'phone' => '905550000002', 'name' => 'RENAMED-BY-A', 'conn' => 't', 'check' => false ) ),
+	$a
+);
+$hidden_blob = wp_json_encode( $hidden_open );
+flxt_same( null, $hidden_open['data']['flxChatCreate']['chat'] ?? null, 'create: a number whose chat is hidden returns no chat' );
+flxt_ok( ! str_contains( (string) $hidden_blob, 'HIDDENCHATNAME' ) && ! str_contains( (string) $hidden_blob, 'secret line' ), 'create: hidden title and last message are absent' );
+$hid_after = flxc_get_chat( $hid_id );
+flxt_same( 'HIDDENCHATNAME', is_array( $hid_after ) ? (string) $hid_after['name'] : '', 'create: the hidden chat is not renamed by A' );
+$hid_mark = flxt_gql( 'mutation ($i: FlxChatMarkReadInput!) { flxChatMarkRead(input: $i) { chat { databaseId } } }', array( 'i' => array( 'id' => (string) $hid_id ) ), $a );
+flxt_ok( null === ( $hid_mark['data']['flxChatMarkRead']['chat'] ?? null ), 'mark read: hidden chat is never returned' );
 
 flxt_done();
