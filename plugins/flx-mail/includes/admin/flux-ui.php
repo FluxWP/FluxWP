@@ -18,6 +18,7 @@ function flxi_flux_pages(): array {
 		'flxi'          => 'templates',
 		'flxi-kayitlar' => 'logs',
 		'flxi-ayarlar'  => 'settings',
+		'flxi-baglantilar' => 'connections',
 	);
 	if ( ! flxi_system_moved() ) {
 		$pages['flxi-sistem'] = 'system';
@@ -45,6 +46,11 @@ function flxi_ui_switch_url( string $ui ): string {
 	if ( isset( $_GET['key'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$args['key'] = sanitize_text_field( wp_unslash( $_GET['key'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	}
+	foreach ( array( 'edit', 'type' ) as $extra ) {
+		if ( 'flxi-baglantilar' === $args['page'] && isset( $_GET[ $extra ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$args[ $extra ] = sanitize_text_field( wp_unslash( $_GET[ $extra ] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		}
+	}
 	return wp_nonce_url( add_query_arg( $args, admin_url( 'admin.php' ) ), 'flxi_ui' );
 }
 
@@ -63,6 +69,11 @@ add_action(
 		$args = array( 'page' => sanitize_key( wp_unslash( $_GET['page'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( isset( $_GET['key'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$args['key'] = sanitize_text_field( wp_unslash( $_GET['key'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		}
+		foreach ( array( 'edit', 'type' ) as $extra ) {
+			if ( 'flxi-baglantilar' === $args['page'] && isset( $_GET[ $extra ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				$args[ $extra ] = sanitize_text_field( wp_unslash( $_GET[ $extra ] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			}
 		}
 		wp_safe_redirect( add_query_arg( $args, admin_url( 'admin.php' ) ) );
 		exit;
@@ -94,6 +105,15 @@ function flxi_flux_assets( string $page ): void {
 	$key   = isset( $_GET['key'] ) ? sanitize_text_field( wp_unslash( $_GET['key'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	if ( '' !== $key && 'templates' === $start ) {
 		$start = 'edit:' . $key;
+	}
+	if ( 'connections' === $start ) {
+		$edit = isset( $_GET['edit'] ) ? sanitize_text_field( wp_unslash( $_GET['edit'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$type = isset( $_GET['type'] ) ? sanitize_key( wp_unslash( $_GET['type'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( 'new' === $edit ) {
+			$start = 'connections?' . http_build_query( array( 'key' => 'new:' . ( '' !== $type ? $type : 'evolution' ) ) );
+		} elseif ( ctype_digit( $edit ) ) {
+			$start = 'connections?' . http_build_query( array( 'key' => $edit ) );
+		}
 	}
 	if ( 'logs' === $start ) {
 		$q_args = array();

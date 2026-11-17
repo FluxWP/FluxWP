@@ -79,6 +79,41 @@
 .flxmail-toast{background:var(--flux-text);color:var(--flux-bg);padding:10px 14px;border-radius:8px;max-width:360px}
 .flxmail-toast.is-error{background:var(--flux-danger);color:#fff}
 .flxmail-sr{position:absolute;width:1px;height:1px;overflow:hidden}
+.flxmail-cardhead{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
+.flxmail-cardhead .flxmail-actions{margin:0}
+.flxmail-narrow{max-width:680px}
+.flxmail-ok{color:var(--flux-success)}
+.flxmail-conn{grid-template-columns:minmax(0,1fr) auto;align-items:start}
+.flxmail-connactions{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end;align-items:center}
+.flxmail-badge.is-warn{background:color-mix(in srgb,var(--flux-warning) 22%,transparent)}
+.flxmail-wastate[data-state="open"]{background:color-mix(in srgb,var(--flux-success) 18%,transparent)}
+.flxmail-wastate[data-state="error"],.flxmail-wastate[data-state="missing"]{background:color-mix(in srgb,var(--flux-danger) 16%,transparent);color:var(--flux-danger)}
+.flxmail-more{position:relative}
+.flxmail-more>summary{list-style:none;cursor:pointer}
+.flxmail-more>summary::-webkit-details-marker{display:none}
+.flxmail-moremenu{position:absolute;right:0;top:calc(100% + 4px);z-index:30;min-width:240px;display:flex;flex-direction:column;padding:6px;background:var(--flux-surface);border:1px solid var(--bd);border-radius:8px;box-shadow:0 8px 24px rgb(0 0 0/.18)}
+.flxmail-moremenu button{text-align:left;padding:7px 10px;border:0;border-radius:6px;background:none}
+.flxmail-moremenu button:hover{background:var(--flux-surface2)}
+.flxmail-moremenu button.is-danger{color:var(--flux-danger)}
+.flxmail-wamsg{margin:0 0 12px}
+.flxmail-wamsg.is-ok{color:var(--flux-success);font-weight:600}
+.flxmail-wamsg.is-err{color:var(--flux-danger)}
+.flxmail-qr{display:flex;flex-direction:column;align-items:center;gap:8px;margin:0 0 12px}
+.flxmail-qr img{background:#fff;padding:8px;border-radius:8px}
+.flxmail-paircode{font:600 28px/1.2 ui-monospace,monospace;letter-spacing:.12em;padding:12px 16px;border:1px dashed var(--bd);border-radius:8px}
+.flxmail-dl--wide{grid-template-columns:minmax(140px,220px) 1fr}
+.flxmail-callout ul{margin:6px 0 0;padding-left:18px;list-style:disc}
+.flxmail-field .flxmail-inline input{flex:1 1 220px}
+.flxmail-chips input[type="checkbox"],.modal input[type="checkbox"]{appearance:none;-webkit-appearance:none;flex:none;width:16px;height:16px;min-height:0;margin:2px 0 0;border:1.5px solid var(--flux-text-muted);border-radius:4px;background:var(--flux-bg)}
+.flxmail-chips input[type="checkbox"]:checked,.modal input[type="checkbox"]:checked{border-color:var(--ac);background:var(--ac) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-7' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E") center/12px no-repeat}
+.flxmail-phone{border:1px solid var(--bd);border-radius:14px;overflow:hidden;background:var(--flux-surface2);align-self:start}
+.flxmail-phonehead{padding:8px 12px;font-weight:600;border-bottom:1px solid var(--bd)}
+.flxmail-chat{display:flex;flex-direction:column;gap:8px;padding:12px;min-height:160px}
+.flxmail-bubble{align-self:flex-end;max-width:92%;padding:8px 10px;border-radius:10px 10px 2px 10px;background:color-mix(in srgb,var(--flux-success) 20%,var(--flux-bg));word-break:break-word}
+.flxmail-bubble.is-err{background:color-mix(in srgb,var(--flux-danger) 14%,var(--flux-bg))}
+.flxmail-bubbleimg{display:block;max-width:100%;border-radius:6px;margin:0 0 4px}
+.flxmail-bubblemeta{display:block;text-align:right;font-size:11px;color:var(--mut)}
+.flxmail-phone.is-sms .flxmail-bubble{background:var(--flux-bg);border:1px solid var(--bd);border-radius:10px}
 @media (max-width:720px){
   .flxmail-app{grid-template-columns:1fr;padding:0 12px}
   .flxmail-side{display:none;position:static}
@@ -86,4 +121,7 @@
   .flxmail-burger{display:inline-flex;align-items:center;justify-content:center}
   .flxmail-grid2,.flxmail-grid3,.flxmail-grid4,.flxmail-split,.flxmail-editor,.flxmail-stats{grid-template-columns:1fr}
   .flxmail-row{grid-template-columns:auto minmax(0,1fr)}
+  .flxmail-conn{grid-template-columns:minmax(0,1fr)}
+  .flxmail-connactions{justify-content:flex-start}
+  .flxmail-dl--wide{grid-template-columns:1fr}
 }

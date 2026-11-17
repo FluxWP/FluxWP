@@ -1,6 +1,6 @@
-# Flux Mail GraphQL (part 1)
+# Flux Mail GraphQL (parts 1 and 2)
 
-Settings, Templates, the send log and the system check read and write through GraphQL. The classic admin screens stay one link away (`flxi_ui=classic`). Connections, WhatsApp Cloud, Send, the queue, the blocklist and the mailbox are later parts.
+Settings, Templates, the send log, the system check and (part 2) Connections with the WhatsApp Cloud setup read and write through GraphQL. The classic admin screens stay one link away (`flxi_ui=classic`). Send, the queue, the blocklist and the mailbox are later parts.
 
 Registration runs on `flx_gql_register` and is skipped when Flux GraphQL is not loaded. REST keeps working either way.
 
@@ -27,3 +27,30 @@ Templates are a connection (`first` at most 50): `flxMailTemplates`, `flxMailTem
 Every root field requires `manage_options` or `flxi_manage`. `flxi_manage` is registered on `flx_gql_capabilities` and is present on `flxViewer.capabilities` for a user who has it.
 
 Dates are `FlxDateTime` through `flx_gql_datetime()`. The send log stores `created_at` as GMT (`flxi_now()`, `current_time( 'mysql', true )`). The field is that GMT instant; `label` follows the site timezone. Last test, DNS `checkedAt`, WooCommerce brand time and quota `next` are Unix timestamps. Template and settings writes go through `flxi_save_template()` (`flxi_template_saved` once) and `flxi_update_settings()`, which the classic screens read back with `flxi_template()` and `flxi_setting()`.
+
+## Connections and WhatsApp Cloud (part 2)
+
+The classic Connections page (`admin-post`), the REST routes (`/flxi/v1/wa/{id}/*`, `/wacloud/{id}/setup`, `/wacloud/{id}/templates`, `/connection-test`) and the GraphQL fields all call `FLXI_Connection_Service`. REST output is unchanged. The service reads and writes the same tables and options as before (`flxi_connections`, `flxi_conn_tests`, `flxi_wa_state`, the per-connection `flxi_wac_*` options), so a connection saved by the classic form shows up in GraphQL and the other way round.
+
+Reads, all `manage_options` / `flxi_manage`:
+
+| Field | Returns |
+|---|---|
+| `flxMailConnectionMeta` | Types with their form fields (the same definitions the classic form renders), test scenarios, sample file URLs, Flux Certificates flag |
+| `flxMailConnections(channel, activeOnly, first, after)` | `FlxMailConnectionConnection`, at most 50 per page |
+| `flxMailConnection(id)` | One connection or null |
+| `flxMailWaState(id, fresh)` | Cached state (60 s); `fresh` asks the server |
+| `flxMailWaInstances(id)`, `flxMailWaGroups(id, fresh)` | Evolution / Flux WPAPI server data |
+| `flxMailWaServer(id)` | Flux WPAPI server info; no key and no password |
+| `flxMailWacloudSetup(id)` | Webhook URL, verify value, signed / WABA flags, phone details from Meta, last verify / event / bad signature / missing secret times, open 24 h windows. Null for a connection that is not Cloud API |
+| `flxMailWacloudTemplates(id, first, after)` | Cloud API templates as a connection |
+
+Writes: `flxMailConnectionSave`, `flxMailConnectionDelete(remote)`, `flxMailConnectionSetDefault`, `flxMailConnectionTest`, `flxMailWaConnect`, `flxMailWaRestart`, `flxMailWaLogout`, `flxMailWaServerUpdate`.
+
+Secrets: `apiKey`, `token`, `appSecret` and `password` are `FlxMailSecret` on read (`set`, `mask`, `fromConfig`) and `String` on write. An empty value keeps the stored one and `"__clear__"` removes it; the built-in types mark every secret required, so clearing one is refused with a field error. The Flux WPAPI database password (`flxMailWaServerUpdate.db.password`) is sent to the bridge only and is not kept in WordPress. The verify token Meta needs is a handshake string, not a credential; it is returned only by `flxMailWacloudSetup` (manager only), never by the connection list. The App Secret is never returned.
+
+The Cloud webhook `GET` + `POST /wp-json/flxi/v1/wacloud/{id}/webhook` stays REST because Meta posts to that fixed address. `flxMailWacloudSetup.webhookUrl` shows it and the React screen offers a copy button.
+
+Validation errors come back in the mutation payload with the input field name (`username`, `password`, `copyFrom` …). An unknown id is `NOT_FOUND`. `copyFrom` copies the server address and API key of an existing Evolution / Flux WPAPI connection of the same type on create without the key reaching the browser. `type` is a plain string, not an enum, because other plugins can add connection types through `flxi_connection_types`; `flxMailConnectionMeta.types` lists what is offered.
+
+`flxMailConnectionTest` runs the same scenarios as the classic dialog (`check`, `text`, `image`, `audio`, `document`, `template`) and stores the result once in `flxi_conn_tests`; the returned connection carries the new `lastTest`. Dates are `FlxDateTime`: `lastTest.at`, `waState.at`, the webhook times and `lastKeepAlive` are Unix times.

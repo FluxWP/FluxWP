@@ -8,6 +8,9 @@
 defined( 'ABSPATH' ) || exit;
 
 function flxi_page_connections() {
+	if ( flxi_flux_screen( 'connections' ) ) {
+		return;
+	}
 	$edit = isset( $_GET['edit'] ) ? sanitize_text_field( wp_unslash( $_GET['edit'] ) ) : ''; // phpcs:ignore
 	flxi_page_head( __( 'Connections', 'flx-mail' ), __( 'WhatsApp and SMS accounts in one place. Flux Certificates, Flux Chat and other plugins use these connections. Email settings are on the Settings tab.', 'flx-mail' ) );
 	$types = flxi_connection_types();
