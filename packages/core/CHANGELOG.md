@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.4.6
+- npm: README with install and usage, description and keywords.
+
 ## 0.4.5
 - `setClientEnhancer()`: bir paket, hesap istemcisini (`clientFor`) saran bir taşıyıcı kaydedebilir (FluxApp GraphQL taşıyıcısı). Kayıtlı yoksa davranış aynı.
 
