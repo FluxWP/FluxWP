@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound, permanentRedirect } from 'next/navigation';
+import { RENDER } from '@/lib/env';
 import { draftMode } from 'next/headers';
 import { getPosts, getPreview, getRoute } from '@/lib/flux';
 import type { Route } from '@/lib/types';
@@ -28,10 +29,12 @@ async function load(props: Props): Promise<Route> {
 // The front page is built ahead; every other address renders on its first visit and is then cached
 // (Cache Components ISR) until the webhook names one of its tags.
 export function generateStaticParams() {
-  return [{ slug: [] }];
+  // Whole-page mode never reaches this page (proxy.ts sends pages to app/wp-page); nothing to prerender.
+  return RENDER === 'react' ? [{ slug: [] }] : [{ slug: ['__react'] }];
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
+  if (RENDER !== 'react') return {};
   const r = await load(props);
   const h = r.head;
   const meta = (key: 'name' | 'property', v: string) => h.meta.find((m) => m[key] === v)?.content;
@@ -63,6 +66,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 }
 
 export default async function Page(props: Props) {
+  if (RENDER !== 'react') notFound();
   const r = await load(props);
   if (r.kind === 'REDIRECT' && r.redirect) permanentRedirect(r.redirect);
   if (r.kind === 'NOT_FOUND') notFound();
