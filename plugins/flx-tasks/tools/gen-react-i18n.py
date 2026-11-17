@@ -56,8 +56,8 @@ for k in LANGS:
     json.dump(out, open(os.path.join(SRC, k + '.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
 json.dump(dict(sorted(aliases.items())), open(os.path.join(SRC, 'aliases.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
 
-# Klasik çekirdek (core.js + docs.js): Türkçe kaynak -> dil.
-js = ''.join(open(os.path.join(PLUG, 'assets/js', f), encoding='utf-8').read() for f in ('core.js', 'docs.js'))
+# Klasik çekirdek (core.js + docs.js + doc-comments.js): Türkçe kaynak -> dil.
+js = ''.join(open(os.path.join(PLUG, 'assets/js', f), encoding='utf-8').read() for f in ('core.js', 'docs.js', 'doc-comments.js'))
 legacy = [t for t in pairs if ("'" + t.replace("'", "\\'") + "'") in js]
 os.makedirs(os.path.join(SRC, 'legacy'), exist_ok=True)
 for k in LANGS:

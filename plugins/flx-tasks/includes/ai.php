@@ -205,8 +205,8 @@ function flxg_ai_chat( array $history, array $context = array() ) {
 	if ( ! empty( $context['doc_page'] ) ) {
 		$dp  = flxg_get_page( (int) $context['doc_page'] );
 		$ddc = flxg_page_doc( $dp );
-		if ( $ddc && flxg_can_doc( $ddc ) ) {
-			$sys .= "\n\nThe user has document page #" . (int) $dp['id'] . ' "' . ( '' !== (string) $dp['title'] ? $dp['title'] : '(untitled)' ) . '" of document "' . $ddc['title'] . '" open. "This page/document" means it' . ( flxg_can_doc( $ddc, 'edit' ) ? '' : ' (read only for this user)' ) . '.';
+		if ( $ddc && FLXG_Doc_Service::can( (int) $dp['id'], 'view', get_current_user_id() ) ) {
+			$sys .= "\n\nThe user has document page #" . (int) $dp['id'] . ' "' . ( '' !== (string) $dp['title'] ? $dp['title'] : '(untitled)' ) . '" of document "' . $ddc['title'] . '" open. "This page/document" means it' . ( true === FLXG_Doc_Service::can_write( (int) $dp['id'], get_current_user_id() ) ? '' : ' (read only for this user: no edit permission or the page is locked)' ) . '.';
 		}
 	}
 	if ( ! empty( $context['list_id'] ) && flxg_can_list( (int) $context['list_id'] ) ) {
