@@ -96,7 +96,7 @@ const fileBlobs: Record<number, string> = {
 };
 const file = (id: number, task: number, name: string, image: boolean, size: number, user = ME): FlxgFile => ({ id, task, comment: 0, field: 0, context: 'task', user, name, mime: image ? 'image/svg+xml' : 'application/pdf', size, image, created: ago(60 * 26) });
 const attachments: Record<number, FlxgFile[]> = {
-  102: [file(9001, 102, 'dikim-alani.svg', true, 182_000), file(9002, 102, 'teslim-noktasi.svg', true, 164_000, 3), file(9003, 102, 'fidan-siparis-formu.pdf', false, 412_000, 3)],
+  102: [file(9001, 102, 'dikim-alani.svg', true, 182_000), file(9002, 102, 'teslim-noktasi.svg', true, 164_000, 3), file(9003, 102, 'fidan-siparis-formu.pdf', false, 412_000, 3), { ...file(9004, 102, 'dikim-planlari.zip', false, 2_400_000), mime: 'application/zip' }],
 };
 const comments: Record<number, FlxgComment[]> = {
   102: [
@@ -274,9 +274,10 @@ export const flxgRoutes: [string, RegExp, H][] = [
   ['DELETE', r('comments\\/(\\d+)'), () => ({ ok: true })],
   ['GET', r('files\\/(\\d+)'), (m) => {
     const s = fileBlobs[+m[1]!];
+    if (+m[1]! === 9004) return new Response('PK', { headers: { 'Content-Type': 'application/zip' } });
     return s ? new Response(s, { headers: { 'Content-Type': 'image/svg+xml' } }) : new Response('%PDF-1.4', { headers: { 'Content-Type': 'application/pdf' } });
   }],
-  ['POST', r('files'), (_m, _q, b) => file(++seq, Number(b.task ?? 0), 'dosya', false, 1000)],
+  ['POST', r('files'), (_m, _q, b) => ({ file: file(++seq, Number(b.task ?? 0), 'dosya', false, 1000) })],
   ['DELETE', r('files\\/(\\d+)'), () => ({ ok: true })],
   ['POST', r('tags'), (_m, _q, b) => {
     const t = { id: ++seq, space_id: Number(b.space), name: String(b.name), color: '#64748b' };

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.23.0 — 2026-11-16
+- Ayarlar, E-postalar (şablon düzenleyici dahil), Kayıtlar ve Sistem kontrolü GraphQL üzerinden. Yönetim ekranı React (`flxi-mail`); klasik görünüm `flxi_ui=classic` ile duruyor. Parolalar yazma-yalnız: boş değer saklananı korur, `__clear__` siler (yalnız GraphQL), okumada yalnız sabit maske (••••••••); wp-config sabiti olan parola GraphQL'den değiştirilemez.
+- Flux GraphQL yokken kayıt atlanır, REST çalışmaya devam eder. PHP 8.1 ve `flx-graphql` başlıkta zorunlu.
+
 ## 1.22.0 — 2026-11-14
 - E-posta şablonu artık kuruma özel iz taşımıyor: varsayılan slogan boş ("Daha yeşil bir Türkiye mümkün" kaldırıldı) ve alt çizim "Yok" (ağaç silüeti varsayılan değildi artık). Ayarda kayıtlı değer varsa dokunulmaz.
 - Ön ayarlar için filtreler: `flxi_defaults` (varsayılan ayarlar, ör. tagline/footer_art), `flxi_footer_arts` (alt çizim listesine ekle), `flxi_footer_art_urls` (çizimin açık/koyu PNG adresi).

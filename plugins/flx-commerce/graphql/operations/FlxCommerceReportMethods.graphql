@@ -1,0 +1,5 @@
+query FlxCommerceReportMethods($first: Int = 50, $preset: FlxCommerceReportPreset, $from: String, $to: String) {
+  flxCommerceReportMethods(first: $first, preset: $preset, from: $from, to: $to) {
+    nodes { title orders total { ...FlxCommerceMoney } }
+  }
+}

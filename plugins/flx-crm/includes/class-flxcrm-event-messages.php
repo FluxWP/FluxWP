@@ -677,24 +677,28 @@ final class FLXCRM_Event_Messages {
 		return $sum;
 	}
 
-	/** Pause, resume or cancel every channel of one send. */
-	public static function post_control() {
-		check_admin_referer( 'flxcrm_event_msg_control' );
-		if ( ! flxcrm_can( true ) ) {
-			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-crm' ), 403 );
-		}
-		$id   = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0;
-		$key  = isset( $_POST['send'] ) ? sanitize_key( wp_unslash( $_POST['send'] ) ) : '';
-		$do   = isset( $_POST['do'] ) ? sanitize_key( wp_unslash( $_POST['do'] ) ) : '';
-		$back = isset( $_POST['back'] ) ? esc_url_raw( wp_unslash( $_POST['back'] ) ) : '';
-		$msg  = '';
+	/**
+	 * Pause, resume or cancel every channel of one send.
+	 *
+	 * @param int|string $id  Event.
+	 * @param string     $key Send key.
+	 * @param string     $do  pause, resume or cancel.
+	 * @return array{notice: string, row: array<string,mixed>}|WP_Error
+	 */
+	public static function control( $id, $key, $do ) {
+		$id  = (int) $id;
+		$key = strtolower( sanitize_key( (string) $key ) );
+		$do  = sanitize_key( (string) $do );
+		$msg = '';
+		$hit = false;
 		foreach ( (array) ( self::all()[ $id ] ?? array() ) as $row ) {
-			if ( strtolower( (string) $row['id'] ) !== $key ) {
+			if ( ! is_array( $row ) || strtolower( (string) ( $row['id'] ?? '' ) ) !== $key ) {
 				continue;
 			}
-			foreach ( (array) $row['campaigns'] as $cid ) {
+			$hit = true;
+			foreach ( (array) ( $row['campaigns'] ?? array() ) as $cid ) {
 				$c  = function_exists( 'flxi_get_campaign' ) ? flxi_get_campaign( (int) $cid ) : null;
-				$cs = $c ? (string) $c['status'] : '';
+				$cs = is_array( $c ) ? (string) ( $c['status'] ?? '' ) : '';
 				if ( ( 'pause' === $do && ! in_array( $cs, array( 'queued', 'running', 'sending' ), true ) ) || ( 'resume' === $do && 'paused' !== $cs ) ) {
 					continue; // a finished channel stays as it is
 				}
@@ -710,7 +714,32 @@ final class FLXCRM_Event_Messages {
 				}
 			}
 		}
-		$url = $back && 0 === strpos( $back, admin_url() ) ? $back : flxcrm_events_url( array( 'id' => $id, 'view' => 'message' ) );
+		if ( ! $hit ) {
+			return new WP_Error( 'flxcrm_event', __( 'Event not found.', 'flx-crm' ), array( 'graphql_code' => 'NOT_FOUND' ) );
+		}
+		$fresh = self::find( $id, $key );
+		if ( ! is_array( $fresh ) ) {
+			return new WP_Error( 'flxcrm_event', __( 'Event not found.', 'flx-crm' ), array( 'graphql_code' => 'NOT_FOUND' ) );
+		}
+		if ( class_exists( 'FLXCRM_Gathering_Service' ) ) {
+			FLXCRM_Gathering_Service::changed( $id );
+		}
+		return array( 'notice' => $msg, 'row' => $fresh );
+	}
+
+	/** Pause, resume or cancel every channel of one send. */
+	public static function post_control() {
+		check_admin_referer( 'flxcrm_event_msg_control' );
+		if ( ! flxcrm_can( true ) ) {
+			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-crm' ), 403 );
+		}
+		$id   = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0;
+		$key  = isset( $_POST['send'] ) ? sanitize_key( wp_unslash( $_POST['send'] ) ) : '';
+		$do   = isset( $_POST['do'] ) ? sanitize_key( wp_unslash( $_POST['do'] ) ) : '';
+		$back = isset( $_POST['back'] ) ? esc_url_raw( wp_unslash( $_POST['back'] ) ) : '';
+		$r    = self::control( $id, $key, $do );
+		$msg  = is_wp_error( $r ) ? '' : $r['notice'];
+		$url  = $back && 0 === strpos( $back, admin_url() ) ? $back : flxcrm_events_url( array( 'id' => $id, 'view' => 'message' ) );
 		wp_safe_redirect( add_query_arg( 'flxcrm_msg', $msg ? $msg : 'saved', remove_query_arg( array( 'flxcrm_msg', 'flxcrm_err' ), $url ) ) );
 		exit;
 	}

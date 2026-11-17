@@ -1,0 +1,10 @@
+mutation FlxCrmGatheringSendControl($input: FlxGatheringSendControlInput!) {
+  flxGatheringSendControl(input: $input) {
+    send {
+      ...FlxCrmGatheringSend
+    }
+    errors {
+      ...FlxCrmUserError
+    }
+  }
+}

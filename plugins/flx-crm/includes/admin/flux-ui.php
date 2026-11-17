@@ -3,7 +3,7 @@
  * New view (0.10.0, GraphQL): the CRM pages open the same React screen as the FluxWP app (assets/flux/,
  * tools/fluxapp/embed-sync.sh flx-crm). It is the default and has every feature of the classic pages; a user
  * can switch back to the classic pages from the screen header for now. Needs Flux GraphQL.
- * Events and the sections other plugins add to the contact card stay classic (linked from the screen).
+ * Events and the person-card sections other plugins add are part of this screen.
  *
  * @package FLX_CRM
  */
@@ -44,6 +44,26 @@ add_action(
 function flxcrm_flux_start() {
 	// phpcs:disable WordPress.Security.NonceVerification
 	$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : 'flx-crm';
+	if ( 'flx-crm-events' === $page ) {
+		if ( ! empty( $_GET['add'] ) ) {
+			return 'events/new';
+		}
+		$id = isset( $_GET['id'] ) ? absint( $_GET['id'] ) : 0;
+		if ( $id ) {
+			$q = array();
+			foreach ( array( 'view', 'sub', 'send', 'ch', 'st' ) as $k ) {
+				if ( isset( $_GET[ $k ] ) && '' !== (string) $_GET[ $k ] ) {
+					$q[ $k ] = sanitize_text_field( wp_unslash( (string) $_GET[ $k ] ) );
+				}
+			}
+			if ( ! empty( $_GET['edit'] ) ) {
+				$q['edit'] = '1';
+			}
+			return 'event/' . $id . ( $q ? '?' . http_build_query( $q ) : '' );
+		}
+		$tab = isset( $_GET['tab'] ) ? sanitize_key( wp_unslash( (string) $_GET['tab'] ) ) : '';
+		return in_array( $tab, array( 'archive', 'arsiv', 'closed' ), true ) ? 'events?status=closed' : ( 'site' === $tab ? 'events?tab=site' : 'events' );
+	}
 	if ( 'flx-crm-contacts' === $page ) {
 		if ( ! empty( $_GET['id'] ) ) {
 			return 'contact/' . absint( $_GET['id'] );
@@ -62,6 +82,7 @@ function flxcrm_flux_start() {
 		'flx-crm-segments' => 'segments',
 		'flx-crm-journeys' => 'journeys',
 		'flx-crm-settings' => 'settings',
+		'flx-crm-events'   => 'events',
 	);
 	return $map[ $page ] ?? 'overview';
 }
@@ -81,10 +102,10 @@ function flxcrm_flux_page( $classic ) {
 	};
 }
 
-/** True on the CRM pages that show the React screen (the classic Events page does not). */
+/** True on the CRM pages that show the React screen. */
 function flxcrm_flux_screen() {
 	$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-	return flxcrm_flux_ui() && 0 === strpos( $page, 'flx-crm' ) && 'flx-crm-events' !== $page;
+	return flxcrm_flux_ui() && 0 === strpos( $page, 'flx-crm' );
 }
 
 /** The chunked bundle loads as an ES module. */
@@ -121,6 +142,7 @@ function flxcrm_flux_assets() {
 		),
 		'classicUrl' => flxcrm_ui_switch_url( 'classic' ),
 	);
+	wp_enqueue_media(); // Event image and message file; the Events tab is a hash route on every CRM page.
 	wp_enqueue_style( 'flxcrm-flux', FLXCRM_URL . 'assets/flux/flux-modules.css', array(), $ver );
 	wp_enqueue_script( 'flxcrm-flux', FLXCRM_URL . 'assets/flux/flux-modules.js', array(), $ver, true );
 	add_filter( 'script_loader_tag', 'flxcrm_flux_module_tag', 10, 2 );

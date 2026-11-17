@@ -1,0 +1,7 @@
+query FlxChatMessages($chatId: ID!, $before: Int, $first: Int = 40) {
+  flxChatMessages(chatId: $chatId, before: $before, first: $first) {
+    messages { ...FlxChatMessageFields }
+    hasMore
+    note
+  }
+}

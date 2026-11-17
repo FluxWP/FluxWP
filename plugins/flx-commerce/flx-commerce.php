@@ -2,10 +2,10 @@
 /**
  * Plugin Name:       Flux Commerce
  * Description:       WooCommerce mağazası için satış paneli, müşteriler, aylık/yıllık abonelikler, satış raporları, dekont yüklemeli Havale/EFT, sade ödeme sayfası, ücretsiz kargo çubuğu, Google Merchant ürün feed'i ve WhatsApp/e-posta bildirimleri.
- * Version:           0.5.0
+ * Version:           0.6.0
  * Requires at least: 6.4
- * Requires PHP:      7.4
- * Requires Plugins:  woocommerce
+ * Requires PHP:      8.1
+ * Requires Plugins:  woocommerce, flx-graphql
  * WC requires at least: 8.0
  * WC tested up to:   11.2
  * Author:            FluxWP
@@ -27,7 +27,7 @@ if ( defined( 'FLXCM_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXCM_VERSION', '0.5.0' );
+define( 'FLXCM_VERSION', '0.6.0' );
 define( 'FLXCM_DB_VERSION', 2 );
 define( 'FLXCM_FILE', __FILE__ );
 define( 'FLXCM_DIR', plugin_dir_path( __FILE__ ) );
@@ -50,6 +50,14 @@ require_once FLXCM_DIR . 'includes/class-flxcm-sub-account.php';
 require_once FLXCM_DIR . 'includes/class-flxcm-hidden-product.php';
 require_once FLXCM_DIR . 'includes/class-flxcm-sub-cards.php';
 require_once FLXCM_DIR . 'includes/system-checks.php';
+require_once FLXCM_DIR . 'includes/services/class-flxcm-customer-service.php';
+require_once FLXCM_DIR . 'includes/services/class-flxcm-subscription-service.php';
+require_once FLXCM_DIR . 'includes/services/class-flxcm-receipt-service.php';
+require_once FLXCM_DIR . 'includes/services/class-flxcm-settings-service.php';
+require_once FLXCM_DIR . 'includes/services/class-flxcm-store-service.php';
+require_once FLXCM_DIR . 'includes/services/class-flxcm-cart-service.php';
+// Customer profile data is shared with GraphQL, which is not an admin request.
+require_once FLXCM_DIR . 'includes/admin/page-customer.php';
 if ( is_admin() ) {
 	require_once FLXCM_DIR . 'includes/admin/class-flxcm-admin.php';
 }
@@ -111,6 +119,7 @@ add_action(
 		FLXCM_Sub_Account::init();
 		FLXCM_Hidden_Product::init();
 		FLXCM_Sub_Cards::init();
+		FLXCM_Cart_Service::init();
 		if ( is_admin() ) {
 			FLXCM_Admin::init();
 		}
@@ -171,6 +180,52 @@ add_filter(
 		return $m;
 	}
 );
+/*
+ * GraphQL is registered only when Flux GraphQL is present. REST and the classic screens
+ * keep working without it. Priority 20 is after Flux CRM (10) so FlxContact exists when it is active.
+ */
+add_action(
+	'flx_gql_register',
+	static function () {
+		if ( ! function_exists( 'flx_gql_any_cap' ) ) {
+			return;
+		}
+		require_once FLXCM_DIR . 'includes/graphql/schema.php';
+	},
+	20
+);
+add_filter(
+	'flx_gql_persisted_manifests',
+	static function ( $manifests ) {
+		$manifests                 = is_array( $manifests ) ? $manifests : array();
+		$manifests['flx-commerce'] = FLXCM_DIR . 'graphql/persisted-queries.json';
+		return $manifests;
+	}
+);
+add_filter(
+	'flx_gql_capabilities',
+	static function ( $caps ) {
+		$caps = is_array( $caps ) ? $caps : array();
+		return $caps + array(
+			'view_woocommerce_reports' => array(
+				'label'   => __( 'Sees store reports', 'flx-commerce' ),
+				'group'   => __( 'Store', 'flx-commerce' ),
+				'package' => 'flx-commerce',
+			),
+			'manage_woocommerce'       => array(
+				'label'   => __( 'Manages the store', 'flx-commerce' ),
+				'group'   => __( 'Store', 'flx-commerce' ),
+				'package' => 'flx-commerce',
+			),
+			'edit_shop_orders'         => array(
+				'label'   => __( 'Edits shop orders', 'flx-commerce' ),
+				'group'   => __( 'Store', 'flx-commerce' ),
+				'package' => 'flx-commerce',
+			),
+		);
+	}
+);
+
 add_filter(
 	'flxa_default_groups',
 	function ( $groups ) {

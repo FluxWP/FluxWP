@@ -745,5 +745,9 @@ function flxg_js_strings() {
 		'Yeni görünüme geç' => __( 'Switch to the new view', 'flx-tasks' ),
 		'Klasik görünüm' => __( 'Classic view', 'flx-tasks' ),
 		'Bu ekran FluxApp ile aynıdır. Klasik görünüm bir süre daha kullanılabilir.' => __( 'This screen is the same as FluxApp. The classic view stays available for a while.', 'flx-tasks' ),
+		'Önizle' => __( 'Preview', 'flx-tasks' ),
+		'Dosyayı kaldır' => __( 'Remove file', 'flx-tasks' ),
+		'YouTube bağlantılarında önizleme görseli' => __( 'Preview image for YouTube links', 'flx-tasks' ),
+		'Dokümanda tek başına duran YouTube bağlantısı video kapağıyla kart olarak görünür. Kapak YouTube\'dan yüklenir; kapatırsanız bağlantı düz metin olarak kalır.' => __( 'A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text.', 'flx-tasks' ),
 	);
 }

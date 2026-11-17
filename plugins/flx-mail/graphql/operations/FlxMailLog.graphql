@@ -1,0 +1,3 @@
+query FlxMailLog($id: Int!) {
+  flxMailLog(id: $id) { ...FlxMailLog }
+}

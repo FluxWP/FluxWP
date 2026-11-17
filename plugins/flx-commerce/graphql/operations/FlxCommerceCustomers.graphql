@@ -1,0 +1,8 @@
+query FlxCommerceCustomers($first: Int = 25, $after: String, $search: String, $segment: FlxCommerceSegment, $orderby: FlxCommerceCustomerSort, $order: FlxCommerceSortDirection) {
+  flxCommerceCustomers(first: $first, after: $after, search: $search, segment: $segment, orderby: $orderby, order: $order) {
+    nodes { ...FlxCommerceCustomerRow }
+    pageInfo { hasNextPage endCursor }
+    totalCount
+  }
+  flxCommerceCustomerCounts { all repeat vip lapsed new built builtAt { ...FlxCommerceWhen } spent { ...FlxCommerceMoney } ltv { ...FlxCommerceMoney } }
+}

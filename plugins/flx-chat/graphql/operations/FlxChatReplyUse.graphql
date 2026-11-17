@@ -1,0 +1,6 @@
+mutation FlxChatReplyUse($input: FlxChatReplyUseInput!) {
+  flxChatReplyUse(input: $input) {
+    text
+    errors { code message field }
+  }
+}

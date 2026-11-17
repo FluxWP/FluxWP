@@ -537,5 +537,10 @@
   "{n} tasks completed": "{n}-Aufgaben abgeschlossen",
   "{n} tasks will be permanently deleted.": "{n}-Aufgaben werden dauerhaft gelöscht.",
   "{n} warning(s)": "{n}-Warnung(en)",
-  "{n} wrote a comment": "{n}hat einen Kommentar geschrieben"
+  "{n} wrote a comment": "{n}hat einen Kommentar geschrieben",
+  "Preview not available": "Vorschau nicht verfügbar",
+  "Preview": "Vorschau",
+  "Remove file": "Datei entfernen",
+  "Preview image for YouTube links": "Vorschaubild für YouTube-Links",
+  "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text.": "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text."
 }

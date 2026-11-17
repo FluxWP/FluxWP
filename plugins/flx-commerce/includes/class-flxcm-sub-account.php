@@ -187,6 +187,26 @@ final class FLXCM_Sub_Account {
 		echo '</div>';
 	}
 
+	/**
+	 * The notice the classic account page printed for a service result, or null when it stayed silent.
+	 * Success notices keep WooCommerce's default type; ids that do not exist read as "not yours".
+	 *
+	 * @param array<string,mixed> $res account_act() result.
+	 * @return array{message:string,type:string}|null
+	 */
+	public static function notice_for( string $do, array $res ): ?array {
+		$code = (string) ( $res['code'] ?? '' );
+		if ( 'NOT_FOUND' === $code || 'FORBIDDEN' === $code ) {
+			return array( 'message' => __( 'You are not allowed to do this.', 'flx-commerce' ), 'type' => 'error' );
+		}
+		$show = 'OK' === $code || ( 'renew' === $do && 'CONFLICT' === $code );
+		$text = (string) ( $res['notice'] ?? '' );
+		if ( ! $show || '' === $text ) {
+			return null;
+		}
+		return array( 'message' => $text, 'type' => 'error' === ( $res['type'] ?? '' ) ? 'error' : 'success' );
+	}
+
 	/** İptal / yeniden açma (nonce + sahiplik). */
 	public static function action() {
 		if ( empty( $_GET['flxcm_sub'] ) || empty( $_GET['flxcm_do'] ) || ! is_user_logged_in() ) {
@@ -197,38 +217,14 @@ final class FLXCM_Sub_Account {
 		if ( ! in_array( $do, array( 'cancel', 'resume', 'renew', 'forget_card' ), true ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ?? '' ) ), 'flxcm_sub_' . $do . '_' . $id ) ) {
 			return;
 		}
-		$own = wp_list_pluck( self::mine(), 'id' );
-		if ( ! in_array( (string) $id, array_map( 'strval', $own ), true ) ) {
-			wc_add_notice( __( 'You are not allowed to do this.', 'flx-commerce' ), 'error' );
-		} elseif ( 'cancel' === $do ) {
-			$sub = FLXCM_Subscriptions::cancel( $id, false, 'customer' );
-			if ( $sub ) {
-				wc_add_notice(
-					'expired' === $sub['status']
-						? __( 'Your subscription has ended.', 'flx-commerce' )
-						/* translators: %s: date */
-						: sprintf( __( 'Renewal is off. Your subscription stays valid until %s.', 'flx-commerce' ), flxcm_date( $sub['period_end'] ) )
-				);
-			}
-		} elseif ( 'forget_card' === $do ) {
-			FLXCM_Sub_Cards::forget( $id );
-			$row = FLXCM_Subscriptions::row( $id );
-			$o   = $row && (int) $row['renewal_order_id'] ? wc_get_order( (int) $row['renewal_order_id'] ) : null;
-			if ( $o && ! $o->is_paid() && $o->get_meta( '_flxcm_card_auto' ) ) {
-				$o->delete_meta_data( '_flxcm_card_auto' );
-				$o->add_order_note( __( 'The customer removed the stored card; this renewal is paid with the payment link.', 'flx-commerce' ) );
-				$o->save();
-			}
-			wc_add_notice( __( 'The card was removed. We will e-mail you a payment link before each renewal.', 'flx-commerce' ) );
-		} elseif ( 'renew' === $do ) {
-			$o = FLXCM_Subscriptions::create_renewal( $id, true );
-			if ( $o instanceof WC_Order ) {
-				wp_safe_redirect( FLXCM_Subscriptions::pay_url( $o ) );
-				exit;
-			}
-			wc_add_notice( is_wp_error( $o ) ? $o->get_error_message() : __( 'Something went wrong. Please try again.', 'flx-commerce' ), 'error' );
-		} elseif ( FLXCM_Subscriptions::resume( $id ) ) {
-			wc_add_notice( __( 'Renewal is back on.', 'flx-commerce' ) );
+		$res = FLXCM_Subscription_Service::account_act( $id, $do, get_current_user_id() );
+		if ( '' !== $res['redirect'] ) {
+			wp_safe_redirect( $res['redirect'] );
+			exit;
+		}
+		$notice = self::notice_for( $do, $res );
+		if ( null !== $notice ) {
+			wc_add_notice( $notice['message'], $notice['type'] );
 		}
 		wp_safe_redirect( wc_get_account_endpoint_url( self::ENDPOINT ) );
 		exit;

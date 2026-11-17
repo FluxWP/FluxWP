@@ -1,0 +1,27 @@
+query FlxCrmGatheringForm($id: Int) {
+  flxGatheringForm(id: $id) {
+    databaseId
+    name
+    createPost
+    postType
+    afterHtml
+    sections {
+      key
+      title
+      html
+      fields {
+        key
+        type
+        label
+        placeholder
+        help
+        required
+        value
+        options {
+          value
+          label
+        }
+      }
+    }
+  }
+}

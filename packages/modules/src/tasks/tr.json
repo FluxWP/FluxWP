@@ -537,5 +537,10 @@
   "{n} tasks completed": "{n} görev tamamlandı",
   "{n} tasks will be permanently deleted.": "{n} görev kalıcı olarak silinecek.",
   "{n} warning(s)": "{n} uyarı var",
-  "{n} wrote a comment": "{n} yorum yazdı"
+  "{n} wrote a comment": "{n} yorum yazdı",
+  "Preview not available": "Önizlenemedi",
+  "Preview": "Önizle",
+  "Remove file": "Dosyayı kaldır",
+  "Preview image for YouTube links": "YouTube bağlantılarında önizleme görseli",
+  "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text.": "Dokümanda tek başına duran YouTube bağlantısı video kapağıyla kart olarak görünür. Kapak YouTube'dan yüklenir; kapatırsanız bağlantı düz metin olarak kalır."
 }

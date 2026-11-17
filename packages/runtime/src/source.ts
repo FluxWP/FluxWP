@@ -1,6 +1,6 @@
 // Sources (§7.3) → REST requests, and responses → pages. Platform-neutral; the app runs the request
 // through @fluxwp/core's client (auth, refresh, same-site guard).
-import { fill, getPath, value, type Action, type ExprContext, type FormScreen, type Paging, type RequestSpec, type Source } from '@fluxwp/manifest';
+import { fill, getPath, value, type Action, type ExprContext, type FormScreen, type GraphQLRef, type Paging, type RequestSpec, type Source } from '@fluxwp/manifest';
 
 export class ManifestError extends Error {
   constructor(public reason: string) {
@@ -16,6 +16,38 @@ export interface PlannedRequest {
   body?: Record<string, unknown>;
   /** Set when DELETE/PUT/PATCH travel as POST (+ X-HTTP-Method-Override). */
   override?: 'PUT' | 'PATCH' | 'DELETE';
+  /** GraphQL operation instead of REST: `path` is `../graphql`, `query` only keys the cache. */
+  graphql?: PlannedGraphQL;
+}
+
+export interface PlannedGraphQL {
+  id: string;
+  name: string;
+  kind: 'query' | 'mutation';
+  variables: Record<string, unknown>;
+  data?: string | undefined;
+}
+
+/** `/graphql` next to `/wp-json/` (core client resolves it, also under a subdirectory install). */
+export const GRAPHQL_PATH = '../graphql';
+
+const unset = (v: unknown) => v === undefined || v === null || v === '';
+
+/** Templated variables; a template that renders empty is left out, so the operation's default applies. A literal `""` stays. */
+function gqlVariables(vars: Record<string, unknown> | undefined, ctx: ExprContext): Record<string, unknown> {
+  const out: Record<string, unknown> = {};
+  for (const [k, raw] of Object.entries(vars ?? {})) {
+    const v = fill(raw, ctx);
+    if (v === undefined || v === null || (v === '' && raw !== '')) continue;
+    out[k] = v;
+  }
+  return out;
+}
+
+function gqlPlan(ref: GraphQLRef, kind: 'query' | 'mutation', variables: Record<string, unknown>): PlannedRequest {
+  if (!ref.id || !/^[0-9a-f]{64}$/.test(ref.id)) throw new ManifestError('graphql');
+  const g: PlannedGraphQL = { id: ref.id, name: ref.op, kind: ref.kind ?? kind, variables, data: ref.data };
+  return { path: GRAPHQL_PATH, method: g.kind === 'query' ? 'GET' : 'POST', query: { op: g.name, v: JSON.stringify(variables) }, graphql: g };
 }
 
 function cleanPath(p: string): string {
@@ -37,6 +69,8 @@ export interface ListQuery {
 }
 
 export function sourceRequest(src: Source, ctx: ExprContext, list: ListQuery = {}): PlannedRequest {
+  if (src.graphql) return graphqlSourceRequest(src, src.graphql, ctx, list);
+  if (!src.path) throw new ManifestError('path');
   const query: PlannedRequest['query'] = {};
   for (const [k, v] of Object.entries(src.query ?? {})) {
     const r = typeof v === 'string' ? value(v, ctx) : v;
@@ -53,6 +87,18 @@ export function sourceRequest(src: Source, ctx: ExprContext, list: ListQuery = {
   }
   const method = src.method ?? 'GET';
   return { path: renderPath(src.path, ctx), method, query, body: src.body ? fill(src.body, ctx) : undefined };
+}
+
+/** GraphQL source: filters, search and paging go into the variables (`first` / `after` by default). */
+function graphqlSourceRequest(src: Source, ref: GraphQLRef, ctx: ExprContext, list: ListQuery): PlannedRequest {
+  const vars = gqlVariables(ref.variables, ctx);
+  for (const [k, v] of Object.entries(list.filters ?? {})) if (!unset(v)) vars[k] = v;
+  if (list.search?.value.trim()) vars[list.search.param] = list.search.value.trim();
+  const pg: Paging = src.paging ?? { mode: 'none' };
+  if (pg.mode === 'page') vars[pg.param ?? 'page'] = list.page ?? 1;
+  if (pg.mode === 'cursor' && list.cursor) vars[pg.param ?? 'after'] = list.cursor;
+  if (pg.size && pg.mode !== 'none') vars[pg.size_param ?? (pg.mode === 'cursor' ? 'first' : 'perPage')] = pg.size;
+  return gqlPlan(ref, 'query', vars);
 }
 
 export interface Page<T = Record<string, unknown>> {
@@ -85,12 +131,15 @@ export function parsePage(src: Source, body: unknown, page: number, headers?: { 
   } else if (pg.mode === 'cursor') {
     const c = getPath(body, pg.next ?? 'next');
     next = typeof c === 'string' || typeof c === 'number' ? c : null;
+    if (pg.has_next && !getPath(body, pg.has_next)) next = null;
   }
   return { items, page, total, next };
 }
 
 /** Action / form request. DELETE/PUT/PATCH become POST + override when the site asks for it (§7.6). */
 export function actionRequest(req: RequestSpec, ctx: ExprContext, methodOverride = true): PlannedRequest {
+  if (req.graphql) return gqlPlan(req.graphql, 'mutation', gqlVariables(req.graphql.variables, ctx));
+  if (!req.path) throw new ManifestError('path');
   const method = req.method ?? 'POST';
   const planned: PlannedRequest = { path: renderPath(req.path, ctx), method, query: {}, body: req.body ? fill(req.body, ctx) : undefined };
   if (methodOverride && (method === 'DELETE' || method === 'PUT' || method === 'PATCH')) return { ...planned, method: 'POST', override: method };
@@ -114,11 +163,23 @@ export function setPath(obj: Record<string, unknown>, path: string, v: unknown):
 /** Form submit: `path_update` when `params.id` is filled, else `path_create`; body = form values. */
 export function formRequest(form: FormScreen, values: Record<string, unknown>, ctx: ExprContext, methodOverride = true): PlannedRequest {
   const hasId = !!ctx.params?.id;
+  const nestedValues = () => {
+    const nested: Record<string, unknown> = Object.create(null);
+    for (const [k, v] of Object.entries(values)) setPath(nested, k, v);
+    return nested;
+  };
+  const gql = (hasId ? form.submit.graphql_update : form.submit.graphql_create) ?? form.submit.graphql;
+  if (gql) {
+    // Form values go into one input variable (default `input`), merged over its templated fields.
+    const vars = gqlVariables(gql.variables, { ...ctx, input: values });
+    const name = gql.values ?? 'input';
+    const prev = vars[name];
+    vars[name] = { ...(prev && typeof prev === 'object' ? (prev as Record<string, unknown>) : {}), ...nestedValues() };
+    return gqlPlan(gql, 'mutation', vars);
+  }
   const path = (hasId ? form.submit.path_update : form.submit.path_create) ?? form.submit.path;
   const req = actionRequest({ ...form.submit, path }, { ...ctx, input: values }, methodOverride);
-  const nested: Record<string, unknown> = Object.create(null);
-  for (const [k, v] of Object.entries(values)) setPath(nested, k, v);
-  return { ...req, body: { ...(req.body ?? {}), ...nested } };
+  return { ...req, body: { ...(req.body ?? {}), ...nestedValues() } };
 }
 
 /** Which actions a screen shows: `can` is decided by the server; `when` uses the row/data. */

@@ -671,17 +671,8 @@ add_action(
 			array(
 				'methods'             => 'GET',
 				'permission_callback' => 'flxc_can_manage',
-				'callback'            => function ( WP_REST_Request $req ) {
-					global $wpdb;
-					$chat = (int) $req->get_param( 'chat' );
-					$t    = flxc_table( 'reminders' );
-					$rows = $chat
-						? flxc_rem_for_chat( $chat, 'all' )
-						: array_map( 'flxc_rem_row', (array) $wpdb->get_results( "SELECT * FROM $t WHERE status <> 'deleted' ORDER BY (status = 'active') DESC, next_at ASC LIMIT 300", ARRAY_A ) ); // phpcs:ignore
-					return array(
-						'enabled' => flxc_rem_on(),
-						'items'   => array_map( 'flxc_rem_for_js', $rows ),
-					);
+				'callback'            => static function ( WP_REST_Request $req ) {
+					return FLXC_Desk_Service::reminders( (int) $req->get_param( 'chat' ) );
 				},
 			)
 		);
@@ -692,19 +683,15 @@ add_action(
 				array(
 					'methods'             => 'POST',
 					'permission_callback' => 'flxc_can_manage',
-					'callback'            => function ( WP_REST_Request $req ) {
-						$st = (string) $req->get_param( 'status' );
-						if ( ! in_array( $st, array( 'active', 'paused' ), true ) || ! flxc_rem_set_status( (int) $req['id'], $st ) ) {
-							return new WP_Error( 'flxc_rem', __( 'The reminder could not be updated.', 'flx-chat' ), array( 'status' => 400 ) );
-						}
-						return flxc_rem_for_js( flxc_rem_get( (int) $req['id'] ) );
+					'callback'            => static function ( WP_REST_Request $req ) {
+						return FLXC_Desk_Service::reminder_status( (int) $req['id'], (string) $req->get_param( 'status' ) );
 					},
 				),
 				array(
 					'methods'             => 'DELETE',
 					'permission_callback' => 'flxc_can_manage',
-					'callback'            => function ( WP_REST_Request $req ) {
-						return array( 'ok' => flxc_rem_set_status( (int) $req['id'], 'deleted' ) );
+					'callback'            => static function ( WP_REST_Request $req ) {
+						return array( 'ok' => FLXC_Desk_Service::reminder_delete( (int) $req['id'] ) );
 					},
 				),
 			)

@@ -87,11 +87,13 @@
 
 	/* ---------- bundles ---------- */
 	var runtimes = {};
+	var screenBundles = {};
 	function runtime(r) {
 		var id = r.bundle.id;
 		if (!runtimes[id]) {
 			runtimes[id] = import(r.bundle.entry).then(function (ns) {
-				var api = ns && typeof ns.mount === 'function' ? ns : w.FluxModules;
+				// The shared plugin runtime (mode "screens") lives on globalThis; a FluxWP bundle exports its API.
+				var api = r.bundle.screens ? w.FluxRuntime : ns && typeof ns.mount === 'function' ? ns : w.FluxModules;
 				if (!api || typeof api.mount !== 'function' || typeof api.unmount !== 'function') {
 					throw new Error('flx-screens: bundle without mount/unmount');
 				}
@@ -101,7 +103,30 @@
 				delete runtimes[id];
 			});
 		}
-		return runtimes[id];
+		if (!r.bundle.screens) {
+			return runtimes[id];
+		}
+		// A plugin's screens bundle registers its screens with the runtime when it runs (once per page).
+		return runtimes[id].then(function (api) {
+			var sid = r.bundle.screensId;
+			if (!screenBundles[sid]) {
+				screenBundles[sid] = api.has && api.has(r.module) ? Promise.resolve() : import(r.bundle.screens);
+				screenBundles[sid].catch(function () {
+					delete screenBundles[sid];
+				});
+			}
+			return screenBundles[sid].then(function () {
+				return api;
+			});
+		});
+	}
+
+	/** A plugin screens bundle's own stylesheet (beside the runtime's), loaded and on. */
+	function screensCss(r) {
+		if (!r.bundle.screensCss) {
+			return Promise.resolve(null);
+		}
+		return ensureCss({ bundle: { css: r.bundle.screensCss, id: r.bundle.screensId } });
 	}
 
 	function cssLink(r) {
@@ -139,11 +164,14 @@
 		var links = d.querySelectorAll('link[rel="stylesheet"]');
 		Object.keys(routes).forEach(function (p) {
 			cssLink(routes[p]);
+			if (routes[p].bundle.screensCss) {
+				cssLink({ bundle: { css: routes[p].bundle.screensCss, id: routes[p].bundle.screensId } });
+			}
 		});
 		for (var i = 0; i < links.length; i++) {
 			var b = links[i].dataset.flxBundle;
 			if (b) {
-				links[i].disabled = b !== r.bundle.id;
+				links[i].disabled = b !== r.bundle.id && b !== r.bundle.screensId;
 			}
 		}
 	}
@@ -414,7 +442,7 @@
 			// The screen's code before it mounts: it paints once, with content.
 			return typeof rt.preload === 'function' ? rt.preload(m.route.module).then(function () { return rt; }) : rt;
 		});
-		return Promise.all([code, ensureCss(m.route), prefetchData(m.route), from.rt, loadScripts(m.route)]).then(function (res) {
+		return Promise.all([code, ensureCss(m.route), prefetchData(m.route), from.rt, loadScripts(m.route), screensCss(m.route)]).then(function (res) {
 			if (token !== seq) {
 				return;
 			}
@@ -511,7 +539,7 @@
 			return;
 		}
 		var here = match(location.href);
-		var rt = Promise.resolve(w.FluxModules).then(function (x) {
+		var rt = Promise.resolve(r.bundle.screens ? w.FluxRuntime : w.FluxModules).then(function (x) {
 			if (!x || typeof x.unmount !== 'function') {
 				throw new Error('flx-screens: current bundle cannot unmount');
 			}
@@ -524,6 +552,9 @@
 		current = { page: cfg.current, start: here ? here.start : r.start || '', route: r, el: el, rt: rt };
 		w.history.replaceState({ flxScreen: 1 }, '', location.href);
 		cssLink(r);
+		if (r.bundle.screensCss) {
+			cssLink({ bundle: { css: r.bundle.screensCss, id: r.bundle.screensId } });
+		}
 	}
 
 	d.addEventListener('click', function (e) {

@@ -150,6 +150,36 @@ preg_match( '#window\.FlxScreensConfig=(\{.*?\});</script>#s', $html, $c );
 flxt_same( false, json_decode( $c[1] ?? '{}', true )['on'] ?? null, 'flx_admin_screens_navigation false turns navigation off' );
 remove_filter( 'flx_admin_screens_navigation', '__return_false' );
 
+// A plugin screens bundle (@fluxwp/plugin-kit): runs on the shared runtime in assets/runtime/.
+$pdir = trailingslashit( get_temp_dir() ) . 'flxt-plugin-' . wp_rand() . '/';
+wp_mkdir_p( $pdir );
+file_put_contents( $pdir . 'flux-screens.js', 'export {};' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+file_put_contents( $pdir . 'flux-screens.css', '' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+file_put_contents( $pdir . 'chunks.json', '{"mode":"screens","entry":"flux-screens.js","files":[]}' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+$GLOBALS['submenu']['flxt-screen'][] = array( 'Plugin', 'manage_options', 'flxt-plugin', 'Plugin screen' );
+flx_admin_screen( 'flxt-plugin', array( 'module' => 'flxt-plugin', 'assets_dir' => $pdir, 'assets_url' => 'https://example.org/plugin/flux/', 'version' => '2.0.0' ) );
+$ps = flx_admin_screens()['flxt-plugin'];
+flxt_same( true, flx_admin_screen_is_plugin_bundle( $ps ), 'flux-screens.js marks a plugin screens bundle' );
+flxt_same( true, null !== flx_admin_screen_runtime(), 'the shared runtime ships with Flux GraphQL' );
+flxt_same( true, flx_admin_screen_usable( 'flxt-plugin' ), 'plugin screen is usable with the runtime' );
+$pb = flx_admin_screen_bundle( $ps );
+flxt_same( 'flx-runtime', $pb['id'], 'plugin bundles share the runtime id' );
+flxt_same( true, str_contains( $pb['entry'], 'assets/runtime/flux-runtime.js' ), 'plugin route loads the runtime' );
+flxt_same( true, str_starts_with( $pb['screens'] ?? '', 'https://example.org/plugin/flux/flux-screens.js?ver=2.0.0-' ), 'plugin screens entry is versioned' );
+flxt_same( true, str_starts_with( $pb['screensCss'] ?? '', 'https://example.org/plugin/flux/flux-screens.css' ), 'plugin stylesheet' );
+flxt_same( false, isset( flx_admin_screen_bundle( flx_admin_screens()['flxt-screen'] )['screens'] ), 'a FluxWP bundle has no screens entry' );
+$_GET['page'] = 'flxt-plugin';
+ob_start();
+flx_admin_screen_render();
+$html = (string) ob_get_clean();
+preg_match( '#window\.FlxScreensConfig=(\{.*?\});</script>#s', $html, $c );
+$route = json_decode( $c[1] ?? '{}', true )['routes']['flxt-plugin'] ?? array();
+flxt_same( 'flx-runtime', $route['bundle']['id'] ?? null, 'plugin route bundle id' );
+flxt_same( true, '' !== ( $route['bundle']['screensId'] ?? '' ), 'plugin route names its screens bundle' );
+flxt_same( true, str_contains( $html, 'function go(){return;' ), 'FluxModules does not take a plugin screen' );
+array_map( 'unlink', glob( $pdir . '*' ) ?: array() ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+rmdir( $pdir ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+
 unset( $_GET['page'], $_GET['tab'] );
 delete_user_meta( $admin, FLX_ADMIN_SCREEN_LEARN_META );
 // Leave wp-admin: is_admin() stays true for the rest of the process otherwise, and plugins run admin-only

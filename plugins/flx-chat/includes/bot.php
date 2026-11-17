@@ -1038,6 +1038,8 @@ function flxc_bot_system_prompt( $chat, array $state, $template = null ) {
 	$rules[] = '- Araç sonucu ok=false dönerse error alanındaki yönergeye uy; aynı aracı aynı değerlerle tekrar çağırma.';
 	$rules[] = '- Link (internet adresi) asla kendin yazma, uydurma. Ödeme, sertifika ve fiyat listesi linklerini sistem ayrı mesajla gönderir. Araç sonucunda [[link1]] gibi bir işaret varsa ve kişi o sayfayı istiyorsa işareti aynen yaz; sistem gerçek linke çevirir. Kişi link istemediğini söylediyse link işareti yazma.';
 	$rules[] = flxc_voice_rule();
+	// 1.50.0: rules for tools other plugins add (`flxc_bot_tools`), each a "- ..." line.
+	$rules = array_values( (array) apply_filters( 'flxc_bot_rules', $rules, $tools, $chat ) );
 	$rules[] = '- "Sa", "Slm", "Selam", "Sa knk", "Selamün aleyküm" selamdır: selamı al (ör. "Aleyküm selam"), "Rica ederim" deme. Selama yalnız selam ve kısa bir "nasıl yardımcı olabilirim" ile karşılık ver; sorulmadıkça bağış ya da dekont durumunu anlatma.';
 	$rules[] = '- Bilmediğin bir süre, tarih ya da süreç sorulursa (sertifika kaç günde gelir, ne zaman dikilir) uydurma: ekibimizin kontrol edip bilgi vereceğini söyle. Sohbette görmediğin bir dekont ya da ödeme için "aldık" deme.';
 	$rules[] = '- Kişi dekont olmayan bir fotoğraf ya da dosya gönderirse (mesajdaki notta "Dekont değil" ve ne olduğu yazar) ne olduğuna göre kısa, sıcak ve hafif esprili bir cümleyle karşılık ver, sonra konuyu nazikçe fidana ve bağışa bağla. Ödemesi beklenen bir bağışı varsa dekontu ya da ödeme ekranının görüntüsünü gönderebileceğini hatırlat. Dekont geldikten sonra da kişinin sorularına cevap vermeye devam et; onay bekleniyor diye yetkiliye aktarma.';
@@ -1214,8 +1216,9 @@ function flxc_bot_tools() {
 			'create_donation',
 			'Kişi özeti açıkça onayladıktan sonra bekleyen bağış kaydını (sipariş) açar; kişinin kendi ödeme linki ve bilgileri sistem tarafından ayrı mesajlarla gönderilir.',
 			array(
-				'confirmed' => array( 'type' => 'boolean', 'description' => 'Kişi onayladı mı' ),
-				'method'    => array( 'type' => 'string', 'enum' => array( 'card', 'havale', 'choose' ), 'description' => 'Kişi kartla mı havale/EFT ile mi ödeyecek; söylemediyse choose (ikisini de seçebileceği sayfa)' ),
+				'confirmed'     => array( 'type' => 'boolean', 'description' => 'Kişi onayladı mı' ),
+				'proxy_consent' => array( 'type' => 'boolean', 'description' => 'Vekâlet isteyen türde: kişi özetteki vekâlet metnini okuyup açıkça onayladı mı (ör. "onaylıyorum", "vekâlet veriyorum", "I agree")' ),
+				'method'        => array( 'type' => 'string', 'enum' => array( 'card', 'havale', 'choose' ), 'description' => 'Kişi kartla mı havale/EFT ile mi ödeyecek; söylemediyse choose (ikisini de seçebileceği sayfa)' ),
 			),
 			array( 'confirmed' )
 		),
@@ -1281,7 +1284,11 @@ function flxc_bot_tools() {
 	if ( function_exists( 'flxc_bot_has_tool_docs' ) && flxc_bot_has_tool_docs() ) {
 		$list[] = $f( 'read_doc', 'Başvuru belgelerinden birini okur (talimattaki listede yazan slug ile).', array( 'slug' => array( 'type' => 'string' ) ), array( 'slug' ) );
 	}
-	return $list;
+	/**
+	 * 1.50.0: other plugins add their own assistant tools (OpenAI format, build them with $f).
+	 * Answer the call with the `flxc_bot_tool_call` filter.
+	 */
+	return array_values( (array) apply_filters( 'flxc_bot_tools', $list, $f ) );
 }
 
 /** 1.41.0: "Selma", "Ayşe Nur" gibi düz ad mı (hitap, lakap, unvan değil)? */
@@ -1339,6 +1346,15 @@ function flxc_bot_tool( $name, array $a, $chat, array &$ctx ) {
 	};
 	if ( 0 === strpos( $name, 'staff_' ) && function_exists( 'flxc_staff_tool' ) ) {
 		return flxc_staff_tool( $name, $a, $chat, $state, $ctx, $sandbox, $save );
+	}
+	/**
+	 * 1.50.0: a tool added with `flxc_bot_tools` is answered here. Return an array (the tool result the
+	 * model reads, e.g. [ 'ok' => true, ... ] or [ 'ok' => false, 'error' => '...' ]); null leaves it to Flux Chat.
+	 * $sandbox is true in the assistant's test chat: change nothing and send nothing then.
+	 */
+	$pre = apply_filters( 'flxc_bot_tool_call', null, $name, $a, $chat, $state, $sandbox );
+	if ( is_array( $pre ) ) {
+		return $pre;
 	}
 	switch ( $name ) {
 		case 'save_details':
@@ -1423,6 +1439,10 @@ function flxc_bot_tool( $name, array $a, $chat, array &$ctx ) {
 			if ( $state['donation'] && flxc_bot_same_order( $state ) ) {
 				return array( 'ok' => true, 'note' => 'Bu bağış kaydı zaten oluşturuldu (#' . $state['donation'] . '). Ödeme bilgileri gönderildi.' );
 			}
+			// 1.50.0: vekâlet isteyen tür (kurban): kişi özetteki vekâlet metnini açıkça onaylamadan kayıt açılmaz.
+			if ( ! empty( $state['order']['proxy'] ) && empty( $a['proxy_consent'] ) ) {
+				return array( 'ok' => false, 'error' => 'Bu tür vekâlet ister. Özetteki vekâlet metnini kişiye aynen göster ve açıkça onaylayıp onaylamadığını sor; onaylarsa create_donation(confirmed=true, proxy_consent=true). Onaylamazsa kayıt açma.' );
+			}
 			if ( $sandbox ) {
 				// Test bağışları yalnız test durumunda tutulur (flxc_bot_sandbox_donation); gerçek kayıt açılmaz.
 				$method  = flxc_pay_default_method( (string) ( $a['method'] ?? '' ) );
@@ -1462,6 +1482,7 @@ function flxc_bot_tool( $name, array $a, $chat, array &$ctx ) {
 					'note'                 => __( 'Created with the WhatsApp assistant.', 'flx-chat' ),
 					'user_id'              => 0,
 					'source_detail'        => 'flx-chat-bot',
+					'proxy_consent'        => ! empty( $state['order']['proxy'] ) && ! empty( $a['proxy_consent'] ),
 				),
 				$chat
 			);
@@ -2126,8 +2147,14 @@ function flxc_bot_build_order( array $a ) {
 	if ( ! $type ) {
 		return new WP_Error( 'type', 'Bu bağış türü yok ya da kapalı. Listeden seçmesini iste.' );
 	}
+	// 1.50.0: vekâlet isteyen türde metin özete girer, kişi onaylayınca kayıt açılır (create_donation proxy_consent).
+	$proxy = '';
 	if ( $type['proxy'] ) {
-		return new WP_Error( 'proxy', 'Bu tür vekâlet onayı gerektiriyor; handoff çağır.' );
+		$pt    = function_exists( 'flxb_proxy_text' ) ? flxb_proxy_text() : null;
+		$proxy = $pt ? trim( wp_strip_all_tags( (string) ( $pt['text'] ?? '' ) ) ) : '';
+		if ( '' === $proxy ) {
+			return new WP_Error( 'proxy', 'Bu tür vekâlet onayı gerektiriyor ama sitede vekâlet metni yok; handoff çağır.' );
+		}
 	}
 	$qty = max( 1, (int) ( $a['quantity'] ?? 1 ) );
 	if ( $type['maxQty'] && $qty > $type['maxQty'] ) {
@@ -2193,6 +2220,7 @@ function flxc_bot_build_order( array $a ) {
 		'amount'   => $amount,
 		'currency' => $type['currency'],
 		'benef'    => $benef,
+		'proxy'    => $proxy,
 	);
 }
 
@@ -2262,6 +2290,11 @@ function flxc_bot_order_summary( array $o, array $state = array() ) {
 	}
 	if ( ! empty( $state['email'] ) && 'hayır' !== ( $state['email_notify'] ?? '' ) ) {
 		$lines[] = 'E-posta: ' . $state['email'] . ( 'evet' === ( $state['email_notify'] ?? '' ) ? ' (bilgilendirmeler bu adrese de gider)' : '' );
+	}
+	if ( ! empty( $o['proxy'] ) ) {
+		$lines[] = '';
+		$lines[] = '*' . __( 'Proxy', 'flx-chat' ) . ':* ' . $o['proxy'];
+		$lines[] = __( 'Please reply "I agree" to give your proxy.', 'flx-chat' );
 	}
 	return implode( "\n", $lines );
 }
@@ -2445,39 +2478,8 @@ add_action(
 			array(
 				'methods'             => 'POST',
 				'permission_callback' => 'flxc_can_use',
-				'callback'            => function ( WP_REST_Request $req ) {
-					$chat = flxc_rest_chat_or_error( $req['id'] );
-					if ( is_wp_error( $chat ) ) {
-						return $chat;
-					}
-					$b = flxc_bot_state( $chat );
-					if ( 'on' === $req->get_param( 'state' ) ) {
-						$b['off']   = 0;
-						$b['until'] = 0;
-						$b['last_in'] = flxc_bot_last_in_id( $chat['id'] ); // eski mesajlara cevap vermesin
-						// Elle açan, sınır dolduysa bugün yine sustursun istemez (1.12.0).
-						if ( $b['day'] === wp_date( 'Y-m-d' ) && (int) $b['n'] >= flxc_bot_daily_limit() ) {
-							$b['n']   = 0;
-							$b['lim'] = '';
-						}
-						// 1.9.2: son 30 dk'da cevapsız kalan mesaj(lar) varsa asistan açılınca onları cevaplar.
-						global $wpdb;
-						$mt   = flxc_table( 'messages' );
-						$last = $wpdb->get_row( $wpdb->prepare( "SELECT id, direction, ts FROM $mt WHERE chat_id = %d AND direction IN ('in','out') ORDER BY id DESC LIMIT 1", (int) $chat['id'] ), ARRAY_A ); // phpcs:ignore
-						$wake = $last && 'in' === $last['direction'] && (int) $last['ts'] > ( time() - 30 * MINUTE_IN_SECONDS ) * 1000;
-						if ( $wake ) {
-							$b['last_in'] = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COALESCE(MAX(id),0) FROM $mt WHERE chat_id = %d AND direction = 'in' AND id < (SELECT COALESCE(MAX(id),0) FROM $mt WHERE chat_id = %d AND direction = 'out')", (int) $chat['id'], (int) $chat['id'] ) ); // phpcs:ignore
-						}
-					} else {
-						$b['off'] = 1;
-					}
-					flxc_bot_save_state( $chat['id'], $b );
-					if ( ! empty( $wake ) ) {
-						flxc_bot_queue( (int) $chat['id'] );
-					}
-					/* translators: %s: user */
-					flxc_system_message( $chat, sprintf( 'on' === $req->get_param( 'state' ) ? __( 'Assistant turned on (%s)', 'flx-chat' ) : __( 'Assistant turned off (%s)', 'flx-chat' ), flxc_user_name( get_current_user_id() ) ) );
-					return array( 'chat' => flxc_chat_for_js( flxc_get_chat( $chat['id'] ) ) );
+				'callback'            => static function ( WP_REST_Request $req ) {
+					return FLXC_Desk_Service::bot( $req );
 				},
 			)
 		);

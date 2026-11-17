@@ -40,7 +40,11 @@ final class FLXCM_Sub_Product {
 		return $product && 'yes' === $product->get_meta( '_flxcm_sub' ) && $product->is_type( 'simple' ) && self::prices_of( $product );
 	}
 
-	/** Sunulan dönemlerin fiyatları: [ 'month' => 599.0, 'year' => 5990.0 ]. */
+	/**
+	 * Sunulan dönemlerin fiyatları: [ 'month' => 599.0, 'year' => 5990.0 ].
+	 *
+	 * @return array<string,float>
+	 */
 	public static function prices_of( WC_Product $product ) {
 		$out = array();
 		foreach ( FLXCM_Subscriptions::PERIODS as $p ) {
@@ -201,7 +205,7 @@ final class FLXCM_Sub_Product {
 			$prices = self::prices_of( wc_get_product( $item['product_id'] ) );
 			$p      = $item['flxcm_sub']['period'];
 			if ( isset( $prices[ $p ] ) ) {
-				$item['data']->set_price( $prices[ $p ] );
+				$item['data']->set_price( (string) $prices[ $p ] );
 			}
 		}
 	}

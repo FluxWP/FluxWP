@@ -1,5 +1,11 @@
 # @fluxwp/runtime
 
+## 0.4.0
+- Manifest kaynakları, aksiyonlar ve form kayıtları GraphQL'den de çalışır (`graphql: {op, id, variables, data}`). İstek yalnız persisted `queryId` taşır (strict sorgu modu), sorgular önbelleklenebilir GET, mutation POST. Sayfalama/arama/filtre değerleri değişken olur (`first`/`after`, `pageInfo.hasNextPage` → `paging.has_next`). İlk GraphQL hatası ya da payload `errors { code message field }` `ApiError` olur; alan hataları formda alanın altında görünür.
+
+## 0.3.6
+- `NavEntry.children`: a package's wp-admin sub-pages, so drawers and sidebars can list its sub-tabs.
+
 ## 0.3.5
 - Giriş öncesi `loadBootstrap` da kayıtlı istemci geliştiricisinden geçer (FluxApp GraphQL taşıyıcısı).
 

@@ -1,8 +1,12 @@
 # Değişiklikler
 
-## 0.6.1
+## 0.7.1
 - wp-admin ekranı Flux GraphQL ekran kabuğundan açılır: ilk veri PHP'de sayfaya basılır (yükleniyor göstergesi yok), menüden diğer Flux ekranlarına sayfa yenilenmeden geçilir. Ekranın parçaları sayfa başında birlikte iner (modulepreload).
 - Ortak modül paketi yenilendi.
+
+## 0.7.0
+- Manifest kaynakları, aksiyon istekleri ve form kayıtları GraphQL işlemi olabilir: `"graphql": {"op": "FlxWikiPages", "variables": {…}, "data": "flxWikiPages"}`. Sunucu her işlemin `id` (persisted queryId) ve `kind` değerini Flux GraphQL'in persisted manifestlerinden doldurur; uygulama belge göndermez, strict sorgu modu çalışır. İşlemi kurulu olmayan modül gönderilmez (menü web sayfasını açar).
+- Doğrulama: kaynak `path` ya da `graphql.op`, form `submit.path` ya da `submit.graphql*` ister.
 
 ## 0.6.0
 - "Uygulama" ayar sayfası ve "Uygulama erişimi" artık wp-admin'de varsayılan olarak yeni React ekranında açılır (FluxWP uygulamasıyla aynı ekran, Flux GraphQL gerekir): Genel, Görünüm, Uygulamalar (mağaza bağlantıları, push, markalı uygulamalar, deneme bildirimi), Modüller, Menü, OAuth istemcileri, Tüm erişimler. Klasik sayfanın tüm özellikleri var; ekran başlığındaki "Klasik görünüm" bağlantısıyla klasik sayfaya, oradaki "Yeni görünüm" düğmesiyle geri dönülür (kullanıcı başına hatırlanır).

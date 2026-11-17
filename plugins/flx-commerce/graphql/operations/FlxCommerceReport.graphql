@@ -1,0 +1,8 @@
+query FlxCommerceReport($preset: FlxCommerceReportPreset, $from: String, $to: String) {
+  flxCommerceReport(preset: $preset, from: $from, to: $to) {
+    from to orders items customers newCustomers
+    revenue { ...FlxCommerceMoney } gross { ...FlxCommerceMoney } refunds { ...FlxCommerceMoney }
+    shipping { ...FlxCommerceMoney } tax { ...FlxCommerceMoney } discount { ...FlxCommerceMoney } aov { ...FlxCommerceMoney }
+    revenueDelta ordersDelta itemsDelta aovDelta
+  }
+}

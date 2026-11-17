@@ -127,7 +127,43 @@ function flx_admin_screen_usable( string $page ): bool {
 	if ( ! $s || ! flx_gql_ready() ) {
 		return false;
 	}
-	return is_readable( $s['assets_dir'] . 'flux-modules.js' ) && is_readable( $s['assets_dir'] . 'chunks.json' ) && (bool) flx_admin_screen_arg( $s['enabled'] );
+	if ( ! is_readable( $s['assets_dir'] . 'chunks.json' ) ) {
+		return false;
+	}
+	$code = flx_admin_screen_is_plugin_bundle( $s )
+		? null !== flx_admin_screen_runtime()
+		: is_readable( $s['assets_dir'] . 'flux-modules.js' );
+	return $code && (bool) flx_admin_screen_arg( $s['enabled'] );
+}
+
+/**
+ * Whether the screen's assets folder holds a plugin screens bundle (@fluxwp/plugin-kit: flux-screens.js on
+ * the shared runtime) instead of a FluxWP modules bundle (flux-modules.js, tools/fluxapp/embed-sync.sh).
+ *
+ * @param FlxAdminScreen $s Screen.
+ */
+function flx_admin_screen_is_plugin_bundle( array $s ): bool {
+	return is_readable( $s['assets_dir'] . 'flux-screens.js' );
+}
+
+/**
+ * The shared runtime plugin screens run on (assets/runtime/, apps/wp-embed FLUX_EMBED_RUNTIME=1): React,
+ * React Query, i18next and the open @fluxwp packages, loaded once per page. Null when it is not built.
+ *
+ * @return array{entry:string,css:string,id:string,ver:string}|null
+ */
+function flx_admin_screen_runtime(): ?array {
+	$dir = FLXGQL_DIR . 'assets/runtime/';
+	if ( ! is_readable( $dir . 'flux-runtime.js' ) ) {
+		return null;
+	}
+	$ver = FLXGQL_VERSION . '-' . (int) @filemtime( $dir . 'flux-runtime.js' ); // phpcs:ignore WordPress.PHP.NoSilencedErrors
+	return array(
+		'entry' => add_query_arg( 'ver', $ver, FLXGQL_URL . 'assets/runtime/flux-runtime.js' ),
+		'css'   => add_query_arg( 'ver', $ver, FLXGQL_URL . 'assets/runtime/flux-runtime.css' ),
+		'id'    => 'flx-runtime',
+		'ver'   => $ver,
+	);
 }
 
 /**
@@ -135,11 +171,14 @@ function flx_admin_screen_usable( string $page ): bool {
  * (two packages built from the same commit share one runtime on the page).
  *
  * @param FlxAdminScreen $s Screen.
- * @return array{entry:string,css:string,id:string,ver:string}
+ * @return array{entry:string,css:string,id:string,ver:string,screens?:string,screensCss?:string,screensId?:string}
  */
 function flx_admin_screen_bundle( array $s ): array {
 	$dir   = $s['assets_dir'];
 	$js    = $dir . 'flux-modules.js';
+	if ( flx_admin_screen_is_plugin_bundle( $s ) ) {
+		$js = $dir . 'flux-screens.js';
+	}
 	$sig   = (int) @filemtime( $js ) . ':' . (int) @filesize( $js ) . ':' . (int) @filemtime( $dir . 'chunks.json' ); // phpcs:ignore WordPress.PHP.NoSilencedErrors
 	$key   = 'flxgql_scr_' . md5( $dir . '|' . $sig );
 	$id    = get_transient( $key );
@@ -148,6 +187,20 @@ function flx_admin_screen_bundle( array $s ): array {
 		set_transient( $key, $id, WEEK_IN_SECONDS );
 	}
 	$ver = ( '' !== $s['version'] ? $s['version'] . '-' : '' ) . $id;
+	$rt  = flx_admin_screen_is_plugin_bundle( $s ) ? flx_admin_screen_runtime() : null;
+	if ( $rt ) {
+		// Plugin screens: the runtime is the shared bundle (one id for every plugin); the plugin's own entry
+		// registers its screens with it.
+		return array(
+			'entry'      => $rt['entry'],
+			'css'        => $rt['css'],
+			'id'         => $rt['id'],
+			'ver'        => $ver,
+			'screens'    => add_query_arg( 'ver', $ver, $s['assets_url'] . 'flux-screens.js' ),
+			'screensCss' => is_readable( $dir . 'flux-screens.css' ) ? add_query_arg( 'ver', $ver, $s['assets_url'] . 'flux-screens.css' ) : '',
+			'screensId'  => 'p' . $id,
+		);
+	}
 	return array(
 		'entry' => add_query_arg( 'ver', $ver, $s['assets_url'] . 'flux-modules.js' ),
 		'css'   => add_query_arg( 'ver', $ver, $s['assets_url'] . 'flux-modules.css' ),
@@ -517,8 +570,20 @@ add_action(
 		if ( is_array( $more ) ) {
 			$extra = flx_gql_arr( $more );
 		}
-		wp_enqueue_style( $handle, $s['assets_url'] . 'flux-modules.css', array(), $b['ver'] );
-		wp_enqueue_script( $handle, $s['assets_url'] . 'flux-modules.js', array(), $b['ver'], true );
+		$modules = array( $handle );
+		if ( isset( $b['screens'] ) ) {
+			// Shared runtime first (module scripts run in document order), then the plugin's screens.
+			wp_enqueue_style( $handle, $b['css'], array(), null ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion -- the URL carries its version.
+			wp_enqueue_script( $handle, $b['entry'], array(), null, true ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
+			if ( '' !== ( $b['screensCss'] ?? '' ) ) {
+				wp_enqueue_style( $handle . '-p', $b['screensCss'], array( $handle ), null ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
+			}
+			wp_enqueue_script( $handle . '-p', $b['screens'], array( $handle ), null, true ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
+			$modules[] = $handle . '-p';
+		} else {
+			wp_enqueue_style( $handle, $s['assets_url'] . 'flux-modules.css', array(), $b['ver'] );
+			wp_enqueue_script( $handle, $s['assets_url'] . 'flux-modules.js', array(), $b['ver'], true );
+		}
 		foreach ( flx_admin_screen_scripts( $s, $page ) as $i => $src ) {
 			wp_enqueue_script( $handle . '-s' . $i, $src, array(), null, true ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion -- the URL carries its version.
 		}
@@ -538,9 +603,9 @@ add_action(
 		wp_enqueue_style( 'flx-screens', FLXGQL_URL . 'assets/css/screens.css', array(), FLXGQL_VERSION );
 		add_filter(
 			'script_loader_tag',
-			static function ( $tag, $h ) use ( $handle ) {
+			static function ( $tag, $h ) use ( $modules ) {
 				$tag = flx_gql_str( $tag );
-				if ( $h !== $handle ) {
+				if ( ! in_array( $h, $modules, true ) ) {
 					return $tag;
 				}
 				return (string) preg_replace_callback(
@@ -603,7 +668,10 @@ function flx_admin_screen_render(): bool {
 	echo $full ? '' : '</div>';
 	// Paint in the right theme before the bundle runs (no light flash on a dark page).
 	echo '<script>(function(d){var e=d.getElementById(' . wp_json_encode( $id ) . '),t=' . wp_json_encode( flx_gql_str( $opts['theme'] ?? 'admin' ) ) . ',k=' . wp_json_encode( $s['theme_storage'] ) . ',m;if(!e)return;if(k){try{m=localStorage.getItem(k)}catch(x){}t=m||"auto"}if(t==="admin")t=d.documentElement.classList.contains("flxa-dark")?"dark":"light";if(t==="auto")t=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";e.dataset.theme=t})(document);</script>';
-	echo '<script>(function(w){var s=w.FluxModulesOptions||(w.FluxModulesOptions={});s.id=' . wp_json_encode( $id ) . ';s.opts=' . wp_json_encode( $opts ) . ';function go(){if(s.done||!w.FluxModules)return;var el=document.getElementById(s.id);if(!el)return;s.done=true;try{w.FluxModules.mount(el,s.opts);}catch(e){el.textContent=String(e&&e.message||e);}}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);go();})(window);</script>';
+	// A plugin screens bundle mounts from the shared runtime once it registered (runtime.tsx mountPending);
+	// FluxModules on the page then belongs to another (FluxWP) bundle and must not take the screen.
+	$own = flx_admin_screen_is_plugin_bundle( $s ) ? 'return;' : '';
+	echo '<script>(function(w){var s=w.FluxModulesOptions||(w.FluxModulesOptions={});s.id=' . wp_json_encode( $id ) . ';s.opts=' . wp_json_encode( $opts ) . ';function go(){' . $own . 'if(s.done||!w.FluxModules)return;var el=document.getElementById(s.id);if(!el)return;s.done=true;try{w.FluxModules.mount(el,s.opts);}catch(e){el.textContent=String(e&&e.message||e);}}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);go();})(window);</script>';
 	if ( ! $full ) {
 		flx_admin_screen_print_routes( $page, $id );
 	}
@@ -691,10 +759,17 @@ function flx_admin_screen_print_routes( string $current, string $el ): void {
 			'file'       => $m['file'],
 			'args'       => (object) array_map( 'flx_gql_str', $args ),
 			'module'     => $s['module'],
-			'bundle'     => array(
-				'entry' => $b['entry'],
-				'css'   => $b['css'],
-				'id'    => $b['id'],
+			'bundle'     => array_merge(
+				array(
+					'entry' => $b['entry'],
+					'css'   => $b['css'],
+					'id'    => $b['id'],
+				),
+				isset( $b['screens'] ) ? array(
+					'screens'    => $b['screens'],
+					'screensCss' => $b['screensCss'] ?? '',
+					'screensId'  => $b['screensId'] ?? '',
+				) : array()
 			),
 			'opts'       => $opts,
 			'start'      => $s['start'],

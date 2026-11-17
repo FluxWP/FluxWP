@@ -537,5 +537,10 @@
   "{n} tasks completed": "{n}任务已完成",
   "{n} tasks will be permanently deleted.": "{n}任务将被永久删除。",
   "{n} warning(s)": "{n}警告",
-  "{n} wrote a comment": "{n}写了一条评论"
+  "{n} wrote a comment": "{n}写了一条评论",
+  "Preview not available": "无法预览",
+  "Preview": "预览",
+  "Remove file": "移除文件",
+  "Preview image for YouTube links": "YouTube 链接的预览图",
+  "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text.": "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text."
 }

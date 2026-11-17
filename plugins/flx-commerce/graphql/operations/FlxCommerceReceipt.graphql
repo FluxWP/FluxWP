@@ -1,0 +1,3 @@
+query FlxCommerceReceipt($id: ID!) {
+  flxCommerceReceipt(id: $id) { id number name email status files { name url } total { ...FlxCommerceMoney } }
+}

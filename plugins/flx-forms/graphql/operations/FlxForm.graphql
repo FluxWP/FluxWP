@@ -1,0 +1,23 @@
+# Public: drawing fields of one form. A private form is null for a visitor.
+query FlxForm($id: ID!) {
+  flxForm(id: $id) {
+    id
+    title
+    formType
+    steps
+    buttonLabel
+    successTitle
+    successMessage
+    fields {
+      id
+      type
+      label
+      required
+      placeholder
+      options {
+        value
+        label
+      }
+    }
+  }
+}

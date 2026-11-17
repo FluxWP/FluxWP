@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.50.0
+- WhatsApp asistanı vekâlet isteyen türlerde (kurban) bağışı artık kendisi açar: özetin sonunda sitedeki vekâlet metni çıkar, kişi açıkça onaylayınca kayıt açılır ve onay bağışa yazılır (`create_donation` yeni `proxy_consent`). Onay yoksa kayıt açılmaz; sitede vekâlet metni yoksa eskisi gibi ekibe devreder.
+- Eklentiler asistana kendi araçlarını ekleyebilir: `flxc_bot_tools`, `flxc_bot_tool_call`, `flxc_bot_rules` (docs/cagri-merkezi/KURULUM.md §11).
+
+## 1.49.0
+- Sohbet, mesaj ve canlı güncelleme GraphQL'de (`flxChats`, `flxChat`, `flxChatMessages`, `flxChatUpdates`). Temsilci başkasının sohbetine liste, sayım, `node`, güncelleme veya mesaj sorgusuyla ulaşamaz.
+- `flxChatUpdates` kesilince `rev` artan sırayla devam rev'i verir. İstemci 10 saniyede bir sorar, sekme gizliyken durur.
+- React WhatsApp ekranı bu sorguları kullanır. wp-admin varsayılanı klasik sayfadır. Gömülü ekran paketi yeniden üretildi; eski paket ham metin anahtarları (`inbox.title`) gösteriyordu.
+- Gizli sohbet: numarayla sohbet açan mutation başkasının sohbetini döndürmez ve adını değiştirmez. Sesli not da dosya türü ve boyut denetiminden geçer.
+- Bağış ve sertifika kaydı mevcut PHP'yi çağırır. Rapor, ayar ve asistan sayfası sonraki bölüm.
+
 ## 1.48.1
 - Düzeltme: AI asistan benchmark ekranındaki (Gruplar) ve diğer onay kutuları tiksiz dolu kare görünüyordu; ekranın kendi sıfırlama kuralları ortak onay kutusu stilini eziyordu. Artık hepsi ortak görünümde.
 

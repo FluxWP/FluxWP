@@ -1,6 +1,7 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 
+require_once __DIR__ . '/flux-ui.php';
 require_once __DIR__ . '/page-certificates.php';
 require_once __DIR__ . '/export.php';
 require_once __DIR__ . '/ecards.php';

@@ -1,0 +1,15 @@
+query FlxChatInbox {
+  flxChatInbox {
+    me { databaseId name manage }
+    delHours
+    agents { databaseId name }
+    labels { id name color }
+    connections { id label color state }
+    replies { databaseId shortcut title body }
+    unread
+    ai
+    bot
+    rev
+    classicUrl
+  }
+}

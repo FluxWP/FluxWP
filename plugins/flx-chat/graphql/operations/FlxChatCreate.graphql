@@ -1,0 +1,6 @@
+mutation FlxChatCreate($input: FlxChatCreateInput!) {
+  flxChatCreate(input: $input) {
+    chat { ...FlxChatFields }
+    errors { code message field }
+  }
+}

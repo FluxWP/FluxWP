@@ -3,7 +3,7 @@
 import { ApiError, clientFor, createClient, enhanceClient, platform, type Account, type ApiClient, type ApiResult } from '@fluxwp/core';
 import { demoShellFetch } from './demo/fetch';
 import type { PlannedRequest } from './source';
-import { CORE_MANIFEST, parseBootstrap, parseConfig, parseManifestBundle, type AppConfig, type Bootstrap, type ManifestBundle, type ParseIssue } from '@fluxwp/manifest';
+import { CORE_MANIFEST, getPath, parseBootstrap, parseConfig, parseManifestBundle, type AppConfig, type Bootstrap, type ManifestBundle, type ParseIssue } from '@fluxwp/manifest';
 
 const demoClients = new Map<string, ApiClient>();
 
@@ -101,12 +101,55 @@ function planned(r: PlannedRequest, signal?: AbortSignal) {
   return { method: r.method, query, body: r.method === 'GET' ? undefined : (r.body ?? {}), signal };
 }
 
+/** GET URLs longer than this go out as POST (proxies cut long query strings). */
+const MAX_GET_VARS = 1800;
+
+interface GraphQLBody {
+  data?: unknown;
+  errors?: { message?: unknown; extensions?: { code?: unknown } & Record<string, unknown> }[];
+}
+
+/**
+ * Persisted GraphQL operation (queryId only, never the document): queries as cacheable GET, mutations
+ * as POST. The first GraphQL error becomes an ApiError with its `extensions.code`; the result's `data`
+ * is the `ref.data` path of the response.
+ */
+async function runGraphQL<T>(api: ApiClient, r: PlannedRequest, signal?: AbortSignal): Promise<ApiResult<T>> {
+  const g = r.graphql!;
+  const vars = Object.keys(g.variables).length ? JSON.stringify(g.variables) : undefined;
+  const base = { raw: true as const, throwOnError: false, signal, headers: { 'X-Flux-GraphQL-Operation': g.name } };
+  const get = g.kind === 'query' && encodeURIComponent(vars ?? '').length < MAX_GET_VARS;
+  const res = get
+    ? await api<GraphQLBody>(r.path, { ...base, method: 'GET', query: { queryId: g.id, operationName: g.name, variables: vars } })
+    : await api<GraphQLBody>(r.path, { ...base, method: 'POST', body: { queryId: g.id, operationName: g.name, variables: vars ? g.variables : undefined } });
+  const body = res.data;
+  const err = body?.errors?.[0];
+  if (err || res.status >= 400 || !body) {
+    const code = typeof err?.extensions?.code === 'string' ? err.extensions.code : 'graphql_error';
+    const message = typeof err?.message === 'string' ? err.message : 'GraphQL request failed';
+    throw new ApiError(res.status >= 400 ? res.status : 400, code, message, err?.extensions);
+  }
+  const data = g.data ? getPath(body.data, g.data) : body.data;
+  // Flux mutations report input errors in the payload: `errors { code message field }` (KURALLAR).
+  const bad = data && typeof data === 'object' ? (data as { errors?: unknown }).errors : undefined;
+  if (Array.isArray(bad) && bad.length) {
+    const list = bad.filter((x): x is { code?: unknown; message?: unknown; field?: unknown } => !!x && typeof x === 'object');
+    const params: Record<string, string> = {};
+    for (const x of list) if (typeof x.field === 'string' && x.field && typeof x.message === 'string') params[x.field] = x.message;
+    const first = list[0];
+    throw new ApiError(422, typeof first?.code === 'string' ? first.code : 'invalid', typeof first?.message === 'string' ? first.message : 'Invalid input', { params });
+  }
+  return { ...res, data: (data ?? null) as T | null };
+}
+
 /** Runs a planned manifest request. Method override travels as `_method` (WP REST accepts it). */
-export function runRequest<T = unknown>(api: ApiClient, r: PlannedRequest, signal?: AbortSignal): Promise<T> {
+export async function runRequest<T = unknown>(api: ApiClient, r: PlannedRequest, signal?: AbortSignal): Promise<T> {
+  if (r.graphql) return (await runGraphQL<T>(api, r, signal)).data as T;
   return api<T>(r.path, planned(r, signal));
 }
 
 /** Same request, with status and response headers (wp paging: `X-WP-Total` / `X-WP-TotalPages`). */
 export function runRequestRaw<T = unknown>(api: ApiClient, r: PlannedRequest, signal?: AbortSignal): Promise<ApiResult<T>> {
+  if (r.graphql) return runGraphQL<T>(api, r, signal);
   return api<T>(r.path, { ...planned(r, signal), raw: true });
 }

@@ -1,7 +1,23 @@
 # Flux Tasks — Değişiklikler
 
-## 0.9.4
+## 0.11.1
 - Ortak modül paketi yenilendi: ekranın parçaları sayfa başında birlikte iner, giriş dosyası iki kez çalışmaz, ayar ekranlarında ilk karede yükleniyor göstergesi çıkmaz.
+
+## 0.11.0
+- Liste görünümü (yeni ekran) daha sade: düz satırlar, hap biçimli araç çubuğu düğmeleri.
+- Satır içi görev ekleme yenilendi: çerçevesiz ad alanı, atama / bitiş tarihi / öncelik / etiket simge düğmeleri, Vazgeç ve Kaydet ↵. Seçilen değerlerle görev oluşturulur; klasik ekran değişmedi.
+
+## 0.10.0
+- Dokümanda dosyalar kart olarak görünür: uzantı rozeti (PDF, ZIP, XLSX…), ad, üzerine gelince kenarlık. Düzenleme modunda karta gelince çıkan kalem simgesinden Önizle / İndir / Dosyayı kaldır menüsü açılır. Sürükle-bırak ve yapıştırma ile görsel ve dosya ekleme önceden de çalışıyordu.
+- Dokümanda tek başına duran YouTube bağlantısı video kapaklı kart olarak görünür. Ayarlar > Dosyalar'daki "YouTube bağlantılarında önizleme görseli" ile kapatılır (varsayılan açık); kapalıyken bağlantı düz kalır. Kapak YouTube'dan yüklenir, kaydedilen içeriğe eklenmez.
+- Önizleme penceresinde kapat, ok ve İndir düğmelerinin simgeleri her temada beyaz.
+- Açık temada ana alan koyu kalıyordu (dış kabuk temayla eşleşmediğinde): Görevler ekranı artık kendi zemin rengini taşır.
+- Dosya indirme dokümanda da istemciden geçer (nonce'suz bağlantı yok).
+
+## 0.9.4
+- Dokümana dosya ekleme düzeldi: yüklenen dosya "undefined" yerine adıyla görünür (yükleme yanıtı `{ file }` doğru okunuyor).
+- Dokümandaki dosya ve görsellere tıklayınca nonce'suz adrese gidip `rest_cookie_invalid_nonce` hatası vermez; dosya istemciden alınıp önizleme penceresinde açılır.
+- Ortak önizleme penceresi artık görselin yanında PDF, video, ses ve metin dosyalarını da açar; önizlenemeyen dosyada "Önizlenemedi" yazar ve İndir düğmesi çıkar. Görev eklerinde ve yorum dosyalarında da aynı pencere kullanılır.
 
 ## 0.9.3
 - Tarih alanları ortak FluxWP tarih seçicisini kullanır: sitenin dilinde ay/gün adları, Pazartesi başlangıç, hızlı seçim listesi, yazılabilir tarih ve saat, Uygula düğmesi, açık/koyu, telefonda alttan açılan pencere. Tarayıcının kendi takvimi (İngilizce çıkan) kalktı.

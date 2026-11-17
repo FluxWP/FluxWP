@@ -39,6 +39,9 @@ final class FLXCM_Page_Reports {
 		if ( ! current_user_can( FLXCM_Admin::CAP_VIEW ) ) {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-commerce' ), 403 );
 		}
+		if ( FLXCM_Admin::render_flux() ) {
+			return;
+		}
 		list( $from, $to, $preset ) = self::range();
 		$s                          = FLXCM_Stats::summary( $from, $to );
 		list( $pfrom, $pto )        = FLXCM_Stats::previous_range( $s['from'], $s['to'] );

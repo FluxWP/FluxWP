@@ -141,7 +141,7 @@ function flxc_send( $chat, array $args ) {
 				'status'     => 'pending',
 				'user_id'    => $args['user_id'],
 				'source'     => $args['source'],
-				'meta'       => 'audio' === $type ? array( 'ptt' => 1 ) : ( $args['preview'] ? array() : array( 'nolp' => 1 ) ),
+				'meta'       => 'audio' === $type ? array( 'ptt' => array_key_exists( 'ptt', $args ) ? ( ! empty( $args['ptt'] ) ? 1 : 0 ) : 1 ) : ( $args['preview'] ? array() : array( 'nolp' => 1 ) ),
 			),
 			$chat
 		);

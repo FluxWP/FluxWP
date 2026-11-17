@@ -205,6 +205,7 @@ function flxs_update_certificate( $id, $person_id, array $values, $ref_user_id =
 		$diff['referans'] = array( flxs_ref_label( $cert['ref_user_id'] ), flxs_ref_label( flxs_valid_ref_user( $ref_user_id ) ) );
 	}
 	flxs_log( 'certificate_updated', 'certificate', $id, $cert['number'], array( 'changes' => $diff ) );
+	FLXS_Records::purge_certificate( $cert );
 	return flxs_get_certificate( $id );
 }
 
@@ -264,6 +265,7 @@ function flxs_store_certificate_file( $cert, $type, $tmp_path, $w = 0, $h = 0 ) 
 	if ( $old && $old !== $name ) {
 		wp_delete_file( $up['dir'] . '/' . $old );
 	}
+	FLXS_Records::purge_certificate( $cert );
 	return $name;
 }
 
@@ -275,6 +277,7 @@ function flxs_set_certificate_status( $id, $status ) {
 	}
 	$wpdb->update( flxs_table( 'certificates' ), array( 'status' => $status, 'updated_at' => flxs_now() ), array( 'id' => $id ) );
 	flxs_log( 'revoked' === $status ? 'certificate_revoked' : 'certificate_restored', 'certificate', $id, $cert['number'] );
+	FLXS_Records::purge_certificate( $cert );
 	return true;
 }
 
@@ -292,6 +295,7 @@ function flxs_delete_certificate( $id ) {
 	}
 	$wpdb->delete( flxs_table( 'certificates' ), array( 'id' => $id ) );
 	flxs_log( 'certificate_deleted', 'certificate', $id, $cert['number'], array( 'code' => $cert['code'], 'values' => $cert['data']['values'] ?? array() ) );
+	FLXS_Records::purge_certificate( $cert );
 	return true;
 }
 
@@ -314,6 +318,7 @@ function flxs_query_certificates( $args = array() ) {
 			'order'       => 'DESC',
 			'ids'         => array(),
 			'scope'       => false, // true: geçerli kullanıcının görebildikleri (flxs_scope_sql)
+			'offset'      => null, // null: sayfa numarası; sayı: GraphQL imleci (REST göndermez)
 		)
 	);
 	$c     = flxs_table( 'certificates' );
@@ -359,7 +364,11 @@ function flxs_query_certificates( $args = array() ) {
 	$w       = implode( ' AND ', $where );
 	$from    = "FROM $c c LEFT JOIN $p p ON p.id = c.person_id LEFT JOIN $t t ON t.id = c.template_id WHERE $w";
 	$total   = (int) $wpdb->get_var( $prm ? $wpdb->prepare( "SELECT COUNT(*) $from", $prm ) : "SELECT COUNT(*) $from" );
-	$limit   = $a['per_page'] > 0 ? $wpdb->prepare( ' LIMIT %d OFFSET %d', $a['per_page'], ( max( 1, $a['page'] ) - 1 ) * $a['per_page'] ) : '';
+	$limit = '';
+	if ( $a['per_page'] > 0 ) {
+		$off   = null === $a['offset'] ? ( max( 1, (int) $a['page'] ) - 1 ) * (int) $a['per_page'] : max( 0, (int) $a['offset'] );
+		$limit = $wpdb->prepare( ' LIMIT %d OFFSET %d', (int) $a['per_page'], $off );
+	}
 	$sql     = "SELECT c.*, p.name AS person_name, p.phone AS person_phone, p.email AS person_email, t.name AS template_name $from ORDER BY $orderby $order" . $limit;
 	$rows    = $wpdb->get_results( $prm ? $wpdb->prepare( $sql, $prm ) : $sql, ARRAY_A );
 	foreach ( $rows as &$r ) {
@@ -429,6 +438,7 @@ function flxs_set_certificate_ref( $id, $ref_user_id ) {
 	}
 	$wpdb->update( flxs_table( 'certificates' ), array( 'ref_user_id' => $ref, 'updated_at' => flxs_now() ), array( 'id' => $id ) );
 	flxs_log( 'certificate_updated', 'certificate', $id, $cert['number'], array( 'changes' => array( 'referans' => array( flxs_ref_label( $cert['ref_user_id'] ), flxs_ref_label( $ref ) ) ) ) );
+	FLXS_Records::purge_certificate( $cert );
 	return true;
 }
 

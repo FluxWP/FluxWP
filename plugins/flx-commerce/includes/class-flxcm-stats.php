@@ -22,6 +22,7 @@ final class FLXCM_Stats {
 
 	public static function bump() {
 		update_option( 'flxcm_stats_ver', (int) get_option( 'flxcm_stats_ver', 1 ) + 1, false );
+		flxcm_gql_purge( array( 'flx-commerce:summary' ) );
 	}
 
 	/** Yerel tarih (Y-m-d) → UTC zaman damgası; $end true ise günün sonu. */

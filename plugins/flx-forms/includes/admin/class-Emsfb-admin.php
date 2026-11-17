@@ -3812,6 +3812,10 @@ function admin_notices_efb () {
 
         wp_cache_set('efb_form_' . $cache_key, $cache_data, 'emsfb', 3600);
 
+        if ( class_exists( 'FLXF_Form_Service' ) ) {
+            \FLXF_Form_Service::purge( (int) $form_id );
+        }
+
         return true;
     }
 
@@ -3854,6 +3858,10 @@ function admin_notices_efb () {
             unset($this->form_cache[$cache_key]);
 
             wp_cache_delete('efb_form_' . $cache_key, 'emsfb');
+        }
+
+        if ( class_exists( 'FLXF_Form_Service' ) ) {
+            \FLXF_Form_Service::purge( (int) $form_id );
         }
 
         return true;

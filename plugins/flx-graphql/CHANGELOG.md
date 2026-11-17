@@ -1,11 +1,16 @@
 # Changelog
 
-## 0.5.0
+## 0.6.0
 - Ekran kabuğu: ekranın ilk açılışta gönderdiği sorgular kullanıcı başına öğrenilir (admin-ajax `flx_screen_learn`, kullanıcı meta `flx_gql_screen_queries`, ekran başına en çok 10) ve bir sonraki açılışta PHP'de önceden basılır. Önyükleme 0,8 sn bütçeyle sınırlı.
 - Ekranın JS parçaları `<link rel="modulepreload">` ile sayfa başında birlikte iner (chunks.json `preload`, tools/fluxapp/embed-preload.mjs).
 - Yeni argüman `wrap_class`; seçeneklerdeki `startPage` boş değilse sayfa argümanını ezer; `needs` noktalı yol kabul eder (`wp.media`).
 - Gezgin, menü adresinin kendi argümanlarını (edit.php?post_type=…) tanır.
 - Belge: docs/graphql/EKRAN-KABUGU.md.
+
+## 0.5.0
+- Eklenti ekranları için ortak runtime (`assets/runtime/`): React, React Query, i18next ve açık `@fluxwp` paketleri sayfaya bir kez yüklenir. `@fluxwp/plugin-kit` ile derlenen bir eklenti yalnız kendi ekranlarını taşır (`assets/flux/flux-screens.js`, birkaç KB) ve `FluxRuntime.register()` ile kaydeder. FluxWP dışındaki eklentiler de wp-admin'e aynı kabukla React ekranı ekleyebilir.
+- `flx_admin_screen()` klasörde `flux-screens.js` görürse ekranı runtime üzerinden açar; menüden geçiş, ilk sorguların PHP'den gelmesi ve geri/ileri aynı çalışır. FluxWP paketlerinin `flux-modules.js` bundle'ları değişmeden çalışır.
+- Kurallar: docs/graphql/EKLENTI-EKRANLARI.md.
 
 ## 0.4.0
 

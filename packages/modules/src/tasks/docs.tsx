@@ -7,7 +7,7 @@ import { useHost, type ModuleHost } from '../host';
 import { rank, between, norm, type FlxgDocRef, type Route } from './engine';
 import { flxgLocale, tt } from './i18n';
 import { openAI } from './pages';
-import { useYtg, type Ctx, type MenuItem } from './ui';
+import { downloadFile, useYtg, type Ctx, type MenuItem } from './ui';
 
 type Fn = (...a: never[]) => unknown;
 /** WP çekirdeğinin (window.FLXG) bu köprünün kullandığı yüzü. */
@@ -122,11 +122,14 @@ function bridge(Y: Legacy) {
   });
   set('sendLeave', (pageId: number, body: Record<string, unknown>) => void need().e.api.rest('POST', `doc-pages/${pageId}/sync`, body).catch(() => {}));
   set('upload', (file: File, params: Record<string, string | number>) => need().e.api.upload(file, params));
-  const coreFileUrl = Y.fileUrl as (id: number, size?: string, dl?: boolean) => string;
-  set('fileUrl', (id: number, size?: string, dl?: boolean) => {
-    if (cur.host?.mode === 'wp' && !cur.host.blobMedia) return coreFileUrl(id, size, dl);
-    // Uygulamada dosya oturum çerezi olmadan açılmaz: önce boş, sonra istemciden blob (aşağıdaki gözlemci).
-    return 'data:image/gif;base64,R0lGODlhAQABAAAAACw=#flxg-file-' + (parseInt(String(id), 10) || 0) + (size ? '-' + size : '');
+  // Dosya adresinde nonce/belirteç taşınmaz (WP'de nonce bu köprüde bilinmez, uygulamada çerez yok): önce boş
+  // görsel, sonra istemciden blob (aşağıdaki gözlemci). Önizleme ve indirme de istemciden geçer.
+  set('fileUrl', (id: number, size?: string) => 'data:image/gif;base64,R0lGODlhAQABAAAAACw=#flxg-file-' + (parseInt(String(id), 10) || 0) + (size ? '-' + size : ''));
+  set('fileDownload', (id: number, name: string) => void downloadFile(need().e, { id, name } as FlxgFile).catch(need().ui.fail));
+  set('filePreview', (id: number, name: string) => {
+    const c = need();
+    c.ui.lightbox = { files: [{ task: 0, comment: 0, field: 0, context: 'doc', user: 0, name: name || tt('File'), mime: '', size: 0, image: false, created: null, id } as FlxgFile], index: 0 };
+    c.ui.bump();
   });
   // Açılır menü, kutu, pencere, bildirim: React katmanı (aynı tasarım, tek açık kutu).
   set('closePop', () => need().ui.closePop());
@@ -166,11 +169,11 @@ function bridge(Y: Legacy) {
 }
 
 /** Uygulamada doküman görselleri: istemciden blob olarak çekilir. */
-function useBlobImages(root: React.RefObject<HTMLElement | null>, on: boolean) {
+function useBlobImages(root: React.RefObject<HTMLElement | null>) {
   const c = useYtg();
   useEffect(() => {
     const el = root.current;
-    if (!on || !el) return;
+    if (!el) return;
     const urls = new Map<string, string>();
     const fix = () => {
       el.querySelectorAll<HTMLImageElement>('img[src*="#flxg-file-"]').forEach((img) => {
@@ -195,7 +198,7 @@ function useBlobImages(root: React.RefObject<HTMLElement | null>, on: boolean) {
       mo.disconnect();
       urls.forEach((u) => u && URL.revokeObjectURL(u));
     };
-  }, [root, on, c]);
+  }, [root, c]);
 }
 
 /** Doküman sayfası: #/doc/<id>[/p/<sayfa>]. */
@@ -207,7 +210,7 @@ export function DocPage({ Top, toggleSide }: { Top: (p: { title: ReactNode; extr
   cur.c = c;
   cur.host = host;
   cur.toggleSide = toggleSide;
-  useBlobImages(main, host.mode !== 'wp' || !!host.blobMedia);
+  useBlobImages(main);
   useEffect(() => {
     let live = true;
     load(host).then(

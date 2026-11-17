@@ -1,0 +1,3 @@
+query FlxChatLinkPreview($url: String!) {
+  flxChatLinkPreview(url: $url) { url title desc image site domain }
+}

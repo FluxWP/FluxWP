@@ -1,0 +1,7 @@
+query FlxCommerceReceipts($first: Int = 25, $after: String) {
+  flxCommerceReceipts(first: $first, after: $after) {
+    nodes { id number name email phone reference status statusLabel files { name url } total { ...FlxCommerceMoney } createdAt { ...FlxCommerceWhen } }
+    pageInfo { hasNextPage endCursor }
+    totalCount
+  }
+}

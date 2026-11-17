@@ -65,6 +65,7 @@ tekrar gitmez, ilk açılışta veri PHP'den gelir (spinner yok). Klasik PHP say
 - Ekran kendi `useFlxQuery` / `useFlxMutation`'ını kullanır; REST ile veri çeken ekran (Tasks şimdilik)
   preload'dan yararlanmaz, yalnız geçişten yararlanır.
 - Bundle `tools/fluxapp/embed-sync.sh` ile senkronlanır; aynı commit'ten gelen paketler tek runtime paylaşır.
+- FluxWP dışındaki eklentiler ortak runtime üzerinde çalışır (`flux-screens.js`): EKLENTI-EKRANLARI.md.
 - Kabuğu kapatmak için: `add_filter( 'flx_admin_screens_navigation', '__return_false' );`.
 - Route'a ek bilgi: `flx_admin_screen_route` filtresi (`$route, $page`), olayda `detail.route` olarak gelir.
 

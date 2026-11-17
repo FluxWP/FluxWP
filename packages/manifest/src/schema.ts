@@ -40,10 +40,23 @@ export const PagingSchema = v.looseObject({
   total: opt(str),
   pages: opt(str),
   next: opt(str),
+  has_next: opt(str),
 });
 
+const restPath = v.pipe(tpl, v.minLength(1), v.check((p) => !/^[a-z][a-z0-9+.-]*:|^\/\//i.test(p), 'path must be relative to /wp-json/'));
+const GraphQLRefSchema = v.looseObject({
+  op: v.pipe(v.string(), v.regex(/^[A-Za-z_]\w*$/)),
+  id: opt(v.pipe(v.string(), v.regex(/^[0-9a-f]{64}$/))),
+  kind: opt(v.picklist(['query', 'mutation'])),
+  variables: opt(v.record(str, v.unknown())),
+  data: opt(str),
+  values: opt(str),
+});
+
+// A source needs `path` or `graphql`; the runtime rejects one with neither (ManifestError 'path').
 export const SourceSchema = v.looseObject({
-  path: v.pipe(tpl, v.minLength(1), v.check((p) => !/^[a-z][a-z0-9+.-]*:|^\/\//i.test(p), 'path must be relative to /wp-json/')),
+  path: opt(restPath),
+  graphql: opt(GraphQLRefSchema),
   method: opt(v.picklist(['GET', 'POST'])),
   query: opt(v.record(str, v.union([str, v.number(), v.boolean()]))),
   body: opt(v.nullable(v.record(str, v.unknown()))),
@@ -122,7 +135,10 @@ export const SectionSchema = v.variant('type', [
 
 const RequestSchema = v.looseObject({
   method: opt(v.picklist(['GET', 'POST', 'PUT', 'PATCH', 'DELETE'])),
-  path: tpl,
+  path: opt(tpl),
+  graphql: opt(GraphQLRefSchema),
+  graphql_create: opt(GraphQLRefSchema),
+  graphql_update: opt(GraphQLRefSchema),
   body: opt(v.nullable(v.record(str, v.unknown()))),
   path_create: opt(tpl),
   path_update: opt(tpl),

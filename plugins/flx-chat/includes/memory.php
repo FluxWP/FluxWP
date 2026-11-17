@@ -478,42 +478,15 @@ add_action(
 					'permission_callback' => $mng,
 					'callback'            => function ( WP_REST_Request $req ) use ( $get ) {
 						$chat = $get( $req );
-						return is_wp_error( $chat ) ? $chat : flxc_mem_for_js( $chat );
+						return is_wp_error( $chat ) ? $chat : FLXC_Desk_Service::memory( $chat );
 					},
 				),
 				array(
 					'methods'             => 'POST',
 					'permission_callback' => $mng,
 					'callback'            => function ( WP_REST_Request $req ) use ( $get ) {
-						global $wpdb;
 						$chat = $get( $req );
-						if ( is_wp_error( $chat ) ) {
-							return $chat;
-						}
-						$k = flxc_mem_key( $req->get_param( 'key' ) );
-						$v = flxc_mem_value( $req->get_param( 'value' ) );
-						if ( '' === $k || '' === $v ) {
-							return new WP_Error( 'flxc_mem', __( 'Key and value are required.', 'flx-chat' ), array( 'status' => 400 ) );
-						}
-						$item = (int) $req->get_param( 'item' );
-						$t    = flxc_table( 'memory' );
-						if ( $item ) {
-							$row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $t WHERE id = %d AND who = %s", $item, flxc_mem_who( $chat ) ), ARRAY_A ); // phpcs:ignore
-							if ( ! $row ) {
-								return new WP_Error( 'flxc_404', __( 'No records found.', 'flx-chat' ), array( 'status' => 404 ) );
-							}
-							if ( 'fact' === $row['kind'] && $k !== $row['k'] ) {
-								// Anahtar değiştiyse aynı anahtardaki eski kayıt kalkar.
-								$wpdb->query( $wpdb->prepare( "DELETE FROM $t WHERE who = %s AND kind = 'fact' AND k = %s AND id <> %d", $row['who'], $k, $item ) ); // phpcs:ignore
-							}
-							$wpdb->update( $t, array( 'k' => 'summary' === $row['kind'] ? $row['k'] : $k, 'v' => $v, 'source' => 'agent', 'updated_at' => time() ), array( 'id' => $item ) );
-							if ( 'fact' === $row['kind'] ) {
-								flxc_mem_log( $chat, $k, $k !== $row['k'] ? $row['k'] . ': ' . $row['v'] : $row['v'], $v, 'agent' );
-							}
-						} else {
-							flxc_mem_set( $chat, $k, $v, 'agent' );
-						}
-						return flxc_mem_for_js( $chat );
+						return is_wp_error( $chat ) ? $chat : FLXC_Desk_Service::memory_save( $chat, $req );
 					},
 				),
 				array(
@@ -521,14 +494,7 @@ add_action(
 					'permission_callback' => $mng,
 					'callback'            => function ( WP_REST_Request $req ) use ( $get ) {
 						$chat = $get( $req );
-						if ( is_wp_error( $chat ) ) {
-							return $chat;
-						}
-						if ( 'yes' !== (string) $req->get_param( 'confirm' ) ) {
-							return new WP_Error( 'flxc_confirm', __( 'Confirmation text is wrong.', 'flx-chat' ), array( 'status' => 400 ) );
-						}
-						flxc_mem_forget( $chat );
-						return flxc_mem_for_js( $chat );
+						return is_wp_error( $chat ) ? $chat : FLXC_Desk_Service::memory_forget( $chat, 'yes' === (string) $req->get_param( 'confirm' ) );
 					},
 				),
 			)

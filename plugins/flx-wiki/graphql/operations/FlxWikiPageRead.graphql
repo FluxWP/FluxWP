@@ -1,0 +1,7 @@
+# A page for reading in the app (manifest screen): the rendered HTML, by database ID.
+query FlxWikiPageRead($id: ID!) {
+  flxWikiPage(id: $id) {
+    ...FlxWikiPageRow
+    html
+  }
+}

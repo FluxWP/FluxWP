@@ -1,0 +1,6 @@
+mutation FlxMailPreview($input: FlxMailPreviewInput!) {
+  flxMailPreview(input: $input) {
+    preview { subject html }
+    errors { code message field }
+  }
+}

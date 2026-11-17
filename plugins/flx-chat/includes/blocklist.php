@@ -218,39 +218,15 @@ add_action(
 				array(
 					'methods'             => 'GET',
 					'permission_callback' => $mng,
-					'callback'            => function ( WP_REST_Request $req ) {
-						global $wpdb;
-						$t = flxc_table( 'blocklist' );
-						$q = trim( sanitize_text_field( (string) $req->get_param( 'q' ) ) );
-						if ( '' !== $q ) {
-							$like = '%' . $wpdb->esc_like( $q ) . '%';
-							$dig  = preg_replace( '/\D+/', '', $q );
-							$rows = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $t WHERE email LIKE %s OR reason LIKE %s OR ( %s <> '' AND phone LIKE %s ) ORDER BY id DESC LIMIT 200", $like, $like, $dig, '%' . $dig . '%' ), ARRAY_A ); // phpcs:ignore
-						} else {
-							$rows = $wpdb->get_results( "SELECT * FROM $t ORDER BY id DESC LIMIT 200", ARRAY_A ); // phpcs:ignore
-						}
-						return array(
-							'items' => array_map( 'flxc_block_for_js', (array) $rows ),
-							'total' => (int) $wpdb->get_var( "SELECT COUNT(*) FROM $t" ), // phpcs:ignore
-						);
+					'callback'            => static function ( WP_REST_Request $req ) {
+						return FLXC_Desk_Service::block_list( $req );
 					},
 				),
 				array(
 					'methods'             => 'POST',
 					'permission_callback' => $mng,
-					'callback'            => function ( WP_REST_Request $req ) {
-						$reason = (string) $req->get_param( 'reason' );
-						$cid    = (int) $req->get_param( 'chat' );
-						if ( $cid ) {
-							$chat = flxc_get_chat( $cid );
-							if ( ! $chat ) {
-								return new WP_Error( 'flxc_404', __( 'Chat not found.', 'flx-chat' ), array( 'status' => 404 ) );
-							}
-							$id = flxc_block_chat( $chat, $reason, 'agent' );
-							return is_wp_error( $id ) ? $id : array( 'id' => $id, 'chat' => flxc_chat_for_js( flxc_get_chat( $cid ) ) );
-						}
-						$id = flxc_block_add( (string) $req->get_param( 'phone' ), (string) $req->get_param( 'email' ), $reason, 'agent' );
-						return is_wp_error( $id ) ? $id : array( 'id' => $id );
+					'callback'            => static function ( WP_REST_Request $req ) {
+						return FLXC_Desk_Service::block_add( $req );
 					},
 				),
 			)
@@ -261,8 +237,8 @@ add_action(
 			array(
 				'methods'             => 'DELETE',
 				'permission_callback' => $mng,
-				'callback'            => function ( WP_REST_Request $req ) {
-					return flxc_block_remove( (int) $req['id'] ) ? array( 'ok' => true ) : new WP_Error( 'flxc_404', __( 'No records found.', 'flx-chat' ), array( 'status' => 404 ) );
+				'callback'            => static function ( WP_REST_Request $req ) {
+					return FLXC_Desk_Service::block_remove( $req );
 				},
 			)
 		);
@@ -272,17 +248,8 @@ add_action(
 			array(
 				'methods'             => 'POST',
 				'permission_callback' => $mng,
-				'callback'            => function ( WP_REST_Request $req ) {
-					$chat = flxc_get_chat( (int) $req['id'] );
-					if ( ! $chat ) {
-						return new WP_Error( 'flxc_404', __( 'Chat not found.', 'flx-chat' ), array( 'status' => 404 ) );
-					}
-					$id = flxc_block_find( $chat['phone'], '', $chat['jid'] );
-					if ( $id ) {
-						flxc_block_remove( $id );
-						flxc_system_message( $chat, __( 'Contact removed from the blocklist.', 'flx-chat' ) );
-					}
-					return array( 'chat' => flxc_chat_for_js( flxc_get_chat( $chat['id'] ) ) );
+				'callback'            => static function ( WP_REST_Request $req ) {
+					return FLXC_Desk_Service::unblock( $req );
 				},
 			)
 		);

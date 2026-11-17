@@ -4,7 +4,8 @@
  * systems and Tools open the same screen as the FluxWP app (assets/flux/, tools/fluxapp/embed-sync.sh
  * flx-ai). A user can switch back to the classic page from the screen header. Needs Flux GraphQL.
  *
- * Not yet in React (stay classic): the live Chat (stream, approvals and files inside a chat); its history is a screen.
+ * The Chat page and its history are screens too. The floating chat (every other page) and the FluxApp embed stay on
+ * assets/js/chat.js; both speak the same chat REST protocol.
  *
  * @package FLX_AI
  */
@@ -26,6 +27,7 @@ function flxai_flux_pages() {
 		'flx-ai-mcp' => 'mcp',
 		'flx-ai-connections' => 'connections',
 		'flx-ai-history' => 'history',
+		'flx-ai-chat' => 'chat',
 	);
 }
 
@@ -49,6 +51,9 @@ function flxai_ui_switch_url( $ui, $page = '' ) {
 	if ( 'flx-ai-systems' === $page && ! empty( $_GET['system'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 		$args['system'] = sanitize_key( wp_unslash( $_GET['system'] ) ); // phpcs:ignore WordPress.Security.NonceVerification
 	}
+	if ( 'flx-ai-chat' === $page && ! empty( $_GET['flxai_chat'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+		$args['flxai_chat'] = (int) $_GET['flxai_chat']; // phpcs:ignore WordPress.Security.NonceVerification
+	}
 	return wp_nonce_url( add_query_arg( $args, admin_url( 'admin.php' ) ), 'flxai_ui' );
 }
 
@@ -68,7 +73,7 @@ add_action(
 		} else {
 			delete_user_meta( get_current_user_id(), 'flxai_ui' );
 		}
-		wp_safe_redirect( admin_url( 'admin.php?page=' . $page . ( 'flx-ai-systems' === $page && ! empty( $_GET['system'] ) ? '&system=' . rawurlencode( sanitize_key( wp_unslash( $_GET['system'] ) ) ) : '' ) ) ); // phpcs:ignore WordPress.Security.NonceVerification
+		wp_safe_redirect( admin_url( 'admin.php?page=' . $page . ( 'flx-ai-systems' === $page && ! empty( $_GET['system'] ) ? '&system=' . rawurlencode( sanitize_key( wp_unslash( $_GET['system'] ) ) ) : '' ) . ( 'flx-ai-chat' === $page && ! empty( $_GET['flxai_chat'] ) ? '&flxai_chat=' . (int) $_GET['flxai_chat'] : '' ) ) ); // phpcs:ignore WordPress.Security.NonceVerification
 		exit;
 	}
 );

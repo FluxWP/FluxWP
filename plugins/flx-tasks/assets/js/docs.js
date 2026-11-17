@@ -143,6 +143,7 @@
 	var DC = {};
 	Y.leaveDoc = function () {
 		if (!D) return;
+		fileHoverOff();
 		flushLeave(true);
 		cachePage();
 		DC[D.doc.id] = { doc: D.doc, role: D.role, pages: D.pages };
@@ -601,6 +602,33 @@
 		Y.$$('a[data-file]', root).forEach(function (a) { a.href = Y.fileUrl(a.getAttribute('data-file'), 0, true); });
 		Y.$$('span.flxg-tref', root).forEach(function (s) { s.setAttribute('contenteditable', 'false'); });
 		hydratePrefs(root);
+		decorate(root);
+	}
+	/** YouTube bağlantısının video kimliği ('' = YouTube değil). */
+	function ytId(href) {
+		var m = /^https?:\/\/(?:www\.|m\.)?(?:youtube\.com\/(?:watch\?(?:[^#]*&)?v=|shorts\/|embed\/|live\/)|youtu\.be\/)([A-Za-z0-9_-]{11})(?![A-Za-z0-9_-])/.exec(href || '');
+		return m ? m[1] : '';
+	}
+	/** Yalnızca ekranda görünen süs: dosya kartı uzantısı, tek başına YouTube bağlantısının önizleme görseli.
+	 *  cleanHtml bunları kaydedilen içerikten çıkarır. */
+	function decorate(root) {
+		Y.$$('a[data-file]', root).forEach(function (a) {
+			var m = /\.([A-Za-z0-9]{1,5})\s*$/.exec(a.textContent || '');
+			a.setAttribute('data-ext', m ? m[1].toUpperCase() : 'FILE');
+		});
+		var on = !Y.S.config || Y.S.config.ytPreview !== false;
+		Y.$$('a[href]:not([data-file])', root).forEach(function (a) {
+			var id = on ? ytId(a.getAttribute('href')) : '';
+			var p = a.parentNode;
+			var solo = id && p && p.tagName === 'P' && p.textContent.trim() === a.textContent.trim();
+			if (solo) {
+				if (a.getAttribute('data-yt') !== id) { a.setAttribute('data-yt', id); a.style.setProperty('--yt', 'url(https://i.ytimg.com/vi/' + id + '/hqdefault.jpg)'); }
+			} else if (a.hasAttribute('data-yt')) {
+				a.removeAttribute('data-yt');
+				a.style.removeProperty('--yt');
+				if (!a.getAttribute('style')) a.removeAttribute('style');
+			}
+		});
 	}
 	/** Blok HTML'i (geçici sınıf/öznitelikler olmadan); karşılaştırma ve gönderim için. */
 	function cleanHtml(el) {
@@ -618,7 +646,8 @@
 			img.removeAttribute('class');
 			img.removeAttribute('style');
 		});
-		Y.$$('a[data-file]', c).forEach(function (a) { a.removeAttribute('href'); });
+		Y.$$('a[data-file]', c).forEach(function (a) { a.removeAttribute('href'); a.removeAttribute('data-ext'); });
+		Y.$$('a[data-yt]', c).forEach(function (a) { a.removeAttribute('data-yt'); a.style.removeProperty('--yt'); if (!a.getAttribute('style')) a.removeAttribute('style'); });
 		Y.$$('span.flxg-tref', c).forEach(function (s) { s.removeAttribute('data-done'); s.removeAttribute('title'); });
 		Y.$$('span.flxg-pref', c).forEach(function (s) { s.removeAttribute('data-gone'); });
 		Y.$$('[data-b]', c).forEach(function (x) { x.removeAttribute('data-b'); });
@@ -1059,6 +1088,8 @@
 		ed.addEventListener('keydown', onKey);
 		ed.addEventListener('mousedown', function (e) { if (e.button === 0) { D.dragging = true; if (D.aiBub) D.aiBub.classList.remove('is-on'); } });
 		ed.addEventListener('click', onClick);
+		ed.addEventListener('mouseover', function (e) { var a = e.target.closest && e.target.closest('a[data-file]'); if (a) fileHoverOn(a); });
+		ed.addEventListener('mouseout', function (e) { if (D && D.fbtn && e.target.closest && e.target.closest('a[data-file]')) D.fbT = setTimeout(fileHoverOff, 160); });
 		ed.addEventListener('paste', onPaste);
 		ed.addEventListener('dragover', function (e) { if (D.edit && hasFiles(e)) { e.preventDefault(); } });
 		ed.addEventListener('drop', function (e) {
@@ -1130,7 +1161,14 @@
 		if (pref) { e.preventDefault(); if (!pref.hasAttribute('data-gone')) peekOpen(+pref.getAttribute('data-page')); return; }
 		var a = e.target.closest('a[href]');
 		if (a) {
-			if (!D.edit || e.ctrlKey || e.metaKey || a.hasAttribute('data-file')) { e.preventDefault(); window.open(a.href, '_blank', 'noopener'); return; }
+			if (a.hasAttribute('data-file')) {
+				e.preventDefault();
+				var fid = parseInt(a.getAttribute('data-file'), 10) || 0;
+				if (!fid) return;
+				if (Y.filePreview) Y.filePreview(fid, (a.textContent || '').trim()); else window.open(a.href, '_blank', 'noopener');
+				return;
+			}
+			if (!D.edit || e.ctrlKey || e.metaKey) { e.preventDefault(); window.open(a.href, '_blank', 'noopener'); return; }
 			linkPop(a);
 			return;
 		}
@@ -1167,7 +1205,38 @@
 			{ label: t('Görseli kaldır'), icon: 'trash', danger: true, onClick: function () { var b = blockOf(img); if (b && b.tagName === 'FIGURE') b.remove(); else img.remove(); changed(); } }
 		], { inline: true });
 	}
-	function changed() { D.lastInput = Date.now(); soon(400); requestAnimationFrame(drawCursors); requestAnimationFrame(drawSubs); }
+	/** Dosya kartı: üzerine gelince düzenleme simgesi; menüden önizle / indir / kaldır. */
+	function fileMenu(a) {
+		var id = parseInt(a.getAttribute('data-file'), 10) || 0;
+		var name = (a.textContent || '').trim();
+		Y.menu(a, [
+			{ label: t('Önizle'), icon: 'eye', onClick: function () { if (Y.filePreview) Y.filePreview(id, name); else window.open(a.href, '_blank', 'noopener'); } },
+			{ label: t('İndir'), icon: 'download', onClick: function () { if (Y.fileDownload) Y.fileDownload(id, name); else window.open(Y.fileUrl(id, 0, true), '_blank', 'noopener'); } },
+			{ sep: true },
+			{ label: t('Dosyayı kaldır'), icon: 'trash', danger: true, onClick: function () { var b = blockOf(a); if (b && b.tagName === 'P' && b.textContent.trim() === name) b.remove(); else a.remove(); changed(); } }
+		], { inline: true });
+	}
+	function fileHoverOff() {
+		if (!D) return;
+		clearTimeout(D.fbT);
+		if (D.fbtn) { D.fbtn.remove(); D.fbtn = null; }
+	}
+	function fileHoverOn(a) {
+		if (!D || !D.edit || !a.hasAttribute('data-file') || a.classList.contains('is-uploading')) return;
+		clearTimeout(D.fbT);
+		if (D.fbtn && D.fbtn._a === a) return;
+		fileHoverOff();
+		var r = a.getBoundingClientRect();
+		var b = h('button.flxg-doc-filebtn', { type: 'button', title: t('Düzenle'), 'aria-label': t('Düzenle'), onclick: function (ev) { ev.stopPropagation(); fileHoverOff(); fileMenu(a); } }, Y.icon('edit', 13));
+		b._a = a;
+		b.style.top = Math.round(r.top + r.height / 2 - 14) + 'px';
+		b.style.left = Math.round(r.right - 36) + 'px';
+		b.addEventListener('mouseenter', function () { clearTimeout(D.fbT); });
+		b.addEventListener('mouseleave', function () { D.fbT = setTimeout(fileHoverOff, 120); });
+		document.body.appendChild(b);
+		D.fbtn = b;
+	}
+	function changed() { D.lastInput = Date.now(); if (D.ed) decorate(D.ed); soon(400); requestAnimationFrame(drawCursors); requestAnimationFrame(drawSubs); }
 	function pulse(el) { el.classList.add('is-ai-new'); setTimeout(function () { el.classList.remove('is-ai-new'); if (!el.getAttribute('class')) el.removeAttribute('class'); }, 1600); }
 	function selectNode(n, whole) {
 		var r = document.createRange();
