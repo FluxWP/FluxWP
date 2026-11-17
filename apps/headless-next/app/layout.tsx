@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
+import { SocialLinks } from '@/components/social';
 import { footerMenus, MenuList, pick } from '@/components/menu';
 import { RENDER } from '@/lib/env';
 import { getSite } from '@/lib/flux';
@@ -100,6 +101,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
                   ))}
                 </span>
               )}
+              <SocialLinks urls={site.social} />
             </div>
           </div>
         </footer>

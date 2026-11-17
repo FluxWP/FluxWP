@@ -154,6 +154,11 @@ img { max-width: 100%; height: auto; }
 .footer-menu ul { list-style: none; padding: 6px 0 0 12px; margin: 0; display: grid; gap: 6px; }
 .footer-menu .sub-label { color: #fff; cursor: pointer; }
 .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; border-top: 1px solid rgb(255 255 255 / 15%); margin-top: var(--wp--preset--spacing--50); padding-top: var(--wp--preset--spacing--40); font-size: 0.8125rem; }
+.footer-social { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+.site-footer .footer-social a { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 999px; background: rgb(255 255 255 / 8%); border: 1px solid rgb(255 255 255 / 15%); transition: background 0.2s, color 0.2s, transform 0.2s; }
+.site-footer .footer-social a:hover { background: #fff; color: var(--primary-dark); text-decoration: none; transform: translateY(-2px); }
+.site-footer .footer-social a:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .site-footer .footer-social a { transition: none; } .site-footer .footer-social a:hover { transform: none; } }
 .footer-bottom .legal { display: flex; flex-wrap: wrap; gap: 6px 18px; }
 .sub-toggle:checked ~ ul { display: grid; }
 .sub-toggle:checked + .sub-label::after { transform: translateY(1px) rotate(225deg); }
