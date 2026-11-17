@@ -2,7 +2,8 @@
   "id": "social",
   "plugin": "flx-social",
   "min_app": "1.0.0",
-  "title": "Sosyal Medya",
+  "platforms": ["mobile"],
+  "title": "Social Media",
   "icon": "share",
   "menu": "flx-social",
   "entry": "posts",
@@ -13,25 +14,24 @@
   },
   "sources": {
     "posts": {
-      "path": "flx-social/v1/posts",
-      "query": { "per": 20 },
-      "paging": { "mode": "page", "param": "page", "size_param": "per", "size": 20, "items": "items", "total": "total", "pages": "pages" },
+      "graphql": { "op": "FlxSocialPosts", "data": "flxSocialPosts" },
+      "paging": { "mode": "cursor", "size": 20, "items": "nodes", "next": "pageInfo.endCursor", "has_next": "pageInfo.hasNextPage", "total": "totalCount" },
       "key": "id",
       "cache": { "stale": 30 }
     },
     "post": {
-      "path": "flx-social/v1/posts/{{params.id}}",
+      "graphql": { "op": "FlxSocialPost", "variables": { "id": "{{params.id}}" }, "data": "flxSocialPost" },
       "cache": { "stale": 15 }
     },
     "calendar": {
-      "path": "flx-social/v1/calendar",
-      "paging": { "mode": "page", "param": "page", "size_param": "per_page", "size": 50, "items": "items", "total": "total", "pages": "pages" },
+      "graphql": { "op": "FlxSocialPosts", "variables": { "status": ["SCHEDULED", "PUBLISHED"], "ascending": true }, "data": "flxSocialPosts" },
+      "paging": { "mode": "cursor", "size": 50, "items": "nodes", "next": "pageInfo.endCursor", "has_next": "pageInfo.hasNextPage", "total": "totalCount" },
       "key": "id",
       "cache": { "stale": 30 }
     },
     "accounts": {
-      "path": "flx-social/v1/accounts",
-      "paging": { "mode": "wp" },
+      "graphql": { "op": "FlxSocialAccounts", "data": "flxSocialAccounts" },
+      "paging": { "mode": "none" },
       "key": "id",
       "cache": { "stale": 60 }
     }
@@ -39,82 +39,89 @@
   "screens": {
     "posts": {
       "type": "list",
-      "title": "Gönderiler",
+      "title": "Posts",
       "source": "posts",
-      "search": { "param": "q", "placeholder": "Gönderilerde ara" },
+      "search": { "param": "search", "placeholder": "Search posts" },
       "filters": [
         {
           "param": "status",
-          "label": "Durum",
+          "label": "Status",
           "type": "select",
           "options": [
-            { "value": "", "label": "Tümü" },
-            { "value": "draft", "label": "Taslak" },
-            { "value": "pending", "label": "Onay bekliyor" },
-            { "value": "scheduled", "label": "Zamanlandı" },
-            { "value": "published", "label": "Yayında" },
-            { "value": "failed", "label": "Hata" }
+            { "value": "", "label": "All" },
+            { "value": "DRAFT", "label": "Draft" },
+            { "value": "PENDING", "label": "Waiting for approval" },
+            { "value": "SCHEDULED", "label": "Scheduled" },
+            { "value": "PUBLISHED", "label": "Published" },
+            { "value": "FAILED", "label": "Failed" }
           ]
         }
       ],
       "item": {
-        "title": "{{title|default:excerpt}}",
-        "subtitle": "{{accounts_label}}",
-        "caption": "{{when_label}}",
+        "title": "{{title|default:content|truncate:80}}",
+        "subtitle": "{{targets|count}} accounts",
+        "caption": "{{scheduledAt.label|default:publishedAt.label}}",
         "badges": [
-          { "text": "Taslak", "tone": "muted", "when": { "path": "status", "op": "eq", "value": "draft" } },
-          { "text": "Onay", "tone": "warn", "when": { "path": "status", "op": "eq", "value": "pending" } },
-          { "text": "Zamanlandı", "tone": "accent", "when": { "path": "status", "op": "eq", "value": "scheduled" } },
-          { "text": "Yayında", "tone": "ok", "when": { "path": "status", "op": "eq", "value": "published" } },
-          { "text": "Hata", "tone": "danger", "when": { "path": "status", "op": "in", "value": ["failed", "partial"] } }
+          { "text": "Draft", "tone": "muted", "when": { "path": "status", "op": "eq", "value": "DRAFT" } },
+          { "text": "Approval", "tone": "warn", "when": { "path": "status", "op": "eq", "value": "PENDING" } },
+          { "text": "Scheduled", "tone": "accent", "when": { "path": "status", "op": "eq", "value": "SCHEDULED" } },
+          { "text": "Published", "tone": "ok", "when": { "path": "status", "op": "eq", "value": "PUBLISHED" } },
+          { "text": "Failed", "tone": "danger", "when": { "path": "status", "op": "in", "value": ["FAILED", "PARTIAL"] } }
         ]
       },
       "onPress": { "target": "screen:social/post", "params": { "id": "{{id}}" } },
       "actions": { "header": ["compose"], "fab": "compose" },
-      "empty": { "title": "Gönderi yok", "body": "Yeni gönderi medya yazarıyla hazırlanır." }
+      "empty": { "title": "No posts", "body": "New posts are written in the composer." }
     },
     "post": {
       "type": "detail",
-      "title": "Gönderi",
+      "title": "Post",
       "source": "post",
-      "header": { "title": "{{title|default:'Gönderi'}}", "subtitle": "{{when_label}}" },
+      "header": { "title": "{{title|default:'Post'}}", "subtitle": "{{scheduledAt.label|default:publishedAt.label}}" },
       "sections": [
         { "type": "content", "format": "html", "value": "{{content}}" },
         {
           "type": "list",
-          "title": "Hesaplar",
+          "title": "Accounts",
           "path": "targets",
-          "item": { "title": "{{account}}", "subtitle": "{{provider}}", "meta": "{{status}}" }
+          "item": {
+            "title": "{{account}}",
+            "subtitle": "{{provider}}",
+            "meta": "{{status}}",
+            "caption": "{{error}}",
+            "avatar": { "image": "{{avatar}}" }
+          }
         },
         {
           "type": "fields",
           "fields": [
-            { "label": "Not", "value": "{{note}}", "when": { "path": "note", "op": "filled" } }
+            { "label": "Note", "value": "{{note}}", "when": { "path": "note", "op": "filled" } },
+            { "label": "Author", "value": "{{author}}", "when": { "path": "author", "op": "filled" } }
           ]
         }
       ],
-      "actions": { "header": ["compose", "approve", "post_delete"], "footer": ["open_panel"] }
+      "actions": { "header": ["compose", "approve", "reject", "post_delete"], "footer": ["publish_now", "open_panel"] }
     },
     "calendar": {
       "type": "list",
-      "title": "Takvim",
+      "title": "Calendar",
       "source": "calendar",
       "item": {
-        "title": "{{title|default:excerpt}}",
-        "subtitle": "{{accounts_label}}",
-        "meta": "{{when_label}}",
+        "title": "{{title|default:content|truncate:80}}",
+        "subtitle": "{{targets|count}} accounts",
+        "meta": "{{scheduledAt.label|default:publishedAt.label}}",
         "badges": [
-          { "text": "Zamanlandı", "tone": "accent", "when": { "path": "status", "op": "eq", "value": "scheduled" } },
-          { "text": "Yayında", "tone": "ok", "when": { "path": "status", "op": "eq", "value": "published" } }
+          { "text": "Scheduled", "tone": "accent", "when": { "path": "status", "op": "eq", "value": "SCHEDULED" } },
+          { "text": "Published", "tone": "ok", "when": { "path": "status", "op": "eq", "value": "PUBLISHED" } }
         ]
       },
       "onPress": { "target": "screen:social/post", "params": { "id": "{{id}}" } },
       "actions": { "header": ["compose"] },
-      "empty": { "title": "Bu ay gönderi yok", "body": "Zamanlanan ve yayımlanan gönderiler burada görünür." }
+      "empty": { "title": "Nothing planned", "body": "Scheduled and published posts show up here." }
     },
     "accounts": {
       "type": "list",
-      "title": "Hesaplar",
+      "title": "Accounts",
       "source": "accounts",
       "can": "manage",
       "item": {
@@ -123,61 +130,80 @@
         "caption": "{{username}}",
         "avatar": { "image": "{{avatar}}" },
         "badges": [
-          { "text": "Kapalı", "tone": "muted", "when": { "path": "status", "op": "eq", "value": "disabled" } },
-          { "text": "Hata", "tone": "danger", "when": { "path": "last_error", "op": "filled" } }
+          { "text": "Off", "tone": "muted", "when": { "path": "status", "op": "eq", "value": "DISABLED" } },
+          { "text": "Expired", "tone": "warn", "when": { "path": "status", "op": "eq", "value": "EXPIRED" } },
+          { "text": "Error", "tone": "danger", "when": { "path": "lastError", "op": "filled" } }
         ]
       },
       "actions": { "row": ["account_off", "account_on"] },
-      "empty": { "title": "Hesap yok", "body": "Hesap bağlamak için paneli açın." }
+      "empty": { "title": "No accounts", "body": "Open the panel to connect an account." }
     },
     "composer": {
       "type": "native",
-      "title": "Yeni gönderi",
+      "title": "New post",
       "component": "flxsm-composer",
       "fallback": { "web": "admin.php?page=flx-social" }
     }
   },
   "actions": {
     "compose": {
-      "label": "Yeni gönderi",
+      "label": "New post",
       "icon": "plus",
       "navigate": { "target": "screen:social/composer" }
     },
     "approve": {
-      "label": "Onayla",
+      "label": "Approve",
       "icon": "check",
       "can": "publish",
-      "when": { "path": "status", "op": "eq", "value": "pending" },
-      "request": { "method": "POST", "path": "flx-social/v1/posts/{{id}}/action", "body": { "action": "approve" } },
-      "after": { "toast": "Onaylandı", "refresh": true, "invalidate": ["posts", "calendar"] }
+      "when": { "path": "status", "op": "eq", "value": "PENDING" },
+      "request": { "graphql": { "op": "FlxSocialPostAct", "variables": { "input": { "id": "{{id}}", "action": "APPROVE" } }, "data": "flxSocialPostAct" } },
+      "after": { "toast": "Approved", "refresh": true, "invalidate": ["posts", "calendar", "post"] }
+    },
+    "reject": {
+      "label": "Send back",
+      "icon": "no",
+      "can": "publish",
+      "when": { "path": "status", "op": "eq", "value": "PENDING" },
+      "prompt": { "title": "Send back to the author", "fields": [{ "name": "note", "type": "textarea", "label": "Note" }] },
+      "request": { "graphql": { "op": "FlxSocialPostAct", "variables": { "input": { "id": "{{id}}", "action": "REJECT", "note": "{{input.note}}" } }, "data": "flxSocialPostAct" } },
+      "after": { "toast": "Sent back", "refresh": true, "invalidate": ["posts", "post"] }
+    },
+    "publish_now": {
+      "label": "Publish now",
+      "icon": "send",
+      "can": "publish",
+      "when": { "path": "status", "op": "eq", "value": "SCHEDULED" },
+      "confirm": { "title": "Publish now?", "body": "It goes out to every selected account.", "ok": "Publish" },
+      "request": { "graphql": { "op": "FlxSocialPostAct", "variables": { "input": { "id": "{{id}}", "action": "NOW" } }, "data": "flxSocialPostAct" } },
+      "after": { "toast": "Publishing", "refresh": true, "invalidate": ["posts", "calendar", "post"] }
     },
     "post_delete": {
-      "label": "Sil",
+      "label": "Delete",
       "icon": "trash",
       "tone": "danger",
-      "confirm": { "title": "Gönderi silinsin mi?", "ok": "Sil" },
-      "request": { "method": "POST", "path": "flx-social/v1/posts/{{id}}/delete" },
-      "after": { "toast": "Silindi", "back": true, "invalidate": ["posts", "calendar"] },
+      "confirm": { "title": "Delete this post?", "ok": "Delete" },
+      "request": { "graphql": { "op": "FlxSocialPostDelete", "variables": { "input": { "id": "{{id}}" } }, "data": "flxSocialPostDelete" } },
+      "after": { "toast": "Deleted", "back": true, "invalidate": ["posts", "calendar"] },
       "haptic": "warning"
     },
     "account_off": {
-      "label": "Kapat",
-      "icon": "x",
+      "label": "Turn off",
+      "icon": "no",
       "can": "manage",
-      "when": { "path": "status", "op": "ne", "value": "disabled" },
-      "request": { "method": "POST", "path": "flx-social/v1/accounts/{{id}}", "body": { "disabled": true } },
-      "after": { "toast": "Hesap kapatıldı", "refresh": true }
+      "when": { "path": "status", "op": "ne", "value": "DISABLED" },
+      "request": { "graphql": { "op": "FlxSocialAccountUpdate", "variables": { "input": { "id": "{{id}}", "disabled": true } }, "data": "flxSocialAccountUpdate" } },
+      "after": { "toast": "Account turned off", "refresh": true }
     },
     "account_on": {
-      "label": "Aç",
+      "label": "Turn on",
       "icon": "check",
       "can": "manage",
-      "when": { "path": "status", "op": "eq", "value": "disabled" },
-      "request": { "method": "POST", "path": "flx-social/v1/accounts/{{id}}", "body": { "disabled": false } },
-      "after": { "toast": "Hesap açıldı", "refresh": true }
+      "when": { "path": "status", "op": "eq", "value": "DISABLED" },
+      "request": { "graphql": { "op": "FlxSocialAccountUpdate", "variables": { "input": { "id": "{{id}}", "disabled": false } }, "data": "flxSocialAccountUpdate" } },
+      "after": { "toast": "Account turned on", "refresh": true }
     },
     "open_panel": {
-      "label": "Panelde aç",
+      "label": "Open in panel",
       "icon": "globe",
       "web": "admin.php?page=flx-social"
     }

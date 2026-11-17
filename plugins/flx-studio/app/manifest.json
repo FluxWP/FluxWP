@@ -2,7 +2,7 @@
   "id": "studio",
   "plugin": "flx-studio",
   "min_app": "1.0.0",
-  "title": "Stüdyo",
+  "title": "Studio",
   "icon": "image",
   "menu": "flx-studio",
   "entry": "gallery",
@@ -13,84 +13,97 @@
   },
   "sources": {
     "items": {
-      "path": "flx-studio/v1/items",
-      "query": { "folder": "all", "limit": 40 },
-      "paging": { "mode": "wp", "param": "page", "size_param": "limit", "size": 40 },
+      "graphql": { "op": "FlxStudioItems", "data": "flxStudioItems" },
+      "paging": { "mode": "cursor", "size": 40, "items": "nodes", "next": "pageInfo.endCursor", "has_next": "pageInfo.hasNextPage" },
       "key": "id",
       "cache": { "stale": 30 }
     },
     "item": {
-      "path": "flx-studio/v1/items/{{params.id}}",
+      "graphql": { "op": "FlxStudioItem", "variables": { "id": "{{params.id|int}}" }, "data": "flxStudioItem" },
       "cache": { "stale": 30 }
     }
   },
   "screens": {
     "gallery": {
       "type": "list",
-      "title": "Galeri",
+      "title": "Gallery",
       "source": "items",
       "layout": "grid",
-      "search": { "param": "q", "placeholder": "Galeride ara" },
+      "search": { "param": "search", "placeholder": "Search the gallery" },
       "filters": [
         {
           "param": "kind",
-          "label": "Tür",
-          "type": "select",
+          "label": "Type",
+          "type": "segmented",
           "options": [
-            { "value": "", "label": "Tümü" },
-            { "value": "image", "label": "Görsel" },
-            { "value": "video", "label": "Video" }
+            { "value": "", "label": "All" },
+            { "value": "IMAGE", "label": "Images" },
+            { "value": "VIDEO", "label": "Videos" }
           ]
         },
-        { "param": "fav", "label": "Yıldızlı", "type": "toggle" }
+        { "param": "favorite", "label": "Starred", "type": "toggle" }
       ],
       "item": {
         "title": "{{title|default:prompt}}",
         "subtitle": "{{model}}",
         "image": "{{thumb|default:url}}",
         "badges": [
-          { "text": "Yıldız", "tone": "accent", "when": { "path": "favorite", "op": "truthy" } },
-          { "text": "Hata", "tone": "danger", "when": { "path": "state", "op": "eq", "value": "failed" } },
-          { "text": "Hazırlanıyor", "tone": "warn", "when": { "path": "state", "op": "in", "value": ["queued", "running"] } }
+          { "text": "Starred", "tone": "accent", "when": { "path": "favorite", "op": "truthy" } },
+          { "text": "Failed", "tone": "danger", "when": { "path": "state", "op": "eq", "value": "FAILED" } },
+          { "text": "In progress", "tone": "warn", "when": { "path": "state", "op": "in", "value": ["QUEUED", "RUNNING"] } }
         ]
       },
-      "onPress": { "target": "screen:studio/item", "params": { "id": "{{id}}" } },
+      "onPress": { "target": "screen:studio/item", "params": { "id": "{{databaseId}}" } },
       "actions": { "header": ["open_panel"] },
-      "empty": { "title": "Galeri boş", "body": "Üretilen görseller burada listelenir. Üretim paneli uygulamada sonra açılır." }
+      "empty": { "title": "The gallery is empty", "body": "Generated images and videos are listed here. Create new ones in the panel." }
     },
     "item": {
       "type": "detail",
-      "title": "Görsel",
+      "title": "Image",
       "source": "item",
       "header": {
         "title": "{{title|default:prompt}}",
         "subtitle": "{{model}}",
-        "image": "{{url|default:thumb}}"
+        "avatar": { "image": "{{thumb|default:url}}" }
       },
       "sections": [
         {
           "type": "fields",
           "fields": [
-            { "label": "İstem", "value": "{{prompt}}", "when": { "path": "prompt", "op": "filled" } },
-            { "label": "Durum", "value": "{{state}}" },
-            { "label": "Sahip", "value": "{{owner_name}}" },
-            { "label": "Hata", "value": "{{error}}", "when": { "path": "error", "op": "filled" } }
+            { "label": "Prompt", "value": "{{prompt}}", "copy": true, "when": { "path": "prompt", "op": "filled" } },
+            { "label": "Size", "value": "{{width}} × {{height}}", "when": { "path": "width", "op": "truthy" } },
+            { "label": "Owner", "value": "{{ownerName}}" },
+            { "label": "Error", "value": "{{error}}", "when": { "path": "error", "op": "filled" } }
           ]
-        }
+        },
+        { "type": "actions", "items": ["open_file", "favorite", "unfavorite", "open_panel"] }
       ],
-      "actions": { "header": ["favorite", "open_panel"] }
+      "actions": { "header": ["favorite", "unfavorite"] }
     }
   },
   "actions": {
     "favorite": {
-      "label": "Yıldızla",
+      "label": "Star",
       "icon": "star",
-      "request": { "method": "POST", "path": "flx-studio/v1/items/{{id}}", "body": { "favorite": true } },
-      "optimistic": { "path": "favorite", "value": true },
-      "after": { "toast": "Yıldızlandı", "invalidate": ["items", "item"] }
+      "when": { "path": "favorite", "op": "falsy" },
+      "request": { "graphql": { "op": "FlxStudioItemUpdate", "variables": { "input": { "id": "{{databaseId}}", "favorite": true } }, "data": "flxStudioItemUpdate" } },
+      "after": { "toast": "Starred", "invalidate": ["items", "item"] }
+    },
+    "unfavorite": {
+      "label": "Remove star",
+      "icon": "star",
+      "when": { "path": "favorite", "op": "truthy" },
+      "request": { "graphql": { "op": "FlxStudioItemUpdate", "variables": { "input": { "id": "{{databaseId}}", "favorite": false } }, "data": "flxStudioItemUpdate" } },
+      "after": { "toast": "Star removed", "invalidate": ["items", "item"] }
+    },
+    "open_file": {
+      "label": "Open file",
+      "icon": "download",
+      "when": { "path": "url", "op": "filled" },
+      "open": "{{url}}"
     },
     "open_panel": {
-      "label": "Panelde aç",
+      "label": "Open in panel",
       "icon": "globe",
       "web": "admin.php?page=flx-studio"
     }

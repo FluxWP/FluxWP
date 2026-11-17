@@ -1,5 +1,8 @@
 # Değişiklik günlüğü
 
+## 0.4.0
+- Mobil uygulama manifesti GraphQL'e geçti: gönderiler (arama, durum filtresi), gönderi ayrıntısı, takvim, hesaplar; onayla, geri gönder, şimdi yayımla, sil, hesabı aç/kapat. Metinler İngilizce kaynak + Türkçe çeviri.
+
 ## 0.3.1
 - Tarih alanları ortak FluxWP tarih seçicisini kullanır: sitenin dilinde ay/gün adları, Pazartesi başlangıç, hızlı seçim listesi, yazılabilir tarih ve saat, Uygula düğmesi, açık/koyu, telefonda alttan açılan pencere. Tarayıcının kendi takvimi (İngilizce çıkan) kalktı.
 

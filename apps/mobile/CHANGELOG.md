@@ -4,6 +4,8 @@
 - reCAPTCHA, SEO, Yedekleme, Diller, Performans, Roller ve erişim, Yönetim teması, Headless, Sohbet botu, Site sohbetleri, Reklamlar, Dosyalar ve Blok Düzenleyici menüleri web görünümü yerine uygulamanın kendi ekranlarında açılır (eklentilerin GraphQL manifestleriyle).
 - Uzun seçenek listeleri (diller, günler…) ekranı dolduran düğmeler yerine dokununca açılan bir listeden seçilir; kısa listeler yine yan yana düğme.
 - Etiket alanları (ör. izinli IP adresleri) virgülle ayrılarak düzenlenebilir.
+- Liste ekranlarında açılır liste ve aç/kapa filtreleri de çizilir (ör. durum seçimi, "Yalnız hatalar").
+- Stüdyo, İstatistikler, Flux AI ve Sosyal Medya ekranları GraphQL manifestleriyle çalışır (REST ve Türkçe sabit metin kalktı).
 
 ## 1.0.1
 - Yan menüde Ayarlar düğmesi de diğer ikonlar gibi yalnız ikon.
