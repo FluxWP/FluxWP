@@ -488,6 +488,7 @@ flx_gql_type(
 					'frontends'          => array( '[FlxHeadlessFrontend!]!', __( 'Front ends.', 'flx-headless' ), 'frontends' ),
 					'wpFront'            => array( 'FlxHeadlessWpFront!', __( 'What WordPress does with its own pages.', 'flx-headless' ), 'wp_front' ),
 					'corsOrigins'        => array( '[String!]!', __( 'Every origin allowed to call /graphql from a browser: this site, the Flux GraphQL list and the front ends.', 'flx-headless' ), 'cors' ),
+					'cmsUrl'             => array( 'String!', __( 'Address of this WordPress, for the front end (FLUX_WP_URL).', 'flx-headless' ), 'cms_url' ),
 					'graphqlUrl'         => array( 'String!', __( 'GraphQL endpoint to give the front end.', 'flx-headless' ), 'graphql_url' ),
 					'graphqlSettingsUrl' => array( 'String!', __( 'Flux GraphQL settings (CORS list, query mode, cache).', 'flx-headless' ), 'graphql_settings_url' ),
 					'persistedOnly'      => array( 'Boolean!', __( 'Only registered (persisted) queries are allowed; front ends send flxRoute / flxSite by id.', 'flx-headless' ), 'persisted_only' ),

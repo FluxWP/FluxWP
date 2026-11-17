@@ -561,6 +561,9 @@ msgstr ""
 msgid "Every origin allowed to call /graphql from a browser: this site, the Flux GraphQL list and the front ends."
 msgstr ""
 
+msgid "Address of this WordPress, for the front end (FLUX_WP_URL)."
+msgstr ""
+
 msgid "GraphQL endpoint to give the front end."
 msgstr ""
 

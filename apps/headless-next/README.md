@@ -13,7 +13,8 @@ What it shows:
 | The look follows the FluxWP theme: its fonts and palette, a dark footer with one column per footer menu (at the bottom of the window on short pages, folding into an accordion on phones), and sub-menus that drop down on desktop and open on tap on phones, without client JavaScript. A front page built from blocks (hero, columns, products) is drawn full width. | `app/globals.css` |
 | Cache Components ISR. Each answer is cached with `'use cache'` under the tags WordPress returns (`cacheTag(...route.cacheTags)`). | `lib/flux.ts` |
 | A signed revalidate webhook. It checks the HMAC, then refreshes those tags and paths. Changes show within seconds. | `app/api/revalidate/route.ts`, `lib/verify.ts` |
-| Preview. The editor's *Preview* button opens a signed link, and Draft Mode then shows the draft through an application password. | `app/api/preview/route.ts` |
+| Preview. The editor's *Preview* button opens a signed link, and Draft Mode then fetches the draft with a request signed by the connection key. | `app/api/preview/route.ts`, `lib/flux.ts` |
+| Two settings: `FLUX_WP_URL` and `FLUX_KEY`. The separate older variables still work. | `lib/env.ts` |
 | Sitemap proxy. `/sitemap.xml` comes from WordPress with front-end addresses. | `next.config.ts` |
 | Trailing slashes match WordPress. | `next.config.ts`, `proxy.ts` |
 
@@ -31,11 +32,10 @@ preset (*Theme settings › Presets*), which adds the products, pages and a post
    - **Webhook**: `http://localhost:3000/api/revalidate`.
    - **Secret**: press *Generate*.
    - **Preview path**: `/api/preview`.
-2. Copy `.env.example` to `.env.local` and fill it in:
-   - `FLUX_GRAPHQL_URL`.
-   - `FLUX_FRONTEND_ID`, shown on the front end's card.
-   - `FLUX_REVALIDATE_SECRET`.
-   - For previews, also `FLUX_PREVIEW_USER` and `FLUX_PREVIEW_APP_PASSWORD`. Create the application password in *Users › Profile* for a user who can edit posts.
+2. Save. WordPress shows the connection once. Put its two lines in `.env.local` (or your host's
+   environment variables):
+   - `FLUX_WP_URL`: the WordPress address.
+   - `FLUX_KEY`: the connection key. It also signs previews, so no application password is needed.
 3. Run these commands:
 
 ```sh

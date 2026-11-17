@@ -172,6 +172,7 @@ final class FLXHL_Settings {
 		public readonly array $frontends,
 		public readonly string $wp_front,
 		public readonly array $cors,
+		public readonly string $cms_url,
 		public readonly string $graphql_url,
 		public readonly string $graphql_settings_url,
 		public readonly bool $persisted_only,

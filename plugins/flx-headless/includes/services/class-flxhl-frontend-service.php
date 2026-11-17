@@ -139,6 +139,24 @@ final class FLXHL_Frontend_Service {
 		return '';
 	}
 
+	/**
+	 * Whether this request carries the front end's preview signature for a draft:
+	 * X-Flx-Preview: t=<unix time>,v1=hex(HMAC-SHA256(secret, "<t>.preview.<post id>")), at most 5 minutes old.
+	 * Lets the front end's server show a draft with only its connection key (no application password).
+	 */
+	public static function preview_signed( ?FLXHL_Frontend $fe, int $post_id ): bool {
+		$header = isset( $_SERVER['HTTP_X_FLX_PREVIEW'] ) ? sanitize_text_field( wp_unslash( flxhl_str( $_SERVER['HTTP_X_FLX_PREVIEW'] ) ) ) : '';
+		if ( ! $fe || $post_id <= 0 || '' === $header || ! preg_match( '/^t=(\d+),v1=([a-f0-9]{64})$/', $header, $m ) ) {
+			return false;
+		}
+		$secret = self::secret( $fe->id );
+		$time   = (int) $m[1];
+		if ( '' === $secret || abs( time() - $time ) > 5 * MINUTE_IN_SECONDS ) {
+			return false;
+		}
+		return hash_equals( hash_hmac( 'sha256', $time . '.preview.' . $post_id, $secret ), $m[2] );
+	}
+
 	private static function seal( #[\SensitiveParameter] string $plain ): string {
 		return function_exists( 'flx_secret_seal' ) ? flx_secret_seal( $plain, 'flx-headless' ) : '';
 	}
@@ -350,6 +368,7 @@ final class FLXHL_Frontend_Service {
 			self::frontends(),
 			self::raw()['wp_front'],
 			$cors,
+			flxhl_home(),
 			function_exists( 'graphql_get_endpoint_url' ) ? flxhl_str( graphql_get_endpoint_url() ) : home_url( '/graphql' ),
 			admin_url( 'admin.php?page=flx-graphql' ),
 			$persist,
