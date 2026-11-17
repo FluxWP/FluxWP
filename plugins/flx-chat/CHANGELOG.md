@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.50.0
+- WhatsApp asistanı vekâlet isteyen türlerde (kurban) bağışı artık kendisi açar: özetin sonunda sitedeki vekâlet metni çıkar, kişi açıkça onaylayınca kayıt açılır ve onay bağışa yazılır (`create_donation` yeni `proxy_consent`). Onay yoksa kayıt açılmaz; sitede vekâlet metni yoksa eskisi gibi ekibe devreder.
+- Eklentiler asistana kendi araçlarını ekleyebilir: `flxc_bot_tools`, `flxc_bot_tool_call`, `flxc_bot_rules` (docs/cagri-merkezi/KURULUM.md §11).
+
 ## 1.49.0
 - Sohbet, mesaj ve canlı güncelleme GraphQL'de (`flxChats`, `flxChat`, `flxChatMessages`, `flxChatUpdates`). Temsilci başkasının sohbetine liste, sayım, `node`, güncelleme veya mesaj sorgusuyla ulaşamaz.
 - `flxChatUpdates` kesilince `rev` artan sırayla devam rev'i verir. İstemci 10 saniyede bir sorar, sekme gizliyken durur.

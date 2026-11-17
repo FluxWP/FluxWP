@@ -72,7 +72,12 @@
     "removeConfirm": "{{site}} hesabı bu cihazdan kaldırılsın mı?",
     "current": "Açık hesap",
     "relogin": "Yeniden giriş yap",
-    "limited": "Sınırlı mod"
+    "limited": "Sınırlı mod",
+    "edit": "Düzenle",
+    "done": "Bitti",
+    "cache": "Önbellek: {{size}}",
+    "clearCache": "Önbelleği temizle",
+    "cacheCleared": "{{site}} önbelleği temizlendi."
   },
   "settings": {
     "title": "Ayarlar",
