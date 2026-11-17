@@ -6,7 +6,7 @@ Registration runs on `flx_gql_register` and is skipped when Flux GraphQL is not 
 
 ## Settings
 
-`flxMailSettings` returns the form. Passwords are `FlxMailSecret` (`set`, `mask`, `fromConfig`) and the value is never selected. `flxMailSettingsUpdate` takes the same fields. An empty secret is left as stored; `"__clear__"` removes it. `FLXI_SMTP_PASS`, `FLXI_SMTP_NOREPLY_PASS` and `FLXI_IMAP_PASS` come back as `fromConfig: true` and a write is ignored.
+`flxMailSettings` returns the form. Passwords are `FlxMailSecret` (`set`, `mask`, `fromConfig`) and the value is never selected. `flxMailSettingsUpdate` takes the same fields. An empty secret is left as stored; `"__clear__"` removes it. `FLXI_SMTP_PASS`, `FLXI_SMTP_NOREPLY_PASS` and `FLXI_IMAP_PASS` come back as `fromConfig: true`; a write to one of them is refused with `INVALID_INPUT`. `mask` is always the fixed `••••••••` when a value is set (empty otherwise), never part of the password. An invalid email in `flxMailSettingsUpdate` is a field error; the classic form and the MCP tool keep dropping an invalid address to the default.
 
 The kit’s generated `flxiSettings` field is only `tagline` and `footerArt` (the `flxi_settings` option slice). The screen does not use it. `FlxMailSettings` is the screen: the whole form, the write-only secrets and the read-only status (last test, WooCommerce brand time, another SMTP plugin, account notes, active social-login plugins, quota, DNS, opt-out counts).
 

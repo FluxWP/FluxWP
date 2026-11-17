@@ -1,0 +1,6 @@
+# Skills of this site and the ones plugins ship.
+query FlxAiSkills {
+  flxAiSkills {
+    ...FlxAiSkillsOverviewFields
+  }
+}

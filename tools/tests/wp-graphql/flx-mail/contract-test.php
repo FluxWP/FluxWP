@@ -311,6 +311,122 @@ $last = get_option( 'flxi_last_test' );
 flxt_same( 'bookkeeping@example.com', is_array( $last ) ? ( $last['to'] ?? null ) : null, 'settings test writes flxi_last_test' );
 flxt_ok( is_array( $last ) && is_int( $last['at'] ?? null ) && $last['at'] > 0, 'settings test stores one timestamp' );
 
+// Secrets: the mask is the fixed classic placeholder, never a piece of the secret.
+$mask   = '••••••••';
+$secs   = array(
+	'smtpPassword'        => 'Smtp-Tail-Secret-AB12',
+	'smtpNoreplyPassword' => 'Noreply-Tail-Secret-CD34',
+	'imapPassword'        => 'Imap-Tail-Secret-EF56',
+);
+$r = $run( 'FlxMailSettingsUpdate', array( 'input' => array( 'settings' => $secs ) ), $admin );
+flxt_same( array(), $r['data']['flxMailSettingsUpdate']['errors'] ?? null, 'secrets: all three are stored' );
+$r = $run( 'FlxMailSettings', array(), $admin );
+foreach ( $secs as $name => $plain ) {
+	$view = $r['data']['flxMailSettings'][ $name ] ?? array();
+	flxt_same( true, $view['set'] ?? null, 'secrets: ' . $name . ' is set' );
+	flxt_same( $mask, $view['mask'] ?? null, 'secrets: ' . $name . ' mask is the fixed placeholder' );
+	flxt_ok( false === strpos( (string) wp_json_encode( $view ), substr( $plain, -2 ) . '"' ), 'secrets: ' . $name . ' view has no tail of the secret' );
+}
+// Classic form: a password field with the GraphQL sentinel is stored as typed, not cleared.
+$classic = FLXI_Settings_Service::save( array( 'imap_pass' => '__clear__' ), 'form', true );
+flxt_same( true, true === $classic, 'classic form: sentinel text is accepted as a password' );
+flxt_same( '__clear__', flxi_decrypt( (string) flxi_setting( 'imap_pass' ) ), 'classic form: __clear__ is stored as typed, only GraphQL treats it as the sentinel' );
+// Classic and MCP: an invalid email is dropped to the default and the rest of the form still saves.
+$classic = FLXI_Settings_Service::save( array( 'from_name' => 'Mixed Save', 'from_email' => 'not-an-email' ), 'form', true );
+flxt_same( true, true === $classic, 'classic form: invalid email does not reject the form' );
+flxt_same( 'Mixed Save', flxi_setting( 'from_name' ), 'classic form: other fields are saved with an invalid email' );
+flxt_same( flxi_defaults()['from_email'], flxi_setting( 'from_email' ), 'classic form: invalid email falls back to the default' );
+flxt_same( '', flxi_sanitize_setting( 'reply_to', 'not-an-email' ), 'MCP and classic sanitizer: invalid email becomes empty' );
+FLXI_Settings_Service::save( array( 'from_email' => 'bilgi@example.com' ), 'form', true );
+
+// wp-config constants: same fixed mask, read-only over GraphQL, classic keeps the main behaviour.
+define( 'FLXI_SMTP_PASS', 'Const-Smtp-Tail-GH78' );
+define( 'FLXI_SMTP_NOREPLY_PASS', 'Const-Noreply-Tail-IJ90' );
+define( 'FLXI_IMAP_PASS', 'Const-Imap-Tail-KL12' );
+$r = $run( 'FlxMailSettings', array(), $admin );
+foreach ( array( 'smtpPassword', 'smtpNoreplyPassword', 'imapPassword' ) as $name ) {
+	$view = $r['data']['flxMailSettings'][ $name ] ?? array();
+	flxt_same( true, $view['fromConfig'] ?? null, 'constant: ' . $name . ' is from wp-config' );
+	flxt_same( $mask, $view['mask'] ?? null, 'constant: ' . $name . ' mask is the fixed placeholder' );
+}
+$r = $run( 'FlxMailSettingsUpdate', array( 'input' => array( 'settings' => array( 'smtpPassword' => 'Typed-Over-Const' ) ) ), $admin );
+flxt_same( 'INVALID_INPUT', $r['data']['flxMailSettingsUpdate']['errors'][0]['code'] ?? null, 'constant: GraphQL refuses a password that wp-config defines' );
+$classic = FLXI_Settings_Service::save( array( 'smtp_nr_pass' => 'Classic-Nr-Pass' ), 'form', true );
+flxt_same( true, true === $classic, 'constant: classic form still saves the no-reply password' );
+flxt_same( 'Classic-Nr-Pass', flxi_decrypt( (string) flxi_setting( 'smtp_nr_pass' ) ), 'constant: classic form stores the posted no-reply password like main' );
+
+// Discovered emails are grouped by the plugin that sends them, like the classic page.
+update_option(
+	'flxi_discovered',
+	array(
+		'forms/contract' => array(
+			'source'  => 'flx-forms',
+			'caller'  => 'contract',
+			'subject' => 'Contract form',
+			'count'   => 3,
+			'last'    => time(),
+		),
+	)
+);
+$r      = $run( 'FlxMailTemplates', array( 'first' => 50 ), $admin );
+$groups = array();
+foreach ( $r['data']['flxMailTemplates']['nodes'] ?? array() as $node ) {
+	$groups[ (string) $node['key'] ] = (string) $node['group'];
+}
+flxt_same( flxi_source_label( 'flx-forms' ), $groups['forms/contract'] ?? null, 'discovered: the list groups by source plugin' );
+$r = $run( 'FlxMailTemplate', array( 'key' => 'forms/contract' ), $admin );
+flxt_same( flxi_source_label( 'flx-forms' ), $r['data']['flxMailTemplate']['group'] ?? null, 'discovered: the editor shows the same group' );
+delete_option( 'flxi_discovered' );
+
+// WooCommerce emails: the editor shows WooCommerce's own enabled state, and a sender-only save keeps it.
+if ( ! function_exists( 'WC' ) && ! class_exists( 'WC_Emails' ) ) {
+	class WC_Emails {} // phpcs:ignore
+	class Flxt_WC_Email { // phpcs:ignore
+		public $id = 'flxt_off';
+		public function get_title() {
+			return 'Contract Woo email';
+		}
+		public function get_description() {
+			return 'Disabled in WooCommerce';
+		}
+		public function is_enabled() {
+			return false;
+		}
+		public function is_manual() {
+			return false;
+		}
+		public function is_customer_email() {
+			return true;
+		}
+		public function get_option_key() {
+			return 'woocommerce_flxt_off_settings';
+		}
+	}
+	class Flxt_WC_Mailer { // phpcs:ignore
+		public function get_emails() {
+			return array( new Flxt_WC_Email() );
+		}
+	}
+	class Flxt_WC { // phpcs:ignore
+		public function mailer() {
+			return new Flxt_WC_Mailer();
+		}
+	}
+	function WC() { // phpcs:ignore
+		return new Flxt_WC();
+	}
+}
+if ( function_exists( 'WC' ) && class_exists( 'Flxt_WC_Email' ) ) {
+	$r = $run( 'FlxMailTemplate', array( 'key' => 'wc/flxt_off' ), $admin );
+	flxt_same( false, $r['data']['flxMailTemplate']['enabled'] ?? null, 'woocommerce: the editor shows WooCommerce disabled' );
+	$list = $run( 'FlxMailTemplates', array( 'first' => 50, 'search' => 'flxt_off' ), $admin );
+	flxt_same( false, $list['data']['flxMailTemplates']['nodes'][0]['enabled'] ?? null, 'woocommerce: the list shows the same enabled state' );
+	$enabled = ! empty( $r['data']['flxMailTemplate']['enabled'] );
+	$r       = $run( 'FlxMailTemplateUpdate', array( 'input' => array( 'key' => 'wc/flxt_off', 'enabled' => $enabled, 'sender' => 'NOREPLY' ) ), $admin );
+	flxt_same( array(), $r['data']['flxMailTemplateUpdate']['errors'] ?? null, 'woocommerce: sender-only save has no errors' );
+	flxt_same( false, $r['data']['flxMailTemplateUpdate']['template']['enabled'] ?? null, 'woocommerce: a sender-only save does not re-enable the email' );
+}
+
 /* ------------------------------------------------------------------ */
 /* Part 2: connections and WhatsApp Cloud                              */
 /* ------------------------------------------------------------------ */
@@ -465,6 +581,7 @@ flxt_same( 'SMS', $sms['channel'] ?? null, 'netgsm save: channel is SMS' ) ;
 flxt_same( true, $sms['isDefault'] ?? null, 'netgsm save: the first SMS connection becomes the default' );
 flxt_same( true, $sms['password']['set'] ?? null, 'netgsm save: password is marked set' );
 flxt_ok( ! array_key_exists( 'value', (array) ( $sms['password'] ?? array() ) ), 'netgsm save: the secret has no value field' );
+flxt_same( '••••••••', $sms['password']['mask'] ?? null, 'netgsm save: the mask is the fixed placeholder, not a piece of the password' );
 flxt_same( 1, $saved_hook, 'netgsm save: flxi_connection_saved ran once' );
 $classic_row = flxi_get_connection( $sms_id );
 flxt_same( '8501112233', $classic_row['config']['username'] ?? null, 'classic reader sees the GraphQL username' );

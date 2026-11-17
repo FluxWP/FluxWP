@@ -89,7 +89,7 @@ class FLXI_Template_Service {
 		foreach ( flxi_arr( flxi_discovered() ) as $k => $d ) {
 			$d = flxi_arr( $d );
 			$c = flxi_arr( flxi_template( $k ) );
-			$groups[ __( 'Discovered', 'flx-mail' ) ][] = self::row(
+			$groups[ flxi_str( flxi_source_label( flxi_str( $d['source'] ?? '' ) ) ) ][] = self::row(
 				flxi_str( $k ),
 				flxi_str( flxi_discovered_label( flxi_str( $k ), $d ) ),
 				sprintf(
@@ -207,11 +207,13 @@ class FLXI_Template_Service {
 		if ( function_exists( 'flx_gql_cache_tag' ) ) {
 			flx_gql_cache_tag( 'flx-mail:templates' );
 		}
-		$woo = '';
+		$woo     = '';
+		$enabled = (bool) ( $conf['enabled'] ?? false );
 		if ( ! $type && ! $disc ) {
 			foreach ( flxi_rows( flxi_wc_emails() ) as $email ) {
 				if ( flxi_str( $email['key'] ?? '' ) === $key ) {
-					$woo = flxi_str( $email['edit_url'] ?? '' );
+					$woo     = flxi_str( $email['edit_url'] ?? '' );
+					$enabled = (bool) ( $email['enabled'] ?? false );
 					break;
 				}
 			}
@@ -219,7 +221,7 @@ class FLXI_Template_Service {
 		return array(
 			'key'           => $key,
 			'label'         => $label,
-			'group'         => $type ? flxi_str( $type['group'] ?? '' ) : ( $disc ? __( 'Discovered', 'flx-mail' ) : 'WooCommerce' ),
+			'group'         => $type ? flxi_str( $type['group'] ?? '' ) : ( $disc ? flxi_str( flxi_source_label( flxi_str( $disc['source'] ?? '' ) ) ) : 'WooCommerce' ),
 			'audience'      => $audience,
 			'description'   => $type ? flxi_str( $type['description'] ?? '' ) : ( $disc ? sprintf(
 				/* translators: 1: source, 2: caller */
@@ -228,7 +230,7 @@ class FLXI_Template_Service {
 				flxi_str( $disc['caller'] ?? '' )
 			) : '' ),
 			'lastSubject'   => $disc ? flxi_str( $disc['subject'] ?? '' ) : '',
-			'enabled'       => (bool) ( $conf['enabled'] ?? false ),
+			'enabled'       => $enabled,
 			'canDisable'    => ! $type || (bool) ( $type['can_disable'] ?? false ),
 			'sender'        => in_array( $sender, array( 'info', 'noreply' ), true ) ? $sender : 'info',
 			'senderInfo'    => flxi_str( flxi_setting( 'from_name' ) ) . ' <' . flxi_str( flxi_setting( 'from_email' ) ) . '>',

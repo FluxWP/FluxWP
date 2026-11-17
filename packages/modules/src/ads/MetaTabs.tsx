@@ -19,7 +19,7 @@ import {
   FlxAdsSuggestions,
   FlxAdsSuggestionsRefresh,
 } from '@fluxwp/graphql/operations';
-import { Loading } from '@fluxwp/ui';
+import { DatePicker, Loading } from '@fluxwp/ui';
 import { Btn, Card, Dot, Empty, Field, Kpi, Muted, Notice, Pill, Roas, Td, num, roas, useAct, useEnv } from './common';
 import { Fail } from './AdsScreen';
 
@@ -620,10 +620,10 @@ export function ExperimentsTab() {
                     </Field>
                   ))}
                   <Field label={t('Start')}>
-                    <input type="date" value={ab.start || c.today} onChange={(e) => setAb({ ...ab, start: e.target.value })} />
+                    <DatePicker value={ab.start || c.today} onChange={(v) => setAb({ ...ab, start: v })} />
                   </Field>
                   <Field label={t('End')}>
-                    <input type="date" value={ab.end} onChange={(e) => setAb({ ...ab, end: e.target.value })} />
+                    <DatePicker value={ab.end} onChange={(v) => setAb({ ...ab, end: v })} />
                   </Field>
                   <p className="flxads-actions flxads-actions--start">
                     <Btn type="submit" primary disabled={create.isPending}>
@@ -665,10 +665,10 @@ export function ExperimentsTab() {
                     <input type="number" min={5} max={50} value={ho.pct} onChange={(e) => setHo({ ...ho, pct: e.target.value })} />
                   </Field>
                   <Field label={t('Start')}>
-                    <input type="date" value={ho.start || c.today} onChange={(e) => setHo({ ...ho, start: e.target.value })} />
+                    <DatePicker value={ho.start || c.today} onChange={(v) => setHo({ ...ho, start: v })} />
                   </Field>
                   <Field label={t('End')}>
-                    <input type="date" value={ho.end || c.defaultEnd} onChange={(e) => setHo({ ...ho, end: e.target.value })} />
+                    <DatePicker value={ho.end || c.defaultEnd} onChange={(v) => setHo({ ...ho, end: v })} />
                   </Field>
                   <p className="flxads-actions flxads-actions--start">
                     <Btn type="submit" primary disabled={create.isPending}>

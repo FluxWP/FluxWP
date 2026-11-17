@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 2.32.0
+- **Vekâlet onayı sağdaki özet kutusunda.** Vekâlet isteyen bağışlarda (kurban) "Vekâlet metnini oku" ve onay kutusu artık toplam tutarın ve gönder düğmesinin hemen üstünde; geniş ekranda sağda sabit kalır, telefonda düğmenin üstünde görünür. Onay atlanınca çıkan uyarının yanındaki kutu artık gözden kaçmaz. Adlar ve "Kimin adına?" bölümü yerinde kaldı.
+
 ## 2.31.0
 - **Flux Commerce abonelikleri iyzico kartla otomatik yenilenir.** Flux Commerce 0.5.0'ın ortak kart katmanına iyzico sağlayıcısı eklendi (`flxcm_card_providers`). Abonelik içeren siparişte iyzico kartı saklar (aylık bağıştaki gibi `SUBSCRIPTION`, tek çekim, taksit yok); yenilemede Commerce yenileme siparişini açar, kart iyzico'dan çekilir. Cevap kaybolursa sonraki denemede önce ödeme durumu sorulur, iki kez çekilmez.
 - Abonelik sepetinde resmi iyzico eklentisi seçili olsa bile kart saklayabilen Flux Donate iyzico gösterilir; diğer yöntemler (Havale/EFT) gizlenmez. Kart kutusunda abonelik notu.

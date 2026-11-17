@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 0.5.2
+- Tarih alanları ortak FluxWP tarih seçicisini kullanır: sitenin dilinde ay/gün adları, Pazartesi başlangıç, hızlı seçim listesi, yazılabilir tarih ve saat, Uygula düğmesi, açık/koyu, telefonda alttan açılan pencere. Tarayıcının kendi takvimi (İngilizce çıkan) kalktı.
+
+## 0.5.1
+- İstatistikler, Yolculuklar, Ayarlar ve Telemetri ekranları Flux GraphQL ekran kabuğuyla açılır: ilk rapor PHP'den hazır gelir, ekranlar arası menü geçişi sayfa yenilemeden olur.
+
 ## 0.5.0
 - GraphQL: istatistik, canlı, sayfa, kaynak, kırılım, olay, huni, yolculuk, referans bağlantıları, ayarlar ve telemetri merkezi `/graphql` üzerinden (Flux GraphQL gerekir). 14 sorgu, 7 mutation, kayıtlı işlemler. REST, MCP ve admin-post davranışı değişmedi; hepsi aynı servis katmanını (`includes/services`) çağırır.
 - Yeni React ekranları (İstatistikler, Yolculuklar, Ayarlar, Telemetri): klasikle aynı özellikler, wp-admin varsayılanı; klasik görünüme sayfadaki bağlantıyla geçilir (kullanıcı başına). FluxApp'te `flxan-stats`, `flxan-journeys`, `flxan-settings` modülleri.

@@ -2,7 +2,6 @@
 .flxcrm-app a{color:var(--c-ac)}
 .flxcrm-app button{cursor:pointer;font:inherit;color:inherit}
 .flxcrm-app input,.flxcrm-app select,.flxcrm-app textarea{font:inherit;color:var(--c-tx);background:var(--flux-bg);border:1px solid var(--c-bd2);border-radius:8px;padding:6px 10px;min-height:34px;max-width:100%}
-.flxcrm-app input[type=checkbox],.flxcrm-app input[type=radio]{min-height:0;padding:0;width:auto}
 .flxcrm-app input:focus,.flxcrm-app select:focus,.flxcrm-app textarea:focus{outline:2px solid color-mix(in srgb,var(--c-ac) 45%,transparent);border-color:var(--c-ac)}
 .flxcrm-app .button,.flxcrm-app .btn{display:inline-flex;align-items:center;gap:6px;min-height:34px;padding:0 14px;border:1px solid var(--c-bd2);border-radius:8px;background:var(--c-s2);color:var(--c-tx);font-size:13px;text-decoration:none;white-space:nowrap}
 .flxcrm-app .button:hover:not(:disabled){border-color:var(--c-ac)}

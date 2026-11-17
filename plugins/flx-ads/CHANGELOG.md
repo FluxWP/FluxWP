@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.8.1
+- Tarih alanları ortak FluxWP tarih seçicisini kullanır: sitenin dilinde ay/gün adları, Pazartesi başlangıç, hızlı seçim listesi, yazılabilir tarih ve saat, Uygula düğmesi, açık/koyu, telefonda alttan açılan pencere. Tarayıcının kendi takvimi (İngilizce çıkan) kalktı.
+
 ## 0.8.0
 
 - New view: the Ad conversions screen is now a React screen that reads and writes over GraphQL, with every page of the classic one (report, campaigns, suggestions, Studio, season plan, tests, donor value, ad spend, audiences, send log, ad link, settings). It is the default in wp-admin and works in the FluxWP app as a module (`flxads-ads`). A "Classic view" link opens the old page (per user), and the classic page has a "New view" link.

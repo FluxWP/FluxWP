@@ -1,0 +1,28 @@
+/* Flux screens shell (includes/screens.php, assets/js/screens.js). */
+.flx-screen[data-layout="inline"].flux-root { height: auto; background: transparent; font-family: inherit; }
+.flx-screen:focus { outline: none; }
+
+/* Full layout: the screen covers wp-admin (its own sidebar and header). */
+.flx-screen[data-layout="full"] { position: fixed; inset: 0; z-index: 100000; overflow: hidden; background: #f6f7f9; }
+.flx-screen[data-layout="full"][data-theme="dark"] { background: #121417; }
+html.flx-screen-full, html.flx-screen-full body { overflow: hidden !important; height: 100%; }
+html.flx-screen-full #wpadminbar,
+html.flx-screen-full #adminmenumain,
+html.flx-screen-full #wpfooter,
+html.flx-screen-full #screen-meta-links,
+html.flx-screen-full .notice,
+html.flx-screen-full .update-nag,
+html.flx-screen-full #wpbody-content > .error,
+html.flx-screen-full #wpbody-content > .updated { display: none !important; }
+html.flx-screen-full #wpcontent,
+html.flx-screen-full #wpbody-content { margin: 0 !important; padding: 0 !important; }
+
+/* The next screen paints here, out of sight, until it is ready. */
+.flx-screen.is-incoming { position: absolute !important; visibility: hidden !important; pointer-events: none !important; left: 0; right: 0; top: 0; }
+.flx-screen-wrap { position: relative; }
+
+/* Thin progress line while a screen loads (shown only when it takes a moment). */
+.flx-screens-bar { position: fixed; top: 0; left: 0; height: 2px; width: 0; z-index: 100001; background: var(--flxa-accent, #2271b1); opacity: 0; transition: width .4s ease-out, opacity .2s; pointer-events: none; }
+.flx-screens-bar.is-on { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .flx-screens-bar { transition: none; } }
+.flx-screens-live { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }

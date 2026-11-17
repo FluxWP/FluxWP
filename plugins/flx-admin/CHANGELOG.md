@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.8.4
+- Tarih alanları ortak FluxWP tarih seçicisini kullanır (flx-brand 1.8.0): ay ve gün adları sitenin dilinde (Kasım, Pzt), Pazartesi başlangıç, ay/yıl görünümü, `datetime-local` alanlarında saat, telefonda alttan açılan pencere, açık/koyu. Flux Admin'in kendi takvimi (datepicker.js) kaldırıldı; `window.flxaDate` adı çalışmaya devam eder.
+
+## 1.8.3
+- Onay kutusu, radyo ve anahtar stili Flux uygulama modunda (Call Center gibi tam ekran sayfalar) da uygulanır.
+
+## 1.8.2
+- Sayfa başlığı (logo ve açıklama) Flux ekranları arasında sayfa yenilemeden geçişte de güncellenir.
+
+## 1.8.1
+- Onay kutusu, radyo ve anahtar tek görünüme geçti (flx-brand 1.7.0 ile aynı): yuvarlak köşeli dolgulu kutu, `role="switch"` ile anahtar, kısmen seçili, devre dışı, hata ve klavye odağı, dokunmatikte büyük hedef. Tema ve açık/koyu renklere uyar.
+
 ## 1.8.0
 - Ayarlar › Yönetim teması ekranı yenilendi: aynı özellikler (genel, görünüm, rol bazlı menü ve alt çubuk düzenleyici, yetkiler ve yedeği geri yükleme, başlangıç, PWA) ortak FluxWP ekranında, açık/koyu temaya uyar ve FluxWP uygulamasında da açılır. wp-admin'de varsayılan budur; eski görünüm sayfadaki "Klasik görünüm" bağlantısıyla açılır (kullanıcı başına hatırlanır).
 - Ayarlar, menü düzenleri, yetki tablosu, koyu/açık tercih, kişisel menü ve pano modülü filtreleri GraphQL'de (`flxAdminSettings`, `flxAdminSettingsUpdate`, `flxAdminMenuEditor`, `flxAdminMenuLayoutsSave`, `flxAdminCaps`, `flxAdminCapsSave`, `flxAdminCapsRestore`, `flxAdminMode`, `flxAdminModeSet`, `flxAdminUserMenu`, `flxAdminUserMenuSet`, `flxAdminWidgetPrefs`, `flxAdminWidgetPrefsSet`). Kaydetme önce her şeyi doğrular, hata varsa hiçbir şey yazılmaz. Belge: docs/flx-admin/GRAPHQL.md.

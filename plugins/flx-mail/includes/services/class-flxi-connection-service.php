@@ -321,7 +321,7 @@ class FLXI_Connection_Service {
 			$plain       = flxi_str( $cfg[ $k ] ?? '' );
 			$out[ $gql ] = array(
 				'set'        => '' !== $plain,
-				'mask'       => '' !== $plain ? flxi_str( flxi_mask( $plain ) ) : '',
+				'mask'       => '' !== $plain ? FLXI_Settings_Service::MASK : '',
 				'fromConfig' => false,
 			);
 		}

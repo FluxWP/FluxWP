@@ -5,7 +5,7 @@
 - Klasik sayfa, REST ve GraphQL aynı `FLXI_Connection_Service` kodunu çağırır. Gizli alanlar (API key, token, App Secret, parola) yazma-yalnız: boş değer saklananı korur, okumada yalnız maske. REST çıktıları değişmedi; Cloud webhook (`/wacloud/{id}/webhook`) REST olarak kalır.
 
 ## 1.23.0 — 2026-11-16
-- Ayarlar, E-postalar (şablon düzenleyici dahil), Kayıtlar ve Sistem kontrolü GraphQL üzerinden. Yönetim ekranı React (`flxi-mail`); klasik görünüm `flxi_ui=classic` ile duruyor. Parolalar yazma-yalnız: boş değer saklananı korur, `__clear__` siler, okumada yalnız maske.
+- Ayarlar, E-postalar (şablon düzenleyici dahil), Kayıtlar ve Sistem kontrolü GraphQL üzerinden. Yönetim ekranı React (`flxi-mail`); klasik görünüm `flxi_ui=classic` ile duruyor. Parolalar yazma-yalnız: boş değer saklananı korur, `__clear__` siler (yalnız GraphQL), okumada yalnız sabit maske (••••••••); wp-config sabiti olan parola GraphQL'den değiştirilemez.
 - Flux GraphQL yokken kayıt atlanır, REST çalışmaya devam eder. PHP 8.1 ve `flx-graphql` başlıkta zorunlu.
 
 ## 1.22.0 — 2026-11-14
