@@ -448,7 +448,7 @@ function Overview({
   openReports: (from: string, to: string) => void;
 }) {
   const [days, setDays] = useState(30);
-  const q = useFlxQuery(FlxCommerceSummary, { days }, { refetchInterval: () => (hidden() ? false : 15_000) });
+  const q = useFlxQuery(FlxCommerceSummary, { days }, { refetchInterval: () => (hidden() ? false : 60_000) });
   const s = q.data?.flxCommerceSummary;
   const preset: FlxCommerceReportPreset | null = days === 7 ? 'D7' : days === 30 ? 'D30' : days === 90 ? 'D90' : null;
   const prodQ = useFlxQuery(
@@ -2296,7 +2296,7 @@ function Settings({
         <p className="flxcm-muted">{t('The IBAN and the method switch are the same values WooCommerce Payments stores.')}</p>
         <Toggle name="enabled" label={t('Enabled')} on={b.enabled} />
         <TextInput name="title" label={t('Title')} value={b.title} />
-        <TextInput name="description" label={t('Description')} value={b.description} />
+        <TextInput name="description" label={t('Description')} value={b.description} rows={4} />
         <TextInput name="holder" label={t('Account holder')} value={b.holder} />
         <TextInput name="iban" label={t('IBAN')} value={b.iban} />
         <TextInput name="bank" label={t('Bank')} value={b.bank} />
@@ -2384,19 +2384,26 @@ function TextInput({
   hint,
   value,
   type = 'text',
+  rows,
 }: {
   name: string;
   label: string;
   hint?: string;
   value: string;
   type?: string;
+  /** Renders a multi-line textarea instead of a single-line input. */
+  rows?: number;
 }) {
   return (
     <div className="flxcm-field">
       <label className="flxcm-field__label" htmlFor={`flxcm-${name}`}>
         {label}
       </label>
-      <input id={`flxcm-${name}`} name={name} type={type} defaultValue={value} />
+      {rows ? (
+        <textarea id={`flxcm-${name}`} name={name} rows={rows} defaultValue={value} />
+      ) : (
+        <input id={`flxcm-${name}`} name={name} type={type} defaultValue={value} />
+      )}
       {hint ? <span className="flxcm-field__hint">{hint}</span> : null}
     </div>
   );
