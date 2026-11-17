@@ -3,7 +3,9 @@
 import 'server-only';
 import { cacheLife, cacheTag } from 'next/cache';
 import persisted from '../../../plugins/flx-headless/graphql/persisted-queries.json';
+import { FRONTEND_ID, GRAPHQL_URL, PREVIEW_APP_PASSWORD, PREVIEW_USER, SECRET } from './env';
 import type { PostCard, Route, Site } from './types';
+import { hmacHex } from './verify';
 
 const documents = persisted as Record<string, string>;
 const ids: Record<string, string> = {};
@@ -12,21 +14,25 @@ for (const [id, doc] of Object.entries(documents)) {
   if (name) ids[name] = id;
 }
 
-export const GRAPHQL_URL = process.env.FLUX_GRAPHQL_URL ?? 'http://127.0.0.1:8890/graphql';
-export const FRONTEND_ID = process.env.FLUX_FRONTEND_ID || undefined;
+export { FRONTEND_ID, GRAPHQL_URL } from './env';
 
 type Vars = Record<string, string | number | boolean | null | undefined>;
 
-async function gql<T>(name: string, vars: Vars, auth = false): Promise<T> {
+async function gql<T>(name: string, vars: Vars, preview = 0): Promise<T> {
   const id = ids[name];
+  if (!GRAPHQL_URL) throw new Error('Set FLUX_WP_URL (or FLUX_GRAPHQL_URL).');
   if (!id) throw new Error(`Unknown operation ${name}; copy the plugin's persisted-queries.json again.`);
   const url = new URL(GRAPHQL_URL);
   url.searchParams.set('queryId', id);
   const clean = Object.fromEntries(Object.entries(vars).filter(([, v]) => v !== undefined && v !== null));
   url.searchParams.set('variables', JSON.stringify(clean));
   const headers: Record<string, string> = { Accept: 'application/json' };
-  if (auth && process.env.FLUX_PREVIEW_USER && process.env.FLUX_PREVIEW_APP_PASSWORD) {
-    headers.Authorization = 'Basic ' + Buffer.from(`${process.env.FLUX_PREVIEW_USER}:${process.env.FLUX_PREVIEW_APP_PASSWORD}`).toString('base64');
+  if (preview && PREVIEW_USER && PREVIEW_APP_PASSWORD) {
+    headers.Authorization = 'Basic ' + Buffer.from(`${PREVIEW_USER}:${PREVIEW_APP_PASSWORD}`).toString('base64');
+  } else if (preview && SECRET) {
+    // Draft preview signed with the front end's secret: WordPress shows only this draft.
+    const t = Math.floor(Date.now() / 1000);
+    headers['X-Flx-Preview'] = `t=${t},v1=${await hmacHex(SECRET, `${t}.preview.${preview}`)}`;
   }
   const res = await fetch(url, { headers });
   const json = (await res.json()) as { data?: T; errors?: { message: string }[] };
@@ -45,11 +51,11 @@ export async function getRoute(path: string): Promise<Route> {
 
 /**
  * A draft for the editor's Preview button. Only called in Draft Mode, where cached functions run on every
- * request and nothing is stored. Needs FLUX_PREVIEW_USER + FLUX_PREVIEW_APP_PASSWORD.
+ * request and nothing is stored. Signed with the connection key's secret (or an application password).
  */
 export async function getPreview(id: number): Promise<Route> {
   'use cache';
-  const { flxRoute } = await gql<{ flxRoute: Route }>('FlxRoute', { path: '/', previewId: id, frontend: FRONTEND_ID }, true);
+  const { flxRoute } = await gql<{ flxRoute: Route }>('FlxRoute', { path: '/', previewId: id, frontend: FRONTEND_ID }, id);
   return flxRoute;
 }
 

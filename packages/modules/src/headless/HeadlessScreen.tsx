@@ -57,6 +57,10 @@ const draftOf = (f: Frontend | null, first: boolean): Draft => ({
 /** 48 random hex characters from the browser's crypto (never sent anywhere until saved). */
 const newSecret = () => Array.from(crypto.getRandomValues(new Uint8Array(24)), (b) => b.toString(16).padStart(2, '0')).join('');
 
+/** Environment of a front end: the WordPress address and the connection key (plus the endpoint when it is not /graphql). */
+const envLines = (cmsUrl: string, graphqlUrl: string, key: string) =>
+  [`FLUX_WP_URL=${cmsUrl}`, `FLUX_KEY=${key}`, ...(graphqlUrl === `${cmsUrl}/graphql` ? [] : [`FLUX_GRAPHQL_URL=${graphqlUrl}`])].join('\n');
+
 const copy = (text: string) => {
   try {
     void navigator.clipboard?.writeText(text);
@@ -86,6 +90,8 @@ function Headless() {
   const [errors, setErrors] = useState<UserError[]>([]);
   const [removing, setRemoving] = useState<Frontend | null>(null);
   const [testing, setTesting] = useState('');
+  // Shown once after a save with a new secret: the two lines the front end needs.
+  const [connect, setConnect] = useState<{ name: string; key: string } | null>(null);
 
   const put = (s: Settings) => qc.setQueryData<FlxHeadlessScreenQuery>(flxQueryKey(scope, FlxHeadlessScreen, {}), { flxHeadlessSettings: s });
   const fail = (e: unknown) => setNotice({ kind: 'bad', text: e instanceof Error && e.message ? e.message : t('The action could not be completed.') });
@@ -101,7 +107,7 @@ function Headless() {
   };
 
   const save = useFlxMutation(FlxHeadlessFrontendSave, {
-    onSuccess: (r) => {
+    onSuccess: (r, vars) => {
       const p = r.flxHeadlessFrontendSave;
       if (!p) return fail(null);
       if (p.errors.length) return setErrors(p.errors);
@@ -109,6 +115,8 @@ function Headless() {
       setEditing(null);
       setErrors([]);
       setNotice({ kind: 'ok', text: t('Saved.') });
+      const secret = vars.input.secret;
+      if (p.frontend && secret && secret !== '__clear__') setConnect({ name: p.frontend.name, key: `${p.frontend.id}.${secret}` });
     },
     onError: fail,
   });
@@ -305,8 +313,8 @@ function Headless() {
           {active[0] && (
             <>
               <h3 className="flxhl-sub">{t('Environment of the front end')}</h3>
-              <pre className="flxhl-env">{`FLUX_GRAPHQL_URL=${s.graphqlUrl}\nFLUX_FRONTEND_ID=${(active.find((f) => f.isDefault) ?? active[0]).id}\nFLUX_REVALIDATE_SECRET=${t('<the secret you saved>')}`}</pre>
-              <p className="flxhl-muted">{t('The front end sends flxRoute and flxSite by their registered ids and checks the X-Flx-Signature header of every webhook call with the secret. The integration guide is in docs/flx-headless/.')}</p>
+              <pre className="flxhl-env">{envLines(s.cmsUrl, s.graphqlUrl, `${(active.find((f) => f.isDefault) ?? active[0]).id}.${t('<the secret you saved>')}`)}</pre>
+              <p className="flxhl-muted">{t('The connection key is the front end id and its secret. It signs webhook calls, preview links and draft requests, so previews need no application password. To get a new key, generate a secret and save. The integration guide is in docs/flx-headless/.')}</p>
             </>
           )}
         </section>
@@ -351,6 +359,20 @@ function Headless() {
       {editing && (
         <Modal title={editing.id ? t('Edit front end') : t('Add front end')} onClose={() => setEditing(null)} wide>
           <FrontendForm draft={editing} errors={errors} langs={s.languagesActive ? s.languages : []} busy={save.isPending} saved={s.frontends.find((f) => f.id === editing.id) ?? null} t={t} onChange={(p) => setEditing((o) => (o ? { ...o, ...p } : o))} onSubmit={submit} onCancel={() => setEditing(null)} />
+        </Modal>
+      )}
+      {connect && (
+        <Modal title={t('Connect "%s"', connect.name)} onClose={() => setConnect(null)}>
+          <p>{t('Put these two lines in the environment variables of the front end (for example .env.local, or the host\'s settings). The key holds the secret, so it is shown only now.')}</p>
+          <pre className="flxhl-env">{envLines(s.cmsUrl, s.graphqlUrl, connect.key)}</pre>
+          <div className="flxhl-modal-actions">
+            <button type="button" className="flxhl-btn" onClick={() => copy(envLines(s.cmsUrl, s.graphqlUrl, connect.key))}>
+              {t('Copy')}
+            </button>
+            <button type="button" className="flxhl-btn is-primary" onClick={() => setConnect(null)}>
+              {t('Done')}
+            </button>
+          </div>
         </Modal>
       )}
       {removing && (
@@ -447,7 +469,7 @@ function FrontendForm({ draft, errors, langs, busy, saved, t, onChange, onSubmit
               </button>
             )}
           </div>
-          {err('secret') ? <small className="flxhl-err">{err('secret')}</small> : <small>{draft.secret ? t('Copy it into the front end (FLUX_REVALIDATE_SECRET) now; it is stored encrypted and never shown again.') : t('Signs every call (HMAC-SHA256) and preview links.')}</small>}
+          {err('secret') ? <small className="flxhl-err">{err('secret')}</small> : <small>{draft.secret ? t('After saving you get the connection key for the front end; the secret is stored encrypted and never shown again.') : t('Signs every call (HMAC-SHA256) and preview links.')}</small>}
           {saved?.secretSet && (
             <Check checked={draft.clearSecret} onChange={(v) => onChange({ clearSecret: v, secret: '' })}>
               {t('Remove the saved secret')}

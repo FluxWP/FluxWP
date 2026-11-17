@@ -202,6 +202,22 @@ $r     = flxhl_t_op( 'FlxRoute', array( 'path' => '/', 'previewId' => $draft ), 
 flxt_ok( 'Headless draft' !== ( $r['data']['flxRoute']['title'] ?? null ), 'preview: a visitor cannot see a draft' );
 $r = flxhl_t_op( 'FlxRoute', array( 'path' => '/', 'previewId' => $draft ), $admin );
 flxt_same( array( 'Headless draft', true ), array( $r['data']['flxRoute']['title'] ?? null, $r['data']['flxRoute']['head']['noindex'] ?? null ), 'preview: an editor sees the draft, noindex' );
+// Signed by the front end with its connection key: no application password needed, only this draft opens.
+$sign = static fn( int $t, int $pid, string $key ): string => 't=' . $t . ',v1=' . hash_hmac( 'sha256', $t . '.preview.' . $pid, $key );
+$_SERVER['HTTP_X_FLX_PREVIEW'] = $sign( time(), $draft, 'not-the-secret-0123456789abcdef' );
+$r = flxhl_t_op( 'FlxRoute', array( 'path' => '/', 'previewId' => $draft ), 0 );
+flxt_ok( 'Headless draft' !== ( $r['data']['flxRoute']['title'] ?? null ), 'preview key: a wrong signature does not open the draft' );
+$_SERVER['HTTP_X_FLX_PREVIEW'] = $sign( time() - 3600, $draft, $secret );
+$r = flxhl_t_op( 'FlxRoute', array( 'path' => '/', 'previewId' => $draft ), 0 );
+flxt_ok( 'Headless draft' !== ( $r['data']['flxRoute']['title'] ?? null ), 'preview key: an old signature does not open the draft' );
+$_SERVER['HTTP_X_FLX_PREVIEW'] = $sign( time(), $draft, $secret );
+$r = flxhl_t_op( 'FlxRoute', array( 'path' => '/', 'previewId' => $draft ), 0 );
+flxt_same( array( 'Headless draft', 'Headless draft', true ), array( $r['data']['flxRoute']['title'] ?? null, $r['data']['flxRoute']['node']['title'] ?? null, $r['data']['flxRoute']['head']['noindex'] ?? null ), 'preview key: the signed request sees the draft and its fields' );
+$other = (int) wp_insert_post( array( 'post_title' => 'Other headless draft', 'post_status' => 'draft', 'post_type' => 'post' ) );
+$r     = flxhl_t_op( 'FlxRoute', array( 'path' => '/', 'previewId' => $other ), 0 );
+flxt_ok( 'Other headless draft' !== ( $r['data']['flxRoute']['title'] ?? null ), 'preview key: the signature opens only the draft it names' );
+unset( $_SERVER['HTTP_X_FLX_PREVIEW'] );
+wp_delete_post( $other, true );
 $link = (string) get_preview_post_link( $draft );
 flxt_ok( str_starts_with( $link, 'https://front.example.com/api/preview?' ) && str_contains( $link, 'sig=' ), 'preview: the Preview button opens a signed link on the front end' );
 

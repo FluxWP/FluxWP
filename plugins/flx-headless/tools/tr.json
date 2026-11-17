@@ -312,5 +312,11 @@
   "Sent": "Gönderildi",
   "Copied": "Kopyalandı",
   "Content changed": "İçerik değişti",
-  "Logo for dark backgrounds such as the footer; the site logo when there is no separate one.": "Footer gibi koyu zeminler için logo; ayrı bir logo yoksa site logosu."
+  "Logo for dark backgrounds such as the footer; the site logo when there is no separate one.": "Footer gibi koyu zeminler için logo; ayrı bir logo yoksa site logosu.",
+  "Address of this WordPress, for the front end (FLUX_WP_URL).": "Bu WordPress'in adresi, ön yüz için (FLUX_WP_URL).",
+  "The connection key is the front end id and its secret. It signs webhook calls, preview links and draft requests, so previews need no application password. To get a new key, generate a secret and save. The integration guide is in docs/flx-headless/.": "Bağlantı anahtarı, ön yüz kimliği ile secret'ından oluşur. Webhook çağrılarını, önizleme bağlantılarını ve taslak isteklerini imzalar; bu yüzden önizleme için uygulama parolası gerekmez. Yeni anahtar için secret üretip kaydedin. Entegrasyon rehberi docs/flx-headless/ klasöründe.",
+  "Connect \"%s\"": "\"%s\" bağlantısı",
+  "Put these two lines in the environment variables of the front end (for example .env.local, or the host's settings). The key holds the secret, so it is shown only now.": "Bu iki satırı ön yüzün ortam değişkenlerine ekleyin (ör. .env.local ya da barındırma ayarları). Anahtar secret'ı içerdiği için yalnız şimdi gösterilir.",
+  "Done": "Tamam",
+  "After saving you get the connection key for the front end; the secret is stored encrypted and never shown again.": "Kaydedince ön yüzün bağlantı anahtarı gösterilir; secret şifreli saklanır ve bir daha gösterilmez."
 }

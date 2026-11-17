@@ -561,6 +561,9 @@ msgstr "WordPress'in kendi sayfalarıyla ne yaptığı."
 msgid "Every origin allowed to call /graphql from a browser: this site, the Flux GraphQL list and the front ends."
 msgstr "Tarayıcıdan /graphql çağırabilen tüm origin'ler: bu site, Flux GraphQL listesi ve ön yüzler."
 
+msgid "Address of this WordPress, for the front end (FLUX_WP_URL)."
+msgstr "Bu WordPress'in adresi, ön yüz için (FLUX_WP_URL)."
+
 msgid "GraphQL endpoint to give the front end."
 msgstr "Ön yüze verilecek GraphQL adresi."
 

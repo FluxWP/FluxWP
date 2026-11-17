@@ -652,8 +652,23 @@ final class FLXHL_Route_Service {
 	/** A draft or scheduled post as its editor sees it. Never cached; noindex. */
 	private static function preview( int $id, ?FLXHL_Frontend $fe ): FLXHL_Route {
 		$post = get_post( $id );
-		if ( ! $post instanceof WP_Post || ! current_user_can( 'edit_post', $post->ID ) ) {
+		if ( ! $post instanceof WP_Post ) {
 			return self::not_found( '/', null, $fe );
+		}
+		if ( ! current_user_can( 'edit_post', $post->ID ) ) {
+			if ( ! FLXHL_Frontend_Service::preview_signed( $fe, $post->ID ) ) {
+				return self::not_found( '/', null, $fe );
+			}
+			// Signed by the front end: this one draft (not other content, not the user's rights) is readable
+			// for the rest of the request, so the route's node fields resolve.
+			$visible = static function ( mixed $visibility, mixed $model, mixed $data ) use ( $post ): mixed {
+				return $data instanceof WP_Post && $data->ID === $post->ID ? 'public' : $visibility;
+			};
+			$public = static function ( mixed $is_private, mixed $model, mixed $data ) use ( $post ): mixed {
+				return $data instanceof WP_Post && $data->ID === $post->ID ? false : $is_private;
+			};
+			add_filter( 'graphql_data_is_private', $public, 10, 3 );
+			add_filter( 'graphql_object_visibility', $visible, 10, 3 );
 		}
 		$q = new WP_Query();
 		$q->query(
