@@ -1,5 +1,9 @@
 # Flux Tasks — Değişiklikler
 
+## 0.11.1
+- Satır içi görev eklemede liste seçici kalktı (görev bulunduğu listeye ya da varsayılan listeye eklenir).
+- Doküman sayfası dar alanda (yan paneller açıkken) kağıdın dış boşluğu ve iç boşluğu azaldı; çok darda tam genişlik.
+
 ## 0.11.0
 - Liste görünümü (yeni ekran) daha sade: düz satırlar, hap biçimli araç çubuğu düğmeleri.
 - Satır içi görev ekleme yenilendi: çerçevesiz ad alanı, atama / bitiş tarihi / öncelik / etiket simge düğmeleri, Vazgeç ve Kaydet ↵. Seçilen değerlerle görev oluşturulur; klasik ekran değişmedi.

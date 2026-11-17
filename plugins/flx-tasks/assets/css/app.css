@@ -1895,3 +1895,13 @@ body.flxg-col-resizing, body.flxg-col-resizing * { cursor: col-resize !important
 .flxg-flux .flxg-row.is-head { min-height: 36px; border-bottom: 1px solid var(--line); }
 .flxg-flux .flxg-row:not(.is-head):hover { background: var(--hover); }
 .flxg-flux .flxg-qa { background: transparent; }
+
+/* Doküman: dar alanda (yan paneller açıkken) kağıdın dış boşluğu azalır. */
+.flxg-doc-scroll { container-type: inline-size; }
+@container (max-width: 900px) {
+	.flxg-doc-paper { margin: 12px auto 24px; width: calc(100% - 20px); padding: 28px 26px 56px; }
+}
+@container (max-width: 560px) {
+	.flxg-doc-paper { margin: 0; width: auto; border: 0; border-radius: 0; box-shadow: none; padding: 20px 16px 56px; }
+}
+

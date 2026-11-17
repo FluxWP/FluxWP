@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.8.5
+- Görevler, WhatsApp gibi uygulama ekranlarına girince sol ana menü her zaman daralmış açılır (önceden son açık hâli hatırlanıyordu); soldaki düğmeden elle açılır.
+
 ## 1.8.4
 - Tarih alanları ortak FluxWP tarih seçicisini kullanır (flx-brand 1.8.0): ay ve gün adları sitenin dilinde (Kasım, Pzt), Pazartesi başlangıç, ay/yıl görünümü, `datetime-local` alanlarında saat, telefonda alttan açılan pencere, açık/koyu. Flux Admin'in kendi takvimi (datepicker.js) kaldırıldı; `window.flxaDate` adı çalışmaya devam eder.
 

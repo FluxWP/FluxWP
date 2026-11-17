@@ -904,7 +904,7 @@ function InlineAdd({ g, autoOpen }: { g: Group; autoOpen?: boolean }) {
   const [prio, setPrio] = useState(0);
   const [tagIds, setTagIds] = useState<number[]>([]);
   const lists = e.scopeLists().filter((l) => rank(l.role) >= 3);
-  const [list, setList] = useState(g.list || (S.scope?.type === 'list' ? S.scope.id : lists[0]?.id ?? 0));
+  const [list] = useState(g.list || (S.scope?.type === 'list' ? S.scope.id : lists[0]?.id ?? 0));
   const inp = useRef<HTMLInputElement>(null);
   if (!open)
     return (
@@ -954,15 +954,6 @@ function InlineAdd({ g, autoOpen }: { g: Group; autoOpen?: boolean }) {
             if (ev.key === 'Escape') setOpen(false);
           }}
         />
-        {S.scope?.type !== 'list' && !g.list && lists.length > 1 && (
-          <select className="flxg-input is-sm flxg-qa-list" value={list} onChange={(ev) => setList(+ev.target.value)}>
-            {lists.map((l) => (
-              <option key={l.id} value={l.id}>
-                {l.name}
-              </option>
-            ))}
-          </select>
-        )}
         <div className="flxg-qa-tools">
           {btn(tt("Assignee"), who.length > 0, (ev) => pickPeople(c, ev.currentTarget, who, setWho), who.length ? <Avatars ids={who} size={18} max={2} /> : <Ic n="user" s={16} />)}
           {btn(tt("Due date"), !!due, (ev) => pickDate(c, ev.currentTarget, due, setDue), due ? <span className="flxg-qa-val">{fmtDue(due)}</span> : <Ic n="calendar" s={16} />)}
