@@ -6,6 +6,9 @@
 defined( 'ABSPATH' ) || exit;
 
 function flxs_page_create() {
+	if ( flxs_render_flux() ) {
+		return;
+	}
 	$templates = array_map( 'flxs_template_for_js', flxs_list_templates( true ) );
 	$edit      = null;
 	$id        = (int) flxs_get_param( 'id' );
@@ -31,7 +34,7 @@ function flxs_page_create() {
 
 	flxs_admin_header(
 		$edit ? 'Sertifikayı düzenle' : 'Yeni sertifika',
-		$edit ? array( array( 'label' => 'Sayfayı aç', 'url' => $edit['url'] ) ) : array(),
+		flxs_classic_switch( $edit ? array( array( 'label' => 'Sayfayı aç', 'url' => $edit['url'] ) ) : array() ),
 		$edit ? esc_html( $edit['number'] ) : 'Kişileri listeye ekleyin, her biri için ayrı sertifika ve link oluşur. Sağda canlı önizleme.'
 	);
 	if ( ! $templates ) {

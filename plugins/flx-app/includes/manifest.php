@@ -269,7 +269,90 @@ function flxapp_manifest_resolve( array $m, $user, $platform = '' ) {
 	if ( isset( $m['sources'] ) ) {
 		$m['sources'] = (object) $m['sources'];
 	}
-	return $m;
+	return flxapp_manifest_graphql_ids( $m );
+}
+
+/**
+ * Persisted GraphQL operations by name: [ name => [ id, kind ] ] (Flux GraphQL's merged manifests).
+ *
+ * @return array<string,array{0:string,1:string}>
+ */
+function flxapp_graphql_ops() {
+	static $ops = null;
+	if ( null !== $ops ) {
+		return $ops;
+	}
+	$ops = array();
+	if ( ! function_exists( 'flx_gql_persisted' ) ) {
+		return $ops;
+	}
+	foreach ( flx_gql_persisted()['queries'] as $id => $doc ) {
+		if ( preg_match( '/\b(query|mutation)\s+([A-Za-z_]\w*)/', (string) $doc, $mm ) ) {
+			$ops[ $mm[2] ] = array( (string) $id, $mm[1] );
+		}
+	}
+	return $ops;
+}
+
+/**
+ * Fills `graphql.id` (queryId) and `graphql.kind` of every GraphQL source, action request and form
+ * submit from the persisted operations. The app only sends queryIds, so strict query mode keeps working.
+ * A module whose operation is not installed is left out (the menu opens the web page).
+ *
+ * @return array|null
+ */
+function flxapp_manifest_graphql_ids( array $m ) {
+	$ops  = flxapp_graphql_ops();
+	$fail = false;
+	$fill = function ( $ref ) use ( $ops, &$fail ) {
+		if ( ! is_array( $ref ) || empty( $ref['op'] ) ) {
+			return $ref;
+		}
+		$op = (string) $ref['op'];
+		if ( ! isset( $ops[ $op ] ) ) {
+			$fail = true;
+			return $ref;
+		}
+		$ref['id']   = $ops[ $op ][0];
+		$ref['kind'] = $ops[ $op ][1];
+		if ( isset( $ref['variables'] ) ) {
+			$ref['variables'] = (object) $ref['variables'];
+		}
+		return $ref;
+	};
+	if ( isset( $m['sources'] ) ) {
+		$sources = (array) $m['sources'];
+		foreach ( $sources as $sid => $src ) {
+			if ( isset( $src['graphql'] ) ) {
+				$sources[ $sid ]['graphql'] = $fill( $src['graphql'] );
+			}
+		}
+		$m['sources'] = (object) $sources;
+	}
+	$keys = array( 'graphql', 'graphql_create', 'graphql_update' );
+	if ( isset( $m['actions'] ) ) {
+		$actions = (array) $m['actions'];
+		foreach ( $actions as $aid => $a ) {
+			foreach ( $keys as $k ) {
+				if ( isset( $a['request'][ $k ] ) ) {
+					$actions[ $aid ]['request'][ $k ] = $fill( $a['request'][ $k ] );
+				}
+			}
+		}
+		$m['actions'] = (object) $actions;
+	}
+	if ( isset( $m['screens'] ) ) {
+		$screens = (array) $m['screens'];
+		foreach ( $screens as $sid => $s ) {
+			foreach ( $keys as $k ) {
+				if ( isset( $s['submit'][ $k ] ) ) {
+					$screens[ $sid ]['submit'][ $k ] = $fill( $s['submit'][ $k ] );
+				}
+			}
+		}
+		$m['screens'] = (object) $screens;
+	}
+	return $fail ? null : $m;
 }
 
 /** Kullanıcının çözümlenmiş modülleri: id => manifest. */
@@ -347,7 +430,11 @@ function flxapp_manifest_validate( array $m ) {
 	}
 	foreach ( $sources as $sid => $src ) {
 		$path = (string) ( $src['path'] ?? '' );
-		if ( '' === $path || preg_match( '#^[a-z][a-z0-9+.\-]*://#i', $path ) || 0 === strpos( $path, '//' ) ) {
+		if ( isset( $src['graphql'] ) ) {
+			if ( empty( $src['graphql']['op'] ) || ! preg_match( '/^[A-Za-z_]\w*$/', (string) $src['graphql']['op'] ) ) {
+				$e[] = "sources.$sid.graphql.op";
+			}
+		} elseif ( '' === $path || preg_match( '#^[a-z][a-z0-9+.\-]*://#i', $path ) || 0 === strpos( $path, '//' ) ) {
 			$e[] = "sources.$sid.path";
 		}
 		$mode = (string) ( $src['paging']['mode'] ?? 'none' );
@@ -410,7 +497,7 @@ function flxapp_manifest_validate( array $m ) {
 				$e[] = "screens.$sid.sections[$i].{$req[ $st ]}";
 			}
 		}
-		if ( 'form' === $type && ! empty( $s['submit'] ) && empty( $s['submit']['path'] ) ) {
+		if ( 'form' === $type && ! empty( $s['submit'] ) && empty( $s['submit']['path'] ) && empty( $s['submit']['graphql'] ) && empty( $s['submit']['graphql_create'] ) ) {
 			$e[] = "screens.$sid.submit.path";
 		}
 		foreach ( (array) ( $s['item']['badges'] ?? array() ) as $bd ) {

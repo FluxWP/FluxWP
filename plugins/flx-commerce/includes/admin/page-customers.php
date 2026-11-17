@@ -13,6 +13,9 @@ final class FLXCM_Page_Customers {
 		if ( ! current_user_can( FLXCM_Admin::CAP_VIEW ) ) {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-commerce' ), 403 );
 		}
+		if ( FLXCM_Admin::render_flux() ) {
+			return;
+		}
 		// phpcs:disable WordPress.Security.NonceVerification
 		if ( ! empty( $_GET['customer'] ) || ! empty( $_GET['email'] ) ) {
 			FLXCM_Page_Customer::render( absint( $_GET['customer'] ?? 0 ), isset( $_GET['email'] ) ? sanitize_email( wp_unslash( $_GET['email'] ) ) : '' );

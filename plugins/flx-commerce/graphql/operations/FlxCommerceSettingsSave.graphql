@@ -1,0 +1,3 @@
+mutation FlxCommerceSettingsSave($input: FlxCommerceSettingsSaveInput!) {
+  flxCommerceSettingsSave(input: $input) { settings { feed feedUrl lowStock } errors { code message field } }
+}

@@ -223,7 +223,34 @@ add_filter( 'flxapp_manifest', function ( array $m, WP_User $user ) {
 
 Ton kümesi: `default, accent, ok, warn, danger, muted, info`. Şablon `{{yol|filtre:arg}}`, koşul `{path, op, value}` (`eq, ne, in, nin, gt, gte, lt, lte, filled, empty, truthy, falsy`, `all/any/not`).
 
-**Doğrulama:** `flxapp_manifest_validate( $m )` kanonik şemanın zorunlu alanlarını denetler (tür, `sources`, kaynak/ekran/aksiyon referansları, alan `label`, bölüm zorunlu alanı, form `submit.path`, ton). Hatalar Uygulama › Modüller sekmesinde ve `flxapp.manifest` sistem kontrolü satırında görünür.
+### GraphQL kaynakları (Flux App 0.7.0, uygulama runtime 0.4.0)
+
+Bir eklenti ekranını **bir kez** manifestte tanımlar; mobil (React Native) native çizer, masaüstü ve web (`@fluxwp/render-web`) aynı manifesti React ile çizer. Veri REST yerine eklentinin persisted GraphQL işlemlerinden gelebilir:
+
+```json
+"sources": {
+  "pages": {
+    "graphql": { "op": "FlxWikiPages", "variables": { "statuses": ["PUBLISH", "DRAFT"] }, "data": "flxWikiPages" },
+    "paging": { "mode": "cursor", "size": 20, "items": "nodes", "next": "pageInfo.endCursor", "has_next": "pageInfo.hasNextPage", "total": "totalCount" },
+    "key": "databaseId"
+  },
+  "page": { "graphql": { "op": "FlxWikiPageRead", "variables": { "id": "{{params.id}}" }, "data": "flxWikiPage" } }
+},
+"screens": { "page_form": { "type": "form", "load": "page_edit", "submit": {
+  "graphql_create": { "op": "FlxWikiPageSave", "data": "flxWikiPageSave" },
+  "graphql_update": { "op": "FlxWikiPageSave", "variables": { "input": { "id": "{{params.id}}" } }, "data": "flxWikiPageSave" }
+} } }
+```
+
+- `op`: `plugins/<slug>/graphql/operations/*.graphql` içindeki işlem adı. Sunucu `id` (queryId) ve `kind` değerini Flux GraphQL'in persisted manifestinden doldurur; işlem kurulu değilse modül gönderilmez. Uygulama yalnız `queryId` yollar (sorgu GET, mutation POST).
+- `variables`: şablonlu; boş çıkan şablon değişkeni gönderilmez (işlemin varsayılanı geçer), düz `""` gider. Liste araması `search.param`, filtreler `filters[].param`, sayfalama `paging.param` (varsayılan `after`/`page`) ve `size_param` (varsayılan `first`) adıyla değişken olur.
+- `data`: yanıtta ekranın okuduğu yol. Form değerleri `values` değişkenine (varsayılan `input`) birleşir.
+- Aksiyon: `"request": { "graphql": { "op": "FlxWikiPageTrash", "variables": { "input": { "id": "{{databaseId}}" } } } }`.
+- Hata: ilk GraphQL hatası (`extensions.code`) ya da payload `errors { code message field }` uygulamada hata mesajı olur; `field` dolu olanlar formda alanın altında görünür.
+- REST kaynağı (`path`) aynen çalışır; bir modülde ikisi karışık olabilir. GraphQL kaynağı olan modülü eski uygulama sürümleri (runtime < 0.4.0) web görünümünde açar.
+- Kendi React ekranı: manifestle anlatılamayan ekran `{"type": "native", "component": "<ad>"}` ile uygulamanın kayıtlı bileşenine gider (mobilde `apps/mobile/src/modules/registry.ts`, web/masaüstünde `FluxRuntime.register` / plugin-kit `fluxScreens()`, docs/graphql/EKLENTI-EKRANLARI.md). İkisi aynı runtime motorlarını (`@fluxwp/runtime`) ve GraphQL işlemlerini paylaşır.
+
+**Doğrulama:** `flxapp_manifest_validate( $m )` kanonik şemanın zorunlu alanlarını denetler (tür, `sources`, kaynak/ekran/aksiyon referansları, alan `label`, bölüm zorunlu alanı, form `submit.path` ya da `submit.graphql*`, kaynak `path` ya da `graphql.op`, ton). Hatalar Uygulama › Modüller sekmesinde ve `flxapp.manifest` sistem kontrolü satırında görünür.
 
 ### Flux App'in gönderdiği modüller (§13 öncelik sırası)
 

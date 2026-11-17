@@ -1,0 +1,3 @@
+mutation FlxCommerceCustomersRebuild($input: FlxCommerceCustomersRebuildInput!) {
+  flxCommerceCustomersRebuild(input: $input) { done page scanned total errors { code message field } }
+}
