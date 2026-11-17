@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## Yayınlanmamış
+- Yan menüde eklentilerin alt sekmeleri (Yedekleme, Flux Files vb.) ok işaretine basınca açılır, doğrudan alt sekme seçilir.
+- Hesaplar: Düzenle modu; hesap başına önbellek boyutu, önbelleği temizle ve hesabı kaldır orada. Her kartta çöp kutusu kalmadı.
+
 ## 1.0.0
 - Menüdeki sayfaların çoğu artık uygulamanın kendi ekranında açılır, web görünümünde değil: Başlangıç, Sayfalar, Yazılar, Ortam, Yorumlar, Kullanıcılar, Eklentiler, Ayarlar, WooCommerce siparişleri ve ürünleri, Mağaza (Flux Commerce), Bağışlar, Posta kutusu, Formlar, Sertifikalar, CRM, Wiki, SEO, Site analitiği, Yedekler, Performans, reCAPTCHA, Flux AI. Eklentilerin mobil ekranları 1.0.0 sürümünü bekliyordu.
 - Panolarda grafik bölümü (günlük ciro, sertifika, ziyaretçi). Önceden grafik içeren Mağaza, Sertifikalar ve Site analitiği ekranlarının tamamı web görünümüne düşüyordu.

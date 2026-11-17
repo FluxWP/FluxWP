@@ -1,5 +1,8 @@
 # @fluxwp/runtime
 
+## 0.3.6
+- `NavEntry.children`: a package's wp-admin sub-pages, so drawers and sidebars can list its sub-tabs.
+
 ## 0.3.5
 - Giriş öncesi `loadBootstrap` da kayıtlı istemci geliştiricisinden geçer (FluxApp GraphQL taşıyıcısı).
 
