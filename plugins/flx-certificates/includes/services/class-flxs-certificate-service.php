@@ -83,7 +83,7 @@ final class FLXS_Certificate_Service {
 		}
 		$up = FLXS_Val::mix( flxs_upsert_person( $name, $p['phone'] ?? '', $p['email'] ?? '', $person_id ) );
 		if ( is_wp_error( $up ) || ! is_array( $up ) ) {
-			return FLXS_Records::rest_response( is_wp_error( $up ) ? $up : 'Kişi kaydedilemedi.' );
+			return FLXS_Records::rest_response( is_wp_error( $up ) ? $up : __( 'The person could not be saved.', 'flx-certificates' ) );
 		}
 		$holder = FLXS_Val::row( $up['person'] ?? null );
 		$values['ad_soyad'] = trim( sanitize_text_field( $name ) );
@@ -108,7 +108,7 @@ final class FLXS_Certificate_Service {
 			$cert = flxs_create_certificate( FLXS_Val::int( $r->get_param( 'template_id' ) ), FLXS_Val::int( $holder['id'] ), $values, FLXS_Val::int( $ref ), $issued );
 		}
 		if ( is_wp_error( $cert ) || ! is_array( $cert ) ) {
-			return FLXS_Records::rest_response( is_wp_error( $cert ) ? $cert : 'Sertifika kaydedilemedi.' );
+			return FLXS_Records::rest_response( is_wp_error( $cert ) ? $cert : __( 'The certificate could not be saved.', 'flx-certificates' ) );
 		}
 		$cert = FLXS_Val::row( $cert );
 		if ( null !== $evt && FLXS_Val::int( $cert['event_id'] ) !== $evt ) {
@@ -318,7 +318,7 @@ final class FLXS_Certificate_Service {
 		FLXS_Records::purge( array( FLXS_Records::TAG_PEOPLE, 'flx-certificates:person:' . FLXS_Val::int( $holder['id'] ) ) );
 		$notes = array();
 		foreach ( FLXS_Val::arr( $up['notes'] ?? array() ) as $note ) {
-			$notes[] = FLXS_Val::str( $note );
+			$notes[] = FLXS_Records::note( FLXS_Val::str( $note ) );
 		}
 		return array(
 			'certificate' => $cert,

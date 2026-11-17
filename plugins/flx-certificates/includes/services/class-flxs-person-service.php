@@ -222,7 +222,7 @@ final class FLXS_Person_Service {
 		if ( ! $id ) {
 			$r = FLXS_Val::mix( flxs_upsert_person( $name, $phone, $email ) );
 			if ( is_wp_error( $r ) || ! is_array( $r ) ) {
-				return array( 'page' => 'flxs-kisiler', 'args' => array( 'add' => 1, 'flxs_err' => is_wp_error( $r ) ? $r->get_error_message() : 'Kişi kaydedilemedi.' ) );
+				return array( 'page' => 'flxs-kisiler', 'args' => array( 'add' => 1, 'flxs_err' => is_wp_error( $r ) ? $r->get_error_message() : __( 'The person could not be saved.', 'flx-certificates' ) ) );
 			}
 			$holder = FLXS_Val::row( $r['person'] ?? null );
 			$id     = FLXS_Val::int( $holder['id'] );
