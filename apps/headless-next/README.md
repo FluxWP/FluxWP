@@ -10,6 +10,7 @@ What it shows:
 | Every WordPress address renders through one catch-all page with `flxRoute`. It handles 301s, 404s, pages, posts, archives and languages. | `app/[[...slug]]/page.tsx` |
 | SEO comes from WordPress: title, description, canonical, robots, Open Graph, hreflang and JSON-LD, mapped into `generateMetadata`. | same |
 | The site frame uses `flxSite`: logo, menus from menu locations or navigation blocks, language links, palette as CSS variables, and footer contact and legal links. | `app/layout.tsx`, `components/menu.tsx` |
+| The look follows the FluxWP theme: its fonts and palette, a dark footer with one column per footer menu (at the bottom of the window on short pages, folding into an accordion on phones), and sub-menus that drop down on desktop and open on tap on phones, without client JavaScript. A front page built from blocks (hero, columns, products) is drawn full width. | `app/globals.css` |
 | Cache Components ISR. Each answer is cached with `'use cache'` under the tags WordPress returns (`cacheTag(...route.cacheTags)`). | `lib/flux.ts` |
 | A signed revalidate webhook. It checks the HMAC, then refreshes those tags and paths. Changes show within seconds. | `app/api/revalidate/route.ts`, `lib/verify.ts` |
 | Preview. The editor's *Preview* button opens a signed link, and Draft Mode then shows the draft through an application password. | `app/api/preview/route.ts` |
@@ -21,6 +22,9 @@ example also works when Flux GraphQL runs only registered queries. Outside this 
 file and change the import in `lib/flux.ts`.
 
 ## Run it
+
+To see it as the screenshots show it, set WordPress up with the FluxWP theme and its demo store
+preset (*Theme settings › Presets*), which adds the products, pages and a post.
 
 1. In WordPress, open **FluxWP › Headless › Add front end** and fill in:
    - **Address**: `http://localhost:3000`.

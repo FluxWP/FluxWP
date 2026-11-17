@@ -81,6 +81,7 @@ export interface Site {
   locale: string;
   languages: { code: string; locale: string; name: string; hreflang: string; path: string; url: string; isDefault: boolean }[];
   logo: { url: string; width: number; height: number; alt: string } | null;
+  logoOnDark: { url: string; width: number; height: number; alt: string } | null;
   icon: string | null;
   menus: Menu[];
   palette: { slug: string; name: string; color: string }[];

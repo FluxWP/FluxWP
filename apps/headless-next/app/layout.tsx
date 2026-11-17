@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
-import { MenuList, pick } from '@/components/menu';
+import { footerMenus, MenuList, pick } from '@/components/menu';
 import { getSite } from '@/lib/flux';
+import type { Site } from '@/lib/types';
 import './globals.css';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -15,12 +16,21 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+function Logo({ site, onDark }: { site: Site; onDark?: boolean }) {
+  const logo = onDark ? (site.logoOnDark ?? site.logo) : site.logo;
+  if (!logo) return <span className="brand-name">{site.name}</span>;
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src={logo.url} alt={logo.alt || site.name} width={logo.width || 168} height={logo.height || 50} fetchPriority={onDark ? undefined : 'high'} />
+  );
+}
+
 export default async function RootLayout({ children }: { children: ReactNode }) {
   const site = await getSite();
   // Theme palette as CSS variables, same names as the WordPress theme (--wp--preset--color--<slug>).
   const palette = site.palette.map((c) => `--wp--preset--color--${c.slug}:${c.color};`).join('');
   const header = pick(site.menus, ['primary', 'header', 'header-2']);
-  const footer = pick(site.menus, ['footer', 'footer-2', 'secondary']);
+  const footer = footerMenus(site.menus);
   return (
     <html lang={site.locale}>
       <body>
@@ -28,12 +38,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         <header className="site-header">
           <div className="wrap">
             <Link href="/" className="brand" prefetch>
-              {site.logo ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={site.logo.url} alt={site.logo.alt || site.name} width={site.logo.width || undefined} height={site.logo.height || undefined} />
-              ) : (
-                site.name
-              )}
+              <Logo site={site} />
             </Link>
             {/* A checkbox opens the menu on phones without client JavaScript. */}
             <input type="checkbox" id="nav-toggle" className="nav-toggle" />
@@ -47,24 +52,45 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
               <ul className="langs">
                 {site.languages.map((l) => (
                   <li key={l.code}>
-                    <a href={l.path} hrefLang={l.hreflang}>{l.code.toUpperCase()}</a>
+                    <a href={l.path} hrefLang={l.hreflang} aria-current={l.code === site.language ? 'true' : undefined}>
+                      {l.code.toUpperCase()}
+                    </a>
                   </li>
                 ))}
               </ul>
             )}
           </div>
         </header>
-        <main className="wrap">{children}</main>
+        <main>{children}</main>
         <footer className="site-footer">
           <div className="wrap">
-            <MenuList menu={footer} className="menu" />
-            <p>
-              © {site.name}
-              {site.contact.email ? <> · <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></> : null}
-              {site.legalPages.map((p) => (
-                <span key={p.kind}> · <Link href={p.path}>{p.title}</Link></span>
+            <div className="footer-cols">
+              <div className="footer-brand">
+                <Link href="/" className="brand" prefetch>
+                  <Logo site={site} onDark />
+                </Link>
+                {site.description && <p>{site.description}</p>}
+                {site.contact.email && <p><a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></p>}
+              </div>
+              {footer.map((m, i) => (
+                // Each footer menu is a column; on phones its title opens and closes it.
+                <nav key={m.location} className="footer-col" aria-label={m.name || undefined}>
+                  <input type="checkbox" id={`fc-${i}`} className="fc-toggle" />
+                  <label htmlFor={`fc-${i}`} className="fc-title">{m.name || site.name}</label>
+                  <MenuList menu={m} className="footer-menu" />
+                </nav>
               ))}
-            </p>
+            </div>
+            <div className="footer-bottom">
+              <span>© {site.name}</span>
+              {site.legalPages.length > 0 && (
+                <span className="legal">
+                  {site.legalPages.map((p) => (
+                    <Link key={p.kind} href={p.path}>{p.title}</Link>
+                  ))}
+                </span>
+              )}
+            </div>
           </div>
         </footer>
       </body>

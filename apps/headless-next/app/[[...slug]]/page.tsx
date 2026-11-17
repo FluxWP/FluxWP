@@ -67,7 +67,7 @@ export default async function Page(props: Props) {
   if (r.kind === 'REDIRECT' && r.redirect) permanentRedirect(r.redirect);
   if (r.kind === 'NOT_FOUND') notFound();
 
-  const listing = r.kind === 'FRONT_PAGE' || r.kind === 'HOME' || r.kind === 'TERM' || r.kind === 'AUTHOR' || (r.kind === 'POST_TYPE' && r.postType === 'post');
+  const listing = (r.kind === 'FRONT_PAGE' && !r.node?.content) || r.kind === 'HOME' || r.kind === 'TERM' || r.kind === 'AUTHOR' || (r.kind === 'POST_TYPE' && r.postType === 'post');
   const posts = listing
     ? await getPosts({
         categoryId: r.taxonomy === 'category' ? (r.databaseId ?? undefined) : undefined,
@@ -76,41 +76,50 @@ export default async function Page(props: Props) {
     : [];
   const n = r.node;
 
+  const front = r.kind === 'FRONT_PAGE' && !!n?.content;
+
   return (
     <>
       {r.head.jsonLd.map((j, i) => (
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: j.replace(/</g, '\\u003c') }} />
       ))}
-      <article className="entry">
-        {r.kind !== 'FRONT_PAGE' && <h1>{n?.title ?? n?.name ?? r.title}</h1>}
-        {n?.date && r.kind === 'SINGULAR' && n.contentTypeName === 'post' && (
-          <p className="meta">
-            {new Date(n.date).toLocaleDateString(r.head.locale || undefined, { dateStyle: 'long' })}
-            {n.author?.node.name ? ` · ${n.author.node.name}` : ''}
-          </p>
-        )}
-        {n?.featuredImage && r.kind === 'SINGULAR' && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img className="hero" src={n.featuredImage.node.sourceUrl} alt={n.featuredImage.node.altText} />
-        )}
-        {n?.description && <p className="lead">{n.description}</p>}
-        {n?.content && <div className="wp-content" dangerouslySetInnerHTML={{ __html: n.content }} />}
-      </article>
-      {posts.length > 0 && (
-        <ul className="cards">
-          {posts.map((p) => (
-            <li key={p.databaseId}>
-              <Link href={p.uri} prefetch>
-                {p.featuredImage && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={p.featuredImage.node.sourceUrl} alt={p.featuredImage.node.altText} loading="lazy" />
-                )}
-                <h2>{p.title}</h2>
-              </Link>
-              {p.excerpt && <div className="excerpt" dangerouslySetInnerHTML={{ __html: p.excerpt }} />}
-            </li>
-          ))}
-        </ul>
+      {front ? (
+        // The front page is built from blocks (hero, columns …): full width, as the theme lays it out.
+        <div className="wp-content front" dangerouslySetInnerHTML={{ __html: n.content ?? '' }} />
+      ) : (
+        <div className="wrap page">
+          <article className="entry">
+            {r.kind !== 'FRONT_PAGE' && <h1>{n?.title ?? n?.name ?? r.title}</h1>}
+            {n?.date && r.kind === 'SINGULAR' && n.contentTypeName === 'post' && (
+              <p className="meta">
+                {new Date(n.date).toLocaleDateString(r.head.locale || undefined, { dateStyle: 'long' })}
+                {n.author?.node.name ? ` · ${n.author.node.name}` : ''}
+              </p>
+            )}
+            {n?.featuredImage && r.kind === 'SINGULAR' && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img className="hero" src={n.featuredImage.node.sourceUrl} alt={n.featuredImage.node.altText} />
+            )}
+            {n?.description && <p className="lead">{n.description}</p>}
+            {n?.content && <div className="wp-content" dangerouslySetInnerHTML={{ __html: n.content }} />}
+          </article>
+          {posts.length > 0 && (
+            <ul className="cards">
+              {posts.map((p) => (
+                <li key={p.databaseId}>
+                  <Link href={p.uri} prefetch>
+                    {p.featuredImage && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={p.featuredImage.node.sourceUrl} alt={p.featuredImage.node.altText} loading="lazy" />
+                    )}
+                    <h2>{p.title}</h2>
+                  </Link>
+                  {p.excerpt && <div className="excerpt" dangerouslySetInnerHTML={{ __html: p.excerpt }} />}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       )}
     </>
   );
