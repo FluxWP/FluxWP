@@ -62,18 +62,94 @@ flxt_same( 14, (int) ( flxcm_settings()['low_stock'] ?? -1 ), 'classic reader se
 flxt_same( 14, (int) ( $from_gql['data']['flxCommerceSettingsSave']['settings']['lowStock'] ?? -1 ), 'graphql settings payload' );
 flxt_ok( 'stale' !== get_transient( 'flxcm_free_min' ), 'settings save drops the stale free-shipping cache' );
 
-FLXCM_Settings_Service::bank_save( array( 'enabled' => true, 'title' => 'Classic Bank', 'iban' => 'TR000000000000000000000001' ) );
-$bank_from_classic = flxt_gql( '{ flxCommerceBankSettings { enabled title iban } }', array(), $mgr );
-flxt_same( 'Classic Bank', $bank_from_classic['data']['flxCommerceBankSettings']['title'] ?? '', 'graphql reads the classic bank settings save' );
-flxt_same( true, $bank_from_classic['data']['flxCommerceBankSettings']['enabled'] ?? false, 'graphql reads the classic bank enabled flag' );
-$bank_from_gql = flxt_gql(
-	'mutation($input: FlxCommerceBankSettingsSaveInput!){ flxCommerceBankSettingsSave(input: $input){ settings { title iban } errors { code } } }',
-	array( 'input' => array( 'title' => 'GQL Bank', 'iban' => 'TR000000000000000000000002' ) ),
-	$mgr
-);
-$stored_bank = get_option( FLXCM_Settings_Service::BANK_OPTION, array() );
-flxt_same( 'GQL Bank', is_array( $stored_bank ) ? (string) ( $stored_bank['title'] ?? '' ) : '', 'classic option sees the graphql bank settings save' );
-flxt_same( 'TR000000000000000000000002', $bank_from_gql['data']['flxCommerceBankSettingsSave']['settings']['iban'] ?? '', 'graphql bank settings payload' );
+// Bank settings go through the gateway's WooCommerce Settings API (WooCommerce > Payments), not a direct option write.
+if ( flxcm_wc_ready() && class_exists( 'FLXCM_Gateway_Bank' ) ) {
+	$gateway = WC()->payment_gateways()->payment_gateways()[ FLXCM_Bank::ID ] ?? null;
+	flxt_ok( $gateway instanceof WC_Payment_Gateway, 'bank gateway is registered' );
+	if ( $gateway instanceof WC_Payment_Gateway ) {
+		$filtered = 0;
+		add_filter(
+			'woocommerce_settings_api_sanitized_fields_' . FLXCM_Bank::ID,
+			static function ( $fields ) use ( &$filtered ) {
+				++$filtered;
+				return $fields;
+			}
+		);
+		$multi = "Line one\nLine two <b>bold</b>";
+		$gateway->set_post_data(
+			array(
+				'woocommerce_flxcm_bank_enabled'     => '1',
+				'woocommerce_flxcm_bank_title'       => 'Classic Bank',
+				'woocommerce_flxcm_bank_description' => wp_slash( $multi ),
+				'woocommerce_flxcm_bank_holder'      => '',
+				'woocommerce_flxcm_bank_iban'        => 'TR000000000000000000000001',
+				'woocommerce_flxcm_bank_bank'        => '',
+				'woocommerce_flxcm_bank_ref_format'  => '',
+				'woocommerce_flxcm_bank_ref_prefix'  => 'SP',
+			)
+		);
+		do_action( 'woocommerce_update_options_payment_gateways_' . FLXCM_Bank::ID );
+		$gateway->set_post_data( array() );
+		flxt_same( 1, $filtered, 'classic WooCommerce save ran the sanitized-fields filter' );
+
+		$bank_from_classic = flxt_gql( '{ flxCommerceBankSettings { enabled title iban description } }', array(), $mgr );
+		flxt_same( 'Classic Bank', $bank_from_classic['data']['flxCommerceBankSettings']['title'] ?? '', 'graphql reads the classic bank settings save' );
+		flxt_same( true, $bank_from_classic['data']['flxCommerceBankSettings']['enabled'] ?? false, 'graphql reads the classic bank enabled flag' );
+		flxt_same( $multi, $bank_from_classic['data']['flxCommerceBankSettings']['description'] ?? '', 'graphql reads the multi-line description' );
+
+		$toggled = flxt_gql(
+			'mutation($input: FlxCommerceBankSettingsSaveInput!){ flxCommerceBankSettingsSave(input: $input){ settings { enabled description } errors { code } } }',
+			array( 'input' => array( 'enabled' => false ) ),
+			$mgr
+		);
+		flxt_same( false, $toggled['data']['flxCommerceBankSettingsSave']['settings']['enabled'] ?? true, 'graphql toggles the bank method off' );
+		flxt_same( $multi, $toggled['data']['flxCommerceBankSettingsSave']['settings']['description'] ?? '', 'toggling enabled keeps the description line breaks and markup' );
+		flxt_same( 2, $filtered, 'graphql bank save ran the sanitized-fields filter' );
+		$stored_bank = get_option( FLXCM_Settings_Service::BANK_OPTION, array() );
+		flxt_same( $multi, is_array( $stored_bank ) ? (string) ( $stored_bank['description'] ?? '' ) : '', 'stored description is untouched' );
+		flxt_same( 'no', is_array( $stored_bank ) ? (string) ( $stored_bank['enabled'] ?? '' ) : '', 'stored enabled flag follows the toggle' );
+		flxt_same( 'TR000000000000000000000001', is_array( $stored_bank ) ? (string) ( $stored_bank['iban'] ?? '' ) : '', 'toggling enabled keeps the IBAN' );
+		global $wpdb;
+		$autoload = (string) $wpdb->get_var( $wpdb->prepare( "SELECT autoload FROM {$wpdb->options} WHERE option_name = %s", FLXCM_Settings_Service::BANK_OPTION ) );
+		flxt_ok( in_array( $autoload, array( 'yes', 'on', 'auto-on', 'auto' ), true ), 'bank option keeps the WooCommerce autoload', $autoload );
+
+		$bank_from_gql = flxt_gql(
+			'mutation($input: FlxCommerceBankSettingsSaveInput!){ flxCommerceBankSettingsSave(input: $input){ settings { title iban } errors { code } } }',
+			array( 'input' => array( 'title' => 'GQL Bank', 'iban' => 'TR000000000000000000000002' ) ),
+			$mgr
+		);
+		$stored_bank = get_option( FLXCM_Settings_Service::BANK_OPTION, array() );
+		flxt_same( 'GQL Bank', is_array( $stored_bank ) ? (string) ( $stored_bank['title'] ?? '' ) : '', 'classic option sees the graphql bank settings save' );
+		flxt_same( 'TR000000000000000000000002', $bank_from_gql['data']['flxCommerceBankSettingsSave']['settings']['iban'] ?? '', 'graphql bank settings payload' );
+	}
+} else {
+	$no_wc = flxt_gql(
+		'mutation($input: FlxCommerceBankSettingsSaveInput!){ flxCommerceBankSettingsSave(input: $input){ settings { title } errors { code } } }',
+		array( 'input' => array( 'title' => 'No gateway' ) ),
+		$mgr
+	);
+	flxt_same( 'INVALID_INPUT', $no_wc['data']['flxCommerceBankSettingsSave']['errors'][0]['code'] ?? '', 'bank settings need the WooCommerce gateway' );
+	flxt_ok( false === get_option( FLXCM_Settings_Service::BANK_OPTION, false ), 'no direct bank option write without the gateway' );
+}
+
+// Donate-only keys keep their value when Flux Donate is not active (same guard as the classic form).
+$donate = FLXCM_Settings_Service::from_input( array( 'excludeDonations' => true, 'deferToDonate' => true, 'hideCompany' => true ) );
+flxt_same( class_exists( 'FLXB_WC_Cart' ), array_key_exists( 'exclude_donations', $donate ), 'excludeDonations needs Flux Donate' );
+flxt_same( class_exists( 'FLXB_WC_Havale' ), array_key_exists( 'defer_to_donate', $donate ), 'deferToDonate needs Flux Donate' );
+flxt_same( 1, $donate['hide_company'] ?? 0, 'other boolean keys still pass' );
+
+// The React "Classic view" link goes into an href as data: no HTML escaping.
+if ( ! class_exists( 'FLXCM_Admin' ) ) {
+	require_once FLXCM_DIR . 'includes/admin/class-flxcm-admin.php';
+}
+$raw_url = FLXCM_Admin::ui_switch_raw_url( 'classic' );
+flxt_ok( ! str_contains( $raw_url, '&amp;' ) && ! str_contains( $raw_url, '&#038;' ), 'classic switch URL for React has no HTML entities', $raw_url );
+$raw_q = array();
+parse_str( (string) wp_parse_url( $raw_url, PHP_URL_QUERY ), $raw_q );
+flxt_same( 'classic', $raw_q['flxcm_ui'] ?? '', 'classic switch URL carries flxcm_ui' );
+flxt_ok( false !== wp_verify_nonce( (string) ( $raw_q['_wpnonce'] ?? '' ), 'flxcm_ui' ), 'classic switch URL carries a valid nonce', $raw_url );
+$html_url = FLXCM_Admin::ui_switch_url( 'flux' );
+flxt_ok( str_contains( $html_url, '&#038;_wpnonce=' ) || str_contains( $html_url, '&amp;_wpnonce=' ), 'classic PHP link keeps the escaped wp_nonce_url output', $html_url );
 
 foreach ( array( 'view_woocommerce_reports', 'manage_woocommerce', 'edit_shop_orders' ) as $cap ) {
 	flxt_ok( isset( flx_gql_capabilities()[ $cap ] ), 'catalog keeps ' . $cap );
@@ -365,6 +441,56 @@ if ( function_exists( 'wc_create_order' ) && class_exists( 'WC_Order' ) ) {
 
 $rest_customer = FLXCM_Customer_Service::rest_row( (array) FLXCM_Customers::get( $cid ) );
 flxt_ok( ! flxcm_test_leaks( $rest_customer ), 'REST customer hides the card block' );
+
+// My Account: the same ownership set as the classic page (any status), the classic notices.
+$gone_at = gmdate( 'Y-m-d H:i:s', time() - 5 * DAY_IN_SECONDS );
+$wpdb->insert(
+	FLXCM_Subscriptions::table(),
+	array(
+		'status'       => 'expired',
+		'user_id'      => $owner,
+		'email'        => 'flxcm_owner@example.test',
+		'name'         => 'Owner',
+		'product_name' => 'Old plan',
+		'period'       => 'month',
+		'amount'       => 10,
+		'currency'     => 'TRY',
+		'period_end'   => $gone_at,
+		'started_at'   => $gone_at,
+		'created_at'   => $gone_at,
+	)
+);
+$eid = (int) $wpdb->insert_id;
+$own_expired = FLXCM_Subscription_Service::account_act( $eid, 'resume', $owner );
+flxt_ok( 'FORBIDDEN' !== $own_expired['code'] && 'NOT_FOUND' !== $own_expired['code'], 'owner may act on an expired subscription like the classic page', $own_expired );
+$other_expired = FLXCM_Subscription_Service::account_act( $eid, 'resume', $other );
+flxt_same( 'FORBIDDEN', $other_expired['code'], 'another customer cannot act on it' );
+$missing = FLXCM_Subscription_Service::account_act( 99999999, 'cancel', $owner );
+flxt_same( 'NOT_FOUND', $missing['code'], 'service keeps NOT_FOUND for GraphQL' );
+$not_allowed = array( 'message' => 'You are not allowed to do this.', 'type' => 'error' );
+flxt_same( $not_allowed, FLXCM_Sub_Account::notice_for( 'cancel', $missing ), 'classic page shows "not allowed" for a missing id' );
+flxt_same( $not_allowed, FLXCM_Sub_Account::notice_for( 'cancel', $other_expired ), 'classic page shows "not allowed" for a foreign id' );
+flxt_same( array( 'message' => 'Renewal is back on.', 'type' => 'success' ), FLXCM_Sub_Account::notice_for( 'resume', array( 'code' => 'OK', 'type' => 'success', 'notice' => 'Renewal is back on.' ) ), 'success notices keep the default woocommerce type' );
+flxt_same( null, FLXCM_Sub_Account::notice_for( 'cancel', array( 'code' => 'CONFLICT', 'type' => 'error', 'notice' => 'x' ) ), 'a failed cancel stays silent like the classic page' );
+flxt_same( array( 'message' => 'Nope', 'type' => 'error' ), FLXCM_Sub_Account::notice_for( 'renew', array( 'code' => 'CONFLICT', 'type' => 'error', 'notice' => 'Nope' ) ), 'a failed renewal shows its error' );
+
+// Receipt pages come straight from the query window.
+if ( function_exists( 'wc_create_order' ) && class_exists( 'WC_Order' ) ) {
+	for ( $n = 0; $n < 3; $n++ ) {
+		$paged = wc_create_order();
+		if ( $paged instanceof WC_Order ) {
+			$paged->set_payment_method( FLXCM_Bank::ID );
+			$paged->set_status( 'on-hold' );
+			$paged->save();
+		}
+	}
+	$first  = FLXCM_Receipt_Service::page( 0, 2 );
+	$second = FLXCM_Receipt_Service::page( 1, 1 );
+	flxt_same( 2, count( $first['items'] ), 'receipt page returns only the requested window' );
+	flxt_same( 1, count( $second['items'] ), 'receipt page honours the offset' );
+	flxt_same( $first['items'][1]['id'] ?? 'a', $second['items'][0]['id'] ?? 'b', 'offset pages line up' );
+	flxt_ok( $first['total'] >= 3, 'receipt total counts every waiting order', $first['total'] );
+}
 
 flxt_done();
 
