@@ -39,7 +39,7 @@ add_action(
 		add_filter(
 			'flxapp_manifest',
 			static function ( $m ) {
-				$m        = is_array( $m ) ? $m : array();
+				$m             = is_array( $m ) ? $m : array();
 				$m['headless'] = flxapp_manifest_file(
 					FLXHL_DIR . 'app/manifest.json',
 					'flx-headless',

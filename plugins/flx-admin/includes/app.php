@@ -58,7 +58,7 @@ add_action(
 		add_filter(
 			'flxapp_manifest',
 			static function ( $m ) {
-				$m        = is_array( $m ) ? $m : array();
+				$m          = is_array( $m ) ? $m : array();
 				$m['admin'] = flxapp_manifest_file(
 					FLXA_DIR . 'app/manifest.json',
 					'flx-admin',
