@@ -53,6 +53,10 @@ $vars = array(
 	'FlxAiModelTest'        => array( 'input' => array( 'model' => '' ) ),
 	'FlxAiRenderTest'       => array( 'input' => array( 'url' => '' ) ),
 	'FlxAiApprovals'        => array(),
+	'FlxAiChats'            => array(),
+	'FlxAiChat'             => array( 'id' => 1 ),
+	'FlxAiChatUpdate'       => array( 'input' => array( 'id' => 1, 'title' => 'x' ) ),
+	'FlxAiChatDelete'       => array( 'input' => array( 'id' => 1 ) ),
 	'FlxAiApprovalDecide'   => array( 'input' => array( 'chatId' => 1, 'callId' => 'x', 'approve' => true ) ),
 	'FlxAiChangeDecide'     => array( 'input' => array( 'id' => 1, 'merge' => false ) ),
 	'FlxAiTasks'            => array(),
@@ -822,6 +826,79 @@ flxt_same( null, flxai_mcpc_get( 'linear_test' ), 'connection delete: the classi
 remove_all_filters( 'pre_http_request' );
 remove_filter( 'flxai_mcpc_allow_local', '__return_true' );
 delete_option( 'flxai_mcpc_servers' );
+
+// Chat history: list, search, transcript, rename, archive, delete; every user sees only their own chats.
+$wpdb->query( 'DELETE FROM ' . flxai_table( 'chats' ) ); // phpcs:ignore
+$mk = static function ( int $uid, string $title, array $msgs ) {
+	$c             = flxai_chat_create( $uid );
+	$c['title']    = $title;
+	$c['messages'] = $msgs;
+	flxai_chat_save( $c );
+	return (int) $c['id'];
+};
+$c1 = $mk( $admin, 'Donor review', array(
+	array( 'role' => 'user', 'content' => 'Who has not given in 3 months?', '_ts' => 1700000000 ),
+	array( 'role' => 'assistant', 'content' => '', 'tool_calls' => array( array( 'id' => 'c1', 'type' => 'function', 'function' => array( 'name' => 'flxdonate_list', 'arguments' => '{}' ) ) ), '_raw' => array( 'secret-raw' ), '_ts' => 1700000005 ),
+	array( 'role' => 'tool', 'tool_call_id' => 'c1', 'content' => str_repeat( 'x', 5000 ), '_name' => 'flxdonate_list', '_ok' => true ),
+	array( 'role' => 'assistant', 'content' => 'Three donors: Zeynep, Ali and Mehmet.', '_ts' => 1700000010 ),
+	array( 'role' => 'system', 'content' => 'internal' ),
+) );
+$c2 = $mk( $admin, 'Speed check', array( array( 'role' => 'user', 'content' => array( array( 'type' => 'text', 'text' => 'How fast is the homepage?' ) ) ) ) );
+$c3 = $mk( $sub, 'Ayşe private', array( array( 'role' => 'user', 'content' => 'secret of Ayşe' ) ) );
+$r  = flxai_t_op( 'FlxAiChats', array(), $admin );
+$ids = array_column( $r['data']['flxAiChats']['items'] ?? array(), 'id' );
+flxt_same( true, in_array( $c1, $ids, true ) && in_array( $c2, $ids, true ), 'chats: own chats are listed' );
+flxt_ok( ! in_array( $c3, $ids, true ), 'chats: another user\'s chat is not listed' );
+flxt_same( false, $r['data']['flxAiChats']['hasMore'] ?? null, 'chats: hasMore false on a short list' );
+$r = flxai_t_op( 'FlxAiChats', array( 'limit' => 1 ), $admin );
+flxt_same( true, $r['data']['flxAiChats']['hasMore'] ?? null, 'chats: hasMore true when more follow' );
+flxt_same( 1, count( $r['data']['flxAiChats']['items'] ?? array() ), 'chats: limit is respected' );
+$r = flxai_t_op( 'FlxAiChats', array( 'q' => 'Zeynep' ), $admin );
+flxt_same( array( $c1 ), array_column( $r['data']['flxAiChats']['items'] ?? array(), 'id' ), 'chats: search finds message text' );
+flxt_ok( false !== strpos( (string) ( $r['data']['flxAiChats']['items'][0]['snippet'] ?? '' ), 'Zeynep' ), 'chats: search returns a snippet' );
+$r = flxai_t_op( 'FlxAiChats', array( 'q' => 'secret of Ayşe' ), $admin );
+flxt_same( array(), $r['data']['flxAiChats']['items'] ?? null, 'chats: search never reaches another user\'s chat' );
+// Transcript.
+$r = flxai_t_op( 'FlxAiChat', array( 'id' => $c1 ), $admin );
+$m = $r['data']['flxAiChat']['messages'] ?? array();
+flxt_same( array( 'user', 'assistant', 'tool', 'assistant' ), array_column( $m, 'role' ), 'chat: only user, assistant and tool messages' );
+flxt_same( 5, $r['data']['flxAiChat']['total'] ?? null, 'chat: total counts stored messages' );
+flxt_same( 'flxdonate_list', $m[1]['tools'] ?? null, 'chat: assistant tool calls are named' );
+flxt_same( 'flxdonate_list', $m[2]['tool'] ?? null, 'chat: tool result carries the tool name' );
+flxt_same( true, $m[2]['ok'] ?? null, 'chat: tool result ok flag' );
+flxt_same( 4000, mb_strlen( (string) ( $m[2]['text'] ?? '' ) ), 'chat: tool output is shortened' );
+flxt_same( 1700000000, $m[0]['time']['timestamp'] ?? null, 'chat: message time' );
+flxt_ok( false === strpos( flxai_t_json( $r ), 'secret-raw' ), 'chat: raw provider blocks are not exposed' );
+$r = flxai_t_op( 'FlxAiChat', array( 'id' => $c2 ), $admin );
+flxt_same( 'How fast is the homepage?', $r['data']['flxAiChat']['messages'][0]['text'] ?? null, 'chat: text parts of a multi-part message are joined' );
+$r = flxai_t_op( 'FlxAiChat', array( 'id' => $c3 ), $admin );
+flxt_same( 'NOT_FOUND', $r['errors'][0]['extensions']['code'] ?? null, 'chat: another user\'s chat is NOT_FOUND' );
+// Rename, archive.
+$r = flxai_t_op( 'FlxAiChatUpdate', array( 'input' => array( 'id' => $c2, 'title' => 'Speed <b>check</b>', 'archived' => true ) ), $admin );
+flxt_same( 'Speed check', $r['data']['flxAiChatUpdate']['chat']['title'] ?? null, 'chat update: title is sanitized' );
+flxt_same( true, $r['data']['flxAiChatUpdate']['chat']['archived'] ?? null, 'chat update: archived' );
+$r = flxai_t_op( 'FlxAiChats', array(), $admin );
+flxt_ok( ! in_array( $c2, array_column( $r['data']['flxAiChats']['items'] ?? array(), 'id' ), true ), 'chats: an archived chat leaves the default list' );
+$r = flxai_t_op( 'FlxAiChats', array( 'archived' => 1 ), $admin );
+flxt_same( array( $c2 ), array_column( $r['data']['flxAiChats']['items'] ?? array(), 'id' ), 'chats: archived filter' );
+$r = flxai_t_op( 'FlxAiChats', array( 'archived' => -1 ), $admin );
+flxt_same( true, count( $r['data']['flxAiChats']['items'] ?? array() ) >= 2, 'chats: -1 lists active and archived' );
+$r = flxai_t_op( 'FlxAiChatUpdate', array( 'input' => array( 'id' => $c2, 'archived' => false ) ), $admin );
+flxt_same( 'Speed check', $r['data']['flxAiChatUpdate']['chat']['title'] ?? null, 'chat update: a field left out stays as it is' );
+flxt_same( false, $r['data']['flxAiChatUpdate']['chat']['archived'] ?? null, 'chat update: restored' );
+$r = flxai_t_op( 'FlxAiChatUpdate', array( 'input' => array( 'id' => $c3, 'title' => 'hijack' ) ), $admin );
+flxt_same( 'NOT_FOUND', $r['data']['flxAiChatUpdate']['errors'][0]['code'] ?? $r['errors'][0]['extensions']['code'] ?? null, 'chat update: another user\'s chat is refused' );
+flxt_same( 'Ayşe private', flxai_chat_get( $c3, $sub )['title'] ?? null, 'chat update: the other chat is untouched' );
+// Delete.
+$r = flxai_t_op( 'FlxAiChatDelete', array( 'input' => array( 'id' => $c3 ) ), $admin );
+flxt_same( 'NOT_FOUND', $r['data']['flxAiChatDelete']['errors'][0]['code'] ?? $r['errors'][0]['extensions']['code'] ?? null, 'chat delete: another user\'s chat is refused' );
+flxt_ok( null !== flxai_chat_get( $c3, $sub ), 'chat delete: the other chat is still there' );
+$r = flxai_t_op( 'FlxAiChatDelete', array( 'input' => array( 'id' => $c1 ) ), $admin );
+flxt_same( true, $r['data']['flxAiChatDelete']['deleted'] ?? null, 'chat delete: deleted' );
+flxt_same( null, flxai_chat_get( $c1, $admin ), 'chat delete: the classic reader sees it gone' );
+$r = flxai_t_op( 'FlxAiChatDelete', array( 'input' => array( 'id' => $c1 ) ), $admin );
+flxt_same( 'NOT_FOUND', $r['data']['flxAiChatDelete']['errors'][0]['code'] ?? $r['errors'][0]['extensions']['code'] ?? null, 'chat delete: a second delete is NOT_FOUND' );
+$wpdb->query( 'DELETE FROM ' . flxai_table( 'chats' ) ); // phpcs:ignore
 
 // Persisted operations run by queryId (strict mode).
 $hash = array_search( $GLOBALS['flxai_ops']['FlxAiSystems'], (array) json_decode( (string) file_get_contents( FLXAI_DIR . 'graphql/persisted-queries.json' ), true ), true );

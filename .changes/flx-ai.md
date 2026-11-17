@@ -2,4 +2,4 @@
 "@fluxwp/modules": minor
 "@fluxwp/graphql": minor
 ---
-AI: the Connected systems screen of Flux AI now opens each plugin's own AI settings (`?system=<plugin>`: AI switch, model and the fields the plugin declared with the Flux AI SDK; operations `FlxAiSystemSettings`, `FlxAiSystemSettingsUpdate`).
+AI: new Chat history screen in Flux AI (search, archive filter, read-only transcript, rename, archive, delete; operations `FlxAiChats`, `FlxAiChat`, `FlxAiChatUpdate`, `FlxAiChatDelete`).
