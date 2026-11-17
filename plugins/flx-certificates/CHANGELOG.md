@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.2.0
+- Records, people and public verification are available over GraphQL (`flxCertificates`, `flxCertificate`, people, `flxCertificateVerify`, `flxCertificateLookup`). The records, new-certificate and people screens in wp-admin open the React UI; the classic pages stay one click away. Requires PHP 8.1 and Flux GraphQL.
+- A staff member limited to their own records (`flxs_own_ref` or the staff-own-only setting) cannot see, count or edit another person's certificates or people through GraphQL. The classic people list is unchanged.
+- Saving a person or a certificate with a phone number or e-mail that belongs to someone outside the viewer's records is refused over GraphQL (`CONFLICT`); the person in a save payload is returned only when the viewer may see them.
+- "Send to someone else" over GraphQL runs the same code as the classic route: an empty or bad address is refused, the subject and message are sanitised, and the recipient is remembered only after the message is queued.
+- The Excel and "classic view" links given to the React screens carry a plain `&_wpnonce=` (they were HTML-escaped and refused). Cached public answers are purged whenever a certificate changes through any path. GraphQL error texts are English and translatable.
+- Public verification returns only the fields the public page shows. A revoked certificate has no PDF or image URL. The query does not increment the view counter and does not render a missing file.
+
 ## 2.1.2
 - Display name is now "Flux PDF & Certificates" (plugin header, README, docs, PDF creator metadata). Slug, text domain, prefixes, options and update ID are unchanged.
 
