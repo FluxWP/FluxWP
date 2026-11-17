@@ -65,6 +65,13 @@ final class FLXC_Val {
 	/**
 	 * @param mixed $v Value.
 	 */
+	public static function raw_float( $v ): float {
+		return (float) $v; // @phpstan-ignore cast.double
+	}
+
+	/**
+	 * @param mixed $v Value.
+	 */
 	public static function raw_bool( $v ): bool {
 		return (bool) $v;
 	}

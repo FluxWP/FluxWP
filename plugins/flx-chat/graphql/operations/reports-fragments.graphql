@@ -1,0 +1,21 @@
+fragment FlxChatReportsFields on FlxChatReports {
+  on
+  days { value label }
+  people { databaseId name hasNumber }
+  rules {
+    id
+    title
+    active
+    audience
+    users
+    content
+    period
+    freq
+    weekday
+    monthday
+    time
+    motivation
+    recipientCount
+    lastSent { iso timestamp label relative }
+  }
+}

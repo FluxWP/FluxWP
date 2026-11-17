@@ -1,0 +1,150 @@
+fragment FlxChatSettingsFields on FlxChatSettings {
+  brandName
+  accent
+  sendRead
+  agentSignature
+  restrictAgents
+  showGroups
+  uiFlux
+  deleteData
+  deleteEveryoneHours
+  pollInterval
+  welcomeEnabled
+  welcomeText
+  awayEnabled
+  awayText
+  awayDays
+  awayStart
+  awayEnd
+  awayThrottle
+  agentsDonations
+  agentsCertificates
+  chipsBar
+  msgDonationPending
+  msgDonationDone
+  msgReceipt
+  bankText
+  aiProvider
+  aiModel
+  aiModelBot
+  aiModelVision
+  aiModelAudio
+  aiTemperature
+  aiAutoSuggest
+  aiInstructions
+  botEnabled
+  botScope
+  botTestOnly
+  botTestNumbers
+  botPauseHours
+  botDailyLimit
+  botPresets
+  botContextHours
+  botTypes
+  botReceiptAi
+  botPriceFooter
+  bankHolder
+  bankIban
+  bankDesc
+  donateUrl
+  botAfterPayment
+  botCancelText
+  botLimitText
+  botHandoffText
+  botFallbackText
+  botFallbackWait
+  botTimeBudget
+  botNotifyNumbers
+  botHandoffWords
+  botInstructions
+  botOptoutText
+  memEnabled
+  memAfterHours
+  workersMax
+  workersReserved
+  memWindowFrom
+  memWindowTo
+  botReactions
+  botVoice
+  botVoiceMax
+  botWidgets
+  benefCertNotify
+  benefCertText
+  remEnabled
+  remTime
+  remMax
+  staffOn
+  refNotify
+  staffDonorText
+  refCertNotify
+  refCertText
+  staffCertMax
+  emailVerify
+  verifyTtl
+  verifyMaxFails
+  verifyPhoneChannel
+  verifyFailText
+  verifyMsg
+  botSiteSearch
+  botSiteTypes
+  botSiteExclude
+  mirrorGroup
+  mirrorEnabled
+  notifyToGroup
+  labels { id name color }
+  connections {
+    id
+    label
+    source
+    sourceValue
+    origin
+    baseUrl
+    instance
+    hasApiKey
+    state
+    stateAt { iso timestamp label relative }
+    lastWebhookAt { iso timestamp label relative }
+    sources { value label }
+  }
+  context {
+    flxiOn
+    flxiConnectionsUrl
+    flxsOn
+    flxbOn
+    rolesOn
+    aiHub
+    aiReady
+    aiTypesProblem
+    aiSettingsUrl
+    assistantUrl
+    chatsUrl
+    newUserUrl
+    widgetsRendererOk
+    widgetsPluginOk
+    timezone
+    isOpenHours
+    siteName
+    pricePreview
+    defaultDonationPending
+    defaultDonationDone
+    defaultReceipt
+    defaultBankText
+    defaultBankHolder
+    defaultBankIban
+    defaultDonateUrl
+    defaultCancelText
+    defaultHandoffWords
+    defaultBenefCertText
+    defaultRefCertText
+    defaultVerifyFailText
+    defaultVerifyMsg
+    agents { databaseId name }
+    aiProviders { id label }
+    aiUsage { month calls tokens cost }
+    defaultSource { value label }
+    sourceChoices { value label }
+    donationTypes { databaseId title }
+    postTypes { name label autoSelected }
+    mirrorError { at { iso timestamp label relative } error }
+  }
+}

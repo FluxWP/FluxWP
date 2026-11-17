@@ -1,0 +1,6 @@
+mutation FlxChatReportSend($input: FlxChatReportSendInput!) {
+  flxChatReportSend(input: $input) {
+    sent
+    errors { code message field }
+  }
+}

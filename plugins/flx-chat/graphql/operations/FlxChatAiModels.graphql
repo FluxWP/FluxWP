@@ -1,0 +1,7 @@
+query FlxChatAiModels($search: String, $provider: String, $ids: [String!], $first: Int, $fresh: Boolean) {
+  flxChatAiModels(search: $search, provider: $provider, ids: $ids, first: $first, fresh: $fresh) {
+    total
+    providers { id label }
+    models { id name family provider context priceIn priceOut tools vision }
+  }
+}

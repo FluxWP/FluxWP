@@ -28,6 +28,8 @@ require_once FLXC_DIR . 'includes/services/class-flxc-val.php';
 require_once FLXC_DIR . 'includes/services/class-flxc-chat-service.php';
 require_once FLXC_DIR . 'includes/services/class-flxc-message-service.php';
 require_once FLXC_DIR . 'includes/services/class-flxc-desk-service.php';
+require_once FLXC_DIR . 'includes/services/class-flxc-settings-service.php';
+require_once FLXC_DIR . 'includes/services/class-flxc-report-service.php';
 require_once FLXC_DIR . 'includes/install.php';
 require_once FLXC_DIR . 'includes/connections.php';
 require_once FLXC_DIR . 'includes/evolution.php';
@@ -112,6 +114,7 @@ add_action(
 			return;
 		}
 		require_once FLXC_DIR . 'includes/graphql/schema.php';
+		require_once FLXC_DIR . 'includes/graphql/schema-admin.php';
 	}
 );
 add_action(

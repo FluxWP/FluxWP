@@ -1,0 +1,6 @@
+mutation FlxChatWebhookUrlReveal($input: FlxChatWebhookUrlRevealInput!) {
+  flxChatWebhookUrlReveal(input: $input) {
+    url
+    errors { code message field }
+  }
+}

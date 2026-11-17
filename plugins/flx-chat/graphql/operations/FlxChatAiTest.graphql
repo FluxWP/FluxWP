@@ -1,0 +1,7 @@
+mutation FlxChatAiTest($input: FlxChatAiTestInput!) {
+  flxChatAiTest(input: $input) {
+    text
+    ms
+    errors { code message field }
+  }
+}

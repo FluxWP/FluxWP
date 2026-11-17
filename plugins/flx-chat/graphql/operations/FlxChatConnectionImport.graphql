@@ -1,0 +1,9 @@
+mutation FlxChatConnectionImport($input: FlxChatConnectionImportInput!) {
+  flxChatConnectionImport(input: $input) {
+    ok
+    chats
+    messages
+    error
+    errors { code message field }
+  }
+}

@@ -91,6 +91,74 @@ type FlxChatAgent {
   name: String!
 }
 
+"""A model of the Flux AI catalog."""
+type FlxChatAiModel {
+  """Context size in tokens."""
+  context: Int!
+  """Family."""
+  family: String!
+  """Model id."""
+  id: String!
+  """Name."""
+  name: String!
+  """US dollars per million input tokens."""
+  priceIn: Float!
+  """US dollars per million output tokens."""
+  priceOut: Float!
+  """Provider."""
+  provider: String!
+  """Calls tools."""
+  tools: Boolean!
+  """Reads images."""
+  vision: Boolean!
+}
+
+"""A page of the model catalog."""
+type FlxChatAiModels {
+  """Models, at most 50."""
+  models: [FlxChatAiModel!]!
+  """Providers that are ready."""
+  providers: [FlxChatProvider!]!
+  """Models that match."""
+  total: Int!
+}
+
+"""Input for the flxChatAiTest mutation."""
+input FlxChatAiTestInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+}
+
+"""The payload for the flxChatAiTest mutation."""
+type FlxChatAiTestPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Milliseconds it took."""
+  ms: Int!
+  """The model&#039;s answer."""
+  text: String!
+}
+
+"""AI use of this month."""
+type FlxChatAiUsage {
+  """Calls."""
+  calls: Int!
+  """Cost in US dollars."""
+  cost: Float!
+  """Month, YYYY-MM."""
+  month: String!
+  """Tokens."""
+  tokens: Int!
+}
+
 """Assistant on this chat."""
 enum FlxChatBot {
   """"""
@@ -145,6 +213,14 @@ type FlxChatCheck {
   valid: Boolean!
 }
 
+"""A value and its label."""
+type FlxChatChoice {
+  """Label."""
+  label: String!
+  """Value."""
+  value: String!
+}
+
 """Input for the flxChatClear mutation."""
 input FlxChatClearInput {
   """
@@ -195,6 +271,120 @@ type FlxChatConnection {
   pageInfo: FlxPageInfo!
   """All matching records (null when counting would be slow)."""
   totalCount: Int
+}
+
+"""Input for the flxChatConnectionImport mutation."""
+input FlxChatConnectionImportInput {
+  """How many chats, 1 to 200. 30 when omitted."""
+  chats: Int
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Line id."""
+  id: String!
+}
+
+"""The payload for the flxChatConnectionImport mutation."""
+type FlxChatConnectionImportPayload {
+  """Chats brought in."""
+  chats: Int!
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Error. Empty when none."""
+  error: String!
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Messages brought in."""
+  messages: Int!
+  """The import ran."""
+  ok: Boolean!
+}
+
+"""Input for the flxChatConnectionQr mutation."""
+input FlxChatConnectionQrInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Line id."""
+  id: String!
+}
+
+"""The payload for the flxChatConnectionQr mutation."""
+type FlxChatConnectionQrPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Pairing code. Empty when none."""
+  code: String!
+  """Error. Empty when none."""
+  error: String!
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The server answered."""
+  ok: Boolean!
+  """QR image as base64. Empty when none."""
+  qr: String!
+  """Line state."""
+  state: String!
+}
+
+"""Input for the flxChatConnectionTest mutation."""
+input FlxChatConnectionTestInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Line id."""
+  id: String!
+}
+
+"""The payload for the flxChatConnectionTest mutation."""
+type FlxChatConnectionTestPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result."""
+  result: FlxChatLineTest!
+}
+
+"""Input for the flxChatConnectionWebhook mutation."""
+input FlxChatConnectionWebhookInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Line id."""
+  id: String!
+}
+
+"""The payload for the flxChatConnectionWebhook mutation."""
+type FlxChatConnectionWebhookPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Error. Empty when none."""
+  error: String!
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The server accepted it."""
+  ok: Boolean!
 }
 
 """Input for the flxChatCreate mutation."""
@@ -285,6 +475,14 @@ type FlxChatDonationRecordPayload {
   ok: Boolean!
 }
 
+"""An open Flux Donate type."""
+type FlxChatDonationType {
+  """Type id."""
+  databaseId: Int!
+  """Title."""
+  title: String!
+}
+
 """One FlxChat in a list, with its cursor."""
 type FlxChatEdge {
   """Opaque cursor of this record."""
@@ -345,6 +543,14 @@ enum FlxChatFilter {
   UNREAD
 }
 
+"""A WhatsApp group."""
+type FlxChatGroup {
+  """Group id."""
+  id: String!
+  """Group name."""
+  name: String!
+}
+
 """What the chat page needs to open. No secrets."""
 type FlxChatInbox {
   """Assignees."""
@@ -393,6 +599,26 @@ type FlxChatLabel {
   name: String!
 }
 
+"""A label. A blank id makes one from the name."""
+input FlxChatLabelInput {
+  """Color (hex)."""
+  color: String
+  """Id."""
+  id: String
+  """Name. A blank name drops the label."""
+  name: String!
+}
+
+"""A chat label."""
+type FlxChatLabelRule {
+  """Color (hex)."""
+  color: String!
+  """Id."""
+  id: String!
+  """Name."""
+  name: String!
+}
+
 """Preview of the latest line."""
 type FlxChatLastMessage {
   """Preview text."""
@@ -405,6 +631,78 @@ type FlxChatLastMessage {
   type: String!
   """Author name."""
   user: String!
+}
+
+"""
+A WhatsApp line. The API key is never returned; hasApiKey says whether one is saved.
+"""
+type FlxChatLine {
+  """Evolution API address."""
+  baseUrl: String!
+  """An API key is saved."""
+  hasApiKey: Boolean!
+  """Line id."""
+  id: String!
+  """Instance name."""
+  instance: String!
+  """Name."""
+  label: String!
+  """Last webhook received. Null when none yet."""
+  lastWebhookAt: FlxDateTime
+  """Where the line details come from."""
+  origin: String!
+  """own, flxi (Flux Mail) or flxs (Flux Certificates)."""
+  source: String!
+  """Selected source: own, flxi:&lt;id&gt; or flxs:&lt;id&gt;."""
+  sourceValue: String!
+  """Source choices for this line."""
+  sources: [FlxChatChoice!]!
+  """
+  Last known state: open, connecting, close, missing or error. Empty when unknown.
+  """
+  state: String!
+  """When the state was read."""
+  stateAt: FlxDateTime
+}
+
+"""
+A line to keep. Lines left out of the list are removed. The API key is write-only: empty keeps the saved one, &quot;__clear__&quot; removes it.
+"""
+input FlxChatLineInput {
+  """API key. Write-only."""
+  apiKey: String
+  """Evolution API address."""
+  baseUrl: String
+  """Remove this line."""
+  delete: Boolean
+  """Line id. Blank adds a new line."""
+  id: String
+  """Instance name."""
+  instance: String
+  """Name."""
+  label: String
+  """Make a new webhook key."""
+  rotateSecret: Boolean
+  """own, flxi:<id> or flxs:<id>."""
+  source: String
+}
+
+"""Result of a line check. The webhook address has its key hidden."""
+type FlxChatLineTest {
+  """Error. Empty when none."""
+  error: String!
+  """The server answered."""
+  ok: Boolean!
+  """Connection state."""
+  state: String!
+  """Messages on the server. -1 when unknown."""
+  stored: Int!
+  """Server version."""
+  version: String!
+  """The server sends to this site."""
+  webhookOk: Boolean!
+  """Address the server sends to, key hidden."""
+  webhookUrl: String!
 }
 
 """Card for a link in a message."""
@@ -695,6 +993,14 @@ type FlxChatMessageSendPayload {
   message: FlxChatMessage
 }
 
+"""Last problem copying a notification to the group."""
+type FlxChatMirrorError {
+  """When."""
+  at: FlxDateTime
+  """Message."""
+  error: String!
+}
+
 """Delivery of an outgoing message. Empty on the wire is null."""
 enum FlxChatMsgStatus {
   """"""
@@ -719,6 +1025,24 @@ type FlxChatOrigin {
   label: String!
   """Detail URL. Empty when none."""
   url: String!
+}
+
+"""A public post type the assistant may search."""
+type FlxChatPostType {
+  """Searched by default."""
+  autoSelected: Boolean!
+  """Label."""
+  label: String!
+  """Name."""
+  name: String!
+}
+
+"""An AI provider."""
+type FlxChatProvider {
+  """Id."""
+  id: String!
+  """Name."""
+  label: String!
 }
 
 """The line a message quotes."""
@@ -859,6 +1183,282 @@ type FlxChatReplyUsePayload {
   text: String!
 }
 
+"""Input for the flxChatReportAdd mutation."""
+input FlxChatReportAddInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+}
+
+"""The payload for the flxChatReportAdd mutation."""
+type FlxChatReportAddPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The new rule."""
+  id: String!
+  """Reports after the change."""
+  reports: FlxChatReports!
+}
+
+"""Who gets a report."""
+enum FlxChatReportAudience {
+  """Everyone who can receive reports."""
+  RECEIVE
+  """Selected people."""
+  USERS
+  """Those who can see the overall report."""
+  VIEW
+}
+
+"""What a report says."""
+enum FlxChatReportContent {
+  """Overall totals and per staff."""
+  GENERAL
+  """The person's own donations."""
+  OWN
+}
+
+"""A weekday."""
+type FlxChatReportDay {
+  """Name in the site language."""
+  label: String!
+  """1 Monday to 7 Sunday."""
+  value: Int!
+}
+
+"""Input for the flxChatReportDelete mutation."""
+input FlxChatReportDeleteInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Rule id."""
+  id: String!
+}
+
+"""The payload for the flxChatReportDelete mutation."""
+type FlxChatReportDeletePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Reports after the change."""
+  reports: FlxChatReports!
+}
+
+"""How often a report goes out."""
+enum FlxChatReportFreq {
+  """"""
+  DAILY
+  """"""
+  MONTHLY
+  """"""
+  WEEKLY
+}
+
+"""The editable fields of a report rule."""
+input FlxChatReportInput {
+  """Scheduled."""
+  active: Boolean
+  """Who gets it."""
+  audience: FlxChatReportAudience
+  """What it says."""
+  content: FlxChatReportContent
+  """How often."""
+  freq: FlxChatReportFreq
+  """Rule id."""
+  id: String!
+  """Day of month."""
+  monthday: Int
+  """Closing lines."""
+  motivation: String
+  """Period."""
+  period: FlxChatReportPeriod
+  """HH:MM."""
+  time: String
+  """Name."""
+  title: String
+  """Selected people."""
+  users: [Int!]
+  """Day of week."""
+  weekday: Int
+}
+
+"""Period a report covers."""
+enum FlxChatReportPeriod {
+  """This month."""
+  MONTH
+  """"""
+  TODAY
+  """Last 7 days."""
+  WEEK
+  """"""
+  YESTERDAY
+}
+
+"""A person a report can be sent to."""
+type FlxChatReportPerson {
+  """User id."""
+  databaseId: Int!
+  """A WhatsApp number is saved on the profile."""
+  hasNumber: Boolean!
+  """Name."""
+  name: String!
+}
+
+"""A scheduled WhatsApp report."""
+type FlxChatReportRule {
+  """Scheduled."""
+  active: Boolean!
+  """Who gets it."""
+  audience: FlxChatReportAudience!
+  """What it says."""
+  content: FlxChatReportContent!
+  """How often."""
+  freq: FlxChatReportFreq!
+  """Rule id."""
+  id: String!
+  """Day of the last complete send. Null when never."""
+  lastSent: FlxDateTime
+  """Day of month, 1 to 28."""
+  monthday: Int!
+  """Closing lines, one per line."""
+  motivation: String!
+  """Period covered."""
+  period: FlxChatReportPeriod!
+  """People with a number and permission."""
+  recipientCount: Int!
+  """Send time, HH:MM, site time zone."""
+  time: String!
+  """Name."""
+  title: String!
+  """Selected people when the audience is USERS."""
+  users: [Int!]!
+  """Day of week, 1 Monday to 7 Sunday."""
+  weekday: Int!
+}
+
+"""Input for the flxChatReportRun mutation."""
+input FlxChatReportRunInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+}
+
+"""The payload for the flxChatReportRun mutation."""
+type FlxChatReportRunPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The background request was accepted."""
+  started: Boolean!
+  """State after the request."""
+  status: FlxChatReportStatus!
+}
+
+"""Input for the flxChatReportSend mutation."""
+input FlxChatReportSendInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Rule id."""
+  id: String!
+  """Who gets it."""
+  mode: FlxChatReportSendMode!
+}
+
+"""Who a manual send goes to."""
+enum FlxChatReportSendMode {
+  """Every recipient, at most 25 per call."""
+  ALL
+  """Only the viewer."""
+  TEST
+}
+
+"""The payload for the flxChatReportSend mutation."""
+type FlxChatReportSendPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Messages sent. Null when the request was refused."""
+  sent: Int
+}
+
+"""Delivery state of scheduled reports. Reading it sends nothing."""
+type FlxChatReportStatus {
+  """A report is waiting to be sent."""
+  due: Boolean!
+  """Last problem reaching the background request. Empty when none."""
+  loopbackError: String!
+  """When that problem happened."""
+  loopbackErrorAt: FlxDateTime
+  """Next scheduled run. Null when none."""
+  nextAt: FlxDateTime
+  """Reports can be sent."""
+  on: Boolean!
+  """A send is running."""
+  running: Boolean!
+}
+
+"""The reports screen."""
+type FlxChatReports {
+  """Weekdays."""
+  days: [FlxChatReportDay!]!
+  """Flux Roles and Flux Donate are active, so reports can be sent."""
+  on: Boolean!
+  """People who can receive or view reports, at most 300."""
+  people: [FlxChatReportPerson!]!
+  """Rules."""
+  rules: [FlxChatReportRule!]!
+}
+
+"""Input for the flxChatReportsSave mutation."""
+input FlxChatReportsSaveInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Rules."""
+  rules: [FlxChatReportInput!]!
+}
+
+"""The payload for the flxChatReportsSave mutation."""
+type FlxChatReportsSavePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Reports after the save."""
+  reports: FlxChatReports!
+}
+
 """A block in the contact panel of one chat."""
 type FlxChatSection {
   """Id."""
@@ -879,6 +1479,496 @@ type FlxChatSectionItem {
   tone: String!
   """Link. Empty when none."""
   url: String!
+}
+
+"""
+Flux Chat settings. The webhook address and every API key are left out; see flxChatWebhookUrlReveal.
+"""
+type FlxChatSettings {
+  """Accent color (hex)."""
+  accent: String!
+  """Prefix agent replies with the agent name."""
+  agentSignature: Boolean!
+  """Agents can issue certificates."""
+  agentsCertificates: Boolean!
+  """Agents can record donations."""
+  agentsDonations: Boolean!
+  """Suggest a reply for each incoming message."""
+  aiAutoSuggest: Boolean!
+  """Extra instructions for suggestions."""
+  aiInstructions: String!
+  """Model for suggestions."""
+  aiModel: String!
+  """Model for voice notes."""
+  aiModelAudio: String!
+  """Model for the assistant."""
+  aiModelBot: String!
+  """Model for images."""
+  aiModelVision: String!
+  """AI provider."""
+  aiProvider: String!
+  """Temperature, 0 to 1."""
+  aiTemperature: Float!
+  """Open days, 1 (Monday) to 7 (Sunday)."""
+  awayDays: [Int!]!
+  """Send an away message outside open hours."""
+  awayEnabled: Boolean!
+  """Closing time, HH:MM."""
+  awayEnd: String!
+  """Opening time, HH:MM."""
+  awayStart: String!
+  """Away message."""
+  awayText: String!
+  """Hours before the away message is sent to the same chat again."""
+  awayThrottle: Int!
+  """Bank transfer description."""
+  bankDesc: String!
+  """Bank account holder."""
+  bankHolder: String!
+  """Bank IBAN."""
+  bankIban: String!
+  """Bank transfer text."""
+  bankText: String!
+  """Tell the beneficiary about a certificate."""
+  benefCertNotify: Boolean!
+  """Beneficiary certificate message."""
+  benefCertText: String!
+  """Message after a payment."""
+  botAfterPayment: String!
+  """Message when a donation is cancelled."""
+  botCancelText: String!
+  """Hours of history the assistant reads."""
+  botContextHours: Int!
+  """Assistant replies per chat per day."""
+  botDailyLimit: Int!
+  """The assistant answers chats."""
+  botEnabled: Boolean!
+  """Message when the assistant cannot answer."""
+  botFallbackText: String!
+  """Seconds before the fallback message."""
+  botFallbackWait: Int!
+  """Message when a person takes over."""
+  botHandoffText: String!
+  """Words that hand the chat to a person."""
+  botHandoffWords: String!
+  """Extra assistant instructions."""
+  botInstructions: String!
+  """Message when the daily limit is reached."""
+  botLimitText: String!
+  """Numbers told when a person is needed."""
+  botNotifyNumbers: String!
+  """Message when a contact opts out."""
+  botOptoutText: String!
+  """Hours the assistant stays quiet after an agent replies."""
+  botPauseHours: Int!
+  """Quick donation amounts."""
+  botPresets: String!
+  """Text under the price list."""
+  botPriceFooter: String!
+  """The assistant reacts to messages."""
+  botReactions: Boolean!
+  """Read receipts with AI."""
+  botReceiptAi: Boolean!
+  """Which chats the assistant answers: all, away or unassigned."""
+  botScope: String!
+  """Addresses the assistant must not share."""
+  botSiteExclude: String!
+  """The assistant searches the site."""
+  botSiteSearch: Boolean!
+  """Post types the assistant may search."""
+  botSiteTypes: [String!]!
+  """Test numbers."""
+  botTestNumbers: String!
+  """The assistant answers only the test numbers."""
+  botTestOnly: Boolean!
+  """Seconds an assistant turn may take."""
+  botTimeBudget: Int!
+  """Donation types the assistant offers. Empty is all open types."""
+  botTypes: [Int!]!
+  """The assistant reads voice notes."""
+  botVoice: Boolean!
+  """Longest voice note in seconds."""
+  botVoiceMax: Int!
+  """The assistant can show widgets."""
+  botWidgets: Boolean!
+  """Name shown in the panel."""
+  brandName: String!
+  """Show the quick action chips."""
+  chipsBar: Boolean!
+  """WhatsApp lines. No keys."""
+  connections: [FlxChatLine!]!
+  """Installed packages, defaults and choices."""
+  context: FlxChatSettingsContext!
+  """Delete all chat data when the plugin is removed."""
+  deleteData: Boolean!
+  """Hours a message can be deleted for everyone."""
+  deleteEveryoneHours: Int!
+  """Donation page address."""
+  donateUrl: String!
+  """Verify the e-mail before records are shown."""
+  emailVerify: Boolean!
+  """Chat labels."""
+  labels: [FlxChatLabelRule!]!
+  """Hours of silence before a chat is summarized."""
+  memAfterHours: Int!
+  """Summarize chats into contact memory."""
+  memEnabled: Boolean!
+  """Night window start, HH:MM."""
+  memWindowFrom: String!
+  """Night window end, HH:MM."""
+  memWindowTo: String!
+  """Copy notifications to the group."""
+  mirrorEnabled: Boolean!
+  """WhatsApp group that gets a copy of notifications."""
+  mirrorGroup: String!
+  """Message for a paid donation."""
+  msgDonationDone: String!
+  """Message for a donation awaiting payment."""
+  msgDonationPending: String!
+  """Message sent with a receipt."""
+  msgReceipt: String!
+  """Send notifications to the group."""
+  notifyToGroup: Boolean!
+  """Seconds between chat refreshes, 3 to 60."""
+  pollInterval: Int!
+  """Tell staff about referral certificates."""
+  refCertNotify: Boolean!
+  """Referral certificate message."""
+  refCertText: String!
+  """Tell staff about their referral donations."""
+  refNotify: Boolean!
+  """Send chat reminders."""
+  remEnabled: Boolean!
+  """Most reminders per run."""
+  remMax: Int!
+  """Reminder time, HH:MM."""
+  remTime: String!
+  """Agents see only chats assigned to them or to nobody."""
+  restrictAgents: Boolean!
+  """Send read receipts when a chat is opened."""
+  sendRead: Boolean!
+  """Show WhatsApp group chats."""
+  showGroups: Boolean!
+  """Most certificates staff may issue at once."""
+  staffCertMax: Int!
+  """Message to a staff donor."""
+  staffDonorText: String!
+  """Staff mode."""
+  staffOn: Boolean!
+  """Open the chat page in the React screen."""
+  uiFlux: Boolean!
+  """Message after too many wrong codes."""
+  verifyFailText: String!
+  """Wrong codes allowed."""
+  verifyMaxFails: Int!
+  """Verification message."""
+  verifyMsg: String!
+  """Channel for phone codes: auto, whatsapp or sms."""
+  verifyPhoneChannel: String!
+  """Minutes a verification code is valid."""
+  verifyTtl: Int!
+  """Send a welcome message to new chats."""
+  welcomeEnabled: Boolean!
+  """Welcome message."""
+  welcomeText: String!
+  """Most background AI jobs at once."""
+  workersMax: Int!
+  """Background jobs kept free for live replies."""
+  workersReserved: Int!
+}
+
+"""
+What the settings screen needs to explain itself: what is installed, defaults and choices. Nothing secret.
+"""
+type FlxChatSettingsContext {
+  """People who can be assigned a chat."""
+  agents: [FlxChatAgent!]!
+  """Flux AI is active."""
+  aiHub: Boolean!
+  """AI providers that are ready."""
+  aiProviders: [FlxChatProvider!]!
+  """The assistant model and key are ready."""
+  aiReady: Boolean!
+  """Flux AI settings page."""
+  aiSettingsUrl: String!
+  """Why the assistant cannot reply. Empty when fine."""
+  aiTypesProblem: String!
+  """AI use this month. Null when none."""
+  aiUsage: FlxChatAiUsage
+  """Assistant page."""
+  assistantUrl: String!
+  """Chats page."""
+  chatsUrl: String!
+  """Built-in value."""
+  defaultBankHolder: String!
+  """Built-in value."""
+  defaultBankIban: String!
+  """Built-in text."""
+  defaultBankText: String!
+  """Built-in text."""
+  defaultBenefCertText: String!
+  """Built-in text."""
+  defaultCancelText: String!
+  """Built-in value."""
+  defaultDonateUrl: String!
+  """Built-in text."""
+  defaultDonationDone: String!
+  """Built-in text."""
+  defaultDonationPending: String!
+  """Built-in words."""
+  defaultHandoffWords: String!
+  """Built-in text."""
+  defaultReceipt: String!
+  """Built-in text."""
+  defaultRefCertText: String!
+  """Source for a new line."""
+  defaultSource: FlxChatChoice!
+  """Built-in text."""
+  defaultVerifyFailText: String!
+  """Built-in text."""
+  defaultVerifyMsg: String!
+  """Open donation types."""
+  donationTypes: [FlxChatDonationType!]!
+  """Flux Donate is active."""
+  flxbOn: Boolean!
+  """Flux Mail connections page."""
+  flxiConnectionsUrl: String!
+  """Flux Mail provides WhatsApp lines."""
+  flxiOn: Boolean!
+  """Flux Certificates is active."""
+  flxsOn: Boolean!
+  """It is open hours now."""
+  isOpenHours: Boolean!
+  """Last copy problem. Null when none."""
+  mirrorError: FlxChatMirrorError
+  """New user page."""
+  newUserUrl: String!
+  """Public post types."""
+  postTypes: [FlxChatPostType!]!
+  """Price list as the assistant sends it."""
+  pricePreview: String!
+  """Flux Roles is active."""
+  rolesOn: Boolean!
+  """Site name."""
+  siteName: String!
+  """Source choices for a new line."""
+  sourceChoices: [FlxChatChoice!]!
+  """Site time zone."""
+  timezone: String!
+  """Flux AI can render widgets."""
+  widgetsPluginOk: Boolean!
+  """The widget renderer works."""
+  widgetsRendererOk: Boolean!
+}
+
+"""Input for the flxChatSettingsSave mutation."""
+input FlxChatSettingsSaveInput {
+  """Accent color (hex)."""
+  accent: String
+  """Prefix agent replies with the agent name."""
+  agentSignature: Boolean
+  """Agents can issue certificates."""
+  agentsCertificates: Boolean
+  """Agents can record donations."""
+  agentsDonations: Boolean
+  """Suggest a reply for each incoming message."""
+  aiAutoSuggest: Boolean
+  """Extra instructions for suggestions."""
+  aiInstructions: String
+  """Model for suggestions."""
+  aiModel: String
+  """Model for voice notes."""
+  aiModelAudio: String
+  """Model for the assistant."""
+  aiModelBot: String
+  """Model for images."""
+  aiModelVision: String
+  """AI provider."""
+  aiProvider: String
+  """Temperature, 0 to 1."""
+  aiTemperature: Float
+  """Open days, 1 (Monday) to 7 (Sunday)."""
+  awayDays: [Int!]
+  """Send an away message outside open hours."""
+  awayEnabled: Boolean
+  """Closing time, HH:MM."""
+  awayEnd: String
+  """Opening time, HH:MM."""
+  awayStart: String
+  """Away message."""
+  awayText: String
+  """Hours before the away message is sent to the same chat again."""
+  awayThrottle: Int
+  """Bank transfer description."""
+  bankDesc: String
+  """Bank account holder."""
+  bankHolder: String
+  """Bank IBAN."""
+  bankIban: String
+  """Bank transfer text."""
+  bankText: String
+  """Tell the beneficiary about a certificate."""
+  benefCertNotify: Boolean
+  """Beneficiary certificate message."""
+  benefCertText: String
+  """Message after a payment."""
+  botAfterPayment: String
+  """Message when a donation is cancelled."""
+  botCancelText: String
+  """Hours of history the assistant reads."""
+  botContextHours: Int
+  """Assistant replies per chat per day."""
+  botDailyLimit: Int
+  """The assistant answers chats."""
+  botEnabled: Boolean
+  """Message when the assistant cannot answer."""
+  botFallbackText: String
+  """Seconds before the fallback message."""
+  botFallbackWait: Int
+  """Message when a person takes over."""
+  botHandoffText: String
+  """Words that hand the chat to a person."""
+  botHandoffWords: String
+  """Extra assistant instructions."""
+  botInstructions: String
+  """Message when the daily limit is reached."""
+  botLimitText: String
+  """Numbers told when a person is needed."""
+  botNotifyNumbers: String
+  """Message when a contact opts out."""
+  botOptoutText: String
+  """Hours the assistant stays quiet after an agent replies."""
+  botPauseHours: Int
+  """Quick donation amounts."""
+  botPresets: String
+  """Text under the price list."""
+  botPriceFooter: String
+  """The assistant reacts to messages."""
+  botReactions: Boolean
+  """Read receipts with AI."""
+  botReceiptAi: Boolean
+  """Which chats the assistant answers: all, away or unassigned."""
+  botScope: String
+  """Addresses the assistant must not share."""
+  botSiteExclude: String
+  """The assistant searches the site."""
+  botSiteSearch: Boolean
+  """Post types the assistant may search."""
+  botSiteTypes: [String!]
+  """Test numbers."""
+  botTestNumbers: String
+  """The assistant answers only the test numbers."""
+  botTestOnly: Boolean
+  """Seconds an assistant turn may take."""
+  botTimeBudget: Int
+  """Donation types the assistant offers. Empty is all open types."""
+  botTypes: [Int!]
+  """The assistant reads voice notes."""
+  botVoice: Boolean
+  """Longest voice note in seconds."""
+  botVoiceMax: Int
+  """The assistant can show widgets."""
+  botWidgets: Boolean
+  """Name shown in the panel."""
+  brandName: String
+  """Show the quick action chips."""
+  chipsBar: Boolean
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """The lines to keep. Replaces the list."""
+  connections: [FlxChatLineInput!]
+  """Delete all chat data when the plugin is removed."""
+  deleteData: Boolean
+  """Hours a message can be deleted for everyone."""
+  deleteEveryoneHours: Int
+  """Donation page address."""
+  donateUrl: String
+  """Verify the e-mail before records are shown."""
+  emailVerify: Boolean
+  """The labels to keep. Replaces the list."""
+  labels: [FlxChatLabelInput!]
+  """Hours of silence before a chat is summarized."""
+  memAfterHours: Int
+  """Summarize chats into contact memory."""
+  memEnabled: Boolean
+  """Night window start, HH:MM."""
+  memWindowFrom: String
+  """Night window end, HH:MM."""
+  memWindowTo: String
+  """Copy notifications to the group."""
+  mirrorEnabled: Boolean
+  """WhatsApp group that gets a copy of notifications."""
+  mirrorGroup: String
+  """Message for a paid donation."""
+  msgDonationDone: String
+  """Message for a donation awaiting payment."""
+  msgDonationPending: String
+  """Message sent with a receipt."""
+  msgReceipt: String
+  """Send notifications to the group."""
+  notifyToGroup: Boolean
+  """Seconds between chat refreshes, 3 to 60."""
+  pollInterval: Int
+  """Tell staff about referral certificates."""
+  refCertNotify: Boolean
+  """Referral certificate message."""
+  refCertText: String
+  """Tell staff about their referral donations."""
+  refNotify: Boolean
+  """Send chat reminders."""
+  remEnabled: Boolean
+  """Most reminders per run."""
+  remMax: Int
+  """Reminder time, HH:MM."""
+  remTime: String
+  """Agents see only chats assigned to them or to nobody."""
+  restrictAgents: Boolean
+  """Send read receipts when a chat is opened."""
+  sendRead: Boolean
+  """Show WhatsApp group chats."""
+  showGroups: Boolean
+  """Most certificates staff may issue at once."""
+  staffCertMax: Int
+  """Message to a staff donor."""
+  staffDonorText: String
+  """Staff mode."""
+  staffOn: Boolean
+  """Open the chat page in the React screen."""
+  uiFlux: Boolean
+  """Message after too many wrong codes."""
+  verifyFailText: String
+  """Wrong codes allowed."""
+  verifyMaxFails: Int
+  """Verification message."""
+  verifyMsg: String
+  """Channel for phone codes: auto, whatsapp or sms."""
+  verifyPhoneChannel: String
+  """Minutes a verification code is valid."""
+  verifyTtl: Int
+  """Send a welcome message to new chats."""
+  welcomeEnabled: Boolean
+  """Welcome message."""
+  welcomeText: String
+  """Most background AI jobs at once."""
+  workersMax: Int
+  """Background jobs kept free for live replies."""
+  workersReserved: Int
+}
+
+"""The payload for the flxChatSettingsSave mutation."""
+type FlxChatSettingsSavePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Settings after the save."""
+  settings: FlxChatSettings!
 }
 
 """Open or closed."""
@@ -915,6 +2005,38 @@ type FlxChatSuggestPayload {
   errors: [FlxUserError!]!
   """Suggestion. Null on failure."""
   text: String
+}
+
+"""One line of the system check."""
+type FlxChatSystemCheck {
+  """Fix link text."""
+  actionLabel: String!
+  """Settings tab that fixes it. Empty when none."""
+  actionTab: String!
+  """Where to fix it. Empty when none."""
+  actionUrl: String!
+  """Group."""
+  group: String!
+  """Id."""
+  id: String!
+  """What is checked."""
+  label: String!
+  """Result."""
+  message: String!
+  """ok, warning, error or info."""
+  status: String!
+}
+
+"""System check of Flux Chat."""
+type FlxChatSystemChecks {
+  """Errors."""
+  errorCount: Int!
+  """Lines."""
+  items: [FlxChatSystemCheck!]!
+  """Passed."""
+  okCount: Int!
+  """Warnings."""
+  warningCount: Int!
 }
 
 """Input for the flxChatTyping mutation."""
@@ -1033,7 +2155,40 @@ type FlxChatUsageDay {
   out: Int!
 }
 
+"""Input for the flxChatWebhookUrlReveal mutation."""
+input FlxChatWebhookUrlRevealInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Line id."""
+  id: String!
+  """Make a new key first. The old address stops working."""
+  regenerate: Boolean
+}
+
+"""The payload for the flxChatWebhookUrlReveal mutation."""
+type FlxChatWebhookUrlRevealPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Webhook address."""
+  url: String!
+}
+
 extend type RootMutation {
+  """
+  Send one short test message to the configured model. It spends a few tokens.
+  """
+  flxChatAiTest(
+    """Input for the flxChatAiTest mutation"""
+    input: FlxChatAiTestInput!
+  ): FlxChatAiTestPayload
   """Turn the assistant on or off for a visible chat."""
   flxChatBotSet(
     """Input for the flxChatBotSet mutation"""
@@ -1044,6 +2199,26 @@ extend type RootMutation {
     """Input for the flxChatClear mutation"""
     input: FlxChatClearInput!
   ): FlxChatClearPayload
+  """Bring in the latest chats and their recent messages from the server."""
+  flxChatConnectionImport(
+    """Input for the flxChatConnectionImport mutation"""
+    input: FlxChatConnectionImportInput!
+  ): FlxChatConnectionImportPayload
+  """Ask for a pairing QR code. A line that is already open says so."""
+  flxChatConnectionQr(
+    """Input for the flxChatConnectionQr mutation"""
+    input: FlxChatConnectionQrInput!
+  ): FlxChatConnectionQrPayload
+  """Ask the server for the line state, its webhook and message count."""
+  flxChatConnectionTest(
+    """Input for the flxChatConnectionTest mutation"""
+    input: FlxChatConnectionTestInput!
+  ): FlxChatConnectionTestPayload
+  """Point the server&#039;s webhook at this site."""
+  flxChatConnectionWebhook(
+    """Input for the flxChatConnectionWebhook mutation"""
+    input: FlxChatConnectionWebhookInput!
+  ): FlxChatConnectionWebhookPayload
   """Open a chat for a number."""
   flxChatCreate(
     """Input for the flxChatCreate mutation"""
@@ -1112,6 +2287,44 @@ extend type RootMutation {
     """Input for the flxChatReplyUse mutation"""
     input: FlxChatReplyUseInput!
   ): FlxChatReplyUsePayload
+  """Add an inactive report rule."""
+  flxChatReportAdd(
+    """Input for the flxChatReportAdd mutation"""
+    input: FlxChatReportAddInput!
+  ): FlxChatReportAddPayload
+  """Delete a report rule."""
+  flxChatReportDelete(
+    """Input for the flxChatReportDelete mutation"""
+    input: FlxChatReportDeleteInput!
+  ): FlxChatReportDeletePayload
+  """
+  Run the report schedule now on the background request (the same one chat jobs use). Reports that are not due are not sent.
+  """
+  flxChatReportRun(
+    """Input for the flxChatReportRun mutation"""
+    input: FlxChatReportRunInput!
+  ): FlxChatReportRunPayload
+  """
+  Send a report now: a test to the viewer, or to every recipient (at most 25 per call).
+  """
+  flxChatReportSend(
+    """Input for the flxChatReportSend mutation"""
+    input: FlxChatReportSendInput!
+  ): FlxChatReportSendPayload
+  """
+  Save the report rules that are sent. Rules not in the list keep their value.
+  """
+  flxChatReportsSave(
+    """Input for the flxChatReportsSave mutation"""
+    input: FlxChatReportsSaveInput!
+  ): FlxChatReportsSavePayload
+  """
+  Save the fields that are sent; the rest keep their value. Values are limited and cleaned exactly as the classic settings page does.
+  """
+  flxChatSettingsSave(
+    """Input for the flxChatSettingsSave mutation"""
+    input: FlxChatSettingsSaveInput!
+  ): FlxChatSettingsSavePayload
   """One suggested reply for a visible chat. Not a stream."""
   flxChatSuggest(
     """Input for the flxChatSuggest mutation"""
@@ -1129,6 +2342,13 @@ extend type RootMutation {
     """Input for the flxChatUpdate mutation"""
     input: FlxChatUpdateInput!
   ): FlxChatUpdatePayload
+  """
+  The address Evolution API must send to. It carries the line&#039;s secret key, so only a manager gets it and it is never cached or listed with the settings.
+  """
+  flxChatWebhookUrlReveal(
+    """Input for the flxChatWebhookUrlReveal mutation"""
+    input: FlxChatWebhookUrlRevealInput!
+  ): FlxChatWebhookUrlRevealPayload
 }
 
 extend type RootQuery {
@@ -1137,6 +2357,21 @@ extend type RootQuery {
     """Global id or chat number."""
     id: ID!
   ): FlxChat
+  """
+  Models of the Flux AI catalog, matching search, at most 50 per call. Models in ids are always included.
+  """
+  flxChatAiModels(
+    """Page size, at most 50."""
+    first: Int
+    """Ask the providers instead of the cache."""
+    fresh: Boolean
+    """Models to include whatever the search says (the selected ones)."""
+    ids: [String!]
+    """Only this provider."""
+    provider: String
+    """Text in the id or name."""
+    search: String
+  ): FlxChatAiModels!
   """Look up a number. Does not reveal a chat the viewer cannot see."""
   flxChatCheckNumber(
     """Connection id."""
@@ -1144,6 +2379,13 @@ extend type RootQuery {
     """Number."""
     phone: String!
   ): FlxChatCheck!
+  """
+  WhatsApp groups of the notification line. refresh asks the server again.
+  """
+  flxChatGroups(
+    """Ask the server instead of the cache."""
+    refresh: Boolean
+  ): [FlxChatGroup!]!
   """Inbox bootstrap. No secrets."""
   flxChatInbox: FlxChatInbox!
   """Card for a URL. Null when it cannot be read."""
@@ -1162,6 +2404,21 @@ extend type RootQuery {
   ): FlxChatMessagePage!
   """Quick replies."""
   flxChatReplies: [FlxChatReply!]!
+  """The text of a report as the viewer would get it. Sends nothing."""
+  flxChatReportPreview(
+    """Rule id."""
+    id: String!
+  ): String!
+  """
+  Whether a report is due, running or waiting for the background request. Sends nothing.
+  """
+  flxChatReportStatus: FlxChatReportStatus!
+  """Report rules and the people they can reach."""
+  flxChatReports: FlxChatReports!
+  """Settings. No API key and no webhook address."""
+  flxChatSettings: FlxChatSettings!
+  """The system check table. Read only."""
+  flxChatSystemChecks: FlxChatSystemChecks!
   """
   Changes since a revision. Poll at 10 seconds or slower, and stop while the tab is hidden.
   """

@@ -625,16 +625,7 @@ add_action(
 				'methods'             => 'GET',
 				'permission_callback' => $mng,
 				'callback'            => function ( WP_REST_Request $req ) {
-					$m = flxc_ai_models( (bool) $req->get_param( 'fresh' ) );
-					if ( is_wp_error( $m ) ) {
-						$m->add_data( array( 'status' => 502 ) );
-						return $m;
-					}
-					$prov = array();
-					foreach ( flxc_ai_provider_list() as $id => $label ) {
-						$prov[] = array( 'id' => $id, 'label' => $label );
-					}
-					return array( 'models' => $m, 'providers' => $prov );
+					return FLXC_Settings_Service::ai_models( (bool) $req->get_param( 'fresh' ) );
 				},
 			)
 		);
@@ -645,22 +636,7 @@ add_action(
 				'methods'             => 'POST',
 				'permission_callback' => $mng,
 				'callback'            => function () {
-					$t = microtime( true );
-					$r = flxc_ai_chat(
-						array(
-							array( 'role' => 'system', 'content' => 'Kısa cevap ver.' ),
-							array( 'role' => 'user', 'content' => 'Merhaba! Tek cümleyle kendini tanıt.' ),
-						),
-						array( 'max_tokens' => 60, 'timeout' => 30 )
-					);
-					if ( is_wp_error( $r ) ) {
-						$r->add_data( array( 'status' => 400 ) );
-						return $r;
-					}
-					return array(
-						'text' => flxc_ai_clean_text( (string) ( $r['content'] ?? '' ) ),
-						'ms'   => (int) ( ( microtime( true ) - $t ) * 1000 ),
-					);
+					return FLXC_Settings_Service::ai_test();
 				},
 			)
 		);

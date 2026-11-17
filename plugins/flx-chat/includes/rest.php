@@ -475,66 +475,21 @@ function flxc_rest_use_reply( WP_REST_Request $req ) {
 /* ---------- Bağlantı yönetimi (ayarlar sayfası) ---------- */
 
 function flxc_rest_conn_or_error( $id ) {
-	$c = flxc_get_connection( sanitize_key( $id ) );
-	return $c ? $c : new WP_Error( 'flxc_conn', __( 'Connection not found. Save the settings first.', 'flx-chat' ), array( 'status' => 404 ) );
+	return FLXC_Settings_Service::conn_or_error( FLXC_Val::raw_str( $id ) );
 }
 
 function flxc_rest_conn_test( WP_REST_Request $req ) {
-	$c = flxc_rest_conn_or_error( $req['conn'] );
-	if ( is_wp_error( $c ) ) {
-		return $c;
-	}
-	$st = flxc_evo_connection_state( $c['id'] );
-	if ( $st['state'] ) {
-		flxc_set_connection_state( $c['id'], $st['state'] );
-	}
-	$hook = flxc_evo_find_webhook( $c['id'] );
-	$url  = (string) ( $hook['json']['url'] ?? ( $hook['json']['webhook']['url'] ?? '' ) );
-	$count = $st['ok'] ? flxc_evo_message_count( $c['id'] ) : null;
-	return array(
-		'stored'      => is_wp_error( $count ) || null === $count ? -1 : (int) $count,
-		'ok'          => $st['ok'],
-		'state'       => $st['state'],
-		'error'       => $st['error'],
-		'webhook_ok'  => $url && 0 === strpos( $url, strtok( flxc_webhook_url( $c ), '?' ) ),
-		'webhook_url' => $url ? preg_replace( '/([?&]t=)[^&]+/', '$1•••', $url ) : '',
-		'version'     => $st['ok'] ? flxc_evo_version( $c['id'], true ) : '',
-	);
+	return FLXC_Settings_Service::connection_test( FLXC_Val::raw_str( $req['conn'] ) );
 }
 
 function flxc_rest_conn_webhook( WP_REST_Request $req ) {
-	$c = flxc_rest_conn_or_error( $req['conn'] );
-	if ( is_wp_error( $c ) ) {
-		return $c;
-	}
-	$r = flxc_evo_set_webhook( $c['id'] );
-	return array( 'ok' => $r['ok'], 'error' => $r['error'] );
+	return FLXC_Settings_Service::connection_webhook( FLXC_Val::raw_str( $req['conn'] ) );
 }
 
 function flxc_rest_conn_qr( WP_REST_Request $req ) {
-	$c = flxc_rest_conn_or_error( $req['conn'] );
-	if ( is_wp_error( $c ) ) {
-		return $c;
-	}
-	$st = flxc_evo_connection_state( $c['id'] );
-	if ( 'open' === $st['state'] ) {
-		flxc_set_connection_state( $c['id'], 'open' );
-		return array( 'ok' => true, 'state' => 'open' );
-	}
-	return flxc_evo_connect( $c['id'] );
+	return FLXC_Settings_Service::connection_qr( FLXC_Val::raw_str( $req['conn'] ) );
 }
 
 function flxc_rest_conn_import( WP_REST_Request $req ) {
-	$c = flxc_rest_conn_or_error( $req['conn'] );
-	if ( is_wp_error( $c ) ) {
-		return $c;
-	}
-	if ( function_exists( 'set_time_limit' ) ) {
-		@set_time_limit( 300 ); // phpcs:ignore
-	}
-	$r = flxc_import_history( $c['id'], min( 200, max( 1, (int) ( $req->get_param( 'chats' ) ? $req->get_param( 'chats' ) : 30 ) ) ), 30 );
-	if ( is_wp_error( $r ) ) {
-		return array( 'ok' => false, 'error' => $r->get_error_message() );
-	}
-	return array( 'ok' => true ) + $r;
+	return FLXC_Settings_Service::connection_import( FLXC_Val::raw_str( $req['conn'] ), FLXC_Val::raw_int( $req->get_param( 'chats' ) ? $req->get_param( 'chats' ) : 30 ) );
 }

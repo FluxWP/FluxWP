@@ -1,0 +1,3 @@
+query FlxChatGroups($refresh: Boolean) {
+  flxChatGroups(refresh: $refresh) { id name }
+}

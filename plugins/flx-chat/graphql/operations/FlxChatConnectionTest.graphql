@@ -1,0 +1,6 @@
+mutation FlxChatConnectionTest($input: FlxChatConnectionTestInput!) {
+  flxChatConnectionTest(input: $input) {
+    result { ok state error stored webhookOk webhookUrl version }
+    errors { code message field }
+  }
+}

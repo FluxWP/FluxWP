@@ -1,0 +1,6 @@
+mutation FlxChatReportsSave($input: FlxChatReportsSaveInput!) {
+  flxChatReportsSave(input: $input) {
+    reports { ...FlxChatReportsFields }
+    errors { code message field }
+  }
+}

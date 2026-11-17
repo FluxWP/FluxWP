@@ -1,0 +1,10 @@
+query FlxChatReportStatus {
+  flxChatReportStatus {
+    on
+    due
+    running
+    nextAt { iso timestamp label relative }
+    loopbackError
+    loopbackErrorAt { iso timestamp label relative }
+  }
+}
