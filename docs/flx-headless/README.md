@@ -30,9 +30,18 @@ independent; the examples are at the end.
    - **Languages**: leave this empty to serve every language, or pick some to run one front end per
      language or domain.
    - **Webhook address**: for example `https://www.example.com/api/revalidate`.
-   - **Secret**: press *Generate*, then copy it into the front end as `FLUX_REVALIDATE_SECRET`. It is
-     stored encrypted and never shown again.
+   - **Secret**: press *Generate*. It is stored encrypted and never shown again.
    - **Preview path** (optional): for example `/api/preview`.
+   When you save, the panel shows the **connection** of the front end, once. The front end needs only these
+   two lines:
+
+   ```sh
+   FLUX_WP_URL=https://cms.example.com
+   FLUX_KEY=<front end id>.<secret>
+   ```
+
+   The key is the front end id and its secret. The GraphQL endpoint is `FLUX_WP_URL` + `/graphql`; the panel
+   adds `FLUX_GRAPHQL_URL` when yours is elsewhere. To get a new key, generate a new secret and save.
 4. Press **Test webhook**. The log at the bottom shows the HTTP status your front end answered.
 5. Once the front end is live, set **WordPress pages** to either of these:
    - *Show, but hide from search*: noindex plus a canonical link to the front end.
@@ -202,9 +211,15 @@ sig = HMAC-SHA256(secret, "preview|<id>|<exp>")   # valid for 10 minutes
 ```
 
 The front end checks `sig` and `exp`, turns on its draft mode, and then fetches the page with
-`flxRoute(path: "/", previewId: 42)`. That fetch must be authenticated as a user who can edit the
-post. Create an **application password** for an editor in *Users › Profile* and send
-`Authorization: Basic base64(user:app-password)` from the server only. Preview answers are never
+`flxRoute(path: "/", previewId: 42, frontend: "<id>")`. The server signs that fetch with the secret:
+
+```
+X-Flx-Preview: t=<unix time>,v1=hex(HMAC-SHA256(secret, "<t>.preview.42"))   # at most 5 minutes old
+```
+
+The signature opens only the draft it names, for that one request; no WordPress user is involved.
+Instead you can send `Authorization: Basic base64(user:app-password)` with an **application password**
+of an editor (*Users › Profile*). Either way, send it from the server only. Preview answers are never
 cached and are always `noindex`.
 
 ---
@@ -330,4 +345,4 @@ The webhook endpoint then calls your CDN's purge-by-tag API with `tags`.
 | Webhook 401 in the log | The front end's secret differs. Generate a new one and copy it. Check that the raw body is used, not re-serialised JSON. |
 | Webhook `0`, "could not connect" | WordPress cannot reach the front end. A firewall or `localhost` from a remote server is a common cause. |
 | Canonical points at WordPress | Pass `frontend`, or make the front end the default. |
-| Draft shows 404 | The preview fetch is not authenticated (application password), or the user cannot edit the post. |
+| Draft shows 404 | The preview fetch has no valid `X-Flx-Preview` signature (wrong key, clock more than 5 minutes off) or application password. |

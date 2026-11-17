@@ -1,0 +1,14 @@
+mutation FlxCrmGatheringSend($input: FlxGatheringMessageSendInput!) {
+  flxGatheringMessageSend(input: $input) {
+    send {
+      ...FlxCrmGatheringSend
+    }
+    skipped {
+      channel
+      reason
+    }
+    errors {
+      ...FlxCrmUserError
+    }
+  }
+}

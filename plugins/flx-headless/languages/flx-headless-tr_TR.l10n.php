@@ -189,6 +189,7 @@ return array(
   'Front ends.' => 'Ön yüzler.',
   'What WordPress does with its own pages.' => 'WordPress\'in kendi sayfalarıyla ne yaptığı.',
   'Every origin allowed to call /graphql from a browser: this site, the Flux GraphQL list and the front ends.' => 'Tarayıcıdan /graphql çağırabilen tüm origin\'ler: bu site, Flux GraphQL listesi ve ön yüzler.',
+  'Address of this WordPress, for the front end (FLUX_WP_URL).' => 'Bu WordPress\'in adresi, ön yüz için (FLUX_WP_URL).',
   'GraphQL endpoint to give the front end.' => 'Ön yüze verilecek GraphQL adresi.',
   'Flux GraphQL settings (CORS list, query mode, cache).' => 'Flux GraphQL ayarları (CORS listesi, sorgu modu, önbellek).',
   'Only registered (persisted) queries are allowed; front ends send flxRoute / flxSite by id.' => 'Yalnız kayıtlı (persisted) sorgulara izin verilir; ön yüzler flxRoute / flxSite\'ı kimlikle gönderir.',

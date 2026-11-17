@@ -1,0 +1,11 @@
+mutation FlxCrmGatheringPage($input: FlxGatheringEnsurePageInput!) {
+  flxGatheringEnsurePage(input: $input) {
+    postId
+    gathering {
+      ...FlxCrmGatheringCard
+    }
+    errors {
+      ...FlxCrmUserError
+    }
+  }
+}

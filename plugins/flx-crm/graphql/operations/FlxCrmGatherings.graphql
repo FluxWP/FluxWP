@@ -1,0 +1,19 @@
+query FlxCrmGatherings($status: FlxGatheringStatus, $first: Int = 24, $after: String) {
+  flxGatherings(status: $status) {
+    openCount
+    closedCount
+    hasSite
+    siteHtml
+    mailReady
+    events(status: $status, first: $first, after: $after) {
+      totalCount
+      nodes {
+        ...FlxCrmGatheringCard
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+    }
+  }
+}

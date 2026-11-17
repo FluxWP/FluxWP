@@ -19,7 +19,7 @@ bun tools/graphql/durum.ts --istisnalar
 | Ödeme webhook ve 3DS dönüşleri (iyzico, EsnekPOS, WC gateway'leri) | flx-donate, flx-commerce | Banka belirli URL'e form POST atar | Ödeme durumu sorgusu GraphQL'de |
 | OAuth: `.well-known/*`, `/oauth/token`, `/authorize` | flx-app, flx-ai | Standart protokol | — |
 | MCP sunucusu `/mcp` (JSON-RPC) | flx-ai | MCP protokolü | Araçlar aynı servisleri çağırır |
-| AI sohbet akışı (SSE) | flx-ai, flx-chat | WPGraphQL'de subscription/stream yok | Başlatma ve geçmiş GraphQL'de |
+| AI sohbet akışı (SSE) | flx-ai, flx-chat | WPGraphQL'de subscription/stream yok | Geçmiş işlemleri GraphQL'de; tur protokolü (`/chats/{id}/send|step|decide|stop|rewind`, NDJSON akış) REST'te kalır ve yüzen sohbet, FluxApp, mobil ve React Sohbet ekranı tarafından ortak kullanılır |
 | Dosya yükleme `POST /wp-json/flx/v1/upload` | flx-graphql | Multipart; tek ortak uç | Mutation `uploadId` alır |
 | WooCommerce Store API (sepet / checkout) | flx-commerce, flx-donate | Gateway'ler Store API'ye bağlı (EsnekPOS `PaymentContext`, iyzico) | `flxCart` + `flxCart*` mutation'ları (Flux GraphQL 0.3.0) içeride `rest_do_request` ile Store API'yi çağırır; checkout (ödeme) `POST /wc/store/v1/checkout`'ta kalır. Bkz. `SEPET.md` |
 | FluxWP/updater, FluxWP/whatsapp-api | — | WordPress eklentisi değil, ayrı servis | Kapsam dışı |

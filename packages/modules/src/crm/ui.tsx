@@ -18,13 +18,17 @@ import {
   Phone,
   Plus,
   RefreshCw,
+  MapPin,
+  Pencil,
   Send,
   ShieldCheck,
   ShoppingBag,
   StickyNote,
+  Trash2,
   TrendingUp,
   User,
   Users,
+  X,
 } from 'lucide-react';
 import type { FlxCrmShellQuery } from '@fluxwp/graphql/types';
 import type { Translate } from './i18n';
@@ -92,7 +96,7 @@ const ICONS: Record<string, typeof Plus> = {
   plus: Plus, users: Users, trend: TrendingUp, alert: AlertTriangle, coins: Coins, chart: BarChart3, badge: BadgeCheck,
   clock: Clock, link: Link2, check: Check, arrow: ArrowRight, back: ArrowLeft, refresh: RefreshCw, note: StickyNote,
   mail: Mail, phone: Phone, message: MessageCircle, send: Send, heart: Heart, bag: ShoppingBag, form: FileText,
-  shield: ShieldCheck, user: User, download: Download,
+  shield: ShieldCheck, user: User, download: Download, pin: MapPin, edit: Pencil, trash: Trash2, x: X,
 };
 export function Ic({ n, size = 15 }: { n: string; size?: number }) {
   const C = ICONS[n] ?? StickyNote;

@@ -2,11 +2,12 @@
 // WordPress POSTs {event, tags, paths} signed with X-Flx-Signature; every page cached under one of the
 // tags is refreshed on its next visit.
 import { revalidatePath, revalidateTag } from 'next/cache';
+import { SECRET } from '@/lib/env';
 import { verifySignature } from '@/lib/verify';
 
 export async function POST(req: Request): Promise<Response> {
   const body = await req.text(); // The raw body: the signature covers these exact bytes.
-  if (!(await verifySignature(body, req.headers.get('x-flx-signature'), process.env.FLUX_REVALIDATE_SECRET ?? ''))) {
+  if (!(await verifySignature(body, req.headers.get('x-flx-signature'), SECRET))) {
     return Response.json({ ok: false, error: 'bad signature' }, { status: 401 });
   }
   const { event, tags = [], paths = [] } = JSON.parse(body) as { event: string; tags?: string[]; paths?: string[] };

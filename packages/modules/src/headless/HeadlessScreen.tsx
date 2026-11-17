@@ -39,8 +39,23 @@ interface Draft {
   secret: string;
   clearSecret: boolean;
   previewPath: string;
+  /** The webhook address follows the address until someone edits it. */
+  autoHook: boolean;
 }
 
+/** 48 random hex characters from the browser's crypto (never sent anywhere until saved). */
+const newSecret = () => Array.from(crypto.getRandomValues(new Uint8Array(24)), (b) => b.toString(16).padStart(2, '0')).join('');
+
+/** Default webhook address of a front end: <address>/api/revalidate (the demo's route; any framework can use it). */
+const hookOf = (url: string) => {
+  const u = url.trim().replace(/\/+$/, '');
+  return /^https?:\/\/[^/]+/i.test(u) ? `${u}/api/revalidate` : '';
+};
+
+/**
+ * A new front end needs only a name and an address: the webhook address follows the address,
+ * the preview path is /api/preview and a secret is generated. All three can be changed under "Advanced".
+ */
 const draftOf = (f: Frontend | null, first: boolean): Draft => ({
   id: f?.id ?? '',
   name: f?.name ?? '',
@@ -49,13 +64,15 @@ const draftOf = (f: Frontend | null, first: boolean): Draft => ({
   enabled: f?.enabled ?? true,
   isDefault: f?.isDefault ?? first,
   revalidateUrl: f?.revalidateUrl ?? '',
-  secret: '',
+  secret: f ? '' : newSecret(),
   clearSecret: false,
-  previewPath: f?.previewPath ?? '',
+  previewPath: f ? (f.previewPath ?? '') : '/api/preview',
+  autoHook: !f || (f.revalidateUrl !== '' && f.revalidateUrl === hookOf(f.url)),
 });
 
-/** 48 random hex characters from the browser's crypto (never sent anywhere until saved). */
-const newSecret = () => Array.from(crypto.getRandomValues(new Uint8Array(24)), (b) => b.toString(16).padStart(2, '0')).join('');
+/** Environment of a front end: the WordPress address and the connection key (plus the endpoint when it is not /graphql). */
+const envLines = (cmsUrl: string, graphqlUrl: string, key: string) =>
+  [`FLUX_WP_URL=${cmsUrl}`, `FLUX_KEY=${key}`, ...(graphqlUrl === `${cmsUrl}/graphql` ? [] : [`FLUX_GRAPHQL_URL=${graphqlUrl}`])].join('\n');
 
 const copy = (text: string) => {
   try {
@@ -86,6 +103,8 @@ function Headless() {
   const [errors, setErrors] = useState<UserError[]>([]);
   const [removing, setRemoving] = useState<Frontend | null>(null);
   const [testing, setTesting] = useState('');
+  // Shown once after a save with a new secret: the two lines the front end needs.
+  const [connect, setConnect] = useState<{ name: string; key: string } | null>(null);
 
   const put = (s: Settings) => qc.setQueryData<FlxHeadlessScreenQuery>(flxQueryKey(scope, FlxHeadlessScreen, {}), { flxHeadlessSettings: s });
   const fail = (e: unknown) => setNotice({ kind: 'bad', text: e instanceof Error && e.message ? e.message : t('The action could not be completed.') });
@@ -101,7 +120,7 @@ function Headless() {
   };
 
   const save = useFlxMutation(FlxHeadlessFrontendSave, {
-    onSuccess: (r) => {
+    onSuccess: (r, vars) => {
       const p = r.flxHeadlessFrontendSave;
       if (!p) return fail(null);
       if (p.errors.length) return setErrors(p.errors);
@@ -109,6 +128,8 @@ function Headless() {
       setEditing(null);
       setErrors([]);
       setNotice({ kind: 'ok', text: t('Saved.') });
+      const secret = vars.input.secret;
+      if (p.frontend && secret && secret !== '__clear__') setConnect({ name: p.frontend.name, key: `${p.frontend.id}.${secret}` });
     },
     onError: fail,
   });
@@ -305,8 +326,8 @@ function Headless() {
           {active[0] && (
             <>
               <h3 className="flxhl-sub">{t('Environment of the front end')}</h3>
-              <pre className="flxhl-env">{`FLUX_GRAPHQL_URL=${s.graphqlUrl}\nFLUX_FRONTEND_ID=${(active.find((f) => f.isDefault) ?? active[0]).id}\nFLUX_REVALIDATE_SECRET=${t('<the secret you saved>')}`}</pre>
-              <p className="flxhl-muted">{t('The front end sends flxRoute and flxSite by their registered ids and checks the X-Flx-Signature header of every webhook call with the secret. The integration guide is in docs/flx-headless/.')}</p>
+              <pre className="flxhl-env">{envLines(s.cmsUrl, s.graphqlUrl, `${(active.find((f) => f.isDefault) ?? active[0]).id}.${t('<the secret you saved>')}`)}</pre>
+              <p className="flxhl-muted">{t('The connection key is the front end id and its secret. It signs webhook calls, preview links and draft requests, so previews need no application password. To get a new key, generate a secret and save. The integration guide is in docs/flx-headless/.')}</p>
             </>
           )}
         </section>
@@ -353,6 +374,20 @@ function Headless() {
           <FrontendForm draft={editing} errors={errors} langs={s.languagesActive ? s.languages : []} busy={save.isPending} saved={s.frontends.find((f) => f.id === editing.id) ?? null} t={t} onChange={(p) => setEditing((o) => (o ? { ...o, ...p } : o))} onSubmit={submit} onCancel={() => setEditing(null)} />
         </Modal>
       )}
+      {connect && (
+        <Modal title={t('Connect "%s"', connect.name)} onClose={() => setConnect(null)}>
+          <p>{t('Put these two lines in the environment variables of the front end (for example .env.local, or the host\'s settings). The key holds the secret, so it is shown only now.')}</p>
+          <pre className="flxhl-env">{envLines(s.cmsUrl, s.graphqlUrl, connect.key)}</pre>
+          <div className="flxhl-modal-actions">
+            <button type="button" className="flxhl-btn" onClick={() => copy(envLines(s.cmsUrl, s.graphqlUrl, connect.key))}>
+              {t('Copy')}
+            </button>
+            <button type="button" className="flxhl-btn is-primary" onClick={() => setConnect(null)}>
+              {t('Done')}
+            </button>
+          </div>
+        </Modal>
+      )}
       {removing && (
         <Modal title={t('Remove front end?')} onClose={() => setRemoving(null)}>
           <p>{t('"%s" stops receiving webhook calls and its origin can no longer call GraphQL from the browser. Its secret is deleted.', removing.name)}</p>
@@ -383,6 +418,7 @@ function FrontendForm({ draft, errors, langs, busy, saved, t, onChange, onSubmit
 }) {
   const err = (field: string) => errors.find((e) => e.field === field)?.message;
   const general = errors.filter((e) => !e.field || !['name', 'url', 'languages', 'revalidateUrl', 'secret', 'previewPath'].includes(e.field));
+  const advErr = ['revalidateUrl', 'secret', 'previewPath'].some((f) => err(f));
   const field = (name: string, label: string, input: ReactNode, help?: string) => (
     <label className={'flxhl-field' + (err(name) ? ' has-error' : '')}>
       <span>{label}</span>
@@ -399,7 +435,7 @@ function FrontendForm({ draft, errors, langs, busy, saved, t, onChange, onSubmit
       ))}
       <div className="flxhl-form__grid">
         {field('name', t('Name'), <input type="text" value={draft.name} onChange={(e) => onChange({ name: e.currentTarget.value })} placeholder={t('Main site')} required />)}
-        {field('url', t('Address'), <input type="url" className="code" value={draft.url} onChange={(e) => onChange({ url: e.currentTarget.value })} placeholder="https://www.example.com" required />, t('Where visitors open the front end. WordPress usually moves to another address, e.g. cms.example.com.'))}
+        {field('url', t('Address'), <input type="url" className="code" value={draft.url} onChange={(e) => { const url = e.currentTarget.value; onChange(draft.autoHook ? { url, revalidateUrl: hookOf(url) } : { url }); }} placeholder="https://www.example.com" required />, t('Where visitors open the front end. WordPress usually moves to another address, e.g. cms.example.com.'))}
       </div>
       {langs.length > 0 && (
         <fieldset className={'flxhl-langs' + (err('languages') ? ' has-error' : '')}>
@@ -422,40 +458,43 @@ function FrontendForm({ draft, errors, langs, busy, saved, t, onChange, onSubmit
           {t('Default front end')}
         </Check>
       </div>
-      <h3 className="flxhl-sub">{t('Revalidate webhook')}</h3>
-      <div className="flxhl-form__grid">
-        {field('revalidateUrl', t('Webhook address'), <input type="url" className="code" value={draft.revalidateUrl} onChange={(e) => onChange({ revalidateUrl: e.currentTarget.value })} placeholder="https://www.example.com/api/revalidate" />, t('Receives a signed POST with the cache tags when content changes. Empty: no webhook.'))}
-        <label className={'flxhl-field' + (err('secret') ? ' has-error' : '')}>
-          <span>{t('Secret')}</span>
-          <div className="flxhl-secret">
-            <input
-              type="text"
-              className="code"
-              value={draft.clearSecret ? '' : draft.secret}
-              disabled={draft.clearSecret}
-              autoComplete="off"
-              spellCheck={false}
-              placeholder={saved?.secretSet ? t('Saved (%s). Type to replace it.', saved.secretHint) : t('At least 24 characters')}
-              onChange={(e) => onChange({ secret: e.currentTarget.value })}
-            />
-            <button type="button" className="flxhl-btn" onClick={() => onChange({ secret: newSecret(), clearSecret: false })}>
-              {t('Generate')}
-            </button>
-            {draft.secret && (
-              <button type="button" className="flxhl-btn" onClick={() => copy(draft.secret)}>
-                {t('Copy')}
+      <details className="flxhl-adv" open={advErr}>
+        <summary>{t('Advanced')}</summary>
+        <p className="flxhl-adv__lead">{t('Filled in for you. Change them only if your front end uses other routes.')}</p>
+        <div className="flxhl-form__grid">
+          {field('revalidateUrl', t('Webhook address'), <input type="url" className="code" value={draft.revalidateUrl} onChange={(e) => onChange({ revalidateUrl: e.currentTarget.value, autoHook: false })} placeholder="https://www.example.com/api/revalidate" />, t('Receives a signed POST with the cache tags when content changes. Empty: no webhook.'))}
+          <label className={'flxhl-field' + (err('secret') ? ' has-error' : '')}>
+            <span>{t('Secret')}</span>
+            <div className="flxhl-secret">
+              <input
+                type="text"
+                className="code"
+                value={draft.clearSecret ? '' : draft.secret}
+                disabled={draft.clearSecret}
+                autoComplete="off"
+                spellCheck={false}
+                placeholder={saved?.secretSet ? t('Saved (%s). Type to replace it.', saved.secretHint) : t('At least 24 characters')}
+                onChange={(e) => onChange({ secret: e.currentTarget.value })}
+              />
+              <button type="button" className="flxhl-btn" onClick={() => onChange({ secret: newSecret(), clearSecret: false })}>
+                {t('Generate')}
               </button>
+              {draft.secret && (
+                <button type="button" className="flxhl-btn" onClick={() => copy(draft.secret)}>
+                  {t('Copy')}
+                </button>
+              )}
+            </div>
+            {err('secret') ? <small className="flxhl-err">{err('secret')}</small> : <small>{draft.secret ? t('After saving you get the connection key for the front end; the secret is stored encrypted and never shown again.') : t('Signs every call (HMAC-SHA256) and preview links.')}</small>}
+            {saved?.secretSet && (
+              <Check checked={draft.clearSecret} onChange={(v) => onChange({ clearSecret: v, secret: '' })}>
+                {t('Remove the saved secret')}
+              </Check>
             )}
-          </div>
-          {err('secret') ? <small className="flxhl-err">{err('secret')}</small> : <small>{draft.secret ? t('Copy it into the front end (FLUX_REVALIDATE_SECRET) now; it is stored encrypted and never shown again.') : t('Signs every call (HMAC-SHA256) and preview links.')}</small>}
-          {saved?.secretSet && (
-            <Check checked={draft.clearSecret} onChange={(v) => onChange({ clearSecret: v, secret: '' })}>
-              {t('Remove the saved secret')}
-            </Check>
-          )}
-        </label>
-        {field('previewPath', t('Preview path'), <input type="text" className="code" value={draft.previewPath} onChange={(e) => onChange({ previewPath: e.currentTarget.value })} placeholder="/api/preview" />, t('The editor\'s Preview button opens this path on the default front end with a signed link. Empty: previews stay on WordPress.'))}
-      </div>
+          </label>
+          {field('previewPath', t('Preview path'), <input type="text" className="code" value={draft.previewPath} onChange={(e) => onChange({ previewPath: e.currentTarget.value })} placeholder="/api/preview" />, t('The editor\'s Preview button opens this path on the default front end with a signed link. Empty: previews stay on WordPress.'))}
+        </div>
+      </details>
       <div className="flxhl-modal-actions">
         <button type="button" className="flxhl-btn" onClick={onCancel}>
           {t('Cancel')}

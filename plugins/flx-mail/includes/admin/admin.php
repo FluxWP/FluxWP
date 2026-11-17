@@ -7,6 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
+require_once __DIR__ . '/flux-ui.php';
 require_once __DIR__ . '/page-templates.php';
 require_once __DIR__ . '/page-send.php';
 require_once __DIR__ . '/page-queue.php';
@@ -37,11 +38,6 @@ add_action(
 	}
 );
 
-/** Sistem kontrolü Flux Speed'ta mı (Performans › Sistem Kontrolü). Öyleyse buradaki ekran gizlenir. */
-function flxi_system_moved() {
-	return function_exists( 'flxp_system_checks_url' );
-}
-
 // Eski adres (yer imi, bildirim linki) Performans'taki ekrana gider. Sayfa kayıtlı olmadığından WordPress
 // erişim reddinden hemen önce (admin_page_access_denied) yönlendirilir.
 add_action(
@@ -59,6 +55,10 @@ add_action(
 	function ( $hook ) {
 		$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : ''; // phpcs:ignore
 		if ( 0 !== strpos( $page, 'flxi' ) ) {
+			return;
+		}
+		if ( flxi_flux_ui() && isset( flxi_flux_pages()[ $page ] ) ) {
+			flxi_flux_assets( $page );
 			return;
 		}
 		wp_enqueue_style( 'flxi-admin', FLXI_URL . 'assets/css/admin.css', array(), FLXI_VERSION );
@@ -260,6 +260,9 @@ function flxi_page_head( $title, $sub = '', $tabs_on = true ) {
 		echo '<p class="flxi-head__sub">' . wp_kses_post( $sub ) . '</p>';
 	}
 	echo '</div></div>';
+	if ( flxi_flux_available() && isset( flxi_flux_pages()[ $page ] ) ) {
+		echo '<a class="flxi-tab" href="' . esc_url( flxi_ui_switch_url( 'flux' ) ) . '">' . esc_html__( 'New view', 'flx-mail' ) . '</a>';
+	}
 	if ( $tabs_on ) {
 		echo '<nav class="flxi-tabs" aria-label="' . esc_attr__( 'Communication', 'flx-mail' ) . '">';
 		foreach ( $tabs as $slug => $label ) {
@@ -330,6 +333,9 @@ function flxi_sender_label( $sender ) {
 /* ------------------------------------------------------------------ */
 
 function flxi_page_system() {
+	if ( flxi_flux_screen( 'system' ) ) {
+		return;
+	}
 	flxi_page_head( __( 'System check', 'flx-mail' ), __( 'Rows related to email, WhatsApp and SMS. Checks for all plugins are on the Appearance › System Check screen.', 'flx-mail' ) );
 	add_filter( 'flx_system_checks_labels', 'flxi_system_checks_labels', 20 );
 	$all  = function_exists( 'flx_system_checks_sorted' ) ? flx_system_checks_sorted() : array();

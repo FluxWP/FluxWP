@@ -1,0 +1,3 @@
+query FlxMailSystemChecks {
+  flxMailSystemChecks { id group label status message actionUrl actionLabel }
+}

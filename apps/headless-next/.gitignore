@@ -2,3 +2,6 @@
 .env.local
 *.tsbuildinfo
 next-env.d.ts
+# Hosts install with npm; keep the example free of lockfiles.
+bun.lock
+package-lock.json

@@ -5,8 +5,8 @@
   "description": "Next.js App Router front end for a WordPress site served by Flux Headless (example).",
   "scripts": {
     "dev": "next dev --port 3000",
-    "build:site": "next build",
-    "start": "next start --port 3000",
+    "build": "next build",
+    "start": "next start",
     "typecheck": "tsc -p ."
   },
   "dependencies": {

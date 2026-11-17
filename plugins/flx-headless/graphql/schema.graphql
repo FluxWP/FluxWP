@@ -473,6 +473,8 @@ enum FlxHeadlessRouteKind {
 The Headless screen: front ends, what WordPress does with its own pages, CORS and the webhook log.
 """
 type FlxHeadlessSettings {
+  """Address of this WordPress, for the front end (FLUX_WP_URL)."""
+  cmsUrl: String!
   """
   Every origin allowed to call /graphql from a browser: this site, the Flux GraphQL list and the front ends.
   """

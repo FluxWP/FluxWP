@@ -1,0 +1,6 @@
+mutation FlxMailTemplateReset($input: FlxMailTemplateResetInput!) {
+  flxMailTemplateReset(input: $input) {
+    template { ...FlxMailTemplate }
+    errors { code message field }
+  }
+}

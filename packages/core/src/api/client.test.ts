@@ -27,6 +27,16 @@ describe('client', () => {
     await expect(api('../graphql')).rejects.toMatchObject({ status: 400 });
   });
 
+  it("as: 'stream' hands back the Response so a body can be read line by line", async () => {
+    const f = vi.fn<typeof fetch>(async () => new Response('{"t":"text","d":"a"}\n{"t":"result"}\n', { status: 200 }));
+    const api = createClient({ siteUrl: 'https://x.org', fetchImpl: f, getCredentials: async () => null });
+    const res = await api<Response>('flx-ai/v1/chats/1/step', { method: 'POST', body: { stream: 1 }, as: 'stream' });
+    expect(res.body).not.toBeNull();
+    expect((await res.text()).split('\n').filter(Boolean)).toHaveLength(2);
+    f.mockResolvedValueOnce(json(400, { message: 'no' }));
+    await expect(api('flx-ai/v1/chats/1/step', { as: 'stream' })).rejects.toMatchObject({ status: 400 });
+  });
+
   it('rejects paths that leave the site before any request', async () => {
     const f = vi.fn<typeof fetch>();
     const creds = vi.fn(async () => ({ token: 'secret' }));

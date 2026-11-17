@@ -1,6 +1,7 @@
 import type { NextConfig } from 'next';
+import { FRONTEND_ID, GRAPHQL_URL } from './lib/env';
 
-const cms = process.env.FLUX_GRAPHQL_URL ? new URL(process.env.FLUX_GRAPHQL_URL) : null;
+const cms = GRAPHQL_URL ? new URL(GRAPHQL_URL) : null;
 
 const config: NextConfig = {
   // 'use cache' + cacheTag: every page is cached under the tags WordPress gives (flxRoute.cacheTags)
@@ -18,7 +19,7 @@ const config: NextConfig = {
   async rewrites() {
     if (!cms) return [];
     const origin = cms.origin;
-    const id = process.env.FLUX_FRONTEND_ID ?? '';
+    const id = FRONTEND_ID ?? '';
     const q = id ? `?flxhl=${encodeURIComponent(id)}` : '';
     // Sitemaps: WordPress lists front-end addresses when ?flxhl=<id> is set (Flux Headless).
     return [
