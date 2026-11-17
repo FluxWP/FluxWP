@@ -1,5 +1,8 @@
 # Flux Tasks — Değişiklikler
 
+## 0.11.3
+- Tarih seçici açılır kutusu kompakt: ekrana sığar (sağda takvim ve Uygula artık kesilmez), sol hızlı seçim paneli bej yerine temaya uygun gri (açık/koyu). Yalnız Tasks içinde; ortak bileşen değişmedi.
+
 ## 0.11.2
 - Satır hover simgeleri (alt görev, etiket, yeniden adlandır) görev adının üstüne biner; görev adı sütunun tam genişliğini kullanır, metni daraltmaz.
 
