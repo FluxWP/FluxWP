@@ -51,6 +51,10 @@ $expected = array(
 	'seo'       => 'flx-seo/flx-seo.php',
 	'backup'    => 'flx-backup/flx-backup.php',
 	'lang'      => 'flx-lang/flx-lang.php',
+	'speed'     => 'flx-speed/flx-speed.php',
+	'roles'     => 'flx-roles/flx-roles.php',
+	'admin'     => 'flx-admin/flx-admin.php',
+	'headless'  => 'flx-headless/flx-headless.php',
 );
 foreach ( $expected as $id => $plugin ) {
 	if ( is_plugin_active( $plugin ) ) {
@@ -59,7 +63,7 @@ foreach ( $expected as $id => $plugin ) {
 }
 
 $desktop = json_decode( (string) wp_json_encode( flxapp_user_manifest( get_user_by( 'id', $admin ), 'desktop' ) ), true );
-foreach ( array( 'recaptcha', 'seo', 'backup', 'lang' ) as $id ) {
+foreach ( array_diff( array_keys( $expected ), array( 'wiki' ) ) as $id ) {
 	if ( isset( $mods[ $id ] ) ) {
 		flxt_ok( ! isset( $desktop[ $id ] ), "module $id stays on its React screen on desktop" );
 	}

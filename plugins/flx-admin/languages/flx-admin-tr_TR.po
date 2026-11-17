@@ -1814,3 +1814,71 @@ msgstr "Modülün gövdesi, başlangıç sayfasının gösterdiği biçimde (Flu
 
 msgid "The user's filters after the change."
 msgstr "Değişiklikten sonra kullanıcının filtreleri."
+
+#: app/manifest.json
+msgid "Use the Flux admin theme"
+msgstr "Flux yönetim temasını kullan"
+
+#: app/manifest.json
+msgid "Brand name"
+msgstr "Marka adı"
+
+#: app/manifest.json
+msgid "Light or dark"
+msgstr "Açık ya da koyu"
+
+#: app/manifest.json
+msgid "Automatic"
+msgstr "Otomatik"
+
+#: app/manifest.json
+msgid "Logo style"
+msgstr "Logo stili"
+
+#: app/manifest.json
+msgid "Gradient"
+msgstr "Degrade"
+
+#: app/manifest.json
+msgid "Line icons"
+msgstr "Çizgi ikonlar"
+
+#: app/manifest.json
+msgid "Bottom bar on phones"
+msgstr "Telefonda alt çubuk"
+
+#: app/manifest.json
+msgid "App rail"
+msgstr "Uygulama rayı"
+
+#: app/manifest.json
+msgid "App switcher"
+msgstr "Uygulama değiştirici"
+
+#: app/manifest.json
+msgid "Fast page changes"
+msgstr "Hızlı sayfa geçişi"
+
+#: app/manifest.json
+msgid "Command palette"
+msgstr "Komut paleti"
+
+#: app/manifest.json
+msgid "Styled login page"
+msgstr "Stilli giriş sayfası"
+
+#: app/manifest.json
+msgid "Dashboard header"
+msgstr "Pano başlığı"
+
+#: app/manifest.json
+msgid "Install wp-admin as an app"
+msgstr "wp-admin'i uygulama olarak kur"
+
+#: app/manifest.json
+msgid "Short name"
+msgstr "Kısa ad"
+
+#: app/manifest.json
+msgid "Saved"
+msgstr "Kaydedildi"

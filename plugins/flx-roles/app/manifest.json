@@ -1,0 +1,118 @@
+{
+  "id": "roles",
+  "plugin": "flx-roles",
+  "min_app": "1.0.0",
+  "platforms": ["mobile"],
+  "title": "Roles and access",
+  "icon": "roles",
+  "menu": "flx-roles",
+  "entry": "roles",
+  "fallback": { "web": "users.php?page=flx-roles" },
+  "routes": {
+    "users.php?page=flx-roles": { "screen": "roles" }
+  },
+  "sources": {
+    "roles": {
+      "graphql": { "op": "FlxRolesScreen", "variables": { "members": 1 }, "data": "flxRoles" },
+      "paging": { "mode": "none" },
+      "key": "key",
+      "cache": { "stale": 30 }
+    },
+    "members": {
+      "graphql": { "op": "FlxRoleMembers", "variables": { "key": "{{params.key}}" }, "data": "flxRole.members" },
+      "paging": { "mode": "cursor", "size": 50, "items": "nodes", "next": "pageInfo.endCursor", "has_next": "pageInfo.hasNextPage", "total": "totalCount" },
+      "key": "databaseId",
+      "cache": { "stale": 30 }
+    }
+  },
+  "screens": {
+    "roles": {
+      "type": "list",
+      "title": "Roles",
+      "source": "roles",
+      "item": {
+        "title": "{{label}}",
+        "subtitle": "{{description}}",
+        "meta": "{{memberCount|number}}",
+        "badges": [{ "text": "Custom", "tone": "accent", "when": { "path": "custom", "op": "truthy" } }]
+      },
+      "onPress": { "target": "screen:roles/members", "params": { "key": "{{key}}", "label": "{{label}}" } },
+      "actions": { "header": ["role_create"], "fab": "role_create", "row": ["role_reset", "role_delete", "permissions_web"] },
+      "empty": { "title": "No roles" }
+    },
+    "members": {
+      "type": "list",
+      "title": "{{params.label}}",
+      "source": "members",
+      "item": {
+        "title": "{{name}}",
+        "subtitle": "{{email}}",
+        "caption": "{{phone.display}}",
+        "avatar": { "text": "{{name|initials}}" }
+      },
+      "actions": { "header": ["member_add"], "fab": "member_add", "row": ["member_call", "member_remove"] },
+      "empty": { "title": "Nobody in this role", "body": "Add a person by user name or email." }
+    }
+  },
+  "actions": {
+    "role_create": {
+      "label": "New role",
+      "icon": "plus",
+      "prompt": {
+        "title": "New role",
+        "fields": [{ "name": "name", "type": "text", "label": "Role name", "required": true, "maxLength": 60 }]
+      },
+      "request": { "graphql": { "op": "FlxRoleCreate", "variables": { "input": { "name": "{{input.name}}" } }, "data": "flxRoleCreate" } },
+      "after": { "toast": "Role created", "invalidate": ["roles"] },
+      "haptic": "success"
+    },
+    "role_reset": {
+      "label": "Reset permissions",
+      "icon": "refresh",
+      "when": { "path": "custom", "op": "falsy" },
+      "confirm": { "title": "Reset {{label}}?", "body": "Its permissions go back to the WordPress defaults.", "ok": "Reset" },
+      "request": { "graphql": { "op": "FlxRoleReset", "variables": { "input": { "key": "{{key}}" } }, "data": "flxRoleReset" } },
+      "after": { "toast": "Reset", "invalidate": ["roles"] }
+    },
+    "role_delete": {
+      "label": "Delete role",
+      "icon": "trash",
+      "tone": "danger",
+      "when": { "path": "custom", "op": "truthy" },
+      "confirm": { "title": "Delete {{label}}?", "body": "Its people keep their other roles.", "ok": "Delete" },
+      "request": { "graphql": { "op": "FlxRoleDelete", "variables": { "input": { "key": "{{key}}" } }, "data": "flxRoleDelete" } },
+      "after": { "toast": "Deleted", "invalidate": ["roles"] },
+      "haptic": "warning"
+    },
+    "permissions_web": {
+      "label": "Edit permissions in panel",
+      "icon": "external",
+      "web": "users.php?page=flx-roles"
+    },
+    "member_add": {
+      "label": "Add person",
+      "icon": "plus",
+      "prompt": {
+        "title": "Add person",
+        "fields": [{ "name": "login", "type": "text", "label": "User name or email", "required": true }]
+      },
+      "request": { "graphql": { "op": "FlxRoleMemberAdd", "variables": { "input": { "login": "{{input.login}}", "role": "{{params.key}}" } }, "data": "flxRoleMemberAdd" } },
+      "after": { "toast": "Added", "invalidate": ["members", "roles"] },
+      "haptic": "success"
+    },
+    "member_call": {
+      "label": "Call",
+      "icon": "phone",
+      "when": { "path": "phone.e164", "op": "filled" },
+      "open": "tel:{{phone.e164}}"
+    },
+    "member_remove": {
+      "label": "Remove from role",
+      "icon": "trash",
+      "tone": "danger",
+      "confirm": { "title": "Remove {{name}}?", "body": "The account stays; only this role is taken away.", "ok": "Remove" },
+      "request": { "graphql": { "op": "FlxRoleMemberRemove", "variables": { "input": { "role": "{{params.key}}", "userId": "{{databaseId}}" } }, "data": "flxRoleMemberRemove" } },
+      "after": { "toast": "Removed", "invalidate": ["members", "roles"] }
+    }
+  }
+}

@@ -1,0 +1,325 @@
+{
+  "id": "speed",
+  "plugin": "flx-speed",
+  "min_app": "1.0.0",
+  "platforms": ["mobile"],
+  "title": "Performance",
+  "icon": "performance",
+  "menu": "flx-speed",
+  "entry": "overview",
+  "tabs": ["overview", "records", "cache", "settings"],
+  "fallback": { "web": "admin.php?page=flx-speed" },
+  "routes": {
+    "admin.php?page=flx-speed": { "screen": "overview" }
+  },
+  "sources": {
+    "summary": {
+      "graphql": { "op": "FlxSpeedSummary" },
+      "cache": { "stale": 30 }
+    },
+    "records": {
+      "graphql": { "op": "FlxSpeedRecords", "data": "flxSpeedRecords" },
+      "paging": { "mode": "cursor", "size": 25, "items": "nodes", "next": "pageInfo.endCursor", "has_next": "pageInfo.hasNextPage", "total": "totalCount" },
+      "key": "databaseId",
+      "cache": { "stale": 15 }
+    },
+    "record": {
+      "graphql": { "op": "FlxSpeedRecord", "variables": { "id": "{{params.id|int}}" }, "data": "flxSpeedRecord.record" },
+      "cache": { "stale": 300 }
+    },
+    "cache": {
+      "graphql": { "op": "FlxSpeedCache", "data": "flxSpeedCache" },
+      "cache": { "stale": 15 }
+    },
+    "database": {
+      "graphql": { "op": "FlxSpeedDatabase", "data": "flxSpeedDatabase" },
+      "cache": { "stale": 60 }
+    },
+    "jobs": {
+      "graphql": { "op": "FlxSpeedDatabase", "data": "flxSpeedDatabase" },
+      "paging": { "mode": "none", "items": "jobs" },
+      "key": "key",
+      "cache": { "stale": 60 }
+    },
+    "settings": {
+      "graphql": { "op": "FlxSpeedSettings", "data": "flxSpeedSettings" },
+      "cache": { "stale": 0 }
+    }
+  },
+  "screens": {
+    "overview": {
+      "type": "dashboard",
+      "title": "Last 24 hours",
+      "sources": ["summary"],
+      "sections": [
+        {
+          "type": "stats",
+          "items": [
+            { "label": "Requests", "value": "{{flxSpeedSummary.recorded|number}}", "onPress": { "target": "screen:speed/records" } },
+            { "label": "Average", "value": "{{flxSpeedSummary.msAvg}} ms" },
+            { "label": "Slowest 5%", "value": "{{flxSpeedSummary.msP95}} ms" },
+            { "label": "Slowest", "value": "{{flxSpeedSummary.msMax}} ms" }
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Suggestions",
+          "path": "flxSpeedHints",
+          "item": {
+            "title": "{{label}}",
+            "subtitle": "{{message}}",
+            "badges": [
+              { "text": "Needs attention", "tone": "warn", "when": { "path": "status", "op": "in", "value": ["WARNING", "WARN"] } },
+              { "text": "Problem", "tone": "danger", "when": { "path": "status", "op": "in", "value": ["ERROR", "BAD"] } }
+            ]
+          }
+        },
+        {
+          "type": "list",
+          "title": "Request types",
+          "path": "flxSpeedSummary.byType",
+          "item": { "title": "{{label}}", "subtitle": "{{count|number}} requests · {{msAvg}} ms on average", "meta": "{{msP95}} ms" }
+        },
+        {
+          "type": "list",
+          "title": "Slowest addresses",
+          "path": "flxSpeedSummary.slowestUrls",
+          "item": { "title": "{{url}}", "subtitle": "{{count|number}} requests · {{msAvg}} ms on average", "meta": "{{msMax}} ms" }
+        },
+        {
+          "type": "list",
+          "title": "Plugins and themes",
+          "path": "flxSpeedSummary.components",
+          "item": { "title": "{{component}}", "subtitle": "{{requests|number}} requests · {{queries|number}} queries", "meta": "{{msPerRequest}} ms" }
+        },
+        {
+          "type": "list",
+          "title": "PHP errors",
+          "path": "flxSpeedSummary.phpErrors",
+          "when": { "path": "flxSpeedSummary.phpErrors", "op": "filled" },
+          "item": { "title": "{{message|truncate:120}}", "subtitle": "{{component}} · {{file}}", "meta": "{{requests|number}}" }
+        },
+        {
+          "type": "list",
+          "title": "External calls",
+          "path": "flxSpeedSummary.httpCalls",
+          "when": { "path": "flxSpeedSummary.httpCalls", "op": "filled" },
+          "item": { "title": "{{endpoint}}", "subtitle": "{{component}} · {{count|number}} calls · {{failed|number}} failed", "meta": "{{msAvg}} ms" }
+        },
+        { "type": "actions", "items": ["open_database", "open_panel"] }
+      ]
+    },
+    "records": {
+      "type": "list",
+      "title": "Requests",
+      "source": "records",
+      "search": { "param": "q", "placeholder": "Search address" },
+      "filters": [
+        {
+          "param": "flag",
+          "label": "Show",
+          "type": "select",
+          "options": [
+            { "value": "", "label": "All" },
+            { "value": "slow", "label": "Slow" },
+            { "value": "error", "label": "With errors" }
+          ]
+        }
+      ],
+      "item": {
+        "title": "{{method}} {{url}}",
+        "subtitle": "{{typeLabel}} · {{queries|number}} queries · {{memKb|number}} KB",
+        "meta": "{{ms}} ms",
+        "caption": "{{at.relative}}",
+        "badges": [
+          { "text": "{{status}}", "tone": "danger", "when": { "path": "failed", "op": "truthy" } },
+          { "text": "{{errors}} errors", "tone": "warn", "when": { "path": "errors", "op": "truthy" } }
+        ]
+      },
+      "onPress": { "target": "screen:speed/record", "params": { "id": "{{databaseId}}" } },
+      "actions": { "header": ["records_clear"] },
+      "empty": { "title": "No requests", "body": "Requests appear here once recording is on." }
+    },
+    "record": {
+      "type": "detail",
+      "source": "record",
+      "header": { "title": "{{method}} {{url}}", "subtitle": "{{typeLabel}} · {{at.relative}}" },
+      "sections": [
+        {
+          "type": "stats",
+          "items": [
+            { "label": "Time", "value": "{{ms}} ms" },
+            { "label": "Queries", "value": "{{queries|number}}", "sub": "{{queryMs}} ms" },
+            { "label": "Memory", "value": "{{memKb|number}} KB" },
+            { "label": "External calls", "value": "{{http|number}}" }
+          ]
+        },
+        {
+          "type": "fields",
+          "fields": [
+            { "label": "Address", "value": "{{url}}", "copy": true },
+            { "label": "Status", "value": "{{status}}" },
+            { "label": "Errors", "value": "{{errors|number}}" },
+            { "label": "Time", "value": "{{at.date}}" }
+          ]
+        },
+        { "type": "chips", "title": "Flags", "path": "flags", "text": "{{label}}", "when": { "path": "flags", "op": "filled" } },
+        { "type": "actions", "items": ["open_panel"] }
+      ]
+    },
+    "cache": {
+      "type": "dashboard",
+      "title": "Cache",
+      "sources": ["cache"],
+      "sections": [
+        { "type": "notice", "tone": "danger", "text": "{{pendingError}}", "when": { "path": "pendingError", "op": "filled" } },
+        { "type": "list", "title": "Conflicts", "path": "conflicts", "when": { "path": "conflicts", "op": "filled" }, "item": { "title": "{{text}}" } },
+        {
+          "type": "fields",
+          "title": "Object cache",
+          "fields": [
+            { "label": "Provider", "value": "{{provider|default:'—'}}" },
+            { "label": "Persistent", "value": "{{persistent|bool:'Yes':'No'}}" },
+            { "label": "Last test", "value": "{{test.at.relative|default:'—'}}", "when": { "path": "test", "op": "filled" } },
+            { "label": "Test result", "value": "{{test.ms}} ms", "when": { "path": "test.error", "op": "empty" } },
+            { "label": "Test error", "value": "{{test.error}}", "when": { "path": "test.error", "op": "filled" } }
+          ]
+        },
+        {
+          "type": "fields",
+          "title": "LiteSpeed Cache",
+          "fields": [
+            { "label": "Server", "value": "{{litespeedServer|bool:'LiteSpeed':'Other'}}" },
+            { "label": "Plugin", "value": "{{litespeed.active|bool:'Active':'Off'}}" },
+            { "label": "Page cache", "value": "{{litespeed.pageCache|bool:'On':'Off'}}", "when": { "path": "litespeed.active", "op": "truthy" } }
+          ]
+        },
+        { "type": "actions", "items": ["cache_purge", "cache_flush", "cache_test", "cache_repair", "page_on", "page_off", "open_panel"] }
+      ]
+    },
+    "database": {
+      "type": "list",
+      "title": "Database cleanup",
+      "source": "jobs",
+      "item": {
+        "title": "{{label}}",
+        "meta": "{{count|number}}",
+        "badges": [{ "text": "Clean", "tone": "ok", "when": { "path": "count", "op": "falsy" } }]
+      },
+      "actions": { "row": ["cleanup"] },
+      "empty": { "title": "Nothing to clean" }
+    },
+    "settings": {
+      "type": "form",
+      "title": "Settings",
+      "load": "settings",
+      "submit": { "graphql": { "op": "FlxSpeedSettingsSave", "data": "flxSpeedSettingsSave" } },
+      "fields": [
+        { "name": "record", "type": "switch", "label": "Record requests" },
+        { "name": "recordAdmins", "type": "switch", "label": "Also record administrators", "when": { "path": "record", "op": "truthy" } },
+        { "name": "sample", "type": "number", "label": "Record one in every N requests", "min": 1, "max": 100, "when": { "path": "record", "op": "truthy" } },
+        { "name": "slowMs", "type": "number", "label": "Slow request (ms)", "min": 100 },
+        { "name": "slowQueryMs", "type": "number", "label": "Slow query (ms)", "min": 1 },
+        { "name": "keepDays", "type": "number", "label": "Keep records (days)", "min": 1, "max": 90 },
+        { "name": "maxRows", "type": "number", "label": "Most records", "min": 100 },
+        { "name": "diskQuotaGb", "type": "number", "label": "Disk limit (GB)", "help": "Disk limit of the hosting plan; 0 when unknown.", "min": 0 },
+        { "name": "panel", "type": "switch", "label": "Request panel in wp-admin" },
+        { "name": "panelFront", "type": "switch", "label": "Request panel on the site", "when": { "path": "panel", "op": "truthy" } },
+        { "name": "caps", "type": "switch", "label": "Collect capability checks" },
+        {
+          "name": "loginSlug",
+          "type": "text",
+          "label": "Login address",
+          "help": "3–40 lowercase letters, digits, hyphen or underscore. Empty goes back to wp-login.php.",
+          "readonly_when": { "any": [{ "path": "loginSlugLocked", "op": "truthy" }, { "path": "loginDisabled", "op": "truthy" }] }
+        },
+        {
+          "name": "loginBlocked",
+          "type": "segmented",
+          "label": "Visitors of wp-login.php",
+          "when": { "path": "loginSlug", "op": "filled" },
+          "options": [
+            { "value": "NOT_FOUND", "label": "Not found" },
+            { "value": "HOME", "label": "Home page" }
+          ]
+        }
+      ],
+      "dirty_guard": true,
+      "after": { "toast": "Saved", "back": false, "invalidate": ["settings"] }
+    }
+  },
+  "actions": {
+    "records_clear": {
+      "label": "Clear records",
+      "icon": "trash",
+      "tone": "danger",
+      "confirm": { "title": "Clear all records?", "body": "The summary starts again from zero.", "ok": "Clear" },
+      "request": { "graphql": { "op": "FlxSpeedRecordsClear", "data": "flxSpeedRecordsClear" } },
+      "after": { "toast": "Cleared", "invalidate": ["records", "summary"] },
+      "haptic": "warning"
+    },
+    "cache_purge": {
+      "label": "Purge page cache",
+      "icon": "refresh",
+      "when": { "path": "litespeed.pageCache", "op": "truthy" },
+      "request": { "graphql": { "op": "FlxSpeedCacheRun", "variables": { "input": { "op": "PURGE" } }, "data": "flxSpeedCacheRun" } },
+      "after": { "toast": "Page cache purged", "invalidate": ["cache"] },
+      "haptic": "success"
+    },
+    "cache_flush": {
+      "label": "Flush object cache",
+      "icon": "refresh",
+      "when": { "path": "persistent", "op": "truthy" },
+      "request": { "graphql": { "op": "FlxSpeedCacheRun", "variables": { "input": { "op": "FLUSH" } }, "data": "flxSpeedCacheRun" } },
+      "after": { "toast": "Object cache flushed", "invalidate": ["cache"] }
+    },
+    "cache_test": {
+      "label": "Test object cache",
+      "icon": "check",
+      "request": { "graphql": { "op": "FlxSpeedCacheRun", "variables": { "input": { "op": "TEST" } }, "data": "flxSpeedCacheRun" } },
+      "after": { "invalidate": ["cache"] }
+    },
+    "cache_repair": {
+      "label": "Repair",
+      "icon": "settings",
+      "when": { "path": "conflicts", "op": "filled" },
+      "request": { "graphql": { "op": "FlxSpeedCacheRun", "variables": { "input": { "op": "REPAIR" } }, "data": "flxSpeedCacheRun" } },
+      "after": { "toast": "Repaired", "invalidate": ["cache"] }
+    },
+    "page_on": {
+      "label": "Turn page cache on",
+      "icon": "performance",
+      "when": { "all": [{ "path": "litespeed.active", "op": "truthy" }, { "path": "litespeed.pageCache", "op": "falsy" }] },
+      "request": { "graphql": { "op": "FlxSpeedCacheRun", "variables": { "input": { "op": "PAGE_ON" } }, "data": "flxSpeedCacheRun" } },
+      "after": { "toast": "Page cache on", "invalidate": ["cache"] }
+    },
+    "page_off": {
+      "label": "Turn page cache off",
+      "icon": "no",
+      "tone": "danger",
+      "when": { "path": "litespeed.pageCache", "op": "truthy" },
+      "confirm": { "title": "Turn the page cache off?", "body": "Pages are built on every visit until it is on again.", "ok": "Turn off" },
+      "request": { "graphql": { "op": "FlxSpeedCacheRun", "variables": { "input": { "op": "PAGE_OFF" } }, "data": "flxSpeedCacheRun" } },
+      "after": { "toast": "Page cache off", "invalidate": ["cache"] }
+    },
+    "cleanup": {
+      "label": "Clean",
+      "icon": "trash",
+      "when": { "all": [{ "path": "runnable", "op": "truthy" }, { "path": "count", "op": "truthy" }] },
+      "confirm": { "title": "Clean {{label}}?", "body": "{{count}} items are removed from the database.", "ok": "Clean" },
+      "request": { "graphql": { "op": "FlxSpeedCleanup", "variables": { "input": { "job": "{{key}}" } }, "data": "flxSpeedCleanup" } },
+      "after": { "toast": "Cleaned", "invalidate": ["jobs", "database"] },
+      "haptic": "success"
+    },
+    "open_database": {
+      "label": "Database cleanup",
+      "icon": "database",
+      "navigate": { "target": "screen:speed/database" }
+    },
+    "open_panel": {
+      "label": "Open in panel",
+      "icon": "external",
+      "web": "admin.php?page=flx-speed"
+    }
+  }
+}

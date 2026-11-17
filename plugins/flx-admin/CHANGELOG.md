@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.9.0
+- FluxWP mobil uygulamasında Yönetim teması ayarları native çizilir (ortak manifest `app/manifest.json`, GraphQL): marka, vurgu rengi, açık/koyu, logo stili, arayüz anahtarları, PWA. Logo, renk paleti ve menü düzeni panelde kalır. Masaüstü panel React ekranını kullanmaya devam eder.
+
 ## 1.8.5
 - Görevler, WhatsApp gibi uygulama ekranlarına girince sol ana menü her zaman daralmış açılır (önceden son açık hâli hatırlanıyordu); soldaki düğmeden elle açılır.
 

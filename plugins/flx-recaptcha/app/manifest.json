@@ -395,7 +395,7 @@
     },
     "form_off": {
       "label": "Turn off",
-      "icon": "close",
+      "icon": "no",
       "tone": "danger",
       "when": {
         "path": "enabled",
