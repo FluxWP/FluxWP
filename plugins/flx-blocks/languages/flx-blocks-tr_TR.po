@@ -10492,3 +10492,51 @@ msgstr "Vektör SVG"
 msgctxt "block title"
 msgid "Video Popup"
 msgstr "Video açılır pencere"
+
+#: app/manifest.json
+msgid "No blocks"
+msgstr "Blok yok"
+
+#: app/manifest.json
+msgid "Pattern libraries"
+msgstr "Desen kütüphaneleri"
+
+#: app/manifest.json
+msgid "No linked libraries"
+msgstr "Bağlı kütüphane yok"
+
+#: app/manifest.json
+msgid "Link a pattern library in the panel."
+msgstr "Panelde bir desen kütüphanesi bağlayın."
+
+#: app/manifest.json
+msgid "Turn on"
+msgstr "Aç"
+
+#: app/manifest.json
+msgid "Turned on"
+msgstr "Açıldı"
+
+#: app/manifest.json
+msgid "Turn off"
+msgstr "Kapat"
+
+#: app/manifest.json
+msgid "Turn {{name}} off?"
+msgstr "{{name}} kapatılsın mı?"
+
+#: app/manifest.json
+msgid "Pages that use it keep their content; the block is hidden from the editor."
+msgstr "Onu kullanan sayfaların içeriği kalır; blok düzenleyicide gizlenir."
+
+#: app/manifest.json
+msgid "Turned off"
+msgstr "Kapatıldı"
+
+#: app/manifest.json
+msgid "Open in panel"
+msgstr "Panelde aç"
+
+#: app/manifest.json
+msgid "Open"
+msgstr "Aç"

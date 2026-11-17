@@ -1,0 +1,195 @@
+{
+  "id": "ads",
+  "plugin": "flx-ads",
+  "min_app": "1.0.0",
+  "platforms": ["mobile"],
+  "title": "Ads",
+  "icon": "megaphone",
+  "menu": "flx-ads",
+  "entry": "overview",
+  "tabs": ["overview", "campaigns", "suggestions"],
+  "fallback": { "web": "admin.php?page=flx-ads" },
+  "routes": {
+    "admin.php?page=flx-ads": { "screen": "overview" }
+  },
+  "sources": {
+    "report": {
+      "graphql": { "op": "FlxAdsReport", "data": "flxAdsReport" },
+      "cache": { "stale": 120 }
+    },
+    "campaigns": {
+      "graphql": { "op": "FlxAdsCampaigns", "data": "flxAdsCampaigns" },
+      "paging": { "mode": "none", "items": "rows" },
+      "key": "id",
+      "cache": { "stale": 120 }
+    },
+    "campaign": {
+      "graphql": { "op": "FlxAdsCampaign", "variables": { "id": "{{params.id}}" }, "data": "flxAdsCampaign" },
+      "cache": { "stale": 120 }
+    },
+    "suggestions": {
+      "graphql": { "op": "FlxAdsSuggestions", "data": "flxAdsSuggestions" },
+      "paging": { "mode": "none", "items": "open" },
+      "key": "id",
+      "cache": { "stale": 60 }
+    }
+  },
+  "screens": {
+    "overview": {
+      "type": "dashboard",
+      "title": "{{fromLabel}} – {{toLabel}}",
+      "sources": ["report"],
+      "sections": [
+        {
+          "type": "stats",
+          "items": [
+            { "label": "Income", "value": "{{totals.amount.formatted}}", "sub": "{{totals.count|number}} payments" },
+            { "label": "From ads", "value": "{{totals.adsAmount.formatted}}", "sub": "{{totals.adsPercent}}%" },
+            { "label": "Ad spend", "value": "{{totals.spend.formatted|default:'—'}}", "when": { "path": "totals.hasSpend", "op": "truthy" } },
+            { "label": "Return on ad spend", "value": "{{totals.roas|default:'—'}}", "when": { "path": "totals.hasSpend", "op": "truthy" } },
+            { "label": "Cost per payment", "value": "{{totals.cpa.formatted|default:'—'}}", "when": { "path": "totals.hasSpend", "op": "truthy" } },
+            { "label": "New people", "value": "{{totals.newCount|number}}" }
+          ]
+        },
+        {
+          "type": "list",
+          "title": "{{byLabel}}",
+          "path": "rows",
+          "item": {
+            "title": "{{label}}",
+            "subtitle": "{{count|number}} payments · {{share}}%",
+            "meta": "{{amount.formatted}}",
+            "caption": "{{spend.formatted}}"
+          }
+        },
+        { "type": "actions", "items": ["open_panel"] }
+      ]
+    },
+    "campaigns": {
+      "type": "list",
+      "title": "Meta campaigns",
+      "source": "campaigns",
+      "filters": [
+        {
+          "param": "range",
+          "label": "Period",
+          "type": "segmented",
+          "options": [
+            { "value": "7", "label": "7 days" },
+            { "value": "30", "label": "30 days" },
+            { "value": "90", "label": "90 days" }
+          ]
+        }
+      ],
+      "item": {
+        "title": "{{name}}",
+        "subtitle": "{{objectiveLabel}} · {{budgetLabel}}",
+        "meta": "{{spend.formatted}}",
+        "caption": "{{payments|number}} payments · {{income.formatted}} · ROAS {{roas|default:'—'}}",
+        "badges": [
+          { "text": "{{statusLabel}}", "tone": "ok", "when": { "path": "active", "op": "truthy" } },
+          { "text": "{{statusLabel}}", "tone": "muted", "when": { "path": "active", "op": "falsy" } }
+        ]
+      },
+      "onPress": { "target": "screen:ads/campaign", "params": { "id": "{{id}}" } },
+      "actions": { "row": ["pause", "resume"] },
+      "empty": { "title": "No campaigns", "body": "Connect the Meta ad account in the panel." }
+    },
+    "campaign": {
+      "type": "detail",
+      "source": "campaign",
+      "header": { "title": "{{name}}", "subtitle": "{{statusLabel}}" },
+      "sections": [
+        { "type": "notice", "tone": "danger", "text": "{{error}}", "when": { "path": "error", "op": "filled" } },
+        { "type": "content", "value": "{{summary}}", "format": "text", "when": { "path": "summary", "op": "filled" } },
+        {
+          "type": "list",
+          "title": "Ad sets",
+          "path": "adsets",
+          "item": {
+            "title": "{{name}}",
+            "subtitle": "{{who}}",
+            "meta": "{{spend.formatted}}",
+            "caption": "{{budgetLabel}} · {{clicks|number}} clicks · CTR {{ctr}}",
+            "badges": [{ "text": "{{statusLabel}}", "tone": "muted", "when": { "path": "active", "op": "falsy" } }]
+          }
+        },
+        {
+          "type": "list",
+          "title": "Age and gender",
+          "path": "ageGender",
+          "item": { "title": "{{label}}", "subtitle": "{{clicks|number}} clicks · {{share}}%", "meta": "{{spend.formatted}}" }
+        },
+        {
+          "type": "list",
+          "title": "Placement",
+          "path": "placement",
+          "item": { "title": "{{label}}", "subtitle": "{{clicks|number}} clicks · {{share}}%", "meta": "{{spend.formatted}}" }
+        }
+      ],
+      "actions": { "header": ["pause", "resume", "budget"] }
+    },
+    "suggestions": {
+      "type": "list",
+      "title": "Suggestions",
+      "source": "suggestions",
+      "item": {
+        "title": "{{typeLabel}}: {{name}}",
+        "subtitle": "{{reason}}",
+        "caption": "{{created.relative}}"
+      },
+      "actions": { "header": ["suggestions_refresh"], "row": ["suggestion_apply", "suggestion_dismiss"] },
+      "empty": { "title": "No suggestions", "body": "New suggestions appear after the daily check." }
+    }
+  },
+  "actions": {
+    "pause": {
+      "label": "Pause",
+      "icon": "no",
+      "when": { "all": [{ "path": "canPause", "op": "truthy" }, { "path": "active", "op": "truthy" }] },
+      "confirm": { "title": "Pause {{name}}?", "ok": "Pause" },
+      "request": { "graphql": { "op": "FlxAdsCampaignStatus", "variables": { "input": { "id": "{{id}}", "status": "PAUSED" } }, "data": "flxAdsCampaignStatus" } },
+      "after": { "toast": "Paused", "invalidate": ["campaigns", "campaign"] }
+    },
+    "resume": {
+      "label": "Resume",
+      "icon": "yes",
+      "when": { "all": [{ "path": "canPause", "op": "truthy" }, { "path": "active", "op": "falsy" }] },
+      "request": { "graphql": { "op": "FlxAdsCampaignStatus", "variables": { "input": { "id": "{{id}}", "status": "ACTIVE" } }, "data": "flxAdsCampaignStatus" } },
+      "after": { "toast": "Resumed", "invalidate": ["campaigns", "campaign"] }
+    },
+    "budget": {
+      "label": "Daily budget",
+      "icon": "money",
+      "when": { "path": "dailyBudget", "op": "truthy" },
+      "prompt": { "title": "Daily budget ({{currency}})", "fields": [{ "name": "amount", "type": "money", "label": "Amount", "required": true, "min": 1 }] },
+      "request": { "graphql": { "op": "FlxAdsCampaignBudget", "variables": { "input": { "id": "{{id}}", "amount": "{{input.amount|float}}" } }, "data": "flxAdsCampaignBudget" } },
+      "after": { "toast": "Budget changed", "invalidate": ["campaigns", "campaign"] }
+    },
+    "suggestion_apply": {
+      "label": "Apply",
+      "icon": "yes",
+      "confirm": { "title": "Apply this suggestion?", "body": "{{reason}}", "ok": "Apply" },
+      "request": { "graphql": { "op": "FlxAdsSuggestionApply", "variables": { "input": { "id": "{{id}}" } }, "data": "flxAdsSuggestionApply" } },
+      "after": { "toast": "Applied", "invalidate": ["suggestions", "campaigns"] },
+      "haptic": "success"
+    },
+    "suggestion_dismiss": {
+      "label": "Dismiss",
+      "icon": "no",
+      "request": { "graphql": { "op": "FlxAdsSuggestionDismiss", "variables": { "input": { "id": "{{id}}" } }, "data": "flxAdsSuggestionDismiss" } },
+      "after": { "toast": "Dismissed", "invalidate": ["suggestions"] }
+    },
+    "suggestions_refresh": {
+      "label": "Check now",
+      "icon": "refresh",
+      "request": { "graphql": { "op": "FlxAdsSuggestionsRefresh", "variables": { "input": {} }, "data": "flxAdsSuggestionsRefresh" } },
+      "after": { "toast": "Checked", "invalidate": ["suggestions"] }
+    },
+    "open_panel": {
+      "label": "Open in panel",
+      "icon": "external",
+      "web": "admin.php?page=flx-ads"
+    }
+  }
+}

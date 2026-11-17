@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.9.0
+- FluxWP mobil uygulamasında Reklamlar native çizilir (ortak manifest `app/manifest.json`, GraphQL): gelir ve reklam özeti, Meta kampanyaları (dönem, duraklat/devam, günlük bütçe), kampanya ayrıntısı (reklam setleri, yaş/cinsiyet, yerleşim), öneriler (uygula, geç, şimdi kontrol et). Masaüstü panel React ekranını kullanmaya devam eder.
+
 ## 0.8.1
 - Tarih alanları ortak FluxWP tarih seçicisini kullanır: sitenin dilinde ay/gün adları, Pazartesi başlangıç, hızlı seçim listesi, yazılabilir tarih ve saat, Uygula düğmesi, açık/koyu, telefonda alttan açılan pencere. Tarayıcının kendi takvimi (İngilizce çıkan) kalktı.
 

@@ -30,6 +30,7 @@ describe('templates', () => {
     expect(fill({ id: '{{params.id}}', n: '{{ltv}}', t: 'x {{name}}' }, ctx)).toEqual({ id: '7', n: 1500.5, t: 'x Ayşe Kaya' });
     expect(compile('{{params.id|int}}')(ctx)).toBe(7);
     expect(compile('{{name|int}}')(ctx)).toBeUndefined();
+    expect(compile('{{v|float}}')({ ...ctx, scope: { v: '12,5' } })).toBe(12.5);
   });
 
   it('formats relative time in the user language', () => {
@@ -139,9 +140,12 @@ describe('chart section', () => {
   });
 });
 
-describe('plugin manifests (plugins/*/app/manifest.json)', () => {
+describe('plugin manifests (plugins/*/app/*.json)', () => {
   const root = join(__dirname, '../../../plugins');
-  const files = readdirSync(root).map((p) => join(root, p, 'app/manifest.json')).filter((f) => { try { return !!readFileSync(f); } catch { return false; } });
+  // Every app/*.json of a plugin is a manifest (a plugin may send more than one module).
+  const files = readdirSync(root).flatMap((p) => {
+    try { return readdirSync(join(root, p, 'app')).filter((f) => f.endsWith('.json')).map((f) => join(root, p, 'app', f)); } catch { return []; }
+  });
 
   it.each(files)('%s parses', (f) => {
     const issues: ParseIssue[] = [];

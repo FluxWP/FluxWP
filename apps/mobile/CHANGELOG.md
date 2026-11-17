@@ -1,7 +1,7 @@
 # Değişiklikler
 
 ## Yayınlanmamış
-- reCAPTCHA, SEO, Yedekleme, Diller, Performans, Roller ve erişim, Yönetim teması ve Headless menüleri web görünümü yerine uygulamanın kendi ekranlarında açılır (eklentilerin GraphQL manifestleriyle).
+- reCAPTCHA, SEO, Yedekleme, Diller, Performans, Roller ve erişim, Yönetim teması, Headless, Sohbet botu, Site sohbetleri, Reklamlar, Dosyalar ve Blok Düzenleyici menüleri web görünümü yerine uygulamanın kendi ekranlarında açılır (eklentilerin GraphQL manifestleriyle).
 - Uzun seçenek listeleri (diller, günler…) ekranı dolduran düğmeler yerine dokununca açılan bir listeden seçilir; kısa listeler yine yan yana düğme.
 - Etiket alanları (ör. izinli IP adresleri) virgülle ayrılarak düzenlenebilir.
 
