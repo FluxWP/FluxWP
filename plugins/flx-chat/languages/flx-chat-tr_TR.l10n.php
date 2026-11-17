@@ -3567,5 +3567,7 @@ return array(
   'Clear a visible chat. Managers only, confirm must be yes.' => 'Görünür bir sohbeti temizle. Yalnız yöneticiler, confirm yes olmalı.',
   'Must be yes.' => 'yes olmalı.',
   'Cleared.' => 'Temizlendi.',
+  'Proxy' => 'Vekâlet',
+  'Please reply "I agree" to give your proxy.' => 'Vekâlet vermek için "Onaylıyorum" yazmanız yeterli.',
  ),
 );

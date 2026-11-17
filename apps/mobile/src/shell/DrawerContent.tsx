@@ -7,7 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import Svg, { Defs, LinearGradient, Rect, Stop } from 'react-native-svg';
-import { useAccount, useRenderer, useShellModel, type NavEntry } from '@fluxwp/runtime';
+import { useAccount, useRenderer, useShellModel, type NavEntry, type Route } from '@fluxwp/runtime';
 import { brand } from '@/brand';
 import { Glass, GlassButton, GlassPill } from '@/ui/Glass';
 import { Icon } from '@/ui/Icon';
@@ -28,7 +28,9 @@ export function DrawerContent({ close }: { close: () => void }) {
   const label = useLabel();
   const [open, setOpen] = useState<Record<string, boolean>>({});
   const [query, setQuery] = useState<string | null>(null);
-  const go = (e: NavEntry) => {
+  const [sub, setSub] = useState<Record<string, boolean>>({});
+  const toggleSub = (id: string) => setSub((o) => ({ ...o, [id]: !o[id] }));
+  const go = (e: { route: Route }) => {
     close();
     setQuery(null);
     renderer.nav.push(e.route);
@@ -58,10 +60,10 @@ export function DrawerContent({ close }: { close: () => void }) {
         contentContainerStyle={{ paddingTop: insets.top + HEAD + 8, paddingBottom: insets.bottom + FOOT + 16 }}
       >
         {matches ? (
-          matches.length ? matches.map((e) => <Item key={e.id} e={e} onPress={go} />) : <Text tone="muted" style={styles.empty}>{t('mobile.drawer.noResults')}</Text>
+          matches.length ? matches.map((e) => <Item key={e.id} e={e} onPress={go} expanded={!!sub[e.id]} onToggle={toggleSub} />) : <Text tone="muted" style={styles.empty}>{t('mobile.drawer.noResults')}</Text>
         ) : (
           <>
-            {shell.drawer.pins.map((e) => <Item key={e.id} e={e} onPress={go} />)}
+            {shell.drawer.pins.map((e) => <Item key={e.id} e={e} onPress={go} expanded={!!sub[e.id]} onToggle={toggleSub} />)}
             {shell.drawer.groups.map((g) => {
               const collapsed = open[g.id] === undefined ? g.collapsed : !open[g.id];
               return (
@@ -70,7 +72,7 @@ export function DrawerContent({ close }: { close: () => void }) {
                     <Text style={styles.groupTitle}>{groupTitle(g.label)}</Text>
                     <Icon name={collapsed ? 'chevron' : 'chevron-down'} size={14} color={theme.colors.textMuted} />
                   </Pressable>
-                  {!collapsed && g.items.map((e) => <Item key={e.id} e={e} onPress={go} />)}
+                  {!collapsed && g.items.map((e) => <Item key={e.id} e={e} onPress={go} expanded={!!sub[e.id]} onToggle={toggleSub} />)}
                 </View>
               );
             })}
@@ -145,16 +147,30 @@ function Fade({ color, edge, height }: { color: string; edge: 'top' | 'bottom'; 
   );
 }
 
-function Item({ e, onPress }: { e: NavEntry; onPress: (e: NavEntry) => void }) {
+function Item({ e, onPress, expanded, onToggle }: { e: NavEntry; onPress: (e: { route: Route }) => void; expanded: boolean; onToggle: (id: string) => void }) {
   const { theme } = useUnistyles();
   const label = useLabel();
+  const kids = e.children ?? [];
+  // Entries with sub-pages: tap the row opens the package, the chevron expands its sub-tabs.
   return (
+    <View>
     <Pressable testID={`nav-${e.id}`} accessibilityRole="button" onPress={() => onPress(e)} style={({ pressed }) => [styles.item, pressed && styles.pressed]}>
       <Icon name={e.iconUrl || e.icon} slug={e.slug} size={22} color={theme.colors.primary} strokeWidth={1.7} />
       <Text numberOfLines={1} style={styles.itemLabel}>{label(e.label)}</Text>
       {e.badge ? <Badge text={String(e.badge)} tone="danger" style={styles.itemBadge} /> : null}
-      {e.route.kind === 'web' ? <Icon name="external" size={14} color={theme.colors.textMuted} /> : null}
+      {kids.length ? (
+        <Pressable testID={`nav-${e.id}-toggle`} accessibilityRole="button" accessibilityState={{ expanded }} hitSlop={10} onPress={() => onToggle(e.id)} style={styles.toggle}>
+          <Icon name={expanded ? 'chevron-down' : 'chevron'} size={16} color={theme.colors.textMuted} />
+        </Pressable>
+      ) : e.route.kind === 'web' ? <Icon name="external" size={14} color={theme.colors.textMuted} /> : null}
     </Pressable>
+    {expanded && kids.map((c) => (
+      <Pressable key={c.id} testID={`nav-${e.id}-${c.id}`} accessibilityRole="button" onPress={() => onPress(c)} style={({ pressed }) => [styles.child, pressed && styles.pressed]}>
+        <Text numberOfLines={1} style={styles.childLabel}>{label(c.label)}</Text>
+        {c.badge ? <Badge text={String(c.badge)} tone="danger" style={styles.itemBadge} /> : null}
+      </Pressable>
+    ))}
+    </View>
   );
 }
 
@@ -172,6 +188,9 @@ const styles = StyleSheet.create((theme) => ({
   groupTitle: { fontSize: 15, color: theme.colors.textMuted, fontWeight: '500' },
   item: { flexDirection: 'row', alignItems: 'center', gap: 14, minHeight: 50, paddingHorizontal: 14, marginHorizontal: 8, borderRadius: 16 },
   itemLabel: { flex: 1, fontSize: 17, fontWeight: '500', color: theme.colors.sidebarText },
+  toggle: { padding: 6 },
+  child: { flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: 42, paddingLeft: 50, paddingRight: 14, marginHorizontal: 8, borderRadius: 14 },
+  childLabel: { flex: 1, fontSize: 16, color: theme.colors.sidebarText, opacity: 0.85 },
   itemBadge: { alignSelf: 'center' },
   pressed: { backgroundColor: theme.colors.sidebarActive },
   fade: { position: 'absolute', left: 0, right: 0 },

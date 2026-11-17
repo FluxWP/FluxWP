@@ -2,11 +2,13 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { footerMenus, MenuList, pick } from '@/components/menu';
+import { RENDER } from '@/lib/env';
 import { getSite } from '@/lib/flux';
 import type { Site } from '@/lib/types';
 import './globals.css';
 
 export async function generateMetadata(): Promise<Metadata> {
+  if (RENDER !== 'react') return {};
   const site = await getSite();
   return {
     metadataBase: new URL(site.url),
@@ -26,6 +28,14 @@ function Logo({ site, onDark }: { site: Site; onDark?: boolean }) {
 }
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
+  // Whole-page mode: pages come from WordPress (app/wp-page); this frame only wraps Next's own 404 and errors.
+  if (RENDER !== 'react') {
+    return (
+      <html lang="en">
+        <body>{children}</body>
+      </html>
+    );
+  }
   const site = await getSite();
   // Theme palette as CSS variables, same names as the WordPress theme (--wp--preset--color--<slug>).
   const palette = site.palette.map((c) => `--wp--preset--color--${c.slug}:${c.color};`).join('');

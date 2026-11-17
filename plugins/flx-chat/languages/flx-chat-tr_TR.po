@@ -5823,3 +5823,9 @@ msgstr "yes olmalı."
 
 msgid "Cleared."
 msgstr "Temizlendi."
+
+msgid "Proxy"
+msgstr "Vekâlet"
+
+msgid "Please reply \"I agree\" to give your proxy."
+msgstr "Vekâlet vermek için \"Onaylıyorum\" yazmanız yeterli."

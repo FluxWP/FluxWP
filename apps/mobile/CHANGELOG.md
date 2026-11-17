@@ -1,6 +1,8 @@
 # Değişiklikler
 
 ## 1.0.1
+- Yan menüde eklentilerin alt sekmeleri (Yedekleme, Flux Files vb.) ok işaretine basınca açılır, doğrudan alt sekme seçilir.
+- Hesaplar: Düzenle modu; hesap başına önbellek boyutu, önbelleği temizle ve hesabı kaldır orada. Her kartta çöp kutusu kalmadı.
 - Görevler ekranı siteyle GraphQL (Flux GraphQL) üzerinden konuşur; giriş ve menü yüklemesi Flux App GraphQL bağlantısını kullanır. Görünüm değişmedi.
 - Expo SDK 58 yama sürümleri (expo, expo-router, @expo/ui, expo-web-browser).
 

@@ -15,6 +15,15 @@ export interface NavEntry {
   slug?: string;
   iconUrl?: string;
   badge?: number | string;
+  /** The package's own sub-pages (the wp-admin menu's sub-items), shown under the entry. */
+  children?: NavChild[];
+}
+
+export interface NavChild {
+  id: string;
+  label: string;
+  route: Route;
+  badge?: number | string;
 }
 
 export interface ShellGroup {
@@ -85,6 +94,15 @@ export function describeTarget(target: string, env: ShellEnv): Omit<NavEntry, 'i
   }
 }
 
+/** Sub-pages of the top-level wp-admin menu item `slug`. The item that repeats the parent's title is the parent itself. */
+function childrenOf(slug: string | undefined, env: ShellEnv): NavChild[] | undefined {
+  if (!slug) return undefined;
+  const top = env.me?.menu?.find((m) => m.slug === slug);
+  const kids = (top?.items ?? []).filter((c) => c.title !== top!.title && c.url);
+  if (!kids.length) return undefined;
+  return kids.map((c) => ({ id: c.slug, label: c.title, route: { kind: 'web', path: adminPath(c.url), title: c.title }, badge: c.badge }));
+}
+
 function entry(id: string, target: string, env: ShellEnv, over: { label?: string; icon?: string; badge?: string } = {}): NavEntry {
   const d = describeTarget(target, env);
   const counts = { ...env.me?.counts, ...env.counts };
@@ -96,6 +114,7 @@ function entry(id: string, target: string, env: ShellEnv, over: { label?: string
     label: over.label || d.label,
     icon: over.icon || d.icon,
     badge: over.badge ? counts[over.badge] || undefined : d.badge,
+    children: childrenOf(d.slug, env),
   };
 }
 
