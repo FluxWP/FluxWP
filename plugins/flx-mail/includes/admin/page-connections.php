@@ -181,12 +181,7 @@ add_action(
 		$id   = (int) ( $_POST['id'] ?? 0 );
 		$type = sanitize_key( wp_unslash( $_POST['type'] ?? '' ) );
 		$cfg  = (array) wp_unslash( $_POST['cfg'] ?? array() ); // phpcs:ignore
-		$from = $id ? null : flxi_get_connection( (int) ( $_POST['copy_from'] ?? 0 ) );
-		if ( $from && $from['type'] === $type ) {
-			$cfg['base_url'] = $from['config']['base_url'] ?? '';
-			$cfg['api_key']  = $from['config']['api_key'] ?? '';
-		}
-		$res = flxi_save_connection( $id, $type, sanitize_text_field( wp_unslash( $_POST['name'] ?? '' ) ), $cfg, ! empty( $_POST['active'] ) );
+		$res  = FLXI_Connection_Service::save_form( $id, $type, sanitize_text_field( wp_unslash( $_POST['name'] ?? '' ) ), $cfg, ! empty( $_POST['active'] ), (int) ( $_POST['copy_from'] ?? 0 ) );
 		if ( is_wp_error( $res ) ) {
 			flxi_redirect( flxi_admin_url( 'flxi-baglantilar', array( 'edit' => $id ? $id : 'new', 'type' => $type ) ), '', $res->get_error_message() );
 		}
@@ -206,13 +201,10 @@ add_action(
 	function () {
 		flxi_check( 'flxi_delete_connection' );
 		$id = (int) ( $_POST['id'] ?? 0 );
-		if ( ! empty( $_POST['remote'] ) ) {
-			$r = flxi_wa_delete_remote( $id );
-			if ( is_wp_error( $r ) ) {
-				flxi_redirect( flxi_admin_url( 'flxi-baglantilar' ), '', $r->get_error_message() );
-			}
+		$r  = FLXI_Connection_Service::delete( $id, ! empty( $_POST['remote'] ), false );
+		if ( is_wp_error( $r ) ) {
+			flxi_redirect( flxi_admin_url( 'flxi-baglantilar' ), '', $r->get_error_message() );
 		}
-		flxi_delete_connection( $id );
 		flxi_redirect( flxi_admin_url( 'flxi-baglantilar' ), __( 'Connection deleted.', 'flx-mail' ) );
 	}
 );
@@ -221,7 +213,7 @@ add_action(
 	'admin_post_flxi_default_connection',
 	function () {
 		flxi_check( 'flxi_default_connection' );
-		flxi_set_default_connection( (int) ( $_POST['id'] ?? 0 ) );
+		FLXI_Connection_Service::set_default( (int) ( $_POST['id'] ?? 0 ), false );
 		flxi_redirect( flxi_admin_url( 'flxi-baglantilar' ), __( 'Default connection changed.', 'flx-mail' ) );
 	}
 );

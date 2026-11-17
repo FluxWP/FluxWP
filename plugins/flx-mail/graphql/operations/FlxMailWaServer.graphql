@@ -1,0 +1,3 @@
+query FlxMailWaServer($id: Int!) {
+  flxMailWaServer(id: $id) { ...FlxMailWaServer }
+}

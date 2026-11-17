@@ -150,25 +150,7 @@ function flxi_recipient_report_lines( array $report, $channel ) {
 }
 
 function flxi_rest_connection_test( WP_REST_Request $r ) {
-	$scenario = sanitize_key( (string) $r['scenario'] );
-	if ( $scenario ) {
-		$tpl = (array) $r['template'];
-		return flxi_test_scenario(
-			(int) $r['id'],
-			$scenario,
-			sanitize_text_field( (string) $r['to'] ),
-			array(
-				'text'     => sanitize_textarea_field( (string) $r['text'] ),
-				'caption'  => sanitize_text_field( (string) $r['caption'] ),
-				'template' => array(
-					'name'   => sanitize_text_field( (string) ( $tpl['name'] ?? '' ) ),
-					'lang'   => sanitize_text_field( (string) ( $tpl['lang'] ?? 'tr' ) ),
-					'params' => array_map( 'sanitize_text_field', array_map( 'strval', (array) ( $tpl['params'] ?? array() ) ) ),
-				),
-			)
-		);
-	}
-	return flxi_test_connection( (int) $r['id'], sanitize_text_field( (string) $r['to'] ) );
+	return FLXI_Connection_Service::test_rest( $r );
 }
 
 /** Gönderim kaydı listesi. */

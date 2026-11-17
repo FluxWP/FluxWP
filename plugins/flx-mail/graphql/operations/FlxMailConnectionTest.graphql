@@ -1,0 +1,8 @@
+mutation FlxMailConnectionTest($input: FlxMailConnectionTestInput!) {
+  flxMailConnectionTest(input: $input) {
+    ok
+    error
+    connection { ...FlxMailConnection }
+    errors { code message field }
+  }
+}

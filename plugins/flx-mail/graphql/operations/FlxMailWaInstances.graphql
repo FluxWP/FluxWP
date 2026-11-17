@@ -1,0 +1,3 @@
+query FlxMailWaInstances($id: Int!) {
+  flxMailWaInstances(id: $id) { name state me used }
+}

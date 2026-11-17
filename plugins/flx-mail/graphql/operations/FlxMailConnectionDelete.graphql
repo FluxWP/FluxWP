@@ -1,0 +1,6 @@
+mutation FlxMailConnectionDelete($input: FlxMailConnectionDeleteInput!) {
+  flxMailConnectionDelete(input: $input) {
+    ok
+    errors { code message field }
+  }
+}

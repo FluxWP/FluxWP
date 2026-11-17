@@ -33,6 +33,7 @@ require_once FLXI_DIR . 'includes/services/class-flxi-template-service.php';
 require_once FLXI_DIR . 'includes/services/class-flxi-log-service.php';
 require_once FLXI_DIR . 'includes/services/class-flxi-delivery-service.php';
 require_once FLXI_DIR . 'includes/services/class-flxi-system-service.php';
+require_once FLXI_DIR . 'includes/services/class-flxi-connection-service.php';
 require_once FLXI_DIR . 'includes/install.php';
 require_once FLXI_DIR . 'includes/layout.php';
 require_once FLXI_DIR . 'includes/templates.php';
