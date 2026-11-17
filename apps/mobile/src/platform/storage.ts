@@ -14,11 +14,28 @@ export const storage: KeyValueStore = {
 
 const accountStoreId = (accountId: string) => 'acc-' + accountId.replace(/[^\w.-]/g, '_');
 const stores = new Map<string, PersistStore>();
+const mmkvs = new Map<string, MMKV>();
+
+function accountMmkv(accountId: string): MMKV {
+  let m = mmkvs.get(accountId);
+  if (!m) mmkvs.set(accountId, (m = createMMKV({ id: accountStoreId(accountId) })));
+  return m;
+}
+
+/** Bytes the account's persisted query cache takes on this device. */
+export function accountCacheSize(accountId: string): number {
+  return accountMmkv(accountId).size;
+}
+
+/** Empties the account's persisted cache (the account and its sign-in stay). */
+export function clearAccountCacheStore(accountId: string): void {
+  accountMmkv(accountId).clearAll();
+}
 
 export function accountStore(accountId: string): PersistStore {
   let s = stores.get(accountId);
   if (!s) {
-    const m = createMMKV({ id: accountStoreId(accountId) });
+    const m = accountMmkv(accountId);
     s = { getItem: (k) => m.getString(k) ?? null, setItem: (k, v) => m.set(k, v), removeItem: (k) => void m.remove(k) };
     stores.set(accountId, s);
   }
@@ -27,5 +44,6 @@ export function accountStore(accountId: string): PersistStore {
 
 export function deleteAccountStore(accountId: string): void {
   stores.delete(accountId);
+  mmkvs.delete(accountId);
   deleteMMKV(accountStoreId(accountId));
 }
