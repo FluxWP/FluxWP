@@ -3,6 +3,9 @@
 ## 0.11.3
 - Tarih seçici açılır kutusu kompakt: ekrana sığar (sağda takvim ve Uygula artık kesilmez), sol hızlı seçim paneli bej yerine temaya uygun gri (açık/koyu). Yalnız Tasks içinde; ortak bileşen değişmedi.
 
+## 0.11.2
+- Satır hover simgeleri (alt görev, etiket, yeniden adlandır) görev adının üstüne biner; görev adı sütunun tam genişliğini kullanır, metni daraltmaz.
+
 ## 0.11.1
 - Satır içi görev eklemede liste seçici kalktı (görev bulunduğu listeye ya da varsayılan listeye eklenir).
 - Doküman sayfası dar alanda (yan paneller açıkken) kağıdın dış boşluğu ve iç boşluğu azaldı; çok darda tam genişlik.
