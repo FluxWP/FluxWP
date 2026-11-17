@@ -43,11 +43,13 @@ query {
 
 | Mutation | Girdi | Not |
 |---|---|---|
-| `flxDonationCartAdd` | `typeId`, `option?`, `units?`, `amount?`, `currency?`, `names?`, `proxyConsent?` | `build_line` sonra `FLXGQL_Cart::add_item`. Birkaç ad bir satır. Çıkış `{ cart, itemKey, errors }` |
+| `flxDonationCartAdd` | `typeId`, `option?`, `units?`, `amount?`, `currency?`, `names?`, `contacts?`, `feeCover?`, `proxyConsent?` | Klasik form gibi: önce `FLXB_WC_Form::contact_missing` (sertifikada WhatsApp ya da e-posta, aynı ileti), sonra `build_line` ve `FLXGQL_Cart::add_item`; ardından `remember_contact` ve `FLXB_WC_Fee::remember`. `contacts` her adın iletişimi (`{ phone?, email? }`, aynı sıra). Para birimi seçilemezse `flxb_currency`. Birkaç ad bir satır. Çıkış `{ cart, itemKey, errors }` |
 | `flxDonationLookupStart` | `login` | Aynı cevap; oran sınırı |
 | `flxDonationLookupVerify` | `login`, `code` | Çerez `flxb_lk`. Yanlış kod ile bilinmeyen adres aynı hatayı verir |
 | `flxDonationLookupEnd` | — | Çerezi siler |
 
 Hatalı girdi payload `errors` içindedir. Oran aşımı `RATE_LIMITED`.
+
+Önbellek: `flxDonationTypes` ve `flxDonationType` `flx-donate:types` etiketini taşır; tür kaydı, tür silme ve bağış kaydı/durumu değişince temizlenir. `flxMyDonations` reddi dahil asla saklanmaz (`cap` içinde `flx_gql_no_store`). Sorgulama kapalıysa (`flxb_lookup.on`) oturumla okuma ve `Verify` kapanır.
 
 İşlem belgeleri `plugins/flx-donate/graphql/operations/`. Şema parçası `plugins/flx-donate/graphql/schema.graphql`.

@@ -14,7 +14,9 @@ IBAN: `flxDonationBankAccount` `flxb_bank_account()` çağırır. Havale sınıf
 
 Gizli yazma (d): sahip onayladı. Yaz-yalnız girdi; boş saklananı tutar, `"__clear__"` siler; değer dönmez; okuma `set`, varsa maske, `fromConstant`. Kalıp flx-ads ve flx-social. `flxb_public_token` EsnekPOS kimliği (`class-flxb-wc-esnekpos-direct.php:89`), hiç dönmez. (a) değişmez.
 
-Lookup (a): HttpOnly çerez `flxb_lk` (adı `flxb_lookup` değil), kod 10 dk, oturum 30 dk, oran `flx_rate_limit('flxb_lk|…')`. `flxMyDonations` WP oturumu veya bu çerez; `no-store`.
+Lookup (a): HttpOnly çerez `flxb_lk` (adı `flxb_lookup` değil), kod 10 dk, oturum 30 dk, oran `flx_rate_limit('flxb_lk|…')`. `flxMyDonations` WP oturumu veya bu çerez; `no-store` (reddi de: `cap` içinde çağrılır). Sorgulama kapalıysa (`on`) çerez oturumu sayılmaz, `Verify` reddeder.
+
+İnceleme düzeltmeleri (PR #340): `flxDonationCartAdd` klasik iletişim kapısı, `remember_contact` ve ücret tercihi; para birimi hatası; Store API adet filtresi klasik `fixed_quantity` koşuluyla; `flx-donate:types` temizliği; flx-admin testi Flux Donate açıkken (`wp-args` silindi, #345).
 
 ## İstisnalar
 
