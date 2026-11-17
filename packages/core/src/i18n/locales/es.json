@@ -121,7 +121,9 @@
     "support": "Soporte",
     "contact": "Contáctenos",
     "logoutConfirm": "¿Cerrar sesión en {{site}}?",
-    "logoutFailed": "No se pudo cerrar sesión. Por favor inténtalo de nuevo."
+    "logoutFailed": "No se pudo cerrar sesión. Por favor inténtalo de nuevo.",
+    "poweredBy": "Con la tecnología de FluxWP",
+    "website": "Abrir fluxwp.com"
   },
   "oauth": {
     "doneTitle": "Iniciado sesión",
@@ -322,5 +324,11 @@
     "title": "Información legal",
     "privacy": "Política de privacidad",
     "terms": "Condiciones de uso"
+  },
+  "boot": {
+    "preparing": "Preparando {{name}}",
+    "site": "Cargando datos del sitio",
+    "screens": "Preparando pantallas ({{n}}/{{total}})",
+    "ready": "Listo"
   }
 }

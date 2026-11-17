@@ -4,7 +4,7 @@ import { Bell, ChevronDown, ChevronRight, Search } from 'lucide-react';
 import type { Account } from '@fluxwp/core';
 import { MenuIcon } from '@fluxwp/ui';
 import { AccountCard } from './AccountCard';
-import { BrandLogo } from './BrandLogo';
+import { SiteLogo, type SiteBrand } from './SiteLogo';
 import { TitleBar } from './TitleBar';
 import { UpdateBanner } from './UpdateBanner';
 import { useSidebar } from '../state/sidebar';
@@ -13,8 +13,9 @@ import type { SideGroup, SideLink } from '../shell/links';
 
 const MOD_KEY = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/i.test(navigator.userAgent) ? '⌘' : 'Ctrl ';
 
-export function Sidebar({ account, pins, groups, activeId, childId, onSearch, onOpen, actions = [] }: {
+export function Sidebar({ account, site, pins, groups, activeId, childId, onSearch, onOpen, actions = [] }: {
   account: Account;
+  site: SiteBrand;
   pins: SideLink[];
   groups: SideGroup[];
   activeId: string | null;
@@ -51,7 +52,7 @@ export function Sidebar({ account, pins, groups, activeId, childId, onSearch, on
       <div className="sidebar-in" style={{ width }}>
         <div className="sidebar-top" data-tauri-drag-region>
           <TitleBar />
-          <div className="brand-logo" data-tauri-drag-region><BrandLogo /></div>
+          <div className="brand-logo" data-tauri-drag-region><SiteLogo site={site} /></div>
           <div className="fx-row">
             <button className="search-btn" onClick={onSearch}>
               <Search size={15} />

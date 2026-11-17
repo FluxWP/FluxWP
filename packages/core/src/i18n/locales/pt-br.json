@@ -121,7 +121,9 @@
     "support": "Suporte",
     "contact": "Contate-nos",
     "logoutConfirm": "Sair de {{site}}?",
-    "logoutFailed": "Não foi possível sair. Por favor, tente novamente."
+    "logoutFailed": "Não foi possível sair. Por favor, tente novamente.",
+    "poweredBy": "Desenvolvido com FluxWP",
+    "website": "Abrir fluxwp.com"
   },
   "oauth": {
     "doneTitle": "Conectado",
@@ -322,5 +324,11 @@
     "title": "Informações legais",
     "privacy": "Política de privacidade",
     "terms": "Termos de uso"
+  },
+  "boot": {
+    "preparing": "Preparando {{name}}",
+    "site": "Carregando dados do site",
+    "screens": "Preparando telas ({{n}}/{{total}})",
+    "ready": "Pronto"
   }
 }

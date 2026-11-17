@@ -44,6 +44,13 @@ writeFileSync(join(pub, 'icon.svg'), readSvg(brand.icon));
 writeFileSync(join(pub, 'logo.svg'), readSvg(brand.logo));
 // Koyu tema logosu (yoksa açık logo kullanılır).
 writeFileSync(join(pub, 'logo-dark.svg'), readSvg(brand.logoDark || brand.logo));
+// FluxWP mark for Settings › About ("Powered by FluxWP"), the same in every white-label build.
+{
+  const flux = join(root, 'brands/flux');
+  const clean = (f) => svgClean(readFileSync(join(flux, f), 'utf8'));
+  writeFileSync(join(pub, 'fluxwp.svg'), clean('logo.svg'));
+  writeFileSync(join(pub, 'fluxwp-dark.svg'), clean(existsSync(join(flux, 'logo-dark.svg')) ? 'logo-dark.svg' : 'logo.svg'));
+}
 
 // 3) desktop: tauri config katmanı (tauri --config ile birleşir)
 write(join(root, 'apps/desktop/src-tauri/tauri.brand.conf.json'), JSON.stringify({
