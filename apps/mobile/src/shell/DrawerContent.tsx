@@ -9,7 +9,7 @@ import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import Svg, { Defs, LinearGradient, Rect, Stop } from 'react-native-svg';
 import { useAccount, useRenderer, useShellModel, type NavEntry, type Route } from '@fluxwp/runtime';
 import { brand } from '@/brand';
-import { Glass, GlassButton, GlassPill } from '@/ui/Glass';
+import { Glass, GlassButton } from '@/ui/Glass';
 import { Icon } from '@/ui/Icon';
 import { Avatar, Badge, Text } from '@/ui/primitives';
 import { openSwitcher } from './AccountSwitcher';
@@ -117,10 +117,8 @@ export function DrawerContent({ close }: { close: () => void }) {
           <Avatar image={account.siteIcon || undefined} text={account.siteName} size={30} square />
         </GlassButton>
         <View style={styles.footActions}>
-          {shell.drawer.footer.map((e, i, all) => i < all.length - 1 ? (
+          {shell.drawer.footer.map((e) => (
             <GlassButton key={e.id} testID={`nav-${e.id}`} icon={e.iconUrl || e.icon} label={label(e.label)} size={52} onPress={() => go(e)} />
-          ) : (
-            <GlassPill key={e.id} testID={`nav-${e.id}`} icon={e.iconUrl || e.icon} label={label(e.label)} onPress={() => go(e)} />
           ))}
         </View>
       </View>
