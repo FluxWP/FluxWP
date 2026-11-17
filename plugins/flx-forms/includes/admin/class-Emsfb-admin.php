@@ -1537,7 +1537,7 @@ class Admin {
                     $this->db = $wpdb;
                 }
         $ip = $this->ip;
-        if (!\FLXF_Response_Service::store_reply($id, $m, empty($response_attachment_urls) ? [] : $response_attachment_urls, $ip)) {
+        if (!\FLXF_Response_Service::store_reply((int) $id, $m, empty($response_attachment_urls) ? [] : $response_attachment_urls, $ip)) {
             wp_send_json_success(['success' => false, 'm' => $lang['somethingWentWrongPleaseRefresh']], 200);
         }
         $m        = $lang['messageSent'];
