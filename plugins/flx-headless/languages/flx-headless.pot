@@ -1,0 +1,655 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: en_US\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Settings"
+msgstr ""
+
+msgid "Serves headless front ends over GraphQL"
+msgstr ""
+
+msgid "Headless"
+msgstr ""
+
+msgid "This screen needs Flux GraphQL (0.4.0 or newer). Install or update it from the FluxWP Packages screen."
+msgstr ""
+
+msgid "%d front end, webhook set."
+msgid_plural "%d front ends, webhooks set."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "No front end is added yet; GraphQL works, but links, canonical addresses and the webhook have no front end to point at."
+msgstr ""
+
+msgid "The last webhook call failed for: %s. Open the delivery log on the Headless page."
+msgstr ""
+
+msgid "No revalidate webhook for: %s. These front ends show changes only when their cache runs out."
+msgstr ""
+
+msgid "Headless front ends"
+msgstr ""
+
+msgid "This front end does not exist any more."
+msgstr ""
+
+msgid "At most %d front ends can be added."
+msgstr ""
+
+msgid "Give the front end a name."
+msgstr ""
+
+msgid "Enter the front end address with https:// (http:// only for localhost)."
+msgstr ""
+
+msgid "The front end cannot have the same address as this WordPress. Move WordPress to another address (e.g. cms.example.com) first."
+msgstr ""
+
+msgid "Another front end already has this address."
+msgstr ""
+
+msgid "Enter the webhook address with https:// (http:// only for localhost)."
+msgstr ""
+
+msgid "The language \"%s\" is not on this site."
+msgstr ""
+
+msgid "The preview path starts with \"/\" (e.g. /api/preview)."
+msgstr ""
+
+msgid "The secret must be at least 24 characters. Use the Generate button."
+msgstr ""
+
+msgid "The secret could not be stored securely on this server."
+msgstr ""
+
+msgid "A webhook needs a secret so the front end can check that the call comes from this site."
+msgstr ""
+
+msgid "Choose what WordPress does with its own pages."
+msgstr ""
+
+msgid "Add a front end first; WordPress pages point visitors and search engines to it."
+msgstr ""
+
+msgid "Enter the webhook address and the secret first."
+msgstr ""
+
+msgid "Sent without waiting for the answer."
+msgstr ""
+
+msgid "The front end accepted the call."
+msgstr ""
+
+msgid "The front end answered with HTTP %d."
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "What an address shows."
+msgstr ""
+
+msgid "The home page (a page or the latest posts)."
+msgstr ""
+
+msgid "The page that lists the latest posts (blog)."
+msgstr ""
+
+msgid "One post, page or other content."
+msgstr ""
+
+msgid "A category, tag or other term archive."
+msgstr ""
+
+msgid "The archive of a content type (e.g. the shop)."
+msgstr ""
+
+msgid "An author archive."
+msgstr ""
+
+msgid "A date archive."
+msgstr ""
+
+msgid "Search results (?s=)."
+msgstr ""
+
+msgid "The address moved; send the visitor to redirect with status (301)."
+msgstr ""
+
+msgid "Nothing is at this address (404)."
+msgstr ""
+
+msgid "What WordPress does with its own theme pages once a front end serves the site."
+msgstr ""
+
+msgid "WordPress keeps showing its pages (both sites are open)."
+msgstr ""
+
+msgid "WordPress pages stay open but tell search engines the front end is the real address (noindex + canonical)."
+msgstr ""
+
+msgid "Visitors are sent to the same address on the default front end (301). Cart, checkout, account, previews and editors stay on WordPress."
+msgstr ""
+
+msgid "A headless front end this site serves. The webhook secret is never returned."
+msgstr ""
+
+msgid "Front end id; pass it as the frontend argument of flxRoute and flxSite."
+msgstr ""
+
+msgid "Name shown in the panel."
+msgstr ""
+
+msgid "Address of the front end (https://www.example.com), without a trailing slash."
+msgstr ""
+
+msgid "Browser origin of the front end; it is allowed to call /graphql (CORS)."
+msgstr ""
+
+msgid "Language codes the front end serves; empty means every language."
+msgstr ""
+
+msgid "The front end is in use (CORS, links, webhook)."
+msgstr ""
+
+msgid "Used when a request names no front end and comes from no known origin; previews and WordPress redirects go here."
+msgstr ""
+
+msgid "Webhook address that receives the signed revalidate calls; empty when none."
+msgstr ""
+
+msgid "A webhook secret is saved."
+msgstr ""
+
+msgid "Masked last four characters of the secret; empty when none. The secret itself is never returned."
+msgstr ""
+
+msgid "Path on the front end that opens previews (e.g. /api/preview); empty when the editor previews on WordPress."
+msgstr ""
+
+msgid "One revalidate webhook call."
+msgstr ""
+
+msgid "When it was sent."
+msgstr ""
+
+msgid "Front end id."
+msgstr ""
+
+msgid "Front end name."
+msgstr ""
+
+msgid "purge (content changed), all (refresh everything) or test."
+msgstr ""
+
+msgid "Cache tags sent."
+msgstr ""
+
+msgid "Page paths sent."
+msgstr ""
+
+msgid "HTTP status the front end answered; 0 when not waited for or not reached."
+msgstr ""
+
+msgid "Delivered (2xx) or sent without waiting."
+msgstr ""
+
+msgid "Result in the user's language."
+msgstr ""
+
+msgid "Duration in milliseconds."
+msgstr ""
+
+msgid "A meta tag of the page head (<meta name|property content>)."
+msgstr ""
+
+msgid "name attribute (description, twitter:card …); empty for property tags."
+msgstr ""
+
+msgid "property attribute (og:title …); empty for name tags."
+msgstr ""
+
+msgid "content attribute."
+msgstr ""
+
+msgid "A language version of the page (<link rel=\"alternate\" hreflang>)."
+msgstr ""
+
+msgid "Language code."
+msgstr ""
+
+msgid "hreflang value."
+msgstr ""
+
+msgid "Full address on the front end."
+msgstr ""
+
+msgid "Path on the front end."
+msgstr ""
+
+msgid "What the front end puts in <head>: the same title, description, canonical, robots, Open Graph and JSON-LD the theme prints (Flux SEO), with addresses on the front end."
+msgstr ""
+
+msgid "Document title."
+msgstr ""
+
+msgid "Meta description; empty when none."
+msgstr ""
+
+msgid "Canonical address on the front end; empty for search and 404."
+msgstr ""
+
+msgid "Robots directives (index, follow, max-image-preview:large …)."
+msgstr ""
+
+msgid "Search engines must not index the page."
+msgstr ""
+
+msgid "Share image (og:image); empty when none."
+msgstr ""
+
+msgid "Language of the page (BCP 47, e.g. tr-TR) for <html lang>."
+msgstr ""
+
+msgid "Open Graph, Twitter, verification and other meta tags."
+msgstr ""
+
+msgid "JSON-LD documents, each a JSON string for <script type=\"application/ld+json\">."
+msgstr ""
+
+msgid "What an address on the front end shows."
+msgstr ""
+
+msgid "The address asked, normalised (language prefix removed)."
+msgstr ""
+
+msgid "What the address shows."
+msgstr ""
+
+msgid "HTTP status the front end answers with (200, 301, 404)."
+msgstr ""
+
+msgid "Front-end path to send the visitor to; only for REDIRECT."
+msgstr ""
+
+msgid "Language code of the address; empty without Flux Lang."
+msgstr ""
+
+msgid "Title of the content, term, author or archive."
+msgstr ""
+
+msgid "Page number of a listing (/page/2/), 1 otherwise."
+msgstr ""
+
+msgid "Database id of the post, term or author; empty for archives, search and 404."
+msgstr ""
+
+msgid "Content type of a post or a content type archive."
+msgstr ""
+
+msgid "Taxonomy of a term archive."
+msgstr ""
+
+msgid "SEO head of the page."
+msgstr ""
+
+msgid "Language versions of the page (hreflang), the page itself included. Empty without Flux Lang."
+msgstr ""
+
+msgid "Tags to cache the page under; the revalidate webhook sends these tags when the page changes."
+msgstr ""
+
+msgid "Front end the addresses point at; empty when no front end is set up."
+msgstr ""
+
+msgid "The WordPress object (Post, Page, Category, User, ContentType …) with every field WPGraphQL and the FluxWP packages give it (flxBlocks, flxSeo, flxTranslations …). Empty for search, date archives, redirects and 404."
+msgstr ""
+
+msgid "An image."
+msgstr ""
+
+msgid "Address of the file."
+msgstr ""
+
+msgid "Width in pixels; 0 when unknown."
+msgstr ""
+
+msgid "Height in pixels; 0 when unknown."
+msgstr ""
+
+msgid "Alternative text."
+msgstr ""
+
+msgid "A menu link. The list is flat; a child points at its parent."
+msgstr ""
+
+msgid "Id inside the menu."
+msgstr ""
+
+msgid "Id of the parent link; empty at the top level."
+msgstr ""
+
+msgid "Text of the link."
+msgstr ""
+
+msgid "Address; site pages point at the front end."
+msgstr ""
+
+msgid "Front-end path for site pages (use it with the router); empty for other sites."
+msgstr ""
+
+msgid "Link target (_blank) when set."
+msgstr ""
+
+msgid "The link goes to another site."
+msgstr ""
+
+msgid "Position in the menu."
+msgstr ""
+
+msgid "A menu: a classic menu location, or a navigation block of the header or footer."
+msgstr ""
+
+msgid "Where it sits: a menu location (primary …) or header, header-2, footer, footer-2 … for navigation blocks."
+msgstr ""
+
+msgid "Menu name; may be empty for navigation blocks."
+msgstr ""
+
+msgid "classic (Appearance > Menus) or block (site editor)."
+msgstr ""
+
+msgid "Links in order."
+msgstr ""
+
+msgid "A colour of the theme palette."
+msgstr ""
+
+msgid "Slug (CSS variable --wp--preset--color--<slug>)."
+msgstr ""
+
+msgid "Name."
+msgstr ""
+
+msgid "CSS colour value."
+msgstr ""
+
+msgid "A language of the site."
+msgstr ""
+
+msgid "Language code (tr, en …)."
+msgstr ""
+
+msgid "WordPress locale (tr_TR)."
+msgstr ""
+
+msgid "Name in that language."
+msgstr ""
+
+msgid "Path prefix (/ for the default language, /en/ …)."
+msgstr ""
+
+msgid "Home address of the language on the front end."
+msgstr ""
+
+msgid "The default language (no prefix)."
+msgstr ""
+
+msgid "A legal page."
+msgstr ""
+
+msgid "privacy, terms or a kind a package adds."
+msgstr ""
+
+msgid "Page title."
+msgstr ""
+
+msgid "Front-end path."
+msgstr ""
+
+msgid "Address on the front end."
+msgstr ""
+
+msgid "A currency of the site and how prices are written."
+msgstr ""
+
+msgid "ISO 4217 code (TRY, USD …)."
+msgstr ""
+
+msgid "Symbol."
+msgstr ""
+
+msgid "Decimals."
+msgstr ""
+
+msgid "Decimal separator."
+msgstr ""
+
+msgid "Thousands separator."
+msgstr ""
+
+msgid "Symbol position: left, right, left_space or right_space."
+msgstr ""
+
+msgid "The store currency."
+msgstr ""
+
+msgid "Public contact details of the organisation (Flux SEO, else the Flux Setup profile)."
+msgstr ""
+
+msgid "E-mail; empty when none."
+msgstr ""
+
+msgid "Phone; empty when none."
+msgstr ""
+
+msgid "WhatsApp support line; empty when none."
+msgstr ""
+
+msgid "Address on one line; empty when none."
+msgstr ""
+
+msgid "Public captcha settings (Flux reCAPTCHA); the site key is public by design. Use flxCaptcha(context:) for one form."
+msgstr ""
+
+msgid "recaptcha."
+msgstr ""
+
+msgid "v2 or v3."
+msgstr ""
+
+msgid "Site key."
+msgstr ""
+
+msgid "Script to load."
+msgstr ""
+
+msgid "A rendered template part of the theme."
+msgstr ""
+
+msgid "Part slug (header, footer …)."
+msgstr ""
+
+msgid "HTML; page links point at the front end. Needs the theme CSS (flxBlocksSiteStyles)."
+msgstr ""
+
+msgid "The frame a front end draws every page in."
+msgstr ""
+
+msgid "Site title."
+msgstr ""
+
+msgid "Tagline."
+msgstr ""
+
+msgid "Address of the front end (or of WordPress when none is set up)."
+msgstr ""
+
+msgid "Address of this WordPress."
+msgstr ""
+
+msgid "GraphQL endpoint."
+msgstr ""
+
+msgid "Language code of this answer."
+msgstr ""
+
+msgid "Locale of this answer (BCP 47)."
+msgstr ""
+
+msgid "Languages the front end serves, default first."
+msgstr ""
+
+msgid "Site logo; empty when none."
+msgstr ""
+
+msgid "Site icon (512 px); empty when none."
+msgstr ""
+
+msgid "Menus of the header, footer and menu locations."
+msgstr ""
+
+msgid "Theme palette."
+msgstr ""
+
+msgid "Contact details."
+msgstr ""
+
+msgid "Currencies, default first; empty without WooCommerce."
+msgstr ""
+
+msgid "Privacy policy, terms and other legal pages."
+msgstr ""
+
+msgid "Captcha settings; empty when Flux reCAPTCHA is off."
+msgstr ""
+
+msgid "Social profile addresses."
+msgstr ""
+
+msgid "Sitemap with front-end addresses; serve it at /sitemap.xml (proxy)."
+msgstr ""
+
+msgid "Search address to append the words to."
+msgstr ""
+
+msgid "Tags to cache the frame under."
+msgstr ""
+
+msgid "Front end the addresses point at; empty when none is set up."
+msgstr ""
+
+msgid "Rendered template parts, for front ends that reuse the theme markup (at most 5)."
+msgstr ""
+
+msgid "Part slugs, e.g. [\"header\", \"footer\"]."
+msgstr ""
+
+msgid "The Headless screen: front ends, what WordPress does with its own pages, CORS and the webhook log."
+msgstr ""
+
+msgid "Front ends."
+msgstr ""
+
+msgid "What WordPress does with its own pages."
+msgstr ""
+
+msgid "Every origin allowed to call /graphql from a browser: this site, the Flux GraphQL list and the front ends."
+msgstr ""
+
+msgid "GraphQL endpoint to give the front end."
+msgstr ""
+
+msgid "Flux GraphQL settings (CORS list, query mode, cache)."
+msgstr ""
+
+msgid "Only registered (persisted) queries are allowed; front ends send flxRoute / flxSite by id."
+msgstr ""
+
+msgid "Flux Lang is active; front ends can be limited to languages."
+msgstr ""
+
+msgid "Last webhook calls, newest first (at most 30)."
+msgstr ""
+
+msgid "Languages of the site for the language picker."
+msgstr ""
+
+msgid "What an address on the front end shows: kind, HTTP status, redirect, language, the WordPress object (node), SEO head, language versions and cache tags. Public; drafts only with previewId for people who can edit them."
+msgstr ""
+
+msgid "Front-end path with the query (/about/, /en/blog/page/2/, /?s=word) or a full address of the front end."
+msgstr ""
+
+msgid "Language when the path has no language prefix (a front end per language or domain)."
+msgstr ""
+
+msgid "Front end id; without it the caller's origin, else the default front end."
+msgstr ""
+
+msgid "Draft or scheduled post to preview. Needs a signed-in user who can edit it (application password); the answer is never cached."
+msgstr ""
+
+msgid "The site frame for a front end: name, logo, languages, menus, palette, contact details, currencies, legal pages and public captcha settings. Public."
+msgstr ""
+
+msgid "Language of the menus and texts; default language when empty."
+msgstr ""
+
+msgid "The Headless screen. Webhook secrets are never returned."
+msgstr ""
+
+msgid "Settings after the change."
+msgstr ""
+
+msgid "Adds a front end (no id) or changes one. Fields you leave out stay as they are. The secret is write-only: empty keeps the saved one, \"__clear__\" removes it."
+msgstr ""
+
+msgid "Front end to change; empty adds a new one."
+msgstr ""
+
+msgid "Address with https:// (http:// only for localhost)."
+msgstr ""
+
+msgid "Language codes it serves; empty list = every language."
+msgstr ""
+
+msgid "In use."
+msgstr ""
+
+msgid "Default front end (only one)."
+msgstr ""
+
+msgid "Webhook address; empty turns the webhook off."
+msgstr ""
+
+msgid "Webhook secret (at least 24 characters); write-only, stored sealed."
+msgstr ""
+
+msgid "Preview path on the front end (e.g. /api/preview); empty keeps previews on WordPress."
+msgstr ""
+
+msgid "The saved front end."
+msgstr ""
+
+msgid "Removes a front end with its secret."
+msgstr ""
+
+msgid "Sets what WordPress does with its own pages once a front end serves the site."
+msgstr ""
+
+msgid "Mode."
+msgstr ""
+
+msgid "Sends a signed test call to a front end's webhook and waits for the answer."
+msgstr ""
+
+msgid "Result of the call."
+msgstr ""
+
+msgid "Asks every front end to refresh all of its pages (tag flx-headless:all), e.g. after a theme change."
+msgstr ""
+
+msgid "Empties the webhook delivery log."
+msgstr ""

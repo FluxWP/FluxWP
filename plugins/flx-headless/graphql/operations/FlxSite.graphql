@@ -1,0 +1,68 @@
+# Public: the site frame for a front end (logo, languages, menus, palette, contact, currencies, legal pages).
+query FlxSite($lang: String, $frontend: ID) {
+  flxSite(lang: $lang, frontend: $frontend) {
+    name
+    description
+    url
+    cmsUrl
+    graphqlUrl
+    language
+    locale
+    languages {
+      code
+      locale
+      name
+      hreflang
+      path
+      url
+      isDefault
+    }
+    logo {
+      url
+      width
+      height
+      alt
+    }
+    icon
+    menus {
+      ...FlxHeadlessMenuFields
+    }
+    palette {
+      slug
+      name
+      color
+    }
+    contact {
+      email
+      phone
+      whatsapp
+      address
+    }
+    currencies {
+      code
+      symbol
+      decimals
+      decimalSeparator
+      thousandSeparator
+      position
+      isDefault
+    }
+    legalPages {
+      kind
+      title
+      path
+      url
+    }
+    captcha {
+      provider
+      version
+      siteKey
+      scriptUrl
+    }
+    social
+    sitemapUrl
+    searchPath
+    cacheTags
+    frontendId
+  }
+}
