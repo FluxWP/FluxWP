@@ -571,11 +571,43 @@ function ModalBox({ m, ui }: { m: ModalT; ui: Ui }) {
     </div>
   );
 }
+type Preview = { kind: 'image' | 'pdf' | 'video' | 'audio' | 'text' | 'none' | 'loading'; url: string; text: string; size: number };
+const TEXT_MAX = 400_000;
+/** Dosyanın önizlemesi: görsel doğrudan, diğerleri istemciden blob olarak çekilip türüne göre gösterilir. */
+function usePreview(e: FlxgEngine, f: FlxgFile): Preview {
+  const src = useFileSrc(f.image ? f.id : undefined);
+  const [p, setP] = useState<Preview>({ kind: 'loading', url: '', text: '', size: 0 });
+  useEffect(() => {
+    if (f.image) return;
+    let live = true;
+    let url = '';
+    setP({ kind: 'loading', url: '', text: '', size: 0 });
+    e.api.file(f.id).then(
+      async (b) => {
+        const type = (f.mime && f.mime !== 'image/*' ? f.mime : b.type || '').toLowerCase();
+        const k = fileKind(type, f.name);
+        let next: Preview = { kind: 'none', url: '', text: '', size: b.size };
+        if (k === 'image') next = { ...next, kind: 'image', url: (url = URL.createObjectURL(b)) };
+        else if (k === 'pdf') next = { ...next, kind: 'pdf', url: (url = URL.createObjectURL(b.type === 'application/pdf' ? b : new Blob([b], { type: 'application/pdf' }))) };
+        else if (k === 'video' || k === 'audio') next = { ...next, kind: k, url: (url = URL.createObjectURL(b)) };
+        else if (/^text\/(plain|markdown)|json|xml/.test(type) && b.size <= TEXT_MAX) next = { ...next, kind: 'text', text: await b.text() };
+        if (!live) return void (url && URL.revokeObjectURL(url));
+        setP(next);
+      },
+      () => live && setP({ kind: 'none', url: '', text: '', size: 0 }),
+    );
+    return () => {
+      live = false;
+      if (url) URL.revokeObjectURL(url);
+    };
+  }, [e, f.id, f.image, f.mime, f.name]);
+  return f.image ? { kind: src ? 'image' : 'loading', url: src, text: '', size: f.size } : p;
+}
 function Lightbox({ e, ui }: { e: FlxgEngine; ui: Ui }) {
   const lb = ui.lightbox!;
   const [i, setI] = useState(lb.index);
   const f = lb.files[i]!;
-  const src = useFileSrc(f.id);
+  const pv = usePreview(e, f);
   const close = () => {
     ui.lightbox = null;
     ui.bump();
@@ -592,6 +624,7 @@ function Lightbox({ e, ui }: { e: FlxgEngine; ui: Ui }) {
     document.addEventListener('keydown', key, true);
     return () => document.removeEventListener('keydown', key, true);
   });
+  const dl = () => void downloadFile(e, f).catch(ui.fail);
   return (
     <div className="flxg-lightbox" onClick={(ev) => ev.target === ev.currentTarget && close()}>
       <button type="button" className="flxg-lb-close" aria-label={tt("Close")} onClick={close}>
@@ -607,12 +640,28 @@ function Lightbox({ e, ui }: { e: FlxgEngine; ui: Ui }) {
           </button>
         </>
       )}
-      {src && <img src={src} alt="" />}
+      {pv.kind === 'image' && pv.url && <img src={pv.url} alt="" />}
+      {pv.kind === 'pdf' && <iframe className="flxg-lb-frame" src={pv.url} title={f.name} />}
+      {pv.kind === 'video' && <video className="flxg-lb-media" src={pv.url} controls autoPlay />}
+      {pv.kind === 'audio' && <audio className="flxg-lb-audio" src={pv.url} controls autoPlay />}
+      {pv.kind === 'text' && <pre className="flxg-lb-text">{pv.text}</pre>}
+      {pv.kind === 'none' && (
+        <div className="flxg-lb-none">
+          <Ic n="file" s={40} />
+          <strong>{tt("Preview not available")}</strong>
+          <span>{f.name}</span>
+          <button type="button" className="flxg-btn is-primary" onClick={dl}>
+            <Ic n="download" />
+            {tt("Download")}
+          </button>
+        </div>
+      )}
       <div className="flxg-lb-cap">
         <span>
-          {f.name} · {bytes(f.size)}
+          {f.name}
+          {(f.size || pv.size) > 0 && ' · ' + bytes(f.size || pv.size)}
         </span>
-        <button type="button" className="flxg-btn is-ghost" onClick={() => void downloadFile(e, f).catch(ui.fail)}>
+        <button type="button" className="flxg-btn is-ghost" onClick={dl}>
           <Ic n="download" />
           {tt("Download")}
         </button>

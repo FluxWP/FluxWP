@@ -537,5 +537,6 @@
   "{n} tasks completed": "{n}任务已完成",
   "{n} tasks will be permanently deleted.": "{n}任务将被永久删除。",
   "{n} warning(s)": "{n}警告",
-  "{n} wrote a comment": "{n}写了一条评论"
+  "{n} wrote a comment": "{n}写了一条评论",
+  "Preview not available": "无法预览"
 }

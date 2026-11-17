@@ -1130,7 +1130,14 @@
 		if (pref) { e.preventDefault(); if (!pref.hasAttribute('data-gone')) peekOpen(+pref.getAttribute('data-page')); return; }
 		var a = e.target.closest('a[href]');
 		if (a) {
-			if (!D.edit || e.ctrlKey || e.metaKey || a.hasAttribute('data-file')) { e.preventDefault(); window.open(a.href, '_blank', 'noopener'); return; }
+			if (a.hasAttribute('data-file')) {
+				e.preventDefault();
+				var fid = parseInt(a.getAttribute('data-file'), 10) || 0;
+				if (!fid) return;
+				if (Y.filePreview) Y.filePreview(fid, (a.textContent || '').trim()); else window.open(a.href, '_blank', 'noopener');
+				return;
+			}
+			if (!D.edit || e.ctrlKey || e.metaKey) { e.preventDefault(); window.open(a.href, '_blank', 'noopener'); return; }
 			linkPop(a);
 			return;
 		}
