@@ -85,6 +85,21 @@ add_action(
 		require_once FLXS_DIR . 'includes/graphql/schema.php';
 	}
 );
+/*
+ * Loader keys must be named before the first request builds its AppContext, which happens before
+ * the lazy schema (includes/graphql/schema.php) is loaded. Only the class names are given here.
+ */
+add_action(
+	'flx_gql_loaders',
+	static function () {
+		if ( ! function_exists( 'flx_gql_node_loader' ) ) {
+			return;
+		}
+		flx_gql_node_loader( 'FlxCertificate', 'FLXS_Certificate_Loader' );
+		flx_gql_node_loader( 'FlxCertificatePerson', 'FLXS_Person_Loader' );
+		flx_gql_node_loader( 'FlxCertificateDeliveries', 'FLXS_Delivery_Loader' );
+	}
+);
 add_filter(
 	'flx_gql_persisted_manifests',
 	static function ( $m ) {

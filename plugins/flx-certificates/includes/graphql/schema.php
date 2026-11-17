@@ -130,17 +130,7 @@ final class FLXS_Delivery_Loader extends FLXGQL_Loader {
 	}
 }
 
-// A Node type names its loader through flx_gql_type( 'node' => … ). This one has no type, so it is named here.
-flx_gql_node_loader( 'FlxCertificateDeliveries', FLXS_Delivery_Loader::class );
-
-add_action(
-	'flx_gql_loaders',
-	static function (): void {
-		flx_gql_node_loader( 'FlxCertificate', FLXS_Certificate_Loader::class );
-		flx_gql_node_loader( 'FlxCertificatePerson', FLXS_Person_Loader::class );
-		flx_gql_node_loader( 'FlxCertificateDeliveries', FLXS_Delivery_Loader::class );
-	}
-);
+// The loader keys are named in flx-certificates.php (flx_gql_loaders): the schema loads after the AppContext is built.
 
 add_filter(
 	'flx_gql_person_type',
@@ -411,7 +401,11 @@ flx_gql_type(
 						return null;
 					}
 					if ( class_exists( 'FLXCRM_Contact_Loader' ) ) {
-						return $context->get_loader( 'FlxContact' )->load_deferred( $id );
+						try {
+							return $context->get_loader( 'FlxContact' )->load_deferred( $id );
+						} catch ( \Throwable $e ) {
+							unset( $e ); // Flux CRM is active but its loader is not named for this request: use this package's person.
+						}
 					}
 					return $context->get_loader( 'FlxCertificatePerson' )->load_deferred( $id );
 				},
