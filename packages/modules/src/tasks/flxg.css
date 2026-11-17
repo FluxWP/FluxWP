@@ -1828,3 +1828,14 @@ body.flxg-col-resizing, body.flxg-col-resizing * { cursor: col-resize !important
 .flxg-dnd-ghost .flxg-row { background: var(--panel); }
 .is-drop-over { background: color-mix(in srgb, var(--accent) 6%, transparent); }
 .is-drag-hidden { opacity: .35; }
+
+/* Önizleme penceresi hep koyu zeminde: düğme ve simgeler temadan bağımsız beyaz. */
+.flxg-lightbox .flxg-lb-close,
+.flxg-lightbox .flxg-lb-nav,
+.flxg-lightbox .flxg-lb-close svg,
+.flxg-lightbox .flxg-lb-nav svg { color: #fff !important; }
+.flxg-lightbox .flxg-lb-cap .flxg-btn { background: rgba(255, 255, 255, .14); border-color: transparent; color: #fff !important; }
+.flxg-lightbox .flxg-lb-cap .flxg-btn:hover { background: rgba(255, 255, 255, .24); }
+.flxg-lightbox .flxg-lb-none .flxg-btn { background: rgba(255, 255, 255, .16); border-color: transparent; color: #fff !important; }
+.flxg-lightbox .flxg-lb-none .flxg-btn:hover { background: rgba(255, 255, 255, .26); }
+.flxg-lightbox .flxg-btn svg { color: #fff !important; }

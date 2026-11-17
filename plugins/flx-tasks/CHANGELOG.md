@@ -1,5 +1,8 @@
 # Flux Tasks — Değişiklikler
 
+## 0.9.5
+- Önizleme penceresinde kapat, ok ve İndir düğmelerinin simgeleri her temada beyaz (koyu zeminde okunmuyordu).
+
 ## 0.9.4
 - Dokümana dosya ekleme düzeldi: yüklenen dosya "undefined" yerine adıyla görünür (yükleme yanıtı `{ file }` doğru okunuyor).
 - Dokümandaki dosya ve görsellere tıklayınca nonce'suz adrese gidip `rest_cookie_invalid_nonce` hatası vermez; dosya istemciden alınıp önizleme penceresinde açılır.
