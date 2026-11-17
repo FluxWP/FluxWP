@@ -1,5 +1,8 @@
 # Flux Tasks — Değişiklikler
 
+## 0.9.3
+- Tarih alanları ortak FluxWP tarih seçicisini kullanır: sitenin dilinde ay/gün adları, Pazartesi başlangıç, hızlı seçim listesi, yazılabilir tarih ve saat, Uygula düğmesi, açık/koyu, telefonda alttan açılan pencere. Tarayıcının kendi takvimi (İngilizce çıkan) kalktı.
+
 ## 0.9.2
 - Onay kutuları ve radyolar ortak görünüme geçti (tarayıcının kendi kutusunu zorlayan kurallar kaldırıldı).
 

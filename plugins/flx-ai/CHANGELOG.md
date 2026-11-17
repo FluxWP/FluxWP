@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.28.1
+- Tarih alanları ortak FluxWP tarih seçicisini kullanır: sitenin dilinde ay/gün adları, Pazartesi başlangıç, hızlı seçim listesi, yazılabilir tarih ve saat, Uygula düğmesi, açık/koyu, telefonda alttan açılan pencere. Tarayıcının kendi takvimi (İngilizce çıkan) kalktı.
+
 ## 0.28.0
 - **Sistem başı AI ayarları React ekranı oldu** (Bağlı sistemler › eklenti): AI aç/kapa, eklentiye özel model ve eklentinin Flux AI SDK ile tanımladığı alanlar (aç/kapa, metin, uzun metin, sayı, seçim, model); araç sayısı ve "Araçları yönet" bağlantısı. Klasik görünüme bağlantı durur; görünüm değiştirirken eklenti seçimi korunur.
 - **GraphQL:** `flxAiSystemSettings` sorgusu, `flxAiSystemSettingsUpdate` mutation'ı. Bırakılan alanlar eski değerini korur; tanımsız alan reddedilir; sayı alanı min/max'a kırpılır (ekran sunucunun döndürdüğü değeri gösterir).

@@ -7,6 +7,7 @@ import type { FlxOperation } from '@fluxwp/graphql';
 import { flxQueryKey, useFlxMutation, useGraphQL } from '@fluxwp/graphql/react';
 import type { FlxAdsContextFragment, FlxAdsFilterInput } from '@fluxwp/graphql/types';
 import type { Translate } from './i18n';
+import { DatePicker } from '@fluxwp/ui';
 
 export type Tn = (single: string, plural: string, n: number, ...args: (string | number)[]) => string;
 
@@ -200,11 +201,11 @@ export function FilterBar({
         <>
           <label>
             <span>{t('From')}</span>
-            <input type="date" value={d.from || from} onChange={(e) => f.patch({ from: e.target.value })} />
+            <DatePicker value={d.from || from} onChange={(v) => f.patch({ from: v })} />
           </label>
           <label>
             <span>{t('To')}</span>
-            <input type="date" value={d.to || to} onChange={(e) => f.patch({ to: e.target.value })} />
+            <DatePicker value={d.to || to} onChange={(v) => f.patch({ to: v })} />
           </label>
         </>
       )}

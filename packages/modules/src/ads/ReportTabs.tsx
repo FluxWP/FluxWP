@@ -12,7 +12,7 @@ import {
   FlxAdsSpendSync,
   FlxAdsValue,
 } from '@fluxwp/graphql/operations';
-import { Loading } from '@fluxwp/ui';
+import { DatePicker, Loading } from '@fluxwp/ui';
 import { Btn, Card, Dot, Empty, Field, FilterBar, Kpi, Muted, Notice, Pill, Roas, Td, num, roas, toVars, useAct, useEnv, useFilter } from './common';
 import { Fail } from './AdsScreen';
 
@@ -284,7 +284,7 @@ export function SpendTab() {
                 </select>
               </Field>
               <Field label={t('Date')}>
-                <input type="date" required value={row.day} onChange={(e) => setRow({ ...row, day: e.target.value })} />
+                <DatePicker required value={row.day} onChange={(v) => setRow({ ...row, day: v })} />
               </Field>
               <Field label={t('Campaign')}>
                 <input value={row.campaign} placeholder="fidan-kasim-2026" onChange={(e) => setRow({ ...row, campaign: e.target.value })} />
