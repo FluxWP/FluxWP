@@ -312,7 +312,11 @@
     "restart": "Redémarrer pour mettre à jour",
     "download": "Télécharger",
     "installing": "Installation...",
-    "failed": "Impossible de vérifier"
+    "failed": "Impossible de vérifier",
+    "available": "Mise à jour disponible : {{version}}",
+    "downloadFailed": "Échec du téléchargement",
+    "retry": "Réessayer",
+    "downloadingShort": "Téléchargement {{pct}}"
   },
   "legal": {
     "title": "Mentions légales",

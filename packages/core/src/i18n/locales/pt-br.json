@@ -312,7 +312,11 @@
     "restart": "Reinicie para atualizar",
     "download": "Baixar",
     "installing": "Instalando...",
-    "failed": "Não foi possível verificar"
+    "failed": "Não foi possível verificar",
+    "available": "Atualização disponível: {{version}}",
+    "downloadFailed": "Falha no download",
+    "retry": "Tentar novamente",
+    "downloadingShort": "Baixando {{pct}}"
   },
   "legal": {
     "title": "Informações legais",

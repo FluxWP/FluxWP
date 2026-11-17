@@ -312,7 +312,11 @@
     "restart": "Yeniden başlat ve güncelle",
     "download": "İndir",
     "installing": "Kuruluyor…",
-    "failed": "Denetlenemedi"
+    "failed": "Denetlenemedi",
+    "available": "Güncelleme var: {{version}}",
+    "downloadFailed": "İndirilemedi",
+    "retry": "Tekrar dene",
+    "downloadingShort": "İndiriliyor {{pct}}"
   },
   "legal": {
     "title": "Yasal bilgiler",

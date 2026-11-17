@@ -1,5 +1,13 @@
 # Değişiklikler
 
+## 0.3.3
+- Updates are no longer downloaded on their own. When a new version is found the app shows "Update available: X" with a Download button; the download starts only after the user confirms, then "Restart and update" appears.
+- A failed download now says "Download failed" with a Try again button instead of "Could not check"; the error text is in the tooltip.
+- The app reports its real version: `tauri.conf.json` reads the version from `package.json`. 0.3.2 was built with 0.3.1 inside, so it kept offering itself as an update.
+- `tauri.conf.json` carries the current updater public key (same as `updater.pub`).
+- Release guard: the macOS and Windows jobs stop if the updater signature was made with a key other than `updater.pub`, or if the packaged app version differs from `package.json`.
+- Note: 0.2.x builds embed the old updater key and cannot verify 0.3.x packages. Those installs need a one-time manual reinstall from the DMG.
+
 ## 0.3.2
 - `react-i18next` and `i18next` are deduplicated, so module screens use the app language.
 

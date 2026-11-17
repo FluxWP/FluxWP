@@ -312,7 +312,11 @@
     "restart": "أعد التشغيل للتحديث",
     "download": "تحميل",
     "installing": "جارٍ التثبيت...",
-    "failed": "لا يمكن التحقق"
+    "failed": "لا يمكن التحقق",
+    "available": "تحديث متاح: {{version}}",
+    "downloadFailed": "فشل التنزيل",
+    "retry": "إعادة المحاولة",
+    "downloadingShort": "جارٍ التنزيل {{pct}}"
   },
   "legal": {
     "title": "المعلومات القانونية",
