@@ -77,8 +77,9 @@ add_action( 'in_admin_header', 'flxai_dock_early', 0 );
 add_action( 'wp_body_open', 'flxai_dock_early', 0 );
 
 /** Önerilen ilk mesajlar (boş sohbette). */
-function flxai_chat_suggestions() {
-	$s = is_admin()
+function flxai_chat_suggestions( $admin = null ) {
+	$admin = null === $admin ? is_admin() : (bool) $admin;
+	$s     = $admin
 		? array(
 			__( 'What can I do on this page?', 'flx-ai' ),
 			__( 'Summarize the site\'s system check warnings', 'flx-ai' ),
@@ -90,11 +91,15 @@ function flxai_chat_suggestions() {
 			__( 'Show this page\'s SEO issues', 'flx-ai' ),
 			__( 'Find typos on this page', 'flx-ai' ),
 		);
-	return array_values( (array) apply_filters( 'flxai_chat_suggestions', $s, is_admin() ) );
+	return array_values( (array) apply_filters( 'flxai_chat_suggestions', $s, $admin ) );
 }
 
 function flxai_dock_enqueue() {
 	if ( ! flxai_dock_enabled() ) {
+		return;
+	}
+	// The Chat page is its own React screen; the floating chat would be a second copy of it.
+	if ( function_exists( 'flxai_flux_view' ) && 'chat' === flxai_flux_view() ) {
 		return;
 	}
 	flxai_chat_assets( false );
