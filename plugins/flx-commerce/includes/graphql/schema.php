@@ -1851,7 +1851,7 @@ flx_gql_mutation(
 		),
 		'resolve'     => static function ( $input ) {
 			$input = FLXCM_Val::map( $input );
-			return array( 'settings' => FLXCM_Settings_Service::bank_save( $input ) );
+			return array( 'settings' => flxcm_gql_throw( FLXCM_Settings_Service::bank_save( $input ) ) );
 		},
 	)
 );

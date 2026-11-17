@@ -159,7 +159,7 @@ Yok. `flx_mcp_tools`, `flxai_tools`, `flxseo_mcp_tools` ve başka bir araç kayd
 | Abonelik | `sub_grace_days` | int 0–60 | `subGraceDays: Int!` | hayır | `includes/helpers.php:49` |
 | Abonelik | `hidden_redirect` | URL | `hiddenRedirect: String!` | hayır | `includes/helpers.php:50` |
 
-Havale yöntemi WooCommerce › Ödemeler ekranında, seçenek `woocommerce_flxcm_bank_settings`. Klasik Mağaza › Ayarlar yalnız oraya link verir (`includes/admin/page-settings.php:83`). React aynı linki korur; alanlar yine `flxCommerceBankSettings` / `flxCommerceBankSettingsSave` ile okunup yazılır (cap yönetim). IBAN müşteriye gösterilir, gizli alan değildir.
+Havale yöntemi WooCommerce › Ödemeler ekranında, seçenek `woocommerce_flxcm_bank_settings`. Klasik Mağaza › Ayarlar yalnız oraya link verir (`includes/admin/page-settings.php:83`). React aynı linki korur; alanlar yine `flxCommerceBankSettings` / `flxCommerceBankSettingsSave` ile okunup yazılır (cap yönetim). Yazma, WooCommerce Ayarlar API'si üzerinden geçer (`validate_*_field`, `woocommerce_settings_api_sanitized_fields_flxcm_bank` süzgeci, `woocommerce_update_options_payment_gateways_flxcm_bank` eylemi, WooCommerce'in autoload değeri); gönderilmeyen alan eski değerini korur. WooCommerce yokken `INVALID_INPUT` döner, seçeneğe doğrudan yazılmaz. IBAN müşteriye gösterilir, gizli alan değildir.
 
 | Alan | Tip | GraphQL | Gizli | Dosya |
 |---|---|---|---|---|

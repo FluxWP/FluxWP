@@ -72,6 +72,10 @@ final class FLXCM_Settings_Service {
 			if ( ! array_key_exists( $from, $in ) || null === $in[ $from ] ) {
 				continue;
 			}
+			// Same guard as the classic form: without Flux Donate these keys are not editable and keep their value.
+			if ( 'excludeDonations' === $from && ! class_exists( 'FLXB_WC_Cart' ) || 'deferToDonate' === $from && ! class_exists( 'FLXB_WC_Havale' ) ) {
+				continue;
+			}
 			$out[ $to ] = empty( $in[ $from ] ) ? 0 : 1;
 		}
 		if ( array_key_exists( 'paidStatuses', $in ) && is_array( $in['paidStatuses'] ) ) {
@@ -228,30 +232,69 @@ final class FLXCM_Settings_Service {
 	}
 
 	/**
-	 * @param array<string,mixed> $in Partial input.
-	 * @return array<string,mixed>
+	 * The registered bank gateway, or null while WooCommerce is not loaded.
+	 *
+	 * @return WC_Payment_Gateway|null
 	 */
-	public static function bank_save( array $in ): array {
-		$cur = get_option( self::BANK_OPTION, array() );
-		$cur = is_array( $cur ) ? $cur : array();
-		$str = array(
-			'title'     => 'title',
+	private static function bank_gateway() {
+		if ( ! flxcm_wc_ready() || ! function_exists( 'WC' ) ) {
+			return null;
+		}
+		$gateways = WC()->payment_gateways()->payment_gateways();
+		$gateway  = $gateways[ FLXCM_Bank::ID ] ?? null;
+		return $gateway instanceof WC_Payment_Gateway ? $gateway : null;
+	}
+
+	/**
+	 * Saves through the gateway's own WooCommerce Settings API, the way WooCommerce > Payments does:
+	 * the field validators, the sanitized-fields filter, the update action and the option's autoload all run.
+	 * Fields you leave out keep their stored value (the Settings API alone would blank them).
+	 *
+	 * @param array<string,mixed> $in Partial input.
+	 * @return array<string,mixed>|WP_Error
+	 */
+	public static function bank_save( array $in ) {
+		$gateway = self::bank_gateway();
+		if ( null === $gateway ) {
+			return new WP_Error( 'flxcm_wc', __( 'WooCommerce is required.', 'flx-commerce' ), array( 'status' => 400 ) );
+		}
+		$gateway->init_settings();
+		$cur  = FLXCM_Val::map( $gateway->settings );
+		$str  = array(
+			'title'       => 'title',
 			'description' => 'description',
-			'holder'    => 'holder',
-			'iban'      => 'iban',
-			'bank'      => 'bank',
-			'refFormat' => 'ref_format',
-			'refPrefix' => 'ref_prefix',
+			'holder'      => 'holder',
+			'iban'        => 'iban',
+			'bank'        => 'bank',
+			'refFormat'   => 'ref_format',
+			'refPrefix'   => 'ref_prefix',
 		);
+		$new  = $cur;
 		foreach ( $str as $from => $to ) {
 			if ( array_key_exists( $from, $in ) && null !== $in[ $from ] ) {
-				$cur[ $to ] = sanitize_text_field( FLXCM_Val::str($in[ $from ]) );
+				$new[ $to ] = FLXCM_Val::str( $in[ $from ] );
 			}
 		}
+		$enabled = 'yes' === FLXCM_Val::str( $cur['enabled'] ?? 'no' );
 		if ( array_key_exists( 'enabled', $in ) && null !== $in['enabled'] ) {
-			$cur['enabled'] = empty( $in['enabled'] ) ? 'no' : 'yes';
+			$enabled = ! empty( $in['enabled'] );
 		}
-		update_option( self::BANK_OPTION, $cur, false );
+		// Build the POST the settings form would send. The Settings API strips slashes, so slash first.
+		$post = array();
+		foreach ( array_keys( $gateway->get_form_fields() ) as $key ) {
+			$name = $gateway->get_field_key( $key );
+			if ( 'enabled' === $key ) {
+				if ( $enabled ) {
+					$post[ $name ] = '1';
+				}
+				continue;
+			}
+			$post[ $name ] = wp_slash( FLXCM_Val::str( $new[ $key ] ?? '' ) );
+		}
+		$gateway->set_post_data( $post );
+		do_action( 'woocommerce_update_options_payment_gateways_' . FLXCM_Bank::ID );
+		$gateway->set_post_data( array() );
+		$gateway->init_settings();
 		flxcm_gql_purge( array( 'flx-commerce:settings' ) );
 		return self::bank_read();
 	}
