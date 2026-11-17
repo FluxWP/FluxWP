@@ -75,6 +75,70 @@ function flxf_t_form( string $name, string $type, array $structure ): int {
 	return (int) $wpdb->insert_id;
 }
 
+/**
+ * Stores the plugin settings row the classic code reads (the newest row wins) and drops the caches.
+ *
+ * @param array<string,mixed> $extra Keys added to the base settings.
+ */
+function flxf_t_settings( array $extra ): void {
+	global $wpdb;
+	$base = array(
+		'smtp'           => '1',
+		'emailSupporter' => 'supporter@example.com',
+		'femail'         => 'noreply@example.com',
+		'email_key'      => 'contractemailkey123',
+		'emailTemp'      => '',
+	);
+	$wpdb->insert(
+		$wpdb->prefix . 'emsfb_setting',
+		array(
+			'setting' => (string) wp_json_encode( array_merge( $base, $extra ) ),
+			'email'   => 'supporter@example.com',
+			'date'    => current_time( 'mysql' ),
+		)
+	);
+	if ( class_exists( 'Emsfb' ) ) {
+		Emsfb::get_setting_Emsfb( '_clear_cache' );
+	}
+	delete_transient( 'emsfb_settings_transient' );
+	wp_cache_delete( 'settings:decoded', 'emsfb' );
+	wp_cache_delete( 'settings:raw', 'emsfb' );
+	wp_cache_delete( 'emsfb_settings', 'emsfb' );
+}
+
+/**
+ * Calls a classic REST handler of the public class and returns the JSON it printed. The classic
+ * handlers print and exit, so the ajax die handler is swapped for an exception.
+ *
+ * @param array<string,mixed> $json Request body.
+ * @return array<string,mixed>
+ */
+function flxf_t_classic( string $method, array $json ): array {
+	$req = new WP_REST_Request( 'POST', '/Emsfb/v1/test' );
+	$req->set_header( 'content-type', 'application/json' );
+	$req->set_body( (string) wp_json_encode( $json ) );
+	$ajax   = '__return_true';
+	$thrower = static fn() => static function () {
+		throw new RuntimeException( 'flxf-die' );
+	};
+	add_filter( 'wp_doing_ajax', $ajax );
+	add_filter( 'wp_die_ajax_handler', $thrower );
+	$pub          = \Emsfb\_Public::flxf_live();
+	$pub->setting = null; // A classic request starts with no settings loaded; GraphQL fills them on the shared instance.
+	$pub->efb_uid = get_current_user_id();
+	ob_start();
+	try {
+		$pub->$method( $req );
+	} catch ( RuntimeException $e ) {
+		unset( $e );
+	}
+	$out = (string) ob_get_clean();
+	remove_filter( 'wp_doing_ajax', $ajax );
+	remove_filter( 'wp_die_ajax_handler', $thrower );
+	$decoded = json_decode( $out, true );
+	return is_array( $decoded ) ? $decoded : array();
+}
+
 $secret = 'secret-notify@example.com';
 $head   = array(
 	'type'                 => 'form',
@@ -120,7 +184,7 @@ $login_id   = flxf_t_form( 'Sign in', 'login', array( array( 'type' => 'login', 
 add_filter(
 	'flxf_gql_rate_max',
 	static function () {
-		return 40;
+		return 400;
 	}
 );
 
@@ -242,29 +306,8 @@ $r = flxf_t_op( 'FlxFormTrackReply', array( 'input' => array( 'trackCode' => $tr
 flxt_same( array( array( 'INVALID_INPUT', 'attachments' ) ), flxf_t_errs( $r, 'flxFormTrackReply' ), 'reply: unreserved attachment is rejected' );
 
 // Configure plugin settings for reply adminCode + submit/reply side-effect tests.
-$email_key   = 'contractemailkey123';
-$cfg_setting = array(
-	'smtp'           => '1',
-	'emailSupporter' => 'supporter@example.com',
-	'femail'         => 'noreply@example.com',
-	'email_key'      => $email_key,
-	'emailTemp'      => '',
-);
-$wpdb->insert(
-	$wpdb->prefix . 'emsfb_setting',
-	array(
-		'setting' => (string) wp_json_encode( $cfg_setting ),
-		'email'   => 'supporter@example.com',
-		'date'    => current_time( 'mysql' ),
-	)
-);
-if ( class_exists( '\Emsfb\Emsfb' ) ) {
-	\Emsfb\Emsfb::get_setting_Emsfb( '_clear_cache' );
-}
-delete_transient( 'emsfb_settings_transient' );
-wp_cache_delete( 'settings:decoded', 'emsfb' );
-wp_cache_delete( 'settings:raw', 'emsfb' );
-wp_cache_delete( 'emsfb_settings', 'emsfb' );
+$email_key = 'contractemailkey123';
+flxf_t_settings( array() );
 
 // Reply with reserved attachment + adminCode + quote handling, and classic-format reply interop.
 $tracked_msg_id = (int) $wpdb->get_var( $wpdb->prepare( "SELECT msg_id FROM {$wpdb->prefix}emsfb_msg_ WHERE track = %s LIMIT 1", $tracked ) );
@@ -351,7 +394,7 @@ $b_rows = array(
 	array( 'id_' => '1', 'type' => 'step', 'name' => 'Step 1' ),
 	array( 'id_' => 'bname', 'type' => 'text', 'name' => 'Name', 'required' => 1, 'milen' => 3, 'mlen' => 12 ),
 	array( 'id_' => 'bemail', 'type' => 'email', 'name' => 'Email', 'required' => 1, 'noti' => 1 ),
-	array( 'id_' => 'burl', 'type' => 'url', 'name' => 'Website', 'required' => 0 ),
+	array( 'id_' => 'burl', 'type' => 'url', 'name' => 'Website', 'required' => 0, 'mlen' => 40 ),
 	array( 'id_' => 'bcolor', 'type' => 'color', 'name' => 'Color', 'required' => 0 ),
 	array( 'id_' => 'bdate', 'type' => 'date', 'name' => 'Date', 'required' => 0, 'milen' => '2025-01-01', 'mlen' => '2025-12-31' ),
 	array( 'id_' => 'brange', 'type' => 'range', 'name' => 'Range', 'required' => 0, 'milen' => 1, 'mlen' => 10 ),
@@ -400,7 +443,7 @@ flxt_same( array( array( 'INVALID_INPUT', 'fields' ) ), flxf_t_errs( $r, 'flxFor
 
 $invalid_cases = array(
 	'bname'  => array( array( 'fieldId' => 'bname', 'value' => 'Hi' ), array( 'fieldId' => 'bemail', 'value' => 'grace@example.com' ) ),
-	'burl'   => array_merge( $b_base, array( array( 'fieldId' => 'burl', 'value' => 'not-a-url' ) ) ),
+	'burl'   => array_merge( $b_base, array( array( 'fieldId' => 'burl', 'value' => 'https://example.com/' . str_repeat( 'a', 40 ) ) ) ),
 	'bcolor' => array_merge( $b_base, array( array( 'fieldId' => 'bcolor', 'value' => 'red' ) ) ),
 	'bdate'  => array_merge( $b_base, array( array( 'fieldId' => 'bdate', 'value' => '2024-05-01' ) ) ),
 	'brange' => array_merge( $b_base, array( array( 'fieldId' => 'brange', 'value' => '99' ) ) ),
@@ -470,6 +513,11 @@ flxt_ok( count( $sent_mails ) >= 1, 'effects: wp_mail fires on submit', count( $
 $mail_to_list = implode( ',', array_map( static fn( $m ) => is_array( $m['to'] ?? null ) ? implode( ',', $m['to'] ) : (string) ( $m['to'] ?? '' ), $sent_mails ) );
 flxt_ok( str_contains( $mail_to_list, 'formowner@example.com' ) || str_contains( $mail_to_list, 'supporter@example.com' ), 'effects: admin email notified', $mail_to_list );
 flxt_ok( str_contains( $mail_to_list, 'grace@example.com' ), 'effects: visitor email notified', $mail_to_list );
+$mail_targets = array_map( static fn( $m ) => is_array( $m['to'] ?? null ) ? implode( ',', $m['to'] ) : (string) ( $m['to'] ?? '' ), $sent_mails );
+flxt_same( 1, count( array_keys( $mail_targets, 'formowner@example.com', true ) ), 'effects: the form owner is mailed once on submit' );
+flxt_same( 1, count( array_keys( $mail_targets, 'supporter@example.com', true ) ), 'effects: the settings support address is mailed once on submit' );
+flxt_same( 1, count( array_keys( $mail_targets, 'grace@example.com', true ) ), 'effects: the visitor is mailed once on submit' );
+flxt_ok( 3 === count( $sent_mails ), 'effects: a submit sends three mails and no more', $mail_targets );
 flxt_same( 1, count( $integrations ), 'effects: efb_after_form_integration fires once on submit' );
 flxt_same( 'form_submit', $integrations[0]['event_type'] ?? null, 'effects: integration event_type' );
 flxt_same( $builder_track, $integrations[0]['track_code'] ?? null, 'effects: integration track_code' );
@@ -515,6 +563,182 @@ remove_filter( 'efb_shield_allow_side_effect', $shield_veto );
 remove_filter( 'pre_wp_mail', $mail_spy, 10 );
 remove_action( 'efb_after_form_integration', $int_spy, 10 );
 
+// Gates and rules the GraphQL submit shares with the classic submit: form captcha, Human Shield,
+// conditional logic, mobile rules and the track code style.
+$msg_count = static function ( int $form_id ) use ( $wpdb ): int {
+	return (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$wpdb->prefix}emsfb_msg_ WHERE form_id = %d", $form_id ) );
+};
+$sent_mails = array();
+add_filter( 'pre_wp_mail', $mail_spy, 10, 2 );
+
+$cap_id = flxf_t_form(
+	'Captcha form',
+	'form',
+	array(
+		array( 'type' => 'form', 'steps' => 1, 'formName' => 'Captcha form', 'email' => 'owner@example.com', 'email_to' => 'cmail', 'captcha' => 1, 'stateForm' => 0 ),
+		array( 'id_' => 'cname', 'type' => 'text', 'name' => 'Name', 'required' => 1 ),
+		array( 'id_' => 'cmail', 'type' => 'email', 'name' => 'Email', 'required' => 1 ),
+	)
+);
+$cap_fields = array(
+	array( 'fieldId' => 'cname', 'value' => 'Ada' ),
+	array( 'fieldId' => 'cmail', 'value' => 'ada@example.com' ),
+);
+flxf_t_settings( array( 'secretKey' => 'contract-recaptcha-secret' ) );
+$GLOBALS['flxf_siteverify'] = true;
+$verify_mock                = static function ( $pre, $args, $url ) {
+	unset( $args );
+	if ( ! str_contains( (string) $url, 'siteverify' ) ) {
+		return $pre;
+	}
+	return array(
+		'headers'  => array(),
+		'body'     => (string) wp_json_encode( array( 'success' => (bool) $GLOBALS['flxf_siteverify'] ) ),
+		'response' => array( 'code' => 200, 'message' => 'OK' ),
+		'cookies'  => array(),
+		'filename' => null,
+	);
+};
+add_filter( 'pre_http_request', $verify_mock, 10, 3 );
+$r = flxf_t_op( 'FlxFormSubmit', array( 'input' => array( 'formId' => (string) $cap_id, 'fields' => $cap_fields ) ) );
+flxt_same( array( array( 'INVALID_INPUT', 'captchaToken' ) ), flxf_t_errs( $r, 'flxFormSubmit' ), 'form captcha: a form with captcha on refuses a missing token' );
+flxt_same( 0, $msg_count( $cap_id ), 'form captcha: nothing is stored without a token' );
+flxt_same( array(), $sent_mails, 'form captcha: no mail without a token' );
+$GLOBALS['flxf_siteverify'] = false;
+$r = flxf_t_op( 'FlxFormSubmit', array( 'input' => array( 'formId' => (string) $cap_id, 'fields' => $cap_fields, 'captchaToken' => 'bad-token-value' ) ) );
+flxt_same( array( array( 'INVALID_INPUT', 'captchaToken' ) ), flxf_t_errs( $r, 'flxFormSubmit' ), 'form captcha: Google refuses the token' );
+flxt_same( 0, $msg_count( $cap_id ), 'form captcha: nothing is stored when Google refuses' );
+flxt_same( array(), $sent_mails, 'form captcha: no mail when Google refuses' );
+$GLOBALS['flxf_siteverify'] = true;
+$r = flxf_t_op( 'FlxFormSubmit', array( 'input' => array( 'formId' => (string) $cap_id, 'fields' => $cap_fields, 'captchaToken' => 'good-token-value' ) ) );
+flxt_same( array(), flxf_t_errs( $r, 'flxFormSubmit' ), 'form captcha: a verified token is accepted' );
+flxt_same( 1, $msg_count( $cap_id ), 'form captcha: the accepted submission is stored' );
+flxf_t_settings( array( 'secretKey' => '' ) );
+$r = flxf_t_op( 'FlxFormSubmit', array( 'input' => array( 'formId' => (string) $cap_id, 'fields' => $cap_fields, 'captchaToken' => 'good-token-value' ) ) );
+flxt_same( 'INTERNAL', flxt_code( $r ), 'form captcha: no secret key configured is refused' );
+flxt_same( 1, $msg_count( $cap_id ), 'form captcha: no secret key stores nothing more' );
+remove_filter( 'pre_http_request', $verify_mock, 10 );
+flxf_t_settings( array() );
+
+$bot_seen = array();
+$bot_veto = static function ( $block, $ctx ) use ( &$bot_seen ) {
+	unset( $block );
+	$bot_seen[] = $ctx;
+	return true;
+};
+add_filter( 'efb_submit_bot_decision', $bot_veto, 10, 2 );
+$before_bot = $msg_count( $builder_id );
+$sent_mails = array();
+$r          = flxf_t_op( 'FlxFormSubmit', array( 'input' => array( 'formId' => (string) $builder_id, 'fields' => $b_base ) ) );
+flxt_same( 'FORBIDDEN', flxt_code( $r ), 'human shield: efb_submit_bot_decision veto refuses the submission' );
+flxt_same( $before_bot, $msg_count( $builder_id ), 'human shield: nothing is stored on a veto' );
+flxt_same( array(), $sent_mails, 'human shield: no mail on a veto' );
+flxt_same( 'Builder Form', $bot_seen[0]['form']['formName'] ?? null, 'human shield: the filter gets the form head' );
+flxt_ok( array_key_exists( 'ip', $bot_seen[0] ?? array() ) && array_key_exists( 'setting', $bot_seen[0] ?? array() ), 'human shield: the filter gets ip and settings' );
+remove_filter( 'efb_submit_bot_decision', $bot_veto, 10 );
+
+$rule_show  = array(
+	'id'         => 'r_show',
+	'scope'      => 'field',
+	'conditions' => array( 'items' => array( array( 'source' => 'field', 'field_id' => 'ltype', 'compare' => 'is', 'value' => 'b' ) ) ),
+	'actions'    => array( array( 'type' => 'show_field', 'target' => 'lhid' ) ),
+);
+$rule_block = array(
+	'id'         => 'r_block',
+	'scope'      => 'field',
+	'conditions' => array( 'items' => array( array( 'source' => 'field', 'field_id' => 'ltype', 'compare' => 'is', 'value' => 'x' ) ) ),
+	'actions'    => array( array( 'type' => 'block_submit', 'value' => 'Blocked by rule' ) ),
+);
+$logic_id   = flxf_t_form(
+	'Logic form',
+	'form',
+	array(
+		array( 'type' => 'form', 'steps' => 1, 'formName' => 'Logic form', 'email' => '', 'stateForm' => 0, 'logic_rules' => array( $rule_show, $rule_block ) ),
+		array( 'id_' => 'ltype', 'type' => 'text', 'name' => 'Kind', 'required' => 1 ),
+		array( 'id_' => 'lhid', 'type' => 'text', 'name' => 'Only for b', 'required' => 1 ),
+	)
+);
+$r = flxf_t_op( 'FlxFormSubmit', array( 'input' => array( 'formId' => (string) $logic_id, 'fields' => array( array( 'fieldId' => 'ltype', 'value' => 'a' ) ) ) ) );
+flxt_same( array(), flxf_t_errs( $r, 'flxFormSubmit' ), 'logic: a required field hidden by a rule is accepted when empty' );
+$logic_track = (string) ( $r['data']['flxFormSubmit']['submission']['trackCode'] ?? '' );
+$r           = flxf_t_op( 'FlxFormSubmit', array( 'input' => array( 'formId' => (string) $logic_id, 'fields' => array( array( 'fieldId' => 'ltype', 'value' => 'b' ) ) ) ) );
+flxt_same( array( array( 'INVALID_INPUT', 'fields.lhid' ) ), flxf_t_errs( $r, 'flxFormSubmit' ), 'logic: the same field is required once the rule shows it' );
+$r = flxf_t_op( 'FlxFormSubmit', array( 'input' => array( 'formId' => (string) $logic_id, 'fields' => array( array( 'fieldId' => 'ltype', 'value' => 'b' ), array( 'fieldId' => 'lhid', 'value' => 'shown' ) ) ) ) );
+flxt_same( array(), flxf_t_errs( $r, 'flxFormSubmit' ), 'logic: a shown required field is accepted when filled' );
+$r = flxf_t_op( 'FlxFormSubmit', array( 'input' => array( 'formId' => (string) $logic_id, 'fields' => array( array( 'fieldId' => 'ltype', 'value' => 'a' ), array( 'fieldId' => 'lhid', 'value' => 'leaked-value' ) ) ) ) );
+flxt_same( array(), flxf_t_errs( $r, 'flxFormSubmit' ), 'logic: a value sent for a hidden field is dropped, not refused' );
+$leak_track   = (string) ( $r['data']['flxFormSubmit']['submission']['trackCode'] ?? '' );
+$leak_content = (string) $wpdb->get_var( $wpdb->prepare( "SELECT content FROM {$wpdb->prefix}emsfb_msg_ WHERE track = %s LIMIT 1", $leak_track ) );
+flxt_ok( '' !== $leak_content && ! str_contains( $leak_content, 'leaked-value' ), 'logic: a hidden field value is never stored' );
+$before_block = $msg_count( $logic_id );
+$r            = flxf_t_op( 'FlxFormSubmit', array( 'input' => array( 'formId' => (string) $logic_id, 'fields' => array( array( 'fieldId' => 'ltype', 'value' => 'x' ) ) ) ) );
+flxt_same( array( array( 'INVALID_INPUT', 'fields' ) ), flxf_t_errs( $r, 'flxFormSubmit' ), 'logic: a block_submit rule refuses the submission' );
+flxt_same( 'Blocked by rule', $r['data']['flxFormSubmit']['errors'][0]['message'] ?? null, 'logic: the refusal carries the rule message' );
+flxt_same( $before_block, $msg_count( $logic_id ), 'logic: a blocked submission is not stored' );
+
+// The classic REST submit refuses the same answers with the same messages: it runs the same code.
+$rest_body = static fn( array $rows ): array => array(
+	'sid'     => 'contractsid',
+	'id'      => (string) $logic_id,
+	'page_id' => '1',
+	'url'     => 'http://example.org/page',
+	'type'    => 'form',
+	'name'    => 'Logic form',
+	'valid'   => '',
+	'value'   => (string) wp_json_encode( $rows ),
+);
+$rest = flxf_t_classic( 'get_form_public_efb', $rest_body( array( array( 'id_' => 'ltype', 'name' => 'Kind', 'type' => 'text', 'value' => 'x' ) ) ) );
+flxt_same( 'Blocked by rule', $rest['data']['m'] ?? null, 'REST parity: a block_submit rule gives the same refusal' );
+$rest = flxf_t_classic( 'get_form_public_efb', $rest_body( array( array( 'id_' => 'ltype', 'name' => 'Kind', 'type' => 'text', 'value' => 'b' ) ) ) );
+flxt_same( 'lhid', $rest['data']['field_id'] ?? null, 'REST parity: a field a rule shows is required on REST too' );
+flxt_same( $before_block, $msg_count( $logic_id ), 'REST parity: refused REST submissions store nothing' );
+
+$phone_id = flxf_t_form(
+	'Phone form',
+	'form',
+	array(
+		array( 'type' => 'form', 'steps' => 1, 'formName' => 'Phone form', 'email' => '', 'stateForm' => 0 ),
+		array( 'id_' => 'mob', 'type' => 'mobile', 'name' => 'Phone', 'required' => 0, 'c_n' => array( '90' ) ),
+	)
+);
+$r = flxf_t_op( 'FlxFormSubmit', array( 'input' => array( 'formId' => (string) $phone_id, 'fields' => array( array( 'fieldId' => 'mob', 'value' => '+1 555 111 2233' ) ) ) ) );
+flxt_same( array( array( 'INVALID_INPUT', 'fields.mob' ) ), flxf_t_errs( $r, 'flxFormSubmit' ), 'mobile: a number outside the allowed countries is refused' );
+$r = flxf_t_op( 'FlxFormSubmit', array( 'input' => array( 'formId' => (string) $phone_id, 'fields' => array( array( 'fieldId' => 'mob', 'value' => '+90 555 111 2233' ) ) ) ) );
+flxt_same( array(), flxf_t_errs( $r, 'flxFormSubmit' ), 'mobile: a number from an allowed country is accepted' );
+$phone_track = (string) ( $r['data']['flxFormSubmit']['submission']['trackCode'] ?? '' );
+flxt_ok( 1 === preg_match( '/^[0-9A-Z]{12}$/', $phone_track ), 'track code: the default style is 12 upper-case letters and digits', $phone_track );
+flxf_t_settings( array( 'trackCodeStyle' => 'date_num' ) );
+$r           = flxf_t_op( 'FlxFormSubmit', array( 'input' => array( 'formId' => (string) $phone_id, 'fields' => array( array( 'fieldId' => 'mob', 'value' => '+905551112233' ) ) ) ) );
+$digit_track = (string) ( $r['data']['flxFormSubmit']['submission']['trackCode'] ?? '' );
+flxt_ok( 1 === preg_match( '/^[0-9]{12}$/', $digit_track ), 'track code: trackCodeStyle date_num gives 12 digits', $digit_track );
+flxf_t_settings( array() );
+
+// Classic read: the tracker the visitor page uses reads what GraphQL wrote.
+$classic = flxf_t_classic( 'get_track_public_api', array( 'value' => $builder_track ) );
+flxt_same( true, $classic['data']['success'] ?? null, 'classic tracker: finds a GraphQL submission' );
+flxt_same( $builder_track, $classic['data']['value']['track'] ?? null, 'classic tracker: same tracking code' );
+flxt_ok( str_contains( (string) ( $classic['data']['value']['content'] ?? '' ), 'Grace' ), 'classic tracker: returns the GraphQL answers' );
+flxt_ok( str_contains( (string) ( $classic['data']['value']['content'] ?? '' ), 'w_link' ), 'classic tracker: the stored message carries the classic w_link row' );
+flxt_same( 1, count( (array) ( $classic['data']['content'] ?? array() ) ), 'classic tracker: lists the reply GraphQL stored' );
+// Classic write: the response handler answers a GraphQL ticket and GraphQL reads it back.
+$msg_row = $wpdb->get_row( $wpdb->prepare( "SELECT msg_id FROM {$wpdb->prefix}emsfb_msg_ WHERE track = %s LIMIT 1", $builder_track ), ARRAY_A );
+$sent_mails = array();
+$reply      = flxf_t_classic(
+	'set_rMessage_id_Emsfb_api',
+	array(
+		'user_type' => 'guest',
+		'sc'        => 'null',
+		'track'     => $builder_track,
+		'id'        => (string) ( $msg_row['msg_id'] ?? 0 ),
+		'message'   => '[{"id_":"message","name":"Message","type":"text","value":"Classic says hi"}]',
+	)
+);
+flxt_ok( true === ( $reply['data']['success'] ?? null ), 'classic reply: the response handler accepts a reply on a GraphQL ticket', $reply );
+$r = flxf_t_op( 'FlxFormTrack', array( 'code' => $builder_track ) );
+$bodies = array_column( is_array( $r['data']['flxFormTrack']['replies'] ?? null ) ? $r['data']['flxFormTrack']['replies'] : array(), 'body' );
+flxt_ok( in_array( 'Classic says hi', $bodies, true ), 'classic reply: GraphQL reads the reply the classic handler stored', $bodies );
+remove_filter( 'pre_wp_mail', $mail_spy, 10 );
+
 // Non-UTC timezone conversion for FlxDateTime on FlxFormTrack.
 $old_tz = (string) get_option( 'timezone_string', '' );
 update_option( 'timezone_string', 'Europe/Istanbul' );
@@ -542,6 +766,15 @@ $r = flxf_t_op( 'FlxFormTrack', array( 'code' => 'bad2' ) );
 flxt_same( 'NOT_FOUND', flxt_code( $r ), 'track rate limit: miss 2 allowed' );
 $r = flxf_t_op( 'FlxFormTrack', array( 'code' => 'bad3' ) );
 flxt_same( 'RATE_LIMITED', flxt_code( $r ), 'track rate limit: miss 3 returns RATE_LIMITED' );
+$r = flxf_t_op( 'FlxFormTrackReply', array( 'input' => array( 'trackCode' => 'bad4', 'message' => 'Throttled' ) ) );
+flxt_same( 'RATE_LIMITED', flxt_code( $r ), 'track rate limit: replies share the tracker throttle' );
+$_SERVER['REMOTE_ADDR'] = '198.51.100.78';
+$r = flxf_t_op( 'FlxFormTrackReply', array( 'input' => array( 'trackCode' => 'bad1', 'message' => 'Guess' ) ) );
+flxt_same( 'NOT_FOUND', flxt_code( $r ), 'reply rate limit: miss 1 allowed' );
+$r = flxf_t_op( 'FlxFormTrackReply', array( 'input' => array( 'trackCode' => 'bad2', 'message' => 'Guess' ) ) );
+flxt_same( 'NOT_FOUND', flxt_code( $r ), 'reply rate limit: miss 2 allowed' );
+$r = flxf_t_op( 'FlxFormTrackReply', array( 'input' => array( 'trackCode' => 'bad3', 'message' => 'Guess' ) ) );
+flxt_same( 'RATE_LIMITED', flxt_code( $r ), 'reply rate limit: wrong codes count against the caller like the tracker' );
 remove_filter( 'efb_track_legacy_fail_max', $legacy_max_filter );
 if ( null === $prev_remote ) {
 	unset( $_SERVER['REMOTE_ADDR'] );

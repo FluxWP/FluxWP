@@ -27,45 +27,53 @@ class FLXF_Submission_Service {
 	private const TEXT_MAX      = 5000;
 
 	/**
-	 * Field types whose value is a file URL from the upload endpoint.
+	 * Upload field types the classic submit validates as files.
 	 *
 	 * @var list<string>
 	 */
-	private const FILE_TYPES = array(
-		'file',
-		'dadfile',
-		'file-drop',
-		'audio',
-		'video',
-		'screen',
-		'audio_recorder',
-		'video_recorder',
-		'screen_recorder',
-		'image',
-		'document',
-		'media',
-		'allformat',
-		'zip',
-	);
+	private const FILE_TYPES = array( 'file', 'dadfile', 'audio_recorder', 'video_recorder', 'screen_recorder' );
 
 	/**
-	 * Choice fields. A value has to be one of the field's options.
+	 * Radio types the classic submit matches through the option id.
 	 *
 	 * @var list<string>
 	 */
-	private const CHOICE_TYPES = array(
-		'select',
-		'radio',
-		'checkbox',
-		'multiselect',
-		'payselect',
-		'payradio',
-		'paycheckbox',
-		'paymultiselect',
-		'chlradio',
-		'imgradio',
-		'chlcheckbox',
-		'trmcheckbox',
+	private const RADIO_TYPES = array( 'radio', 'payradio', 'chlradio', 'imgradio' );
+
+	/**
+	 * Translated texts the shared classic submit reads.
+	 *
+	 * @var list<string>
+	 */
+	private const TEXT_KEYS = array(
+		'somethingWentWrongPleaseRefresh',
+		'pleaseMakeSureAllFields',
+		'PleaseFillForm',
+		'bkXpM_',
+		'bkFlM_',
+		'mnvvXXX_',
+		'ptrnMmm_',
+		'ptrnMmx_',
+		'error403',
+		'errorSiteKeyM',
+		'errorCaptcha',
+		'errorMRobot',
+		'pleaseEnterVaildValue',
+		'msgdml',
+		'thankFillForm',
+		'trackNo',
+		'vmgs',
+		'WeRecivedUrM',
+		'thankRegistering',
+		'welcome',
+		'thankSubscribing',
+		'thankDonePoll',
+		'newMessageReceived',
+		'youRecivedNewMessage',
+		'msgSndBut',
+		'smsWPN',
+		'spprt',
+		'messageSent',
 	);
 
 	/**
@@ -76,6 +84,9 @@ class FLXF_Submission_Service {
 	private const SKIP_TYPES = array( 'step', 'heading', 'html', 'link', 'raw', 'stripe', 'maps', 'password', 'esign', 'persiapay', 'paypal', 'booking', 'table_matrix' );
 
 	/**
+	 * The visitor's answers go through the same pipeline the classic submit runs: conditional logic,
+	 * required fields, per-field checks, captcha and bot gates, classic storage and post-save effects.
+	 *
 	 * @param array<string,mixed> $input Mutation input.
 	 * @return FlxfSubmitResult|WP_Error
 	 */
@@ -87,10 +98,10 @@ class FLXF_Submission_Service {
 		if ( '' !== trim( self::str( $input['honeypot'] ?? '' ) ) ) {
 			return self::invalid( 'honeypot', __( 'The form could not be sent.', 'flx-forms' ) );
 		}
+		$token = isset( $input['captchaToken'] ) && is_string( $input['captchaToken'] ) && '' !== $input['captchaToken']
+			? $input['captchaToken']
+			: null;
 		if ( function_exists( 'flx_captcha_gql_verify' ) ) {
-			$token = isset( $input['captchaToken'] ) && is_string( $input['captchaToken'] ) && '' !== $input['captchaToken']
-				? $input['captchaToken']
-				: null;
 			flx_captcha_gql_verify( 'flxf_submit', $token, 'captchaToken' );
 		}
 
@@ -107,67 +118,86 @@ class FLXF_Submission_Service {
 			return self::invalid( 'formId', __( 'This form cannot be sent here.', 'flx-forms' ) );
 		}
 
-		$given   = self::given( $input['fields'] ?? array() );
-		$stored  = array();
-		$names   = array();
-		$errors  = new WP_Error();
-		$n       = 0;
-		$booking = FLXF_Form_Service::flag( $load['structure'][0]['booking'] ?? false );
-		$dirty   = false;
-		foreach ( $load['structure'] as $i => $field ) {
-			if ( 0 === $i || FLXF_Form_Service::is_child_row( $field ) ) {
-				continue;
-			}
-			if ( FLXF_Form_Service::flag( $field['hidden'] ?? false ) || FLXF_Form_Service::flag( $field['disabled'] ?? false ) ) {
-				continue;
-			}
-			$ftype = sanitize_key( self::str( $field['type'] ?? '' ) );
-			if ( '' === $ftype || in_array( $ftype, self::SKIP_TYPES, true ) ) {
-				continue;
-			}
-			$fid = FLXF_Form_Service::field_id( $field );
-			if ( '' === $fid ) {
-				continue;
-			}
-			$raw   = $given[ $fid ] ?? '';
-			$value = self::clean_value( $ftype, $raw );
-			$need  = FLXF_Form_Service::flag( $field['required'] ?? false );
-			if ( $need && '' === $value ) {
-				$errors->add( 'flxf_' . $n, __( 'Fill in the required fields.', 'flx-forms' ), self::data( 'fields.' . $fid ) );
-				++$n;
-				continue;
-			}
-			if ( '' === $value ) {
-				continue;
-			}
-			$row = self::accept( $ftype, $value, $field, $load['structure'], $id, $booking, $fid, $dirty );
-			if ( is_string( $row ) ) {
-				$errors->add( 'flxf_' . $n, $row, self::data( 'fields.' . $fid ) );
-				++$n;
-				continue;
-			}
-			if ( in_array( $ftype, self::FILE_TYPES, true ) ) {
-				$names[] = self::str( $row['url'] ?? '' );
-			}
-			$stored[] = $row;
+		$title    = self::str( $load['row']['form_name'] );
+		$pub      = self::prepare_public( $id, $title );
+		$settings = self::settings_array( $pub );
+		$cls      = self::classic_structure( $load['structure'] );
+		$before   = $cls;
+		$captcha  = $cls[0]['captcha'] ?? '';
+		$lan      = is_array( $pub->lanText ) ? $pub->lanText : array();
+
+		$rows = self::build_rows( self::given( $input['fields'] ?? array() ), $cls );
+		if ( $rows instanceof WP_Error ) {
+			return $rows;
 		}
-		if ( $errors->has_errors() ) {
-			return $errors;
+		$rows = $pub->flxf_strip_untouched_rows( $rows );
+		if ( ! $rows ) {
+			$miss = $pub->flxf_check_required( $cls, array() );
+			if ( null !== $miss ) {
+				return self::missing( $miss );
+			}
+			$none = isset( $lan['PleaseFillForm'] ) && is_string( $lan['PleaseFillForm'] ) ? $lan['PleaseFillForm'] : __( 'Please complete the form.', 'flx-forms' );
+			return self::invalid( 'fields', self::plain( $none ) );
 		}
-		if ( ! $stored ) {
-			return self::invalid( 'fields', __( 'Please complete the form.', 'flx-forms' ) );
+		/** @var array<int,array<string,mixed>> $rows */
+		$rows  = $pub->flxf_dedupe_rows( array_values( $rows ) );
+		$logic = $pub->flxf_apply_conditional_logic( $cls, $rows );
+		/** @var array<int,array<string,mixed>> $rows */
+		$rows = $logic['submitted_values'];
+		if ( null !== $logic['blocked'] ) {
+			return self::invalid( 'fields', self::plain( $logic['blocked'] ) );
 		}
-		if ( $dirty ) {
-			self::save_structure( $id, $load['structure'] );
+		$miss = $pub->flxf_check_required( $cls, $rows );
+		if ( null !== $miss ) {
+			return self::missing( $miss );
 		}
 
-		$track = self::track_code();
-		$msg   = self::insert_message( $id, self::str( $load['row']['form_name'] ), $track, $stored );
+		$send       = false;
+		$recipients = array();
+		$phones     = array( array(), array() );
+		$sms_config = self::str( $settings['sms_config'] ?? '' );
+		$phn        = self::str( $settings['phnNo'] ?? '' );
+		if ( 'wpsms' === $sms_config && strlen( $phn ) > 5 ) {
+			$phones[0] = explode( ',', $phn );
+		}
+		$pub->flxf_head_recipients( $cls, $settings, $send, $recipients );
+		$sms = 0;
+		$val = $pub->flxf_validate_fields( $cls, $rows, $recipients, $phones, $sms, home_url(), $logic['is_conditional'] ? $logic['ignored_set'] : array() );
+		/** @var array<int,array<string,mixed>> $cls */
+		if ( 0 === (int) $val['is_valid'] ) {
+			$field = self::str( $val['field_id'] );
+			return self::invalid( '' !== $field ? 'fields.' . $field : 'fields', self::plain( self::str( $val['m'] ) ) );
+		}
+		$pub->value = $pub->flxf_encode_items( $val['items'] );
+
+		$admin = $pub->flxf_admin_recipients( $settings, $send, $recipients );
+		$gate  = $pub->flxf_submit_gates( $cls, $settings, $token, $type, $captcha );
+		if ( null !== $gate['error'] ) {
+			$text = isset( $lan[ $gate['error'] ] ) && is_string( $lan[ $gate['error'] ] ) ? self::plain( $lan[ $gate['error'] ] ) : __( 'The form could not be sent.', 'flx-forms' );
+			if ( 'errorMRobot' === $gate['error'] ) {
+				return self::error( 'FORBIDDEN', $text, 403 );
+			}
+			if ( 'errorSiteKeyM' === $gate['error'] ) {
+				return self::error( 'INTERNAL', $text, 500 );
+			}
+			return self::invalid( 'captchaToken', $text );
+		}
+
+		$pub->name = $title;
+		$pub->id   = $id;
+		if ( $send ) {
+			$pub->flxf_user_recipient( $cls, $rows, $recipients );
+		}
+		$style = is_object( $pub->setting ) && isset( $pub->setting->trackCodeStyle ) && is_string( $pub->setting->trackCodeStyle ) && '' !== $pub->setting->trackCodeStyle
+			? $pub->setting->trackCodeStyle
+			: 'date_en_mix';
+		$track = self::str( $pub->insert_message_db( 0, false, $style ) );
+		$msg   = self::message_id( $track );
 		if ( $msg < 1 ) {
 			return self::error( 'INTERNAL', __( 'The form could not be sent.', 'flx-forms' ), 500 );
 		}
-		if ( class_exists( '\Emsfb\Upload_Guard' ) && $names ) {
-			\Emsfb\Upload_Guard::release_pending_uploads( $names );
+		if ( 'booking' === $val['form_condition'] && self::count_booking( $load['structure'], $before, $cls ) ) {
+			self::save_structure( $id, $load['structure'] );
 		}
 		apply_filters(
 			'flxf_submit_response',
@@ -176,12 +206,12 @@ class FLXF_Submission_Service {
 				'event_type'       => 'form_submit',
 				'track_code'       => $track,
 				'form_id'          => $id,
-				'submitted_values' => $stored,
-				'form_fields'      => $load['structure'],
+				'submitted_values' => $rows,
+				'form_fields'      => $cls,
 				'page_url'         => '',
 			)
 		);
-		self::submit_effects( $id, self::str( $load['row']['form_name'] ), $track, $stored, $load['structure'], $type );
+		$pub->flxf_dispatch_submit_effects( $track, $rows, $cls, $phones, home_url(), $send, $recipients, $pub->flxf_has_tracking_code( $cls ), $admin, $pub->pro_efb, $type );
 
 		return array(
 			'submission' => array(
@@ -196,14 +226,12 @@ class FLXF_Submission_Service {
 	 * @return FlxfTrackView|WP_Error
 	 */
 	public static function track( string $code ): array|WP_Error {
-		$pub = \Emsfb\_Public::flxf_live();
-		if ( ! $pub->flxf_track_lookup_allowed() ) {
-			return self::error( 'RATE_LIMITED', __( 'Too many attempts. Please wait a few minutes and try again.', 'flx-forms' ), 429 );
-		}
+		$pub    = \Emsfb\_Public::flxf_live();
 		$code   = sanitize_text_field( $code );
 		$legacy = '' === $code || ! $pub->flxf_is_strong_track_code( $code );
-		if ( $legacy && ! $pub->flxf_track_legacy_lookup_allowed() ) {
-			return self::error( 'RATE_LIMITED', __( 'Too many attempts. Please wait a few minutes and try again.', 'flx-forms' ), 429 );
+		$gate   = self::track_gate( $pub, $legacy );
+		if ( $gate instanceof WP_Error ) {
+			return $gate;
 		}
 		global $wpdb;
 		/** @var wpdb $wpdb */
@@ -213,10 +241,7 @@ class FLXF_Submission_Service {
 			ARRAY_A
 		);
 		if ( ! is_array( $row ) ) {
-			$pub->flxf_track_register_failure();
-			if ( $legacy ) {
-				$pub->flxf_track_register_legacy_failure();
-			}
+			self::track_miss( $pub, $legacy );
 			return self::error( 'NOT_FOUND', __( 'The tracking code was not found.', 'flx-forms' ), 404 );
 		}
 		$msg_id  = self::num( $row['msg_id'] );
@@ -262,14 +287,26 @@ class FLXF_Submission_Service {
 		if ( '' === $body ) {
 			return self::invalid( 'message', __( 'Write a reply.', 'flx-forms' ) );
 		}
+		/*
+		 * The classic reply needs the message id and the tracking code together. GraphQL takes only the
+		 * code, so the id comes from the row that code names. The lookup is throttled and its misses
+		 * are counted exactly like the tracker's.
+		 */
+		$pub    = \Emsfb\_Public::flxf_live();
+		$legacy = '' === $code || ! $pub->flxf_is_strong_track_code( $code );
+		$gate   = self::track_gate( $pub, $legacy );
+		if ( $gate instanceof WP_Error ) {
+			return $gate;
+		}
 		global $wpdb;
 		/** @var wpdb $wpdb */
 		$table = $wpdb->prefix . 'emsfb_msg_';
-		$row   = $wpdb->get_row(
+		$row   = '' === $code ? null : $wpdb->get_row(
 			$wpdb->prepare( 'SELECT msg_id, track, form_id, content FROM %i WHERE track = %s LIMIT 1', $table, $code ),
 			ARRAY_A
 		);
 		if ( ! is_array( $row ) ) {
+			self::track_miss( $pub, $legacy );
 			return self::error( 'NOT_FOUND', __( 'The tracking code was not found.', 'flx-forms' ), 404 );
 		}
 		$msg_id = self::num( $row['msg_id'] );
@@ -329,6 +366,7 @@ class FLXF_Submission_Service {
 		if ( false === $ok ) {
 			return self::error( 'INTERNAL', __( 'The form could not be sent.', 'flx-forms' ), 500 );
 		}
+		$rsp_id = (int) $wpdb->insert_id;
 		$wpdb->update( $table, array( 'read_' => $admin ? 1 : 0 ), array( 'msg_id' => $msg_id ), array( '%d' ), array( '%d' ) );
 		if ( $files && class_exists( '\Emsfb\Upload_Guard' ) ) {
 			\Emsfb\Upload_Guard::release_response_attachment_reservations( $files );
@@ -337,7 +375,7 @@ class FLXF_Submission_Service {
 		self::reply_effects( self::num( $row['form_id'] ?? 0 ), self::str( $row['content'] ?? '' ), $track, $admin );
 		return array(
 			'submission' => array(
-				'id'        => (string) $wpdb->insert_id,
+				'id'        => (string) $rsp_id,
 				'trackCode' => $track,
 			),
 		);
@@ -363,94 +401,6 @@ class FLXF_Submission_Service {
 			$out[ $id ] = self::str( $field['value'] ?? '' );
 		}
 		return $out;
-	}
-
-	private static function clean_value( string $type, string $raw ): string {
-		if ( in_array( $type, self::FILE_TYPES, true ) ) {
-			return esc_url_raw( $raw );
-		}
-		if ( 'textarea' === $type ) {
-			$value = sanitize_textarea_field( $raw );
-		} else {
-			$value = sanitize_text_field( $raw );
-		}
-		if ( strlen( $value ) > self::TEXT_MAX ) {
-			$value = substr( $value, 0, self::TEXT_MAX );
-		}
-		return $value;
-	}
-
-	/**
-	 * A file the upload endpoint stored for this field. The pending ledger still
-	 * has no form id; the classic validator applies this field's size and extensions.
-	 *
-	 * @param array<string,mixed> $field Field definition.
-	 * @return string|null Error message, or null when the file is allowed.
-	 */
-	private static function pending_upload( string $url, array $field, int $form_id ): ?string {
-		if ( ! class_exists( '\Emsfb\Upload_Guard' ) ) {
-			return __( 'Upload the file again.', 'flx-forms' );
-		}
-		$base = wp_basename( $url );
-		if ( '' === $base || str_contains( $base, '/' ) || str_contains( $base, '\\' ) ) {
-			return __( 'Upload the file again.', 'flx-forms' );
-		}
-		$pending = get_option( \Emsfb\Upload_Guard::PENDING_OPTION, array() );
-		if ( ! is_array( $pending ) || ! isset( $pending[ $base ] ) ) {
-			return __( 'Upload the file again.', 'flx-forms' );
-		}
-		$pub     = \Emsfb\_Public::flxf_live();
-		$pub->id = $form_id;
-		$check   = $pub->flxf_validate_submitted_upload( $url, $field );
-		if ( true === $check ) {
-			return null;
-		}
-		return is_string( $check ) && '' !== $check ? $check : __( 'Upload the file again.', 'flx-forms' );
-	}
-
-	/**
-	 * @param list<array<string,mixed>> $stored Field rows.
-	 */
-	private static function insert_message( int $form_id, string $title, string $track, array $stored ): int {
-		global $wpdb;
-		/** @var wpdb $wpdb */
-		$table   = $wpdb->prefix . 'emsfb_msg_';
-		$rows    = $stored;
-		$rows[]  = array(
-			'type'   => 'w_link',
-			'value'  => home_url(),
-			'amount' => -1,
-		);
-		$encoded = self::encode_rows( $rows );
-		$ok      = $wpdb->insert(
-			$table,
-			array(
-				'form_id'      => $form_id,
-				'track'        => $track,
-				'ip'           => self::ip(),
-				'form_title_x' => $title,
-				'content'      => $encoded,
-				'date'         => current_time( 'mysql' ),
-				'read_'        => 0,
-				'read_by'      => '',
-			),
-			array( '%d', '%s', '%s', '%s', '%s', '%s', '%d', '%s' )
-		);
-		return false === $ok ? 0 : $wpdb->insert_id;
-	}
-
-	private static function track_code(): string {
-		global $wpdb;
-		/** @var wpdb $wpdb */
-		$table = $wpdb->prefix . 'emsfb_msg_';
-		for ( $i = 0; $i < 5; $i++ ) {
-			$code = wp_generate_password( 12, false, false );
-			$have = self::num( $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM %i WHERE track = %s', $table, $code ) ) );
-			if ( 0 === $have ) {
-				return $code;
-			}
-		}
-		return wp_generate_password( 12, false, false );
 	}
 
 	/**
@@ -589,171 +539,6 @@ class FLXF_Submission_Service {
 	}
 
 	/**
-	 * One filled field, checked the way the classic submit checks it.
-	 *
-	 * @param array<string,mixed>            $field     Field definition.
-	 * @param array<int,array<string,mixed>> $structure Whole structure. Booking quota is written back here.
-	 * @return array<string,mixed>|string Stored row, or an error message.
-	 */
-	private static function accept( string $type, string $value, array $field, array &$structure, int $form_id, bool $booking, string $fid, bool &$dirty ): array|string {
-		$label = sanitize_text_field( self::str( $field['name'] ?? $field['label'] ?? $fid ) );
-		$row   = array(
-			'id_'   => $fid,
-			'name'  => $label,
-			'type'  => $type,
-			'value' => $value,
-		);
-		if ( in_array( $type, self::FILE_TYPES, true ) ) {
-			$check = $field;
-			$check['id_']  = $fid;
-			$check['type'] = $type;
-			$err = self::pending_upload( $value, $check, $form_id );
-			if ( null !== $err ) {
-				return $err;
-			}
-			$row['value'] = '@file@';
-			$row['url']   = $value;
-			return $row;
-		}
-		if ( 'email' === $type && ! is_email( $value ) ) {
-			return __( 'Enter a valid email address.', 'flx-forms' );
-		}
-		if ( 'date' === $type ) {
-			if ( 1 !== preg_match( '/^\d{4}-\d{1,2}-\d{1,2}$/', $value ) ) {
-				return __( 'Enter a valid date.', 'flx-forms' );
-			}
-			$parts = explode( '-', $value );
-			if ( 3 !== count( $parts ) || ! checkdate( (int) $parts[1], (int) $parts[2], (int) $parts[0] ) ) {
-				return __( 'Enter a valid date.', 'flx-forms' );
-			}
-			$today = (string) wp_date( 'Y-m-d' );
-			$min   = self::str( $field['milen'] ?? '' );
-			$max   = self::str( $field['mlen'] ?? '' );
-			if ( '1' === $min ) {
-				$min = $today;
-			}
-			if ( '1' === $max ) {
-				$max = $today;
-			}
-			if ( '' !== $min && strtotime( $min ) > strtotime( $value ) ) {
-				return __( 'Enter a valid date.', 'flx-forms' );
-			}
-			if ( '' !== $max && strtotime( $max ) < strtotime( $value ) ) {
-				return __( 'Enter a valid date.', 'flx-forms' );
-			}
-			return $row;
-		}
-		if ( 'url' === $type ) {
-			$url = esc_url_raw( $value );
-			if ( '' === $url || false === wp_http_validate_url( $url ) ) {
-				return __( 'Enter a valid URL.', 'flx-forms' );
-			}
-			$row['value'] = $url;
-			return self::length_row( $row, $field );
-		}
-		if ( 'color' === $type ) {
-			if ( 1 !== preg_match( '/^#[0-9a-fA-F]{6}$/', $value ) ) {
-				return __( 'Enter a valid color.', 'flx-forms' );
-			}
-			return $row;
-		}
-		if ( 'pointr5' === $type || 'rating' === $type ) {
-			if ( ! is_numeric( $value ) || (int) $value < 1 || (int) $value > 5 ) {
-				return __( 'Enter a valid number.', 'flx-forms' );
-			}
-			$row['value'] = (string) (int) $value;
-			return $row;
-		}
-		if ( 'pointr10' === $type ) {
-			if ( ! is_numeric( $value ) || (int) $value < 0 || (int) $value > 10 ) {
-				return __( 'Enter a valid number.', 'flx-forms' );
-			}
-			$row['value'] = (string) (int) $value;
-			return $row;
-		}
-		if ( 'number' === $type || 'range' === $type ) {
-			if ( ! is_numeric( $value ) ) {
-				return __( 'Enter a valid number.', 'flx-forms' );
-			}
-			if ( 'range' === $type ) {
-				$min = self::str( $field['milen'] ?? '' );
-				$max = self::str( $field['mlen'] ?? '' );
-				if ( '' !== $min && is_numeric( $min ) && (float) $min > (float) $value ) {
-					return __( 'Enter a valid number.', 'flx-forms' );
-				}
-				if ( '' !== $max && is_numeric( $max ) && (float) $max < (float) $value ) {
-					return __( 'Enter a valid number.', 'flx-forms' );
-				}
-				return $row;
-			}
-			return self::length_row( $row, $field );
-		}
-		if ( in_array( $type, self::CHOICE_TYPES, true ) ) {
-			return self::choice_row( $row, $field, $structure, $booking, $fid, $dirty );
-		}
-		return self::length_row( $row, $field );
-	}
-
-	/**
-	 * @param array<string,mixed>            $row       Stored row so far.
-	 * @param array<string,mixed>            $field     Parent field.
-	 * @param array<int,array<string,mixed>> $structure Whole structure.
-	 * @return array<string,mixed>|string
-	 */
-	private static function choice_row( array $row, array $field, array &$structure, bool $booking, string $fid, bool &$dirty ): array|string {
-		$options = FLXF_Form_Service::choice_rows( $field, $structure );
-		$rtype   = self::str( $row['type'] ?? '' );
-		$multi   = 'multiselect' === $rtype || 'paymultiselect' === $rtype || str_contains( $rtype, 'check' );
-		$tokens  = $multi ? array_values( array_unique( array_filter( array_map( 'trim', explode( ',', self::str( $row['value'] ?? '' ) ) ), static fn( string $bit ): bool => '' !== $bit ) ) ) : array( self::str( $row['value'] ?? '' ) );
-		if ( ! $tokens ) {
-			return __( 'Choose one of the listed options.', 'flx-forms' );
-		}
-		$chosen  = array();
-		$matched = null;
-		foreach ( $tokens as $token ) {
-			$hit = null;
-			foreach ( $options as $option ) {
-				$ovalue = sanitize_text_field( self::str( $option['value'] ?? '' ) );
-				$oid    = FLXF_Form_Service::field_id( $option );
-				if ( $token === $ovalue || ( '' !== $oid && $token === $oid ) ) {
-					$hit = $option;
-					break;
-				}
-			}
-			if ( null === $hit ) {
-				return __( 'Choose one of the listed options.', 'flx-forms' );
-			}
-			if ( $booking ) {
-				$exp = self::str( $hit['dateExp'] ?? '' );
-				if ( '' !== $exp && false !== strtotime( $exp ) && strtotime( $exp ) < strtotime( (string) wp_date( 'Y-m-d' ) ) ) {
-					return __( 'This choice is no longer available.', 'flx-forms' );
-				}
-				if ( isset( $hit['mlen'] ) && '' !== self::str( $hit['mlen'] ) && self::num( $hit['mlen'] ) <= self::num( $hit['registered_count'] ?? 0 ) ) {
-					return __( 'This choice is no longer available.', 'flx-forms' );
-				}
-				self::bump_booking( $structure, $hit, $fid );
-				$dirty = true;
-			}
-			$stored = sanitize_text_field( self::str( $hit['value'] ?? '' ) );
-			if ( '' === $stored ) {
-				$stored = FLXF_Form_Service::field_id( $hit );
-			}
-			$chosen[] = $stored;
-			$matched  = $hit;
-		}
-		if ( $multi ) {
-			$row['value'] = implode( '@efb!', $chosen ) . '@efb!';
-		} else {
-			$row['value'] = $chosen[0];
-		}
-		$oid = FLXF_Form_Service::field_id( $matched );
-		if ( '' !== $oid ) {
-			$row['id_ob'] = $oid;
-		}
-		return $row;
-	}
-
-	/**
 	 * @param array<int,array<string,mixed>> $structure Whole structure.
 	 * @param array<string,mixed>            $option    Matched option row.
 	 */
@@ -795,22 +580,324 @@ class FLXF_Submission_Service {
 	}
 
 	/**
-	 * @param array<string,mixed> $row   Stored row.
-	 * @param array<string,mixed> $field Field definition.
-	 * @return array<string,mixed>|string
+	 * Per-IP and site-wide throttle of the classic tracker.
 	 */
-	private static function length_row( array $row, array $field ): array|string {
-		$value = self::str( $row['value'] ?? '' );
-		$len   = function_exists( 'mb_strlen' ) ? mb_strlen( $value, 'UTF-8' ) : strlen( $value );
-		$min   = is_numeric( self::str( $field['milen'] ?? '' ) ) ? (int) self::str( $field['milen'] ) : 0;
-		$max   = is_numeric( self::str( $field['mlen'] ?? '' ) ) ? (int) self::str( $field['mlen'] ) : 0;
-		if ( $min > 0 && $len < $min ) {
-			return __( 'This answer is too short.', 'flx-forms' );
+	private static function track_gate( \Emsfb\_Public $pub, bool $legacy ): ?WP_Error {
+		if ( ! $pub->flxf_track_lookup_allowed() ) {
+			return self::error( 'RATE_LIMITED', __( 'Too many attempts. Please wait a few minutes and try again.', 'flx-forms' ), 429 );
 		}
-		if ( $max > 0 && $len > $max ) {
-			return __( 'This answer is too long.', 'flx-forms' );
+		if ( $legacy && ! $pub->flxf_track_legacy_lookup_allowed() ) {
+			return self::error( 'RATE_LIMITED', __( 'Too many attempts. Please wait a few minutes and try again.', 'flx-forms' ), 429 );
 		}
-		return $row;
+		return null;
+	}
+
+	/**
+	 * A lookup that found nothing counts against the caller, same as the classic tracker.
+	 */
+	private static function track_miss( \Emsfb\_Public $pub, bool $legacy ): void {
+		$pub->flxf_track_register_failure();
+		if ( $legacy ) {
+			$pub->flxf_track_register_legacy_failure();
+		}
+	}
+
+	private static function message_id( string $track ): int {
+		if ( '' === $track ) {
+			return 0;
+		}
+		global $wpdb;
+		/** @var wpdb $wpdb */
+		$table = $wpdb->prefix . 'emsfb_msg_';
+		return self::num( $wpdb->get_var( $wpdb->prepare( 'SELECT msg_id FROM %i WHERE track = %s ORDER BY msg_id DESC LIMIT 1', $table, $track ) ) );
+	}
+
+	/**
+	 * Classic message text is HTML (names in <b>). GraphQL errors are plain text.
+	 */
+	private static function plain( string $message ): string {
+		return trim( html_entity_decode( wp_strip_all_tags( $message ), ENT_QUOTES, 'UTF-8' ) );
+	}
+
+	/**
+	 * @param array{m:string,field_id:string,missing:list<array{id:string,m:string}>} $miss Result of the classic required check.
+	 */
+	private static function missing( array $miss ): WP_Error {
+		if ( ! $miss['missing'] ) {
+			$field = $miss['field_id'];
+			return self::invalid( '' !== $field ? 'fields.' . $field : 'fields', self::plain( $miss['m'] ) );
+		}
+		$errors = new WP_Error();
+		foreach ( $miss['missing'] as $n => $one ) {
+			$errors->add( 'flxf_' . $n, self::plain( $one['m'] ), self::data( '' !== $one['id'] ? 'fields.' . $one['id'] : 'fields' ) );
+		}
+		return $errors;
+	}
+
+	/**
+	 * Settings as the array the classic submit reads.
+	 *
+	 * @return array<string,mixed>
+	 */
+	private static function settings_array( \Emsfb\_Public $pub ): array {
+		if ( ! is_object( $pub->setting ) ) {
+			return array();
+		}
+		$json = wp_json_encode( $pub->setting );
+		$out  = is_string( $json ) ? json_decode( $json, true ) : null;
+		if ( ! is_array( $out ) ) {
+			return array();
+		}
+		$clean = array();
+		foreach ( $out as $key => $value ) {
+			if ( is_string( $key ) ) {
+				$clean[ $key ] = $value;
+			}
+		}
+		return $clean;
+	}
+
+	/**
+	 * The structure as the classic submit expects it: every field carries id_, embedded choice
+	 * options become option rows under their parent, and fields a visitor cannot answer through
+	 * GraphQL (hidden, disabled, display-only) are never required.
+	 *
+	 * @param array<int,array<string,mixed>> $structure Decoded structure.
+	 * @return array<int,array<string,mixed>>
+	 */
+	private static function classic_structure( array $structure ): array {
+		$out = array();
+		foreach ( array_values( $structure ) as $i => $row ) {
+			if ( 0 === $i ) {
+				$out[] = $row;
+				continue;
+			}
+			$fid = FLXF_Form_Service::field_id( $row );
+			if ( '' !== $fid ) {
+				$row['id_'] = $fid;
+			}
+			if ( FLXF_Form_Service::is_child_row( $row ) ) {
+				$out[] = $row;
+				continue;
+			}
+			$lower = sanitize_key( self::str( $row['type'] ?? '' ) );
+			if ( FLXF_Form_Service::flag( $row['hidden'] ?? false ) || FLXF_Form_Service::flag( $row['disabled'] ?? false ) || in_array( $lower, self::SKIP_TYPES, true ) ) {
+				$row['required'] = false;
+			}
+			$options = $row['options'] ?? null;
+			unset( $row['options'] );
+			$out[] = $row;
+			if ( '' === $fid || ! is_array( $options ) ) {
+				continue;
+			}
+			foreach ( array_values( $options ) as $k => $option ) {
+				if ( ! is_array( $option ) ) {
+					continue;
+				}
+				$sibling = array();
+				foreach ( $option as $key => $value ) {
+					if ( is_string( $key ) ) {
+						$sibling[ $key ] = $value;
+					}
+				}
+				$oid = FLXF_Form_Service::field_id( $sibling );
+				if ( ! isset( $sibling['value'] ) && isset( $sibling['label'] ) ) {
+					$sibling['value'] = $sibling['label'];
+				}
+				$sibling['id_']    = '' !== $oid ? $oid : $fid . '_o' . $k;
+				$sibling['type']   = 'option';
+				$sibling['parent'] = $fid;
+				$out[]             = $sibling;
+			}
+		}
+		return $out;
+	}
+
+	/**
+	 * Visitor answers as the rows the form client posts, so the classic checks apply unchanged.
+	 *
+	 * @param array<string,string>           $given Answers by field id.
+	 * @param array<int,array<string,mixed>> $cls   Classic structure.
+	 * @return list<array<string,mixed>>|WP_Error
+	 */
+	private static function build_rows( array $given, array $cls ): array|WP_Error {
+		$rows   = array();
+		$errors = new WP_Error();
+		$n      = 0;
+		foreach ( $cls as $i => $field ) {
+			if ( 0 === $i || FLXF_Form_Service::is_child_row( $field ) ) {
+				continue;
+			}
+			if ( FLXF_Form_Service::flag( $field['hidden'] ?? false ) || FLXF_Form_Service::flag( $field['disabled'] ?? false ) ) {
+				continue;
+			}
+			$type  = self::str( $field['type'] ?? '' );
+			$lower = sanitize_key( $type );
+			$fid   = self::str( $field['id_'] ?? '' );
+			if ( '' === $type || '' === $fid || in_array( $lower, self::SKIP_TYPES, true ) || ! array_key_exists( $fid, $given ) ) {
+				continue;
+			}
+			$value = trim( $given[ $fid ] );
+			if ( strlen( $value ) > self::TEXT_MAX ) {
+				$value = function_exists( 'mb_substr' ) ? mb_substr( $value, 0, self::TEXT_MAX, 'UTF-8' ) : substr( $value, 0, self::TEXT_MAX );
+			}
+			if ( '' === $value ) {
+				continue;
+			}
+			$base = array(
+				'id_'  => $fid,
+				'name' => sanitize_text_field( self::str( $field['name'] ?? $field['label'] ?? $fid ) ),
+				'type' => $type,
+			);
+			if ( in_array( $lower, self::FILE_TYPES, true ) ) {
+				$url   = esc_url_raw( $value );
+				$error = self::pending_upload( $url );
+				if ( null !== $error ) {
+					$errors->add( 'flxf_' . $n++, $error, self::data( 'fields.' . $fid ) );
+					continue;
+				}
+				$rows[] = $base + array(
+					'value' => '@file@',
+					'url'   => $url,
+				);
+				continue;
+			}
+			if ( in_array( $lower, self::RADIO_TYPES, true ) || 'select' === $lower || 'payselect' === $lower ) {
+				$hit    = self::find_option( $field, $cls, $value );
+				$rows[] = $base + array(
+					'value' => null === $hit ? $value : self::str( $hit['value'] ?? '' ),
+					'id_ob' => null === $hit ? '' : FLXF_Form_Service::field_id( $hit ),
+				);
+				continue;
+			}
+			if ( str_contains( $lower, 'checkbox' ) ) {
+				foreach ( self::tokens( $value ) as $token ) {
+					$hit = self::find_option( $field, $cls, $token );
+					if ( null === $hit ) {
+						$errors->add( 'flxf_' . $n++, __( 'Choose one of the listed options.', 'flx-forms' ), self::data( 'fields.' . $fid ) );
+						break;
+					}
+					$rows[] = $base + array(
+						'value' => self::str( $hit['value'] ?? '' ),
+						'id_ob' => FLXF_Form_Service::field_id( $hit ),
+					);
+				}
+				continue;
+			}
+			if ( 'multiselect' === $lower ) {
+				$picked = array();
+				foreach ( self::tokens( $value ) as $token ) {
+					$hit      = self::find_option( $field, $cls, $token );
+					$picked[] = null === $hit ? $token : self::str( $hit['value'] ?? '' );
+				}
+				$rows[] = $base + array( 'value' => implode( '@efb!', $picked ) );
+				continue;
+			}
+			if ( 'switch' === $lower ) {
+				$rows[] = $base + array( 'value' => in_array( strtolower( $value ), array( '1', 'true', 'on', 'yes' ), true ) ? '1' : '0' );
+				continue;
+			}
+			$rows[] = $base + array( 'value' => $value );
+		}
+		return $errors->has_errors() ? $errors : $rows;
+	}
+
+	/**
+	 * @return list<string>
+	 */
+	private static function tokens( string $value ): array {
+		$list = preg_split( '/\s*(?:,|@efb!)\s*/', $value );
+		$out  = array();
+		foreach ( is_array( $list ) ? $list : array() as $bit ) {
+			$bit = trim( $bit );
+			if ( '' !== $bit && ! in_array( $bit, $out, true ) ) {
+				$out[] = $bit;
+			}
+		}
+		return $out;
+	}
+
+	/**
+	 * The option of a choice field a visitor's token names: by value or by option id.
+	 *
+	 * @param array<string,mixed>            $field Choice field.
+	 * @param array<int,array<string,mixed>> $cls   Classic structure.
+	 * @return array<string,mixed>|null
+	 */
+	private static function find_option( array $field, array $cls, string $token ): ?array {
+		foreach ( FLXF_Form_Service::choice_rows( $field, $cls ) as $option ) {
+			$ovalue = sanitize_text_field( self::str( $option['value'] ?? '' ) );
+			$oid    = FLXF_Form_Service::field_id( $option );
+			if ( $token === $ovalue || ( '' !== $oid && $token === $oid ) ) {
+				return $option;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Writes the booking counters the classic loop raised back to the stored structure.
+	 *
+	 * @param array<int,array<string,mixed>> $structure Stored structure, updated in place.
+	 * @param array<int,array<string,mixed>> $before    Classic structure before validation.
+	 * @param array<int,array<string,mixed>> $after     Classic structure after validation.
+	 */
+	private static function count_booking( array &$structure, array $before, array $after ): bool {
+		$changed = false;
+		foreach ( $after as $i => $row ) {
+			if ( 'option' !== sanitize_key( self::str( $row['type'] ?? '' ) ) || ! isset( $before[ $i ] ) ) {
+				continue;
+			}
+			if ( self::num( $row['registered_count'] ?? 0 ) > self::num( $before[ $i ]['registered_count'] ?? 0 ) ) {
+				self::bump_booking( $structure, $row, self::str( $row['parent'] ?? '' ) );
+				$changed = true;
+			}
+		}
+		return $changed;
+	}
+
+	/**
+	 * A file the upload endpoint stored and the pending ledger still holds. The classic loop then
+	 * applies this field's size and extension rules.
+	 *
+	 * @return string|null Error message, or null when the file is on the ledger.
+	 */
+	private static function pending_upload( string $url ): ?string {
+		if ( ! class_exists( '\Emsfb\Upload_Guard' ) ) {
+			return __( 'Upload the file again.', 'flx-forms' );
+		}
+		$base = wp_basename( $url );
+		if ( '' === $base || str_contains( $base, '/' ) || str_contains( $base, '\\' ) ) {
+			return __( 'Upload the file again.', 'flx-forms' );
+		}
+		$pending = get_option( \Emsfb\Upload_Guard::PENDING_OPTION, array() );
+		if ( ! is_array( $pending ) || ! isset( $pending[ $base ] ) ) {
+			return __( 'Upload the file again.', 'flx-forms' );
+		}
+		return null;
+	}
+
+	private static function prepare_public( int $form_id, string $title ): \Emsfb\_Public {
+		$pub          = \Emsfb\_Public::flxf_live();
+		$pub->id      = $form_id;
+		$pub->name    = $title;
+		$pub->ip      = self::ip();
+		$pub->pro_efb = in_array( self::num( get_option( 'emsfb_pro' ) ), array( 1, 3 ), true );
+		$settings     = function_exists( 'get_setting_Emsfb' ) ? get_setting_Emsfb( 'decoded' ) : null;
+		if ( is_object( $settings ) ) {
+			$pub->setting = $settings;
+		}
+		if ( function_exists( 'get_efbFunction' ) ) {
+			$fn               = get_efbFunction();
+			$pub->efbFunction = $fn;
+			if ( is_object( $fn ) && method_exists( $fn, 'text_efb' ) ) {
+				$text = $fn->text_efb( self::TEXT_KEYS );
+				if ( is_array( $text ) ) {
+					$pub->lanText = $text;
+				}
+			}
+		}
+		return $pub;
 	}
 
 	/**
@@ -825,83 +912,6 @@ class FLXF_Submission_Service {
 		}
 		$table = $wpdb->prefix . 'emsfb_form';
 		$wpdb->update( $table, array( 'form_structer' => $json ), array( 'form_id' => $form_id ), array( '%s' ), array( '%d' ) );
-	}
-
-	/**
-	 * @param list<array<string,mixed>>      $stored    Stored rows.
-	 * @param array<int,array<string,mixed>> $structure Form structure.
-	 */
-	private static function submit_effects( int $form_id, string $title, string $track, array $stored, array $structure, string $form_type ): void {
-		$pub      = self::prepare_public( $form_id, $title );
-		$head     = $structure[0] ?? array();
-		$settings = is_object( $pub->setting ) ? $pub->setting : null;
-		$send     = function_exists( 'emsfb_is_email_sending_enabled_efb' ) && emsfb_is_email_sending_enabled_efb( $settings );
-		$pro      = (bool) $pub->pro_efb;
-
-		$email_recipients = array( array(), array() );
-		$head_email       = self::str( $head['email'] ?? '' );
-		$supporter        = is_object( $settings ) ? self::str( $settings->emailSupporter ?? '' ) : '';
-		$femail           = is_object( $settings ) ? self::str( $settings->femail ?? '' ) : '';
-		if ( '' !== $femail && is_email( $femail ) ) {
-			$email_recipients[2] = $femail;
-		}
-		if ( '' !== $head_email ) {
-			$pub->email_list_efb( $email_recipients, 0, $head_email, true );
-		}
-
-		$email_to     = self::str( $head['email_to'] ?? '' );
-		$noti_ids     = array();
-		$sms_noti_ids = array();
-		foreach ( $structure as $field ) {
-			$fid   = FLXF_Form_Service::field_id( $field );
-			$ftype = sanitize_key( self::str( $field['type'] ?? '' ) );
-			if ( '' === $fid ) {
-				continue;
-			}
-			if ( 'email' === $ftype && FLXF_Form_Service::flag( $field['noti'] ?? false ) ) {
-				$noti_ids[ $fid ] = true;
-			}
-			if ( 'mobile' === $ftype && 1 === self::num( $field['smsnoti'] ?? 0 ) ) {
-				$sms_noti_ids[ $fid ] = true;
-			}
-		}
-
-		$phone_numbers = array( array(), array() );
-		if ( is_object( $settings ) && 'wpsms' === self::str( $settings->sms_config ?? '' ) ) {
-			$phn = self::str( $settings->phnNo ?? '' );
-			if ( strlen( $phn ) > 5 ) {
-				$phone_numbers[0] = explode( ',', $phn );
-			}
-		}
-
-		foreach ( $stored as $row ) {
-			$rid = self::str( $row['id_'] ?? '' );
-			$val = self::str( $row['value'] ?? '' );
-			if ( '' === $rid || '' === $val ) {
-				continue;
-			}
-			if ( $send && ( ( '' !== $email_to && $rid === $email_to ) || isset( $noti_ids[ $rid ] ) ) ) {
-				$pub->email_list_efb( $email_recipients, 1, $val, true );
-			}
-			if ( isset( $sms_noti_ids[ $rid ] ) ) {
-				$phone_numbers[1][] = $val;
-			}
-		}
-
-		/** @var array<int,mixed> $email_recipients */
-		$pub->flxf_dispatch_submit_effects(
-			$track,
-			$stored,
-			$structure,
-			$phone_numbers,
-			home_url(),
-			$send,
-			$email_recipients,
-			FLXF_Form_Service::flag( $head['trackingCode'] ?? false ) ? 1 : 0,
-			'' !== $supporter ? $supporter : $head_email,
-			$pro,
-			$form_type
-		);
 	}
 
 	private static function reply_effects( int $form_id, string $content, string $track, bool $admin ): void {
@@ -926,49 +936,6 @@ class FLXF_Submission_Service {
 		$active = function_exists( 'emsfb_is_email_sending_enabled_efb' ) && emsfb_is_email_sending_enabled_efb( $setting );
 		$pro    = (bool) $pub->pro_efb;
 		$pub->flxf_dispatch_reply_effects( $load['structure'], $msg, $setting, $active, $form_id, $admin ? 'admin' : 'guest', home_url(), $track, $pro );
-	}
-
-	private static function prepare_public( int $form_id, string $title ): \Emsfb\_Public {
-		$pub          = \Emsfb\_Public::flxf_live();
-		$pub->id      = $form_id;
-		$pub->name    = $title;
-		$pub->ip      = self::ip();
-		$pub->pro_efb = in_array( self::num( get_option( 'emsfb_pro' ) ), array( 1, 3 ), true );
-		$settings     = function_exists( 'get_setting_Emsfb' ) ? get_setting_Emsfb( 'decoded' ) : null;
-		if ( is_object( $settings ) ) {
-			$pub->setting = $settings;
-		}
-		if ( function_exists( 'get_efbFunction' ) ) {
-			$fn               = get_efbFunction();
-			$pub->efbFunction = $fn;
-			if ( is_object( $fn ) && method_exists( $fn, 'text_efb' ) ) {
-				$text = $fn->text_efb( array( 'msgdml', 'thankFillForm', 'trackNo', 'vmgs', 'WeRecivedUrM', 'thankRegistering', 'welcome', 'thankSubscribing', 'thankDonePoll', 'newMessageReceived', 'youRecivedNewMessage', 'msgSndBut', 'smsWPN', 'messageSent', 'spprt' ) );
-				if ( is_array( $text ) ) {
-					$pub->lanText = $text;
-				}
-			}
-		}
-		return $pub;
-	}
-
-	/**
-	 * Classic message storage: quotes are swapped, then the JSON quotes are escaped
-	 * so a reader that strips backslashes gets the original document back.
-	 *
-	 * @param list<array<string,mixed>> $rows Field rows.
-	 */
-	private static function encode_rows( array $rows ): string {
-		array_walk_recursive(
-			$rows,
-			static function ( mixed &$value ): void {
-				if ( is_string( $value ) ) {
-					$value = strtr( $value, array( '"' => "\u{201D}", '\\' => "\u{29F5}" ) );
-				}
-			}
-		);
-		$json = wp_json_encode( $rows, JSON_UNESCAPED_UNICODE );
-		$json = is_string( $json ) ? $json : '[]';
-		return str_replace( '"', '\\"', $json );
 	}
 
 	private static function decode_json( string $content ): mixed {
