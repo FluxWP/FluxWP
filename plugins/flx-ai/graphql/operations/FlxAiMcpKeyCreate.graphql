@@ -1,0 +1,13 @@
+mutation FlxAiMcpKeyCreate($input: FlxAiMcpKeyCreateInput!) {
+  flxAiMcpKeyCreate(input: $input) {
+    key
+    overview {
+      ...FlxAiMcpOverviewFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

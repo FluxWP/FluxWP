@@ -87,6 +87,128 @@ type FlxAiBilling {
   report: FlxAiReport!
 }
 
+"""The brand kit design and writing skills read."""
+type FlxAiBrand {
+  """Accent color (hex)."""
+  colorAccent: String!
+  """Dark color (hex)."""
+  colorDark: String!
+  """Light color (hex)."""
+  colorLight: String!
+  """Primary color (hex)."""
+  colorPrimary: String!
+  """Name used when the field is empty."""
+  defaultName: String!
+  """Tagline used when the field is empty."""
+  defaultTagline: String!
+  """Website used when the field is empty."""
+  defaultWebsite: String!
+  """Markdown documents."""
+  docs: [FlxAiBrandDoc!]!
+  """Social media handle or hashtag."""
+  handle: String!
+  """Logo media ID."""
+  logoId: Int!
+  """White logo media ID."""
+  logoLightId: Int!
+  """White logo URL."""
+  logoLightUrl: String!
+  """Logo URL."""
+  logoUrl: String!
+  """Organisation name; empty uses the site name."""
+  name: String!
+  """Design notes."""
+  notes: String!
+  """Partner logo media IDs."""
+  partnerIds: [Int!]!
+  """Partner logo URLs."""
+  partnerUrls: [String!]!
+  """Phone or WhatsApp."""
+  phone: String!
+  """Tagline."""
+  tagline: String!
+  """Colors of the active theme."""
+  themePalette: [FlxAiBrandColor!]!
+  """Website shown on visuals."""
+  website: String!
+}
+
+"""A color of the theme."""
+type FlxAiBrandColor {
+  """Hex color."""
+  color: String!
+  """Name."""
+  name: String!
+  """Palette slug."""
+  slug: String!
+}
+
+"""A brand kit document (Markdown)."""
+type FlxAiBrandDoc {
+  """Markdown."""
+  content: String!
+  """File name, e.g. voice.md."""
+  name: String!
+}
+
+"""A brand kit document; empty content deletes it."""
+input FlxAiBrandDocInput {
+  """Markdown."""
+  content: String!
+  """File name, e.g. voice.md."""
+  name: String!
+}
+
+"""Input for the flxAiBrandSave mutation."""
+input FlxAiBrandSaveInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Accent color, #rrggbb."""
+  colorAccent: String
+  """Dark color, #rrggbb."""
+  colorDark: String
+  """Light color, #rrggbb."""
+  colorLight: String
+  """Primary color, #rrggbb."""
+  colorPrimary: String
+  """Documents to write; empty content deletes one."""
+  docs: [FlxAiBrandDocInput!]
+  """Social media handle or hashtag."""
+  handle: String
+  """Logo media ID."""
+  logoId: Int
+  """White logo media ID."""
+  logoLightId: Int
+  """Organisation name."""
+  name: String
+  """Design notes."""
+  notes: String
+  """Partner logo media IDs (up to 6)."""
+  partnerIds: [Int!]
+  """Phone or WhatsApp."""
+  phone: String
+  """Tagline."""
+  tagline: String
+  """Website shown on visuals."""
+  website: String
+}
+
+"""The payload for the flxAiBrandSave mutation."""
+type FlxAiBrandSavePayload {
+  """The brand kit after saving; null when refused."""
+  brand: FlxAiBrand
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
 """One row of a usage breakdown (by plugin, model, purpose or provider)."""
 type FlxAiBreakdownRow {
   """Tokens read from the prompt cache."""
@@ -201,6 +323,62 @@ type FlxAiChangeFile {
   path: String!
 }
 
+"""A chat with its transcript."""
+type FlxAiChat {
+  """Transcript: user, assistant and tool messages."""
+  messages: [FlxAiChatMessage!]!
+  """Model chosen for this chat; empty for the default."""
+  model: String!
+  """Title, status and time."""
+  summary: FlxAiChatSummary!
+  """Stored messages including internal ones."""
+  total: Int!
+}
+
+"""Input for the flxAiChatDelete mutation."""
+input FlxAiChatDeleteInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Chat id."""
+  id: Int!
+}
+
+"""The payload for the flxAiChatDelete mutation."""
+type FlxAiChatDeletePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Deleted."""
+  deleted: Boolean!
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""A message of a chat transcript."""
+type FlxAiChatMessage {
+  """Error of a failed tool call; empty otherwise."""
+  error: String!
+  """Position in the chat."""
+  index: Int!
+  """Whether a tool result succeeded."""
+  ok: Boolean
+  """user, assistant or tool."""
+  role: String!
+  """Message text; for a tool result the (shortened) output."""
+  text: String!
+  """When it was written, when known."""
+  time: FlxDateTime
+  """Tool name of a tool result; empty otherwise."""
+  tool: String!
+  """Tools an assistant message called, comma separated."""
+  tools: String!
+}
+
 """Default layout of the shared chat."""
 enum FlxAiChatMode {
   """"""
@@ -209,6 +387,324 @@ enum FlxAiChatMode {
   DOCK
   """"""
   PAGE
+}
+
+"""One page of the chat history."""
+type FlxAiChatPage {
+  """More chats follow."""
+  hasMore: Boolean!
+  """Chats, most recent first."""
+  items: [FlxAiChatSummary!]!
+}
+
+"""A chat in the history list."""
+type FlxAiChatSummary {
+  """Archived."""
+  archived: Boolean!
+  """Chat id."""
+  id: Int!
+  """Matching text when a search hit the content, otherwise empty."""
+  snippet: String!
+  """idle, running or approval."""
+  status: String!
+  """
+  Title of the scheduled task this chat belongs to; empty for a normal chat.
+  """
+  task: String!
+  """Title; empty until the assistant names it."""
+  title: String!
+  """Last activity."""
+  updated: FlxDateTime!
+}
+
+"""Input for the flxAiChatUpdate mutation."""
+input FlxAiChatUpdateInput {
+  """Archive (true) or restore (false)."""
+  archived: Boolean
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Chat id."""
+  id: Int!
+  """New title."""
+  title: String
+}
+
+"""The payload for the flxAiChatUpdate mutation."""
+type FlxAiChatUpdatePayload {
+  """The chat after the change."""
+  chat: FlxAiChatSummary
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""A connected MCP server. Secrets are never returned."""
+type FlxAiConnection {
+  """none, bearer, header or oauth."""
+  auth: String!
+  """Last time the tool list was loaded; null when never."""
+  checked: FlxDateTime
+  """
+  OAuth client id entered by hand; empty when none or registered automatically.
+  """
+  clientId: String!
+  """
+  The signed-in user may change it (not another user&#039;s personal connection).
+  """
+  editable: Boolean!
+  """Its tools are offered."""
+  enabled: Boolean!
+  """Last error; empty when fine."""
+  error: String!
+  """An OAuth client secret is saved."""
+  hasClientSecret: Boolean!
+  """A key or token is saved."""
+  hasSecret: Boolean!
+  """Header name of the custom header sign-in."""
+  header: String!
+  """Short id; also the tool name prefix."""
+  id: String!
+  """Name."""
+  name: String!
+  """User who added it."""
+  ownerId: Int!
+  """Login of that user."""
+  ownerLogin: String!
+  """Tool name pattern."""
+  prefix: String!
+  """Roles that may use a shared connection."""
+  roles: [String!]!
+  """personal or shared."""
+  scope: String!
+  """Name the server reports."""
+  serverName: String!
+  """MCP protocol version."""
+  serverProtocol: String!
+  """Version the server reports."""
+  serverVersion: String!
+  """OAuth sign-in is done."""
+  signedIn: Boolean!
+  """off, error, signin or connected."""
+  status: String!
+  """Tools the server offers."""
+  tools: [FlxAiConnectionTool!]!
+  """Tools that are not off."""
+  toolsOn: Int!
+  """Server address."""
+  url: String!
+}
+
+"""Input for the flxAiConnectionDelete mutation."""
+input FlxAiConnectionDeleteInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Connection id."""
+  id: String!
+}
+
+"""The payload for the flxAiConnectionDelete mutation."""
+type FlxAiConnectionDeletePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Done."""
+  deleted: Boolean
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""The permission of one tool."""
+input FlxAiConnectionPermissionInput {
+  """allow (read-only tools only), ask or off."""
+  permission: String!
+  """Tool name on the server."""
+  tool: String!
+}
+
+"""Input for the flxAiConnectionPermissions mutation."""
+input FlxAiConnectionPermissionsInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Connection id."""
+  id: String!
+  """Permissions to set."""
+  permissions: [FlxAiConnectionPermissionInput!]!
+}
+
+"""The payload for the flxAiConnectionPermissions mutation."""
+type FlxAiConnectionPermissionsPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """The connection after the change; empty when the input was refused."""
+  connection: FlxAiConnection
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""Input for the flxAiConnectionRefresh mutation."""
+input FlxAiConnectionRefreshInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Connection id."""
+  id: String!
+}
+
+"""The payload for the flxAiConnectionRefresh mutation."""
+type FlxAiConnectionRefreshPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """The connection after the change; empty when the input was refused."""
+  connection: FlxAiConnection
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""Input for the flxAiConnectionSave mutation."""
+input FlxAiConnectionSaveInput {
+  """none, bearer, header or oauth."""
+  auth: String
+  """
+  OAuth client id (optional; registered automatically when the server allows).
+  """
+  clientId: String
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """OAuth client secret (write-only; stored encrypted)."""
+  clientSecret: String
+  """Offer the server's tools."""
+  enabled: Boolean
+  """Header name for the custom header sign-in."""
+  header: String
+  """Connection to change; leave out to add one."""
+  id: String
+  """Name; empty takes the host name."""
+  name: String
+  """Roles that may use a shared connection."""
+  roles: [String!]
+  """personal or shared."""
+  scope: String
+  """Key or token (write-only; stored encrypted)."""
+  secret: String
+  """Streamable HTTP address (https). Required when adding."""
+  url: String
+}
+
+"""The payload for the flxAiConnectionSave mutation."""
+type FlxAiConnectionSavePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """The connection after the change; empty when the input was refused."""
+  connection: FlxAiConnection
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""Input for the flxAiConnectionSignIn mutation."""
+input FlxAiConnectionSignInInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Connection id."""
+  id: String!
+}
+
+"""The payload for the flxAiConnectionSignIn mutation."""
+type FlxAiConnectionSignInPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The provider&#039;s sign-in page."""
+  url: String
+}
+
+"""Input for the flxAiConnectionSignOut mutation."""
+input FlxAiConnectionSignOutInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Connection id."""
+  id: String!
+}
+
+"""The payload for the flxAiConnectionSignOut mutation."""
+type FlxAiConnectionSignOutPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """The connection after the change; empty when the input was refused."""
+  connection: FlxAiConnection
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""A tool a connected MCP server offers."""
+type FlxAiConnectionTool {
+  """What the tool does."""
+  description: String!
+  """The server marks the tool destructive."""
+  destructive: Boolean!
+  """Name on the server."""
+  name: String!
+  """allow, ask or off."""
+  permission: String!
+  """The server marks the tool read-only."""
+  readonly: Boolean!
+  """Title."""
+  title: String!
+  """Name in chats, tasks and agents."""
+  toolName: String!
+}
+
+"""The connections page."""
+type FlxAiConnectionsScreen {
+  """Redirect address to register at an OAuth provider."""
+  callbackUrl: String!
+  """Connections the user may see."""
+  connections: [FlxAiConnection!]!
+  """
+  Roles a shared connection can be opened to (administrators always may).
+  """
+  roles: [FlxAiOption!]!
 }
 
 """The OpenRouter account state from the last refresh."""
@@ -369,6 +865,166 @@ type FlxAiLogMessage {
   role: String!
   """Shortened text with personal data masked."""
   text: String!
+}
+
+"""An access key or an OAuth connection to the MCP server."""
+type FlxAiMcpKey {
+  """The user may use MCP."""
+  canUse: Boolean!
+  """When it was created."""
+  created: FlxDateTime!
+  """Last four characters of a key; empty for OAuth."""
+  hint: String!
+  """Key id."""
+  id: String!
+  """Last use; null when never."""
+  lastUsed: FlxDateTime
+  """Name."""
+  name: String!
+  """Tools the key is limited to; empty means all."""
+  tools: [String!]!
+  """key or oauth."""
+  type: String!
+  """User whose permissions the key uses."""
+  userId: Int!
+  """Login of that user; empty when the user is gone."""
+  userLogin: String!
+}
+
+"""Input for the flxAiMcpKeyCreate mutation."""
+input FlxAiMcpKeyCreateInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Name, for example the assistant it is for."""
+  name: String
+  """Limit the key to these tools; leave out for all."""
+  tools: [String!]
+}
+
+"""The payload for the flxAiMcpKeyCreate mutation."""
+type FlxAiMcpKeyCreatePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The new key. Shown only in this result."""
+  key: String
+  """The MCP page after the change; empty when the input was refused."""
+  overview: FlxAiMcpOverview
+}
+
+"""Input for the flxAiMcpKeyRevoke mutation."""
+input FlxAiMcpKeyRevokeInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Key id."""
+  id: String!
+}
+
+"""The payload for the flxAiMcpKeyRevoke mutation."""
+type FlxAiMcpKeyRevokePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The MCP page after the change; empty when the input was refused."""
+  overview: FlxAiMcpOverview
+}
+
+"""One recent call over MCP."""
+type FlxAiMcpLogEntry {
+  """The call succeeded."""
+  ok: Boolean!
+  """What the call was about."""
+  target: String!
+  """When it happened."""
+  time: FlxDateTime!
+  """Tool name."""
+  tool: String!
+  """User; empty when the user is gone."""
+  userLogin: String!
+}
+
+"""
+The MCP page: server, keys, tools a key can be limited to and recent activity.
+"""
+type FlxAiMcpOverview {
+  """Tools a key can be limited to."""
+  choices: [FlxAiMcpToolChoice!]!
+  """Keys and OAuth connections."""
+  keys: [FlxAiMcpKey!]!
+  """The last 20 calls, newest first."""
+  log: [FlxAiMcpLogEntry!]!
+  """The server."""
+  server: FlxAiMcpServer!
+}
+
+"""The MCP server of this site."""
+type FlxAiMcpServer {
+  """The MCP server is on."""
+  enabled: Boolean!
+  """An old Flux SEO version runs its own server."""
+  legacy: Boolean!
+  """Sign-in with OAuth is allowed."""
+  oauth: Boolean!
+  """OAuth sign-in is in effect (server on and OAuth allowed)."""
+  oauthActive: Boolean!
+  """The same server at its REST address."""
+  restUrl: String!
+  """Roles and access page; empty when Flux Roles is not active."""
+  rolesUrl: String!
+  """Registered tools."""
+  toolCount: Int!
+  """Server address for assistants."""
+  url: String!
+}
+
+"""Input for the flxAiMcpServerUpdate mutation."""
+input FlxAiMcpServerUpdateInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """The server is on."""
+  enabled: Boolean!
+  """Assistants may sign in with OAuth."""
+  oauth: Boolean!
+}
+
+"""The payload for the flxAiMcpServerUpdate mutation."""
+type FlxAiMcpServerUpdatePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The MCP page after the change; empty when the input was refused."""
+  overview: FlxAiMcpOverview
+}
+
+"""A tool a key can be limited to."""
+type FlxAiMcpToolChoice {
+  """Tool name."""
+  name: String!
+  """The tool only reads."""
+  readonly: Boolean!
+  """Tool title."""
+  title: String!
 }
 
 """Kind of a media model."""
@@ -891,6 +1547,520 @@ type FlxAiSettingsUpdatePayload {
   settings: FlxAiSettings
 }
 
+"""
+A skill: an instruction folder the assistant follows (open Agent Skills format).
+"""
+type FlxAiSkill {
+  """Shipped by a plugin (not a skill of this site)."""
+  bundled: Boolean!
+  """A shipped skill that was edited on this site."""
+  changed: Boolean!
+  """What it does and when to use it."""
+  description: String!
+  """Download link of the .zip (signed, short lived)."""
+  exportUrl: String!
+  """Files in the folder besides SKILL.md."""
+  fileCount: Int!
+  """The folder has scripts (stored, not run on this server)."""
+  hasScripts: Boolean!
+  """Title."""
+  name: String!
+  """The site keeps its own copy (a shipped skill can be reset)."""
+  saved: Boolean!
+  """Folder name; used in chat as /name."""
+  slug: String!
+  """The plugin or package that ships it; empty for site skills."""
+  source: String!
+  """active or off."""
+  status: String!
+  """Scheduled tasks that use it."""
+  tasks: Int!
+  """Version; grows when the instructions change."""
+  version: Int!
+}
+
+"""A functional test."""
+input FlxAiSkillCaseInput {
+  """Checks, one per entry."""
+  expectations: [String!]
+  """The request."""
+  prompt: String!
+}
+
+"""One check of a functional test run."""
+type FlxAiSkillCheck {
+  """The check."""
+  text: String!
+  """Passed with the skill."""
+  with: Boolean!
+  """Passed without it."""
+  without: Boolean!
+}
+
+"""Input for the flxAiSkillDelete mutation."""
+input FlxAiSkillDeleteInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Skill folder name."""
+  slug: String!
+}
+
+"""The payload for the flxAiSkillDelete mutation."""
+type FlxAiSkillDeletePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Done."""
+  deleted: Boolean
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""A skill with everything its edit screen needs."""
+type FlxAiSkillDetail {
+  """SKILL.md instructions (Markdown)."""
+  body: String!
+  """Compatibility note."""
+  compatibility: String!
+  """Saved tests."""
+  evals: FlxAiSkillEvals!
+  """Example output (references/examples.md)."""
+  example: String!
+  """Folder files besides SKILL.md."""
+  files: [FlxAiSkillFile!]!
+  """License."""
+  license: String!
+  """Last test results."""
+  results: FlxAiSkillResults!
+  """The skill."""
+  skill: FlxAiSkill!
+  """Tool names to suggest in the allowed-tools field."""
+  toolNames: [String!]!
+  """allowed-tools: tool names; a trailing * matches a prefix."""
+  tools: [String!]!
+}
+
+"""A functional test."""
+type FlxAiSkillEvalCase {
+  """What a good answer must contain, one check per entry."""
+  expectations: [String!]!
+  """Test number."""
+  id: String!
+  """The request."""
+  prompt: String!
+}
+
+"""The saved tests of a skill."""
+type FlxAiSkillEvals {
+  """Functional tests."""
+  cases: [FlxAiSkillEvalCase!]!
+  """Trigger test prompts."""
+  triggers: [FlxAiSkillTriggerCase!]!
+}
+
+"""Input for the flxAiSkillEvalsSave mutation."""
+input FlxAiSkillEvalsSaveInput {
+  """Functional tests (up to 10)."""
+  cases: [FlxAiSkillCaseInput!]
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Skill folder name."""
+  slug: String!
+  """Trigger test prompts (up to 40)."""
+  triggers: [FlxAiSkillTriggerInput!]
+}
+
+"""The payload for the flxAiSkillEvalsSave mutation."""
+type FlxAiSkillEvalsSavePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The skill after the change; null when the input was refused."""
+  skill: FlxAiSkillDetail
+}
+
+"""A file in a skill folder."""
+type FlxAiSkillFile {
+  """Download link (signed, short lived)."""
+  downloadUrl: String!
+  """Path inside the folder."""
+  path: String!
+  """Size in bytes."""
+  size: Int!
+}
+
+"""The content of a skill file."""
+type FlxAiSkillFileContent {
+  """The text (up to 2 MB); empty for a binary file."""
+  content: String!
+  """Why a binary file cannot be shown."""
+  note: String!
+  """Path inside the folder."""
+  path: String!
+  """Size in bytes."""
+  size: Int!
+  """A text file; false for images, fonts and archives."""
+  text: Boolean!
+}
+
+"""Input for the flxAiSkillFileDelete mutation."""
+input FlxAiSkillFileDeleteInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Path inside the folder."""
+  path: String!
+  """Skill folder name."""
+  slug: String!
+}
+
+"""The payload for the flxAiSkillFileDelete mutation."""
+type FlxAiSkillFileDeletePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The skill after the change; null when the input was refused."""
+  skill: FlxAiSkillDetail
+}
+
+"""Input for the flxAiSkillFileSave mutation."""
+input FlxAiSkillFileSaveInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Text."""
+  content: String!
+  """Path, e.g. references/guide.md."""
+  path: String!
+  """Skill folder name."""
+  slug: String!
+}
+
+"""The payload for the flxAiSkillFileSave mutation."""
+type FlxAiSkillFileSavePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The skill after the change; null when the input was refused."""
+  skill: FlxAiSkillDetail
+}
+
+"""Input for the flxAiSkillFileUpload mutation."""
+input FlxAiSkillFileUploadInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """File content, base64."""
+  contentBase64: String!
+  """File name."""
+  fileName: String!
+  """references, assets, scripts or evals (default references)."""
+  folder: String
+  """Skill folder name."""
+  slug: String!
+}
+
+"""The payload for the flxAiSkillFileUpload mutation."""
+type FlxAiSkillFileUploadPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The skill after the change; null when the input was refused."""
+  skill: FlxAiSkillDetail
+}
+
+"""The last run of a functional test."""
+type FlxAiSkillFuncResult {
+  """Checks."""
+  checks: [FlxAiSkillCheck!]!
+  """Test number."""
+  id: String!
+  """Cost of the judging in USD."""
+  judgeCost: Float!
+  """Judge note."""
+  note: String!
+  """The request."""
+  prompt: String!
+  """When it ran."""
+  ts: FlxDateTime!
+  """The answer with the skill."""
+  with: FlxAiSkillSide!
+  """The answer without it."""
+  without: FlxAiSkillSide!
+}
+
+"""Input for the flxAiSkillImport mutation."""
+input FlxAiSkillImportInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """File content, base64 (up to 20 MB)."""
+  contentBase64: String
+  """File name."""
+  fileName: String
+  """Pasted SKILL.md."""
+  markdown: String
+}
+
+"""The payload for the flxAiSkillImport mutation."""
+type FlxAiSkillImportPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """What was imported; null when refused."""
+  result: FlxAiSkillImportResult
+}
+
+"""What an import did."""
+type FlxAiSkillImportResult {
+  """Skills written."""
+  imported: [String!]!
+  """Things to know, such as skipped files."""
+  notes: [String!]!
+  """The skills page after the import."""
+  overview: FlxAiSkillsOverview!
+}
+
+"""The last results of a skill&#039;s tests."""
+type FlxAiSkillResults {
+  """Last run of each functional test."""
+  functional: [FlxAiSkillFuncResult!]!
+  """Last trigger test; null before the first run."""
+  trigger: FlxAiSkillTriggerResult
+}
+
+"""Input for the flxAiSkillSave mutation."""
+input FlxAiSkillSaveInput {
+  """The skill is on (false turns it off)."""
+  active: Boolean
+  """SKILL.md instructions (Markdown)."""
+  body: String
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Compatibility note."""
+  compatibility: String
+  """Folder name of the skill to change; leave out to create one."""
+  current: String
+  """What it does and when to use it (up to 1024 characters)."""
+  description: String
+  """Example output."""
+  example: String
+  """License."""
+  license: String
+  """Title."""
+  name: String
+  """
+  New folder name (lowercase letters, numbers, dashes); empty takes it from the title.
+  """
+  slug: String
+  """allowed-tools."""
+  tools: [String!]
+}
+
+"""The payload for the flxAiSkillSave mutation."""
+type FlxAiSkillSavePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The skill after the change; null when the input was refused."""
+  skill: FlxAiSkillDetail
+}
+
+"""One side (with or without the skill) of a functional test run."""
+type FlxAiSkillSide {
+  """Cost in USD."""
+  cost: Float!
+  """Input tokens."""
+  in: Int!
+  """Duration in milliseconds."""
+  ms: Int!
+  """Output tokens."""
+  out: Int!
+  """The answer."""
+  output: String!
+  """Checks passed."""
+  passed: Int!
+  """Checks."""
+  total: Int!
+}
+
+"""Input for the flxAiSkillTestRun mutation."""
+input FlxAiSkillTestRunInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Functional test number."""
+  id: String
+  """trigger or functional."""
+  kind: String!
+  """Skill folder name."""
+  slug: String!
+}
+
+"""The payload for the flxAiSkillTestRun mutation."""
+type FlxAiSkillTestRunPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The skill after the change; null when the input was refused."""
+  skill: FlxAiSkillDetail
+}
+
+"""Input for the flxAiSkillToggle mutation."""
+input FlxAiSkillToggleInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Skill folder name."""
+  slug: String!
+}
+
+"""The payload for the flxAiSkillToggle mutation."""
+type FlxAiSkillTogglePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The skill after the change; null when the input was refused."""
+  skill: FlxAiSkillDetail
+}
+
+"""A trigger test prompt."""
+type FlxAiSkillTriggerCase {
+  """The prompt."""
+  query: String!
+  """The assistant should pick the skill for it."""
+  shouldTrigger: Boolean!
+}
+
+"""A trigger test prompt."""
+input FlxAiSkillTriggerInput {
+  """The prompt."""
+  query: String!
+  """The assistant should pick the skill (default true)."""
+  shouldTrigger: Boolean
+}
+
+"""The last trigger test run."""
+type FlxAiSkillTriggerResult {
+  """Cost in USD."""
+  cost: Float!
+  """Prompts with the expected result."""
+  hits: Int!
+  """Model used."""
+  model: String!
+  """Stopped early by the time limit."""
+  partial: Boolean!
+  """Percent correct."""
+  rate: Int!
+  """One row per prompt."""
+  rows: [FlxAiSkillTriggerRow!]!
+  """Prompts run."""
+  total: Int!
+  """When it ran."""
+  ts: FlxDateTime!
+}
+
+"""One prompt of a trigger test run."""
+type FlxAiSkillTriggerRow {
+  """Skills the assistant picked."""
+  picked: [String!]!
+  """The prompt."""
+  query: String!
+  """Expected result."""
+  shouldTrigger: Boolean!
+  """The assistant picked the skill."""
+  triggered: Boolean!
+}
+
+"""The skills page."""
+type FlxAiSkillsOverview {
+  """
+  A message that uses a skill offers only the tools of its allowed-tools list.
+  """
+  restrict: Boolean!
+  """Skills, by title."""
+  skills: [FlxAiSkill!]!
+}
+
+"""Input for the flxAiSkillsSettings mutation."""
+input FlxAiSkillsSettingsInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Offer only the allowed tools."""
+  restrict: Boolean!
+}
+
+"""The payload for the flxAiSkillsSettings mutation."""
+type FlxAiSkillsSettingsPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The skills page."""
+  overview: FlxAiSkillsOverview
+}
+
 """The model one plugin uses; empty means the default model."""
 type FlxAiSourceModel {
   """Name for display."""
@@ -947,12 +2117,96 @@ type FlxAiSystem {
   tools: Int!
 }
 
+"""A setting a plugin declared with the Flux AI SDK."""
+type FlxAiSystemField {
+  """Help text."""
+  help: String!
+  """Setting key."""
+  key: String!
+  """Label."""
+  label: String!
+  """Highest number."""
+  max: Float
+  """Lowest number."""
+  min: Float
+  """Choices of a select field."""
+  options: [FlxAiOption!]!
+  """toggle, text, textarea, number, select or model."""
+  type: String!
+  """Saved value (toggles are &quot;1&quot; or &quot;0&quot;)."""
+  value: String!
+}
+
+"""The AI settings page of one system."""
+type FlxAiSystemSettings {
+  """The plugin declared settings or details with the SDK."""
+  declared: Boolean!
+  """The default model."""
+  defaultModel: String!
+  """What the plugin does with AI."""
+  description: String!
+  """Declared settings."""
+  fields: [FlxAiSystemField!]!
+  """Plugin name."""
+  label: String!
+  """Model of this plugin; empty uses the default."""
+  model: String!
+  """The plugin may use AI."""
+  on: Boolean!
+  """Flux AI SDK version; empty when not loaded."""
+  sdkVersion: String!
+  """System id (plugin folder)."""
+  source: String!
+  """Tools that are on."""
+  toolsOn: Int!
+  """Tools of the plugin."""
+  toolsTotal: Int!
+}
+
+"""Input for the flxAiSystemSettingsUpdate mutation."""
+input FlxAiSystemSettingsUpdateInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Model of this plugin; empty uses the default."""
+  model: String
+  """The plugin may use AI."""
+  on: Boolean
+  """System id."""
+  source: String!
+  """Declared settings to change."""
+  values: [FlxAiSystemValueInput!]
+}
+
+"""The payload for the flxAiSystemSettingsUpdate mutation."""
+type FlxAiSystemSettingsUpdatePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The settings after the change; empty when the input was refused."""
+  settings: FlxAiSystemSettings
+}
+
 """Whether AI is on for one system."""
 input FlxAiSystemStateInput {
   """AI is on for the system."""
   on: Boolean!
   """System id."""
   source: String!
+}
+
+"""The value of one declared setting."""
+input FlxAiSystemValueInput {
+  """Setting key."""
+  key: String!
+  """Value (toggles "1" or "0")."""
+  value: String!
 }
 
 """Input for the flxAiSystemsUpdate mutation."""
@@ -1449,16 +2703,92 @@ extend type RootMutation {
     """Input for the flxAiApprovalDecide mutation"""
     input: FlxAiApprovalDecideInput!
   ): FlxAiApprovalDecidePayload
+  """
+  Saves the brand kit. Fields you leave out keep their value; a document with empty content is deleted.
+  """
+  flxAiBrandSave(
+    """Input for the flxAiBrandSave mutation"""
+    input: FlxAiBrandSaveInput!
+  ): FlxAiBrandSavePayload
   """Merges or rejects an open change request."""
   flxAiChangeDecide(
     """Input for the flxAiChangeDecide mutation"""
     input: FlxAiChangeDecideInput!
   ): FlxAiChangeDecidePayload
+  """Deletes a chat with its files. This cannot be undone."""
+  flxAiChatDelete(
+    """Input for the flxAiChatDelete mutation"""
+    input: FlxAiChatDeleteInput!
+  ): FlxAiChatDeletePayload
+  """Renames and/or archives a chat; a field left out stays as it is."""
+  flxAiChatUpdate(
+    """Input for the flxAiChatUpdate mutation"""
+    input: FlxAiChatUpdateInput!
+  ): FlxAiChatUpdatePayload
+  """
+  Deletes a connection. Its tools disappear from chats, tasks and agents.
+  """
+  flxAiConnectionDelete(
+    """Input for the flxAiConnectionDelete mutation"""
+    input: FlxAiConnectionDeleteInput!
+  ): FlxAiConnectionDeletePayload
+  """
+  Sets the permission of every tool of a connection. Tools you leave out go back to &quot;ask&quot;.
+  """
+  flxAiConnectionPermissions(
+    """Input for the flxAiConnectionPermissions mutation"""
+    input: FlxAiConnectionPermissionsInput!
+  ): FlxAiConnectionPermissionsPayload
+  """
+  Tests the connection and reloads its tool list. A failure is in the connection&#039;s `error`.
+  """
+  flxAiConnectionRefresh(
+    """Input for the flxAiConnectionRefresh mutation"""
+    input: FlxAiConnectionRefreshInput!
+  ): FlxAiConnectionRefreshPayload
+  """
+  Adds a connection, or changes one when `id` is given. Fields you leave out keep their value; a secret you leave out or send empty keeps the saved one. A connection that is on loads its tools when saved; the outcome is in `error`.
+  """
+  flxAiConnectionSave(
+    """Input for the flxAiConnectionSave mutation"""
+    input: FlxAiConnectionSaveInput!
+  ): FlxAiConnectionSavePayload
+  """
+  Starts the OAuth sign-in. Send the browser to the returned address; the provider sends it back to the connections page.
+  """
+  flxAiConnectionSignIn(
+    """Input for the flxAiConnectionSignIn mutation"""
+    input: FlxAiConnectionSignInInput!
+  ): FlxAiConnectionSignInPayload
+  """Forgets the OAuth sign-in of a connection."""
+  flxAiConnectionSignOut(
+    """Input for the flxAiConnectionSignOut mutation"""
+    input: FlxAiConnectionSignOutInput!
+  ): FlxAiConnectionSignOutPayload
   """Asks OpenRouter for the credit and key state and stores it."""
   flxAiCreditsRefresh(
     """Input for the flxAiCreditsRefresh mutation"""
     input: FlxAiCreditsRefreshInput!
   ): FlxAiCreditsRefreshPayload
+  """
+  Creates an access key for the signed-in user. The key is in the result once and cannot be read again.
+  """
+  flxAiMcpKeyCreate(
+    """Input for the flxAiMcpKeyCreate mutation"""
+    input: FlxAiMcpKeyCreateInput!
+  ): FlxAiMcpKeyCreatePayload
+  """
+  Revokes a key or an OAuth connection. Assistants using it stop working.
+  """
+  flxAiMcpKeyRevoke(
+    """Input for the flxAiMcpKeyRevoke mutation"""
+    input: FlxAiMcpKeyRevokeInput!
+  ): FlxAiMcpKeyRevokePayload
+  """Switches the MCP server and OAuth sign-in on or off."""
+  flxAiMcpServerUpdate(
+    """Input for the flxAiMcpServerUpdate mutation"""
+    input: FlxAiMcpServerUpdateInput!
+  ): FlxAiMcpServerUpdatePayload
   """Sends a short test message to a model."""
   flxAiModelTest(
     """Input for the flxAiModelTest mutation"""
@@ -1478,6 +2808,79 @@ extend type RootMutation {
     """Input for the flxAiSettingsUpdate mutation"""
     input: FlxAiSettingsUpdateInput!
   ): FlxAiSettingsUpdatePayload
+  """
+  Deletes a skill of this site, or resets a shipped skill to the version its plugin ships.
+  """
+  flxAiSkillDelete(
+    """Input for the flxAiSkillDelete mutation"""
+    input: FlxAiSkillDeleteInput!
+  ): FlxAiSkillDeletePayload
+  """
+  Saves the trigger prompts and functional tests of a skill (they replace the old ones).
+  """
+  flxAiSkillEvalsSave(
+    """Input for the flxAiSkillEvalsSave mutation"""
+    input: FlxAiSkillEvalsSaveInput!
+  ): FlxAiSkillEvalsSavePayload
+  """Deletes a file of a skill folder."""
+  flxAiSkillFileDelete(
+    """Input for the flxAiSkillFileDelete mutation"""
+    input: FlxAiSkillFileDeleteInput!
+  ): FlxAiSkillFileDeletePayload
+  """
+  Writes a text file into a skill folder. A shipped skill is copied to the site first.
+  """
+  flxAiSkillFileSave(
+    """Input for the flxAiSkillFileSave mutation"""
+    input: FlxAiSkillFileSaveInput!
+  ): FlxAiSkillFileSavePayload
+  """
+  Uploads a file (base64, up to 5 MB) into a sub folder of a skill folder.
+  """
+  flxAiSkillFileUpload(
+    """Input for the flxAiSkillFileUpload mutation"""
+    input: FlxAiSkillFileUploadInput!
+  ): FlxAiSkillFileUploadPayload
+  """
+  Imports skills from a .zip, .skill or SKILL.md file (base64) or pasted SKILL.md text. A skill with the same name is updated.
+  """
+  flxAiSkillImport(
+    """Input for the flxAiSkillImport mutation"""
+    input: FlxAiSkillImportInput!
+  ): FlxAiSkillImportPayload
+  """
+  Creates a skill, or changes one when `current` is given. Fields you leave out keep their value.
+  """
+  flxAiSkillSave(
+    """Input for the flxAiSkillSave mutation"""
+    input: FlxAiSkillSaveInput!
+  ): FlxAiSkillSavePayload
+  """
+  Runs the trigger test or one functional test. This calls the chat model and is billed like a short chat (purpose skill_test).
+  """
+  flxAiSkillTestRun(
+    """Input for the flxAiSkillTestRun mutation"""
+    input: FlxAiSkillTestRunInput!
+  ): FlxAiSkillTestRunPayload
+  """Turns a skill on or off."""
+  flxAiSkillToggle(
+    """Input for the flxAiSkillToggle mutation"""
+    input: FlxAiSkillToggleInput!
+  ): FlxAiSkillTogglePayload
+  """
+  Sets whether a message that uses a skill offers only the tools of its allowed-tools list.
+  """
+  flxAiSkillsSettings(
+    """Input for the flxAiSkillsSettings mutation"""
+    input: FlxAiSkillsSettingsInput!
+  ): FlxAiSkillsSettingsPayload
+  """
+  Saves the AI settings of one system. What you leave out keeps its value.
+  """
+  flxAiSystemSettingsUpdate(
+    """Input for the flxAiSystemSettingsUpdate mutation"""
+    input: FlxAiSystemSettingsUpdateInput!
+  ): FlxAiSystemSettingsUpdatePayload
   """
   Switches AI on or off per system. Systems you leave out keep their state.
   """
@@ -1541,8 +2944,30 @@ extend type RootQuery {
     """Month as Y-m; this month by default."""
     month: String
   ): FlxAiBilling!
+  """The brand kit."""
+  flxAiBrand: FlxAiBrand!
   """Spending against the daily, weekly and monthly limits."""
   flxAiBudget: [FlxAiBudgetPeriod!]!
+  """One chat of the signed-in user with its transcript."""
+  flxAiChat(
+    """Chat id."""
+    id: Int!
+  ): FlxAiChat!
+  """
+  The signed-in user&#039;s chat history. Search looks in titles and message text.
+  """
+  flxAiChats(
+    """0 active chats (default), 1 archived, -1 all."""
+    archived: Int
+    """Page size, 1 to 100 (default 30)."""
+    limit: Int
+    """Chats to skip."""
+    offset: Int
+    """Search text."""
+    q: String
+  ): FlxAiChatPage!
+  """The MCP connections and what their form needs."""
+  flxAiConnections: FlxAiConnectionsScreen!
   """The stored content of a log row; null when none was stored."""
   flxAiLogBody(
     """Log row ID (FlxAiLog.databaseId)."""
@@ -1565,6 +2990,8 @@ extend type RootQuery {
     """Only this system; empty for all."""
     source: String
   ): FlxAiLogConnection!
+  """The MCP page: server state, keys and recent activity."""
+  flxAiMcp: FlxAiMcpOverview!
   """Searches the model catalog (the model picker)."""
   flxAiModels(
     """Most models to return (1–200); 50 by default."""
@@ -1592,6 +3019,25 @@ extend type RootQuery {
   Choices of the settings page: roles, search providers, image and video models.
   """
   flxAiSettingsOptions: FlxAiSettingsOptions!
+  """One skill with its folder, tests and last test results."""
+  flxAiSkill(
+    """Skill folder name."""
+    slug: String!
+  ): FlxAiSkillDetail
+  """Reads a text file of a skill folder."""
+  flxAiSkillFile(
+    """Path inside the folder."""
+    path: String!
+    """Skill folder name."""
+    slug: String!
+  ): FlxAiSkillFileContent
+  """The skills page: every skill, shipped and of this site."""
+  flxAiSkills: FlxAiSkillsOverview!
+  """The AI settings of one system."""
+  flxAiSystemSettings(
+    """System id."""
+    source: String!
+  ): FlxAiSystemSettings!
   """Plugins that use Flux AI, with their usage of the last 30 days."""
   flxAiSystems: [FlxAiSystem!]!
   """Scheduled tasks and what the task form needs."""

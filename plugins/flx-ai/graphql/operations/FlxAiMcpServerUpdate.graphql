@@ -1,0 +1,12 @@
+mutation FlxAiMcpServerUpdate($input: FlxAiMcpServerUpdateInput!) {
+  flxAiMcpServerUpdate(input: $input) {
+    overview {
+      ...FlxAiMcpOverviewFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

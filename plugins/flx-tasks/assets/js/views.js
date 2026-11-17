@@ -68,6 +68,11 @@
 
 	P.date = function (anchor, value, onPick, opts) {
 		opts = opts || {};
+		/* Shared FluxWP date picker (flx-brand 1.8.0): site language, Monday start, light/dark, bottom sheet on phones. */
+		if (window.flxDate) {
+			window.flxDate.open(anchor, { value: value ? String(value).slice(0, 16) : '', time: true, quick: true, label: opts.label || t('Tarih'), onPick: function (v) { onPick(v); } });
+			return;
+		}
 		var today = Y.dayKey(new Date());
 		var day = value ? value.slice(0, 10) : '';
 		var time = value && value.length > 10 ? value.slice(11, 16) : '';

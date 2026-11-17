@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { FlxAiRecipients, FlxAiTaskDelete, FlxAiTaskRun, FlxAiTaskSave, FlxAiTaskSetActive, FlxAiTasks, FlxAiTasksToggle } from '@fluxwp/graphql/operations';
 import type { FlxAiRecipientFieldsFragment, FlxAiTaskFieldsFragment, FlxAiTaskOverviewFieldsFragment } from '@fluxwp/graphql/types';
 import { flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
-import { Loading, Modal } from '@fluxwp/ui';
+import { DatePicker, Loading, Modal } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { Card, NoticeBar, Pill, errText, useAi, type AiT, type Notice } from './common';
 
@@ -356,7 +356,7 @@ function TaskForm({ task, o, onCancel, onSaved }: { task: Task | null; o: Overvi
       {f.freq === 'monthly' && row(t('Day of month'), <input className="flxai-input is-small" type="number" min={1} max={31} value={f.day} onChange={(e) => set('day', Number(e.target.value))} />, t('In shorter months the task runs on the last day.'))}
       {f.freq === 'hourly' && row(t('Every'), <><input className="flxai-input is-small" type="number" min={1} max={24} value={f.every} onChange={(e) => set('every', Number(e.target.value))} /> {t('hours')}</>)}
       {f.freq !== 'once' && row(t('Time'), <input className="flxai-input is-small" type="time" value={f.time} onChange={(e) => set('time', e.target.value)} />, t('Site time zone: %s.', o.timezone))}
-      {f.freq === 'once' && row(t('Date and time'), <input className="flxai-input" type="datetime-local" value={f.at} onChange={(e) => set('at', e.target.value)} />)}
+      {f.freq === 'once' && row(t('Date and time'), <DatePicker time value={f.at} onChange={(v) => set('at', v)} />)}
       {row(
         t('Status'),
         <label className="flxai-check">

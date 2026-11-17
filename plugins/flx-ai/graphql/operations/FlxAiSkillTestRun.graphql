@@ -1,0 +1,12 @@
+mutation FlxAiSkillTestRun($input: FlxAiSkillTestRunInput!) {
+  flxAiSkillTestRun(input: $input) {
+    skill {
+      ...FlxAiSkillDetailFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

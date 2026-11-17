@@ -1,0 +1,12 @@
+mutation FlxAiSkillSave($input: FlxAiSkillSaveInput!) {
+  flxAiSkillSave(input: $input) {
+    skill {
+      ...FlxAiSkillDetailFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

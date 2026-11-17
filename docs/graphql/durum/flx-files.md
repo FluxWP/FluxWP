@@ -1,7 +1,7 @@
 # flx-files 0.2.0
 
 - Faz: 2
-- Durum: 👀
+- Durum: ✓
 - PR: #320
 
 `claude/project-thread-lerwuf`: servis katmanı, 12 sorgu + 18 mutation, 27 kayıtlı işlem, sözleşme testi. React ekranı (`flxfm-files`) klasikle eşit, wp-admin varsayılanı; klasik görünüm bağlantısıyla. Yükleme ve indirme istisna. FluxApp yerel modülü ertelendi. Eşleme `ESLEME/flx-files.md`
