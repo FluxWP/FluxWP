@@ -1194,15 +1194,6 @@ html.flxg-dark .flxg-ai-btn { color: #a78bfa; }
 .flxg .flxg-sub-add .flxg-input:focus { background-color: var(--panel); border-color: var(--accent); }
 html.flxg-dark .flxg,
 html.flxg-dark .flxg-pop { color-scheme: dark; }
-/* Onay kutuları: WP'nin beyaz özel kutusu yerine tarayıcının kendi kutusu (accent rengiyle). */
-.flxg input[type="checkbox"],
-.flxg-pop input[type="checkbox"],
-.flxg input[type="radio"],
-.flxg-pop input[type="radio"] { -webkit-appearance: auto; appearance: auto; background: none; border: 0; box-shadow: none; min-width: 0; }
-.flxg input[type="checkbox"]::before,
-.flxg-pop input[type="checkbox"]::before,
-.flxg input[type="radio"]::before,
-.flxg-pop input[type="radio"]::before { content: none; }
 /* Yorum kutusu: odak halkası yalnız dış kutuda. */
 .flxg .flxg-composer { border-radius: 14px; }
 .flxg .flxg-composer-input,

@@ -1,0 +1,12 @@
+mutation FlxAiConnectionRefresh($input: FlxAiConnectionRefreshInput!) {
+  flxAiConnectionRefresh(input: $input) {
+    connection {
+      ...FlxAiConnectionFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

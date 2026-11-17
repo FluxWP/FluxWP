@@ -333,6 +333,268 @@ enum FlxAiChatMode {
   PAGE
 }
 
+"""A connected MCP server. Secrets are never returned."""
+type FlxAiConnection {
+  """none, bearer, header or oauth."""
+  auth: String!
+  """Last time the tool list was loaded; null when never."""
+  checked: FlxDateTime
+  """
+  OAuth client id entered by hand; empty when none or registered automatically.
+  """
+  clientId: String!
+  """
+  The signed-in user may change it (not another user&#039;s personal connection).
+  """
+  editable: Boolean!
+  """Its tools are offered."""
+  enabled: Boolean!
+  """Last error; empty when fine."""
+  error: String!
+  """An OAuth client secret is saved."""
+  hasClientSecret: Boolean!
+  """A key or token is saved."""
+  hasSecret: Boolean!
+  """Header name of the custom header sign-in."""
+  header: String!
+  """Short id; also the tool name prefix."""
+  id: String!
+  """Name."""
+  name: String!
+  """User who added it."""
+  ownerId: Int!
+  """Login of that user."""
+  ownerLogin: String!
+  """Tool name pattern."""
+  prefix: String!
+  """Roles that may use a shared connection."""
+  roles: [String!]!
+  """personal or shared."""
+  scope: String!
+  """Name the server reports."""
+  serverName: String!
+  """MCP protocol version."""
+  serverProtocol: String!
+  """Version the server reports."""
+  serverVersion: String!
+  """OAuth sign-in is done."""
+  signedIn: Boolean!
+  """off, error, signin or connected."""
+  status: String!
+  """Tools the server offers."""
+  tools: [FlxAiConnectionTool!]!
+  """Tools that are not off."""
+  toolsOn: Int!
+  """Server address."""
+  url: String!
+}
+
+"""Input for the flxAiConnectionDelete mutation."""
+input FlxAiConnectionDeleteInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Connection id."""
+  id: String!
+}
+
+"""The payload for the flxAiConnectionDelete mutation."""
+type FlxAiConnectionDeletePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Done."""
+  deleted: Boolean
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""The permission of one tool."""
+input FlxAiConnectionPermissionInput {
+  """allow (read-only tools only), ask or off."""
+  permission: String!
+  """Tool name on the server."""
+  tool: String!
+}
+
+"""Input for the flxAiConnectionPermissions mutation."""
+input FlxAiConnectionPermissionsInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Connection id."""
+  id: String!
+  """Permissions to set."""
+  permissions: [FlxAiConnectionPermissionInput!]!
+}
+
+"""The payload for the flxAiConnectionPermissions mutation."""
+type FlxAiConnectionPermissionsPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """The connection after the change; empty when the input was refused."""
+  connection: FlxAiConnection
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""Input for the flxAiConnectionRefresh mutation."""
+input FlxAiConnectionRefreshInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Connection id."""
+  id: String!
+}
+
+"""The payload for the flxAiConnectionRefresh mutation."""
+type FlxAiConnectionRefreshPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """The connection after the change; empty when the input was refused."""
+  connection: FlxAiConnection
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""Input for the flxAiConnectionSave mutation."""
+input FlxAiConnectionSaveInput {
+  """none, bearer, header or oauth."""
+  auth: String
+  """
+  OAuth client id (optional; registered automatically when the server allows).
+  """
+  clientId: String
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """OAuth client secret (write-only; stored encrypted)."""
+  clientSecret: String
+  """Offer the server's tools."""
+  enabled: Boolean
+  """Header name for the custom header sign-in."""
+  header: String
+  """Connection to change; leave out to add one."""
+  id: String
+  """Name; empty takes the host name."""
+  name: String
+  """Roles that may use a shared connection."""
+  roles: [String!]
+  """personal or shared."""
+  scope: String
+  """Key or token (write-only; stored encrypted)."""
+  secret: String
+  """Streamable HTTP address (https). Required when adding."""
+  url: String
+}
+
+"""The payload for the flxAiConnectionSave mutation."""
+type FlxAiConnectionSavePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """The connection after the change; empty when the input was refused."""
+  connection: FlxAiConnection
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""Input for the flxAiConnectionSignIn mutation."""
+input FlxAiConnectionSignInInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Connection id."""
+  id: String!
+}
+
+"""The payload for the flxAiConnectionSignIn mutation."""
+type FlxAiConnectionSignInPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The provider&#039;s sign-in page."""
+  url: String
+}
+
+"""Input for the flxAiConnectionSignOut mutation."""
+input FlxAiConnectionSignOutInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Connection id."""
+  id: String!
+}
+
+"""The payload for the flxAiConnectionSignOut mutation."""
+type FlxAiConnectionSignOutPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """The connection after the change; empty when the input was refused."""
+  connection: FlxAiConnection
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""A tool a connected MCP server offers."""
+type FlxAiConnectionTool {
+  """What the tool does."""
+  description: String!
+  """The server marks the tool destructive."""
+  destructive: Boolean!
+  """Name on the server."""
+  name: String!
+  """allow, ask or off."""
+  permission: String!
+  """The server marks the tool read-only."""
+  readonly: Boolean!
+  """Title."""
+  title: String!
+  """Name in chats, tasks and agents."""
+  toolName: String!
+}
+
+"""The connections page."""
+type FlxAiConnectionsScreen {
+  """Redirect address to register at an OAuth provider."""
+  callbackUrl: String!
+  """Connections the user may see."""
+  connections: [FlxAiConnection!]!
+  """
+  Roles a shared connection can be opened to (administrators always may).
+  """
+  roles: [FlxAiOption!]!
+}
+
 """The OpenRouter account state from the last refresh."""
 type FlxAiCredits {
   """When the state was read."""
@@ -491,6 +753,166 @@ type FlxAiLogMessage {
   role: String!
   """Shortened text with personal data masked."""
   text: String!
+}
+
+"""An access key or an OAuth connection to the MCP server."""
+type FlxAiMcpKey {
+  """The user may use MCP."""
+  canUse: Boolean!
+  """When it was created."""
+  created: FlxDateTime!
+  """Last four characters of a key; empty for OAuth."""
+  hint: String!
+  """Key id."""
+  id: String!
+  """Last use; null when never."""
+  lastUsed: FlxDateTime
+  """Name."""
+  name: String!
+  """Tools the key is limited to; empty means all."""
+  tools: [String!]!
+  """key or oauth."""
+  type: String!
+  """User whose permissions the key uses."""
+  userId: Int!
+  """Login of that user; empty when the user is gone."""
+  userLogin: String!
+}
+
+"""Input for the flxAiMcpKeyCreate mutation."""
+input FlxAiMcpKeyCreateInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Name, for example the assistant it is for."""
+  name: String
+  """Limit the key to these tools; leave out for all."""
+  tools: [String!]
+}
+
+"""The payload for the flxAiMcpKeyCreate mutation."""
+type FlxAiMcpKeyCreatePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The new key. Shown only in this result."""
+  key: String
+  """The MCP page after the change; empty when the input was refused."""
+  overview: FlxAiMcpOverview
+}
+
+"""Input for the flxAiMcpKeyRevoke mutation."""
+input FlxAiMcpKeyRevokeInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Key id."""
+  id: String!
+}
+
+"""The payload for the flxAiMcpKeyRevoke mutation."""
+type FlxAiMcpKeyRevokePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The MCP page after the change; empty when the input was refused."""
+  overview: FlxAiMcpOverview
+}
+
+"""One recent call over MCP."""
+type FlxAiMcpLogEntry {
+  """The call succeeded."""
+  ok: Boolean!
+  """What the call was about."""
+  target: String!
+  """When it happened."""
+  time: FlxDateTime!
+  """Tool name."""
+  tool: String!
+  """User; empty when the user is gone."""
+  userLogin: String!
+}
+
+"""
+The MCP page: server, keys, tools a key can be limited to and recent activity.
+"""
+type FlxAiMcpOverview {
+  """Tools a key can be limited to."""
+  choices: [FlxAiMcpToolChoice!]!
+  """Keys and OAuth connections."""
+  keys: [FlxAiMcpKey!]!
+  """The last 20 calls, newest first."""
+  log: [FlxAiMcpLogEntry!]!
+  """The server."""
+  server: FlxAiMcpServer!
+}
+
+"""The MCP server of this site."""
+type FlxAiMcpServer {
+  """The MCP server is on."""
+  enabled: Boolean!
+  """An old Flux SEO version runs its own server."""
+  legacy: Boolean!
+  """Sign-in with OAuth is allowed."""
+  oauth: Boolean!
+  """OAuth sign-in is in effect (server on and OAuth allowed)."""
+  oauthActive: Boolean!
+  """The same server at its REST address."""
+  restUrl: String!
+  """Roles and access page; empty when Flux Roles is not active."""
+  rolesUrl: String!
+  """Registered tools."""
+  toolCount: Int!
+  """Server address for assistants."""
+  url: String!
+}
+
+"""Input for the flxAiMcpServerUpdate mutation."""
+input FlxAiMcpServerUpdateInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """The server is on."""
+  enabled: Boolean!
+  """Assistants may sign in with OAuth."""
+  oauth: Boolean!
+}
+
+"""The payload for the flxAiMcpServerUpdate mutation."""
+type FlxAiMcpServerUpdatePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The MCP page after the change; empty when the input was refused."""
+  overview: FlxAiMcpOverview
+}
+
+"""A tool a key can be limited to."""
+type FlxAiMcpToolChoice {
+  """Tool name."""
+  name: String!
+  """The tool only reads."""
+  readonly: Boolean!
+  """Tool title."""
+  title: String!
 }
 
 """Kind of a media model."""
@@ -1583,12 +2005,96 @@ type FlxAiSystem {
   tools: Int!
 }
 
+"""A setting a plugin declared with the Flux AI SDK."""
+type FlxAiSystemField {
+  """Help text."""
+  help: String!
+  """Setting key."""
+  key: String!
+  """Label."""
+  label: String!
+  """Highest number."""
+  max: Float
+  """Lowest number."""
+  min: Float
+  """Choices of a select field."""
+  options: [FlxAiOption!]!
+  """toggle, text, textarea, number, select or model."""
+  type: String!
+  """Saved value (toggles are &quot;1&quot; or &quot;0&quot;)."""
+  value: String!
+}
+
+"""The AI settings page of one system."""
+type FlxAiSystemSettings {
+  """The plugin declared settings or details with the SDK."""
+  declared: Boolean!
+  """The default model."""
+  defaultModel: String!
+  """What the plugin does with AI."""
+  description: String!
+  """Declared settings."""
+  fields: [FlxAiSystemField!]!
+  """Plugin name."""
+  label: String!
+  """Model of this plugin; empty uses the default."""
+  model: String!
+  """The plugin may use AI."""
+  on: Boolean!
+  """Flux AI SDK version; empty when not loaded."""
+  sdkVersion: String!
+  """System id (plugin folder)."""
+  source: String!
+  """Tools that are on."""
+  toolsOn: Int!
+  """Tools of the plugin."""
+  toolsTotal: Int!
+}
+
+"""Input for the flxAiSystemSettingsUpdate mutation."""
+input FlxAiSystemSettingsUpdateInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Model of this plugin; empty uses the default."""
+  model: String
+  """The plugin may use AI."""
+  on: Boolean
+  """System id."""
+  source: String!
+  """Declared settings to change."""
+  values: [FlxAiSystemValueInput!]
+}
+
+"""The payload for the flxAiSystemSettingsUpdate mutation."""
+type FlxAiSystemSettingsUpdatePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The settings after the change; empty when the input was refused."""
+  settings: FlxAiSystemSettings
+}
+
 """Whether AI is on for one system."""
 input FlxAiSystemStateInput {
   """AI is on for the system."""
   on: Boolean!
   """System id."""
   source: String!
+}
+
+"""The value of one declared setting."""
+input FlxAiSystemValueInput {
+  """Setting key."""
+  key: String!
+  """Value (toggles "1" or "0")."""
+  value: String!
 }
 
 """Input for the flxAiSystemsUpdate mutation."""
@@ -2097,11 +2603,70 @@ extend type RootMutation {
     """Input for the flxAiChangeDecide mutation"""
     input: FlxAiChangeDecideInput!
   ): FlxAiChangeDecidePayload
+  """
+  Deletes a connection. Its tools disappear from chats, tasks and agents.
+  """
+  flxAiConnectionDelete(
+    """Input for the flxAiConnectionDelete mutation"""
+    input: FlxAiConnectionDeleteInput!
+  ): FlxAiConnectionDeletePayload
+  """
+  Sets the permission of every tool of a connection. Tools you leave out go back to &quot;ask&quot;.
+  """
+  flxAiConnectionPermissions(
+    """Input for the flxAiConnectionPermissions mutation"""
+    input: FlxAiConnectionPermissionsInput!
+  ): FlxAiConnectionPermissionsPayload
+  """
+  Tests the connection and reloads its tool list. A failure is in the connection&#039;s `error`.
+  """
+  flxAiConnectionRefresh(
+    """Input for the flxAiConnectionRefresh mutation"""
+    input: FlxAiConnectionRefreshInput!
+  ): FlxAiConnectionRefreshPayload
+  """
+  Adds a connection, or changes one when `id` is given. Fields you leave out keep their value; a secret you leave out or send empty keeps the saved one. A connection that is on loads its tools when saved; the outcome is in `error`.
+  """
+  flxAiConnectionSave(
+    """Input for the flxAiConnectionSave mutation"""
+    input: FlxAiConnectionSaveInput!
+  ): FlxAiConnectionSavePayload
+  """
+  Starts the OAuth sign-in. Send the browser to the returned address; the provider sends it back to the connections page.
+  """
+  flxAiConnectionSignIn(
+    """Input for the flxAiConnectionSignIn mutation"""
+    input: FlxAiConnectionSignInInput!
+  ): FlxAiConnectionSignInPayload
+  """Forgets the OAuth sign-in of a connection."""
+  flxAiConnectionSignOut(
+    """Input for the flxAiConnectionSignOut mutation"""
+    input: FlxAiConnectionSignOutInput!
+  ): FlxAiConnectionSignOutPayload
   """Asks OpenRouter for the credit and key state and stores it."""
   flxAiCreditsRefresh(
     """Input for the flxAiCreditsRefresh mutation"""
     input: FlxAiCreditsRefreshInput!
   ): FlxAiCreditsRefreshPayload
+  """
+  Creates an access key for the signed-in user. The key is in the result once and cannot be read again.
+  """
+  flxAiMcpKeyCreate(
+    """Input for the flxAiMcpKeyCreate mutation"""
+    input: FlxAiMcpKeyCreateInput!
+  ): FlxAiMcpKeyCreatePayload
+  """
+  Revokes a key or an OAuth connection. Assistants using it stop working.
+  """
+  flxAiMcpKeyRevoke(
+    """Input for the flxAiMcpKeyRevoke mutation"""
+    input: FlxAiMcpKeyRevokeInput!
+  ): FlxAiMcpKeyRevokePayload
+  """Switches the MCP server and OAuth sign-in on or off."""
+  flxAiMcpServerUpdate(
+    """Input for the flxAiMcpServerUpdate mutation"""
+    input: FlxAiMcpServerUpdateInput!
+  ): FlxAiMcpServerUpdatePayload
   """Sends a short test message to a model."""
   flxAiModelTest(
     """Input for the flxAiModelTest mutation"""
@@ -2188,6 +2753,13 @@ extend type RootMutation {
     input: FlxAiSkillsSettingsInput!
   ): FlxAiSkillsSettingsPayload
   """
+  Saves the AI settings of one system. What you leave out keeps its value.
+  """
+  flxAiSystemSettingsUpdate(
+    """Input for the flxAiSystemSettingsUpdate mutation"""
+    input: FlxAiSystemSettingsUpdateInput!
+  ): FlxAiSystemSettingsUpdatePayload
+  """
   Switches AI on or off per system. Systems you leave out keep their state.
   """
   flxAiSystemsUpdate(
@@ -2254,6 +2826,8 @@ extend type RootQuery {
   flxAiBrand: FlxAiBrand!
   """Spending against the daily, weekly and monthly limits."""
   flxAiBudget: [FlxAiBudgetPeriod!]!
+  """The MCP connections and what their form needs."""
+  flxAiConnections: FlxAiConnectionsScreen!
   """The stored content of a log row; null when none was stored."""
   flxAiLogBody(
     """Log row ID (FlxAiLog.databaseId)."""
@@ -2276,6 +2850,8 @@ extend type RootQuery {
     """Only this system; empty for all."""
     source: String
   ): FlxAiLogConnection!
+  """The MCP page: server state, keys and recent activity."""
+  flxAiMcp: FlxAiMcpOverview!
   """Searches the model catalog (the model picker)."""
   flxAiModels(
     """Most models to return (1–200); 50 by default."""
@@ -2317,6 +2893,11 @@ extend type RootQuery {
   ): FlxAiSkillFileContent
   """The skills page: every skill, shipped and of this site."""
   flxAiSkills: FlxAiSkillsOverview!
+  """The AI settings of one system."""
+  flxAiSystemSettings(
+    """System id."""
+    source: String!
+  ): FlxAiSystemSettings!
   """Plugins that use Flux AI, with their usage of the last 30 days."""
   flxAiSystems: [FlxAiSystem!]!
   """Scheduled tasks and what the task form needs."""

@@ -4,8 +4,7 @@
  * systems and Tools open the same screen as the FluxWP app (assets/flux/, tools/fluxapp/embed-sync.sh
  * flx-ai). A user can switch back to the classic page from the screen header. Needs Flux GraphQL.
  *
- * Not yet in React (stay classic): Settings, Chat, Scheduled tasks, Awaiting approval, Skills, MCP, and the
- * per-system AI settings page.
+ * Not yet in React (stay classic): Chat.
  *
  * @package FLX_AI
  */
@@ -24,6 +23,8 @@ function flxai_flux_pages() {
 		'flx-ai-approvals' => 'approvals',
 		'flx-ai-tasks' => 'tasks',
 		'flx-ai-skills' => 'skills',
+		'flx-ai-mcp' => 'mcp',
+		'flx-ai-connections' => 'connections',
 	);
 }
 
@@ -38,16 +39,16 @@ function flxai_flux_view() {
 	if ( ! isset( $map[ $page ] ) || ! flxai_flux_available() || 'classic' === get_user_meta( get_current_user_id(), 'flxai_ui', true ) ) {
 		return '';
 	}
-	// The per-system AI settings page has no React screen yet.
-	if ( 'flx-ai-systems' === $page && ! empty( $_GET['system'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
-		return '';
-	}
 	return $map[ $page ];
 }
 
 function flxai_ui_switch_url( $ui, $page = '' ) {
 	$page = '' !== $page ? $page : ( isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : 'flx-ai' ); // phpcs:ignore WordPress.Security.NonceVerification
-	return wp_nonce_url( add_query_arg( array( 'page' => $page, 'flxai_ui' => 'flux' === $ui ? 'flux' : 'classic' ), admin_url( 'admin.php' ) ), 'flxai_ui' );
+	$args = array( 'page' => $page, 'flxai_ui' => 'flux' === $ui ? 'flux' : 'classic' );
+	if ( 'flx-ai-systems' === $page && ! empty( $_GET['system'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+		$args['system'] = sanitize_key( wp_unslash( $_GET['system'] ) ); // phpcs:ignore WordPress.Security.NonceVerification
+	}
+	return wp_nonce_url( add_query_arg( $args, admin_url( 'admin.php' ) ), 'flxai_ui' );
 }
 
 add_action(
@@ -66,7 +67,7 @@ add_action(
 		} else {
 			delete_user_meta( get_current_user_id(), 'flxai_ui' );
 		}
-		wp_safe_redirect( admin_url( 'admin.php?page=' . $page ) );
+		wp_safe_redirect( admin_url( 'admin.php?page=' . $page . ( 'flx-ai-systems' === $page && ! empty( $_GET['system'] ) ? '&system=' . rawurlencode( sanitize_key( wp_unslash( $_GET['system'] ) ) ) : '' ) ) ); // phpcs:ignore WordPress.Security.NonceVerification
 		exit;
 	}
 );
@@ -139,7 +140,7 @@ function flxai_flux_render() {
 /** Switch link on classic pages that have a React screen. */
 function flxai_flux_new_link() {
 	$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-	if ( ! isset( flxai_flux_pages()[ $page ] ) || ! flxai_flux_available() || ( 'flx-ai-systems' === $page && ! empty( $_GET['system'] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+	if ( ! isset( flxai_flux_pages()[ $page ] ) || ! flxai_flux_available() ) {
 		return;
 	}
 	echo '<p><a class="button" href="' . esc_url( flxai_ui_switch_url( 'flux' ) ) . '">' . esc_html__( 'New view', 'flx-ai' ) . '</a> <span class="flxai-note">' . esc_html__( 'Open the new view (same features, works in the FluxWP app too).', 'flx-ai' ) . '</span></p>';

@@ -150,3 +150,16 @@ textarea.flxai-input{width:100%;max-width:560px}
 .flxai-brand-chip{display:inline-flex;gap:4px;align-items:center;margin-right:10px}
 .flxai-brand-doc{display:flex;flex-direction:column;gap:6px;margin:0 0 12px}
 .flxai-brand-doc textarea{max-width:none}
+/* MCP */
+.flxai-code{margin:6px 0 12px;padding:8px 10px;border:1px solid var(--bd);border-radius:6px;background:var(--flux-surface2);overflow:auto;font-size:12px;white-space:pre-wrap;word-break:break-all}
+.flxai-key{word-break:break-all;user-select:all}
+.flxai-mcp-switches{display:flex;flex-direction:column;gap:8px;margin:0 0 8px}
+.flxai-mcp-fresh{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.flxai-mcp-scope{margin:10px 0}.flxai-mcp-scope summary{cursor:pointer}
+.flxai-mcp-scope-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:6px;margin-top:6px}
+/* Connections */
+.flxai-mcpc-list td{vertical-align:top}
+.flxai-mcpc-auth{display:flex;flex-direction:column;gap:6px}
+.flxai-mcpc-roles{display:flex;flex-wrap:wrap;gap:4px 14px;margin:6px 0 0 22px}
+.flxai-mcpc-perm td:not(:first-child),.flxai-mcpc-perm th:not(:first-child){text-align:center;width:90px}
+.flxai-mcpc-tool-desc{font-size:12px;color:var(--flux-muted,#6b7280)}

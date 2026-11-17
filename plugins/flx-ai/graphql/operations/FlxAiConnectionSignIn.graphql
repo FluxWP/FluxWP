@@ -1,0 +1,10 @@
+mutation FlxAiConnectionSignIn($input: FlxAiConnectionSignInInput!) {
+  flxAiConnectionSignIn(input: $input) {
+    url
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

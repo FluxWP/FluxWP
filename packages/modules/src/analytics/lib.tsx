@@ -6,7 +6,7 @@ import { createGraphQLClient } from '@fluxwp/graphql';
 import { FlxGraphQLProvider, useFlxQuery } from '@fluxwp/graphql/react';
 import { FlxAnalyticsConfig } from '@fluxwp/graphql/operations';
 import type { FlxAnalyticsConfigQuery, FlxAnalyticsFilterInput, FlxAnalyticsRangePreset } from '@fluxwp/graphql/types';
-import { Loading, Modal } from '@fluxwp/ui';
+import { DatePicker, Loading, Modal } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { translator, type Translate } from './i18n';
 import './analytics.css';
@@ -190,9 +190,9 @@ export function FilterBar({ f, set, refs, extra }: { f: Filters; set: (p: Partia
         ))}
       </select>
       <span className={'flxan-custom' + (f.range === 'custom' ? ' on' : '')}>
-        <input type="date" aria-label={t('Start')} value={dates[0]} onChange={(e) => setDates([e.target.value, dates[1]])} />
+        <DatePicker aria-label={t('Start')} value={dates[0]} onChange={(v) => setDates([v, dates[1]])} />
         <span>–</span>
-        <input type="date" aria-label={t('End')} value={dates[1]} onChange={(e) => setDates([dates[0], e.target.value])} />
+        <DatePicker aria-label={t('End')} value={dates[1]} onChange={(v) => setDates([dates[0], v])} />
         <button type="button" className="flxan-btn" onClick={() => dates[0] && dates[1] && set({ start: dates[0], end: dates[1] })}>
           {t('Apply')}
         </button>
