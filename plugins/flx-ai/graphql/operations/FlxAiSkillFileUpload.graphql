@@ -1,0 +1,12 @@
+mutation FlxAiSkillFileUpload($input: FlxAiSkillFileUploadInput!) {
+  flxAiSkillFileUpload(input: $input) {
+    skill {
+      ...FlxAiSkillDetailFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

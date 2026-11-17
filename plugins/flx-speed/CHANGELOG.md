@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.9.1
+- Flux Speed ekranı Flux GraphQL ekran kabuğuyla açılır: özet, canlı durum ve ayarlar PHP'den hazır gelir, diğer Flux ekranlarına menüden geçiş sayfa yenilemeden olur.
+
 ## 0.9.0
 - Flux GraphQL desteği (Flux GraphQL eklentisi gerekir, PHP 8.1+): özet, kayıtlar, sunucu, veritabanı, cron, sistem kontrolü, PageSpeed, önbellek ve ayarlar `/graphql` üzerinden okunur ve yazılır; 14 sorgu, 7 mutation, 20 kayıtlı işlem.
 - Yeni React ekranı wp-admin'de varsayılan açılır: klasik ekranın tüm sekmeleri (Özet, Kayıtlar, Sunucu, Veritabanı, Cron, Sistem, PageSpeed, Önbellek, Ayarlar), kayıt ayrıntısı ve istek paneli, koyu mod ve mobil. Klasik ekrana sayfadaki bağlantıyla dönülür.

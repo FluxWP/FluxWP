@@ -1,0 +1,13 @@
+# The MCP connections and what their form needs.
+query FlxAiConnections {
+  flxAiConnections {
+    callbackUrl
+    roles {
+      id
+      label
+    }
+    connections {
+      ...FlxAiConnectionFields
+    }
+  }
+}

@@ -1023,7 +1023,7 @@ function flx_field_attrs( $attrs ) {
 /**
  * Alan HTML'i.
  *
- * @param array $args name, id, type (text|email|tel|number|password|search|url|textarea|select|phone), label, value,
+ * @param array $args name, id, type (text|email|tel|number|password|search|url|textarea|select|phone|date|datetime-local), label, value,
  *                    placeholder, icon (flx_field_icons adı), suffix (sağda kısa metin: TL), hint (etiketin sağında: AA/YY),
  *                    help (altta yardım), error (sunucudan gelen hata), required, readonly, disabled,
  *                    format (card|exp|digits|money|upper|name), rules ("email min:120 minlen:3" …),
@@ -1066,6 +1066,10 @@ function flx_field( array $args ) {
 		)
 	);
 	$type = (string) $a['type'];
+	if ( 'date' === $type || 'datetime-local' === $type ) {
+		flx_date_enqueue();
+		$a['icon'] = '' !== (string) $a['icon'] ? $a['icon'] : 'calendar';
+	}
 	$id   = '' !== $a['id'] ? (string) $a['id'] : 'flx-f-' . wp_rand( 10000, 999999 );
 	$cls  = 'flx-fld';
 	$cls .= 'textarea' === $type ? ' flx-fld--area' : ( 'select' === $type ? ' flx-fld--select' : ( 'phone' === $type ? ' flx-fld--phone' : '' ) );
@@ -1141,7 +1145,7 @@ function flx_field( array $args ) {
  * Onay kutusu / radyo HTML'i.
  *
  * @param array $args name, id, value (1), label (düz metin) ya da label_html (bağlantılı, wp_kses_post'tan geçer), note (alt satır),
- *                    checked, required, disabled, radio (true = radyo), error, messages ([ 'required' => … ]), class, attrs, wrap_attrs.
+ *                    checked, required, disabled, radio (true = radyo), switch (true = anahtar görünümü, role=switch), error, messages ([ 'required' => … ]), class, attrs, wrap_attrs.
  */
 function flx_check( array $args ) {
 	flx_field_enqueue();
@@ -1158,6 +1162,7 @@ function flx_check( array $args ) {
 			'required'   => false,
 			'disabled'   => false,
 			'radio'      => false,
+			'switch'     => false,
 			'error'      => '',
 			'messages'   => array(),
 			'class'      => '',
@@ -1173,18 +1178,95 @@ function flx_check( array $args ) {
 			'required' => $a['required'] ? true : false,
 			'disabled' => $a['disabled'] ? true : false,
 		),
+		( $a['switch'] && ! $a['radio'] ? array( 'role' => 'switch' ) : array() ),
+		( '' !== (string) $a['error'] ? array( 'aria-invalid' => 'true' ) : array() ),
 		(array) $a['attrs']
 	);
 	foreach ( (array) $a['messages'] as $rule => $text ) {
 		$in[ 'data-flx-msg-' . sanitize_key( $rule ) ] = (string) $text;
 	}
-	$cls  = 'flx-chk' . ( $a['radio'] ? ' flx-chk--radio' : '' ) . ( '' !== (string) $a['error'] ? ' is-error' : '' ) . ( $a['disabled'] ? ' is-disabled' : '' ) . ( '' !== (string) $a['class'] ? ' ' . $a['class'] : '' );
+	$cls  = 'flx-chk' . ( $a['radio'] ? ' flx-chk--radio' : ( $a['switch'] ? ' flx-chk--switch' : '' ) ) . ( '' !== (string) $a['error'] ? ' is-error' : '' ) . ( $a['disabled'] ? ' is-disabled' : '' ) . ( '' !== (string) $a['class'] ? ' ' . $a['class'] : '' );
 	$text = '' !== (string) $a['label_html'] ? wp_kses_post( (string) $a['label_html'] ) : esc_html( (string) $a['label'] );
 	$h    = '<label class="' . esc_attr( $cls ) . '"' . flx_field_attrs( $a['wrap_attrs'] ) . '><input class="flx-chk__input" type="' . ( $a['radio'] ? 'radio' : 'checkbox' ) . '" value="' . esc_attr( (string) $a['value'] ) . '"' . flx_field_attrs( $in ) . '>';
 	$h   .= '<span class="flx-chk__box" aria-hidden="true"></span><span class="flx-chk__text">' . $text . ( '' !== (string) $a['note'] ? '<small>' . esc_html( (string) $a['note'] ) . '</small>' : '' ) . '</span></label>';
 	$h   .= '<p class="flx-fld__msg" role="alert"' . ( '' !== (string) $a['error'] ? '' : ' hidden' ) . '>' . esc_html( (string) $a['error'] ) . '</p>';
 	return $h;
 }
+
+/* ---------- Ortak tarih seçici (1.8.0) ----------
+ * Tarayıcının takvimi yerine (dili tarayıcıya göre değişiyor, görünümü her yerde farklı). date/date.js + date.css.
+ *   echo flx_field( array( 'name' => 'due', 'type' => 'date', 'label' => 'Bitiş tarihi' ) );           // Y-m-d
+ *   echo flx_field( array( 'name' => 'at', 'type' => 'datetime-local', 'label' => 'Toplantı' ) );     // Y-m-d\TH:i
+ * Yönetimde Flux Admin ekranlarındaki her <input type="date|datetime-local"> kendiliğinden dönüşür; ön yüzde
+ * flx_field ya da data-flx-date. Görünüm B (Ahmet 2026-11-17): solda hızlı seçim (Bugün, Yarın, Bu cuma…), sağda takvim,
+ * altta yazılabilir tarih (+ saat) ve Uygula. data-flx-date-quick="0": hızlı liste yok. data-flx-native: dokunma.
+ * JS: flxDate.open( anchor, { value, time, quick, min, max, required, onPick } ), flxDate.format( v ), flxDate.enhance( root ).
+ * React ekranları: @fluxwp/ui <DatePicker />, aynı görünüm. Filtre: flx_date_strings.
+ */
+function flx_date_url( $file = '' ) {
+	$dir = wp_normalize_path( __DIR__ . '/date' );
+	$tpl = wp_normalize_path( get_theme_root() );
+	if ( 0 === strpos( $dir, $tpl ) ) {
+		$url = get_theme_root_uri() . substr( $dir, strlen( $tpl ) );
+	} else {
+		$url = plugins_url( '', $dir . '/x' );
+	}
+	return trailingslashit( $url ) . ltrim( $file, '/' );
+}
+
+/** Takvim metinleri (TR / EN gömülü, diğer dillerde EN; ay ve gün adları Intl ile sitenin dilinden). */
+function flx_date_strings() {
+	$tr = 'tr' === flx_lang();
+	return (array) apply_filters(
+		'flx_date_strings',
+		array(
+			'pick'       => $tr ? 'Tarih seçin' : 'Select date',
+			'today'      => $tr ? 'Bugün' : 'Today',
+			'tomorrow'   => $tr ? 'Yarın' : 'Tomorrow',
+			'nextWeek'   => $tr ? 'Gelecek hafta' : 'Next week',
+			'in2Weeks'   => $tr ? '2 hafta sonra' : 'In 2 weeks',
+			'thisFriday' => $tr ? 'Bu cuma' : 'This Friday',
+			'noDate'     => $tr ? 'Tarih yok' : 'No date',
+			'clear'      => $tr ? 'Temizle' : 'Clear',
+			'cancel'     => $tr ? 'Vazgeç' : 'Cancel',
+			'apply'      => $tr ? 'Uygula' : 'Apply',
+			'month'      => $tr ? 'Ay' : 'Month',
+			'time'       => $tr ? 'Saat' : 'Time',
+			'prev'       => $tr ? 'Önceki ay' : 'Previous month',
+			'next'       => $tr ? 'Sonraki ay' : 'Next month',
+			'prevYear'   => $tr ? 'Önceki yıl' : 'Previous year',
+			'nextYear'   => $tr ? 'Sonraki yıl' : 'Next year',
+			'pickMonth'  => $tr ? 'Ay seçin' : 'Choose month',
+			'pickYear'   => $tr ? 'Yıl seçin' : 'Choose year',
+		)
+	);
+}
+
+/** Intl için dil etiketi: tr_TR → tr-TR (Flux Lang / WordPress dili). */
+function flx_date_locale() {
+	$loc = (string) ( function_exists( 'determine_locale' ) ? determine_locale() : get_locale() );
+	return str_replace( '_', '-', (string) apply_filters( 'flx_lang_locale', $loc ) );
+}
+
+/** CSS + JS (bir kez). Yönetimde her sayfada; ön yüzde flx_field( type=date ) kendisi çağırır. */
+function flx_date_enqueue() {
+	if ( wp_script_is( 'flx-date', 'enqueued' ) ) {
+		return;
+	}
+	$v = defined( 'FLX_BRAND_VERSION' ) ? FLX_BRAND_VERSION : '1';
+	wp_enqueue_style( 'flx-date', flx_date_url( 'date.css' ), array(), $v );
+	wp_enqueue_script( 'flx-date', flx_date_url( 'date.js' ), array(), $v, true );
+	wp_localize_script(
+		'flx-date',
+		'FLX_DATE',
+		array(
+			'locale'    => flx_date_locale(),
+			'weekStart' => (int) get_option( 'start_of_week', 1 ),
+			'i18n'      => flx_date_strings(),
+		)
+	);
+}
+add_action( 'admin_enqueue_scripts', 'flx_date_enqueue', 5 );
 
 /* ---------- Ortak modal ve bildirim (1.6.0) ----------
  * Tarayıcının confirm/alert/prompt'u yerine. Yönetimde her sayfada yüklü; ön yüzde flx_dialog_enqueue().

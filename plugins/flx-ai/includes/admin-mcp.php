@@ -8,6 +8,9 @@
 defined( 'ABSPATH' ) || exit;
 
 function flxai_page_mcp() {
+	if ( flxai_flux_render() ) {
+		return;
+	}
 	$uid = get_current_user_id();
 	$new = get_transient( 'flxai_mcp_new_key_' . $uid );
 	delete_transient( 'flxai_mcp_new_key_' . $uid );

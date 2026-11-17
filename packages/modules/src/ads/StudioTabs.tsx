@@ -19,7 +19,7 @@ import {
   FlxAdsStudio,
 } from '@fluxwp/graphql/operations';
 import type { FlxAdsDraftFragment } from '@fluxwp/graphql/types';
-import { Loading } from '@fluxwp/ui';
+import { DatePicker, Loading } from '@fluxwp/ui';
 import { Btn, Card, Empty, Field, Muted, Notice, Pill, Td, num, useAct, useEnv } from './common';
 import { Fail } from './AdsScreen';
 
@@ -121,10 +121,10 @@ function StudioHome({ onEdit, pre, manage, goSettings }: { onEdit: (id: string) 
                 </select>
               </Field>
               <Field label={t('Start')}>
-                <input type="date" value={f.start} onChange={(e) => setF({ ...f, start: e.target.value })} />
+                <DatePicker value={f.start} onChange={(v) => setF({ ...f, start: v })} />
               </Field>
               <Field label={t('End')}>
-                <input type="date" value={f.end} onChange={(e) => setF({ ...f, end: e.target.value })} />
+                <DatePicker value={f.end} onChange={(v) => setF({ ...f, end: v })} />
               </Field>
               <p className="flxads-actions flxads-actions--start">
                 <Btn primary type="submit" disabled={!s.aiReady || gen.isPending}>
@@ -360,10 +360,10 @@ function Editor({ id, onClose }: { id: string; onClose: () => void }) {
                 <input type="number" min={1} step={1} required value={form.dailyBudget} onChange={(e) => set({ dailyBudget: e.target.value })} />
               </Field>
               <Field label={t('Start')}>
-                <input type="date" value={form.start} onChange={(e) => set({ start: e.target.value })} />
+                <DatePicker value={form.start} onChange={(v) => set({ start: v })} />
               </Field>
               <Field label={t('End')}>
-                <input type="date" value={form.end} onChange={(e) => set({ end: e.target.value })} />
+                <DatePicker value={form.end} onChange={(v) => set({ end: v })} />
               </Field>
             </div>
           </Card>
@@ -593,10 +593,10 @@ export function PlannerTab() {
                 <input type="number" min={3} max={60} value={f.prep} onChange={(e) => setF({ ...f, prep: e.target.value })} />
               </Field>
               <Field label={t('Start')}>
-                <input type="date" required value={f.start} onChange={(e) => setF({ ...f, start: e.target.value })} />
+                <DatePicker required value={f.start} onChange={(v) => setF({ ...f, start: v })} />
               </Field>
               <Field label={t('End')}>
-                <input type="date" value={f.end} onChange={(e) => setF({ ...f, end: e.target.value })} />
+                <DatePicker value={f.end} onChange={(v) => setF({ ...f, end: v })} />
               </Field>
               <p className="flxads-actions flxads-actions--start">
                 <Btn primary type="submit" disabled={add.isPending}>

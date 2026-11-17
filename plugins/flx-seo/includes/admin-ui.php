@@ -10,7 +10,7 @@
 defined( 'ABSPATH' ) || exit;
 
 function flxseo_flux_available() {
-	return file_exists( FLXSEO_DIR . 'assets/flux/flux-modules.js' ) && function_exists( 'flx_gql_ready' ) && function_exists( 'flx_gql_all_caps' ) && flx_gql_ready();
+	return file_exists( FLXSEO_DIR . 'assets/flux/flux-modules.js' ) && function_exists( 'flx_gql_ready' ) && function_exists( 'flx_gql_all_caps' ) && function_exists( 'flx_admin_screen' ) && flx_gql_ready();
 }
 
 function flxseo_flux_ui() {
@@ -43,57 +43,43 @@ add_action(
 	}
 );
 
-/** The chunked bundle loads as an ES module. */
-function flxseo_flux_module_tag( $tag, $handle ) {
-	if ( 'flxseo-flux' !== $handle ) {
-		return $tag;
-	}
-	return (string) preg_replace_callback(
-		'/<script\b[^>]*\ssrc=[^>]*>/',
-		static function ( $m ) {
-			$open = (string) preg_replace( '/\stype=("|\')[^"\']*\1/', '', $m[0] );
-			return (string) preg_replace( '/^<script\b/', '<script type="module"', $open );
-		},
-		$tag,
-		1
-	);
-}
-
-function flxseo_flux_assets() {
-	$ver    = FLXSEO_VERSION . '-' . (int) filemtime( FLXSEO_DIR . 'assets/flux/flux-modules.js' );
+/** Mount options of the React screen (Flux GraphQL screen shell adds rest, nonce, locale, site name, admin URL). */
+function flxseo_flux_options() {
 	$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#2c7a64';
-	$tab    = isset( $_GET['tab'] ) ? sanitize_key( $_GET['tab'] ) : 'genel'; // phpcs:ignore WordPress.Security.NonceVerification
-	$opts   = array(
-		'module'     => 'flxseo-seo',
-		'rest'       => rest_url(),
-		'nonce'      => wp_create_nonce( 'wp_rest' ),
-		'locale'     => get_user_locale(),
-		'siteName'   => get_bloginfo( 'name' ),
-		'adminUrl'   => admin_url(),
-		'theme'      => 'light',
+	$tab    = isset( $_GET['tab'] ) ? sanitize_key( $_GET['tab'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
+	return array(
 		'colors'     => array(
 			'primary'         => $accent,
 			'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
 		),
-		'startPage'  => isset( flxseo_tabs()[ $tab ] ) ? $tab : 'genel',
-		'classicUrl' => flxseo_ui_switch_url( 'classic', $tab ),
-	);
-	wp_enqueue_style( 'flxseo-flux', FLXSEO_URL . 'assets/flux/flux-modules.css', array(), $ver );
-	wp_enqueue_script( 'flxseo-flux', FLXSEO_URL . 'assets/flux/flux-modules.js', array(), $ver, true );
-	add_filter( 'script_loader_tag', 'flxseo_flux_module_tag', 10, 2 );
-	// Light / dark follows Flux Admin (html.flxa-dark), also when the user switches it on the page.
-	wp_add_inline_script(
-		'flxseo-flux',
-		'(function(){var h=document.documentElement,o=' . wp_json_encode( $opts ) . ';o.theme=h.classList.contains("flxa-dark")?"dark":"light";var slot=window.FluxModulesOptions||(window.FluxModulesOptions={});slot.id="flxseo-app";slot.opts=o;function sync(){var el=document.getElementById("flxseo-app");if(el)el.dataset.theme=h.classList.contains("flxa-dark")?"dark":"light";}new MutationObserver(sync).observe(h,{attributes:true,attributeFilter:["class"]});function go(){if(slot.done||!window.FluxModules)return;var el=document.getElementById(slot.id);if(!el)return;slot.done=true;try{window.FluxModules.mount(el,slot.opts);}catch(e){el.textContent=String(e&&e.message||e);}}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);go();})();',
-		'before'
+		'classicUrl' => flxseo_ui_switch_url( 'classic', isset( flxseo_tabs()[ $tab ] ) ? $tab : '' ),
 	);
 }
 
+/*
+ * The screen opens through Flux GraphQL's screen shell (includes/screens.php there): first queries preloaded
+ * into the page, and the other Flux screens open from the menu without reloading wp-admin.
+ */
 add_action(
-	'admin_enqueue_scripts',
-	function ( $hook ) {
-		if ( 'toplevel_page_flxseo' === $hook && flxseo_flux_ui() ) {
-			flxseo_flux_assets();
+	'admin_menu',
+	static function () {
+		if ( ! function_exists( 'flx_admin_screen' ) ) {
+			return;
 		}
-	}
+		flx_admin_screen(
+			'flxseo',
+			array(
+				'module'      => 'flxseo-seo',
+				'assets_dir'  => FLXSEO_DIR . 'assets/flux/',
+				'assets_url'  => FLXSEO_URL . 'assets/flux/',
+				'version'     => FLXSEO_VERSION,
+				'enabled'     => 'flxseo_flux_ui',
+				'options'     => 'flxseo_flux_options',
+				'start'       => 'genel',
+				'start_param' => 'tab',
+				'preload'     => array( array( 'FlxSeoSettingsScreen' ) ),
+			)
+		);
+	},
+	20
 );

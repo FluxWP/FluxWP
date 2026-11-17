@@ -1,5 +1,14 @@
 # Flux Tasks — Değişiklikler
 
+## 0.9.3
+- Tarih alanları ortak FluxWP tarih seçicisini kullanır: sitenin dilinde ay/gün adları, Pazartesi başlangıç, hızlı seçim listesi, yazılabilir tarih ve saat, Uygula düğmesi, açık/koyu, telefonda alttan açılan pencere. Tarayıcının kendi takvimi (İngilizce çıkan) kalktı.
+
+## 0.9.2
+- Onay kutuları ve radyolar ortak görünüme geçti (tarayıcının kendi kutusunu zorlayan kurallar kaldırıldı).
+
+## 0.9.1
+- Görevler, Pano ve Ayarlar ekranları Flux GraphQL ekran kabuğuyla kaydedilir (tam ekran düzeni; sayfa olarak açılır). Görünüm ve özellikler değişmedi.
+
 ## 0.9.0
 - GraphQL: görev ekranı, görev ekleme/düzenleme/silme, takip, yorum ve okundu işaretleme Flux GraphQL üzerinden (`flxTask`, `flxTasks`, `flxTaskCreate/Update/Delete/Watch`, `flxTaskCommentCreate`, `flxTaskNotificationsRead`). Kayıtlı sorgular `graphql/persisted-queries.json`.
 - Servis katmanı (`FLXG_Task_Service`): yetki kontrolü ve görev işlemleri tek yerde; REST ve GraphQL aynı kodu çağırır. REST yanıtları değişmedi.

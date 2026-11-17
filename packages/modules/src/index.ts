@@ -10,9 +10,17 @@ import { collectScreens, type ModuleScreens } from './registry';
 
 function lazyScreen(load: () => Promise<{ default: ComponentType }>): ComponentType {
   const Screen = lazy(load);
+  let ready: ComponentType | null = null;
   function Bound() {
+    // Loaded ahead (preloadScreen): no Suspense fallback, so React does not hold the first paint
+    // (React 19 keeps a shown fallback on screen for at least 300 ms).
+    if (ready) return createElement(ready);
     return createElement(Suspense, { fallback: createElement(Loading) }, createElement(Screen));
   }
+  (Bound as PreloadableScreen).preload = () =>
+    load().then((m) => {
+      ready = m.default;
+    });
   return Bound;
 }
 
@@ -22,3 +30,11 @@ const loaders = collectScreens(import.meta.glob<ModuleScreens>('./*/screens.ts',
 export const moduleScreens: Record<string, ComponentType> = Object.fromEntries(
   Object.entries(loaders).map(([id, load]) => [id, lazyScreen(load)]),
 );
+
+type PreloadableScreen = ComponentType & { preload?: () => Promise<void> };
+
+/** Loads a screen's code before it mounts (wp-admin: first load and the screen navigator). */
+export function preloadScreen(id: string): Promise<void> {
+  const s = moduleScreens[id] as PreloadableScreen | undefined;
+  return s?.preload ? s.preload().catch(() => undefined) : Promise.resolve();
+}

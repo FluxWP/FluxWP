@@ -63,6 +63,34 @@ $vars = array(
 	'FlxAiTaskDelete'       => array( 'input' => array( 'id' => 1 ) ),
 	'FlxAiTaskMarkRead'     => array( 'input' => array( 'id' => 1 ) ),
 	'FlxAiTasksToggle'      => array( 'input' => array( 'enabled' => true ) ),
+	'FlxAiSkills'           => array(),
+	'FlxAiSkill'            => array( 'slug' => 'x' ),
+	'FlxAiSkillFile'        => array( 'slug' => 'x', 'path' => 'references/a.md' ),
+	'FlxAiBrand'            => array(),
+	'FlxAiSkillSave'        => array( 'input' => array( 'name' => 'x' ) ),
+	'FlxAiSkillToggle'      => array( 'input' => array( 'slug' => 'x' ) ),
+	'FlxAiSkillDelete'      => array( 'input' => array( 'slug' => 'x' ) ),
+	'FlxAiSkillsSettings'   => array( 'input' => array( 'restrict' => true ) ),
+	'FlxAiSkillImport'      => array( 'input' => array( 'markdown' => 'x' ) ),
+	'FlxAiSkillFileSave'    => array( 'input' => array( 'slug' => 'x', 'path' => 'references/a.md', 'content' => 'x' ) ),
+	'FlxAiSkillFileDelete'  => array( 'input' => array( 'slug' => 'x', 'path' => 'references/a.md' ) ),
+	'FlxAiSkillFileUpload'  => array( 'input' => array( 'slug' => 'x', 'fileName' => 'a.md', 'contentBase64' => 'eA==' ) ),
+	'FlxAiSkillEvalsSave'   => array( 'input' => array( 'slug' => 'x' ) ),
+	'FlxAiSkillTestRun'     => array( 'input' => array( 'slug' => 'x', 'kind' => 'trigger' ) ),
+	'FlxAiBrandSave'        => array( 'input' => array( 'name' => 'x' ) ),
+	'FlxAiSystemSettings'   => array( 'source' => 'flx-seo' ),
+	'FlxAiSystemSettingsUpdate' => array( 'input' => array( 'source' => 'flx-seo' ) ),
+	'FlxAiMcp'              => array(),
+	'FlxAiMcpServerUpdate'  => array( 'input' => array( 'enabled' => true, 'oauth' => true ) ),
+	'FlxAiMcpKeyCreate'     => array( 'input' => array( 'name' => 'x' ) ),
+	'FlxAiMcpKeyRevoke'     => array( 'input' => array( 'id' => 'x' ) ),
+	'FlxAiConnections'      => array(),
+	'FlxAiConnectionSave'   => array( 'input' => array( 'url' => 'https://mcp.example.test/mcp' ) ),
+	'FlxAiConnectionDelete' => array( 'input' => array( 'id' => 'x' ) ),
+	'FlxAiConnectionRefresh' => array( 'input' => array( 'id' => 'x' ) ),
+	'FlxAiConnectionSignIn' => array( 'input' => array( 'id' => 'x' ) ),
+	'FlxAiConnectionSignOut' => array( 'input' => array( 'id' => 'x' ) ),
+	'FlxAiConnectionPermissions' => array( 'input' => array( 'id' => 'x', 'permissions' => array() ) ),
 );
 foreach ( $vars as $op => $v ) {
 	flxt_same( 'UNAUTHENTICATED', flxt_code( flxai_t_op( $op, $v ) ), "$op: visitor → UNAUTHENTICATED" );
@@ -391,6 +419,160 @@ $r = flxai_t_op( 'FlxAiTaskDelete', array( 'input' => array( 'id' => $tid ) ), $
 flxt_same( true, $r['data']['flxAiTaskDelete']['deleted'] ?? null, 'task delete: deleted' );
 flxt_same( null, flxai_task_get( $tid ), 'task delete: gone for the classic reader too' );
 
+// Skills: list, create, validate, change, folder files, tests, import, brand kit.
+$r = flxai_t_op( 'FlxAiSkills', array(), $admin );
+flxt_same( null, $r['errors'] ?? null, 'skills: no errors' );
+$list = array_column( $r['data']['flxAiSkills']['skills'] ?? array(), null, 'slug' );
+flxt_ok( count( $list ) > 3, 'skills: the shipped skills are listed', array_keys( $list ) );
+$shipped = (string) array_key_first( array_filter( $list, fn( $x ) => $x['bundled'] ) );
+flxt_ok( '' !== $shipped && false === $list[ $shipped ]['saved'], 'skills: a shipped skill has no site copy yet', $shipped );
+flxt_ok( false !== strpos( $list[ $shipped ]['exportUrl'] ?? '', '_wpnonce=' ), 'skills: the export link is signed' );
+$sc = static fn( array $r, string $f ) => $r['data'][ $f ]['errors'][0]['code'] ?? $r['errors'][0]['extensions']['code'] ?? null;
+$sf = static fn( array $r, string $f ) => $r['data'][ $f ]['errors'][0]['field'] ?? null;
+
+$r = flxai_t_op( 'FlxAiSkillSave', array( 'input' => array( 'name' => 'Donor review', 'description' => 'Use when asked for a donor review.', 'body' => '   ' ) ), $admin );
+flxt_same( 'INVALID_INPUT', $sc( $r, 'flxAiSkillSave' ), 'skill save: empty instructions are refused' );
+flxt_same( 'body', $sf( $r, 'flxAiSkillSave' ), 'skill save: the field is named' );
+$r = flxai_t_op( 'FlxAiSkillSave', array( 'input' => array( 'name' => 'x', 'slug' => 'my-claude-skill', 'description' => 'd', 'body' => 'b' ) ), $admin );
+flxt_same( 'INVALID_INPUT', $sc( $r, 'flxAiSkillSave' ), 'skill save: a reserved name is refused' );
+$r = flxai_t_op( 'FlxAiSkillSave', array( 'input' => array( 'slug' => $shipped, 'name' => 'x', 'description' => 'd', 'body' => 'b' ) ), $admin );
+flxt_same( 'slug', $sf( $r, 'flxAiSkillSave' ), 'skill save: a taken name is refused on the name field' );
+
+$r = flxai_t_op( 'FlxAiSkillSave', array( 'input' => array(
+	'name'        => 'Donor review',
+	'description' => 'Use when the user asks for a donor review or loyal donors.',
+	'body'        => "# Donor review\n\n1. Look at the donors.",
+	'tools'       => array( 'flxcrm_*', 'flxdonate_list' ),
+	'example'     => 'Example',
+) ), $admin );
+flxt_same( null, $r['errors'] ?? null, 'skill save: no errors' );
+flxt_same( array(), $r['data']['flxAiSkillSave']['errors'] ?? null, 'skill save: accepted' );
+$d = $r['data']['flxAiSkillSave']['skill'] ?? array();
+flxt_same( 'donor-review', $d['skill']['slug'] ?? null, 'skill save: the name comes from the title' );
+flxt_same( array( 'flxcrm_*', 'flxdonate_list' ), $d['tools'] ?? null, 'skill save: allowed tools' );
+flxt_same( 1, $d['skill']['version'] ?? null, 'skill save: version 1' );
+flxt_same( 'active', $d['skill']['status'] ?? null, 'skill save: on by default' );
+flxt_ok( null !== flxai_skill_get( 'donor-review' ), 'skill save: the classic reader sees it' );
+
+$r = flxai_t_op( 'FlxAiSkillSave', array( 'input' => array( 'current' => 'donor-review', 'body' => "# Donor review v2\n\nChanged." ) ), $admin );
+$d = $r['data']['flxAiSkillSave']['skill'] ?? array();
+flxt_same( 2, $d['skill']['version'] ?? null, 'skill update: version grows with the instructions' );
+flxt_same( 'Donor review', $d['skill']['name'] ?? null, 'skill update: fields left out keep their value' );
+flxt_same( array( 'flxcrm_*', 'flxdonate_list' ), $d['tools'] ?? null, 'skill update: tools kept' );
+
+$r = flxai_t_op( 'FlxAiSkillToggle', array( 'input' => array( 'slug' => 'donor-review' ) ), $admin );
+flxt_same( 'off', $r['data']['flxAiSkillToggle']['skill']['skill']['status'] ?? null, 'skill toggle: off' );
+$r = flxai_t_op( 'FlxAiSkillToggle', array( 'input' => array( 'slug' => 'donor-review' ) ), $admin );
+flxt_same( 'active', $r['data']['flxAiSkillToggle']['skill']['skill']['status'] ?? null, 'skill toggle: on again' );
+
+// Folder files.
+$r = flxai_t_op( 'FlxAiSkillFileSave', array( 'input' => array( 'slug' => 'donor-review', 'path' => 'references/guide.md', 'content' => "Line 1\r\nLine 2" ) ), $admin );
+flxt_same( array(), $r['data']['flxAiSkillFileSave']['errors'] ?? null, 'file save: accepted' );
+flxt_ok( in_array( 'references/guide.md', array_column( $r['data']['flxAiSkillFileSave']['skill']['files'] ?? array(), 'path' ), true ), 'file save: listed', $r['data']['flxAiSkillFileSave'] ?? null );
+$r = flxai_t_op( 'FlxAiSkillFile', array( 'slug' => 'donor-review', 'path' => 'references/guide.md' ), $admin );
+flxt_same( "Line 1\nLine 2", $r['data']['flxAiSkillFile']['content'] ?? null, 'file read: line endings are normalised' );
+flxt_same( true, $r['data']['flxAiSkillFile']['text'] ?? null, 'file read: text' );
+$r = flxai_t_op( 'FlxAiSkillFile', array( 'slug' => 'donor-review', 'path' => 'references/none.md' ), $admin );
+flxt_ok( array_key_exists( 'flxAiSkillFile', $r['data'] ?? array() ) && null === $r['data']['flxAiSkillFile'], 'file read: a missing file is null', $r );
+$r = flxai_t_op( 'FlxAiSkillFileSave', array( 'input' => array( 'slug' => 'donor-review', 'path' => '../evil.md', 'content' => 'x' ) ), $admin );
+flxt_same( 'INVALID_INPUT', $sc( $r, 'flxAiSkillFileSave' ), 'file save: a path outside the folder is refused' );
+flxt_same( 'path', $sf( $r, 'flxAiSkillFileSave' ), 'file save: the path field is named' );
+$r = flxai_t_op( 'FlxAiSkillFileSave', array( 'input' => array( 'slug' => 'donor-review', 'path' => 'scripts/run.php', 'content' => '<?php' ) ), $admin );
+flxt_same( 'INVALID_INPUT', $sc( $r, 'flxAiSkillFileSave' ), 'file save: a blocked file type is refused' );
+$r = flxai_t_op( 'FlxAiSkillFileUpload', array( 'input' => array( 'slug' => 'donor-review', 'fileName' => 'notes.txt', 'folder' => 'assets', 'contentBase64' => base64_encode( 'hello' ) ) ), $admin );
+flxt_ok( in_array( 'assets/notes.txt', array_column( $r['data']['flxAiSkillFileUpload']['skill']['files'] ?? array(), 'path' ), true ), 'file upload: stored in the folder', $r['data']['flxAiSkillFileUpload'] ?? null );
+$r = flxai_t_op( 'FlxAiSkillFileUpload', array( 'input' => array( 'slug' => 'donor-review', 'fileName' => 'a.txt', 'contentBase64' => '***' ) ), $admin );
+flxt_same( 'INVALID_INPUT', $sc( $r, 'flxAiSkillFileUpload' ), 'file upload: broken base64 is refused' );
+$r = flxai_t_op( 'FlxAiSkillFileDelete', array( 'input' => array( 'slug' => 'donor-review', 'path' => 'assets/notes.txt' ) ), $admin );
+flxt_ok( ! in_array( 'assets/notes.txt', array_column( $r['data']['flxAiSkillFileDelete']['skill']['files'] ?? array(), 'path' ), true ), 'file delete: gone' );
+$r = flxai_t_op( 'FlxAiSkillFileDelete', array( 'input' => array( 'slug' => 'donor-review', 'path' => 'assets/notes.txt' ) ), $admin );
+flxt_same( 'NOT_FOUND', $sc( $r, 'flxAiSkillFileDelete' ), 'file delete: an unknown file is NOT_FOUND' );
+$r = flxai_t_op( 'FlxAiSkillFileSave', array( 'input' => array( 'slug' => 'nope', 'path' => 'references/a.md', 'content' => 'x' ) ), $admin );
+flxt_same( 'NOT_FOUND', $sc( $r, 'flxAiSkillFileSave' ), 'file save: an unknown skill is NOT_FOUND' );
+
+// A shipped skill gets a site copy when its folder is edited.
+flxt_same( false, flxai_skill_is_saved( $shipped ), 'shipped skill: no copy before' );
+$r = flxai_t_op( 'FlxAiSkillFileSave', array( 'input' => array( 'slug' => $shipped, 'path' => 'references/site-note.md', 'content' => 'note' ) ), $admin );
+flxt_same( array(), $r['data']['flxAiSkillFileSave']['errors'] ?? null, 'shipped skill: a file can be added' );
+flxt_same( true, $r['data']['flxAiSkillFileSave']['skill']['skill']['saved'] ?? null, 'shipped skill: a site copy now exists (can be reset)' );
+$r = flxai_t_op( 'FlxAiSkillDelete', array( 'input' => array( 'slug' => $shipped ) ), $admin );
+flxt_same( true, $r['data']['flxAiSkillDelete']['deleted'] ?? null, 'shipped skill: reset' );
+flxt_same( false, flxai_skill_is_saved( $shipped ), 'shipped skill: the copy is gone after the reset' );
+
+// Tests.
+$r = flxai_t_op( 'FlxAiSkillTestRun', array( 'input' => array( 'slug' => 'donor-review', 'kind' => 'trigger' ) ), $admin );
+flxt_same( 'INVALID_INPUT', $sc( $r, 'flxAiSkillTestRun' ), 'test run: no prompts to run is refused (no model call)' );
+$r = flxai_t_op( 'FlxAiSkillEvalsSave', array( 'input' => array(
+	'slug'     => 'donor-review',
+	'triggers' => array( array( 'query' => 'Who are my loyal donors?' ), array( 'query' => 'Weather tomorrow', 'shouldTrigger' => false ), array( 'query' => '  ' ) ),
+	'cases'    => array( array( 'prompt' => 'Review my donors', 'expectations' => array( 'Lists donors', '' ) ), array( 'prompt' => '' ) ),
+) ), $admin );
+flxt_same( array(), $r['data']['flxAiSkillEvalsSave']['errors'] ?? null, 'evals save: accepted' );
+$ev = $r['data']['flxAiSkillEvalsSave']['skill']['evals'] ?? array();
+flxt_same( 2, count( $ev['triggers'] ?? array() ), 'evals save: empty prompts are dropped' );
+flxt_same( false, $ev['triggers'][1]['shouldTrigger'] ?? null, 'evals save: should-not-trigger kept' );
+flxt_same( true, $ev['triggers'][0]['shouldTrigger'] ?? null, 'evals save: should-trigger is the default' );
+flxt_same( array( 'Lists donors' ), $ev['cases'][0]['expectations'] ?? null, 'evals save: empty checks are dropped' );
+flxt_same( 1, count( $ev['cases'] ?? array() ), 'evals save: empty tests are dropped' );
+$r = flxai_t_op( 'FlxAiSkillTestRun', array( 'input' => array( 'slug' => 'nope', 'kind' => 'trigger' ) ), $admin );
+flxt_same( 'NOT_FOUND', $sc( $r, 'flxAiSkillTestRun' ), 'test run: an unknown skill is NOT_FOUND' );
+$r = flxai_t_op( 'FlxAiSkillTestRun', array( 'input' => array( 'slug' => 'donor-review', 'kind' => 'functional', 'id' => '99' ) ), $admin );
+flxt_same( 'INVALID_INPUT', $sc( $r, 'flxAiSkillTestRun' ), 'test run: an unknown functional test is refused' );
+$r = flxai_t_op( 'FlxAiSkill', array( 'slug' => 'donor-review' ), $admin );
+flxt_ok( array_key_exists( 'trigger', $r['data']['flxAiSkill']['results'] ?? array() ) && null === $r['data']['flxAiSkill']['results']['trigger'], 'skill: no trigger result before a run', $r );
+flxt_same( array(), $r['data']['flxAiSkill']['results']['functional'] ?? null, 'skill: no functional results before a run' );
+$r = flxai_t_op( 'FlxAiSkill', array( 'slug' => 'nope' ), $admin );
+flxt_ok( array_key_exists( 'flxAiSkill', $r['data'] ?? array() ) && null === $r['data']['flxAiSkill'], 'skill: an unknown skill is null', $r );
+
+// Import and the tools setting.
+$r = flxai_t_op( 'FlxAiSkillImport', array( 'input' => array( 'markdown' => "---\nname: imported-one\ndescription: Use when testing imports.\n---\n\n# Imported\n\nBody." ) ), $admin );
+flxt_same( array(), $r['data']['flxAiSkillImport']['errors'] ?? null, 'import: accepted' );
+flxt_same( array( 'imported-one' ), $r['data']['flxAiSkillImport']['result']['imported'] ?? null, 'import: the skill is written' );
+flxt_ok( null !== flxai_skill_get( 'imported-one' ), 'import: the classic reader sees it' );
+$r = flxai_t_op( 'FlxAiSkillImport', array( 'input' => array( 'markdown' => 'no front matter at all' ) ), $admin );
+flxt_same( 'INVALID_INPUT', $sc( $r, 'flxAiSkillImport' ), 'import: a file without front matter is refused' );
+$r = flxai_t_op( 'FlxAiSkillImport', array( 'input' => array( 'contentBase64' => '***', 'fileName' => 'x.zip' ) ), $admin );
+flxt_same( 'INVALID_INPUT', $sc( $r, 'flxAiSkillImport' ), 'import: broken base64 is refused' );
+$r = flxai_t_op( 'FlxAiSkillsSettings', array( 'input' => array( 'restrict' => true ) ), $admin );
+flxt_same( true, $r['data']['flxAiSkillsSettings']['overview']['restrict'] ?? null, 'skills setting: restrict on' );
+flxt_same( true, flxai_skills_restrict_tools(), 'skills setting: the classic reader sees it' );
+flxai_t_op( 'FlxAiSkillsSettings', array( 'input' => array( 'restrict' => false ) ), $admin );
+
+// Delete (the skills of this site go away; tasks that use them keep running without).
+$r = flxai_t_op( 'FlxAiSkillDelete', array( 'input' => array( 'slug' => 'imported-one' ) ), $admin );
+flxt_same( true, $r['data']['flxAiSkillDelete']['deleted'] ?? null, 'skill delete: deleted' );
+$r = flxai_t_op( 'FlxAiSkillDelete', array( 'input' => array( 'slug' => 'donor-review' ) ), $admin );
+flxt_same( null, flxai_skill_get( 'donor-review' ), 'skill delete: gone for the classic reader too' );
+$r = flxai_t_op( 'FlxAiSkillDelete', array( 'input' => array( 'slug' => 'donor-review' ) ), $admin );
+flxt_same( 'NOT_FOUND', $sc( $r, 'flxAiSkillDelete' ), 'skill delete: a second delete is NOT_FOUND' );
+
+// Brand kit.
+delete_option( 'flxai_brand_kit' );
+$r = flxai_t_op( 'FlxAiBrand', array(), $admin );
+flxt_same( null, $r['errors'] ?? null, 'brand: no errors' );
+$b = $r['data']['flxAiBrand'] ?? array();
+flxt_same( '', $b['name'] ?? null, 'brand: empty before the first save' );
+flxt_same( get_bloginfo( 'name' ), $b['defaultName'] ?? null, 'brand: the site name is the default' );
+$r = flxai_t_op( 'FlxAiBrandSave', array( 'input' => array( 'colorPrimary' => 'green' ) ), $admin );
+flxt_same( 'INVALID_INPUT', $sc( $r, 'flxAiBrandSave' ), 'brand save: a color that is not hex is refused' );
+$r = flxai_t_op( 'FlxAiBrandSave', array( 'input' => array(
+	'name'         => 'Green Turkey',
+	'colorPrimary' => '#0A5A40',
+	'partnerIds'   => array( 0, 7, 8 ),
+	'docs'         => array( array( 'name' => 'voice.md', 'content' => "# Voice\n\nWarm." ), array( 'name' => 'about-me.md', 'content' => 'About' ) ),
+) ), $admin );
+flxt_same( array(), $r['data']['flxAiBrandSave']['errors'] ?? null, 'brand save: accepted' );
+$b = $r['data']['flxAiBrandSave']['brand'] ?? array();
+flxt_same( 'Green Turkey', $b['name'] ?? null, 'brand save: name' );
+flxt_same( '#0A5A40', $b['colorPrimary'] ?? null, 'brand save: color' );
+flxt_same( array( 'about-me.md', 'voice.md' ), array_column( $b['docs'] ?? array(), 'name' ), 'brand save: documents' );
+flxt_same( 'Green Turkey', flxai_brand_raw()['profile']['name'] ?? null, 'brand save: the classic reader sees it' );
+$r = flxai_t_op( 'FlxAiBrandSave', array( 'input' => array( 'tagline' => 'Plant a tree', 'docs' => array( array( 'name' => 'voice.md', 'content' => '' ) ) ) ), $admin );
+$b = $r['data']['flxAiBrandSave']['brand'] ?? array();
+flxt_same( 'Green Turkey', $b['name'] ?? null, 'brand save: fields left out keep their value' );
+flxt_same( array( 'about-me.md' ), array_column( $b['docs'] ?? array(), 'name' ), 'brand save: an empty document is deleted' );
+delete_option( 'flxai_brand_kit' );
+
 // The classic settings form saves through the same service.
 if ( ! function_exists( 'flxai_save_settings' ) ) {
 	require_once FLXAI_DIR . 'includes/admin.php'; // only loaded in wp-admin requests
@@ -414,6 +596,232 @@ flxt_same( 'sk-or-classic-12345678', flxai_setting( 'key_openrouter' ), 'classic
 $r = flxai_t_op( 'FlxAiSettingsScreen', array(), $admin );
 flxt_ok( false === strpos( flxai_t_json( $r ), 'sk-or-classic-12345678' ), 'classic settings form: the key is not in the GraphQL response' );
 $_POST = array();
+
+// Per-system AI settings: the switch, the model and the fields a plugin declared with the SDK.
+flx_ai_settings( 'flx-test-sys', array(
+	'tone'  => array( 'type' => 'select', 'label' => 'Tone', 'default' => 'plain', 'options' => array( 'plain' => 'Plain', 'warm' => 'Warm' ) ),
+	'limit' => array( 'type' => 'number', 'label' => 'Limit', 'default' => 5, 'min' => 1, 'max' => 10 ),
+	'note'  => array( 'type' => 'textarea', 'label' => 'Note', 'help' => 'Shown to the model', 'default' => '' ),
+) );
+flx_ai_feature( 'flx-test-sys', 'summaries', 'Summaries', 'Write summaries', true );
+delete_option( FLX_AI_SDK_OPTION );
+$r = flxai_t_op( 'FlxAiSystemSettings', array( 'source' => 'flx-test-sys' ), $admin );
+flxt_same( null, $r['errors'] ?? null, 'system settings: no errors' );
+$ss = $r['data']['flxAiSystemSettings'] ?? array();
+flxt_same( true, $ss['on'] ?? null, 'system settings: AI on by default' );
+flxt_same( true, $ss['declared'] ?? null, 'system settings: declared with the SDK' );
+flxt_same( array( 'tone', 'limit', 'note', 'summaries' ), array_column( $ss['fields'] ?? array(), 'key' ), 'system settings: fields listed in order' );
+$byk = array_column( $ss['fields'] ?? array(), null, 'key' );
+flxt_same( 'plain', $byk['tone']['value'] ?? null, 'system settings: select default' );
+flxt_same( array( 'plain', 'warm' ), array_column( $byk['tone']['options'] ?? array(), 'id' ), 'system settings: select options' );
+flxt_same( 1.0, $byk['limit']['min'] ?? null, 'system settings: number min' );
+flxt_same( '1', $byk['summaries']['value'] ?? null, 'system settings: toggle default is "1"' );
+flxt_same( 'toggle', $byk['summaries']['type'] ?? null, 'system settings: toggle type' );
+$r = flxai_t_op( 'FlxAiSystemSettingsUpdate', array( 'input' => array(
+	'source' => 'flx-test-sys', 'on' => false, 'model' => 'claude:claude-haiku-5-5',
+	'values' => array( array( 'key' => 'tone', 'value' => 'warm' ), array( 'key' => 'limit', 'value' => '99' ), array( 'key' => 'summaries', 'value' => '0' ), array( 'key' => 'note', 'value' => 'Be brief' ) ),
+) ), $admin );
+flxt_same( array(), $r['data']['flxAiSystemSettingsUpdate']['errors'] ?? null, 'system settings update: no errors' );
+$ss  = $r['data']['flxAiSystemSettingsUpdate']['settings'] ?? array();
+$byk = array_column( $ss['fields'] ?? array(), null, 'key' );
+flxt_same( false, $ss['on'] ?? null, 'system settings update: AI off' );
+flxt_same( 'claude:claude-haiku-5-5', $ss['model'] ?? null, 'system settings update: model' );
+flxt_same( 'warm', $byk['tone']['value'] ?? null, 'system settings update: select saved' );
+flxt_same( '10', $byk['limit']['value'] ?? null, 'system settings update: a number is clamped to its max' );
+flxt_same( '0', $byk['summaries']['value'] ?? null, 'system settings update: toggle off' );
+flxt_same( false, flxai_source_enabled( 'flx-test-sys' ), 'system settings update: classic reader sees AI off' );
+flxt_same( 'warm', flx_ai_get( 'flx-test-sys', 'tone' ), 'system settings update: the plugin reads the value' );
+flxt_same( false, (bool) flx_ai_get( 'flx-test-sys', 'summaries' ), 'system settings update: the plugin reads the toggle' );
+$r = flxai_t_op( 'FlxAiSystemSettingsUpdate', array( 'input' => array( 'source' => 'flx-test-sys', 'values' => array( array( 'key' => 'tone', 'value' => 'plain' ) ) ) ), $admin );
+$ss = $r['data']['flxAiSystemSettingsUpdate']['settings'] ?? array();
+flxt_same( false, $ss['on'] ?? null, 'system settings update: the switch left out keeps its state' );
+flxt_same( 'claude:claude-haiku-5-5', $ss['model'] ?? null, 'system settings update: the model left out is kept' );
+flxt_same( '10', array_column( $ss['fields'] ?? array(), null, 'key' )['limit']['value'] ?? null, 'system settings update: fields left out keep their value' );
+$r = flxai_t_op( 'FlxAiSystemSettingsUpdate', array( 'input' => array( 'source' => 'flx-test-sys', 'on' => true, 'model' => '' ) ), $admin );
+$ss = $r['data']['flxAiSystemSettingsUpdate']['settings'] ?? array();
+flxt_same( array( true, '' ), array( $ss['on'] ?? null, $ss['model'] ?? null ), 'system settings update: back on, default model' );
+$r = flxai_t_op( 'FlxAiSystemSettingsUpdate', array( 'input' => array( 'source' => 'flx-test-sys', 'values' => array( array( 'key' => 'nope', 'value' => 'x' ) ) ) ), $admin );
+flxt_same( 'INVALID_INPUT', $r['data']['flxAiSystemSettingsUpdate']['errors'][0]['code'] ?? $r['errors'][0]['extensions']['code'] ?? null, 'system settings update: an undeclared setting is refused' );
+$r = flxai_t_op( 'FlxAiSystemSettings', array( 'source' => 'flx-no-sdk' ), $admin );
+flxt_same( false, $r['data']['flxAiSystemSettings']['declared'] ?? null, 'system settings: a plugin without SDK settings is not declared' );
+flxt_same( array(), $r['data']['flxAiSystemSettings']['fields'] ?? null, 'system settings: and has no fields' );
+delete_option( FLX_AI_SDK_OPTION );
+$o = (array) get_option( 'flxai_settings', array() );
+unset( $o['sources_off'], $o['source_models'] );
+update_option( 'flxai_settings', $o );
+$GLOBALS['flxai_settings_cache'] = null;
+
+// MCP server page: switch, keys (shown once), revoke, activity.
+delete_option( 'flxai_mcp_keys' );
+delete_option( 'flxai_mcp_log' );
+update_option( 'flxai_mcp_log', array( array( 't' => time(), 'u' => $admin, 'tool' => 'order_summary', 'ok' => true, 'on' => '42' ) ), false );
+$r = flxai_t_op( 'FlxAiMcp', array(), $admin );
+flxt_same( null, $r['errors'] ?? null, 'mcp: no errors' );
+$m = $r['data']['flxAiMcp'] ?? array();
+flxt_same( array(), $m['keys'] ?? null, 'mcp: no keys yet' );
+flxt_same( flxai_mcp_url(), $m['server']['url'] ?? null, 'mcp: server url' );
+flxt_same( count( flxai_mcp_tools() ), $m['server']['toolCount'] ?? null, 'mcp: tool count' );
+flxt_same( 'order_summary', $m['log'][0]['tool'] ?? null, 'mcp: activity listed' );
+flxt_same( true, $m['log'][0]['ok'] ?? null, 'mcp: activity result' );
+$r = flxai_t_op( 'FlxAiMcpServerUpdate', array( 'input' => array( 'enabled' => true, 'oauth' => false ) ), $admin );
+flxt_same( array(), $r['data']['flxAiMcpServerUpdate']['errors'] ?? null, 'mcp server update: no errors' );
+flxt_same( true, $r['data']['flxAiMcpServerUpdate']['overview']['server']['enabled'] ?? null, 'mcp server update: on' );
+flxt_same( false, $r['data']['flxAiMcpServerUpdate']['overview']['server']['oauthActive'] ?? null, 'mcp server update: OAuth off' );
+flxt_same( true, flxai_mcp_enabled(), 'mcp server update: classic reader sees it' );
+flxt_same( false, flxai_oauth_enabled(), 'mcp server update: classic OAuth reader sees it' );
+flxai_t_op( 'FlxAiMcpServerUpdate', array( 'input' => array( 'enabled' => true, 'oauth' => true ) ), $admin );
+flxt_same( true, flxai_oauth_enabled(), 'mcp server update: OAuth back on' );
+$all  = array_keys( flxai_mcp_tools() );
+$tool = (string) ( $all[0] ?? '' );
+$r    = flxai_t_op( 'FlxAiMcpKeyCreate', array( 'input' => array( 'name' => 'Claude – Test', 'tools' => array( $tool, 'no_such_tool' ) ) ), $admin );
+$c    = $r['data']['flxAiMcpKeyCreate'] ?? array();
+flxt_same( array(), $c['errors'] ?? null, 'mcp key create: no errors' );
+$secret = (string) ( $c['key'] ?? '' );
+flxt_ok( 0 === strpos( $secret, 'flxmcp_' ) && strlen( $secret ) > 30, 'mcp key create: the key is in the result' );
+$k = $c['overview']['keys'][0] ?? array();
+flxt_same( 'Claude – Test', $k['name'] ?? null, 'mcp key create: name' );
+flxt_same( array( $tool ), $k['tools'] ?? null, 'mcp key create: limited to known tools only' );
+flxt_same( substr( $secret, -4 ), $k['hint'] ?? null, 'mcp key create: hint' );
+flxt_ok( array_key_exists( 'lastUsed', $k ) && null === $k['lastUsed'], 'mcp key create: never used' );
+flxt_same( true, $k['canUse'] ?? null, 'mcp key create: the administrator may use MCP' );
+flxt_ok( is_array( flxai_mcp_find_key( $secret ) ), 'mcp key create: the server accepts the key' );
+$r = flxai_t_op( 'FlxAiMcp', array(), $admin );
+flxt_ok( false === strpos( flxai_t_json( $r ), $secret ), 'mcp: the key is not in a later response' );
+flxt_ok( false === strpos( (string) wp_json_encode( get_option( 'flxai_mcp_keys' ) ), $secret ), 'mcp key create: only the hash is stored' );
+$id = (string) ( $k['id'] ?? '' );
+$r  = flxai_t_op( 'FlxAiMcpKeyRevoke', array( 'input' => array( 'id' => 'nope' ) ), $admin );
+flxt_same( 'NOT_FOUND', $r['data']['flxAiMcpKeyRevoke']['errors'][0]['code'] ?? $r['errors'][0]['extensions']['code'] ?? null, 'mcp key revoke: unknown key' );
+$r = flxai_t_op( 'FlxAiMcpKeyRevoke', array( 'input' => array( 'id' => $id ) ), $admin );
+flxt_same( array(), $r['data']['flxAiMcpKeyRevoke']['overview']['keys'] ?? null, 'mcp key revoke: gone' );
+flxt_same( null, flxai_mcp_find_key( $secret ), 'mcp key revoke: the server refuses the key' );
+// The classic form creates through the same service.
+if ( ! function_exists( 'flxai_page_mcp' ) ) {
+	require_once FLXAI_DIR . 'includes/admin-mcp.php';
+}
+$r = FLXAI_Mcp_Service::create_key( '', array() );
+flxt_same( 'AI', $r->overview->keys[0]->name ?? null, 'mcp key create: empty name falls back' );
+flxt_same( array(), $r->overview->keys[0]->tools ?? null, 'mcp key create: no tools means all' );
+delete_option( 'flxai_mcp_keys' );
+delete_option( 'flxai_mcp_log' );
+
+// Connections: add, secrets stay write-only, refresh (mocked server), permissions, OAuth, delete.
+delete_option( 'flxai_mcpc_servers' );
+$GLOBALS['flxai_mcpc_mock'] = array( 'calls' => 0, 'fail' => false );
+add_filter(
+	'pre_http_request',
+	static function ( $pre, $args, $url ) {
+		if ( 0 !== strpos( (string) $url, 'https://mcp.example.test/' ) ) {
+			return $pre;
+		}
+		$m = &$GLOBALS['flxai_mcpc_mock'];
+		++$m['calls'];
+		if ( $m['fail'] ) {
+			return array( 'headers' => array(), 'body' => '', 'response' => array( 'code' => 401, 'message' => 'Unauthorized' ), 'cookies' => array(), 'filename' => null );
+		}
+		$p   = json_decode( (string) ( $args['body'] ?? '' ), true );
+		$res = array();
+		if ( 'initialize' === ( $p['method'] ?? '' ) ) {
+			$res = array( 'protocolVersion' => '2025-06-18', 'capabilities' => new stdClass(), 'serverInfo' => array( 'name' => 'Mock', 'version' => '1.2' ) );
+		} elseif ( 'tools/list' === ( $p['method'] ?? '' ) ) {
+			$res = array( 'tools' => array(
+				array( 'name' => 'search', 'title' => 'Search', 'description' => 'Find things', 'inputSchema' => array( 'type' => 'object' ), 'annotations' => array( 'readOnlyHint' => true ) ),
+				array( 'name' => 'create-item', 'description' => 'Add a thing', 'inputSchema' => array( 'type' => 'object' ) ),
+			) );
+		}
+		$body = wp_json_encode( array( 'jsonrpc' => '2.0', 'id' => $p['id'] ?? null, 'result' => $res ) );
+		return array( 'headers' => array( 'content-type' => 'application/json' ), 'body' => (string) $body, 'response' => array( 'code' => 200, 'message' => 'OK' ), 'cookies' => array(), 'filename' => null );
+	},
+	10,
+	3
+);
+$r = flxai_t_op( 'FlxAiConnections', array(), $admin );
+flxt_same( array(), $r['data']['flxAiConnections']['connections'] ?? null, 'connections: none yet' );
+flxt_ok( in_array( 'editor', array_column( $r['data']['flxAiConnections']['roles'] ?? array(), 'id' ), true ), 'connections: roles for the form' );
+flxt_ok( ! in_array( 'administrator', array_column( $r['data']['flxAiConnections']['roles'] ?? array(), 'id' ), true ), 'connections: administrators are not listed' );
+$r = flxai_t_op( 'FlxAiConnectionSave', array( 'input' => array( 'name' => 'Bad', 'url' => 'http://insecure.example.test/mcp' ) ), $admin );
+flxt_same( 'INVALID_INPUT', $r['data']['flxAiConnectionSave']['errors'][0]['code'] ?? $r['errors'][0]['extensions']['code'] ?? null, 'connection save: a non-https address is refused' );
+add_filter( 'flxai_mcpc_allow_local', '__return_true' ); // the sandbox cannot resolve the mock host
+$r = flxai_t_op( 'FlxAiConnectionSave', array( 'input' => array( 'name' => 'Linear Test', 'url' => 'https://mcp.example.test/mcp', 'auth' => 'bearer', 'secret' => 'tok-super-secret-123', 'scope' => 'shared', 'roles' => array( 'editor', 'ghost' ) ) ), $admin );
+flxt_same( array(), $r['data']['flxAiConnectionSave']['errors'] ?? null, 'connection save: no errors' );
+$c = $r['data']['flxAiConnectionSave']['connection'] ?? array();
+flxt_same( 'linear_test', $c['id'] ?? null, 'connection save: id from the name' );
+flxt_same( 'connected', $c['status'] ?? null, 'connection save: connected after the tool list loaded' );
+flxt_same( true, $c['hasSecret'] ?? null, 'connection save: secret saved' );
+flxt_same( array( 'editor' ), $c['roles'] ?? null, 'connection save: unknown roles dropped' );
+flxt_same( 'Mock', $c['serverName'] ?? null, 'connection save: server info' );
+flxt_same( array( 'search', 'create-item' ), array_column( $c['tools'] ?? array(), 'name' ), 'connection save: tools listed' );
+flxt_same( 'mcp_linear_test_search', $c['tools'][0]['toolName'] ?? null, 'connection save: chat tool name' );
+flxt_same( 2, $c['toolsOn'] ?? null, 'connection save: tools on' );
+flxt_ok( false === strpos( flxai_t_json( $r ), 'tok-super-secret-123' ), 'connection save: the secret is not in the response' );
+flxt_ok( false === strpos( (string) wp_json_encode( get_option( 'flxai_mcpc_servers' ) ), 'tok-super-secret-123' ), 'connection save: the secret is stored encrypted' );
+flxt_same( 'tok-super-secret-123', flxai_decrypt( flxai_mcpc_get( 'linear_test' )['secret'] ), 'connection save: the classic reader decrypts it' );
+$r = flxai_t_op( 'FlxAiConnectionSave', array( 'input' => array( 'id' => 'linear_test', 'name' => 'Linear', 'secret' => '' ) ), $admin );
+$c = $r['data']['flxAiConnectionSave']['connection'] ?? array();
+flxt_same( 'Linear', $c['name'] ?? null, 'connection save: name changed' );
+flxt_same( true, $c['hasSecret'] ?? null, 'connection save: an empty secret keeps the saved one' );
+flxt_same( 'https://mcp.example.test/mcp', $c['url'] ?? null, 'connection save: fields left out keep their value' );
+flxt_same( 'shared', $c['scope'] ?? null, 'connection save: scope kept' );
+// Permissions.
+$r = flxai_t_op( 'FlxAiConnectionPermissions', array( 'input' => array( 'id' => 'linear_test', 'permissions' => array( array( 'tool' => 'create-item', 'permission' => 'allow' ) ) ) ), $admin );
+flxt_same( 'INVALID_INPUT', $r['data']['flxAiConnectionPermissions']['errors'][0]['code'] ?? $r['errors'][0]['extensions']['code'] ?? null, 'connection permissions: a tool that changes data cannot run without asking' );
+$r = flxai_t_op( 'FlxAiConnectionPermissions', array( 'input' => array( 'id' => 'linear_test', 'permissions' => array( array( 'tool' => 'nope', 'permission' => 'ask' ) ) ) ), $admin );
+flxt_same( 'INVALID_INPUT', $r['data']['flxAiConnectionPermissions']['errors'][0]['code'] ?? $r['errors'][0]['extensions']['code'] ?? null, 'connection permissions: unknown tool' );
+$r = flxai_t_op( 'FlxAiConnectionPermissions', array( 'input' => array( 'id' => 'linear_test', 'permissions' => array( array( 'tool' => 'search', 'permission' => 'allow' ), array( 'tool' => 'create-item', 'permission' => 'off' ) ) ) ), $admin );
+$c = $r['data']['flxAiConnectionPermissions']['connection'] ?? array();
+flxt_same( array( 'allow', 'off' ), array_column( $c['tools'] ?? array(), 'permission' ), 'connection permissions: saved' );
+flxt_same( 1, $c['toolsOn'] ?? null, 'connection permissions: tools on' );
+flxt_same( 'allow', flxai_mcpc_perm( flxai_mcpc_get( 'linear_test' ), 'search' ), 'connection permissions: classic reader sees it' );
+// Refresh: a failing server is reported in the connection.
+$GLOBALS['flxai_mcpc_mock']['fail'] = true;
+delete_transient( 'flxai_mcpc_sess_linear_test' );
+$r = flxai_t_op( 'FlxAiConnectionRefresh', array( 'input' => array( 'id' => 'linear_test' ) ), $admin );
+$c = $r['data']['flxAiConnectionRefresh']['connection'] ?? array();
+flxt_same( 'error', $c['status'] ?? null, 'connection refresh: failure shows as error' );
+flxt_ok( '' !== ( $c['error'] ?? '' ), 'connection refresh: the error text is returned' );
+flxt_same( 2, count( $c['tools'] ?? array() ), 'connection refresh: the old tool list stays' );
+$GLOBALS['flxai_mcpc_mock']['fail'] = false;
+delete_transient( 'flxai_mcpc_sess_linear_test' );
+$r = flxai_t_op( 'FlxAiConnectionRefresh', array( 'input' => array( 'id' => 'linear_test' ) ), $admin );
+flxt_same( 'connected', $r['data']['flxAiConnectionRefresh']['connection']['status'] ?? null, 'connection refresh: recovers' );
+$r = flxai_t_op( 'FlxAiConnectionRefresh', array( 'input' => array( 'id' => 'nope' ) ), $admin );
+flxt_same( 'NOT_FOUND', $r['data']['flxAiConnectionRefresh']['errors'][0]['code'] ?? $r['errors'][0]['extensions']['code'] ?? null, 'connection refresh: unknown connection' );
+// OAuth: sign-in is only for OAuth connections; sign out forgets the tokens.
+$r = flxai_t_op( 'FlxAiConnectionSignIn', array( 'input' => array( 'id' => 'linear_test' ) ), $admin );
+flxt_same( 'INVALID_INPUT', $r['data']['flxAiConnectionSignIn']['errors'][0]['code'] ?? $r['errors'][0]['extensions']['code'] ?? null, 'connection sign-in: not an OAuth connection' );
+$r = flxai_t_op( 'FlxAiConnectionSave', array( 'input' => array( 'name' => 'OAuth One', 'url' => 'https://mcp.example.test/oauth', 'auth' => 'oauth', 'clientId' => 'cid-1', 'clientSecret' => 'client-secret-xyz', 'enabled' => false ) ), $admin );
+$o = $r['data']['flxAiConnectionSave']['connection'] ?? array();
+flxt_same( 'off', $o['status'] ?? null, 'oauth connection: off when not enabled' );
+flxt_same( 'cid-1', $o['clientId'] ?? null, 'oauth connection: client id returned' );
+flxt_same( true, $o['hasClientSecret'] ?? null, 'oauth connection: client secret saved' );
+flxt_ok( false === strpos( flxai_t_json( $r ), 'client-secret-xyz' ), 'oauth connection: the client secret is not in the response' );
+$s = flxai_mcpc_get( 'oauth_one' );
+$s['oauth']['access'] = flxai_encrypt( 'access-token-abc' );
+flxai_mcpc_put( $s );
+$r = flxai_t_op( 'FlxAiConnections', array(), $admin );
+$byid = array_column( $r['data']['flxAiConnections']['connections'] ?? array(), null, 'id' );
+flxt_same( true, $byid['oauth_one']['signedIn'] ?? null, 'oauth connection: signed in' );
+flxt_ok( false === strpos( flxai_t_json( $r ), 'access-token-abc' ), 'oauth connection: the access token is not in the response' );
+$r = flxai_t_op( 'FlxAiConnectionSignOut', array( 'input' => array( 'id' => 'oauth_one' ) ), $admin );
+flxt_same( false, $r['data']['flxAiConnectionSignOut']['connection']['signedIn'] ?? null, 'oauth connection: signed out' );
+flxt_same( 'cid-1', $r['data']['flxAiConnectionSignOut']['connection']['clientId'] ?? null, 'oauth connection: sign-out keeps the client id' );
+// Another user's personal connection can be seen but not changed.
+$other = (int) wp_insert_user( array( 'user_login' => 'flxai_adm_' . wp_rand(), 'user_email' => 'flxai_adm_' . wp_rand() . '@example.com', 'user_pass' => wp_generate_password(), 'role' => 'administrator' ) );
+$r     = flxai_t_op( 'FlxAiConnectionSave', array( 'input' => array( 'name' => 'Mine', 'url' => 'https://mcp.example.test/mine', 'enabled' => false ) ), $other );
+flxt_same( 'personal', $r['data']['flxAiConnectionSave']['connection']['scope'] ?? null, 'connection save: personal by default' );
+$r = flxai_t_op( 'FlxAiConnections', array(), $admin );
+$byid = array_column( $r['data']['flxAiConnections']['connections'] ?? array(), null, 'id' );
+flxt_same( false, $byid['mine']['editable'] ?? null, 'connections: another user\'s personal connection is read-only' );
+flxt_same( true, $byid['linear_test']['editable'] ?? null, 'connections: a shared connection is editable' );
+$r = flxai_t_op( 'FlxAiConnectionDelete', array( 'input' => array( 'id' => 'mine' ) ), $admin );
+flxt_same( 'FORBIDDEN', $r['data']['flxAiConnectionDelete']['errors'][0]['code'] ?? $r['errors'][0]['extensions']['code'] ?? null, 'connection delete: another user\'s personal connection is refused' );
+require_once ABSPATH . 'wp-admin/includes/user.php';
+wp_delete_user( $other );
+$r = flxai_t_op( 'FlxAiConnectionDelete', array( 'input' => array( 'id' => 'linear_test' ) ), $admin );
+flxt_same( true, $r['data']['flxAiConnectionDelete']['deleted'] ?? null, 'connection delete: deleted' );
+flxt_same( null, flxai_mcpc_get( 'linear_test' ), 'connection delete: the classic reader sees it gone' );
+remove_all_filters( 'pre_http_request' );
+remove_filter( 'flxai_mcpc_allow_local', '__return_true' );
+delete_option( 'flxai_mcpc_servers' );
 
 // Persisted operations run by queryId (strict mode).
 $hash = array_search( $GLOBALS['flxai_ops']['FlxAiSystems'], (array) json_decode( (string) file_get_contents( FLXAI_DIR . 'graphql/persisted-queries.json' ), true ), true );

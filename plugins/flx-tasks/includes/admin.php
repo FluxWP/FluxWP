@@ -42,11 +42,16 @@ add_action(
  * view from the profile page. Needs Flux GraphQL.
  */
 function flxg_flux_available() {
-	return file_exists( FLXG_DIR . 'assets/flux/flux-modules.js' ) && function_exists( 'flx_gql_ready' ) && flx_gql_ready();
+	return file_exists( FLXG_DIR . 'assets/flux/flux-modules.js' ) && function_exists( 'flx_gql_ready' ) && function_exists( 'flx_admin_screen' ) && flx_gql_ready();
+}
+
+/** The user has the new view (any page). */
+function flxg_flux_ui_on() {
+	return flxg_flux_available() && 'classic' !== get_user_meta( get_current_user_id(), 'flxg_ui', true );
 }
 
 function flxg_flux_ui() {
-	return flxg_flux_available() && flxg_is_app_screen() && 'classic' !== get_user_meta( get_current_user_id(), 'flxg_ui', true );
+	return flxg_is_app_screen() && flxg_flux_ui_on();
 }
 
 /** Link that switches the current user between the views. */
@@ -71,57 +76,65 @@ add_action(
 	}
 );
 
-/** The chunked bundle loads as an ES module (WP 6.5 script modules are not needed for one handle). */
-function flxg_flux_module_tag( $tag, $handle ) {
-	if ( 'flxg-flux' !== $handle ) {
-		return $tag;
-	}
-	return (string) preg_replace_callback(
-		'/<script\b[^>]*\ssrc=[^>]*>/',
-		static function ( $m ) {
-			$open = (string) preg_replace( '/\stype=("|\')[^"\']*\1/', '', $m[0] );
-			return (string) preg_replace( '/^<script\b/', '<script type="module"', $open );
-		},
-		$tag,
-		1
+/** Mount options of the React screen (Flux GraphQL's screen shell adds rest, nonce, locale, admin URL). */
+function flxg_flux_options() {
+	return array(
+		'siteName'   => flxg_brand_name(),
+		'appIcon'    => function_exists( 'flxa_logo_file_url' ) ? flxa_logo_file_url( 'flx-tasks.svg' ) : plugins_url( 'assets/icon.svg', FLXG_FILE ),
+		'accent'     => flxg_color( flxg_setting( 'accent' ), function_exists( 'flxa_accent' ) ? flxa_accent() : '#1F2937' ),
+		'aiEmbed'    => flxg_flux_ai_possible(),
+		'classicUrl' => flxg_ui_switch_url( 'classic' ),
 	);
 }
 
-function flxg_flux_assets() {
-	$ver   = FLXG_VERSION . '-' . (int) filemtime( FLXG_DIR . 'assets/flux/flux-modules.js' );
-	$page  = sanitize_key( $_GET['page'] ?? '' ); // phpcs:ignore
-	$start = 'flx-tasks-pano' === $page ? 'dashboard' : ( 'flx-tasks-ayarlar' === $page ? 'settings' : '' );
-	// Asistan paneli ve model seçici: klasik görünümle aynı Flux AI parçaları.
-	$ai_embed = current_user_can( 'flxg_ai' ) && function_exists( 'flxai_chat_embed_enqueue' ) && flxai_chat_embed_enqueue();
+/** The assistant panel can open (Flux AI's shared chat). */
+function flxg_flux_ai_possible() {
+	return current_user_can( 'flxg_ai' ) && function_exists( 'flxai_chat_embed_enqueue' );
+}
+
+/** First load: the assistant panel and model picker are the same Flux AI parts as in the classic view. */
+function flxg_flux_enqueue() {
+	$ai_embed = flxg_flux_ai_possible() && flxai_chat_embed_enqueue();
 	if ( function_exists( 'flxai_enqueue_model_picker' ) && current_user_can( 'manage_options' ) ) {
 		flxai_enqueue_model_picker();
 	}
-	$opts = array(
-		'module'     => 'flxg-tasks',
-		'rest'       => rest_url(),
-		'nonce'      => wp_create_nonce( 'wp_rest' ),
-		'locale'     => get_user_locale(),
-		'siteName'   => flxg_brand_name(),
-		'adminUrl'   => admin_url(),
-		'appIcon'    => function_exists( 'flxa_logo_file_url' ) ? flxa_logo_file_url( 'flx-tasks.svg' ) : plugins_url( 'assets/icon.svg', FLXG_FILE ),
-		'accent'     => flxg_color( flxg_setting( 'accent' ), function_exists( 'flxa_accent' ) ? flxa_accent() : '#1F2937' ),
-		'aiEmbed'    => ! empty( $ai_embed ),
-		'startPage'  => $start,
-		'classicUrl' => flxg_ui_switch_url( 'classic' ),
-	);
-	wp_enqueue_style( 'flxg-flux', FLXG_URL . 'assets/flux/flux-modules.css', array(), $ver );
-	wp_enqueue_script( 'flxg-flux', FLXG_URL . 'assets/flux/flux-modules.js', array(), $ver, true );
-	if ( is_readable( FLXG_DIR . 'assets/flux/chunks.json' ) ) {
-		add_filter( 'script_loader_tag', 'flxg_flux_module_tag', 10, 2 );
-		wp_add_inline_script(
-			'flxg-flux',
-			'(function(){var slot=window.FluxModulesOptions||(window.FluxModulesOptions={});slot.id="flxg-app";slot.opts=' . wp_json_encode( $opts ) . ';function go(){if(slot.done||!window.FluxModules)return;var el=document.getElementById(slot.id);if(!el)return;slot.done=true;try{window.FluxModules.mount(el,slot.opts);}catch(e){el.textContent=String(e&&e.message||e);}}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);go();})();',
-			'before'
-		);
-		return;
-	}
-	wp_add_inline_script( 'flxg-flux', '(function(){var el=document.getElementById("flxg-app");if(el&&window.FluxModules){try{window.FluxModules.mount(el,' . wp_json_encode( $opts ) . ');}catch(e){el.textContent=String(e&&e.message||e);}}})();' );
+	return array( 'aiEmbed' => ! empty( $ai_embed ) );
 }
+
+/*
+ * The three Tasks pages open through Flux GraphQL's screen shell (includes/screens.php there): full layout over
+ * wp-admin, first queries preloaded, and other Flux screens open in place from links.
+ */
+add_action(
+	'admin_menu',
+	static function () {
+		if ( ! function_exists( 'flx_admin_screen' ) ) {
+			return;
+		}
+		$base = array(
+			'module'        => 'flxg-tasks',
+			'assets_dir'    => FLXG_DIR . 'assets/flux/',
+			'assets_url'    => FLXG_URL . 'assets/flux/',
+			'version'       => FLXG_VERSION,
+			'enabled'       => 'flxg_flux_ui_on',
+			'options'       => 'flxg_flux_options',
+			'enqueue'       => 'flxg_flux_enqueue',
+			'layout'        => 'full',
+			'container_id'  => 'flxg-app', // Flux Admin's app mode places this element next to its rail.
+			'theme'         => 'auto',
+			'theme_storage' => 'flxg-theme',
+			'body_class'    => 'flxg-page',
+			// The assistant panel needs Flux AI's chat on the page; without it the page loads normally.
+			'needs'         => static function () {
+				return flxg_flux_ai_possible() ? array( 'FlxAIChat' ) : array();
+			},
+		);
+		flx_admin_screen( 'flx-tasks', $base );
+		flx_admin_screen( 'flx-tasks-pano', array( 'start' => 'dashboard' ) + $base );
+		flx_admin_screen( 'flx-tasks-ayarlar', array( 'start' => 'settings' ) + $base );
+	},
+	20
+);
 
 add_action( 'admin_enqueue_scripts', 'flxg_admin_assets' );
 function flxg_admin_assets() {
@@ -129,8 +142,7 @@ function flxg_admin_assets() {
 		return;
 	}
 	if ( flxg_flux_ui() ) {
-		flxg_flux_assets();
-		return;
+		return; // Flux GraphQL's screen shell enqueues the screen.
 	}
 	$page  = sanitize_key( $_GET['page'] ?? '' ); // phpcs:ignore
 	$start = 'flx-tasks-pano' === $page ? 'dashboard' : ( 'flx-tasks-ayarlar' === $page ? 'settings' : '' );
@@ -170,12 +182,7 @@ function flxg_admin_assets() {
 
 /* Uygulama tam ekran: WP menüsü ve çubuğu üstünde kendi arayüzü. */
 function flxg_render_app() {
-	if ( flxg_flux_ui() ) {
-		// Klasik görünümle aynı tam ekran (app.css yüklenmez; kabuk kuralları burada).
-		echo '<style>html.flxg-lock,html.flxg-lock body{overflow:hidden!important;height:100%}html.flxg-lock #wpadminbar,html.flxg-lock #adminmenumain,html.flxg-lock #wpfooter,html.flxg-lock #screen-meta-links,html.flxg-lock .notice,html.flxg-lock .update-nag,html.flxg-lock #wpbody-content>.error,html.flxg-lock #wpbody-content>.updated{display:none!important}html.flxg-lock #wpcontent,html.flxg-lock #wpbody-content{margin:0!important;padding:0!important}#flxg-app{position:fixed;inset:0;z-index:100000;overflow:hidden;background:#f6f7f9}#flxg-app[data-theme=dark]{background:#121417}</style>';
-		echo '<script>document.documentElement.classList.add("flxg-lock");</script>';
-		echo '<div id="flxg-app"><noscript>' . esc_html__( 'JavaScript is required for Tasks.', 'flx-tasks' ) . '</noscript></div>';
-		echo "<script>(function(d,w){var m;try{m=localStorage.getItem('flxg-theme')}catch(e){}m=m||'auto';var k=m==='dark'||(m==='auto'&&!!w.matchMedia&&w.matchMedia('(prefers-color-scheme: dark)').matches);d.getElementById('flxg-app').dataset.theme=k?'dark':'light'})(document,window)</script>";
+	if ( flxg_flux_ui() && flx_admin_screen_render() ) {
 		return;
 	}
 	echo '<script>document.documentElement.classList.add("flxg-lock");</script>';

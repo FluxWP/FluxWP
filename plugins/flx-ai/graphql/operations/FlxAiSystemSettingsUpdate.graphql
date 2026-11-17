@@ -1,0 +1,12 @@
+mutation FlxAiSystemSettingsUpdate($input: FlxAiSystemSettingsUpdateInput!) {
+  flxAiSystemSettingsUpdate(input: $input) {
+    settings {
+      ...FlxAiSystemSettingsFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

@@ -227,6 +227,14 @@ msgstr ""
 msgid "You are not allowed to manage plugins."
 msgstr ""
 
+#: includes/screens.php
+msgid "This screen needs JavaScript."
+msgstr ""
+
+#: includes/screens.php
+msgid "Loading the screen…"
+msgstr ""
+
 #: includes/upload.php
 msgid "Uploads are not accepted for this screen."
 msgstr ""
