@@ -1,0 +1,74 @@
+/* Minimal styles. Colours come from the WordPress theme palette (--wp--preset--color--*). */
+:root {
+  --bg: var(--wp--preset--color--base, #f6f3ee);
+  --fg: var(--wp--preset--color--contrast, #1f2328);
+  --accent: var(--wp--preset--color--primary, #2f6f5e);
+  --muted: color-mix(in srgb, var(--fg) 60%, var(--bg));
+  --line: color-mix(in srgb, var(--fg) 12%, var(--bg));
+  --card: color-mix(in srgb, #fff 70%, var(--bg));
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #15171a;
+    --fg: #e8e6e1;
+    --card: #1d2024;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 17px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+a { color: var(--accent); }
+img { max-width: 100%; height: auto; }
+.wrap { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+.site-header { border-bottom: 1px solid var(--line); background: var(--card); position: sticky; top: 0; z-index: 10; }
+.site-header .wrap { display: flex; align-items: center; gap: 24px; min-height: 64px; flex-wrap: wrap; }
+.brand { font-weight: 700; font-size: 20px; color: var(--fg); text-decoration: none; display: flex; align-items: center; }
+.brand img { max-height: 40px; width: auto; }
+.menu { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 18px; }
+.menu li { position: relative; }
+.menu a { color: var(--fg); text-decoration: none; font-weight: 500; }
+.menu a:hover { color: var(--accent); }
+.menu ul { display: none; position: absolute; top: 100%; left: -12px; min-width: 200px; list-style: none; margin: 0; padding: 8px 12px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; }
+.menu li:hover > ul, .menu li:focus-within > ul { display: block; }
+.nav { flex: 1; }
+.nav-toggle { position: absolute; opacity: 0; pointer-events: none; }
+.nav-button { display: none; cursor: pointer; width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--line); position: relative; }
+.nav-button span, .nav-button span::before, .nav-button span::after { position: absolute; left: 11px; width: 16px; height: 2px; background: var(--fg); content: ""; }
+.nav-button span { top: 19px; }
+.nav-button span::before { top: -5px; left: 0; }
+.nav-button span::after { top: 5px; left: 0; }
+.langs { list-style: none; display: flex; gap: 8px; margin: 0; padding: 0; font-size: 14px; }
+
+main.wrap { padding-top: 40px; padding-bottom: 64px; min-height: 60vh; }
+.entry h1 { font-size: clamp(28px, 4vw, 42px); line-height: 1.2; margin: 0 0 12px; }
+.meta, .lead { color: var(--muted); }
+.hero { border-radius: 14px; margin: 16px 0; }
+.wp-content { max-width: 760px; }
+.wp-content img { border-radius: 10px; }
+.wp-content .alignwide { max-width: 1040px; }
+.wp-content .wp-block-button__link { display: inline-block; padding: 10px 18px; border-radius: 8px; background: var(--accent); color: #fff; text-decoration: none; }
+
+.cards { list-style: none; padding: 0; margin: 32px 0 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+.cards li { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px; }
+.cards a { color: var(--fg); text-decoration: none; }
+.cards img { border-radius: 10px; aspect-ratio: 16 / 9; object-fit: cover; width: 100%; }
+.cards h2 { font-size: 19px; margin: 10px 0 6px; }
+.excerpt { color: var(--muted); font-size: 15px; }
+
+.site-footer { border-top: 1px solid var(--line); padding: 28px 0; font-size: 14px; color: var(--muted); }
+.site-footer .menu { margin-bottom: 10px; }
+
+@media (max-width: 640px) {
+  .site-header .wrap { gap: 10px; padding-top: 10px; padding-bottom: 10px; }
+  .site-header .wrap { justify-content: space-between; position: relative; }
+  .nav-button { display: block; order: 3; }
+  .langs { order: 2; margin-left: auto; }
+  .nav { display: none; position: absolute; left: 0; right: 0; top: 100%; background: var(--card); border-bottom: 1px solid var(--line); padding: 12px 20px 16px; }
+  .nav-toggle:checked ~ .nav { display: block; }
+  .nav-toggle:focus-visible + .nav-button { outline: 2px solid var(--accent); }
+  .nav .menu { flex-direction: column; gap: 10px; }
+  .menu ul { position: static; border: 0; padding: 4px 0 0 12px; }
+}
