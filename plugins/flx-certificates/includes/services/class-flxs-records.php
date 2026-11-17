@@ -149,6 +149,21 @@ final class FLXS_Records {
 	}
 
 	/**
+	 * Drops the cached responses of one certificate, the public verification page included.
+	 * The data layer calls this where a certificate row changes, so REST, admin-post, the
+	 * browser upload and GraphQL all purge the same way.
+	 *
+	 * @param mixed $cert Certificate row; id is needed, the code adds the public tag.
+	 */
+	public static function purge_certificate( $cert ): void {
+		$row = FLXS_Val::row( $cert );
+		$id  = FLXS_Val::int( $row['id'] ?? 0 );
+		if ( $id > 0 ) {
+			self::purge( self::certificate_tags( $id, FLXS_Val::str( $row['code'] ?? '' ) ) );
+		}
+	}
+
+	/**
 	 * @param int $id Certificate id.
 	 * @return list<string>
 	 */

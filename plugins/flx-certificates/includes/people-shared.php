@@ -170,9 +170,15 @@ add_action(
 	'flx_person_merged',
 	static function ( $primary_id, $dup_id ) {
 		global $wpdb;
+		$moved = (array) $wpdb->get_results( $wpdb->prepare( 'SELECT id, code FROM ' . flxs_table( 'certificates' ) . ' WHERE person_id = %d', (int) $dup_id ), ARRAY_A ); // phpcs:ignore WordPress.DB
 		foreach ( array( 'certificates', 'messages' ) as $t ) {
 			$wpdb->update( flxs_table( $t ), array( 'person_id' => (int) $primary_id ), array( 'person_id' => (int) $dup_id ) ); // phpcs:ignore WordPress.DB
 		}
+		// The cached GraphQL answers of the moved certificates and of both people are stale.
+		foreach ( $moved as $row ) {
+			FLXS_Records::purge_certificate( $row );
+		}
+		FLXS_Records::purge( array( FLXS_Records::TAG_LIST, FLXS_Records::TAG_PEOPLE, 'flx-certificates:person:' . (int) $primary_id, 'flx-certificates:person:' . (int) $dup_id ) );
 	},
 	10,
 	2
