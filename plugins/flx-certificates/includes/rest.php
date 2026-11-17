@@ -302,35 +302,7 @@ function flxs_rest_cert_message( WP_REST_Request $r ) {
 }
 
 function flxs_rest_cert_send_to( WP_REST_Request $r ) {
-	$cert = flxs_get_certificate( (int) $r['id'] );
-	if ( ! flxs_rest_can_see( $cert ) ) {
-		return flxs_rest_error( 'Sertifika bulunamadı.', 404 );
-	}
-	$ch = sanitize_key( (string) $r->get_param( 'channel' ) );
-	if ( ! isset( flxs_channels()[ $ch ] ) ) {
-		return flxs_rest_error( 'Kanal geçersiz.' );
-	}
-	$to   = trim( (string) $r->get_param( 'to' ) );
-	$name = sanitize_text_field( (string) $r->get_param( 'name' ) );
-	if ( '' === $to ) {
-		return flxs_rest_error( 'email' === $ch ? 'E-posta adresi girin.' : 'Telefon numarası girin.' );
-	}
-	$ov = array(
-		'to'      => $to,
-		'to_name' => $name,
-		'body'    => sanitize_textarea_field( (string) $r->get_param( 'body' ) ),
-		'subject' => sanitize_text_field( (string) $r->get_param( 'subject' ) ),
-	);
-	$res = flxs_send_certificate( $cert, array( $ch ), array( $ch => (int) $r->get_param( 'provider' ) ), 'forward', 0, array( $ch => $ov ) );
-	$v   = $res[ $ch ] ?? new WP_Error( 'flxs', 'Gönderilemedi.' );
-	if ( is_wp_error( $v ) ) {
-		return flxs_rest_error( $v );
-	}
-	if ( $r->get_param( 'save' ) ) {
-		flxs_save_recipient( $name, 'email' === $ch ? '' : $to, 'email' === $ch ? $to : '' );
-	}
-	flxs_kick_queue();
-	return array( 'ok' => true, 'message_id' => $v );
+	return FLXS_Certificate_Service::send_to_rest( $r );
 }
 
 function flxs_get_recipients() {

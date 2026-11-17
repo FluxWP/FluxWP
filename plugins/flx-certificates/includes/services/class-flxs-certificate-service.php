@@ -504,14 +504,12 @@ final class FLXS_Certificate_Service {
 	}
 
 	/**
-	 * Queues a send. The certificate must be visible.
+	 * Queues the certificate to its holder. The certificate must be visible.
 	 *
-	 * @param string[]              $channels  Channels.
-	 * @param array<string,mixed>   $overrides Recipient overrides for "send to someone else".
-	 * @param array<int|string,int> $providers Provider ids keyed by channel.
+	 * @param string[] $channels Channels.
 	 * @return array{results:list<array{channel:string,ok:bool,message:string}>}|WP_Error
 	 */
-	public static function send( int $id, array $channels, array $overrides = array(), string $source = 'manual', array $providers = array(), bool $save_recipient = false ) {
+	public static function send( int $id, array $channels ) {
 		$cert = self::visible( $id );
 		if ( is_wp_error( $cert ) ) {
 			return $cert;
@@ -528,25 +526,81 @@ final class FLXS_Certificate_Service {
 		if ( ! $channels ) {
 			return FLXS_Records::error( 'flxs_channel', __( 'Choose a channel.', 'flx-certificates' ), 'INVALID_INPUT', 'channels' );
 		}
-		$res = flxs_send_certificate( $cert, $channels, $providers, $source, 0, $overrides );
-		if ( $save_recipient ) {
-			$ch = $channels[0];
-			$ov = is_array( $overrides[ $ch ] ?? null ) ? $overrides[ $ch ] : array();
-			$to = FLXS_Val::str(( $ov['to'] ?? '' ));
-			if ( '' !== $to ) {
-				flxs_save_recipient( FLXS_Val::str(( $ov['to_name'] ?? '' )), 'email' === $ch ? '' : $to, 'email' === $ch ? $to : '' );
-			}
-		}
+		$res = flxs_send_certificate( $cert, $channels, array(), 'manual' );
 		flxs_kick_queue();
 		$out = array();
 		foreach ( $res as $ch => $v ) {
 			$out[] = array(
 				'channel' => FLXS_Val::str($ch),
 				'ok'      => ! is_wp_error( $v ),
-				'message' => is_wp_error( $v ) ? $v->get_error_message() : '',
+				'message' => is_wp_error( $v ) ? FLXS_Records::message( $v ) : '',
 			);
 		}
 		return array( 'results' => $out );
+	}
+
+	/**
+	 * Queues the certificate to someone other than the holder: the body of POST /certificates/{id}/message.
+	 * REST and GraphQL both come here, so the checks, the sanitising and the side effects are one.
+	 * Errors keep the classic code and sentence (Turkish); `status` is the HTTP code REST answers with.
+	 * Nothing is remembered in the directory and nothing is kicked unless the message was queued.
+	 *
+	 * @return array{message_id:int}|WP_Error
+	 */
+	public static function forward( int $id, string $channel, string $to, string $name, string $body, string $subject, int $provider, bool $remember ) {
+		$cert = flxs_get_certificate( $id );
+		if ( ! flxs_can_see_certificate( $cert ) || ! is_array( $cert ) ) {
+			return new WP_Error( 'flxs_404', 'Sertifika bulunamadı.', array( 'status' => 404 ) );
+		}
+		$ch = sanitize_key( $channel );
+		if ( ! isset( flxs_channels()[ $ch ] ) ) {
+			return new WP_Error( 'flxs_channel', 'Kanal geçersiz.', array( 'status' => 400 ) );
+		}
+		$to   = trim( $to );
+		$name = sanitize_text_field( $name );
+		if ( '' === $to ) {
+			return new WP_Error( 'flxs_to', 'email' === $ch ? 'E-posta adresi girin.' : 'Telefon numarası girin.', array( 'status' => 400 ) );
+		}
+		$ov  = array(
+			'to'      => $to,
+			'to_name' => $name,
+			'body'    => sanitize_textarea_field( $body ),
+			'subject' => sanitize_text_field( $subject ),
+		);
+		$res = flxs_send_certificate( $cert, array( $ch ), array( $ch => $provider ), 'forward', 0, array( $ch => $ov ) );
+		$v   = $res[ $ch ] ?? new WP_Error( 'flxs', 'Gönderilemedi.' );
+		if ( is_wp_error( $v ) ) {
+			return $v;
+		}
+		if ( $remember ) {
+			flxs_save_recipient( $name, 'email' === $ch ? '' : $to, 'email' === $ch ? $to : '' );
+		}
+		flxs_kick_queue();
+		return array( 'message_id' => FLXS_Val::int( $v ) );
+	}
+
+	/**
+	 * REST POST /certificates/{id}/message.
+	 *
+	 * @return array{ok:bool,message_id:int}|WP_REST_Response
+	 */
+	public static function send_to_rest( WP_REST_Request $r ) {
+		$res = self::forward(
+			FLXS_Val::abs( $r['id'] ),
+			FLXS_Val::str( $r->get_param( 'channel' ) ),
+			FLXS_Val::str( $r->get_param( 'to' ) ),
+			FLXS_Val::str( $r->get_param( 'name' ) ),
+			FLXS_Val::str( $r->get_param( 'body' ) ),
+			FLXS_Val::str( $r->get_param( 'subject' ) ),
+			FLXS_Val::int( $r->get_param( 'provider' ) ),
+			(bool) $r->get_param( 'save' )
+		);
+		if ( is_wp_error( $res ) ) {
+			$data   = $res->get_error_data();
+			$status = is_array( $data ) ? FLXS_Val::int(( $data['status'] ?? 400 )) : 400;
+			return FLXS_Records::rest_response( $res, $status > 0 ? $status : 400 );
+		}
+		return array( 'ok' => true, 'message_id' => $res['message_id'] );
 	}
 
 	/**

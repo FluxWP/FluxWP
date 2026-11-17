@@ -1260,28 +1260,18 @@ flx_gql_mutation(
 		),
 		'resolve'     => static function ( array $in ): array {
 			$ch = flx_gql_str( $in['channel'] ?? '' );
-			$ov = array(
-				'to'      => flx_gql_str( $in['to'] ?? '' ),
-				'to_name' => flx_gql_str( $in['name'] ?? '' ),
+			$r  = FLXS_Certificate_Service::forward(
+				flx_gql_int( $in['id'] ?? 0 ),
+				$ch,
+				flx_gql_str( $in['to'] ?? '' ),
+				flx_gql_str( $in['name'] ?? '' ),
+				flx_gql_str( $in['body'] ?? '' ),
+				flx_gql_str( $in['subject'] ?? '' ),
+				flx_gql_int( $in['provider'] ?? 0 ),
+				! empty( $in['save'] )
 			);
-			if ( array_key_exists( 'subject', $in ) && null !== $in['subject'] ) {
-				$ov['subject'] = flx_gql_str( $in['subject'] );
-			}
-			if ( array_key_exists( 'body', $in ) && null !== $in['body'] ) {
-				$ov['body'] = flx_gql_str( $in['body'] );
-			}
-			$prov = flx_gql_int( $in['provider'] ?? 0 );
-			$r    = flxs_gql_ok(
-				FLXS_Certificate_Service::send(
-					flx_gql_int( $in['id'] ?? 0 ),
-					array( $ch ),
-					array( $ch => $ov ),
-					'forward',
-					$prov > 0 ? array( $ch => $prov ) : array(),
-					! empty( $in['save'] )
-				)
-			);
-			return is_array( $r ) ? $r : array( 'results' => array() );
+			flxs_gql_ok( $r instanceof WP_Error ? FLXS_Records::classify( $r ) : $r );
+			return array( 'results' => array( array( 'channel' => $ch, 'ok' => true, 'message' => '' ) ) );
 		},
 	)
 );
