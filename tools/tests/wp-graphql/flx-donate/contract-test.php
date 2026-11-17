@@ -350,15 +350,38 @@ FLXB_WC_Products::set_type_meta( (int) $cert_type, 'wc_product_id', $cert_pid );
 if ( class_exists( 'FLXGQL_Cart' ) ) {
 	FLXGQL_Cart::clear();
 }
+// The classic contact gate: a certificate for someone else needs a WhatsApp number or an e-mail address.
 $GLOBALS['flxb_last_line'] = null;
+$no_contact                = array(
+	'typeId'   => (int) $cert_type,
+	'option'   => 'one',
+	'currency' => 'TRY',
+	'names'    => $names,
+);
+$r                         = flxb_t_op( 'FlxDonationCartAdd', array( 'input' => $no_contact ) );
+$classic_need              = FLXB_WC_Form::contact_missing( FLXB_WC_Form::input( array( 'flxb_type' => (int) $cert_type, 'for_other' => '1', 'ben_name' => 'Ada' ) ) );
+flxt_ok( '' !== $classic_need, 'cart: the classic form refuses a certificate without contact', $classic_need );
+flxt_same( $classic_need, $r['data']['flxDonationCartAdd']['errors'][0]['message'] ?? null, 'cart: no contact → the classic refusal message' );
+flxt_same( array( 'INVALID_INPUT', 'contacts' ), array( $r['data']['flxDonationCartAdd']['errors'][0]['code'] ?? null, $r['data']['flxDonationCartAdd']['errors'][0]['field'] ?? null ), 'cart: the refusal points at contacts' );
+flxt_same( null, $GLOBALS['flxb_last_line'], 'cart: a refused line is not added' );
+$r = flxb_t_op( 'FlxDonationCartAdd', array( 'input' => $no_contact + array( 'contacts' => array( array( 'email' => 'not-an-address' ) ) ) ) );
+$classic_mail = FLXB_WC_Form::contact_missing( FLXB_WC_Form::input( array( 'flxb_type' => (int) $cert_type, 'for_other' => '1', 'ben_name' => 'Ada', 'ben_email' => 'not-an-address' ) ) );
+flxt_same( __( 'Please enter a valid e-mail address.', 'flx-donate' ), $classic_mail, 'cart: the classic form calls that e-mail wrong' );
+flxt_same( $classic_mail, $r['data']['flxDonationCartAdd']['errors'][0]['message'] ?? null, 'cart: a wrong e-mail is refused like the classic form' );
+$r = flxb_t_op( 'FlxDonationCartAdd', array( 'input' => $no_contact + array( 'contacts' => array( array( 'phone' => '123' ) ) ) ) );
+$classic_tel = FLXB_WC_Form::contact_missing( FLXB_WC_Form::input( array( 'flxb_type' => (int) $cert_type, 'for_other' => '1', 'ben_name' => 'Ada', 'ben_phone' => '123' ) ) );
+flxt_ok( '' !== $classic_tel, 'cart: the classic form refuses a short phone number', $classic_tel );
+flxt_same( $classic_tel, $r['data']['flxDonationCartAdd']['errors'][0]['message'] ?? null, 'cart: a short phone number is refused like the classic form' );
 $r = flxb_t_op(
 	'FlxDonationCartAdd',
 	array(
-		'input' => array(
-			'typeId'   => (int) $cert_type,
-			'option'   => 'one',
-			'currency' => 'TRY',
-			'names'    => $names,
+		'input' => $no_contact + array(
+			'feeCover' => true,
+			'contacts' => array(
+				array( 'email' => 'ada.gql@example.com' ),
+				array( 'phone' => '05321234567' ),
+				array( 'email' => 'cem.gql@example.com' ),
+			),
 		),
 	)
 );
@@ -367,6 +390,12 @@ $cert_items = $r['data']['flxDonationCartAdd']['cart']['items'] ?? array();
 flxt_same( 1, count( $cert_items ), 'cart: non-proxy multi-name is one line' );
 flxt_same( 3, $cert_items[0]['flxDonation']['units'] ?? null, 'cart: non-proxy multi-name defaults units to name count' );
 flxt_same( $names, $cert_items[0]['flxDonation']['names'] ?? null, 'cart: non-proxy multi-name keeps all names' );
+$kept = is_array( $GLOBALS['flxb_last_line'] ) ? $GLOBALS['flxb_last_line'] : array();
+flxt_same( 'ada.gql@example.com', $kept['ben_email'] ?? null, 'cart: the first contact is on the line (classic ben_email)' );
+flxt_same( array( FLXB_WC_Form::phone_value( '05321234567' ), 'cem.gql@example.com' ), array( $kept['people'][0]['phone'] ?? null, $kept['people'][1]['email'] ?? null ), 'cart: the other contacts are on the people rows' );
+if ( class_exists( 'FLXB_WC_Fee', false ) && FLXB_WC_Fee::on() && function_exists( 'WC' ) && WC()->session ) {
+	flxt_same( 1, (int) WC()->session->get( FLXB_WC_Fee::SESSION ), 'cart: the fee choice is remembered like the form does' );
+}
 $cert_recs = FLXB_WC_Certificates::recipients_with_contacts( is_array( $GLOBALS['flxb_last_line'] ) ? $GLOBALS['flxb_last_line'] : array(), $stub, 'Donor', 3, '', '', '', '' );
 flxt_same( array( 'Ada', 'Bea', 'Cem' ), array_column( $cert_recs, 'name' ), 'cart: non-proxy multi-name issues one certificate per name' );
 flxt_same( array( 1, 1, 1 ), array_column( $cert_recs, 'count' ), 'cart: each certificate gets 1 sapling' );
@@ -412,6 +441,19 @@ $r = flxb_t_op(
 	)
 );
 flxt_ok( ! empty( $r['data']['flxDonationCartAdd']['errors'] ), 'cart: a closed type is refused' );
+if ( ! class_exists( 'FLXB_WC_Currency', false ) ) {
+	require_once FLXB_DIR . 'includes/wc/class-flxb-wc-currency.php'; // Not booted without WooCommerce; the cart service uses it when it is there.
+}
+$r = flxb_t_op( 'FlxDonationCartAdd', array( 'input' => array( 'typeId' => (int) $open, 'option' => 'one', 'currency' => 'ZZZ', 'proxyConsent' => true ) ) );
+flxt_same( array( 'currency', sprintf( __( 'Donations in %s cannot be paid here at the moment.', 'flx-donate' ), 'ZZZ' ) ), array( $r['data']['flxDonationCartAdd']['errors'][0]['field'] ?? null, $r['data']['flxDonationCartAdd']['errors'][0]['message'] ?? null ), 'cart: a currency that cannot be set is refused like the classic cart' );
+
+// Store API quantity: fixed exactly where the classic cart shows a fixed 1.
+$qk = FLXB_WC_Cart::KEY;
+flxt_same( true, FLXB_WC_Cart::quantity_editable( true, null, array( $qk => array( 'option' => 'one', 'units' => 1 ) ) ), 'quantity: a single option line stays editable' );
+flxt_same( false, FLXB_WC_Cart::quantity_editable( true, null, array( $qk => array( 'option' => '', 'units' => 1 ) ) ), 'quantity: a free amount is fixed' );
+flxt_same( false, FLXB_WC_Cart::quantity_editable( true, null, array( $qk => array( 'option' => 'one', 'units' => 3 ) ) ), 'quantity: a custom count is fixed' );
+flxt_same( false, FLXB_WC_Cart::quantity_editable( true, null, array( $qk => array( 'option' => 'one', 'units' => 1, 'monthly' => 1 ) ) ), 'quantity: a monthly line is fixed' );
+flxt_same( true, FLXB_WC_Cart::quantity_editable( true, null, array( 'quantity' => 2 ) ), 'quantity: other products are left alone' );
 
 // My donations: owner only.
 $owner = (int) wp_insert_user(
@@ -502,6 +544,18 @@ flxt_ok( abs( $session_ttl - ( time() + FLXB_Lookup::SESSION ) ) < 30, 'lookup v
 $r = flxb_t_op( 'FlxMyDonations' );
 $got = array_map( 'intval', array_column( $r['data']['flxMyDonations']['nodes'] ?? array(), 'databaseId' ) );
 flxt_ok( in_array( (int) $did, $got, true ), 'lookup session sees that donor\'s donations' );
+$lookup_opt = get_option( FLXB_Lookup::OPTION, false );
+update_option( FLXB_Lookup::OPTION, array( 'on' => 0 ) );
+$r = flxb_t_op( 'FlxMyDonations' );
+flxt_same( 'UNAUTHENTICATED', flxt_code( $r ), 'my donations: a lookup session is ignored while the lookup is off' );
+$off = flxb_t_op( 'FlxDonationLookupVerify', array( 'input' => array( 'login' => 'owner.gql@example.com', 'code' => '123456' ) ) );
+flxt_ok( null !== flxt_code( $off ) || ! empty( $off['data']['flxDonationLookupVerify']['errors'] ), 'lookup verify: refused while the lookup is off' );
+flxt_same( __( 'Donation lookup is not available.', 'flx-donate' ), $off['errors'][0]['message'] ?? ( $off['data']['flxDonationLookupVerify']['errors'][0]['message'] ?? null ), 'lookup verify: the same message as lookup start' );
+if ( false === $lookup_opt ) {
+	delete_option( FLXB_Lookup::OPTION );
+} else {
+	update_option( FLXB_Lookup::OPTION, $lookup_opt );
+}
 $end = flxb_t_op( 'FlxDonationLookupEnd', array( 'input' => array() ) );
 flxt_same( true, $end['data']['flxDonationLookupEnd']['ok'] ?? null, 'lookup end' );
 $r = flxb_t_op( 'FlxMyDonations' );
@@ -512,5 +566,37 @@ for ( $i = 0; $i < 4; $i++ ) {
 	$limited = flxb_t_op( 'FlxDonationLookupStart', array( 'input' => array( 'login' => 'rate.gql@example.com' ) ) );
 }
 flxt_same( 'RATE_LIMITED', flxt_code( is_array( $limited ) ? $limited : array() ), 'lookup start: rate limit' );
+
+// The public types tag is purged when a type or a gift counted in it changes.
+$GLOBALS['flxb_purged'] = array();
+add_action(
+	'flx_gql_purged',
+	static function ( $tags ) {
+		$GLOBALS['flxb_purged'] = array_merge( $GLOBALS['flxb_purged'], (array) $tags );
+	}
+);
+$purge_opts = array( array( 'key' => 'p', 'label' => 'P', 'price' => 10, 'unit' => 'fidan', 'active' => 1, 'units_per' => 1 ) );
+$purge_type = FLXB_Types::save( array( 'title' => 'Purge type', 'status' => 'active', 'currency' => 'TRY', 'options' => $purge_opts ) );
+flxt_ok( is_int( $purge_type ) && $purge_type > 0 && in_array( FLXB_Type_Public_Service::TAG, $GLOBALS['flxb_purged'], true ), 'cache: creating a type purges flx-donate:types' );
+$GLOBALS['flxb_purged'] = array();
+FLXB_Types::save( array( 'title' => 'Purge type 2', 'status' => 'active', 'currency' => 'TRY', 'options' => $purge_opts ), (int) $purge_type );
+flxt_ok( in_array( FLXB_Type_Public_Service::TAG, $GLOBALS['flxb_purged'], true ), 'cache: saving a type purges flx-donate:types' );
+$GLOBALS['flxb_purged'] = array();
+FLXB_Donations::record(
+	array(
+		'provider'     => 'test',
+		'provider_ref' => 'gql-purge-' . wp_rand(),
+		'amount'       => 10,
+		'currency'     => 'TRY',
+		'status'       => 'completed',
+		'type_id'      => (int) $open,
+		'donor'        => array( 'name' => 'Purge', 'email' => 'purge.gql@example.com' ),
+	)
+);
+flxt_ok( in_array( FLXB_Type_Public_Service::TAG, $GLOBALS['flxb_purged'], true ), 'cache: a recorded donation purges flx-donate:types (progress)' );
+$GLOBALS['flxb_purged'] = array();
+$GLOBALS['flxb_purged'] = array();
+FLXB_Types::delete( (int) $purge_type );
+flxt_ok( in_array( FLXB_Type_Public_Service::TAG, $GLOBALS['flxb_purged'], true ), 'cache: deleting a type purges flx-donate:types' );
 
 flxt_done();
