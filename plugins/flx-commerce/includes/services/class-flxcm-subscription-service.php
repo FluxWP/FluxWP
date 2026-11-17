@@ -325,9 +325,11 @@ final class FLXCM_Subscription_Service {
 			return $fail( 'NOT_FOUND', __( 'Subscription not found.', 'flx-commerce' ) );
 		}
 		$allowed = false;
-		foreach ( self::mine( $user_id ) as $mine ) {
-			if ( FLXCM_Val::str($mine['id']) === FLXCM_Val::str($id) ) {
+		// Same ownership set as the classic account page: any status, up to 100 rows.
+		foreach ( FLXCM_Val::arr( FLXCM_Sub_Account::mine( $user_id ) ) as $mine ) {
+			if ( is_array( $mine ) && FLXCM_Val::int( $mine['id'] ?? 0 ) === $id ) {
 				$allowed = true;
+				break;
 			}
 		}
 		if ( ! $allowed ) {

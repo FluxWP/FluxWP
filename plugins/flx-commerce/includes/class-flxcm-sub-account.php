@@ -187,6 +187,26 @@ final class FLXCM_Sub_Account {
 		echo '</div>';
 	}
 
+	/**
+	 * The notice the classic account page printed for a service result, or null when it stayed silent.
+	 * Success notices keep WooCommerce's default type; ids that do not exist read as "not yours".
+	 *
+	 * @param array<string,mixed> $res account_act() result.
+	 * @return array{message:string,type:string}|null
+	 */
+	public static function notice_for( string $do, array $res ): ?array {
+		$code = (string) ( $res['code'] ?? '' );
+		if ( 'NOT_FOUND' === $code || 'FORBIDDEN' === $code ) {
+			return array( 'message' => __( 'You are not allowed to do this.', 'flx-commerce' ), 'type' => 'error' );
+		}
+		$show = 'OK' === $code || ( 'renew' === $do && 'CONFLICT' === $code );
+		$text = (string) ( $res['notice'] ?? '' );
+		if ( ! $show || '' === $text ) {
+			return null;
+		}
+		return array( 'message' => $text, 'type' => 'error' === ( $res['type'] ?? '' ) ? 'error' : 'success' );
+	}
+
 	/** İptal / yeniden açma (nonce + sahiplik). */
 	public static function action() {
 		if ( empty( $_GET['flxcm_sub'] ) || empty( $_GET['flxcm_do'] ) || ! is_user_logged_in() ) {
@@ -202,9 +222,9 @@ final class FLXCM_Sub_Account {
 			wp_safe_redirect( $res['redirect'] );
 			exit;
 		}
-		$show = 'OK' === $res['code'] || 'FORBIDDEN' === $res['code'] || ( 'renew' === $do && 'CONFLICT' === $res['code'] );
-		if ( $show && '' !== $res['notice'] ) {
-			wc_add_notice( $res['notice'], 'error' === $res['type'] ? 'error' : 'notice' );
+		$notice = self::notice_for( $do, $res );
+		if ( null !== $notice ) {
+			wc_add_notice( $notice['message'], $notice['type'] );
 		}
 		wp_safe_redirect( wc_get_account_endpoint_url( self::ENDPOINT ) );
 		exit;
