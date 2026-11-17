@@ -318,5 +318,7 @@
   "Connect \"%s\"": "\"%s\" bağlantısı",
   "Put these two lines in the environment variables of the front end (for example .env.local, or the host's settings). The key holds the secret, so it is shown only now.": "Bu iki satırı ön yüzün ortam değişkenlerine ekleyin (ör. .env.local ya da barındırma ayarları). Anahtar secret'ı içerdiği için yalnız şimdi gösterilir.",
   "Done": "Tamam",
-  "After saving you get the connection key for the front end; the secret is stored encrypted and never shown again.": "Kaydedince ön yüzün bağlantı anahtarı gösterilir; secret şifreli saklanır ve bir daha gösterilmez."
+  "After saving you get the connection key for the front end; the secret is stored encrypted and never shown again.": "Kaydedince ön yüzün bağlantı anahtarı gösterilir; secret şifreli saklanır ve bir daha gösterilmez.",
+  "Advanced": "Gelişmiş",
+  "Filled in for you. Change them only if your front end uses other routes.": "Kendiliğinden dolduruldu. Yalnız ön yüzün başka yollar kullanıyorsa değiştir."
 }
