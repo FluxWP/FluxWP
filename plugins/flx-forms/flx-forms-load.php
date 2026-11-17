@@ -399,3 +399,71 @@ if (!function_exists('emsfb_is_email_sending_enabled_efb')) {
         return Emsfb::is_email_sending_enabled_efb($settings);
     }
 }
+
+require_once __DIR__ . '/includes/services/class-flxf-form-service.php';
+require_once __DIR__ . '/includes/services/class-flxf-submission-service.php';
+
+add_filter(
+	'flx_captcha_contexts',
+	static function ( $contexts ) {
+		$contexts = is_array( $contexts ) ? $contexts : array();
+		$contexts['flxf_submit'] = array(
+			'label'     => __( 'Form submission', 'flx-forms' ),
+			'desc'      => __( 'Public form, survey and subscribe submissions sent through GraphQL.', 'flx-forms' ),
+			'group'     => 'fluxwp',
+			'available' => true,
+			'default'   => 0,
+			'action'    => 'flxf_submit',
+		);
+		return $contexts;
+	}
+);
+
+add_filter(
+	'flx_gql_capabilities',
+	static function ( $caps ) {
+		$caps = is_array( $caps ) ? $caps : array();
+		$group = __( 'Forms', 'flx-forms' );
+		return $caps + array(
+			'Emsfb'        => array(
+				'label'   => __( 'Manages forms and responses', 'flx-forms' ),
+				'group'   => $group,
+				'package' => 'flx-forms',
+			),
+			'Emsfb_create' => array(
+				'label'   => __( 'Opens the form builder', 'flx-forms' ),
+				'group'   => $group,
+				'package' => 'flx-forms',
+			),
+			'Emsfb_panel'  => array(
+				'label'   => __( 'Opens the forms panel', 'flx-forms' ),
+				'group'   => $group,
+				'package' => 'flx-forms',
+			),
+			'Emsfb_addon'  => array(
+				'label'   => __( 'Manages form add-ons', 'flx-forms' ),
+				'group'   => $group,
+				'package' => 'flx-forms',
+			),
+		);
+	}
+);
+
+add_filter(
+	'flx_gql_persisted_manifests',
+	static function ( $manifests ) {
+		$manifests = is_array( $manifests ) ? $manifests : array();
+		$manifests['flx-forms'] = plugin_dir_path( FLXF_PLUGIN_FILE ) . 'graphql/persisted-queries.json';
+		return $manifests;
+	}
+);
+
+add_action(
+	'flx_gql_register',
+	static function () {
+		if ( ! function_exists( 'flx_gql_query' ) ) {
+			return;
+		}
+		require_once __DIR__ . '/includes/graphql/schema.php';
+	}
+);

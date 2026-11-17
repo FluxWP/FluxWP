@@ -3,9 +3,10 @@
  * Plugin Name:         Flux Forms
  * Plugin URI:          https://example.org
  * Description:         Sürükle-bırak form oluşturucu: çok adımlı formlar, Stripe ödemeleri, koşullu mantık, dashboard, otomasyonlar ve Flux Certificates entegrasyonu. Easy Form Builder (WhiteStudio, GPL) tabanlı fork.
- * Version:             2.4.0
- * Requires at least:   6.4
- * Requires PHP:        7.4
+ * Version:             2.5.0
+ * Requires at least:   6.5
+ * Requires PHP:        8.1
+ * Requires Plugins:    flx-graphql
  * Author:              FluxWP
  * Author URI:          https://example.org
  * Text Domain:         flx-forms
