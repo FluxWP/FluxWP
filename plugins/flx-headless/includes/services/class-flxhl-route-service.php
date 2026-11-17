@@ -418,7 +418,7 @@ final class FLXHL_Route_Service {
 			'robots'      => $robots,
 			'noindex'     => $noindex,
 			'image'       => $image,
-			'locale'      => str_replace( '_', '-', determine_locale() ),
+			'locale'      => str_replace( '_', '-', flxhl_locale() ),
 			'meta'        => $meta,
 			'json_ld'     => $json_ld,
 		);
@@ -534,7 +534,7 @@ final class FLXHL_Route_Service {
 		$obj  = $q->get_queried_object();
 		$img  = $obj instanceof WP_Post ? get_the_post_thumbnail_url( $obj, 'large' ) : false;
 		$rows = array(
-			'og:locale'      => str_replace( '-', '_', determine_locale() ),
+			'og:locale'      => str_replace( '-', '_', flxhl_locale() ),
 			'og:type'        => $obj instanceof WP_Post && 'post' === $obj->post_type ? 'article' : 'website',
 			'og:site_name'   => flxhl_str( get_bloginfo( 'name' ) ),
 			'og:title'       => $title,
@@ -613,7 +613,7 @@ final class FLXHL_Route_Service {
 	private static function not_found( string $path, ?string $code, ?FLXHL_Frontend $fe ): FLXHL_Route {
 		$q = new WP_Query();
 		$q->set_404();
-		$head = self::with_query( $q, static fn(): array => array( 'title' => html_entity_decode( wp_get_document_title(), ENT_QUOTES, 'UTF-8' ), 'robots' => array( 'noindex', 'follow' ), 'noindex' => true, 'locale' => str_replace( '_', '-', determine_locale() ) ) );
+		$head = self::with_query( $q, static fn(): array => array( 'title' => html_entity_decode( wp_get_document_title(), ENT_QUOTES, 'UTF-8' ), 'robots' => array( 'noindex', 'follow' ), 'noindex' => true, 'locale' => str_replace( '_', '-', flxhl_locale() ) ) );
 		return FLXHL_Route::from(
 			array(
 				'path'        => $path,

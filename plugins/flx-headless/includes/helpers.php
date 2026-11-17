@@ -71,3 +71,19 @@ function flxhl_path_is_backend( string $path ): bool {
 	}
 	return (bool) preg_match( '#\.(xml|txt|php|js|css|map|json|ico|png|jpe?g|gif|webp|avif|svg|woff2?)$#i', (string) wp_parse_url( $path, PHP_URL_PATH ) );
 }
+
+/**
+ * Locale of the current answer: the Flux Lang language's own locale when there is one (the site locale can
+ * differ from the default language's), else WordPress'.
+ */
+function flxhl_locale(): string {
+	if ( function_exists( 'flxl_current_language' ) && class_exists( 'FLXL_Language_Service' ) ) {
+		$code = flxhl_str( flxl_current_language() );
+		foreach ( FLXL_Language_Service::languages() as $l ) {
+			if ( $l->code === $code && '' !== $l->locale ) {
+				return $l->locale;
+			}
+		}
+	}
+	return determine_locale();
+}

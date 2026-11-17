@@ -251,12 +251,22 @@ export async function verify(body: string, header: string | null, secret: string
 }
 ```
 
-### Next.js (App Router)
+### Next.js 16 (App Router, Cache Components)
 
 ```ts
-// app/[[...slug]]/page.tsx: ISR with tags
-const data = await gql('FlxRoute', { path }, { next: { tags: ['flx-headless:all'], revalidate: 3600 } });
-// Then call revalidateTag for each of route.cacheTags (unstable_cacheTag / fetch tags).
+// next.config.ts: cacheComponents: true, trailingSlash: true (WordPress addresses end with "/")
+
+// lib/flux.ts: cached under the tags WordPress returns
+export async function getRoute(path: string) {
+  'use cache';
+  cacheLife('hours');
+  const { flxRoute } = await gql('FlxRoute', { path });
+  cacheTag('flx-headless:all', ...flxRoute.cacheTags);
+  return flxRoute;
+}
+
+// app/[[...slug]]/page.tsx
+const route = await getRoute(path);
 if (route.kind === 'REDIRECT') permanentRedirect(route.redirect);
 if (route.kind === 'NOT_FOUND') notFound();
 
@@ -264,8 +274,9 @@ if (route.kind === 'NOT_FOUND') notFound();
 export async function POST(req: Request) {
   const body = await req.text();
   if (!(await verify(body, req.headers.get('x-flx-signature'), process.env.FLUX_REVALIDATE_SECRET!))) return new Response('bad signature', { status: 401 });
-  const { tags } = JSON.parse(body);
-  tags.forEach((t: string) => revalidateTag(t));
+  const { tags, paths } = JSON.parse(body);
+  tags.forEach((t: string) => revalidateTag(t, { expire: 0 }));
+  paths.forEach((p: string) => revalidatePath(p));
   return Response.json({ ok: true });
 }
 ```

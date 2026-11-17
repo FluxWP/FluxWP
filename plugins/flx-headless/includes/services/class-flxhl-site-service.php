@@ -48,7 +48,7 @@ final class FLXHL_Site_Service {
 			'cms_url'     => flxhl_home(),
 			'graphql_url' => function_exists( 'graphql_get_endpoint_url' ) ? flxhl_str( graphql_get_endpoint_url() ) : home_url( '/graphql' ),
 			'language'    => $code,
-			'locale'      => str_replace( '_', '-', determine_locale() ),
+			'locale'      => str_replace( '_', '-', flxhl_locale() ),
 			'languages'   => self::languages( $fe ),
 			'logo'        => self::logo(),
 			'icon'        => self::icon(),
