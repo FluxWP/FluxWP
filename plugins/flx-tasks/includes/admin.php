@@ -152,6 +152,7 @@ function flxg_admin_assets() {
 	wp_enqueue_script( 'flxg-views', FLXG_URL . 'assets/js/views.js', array( 'flxg-state' ), FLXG_VERSION, true );
 	wp_enqueue_script( 'flxg-task', FLXG_URL . 'assets/js/task.js', array( 'flxg-views' ), FLXG_VERSION, true );
 	wp_enqueue_script( 'flxg-docs', FLXG_URL . 'assets/js/docs.js', array( 'flxg-task' ), FLXG_VERSION, true );
+	wp_enqueue_script( 'flxg-doc-comments', FLXG_URL . 'assets/js/doc-comments.js', array( 'flxg-docs' ), FLXG_VERSION, true );
 	wp_enqueue_script( 'flxg-app', FLXG_URL . 'assets/js/pages.js', array( 'flxg-docs' ), FLXG_VERSION, true );
 	// Asistan paneli: Flux AI'ın ortak sohbeti (dosya ekleme, araç adımları, onay kartları, çalışma alanı).
 	$ai_embed = current_user_can( 'flxg_ai' ) && function_exists( 'flxai_chat_embed_enqueue' ) && flxai_chat_embed_enqueue();

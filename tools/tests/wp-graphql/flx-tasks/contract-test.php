@@ -162,4 +162,6 @@ wp_set_current_user( $admin );
 $r = graphql( array( 'queryId' => $hash, 'variables' => array( 'id' => (string) $rest_task['id'] ) ) );
 flxt_same( 'REST task', $r['data']['flxTask']['title'] ?? null, 'persisted queryId runs (strict mode)' );
 
+require __DIR__ . '/docs-test.php';
+
 flxt_done();
