@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.10.2
+- Flux Görevler, Flux Chat, Flux App ve Flux CRM REST isteklerinde WooCommerce'in REST rotaları kaydedilmez (o istek bu rotaları hiç kullanmaz). WooCommerce'li sitede bu isteklerin PHP süresi yarıdan fazla kısalır (ölçüm: görev senkronu 0,33 sn → 0,12 sn). Filtre `flxp_lean_rest_namespaces` ile liste değişir, boş dizi kapatır.
+
 ## 0.10.1
 - Hız özeti 30 sn önbelleklenir (kayıtlar temizlenince düşer): ekran ilk açılışta ~0,6 sn daha hızlı.
 - Ortak modül paketi yenilendi: ekranın parçaları sayfa başında birlikte iner, giriş dosyası iki kez çalışmaz, ayar ekranlarında ilk karede yükleniyor göstergesi çıkmaz.
