@@ -1,0 +1,7 @@
+query FlxChatList($filter: FlxChatFilter, $search: String, $label: String, $channel: String, $first: Int = 50, $after: String) {
+  flxChats(filter: $filter, search: $search, label: $label, channel: $channel, first: $first, after: $after) {
+    nodes { ...FlxChatFields }
+    pageInfo { hasNextPage endCursor }
+    totalCount
+  }
+}

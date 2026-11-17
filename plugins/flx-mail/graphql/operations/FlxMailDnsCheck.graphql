@@ -1,0 +1,6 @@
+mutation FlxMailDnsCheck($input: FlxMailDnsCheckInput!) {
+  flxMailDnsCheck(input: $input) {
+    dns { domain spf dmarc mx error checkedAt { ...FlxMailDate } }
+    errors { code message field }
+  }
+}

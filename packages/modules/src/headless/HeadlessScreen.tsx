@@ -39,8 +39,23 @@ interface Draft {
   secret: string;
   clearSecret: boolean;
   previewPath: string;
+  /** The webhook address follows the address until someone edits it. */
+  autoHook: boolean;
 }
 
+/** 48 random hex characters from the browser's crypto (never sent anywhere until saved). */
+const newSecret = () => Array.from(crypto.getRandomValues(new Uint8Array(24)), (b) => b.toString(16).padStart(2, '0')).join('');
+
+/** Default webhook address of a front end: <address>/api/revalidate (the demo's route; any framework can use it). */
+const hookOf = (url: string) => {
+  const u = url.trim().replace(/\/+$/, '');
+  return /^https?:\/\/[^/]+/i.test(u) ? `${u}/api/revalidate` : '';
+};
+
+/**
+ * A new front end needs only a name and an address: the webhook address follows the address,
+ * the preview path is /api/preview and a secret is generated. All three can be changed under "Advanced".
+ */
 const draftOf = (f: Frontend | null, first: boolean): Draft => ({
   id: f?.id ?? '',
   name: f?.name ?? '',
@@ -49,13 +64,11 @@ const draftOf = (f: Frontend | null, first: boolean): Draft => ({
   enabled: f?.enabled ?? true,
   isDefault: f?.isDefault ?? first,
   revalidateUrl: f?.revalidateUrl ?? '',
-  secret: '',
+  secret: f ? '' : newSecret(),
   clearSecret: false,
-  previewPath: f?.previewPath ?? '',
+  previewPath: f ? (f.previewPath ?? '') : '/api/preview',
+  autoHook: !f || (f.revalidateUrl !== '' && f.revalidateUrl === hookOf(f.url)),
 });
-
-/** 48 random hex characters from the browser's crypto (never sent anywhere until saved). */
-const newSecret = () => Array.from(crypto.getRandomValues(new Uint8Array(24)), (b) => b.toString(16).padStart(2, '0')).join('');
 
 /** Environment of a front end: the WordPress address and the connection key (plus the endpoint when it is not /graphql). */
 const envLines = (cmsUrl: string, graphqlUrl: string, key: string) =>
@@ -405,6 +418,7 @@ function FrontendForm({ draft, errors, langs, busy, saved, t, onChange, onSubmit
 }) {
   const err = (field: string) => errors.find((e) => e.field === field)?.message;
   const general = errors.filter((e) => !e.field || !['name', 'url', 'languages', 'revalidateUrl', 'secret', 'previewPath'].includes(e.field));
+  const advErr = ['revalidateUrl', 'secret', 'previewPath'].some((f) => err(f));
   const field = (name: string, label: string, input: ReactNode, help?: string) => (
     <label className={'flxhl-field' + (err(name) ? ' has-error' : '')}>
       <span>{label}</span>
@@ -421,7 +435,7 @@ function FrontendForm({ draft, errors, langs, busy, saved, t, onChange, onSubmit
       ))}
       <div className="flxhl-form__grid">
         {field('name', t('Name'), <input type="text" value={draft.name} onChange={(e) => onChange({ name: e.currentTarget.value })} placeholder={t('Main site')} required />)}
-        {field('url', t('Address'), <input type="url" className="code" value={draft.url} onChange={(e) => onChange({ url: e.currentTarget.value })} placeholder="https://www.example.com" required />, t('Where visitors open the front end. WordPress usually moves to another address, e.g. cms.example.com.'))}
+        {field('url', t('Address'), <input type="url" className="code" value={draft.url} onChange={(e) => { const url = e.currentTarget.value; onChange(draft.autoHook ? { url, revalidateUrl: hookOf(url) } : { url }); }} placeholder="https://www.example.com" required />, t('Where visitors open the front end. WordPress usually moves to another address, e.g. cms.example.com.'))}
       </div>
       {langs.length > 0 && (
         <fieldset className={'flxhl-langs' + (err('languages') ? ' has-error' : '')}>
@@ -444,40 +458,43 @@ function FrontendForm({ draft, errors, langs, busy, saved, t, onChange, onSubmit
           {t('Default front end')}
         </Check>
       </div>
-      <h3 className="flxhl-sub">{t('Revalidate webhook')}</h3>
-      <div className="flxhl-form__grid">
-        {field('revalidateUrl', t('Webhook address'), <input type="url" className="code" value={draft.revalidateUrl} onChange={(e) => onChange({ revalidateUrl: e.currentTarget.value })} placeholder="https://www.example.com/api/revalidate" />, t('Receives a signed POST with the cache tags when content changes. Empty: no webhook.'))}
-        <label className={'flxhl-field' + (err('secret') ? ' has-error' : '')}>
-          <span>{t('Secret')}</span>
-          <div className="flxhl-secret">
-            <input
-              type="text"
-              className="code"
-              value={draft.clearSecret ? '' : draft.secret}
-              disabled={draft.clearSecret}
-              autoComplete="off"
-              spellCheck={false}
-              placeholder={saved?.secretSet ? t('Saved (%s). Type to replace it.', saved.secretHint) : t('At least 24 characters')}
-              onChange={(e) => onChange({ secret: e.currentTarget.value })}
-            />
-            <button type="button" className="flxhl-btn" onClick={() => onChange({ secret: newSecret(), clearSecret: false })}>
-              {t('Generate')}
-            </button>
-            {draft.secret && (
-              <button type="button" className="flxhl-btn" onClick={() => copy(draft.secret)}>
-                {t('Copy')}
+      <details className="flxhl-adv" open={advErr}>
+        <summary>{t('Advanced')}</summary>
+        <p className="flxhl-adv__lead">{t('Filled in for you. Change them only if your front end uses other routes.')}</p>
+        <div className="flxhl-form__grid">
+          {field('revalidateUrl', t('Webhook address'), <input type="url" className="code" value={draft.revalidateUrl} onChange={(e) => onChange({ revalidateUrl: e.currentTarget.value, autoHook: false })} placeholder="https://www.example.com/api/revalidate" />, t('Receives a signed POST with the cache tags when content changes. Empty: no webhook.'))}
+          <label className={'flxhl-field' + (err('secret') ? ' has-error' : '')}>
+            <span>{t('Secret')}</span>
+            <div className="flxhl-secret">
+              <input
+                type="text"
+                className="code"
+                value={draft.clearSecret ? '' : draft.secret}
+                disabled={draft.clearSecret}
+                autoComplete="off"
+                spellCheck={false}
+                placeholder={saved?.secretSet ? t('Saved (%s). Type to replace it.', saved.secretHint) : t('At least 24 characters')}
+                onChange={(e) => onChange({ secret: e.currentTarget.value })}
+              />
+              <button type="button" className="flxhl-btn" onClick={() => onChange({ secret: newSecret(), clearSecret: false })}>
+                {t('Generate')}
               </button>
+              {draft.secret && (
+                <button type="button" className="flxhl-btn" onClick={() => copy(draft.secret)}>
+                  {t('Copy')}
+                </button>
+              )}
+            </div>
+            {err('secret') ? <small className="flxhl-err">{err('secret')}</small> : <small>{draft.secret ? t('After saving you get the connection key for the front end; the secret is stored encrypted and never shown again.') : t('Signs every call (HMAC-SHA256) and preview links.')}</small>}
+            {saved?.secretSet && (
+              <Check checked={draft.clearSecret} onChange={(v) => onChange({ clearSecret: v, secret: '' })}>
+                {t('Remove the saved secret')}
+              </Check>
             )}
-          </div>
-          {err('secret') ? <small className="flxhl-err">{err('secret')}</small> : <small>{draft.secret ? t('After saving you get the connection key for the front end; the secret is stored encrypted and never shown again.') : t('Signs every call (HMAC-SHA256) and preview links.')}</small>}
-          {saved?.secretSet && (
-            <Check checked={draft.clearSecret} onChange={(v) => onChange({ clearSecret: v, secret: '' })}>
-              {t('Remove the saved secret')}
-            </Check>
-          )}
-        </label>
-        {field('previewPath', t('Preview path'), <input type="text" className="code" value={draft.previewPath} onChange={(e) => onChange({ previewPath: e.currentTarget.value })} placeholder="/api/preview" />, t('The editor\'s Preview button opens this path on the default front end with a signed link. Empty: previews stay on WordPress.'))}
-      </div>
+          </label>
+          {field('previewPath', t('Preview path'), <input type="text" className="code" value={draft.previewPath} onChange={(e) => onChange({ previewPath: e.currentTarget.value })} placeholder="/api/preview" />, t('The editor\'s Preview button opens this path on the default front end with a signed link. Empty: previews stay on WordPress.'))}
+        </div>
+      </details>
       <div className="flxhl-modal-actions">
         <button type="button" className="flxhl-btn" onClick={onCancel}>
           {t('Cancel')}

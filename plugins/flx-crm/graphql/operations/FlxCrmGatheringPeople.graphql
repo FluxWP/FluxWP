@@ -1,0 +1,16 @@
+query FlxCrmGatheringPeople($id: Int!, $search: String, $first: Int = 40, $after: String) {
+  flxGatheringPeople(id: $id, search: $search, first: $first, after: $after) {
+    totalCount
+    nodes {
+      databaseId
+      name
+      email
+      phone
+      why
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}

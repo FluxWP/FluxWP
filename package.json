@@ -32,7 +32,9 @@
   },
   "workspaces": [
     "packages/*",
-    "apps/*"
+    "apps/desktop",
+    "apps/mobile",
+    "apps/wp-embed"
   ],
   "description": "FluxWP (React panel + Tauri) ve paylaşılan TS kütüphaneleri. WordPress eklentileri plugins/, temalar themes/ altında.",
   "overrides": {

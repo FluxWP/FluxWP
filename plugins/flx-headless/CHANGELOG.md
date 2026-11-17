@@ -1,5 +1,9 @@
 # Flux Headless
 
+## 0.1.3
+- Ön yüz ekleme/düzenleme ve bağlantı pencereleri wp-admin'de sol menünün üstünde açılır (@fluxwp/ui 0.3.2).
+- Yeni ön yüz için yalnız ad ve adres girilir: webhook adresi (`<adres>/api/revalidate`), önizleme yolu (`/api/preview`) ve secret kendiliğinden dolar, "Gelişmiş" altında değiştirilebilir.
+
 ## 0.1.2
 - Ön yüz yalnız iki değişkenle bağlanır: `FLUX_WP_URL` (WordPress adresi) ve `FLUX_KEY` (bağlantı anahtarı = ön yüz kimliği + secret). Yeni secret ile kaydedince panel bu iki satırı bir kez gösterir (Kopyala).
 - Önizleme anahtarla: ön yüz sunucusu taslak isteğini `X-Flx-Preview` başlığıyla imzalar (5 dakika geçerli), yalnız adı geçen taslak o istekte açılır. Uygulama parolası artık gerekmez (hâlâ desteklenir).

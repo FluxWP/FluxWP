@@ -1,0 +1,7 @@
+mutation FlxMailImapTest($input: FlxMailImapTestInput!) {
+  flxMailImapTest(input: $input) {
+    ok
+    message
+    errors { code message field }
+  }
+}

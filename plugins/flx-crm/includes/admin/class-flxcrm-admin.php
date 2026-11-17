@@ -51,7 +51,7 @@ final class FLXCRM_Admin {
 		add_submenu_page( 'flx-crm', __( 'Overview', 'flx-crm' ), __( 'Overview', 'flx-crm' ), $view, 'flx-crm', flxcrm_flux_page( array( 'FLXCRM_Page_Overview', 'render' ) ) );
 		add_submenu_page( 'flx-crm', __( 'Contacts', 'flx-crm' ), __( 'Contacts', 'flx-crm' ), $view, 'flx-crm-contacts', flxcrm_flux_page( array( __CLASS__, 'route_contacts' ) ) );
 		add_submenu_page( 'flx-crm', __( 'Segments', 'flx-crm' ), __( 'Segments', 'flx-crm' ), $view, 'flx-crm-segments', flxcrm_flux_page( array( 'FLXCRM_Page_Segments', 'render' ) ) );
-		add_submenu_page( 'flx-crm', __( 'Events', 'flx-crm' ), __( 'Events', 'flx-crm' ), $view, 'flx-crm-events', array( 'FLXCRM_Page_Events', 'render' ) );
+		add_submenu_page( 'flx-crm', __( 'Events', 'flx-crm' ), __( 'Events', 'flx-crm' ), $view, 'flx-crm-events', flxcrm_flux_page( array( 'FLXCRM_Page_Events', 'render' ) ) );
 		add_submenu_page( 'flx-crm', __( 'Journeys', 'flx-crm' ), __( 'Journeys', 'flx-crm' ), $view, 'flx-crm-journeys', flxcrm_flux_page( array( 'FLXCRM_Page_Journeys', 'render' ) ) );
 		add_submenu_page( 'flx-crm', __( 'CRM settings', 'flx-crm' ), __( 'Settings', 'flx-crm' ), self::cap_manage(), 'flx-crm-settings', flxcrm_flux_page( array( 'FLXCRM_Page_Settings', 'render' ) ) );
 	}
@@ -456,7 +456,7 @@ final class FLXCRM_Admin {
 			echo '<a class="flxcrm-backbtn" href="' . esc_url( $back[0] ) . '" title="' . esc_attr( $back[1] ) . '" aria-label="' . esc_attr( sprintf( /* translators: %s: page name */ __( 'Back to %s', 'flx-crm' ), $back[1] ) ) . '">' . flxcrm_icon( 'back', 18 ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		}
 		echo '<div class="flxcrm-head__text"><h1>' . esc_html( $title ) . '</h1>';
-		if ( flxcrm_flux_available() && ! flxcrm_flux_ui() && ( ! isset( $_GET['page'] ) || 'flx-crm-events' !== $_GET['page'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+		if ( flxcrm_flux_available() && ! flxcrm_flux_ui() ) {
 			echo '<p><a class="button button-small" href="' . esc_url( flxcrm_ui_switch_url( 'flux' ) ) . '">' . esc_html__( 'New view', 'flx-crm' ) . '</a> <span class="flxcrm-muted">' . esc_html__( 'Open the new view (same features, works in the FluxWP app too).', 'flx-crm' ) . '</span></p>';
 		}
 		if ( '' !== $lead ) {

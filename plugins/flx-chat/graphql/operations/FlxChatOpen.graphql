@@ -1,0 +1,6 @@
+query FlxChatOpen($id: ID!) {
+  flxChat(id: $id) {
+    ...FlxChatFields
+    sections { id title items { label sub url } }
+  }
+}

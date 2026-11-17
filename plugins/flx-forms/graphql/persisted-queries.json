@@ -1,0 +1,6 @@
+{
+  "c647a51376eaf7ba85cf4d0ad58fda06088b10057a4c88c3b8b1c2c93f15ca0d": "mutation FlxFormTrackReply($input: FlxFormTrackReplyInput!) {\n  flxFormTrackReply(input: $input) {\n    submission {\n      id\n      trackCode\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+  "d9f24634d21b59431deede6cf6c760e235dddc75364b8b7a098f00e4944e7379": "query FlxForm($id: ID!) {\n  flxForm(id: $id) {\n    id\n    title\n    formType\n    steps\n    buttonLabel\n    successTitle\n    successMessage\n    fields {\n      id\n      type\n      label\n      required\n      placeholder\n      options {\n        value\n        label\n      }\n    }\n  }\n}",
+  "df7b3613b96844d5993edddd4b751ddfcda232406670e2808b70fb010e559923": "mutation FlxFormSubmit($input: FlxFormSubmitInput!) {\n  flxFormSubmit(input: $input) {\n    submission {\n      id\n      trackCode\n    }\n    errors {\n      code\n      message\n      field\n    }\n  }\n}",
+  "eaa1f48c7e5c599823664c5d7c9b379a0131ee935bf77893321800c3d1c65178": "query FlxFormTrack($code: String!) {\n  flxFormTrack(code: $code) {\n    trackCode\n    formTitle\n    submittedAt {\n      iso\n      timestamp\n    }\n    fields {\n      label\n      value\n    }\n    replies {\n      body\n      createdAt {\n        iso\n        timestamp\n      }\n      attachments\n    }\n  }\n}"
+}

@@ -4998,3 +4998,828 @@ msgstr "Tanıtım mesajları ve hatırlatıcılar gitmez. Kişinin kendi mesajla
 
 msgid "The person replied STOP to promotional messages."
 msgstr "Kişi tanıtım mesajları için IPTAL yazdı."
+
+msgid "Schedules call-center reports"
+msgstr "Çağrı merkezi raporlarını zamanlar"
+
+msgid "Can receive a call-center report"
+msgstr "Çağrı merkezi raporu alabilir"
+
+msgid "Can receive the general call-center report"
+msgstr "Genel çağrı merkezi raporunu alabilir"
+
+msgid "Uses the call center"
+msgstr "Çağrı merkezini kullanır"
+
+msgid "Manages the call center"
+msgstr "Çağrı merkezini yönetir"
+
+msgid "The chat could not be opened."
+msgstr "Sohbet açılamadı."
+
+msgid "Open or closed."
+msgstr "Açık ya da kapalı."
+
+msgid "Open."
+msgstr "Açık."
+
+msgid "Closed."
+msgstr "Kapalı."
+
+msgid "Which chats the list shows. ALL is the open inbox and leaves closed chats out."
+msgstr "Listenin hangi sohbetleri gösterdiği. ALL açık gelen kutusudur, kapalı sohbetleri içermez."
+
+msgid "Open chats."
+msgstr "Açık sohbetler."
+
+msgid "Unread open chats."
+msgstr "Okunmamış açık sohbetler."
+
+msgid "Assigned to the viewer."
+msgstr "Görüntüleyene atanmış."
+
+msgid "Not assigned."
+msgstr "Atanmamış."
+
+msgid "The assistant is on."
+msgstr "Asistan açık."
+
+msgid "Closed chats."
+msgstr "Kapalı sohbetler."
+
+msgid "Open and closed."
+msgstr "Açık ve kapalı."
+
+msgid "Who the line belongs to."
+msgstr "Satırın kime ait olduğu."
+
+msgid "From the contact."
+msgstr "Kişiden."
+
+msgid "From the team."
+msgstr "Ekipten."
+
+msgid "Internal note."
+msgstr "Dahili not."
+
+msgid "System line."
+msgstr "Sistem satırı."
+
+msgid "Delivery of an outgoing message. Empty on the wire is null."
+msgstr "Giden mesajın iletim durumu. Telde boş olan null olur."
+
+msgid "Assistant on this chat."
+msgstr "Bu sohbetteki asistan."
+
+msgid "Preview of the latest line."
+msgstr "Son satırın önizlemesi."
+
+msgid "Direction."
+msgstr "Yön."
+
+msgid "Message type."
+msgstr "Mesaj türü."
+
+msgid "Preview text."
+msgstr "Önizleme metni."
+
+msgid "Delivery. Null when the line has none."
+msgstr "İletim durumu. Satırın yoksa null."
+
+msgid "Author name."
+msgstr "Yazar adı."
+
+msgid "One reaction."
+msgstr "Tek bir tepki."
+
+msgid "in, out, or a group sender id."
+msgstr "in, out ya da grup gönderen kimliği."
+
+msgid "Emoji."
+msgstr "Emoji."
+
+msgid "Who deleted a line and how."
+msgstr "Bir satırı kimin ve nasıl sildiği."
+
+msgid "contact, phone, everyone or panel."
+msgstr "contact, phone, everyone ya da panel."
+
+msgid "Name. Empty when the contact deleted it."
+msgstr "Ad. Kişi sildiyse boş."
+
+msgid "When. Null when unknown."
+msgstr "Ne zaman. Bilinmiyorsa null."
+
+msgid "The body was not kept."
+msgstr "Metin saklanmadı."
+
+msgid "Card for a link in a message."
+msgstr "Mesajdaki bağlantının kartı."
+
+msgid "URL."
+msgstr "URL."
+
+msgid "Title."
+msgstr "Başlık."
+
+msgid "Description."
+msgstr "Açıklama."
+
+msgid "Image URL. Empty when none."
+msgstr "Görsel URL'si. Yoksa boş."
+
+msgid "Site name."
+msgstr "Site adı."
+
+msgid "Domain."
+msgstr "Alan adı."
+
+msgid "Campaign or record the outgoing line came from."
+msgstr "Giden satırın geldiği kampanya ya da kayıt."
+
+msgid "Label."
+msgstr "Etiket."
+
+msgid "Detail URL. Empty when none."
+msgstr "Ayrıntı URL'si. Yoksa boş."
+
+msgid "Kind."
+msgstr "Tür."
+
+msgid "AI summary of a receipt check."
+msgstr "Dekont kontrolünün yapay zekâ özeti."
+
+msgid "Verdict."
+msgstr "Karar."
+
+msgid "Short text."
+msgstr "Kısa metin."
+
+msgid "A donation or certificate matched to a message."
+msgstr "Bir mesajla eşleştirilmiş bağış ya da sertifika."
+
+msgid "donation or certificate."
+msgstr "donation ya da certificate."
+
+msgid "Record id."
+msgstr "Kayıt kimliği."
+
+msgid "File on a message. The URL is for this viewer only."
+msgstr "Mesajdaki dosya. URL yalnız bu görüntüleyene aittir."
+
+msgid "File. The URL carries this viewer's nonce and is not shared across users."
+msgstr "Dosya. URL bu görüntüleyenin nonce'unu taşır ve kullanıcılar arasında paylaşılmaz."
+
+msgid "The bytes are on disk."
+msgstr "Dosya içeriği diskte."
+
+msgid "Voice note. False for an audio file."
+msgstr "Sesli not. Ses dosyası için false."
+
+msgid "Length in seconds."
+msgstr "Saniye cinsinden uzunluk."
+
+msgid "Width."
+msgstr "Genişlik."
+
+msgid "Height."
+msgstr "Yükseklik."
+
+msgid "Thumbnail. Empty when none."
+msgstr "Küçük resim. Yoksa boş."
+
+msgid "The line a message quotes."
+msgstr "Bir mesajın alıntıladığı satır."
+
+msgid "Message id."
+msgstr "Mesaj kimliği."
+
+msgid "Type."
+msgstr "Tür."
+
+msgid "Text."
+msgstr "Metin."
+
+msgid "Author."
+msgstr "Yazar."
+
+msgid "One line. The parent query already checked the chat."
+msgstr "Tek satır. Üst sorgu sohbeti zaten denetledi."
+
+msgid "Chat id."
+msgstr "Sohbet kimliği."
+
+msgid "Provider id. Empty when none."
+msgstr "Sağlayıcı kimliği. Yoksa boş."
+
+msgid "Provider type. A voice note is audio with media.ptt."
+msgstr "Sağlayıcı türü. Sesli not, media.ptt olan bir sestir."
+
+msgid "Send error. Empty when none."
+msgstr "Gönderim hatası. Yoksa boş."
+
+msgid "Author user id. 0 for the contact."
+msgstr "Yazar kullanıcı kimliği. Kişi için 0."
+
+msgid "agent, ai, quick, system, record, …"
+msgstr "agent, ai, quick, system, record, …"
+
+msgid "Group sender id. Empty in a direct chat."
+msgstr "Grup gönderen kimliği. Birebir sohbette boş."
+
+msgid "When it was sent. Null when unknown."
+msgstr "Ne zaman gönderildi. Bilinmiyorsa null."
+
+msgid "Milliseconds as a decimal string."
+msgstr "Milisaniye, ondalık metin olarak."
+
+msgid "Revision milliseconds as a decimal string."
+msgstr "Revizyon milisaniyesi, ondalık metin olarak."
+
+msgid "The text was edited."
+msgstr "Metin düzenlendi."
+
+msgid "Edit deadline. Null when it cannot be edited."
+msgstr "Düzenleme süresi. Düzenlenemiyorsa null."
+
+msgid "Delete-for-everyone deadline. Null when only the panel can hide it."
+msgstr "Herkesten silme süresi. Yalnız panelde gizlenebiliyorsa null."
+
+msgid "Deleted."
+msgstr "Silindi."
+
+msgid "Deletion audit. Null when the line is not deleted."
+msgstr "Silme kaydı. Satır silinmediyse null."
+
+msgid "Reactions."
+msgstr "Tepkiler."
+
+msgid "Link card. Null when there is none."
+msgstr "Bağlantı kartı. Yoksa null."
+
+msgid "The sender turned the card off."
+msgstr "Gönderen kartı kapattı."
+
+msgid "Matched records."
+msgstr "Eşleşen kayıtlar."
+
+msgid "AI receipt check. Null when none."
+msgstr "Yapay zekâ dekont kontrolü. Yoksa null."
+
+msgid "Campaign origin. Null when the line was typed here."
+msgstr "Kampanya kaynağı. Satır buradan yazıldıysa null."
+
+msgid "File. Null for text. Resolved for this viewer."
+msgstr "Dosya. Metin için null. Bu görüntüleyen için çözümlenir."
+
+msgid "Quoted line. Null when none."
+msgstr "Alıntılanan satır. Yoksa null."
+
+msgid "One row in the contact panel."
+msgstr "Kişi panelindeki tek satır."
+
+msgid "Second line."
+msgstr "İkinci satır."
+
+msgid "Link. Empty when none."
+msgstr "Bağlantı. Yoksa boş."
+
+msgid "Tone."
+msgstr "Ton."
+
+msgid "A block in the contact panel of one chat."
+msgstr "Bir sohbetin kişi panelindeki blok."
+
+msgid "Id."
+msgstr "Kimlik."
+
+msgid "Rows."
+msgstr "Satırlar."
+
+msgid "A change to the contact on this chat."
+msgstr "Bu sohbetteki kişide yapılan değişiklik."
+
+msgid "What changed."
+msgstr "Neyin değiştiği."
+
+msgid "A WhatsApp or site chat the viewer is allowed to see."
+msgstr "Görüntüleyenin görmesine izin verilen bir WhatsApp ya da site sohbeti."
+
+msgid "Connection id."
+msgstr "Bağlantı kimliği."
+
+msgid "Provider id."
+msgstr "Sağlayıcı kimliği."
+
+msgid "Digits. Empty for a hidden or group number."
+msgstr "Rakamlar. Gizli ya da grup numarası için boş."
+
+msgid "Number as shown."
+msgstr "Gösterilen numara."
+
+msgid "Number. Null when the chat has none."
+msgstr "Numara. Sohbetin yoksa null."
+
+msgid "Channel id."
+msgstr "Kanal kimliği."
+
+msgid "Saved name."
+msgstr "Kayıtlı ad."
+
+msgid "Name from WhatsApp."
+msgstr "WhatsApp'taki ad."
+
+msgid "Photo for this viewer. Empty when none."
+msgstr "Bu görüntüleyen için fotoğraf. Yoksa boş."
+
+msgid "When the photo was fetched. Null when never."
+msgstr "Fotoğrafın ne zaman alındığı. Hiç alınmadıysa null."
+
+msgid "Label ids."
+msgstr "Etiket kimlikleri."
+
+msgid "Internal notes."
+msgstr "Dahili notlar."
+
+msgid "Agent user id. 0 when unassigned."
+msgstr "Temsilci kullanıcı kimliği. Atanmamışsa 0."
+
+msgid "Linked staff user. Null for an agent; only a manager sees it."
+msgstr "Bağlı personel kullanıcısı. Temsilci için null; yalnız yönetici görür."
+
+msgid "Unread count."
+msgstr "Okunmamış sayısı."
+
+msgid "Pinned."
+msgstr "Sabitlendi."
+
+msgid "Last message time, milliseconds."
+msgstr "Son mesaj zamanı, milisaniye."
+
+msgid "Last message time. Null when the chat is empty."
+msgstr "Son mesaj zamanı. Sohbet boşsa null."
+
+msgid "Last incoming time, milliseconds."
+msgstr "Son gelen zaman, milisaniye."
+
+msgid "Group chat."
+msgstr "Grup sohbeti."
+
+msgid "0 idle, 1 composing, 2 recording."
+msgstr "0 boşta, 1 yazıyor, 2 kayıt yapıyor."
+
+msgid "Revision milliseconds."
+msgstr "Revizyon milisaniyesi."
+
+msgid "Created at, milliseconds."
+msgstr "Oluşturulma zamanı, milisaniye."
+
+msgid "Created at."
+msgstr "Oluşturulma zamanı."
+
+msgid "No saved name."
+msgstr "Kayıtlı ad yok."
+
+msgid "On the block list."
+msgstr "Engel listesinde."
+
+msgid "The contact opted out."
+msgstr "Kişi abonelikten çıktı."
+
+msgid "Assistant state. Null when the assistant is not in use on this chat."
+msgstr "Asistan durumu. Bu sohbette asistan kullanılmıyorsa null."
+
+msgid "The assistant is writing."
+msgstr "Asistan yazıyor."
+
+msgid "The assistant has handled this chat."
+msgstr "Asistan bu sohbetle ilgilendi."
+
+msgid "Latest line. Null when the chat is empty."
+msgstr "Son satır. Sohbet boşsa null."
+
+msgid "Shared person for this phone. Null when CRM has no record or the viewer cannot see a chat with this phone."
+msgstr "Bu telefon için ortak kişi. CRM'de kayıt yoksa ya da görüntüleyen bu telefonla bir sohbet göremiyorsa null."
+
+msgid "Contact panel. Empty on a list row; filled on flxChat."
+msgstr "Kişi paneli. Liste satırında boş; flxChat'te dolu."
+
+msgid "Contact change log. Empty on a list row."
+msgstr "Kişi değişiklik günlüğü. Liste satırında boş."
+
+msgid "A page of chats."
+msgstr "Bir sayfa sohbet."
+
+msgid "Older lines of one chat. before is a message id, not an offset cursor."
+msgstr "Bir sohbetin eski satırları. before bir mesaj kimliğidir, ofset imleci değildir."
+
+msgid "Lines, oldest first in this page."
+msgstr "Satırlar, bu sayfada en eskisi önce."
+
+msgid "More history exists."
+msgstr "Daha fazla geçmiş var."
+
+msgid "History fetch note. Empty when none."
+msgstr "Geçmiş alma notu. Yoksa boş."
+
+msgid "A new incoming line, for the notification."
+msgstr "Bildirim için yeni gelen satır."
+
+msgid "Chat title."
+msgstr "Sohbet başlığı."
+
+msgid "Preview."
+msgstr "Önizleme."
+
+msgid "Connection state. No keys."
+msgstr "Bağlantı durumu. Anahtar yok."
+
+msgid "Color."
+msgstr "Renk."
+
+msgid "State."
+msgstr "Durum."
+
+msgid "When the state changed. Null when unknown."
+msgstr "Durumun ne zaman değiştiği. Bilinmiyorsa null."
+
+msgid "Changes since a revision. A truncated page is ordered by rev ascending; continue from continueRev and continueId."
+msgstr "Bir revizyondan beri değişenler. Kesilen sayfa rev'e göre artan sıralıdır; continueRev ve continueId ile devam edin."
+
+msgid "Current revision. Do not use this as since while truncated is true."
+msgstr "Geçerli revizyon. truncated true iken bunu since olarak kullanmayın."
+
+msgid "Pass as since on the next poll."
+msgstr "Sonraki sorguda since olarak verin."
+
+msgid "Pass as afterChat when truncated, otherwise 0."
+msgstr "Kesildiyse afterChat olarak verin, yoksa 0."
+
+msgid "More chats changed than this page holds."
+msgstr "Bu sayfanın alabileceğinden fazla sohbet değişti."
+
+msgid "More new lines in the open chat. Ask again with a higher after."
+msgstr "Açık sohbette daha fazla yeni satır var. Daha yüksek bir after ile yeniden isteyin."
+
+msgid "Changed chats, oldest revision first, at most 50."
+msgstr "Değişen sohbetler, en eski revizyon önce, en fazla 50."
+
+msgid "New lines of the open chat, at most 50."
+msgstr "Açık sohbetin yeni satırları, en fazla 50."
+
+msgid "Incoming lines for notifications."
+msgstr "Bildirimler için gelen satırlar."
+
+msgid "Connection states. No secrets."
+msgstr "Bağlantı durumları. Gizli bilgi yok."
+
+msgid "Unread total the viewer can see."
+msgstr "Görüntüleyenin görebildiği okunmamış toplamı."
+
+msgid "Someone who can be assigned a chat."
+msgstr "Sohbet atanabilecek biri."
+
+msgid "User id."
+msgstr "Kullanıcı kimliği."
+
+msgid "Name."
+msgstr "Ad."
+
+msgid "A chat label."
+msgstr "Bir sohbet etiketi."
+
+msgid "A quick reply."
+msgstr "Hazır bir cevap."
+
+msgid "Shortcut."
+msgstr "Kısayol."
+
+msgid "Body."
+msgstr "Metin."
+
+msgid "The viewer."
+msgstr "Görüntüleyen."
+
+msgid "Manager."
+msgstr "Yönetici."
+
+msgid "What the chat page needs to open. No secrets."
+msgstr "Sohbet sayfasının açılması için gerekenler. Gizli bilgi yok."
+
+msgid "Viewer."
+msgstr "Görüntüleyen."
+
+msgid "Hours a line can be deleted for everyone."
+msgstr "Bir satırın herkesten silinebildiği saat sayısı."
+
+msgid "Assignees."
+msgstr "Atanabilecekler."
+
+msgid "Labels."
+msgstr "Etiketler."
+
+msgid "Connections without keys."
+msgstr "Anahtarsız bağlantılar."
+
+msgid "Quick replies."
+msgstr "Hazır cevaplar."
+
+msgid "Unread total."
+msgstr "Okunmamış toplamı."
+
+msgid "AI provider label. Null when AI is off."
+msgstr "Yapay zekâ sağlayıcı etiketi. Yapay zekâ kapalıysa null."
+
+msgid "The assistant is enabled."
+msgstr "Asistan etkin."
+
+msgid "Current revision."
+msgstr "Geçerli revizyon."
+
+msgid "Classic chat page."
+msgstr "Klasik sohbet sayfası."
+
+msgid "Whether a number is on WhatsApp. A chat the viewer cannot see is omitted."
+msgstr "Bir numaranın WhatsApp'ta olup olmadığı. Görüntüleyenin göremediği sohbet dahil edilmez."
+
+msgid "The number could be parsed."
+msgstr "Numara çözümlenebildi."
+
+msgid "Digits. Empty when invalid."
+msgstr "Rakamlar. Geçersizse boş."
+
+msgid "Display. Empty when invalid."
+msgstr "Görünüm. Geçersizse boş."
+
+msgid "On WhatsApp. Null when the connection could not be asked."
+msgstr "WhatsApp'ta. Bağlantıya sorulamadıysa null."
+
+msgid "Existing visible chat. 0 when none."
+msgstr "Var olan görünür sohbet. Yoksa 0."
+
+msgid "Name. Not the title of a hidden chat."
+msgstr "Ad. Gizli bir sohbetin başlığı değildir."
+
+msgid "Assistant use on one day."
+msgstr "Bir günlük asistan kullanımı."
+
+msgid "Day."
+msgstr "Gün."
+
+msgid "Calls."
+msgstr "Çağrılar."
+
+msgid "Input tokens."
+msgstr "Girdi token'ları."
+
+msgid "Output tokens."
+msgstr "Çıktı token'ları."
+
+msgid "Assistant use of one visible chat."
+msgstr "Görünür bir sohbetin asistan kullanımı."
+
+msgid "Replies today."
+msgstr "Bugünkü cevaplar."
+
+msgid "Daily limit."
+msgstr "Günlük sınır."
+
+msgid "The limit is reached."
+msgstr "Sınıra ulaşıldı."
+
+msgid "Recent days."
+msgstr "Son günler."
+
+msgid "Inbox bootstrap. No secrets."
+msgstr "Gelen kutusu başlangıç verisi. Gizli bilgi yok."
+
+msgid "Chats the viewer can see."
+msgstr "Görüntüleyenin görebildiği sohbetler."
+
+msgid "Filter. Open chats when omitted."
+msgstr "Süzgeç. Verilmezse açık sohbetler."
+
+msgid "Name, number, note or message text."
+msgstr "Ad, numara, not ya da mesaj metni."
+
+msgid "Label id."
+msgstr "Etiket kimliği."
+
+msgid "One chat, with the contact panel. Null when missing or hidden."
+msgstr "Kişi paneliyle tek sohbet. Yoksa ya da gizliyse null."
+
+msgid "Global id or chat number."
+msgstr "Genel kimlik ya da sohbet numarası."
+
+msgid "Lines of a chat the viewer can see."
+msgstr "Görüntüleyenin görebildiği bir sohbetin satırları."
+
+msgid "Chat."
+msgstr "Sohbet."
+
+msgid "Return lines older than this message id."
+msgstr "Bu mesaj kimliğinden eski satırları döndür."
+
+msgid "Page size, at most 50."
+msgstr "Sayfa boyutu, en fazla 50."
+
+msgid "Changes since a revision. Poll at 10 seconds or slower, and stop while the tab is hidden."
+msgstr "Bir revizyondan beri değişenler. 10 saniyede bir ya da daha seyrek sorgulayın; sekme gizliyken durun."
+
+msgid "Revision milliseconds already applied. Decimal string."
+msgstr "Uygulanmış revizyon milisaniyesi. Ondalık metin."
+
+msgid "Last message id the client has for the open chat."
+msgstr "İstemcinin açık sohbet için elindeki son mesaj kimliği."
+
+msgid "Open chat. Lines of a hidden chat are omitted."
+msgstr "Açık sohbet. Gizli bir sohbetin satırları dahil edilmez."
+
+msgid "continueId from a truncated page."
+msgstr "Kesilen sayfadaki continueId."
+
+msgid "Look up a number. Does not reveal a chat the viewer cannot see."
+msgstr "Numara sorgula. Görüntüleyenin göremediği sohbeti göstermez."
+
+msgid "Number."
+msgstr "Numara."
+
+msgid "Card for a URL. Null when it cannot be read."
+msgstr "Bir URL için kart. Okunamıyorsa null."
+
+msgid "Assistant use of a visible chat. Null when the chat is hidden."
+msgstr "Görünür bir sohbetin asistan kullanımı. Sohbet gizliyse null."
+
+msgid "Open a chat for a number."
+msgstr "Bir numara için sohbet aç."
+
+msgid "Refuse when the number is not on WhatsApp."
+msgstr "Numara WhatsApp'ta değilse reddet."
+
+msgid "The chat."
+msgstr "Sohbet."
+
+msgid "Rename, assign, pin, close or note a visible chat. staffUser is manager-only."
+msgstr "Görünür bir sohbeti yeniden adlandır, ata, sabitle, kapat ya da not al. staffUser yalnız yöneticiler içindir."
+
+msgid "Notes."
+msgstr "Notlar."
+
+msgid "Agent id. 0 clears it."
+msgstr "Temsilci kimliği. 0 atamayı kaldırır."
+
+msgid "Staff user. Managers only."
+msgstr "Personel kullanıcısı. Yalnız yöneticiler."
+
+msgid "Send a line. voice true is a voice note (audio + ptt); voice false keeps an audio file."
+msgstr "Bir satır gönder. voice true sesli nottur (ses + ptt); voice false ses dosyası olarak kalır."
+
+msgid "text, note, or a file type."
+msgstr "text, note ya da bir dosya türü."
+
+msgid "File from flx/v1/upload, context flx-chat/outbound."
+msgstr "flx/v1/upload'dan dosya, bağlam flx-chat/outbound."
+
+msgid "Voice note. Distinct from an audio file."
+msgstr "Sesli not. Ses dosyasından ayrıdır."
+
+msgid "Quoted message id."
+msgstr "Alıntılanan mesaj kimliği."
+
+msgid "agent, quick or ai."
+msgstr "agent, quick ya da ai."
+
+msgid "Build a link card."
+msgstr "Bağlantı kartı oluştur."
+
+msgid "The line."
+msgstr "Satır."
+
+msgid "Resend a failed outgoing line on a visible chat."
+msgstr "Görünür bir sohbetteki başarısız giden satırı yeniden gönder."
+
+msgid "React on a visible chat."
+msgstr "Görünür bir sohbette tepki ver."
+
+msgid "Emoji. Empty removes it."
+msgstr "Emoji. Boşsa tepkiyi kaldırır."
+
+msgid "Edit a line. The author or a manager, and only on a visible chat."
+msgstr "Bir satırı düzenle. Yazar ya da yönetici, yalnız görünür sohbette."
+
+msgid "New text."
+msgstr "Yeni metin."
+
+msgid "Hide a note or delete for everyone. The author or a manager, on a visible chat."
+msgstr "Bir notu gizle ya da herkesten sil. Yazar ya da yönetici, görünür sohbette."
+
+msgid "panel or everyone."
+msgstr "panel ya da everyone."
+
+msgid "Mark a visible chat read."
+msgstr "Görünür bir sohbeti okundu işaretle."
+
+msgid "Typing state on a visible chat."
+msgstr "Görünür bir sohbette yazıyor durumu."
+
+msgid "composing or recording."
+msgstr "composing ya da recording."
+
+msgid "Accepted."
+msgstr "Kabul edildi."
+
+msgid "One suggested reply for a visible chat. Not a stream."
+msgstr "Görünür bir sohbet için tek önerilen cevap. Akış değildir."
+
+msgid "Ignore a cached suggestion."
+msgstr "Önbellekteki öneriyi yok say."
+
+msgid "Hint for the model."
+msgstr "Model için ipucu."
+
+msgid "Suggestion. Null on failure."
+msgstr "Öneri. Başarısızsa null."
+
+msgid "Turn the assistant on or off for a visible chat."
+msgstr "Görünür bir sohbet için asistanı aç ya da kapat."
+
+msgid "On."
+msgstr "Açık."
+
+msgid "Fill a quick reply for a visible chat."
+msgstr "Görünür bir sohbet için hazır cevabı doldur."
+
+msgid "Reply id."
+msgstr "Cevap kimliği."
+
+msgid "Filled text."
+msgstr "Doldurulmuş metin."
+
+msgid "Text of one visible chat. The bulk file download stays on admin-post."
+msgstr "Görünür bir sohbetin metni. Toplu dosya indirme admin-post üzerinde kalır."
+
+msgid "md or json."
+msgstr "md ya da json."
+
+msgid "Mask phones and emails."
+msgstr "Telefon ve e-postaları maskele."
+
+msgid "Include notes."
+msgstr "Notları dahil et."
+
+msgid "File body."
+msgstr "Dosya içeriği."
+
+msgid "File name."
+msgstr "Dosya adı."
+
+msgid "Match a receipt. Donation or certificate capability, and a visible chat."
+msgstr "Bir dekontu eşleştir. Bağış ya da sertifika yetkisi ve görünür bir sohbet gerekir."
+
+msgid "Mark the donation paid."
+msgstr "Bağışı ödendi işaretle."
+
+msgid "Note."
+msgstr "Not."
+
+msgid "Optional reply text."
+msgstr "İsteğe bağlı cevap metni."
+
+msgid "Matched."
+msgstr "Eşleşti."
+
+msgid "Unmatch a receipt. Same capability as attach, on a visible chat."
+msgstr "Bir dekont eşleşmesini kaldır. Eşleştirmeyle aynı yetki, görünür sohbette."
+
+msgid "Removed."
+msgstr "Kaldırıldı."
+
+msgid "Create a donation from a visible chat, through Flux Donate's PHP. Temporary until Donate's own mutation exists."
+msgstr "Görünür bir sohbetten Flux Donate'in PHP'si üzerinden bağış oluştur. Donate'in kendi mutation'ı gelene kadar geçici."
+
+msgid "Chat. Checked with flxc_user_can_see_chat."
+msgstr "Sohbet. flxc_user_can_see_chat ile denetlenir."
+
+msgid "Donation type."
+msgstr "Bağış türü."
+
+msgid "Amount."
+msgstr "Tutar."
+
+msgid "Donor name."
+msgstr "Bağışçı adı."
+
+msgid "Phone."
+msgstr "Telefon."
+
+msgid "Created."
+msgstr "Oluşturuldu."
+
+msgid "Clear a visible chat. Managers only, confirm must be yes."
+msgstr "Görünür bir sohbeti temizle. Yalnız yöneticiler, confirm yes olmalı."
+
+msgid "Must be yes."
+msgstr "yes olmalı."
+
+msgid "Cleared."
+msgstr "Temizlendi."

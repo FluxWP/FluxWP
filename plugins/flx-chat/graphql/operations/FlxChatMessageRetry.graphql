@@ -1,0 +1,6 @@
+mutation FlxChatMessageRetry($input: FlxChatMessageRetryInput!) {
+  flxChatMessageRetry(input: $input) {
+    message { ...FlxChatMessageFields }
+    errors { code message field }
+  }
+}

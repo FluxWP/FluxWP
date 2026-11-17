@@ -1,0 +1,6 @@
+mutation FlxChatSuggest($input: FlxChatSuggestInput!) {
+  flxChatSuggest(input: $input) {
+    text
+    errors { code message field }
+  }
+}

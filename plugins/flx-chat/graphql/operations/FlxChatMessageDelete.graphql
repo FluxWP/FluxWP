@@ -1,0 +1,6 @@
+mutation FlxChatMessageDelete($input: FlxChatMessageDeleteInput!) {
+  flxChatMessageDelete(input: $input) {
+    message { ...FlxChatMessageFields }
+    errors { code message field }
+  }
+}

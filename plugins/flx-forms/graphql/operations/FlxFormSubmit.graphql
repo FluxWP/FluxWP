@@ -1,0 +1,14 @@
+# Public: send a form, survey or subscribe form.
+mutation FlxFormSubmit($input: FlxFormSubmitInput!) {
+  flxFormSubmit(input: $input) {
+    submission {
+      id
+      trackCode
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

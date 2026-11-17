@@ -2445,39 +2445,8 @@ add_action(
 			array(
 				'methods'             => 'POST',
 				'permission_callback' => 'flxc_can_use',
-				'callback'            => function ( WP_REST_Request $req ) {
-					$chat = flxc_rest_chat_or_error( $req['id'] );
-					if ( is_wp_error( $chat ) ) {
-						return $chat;
-					}
-					$b = flxc_bot_state( $chat );
-					if ( 'on' === $req->get_param( 'state' ) ) {
-						$b['off']   = 0;
-						$b['until'] = 0;
-						$b['last_in'] = flxc_bot_last_in_id( $chat['id'] ); // eski mesajlara cevap vermesin
-						// Elle açan, sınır dolduysa bugün yine sustursun istemez (1.12.0).
-						if ( $b['day'] === wp_date( 'Y-m-d' ) && (int) $b['n'] >= flxc_bot_daily_limit() ) {
-							$b['n']   = 0;
-							$b['lim'] = '';
-						}
-						// 1.9.2: son 30 dk'da cevapsız kalan mesaj(lar) varsa asistan açılınca onları cevaplar.
-						global $wpdb;
-						$mt   = flxc_table( 'messages' );
-						$last = $wpdb->get_row( $wpdb->prepare( "SELECT id, direction, ts FROM $mt WHERE chat_id = %d AND direction IN ('in','out') ORDER BY id DESC LIMIT 1", (int) $chat['id'] ), ARRAY_A ); // phpcs:ignore
-						$wake = $last && 'in' === $last['direction'] && (int) $last['ts'] > ( time() - 30 * MINUTE_IN_SECONDS ) * 1000;
-						if ( $wake ) {
-							$b['last_in'] = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COALESCE(MAX(id),0) FROM $mt WHERE chat_id = %d AND direction = 'in' AND id < (SELECT COALESCE(MAX(id),0) FROM $mt WHERE chat_id = %d AND direction = 'out')", (int) $chat['id'], (int) $chat['id'] ) ); // phpcs:ignore
-						}
-					} else {
-						$b['off'] = 1;
-					}
-					flxc_bot_save_state( $chat['id'], $b );
-					if ( ! empty( $wake ) ) {
-						flxc_bot_queue( (int) $chat['id'] );
-					}
-					/* translators: %s: user */
-					flxc_system_message( $chat, sprintf( 'on' === $req->get_param( 'state' ) ? __( 'Assistant turned on (%s)', 'flx-chat' ) : __( 'Assistant turned off (%s)', 'flx-chat' ), flxc_user_name( get_current_user_id() ) ) );
-					return array( 'chat' => flxc_chat_for_js( flxc_get_chat( $chat['id'] ) ) );
+				'callback'            => static function ( WP_REST_Request $req ) {
+					return FLXC_Desk_Service::bot( $req );
 				},
 			)
 		);

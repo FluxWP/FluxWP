@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 0.11.0
+- GraphQL: etkinlikler (`FlxGathering`, `flxGatherings` / `flxGathering` / form, kişiler, mesajlar, gönderim) ve kişi kartı bölümleri (`FlxContact.sections`). 12 yeni işlem; toplam 40.
+- Olaylar sayfası React ekranı: Açık, Arşiv, Sitede sekmeleri; pano, kişiler, mesaj yazma ve gönderim detayı klasikle aynı. wp-admin'de varsayılan.
+- Kişi kartı eklenti bölümleri GraphQL bölüm kaydı (`flxcrm_register_person_section`). Donate, Commerce ve Chat kendi paketlerinde kaydolur. Kayıt yoksa eski PHP kancasının HTML'i `legacy:<kanca>` olarak gelir.
+
 ## 0.10.0
 - GraphQL: kişi, zaman çizgisi, segment, yolculuk, kopya, ayar, AI ve senkron işlemleri `/graphql` üzerinde (28 işlem). `FlxContact`, ortak `FlxPerson` arayüzünün tek uygulaması; diğer paketler alanı `flx_gql_field('FlxContact', ...)` ile ekler.
 - Yeni React ekranı: Genel bakış, Kişiler, kişi kartı, Segmentler, Yolculuklar, Kopyalar, Ayarlar klasikle aynı özellik ve görünümde; wp-admin'de varsayılan. Klasik görünüm başlıktaki bağlantıyla açılır.

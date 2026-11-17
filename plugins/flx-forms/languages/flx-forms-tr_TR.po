@@ -9766,3 +9766,210 @@ msgstr "Form taşınamadı."
 
 msgid "Forms are now made with Flux Forms. This form keeps working as it is; move it to manage its responses, emails and automations in Flux Forms."
 msgstr "Formlar artık Flux Forms ile yapılıyor. Bu form olduğu gibi çalışmaya devam eder; yanıtlarını, e-postalarını ve otomasyonlarını Flux Forms'ta yönetmek için taşıyın."
+
+msgid "A login form. Sending it stays on REST."
+msgstr "Giriş formu. Gönderimi REST'te kalır."
+
+msgid "A message form."
+msgstr "Mesaj formu."
+
+msgid "A payment form. Sending it stays on REST."
+msgstr "Ödeme formu. Gönderimi REST'te kalır."
+
+msgid "A registration form. Sending it stays on REST."
+msgstr "Kayıt formu. Gönderimi REST'te kalır."
+
+msgid "A stored submission or reply."
+msgstr "Kaydedilmiş bir gönderim veya yanıt."
+
+msgid "A submission opened with its tracking code."
+msgstr "Takip koduyla açılan bir gönderim."
+
+msgid "A subscribe form."
+msgstr "Abonelik formu."
+
+msgid "A survey."
+msgstr "Anket."
+
+msgid "Adds a reply to a tracked submission."
+msgstr "Takip edilen bir gönderime yanıt ekler."
+
+msgid "Answers."
+msgstr "Yanıtlar."
+
+msgid "Choices. Empty when the field is not a choice."
+msgstr "Seçenekler. Seçim alanı değilse boş."
+
+msgid "Choose one of the listed options."
+msgstr "Listedeki seçeneklerden birini seçin."
+
+msgid "Drawing fields of one form. Notification, webhook and booking data are not included."
+msgstr "Bir formun çizim alanları. Bildirim, webhook ve rezervasyon verisi yoktur."
+
+msgid "Drawing fields of one form. Null when the form is missing or private."
+msgstr "Bir formun çizim alanları. Form yoksa veya gizliyse null."
+
+msgid "Editor field type. The editor type list is open, because add-ons and the form builder add types, so this is a string rather than an enum."
+msgstr "Editör alan türü. Eklentiler ve form oluşturucu tür ekleyebildiği için tür listesi açıktır; bu yüzden değer bir sabit liste değil, metindir."
+
+msgid "Email verification code. Leave empty for a visitor reply."
+msgstr "E-posta doğrulama kodu. Ziyaretçi yanıtı için boş bırakın."
+
+msgid "Field id from flxForm."
+msgstr "flxForm'daki alan kimliği."
+
+msgid "Field id to send back on submit."
+msgstr "Gönderimde geri yollanacak alan kimliği."
+
+msgid "Field label."
+msgstr "Alan etiketi."
+
+msgid "Fields to draw."
+msgstr "Çizilecek alanlar."
+
+msgid "File URLs attached to the reply. Empty when there are none."
+msgstr "Yanıta eklenen dosya adresleri. Yoksa boştur."
+
+msgid "File URLs the upload endpoint reserved for this ticket."
+msgstr "Yükleme ucunun bu bilet için ayırdığı dosya adresleri."
+
+msgid "Filled fields."
+msgstr "Doldurulan alanlar."
+
+msgid "Form id."
+msgstr "Form kimliği."
+
+msgid "Form name stored with the submission."
+msgstr "Gönderimle kaydedilen form adı."
+
+msgid "Form name."
+msgstr "Form adı."
+
+msgid "Form submission"
+msgstr "Form gönderimi"
+
+msgid "How many steps the form has."
+msgstr "Formun adım sayısı."
+
+msgid "Kind of form."
+msgstr "Form türü."
+
+msgid "Label on the form."
+msgstr "Formdaki etiket."
+
+msgid "Label."
+msgstr "Etiket."
+
+msgid "Leave empty. A value rejects the submission."
+msgstr "Boş bırakın. Değer varsa gönderim reddedilir."
+
+msgid "Manages form add-ons"
+msgstr "Form eklentilerini yönetir"
+
+msgid "Manages forms and responses"
+msgstr "Formları ve yanıtları yönetir"
+
+msgid "Message shown after a successful send."
+msgstr "Başarılı gönderimden sonra görünen mesaj."
+
+msgid "One answer on a tracked submission."
+msgstr "Takip edilen bir gönderimdeki bir yanıt."
+
+msgid "One choice a visitor can pick."
+msgstr "Ziyaretçinin seçebileceği bir seçenek."
+
+msgid "One drawing field. Hidden and read-only fields are left out."
+msgstr "Çizilen bir alan. Gizli ve salt okunur alanlar yoktur."
+
+msgid "One field value."
+msgstr "Bir alan değeri."
+
+msgid "One reply on a tracked submission."
+msgstr "Takip edilen bir gönderimdeki bir yazışma."
+
+msgid "Opens a submission by its tracking code."
+msgstr "Bir gönderimi takip koduyla açar."
+
+msgid "Opens the form builder"
+msgstr "Form oluşturucuyu açar"
+
+msgid "Opens the forms panel"
+msgstr "Form panelini açar"
+
+msgid "Placeholder. Empty when the field has none."
+msgstr "Yer tutucu. Yoksa boş."
+
+msgid "Public form, survey and subscribe submissions sent through GraphQL."
+msgstr "GraphQL ile giden herkese açık form, anket ve abonelik gönderimleri."
+
+msgid "Replies, oldest first."
+msgstr "Yazışmalar, eskiden yeniye."
+
+msgid "Reply text."
+msgstr "Yanıt metni."
+
+msgid "Row id."
+msgstr "Satır kimliği."
+
+msgid "Send button label."
+msgstr "Gönder düğmesinin etiketi."
+
+msgid "Sends a form, survey or subscribe form."
+msgstr "Form, anket veya abonelik formu gönderir."
+
+msgid "Stored reply. Null when the input was rejected."
+msgstr "Kaydedilen yanıt. Girdi reddedildiyse null."
+
+msgid "Stored submission. Null when the input was rejected."
+msgstr "Kaydedilen gönderim. Girdi reddedildiyse null."
+
+msgid "Stored value."
+msgstr "Kaydedilen değer."
+
+msgid "The confirmation code is not valid."
+msgstr "Onay kodu geçersiz."
+
+msgid "The form could not be sent."
+msgstr "Form gönderilemedi."
+
+msgid "The form was not found."
+msgstr "Form bulunamadı."
+
+msgid "The tracking code was not found."
+msgstr "Takip kodu bulunamadı."
+
+msgid "The visitor must fill this in."
+msgstr "Ziyaretçi bunu doldurmalı."
+
+msgid "This form cannot be sent here."
+msgstr "Bu form buradan gönderilemez."
+
+msgid "Title shown after a successful send."
+msgstr "Başarılı gönderimden sonra görünen başlık."
+
+msgid "Too many submissions. Wait a moment and try again."
+msgstr "Çok fazla gönderim. Biraz bekleyip yeniden deneyin."
+
+msgid "Tracking code."
+msgstr "Takip kodu."
+
+msgid "Upload the file again."
+msgstr "Dosyayı yeniden yükleyin."
+
+msgid "Value. A file field carries the URL the upload endpoint returned."
+msgstr "Değer. Dosya alanı, yükleme ucunun döndürdüğü adresi taşır."
+
+msgid "What the visitor sent."
+msgstr "Ziyaretçinin gönderdiği."
+
+msgid "When the reply was stored."
+msgstr "Yanıtın kaydedildiği zaman."
+
+msgid "When the submission was stored."
+msgstr "Gönderimin kaydedildiği zaman."
+
+msgid "Write a reply."
+msgstr "Bir yanıt yazın."
+
+msgid "reCAPTCHA token when Flux reCAPTCHA protects form submission."
+msgstr "Flux reCAPTCHA form gönderimini korurken reCAPTCHA belirteci."

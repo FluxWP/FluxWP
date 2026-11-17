@@ -1,0 +1,8 @@
+mutation FlxCrmGatheringDelete($input: FlxGatheringDeleteInput!) {
+  flxGatheringDelete(input: $input) {
+    deleted
+    errors {
+      ...FlxCrmUserError
+    }
+  }
+}

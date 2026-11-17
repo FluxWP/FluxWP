@@ -1,0 +1,14 @@
+query FlxChatUpdates($since: String!, $after: Int, $chatId: ID, $afterChat: Int) {
+  flxChatUpdates(since: $since, after: $after, chatId: $chatId, afterChat: $afterChat) {
+    rev
+    continueRev
+    continueId
+    truncated
+    messagesTruncated
+    unread
+    chats { ...FlxChatFields }
+    messages { ...FlxChatMessageFields }
+    incoming { databaseId chatId title body }
+    connections { id label color state }
+  }
+}
