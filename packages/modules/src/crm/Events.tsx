@@ -1098,16 +1098,20 @@ function GatheringForm({ id, go }: { id: number; go: (to: string) => void }) {
   const form = q.data?.flxGatheringForm;
   if (!form) return <Head title={crm.t('Event not found.')} back={{ to: 'events', label: crm.t('Events') }} />;
   const set = (key: string, value: string) => setValues((v) => ({ ...v, [key]: value }));
-  const onSubmit = async (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+      const fields = Object.entries(values).map(([key, value]) => ({ key, value }));
+      // Controls a package prints into section html / afterHtml post with the classic form; send them too.
+      const typed = new Set(fields.map((f) => f.key));
+      for (const c of packageControls(e.currentTarget)) if (!typed.has(c.key)) fields.push(c);
       const r = (
         await save.mutateAsync({
           input: {
             id: id || undefined,
             createPost,
             imageUploadId: imageUploadId || undefined,
-            fields: Object.entries(values).map(([key, value]) => ({ key, value })),
+            fields,
           },
         })
       ).flxGatheringSave;
@@ -1163,6 +1167,22 @@ function GatheringForm({ id, go }: { id: number; go: (to: string) => void }) {
       </form>
     </>
   );
+}
+
+/** Named, enabled controls inside the package-printed `.flxcrm-html` blocks, as a classic form post would send them. */
+function packageControls(form: HTMLFormElement): { key: string; value: string }[] {
+  const out: { key: string; value: string }[] = [];
+  form.querySelectorAll<HTMLElement>('.flxcrm-html').forEach((box) => {
+    box.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('input, select, textarea').forEach((el) => {
+      if (!el.name || el.disabled) return;
+      if (el instanceof HTMLInputElement) {
+        if (['button', 'submit', 'reset', 'image', 'file'].includes(el.type)) return;
+        if ((el.type === 'checkbox' || el.type === 'radio') && !el.checked) return;
+      }
+      out.push({ key: el.name, value: el.value });
+    });
+  });
+  return out;
 }
 
 function FieldInput({ f, value, onChange, onUpload }: { f: FormData['sections'][number]['fields'][number]; value: string; onChange: (v: string) => void; onUpload: (file: File) => Promise<void> }) {
