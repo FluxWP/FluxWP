@@ -537,5 +537,6 @@
   "{n} tasks completed": "Tareas {n} completadas",
   "{n} tasks will be permanently deleted.": "Las tareas{n}se eliminarán permanentemente.",
   "{n} warning(s)": "Advertencias {n}",
-  "{n} wrote a comment": "{n}escribió un comentario"
+  "{n} wrote a comment": "{n}escribió un comentario",
+  "Preview not available": "Vista previa no disponible"
 }

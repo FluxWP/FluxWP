@@ -537,5 +537,6 @@
   "{n} tasks completed": "{n} görev tamamlandı",
   "{n} tasks will be permanently deleted.": "{n} görev kalıcı olarak silinecek.",
   "{n} warning(s)": "{n} uyarı var",
-  "{n} wrote a comment": "{n} yorum yazdı"
+  "{n} wrote a comment": "{n} yorum yazdı",
+  "Preview not available": "Önizlenemedi"
 }

@@ -537,5 +537,6 @@
   "{n} tasks completed": "اكتملت مهام {n}",
   "{n} tasks will be permanently deleted.": "سيتم حذف مهام{n}نهائيًا.",
   "{n} warning(s)": "تحذيرات {n}",
-  "{n} wrote a comment": "كتب{n}تعليقًا"
+  "{n} wrote a comment": "كتب{n}تعليقًا",
+  "Preview not available": "تعذّرت المعاينة"
 }
