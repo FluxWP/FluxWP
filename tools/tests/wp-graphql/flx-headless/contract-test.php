@@ -233,6 +233,21 @@ $names = array_column( array_filter( (array) ( $s['menus'] ?? array() ), static 
 flxt_ok( in_array( 'Kurumsal', $names, true ) && ! in_array( '', $names, true ) && array_diff( $names, array( 'Mağaza', 'Kurumsal' ) ) === array(), 'flxSite: footer menus are named by the heading above them' );
 flxt_same( $s['logo'] ?? null, $s['logoOnDark'] ?? null, 'flxSite: without a separate light logo, logoOnDark is the site logo' );
 
+// Whole-page mode: WordPress addresses in a rendered page point at the front end.
+$fe   = FLXHL_Frontend_Service::get( $id );
+$home = untrailingslashit( home_url() );
+$host = (string) wp_parse_url( $home, PHP_URL_HOST );
+$html = '<a href="' . $home . '/about/">a</a><link href="' . $home . '/wp-content/themes/x.css"><script>var u="' . str_replace( '/', '\\/', $home ) . '\\/wp-json\\/wp\\/v2\\/";</script>'
+	. '<a href="' . $home . '/wp-admin/">admin</a><a href="' . $home . '/wp-login.php">in</a><a href="' . preg_replace( '#^https?:#', '', $home ) . '/blog/?flxhl_page=x">b</a><a href="https://' . $host . '.other.test/">o</a>';
+$out  = flxhl_page_rewrite( $html, $fe );
+flxt_ok( str_contains( $out, 'href="https://front.example.com/about/"' ), 'page mode: page links go to the front end' );
+flxt_ok( str_contains( $out, 'https://front.example.com/wp-content/themes/x.css' ), 'page mode: theme files are served by the front end' );
+flxt_ok( str_contains( $out, 'https:\\/\\/front.example.com\\/wp-json\\/wp\\/v2\\/' ), 'page mode: JSON-escaped REST address rewritten' );
+flxt_ok( str_contains( $out, $home . '/wp-admin/' ) && str_contains( $out, $home . '/wp-login.php' ), 'page mode: admin and login stay on WordPress' );
+flxt_ok( str_contains( $out, 'href="https://front.example.com/blog/"' ), 'page mode: protocol-relative link rewritten, flxhl_page dropped' );
+flxt_ok( str_contains( $out, 'https://' . $host . '.other.test/' ), 'page mode: another host that starts the same is left alone' );
+flxt_same( 'https://front.example.com/x/', flxhl_page_rewrite( $home . '/x/', $fe ), 'page mode: redirect target on the front end' );
+
 // WordPress pages mode.
 $r = flxhl_t_op( 'FlxHeadlessWpFrontSet', array( 'mode' => 'NOINDEX' ), $admin );
 flxt_same( 'NOINDEX', $r['data']['flxHeadlessWpFrontSet']['settings']['wpFront'] ?? null, 'WordPress pages: noindex saved' );
