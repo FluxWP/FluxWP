@@ -1846,6 +1846,30 @@ body.flxg-col-resizing, body.flxg-col-resizing * { cursor: col-resize !important
 .flxg-lightbox .flxg-lb-none .flxg-btn:hover { background: rgba(255, 255, 255, .26); }
 .flxg-lightbox .flxg-btn svg { color: #fff !important; }
 
+/* Satır içi görev ekleme (React): ad + simge düğmeleri + İptal / Kaydet. */
+.flxg-qa { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; width: min(100%, 900px); position: sticky; left: 0; min-height: 52px; padding: 8px 14px 8px 12px; background: var(--panel); border-bottom: 1px solid var(--line-2); }
+.flxg-qa-circle { flex: none; width: 16px; height: 16px; margin: 0 8px 0 4px; border: 1.6px dashed var(--faint); border-radius: 50%; }
+.flxg .flxg-qa-input { flex: 1 1 220px; min-width: 0; height: 36px; padding: 0; border: 0 !important; outline: 0 !important; box-shadow: none !important; background: transparent !important; color: var(--ink); font: inherit; font-size: 15px; }
+.flxg-qa-input::placeholder { color: var(--faint); }
+.flxg-qa-list { width: auto; max-width: 160px; }
+.flxg-qa-tools { display: flex; align-items: center; gap: 6px; }
+.flxg-qa-btn { display: inline-flex; align-items: center; justify-content: center; gap: 4px; min-width: 32px; height: 32px; padding: 0 7px; border: 1px solid var(--line); border-radius: 9px; background: var(--panel); color: var(--muted); font: inherit; font-size: 12px; cursor: pointer; }
+.flxg-qa-btn:hover { background: var(--hover); color: var(--ink); }
+.flxg-qa-btn.is-on { color: var(--ink); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+.flxg-qa-val { font-weight: 600; }
+@media (max-width: 720px) { .flxg-qa-circle { display: none; } }
+.flxg-qa-tools { margin-left: auto; }
+
+/* Liste görünümü (React): düz satırlar, hap biçimli araç çubuğu düğmeleri. */
+.flxg-flux .flxg-tb-btn { border-color: var(--line); border-radius: 999px; height: 32px; padding: 0 12px; background: var(--panel); }
+.flxg-flux .flxg-tb-btn:hover { background: var(--hover); }
+.flxg-flux .flxg-tb-btn.is-active { border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); }
+.flxg-flux .flxg-rows { border: 0; border-radius: 0; background: transparent; overflow: visible; }
+.flxg-flux .flxg-row { background: transparent; min-height: 46px; }
+.flxg-flux .flxg-row.is-head { min-height: 36px; border-bottom: 1px solid var(--line); }
+.flxg-flux .flxg-row:not(.is-head):hover { background: var(--hover); }
+.flxg-flux .flxg-qa { background: transparent; }
+
 /* ---------------- Yalnız React ekranı (FluxApp + wp-admin) ---------------- */
 .flxg.flxg-flux { height: 100%; min-height: 0; position: relative; background: var(--bg); }
 .flxg-doc-host { display: contents; }
