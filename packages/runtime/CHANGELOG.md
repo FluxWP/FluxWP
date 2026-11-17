@@ -1,5 +1,8 @@
 # @fluxwp/runtime
 
+## 0.4.2
+- `list.all` metni (10 dil): aç/kapa filtrelerinin "Tümü" seçeneği.
+
 ## 0.4.1
 - Form alanı ve aksiyon sorusu seçenekleri bir manifest kaynağından gelebilir (`options: {source, path, value, label}`; `label` alan yolu ya da şablon). Kaynak ekranlarla aynı önbelleği kullanır.
 - Form gönderiminde `number` / `money` sayı olarak gider (boşsa hiç gönderilmez), virgüllü yazılan `tags` diziye çevrilir (GraphQL Int/Float ve liste alanları için).

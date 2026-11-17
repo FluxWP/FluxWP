@@ -1419,3 +1419,83 @@ msgstr "Seçim"
 
 msgid "Logged-in people"
 msgstr "Giriş yapmış kişiler"
+
+#: app/manifest.json
+msgid "Page views"
+msgstr "Sayfa görüntüleme"
+
+#: app/manifest.json
+msgid "Right now"
+msgstr "Şu anda"
+
+#: app/manifest.json
+msgid "Visitors and page views"
+msgstr "Ziyaretçiler ve sayfa görüntülemeleri"
+
+#: app/manifest.json
+msgid "Last minutes"
+msgstr "Son dakikalar"
+
+#: app/manifest.json
+msgid "Pages being viewed"
+msgstr "Görüntülenen sayfalar"
+
+#: app/manifest.json
+msgid "Referrers"
+msgstr "Yönlendirenler"
+
+#: app/manifest.json
+msgid "Search address"
+msgstr "Adres ara"
+
+#: app/manifest.json
+msgid "Not found (404)"
+msgstr "Bulunamadı (404)"
+
+#: app/manifest.json
+msgid "{{visitors|number}} visitors"
+msgstr "{{visitors|number}} ziyaretçi"
+
+#: app/manifest.json
+msgid "No pages"
+msgstr "Sayfa yok"
+
+#: app/manifest.json
+msgid "No page was viewed in this period."
+msgstr "Bu dönemde hiçbir sayfa görüntülenmedi."
+
+#: app/manifest.json
+msgid "Sources"
+msgstr "Kaynaklar"
+
+#: app/manifest.json
+msgid "Sites"
+msgstr "Siteler"
+
+#: app/manifest.json
+msgid "Search site"
+msgstr "Site ara"
+
+#: app/manifest.json
+msgid "No referrers"
+msgstr "Yönlendiren yok"
+
+#: app/manifest.json
+msgid "No outside site sent visitors in this period."
+msgstr "Bu dönemde dış bir site ziyaretçi göndermedi."
+
+#: app/manifest.json
+msgid "{{pageviews|number}} page views"
+msgstr "{{pageviews|number}} sayfa görüntüleme"
+
+#: app/manifest.json
+msgid "No channels"
+msgstr "Kanal yok"
+
+#: app/manifest.json
+msgid "No channel breakdown for this period."
+msgstr "Bu dönem için kanal dağılımı yok."
+
+#: app/manifest.json
+msgid "Open in panel"
+msgstr "Panelde aç"

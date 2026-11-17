@@ -2718,3 +2718,115 @@ msgstr "Yükleme ucuna gönderilen bir dosyayı (bağlam flx-social/media) ortam
 
 msgid "Upload ID from the upload endpoint."
 msgstr "Yükleme ucundan gelen yükleme ID’si."
+
+#: app/manifest.json
+msgid "Search posts"
+msgstr "Gönderi ara"
+
+#: app/manifest.json
+msgid "Waiting for approval"
+msgstr "Onay bekliyor"
+
+#: app/manifest.json
+msgid "{{targets|count}} accounts"
+msgstr "{{targets|count}} hesap"
+
+#: app/manifest.json
+msgid "Approval"
+msgstr "Onay"
+
+#: app/manifest.json
+msgid "New posts are written in the composer."
+msgstr "Yeni gönderiler yazma ekranında hazırlanır."
+
+#: app/manifest.json
+msgid "Note"
+msgstr "Not"
+
+#: app/manifest.json
+msgid "Author"
+msgstr "Yazar"
+
+#: app/manifest.json
+msgid "Nothing planned"
+msgstr "Planlanan bir şey yok"
+
+#: app/manifest.json
+msgid "Scheduled and published posts show up here."
+msgstr "Zamanlanmış ve yayımlanmış gönderiler burada görünür."
+
+#: app/manifest.json
+msgid "Expired"
+msgstr "Süresi doldu"
+
+#: app/manifest.json
+msgid "Error"
+msgstr "Hata"
+
+#: app/manifest.json
+msgid "No accounts"
+msgstr "Hesap yok"
+
+#: app/manifest.json
+msgid "Open the panel to connect an account."
+msgstr "Hesap bağlamak için paneli açın."
+
+#: app/manifest.json
+msgid "Approved"
+msgstr "Onaylandı"
+
+#: app/manifest.json
+msgid "Send back"
+msgstr "Geri gönder"
+
+#: app/manifest.json
+msgid "Send back to the author"
+msgstr "Yazara geri gönder"
+
+#: app/manifest.json
+msgid "Sent back"
+msgstr "Geri gönderildi"
+
+#: app/manifest.json
+msgid "Publish now"
+msgstr "Şimdi yayımla"
+
+#: app/manifest.json
+msgid "Publish now?"
+msgstr "Şimdi yayımlansın mı?"
+
+#: app/manifest.json
+msgid "It goes out to every selected account."
+msgstr "Seçili tüm hesaplara gönderilir."
+
+#: app/manifest.json
+msgid "Publish"
+msgstr "Yayımla"
+
+#: app/manifest.json
+msgid "Delete this post?"
+msgstr "Bu gönderi silinsin mi?"
+
+#: app/manifest.json
+msgid "Deleted"
+msgstr "Silindi"
+
+#: app/manifest.json
+msgid "Turn off"
+msgstr "Kapat"
+
+#: app/manifest.json
+msgid "Account turned off"
+msgstr "Hesap kapatıldı"
+
+#: app/manifest.json
+msgid "Turn on"
+msgstr "Aç"
+
+#: app/manifest.json
+msgid "Account turned on"
+msgstr "Hesap açıldı"
+
+#: app/manifest.json
+msgid "Open in panel"
+msgstr "Panelde aç"

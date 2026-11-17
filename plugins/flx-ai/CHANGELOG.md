@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.32.0
+- Mobil uygulama manifesti GraphQL'e geçti: ayarlar formu (model, önbellek, düşünme, harcama sınırları, sohbet, kayıt süresi; anahtarlar panelde kalır) ve kayıt listesi (model/araç, yalnız hatalar). Canlı sohbet ekranı aynen durur.
+
 ## 0.31.0
 - **Sohbet ekranında çalışma alanı paneli** (React): Dosyalar (klasör ağacı, izinli klasörler, Markdown/HTML önizleme, renkli kod görünümü ve düzenleyici, kaydet), Değişiklikler (commit ve değişiklik istekleri, satır farkı, dosya dosya ya da toptan birleştir/reddet, çakışma uyarısı), Ayarlar (sohbet/görev dosya erişimi, izinli klasörler, kurallar). Sohbetteki değişiklik ve rapor bağlantıları paneli açar; görsel rapor sandbox'lı iframe'de gösterilir. Her turdan sonra panel yenilenir; onay bekleyen istek sayısı rozette görünür.
 - `boot` yanıtına `cm` (CodeMirror) ve `view` (rapor adresi) eklendi.

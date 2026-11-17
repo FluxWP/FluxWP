@@ -12,6 +12,7 @@ import type { ListScreen as ListDef, Manifest } from '@fluxwp/manifest';
 import { GlassButton } from '@/ui/Glass';
 import { Icon } from '@/ui/Icon';
 import { overlays } from '@/ui/overlays';
+import { Select } from '@/ui/Select';
 import { Avatar, Badge, EmptyState, Segmented, Skeleton, Spinner, Text } from '@/ui/primitives';
 import { ChromeFrame, useChrome } from '@/shell/chrome';
 
@@ -37,9 +38,15 @@ export function ListScreen({ manifest, screen, params }: { manifest: Manifest; s
           <TextInput value={c.search.value} onChangeText={c.search.set} placeholder={c.search.placeholder || t('list.search')} placeholderTextColor={theme.colors.textMuted} style={styles.searchInput} returnKeyType="search" autoCapitalize="none" accessibilityLabel={t('list.search')} clearButtonMode="while-editing" />
         </View>
       ) : null}
-      {c.filters.filter((f) => f.type === 'segmented' && f.options.length).map((f) => (
-        <Segmented key={f.param} options={f.options} value={String(f.value ?? '')} onChange={(v) => c.setFilter(f.param, v)} />
-      ))}
+      {c.filters.map((f) =>
+        f.type === 'toggle' ? (
+          <Segmented<boolean | null> key={f.param} options={[{ value: null, label: t('list.all') }, { value: true, label: f.label }]} value={f.value ? true : null} onChange={(v) => c.setFilter(f.param, v)} />
+        ) : !f.options.length ? null : f.type === 'select' ? (
+          <Select key={f.param} label={f.label} options={f.options} value={String(f.value ?? '')} onChange={(v) => c.setFilter(f.param, v || null)} />
+        ) : (
+          <Segmented key={f.param} options={f.options} value={String(f.value ?? '')} onChange={(v) => c.setFilter(f.param, v)} />
+        ),
+      )}
       {c.stale ? <Text variant="caption" style={styles.offline}>{t('mobile.shell.offline')}</Text> : null}
     </View>
   );

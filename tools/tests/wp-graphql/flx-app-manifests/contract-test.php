@@ -59,6 +59,10 @@ $expected = array(
 	'ads'       => 'flx-ads/flx-ads.php',
 	'files'     => 'flx-files/flx-files.php',
 	'blocks'    => 'flx-blocks/flx-blocks.php',
+	'social'    => 'flx-social/flx-social.php',
+	'studio'    => 'flx-studio/flx-studio.php',
+	'analytics' => 'flx-analytics/flx-analytics.php',
+	'ai'        => 'flx-ai/flx-ai.php',
 );
 foreach ( $expected as $id => $plugin ) {
 	if ( is_plugin_active( $plugin ) ) {
@@ -67,7 +71,7 @@ foreach ( $expected as $id => $plugin ) {
 }
 
 $desktop = json_decode( (string) wp_json_encode( flxapp_user_manifest( get_user_by( 'id', $admin ), 'desktop' ) ), true );
-foreach ( array_diff( array_keys( $expected ), array( 'wiki' ) ) as $id ) {
+foreach ( array_diff( array_keys( $expected ), array( 'wiki', 'studio', 'analytics', 'ai' ) ) as $id ) {
 	if ( isset( $mods[ $id ] ) ) {
 		flxt_ok( ! isset( $desktop[ $id ] ), "module $id stays on its React screen on desktop" );
 	}

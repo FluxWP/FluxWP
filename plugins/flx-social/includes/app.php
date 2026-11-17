@@ -1,6 +1,7 @@
 <?php
 /**
- * Flux App: the Social Media screen is the shared React screen (integrations.php, module `flxsm-social`).
+ * Flux App: on desktop the Social Media screen is the shared React screen (integrations.php, module `flxsm-social`);
+ * the mobile app draws app/manifest.json natively over GraphQL.
  * REST: flx-social/v1/calendar (this month's posts) stays for app versions that still use it.
  *
  * @package flx-social
@@ -82,4 +83,32 @@ add_action(
 			)
 		);
 	}
+);
+
+add_action(
+	'plugins_loaded',
+	static function () {
+		if ( ! function_exists( 'flxapp_manifest_file' ) ) {
+			return;
+		}
+		add_filter(
+			'flxapp_manifest',
+			static function ( $m ) {
+				$m           = is_array( $m ) ? $m : array();
+				$m['social'] = flxsm_app_texts(
+					flxapp_manifest_file(
+						FLXSM_DIR . 'app/manifest.json',
+						'flx-social',
+						array(
+							'version' => FLXSM_VERSION,
+							'caps'    => array( 'view' => FLXSM_CAP_POST ),
+						)
+					),
+					'flx-social'
+				);
+				return $m;
+			}
+		);
+	},
+	20
 );

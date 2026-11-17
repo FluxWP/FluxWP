@@ -640,5 +640,12 @@ return array(
   'Yapay zekâ ile görsel ve video stüdyosu: üretim, referanslar ve kişiler, alan düzenleme, Geliştir ve Beyin fırtınası, klasörlü galeri. Üretim Flux AI üzerinden (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).' => 'Yapay zekâ ile görsel ve video stüdyosu: üretim, referanslar ve kişiler, alan düzenleme, Geliştir ve Beyin fırtınası, klasörlü galeri. Üretim Flux AI üzerinden (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).',
   'Visual and video studio with AI: production, references and contacts, field editing, Develop and Brainstorm, gallery with folders. Production via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).' => 'Yapay zekâ ile görsel ve video stüdyosu: üretim, referanslar ve kişiler, alan düzenleme, Geliştir ve Beyin fırtınası, klasörlü galeri. Üretim Flux AI üzerinden (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).',
 
+  'In progress' => 'Sürüyor',
+  'The gallery is empty' => 'Galeri boş',
+  'Generated images and videos are listed here. Create new ones in the panel.' => 'Üretilen görseller ve videolar burada listelenir. Yenilerini panelde oluşturun.',
+  'Error' => 'Hata',
+  'Remove star' => 'Yıldızı kaldır',
+  'Star removed' => 'Yıldız kaldırıldı',
+  'Open file' => 'Dosyayı aç',
  ),
 );
