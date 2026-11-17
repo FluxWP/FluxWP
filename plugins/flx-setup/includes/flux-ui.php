@@ -100,7 +100,7 @@ add_action(
 					'enabled'      => 'flxk_flux_ui',
 					'options'      => 'flxk_flux_options',
 					'container_id' => 'flxk-app',
-					'preload'      => 'flxk-packages' === $module ? array( array( 'FlxSetupOverview', array( 'search' => null ) ), array( 'FlxSetupHistory', array( 'page' => 1 ) ) ) : array(),
+					'preload'      => 'flxk-packages' === $module ? 'flxk_packages_preload' : array(),
 					'wrap_class'   => 'flxk-wrap',
 				)
 			);
@@ -108,6 +108,35 @@ add_action(
 	},
 	20
 );
+
+/**
+ * First queries of the Packages screen, printed into the page: the overview, every page of the package
+ * table as the screen asks for it (tab "All", no filter) and the first history page. The variables must
+ * match PackagesScreen.tsx exactly, or the screen fetches them again.
+ *
+ * @return list<array{0:string,1?:array<string,mixed>}>
+ */
+function flxk_packages_preload(): array {
+	$out   = array( array( 'FlxSetupOverview', array( 'search' => null ) ) );
+	$per   = defined( 'FLXK_PACKAGES_PAGE' ) ? (int) FLXK_PACKAGES_PAGE : 50;
+	// The navigator lists every screen's first queries on every Flux page: the table is counted only on its own page.
+	$own   = isset( $_GET['page'] ) && 'flx-setup' === $_GET['page']; // phpcs:ignore WordPress.Security.NonceVerification
+	$total = $own && class_exists( 'FLXK_Packages_Service' ) && FLXK_Packages_Service::ready() ? count( FLXU_Updater::offline( static fn(): array => FLXK_Packages_Service::rows() ) ) : 0;
+	for ( $i = 0; 0 === $i || ( $i * $per < $total && $i < 10 ); $i++ ) {
+		$out[] = array(
+			'FlxSetupPackages',
+			array(
+				'tab'         => 'ALL',
+				'search'      => null,
+				'onlyUpdates' => null,
+				'first'       => $per,
+				'after'       => $i ? base64_encode( 'flxo:' . ( $i * $per - 1 ) ) : null, // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode -- flx_gql_cursor().
+			),
+		);
+	}
+	$out[] = array( 'FlxSetupHistory', array( 'page' => 1 ) );
+	return $out;
+}
 
 /**
  * Enqueues the bundle and mounts a module in #flxk-app.

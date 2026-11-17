@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 1.4.2
+- Paketler ekranı anında açılır: paket listesi de sayfaya PHP'den hazır basılır, "Kontrol ediliyor…" beklenmez. Sayfa açılırken güncelleme sunucusuna gidilmez (menü rozeti dahil); önbellek bitmişse son bilinen liste gösterilir, güncelleme kontrolü arka planda sürer ve bitince listeyi yeniler (artık listeyi baştan yüklemez).
+- "Güncellemeleri kontrol et" sunucuya bir kez sorar (önceden iki kez soruyordu, yavaş sunucuda süre ikiye katlanıyordu). Eksik ikonlar sayfa gönderildikten sonra iner.
+- Tasarım: üstte tek satır (kontrol + belirgin "Tümünü güncelle"; güncelleme yoksa "Hepsi güncel ✓"), toplu işlemler yalnız seçim varken çıkan çubukta, "Klasik görünüm" bağlantısı kaldırıldı. Mobilde paketler kart olarak görünür, sekmeler kaydırılır, seçim çubuğu altta sabit. Koyu modda vurgu rengi Flux Admin'in koyu rengini izler.
+
 ## 1.4.1
 - wp-admin ekranı Flux GraphQL ekran kabuğundan açılır: ilk veri PHP'de sayfaya basılır (yükleniyor göstergesi yok), menüden diğer Flux ekranlarına sayfa yenilenmeden geçilir. Ekranın parçaları sayfa başında birlikte iner (modulepreload).
 - Ortak modül paketi yenilendi.

@@ -5,7 +5,7 @@ import { useFlxMutation, useFlxQuery } from '@fluxwp/graphql/react';
 import { FlxSetupSettingsSave, FlxSetupSettingsScreen, FlxSetupSourceAdd, FlxSetupSourceChange } from '@fluxwp/graphql/operations';
 import type { FlxSetupSettingsScreenQuery } from '@fluxwp/graphql/types';
 import { Loading, Modal } from '@fluxwp/ui';
-import { ClassicLink, errorText, NoticeBar, SetupProvider, useSetup, type Notice } from './shared';
+import { errorText, NoticeBar, SetupProvider, useSetup, type Notice } from './shared';
 
 type Data = FlxSetupSettingsScreenQuery;
 type Source = Data['flxSetupSources'][number];
@@ -91,7 +91,6 @@ function Settings() {
     <div className="flxk-app">
       <div className="flxk-head">
         <h1>{t('Update settings')}</h1>
-        <ClassicLink t={t} />
       </div>
       <p className="flxk-lead">{t('FluxWP themes and plugins are updated from your own update server instead of wordpress.org.')}</p>
       <NoticeBar notice={notice} onClose={() => setNotice(null)} t={t} />
