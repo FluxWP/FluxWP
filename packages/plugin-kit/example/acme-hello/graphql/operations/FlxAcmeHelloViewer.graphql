@@ -1,0 +1,6 @@
+query FlxAcmeHelloViewer {
+  flxViewer {
+    loggedIn
+    name
+  }
+}

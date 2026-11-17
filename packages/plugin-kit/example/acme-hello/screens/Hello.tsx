@@ -1,7 +1,8 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { createGraphQLClient } from '@fluxwp/graphql';
-import { FlxGraphQLProvider, useFlxViewer } from '@fluxwp/graphql/react';
+import { FlxGraphQLProvider, useFlxQuery } from '@fluxwp/graphql/react';
+import { FlxAcmeHelloViewer } from './generated/operations';
 import { useHost } from '@fluxwp/host';
 import './hello.css';
 
@@ -17,7 +18,7 @@ export function Hello() {
 
 function Greeting() {
   const { t } = useTranslation('acme');
-  const viewer = useFlxViewer().data?.flxViewer;
+  const viewer = useFlxQuery(FlxAcmeHelloViewer, {}).data?.flxViewer;
   return (
     <div className="acme-hello">
       <h1>{t('title')}</h1>

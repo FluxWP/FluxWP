@@ -223,14 +223,29 @@
     "packages/plugin-kit": {
       "name": "@fluxwp/plugin-kit",
       "version": "0.1.0",
+      "bin": {
+        "flx-kit": "./bin/flx-kit.ts",
+      },
       "dependencies": {
+        "@fluxwp/core": "workspace:*",
+        "@fluxwp/graphql": "workspace:*",
+        "@fluxwp/tokens": "workspace:*",
+        "@fluxwp/ui": "workspace:*",
+        "@graphql-codegen/core": "^7.0.0",
+        "@graphql-codegen/typescript-operations": "^7.0.1",
         "@vitejs/plugin-react": "^6.1.2",
+        "graphql": "^17.1.0",
         "postcss-prefix-selector": "^2.2.1",
         "vite": "^8.3.5",
       },
       "devDependencies": {
         "@types/node": "^22.20.5",
         "typescript": "^5.9.3",
+      },
+      "peerDependencies": {
+        "@tanstack/react-query": "^5.106.1",
+        "react": "19.3.0",
+        "react-i18next": "^17.1.10",
       },
     },
     "packages/render-web": {

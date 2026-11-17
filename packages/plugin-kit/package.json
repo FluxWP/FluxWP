@@ -3,25 +3,41 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Build wp-admin screens for a WordPress plugin on the Flux runtime (Flux GraphQL): Vite preset, runtime module list.",
+  "description": "Build wp-admin screens for any WordPress plugin on the Flux runtime (Flux GraphQL 0.5+): Vite preset, GraphQL codegen, persisted queries.",
   "exports": {
     "./vite": "./src/vite.ts",
     "./modules": "./src/modules.ts",
-    "./runtime-exports.json": "./runtime-exports.json"
+    "./runtime-exports.json": "./runtime-exports.json",
+    "./codegen": "./src/codegen.ts"
   },
   "scripts": {
     "exports": "bun scripts/runtime-exports.ts",
     "exports:check": "bun scripts/runtime-exports.ts --check",
-    "typecheck": "tsc -p . && tsc -p example",
-    "example": "cd example && vite build"
+    "typecheck": "tsc -p . && bun bin/flx-kit.ts codegen example/acme-hello >/dev/null && tsc -p example",
+    "example": "bun bin/flx-kit.ts codegen example/acme-hello && cd example && vite build"
   },
   "dependencies": {
+    "@fluxwp/core": "workspace:*",
+    "@fluxwp/graphql": "workspace:*",
+    "@fluxwp/tokens": "workspace:*",
+    "@fluxwp/ui": "workspace:*",
+    "@graphql-codegen/core": "^7.0.0",
+    "@graphql-codegen/typescript-operations": "^7.0.1",
     "@vitejs/plugin-react": "^6.1.2",
+    "graphql": "^17.1.0",
     "postcss-prefix-selector": "^2.2.1",
     "vite": "^8.3.5"
   },
   "devDependencies": {
     "@types/node": "^22.20.5",
     "typescript": "^5.9.3"
+  },
+  "bin": {
+    "flx-kit": "./bin/flx-kit.ts"
+  },
+  "peerDependencies": {
+    "react": "19.3.0",
+    "@tanstack/react-query": "^5.106.1",
+    "react-i18next": "^17.1.10"
   }
 }
