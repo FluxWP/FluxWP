@@ -1858,5 +1858,6 @@ return array(
   'People who opted out of promotional WhatsApp.' => 'Tanıtım WhatsApp’ından çıkan kişi sayısı.',
   'People who opted out of promotional SMS.' => 'Tanıtım SMS’inden çıkan kişi sayısı.',
   'WooCommerce is active.' => 'WooCommerce etkin.',
+  'This password is defined in wp-config.php and cannot be changed here.' => 'Bu parola wp-config.php içinde tanımlı; buradan değiştirilemez.',
  ),
 );
