@@ -6,6 +6,8 @@
 
 `gql/flx-commerce-1`: servis katmanı, GraphQL şeması (30 kayıtlı işlem), sözleşme testi, beş yönetim ekranı (`flxcm-store`). wp-admin varsayılanı React; klasik görünüm kullanıcı metası `flxcm_ui` ile. Eşleme `docs/graphql/ESLEME/flx-commerce.md`. Müşteri alanı `FlxContact.flxCommerce`; CRM bölüm kaydı PR #333 gelince aynı alana bağlanacak.
 
+İnceleme düzeltmeleri: React "Klasik görünüm" bağlantısı kaçışsız adres kullanır; havale ayarı kaydı WooCommerce ağ geçidi Ayarlar API'sinden geçer (WooCommerce yokken `INVALID_INPUT`); Hesabım bildirim türleri, sahiplik kümesi (`FLXCM_Sub_Account::mine()`), `from_input` Flux Donate korumaları ve dekont sayfa sorgusu klasik davranışa döndü; özet yenilemesi 60 sn.
+
 ## İstisnalar
 
 | Uç / akış | Paket | Neden | GraphQL tarafı |
