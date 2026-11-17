@@ -65,6 +65,16 @@ final class FLXCM_Admin {
 		return wp_nonce_url( add_query_arg( array_merge( self::current_args(), array( 'flxcm_ui' => 'flux' === $ui ? 'flux' : 'classic' ) ), admin_url( 'admin.php' ) ), 'flxcm_ui' );
 	}
 
+	/**
+	 * Same switch link without HTML escaping, for the React screen (it goes into an href as data).
+	 */
+	public static function ui_switch_raw_url( string $ui ): string {
+		return add_query_arg(
+			array_merge( self::current_args(), array( 'flxcm_ui' => 'flux' === $ui ? 'flux' : 'classic', '_wpnonce' => wp_create_nonce( 'flxcm_ui' ) ) ),
+			admin_url( 'admin.php' )
+		);
+	}
+
 	public static function switch_ui(): void {
 		$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 		if ( ! isset( $_GET['flxcm_ui'] ) || 0 !== strpos( $page, 'flx-commerce' ) ) { // phpcs:ignore WordPress.Security.NonceVerification
@@ -143,7 +153,7 @@ final class FLXCM_Admin {
 			),
 			'appIcon'    => FLXCM_URL . 'assets/icon.svg',
 			'startPage'  => self::flux_start_page(),
-			'classicUrl' => self::ui_switch_url( 'classic' ),
+			'classicUrl' => self::ui_switch_raw_url( 'classic' ),
 		);
 		wp_enqueue_style( 'flxcm-flux', FLXCM_URL . 'assets/flux/flux-modules.css', array(), $ver );
 		wp_enqueue_script( 'flxcm-flux', FLXCM_URL . 'assets/flux/flux-modules.js', array(), $ver, true );
