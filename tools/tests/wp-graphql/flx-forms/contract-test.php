@@ -17,7 +17,7 @@ foreach ( (array) json_decode( (string) file_get_contents( $manifest ), true ) a
 		$GLOBALS['flxf_ops'][ $m[1] ] = $doc;
 	}
 }
-flxt_same( 16, count( $GLOBALS['flxf_ops'] ), 'Flux Forms ships 16 persisted operations' );
+flxt_same( 17, count( $GLOBALS['flxf_ops'] ), 'Flux Forms ships 17 persisted operations' );
 
 /**
  * @param array<string,mixed> $vars Variables.

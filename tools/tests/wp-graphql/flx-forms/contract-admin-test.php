@@ -219,6 +219,7 @@ flxt_same( 'UNREAD', $items[3]['status'] ?? null, 'responses: status of a new re
 flxt_same( 'UNREAD_FOLLOWUP', $items[1]['status'] ?? null, 'responses: status of a new follow-up' );
 flxt_same( 'Email: visitor@example.com | Note: Printer is on fire', $items[3]['preview'] ?? null, 'responses: preview' );
 flxt_same( 'Note: Second , choice-b, choice-c', $items[2]['preview'] ?? null, 'responses: multi-value marker is readable in the preview (files are left out)' );
+flxt_same( array( 'Email', 'Note' ), array_map( static fn( $x ) => $x['label'], $items[3]['fields'] ?? array() ), 'responses: list items carry their answers (survey chart)' );
 flxt_same( gmdate( 'Y-m-d\\TH:i:s\\Z', (int) strtotime( get_gmt_from_date( '2026-03-01 10:00:00' ) . ' UTC' ) ), $items[3]['createdAt']['iso'] ?? null, 'responses: site-local time becomes the right instant' );
 
 $r = flxf_t_op( 'FlxFormResponses', array( 'formId' => (string) $survey_form ), $staff_id );
@@ -243,6 +244,22 @@ $r2 = flxf_t_op( 'FlxFormResponses', array( 'first' => 2, 'after' => $r1['data']
 flxt_same( array( (string) $m2, (string) $m1 ), array_map( static fn( $n ) => (string) $n['id'], $r2['data']['flxFormResponses']['nodes'] ?? array() ), 'responses: second page continues' );
 $r = flxf_t_op( 'FlxFormResponses', array( 'first' => 500 ), $staff_id );
 flxt_ok( count( $r['data']['flxFormResponses']['nodes'] ?? array() ) <= 50, 'responses: page size is capped at 50' );
+
+/* CSV export: the link is for the dashboard's admin-post handler (bytes stay there). */
+$r = flxf_t_op( 'FlxFormsExportUrl', array( 'formId' => (string) $panel_form ), 0 );
+flxt_same( 'UNAUTHENTICATED', flxt_code( $r ), 'export link: visitor is rejected' );
+$r = flxf_t_op( 'FlxFormsExportUrl', array( 'formId' => (string) $panel_form ), $sub_id );
+flxt_same( 'FORBIDDEN', flxt_code( $r ), 'export link: a user without the panel capability is rejected' );
+$r = flxf_t_op( 'FlxFormsExportUrl', array( 'formId' => (string) $panel_form ), $staff_id );
+$u = (string) ( $r['data']['flxFormsExportUrl'] ?? '' );
+parse_str( (string) wp_parse_url( $u, PHP_URL_QUERY ), $q );
+flxt_ok( str_contains( $u, '/wp-admin/admin-post.php' ), 'export link: points at admin-post', $u );
+flxt_same( array( 'flxf_dash_csv', (string) $panel_form, wp_date( 'Y-m-d' ) ), array( $q['action'] ?? null, $q['form'] ?? null, $q['to'] ?? null ), 'export link: action, form and range end' );
+wp_set_current_user( $staff_id );
+flxt_ok( false !== wp_verify_nonce( (string) ( $q['_wpnonce'] ?? '' ), 'flxf_dash_csv' ), 'export link: carries the nonce the export checks' );
+$r = flxf_t_op( 'FlxFormsExportUrl', array(), $staff_id );
+parse_str( (string) wp_parse_url( (string) ( $r['data']['flxFormsExportUrl'] ?? '' ), PHP_URL_QUERY ), $q );
+flxt_ok( ! isset( $q['form'] ), 'export link: all forms when no form is given' );
 
 /* ----------------------------------------- REST (FluxApp) shares the service */
 

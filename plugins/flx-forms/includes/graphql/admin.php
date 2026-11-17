@@ -183,6 +183,7 @@ flx_gql_type(
 			'status'    => array( 'type' => 'FlxFormResponseStatus!', 'description' => __( 'Read state.', 'flx-forms' ) ),
 			'createdAt' => array( 'type' => 'FlxDateTime!', 'description' => __( 'When the response was sent.', 'flx-forms' ) ),
 			'preview'   => array( 'type' => 'String!', 'description' => __( 'The first filled answers, short.', 'flx-forms' ) ),
+			'fields'    => array( 'type' => '[FlxFormResponseField!]!', 'description' => __( 'Answers. Survey charts count these.', 'flx-forms' ) ),
 		),
 	)
 );
@@ -410,6 +411,22 @@ flx_gql_query(
 				throw flx_gql_error( 'NOT_FOUND', __( 'Response not found.', 'flx-forms' ) );
 			}
 			return FLXF_Response_Service::view( $row );
+		},
+	)
+);
+
+flx_gql_query(
+	'flxFormsExportUrl',
+	array(
+		'type'        => 'String!',
+		'description' => __( 'Link that downloads the responses as a CSV file (admin-post, with the nonce). The file is built by the dashboard export, so it is the same bytes as before.', 'flx-forms' ),
+		'cap'         => flxf_gql_panel_cap(),
+		'args'        => array(
+			'formId' => array( 'type' => 'ID', 'description' => __( 'Only this form. All forms when left out.', 'flx-forms' ) ),
+		),
+		'resolve'     => static function ( mixed $root, array $args ): string {
+			unset( $root );
+			return FLXF_Response_Service::export_url( flxf_gql_id( $args['formId'] ?? 0 ) );
 		},
 	)
 );

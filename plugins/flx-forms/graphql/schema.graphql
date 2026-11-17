@@ -209,6 +209,8 @@ type FlxFormResponseField {
 type FlxFormResponseItem {
   """When the response was sent."""
   createdAt: FlxDateTime!
+  """Answers. Survey charts count these."""
+  fields: [FlxFormResponseField!]!
   """Form id."""
   formId: ID!
   """Form name. The title saved with the response when the form is gone."""
@@ -874,6 +876,13 @@ extend type RootQuery {
     """Records per page (at most 50)."""
     first: Int
   ): FlxFormListItemConnection!
+  """
+  Link that downloads the responses as a CSV file (admin-post, with the nonce). The file is built by the dashboard export, so it is the same bytes as before.
+  """
+  flxFormsExportUrl(
+    """Only this form. All forms when left out."""
+    formId: ID
+  ): String!
   """Panel settings. Keys and tokens are not returned."""
   flxFormsSettings: FlxFormsSettings!
 }

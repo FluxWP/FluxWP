@@ -23,7 +23,7 @@ defined( 'ABSPATH' ) || exit;
  * @phpstan-type FlxfField array{label:string,value:string,file:bool}
  * @phpstan-type FlxfReplyRow array{id:string,by:string,author:string,kind:string,body:string,attachments:list<string>,createdAt:FlxfMoment}
  * @phpstan-type FlxfResponse array{id:string,formId:string,formTitle:string,formType:string,trackCode:string,status:string,createdAt:FlxfMoment,readAt:FlxfMoment|null,preview:string,fields:list<FlxfField>,replies:list<FlxfReplyRow>,open:bool}
- * @phpstan-type FlxfResponseItem array{id:string,formId:string,formTitle:string,formType:string,trackCode:string,status:string,createdAt:FlxfMoment,preview:string}
+ * @phpstan-type FlxfResponseItem array{id:string,formId:string,formTitle:string,formType:string,trackCode:string,status:string,createdAt:FlxfMoment,preview:string,fields:list<FlxfField>}
  */
 class FLXF_Response_Service {
 
@@ -226,6 +226,7 @@ class FLXF_Response_Service {
 	 */
 	public static function item( array $row, array $forms, array $types ): array {
 		$form_id = FLXF_Submission_Service::num( $row['form_id'] ?? 0 );
+		$fields  = self::fields( FLXF_Submission_Service::str( $row['content'] ?? '' ) );
 		return array(
 			'id'        => (string) FLXF_Submission_Service::num( $row['msg_id'] ?? 0 ),
 			'formId'    => (string) $form_id,
@@ -234,7 +235,8 @@ class FLXF_Response_Service {
 			'trackCode' => FLXF_Submission_Service::str( $row['track'] ?? '' ),
 			'status'    => self::status( $row['read_'] ?? 0 ),
 			'createdAt' => FLXF_Submission_Service::moment( FLXF_Submission_Service::str( $row['date'] ?? '' ) ),
-			'preview'   => self::preview( self::fields( FLXF_Submission_Service::str( $row['content'] ?? '' ) ) ),
+			'preview'   => self::preview( $fields ),
+			'fields'    => $fields,
 		);
 	}
 
@@ -352,6 +354,24 @@ class FLXF_Response_Service {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Link to the CSV export (admin-post, bytes). The export itself stays the dashboard's handler, so
+	 * its capability check, nonce and file are unchanged; this only hands the screen a link that
+	 * carries the nonce. The range is the longest the export allows.
+	 */
+	public static function export_url( int $form_id ): string {
+		$args = array(
+			'action'   => 'flxf_dash_csv',
+			'_wpnonce' => wp_create_nonce( 'flxf_dash_csv' ),
+			'from'     => wp_date( 'Y-m-d', time() - 730 * DAY_IN_SECONDS ),
+			'to'       => wp_date( 'Y-m-d' ),
+		);
+		if ( $form_id > 0 ) {
+			$args['form'] = $form_id;
+		}
+		return add_query_arg( $args, admin_url( 'admin-post.php' ) );
 	}
 
 	/**

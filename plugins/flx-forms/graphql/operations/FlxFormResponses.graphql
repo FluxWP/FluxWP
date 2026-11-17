@@ -10,6 +10,7 @@ query FlxFormResponses($formId: ID, $unread: Boolean, $status: FlxFormResponseSt
       status
       createdAt { iso timestamp label }
       preview
+      fields { label value isFile }
     }
     pageInfo { hasNextPage endCursor }
     totalCount
