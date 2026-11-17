@@ -1,0 +1,75 @@
+# Public: what a front-end address shows (front ends send it by persisted id). Only core WPGraphQL fields on
+# the node, so it works whichever FluxWP packages are active; the blocks come with FlxHeadlessBlocks.
+query FlxRoute($path: String!, $lang: String, $frontend: ID, $previewId: Int) {
+  flxRoute(path: $path, lang: $lang, frontend: $frontend, previewId: $previewId) {
+    path
+    kind
+    status
+    redirect
+    lang
+    title
+    page
+    databaseId
+    postType
+    taxonomy
+    head {
+      ...FlxHeadlessHeadFields
+    }
+    alternates {
+      lang
+      hreflang
+      url
+      path
+    }
+    cacheTags
+    frontendId
+    node {
+      __typename
+      uri
+      ... on NodeWithTitle {
+        title
+      }
+      ... on ContentNode {
+        databaseId
+        date
+        modified
+        contentTypeName
+      }
+      ... on NodeWithContentEditor {
+        content
+      }
+      ... on NodeWithExcerpt {
+        excerpt
+      }
+      ... on NodeWithFeaturedImage {
+        featuredImage {
+          node {
+            sourceUrl
+            altText
+            mediaDetails {
+              width
+              height
+            }
+          }
+        }
+      }
+      ... on NodeWithAuthor {
+        author {
+          node {
+            name
+          }
+        }
+      }
+      ... on TermNode {
+        databaseId
+        name
+        description
+      }
+      ... on User {
+        databaseId
+        name
+        description
+      }
+    }
+  }
+}

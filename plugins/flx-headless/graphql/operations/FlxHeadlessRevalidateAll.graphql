@@ -1,0 +1,12 @@
+mutation FlxHeadlessRevalidateAll {
+  flxHeadlessRevalidateAll(input: {}) {
+    settings {
+      ...FlxHeadlessSettingsFields
+    }
+    errors {
+      code
+      field
+      message
+    }
+  }
+}
