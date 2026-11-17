@@ -1,0 +1,6 @@
+mutation FlxChatBotSet($input: FlxChatBotSetInput!) {
+  flxChatBotSet(input: $input) {
+    chat { ...FlxChatFields }
+    errors { code message field }
+  }
+}

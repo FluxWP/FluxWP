@@ -1,0 +1,6 @@
+mutation FlxChatMarkRead($input: FlxChatMarkReadInput!) {
+  flxChatMarkRead(input: $input) {
+    chat { databaseId unread }
+    errors { code message field }
+  }
+}

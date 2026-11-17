@@ -2,9 +2,10 @@
 /**
  * Plugin Name:       Flux Chat
  * Description:       WhatsApp (Evolution API) çağrı merkezi: gelen ve giden mesajları canlı görün, yeni sohbet başlatın, hazır cevaplar, etiketler, atama, dahili notlar, otomatik yanıtlar; sohbetten bağış (Flux Donate) ve sertifika (Flux Certificates) kaydı, dekont eşleştirme. OpenRouter ile yapay zekâ cevap önerisi ve otomatik bağış asistanı.
- * Version:           1.48.1
+ * Version:           1.49.0
  * Requires at least: 6.4
- * Requires PHP:      7.4
+ * Requires PHP:      8.1
+ * Requires Plugins:  flx-graphql
  * Author:            FluxWP
  * Text Domain:       flx-chat
  * Domain Path:       /languages
@@ -16,13 +17,17 @@ defined( 'ABSPATH' ) || exit;
 require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback; no Flux Lang dependency.
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
-define( 'FLXC_VERSION', '1.48.1' );
+define( 'FLXC_VERSION', '1.49.0' );
 define( 'FLXC_DB_VERSION', '10' );
 define( 'FLXC_FILE', __FILE__ );
 define( 'FLXC_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXC_URL', plugin_dir_url( __FILE__ ) );
 
 require_once FLXC_DIR . 'includes/helpers.php';
+require_once FLXC_DIR . 'includes/services/class-flxc-val.php';
+require_once FLXC_DIR . 'includes/services/class-flxc-chat-service.php';
+require_once FLXC_DIR . 'includes/services/class-flxc-message-service.php';
+require_once FLXC_DIR . 'includes/services/class-flxc-desk-service.php';
 require_once FLXC_DIR . 'includes/install.php';
 require_once FLXC_DIR . 'includes/connections.php';
 require_once FLXC_DIR . 'includes/evolution.php';
@@ -95,3 +100,116 @@ add_filter(
 register_activation_hook( __FILE__, 'flxc_activate' );
 register_deactivation_hook( __FILE__, 'flxc_deactivate' );
 add_action( 'plugins_loaded', 'flxc_maybe_upgrade' );
+
+/*
+ * GraphQL (Flux GraphQL). The schema loads only inside a GraphQL request. Without the kit the classic
+ * pages and flx-chat/v1 keep working. Registration is skipped when flx-graphql is absent.
+ */
+add_action(
+	'flx_gql_register',
+	static function () {
+		if ( ! function_exists( 'flx_gql_any_cap' ) ) {
+			return;
+		}
+		require_once FLXC_DIR . 'includes/graphql/schema.php';
+	}
+);
+add_action(
+	'flx_gql_loaders',
+	static function () {
+		if ( ! function_exists( 'flx_gql_node_loader' ) ) {
+			return;
+		}
+		flx_gql_node_loader( 'FlxChat', 'FLXC_Chat_Loader' );
+	}
+);
+add_filter(
+	'flx_gql_persisted_manifests',
+	static function ( $m ) {
+		$m               = is_array( $m ) ? $m : array();
+		$m['flx-chat']   = FLXC_DIR . 'graphql/persisted-queries.json';
+		return $m;
+	}
+);
+add_filter(
+	'flx_gql_capabilities',
+	static function ( $caps ) {
+		$caps   = is_array( $caps ) ? $caps : array();
+		$labels = array(
+			'flx_reports_manage'  => __( 'Schedules call-center reports', 'flx-chat' ),
+			'flx_reports_receive' => __( 'Can receive a call-center report', 'flx-chat' ),
+			'flx_reports_view'    => __( 'Can receive the general call-center report', 'flx-chat' ),
+		);
+		foreach ( $labels as $cap => $label ) {
+			$caps[ $cap ] = array(
+				'label'   => $label,
+				'group'   => 'communication',
+				'package' => 'flx-chat',
+			);
+		}
+		return $caps;
+	},
+	9
+);
+add_filter(
+	'flx_gql_capabilities',
+	static function ( $caps ) {
+		$caps = is_array( $caps ) ? $caps : array();
+		if ( ! isset( $caps['flxc_use'] ) ) {
+			$caps['flxc_use'] = array(
+				'label'   => __( 'Uses the call center', 'flx-chat' ),
+				'group'   => 'communication',
+				'package' => 'flx-chat',
+			);
+		}
+		if ( ! isset( $caps['flxc_manage'] ) ) {
+			$caps['flxc_manage'] = array(
+				'label'   => __( 'Manages the call center', 'flx-chat' ),
+				'group'   => 'communication',
+				'package' => 'flx-chat',
+			);
+		}
+		return $caps;
+	}
+);
+add_filter(
+	'graphql_data_loader_classes',
+	static function ( $classes ) {
+		$classes                     = is_array( $classes ) ? $classes : array();
+		$classes['flxcPhonePerson']  = 'FLXC_Phone_Person_Loader';
+		return $classes;
+	}
+);
+add_filter(
+	'flx_gql_upload_contexts',
+	static function ( $c ) {
+		$c                       = is_array( $c ) ? $c : array();
+		$c['flx-chat/outbound']  = array(
+			'cap'    => static fn(): bool => flxc_can_use(),
+			'max_mb' => max( 1, (int) ( (int) apply_filters( 'flxc_max_upload', 16 * MB_IN_BYTES ) / MB_IN_BYTES ) ),
+		);
+		return $c;
+	}
+);
+/*
+ * An agent may load the shared person of a phone only when they can see a chat with that phone.
+ * CRM-only fields on FlxContact keep their own flxcrm_view check.
+ */
+add_filter(
+	'flxcrm_gql_can_see_contact',
+	static function ( $ok, $contact, $user_id ) {
+		if ( $ok ) {
+			return true;
+		}
+		if ( ! is_object( $contact ) || ! isset( $contact->phone ) ) {
+			return (bool) $ok;
+		}
+		$phone = preg_replace( '/\D+/', '', (string) $contact->phone );
+		if ( '' === $phone ) {
+			return false;
+		}
+		return FLXC_Chat_Service::phone_visible_to( $phone, (int) $user_id );
+	},
+	10,
+	3
+);

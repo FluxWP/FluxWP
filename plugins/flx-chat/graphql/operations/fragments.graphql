@@ -1,0 +1,77 @@
+fragment FlxChatFields on FlxChat {
+  databaseId
+  connectionId
+  jid
+  phoneDigits
+  phoneFmt
+  channel
+  title
+  name
+  pushName
+  avatarUrl
+  labels
+  notes
+  status
+  assignedTo
+  unread
+  pinned
+  lastMs
+  lastInMs
+  group
+  typing
+  rev
+  createdMs
+  unknownName
+  blocked
+  optOut
+  bot
+  botBusy
+  ai
+  lastMessage {
+    dir
+    type
+    body
+    status
+    user
+  }
+}
+
+fragment FlxChatMessageFields on FlxChatMessage {
+  databaseId
+  chatId
+  dir
+  type
+  body
+  status
+  error
+  author
+  authorId
+  source
+  sender
+  ts
+  rev
+  edited
+  deleted
+  media {
+    ptt
+    ready
+    secs
+    file {
+      url
+      name
+      mime
+      size
+    }
+  }
+  quoted {
+    databaseId
+    dir
+    type
+    body
+    author
+  }
+  reactions {
+    side
+    emoji
+  }
+}

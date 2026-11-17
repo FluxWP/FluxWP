@@ -4998,3 +4998,828 @@ msgstr ""
 
 msgid "The person replied STOP to promotional messages."
 msgstr ""
+
+msgid "Schedules call-center reports"
+msgstr ""
+
+msgid "Can receive a call-center report"
+msgstr ""
+
+msgid "Can receive the general call-center report"
+msgstr ""
+
+msgid "Uses the call center"
+msgstr ""
+
+msgid "Manages the call center"
+msgstr ""
+
+msgid "The chat could not be opened."
+msgstr ""
+
+msgid "Open or closed."
+msgstr ""
+
+msgid "Open."
+msgstr ""
+
+msgid "Closed."
+msgstr ""
+
+msgid "Which chats the list shows. ALL is the open inbox and leaves closed chats out."
+msgstr ""
+
+msgid "Open chats."
+msgstr ""
+
+msgid "Unread open chats."
+msgstr ""
+
+msgid "Assigned to the viewer."
+msgstr ""
+
+msgid "Not assigned."
+msgstr ""
+
+msgid "The assistant is on."
+msgstr ""
+
+msgid "Closed chats."
+msgstr ""
+
+msgid "Open and closed."
+msgstr ""
+
+msgid "Who the line belongs to."
+msgstr ""
+
+msgid "From the contact."
+msgstr ""
+
+msgid "From the team."
+msgstr ""
+
+msgid "Internal note."
+msgstr ""
+
+msgid "System line."
+msgstr ""
+
+msgid "Delivery of an outgoing message. Empty on the wire is null."
+msgstr ""
+
+msgid "Assistant on this chat."
+msgstr ""
+
+msgid "Preview of the latest line."
+msgstr ""
+
+msgid "Direction."
+msgstr ""
+
+msgid "Message type."
+msgstr ""
+
+msgid "Preview text."
+msgstr ""
+
+msgid "Delivery. Null when the line has none."
+msgstr ""
+
+msgid "Author name."
+msgstr ""
+
+msgid "One reaction."
+msgstr ""
+
+msgid "in, out, or a group sender id."
+msgstr ""
+
+msgid "Emoji."
+msgstr ""
+
+msgid "Who deleted a line and how."
+msgstr ""
+
+msgid "contact, phone, everyone or panel."
+msgstr ""
+
+msgid "Name. Empty when the contact deleted it."
+msgstr ""
+
+msgid "When. Null when unknown."
+msgstr ""
+
+msgid "The body was not kept."
+msgstr ""
+
+msgid "Card for a link in a message."
+msgstr ""
+
+msgid "URL."
+msgstr ""
+
+msgid "Title."
+msgstr ""
+
+msgid "Description."
+msgstr ""
+
+msgid "Image URL. Empty when none."
+msgstr ""
+
+msgid "Site name."
+msgstr ""
+
+msgid "Domain."
+msgstr ""
+
+msgid "Campaign or record the outgoing line came from."
+msgstr ""
+
+msgid "Label."
+msgstr ""
+
+msgid "Detail URL. Empty when none."
+msgstr ""
+
+msgid "Kind."
+msgstr ""
+
+msgid "AI summary of a receipt check."
+msgstr ""
+
+msgid "Verdict."
+msgstr ""
+
+msgid "Short text."
+msgstr ""
+
+msgid "A donation or certificate matched to a message."
+msgstr ""
+
+msgid "donation or certificate."
+msgstr ""
+
+msgid "Record id."
+msgstr ""
+
+msgid "File on a message. The URL is for this viewer only."
+msgstr ""
+
+msgid "File. The URL carries this viewer's nonce and is not shared across users."
+msgstr ""
+
+msgid "The bytes are on disk."
+msgstr ""
+
+msgid "Voice note. False for an audio file."
+msgstr ""
+
+msgid "Length in seconds."
+msgstr ""
+
+msgid "Width."
+msgstr ""
+
+msgid "Height."
+msgstr ""
+
+msgid "Thumbnail. Empty when none."
+msgstr ""
+
+msgid "The line a message quotes."
+msgstr ""
+
+msgid "Message id."
+msgstr ""
+
+msgid "Type."
+msgstr ""
+
+msgid "Text."
+msgstr ""
+
+msgid "Author."
+msgstr ""
+
+msgid "One line. The parent query already checked the chat."
+msgstr ""
+
+msgid "Chat id."
+msgstr ""
+
+msgid "Provider id. Empty when none."
+msgstr ""
+
+msgid "Provider type. A voice note is audio with media.ptt."
+msgstr ""
+
+msgid "Send error. Empty when none."
+msgstr ""
+
+msgid "Author user id. 0 for the contact."
+msgstr ""
+
+msgid "agent, ai, quick, system, record, …"
+msgstr ""
+
+msgid "Group sender id. Empty in a direct chat."
+msgstr ""
+
+msgid "When it was sent. Null when unknown."
+msgstr ""
+
+msgid "Milliseconds as a decimal string."
+msgstr ""
+
+msgid "Revision milliseconds as a decimal string."
+msgstr ""
+
+msgid "The text was edited."
+msgstr ""
+
+msgid "Edit deadline. Null when it cannot be edited."
+msgstr ""
+
+msgid "Delete-for-everyone deadline. Null when only the panel can hide it."
+msgstr ""
+
+msgid "Deleted."
+msgstr ""
+
+msgid "Deletion audit. Null when the line is not deleted."
+msgstr ""
+
+msgid "Reactions."
+msgstr ""
+
+msgid "Link card. Null when there is none."
+msgstr ""
+
+msgid "The sender turned the card off."
+msgstr ""
+
+msgid "Matched records."
+msgstr ""
+
+msgid "AI receipt check. Null when none."
+msgstr ""
+
+msgid "Campaign origin. Null when the line was typed here."
+msgstr ""
+
+msgid "File. Null for text. Resolved for this viewer."
+msgstr ""
+
+msgid "Quoted line. Null when none."
+msgstr ""
+
+msgid "One row in the contact panel."
+msgstr ""
+
+msgid "Second line."
+msgstr ""
+
+msgid "Link. Empty when none."
+msgstr ""
+
+msgid "Tone."
+msgstr ""
+
+msgid "A block in the contact panel of one chat."
+msgstr ""
+
+msgid "Id."
+msgstr ""
+
+msgid "Rows."
+msgstr ""
+
+msgid "A change to the contact on this chat."
+msgstr ""
+
+msgid "What changed."
+msgstr ""
+
+msgid "A WhatsApp or site chat the viewer is allowed to see."
+msgstr ""
+
+msgid "Connection id."
+msgstr ""
+
+msgid "Provider id."
+msgstr ""
+
+msgid "Digits. Empty for a hidden or group number."
+msgstr ""
+
+msgid "Number as shown."
+msgstr ""
+
+msgid "Number. Null when the chat has none."
+msgstr ""
+
+msgid "Channel id."
+msgstr ""
+
+msgid "Saved name."
+msgstr ""
+
+msgid "Name from WhatsApp."
+msgstr ""
+
+msgid "Photo for this viewer. Empty when none."
+msgstr ""
+
+msgid "When the photo was fetched. Null when never."
+msgstr ""
+
+msgid "Label ids."
+msgstr ""
+
+msgid "Internal notes."
+msgstr ""
+
+msgid "Agent user id. 0 when unassigned."
+msgstr ""
+
+msgid "Linked staff user. Null for an agent; only a manager sees it."
+msgstr ""
+
+msgid "Unread count."
+msgstr ""
+
+msgid "Pinned."
+msgstr ""
+
+msgid "Last message time, milliseconds."
+msgstr ""
+
+msgid "Last message time. Null when the chat is empty."
+msgstr ""
+
+msgid "Last incoming time, milliseconds."
+msgstr ""
+
+msgid "Group chat."
+msgstr ""
+
+msgid "0 idle, 1 composing, 2 recording."
+msgstr ""
+
+msgid "Revision milliseconds."
+msgstr ""
+
+msgid "Created at, milliseconds."
+msgstr ""
+
+msgid "Created at."
+msgstr ""
+
+msgid "No saved name."
+msgstr ""
+
+msgid "On the block list."
+msgstr ""
+
+msgid "The contact opted out."
+msgstr ""
+
+msgid "Assistant state. Null when the assistant is not in use on this chat."
+msgstr ""
+
+msgid "The assistant is writing."
+msgstr ""
+
+msgid "The assistant has handled this chat."
+msgstr ""
+
+msgid "Latest line. Null when the chat is empty."
+msgstr ""
+
+msgid "Shared person for this phone. Null when CRM has no record or the viewer cannot see a chat with this phone."
+msgstr ""
+
+msgid "Contact panel. Empty on a list row; filled on flxChat."
+msgstr ""
+
+msgid "Contact change log. Empty on a list row."
+msgstr ""
+
+msgid "A page of chats."
+msgstr ""
+
+msgid "Older lines of one chat. before is a message id, not an offset cursor."
+msgstr ""
+
+msgid "Lines, oldest first in this page."
+msgstr ""
+
+msgid "More history exists."
+msgstr ""
+
+msgid "History fetch note. Empty when none."
+msgstr ""
+
+msgid "A new incoming line, for the notification."
+msgstr ""
+
+msgid "Chat title."
+msgstr ""
+
+msgid "Preview."
+msgstr ""
+
+msgid "Connection state. No keys."
+msgstr ""
+
+msgid "Color."
+msgstr ""
+
+msgid "State."
+msgstr ""
+
+msgid "When the state changed. Null when unknown."
+msgstr ""
+
+msgid "Changes since a revision. A truncated page is ordered by rev ascending; continue from continueRev and continueId."
+msgstr ""
+
+msgid "Current revision. Do not use this as since while truncated is true."
+msgstr ""
+
+msgid "Pass as since on the next poll."
+msgstr ""
+
+msgid "Pass as afterChat when truncated, otherwise 0."
+msgstr ""
+
+msgid "More chats changed than this page holds."
+msgstr ""
+
+msgid "More new lines in the open chat. Ask again with a higher after."
+msgstr ""
+
+msgid "Changed chats, oldest revision first, at most 50."
+msgstr ""
+
+msgid "New lines of the open chat, at most 50."
+msgstr ""
+
+msgid "Incoming lines for notifications."
+msgstr ""
+
+msgid "Connection states. No secrets."
+msgstr ""
+
+msgid "Unread total the viewer can see."
+msgstr ""
+
+msgid "Someone who can be assigned a chat."
+msgstr ""
+
+msgid "User id."
+msgstr ""
+
+msgid "Name."
+msgstr ""
+
+msgid "A chat label."
+msgstr ""
+
+msgid "A quick reply."
+msgstr ""
+
+msgid "Shortcut."
+msgstr ""
+
+msgid "Body."
+msgstr ""
+
+msgid "The viewer."
+msgstr ""
+
+msgid "Manager."
+msgstr ""
+
+msgid "What the chat page needs to open. No secrets."
+msgstr ""
+
+msgid "Viewer."
+msgstr ""
+
+msgid "Hours a line can be deleted for everyone."
+msgstr ""
+
+msgid "Assignees."
+msgstr ""
+
+msgid "Labels."
+msgstr ""
+
+msgid "Connections without keys."
+msgstr ""
+
+msgid "Quick replies."
+msgstr ""
+
+msgid "Unread total."
+msgstr ""
+
+msgid "AI provider label. Null when AI is off."
+msgstr ""
+
+msgid "The assistant is enabled."
+msgstr ""
+
+msgid "Current revision."
+msgstr ""
+
+msgid "Classic chat page."
+msgstr ""
+
+msgid "Whether a number is on WhatsApp. A chat the viewer cannot see is omitted."
+msgstr ""
+
+msgid "The number could be parsed."
+msgstr ""
+
+msgid "Digits. Empty when invalid."
+msgstr ""
+
+msgid "Display. Empty when invalid."
+msgstr ""
+
+msgid "On WhatsApp. Null when the connection could not be asked."
+msgstr ""
+
+msgid "Existing visible chat. 0 when none."
+msgstr ""
+
+msgid "Name. Not the title of a hidden chat."
+msgstr ""
+
+msgid "Assistant use on one day."
+msgstr ""
+
+msgid "Day."
+msgstr ""
+
+msgid "Calls."
+msgstr ""
+
+msgid "Input tokens."
+msgstr ""
+
+msgid "Output tokens."
+msgstr ""
+
+msgid "Assistant use of one visible chat."
+msgstr ""
+
+msgid "Replies today."
+msgstr ""
+
+msgid "Daily limit."
+msgstr ""
+
+msgid "The limit is reached."
+msgstr ""
+
+msgid "Recent days."
+msgstr ""
+
+msgid "Inbox bootstrap. No secrets."
+msgstr ""
+
+msgid "Chats the viewer can see."
+msgstr ""
+
+msgid "Filter. Open chats when omitted."
+msgstr ""
+
+msgid "Name, number, note or message text."
+msgstr ""
+
+msgid "Label id."
+msgstr ""
+
+msgid "One chat, with the contact panel. Null when missing or hidden."
+msgstr ""
+
+msgid "Global id or chat number."
+msgstr ""
+
+msgid "Lines of a chat the viewer can see."
+msgstr ""
+
+msgid "Chat."
+msgstr ""
+
+msgid "Return lines older than this message id."
+msgstr ""
+
+msgid "Page size, at most 50."
+msgstr ""
+
+msgid "Changes since a revision. Poll at 10 seconds or slower, and stop while the tab is hidden."
+msgstr ""
+
+msgid "Revision milliseconds already applied. Decimal string."
+msgstr ""
+
+msgid "Last message id the client has for the open chat."
+msgstr ""
+
+msgid "Open chat. Lines of a hidden chat are omitted."
+msgstr ""
+
+msgid "continueId from a truncated page."
+msgstr ""
+
+msgid "Look up a number. Does not reveal a chat the viewer cannot see."
+msgstr ""
+
+msgid "Number."
+msgstr ""
+
+msgid "Card for a URL. Null when it cannot be read."
+msgstr ""
+
+msgid "Assistant use of a visible chat. Null when the chat is hidden."
+msgstr ""
+
+msgid "Open a chat for a number."
+msgstr ""
+
+msgid "Refuse when the number is not on WhatsApp."
+msgstr ""
+
+msgid "The chat."
+msgstr ""
+
+msgid "Rename, assign, pin, close or note a visible chat. staffUser is manager-only."
+msgstr ""
+
+msgid "Notes."
+msgstr ""
+
+msgid "Agent id. 0 clears it."
+msgstr ""
+
+msgid "Staff user. Managers only."
+msgstr ""
+
+msgid "Send a line. voice true is a voice note (audio + ptt); voice false keeps an audio file."
+msgstr ""
+
+msgid "text, note, or a file type."
+msgstr ""
+
+msgid "File from flx/v1/upload, context flx-chat/outbound."
+msgstr ""
+
+msgid "Voice note. Distinct from an audio file."
+msgstr ""
+
+msgid "Quoted message id."
+msgstr ""
+
+msgid "agent, quick or ai."
+msgstr ""
+
+msgid "Build a link card."
+msgstr ""
+
+msgid "The line."
+msgstr ""
+
+msgid "Resend a failed outgoing line on a visible chat."
+msgstr ""
+
+msgid "React on a visible chat."
+msgstr ""
+
+msgid "Emoji. Empty removes it."
+msgstr ""
+
+msgid "Edit a line. The author or a manager, and only on a visible chat."
+msgstr ""
+
+msgid "New text."
+msgstr ""
+
+msgid "Hide a note or delete for everyone. The author or a manager, on a visible chat."
+msgstr ""
+
+msgid "panel or everyone."
+msgstr ""
+
+msgid "Mark a visible chat read."
+msgstr ""
+
+msgid "Typing state on a visible chat."
+msgstr ""
+
+msgid "composing or recording."
+msgstr ""
+
+msgid "Accepted."
+msgstr ""
+
+msgid "One suggested reply for a visible chat. Not a stream."
+msgstr ""
+
+msgid "Ignore a cached suggestion."
+msgstr ""
+
+msgid "Hint for the model."
+msgstr ""
+
+msgid "Suggestion. Null on failure."
+msgstr ""
+
+msgid "Turn the assistant on or off for a visible chat."
+msgstr ""
+
+msgid "On."
+msgstr ""
+
+msgid "Fill a quick reply for a visible chat."
+msgstr ""
+
+msgid "Reply id."
+msgstr ""
+
+msgid "Filled text."
+msgstr ""
+
+msgid "Text of one visible chat. The bulk file download stays on admin-post."
+msgstr ""
+
+msgid "md or json."
+msgstr ""
+
+msgid "Mask phones and emails."
+msgstr ""
+
+msgid "Include notes."
+msgstr ""
+
+msgid "File body."
+msgstr ""
+
+msgid "File name."
+msgstr ""
+
+msgid "Match a receipt. Donation or certificate capability, and a visible chat."
+msgstr ""
+
+msgid "Mark the donation paid."
+msgstr ""
+
+msgid "Note."
+msgstr ""
+
+msgid "Optional reply text."
+msgstr ""
+
+msgid "Matched."
+msgstr ""
+
+msgid "Unmatch a receipt. Same capability as attach, on a visible chat."
+msgstr ""
+
+msgid "Removed."
+msgstr ""
+
+msgid "Create a donation from a visible chat, through Flux Donate's PHP. Temporary until Donate's own mutation exists."
+msgstr ""
+
+msgid "Chat. Checked with flxc_user_can_see_chat."
+msgstr ""
+
+msgid "Donation type."
+msgstr ""
+
+msgid "Amount."
+msgstr ""
+
+msgid "Donor name."
+msgstr ""
+
+msgid "Phone."
+msgstr ""
+
+msgid "Created."
+msgstr ""
+
+msgid "Clear a visible chat. Managers only, confirm must be yes."
+msgstr ""
+
+msgid "Must be yes."
+msgstr ""
+
+msgid "Cleared."
+msgstr ""

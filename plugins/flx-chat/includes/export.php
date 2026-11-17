@@ -325,24 +325,8 @@ add_action(
 				'permission_callback' => function () {
 					return flxc_can_manage();
 				},
-				'callback'            => function ( WP_REST_Request $req ) {
-					$id   = (int) $req['id'];
-					$chat = flxc_get_chat( $id );
-					if ( ! $chat ) {
-						return new WP_Error( 'flxc_404', __( 'Chat not found.', 'flx-chat' ), array( 'status' => 404 ) );
-					}
-					// Arayüz onay kelimesini yazdırır; uca yanlışlıkla gelen istek silmesin.
-					if ( 'yes' !== (string) $req->get_param( 'confirm' ) ) {
-						return new WP_Error( 'flxc_confirm', __( 'Confirmation text is wrong.', 'flx-chat' ), array( 'status' => 400 ) );
-					}
-					$n = flxc_clear_chat_history( $id, (bool) $req->get_param( 'keep_receipts' ) );
-					if ( $req->get_param( 'forget_memory' ) && function_exists( 'flxc_mem_forget' ) ) {
-						flxc_mem_forget( $chat );
-					}
-					return array(
-						'deleted' => $n,
-						'chat'    => flxc_chat_for_js( flxc_get_chat( $id ) ),
-					);
+				'callback'            => static function ( WP_REST_Request $req ) {
+					return FLXC_Desk_Service::clear( $req );
 				},
 			)
 		);
