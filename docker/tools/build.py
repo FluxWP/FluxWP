@@ -26,6 +26,7 @@ BUILDS = {
     "7.1-php8.4-fpm": ("images/wordpress/Dockerfile", "wordpress:7.1-php8.4-fpm"),
     "worker-php8.4": ("images/worker/Dockerfile", "wordpress:cli-2.12-php8.4"),
     "nginx-1.30": ("images/nginx/Dockerfile", "nginx:1.30-alpine"),
+    "wpapi-node22": ("images/wpapi/Dockerfile", "node:22-alpine"),
 }
 
 IMAGES = {
@@ -33,6 +34,7 @@ IMAGES = {
     "wordpress-fpm": f"{REGISTRY}:7.1-php8.4-fpm",
     "worker": f"{REGISTRY}:worker-php8.4",
     "nginx": f"{REGISTRY}:nginx-1.30",
+    "wpapi": f"{REGISTRY}:wpapi-node22",
     "mariadb": "mariadb:11.8",
     "mysql": "mysql:8.4",
     "redis": "redis:8.8-alpine",
@@ -55,6 +57,10 @@ VARIANTS = {
         "title": "WordPress PHP-FPM + nginx + MariaDB + Redis object cache",
         "db": "mariadb", "redis": True, "web": "nginx",
     },
+    "wpapi": {
+        "title": "WordPress + MariaDB + Redis + WhatsApp API (flx-wpapi)",
+        "db": "mariadb", "redis": True, "web": "apache", "wpapi": True,
+    },
 }
 
 DEFAULT = "mariadb-redis"
@@ -68,6 +74,7 @@ MODES = {
         "db_root_pw_ref": "$SERVICE_PASSWORD_ROOT",
         "db_name": "${DB_NAME:-wordpress}",
         "redis_pw_ref": "$SERVICE_PASSWORD_REDIS",
+        "wpapi_key_ref": "$SERVICE_PASSWORD_64_WPAPIKEY",
         "wp_url": "$SERVICE_URL_WORDPRESS",
         "wp_admin_user": "${WP_ADMIN_USER:-}",
         "wp_admin_pw_ref": "${WP_ADMIN_PASSWORD:-}",
@@ -80,6 +87,7 @@ MODES = {
         "db_root_pw_ref": "${DB_ROOT_PASSWORD:?set DB_ROOT_PASSWORD in .env}",
         "db_name": "${DB_NAME:-wordpress}",
         "redis_pw_ref": "${REDIS_PASSWORD:?set REDIS_PASSWORD in .env}",
+        "wpapi_key_ref": "${WPAPI_KEY:?set WPAPI_KEY in .env}",
         "wp_url": "${WP_URL:-}",
         "wp_admin_user": "${WP_ADMIN_USER:-admin}",
         "wp_admin_pw_ref": "${WP_ADMIN_PASSWORD:-}",
@@ -114,6 +122,12 @@ def wp_env(mode, v):
         lines += [
             "WP_REDIS_HOST=redis",
             f"WP_REDIS_PASSWORD={m['redis_pw_ref']}",
+        ]
+    if v.get("wpapi"):
+        lines += [
+            "WPAPI_URL=http://wpapi:3000",
+            f"WPAPI_KEY={m['wpapi_key_ref']}",
+            "WPAPI_INSTANCE=${WPAPI_INSTANCE:-main}",
         ]
     return lines
 
@@ -246,6 +260,43 @@ def redis_service(mode):
     )
 
 
+def wpapi_service(mode, v):
+    m = MODES[mode]
+    return (
+        "  # WhatsApp API (flx-wpapi, Evolution API v2 compatible). Internal only: no published port.\n"
+        "  # WordPress reaches it at http://wpapi:3000 with the shared key (WPAPI_KEY).\n"
+        "  wpapi:\n"
+        f"    image: '{IMAGES['wpapi']}'\n"
+        "    restart: unless-stopped\n"
+        "    volumes:\n"
+        "      - 'wpapi-data:/data'\n"
+        "    environment:\n"
+        + env([
+            f"FLXW_API_KEY={m['wpapi_key_ref']}",
+            "FLXW_DB_HOST=mariadb",
+            f"FLXW_DB_USER={m['db_user']}",
+            f"FLXW_DB_PASSWORD={m['db_pw_ref']}",
+            f"FLXW_DB_NAME={m['db_name']}",
+            "FLXW_DATA_DIR=/data",
+            "FLXW_PUBLIC_URL=http://wpapi:3000",
+            "FLXW_ALLOW_PRIVATE_URLS=1",
+            "FLXW_PANEL=${WPAPI_PANEL:-off}",
+            "FLXW_MSG_KEEP_DAYS=${WPAPI_MSG_KEEP_DAYS:-45}",
+        ])
+        + "    depends_on:\n"
+        "      mariadb:\n"
+        "        condition: service_healthy\n"
+        "    healthcheck:\n"
+        "      test: ['CMD', 'wget', '-q', '-O', '/dev/null', 'http://127.0.0.1:3000/health']\n"
+        "      interval: 15s\n"
+        "      timeout: 5s\n"
+        "      retries: 10\n"
+        "      start_period: 20s\n"
+        "    security_opt:\n"
+        "      - no-new-privileges:true\n"
+    )
+
+
 def depends(v, extra=()):
     out = "    depends_on:\n"
     out += f"      {v['db']}:\n        condition: service_healthy\n"
@@ -371,11 +422,15 @@ def build(mode, name, v):
     if v["web"] == "nginx":
         out += nginx_service(mode)
     out += worker_service(mode, v)
+    if v.get("wpapi"):
+        out += wpapi_service(mode, v)
     out += db_service(mode, v)
     if v["redis"]:
         out += redis_service(mode)
     out += "\nvolumes:\n  wordpress-files:\n  flx-private:\n"
     out += f"  {v['db']}-data:\n"
+    if v.get("wpapi"):
+        out += "  wpapi-data:\n"
     return out
 
 
@@ -432,6 +487,19 @@ def env_example(name, v):
         "PHP_OPCACHE_MEMORY=192",
         "PHP_TIMEZONE=UTC",
     ]
+    if v.get("wpapi"):
+        lines += [
+            "",
+            "# WhatsApp API (flx-wpapi). One shared key: the wpapi container reads it as FLXW_API_KEY,",
+            "# WordPress gets a ready WhatsApp connection with it (Flux Mail, type Flux WPAPI). Generate: openssl rand -hex 32",
+            "WPAPI_KEY=",
+            "# Name of the first WhatsApp account (the number you pair with the QR).",
+            "WPAPI_INSTANCE=main",
+            "# Days of message history to keep (1-3650).",
+            "WPAPI_MSG_KEEP_DAYS=45",
+            "# on: fallback panel at the wpapi container (not published by default; needs a port or a proxy).",
+            "WPAPI_PANEL=off",
+        ]
     if v["web"] == "apache":
         lines += ["# Apache processes (each ~64 MB RAM).", "APACHE_MAX_WORKERS=20"]
     else:
