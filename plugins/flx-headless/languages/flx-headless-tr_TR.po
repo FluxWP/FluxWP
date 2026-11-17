@@ -659,3 +659,195 @@ msgstr "Tüm ön yüzlerden bütün sayfalarını yenilemesini ister (flx-headle
 
 msgid "Empties the webhook delivery log."
 msgstr "Webhook gönderim kaydını boşaltır."
+
+#: app/manifest.json
+msgid "Front ends"
+msgstr "Ön yüzler"
+
+#: app/manifest.json
+msgid "Default"
+msgstr "Varsayılan"
+
+#: app/manifest.json
+msgid "Off"
+msgstr "Kapalı"
+
+#: app/manifest.json
+msgid "No webhook"
+msgstr "Webhook yok"
+
+#: app/manifest.json
+msgid "No front ends"
+msgstr "Ön yüz yok"
+
+#: app/manifest.json
+msgid "Add the address of a Next.js or other headless site."
+msgstr "Next.js ya da başka bir headless sitenin adresini ekleyin."
+
+#: app/manifest.json
+msgid "New front end"
+msgstr "Yeni ön yüz"
+
+#: app/manifest.json
+msgid "Name"
+msgstr "Ad"
+
+#: app/manifest.json
+msgid "Address"
+msgstr "Adres"
+
+#: app/manifest.json
+msgid "Revalidate webhook"
+msgstr "Yenileme webhook'u"
+
+#: app/manifest.json
+msgid "WordPress calls it after a change so the front end refreshes its pages."
+msgstr "Bir değişiklikten sonra WordPress bunu çağırır, ön yüz sayfalarını yeniler."
+
+#: app/manifest.json
+msgid "Webhook secret"
+msgstr "Webhook anahtarı"
+
+#: app/manifest.json
+msgid "Signs each webhook (HMAC). Empty creates one."
+msgstr "Her webhook'u imzalar (HMAC). Boş bırakılırsa oluşturulur."
+
+#: app/manifest.json
+msgid "Preview path"
+msgstr "Önizleme yolu"
+
+#: app/manifest.json
+msgid "Default front end"
+msgstr "Varsayılan ön yüz"
+
+#: app/manifest.json
+msgid "On"
+msgstr "Açık"
+
+#: app/manifest.json
+msgid "Saved"
+msgstr "Kaydedildi"
+
+#: app/manifest.json
+msgid "Webhook log"
+msgstr "Webhook kaydı"
+
+#: app/manifest.json
+msgid "No webhooks yet"
+msgstr "Henüz webhook yok"
+
+#: app/manifest.json
+msgid "Each change sent to a front end shows up here."
+msgstr "Ön yüze gönderilen her değişiklik burada görünür."
+
+#: app/manifest.json
+msgid "Add front end"
+msgstr "Ön yüz ekle"
+
+#: app/manifest.json
+msgid "Open site"
+msgstr "Siteyi aç"
+
+#: app/manifest.json
+msgid "Send test webhook"
+msgstr "Test webhook'u gönder"
+
+#: app/manifest.json
+msgid "Test sent"
+msgstr "Test gönderildi"
+
+#: app/manifest.json
+msgid "Turn on"
+msgstr "Aç"
+
+#: app/manifest.json
+msgid "Turned on"
+msgstr "Açıldı"
+
+#: app/manifest.json
+msgid "Turn off"
+msgstr "Kapat"
+
+#: app/manifest.json
+msgid "Turned off"
+msgstr "Kapatıldı"
+
+#: app/manifest.json
+msgid "Make default"
+msgstr "Varsayılan yap"
+
+#: app/manifest.json
+msgid "Default changed"
+msgstr "Varsayılan değişti"
+
+#: app/manifest.json
+msgid "Delete"
+msgstr "Sil"
+
+#: app/manifest.json
+msgid "Delete {{name}}?"
+msgstr "{{name}} silinsin mi?"
+
+#: app/manifest.json
+msgid "WordPress stops sending it webhooks."
+msgstr "WordPress ona webhook göndermeyi bırakır."
+
+#: app/manifest.json
+msgid "Deleted"
+msgstr "Silindi"
+
+#: app/manifest.json
+msgid "Refresh all pages"
+msgstr "Tüm sayfaları yenile"
+
+#: app/manifest.json
+msgid "Refresh every page?"
+msgstr "Her sayfa yenilensin mi?"
+
+#: app/manifest.json
+msgid "Each front end rebuilds its pages."
+msgstr "Her ön yüz sayfalarını yeniden oluşturur."
+
+#: app/manifest.json
+msgid "Refresh"
+msgstr "Yenile"
+
+#: app/manifest.json
+msgid "Sent"
+msgstr "Gönderildi"
+
+#: app/manifest.json
+msgid "WordPress pages"
+msgstr "WordPress sayfaları"
+
+#: app/manifest.json
+msgid "When a front end is on"
+msgstr "Ön yüz açıkken"
+
+#: app/manifest.json
+msgid "Keep showing WordPress pages"
+msgstr "WordPress sayfalarını göstermeye devam et"
+
+#: app/manifest.json
+msgid "Keep open, point search engines to the front end"
+msgstr "Açık tut, arama motorlarını ön yüze yönlendir"
+
+#: app/manifest.json
+msgid "Send visitors to the front end"
+msgstr "Ziyaretçileri ön yüze gönder"
+
+#: app/manifest.json
+msgid "Clear log"
+msgstr "Kaydı temizle"
+
+#: app/manifest.json
+msgid "Clear the webhook log?"
+msgstr "Webhook kaydı temizlensin mi?"
+
+#: app/manifest.json
+msgid "Clear"
+msgstr "Temizle"
+
+#: app/manifest.json
+msgid "Cleared"
+msgstr "Temizlendi"

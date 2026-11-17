@@ -28,6 +28,8 @@ describe('templates', () => {
   it('keeps the type of a whole-value template', () => {
     expect(compile('{{ltv}}')(ctx)).toBe(1500.5);
     expect(fill({ id: '{{params.id}}', n: '{{ltv}}', t: 'x {{name}}' }, ctx)).toEqual({ id: '7', n: 1500.5, t: 'x Ayşe Kaya' });
+    expect(compile('{{params.id|int}}')(ctx)).toBe(7);
+    expect(compile('{{name|int}}')(ctx)).toBeUndefined();
   });
 
   it('formats relative time in the user language', () => {

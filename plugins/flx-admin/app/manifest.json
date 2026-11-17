@@ -1,0 +1,224 @@
+{
+  "id": "admin",
+  "plugin": "flx-admin",
+  "min_app": "1.0.0",
+  "platforms": [
+    "mobile"
+  ],
+  "title": "Admin theme",
+  "icon": "admin-appearance",
+  "menu": "flx-admin",
+  "entry": "settings",
+  "fallback": {
+    "web": "options-general.php?page=flx-admin"
+  },
+  "routes": {
+    "options-general.php?page=flx-admin": {
+      "screen": "settings"
+    }
+  },
+  "sources": {
+    "settings": {
+      "graphql": {
+        "op": "FlxAdminSettingsScreen",
+        "data": "flxAdminSettings"
+      },
+      "cache": {
+        "stale": 0
+      }
+    }
+  },
+  "screens": {
+    "settings": {
+      "type": "form",
+      "title": "Admin theme",
+      "load": "settings",
+      "submit": {
+        "graphql": {
+          "op": "FlxAdminSettingsUpdate",
+          "data": "flxAdminSettingsUpdate"
+        }
+      },
+      "fields": [
+        {
+          "name": "enabled",
+          "type": "switch",
+          "label": "Use the Flux admin theme"
+        },
+        {
+          "name": "brand",
+          "type": "text",
+          "label": "Brand name",
+          "when": {
+            "path": "enabled",
+            "op": "truthy"
+          }
+        },
+        {
+          "name": "subtitle",
+          "type": "text",
+          "label": "Subtitle",
+          "when": {
+            "path": "enabled",
+            "op": "truthy"
+          }
+        },
+        {
+          "name": "accent",
+          "type": "color",
+          "label": "Accent color",
+          "when": {
+            "path": "enabled",
+            "op": "truthy"
+          }
+        },
+        {
+          "name": "mode",
+          "type": "segmented",
+          "label": "Light or dark",
+          "when": {
+            "path": "enabled",
+            "op": "truthy"
+          },
+          "options": [
+            {
+              "value": "AUTO",
+              "label": "Automatic"
+            },
+            {
+              "value": "LIGHT",
+              "label": "Light"
+            },
+            {
+              "value": "DARK",
+              "label": "Dark"
+            }
+          ]
+        },
+        {
+          "name": "logoStyle",
+          "type": "segmented",
+          "label": "Logo style",
+          "when": {
+            "path": "enabled",
+            "op": "truthy"
+          },
+          "options": [
+            {
+              "value": "GRADIENT",
+              "label": "Gradient"
+            },
+            {
+              "value": "PASTEL",
+              "label": "Pastel"
+            }
+          ]
+        },
+        {
+          "name": "lineIcons",
+          "type": "switch",
+          "label": "Line icons",
+          "when": {
+            "path": "enabled",
+            "op": "truthy"
+          }
+        },
+        {
+          "name": "bottomBar",
+          "type": "switch",
+          "label": "Bottom bar on phones",
+          "when": {
+            "path": "enabled",
+            "op": "truthy"
+          }
+        },
+        {
+          "name": "appRail",
+          "type": "switch",
+          "label": "App rail",
+          "when": {
+            "path": "enabled",
+            "op": "truthy"
+          }
+        },
+        {
+          "name": "appSwitcher",
+          "type": "switch",
+          "label": "App switcher",
+          "when": {
+            "path": "enabled",
+            "op": "truthy"
+          }
+        },
+        {
+          "name": "fastNav",
+          "type": "switch",
+          "label": "Fast page changes",
+          "when": {
+            "path": "enabled",
+            "op": "truthy"
+          }
+        },
+        {
+          "name": "palette",
+          "type": "switch",
+          "label": "Command palette",
+          "when": {
+            "path": "enabled",
+            "op": "truthy"
+          }
+        },
+        {
+          "name": "login",
+          "type": "switch",
+          "label": "Styled login page",
+          "when": {
+            "path": "enabled",
+            "op": "truthy"
+          }
+        },
+        {
+          "name": "dashHeader",
+          "type": "switch",
+          "label": "Dashboard header",
+          "when": {
+            "path": "enabled",
+            "op": "truthy"
+          }
+        },
+        {
+          "name": "pwa",
+          "type": "switch",
+          "label": "Install wp-admin as an app"
+        },
+        {
+          "name": "pwaName",
+          "type": "text",
+          "label": "App name",
+          "when": {
+            "path": "pwa",
+            "op": "truthy"
+          }
+        },
+        {
+          "name": "pwaShort",
+          "type": "text",
+          "label": "Short name",
+          "maxLength": 12,
+          "when": {
+            "path": "pwa",
+            "op": "truthy"
+          }
+        }
+      ],
+      "dirty_guard": true,
+      "after": {
+        "toast": "Saved",
+        "back": false,
+        "invalidate": [
+          "settings"
+        ]
+      }
+    }
+  }
+}

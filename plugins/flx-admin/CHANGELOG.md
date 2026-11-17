@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.9.0
+- FluxWP mobil uygulamasında Yönetim teması ayarları native çizilir (ortak manifest `app/manifest.json`, GraphQL): marka, vurgu rengi, açık/koyu, logo stili, arayüz anahtarları, PWA. Logo, renk paleti ve menü düzeni panelde kalır. Masaüstü panel React ekranını kullanmaya devam eder.
+
 ## 1.8.4
 - Tarih alanları ortak FluxWP tarih seçicisini kullanır (flx-brand 1.8.0): ay ve gün adları sitenin dilinde (Kasım, Pzt), Pazartesi başlangıç, ay/yıl görünümü, `datetime-local` alanlarında saat, telefonda alttan açılan pencere, açık/koyu. Flux Admin'in kendi takvimi (datepicker.js) kaldırıldı; `window.flxaDate` adı çalışmaya devam eder.
 

@@ -2787,3 +2787,263 @@ msgstr "Ne olduğu; testten sonra boş."
 
 msgid "The state after the operation."
 msgstr "İşlemden sonraki durum."
+
+#: app/manifest.json
+msgid "Requests"
+msgstr "İstekler"
+
+#: app/manifest.json
+msgid "Slowest 5%"
+msgstr "En yavaş %5"
+
+#: app/manifest.json
+msgid "Needs attention"
+msgstr "Dikkat"
+
+#: app/manifest.json
+msgid "Problem"
+msgstr "Sorun"
+
+#: app/manifest.json
+msgid "Request types"
+msgstr "İstek türleri"
+
+#: app/manifest.json
+msgid "{{count|number}} requests · {{msAvg}} ms on average"
+msgstr "{{count|number}} istek · ortalama {{msAvg}} ms"
+
+#: app/manifest.json
+msgid "Slowest addresses"
+msgstr "En yavaş adresler"
+
+#: app/manifest.json
+msgid "Plugins and themes"
+msgstr "Eklentiler ve temalar"
+
+#: app/manifest.json
+msgid "{{requests|number}} requests · {{queries|number}} queries"
+msgstr "{{requests|number}} istek · {{queries|number}} sorgu"
+
+#: app/manifest.json
+msgid "External calls"
+msgstr "Dış çağrılar"
+
+#: app/manifest.json
+msgid "{{component}} · {{count|number}} calls · {{failed|number}} failed"
+msgstr "{{component}} · {{count|number}} çağrı · {{failed|number}} başarısız"
+
+#: app/manifest.json
+msgid "Search address"
+msgstr "Adres ara"
+
+#: app/manifest.json
+msgid "Show"
+msgstr "Göster"
+
+#: app/manifest.json
+msgid "With errors"
+msgstr "Hatalı"
+
+#: app/manifest.json
+msgid "{{typeLabel}} · {{queries|number}} queries · {{memKb|number}} KB"
+msgstr "{{typeLabel}} · {{queries|number}} sorgu · {{memKb|number}} KB"
+
+#: app/manifest.json
+msgid "{{errors}} errors"
+msgstr "{{errors}} hata"
+
+#: app/manifest.json
+msgid "No requests"
+msgstr "İstek yok"
+
+#: app/manifest.json
+msgid "Requests appear here once recording is on."
+msgstr "Kayıt açılınca istekler burada görünür."
+
+#: app/manifest.json
+msgid "Address"
+msgstr "Adres"
+
+#: app/manifest.json
+msgid "Conflicts"
+msgstr "Çakışmalar"
+
+#: app/manifest.json
+msgid "Provider"
+msgstr "Sağlayıcı"
+
+#: app/manifest.json
+msgid "Last test"
+msgstr "Son test"
+
+#: app/manifest.json
+msgid "Test result"
+msgstr "Test sonucu"
+
+#: app/manifest.json
+msgid "Test error"
+msgstr "Test hatası"
+
+#: app/manifest.json
+msgid "LiteSpeed Cache"
+msgstr "LiteSpeed Cache"
+
+#: app/manifest.json
+msgid "Plugin"
+msgstr "Eklenti"
+
+#: app/manifest.json
+msgid "Database cleanup"
+msgstr "Veritabanı temizliği"
+
+#: app/manifest.json
+msgid "Nothing to clean"
+msgstr "Temizlenecek bir şey yok"
+
+#: app/manifest.json
+msgid "Record requests"
+msgstr "İstekleri kaydet"
+
+#: app/manifest.json
+msgid "Also record administrators"
+msgstr "Yöneticileri de kaydet"
+
+#: app/manifest.json
+msgid "Record one in every N requests"
+msgstr "Her N istekte birini kaydet"
+
+#: app/manifest.json
+msgid "Slow request (ms)"
+msgstr "Yavaş istek (ms)"
+
+#: app/manifest.json
+msgid "Slow query (ms)"
+msgstr "Yavaş sorgu (ms)"
+
+#: app/manifest.json
+msgid "Keep records (days)"
+msgstr "Kayıtları sakla (gün)"
+
+#: app/manifest.json
+msgid "Most records"
+msgstr "En fazla kayıt"
+
+#: app/manifest.json
+msgid "Disk limit (GB)"
+msgstr "Disk sınırı (GB)"
+
+#: app/manifest.json
+msgid "Disk limit of the hosting plan; 0 when unknown."
+msgstr "Hosting paketinin disk sınırı; bilinmiyorsa 0."
+
+#: app/manifest.json
+msgid "Request panel in wp-admin"
+msgstr "wp-admin'de istek paneli"
+
+#: app/manifest.json
+msgid "Request panel on the site"
+msgstr "Sitede istek paneli"
+
+#: app/manifest.json
+msgid "Login address"
+msgstr "Giriş adresi"
+
+#: app/manifest.json
+msgid "3–40 lowercase letters, digits, hyphen or underscore. Empty goes back to wp-login.php."
+msgstr "3–40 küçük harf, rakam, tire ya da alt çizgi. Boş bırakılırsa wp-login.php'ye döner."
+
+#: app/manifest.json
+msgid "Visitors of wp-login.php"
+msgstr "wp-login.php ziyaretçileri"
+
+#: app/manifest.json
+msgid "Home page"
+msgstr "Ana sayfa"
+
+#: app/manifest.json
+msgid "Saved"
+msgstr "Kaydedildi"
+
+#: app/manifest.json
+msgid "Clear records"
+msgstr "Kayıtları temizle"
+
+#: app/manifest.json
+msgid "Clear all records?"
+msgstr "Tüm kayıtlar temizlensin mi?"
+
+#: app/manifest.json
+msgid "The summary starts again from zero."
+msgstr "Özet sıfırdan başlar."
+
+#: app/manifest.json
+msgid "Clear"
+msgstr "Temizle"
+
+#: app/manifest.json
+msgid "Cleared"
+msgstr "Temizlendi"
+
+#: app/manifest.json
+msgid "Purge page cache"
+msgstr "Sayfa önbelleğini boşalt"
+
+#: app/manifest.json
+msgid "Page cache purged"
+msgstr "Sayfa önbelleği boşaltıldı"
+
+#: app/manifest.json
+msgid "Flush object cache"
+msgstr "Nesne önbelleğini boşalt"
+
+#: app/manifest.json
+msgid "Object cache flushed"
+msgstr "Nesne önbelleği boşaltıldı"
+
+#: app/manifest.json
+msgid "Test object cache"
+msgstr "Nesne önbelleğini test et"
+
+#: app/manifest.json
+msgid "Repaired"
+msgstr "Onarıldı"
+
+#: app/manifest.json
+msgid "Turn page cache on"
+msgstr "Sayfa önbelleğini aç"
+
+#: app/manifest.json
+msgid "Page cache on"
+msgstr "Sayfa önbelleği açık"
+
+#: app/manifest.json
+msgid "Turn page cache off"
+msgstr "Sayfa önbelleğini kapat"
+
+#: app/manifest.json
+msgid "Turn the page cache off?"
+msgstr "Sayfa önbelleği kapatılsın mı?"
+
+#: app/manifest.json
+msgid "Pages are built on every visit until it is on again."
+msgstr "Yeniden açılana kadar sayfalar her ziyarette baştan oluşturulur."
+
+#: app/manifest.json
+msgid "Page cache off"
+msgstr "Sayfa önbelleği kapalı"
+
+#: app/manifest.json
+msgid "Clean {{label}}?"
+msgstr "{{label}} temizlensin mi?"
+
+#: app/manifest.json
+msgid "{{count}} items are removed from the database."
+msgstr "Veritabanından {{count}} öğe silinir."
+
+#: app/manifest.json
+msgid "Cleaned"
+msgstr "Temizlendi"
+
+#: app/manifest.json
+msgid "Open in panel"
+msgstr "Panelde aç"

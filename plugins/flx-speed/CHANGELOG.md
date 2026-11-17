@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.10.0
+- FluxWP mobil uygulamasında Performans ekranları native çizilir (ortak manifest `app/manifest.json`, GraphQL): son 24 saat özeti, istek kayıtları ve ayrıntısı, önbellek durumu ve işlemleri (boşalt, test, onar, sayfa önbelleği aç/kapat), veritabanı temizliği, ayarlar. Masaüstü panel React ekranını kullanmaya devam eder.
+
 ## 0.9.1
 - Flux Speed ekranı Flux GraphQL ekran kabuğuyla açılır: özet, canlı durum ve ayarlar PHP'den hazır gelir, diğer Flux ekranlarına menüden geçiş sayfa yenilemeden olur.
 

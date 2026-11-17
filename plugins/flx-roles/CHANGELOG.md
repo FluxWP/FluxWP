@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.6.0
+- FluxWP mobil uygulamasında Roller ve erişim native çizilir (ortak manifest `app/manifest.json`, GraphQL): rol listesi, yeni rol, sıfırla/sil, roldeki kişiler (ekle, çıkar, ara). Yetki tablosu panelde açılır. Masaüstü panel React ekranını kullanmaya devam eder.
+
 ## 1.5.0
 - Roller ve erişim ekranı yenilendi: aynı özellikler (rol kartları, yeni rol, yetki tablosu, giriş sonrası ekran, referans süresi, kişiler) ortak FluxWP ekranında, açık/koyu temaya uyar ve FluxWP uygulamasında da açılır. wp-admin'de varsayılan budur; eski görünüm sayfadaki "Klasik görünüm" bağlantısıyla açılır (kullanıcı başına hatırlanır).
 - Tüm işlemler GraphQL'de (`flxRoles`, `flxRolesSave`, `flxRoleCreate`, `flxRoleDelete`, `flxRoleReset`, `flxRoleMemberAdd`, `flxRoleMemberRemove`); kaydetme önce her şeyi doğrular, hata varsa hiçbir şey yazılmaz. Belge: docs/flx-roles/GRAPHQL.md.
