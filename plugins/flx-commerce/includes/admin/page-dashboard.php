@@ -13,6 +13,9 @@ final class FLXCM_Page_Dashboard {
 		if ( ! current_user_can( FLXCM_Admin::CAP_VIEW ) ) {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-commerce' ), 403 );
 		}
+		if ( FLXCM_Admin::render_flux() ) {
+			return;
+		}
 		$ranges = array(
 			1  => __( 'Today', 'flx-commerce' ),
 			7  => __( '7 days', 'flx-commerce' ),

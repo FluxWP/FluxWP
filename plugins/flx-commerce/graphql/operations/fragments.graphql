@@ -1,0 +1,20 @@
+fragment FlxCommerceMoney on FlxMoney { amount currency formatted }
+fragment FlxCommerceWhen on FlxDateTime { iso timestamp label relative }
+fragment FlxCommerceCustomerRow on FlxCommerceCustomer {
+  id name email phone city orders userId guest note
+  total { ...FlxCommerceMoney }
+  firstAt { ...FlxCommerceWhen }
+  lastAt { ...FlxCommerceWhen }
+}
+fragment FlxCommerceSubscriptionRow on FlxCommerceSubscription {
+  id status hasAccess autoRenew autoCharge userId email name
+  productId productName productUrl period paymentMethod
+  parentOrderId lastOrderId renewalOrderId renewals renewNow payUrl lastOrderUrl cardLabel endReason
+  amount { ...FlxCommerceMoney }
+  startedAt { ...FlxCommerceWhen }
+  periodEnd { ...FlxCommerceWhen }
+  cancelledAt { ...FlxCommerceWhen }
+  endedAt { ...FlxCommerceWhen }
+  nextChargeAt { ...FlxCommerceWhen }
+  createdAt { ...FlxCommerceWhen }
+}

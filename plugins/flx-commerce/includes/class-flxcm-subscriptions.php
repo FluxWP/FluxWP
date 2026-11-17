@@ -88,6 +88,9 @@ final class FLXCM_Subscriptions {
 		return $gmt ? (int) strtotime( $gmt . ' UTC' ) : 0;
 	}
 
+	/**
+	 * @return array<string,mixed>|null
+	 */
 	public static function row( $id ) {
 		global $wpdb;
 		$t = self::table();
@@ -97,8 +100,8 @@ final class FLXCM_Subscriptions {
 	/**
 	 * Dışarıya verilen biçim (olaylar, API, Hesabım). Zamanlar Unix (UTC).
 	 *
-	 * @param array|int $row Satır ya da id.
-	 * @return array|null
+	 * @param array<string,mixed>|int $row Satır ya da id.
+	 * @return array<string,mixed>|null
 	 */
 	public static function export( $row ) {
 		$row = is_array( $row ) ? $row : self::row( (int) $row );
@@ -153,6 +156,10 @@ final class FLXCM_Subscriptions {
 	 * @param array $args status (string|array), user_id, email, product_id, s, paged, per_page, orderby.
 	 * @return array{rows: array, total: int, pages: int, paged: int}
 	 */
+	/**
+	 * @param array<string,mixed> $args Filters.
+	 * @return array{rows:list<array<string,mixed>>,total:int,pages:int,paged:int}
+	 */
 	public static function query( array $args = array() ) {
 		global $wpdb;
 		$t     = self::table();
@@ -187,11 +194,12 @@ final class FLXCM_Subscriptions {
 		}
 		$per   = max( 1, min( 200, (int) ( $args['per_page'] ?? 25 ) ) );
 		$paged = max( 1, (int) ( $args['paged'] ?? 1 ) );
+		$off   = array_key_exists( 'offset', $args ) ? max( 0, (int) $args['offset'] ) : ( $paged - 1 ) * $per;
 		$order = 'period_end' === ( $args['orderby'] ?? '' ) ? 'period_end IS NULL, period_end ASC' : 'id DESC';
 		$sql_w = implode( ' AND ', $where );
 		// phpcs:disable WordPress.DB
 		$total = (int) $wpdb->get_var( $vals ? $wpdb->prepare( "SELECT COUNT(*) FROM {$t} WHERE {$sql_w}", $vals ) : "SELECT COUNT(*) FROM {$t} WHERE {$sql_w}" );
-		$rows  = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$t} WHERE {$sql_w} ORDER BY {$order} LIMIT %d OFFSET %d", array_merge( $vals, array( $per, ( $paged - 1 ) * $per ) ) ), ARRAY_A );
+		$rows  = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$t} WHERE {$sql_w} ORDER BY {$order} LIMIT %d OFFSET %d", array_merge( $vals, array( $per, $off ) ) ), ARRAY_A );
 		// phpcs:enable WordPress.DB
 		return array(
 			'rows'  => $rows ? $rows : array(),
@@ -201,7 +209,11 @@ final class FLXCM_Subscriptions {
 		);
 	}
 
-	/** Durum sayıları + aylık yinelenen gelir (yıllıklar 12'ye bölünür; site para biriminde). */
+	/**
+	 * Durum sayıları + aylık yinelenen gelir (yıllıklar 12'ye bölünür; site para biriminde).
+	 *
+	 * @return array<string,int|float>
+	 */
 	public static function counts() {
 		global $wpdb;
 		$t   = self::table();
@@ -223,6 +235,7 @@ final class FLXCM_Subscriptions {
 		global $wpdb;
 		$data['updated_at'] = self::now();
 		$wpdb->update( self::table(), $data, array( 'id' => (int) $id ) ); // phpcs:ignore WordPress.DB
+		flxcm_gql_purge( array( 'flx-commerce:subscriptions', 'flx-commerce:subscription:' . (int) $id ) );
 	}
 
 	/** Durumu değiştirir ve flxcm_subscription_status_changed olayını yayar. */

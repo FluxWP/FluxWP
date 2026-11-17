@@ -1,0 +1,3 @@
+mutation FlxMySubscriptionForgetCard($input: FlxMySubscriptionForgetCardInput!) {
+  flxMySubscriptionForgetCard(input: $input) { notice subscription { id cardLabel } errors { code message field } }
+}

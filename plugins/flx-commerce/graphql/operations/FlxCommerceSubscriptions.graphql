@@ -1,0 +1,8 @@
+query FlxCommerceSubscriptions($first: Int = 25, $after: String, $search: String, $status: FlxCommerceSubscriptionStatus) {
+  flxCommerceSubscriptions(first: $first, after: $after, search: $search, status: $status) {
+    nodes { ...FlxCommerceSubscriptionRow }
+    pageInfo { hasNextPage endCursor }
+    totalCount
+  }
+  flxCommerceSubscriptionCounts { all pending active pastDue cancelled expired due mrr { ...FlxCommerceMoney } }
+}

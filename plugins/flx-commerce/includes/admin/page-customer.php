@@ -507,6 +507,16 @@ final class FLXCM_Page_Customer {
 		return self::$cache[ $key ];
 	}
 
+	/**
+	 * The same bundle the classic customer page renders (orders, timeline, addresses, products).
+	 *
+	 * @param array<string,mixed> $row Customer row.
+	 * @return array{orders:array<int,WC_Order>,events:array<int,array<string,mixed>>,billing:string,shipping:string,same:bool,products:array<int,array<string,mixed>>,open:int}
+	 */
+	public static function profile( array $row ): array {
+		return self::data( $row );
+	}
+
 	/** Sipariş satırı (liste). $ns: 'flxcrm' (kişi kartı) ya da 'flxcm'. */
 	private static function order_li( WC_Order $o, $ns ) {
 		$items = array();

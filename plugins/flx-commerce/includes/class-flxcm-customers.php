@@ -216,9 +216,12 @@ final class FLXCM_Customers {
 		);
 		if ( $old ) {
 			$wpdb->update( $t, $data, array( 'id' => (int) $old['id'] ) );
+			$id = (int) $old['id'];
 		} else {
 			$wpdb->insert( $t, $data );
+			$id = (int) $wpdb->insert_id;
 		}
+		flxcm_gql_purge( array( 'flx-commerce:customers', 'flx-commerce:summary', 'flx-commerce:customer:' . $id ) );
 		self::person( $data );
 	}
 
@@ -298,25 +301,29 @@ final class FLXCM_Customers {
 		if ( ! current_user_can( 'manage_woocommerce' ) ) {
 			wp_send_json_error( array( 'message' => __( 'You are not allowed to do this.', 'flx-commerce' ) ), 403 );
 		}
-		wp_send_json_success( self::rebuild_step( absint( $_POST['page'] ?? 1 ) ) );
+		$step = FLXCM_Customer_Service::rebuild_step( absint( $_POST['page'] ?? 1 ) );
+		if ( is_wp_error( $step ) ) {
+			wp_send_json_error( array( 'message' => $step->get_error_message() ), 400 );
+		}
+		wp_send_json_success( $step );
 	}
 
 	public static function ajax_note() {
-		global $wpdb;
 		check_ajax_referer( 'flxcm_admin' );
 		if ( ! current_user_can( 'manage_woocommerce' ) ) {
 			wp_send_json_error( array( 'message' => __( 'You are not allowed to do this.', 'flx-commerce' ) ), 403 );
 		}
 		$id   = absint( $_POST['id'] ?? 0 );
 		$note = sanitize_textarea_field( wp_unslash( $_POST['note'] ?? '' ) );
-		$wpdb->update( FLXCM_Install::table(), array( 'note' => mb_substr( $note, 0, 2000 ) ), array( 'id' => $id ) );
-		wp_send_json_success( array( 'note' => $note ) );
+		$saved = FLXCM_Customer_Service::save_note( $id, $note, false );
+		wp_send_json_success( array( 'note' => is_array( $saved ) ? $saved['note'] : $note ) );
 	}
 
 	/**
 	 * Liste sorgusu.
 	 *
-	 * @param array $a { s, orderby (last_at|total|orders|name), order, paged, per_page, segment (all|repeat|vip|lapsed|new) }
+	 * @param array<string,mixed> $a { s, orderby (last_at|total|orders|name), order, paged, per_page, segment (all|repeat|vip|lapsed|new) }
+	 * @return array{rows:list<array<string,mixed>>,total:int,pages:int,paged:int}
 	 */
 	public static function query( array $a ) {
 		global $wpdb;
@@ -351,12 +358,13 @@ final class FLXCM_Customers {
 		$order   = 'asc' === strtolower( (string) ( $a['order'] ?? '' ) ) ? 'ASC' : 'DESC';
 		$per     = max( 1, min( 200, (int) ( $a['per_page'] ?? 25 ) ) );
 		$paged   = max( 1, (int) ( $a['paged'] ?? 1 ) );
+		$off     = array_key_exists( 'offset', $a ) ? max( 0, (int) $a['offset'] ) : ( $paged - 1 ) * $per;
 		$w       = implode( ' AND ', $where );
 		$sql_c   = "SELECT COUNT(*) FROM {$t} WHERE {$w}";
 		$sql     = "SELECT * FROM {$t} WHERE {$w} ORDER BY {$orderby} {$order}, id DESC LIMIT %d OFFSET %d";
 		// phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
 		$total = (int) ( $args ? $wpdb->get_var( $wpdb->prepare( $sql_c, $args ) ) : $wpdb->get_var( $sql_c ) );
-		$rows  = $wpdb->get_results( $wpdb->prepare( $sql, array_merge( $args, array( $per, ( $paged - 1 ) * $per ) ) ), ARRAY_A );
+		$rows  = $wpdb->get_results( $wpdb->prepare( $sql, array_merge( $args, array( $per, $off ) ) ), ARRAY_A );
 		// phpcs:enable
 		return array(
 			'rows'  => (array) $rows,
@@ -366,7 +374,11 @@ final class FLXCM_Customers {
 		);
 	}
 
-	/** Tek müşteri satırı. */
+	/**
+	 * Tek müşteri satırı.
+	 *
+	 * @return array<string,mixed>|null
+	 */
 	public static function get( $id ) {
 		global $wpdb;
 		$t   = FLXCM_Install::table();
@@ -378,7 +390,11 @@ final class FLXCM_Customers {
 		return $row ? $row : null;
 	}
 
-	/** E-postaya göre müşteri satırı. */
+	/**
+	 * E-postaya göre müşteri satırı.
+	 *
+	 * @return array<string,mixed>|null
+	 */
 	public static function by_email( $email ) {
 		global $wpdb;
 		$email = strtolower( trim( (string) $email ) );
@@ -435,6 +451,9 @@ final class FLXCM_Customers {
 		return (float) apply_filters( 'flxcm_vip_threshold', max( 1, $v ) );
 	}
 
+	/**
+	 * @return array{all:int,repeat:int,vip:int,lapsed:int,new:int,spent:float,ltv:float}
+	 */
 	public static function counts() {
 		global $wpdb;
 		$t = FLXCM_Install::table();

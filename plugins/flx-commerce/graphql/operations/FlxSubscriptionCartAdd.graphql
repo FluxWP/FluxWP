@@ -1,0 +1,3 @@
+mutation FlxSubscriptionCartAdd($input: FlxSubscriptionCartAddInput!) {
+  flxSubscriptionCartAdd(input: $input) { itemKey errors { code message field } }
+}

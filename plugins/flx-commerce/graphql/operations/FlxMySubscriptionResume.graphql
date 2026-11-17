@@ -1,0 +1,3 @@
+mutation FlxMySubscriptionResume($input: FlxMySubscriptionResumeInput!) {
+  flxMySubscriptionResume(input: $input) { notice subscription { id status } errors { code message field } }
+}

@@ -1,0 +1,3 @@
+mutation FlxCommerceSubscriptionCancel($input: FlxCommerceSubscriptionCancelInput!) {
+  flxCommerceSubscriptionCancel(input: $input) { subscription { id status } errors { code message field } }
+}

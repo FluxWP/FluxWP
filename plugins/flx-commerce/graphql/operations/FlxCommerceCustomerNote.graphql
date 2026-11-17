@@ -1,0 +1,3 @@
+mutation FlxCommerceCustomerNote($input: FlxCommerceCustomerNoteInput!) {
+  flxCommerceCustomerNote(input: $input) { customer { id note } errors { code message field } }
+}

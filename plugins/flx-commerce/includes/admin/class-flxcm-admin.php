@@ -25,11 +25,154 @@ final class FLXCM_Admin {
 	public static function init() {
 		add_action( 'admin_menu', array( __CLASS__, 'menu' ), 60 );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'assets' ) );
+		add_action( 'admin_init', array( __CLASS__, 'switch_ui' ) );
 		add_action( 'admin_post_flxcm_save', array( 'FLXCM_Page_Settings', 'save' ) );
 		add_action( 'admin_post_flxcm_report_csv', array( 'FLXCM_Page_Reports', 'csv' ) );
 		add_action( 'wp_dashboard_setup', array( __CLASS__, 'widget' ) );
 		FLXCM_Page_Customer::init();
 		FLXCM_Page_Subscriptions::init();
+	}
+
+	/**
+	 * React screens are the default when the embed and Flux GraphQL are present.
+	 * User meta flxcm_ui=classic keeps the previous pages.
+	 */
+	public static function flux_available(): bool {
+		return is_readable( FLXCM_DIR . 'assets/flux/flux-modules.js' ) && function_exists( 'flx_gql_ready' ) && flx_gql_ready();
+	}
+
+	public static function flux_ui(): bool {
+		return self::flux_available() && 'classic' !== get_user_meta( get_current_user_id(), 'flxcm_ui', true );
+	}
+
+	/**
+	 * @return array<string,string>
+	 */
+	private static function current_args(): array {
+		$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : 'flx-commerce'; // phpcs:ignore WordPress.Security.NonceVerification
+		$args = array( 'page' => $page );
+		foreach ( array( 'customer', 'email', 'days', 'preset', 'from', 'to', 's', 'segment', 'status', 'orderby', 'order' ) as $key ) {
+			if ( ! isset( $_GET[ $key ] ) || '' === (string) $_GET[ $key ] ) { // phpcs:ignore WordPress.Security.NonceVerification
+				continue;
+			}
+			$raw = wp_unslash( $_GET[ $key ] ); // phpcs:ignore WordPress.Security.NonceVerification
+			$args[ $key ] = 'customer' === $key ? (string) absint( $raw ) : ( 'email' === $key ? sanitize_email( $raw ) : sanitize_text_field( $raw ) );
+		}
+		return $args;
+	}
+
+	public static function ui_switch_url( string $ui ): string {
+		return wp_nonce_url( add_query_arg( array_merge( self::current_args(), array( 'flxcm_ui' => 'flux' === $ui ? 'flux' : 'classic' ) ), admin_url( 'admin.php' ) ), 'flxcm_ui' );
+	}
+
+	/**
+	 * Same switch link without HTML escaping, for the React screen (it goes into an href as data).
+	 */
+	public static function ui_switch_raw_url( string $ui ): string {
+		return add_query_arg(
+			array_merge( self::current_args(), array( 'flxcm_ui' => 'flux' === $ui ? 'flux' : 'classic', '_wpnonce' => wp_create_nonce( 'flxcm_ui' ) ) ),
+			admin_url( 'admin.php' )
+		);
+	}
+
+	public static function switch_ui(): void {
+		$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
+		if ( ! isset( $_GET['flxcm_ui'] ) || 0 !== strpos( $page, 'flx-commerce' ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+			return;
+		}
+		if ( ! current_user_can( self::CAP_VIEW ) && ! current_user_can( self::CAP_MANAGE ) ) {
+			return;
+		}
+		check_admin_referer( 'flxcm_ui' );
+		if ( 'classic' === $_GET['flxcm_ui'] ) { // phpcs:ignore WordPress.Security.NonceVerification
+			update_user_meta( get_current_user_id(), 'flxcm_ui', 'classic' );
+		} else {
+			delete_user_meta( get_current_user_id(), 'flxcm_ui' );
+		}
+		wp_safe_redirect( add_query_arg( self::current_args(), admin_url( 'admin.php' ) ) );
+		exit;
+	}
+
+	private static function flux_start_page(): string {
+		$args  = self::current_args();
+		$page  = $args['page'];
+		$start = 'overview';
+		if ( 'flx-commerce-customers' === $page ) {
+			if ( ! empty( $args['customer'] ) ) {
+				$start = 'customer:' . $args['customer'];
+			} elseif ( ! empty( $args['email'] ) ) {
+				$start = 'email:' . $args['email'];
+			} else {
+				$start = 'customers';
+			}
+		} elseif ( 'flx-commerce-subscriptions' === $page ) {
+			$start = 'subscriptions';
+		} elseif ( 'flx-commerce-reports' === $page ) {
+			$start = 'reports';
+		} elseif ( 'flx-commerce-settings' === $page ) {
+			$start = 'settings';
+		}
+		$keep = array();
+		foreach ( array( 'days', 'preset', 'from', 'to', 's', 'segment', 'status', 'orderby', 'order' ) as $key ) {
+			if ( ! empty( $args[ $key ] ) ) {
+				$keep[ $key ] = $args[ $key ];
+			}
+		}
+		return $keep ? $start . '?' . http_build_query( $keep ) : $start;
+	}
+
+	public static function flux_module_tag( $tag, $handle ) {
+		if ( 'flxcm-flux' !== $handle ) {
+			return $tag;
+		}
+		return (string) preg_replace_callback(
+			'/<script\b[^>]*\ssrc=[^>]*>/',
+			static function ( $m ) {
+				$open = (string) preg_replace( '/\stype=("|\')[^"\']*\1/', '', $m[0] );
+				return (string) preg_replace( '/^<script\b/', '<script type="module"', $open );
+			},
+			$tag,
+			1
+		);
+	}
+
+	private static function flux_assets(): void {
+		$ver    = FLXCM_VERSION . '-' . (int) filemtime( FLXCM_DIR . 'assets/flux/flux-modules.js' );
+		$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#2c7a64';
+		$opts   = array(
+			'module'     => 'flxcm-store',
+			'rest'       => rest_url(),
+			'nonce'      => wp_create_nonce( 'wp_rest' ),
+			'locale'     => get_user_locale(),
+			'siteName'   => get_bloginfo( 'name' ),
+			'adminUrl'   => admin_url(),
+			'theme'      => 'light',
+			'colors'     => array(
+				'primary'         => $accent,
+				'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
+			),
+			'appIcon'    => FLXCM_URL . 'assets/icon.svg',
+			'startPage'  => self::flux_start_page(),
+			'classicUrl' => self::ui_switch_raw_url( 'classic' ),
+		);
+		wp_enqueue_style( 'flxcm-flux', FLXCM_URL . 'assets/flux/flux-modules.css', array(), $ver );
+		wp_enqueue_script( 'flxcm-flux', FLXCM_URL . 'assets/flux/flux-modules.js', array(), $ver, true );
+		add_filter( 'script_loader_tag', array( __CLASS__, 'flux_module_tag' ), 10, 2 );
+		wp_add_inline_script(
+			'flxcm-flux',
+			'(function(){var h=document.documentElement,o=' . wp_json_encode( $opts ) . ';o.theme=h.classList.contains("flxa-dark")?"dark":"light";var slot=window.FluxModulesOptions||(window.FluxModulesOptions={});slot.id="flxcm-app";slot.opts=o;function sync(){var el=document.getElementById("flxcm-app");if(el)el.dataset.theme=h.classList.contains("flxa-dark")?"dark":"light";}new MutationObserver(sync).observe(h,{attributes:true,attributeFilter:["class"]});function go(){if(slot.done||!window.FluxModules)return;var el=document.getElementById(slot.id);if(!el)return;slot.done=true;try{window.FluxModules.mount(el,slot.opts);}catch(e){el.textContent=String(e&&e.message||e);}}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);go();})();',
+			'before'
+		);
+	}
+
+	/** Prints the React mount point. False means the classic page should render. */
+	public static function render_flux(): bool {
+		if ( ! self::flux_ui() ) {
+			return false;
+		}
+		echo '<style>#flxcm-app.flux-root{height:auto;background:transparent;font-family:inherit}</style>';
+		echo '<div class="wrap flxcm-react"><div id="flxcm-app"><noscript>' . esc_html__( 'JavaScript is required for this screen.', 'flx-commerce' ) . '</noscript></div></div>';
+		return true;
 	}
 
 	public static function menu_icon() {
@@ -60,6 +203,10 @@ final class FLXCM_Admin {
 			wp_enqueue_style( 'flxcm-card', FLXCM_URL . 'assets/person-card.css', array(), FLXCM_VERSION );
 		}
 		if ( ! self::is_screen() ) {
+			return;
+		}
+		if ( self::flux_ui() ) {
+			self::flux_assets();
 			return;
 		}
 		if ( isset( $_GET['customer'] ) || isset( $_GET['email'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
@@ -112,6 +259,9 @@ final class FLXCM_Admin {
 			echo '<div class="flxcm-head__actions">' . $actions . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		}
 		echo '</div>';
+		if ( self::flux_available() && ! self::flux_ui() ) {
+			echo '<p class="flxcm-newview"><a class="button" href="' . esc_url( self::ui_switch_url( 'flux' ) ) . '">' . esc_html__( 'New view', 'flx-commerce' ) . '</a></p>';
+		}
 		self::tabs();
 	}
 

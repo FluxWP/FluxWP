@@ -1,0 +1,3 @@
+mutation FlxMySubscriptionRenew($input: FlxMySubscriptionRenewInput!) {
+  flxMySubscriptionRenew(input: $input) { notice payUrl subscription { id } errors { code message field } }
+}
