@@ -618,7 +618,7 @@ function ScopePage({ toggleSide, mobile }: { toggleSide: () => void; mobile: boo
   const addView = (anchor: HTMLElement) => {
     const mk = (type: string, name: string) =>
       e.api
-        .createView({ scope: sc!.type, scope_id: scopeId(), name, type, shared: sc!.type !== 'home' && rank(sc!.role) >= 3, config: { fields: ['assignees', 'due', 'priority', 'tags'], cover: type !== 'list', group: type === 'calendar' ? 'none' : 'status' } })
+        .createView({ scope: sc!.type, scope_id: scopeId(), name, type, shared: sc!.type !== 'home' && rank(sc!.role) >= 3, config: { fields: ['assignees', 'due', 'priority'], cover: type !== 'list', group: type === 'calendar' ? 'none' : 'status' } })
         .then((r) => {
           S.views = r.views;
           void e.go({ ...S.route, view: r.view.id });

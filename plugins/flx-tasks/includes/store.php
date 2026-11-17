@@ -434,7 +434,7 @@ function flxg_default_view_config( $type ) {
 		'filters'  => array(),
 		'group'    => 'calendar' === $type ? 'none' : 'status',
 		'sort'     => array( 'by' => 'position', 'dir' => 'asc' ),
-		'fields'   => 'list' === $type ? array( 'assignees', 'due', 'priority', 'tags' ) : array( 'assignees', 'due', 'priority', 'tags' ),
+		'fields'   => array( 'assignees', 'due', 'priority' ),
 		'cover'    => 'list' !== $type,
 		'showDone' => true,
 		'dateField' => 'due',
