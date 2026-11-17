@@ -511,3 +511,7 @@ body.flx-dark .flxwb-dcard__icon--wa { background: rgba(26, 158, 81, .18); color
 @media (min-width: 900px) {
 	.flxwb-person__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) minmax(0, 1fr); gap: 14px; }
 }
+/* 2.32.0: proxy (vekâlet) consent in the summary box, next to the total and the button. */
+.flxwb .flxwb-consent { display: flex; flex-direction: column; gap: 10px; }
+.flxwb .flxwb-consent[hidden] { display: none; }
+.flxwb .flxwb-consent .flxwb-proxy__ok { font-size: .95rem; font-weight: 600; }
