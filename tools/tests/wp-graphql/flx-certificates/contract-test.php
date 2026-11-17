@@ -529,6 +529,63 @@ $edit = flxs_t_op( 'FlxCertificatePersonSave', array( 'input' => array( 'id' => 
 flxt_same( 'NOT_FOUND', flxt_code( $edit ), 'own_ref: staff A cannot edit staff B’s person' );
 $edit = flxs_t_op( 'FlxCertificateSetStatus', array( 'input' => array( 'id' => $b_id, 'status' => 'REVOKED' ) ), $staff_a );
 flxt_same( 'NOT_FOUND', flxt_code( $edit ), 'own_ref: staff A cannot change staff B’s certificate' );
+
+// Another person's phone or e-mail is not a way in: nothing is written and nothing comes back.
+wp_set_current_user( $admin );
+flxs_upsert_person( 'Beta ' . $stamp, '0533 222 33 44', '', $b_person );
+$wpdb->update( flxs_table( 'people' ), array( 'note' => 'secret-note-' . $stamp ), array( 'id' => $b_person ) );
+$beta_before = flxs_get_person( $b_person );
+$certs_now   = (int) $wpdb->get_var( 'SELECT COUNT(*) FROM ' . flxs_table( 'certificates' ) );
+foreach ( array( 'phone' => '0533 222 33 44', 'email' => 'beta-' . $stamp . '@example.test' ) as $kind => $value ) {
+	$probe = flxs_t_op( 'FlxCertificatePersonSave', array( 'input' => array( 'name' => 'Probe ' . $kind, $kind => $value, 'note' => 'overwritten' ) ), $staff_a );
+	flxt_same( 'CONFLICT', flxs_t_err( $probe, 'flxCertificatePersonSave' ), 'own_ref: a person saved with another person’s ' . $kind . ' is refused' );
+	flxt_same( null, flxs_t_get( flxs_t_payload( $probe, 'flxCertificatePersonSave' ), 'person' ), 'own_ref: that save returns no person (' . $kind . ')' );
+	$probe_json = (string) wp_json_encode( $probe );
+	flxt_ok( false === strpos( $probe_json, 'Beta ' ) && false === strpos( $probe_json, 'secret-note' ) && false === strpos( $probe_json, 'beta-' . $stamp ), 'own_ref: that save leaks nothing (' . $kind . ')' );
+	$probe = flxs_t_op( 'FlxCertificateCreate', array( 'input' => array( 'templateId' => $tpl, 'person' => array( 'name' => 'Probe ' . $kind, $kind => $value ), 'values' => wp_json_encode( array( 'note_field' => 'x' ) ) ) ), $staff_a );
+	flxt_same( 'CONFLICT', flxs_t_err( $probe, 'flxCertificateCreate' ), 'own_ref: a certificate for another person’s ' . $kind . ' is refused' );
+	flxt_same( null, flxs_t_get( flxs_t_payload( $probe, 'flxCertificateCreate' ), 'person' ), 'own_ref: that certificate returns no person (' . $kind . ')' );
+}
+flxt_same( $beta_before, flxs_get_person( $b_person ), 'own_ref: the other person is untouched by both' );
+flxt_same( $certs_now, (int) $wpdb->get_var( 'SELECT COUNT(*) FROM ' . flxs_table( 'certificates' ) ), 'own_ref: no certificate was created for the other person' );
+$own = flxs_t_op( 'FlxCertificatePersonSave', array( 'input' => array( 'name' => 'Alpha ' . $stamp, 'email' => 'alpha-' . $stamp . '@example.test' ) ), $staff_a );
+flxt_same( $a_person, flxs_t_payload( $own, 'flxCertificatePersonSave' )['person']['databaseId'] ?? null, 'own_ref: a save that matches their own person returns it' );
+$own = flxs_t_op( 'FlxCertificateCreate', array( 'input' => array( 'templateId' => $tpl, 'person' => array( 'id' => $a_person, 'name' => 'Alpha ' . $stamp ), 'values' => wp_json_encode( array( 'note_field' => 'second' ) ) ) ), $staff_a );
+flxt_same( $a_person, flxs_t_payload( $own, 'flxCertificateCreate' )['person']['databaseId'] ?? null, 'own_ref: a certificate for their own person returns the person' );
+$second_cert = (int) ( flxs_t_payload( $own, 'flxCertificateCreate' )['certificate']['databaseId'] ?? 0 );
+if ( $second_cert ) {
+	flxs_delete_certificate( $second_cert ); // The counts below expect one certificate for staff A.
+}
+
+// A certificate outside the viewer's records adds nothing to the create screen.
+$tpl_row = flxs_get_template( $tpl );
+flxs_save_template( $tpl, (string) $tpl_row['name'], (array) $tpl_row['config'], 'inactive' );
+$has_tpl = static function ( int $user, int $cert ) use ( $tpl ): bool {
+	$r = flxs_t_op( 'FlxCertificateCreateConfig', array( 'certificateId' => $cert ), $user );
+	return in_array( $tpl, array_column( (array) ( $r['data']['flxCertificateCreateConfig']['templates'] ?? array() ), 'id' ), true );
+};
+flxt_same( true, $has_tpl( $admin, $b_id ), 'create config: an administrator editing a certificate keeps its inactive template' );
+flxt_same( true, $has_tpl( $staff_a, $a_id ), 'create config: staff editing their own certificate keeps its inactive template' );
+flxt_same( false, $has_tpl( $staff_a, $b_id ), 'create config: another user’s certificate id adds nothing' );
+flxt_same( false, $has_tpl( $staff_a, 0 ), 'create config: an inactive template is not offered for a new one' );
+flxs_save_template( $tpl, (string) $tpl_row['name'], (array) $tpl_row['config'], 'active' );
+
+// Sending: another user's certificate is not found; a bulk send without bulk permission queues only their own.
+$r = flxs_t_op( 'FlxCertificateSendTo', array( 'input' => array( 'id' => $b_id, 'channel' => 'EMAIL', 'to' => 'x-' . $stamp . '@example.test' ) ), $staff_a );
+flxt_same( 'NOT_FOUND', flxt_code( $r ), 'send to: staff A cannot forward staff B’s certificate' );
+$r = flxs_t_op( 'FlxCertificateSend', array( 'input' => array( 'id' => $b_id, 'channels' => array( 'EMAIL' ) ) ), $staff_a );
+flxt_same( 'NOT_FOUND', flxt_code( $r ), 'send: staff A cannot send staff B’s certificate' );
+flxt_same( 0, count( flxs_t_msgs( $b_id ) ), 'send: nothing was queued for the other certificate' );
+$r = flxs_t_op( 'FlxCertificateBulk', array( 'input' => array( 'ids' => array( $a_id, $b_id ), 'action' => 'SEND_EMAIL' ) ), $staff_a );
+flxt_same( 1, flxs_t_payload( $r, 'flxCertificateBulk' )['queued'] ?? null, 'bulk: a send without bulk permission queues the viewer’s own row only' );
+flxt_ok( false !== strpos( (string) ( flxs_t_payload( $r, 'flxCertificateBulk' )['redirect'] ?? '' ), 'flxs-kuyruk' ), 'bulk: that send points at the queue' );
+flxt_same( array( 1, 0 ), array( count( flxs_t_msgs( $a_id, 'manual' ) ), count( flxs_t_msgs( $b_id ) ) ), 'bulk: one queue row for staff A, none for staff B' );
+$r = flxs_t_op( 'FlxCertificateBulk', array( 'input' => array( 'ids' => array( $a_id, $b_id ), 'action' => 'REVOKE' ) ), $staff_a );
+flxt_same( 1, flxs_t_payload( $r, 'flxCertificateBulk' )['updated'] ?? null, 'bulk: a revoke changes only the viewer’s own row' );
+flxt_same( array( 'revoked', 'active' ), array( flxs_get_certificate( $a_id )['status'] ?? null, flxs_get_certificate( $b_id )['status'] ?? null ), 'bulk: the other certificate stays active' );
+flxs_t_op( 'FlxCertificateBulk', array( 'input' => array( 'ids' => array( $a_id ), 'action' => 'RESTORE' ) ), $staff_a );
+$res = flxs_t_rest( '/certificates/' . $b_id . '/message', array( 'channel' => 'email', 'to' => 'x@example.test' ), $staff_a );
+flxt_same( array( 404, array( 'ok' => false, 'message' => 'Sertifika bulunamadı.' ) ), array( $res->get_status(), $res->get_data() ), 'rest forward: staff A gets the classic 404 for staff B’s certificate' );
 flxt_same( true, flxs_t_op( 'FlxCertificateRecords', array( 'first' => 1 ), $staff_a )['data']['flxCertificateRecordsMeta']['scoped'] ?? null, 'own_ref: meta says the viewer is scoped' );
 
 $by = flxs_t_op( 'FlxCertificateRecords', array( 'first' => 5, 'filter' => array( 'search' => 'Alpha ' . $stamp, 'createdBy' => $staff_b ) ), $staff_a );
@@ -556,6 +613,12 @@ flxt_same( 1, flxs_t_op( 'FlxCertificateDirectory', array( 'first' => 5, 'search
 $edit = flxs_t_op( 'FlxCertificatePersonSave', array( 'input' => array( 'id' => $b_person, 'name' => 'Taken ' . $stamp ) ), $staff_a );
 flxt_same( 'NOT_FOUND', flxt_code( $edit ), 'own_only: staff A cannot edit staff B’s person' );
 flxt_same( 'Beta ' . $stamp, flxs_get_person( $b_person )['name'] ?? null, 'own_only: the other person’s name is unchanged' );
+$probe = flxs_t_op( 'FlxCertificatePersonSave', array( 'input' => array( 'name' => 'Probe', 'email' => 'beta-' . $stamp . '@example.test', 'note' => 'overwritten' ) ), $staff_a );
+flxt_same( 'CONFLICT', flxs_t_err( $probe, 'flxCertificatePersonSave' ), 'own_only: a person saved with another person’s e-mail is refused' );
+flxt_same( null, flxs_t_get( flxs_t_payload( $probe, 'flxCertificatePersonSave' ), 'person' ), 'own_only: that save returns no person' );
+flxt_same( $beta_before, flxs_get_person( $b_person ), 'own_only: the other person is untouched' );
+$own = flxs_t_op( 'FlxCertificatePersonSave', array( 'input' => array( 'name' => 'Alpha ' . $stamp, 'email' => 'alpha-' . $stamp . '@example.test' ) ), $staff_a );
+flxt_same( $a_person, flxs_t_payload( $own, 'flxCertificatePersonSave' )['person']['databaseId'] ?? null, 'own_only: a save that matches their own person returns it' );
 
 $settings['staff_own_only'] = 0;
 update_option( 'flxs_settings', $settings );
@@ -568,14 +631,24 @@ flxt_same( true, flxs_t_payload( $pot, 'flxCertificateLookup' )['ok'] ?? null, '
 flxt_same( $sentence, flxs_t_payload( $pot, 'flxCertificateLookup' )['message'] ?? null, 'lookup: honeypot uses the public sentence' );
 flxt_ok( false === strpos( (string) wp_json_encode( $pot['data']['flxCertificateLookup'] ?? array() ), $code ), 'lookup: honeypot returns no certificate' );
 
+$lookup_rows = static function () use ( $wpdb, $a_person ): int {
+	return (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM ' . flxs_table( 'messages' ) . ' WHERE source = %s AND person_id = %d', 'lookup', $a_person ) );
+};
+flxt_same( 0, $lookup_rows(), 'lookup: nothing is queued before a lookup' );
 $found = flxs_t_op( 'FlxCertificateLookup', array( 'input' => array( 'contact' => 'alpha-' . $stamp . '@example.test', 'website' => '' ) ) );
 flxt_same( array(), flxs_t_payload( $found, 'flxCertificateLookup' )['errors'] ?? null, 'lookup: a real address has no payload errors' );
+flxt_same( 1, $lookup_rows(), 'lookup: the link is queued once, to the address on file' );
+$queued = (array) $wpdb->get_row( $wpdb->prepare( 'SELECT recipient FROM ' . flxs_table( 'messages' ) . ' WHERE source = %s AND person_id = %d', 'lookup', $a_person ), ARRAY_A );
+flxt_same( 'alpha-' . $stamp . '@example.test', $queued['recipient'] ?? null, 'lookup: the queued message goes to the address on file' );
+$again = flxs_t_op( 'FlxCertificateLookup', array( 'input' => array( 'contact' => 'alpha-' . $stamp . '@example.test', 'website' => '' ) ) );
+flxt_same( $sentence, flxs_t_payload( $again, 'flxCertificateLookup' )['message'] ?? null, 'lookup: a second call gets the same sentence' );
+flxt_same( 1, $lookup_rows(), 'lookup: a second call from the same address queues nothing more' );
 flxt_same( $sentence, flxs_t_payload( $found, 'flxCertificateLookup' )['message'] ?? null, 'lookup: a real address gets the same sentence' );
 $found_json = (string) wp_json_encode( $found['data']['flxCertificateLookup'] ?? array() );
 flxt_ok( false === strpos( $found_json, (string) ( $a_row['certificate']['code'] ?? 'no-code' ) ), 'lookup: the response has no certificate code' );
 flxt_ok( ! isset( $found['data']['flxCertificateLookup']['certificate'] ), 'lookup: the response has no certificate field' );
 
-for ( $n = 0; $n < 9; $n++ ) {
+for ( $n = 0; $n < 8; $n++ ) { // The two calls above and these eight are the ten the IP limit allows.
 	$bad = flxs_t_op( 'FlxCertificateLookup', array( 'input' => array( 'contact' => 'not-an-address' ) ) );
 	flxt_same( null, $bad['errors'] ?? null, 'lookup: bad contact ' . ( $n + 1 ) . ' is not a top-level error' );
 	flxt_same( 'INVALID_INPUT', flxs_t_payload( $bad, 'flxCertificateLookup' )['errors'][0]['code'] ?? null, 'lookup: bad contact ' . ( $n + 1 ) . ' → INVALID_INPUT' );
@@ -594,6 +667,22 @@ foreach ( array( $holder_id, $back_person, $a_person, $b_person, $written_id ) a
 		flxs_delete_person( $pid );
 	}
 }
+// Whatever else carries this run's stamp: queue rows, certificates, people, remembered recipients.
+wp_set_current_user( $admin );
+$swept_people = array_map( 'intval', (array) $wpdb->get_col( $wpdb->prepare( 'SELECT id FROM ' . flxs_table( 'people' ) . ' WHERE name LIKE %s OR email LIKE %s', '%' . $stamp . '%', '%' . $stamp . '%' ) ) );
+$swept_certs  = $swept_people ? array_map( 'intval', (array) $wpdb->get_col( 'SELECT id FROM ' . flxs_table( 'certificates' ) . ' WHERE person_id IN (' . implode( ',', $swept_people ) . ')' ) ) : array();
+foreach ( $swept_certs as $cid ) {
+	flxs_delete_certificate( $cid );
+}
+foreach ( $swept_people as $pid ) {
+	flxs_delete_person( $pid );
+}
+$wpdb->query( $wpdb->prepare( 'DELETE FROM ' . flxs_table( 'messages' ) . ' WHERE recipient LIKE %s OR recipient_name LIKE %s', '%' . $stamp . '%', '%' . $stamp . '%' ) );
+foreach ( array( $send_id, $bulk_a, $bulk_b ) as $cid ) {
+	$wpdb->delete( flxs_table( 'messages' ), array( 'certificate_id' => $cid ) );
+	flxs_delete_certificate( $cid );
+}
+update_option( 'flxs_recipients', $orig_recipients, false );
 if ( $cap_user ) {
 	require_once ABSPATH . 'wp-admin/includes/user.php';
 	wp_delete_user( $cap_user );
