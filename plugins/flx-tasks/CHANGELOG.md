@@ -1,5 +1,8 @@
 # Flux Tasks — Değişiklikler
 
+## 0.12.2
+- Acil düzeltme: 0.12.1'e güncelledikten sonra Flux Tasks sayfası boş açılıyordu (konsolda "Importing binding name '_t' is not found"). Gömülü paket parçaları ana dosyayı sürümsüz adresle içe aktarıyordu; tarayıcı ya da LiteSpeed'in önbellekteki eski flux-modules.js'i yeni parçalarla karışıyordu. İçe aktarma artık dosya özetini taşır, eski önbellek kullanılamaz.
+
 ## 0.12.1
 - Gömülü React paketi (assets/flux) yeniden derlendi: 0.9.4'ten beri yapılan tüm yeni ekran düzeltmeleri (açık tema, doküman dosya kartları ve YouTube önizleme, yeni liste tasarımı ve satır içi ekleme, satır hover simgeleri, kompakt tarih seçici) siteye ancak bu sürümle ulaşır; önceki sürümlerde bu paket güncellenmemişti.
 - Mobilde pano (Kanban): bir kartı basılı tutup sürükleyince kart gerçekten sürüklenir (önceden tarayıcı sayfayı kaydırıp sürüklemeyi iptal ediyordu). Kartı ekranın sağ ya da sol kenarında bekletince pano o yöne kayar, kart başka sütuna bırakılabilir. Sürüklerken sütun yapışması kapanır.

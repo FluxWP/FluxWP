@@ -1,1 +1,1 @@
-import{lt as e}from"./flux-modules.js";var t={name:`chevron-down`,size:24,node:[[`path`,{d:`m6 9 6 6 6-6`,key:`qrunsl`}]]};t.node;var n=e(t);export{n as t};
+import{lt as e}from"./flux-modules.js?v=121e2d60d1";var t={name:`chevron-down`,size:24,node:[[`path`,{d:`m6 9 6 6 6-6`,key:`qrunsl`}]]};t.node;var n=e(t);export{n as t};
