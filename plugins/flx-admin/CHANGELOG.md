@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.8.3
+- Onay kutusu, radyo ve anahtar stili Flux uygulama modunda (Call Center gibi tam ekran sayfalar) da uygulanır.
+
 ## 1.8.2
 - Sayfa başlığı (logo ve açıklama) Flux ekranları arasında sayfa yenilemeden geçişte de güncellenir.
 

@@ -1,5 +1,8 @@
 # Flux Tasks — Değişiklikler
 
+## 0.9.2
+- Onay kutuları ve radyolar ortak görünüme geçti (tarayıcının kendi kutusunu zorlayan kurallar kaldırıldı).
+
 ## 0.9.1
 - Görevler, Pano ve Ayarlar ekranları Flux GraphQL ekran kabuğuyla kaydedilir (tam ekran düzeni; sayfa olarak açılır). Görünüm ve özellikler değişmedi.
 
