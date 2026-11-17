@@ -1,0 +1,12 @@
+mutation FlxHeadlessLogClear {
+  flxHeadlessLogClear(input: {}) {
+    settings {
+      ...FlxHeadlessSettingsFields
+    }
+    errors {
+      code
+      field
+      message
+    }
+  }
+}

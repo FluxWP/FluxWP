@@ -34,3 +34,5 @@ tools/release/fastlane/README.md
 # plugins' operations; one shared file would make parallel package pull requests collide.
 packages/graphql/src/generated/
 packages/graphql/schema/full.graphql
+apps/wp-embed/dist-runtime/
+packages/plugin-kit/example/acme-hello/assets/

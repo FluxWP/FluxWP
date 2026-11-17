@@ -1,0 +1,5 @@
+{
+  "extends": "../../../tsconfig.strict.json",
+  "compilerOptions": { "paths": { "@fluxwp/host": ["../../modules/src/host.tsx"] } },
+  "include": ["acme-hello/screens", "../src/css.d.ts"]
+}

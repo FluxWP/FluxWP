@@ -1,0 +1,81 @@
+fragment FlxHeadlessFrontendFields on FlxHeadlessFrontend {
+  id
+  name
+  url
+  origin
+  languages
+  enabled
+  isDefault
+  revalidateUrl
+  secretSet
+  secretHint
+  previewPath
+}
+
+fragment FlxHeadlessDeliveryFields on FlxHeadlessDelivery {
+  time {
+    iso
+    label
+  }
+  frontendId
+  frontendName
+  event
+  tags
+  paths
+  status
+  ok
+  message
+  ms
+}
+
+fragment FlxHeadlessSettingsFields on FlxHeadlessSettings {
+  frontends {
+    ...FlxHeadlessFrontendFields
+  }
+  wpFront
+  corsOrigins
+  graphqlUrl
+  graphqlSettingsUrl
+  persistedOnly
+  languagesActive
+  languages {
+    code
+    name
+    isDefault
+  }
+  deliveries {
+    ...FlxHeadlessDeliveryFields
+  }
+}
+
+fragment FlxHeadlessHeadFields on FlxHeadlessHead {
+  title
+  description
+  canonical
+  robots
+  noindex
+  image
+  locale
+  meta {
+    name
+    property
+    content
+  }
+  jsonLd
+}
+
+fragment FlxHeadlessMenuFields on FlxHeadlessMenu {
+  location
+  name
+  source
+  items {
+    id
+    parentId
+    label
+    url
+    path
+    target
+    external
+    order
+  }
+}

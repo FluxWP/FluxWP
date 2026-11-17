@@ -1,0 +1,25 @@
+# Public (needs Flux Blocks): the blocks of a page or post rendered as on the site, with the CSS and files
+# the page needs. Null when Flux Blocks is not active on the content type.
+query FlxHeadlessBlocks($id: ID!) {
+  contentNode(id: $id, idType: DATABASE_ID) {
+    __typename
+    ... on Page {
+      flxBlocks {
+        html
+        css
+        headHtml
+        footerHtml
+        fonts
+      }
+    }
+    ... on Post {
+      flxBlocks {
+        html
+        css
+        headHtml
+        footerHtml
+        fonts
+      }
+    }
+  }
+}

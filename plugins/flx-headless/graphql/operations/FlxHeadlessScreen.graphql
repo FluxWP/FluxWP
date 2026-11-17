@@ -1,0 +1,6 @@
+# Everything the Headless screen shows: front ends, WordPress pages mode, CORS, webhook log.
+query FlxHeadlessScreen {
+  flxHeadlessSettings {
+    ...FlxHeadlessSettingsFields
+  }
+}
