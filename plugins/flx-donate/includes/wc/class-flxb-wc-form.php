@@ -1035,13 +1035,13 @@ final class FLXB_WC_Form {
 		$text = flxb_proxy_text();
 		ob_start();
 		?>
-		<div class="flxwb-consent" data-flxwb-consent-box="<?php echo esc_attr( $id ); ?>"<?php echo $current ? '' : ' hidden'; ?>>
+		<div class="flxwb-consent" data-flxwb-consent-box="<?php echo esc_attr( (string) $id ); ?>"<?php echo $current ? '' : ' hidden'; ?>>
 			<?php if ( $text ) : ?>
 				<details class="flxwb-proxy__text">
 					<summary><?php /* translators: %s: version */ echo esc_html( sprintf( __( 'Read the proxy (vekâlet) text (version %s)', 'flx-donate' ), number_format_i18n( (int) $text['version'] ) ) ); ?></summary>
 					<div><?php echo wp_kses_post( wpautop( (string) $text['text'] ) ); ?></div>
 				</details>
-				<label class="flxwb-check flxwb-proxy__ok"><input type="checkbox" name="proxy[<?php echo esc_attr( $id ); ?>]" value="<?php echo esc_attr( (int) $text['version'] ); ?>" required data-flxwb-consent <?php checked( ! empty( $old['proxy'][ $id ] ) ); ?>> <?php esc_html_e( 'I give my proxy (vekâlet) for the sacrifice according to this text.', 'flx-donate' ); ?></label>
+				<label class="flxwb-check flxwb-proxy__ok"><input type="checkbox" name="proxy[<?php echo esc_attr( (string) $id ); ?>]" value="<?php echo esc_attr( (int) $text['version'] ); ?>" required data-flxwb-consent <?php checked( ! empty( $old['proxy'][ $id ] ) ); ?>> <?php esc_html_e( 'I give my proxy (vekâlet) for the sacrifice according to this text.', 'flx-donate' ); ?></label>
 				<?php else : ?>
 				<p class="flxwb-note flxwb-note--err"><?php esc_html_e( 'This donation needs a proxy (vekâlet) consent, but it is not set up yet. Please contact the site administrator.', 'flx-donate' ); ?></p>
 				<?php endif; ?>
