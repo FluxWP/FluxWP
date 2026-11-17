@@ -1880,6 +1880,14 @@ body.flxg-col-resizing, body.flxg-col-resizing * { cursor: col-resize !important
 	.flxg-doc-paper { margin: 0; width: auto; border: 0; border-radius: 0; box-shadow: none; padding: 20px 16px 56px; }
 }
 
+/* Satır üstüne gelince hızlı düzenleme simgeleri (React liste). */
+.flxg-row-actions { display: inline-flex; align-items: center; gap: 6px; margin-left: auto; flex: none; opacity: 0; }
+.flxg-row:hover .flxg-row-actions, .flxg-row-actions:focus-within { opacity: 1; }
+.flxg-listview.is-mobile .flxg-row-actions { opacity: 1; }
+.flxg-row-act { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); color: var(--muted); cursor: pointer; }
+.flxg-row-act:hover { background: var(--hover); color: var(--ink); }
+.flxg-title-edit { flex: 1 1 auto; min-width: 0; }
+
 /* ---------------- Yalnız React ekranı (FluxApp + wp-admin) ---------------- */
 .flxg.flxg-flux { height: 100%; min-height: 0; position: relative; background: var(--bg); }
 .flxg-doc-host { display: contents; }

@@ -3,6 +3,9 @@
 ## 0.11.1
 - Satır içi görev eklemede liste seçici kalktı (görev bulunduğu listeye ya da varsayılan listeye eklenir).
 - Doküman sayfası dar alanda (yan paneller açıkken) kağıdın dış boşluğu ve iç boşluğu azaldı; çok darda tam genişlik.
+- Dar ekranda satır içi eklemede Vazgeç / Kaydet aynı satırda kalır.
+- Liste satırının üstüne gelince hızlı düzenleme simgeleri çıkar: alt görev ekle, etiket, yeniden adlandır (kalem).
+- Yeni görünümlerde Etiket varsayılan sütun değil; etiketler başlığın yanında görünür, istenirse Alanlar'dan sütun olarak eklenir.
 
 ## 0.11.0
 - Liste görünümü (yeni ekran) daha sade: düz satırlar, hap biçimli araç çubuğu düğmeleri.
