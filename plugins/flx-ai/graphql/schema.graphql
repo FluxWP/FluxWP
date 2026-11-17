@@ -2005,12 +2005,96 @@ type FlxAiSystem {
   tools: Int!
 }
 
+"""A setting a plugin declared with the Flux AI SDK."""
+type FlxAiSystemField {
+  """Help text."""
+  help: String!
+  """Setting key."""
+  key: String!
+  """Label."""
+  label: String!
+  """Highest number."""
+  max: Float
+  """Lowest number."""
+  min: Float
+  """Choices of a select field."""
+  options: [FlxAiOption!]!
+  """toggle, text, textarea, number, select or model."""
+  type: String!
+  """Saved value (toggles are &quot;1&quot; or &quot;0&quot;)."""
+  value: String!
+}
+
+"""The AI settings page of one system."""
+type FlxAiSystemSettings {
+  """The plugin declared settings or details with the SDK."""
+  declared: Boolean!
+  """The default model."""
+  defaultModel: String!
+  """What the plugin does with AI."""
+  description: String!
+  """Declared settings."""
+  fields: [FlxAiSystemField!]!
+  """Plugin name."""
+  label: String!
+  """Model of this plugin; empty uses the default."""
+  model: String!
+  """The plugin may use AI."""
+  on: Boolean!
+  """Flux AI SDK version; empty when not loaded."""
+  sdkVersion: String!
+  """System id (plugin folder)."""
+  source: String!
+  """Tools that are on."""
+  toolsOn: Int!
+  """Tools of the plugin."""
+  toolsTotal: Int!
+}
+
+"""Input for the flxAiSystemSettingsUpdate mutation."""
+input FlxAiSystemSettingsUpdateInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Model of this plugin; empty uses the default."""
+  model: String
+  """The plugin may use AI."""
+  on: Boolean
+  """System id."""
+  source: String!
+  """Declared settings to change."""
+  values: [FlxAiSystemValueInput!]
+}
+
+"""The payload for the flxAiSystemSettingsUpdate mutation."""
+type FlxAiSystemSettingsUpdatePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The settings after the change; empty when the input was refused."""
+  settings: FlxAiSystemSettings
+}
+
 """Whether AI is on for one system."""
 input FlxAiSystemStateInput {
   """AI is on for the system."""
   on: Boolean!
   """System id."""
   source: String!
+}
+
+"""The value of one declared setting."""
+input FlxAiSystemValueInput {
+  """Setting key."""
+  key: String!
+  """Value (toggles "1" or "0")."""
+  value: String!
 }
 
 """Input for the flxAiSystemsUpdate mutation."""
@@ -2669,6 +2753,13 @@ extend type RootMutation {
     input: FlxAiSkillsSettingsInput!
   ): FlxAiSkillsSettingsPayload
   """
+  Saves the AI settings of one system. What you leave out keeps its value.
+  """
+  flxAiSystemSettingsUpdate(
+    """Input for the flxAiSystemSettingsUpdate mutation"""
+    input: FlxAiSystemSettingsUpdateInput!
+  ): FlxAiSystemSettingsUpdatePayload
+  """
   Switches AI on or off per system. Systems you leave out keep their state.
   """
   flxAiSystemsUpdate(
@@ -2802,6 +2893,11 @@ extend type RootQuery {
   ): FlxAiSkillFileContent
   """The skills page: every skill, shipped and of this site."""
   flxAiSkills: FlxAiSkillsOverview!
+  """The AI settings of one system."""
+  flxAiSystemSettings(
+    """System id."""
+    source: String!
+  ): FlxAiSystemSettings!
   """Plugins that use Flux AI, with their usage of the last 30 days."""
   flxAiSystems: [FlxAiSystem!]!
   """Scheduled tasks and what the task form needs."""

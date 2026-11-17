@@ -1,4 +1,4 @@
-# flx-donate 2.32.0
+# flx-donate 2.33.0
 
 - Faz: 2
 - Durum: 👀

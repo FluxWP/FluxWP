@@ -131,6 +131,12 @@ add_filter( 'flx_gql_capabilities', function ( array $caps ): array {
   - `object`/`list` (FlxJSON) değerlerinde gizli görünen alt anahtarlar okumada silinir; yazmada istemci göndermediği için saklı değerleri korunur (liste öğesi sırasıyla eşlenir).
   - Paket `flx_gql_secret_key` filtresiyle ek ad gizleyebilir; kit'in gizli bulduğunu açamaz. Yanlışlıkla gizlenen alan (ör. `sort_key`) yeniden adlandırılır (`sort_field`), istisna açılmaz.
   - Test: `kit-test.php` "Secrets in settings".
+- **Gizli değer yazılır, okunmaz.** Değer hiçbir GraphQL çıktısında görünmez: hiçbir tipte, hatada, logda, test ve tanı sonucunda da. Otomatik ayar tipleri (`flx_settings_schema`) fail closed kalır.
+  - Paket gizli değeri kendi girdi tipinin write-only alanında alır (ör. `FlxAdsSettingsInput`, `FlxSocialAppValueInput`). Alan verilmez ya da boşsa saklı değer kalır; düz `"__clear__"` siler. Servis klasik ekranın yazdığı gibi saklar (paket zaten mühürlüyor ya da şifreliyorsa öyle).
+  - Okuma yalnız durum döner, paket tipiyle (ortak kit tipi yok): kayıtlı mı; klasik ekran maske gösteriyorsa yalnız o (son karakterler); wp-config sabitiyse ve bu yüzden düzenlenemez mi. Örnek: `FlxAdsSecret` (`set`, `mask`, `fromConfig`); `FlxSocialAppField` (gizli `value` boş, `isSet`).
+  - Dış servise yapıştırılacak kurulum değeri (webhook doğrulama değeri, tick anahtarı) ayar ya da liste tipine konmaz. Yöneticiye özel alan ya da mutation döner (ör. `flxSocialTickKeyReveal`); gerekçe `docs/graphql/ESLEME/<slug>.md`. Önbellekli cevapta dönmez.
+  - Sözleşme testi hiçbir cevapta gizli değer olmadığını doğrular.
+  - `ISTISNALAR.md` satırı değildir. Gizli yazmayı admin-post'ta tutmak artık istisna gerekçesi sayılmaz.
 - Dosya: önce `POST /wp-json/flx/v1/upload` (`flx_gql_upload_contexts` filtresiyle `<paket>/<amaç>` bağlamı, `cap`, `mimes`, `max_mb`), sonra mutation `uploadId` alır ve `flx_gql_upload_take( $id, $bağlam )` ile dosyayı devralır.
 
 ## 7. Kırıcı değişiklik

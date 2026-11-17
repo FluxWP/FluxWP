@@ -1,6 +1,6 @@
 # Flux Donate (flx-donate): REST → GraphQL eşlemesi
 
-Paket sürümü: 2.32.0 · Önek: `flxb_` · Dal: `gql/flx-donate-1` · Durum: (a) public
+Paket sürümü: 2.33.0 · Önek: `flxb_` · Dal: `gql/flx-donate-1` · Durum: (a) public
 
 Bu dosya envanterdir. (a) servisleri ve şema parçası bu PR'de. React ekranı yok (`packages/modules` altında bağış klasörü yok). Her satır ya bir GraphQL adına ya da İSTİSNA'ya bağlıdır. Satırdaki `dosya:satır` kodda görülen kayıttır.
 

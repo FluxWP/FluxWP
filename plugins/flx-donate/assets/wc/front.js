@@ -63,6 +63,7 @@
 		/* 2.16.0: share cards (proxy types): one per unit, "Apply to all" on the first when there are more. */
 		function syncShares(T, opt) {
 			form.querySelectorAll('[data-flxwb-proxy]').forEach(function (fs) { fs.hidden = fs.getAttribute('data-flxwb-proxy') !== String(tid()); });
+			form.querySelectorAll('[data-flxwb-consent-box]').forEach(function (b) { b.hidden = b.getAttribute('data-flxwb-consent-box') !== String(tid()); });
 			var fs = form.querySelector('[data-flxwb-proxy="' + tid() + '"]');
 			if (!fs) return;
 			var other = (fs.querySelector('[data-flxwb-owner-mode]:checked') || {}).value === 'other';
@@ -505,7 +506,8 @@
 			if (!msg && !T.proxy && forOther() && nm && !nm.value.trim()) { msg = L.needName || ''; focus = nm; }
 			if (!msg && T.proxy && P) {
 				var pfs = form.querySelector('[data-flxwb-proxy="' + tid() + '"]');
-				var ok = pfs ? pfs.querySelector('[data-flxwb-consent]') : null;
+				var cb = form.querySelector('[data-flxwb-consent-box="' + tid() + '"]');
+				var ok = cb ? cb.querySelector('[data-flxwb-consent]') : null;
 				var badp = pfs ? phoneBad(pfs) : null;
 				if (badp) { msg = L.badPhone || ''; focus = badp; }
 				else if (!ok || !ok.checked) { msg = L.needConsent || ''; focus = ok; }
@@ -568,7 +570,7 @@
 			form.querySelectorAll('[data-flxwb-panel]').forEach(function (p) {
 				if (p.hidden) p.querySelectorAll('input,select,textarea').forEach(function (x) { if (!x.disabled) { x.disabled = true; x.setAttribute('data-flxwb-off', ''); } });
 			});
-			form.querySelectorAll('[data-flxwb-proxy], [data-flxwb-shares]').forEach(function (f) {
+			form.querySelectorAll('[data-flxwb-proxy], [data-flxwb-shares], [data-flxwb-consent-box]').forEach(function (f) {
 				if (f.hidden) f.querySelectorAll('input,select,textarea').forEach(function (x) { if (!x.disabled) { x.disabled = true; x.setAttribute('data-flxwb-off', ''); } });
 			});
 			[form.querySelector('[data-flxwb-who]')].forEach(function (f) {
