@@ -309,7 +309,23 @@ if ( function_exists( 'WC' ) && is_object( WC() ) && WC()->cart ) {
 	}
 	flxt_same( array( 'Deniz' ), $found['flxDonation']['names'] ?? null, 'classic writer, GraphQL reader: the name' );
 	flxt_same( 'donation', $found['kind'] ?? null, 'classic writer, GraphQL reader: kind' );
-	flxt_same( false, $found['quantityLimits']['editable'] ?? null, 'donation line quantity is not editable in Store API' );
+	flxt_same( true, $found['quantityLimits']['editable'] ?? null, 'a single option line keeps the Store API quantity as the classic cart does' );
+	$free_key = FLXB_WC_Cart::add(
+		array(
+			'type_id' => (int) $free,
+			'option'  => '',
+			'amount'  => '500',
+		)
+	);
+	flxt_ok( is_string( $free_key ) && '' !== $free_key, 'classic add of a free amount returns a cart key', $free_key );
+	$back = flxt_gql( 'query { flxCart { items { key quantityLimits { editable } } } }' );
+	$free_item = null;
+	foreach ( $back['data']['flxCart']['items'] ?? array() as $item ) {
+		if ( ( $item['key'] ?? '' ) === $free_key ) {
+			$free_item = $item;
+		}
+	}
+	flxt_same( false, $free_item['quantityLimits']['editable'] ?? null, 'a free-amount line quantity is not editable in Store API' );
 } else {
 	echo "  ok   classic cart add skipped (WooCommerce cart is not loaded)\n";
 	++$GLOBALS['flxt_pass'];
