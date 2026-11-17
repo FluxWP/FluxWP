@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026.11.17.1
+
+- OPcache default raised from 192 MB to 256 MB (`PHP_OPCACHE_MEMORY`). A FluxWP site with WooCommerce and the Flux packages already fills ~155 MB after one pass over its screens; updates leave wasted memory on top, and a full OPcache stops caching new files.
+
 ## 2026.11.14.1
 
 - `docker/docker-compose.local.yml` and `docker/.env.example`: the default stack (MariaDB + Redis) for plain Docker next to the Coolify `docker-compose.yml`. Run `cp .env.example .env && docker compose -f docker-compose.local.yml up -d` in `docker/`.
