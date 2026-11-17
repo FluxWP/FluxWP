@@ -337,6 +337,78 @@ $classic = FLXI_Settings_Service::save( array( 'smtp_nr_pass' => 'Classic-Nr-Pas
 flxt_same( true, true === $classic, 'constant: classic form still saves the no-reply password' );
 flxt_same( 'Classic-Nr-Pass', flxi_decrypt( (string) flxi_setting( 'smtp_nr_pass' ) ), 'constant: classic form stores the posted no-reply password like main' );
 
+// Discovered emails are grouped by the plugin that sends them, like the classic page.
+update_option(
+	'flxi_discovered',
+	array(
+		'forms/contract' => array(
+			'source'  => 'flx-forms',
+			'caller'  => 'contract',
+			'subject' => 'Contract form',
+			'count'   => 3,
+			'last'    => time(),
+		),
+	)
+);
+$r      = $run( 'FlxMailTemplates', array( 'first' => 50 ), $admin );
+$groups = array();
+foreach ( $r['data']['flxMailTemplates']['nodes'] ?? array() as $node ) {
+	$groups[ (string) $node['key'] ] = (string) $node['group'];
+}
+flxt_same( flxi_source_label( 'flx-forms' ), $groups['forms/contract'] ?? null, 'discovered: the list groups by source plugin' );
+$r = $run( 'FlxMailTemplate', array( 'key' => 'forms/contract' ), $admin );
+flxt_same( flxi_source_label( 'flx-forms' ), $r['data']['flxMailTemplate']['group'] ?? null, 'discovered: the editor shows the same group' );
+delete_option( 'flxi_discovered' );
+
+// WooCommerce emails: the editor shows WooCommerce's own enabled state, and a sender-only save keeps it.
+if ( ! function_exists( 'WC' ) && ! class_exists( 'WC_Emails' ) ) {
+	class WC_Emails {} // phpcs:ignore
+	class Flxt_WC_Email { // phpcs:ignore
+		public $id = 'flxt_off';
+		public function get_title() {
+			return 'Contract Woo email';
+		}
+		public function get_description() {
+			return 'Disabled in WooCommerce';
+		}
+		public function is_enabled() {
+			return false;
+		}
+		public function is_manual() {
+			return false;
+		}
+		public function is_customer_email() {
+			return true;
+		}
+		public function get_option_key() {
+			return 'woocommerce_flxt_off_settings';
+		}
+	}
+	class Flxt_WC_Mailer { // phpcs:ignore
+		public function get_emails() {
+			return array( new Flxt_WC_Email() );
+		}
+	}
+	class Flxt_WC { // phpcs:ignore
+		public function mailer() {
+			return new Flxt_WC_Mailer();
+		}
+	}
+	function WC() { // phpcs:ignore
+		return new Flxt_WC();
+	}
+}
+if ( function_exists( 'WC' ) && class_exists( 'Flxt_WC_Email' ) ) {
+	$r = $run( 'FlxMailTemplate', array( 'key' => 'wc/flxt_off' ), $admin );
+	flxt_same( false, $r['data']['flxMailTemplate']['enabled'] ?? null, 'woocommerce: the editor shows WooCommerce disabled' );
+	$list = $run( 'FlxMailTemplates', array( 'first' => 50, 'search' => 'flxt_off' ), $admin );
+	flxt_same( false, $list['data']['flxMailTemplates']['nodes'][0]['enabled'] ?? null, 'woocommerce: the list shows the same enabled state' );
+	$enabled = ! empty( $r['data']['flxMailTemplate']['enabled'] );
+	$r       = $run( 'FlxMailTemplateUpdate', array( 'input' => array( 'key' => 'wc/flxt_off', 'enabled' => $enabled, 'sender' => 'NOREPLY' ) ), $admin );
+	flxt_same( array(), $r['data']['flxMailTemplateUpdate']['errors'] ?? null, 'woocommerce: sender-only save has no errors' );
+	flxt_same( false, $r['data']['flxMailTemplateUpdate']['template']['enabled'] ?? null, 'woocommerce: a sender-only save does not re-enable the email' );
+}
+
 // One more pass over every captured response.
 $blob = (string) wp_json_encode( $seen );
 flxt_ok( false === strpos( $blob, $secret ), 'no captured response contains the secret' );
