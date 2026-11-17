@@ -22,8 +22,12 @@ for dir in $(echo "$changed" | grep -E '^plugins/[^/]+/' | cut -d/ -f2 | sort -u
 		slugs="$slugs $dir"
 	fi
 done
+# Every committed bundle must link (imports resolve to exports), whatever the PR touched.
+echo "== tüm gömülü paketlerde bağlantı kontrolü"
+node tools/fluxapp/verify-bundle.mjs || exit 1
+
 if [ -z "$slugs" ]; then
-	echo "Kontrol edilecek gömülü paket yok."
+	echo "Yeniden derlenecek gömülü paket yok."
 	exit 0
 fi
 
@@ -34,6 +38,8 @@ for slug in $slugs; do
 	if [ -n "$(git status --porcelain -- "plugins/$slug/assets/flux")" ]; then
 		echo "::error title=Embedded bundle out of date::plugins/$slug/assets/flux does not match packages/modules. Run 'bash tools/fluxapp/embed-sync.sh $slug' and commit the result."
 		git status --short -- "plugins/$slug/assets/flux" | head -20
+		fail=1
+	elif ! node tools/fluxapp/verify-bundle.mjs --strict "plugins/$slug/assets/flux"; then
 		fail=1
 	else
 		echo "$slug: güncel"

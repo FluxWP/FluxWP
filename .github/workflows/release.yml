@@ -84,6 +84,13 @@ jobs:
               echo "::error::$SLUG: $VERSION, son yayınlanan $last sürümünden küçük"; exit 1
             fi
 
+            # A React bundle whose files do not link (import of a name the target does not export) leaves the screen blank.
+            if [ -f "$dir/assets/flux/chunks.json" ] && ! node tools/fluxapp/verify-bundle.mjs "$dir/assets/flux"; then
+              echo "::error::$SLUG $VERSION gömülü React paketi bozuk, yayınlanmadı"
+              failed="$failed $SLUG"
+              continue
+            fi
+
             bin/build.sh "$dir"
 
             if [ "${{ github.event.inputs.skip_tests }}" != "true" ]; then

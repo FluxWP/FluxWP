@@ -1,5 +1,8 @@
 # Flux Tasks — Değişiklikler
 
+## 0.12.3
+- Ekran yüklenemezse (eski önbellek, eksik parça, çalışma hatası) boş sayfa yerine "Bu ekran yüklenemedi" mesajı, sayfayı yenileme düğmesi ve klasik ekrana geçiş bağlantısı gösterilir.
+
 ## 0.12.2
 - Acil düzeltme: 0.12.1'e güncelledikten sonra Flux Tasks sayfası boş açılıyordu (konsolda "Importing binding name '_t' is not found"). Gömülü paket parçaları ana dosyayı sürümsüz adresle içe aktarıyordu; tarayıcı ya da LiteSpeed'in önbellekteki eski flux-modules.js'i yeni parçalarla karışıyordu. İçe aktarma artık dosya özetini taşır, eski önbellek kullanılamaz.
 
