@@ -1,3 +1,0 @@
-# wp eval-file arguments for the flx-admin contract test (run.sh).
-# This contract test asserts the dashboard widget state without Flux Donate active.
---skip-plugins=flx-donate
