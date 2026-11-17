@@ -52,7 +52,10 @@ function flxs_flux_current_args(): array {
 function flxs_ui_switch_url( string $ui ): string {
 	$args           = flxs_flux_current_args();
 	$args['flxs_ui'] = 'flux' === $ui ? 'flux' : 'classic';
-	return wp_nonce_url( add_query_arg( $args, admin_url( 'admin.php' ) ), 'flxs_ui' );
+	// Not wp_nonce_url(): it HTML-escapes the ampersand, and this address also goes to a link in JSON (classicUrl).
+	// Markup output passes it through esc_url().
+	$args['_wpnonce'] = wp_create_nonce( 'flxs_ui' );
+	return esc_url_raw( add_query_arg( $args, admin_url( 'admin.php' ) ) );
 }
 
 add_action(

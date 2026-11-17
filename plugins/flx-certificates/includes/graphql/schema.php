@@ -754,7 +754,10 @@ function flxs_gql_export_url( array $filter ): string {
 	if ( array_key_exists( 'ref_user_id', $filter ) ) {
 		$keep['ref'] = (string) FLXS_Val::int( $filter['ref_user_id'] );
 	}
-	return wp_nonce_url( add_query_arg( array_merge( array( 'action' => 'flxs_cert_export' ), $keep ), admin_url( 'admin-post.php' ) ), 'flxs_cert_export' );
+	// Not wp_nonce_url(): it HTML-escapes the ampersand, and this address goes to a link in JSON, not to markup.
+	// add_query_arg() does not encode values, so a search such as "a&b" would be cut at the ampersand.
+	$args = urlencode_deep( array_merge( array( 'action' => 'flxs_cert_export', '_wpnonce' => wp_create_nonce( 'flxs_cert_export' ) ), $keep ) );
+	return esc_url_raw( add_query_arg( $args, admin_url( 'admin-post.php' ) ) );
 }
 
 flx_gql_query(
