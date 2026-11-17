@@ -171,3 +171,32 @@ html.flux-resizing,html.flux-resizing *{cursor:col-resize!important;user-select:
 .nav-item.active .menu-ic.img{box-shadow:none}
 
 .legal-links { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 16px; }
+
+/* keep-alive page slots (shell/Stage.tsx): the shown one lays out like a direct child of .main-scroll */
+.stage-slot{display:contents}
+
+/* sidebar top: the selected site's logo */
+.site-logo{display:flex;align-items:center;min-width:0;max-width:100%;height:44px}
+.site-logo > span{display:flex;align-items:center;min-width:0;max-width:100%;height:100%}
+.site-logo img{display:block;height:40px;max-width:100%;object-fit:contain;object-position:left center;-webkit-user-drag:none;user-select:none}
+.site-mark{display:flex;align-items:center;gap:10px;min-width:0}
+.site-mark .avatar{flex:none;object-fit:cover;background:#fff}
+.site-name{font-size:var(--flux-font-lg,17px);font-weight:700;letter-spacing:-.01em;color:var(--flux-text);min-width:0}
+
+/* Settings › About: FluxWP mark, opens fluxwp.com */
+.about-flux{display:flex;align-items:center;gap:14px;width:100%;padding:10px 8px;margin:2px 0 6px;border-radius:var(--flux-radius-md);text-align:left;transition:background .15s}
+.about-flux:hover{background:var(--flux-sidebar-active)}
+.about-flux img{height:28px;width:auto;flex:none;-webkit-user-drag:none}
+.about-flux span{display:inline-flex;align-items:center;gap:4px}
+
+/* sidebar tiles: hover lift, tinted surface, icon nudge */
+.nav-pin{transition:border-color .18s,box-shadow .18s,background-color .18s,transform .18s cubic-bezier(.2,.8,.2,1)}
+.nav-pin .menu-ic{transition:transform .22s cubic-bezier(.2,.8,.2,1)}
+.nav-pin:not(.wide):hover{transform:translateY(-2px);background:color-mix(in srgb,var(--flux-primary) 6%,var(--flux-surface));border-color:color-mix(in srgb,var(--flux-primary) 45%,var(--flux-border));box-shadow:0 10px 22px -14px color-mix(in srgb,var(--flux-primary) 70%,transparent)}
+.nav-pin:not(.wide):hover .menu-ic{transform:scale(1.08) rotate(-3deg)}
+.nav-pin:not(.wide):active{transform:translateY(0) scale(.98)}
+.nav-pin-head{transition:background-color .15s}
+.nav-pin-head:hover{background:var(--flux-sidebar-active)}
+.nav-group .nav-item .menu-ic{transition:transform .2s cubic-bezier(.2,.8,.2,1)}
+.nav-group .nav-item:hover .menu-ic{transform:scale(1.08)}
+@media (prefers-reduced-motion:reduce){.nav-pin:not(.wide):hover,.nav-pin:not(.wide):hover .menu-ic,.nav-group .nav-item:hover .menu-ic{transform:none}}

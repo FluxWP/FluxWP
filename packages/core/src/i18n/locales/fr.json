@@ -121,7 +121,9 @@
     "support": "Assistance",
     "contact": "Contactez-nous",
     "logoutConfirm": "Vous déconnecter de {{site}} ?",
-    "logoutFailed": "Impossible de se déconnecter. Veuillez réessayer."
+    "logoutFailed": "Impossible de se déconnecter. Veuillez réessayer.",
+    "poweredBy": "Propulsé par FluxWP",
+    "website": "Ouvrir fluxwp.com"
   },
   "oauth": {
     "doneTitle": "Connecté",
@@ -322,5 +324,11 @@
     "title": "Mentions légales",
     "privacy": "Politique de confidentialité",
     "terms": "Conditions d'utilisation"
+  },
+  "boot": {
+    "preparing": "Préparation de {{name}}",
+    "site": "Chargement du site",
+    "screens": "Préparation des écrans ({{n}}/{{total}})",
+    "ready": "Prêt"
   }
 }

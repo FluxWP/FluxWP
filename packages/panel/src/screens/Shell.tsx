@@ -2,8 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { clientFor, platform, type Account } from '@fluxwp/core';
 import { ModuleHostProvider, type ModuleHost } from '@fluxwp/modules';
-import { ManifestScreen } from '@fluxwp/render-web';
-import { useAccount, useMe, useShellModel, useSiteConfig } from '@fluxwp/runtime';
+import { useAccount, useBootstrap, useMe, useShellModel, useSiteConfig } from '@fluxwp/runtime';
 import { Sidebar } from '../components/Sidebar';
 import { TitleBar } from '../components/TitleBar';
 import { useSidebar } from '../state/sidebar';
@@ -11,15 +10,13 @@ import { startUpdateChecks } from '../state/update';
 import { CommandPalette } from '../components/CommandPalette';
 import { useNav } from '../state/hooks';
 import { useRoute } from '../state/route';
-import { screens } from '../modules/registry';
-import { WebPanel } from './WebPanel';
-import { Settings } from './Settings';
 import { AddSite } from './AddSite';
-import { Dashboard } from './Dashboard';
-import { Notifications } from './Notifications';
 import { buildMenu } from '../lib/menuGroups';
-import { activeOf, fromEntry, fromNav, labelOf, type SideGroup, type SideLink } from '../shell/links';
-import { PrefsBridge, SyncNotifier } from '../shell/bridges';
+import { activeOf, fromEntry, fromNav, labelOf, type SideLink } from '../shell/links';
+import { PrefsBridge, SiteSync, SyncNotifier } from '../shell/bridges';
+import { Stage } from '../shell/Stage';
+import { Warmup } from '../shell/Warmup';
+import type { SiteBrand } from '../components/SiteLogo';
 import { homeRoute, type Route } from '../state/route';
 
 export function Shell() {
@@ -27,6 +24,7 @@ export function Shell() {
   const { t } = useTranslation();
   const me = useMe();
   const site = useSiteConfig();
+  const boot = useBootstrap().data;
   const shell = useShellModel();
   const legacy = useNav(account);
   const { route, go } = useRoute();
@@ -46,6 +44,14 @@ export function Shell() {
     const built = buildMenu(legacy);
     return { pins: built.pins.map(fromNav), groups: built.groups.map((g) => ({ ...g, items: g.items.map(fromNav) })) };
   }, [configShell, shell.sidebar, legacy, t]);
+
+  const siteBrand = useMemo<SiteBrand>(() => ({
+    name: me.data?.site.name || boot?.brand?.name || account.siteName,
+    logo: boot?.brand?.logo || '',
+    logoDark: boot?.brand?.logo_dark || '',
+    icon: boot?.brand?.icon || me.data?.site.icon || account.siteIcon || '',
+    url: account.siteUrl,
+  }), [me.data?.site.name, me.data?.site.icon, boot?.brand, account.siteName, account.siteIcon, account.siteUrl]);
 
   const commands = useMemo(() => shell.commands.map((e) => fromEntry(e, t)), [shell.commands, t]);
   const active = activeOf(menu.pins, menu.groups, route);
@@ -97,8 +103,11 @@ export function Shell() {
     <div className="shell">
       <PrefsBridge />
       <SyncNotifier />
+      <SiteSync />
+      <Warmup account={account} ready={!me.isLoading && !(site.isLoading && !configShell)} failed={me.isError && !me.data} logo={siteBrand.icon} pins={menu.pins} groups={menu.groups} />
       <Sidebar
         account={account}
+        site={siteBrand}
         pins={menu.pins}
         groups={menu.groups}
         activeId={active.id}
@@ -116,41 +125,6 @@ export function Shell() {
         </div>
       </main>
       {palette && <CommandPalette links={[...menu.pins, ...menu.groups.flatMap((g) => g.items)]} commands={commands} onClose={() => setPalette(false)} onOpen={open} />}
-    </div>
-  );
-}
-
-function Stage({ route, groups }: { route: Route; groups: SideGroup[] }) {
-  if (route.kind === 'shell') {
-    if (route.name === 'settings' || route.name === 'accounts') return <Settings />;
-    if (route.name === 'notifications') return <Notifications />;
-    if (route.name === 'more') return <More groups={groups} />;
-    if (route.name === 'search') return null;
-  }
-  if (route.kind === 'native') {
-    const id = route.component === 'dashboard' ? 'core-dashboard' : route.component;
-    const Screen = screens[id];
-    if (Screen) return <Screen />;
-  }
-  if (route.kind === 'manifest') return <ManifestScreen module={route.module} screen={route.screen} params={route.params} />;
-  if (route.kind === 'web') return <WebPanel path={route.path} title={route.title ?? route.path} />;
-  return <Dashboard />;
-}
-
-function More({ groups }: { groups: SideGroup[] }) {
-  const { t } = useTranslation();
-  const go = useRoute((s) => s.go);
-  return (
-    <div className="page">
-      <header className="page-head"><h1>{t('nav.menu')}</h1></header>
-      {groups.map((g) => (
-        <section key={g.id} className="panel">
-          {g.label && <h2>{g.label}</h2>}
-          {g.items.map((item) => (
-            <button key={item.id} className="btn-ghost" onClick={() => go(item.route)}>{item.title}</button>
-          ))}
-        </section>
-      ))}
     </div>
   );
 }

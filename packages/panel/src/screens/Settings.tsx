@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { LogOut, Monitor, Moon, Sun, RefreshCw } from 'lucide-react';
+import { ExternalLink, LogOut, Monitor, Moon, Sun, RefreshCw } from 'lucide-react';
 import { brand, locales, platform, type Account } from '@fluxwp/core';
 import { useUpdate } from '../state/update';
 import { logoutAccount } from '../lib/logout';
@@ -10,6 +10,8 @@ import { homeRoute, useRoute } from '../state/route';
 import { webUI } from '@fluxwp/render-web';
 import { APP_VERSION } from '../version';
 import { LegalLinks } from '../components/LegalLinks';
+
+const FLUXWP_URL = 'https://fluxwp.com';
 
 export function Settings() {
   const { t, i18n } = useTranslation();
@@ -85,6 +87,11 @@ export function Settings() {
 
       <section className="panel">
         <h2>{t('settings.about')}</h2>
+        <button type="button" className="about-flux" onClick={() => void platform().openExternal(FLUXWP_URL)} title={t('settings.website')} aria-label={t('settings.website')}>
+          <img className="brand-img-light" src="./brand/fluxwp.svg" alt="FluxWP" draggable={false} />
+          <img className="brand-img-dark" src="./brand/fluxwp-dark.svg" alt="" aria-hidden draggable={false} />
+          <span className="muted small">{t('settings.poweredBy')} · fluxwp.com <ExternalLink size={12} /></span>
+        </button>
         <div className="setting"><span>{t('settings.app')}</span><span className="muted">{brand.name} {APP_VERSION}</span></div>
         {platform().checkUpdate && <UpdateRow />}
         {brand.slug === 'flux' && <div className="setting"><span>{t('legal.title')}</span><LegalLinks /></div>}

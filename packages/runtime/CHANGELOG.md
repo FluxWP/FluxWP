@@ -1,5 +1,8 @@
 # @fluxwp/runtime
 
+## 0.4.3
+- Tasks engine: `resume()` picks up polling after `dispose()` without a fresh boot, so a screen that was kept hidden shows its loaded tasks at once.
+
 ## 0.4.2
 - `list.all` metni (10 dil): aç/kapa filtrelerinin "Tümü" seçeneği.
 
