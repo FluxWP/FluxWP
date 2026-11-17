@@ -40,7 +40,7 @@ function Check({ checked, onChange, children }: { checked: boolean; onChange: (v
 }
 
 /** Model id input with a suggestion list from the model catalog. */
-function ModelInput({ value, onChange, placeholder }: { value: string; onChange: (v: string) => void; placeholder?: string }) {
+export function ModelInput({ value, onChange, placeholder }: { value: string; onChange: (v: string) => void; placeholder?: string }) {
   const [term, setTerm] = useState('');
   useEffect(() => {
     const id = setTimeout(() => setTerm(value), 300);

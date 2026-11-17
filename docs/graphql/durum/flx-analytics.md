@@ -1,7 +1,7 @@
 # flx-analytics 0.5.0
 
 - Faz: 1
-- Durum: 👀
+- Durum: ✓
 - PR: #319
 
 `gql/flx-analytics-1`: servis katmanı, 14 sorgu + 7 mutation, 21 kayıtlı işlem, sözleşme testi 75/75. React ekranları (`flxan-stats`, `-journeys`, `-settings`, `-telemetry`) klasikle eşit, wp-admin varsayılanı. Ziyaret toplama, telemetri alımı, CSV indirme ve pano widget'ı istisna (aşağıda). Eşleme `ESLEME/flx-analytics.md`

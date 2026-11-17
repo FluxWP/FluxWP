@@ -3,7 +3,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useFlxMutation } from '@fluxwp/graphql/react';
 import { FlxSocialAiWrite, FlxSocialPostCreate, FlxSocialPostUpdate } from '@fluxwp/graphql/operations';
 import type { FlxSocialAiMode, FlxSocialPostAction, FlxSocialTargetInput } from '@fluxwp/graphql/types';
-import { Modal } from '@fluxwp/ui';
+import { DatePicker, Modal } from '@fluxwp/ui';
 import { Avatar, NetDot, StatusBadge, STATUS_KEYS, errorText, payloadError, useSocial, type Account, type Media, type Post } from './common';
 import { camelKey, cleanOptions, optionDefs, textLength, type OptKey } from './options';
 import { MediaPicker } from './MediaPicker';
@@ -392,12 +392,13 @@ export function Composer({ post, presetAt, onClose, onSaved }: { post: Post | nu
       <div className="flxsm-cmp-foot">
         <label className="flxsm-when">
           <span className="flxsm-sr">{t('Time to share')}</span>
-          <input
-            type="datetime-local"
+          <DatePicker
+            time
+            aria-label={t('Time to share')}
             value={future ? s.tsToInput(at) : ''}
             min={s.tsToInput(now)}
-            onChange={(e) => {
-              setAt(e.target.value ? s.inputToTs(e.target.value) : 0);
+            onChange={(v) => {
+              setAt(v ? s.inputToTs(v) : 0);
               touch();
             }}
           />
@@ -632,8 +633,10 @@ function Options({ account, value, onChange }: { account: Account; value: Record
                 <textarea rows={2} value={String(v ?? '')} onChange={(e) => set(k, e.target.value)} />
               ) : d.type === 'tags' ? (
                 <input type="text" value={Array.isArray(v) ? (v as string[]).join(', ') : ''} onChange={(e) => set(k, e.target.value.split(',').map((x) => x.trim()).filter(Boolean))} />
+              ) : d.type === 'date' ? (
+                <DatePicker value={String(v ?? '')} onChange={(nv) => set(k, nv)} />
               ) : (
-                <input type={d.type === 'url' ? 'url' : d.type === 'date' ? 'date' : 'text'} maxLength={d.max} value={String(v ?? '')} onChange={(e) => set(k, e.target.value)} />
+                <input type={d.type === 'url' ? 'url' : 'text'} maxLength={d.max} value={String(v ?? '')} onChange={(e) => set(k, e.target.value)} />
               )}
               {d.hint && <small className="flxsm-muted">{d.hint}</small>}
             </label>

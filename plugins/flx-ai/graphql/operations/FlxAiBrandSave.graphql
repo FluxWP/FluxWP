@@ -1,0 +1,12 @@
+mutation FlxAiBrandSave($input: FlxAiBrandSaveInput!) {
+  flxAiBrandSave(input: $input) {
+    brand {
+      ...FlxAiBrandFields
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}
