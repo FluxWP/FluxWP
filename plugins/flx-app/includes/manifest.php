@@ -28,11 +28,12 @@ const FLXAPP_ACTION_KINDS    = array( 'request', 'navigate', 'web', 'open', 'sha
 const FLXAPP_FIELD_TYPES     = array( 'text', 'textarea', 'email', 'phone', 'url', 'number', 'money', 'switch', 'select', 'multiselect', 'radio', 'segmented', 'date', 'datetime', 'time', 'color', 'image', 'file', 'markdown', 'html', 'user', 'post', 'term', 'tags', 'hidden', 'readonly', 'secret', 'repeater' );
 const FLXAPP_SECTION_TYPES   = array( 'fields', 'stats', 'chips', 'timeline', 'list', 'content', 'media', 'chart', 'actions', 'notice' );
 const FLXAPP_TONES           = array( 'default', 'accent', 'ok', 'warn', 'danger', 'muted', 'info' );
-const FLXAPP_I18N_KEYS       = array( 'title', 'label', 'placeholder', 'help', 'body', 'ok', 'toast', 'message' );
+const FLXAPP_I18N_KEYS       = array( 'title', 'label', 'placeholder', 'help', 'body', 'ok', 'toast', 'message', 'text', 'caption' );
 
 /**
  * Statik JSON manifesti okur ve çevirir. Türkçe msgid'ler `translate( $s, $domain )` ile kullanıcı diline geçer
- * (yalnız FLXAPP_I18N_KEYS anahtarları; `{{…}}` şablonları çevrilmez). $extra üst düzeye yazılır (version, caps).
+ * (yalnız FLXAPP_I18N_KEYS anahtarları). Yalnız şablondan oluşan değer (`{{title}}`) çevrilmez; metin içindeki şablon
+ * msgid'de kalır (`{{passed}} passed` → `{{passed}} geçti`). $extra üst düzeye yazılır (version, caps).
  *
  * @return array
  */
@@ -52,7 +53,7 @@ function flxapp_manifest_translate( $node, $domain, $key = '' ) {
 		}
 		return $node;
 	}
-	if ( is_string( $node ) && '' !== $node && in_array( $key, FLXAPP_I18N_KEYS, true ) && false === strpos( $node, '{{' ) ) {
+	if ( is_string( $node ) && '' !== $node && in_array( $key, FLXAPP_I18N_KEYS, true ) && ! preg_match( '/^\s*(\{\{[^{}]*\}\}\s*)+$/', $node ) ) {
 		return translate( $node, $domain ); // phpcs:ignore WordPress.WP.I18n
 	}
 	return $node;
