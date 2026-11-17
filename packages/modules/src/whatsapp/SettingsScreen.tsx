@@ -338,7 +338,6 @@ function ConnectionsTab({ s, t, busy, onSave, setNotice }: { s: S; t: Translate;
             const choices = l.line ? l.line.sources : ctx.sourceChoices;
             const own = l.source === 'own';
             const out = outs[l.id];
-            const label = (v: string) => t(v);
             return (
               <div key={l.uid} className="flxca-conn">
                 <div className="flxca-conn__head">
@@ -347,7 +346,7 @@ function ConnectionsTab({ s, t, busy, onSave, setNotice }: { s: S; t: Translate;
                   <button type="button" className="flxca-link is-danger" onClick={() => remove(l)}>{t('Delete')}</button>
                 </div>
                 <div className="flxca-grid">
-                  <Field label={label('Connection details')} className="flxca-span2">
+                  <Field label={t('Connection details')} className="flxca-span2">
                     <select value={l.source} onChange={(e) => patch(l.uid, { source: e.currentTarget.value })}>
                       {choices.map((c) => (
                         <option key={c.value} value={c.value}>{c.label}</option>
@@ -356,13 +355,13 @@ function ConnectionsTab({ s, t, busy, onSave, setNotice }: { s: S; t: Translate;
                   </Field>
                   {own && (
                     <>
-                      <Field label={label('API URL')}>
+                      <Field label={t('API URL')}>
                         <input type="url" value={l.baseUrl} placeholder="https://wa.example.com" onChange={(e) => patch(l.uid, { baseUrl: e.currentTarget.value })} />
                       </Field>
-                      <Field label={label('Instance name')}>
+                      <Field label={t('Instance name')}>
                         <input type="text" value={l.instance} onChange={(e) => patch(l.uid, { instance: e.currentTarget.value })} />
                       </Field>
-                      <Field label={label('API key (apikey)')} className="flxca-span2">
+                      <Field label={t('API key (apikey)')} className="flxca-span2">
                         <input
                           type="password"
                           autoComplete="new-password"
