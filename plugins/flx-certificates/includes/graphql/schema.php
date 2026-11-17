@@ -986,6 +986,20 @@ function flxs_gql_save_input( array $in, int $id = 0 ): array {
 }
 
 /**
+ * A person row as the viewer may see it. Hidden or missing is null, never a bare node.
+ *
+ * @param array<string,mixed> $row Person row.
+ */
+function flxs_gql_visible_person( array $row ): ?FLXS_Person_Node {
+	$id = FLXS_Val::int( $row['id'] ?? 0 );
+	if ( $id <= 0 || ! FLXS_Person_Service::can_see( $id ) ) {
+		return null;
+	}
+	$counts = FLXS_Person_Service::certificate_counts( array( $id ) );
+	return new FLXS_Person_Node( $row, FLXS_Val::int( $counts[ $id ] ?? 0 ) );
+}
+
+/**
  * @param array<string,mixed>|WP_Error $saved Saved.
  * @return array<string,mixed>
  */
@@ -998,7 +1012,7 @@ function flxs_gql_saved( $saved ): array {
 	}
 	return array(
 		'certificate' => new FLXS_Certificate_Node( FLXS_Val::row( $bag['certificate'] ?? array() ) ),
-		'person'      => new FLXS_Person_Node( FLXS_Val::row( $bag['person'] ?? array() ) ),
+		'person'      => flxs_gql_visible_person( FLXS_Val::row( $bag['person'] ?? array() ) ),
 		'notes'       => $notes,
 	);
 }
@@ -1298,9 +1312,7 @@ flx_gql_mutation(
 					)
 				)
 			);
-			$person = FLXS_Val::row( $row );
-			$counts = FLXS_Person_Service::certificate_counts( array( FLXS_Val::int( $person['id'] ) ) );
-			return array( 'person' => new FLXS_Person_Node( $person, FLXS_Val::int( $counts[ FLXS_Val::int( $person['id'] ) ] ?? 0 ) ) );
+			return array( 'person' => flxs_gql_visible_person( FLXS_Val::row( $row ) ) );
 		},
 	)
 );

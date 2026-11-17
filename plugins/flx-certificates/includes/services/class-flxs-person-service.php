@@ -274,6 +274,22 @@ final class FLXS_Person_Service {
 	}
 
 	/**
+	 * A phone number or e-mail that already belongs to a person the viewer cannot see. Saving it
+	 * would write into, or hand back, someone else's record, so GraphQL refuses it.
+	 */
+	public static function outside_match( string $phone, string $email ): ?WP_Error {
+		$by_phone = flxs_find_person_by_phone( $phone );
+		if ( is_array( $by_phone ) && ! self::can_see( FLXS_Val::int( $by_phone['id'] ?? 0 ) ) ) {
+			return FLXS_Records::error( 'flxs_phone', __( 'That phone number belongs to someone else.', 'flx-certificates' ), 'CONFLICT', 'phone' );
+		}
+		$by_email = flxs_find_person_by_email( $email );
+		if ( is_array( $by_email ) && ! self::can_see( FLXS_Val::int( $by_email['id'] ?? 0 ) ) ) {
+			return FLXS_Records::error( 'flxs_email', __( 'That e-mail belongs to someone else.', 'flx-certificates' ), 'CONFLICT', 'email' );
+		}
+		return null;
+	}
+
+	/**
 	 * @param array<string,mixed> $in Input.
 	 * @return FlxsPersonRow|WP_Error
 	 */
@@ -286,6 +302,10 @@ final class FLXS_Person_Service {
 		$email = sanitize_text_field( FLXS_Val::str(( $in['email'] ?? '' )) );
 		$note  = sanitize_textarea_field( FLXS_Val::str(( $in['note'] ?? '' )) );
 		if ( ! $id ) {
+			$clash = self::outside_match( $phone, $email );
+			if ( $clash instanceof WP_Error ) {
+				return $clash;
+			}
 			$r = FLXS_Val::mix( flxs_upsert_person( $name, $phone, $email ) );
 			if ( is_wp_error( $r ) || ! is_array( $r ) ) {
 				return is_wp_error( $r ) ? FLXS_Records::classify( $r ) : FLXS_Records::error( 'flxs_person_db', __( 'The person could not be saved.', 'flx-certificates' ), 'INTERNAL' );

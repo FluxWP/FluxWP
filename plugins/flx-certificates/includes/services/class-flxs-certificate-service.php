@@ -271,7 +271,16 @@ final class FLXS_Certificate_Service {
 		if ( $person_id && ! FLXS_Person_Service::can_see( $person_id ) ) {
 			return FLXS_Records::error( 'flxs_404', __( 'Person not found.', 'flx-certificates' ), 'NOT_FOUND', 'personId', 404 );
 		}
-		$up = FLXS_Val::mix( flxs_upsert_person( $name, FLXS_Val::str(( $person['phone'] ?? '' )), FLXS_Val::str(( $person['email'] ?? '' )), $person_id ) );
+		$phone = FLXS_Val::str(( $person['phone'] ?? '' ));
+		$email = FLXS_Val::str(( $person['email'] ?? '' ));
+		if ( ! $person_id ) {
+			// A phone or e-mail that already belongs to someone outside the viewer's scope is not linked or written to.
+			$clash = FLXS_Person_Service::outside_match( $phone, $email );
+			if ( $clash instanceof WP_Error ) {
+				return $clash;
+			}
+		}
+		$up = FLXS_Val::mix( flxs_upsert_person( $name, $phone, $email, $person_id ) );
 		if ( is_wp_error( $up ) || ! is_array( $up ) ) {
 			return is_wp_error( $up ) ? FLXS_Records::classify( $up ) : FLXS_Records::error( 'flxs_person_db', __( 'The person could not be saved.', 'flx-certificates' ), 'INTERNAL' );
 		}
