@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { I18nextProvider } from 'react-i18next';
 import { accountsStore, brand, normalizeLocale } from '@fluxwp/core';
-import { AccountScope, useRememberSiteMark, useSiteTheme, type AppInfo, type PersistStore } from '@fluxwp/runtime';
+import { AccountScope, useRememberSiteMark, useSiteTheme, type AppInfo } from '@fluxwp/runtime';
 import { RenderOverlays } from '@fluxwp/render-web';
 import { useAccounts, useActiveAccount } from './state/hooks';
 import { usePrefs } from './state/prefs';
@@ -11,6 +11,8 @@ import { desktopRenderer } from './renderer';
 import { ensureI18n, i18n } from './i18n';
 import { applyTheme, brandTheme } from './theme';
 import { APP_VERSION } from './version';
+import { accountCacheStore } from './boot/cacheStore';
+import { hideSplash } from './boot/splash';
 import '@fluxwp/ui/src/styles.css';
 import '@fluxwp/render-web/styles.css';
 import './styles.css';
@@ -25,21 +27,6 @@ function useSystemDark() {
     return () => mq.removeEventListener('change', on);
   }, [mq]);
   return dark;
-}
-
-function accountStore(id: string): PersistStore {
-  const prefix = `flux.acc.${id}.`;
-  return {
-    getItem: (k) => {
-      try { return localStorage.getItem(prefix + k); } catch { return null; }
-    },
-    setItem: (k, v) => {
-      try { localStorage.setItem(prefix + k, v); } catch { /* private mode */ }
-    },
-    removeItem: (k) => {
-      try { localStorage.removeItem(prefix + k); } catch { /* private mode */ }
-    },
-  };
 }
 
 function AccountTheme({ mode }: { mode: 'light' | 'dark' }) {
@@ -62,10 +49,15 @@ function Root({ mode }: { mode: 'light' | 'dark' }) {
     version: APP_VERSION,
     device: prefs.theme === 'system' ? undefined : { theme: { mode: prefs.theme } },
   }), [prefs.theme]);
+  const store = useMemo(() => (active ? accountCacheStore(active.id) : undefined), [active?.id]); // eslint-disable-line react-hooks/exhaustive-deps
+  // No site yet: the add-site screen replaces the loading screen. With a site, the warm-up hides it.
+  useEffect(() => {
+    if (ready && !active) hideSplash();
+  }, [ready, active]);
   if (!ready) return null;
   if (!active) return <AddSite />;
   return (
-    <AccountScope key={active.id} account={active} renderer={renderer} app={app} store={accountStore(active.id)}>
+    <AccountScope key={active.id} account={active} renderer={renderer} app={app} store={store}>
       <AccountTheme mode={mode} />
       <RememberSite />
       <Shell />
@@ -82,8 +74,11 @@ export function App() {
   const ready = useMemo(() => ensureI18n(locale), [locale]);
 
   useEffect(() => {
+    // Never leave the loading screen up if something below fails to start.
+    const safety = setTimeout(hideSplash, 20_000);
     void prefs.load();
     void accountsStore.getState().load();
+    return () => clearTimeout(safety);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

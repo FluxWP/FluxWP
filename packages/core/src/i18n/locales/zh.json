@@ -121,7 +121,9 @@
     "support": "支持",
     "contact": "联系我们",
     "logoutConfirm": "退出 {{site}}?",
-    "logoutFailed": "无法退出。请再试一次。"
+    "logoutFailed": "无法退出。请再试一次。",
+    "poweredBy": "由 FluxWP 驱动",
+    "website": "打开 fluxwp.com"
   },
   "oauth": {
     "doneTitle": "已登录",
@@ -322,5 +324,11 @@
     "title": "法律信息",
     "privacy": "隐私政策",
     "terms": "使用条款"
+  },
+  "boot": {
+    "preparing": "正在准备 {{name}}",
+    "site": "正在加载站点信息",
+    "screens": "正在准备界面 ({{n}}/{{total}})",
+    "ready": "就绪"
   }
 }

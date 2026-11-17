@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
 import { Eye, EyeOff, GripVertical, Pencil, RefreshCw } from 'lucide-react';
-import { arrangeCards, layoutStore, moveItem, platform, type DashboardCard } from '@fluxwp/core';
+import { arrangeCards, decodeEntities, layoutStore, moveItem, platform, type DashboardCard } from '@fluxwp/core';
 import { resolveTarget, useMe, useResolveEnv } from '@fluxwp/runtime';
 import { Icon } from '@fluxwp/ui';
 import { useActiveAccount, useApi, useLayoutPrefs } from '../state/hooks';
@@ -77,7 +77,7 @@ export function Dashboard() {
           >
             <div className="card-top">
               <span className="card-icon"><Icon name={c.icon} size={16} /></span>
-              <span className="muted grow">{c.title}</span>
+              <span className="muted grow">{decodeEntities(c.title)}</span>
               {edit && (
                 <>
                   <button className="icon-btn" onClick={() => toggle(c.id)} aria-label={c.hidden ? t('nav.show') : t('nav.hide')}>
@@ -88,7 +88,7 @@ export function Dashboard() {
               )}
             </div>
             <div className="card-value">{c.value}</div>
-            {c.sub && <div className="card-sub muted">{c.sub}</div>}
+            {c.sub && <div className="card-sub muted">{decodeEntities(c.sub)}</div>}
           </div>
         ))}
       </div>
@@ -96,16 +96,16 @@ export function Dashboard() {
       <div className="lists">
         {lists.map((l) => (
           <section key={l.id} className="panel">
-            <h2><Icon name={l.icon} size={16} /> {l.title}</h2>
+            <h2><Icon name={l.icon} size={16} /> {decodeEntities(l.title)}</h2>
             {l.items.length === 0 && <p className="muted small">{t('common.empty')}</p>}
             <ul>
               {l.items.map((it, i) => (
                 <li key={i}>
                   <div className="grow">
-                    <div>{it.title}</div>
-                    {it.sub && <small className="muted">{it.sub}</small>}
+                    <div>{decodeEntities(it.title)}</div>
+                    {it.sub && <small className="muted">{decodeEntities(it.sub)}</small>}
                   </div>
-                  {it.meta && <small className="muted">{it.meta}</small>}
+                  {it.meta && <small className="muted">{decodeEntities(it.meta)}</small>}
                 </li>
               ))}
             </ul>

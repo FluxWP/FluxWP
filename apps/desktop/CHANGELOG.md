@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 0.3.4
+- Pages open at once: the app prepares the site's screens while a short loading screen is shown, keeps visited screens in memory and saves the cache in IndexedDB. Details in `@fluxwp/panel` 0.3.7.
+- Loading screen at every start; site logo at the top of the sidebar, FluxWP logo in Settings › About; hover on the sidebar tiles; HTML entities in dashboard lists.
+- Site changes (preset, plugin settings or versions) reach the app in the background without an app update.
+
 ## 0.3.3
 - Updates are no longer downloaded on their own. When a new version is found the app shows "Update available: X" with a Download button; the download starts only after the user confirms, then "Restart and update" appears.
 - A failed download now says "Download failed" with a Try again button instead of "Could not check"; the error text is in the tooltip.

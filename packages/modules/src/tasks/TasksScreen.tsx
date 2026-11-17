@@ -108,7 +108,9 @@ export function TasksScreen() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [host.client, host.scope]);
   useEffect(() => {
-    void c.e.boot();
+    // Shown again after being kept hidden (app): the data is still here, only pick up changes.
+    if (c.e.S.ready) c.e.resume();
+    else void c.e.boot();
     const onHash = () => host.mode === 'wp' && void c.e.go(parseHash(location.hash));
     window.addEventListener('hashchange', onHash);
     const vis = () => !document.hidden && c.e.schedule(500);

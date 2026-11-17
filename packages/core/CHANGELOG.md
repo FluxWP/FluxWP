@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.4.7
+- Strings (10 languages): `boot.*` for the app loading screen, `settings.poweredBy` and `settings.website` for Settings › About.
+
 ## 0.4.6
 - npm: README with install and usage, description and keywords.
 

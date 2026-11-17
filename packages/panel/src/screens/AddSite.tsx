@@ -9,6 +9,7 @@ import type { Bootstrap } from '@fluxwp/manifest';
 import { brandGate, loadBootstrap, siteMark, SiteNotAllowedError } from '@fluxwp/runtime';
 import { Avatar } from '@fluxwp/ui';
 import { BrandLogo } from '../components/BrandLogo';
+import { hideSplash } from '../boot/splash';
 
 function errorKey(e: unknown): string {
   if (e instanceof SiteNotAllowedError) return 'addSite.notAllowed';
@@ -27,6 +28,7 @@ const sameHost = (siteUrl: string) => {
 
 export function AddSite({ onCancel, initialUrl }: { onCancel?: () => void; initialUrl?: string }) {
   const { t } = useTranslation();
+  useEffect(() => hideSplash(), []);
   const [url, setUrl] = useState(initialUrl || brand.defaultSite || '');
   const [site, setSite] = useState<SiteInfo | null>(null);
   const [boot, setBoot] = useState<Bootstrap | null>(null);
