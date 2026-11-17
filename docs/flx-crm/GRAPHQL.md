@@ -94,6 +94,8 @@ GraphQL: `FlxContact.sections(placement, context): [FlxPersonSection!]!`. Alan `
 
 Etkinlik formu ve "Sitede" sekmesinin paket HTML'i (`afterHtml`, bölüm `html`, `siteHtml`) de kayıt defterinden çıkar (`form`, `label`, `input`, `select`, `option`, `textarea` ve QR `<svg>` öğeleri korunur; `<script>` ve `<style>` atılır). Etkinlik kancası hata fırlatırsa tampon `finally` ile kapatılır ve yalnız o parça `''` döner.
 
+React etkinlik formu, paketlerin `afterHtml` ve bölüm `html` içine bastığı adlı denetimleri (`input`, `select`, `textarea`; işaretsiz onay kutusu ve devre dışı olanlar hariç) kaydederken `fields` içine ekler. Servis sütun olmayan anahtarları `flx_event_saved` boyunca `$_POST`'ta tutar (kayıttan sonra, hata olsa da geri alınır), yani Flux Certificates'ın `flxs_adopt` kutusu klasik formdaki gibi çalışır. Etkinlik eylemlerinin (`flx_event_actions`) adresleri bölüm bağlantılarıyla aynı süzgeçten geçer (`http`, `https`, `mailto`, `tel`, göreli yönetim adresi). GraphQL ile yüklenen etkinlik görseli kayıt başarısız olursa medya kitaplığından silinir; klasik form dosya yüklemez, bu yüzden bu fark yalnız GraphQL'de vardır.
+
 Tarihler `FlxDateTime`'dır ve `flx_gql_datetime()` ile kurulur. `startsAt` ve planlanan gönderim sitenin saat dilimindeki yerel metindir (`DateTimeImmutable` + `wp_timezone()`). Alıcı `sentAt` / `scheduledAt` GMT mysql'dir (`flx_ts` ile aynı). Yazma girdisi `sendAt` klasik form gibi `Y-m-dTH:i` metnidir.
 
 ## İstisnalar
