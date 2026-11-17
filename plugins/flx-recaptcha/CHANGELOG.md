@@ -1,5 +1,8 @@
 # Flux reCAPTCHA
 
+## 0.4.0
+- FluxWP mobil uygulamasında reCAPTCHA (genel bakış, form başına aç/kapat, ayarlar) artık web görünümü yerine uygulamanın kendi ekranlarında açılır (manifest `app/manifest.json`, veri GraphQL'den). Masaüstü ve wp-admin aynı React ekranında kalır. Yeni metinlerin Türkçesi eklendi.
+
 ## 0.3.0
 - Ayarlar, korunan formlar, durum ve anahtar testi GraphQL'de (Flux GraphQL gerekir). Gizli anahtar hiçbir yanıtta dönmez.
 - Yeni ortak React ekranı wp-admin'de varsayılan; klasik görünüm bağlantıyla açılır (kullanıcı başına).

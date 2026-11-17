@@ -9,7 +9,8 @@ import type { FormField } from '@fluxwp/manifest';
 import type { ConfirmRequest } from '@fluxwp/runtime';
 import { i18n } from '@/i18n';
 import { Icon } from './Icon';
-import { Button, Field, Segmented, Text } from './primitives';
+import { Button, Field, Text } from './primitives';
+import { Select } from './Select';
 import { Sheet } from './Sheet';
 
 interface Overlay {
@@ -101,11 +102,8 @@ function PromptSheet({ title, fields, resolve }: NonNullable<Overlay['prompt']>)
     <Sheet visible title={title} onDismiss={() => done(null)}>
       <View style={{ gap: 12 }}>
         {fields.map((f) =>
-          (f.type === 'segmented' || f.type === 'radio') && Array.isArray(f.options) ? (
-            <View key={f.name} style={styles.gap}>
-              <Text variant="label">{f.label}</Text>
-              <Segmented options={f.options} value={String(values[f.name] ?? '')} onChange={(v) => setValues((s) => ({ ...s, [f.name]: v }))} />
-            </View>
+          (f.type === 'segmented' || f.type === 'radio' || f.type === 'select') && Array.isArray(f.options) ? (
+            <Select key={f.name} label={f.label} options={f.options} value={String(values[f.name] ?? '')} onChange={(v) => setValues((s) => ({ ...s, [f.name]: v }))} />
           ) : (
             <Field key={f.name} label={f.label} value={String(values[f.name] ?? '')} multiline={f.type === 'textarea'} onChangeText={(v) => setValues((s) => ({ ...s, [f.name]: v }))} />
           ),

@@ -744,3 +744,135 @@ msgstr "Test edilecek gizli anahtar; boşsa kayıtlı olan kullanılır."
 
 msgid "Token Google returned in the browser (grecaptcha.execute or the v2 checkbox)."
 msgstr "Google'ın tarayıcıda döndürdüğü belirteç (grecaptcha.execute ya da v2 kutucuğu)."
+
+#: app/manifest.json
+msgid "Overview"
+msgstr "Genel bakış"
+
+#: app/manifest.json
+msgid "Protection is on."
+msgstr "Koruma açık."
+
+#: app/manifest.json
+msgid "Keys are saved but not tested yet. Test them on the reCAPTCHA page in the panel."
+msgstr "Anahtarlar kayıtlı ama henüz test edilmedi. Paneldeki reCAPTCHA sayfasından test edin."
+
+#: app/manifest.json
+msgid "Protection is off. Add the site and secret keys under Settings."
+msgstr "Koruma kapalı. Site ve gizli anahtarı Ayarlar'dan ekleyin."
+
+#: app/manifest.json
+msgid "Version"
+msgstr "Sürüm"
+
+#: app/manifest.json
+msgid "Last test"
+msgstr "Son test"
+
+#: app/manifest.json
+msgid "Time"
+msgstr "Zaman"
+
+#: app/manifest.json
+msgid "Result"
+msgstr "Sonuç"
+
+#: app/manifest.json
+msgid "Last error"
+msgstr "Son hata"
+
+#: app/manifest.json
+msgid "{{passed}} passed · {{blocked}} blocked"
+msgstr "{{passed}} geçti · {{blocked}} engellendi"
+
+#: app/manifest.json
+msgid "Not installed"
+msgstr "Kurulu değil"
+
+#: app/manifest.json
+msgid "No forms"
+msgstr "Form yok"
+
+#: app/manifest.json
+msgid "No form that reCAPTCHA can protect was found."
+msgstr "reCAPTCHA'nın koruyabileceği form bulunamadı."
+
+#: app/manifest.json
+msgid "v3 (invisible score)"
+msgstr "v3 (görünmez puan)"
+
+#: app/manifest.json
+msgid "v2 (checkbox)"
+msgstr "v2 (kutucuk)"
+
+#: app/manifest.json
+msgid "Leave empty to keep the saved key."
+msgstr "Kayıtlı anahtarı korumak için boş bırakın."
+
+#: app/manifest.json
+msgid "Score threshold"
+msgstr "Puan eşiği"
+
+#: app/manifest.json
+msgid "v3: submissions below this score are blocked (0.5 is a good start)."
+msgstr "v3: bu puanın altındaki gönderimler engellenir (0.5 iyi bir başlangıç)."
+
+#: app/manifest.json
+msgid "Checkbox theme"
+msgstr "Kutucuk teması"
+
+#: app/manifest.json
+msgid "Automatic"
+msgstr "Otomatik"
+
+#: app/manifest.json
+msgid "Checkbox size"
+msgstr "Kutucuk boyutu"
+
+#: app/manifest.json
+msgid "Script address"
+msgstr "Betik adresi"
+
+#: app/manifest.json
+msgid "Hide the badge"
+msgstr "Rozeti gizle"
+
+#: app/manifest.json
+msgid "Skip for logged-in users"
+msgstr "Giriş yapmış kullanıcılarda atla"
+
+#: app/manifest.json
+msgid "Let submissions through when Google cannot be reached"
+msgstr "Google'a ulaşılamazsa gönderimleri geçir"
+
+#: app/manifest.json
+msgid "Allowed IP addresses"
+msgstr "İzinli IP adresleri"
+
+#: app/manifest.json
+msgid "These addresses are never checked."
+msgstr "Bu adresler hiç denetlenmez."
+
+#: app/manifest.json
+msgid "Saved"
+msgstr "Kaydedildi"
+
+#: app/manifest.json
+msgid "Turn on"
+msgstr "Aç"
+
+#: app/manifest.json
+msgid "Turned on"
+msgstr "Açıldı"
+
+#: app/manifest.json
+msgid "Turn off"
+msgstr "Kapat"
+
+#: app/manifest.json
+msgid "Turned off"
+msgstr "Kapatıldı"
+
+#: app/manifest.json
+msgid "Open in panel"
+msgstr "Panelde aç"

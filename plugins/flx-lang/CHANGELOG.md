@@ -1,5 +1,8 @@
 # Flux Lang
 
+## 0.4.0
+- FluxWP mobil uygulamasında Diller (site dilleri, dil ekleme, ayarlar) artık web görünümü yerine uygulamanın kendi ekranlarında açılır (manifest `app/manifest.json`, veri GraphQL'den). Masaüstü ve wp-admin aynı React ekranında kalır. Yeni metinlerin Türkçesi eklendi.
+
 ## 0.3.0
 - GraphQL: dil listesi, ayarlar, ziyaretçi ülkesi, çeviri eşleri ve AI çeviri işi Flux GraphQL üzerinden (`flxLanguages`, `flxLanguageSettings`, `flxVisitorCountry`, `flxLanguageJob`; mutation'lar `flxLanguageSettingsUpdate`, `flxLanguageSet`, `flxLanguageTranslationCreate`, `flxLanguageTranslateStart/Step`). Her içerik tipinde `flxLanguage` ve `flxTranslations` alanları; `?lang=` GraphQL isteğinde de çalışır.
 - Yeni React ekranı (Ayarlar > Languages) klasik sayfanın tüm özelliklerini kapsar, wp-admin'de varsayılan açılır; klasik görünüm sayfadaki bağlantıyla erişilir. FluxWP uygulamasında da aynı ekran (`flxl-lang` modülü).

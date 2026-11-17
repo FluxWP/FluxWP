@@ -150,18 +150,25 @@ describe('plugin manifests (plugins/*/app/manifest.json)', () => {
 
   it('GraphQL operations named in manifests exist in the plugin', () => {
     for (const f of files) {
-      const ops: string[] = [];
+      const refs: { op: string; vars: string[] }[] = [];
       const walk = (n: unknown, key = ''): void => {
         if (Array.isArray(n)) n.forEach((x) => walk(x));
         else if (n && typeof n === 'object') {
-          if (key.startsWith('graphql') && typeof (n as { op?: unknown }).op === 'string') ops.push((n as { op: string }).op);
+          const r = n as { op?: unknown; variables?: Record<string, unknown>; values?: string };
+          if (key.startsWith('graphql') && typeof r.op === 'string') refs.push({ op: r.op, vars: [...Object.keys(r.variables ?? {}), ...(r.values ? [r.values] : [])] });
           for (const [k, x] of Object.entries(n)) walk(x, k);
         }
       };
       walk(JSON.parse(readFileSync(f, 'utf8')));
-      if (!ops.length) continue;
-      const pq = Object.values(JSON.parse(readFileSync(join(f, '../../graphql/persisted-queries.json'), 'utf8')) as string[]).join('\n');
-      for (const op of ops) expect(pq, `${f}: ${op}`).toMatch(new RegExp(`\\b(query|mutation) ${op}\\b`));
+      if (!refs.length) continue;
+      const docs = Object.values(JSON.parse(readFileSync(join(f, '../../graphql/persisted-queries.json'), 'utf8')) as string[]);
+      for (const { op, vars } of refs) {
+        const doc = docs.find((d) => new RegExp(`\\b(query|mutation) ${op}\\b`).test(d));
+        expect(doc, `${f}: ${op}`).toBeTruthy();
+        // Variables the manifest sets must be declared by the operation.
+        const head = doc!.slice(0, doc!.indexOf('{'));
+        for (const name of vars) expect(head, `${f}: ${op} ${name}`).toContain(`$${name}:`);
+      }
     }
   });
 });

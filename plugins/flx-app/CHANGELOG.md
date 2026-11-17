@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.7.1
+- Doğrulama: `request.graphql.op` olan aksiyon `request.path` istemez.
+- Manifest çevirisi `text`, `caption`, `subtitle`, `sub` anahtarlarını da çevirir; şablon içeren metin de çevrilir (`{{passed}} passed` → `{{passed}} geçti`), yalnız şablondan oluşan değer çevrilmez. Kaynaktan gelen seçeneklerin (`options: {source, path, value, label}`) alan yolları çevrilmez.
+
 ## 0.7.0
 - Manifest kaynakları, aksiyon istekleri ve form kayıtları GraphQL işlemi olabilir: `"graphql": {"op": "FlxWikiPages", "variables": {…}, "data": "flxWikiPages"}`. Sunucu her işlemin `id` (persisted queryId) ve `kind` değerini Flux GraphQL'in persisted manifestlerinden doldurur; uygulama belge göndermez, strict sorgu modu çalışır. İşlemi kurulu olmayan modül gönderilmez (menü web sayfasını açar).
 - Doğrulama: kaynak `path` ya da `graphql.op`, form `submit.path` ya da `submit.graphql*` ister.

@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.12.0
+- FluxWP mobil uygulamasında SEO (denetim özeti, bulgular ve tek dokunuşla düzeltme, içerik kontrolü, denetim geçmişi, ayarlar; denetim ve PageSpeed başlatma) artık web görünümü yerine uygulamanın kendi ekranlarında açılır (manifest `app/manifest.json`, veri GraphQL'den). Masaüstü ve wp-admin aynı React ekranında kalır. Yeni metinlerin Türkçesi eklendi.
+
 ## 1.11.1
 - SEO ekranı Flux GraphQL ekran kabuğuyla açılır: ayarlar PHP'den hazır gelir, diğer Flux ekranlarına menüden geçiş sayfa yenilemeden olur.
 
