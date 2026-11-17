@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.4.0
+- FluxWP mobil uygulamasında Blok Düzenleyici native çizilir (ortak manifest `app/manifest.json`, GraphQL): blokları aç/kapat, bağlı desen kütüphaneleri. Masaüstü panel React ekranını kullanmaya devam eder.
+
 ## 0.3.0
 - GraphQL (Flux GraphQL gerekir, PHP 8.1+): her içerik tipinde `flxBlocks` alanı; headless ön yüz bir sayfayı sitedeki gibi göstermek için işlenmiş HTML'i, blok CSS'ini, stil/betik/modül dosyalarını (bağımlılık sırasıyla), yazı tiplerini, FAQ şemasını, hazır `headHtml`/`footerHtml`'i ve düz blok ağacını tek yanıtta alır. Site geneli stiller `flxBlocksSiteStyles`, taslak/desen önizlemesi `flxBlocksRender`. Belge docs/flx-blocks/GRAPHQL.md.
 - GraphQL: tasarım kütüphanesi (desenler, önizleme, bağlı kütüphaneler, paylaşım) ve Block Editor panosu (bloklar, ayarlar). Klasik pano ve kütüphane REST uçları aynı servisleri kullanır.

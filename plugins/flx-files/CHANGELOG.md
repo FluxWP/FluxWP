@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.3.0
+- FluxWP mobil uygulamasında Dosyalar native çizilir (ortak manifest `app/manifest.json`, GraphQL): klasörlerde gezinme, dosya içeriği ve bilgisi, yeni klasör, yeniden adlandır, çöp kutusuna taşı, çöp kutusundan geri al. Düzenleme panelde.
+
 ## 0.2.0
 - New React file manager screen is the default in wp-admin: same features as before (list/grid, tree and editor, search, trash, activity log, versions with diff, sharing, settings, AI explain/edit, chunked uploads), now on GraphQL. The classic screen stays one click away ("Classic view", remembered per user).
 - GraphQL API (Flux GraphQL 0.2+): folder, file, search, size, disk, versions, trash and log queries; write, rename, move, copy, zip, trash and settings mutations. All require `flxfm_manage`. See docs/flx-files/GRAPHQL.md.

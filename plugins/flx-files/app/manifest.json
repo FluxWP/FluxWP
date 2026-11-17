@@ -1,0 +1,124 @@
+{
+  "id": "files",
+  "plugin": "flx-files",
+  "min_app": "1.0.0",
+  "platforms": ["mobile"],
+  "title": "Files",
+  "icon": "media-archive",
+  "menu": "flx-files",
+  "entry": "folder",
+  "tabs": ["folder", "trash"],
+  "fallback": { "web": "admin.php?page=flx-files" },
+  "routes": {
+    "admin.php?page=flx-files": { "screen": "folder" }
+  },
+  "sources": {
+    "folder": {
+      "graphql": { "op": "FlxFilesFolder", "variables": { "path": "{{params.path|default:'.'}}" }, "data": "flxFilesFolder.items" },
+      "paging": { "mode": "cursor", "size": 200, "items": "nodes", "next": "pageInfo.endCursor", "has_next": "pageInfo.hasNextPage", "total": "totalCount" },
+      "key": "path",
+      "cache": { "stale": 15 }
+    },
+    "file": {
+      "graphql": { "op": "FlxFilesFile", "variables": { "path": "{{params.path}}" }, "data": "flxFilesFile" },
+      "cache": { "stale": 15 }
+    },
+    "trash": {
+      "graphql": { "op": "FlxFilesTrashList", "data": "flxFilesTrash.items" },
+      "paging": { "mode": "cursor", "size": 200, "items": "nodes", "next": "pageInfo.endCursor", "has_next": "pageInfo.hasNextPage", "total": "totalCount" },
+      "key": "id",
+      "cache": { "stale": 15 }
+    }
+  },
+  "screens": {
+    "folder": {
+      "type": "list",
+      "title": "{{params.name|default:'Site folder'}}",
+      "source": "folder",
+      "item": {
+        "title": "{{name}}",
+        "subtitle": "{{modified.relative}}",
+        "meta": "{{size}}",
+        "badges": [
+          { "text": "Folder", "tone": "muted", "when": { "path": "isDir", "op": "truthy" } },
+          { "text": "Protected", "tone": "warn", "when": { "any": [{ "path": "core", "op": "truthy" }, { "path": "sensitive", "op": "truthy" }] } },
+          { "text": "Locked", "tone": "info", "when": { "path": "locked", "op": "truthy" } }
+        ]
+      },
+      "onPress": { "target": "screen:files/{{isDir|bool:'folder':'file'}}", "params": { "path": "{{path}}", "name": "{{name}}" } },
+      "actions": { "header": ["folder_new"], "row": ["rename", "trash"] },
+      "empty": { "title": "Empty folder" }
+    },
+    "file": {
+      "type": "detail",
+      "source": "file",
+      "header": { "title": "{{item.name}}", "subtitle": "{{item.path}}" },
+      "sections": [
+        {
+          "type": "fields",
+          "fields": [
+            { "label": "Size", "value": "{{item.size}} bytes" },
+            { "label": "Changed", "value": "{{item.modified.label}}" },
+            { "label": "Permissions", "value": "{{item.permissions}}" },
+            { "label": "Path", "value": "{{item.path}}", "copy": true }
+          ]
+        },
+        { "type": "notice", "tone": "warn", "text": "This file belongs to WordPress or holds secrets; edit it in the panel.", "when": { "any": [{ "path": "item.core", "op": "truthy" }, { "path": "item.sensitive", "op": "truthy" }] } },
+        { "type": "content", "title": "Content", "value": "{{content}}", "format": "text", "when": { "path": "content", "op": "filled" } },
+        { "type": "actions", "items": ["open_panel"] }
+      ]
+    },
+    "trash": {
+      "type": "list",
+      "title": "Trash",
+      "source": "trash",
+      "item": {
+        "title": "{{name}}",
+        "subtitle": "{{path}}",
+        "caption": "{{deleted.relative}} · {{user}}",
+        "badges": [{ "text": "Folder", "tone": "muted", "when": { "path": "isDir", "op": "truthy" } }]
+      },
+      "actions": { "row": ["restore"] },
+      "empty": { "title": "Trash is empty" }
+    }
+  },
+  "actions": {
+    "folder_new": {
+      "label": "New folder",
+      "icon": "plus",
+      "prompt": { "title": "New folder", "fields": [{ "name": "name", "type": "text", "label": "Folder name", "required": true }] },
+      "request": { "graphql": { "op": "FlxFilesFolderCreate", "variables": { "input": { "path": "{{params.path}}/{{input.name}}" } }, "data": "flxFilesFolderCreate" } },
+      "after": { "toast": "Folder created", "invalidate": ["folder"] },
+      "haptic": "success"
+    },
+    "rename": {
+      "label": "Rename",
+      "icon": "edit",
+      "when": { "all": [{ "path": "writable", "op": "truthy" }, { "path": "core", "op": "falsy" }, { "path": "locked", "op": "falsy" }] },
+      "prompt": { "title": "Rename {{name}}", "fields": [{ "name": "name", "type": "text", "label": "New name", "required": true }] },
+      "request": { "graphql": { "op": "FlxFilesRename", "variables": { "input": { "path": "{{path}}", "name": "{{input.name}}" } }, "data": "flxFilesRename" } },
+      "after": { "toast": "Renamed", "invalidate": ["folder"] }
+    },
+    "trash": {
+      "label": "Move to trash",
+      "icon": "trash",
+      "tone": "danger",
+      "when": { "all": [{ "path": "writable", "op": "truthy" }, { "path": "core", "op": "falsy" }, { "path": "locked", "op": "falsy" }] },
+      "confirm": { "title": "Move {{name}} to trash?", "body": "It can be restored from the trash.", "ok": "Move" },
+      "request": { "graphql": { "op": "FlxFilesTrash", "variables": { "input": { "paths": ["{{path}}"] } }, "data": "flxFilesTrash" } },
+      "after": { "toast": "Moved to trash", "invalidate": ["folder", "trash"] },
+      "haptic": "warning"
+    },
+    "restore": {
+      "label": "Restore",
+      "icon": "refresh",
+      "request": { "graphql": { "op": "FlxFilesTrashRestore", "variables": { "input": { "ids": ["{{id}}"] } }, "data": "flxFilesTrashRestore" } },
+      "after": { "toast": "Restored", "invalidate": ["trash", "folder"] }
+    },
+    "open_panel": {
+      "label": "Edit in panel",
+      "icon": "external",
+      "web": "admin.php?page=flx-files"
+    }
+  }
+}

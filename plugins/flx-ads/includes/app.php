@@ -25,3 +25,32 @@ add_filter(
 		return $m;
 	}
 );
+
+/*
+ * Shared app manifest (app/manifest.json): the mobile app draws these screens natively over GraphQL.
+ * The desktop panel keeps its React screen, so the manifest is for mobile only.
+ */
+add_action(
+	'plugins_loaded',
+	static function () {
+		if ( ! function_exists( 'flxapp_manifest_file' ) ) {
+			return;
+		}
+		add_filter(
+			'flxapp_manifest',
+			static function ( $m ) {
+				$m        = is_array( $m ) ? $m : array();
+				$m['ads'] = flxapp_manifest_file(
+					FLXADS_DIR . 'app/manifest.json',
+					'flx-ads',
+					array(
+						'version' => FLXADS_VERSION,
+						'caps'    => array( 'view' => 'flxads_view' ),
+					)
+				);
+				return $m;
+			}
+		);
+	},
+	20
+);

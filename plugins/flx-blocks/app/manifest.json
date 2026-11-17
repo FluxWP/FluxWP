@@ -1,0 +1,86 @@
+{
+  "id": "blocks",
+  "plugin": "flx-blocks",
+  "min_app": "1.0.0",
+  "platforms": ["mobile"],
+  "title": "Block Editor",
+  "icon": "welcome-widgets-menus",
+  "menu": "flx-blocks",
+  "entry": "blocks",
+  "tabs": ["blocks", "libraries"],
+  "fallback": { "web": "admin.php?page=flx-blocks" },
+  "routes": {
+    "admin.php?page=flx-blocks": { "screen": "blocks" }
+  },
+  "sources": {
+    "blocks": {
+      "graphql": { "op": "FlxBlocksDashboard", "data": "flxBlocksBlockTypes" },
+      "paging": { "mode": "none" },
+      "key": "slug",
+      "cache": { "stale": 60 }
+    },
+    "libraries": {
+      "graphql": { "op": "FlxBlocksDashboard", "data": "flxBlocksLibrarySources" },
+      "paging": { "mode": "none" },
+      "key": "id",
+      "cache": { "stale": 60 }
+    }
+  },
+  "screens": {
+    "blocks": {
+      "type": "list",
+      "title": "Blocks",
+      "source": "blocks",
+      "item": {
+        "title": "{{name}}",
+        "subtitle": "{{description}}",
+        "badges": [
+          { "text": "On", "tone": "ok", "when": { "path": "active", "op": "truthy" } },
+          { "text": "Off", "tone": "muted", "when": { "path": "active", "op": "falsy" } }
+        ]
+      },
+      "actions": { "row": ["block_on", "block_off", "block_link"] },
+      "empty": { "title": "No blocks" }
+    },
+    "libraries": {
+      "type": "list",
+      "title": "Pattern libraries",
+      "source": "libraries",
+      "item": {
+        "title": "{{name}}",
+        "subtitle": "{{url}}",
+        "badges": [{ "text": "Key", "tone": "info", "when": { "path": "hasKey", "op": "truthy" } }]
+      },
+      "actions": { "header": ["open_panel"] },
+      "empty": { "title": "No linked libraries", "body": "Link a pattern library in the panel." }
+    }
+  },
+  "actions": {
+    "block_on": {
+      "label": "Turn on",
+      "icon": "yes",
+      "when": { "path": "active", "op": "falsy" },
+      "request": { "graphql": { "op": "FlxBlocksBlockTypeSetActive", "variables": { "input": { "slug": "{{slug}}", "active": true } }, "data": "flxBlocksBlockTypeSetActive" } },
+      "after": { "toast": "Turned on", "invalidate": ["blocks"] }
+    },
+    "block_off": {
+      "label": "Turn off",
+      "icon": "no",
+      "when": { "path": "active", "op": "truthy" },
+      "confirm": { "title": "Turn {{name}} off?", "body": "Pages that use it keep their content; the block is hidden from the editor.", "ok": "Turn off" },
+      "request": { "graphql": { "op": "FlxBlocksBlockTypeSetActive", "variables": { "input": { "slug": "{{slug}}", "active": false } }, "data": "flxBlocksBlockTypeSetActive" } },
+      "after": { "toast": "Turned off", "invalidate": ["blocks"] }
+    },
+    "block_link": {
+      "label": "{{linkText|default:'Open'}}",
+      "icon": "external",
+      "when": { "path": "link", "op": "filled" },
+      "open": "{{link}}"
+    },
+    "open_panel": {
+      "label": "Open in panel",
+      "icon": "external",
+      "web": "admin.php?page=flx-blocks"
+    }
+  }
+}

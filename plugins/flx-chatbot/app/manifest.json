@@ -1,0 +1,115 @@
+{
+  "id": "chatbot",
+  "plugin": "flx-chatbot",
+  "min_app": "1.0.0",
+  "platforms": ["mobile"],
+  "title": "Chatbot",
+  "icon": "bot",
+  "menu": "flx-chatbot",
+  "entry": "overview",
+  "tabs": ["overview", "settings"],
+  "fallback": { "web": "admin.php?page=flx-chatbot" },
+  "routes": {
+    "admin.php?page=flx-chatbot": { "screen": "overview" }
+  },
+  "sources": {
+    "overview": {
+      "graphql": { "op": "FlxChatbotSettingsScreen", "data": "flxChatbotAdmin" },
+      "cache": { "stale": 60 }
+    },
+    "settings": {
+      "graphql": { "op": "FlxChatbotSettingsScreen", "data": "flxSettings.chatbot" },
+      "cache": { "stale": 0 }
+    }
+  },
+  "screens": {
+    "overview": {
+      "type": "dashboard",
+      "title": "Last 30 days",
+      "sources": ["overview"],
+      "sections": [
+        {
+          "type": "stats",
+          "items": [
+            { "label": "Chats", "value": "{{stats.total|number}}", "sub": "{{stats.open|number}} open" },
+            { "label": "Handed to a person", "value": "{{stats.human|number}}" },
+            { "label": "Resolved", "value": "{{stats.resolved|number}}" },
+            { "label": "Leads", "value": "{{stats.leads|number}}" },
+            { "label": "Orders", "value": "{{stats.orders|number}}" },
+            { "label": "Rating", "value": "{{stats.rating|default:'—'}}", "sub": "{{stats.rated|number}} ratings" }
+          ]
+        },
+        { "type": "notice", "tone": "warn", "text": "Flux AI is not set up, so the bot cannot answer by itself.", "when": { "path": "aiReady", "op": "falsy" } },
+        {
+          "type": "list",
+          "title": "Status",
+          "path": "status",
+          "item": {
+            "title": "{{title}}",
+            "subtitle": "{{text}}",
+            "badges": [
+              { "text": "OK", "tone": "ok", "when": { "path": "state", "op": "eq", "value": "OK" } },
+              { "text": "Check", "tone": "warn", "when": { "path": "state", "op": "eq", "value": "WARN" } }
+            ]
+          }
+        },
+        { "type": "actions", "items": ["open_site", "open_panel"] }
+      ]
+    },
+    "settings": {
+      "type": "form",
+      "title": "Settings",
+      "load": "settings",
+      "submit": { "graphql": { "op": "FlxChatbotSettingsSave", "data": "flxChatbotSettingsSave" } },
+      "fields": [
+        { "name": "settings.enabled", "load": "enabled", "type": "switch", "label": "Show the chat on the site" },
+        {
+          "name": "settings.mode",
+          "load": "mode",
+          "type": "segmented",
+          "label": "Who answers",
+          "options": [
+            { "value": "AI", "label": "Bot" },
+            { "value": "HYBRID", "label": "Bot, then a person" },
+            { "value": "LIVE", "label": "A person" }
+          ]
+        },
+        { "name": "settings.botName", "load": "botName", "type": "text", "label": "Bot name" },
+        { "name": "settings.welcome", "load": "welcome", "type": "textarea", "label": "Welcome message" },
+        { "name": "settings.placeholder", "load": "placeholder", "type": "text", "label": "Message box hint" },
+        { "name": "settings.offlineText", "load": "offlineText", "type": "textarea", "label": "Message when nobody is online" },
+        {
+          "name": "settings.askEmail",
+          "load": "askEmail",
+          "type": "segmented",
+          "label": "Ask for email",
+          "options": [
+            { "value": "NEVER", "label": "Never" },
+            { "value": "OFFLINE", "label": "When offline" },
+            { "value": "ALWAYS", "label": "Always" }
+          ]
+        },
+        { "name": "settings.notifyEmail", "load": "notifyEmail", "type": "email", "label": "Notify email", "help": "New chats handed to a person are sent here." },
+        { "name": "settings.emailReplies", "load": "emailReplies", "type": "switch", "label": "Email replies to visitors who left an address" },
+        { "name": "settings.rating", "load": "rating", "type": "switch", "label": "Ask for a rating at the end" },
+        { "name": "settings.uploads", "load": "uploads", "type": "switch", "label": "Visitors can send files" },
+        { "name": "settings.mobileFull", "load": "mobileFull", "type": "switch", "label": "Full screen on phones" }
+      ],
+      "dirty_guard": true,
+      "after": { "toast": "Saved", "back": false, "invalidate": ["settings", "overview"] }
+    }
+  },
+  "actions": {
+    "open_site": {
+      "label": "Open site",
+      "icon": "globe",
+      "when": { "path": "siteUrl", "op": "filled" },
+      "open": "{{siteUrl}}"
+    },
+    "open_panel": {
+      "label": "Look, AI and hours in panel",
+      "icon": "external",
+      "web": "admin.php?page=flx-chatbot"
+    }
+  }
+}

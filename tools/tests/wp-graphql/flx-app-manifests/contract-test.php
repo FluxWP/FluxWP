@@ -55,6 +55,10 @@ $expected = array(
 	'roles'     => 'flx-roles/flx-roles.php',
 	'admin'     => 'flx-admin/flx-admin.php',
 	'headless'  => 'flx-headless/flx-headless.php',
+	'chatbot'   => 'flx-chatbot/flx-chatbot.php',
+	'ads'       => 'flx-ads/flx-ads.php',
+	'files'     => 'flx-files/flx-files.php',
+	'blocks'    => 'flx-blocks/flx-blocks.php',
 );
 foreach ( $expected as $id => $plugin ) {
 	if ( is_plugin_active( $plugin ) ) {

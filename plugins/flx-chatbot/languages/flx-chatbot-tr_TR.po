@@ -1610,3 +1610,171 @@ msgstr "Değişecek ayarlar."
 
 msgid "Settings after saving."
 msgstr "Kaydettikten sonraki ayarlar."
+
+#: app/manifest.json
+msgid "Last 30 days"
+msgstr "Son 30 gün"
+
+#: app/manifest.json
+msgid "{{stats.open|number}} open"
+msgstr "{{stats.open|number}} açık"
+
+#: app/manifest.json
+msgid "Handed to a person"
+msgstr "Kişiye aktarılan"
+
+#: app/manifest.json
+msgid "Resolved"
+msgstr "Çözülen"
+
+#: app/manifest.json
+msgid "Leads"
+msgstr "Potansiyel müşteriler"
+
+#: app/manifest.json
+msgid "Orders"
+msgstr "Siparişler"
+
+#: app/manifest.json
+msgid "{{stats.rated|number}} ratings"
+msgstr "{{stats.rated|number}} puanlama"
+
+#: app/manifest.json
+msgid "Flux AI is not set up, so the bot cannot answer by itself."
+msgstr "Flux AI kurulu değil, bot kendi başına cevap veremez."
+
+#: app/manifest.json
+msgid "Status"
+msgstr "Durum"
+
+#: app/manifest.json
+msgid "OK"
+msgstr "Tamam"
+
+#: app/manifest.json
+msgid "Check"
+msgstr "Kontrol et"
+
+#: app/manifest.json
+msgid "Show the chat on the site"
+msgstr "Sohbeti sitede göster"
+
+#: app/manifest.json
+msgid "Who answers"
+msgstr "Kim cevaplar"
+
+#: app/manifest.json
+msgid "Bot"
+msgstr "Bot"
+
+#: app/manifest.json
+msgid "Bot, then a person"
+msgstr "Önce bot, sonra kişi"
+
+#: app/manifest.json
+msgid "A person"
+msgstr "Kişi"
+
+#: app/manifest.json
+msgid "Bot name"
+msgstr "Bot adı"
+
+#: app/manifest.json
+msgid "Message box hint"
+msgstr "Mesaj kutusu ipucu"
+
+#: app/manifest.json
+msgid "Message when nobody is online"
+msgstr "Kimse çevrimiçi değilken mesaj"
+
+#: app/manifest.json
+msgid "When offline"
+msgstr "Çevrimdışıyken"
+
+#: app/manifest.json
+msgid "Always"
+msgstr "Her zaman"
+
+#: app/manifest.json
+msgid "Notify email"
+msgstr "Bildirim e-postası"
+
+#: app/manifest.json
+msgid "New chats handed to a person are sent here."
+msgstr "Kişiye aktarılan yeni sohbetler buraya gönderilir."
+
+#: app/manifest.json
+msgid "Email replies to visitors who left an address"
+msgstr "Adres bırakan ziyaretçilere cevapları e-postayla gönder"
+
+#: app/manifest.json
+msgid "Ask for a rating at the end"
+msgstr "Sonunda puan iste"
+
+#: app/manifest.json
+msgid "Visitors can send files"
+msgstr "Ziyaretçiler dosya gönderebilir"
+
+#: app/manifest.json
+msgid "Full screen on phones"
+msgstr "Telefonda tam ekran"
+
+#: app/manifest.json
+msgid "Saved"
+msgstr "Kaydedildi"
+
+#: app/manifest.json
+msgid "Open site"
+msgstr "Siteyi aç"
+
+#: app/manifest.json
+msgid "Look, AI and hours in panel"
+msgstr "Görünüm, AI ve saatler panelde"
+
+#: app/manifest.json
+msgid "Search name, email or message"
+msgstr "Ad, e-posta ya da mesaj ara"
+
+#: app/manifest.json
+msgid "Show"
+msgstr "Göster"
+
+#: app/manifest.json
+msgid "With a person"
+msgstr "Kişide"
+
+#: app/manifest.json
+msgid "With the bot"
+msgstr "Botta"
+
+#: app/manifest.json
+msgid "Waiting (offline)"
+msgstr "Bekleyen (çevrimdışı)"
+
+#: app/manifest.json
+msgid "No chats"
+msgstr "Sohbet yok"
+
+#: app/manifest.json
+msgid "Chats from the site widget show up here."
+msgstr "Sitedeki sohbet penceresinden gelen sohbetler burada görünür."
+
+#: app/manifest.json
+msgid "Reply"
+msgstr "Cevapla"
+
+#: app/manifest.json
+msgid "Call"
+msgstr "Ara"
+
+#: app/manifest.json
+msgid "Delete this chat?"
+msgstr "Bu sohbet silinsin mi?"
+
+#: app/manifest.json
+msgid "Its messages are removed for good."
+msgstr "Mesajları kalıcı olarak silinir."
+
+#: app/manifest.json
+msgid "Deleted"
+msgstr "Silindi"
