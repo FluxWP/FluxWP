@@ -1,6 +1,7 @@
 # Değişiklikler
 
 ## Yayınlanmamış
+- Yan menüde Ayarlar düğmesi de diğer ikonlar gibi yalnız ikon.
 - Yan menüde eklentilerin alt sekmeleri (Yedekleme, Flux Files vb.) ok işaretine basınca açılır, doğrudan alt sekme seçilir.
 - Hesaplar: Düzenle modu; hesap başına önbellek boyutu, önbelleği temizle ve hesabı kaldır orada. Her kartta çöp kutusu kalmadı.
 
