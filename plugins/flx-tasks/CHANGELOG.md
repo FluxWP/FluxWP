@@ -1,5 +1,12 @@
 # Flux Tasks — Değişiklikler
 
+## 0.10.0
+- Dokümanda dosyalar kart olarak görünür: uzantı rozeti (PDF, ZIP, XLSX…), ad, üzerine gelince kenarlık. Düzenleme modunda karta gelince çıkan kalem simgesinden Önizle / İndir / Dosyayı kaldır menüsü açılır. Sürükle-bırak ve yapıştırma ile görsel ve dosya ekleme önceden de çalışıyordu.
+- Dokümanda tek başına duran YouTube bağlantısı video kapaklı kart olarak görünür. Ayarlar > Dosyalar'daki "YouTube bağlantılarında önizleme görseli" ile kapatılır (varsayılan açık); kapalıyken bağlantı düz kalır. Kapak YouTube'dan yüklenir, kaydedilen içeriğe eklenmez.
+- Önizleme penceresinde kapat, ok ve İndir düğmelerinin simgeleri her temada beyaz.
+- Açık temada ana alan koyu kalıyordu (dış kabuk temayla eşleşmediğinde): Görevler ekranı artık kendi zemin rengini taşır.
+- Dosya indirme dokümanda da istemciden geçer (nonce'suz bağlantı yok).
+
 ## 0.9.4
 - Dokümana dosya ekleme düzeldi: yüklenen dosya "undefined" yerine adıyla görünür (yükleme yanıtı `{ file }` doğru okunuyor).
 - Dokümandaki dosya ve görsellere tıklayınca nonce'suz adrese gidip `rest_cookie_invalid_nonce` hatası vermez; dosya istemciden alınıp önizleme penceresinde açılır.

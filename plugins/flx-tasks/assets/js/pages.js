@@ -999,7 +999,8 @@
 		));
 		inner.appendChild(h('section.flxg-card-box',
 			h('h2', t('Dosyalar')),
-			num('max_upload_mb', t('Tek dosya sınırı (MB)'), 1, 512, t('Sunucunun PHP sınırı daha düşükse o geçerli olur.'))
+			num('max_upload_mb', t('Tek dosya sınırı (MB)'), 1, 512, t('Sunucunun PHP sınırı daha düşükse o geçerli olur.')),
+			sw('yt_preview', t('YouTube bağlantılarında önizleme görseli'), t('Dokümanda tek başına duran YouTube bağlantısı video kapağıyla kart olarak görünür. Kapak YouTube\'dan yüklenir; kapatırsanız bağlantı düz metin olarak kalır.'))
 		));
 		inner.appendChild(h('section.flxg-card-box',
 			h('h2', t('Yapay zekâ')),

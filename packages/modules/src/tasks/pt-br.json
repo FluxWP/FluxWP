@@ -538,5 +538,9 @@
   "{n} tasks will be permanently deleted.": "As tarefas{n}serão excluídas permanentemente.",
   "{n} warning(s)": "Aviso(s){n}",
   "{n} wrote a comment": "{n}escreveu um comentário",
-  "Preview not available": "Pré-visualização indisponível"
+  "Preview not available": "Pré-visualização indisponível",
+  "Preview": "Pré-visualizar",
+  "Remove file": "Remover arquivo",
+  "Preview image for YouTube links": "Imagem de pré-visualização em links do YouTube",
+  "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text.": "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text."
 }

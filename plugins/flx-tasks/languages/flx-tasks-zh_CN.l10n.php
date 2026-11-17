@@ -1826,5 +1826,8 @@ return array(
   'Flux Tasks tools require Flux AI & MCP.' => 'Flux Tasks 工具需要 Flux AI & MCP。',
   'MCP' => 'MCP',
 
+  'Preview' => '预览',
+  'Remove file' => '移除文件',
+  'Preview image for YouTube links' => 'YouTube 链接的预览图',
  ),
 );
