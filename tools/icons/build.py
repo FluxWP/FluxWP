@@ -33,6 +33,7 @@ PKGS = [
   ('flx-ai', 'Flux AI', 'platform', 'sparkles'),
   ('flx-tasks', 'Flux Tasks', 'platform', 'list-checks'),
   ('flx-graphql', 'Flux GraphQL', 'platform', 'waypoints'),
+  ('flx-headless', 'Flux Headless', 'platform', 'cable'),
   ('fluxwp', 'FluxWP (tema)', 'platform', '@mark'),
   ('flx-backup', 'Flux Backup', 'system', 'database-backup'),
   ('flx-speed', 'Flux Speed', 'system', 'gauge'),

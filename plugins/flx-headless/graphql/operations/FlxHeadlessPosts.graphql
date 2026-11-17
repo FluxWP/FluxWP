@@ -1,0 +1,26 @@
+# Public: a page of published posts for listings (blog, category, tag, author, search). Cursor based.
+query FlxHeadlessPosts($first: Int = 10, $after: String, $categoryId: Int, $tagId: String, $authorId: Int, $search: String) {
+  posts(first: $first, after: $after, where: { categoryId: $categoryId, tagId: $tagId, author: $authorId, search: $search, status: PUBLISH }) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    nodes {
+      databaseId
+      title
+      uri
+      date
+      excerpt
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+          mediaDetails {
+            width
+            height
+          }
+        }
+      }
+    }
+  }
+}
