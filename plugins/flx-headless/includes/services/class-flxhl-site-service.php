@@ -51,6 +51,7 @@ final class FLXHL_Site_Service {
 			'locale'      => str_replace( '_', '-', flxhl_locale() ),
 			'languages'   => self::languages( $fe ),
 			'logo'        => self::logo(),
+			'logo_on_dark' => self::logo( true ),
 			'icon'        => self::icon(),
 			'menus'       => self::menus( $fe ),
 			'palette'     => self::palette(),
@@ -109,11 +110,25 @@ final class FLXHL_Site_Service {
 		return $out;
 	}
 
-	/** @return array<string,mixed> */
-	private static function logo(): array {
-		$id = flxhl_int( get_theme_mod( 'custom_logo' ) );
+	/**
+	 * Site logo: the custom logo, the Site Logo block's choice, then the organization profile (Flux Setup:
+	 * logo, logo_light for dark backgrounds).
+	 *
+	 * @return array<string,mixed>
+	 */
+	private static function logo( bool $on_dark = false ): array {
+		$id = 0;
+		if ( $on_dark && function_exists( 'flx_profile' ) ) {
+			$id = flxhl_int( flx_profile( 'logo_light', 0 ) );
+		}
+		if ( ! $id ) {
+			$id = flxhl_int( get_theme_mod( 'custom_logo' ) );
+		}
 		if ( ! $id ) {
 			$id = flxhl_int( get_option( 'site_logo' ) );
+		}
+		if ( ! $id && function_exists( 'flx_profile' ) ) {
+			$id = flxhl_int( flx_profile( 'logo', 0 ) );
 		}
 		if ( ! $id ) {
 			return array();
@@ -122,11 +137,12 @@ final class FLXHL_Site_Service {
 		if ( ! is_array( $src ) ) {
 			return array();
 		}
+		$alt = flxhl_str( get_post_meta( $id, '_wp_attachment_image_alt', true ) );
 		return array(
 			'url'    => flxhl_str( $src[0] ),
 			'width'  => flxhl_int( $src[1] ),
 			'height' => flxhl_int( $src[2] ),
-			'alt'    => flxhl_str( get_post_meta( $id, '_wp_attachment_image_alt', true ) ),
+			'alt'    => '' === $alt ? html_entity_decode( flxhl_str( get_bloginfo( 'name' ) ), ENT_QUOTES, 'UTF-8' ) : $alt,
 		);
 	}
 
@@ -277,9 +293,10 @@ final class FLXHL_Site_Service {
 					continue;
 				}
 				++$n;
+				$name  = flxhl_str( flxhl_arr( $nav['attrs'] ?? array() )['ariaLabel'] ?? '' );
 				$out[] = array(
 					'location' => 1 === $n ? $part : $part . '-' . $n,
-					'name'     => flxhl_str( flxhl_arr( $nav['attrs'] ?? array() )['ariaLabel'] ?? '' ),
+					'name'     => '' !== $name ? $name : flxhl_str( $nav['flxhl_heading'] ?? '' ),
 					'source'   => 'block',
 					'items'    => $rows,
 				);
@@ -341,14 +358,22 @@ final class FLXHL_Site_Service {
 	 * @param list<array<string,mixed>> $found
 	 */
 	private static function find_blocks( array $blocks, string $name, array &$found ): void {
+		$heading = '';
 		foreach ( $blocks as $b ) {
 			$b = flxhl_arr( $b );
+			if ( 'core/heading' === ( $b['blockName'] ?? '' ) ) {
+				// A heading right before a navigation block names it ("Shop", "Company" columns of a footer).
+				$heading = trim( html_entity_decode( wp_strip_all_tags( flxhl_str( $b['innerHTML'] ?? '' ) ), ENT_QUOTES, 'UTF-8' ) );
+				continue;
+			}
 			if ( ( $b['blockName'] ?? '' ) === $name ) {
 				$row = array();
 				foreach ( $b as $k => $v ) {
 					$row[ (string) $k ] = $v;
 				}
-				$found[] = $row;
+				$row['flxhl_heading'] = $heading;
+				$found[]              = $row;
+				$heading              = '';
 				continue;
 			}
 			self::find_blocks( flxhl_arr( $b['innerBlocks'] ?? array() ), $name, $found );
@@ -394,7 +419,12 @@ final class FLXHL_Site_Service {
 				}
 			} elseif ( 'core/page-list' === $name ) {
 				$map = array();
+				$lang = function_exists( 'flxl_current_language' ) && function_exists( 'flxl_post_language' ) ? flxhl_str( flxl_current_language() ) : '';
 				foreach ( get_pages( array( 'sort_column' => 'menu_order,post_title' ) ) ?: array() as $pg ) {
+					// Flux Lang: only the pages of this language (and pages shared by all languages).
+					if ( '' !== $lang && ! in_array( flxhl_str( flxl_post_language( $pg ) ), array( '', $lang ), true ) ) {
+						continue;
+					}
 					$pid         = $prefix . '-p' . $pg->ID;
 					$map[ $pg->ID ] = $pid;
 					$rows[]      = self::item( $pid, $pg->post_parent && isset( $map[ $pg->post_parent ] ) ? $map[ $pg->post_parent ] : $parent, get_the_title( $pg ), flxhl_str( get_permalink( $pg ) ), '', $order++, $fe );

@@ -311,5 +311,6 @@
   "Refresh all": "Tümünü yenile",
   "Sent": "Gönderildi",
   "Copied": "Kopyalandı",
-  "Content changed": "İçerik değişti"
+  "Content changed": "İçerik değişti",
+  "Logo for dark backgrounds such as the footer; the site logo when there is no separate one.": "Footer gibi koyu zeminler için logo; ayrı bir logo yoksa site logosu."
 }

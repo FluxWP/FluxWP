@@ -504,6 +504,9 @@ msgstr "Ön yüzün sunduğu diller, varsayılan önce."
 msgid "Site logo; empty when none."
 msgstr "Site logosu; yoksa boş."
 
+msgid "Logo for dark backgrounds such as the footer; the site logo when there is no separate one."
+msgstr "Footer gibi koyu zeminler için logo; ayrı bir logo yoksa site logosu."
+
 msgid "Site icon (512 px); empty when none."
 msgstr "Site simgesi (512 px); yoksa boş."
 

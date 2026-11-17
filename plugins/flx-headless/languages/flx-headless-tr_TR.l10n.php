@@ -170,6 +170,7 @@ return array(
   'Locale of this answer (BCP 47).' => 'Bu cevabın yerel ayarı (BCP 47).',
   'Languages the front end serves, default first.' => 'Ön yüzün sunduğu diller, varsayılan önce.',
   'Site logo; empty when none.' => 'Site logosu; yoksa boş.',
+  'Logo for dark backgrounds such as the footer; the site logo when there is no separate one.' => 'Footer gibi koyu zeminler için logo; ayrı bir logo yoksa site logosu.',
   'Site icon (512 px); empty when none.' => 'Site simgesi (512 px); yoksa boş.',
   'Menus of the header, footer and menu locations.' => 'Header, footer ve menü konumlarının menüleri.',
   'Theme palette.' => 'Tema paleti.',

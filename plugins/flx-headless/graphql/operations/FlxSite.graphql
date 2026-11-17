@@ -23,6 +23,12 @@ query FlxSite($lang: String, $frontend: ID) {
       height
       alt
     }
+    logoOnDark {
+      url
+      width
+      height
+      alt
+    }
     icon
     menus {
       ...FlxHeadlessMenuFields

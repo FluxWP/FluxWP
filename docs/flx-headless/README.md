@@ -136,10 +136,11 @@ query FlxRoute($path: String!, $lang: String, $frontend: ID, $previewId: Int) {
 - `name`, `description`, `url` (the front end), `cmsUrl` and `graphqlUrl`.
 - `languages` for the language picker. Each has `code`, `name`, `hreflang`, `path`, `url` and
   `isDefault`.
-- `logo` and `icon`.
+- `logo`, `logoOnDark` (for a dark footer; the site logo when there is no light version) and `icon`.
 - `menus`, a flat list where each item points at its `parentId`. They come from the menu locations
   and from the navigation blocks of the header and footer. `location` is `primary`, `header`,
-  `footer` and so on. Site links carry a front-end `path` for your router.
+  `footer`, `footer-2` and so on. A footer navigation block takes its `name` from the heading above
+  it, so footer columns keep their titles. Site links carry a front-end `path` for your router.
 - `palette`, `contact`, `currencies` (with WooCommerce), `legalPages`, `captcha` (Flux reCAPTCHA) and
   `social`.
 - `sitemapUrl` and `searchPath`.
