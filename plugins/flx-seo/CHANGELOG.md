@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.11.2
+- Ortak modül paketi yenilendi: ekranın parçaları sayfa başında birlikte iner, giriş dosyası iki kez çalışmaz, ayar ekranlarında ilk karede yükleniyor göstergesi çıkmaz.
+
 ## 1.11.1
 - SEO ekranı Flux GraphQL ekran kabuğuyla açılır: ayarlar PHP'den hazır gelir, diğer Flux ekranlarına menüden geçiş sayfa yenilemeden olur.
 

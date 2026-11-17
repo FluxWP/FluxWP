@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.0
+- Ekran kabuğu: ekranın ilk açılışta gönderdiği sorgular kullanıcı başına öğrenilir (admin-ajax `flx_screen_learn`, kullanıcı meta `flx_gql_screen_queries`, ekran başına en çok 10) ve bir sonraki açılışta PHP'de önceden basılır. Önyükleme 0,8 sn bütçeyle sınırlı.
+- Ekranın JS parçaları `<link rel="modulepreload">` ile sayfa başında birlikte iner (chunks.json `preload`, tools/fluxapp/embed-preload.mjs).
+- Yeni argüman `wrap_class`; seçeneklerdeki `startPage` boş değilse sayfa argümanını ezer; `needs` noktalı yol kabul eder (`wp.media`).
+- Gezgin, menü adresinin kendi argümanlarını (edit.php?post_type=…) tanır.
+- Belge: docs/graphql/EKRAN-KABUGU.md.
+
 ## 0.4.0
 
 - Ekran kabuğu: wp-admin'deki Flux React ekranları `flx_admin_screen()` ile kaydedilir, `flx_admin_screen_render()` ile basılır. Sol menüden başka bir Flux ekranına geçiş sayfayı yenilemez: hedef paketin bundle'ı bir kez yüklenir, ilk sorgular üzerine gelince tek istekte önceden çekilir, ekran hazır olunca yer değiştirir; adres, başlık ve menü vurgusu güncellenir, geri/ileri çalışır. Kayıtlı olmayan sayfalar normal açılır.

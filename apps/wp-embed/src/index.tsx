@@ -9,7 +9,7 @@ import { I18nextProvider } from 'react-i18next';
 import { brand, createClient, createI18n, setPlatform, memoryStore, trimEnd } from '@fluxwp/core';
 import type { BrandColors } from '@fluxwp/tokens';
 import { toCssVars } from '@fluxwp/tokens';
-import { ModuleHostProvider, moduleScreens, preloadScreen, type ModuleHost } from '@fluxwp/modules';
+import { flxStoreRecord, ModuleHostProvider, moduleScreens, preloadScreen, type ModuleHost } from '@fluxwp/modules';
 import { mountManifest, type ManifestMountOptions } from './manifest';
 import '@fluxwp/ui/src/styles.css';
 import './embed.css';
@@ -39,6 +39,41 @@ export interface MountOptions {
   startPage?: string;
   /** Klasik görünüme geçiş bağlantısı (varsa). */
   classicUrl?: string;
+  /**
+   * wp-admin screen shell (Flux GraphQL): the queries the server preloaded for this screen. The screen's
+   * first queries are recorded; when they differ, they are sent to `url` so the next load preloads them.
+   */
+  learn?: { url: string; key: string; known: string[] };
+}
+
+/** Queries a screen sends in its first moments count as its first queries. */
+const LEARN_MS = 2500;
+
+function learnFirstQueries(o: MountOptions): () => void {
+  const l = o.learn;
+  if (!l?.url || !l.key) return () => undefined;
+  const stop = flxStoreRecord();
+  let sent = false;
+  // Sent after LEARN_MS, or earlier when the user leaves the screen (another page, the navigator).
+  const flush = () => {
+    if (sent) return;
+    sent = true;
+    window.clearTimeout(timer);
+    window.removeEventListener('pagehide', flush);
+    const keys = stop().slice(0, 10);
+    const known = new Set(l.known);
+    if (!keys.length || (keys.length === known.size && keys.every((k) => known.has(k)))) return;
+    const body = new FormData();
+    body.append('action', 'flx_screen_learn');
+    body.append('_wpnonce', nonce);
+    body.append('key', l.key);
+    for (const k of keys) body.append('keys[]', k);
+    if (navigator.sendBeacon?.(l.url, body)) return;
+    void fetch(l.url, { method: 'POST', body, credentials: 'same-origin', keepalive: true }).catch(() => undefined);
+  };
+  const timer = window.setTimeout(flush, LEARN_MS);
+  window.addEventListener('pagehide', flush);
+  return flush;
 }
 
 let nonce = '';
@@ -160,6 +195,7 @@ export function mount(el: HTMLElement, o: MountOptions): () => void {
   const qc = queryClient();
   const i18n = i18nFor(o.locale ?? document.documentElement.lang);
   el.dir = i18n.language === 'ar' ? 'rtl' : 'ltr';
+  const unlearn = learnFirstQueries(o);
   const root = createRoot(el);
   root.render(
     <StrictMode>
@@ -174,6 +210,7 @@ export function mount(el: HTMLElement, o: MountOptions): () => void {
     </StrictMode>,
   );
   const stop = () => {
+    unlearn();
     obs.disconnect();
     root.unmount();
     roots.delete(el);

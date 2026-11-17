@@ -67,27 +67,67 @@ function flxk_flux_module_tag( $tag, $handle ) {
 }
 
 /**
+ * Mount options of the screen besides what the Flux GraphQL shell adds (rest, nonce, locale…).
+ *
+ * @param string $page Admin page slug.
+ */
+function flxk_flux_options( string $page ): array {
+	$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#2c7a64';
+	return array(
+		'colors'     => array(
+			'primary'         => $accent,
+			'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
+		),
+		'classicUrl' => flxk_ui_switch_url( 'classic', $page ),
+	);
+}
+
+// Flux GraphQL screen shell: first data printed by PHP, in-place navigation from the menu.
+add_action(
+	'admin_menu',
+	static function (): void {
+		if ( ! function_exists( 'flx_admin_screen' ) || ! flxk_flux_available() ) {
+			return;
+		}
+		foreach ( array( 'flx-setup' => 'flxk-packages', 'flx-setup-settings' => 'flxk-settings' ) as $page => $module ) {
+			flx_admin_screen(
+				$page,
+				array(
+					'module'       => $module,
+					'assets_dir'   => FLXK_DIR . 'assets/flux/',
+					'assets_url'   => FLXK_URL . 'assets/flux/',
+					'version'      => FLXK_VERSION,
+					'enabled'      => 'flxk_flux_ui',
+					'options'      => 'flxk_flux_options',
+					'container_id' => 'flxk-app',
+					'preload'      => 'flxk-packages' === $module ? array( array( 'FlxSetupOverview', array( 'search' => null ) ), array( 'FlxSetupHistory', array( 'page' => 1 ) ) ) : array(),
+					'wrap_class'   => 'flxk-wrap',
+				)
+			);
+		}
+	},
+	20
+);
+
+/**
  * Enqueues the bundle and mounts a module in #flxk-app.
  *
  * @param string $module Module id (flxk-packages|flxk-settings).
  * @param string $page   Admin page slug (for the classic view link).
  */
 function flxk_flux_assets( string $module, string $page ): void {
-	$ver    = FLXK_VERSION . '-' . (int) filemtime( FLXK_DIR . 'assets/flux/flux-modules.js' );
-	$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#2c7a64';
-	$opts   = array(
-		'module'     => $module,
-		'rest'       => rest_url(),
-		'nonce'      => wp_create_nonce( 'wp_rest' ),
-		'locale'     => get_user_locale(),
-		'siteName'   => get_bloginfo( 'name' ),
-		'adminUrl'   => admin_url(),
-		'theme'      => 'light',
-		'colors'     => array(
-			'primary'         => $accent,
-			'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
+	$ver  = FLXK_VERSION . '-' . (int) filemtime( FLXK_DIR . 'assets/flux/flux-modules.js' );
+	$opts = array_merge(
+		array(
+			'module'   => $module,
+			'rest'     => rest_url(),
+			'nonce'    => wp_create_nonce( 'wp_rest' ),
+			'locale'   => get_user_locale(),
+			'siteName' => get_bloginfo( 'name' ),
+			'adminUrl' => admin_url(),
+			'theme'    => 'light',
 		),
-		'classicUrl' => flxk_ui_switch_url( 'classic', $page ),
+		flxk_flux_options( $page )
 	);
 	wp_enqueue_style( 'flxk-flux', FLXK_URL . 'assets/flux/flux-modules.css', array(), $ver );
 	wp_enqueue_script( 'flxk-flux', FLXK_URL . 'assets/flux/flux-modules.js', array(), $ver, true );
@@ -109,6 +149,9 @@ function flxk_flux_assets( string $module, string $page ): void {
 function flxk_flux_render( string $module, string $page ): bool {
 	if ( ! flxk_flux_ui() ) {
 		return false;
+	}
+	if ( function_exists( 'flx_admin_screen_render' ) && flx_admin_screen_render() ) {
+		return true;
 	}
 	flxk_flux_assets( $module, $page );
 	echo '<style>#flxk-app.flux-root{height:auto;background:transparent;font-family:inherit}</style>';

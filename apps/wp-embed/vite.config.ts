@@ -51,13 +51,18 @@ function splitBuild(): UserConfig['build'] {
   return {
     cssCodeSplit: false,
     modulePreload: false,
+    // dist/.vite/manifest.json: tools/fluxapp/embed-preload.mjs lists each screen's chunks in chunks.json,
+    // so wp-admin can fetch them in parallel (<link rel="modulepreload">) instead of one after another.
+    manifest: true,
     assetsInlineLimit: 100_000,
     target: 'es2020',
     rollupOptions: {
       input: 'src/index.tsx',
       output: {
         format: 'es',
-        entryFileNames: 'flux-modules.js',
+        // Hashed entry: chunks import it by this exact name. assets/flux/flux-modules.js is a one-line
+        // re-export of it (embed-sync.sh), so a page that loads flux-modules.js?ver=… still runs one copy.
+        entryFileNames: 'flux-modules-[hash].js',
         chunkFileNames: (info) => {
           const id = info.facadeModuleId ?? '';
           const mod = /\/modules\/src\/([^/]+)\//.exec(id)?.[1];

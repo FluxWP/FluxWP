@@ -81,23 +81,71 @@ function flxads_flux_module_tag( $tag, $handle ) {
  *
  * @param string $tab Tab to open first.
  */
-function flxads_flux_assets( string $tab ): void {
-	$ver    = FLXADS_VERSION . '-' . (int) filemtime( FLXADS_DIR . 'assets/flux/flux-modules.js' );
+/**
+ * Mount options of the screen besides what the Flux GraphQL shell adds (rest, nonce, locale…).
+ *
+ * @param string $page Page slug (flx-ads, flx-ads-<tab>).
+ */
+function flxads_flux_options( string $page = '' ): array {
+	$tab    = 0 === strpos( $page, 'flx-ads-' ) ? substr( $page, 8 ) : ( '' === $page ? flxads_current_tab() : 'report' );
 	$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#2c7a64';
-	$opts   = array(
-		'module'     => 'flxads-ads',
-		'rest'       => rest_url(),
-		'nonce'      => wp_create_nonce( 'wp_rest' ),
-		'locale'     => get_user_locale(),
-		'siteName'   => get_bloginfo( 'name' ),
-		'adminUrl'   => admin_url(),
-		'theme'      => 'light',
-		'startPage'  => $tab,
+	return array(
 		'colors'     => array(
 			'primary'         => $accent,
 			'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
 		),
 		'classicUrl' => flxads_ui_switch_url( 'classic', $tab ),
+	);
+}
+
+// Flux GraphQL screen shell: every Ads page is one screen with its own start page; first data printed by
+// PHP, in-place navigation between the pages from the menu.
+add_action(
+	'admin_menu',
+	static function (): void {
+		if ( ! function_exists( 'flx_admin_screen' ) || ! flxads_flux_available() ) {
+			return;
+		}
+		foreach ( array( 'report', 'campaigns', 'suggestions', 'studio', 'planner', 'experiments', 'value', 'spend', 'audiences', 'log', 'links', 'settings' ) as $tab ) {
+			$page = flxads_page_slug( $tab );
+			flx_admin_screen(
+				$page,
+				array(
+					'module'       => 'flxads-ads',
+					'assets_dir'   => FLXADS_DIR . 'assets/flux/',
+					'assets_url'   => FLXADS_URL . 'assets/flux/',
+					'version'      => FLXADS_VERSION,
+					'enabled'      => 'flxads_flux_ui',
+					'options'      => 'flxads_flux_options',
+					'start'        => $tab,
+					'start_param'  => 'flx-ads' === $page ? 'tab' : '',
+					'container_id' => 'flxads-app',
+					'preload'      => 'report' === $tab ? array( array( 'FlxAdsContext' ), array( 'FlxAdsReport', array( 'filter' => array( 'by' => 'channel', 'kind' => 'all', 'range' => '30' ) ) ) ) : array( array( 'FlxAdsContext' ) ),
+					'wrap_class'   => 'flxads-wrap',
+				)
+			);
+		}
+	},
+	20
+);
+
+function flxads_flux_assets( string $tab ): void {
+	if ( function_exists( 'flx_admin_screen_current' ) && '' !== flx_admin_screen_current() ) {
+		return; // The Flux GraphQL screen shell loads the bundle.
+	}
+	$ver  = FLXADS_VERSION . '-' . (int) filemtime( FLXADS_DIR . 'assets/flux/flux-modules.js' );
+	$opts = array_merge(
+		array(
+			'module'    => 'flxads-ads',
+			'rest'      => rest_url(),
+			'nonce'     => wp_create_nonce( 'wp_rest' ),
+			'locale'    => get_user_locale(),
+			'siteName'  => get_bloginfo( 'name' ),
+			'adminUrl'  => admin_url(),
+			'theme'     => 'light',
+			'startPage' => $tab,
+		),
+		flxads_flux_options( flxads_page_slug( $tab ) )
 	);
 	wp_enqueue_style( 'flxads-flux', FLXADS_URL . 'assets/flux/flux-modules.css', array(), $ver );
 	wp_enqueue_script( 'flxads-flux', FLXADS_URL . 'assets/flux/flux-modules.js', array(), $ver, true );
@@ -114,6 +162,9 @@ function flxads_flux_assets( string $tab ): void {
  * The page body of the new view.
  */
 function flxads_flux_render(): void {
+	if ( function_exists( 'flx_admin_screen_render' ) && flx_admin_screen_render() ) {
+		return;
+	}
 	echo '<style>#flxads-app.flux-root{height:auto;background:transparent;font-family:inherit}</style>';
 	echo '<div class="wrap flxads-wrap"><div id="flxads-app"><noscript>' . esc_html__( 'JavaScript is required for this screen.', 'flx-ads' ) . '</noscript></div></div>';
 }

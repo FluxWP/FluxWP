@@ -1,5 +1,9 @@
 # Flux Studio — Değişiklikler
 
+## 0.5.1
+- wp-admin ekranı Flux GraphQL ekran kabuğundan açılır: ilk veri PHP'de sayfaya basılır (yükleniyor göstergesi yok), menüden diğer Flux ekranlarına sayfa yenilenmeden geçilir. Ekranın parçaları sayfa başında birlikte iner (modulepreload).
+- Ortak modül paketi yenilendi.
+
 ## 0.5.0
 - GraphQL: servis katmanı (`FLXST_Service`), `flxStudio*` şeması, 26 kayıtlı işlem. REST, MCP ve mobil manifest aynen durur, servise delege eder.
 - wp-admin'de varsayılan ortak React ekranı (`studio`): galeri, klasörler, favoriler, seçim, sürükle-bırak, üretim çubuğu, referans/kişi/@anma, Geliştir, Beyin fırtınası, şablonlar, görüntüleyici, karşılaştırma, maske düzenleyici, pano, ayarlar. Klasik ekran "Klasik görünüm" bağlantısıyla erişilebilir.

@@ -1,5 +1,9 @@
 # Flux AI — Değişiklikler
 
+## 0.29.1
+- wp-admin ekranları Flux GraphQL ekran kabuğundan açılır: ilk veri PHP'de sayfaya basılır, Flux AI sayfaları ve diğer Flux ekranları arasında sayfa yenilenmeden geçilir; ekranın parçaları sayfa başında birlikte iner.
+- Ortak modül paketi yenilendi.
+
 ## 0.29.0
 - **Sohbet geçmişi React ekranı oldu** (yeni "Sohbet geçmişi" sayfası): sohbet listesi, başlıkta ve konuşma metninde arama (eşleşen parça gösterilir), Aktif/Arşiv/Tümü süzgeci, yazışmayı salt okunur açma (araç çağrıları ve sonuçları), yeniden adlandırma, arşivleme/geri alma, silme (dosyalarıyla), "Sohbette devam et" bağlantısı. Her kullanıcı yalnız kendi sohbetlerini görür. Flux GraphQL yoksa klasik liste açılır.
 - **GraphQL:** `flxAiChats` (arama, arşiv süzgeci, sayfalama), `flxAiChat` sorguları; `flxAiChatUpdate`, `flxAiChatDelete` mutation'ları. Sağlayıcının ham blokları ve iç mesajlar yazışmada görünmez; araç çıktısı 4000 karaktere kısaltılır.

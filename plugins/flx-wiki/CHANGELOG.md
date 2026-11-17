@@ -1,5 +1,9 @@
 # Flux Wiki
 
+## 0.3.1
+- wp-admin ekranı Flux GraphQL ekran kabuğundan açılır: ilk veri PHP'de sayfaya basılır (yükleniyor göstergesi yok), menüden diğer Flux ekranlarına sayfa yenilenmeden geçilir. Ekranın parçaları sayfa başında birlikte iner (modulepreload).
+- Ortak modül paketi yenilendi.
+
 ## 0.3.0
 - GraphQL: sayfalar, bölümler, ağaç, arama, "Wiki'ye sor", önizleme, kılavuz içe aktarma ve ayarlar `/graphql` üzerinden (Flux GraphQL ≥ 0.2.0 gerekir). REST, MCP ve klasik ekran aynı servis katmanını çağırır; yanıtları değişmez.
 - Yeni görünüm: Wiki › Ayarlar sayfası FluxWP uygulamasındaki React ekranını açar (sayfa listesi, bölümler, Markdown düzenleyici + önizleme, ayarlar, adresler). Klasik görünüme bağlantıyla dönülür.

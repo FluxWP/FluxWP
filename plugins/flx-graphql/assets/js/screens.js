@@ -58,10 +58,17 @@
 		if (!r || r.file !== file) {
 			return null;
 		}
-		// Links with other arguments (actions, nonces, record ids) are pages of their own.
+		// Links with other arguments (actions, nonces, record ids) are pages of their own. Arguments of the
+		// menu address itself (edit.php?post_type=…) must be there, with the same value.
+		var own = r.args || {};
 		var plain = true;
 		u.searchParams.forEach(function (v, k) {
-			if (k !== 'page' && k !== r.startParam) {
+			if (k !== 'page' && k !== r.startParam && own[k] !== v) {
+				plain = false;
+			}
+		});
+		Object.keys(own).forEach(function (k) {
+			if (u.searchParams.get(k) !== own[k]) {
 				plain = false;
 			}
 		});
@@ -72,8 +79,9 @@
 	}
 
 	function needsMet(r) {
+		// A global, or a dotted path such as "wp.media".
 		return (r.needs || []).every(function (n) {
-			return !!w[n];
+			return !!n.split('.').reduce(function (o, k) { return o ? o[k] : undefined; }, w);
 		});
 	}
 
@@ -352,6 +360,10 @@
 		});
 		o.nonce = api.nonce;
 		o.startPage = m.start;
+		// Another start page (tab) than the route's default: its first queries are learned under its own key.
+		if (o.learn && m.start !== m.route.start) {
+			o.learn = { url: o.learn.url, key: m.route.module + '|' + m.start, known: [] };
+		}
 		return o;
 	}
 

@@ -185,6 +185,12 @@ class FLXP_Store {
 	public static function clear() {
 		global $wpdb;
 		$wpdb->query( 'TRUNCATE TABLE ' . flxp_table() ); // phpcs:ignore
+		update_option( 'flxp_log_gen', self::generation() + 1, false );
+	}
+
+	/** Changes when the log is cleared: cached summaries of the old log are not read again. */
+	public static function generation() {
+		return (int) get_option( 'flxp_log_gen', 0 );
 	}
 
 	/**

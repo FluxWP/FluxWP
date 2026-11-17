@@ -48,6 +48,7 @@ flx_admin_screen(
 		},
 		'start_param' => 'tab',
 		'start'       => 'home',
+		'wrap_class'  => 'flxt-wrap',
 		'preload'     => array( array( 'FlxViewer' ), array( 'FlxNoSuchOperation' ) ),
 	)
 );
@@ -64,6 +65,33 @@ $b1 = flx_admin_screen_bundle( flx_admin_screens()['flxt-screen'] );
 $b2 = flx_admin_screen_bundle( flx_admin_screens()['flxt-screen-other'] );
 flxt_same( $b1['id'], $b2['id'], 'identical bundles share an id (one runtime on the page)' );
 flxt_ok( false !== strpos( $b1['entry'], 'flux-modules.js?ver=1.0.0-' . $b1['id'] ), 'entry URL carries version and bundle id', $b1['entry'] );
+
+// Chunks printed as modulepreload (chunks.json "preload", tools/fluxapp/embed-preload.mjs).
+file_put_contents( $dir . 'chunks.json', '{"mode":"chunks","entry":"flux-modules.js","files":[],"preload":{"entry":["flux-react-a1.js"],"screens":{"flxt-test":["flux-test-b2.js","flux-react-a1.js","../x.js"]}}}' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+flxt_same( array( 'flux-react-a1.js', 'flux-test-b2.js' ), flx_admin_screen_chunks( flx_admin_screens()['flxt-screen'] ), 'entry and screen chunks, once each, no paths' );
+flxt_same( array( 'flux-react-a1.js' ), flx_admin_screen_chunks( flx_admin_screens()['flxt-screen-other'] ), 'a screen without its own list gets the entry chunks' );
+
+// Learned first queries (admin-ajax flx_screen_learn): per user, per module and start page.
+$other = '';
+foreach ( $ids as $name => $id ) {
+	if ( 'FlxViewer' !== $name ) {
+		$other = $id;
+		break;
+	}
+}
+$s = flx_admin_screens()['flxt-screen'];
+flxt_same( 'flxt-test|audit', flx_admin_screen_learn_key( $s, array( 'tab' => 'audit' ) ), 'learn key = module|start' );
+flxt_same( 'flxt-test|home', flx_admin_screen_learn_key( $s, array() ), 'default start page' );
+flxt_same( false, flx_admin_screen_learn( 'Bad Key', array( $other . ':{}' ) ), 'learn key is validated' );
+flx_admin_screen_learn( 'flxt-test|audit', array( $other . ':{"b":1,"a":2}', 'nope:{}', $ids['FlxViewer'] . ':{}', $other . ':{"a":2,"b":1}' ) );
+$learned = flx_admin_screen_learned( 'flxt-test|audit' );
+flxt_same( array( $other . ':{"a":2,"b":1}', $ids['FlxViewer'] . ':{}' ), array_column( $learned, 'key' ), 'unknown ids dropped, variables sorted, duplicates once' );
+$merged = flx_admin_screen_preload_items( $s, array( 'tab' => 'audit' ) );
+flxt_same( array( $ids['FlxViewer'] . ':{}', $other . ':{"a":2,"b":1}' ), array_column( $merged, 'key' ), 'explicit preload first, then what was learned' );
+flxt_same( 1, count( flx_admin_screen_preload_items( $s, array( 'tab' => 'home' ) ) ), 'another start page has its own learned list' );
+wp_set_current_user( 0 );
+flxt_same( array(), flx_admin_screen_learned( 'flxt-test|audit' ), 'learned per user' );
+wp_set_current_user( $admin );
 
 // Not a screen request.
 set_current_screen( 'toplevel_page_flxt-screen' );
@@ -95,6 +123,10 @@ flxt_same( 'flxt-test', $opts['module'] ?? '', 'module' );
 flxt_same( 'audit', $opts['startPage'] ?? '', 'start page from the start argument' );
 flxt_same( 'https://example.org/classic', $opts['classicUrl'] ?? '', 'package options are merged' );
 flxt_same( wp_create_nonce( 'wp_rest' ), $opts['nonce'] ?? '', 'REST nonce' );
+flxt_same( 'flxt-test|audit', $opts['learn']['key'] ?? '', 'learn key in the mount options' );
+flxt_same( array_column( $merged, 'key' ), $opts['learn']['known'] ?? null, 'learn: what the page preloaded' );
+flxt_ok( false !== strpos( (string) ( $opts['learn']['url'] ?? '' ), 'admin-ajax.php' ), 'learn URL' );
+flxt_ok( false !== strpos( $html, 'class="wrap flx-screen-wrap flxt-wrap"' ), 'wrap_class on the inline wrap' );
 
 flxt_ok( (bool) preg_match( '#window\.FlxScreensConfig=(\{.*?\});</script>#s', $html, $c ), 'navigator routes are printed' );
 $cfg = json_decode( $c[1] ?? '{}', true );
@@ -119,6 +151,7 @@ flxt_same( false, json_decode( $c[1] ?? '{}', true )['on'] ?? null, 'flx_admin_s
 remove_filter( 'flx_admin_screens_navigation', '__return_false' );
 
 unset( $_GET['page'], $_GET['tab'] );
+delete_user_meta( $admin, FLX_ADMIN_SCREEN_LEARN_META );
 // Leave wp-admin: is_admin() stays true for the rest of the process otherwise, and plugins run admin-only
 // work on shutdown (WooCommerce's new-store setup turns on coming soon).
 $GLOBALS['current_screen'] = null; // phpcs:ignore WordPress.WP.GlobalVariablesOverride

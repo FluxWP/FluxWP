@@ -1,5 +1,9 @@
 # Flux reCAPTCHA
 
+## 0.3.1
+- wp-admin ekranı Flux GraphQL ekran kabuğundan açılır: ilk veri PHP'de sayfaya basılır (yükleniyor göstergesi yok), menüden diğer Flux ekranlarına sayfa yenilenmeden geçilir. Ekranın parçaları sayfa başında birlikte iner (modulepreload).
+- Ortak modül paketi yenilendi.
+
 ## 0.3.0
 - Ayarlar, korunan formlar, durum ve anahtar testi GraphQL'de (Flux GraphQL gerekir). Gizli anahtar hiçbir yanıtta dönmez.
 - Yeni ortak React ekranı wp-admin'de varsayılan; klasik görünüm bağlantıyla açılır (kullanıcı başına).

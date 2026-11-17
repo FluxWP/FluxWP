@@ -282,6 +282,9 @@ function flx_ayar_page() {
 	$bolum = sanitize_key( $_GET['bolum'] ?? 'genel' );
 	$has_presets = function_exists( 'flxk_render_panel' );
 	// New view (0.8.0, GraphQL): the shared React screen is the default; the Presets tab stays here.
+	if ( 'onayarlar' !== $bolum && function_exists( 'flx_flux_ui' ) && flx_flux_ui() && function_exists( 'flx_admin_screen_render' ) && flx_admin_screen_render() ) {
+		return;
+	}
 	if ( 'onayarlar' !== $bolum && function_exists( 'flx_flux_ui' ) && flx_flux_ui() ) {
 		flx_flux_root( 'flx-theme-settings-app' );
 		return;
