@@ -553,6 +553,8 @@ flx_gql_query(
 		'type'        => 'FlxMyDonationConnection!',
 		'description' => __( 'Donations of the signed-in donor, or of the lookup session. Nobody else\'s.', 'flx-donate' ),
 		'cap'         => static function (): bool {
+			// Personal answer, denial included: decided before the kit's cap check can throw, so it is never stored.
+			flx_gql_no_store();
 			return FLXB_My_Donations_Service::can_see();
 		},
 		'args'        => flx_gql_connection_args(),

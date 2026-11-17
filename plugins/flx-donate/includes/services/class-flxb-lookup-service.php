@@ -64,6 +64,9 @@ final class FLXB_Lookup_Service {
 	 * @return FlxbLookupVerify|WP_Error
 	 */
 	public static function verify( string $login, string $code ) {
+		if ( empty( FLXB_Lookup::settings()['on'] ) ) {
+			return self::as_error( FLXB_Lookup::err( 'flxb_lookup_off', __( 'Donation lookup is not available.', 'flx-donate' ), 403 ) );
+		}
 		list( $type, $value ) = FLXB_Lookup::normalize( $login );
 		$code                 = (string) preg_replace( '/\D+/', '', $code );
 		$bad                  = self::as_error( FLXB_Lookup::err( 'flxb_lookup_code', __( 'The code is wrong or has expired.', 'flx-donate' ) ) );

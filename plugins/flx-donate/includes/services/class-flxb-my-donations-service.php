@@ -86,6 +86,9 @@ final class FLXB_My_Donations_Service {
 		if ( is_user_logged_in() ) {
 			return true;
 		}
+		if ( empty( FLXB_Lookup::settings()['on'] ) ) {
+			return false;
+		}
 		$s = FLXB_Lookup::session();
 		return is_array( $s ) && ! empty( $s['type'] );
 	}
