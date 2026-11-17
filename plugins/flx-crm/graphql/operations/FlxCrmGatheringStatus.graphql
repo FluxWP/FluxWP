@@ -1,0 +1,10 @@
+mutation FlxCrmGatheringStatus($input: FlxGatheringSetStatusInput!) {
+  flxGatheringSetStatus(input: $input) {
+    gathering {
+      ...FlxCrmGatheringCard
+    }
+    errors {
+      ...FlxCrmUserError
+    }
+  }
+}

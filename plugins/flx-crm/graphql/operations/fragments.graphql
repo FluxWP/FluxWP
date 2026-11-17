@@ -6,6 +6,7 @@ fragment FlxCrmMoney on FlxMoney {
 
 fragment FlxCrmWhen on FlxDateTime {
   iso
+  timestamp
   label
   relative
 }
@@ -93,6 +94,9 @@ fragment FlxCrmContactCard on FlxContact {
     url
     date
   }
+  sections {
+    ...FlxCrmPersonSection
+  }
 }
 
 fragment FlxCrmEvent on FlxContactEvent {
@@ -174,4 +178,131 @@ fragment FlxCrmUserError on FlxUserError {
   code
   message
   field
+}
+
+fragment FlxCrmPersonSection on FlxPersonSection {
+  id
+  title
+  placement
+  package
+  blocks {
+    kind
+    text
+    columns
+    items {
+      label
+      value
+      url
+      meta
+      primary
+    }
+    rows {
+      cells
+      url
+      label
+      meta
+    }
+  }
+}
+
+fragment FlxCrmGatheringCard on FlxGathering {
+  databaseId
+  name
+  status
+  whenLabel
+  place
+  phaseTone
+  phaseLabel
+  peopleCount
+  coverUrl
+  dateDay
+  dateMonth
+  dateYear
+  stats {
+    label
+    value
+    hint
+    progress
+  }
+  progress
+  progressHint
+  actions {
+    label
+    url
+    target
+    primary
+  }
+  mailReady
+  postId
+  pageState
+  pageUrl
+  pageTitle
+  canCreatePage
+  startsAt {
+    ...FlxCrmWhen
+  }
+}
+
+fragment FlxCrmGatheringDetail on FlxGathering {
+  ...FlxCrmGatheringCard
+  summary
+  note
+  address
+  mapUrl
+  deliveredCount
+  sendCount
+  reasons {
+    label
+    count
+    percent
+  }
+  recentSends {
+    ...FlxCrmGatheringSend
+  }
+}
+
+fragment FlxCrmGatheringSend on FlxGatheringSend {
+  eventId
+  key
+  overall
+  overallLabel
+  tone
+  kind
+  text
+  at {
+    ...FlxCrmWhen
+  }
+  sendAt {
+    ...FlxCrmWhen
+  }
+  byName
+  mediaId
+  mediaUrl
+  mediaIsImage
+  thumbUrl
+  channels {
+    key
+    label
+    missing
+    sent
+    total
+    failed
+    skipped
+    percent
+    eta {
+      ...FlxCrmWhen
+    }
+    campaignId
+  }
+  eta {
+    ...FlxCrmWhen
+  }
+  delivered
+  read
+  replied
+  optout
+  failed
+  reachedTotal
+  canPause
+  pending
 }

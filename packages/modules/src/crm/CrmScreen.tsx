@@ -1,7 +1,6 @@
-// Flux CRM › the whole CRM (overview, contacts, contact card, segments, journeys, duplicates, settings).
+// Flux CRM › the whole CRM (overview, contacts, contact card, segments, journeys, events, duplicates, settings).
 // Same screen in wp-admin (wp-embed) and the FluxWP app; every read and write goes through the Flux CRM
-// GraphQL operations (plugins/flx-crm/graphql/operations). Events and the extension sections other plugins
-// add to the contact card stay on the classic pages (linked).
+// GraphQL operations (plugins/flx-crm/graphql/operations).
 import { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from '@tanstack/react-query';
@@ -19,9 +18,10 @@ import { Duplicates } from './Duplicates';
 import { Segments } from './Segments';
 import { Journeys } from './Journeys';
 import { Settings } from './Settings';
+import { Events } from './Events';
 import './crm.css';
 
-const START: Record<string, string> = { dashboard: 'overview', overview: 'overview', contacts: 'contacts', segments: 'segments', journeys: 'journeys', settings: 'settings' };
+const START: Record<string, string> = { dashboard: 'overview', overview: 'overview', contacts: 'contacts', segments: 'segments', journeys: 'journeys', events: 'events', settings: 'settings' };
 
 export function CrmScreen() {
   const host = useHost();
@@ -72,9 +72,10 @@ function Crm() {
     ['contacts', t('Contacts')],
     ['segments', t('Segments')],
     ['journeys', t('Journeys')],
+    ['events', t('Events')],
     ['settings', t('Settings')],
   ];
-  const active = route.name === 'contact' || route.name === 'duplicates' ? 'contacts' : route.name;
+  const active = route.name === 'contact' || route.name === 'duplicates' ? 'contacts' : route.name === 'event' ? 'events' : route.name;
   let body;
   switch (route.name) {
     case 'contacts':
@@ -92,6 +93,10 @@ function Crm() {
     case 'journeys':
       body = <Journeys route={route} go={go} />;
       break;
+    case 'events':
+    case 'event':
+      body = <Events route={route} go={go} />;
+      break;
     case 'settings':
       body = <Settings />;
       break;
@@ -108,11 +113,6 @@ function Crm() {
               {label}
             </a>
           ))}
-          {host.adminUrl && (
-            <a className="flxcrm-tab" href={host.adminUrl + 'admin.php?page=flx-crm-events'} target="_blank" rel="noopener">
-              {t('Events')}
-            </a>
-          )}
           {host.classicUrl && (
             <a className="flxcrm-tab" href={host.classicUrl} style={{ marginLeft: 'auto' }}>
               {t('Classic view')}

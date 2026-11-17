@@ -1,0 +1,10 @@
+mutation FlxCrmGatheringSave($input: FlxGatheringSaveInput!) {
+  flxGatheringSave(input: $input) {
+    gathering {
+      ...FlxCrmGatheringDetail
+    }
+    errors {
+      ...FlxCrmUserError
+    }
+  }
+}

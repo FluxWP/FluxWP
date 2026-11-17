@@ -1973,3 +1973,6 @@ flx_gql_mutation(
 		},
 	)
 );
+
+require_once __DIR__ . '/gatherings.php';
+require_once __DIR__ . '/sections.php';
