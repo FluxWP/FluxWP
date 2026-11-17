@@ -1881,9 +1881,10 @@ body.flxg-col-resizing, body.flxg-col-resizing * { cursor: col-resize !important
 }
 
 /* Satır üstüne gelince hızlı düzenleme simgeleri (React liste). */
-.flxg-row-actions { display: inline-flex; align-items: center; gap: 6px; margin-left: auto; flex: none; opacity: 0; }
-.flxg-row:hover .flxg-row-actions, .flxg-row-actions:focus-within { opacity: 1; }
-.flxg-listview.is-mobile .flxg-row-actions { opacity: 1; }
+.flxg-listview .flxg-title-cell { position: relative; }
+.flxg-row-actions { position: absolute; right: 6px; top: 50%; transform: translateY(-50%); display: inline-flex; align-items: center; gap: 6px; padding: 0 2px 0 22px; background: linear-gradient(90deg, transparent, var(--hover) 22px); opacity: 0; pointer-events: none; }
+.flxg-row:hover .flxg-row-actions, .flxg-row-actions:focus-within { opacity: 1; pointer-events: auto; }
+.flxg-listview.is-mobile .flxg-row-actions { display: none; }
 .flxg-row-act { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); color: var(--muted); cursor: pointer; }
 .flxg-row-act:hover { background: var(--hover); color: var(--ink); }
 .flxg-title-edit { flex: 1 1 auto; min-width: 0; }
