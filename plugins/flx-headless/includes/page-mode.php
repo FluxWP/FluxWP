@@ -31,6 +31,19 @@ if ( '' !== $GLOBALS['flxhl_page_id'] ) {
 		}
 	}
 	unset( $flxhl_key );
+	/*
+	 * The rewrite buffer opens here, before any other plugin's, so it is the outermost one and runs last: page
+	 * optimizers (LiteSpeed, Flux Speed, WP Rocket...) only combine and minify files on this site's own address, and
+	 * they must see the page before its links move to the front end. Pages that are not a whole-page response pass
+	 * through untouched (see the template_redirect action below).
+	 */
+	ob_start( 'flxhl_page_buffer' );
+}
+
+/** Output buffer of a whole-page request: rewrites the finished page once template_redirect marked it as one. */
+function flxhl_page_buffer( string $html ): string {
+	$fe = $GLOBALS['flxhl_page_rewrite'] ?? null;
+	return $fe instanceof FLXHL_Frontend ? flxhl_page_rewrite( $html, $fe ) : $html;
 }
 
 /** Removes the flxhl_page argument from a URL or query string. */
@@ -201,11 +214,8 @@ add_action(
 		if ( flxhl_page_is_live() ) {
 			header( 'X-Flx-Live: 1', true );
 		}
-		ob_start(
-			static function ( string $html ) use ( $fe ): string {
-				return flxhl_page_rewrite( $html, $fe );
-			}
-		);
+		// The buffer opened when the plugin loaded rewrites the page after every optimizer has run.
+		$GLOBALS['flxhl_page_rewrite'] = $fe;
 	},
 	0
 );
