@@ -421,7 +421,11 @@ function ConnectionForm({ def, conn, all, onCancel, onSaved }: { def: TypeInfo; 
   }, [all, conn, def]);
   const [name, setName] = useState(conn?.name ?? def.label);
   const [active, setActive] = useState(conn ? conn.active : true);
-  const [copyFrom, setCopyFrom] = useState<string>(servers[0] ? String(servers[0].databaseId) : '');
+  const [copyFrom, setCopyFrom] = useState<string>(() => {
+    // The classic select marks every server option selected, so the browser lands on the last one.
+    const last = servers[servers.length - 1];
+    return last ? String(last.databaseId) : '';
+  });
   const [values, setValues] = useState<Record<string, string | boolean>>(() => {
     const v: Record<string, string | boolean> = {};
     for (const f of def.fields) {

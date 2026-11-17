@@ -547,12 +547,9 @@ class FLXI_Connection_Service {
 					)
 				)
 			);
-			self::purge();
 			return $out;
 		}
-		$out = flxi_arr( flxi_test_connection( $id, $to ) );
-		self::purge();
-		return $out;
+		return flxi_arr( flxi_test_connection( $id, $to ) );
 	}
 
 	/**
@@ -580,7 +577,6 @@ class FLXI_Connection_Service {
 		$res = '' !== $scenario
 			? flxi_test_scenario( $id, $scenario, $to, $args )
 			: flxi_test_connection( $id, $to );
-		self::purge();
 		$res = flxi_arr( $res );
 		return array(
 			'ok'    => ! empty( $res['ok'] ),
@@ -594,11 +590,7 @@ class FLXI_Connection_Service {
 	 * @return array<string,mixed>
 	 */
 	public static function wa_state_raw( int $id, bool $fresh = false ): array {
-		$out = flxi_arr( flxi_wa_state( $id, $fresh ) );
-		if ( $fresh ) {
-			self::purge();
-		}
-		return $out;
+		return flxi_arr( flxi_wa_state( $id, $fresh ) );
 	}
 
 	/**

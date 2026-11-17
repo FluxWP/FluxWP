@@ -828,6 +828,30 @@ flxt_same( $evo_id, (int) ( flxi_resolve_connection( 'whatsapp' )['id'] ?? 0 ), 
 FLXI_Connection_Service::delete( $evo_id, false, false );
 FLXI_Connection_Service::delete( $sms_id, false, false );
 flxt_same( 0, count( flxi_list_connections() ), 'every test connection is gone' );
+
+// The cache purge fires once per write and never on tests or state reads.
+$purges = 0;
+$count  = static function () use ( &$purges ) {
+	++$purges;
+};
+add_action( 'flx_gql_purged', $count );
+$before = $purges;
+$r      = $run2( 'FlxMailConnectionSave', array( 'input' => array( 'type' => 'netgsm', 'name' => 'Purge SMS', 'username' => '8501112233', 'password' => $nspass, 'header' => 'CONTRACT' ) ), $admin );
+$pid    = (int) ( $r['data']['flxMailConnectionSave']['connection']['databaseId'] ?? 0 );
+flxt_same( $before + 1, $purges, 'save purges the connections cache once' );
+$before = $purges;
+$run2( 'FlxMailConnectionTest', array( 'input' => array( 'id' => $pid ) ), $admin );
+$q = new WP_REST_Request( 'POST', '/flxi/v1/connection-test' );
+$q->set_param( 'id', $pid );
+rest_do_request( $q );
+$run2( 'FlxMailWaState', array( 'id' => $pid, 'fresh' => true ), $admin );
+rest_do_request( new WP_REST_Request( 'GET', '/flxi/v1/wa/' . $pid . '/state' ) );
+flxt_same( $before, $purges, 'a test and a fresh state read purge nothing' );
+FLXI_Connection_Service::set_default( $pid, false );
+flxt_same( $before + 1, $purges, 'make default purges once' );
+FLXI_Connection_Service::delete( $pid, false, false );
+flxt_same( $before + 2, $purges, 'delete purges once' );
+remove_action( 'flx_gql_purged', $count );
 remove_filter( 'pre_http_request', $stub, 10 );
 
 // The Classic switch URL handed to the React screen is a plain URL (wp_nonce_url() would HTML-escape it).
