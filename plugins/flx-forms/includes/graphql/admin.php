@@ -242,7 +242,7 @@ flx_gql_type(
 	array(
 		'description' => __( 'Panel settings. Keys and tokens are never returned; "saved" flags say whether one is stored.', 'flx-forms' ),
 		'fields'      => array(
-			'bootstrap'           => array( 'type' => 'String!', 'description' => __( 'Bootstrap setting of the site. Empty by default.', 'flx-forms' ) ),
+			'bootstrap'           => array( 'type' => 'Boolean!', 'description' => __( 'The theme already loads Bootstrap, so forms use its styles.', 'flx-forms' ) ),
 			'osLocationPicker'    => array( 'type' => 'Boolean!', 'description' => __( 'Use the OpenStreetMap location picker.', 'flx-forms' ) ),
 			'version'             => array( 'type' => 'String!', 'description' => __( 'Form builder version stored with the settings.', 'flx-forms' ) ),
 			'sessionDuration'     => array( 'type' => 'Int!', 'description' => __( 'Days a visitor can keep a response session (1 to 7).', 'flx-forms' ) ),
@@ -574,7 +574,7 @@ flx_gql_mutation(
 		'description' => __( 'Changes panel settings. Fields left out stay as they are. Secret fields: empty keeps the saved value, "__clear__" removes it.', 'flx-forms' ),
 		'cap'         => flxf_gql_panel_cap(),
 		'input'       => array(
-			'bootstrap'           => array( 'type' => 'String', 'description' => __( 'Bootstrap setting of the site.', 'flx-forms' ) ),
+			'bootstrap'           => array( 'type' => 'Boolean', 'description' => __( 'The theme already loads Bootstrap, so forms use its styles.', 'flx-forms' ) ),
 			'osLocationPicker'    => array( 'type' => 'Boolean', 'description' => __( 'Use the OpenStreetMap location picker.', 'flx-forms' ) ),
 			'sessionDuration'     => array( 'type' => 'Int', 'description' => __( 'Days a visitor can keep a response session (1 to 7).', 'flx-forms' ) ),
 			'trackCodeStyle'      => array( 'type' => 'FlxFormsTrackCodeStyle', 'description' => __( 'Look of new tracking codes.', 'flx-forms' ) ),

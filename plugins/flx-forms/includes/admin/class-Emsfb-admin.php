@@ -93,6 +93,9 @@ class Admin {
     }
 
     public function admin_assets($hook) {
+        if (\FLXF_Panel_UI::active()) {
+            return; // The React panel brings its own assets.
+        }
         global $current_screen;
         $hook = $hook ? $hook : http_build_query($_GET);
         $package_type_efb = (int) get_option('emsfb_pro' ,2);
@@ -192,6 +195,10 @@ class Admin {
     }
 
     public function panel_callback() {
+        if (\FLXF_Panel_UI::active()) {
+            \FLXF_Panel_UI::render();
+            return;
+        }
         include_once EMSFB_PLUGIN_DIRECTORY . "/includes/admin/class-Emsfb-panel.php";
         $list_table = new Panel_edit();
     }

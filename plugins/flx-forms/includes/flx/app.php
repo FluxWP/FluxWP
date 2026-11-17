@@ -30,6 +30,28 @@ add_action(
 	20
 );
 
+/*
+ * Native screen of the FluxWP app: the same React screen as the wp-admin panel (@fluxwp/modules
+ * `flxf-forms`, data over GraphQL). App versions without it open the admin page instead.
+ */
+add_filter(
+	'flxapp_modules',
+	static function ( $m ) {
+		$m               = is_array( $m ) ? $m : array();
+		$m['flxf-forms'] = array(
+			'title'   => __( 'Forms', 'flx-forms' ),
+			'cap'     => 'Emsfb',
+			'menu'    => 'Emsfb',
+			'url'     => admin_url( 'admin.php?page=Emsfb' ),
+			'api'     => home_url( '/graphql' ),
+			'icon'    => 'note',
+			'version' => flxf_app_version(),
+			'order'   => 24,
+		);
+		return $m;
+	}
+);
+
 function flxf_app_version() {
 	static $v = null;
 	if ( null === $v ) {

@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 2.6.0
+- Panel (yanıtlar ve ayarlar) React ekranı oldu, wp-admin'de varsayılan; klasik panel ekrandaki "Klasik görünüm" bağlantısıyla (`flxf_ui` kullanıcı meta'sı) açılır. FluxWP uygulamasında da yerel ekran (`flxf-forms`). Oluştur (form oluşturucu) klasik kalır.
+- GraphQL: `flxForms`, `flxFormResponses` (form, okunmamış, durum, arama süzgeçleri), `flxFormResponse`, `flxFormResponseByTrack`, `flxFormResponseRead`/`Reads`, `flxFormResponseDelete`/`sDelete`, `flxFormResponseReply` (ek, bileti kapat/aç), `flxFormsStorageClear`, `flxFormsExportUrl`, `flxFormsSettings` ve `flxFormsSettingsUpdate`. Hepsi `Emsfb` veya `manage_options` ister. Gizli anahtarlar ve belirteçler yalnız yazılır (boş korur, `__clear__` kaldırır), hiçbir çıktıda yoktur.
+- Klasik panel AJAX işleyicileri, FluxApp REST yolları ve GraphQL aynı servisleri çağırır (`FLXF_Response_Service`, `FLXF_Settings_Service`); çıktıları ve yan etkileri (ziyaretçi e-postası, rezervasyon bırakma) aynı kaldı. GraphQL cevap eki yalnız bu bilet için ayrılmış dosyayı kabul eder.
+- CSV dışa aktarım admin-post'ta kalır; ekran bağlantı verir. Canlı e-posta sunucusu testi, ödeme sağlayıcısına özel alanlar ve yerelleştirme sözlüğü bu sürümde klasik panelde.
+
 ## 2.5.0
 - Herkese açık form okuma ve gönderim GraphQL üzerinden: `flxForm`, `flxFormSubmit`, `flxFormTrack`, `flxFormTrackReply`. Çizim alanları döner; bildirim alıcıları, webhook, sırlar ve rezervasyon sayaçları dönmez. Gönderim form, anket ve abonelik içindir. Captcha Flux reCAPTCHA (`flxf_submit`), honeypot ve hız sınırı GraphQL'de. Klasik REST aynı kaldı.
 - PHP 8.1 ve Flux GraphQL gerekli. Flux GraphQL yoksa GraphQL kaydı atlanır, REST çalışır.

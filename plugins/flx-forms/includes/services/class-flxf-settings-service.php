@@ -17,7 +17,7 @@ defined( 'ABSPATH' ) || exit;
  * Panel settings.
  *
  * @phpstan-type FlxfResponseStyle array{preset:string,brandColor:string,primary:string,primaryDark:string,accent:string,text:string,textMuted:string,bgCard:string,bgMeta:string,bgTrack:string,bgResp:string,bgEditor:string,editorText:string,editorPh:string,btnText:string,fontFamily:string,fontSize:string,customFont:string}
- * @phpstan-type FlxfSettings array{bootstrap:string,osLocationPicker:bool,version:string,sessionDuration:int,trackCodeStyle:string,scaptcha:bool,dsupfile:bool,activeDlBtn:bool,showIp:bool,adminSN:bool,responseStyle:FlxfResponseStyle,siteKey:string,secretKeySaved:bool,shieldSilentCaptcha:bool,shieldAvailable:bool,mapKeySaved:bool,emailSupporter:string,femail:string,smtp:bool,weeklyEmailReport:bool,emailStatsReport:bool,emailTemp:string,emailBtnBgColor:string,emailBtnTextColor:string,payProvider:string,stripePKey:string,paypalPKey:string,stripeSecretSaved:bool,paypalSecretSaved:bool,payTokenSaved:bool,smsConfig:string,smsPhoneSaved:bool}
+ * @phpstan-type FlxfSettings array{bootstrap:bool,osLocationPicker:bool,version:string,sessionDuration:int,trackCodeStyle:string,scaptcha:bool,dsupfile:bool,activeDlBtn:bool,showIp:bool,adminSN:bool,responseStyle:FlxfResponseStyle,siteKey:string,secretKeySaved:bool,shieldSilentCaptcha:bool,shieldAvailable:bool,mapKeySaved:bool,emailSupporter:string,femail:string,smtp:bool,weeklyEmailReport:bool,emailStatsReport:bool,emailTemp:string,emailBtnBgColor:string,emailBtnTextColor:string,payProvider:string,stripePKey:string,paypalPKey:string,stripeSecretSaved:bool,paypalSecretSaved:bool,payTokenSaved:bool,smsConfig:string,smsPhoneSaved:bool}
  */
 class FLXF_Settings_Service {
 
@@ -82,7 +82,7 @@ class FLXF_Settings_Service {
 		$temp = self::text( $all, 'emailTemp', '' );
 		$sms  = self::text( $all, 'sms_config', 'null' );
 		return array(
-			'bootstrap'           => self::text( $all, 'bootstrap', '' ),
+			'bootstrap'           => self::flag( $all, 'bootstrap', false ),
 			'osLocationPicker'    => self::flag( $all, 'osLocationPicker', false ),
 			'version'             => self::text( $all, 'efb_version', '' ),
 			'sessionDuration'     => max( 1, min( 7, (int) self::text( $all, 'sessionDuration', '1' ) ) ),
@@ -291,12 +291,8 @@ class FLXF_Settings_Service {
 	 */
 	public static function update( array $input ): array|WP_Error {
 		$m = array();
-		foreach ( array( 'bootstrap' ) as $key ) {
-			if ( array_key_exists( $key, $input ) && is_string( $input[ $key ] ) ) {
-				$m[ $key ] = self::clean_text( $input[ $key ] );
-			}
-		}
 		foreach ( array(
+			'bootstrap'           => 'bootstrap',
 			'osLocationPicker'    => 'osLocationPicker',
 			'scaptcha'            => 'scaptcha',
 			'dsupfile'            => 'dsupfile',

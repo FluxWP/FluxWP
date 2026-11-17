@@ -621,7 +621,6 @@ class FLXF_Response_Service {
 					$val  = FLXF_Submission_Service::str( $item['value'] ?? '' );
 					if ( 'closed' === $type || 'opened' === $type ) {
 						$kind = $type;
-						$body = sanitize_textarea_field( $val );
 						continue;
 					}
 					$url = esc_url_raw( FLXF_Submission_Service::str( $item['url'] ?? '' ) );

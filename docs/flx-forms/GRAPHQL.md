@@ -89,3 +89,34 @@ Bu ortak yol sayesinde GraphQL gönderimi ve yanıtı klasik yolla aynı post-sa
 ## Hatalar
 
 `INVALID_INPUT` payload `errors` listesindedir. `NOT_FOUND`, `RATE_LIMITED` ve `FORBIDDEN` üst seviye `extensions.code`. Metinler İngilizce kaynak, Türkçe `languages/flx-forms-tr_TR.l10n.php`.
+
+# Panel: yanıtlar ve ayarlar (dilim 2)
+
+Hepsi `flx_gql_any_cap( 'Emsfb', 'manage_options' )`. Klasik panel AJAX işleyicileri, FluxApp REST yolları (`flx-forms/v1`) ve GraphQL aynı servisi çağırır: `FLXF_Response_Service` (liste sorgusu, okundu, silme, yönetici yanıtı) ve `FLXF_Settings_Service` (ayarları doğrulama ve kaydetme). Klasik çıktılar bayt bayt aynı kaldı.
+
+```graphql
+query FlxFormResponses($formId: ID, $unread: Boolean, $status: FlxFormResponseStatus, $search: String, $first: Int, $after: String) {
+  flxFormResponses(formId: $formId, unread: $unread, status: $status, search: $search, first: $first, after: $after) {
+    nodes { id formId formTitle trackCode status createdAt { iso label } preview fields { label value isFile } }
+    pageInfo { hasNextPage endCursor }
+    totalCount
+  }
+}
+```
+
+- Ödenmemiş ödeme taslakları (`read_ = 2`) hiçbir sorguda yoktur; `flxFormResponse` için `NOT_FOUND`.
+- Okundu: `0 → 1`, `3 → 4` (FluxApp ile aynı); yanıtlar da okundu olur. Toplu işlemler en çok 200 id.
+- Silme yanıtın cevaplarını da siler (klasik toplu silme gibi).
+- `flxFormResponseReply`: `state` `REPLY`, `CLOSE`, `OPEN`. Metin düz yazıdır, HTML reddedilir. Ek yalnız yükleme ucunun (`POST /Emsfb/v1/forms/file/upload`, `pl=resp`) bu yanıt için ayırdığı dosyadır; klasik `update_file_Emsfb` nonce-only açığı miras alınmadı (cap şart). Kayıt klasik biçimdedir (`emsfb_rsp_.content` kaçışlı JSON), ziyaretçiye giden e-posta ve rezervasyon bırakma klasik yolla aynıdır ve bir kez çalışır.
+- `flxFormsExportUrl`: CSV baytı pano dışa aktarımında (`admin_post_flxf_dash_csv`) kalır; bu alan nonce'lu bağlantıyı verir.
+- Nesne düzeyi görünürlük: Flux Forms'ta forma veya yanıta bağlı "yalnız kendi" kapsamı yok (`form_access_by` kullanılmıyor); `Emsfb` sahibi tüm yanıtları görür. Listeler, tekil sorgu, arama ve dışa aktarım aynı kuralla.
+
+```graphql
+mutation FlxFormsSettingsUpdate($input: FlxFormsSettingsUpdateInput!) {
+  flxFormsSettingsUpdate(input: $input) { settings { sessionDuration trackCodeStyle stripeSecretSaved } errors { code message field } }
+}
+```
+
+Ayarlar: genel, yanıt kutusu (oturum, takip kodu biçimi, renkler), captcha, e-posta, e-posta şablonu, ödemeler (sağlayıcı, anahtarlar), SMS. Gizli alanlar (`secretKey`, `mapKey`, `stripeSecretKey`, `paypalSecretKey`, `payToken`, `smsPhoneNumbers`) yalnız yazılır; okuma `...Saved` bayrağı döner. Verilmeyen alan değişmez (`set_setting_Emsfb` yok sayılanı korur). Şablon doğrulaması ve temizliği klasik panelle aynı kod.
+
+Bu dilimde yok (klasik panelde kalır): canlı e-posta sunucusu testi (`check_email_server_efb`), ödeme sağlayıcısına özel dinamik alanlar (Ödemeler ekranı, dilim 4), yerelleştirme sözlüğü (`text`), onboarding ve lisans/plan, Eklentiler.

@@ -573,8 +573,8 @@ type FlxFormsSettings {
   activeDlBtn: Boolean!
   """Show the staff name on replies."""
   adminSN: Boolean!
-  """Bootstrap setting of the site. Empty by default."""
-  bootstrap: String!
+  """The theme already loads Bootstrap, so forms use its styles."""
+  bootstrap: Boolean!
   """Visitors may attach files to replies."""
   dsupfile: Boolean!
   """Mail button colour."""
@@ -641,8 +641,8 @@ input FlxFormsSettingsUpdateInput {
   activeDlBtn: Boolean
   """Show the staff name on replies."""
   adminSN: Boolean
-  """Bootstrap setting of the site."""
-  bootstrap: String
+  """The theme already loads Bootstrap, so forms use its styles."""
+  bootstrap: Boolean
   """
   This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
   """
