@@ -1,0 +1,43 @@
+# Panel settings. Secrets come back as "saved" flags only.
+query FlxFormsSettings {
+  flxFormsSettings {
+    ...FlxFormsSettingsFull
+  }
+}
+
+fragment FlxFormsSettingsFull on FlxFormsSettings {
+  bootstrap
+  osLocationPicker
+  version
+  sessionDuration
+  trackCodeStyle
+  scaptcha
+  dsupfile
+  activeDlBtn
+  showIp
+  adminSN
+  responseStyle {
+    preset brandColor primary primaryDark accent text textMuted bgCard bgMeta bgTrack bgResp bgEditor editorText editorPh btnText fontFamily fontSize customFont
+  }
+  siteKey
+  secretKeySaved
+  shieldSilentCaptcha
+  shieldAvailable
+  mapKeySaved
+  emailSupporter
+  femail
+  smtp
+  weeklyEmailReport
+  emailStatsReport
+  emailTemp
+  emailBtnBgColor
+  emailBtnTextColor
+  payProvider
+  stripePKey
+  paypalPKey
+  stripeSecretSaved
+  paypalSecretSaved
+  payTokenSaved
+  smsConfig
+  smsPhoneSaved
+}

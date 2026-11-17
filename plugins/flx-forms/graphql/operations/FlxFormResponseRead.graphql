@@ -1,0 +1,6 @@
+mutation FlxFormResponseRead($input: FlxFormResponseReadInput!) {
+  flxFormResponseRead(input: $input) {
+    response { id status }
+    errors { code message field }
+  }
+}

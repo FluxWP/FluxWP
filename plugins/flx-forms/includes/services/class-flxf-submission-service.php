@@ -456,7 +456,7 @@ class FLXF_Submission_Service {
 	/**
 	 * @return list<FlxfAnswer>
 	 */
-	private static function answers( string $content ): array {
+	public static function answers( string $content ): array {
 		$rows = self::decode_json( $content );
 		if ( ! is_array( $rows ) ) {
 			return array();
@@ -583,7 +583,7 @@ class FLXF_Submission_Service {
 		return null;
 	}
 
-	private static function ip(): string {
+	public static function ip(): string {
 		$ip = function_exists( 'flx_client_ip' ) ? flx_client_ip() : '0.0.0.0';
 		return substr( $ip, 0, 45 );
 	}
@@ -957,7 +957,7 @@ class FLXF_Submission_Service {
 	 *
 	 * @param list<array<string,mixed>> $rows Field rows.
 	 */
-	private static function encode_rows( array $rows ): string {
+	public static function encode_rows( array $rows ): string {
 		array_walk_recursive(
 			$rows,
 			static function ( mixed &$value ): void {
@@ -971,7 +971,7 @@ class FLXF_Submission_Service {
 		return str_replace( '"', '\\"', $json );
 	}
 
-	private static function decode_json( string $content ): mixed {
+	public static function decode_json( string $content ): mixed {
 		$decoded = json_decode( $content, true );
 		if ( ! is_array( $decoded ) && ! is_string( $decoded ) ) {
 			$decoded = json_decode( str_replace( '\\', '', $content ), true );
@@ -984,7 +984,7 @@ class FLXF_Submission_Service {
 	 *
 	 * @return FlxfMoment
 	 */
-	private static function moment( string $mysql ): array {
+	public static function moment( string $mysql ): array {
 		$gmt = '' !== $mysql ? get_gmt_from_date( $mysql ) : '';
 		$out = flx_gql_datetime( $gmt );
 		if ( is_array( $out ) ) {
@@ -1005,14 +1005,14 @@ class FLXF_Submission_Service {
 	/**
 	 * A stored scalar as text. Arrays and objects become an empty string.
 	 */
-	private static function str( mixed $value ): string {
+	public static function str( mixed $value ): string {
 		return is_scalar( $value ) ? (string) $value : '';
 	}
 
 	/**
 	 * A stored number as int. Anything else is 0.
 	 */
-	private static function num( mixed $value ): int {
+	public static function num( mixed $value ): int {
 		if ( is_int( $value ) ) {
 			return $value;
 		}

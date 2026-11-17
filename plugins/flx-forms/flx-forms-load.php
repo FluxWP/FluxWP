@@ -402,6 +402,8 @@ if (!function_exists('emsfb_is_email_sending_enabled_efb')) {
 
 require_once __DIR__ . '/includes/services/class-flxf-form-service.php';
 require_once __DIR__ . '/includes/services/class-flxf-submission-service.php';
+require_once __DIR__ . '/includes/services/class-flxf-response-service.php';
+require_once __DIR__ . '/includes/services/class-flxf-settings-service.php';
 
 add_filter(
 	'flx_captcha_contexts',
@@ -465,5 +467,6 @@ add_action(
 			return;
 		}
 		require_once __DIR__ . '/includes/graphql/schema.php';
+		require_once __DIR__ . '/includes/graphql/admin.php';
 	}
 );
