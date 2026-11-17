@@ -54,6 +54,23 @@ function flxcrm_person_card_enqueue() {
  *                          buraya döner), back ([adres, ad] ya da false).
  * @return bool Basıldıysa true.
  */
+function flxcrm_person_card( $contact_id, array $args = array() ) {
+	if ( ! is_admin() || ! class_exists( 'FLXCRM_Page_Contact' ) || ! flxcrm_can() ) {
+		return false;
+	}
+	$c = FLXCRM_Contacts::get( (int) $contact_id );
+	if ( ! $c ) {
+		return false;
+	}
+	$args = wp_parse_args( $args, array( 'context' => 'external', 'back' => false ) );
+	if ( empty( $args['base'] ) ) {
+		$args['base'] = remove_query_arg( array( 'tl', 'flxcrm_msg', 'flxcrm_err' ), set_url_scheme( ( is_ssl() ? 'https://' : 'http://' ) . ( $_SERVER['HTTP_HOST'] ?? '' ) . ( $_SERVER['REQUEST_URI'] ?? '' ) ) ); // phpcs:ignore WordPress.Security
+	}
+	flxcrm_person_card_enqueue();
+	FLXCRM_Page_Contact::card( $c, $args );
+	return true;
+}
+
 /**
  * Registers a block another package adds to the person card over GraphQL.
  *
@@ -98,21 +115,4 @@ function flxcrm_register_person_section( array $section ): void {
 			return $list;
 		}
 	);
-}
-
-function flxcrm_person_card( $contact_id, array $args = array() ) {
-	if ( ! is_admin() || ! class_exists( 'FLXCRM_Page_Contact' ) || ! flxcrm_can() ) {
-		return false;
-	}
-	$c = FLXCRM_Contacts::get( (int) $contact_id );
-	if ( ! $c ) {
-		return false;
-	}
-	$args = wp_parse_args( $args, array( 'context' => 'external', 'back' => false ) );
-	if ( empty( $args['base'] ) ) {
-		$args['base'] = remove_query_arg( array( 'tl', 'flxcrm_msg', 'flxcrm_err' ), set_url_scheme( ( is_ssl() ? 'https://' : 'http://' ) . ( $_SERVER['HTTP_HOST'] ?? '' ) . ( $_SERVER['REQUEST_URI'] ?? '' ) ) ); // phpcs:ignore WordPress.Security
-	}
-	flxcrm_person_card_enqueue();
-	FLXCRM_Page_Contact::card( $c, $args );
-	return true;
 }
