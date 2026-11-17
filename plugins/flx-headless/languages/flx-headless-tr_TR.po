@@ -1,0 +1,658 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: tr_TR\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Settings"
+msgstr "Ayarlar"
+
+msgid "Serves headless front ends over GraphQL"
+msgstr "Headless ön yüzlere GraphQL ile içerik sunar"
+
+msgid "Headless"
+msgstr "Headless"
+
+msgid "This screen needs Flux GraphQL (0.4.0 or newer). Install or update it from the FluxWP Packages screen."
+msgstr "Bu ekran Flux GraphQL (0.4.0 ya da üstü) ister. FluxWP Paketler ekranından kurun ya da güncelleyin."
+
+msgid "%d front end, webhook set."
+msgid_plural "%d front ends, webhooks set."
+msgstr[0] "%d ön yüz, webhook tanımlı."
+msgstr[1] "%d ön yüz, webhook'lar tanımlı."
+
+msgid "No front end is added yet; GraphQL works, but links, canonical addresses and the webhook have no front end to point at."
+msgstr "Henüz ön yüz eklenmedi; GraphQL çalışır ama bağlantılar, canonical adresler ve webhook bir ön yüze yönlenemez."
+
+msgid "The last webhook call failed for: %s. Open the delivery log on the Headless page."
+msgstr "Son webhook çağrısı başarısız: %s. Headless sayfasındaki gönderim kaydına bakın."
+
+msgid "No revalidate webhook for: %s. These front ends show changes only when their cache runs out."
+msgstr "Revalidate webhook'u yok: %s. Bu ön yüzler değişiklikleri ancak önbellekleri dolunca gösterir."
+
+msgid "Headless front ends"
+msgstr "Headless ön yüzler"
+
+msgid "This front end does not exist any more."
+msgstr "Bu ön yüz artık yok."
+
+msgid "At most %d front ends can be added."
+msgstr "En fazla %d ön yüz eklenebilir."
+
+msgid "Give the front end a name."
+msgstr "Ön yüze bir ad verin."
+
+msgid "Enter the front end address with https:// (http:// only for localhost)."
+msgstr "Ön yüz adresini https:// ile girin (http:// yalnız localhost için)."
+
+msgid "The front end cannot have the same address as this WordPress. Move WordPress to another address (e.g. cms.example.com) first."
+msgstr "Ön yüz bu WordPress ile aynı adreste olamaz. Önce WordPress'i başka bir adrese taşıyın (ör. cms.example.com)."
+
+msgid "Another front end already has this address."
+msgstr "Bu adres başka bir ön yüzde kayıtlı."
+
+msgid "Enter the webhook address with https:// (http:// only for localhost)."
+msgstr "Webhook adresini https:// ile girin (http:// yalnız localhost için)."
+
+msgid "The language \"%s\" is not on this site."
+msgstr "\"%s\" dili bu sitede yok."
+
+msgid "The preview path starts with \"/\" (e.g. /api/preview)."
+msgstr "Önizleme yolu \"/\" ile başlar (ör. /api/preview)."
+
+msgid "The secret must be at least 24 characters. Use the Generate button."
+msgstr "Secret en az 24 karakter olmalı. Üret düğmesini kullanın."
+
+msgid "The secret could not be stored securely on this server."
+msgstr "Secret bu sunucuda güvenli biçimde saklanamadı."
+
+msgid "A webhook needs a secret so the front end can check that the call comes from this site."
+msgstr "Ön yüzün çağrının bu siteden geldiğini doğrulayabilmesi için webhook'a secret gerekir."
+
+msgid "Choose what WordPress does with its own pages."
+msgstr "WordPress'in kendi sayfalarıyla ne yapacağını seçin."
+
+msgid "Add a front end first; WordPress pages point visitors and search engines to it."
+msgstr "Önce bir ön yüz ekleyin; WordPress sayfaları ziyaretçileri ve arama motorlarını ona yönlendirir."
+
+msgid "Enter the webhook address and the secret first."
+msgstr "Önce webhook adresini ve secret'ı girin."
+
+msgid "Sent without waiting for the answer."
+msgstr "Cevap beklenmeden gönderildi."
+
+msgid "The front end accepted the call."
+msgstr "Ön yüz çağrıyı kabul etti."
+
+msgid "The front end answered with HTTP %d."
+msgstr "Ön yüz HTTP %d ile cevap verdi."
+
+msgid "Home"
+msgstr "Ana sayfa"
+
+msgid "What an address shows."
+msgstr "Bir adresin ne gösterdiği."
+
+msgid "The home page (a page or the latest posts)."
+msgstr "Ana sayfa (bir sayfa ya da son yazılar)."
+
+msgid "The page that lists the latest posts (blog)."
+msgstr "Son yazıları listeleyen sayfa (blog)."
+
+msgid "One post, page or other content."
+msgstr "Tek bir yazı, sayfa ya da başka içerik."
+
+msgid "A category, tag or other term archive."
+msgstr "Kategori, etiket ya da başka bir terim arşivi."
+
+msgid "The archive of a content type (e.g. the shop)."
+msgstr "Bir içerik türünün arşivi (ör. mağaza)."
+
+msgid "An author archive."
+msgstr "Yazar arşivi."
+
+msgid "A date archive."
+msgstr "Tarih arşivi."
+
+msgid "Search results (?s=)."
+msgstr "Arama sonuçları (?s=)."
+
+msgid "The address moved; send the visitor to redirect with status (301)."
+msgstr "Adres taşındı; ziyaretçiyi status koduyla (301) redirect adresine gönderin."
+
+msgid "Nothing is at this address (404)."
+msgstr "Bu adreste bir şey yok (404)."
+
+msgid "What WordPress does with its own theme pages once a front end serves the site."
+msgstr "Siteyi bir ön yüz sunduğunda WordPress'in kendi tema sayfalarıyla ne yaptığı."
+
+msgid "WordPress keeps showing its pages (both sites are open)."
+msgstr "WordPress sayfalarını göstermeye devam eder (iki site de açık)."
+
+msgid "WordPress pages stay open but tell search engines the front end is the real address (noindex + canonical)."
+msgstr "WordPress sayfaları açık kalır ama arama motorlarına gerçek adresin ön yüz olduğunu söyler (noindex + canonical)."
+
+msgid "Visitors are sent to the same address on the default front end (301). Cart, checkout, account, previews and editors stay on WordPress."
+msgstr "Ziyaretçiler varsayılan ön yüzde aynı adrese gönderilir (301). Sepet, ödeme, hesap, önizleme ve editörler WordPress'te kalır."
+
+msgid "A headless front end this site serves. The webhook secret is never returned."
+msgstr "Bu sitenin sunduğu bir headless ön yüz. Webhook secret'ı hiçbir zaman döndürülmez."
+
+msgid "Front end id; pass it as the frontend argument of flxRoute and flxSite."
+msgstr "Ön yüz kimliği; flxRoute ve flxSite'a frontend argümanı olarak verin."
+
+msgid "Name shown in the panel."
+msgstr "Panelde görünen ad."
+
+msgid "Address of the front end (https://www.example.com), without a trailing slash."
+msgstr "Ön yüzün adresi (https://www.example.com), sonda eğik çizgi olmadan."
+
+msgid "Browser origin of the front end; it is allowed to call /graphql (CORS)."
+msgstr "Ön yüzün tarayıcı origin'i; /graphql çağırmasına izin verilir (CORS)."
+
+msgid "Language codes the front end serves; empty means every language."
+msgstr "Ön yüzün sunduğu dil kodları; boşsa tüm diller."
+
+msgid "The front end is in use (CORS, links, webhook)."
+msgstr "Ön yüz kullanımda (CORS, bağlantılar, webhook)."
+
+msgid "Used when a request names no front end and comes from no known origin; previews and WordPress redirects go here."
+msgstr "İstek bir ön yüz belirtmediğinde ve bilinen bir origin'den gelmediğinde kullanılır; önizlemeler ve WordPress yönlendirmeleri buraya gider."
+
+msgid "Webhook address that receives the signed revalidate calls; empty when none."
+msgstr "İmzalı revalidate çağrılarını alan webhook adresi; yoksa boş."
+
+msgid "A webhook secret is saved."
+msgstr "Kayıtlı bir webhook secret'ı var."
+
+msgid "Masked last four characters of the secret; empty when none. The secret itself is never returned."
+msgstr "Secret'ın maskelenmiş son dört karakteri; yoksa boş. Secret'ın kendisi hiçbir zaman döndürülmez."
+
+msgid "Path on the front end that opens previews (e.g. /api/preview); empty when the editor previews on WordPress."
+msgstr "Ön yüzde önizlemeleri açan yol (ör. /api/preview); editör WordPress'te önizliyorsa boş."
+
+msgid "One revalidate webhook call."
+msgstr "Bir revalidate webhook çağrısı."
+
+msgid "When it was sent."
+msgstr "Gönderildiği zaman."
+
+msgid "Front end id."
+msgstr "Ön yüz kimliği."
+
+msgid "Front end name."
+msgstr "Ön yüz adı."
+
+msgid "purge (content changed), all (refresh everything) or test."
+msgstr "purge (içerik değişti), all (her şeyi yenile) ya da test."
+
+msgid "Cache tags sent."
+msgstr "Gönderilen önbellek etiketleri."
+
+msgid "Page paths sent."
+msgstr "Gönderilen sayfa yolları."
+
+msgid "HTTP status the front end answered; 0 when not waited for or not reached."
+msgstr "Ön yüzün verdiği HTTP durum kodu; beklenmediyse ya da ulaşılamadıysa 0."
+
+msgid "Delivered (2xx) or sent without waiting."
+msgstr "Ulaştı (2xx) ya da beklenmeden gönderildi."
+
+msgid "Result in the user's language."
+msgstr "Kullanıcının dilinde sonuç."
+
+msgid "Duration in milliseconds."
+msgstr "Milisaniye cinsinden süre."
+
+msgid "A meta tag of the page head (<meta name|property content>)."
+msgstr "Sayfa head'indeki bir meta etiketi (<meta name|property content>)."
+
+msgid "name attribute (description, twitter:card …); empty for property tags."
+msgstr "name özniteliği (description, twitter:card …); property etiketlerinde boş."
+
+msgid "property attribute (og:title …); empty for name tags."
+msgstr "property özniteliği (og:title …); name etiketlerinde boş."
+
+msgid "content attribute."
+msgstr "content özniteliği."
+
+msgid "A language version of the page (<link rel=\"alternate\" hreflang>)."
+msgstr "Sayfanın bir dil sürümü (<link rel=\"alternate\" hreflang>)."
+
+msgid "Language code."
+msgstr "Dil kodu."
+
+msgid "hreflang value."
+msgstr "hreflang değeri."
+
+msgid "Full address on the front end."
+msgstr "Ön yüzdeki tam adres."
+
+msgid "Path on the front end."
+msgstr "Ön yüzdeki yol."
+
+msgid "What the front end puts in <head>: the same title, description, canonical, robots, Open Graph and JSON-LD the theme prints (Flux SEO), with addresses on the front end."
+msgstr "Ön yüzün <head> içine koyduğu: temanın bastığı başlık, açıklama, canonical, robots, Open Graph ve JSON-LD'nin aynısı (Flux SEO), adresler ön yüze göre."
+
+msgid "Document title."
+msgstr "Belge başlığı."
+
+msgid "Meta description; empty when none."
+msgstr "Meta açıklaması; yoksa boş."
+
+msgid "Canonical address on the front end; empty for search and 404."
+msgstr "Ön yüzdeki canonical adres; arama ve 404'te boş."
+
+msgid "Robots directives (index, follow, max-image-preview:large …)."
+msgstr "Robots yönergeleri (index, follow, max-image-preview:large …)."
+
+msgid "Search engines must not index the page."
+msgstr "Arama motorları sayfayı dizine eklememeli."
+
+msgid "Share image (og:image); empty when none."
+msgstr "Paylaşım görseli (og:image); yoksa boş."
+
+msgid "Language of the page (BCP 47, e.g. tr-TR) for <html lang>."
+msgstr "<html lang> için sayfanın dili (BCP 47, ör. tr-TR)."
+
+msgid "Open Graph, Twitter, verification and other meta tags."
+msgstr "Open Graph, Twitter, doğrulama ve diğer meta etiketleri."
+
+msgid "JSON-LD documents, each a JSON string for <script type=\"application/ld+json\">."
+msgstr "JSON-LD belgeleri; her biri <script type=\"application/ld+json\"> için bir JSON metni."
+
+msgid "What an address on the front end shows."
+msgstr "Ön yüzdeki bir adresin ne gösterdiği."
+
+msgid "The address asked, normalised (language prefix removed)."
+msgstr "Sorulan adres, normalleştirilmiş (dil öneki çıkarılmış)."
+
+msgid "What the address shows."
+msgstr "Adresin ne gösterdiği."
+
+msgid "HTTP status the front end answers with (200, 301, 404)."
+msgstr "Ön yüzün vereceği HTTP durum kodu (200, 301, 404)."
+
+msgid "Front-end path to send the visitor to; only for REDIRECT."
+msgstr "Ziyaretçinin gönderileceği ön yüz yolu; yalnız REDIRECT için."
+
+msgid "Language code of the address; empty without Flux Lang."
+msgstr "Adresin dil kodu; Flux Lang yoksa boş."
+
+msgid "Title of the content, term, author or archive."
+msgstr "İçeriğin, terimin, yazarın ya da arşivin başlığı."
+
+msgid "Page number of a listing (/page/2/), 1 otherwise."
+msgstr "Listenin sayfa numarası (/page/2/), değilse 1."
+
+msgid "Database id of the post, term or author; empty for archives, search and 404."
+msgstr "Yazının, terimin ya da yazarın veritabanı kimliği; arşiv, arama ve 404'te boş."
+
+msgid "Content type of a post or a content type archive."
+msgstr "Bir yazının ya da içerik türü arşivinin içerik türü."
+
+msgid "Taxonomy of a term archive."
+msgstr "Terim arşivinin taksonomisi."
+
+msgid "SEO head of the page."
+msgstr "Sayfanın SEO head'i."
+
+msgid "Language versions of the page (hreflang), the page itself included. Empty without Flux Lang."
+msgstr "Sayfanın dil sürümleri (hreflang), sayfanın kendisi dahil. Flux Lang yoksa boş."
+
+msgid "Tags to cache the page under; the revalidate webhook sends these tags when the page changes."
+msgstr "Sayfanın önbellekleneceği etiketler; sayfa değişince revalidate webhook'u bu etiketleri gönderir."
+
+msgid "Front end the addresses point at; empty when no front end is set up."
+msgstr "Adreslerin yönlendiği ön yüz; kurulu ön yüz yoksa boş."
+
+msgid "The WordPress object (Post, Page, Category, User, ContentType …) with every field WPGraphQL and the FluxWP packages give it (flxBlocks, flxSeo, flxTranslations …). Empty for search, date archives, redirects and 404."
+msgstr "WPGraphQL'in ve FluxWP paketlerinin verdiği tüm alanlarıyla WordPress nesnesi (Post, Page, Category, User, ContentType …; flxBlocks, flxSeo, flxTranslations …). Arama, tarih arşivi, yönlendirme ve 404'te boş."
+
+msgid "An image."
+msgstr "Bir görsel."
+
+msgid "Address of the file."
+msgstr "Dosyanın adresi."
+
+msgid "Width in pixels; 0 when unknown."
+msgstr "Piksel cinsinden genişlik; bilinmiyorsa 0."
+
+msgid "Height in pixels; 0 when unknown."
+msgstr "Piksel cinsinden yükseklik; bilinmiyorsa 0."
+
+msgid "Alternative text."
+msgstr "Alternatif metin."
+
+msgid "A menu link. The list is flat; a child points at its parent."
+msgstr "Bir menü bağlantısı. Liste düzdür; alt öğe üst öğesini gösterir."
+
+msgid "Id inside the menu."
+msgstr "Menü içindeki kimlik."
+
+msgid "Id of the parent link; empty at the top level."
+msgstr "Üst bağlantının kimliği; en üst düzeyde boş."
+
+msgid "Text of the link."
+msgstr "Bağlantı metni."
+
+msgid "Address; site pages point at the front end."
+msgstr "Adres; site sayfaları ön yüzü gösterir."
+
+msgid "Front-end path for site pages (use it with the router); empty for other sites."
+msgstr "Site sayfaları için ön yüz yolu (router ile kullanın); diğer sitelerde boş."
+
+msgid "Link target (_blank) when set."
+msgstr "Ayarlıysa bağlantı hedefi (_blank)."
+
+msgid "The link goes to another site."
+msgstr "Bağlantı başka bir siteye gider."
+
+msgid "Position in the menu."
+msgstr "Menüdeki sıra."
+
+msgid "A menu: a classic menu location, or a navigation block of the header or footer."
+msgstr "Bir menü: klasik menü konumu ya da header veya footer'daki gezinme bloğu."
+
+msgid "Where it sits: a menu location (primary …) or header, header-2, footer, footer-2 … for navigation blocks."
+msgstr "Bulunduğu yer: menü konumu (primary …) ya da gezinme blokları için header, header-2, footer, footer-2 …"
+
+msgid "Menu name; may be empty for navigation blocks."
+msgstr "Menü adı; gezinme bloklarında boş olabilir."
+
+msgid "classic (Appearance > Menus) or block (site editor)."
+msgstr "classic (Görünüm > Menüler) ya da block (site düzenleyici)."
+
+msgid "Links in order."
+msgstr "Sıralı bağlantılar."
+
+msgid "A colour of the theme palette."
+msgstr "Tema paletinden bir renk."
+
+msgid "Slug (CSS variable --wp--preset--color--<slug>)."
+msgstr "Slug (CSS değişkeni --wp--preset--color--<slug>)."
+
+msgid "Name."
+msgstr "Ad."
+
+msgid "CSS colour value."
+msgstr "CSS renk değeri."
+
+msgid "A language of the site."
+msgstr "Sitenin bir dili."
+
+msgid "Language code (tr, en …)."
+msgstr "Dil kodu (tr, en …)."
+
+msgid "WordPress locale (tr_TR)."
+msgstr "WordPress yerel ayarı (tr_TR)."
+
+msgid "Name in that language."
+msgstr "O dildeki adı."
+
+msgid "Path prefix (/ for the default language, /en/ …)."
+msgstr "Yol öneki (varsayılan dil için /, /en/ …)."
+
+msgid "Home address of the language on the front end."
+msgstr "Dilin ön yüzdeki ana sayfa adresi."
+
+msgid "The default language (no prefix)."
+msgstr "Varsayılan dil (öneksiz)."
+
+msgid "A legal page."
+msgstr "Bir yasal sayfa."
+
+msgid "privacy, terms or a kind a package adds."
+msgstr "privacy, terms ya da bir paketin eklediği tür."
+
+msgid "Page title."
+msgstr "Sayfa başlığı."
+
+msgid "Front-end path."
+msgstr "Ön yüz yolu."
+
+msgid "Address on the front end."
+msgstr "Ön yüzdeki adres."
+
+msgid "A currency of the site and how prices are written."
+msgstr "Sitenin bir para birimi ve fiyatların yazımı."
+
+msgid "ISO 4217 code (TRY, USD …)."
+msgstr "ISO 4217 kodu (TRY, USD …)."
+
+msgid "Symbol."
+msgstr "Simge."
+
+msgid "Decimals."
+msgstr "Ondalık basamak."
+
+msgid "Decimal separator."
+msgstr "Ondalık ayırıcı."
+
+msgid "Thousands separator."
+msgstr "Binlik ayırıcı."
+
+msgid "Symbol position: left, right, left_space or right_space."
+msgstr "Simge konumu: left, right, left_space ya da right_space."
+
+msgid "The store currency."
+msgstr "Mağaza para birimi."
+
+msgid "Public contact details of the organisation (Flux SEO, else the Flux Setup profile)."
+msgstr "Kurumun herkese açık iletişim bilgileri (Flux SEO, yoksa Flux Setup profili)."
+
+msgid "E-mail; empty when none."
+msgstr "E-posta; yoksa boş."
+
+msgid "Phone; empty when none."
+msgstr "Telefon; yoksa boş."
+
+msgid "WhatsApp support line; empty when none."
+msgstr "WhatsApp destek hattı; yoksa boş."
+
+msgid "Address on one line; empty when none."
+msgstr "Tek satırda adres; yoksa boş."
+
+msgid "Public captcha settings (Flux reCAPTCHA); the site key is public by design. Use flxCaptcha(context:) for one form."
+msgstr "Herkese açık captcha ayarları (Flux reCAPTCHA); site anahtarı tasarım gereği açıktır. Tek form için flxCaptcha(context:) kullanın."
+
+msgid "recaptcha."
+msgstr "recaptcha."
+
+msgid "v2 or v3."
+msgstr "v2 ya da v3."
+
+msgid "Site key."
+msgstr "Site anahtarı."
+
+msgid "Script to load."
+msgstr "Yüklenecek betik."
+
+msgid "A rendered template part of the theme."
+msgstr "Temanın işlenmiş bir şablon parçası."
+
+msgid "Part slug (header, footer …)."
+msgstr "Parça slug'ı (header, footer …)."
+
+msgid "HTML; page links point at the front end. Needs the theme CSS (flxBlocksSiteStyles)."
+msgstr "HTML; sayfa bağlantıları ön yüzü gösterir. Tema CSS'i gerekir (flxBlocksSiteStyles)."
+
+msgid "The frame a front end draws every page in."
+msgstr "Ön yüzün her sayfayı içine çizdiği çerçeve."
+
+msgid "Site title."
+msgstr "Site başlığı."
+
+msgid "Tagline."
+msgstr "Slogan."
+
+msgid "Address of the front end (or of WordPress when none is set up)."
+msgstr "Ön yüzün adresi (kurulu değilse WordPress'in)."
+
+msgid "Address of this WordPress."
+msgstr "Bu WordPress'in adresi."
+
+msgid "GraphQL endpoint."
+msgstr "GraphQL adresi."
+
+msgid "Language code of this answer."
+msgstr "Bu cevabın dil kodu."
+
+msgid "Locale of this answer (BCP 47)."
+msgstr "Bu cevabın yerel ayarı (BCP 47)."
+
+msgid "Languages the front end serves, default first."
+msgstr "Ön yüzün sunduğu diller, varsayılan önce."
+
+msgid "Site logo; empty when none."
+msgstr "Site logosu; yoksa boş."
+
+msgid "Logo for dark backgrounds such as the footer; the site logo when there is no separate one."
+msgstr "Footer gibi koyu zeminler için logo; ayrı bir logo yoksa site logosu."
+
+msgid "Site icon (512 px); empty when none."
+msgstr "Site simgesi (512 px); yoksa boş."
+
+msgid "Menus of the header, footer and menu locations."
+msgstr "Header, footer ve menü konumlarının menüleri."
+
+msgid "Theme palette."
+msgstr "Tema paleti."
+
+msgid "Contact details."
+msgstr "İletişim bilgileri."
+
+msgid "Currencies, default first; empty without WooCommerce."
+msgstr "Para birimleri, varsayılan önce; WooCommerce yoksa boş."
+
+msgid "Privacy policy, terms and other legal pages."
+msgstr "Gizlilik politikası, kullanım şartları ve diğer yasal sayfalar."
+
+msgid "Captcha settings; empty when Flux reCAPTCHA is off."
+msgstr "Captcha ayarları; Flux reCAPTCHA kapalıysa boş."
+
+msgid "Social profile addresses."
+msgstr "Sosyal profil adresleri."
+
+msgid "Sitemap with front-end addresses; serve it at /sitemap.xml (proxy)."
+msgstr "Ön yüz adresli site haritası; /sitemap.xml'de sunun (proxy)."
+
+msgid "Search address to append the words to."
+msgstr "Aranan kelimelerin ekleneceği arama adresi."
+
+msgid "Tags to cache the frame under."
+msgstr "Çerçevenin önbellekleneceği etiketler."
+
+msgid "Front end the addresses point at; empty when none is set up."
+msgstr "Adreslerin yönlendiği ön yüz; kurulu değilse boş."
+
+msgid "Rendered template parts, for front ends that reuse the theme markup (at most 5)."
+msgstr "Tema işaretlemesini kullanan ön yüzler için işlenmiş şablon parçaları (en fazla 5)."
+
+msgid "Part slugs, e.g. [\"header\", \"footer\"]."
+msgstr "Parça slug'ları, ör. [\"header\", \"footer\"]."
+
+msgid "The Headless screen: front ends, what WordPress does with its own pages, CORS and the webhook log."
+msgstr "Headless ekranı: ön yüzler, WordPress'in kendi sayfalarıyla ne yaptığı, CORS ve webhook kaydı."
+
+msgid "Front ends."
+msgstr "Ön yüzler."
+
+msgid "What WordPress does with its own pages."
+msgstr "WordPress'in kendi sayfalarıyla ne yaptığı."
+
+msgid "Every origin allowed to call /graphql from a browser: this site, the Flux GraphQL list and the front ends."
+msgstr "Tarayıcıdan /graphql çağırabilen tüm origin'ler: bu site, Flux GraphQL listesi ve ön yüzler."
+
+msgid "GraphQL endpoint to give the front end."
+msgstr "Ön yüze verilecek GraphQL adresi."
+
+msgid "Flux GraphQL settings (CORS list, query mode, cache)."
+msgstr "Flux GraphQL ayarları (CORS listesi, sorgu modu, önbellek)."
+
+msgid "Only registered (persisted) queries are allowed; front ends send flxRoute / flxSite by id."
+msgstr "Yalnız kayıtlı (persisted) sorgulara izin verilir; ön yüzler flxRoute / flxSite'ı kimlikle gönderir."
+
+msgid "Flux Lang is active; front ends can be limited to languages."
+msgstr "Flux Lang etkin; ön yüzler dillerle sınırlanabilir."
+
+msgid "Last webhook calls, newest first (at most 30)."
+msgstr "Son webhook çağrıları, en yeni önce (en fazla 30)."
+
+msgid "Languages of the site for the language picker."
+msgstr "Dil seçici için sitenin dilleri."
+
+msgid "What an address on the front end shows: kind, HTTP status, redirect, language, the WordPress object (node), SEO head, language versions and cache tags. Public; drafts only with previewId for people who can edit them."
+msgstr "Ön yüzdeki bir adresin ne gösterdiği: tür, HTTP durumu, yönlendirme, dil, WordPress nesnesi (node), SEO head, dil sürümleri ve önbellek etiketleri. Herkese açık; taslaklar yalnız previewId ile ve düzenleyebilen kişilere."
+
+msgid "Front-end path with the query (/about/, /en/blog/page/2/, /?s=word) or a full address of the front end."
+msgstr "Sorgusuyla ön yüz yolu (/hakkimizda/, /en/blog/page/2/, /?s=kelime) ya da ön yüzün tam adresi."
+
+msgid "Language when the path has no language prefix (a front end per language or domain)."
+msgstr "Yolda dil öneki yoksa dil (dil ya da alan adı başına bir ön yüz)."
+
+msgid "Front end id; without it the caller's origin, else the default front end."
+msgstr "Ön yüz kimliği; verilmezse çağıranın origin'i, o da yoksa varsayılan ön yüz."
+
+msgid "Draft or scheduled post to preview. Needs a signed-in user who can edit it (application password); the answer is never cached."
+msgstr "Önizlenecek taslak ya da zamanlanmış yazı. Onu düzenleyebilen oturumlu bir kullanıcı ister (uygulama parolası); cevap hiç önbelleğe alınmaz."
+
+msgid "The site frame for a front end: name, logo, languages, menus, palette, contact details, currencies, legal pages and public captcha settings. Public."
+msgstr "Bir ön yüz için site çerçevesi: ad, logo, diller, menüler, palet, iletişim bilgileri, para birimleri, yasal sayfalar ve açık captcha ayarları. Herkese açık."
+
+msgid "Language of the menus and texts; default language when empty."
+msgstr "Menülerin ve metinlerin dili; boşsa varsayılan dil."
+
+msgid "The Headless screen. Webhook secrets are never returned."
+msgstr "Headless ekranı. Webhook secret'ları hiçbir zaman döndürülmez."
+
+msgid "Settings after the change."
+msgstr "Değişiklikten sonraki ayarlar."
+
+msgid "Adds a front end (no id) or changes one. Fields you leave out stay as they are. The secret is write-only: empty keeps the saved one, \"__clear__\" removes it."
+msgstr "Ön yüz ekler (id yoksa) ya da değiştirir. Verilmeyen alanlar olduğu gibi kalır. Secret yalnız yazılır: boş kayıtlıyı korur, \"__clear__\" siler."
+
+msgid "Front end to change; empty adds a new one."
+msgstr "Değiştirilecek ön yüz; boşsa yenisi eklenir."
+
+msgid "Address with https:// (http:// only for localhost)."
+msgstr "https:// ile adres (http:// yalnız localhost için)."
+
+msgid "Language codes it serves; empty list = every language."
+msgstr "Sunduğu dil kodları; boş liste = tüm diller."
+
+msgid "In use."
+msgstr "Kullanımda."
+
+msgid "Default front end (only one)."
+msgstr "Varsayılan ön yüz (yalnız bir tane)."
+
+msgid "Webhook address; empty turns the webhook off."
+msgstr "Webhook adresi; boşsa webhook kapanır."
+
+msgid "Webhook secret (at least 24 characters); write-only, stored sealed."
+msgstr "Webhook secret'ı (en az 24 karakter); yalnız yazılır, şifreli saklanır."
+
+msgid "Preview path on the front end (e.g. /api/preview); empty keeps previews on WordPress."
+msgstr "Ön yüzdeki önizleme yolu (ör. /api/preview); boşsa önizlemeler WordPress'te kalır."
+
+msgid "The saved front end."
+msgstr "Kaydedilen ön yüz."
+
+msgid "Removes a front end with its secret."
+msgstr "Bir ön yüzü secret'ıyla birlikte siler."
+
+msgid "Sets what WordPress does with its own pages once a front end serves the site."
+msgstr "Siteyi bir ön yüz sunduğunda WordPress'in kendi sayfalarıyla ne yapacağını ayarlar."
+
+msgid "Mode."
+msgstr "Mod."
+
+msgid "Sends a signed test call to a front end's webhook and waits for the answer."
+msgstr "Bir ön yüzün webhook'una imzalı test çağrısı gönderir ve cevabı bekler."
+
+msgid "Result of the call."
+msgstr "Çağrının sonucu."
+
+msgid "Asks every front end to refresh all of its pages (tag flx-headless:all), e.g. after a theme change."
+msgstr "Tüm ön yüzlerden bütün sayfalarını yenilemesini ister (flx-headless:all etiketi), ör. tema değişikliğinden sonra."
+
+msgid "Empties the webhook delivery log."
+msgstr "Webhook gönderim kaydını boşaltır."

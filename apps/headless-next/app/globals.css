@@ -1,0 +1,194 @@
+/*
+ * Styles close to the FluxWP theme (Antrasit on beige): its fonts, palette, spacing and block classes.
+ * Colours come from the WordPress theme palette (--wp--preset--color--*), so a palette change in the
+ * theme shows here too.
+ */
+@font-face { font-family: "Nunito"; font-weight: 600 900; font-display: swap; src: url("./fonts/nunito-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Nunito"; font-weight: 600 900; font-display: swap; src: url("./fonts/nunito-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Nunito Sans"; font-weight: 400 700; font-display: swap; src: url("./fonts/nunitosans-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Nunito Sans"; font-weight: 400 700; font-display: swap; src: url("./fonts/nunitosans-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+:root {
+  --primary: var(--wp--preset--color--primary, #1f2937);
+  --primary-dark: var(--wp--preset--color--primary-dark, #111827);
+  --ink: var(--wp--preset--color--ink, #111827);
+  --text: var(--wp--preset--color--text, #4b5563);
+  --bg: var(--wp--preset--color--base, #fbf9f6);
+  --soft: var(--wp--preset--color--mint-soft, #f8f5f0);
+  --line: var(--wp--preset--color--line, #e6e0d6);
+  --surface: var(--wp--preset--color--white, #fff);
+  --radius: 18px;
+  --shadow: 0 1px 2px rgb(17 24 39 / 4%), 0 8px 24px rgb(17 24 39 / 6%);
+  --heading: Nunito, "Segoe UI", system-ui, sans-serif;
+  --body: "Nunito Sans", "Segoe UI", system-ui, sans-serif;
+  --wide: 1240px;
+  --content: 760px;
+  --gutter: clamp(16px, 4vw, 32px);
+  /* Block presets used inline in WordPress content. */
+  --wp--preset--spacing--20: 0.5rem;
+  --wp--preset--spacing--30: 1rem;
+  --wp--preset--spacing--40: 1.75rem;
+  --wp--preset--spacing--50: clamp(2.5rem, 5vw, 3.75rem);
+  --wp--preset--spacing--60: clamp(3.5rem, 7vw, 5.5rem);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #eef0f3;
+    --text: #b4b8c4;
+    --bg: #12151a;
+    --soft: #191d23;
+    --line: #2a3039;
+    --surface: #1a1e25;
+    --shadow: 0 1px 2px rgb(0 0 0 / 30%);
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+/* The footer sits at the bottom of the window even on short pages. */
+body { margin: 0; min-height: 100dvh; display: flex; flex-direction: column; background: var(--bg); color: var(--text); font: 400 1.0625rem/1.65 var(--body); }
+main { flex: 1 0 auto; }
+h1, h2, h3, h4 { font-family: var(--heading); color: var(--ink); line-height: 1.2; font-weight: 800; }
+a { color: var(--ink); }
+img { max-width: 100%; height: auto; }
+.wrap { width: 100%; max-width: calc(var(--wide) + 2 * var(--gutter)); margin: 0 auto; padding: 0 var(--gutter); }
+
+/* Header */
+.site-header { background: var(--surface); box-shadow: 0 1px 0 var(--line); position: sticky; top: 0; z-index: 20; }
+.site-header .wrap { display: flex; align-items: center; gap: 24px; min-height: 72px; }
+.brand { display: flex; align-items: center; color: var(--ink); text-decoration: none; font: 800 1.15rem var(--heading); }
+.brand img { height: 44px; width: auto; display: block; }
+.nav { flex: 1; display: flex; justify-content: center; }
+.menu { list-style: none; margin: 0; padding: 0; display: flex; gap: 4px 26px; font: 700 0.95rem var(--heading); }
+.menu li { position: relative; }
+.menu a, .sub-label { color: var(--ink); text-decoration: none; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; padding: 6px 0; }
+.menu a:hover, .sub-label:hover { color: var(--text); }
+.sub-label::after { content: ""; width: 7px; height: 7px; border: solid currentColor; border-width: 0 2px 2px 0; transform: translateY(-2px) rotate(45deg); transition: transform 0.15s; }
+.sub-toggle, .nav-toggle, .fc-toggle { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.sub-toggle:focus-visible + .sub-label, .nav-toggle:focus-visible + .nav-button, .fc-toggle:focus-visible + .fc-title { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 6px; }
+.menu ul { display: none; list-style: none; margin: 0; padding: 8px; font-weight: 600; }
+.menu ul a { padding: 8px 12px; border-radius: 10px; width: 100%; }
+.menu ul a:hover { background: var(--soft); color: var(--ink); }
+.langs { list-style: none; display: flex; gap: 4px; margin: 0; padding: 0; font: 800 0.8rem var(--heading); }
+.langs a { color: var(--text); text-decoration: none; padding: 6px 8px; border-radius: 999px; }
+.langs a[aria-current] { background: var(--soft); color: var(--ink); }
+.nav-button { display: none; cursor: pointer; width: 42px; height: 42px; border-radius: 12px; border: 1px solid var(--line); position: relative; flex: none; }
+.nav-button span, .nav-button span::before, .nav-button span::after { position: absolute; left: 12px; width: 16px; height: 2px; border-radius: 2px; background: var(--ink); content: ""; }
+.nav-button span { top: 19px; }
+.nav-button span::before { top: -5px; left: 0; }
+.nav-button span::after { top: 5px; left: 0; }
+
+@media (min-width: 861px) {
+  /* Desktop: sub-menus drop down on hover or keyboard focus. */
+  .menu > .has-sub > ul { position: absolute; top: 100%; left: -14px; min-width: 220px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); }
+  .menu .has-sub:hover > ul, .menu .has-sub:focus-within > ul { display: block; }
+  .menu .has-sub:hover > .sub-label::after { transform: translateY(1px) rotate(225deg); }
+}
+
+/* Content */
+.page { padding-top: var(--wp--preset--spacing--50); padding-bottom: var(--wp--preset--spacing--60); }
+.entry { max-width: var(--content); }
+.entry h1 { font-size: clamp(2rem, 4vw, 2.75rem); margin: 0 0 12px; }
+.meta, .lead { color: var(--text); }
+.hero { border-radius: var(--radius); margin: 16px 0; }
+.wp-content img { border-radius: 12px; }
+.wp-content .has-xx-large-font-size { font-size: clamp(2.4rem, 5vw, 3.5rem); }
+.wp-content .has-x-large-font-size { font-size: clamp(1.75rem, 3vw, 2.25rem); }
+.wp-content .has-medium-font-size { font-size: 1.0625rem; }
+.wp-block-buttons { display: flex; flex-wrap: wrap; gap: 12px; }
+.wp-block-button__link { display: inline-flex; align-items: center; padding: 0.8em 1.7em; border-radius: 999px; background: var(--primary); color: #fff; font: 700 0.9375rem var(--heading); text-decoration: none; border: 1.5px solid transparent; transition: background-color 0.15s; }
+.wp-block-button__link:hover { background: var(--primary-dark); }
+.wp-block-button__link.has-white-background-color { background: #fff; color: var(--primary); }
+.flx-pill { display: inline-flex; padding: 0.3em 0.9em; border-radius: 999px; background: rgb(255 255 255 / 16%); color: #fff; font: 800 0.8125rem/1.5 var(--heading); margin: 0; }
+
+/* Block layout of the front page (alignfull groups with constrained inner content). */
+.front > * { margin: 0; }
+.front .is-layout-constrained > *, .front > :not(.alignfull) { max-width: var(--wide); margin-left: auto; margin-right: auto; }
+.front .has-global-padding { padding-left: var(--gutter); padding-right: var(--gutter); }
+.front .wp-block-columns { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+.front .flx-card { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); }
+.front .flx-card h3 { margin: 0 0 6px; font-size: 1.2rem; }
+.front .flx-card p { margin: 0; }
+.front .is-content-justification-space-between { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+.front h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); margin: 0 0 20px; }
+.flx-hero { position: relative; overflow: hidden; border-radius: 0 0 clamp(28px, 4vw, 56px) clamp(28px, 4vw, 56px); isolation: isolate; }
+.flx-hero .wp-block-cover { position: relative; display: flex; align-items: center; min-height: clamp(460px, 56vw, 640px); color: #fff; }
+.flx-hero .wp-block-cover__image-background { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 0; z-index: 0; }
+.flx-hero .wp-block-cover__background { position: absolute; inset: 0; z-index: 1; }
+.flx-hero .wp-block-cover__inner-container { position: relative; z-index: 2; width: 100%; max-width: var(--wide); margin: 0 auto; }
+.flx-hero h1 { color: #fff; max-width: 13ch; margin: 0.6rem 0 0.4rem; }
+.flx-hero p { max-width: 46ch; }
+
+/* WooCommerce product grid as rendered by WordPress. */
+.products { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 24px; }
+.products .product { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; display: flex; flex-direction: column; }
+.products .product > a:first-child { text-decoration: none; color: inherit; flex: 1; }
+.products img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 0; display: block; }
+.products h2 { font-size: 1.05rem; margin: 14px 16px 4px; }
+.products .price { display: block; margin: 0 16px 14px; font: 800 1rem var(--heading); color: var(--ink); }
+.products .button { margin: 0 16px 16px; align-self: flex-start; padding: 0.55em 1.2em; border-radius: 999px; background: var(--soft); color: var(--ink); font: 700 0.85rem var(--heading); text-decoration: none; }
+.screen-reader-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* Post cards */
+.cards { list-style: none; padding: 0; margin: 40px 0 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+.cards li { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); padding: 22px; }
+.cards a { color: var(--ink); text-decoration: none; }
+.cards img { border-radius: 12px; aspect-ratio: 16 / 9; object-fit: cover; width: 100%; }
+.cards h2 { font-size: 1.2rem; margin: 6px 0; }
+.excerpt { font-size: 0.95rem; }
+.excerpt p { margin: 0; }
+
+/* Footer: dark, logo column and one column per footer menu. */
+.site-footer { background: var(--primary-dark); color: rgb(255 255 255 / 78%); padding: var(--wp--preset--spacing--60) 0 var(--wp--preset--spacing--40); margin-top: var(--wp--preset--spacing--50); font-size: 0.9375rem; }
+.site-footer a { color: #fff; text-decoration: none; }
+.site-footer a:hover { text-decoration: underline; }
+.footer-cols { display: flex; flex-wrap: wrap; gap: 40px; }
+.footer-brand { flex: 2 1 280px; }
+.footer-col { flex: 1 1 160px; }
+.footer-brand .brand img { height: 56px; }
+.footer-brand p { margin: 14px 0 0; max-width: 36ch; }
+.fc-title { display: block; color: #fff; font: 800 0.9375rem var(--heading); margin-bottom: 14px; }
+.footer-menu { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-weight: 600; }
+.footer-menu ul { list-style: none; padding: 6px 0 0 12px; margin: 0; display: grid; gap: 6px; }
+.footer-menu .sub-label { color: #fff; cursor: pointer; }
+.footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; border-top: 1px solid rgb(255 255 255 / 15%); margin-top: var(--wp--preset--spacing--50); padding-top: var(--wp--preset--spacing--40); font-size: 0.8125rem; }
+.footer-bottom .legal { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.sub-toggle:checked ~ ul { display: grid; }
+.sub-toggle:checked + .sub-label::after { transform: translateY(1px) rotate(225deg); }
+
+@media (max-width: 860px) {
+  .site-header .wrap { gap: 10px; min-height: 64px; position: relative; justify-content: space-between; }
+  .brand img { height: 38px; }
+  .nav-button { display: block; order: 3; }
+  .langs { order: 2; margin-left: auto; }
+  .nav { display: none; position: absolute; left: 0; right: 0; top: 100%; background: var(--surface); box-shadow: 0 1px 0 var(--line), var(--shadow); padding: 8px var(--gutter) 16px; max-height: calc(100dvh - 64px); overflow: auto; }
+  .nav-toggle:checked ~ .nav { display: block; }
+  .nav .menu { flex-direction: column; gap: 0; font-size: 1.05rem; }
+  .nav .menu > li { border-bottom: 1px solid var(--line); }
+  .nav .menu > li:last-child { border-bottom: 0; }
+  .nav .menu a, .nav .sub-label { padding: 14px 0; width: 100%; }
+  .nav .sub-label { justify-content: space-between; }
+  .nav .menu ul { padding: 0 0 10px 12px; }
+  .nav .menu ul a { padding: 10px 12px; }
+
+  /* Footer columns fold into an accordion. */
+  .footer-cols { flex-direction: column; gap: 0; }
+  .footer-brand, .footer-col { flex: none; }
+  .footer-brand { margin-bottom: 24px; }
+  .footer-col { border-top: 1px solid rgb(255 255 255 / 15%); }
+  .fc-title { margin: 0; padding: 16px 0; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+  .fc-title::after { content: ""; width: 8px; height: 8px; border: solid currentColor; border-width: 0 2px 2px 0; transform: translateY(-2px) rotate(45deg); transition: transform 0.15s; }
+  .footer-col .footer-menu { display: none; padding-bottom: 16px; }
+  .fc-toggle:checked ~ .footer-menu { display: grid; }
+  .fc-toggle:checked + .fc-title::after { transform: translateY(2px) rotate(225deg); }
+  .footer-bottom { margin-top: 24px; }
+}
+
+@media (max-width: 560px) {
+  .products { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .products h2 { font-size: 0.95rem; margin: 10px 12px 2px; }
+  .products .price { margin: 0 12px 10px; }
+  .products .button { margin: 0 12px 12px; }
+}

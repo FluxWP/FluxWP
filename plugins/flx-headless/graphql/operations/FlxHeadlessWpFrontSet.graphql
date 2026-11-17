@@ -1,0 +1,12 @@
+mutation FlxHeadlessWpFrontSet($mode: FlxHeadlessWpFront!) {
+  flxHeadlessWpFrontSet(input: { mode: $mode }) {
+    settings {
+      ...FlxHeadlessSettingsFields
+    }
+    errors {
+      code
+      field
+      message
+    }
+  }
+}
