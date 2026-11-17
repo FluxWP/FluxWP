@@ -660,7 +660,7 @@ final class FLXB_WC_Cart {
 	}
 
 	/**
-	 * A donation line's count lives in the line, so the Store API quantity is not editable.
+	 * Store API twin of fixed_quantity(): the quantity is not editable where the classic cart shows a fixed 1.
 	 *
 	 * @param mixed $editable  Whether the shopper may change the quantity.
 	 * @param mixed $product   Product.
@@ -668,15 +668,20 @@ final class FLXB_WC_Cart {
 	 */
 	public static function quantity_editable( $editable, $product = null, $cart_item = null ) {
 		unset( $product );
-		if ( is_array( $cart_item ) && ! empty( $cart_item[ self::KEY ] ) ) {
+		if ( is_array( $cart_item ) && self::quantity_fixed( $cart_item ) ) {
 			return false;
 		}
 		return $editable;
 	}
 
+	/** Free-amount, custom count (units > 1) and monthly lines keep quantity 1: the count is in the line. */
+	private static function quantity_fixed( array $item ): bool {
+		return ! empty( $item[ self::KEY ] ) && ( '' === (string) ( $item[ self::KEY ]['option'] ?? '' ) || (int) ( $item[ self::KEY ]['units'] ?? 1 ) > 1 || ! empty( $item[ self::KEY ]['monthly'] ) );
+	}
+
 	/** Custom count and free-amount lines keep quantity 1 in the cart (the count is in the line). */
 	public static function fixed_quantity( $html, $key, $item ) {
-		if ( ! empty( $item[ self::KEY ] ) && ( '' === (string) ( $item[ self::KEY ]['option'] ?? '' ) || (int) ( $item[ self::KEY ]['units'] ?? 1 ) > 1 || ! empty( $item[ self::KEY ]['monthly'] ) ) ) {
+		if ( self::quantity_fixed( (array) $item ) ) {
 			return '1<input type="hidden" name="cart[' . esc_attr( $key ) . '][qty]" value="1">';
 		}
 		return $html;
