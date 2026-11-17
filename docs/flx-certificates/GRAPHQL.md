@@ -31,15 +31,15 @@ Kişi alanı `FlxPerson`. CRM yokken `FlxCertificatePerson` bu arayüzü uygular
 
 | Mutation | Yetki | Not |
 |---|---|---|
-| `flxCertificateCreate` / `Update` | `flxs_use` | Geçmiş tarih (`issued`) yalnız yönetici |
+| `flxCertificateCreate` / `Update` | `flxs_use` | Geçmiş tarih (`issued`) yalnız yönetici. Kapsamlı kullanıcı başkasının telefonu/e-postasıyla kayıt açamaz (`CONFLICT`); `person` göremiyorsa `null` |
 | `flxCertificateSetStatus` / `SetReferrer` | `flxs_use` | İptal PDF ve görsel adresini boşaltır; dosya diskte kalır |
 | `flxCertificateBulk` | `flxs_use` | Toplu gönderim yetkisi varsa klasik toplu sayfanın adresi döner |
 | `flxCertificateDelete` | `flxs_manage` | |
-| `flxCertificateSend` / `SendTo` | `flxs_use` | `SendTo`: `provider`, `save` |
+| `flxCertificateSend` / `SendTo` | `flxs_use` | `SendTo` klasik REST ile aynı gövdeyi çalıştırır (`FLXS_Certificate_Service::forward`): boş ya da geçersiz `to` reddedilir, konu ve metin temizlenir, `save` yalnız kuyruğa alınınca rehbere yazar. `provider`, `save` |
 | `flxCertificateAttachFiles` | `flxs_use` | Kit yüklemesi `flx-certificates/file` |
-| `flxCertificatePersonSave` / `PersonDelete` | use / `flxs_manage` | |
+| `flxCertificatePersonSave` / `PersonDelete` | use / `flxs_manage` | Kapsam dışı kişinin telefonu/e-postası `CONFLICT`, kayıt yazılmaz, kişi dönmez |
 | `flxCertificateLookup` | public | Bal küpü `website`. Sertifika dönmez. IP sınırı `RATE_LIMITED` |
 
-`INVALID_INPUT` ve `CONFLICT` payload `errors` içindedir. `UNAUTHENTICATED`, `FORBIDDEN`, `NOT_FOUND`, `RATE_LIMITED` üst hata olur.
+Hata metinleri İngilizce ve çevrilebilir (klasik Türkçe cümleler `FLXS_Records::message()` ile eşlenir; REST aynı Türkçe cümleyi döner). `INVALID_INPUT` ve `CONFLICT` payload `errors` içindedir. `UNAUTHENTICATED`, `FORBIDDEN`, `NOT_FOUND`, `RATE_LIMITED` üst hata olur.
 
 Bu bölümde olmayanlar (sonraki): kuyruk adımı, şablon düzenleyici, etkinlik CRUD, ayarlar, pano, günlük, e-kart, yazı tipleri.

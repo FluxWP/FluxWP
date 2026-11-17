@@ -4,7 +4,7 @@
 - Durum: 👀
 - PR: #338
 
-Kayıtlar, kişiler ve herkese açık doğrulama (bölüm 1). 9 sorgu, 12 mutation, 20 kayıtlı işlem, sözleşme testi. React wp-admin varsayılanı: liste, yeni sertifika, kişiler (`flxs-certificates`); klasik `flxs_ui`. `staff_own_only` GraphQL’de sertifikayla aynı kapsam (klasik kişi listesi değişmedi). `flxCertificateVerify` saf okuma. Etkinlik ekranı CRM’de (`flxGatherings`, PR #333); CRM yokken klasik sayfa açık borç. Kuyruk, şablon, ayar, pano, günlük sonraki bölüm. Eşleme `docs/graphql/ESLEME/flx-certificates.md`.
+Kayıtlar, kişiler ve herkese açık doğrulama (bölüm 1). 9 sorgu, 12 mutation, 20 kayıtlı işlem, sözleşme testi. React wp-admin varsayılanı: liste, yeni sertifika, kişiler (`flxs-certificates`); klasik `flxs_ui`. `staff_own_only` GraphQL’de sertifikayla aynı kapsam (klasik kişi listesi değişmedi). `flxCertificateVerify` saf okuma. Etkinlik ekranı CRM’de (`flxGatherings`, PR #333); CRM yokken klasik sayfa açık borç. Kuyruk, şablon, ayar, pano, günlük sonraki bölüm. İnceleme düzeltmeleri: kapsam dışı kişi sızıntısı kapandı (`CONFLICT`, `can_see`), `SendTo` klasik gövdeyle tek (`forward`), Excel ve klasik geçiş bağlantıları düz `&` + geçerli nonce, `deliveries` sayfa başına tek sorgu, klasik yollar önbelleği purge eder, hata metinleri İngilizce + TR. Eşleme `docs/graphql/ESLEME/flx-certificates.md`.
 
 ## İstisnalar
 

@@ -48,7 +48,7 @@ Namespace `flx-certificates/v1`. Kayıt: `includes/rest.php:6-69`. `$use` = `flx
 | POST | `/certificates/{id}/files` | aynı (bugün multipart) | `flxCertificateAttachFiles` | `uploadId` (kit `flx-certificates/file`) | `{ certificate, errors }` | `rest.php:39` `flxs_rest_cert_files` |
 | POST | `/certificates/{id}/send` | use + görebilme | `flxCertificateSend` | `channels, providerIds` | `{ results, errors }` | `rest.php:40` `flxs_rest_cert_send` |
 | GET | `/certificates/{id}/message` | aynı | `flxCertificateMessagePreview` | `channel` | `FlxCertificateMessagePreview` | `rest.php:45` `flxs_rest_cert_message` |
-| POST | `/certificates/{id}/message` | aynı | `flxCertificateSendTo` | `channel, to, name, subject, body` | `{ message, errors }` | `rest.php:46` `flxs_rest_cert_send_to` |
+| POST | `/certificates/{id}/message` | aynı | `flxCertificateSendTo` | `channel, to, name, subject, body` | `{ message, errors }` | `rest.php:46` `flxs_rest_cert_send_to` → `FLXS_Certificate_Service::send_to_rest` → `forward` |
 | GET | `/recipients` | use | `flxCertificateRecipients` | — | `[FlxCertificateRecipient!]!` | `rest.php:53` |
 | POST | `/recipients` | use | `flxCertificateRecipientAdd` | `name, phone, email` | `{ recipient, errors }` | `rest.php:54` |
 | DELETE | `/recipients/{rid}` | use | `flxCertificateRecipientDelete` | `id` | `{ deleted, errors }` | `rest.php:57` |
@@ -253,6 +253,8 @@ Aynı fonksiyonları Flux Forms (`class-flxf-automations-engine.php`) ve Flux Ch
 
 Kişi: `flxs_upsert_person` → `flx_person_ensure` kaynak `certificates` (`people.php:93`). Silme, başka bağ varsa yalnız bağı keser (`people.php:156`). `flx_person_in_use` sertifikası olan kişiyi silinmez işaretler (`people-shared.php:155`). `flx_person_merged` sertifika ve mesaj `person_id`’sini tutulan kişiye taşır (`people-shared.php:169`).
 
+Kişi yazımı: telefonu/e-postası kapsam dışı bir kişiye ait olan kayıt (`flxCertificatePersonSave`, `flxCertificateCreate`, `flxCertificateUpdate`) `CONFLICT` döner ve hiçbir şey yazmaz (`FLXS_Person_Service::outside_match`); yazma payload’ındaki `person` `can_see()` süzgecinden geçer. Klasik REST bu eşleşmeyi hâlâ sessizce bağlar (davranış değişmedi).
+
 Kişi alanı `FlxPerson` (KURALLAR §6). Sahip Flux CRM: `FlxContact` bu arayüzü uygular. CRM yokken `FlxCertificatePerson` da `FlxPerson` uygular ve `flx_gql_person_type` onu döndürür. Alan nullable. Görme `flxcrm_gql_can_see_contact` üzerinden; filtre sertifika personelinin görebildiği kişiyle sınırlıdır (`own_ref` veya `own_only`, ve sertifika kişisi). CRM alanları (`note` CRM’de, zaman çizelgesi) `flxcrm_view` ister. Sertifika notu `FlxCertificatePerson.note` üzerindedir, CRM notunun kopyası değildir.
 
 ## Tipler
@@ -272,7 +274,7 @@ Enum: `FlxCertificateStatus` `ACTIVE \| REVOKED`, `FlxCertificateChannel` `EMAIL
 
 Connection’lar `first ≤ 50`: sertifika, kişi dizini, mesaj, log, etkinlik.
 
-Önbellek: `flx-certificates:certificate:{id}`, `flx-certificates:list`, `flx-certificates:person:{id}`, `flx-certificates:queue`, `flx-certificates:settings`, `flx-certificates:events`. Doğrulama sayfası girişsiz persisted GET; iptal ve dosya yazımı purge eder. `noindex` açıksa (varsayılan) herkese açık önbellek süresi kısa tutulur.
+Önbellek: `flx-certificates:certificate:{id}`, `flx-certificates:list`, `flx-certificates:person:{id}`, `flx-certificates:queue`, `flx-certificates:settings`, `flx-certificates:events`. Doğrulama sayfası girişsiz persisted GET; veri katmanındaki her sertifika değişimi (dosya, durum, referans, etkinlik, güncelleme, silme, kuyruğa mesaj, CRM birleştirme) purge eder (`FLXS_Records::purge_certificate`). `noindex` açıksa (varsayılan) herkese açık önbellek süresi kısa tutulur.
 
 ## İnceleme düzeltmeleri
 
@@ -283,7 +285,7 @@ Envanter `02f12cb8` üzerinde doğrulandı. Klasik kod bu PR’da değişmez.
 - Alıcı rehberi `flxs_recipients` (`rest.php:337`) tüm personelde ortaktır, kapsamsız. Not. Bu bölümde şemaya girmez.
 - Kuyruk ve toplu gönderim (sonraki bölüm, şimdi kayıt): `flxs_rest_message_op` / `flxs_retry_message` / `flxs_cancel_message` (`rest.php:231`, `queue.php:367-391`) kapsam bakmaz. `flxs_rest_queue_status` `ids` ile `flxs_messages_scope_sql` eklemez (`rest.php:220-228`). `flxs_bulk_send` (`queue.php:463-602`) `certificate_ids`, `template_id`, `person_ids` ve “hepsi” için `flxs_scope_sql` uygulamaz; `dry=true` ilk üçün ad, telefon, e-posta ve mesajını döndürür. GraphQL bunların hepsini kapsar. Önizleme adı `flxCertificateBulkPreview` (`dry` ayrı mutation değil, aynı sorgunun önizleme modu).
 - `FlxCertificateMessage` (kuyruk bölümü): `body`, `response`, `externalId`, `scheduledAt`, `createdAt`, `createdBy`, `source`, `providerName`, `certificateId`. Son partiler `flxs_recent_batches(4)` (`queue.php:626`).
-- `flxCertificateSendTo` girdileri klasik REST ile aynı: `to`, `name`, `body`, `subject`, `provider`, `save` (`rest.php:304-333`). `save` rehbere yazar.
+- `flxCertificateSendTo` girdileri klasik REST ile aynı: `to`, `name`, `body`, `subject`, `provider`, `save`. Gövde tek: `FLXS_Certificate_Service::forward()` (klasik `flxs_rest_cert_send_to`, `rest.php:304-333`, artık `send_to_rest()` üzerinden çağırır). Boş `to` reddedilir, konu `sanitize_text_field`, metin `sanitize_textarea_field`, adres kırpılır; `save` rehbere (`flxs_save_recipient`) yalnız kuyruğa alınınca yazar.
 - `flxCertificates` süzgeçleri: `search`, `status`, `eventId` (0 = etkinliksiz), `templateId`, `referrerId` (0 = referanssız), `createdBy`, `personId`. Açılır liste sayıları `flxs_event_counts` / `flxs_ref_counts`. Geçmiş tarih `issued`, yalnız `flxs_manage`. Canlı önizleme `flxCertificateCreateConfig.rendererConfig` (`flxs_renderer_config`).
 - `flxCertificateTemplates` / `flxCertificateTemplate` okuma cap’i `flxs_use`. Şablon editörü sonraki bölüm.
 - Kuyruk adımı aynı koddan geçer: `flx_background_run` kilidi, `UPDATE … WHERE status = 'queued'` claim (`queue.php:241-270`), 10 dakikadır `processing` kalanın geri alınması (`:247`). `flxCertificateRenderMissing` `flx_bg_time_left()` bitince erken çıkar (`render.php:213` bugün bakmaz; mutation bakacak).
