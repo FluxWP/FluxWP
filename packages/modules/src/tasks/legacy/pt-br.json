@@ -226,5 +226,9 @@
  "Yeni sayfa oluşturuldu.": "Nova página criada.",
  "Seçili metin bu arada değişti; sonuç altına eklendi.": "A seleção mudou entretanto; o resultado foi inserido abaixo.",
  "Değiştirildi.": "Substituído.",
- "Sayfaya eklendi.": "Adicionado à página."
+ "Sayfaya eklendi.": "Adicionado à página.",
+ "Önizle": "Pré-visualizar",
+ "Dosyayı kaldır": "Remover arquivo",
+ "YouTube bağlantılarında önizleme görseli": "Imagem de pré-visualização em links do YouTube",
+ "Dokümanda tek başına duran YouTube bağlantısı video kapağıyla kart olarak görünür. Kapak YouTube'dan yüklenir; kapatırsanız bağlantı düz metin olarak kalır.": "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text."
 }

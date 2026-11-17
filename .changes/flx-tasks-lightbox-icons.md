@@ -1,4 +1,4 @@
 ---
-"@fluxwp/modules": patch
+"@fluxwp/modules": minor
 ---
-Tasks: preview window buttons and icons are white on its dark background in every theme.
+Tasks: document files as cards with a hover menu, YouTube link preview card (setting), white preview-window icons, light-theme background fix.

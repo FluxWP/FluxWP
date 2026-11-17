@@ -214,6 +214,7 @@ function flxg_rest_boot() {
 				'poll'        => max( 15, (int) flxg_setting( 'poll_interval' ) ),
 				'maxUpload'   => flxg_max_upload_bytes(),
 				'emailOn'     => (bool) flxg_setting( 'email_notify' ),
+				'ytPreview'   => (bool) flxg_setting( 'yt_preview' ),
 				'aiMcpUrl'    => flxg_ai_hub() ? admin_url( 'admin.php?page=flx-ai-mcp' ) : '',
 				'fieldTypes'  => flxg_field_types(),
 				'priorities'  => $pr,
@@ -1071,7 +1072,7 @@ function flxg_rest_settings_save( WP_REST_Request $r ) {
 	if ( isset( $b['max_upload_mb'] ) ) {
 		$set['max_upload_mb'] = max( 1, min( 512, (int) $b['max_upload_mb'] ) );
 	}
-	foreach ( array( 'email_notify', 'delete_data' ) as $k ) {
+	foreach ( array( 'email_notify', 'delete_data', 'yt_preview' ) as $k ) {
 		if ( isset( $b[ $k ] ) ) {
 			$set[ $k ] = $b[ $k ] ? 1 : 0;
 		}

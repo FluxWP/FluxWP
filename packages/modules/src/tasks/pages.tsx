@@ -514,6 +514,7 @@ function SettingsForm({ d, reload }: { d: FlxgSettings; reload: (r: FlxgSettings
       <section className="flxg-card-box">
         <h2>{tt("Files")}</h2>
         {numIn('max_upload_mb', tt("Single file limit (MB)"), 1, 512, tt("If the server's PHP limit is lower, that limit applies."))}
+        {sw('yt_preview', tt("Preview image for YouTube links"), tt("A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text."))}
       </section>
       <section className="flxg-card-box">
         <h2>{tt("AI")}</h2>
