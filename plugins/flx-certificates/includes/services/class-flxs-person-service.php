@@ -39,8 +39,8 @@ final class FLXS_Person_Service {
 	public static function directory_rest( WP_REST_Request $r ): array {
 		global $wpdb;
 		/** @var wpdb $wpdb */
-		$per   = min( 100, max( 1, FLXS_Val::int( $r->get_param( 'per_page' ) ? $r->get_param( 'per_page' ) : 25 ) ) );
-		$page  = max( 1, FLXS_Val::int( $r->get_param( 'page' ) ) );
+		$per   = min( 100, max( 1, FLXS_Val::abs( $r->get_param( 'per_page' ) ? $r->get_param( 'per_page' ) : 25 ) ) );
+		$page  = max( 1, FLXS_Val::abs( $r->get_param( 'page' ) ) );
 		$s     = sanitize_text_field( FLXS_Val::str($r->get_param( 's' )) );
 		$t     = flxs_table( 'people' );
 		$where = array( flxs_people_mine_sql( 'p' ) );

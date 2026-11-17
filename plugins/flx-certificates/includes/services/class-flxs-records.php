@@ -196,6 +196,15 @@ final class FLXS_Val {
 	}
 
 	/**
+	 * absint() of a request value, as the classic REST code reads page numbers: "-5" is 5, "12abc" is 12.
+	 *
+	 * @param mixed $v Value.
+	 */
+	public static function abs( $v ): int {
+		return is_scalar( $v ) || is_array( $v ) || null === $v ? absint( $v ) : 0;
+	}
+
+	/**
 	 * @param mixed $v Value.
 	 * @return array<string,mixed>
 	 */

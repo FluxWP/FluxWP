@@ -18,12 +18,12 @@ final class FLXS_Certificate_Service {
 	 * @return array{items:array<int,array<string,mixed>>,total:int,pages:int}
 	 */
 	public static function list_rest( WP_REST_Request $r ): array {
-		$per = min( 100, max( 1, FLXS_Val::int( $r->get_param( 'per_page' ) ? $r->get_param( 'per_page' ) : 25 ) ) );
+		$per = min( 100, max( 1, FLXS_Val::abs( $r->get_param( 'per_page' ) ? $r->get_param( 'per_page' ) : 25 ) ) );
 		$q   = flxs_query_certificates(
 			array(
 				'search'   => sanitize_text_field( FLXS_Val::str($r->get_param( 's' )) ),
 				'status'   => sanitize_key( FLXS_Val::str($r->get_param( 'status' )) ),
-				'page'     => max( 1, FLXS_Val::int( $r->get_param( 'page' ) ) ),
+				'page'     => max( 1, FLXS_Val::abs( $r->get_param( 'page' ) ) ),
 				'per_page' => $per,
 				'scope'    => true,
 				'orderby'  => 'created_at',
