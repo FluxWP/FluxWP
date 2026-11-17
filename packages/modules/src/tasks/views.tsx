@@ -892,12 +892,17 @@ function SubAddRow({ parent, depth }: { parent: FlxgTask; depth: number }) {
   );
 }
 
-/** Satır içi görev ekleme. */
+/** Satır içi görev ekleme: ad + atama / tarih / öncelik / etiket simgeleri, İptal ve Kaydet. */
 function InlineAdd({ g, autoOpen }: { g: Group; autoOpen?: boolean }) {
-  const { e, ui } = useYtg();
+  const c = useYtg();
+  const { e, ui } = c;
   const S = e.S;
   const [open, setOpen] = useState(!!autoOpen);
   const [v, setV] = useState('');
+  const [who, setWho] = useState<number[]>([]);
+  const [due, setDue] = useState('');
+  const [prio, setPrio] = useState(0);
+  const [tagIds, setTagIds] = useState<number[]>([]);
   const lists = e.scopeLists().filter((l) => rank(l.role) >= 3);
   const [list, setList] = useState(g.list || (S.scope?.type === 'list' ? S.scope.id : lists[0]?.id ?? 0));
   const inp = useRef<HTMLInputElement>(null);
@@ -910,36 +915,47 @@ function InlineAdd({ g, autoOpen }: { g: Group; autoOpen?: boolean }) {
         </button>
       </div>
     );
+  const reset = () => (setV(''), setWho([]), setDue(''), setPrio(0), setTagIds([]));
   const save = () => {
     const title = v.trim();
     if (!title) return setOpen(false);
     const data: Record<string, unknown> = { list, title };
+    if (who.length) data.assignees = who;
+    if (due) data.due = due;
+    if (prio) data.priority = prio;
+    if (tagIds.length) data.tags = tagIds;
     const fake = { id: 0, list, assignees: [], fields: {}, tags: [], status: '', priority: 0, due: '' } as unknown as FlxgTask;
     const p = g.patch?.(fake, null);
     if (p) Object.assign(data, p);
     if (S.scope?.type === 'home' && !data.assignees) data.assignees = [S.me!.id];
-    setV('');
+    reset();
     e.createTask(data).then(() => inp.current?.focus(), ui.fail);
   };
+  const space = e.list(list)?.space_id ?? 0;
+  const btn = (title: string, on: boolean, onClick: (ev: React.MouseEvent<HTMLButtonElement>) => void, body: ReactNode) => (
+    <button type="button" className={'flxg-qa-btn' + (on ? ' is-on' : '')} title={title} aria-label={title} onMouseDown={(ev) => ev.preventDefault()} onClick={onClick}>
+      {body}
+    </button>
+  );
   return (
     <div className="flxg-inline-add">
-      <div className="flxg-inline-form">
+      <div className="flxg-qa">
+        <span className="flxg-qa-circle" />
         <input
           ref={inp}
-          className="flxg-input"
+          className="flxg-qa-input"
           type="text"
           autoFocus
-          placeholder={tt("Type a task name and press Enter")}
+          placeholder={tt("Task name")}
           value={v}
           onChange={(ev) => setV(ev.target.value)}
           onKeyDown={(ev) => {
             if (ev.key === 'Enter') (ev.preventDefault(), save());
             if (ev.key === 'Escape') setOpen(false);
           }}
-          onBlur={(ev) => setTimeout(() => !v.trim() && !(ev.relatedTarget as HTMLElement | null)?.closest('.flxg-inline-form') && setOpen(false), 150)}
         />
         {S.scope?.type !== 'list' && !g.list && lists.length > 1 && (
-          <select className="flxg-input is-sm" value={list} onChange={(ev) => setList(+ev.target.value)}>
+          <select className="flxg-input is-sm flxg-qa-list" value={list} onChange={(ev) => setList(+ev.target.value)}>
             {lists.map((l) => (
               <option key={l.id} value={l.id}>
                 {l.name}
@@ -947,8 +963,17 @@ function InlineAdd({ g, autoOpen }: { g: Group; autoOpen?: boolean }) {
             ))}
           </select>
         )}
-        <button type="button" className="flxg-btn is-primary is-sm" onMouseDown={(ev) => (ev.preventDefault(), save())}>
-          {tt("Add")}
+        <div className="flxg-qa-tools">
+          {btn(tt("Assignee"), who.length > 0, (ev) => pickPeople(c, ev.currentTarget, who, setWho), who.length ? <Avatars ids={who} size={18} max={2} /> : <Ic n="user" s={16} />)}
+          {btn(tt("Due date"), !!due, (ev) => pickDate(c, ev.currentTarget, due, setDue), due ? <span className="flxg-qa-val">{fmtDue(due)}</span> : <Ic n="calendar" s={16} />)}
+          {btn(tt("Priority"), prio > 0, (ev) => pickPriority(c, ev.currentTarget, prio, setPrio), prio ? <PrioFlag n={prio} /> : <Ic n="flag" s={16} />)}
+          {btn(tt("Tags"), tagIds.length > 0, (ev) => pickTags(c, ev.currentTarget, space, tagIds, setTagIds), tagIds.length ? <span className="flxg-qa-val">{tagIds.length}</span> : <Ic n="tag" s={16} />)}
+        </div>
+        <button type="button" className="flxg-btn is-sm" onMouseDown={(ev) => ev.preventDefault()} onClick={() => setOpen(false)}>
+          {tt("Cancel")}
+        </button>
+        <button type="button" className="flxg-btn is-primary is-sm" onMouseDown={(ev) => ev.preventDefault()} onClick={save}>
+          {tt("Save")} <span aria-hidden="true">↵</span>
         </button>
       </div>
     </div>

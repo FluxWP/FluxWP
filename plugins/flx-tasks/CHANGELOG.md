@@ -1,5 +1,9 @@
 # Flux Tasks — Değişiklikler
 
+## 0.11.0
+- Liste görünümü (yeni ekran) daha sade: düz satırlar, hap biçimli araç çubuğu düğmeleri.
+- Satır içi görev ekleme yenilendi: çerçevesiz ad alanı, atama / bitiş tarihi / öncelik / etiket simge düğmeleri, Vazgeç ve Kaydet ↵. Seçilen değerlerle görev oluşturulur; klasik ekran değişmedi.
+
 ## 0.10.0
 - Dokümanda dosyalar kart olarak görünür: uzantı rozeti (PDF, ZIP, XLSX…), ad, üzerine gelince kenarlık. Düzenleme modunda karta gelince çıkan kalem simgesinden Önizle / İndir / Dosyayı kaldır menüsü açılır. Sürükle-bırak ve yapıştırma ile görsel ve dosya ekleme önceden de çalışıyordu.
 - Dokümanda tek başına duran YouTube bağlantısı video kapaklı kart olarak görünür. Ayarlar > Dosyalar'daki "YouTube bağlantılarında önizleme görseli" ile kapatılır (varsayılan açık); kapalıyken bağlantı düz kalır. Kapak YouTube'dan yüklenir, kaydedilen içeriğe eklenmez.
