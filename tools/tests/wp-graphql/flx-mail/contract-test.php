@@ -830,6 +830,17 @@ FLXI_Connection_Service::delete( $sms_id, false, false );
 flxt_same( 0, count( flxi_list_connections() ), 'every test connection is gone' );
 remove_filter( 'pre_http_request', $stub, 10 );
 
+// The Classic switch URL handed to the React screen is a plain URL (wp_nonce_url() would HTML-escape it).
+if ( ! function_exists( 'flxi_ui_switch_url' ) ) {
+	require_once FLXI_DIR . 'includes/admin/flux-ui.php';
+}
+$_GET['page'] = 'flxi-baglantilar';
+$_GET['edit'] = '7';
+$switch       = flxi_ui_switch_url( 'classic' );
+unset( $_GET['page'], $_GET['edit'] );
+flxt_ok( false === strpos( $switch, '&#038;' ) && false === strpos( $switch, '&amp;' ), 'classic switch URL is not HTML-escaped' );
+flxt_ok( false !== strpos( $switch, '_wpnonce=' ) && false !== strpos( $switch, 'flxi_ui=classic' ) && false !== strpos( $switch, 'edit=7' ), 'classic switch URL carries the nonce, the ui flag and the edited connection' );
+
 // One more pass over every captured response.
 $blob = (string) wp_json_encode( $seen );
 flxt_ok( false === strpos( $blob, $secret ), 'no captured response contains the secret' );

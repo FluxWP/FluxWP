@@ -51,7 +51,9 @@ function flxi_ui_switch_url( string $ui ): string {
 			$args[ $extra ] = sanitize_text_field( wp_unslash( $_GET[ $extra ] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		}
 	}
-	return wp_nonce_url( add_query_arg( $args, admin_url( 'admin.php' ) ), 'flxi_ui' );
+	// A plain URL: wp_nonce_url() HTML-escapes it (&#038;), which breaks it as a React href. Callers escape on output.
+	$args['_wpnonce'] = wp_create_nonce( 'flxi_ui' );
+	return add_query_arg( $args, admin_url( 'admin.php' ) );
 }
 
 add_action(

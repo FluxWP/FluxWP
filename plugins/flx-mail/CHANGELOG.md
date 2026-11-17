@@ -3,6 +3,7 @@
 ## 1.24.0 — 2026-11-17
 - Bağlantılar (WhatsApp: Evolution, Flux WPAPI, Cloud API; SMS: Netgsm) ve WhatsApp Cloud kurulumu GraphQL üzerinden. Yönetim ekranı React (`flxi-mail`, Bağlantılar sekmesi): liste, ekle/düzenle, test senaryoları, QR/eşleştirme kodu, yeniden başlat, çıkış, Flux WPAPI sunucu ayarları, Cloud kurulum penceresi (webhook adresi, doğrulama anahtarı, şablonlar). Klasik sayfa `flxi_ui=classic` ile duruyor.
 - Klasik sayfa, REST ve GraphQL aynı `FLXI_Connection_Service` kodunu çağırır. Gizli alanlar (API key, token, App Secret, parola) yazma-yalnız: boş değer saklananı korur, okumada yalnız maske. REST çıktıları değişmedi; Cloud webhook (`/wacloud/{id}/webhook`) REST olarak kalır.
+- Okumada gizli alan maskesi sabit `••••••••` (parolanın hiçbir karakteri değil); `__clear__` yalnız GraphQL yolunda, klasik form yazdığı gibi kaydeder. Klasik görünüm bağlantısı (`classicUrl`) HTML-kaçışsız düz URL; GraphQL şema açıklamaları ve yeni hata iletileri Türkçe çevrildi.
 
 ## 1.23.0 — 2026-11-16
 - Ayarlar, E-postalar (şablon düzenleyici dahil), Kayıtlar ve Sistem kontrolü GraphQL üzerinden. Yönetim ekranı React (`flxi-mail`); klasik görünüm `flxi_ui=classic` ile duruyor. Parolalar yazma-yalnız: boş değer saklananı korur, `__clear__` siler (yalnız GraphQL), okumada yalnız sabit maske (••••••••); wp-config sabiti olan parola GraphQL'den değiştirilemez.
