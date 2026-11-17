@@ -27,11 +27,9 @@ file and change the import in `lib/flux.ts`.
 To see it as the screenshots show it, set WordPress up with the FluxWP theme and its demo store
 preset (*Theme settings › Presets*), which adds the products, pages and a post.
 
-1. In WordPress, open **FluxWP › Headless › Add front end** and fill in:
-   - **Address**: `http://localhost:3000`.
-   - **Webhook**: `http://localhost:3000/api/revalidate`.
-   - **Secret**: press *Generate*.
-   - **Preview path**: `/api/preview`.
+1. In WordPress, open **FluxWP › Headless › Add front end** and fill in **Name** and **Address**
+   (`http://localhost:3000`). The webhook (`/api/revalidate`), preview path (`/api/preview`) and
+   secret are filled in under *Advanced*.
 2. Save. WordPress shows the connection once. Put its two lines in `.env.local` (or your host's
    environment variables):
    - `FLUX_WP_URL`: the WordPress address.
@@ -39,11 +37,18 @@ preset (*Theme settings › Presets*), which adds the products, pages and a post
 3. Run these commands:
 
 ```sh
-bun install
-bun run --filter @fluxwp/headless-next dev            # http://localhost:3000
-bun run --filter @fluxwp/headless-next build:site     # production build (WordPress must be reachable)
-bun run --filter @fluxwp/headless-next start
+cd apps/headless-next
+bun install        # or npm install: this app is not part of the monorepo workspace
+bun run dev        # http://localhost:3000
+bun run build      # production build (WordPress must be reachable)
+bun run start      # PORT sets the port, default 3000
 ```
+
+**Hosting (Node.js, e.g. Hostinger).** Use the repository and set the root directory to
+`apps/headless-next`, build command `npm run build`, output `.next`, Node 22, and add the two
+environment variables. The app stays outside the monorepo workspace on purpose, so a plain
+`npm install` works there. It still needs the whole repository, because it reads the
+`persisted-queries.json` manifest from `plugins/flx-headless/graphql/`.
 
 4. In WordPress, press **Test webhook**. The log should show `HTTP 200`. Edit a post, reload its page
    on the front end, and the change is there.
