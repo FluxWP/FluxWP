@@ -32,7 +32,7 @@ function flxhl_gql_src( $source, string $class ) {
 /**
  * Optional string argument: null when not given or empty.
  *
- * @param array<string,mixed> $args
+ * @param array<mixed> $args
  */
 function flxhl_gql_opt( array $args, string $key ): ?string {
 	$v = flx_gql_str( $args[ $key ] ?? '' );
