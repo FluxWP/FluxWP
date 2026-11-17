@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.6.0
+- FluxWP mobil uygulamasında Yedekleme (özet, yedek listesi ve ayrıntısı, kilitle/kilidi aç, sil, indir, ayarlar). Yeni yedek ve geri yükleme adım adım ilerlediği için panelde açılır artık web görünümü yerine uygulamanın kendi ekranlarında açılır (manifest `app/manifest.json`, veri GraphQL'den). Masaüstü ve wp-admin aynı React ekranında kalır. Yeni metinlerin Türkçesi eklendi.
+
 ## 1.5.0
 - Yedekler ekranı yenilendi: pano, liste, ayrıntı (boyut dökümü), ayarlar, şimdi yedekle, geri yükle, sil, kilitle, yedek yükle ve çalışan işin ilerlemesi ortak FluxWP ekranında; klasik sayfalarla aynı özellikler, açık/koyu temaya uyar, FluxWP uygulamasında da açılır. wp-admin'de varsayılan budur; eski görünüm sayfadaki "Klasik görünüm" bağlantısıyla açılır (kullanıcı başına hatırlanır).
 - Tüm okuma ve işlemler GraphQL'de (`flxBackups`, `flxBackup`, `flxBackupOverview`, `flxBackupHistory`, `flxBackupSettings`, `flxBackupStart`, `flxBackupRestoreStart`, `flxBackupStep`, `flxBackupCancel`, `flxBackupDelete`, `flxBackupLock`, `flxBackupSettingsSave` …). Yedek ve geri yükleme adım adım sürer: mutation işi başlatır, durum sorguyla okunur. Geri yükleme ve silme en yüksek yetkiyi ister. Belge: docs/flx-backup/GRAPHQL.md.

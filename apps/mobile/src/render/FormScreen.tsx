@@ -10,7 +10,8 @@ import { useFormController } from '@fluxwp/runtime';
 import type { FormScreen as FormDef, Manifest } from '@fluxwp/manifest';
 import { KeyboardView } from '@/ui/KeyboardView';
 import { RichEditor } from '@/ui/RichEditor';
-import { Button, Field, Segmented, Skeleton, Text } from '@/ui/primitives';
+import { Button, Field, Skeleton, Text } from '@/ui/primitives';
+import { Select } from '@/ui/Select';
 import { EntityField, MediaField } from './fields';
 import type { RelationValue } from '@fluxwp/runtime';
 import { useScrollChrome } from '@/shell/chrome';
@@ -50,18 +51,14 @@ export function FormScreen({ manifest, screen, params }: { manifest: Manifest; s
                   </View>
                 );
               if ((f.type === 'segmented' || f.type === 'radio' || f.type === 'select') && Array.isArray(f.options))
-                return (
-                  <View style={styles.gap}>
-                    <Text variant="label">{f.label}</Text>
-                    <Segmented options={f.options} value={String(field.value ?? '')} onChange={field.onChange} />
-                    {err ? <Text variant="small" tone="danger">{err}</Text> : null}
-                  </View>
-                );
-              const editable = !f.readonly && ['text', 'textarea', 'email', 'phone', 'url', 'number', 'money', 'secret', 'color', 'date', 'datetime', 'time'].includes(f.type);
+                return <Select label={f.label + (f.required ? ' *' : '')} options={f.options} value={String(field.value ?? '')} onChange={field.onChange} error={err} help={f.help} disabled={f.readonly} />;
+              const editable = !f.readonly && ['text', 'textarea', 'email', 'phone', 'url', 'number', 'money', 'secret', 'color', 'date', 'datetime', 'time', 'tags'].includes(f.type);
+              // Tags are edited as one comma-separated line; the runtime splits them on submit.
+              const shown = Array.isArray(field.value) ? field.value.join(', ') : field.value === undefined || field.value === null ? '' : String(field.value);
               return (
                 <Field
                   label={f.label + (f.required ? ' *' : '')}
-                  value={field.value === undefined || field.value === null ? '' : String(field.value)}
+                  value={shown}
                   onChangeText={field.onChange}
                   onBlur={field.onBlur}
                   editable={editable}
@@ -71,7 +68,7 @@ export function FormScreen({ manifest, screen, params }: { manifest: Manifest; s
                   multiline={f.type === 'textarea'}
                   secureTextEntry={f.type === 'secret'}
                   keyboardType={KEYBOARD[f.type] ?? 'default'}
-                  autoCapitalize={f.type === 'email' || f.type === 'url' ? 'none' : 'sentences'}
+                  autoCapitalize={f.type === 'email' || f.type === 'url' || f.type === 'tags' ? 'none' : 'sentences'}
                   maxLength={f.maxLength}
                 />
               );

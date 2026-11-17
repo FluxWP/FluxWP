@@ -64,3 +64,27 @@ describe('GraphQL manifest sources', () => {
     expect(JSON.parse(String(seen[3]!.init?.body))).toEqual({ queryId: ID, operationName: 'M', variables: { id: 3 } });
   });
 });
+
+import { submitValues } from './controllers/form';
+import { optionsFrom } from './controllers/options';
+
+describe('form values for GraphQL', () => {
+  it('numbers are typed, empty numbers left out, tags split', () => {
+    const fields = [
+      { name: 'threshold', type: 'number', label: 'T' },
+      { name: 'hour', type: 'number', label: 'H' },
+      { name: 'ips', type: 'tags', label: 'I' },
+      { name: 'list', type: 'tags', label: 'L' },
+    ] as Parameters<typeof submitValues>[0];
+    expect(submitValues(fields, { threshold: '0,5', hour: '', ips: '1.1.1.1, 2.2.2.2\n3.3.3.3', list: ['a'] })).toEqual({ threshold: 0.5, ips: ['1.1.1.1', '2.2.2.2', '3.3.3.3'], list: ['a'] });
+  });
+
+  it('source options map rows by path or template', () => {
+    const data = { languages: [{ code: 'tr', name: 'Türkçe', flag: '🇹🇷' }, { code: 'en', name: 'English' }, 'junk'] };
+    expect(optionsFrom(data, { source: 's', path: 'languages', value: 'code', label: '{{flag}} {{name}}' })).toEqual([
+      { value: 'tr', label: '🇹🇷 Türkçe' },
+      { value: 'en', label: ' English' },
+    ]);
+    expect(optionsFrom({}, { source: 's', path: 'x', value: 'a', label: 'b' })).toEqual([]);
+  });
+});
