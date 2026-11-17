@@ -5,6 +5,7 @@
 defined( 'WP_UNINSTALL_PLUGIN' ) || exit;
 
 delete_option( 'flxg_mcp_keys' );
+delete_metadata( 'user', 0, 'flxg_ui', '', true ); // eski sürümlerin klasik görünüm tercihi
 
 $flxg_settings = get_option( 'flxg_settings', array() );
 if ( empty( $flxg_settings['delete_data'] ) ) {

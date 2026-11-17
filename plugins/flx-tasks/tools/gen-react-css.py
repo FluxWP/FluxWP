@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""React görev ekranının stilini (packages/modules/src/tasks/flxg.css) klasik assets/css/app.css'ten üretir.
+"""React görev ekranının stilini (packages/modules/src/tasks/flxg.css) tools/app.css'ten üretir.
 
 Tek kaynak app.css: tasarım değişikliği orada yapılır, sonra bu betik çalıştırılır.
 - WP sayfa kabuğu kuralları (html.flxg-lock, #flxg-app, #wpadminbar) çıkarılır; wp-admin'de bunları admin.php verir.
@@ -13,7 +13,7 @@ import os, re
 HERE = os.path.dirname(os.path.abspath(__file__))
 PLUG = os.path.dirname(HERE)
 REPO = os.path.dirname(os.path.dirname(PLUG))
-src = open(os.path.join(PLUG, 'assets/css/app.css'), encoding='utf-8').read().split('\n')
+src = open(os.path.join(PLUG, 'tools/app.css'), encoding='utf-8').read().split('\n')
 
 out, skip = [], False
 for line in src:
@@ -35,7 +35,7 @@ for line in src:
     out.append(line)
 
 css = '\n'.join(out).rstrip('\n')
-head = "/* Otomatik üretildi: plugins/flx-tasks/tools/gen-react-css.py, kaynak plugins/flx-tasks/assets/css/app.css. Elle değiştirmeyin. */\n"
+head = "/* Otomatik üretildi: plugins/flx-tasks/tools/gen-react-css.py, kaynak plugins/flx-tasks/tools/app.css. Elle değiştirmeyin. */\n"
 extra = """
 
 /* ---------------- Yalnız React ekranı (FluxApp + wp-admin) ---------------- */
