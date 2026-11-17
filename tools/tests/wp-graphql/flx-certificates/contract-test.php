@@ -31,6 +31,59 @@ function flxs_t_get( array $bag, string $key ) {
 	return array_key_exists( $key, $bag ) ? $bag[ $key ] : 'absent';
 }
 
+/** First payload error code of a mutation, or null. */
+function flxs_t_err( array $r, string $field ): ?string {
+	$code = flxs_t_payload( $r, $field )['errors'][0]['code'] ?? null;
+	return is_string( $code ) ? $code : null;
+}
+
+/** Queue rows of one certificate, oldest first. */
+function flxs_t_msgs( int $cert, string $source = '' ): array {
+	global $wpdb;
+	$sql = 'SELECT * FROM ' . flxs_table( 'messages' ) . ' WHERE certificate_id = %d' . ( '' !== $source ? ' AND source = %s' : '' ) . ' ORDER BY id';
+	return (array) $wpdb->get_results( '' !== $source ? $wpdb->prepare( $sql, $cert, $source ) : $wpdb->prepare( $sql, $cert ), ARRAY_A );
+}
+
+/** A certificate and its holder made with the classic functions: [certificate id, person id, code]. */
+function flxs_t_make( int $tpl, string $name, string $email ): array {
+	$p    = flxs_upsert_person( $name, '', $email );
+	$pid  = is_array( $p ) ? (int) ( $p['person']['id'] ?? 0 ) : 0;
+	$cert = $pid ? flxs_create_certificate( $tpl, $pid, array( 'ad_soyad' => $name, 'note_field' => 'x' ) ) : null;
+	return array( is_array( $cert ) ? (int) $cert['id'] : 0, $pid, is_array( $cert ) ? (string) $cert['code'] : '' );
+}
+
+/** POST to the classic REST routes as a user. */
+function flxs_t_rest( string $route, array $params, int $user ): WP_REST_Response {
+	wp_set_current_user( $user );
+	$req = new WP_REST_Request( 'POST', '/flx-certificates/v1' . $route );
+	$req->set_body_params( $params );
+	return rest_do_request( $req );
+}
+
+/** Simulates POST /flx/v1/upload: a file in the private folder and its transient. */
+function flxs_t_upload( int $user, string $name, string $mime, string $bytes ): string {
+	$id     = wp_generate_password( 20, false );
+	$secret = wp_generate_password( 12, false );
+	$path   = flx_gql_upload_dir() . '/' . $id . '.' . pathinfo( $name, PATHINFO_EXTENSION );
+	file_put_contents( $path, $bytes );
+	set_transient( 'flxgql_up_' . $id, array( 'path' => $path, 'name' => $name, 'mime' => $mime, 'size' => (int) filesize( $path ), 'user' => $user, 'context' => 'flx-certificates/file', 'secret' => wp_hash( $secret ), 'created' => time() ), HOUR_IN_SECONDS );
+	return $id . '.' . $secret;
+}
+
+/** Cache tags purged since the last reset. */
+$GLOBALS['flxs_t_purged'] = array();
+add_action(
+	'flx_gql_purged',
+	static function ( $tags ) {
+		$GLOBALS['flxs_t_purged'] = array_merge( $GLOBALS['flxs_t_purged'], (array) $tags );
+	}
+);
+function flxs_t_purged( string $tag ): bool {
+	return in_array( $tag, $GLOBALS['flxs_t_purged'], true );
+}
+
+$orig_recipients = get_option( 'flxs_recipients', array() );
+
 flxs_install_roles();
 $settings                    = flxs_settings();
 $settings['lookup_enabled']  = 1;
@@ -181,7 +234,9 @@ flxt_same( $id, $listed['data']['flxCertificates']['nodes'][0]['databaseId'] ?? 
 $row = flxs_get_certificate( $id );
 $tmp = wp_tempnam( 'flxs' );
 file_put_contents( $tmp, "%PDF-1.4\n1 0 obj<<>>endobj\ntrailer<<>>\n%%EOF\n" );
+$GLOBALS['flxs_t_purged'] = array();
 flxt_ok( is_string( flxs_store_certificate_file( $row, 'pdf', $tmp ) ), 'file: PDF stored' );
+flxt_ok( flxs_t_purged( 'flx-certificates:verify:' . $row['code'] ), 'purge: a stored file (the public-files path) drops the public answer' );
 file_put_contents( $tmp, "\xFF\xD8\xFF\xD9" );
 flxt_ok( is_string( flxs_store_certificate_file( flxs_get_certificate( $id ), 'image', $tmp, 12, 8 ) ), 'file: JPEG stored' );
 @unlink( $tmp );
@@ -264,6 +319,159 @@ flxt_same( 'Spare ' . $stamp, flxs_get_person( $spare_id )['name'] ?? null, 'rou
 flxt_same( 'desk', flxs_get_person( $spare_id )['note'] ?? null, 'round-trip: classic reader sees the GraphQL note' );
 $gone = flxs_t_op( 'FlxCertificatePersonDelete', array( 'input' => array( 'id' => $spare_id ) ), $admin );
 flxt_same( true, flxs_t_payload( $gone, 'flxCertificatePersonDelete' )['deleted'] ?? null, 'person delete: a person with no certificate' );
+
+// Sending. E-mail goes through the built-in wp_mail connection, so every call below writes a real queue row.
+wp_set_current_user( $admin );
+[ $send_id, $send_person, $send_code ] = flxs_t_make( $tpl, 'Sendee ' . $stamp, 'sendee-' . $stamp . '@example.test' );
+flxt_ok( $send_id > 0, 'send: certificate' );
+flxt_same( 0, count( flxs_t_msgs( $send_id ) ), 'send: nothing is queued before a send' );
+$r = flxs_t_op( 'FlxCertificateSend', array( 'input' => array( 'id' => $send_id, 'channels' => array( 'EMAIL' ) ) ), $admin );
+flxt_same( true, flxs_t_payload( $r, 'flxCertificateSend' )['results'][0]['ok'] ?? null, 'send: e-mail accepted' );
+$rows = flxs_t_msgs( $send_id, 'manual' );
+flxt_same( 1, count( $rows ), 'send: exactly one queue row' );
+flxt_same( 'sendee-' . $stamp . '@example.test', $rows[0]['recipient'] ?? null, 'send: the row goes to the holder' );
+$dl = flxs_t_op( 'FlxCertificateOne', array( 'id' => $send_id ), $admin )['data']['flxCertificate']['deliveries'] ?? array();
+flxt_same( 1, array_sum( array_map( static fn( $d ): int => (int) $d['sent'] + (int) $d['failed'] + (int) $d['waiting'], $dl ) ), 'send: deliveries count that row' );
+$r = flxs_t_op( 'FlxCertificateSend', array( 'input' => array( 'id' => $send_id, 'channels' => array() ) ), $admin );
+flxt_same( 'INVALID_INPUT', flxs_t_err( $r, 'flxCertificateSend' ), 'send: no channel is refused' );
+flxs_set_certificate_status( $send_id, 'revoked' );
+$r = flxs_t_op( 'FlxCertificateSend', array( 'input' => array( 'id' => $send_id, 'channels' => array( 'EMAIL' ) ) ), $admin );
+flxt_same( 'CONFLICT', flxs_t_err( $r, 'flxCertificateSend' ), 'send: a revoked certificate is refused' );
+flxs_set_certificate_status( $send_id, 'active' );
+flxt_same( 1, count( flxs_t_msgs( $send_id ) ), 'send: refusals queue nothing' );
+
+// Send to someone else. One shared body serves REST and GraphQL.
+$st      = static fn( array $input, int $user ): array => flxs_t_op( 'FlxCertificateSendTo', array( 'input' => array_merge( array( 'id' => $send_id, 'channel' => 'EMAIL' ), $input ) ), $user );
+$to_mail = 'fwd-' . $stamp . '@example.test';
+$r       = $st( array( 'to' => '   ', 'save' => true ), $admin );
+flxt_same( 'INVALID_INPUT', flxs_t_err( $r, 'flxCertificateSendTo' ), 'send to: an empty address is refused' );
+flxt_same( 'Enter an e-mail address.', flxs_t_payload( $r, 'flxCertificateSendTo' )['errors'][0]['message'] ?? null, 'send to: the refusal is in English' );
+flxt_same( 0, count( flxs_t_msgs( $send_id, 'forward' ) ), 'send to: an empty address does not fall back to the holder' );
+flxt_same( $orig_recipients, get_option( 'flxs_recipients', array() ), 'send to: an empty address saves no recipient' );
+$r = $st( array( 'to' => 'not-an-address', 'save' => true ), $admin );
+flxt_same( 'INVALID_INPUT', flxs_t_err( $r, 'flxCertificateSendTo' ), 'send to: a bad address is refused' );
+flxt_same( 0, count( flxs_t_msgs( $send_id, 'forward' ) ), 'send to: a bad address queues nothing' );
+flxt_same( $orig_recipients, get_option( 'flxs_recipients', array() ), 'send to: a failed send does not remember the recipient' );
+$r = $st( array( 'to' => '  ' . strtoupper( $to_mail ) . '  ', 'name' => ' <b>Fwd</b> ', 'subject' => ' <i>Hello</i> ', 'body' => "<b>Line</b> one\r\nline two", 'save' => true ), $admin );
+flxt_same( array(), flxs_t_payload( $r, 'flxCertificateSendTo' )['errors'] ?? null, 'send to: no payload errors' );
+$rows = flxs_t_msgs( $send_id, 'forward' );
+flxt_same( 1, count( $rows ), 'send to: exactly one queue row' );
+flxt_same( strtolower( $to_mail ), $rows[0]['recipient'] ?? null, 'send to: the address is trimmed' );
+flxt_same( 'Hello', $rows[0]['subject'] ?? null, 'send to: the subject is sanitised' );
+flxt_ok( false === strpos( (string) ( $rows[0]['body'] ?? '' ), '<b>' ) && false !== strpos( (string) ( $rows[0]['body'] ?? '' ), 'Line one' ), 'send to: the body is sanitised' );
+$kept = array_values( array_filter( flxs_get_recipients(), static fn( $x ): bool => ( $x['email'] ?? '' ) === strtolower( $to_mail ) ) );
+flxt_same( 1, count( $kept ), 'send to: the recipient is remembered once after a success' );
+flxt_same( 'Fwd', $kept[0]['name'] ?? null, 'send to: the remembered name is sanitised' );
+
+$res = flxs_t_rest( '/certificates/' . $send_id . '/message', array( 'channel' => 'email', 'to' => '' ), $admin );
+flxt_same( array( 400, array( 'ok' => false, 'message' => 'E-posta adresi girin.' ) ), array( $res->get_status(), $res->get_data() ), 'rest forward: an empty e-mail answers as before' );
+$res = flxs_t_rest( '/certificates/' . $send_id . '/message', array( 'channel' => 'sms', 'to' => ' ' ), $admin );
+flxt_same( array( 400, array( 'ok' => false, 'message' => 'Telefon numarası girin.' ) ), array( $res->get_status(), $res->get_data() ), 'rest forward: an empty phone answers as before' );
+$res = flxs_t_rest( '/certificates/' . $send_id . '/message', array( 'channel' => 'fax', 'to' => 'x' ), $admin );
+flxt_same( array( 400, array( 'ok' => false, 'message' => 'Kanal geçersiz.' ) ), array( $res->get_status(), $res->get_data() ), 'rest forward: a bad channel answers as before' );
+$res = flxs_t_rest( '/certificates/99999999/message', array( 'channel' => 'email', 'to' => 'x@example.test' ), $admin );
+flxt_same( array( 404, array( 'ok' => false, 'message' => 'Sertifika bulunamadı.' ) ), array( $res->get_status(), $res->get_data() ), 'rest forward: a missing certificate answers as before' );
+flxt_same( 1, count( flxs_t_msgs( $send_id, 'forward' ) ), 'rest forward: refusals queue nothing' );
+$res  = flxs_t_rest( '/certificates/' . $send_id . '/message', array( 'channel' => 'email', 'to' => 'rest-' . $stamp . '@example.test', 'save' => 1 ), $admin );
+$rows = flxs_t_msgs( $send_id, 'forward' );
+flxt_same( 2, count( $rows ), 'rest forward: one more queue row' );
+flxt_same( array( 200, array( 'ok' => true, 'message_id' => (int) ( $rows[1]['id'] ?? 0 ) ) ), array( $res->get_status(), $res->get_data() ), 'rest forward: the success answer is unchanged' );
+
+// Bulk. Managers get the classic bulk page for a send; the other actions run per row.
+[ $bulk_a, $bulk_a_person, $bulk_a_code ] = flxs_t_make( $tpl, 'BulkA ' . $stamp, 'bulka-' . $stamp . '@example.test' );
+[ $bulk_b, $bulk_b_person, $bulk_b_code ] = flxs_t_make( $tpl, 'BulkB ' . $stamp, 'bulkb-' . $stamp . '@example.test' );
+flxt_ok( $bulk_a > 0 && $bulk_b > 0, 'bulk: two certificates' );
+$bulk = static fn( array $input, int $user ): array => flxs_t_op( 'FlxCertificateBulk', array( 'input' => $input ), $user );
+$r    = $bulk( array( 'ids' => array(), 'action' => 'REVOKE' ), $admin );
+flxt_same( 'INVALID_INPUT', flxs_t_err( $r, 'flxCertificateBulk' ), 'bulk: no ids is refused' );
+$GLOBALS['flxs_t_purged'] = array();
+$r = $bulk( array( 'ids' => array( $bulk_a, $bulk_b ), 'action' => 'REVOKE' ), $admin );
+flxt_same( 2, flxs_t_payload( $r, 'flxCertificateBulk' )['updated'] ?? null, 'bulk: revoke counts both rows' );
+flxt_same( array( 'revoked', 'revoked' ), array( flxs_get_certificate( $bulk_a )['status'] ?? null, flxs_get_certificate( $bulk_b )['status'] ?? null ), 'bulk: the classic reader sees the revoked rows' );
+flxt_ok( flxs_t_purged( 'flx-certificates:verify:' . $bulk_a_code ), 'purge: a revoke drops the public answer' );
+$r = $bulk( array( 'ids' => array( $bulk_a, $bulk_b ), 'action' => 'RESTORE' ), $admin );
+flxt_same( 2, flxs_t_payload( $r, 'flxCertificateBulk' )['updated'] ?? null, 'bulk: restore counts both rows' );
+$r = $bulk( array( 'ids' => array( $bulk_a, $bulk_b ), 'action' => 'REFERRER', 'referrerId' => $admin ), $admin );
+flxt_same( 2, flxs_t_payload( $r, 'flxCertificateBulk' )['updated'] ?? null, 'bulk: referrer counts both rows' );
+flxt_same( $admin, (int) ( flxs_get_certificate( $bulk_b )['ref_user_id'] ?? 0 ), 'bulk: the classic reader sees the referrer' );
+$r = $bulk( array( 'ids' => array( $bulk_a ), 'action' => 'SEND_EMAIL' ), $admin );
+flxt_same( 0, flxs_t_payload( $r, 'flxCertificateBulk' )['queued'] ?? null, 'bulk: a manager send queues nothing here' );
+flxt_ok( false !== strpos( (string) ( flxs_t_payload( $r, 'flxCertificateBulk' )['redirect'] ?? '' ), 'flxs-toplu' ) && false !== strpos( (string) ( flxs_t_payload( $r, 'flxCertificateBulk' )['redirect'] ?? '' ), 'channel=email' ), 'bulk: a manager send returns the classic bulk page' );
+flxt_same( 0, count( flxs_t_msgs( $bulk_a ) ), 'bulk: no queue row before the bulk page confirms' );
+$GLOBALS['flxs_t_purged'] = array();
+$res = flxs_t_rest( '/bulk', array( 'spec' => array( 'mode' => 'certificates', 'channel' => 'email', 'certificate_ids' => array( $bulk_a ), 'subject' => 'Bulk', 'body' => 'Link {link}' ) ), $admin );
+$out = (array) $res->get_data();
+flxt_same( array( 200, true, 1 ), array( $res->get_status(), $out['ok'] ?? null, $out['queued'] ?? null ), 'rest bulk: one message queued' );
+flxt_same( 1, count( flxs_t_msgs( $bulk_a, 'bulk' ) ), 'rest bulk: one queue row' );
+flxt_ok( flxs_t_purged( 'flx-certificates:certificate:' . $bulk_a ), 'purge: a bulk send drops the certificate answer (delivery counts)' );
+$r = $bulk( array( 'ids' => array( $bulk_b ), 'action' => 'DELETE' ), $admin );
+flxt_same( 1, flxs_t_payload( $r, 'flxCertificateBulk' )['updated'] ?? null, 'bulk: delete counts the row' );
+flxt_same( null, flxs_get_certificate( $bulk_b ), 'bulk: the classic reader no longer finds it' );
+flxt_ok( flxs_t_purged( 'flx-certificates:verify:' . $bulk_b_code ), 'purge: a delete drops the public answer' );
+
+// Files the kit uploaded. Another user cannot reach the certificate; a taken upload cannot be used twice.
+$pdf_up = flxs_t_upload( $admin, 'cert.pdf', 'application/pdf', "%PDF-1.4\n1 0 obj<<>>endobj\ntrailer<<>>\n%%EOF\n" );
+$GLOBALS['flxs_t_purged'] = array();
+$r = flxs_t_op( 'FlxCertificateAttachFiles', array( 'input' => array( 'id' => $bulk_a, 'pdfUploadId' => $pdf_up ) ), $admin );
+flxt_same( array(), flxs_t_payload( $r, 'flxCertificateAttachFiles' )['errors'] ?? null, 'attach: a PDF is accepted' );
+flxt_ok( is_string( flxs_t_payload( $r, 'flxCertificateAttachFiles' )['certificate']['pdfUrl'] ?? null ), 'attach: the node has a PDF URL' );
+$stored_pdf = flxs_certificate_file_path( flxs_get_certificate( $bulk_a ), 'pdf' );
+flxt_ok( is_string( $stored_pdf ) && file_exists( $stored_pdf ), 'attach: the classic reader finds the file on disk' );
+flxt_ok( flxs_t_purged( 'flx-certificates:verify:' . $bulk_a_code ), 'purge: an attached file drops the public answer' );
+$r = flxs_t_op( 'FlxCertificateAttachFiles', array( 'input' => array( 'id' => $bulk_a, 'pdfUploadId' => $pdf_up ) ), $admin );
+flxt_ok( null !== flxt_code( $r ) || '' !== (string) flxs_t_err( $r, 'flxCertificateAttachFiles' ), 'attach: an upload cannot be taken twice' );
+$r = flxs_t_op( 'FlxCertificateAttachFiles', array( 'input' => array( 'id' => $bulk_a, 'pdfUploadId' => flxs_t_upload( $admin, 'fake.pdf', 'application/pdf', 'not a pdf' ) ) ), $admin );
+flxt_same( 'INVALID_INPUT', flxs_t_err( $r, 'flxCertificateAttachFiles' ), 'attach: a file that is not a PDF is refused' );
+flxt_same( 'That is not a valid PDF.', flxs_t_payload( $r, 'flxCertificateAttachFiles' )['errors'][0]['message'] ?? null, 'attach: the refusal is in English' );
+$r = flxs_t_op( 'FlxCertificateAttachFiles', array( 'input' => array( 'id' => $bulk_a, 'imageUploadId' => flxs_t_upload( $admin, 'cert.jpg', 'image/jpeg', "\xFF\xD8\xFF\xD9" ), 'width' => 12, 'height' => 8 ) ), $admin );
+flxt_ok( is_string( flxs_t_payload( $r, 'flxCertificateAttachFiles' )['certificate']['imageUrl'] ?? null ), 'attach: a JPEG is accepted' );
+flxt_same( array( 12, 8 ), array( (int) ( flxs_get_certificate( $bulk_a )['image_w'] ?? 0 ), (int) ( flxs_get_certificate( $bulk_a )['image_h'] ?? 0 ) ), 'attach: the classic reader sees the image size' );
+$r = flxs_t_op( 'FlxCertificateAttachFiles', array( 'input' => array( 'id' => $bulk_a ) ), $admin );
+flxt_same( 'INVALID_INPUT', flxs_t_err( $r, 'flxCertificateAttachFiles' ), 'attach: no upload id is refused' );
+$r = flxs_t_op( 'FlxCertificateAttachFiles', array( 'input' => array( 'id' => 99999999, 'pdfUploadId' => 'x' ) ), $admin );
+flxt_same( 'NOT_FOUND', flxt_code( $r ), 'attach: a missing certificate is NOT_FOUND' );
+
+// Deliveries load for the whole page at once.
+$GLOBALS['flxs_t_delivery_queries'] = array();
+$count_deliveries                   = static function ( $sql ) {
+	if ( false !== strpos( (string) $sql, 'GROUP BY certificate_id, channel, status' ) ) {
+		$GLOBALS['flxs_t_delivery_queries'][] = (string) $sql;
+	}
+	return $sql;
+};
+add_filter( 'query', $count_deliveries );
+$page = flxs_t_op( 'FlxCertificateRecords', array( 'first' => 10, 'filter' => array( 'search' => $stamp ) ), $admin );
+remove_filter( 'query', $count_deliveries );
+flxt_ok( count( $page['data']['flxCertificates']['nodes'] ?? array() ) >= 2, 'records: a page with several certificates', $page );
+flxt_ok( 1 === count( $GLOBALS['flxs_t_delivery_queries'] ), 'records: deliveries are one query for the page, not one per row', $GLOBALS['flxs_t_delivery_queries'] );
+
+// The Excel link works from a browser: a plain ampersand and a nonce the export accepts.
+$page = flxs_t_op( 'FlxCertificateRecords', array( 'first' => 1, 'filter' => array( 'search' => 'a b&c', 'status' => 'ACTIVE' ) ), $admin );
+$url  = (string) ( $page['data']['flxCertificateRecordsMeta']['exportUrl'] ?? '' );
+flxt_ok( false !== strpos( $url, '&_wpnonce=' ), 'export url: carries a plain &_wpnonce=', $url );
+flxt_ok( false === strpos( $url, '&amp;' ) && false === strpos( $url, '#038' ) && false === strpos( $url, 'amp;' ), 'export url: no HTML-escaped ampersand', $url );
+$q = array();
+wp_parse_str( (string) wp_parse_url( $url, PHP_URL_QUERY ), $q );
+wp_set_current_user( $admin );
+flxt_ok( false !== wp_verify_nonce( (string) ( $q['_wpnonce'] ?? '' ), 'flxs_cert_export' ), 'export url: the nonce is the one the export checks' );
+flxt_same( array( 'flxs_cert_export', 'a b&c', 'ACTIVE' ), array( $q['action'] ?? null, $q['s'] ?? null, strtoupper( (string) ( $q['status'] ?? '' ) ) ), 'export url: the filters survive' );
+
+// The switch back to the classic pages (classicUrl) has the same shape.
+require_once FLXS_DIR . 'includes/admin/flux-ui.php';
+$switch = flxs_ui_switch_url( 'classic' );
+flxt_ok( false !== strpos( $switch, '&_wpnonce=' ) && false === strpos( $switch, 'amp;' ), 'classic switch url: a plain ampersand before the nonce', $switch );
+$sq = array();
+wp_parse_str( (string) wp_parse_url( $switch, PHP_URL_QUERY ), $sq );
+flxt_same( array( 'classic', true ), array( $sq['flxs_ui'] ?? null, false !== wp_verify_nonce( (string) ( $sq['_wpnonce'] ?? '' ), 'flxs_ui' ) ), 'classic switch url: the parameter and the nonce read back' );
+flxt_ok( false !== strpos( esc_url( $switch ), '&#038;_wpnonce=' ), 'classic switch url: markup output escapes it once' );
+
+// Merging two people (Flux CRM) moves certificates; the cached answers of the moved ones go.
+[ $keep_cert, $keep_person ] = flxs_t_make( $tpl, 'Keep ' . $stamp, 'keep-' . $stamp . '@example.test' );
+[ $dup_cert, $dup_person, $dup_code ] = flxs_t_make( $tpl, 'Dup ' . $stamp, 'dup-' . $stamp . '@example.test' );
+$GLOBALS['flxs_t_purged'] = array();
+do_action( 'flx_person_merged', $keep_person, $dup_person );
+flxt_same( $keep_person, (int) ( flxs_get_certificate( $dup_cert )['person_id'] ?? 0 ), 'merge: the classic handler moved the certificate' );
+flxt_ok( flxs_t_purged( 'flx-certificates:verify:' . $dup_code ) && flxs_t_purged( 'flx-certificates:person:' . $dup_person ), 'purge: a merge drops the answers of the moved certificate and both people' );
 
 // Two staff members. own_ref first, then staff_own_only on the same rows.
 $mk = static function ( string $login ): int {
