@@ -136,3 +136,32 @@ describe('chart section', () => {
     ]) expect(v.safeParse(SectionSchema, s).success).toBe(true);
   });
 });
+
+describe('plugin manifests (plugins/*/app/manifest.json)', () => {
+  const root = join(__dirname, '../../../plugins');
+  const files = readdirSync(root).map((p) => join(root, p, 'app/manifest.json')).filter((f) => { try { return !!readFileSync(f); } catch { return false; } });
+
+  it.each(files)('%s parses', (f) => {
+    const issues: ParseIssue[] = [];
+    const m = parseManifest({ schema: 'flx-app-manifest/1', ...JSON.parse(readFileSync(f, 'utf8')) }, issues);
+    expect(issues).toEqual([]);
+    expect(m).not.toBeNull();
+  });
+
+  it('GraphQL operations named in manifests exist in the plugin', () => {
+    for (const f of files) {
+      const ops: string[] = [];
+      const walk = (n: unknown, key = ''): void => {
+        if (Array.isArray(n)) n.forEach((x) => walk(x));
+        else if (n && typeof n === 'object') {
+          if (key.startsWith('graphql') && typeof (n as { op?: unknown }).op === 'string') ops.push((n as { op: string }).op);
+          for (const [k, x] of Object.entries(n)) walk(x, k);
+        }
+      };
+      walk(JSON.parse(readFileSync(f, 'utf8')));
+      if (!ops.length) continue;
+      const pq = Object.values(JSON.parse(readFileSync(join(f, '../../graphql/persisted-queries.json'), 'utf8')) as string[]).join('\n');
+      for (const op of ops) expect(pq, `${f}: ${op}`).toMatch(new RegExp(`\\b(query|mutation) ${op}\\b`));
+    }
+  });
+});

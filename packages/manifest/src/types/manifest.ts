@@ -27,11 +27,34 @@ export interface Paging {
   pages?: string;
   /** cursor mode: response field with the next cursor. */
   next?: string;
+  /** cursor mode: response field that says whether more pages exist (GraphQL `pageInfo.hasNextPage`). */
+  has_next?: string;
+}
+
+/**
+ * A persisted GraphQL operation of the plugin (`plugins/<slug>/graphql/operations/*.graphql`).
+ * The manifest names it; flx-app fills `id` (the queryId) from the persisted manifest, so the app
+ * never sends a document and strict query mode keeps working.
+ */
+export interface GraphQLRef {
+  /** Operation name, e.g. `FlxWikiPages`. */
+  op: string;
+  /** sha256 queryId; set by the server. */
+  id?: string;
+  kind?: 'query' | 'mutation';
+  /** Templated variables; a variable that renders empty is left out. */
+  variables?: Record<string, unknown>;
+  /** Path inside `data` that the screen reads, e.g. `flxWikiPages`. */
+  data?: string;
+  /** Form submit: variable that receives the form values (default `input`). */
+  values?: string;
 }
 
 export interface Source {
-  /** REST path relative to /wp-json/; may contain templates. Absolute URLs are rejected. */
-  path: Tpl;
+  /** REST path relative to /wp-json/; may contain templates. Absolute URLs are rejected. Not used with `graphql`. */
+  path?: Tpl;
+  /** GraphQL source instead of REST; paging/search/filter values become variables. */
+  graphql?: GraphQLRef;
   method?: 'GET' | 'POST';
   query?: Record<string, Tpl | number | boolean>;
   body?: Record<string, unknown> | null;
@@ -164,7 +187,12 @@ export interface After {
 
 export interface RequestSpec {
   method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
-  path: Tpl;
+  path?: Tpl;
+  /** GraphQL mutation instead of REST. */
+  graphql?: GraphQLRef;
+  /** Form screens only: create vs update mutation, picked by `params.id`. */
+  graphql_create?: GraphQLRef;
+  graphql_update?: GraphQLRef;
   body?: Record<string, unknown> | null;
   /** Form screens only: create vs update path, picked by `params.id`. */
   path_create?: Tpl;

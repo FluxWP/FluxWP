@@ -10,9 +10,9 @@
   "fallback": { "web": "edit.php?post_type=flx_wiki" },
   "search": {
     "source": "search",
-    "param": "q",
+    "param": "query",
     "item": { "title": "{{title}}", "subtitle": "{{section}}" },
-    "onPress": { "target": "screen:wiki/page", "params": { "id": "{{id}}" } }
+    "onPress": { "target": "screen:wiki/page", "params": { "id": "{{pageId}}" } }
   },
   "routes": {
     "edit.php?post_type=flx_wiki": { "screen": "pages" },
@@ -20,22 +20,27 @@
   },
   "sources": {
     "pages": {
-      "path": "wp/v2/flx_wiki",
-      "query": { "context": "edit", "status": "publish,draft,pending,private", "orderby": "modified" },
-      "paging": { "mode": "wp", "param": "page", "size_param": "per_page", "size": 20 },
-      "key": "id",
+      "graphql": {
+        "op": "FlxWikiPages",
+        "variables": { "statuses": ["PUBLISH", "DRAFT", "PENDING", "PRIVATE"] },
+        "data": "flxWikiPages"
+      },
+      "paging": { "mode": "cursor", "size": 20, "items": "nodes", "next": "pageInfo.endCursor", "has_next": "pageInfo.hasNextPage", "total": "totalCount" },
+      "key": "databaseId",
       "cache": { "stale": 60, "persist": true }
     },
     "page": {
-      "path": "wp/v2/flx_wiki/{{params.id}}",
-      "query": { "context": "edit" },
+      "graphql": { "op": "FlxWikiPageRead", "variables": { "id": "{{params.id}}" }, "data": "flxWikiPage" },
       "cache": { "stale": 30 }
     },
+    "page_edit": {
+      "graphql": { "op": "FlxWikiPageEdit", "variables": { "id": "{{params.id}}" }, "data": "flxWikiPage" },
+      "cache": { "stale": 0 }
+    },
     "search": {
-      "path": "flx-wiki/v1/search",
-      "query": { "limit": 20 },
-      "paging": { "mode": "none", "items": "results" },
-      "key": "id",
+      "graphql": { "op": "FlxWikiSearch", "variables": { "query": "", "limit": 20 }, "data": "flxWikiSearch" },
+      "paging": { "mode": "none", "items": "hits" },
+      "key": "pageId",
       "cache": { "stale": 30 }
     }
   },
@@ -46,10 +51,11 @@
       "source": "pages",
       "search": { "param": "search", "placeholder": "Sayfalarda ara" },
       "item": {
-        "title": "{{title.raw|default:title.rendered}}",
-        "caption": "{{modified_gmt|ago}}"
+        "title": "{{title}}",
+        "subtitle": "{{section.name}}",
+        "caption": "{{modified.relative}}"
       },
-      "onPress": { "target": "screen:wiki/page", "params": { "id": "{{id}}" } },
+      "onPress": { "target": "screen:wiki/page", "params": { "id": "{{databaseId}}" } },
       "actions": { "header": ["page_new"], "fab": "page_new" },
       "empty": { "title": "Sayfa yok", "body": "İlk wiki sayfasını buradan ekleyin." }
     },
@@ -66,43 +72,41 @@
       "type": "form",
       "title": "Sayfa",
       "can": "edit",
-      "load": "page",
+      "load": "page_edit",
       "submit": {
-        "method": "POST",
-        "path": "wp/v2/flx_wiki",
-        "path_create": "wp/v2/flx_wiki",
-        "path_update": "wp/v2/flx_wiki/{{params.id}}"
+        "graphql_create": { "op": "FlxWikiPageSave", "data": "flxWikiPageSave" },
+        "graphql_update": { "op": "FlxWikiPageSave", "variables": { "input": { "id": "{{params.id}}" } }, "data": "flxWikiPageSave" }
       },
       "fields": [
-        { "name": "title", "load": "title.raw", "type": "text", "label": "Başlık", "required": true },
+        { "name": "title", "type": "text", "label": "Başlık", "required": true },
         { "name": "markdown", "type": "markdown", "label": "İçerik" },
         {
           "name": "status",
           "type": "select",
           "label": "Durum",
-          "default": "draft",
+          "default": "DRAFT",
           "options": [
-            { "value": "publish", "label": "Yayımlandı" },
-            { "value": "draft", "label": "Taslak" }
+            { "value": "PUBLISH", "label": "Yayımlandı" },
+            { "value": "DRAFT", "label": "Taslak" }
           ]
         }
       ],
       "dirty_guard": true,
-      "after": { "toast": "Kaydedildi", "back": true, "invalidate": ["pages", "page", "search"] }
+      "after": { "toast": "Kaydedildi", "back": true, "invalidate": ["pages", "page", "page_edit", "search"] }
     },
     "search": {
       "type": "list",
       "title": "Arama",
       "source": "search",
-      "search": { "param": "q", "placeholder": "Wiki'de ara" },
+      "search": { "param": "query", "placeholder": "Wiki'de ara" },
       "item": { "title": "{{title}}", "subtitle": "{{section}}", "caption": "{{heading}}" },
-      "onPress": { "target": "screen:wiki/page", "params": { "id": "{{id}}" } },
+      "onPress": { "target": "screen:wiki/page", "params": { "id": "{{pageId}}" } },
       "empty": { "title": "Sonuç yok", "body": "Bir kelime yazın." }
     }
   },
   "actions": {
     "page_new": { "label": "Yeni sayfa", "icon": "plus", "can": "edit", "navigate": { "target": "screen:wiki/page_form" } },
-    "page_edit": { "label": "Düzenle", "icon": "edit", "can": "edit", "navigate": { "target": "screen:wiki/page_form", "params": { "id": "{{id}}" } } },
-    "page_web": { "label": "Panelde aç", "icon": "globe", "web": "post.php?post={{id}}&action=edit" }
+    "page_edit": { "label": "Düzenle", "icon": "edit", "can": "edit", "navigate": { "target": "screen:wiki/page_form", "params": { "id": "{{databaseId}}" } } },
+    "page_web": { "label": "Panelde aç", "icon": "globe", "web": "post.php?post={{databaseId}}&action=edit" }
   }
 }
