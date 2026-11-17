@@ -68,6 +68,7 @@ if [ "${#chunks[@]}" -eq 0 ]; then
 	exit 1
 fi
 cp "${chunks[@]}" "$dist/flux-modules.css" "$dest/"
+bash "$root/tools/fluxapp/version-imports.sh" "$dest"
 
 {
 	printf '{\n  "mode": "chunks",\n  "entry": "flux-modules.js",\n  "files": [\n'
