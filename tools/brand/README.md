@@ -99,6 +99,23 @@ echo flx_check( array( 'name' => 'terms', 'label_html' => __( 'I accept the <a h
 - Check boxes (1.7.0): rounded square with solid fill, radio is round, `'switch' => true` makes an on/off switch (`role="switch"`). Indeterminate (`input.indeterminate = true`), disabled, error and keyboard focus are styled; the touch target is 28 px (32 px on touch screens). Flux Admin (native inputs) and `@fluxwp/ui` (`<Check>`, native inputs in the React screens) use the same look.
 - `sync.py` copies `field/` into every package next to `flx-brand`.
 
+## Date picker (1.8.0)
+
+One calendar instead of the browser's (whose language follows the browser, not the site, and looks different everywhere).
+
+```php
+echo flx_field( array( 'name' => 'due', 'type' => 'date', 'label' => __( 'Due date', 'x' ) ) );            // Y-m-d
+echo flx_field( array( 'name' => 'at', 'type' => 'datetime-local', 'label' => __( 'Meeting', 'x' ) ) );   // Y-m-d\TH:i
+```
+
+- The real `<input type="date|datetime-local">` stays (hidden): `name`, `value`, `required`, `min` / `max`, form submit, `input` / `change` events. A button shows the value in the site language ("20 Kasım 2026 · 14:30").
+- Where it applies by itself: inside `flx_field`, on inputs with `data-flx-date`, and on every date input of Flux Admin screens (`body.flxa`, not the app mode, not React, not the block editor). `data-flx-native` keeps the browser's input. `data-flx-date-quick` adds the chips Today / Tomorrow / Next week / In 2 weeks.
+- From code: `flxDate.open( anchor, { value, time, quick, min, max, required, label, theme, onPick, onClose } )`; `value` and `onPick` use `YYYY-MM-DD` or `YYYY-MM-DDTHH:MM` (`''` = cleared). `flxDate.format( v, 'long'|'short' )`, `flxDate.enhance( root )`.
+- Language: month and weekday names via `Intl` from the WordPress / Flux Lang locale (`flx_date_locale()`), week start from Settings > General, texts TR / EN (`flx_date_strings` filter). Times are 24 h.
+- Look: rounded day cells, the selected day filled with the accent (antrasit), today ringed; month / year view from the title; light / dark (`data-theme`, Flux Admin / theme dark classes); bottom sheet under 600 px. Keyboard: arrows, PageUp / PageDown (+Shift = year), Home / End, Esc.
+- React screens: `<DatePicker value onChange time quick />` from `@fluxwp/ui` renders the same markup and classes.
+- Loaded on every admin page; on the front end `flx_field( type=date )` loads it, or call `flx_date_enqueue()`.
+
 ## Dialogs and toasts (1.6.0)
 
 Use these instead of the browser's `confirm()` / `alert()` / `prompt()` everywhere. Loaded on every admin page; on the front end call `flx_dialog_enqueue()`.

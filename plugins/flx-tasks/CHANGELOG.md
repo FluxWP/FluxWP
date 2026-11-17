@@ -1,5 +1,8 @@
 # Flux Tasks — Değişiklikler
 
+## 0.9.2
+- Tarih alanları ortak FluxWP tarih seçicisini kullanır: sitenin dilinde ay/gün adları, Pazartesi başlangıç, hızlı seçim listesi, yazılabilir tarih ve saat, Uygula düğmesi, açık/koyu, telefonda alttan açılan pencere. Tarayıcının kendi takvimi (İngilizce çıkan) kalktı.
+
 ## 0.9.1
 - Görevler, Pano ve Ayarlar ekranları Flux GraphQL ekran kabuğuyla kaydedilir (tam ekran düzeni; sayfa olarak açılır). Görünüm ve özellikler değişmedi.
 
