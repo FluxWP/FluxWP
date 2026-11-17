@@ -4,7 +4,7 @@
 - Durum: ✱
 - PR: #337
 
-Bölüm 1: sohbet, mesaj, `flxChatUpdates` ve sohbet sayfasının işlemleri GraphQL'de. React WhatsApp ekranı GraphQL kullanır. wp-admin varsayılanı klasik sayfadır (bağış/sertifika sihirbazı, dekont, hafıza, hatırlatıcı, kara liste, temizlik, toplu dışa aktarma, asistan kullanımı klasikte). REST duruyor. Asistan, ayar ve rapor ekranı sonraki bölüm. Rapor gönderimi jetonlu loopback (kalıcı istisna) + durum sorgusu + çalıştırma. Eşleme `docs/graphql/ESLEME/flx-chat.md`. Kişi kartı bölümü `gql/flx-crm-2` (PR #333) sonra.
+Bölüm 1: sohbet, mesaj, `flxChatUpdates` ve sohbet sayfasının işlemleri GraphQL'de. React WhatsApp ekranı GraphQL kullanır. wp-admin varsayılanı klasik sayfadır (bağış/sertifika sihirbazı, dekont, hafıza, hatırlatıcı, kara liste, temizlik, toplu dışa aktarma, asistan kullanımı klasikte). REST duruyor. Asistan, ayar ve rapor ekranı sonraki bölüm. Rapor gönderimi jetonlu loopback (kalıcı istisna) + durum sorgusu + çalıştırma. Gömülü React paketi `tools/fluxapp/embed-sync.sh flx-chat` ile yeniden üretildi. Eşleme `docs/graphql/ESLEME/flx-chat.md`. Kişi kartı bölümü `gql/flx-crm-2` (PR #333) sonra.
 
 ## İstisnalar
 
