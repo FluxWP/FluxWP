@@ -79,6 +79,69 @@ export interface Boot {
   widgets: boolean;
   mermaid: string;
   suggestions: string[];
+  cm?: { js: string; css: string };
+  view?: { url: string; nonce: string };
+}
+
+export interface WsItem {
+  name: string;
+  path: string;
+  type: 'dir' | 'file';
+  size: number;
+  ago: string;
+  count: number | null;
+}
+
+export interface ChangeFile {
+  path: string;
+  op: 'add' | 'edit' | 'delete';
+  add: number;
+  del: number;
+  state: string;
+  big: boolean;
+  before?: string | null;
+  after?: string | null;
+}
+
+export interface Change {
+  id: number;
+  kind: 'pr' | 'commit';
+  status: string;
+  title: string;
+  chat_id: number;
+  task_id: number;
+  created: number;
+  ago: string;
+  date: string;
+  files: ChangeFile[];
+}
+
+export interface WsState {
+  ready: boolean;
+  dir: string;
+  access: 'workspace' | 'site';
+  folders: string[];
+  task: number;
+  skills: string;
+  files: string;
+  changes: Change[];
+  exists?: boolean;
+  items?: WsItem[];
+}
+
+export interface WsFile {
+  path: string;
+  content: string;
+  size: number;
+  ago: string;
+  files: string;
+  editable: boolean;
+}
+
+export interface DecideResult {
+  change: Change;
+  conflicts?: string[];
+  errors?: Record<string, string>;
 }
 
 export type StepState = 'continue' | 'busy' | 'approval' | 'done';

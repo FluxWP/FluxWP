@@ -1,5 +1,10 @@
 # Flux AI — Değişiklikler
 
+## 0.31.0
+- **Sohbet ekranında çalışma alanı paneli** (React): Dosyalar (klasör ağacı, izinli klasörler, Markdown/HTML önizleme, renkli kod görünümü ve düzenleyici, kaydet), Değişiklikler (commit ve değişiklik istekleri, satır farkı, dosya dosya ya da toptan birleştir/reddet, çakışma uyarısı), Ayarlar (sohbet/görev dosya erişimi, izinli klasörler, kurallar). Sohbetteki değişiklik ve rapor bağlantıları paneli açar; görsel rapor sandbox'lı iframe'de gösterilir. Her turdan sonra panel yenilenir; onay bekleyen istek sayısı rozette görünür.
+- `boot` yanıtına `cm` (CodeMirror) ve `view` (rapor adresi) eklendi.
+- Sohbet ekranı artık klasik sohbetin tüm özelliklerini kapsar.
+
 ## 0.30.0
 - **Canlı sohbet React ekranı oldu** (Flux AI › Sohbet): kenar çubuğunda sohbet listesi (arama, Aktif/Arşiv, yeniden adlandırma, silme, durum işaretleri), mesaj akışı (canlı metin ve düşünme akışı, markdown, widget/mermaid blokları, araç satırları), onay kartları (onayla/reddet), dosya ekleme, slash komutları (yeni, yan sohbet, ara, ekle, model), ses dikte, model seçici, durdurma, geri sarma ve düzenleyip yeniden gönderme. Klasik görünüme bağlantı durur; Flux GraphQL yoksa klasik sohbet açılır.
 - Sohbet sayfasında yüzen sohbet düğmesi yüklenmez (çift sohbet yok). `?flxai_chat=ID` bağlantıları ve görünüm değiştirirken açık sohbet korunur.
