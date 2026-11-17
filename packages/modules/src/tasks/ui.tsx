@@ -3,6 +3,7 @@
 import { createContext, useContext, useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore, type CSSProperties, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import type { FlxgFile, FlxgTask, FlxgUser } from '@fluxwp/core';
+import { DateCalendar } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { addDays, dayKey, parseDay, today, type FlxgEngine } from './engine';
 import { tt, flxgLocale } from './i18n';
@@ -706,49 +707,21 @@ export function pickDate(c: Ctx, anchor: HTMLElement, value: string, onPick: (v:
   c.ui.openPop(anchor, <DatePick c={c} value={value} onPick={onPick} label={opts.label} />, { inline: true });
 }
 function DatePick({ c, value, onPick, label }: { c: Ctx; value: string; onPick: (v: string) => void; label?: string }) {
-  const td = today();
-  const [day, setDay] = useState(value ? value.slice(0, 10) : '');
-  const [time, setTime] = useState(value && value.length > 10 ? value.slice(11, 16) : '');
-  const emit = (d: string, tm?: string) => {
-    onPick(d ? d + (tm ? 'T' + tm : '') : '');
-    c.ui.closePop();
-  };
-  const d = new Date();
-  d.setDate(d.getDate() + ((8 - d.getDay()) % 7 || 7));
-  const quick: [string, string][] = [
-    [tt("Today"), td],
-    [tt("Tomorrow"), addDays(td, 1)],
-    [tt("Next week"), dayKey(d)],
-    [tt("In 2 weeks"), addDays(td, 14)],
-  ];
+  // Ortak FluxWP tarih seçici (@fluxwp/ui): sitenin dili, Pazartesi başlangıç, açık/koyu; Tasks'ın açılır kutusunun içinde.
   return (
-    <div className="flxg-datepick">
-      <div className="flxg-datepick-quick">
-        {quick.map((q) => (
-          <button key={q[0]} type="button" className="flxg-chip-btn" onClick={() => emit(q[1], time)}>
-            {q[0]}
-          </button>
-        ))}
-      </div>
-      <label className="flxg-field">
-        <span>{label ?? tt("Date")}</span>
-        <input className="flxg-input is-sm" type="date" value={day} onChange={(ev) => setDay(ev.target.value)} onKeyDown={(ev) => ev.key === 'Enter' && emit(day, time)} />
-      </label>
-      <label className="flxg-field">
-        <span>{tt("Time (optional)")}</span>
-        <input className="flxg-input is-sm" type="time" value={time} onChange={(ev) => setTime(ev.target.value)} />
-      </label>
-      <div className="flxg-row-btns">
-        {value && (
-          <button type="button" className="flxg-btn is-ghost" onClick={() => emit('')}>
-            {tt("Clear")}
-          </button>
-        )}
-        <button type="button" className="flxg-btn is-primary" onClick={() => emit(day, time)}>
-          {tt("Apply")}
-        </button>
-      </div>
-    </div>
+    <DateCalendar
+      bare
+      time
+      quick
+      locale={flxgLocale()}
+      label={label ?? tt("Date")}
+      value={value ? value.slice(0, 16) : ''}
+      onPick={(v) => {
+        onPick(v);
+        c.ui.closePop();
+      }}
+      onCancel={() => c.ui.closePop()}
+    />
   );
 }
 export function pickTags(c: Ctx, anchor: HTMLElement, spaceId: number, selected: number[], onChange: (ids: number[]) => void) {

@@ -2331,7 +2331,7 @@
 				}
 				var cb = h('input', { type: 'checkbox', checked: it.on !== false, 'aria-label': t('Seç'), onchange: function () { it.on = cb.checked; count(); } });
 				var ti = h('input.flxg-input.is-sm', { type: 'text', value: it.title, oninput: function () { it.title = ti.value; } });
-				var du = h('input.flxg-input.is-sm.flxg-doc-ai-due', { type: 'date', value: it.due || '', title: t('Bitiş'), onchange: function () { it.due = du.value; } });
+				var du = h('input.flxg-input.is-sm.flxg-doc-ai-due', { type: 'date', value: it.due || '', title: t('Bitiş'), 'aria-label': t('Bitiş'), 'data-flx-date': true, onchange: function () { it.due = du.value; } });
 				rows.appendChild(h('.flxg-doc-ai-item', cb, ti, people(it.assignee), du,
 					h('button.flxg-icon-btn.is-xs', { type: 'button', title: t('Sil'), onclick: function () { r.items.splice(i, 1); draw(); count(); } }, Y.icon('x', 13))));
 			});

@@ -250,9 +250,16 @@ delete_user_meta( $admin, 'flxa_wprefs' );
 $r = flxa_t_op( 'FlxAdminWidgetPrefsGet', array(), $admin );
 $w = $r['data']['flxAdminWidgetPrefs'] ?? array();
 flxt_same( array( array( 'MINE', 0, 'STATUS' ), array( 14, 'TYPE' ) ), array( array( $w['tasks']['scope'] ?? null, $w['tasks']['list'] ?? null, $w['tasks']['chart'] ?? null ), array( $w['donations']['days'] ?? null, $w['donations']['split'] ?? null ) ), 'widgets: default filters' );
-flxt_same( false, $w['donationsAvailable'] ?? null, 'widgets: no Donations module without Flux Donate' );
+flxt_same( FLXA_User_Service::widgets_available()['donations'], $w['donationsAvailable'] ?? null, 'widgets: Donations module offered only when Flux Donate is usable' );
 $r = flxa_t_op( 'FlxAdminWidgetPrefsSet', array( 'input' => array( 'widget' => 'DONATIONS', 'donationsDays' => 30 ) ), $admin );
-flxt_same( 'FORBIDDEN', flxt_code( $r ), 'widgets: Donations filters without Flux Donate → FORBIDDEN' );
+if ( ! empty( $w['donationsAvailable'] ) ) {
+	$p = $r['data']['flxAdminWidgetPrefsSet'] ?? array();
+	flxt_same( array( null, 30 ), array( flxt_code( $r ), $p['prefs']['donations']['days'] ?? null ), 'widgets: Donations filters saved' );
+	$m = get_user_meta( $admin, 'flxa_wprefs', true );
+	flxt_same( 30, (int) ( is_array( $m ) ? ( $m['donations']['days'] ?? 0 ) : 0 ), 'widgets: Donations filters stored in the user\'s meta (same as the classic filter form)' );
+} else {
+	flxt_same( 'FORBIDDEN', flxt_code( $r ), 'widgets: Donations filters without Flux Donate → FORBIDDEN' );
+}
 if ( ! empty( $w['tasksAvailable'] ) ) {
 	$r = flxa_t_op( 'FlxAdminWidgetPrefsSet', array( 'input' => array( 'widget' => 'TASKS', 'tasksScope' => 'ALL', 'tasksChart' => 'PRIORITY' ) ), $admin );
 	$p = $r['data']['flxAdminWidgetPrefsSet'] ?? array();

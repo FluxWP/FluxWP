@@ -1,5 +1,37 @@
 # Flux AI — Değişiklikler
 
+## 0.29.0
+- **Sohbet geçmişi React ekranı oldu** (yeni "Sohbet geçmişi" sayfası): sohbet listesi, başlıkta ve konuşma metninde arama (eşleşen parça gösterilir), Aktif/Arşiv/Tümü süzgeci, yazışmayı salt okunur açma (araç çağrıları ve sonuçları), yeniden adlandırma, arşivleme/geri alma, silme (dosyalarıyla), "Sohbette devam et" bağlantısı. Her kullanıcı yalnız kendi sohbetlerini görür. Flux GraphQL yoksa klasik liste açılır.
+- **GraphQL:** `flxAiChats` (arama, arşiv süzgeci, sayfalama), `flxAiChat` sorguları; `flxAiChatUpdate`, `flxAiChatDelete` mutation'ları. Sağlayıcının ham blokları ve iç mesajlar yazışmada görünmez; araç çıktısı 4000 karaktere kısaltılır.
+- Servis: `FLXAI_Chats_Service` (+ DTO'lar).
+- Sözleşme testi 479 kontrol.
+- Canlı sohbet (mesaj gönderme, akış, onay kartları, dosya) olduğu gibi klasik; akış GraphQL dışında kalır.
+
+## 0.28.1
+- Tarih alanları ortak FluxWP tarih seçicisini kullanır: sitenin dilinde ay/gün adları, Pazartesi başlangıç, hızlı seçim listesi, yazılabilir tarih ve saat, Uygula düğmesi, açık/koyu, telefonda alttan açılan pencere. Tarayıcının kendi takvimi (İngilizce çıkan) kalktı.
+
+## 0.28.0
+- **Sistem başı AI ayarları React ekranı oldu** (Bağlı sistemler › eklenti): AI aç/kapa, eklentiye özel model ve eklentinin Flux AI SDK ile tanımladığı alanlar (aç/kapa, metin, uzun metin, sayı, seçim, model); araç sayısı ve "Araçları yönet" bağlantısı. Klasik görünüme bağlantı durur; görünüm değiştirirken eklenti seçimi korunur.
+- **GraphQL:** `flxAiSystemSettings` sorgusu, `flxAiSystemSettingsUpdate` mutation'ı. Bırakılan alanlar eski değerini korur; tanımsız alan reddedilir; sayı alanı min/max'a kırpılır (ekran sunucunun döndürdüğü değeri gösterir).
+- Servis: `FLXAI_System_Settings_Service` (+ DTO'lar); klasik form aynı servisle kaydeder.
+- Sözleşme testi 439 kontrol.
+- Sohbet geçmişi henüz klasik.
+
+## 0.27.0
+- **MCP sayfası React ekranı oldu** (wp-admin'de varsayılan, klasik görünüme bağlantı var): sunucuyu ve OAuth girişini aç/kapat, anahtar oluştur (yalnız oluşturulduğunda bir kez gösterilir, kopyala düğmesi), araçla sınırla, iptal et, asistana bağlama örnekleri (anahtar yazılı hâlde), son işlemler.
+- **Bağlantılar React ekranı oldu:** dış MCP sunucuları (ekle/düzenle, anahtar/başlık/OAuth girişi, kişisel ya da rollere açık, aç/kapat), OAuth ile giriş/çıkış (sağlayıcı dönüşü bu ekrana gelir), "Test et ve araçları güncelle", araç başına izin (izinli/sor/kapalı; yalnız salt-okunur araç izinli olabilir), silme.
+- **GraphQL:** `flxAiMcp`, `flxAiConnections` sorguları; `flxAiMcpServerUpdate`, `flxAiMcpKeyCreate`, `flxAiMcpKeyRevoke`, `flxAiConnectionSave/Delete/Refresh/SignIn/SignOut/Permissions` mutation'ları. Gizli değerler yalnız yazılır: anahtar yalnız oluşturma yanıtında döner; bağlantılar yalnız "kayıtlı mı" bilgisini verir (anahtar, belirteç, OAuth istemci sırrı asla dönmez).
+- Servisler: `FLXAI_Mcp_Service`, `FLXAI_Connections_Service` (+ DTO'lar); klasik sayfaların işlemleri aynı servisleri kullanır. MCP sunucusu, OAuth uçları ve SSE akışı olduğu gibi kalır.
+- Sözleşme testi 410 kontrol (sahte MCP sunucusuyla bağlantı kaydı, araç listesi, izin doğrulama, hata durumu, başkasının kişisel bağlantısı, sırların yanıtta çıkmaması).
+- Sistem başı SDK ayarları ve sohbet geçmişi henüz klasik.
+
+## 0.26.0
+- **Skill'ler React ekranı oldu** (wp-admin'de varsayılan, klasik görünüme bağlantı var): liste (kaynağa göre gruplar, aç/kapat, dışa aktar, sil/sıfırla), düzenle formu (SKILL.md alanları, açıklama sayacı), Dosyalar sekmesi (aç/düzenle, indir, sil, yükle, yeni metin dosyası), Testler sekmesi (tetiklenme istemleri, fonksiyonel testler, çalıştır, son sonuçlar), içe aktarma (.zip/.skill/SKILL.md ya da yapıştır), Marka kiti ve "yalnız izinli araçlar" ayarı.
+- **GraphQL:** `flxAiSkills`, `flxAiSkill`, `flxAiSkillFile`, `flxAiBrand` sorguları; `flxAiSkillSave/Toggle/Delete`, `flxAiSkillsSettings`, `flxAiSkillImport`, `flxAiSkillFileSave/Delete/Upload`, `flxAiSkillEvalsSave`, `flxAiSkillTestRun`, `flxAiBrandSave` mutation'ları. Dosya yükleme ve içe aktarma base64 ile gider (5 MB / 20 MB sınırı). Test çalıştırma sohbet modelini çağırır, `skill_test` amacıyla kayda geçer.
+- Servis: `FLXAI_Skills_Service` (+ DTO'lar); klasik sayfanın işlemleri aynı `flxai_skill_*` çekirdeğini kullanır ve GraphQL önbelleğini temizler.
+- Sözleşme testi 316 kontrol (doğrulama alanları, klasör dosyası güvenliği, hazır skill'in siteye kopyalanıp sıfırlanması, test kaydı, marka kiti).
+- MCP anahtarları/bağlantılar, sistem başı SDK ayarları ve sohbet geçmişi henüz klasik.
+
 ## 0.25.0
 - **Zamanlanmış görevler React ekranı oldu** (wp-admin'de varsayılan, klasik görünüme bağlantı var): liste ve özet kartları, yeni/düzenle formu (tekrar, skill, bildirim kanalları, ek alıcılar için arama, dosya çalışma alanı), şimdi çalıştır, duraklat/sürdür, sil, tüm görevleri aç/kapat, son çıktı.
 - **GraphQL:** `flxAiTasks`, `flxAiRecipients`, `flxAiTaskSave`, `flxAiTaskRun`, `flxAiTaskSetActive`, `flxAiTaskDelete`, `flxAiTaskMarkRead`, `flxAiTasksToggle`. Klasik sayfanın kaydet/çalıştır/duraklat/sil/aç-kapa işlemleri aynı servisle (`FLXAI_Tasks_Service`) yapılır.

@@ -341,3 +341,260 @@ fragment FlxAiTaskOverviewFields on FlxAiTaskOverview {
     ...FlxAiTaskFields
   }
 }
+
+fragment FlxAiSkillFields on FlxAiSkill {
+  slug
+  name
+  description
+  version
+  status
+  bundled
+  source
+  changed
+  saved
+  fileCount
+  hasScripts
+  tasks
+  exportUrl
+}
+
+fragment FlxAiSkillsOverviewFields on FlxAiSkillsOverview {
+  restrict
+  skills {
+    ...FlxAiSkillFields
+  }
+}
+
+fragment FlxAiSkillSideFields on FlxAiSkillSide {
+  passed
+  total
+  in
+  out
+  cost
+  ms
+  output
+}
+
+fragment FlxAiSkillDetailFields on FlxAiSkillDetail {
+  skill {
+    ...FlxAiSkillFields
+  }
+  body
+  tools
+  license
+  compatibility
+  example
+  toolNames
+  files {
+    path
+    size
+    downloadUrl
+  }
+  evals {
+    triggers {
+      query
+      shouldTrigger
+    }
+    cases {
+      id
+      prompt
+      expectations
+    }
+  }
+  results {
+    trigger {
+      ts {
+        timestamp
+        label
+      }
+      model
+      hits
+      total
+      rate
+      cost
+      partial
+      rows {
+        query
+        shouldTrigger
+        triggered
+        picked
+      }
+    }
+    functional {
+      ts {
+        timestamp
+        label
+      }
+      id
+      prompt
+      note
+      judgeCost
+      with {
+        ...FlxAiSkillSideFields
+      }
+      without {
+        ...FlxAiSkillSideFields
+      }
+      checks {
+        text
+        with
+        without
+      }
+    }
+  }
+}
+
+fragment FlxAiBrandFields on FlxAiBrand {
+  name
+  tagline
+  website
+  phone
+  handle
+  colorPrimary
+  colorAccent
+  colorDark
+  colorLight
+  logoId
+  logoUrl
+  logoLightId
+  logoLightUrl
+  partnerIds
+  partnerUrls
+  notes
+  defaultName
+  defaultTagline
+  defaultWebsite
+  docs {
+    name
+    content
+  }
+  themePalette {
+    slug
+    name
+    color
+  }
+}
+
+fragment FlxAiMcpOverviewFields on FlxAiMcpOverview {
+  server {
+    enabled
+    oauth
+    oauthActive
+    legacy
+    url
+    restUrl
+    toolCount
+    rolesUrl
+  }
+  keys {
+    id
+    name
+    type
+    hint
+    userId
+    userLogin
+    canUse
+    tools
+    created {
+      timestamp
+      label
+    }
+    lastUsed {
+      timestamp
+      label
+    }
+  }
+  choices {
+    name
+    title
+    readonly
+  }
+  log {
+    time {
+      timestamp
+      label
+    }
+    userLogin
+    tool
+    target
+    ok
+  }
+}
+
+fragment FlxAiConnectionFields on FlxAiConnection {
+  id
+  name
+  url
+  auth
+  header
+  scope
+  ownerId
+  ownerLogin
+  roles
+  enabled
+  editable
+  hasSecret
+  clientId
+  hasClientSecret
+  signedIn
+  serverName
+  serverVersion
+  serverProtocol
+  checked {
+    timestamp
+    label
+  }
+  error
+  status
+  prefix
+  toolsOn
+  tools {
+    name
+    toolName
+    title
+    description
+    readonly
+    destructive
+    permission
+  }
+}
+
+fragment FlxAiSystemSettingsFields on FlxAiSystemSettings {
+  source
+  label
+  description
+  on
+  model
+  defaultModel
+  declared
+  toolsTotal
+  toolsOn
+  sdkVersion
+  fields {
+    key
+    type
+    label
+    help
+    value
+    min
+    max
+    options {
+      id
+      label
+    }
+  }
+}
+
+fragment FlxAiChatSummaryFields on FlxAiChatSummary {
+  id
+  title
+  archived
+  status
+  snippet
+  task
+  updated {
+    timestamp
+    label
+    relative
+  }
+}

@@ -3925,3 +3925,12 @@ msgstr "Yeni görünüm"
 
 msgid "Open the new view (same features, works in the FluxWP app too)."
 msgstr "Yeni görünümü aç (aynı özellikler, FluxWP uygulamasında da çalışır)."
+
+msgid "Chat history"
+msgstr "Sohbet geçmişi"
+
+msgid "Your earlier chats with the assistant."
+msgstr "Asistanla önceki sohbetleriniz."
+
+msgid "Last activity"
+msgstr "Son etkinlik"

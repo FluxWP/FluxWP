@@ -1,0 +1,10 @@
+mutation FlxAiConnectionDelete($input: FlxAiConnectionDeleteInput!) {
+  flxAiConnectionDelete(input: $input) {
+    deleted
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

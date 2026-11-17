@@ -1,5 +1,8 @@
 # Değişiklik günlüğü
 
+## 0.3.1
+- Tarih alanları ortak FluxWP tarih seçicisini kullanır: sitenin dilinde ay/gün adları, Pazartesi başlangıç, hızlı seçim listesi, yazılabilir tarih ve saat, Uygula düğmesi, açık/koyu, telefonda alttan açılan pencere. Tarayıcının kendi takvimi (İngilizce çıkan) kalktı.
+
 ## 0.3.0
 - GraphQL: gönderi, hesap, ayar, istatistik, medya ve yazım yardımı alanları `/graphql` üzerinden (13 sorgu, 22 mutation, 34 kayıtlı işlem). Belirteç, uygulama anahtarı ve hesap meta'sı hiçbir alanda dönmez; dış zamanlayıcı adresi maskeli gelir, tam adres yalnız yöneticiye `flxSocialTickKeyReveal` ile. Servis katmanı ve readonly DTO'lar (`includes/services`); REST uçları aynı servisleri çağırır, çıktı değişmedi.
 - Yeni Sosyal Medya ekranı (React): pano, gönderiler ve toplu işlemler, onaylar, takvim (sürükle bırak), hesaplar (bağlama, seçim adımı, WhatsApp), ayarlar, oluşturucu (hesap başına metin/ortam/seçenek, AI, önizleme) ve gönderi ayrıntısı. wp-admin'de varsayılan; "Klasik görünüm" bağlantısıyla eski ekrana dönülür. FluxApp modül kimliği `flxsm-social` (eski sürümler yönetim sayfasını açar).
