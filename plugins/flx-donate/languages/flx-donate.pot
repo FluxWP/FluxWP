@@ -3954,6 +3954,12 @@ msgstr ""
 msgid "The donation product could not be found."
 msgstr ""
 
+msgid "The shop is not available on this site."
+msgstr ""
+
+msgid "Donation lookup is not available."
+msgstr ""
+
 msgid "It could not be added to the cart."
 msgstr ""
 
