@@ -1,5 +1,10 @@
 # Flux Tasks — Değişiklikler
 
+## 0.9.4
+- Dokümana dosya ekleme düzeldi: yüklenen dosya "undefined" yerine adıyla görünür (yükleme yanıtı `{ file }` doğru okunuyor).
+- Dokümandaki dosya ve görsellere tıklayınca nonce'suz adrese gidip `rest_cookie_invalid_nonce` hatası vermez; dosya istemciden alınıp önizleme penceresinde açılır.
+- Ortak önizleme penceresi artık görselin yanında PDF, video, ses ve metin dosyalarını da açar; önizlenemeyen dosyada "Önizlenemedi" yazar ve İndir düğmesi çıkar. Görev eklerinde ve yorum dosyalarında da aynı pencere kullanılır.
+
 ## 0.9.3
 - Tarih alanları ortak FluxWP tarih seçicisini kullanır: sitenin dilinde ay/gün adları, Pazartesi başlangıç, hızlı seçim listesi, yazılabilir tarih ve saat, Uygula düğmesi, açık/koyu, telefonda alttan açılan pencere. Tarayıcının kendi takvimi (İngilizce çıkan) kalktı.
 

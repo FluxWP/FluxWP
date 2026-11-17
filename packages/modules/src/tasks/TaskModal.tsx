@@ -1380,6 +1380,7 @@ function FileChip({ f, task, onRemove }: { f: FlxgFile; task: Detail; onRemove?:
   const { c, canEdit, save } = d;
   const kind = fileKind(f.mime, f.name);
   const dl = () => void downloadFile(c.e, f).catch(c.ui.fail);
+  const prev = () => openLightbox(c, task.attachments, task.attachments.indexOf(f));
   return (
     <div className={cls('flxg-file', f.image && 'is-image')}>
       {f.image ? (
@@ -1394,7 +1395,7 @@ function FileChip({ f, task, onRemove }: { f: FlxgFile; task: Detail; onRemove?:
           <FileImg id={f.id} size="thumb" alt={f.name} />
         </button>
       ) : (
-        <button type="button" className={'flxg-file-icon is-' + kind} onClick={dl}>
+        <button type="button" className={'flxg-file-icon is-' + kind} onClick={prev}>
           <Ic n="file" s={22} />
           <span>{(f.name.split('.').pop() || '').slice(0, 4).toUpperCase()}</span>
         </button>
@@ -1406,7 +1407,7 @@ function FileChip({ f, task, onRemove }: { f: FlxgFile; task: Detail; onRemove?:
           title={f.name}
           onClick={(ev) => {
             ev.preventDefault();
-            dl();
+            prev();
           }}
         >
           {f.name}
@@ -2031,7 +2032,7 @@ function CommentNode({ cm, task }: { cm: FlxgComment; task: Detail }) {
                   <FileImg id={f.id} size="thumb" alt={f.name} />
                 </button>
               ) : (
-                <a key={f.id} className="flxg-cmt-file" href="#" onClick={(ev) => (ev.preventDefault(), void downloadFile(e, f).catch(c.ui.fail))}>
+                <a key={f.id} className="flxg-cmt-file" href="#" onClick={(ev) => (ev.preventDefault(), openLightbox(c, cm.files, cm.files.indexOf(f)))}>
                   <Ic n="file" s={16} />
                   <span>{f.name}</span>
                   <span className="flxg-muted">{bytes(f.size)}</span>

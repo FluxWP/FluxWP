@@ -537,5 +537,6 @@
   "{n} tasks completed": "{n} задачи выполнены",
   "{n} tasks will be permanently deleted.": "Задачи{n}будут удалены без возможности восстановления.",
   "{n} warning(s)": "Предупреждения {n}",
-  "{n} wrote a comment": "{n}написал комментарий"
+  "{n} wrote a comment": "{n}написал комментарий",
+  "Preview not available": "Предпросмотр недоступен"
 }

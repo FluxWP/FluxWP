@@ -139,7 +139,8 @@ export function flxg(api: ApiClient) {
       const fd = new FormData();
       fd.append('file', file);
       for (const [k, v] of Object.entries(params)) fd.append(k, String(v));
-      return api<FlxgFile>(NS + 'files', { method: 'POST', formData: fd });
+      // The server answers { file }; callers get the file itself.
+      return api<{ file: FlxgFile }>(NS + 'files', { method: 'POST', formData: fd }).then((r) => r.file);
     },
     file: (id: number, size?: string) => api<Blob>(NS + 'files/' + id, { query: { size }, as: 'blob' }),
     deleteFile: (id: number) => send<unknown>('DELETE', 'files/' + id),
