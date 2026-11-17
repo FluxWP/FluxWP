@@ -4,4 +4,4 @@
 - Durum: 👀
 - PR: (açılacak)
 
-`gql/flx-ai-7`: sohbet geçmişi React ekranı (`flxAiChats`, `flxAiChat`, `flxAiChatUpdate`, `flxAiChatDelete`; yeni "Sohbet geçmişi" sayfası), sözleşme testi 479/479. 0.24.0–0.28.0 main'de. **Kalan:** canlı sohbetin kendisi (akış, onay, dosya) React'e taşınmadı; akış GraphQL dışı (ISTISNALAR). Eşleme `ESLEME/flx-ai.md`
+`gql/flx-ai-8` (0.30.0): canlı Sohbet sayfası React ekranı (kenar çubuğu, akış, onay kartları, dosya, slash komutları, model seçici). Tur protokolü (gönder/adım/akış/karar) REST/NDJSON, geçmiş işlemleri GraphQL. **Kalan:** çalışma alanı paneli (dosyalar, değişiklik istekleri, diff) 0.31.0; yüzen sohbet ve FluxApp gömmesi chat.js ile kalır. Eşleme `ESLEME/flx-ai.md`

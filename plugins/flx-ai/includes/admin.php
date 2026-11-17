@@ -817,6 +817,9 @@ function flxai_home_composer() {
 
 /** Tam sayfa sohbet (0.13.0): ortak sohbet paneli bu sayfada tam ekran açılır, sağda çalışma alanı. */
 function flxai_page_chat() {
+	if ( flxai_flux_render() ) {
+		return;
+	}
 	echo '<div class="wrap flxai flxai-chat-page">';
 	if ( ! flxai_dock_enabled() || ! flxai_can_chat() ) {
 		echo '<h1>' . esc_html__( 'Chat', 'flx-ai' ) . '</h1><p>' . esc_html__( 'The AI chat is turned off or not set up yet. Check Flux AI & MCP › Settings.', 'flx-ai' ) . '</p>';

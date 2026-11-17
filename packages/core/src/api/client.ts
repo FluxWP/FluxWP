@@ -54,8 +54,8 @@ export interface RequestOptions {
   headers?: Record<string, string> | undefined;
   /** Multipart yüklemede 0..1. Platform `XMLHttpRequest` verirse ara değerler gelir. */
   onUploadProgress?: ((ratio: number) => void) | undefined;
-  /** 'blob': medya gibi ham cevap. */
-  as?: 'json' | 'blob' | undefined;
+  /** 'blob': medya gibi ham cevap. 'stream': başarılı cevabın `Response`'u (satır satır okunan akış, ör. NDJSON). */
+  as?: 'json' | 'blob' | 'stream' | undefined;
   /**
    * true: gövdeyle birlikte durum ve yanıt başlıkları (`ETag`, `X-WP-TotalPages`).
    * 304 gövdesiz başarıdır (`data: null`), hata değildir.
@@ -225,6 +225,7 @@ export function createClient(o: ClientOptions): ApiClient {
       return opts.raw ? result : (null as T);
     }
     if (opts.as === 'blob' && res.ok) return (await res.blob()) as T;
+    if (opts.as === 'stream' && res.ok) return res as T;
     const text = await res.text();
     let json: unknown = null;
     if (text) {
