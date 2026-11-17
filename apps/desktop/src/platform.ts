@@ -129,7 +129,7 @@ async function embedWebView(url: string, r: EmbedRect, hooks?: EmbedHooks): Prom
 }
 
 /**
- * Güncelleme: önce Tauri updater (imzalı .app.tar.gz, arka planda indirilir, yeniden başlatınca kurulur).
+ * Güncelleme: önce Tauri updater (imzalı .app.tar.gz; kullanıcı onaylayınca indirilir, yeniden başlatınca kurulur).
  * İmzalı paket yoksa güncelleme sunucusunun /latest ucuna bakılır; yeni sürüm varsa dmg indirme adresi açılır.
  */
 async function checkUpdate(): Promise<AppUpdate | null> {

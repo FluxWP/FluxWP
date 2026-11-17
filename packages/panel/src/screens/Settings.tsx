@@ -98,22 +98,27 @@ export function Settings() {
 
 function UpdateRow() {
   const { t } = useTranslation();
-  const { status, update, progress, error, check, install } = useUpdate();
+  const { status, update, progress, error, failedAt, check, download, install } = useUpdate();
   const busy = status === 'checking' || status === 'downloading' || status === 'installing';
+  const downloadFailed = status === 'error' && failedAt === 'download' && !!update;
   let text = '';
   if (status === 'checking') text = t('update.checking');
   else if (status === 'none') text = t('update.upToDate');
   else if (status === 'downloading') text = t('update.downloading', { version: update?.version, pct: progress > 0 ? Math.round(progress * 100) + '%' : '' });
-  else if (status === 'ready' || status === 'available') text = t('update.newVersion', { version: update?.version });
+  else if (status === 'available') text = t('update.available', { version: update?.version });
+  else if (status === 'ready') text = t('update.newVersion', { version: update?.version });
   else if (status === 'installing') text = t('update.installing');
+  else if (downloadFailed) text = t('update.downloadFailed');
   else if (status === 'error') text = t('update.failed');
   return (
     <div className="setting">
       <span>{t('update.title')}</span>
       <span className="row">
         <span className={'muted small' + (status === 'error' ? ' text-danger' : '')} title={error || undefined}>{text}</span>
-        {status === 'ready' || status === 'available' ? (
-          <button className="btn-primary small" onClick={() => void install()}>{t(status === 'ready' ? 'update.restart' : 'update.download')}</button>
+        {status === 'ready' ? (
+          <button className="btn-primary small" onClick={() => void install()}>{t('update.restart')}</button>
+        ) : status === 'available' || downloadFailed ? (
+          <button className="btn-primary small" onClick={() => void download()}>{t(downloadFailed ? 'update.retry' : 'update.download')}</button>
         ) : (
           <button className="btn-ghost small" onClick={() => void check(true)} disabled={busy}>{t('update.check')}</button>
         )}
