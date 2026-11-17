@@ -896,3 +896,5 @@ flx_gql_mutation(
 );
 
 unset( $flxg_gql_task_input );
+
+require_once __DIR__ . '/doc-comments.php';

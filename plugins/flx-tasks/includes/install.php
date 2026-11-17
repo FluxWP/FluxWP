@@ -276,10 +276,42 @@ function flxg_install_tables() {
 		position double NOT NULL DEFAULT 0,
 		created_by bigint(20) unsigned NOT NULL DEFAULT 0,
 		updated_by bigint(20) unsigned NOT NULL DEFAULT 0,
+		access varchar(12) NOT NULL DEFAULT '',
+		locked_by bigint(20) unsigned NOT NULL DEFAULT 0,
+		locked_at datetime DEFAULT NULL,
+		cm_rev int(11) unsigned NOT NULL DEFAULT 0,
 		created_at datetime NOT NULL,
 		updated_at datetime NOT NULL,
 		PRIMARY KEY  (id),
 		KEY doc_id (doc_id)
+	) $c;";
+
+	// Sayfa erişimi "yalnız seçilenler" iken kimlerin ne yapabileceği (view|comment|edit).
+	$sql[] = 'CREATE TABLE ' . flxg_table( 'doc_page_members' ) . " (
+		id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+		page_id bigint(20) unsigned NOT NULL DEFAULT 0,
+		user_id bigint(20) unsigned NOT NULL DEFAULT 0,
+		role varchar(12) NOT NULL DEFAULT 'view',
+		PRIMARY KEY  (id),
+		KEY page_user (page_id,user_id)
+	) $c;";
+
+	// Doküman yorumları: sayfadaki bir metin aralığına ya da bloğa (görsel, dosya, tablo) bağlı konu + yanıtlar.
+	$sql[] = 'CREATE TABLE ' . flxg_table( 'doc_comments' ) . " (
+		id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+		page_id bigint(20) unsigned NOT NULL DEFAULT 0,
+		doc_id bigint(20) unsigned NOT NULL DEFAULT 0,
+		parent_id bigint(20) unsigned NOT NULL DEFAULT 0,
+		user_id bigint(20) unsigned NOT NULL DEFAULT 0,
+		anchor text,
+		body text,
+		resolved_by bigint(20) unsigned NOT NULL DEFAULT 0,
+		resolved_at datetime DEFAULT NULL,
+		deleted tinyint(1) NOT NULL DEFAULT 0,
+		created_at datetime NOT NULL,
+		edited_at datetime DEFAULT NULL,
+		PRIMARY KEY  (id),
+		KEY page_parent (page_id,parent_id)
 	) $c;";
 
 	$sql[] = 'CREATE TABLE ' . flxg_table( 'doc_blocks' ) . " (

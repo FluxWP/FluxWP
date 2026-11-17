@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Tasks
  * Description:       ClickUp benzeri görev takibi: projeler, klasörler, listeler; liste, pano (kanban) ve takvim görünümleri, kayıtlı filtreli görünümler, özel alanlar, yorum ve dosya ekleri, bildirimler, liste yetkileri, yönetici panosu ve Flux AI & MCP üzerinden yapay zekâ.
- * Version:           0.11.3
+ * Version:           0.12.0
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Requires Plugins:  flx-graphql
@@ -17,8 +17,8 @@ defined( 'ABSPATH' ) || exit;
 require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback; no Flux Lang dependency.
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
-define( 'FLXG_VERSION', '0.11.3' );
-define( 'FLXG_DB_VERSION', '3' );
+define( 'FLXG_VERSION', '0.12.0' );
+define( 'FLXG_DB_VERSION', '4' );
 define( 'FLXG_FILE', __FILE__ );
 define( 'FLXG_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXG_URL', plugin_dir_url( __FILE__ ) );
@@ -29,8 +29,10 @@ require_once FLXG_DIR . 'includes/perms.php';
 require_once FLXG_DIR . 'includes/store.php';
 require_once FLXG_DIR . 'includes/services/class-flxg-task.php';
 require_once FLXG_DIR . 'includes/services/class-flxg-task-service.php';
+require_once FLXG_DIR . 'includes/services/class-flxg-doc-service.php';
 require_once FLXG_DIR . 'includes/files.php';
 require_once FLXG_DIR . 'includes/docs.php';
+require_once FLXG_DIR . 'includes/doc-comments.php';
 require_once FLXG_DIR . 'includes/notify.php';
 require_once FLXG_DIR . 'includes/tools.php';
 require_once FLXG_DIR . 'includes/doc-ai.php';

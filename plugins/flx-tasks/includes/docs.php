@@ -150,6 +150,17 @@ function flxg_get_page( $id ) {
 	return $r ? $r : null;
 }
 
+/** Sayfalar, kullanıcının açabildikleri ve koruma alanlarıyla (rol, kilit, kısıtlı erişim, yorum sürümü). */
+function flxg_doc_pages_for( $doc_id, $uid = null ) {
+	return FLXG_Doc_Service::visible( flxg_doc_pages( $doc_id ), null === $uid ? get_current_user_id() : (int) $uid );
+}
+
+/** Sayfa düzenlenebilir mi (rol + kilit); değilse REST hatası. */
+function flxg_page_write_error( $page_id ) {
+	$ok = FLXG_Doc_Service::can_write( (int) $page_id, get_current_user_id() );
+	return is_wp_error( $ok ) ? $ok : null;
+}
+
 function flxg_doc_pages( $doc_id ) {
 	global $wpdb;
 	$rows = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM ' . flxg_table( 'doc_pages' ) . ' WHERE doc_id = %d ORDER BY position, id', (int) $doc_id ), ARRAY_A ); // phpcs:ignore
@@ -206,6 +217,7 @@ function flxg_delete_doc_page( $id ) {
 
 function flxg_purge_page( $pid ) {
 	global $wpdb;
+	FLXG_Doc_Service::purge( (int) $pid );
 	$wpdb->delete( flxg_table( 'doc_blocks' ), array( 'page_id' => (int) $pid ) );
 	$wpdb->delete( flxg_table( 'doc_presence' ), array( 'page_id' => (int) $pid ) );
 	$wpdb->delete( flxg_table( 'doc_pages' ), array( 'id' => (int) $pid ) );
@@ -498,10 +510,10 @@ function flxg_rest_doc_get( WP_REST_Request $r ) {
 	if ( ! $doc || ! flxg_can_doc( $doc ) ) {
 		return flxg_error( 'flxg_404', __( 'Document not found or you have no access.', 'flx-tasks' ), 404 );
 	}
-	$pages = flxg_doc_pages( $doc['id'] );
-	if ( ! $pages && flxg_can_doc( $doc, 'edit' ) ) {
+	$pages = flxg_doc_pages_for( $doc['id'] );
+	if ( ! flxg_doc_pages( $doc['id'] ) && flxg_can_doc( $doc, 'edit' ) ) {
 		flxg_create_doc_page( $doc['id'], array(), get_current_user_id() );
-		$pages = flxg_doc_pages( $doc['id'] );
+		$pages = flxg_doc_pages_for( $doc['id'] );
 		$doc   = flxg_get_doc( $doc['id'] );
 	}
 	return array(
@@ -540,30 +552,36 @@ function flxg_rest_page_create( WP_REST_Request $r ) {
 	if ( ! $doc || ! flxg_can_doc( $doc, 'edit' ) ) {
 		return flxg_error( 'flxg_forbidden', __( 'You are not allowed to edit this document.', 'flx-tasks' ), 403 );
 	}
-	$b  = flxg_body( $r );
-	$id = flxg_create_doc_page( $doc['id'], array( 'title' => $b['title'] ?? '', 'parent' => (int) ( $b['parent'] ?? 0 ) ), get_current_user_id() );
+	$b      = flxg_body( $r );
+	$parent = (int) ( $b['parent'] ?? 0 );
+	if ( $parent && ! FLXG_Doc_Service::can( $parent, 'edit', get_current_user_id() ) ) {
+		return flxg_error( 'flxg_forbidden', __( 'You are not allowed to edit this page.', 'flx-tasks' ), 403 );
+	}
+	$id = flxg_create_doc_page( $doc['id'], array( 'title' => $b['title'] ?? '', 'parent' => $parent ), get_current_user_id() );
 	// İsteğe bağlı başlangıç içeriği (ör. yapay zekâ sonucu "Yeni sayfa olarak ekle").
 	if ( $id && ! empty( $b['html'] ) && is_string( $b['html'] ) && function_exists( 'flxg_doc_insert_html' ) ) {
 		$n = 0;
 		flxg_doc_insert_html( $id, $b['html'], null, get_current_user_id(), $n );
 	}
-	return array( 'id' => $id, 'pages' => flxg_doc_pages( $doc['id'] ), 'doc' => flxg_get_doc( $doc['id'] ) );
+	return array( 'id' => $id, 'pages' => flxg_doc_pages_for( $doc['id'] ), 'doc' => flxg_get_doc( $doc['id'] ) );
 }
 
 function flxg_rest_page_get( WP_REST_Request $r ) {
 	$p   = flxg_get_page( (int) $r['id'] );
 	$doc = flxg_page_doc( $p );
-	if ( ! $doc || ! flxg_can_doc( $doc ) ) {
+	if ( ! $doc || ! FLXG_Doc_Service::can( (int) $p['id'], 'view', get_current_user_id() ) ) {
 		return flxg_error( 'flxg_404', __( 'Page not found or you have no access.', 'flx-tasks' ), 404 );
 	}
 	// Açan kişi ilk yoklamayı beklemeden "burada" görünsün.
 	flxg_set_presence( $p['id'], get_current_user_id(), null );
+	$st = FLXG_Doc_Service::state( $p, get_current_user_id() );
 	return array(
-		'page'     => flxg_page_row( $p ),
+		'page'     => flxg_page_row( $p ) + $st,
 		'blocks'   => flxg_page_blocks( $p['id'] ),
 		'rev'      => flxg_page_rev( $p['id'] ),
 		'presence' => flxg_page_presence( $p['id'], get_current_user_id() ),
-		'role'     => flxg_doc_role( $doc ),
+		'role'     => $st['role'],
+		'docRole'  => flxg_doc_role( $doc ),
 	);
 }
 
@@ -573,6 +591,10 @@ function flxg_rest_page_update( WP_REST_Request $r ) {
 	$doc = flxg_page_doc( $p );
 	if ( ! $doc || ! flxg_can_doc( $doc, 'edit' ) ) {
 		return flxg_error( 'flxg_forbidden', __( 'You are not allowed to edit this document.', 'flx-tasks' ), 403 );
+	}
+	$locked = flxg_page_write_error( $p['id'] );
+	if ( $locked ) {
+		return $locked;
 	}
 	$b   = flxg_body( $r );
 	$set = array();
@@ -593,6 +615,9 @@ function flxg_rest_page_update( WP_REST_Request $r ) {
 			}
 			$q = (int) $qq['parent_id'];
 		}
+		if ( $parent && ! FLXG_Doc_Service::can( $parent, 'edit', get_current_user_id() ) ) {
+			return flxg_error( 'flxg_forbidden', __( 'You are not allowed to edit this page.', 'flx-tasks' ), 403 );
+		}
 		$set['parent_id'] = $parent;
 	}
 	if ( isset( $b['position'] ) ) {
@@ -604,7 +629,7 @@ function flxg_rest_page_update( WP_REST_Request $r ) {
 		$wpdb->update( flxg_table( 'doc_pages' ), $set, array( 'id' => (int) $p['id'] ) );
 		flxg_bump_doc_tree( $doc['id'] );
 	}
-	return array( 'pages' => flxg_doc_pages( $doc['id'] ), 'doc' => flxg_get_doc( $doc['id'] ) );
+	return array( 'pages' => flxg_doc_pages_for( $doc['id'] ), 'doc' => flxg_get_doc( $doc['id'] ) );
 }
 
 function flxg_rest_page_delete( WP_REST_Request $r ) {
@@ -614,12 +639,16 @@ function flxg_rest_page_delete( WP_REST_Request $r ) {
 	if ( ! $doc || ! flxg_can_doc( $doc, 'edit' ) ) {
 		return flxg_error( 'flxg_forbidden', __( 'You are not allowed to edit this document.', 'flx-tasks' ), 403 );
 	}
+	$locked = flxg_page_write_error( $p['id'] );
+	if ( $locked ) {
+		return $locked;
+	}
 	$count = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM ' . flxg_table( 'doc_pages' ) . ' WHERE doc_id = %d AND parent_id = 0', (int) $doc['id'] ) ); // phpcs:ignore
 	if ( ! (int) $p['parent_id'] && $count < 2 ) {
 		return flxg_error( 'flxg_last', __( 'The last page of a document cannot be deleted. You can delete the document instead.', 'flx-tasks' ) );
 	}
 	flxg_delete_doc_page( $p['id'] );
-	return array( 'pages' => flxg_doc_pages( $doc['id'] ), 'doc' => flxg_get_doc( $doc['id'] ) );
+	return array( 'pages' => flxg_doc_pages_for( $doc['id'] ), 'doc' => flxg_get_doc( $doc['id'] ) );
 }
 
 /**
@@ -630,16 +659,17 @@ function flxg_rest_doc_sync( WP_REST_Request $r ) {
 	global $wpdb;
 	$p   = flxg_get_page( (int) $r['id'] );
 	$doc = flxg_page_doc( $p );
-	if ( ! $doc || ! flxg_can_doc( $doc ) ) {
+	$uid = get_current_user_id();
+	if ( ! $doc || ! FLXG_Doc_Service::can( (int) $p['id'], 'view', $uid ) ) {
 		return flxg_error( 'flxg_404', __( 'Page not found or you have no access.', 'flx-tasks' ), 404 );
 	}
-	$uid  = get_current_user_id();
-	$b    = flxg_body( $r );
-	$edit = flxg_can_doc( $doc, 'edit' );
-	$mine = array();
+	$b     = flxg_body( $r );
+	$write = FLXG_Doc_Service::can_write( (int) $p['id'], $uid );
+	$edit  = true === $write;
+	$mine  = array();
 	if ( ! empty( $b['ops'] ) && is_array( $b['ops'] ) ) {
 		if ( ! $edit ) {
-			return flxg_error( 'flxg_forbidden', __( 'You are not allowed to edit this document.', 'flx-tasks' ), 403 );
+			return $write;
 		}
 		$mine = flxg_apply_block_ops( $p['id'], $b['ops'], $uid );
 	}
@@ -682,7 +712,11 @@ function flxg_rest_doc_sync( WP_REST_Request $r ) {
 		);
 	}
 	$fresh = flxg_get_page( $p['id'] );
+	$st    = FLXG_Doc_Service::state( $fresh ? $fresh : $p, $uid );
 	return array(
+		'role'     => $st['role'],
+		'locked'   => $st['locked'],
+		'cmRev'    => $st['cmRev'],
 		'rev'      => flxg_page_rev( $p['id'] ),
 		'changes'  => $changes,
 		'more'     => count( (array) $rows ) >= 500,
@@ -769,7 +803,7 @@ function flxg_page_email_html( $page_id ) {
 function flxg_rest_page_email_draft( WP_REST_Request $r ) {
 	$p   = flxg_get_page( (int) $r['id'] );
 	$doc = flxg_page_doc( $p );
-	if ( ! $doc || ! flxg_can_doc( $doc ) ) {
+	if ( ! $doc || ! FLXG_Doc_Service::can( (int) $p['id'], 'view', get_current_user_id() ) ) {
 		return flxg_error( 'flxg_404', __( 'Page not found or you have no access.', 'flx-tasks' ), 404 );
 	}
 	if ( ! flxg_can_mail_draft() ) {
