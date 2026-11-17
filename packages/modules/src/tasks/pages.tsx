@@ -633,15 +633,6 @@ export function ProfilePage({ Top }: { Top: Top }) {
     <>
       {Top({ title: <Crumb t={tt("Profile")} /> })}
       <Page>
-        {host.classicUrl && (
-          <section className="flxg-card-box">
-            <h3>{tt("Interface")}</h3>
-            <p className="flxg-muted">{tt("This screen is the same as FluxApp. The classic view stays available for a while.")}</p>
-            <a className="flxg-btn" href={host.classicUrl}>
-              {tt("Classic view")}
-            </a>
-          </section>
-        )}
         <section className="flxg-card-box">
           <div className="flxg-profile-head">
             <Avatar u={S.me} size={48} />
