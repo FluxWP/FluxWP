@@ -8,47 +8,10 @@ function flxs_handle_cert_bulk() {
 	if ( ! flxs_can_use() ) {
 		wp_die( esc_html__( 'Not allowed', 'flx-certificates' ) );
 	}
-	$ids    = array_filter( array_map( 'intval', (array) ( $_POST['ids'] ?? array() ) ) );
-	$action = sanitize_key( $_POST['bulk'] ?? '' );
-	if ( ! $ids ) {
-		flxs_redirect( 'flxs', array( 'flxs_err' => __( 'No certificates selected.', 'flx-certificates' ) ) );
-	}
-	if ( 0 === strpos( $action, 'send_' ) ) {
-		$ch = substr( $action, 5 );
-		if ( ! flxs_can_bulk() ) {
-			// Personel toplu gönderemiyorsa seçilenleri tek tek kuyruğa al (en çok 20)
-			$n = 0;
-			foreach ( array_slice( $ids, 0, 20 ) as $id ) {
-				$c = flxs_get_certificate( $id );
-				if ( $c && flxs_user_can_edit_certificate( $c ) ) {
-					$r = flxs_send_certificate( $c, array( $ch ) );
-					$n += is_wp_error( $r[ $ch ] ?? null ) ? 0 : 1;
-				}
-			}
-			flxs_kick_queue();
-			flxs_redirect( 'flxs-kuyruk', array( 'flxs_msg' => sprintf( __( '%d messages queued.', 'flx-certificates' ), $n ) ) );
-		}
-		flxs_redirect( 'flxs-toplu', array( 'ids' => implode( ',', $ids ), 'channel' => $ch ) );
-	}
-	$n = 0;
-	foreach ( $ids as $id ) {
-		$c = flxs_get_certificate( $id );
-		if ( ! $c || ! flxs_user_can_edit_certificate( $c ) ) {
-			continue;
-		}
-		if ( 'revoke' === $action ) {
-			$n += flxs_set_certificate_status( $id, 'revoked' ) ? 1 : 0;
-		} elseif ( 'restore' === $action ) {
-			$n += flxs_set_certificate_status( $id, 'active' ) ? 1 : 0;
-		} elseif ( 'event' === $action ) {
-			$n += true === flxs_set_certificate_event( $id, (int) ( $_POST['event'] ?? 0 ) ) ? 1 : 0;
-		} elseif ( 'ref' === $action ) {
-			$n += flxs_set_certificate_ref( $id, (int) ( $_POST['ref_user'] ?? 0 ) ) ? 1 : 0;
-		} elseif ( 'delete' === $action && flxs_can_manage() ) {
-			$n += flxs_delete_certificate( $id ) ? 1 : 0;
-		}
-	}
-	flxs_redirect( 'flxs', array( 'flxs_msg' => sprintf( __( '%d certificates updated.', 'flx-certificates' ), $n ) ) );
+	$ids    = array_filter( array_map( 'intval', (array) ( $_POST['ids'] ?? array() ) ) ); // phpcs:ignore WordPress.Security.NonceVerification
+	$action = sanitize_key( $_POST['bulk'] ?? '' ); // phpcs:ignore WordPress.Security.NonceVerification
+	$go     = FLXS_Certificate_Service::bulk_admin( $ids, $action, (int) ( $_POST['event'] ?? 0 ), (int) ( $_POST['ref_user'] ?? 0 ) ); // phpcs:ignore WordPress.Security.NonceVerification
+	flxs_redirect( $go['page'], $go['args'] );
 }
 
 function flxs_cert_message_summary( $ids ) {
@@ -65,6 +28,9 @@ function flxs_cert_message_summary( $ids ) {
 }
 
 function flxs_page_certificates() {
+	if ( flxs_render_flux() ) {
+		return;
+	}
 	$per   = flxs_list_per_page( 'flxs-certs', 20 );
 	$paged = max( 1, (int) flxs_get_param( 'paged', 1 ) );
 	$args  = array_merge(
@@ -88,9 +54,11 @@ function flxs_page_certificates() {
 
 	flxs_admin_header(
 		__( 'Certificates', 'flx-certificates' ),
-		array(
-			array( 'label' => __( 'Download Excel', 'flx-certificates' ) . ( $q['total'] ? ' (' . number_format_i18n( $q['total'] ) . ')' : '' ), 'url' => flxs_cert_export_url(), 'class' => 'flxs-export' ),
-			array( 'label' => '+ ' . __( 'New certificate', 'flx-certificates' ), 'url' => admin_url( 'admin.php?page=flxs-yeni' ), 'class' => 'button-primary' ),
+		flxs_classic_switch(
+			array(
+				array( 'label' => __( 'Download Excel', 'flx-certificates' ) . ( $q['total'] ? ' (' . number_format_i18n( $q['total'] ) . ')' : '' ), 'url' => flxs_cert_export_url(), 'class' => 'flxs-export' ),
+				array( 'label' => '+ ' . __( 'New certificate', 'flx-certificates' ), 'url' => admin_url( 'admin.php?page=flxs-yeni' ), 'class' => 'button-primary' ),
+			)
 		)
 	);
 	?>

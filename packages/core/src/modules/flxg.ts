@@ -80,7 +80,7 @@ export interface FlxgBoot extends FlxgStructure {
   users: FlxgUser[];
   unread: number;
   time: string;
-  config: { poll: number; maxUpload: number; priorities: { id: number; label: string; color: string }[]; today: string; weekStart: number; fieldTypes: Record<string, string> };
+  config: { poll: number; maxUpload: number; ytPreview?: boolean; priorities: { id: number; label: string; color: string }[]; today: string; weekStart: number; fieldTypes: Record<string, string> };
 }
 /** Yapıyı değiştiren uçların yanıtı (proje/klasör/liste): güncel ağaç, yeni kaydın id'si. */
 export type FlxgStructurePatch = Partial<FlxgStructure> & { id?: number; field?: FlxgField; fields?: FlxgField[] };

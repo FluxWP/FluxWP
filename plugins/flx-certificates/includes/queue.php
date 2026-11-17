@@ -122,6 +122,9 @@ function flxs_enqueue( array $m ) {
 		return new WP_Error( 'flxs_db', 'Kuyruğa eklenemedi: ' . $wpdb->last_error );
 	}
 	$id = (int) $wpdb->insert_id;
+	if ( ! empty( $m['certificate_id'] ) ) {
+		FLXS_Records::purge_certificate( array( 'id' => (int) $m['certificate_id'] ) ); // The delivery counts of that certificate changed.
+	}
 	if ( empty( $m['batch_id'] ) ) {
 		flxs_log(
 			'message_queued',

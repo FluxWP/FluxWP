@@ -643,7 +643,7 @@
 	function addView(anchor) {
 		var mk = function (type, name) {
 			var shared = S.scope.type !== 'home' && Y.rank(S.scope.role) >= 3;
-			Y.api('POST', 'views', { scope: S.scope.type, scope_id: S.scope.type === 'home' ? S.me.id : S.scope.id, name: name, type: type, shared: shared, config: { fields: ['assignees', 'due', 'priority', 'tags'], cover: type !== 'list', group: type === 'calendar' ? 'none' : 'status' } }).then(function (r) {
+			Y.api('POST', 'views', { scope: S.scope.type, scope_id: S.scope.type === 'home' ? S.me.id : S.scope.id, name: name, type: type, shared: shared, config: { fields: ['assignees', 'due', 'priority'], cover: type !== 'list', group: type === 'calendar' ? 'none' : 'status' } }).then(function (r) {
 				S.views = r.views;
 				Y.go(Y.scopeHash() + '/v/' + r.view.id);
 			}, Y.fail);
@@ -999,7 +999,8 @@
 		));
 		inner.appendChild(h('section.flxg-card-box',
 			h('h2', t('Dosyalar')),
-			num('max_upload_mb', t('Tek dosya sınırı (MB)'), 1, 512, t('Sunucunun PHP sınırı daha düşükse o geçerli olur.'))
+			num('max_upload_mb', t('Tek dosya sınırı (MB)'), 1, 512, t('Sunucunun PHP sınırı daha düşükse o geçerli olur.')),
+			sw('yt_preview', t('YouTube bağlantılarında önizleme görseli'), t('Dokümanda tek başına duran YouTube bağlantısı video kapağıyla kart olarak görünür. Kapak YouTube\'dan yüklenir; kapatırsanız bağlantı düz metin olarak kalır.'))
 		));
 		inner.appendChild(h('section.flxg-card-box',
 			h('h2', t('Yapay zekâ')),

@@ -226,5 +226,9 @@
  "Yeni sayfa oluşturuldu.": "新页面已创建。",
  "Seçili metin bu arada değişti; sonuç altına eklendi.": "同时选择也发生了变化;结果插入下面。",
  "Değiştirildi.": "更换了。",
- "Sayfaya eklendi.": "添加到页面。"
+ "Sayfaya eklendi.": "添加到页面。",
+ "Önizle": "预览",
+ "Dosyayı kaldır": "移除文件",
+ "YouTube bağlantılarında önizleme görseli": "YouTube 链接的预览图",
+ "Dokümanda tek başına duran YouTube bağlantısı video kapağıyla kart olarak görünür. Kapak YouTube'dan yüklenir; kapatırsanız bağlantı düz metin olarak kalır.": "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text."
 }

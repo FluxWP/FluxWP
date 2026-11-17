@@ -39,7 +39,7 @@ head = "/* Otomatik üretildi: plugins/flx-tasks/tools/gen-react-css.py, kaynak 
 extra = """
 
 /* ---------------- Yalnız React ekranı (FluxApp + wp-admin) ---------------- */
-.flxg.flxg-flux { height: 100%; min-height: 0; position: relative; }
+.flxg.flxg-flux { height: 100%; min-height: 0; position: relative; background: var(--bg); }
 .flxg-doc-host { display: contents; }
 .flxg-dnd-ghost { pointer-events: none; opacity: .92; box-shadow: var(--shadow-lg, 0 10px 30px rgba(0,0,0,.18)); border-radius: 8px; background: var(--panel); }
 .flxg-dnd-ghost .flxg-row { background: var(--panel); }

@@ -1,0 +1,238 @@
+fragment FlxCertificateRow on FlxCertificate {
+  id
+  databaseId
+  number
+  status
+  title
+  holderName
+  code
+  pageUrl
+  pdfUrl
+  imageUrl
+  views
+  backdated
+  createdAt { label }
+  eventId
+  eventName
+  templateId
+  templateName
+  referrerId
+  referrerName
+  createdByName
+  canEdit
+  values
+  person {
+    id
+    databaseId
+    name
+    email
+    phone { e164 digits display }
+  }
+  deliveries { channel sent failed waiting }
+}
+
+query FlxCertificateRecords($first: Int!, $after: String, $filter: FlxCertificateFilterInput) {
+  flxCertificates(first: $first, after: $after, filter: $filter) {
+    nodes { ...FlxCertificateRow }
+    pageInfo { hasNextPage endCursor }
+    totalCount
+  }
+  flxCertificateRecordsMeta(filter: $filter) {
+    canManage
+    canBulk
+    scoped
+    me
+    noEventCount
+    noReferrerCount
+    exportUrl
+    templates { id name active count }
+    events { id name status count }
+    referrers { id name count }
+    providers { channel id name }
+  }
+}
+
+query FlxCertificateOne($id: Int!) {
+  flxCertificate(id: $id) { ...FlxCertificateRow }
+}
+
+query FlxCertificateCreateConfig($certificateId: Int) {
+  flxCertificateCreateConfig(certificateId: $certificateId) {
+    canManage
+    today
+    me
+    lastTemplateId
+    rendererScripts
+    rendererConfig
+    templates { id name active config }
+    events { id name status }
+    referrers { id name }
+    providers { channel id name }
+  }
+}
+
+query FlxCertificatePeople($search: String) {
+  flxCertificatePeople(search: $search) {
+    id
+    databaseId
+    name
+    email
+    phone { display }
+  }
+}
+
+query FlxCertificateDirectory($search: String, $first: Int!, $after: String) {
+  flxCertificateDirectory(search: $search, first: $first, after: $after) {
+    nodes {
+      id
+      databaseId
+      name
+      email
+      phone { e164 digits display }
+      note
+      certificateCount
+      createdAt { label }
+      createdByName
+    }
+    pageInfo { hasNextPage endCursor }
+    totalCount
+  }
+}
+
+query FlxCertificatePerson($id: Int!) {
+  flxCertificatePerson(id: $id) {
+    id
+    databaseId
+    name
+    email
+    phone { display }
+    note
+    certificateCount
+    createdAt { label }
+    createdByName
+  }
+  flxCertificates(first: 50, filter: { personId: $id }) {
+    nodes { ...FlxCertificateRow }
+    totalCount
+  }
+}
+
+query FlxCertificatePersonMessages($personId: Int!) {
+  flxCertificatePersonMessages(personId: $personId) {
+    channel
+    recipient
+    status
+    at { label }
+    createdByName
+  }
+}
+
+query FlxCertificateVerify($code: String!) {
+  flxCertificateVerify(code: $code) {
+    status
+    title
+    holderName
+    number
+    issuedOn { iso label }
+    issuer
+    code
+    pageUrl
+    pdfUrl
+    imageUrl
+    imageWidth
+    imageHeight
+    ogTitle
+    ogDescription
+  }
+}
+
+mutation FlxCertificateCreate($input: FlxCertificateCreateInput!) {
+  flxCertificateCreate(input: $input) {
+    certificate { ...FlxCertificateRow }
+    person { id databaseId name }
+    notes
+    errors { code field message }
+  }
+}
+
+mutation FlxCertificateUpdate($input: FlxCertificateUpdateInput!) {
+  flxCertificateUpdate(input: $input) {
+    certificate { ...FlxCertificateRow }
+    person { id databaseId name }
+    notes
+    errors { code field message }
+  }
+}
+
+mutation FlxCertificateSetStatus($input: FlxCertificateSetStatusInput!) {
+  flxCertificateSetStatus(input: $input) {
+    certificate { id status pdfUrl imageUrl }
+    errors { code field message }
+  }
+}
+
+mutation FlxCertificateSetReferrer($input: FlxCertificateSetReferrerInput!) {
+  flxCertificateSetReferrer(input: $input) {
+    certificate { id referrerId referrerName }
+    errors { code field message }
+  }
+}
+
+mutation FlxCertificateBulk($input: FlxCertificateBulkInput!) {
+  flxCertificateBulk(input: $input) {
+    updated
+    queued
+    redirect
+    errors { code field message }
+  }
+}
+
+mutation FlxCertificateDelete($input: FlxCertificateDeleteInput!) {
+  flxCertificateDelete(input: $input) {
+    deleted
+    errors { code field message }
+  }
+}
+
+mutation FlxCertificateSend($input: FlxCertificateSendInput!) {
+  flxCertificateSend(input: $input) {
+    results { channel ok message }
+    errors { code field message }
+  }
+}
+
+mutation FlxCertificateSendTo($input: FlxCertificateSendToInput!) {
+  flxCertificateSendTo(input: $input) {
+    results { channel ok message }
+    errors { code field message }
+  }
+}
+
+mutation FlxCertificateAttachFiles($input: FlxCertificateAttachFilesInput!) {
+  flxCertificateAttachFiles(input: $input) {
+    certificate { id pdfUrl imageUrl }
+    errors { code field message }
+  }
+}
+
+mutation FlxCertificatePersonSave($input: FlxCertificatePersonSaveInput!) {
+  flxCertificatePersonSave(input: $input) {
+    person { id databaseId name email phone { display } note }
+    errors { code field message }
+  }
+}
+
+mutation FlxCertificatePersonDelete($input: FlxCertificatePersonDeleteInput!) {
+  flxCertificatePersonDelete(input: $input) {
+    deleted
+    errors { code field message }
+  }
+}
+
+mutation FlxCertificateLookup($input: FlxCertificateLookupInput!) {
+  flxCertificateLookup(input: $input) {
+    ok
+    message
+    errors { code field message }
+  }
+}

@@ -1,0 +1,15 @@
+query FlxCommerceSummary($days: Int) {
+  flxCommerceSummary(days: $days) {
+    days from to awaiting customers newCustomers orders items
+    revenue { ...FlxCommerceMoney }
+    aov { ...FlxCommerceMoney }
+    revenueDelta ordersDelta aovDelta itemsDelta
+    series { date orders revenue { ...FlxCommerceMoney } }
+    lowStock { id name stock url }
+  }
+  flxCommerceReceipts(first: 20) {
+    nodes { id number name email reference status statusLabel files { name url } total { ...FlxCommerceMoney } createdAt { ...FlxCommerceWhen } }
+    pageInfo { hasNextPage endCursor }
+    totalCount
+  }
+}

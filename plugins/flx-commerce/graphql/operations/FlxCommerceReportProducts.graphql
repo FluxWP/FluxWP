@@ -1,0 +1,6 @@
+query FlxCommerceReportProducts($first: Int = 50, $after: String, $preset: FlxCommerceReportPreset, $from: String, $to: String) {
+  flxCommerceReportProducts(first: $first, after: $after, preset: $preset, from: $from, to: $to) {
+    nodes { productId name quantity total { ...FlxCommerceMoney } }
+    pageInfo { hasNextPage endCursor }
+  }
+}

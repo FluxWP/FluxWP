@@ -1,0 +1,3 @@
+mutation FlxCommerceBankSettingsSave($input: FlxCommerceBankSettingsSaveInput!) {
+  flxCommerceBankSettingsSave(input: $input) { settings { enabled title iban } errors { code message field } }
+}

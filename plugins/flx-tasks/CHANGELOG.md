@@ -1,5 +1,29 @@
 # Flux Tasks — Değişiklikler
 
+## 0.11.3
+- Tarih seçici açılır kutusu kompakt: ekrana sığar (sağda takvim ve Uygula artık kesilmez), sol hızlı seçim paneli bej yerine temaya uygun gri (açık/koyu). Yalnız Tasks içinde; ortak bileşen değişmedi.
+
+## 0.11.2
+- Satır hover simgeleri (alt görev, etiket, yeniden adlandır) görev adının üstüne biner; görev adı sütunun tam genişliğini kullanır, metni daraltmaz.
+
+## 0.11.1
+- Satır içi görev eklemede liste seçici kalktı (görev bulunduğu listeye ya da varsayılan listeye eklenir).
+- Doküman sayfası dar alanda (yan paneller açıkken) kağıdın dış boşluğu ve iç boşluğu azaldı; çok darda tam genişlik.
+- Dar ekranda satır içi eklemede Vazgeç / Kaydet aynı satırda kalır.
+- Liste satırının üstüne gelince hızlı düzenleme simgeleri çıkar: alt görev ekle, etiket, yeniden adlandır (kalem).
+- Yeni görünümlerde Etiket varsayılan sütun değil; etiketler başlığın yanında görünür, istenirse Alanlar'dan sütun olarak eklenir.
+
+## 0.11.0
+- Liste görünümü (yeni ekran) daha sade: düz satırlar, hap biçimli araç çubuğu düğmeleri.
+- Satır içi görev ekleme yenilendi: çerçevesiz ad alanı, atama / bitiş tarihi / öncelik / etiket simge düğmeleri, Vazgeç ve Kaydet ↵. Seçilen değerlerle görev oluşturulur; klasik ekran değişmedi.
+
+## 0.10.0
+- Dokümanda dosyalar kart olarak görünür: uzantı rozeti (PDF, ZIP, XLSX…), ad, üzerine gelince kenarlık. Düzenleme modunda karta gelince çıkan kalem simgesinden Önizle / İndir / Dosyayı kaldır menüsü açılır. Sürükle-bırak ve yapıştırma ile görsel ve dosya ekleme önceden de çalışıyordu.
+- Dokümanda tek başına duran YouTube bağlantısı video kapaklı kart olarak görünür. Ayarlar > Dosyalar'daki "YouTube bağlantılarında önizleme görseli" ile kapatılır (varsayılan açık); kapalıyken bağlantı düz kalır. Kapak YouTube'dan yüklenir, kaydedilen içeriğe eklenmez.
+- Önizleme penceresinde kapat, ok ve İndir düğmelerinin simgeleri her temada beyaz.
+- Açık temada ana alan koyu kalıyordu (dış kabuk temayla eşleşmediğinde): Görevler ekranı artık kendi zemin rengini taşır.
+- Dosya indirme dokümanda da istemciden geçer (nonce'suz bağlantı yok).
+
 ## 0.9.4
 - Dokümana dosya ekleme düzeldi: yüklenen dosya "undefined" yerine adıyla görünür (yükleme yanıtı `{ file }` doğru okunuyor).
 - Dokümandaki dosya ve görsellere tıklayınca nonce'suz adrese gidip `rest_cookie_invalid_nonce` hatası vermez; dosya istemciden alınıp önizleme penceresinde açılır.

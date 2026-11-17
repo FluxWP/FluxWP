@@ -958,5 +958,9 @@
  "Toplantı raporu": "Meeting report",
  "gündem maddesi görüşüldü": "agenda items discussed",
  "karar alındı": "decisions made",
- "alt görev tamamlandı": "subtasks completed"
+ "alt görev tamamlandı": "subtasks completed",
+ "Önizle": "Preview",
+ "Dosyayı kaldır": "Remove file",
+ "YouTube bağlantılarında önizleme görseli": "Preview image for YouTube links",
+ "Dokümanda tek başına duran YouTube bağlantısı video kapağıyla kart olarak görünür. Kapak YouTube'dan yüklenir; kapatırsanız bağlantı düz metin olarak kalır.": "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text."
 }
