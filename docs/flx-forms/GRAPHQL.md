@@ -35,9 +35,22 @@ Yalnız `form`, `survey`, `subscribe`. `login`, `register`, `logout`, parola kur
 
 `honeypot` doluysa kayıt yazılmaz (`INVALID_INPUT`, alan `honeypot`). Metin tuzağı ele vermez.
 
-Captcha: `flx_captcha_gql_verify( 'flxf_submit' )`. Bağlam `flx_captcha_contexts` ile kayıtlıdır, panelde kapalı başlar (`default` 0). Açıkken token `captchaToken` veya `X-Flx-Captcha` başlığıdır. Fork'un kendi Google `siteverify` çağrısı REST'te durur.
+Captcha: `flx_captcha_gql_verify( 'flxf_submit' )`. Bağlam `flx_captcha_contexts` ile kayıtlıdır, panelde kapalı başlar (`default` 0). Açıkken token `captchaToken` veya `X-Flx-Captcha` başlığıdır. Formun kendi captcha'sı ayrıca klasik kapıdan geçer: formun başlığında `captcha` açıksa (ödeme hariç) `captchaToken` zorunludur ve `settings->secretKey` ile Google `siteverify` doğrulanır; token yoksa, geçersizse `INVALID_INPUT` (alan `captchaToken`), gizli anahtar boşsa `INTERNAL` döner ve hiçbir şey yazılmaz. Aynı token iki kez doğrulanamaz; hem `flxf_submit` bağlamı hem form captcha'sı açıksa Google ikinci doğrulamayı reddeder, bu yüzden biri açık tutulur.
 
-Hız sınırı: `flxFormSubmit` ve `flxFormTrackReply` IP başına `flx_rate_limit` (`flxf_submit`, `flxf_track_reply`) uygular; `flxFormTrack` klasik takip sınırlarını (`efb_track_lookup_allowed` ve kısa/eski biçimli kodlar için `efb_track_legacy_lookup_allowed`) kullanır. Aşan istek `RATE_LIMITED` döner.
+## Gönderim klasik hattan geçer
+
+`FLXF_Submission_Service::submit` ziyaretçi cevaplarını form istemcisinin gönderdiği satırlara (`id_`, `name`, `type`, `value`, `id_ob`, `url`) çevirir ve klasik gönderimle aynı `_Public` yöntemlerini çalıştırır; REST de aynı yöntemleri kullanır (çıktı baytları değişmez):
+
+- `flxf_apply_conditional_logic` (`efb_logic_prepare_submission`: gizli, isteğe bağlı, zorunlu alanlar, `block_submit` / `end_form`),
+- `flxf_check_required` (`validate_required_fields_present_efb`), `flxf_strip_untouched_rows`, `flxf_dedupe_rows`,
+- `flxf_validate_fields` (alan başına e-posta, tarih, URL, mobil, seçim, dosya, sayı, uzunluk, rezervasyon kotası kuralları),
+- `flxf_submit_gates` (form captcha'sı ve Human Shield `efb_submit_bot_decision`; veto `FORBIDDEN`),
+- `flxf_encode_items` ve `insert_message_db()` (`trackCodeStyle` dahil, `claim_uploaded_files_efb`),
+- `flxf_head_recipients`, `flxf_admin_recipients`, `flxf_user_recipient` ve `flxf_dispatch_submit_effects`.
+
+Görünmeyen (gizli, devre dışı) ve ekranda çizilmeyen alanlar zorunlu sayılmaz; GraphQL bu alanlar için satır üretmez. Boş gönderimde eksik zorunlu alanların hepsi `fields.<id>` ile listelenir (REST ilkini döner). Klasik `femail` gönderen adresi gönderimde atanmaz: klasik kod `$setttting` yazım hatası yüzünden bunu hiç çalıştırmaz ve GraphQL aynı davranır.
+
+Hız sınırı: `flxFormSubmit` ve `flxFormTrackReply` IP başına `flx_rate_limit` (`flxf_submit`, `flxf_track_reply`) uygular; `flxFormTrack` klasik takip sınırlarını (`efb_track_lookup_allowed` ve kısa/eski biçimli kodlar için `efb_track_legacy_lookup_allowed`) kullanır. `flxFormTrackReply` de aynı kapıları ve başarısız arama sayacını (`efb_track_register_failure`, eski kodlar için `efb_track_register_legacy_failure`) kullanır; klasik yanıt hem `msg_id` hem takip kodu ister, GraphQL yalnız kodu alır ve `msg_id`'yi o kodun satırından okur. Aşan istek `RATE_LIMITED` döner.
 
 ```graphql
 query FlxFormTrack($code: String!) {

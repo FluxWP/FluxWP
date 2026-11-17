@@ -298,7 +298,7 @@ Klasik gönderim `validate_submitted_upload_url_efb` (`class-Emsfb-public.php:46
 
 Yanıt kutusu ayrı: `reserve_response_attachment` (`:875`) transient'a `message_id` + `sha256(track)` yazar. `response_attachments_are_reserved_efb` (`class-Emsfb-public.php:4014`) **çağrılır**.
 
-GraphQL: `flxFormSubmit` URL'yi ancak basename `emsfb_pending_uploads` içindeyse VE `_Public::flxf_validate_submitted_upload` (`validate_submitted_upload_url_efb`) geçiyorsa alır; satırı `@file@` + `url` biçiminde yazar. `flxFormTrackReply` yalnız `Upload_Guard::response_attachment_is_reserved` geçen ekleri alır (bilet bağı var).
+GraphQL: `flxFormSubmit` URL'yi ancak basename `emsfb_pending_uploads` içindeyse VE klasik alan döngüsündeki `validate_submitted_upload_url_efb` geçiyorsa alır; satırı `@file@` + `url` biçiminde yazar. `flxFormTrackReply` yalnız `Upload_Guard::response_attachment_is_reserved` geçen ekleri alır (bilet bağı var).
 
 Hatalar: `UNAUTHENTICATED`, `FORBIDDEN`, `NOT_FOUND`, `INVALID_INPUT`, `CONFLICT`, `RATE_LIMITED`, `INTERNAL`. Yazmalarda `INVALID_INPUT` ve `CONFLICT` payload `errors` içine.
 
@@ -368,7 +368,7 @@ Tek PR'a sığmaz: `get_form_public_efb` tek başına ~1600 satır (`:2233`–`:
 
 ## Kararlar
 
-1. **Captcha.** Kapandı: **1A**. `flx_captcha_gql_verify( 'flxf_submit' )`. Bağlam `flx_captcha_contexts`. Fork siteverify REST'te kalır.
+1. **Captcha.** Kapandı: **1A**. `flx_captcha_gql_verify( 'flxf_submit' )`. Bağlam `flx_captcha_contexts`. Formun kendi captcha'sı (`captcha == 1`, `secretKey`, Google siteverify) ve Human Shield `efb_submit_bot_decision` klasik `_Public::flxf_submit_gates` ile GraphQL'de de uygulanır.
 2. **Gönderim türü.** Kapandı: **2A**. `form` / `survey` / `subscribe`. `login`, `register`, `logout`, parola kurtarma ve ödemenin son adımı REST istisnası.
 3. **Dosya.** Kapandı: **3A**, yukarıdaki bağlama ile. Klasik `validate_submitted_upload_url_efb` zayıflığı bu PR'da düzeltilmez.
 4. **Yönetici kapsamı.** Kapandı. Panel (yanıtlar + Ayarlar), Pano, Ödemeler listesi, Sistem kontrolü, Otomasyonlar ve Eklentiler React ekranı (FluxApp masaüstü dahil). Yalnız Oluştur klasik. Sırlar write-only. İstisna: oluşturucu içi, ödeme callback/webhook, ikili yükleme/indirme, eski nonce.

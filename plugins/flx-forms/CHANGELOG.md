@@ -1,7 +1,7 @@
 # Değişiklikler
 
 ## 2.5.0
-- Herkese açık form okuma ve gönderim GraphQL üzerinden: `flxForm`, `flxFormSubmit`, `flxFormTrack`, `flxFormTrackReply`. Çizim alanları döner; bildirim alıcıları, webhook, sırlar ve rezervasyon sayaçları dönmez. Gönderim form, anket ve abonelik içindir. Captcha Flux reCAPTCHA (`flxf_submit`), honeypot ve hız sınırı GraphQL'de. Klasik REST aynı kaldı.
+- Herkese açık form okuma ve gönderim GraphQL üzerinden: `flxForm`, `flxFormSubmit`, `flxFormTrack`, `flxFormTrackReply`. Çizim alanları döner; bildirim alıcıları, webhook, sırlar ve rezervasyon sayaçları dönmez. Gönderim form, anket ve abonelik içindir. Captcha Flux reCAPTCHA (`flxf_submit`), formun kendi captcha'sı, Human Shield, honeypot ve hız sınırı GraphQL'de. Gönderim klasik hattan geçer: koşullu mantık, zorunlu ve alan doğrulaması, takip kodu stili ve kayıt biçimi REST ile aynıdır. Klasik REST çıktısı aynı kaldı.
 - PHP 8.1 ve Flux GraphQL gerekli. Flux GraphQL yoksa GraphQL kaydı atlanır, REST çalışır.
 
 ## 2.4.0
