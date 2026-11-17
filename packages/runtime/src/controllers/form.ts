@@ -11,6 +11,7 @@ import { useConfig } from '../hooks';
 import { qk } from '../query';
 import { formRequest, setPath, sourceRequest } from '../source';
 import { useScope } from '../scope';
+import { useSourceOptions } from './options';
 import { useBaseContext, useInvalidate, useNavigate, useText } from './context';
 
 type Values = Record<string, unknown>;
@@ -94,6 +95,16 @@ export function submitValues(fields: FormField[], vals: Values): Values {
   for (const f of fields) {
     const x = getPath(vals, f.name);
     if (f.type === 'readonly' || (f.type === 'secret' && !x)) continue;
+    if (f.type === 'number' || f.type === 'money') {
+      // Typed for GraphQL (Int/Float); an empty number is left out instead of sent as "".
+      if (x === '' || x === undefined || x === null) continue;
+      setPath(sendable, f.name, typeof x === 'number' ? x : Number(String(x).replace(',', '.')));
+      continue;
+    }
+    if (f.type === 'tags' && typeof x === 'string') {
+      setPath(sendable, f.name, x.split(/[,\n]/).map((t) => t.trim()).filter(Boolean));
+      continue;
+    }
     if (RELATION_FIELDS.has(f.type)) {
       const id = relationValue(x)?.id;
       if (!id) continue;
@@ -131,6 +142,7 @@ export function useFormController(manifest: Manifest, screen: FormScreen, params
   const values = form.watch();
   const ctx: ExprContext = useMemo(() => ({ ...base, scope: values, data: loaded.data, input: values }), [base, values, loaded.data]);
 
+  const sourceOptions = useSourceOptions(api, manifest, screen.fields, base);
   const fields = screen.fields
     .filter((f) => f.type !== 'hidden' && test(f.when, ctx))
     .map((f) => ({
@@ -138,7 +150,7 @@ export function useFormController(manifest: Manifest, screen: FormScreen, params
       label: text(f.label, ctx),
       placeholder: text(f.placeholder, ctx) || undefined,
       help: text(f.help, ctx) || undefined,
-      options: Array.isArray(f.options) ? f.options.map((o) => ({ value: o.value, label: text(o.label, ctx) })) : f.options,
+      options: Array.isArray(f.options) ? f.options.map((o) => ({ value: o.value, label: text(o.label, ctx) })) : (sourceOptions[f.name] ?? f.options),
       readonly: f.type === 'readonly' || (f.readonly_when ? test(f.readonly_when, ctx) : false),
     }));
 

@@ -1,5 +1,6 @@
 // Action flow (§7.6): allowed? → confirm → prompt → one effect → after (toast, invalidate, refresh, back, navigate).
 import { useCallback, useState } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import { ApiError } from '@fluxwp/core';
 import { render, test, type Action, type ExprContext, type Manifest } from '@fluxwp/manifest';
 import { runRequest } from '../api';
@@ -8,6 +9,7 @@ import { safeAdminPath } from '@fluxwp/manifest';
 import { actionAllowed, actionRequest } from '../source';
 import { useScope } from '../scope';
 import { useInvalidate, useNavigate, useText } from './context';
+import { resolvePromptOptions } from './options';
 
 export interface ActionView {
   id: string;
@@ -23,6 +25,7 @@ export function useActions(manifest: Manifest, opts: { onRefresh?: () => void } 
   const invalidate = useInvalidate(manifest.id);
   const { go } = useNavigate();
   const [running, setRunning] = useState<string | null>(null);
+  const client = useQueryClient();
 
   const list = useCallback(
     (ids: string[] | undefined, ctx: ExprContext): ActionView[] =>
@@ -43,7 +46,8 @@ export function useActions(manifest: Manifest, opts: { onRefresh?: () => void } 
         if (!ok) return false;
       }
       if (a.prompt) {
-        const input = await renderer.ui.prompt({ title: text(a.prompt.title, ctx), fields: a.prompt.fields.map((f) => ({ ...f, label: text(f.label, ctx) })) });
+        const fields = await resolvePromptOptions(client, api, manifest, a.prompt.fields, ctx);
+        const input = await renderer.ui.prompt({ title: text(a.prompt.title, ctx), fields: fields.map((f) => ({ ...f, label: text(f.label, ctx) })) });
         if (!input) return false;
         ctx = { ...ctx, input };
       }
@@ -76,7 +80,7 @@ export function useActions(manifest: Manifest, opts: { onRefresh?: () => void } 
         setRunning(null);
       }
     },
-    [manifest, renderer, text, api, config.transport?.method_override, go, invalidate, opts],
+    [manifest, renderer, text, api, client, config.transport?.method_override, go, invalidate, opts],
   );
 
   return { list, run, running };

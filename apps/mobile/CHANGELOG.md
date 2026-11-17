@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## Yayınlanmamış
+- reCAPTCHA, SEO, Yedekleme, Diller, Performans, Roller ve erişim, Yönetim teması, Headless, Sohbet botu, Site sohbetleri, Reklamlar, Dosyalar ve Blok Düzenleyici menüleri web görünümü yerine uygulamanın kendi ekranlarında açılır (eklentilerin GraphQL manifestleriyle).
+- Uzun seçenek listeleri (diller, günler…) ekranı dolduran düğmeler yerine dokununca açılan bir listeden seçilir; kısa listeler yine yan yana düğme.
+- Etiket alanları (ör. izinli IP adresleri) virgülle ayrılarak düzenlenebilir.
+
 ## 1.0.1
 - Yan menüde Ayarlar düğmesi de diğer ikonlar gibi yalnız ikon.
 - Yan menüde eklentilerin alt sekmeleri (Yedekleme, Flux Files vb.) ok işaretine basınca açılır, doğrudan alt sekme seçilir.

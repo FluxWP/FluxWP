@@ -1,5 +1,9 @@
 # @fluxwp/runtime
 
+## 0.4.1
+- Form alanı ve aksiyon sorusu seçenekleri bir manifest kaynağından gelebilir (`options: {source, path, value, label}`; `label` alan yolu ya da şablon). Kaynak ekranlarla aynı önbelleği kullanır.
+- Form gönderiminde `number` / `money` sayı olarak gider (boşsa hiç gönderilmez), virgüllü yazılan `tags` diziye çevrilir (GraphQL Int/Float ve liste alanları için).
+
 ## 0.4.0
 - Manifest kaynakları, aksiyonlar ve form kayıtları GraphQL'den de çalışır (`graphql: {op, id, variables, data}`). İstek yalnız persisted `queryId` taşır (strict sorgu modu), sorgular önbelleklenebilir GET, mutation POST. Sayfalama/arama/filtre değerleri değişken olur (`first`/`after`, `pageInfo.hasNextPage` → `paging.has_next`). İlk GraphQL hatası ya da payload `errors { code message field }` `ApiError` olur; alan hataları formda alanın altında görünür.
 

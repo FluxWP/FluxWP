@@ -1,0 +1,606 @@
+{
+  "id": "backup",
+  "plugin": "flx-backup",
+  "min_app": "1.0.0",
+  "platforms": [
+    "mobile"
+  ],
+  "title": "Backups",
+  "icon": "archive",
+  "menu": "flx-backup",
+  "entry": "overview",
+  "tabs": [
+    "overview",
+    "list",
+    "settings"
+  ],
+  "fallback": {
+    "web": "admin.php?page=flx-backup"
+  },
+  "routes": {
+    "admin.php?page=flx-backup": {
+      "screen": "overview"
+    }
+  },
+  "sources": {
+    "overview": {
+      "graphql": {
+        "op": "FlxBackupDashboard",
+        "data": "flxBackupOverview"
+      },
+      "cache": {
+        "stale": 30
+      }
+    },
+    "list": {
+      "graphql": {
+        "op": "FlxBackupList",
+        "data": "flxBackups"
+      },
+      "paging": {
+        "mode": "cursor",
+        "size": 20,
+        "items": "nodes",
+        "next": "pageInfo.endCursor",
+        "has_next": "pageInfo.hasNextPage",
+        "total": "totalCount"
+      },
+      "key": "id",
+      "cache": {
+        "stale": 30
+      }
+    },
+    "backup": {
+      "graphql": {
+        "op": "FlxBackupDetail",
+        "variables": {
+          "id": "{{params.id}}"
+        },
+        "data": "flxBackup"
+      },
+      "cache": {
+        "stale": 30
+      }
+    },
+    "settings": {
+      "graphql": {
+        "op": "FlxBackupSettingsScreen",
+        "data": "flxBackupSettings"
+      },
+      "cache": {
+        "stale": 0
+      }
+    }
+  },
+  "screens": {
+    "overview": {
+      "type": "dashboard",
+      "title": "Overview",
+      "sources": [
+        "overview"
+      ],
+      "sections": [
+        {
+          "type": "notice",
+          "tone": "warn",
+          "text": "Storage is almost full: {{usedLabel}} of {{quotaLabel}}.",
+          "when": {
+            "path": "level",
+            "op": "in",
+            "value": [
+              "warning",
+              "error"
+            ]
+          }
+        },
+        {
+          "type": "stats",
+          "items": [
+            {
+              "label": "Backups",
+              "value": "{{backupCount}}",
+              "sub": "{{lockedCount}} locked",
+              "onPress": {
+                "target": "screen:backup/list"
+              }
+            },
+            {
+              "label": "Used",
+              "value": "{{usedLabel}}",
+              "sub": "{{percent}}% of {{quotaLabel}}"
+            },
+            {
+              "label": "Last backup",
+              "value": "{{last.created.relative|default:'—'}}",
+              "sub": "{{last.title}}"
+            },
+            {
+              "label": "Next scheduled",
+              "value": "{{nextRun.label|default:'—'}}"
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Recent",
+          "path": "recent",
+          "item": {
+            "title": "{{title}}",
+            "subtitle": "{{typeLabel}} · {{sizeLabel}}",
+            "caption": "{{created.label}}",
+            "badges": [
+              {
+                "text": "{{error}}",
+                "tone": "danger",
+                "when": {
+                  "path": "error",
+                  "op": "filled"
+                }
+              }
+            ]
+          },
+          "onPress": {
+            "target": "screen:backup/detail",
+            "params": {
+              "id": "{{id}}"
+            }
+          }
+        },
+        {
+          "type": "timeline",
+          "title": "Events",
+          "path": "events",
+          "item": {
+            "title": "{{message}}",
+            "at": "{{at.label}}"
+          }
+        },
+        {
+          "type": "actions",
+          "items": [
+            "backup_new"
+          ]
+        }
+      ]
+    },
+    "list": {
+      "type": "list",
+      "title": "Backups",
+      "source": "list",
+      "filters": [
+        {
+          "param": "type",
+          "label": "Type",
+          "type": "select",
+          "options": [
+            {
+              "value": "",
+              "label": "All"
+            },
+            {
+              "value": "FULL",
+              "label": "Full"
+            },
+            {
+              "value": "DB",
+              "label": "Database"
+            },
+            {
+              "value": "FILES",
+              "label": "Files"
+            },
+            {
+              "value": "PRE_UPDATE",
+              "label": "Before update"
+            },
+            {
+              "value": "MANUAL",
+              "label": "Manual"
+            }
+          ]
+        }
+      ],
+      "item": {
+        "title": "{{title}}",
+        "subtitle": "{{typeLabel}} · {{sizeLabel}}",
+        "caption": "{{created.label}}",
+        "badges": [
+          {
+            "text": "Locked",
+            "tone": "info",
+            "when": {
+              "path": "locked",
+              "op": "truthy"
+            }
+          },
+          {
+            "text": "{{statusLabel}}",
+            "tone": "danger",
+            "when": {
+              "path": "status",
+              "op": "eq",
+              "value": "FAILED"
+            }
+          },
+          {
+            "text": "{{statusLabel}}",
+            "tone": "warn",
+            "when": {
+              "path": "status",
+              "op": "eq",
+              "value": "RUNNING"
+            }
+          }
+        ]
+      },
+      "onPress": {
+        "target": "screen:backup/detail",
+        "params": {
+          "id": "{{id}}"
+        }
+      },
+      "actions": {
+        "header": [
+          "backup_new"
+        ],
+        "row": [
+          "lock",
+          "unlock",
+          "delete"
+        ]
+      },
+      "empty": {
+        "title": "No backups",
+        "body": "Start the first backup from the panel."
+      }
+    },
+    "detail": {
+      "type": "detail",
+      "title": "Backup",
+      "source": "backup",
+      "header": {
+        "title": "{{title}}",
+        "subtitle": "{{typeLabel}} · {{sizeLabel}}"
+      },
+      "sections": [
+        {
+          "type": "notice",
+          "tone": "danger",
+          "text": "{{error}}",
+          "when": {
+            "path": "error",
+            "op": "filled"
+          }
+        },
+        {
+          "type": "fields",
+          "fields": [
+            {
+              "label": "Created",
+              "value": "{{created.label}}"
+            },
+            {
+              "label": "Finished",
+              "value": "{{finished.label}}",
+              "when": {
+                "path": "finished",
+                "op": "truthy"
+              }
+            },
+            {
+              "label": "Status",
+              "value": "{{statusLabel}}"
+            },
+            {
+              "label": "Source",
+              "value": "{{sourceLabel}}"
+            },
+            {
+              "label": "Files",
+              "value": "{{files}}"
+            },
+            {
+              "label": "Database",
+              "value": "{{includesDatabase|bool:'✓':'—'}}"
+            },
+            {
+              "label": "Kept",
+              "value": "{{keepLabel}}"
+            },
+            {
+              "label": "WordPress",
+              "value": "{{wpVersion}}"
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Packages",
+          "path": "packages",
+          "when": {
+            "path": "packages",
+            "op": "filled"
+          },
+          "item": {
+            "title": "{{name}}",
+            "subtitle": "{{label}}"
+          }
+        },
+        {
+          "type": "list",
+          "title": "Contents",
+          "path": "breakdown.categories",
+          "item": {
+            "title": "{{label}}",
+            "subtitle": "{{count}} items"
+          }
+        },
+        {
+          "type": "actions",
+          "items": [
+            "download",
+            "restore_web"
+          ]
+        }
+      ],
+      "actions": {
+        "header": [
+          "lock",
+          "unlock"
+        ],
+        "footer": [
+          "delete"
+        ]
+      }
+    },
+    "settings": {
+      "type": "form",
+      "title": "Settings",
+      "load": "settings",
+      "submit": {
+        "graphql": {
+          "op": "FlxBackupSettingsSave",
+          "data": "flxBackupSettingsSave"
+        }
+      },
+      "fields": [
+        {
+          "name": "schedule",
+          "type": "segmented",
+          "label": "Automatic backup",
+          "options": [
+            {
+              "value": "OFF",
+              "label": "Off"
+            },
+            {
+              "value": "DAILY",
+              "label": "Daily"
+            },
+            {
+              "value": "WEEKLY",
+              "label": "Weekly"
+            }
+          ]
+        },
+        {
+          "name": "scheduleHour",
+          "type": "number",
+          "label": "Hour",
+          "min": 0,
+          "max": 23,
+          "width": "half",
+          "when": {
+            "path": "input.schedule",
+            "op": "ne",
+            "value": "OFF"
+          }
+        },
+        {
+          "name": "scheduleDay",
+          "type": "number",
+          "label": "Day of the week",
+          "help": "0 = Sunday, 1 = Monday … 6 = Saturday.",
+          "min": 0,
+          "max": 6,
+          "width": "half",
+          "when": {
+            "path": "input.schedule",
+            "op": "eq",
+            "value": "WEEKLY"
+          }
+        },
+        {
+          "name": "scheduleKeep",
+          "type": "number",
+          "label": "Automatic backups to keep",
+          "min": 1,
+          "when": {
+            "path": "input.schedule",
+            "op": "ne",
+            "value": "OFF"
+          }
+        },
+        {
+          "name": "preScope",
+          "type": "segmented",
+          "label": "Backup before updates",
+          "options": [
+            {
+              "value": "OFF",
+              "label": "Off"
+            },
+            {
+              "value": "FLX",
+              "label": "FluxWP packages"
+            },
+            {
+              "value": "ALL",
+              "label": "All"
+            }
+          ]
+        },
+        {
+          "name": "preKeepDays",
+          "type": "number",
+          "label": "Keep pre-update backups (days)",
+          "min": 1,
+          "when": {
+            "path": "input.preScope",
+            "op": "ne",
+            "value": "OFF"
+          }
+        },
+        {
+          "name": "quotaGb",
+          "type": "number",
+          "label": "Storage limit (GB)",
+          "min": 0
+        },
+        {
+          "name": "includeCore",
+          "type": "switch",
+          "label": "Include WordPress core files"
+        },
+        {
+          "name": "exclude",
+          "type": "textarea",
+          "label": "Excluded paths",
+          "help": "One path per line."
+        },
+        {
+          "name": "safetyRestore",
+          "type": "switch",
+          "label": "Back up the site before a restore"
+        },
+        {
+          "name": "deleteOnUninstall",
+          "type": "switch",
+          "label": "Delete backups when the plugin is removed"
+        }
+      ],
+      "dirty_guard": true,
+      "after": {
+        "toast": "Saved",
+        "back": false,
+        "invalidate": [
+          "settings",
+          "overview"
+        ]
+      }
+    }
+  },
+  "actions": {
+    "backup_new": {
+      "label": "New backup",
+      "icon": "plus",
+      "web": "admin.php?page=flx-backup"
+    },
+    "lock": {
+      "label": "Lock",
+      "icon": "lock",
+      "when": {
+        "path": "locked",
+        "op": "falsy"
+      },
+      "request": {
+        "graphql": {
+          "op": "FlxBackupLock",
+          "variables": {
+            "input": {
+              "id": "{{id}}",
+              "locked": true
+            }
+          },
+          "data": "flxBackupLock"
+        }
+      },
+      "after": {
+        "toast": "Locked",
+        "invalidate": [
+          "list",
+          "backup",
+          "overview"
+        ]
+      }
+    },
+    "unlock": {
+      "label": "Unlock",
+      "icon": "unlock",
+      "when": {
+        "path": "locked",
+        "op": "truthy"
+      },
+      "request": {
+        "graphql": {
+          "op": "FlxBackupLock",
+          "variables": {
+            "input": {
+              "id": "{{id}}",
+              "locked": false
+            }
+          },
+          "data": "flxBackupLock"
+        }
+      },
+      "after": {
+        "toast": "Unlocked",
+        "invalidate": [
+          "list",
+          "backup",
+          "overview"
+        ]
+      }
+    },
+    "delete": {
+      "label": "Delete",
+      "icon": "trash",
+      "tone": "danger",
+      "when": {
+        "path": "locked",
+        "op": "falsy"
+      },
+      "confirm": {
+        "title": "Delete this backup?",
+        "body": "It cannot be restored afterwards.",
+        "ok": "Delete"
+      },
+      "request": {
+        "graphql": {
+          "op": "FlxBackupDelete",
+          "variables": {
+            "input": {
+              "ids": [
+                "{{id}}"
+              ]
+            }
+          },
+          "data": "flxBackupDelete"
+        }
+      },
+      "after": {
+        "toast": "Deleted",
+        "back": true,
+        "invalidate": [
+          "list",
+          "overview"
+        ]
+      },
+      "haptic": "warning"
+    },
+    "download": {
+      "label": "Download",
+      "icon": "download",
+      "when": {
+        "path": "downloadUrl",
+        "op": "filled"
+      },
+      "open": "{{downloadUrl}}"
+    },
+    "restore_web": {
+      "label": "Restore in panel",
+      "icon": "refresh",
+      "web": "admin.php?page=flx-backup"
+    }
+  }
+}

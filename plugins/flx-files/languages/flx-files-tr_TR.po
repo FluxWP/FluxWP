@@ -1742,3 +1742,75 @@ msgstr "Değişiklik hakkında kısa bir cümle (ya da neden olmadığı)."
 
 msgid "Only folders inside the uploads folder can be shared on the site."
 msgstr "Sitede yalnız uploads içindeki klasörler paylaşılabilir."
+
+#: app/manifest.json
+msgid "Files"
+msgstr "Dosyalar"
+
+#: app/manifest.json
+msgid "Site folder"
+msgstr "Site klasörü"
+
+#: app/manifest.json
+msgid "Protected"
+msgstr "Korumalı"
+
+#: app/manifest.json
+msgid "Locked"
+msgstr "Kilitli"
+
+#: app/manifest.json
+msgid "Empty folder"
+msgstr "Boş klasör"
+
+#: app/manifest.json
+msgid "Changed"
+msgstr "Değişti"
+
+#: app/manifest.json
+msgid "Path"
+msgstr "Yol"
+
+#: app/manifest.json
+msgid "This file belongs to WordPress or holds secrets; edit it in the panel."
+msgstr "Bu dosya WordPress'e ait ya da gizli bilgi içeriyor; panelde düzenleyin."
+
+#: app/manifest.json
+msgid "Trash is empty"
+msgstr "Çöp kutusu boş"
+
+#: app/manifest.json
+msgid "Folder created"
+msgstr "Klasör oluşturuldu"
+
+#: app/manifest.json
+msgid "Rename {{name}}"
+msgstr "{{name}} yeniden adlandır"
+
+#: app/manifest.json
+msgid "New name"
+msgstr "Yeni ad"
+
+#: app/manifest.json
+msgid "Move to trash"
+msgstr "Çöp kutusuna taşı"
+
+#: app/manifest.json
+msgid "Move {{name}} to trash?"
+msgstr "{{name}} çöp kutusuna taşınsın mı?"
+
+#: app/manifest.json
+msgid "It can be restored from the trash."
+msgstr "Çöp kutusundan geri alınabilir."
+
+#: app/manifest.json
+msgid "Move"
+msgstr "Taşı"
+
+#: app/manifest.json
+msgid "Edit in panel"
+msgstr "Panelde düzenle"
+
+#: app/manifest.json
+msgid "{{item.size}} bytes"
+msgstr "{{item.size}} bayt"

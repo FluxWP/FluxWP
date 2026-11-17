@@ -1,8 +1,11 @@
 # Changelog
 
-## 1.5.1
+## 1.6.1
 - wp-admin ekranı Flux GraphQL ekran kabuğundan açılır: ilk veri PHP'de sayfaya basılır (yükleniyor göstergesi yok), menüden diğer Flux ekranlarına sayfa yenilenmeden geçilir. Ekranın parçaları sayfa başında birlikte iner (modulepreload).
 - Ortak modül paketi yenilendi.
+
+## 1.6.0
+- FluxWP mobil uygulamasında Yedekleme (özet, yedek listesi ve ayrıntısı, kilitle/kilidi aç, sil, indir, ayarlar). Yeni yedek ve geri yükleme adım adım ilerlediği için panelde açılır artık web görünümü yerine uygulamanın kendi ekranlarında açılır (manifest `app/manifest.json`, veri GraphQL'den). Masaüstü ve wp-admin aynı React ekranında kalır. Yeni metinlerin Türkçesi eklendi.
 
 ## 1.5.0
 - Yedekler ekranı yenilendi: pano, liste, ayrıntı (boyut dökümü), ayarlar, şimdi yedekle, geri yükle, sil, kilitle, yedek yükle ve çalışan işin ilerlemesi ortak FluxWP ekranında; klasik sayfalarla aynı özellikler, açık/koyu temaya uyar, FluxWP uygulamasında da açılır. wp-admin'de varsayılan budur; eski görünüm sayfadaki "Klasik görünüm" bağlantısıyla açılır (kullanıcı başına hatırlanır).

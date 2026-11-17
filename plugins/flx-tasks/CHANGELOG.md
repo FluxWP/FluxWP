@@ -1,7 +1,31 @@
 # Flux Tasks — Değişiklikler
 
-## 0.11.1
+## 0.12.2
 - Ortak modül paketi yenilendi: ekranın parçaları sayfa başında birlikte iner, giriş dosyası iki kez çalışmaz, ayar ekranlarında ilk karede yükleniyor göstergesi çıkmaz.
+
+## 0.12.1
+- Gömülü React paketi (assets/flux) yeniden derlendi: 0.9.4'ten beri yapılan tüm yeni ekran düzeltmeleri (açık tema, doküman dosya kartları ve YouTube önizleme, yeni liste tasarımı ve satır içi ekleme, satır hover simgeleri, kompakt tarih seçici) siteye ancak bu sürümle ulaşır; önceki sürümlerde bu paket güncellenmemişti.
+- Mobilde pano (Kanban): bir kartı basılı tutup sürükleyince kart gerçekten sürüklenir (önceden tarayıcı sayfayı kaydırıp sürüklemeyi iptal ediyordu). Kartı ekranın sağ ya da sol kenarında bekletince pano o yöne kayar, kart başka sütuna bırakılabilir. Sürüklerken sütun yapışması kapanır.
+
+## 0.12.0
+- Doküman yorumları: metin aralığı seçip ya da bir bloğun (dosya, görsel, tablo, liste) menüsünden yorum eklenir. Yorumlar sağdaki panelde belge sırasıyla görünür; yorumlanan metin vurgulanır, kenarda yorum sayısı çıkar. Kısayol Ctrl+Alt+M.
+- Herkes (yorum yetkisi olan) bir konunun altına yanıt yazar. Yazan kendi yorumunu düzenler; yazan ya da proje yöneticisi siler. Yanıtı olan ilk yorum silinince "silindi" olarak kalır. Konular çözülür / yeniden açılır (Çözülmemiş / Çözülen sekmeleri). Metin değişip alıntı bulunamazsa konu "metin değişti" diye işaretlenir.
+- Sayfa kilidi: düzenleyebilen biri sayfayı kilitler; kilitli sayfada üstte kimin kilitlediği yazar, yazmaya çalışınca "Kilidi aç" uyarısı çıkar. Kilit sunucuda da uygulanır (yöneticiler dahil, önce kilit açılır). Yorumlar kilitli sayfada da çalışır.
+- Sayfa erişimi: "Erişim…" penceresinden sayfa yalnız seçilen kişilere (Görüntüler / Yorumcu / Düzenler) açılır; alt sayfalar da kısıtlanır. Proje yöneticileri her zaman erişir. Ağaçta kilit ve kısıt simgeleri görünür.
+- GraphQL: flxTaskDocComments, flxTaskDocPage sorguları; flxTaskDocCommentCreate / Update / Delete ve flxTaskDocPageLock mutasyonları. Sayfa yetkisi AI araçlarında ve e-posta taslağında da uygulanır.
+
+## 0.11.3
+- Tarih seçici açılır kutusu kompakt: ekrana sığar (sağda takvim ve Uygula artık kesilmez), sol hızlı seçim paneli bej yerine temaya uygun gri (açık/koyu). Yalnız Tasks içinde; ortak bileşen değişmedi.
+
+## 0.11.2
+- Satır hover simgeleri (alt görev, etiket, yeniden adlandır) görev adının üstüne biner; görev adı sütunun tam genişliğini kullanır, metni daraltmaz.
+
+## 0.11.1
+- Satır içi görev eklemede liste seçici kalktı (görev bulunduğu listeye ya da varsayılan listeye eklenir).
+- Doküman sayfası dar alanda (yan paneller açıkken) kağıdın dış boşluğu ve iç boşluğu azaldı; çok darda tam genişlik.
+- Dar ekranda satır içi eklemede Vazgeç / Kaydet aynı satırda kalır.
+- Liste satırının üstüne gelince hızlı düzenleme simgeleri çıkar: alt görev ekle, etiket, yeniden adlandır (kalem).
+- Yeni görünümlerde Etiket varsayılan sütun değil; etiketler başlığın yanında görünür, istenirse Alanlar'dan sütun olarak eklenir.
 
 ## 0.11.0
 - Liste görünümü (yeni ekran) daha sade: düz satırlar, hap biçimli araç çubuğu düğmeleri.

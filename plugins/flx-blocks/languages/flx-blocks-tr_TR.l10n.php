@@ -3452,4 +3452,5 @@ return ['domain'=>'flx-blocks','plural-forms'=>'nplurals=2; plural=(n > 1);','la
 "vector"=>"vektör",
 "with key"=>"anahtarlı",
 "“%s” added."=>"“%s” eklendi.",
+'No blocks'=>'Blok yok','Pattern libraries'=>'Desen kütüphaneleri','No linked libraries'=>'Bağlı kütüphane yok','Link a pattern library in the panel.'=>'Panelde bir desen kütüphanesi bağlayın.','Turn on'=>'Aç','Turned on'=>'Açıldı','Turn off'=>'Kapat','Turn {{name}} off?'=>'{{name}} kapatılsın mı?','Pages that use it keep their content; the block is hidden from the editor.'=>'Onu kullanan sayfaların içeriği kalır; blok düzenleyicide gizlenir.','Turned off'=>'Kapatıldı','Open in panel'=>'Panelde aç','Open'=>'Aç',
 ]];

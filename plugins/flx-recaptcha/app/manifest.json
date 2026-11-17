@@ -1,0 +1,435 @@
+{
+  "id": "recaptcha",
+  "plugin": "flx-recaptcha",
+  "min_app": "1.0.0",
+  "platforms": [
+    "mobile"
+  ],
+  "title": "reCAPTCHA",
+  "icon": "shield",
+  "menu": "flx-recaptcha",
+  "entry": "overview",
+  "tabs": [
+    "overview",
+    "forms",
+    "settings"
+  ],
+  "fallback": {
+    "web": "admin.php?page=flx-recaptcha"
+  },
+  "routes": {
+    "admin.php?page=flx-recaptcha": {
+      "screen": "overview"
+    }
+  },
+  "sources": {
+    "screen": {
+      "graphql": {
+        "op": "FlxRecaptchaScreen"
+      },
+      "cache": {
+        "stale": 30
+      }
+    },
+    "forms": {
+      "graphql": {
+        "op": "FlxRecaptchaScreen",
+        "data": "flxRecaptchaForms"
+      },
+      "paging": {
+        "mode": "none"
+      },
+      "key": "key",
+      "cache": {
+        "stale": 30
+      }
+    },
+    "settings": {
+      "graphql": {
+        "op": "FlxRecaptchaScreen",
+        "data": "flxRecaptchaSettings"
+      },
+      "cache": {
+        "stale": 0
+      }
+    }
+  },
+  "screens": {
+    "overview": {
+      "type": "dashboard",
+      "title": "Overview",
+      "sources": [
+        "screen"
+      ],
+      "sections": [
+        {
+          "type": "notice",
+          "tone": "ok",
+          "text": "Protection is on.",
+          "when": {
+            "path": "flxRecaptchaStatus.state",
+            "op": "eq",
+            "value": "ON"
+          }
+        },
+        {
+          "type": "notice",
+          "tone": "warn",
+          "text": "Keys are saved but not tested yet. Test them on the reCAPTCHA page in the panel.",
+          "when": {
+            "path": "flxRecaptchaStatus.state",
+            "op": "eq",
+            "value": "AWAITING_TEST"
+          }
+        },
+        {
+          "type": "notice",
+          "tone": "muted",
+          "text": "Protection is off. Add the site and secret keys under Settings.",
+          "when": {
+            "path": "flxRecaptchaStatus.state",
+            "op": "eq",
+            "value": "OFF"
+          }
+        },
+        {
+          "type": "stats",
+          "items": [
+            {
+              "label": "Protected forms",
+              "value": "{{flxRecaptchaStatus.formsOn}} / {{flxRecaptchaStatus.formsAvailable}}",
+              "onPress": {
+                "target": "screen:recaptcha/forms"
+              }
+            },
+            {
+              "label": "Passed",
+              "value": "{{flxRecaptchaStatus.passed}}",
+              "tone": "ok"
+            },
+            {
+              "label": "Blocked",
+              "value": "{{flxRecaptchaStatus.blocked}}",
+              "tone": "danger"
+            },
+            {
+              "label": "Version",
+              "value": "{{flxRecaptchaStatus.version}}"
+            }
+          ]
+        },
+        {
+          "type": "fields",
+          "title": "Last test",
+          "when": {
+            "path": "flxRecaptchaStatus.lastTest",
+            "op": "truthy"
+          },
+          "fields": [
+            {
+              "label": "Time",
+              "value": "{{flxRecaptchaStatus.lastTest.time.label}}"
+            },
+            {
+              "label": "Result",
+              "value": "{{flxRecaptchaStatus.lastTest.message}}"
+            }
+          ]
+        },
+        {
+          "type": "notice",
+          "tone": "danger",
+          "title": "Last error",
+          "when": {
+            "path": "flxRecaptchaStatus.lastError",
+            "op": "truthy"
+          },
+          "text": "{{flxRecaptchaStatus.lastError.time.label}}: {{flxRecaptchaStatus.lastError.reason}}"
+        },
+        {
+          "type": "actions",
+          "items": [
+            "open_panel"
+          ]
+        }
+      ]
+    },
+    "forms": {
+      "type": "list",
+      "title": "Forms",
+      "source": "forms",
+      "group_by": "groupLabel",
+      "item": {
+        "title": "{{label}}",
+        "subtitle": "{{description}}",
+        "caption": "{{passed}} passed · {{blocked}} blocked",
+        "badges": [
+          {
+            "text": "On",
+            "tone": "ok",
+            "when": {
+              "path": "enabled",
+              "op": "truthy"
+            }
+          },
+          {
+            "text": "Off",
+            "tone": "muted",
+            "when": {
+              "path": "enabled",
+              "op": "falsy"
+            }
+          },
+          {
+            "text": "Not installed",
+            "tone": "warn",
+            "when": {
+              "path": "available",
+              "op": "falsy"
+            }
+          }
+        ]
+      },
+      "actions": {
+        "row": [
+          "form_on",
+          "form_off"
+        ]
+      },
+      "empty": {
+        "title": "No forms",
+        "body": "No form that reCAPTCHA can protect was found."
+      }
+    },
+    "settings": {
+      "type": "form",
+      "title": "Settings",
+      "load": "settings",
+      "submit": {
+        "graphql": {
+          "op": "FlxRecaptchaSettingsUpdate",
+          "data": "flxRecaptchaSettingsUpdate"
+        }
+      },
+      "fields": [
+        {
+          "name": "version",
+          "type": "segmented",
+          "label": "Version",
+          "options": [
+            {
+              "value": "V3",
+              "label": "v3 (invisible score)"
+            },
+            {
+              "value": "V2",
+              "label": "v2 (checkbox)"
+            }
+          ]
+        },
+        {
+          "name": "siteKey",
+          "type": "text",
+          "label": "Site key",
+          "readonly_when": {
+            "path": "siteKeyLocked",
+            "op": "truthy"
+          }
+        },
+        {
+          "name": "secret",
+          "type": "secret",
+          "label": "Secret key",
+          "help": "Leave empty to keep the saved key.",
+          "readonly_when": {
+            "path": "secretLocked",
+            "op": "truthy"
+          }
+        },
+        {
+          "name": "threshold",
+          "type": "number",
+          "label": "Score threshold",
+          "min": 0,
+          "max": 1,
+          "help": "v3: submissions below this score are blocked (0.5 is a good start).",
+          "when": {
+            "path": "input.version",
+            "op": "eq",
+            "value": "V3"
+          }
+        },
+        {
+          "name": "v2Theme",
+          "type": "select",
+          "label": "Checkbox theme",
+          "when": {
+            "path": "input.version",
+            "op": "eq",
+            "value": "V2"
+          },
+          "options": [
+            {
+              "value": "AUTO",
+              "label": "Automatic"
+            },
+            {
+              "value": "LIGHT",
+              "label": "Light"
+            },
+            {
+              "value": "DARK",
+              "label": "Dark"
+            }
+          ]
+        },
+        {
+          "name": "v2Size",
+          "type": "select",
+          "label": "Checkbox size",
+          "when": {
+            "path": "input.version",
+            "op": "eq",
+            "value": "V2"
+          },
+          "options": [
+            {
+              "value": "NORMAL",
+              "label": "Normal"
+            },
+            {
+              "value": "COMPACT",
+              "label": "Compact"
+            }
+          ]
+        },
+        {
+          "name": "domain",
+          "type": "select",
+          "label": "Script address",
+          "options": [
+            {
+              "value": "GOOGLE",
+              "label": "google.com"
+            },
+            {
+              "value": "RECAPTCHA",
+              "label": "recaptcha.net"
+            }
+          ]
+        },
+        {
+          "name": "hideBadge",
+          "type": "switch",
+          "label": "Hide the badge"
+        },
+        {
+          "name": "skipLoggedIn",
+          "type": "switch",
+          "label": "Skip for logged-in users"
+        },
+        {
+          "name": "failOpen",
+          "type": "switch",
+          "label": "Let submissions through when Google cannot be reached"
+        },
+        {
+          "name": "allowIps",
+          "type": "tags",
+          "label": "Allowed IP addresses",
+          "help": "These addresses are never checked."
+        }
+      ],
+      "dirty_guard": true,
+      "after": {
+        "toast": "Saved",
+        "back": false,
+        "invalidate": [
+          "screen",
+          "forms",
+          "settings"
+        ]
+      }
+    }
+  },
+  "actions": {
+    "form_on": {
+      "label": "Turn on",
+      "icon": "check",
+      "when": {
+        "all": [
+          {
+            "path": "enabled",
+            "op": "falsy"
+          },
+          {
+            "path": "available",
+            "op": "truthy"
+          }
+        ]
+      },
+      "request": {
+        "graphql": {
+          "op": "FlxRecaptchaSettingsUpdate",
+          "variables": {
+            "input": {
+              "forms": [
+                {
+                  "key": "{{key}}",
+                  "enabled": true
+                }
+              ]
+            }
+          },
+          "data": "flxRecaptchaSettingsUpdate"
+        }
+      },
+      "after": {
+        "toast": "Turned on",
+        "invalidate": [
+          "screen",
+          "forms"
+        ]
+      },
+      "haptic": "success"
+    },
+    "form_off": {
+      "label": "Turn off",
+      "icon": "no",
+      "tone": "danger",
+      "when": {
+        "path": "enabled",
+        "op": "truthy"
+      },
+      "request": {
+        "graphql": {
+          "op": "FlxRecaptchaSettingsUpdate",
+          "variables": {
+            "input": {
+              "forms": [
+                {
+                  "key": "{{key}}",
+                  "enabled": false
+                }
+              ]
+            }
+          },
+          "data": "flxRecaptchaSettingsUpdate"
+        }
+      },
+      "after": {
+        "toast": "Turned off",
+        "invalidate": [
+          "screen",
+          "forms"
+        ]
+      },
+      "haptic": "light"
+    },
+    "open_panel": {
+      "label": "Open in panel",
+      "icon": "globe",
+      "web": "admin.php?page=flx-recaptcha"
+    }
+  }
+}

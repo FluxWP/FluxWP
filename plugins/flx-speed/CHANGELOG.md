@@ -1,8 +1,11 @@
 # Değişiklikler
 
-## 0.9.2
+## 0.10.1
 - Hız özeti 30 sn önbelleklenir (kayıtlar temizlenince düşer): ekran ilk açılışta ~0,6 sn daha hızlı.
 - Ortak modül paketi yenilendi: ekranın parçaları sayfa başında birlikte iner, giriş dosyası iki kez çalışmaz, ayar ekranlarında ilk karede yükleniyor göstergesi çıkmaz.
+
+## 0.10.0
+- FluxWP mobil uygulamasında Performans ekranları native çizilir (ortak manifest `app/manifest.json`, GraphQL): son 24 saat özeti, istek kayıtları ve ayrıntısı, önbellek durumu ve işlemleri (boşalt, test, onar, sayfa önbelleği aç/kapat), veritabanı temizliği, ayarlar. Masaüstü panel React ekranını kullanmaya devam eder.
 
 ## 0.9.1
 - Flux Speed ekranı Flux GraphQL ekran kabuğuyla açılır: özet, canlı durum ve ayarlar PHP'den hazır gelir, diğer Flux ekranlarına menüden geçiş sayfa yenilemeden olur.

@@ -3186,3 +3186,95 @@ msgstr "Satır bulunamadı."
 
 msgid "Unknown platform."
 msgstr "Bilinmeyen platform."
+
+#: app/manifest.json
+msgid "{{totals.count|number}} payments"
+msgstr "{{totals.count|number}} ödeme"
+
+#: app/manifest.json
+msgid "From ads"
+msgstr "Reklamdan"
+
+#: app/manifest.json
+msgid "Return on ad spend"
+msgstr "Reklam getirisi (ROAS)"
+
+#: app/manifest.json
+msgid "New people"
+msgstr "Yeni kişiler"
+
+#: app/manifest.json
+msgid "{{count|number}} payments · {{share}}%"
+msgstr "{{count|number}} ödeme · %{{share}}"
+
+#: app/manifest.json
+msgid "7 days"
+msgstr "7 gün"
+
+#: app/manifest.json
+msgid "30 days"
+msgstr "30 gün"
+
+#: app/manifest.json
+msgid "{{payments|number}} payments · {{income.formatted}} · ROAS {{roas|default:'—'}}"
+msgstr "{{payments|number}} ödeme · {{income.formatted}} · ROAS {{roas|default:'—'}}"
+
+#: app/manifest.json
+msgid "No campaigns"
+msgstr "Kampanya yok"
+
+#: app/manifest.json
+msgid "Connect the Meta ad account in the panel."
+msgstr "Meta reklam hesabını panelde bağlayın."
+
+#: app/manifest.json
+msgid "Ad sets"
+msgstr "Reklam setleri"
+
+#: app/manifest.json
+msgid "{{budgetLabel}} · {{clicks|number}} clicks · CTR {{ctr}}"
+msgstr "{{budgetLabel}} · {{clicks|number}} tıklama · CTR {{ctr}}"
+
+#: app/manifest.json
+msgid "{{clicks|number}} clicks · {{share}}%"
+msgstr "{{clicks|number}} tıklama · %{{share}}"
+
+#: app/manifest.json
+msgid "No suggestions"
+msgstr "Öneri yok"
+
+#: app/manifest.json
+msgid "New suggestions appear after the daily check."
+msgstr "Yeni öneriler günlük kontrolden sonra görünür."
+
+#: app/manifest.json
+msgid "Pause {{name}}?"
+msgstr "{{name}} duraklatılsın mı?"
+
+#: app/manifest.json
+msgid "Resume"
+msgstr "Devam ettir"
+
+#: app/manifest.json
+msgid "Resumed"
+msgstr "Devam ediyor"
+
+#: app/manifest.json
+msgid "Daily budget ({{currency}})"
+msgstr "Günlük bütçe ({{currency}})"
+
+#: app/manifest.json
+msgid "Budget changed"
+msgstr "Bütçe değişti"
+
+#: app/manifest.json
+msgid "Apply this suggestion?"
+msgstr "Bu öneri uygulansın mı?"
+
+#: app/manifest.json
+msgid "Checked"
+msgstr "Kontrol edildi"
+
+#: app/manifest.json
+msgid "Open in panel"
+msgstr "Panelde aç"

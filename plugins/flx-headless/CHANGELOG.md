@@ -1,5 +1,8 @@
 # Flux Headless
 
+## 0.3.0
+- FluxWP mobil uygulamasında Headless ekranı native çizilir (ortak manifest `app/manifest.json`, GraphQL): ön yüz listesi, yeni ön yüz, aç/kapat, varsayılan yap, test webhook'u, sil, tüm sayfaları yenile, WordPress sayfaları modu, webhook kaydı. Masaüstü panel React ekranını kullanmaya devam eder.
+
 ## 0.2.0
 - Tam sayfa modu: ön yüz bir sayfayı `?flxhl_page=<ön yüz kimliği>` ile ister, WordPress temanın çizdiği sayfanın tamamını (şablon, header/footer, bloklar, CSS, JS) linkleri ön yüze çevrilmiş olarak verir. `/wp-content/`, `/wp-includes/`, `/wp-json/` ve admin-ajax de ön yüz üzerinden gider (fontlar, REST, AJAX aynı origin). `X-Flx-Cache-Tags` başlığı webhook etiketlerini taşır; sepet, ödeme ve hesap sayfaları `X-Flx-Live: 1` ile işaretlenir (önbelleğe girmez). Yönlendirmeler ön yüze çevrilir. Filtreler: `flx_headless_page_tags`, `flx_headless_live_paths`.
 - Next örneği (apps/headless-next) varsayılan olarak bu modla çalışır: site WordPress'le birebir aynı görünür. React tasarımı `FLUX_RENDER=react` ile.

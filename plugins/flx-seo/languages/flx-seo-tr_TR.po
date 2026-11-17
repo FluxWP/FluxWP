@@ -1842,3 +1842,227 @@ msgstr "Kendi paylaşım görseli adresi; boş = otomatik."
 
 msgid "SEO fields after the change."
 msgstr "Değişiklikten sonraki SEO alanları."
+
+#: app/manifest.json
+msgid "Overview"
+msgstr "Genel bakış"
+
+#: app/manifest.json
+msgid "No audit yet. Run one to see what to fix."
+msgstr "Henüz denetim yok. Neyin düzeltileceğini görmek için bir denetim çalıştırın."
+
+#: app/manifest.json
+msgid "Findings"
+msgstr "Bulgular"
+
+#: app/manifest.json
+msgid "Last audit"
+msgstr "Son denetim"
+
+#: app/manifest.json
+msgid "Address"
+msgstr "Adres"
+
+#: app/manifest.json
+msgid "AI agent checks"
+msgstr "Yapay zekâ ajanı kontrolleri"
+
+#: app/manifest.json
+msgid "Next automatic audit"
+msgstr "Sıradaki otomatik denetim"
+
+#: app/manifest.json
+msgid "PageSpeed"
+msgstr "PageSpeed"
+
+#: app/manifest.json
+msgid "Nothing to fix"
+msgstr "Düzeltilecek bir şey yok"
+
+#: app/manifest.json
+msgid "The last audit found no problems."
+msgstr "Son denetim sorun bulmadı."
+
+#: app/manifest.json
+msgid "Audit history"
+msgstr "Denetim geçmişi"
+
+#: app/manifest.json
+msgid "{{counts.critical}} critical · {{counts.high}} high · {{counts.medium}} medium · {{counts.low}} low"
+msgstr "{{counts.critical}} kritik · {{counts.high}} yüksek · {{counts.medium}} orta · {{counts.low}} düşük"
+
+#: app/manifest.json
+msgid "No audits yet"
+msgstr "Henüz denetim yok"
+
+#: app/manifest.json
+msgid "Content check"
+msgstr "İçerik kontrolü"
+
+#: app/manifest.json
+msgid "{{issues|count}} issues"
+msgstr "{{issues|count}} sorun"
+
+#: app/manifest.json
+msgid "No problems"
+msgstr "Sorun yok"
+
+#: app/manifest.json
+msgid "Titles, descriptions and images of your content look fine."
+msgstr "İçeriklerinizin başlık, açıklama ve görselleri iyi görünüyor."
+
+#: app/manifest.json
+msgid "SEO output is on"
+msgstr "SEO çıktısı açık"
+
+#: app/manifest.json
+msgid "Site name"
+msgstr "Site adı"
+
+#: app/manifest.json
+msgid "Alternative name"
+msgstr "Alternatif ad"
+
+#: app/manifest.json
+msgid "Title separator"
+msgstr "Başlık ayırıcı"
+
+#: app/manifest.json
+msgid "Home page title"
+msgstr "Ana sayfa başlığı"
+
+#: app/manifest.json
+msgid "Home page description"
+msgstr "Ana sayfa açıklaması"
+
+#: app/manifest.json
+msgid "Default share image"
+msgstr "Varsayılan paylaşım görseli"
+
+#: app/manifest.json
+msgid "Google verification code"
+msgstr "Google doğrulama kodu"
+
+#: app/manifest.json
+msgid "Bing verification code"
+msgstr "Bing doğrulama kodu"
+
+#: app/manifest.json
+msgid "Yandex verification code"
+msgstr "Yandex doğrulama kodu"
+
+#: app/manifest.json
+msgid "IndexNow (tell search engines about changes)"
+msgstr "IndexNow (değişiklikleri arama motorlarına bildir)"
+
+#: app/manifest.json
+msgid "Hide search results from search engines"
+msgstr "Arama sonuçlarını arama motorlarından gizle"
+
+#: app/manifest.json
+msgid "Hide author pages from search engines"
+msgstr "Yazar sayfalarını arama motorlarından gizle"
+
+#: app/manifest.json
+msgid "Hide tag pages from search engines"
+msgstr "Etiket sayfalarını arama motorlarından gizle"
+
+#: app/manifest.json
+msgid "Hide cart, checkout and account pages from search engines"
+msgstr "Sepet, ödeme ve hesap sayfalarını arama motorlarından gizle"
+
+#: app/manifest.json
+msgid "Fill missing image alt text automatically"
+msgstr "Eksik görsel alt metnini otomatik doldur"
+
+#: app/manifest.json
+msgid "llms.txt for AI assistants"
+msgstr "Yapay zekâ asistanları için llms.txt"
+
+#: app/manifest.json
+msgid "Markdown copies of pages for AI assistants"
+msgstr "Yapay zekâ asistanları için sayfaların Markdown kopyaları"
+
+#: app/manifest.json
+msgid "Organization name"
+msgstr "Kurum adı"
+
+#: app/manifest.json
+msgid "Organization type"
+msgstr "Kurum türü"
+
+#: app/manifest.json
+msgid "Organization"
+msgstr "Kurum"
+
+#: app/manifest.json
+msgid "Non-profit"
+msgstr "Kâr amacı gütmeyen"
+
+#: app/manifest.json
+msgid "Phone"
+msgstr "Telefon"
+
+#: app/manifest.json
+msgid "Email"
+msgstr "E-posta"
+
+#: app/manifest.json
+msgid "Include PageSpeed in automatic audits"
+msgstr "Otomatik denetimlere PageSpeed'i ekle"
+
+#: app/manifest.json
+msgid "Email the audit report"
+msgstr "Denetim raporunu e-postayla gönder"
+
+#: app/manifest.json
+msgid "Report address"
+msgstr "Rapor adresi"
+
+#: app/manifest.json
+msgid "Saved"
+msgstr "Kaydedildi"
+
+#: app/manifest.json
+msgid "Run audit"
+msgstr "Denetimi çalıştır"
+
+#: app/manifest.json
+msgid "Audit finished"
+msgstr "Denetim bitti"
+
+#: app/manifest.json
+msgid "PageSpeed (mobile)"
+msgstr "PageSpeed (mobil)"
+
+#: app/manifest.json
+msgid "PageSpeed finished"
+msgstr "PageSpeed bitti"
+
+#: app/manifest.json
+msgid "PageSpeed (desktop)"
+msgstr "PageSpeed (masaüstü)"
+
+#: app/manifest.json
+msgid "Apply fix"
+msgstr "Düzeltmeyi uygula"
+
+#: app/manifest.json
+msgid "Apply this fix?"
+msgstr "Bu düzeltme uygulansın mı?"
+
+#: app/manifest.json
+msgid "Apply"
+msgstr "Uygula"
+
+#: app/manifest.json
+msgid "Fixed"
+msgstr "Düzeltildi"
+
+#: app/manifest.json
+msgid "Open"
+msgstr "Aç"
+
+#: app/manifest.json
+msgid "Open in panel"
+msgstr "Panelde aç"

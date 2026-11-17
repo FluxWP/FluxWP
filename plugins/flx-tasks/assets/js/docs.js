@@ -10,6 +10,8 @@
 	/* Bloklar editörün doğrudan çocuklarıdır; her biri data-b kimliği taşır. Sunucuya yalnız değişen bloklar gider. */
 	var BLOCK = { P: 1, H1: 1, H2: 1, H3: 1, H4: 1, UL: 1, OL: 1, BLOCKQUOTE: 1, PRE: 1, HR: 1, FIGURE: 1, TABLE: 1 };
 	var D = null;
+	/** Yorumlar ve sayfa koruması (doc-comments.js) bu olaylara bağlanır. */
+	function hook(n, a) { (Y.docHooks || []).forEach(function (f) { try { f(n, a); } catch (e) { if (window.console) console.error(e); } }); }
 
 	function newId() { return Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-5); }
 	function me() { return S.me ? S.me.id : 0; }
@@ -106,7 +108,7 @@
 		function setup(d) {
 			D = {
 				main: main, doc: d.doc, role: d.role, pages: d.pages, page: null, rev: 0, known: {}, order: [], others: [],
-				edit: Y.rank(d.role) >= 3, err: 0, timer: null, timerAt: 0, inflight: false, titleDirty: false, lastInput: 0, seq: 0
+				edit: Y.rank(d.role) >= 3, docEdit: Y.rank(d.role) >= 3, err: 0, timer: null, timerAt: 0, inflight: false, titleDirty: false, lastInput: 0, seq: 0
 			};
 			buildShell();
 			var first = pageId && pageById(pageId) ? pageId : (rootPages()[0] || {}).id;
@@ -223,21 +225,23 @@
 		var treeBtn = h('button.flxg-icon-btn', { type: 'button', title: t('Sayfalar'), 'aria-label': t('Sayfalar'), onclick: toggleTree }, Y.icon('sidebar', 18));
 		var more = h('button.flxg-icon-btn', { type: 'button', title: t('Diğer'), 'aria-label': t('Diğer'), onclick: function (e) {
 			var doc = Y.doc(D.doc.id) || D.doc;
-			var canDel = Y.rank(D.role) >= 4 || (D.edit && doc.owner_id === me());
+			var canDel = Y.rank(D.role) >= 4 || (D.docEdit && doc.owner_id === me());
 			Y.menu(e.currentTarget, [
-				D.edit ? { label: t('Dokümanı yeniden adlandır'), icon: 'edit', onClick: function () { renameDoc(D.doc); } } : null,
-				D.edit ? { label: t('Alt sayfa ekle'), icon: 'plus', onClick: function () { addPage(D.page ? D.page.id : 0); } } : null,
+				D.docEdit ? { label: t('Dokümanı yeniden adlandır'), icon: 'edit', onClick: function () { renameDoc(D.doc); } } : null,
+				D.docEdit ? { label: t('Alt sayfa ekle'), icon: 'plus', onClick: function () { addPage(D.page ? D.page.id : 0); } } : null,
 				{ label: t('Bağlantıyı kopyala'), icon: 'link', onClick: function () { Y.copy(location.href); } },
-				{ label: t('Yazdır / PDF'), icon: 'printer', onClick: printPage },
+				{ label: t('Yazdır / PDF'), icon: 'printer', onClick: printPage }
+			].concat(D.page && Y.docPageItems ? Y.docPageItems(D.page) : [], [
 				Y.S.config.mailDraft ? { label: t('E-posta taslağı oluştur'), icon: 'send', onClick: mailDraft } : null,
 				canDel ? { sep: true } : null,
 				canDel ? { label: t('Dokümanı sil'), icon: 'trash', danger: true, onClick: function () { deleteDoc(D.doc); } } : null
-			], { alignRight: true });
+			]), { alignRight: true });
 		} }, Y.icon('dots', 18));
 		// Flux Mail varsa: sayfadan posta kutusunda taslak (alıcıyı orada seçip gönderirsiniz).
 		D.mailBtn = Y.S.config.mailDraft ? h('button.flxg-btn.is-sm.flxg-doc-mailbtn', { type: 'button', title: t('Bu sayfadan e-posta taslağı oluştur'), onclick: mailDraft }, Y.icon('send', 15), h('span', t('E-posta taslağı'))) : null;
 		D.aiBtn = aiOn() ? h('button.flxg-btn.is-sm.flxg-doc-aibtn', { type: 'button', title: t('Yapay zekâ (Ctrl+J)'), onclick: function (e) { openAIPage(e.currentTarget); } }, Y.icon('sparkle', 15), h('span', t('Yapay zekâ'))) : null;
-		main.appendChild(Y.topBar(D.crumbs, [D.people, D.saveEl, D.aiBtn, D.mailBtn, treeBtn, more]));
+		D.xtop = h('span.flxg-doc-xtop');
+		main.appendChild(Y.topBar(D.crumbs, [D.people, D.saveEl, D.xtop, D.aiBtn, D.mailBtn, treeBtn, more]));
 
 		D.treeEl = h('.flxg-doc-pages');
 		D.tree = h('aside.flxg-doc-tree', D.treeEl);
@@ -247,12 +251,13 @@
 		D.metaEl = h('.flxg-doc-meta');
 		D.ed = h('.flxg-doc-ed.flxg-prose', { contenteditable: D.edit ? 'true' : 'false', spellcheck: 'true', 'data-ph': D.edit ? t('Yazmaya başlayın… "/" ile blok, "#" ile görev ekleyin') : '' });
 		D.layer = h('.flxg-doc-layer', { 'aria-hidden': 'true' });
-		D.gut = D.edit ? gutter() : null;
-		D.tbl = D.edit ? tableUi() : null;
+		D.gut = D.docEdit ? gutter() : null;
+		D.tbl = D.docEdit ? tableUi() : null;
 		D.wrap = h('.flxg-doc-edwrap', D.ed, D.layer, D.gut, D.tbl);
 		D.subsEl = h('.flxg-doc-subs');
-		D.tb = D.edit ? toolbar() : null;
-		D.paper = h('.flxg-doc-paper', D.titleEl, D.metaEl, D.wrap, D.subsEl);
+		D.tb = D.docEdit ? toolbar() : null;
+		D.banner = h('.flxg-doc-banner');
+		D.paper = h('.flxg-doc-paper', D.banner, D.titleEl, D.metaEl, D.wrap, D.subsEl);
 		D.scroll = h('.flxg-doc-scroll', D.tb, D.paper);
 		// Alt sayfa önce sağda yarım panelde açılır (Notion gibi); solda üst sayfa görünür kalır.
 		D.peekBg = h('.flxg-doc-peekbg', { onclick: peekClose });
@@ -261,7 +266,8 @@
 			h('span.flxg-grow'),
 			h('button.flxg-icon-btn.is-sm', { type: 'button', title: t('Kapat'), 'aria-label': t('Kapat'), onclick: peekClose }, Y.icon('x', 16)));
 		D.scroll.insertBefore(D.peekBar, D.scroll.firstChild);
-		D.root = h('.flxg-doc' + (Y.store('doc-tree') === '0' ? '.tree-hidden' : ''), D.tree, D.treeShade, D.peekBg, D.scroll);
+		D.side = h('aside.flxg-doc-side');
+		D.root = h('.flxg-doc' + (Y.store('doc-tree') === '0' ? '.tree-hidden' : ''), D.tree, D.treeShade, D.peekBg, D.scroll, D.side);
 		var w = +Y.store('doc-tree-w');
 		if (w >= 180 && w <= 420) D.root.style.setProperty('--tree-w', w + 'px');
 		D.tree.appendChild(treeResizer());
@@ -271,6 +277,7 @@
 		drawTree();
 		bindEditor();
 		setSave('');
+		hook('shell');
 	}
 	function toggleTree() {
 		if (Y.isMobile()) { D.root.classList.toggle('tree-open'); return; }
@@ -336,7 +343,7 @@
 		box.appendChild(h('.flxg-doc-tree-head',
 			h('span.flxg-doc-ic', Y.icon('doc', 15)),
 			h('b.flxg-doc-tree-title', { title: D.doc.title }, D.doc.title),
-			D.edit ? h('button.flxg-icon-btn.is-sm', { type: 'button', title: t('Sayfa ekle'), onclick: function () { addPage(0); } }, Y.icon('plus', 15)) : null
+			D.docEdit ? h('button.flxg-icon-btn.is-sm', { type: 'button', title: t('Sayfa ekle'), onclick: function () { addPage(0); } }, Y.icon('plus', 15)) : null
 		));
 		var list = h('.flxg-doc-plist', { 'data-drop': '1' });
 		function walk(parent, depth) {
@@ -353,8 +360,9 @@
 						drawTree();
 					} }, Y.icon(closed ? 'chevR' : 'chevD', 13)) : h('span.flxg-caret.is-leaf', Y.icon('file', 13)),
 					h('a.flxg-doc-plink', { href: '#/doc/' + D.doc.id + '/p/' + p.id, onclick: function () { D.root.classList.remove('tree-open'); } }, p.title || t('Başlıksız')),
-					D.edit ? h('button.flxg-icon-btn.is-xs.flxg-doc-padd', { type: 'button', title: t('Alt sayfa ekle'), onclick: function (e) { e.stopPropagation(); addPage(p.id); } }, Y.icon('plus', 13)) : null,
-					D.edit ? h('button.flxg-icon-btn.is-xs.flxg-doc-pmore', { type: 'button', title: t('Sayfa menüsü'), onclick: function (e) { e.stopPropagation(); pageMenu(e.currentTarget, p); } }, Y.icon('dots', 13)) : null
+					Y.docPageFlags ? Y.docPageFlags(p) : null,
+					D.docEdit ? h('button.flxg-icon-btn.is-xs.flxg-doc-padd', { type: 'button', title: t('Alt sayfa ekle'), onclick: function (e) { e.stopPropagation(); addPage(p.id); } }, Y.icon('plus', 13)) : null,
+					D.docEdit ? h('button.flxg-icon-btn.is-xs.flxg-doc-pmore', { type: 'button', title: t('Sayfa menüsü'), onclick: function (e) { e.stopPropagation(); pageMenu(e.currentTarget, p); } }, Y.icon('dots', 13)) : null
 				);
 				list.appendChild(row);
 				if (ch.length && !closed) walk(p.id, depth + 1);
@@ -362,7 +370,7 @@
 		}
 		walk(0, 0);
 		box.appendChild(list);
-		if (D.edit) {
+		if (D.docEdit) {
 			box.appendChild(h('button.flxg-tree-add', { type: 'button', onclick: function () { addPage(0); } }, Y.icon('plus', 14), t('Sayfa ekle')));
 			Y.dnd(list, { item: '.flxg-doc-prow', zone: '[data-drop]', onDrop: dropPage });
 		}
@@ -444,7 +452,8 @@
 				var pi = ps.indexOf(parent);
 				movePage(p, parent.parent, Y.between(parent.pos, ps[pi + 1] ? ps[pi + 1].pos : null));
 			} } : null,
-			{ label: t('Bağlantıyı kopyala'), icon: 'link', onClick: function () { Y.copy(location.href.split('#')[0] + '#/doc/' + D.doc.id + '/p/' + p.id); } },
+			{ label: t('Bağlantıyı kopyala'), icon: 'link', onClick: function () { Y.copy(location.href.split('#')[0] + '#/doc/' + D.doc.id + '/p/' + p.id); } }
+		].concat(Y.docPageItems ? Y.docPageItems(p) : [], [
 			{ sep: true },
 			{ label: t('Sayfayı sil'), icon: 'trash', danger: true, onClick: function () {
 				var n = 0;
@@ -458,7 +467,7 @@
 					}, Y.fail);
 				});
 			} }
-		]);
+		]));
 	}
 
 	/* =====================================================================
@@ -492,6 +501,8 @@
 		D.titleEl.value = D.page.title || '';
 		D.fitTitle();
 		Y.clear(D.layer);
+		setMode();
+		hook('open', pid);
 		// Yeni sayfa her zaman en üstten başlar.
 		D.scroll.scrollTop = 0;
 		// Yalnız bağlantıdan açılınca yarım panel; ağaçtan/adres çubuğundan gelince tam sayfa.
@@ -514,7 +525,7 @@
 				var c = D.edit ? collect() : { ops: [] };
 				if (!c.ops.length && !D.titleDirty) { var st = D.scroll.scrollTop; paint(d); D.scroll.scrollTop = st; }
 				else setPresence(d.presence || []);
-			} else { D.page = d.page; drawMeta(); setPresence(d.presence || []); }
+			} else { D.page = d.page; drawMeta(); setPresence(d.presence || []); setMode(); hook('paint', d); }
 			schedule(300);
 		}, function (e) {
 			if (!D || seq !== D.seq) return;
@@ -576,6 +587,8 @@
 		drawSubs();
 		setSave('');
 		D.err = 0;
+		setMode();
+		hook('paint', d);
 	}
 	function drawMeta() {
 		if (!D.page) return;
@@ -873,6 +886,14 @@
 			}
 			applyChanges(r.changes || []);
 			D.rev = Math.max(D.rev, r.rev || 0);
+			if (r.role !== undefined && D.page) {
+				var lk = r.locked || null;
+				var mode = !lk !== !D.page.locked || r.role !== D.page.role;
+				D.page.locked = lk;
+				D.page.role = r.role;
+				if (mode) setMode();
+			}
+			hook('sync', r);
 			setPresence(r.presence || []);
 			if (!D.titleDirty && document.activeElement !== D.titleEl && typeof r.title === 'string' && r.title !== D.titleEl.value) {
 				D.titleEl.value = r.title;
@@ -893,6 +914,7 @@
 			D.inflight = false;
 			D.err++;
 			setSave(c.ops.length || titleSent !== null ? 'error' : navigator.onLine === false ? 'offline' : D.saveState);
+			if (e.status === 423 && D.page) { D.page.locked = D.page.locked || { by: 0, at: null }; setMode(); hook('locked', e); schedule(interval()); return; }
 			if (e.status === 403 && D.edit) { D.edit = false; D.ed.setAttribute('contenteditable', 'false'); Y.fail(e); return; }
 			if (e.status === 404) { Y.fail(e); reloadTree(); return; }
 			var busy = e.status === 429 || e.status === 503;
@@ -1102,10 +1124,10 @@
 			insertFiles(Array.prototype.slice.call(e.dataTransfer.files || []));
 		});
 		ed.addEventListener('focus', function () { if (D.tb) D.tb.classList.add('is-focus'); });
-		if (D.edit) {
+		if (D.docEdit) {
 			// Sayfanın altındaki boşluğa tıklayınca son satıra geçer.
 			D.paper.addEventListener('mousedown', function (e) {
-				if (e.target !== D.paper || e.clientY < D.ed.getBoundingClientRect().bottom) return;
+				if (!D.edit || e.target !== D.paper || e.clientY < D.ed.getBoundingClientRect().bottom) return;
 				e.preventDefault();
 				var last = D.ed.lastElementChild;
 				D.ed.focus({ preventScroll: true });
@@ -1127,6 +1149,7 @@
 		if (key !== D.lastCaret) { D.lastCaret = key; if (D.others.length) soon(1200); }
 	});
 	function markEmpty() {
+		hook('content');
 		var only = D.ed.children.length === 1 ? D.ed.firstElementChild : null;
 		D.ed.classList.toggle('is-empty', !D.ed.children.length || (!!only && only.tagName === 'P' && !only.textContent && !only.querySelector('img,span,a')));
 	}
@@ -2032,6 +2055,7 @@
 				s.addRange(r);
 				openAISel();
 			} } : null,
+			Y.docCanComment && Y.docCanComment() ? { label: t('Yorum ekle'), icon: 'msgPlus', onClick: function () { hook('comment-block', bl); } } : null,
 			{ label: t('Çoğalt'), icon: 'copy', onClick: function () { var c = fromHtml(cleanHtml(bl), newId()); D.ed.insertBefore(c, bl.nextSibling); changed(); pulse(c); } },
 			bl.previousElementSibling ? { label: t('Yukarı taşı'), icon: 'chevL', onClick: function () { D.ed.insertBefore(bl, bl.previousElementSibling); changed(); } } : null,
 			bl.nextElementSibling ? { label: t('Aşağı taşı'), icon: 'chevR', onClick: function () { D.ed.insertBefore(bl, bl.nextElementSibling.nextSibling); changed(); } } : null,
@@ -2121,6 +2145,25 @@
 	Y.docPage = function () { return D && D.page ? { id: D.page.id, title: (D.titleEl && D.titleEl.value) || D.page.title || '' } : null; };
 	Y.docSyncNow = function () { if (D && D.page) schedule(0); };
 
+	/** Sayfa düzenlenebilir mi: doküman rolü, sayfa rolü (erişim kısıtı) ve kilit. */
+	function setMode() {
+		if (!D || !D.ed) return;
+		var pg = D.page || {};
+		var on = D.docEdit && Y.rank(pg.role || D.role) >= 3 && !pg.locked;
+		D.edit = on;
+		D.ed.setAttribute('contenteditable', on ? 'true' : 'false');
+		D.ed.setAttribute('data-ph', on ? t('Yazmaya başlayın… "/" ile blok, "#" ile görev ekleyin') : '');
+		D.titleEl.readOnly = !on;
+		D.root.classList.toggle('is-ro', !on);
+		if (!on) { if (D.gut) D.gut.classList.remove('is-on'); tblHide(); }
+		hook('mode', on);
+	}
+	/** Yorumlar ve sayfa koruması (doc-comments.js) için editörün yüzü. */
+	Y.docx = {
+		D: function () { return D; }, blockOf: blockOf, blockById: blockById, textOffset: textOffset, pointAt: pointAt,
+		selInfo: selInfo, applyPages: applyPages, setMode: setMode, user: user, me: me, pageById: pageById, flushNow: flushNow
+	};
+
 	var AI_SEL = [
 		{ k: 'improve', label: t('İyileştir'), icon: 'sparkle', edit: 1 },
 		{ k: 'fix', label: t('Yazım ve dil bilgisini düzelt'), icon: 'check', edit: 1 },
@@ -2169,7 +2212,8 @@
 		} catch (e) { /* yok */ }
 	}
 	function placeBubble() {
-		if (!D || !D.root || (!aiOn() && !D.edit)) return;
+		var cm = !!(Y.docCanComment && Y.docCanComment());
+		if (!D || !D.root || (!aiOn() && !D.edit && !cm)) return;
 		var info = !D.dragging ? selInfo() : null;
 		if (!info) { if (D.aiBub) D.aiBub.classList.remove('is-on'); return; }
 		if (!D.aiBub) {
@@ -2179,7 +2223,8 @@
 			};
 			D.aiBub = h('.flxg-doc-aibub', { onmousedown: function (e) { e.preventDefault(); } },
 				aiOn() ? h('button.flxg-doc-aibub-ai', { type: 'button', title: t('Yapay zekâ (Ctrl+J)'), onclick: function () { openAISel(); } }, Y.icon('sparkle', 14), h('span', t('Yapay zekâ'))) : null,
-				D.edit ? h('span.flxg-doc-aibub-grp',
+				Y.docCanComment ? h('button.flxg-doc-aibub-cm', { type: 'button', title: t('Yorum ekle (Ctrl+Alt+M)'), onclick: function () { hook('comment-sel'); } }, Y.icon('msgPlus', 15), h('span', t('Yorum yap'))) : null,
+				D.docEdit ? h('span.flxg-doc-aibub-grp',
 					fb('bold', t('Kalın'), function () { cmd('bold'); }, 'bold'),
 					fb('italic', t('İtalik'), function () { cmd('italic'); }, 'italic'),
 					fb('underline', t('Altı çizili'), function () { cmd('underline'); }, 'underline'),
@@ -2192,6 +2237,9 @@
 			D.root.appendChild(D.aiBub);
 		}
 		var b = D.aiBub;
+		b.classList.toggle('no-cm', !cm);
+		b.classList.toggle('no-fmt', !D.edit);
+		b.classList.toggle('no-ai', !aiOn());
 		Y.$$('[data-k]', b).forEach(function (x) { var on = false; try { on = document.queryCommandState(x.getAttribute('data-k')); } catch (e) { on = false; } x.classList.toggle('is-on', on); });
 		var rects = info.range.getClientRects();
 		var first = rects.length ? rects[0] : info.range.getBoundingClientRect();

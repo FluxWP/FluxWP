@@ -9,6 +9,8 @@ kabukta React ekranı ekler. Eklenti FluxWP'nin kodunu kopyalamaz ve FluxWP mono
 |---|---|---|
 | Ortak runtime | `plugins/flx-graphql/assets/runtime/` (`apps/wp-embed/src/runtime.tsx`, `tools/fluxapp/runtime-sync.sh`) | React, React Query, i18next, `@fluxwp/core`, `tokens`, `ui`, `graphql`, `graphql/react` ve `@fluxwp/host` (useHost, useModuleApi). Sayfaya bir kez yüklenir, `globalThis.FluxRuntime` |
 | `@fluxwp/plugin-kit` | `packages/plugin-kit` | Vite preset'i (`fluxScreens()`): yukarıdaki modüller bundle'a girmez, runtime'dan okunur. Çıktı `assets/flux/flux-screens.js` + parçalar + `flux-screens.css` + `chunks.json` (`"mode":"screens"`) |
+| `flx-kit codegen` | `packages/plugin-kit/src/codegen.ts` | Eklentinin `graphql/operations/*.graphql` dosyalarından tipler ve `persisted-queries.json`; şema `@fluxwp/graphql` paketindeki `schema/full.graphql` + eklentinin kendi parçası. Kurallar `generate.ts` ile aynı (`lib.ts` ortak) |
+| npm | `tools/npm/`, `.github/workflows/npm-publish.yml` | `@fluxwp/tokens`, `core`, `ui`, `graphql`, `host`, `plugin-kit` public yayın (yalnız npm'de olmayan sürüm) |
 | Kabuk | `plugins/flx-graphql/includes/screens.php`, `assets/js/screens.js` | Klasörde `flux-screens.js` varsa ekranı runtime üzerinden açar |
 
 Örnek eklenti: `packages/plugin-kit/example/acme-hello` (`bun run --filter @fluxwp/plugin-kit example`).
@@ -37,8 +39,14 @@ kabukta React ekranı ekler. Eklenti FluxWP'nin kodunu kopyalamaz ve FluxWP mono
 - Runtime'ın dışa açtığı adlar `packages/plugin-kit/runtime-exports.json`'da; `runtime-sync.sh` yeniler,
   CI `exports:check` ile denetler.
 
-## Sırada
+## npm yayını
 
-- `@fluxwp/plugin-kit` codegen: eklentinin `graphql/operations/*.graphql` dosyalarından tipler ve
-  `persisted-queries.json`, FluxWP şemasına karşı (`@fluxwp/schema`).
-- npm'de public yayın (`@fluxwp/*`), `FluxWP/plugin-starter` şablon deposu.
+- `bun tools/npm/pack.ts` paketleri `dist-npm/`'e hazırlar: `src/` (TS kaynak, bundler'lar için), `types/`
+  (`.d.ts`), plugin-kit için Node bundle'ları (`dist/`). `workspace:*` sürüme çevrilir.
+- `npm-publish.yml` main'e push'ta ve elle çalışır; npm'de olmayan sürümü `--provenance` ile yayınlar.
+  Sürüm: `@fluxwp/graphql` ve `@fluxwp/modules` (→ `@fluxwp/host`) "JS package versions" release PR'ıyla,
+  `tokens`, `core`, `ui`, `plugin-kit` kendi `package.json` sürümüyle.
+- `NPM_TOKEN` (npm granular token, `@fluxwp` scope'unda read/write, 90 gün). İlk yayından sonra npm
+  "Trusted Publisher" (GitHub Actions) bağlanınca token gerekmez.
+
+Dış bir eklenti projesinin kurulumu: `packages/plugin-kit/README.md` (npm sayfası).

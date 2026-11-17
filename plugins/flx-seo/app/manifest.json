@@ -1,0 +1,203 @@
+{
+  "id": "seo",
+  "plugin": "flx-seo",
+  "min_app": "1.0.0",
+  "platforms": ["mobile"],
+  "title": "SEO",
+  "icon": "search",
+  "menu": "flxseo",
+  "entry": "overview",
+  "tabs": ["overview", "findings", "content", "settings"],
+  "fallback": { "web": "admin.php?page=flxseo" },
+  "routes": {
+    "admin.php?page=flxseo": { "screen": "overview" }
+  },
+  "sources": {
+    "audit": { "graphql": { "op": "FlxSeoAuditScreen", "variables": { "history": 10 } }, "cache": { "stale": 60 } },
+    "findings": {
+      "graphql": { "op": "FlxSeoAuditScreen", "variables": { "history": 1 }, "data": "flxSeoAudit" },
+      "paging": { "mode": "none", "items": "findings" },
+      "key": "id",
+      "cache": { "stale": 60 }
+    },
+    "history": {
+      "graphql": { "op": "FlxSeoAuditScreen", "variables": { "history": 30 }, "data": "flxSeoAuditHistory" },
+      "paging": { "mode": "none", "items": "entries" },
+      "key": "time.iso",
+      "cache": { "stale": 60 }
+    },
+    "content": {
+      "graphql": { "op": "FlxSeoContentCheck", "variables": { "limit": 300 }, "data": "flxSeoContentCheck" },
+      "paging": { "mode": "none", "items": "items" },
+      "key": "databaseId",
+      "cache": { "stale": 120 }
+    },
+    "settings": { "graphql": { "op": "FlxSeoSettingsScreen", "data": "flxSettings.flxseo" }, "cache": { "stale": 0 } }
+  },
+  "screens": {
+    "overview": {
+      "type": "dashboard",
+      "title": "Overview",
+      "sources": ["audit"],
+      "sections": [
+        { "type": "notice", "tone": "muted", "text": "No audit yet. Run one to see what to fix.", "when": { "path": "flxSeoAudit.local", "op": "falsy" } },
+        {
+          "type": "stats",
+          "title": "Findings",
+          "items": [
+            { "label": "Critical", "value": "{{flxSeoAudit.counts.critical}}", "tone": "danger", "onPress": { "target": "screen:seo/findings" } },
+            { "label": "High", "value": "{{flxSeoAudit.counts.high}}", "tone": "warn", "onPress": { "target": "screen:seo/findings" } },
+            { "label": "Medium", "value": "{{flxSeoAudit.counts.medium}}", "onPress": { "target": "screen:seo/findings" } },
+            { "label": "Low", "value": "{{flxSeoAudit.counts.low}}", "tone": "muted", "onPress": { "target": "screen:seo/findings" } }
+          ]
+        },
+        {
+          "type": "fields",
+          "title": "Last audit",
+          "when": { "path": "flxSeoAudit.local", "op": "truthy" },
+          "fields": [
+            { "label": "Time", "value": "{{flxSeoAudit.local.time.label}}" },
+            { "label": "Address", "value": "{{flxSeoAudit.local.url}}", "link": "{{flxSeoAudit.local.url}}" },
+            { "label": "AI agent checks", "value": "{{flxSeoAudit.agenticPassed}} / {{flxSeoAudit.agentic|count}}" },
+            { "label": "Next automatic audit", "value": "{{flxSeoAuditHistory.next.label|default:'—'}}" }
+          ]
+        },
+        {
+          "type": "list",
+          "title": "PageSpeed",
+          "path": "flxSeoAudit.pageSpeed",
+          "item": { "title": "{{strategy}}", "subtitle": "{{time.relative}}", "caption": "{{lighthouse}}" }
+        },
+        { "type": "actions", "items": ["audit_local", "audit_mobile", "audit_desktop", "history_open", "open_panel"] }
+      ]
+    },
+    "findings": {
+      "type": "list",
+      "title": "Findings",
+      "source": "findings",
+      "group_by": "priorityLabel",
+      "item": {
+        "title": "{{title}}",
+        "subtitle": "{{categoryLabel}} · {{ownerLabel}}",
+        "caption": "{{fix}}",
+        "badges": [
+          { "text": "{{priorityLabel}}", "tone": "danger", "when": { "path": "priority", "op": "eq", "value": "CRITICAL" } },
+          { "text": "{{priorityLabel}}", "tone": "warn", "when": { "path": "priority", "op": "eq", "value": "HIGH" } },
+          { "text": "{{priorityLabel}}", "tone": "info", "when": { "path": "priority", "op": "in", "value": ["MEDIUM", "LOW"] } }
+        ]
+      },
+      "actions": { "header": ["audit_local"], "row": ["fix_apply"] },
+      "empty": { "title": "Nothing to fix", "body": "The last audit found no problems." }
+    },
+    "history": {
+      "type": "list",
+      "title": "Audit history",
+      "source": "history",
+      "item": {
+        "title": "{{time.label}}",
+        "subtitle": "{{triggerLabel}}",
+        "caption": "{{counts.critical}} critical · {{counts.high}} high · {{counts.medium}} medium · {{counts.low}} low"
+      },
+      "empty": { "title": "No audits yet" }
+    },
+    "content": {
+      "type": "list",
+      "title": "Content check",
+      "source": "content",
+      "item": {
+        "title": "{{title}}",
+        "subtitle": "{{postType}}",
+        "caption": "{{issues|count}} issues",
+        "badges": [{ "text": "{{issues.0.message}}", "tone": "warn", "when": { "path": "issues", "op": "filled" } }]
+      },
+      "actions": { "row": ["content_open"] },
+      "empty": { "title": "No problems", "body": "Titles, descriptions and images of your content look fine." }
+    },
+    "settings": {
+      "type": "form",
+      "title": "Settings",
+      "load": "settings",
+      "submit": { "graphql": { "op": "FlxSeoSettingsSave", "values": "flxseo", "data": "flxSettingsUpdate" } },
+      "fields": [
+        { "name": "enabled", "type": "switch", "label": "SEO output is on" },
+        { "name": "siteName", "type": "text", "label": "Site name" },
+        { "name": "altName", "type": "text", "label": "Alternative name" },
+        { "name": "sep", "type": "text", "label": "Title separator", "width": "half" },
+        { "name": "homeTitle", "type": "text", "label": "Home page title" },
+        { "name": "homeDesc", "type": "textarea", "label": "Home page description" },
+        { "name": "ogImage", "type": "url", "label": "Default share image" },
+        { "name": "verifyGoogle", "type": "text", "label": "Google verification code" },
+        { "name": "verifyBing", "type": "text", "label": "Bing verification code" },
+        { "name": "verifyYandex", "type": "text", "label": "Yandex verification code" },
+        { "name": "indexnow", "type": "switch", "label": "IndexNow (tell search engines about changes)" },
+        { "name": "noindexSearch", "type": "switch", "label": "Hide search results from search engines" },
+        { "name": "noindexAuthor", "type": "switch", "label": "Hide author pages from search engines" },
+        { "name": "noindexTags", "type": "switch", "label": "Hide tag pages from search engines" },
+        { "name": "noindexShop", "type": "switch", "label": "Hide cart, checkout and account pages from search engines" },
+        { "name": "autoAlt", "type": "switch", "label": "Fill missing image alt text automatically" },
+        { "name": "llms", "type": "switch", "label": "llms.txt for AI assistants" },
+        { "name": "markdown", "type": "switch", "label": "Markdown copies of pages for AI assistants" },
+        { "name": "orgName", "type": "text", "label": "Organization name" },
+        {
+          "name": "orgType",
+          "type": "segmented",
+          "label": "Organization type",
+          "options": [
+            { "value": "ORGANIZATION", "label": "Organization" },
+            { "value": "NGO", "label": "Non-profit" }
+          ]
+        },
+        { "name": "phone", "type": "phone", "label": "Phone" },
+        { "name": "email", "type": "email", "label": "Email" },
+        {
+          "name": "auditFreq",
+          "type": "segmented",
+          "label": "Automatic audit",
+          "options": [
+            { "value": "OFF", "label": "Off" },
+            { "value": "DAILY", "label": "Daily" },
+            { "value": "WEEKLY", "label": "Weekly" }
+          ]
+        },
+        { "name": "auditPsi", "type": "switch", "label": "Include PageSpeed in automatic audits", "when": { "path": "input.auditFreq", "op": "ne", "value": "OFF" } },
+        { "name": "auditMail", "type": "switch", "label": "Email the audit report", "when": { "path": "input.auditFreq", "op": "ne", "value": "OFF" } },
+        { "name": "auditMailTo", "type": "email", "label": "Report address", "when": { "path": "input.auditMail", "op": "truthy" } }
+      ],
+      "dirty_guard": true,
+      "after": { "toast": "Saved", "back": false, "invalidate": ["settings", "audit"] }
+    }
+  },
+  "actions": {
+    "audit_local": {
+      "label": "Run audit",
+      "icon": "refresh",
+      "request": { "graphql": { "op": "FlxSeoAuditRun", "variables": { "input": { "mode": "LOCAL" } }, "data": "flxSeoAuditRun" } },
+      "after": { "toast": "Audit finished", "invalidate": ["audit", "findings", "history"] },
+      "haptic": "success"
+    },
+    "audit_mobile": {
+      "label": "PageSpeed (mobile)",
+      "icon": "phone",
+      "request": { "graphql": { "op": "FlxSeoAuditRun", "variables": { "input": { "mode": "PAGESPEED", "strategy": "MOBILE" } }, "data": "flxSeoAuditRun" } },
+      "after": { "toast": "PageSpeed finished", "invalidate": ["audit", "history"] }
+    },
+    "audit_desktop": {
+      "label": "PageSpeed (desktop)",
+      "icon": "monitor",
+      "request": { "graphql": { "op": "FlxSeoAuditRun", "variables": { "input": { "mode": "PAGESPEED", "strategy": "DESKTOP" } }, "data": "flxSeoAuditRun" } },
+      "after": { "toast": "PageSpeed finished", "invalidate": ["audit", "history"] }
+    },
+    "fix_apply": {
+      "label": "Apply fix",
+      "icon": "check",
+      "when": { "path": "fixId", "op": "filled" },
+      "confirm": { "title": "Apply this fix?", "body": "{{fix}}", "ok": "Apply" },
+      "request": { "graphql": { "op": "FlxSeoFixApply", "variables": { "input": { "id": "{{fixId}}" } }, "data": "flxSeoFixApply" } },
+      "after": { "toast": "Fixed", "invalidate": ["audit", "findings"] },
+      "haptic": "success"
+    },
+    "content_open": { "label": "Open", "icon": "external", "open": "{{url}}" },
+    "history_open": { "label": "Audit history", "icon": "clock", "navigate": { "target": "screen:seo/history" } },
+    "open_panel": { "label": "Open in panel", "icon": "globe", "web": "admin.php?page=flxseo" }
+  }
+}

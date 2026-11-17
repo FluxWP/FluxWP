@@ -530,3 +530,95 @@ msgstr "Kullanıcıdan rolü alır; rolü kalmazsa varsayılan rolü alır."
 
 msgid "User the role was taken from."
 msgstr "Rolü alınan kullanıcı."
+
+#: app/manifest.json
+msgid "Roles"
+msgstr "Roller"
+
+#: app/manifest.json
+msgid "Custom"
+msgstr "Özel"
+
+#: app/manifest.json
+msgid "No roles"
+msgstr "Rol yok"
+
+#: app/manifest.json
+msgid "Nobody in this role"
+msgstr "Bu rolde kimse yok"
+
+#: app/manifest.json
+msgid "Add a person by user name or email."
+msgstr "Kullanıcı adı ya da e-posta ile kişi ekleyin."
+
+#: app/manifest.json
+msgid "Role created"
+msgstr "Rol oluşturuldu"
+
+#: app/manifest.json
+msgid "Reset permissions"
+msgstr "Yetkileri sıfırla"
+
+#: app/manifest.json
+msgid "Reset {{label}}?"
+msgstr "{{label}} sıfırlansın mı?"
+
+#: app/manifest.json
+msgid "Its permissions go back to the WordPress defaults."
+msgstr "Yetkileri WordPress varsayılanlarına döner."
+
+#: app/manifest.json
+msgid "Reset"
+msgstr "Sıfırla"
+
+#: app/manifest.json
+msgid "Delete {{label}}?"
+msgstr "{{label}} silinsin mi?"
+
+#: app/manifest.json
+msgid "Its people keep their other roles."
+msgstr "Kişiler diğer rollerini korur."
+
+#: app/manifest.json
+msgid "Delete"
+msgstr "Sil"
+
+#: app/manifest.json
+msgid "Deleted"
+msgstr "Silindi"
+
+#: app/manifest.json
+msgid "Edit permissions in panel"
+msgstr "Yetkileri panelde düzenle"
+
+#: app/manifest.json
+msgid "Add person"
+msgstr "Kişi ekle"
+
+#: app/manifest.json
+msgid "User name or email"
+msgstr "Kullanıcı adı ya da e-posta"
+
+#: app/manifest.json
+msgid "Added"
+msgstr "Eklendi"
+
+#: app/manifest.json
+msgid "Call"
+msgstr "Ara"
+
+#: app/manifest.json
+msgid "Remove {{name}}?"
+msgstr "{{name}} çıkarılsın mı?"
+
+#: app/manifest.json
+msgid "The account stays; only this role is taken away."
+msgstr "Hesap kalır; yalnız bu rol alınır."
+
+#: app/manifest.json
+msgid "Remove"
+msgstr "Çıkar"
+
+#: app/manifest.json
+msgid "Removed"
+msgstr "Çıkarıldı"

@@ -197,3 +197,43 @@ function flxcb_flux_switch_link( $page ) {
 	}
 	echo '<p><a class="button" href="' . esc_url( flxcb_ui_switch_url( 'flux', $page ) ) . '">' . esc_html__( 'New view', 'flx-chatbot' ) . '</a> <span class="flxcb-muted">' . esc_html__( 'Open the new view (same features, works in the FluxWP app too).', 'flx-chatbot' ) . '</span></p>';
 }
+
+/*
+ * Shared app manifests (app/*.json): the mobile app draws these screens natively over GraphQL.
+ * The desktop panel keeps the React screens above, so the manifests are for mobile only. Site chats
+ * are left out when Flux Chat shows them in its own inbox.
+ */
+add_action(
+	'plugins_loaded',
+	static function () {
+		if ( ! function_exists( 'flxapp_manifest_file' ) ) {
+			return;
+		}
+		add_filter(
+			'flxapp_manifest',
+			static function ( $m ) {
+				$m            = is_array( $m ) ? $m : array();
+				$m['chatbot'] = flxapp_manifest_file(
+					FLXCB_DIR . 'app/manifest.json',
+					'flx-chatbot',
+					array(
+						'version' => FLXCB_VERSION,
+						'caps'    => array( 'view' => 'manage_options' ),
+					)
+				);
+				if ( ! flxcb_fc_unified() ) {
+					$m['chatbot-inbox'] = flxapp_manifest_file(
+						FLXCB_DIR . 'app/inbox.json',
+						'flx-chatbot',
+						array(
+							'version' => FLXCB_VERSION,
+							'caps'    => array( 'view' => 'flxcb_reply' ),
+						)
+					);
+				}
+				return $m;
+			}
+		);
+	},
+	20
+);

@@ -36,3 +36,5 @@ packages/graphql/src/generated/
 packages/graphql/schema/full.graphql
 apps/wp-embed/dist-runtime/
 packages/plugin-kit/example/acme-hello/assets/
+packages/plugin-kit/example/acme-hello/screens/generated/
+dist-npm/

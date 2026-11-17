@@ -28,6 +28,9 @@ describe('templates', () => {
   it('keeps the type of a whole-value template', () => {
     expect(compile('{{ltv}}')(ctx)).toBe(1500.5);
     expect(fill({ id: '{{params.id}}', n: '{{ltv}}', t: 'x {{name}}' }, ctx)).toEqual({ id: '7', n: 1500.5, t: 'x Ayşe Kaya' });
+    expect(compile('{{params.id|int}}')(ctx)).toBe(7);
+    expect(compile('{{name|int}}')(ctx)).toBeUndefined();
+    expect(compile('{{v|float}}')({ ...ctx, scope: { v: '12,5' } })).toBe(12.5);
   });
 
   it('formats relative time in the user language', () => {
@@ -137,9 +140,12 @@ describe('chart section', () => {
   });
 });
 
-describe('plugin manifests (plugins/*/app/manifest.json)', () => {
+describe('plugin manifests (plugins/*/app/*.json)', () => {
   const root = join(__dirname, '../../../plugins');
-  const files = readdirSync(root).map((p) => join(root, p, 'app/manifest.json')).filter((f) => { try { return !!readFileSync(f); } catch { return false; } });
+  // Every app/*.json of a plugin is a manifest (a plugin may send more than one module).
+  const files = readdirSync(root).flatMap((p) => {
+    try { return readdirSync(join(root, p, 'app')).filter((f) => f.endsWith('.json')).map((f) => join(root, p, 'app', f)); } catch { return []; }
+  });
 
   it.each(files)('%s parses', (f) => {
     const issues: ParseIssue[] = [];
@@ -150,18 +156,25 @@ describe('plugin manifests (plugins/*/app/manifest.json)', () => {
 
   it('GraphQL operations named in manifests exist in the plugin', () => {
     for (const f of files) {
-      const ops: string[] = [];
+      const refs: { op: string; vars: string[] }[] = [];
       const walk = (n: unknown, key = ''): void => {
         if (Array.isArray(n)) n.forEach((x) => walk(x));
         else if (n && typeof n === 'object') {
-          if (key.startsWith('graphql') && typeof (n as { op?: unknown }).op === 'string') ops.push((n as { op: string }).op);
+          const r = n as { op?: unknown; variables?: Record<string, unknown>; values?: string };
+          if (key.startsWith('graphql') && typeof r.op === 'string') refs.push({ op: r.op, vars: [...Object.keys(r.variables ?? {}), ...(r.values ? [r.values] : [])] });
           for (const [k, x] of Object.entries(n)) walk(x, k);
         }
       };
       walk(JSON.parse(readFileSync(f, 'utf8')));
-      if (!ops.length) continue;
-      const pq = Object.values(JSON.parse(readFileSync(join(f, '../../graphql/persisted-queries.json'), 'utf8')) as string[]).join('\n');
-      for (const op of ops) expect(pq, `${f}: ${op}`).toMatch(new RegExp(`\\b(query|mutation) ${op}\\b`));
+      if (!refs.length) continue;
+      const docs = Object.values(JSON.parse(readFileSync(join(f, '../../graphql/persisted-queries.json'), 'utf8')) as string[]);
+      for (const { op, vars } of refs) {
+        const doc = docs.find((d) => new RegExp(`\\b(query|mutation) ${op}\\b`).test(d));
+        expect(doc, `${f}: ${op}`).toBeTruthy();
+        // Variables the manifest sets must be declared by the operation.
+        const head = doc!.slice(0, doc!.indexOf('{'));
+        for (const name of vars) expect(head, `${f}: ${op} ${name}`).toContain(`$${name}:`);
+      }
     }
   });
 });

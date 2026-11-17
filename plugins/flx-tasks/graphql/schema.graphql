@@ -227,6 +227,190 @@ type FlxTaskDeletePayload {
   errors: [FlxUserError!]!
 }
 
+"""
+Where a document comment points: a text range (block + character offsets) or a whole block.
+"""
+type FlxTaskDocAnchor {
+  """Block where the range starts."""
+  blockId: String!
+  """Block where the range ends."""
+  endBlockId: String!
+  """End offset in the end block text."""
+  endOffset: Int!
+  """text (a range) or block (an image, file or table)."""
+  kind: String!
+  """Block label, for example the file name."""
+  label: String!
+  """Start offset in the block text."""
+  offset: Int!
+  """The selected text when the comment was written."""
+  quote: String!
+}
+
+"""A comment on a document page: a thread (with an anchor) or a reply."""
+type FlxTaskDocComment {
+  """What the thread points at; empty for replies."""
+  anchor: FlxTaskDocAnchor
+  """Author."""
+  authorId: Int!
+  """Plain text; empty when deleted."""
+  body: String!
+  """The viewer can delete it."""
+  canDelete: Boolean!
+  """The viewer can edit the text."""
+  canEdit: Boolean!
+  """The viewer can resolve or reopen the thread."""
+  canResolve: Boolean!
+  """Written at."""
+  createdAt: FlxDateTime
+  """Comment ID."""
+  databaseId: Int!
+  """A deleted thread kept for its replies."""
+  deleted: Boolean!
+  """Last edited at."""
+  editedAt: FlxDateTime
+  """Document page."""
+  pageId: Int!
+  """Thread of a reply; 0 for a thread."""
+  parentId: Int!
+  """Who resolved the thread; empty while open."""
+  resolvedBy: Int
+}
+
+"""Input for the flxTaskDocCommentCreate mutation."""
+input FlxTaskDocCommentCreateInput {
+  """New thread: block where the range starts."""
+  blockId: String
+  """Comment text."""
+  body: String!
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """New thread: block where the range ends."""
+  endBlockId: String
+  """New thread: end offset."""
+  endOffset: Int
+  """New thread: text or block."""
+  kind: String
+  """New thread: block label (file name)."""
+  label: String
+  """New thread: start offset."""
+  offset: Int
+  """Document page."""
+  pageId: Int!
+  """Thread to reply to."""
+  parentId: Int
+  """New thread: the selected text."""
+  quote: String
+}
+
+"""The payload for the flxTaskDocCommentCreate mutation."""
+type FlxTaskDocCommentCreatePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """The new comment."""
+  comment: FlxTaskDocComment
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""Input for the flxTaskDocCommentDelete mutation."""
+input FlxTaskDocCommentDeleteInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Comment ID."""
+  id: Int!
+}
+
+"""The payload for the flxTaskDocCommentDelete mutation."""
+type FlxTaskDocCommentDeletePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """The deleted comment."""
+  deletedId: Int
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""Input for the flxTaskDocCommentUpdate mutation."""
+input FlxTaskDocCommentUpdateInput {
+  """New text."""
+  body: String
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Comment ID."""
+  id: Int!
+  """Resolve (true) or reopen (false) the thread."""
+  resolved: Boolean
+}
+
+"""The payload for the flxTaskDocCommentUpdate mutation."""
+type FlxTaskDocCommentUpdatePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """The comment."""
+  comment: FlxTaskDocComment
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""Input for the flxTaskDocPageLock mutation."""
+input FlxTaskDocPageLockInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Lock (true) or unlock (false)."""
+  locked: Boolean!
+  """Document page."""
+  pageId: Int!
+}
+
+"""The payload for the flxTaskDocPageLock mutation."""
+type FlxTaskDocPageLockPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The page after the change."""
+  page: FlxTaskDocPageProtection
+}
+
+"""Who can open a document page and whether it is locked."""
+type FlxTaskDocPageProtection {
+  """Open comment threads."""
+  commentCount: Int!
+  """Who locked the page; empty when it is not locked."""
+  lockedBy: Int
+  """Document page."""
+  pageId: Int!
+  """Only the listed people (and project admins) can open the page."""
+  restricted: Boolean!
+  """The viewer&#039;s role on the page: view, comment, edit or admin."""
+  role: String!
+}
+
 """One FlxTask in a list, with its cursor."""
 type FlxTaskEdge {
   """Opaque cursor of this record."""
@@ -411,6 +595,30 @@ extend type RootMutation {
     """Input for the flxTaskDelete mutation"""
     input: FlxTaskDeleteInput!
   ): FlxTaskDeletePayload
+  """
+  Starts a comment thread on a text range or block of a document page, or replies to a thread.
+  """
+  flxTaskDocCommentCreate(
+    """Input for the flxTaskDocCommentCreate mutation"""
+    input: FlxTaskDocCommentCreateInput!
+  ): FlxTaskDocCommentCreatePayload
+  """Deletes a document comment (the author or a project admin)."""
+  flxTaskDocCommentDelete(
+    """Input for the flxTaskDocCommentDelete mutation"""
+    input: FlxTaskDocCommentDeleteInput!
+  ): FlxTaskDocCommentDeletePayload
+  """Edits one&#039;s own document comment, or resolves / reopens a thread."""
+  flxTaskDocCommentUpdate(
+    """Input for the flxTaskDocCommentUpdate mutation"""
+    input: FlxTaskDocCommentUpdateInput!
+  ): FlxTaskDocCommentUpdatePayload
+  """
+  Locks a document page against edits, or unlocks it (people who can edit the page).
+  """
+  flxTaskDocPageLock(
+    """Input for the flxTaskDocPageLock mutation"""
+    input: FlxTaskDocPageLockInput!
+  ): FlxTaskDocPageLockPayload
   """Marks the notifications of a task read (the task was opened)."""
   flxTaskNotificationsRead(
     """Input for the flxTaskNotificationsRead mutation"""
@@ -434,6 +642,16 @@ extend type RootQuery {
     """Global ID or task number."""
     id: ID!
   ): FlxTask
+  """Comments of a document page (threads, then replies, oldest first)."""
+  flxTaskDocComments(
+    """Document page."""
+    pageId: Int!
+  ): [FlxTaskDocComment!]!
+  """Lock and access state of a document page; empty without access."""
+  flxTaskDocPage(
+    """Document page."""
+    pageId: Int!
+  ): FlxTaskDocPageProtection
   """Tasks the user can see, in list order."""
   flxTasks(
     """Cursor to continue after (pageInfo.endCursor)."""

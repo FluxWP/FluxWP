@@ -94,6 +94,13 @@ const argVal = (a: Arg | undefined, ctx: ExprContext): unknown => {
 const num = (v: unknown) => (typeof v === 'number' ? v : typeof v === 'string' && v.trim() !== '' ? Number(v) : NaN);
 
 const FILTERS: Record<string, Filter> = {
+  /** Whole number for a GraphQL Int variable ("12" from a route param → 12); empty when not a number. */
+  int: (v) => (Number.isFinite(num(v)) ? Math.trunc(num(v)) : undefined),
+  /** Number for a GraphQL Float variable ("12,5" → 12.5); empty when not a number. */
+  float: (v) => {
+    const n = num(typeof v === 'string' ? v.replace(',', '.') : v);
+    return Number.isFinite(n) ? n : undefined;
+  },
   number: (v, _a, c) => (Number.isFinite(num(v)) ? new Intl.NumberFormat(c.locale ?? 'tr').format(num(v)) : ''),
   money: (v, a, c) => {
     const n = num(v);

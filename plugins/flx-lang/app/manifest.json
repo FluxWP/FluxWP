@@ -1,0 +1,101 @@
+{
+  "id": "lang",
+  "plugin": "flx-lang",
+  "min_app": "1.0.0",
+  "platforms": ["mobile"],
+  "title": "Languages",
+  "icon": "globe",
+  "menu": "flx-lang",
+  "entry": "languages",
+  "tabs": ["languages", "settings"],
+  "fallback": { "web": "admin.php?page=flx-lang" },
+  "routes": {
+    "admin.php?page=flx-lang": { "screen": "languages" }
+  },
+  "sources": {
+    "languages": {
+      "graphql": { "op": "FlxLanguageSettingsScreen", "data": "flxLanguageSettings" },
+      "paging": { "mode": "none", "items": "languages" },
+      "key": "code",
+      "cache": { "stale": 60 }
+    },
+    "catalog": {
+      "graphql": { "op": "FlxLanguageSettingsScreen", "data": "flxLanguageSettings" },
+      "cache": { "stale": 300 }
+    },
+    "settings": { "graphql": { "op": "FlxLanguageSettingsScreen", "data": "flxLanguageSettings" }, "cache": { "stale": 0 } }
+  },
+  "screens": {
+    "languages": {
+      "type": "list",
+      "title": "Site languages",
+      "source": "languages",
+      "item": {
+        "title": "{{flag}} {{name}}",
+        "subtitle": "{{locale}} · {{address}}",
+        "badges": [
+          { "text": "Default", "tone": "accent", "when": { "path": "default", "op": "truthy" } },
+          { "text": "Hidden", "tone": "muted", "when": { "path": "active", "op": "falsy" } }
+        ]
+      },
+      "actions": { "header": ["language_add"], "fab": "language_add" },
+      "empty": { "title": "One language", "body": "Add a language to translate the site." }
+    },
+    "settings": {
+      "type": "form",
+      "title": "Settings",
+      "load": "settings",
+      "submit": { "graphql": { "op": "FlxLanguageSettingsUpdate", "data": "flxLanguageSettingsUpdate" } },
+      "fields": [
+        { "name": "defaultLanguage", "type": "select", "label": "Default language", "options": { "source": "catalog", "path": "languages", "value": "code", "label": "name" } },
+        { "name": "fallback", "type": "switch", "label": "Show the default language when a translation is missing" },
+        {
+          "name": "suggest",
+          "type": "segmented",
+          "label": "Visitor's language",
+          "help": "Browser language first, then the country's language, then English.",
+          "options": [
+            { "value": "OFF", "label": "Do nothing" },
+            { "value": "BANNER", "label": "Suggest" },
+            { "value": "REDIRECT", "label": "Redirect" }
+          ]
+        },
+        {
+          "name": "switcher",
+          "type": "segmented",
+          "label": "Language switcher",
+          "options": [
+            { "value": "FLAG", "label": "Flag" },
+            { "value": "NAME", "label": "Name" },
+            { "value": "CODE", "label": "Code" }
+          ]
+        },
+        {
+          "name": "switcherPlace",
+          "type": "segmented",
+          "label": "Switcher place",
+          "options": [
+            { "value": "FOOTER", "label": "Footer" },
+            { "value": "HEADER", "label": "Header" },
+            { "value": "BOTH", "label": "Both" }
+          ]
+        }
+      ],
+      "dirty_guard": true,
+      "after": { "toast": "Saved", "back": false, "invalidate": ["settings", "languages", "catalog"] }
+    }
+  },
+  "actions": {
+    "language_add": {
+      "label": "Add language",
+      "icon": "plus",
+      "prompt": {
+        "title": "Add language",
+        "fields": [{ "name": "code", "type": "select", "label": "Language", "required": true, "options": { "source": "catalog", "path": "catalog", "value": "code", "label": "name" } }]
+      },
+      "request": { "graphql": { "op": "FlxLanguageSettingsUpdate", "variables": { "input": { "addLanguage": "{{input.code}}" } }, "data": "flxLanguageSettingsUpdate" } },
+      "after": { "toast": "Language added", "invalidate": ["languages", "catalog", "settings"] },
+      "haptic": "success"
+    }
+  }
+}

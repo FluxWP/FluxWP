@@ -726,3 +726,67 @@ msgstr "Çalıştırılacak adım, 0'dan toplam - 1'e."
 
 msgid "The job after the step."
 msgstr "Adımdan sonra iş."
+
+#: app/manifest.json
+msgid "Site languages"
+msgstr "Site dilleri"
+
+#: app/manifest.json
+msgid "Hidden"
+msgstr "Gizli"
+
+#: app/manifest.json
+msgid "One language"
+msgstr "Tek dil"
+
+#: app/manifest.json
+msgid "Add a language to translate the site."
+msgstr "Siteyi çevirmek için bir dil ekleyin."
+
+#: app/manifest.json
+msgid "Default language"
+msgstr "Varsayılan dil"
+
+#: app/manifest.json
+msgid "Show the default language when a translation is missing"
+msgstr "Çeviri yoksa varsayılan dili göster"
+
+#: app/manifest.json
+msgid "Visitor's language"
+msgstr "Ziyaretçinin dili"
+
+#: app/manifest.json
+msgid "Browser language first, then the country's language, then English."
+msgstr "Önce tarayıcı dili, sonra ülkenin dili, sonra İngilizce."
+
+#: app/manifest.json
+msgid "Do nothing"
+msgstr "Bir şey yapma"
+
+#: app/manifest.json
+msgid "Suggest"
+msgstr "Öner"
+
+#: app/manifest.json
+msgid "Redirect"
+msgstr "Yönlendir"
+
+#: app/manifest.json
+msgid "Code"
+msgstr "Kod"
+
+#: app/manifest.json
+msgid "Switcher place"
+msgstr "Seçicinin yeri"
+
+#: app/manifest.json
+msgid "Header"
+msgstr "Üst bilgi"
+
+#: app/manifest.json
+msgid "Saved"
+msgstr "Kaydedildi"
+
+#: app/manifest.json
+msgid "Language added"
+msgstr "Dil eklendi"

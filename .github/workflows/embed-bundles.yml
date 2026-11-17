@@ -1,0 +1,37 @@
+name: Embedded React bundles
+
+# A plugin's React screens ship as a built bundle (plugins/<slug>/assets/flux). When a PR changes a plugin's
+# screen source (packages/modules/src/<module>/) the committed bundle has to be rebuilt too, otherwise sites
+# keep the old screens. This rebuilds the bundle of the plugins the PR touches and fails on a difference.
+# Script and rules: tools/fluxapp/check-bundles.sh
+
+on:
+  pull_request:
+    paths:
+      - 'packages/modules/src/**'
+      - 'packages/core/src/**'
+      - 'packages/ui/src/**'
+      - 'apps/wp-embed/**'
+      - 'plugins/*/assets/flux/**'
+      - 'tools/fluxapp/embed-sync.sh'
+      - 'tools/fluxapp/check-bundles.sh'
+      - '.github/workflows/embed-bundles.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  bundles:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: oven-sh/setup-bun@v2
+        with: { bun-version: 1.4.4 }
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - run: bun install --frozen-lockfile
+      - name: Embedded bundles match the sources
+        run: bash tools/fluxapp/check-bundles.sh "origin/${{ github.base_ref }}"

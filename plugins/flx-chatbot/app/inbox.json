@@ -1,0 +1,131 @@
+{
+  "id": "chatbot-inbox",
+  "plugin": "flx-chatbot",
+  "min_app": "1.0.0",
+  "platforms": ["mobile"],
+  "title": "Site chats",
+  "icon": "chat",
+  "menu": "flx-chatbot-inbox",
+  "entry": "chats",
+  "fallback": { "web": "admin.php?page=flx-chatbot-inbox" },
+  "routes": {
+    "admin.php?page=flx-chatbot-inbox": { "screen": "chats" }
+  },
+  "sources": {
+    "chats": {
+      "graphql": { "op": "FlxChatbotConversationList", "data": "flxChatbotConversations" },
+      "paging": { "mode": "none", "items": "nodes" },
+      "key": "id",
+      "cache": { "stale": 10 },
+      "poll": 20
+    },
+    "chat": {
+      "graphql": { "op": "FlxChatbotConversationOpen", "variables": { "id": "{{params.id}}" } },
+      "cache": { "stale": 5 },
+      "poll": 10
+    }
+  },
+  "screens": {
+    "chats": {
+      "type": "list",
+      "title": "Site chats",
+      "source": "chats",
+      "search": { "param": "search", "placeholder": "Search name, email or message" },
+      "filters": [
+        {
+          "param": "filter",
+          "label": "Show",
+          "type": "select",
+          "options": [
+            { "value": "", "label": "Open" },
+            { "value": "AGENT", "label": "With a person" },
+            { "value": "BOT", "label": "With the bot" },
+            { "value": "OFFLINE", "label": "Waiting (offline)" },
+            { "value": "CLOSED", "label": "Closed" },
+            { "value": "ALL", "label": "All" }
+          ]
+        }
+      ],
+      "item": {
+        "title": "{{title|default:name}}",
+        "subtitle": "{{lastMessage.body|truncate:90}}",
+        "caption": "{{lastActivity.relative}}",
+        "avatar": { "text": "{{name|initials}}" },
+        "unread": { "path": "unread", "op": "truthy" },
+        "badges": [
+          { "text": "Online", "tone": "ok", "when": { "path": "online", "op": "truthy" } },
+          { "text": "Lead", "tone": "accent", "when": { "path": "isLead", "op": "truthy" } },
+          { "text": "Closed", "tone": "muted", "when": { "path": "status", "op": "eq", "value": "CLOSED" } }
+        ]
+      },
+      "onPress": { "target": "screen:chatbot-inbox/chat", "params": { "id": "{{id}}" } },
+      "empty": { "title": "No chats", "body": "Chats from the site widget show up here." }
+    },
+    "chat": {
+      "type": "detail",
+      "source": "chat",
+      "header": {
+        "title": "{{flxChatbotConversation.title|default:flxChatbotConversation.name}}",
+        "subtitle": "{{flxChatbotConversation.email|default:flxChatbotConversation.phone}}",
+        "avatar": { "text": "{{flxChatbotConversation.name|initials}}" },
+        "quick": ["reply", "call", "mail"]
+      },
+      "sections": [
+        { "type": "notice", "tone": "info", "text": "{{flxChatbotConversation.summary}}", "when": { "path": "flxChatbotConversation.summary", "op": "filled" } },
+        {
+          "type": "timeline",
+          "path": "flxChatbotMessages.nodes",
+          "item": { "title": "{{author|default:role}}", "body": "{{body}}", "at": "{{sentAt.label}}", "link": "{{file.url}}" }
+        },
+        {
+          "type": "fields",
+          "title": "Visitor",
+          "fields": [
+            { "label": "Page", "value": "{{flxChatbotConversation.pageTitle|default:flxChatbotConversation.pageUrl}}", "link": "{{flxChatbotConversation.pageUrl}}" },
+            { "label": "Order", "value": "#{{flxChatbotConversation.orderId}}", "when": { "path": "flxChatbotConversation.orderId", "op": "truthy" } },
+            { "label": "Rating", "value": "{{flxChatbotConversation.rating}} {{flxChatbotConversation.ratingNote}}", "when": { "path": "flxChatbotConversation.rating", "op": "truthy" } }
+          ]
+        }
+      ],
+      "actions": { "footer": ["reply"], "header": ["close", "delete"] }
+    }
+  },
+  "actions": {
+    "reply": {
+      "label": "Reply",
+      "icon": "send",
+      "prompt": { "title": "Reply", "fields": [{ "name": "text", "type": "textarea", "label": "Message", "required": true }] },
+      "request": { "graphql": { "op": "FlxChatbotConversationReply", "variables": { "input": { "id": "{{params.id}}", "text": "{{input.text}}" } }, "data": "flxChatbotConversationReply" } },
+      "after": { "invalidate": ["chat", "chats"] },
+      "haptic": "success"
+    },
+    "call": {
+      "label": "Call",
+      "icon": "phone",
+      "when": { "path": "flxChatbotConversation.phone", "op": "filled" },
+      "open": "tel:{{flxChatbotConversation.phone}}"
+    },
+    "mail": {
+      "label": "Email",
+      "icon": "mail",
+      "when": { "path": "flxChatbotConversation.email", "op": "filled" },
+      "open": "mailto:{{flxChatbotConversation.email}}"
+    },
+    "close": {
+      "label": "Close chat",
+      "icon": "check",
+      "when": { "path": "flxChatbotConversation.status", "op": "ne", "value": "CLOSED" },
+      "request": { "graphql": { "op": "FlxChatbotConversationClose", "variables": { "input": { "id": "{{params.id}}" } }, "data": "flxChatbotConversationClose" } },
+      "after": { "toast": "Closed", "invalidate": ["chat", "chats"] }
+    },
+    "delete": {
+      "label": "Delete",
+      "icon": "trash",
+      "tone": "danger",
+      "confirm": { "title": "Delete this chat?", "body": "Its messages are removed for good.", "ok": "Delete" },
+      "request": { "graphql": { "op": "FlxChatbotConversationDelete", "variables": { "input": { "id": "{{params.id}}" } }, "data": "flxChatbotConversationDelete" } },
+      "after": { "toast": "Deleted", "back": true, "invalidate": ["chats"] },
+      "haptic": "warning"
+    }
+  }
+}

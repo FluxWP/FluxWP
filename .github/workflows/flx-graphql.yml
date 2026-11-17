@@ -31,8 +31,12 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: pdo_sqlite, sqlite3, mbstring, intl
-          tools: wp-cli
           coverage: none
+      - name: WP-CLI
+        run: |
+          sudo curl -fsSL --retry 5 --retry-all-errors --retry-delay 3 -o /usr/local/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+          sudo chmod +x /usr/local/bin/wp
+          wp --version
       - name: PHP syntax
         run: find plugins/flx-graphql -name '*.php' -not -path '*/vendor/*' -print0 | xargs -0 -n1 php -l >/dev/null
       - name: Translations are complete
@@ -59,8 +63,12 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: pdo_sqlite, sqlite3, mbstring, intl
-          tools: wp-cli
           coverage: none
+      - name: WP-CLI
+        run: |
+          sudo curl -fsSL --retry 5 --retry-all-errors --retry-delay 3 -o /usr/local/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+          sudo chmod +x /usr/local/bin/wp
+          wp --version
       - name: Kit, HTTP and cart bridge tests with WooCommerce
         env:
           TEST_ROOT: ${{ runner.temp }}/flx-test

@@ -25,3 +25,32 @@ add_filter(
 		return $m;
 	}
 );
+
+/*
+ * Shared app manifest (app/manifest.json): the mobile app draws these screens natively over GraphQL.
+ * The desktop panel keeps the React screen above, so the manifest is for mobile only.
+ */
+add_action(
+	'plugins_loaded',
+	static function () {
+		if ( ! function_exists( 'flxapp_manifest_file' ) ) {
+			return;
+		}
+		add_filter(
+			'flxapp_manifest',
+			static function ( $m ) {
+				$m             = is_array( $m ) ? $m : array();
+				$m['headless'] = flxapp_manifest_file(
+					FLXHL_DIR . 'app/manifest.json',
+					'flx-headless',
+					array(
+						'version' => FLXHL_VERSION,
+						'caps'    => array( 'view' => 'manage_options' ),
+					)
+				);
+				return $m;
+			}
+		);
+	},
+	20
+);

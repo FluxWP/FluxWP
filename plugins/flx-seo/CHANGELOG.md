@@ -1,7 +1,10 @@
 # Değişiklikler
 
-## 1.11.2
+## 1.12.1
 - Ortak modül paketi yenilendi: ekranın parçaları sayfa başında birlikte iner, giriş dosyası iki kez çalışmaz, ayar ekranlarında ilk karede yükleniyor göstergesi çıkmaz.
+
+## 1.12.0
+- FluxWP mobil uygulamasında SEO (denetim özeti, bulgular ve tek dokunuşla düzeltme, içerik kontrolü, denetim geçmişi, ayarlar; denetim ve PageSpeed başlatma) artık web görünümü yerine uygulamanın kendi ekranlarında açılır (manifest `app/manifest.json`, veri GraphQL'den). Masaüstü ve wp-admin aynı React ekranında kalır. Yeni metinlerin Türkçesi eklendi.
 
 ## 1.11.1
 - SEO ekranı Flux GraphQL ekran kabuğuyla açılır: ayarlar PHP'den hazır gelir, diğer Flux ekranlarına menüden geçiş sayfa yenilemeden olur.

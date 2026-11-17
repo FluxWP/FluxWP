@@ -1,8 +1,11 @@
 # Flux AI Chatbot
 
-## 0.2.1
+## 0.3.1
 - wp-admin ekranı Flux GraphQL ekran kabuğundan açılır: ilk veri PHP'de sayfaya basılır (yükleniyor göstergesi yok), menüden diğer Flux ekranlarına sayfa yenilenmeden geçilir. Ekranın parçaları sayfa başında birlikte iner (modulepreload).
 - Ortak modül paketi yenilendi.
+
+## 0.3.0
+- FluxWP mobil uygulamasında Sohbet botu native çizilir (ortak manifest `app/manifest.json` + `app/inbox.json`, GraphQL): son 30 gün özeti ve durum, temel ayarlar (kim cevaplar, karşılama, e-posta, puan, dosya), site sohbetleri listesi (arama, filtre), sohbet ayrıntısı (mesajlar, cevapla, kapat, sil, ara/e-posta). Flux Chat birleşik gelen kutusu açıksa sohbetler orada kalır. Masaüstü panel React ekranlarını kullanmaya devam eder.
 
 ## 0.2.0
 - Chatbot ayarları ve Site sohbetleri ekranları yenilendi: aynı özellikler (6 sekme, rakamlar, bağlantı durumu, canlı önizleme; sohbet listesi, filtre, arama, yanıt, dosya, kapatma, silme) ortak FluxWP ekranında, açık/koyu temaya uyar ve FluxWP uygulamasında da açılır. wp-admin'de varsayılan budur; eski görünüm sayfadaki "Klasik görünüm" bağlantısıyla açılır (kullanıcı başına hatırlanır).

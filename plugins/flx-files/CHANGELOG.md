@@ -1,8 +1,11 @@
 # Changelog
 
-## 0.2.1
+## 0.3.1
 - wp-admin ekranı Flux GraphQL ekran kabuğundan açılır: ilk veri PHP'de sayfaya basılır (yükleniyor göstergesi yok), menüden diğer Flux ekranlarına sayfa yenilenmeden geçilir. Ekranın parçaları sayfa başında birlikte iner (modulepreload).
 - Ortak modül paketi yenilendi.
+
+## 0.3.0
+- FluxWP mobil uygulamasında Dosyalar native çizilir (ortak manifest `app/manifest.json`, GraphQL): klasörlerde gezinme, dosya içeriği ve bilgisi, yeni klasör, yeniden adlandır, çöp kutusuna taşı, çöp kutusundan geri al. Düzenleme panelde.
 
 ## 0.2.0
 - New React file manager screen is the default in wp-admin: same features as before (list/grid, tree and editor, search, trash, activity log, versions with diff, sharing, settings, AI explain/edit, chunked uploads), now on GraphQL. The classic screen stays one click away ("Classic view", remembered per user).

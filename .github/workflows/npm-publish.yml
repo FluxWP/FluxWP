@@ -1,0 +1,77 @@
+name: npm publish
+
+# Publishes the open @fluxwp packages (tools/npm/packages.ts) to npm, public, with provenance.
+# Only versions that are not on npm yet go out, so a run is safe to repeat. Versions:
+#   @fluxwp/graphql, @fluxwp/modules (→ @fluxwp/host): "JS package versions" release PR (.changes/README.md)
+#   @fluxwp/tokens, core, ui, plugin-kit: the version in their package.json
+# Secret NPM_TOKEN: npm granular token, read and write on the @fluxwp scope (expires after 90 days; npm
+# trusted publishing replaces it once each package exists).
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'packages/tokens/package.json'
+      - 'packages/core/package.json'
+      - 'packages/ui/package.json'
+      - 'packages/graphql/package.json'
+      - 'packages/modules/package.json'
+      - 'packages/plugin-kit/package.json'
+      - 'tools/npm/**'
+      - '.github/workflows/npm-publish.yml'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Stage and pack only, publish nothing'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: npm-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: oven-sh/setup-bun@v2
+        with: { bun-version: 1.4.4 }
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+      # bun install generates @fluxwp/graphql's operations, types and schema/full.graphql.
+      - run: bun install --frozen-lockfile
+      - name: Runtime exports are current
+        run: bun run --filter @fluxwp/plugin-kit exports:check
+      - name: Stage packages
+        run: bun tools/npm/pack.ts
+      - name: Publish new versions
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
+        run: |
+          set -euo pipefail
+          for dir in dist-npm/*/; do
+            name="$(node -p "require('./$dir/package.json').name")"
+            version="$(node -p "require('./$dir/package.json').version")"
+            if npm view "$name@$version" version >/dev/null 2>&1; then
+              echo "$name@$version is on npm already"
+              continue
+            fi
+            if [ "$DRY_RUN" = true ]; then
+              (cd "$dir" && npm pack --dry-run)
+              continue
+            fi
+            if [ -z "$NODE_AUTH_TOKEN" ]; then
+              echo "::error title=NPM_TOKEN::Secret missing (FluxWP/FluxWP > Settings > Secrets > Actions)."
+              exit 1
+            fi
+            (cd "$dir" && npm publish --access public --provenance)
+            echo "::notice title=Published::$name@$version"
+          done

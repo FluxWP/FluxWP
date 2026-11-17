@@ -84,6 +84,7 @@ function load(host: ModuleHost): Promise<Legacy> {
     const Y = window.FLXG!;
     bridge(Y); // docs.js yüklenirken Y.S'yi yakalar: önce köprü.
     await import('../../../../plugins/flx-tasks/assets/js/docs.js');
+    await import('../../../../plugins/flx-tasks/assets/js/doc-comments.js');
     return Y;
   })();
   loading.catch(() => (loading = null));

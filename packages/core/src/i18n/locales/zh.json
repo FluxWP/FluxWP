@@ -312,7 +312,11 @@
     "restart": "重启即可更新",
     "download": "下载",
     "installing": "正在安装...",
-    "failed": "无法检查"
+    "failed": "无法检查",
+    "available": "有可用更新：{{version}}",
+    "downloadFailed": "下载失败",
+    "retry": "重试",
+    "downloadingShort": "正在下载 {{pct}}"
   },
   "legal": {
     "title": "法律信息",

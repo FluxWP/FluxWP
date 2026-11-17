@@ -1,8 +1,11 @@
 # Changelog
 
-## 0.3.1
+## 0.4.1
 - wp-admin ekranı Flux GraphQL ekran kabuğundan açılır: ilk veri PHP'de sayfaya basılır (yükleniyor göstergesi yok), menüden diğer Flux ekranlarına sayfa yenilenmeden geçilir. Ekranın parçaları sayfa başında birlikte iner (modulepreload).
 - Ortak modül paketi yenilendi.
+
+## 0.4.0
+- FluxWP mobil uygulamasında Blok Düzenleyici native çizilir (ortak manifest `app/manifest.json`, GraphQL): blokları aç/kapat, bağlı desen kütüphaneleri. Masaüstü panel React ekranını kullanmaya devam eder.
 
 ## 0.3.0
 - GraphQL (Flux GraphQL gerekir, PHP 8.1+): her içerik tipinde `flxBlocks` alanı; headless ön yüz bir sayfayı sitedeki gibi göstermek için işlenmiş HTML'i, blok CSS'ini, stil/betik/modül dosyalarını (bağımlılık sırasıyla), yazı tiplerini, FAQ şemasını, hazır `headHtml`/`footerHtml`'i ve düz blok ağacını tek yanıtta alır. Site geneli stiller `flxBlocksSiteStyles`, taslak/desen önizlemesi `flxBlocksRender`. Belge docs/flx-blocks/GRAPHQL.md.

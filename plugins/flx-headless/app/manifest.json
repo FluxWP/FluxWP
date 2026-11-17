@@ -1,0 +1,170 @@
+{
+  "id": "headless",
+  "plugin": "flx-headless",
+  "min_app": "1.0.0",
+  "platforms": ["mobile"],
+  "title": "Headless",
+  "icon": "globe",
+  "menu": "flx-headless",
+  "entry": "frontends",
+  "tabs": ["frontends", "log"],
+  "fallback": { "web": "admin.php?page=flx-headless" },
+  "routes": {
+    "admin.php?page=flx-headless": { "screen": "frontends" }
+  },
+  "sources": {
+    "frontends": {
+      "graphql": { "op": "FlxHeadlessScreen", "data": "flxHeadlessSettings" },
+      "paging": { "mode": "none", "items": "frontends" },
+      "key": "id",
+      "cache": { "stale": 30 }
+    },
+    "log": {
+      "graphql": { "op": "FlxHeadlessScreen", "data": "flxHeadlessSettings" },
+      "paging": { "mode": "none", "items": "deliveries" },
+      "cache": { "stale": 15 }
+    }
+  },
+  "screens": {
+    "frontends": {
+      "type": "list",
+      "title": "Front ends",
+      "source": "frontends",
+      "item": {
+        "title": "{{name}}",
+        "subtitle": "{{url}}",
+        "caption": "{{languages|join}}",
+        "badges": [
+          { "text": "Default", "tone": "accent", "when": { "path": "isDefault", "op": "truthy" } },
+          { "text": "Off", "tone": "muted", "when": { "path": "enabled", "op": "falsy" } },
+          { "text": "No webhook", "tone": "warn", "when": { "path": "revalidateUrl", "op": "empty" } }
+        ]
+      },
+      "actions": {
+        "header": ["frontend_add", "revalidate_all", "wp_front"],
+        "fab": "frontend_add",
+        "row": ["frontend_open", "frontend_test", "frontend_on", "frontend_off", "frontend_default", "frontend_delete"]
+      },
+      "empty": { "title": "No front ends", "body": "Add the address of a Next.js or other headless site." }
+    },
+    "frontend_new": {
+      "type": "form",
+      "title": "New front end",
+      "submit": { "graphql": { "op": "FlxHeadlessFrontendSave", "data": "flxHeadlessFrontendSave" } },
+      "fields": [
+        { "name": "name", "type": "text", "label": "Name", "required": true },
+        { "name": "url", "type": "url", "label": "Address", "placeholder": "https://", "required": true },
+        { "name": "revalidateUrl", "type": "url", "label": "Revalidate webhook", "help": "WordPress calls it after a change so the front end refreshes its pages." },
+        { "name": "secret", "type": "secret", "label": "Webhook secret", "help": "Signs each webhook (HMAC). Empty creates one." },
+        { "name": "previewPath", "type": "text", "label": "Preview path", "placeholder": "/api/preview" },
+        { "name": "isDefault", "type": "switch", "label": "Default front end" },
+        { "name": "enabled", "type": "switch", "label": "On", "default": true }
+      ],
+      "after": { "toast": "Saved", "back": true, "invalidate": ["frontends", "log"] }
+    },
+    "log": {
+      "type": "list",
+      "title": "Webhook log",
+      "source": "log",
+      "item": {
+        "title": "{{frontendName}} · {{event}}",
+        "subtitle": "{{paths|join}}",
+        "meta": "{{ms}} ms",
+        "caption": "{{time.label}}",
+        "badges": [
+          { "text": "{{status}}", "tone": "danger", "when": { "path": "ok", "op": "falsy" } },
+          { "text": "{{status}}", "tone": "ok", "when": { "path": "ok", "op": "truthy" } }
+        ]
+      },
+      "actions": { "header": ["log_clear"] },
+      "empty": { "title": "No webhooks yet", "body": "Each change sent to a front end shows up here." }
+    }
+  },
+  "actions": {
+    "frontend_add": {
+      "label": "Add front end",
+      "icon": "plus",
+      "navigate": { "target": "screen:headless/frontend_new" }
+    },
+    "frontend_open": {
+      "label": "Open site",
+      "icon": "external",
+      "when": { "path": "url", "op": "filled" },
+      "open": "{{url}}"
+    },
+    "frontend_test": {
+      "label": "Send test webhook",
+      "icon": "send",
+      "when": { "path": "revalidateUrl", "op": "filled" },
+      "request": { "graphql": { "op": "FlxHeadlessRevalidateTest", "variables": { "id": "{{id}}" }, "data": "flxHeadlessRevalidateTest" } },
+      "after": { "toast": "Test sent", "invalidate": ["log", "frontends"] }
+    },
+    "frontend_on": {
+      "label": "Turn on",
+      "icon": "yes",
+      "when": { "path": "enabled", "op": "falsy" },
+      "request": { "graphql": { "op": "FlxHeadlessFrontendSave", "variables": { "input": { "id": "{{id}}", "enabled": true } }, "data": "flxHeadlessFrontendSave" } },
+      "after": { "toast": "Turned on", "invalidate": ["frontends"] }
+    },
+    "frontend_off": {
+      "label": "Turn off",
+      "icon": "no",
+      "when": { "path": "enabled", "op": "truthy" },
+      "request": { "graphql": { "op": "FlxHeadlessFrontendSave", "variables": { "input": { "id": "{{id}}", "enabled": false } }, "data": "flxHeadlessFrontendSave" } },
+      "after": { "toast": "Turned off", "invalidate": ["frontends"] }
+    },
+    "frontend_default": {
+      "label": "Make default",
+      "icon": "star",
+      "when": { "path": "isDefault", "op": "falsy" },
+      "request": { "graphql": { "op": "FlxHeadlessFrontendSave", "variables": { "input": { "id": "{{id}}", "isDefault": true } }, "data": "flxHeadlessFrontendSave" } },
+      "after": { "toast": "Default changed", "invalidate": ["frontends"] }
+    },
+    "frontend_delete": {
+      "label": "Delete",
+      "icon": "trash",
+      "tone": "danger",
+      "confirm": { "title": "Delete {{name}}?", "body": "WordPress stops sending it webhooks.", "ok": "Delete" },
+      "request": { "graphql": { "op": "FlxHeadlessFrontendDelete", "variables": { "id": "{{id}}" }, "data": "flxHeadlessFrontendDelete" } },
+      "after": { "toast": "Deleted", "invalidate": ["frontends"] },
+      "haptic": "warning"
+    },
+    "revalidate_all": {
+      "label": "Refresh all pages",
+      "icon": "refresh",
+      "confirm": { "title": "Refresh every page?", "body": "Each front end rebuilds its pages.", "ok": "Refresh" },
+      "request": { "graphql": { "op": "FlxHeadlessRevalidateAll", "data": "flxHeadlessRevalidateAll" } },
+      "after": { "toast": "Sent", "invalidate": ["log"] }
+    },
+    "wp_front": {
+      "label": "WordPress pages",
+      "icon": "settings",
+      "prompt": {
+        "title": "WordPress pages",
+        "fields": [
+          {
+            "name": "mode",
+            "type": "radio",
+            "label": "When a front end is on",
+            "required": true,
+            "options": [
+              { "value": "KEEP", "label": "Keep showing WordPress pages" },
+              { "value": "NOINDEX", "label": "Keep open, point search engines to the front end" },
+              { "value": "REDIRECT", "label": "Send visitors to the front end" }
+            ]
+          }
+        ]
+      },
+      "request": { "graphql": { "op": "FlxHeadlessWpFrontSet", "variables": { "mode": "{{input.mode}}" }, "data": "flxHeadlessWpFrontSet" } },
+      "after": { "toast": "Saved", "invalidate": ["frontends"] }
+    },
+    "log_clear": {
+      "label": "Clear log",
+      "icon": "trash",
+      "tone": "danger",
+      "confirm": { "title": "Clear the webhook log?", "ok": "Clear" },
+      "request": { "graphql": { "op": "FlxHeadlessLogClear", "data": "flxHeadlessLogClear" } },
+      "after": { "toast": "Cleared", "invalidate": ["log"] }
+    }
+  }
+}

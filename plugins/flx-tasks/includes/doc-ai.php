@@ -217,11 +217,14 @@ function flxg_doc_blocks_text( array $blocks, $max = 14000 ) {
 function flxg_tool_page_or_fail( $page_id, $need = 'view' ) {
 	$p   = flxg_get_page( (int) $page_id );
 	$doc = flxg_page_doc( $p );
-	if ( ! $doc || ! flxg_can_doc( $doc ) ) {
+	if ( ! $doc || ! FLXG_Doc_Service::can( (int) $p['id'], 'view', get_current_user_id() ) ) {
 		flxg_tool_fail( 'Document page #' . (int) $page_id . ' not found or no access. Use list_docs.' );
 	}
-	if ( 'edit' === $need && ! flxg_can_doc( $doc, 'edit' ) ) {
-		flxg_tool_fail( 'No edit permission on this document.' );
+	if ( 'edit' === $need ) {
+		$ok = FLXG_Doc_Service::can_write( (int) $p['id'], get_current_user_id() );
+		if ( is_wp_error( $ok ) ) {
+			flxg_tool_fail( 'flxg_locked' === $ok->get_error_code() ? 'This page is locked. Ask the user to unlock it first.' : 'No edit permission on this page.' );
+		}
 	}
 	return array( $p, $doc );
 }
@@ -326,7 +329,7 @@ function flxg_tool_list_docs( $a ) {
 		if ( $sp && (int) $d['space_id'] !== $sp ) {
 			continue;
 		}
-		$pages = flxg_doc_pages( $d['id'] );
+		$pages = flxg_doc_pages_for( $d['id'] );
 		if ( '' !== $q ) {
 			$hit = false !== mb_strpos( mb_strtolower( $d['title'] ), $q );
 			foreach ( $pages as $p ) {
@@ -364,7 +367,7 @@ function flxg_tool_get_doc_page( $a ) {
 		if ( ! $doc || ! flxg_can_doc( $doc ) ) {
 			flxg_tool_fail( 'Document #' . (int) $a['doc_id'] . ' not found or no access.' );
 		}
-		$first = flxg_doc_pages( $doc['id'] );
+		$first = flxg_doc_pages_for( $doc['id'] );
 		$pid   = $first ? (int) $first[0]['id'] : 0;
 	}
 	list( $p, $doc ) = flxg_tool_page_or_fail( $pid );
@@ -384,7 +387,8 @@ function flxg_tool_get_doc_page( $a ) {
 		'page_id'   => (int) $p['id'],
 		'title'     => (string) $p['title'],
 		'url_hash'  => flxg_doc_hash( $doc['id'], $p['id'] ),
-		'can_edit'  => flxg_can_doc( $doc, 'edit' ),
+		'can_edit'  => true === FLXG_Doc_Service::can_write( (int) $p['id'], get_current_user_id() ),
+		'locked'    => FLXG_Doc_Service::locked( (int) $p['id'] ),
 		'blocks'    => $blocks,
 	);
 }
@@ -499,6 +503,9 @@ function flxg_tool_create_doc_page( $a ) {
 		flxg_tool_fail( 'Document not found or no edit permission.' );
 	}
 	$uid = get_current_user_id();
+	if ( ! empty( $a['parent_id'] ) && ! FLXG_Doc_Service::can( (int) $a['parent_id'], 'edit', $uid ) ) {
+		flxg_tool_fail( 'No edit permission on the parent page.' );
+	}
 	$pid = flxg_create_doc_page( $doc['id'], array( 'title' => (string) ( $a['title'] ?? '' ), 'parent' => (int) ( $a['parent_id'] ?? 0 ) ), $uid );
 	$n   = 0;
 	if ( $pid && ! empty( $a['html'] ) ) {
@@ -598,7 +605,7 @@ function flxg_doc_ai_actions() {
 function flxg_doc_ai_run( $page_id, array $b ) {
 	$p   = flxg_get_page( (int) $page_id );
 	$doc = flxg_page_doc( $p );
-	if ( ! $doc || ! flxg_can_doc( $doc ) ) {
+	if ( ! $doc || ! FLXG_Doc_Service::can( (int) $p['id'], 'view', get_current_user_id() ) ) {
 		return flxg_error( 'flxg_404', __( 'Page not found or you have no access.', 'flx-tasks' ), 404 );
 	}
 	$acts   = flxg_doc_ai_actions();
