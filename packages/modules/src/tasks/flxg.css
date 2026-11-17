@@ -2034,3 +2034,42 @@ body.flxg-col-resizing, body.flxg-col-resizing * { cursor: col-resize !important
 .flxg-dnd-ghost .flxg-row { background: var(--panel); }
 .is-drop-over { background: color-mix(in srgb, var(--accent) 6%, transparent); }
 .is-drag-hidden { opacity: .35; }
+
+/* ---------------- Liste görünümü: sade ve kompakt ---------------- */
+.flxg-flux .flxg-listview { padding: 0 12px 80px 22px; }
+.flxg-flux .flxg-group { margin-bottom: 6px; }
+.flxg-flux .flxg-group-head { gap: 6px; padding: 8px 0 4px; }
+.flxg-flux .flxg-gpill { height: 22px; padding: 0 8px; border-radius: 6px; font-size: 11.5px; letter-spacing: .03em; }
+.flxg-flux .flxg-gcount { font-size: 12px; margin-left: 2px; }
+.flxg-flux .flxg-group-head .flxg-caret { width: 20px; height: 20px; }
+.flxg-gcheck { width: 34px; height: 22px; flex: none; margin-right: -6px; display: flex; align-items: center; justify-content: center; opacity: 0; }
+.flxg-gcheck input { margin: 0; }
+.flxg-group-head:hover .flxg-gcheck, .flxg-gcheck:focus-within, .flxg-gcheck:has(input:checked) { opacity: 1; }
+.flxg-gtools { display: inline-flex; align-items: center; gap: 2px; margin-left: 4px; opacity: 0; }
+.flxg-group-head:hover .flxg-gtools, .flxg-gtools:focus-within { opacity: 1; }
+.flxg-listview.is-mobile .flxg-gtools { opacity: 1; }
+.flxg-listview.is-mobile .flxg-gcheck { display: none; }
+.flxg-gtool { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; padding: 0; border: 0; border-radius: 5px; background: none; color: var(--muted); cursor: pointer; }
+.flxg-gtool:hover { background: var(--hover); color: var(--ink); }
+.flxg-flux .flxg-row { min-height: 32px; border-bottom-color: var(--line-2); }
+.flxg-flux .flxg-row.is-head { min-height: 26px; border-bottom: 1px solid var(--line-2); font-size: 11px; font-weight: 500; }
+.flxg-flux .flxg-row.is-head > .flxg-hcell { height: 26px; }
+.flxg-flux .flxg-row.is-head > span { padding: 0 8px; }
+.flxg-flux .flxg-cell { padding: 0 8px; gap: 5px; font-size: 12.5px; }
+.flxg-flux .flxg-title-cell { gap: 7px; padding-left: 0; }
+.flxg-flux .flxg-title { font-size: 13px; font-weight: 450; }
+.flxg-flux .flxg-listview.is-wrap .flxg-row:not(.is-head) > .flxg-cell { padding-top: 4px; padding-bottom: 4px; }
+.flxg-flux .flxg-add-btn { height: 30px; padding-left: 34px; font-size: 12.5px; gap: 6px; border-radius: 6px; width: auto; }
+.flxg-flux .flxg-inline-add { border-bottom: 1px solid var(--line-2); }
+.flxg-flux .flxg-qa { min-height: 40px; padding: 4px 8px 4px 6px; gap: 6px 8px; }
+.flxg-flux .flxg-qa-input { height: 30px; font-size: 13px; }
+.flxg-flux .flxg-qa-btn { height: 26px; min-width: 26px; border-radius: 7px; }
+.flxg-flux .flxg-row-act { width: 24px; height: 24px; border-radius: 6px; }
+.flxg-flux .flxg-row-actions { gap: 4px; }
+/* Sürükleme tutamacı: satırın solunda, üstüne gelince çıkar; metni itmez. */
+.flxg-grip { display: inline-flex; flex: none; color: var(--faint); cursor: grab; opacity: 0; width: 12px; height: 20px; align-items: center; justify-content: center; margin-left: 2px; }
+.flxg-flux .flxg-row .flxg-check { gap: 2px; }
+.flxg-row:hover .flxg-grip { opacity: 1; }
+.flxg-row.is-dragging .flxg-grip { cursor: grabbing; }
+.flxg-listview.is-mobile .flxg-grip { display: none; }
+.flxg-flux .flxg-badges { flex-wrap: nowrap; white-space: nowrap; }
