@@ -19,6 +19,8 @@ export const WP_URL = wp || (process.env.FLUX_GRAPHQL_URL ? new URL(process.env.
  * built here from GraphQL data (app/[[...slug]]), a starting point for a design of your own.
  */
 export const RENDER: 'wordpress' | 'react' = process.env.FLUX_RENDER === 'react' ? 'react' : 'wordpress';
+/** Optional public address of this front end (https://www.example.com), used for the sitemap line in robots.txt. */
+export const SITE_URL = (process.env.FLUX_SITE_URL ?? '').trim().replace(/\/+$/, '');
 /** Flux GraphQL endpoint: FLUX_GRAPHQL_URL, else <FLUX_WP_URL>/graphql. */
 export const GRAPHQL_URL = process.env.FLUX_GRAPHQL_URL || (wp ? `${wp}/graphql` : '');
 /** Front end id in WordPress; empty answers as the default front end. */
