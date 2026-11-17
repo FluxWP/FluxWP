@@ -183,7 +183,7 @@ if ( str_ends_with( $path, '/' ) ) {
 $r  = flxhl_t_op( 'FlxRoute', array( 'path' => '/flxhl-there-is-nothing-here/' ) );
 $rt = $r['data']['flxRoute'] ?? array();
 flxt_same( array( 'NOT_FOUND', 404, true, null ), array( $rt['kind'] ?? null, $rt['status'] ?? null, $rt['head']['noindex'] ?? null, $rt['node'] ?? null ), 'flxRoute: unknown address → 404, noindex, no node' );
-foreach ( array( '/category/flxhl-no-such-category/', '/author/flxhl-no-such-author/', '/page/999/' ) as $p ) {
+foreach ( array( '/category/flxhl-no-such-category/', '/author/flxhl-no-such-author/', '/category/uncategorized/page/999/' ) as $p ) {
 	flxt_same( 'NOT_FOUND', flxhl_t_op( 'FlxRoute', array( 'path' => $p ) )['data']['flxRoute']['kind'] ?? null, "flxRoute: $p (nothing there) → NOT_FOUND" );
 }
 foreach ( array( '/wp-admin/', '/wp-login.php', '/graphql' ) as $p ) {

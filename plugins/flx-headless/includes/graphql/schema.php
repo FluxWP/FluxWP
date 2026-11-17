@@ -546,6 +546,11 @@ flx_gql_query(
 			}
 			$r = FLXHL_Route_Service::resolve( flx_gql_str( $args['path'] ?? '/' ), flxhl_gql_opt( $args, 'lang' ), flxhl_gql_opt( $args, 'frontend' ), $preview );
 			flx_gql_cache_tag( array_merge( $r->cache_tags, array( FLXHL_Frontend_Service::CACHE_TAG ) ) );
+			// The node's fields (content, title, links) resolve after this, in the request's language; keep the
+			// route's language for the rest of the request so they match the address (Flux Lang).
+			if ( null !== $r->lang && function_exists( 'flxl_switch_language' ) && function_exists( 'flxl_current_language' ) && flxl_current_language() !== $r->lang ) {
+				flxl_switch_language( $r->lang );
+			}
 			return $r;
 		},
 	)
