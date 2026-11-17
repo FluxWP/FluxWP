@@ -263,8 +263,8 @@ final class FLXHL_Site_Service {
 				if ( ! $it instanceof WP_Post ) {
 					continue;
 				}
-				$parent = flxhl_int( $it->menu_item_parent ?? 0 ); // @phpstan-ignore property.notFound (nav menu item fields)
-				$rows[] = self::item( 'm' . $it->ID, $parent ? 'm' . $parent : null, flxhl_str( $it->title ?? '' ), flxhl_str( $it->url ?? '' ), flxhl_str( $it->target ?? '' ), (int) $i, $fe ); // @phpstan-ignore property.notFound
+				$parent = flxhl_int( $it->menu_item_parent ?? 0 );
+				$rows[] = self::item( 'm' . $it->ID, $parent ? 'm' . $parent : null, flxhl_str( $it->title ?? '' ), flxhl_str( $it->url ?? '' ), flxhl_str( $it->target ?? '' ), (int) $i, $fe );
 			}
 			$out[] = array( 'location' => (string) $loc, 'name' => $menu->name, 'source' => 'classic', 'items' => $rows );
 		}
@@ -279,7 +279,7 @@ final class FLXHL_Site_Service {
 				++$n;
 				$out[] = array(
 					'location' => 1 === $n ? $part : $part . '-' . $n,
-					'name'     => flxhl_str( $nav['attrs']['ariaLabel'] ?? '' ),
+					'name'     => flxhl_str( flxhl_arr( $nav['attrs'] ?? array() )['ariaLabel'] ?? '' ),
 					'source'   => 'block',
 					'items'    => $rows,
 				);
@@ -291,8 +291,9 @@ final class FLXHL_Site_Service {
 		 * @param list<array<string,mixed>> $out Menus.
 		 * @param FLXHL_Frontend|null       $fe  Front end.
 		 */
-		$filtered = apply_filters( 'flx_headless_menus', $out, $fe );
-		return is_array( $filtered ) ? array_values( array_filter( $filtered, 'is_array' ) ) : $out;
+		/** @var list<array<string,mixed>> $menus */
+		$menus = array_values( array_filter( flxhl_arr( apply_filters( 'flx_headless_menus', $out, $fe ) ), 'is_array' ) );
+		return $menus;
 	}
 
 	/** @return array<string,mixed> */
@@ -393,7 +394,7 @@ final class FLXHL_Site_Service {
 				}
 			} elseif ( 'core/page-list' === $name ) {
 				$map = array();
-				foreach ( get_pages( array( 'sort_column' => 'menu_order,post_title' ) ) as $pg ) {
+				foreach ( get_pages( array( 'sort_column' => 'menu_order,post_title' ) ) ?: array() as $pg ) {
 					$pid         = $prefix . '-p' . $pg->ID;
 					$map[ $pg->ID ] = $pid;
 					$rows[]      = self::item( $pid, $pg->post_parent && isset( $map[ $pg->post_parent ] ) ? $map[ $pg->post_parent ] : $parent, get_the_title( $pg ), flxhl_str( get_permalink( $pg ) ), '', $order++, $fe );

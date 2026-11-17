@@ -63,8 +63,8 @@ function flxhl_post_changed( WP_Post $post, string $old_status = 'publish' ): vo
 	if ( 'page' === $post->post_type && in_array( $post->ID, array( (int) get_option( 'page_on_front' ), (int) get_option( 'page_for_posts' ) ), true ) ) {
 		$tags[] = 'flx-headless:routes';
 	}
-	$link = get_permalink( $post );
-	flxhl_purge( $tags, is_string( $link ) && 'publish' === $post->post_status ? array( $link ) : array() );
+	$link = flxhl_str( get_permalink( $post ) );
+	flxhl_purge( $tags, '' !== $link && 'publish' === $post->post_status ? array( $link ) : array() );
 }
 
 add_action(

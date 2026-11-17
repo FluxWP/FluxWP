@@ -146,7 +146,18 @@ final class FLXHL_Delivery {
 
 	/** @return array<string,mixed> */
 	public function to_array(): array {
-		return get_object_vars( $this );
+		return array(
+			'time'          => $this->time,
+			'frontend_id'   => $this->frontend_id,
+			'frontend_name' => $this->frontend_name,
+			'event'         => $this->event,
+			'tags'          => $this->tags,
+			'paths'         => $this->paths,
+			'status'        => $this->status,
+			'ok'            => $this->ok,
+			'message'       => $this->message,
+			'ms'            => $this->ms,
+		);
 	}
 }
 

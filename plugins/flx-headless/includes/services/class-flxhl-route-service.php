@@ -97,7 +97,7 @@ final class FLXHL_Route_Service {
 		}
 		$obj  = $q->get_queried_object();
 		$kind = self::kind( $q );
-		$page = max( 1, (int) $q->get( 'paged' ), (int) $q->get( 'page' ) );
+		$page = max( 1, flxhl_int( $q->get( 'paged' ) ), flxhl_int( $q->get( 'page' ) ) );
 
 		if ( 'singular' === $kind || 'front_page' === $kind || 'posts_page' === $kind ) {
 			$post = $obj instanceof WP_Post ? $obj : ( $q->post instanceof WP_Post ? $q->post : null );
@@ -202,7 +202,7 @@ final class FLXHL_Route_Service {
 		if ( ! class_exists( '\WPGraphQL\Data\NodeResolver' ) ) {
 			return false;
 		}
-		require_once FLXHL_DIR . 'includes/class-flxhl-uri-parser.php';
+		require_once dirname( __DIR__ ) . '/class-flxhl-uri-parser.php';
 		return class_exists( 'FLXHL_Uri_Parser' );
 	}
 
@@ -259,8 +259,8 @@ final class FLXHL_Route_Service {
 		if ( ! $post instanceof WP_Post ) {
 			return null;
 		}
-		$link = get_permalink( $post );
-		return is_string( $link ) ? FLXHL_Frontend_Service::front_path( $link ) : null;
+		$link = flxhl_str( get_permalink( $post ) );
+		return '' !== $link ? FLXHL_Frontend_Service::front_path( $link ) : null;
 	}
 
 	/** Own address (path) of the queried object, or null when the kind has none to compare. */
@@ -460,7 +460,11 @@ final class FLXHL_Route_Service {
 		return $origin . $path;
 	}
 
-	/** Robots directives WordPress (and Flux SEO through wp_robots) give the page. @return list<string> */
+	/**
+	 * Robots directives WordPress (and Flux SEO through wp_robots) give the page.
+	 *
+	 * @return list<string>
+	 */
 	private static function robots(): array {
 		$r   = apply_filters( 'wp_robots', array() );
 		$out = array();
@@ -663,10 +667,10 @@ final class FLXHL_Route_Service {
 		$head = self::with_query( $q, static fn(): array => self::head( 'singular', $q, $fe ) );
 		$head['robots']  = array( 'noindex', 'nofollow' );
 		$head['noindex'] = true;
-		$link            = get_permalink( $post );
+		$link            = flxhl_str( get_permalink( $post ) );
 		return FLXHL_Route::from(
 			array(
-				'path'        => is_string( $link ) ? flxhl_str( FLXHL_Frontend_Service::front_path( $link ) ) : '/',
+				'path'        => '' !== $link ? flxhl_str( FLXHL_Frontend_Service::front_path( $link ) ) : '/',
 				'kind'        => 'singular',
 				'status'      => 200,
 				'lang'        => '' === $code ? null : $code,
