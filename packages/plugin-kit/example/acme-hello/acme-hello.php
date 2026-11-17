@@ -12,6 +12,16 @@
 
 defined( 'ABSPATH' ) || exit;
 
+// Operations this plugin's screens send (flx-kit codegen writes the manifest).
+add_filter(
+	'flx_gql_persisted_manifests',
+	static function ( $m ) {
+		$m               = is_array( $m ) ? $m : array();
+		$m['acme-hello'] = __DIR__ . '/graphql/persisted-queries.json';
+		return $m;
+	}
+);
+
 add_action(
 	'admin_menu',
 	static function () {
@@ -36,6 +46,8 @@ add_action(
 					'assets_dir' => plugin_dir_path( __FILE__ ) . 'assets/flux/',
 					'assets_url' => plugin_dir_url( __FILE__ ) . 'assets/flux/',
 					'version'    => '0.1.0',
+					// First queries come with the page (same variables as the screen's useFlxQuery).
+					'preload'    => array( array( 'FlxAcmeHelloViewer' ) ),
 				)
 			);
 		}
