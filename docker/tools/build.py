@@ -74,7 +74,7 @@ MODES = {
         "db_root_pw_ref": "$SERVICE_PASSWORD_ROOT",
         "db_name": "${DB_NAME:-wordpress}",
         "redis_pw_ref": "$SERVICE_PASSWORD_REDIS",
-        "wpapi_key_ref": "$SERVICE_PASSWORD_64_WPAPIKEY",
+        "wpapi_link_ref": "$SERVICE_PASSWORD_64_WPAPIKEY",
         "wp_url": "$SERVICE_URL_WORDPRESS",
         "wp_admin_user": "${WP_ADMIN_USER:-}",
         "wp_admin_pw_ref": "${WP_ADMIN_PASSWORD:-}",
@@ -87,7 +87,7 @@ MODES = {
         "db_root_pw_ref": "${DB_ROOT_PASSWORD:?set DB_ROOT_PASSWORD in .env}",
         "db_name": "${DB_NAME:-wordpress}",
         "redis_pw_ref": "${REDIS_PASSWORD:?set REDIS_PASSWORD in .env}",
-        "wpapi_key_ref": "${WPAPI_KEY:?set WPAPI_KEY in .env}",
+        "wpapi_link_ref": "${WPAPI_KEY:?set WPAPI_KEY in .env}",
         "wp_url": "${WP_URL:-}",
         "wp_admin_user": "${WP_ADMIN_USER:-admin}",
         "wp_admin_pw_ref": "${WP_ADMIN_PASSWORD:-}",
@@ -126,7 +126,7 @@ def wp_env(mode, v):
     if v.get("wpapi"):
         lines += [
             "WPAPI_URL=http://wpapi:3000",
-            f"WPAPI_KEY={m['wpapi_key_ref']}",
+            f"WPAPI_KEY={m['wpapi_link_ref']}",
             "WPAPI_INSTANCE=${WPAPI_INSTANCE:-main}",
         ]
     return lines
@@ -272,7 +272,7 @@ def wpapi_service(mode, v):
         "      - 'wpapi-data:/data'\n"
         "    environment:\n"
         + env([
-            f"FLXW_API_KEY={m['wpapi_key_ref']}",
+            f"FLXW_API_KEY={m['wpapi_link_ref']}",
             "FLXW_DB_HOST=mariadb",
             f"FLXW_DB_USER={m['db_user']}",
             f"FLXW_DB_PASSWORD={m['db_pw_ref']}",
