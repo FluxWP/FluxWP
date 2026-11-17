@@ -3934,3 +3934,67 @@ msgstr "Asistanla önceki sohbetleriniz."
 
 msgid "Last activity"
 msgstr "Son etkinlik"
+
+#: app/manifest.json
+msgid "Empty picks one from the saved keys."
+msgstr "Boş bırakılırsa kayıtlı anahtarlardan biri seçilir."
+
+#: app/manifest.json
+msgid "Prompt cache"
+msgstr "Prompt önbelleği"
+
+#: app/manifest.json
+msgid "0 means no limit."
+msgstr "0 sınırsız demektir."
+
+#: app/manifest.json
+msgid "Weekly limit (USD)"
+msgstr "Haftalık sınır (USD)"
+
+#: app/manifest.json
+msgid "Chat in wp-admin"
+msgstr "wp-admin'de sohbet"
+
+#: app/manifest.json
+msgid "Page"
+msgstr "Sayfa"
+
+#: app/manifest.json
+msgid "Keep request contents"
+msgstr "İstek içeriklerini sakla"
+
+#: app/manifest.json
+msgid "Keep log (days)"
+msgstr "Kaydı sakla (gün)"
+
+#: app/manifest.json
+msgid "0 means forever."
+msgstr "0 süresiz demektir."
+
+#: app/manifest.json
+msgid "Keep contents (days)"
+msgstr "İçerikleri sakla (gün)"
+
+#: app/manifest.json
+msgid "Log"
+msgstr "Kayıt"
+
+#: app/manifest.json
+msgid "Entry"
+msgstr "Kayıt girdisi"
+
+#: app/manifest.json
+msgid "Time (ms)"
+msgstr "Süre (ms)"
+
+#: app/manifest.json
+msgid "When"
+msgstr "Zaman"
+
+#: app/manifest.json
+msgid "No entries"
+msgstr "Kayıt yok"
+
+#: app/manifest.json
+msgid "Model and tool calls are listed here. Request contents are not sent to the app."
+msgstr "Model ve araç çağrıları burada listelenir. İstek içerikleri uygulamaya gönderilmez."

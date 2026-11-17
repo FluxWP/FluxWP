@@ -1,7 +1,10 @@
 # Değişiklikler
 
-## 0.5.3
+## 0.6.1
 - Ortak modül paketi yenilendi: ekranın parçaları sayfa başında birlikte iner, giriş dosyası iki kez çalışmaz, ayar ekranlarında ilk karede yükleniyor göstergesi çıkmaz.
+
+## 0.6.0
+- Mobil uygulama manifesti GraphQL'e geçti: özet (ziyaretçi, görüntüleme, şu anda), canlı (15 sn yenileme), sayfalar (arama, yalnız 404), yönlendirenler ve kanallar. Metinler İngilizce kaynak + Türkçe çeviri.
 
 ## 0.5.2
 - Tarih alanları ortak FluxWP tarih seçicisini kullanır: sitenin dilinde ay/gün adları, Pazartesi başlangıç, hızlı seçim listesi, yazılabilir tarih ve saat, Uygula düğmesi, açık/koyu, telefonda alttan açılan pencere. Tarayıcının kendi takvimi (İngilizce çıkan) kalktı.

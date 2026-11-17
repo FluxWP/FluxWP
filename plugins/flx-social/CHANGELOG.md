@@ -1,8 +1,11 @@
 # Değişiklik günlüğü
 
-## 0.3.2
+## 0.4.1
 - wp-admin ekranı Flux GraphQL ekran kabuğundan açılır: ilk veri PHP'de sayfaya basılır (yükleniyor göstergesi yok), menüden diğer Flux ekranlarına sayfa yenilenmeden geçilir. Ekranın parçaları sayfa başında birlikte iner (modulepreload).
 - Ortak modül paketi yenilendi.
+
+## 0.4.0
+- Mobil uygulama manifesti GraphQL'e geçti: gönderiler (arama, durum filtresi), gönderi ayrıntısı, takvim, hesaplar; onayla, geri gönder, şimdi yayımla, sil, hesabı aç/kapat. Metinler İngilizce kaynak + Türkçe çeviri.
 
 ## 0.3.1
 - Tarih alanları ortak FluxWP tarih seçicisini kullanır: sitenin dilinde ay/gün adları, Pazartesi başlangıç, hızlı seçim listesi, yazılabilir tarih ve saat, Uygula düğmesi, açık/koyu, telefonda alttan açılan pencere. Tarayıcının kendi takvimi (İngilizce çıkan) kalktı.

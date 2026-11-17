@@ -4,7 +4,7 @@
 defined( 'ABSPATH' ) || exit;
 
 /* Flux App: Stüdyo uygulamada yerel ekranla açılır (wp-admin ile aynı React ekranı, @fluxwp/modules `studio`; veri GraphQL).
- * Mobil uygulamanın bildirimli galeri listesi (app/manifest.json) REST uçlarında kalır (ISTISNALAR: eski uygulama sürümleri). */
+ * Mobil uygulamanın bildirimli galeri listesi (app/manifest.json) GraphQL ile çalışır; REST uçları eski uygulama sürümleri için durur. */
 add_filter(
 	'flxapp_modules',
 	function ( $m ) {

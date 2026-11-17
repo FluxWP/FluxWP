@@ -2,7 +2,7 @@
   "id": "analytics",
   "plugin": "flx-analytics",
   "min_app": "1.0.0",
-  "title": "İstatistik",
+  "title": "Statistics",
   "icon": "chart",
   "menu": "flx-analytics",
   "entry": "overview",
@@ -13,34 +13,29 @@
   },
   "sources": {
     "report": {
-      "path": "flxan/v1/report",
-      "query": { "range": "30d" },
+      "graphql": { "op": "FlxAnalyticsReport", "variables": { "filter": { "range": "DAYS_30" } }, "data": "flxAnalyticsReport" },
       "cache": { "stale": 60, "persist": true }
     },
     "live": {
-      "path": "flxan/v1/realtime",
-      "query": { "minutes": 30 },
+      "graphql": { "op": "FlxAnalyticsRealtime", "variables": { "minutes": 30 }, "data": "flxAnalyticsRealtime" },
       "cache": { "stale": 15 },
       "poll": 15
     },
     "pages": {
-      "path": "flxan/v1/list",
-      "query": { "type": "pages", "range": "30d", "limit": 25 },
-      "paging": { "mode": "none", "items": "items" },
+      "graphql": { "op": "FlxAnalyticsPages", "variables": { "filter": { "range": "DAYS_30" } }, "data": "flxAnalyticsPages" },
+      "paging": { "mode": "cursor", "size": 25, "items": "nodes", "next": "pageInfo.endCursor", "has_next": "pageInfo.hasNextPage", "total": "totalCount" },
       "key": "path",
       "cache": { "stale": 60, "persist": true }
     },
     "referrers": {
-      "path": "flxan/v1/list",
-      "query": { "type": "referrers", "range": "30d", "limit": 25 },
-      "paging": { "mode": "none", "items": "items" },
+      "graphql": { "op": "FlxAnalyticsReferrers", "variables": { "filter": { "range": "DAYS_30" } }, "data": "flxAnalyticsReferrers" },
+      "paging": { "mode": "cursor", "size": 25, "items": "nodes", "next": "pageInfo.endCursor", "has_next": "pageInfo.hasNextPage", "total": "totalCount" },
       "key": "host",
       "cache": { "stale": 60, "persist": true }
     },
     "channels": {
-      "path": "flxan/v1/list",
-      "query": { "type": "dim", "kind": "channel", "range": "30d", "limit": 25 },
-      "paging": { "mode": "none", "items": "items" },
+      "graphql": { "op": "FlxAnalyticsBreakdown", "variables": { "filter": { "range": "DAYS_30" }, "kind": "CHANNEL" }, "data": "flxAnalyticsBreakdown" },
+      "paging": { "mode": "cursor", "size": 25, "items": "nodes", "next": "pageInfo.endCursor", "has_next": "pageInfo.hasNextPage", "total": "totalCount" },
       "key": "value",
       "cache": { "stale": 60, "persist": true }
     }
@@ -48,131 +43,129 @@
   "screens": {
     "overview": {
       "type": "dashboard",
-      "title": "Genel bakış",
+      "title": "Last 30 days",
       "sources": ["report"],
       "sections": [
         {
           "type": "stats",
           "items": [
-            { "label": "Ziyaretçi", "value": "{{data.totals.visitors|number}}" },
-            { "label": "Görüntülenme", "value": "{{data.totals.pageviews|number}}" },
-            { "label": "Oturum", "value": "{{data.visits.sessions|number}}" },
-            { "label": "Şu an", "value": "{{data.realtime.active|number}}", "tone": "accent", "onPress": { "target": "screen:analytics/live" } }
+            { "label": "Visitors", "value": "{{kpi.totals.visitors|number}}" },
+            { "label": "Page views", "value": "{{kpi.totals.pageviews|number}}" },
+            { "label": "Sessions", "value": "{{kpi.visits.sessions|number}}" },
+            { "label": "Right now", "value": "{{realtime.active|number}}", "tone": "accent", "onPress": { "target": "screen:analytics/live" } }
           ]
         },
         {
           "type": "chart",
           "chart": "bar",
-          "title": "Ziyaretçi ve görüntülenme",
-          "path": "series.items",
-          "x": "d",
+          "title": "Visitors and page views",
+          "path": "kpi.series.items",
+          "x": "date",
           "series": [
-            { "key": "visitors", "label": "Ziyaretçi" },
-            { "key": "pageviews", "label": "Görüntülenme" }
+            { "key": "visitors", "label": "Visitors" },
+            { "key": "pageviews", "label": "Page views" }
           ]
         },
         {
           "type": "list",
-          "title": "Sayfalar",
+          "title": "Pages",
           "path": "pages.items",
           "item": { "title": "{{title}}", "subtitle": "{{path}}", "meta": "{{pageviews|number}}" },
           "onPress": { "target": "screen:analytics/pages" }
+        },
+        {
+          "type": "list",
+          "title": "Referring sites",
+          "path": "referrers.items",
+          "item": { "title": "{{host}}", "subtitle": "{{channelLabel}}", "meta": "{{visitors|number}}" },
+          "onPress": { "target": "screen:analytics/sources" }
         },
         { "type": "actions", "items": ["open_panel"] }
       ]
     },
     "live": {
       "type": "dashboard",
-      "title": "Canlı",
+      "title": "Live",
       "sources": ["live"],
       "sections": [
         {
           "type": "stats",
           "items": [
-            { "label": "Şu an", "value": "{{data.active|number}}", "tone": "accent" },
-            { "label": "Ziyaretçi", "value": "{{data.visitors|number}}" },
-            { "label": "Görüntülenme", "value": "{{data.pageviews|number}}" }
+            { "label": "Right now", "value": "{{active|number}}", "tone": "accent" },
+            { "label": "Visitors", "value": "{{visitors|number}}" },
+            { "label": "Page views", "value": "{{pageviews|number}}" }
           ]
         },
-        {
-          "type": "chart",
-          "chart": "bar",
-          "title": "Son dakikalar",
-          "path": "per_minute"
-        },
+        { "type": "chart", "chart": "bar", "title": "Last minutes", "path": "perMinute" },
         {
           "type": "list",
-          "title": "Bakılan sayfalar",
+          "title": "Pages being viewed",
           "path": "pages",
           "item": { "title": "{{title}}", "subtitle": "{{path}}", "meta": "{{pageviews|number}}" }
         },
         {
           "type": "list",
-          "title": "Yönlendirenler",
+          "title": "Referrers",
           "path": "referrers",
           "item": { "title": "{{host}}", "meta": "{{pageviews|number}}" }
+        },
+        {
+          "type": "list",
+          "title": "Countries",
+          "path": "countries",
+          "item": { "title": "{{label}}", "meta": "{{visitors|number}}" }
         }
       ]
     },
     "pages": {
       "type": "list",
-      "title": "Sayfalar",
+      "title": "Pages",
       "source": "pages",
       "layout": "rows",
       "columns": [
-        { "label": "Sayfa", "value": "{{title}}", "width": 3 },
-        { "label": "Adres", "value": "{{path}}", "width": 2 },
-        { "label": "Ziyaretçi", "value": "{{visitors|number}}", "align": "end" },
-        { "label": "Görüntülenme", "value": "{{pageviews|number}}", "align": "end" }
+        { "label": "Page", "value": "{{title}}", "width": 3 },
+        { "label": "Address", "value": "{{path}}", "width": 2 },
+        { "label": "Visitors", "value": "{{visitors|number}}", "align": "end" },
+        { "label": "Page views", "value": "{{pageviews|number}}", "align": "end" }
       ],
-      "search": { "param": "q", "placeholder": "Adreste ara" },
-      "filters": [
-        {
-          "param": "range",
-          "label": "Aralık",
-          "type": "select",
-          "options": [
-            { "value": "7d", "label": "7 gün" },
-            { "value": "30d", "label": "30 gün" },
-            { "value": "90d", "label": "90 gün" }
-          ]
-        }
-      ],
+      "search": { "param": "q", "placeholder": "Search address" },
+      "filters": [{ "param": "only404", "label": "Not found (404)", "type": "toggle" }],
       "item": {
-        "title": "{{title}}",
+        "title": "{{title|default:path}}",
         "subtitle": "{{path}}",
         "meta": "{{pageviews|number}}",
-        "caption": "{{visitors|number}}"
+        "caption": "{{visitors|number}} visitors",
+        "badges": [{ "text": "404", "tone": "danger", "when": { "path": "is404", "op": "truthy" } }]
       },
-      "empty": { "title": "Sayfa yok", "body": "Bu aralıkta görüntülenen sayfa yok." }
+      "empty": { "title": "No pages", "body": "No page was viewed in this period." }
     },
     "sources": {
       "type": "tabs",
-      "title": "Kaynaklar",
+      "title": "Sources",
       "tabs": [
-        { "screen": "referrers", "title": "Siteler" },
-        { "screen": "channels", "title": "Kanallar" }
+        { "screen": "referrers", "title": "Sites" },
+        { "screen": "channels", "title": "Channels" }
       ]
     },
     "referrers": {
       "type": "list",
-      "title": "Yönlendiren siteler",
+      "title": "Referring sites",
       "source": "referrers",
-      "search": { "param": "q", "placeholder": "Site ara" },
-      "item": { "title": "{{host}}", "subtitle": "{{channel}}", "meta": "{{visitors|number}}" },
-      "empty": { "title": "Yönlendiren yok", "body": "Bu aralıkta dış site yok." }
+      "search": { "param": "q", "placeholder": "Search site" },
+      "item": { "title": "{{host}}", "subtitle": "{{channelLabel}}", "meta": "{{visitors|number}}" },
+      "empty": { "title": "No referrers", "body": "No outside site sent visitors in this period." }
     },
     "channels": {
       "type": "list",
-      "title": "Kanallar",
+      "title": "Channels",
       "source": "channels",
-      "item": { "title": "{{label}}", "meta": "{{visitors|number}}", "caption": "{{pageviews|number}}" },
-      "empty": { "title": "Kanal yok", "body": "Bu aralıkta kanal dağılımı yok." }
+      "item": { "title": "{{label}}", "meta": "{{visitors|number}}", "caption": "{{pageviews|number}} page views" },
+      "empty": { "title": "No channels", "body": "No channel breakdown for this period." }
     }
   },
   "actions": {
     "open_panel": {
-      "label": "Panelde aç",
+      "label": "Open in panel",
       "icon": "globe",
       "web": "admin.php?page=flx-analytics"
     }

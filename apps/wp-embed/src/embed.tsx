@@ -1,6 +1,6 @@
 // The wp-admin mount shared by the FluxWP screens bundle (index.tsx) and the shared runtime (runtime.tsx):
 // one React root per screen element, cookie + nonce client, Flux Admin theme, one React Query cache per bundle.
-import { StrictMode, useEffect, useState, type ComponentType } from 'react';
+import { Component, StrictMode, useEffect, useState, type ComponentType, type ReactNode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { I18nextProvider } from 'react-i18next';
@@ -59,6 +59,56 @@ export interface MountOptions {
 
 /** Queries a screen sends in its first moments count as its first queries. */
 const LEARN_MS = 2500;
+
+const FAIL_TEXT: Record<string, { title: string; body: string; reload: string; classic: string }> = {
+  tr: {
+    title: 'Bu ekran yüklenemedi',
+    body: 'Eklenti yeni güncellendiyse tarayıcı ya da site önbelleği eski dosyaları tutuyor olabilir. Sayfayı sert yenileyin (Ctrl/Cmd + Shift + R); sürerse site önbelleğini temizleyin.',
+    reload: 'Sayfayı yenile',
+    classic: 'Klasik ekrana geç',
+  },
+  en: {
+    title: 'This screen could not be loaded',
+    body: 'If the plugin was just updated, the browser or site cache may still hold old files. Hard-reload the page (Ctrl/Cmd + Shift + R); if it persists, purge the site cache.',
+    reload: 'Reload page',
+    classic: 'Open the classic screen',
+  },
+};
+
+/**
+ * A screen whose code cannot load (stale cached file, failed chunk, runtime error) used to leave a blank page.
+ * This shows what happened and the way out instead: reload, or the classic screen when the plugin has one.
+ */
+class ScreenGuard extends Component<{ lang: string; classicUrl?: string; children: ReactNode }, { failed: boolean }> {
+  state = { failed: false };
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+  componentDidCatch(error: unknown) {
+    console.error('[FluxWP] screen failed to load', error);
+  }
+  render() {
+    if (!this.state.failed) return this.props.children;
+    const t = FAIL_TEXT[this.props.lang.slice(0, 2)] ?? FAIL_TEXT.en!;
+    const btn = { padding: '8px 14px', borderRadius: 8, border: '1px solid currentColor', background: 'transparent', color: 'inherit', cursor: 'pointer', font: 'inherit', textDecoration: 'none' } as const;
+    return (
+      <div role="alert" style={{ maxWidth: 520, margin: '48px auto', padding: 24, textAlign: 'center', color: 'var(--flux-text, inherit)' }}>
+        <h2 style={{ margin: '0 0 8px', font: 'inherit', fontSize: 18, fontWeight: 600 }}>{t.title}</h2>
+        <p style={{ margin: '0 0 16px', opacity: 0.8 }}>{t.body}</p>
+        <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap' }}>
+          <button type="button" style={btn} onClick={() => location.reload()}>
+            {t.reload}
+          </button>
+          {this.props.classicUrl && (
+            <a href={this.props.classicUrl} style={btn}>
+              {t.classic}
+            </a>
+          )}
+        </div>
+      </div>
+    );
+  }
+}
 
 export function createEmbed(screens: ScreenSource): EmbedApi {
   let nonce = '';
@@ -216,7 +266,9 @@ export function createEmbed(screens: ScreenSource): EmbedApi {
           <QueryClientProvider client={qc}>
             <ModuleHostProvider value={host}>
               <Themed el={el} theme={o.theme ?? 'auto'} />
-              <Screen />
+              <ScreenGuard lang={i18n.language} classicUrl={o.classicUrl}>
+                <Screen />
+              </ScreenGuard>
             </ModuleHostProvider>
           </QueryClientProvider>
         </I18nextProvider>

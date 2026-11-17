@@ -32,6 +32,7 @@
   },
   "list": {
     "search": "Suchen",
+    "all": "Alle",
     "empty": "Hier ist noch nichts.",
     "noResults": "Keine Ergebnisse.",
     "end": "Das ist alles",

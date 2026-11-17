@@ -23,7 +23,6 @@ function source(p: NpmPackage): Pkg {
   return {
     name: '@fluxwp/host',
     version: pkg.version,
-    description: 'Host context of FluxWP screens: useHost(), useModuleApi(), ModuleHost.',
     dependencies: { '@fluxwp/core': 'workspace:*' },
     peerDependencies: { react: pkg.dependencies?.react ?? '19.3.0', '@tanstack/react-query': pkg.dependencies?.['@tanstack/react-query'] ?? '^5' },
   };
@@ -131,12 +130,15 @@ for (const p of NPM_PACKAGES) {
   const pkg: Record<string, unknown> = {
     name: p.name,
     version: src.version,
-    description: src.description ?? `${p.name} (FluxWP)`,
+    description: p.description,
+    keywords: p.keywords,
+    author: 'FluxWP <info@fluxwp.com> (https://fluxwp.com)',
     type: 'module',
     license: 'GPL-2.0-or-later',
-    homepage: 'https://fluxwp.com',
+    homepage:
+      p.name === '@fluxwp/host' ? 'https://github.com/FluxWP/FluxWP/blob/main/tools/npm/readme/host.md' : `https://github.com/FluxWP/FluxWP/tree/main/${p.dir}#readme`,
     repository: { type: 'git', url: 'git+https://github.com/FluxWP/FluxWP.git', directory: p.dir },
-    bugs: { email: 'info@fluxwp.com' },
+    bugs: { url: 'https://github.com/FluxWP/FluxWP/issues', email: 'info@fluxwp.com' },
     exports,
     ...(p.node ? { bin: { 'flx-kit': './dist/flx-kit.js' } } : { types: (exports['.'] as { types?: string } | undefined)?.types }),
     files: ['src', 'types', 'dist', 'schema', 'runtime-exports.json', 'README.md'],
@@ -147,12 +149,9 @@ for (const p of NPM_PACKAGES) {
     publishConfig: { access: 'public', provenance: true },
   };
   writeFileSync(join(out, 'package.json'), JSON.stringify(pkg, null, 2) + '\n');
-  const readme = join(dir, 'README.md');
-  writeFileSync(
-    join(out, 'README.md'),
-    existsSync(readme) && p.name !== '@fluxwp/host'
-      ? readFileSync(readme, 'utf8')
-      : `# ${p.name}\n\n${String(pkg.description)}\n\nPart of [FluxWP](https://fluxwp.com). Plugin screens: [@fluxwp/plugin-kit](https://www.npmjs.com/package/@fluxwp/plugin-kit).\n`,
-  );
+  // npm README: tools/npm/readme/<name>.md + the shared footer (package list, FluxWP, license).
+  const readmeDir = join(root, 'tools/npm/readme');
+  const body = readFileSync(join(readmeDir, `${p.name.replace('@fluxwp/', '')}.md`), 'utf8').trimEnd();
+  writeFileSync(join(out, 'README.md'), body + '\n' + readFileSync(join(readmeDir, '_footer.md'), 'utf8'));
   console.log(`staged ${p.name}@${src.version}`);
 }

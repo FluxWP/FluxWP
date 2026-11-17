@@ -1,8 +1,11 @@
 # Flux AI — Değişiklikler
 
-## 0.31.1
+## 0.32.1
 - wp-admin ekranları Flux GraphQL ekran kabuğundan açılır: ilk veri PHP'de sayfaya basılır, Flux AI sayfaları ve diğer Flux ekranları arasında sayfa yenilenmeden geçilir; ekranın parçaları sayfa başında birlikte iner.
 - Ortak modül paketi yenilendi.
+
+## 0.32.0
+- Mobil uygulama manifesti GraphQL'e geçti: ayarlar formu (model, önbellek, düşünme, harcama sınırları, sohbet, kayıt süresi; anahtarlar panelde kalır) ve kayıt listesi (model/araç, yalnız hatalar). Canlı sohbet ekranı aynen durur.
 
 ## 0.31.0
 - **Sohbet ekranında çalışma alanı paneli** (React): Dosyalar (klasör ağacı, izinli klasörler, Markdown/HTML önizleme, renkli kod görünümü ve düzenleyici, kaydet), Değişiklikler (commit ve değişiklik istekleri, satır farkı, dosya dosya ya da toptan birleştir/reddet, çakışma uyarısı), Ayarlar (sohbet/görev dosya erişimi, izinli klasörler, kurallar). Sohbetteki değişiklik ve rapor bağlantıları paneli açar; görsel rapor sandbox'lı iframe'de gösterilir. Her turdan sonra panel yenilenir; onay bekleyen istek sayısı rozette görünür.

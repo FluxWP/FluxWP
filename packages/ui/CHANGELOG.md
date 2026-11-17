@@ -1,5 +1,8 @@
 # @fluxwp/ui
 
+## 0.3.3
+- npm: README with install and usage, description and keywords.
+
 ## 0.3.2
 - Modal penceresi ve bildirim (toast) wp-admin'de sol menünün ve üst çubuğun üstünde açılır (z-index 100100). Önceden sol menü pencerenin üstünde kalıyordu.
 

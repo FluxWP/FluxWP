@@ -1,6 +1,6 @@
 {
   "name": "@fluxwp/plugin-kit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "type": "module",
   "description": "Build wp-admin screens for any WordPress plugin on the Flux runtime (Flux GraphQL 0.5+): Vite preset, GraphQL codegen, persisted queries.",

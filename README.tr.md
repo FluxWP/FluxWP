@@ -12,7 +12,7 @@ Bağış, e-ticaret, iletişim, yapay zekâ, analitik ve ekip araçları: aynı 
 
 [![WordPress 6.4+](https://img.shields.io/badge/WordPress-6.4%2B-21759b?logo=wordpress&logoColor=white)](https://wordpress.org) [![PHP 7.4+](https://img.shields.io/badge/PHP-7.4%2B-777bb4?logo=php&logoColor=white)](https://www.php.net) [![WooCommerce](https://img.shields.io/badge/WooCommerce-ready-7f54b3?logo=woocommerce&logoColor=white)](https://woocommerce.com) ![MCP](https://img.shields.io/badge/AI-MCP%20ready-7d64ff) ![Paketler](https://img.shields.io/badge/paket-20%20eklenti%20%C2%B7%201%20tema-2fbf8f) [![GPL v2+](https://img.shields.io/badge/lisans-GPL--2.0--or--later-blue)](https://www.gnu.org/licenses/gpl-2.0.html)
 
-[Neden](#neden-fluxwp-suite) · [Nasıl birlikte çalışır](#nasıl-birlikte-çalışır) · [Paketler](#paketler-ve-son-sürümler) · [Başlarken](#başlarken) · [Geliştiriciler için](#geliştiriciler-için)
+[Neden](#neden-fluxwp-suite) · [Nasıl birlikte çalışır](#nasıl-birlikte-çalışır) · [Paketler](#paketler-ve-son-sürümler) · [Başlarken](#başlarken) · [Geliştiriciler için](#geliştiriciler-için) · [npm](#npm-paketleri)
 
 </div>
 
@@ -154,6 +154,21 @@ release'den tanır, ayrıca ayar gerekmez. Siteye ilk kurulum: **FluxWP Panel �
 
 Güncelleme sunucusu ayrı repoda: [FluxWP/updater](https://github.com/FluxWP/updater) (`updater.fluxwp.com`).
 Sitelerde `plugins/flx-setup` kurulu olmalı; kurulum adımları o reponun README'sinde.
+
+## npm paketleri
+
+Açık TypeScript paketleri npm'de [`@fluxwp`](https://www.npmjs.com/org/fluxwp) altında yayınlanır (herkese açık, provenance imzalı). Herkes kendi eklentisi için FluxWP ile aynı kabukta wp-admin ekranı yazabilir: [`@fluxwp/plugin-kit`](https://www.npmjs.com/package/@fluxwp/plugin-kit) ile başla.
+
+| Paket | | Sürüm |
+|---|---|---|
+| [`@fluxwp/plugin-kit`](https://www.npmjs.com/package/@fluxwp/plugin-kit) | Kendi WordPress eklentin için wp-admin React ekranları (Vite preset, `flx-kit` codegen) | [![npm](https://img.shields.io/npm/v/@fluxwp/plugin-kit?label=)](https://www.npmjs.com/package/@fluxwp/plugin-kit) |
+| [`@fluxwp/graphql`](https://www.npmjs.com/package/@fluxwp/graphql) | Flux GraphQL (WPGraphQL) için tipli GraphQL istemcisi ve React hook'ları | [![npm](https://img.shields.io/npm/v/@fluxwp/graphql?label=)](https://www.npmjs.com/package/@fluxwp/graphql) |
+| [`@fluxwp/host`](https://www.npmjs.com/package/@fluxwp/host) | Ekranın host bağlamı: site istemcisi, önbellek kapsamı, linkler | [![npm](https://img.shields.io/npm/v/@fluxwp/host?label=)](https://www.npmjs.com/package/@fluxwp/host) |
+| [`@fluxwp/ui`](https://www.npmjs.com/package/@fluxwp/ui) | React UI kit: Check, DatePicker, Modal, Icon … | [![npm](https://img.shields.io/npm/v/@fluxwp/ui?label=)](https://www.npmjs.com/package/@fluxwp/ui) |
+| [`@fluxwp/core`](https://www.npmjs.com/package/@fluxwp/core) | WordPress REST istemcisi, giriş (OAuth PKCE, uygulama şifreleri), hesaplar, i18n | [![npm](https://img.shields.io/npm/v/@fluxwp/core?label=)](https://www.npmjs.com/package/@fluxwp/core) |
+| [`@fluxwp/tokens`](https://www.npmjs.com/package/@fluxwp/tokens) | Tasarım token'ları: renk, boşluk, köşe, yazı, açık / koyu | [![npm](https://img.shields.io/npm/v/@fluxwp/tokens?label=)](https://www.npmjs.com/package/@fluxwp/tokens) |
+
+`main`'de sürüm değişince `.github/workflows/npm-publish.yml` yayınlar (kaynak `packages/`, npm README'leri `tools/npm/readme/`).
 
 ## Docker
 

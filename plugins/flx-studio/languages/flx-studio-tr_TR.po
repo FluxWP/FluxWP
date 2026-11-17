@@ -952,3 +952,31 @@ msgstr "Yapay zekâ ile görsel ve video stüdyosu: üretim, referanslar ve kiş
 #: includes/admin.php
 msgid "New view"
 msgstr "Yeni görünüm"
+
+#: app/manifest.json
+msgid "In progress"
+msgstr "Sürüyor"
+
+#: app/manifest.json
+msgid "The gallery is empty"
+msgstr "Galeri boş"
+
+#: app/manifest.json
+msgid "Generated images and videos are listed here. Create new ones in the panel."
+msgstr "Üretilen görseller ve videolar burada listelenir. Yenilerini panelde oluşturun."
+
+#: app/manifest.json
+msgid "Error"
+msgstr "Hata"
+
+#: app/manifest.json
+msgid "Remove star"
+msgstr "Yıldızı kaldır"
+
+#: app/manifest.json
+msgid "Star removed"
+msgstr "Yıldız kaldırıldı"
+
+#: app/manifest.json
+msgid "Open file"
+msgstr "Dosyayı aç"
