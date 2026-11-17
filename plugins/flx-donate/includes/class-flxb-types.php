@@ -537,6 +537,7 @@ final class FLXB_Types {
 		$wpdb->delete( flxb_table( 'types' ), array( 'id' => (int) $id ), array( '%d' ) );
 		$wpdb->update( flxb_table( 'donations' ), array( 'type_id' => 0 ), array( 'type_id' => (int) $id ) );
 		$wpdb->update( flxb_table( 'subscriptions' ), array( 'type_id' => 0 ), array( 'type_id' => (int) $id ) );
+		do_action( 'flxb_type_deleted', (int) $id );
 	}
 
 	/** Is the type open for gifts on this day (site time)? */

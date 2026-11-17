@@ -20,6 +20,24 @@ final class FLXB_Type_Public_Service {
 	public const TAG = 'flx-donate:types';
 
 	/**
+	 * Purge the cached public type reads when a type or the gifts counted in its progress change.
+	 */
+	public static function init(): void {
+		foreach ( array( 'flxb_type_saved', 'flxb_type_deleted', 'flxb_donation_recorded', 'flxb_donation_updated', 'flxb_donation_trashed', 'flxb_donation_restored', 'flxb_donation_deleted' ) as $hook ) {
+			add_action( $hook, array( __CLASS__, 'purge' ) );
+		}
+	}
+
+	/**
+	 * Purge the tag. Without Flux GraphQL there is no cache to purge.
+	 */
+	public static function purge(): void {
+		if ( function_exists( 'flx_gql_purge' ) ) {
+			flx_gql_purge( array( self::TAG ) );
+		}
+	}
+
+	/**
 	 * Visible or open types. Archived types are never included.
 	 *
 	 * @param string $status   visible|open.

@@ -62,6 +62,7 @@ require_once FLXB_DIR . 'includes/services/class-flxb-type-public-service.php';
 require_once FLXB_DIR . 'includes/services/class-flxb-cart-service.php';
 require_once FLXB_DIR . 'includes/services/class-flxb-lookup-service.php';
 require_once FLXB_DIR . 'includes/services/class-flxb-my-donations-service.php';
+FLXB_Type_Public_Service::init();
 FLXB_Cart_Service::init();
 require_once FLXB_DIR . 'includes/class-flxb-rest.php';
 require_once FLXB_DIR . 'includes/class-flxb-app.php';
