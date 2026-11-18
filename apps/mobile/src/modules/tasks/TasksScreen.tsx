@@ -1,5 +1,5 @@
 // Tasks (`flxg-tasks`): list, board, detail, comments, checklist. Engine shared with the desktop.
-import { memo, useEffect, useMemo, useState } from 'react';
+import { memo, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, TextInput, View } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 import { useTranslation } from 'react-i18next';
@@ -69,7 +69,7 @@ export default function TasksScreen(_props: { params: Record<string, string> }) 
   const [detail, setDetail] = useState<FlxgTaskDetail | null>(null);
   const [comment, setComment] = useState('');
   const [shut, setShut] = useState<Record<string, boolean>>({});
-  const [fell, setFell] = useState(false);
+  const fell = useRef(false);
 
   useEffect(() => {
     void engine.boot();
@@ -79,10 +79,10 @@ export default function TasksScreen(_props: { params: Record<string, string> }) 
   // Nothing assigned to the user yet: open the first list instead of an empty "my tasks" page.
   useEffect(() => {
     const S = engine.S;
-    if (fell || !S.ready || S.loading || S.route.page !== 'home' || !S.scope) return;
-    setFell(true);
+    if (fell.current || !S.ready || S.loading || S.route.page !== 'home' || !S.scope) return;
+    fell.current = true;
     if (!Object.keys(S.tasks).length && S.lists.length) void engine.go({ page: 'list', id: S.lists[0]!.id, view: 0, task: 0 });
-  }, [engine, ver, fell]);
+  }, [engine, ver]);
 
   const tasks = ver >= 0 && engine.S.ready ? engine.filtered() : [];
   const groups = engine.S.ready ? engine.groups(tasks, 'status') : [];
