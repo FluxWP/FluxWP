@@ -33,12 +33,33 @@ warn() { echo "::warning title=$SLUG güncelleme testi::$*"; }
 
 requires_plugins="$(head -c 8192 "$MAIN" | tr -d '\r' | grep -m1 -E '^[[:space:]/*#@]*Requires Plugins:' | sed -E 's/^[^:]*:[[:space:]]*//; s/[[:space:]]*(\*\/)?[[:space:]]*$//' | tr ',' ' ' || true)"
 
+# All "Requires Plugins" dependencies, transitively, dependencies first (flx-donate → flx-crm → flx-graphql).
+# WordPress refuses to activate a plugin whose dependency is inactive, so a monorepo dependency's own
+# dependencies have to be installed and activated before it.
+DEP_ORDER=""; DEP_SEEN=""
+collect_deps() {
+  local s req
+  for s in "$@"; do
+    case " $DEP_SEEN " in *" $s "*) continue ;; esac
+    DEP_SEEN="$DEP_SEEN $s"
+    if [ -d "$here/../plugins/$s" ]; then
+      req="$(eval "$("$here/package-info.sh" "$here/../plugins/$s")"; echo "${REQUIRES_PLUGINS//,/ }")"
+      # shellcheck disable=SC2086
+      collect_deps $req
+    fi
+    DEP_ORDER="$DEP_ORDER $s"
+  done
+}
+# shellcheck disable=SC2086
+collect_deps $requires_plugins
+
+
 download_core() {
   if [ ! -d "$CACHE/wordpress" ]; then
     $WP core download --path="$CACHE/wordpress" --version="${WP_VERSION:-latest}" --locale=tr_TR >/dev/null 2>&1 \
       || $WP core download --path="$CACHE/wordpress" --version="${WP_VERSION:-latest}" >/dev/null
   fi
-  for dep in $requires_plugins; do
+  for dep in $DEP_ORDER; do
     if [ -d "$here/../plugins/$dep" ]; then
       # Monorepo'daki bağımlılık (ör. flx-setup): wordpress.org'da yok, buradan paketlenir.
       "$here/build.sh" "plugins/$dep" >/dev/null && cp "$here/../dist/$dep.zip" "$CACHE/$dep.zip" || warn "$dep paketlenemedi"
@@ -73,7 +94,7 @@ fresh_site() {
   # Dış istekleri kapat: test, ağdan bağımsız ve hızlı olsun.
   $WP config set WP_HTTP_BLOCK_EXTERNAL true --raw --path="$SITE"
   $WP core install --path="$SITE" --url="$URL" --title="Flux Test" --admin_user=admin --admin_password=admin --admin_email=test@example.com --skip-email >/dev/null
-  for dep in $requires_plugins; do
+  for dep in $DEP_ORDER; do
     [ -f "$CACHE/$dep.zip" ] && $WP plugin install "$CACHE/$dep.zip" --activate --path="$SITE" >/dev/null 2>&1 || warn "$dep kurulamadı"
   done
   # WooCommerce'in uzak öneri/eklenti mağazası istekleri (dış istek kapalıyken gürültü yapar).
@@ -121,7 +142,7 @@ classify_fatals() {
   while IFS= read -r blk; do
     [ -n "$blk" ] || continue
     local dep_hit=0
-    for dep in $requires_plugins; do
+    for dep in $DEP_ORDER; do
       case "$blk" in *"/plugins/$dep/"*) dep_hit=1 ;; esac
     done
     case "$blk" in *"/$SLUG/"*) dep_hit=0 ;; esac
