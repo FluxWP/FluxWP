@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.7.2
+- Ekran ortak FluxWP kabuğuna taşındı: başlık, simge, sekmeler, kenar boşlukları, en fazla genişlik ve güvenli alan (safe area) bütün Flux ekranlarında aynı. Sekmeler eski Flux Admin sekmeleri gibi alt çizgili; taşarsa sayfa değil sekme çubuğu kayar. Ortak modül paketi yenilendi.
+
 ## 0.7.1
 - Yolculuklar sayfası ilk ziyarette de spinner'sız açılır: son 30 günün varsayılan görünümü PHP'den sayfaya basılır.
 

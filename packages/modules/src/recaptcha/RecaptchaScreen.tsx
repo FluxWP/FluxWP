@@ -18,7 +18,7 @@ import type {
   FlxRecaptchaTheme,
   FlxRecaptchaVersion,
 } from '@fluxwp/graphql/types';
-import { Icon, Loading } from '@fluxwp/ui';
+import { Icon, Loading, Screen } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { translator, type Translate } from './i18n';
 import './recaptcha.css';
@@ -83,6 +83,7 @@ export function RecaptchaScreen() {
 }
 
 function Recaptcha() {
+  const host = useHost();
   const { i18n } = useTranslation();
   const { t } = useMemo(() => translator(i18n.language), [i18n.language]);
   const { scope } = useGraphQL();
@@ -273,13 +274,7 @@ function Recaptcha() {
         : { value: t('Awaiting test'), cls: 'is-warn', hint: t('Test your keys') };
 
   return (
-    <div className="flxrc-app">
-      <div className="flxrc-head">
-        <div>
-          <h1>{t('reCAPTCHA')}</h1>
-          <p className="flxrc-lead">{t('Protects login, registration, comments, checkout, donations and form submissions from bots with Google reCAPTCHA. Choose below which forms to protect.')}</p>
-        </div>
-      </div>
+    <Screen className="flxrc-app" width="md" icon={host.appIcon} title={t('reCAPTCHA')} subtitle={t('Protects login, registration, comments, checkout, donations and form submissions from bots with Google reCAPTCHA. Choose below which forms to protect.')}>
 
       {notice && (
         <div className={'flxrc-notice is-' + (notice.kind === 'success' ? 'ok' : notice.kind === 'warn' ? 'warn' : 'bad')} role={notice.kind === 'error' ? 'alert' : 'status'}>
@@ -501,7 +496,7 @@ function Recaptcha() {
           {dirty && <span className="flxrc-dirty">{t('Unsaved changes')}</span>}
         </div>
       </form>
-    </div>
+    </Screen>
   );
 }
 

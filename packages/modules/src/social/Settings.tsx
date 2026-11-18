@@ -4,7 +4,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
 import { FlxSocialAppUpdate, FlxSocialLog, FlxSocialSettings, FlxSocialSettingsUpdate, FlxSocialTickKeyReveal } from '@fluxwp/graphql/operations';
 import type { FlxSocialSettingsQuery } from '@fluxwp/graphql/types';
-import { Loading } from '@fluxwp/ui';
+import { Loading, Tabs } from '@fluxwp/ui';
 import { errorText, payloadError, useSocial } from './common';
 
 type Data = FlxSocialSettingsQuery;
@@ -20,13 +20,7 @@ export function SettingsPage({ tab }: { tab?: string | undefined }) {
   const labels: Record<Tab, string> = { general: t('General'), apps: t('App keys'), auto: t('Automatic sharing'), log: t('Activity log') };
   return (
     <div className="flxsm-settings">
-      <div className="flxsm-tabs" role="tablist">
-        {TABS.map((x) => (
-          <button key={x} type="button" role="tab" aria-selected={cur === x} className={'flxsm-tab' + (cur === x ? ' is-on' : '')} onClick={() => s.go('settings', { tab: x })}>
-            {labels[x]}
-          </button>
-        ))}
-      </div>
+      <Tabs items={TABS.map((x) => ({ id: x, label: labels[x] }))} current={cur} onChange={(x) => s.go('settings', { tab: x })} />
       {q.isLoading ? (
         <Loading />
       ) : q.isError || !q.data ? (

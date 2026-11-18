@@ -1,5 +1,8 @@
 # Flux Headless
 
+## 0.3.2
+- Ekran ortak FluxWP kabuğuna taşındı: başlık, simge, sekmeler, kenar boşlukları, en fazla genişlik ve güvenli alan (safe area) bütün Flux ekranlarında aynı. Sekmeler eski Flux Admin sekmeleri gibi alt çizgili; taşarsa sayfa değil sekme çubuğu kayar. Ortak modül paketi yenilendi.
+
 ## 0.3.1
 - Tam sayfa modunda sayfa optimizasyonu çalışır: linkler ön yüze, LiteSpeed / Flux Speed gibi optimizasyon eklentileri sayfayı işledikten sonra çevrilir. Önceden çevrilmiş adresleri "başka site" sayan LiteSpeed CSS/JS birleştirmeyi atlıyordu (fluxwp.com ana sayfası headless'ta 7 CSS + 24 script, WordPress'te 1 + 8). Görünüm değişmez.
 

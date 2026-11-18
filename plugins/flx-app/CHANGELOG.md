@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.9.3
+- Ekran ortak FluxWP kabuğuna taşındı: başlık, simge, sekmeler, kenar boşlukları, en fazla genişlik ve güvenli alan (safe area) bütün Flux ekranlarında aynı. Sekmeler eski Flux Admin sekmeleri gibi alt çizgili; taşarsa sayfa değil sekme çubuğu kayar. Ortak modül paketi yenilendi.
+
 ## 0.9.2
 - Uygulama ayarları ekranının sınıfları `flxas-` önekine taşındı (Flux SEO ve Performans ile aynı `flxs-` önekini paylaşıyordu; FluxApp'te tablo ve alanlar başka ekranın stilini alabiliyordu).
 

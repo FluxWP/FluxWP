@@ -9,7 +9,7 @@ import { createGraphQLClient } from '@fluxwp/graphql';
 import { FlxGraphQLProvider, flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
 import { FlxBackupCancel, FlxBackupDashboard, FlxBackupDelete, FlxBackupDetail, FlxBackupJobRead, FlxBackupList, FlxBackupRestoreStart, FlxBackupSettingsScreen, FlxBackupStart, FlxBackupStep } from '@fluxwp/graphql/operations';
 import type { FlxBackupStartType } from '@fluxwp/graphql/types';
-import { Loading, Modal } from '@fluxwp/ui';
+import { Loading, Modal, Screen } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { translator } from './i18n';
 import { BackupCtx, errText, type Ctx, type Health, type Job, type Page, type Row } from './shared';
@@ -153,31 +153,26 @@ function Backup() {
 
   return (
     <BackupCtx.Provider value={ctx}>
-      <div className="flxy-app">
-        <div className="flxy-head">
-          {host.appIcon && <img className="flxy-logo" src={host.appIcon} alt="" width={44} height={44} />}
-          <div className="flxy-head-text">
-            <h1>{t('Flux Backup')}</h1>
-            <p>{t('Automatic pre-update backups, scheduled backups and restore')}</p>
-          </div>
-          <div className="flxy-head-actions">
-            {current !== 'settings' && health && (
-              <>
-                {current === 'list' && <Upload health={health} onDone={(id) => { refresh(); setPage(`detail:${id}`); }} onError={failed} t={t} lang={i18n.language} />}
-                <button type="button" className="flxy-btn is-primary is-hero" disabled={busy} onClick={() => setBackupOpen(true)}>
-                  {t('Back up now')}
-                </button>
-              </>
-            )}
-          </div>
-        </div>
-        <nav className="flxy-tabs" aria-label={t('Flux Backup')}>
-          {tabs.map(([p, label]) => (
-            <button key={p} type="button" aria-current={current === p ? 'page' : undefined} onClick={() => ctx.go(p)}>
-              {label}
-            </button>
-          ))}
-        </nav>
+      <Screen
+        className="flxy-app"
+        width="wide"
+        icon={host.appIcon}
+        title={t('Flux Backup')}
+        subtitle={t('Automatic pre-update backups, scheduled backups and restore')}
+        actions={
+          current !== 'settings' && health ? (
+            <>
+              {current === 'list' && <Upload health={health} onDone={(id) => { refresh(); setPage(`detail:${id}`); }} onError={failed} t={t} lang={i18n.language} />}
+              <button type="button" className="flxy-btn is-primary is-hero" disabled={busy} onClick={() => setBackupOpen(true)}>
+                {t('Back up now')}
+              </button>
+            </>
+          ) : null
+        }
+        tabs={tabs.map(([id, label]) => ({ id, label }))}
+        tab={current}
+        onTab={(p) => ctx.go(p)}
+      >
         {health && !health.zipAvailable && <div className="flxy-notice is-error">{t('ZipArchive (PHP zip extension) is not available on the server.')}</div>}
         {health && !health.writable && <div className="flxy-notice is-error">{t('The backup folder is not writable: %s', health.folder)}</div>}
         {lastRestore && <div className="flxy-notice">{lastRestore}</div>}
@@ -222,7 +217,7 @@ function Backup() {
         )}
         {job && jobOpen && <JobDialog t={t} job={job} onClose={() => setJobOpen(false)} onJob={setJob} onFail={failed} />}
         {!health && info.isLoading && <Loading />}
-      </div>
+      </Screen>
     </BackupCtx.Provider>
   );
 }

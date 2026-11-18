@@ -4,8 +4,9 @@ import { useEffect, useState, type FormEvent } from 'react';
 import { useFlxMutation, useFlxQuery } from '@fluxwp/graphql/react';
 import { FlxSetupSettingsSave, FlxSetupSettingsScreen, FlxSetupSourceAdd, FlxSetupSourceChange } from '@fluxwp/graphql/operations';
 import type { FlxSetupSettingsScreenQuery } from '@fluxwp/graphql/types';
-import { Loading, Modal } from '@fluxwp/ui';
+import { Loading, Modal, Screen } from '@fluxwp/ui';
 import { errorText, NoticeBar, SetupProvider, useSetup, type Notice } from './shared';
+import { useHost } from '../host';
 
 type Data = FlxSetupSettingsScreenQuery;
 type Source = Data['flxSetupSources'][number];
@@ -19,6 +20,7 @@ export function SettingsScreen() {
 }
 
 function Settings() {
+  const host = useHost();
   const { t, tn, refresh, scope } = useSetup();
   const q = useFlxQuery(FlxSetupSettingsScreen, {});
   const [notice, setNotice] = useState<Notice | null>(null);
@@ -88,11 +90,7 @@ function Settings() {
   void scope;
 
   return (
-    <div className="flxk-app">
-      <div className="flxk-head">
-        <h1>{t('Update settings')}</h1>
-      </div>
-      <p className="flxk-lead">{t('FluxWP themes and plugins are updated from your own update server instead of wordpress.org.')}</p>
+    <Screen className="flxk-app" width="md" icon={host.appIcon} title={t('Update settings')} subtitle={t('FluxWP themes and plugins are updated from your own update server instead of wordpress.org.')}>
       <NoticeBar notice={notice} onClose={() => setNotice(null)} t={t} />
 
       <div className={'flxk-status is-' + c.state.toLowerCase()}>
@@ -314,7 +312,7 @@ function Settings() {
           </div>
         </Modal>
       )}
-    </div>
+    </Screen>
   );
 }
 

@@ -18,7 +18,7 @@ import {
   FlxRolesScreen,
 } from '@fluxwp/graphql/operations';
 import type { FlxRoleMemberRowFragment, FlxRolesScreenQuery } from '@fluxwp/graphql/types';
-import { Loading, Modal } from '@fluxwp/ui';
+import { Loading, Modal, Screen } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { translator, type Translate } from './i18n';
 import './roles.css';
@@ -130,10 +130,7 @@ function Roles() {
   };
 
   return (
-    <div className="flxr-app">
-      <div className="flxr-head">
-        <h1>{t('Roles and access')}</h1>
-      </div>
+    <Screen className="flxr-app" width="md" icon={host.appIcon} title={t('Roles and access')} subtitle={t("Turn on and off what each role can access. A disabled action disappears from the menu and can't be done even by URL. The WordPress Administrator sees everything.")}>
       {notice && (
         <div className={'flxr-notice is-' + notice.kind} role={notice.kind === 'error' ? 'alert' : 'status'}>
           <span>{notice.text}</span>
@@ -142,7 +139,6 @@ function Roles() {
           </button>
         </div>
       )}
-      <p className="flxr-lead">{t("Turn on and off what each role can access. A disabled action disappears from the menu and can't be done even by URL. The WordPress Administrator sees everything.")}</p>
 
       <div className="flxr-roles">
         {roles.map((r) => (
@@ -324,7 +320,7 @@ function Roles() {
           </div>
         </Modal>
       )}
-    </div>
+    </Screen>
   );
 }
 

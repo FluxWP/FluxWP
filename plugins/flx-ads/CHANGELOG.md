@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.10.1
+- Ekran ortak FluxWP kabuğuna taşındı: başlık, simge, sekmeler, kenar boşlukları, en fazla genişlik ve güvenli alan (safe area) bütün Flux ekranlarında aynı. Sekmeler eski Flux Admin sekmeleri gibi alt çizgili; taşarsa sayfa değil sekme çubuğu kayar. Ortak modül paketi yenilendi.
+
 ## 0.10.0
 - Klasik (PHP) Flux Ads sayfaları (Rapor, Kampanyalar, Öneriler, Stüdyo, Sezon planı, Testler, Bağışçı değeri, Reklam harcaması, Kitleler, Gönderim kaydı, Reklam bağlantısı, Ayarlar) kaldırıldı; wp-admin'de yalnız React ekranı açılır ve artık ortak kabukla (`flx_admin_screen`) basılır. "Klasik görünüm" bağlantısı, kullanıcı başına görünüm tercihi (`flxads_ui`), eski `admin-post` uçları (`flxads_save`, `flxads_retry`, `flxads_spend`, `flxads_aud`, `flxads_mgr`, `flxads_studio`, `flxads_opt`, `flxads_plan`, `flxads_exp`), `includes/flux-ui.php` ve `assets/admin.{js,css}` silindi. Ekran açılamazsa boş sayfa yerine "Bu ekran yüklenemedi" uyarısı ve yenile düğmesi görünür.
 
