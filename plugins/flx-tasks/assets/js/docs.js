@@ -68,7 +68,7 @@
 		if (!w) { Y.toast(t('Açılır pencere engellendi. Tarayıcıda bu site için açılır pencerelere izin verin.'), { error: true }); return; }
 		var css = 'body{font:14px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:#1f2937;margin:32px auto;max-width:760px;padding:0 24px}' +
 			'h1{font-size:26px;margin:0 0 4px}h2{font-size:19px;margin:22px 0 8px}h3{font-size:16px;margin:16px 0 6px}' +
-			'.meta{color:#6b7280;font-size:12.5px;margin-bottom:18px}img{max-width:100%;height:auto;border-radius:6px}' +
+			'.meta{color:#6b7280;font-size:12.5px;margin-bottom:18px}img{max-width:100%;height:auto;border-radius:6px}figure{margin:8px 0}figure:has(>img[width]){display:inline-block;vertical-align:top;max-width:100%;margin:6px 10px 6px 0}figure[data-align=center]:has(>img){display:block;text-align:center}figure[data-align=center] img{margin:0 auto}figure[data-align=right]:has(>img){display:block}figure[data-align=right] img{margin-left:auto}figure img{display:block}' +
 			'table{border-collapse:collapse;width:100%;margin:8px 0}td,th{border:1px solid #d1d5db;padding:6px 8px;text-align:left;vertical-align:top}th{background:#f3f4f6}' +
 			'blockquote{border-left:3px solid #d1d5db;margin:8px 0;padding:2px 12px;color:#4b5563}pre{background:#f3f4f6;padding:10px;border-radius:6px;white-space:pre-wrap}' +
 			'ul[data-checklist]{list-style:none;padding-left:4px}li[data-checked]::before{content:"☐ "}li[data-checked="1"]::before{content:"☑ "}' +
@@ -1183,16 +1183,48 @@
 		ed.addEventListener('keydown', onKey);
 		ed.addEventListener('mousedown', function (e) { if (e.button === 0) { D.dragging = true; if (D.aiBub) D.aiBub.classList.remove('is-on'); } });
 		ed.addEventListener('click', onClick);
-		ed.addEventListener('mouseover', function (e) { var a = e.target.closest && e.target.closest('a[data-file]'); if (a) fileHoverOn(a); });
-		ed.addEventListener('mouseout', function (e) { if (D && D.fbtn && e.target.closest && e.target.closest('a[data-file]')) D.fbT = setTimeout(fileHoverOff, 160); });
+		ed.addEventListener('mouseover', function (e) { var a = e.target.closest && e.target.closest('a[data-file]'); if (a) fileHoverOn(a); var im = e.target.closest && e.target.closest('img[data-file]'); if (im) imgHandleOn(im); });
+		ed.addEventListener('mouseout', function (e) { if (D && D.fbtn && e.target.closest && e.target.closest('a[data-file]')) D.fbT = setTimeout(fileHoverOff, 160); if (D && D.ih && e.target.closest && e.target.closest('img[data-file]')) D.ihT = setTimeout(imgHandleOff, 220); });
 		ed.addEventListener('paste', onPaste);
-		ed.addEventListener('dragover', function (e) { if (D.edit && hasFiles(e)) { e.preventDefault(); } });
+		ed.addEventListener('dragstart', function (e) {
+			var im = e.target.closest && e.target.closest('img[data-file]');
+			if (!im || !D.edit) return;
+			D.dragImg = im.closest('figure') || im;
+			imgHandleOff();
+			try { e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', ' '); } catch (x) { /* eski tarayıcı */ }
+		});
+		ed.addEventListener('dragend', function () { if (D) D.dragImg = null; });
+		ed.addEventListener('dragover', function (e) { if (D.edit && (hasFiles(e) || D.dragImg)) { e.preventDefault(); } });
 		ed.addEventListener('drop', function (e) {
-			if (!D.edit || !hasFiles(e)) return;
+			if (!D.edit) return;
+			var mv = D.dragImg;
+			D.dragImg = null;
+			if (!hasFiles(e) && !mv) return;
 			e.preventDefault();
+			var cell = e.target.closest && e.target.closest('td,th');
 			if (document.caretRangeFromPoint) {
 				var r = document.caretRangeFromPoint(e.clientX, e.clientY);
-				if (r && ed.contains(r.startContainer)) { var sl = window.getSelection(); sl.removeAllRanges(); sl.addRange(r); }
+				if (r && ed.contains(r.startContainer)) { var sl = window.getSelection(); sl.removeAllRanges(); sl.addRange(r); if (!cell) { var cn = r.startContainer.nodeType === 1 ? r.startContainer : r.startContainer.parentElement; cell = cn && cn.closest('td,th'); } }
+			}
+			if (mv) {
+				// Var olan görseli bırakılan yere taşır: hücreye bırakılırsa hücrenin içine, değilse o bloğun altına.
+				if (!mv.isConnected || (cell && mv.contains(cell))) return;
+				var tgt = cell || blockAtY(e.clientY);
+				if (!tgt || tgt === mv) return;
+				var oldB = blockOf(mv);
+				if (cell) {
+					if (mv.tagName !== 'FIGURE') { var fg = document.createElement('figure'); mv.replaceWith(fg); fg.appendChild(mv); mv = fg; }
+					var firstP = cell.firstElementChild;
+					if (cell.children.length === 1 && firstP.tagName === 'P' && !firstP.textContent.trim() && !firstP.querySelector('img')) cell.replaceChild(mv, firstP); else cell.appendChild(mv);
+				} else {
+					var hold = mv.tagName === 'FIGURE' ? mv : (function () { var f2 = document.createElement('figure'); mv.replaceWith(f2); f2.appendChild(mv); return f2; })();
+					if (!hold.getAttribute('data-b')) hold.setAttribute('data-b', newId());
+					var top = blockOf(tgt) || tgt;
+					D.ed.insertBefore(hold, top.nextSibling);
+				}
+				if (oldB && oldB !== mv && oldB.isConnected && oldB.tagName === 'P' && !oldB.textContent.trim() && !oldB.querySelector('img,br,span')) oldB.remove();
+				changed();
+				return;
 			}
 			insertFiles(Array.prototype.slice.call(e.dataTransfer.files || []));
 		});
@@ -1271,6 +1303,7 @@
 		var img = e.target.closest('img[data-file]');
 		if (img) {
 			if (!D.edit) { Y.lightbox([{ id: +img.getAttribute('data-file'), name: img.alt || '', image: true, url: img.src }], 0); return; }
+			imgHandleOn(img);
 			imagePop(img);
 			return;
 		}
@@ -1292,14 +1325,95 @@
 		Y.pop(a, box, { inline: true, noFocus: true });
 	}
 	function imagePop(img) {
+		var fig = img.closest('figure');
+		var al = fig ? (fig.getAttribute('data-align') || 'left') : '';
+		function setAlign(v) {
+			if (!fig) return;
+			if (v === 'left') fig.removeAttribute('data-align'); else fig.setAttribute('data-align', v);
+			changed();
+			imgHandleOn(img, true);
+		}
+		function setW(w) { if (w) img.setAttribute('width', String(w)); else img.removeAttribute('width'); changed(); imgHandleOn(img, true); }
 		Y.menu(img, [
-			{ label: t('Küçük'), checked: img.getAttribute('width') === '240', onClick: function () { img.setAttribute('width', '240'); changed(); } },
-			{ label: t('Orta'), checked: img.getAttribute('width') === '420', onClick: function () { img.setAttribute('width', '420'); changed(); } },
-			{ label: t('Tam genişlik'), checked: !img.getAttribute('width'), onClick: function () { img.removeAttribute('width'); changed(); } },
+			{ label: t('Küçük'), checked: img.getAttribute('width') === '240', onClick: function () { setW(240); } },
+			{ label: t('Orta'), checked: img.getAttribute('width') === '420', onClick: function () { setW(420); } },
+			{ label: t('Tam genişlik'), checked: !img.getAttribute('width'), onClick: function () { setW(0); } },
 			{ sep: true },
+			fig ? { label: t('Sola'), icon: 'alignL', checked: al === 'left', onClick: function () { setAlign('left'); } } : null,
+			fig ? { label: t('Ortaya'), icon: 'alignC', checked: al === 'center', onClick: function () { setAlign('center'); } } : null,
+			fig ? { label: t('Sağa'), icon: 'alignR', checked: al === 'right', onClick: function () { setAlign('right'); } } : null,
+			fig ? { sep: true } : null,
 			{ label: t('Büyüt'), icon: 'eye', onClick: function () { Y.lightbox([{ id: +img.getAttribute('data-file'), name: img.alt || '', image: true, url: img.src }], 0); } },
-			{ label: t('Görseli kaldır'), icon: 'trash', danger: true, onClick: function () { var b = blockOf(img); if (b && b.tagName === 'FIGURE') b.remove(); else img.remove(); changed(); } }
-		], { inline: true });
+			{ label: t('Görseli kaldır'), icon: 'trash', danger: true, onClick: function () { var b = blockOf(img); imgHandleOff(); if (b && b.tagName === 'FIGURE') b.remove(); else img.remove(); changed(); } }
+		].filter(Boolean), { inline: true });
+	}
+	/* Görsel genişlik tutamacı: görselin hizaya göre dış kenarında (sol/orta: sağda, sağa yaslı: solda) dikey çubuk; sürükleyince width (px) değişir. */
+	function imgHandleOff() {
+		if (!D) return;
+		clearTimeout(D.ihT);
+		if (D.ih && !D.ihDrag) { D.ih.remove(); D.ih = null; }
+	}
+	function imgHandlePlace(img, bar) {
+		var r = img.getBoundingClientRect();
+		var fig = img.closest('figure');
+		var left = fig && fig.getAttribute('data-align') === 'right';
+		bar.setAttribute('data-side', left ? 'l' : 'r');
+		bar.style.top = Math.round(r.top + r.height / 2 - 22) + 'px';
+		bar.style.left = Math.round(left ? r.left - 7 : r.right - 7) + 'px';
+	}
+	function imgHandleOn(img, force) {
+		if (!D || !D.edit || img.classList.contains('is-uploading')) return;
+		clearTimeout(D.ihT);
+		if (D.ihDrag) return;
+		if (D.ih && D.ih._i === img && !force) { imgHandlePlace(img, D.ih); return; }
+		if (D.ih) { D.ih.remove(); D.ih = null; }
+		var bar = h('div.flxg-doc-imgh', { contenteditable: 'false', role: 'separator', 'aria-orientation': 'vertical', title: t('Genişliği ayarlamak için sürükle') }, h('span'));
+		bar._i = img;
+		imgHandlePlace(img, bar);
+		bar.addEventListener('mouseenter', function () { clearTimeout(D.ihT); });
+		bar.addEventListener('mouseleave', function () { if (!D.ihDrag) D.ihT = setTimeout(imgHandleOff, 220); });
+		bar.addEventListener('pointerdown', function (e) {
+			if (e.button) return;
+			e.preventDefault();
+			var fig = img.closest('figure');
+			var al = fig ? fig.getAttribute('data-align') : null;
+			var sign = al === 'right' ? -1 : (al === 'center' ? 2 : 1);
+			var x0 = e.clientX, w0 = img.getBoundingClientRect().width;
+			var max = Math.floor(D.ed.getBoundingClientRect().width);
+			D.ihDrag = true;
+			bar.classList.add('is-drag');
+			document.body.classList.add('flxg-doc-imgresizing');
+			try { bar.setPointerCapture(e.pointerId); } catch (x) { /* eski tarayıcı */ }
+			var tip = h('.flxg-doc-imgtip');
+			document.body.appendChild(tip);
+			function mv(ev) {
+				var w = Math.max(60, Math.min(max, Math.round(w0 + (ev.clientX - x0) * sign)));
+				img.setAttribute('width', String(w));
+				imgHandlePlace(img, bar);
+				var r = img.getBoundingClientRect();
+				tip.textContent = (w >= max ? t('Tam genişlik') : w + ' px');
+				tip.style.top = Math.round(r.top + 8) + 'px';
+				tip.style.left = Math.round(r.left + 8) + 'px';
+			}
+			function up() {
+				bar.removeEventListener('pointermove', mv);
+				bar.removeEventListener('pointerup', up);
+				bar.removeEventListener('pointercancel', up);
+				tip.remove();
+				document.body.classList.remove('flxg-doc-imgresizing');
+				bar.classList.remove('is-drag');
+				D.ihDrag = false;
+				var cur = parseInt(img.getAttribute('width'), 10) || 0;
+				if (cur >= max - 2) img.removeAttribute('width');
+				changed();
+				imgHandlePlace(img, bar);
+			}
+			bar.addEventListener('pointermove', mv);
+			bar.addEventListener('pointerup', up);
+			bar.addEventListener('pointercancel', up);
+		});
+		document.body.appendChild(bar);
+		D.ih = bar;
 	}
 	/** Dosya kartı: üzerine gelince düzenleme simgesi; menüden önizle / indir / kaldır. */
 	function fileMenu(a) {
@@ -1418,6 +1532,7 @@
 		if (!D.edit) return;
 		var docId = D.doc.id;
 		var ref = curBlock();
+		var cell = curCell();
 		files.forEach(function (file) {
 			var isImg = /^image\//.test(file.type);
 			var el;
@@ -1426,8 +1541,15 @@
 			} else {
 				el = h('p', { 'data-b': newId() }, h('a.is-uploading', { 'data-file': '' }, Y.icon('clip', 13), ' ' + (file.name || t('Dosya'))));
 			}
-			insertBlockAfter(el, ref);
-			ref = el;
+			if (cell && isImg) {
+				// Tablo hücresindeyken görsel hücrenin içine girer (üst düzey bloğa değil).
+				var fp = cell.firstElementChild;
+				if (cell.children.length === 1 && fp.tagName === 'P' && !fp.textContent.trim() && !fp.querySelector('img')) cell.replaceChild(el, fp); else cell.appendChild(el);
+				el.removeAttribute('data-b');
+			} else {
+				insertBlockAfter(el, ref);
+				ref = el;
+			}
 			Y.upload(file, { doc: docId }).then(function (f) {
 				if (!D || D.doc.id !== docId || !el.isConnected) return;
 				if (isImg) {
@@ -1445,7 +1567,7 @@
 				changed();
 			}, function (e) { Y.fail(e); if (el.isConnected) el.remove(); });
 		});
-		if (ref) { var p = ensureParaAfter(ref); setCaret({ b: p.getAttribute('data-b'), o: 0 }); }
+		if (ref && !(cell && ref === curBlock())) { var p = ensureParaAfter(ref); setCaret({ b: p.getAttribute('data-b'), o: 0 }); }
 		changed();
 	}
 	function pickFiles(accept) {

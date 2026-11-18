@@ -1489,7 +1489,19 @@ body.flxg-col-resizing * { cursor: col-resize !important; user-select: none !imp
 .flxg-doc-ed.flxg-prose p { margin: 0 0 6px; }
 .flxg-doc-ed hr { border: 0; border-top: 1px solid var(--line); margin: 18px 0; }
 .flxg-doc-ed figure { margin: 10px 0; }
-.flxg-doc-ed figure img { cursor: pointer; display: block; }
+.flxg-doc-ed figure img { cursor: pointer; display: block; max-width: 100%; height: auto; }
+/* Genişliği verilmiş görseller satır içi akar: sığdığı kadar yan yana durur, sığmayan alt satıra iner. */
+.flxg-doc-ed figure:has(> img[width]) { display: inline-block; vertical-align: top; max-width: 100%; margin: 6px 12px 6px 0; }
+.flxg-doc-ed figure[data-align="center"]:has(> img) { display: block; margin: 10px 0; text-align: center; }
+.flxg-doc-ed figure[data-align="center"] img { margin: 0 auto; }
+.flxg-doc-ed figure[data-align="right"]:has(> img) { display: block; margin: 10px 0; }
+.flxg-doc-ed figure[data-align="right"] img { margin-left: auto; }
+.flxg-doc-imgh { position: fixed; z-index: 100040; width: 14px; height: 44px; display: flex; align-items: center; justify-content: center; cursor: ew-resize; touch-action: none; }
+.flxg-doc-imgh span { width: 6px; height: 32px; border-radius: 4px; background: var(--accent); border: 1.5px solid var(--panel); box-shadow: 0 1px 4px rgba(0, 0, 0, .3); transition: height .12s; }
+.flxg-doc-imgh:hover span, .flxg-doc-imgh.is-drag span { height: 44px; }
+.flxg-doc-imgtip { position: fixed; z-index: 100041; padding: 2px 8px; border-radius: 6px; background: var(--ink); color: var(--panel); font-size: 12px; font-weight: 600; pointer-events: none; }
+body.flxg-doc-imgresizing, body.flxg-doc-imgresizing * { cursor: ew-resize !important; user-select: none !important; }
+@media (pointer: coarse) { .flxg-doc-imgh { width: 28px; height: 56px; } .flxg-doc-imgh span { width: 8px; height: 40px; } }
 .flxg-doc-ed img.is-uploading { opacity: .5; }
 .flxg-doc-ed table { border-collapse: collapse; width: 100%; margin: 10px 0; font-size: 14px; }
 .flxg-doc-ed td, .flxg-doc-ed th { border: 1px solid var(--line); padding: 6px 9px; vertical-align: top; min-width: 60px; }

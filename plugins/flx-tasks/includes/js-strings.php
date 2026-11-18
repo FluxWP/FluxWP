@@ -92,6 +92,7 @@ function flxg_js_strings() {
 		'Küçük' => __( 'Small', 'flx-tasks' ),
 		'Orta' => __( 'Medium', 'flx-tasks' ),
 		'Tam genişlik' => __( 'Full width', 'flx-tasks' ),
+		'Genişliği ayarlamak için sürükle' => __( 'Drag to resize', 'flx-tasks' ),
 		'Büyüt' => __( 'Enlarge', 'flx-tasks' ),
 		'Görseli kaldır' => __( 'Remove image', 'flx-tasks' ),
 		'Bağlantı adresi' => __( 'Link address', 'flx-tasks' ),

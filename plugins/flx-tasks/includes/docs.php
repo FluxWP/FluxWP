@@ -303,7 +303,7 @@ function flxg_kses_block( $html ) {
 		'div'        => array( 'class' => true ),
 		'span'       => array( 'data-task' => true, 'data-page' => true, 'class' => true, 'contenteditable' => true ),
 		'img'        => array( 'data-file' => true, 'alt' => true, 'width' => true ),
-		'figure'     => array(),
+		'figure'     => array( 'data-align' => true ),
 		'figcaption' => array(),
 		'table'      => array( 'data-fixed' => true ),
 		'thead'      => array(),
@@ -332,6 +332,13 @@ function flxg_kses_block( $html ) {
 		'/\sdata-(bg|fg)="([^"]*)"/i',
 		function ( $m ) {
 			return in_array( $m[2], array( 'gray', 'brown', 'orange', 'yellow', 'green', 'blue', 'purple', 'pink', 'red' ), true ) ? ' data-' . strtolower( $m[1] ) . '="' . $m[2] . '"' : '';
+		},
+		$html
+	);
+	$html = preg_replace_callback(
+		'/\sdata-align="([^"]*)"/i',
+		function ( $m ) {
+			return in_array( $m[1], array( 'center', 'right' ), true ) ? ' data-align="' . $m[1] . '"' : '';
 		},
 		$html
 	);
