@@ -1,0 +1,11 @@
+mutation FlxSetupTelemetrySave($input: FlxSetupTelemetrySaveInput!) {
+  flxSetupTelemetrySave(input: $input) {
+    sent
+    telemetry {
+      ...FlxSetupTelemetryFields
+    }
+    errors {
+      ...FlxSetupErrors
+    }
+  }
+}

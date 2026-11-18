@@ -30,21 +30,22 @@ export function Dashboard() {
   const nets = boot.flxSocialConfig.networks;
   const accs = s.accounts;
 
-  if (!accs.length) {
-    return (
-      <div className="flxsm-empty">
-        <h2>{t('No accounts yet')}</h2>
+  // No account yet: the dashboard still shows (empty cards and chart, like the classic screen) under a setup prompt.
+  const setup = !accs.length ? (
+    <div className="flxsm-setup">
+      <div>
+        <strong>{t('No accounts yet')}</strong>
         <p>{t('No accounts connected yet. Enter the app keys first, then connect accounts.')}</p>
-        {boot.flxSocialConfig.canManage ? (
-          <button type="button" className="flxsm-btn is-primary" onClick={() => s.go('settings', { tab: 'apps' })}>
-            {t('App keys')}
-          </button>
-        ) : (
-          <p>{t('Accounts are connected by an administrator.')}</p>
-        )}
       </div>
-    );
-  }
+      {boot.flxSocialConfig.canManage ? (
+        <button type="button" className="flxsm-btn is-primary" onClick={() => s.go('settings', { tab: 'apps' })}>
+          {t('App keys')}
+        </button>
+      ) : (
+        <p>{t('Accounts are connected by an administrator.')}</p>
+      )}
+    </div>
+  ) : null;
 
   const max = Math.max(1, ...st.byDay.map((d) => d.networks.reduce((a, n) => a + n.count, 0)));
   const tiles: { label: string; value: string; sub: string; warn?: boolean }[] = [
@@ -67,6 +68,7 @@ export function Dashboard() {
 
   return (
     <div className="flxsm-dash">
+      {setup}
       <div className="flxsm-bar">
         <div className="flxsm-seg" role="group">
           {DAYS.map((d) => (

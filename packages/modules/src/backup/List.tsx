@@ -54,6 +54,7 @@ export function BackupList() {
           </li>
         ))}
         <li className="flxy-filters__end">
+          <span className="flxy-muted">{t('Total %s', counts.usedLabel)}</span>{' '}
           <button type="button" disabled={q.isFetching} onClick={() => void q.refetch()}>
             {t('Refresh list')}
           </button>
@@ -77,6 +78,7 @@ export function BackupList() {
               <th scope="col">{t('Backup')}</th>
               <th scope="col">{t('Type')}</th>
               <th scope="col">{t('Date')}</th>
+              <th scope="col">{t('Contents')}</th>
               <th scope="col" className="num">
                 {t('Size')}
               </th>
@@ -89,7 +91,7 @@ export function BackupList() {
           <tbody>
             {rows.length === 0 && (
               <tr>
-                <td colSpan={7} className="flxy-empty">
+                <td colSpan={8} className="flxy-empty">
                   {t('No backups.')}
                 </td>
               </tr>
@@ -133,6 +135,7 @@ export function BackupList() {
           <Badge label={r.typeLabel} color={r.typeColor} />
         </td>
         <td title={r.created?.label}>{r.created?.relative}</td>
+        <td className="flxy-contents">{r.contents.join(', ') || '—'}</td>
         <td className="num">{r.status === 'OK' ? r.sizeLabel : '—'}</td>
         <td>
           <button

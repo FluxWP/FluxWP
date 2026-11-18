@@ -1,0 +1,11 @@
+# Optional Google setup cards at the top of the Packages screen.
+query FlxSetupGoogleCards {
+  flxSetupGoogleCards {
+    id
+    title
+    text
+    button
+    installUrl
+    dismissUrl
+  }
+}

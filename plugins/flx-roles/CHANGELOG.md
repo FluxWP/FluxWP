@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 1.7.2
+- Rol ekranının altındaki notta bağlantılar düz HTML yazısı yerine tıklanabilir bağlantı olarak görünür.
+- Telefon genişliğinde içerik ekranın dışına taşmıyor (grid sütunları minmax(0,1fr)).
+
 ## 1.7.1
 - Ekran ortak FluxWP kabuğuna taşındı: başlık, simge, sekmeler, kenar boşlukları, en fazla genişlik ve güvenli alan (safe area) bütün Flux ekranlarında aynı. Sekmeler eski Flux Admin sekmeleri gibi alt çizgili; taşarsa sayfa değil sekme çubuğu kayar. Ortak modül paketi yenilendi.
 

@@ -70,6 +70,14 @@ export function Mcp() {
   const cur = draft ?? { enabled: s.enabled, oauth: s.oauth };
   const dirty = !!draft && (draft.enabled !== s.enabled || draft.oauth !== s.oauth);
   const slug = (() => {
+    // Same server name as the classic screen: the site name as a slug (my-wordpress-website), else the host name.
+    const byName = (host.siteName ?? '')
+      .normalize('NFKD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/gi, '-')
+      .replace(/^-|-$/g, '')
+      .toLowerCase();
+    if (byName) return byName;
     try {
       return new URL(s.url).hostname.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '').toLowerCase() || 'fluxwp';
     } catch {

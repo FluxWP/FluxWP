@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.33.3
+- Ayarlar klasik ekrandaki gibi: anahtar alanlarında nereden alınır açıklaması ve örnek (sk-or-…, sk-ant-…, wrkspc_…), model alanlarında açıklama ve "Varsayılan" yer tutucusu, "Eklentiye özel model" başlığı, "Limit dolunca" radyo düğmesi. Faturalamada ay listesi ve ayrıntı yan yana; MCP kod blokları koyu, örnek sunucu adı site adından.
+
 ## 0.33.2
 - Ekran ortak FluxWP kabuğuna taşındı: başlık, simge, sekmeler, kenar boşlukları, en fazla genişlik ve güvenli alan (safe area) bütün Flux ekranlarında aynı. Sekmeler eski Flux Admin sekmeleri gibi alt çizgili; taşarsa sayfa değil sekme çubuğu kayar. Ortak modül paketi yenilendi.
 

@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.7.3
+- Yedekler listesinde İçerik sütunu ve toplam boyut (klasik ekrandaki gibi).
+
 ## 1.7.2
 - Ekran ortak FluxWP kabuğuna taşındı: başlık, simge, sekmeler, kenar boşlukları, en fazla genişlik ve güvenli alan (safe area) bütün Flux ekranlarında aynı. Sekmeler eski Flux Admin sekmeleri gibi alt çizgili; taşarsa sayfa değil sekme çubuğu kayar. Ortak modül paketi yenilendi.
 

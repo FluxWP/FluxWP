@@ -1,0 +1,8 @@
+mutation FlxSetupGoogleCardDismiss($input: FlxSetupGoogleCardDismissInput!) {
+  flxSetupGoogleCardDismiss(input: $input) {
+    ok
+    errors {
+      ...FlxSetupErrors
+    }
+  }
+}

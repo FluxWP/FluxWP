@@ -324,11 +324,11 @@ function Roles() {
   );
 }
 
-/** A translated sentence with one <a href="%s">…</a> link. */
+/** A translated sentence with one <a href="…">…</a> link (t() has already filled %s, usually with ""). */
 function Linked({ text, href }: { text: string; href: string }) {
-  const m = /^(.*)<a href="%s">(.*)<\/a>(.*)$/s.exec(text);
+  const m = /^(.*)<a href="[^"]*">(.*)<\/a>(.*)$/s.exec(text);
   // A translation without the link markup is shown as text; React escapes it, nothing is parsed as HTML.
-  if (!m) return <>{text.split('<a href="%s">').join('').split('</a>').join('')}</>;
+  if (!m) return <>{text.replace(/<a href="[^"]*">/g, '').split('</a>').join('')}</>;
   return (
     <>
       {m[1]}

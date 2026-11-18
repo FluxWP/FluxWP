@@ -229,3 +229,5 @@
 .flxsm-chip-x{display:none}
 .flxsm-post{max-width:none}
 }
+.flxsm-setup{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;background:var(--flux-surface);border:1px solid var(--flux-border,#e3e1dc);border-radius:12px;padding:16px 20px;margin:0 0 16px}
+.flxsm-setup p{margin:4px 0 0;color:var(--mut)}
