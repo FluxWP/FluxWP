@@ -160,7 +160,7 @@ flxt_ok( false !== wp_verify_nonce( $cl['actions'][0]['nonce'] ?? '', 'flxk_clou
 flxt_same( true, json_decode( (string) ( $r['data']['flxSetupTelemetry']['payload'] ?? '' ), true ) !== null, 'telemetry: payload is JSON' );
 flxt_same( 'FORBIDDEN', flxt_code( flxk_t_op( 'FlxSetupTelemetrySave', array( 'input' => array( 'url' => 'https://x.example' ) ), $upd ) ), 'telemetry save: no manage_options → FORBIDDEN' );
 $r = flxk_t_op( 'FlxSetupTelemetrySave', array( 'input' => array( 'url' => 'http://insecure.example/hub' ) ), $admin );
-flxt_same( array( '', null ), array( $r['data']['flxSetupTelemetrySave']['telemetry']['url'] ?? null, $r['data']['flxSetupTelemetrySave']['sent'] ?? 'x' ), 'telemetry save: http address is dropped, nothing sent' );
+flxt_same( array( '', null ), array( $r['data']['flxSetupTelemetrySave']['telemetry']['url'] ?? null, array_key_exists( 'sent', $r['data']['flxSetupTelemetrySave'] ?? array() ) ? $r['data']['flxSetupTelemetrySave']['sent'] : 'x' ), 'telemetry save: http address is dropped, nothing sent' );
 $r = flxk_t_op( 'FlxSetupTelemetrySave', array( 'input' => array( 'url' => 'https://hub.example/wp-json/flxan/v1/telemetry' ) ), $admin );
 flxt_same( 'https://hub.example/wp-json/flxan/v1/telemetry', get_option( 'flxk_telemetry_url' ), 'telemetry save: https address is kept' );
 flxk_t_op( 'FlxSetupTelemetrySave', array( 'input' => array( 'url' => '' ) ), $admin );

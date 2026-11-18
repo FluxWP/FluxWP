@@ -2,6 +2,7 @@
 
 ## 1.5.4
 - Klasik ekranda olup React'te kaybolanlar geri geldi: Ayarlar'da FluxWP hesabı kartı (FluxWP ile giriş, yenile, bağlantıyı kes), bağlantı kutusunda "Bağlantıyı sına", "Anonim kullanım verisi" kartı (telemetri adresi, şimdi gönder, gönderilecek veri) ve diğer paketlerin kullanım seçenekleri (flxk_usage_options); Paketler'de "Google'da bulunun" kartı. Yeni GraphQL: flxSetupCloud, flxSetupTelemetry, flxSetupGoogleCards, flxSetupTelemetrySave, flxSetupGoogleCardDismiss.
+- Telefon genişliğinde içerik ekranın dışına taşmıyor (grid sütunları minmax(0,1fr), arama ve süzgeç satırı alt alta).
 
 ## 1.5.3
 - Ekran ortak FluxWP kabuğuna taşındı: başlık, simge, sekmeler, kenar boşlukları, en fazla genişlik ve güvenli alan (safe area) bütün Flux ekranlarında aynı. Sekmeler eski Flux Admin sekmeleri gibi alt çizgili; taşarsa sayfa değil sekme çubuğu kayar. Ortak modül paketi yenilendi.

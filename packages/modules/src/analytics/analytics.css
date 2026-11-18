@@ -141,7 +141,7 @@ body.flx-dark .flxan {
 	.flxan-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 782px) {
-	.flxan-grid { grid-template-columns: 1fr; }
+	.flxan-grid { grid-template-columns:minmax(0,1fr); }
 	.flxan-tools { width: 100%; }
 	.flxan-tools select { flex: 1 1 auto; }
 	.flxan-card__value { font-size: 24px; }
@@ -230,11 +230,11 @@ html.flxa-dark .flxan-heat, body.flx-dark .flxan-heat { background: color-mix(in
 .flxan-ico:hover { color: var(--flxan-accent); background: var(--flxan-hover); }
 
 @media (max-width: 1100px) {
-	.flxan-top, .flxan-map { grid-template-columns: 1fr; }
+	.flxan-top, .flxan-map { grid-template-columns:minmax(0,1fr); }
 }
 @media (max-width: 782px) {
 	.flxan-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-	.flxan-funnel { grid-template-columns: 1fr; }
+	.flxan-funnel { grid-template-columns:minmax(0,1fr); }
 	.flxan-fstep { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "h v" "b b" "r r"; gap: 2px 8px; }
 	.flxan-fstep__head { grid-area: h; min-height: 0; }
 	.flxan-fstep__val { grid-area: v; margin: 0; font-size: 16px; }
@@ -457,7 +457,7 @@ html.flxa-dark .flxan-rate.hi, body.flx-dark .flxan-rate.hi { background: rgba(7
 .flxan-skfunnel { display: flex; align-items: flex-end; gap: 12px; height: 180px; }
 .flxan-skfunnel .flxan-sk { flex: 1; border-radius: 8px 8px 0 0; }
 @media (max-width: 782px) {
-	.flxan-skmap { grid-template-columns: 1fr; }
+	.flxan-skmap { grid-template-columns:minmax(0,1fr); }
 	.flxan-skmap > .flxan-sk { height: 160px; }
 	.flxan-skfunnel { height: 120px; gap: 6px; }
 }

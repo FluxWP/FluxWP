@@ -65,6 +65,6 @@
 .flxr-matrix th,.flxr-matrix td{padding:10px 8px}
 .flxr-matrix .flxr-col{width:72px}
 .flxr-people li{flex-direction:column}
-.flxr-field{grid-template-columns:1fr;gap:6px}
+.flxr-field{grid-template-columns:minmax(0,1fr);gap:6px}
 .flxr-field>label{padding-top:0}
 }

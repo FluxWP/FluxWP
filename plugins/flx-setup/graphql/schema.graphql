@@ -247,15 +247,19 @@ type FlxSetupFailingSource {
   name: String!
 }
 
-"""An optional Google setup card (Google Site Kit, Google for WooCommerce)."""
+"""
+An optional Google setup card (Google Site Kit, Google for WooCommerce).
+"""
 type FlxSetupGoogleCard {
   """Install or activate button text."""
   button: String!
-  """"Not needed" link (admin-post, with nonce)."""
+  """&quot;Not needed&quot; link (admin-post, with nonce)."""
   dismissUrl: String!
   """Card id."""
   id: String!
-  """Installs, activates and opens the plugin setup (admin-post, with nonce)."""
+  """
+  Installs, activates and opens the plugin setup (admin-post, with nonce).
+  """
   installUrl: String!
   """Text."""
   text: String!
@@ -988,7 +992,9 @@ type FlxSetupTag {
   label: String!
 }
 
-"""Anonymous usage data: state, hub address and the data that will be sent."""
+"""
+Anonymous usage data: state, hub address and the data that will be sent.
+"""
 type FlxSetupTelemetry {
   """FluxWP hub address."""
   defaultUrl: String!
@@ -1210,7 +1216,7 @@ extend type RootMutation {
     """Input for the flxSetupCheck mutation"""
     input: FlxSetupCheckInput!
   ): FlxSetupCheckPayload
-  """"Not needed": closes a Google setup card site-wide."""
+  """&quot;Not needed&quot;: closes a Google setup card site-wide."""
   flxSetupGoogleCardDismiss(
     """Input for the flxSetupGoogleCardDismiss mutation"""
     input: FlxSetupGoogleCardDismissInput!
