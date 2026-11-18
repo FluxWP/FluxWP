@@ -1191,6 +1191,7 @@ return array(
   'Küçük' => 'Small',
   'Orta' => 'Medium',
   'Tam genişlik' => 'Full width',
+  'Genişliği ayarlamak için sürükle' => 'Drag to resize',
   'Büyüt' => 'Enlarge',
   'Görseli kaldır' => 'Remove image',
   'Bağlantı adresi' => 'Link address',

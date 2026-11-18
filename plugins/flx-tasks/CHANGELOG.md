@@ -1,5 +1,12 @@
 # Flux Tasks — Değişiklikler
 
+## 0.17.0
+- Dokümanlarda görsel genişliği artık görselin kenarındaki tutamaçtan sürüklenerek ayarlanır (fare ve dokunmatik); sürüklerken genişlik px olarak görünür, tam genişliğe ulaşınca tam genişlik olur. Hazır Küçük / Orta / Tam genişlik seçenekleri menüde durur.
+- Görsele tıklayınca açılan menüde Sola / Ortaya / Sağa hizalama. Sağa yaslı görselin tutamacı sol kenardadır.
+- Genişliği verilmiş görseller satır içi akar: sığdığı kadar yan yana durur, sığmayanlar alt satıra iner. Ortalı ve sağa yaslı görseller kendi satırında durur.
+- Tablo hücrelerine görsel eklenebilir: hücredeyken yüklenen / yapıştırılan / bırakılan görsel hücrenin içine girer; var olan görsel sürüklenip hücreye (ya da başka bir yere) bırakılabilir.
+- Genişlik ve hizalama kaydedilir (`img width`, `figure data-align`); okuma görünümünde, yazdırmada ve mobilde korunur, dar ekranda görsel sığacak şekilde küçülür.
+
 ## 0.16.4
 - Liste görünümünün arka planı artık beyaz (önceden gri). Sabit sütun başlıkları da beyaz.
 
