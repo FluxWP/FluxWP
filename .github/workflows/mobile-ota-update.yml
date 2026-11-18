@@ -11,7 +11,7 @@ on:
         default: flux
         required: true
       channel:
-        description: OTA channel (builds read brand ota.channel or FLUX_OTA_CHANNEL)
+        description: production, or beta (only devices/users on the update server's beta list get it)
         default: production
         required: true
       action:

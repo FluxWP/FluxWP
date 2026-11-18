@@ -87,6 +87,7 @@
     "cache": "Clear cache",
     "cacheCleared": "Cache cleared.",
     "version": "Version {{version}}",
+    "deviceCode": "Device code {{code}}",
     "about": "About",
     "support": "Support",
     "notifications": "Notifications"

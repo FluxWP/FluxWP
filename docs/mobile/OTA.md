@@ -18,6 +18,15 @@ app verifies the signature with brands/<brand>/ota-certificate.pem
 - **Channel:** `brand.ota.channel` (default `production`), or `FLUX_OTA_CHANNEL` at build time. Sent as the `expo-channel-name` header.
 - **Code signing is required.** Without `brands/<brand>/ota-certificate.pem` the build has `updates.enabled: false` and always runs its embedded bundle.
 
+## Beta: selected devices and users first
+
+1. Publish with channel `beta` (Actions › Mobile OTA update › channel `beta`).
+2. Update server › Mobile OTA updates › **Beta**: pick devices (the device code is under Settings in the app) and/or list users as `site#userID` (e.g. `fluxwp.com#1`). The same lists are in the admin API (`ota_beta_device`, `ota_beta_accounts`).
+3. Those devices get the beta update on their next launch; everyone else stays on `production`. A beta device on a runtime without a beta update gets `production`.
+4. **Promote to stable** serves the same signed beta update on `production`. No new build or signature.
+
+The app sends `flux-device` (random code, new on reinstall), `flux-device-name` (model + OS) and `flux-accounts` (`site#userId` of signed-in accounts, at most 10; no names or e-mails) with each update check (`src/platform/ota.ts`). The server keeps device records 180 days.
+
 ## One-time setup
 
 1. Key pair (on your machine, not in the repo):
@@ -44,3 +53,5 @@ The update server panel lists brand › channel › platform › runtime with th
 Mobil uygulama JS ve görsel güncellemelerini EAS yerine kendi güncelleme sunucumuzdan alır (Expo Updates protokolü v1). Güncelleme sessizdir: açılışta arka planda iner, sonraki açılışta devreye girer. İmza CI'da atılır, sunucuda özel anahtar durmaz; uygulama `brands/<marka>/ota-certificate.pem` ile doğrular, dosya yoksa OTA kapalıdır.
 
 Kurulum: yukarıdaki 1–5 adımı. Yayın: Actions › **Mobile OTA update** (`publish` ya da `rollback`). Güncelleme yalnız aynı yerel parmak izine (runtime) sahip mağaza/TestFlight yapılarına gider; yerel modül değişince önce yeni yapı gönderilir. Sunucu panelinde geçmişteki imzalı bir güncellemeye dönülebilir ya da sunum durdurulabilir.
+
+Beta: `beta` kanalına yayınla, panelde cihaz (uygulamada Ayarlar altında cihaz kodu) ya da kullanıcı (`site#kullanıcıNo`) seç; onlar önce alır, diğerleri kararlıda kalır. "Kararlıya al" aynı imzalı güncellemeyi herkese açar. Uygulama her kontrolde rastgele cihaz kodu, model ve hesapların `site#kullanıcıNo` bilgisini gönderir (ad/e-posta yok).

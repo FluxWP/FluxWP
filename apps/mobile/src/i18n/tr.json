@@ -87,6 +87,7 @@
     "cache": "Önbelleği temizle",
     "cacheCleared": "Önbellek temizlendi.",
     "version": "Sürüm {{version}}",
+    "deviceCode": "Cihaz kodu {{code}}",
     "about": "Hakkında",
     "support": "Destek",
     "notifications": "Bildirimler"
