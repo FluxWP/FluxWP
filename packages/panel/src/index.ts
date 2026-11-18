@@ -18,5 +18,6 @@ export function mountApp(el: HTMLElement, p: Platform) {
 
 export { webPlatform } from './platform/web';
 export { App };
+export { openConnectLink } from './state/connect';
 export { usePrefs } from './state/prefs';
 export { APP_VERSION } from './version';

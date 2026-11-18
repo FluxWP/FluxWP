@@ -1,7 +1,7 @@
 // Tauri platformu: CORS'suz HTTP (Rust tarafı), Keychain, sistem tarayıcısı, fluxwp:// OAuth, panel penceresi.
 import { invoke } from '@tauri-apps/api/core';
 import { listen } from '@tauri-apps/api/event';
-import { onOpenUrl } from '@tauri-apps/plugin-deep-link';
+import { getCurrent, onOpenUrl } from '@tauri-apps/plugin-deep-link';
 import { WebviewWindow } from '@tauri-apps/api/webviewWindow';
 import { Webview } from '@tauri-apps/api/webview';
 import { getCurrentWindow } from '@tauri-apps/api/window';
@@ -12,7 +12,7 @@ import { check, type Update } from '@tauri-apps/plugin-updater';
 import { relaunch } from '@tauri-apps/plugin-process';
 import { getVersion } from '@tauri-apps/api/app';
 import { brand, createI18n, newerVersion, type AppUpdate, type EmbedHooks, type EmbedRect, type EmbeddedView, type KeyValueStore, type OAuthRedirect, type Platform } from '@fluxwp/core';
-import { APP_VERSION, usePrefs } from '@fluxwp/panel';
+import { APP_VERSION, openConnectLink, usePrefs } from '@fluxwp/panel';
 import { embedUserAgent } from '@fluxwp/runtime';
 
 const secure: KeyValueStore = {
@@ -63,6 +63,10 @@ async function prepareOAuthRedirect(path = 'oauth/callback'): Promise<OAuthRedir
     },
   };
 }
+
+// "Open in app" links from a site (fluxwp://connect?site=…), also the one that launched the app.
+void getCurrent().then((urls) => urls?.forEach(openConnectLink)).catch(() => undefined);
+void onOpenUrl((urls) => urls.forEach(openConnectLink)).catch(() => undefined);
 
 let panelSeq = 0;
 const osName = () => (/Windows/i.test(navigator.userAgent) ? 'windows' : /Mac/i.test(navigator.userAgent) ? 'macos' : 'linux');

@@ -1,6 +1,15 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: tr_TR\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "All users"
+msgstr "Tüm kullanıcılar"
+
+msgid "Users who can edit content"
+msgstr "İçerik düzenleyebilenler"
+
+msgid "Administrators only"
+msgstr "Yalnız yöneticiler"
+
 msgid "Application"
 msgstr "Uygulama"
 
@@ -43,508 +52,11 @@ msgstr "Kart"
 msgid "Text"
 msgstr "Metin"
 
-msgid "Appearance of the desktop and mobile app. Empty colours come from the theme (theme.json) and the Flux Admin colour. Menus are filtered by the user's role: an item they cannot see in the admin does not show in the app either."
-msgstr "Masaüstü ve mobil uygulamanın görünümü. Renkler boş bırakılırsa tema (theme.json) ve Flux Admin renginden gelir. Menüler kullanıcının rolüne göre süzülür: göremediği öğe uygulamada da çıkmaz."
-
-msgid "Theme"
-msgstr "Tema"
-
-msgid "Mode"
-msgstr "Mod"
-
-msgid "Follow device"
-msgstr "Cihaza göre"
-
-msgid "On"
-msgstr "Açık"
-
-msgid "Dark"
-msgstr "Koyu"
-
-msgid "Corners"
-msgstr "Köşe"
-
-msgid "From theme"
-msgstr "Temadan"
-
-msgid "Sharp"
-msgstr "Keskin"
-
-msgid "Slight"
-msgstr "Az"
-
-msgid "Medium"
-msgstr "Orta"
-
-msgid "Round"
-msgstr "Yuvarlak"
-
-msgid "Density"
-msgstr "Yoğunluk"
-
-msgid "Comfortable"
-msgstr "Rahat"
-
-msgid "Compact"
-msgstr "Sade"
-
-msgid "Font"
-msgstr "Yazı tipi"
-
-msgid "Heading font"
-msgstr "Başlık yazı tipi"
-
-msgid "From theme (%s)"
-msgstr "Temadan (%s)"
-
-msgid "Mobile"
-msgstr "Mobil"
-
-msgid "Navigation"
-msgstr "Gezinme"
-
-msgid "Tab bar + drawer"
-msgstr "Alt bar + yan menü"
-
-msgid "Tab bar only"
-msgstr "Yalnız alt bar"
-
-msgid "Drawer only"
-msgstr "Yalnız yan menü"
-
-msgid "Home screen"
-msgstr "Açılış ekranı"
-
-msgid "Home"
-msgstr "Başlangıç"
-
-msgid "Tab bar (up to 5)"
-msgstr "Alt bar (en çok 5)"
-
-msgid "If empty, the Flux Admin mobile bottom bar setting is used. Tabs the user cannot open are hidden; \"Menu\" always stays reachable."
-msgstr "Boş bırakılırsa Flux Admin mobil alt bar ayarı kullanılır. Kullanıcının göremediği sekme gizlenir; \"Menü\" her zaman erişilebilir kalır."
-
-msgid "Label"
-msgstr "Etiket"
-
-msgid "Icon (home, chat…)"
-msgstr "İkon (home, chat…)"
-
-msgid "Badge"
-msgstr "Sayaç"
-
-msgid "Drawer (role menu groups)"
-msgstr "Yan menü (rol menüsü grupları)"
-
-msgid "Logo in the top bar"
-msgstr "Üst barda logo"
-
-msgid "Site switcher"
-msgstr "Site değiştirici"
-
-msgid "Top bar"
-msgstr "Üst bar"
-
-msgid "Large title"
-msgstr "Büyük başlık"
-
-msgid "Desktop"
-msgstr "Masaüstü"
-
-msgid "The sidebar follows the role's Flux Admin menu layout (pins and groups). Shortcuts always shown in the command palette (⌘K):"
-msgstr "Kenar çubuğu, rolün Flux Admin menü düzenini (sabitlenenler ve gruplar) izler. Komut paletinde (⌘K) her zaman görünecek kısayollar:"
-
-msgid "A disabled screen does not open natively in the app; that page opens in the web view."
-msgstr "Kapatılan ekran uygulamada yerel olarak açılmaz; o sayfa web görünümünde açılır."
-
-msgid "Save"
-msgstr "Kaydet"
-
-msgid "Preview"
-msgstr "Önizleme"
-
-msgid "Preview uses your role; other roles see their own menus."
-msgstr "Önizleme sizin rolünüzle; diğer roller kendi menülerini görür."
-
-msgid "Which apps may connect to this site, store links and notifications."
-msgstr "Bu siteye hangi uygulamaların bağlanabileceği, mağaza bağlantıları ve bildirimler."
-
-msgid "Main FluxWP app"
-msgstr "Ana FluxWP uygulaması"
-
-msgid "Allow the FluxWP desktop and mobile app (flx-masaustu, flx-mobil)"
-msgstr "Masaüstü ve mobil FluxWP uygulaması bağlanabilsin (flx-masaustu, flx-mobil)"
-
-msgid "When off, only the branded apps below can connect; open sessions of the main app end at their next refresh."
-msgstr "Kapatılırsa yalnız aşağıdaki markalı uygulamalar bağlanır; ana uygulamanın açık oturumları bir sonraki yenilemede kapanır."
-
-msgid "Store links"
-msgstr "Mağaza bağlantıları"
-
-msgid "Send push notifications to mobile devices (Expo)"
-msgstr "Mobil cihazlara push bildirimi gönder (Expo)"
-
-msgid "Hide content on the lock screen (only the notification type shows)"
-msgstr "Kilit ekranında içeriği gizle (yalnız bildirim türü görünür)"
-
-msgid "Saved (type to replace)"
-msgstr "Kayıtlı (değiştirmek için yazın)"
-
-msgid "Expo access token (optional)"
-msgstr "Expo erişim belirteci (isteğe bağlı)"
-
-msgid "Delete"
-msgstr "Sil"
-
-msgid "Only needed when enhanced push security is on in the Expo account. The desktop app does not receive push; it shows notifications through sync while open."
-msgstr "Yalnız Expo hesabında gelişmiş push güvenliği açıksa gerekir. Masaüstü uygulaması push almaz; bildirimleri açıkken eşitleme ile gösterir."
-
-msgid "Devices: %1$d · notifications on: %2$d"
-msgstr "Cihaz: %1$d · bildirim açık: %2$d"
-
-msgid "Last send %1$s: %2$d sent, %3$d failed"
-msgstr "Son gönderim %1$s: %2$d gönderildi, %3$d hata"
-
-msgid "Web view"
-msgstr "Web görünümü"
-
-msgid "Hide the admin bar on site pages opened in the app"
-msgstr "Uygulamada açılan site sayfalarında yönetim çubuğunu gizle"
-
-msgid "Developer mode"
-msgstr "Geliştirici modu"
-
-msgid "Allow Expo development redirects (exp://…/--/oauth/callback)"
-msgstr "Expo geliştirme dönüş adreslerine (exp://…/--/oauth/callback) izin ver"
-
-msgid "Turn on only on test sites."
-msgstr "Yalnız test sitelerinde açın."
-
-msgid "Branded apps"
-msgstr "Markalı uygulamalar"
-
-msgid "An app published under the organisation's own name connects to this site only if it is listed here. Usually filled in by the preset."
-msgstr "Kurumun kendi adıyla yayımlanan uygulaması bu siteye yalnız burada tanımlıysa bağlanır. Genelde ön ayar (preset) doldurur."
-
-msgid "Name"
-msgstr "Ad"
-
-msgid "Platform"
-msgstr "Platform"
-
-msgid "Redirect URIs (one per line)"
-msgstr "Yönlendirme adresleri (satır başına bir)"
-
-msgid "Redirect URIs"
-msgstr "Yönlendirme adresleri"
-
-msgid "Connection details"
-msgstr "Bağlantı bilgileri"
-
-msgid "Active preset"
-msgstr "Etkin ön ayar"
-
-msgid "Send me a test notification"
-msgstr "Kendime deneme bildirimi gönder"
-
-msgid "No device is signed in to the app."
-msgstr "Uygulamada oturum açılmış cihaz yok."
-
-msgid "User"
-msgstr "Kullanıcı"
-
-msgid "Device"
-msgstr "Cihaz"
-
-msgid "Last seen"
-msgstr "Son görülme"
-
-msgid "Unnamed device"
-msgstr "Adsız cihaz"
-
-msgid "Off"
-msgstr "Kapalı"
-
-msgid "Sign this device out?"
-msgstr "Bu cihazdaki oturum kapatılsın mı?"
-
-msgid "Sign out"
-msgstr "Oturumu kapat"
-
-msgid "%d screen"
-msgid_plural "%d screens"
-msgstr[0] "%d ekran"
-msgstr[1] "%d ekran"
-
-msgid "General"
-msgstr "Genel"
-
-msgid "Appearance"
-msgstr "Görünüm"
-
-msgid "Applications"
-msgstr "Uygulamalar"
-
-msgid "Modules"
-msgstr "Modüller"
-
-msgid "Menu"
-msgstr "Menü"
-
-msgid "OAuth clients"
-msgstr "OAuth istemcileri"
-
-msgid "All access"
-msgstr "Tüm erişimler"
-
 msgid "App access"
 msgstr "Uygulama erişimi"
 
 msgid "You are not allowed to do this."
 msgstr "Bu işlem için yetkiniz yok."
-
-msgid "All users"
-msgstr "Tüm kullanıcılar"
-
-msgid "Users who can edit content"
-msgstr "İçerik düzenleyebilenler"
-
-msgid "Administrators only"
-msgstr "Yalnız yöneticiler"
-
-msgid "Nothing here yet."
-msgstr "Kayıt yok."
-
-msgid "Type"
-msgstr "Tür"
-
-msgid "Created"
-msgstr "Oluşturma"
-
-msgid "Last used"
-msgstr "Son kullanım"
-
-msgid "Expires"
-msgstr "Bitiş"
-
-msgid "API key"
-msgstr "API anahtarı"
-
-msgid "App session"
-msgstr "Uygulama oturumu"
-
-msgid "Never"
-msgstr "Süresiz"
-
-msgid "Remove this access?"
-msgstr "Erişim kaldırılsın mı?"
-
-msgid "Remove"
-msgstr "Kaldır"
-
-msgid "Copy it now; it will not be shown again."
-msgstr "Şimdi kopyalayın; bir daha gösterilmeyecek."
-
-msgid "Saved."
-msgstr "Kaydedildi."
-
-msgid "Test notification: %1$d sent, %2$d failed, %3$d skipped."
-msgstr "Deneme bildirimi: %1$d gönderildi, %2$d hata, %3$d atlandı."
-
-msgid "Give the key a name."
-msgstr "Anahtara bir ad verin."
-
-msgid "Could not save."
-msgstr "Kaydedilemedi."
-
-msgid "Desktop app"
-msgstr "Masaüstü uygulaması"
-
-msgid "Use the panel as a separate app on your Mac or Windows computer. New versions install themselves."
-msgstr "Paneli Mac ve Windows bilgisayarınızda ayrı bir uygulama olarak kullanın. Yeni sürümler kendiliğinden kurulur."
-
-msgid "Download for macOS"
-msgstr "macOS için indir"
-
-msgid "Download for Windows"
-msgstr "Windows için indir"
-
-msgid "macOS 11 or later (Apple Silicon and Intel). Windows 10 and 11 (64-bit)."
-msgstr "macOS 11 ve üstü (Apple Silicon ve Intel). Windows 10 ve 11 (64 bit)."
-
-msgid "Windows MSI package (managed deployment)"
-msgstr "Windows MSI paketi (kurumsal dağıtım)"
-
-msgid "In the Flux Desktop app, press \"Sign in\": you sign in to this site in the browser and approve; the app then works with your permissions. For other tools (MCP clients, scripts) you can create a personal API key."
-msgstr "Flux Masaüstü uygulamasında \"Giriş yap\"a basınca tarayıcıda bu siteye girer, izin verirsiniz; uygulama sizin yetkilerinizle çalışır. Başka araçlar (MCP istemcileri, betikler) için kişisel API anahtarı oluşturabilirsiniz."
-
-msgid "My devices"
-msgstr "Cihazlarım"
-
-msgid "Connected apps"
-msgstr "Bağlı uygulamalar"
-
-msgid "API keys"
-msgstr "API anahtarları"
-
-msgid "e.g. Claude MCP"
-msgstr "ör. Claude MCP"
-
-msgid "Valid for"
-msgstr "Geçerlilik"
-
-msgid "%d days"
-msgstr "%d gün"
-
-msgid "Create key"
-msgstr "Anahtar oluştur"
-
-msgid "Usage: send Authorization: Bearer flxak_… to any REST endpoint and MCP (/wp-json/flx-mcp/v1/mcp). The key acts with your permissions."
-msgstr "Kullanım: Authorization: Bearer flxak_… başlığı ile her REST ucu ve MCP (/wp-json/flx-mcp/v1/mcp). Anahtar sizin yetkilerinizle çalışır."
-
-msgid "Sign-in, session and panel settings for the desktop (macOS, Windows) and mobile (iOS, Android) app."
-msgstr "Masaüstü (macOS, Windows) ve mobil (iOS, Android) uygulamanın giriş, oturum ve panel ayarları."
-
-msgid "Access token lifetime"
-msgstr "Erişim belirteci süresi"
-
-msgid "minutes"
-msgstr "dakika"
-
-msgid "Session lifetime (when unused)"
-msgstr "Oturum süresi (kullanılmazsa)"
-
-msgid "days"
-msgstr "gün"
-
-msgid "The period renews while the app is used; after this many days without use, sign-in is required again."
-msgstr "Uygulama açıldıkça süre yenilenir; bu kadar gün hiç açılmazsa yeniden giriş istenir."
-
-msgid "MCP clients"
-msgstr "MCP istemcileri"
-
-msgid "Allow self-registration (MCP clients such as Claude connect via OAuth; every connection still needs your approval)"
-msgstr "Kendini kaydetmesine izin ver (Claude gibi MCP istemcileri OAuth ile bağlanır; her bağlantı yine sizin onayınızı ister)"
-
-msgid "Admin session"
-msgstr "Panel oturumu"
-
-msgid "Let the app open menus without a native screen as admin pages (one-time sign-in link)"
-msgstr "Uygulama, yerel ekranı olmayan menüleri panel sayfası olarak açabilsin (tek seferlik giriş bağlantısı)"
-
-msgid "Sign in with code"
-msgstr "Kodla giriş"
-
-msgid "Let donors sign in with a code sent to their email, or to the phone number saved on their account"
-msgstr "Bağışçılar e-postalarına ya da hesaplarındaki telefon numarasına gelen kodla giriş yapabilsin"
-
-msgid "Create a customer account for an email after its sign-in code is confirmed"
-msgstr "Giriş kodu doğrulandıktan sonra bu e-posta için müşteri hesabı aç"
-
-msgid "Let staff sign in with a code too (not recommended; staff use OAuth in the browser)"
-msgstr "Personel de kodla girebilsin (önerilmez; personel tarayıcıyla OAuth kullanır)"
-
-msgid "Phone codes go out through Flux Call Center (WhatsApp) when that channel is available; otherwise the code is emailed to the account. A phone code signs in only the account whose saved number is exactly that full number. Donations and orders never open or claim an account."
-msgstr "Telefon kodu, kanal hazırsa Flux Chat (WhatsApp) üzerinden gider; değilse kod hesaba e-posta ile gönderilir. Telefon kodu yalnız kayıtlı numarası bu tam numarayla birebir aynı olan hesabın girişini açar. Bağışlar ve siparişler hesap açmaz ve hesaba sahip çıkmaz."
-
-msgid "Own phone number"
-msgstr "Kendi telefon numarası"
-
-msgid "Let a signed-in donor confirm a phone number and save it on their account"
-msgstr "Giriş yapmış bağışçı telefon numarasını doğrulayıp hesabına kaydedebilsin"
-
-msgid "The code is sent only to that phone (WhatsApp or an SMS provider), never by email. People who can edit posts keep an administrator-managed number unless staff code sign-in is turned on."
-msgstr "Kod yalnız o telefona gider (WhatsApp ya da bir SMS sağlayıcısı), e-posta ile gitmez. Yazı düzenleyebilenler, personel kodla girişi açılmadıkça yönetici tarafından tutulan numarayı korur."
-
-msgid "Can create API keys"
-msgstr "API anahtarı oluşturabilir"
-
-msgid "Devices"
-msgstr "Cihazlar"
-
-msgid "Sessions and keys"
-msgstr "Oturumlar ve anahtarlar"
-
-msgid "Built-in"
-msgstr "Yerleşik"
-
-msgid "Self-registered (MCP)"
-msgstr "Kendini kaydetti (MCP)"
-
-msgid "Added manually"
-msgstr "Elle eklendi"
-
-msgid "with secret"
-msgstr "gizli anahtarlı"
-
-msgid "Delete the application and all of its sessions?"
-msgstr "Uygulama ve tüm oturumları silinsin mi?"
-
-msgid "Add application"
-msgstr "Uygulama ekle"
-
-msgid "Generate a client secret (for server-side apps; not needed for desktop/mobile)"
-msgstr "Gizli anahtar üret (sunucuda çalışan uygulamalar için; masaüstü/mobil için gerekmez)"
-
-msgid "Add"
-msgstr "Ekle"
-
-msgid "Manifest"
-msgstr "Manifest"
-
-msgid "Native screen"
-msgstr "Yerel ekran"
-
-msgid "Plugin screens in the app. Manifest modules are drawn from the same definition on desktop and mobile; native modules open with the app's own screen. A disabled module's menu opens as an admin page in the app. Who sees what follows capabilities and the role menu."
-msgstr "Eklentilerin uygulamadaki ekranları. Manifestli modüller masaüstünde ve mobilde aynı tanımla çizilir; yerel ekranlılar uygulamanın kendi ekranıyla açılır. Kapatılan modülün menüsü uygulamada panel sayfası olarak açılır. Kimin göreceği yetkiye ve rol menüsüne göre belirlenir."
-
-msgid "No modules registered."
-msgstr "Kayıtlı modül yok."
-
-msgid "Module"
-msgstr "Modül"
-
-msgid "In the app"
-msgstr "Uygulamada"
-
-msgid "Capability"
-msgstr "Yetki"
-
-msgid "Version"
-msgstr "Sürüm"
-
-msgid "Manifest error: %s"
-msgstr "Manifest hatası: %s"
-
-msgid "Separate item"
-msgstr "Ayrı öğe"
-
-msgid "The app's side menu is the same as the panel menu for the user's role (order, groups, names, hidden items). Whether each item shows on web, mobile or desktop is chosen in the menu editor. An item with Web off shows only in the app."
-msgstr "Uygulamadaki sol menü, kullanıcının rolüne göre paneldeki menünün aynısıdır (sıra, gruplar, adlar, gizlenenler). Her öğenin web, mobil ya da masaüstünde görünüp görünmeyeceği menü düzenleyicide seçilir. Web kapalı öğe yalnız uygulamada görünür."
-
-msgid "Platform selection needs Flux Admin 1.3.0 or later."
-msgstr "Platform seçimi için Flux Admin 1.3.0 ya da üstü gerekli."
-
-msgid "Open menu editor"
-msgstr "Menü düzenleyiciyi aç"
-
-msgid "Default"
-msgstr "Varsayılan"
-
-msgid "Items hidden by platform"
-msgstr "Platforma göre gizlenen öğeler"
-
-msgid "None: every item shows everywhere."
-msgstr "Yok: tüm öğeler her yerde görünüyor."
-
-msgid "Role"
-msgstr "Rol"
-
-msgid "Visible"
-msgstr "Görünür"
-
-msgid "Hidden"
-msgstr "Gizli"
 
 msgid "FluxWP Mobile"
 msgstr "FluxWP Mobil"
@@ -567,11 +79,17 @@ msgstr "Yönlendirme adresi kabul edilmedi: %s (https, 127.0.0.1 ya da uygulama 
 msgid "Dynamic client limit reached; delete old ones."
 msgstr "Dinamik istemci sınırı doldu; eskileri silin."
 
+msgid "Home"
+msgstr "Başlangıç"
+
 msgid "Comments"
 msgstr "Yorumlar"
 
 msgid "Posts"
 msgstr "Yazılar"
+
+msgid "Menu"
+msgstr "Menü"
 
 msgid "%s drafts"
 msgstr "%s taslak"
@@ -636,14 +154,14 @@ msgstr "Cihaz bulunamadı."
 msgid "JavaScript is required for this screen."
 msgstr "Bu ekran için JavaScript gerekli."
 
-msgid "New view"
-msgstr "Yeni görünüm"
-
-msgid "Open the new view (same features, works in the FluxWP app too)."
-msgstr "Yeni görünümü aç (aynı özellikler, FluxWP uygulamasında da çalışır)."
-
 msgid "Manifest not found."
 msgstr "Manifest bulunamadı."
+
+msgid "Mobile"
+msgstr "Mobil"
+
+msgid "Desktop"
+msgstr "Masaüstü"
 
 msgid "The token does not include the scope this request needs."
 msgstr "Belirteç, bu isteğin gerektirdiği kapsamı içermiyor."
@@ -689,6 +207,33 @@ msgstr "Siteye dön"
 
 msgid "This link has expired. Open it again from the app."
 msgstr "Bağlantının süresi doldu. Uygulamadan yeniden açın."
+
+msgid "Open in app"
+msgstr "Uygulamada aç"
+
+msgid "Open in the FluxWP app"
+msgstr "FluxWP uygulamasında aç"
+
+msgid "Opening the app…"
+msgstr "Uygulama açılıyor…"
+
+msgid "The app did not open. Install it, then come back and press the button again."
+msgstr "Uygulama açılmadı. Önce uygulamayı kurun, sonra buraya dönüp düğmeye yeniden basın."
+
+msgid "Download on the App Store"
+msgstr "App Store'dan indir"
+
+msgid "Get it on Google Play"
+msgstr "Google Play'den edinin"
+
+msgid "Download for Mac"
+msgstr "Mac için indir"
+
+msgid "Download for Windows"
+msgstr "Windows için indir"
+
+msgid "Open the app"
+msgstr "Uygulamayı aç"
 
 msgid "%1$s is your sign-in code for the %2$s app. Valid for 10 minutes. Do not share this code with anyone."
 msgstr "%1$s, %2$s uygulamasına giriş kodunuz. 10 dakika geçerli. Bu kodu kimseyle paylaşmayın."
@@ -792,6 +337,9 @@ msgstr "Etkin erişimler"
 msgid "App sessions: %1$s · API keys: %2$s"
 msgstr "Uygulama oturumu: %1$s · API anahtarı: %2$s"
 
+msgid "All access"
+msgstr "Tüm erişimler"
+
 msgid "Push notifications"
 msgstr "Push bildirimleri"
 
@@ -804,6 +352,9 @@ msgstr "Henüz gönderim yok. Kayıtlı cihaz: %s"
 msgid "Last send %1$s: %2$s sent, %3$s failed. %4$s"
 msgstr "Son gönderim %1$s: %2$s gönderildi, %3$s hata. %4$s"
 
+msgid "Applications"
+msgstr "Uygulamalar"
+
 msgid "App screens (manifest)"
 msgstr "Uygulama ekranları (manifest)"
 
@@ -812,6 +363,9 @@ msgstr "Şema hatası olan modüller: %s. Bu modüller uygulamada web görünüm
 
 msgid "%s modules valid."
 msgstr "%s modül geçerli."
+
+msgid "Modules"
+msgstr "Modüller"
 
 msgid "App clients"
 msgstr "Uygulama istemcileri"
@@ -840,8 +394,23 @@ msgstr "İsteğe bağlıdır ve varsayılan kapalıdır. Yalnız uygulamada ayr�
 msgid "Share aggregate mobile app usage"
 msgstr "Mobil uygulamanın toplam kullanımını paylaş"
 
+msgid "Save"
+msgstr "Kaydet"
+
 msgid "Yetkiniz yok."
 msgstr "Yetkiniz yok."
+
+msgid "Default"
+msgstr "Varsayılan"
+
+msgid "Could not save."
+msgstr "Kaydedilemedi."
+
+msgid "Unnamed device"
+msgstr "Adsız cihaz"
+
+msgid "Give the key a name."
+msgstr "Anahtara bir ad verin."
 
 msgid "Test notification: this device receives notifications."
 msgstr "Deneme bildirimi: bu cihaz bildirim alıyor."
@@ -1929,6 +1498,9 @@ msgstr "Site"
 msgid "Search media"
 msgstr "Ortamda ara"
 
+msgid "Type"
+msgstr "Tür"
+
 msgid "Image"
 msgstr "Görsel"
 
@@ -1977,8 +1549,17 @@ msgstr "Yorum"
 msgid "IP"
 msgstr "IP"
 
+msgid "Name"
+msgstr "Ad"
+
+msgid "Role"
+msgstr "Rol"
+
 msgid "Name or email"
 msgstr "Ad ya da e-posta"
+
+msgid "User"
+msgstr "Kullanıcı"
 
 msgid "Username"
 msgstr "Kullanıcı adı"
@@ -2064,6 +1645,12 @@ msgstr "Tartışma ayarları"
 msgid "Comments on new posts"
 msgstr "Yeni yazılarda yorum"
 
+msgid "On"
+msgstr "Açık"
+
+msgid "Off"
+msgstr "Kapalı"
+
 msgid "Pingbacks"
 msgstr "Geri izleme"
 
@@ -2096,6 +1683,9 @@ msgstr "Dosya kalıcı silinsin mi?"
 
 msgid "It disappears from the pages that use it."
 msgstr "Kullanıldığı sayfalarda görünmez olur."
+
+msgid "Delete"
+msgstr "Sil"
 
 msgid "Deleted"
 msgstr "Silindi"

@@ -1,6 +1,7 @@
 # Değişiklikler
 
 ## Yayınlanmamış
+- Sitelerin "Uygulamada aç" düğmesi (`fluxwp://connect?site=<site adresi>`) uygulamayı açar, siteyi ekleme ekranına getirir ve normal OAuth girişi başlar. Bağlantıda gizli bilgi yok.
 - OTA beta: güncelleme sunucusunda seçilen cihaz ya da kullanıcı (`site#kullanıcıNo`) beta kanalındaki güncellemeyi önce alır. Uygulama güncelleme kontrolünde rastgele cihaz kodunu, modeli ve hesapların site + kullanıcı numarasını gönderir (ad/e-posta yok). Ayarlar'ın altında cihaz kodu görünür.
 - Mağazaya gitmeden güncelleme (OTA): uygulama açılışta kendi güncelleme sunucumuzdan (updater.fluxwp.com) JS ve görsel güncellemesini sessizce indirir, bir sonraki açılışta devreye girer. EAS kullanılmaz; güncellemeler imzalıdır, imzasız ya da yanlış imzalı güncelleme uygulanmaz. İlk kez bu sürümle gelen yerel modül (expo-updates) yüzünden mağaza/TestFlight yapısı gerekir.
 - reCAPTCHA, SEO, Yedekleme, Diller, Performans, Roller ve erişim, Yönetim teması, Headless, Sohbet botu, Site sohbetleri, Reklamlar, Dosyalar ve Blok Düzenleyici menüleri web görünümü yerine uygulamanın kendi ekranlarında açılır (eklentilerin GraphQL manifestleriyle).

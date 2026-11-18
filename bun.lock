@@ -14,7 +14,7 @@
     },
     "apps/desktop": {
       "name": "@fluxwp/desktop",
-      "version": "0.3.6",
+      "version": "0.3.7",
       "dependencies": {
         "@fluxwp/core": "workspace:*",
         "@fluxwp/panel": "workspace:*",
@@ -124,7 +124,7 @@
     },
     "packages/core": {
       "name": "@fluxwp/core",
-      "version": "0.4.7",
+      "version": "0.4.8",
       "dependencies": {
         "@fluxwp/tokens": "workspace:*",
         "i18next": "^26.6.0",
@@ -197,7 +197,7 @@
     },
     "packages/panel": {
       "name": "@fluxwp/panel",
-      "version": "0.3.8",
+      "version": "0.3.9",
       "dependencies": {
         "@fluxwp/core": "workspace:*",
         "@fluxwp/graphql": "workspace:*",

@@ -6,6 +6,7 @@ import { RenderOverlays } from '@fluxwp/render-web';
 import { useAccounts, useActiveAccount } from './state/hooks';
 import { usePrefs } from './state/prefs';
 import { AddSite } from './screens/AddSite';
+import { useConnect } from './state/connect';
 import { Shell } from './screens/Shell';
 import { desktopRenderer } from './renderer';
 import { ensureI18n, i18n } from './i18n';
@@ -54,8 +55,12 @@ function Root({ mode }: { mode: 'light' | 'dark' }) {
   useEffect(() => {
     if (ready && !active) hideSplash();
   }, [ready, active]);
+  const request = useConnect((c) => c.pending);
+  useEffect(() => {
+    if (ready && !active && request) useConnect.getState().markHandled();
+  }, [ready, active, request]);
   if (!ready) return null;
-  if (!active) return <AddSite />;
+  if (!active) return <AddSite key={request?.seq ?? 0} initialUrl={request?.siteUrl} />;
   return (
     <AccountScope key={active.id} account={active} renderer={renderer} app={app} store={store}>
       <AccountTheme mode={mode} />
