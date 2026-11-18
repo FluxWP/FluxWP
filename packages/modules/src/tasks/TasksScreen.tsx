@@ -103,8 +103,13 @@ export function TasksScreen() {
       if (host.startPage === 'dashboard' || host.startPage === 'settings') return { page: host.startPage } as Partial<Route>;
       // Son açılan liste/proje.
       const m = /^(list|space):(\d+)$/.exec(store.get('last') ?? '');
-      return m ? ({ page: m[1], id: +m[2]! } as Partial<Route>) : {};
+      if (m) return { page: m[1], id: +m[2]! } as Partial<Route>;
+      // Another browser: the scope the server remembers (and preloaded).
+      const sc = pre?.scope;
+      return sc && sc.type !== 'home' ? ({ page: sc.type, id: sc.id } as Partial<Route>) : {};
     };
+    // wp-admin: the plugin printed the first data into the page (flxg_print_preload); read it once.
+    const pre = host.mode === 'wp' ? takePreload() : null;
     const initial = host.mode === 'wp' ? fromWp() : (store.json<Partial<Route>>('route-' + host.scope) ?? {});
     const e = new FlxgEngine(flxgGraphQL(host.client), initial);
     const ui = new Ui();
@@ -121,8 +126,6 @@ export function TasksScreen() {
         host.notify?.({ title: notifText(e, n), body: n.title, onClick: () => void e.go({ page: 'inbox', task: n.task }) });
       host.refreshCounts?.();
     };
-    // wp-admin: the plugin printed the first data into the page (flxg_print_preload); read it once.
-    const pre = host.mode === 'wp' ? takePreload() : null;
     if (pre) {
       try {
         e.hydrate(pre);

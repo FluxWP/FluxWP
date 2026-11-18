@@ -1,5 +1,11 @@
 # Flux Tasks — Değişiklikler
 
+## 0.16.1
+- Görevler ekranı çok daha hızlı açılır: ilk veri (yan menü, kullanıcılar, son açılan liste ya da "Benim görevlerim" ve görevleri) sayfayla birlikte gelir; açılışta sunucuya ayrıca istek gitmez. Yavaş sunucuda (her istek ~0,4 sn) görevlerin görünmesi 2,1 sn'den 0,7 sn'ye indi.
+- Veri beklenirken (FluxApp, sayfa içi geçiş) üst bar ve sol menünün çerçevesi hemen çizilir; açılış verisi ile liste verisi aynı anda istenir (iki tur yerine bir).
+- Ekran kodu küçüldü (629 KB → 393 KB): Türkçe ve İngilizce dışındaki diller yalnız o dilde açılınca yüklenir.
+- Uzun listelerde ilk 60 satır hemen, kalanı bir kare sonra çizilir.
+
 ## 0.16.0
 - Doküman sayfaları kenar çubuğunda sayfa adı tam genişlikte görünür; "+" ve "…" düğmeleri yalnız üzerine gelince (ya da seçili sayfada) çıkar. Uzun ad kesilmek yerine en çok iki satıra sarar.
 - Kenar çubuğunu gizleme düğmesi "Doküman" başlığının yanında; üst çubuktaki düğme yalnız çubuk gizliyken (ve mobilde) görünür.
