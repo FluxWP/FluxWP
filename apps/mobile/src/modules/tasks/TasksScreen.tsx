@@ -5,6 +5,7 @@ import { FlashList } from '@shopify/flash-list';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import type { FlxgComment, FlxgTask, FlxgTaskDetail } from '@fluxwp/core';
+import { Icon } from '@/ui/Icon';
 import { flxgGraphQL } from '@fluxwp/graphql/flx-tasks';
 import { FlxgEngine, parseChecklist, toggleChecklistItem, useAccount, useApi, useEngineVersion, useRenderer } from '@fluxwp/runtime';
 import { KeyboardView } from '@/ui/KeyboardView';
@@ -12,17 +13,37 @@ import { Avatar, Button, EmptyState, IconButton, Skeleton, Text } from '@/ui/pri
 import { Chip, Chips, SearchField, useScreenTitle } from '../kit';
 import { mobilePorts } from '../ports';
 
-const TaskRow = memo(function TaskRow({ task, color, names, overdue, onPress }: { task: FlxgTask; color: string; names: string; overdue: boolean; onPress: () => void }) {
+type RowProps = { task: FlxgTask; color: string; names: string[]; listName: string; overdue: boolean; done: boolean; onPress: () => void; onToggle: () => void };
+
+// Same row as the site's mobile list: status circle, title, then a meta line (list, due, people, counts).
+const TaskRow = memo(function TaskRow({ task, color, names, listName, overdue, done, onPress, onToggle }: RowProps) {
+  const { theme } = useUnistyles();
+  const meta = [listName, task.due ? task.due.slice(5, 10).split('-').reverse().join('.') : ''].filter(Boolean).join(' · ');
   return (
     <Pressable accessibilityRole="button" onPress={onPress} style={styles.row}>
-      <View style={[styles.dot, { backgroundColor: color }]} />
+      <Pressable accessibilityRole="checkbox" accessibilityState={{ checked: done }} hitSlop={10} onPress={onToggle} style={[styles.circle, { borderColor: color }, done && { backgroundColor: color }]}>
+        {done ? <Icon name="check" size={13} color={theme.colors.onPrimary} strokeWidth={3} /> : null}
+      </Pressable>
       <View style={styles.flex}>
-        <Text numberOfLines={2} style={task.completed ? styles.done : undefined}>{task.title}</Text>
-        <Text variant="caption" tone={overdue ? 'danger' : 'muted'} numberOfLines={1}>{[task.due?.slice(0, 10), names].filter(Boolean).join(' · ')}</Text>
+        <Text numberOfLines={2} style={done ? styles.done : undefined}>{task.title}</Text>
+        <View style={styles.metaRow}>
+          {meta ? <Text variant="caption" tone={overdue ? 'danger' : 'muted'} numberOfLines={1}>{meta}</Text> : null}
+          {task.subtasks ? <Text variant="caption" tone="muted">↳ {task.subtasks}</Text> : null}
+          {task.comments ? <Text variant="caption" tone="muted">💬 {task.comments}</Text> : null}
+        </View>
       </View>
+      {names.length ? (
+        <View style={styles.people}>
+          {names.slice(0, 3).map((n, i) => (
+            <View key={i} style={i ? styles.overlap : undefined}><Avatar text={n} size={24} /></View>
+          ))}
+        </View>
+      ) : null}
     </Pressable>
   );
 });
+
+type Item = { head: ReturnType<FlxgEngine['groups']>[number] } | { task: FlxgTask };
 
 export default function TasksScreen(_props: { params: Record<string, string> }) {
   const { t } = useTranslation();
@@ -32,21 +53,47 @@ export default function TasksScreen(_props: { params: Record<string, string> }) 
   const account = useAccount();
   const renderer = useRenderer();
   const ports = useMemo(() => mobilePorts(account.id), [account.id]);
-  const engine = useMemo(() => new FlxgEngine(flxgGraphQL(api), undefined, ports), [api, ports]);
+  const engine = useMemo(() => {
+    // Reopen the list or project the user had open last (same as the site); first time: their own tasks.
+    const m = /^(list|space):(\d+)$/.exec(ports.storage.get('last') ?? '');
+    const e = new FlxgEngine(flxgGraphQL(api), m ? { page: m[1] as 'list' | 'space', id: +m[2]! } : undefined, ports);
+    e.onRoute = (r) => {
+      if (r.page === 'list' || r.page === 'space') ports.storage.set('last', r.page + ':' + r.id);
+      else if (r.page === 'home') ports.storage.set('last', null);
+    };
+    return e;
+  }, [api, ports]);
   const ver = useEngineVersion(engine);
   const [mode, setMode] = useState<'list' | 'board'>('list');
   const [q, setQ] = useState('');
   const [detail, setDetail] = useState<FlxgTaskDetail | null>(null);
   const [comment, setComment] = useState('');
+  const [shut, setShut] = useState<Record<string, boolean>>({});
+  const [fell, setFell] = useState(false);
 
   useEffect(() => {
     void engine.boot();
     return () => engine.dispose();
   }, [engine]);
 
+  // Nothing assigned to the user yet: open the first list instead of an empty "my tasks" page.
+  useEffect(() => {
+    const S = engine.S;
+    if (fell || !S.ready || S.loading || S.route.page !== 'home' || !S.scope) return;
+    setFell(true);
+    if (!Object.keys(S.tasks).length && S.lists.length) void engine.go({ page: 'list', id: S.lists[0]!.id, view: 0, task: 0 });
+  }, [engine, ver, fell]);
+
   const tasks = ver >= 0 && engine.S.ready ? engine.filtered() : [];
   const groups = engine.S.ready ? engine.groups(tasks, 'status') : [];
-  const namesOf = (task: FlxgTask) => task.assignees.map((id) => engine.S.users[id]?.name).filter(Boolean).join(', ');
+  const namesOf = (task: FlxgTask) => task.assignees.map((id) => engine.S.users[id]?.name ?? '').filter(Boolean);
+  const toggleDone = (task: FlxgTask) => {
+    const sts = engine.list(task.list)?.statuses ?? [];
+    const next = engine.isDone(task) ? sts.find((x) => x.type !== 'done') : sts.find((x) => x.type === 'done');
+    if (next) void engine.patchTask(task.id, { status: next.key });
+  };
+  const sc = engine.S.scope;
+  const scopeTitle = !sc || sc.type === 'home' ? t('mobile.screens.tasks.mine') : sc.type === 'list' ? engine.list(sc.id)?.name ?? '' : engine.space(sc.id)?.name ?? '';
 
   const open = async (id: number) => {
     engine.openTask(id);
@@ -123,10 +170,11 @@ export default function TasksScreen(_props: { params: Record<string, string> }) 
 
   return (
     <KeyboardView testID="screen-tasks" style={styles.fill} chrome>
+      <Text variant="title" numberOfLines={1} style={styles.title}>{scopeTitle}</Text>
       <SearchField testID="tasks-search" value={q} onChange={(v) => (setQ(v), engine.setQuery(v))} placeholder={t('mobile.screens.tasks.search')} />
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.hscroll} contentContainerStyle={styles.filters}>
         <Chips>
-          <Chip label={t('mobile.screens.tasks.home')} active={engine.S.route.page === 'home'} onPress={() => void engine.go({ page: 'home', id: 0, view: 0, task: 0 })} />
+          <Chip label={t('mobile.screens.tasks.mine')} active={engine.S.route.page === 'home'} onPress={() => void engine.go({ page: 'home', id: 0, view: 0, task: 0 })} />
           {engine.S.lists.map((l) => (
             <Chip key={l.id} label={l.name} color={l.color} active={engine.S.route.page === 'list' && engine.S.route.id === l.id} onPress={() => void engine.go({ page: 'list', id: l.id, view: 0, task: 0 })} />
           ))}
@@ -141,12 +189,24 @@ export default function TasksScreen(_props: { params: Record<string, string> }) 
       {mode === 'list' ? (
         <FlashList
           style={styles.flex}
-          data={tasks}
-          keyExtractor={(task) => String(task.id)}
+          data={groups.flatMap((g) => [{ head: g } as Item, ...(shut[g.key] ? [] : g.tasks.map((task) => ({ task })))])}
+          keyExtractor={(it) => ('head' in it ? 'g' + it.head.key : String(it.task.id))}
+          getItemType={(it) => ('head' in it ? 'head' : 'row')}
           renderItem={({ item }) => {
-            const st = engine.status(item);
-            const overdue = !!item.due && item.due.slice(0, 10) < engine.S.config.today && st.type !== 'done';
-            return <TaskRow task={item} color={st.color} names={namesOf(item)} overdue={overdue} onPress={() => void open(item.id)} />;
+            if ('head' in item) {
+              const g = item.head;
+              return (
+                <Pressable accessibilityRole="button" onPress={() => setShut((m) => ({ ...m, [g.key]: !m[g.key] }))} style={styles.group}>
+                  <Icon name={shut[g.key] ? 'chevron' : 'chevron-down'} size={16} color={theme.colors.textMuted} />
+                  <View style={[styles.pill, { backgroundColor: g.color + '33' }]}><Text variant="caption" style={{ color: g.color, fontWeight: '700' }}>{g.label.toUpperCase()}</Text></View>
+                  <Text variant="caption" tone="muted">{g.tasks.length}</Text>
+                </Pressable>
+              );
+            }
+            const task = item.task;
+            const st = engine.status(task);
+            const overdue = !!task.due && task.due.slice(0, 10) < engine.S.config.today && st.type !== 'done';
+            return <TaskRow task={task} color={st.color} names={namesOf(task)} listName={sc?.type === 'list' ? '' : engine.list(task.list)?.name ?? ''} overdue={overdue} done={st.type === 'done'} onPress={() => void open(task.id)} onToggle={() => toggleDone(task)} />;
           }}
           ListEmptyComponent={engine.S.loading ? <Skeleton variant="cards" /> : <EmptyState icon="task" title={t('mobile.screens.tasks.empty')} body={t('mobile.screens.tasks.emptyBody')} />}
         />
@@ -183,7 +243,14 @@ const styles = StyleSheet.create((theme) => ({
   hscroll: { flexGrow: 0, maxHeight: 52 },
   filters: { paddingRight: theme.space[4], alignItems: 'center' },
   tools: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingHorizontal: theme.space[4], paddingBottom: 4 },
-  row: { flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: 68, marginHorizontal: 12, marginBottom: 8, paddingHorizontal: theme.space[4], backgroundColor: theme.colors.surface, borderWidth: 1, borderColor: theme.colors.border, borderRadius: theme.radius.lg },
+  title: { paddingHorizontal: theme.space[4], paddingTop: theme.space[3] },
+  row: { flexDirection: 'row', alignItems: 'center', gap: 12, minHeight: 60, paddingVertical: 10, paddingHorizontal: theme.space[4], borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: theme.colors.border },
+  circle: { width: 22, height: 22, borderRadius: 11, borderWidth: 2, alignItems: 'center', justifyContent: 'center' },
+  metaRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 2 },
+  people: { flexDirection: 'row' },
+  overlap: { marginLeft: -8 },
+  group: { flexDirection: 'row', alignItems: 'center', gap: 8, minHeight: 44, paddingHorizontal: theme.space[4], marginTop: 6 },
+  pill: { paddingHorizontal: 10, paddingVertical: 3, borderRadius: theme.radius.full },
   dot: { width: 10, height: 10, borderRadius: 5 },
   done: { textDecorationLine: 'line-through', color: theme.colors.textMuted },
   board: { padding: theme.space[3], gap: theme.space[3], alignItems: 'stretch' },

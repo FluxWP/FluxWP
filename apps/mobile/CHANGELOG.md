@@ -1,6 +1,7 @@
 # Değişiklikler
 
 ## Yayınlanmamış
+- İşler ekranı sitedeki Tasks mobil görünümüne yaklaştı: sayfa başlığı, duruma göre gruplanmış (aç/kapa) liste, durum dairesine dokununca tamamla, satırda liste/tarih/atananlar/alt görev/yorum sayısı. Son açılan liste ya da proje hatırlanır; "Benim görevlerim" boşsa ilk liste açılır (önceden boş "Görev yok" görünüyordu).
 - Sitelerin "Uygulamada aç" düğmesi (`fluxwp://connect?site=<site adresi>`) uygulamayı açar, siteyi ekleme ekranına getirir ve normal OAuth girişi başlar. Bağlantıda gizli bilgi yok.
 - OTA beta: güncelleme sunucusunda seçilen cihaz ya da kullanıcı (`site#kullanıcıNo`) beta kanalındaki güncellemeyi önce alır. Uygulama güncelleme kontrolünde rastgele cihaz kodunu, modeli ve hesapların site + kullanıcı numarasını gönderir (ad/e-posta yok). Ayarlar'ın altında cihaz kodu görünür.
 - Mağazaya gitmeden güncelleme (OTA): uygulama açılışta kendi güncelleme sunucumuzdan (updater.fluxwp.com) JS ve görsel güncellemesini sessizce indirir, bir sonraki açılışta devreye girer. EAS kullanılmaz; güncellemeler imzalıdır, imzasız ya da yanlış imzalı güncelleme uygulanmaz. İlk kez bu sürümle gelen yerel modül (expo-updates) yüzünden mağaza/TestFlight yapısı gerekir.
