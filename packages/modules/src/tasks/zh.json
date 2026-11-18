@@ -4,6 +4,7 @@
   "(copy)": "(副本)",
   "(deleted task)": "(已删除任务)",
   "+{n} more": "+{n}更多",
+  "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text.": "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text.",
   "AI": "人工智能",
   "AI assistant": "人工智能助手",
   "AI is off: a key or model is missing in Flux AI.": "AI 已关闭:Flux AI 中缺少密钥或模型。",
@@ -318,6 +319,9 @@
   "Pick a date": "选择日期",
   "Pick a match for each status; tasks move to that status.": "为每个状态选择一个匹配;任务转至该状态。",
   "Plugins": "插件",
+  "Preview": "预览",
+  "Preview image for YouTube links": "YouTube 链接的预览图",
+  "Preview not available": "无法预览",
   "Previous": "上一页",
   "Print the meeting report or save it as PDF": "打印会议报告或另存为 PDF",
   "Priority": "优先级",
@@ -338,6 +342,7 @@
   "Refresh": "刷新",
   "Regenerate": "再生",
   "Remove": "删除",
+  "Remove file": "移除文件",
   "Remove from cover": "从盖子上取下",
   "Remove priority": "删除优先级",
   "Rename": "重命名",
@@ -537,10 +542,5 @@
   "{n} tasks completed": "{n}任务已完成",
   "{n} tasks will be permanently deleted.": "{n}任务将被永久删除。",
   "{n} warning(s)": "{n}警告",
-  "{n} wrote a comment": "{n}写了一条评论",
-  "Preview not available": "无法预览",
-  "Preview": "预览",
-  "Remove file": "移除文件",
-  "Preview image for YouTube links": "YouTube 链接的预览图",
-  "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text.": "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text."
+  "{n} wrote a comment": "{n}写了一条评论"
 }

@@ -1017,5 +1017,14 @@
  "Çözülen": "Resolved",
  "Çözülen yorum yok.": "No resolved comments.",
  "Çözülmemiş": "Unresolved",
- "Üst sayfa da kısıtlı: bu sayfaya yalnız orada izni olanlar erişebilir.": "The parent page is restricted too: only people allowed there can open this page."
+ "Üst sayfa da kısıtlı: bu sayfaya yalnız orada izni olanlar erişebilir.": "The parent page is restricted too: only people allowed there can open this page.",
+ "Bilgi ve etkinlik": "Info and activity",
+ "sayfayı oluşturdu": "created the page",
+ "sayfayı düzenledi": "edited the page",
+ "sayfayı taşıdı": "moved the page",
+ "adı \"{a}\" → \"{b}\" olarak değiştirdi": "renamed it from \"{a}\" to \"{b}\"",
+ "Henüz etkinlik yok": "No activity yet",
+ "Etkinlik yüklenemedi": "Could not load activity",
+ "Sayfaları gizle": "Hide pages",
+ "Oluşturan": "Created by"
 }

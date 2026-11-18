@@ -4,6 +4,7 @@
   "(copy)": "(копия)",
   "(deleted task)": "(удалена задача)",
   "+{n} more": "+{n}еще",
+  "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text.": "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text.",
   "AI": "ИИ",
   "AI assistant": "ИИ-помощник",
   "AI is off: a key or model is missing in Flux AI.": "AI выключен: в Flux AI отсутствует ключ или модель.",
@@ -318,6 +319,9 @@
   "Pick a date": "Выберите дату",
   "Pick a match for each status; tasks move to that status.": "Выберите соответствие для каждого статуса; задачи переходят в этот статус.",
   "Plugins": "Плагины",
+  "Preview": "Просмотр",
+  "Preview image for YouTube links": "Превью для ссылок YouTube",
+  "Preview not available": "Предпросмотр недоступен",
   "Previous": "Предыдущий",
   "Print the meeting report or save it as PDF": "Распечатайте отчет о встрече или сохраните его в формате PDF.",
   "Priority": "Приоритет",
@@ -338,6 +342,7 @@
   "Refresh": "Обновить",
   "Regenerate": "Регенерировать",
   "Remove": "Удалить",
+  "Remove file": "Убрать файл",
   "Remove from cover": "Снимите с крышки",
   "Remove priority": "Удалить приоритет",
   "Rename": "Переименовать",
@@ -537,10 +542,5 @@
   "{n} tasks completed": "{n} задачи выполнены",
   "{n} tasks will be permanently deleted.": "Задачи{n}будут удалены без возможности восстановления.",
   "{n} warning(s)": "Предупреждения {n}",
-  "{n} wrote a comment": "{n}написал комментарий",
-  "Preview not available": "Предпросмотр недоступен",
-  "Preview": "Просмотр",
-  "Remove file": "Убрать файл",
-  "Preview image for YouTube links": "Превью для ссылок YouTube",
-  "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text.": "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text."
+  "{n} wrote a comment": "{n}написал комментарий"
 }
