@@ -68,7 +68,7 @@ add_action(
 					'version'      => FLXK_VERSION,
 					'options'      => 'flxk_flux_options',
 					'container_id' => 'flxk-app',
-					'preload'      => 'flxk-packages' === $module ? 'flxk_packages_preload' : array(),
+					'preload'      => 'flxk-packages' === $module ? 'flxk_packages_preload' : array( array( 'FlxSetupSettingsScreen' ) ),
 					'wrap_class'   => 'flxk-wrap',
 				)
 			);

@@ -158,5 +158,6 @@
  "When the plugin is deleted": "Eklenti silinince",
  "Also delete backup files": "Yedek dosyalarını da sil",
  "When off (default), deleting the plugin removes only its settings; the zip files stay in the folder.": "Kapalıysa (varsayılan) eklenti silindiğinde yalnız ayarlar silinir, zip dosyaları klasörde kalır.",
- "Save settings": "Ayarları kaydet"
+ "Save settings": "Ayarları kaydet",
+ "Refresh list": "Listeyi yenile"
 }

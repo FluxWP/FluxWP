@@ -119,11 +119,27 @@ final class FLXY_Admin {
 					'options'      => array( __CLASS__, 'flux_options' ),
 					'start'        => $start,
 					'container_id' => 'flxy-app',
-					'preload'      => 'dashboard' === $start ? array( array( 'FlxBackupSettingsScreen' ), array( 'FlxBackupJobRead' ), array( 'FlxBackupDashboard' ) ) : array( array( 'FlxBackupSettingsScreen' ) ),
+					'preload'      => self::flux_preload( $start ),
 					'wrap_class'   => 'flxy-react',
 				)
 			);
 		}
+	}
+
+	/**
+	 * First queries of a page with the variables the screen sends (no spinner on the first visit).
+	 *
+	 * @param string $start Start page.
+	 * @return list<array{0:string,1?:array<string,mixed>}>
+	 */
+	private static function flux_preload( string $start ): array {
+		$out = array( array( 'FlxBackupSettingsScreen' ), array( 'FlxBackupJobRead' ) );
+		if ( 'dashboard' === $start ) {
+			$out[] = array( 'FlxBackupDashboard' );
+		} elseif ( 'list' === $start ) {
+			$out[] = array( 'FlxBackupList', array( 'first' => 20, 'after' => null, 'type' => null ) );
+		}
+		return $out;
 	}
 
 	private static function flux_assets(): void {

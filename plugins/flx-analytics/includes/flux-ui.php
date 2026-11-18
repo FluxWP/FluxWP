@@ -62,6 +62,22 @@ add_action(
 					),
 				);
 			}
+			if ( 'flxan-journeys' === $module ) {
+				// Default view (last 30 days, 4 steps); another filter is fetched by the screen.
+				$args['preload'][] = array(
+					'FlxAnalyticsJourneys',
+					array(
+						'filter'  => array( 'range' => 'DAYS_30' ),
+						'options' => array(
+							'steps' => 4,
+							'from'  => '',
+							'to'    => '',
+							'group' => false,
+							'top'   => 100,
+						),
+					),
+				);
+			}
 			if ( 'flxan-settings' === $module ) {
 				$args['preload'][] = array( 'FlxAnalyticsSettings' );
 			}

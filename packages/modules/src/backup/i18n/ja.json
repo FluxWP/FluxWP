@@ -156,5 +156,6 @@
  "When the plugin is deleted": "プラグインを削除した場合",
  "Also delete backup files": "バックアップファイルも削除",
  "When off (default), deleting the plugin removes only its settings; the zip files stay in the folder.": "オフ (デフォルト) の場合、プラグインを削除すると、その設定のみが削除されます。 zip ファイルはフォルダー内に残ります。",
- "Save settings": "設定を保存する"
+ "Save settings": "設定を保存する",
+ "Refresh list": "リストを更新する"
 }

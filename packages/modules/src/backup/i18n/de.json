@@ -156,5 +156,6 @@
  "When the plugin is deleted": "Wenn das Plugin gelöscht wird",
  "Also delete backup files": "Löschen Sie auch Sicherungsdateien",
  "When off (default), deleting the plugin removes only its settings; the zip files stay in the folder.": "Wenn diese Option deaktiviert ist (Standardeinstellung), werden beim Löschen des Plugins nur seine Einstellungen entfernt. Die ZIP-Dateien bleiben im Ordner.",
- "Save settings": "Einstellungen speichern"
+ "Save settings": "Einstellungen speichern",
+ "Refresh list": "Liste aktualisieren"
 }

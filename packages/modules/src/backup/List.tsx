@@ -53,6 +53,11 @@ export function BackupList() {
             </button>
           </li>
         ))}
+        <li className="flxy-filters__end">
+          <button type="button" disabled={q.isFetching} onClick={() => void q.refetch()}>
+            {t('Refresh list')}
+          </button>
+        </li>
       </ul>
       <p className="flxy-sub">{t('Backups are stored in %s. Hostinger does not include this folder in its own backups: download important backups to your computer.', q.data.flxBackupHealth.folder)}</p>
       {sel.size > 0 && (

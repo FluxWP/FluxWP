@@ -178,5 +178,6 @@
  "Flux GraphQL %s is running": "Flux GraphQL %s çalışıyor",
  "Flux GraphQL is not running": "Flux GraphQL çalışmıyor",
  "PHP %s. FluxWP GraphQL packages run on it.": "PHP %s. FluxWP GraphQL paketleri bu sürümde çalışır.",
- "%1$s needs PHP %2$s or newer; this site runs PHP %3$s. Raise the PHP version in the hosting panel.": "%1$s için PHP %2$s veya üstü gerekiyor; bu site PHP %3$s ile çalışıyor. PHP sürümünü hosting panelinden yükseltin."
+ "%1$s needs PHP %2$s or newer; this site runs PHP %3$s. Raise the PHP version in the hosting panel.": "%1$s için PHP %2$s veya üstü gerekiyor; bu site PHP %3$s ile çalışıyor. PHP sürümünü hosting panelinden yükseltin.",
+ "Retry failed ones": "Hatalıları tekrar dene"
 }

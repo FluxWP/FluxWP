@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 1.5.2
+- Toplu kurulum/güncellemeden sonra işlem kaydında **"Hatalıları tekrar dene"** düğmesi: yalnız başarısız adımlar aynı sırayla yeniden çalışır (klasik ekranda vardı).
+- Güncelleme ayarları ilk ziyarette de spinner'sız açılır.
+
 ## 1.5.1
 - FluxApp masaüstünde FluxWP Panel (Paketler, Güncelleme ayarları) gömülü wp-admin sayfası yerine uygulamanın kendi ekranlarıyla açılır: uygulama manifesti yalnız mobil içindir (`platforms: ["mobile"]`). Mobil davranış değişmedi.
 
