@@ -2706,3 +2706,6 @@ msgstr ""
 
 msgid "This dependency would create a loop."
 msgstr ""
+
+msgid "Kilitli bir sayfanın içine ya da altına taşınamaz."
+msgstr ""

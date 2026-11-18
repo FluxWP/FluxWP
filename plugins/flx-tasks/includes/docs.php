@@ -673,8 +673,12 @@ function flxg_rest_page_update( WP_REST_Request $r ) {
 			}
 			$q = (int) $qq['parent_id'];
 		}
-		if ( $parent && ! FLXG_Doc_Service::can( $parent, 'edit', get_current_user_id() ) ) {
-			return flxg_error( 'flxg_forbidden', __( 'You are not allowed to edit this page.', 'flx-tasks' ), 403 );
+		if ( $parent && $parent !== (int) $p['parent_id'] ) {
+			// Kilitli ya da yetkisiz sayfanın altına taşınamaz.
+			$gate = FLXG_Doc_Service::can_write( $parent, get_current_user_id() );
+			if ( is_wp_error( $gate ) ) {
+				return $gate;
+			}
 		}
 		$set['parent_id'] = $parent;
 	}

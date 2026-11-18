@@ -1026,5 +1026,6 @@
  "Henüz etkinlik yok": "No activity yet",
  "Etkinlik yüklenemedi": "Could not load activity",
  "Sayfaları gizle": "Hide pages",
- "Oluşturan": "Created by"
+ "Oluşturan": "Created by",
+ "Kilitli bir sayfanın içine ya da altına taşınamaz.": "Cannot be moved into or under a locked page."
 }

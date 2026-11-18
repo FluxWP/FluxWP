@@ -431,7 +431,7 @@
 						colMap(m);
 						drawTree();
 					} }, Y.icon(closed ? 'chevR' : 'chevD', 13)) : h('span.flxg-caret.is-leaf', Y.icon('file', 13)),
-					h('a.flxg-doc-plink', { href: '#/doc/' + D.doc.id + '/p/' + p.id, onclick: function () { D.root.classList.remove('tree-open'); } }, p.title || t('Başlıksız')),
+					h('a.flxg-doc-plink', { href: '#/doc/' + D.doc.id + '/p/' + p.id, draggable: 'false', onclick: function () { D.root.classList.remove('tree-open'); } }, p.title || t('Başlıksız')),
 					Y.docPageFlags ? Y.docPageFlags(p) : null,
 					D.docEdit ? h('button.flxg-icon-btn.is-xs.flxg-doc-padd', { type: 'button', title: t('Alt sayfa ekle'), onclick: function (e) { e.stopPropagation(); addPage(p.id); } }, Y.icon('plus', 13)) : null,
 					D.docEdit ? h('button.flxg-icon-btn.is-xs.flxg-doc-pmore', { type: 'button', title: t('Sayfa menüsü'), onclick: function (e) { e.stopPropagation(); pageMenu(e.currentTarget, p); } }, Y.icon('dots', 13)) : null
@@ -444,23 +444,240 @@
 		box.appendChild(list);
 		if (D.docEdit) {
 			box.appendChild(h('button.flxg-tree-add', { type: 'button', onclick: function () { addPage(0); } }, Y.icon('plus', 14), t('Sayfa ekle')));
-			Y.dnd(list, { item: '.flxg-doc-prow', zone: '[data-drop]', onDrop: dropPage });
+			treeDnd(list);
 		}
 	}
-	/** Sürükleyip bırakma: bırakılan yerin üstündeki sayfanın kardeşi olur. */
-	function dropPage(info) {
-		var p = pageById(info.id);
-		if (!p) return;
-		var above = info.after ? pageById(info.after) : null;
-		var below = info.before ? pageById(info.before) : null;
-		var parent = above ? above.parent : below ? below.parent : 0;
-		// Bırakılan yer kendi alt sayfalarının arasıysa yok say.
-		for (var q = parent; q; q = (pageById(q) || {}).parent) { if (q === p.id) { drawTree(); return; } }
-		var sib = kids(parent).filter(function (x) { return x.id !== p.id; });
-		var ai = above && above.parent === parent ? sib.indexOf(above) : -1;
-		var prevPos = ai > -1 ? sib[ai].pos : null;
-		var nextPos = sib[ai + 1] ? sib[ai + 1].pos : null;
-		movePage(p, parent, Y.between(prevPos, nextPos));
+	/**
+	 * Sayfa ağacında sürükle-bırak (fare: kısa çekme; dokunmatik: uzun basma). Bırakma hedefi satırın yüksekliğine
+	 * göre belli olur: üst kenar = üstüne (kardeş), alt kenar = altına (kardeş; yatay konuma göre üst düzeye de çıkar),
+	 * orta = içine (alt sayfa). Çizgi / çerçeve hedefi önceden gösterir. Kilitli ya da yetkisiz sayfa taşınmaz,
+	 * kilitli sayfanın içine bırakılmaz; sunucu da aynısını doğrular.
+	 */
+	function treeDnd(list) {
+		var st = null;
+		var swallow = false;
+		var STEP = 16;
+		function canMove(p) { return !!p && D.docEdit && Y.rank(p.role || D.role) >= 3 && !p.locked; }
+		function depthOf(p) { var d = 0; for (var q = p; q && q.parent; q = pageById(q.parent)) d++; return d; }
+		function inTree(id, root) { for (var q = pageById(id), i = 0; q && i < 40; q = q.parent ? pageById(q.parent) : null, i++) { if (q.id === root) return true; } return false; }
+		function sibsOf(parent, self) { return kids(parent).filter(function (x) { return x.id !== self; }); }
+		function destOk(parent) { if (!parent) return true; var pp = pageById(parent); return !!pp && D.docEdit && Y.rank(pp.role || D.role) >= 3 && !pp.locked; }
+		/** İmleç altındaki hedef: { parent, prev, next, kind, row, line: {top, depth} } ya da null. */
+		function target(x, y) {
+			var p = st.page;
+			var rows = Y.$$('.flxg-doc-prow', list);
+			if (!rows.length) return null;
+			var col = colMap();
+			var row = null;
+			for (var i = 0; i < rows.length; i++) {
+				var rc = rows[i].getBoundingClientRect();
+				if (y < rc.bottom) { row = rows[i]; break; }
+			}
+			var below = !row;
+			if (below) {
+				var lastBottom = rows[rows.length - 1].getBoundingClientRect().bottom;
+				for (var j = rows.length - 1; j >= 0; j--) { if (!inTree(rows[j].dataset.id, p.id)) { row = rows[j]; break; } }
+				if (!row) return null;
+			} else if (inTree(row.dataset.id, p.id)) return null;
+			var rr = row.getBoundingClientRect();
+			var pg = pageById(row.dataset.id);
+			if (!pg) return null;
+			var frac = below ? 1 : Math.max(0, Math.min(1, (y - rr.top) / (rr.height || 1)));
+			var t = { row: row, kind: '', parent: 0, prev: null, next: null, line: null };
+			var hasKids = kids(pg.id).length && !col[pg.id];
+			if (!below && frac >= .28 && frac <= .72 && !inTree(pg.id, p.id)) {
+				t.kind = 'into';
+				t.parent = pg.id;
+				var sib = sibsOf(pg.id, p.id);
+				t.prev = sib.length ? sib[sib.length - 1] : null;
+			} else if (!below && frac < .28) {
+				t.kind = 'before';
+				t.parent = pg.parent;
+				var sb = sibsOf(pg.parent, p.id);
+				var ix = sb.indexOf(pg);
+				t.prev = ix > 0 ? sb[ix - 1] : null;
+				t.next = pg;
+				t.line = { top: rr.top, depth: depthOf(pg) };
+			} else if (hasKids && !inTree(pg.id, p.id)) {
+				// Açık, alt sayfalı satırın altı: ilk alt sayfa olur.
+				t.kind = 'first';
+				t.parent = pg.id;
+				t.next = sibsOf(pg.id, p.id)[0] || null;
+				t.line = { top: rr.bottom, depth: depthOf(pg) + 1 };
+			} else {
+				// Altına: yatay konuma göre aynı düzeyde ya da bir üst düzeylerde kardeş.
+				var chain = [pg];
+				var cur = pg;
+				while (cur.parent) {
+					var ss = sibsOf(cur.parent, p.id);
+					if (ss.length && ss[ss.length - 1] !== cur) break;
+					cur = pageById(cur.parent);
+					if (!cur) break;
+					chain.push(cur);
+				}
+				var base = list.getBoundingClientRect().left + 6;
+				var want = Math.floor((x - base) / STEP);
+				// İstenen derinliği aşmayan en derin zincir öğesi (yoksa en üsttekisi).
+				var best = chain[chain.length - 1];
+				for (var m = 0; m < chain.length; m++) { if (depthOf(chain[m]) <= Math.max(want, 0)) { best = chain[m]; break; } }
+				var pick = best;
+				t.kind = 'after';
+				t.parent = pick.parent;
+				var sa = sibsOf(pick.parent, p.id);
+				var ia = sa.indexOf(pick);
+				t.prev = pick;
+				t.next = ia > -1 && sa[ia + 1] ? sa[ia + 1] : null;
+				t.line = { top: below ? lastBottom : rr.bottom, depth: depthOf(pick) };
+			}
+			if (!destOk(t.parent)) return { invalid: true, row: row };
+			return t;
+		}
+		function paint(t) {
+			Y.$$('.is-drop-into', list).forEach(function (r) { r.classList.remove('is-drop-into'); });
+			if (!st.ind) { st.ind = h('.flxg-doc-dropline'); list.appendChild(st.ind); }
+			st.ind.style.display = 'none';
+			if (!t || t.invalid) return;
+			if (t.kind === 'into') { t.row.classList.add('is-drop-into'); return; }
+			var lr = list.getBoundingClientRect();
+			st.ind.style.display = 'block';
+			st.ind.style.top = (t.line.top - lr.top + list.scrollTop - 1) + 'px';
+			st.ind.style.left = (t.line.depth * STEP + 8) + 'px';
+		}
+		function begin(row, x, y) {
+			var p = pageById(row.dataset.id);
+			if (!p) return;
+			var r = row.getBoundingClientRect();
+			var ghost = row.cloneNode(true);
+			ghost.classList.add('flxg-ghost');
+			ghost.style.setProperty('--depth', 0);
+			ghost.style.width = Math.min(r.width, 260) + 'px';
+			ghost.style.left = r.left + 'px';
+			ghost.style.top = r.top + 'px';
+			(Y.$('#flxg-app') || document.body).appendChild(ghost);
+			Y.$$('.flxg-doc-prow', list).forEach(function (el) { if (inTree(el.dataset.id, p.id)) el.classList.add('is-dragging'); });
+			st = { row: row, page: p, ghost: ghost, dx: Math.min(x - r.left, 120), dy: y - r.top, ind: null, t: null, x: x, y: y };
+			list.classList.add('is-sorting');
+			document.body.classList.add('flxg-dragging');
+			if (navigator.vibrate) try { navigator.vibrate(15); } catch (e) { /* yok */ }
+			move(x, y);
+			tick(); // eslint-disable-line no-use-before-define
+		}
+		function scroller() { return list.closest('.flxg-doc-tree') || list.parentNode; }
+		function loop() {
+			if (!st) return;
+			var sc = scroller();
+			var r = sc.getBoundingClientRect();
+			if (st.y < r.top + 44) sc.scrollTop -= 12;
+			else if (st.y > r.bottom - 44) sc.scrollTop += 12;
+			else { requestAnimationFrame(loop); return; }
+			move(st.x, st.y);
+			requestAnimationFrame(loop);
+		}
+		function tick() { requestAnimationFrame(loop); }
+		function move(x, y) {
+			st.x = x;
+			st.y = y;
+			st.ghost.style.left = x - st.dx + 'px';
+			st.ghost.style.top = y - st.dy + 'px';
+			st.t = target(x, y);
+			paint(st.t);
+		}
+		function finish(cancel) {
+			if (!st) return;
+			var s = st;
+			st = null;
+			document.body.classList.remove('flxg-dragging');
+			s.ghost.remove();
+			list.classList.remove('is-sorting');
+			Y.$$('.is-dragging, .is-drop-into', list).forEach(function (r) { r.classList.remove('is-dragging', 'is-drop-into'); });
+			if (s.ind) s.ind.remove();
+			swallow = true;
+			setTimeout(function () { swallow = false; }, 60);
+			if (cancel || !D || !s.t) return;
+			if (s.t.invalid) { Y.toast(t('Kilitli bir sayfanın içine ya da altına taşınamaz.'), { error: true }); return; }
+			dropPage(s.page, s.t);
+		}
+		function startable(e) {
+			var el = e.target.closest('.flxg-doc-prow');
+			if (!el || !list.contains(el) || e.target.closest('input,textarea,button,select,[contenteditable]')) return null;
+			var p = pageById(el.dataset.id);
+			if (!canMove(p)) return null;
+			return el;
+		}
+		// Fare / kalem: kısa çekme.
+		list.addEventListener('pointerdown', function (e) {
+			if (e.pointerType === 'touch' || e.button !== 0) return;
+			var el = startable(e);
+			if (!el) return;
+			var sx = e.clientX;
+			var sy = e.clientY;
+			var go = false;
+			function mv(ev) {
+				if (!go) {
+					if (Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
+					go = true;
+					begin(el, sx, sy);
+				}
+				if (st) { move(ev.clientX, ev.clientY); ev.preventDefault(); }
+			}
+			function up() {
+				document.removeEventListener('pointermove', mv);
+				document.removeEventListener('pointerup', up);
+				document.removeEventListener('pointercancel', up);
+				if (go) finish(false);
+			}
+			document.addEventListener('pointermove', mv);
+			document.addEventListener('pointerup', up);
+			document.addEventListener('pointercancel', up);
+		});
+		// Dokunmatik: basılı tutunca sürükler; kısa kaydırma ağacı kaydırır.
+		list.addEventListener('touchstart', function (e) {
+			if (e.touches.length !== 1) return;
+			var el = startable(e);
+			if (!el) return;
+			var t0 = e.touches[0];
+			var sx = t0.clientX;
+			var sy = t0.clientY;
+			var timer = setTimeout(function () { begin(el, sx, sy); }, 380);
+			function mv(ev) {
+				var q = ev.touches[0];
+				if (!st) {
+					if (Math.abs(q.clientX - sx) + Math.abs(q.clientY - sy) > 10) { clearTimeout(timer); cleanup(); }
+					return;
+				}
+				ev.preventDefault();
+				move(q.clientX, q.clientY);
+			}
+			function end() {
+				clearTimeout(timer);
+				cleanup();
+				if (st) finish(false);
+			}
+			function cleanup() {
+				document.removeEventListener('touchmove', mv);
+				document.removeEventListener('touchend', end);
+				document.removeEventListener('touchcancel', end);
+			}
+			document.addEventListener('touchmove', mv, { passive: false });
+			document.addEventListener('touchend', end);
+			document.addEventListener('touchcancel', end);
+		}, { passive: true });
+		// Bağlantı kendi sürükleme / bağlam menüsünü başlatmasın.
+		list.addEventListener('dragstart', function (e) { e.preventDefault(); });
+		list.addEventListener('contextmenu', function (e) { if (st || e.target.closest('.flxg-doc-prow')) { if (st || window.matchMedia('(pointer: coarse)').matches) e.preventDefault(); } });
+		list.addEventListener('click', function (e) { if (swallow) { e.stopPropagation(); e.preventDefault(); } }, true);
+	}
+	/** Bırakma: yeni üst sayfa + konum; yerinde bırakılırsa bir şey yapılmaz. */
+	function dropPage(p, tg) {
+		var parent = tg.parent || 0;
+		var full = kids(p.parent);
+		var ci = full.indexOf(p);
+		var pc = ci > 0 ? full[ci - 1] : null;
+		var nc = full[ci + 1] || null;
+		var same = parent === p.parent && (tg.prev ? tg.prev.id : 0) === (pc ? pc.id : 0) && (tg.next ? tg.next.id : 0) === (nc ? nc.id : 0);
+		if (same) return;
+		if (parent) { var m = colMap(); if (m[parent]) { delete m[parent]; colMap(m); } }
+		movePage(p, parent, Y.between(tg.prev ? tg.prev.pos : null, tg.next ? tg.next.pos : null));
 	}
 	function movePage(p, parent, pos) {
 		p.parent = parent;

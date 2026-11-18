@@ -77,6 +77,7 @@
  "Sayfa adı": "Page name",
  "Üstteki sayfanın altına taşı": "Move under the page above",
  "Bir üst düzeye taşı": "Move up a level",
+ "Kilitli bir sayfanın içine ya da altına taşınamaz.": "Cannot be moved into or under a locked page.",
  "Sayfayı sil": "Delete page",
  "\"{p}\" sayfası ve {n} alt sayfası silinecek.": "\"{p}\" and its {n} subpages will be deleted.",
  "\"{p}\" sayfası silinecek.": "\"{p}\" will be deleted.",
