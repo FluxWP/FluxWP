@@ -15,6 +15,7 @@ import { AccountSwitcherHost } from '@/shell/AccountSwitcher';
 import { useAppFonts } from '@/theme/fonts';
 import { OverlayHost } from '@/ui/overlays';
 import { PushRouter } from '@/push';
+import { startOtaIdentity } from '@/platform/ota';
 
 void SplashScreen.preventAutoHideAsync();
 
@@ -26,6 +27,7 @@ export default function RootLayout() {
   useEffect(() => {
     if (ready) void SplashScreen.hideAsync();
   }, [ready]);
+  useEffect(() => (ready ? startOtaIdentity() : undefined), [ready]);
   if (!ready) return null;
 
   const base = theme.mode === 'dark' ? DarkTheme : DefaultTheme;

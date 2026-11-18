@@ -7,6 +7,7 @@ import { useRenderer, useSavePrefs, useUserPrefs } from '@fluxwp/runtime';
 import { brand } from '@/brand';
 import { setLanguage } from '@/i18n';
 import { APP_VERSION } from '@/platform';
+import { otaDeviceCode, otaEnabled } from '@/platform/ota';
 import { usePrefs, type ThemePref } from '@/theme/prefs';
 import { applyThemeMode } from '@/theme/unistyles';
 import { overlays } from '@/ui/overlays';
@@ -64,6 +65,7 @@ export default function Settings() {
       <Card style={styles.card}><PrivacyNotice /></Card>
       <View style={styles.about}>
         <Text variant="caption">{brand.name} · {t('mobile.settings.version', { version: APP_VERSION })}</Text>
+        {otaEnabled() ? <Text variant="caption" selectable>{t('mobile.settings.deviceCode', { code: otaDeviceCode().slice(0, 8) })}</Text> : null}
         {brand.supportUrl ? <Button kind="ghost" label={t('mobile.settings.support')} onPress={() => renderer.nav.openUrl(brand.supportUrl!)} /> : null}
       </View>
     </ScrollView>

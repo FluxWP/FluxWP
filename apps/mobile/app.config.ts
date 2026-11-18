@@ -51,7 +51,9 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     updates: {
       enabled: otaOn,
       url: `${brand.ota.url}/v1/expo/${brand.slug}/manifest`,
-      requestHeaders: { 'expo-channel-name': otaChannel },
+      // flux-* are filled at runtime (src/platform/ota.ts) for the update server's beta list; expo-updates
+      // only lets the app override header keys that exist here, so they ship empty in the build.
+      requestHeaders: { 'expo-channel-name': otaChannel, 'flux-device': '', 'flux-device-name': '', 'flux-accounts': '' },
       // Silent (Ahmet 2026-11-18): download in the background on launch, apply on the next cold start.
       checkAutomatically: 'ON_LOAD',
       fallbackToCacheTimeout: 0,
