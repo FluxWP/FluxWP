@@ -242,7 +242,7 @@
 		} }, Y.icon('dots', 18));
 		// Flux Mail varsa: sayfadan posta kutusunda taslak (alıcıyı orada seçip gönderirsiniz).
 		D.mailBtn = Y.S.config.mailDraft ? h('button.flxg-btn.is-sm.flxg-doc-mailbtn', { type: 'button', title: t('Bu sayfadan e-posta taslağı oluştur'), onclick: mailDraft }, Y.icon('send', 15), h('span', t('E-posta taslağı'))) : null;
-		D.aiBtn = aiOn() ? h('button.flxg-btn.is-sm.flxg-doc-aibtn', { type: 'button', title: t('Yapay zekâ (Ctrl+J)'), onclick: function (e) { openAIPage(e.currentTarget); } }, Y.icon('sparkle', 15), h('span', t('Yapay zekâ'))) : null;
+		D.aiBtn = aiOn() || aiOff() ? h('button.flxg-btn.is-sm.flxg-doc-aibtn', { type: 'button', title: t('Yapay zekâ (Ctrl+J)'), onclick: function (e) { openAIPage(e.currentTarget); } }, Y.icon('sparkle', 15), h('span', t('Yapay zekâ'))) : null;
 		D.xtop = h('span.flxg-doc-xtop');
 		main.appendChild(Y.topBar(D.crumbs, [D.people, D.saveEl, D.xtop, D.aiBtn, D.mailBtn, treeBtn, infoBtn, more]));
 
@@ -1602,7 +1602,7 @@
 			document.body.classList.add('flxg-doc-imgresizing');
 			try { bar.setPointerCapture(e.pointerId); } catch (x) { /* eski tarayıcı */ }
 			var tip = h('.flxg-doc-imgtip');
-			document.body.appendChild(tip);
+			layerHost().appendChild(tip);
 			function mv(ev) {
 				var w = Math.max(60, Math.min(max, Math.round(w0 + (ev.clientX - x0) * sign)));
 				img.setAttribute('width', String(w));
@@ -1629,7 +1629,7 @@
 			bar.addEventListener('pointerup', up);
 			bar.addEventListener('pointercancel', up);
 		});
-		document.body.appendChild(bar);
+		layerHost().appendChild(bar);
 		D.ih = bar;
 	}
 	/** Dosya kartı: üzerine gelince düzenleme simgesi; menüden önizle / indir / kaldır. */
@@ -1660,7 +1660,7 @@
 		b.style.left = Math.round(r.right - 36) + 'px';
 		b.addEventListener('mouseenter', function () { clearTimeout(D.fbT); });
 		b.addEventListener('mouseleave', function () { D.fbT = setTimeout(fileHoverOff, 120); });
-		document.body.appendChild(b);
+		layerHost().appendChild(b);
 		D.fbtn = b;
 	}
 	function changed() { D.lastInput = Date.now(); if (D.ed) decorate(D.ed); soon(400); requestAnimationFrame(drawCursors); requestAnimationFrame(drawSubs); }
@@ -2079,7 +2079,7 @@
 		Y.pop(anchor, box, { inline: true, noFocus: true, cls: 'flxg-doc-slashpop', onClose: function () { tip.remove(); if (D) D.slash = null; } });
 		var root = Y.$('#flxg-app');
 		if (root && root.dataset.theme) tip.dataset.theme = root.dataset.theme;
-		document.body.appendChild(tip);
+		layerHost().appendChild(tip);
 		D.slash = {
 			hi: hi,
 			q: q,
@@ -2552,7 +2552,23 @@
 	 * Yapay zekâ (Flux AI üzerinden): üst çubuktaki genel düğme ve seçili metnin üstünde çıkan düğme.
 	 * Sonuç önce önizlenir; "Değiştir/Ekle" ile editöre normal düzenleme gibi yazılır (ortak düzenleme aynen çalışır).
 	 * ================================================================== */
+	/**
+	 * Yüzen kutuların (yapay zekâ paneli, ipuçları) konacağı yer. React ekranında stiller .flux-root altına
+	 * sınırlıdır; document.body'ye eklenen kutu stilsiz kalır (konumsuz, görünmez). Klasik WP sayfasında body.
+	 */
+	function layerHost() {
+		var root = Y.$('#flxg-app');
+		return (root && root.closest && root.closest('.flux-root')) || root || document.body;
+	}
 	function aiOn() { return !!(S.me && S.me.can && S.me.can.ai); }
+	/** Yapay zekâya yetkisi var ama Flux AI kurulu değil ya da anahtar/model yok: neden metni. */
+	function aiOff() { return !aiOn() && !!(S.me && S.me.can && S.me.can.ai_off); }
+	/** Yapay zekâ kapalıyken düğmeye basılınca sessiz kalmaz; nedenini ortak pencerede (flxDialog) söyler. */
+	function aiOffDialog() {
+		var msg = S.me.can.ai_off;
+		var wrap = h('div', h('p', msg));
+		Y.modal(t('Yapay zekâ kapalı'), wrap, { actions: [{ label: t('Tamam'), primary: true }] });
+	}
 	/** Asistan ve ortak sohbet için açık sayfa. */
 	Y.docPage = function () { return D && D.page ? { id: D.page.id, title: (D.titleEl && D.titleEl.value) || D.page.title || '' } : null; };
 	Y.docSyncNow = function () { if (D && D.page) schedule(0); };
@@ -2684,6 +2700,7 @@
 	}
 	function openAIPage(anchor) {
 		if (!D || !D.page) return;
+		if (aiOff()) { aiOffDialog(); return; }
 		var at = caretBlock();
 		if (!anchor || !anchor.getBoundingClientRect) {
 			var r = at ? at.getBoundingClientRect() : D.ed.getBoundingClientRect();
@@ -2701,7 +2718,7 @@
 		var root = Y.$('#flxg-app');
 		if (root && root.dataset.theme) st.pop.dataset.theme = root.dataset.theme;
 		st.pop.addEventListener('keydown', function (e) { if (e.key === 'Escape') { e.preventDefault(); aiClose(); } });
-		document.body.appendChild(st.pop);
+		layerHost().appendChild(st.pop);
 		var a = st.anchor.getBoundingClientRect();
 		var w = st.pop.offsetWidth;
 		var left = st.anchor === D.aiBtn ? a.right - w : a.left;

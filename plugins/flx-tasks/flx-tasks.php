@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Tasks
  * Description:       ClickUp benzeri görev takibi: projeler, klasörler, listeler; liste, pano (kanban) ve takvim görünümleri, kayıtlı filtreli görünümler, özel alanlar, yorum ve dosya ekleri, bildirimler, liste yetkileri, yönetici panosu ve Flux AI & MCP üzerinden yapay zekâ.
- * Version:           0.18.0
+ * Version:           0.18.1
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Requires Plugins:  flx-graphql
@@ -17,7 +17,7 @@ defined( 'ABSPATH' ) || exit;
 require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback; no Flux Lang dependency.
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
-define( 'FLXG_VERSION', '0.18.0' );
+define( 'FLXG_VERSION', '0.18.1' );
 define( 'FLXG_DB_VERSION', '6' );
 define( 'FLXG_FILE', __FILE__ );
 define( 'FLXG_DIR', plugin_dir_path( __FILE__ ) );
@@ -76,6 +76,26 @@ add_filter(
  * Çeviri: kaynak metinler Türkçe; site/kullanıcı dili başka olduğunda languages/ içindeki çeviri kullanılır.
  * en_GB, en_AU gibi diğer İngilizce yerel ayarları en_US çevirisine düşer.
  */
+/*
+ * REST and GraphQL requests (the React screen) are not "admin" requests, so WordPress picks the SITE language for
+ * them even when the person chose another one in their profile. Strings built in PHP (status names, messages, mail
+ * previews) then stayed in the site language while the page itself was in the profile language.
+ */
+add_filter(
+	'plugin_locale',
+	static function ( $locale, $domain ) {
+		if ( 'flx-tasks' !== $domain || is_admin() || ! is_user_logged_in() ) {
+			return $locale;
+		}
+		$uri = isset( $_SERVER['REQUEST_URI'] ) ? (string) wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
+		if ( wp_is_json_request() || isset( $_GET['rest_route'] ) || false !== strpos( $uri, '/wp-json/' ) || false !== strpos( $uri, '/graphql' ) ) {
+			return get_user_locale();
+		}
+		return $locale;
+	},
+	10,
+	2
+);
 add_action( 'init', 'flxg_load_textdomain', 1 );
 function flxg_load_textdomain() {
 	load_plugin_textdomain( 'flx-tasks', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );

@@ -34,6 +34,7 @@ function flxg_js_strings() {
 		'Yükleme zaman aşımına uğradı.' => __( 'Upload timed out.', 'flx-tasks' ),
 		'Vazgeç' => __( 'Cancel', 'flx-tasks' ),
 		'Tamam' => __( 'OK', 'flx-tasks' ),
+		'Yapay zekâ kapalı' => __( 'AI is off', 'flx-tasks' ),
 		'Kaydet' => __( 'Save', 'flx-tasks' ),
 		'Kopyalandı' => __( 'Copied', 'flx-tasks' ),
 		'Silinmiş kullanıcı' => __( 'Deleted user', 'flx-tasks' ),

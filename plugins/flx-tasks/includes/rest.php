@@ -202,6 +202,8 @@ function flxg_rest_boot() {
 						'create' => current_user_can( 'flxg_create' ),
 						'manage' => current_user_can( 'flxg_manage' ),
 						'ai'     => current_user_can( 'flxg_ai' ) && flxg_ai_ready(),
+						// Allowed to use AI but Flux AI is missing or has no key: the editor says why instead of staying silent.
+						'ai_off' => current_user_can( 'flxg_ai' ) && ! flxg_ai_ready() ? flxg_ai_off_message() : '',
 					),
 					'email' => '0' !== (string) get_user_meta( $uid, 'flxg_email', true ),
 					'prefs' => (object) flxg_user_prefs( $uid ),
