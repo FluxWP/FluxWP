@@ -57,6 +57,13 @@ describe('brand build allow-list', () => {
 });
 
 describe('brand files', () => {
+  test('OTA defaults to our update server and rejects unsafe values', () => {
+    const { brand, raw } = loadBrand('flux');
+    expect(brand.ota).toEqual({ url: 'https://updater.fluxwp.com', channel: 'production' });
+    expect(() => assertBrand('flux', { ...raw, ota: { url: 'http://updater.example.org' } })).toThrow(/ota\.url/);
+    expect(() => assertBrand('flux', { ...raw, ota: { channel: 'Prod Channel' } })).toThrow(/ota\.channel/);
+  });
+
   test('wildcard hosts do not include the apex or a lookalike', () => {
     expect(hostAllowed('www.example.org', ['*.example.org'])).toBe(true);
     expect(hostAllowed('example.org', ['*.example.org'])).toBe(false);

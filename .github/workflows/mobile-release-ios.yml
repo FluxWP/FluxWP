@@ -89,6 +89,13 @@ jobs:
           bunx turbo run typecheck test --filter=@fluxwp/core --filter=@fluxwp/tokens --filter=@fluxwp/manifest --filter=@fluxwp/runtime
           bun run --filter @fluxwp/mobile typecheck
           node --test tools/release/*.test.mjs
+      - name: OTA runtime (fingerprint)
+        if: env.RELEASE_DESTINATION != 'app-store' && env.RELEASE_DESTINATION != 'store-screenshots'
+        working-directory: apps/mobile
+        run: |
+          rt="$(node ../../node_modules/expo-updates/bin/cli.js runtimeversion:resolve --platform ios | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>console.log(JSON.parse(s).runtimeVersion))')"
+          echo "OTA runtime ios: $rt"
+          echo "OTA runtime (ios): \`$rt\` — Mobile OTA update reaches this build only with the same value." >> "$GITHUB_STEP_SUMMARY"
       - name: Generate native iOS project
         if: env.RELEASE_DESTINATION != 'app-store' && env.RELEASE_DESTINATION != 'store-screenshots'
         working-directory: apps/mobile

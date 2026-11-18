@@ -1,0 +1,106 @@
+name: Mobile OTA update
+# JS/asset update for installed apps, served by our own update server (FluxWP/updater, /v1/expo/<brand>/manifest).
+# No EAS. Manifests are signed here with FLUX_OTA_PRIVATE_KEY; the app checks them against
+# brands/<brand>/ota-certificate.pem. Only builds with the same native fingerprint (runtime) receive it.
+# Setup: docs/mobile/OTA.md
+on:
+  workflow_dispatch:
+    inputs:
+      brand:
+        description: brands/<slug>
+        default: flux
+        required: true
+      channel:
+        description: OTA channel (builds read brand ota.channel or FLUX_OTA_CHANNEL)
+        default: production
+        required: true
+      action:
+        type: choice
+        default: publish
+        options: [publish, rollback]
+        description: publish = new update; rollback = devices return to the bundle inside the store build
+      platforms:
+        type: choice
+        default: all
+        options: [all, ios, android]
+      message:
+        description: Update message (shown in the update server panel)
+        default: ''
+permissions:
+  contents: read
+concurrency:
+  group: ota-${{ inputs.brand }}-${{ inputs.channel }}
+  cancel-in-progress: false
+jobs:
+  ota:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      FLUX_BRAND: ${{ inputs.brand }}
+      FLUX_OTA_CHANNEL: ${{ inputs.channel }}
+      FLUX_OTA_URL: ${{ vars.FLUX_OTA_URL || 'https://updater.fluxwp.com' }}
+      # Same config inputs as the store builds, or the fingerprint (runtime) differs and nobody gets the update.
+      EXPO_PUBLIC_EAS_PROJECT_ID: ${{ vars.EXPO_PUBLIC_EAS_PROJECT_ID }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: oven-sh/setup-bun@v2
+        with: { bun-version: 1.4.4 }
+      - uses: actions/setup-node@v5
+        with: { node-version: 22 }
+      - run: bun install --frozen-lockfile
+      - name: Apply brand
+        run: bun tools/fluxapp/brand.mjs && node apps/mobile/scripts/brand.cjs
+      - name: Resolve runtime versions
+        id: rt
+        working-directory: apps/mobile
+        env:
+          PLATFORMS: ${{ inputs.platforms }}
+          APPLE_TEAM_ID: ${{ vars.APPLE_TEAM_ID }}
+        run: |
+          set -euo pipefail
+          resolve() { node ../../node_modules/expo-updates/bin/cli.js runtimeversion:resolve --platform "$1" | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>console.log(JSON.parse(s).runtimeVersion))'; }
+          list=""
+          if [ "$PLATFORMS" != "android" ]; then
+            # iOS builds run with APPLE_TEAM_ID (mobile-release-ios.yml).
+            echo "ios=$(resolve ios)" >> "$GITHUB_OUTPUT"; list="ios"
+          fi
+          if [ "$PLATFORMS" != "ios" ]; then
+            # Android builds run without it (mobile-release-android.yml).
+            echo "android=$(APPLE_TEAM_ID= resolve android)" >> "$GITHUB_OUTPUT"; list="${list:+$list,}android"
+          fi
+          echo "list=$list" >> "$GITHUB_OUTPUT"
+          cat "$GITHUB_OUTPUT"
+      - name: Export bundles
+        if: inputs.action == 'publish'
+        working-directory: apps/mobile
+        env:
+          LIST: ${{ steps.rt.outputs.list }}
+        run: |
+          set -euo pipefail
+          args=""; for p in ${LIST//,/ }; do args="$args --platform $p"; done
+          bunx expo export $args --output-dir dist
+          bunx expo config --json --type public > dist/expoConfig.json
+      - name: Publish
+        if: inputs.action == 'publish'
+        env:
+          FLUX_OTA_PUBLISH_KEY: ${{ secrets.FLUX_OTA_PUBLISH_KEY }}
+          FLUX_OTA_PRIVATE_KEY: ${{ secrets.FLUX_OTA_PRIVATE_KEY }}
+          MESSAGE: ${{ inputs.message }}
+          RT_IOS: ${{ steps.rt.outputs.ios }}
+          RT_ANDROID: ${{ steps.rt.outputs.android }}
+          LIST: ${{ steps.rt.outputs.list }}
+        run: |
+          node tools/fluxapp/ota-publish.mjs publish --dist apps/mobile/dist --expo-config apps/mobile/dist/expoConfig.json \
+            --brand "$FLUX_BRAND" --channel "$FLUX_OTA_CHANNEL" --platforms "$LIST" \
+            ${RT_IOS:+--runtime-ios "$RT_IOS"} ${RT_ANDROID:+--runtime-android "$RT_ANDROID"} \
+            --message "${MESSAGE:-${GITHUB_SHA::7}}" --commit "$GITHUB_SHA"
+      - name: Roll back to embedded
+        if: inputs.action == 'rollback'
+        env:
+          FLUX_OTA_PUBLISH_KEY: ${{ secrets.FLUX_OTA_PUBLISH_KEY }}
+          FLUX_OTA_PRIVATE_KEY: ${{ secrets.FLUX_OTA_PRIVATE_KEY }}
+          RT_IOS: ${{ steps.rt.outputs.ios }}
+          RT_ANDROID: ${{ steps.rt.outputs.android }}
+        run: |
+          node tools/fluxapp/ota-publish.mjs rollback --brand "$FLUX_BRAND" --channel "$FLUX_OTA_CHANNEL" \
+            ${RT_IOS:+--runtime-ios "$RT_IOS"} ${RT_ANDROID:+--runtime-android "$RT_ANDROID"}

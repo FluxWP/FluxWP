@@ -1,7 +1,7 @@
 // Mobile output of the brand pipeline: brands/<slug>/brand.json (shared with the desktop build) →
 // src/brand/current.json + assets/brand/*. Same rules as tools/fluxapp/brand-lib.cjs.
 // CommonJS on purpose: app.config.ts loads it and Expo's config loader does not transpile imports.
-const { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } = require('node:fs');
+const { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } = require('node:fs');
 const { dirname, join, resolve } = require('node:path');
 const { toMobileBrand } = require('../../../tools/fluxapp/brand-lib.cjs');
 
@@ -47,6 +47,16 @@ function applyBrand(slugInput) {
     copyFileSync(join(src, f), join(out, f));
   }
   for (const f of readdirSync(dir).filter((x) => x.endsWith('.svg'))) copyFileSync(join(dir, f), join(out, f));
+  // OTA code signing: public certificate only (the private key is the FLUX_OTA_PRIVATE_KEY secret in CI).
+  // Without it expo-updates stays off and the app always runs its embedded bundle.
+  const cert = join(dir, 'ota-certificate.pem');
+  if (existsSync(cert)) {
+    const pem = readFileSync(cert, 'utf8').replace(/\r\n/g, '\n');
+    if (!/^-----BEGIN CERTIFICATE-----\n[A-Za-z0-9+/=\n]+-----END CERTIFICATE-----\s*$/.test(pem)) fail(brand.slug, 'ota-certificate.pem must be a single PEM certificate');
+    writeIfChanged(join(out, 'ota-certificate.pem'), pem);
+  } else {
+    rmSync(join(out, 'ota-certificate.pem'), { force: true });
+  }
   return brand;
 }
 

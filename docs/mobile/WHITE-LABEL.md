@@ -42,7 +42,7 @@ bun run brand:pull https://site.example --slug <slug>
 
 `brand:build` runs `tools/fluxapp/brand.mjs` (desktop) and `apps/mobile/scripts/brand.cjs` (Expo), then `eas build` with profile `production` / `preview` for `flux` and `prod-<slug>` / `preview-<slug>` otherwise. `--prepare` stops after writing configs.
 
-EAS reads `FLUX_BRAND` from the profile. `eas-build-pre-install` applies the brand before install. GitHub Actions: `.github/workflows/mobile-eas-build.yml` and `mobile-eas-update.yml` (`workflow_dispatch`).
+EAS reads `FLUX_BRAND` from the profile. `eas-build-pre-install` applies the brand before install. GitHub Actions: `.github/workflows/mobile-eas-build.yml` (`workflow_dispatch`). OTA updates do not use EAS: `mobile-ota-update.yml` publishes to our update server, see [OTA.md](OTA.md). A brand can set `ota.url` (its own update server) and `ota.channel`, and ships `brands/<slug>/ota-certificate.pem`; without that file OTA is off.
 
 Check a config without uploading:
 
@@ -110,7 +110,7 @@ bun run brand:pull https://site.example --slug <slug>
 
 `brand:build` önce `tools/fluxapp/brand.mjs` (masaüstü) ve `apps/mobile/scripts/brand.cjs` (Expo) çalıştırır, sonra `eas build` başlatır. `flux` için profil `production` / `preview`, diğer markalar için `prod-<slug>` / `preview-<slug>`. `--prepare` yapılandırmayı yazar, yüklemez.
 
-EAS, profildeki `FLUX_BRAND` değerini okur. `eas-build-pre-install` kurulmadan önce markayı uygular. GitHub Actions: `.github/workflows/mobile-eas-build.yml` ve `mobile-eas-update.yml` (`workflow_dispatch`).
+EAS, profildeki `FLUX_BRAND` değerini okur. `eas-build-pre-install` kurulmadan önce markayı uygular. GitHub Actions: `.github/workflows/mobile-eas-build.yml` (`workflow_dispatch`). OTA güncellemesi EAS kullanmaz: `mobile-ota-update.yml` kendi güncelleme sunucumuza yayınlar, bkz. [OTA.md](OTA.md). Marka `ota.url` (kendi güncelleme sunucusu) ve `ota.channel` verebilir, `brands/<slug>/ota-certificate.pem` dosyasını taşır; dosya yoksa OTA kapalıdır.
 
 Yüklemeden kontrol:
 
