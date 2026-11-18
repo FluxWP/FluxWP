@@ -650,7 +650,7 @@ function flxk_execute( $preset_id, array $p, array $opts = array(), array $meta 
 		foreach ( $after['ops'] as $op ) {
 			if ( 'same' !== $op['status'] ) { ++$remaining; }
 		}
-		$remaining += count( $run['errors'] ) + (int) ( $after['unavailable'] ?? 0 );
+		$remaining += count( $run['errors'] ) + $after['unavailable'];
 	}
 	if ( 'migration' === $run['kind'] && ! empty( $meta['migration'] ) && ! $remaining ) {
 		unset( $st['migration_blocked'][ $meta['migration'] ] );
