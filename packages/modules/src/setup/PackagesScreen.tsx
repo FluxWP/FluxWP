@@ -15,12 +15,13 @@ import {
   FlxSetupPlan,
   FlxSetupStepRun,
 } from '@fluxwp/graphql/operations';
-import type { FlxSetupOverviewQuery, FlxSetupPackagesQuery, FlxSetupPackageTab, FlxSetupStepKind } from '@fluxwp/graphql/types';
+import type { FlxSetupOverviewQuery, FlxSetupPackagesQuery, FlxSetupPackageTab, FlxSetupPlanQuery, FlxSetupStepKind } from '@fluxwp/graphql/types';
 import { Loading, Modal } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { History } from './History';
 import { errorText, NoticeBar, SetupProvider, Switch, useSetup, type Notice } from './shared';
 
+type PlanStep = FlxSetupPlanQuery['flxSetupPlan'][number];
 type Row = FlxSetupPackagesQuery['flxSetupPackages']['nodes'][number];
 type Overview = FlxSetupOverviewQuery['flxSetupOverview'];
 type StepState = 'wait' | 'run' | 'ok' | 'err';
@@ -182,7 +183,41 @@ function Packages() {
     return r && (r.canUpdate || r.canInstall);
   });
 
-  /** Runs the steps the server plans for a selection, one request per step, with a live log. */
+
+  /** Steps that failed in the last run, for "Retry failed ones". */
+  const [retry, setRetry] = useState<{ title: string; steps: PlanStep[] } | null>(null);
+
+  /** Runs planned steps one request per step, with a live log. */
+  const runSteps = async (title: string, plan: PlanStep[]) => {
+    const label = (s: PlanStep) => ({ kind: s.kind, name: s.why ? t('%1$s (needed by %2$s)', s.name, s.why) : s.name });
+    const steps: RunStep[] = plan.map((s) => ({ ...label(s), state: 'wait', lines: [] }));
+    const failedSteps: PlanStep[] = [];
+    const show = (finished: boolean) => setRun({ title, steps: steps.map((s) => ({ ...s, lines: [...s.lines] })), finished, hidden: false, failed: failedSteps.length });
+    setRetry(null);
+    show(false);
+    for (let i = 0; i < plan.length; i++) {
+      const s = plan[i]!;
+      steps[i]!.state = 'run';
+      show(false);
+      try {
+        const r = (await client.request(FlxSetupStepRun, { input: { kind: s.kind, slug: s.slug, id: s.id || null, version: s.version || null } })).flxSetupStepRun;
+        const ok = !!r && r.ok && !r.errors.length;
+        steps[i]!.state = ok ? 'ok' : 'err';
+        steps[i]!.lines = r?.lines ?? r?.errors.map((e) => ({ ok: false, text: e.message })) ?? [];
+        if (!ok) failedSteps.push(s);
+      } catch (e) {
+        steps[i]!.state = 'err';
+        steps[i]!.lines = [{ ok: false, text: t('The server did not respond (%s). Check the history and system checks.', errorText(e, '')) }];
+        failedSteps.push(s);
+      }
+      show(false);
+    }
+    show(true);
+    setRetry(failedSteps.length ? { title, steps: failedSteps } : null);
+    setNotice({ kind: failedSteps.length ? 'warning' : 'success', text: t('Done: %1$d succeeded, %2$d failed.', plan.length - failedSteps.length, failedSteps.length) });
+  };
+
+  /** Runs the steps the server plans for a selection. */
   const runPlan = async (title: string, vars: { slugs?: string[]; wpKeys?: string[]; all?: boolean; activate?: boolean }) => {
     if (busy) return;
     setBusy(true);
@@ -193,31 +228,23 @@ function Packages() {
         setNotice({ kind: 'success', text: t('Nothing to do.') });
         return;
       }
-      const label = (s: (typeof plan)[number]) => ({ kind: s.kind, name: s.why ? t('%1$s (needed by %2$s)', s.name, s.why) : s.name });
-      const steps: RunStep[] = plan.map((s) => ({ ...label(s), state: 'wait', lines: [] }));
-      let failed = 0;
-      const show = (finished: boolean) => setRun({ title, steps: steps.map((s) => ({ ...s, lines: [...s.lines] })), finished, hidden: false, failed });
-      show(false);
-      for (let i = 0; i < plan.length; i++) {
-        const s = plan[i]!;
-        steps[i]!.state = 'run';
-        show(false);
-        try {
-          const r = (await client.request(FlxSetupStepRun, { input: { kind: s.kind, slug: s.slug, id: s.id || null, version: s.version || null } })).flxSetupStepRun;
-          const ok = !!r && r.ok && !r.errors.length;
-          steps[i]!.state = ok ? 'ok' : 'err';
-          steps[i]!.lines = r?.lines ?? r?.errors.map((e) => ({ ok: false, text: e.message })) ?? [];
-          if (!ok) failed++;
-        } catch (e) {
-          steps[i]!.state = 'err';
-          steps[i]!.lines = [{ ok: false, text: t('The server did not respond (%s). Check the history and system checks.', errorText(e, '')) }];
-          failed++;
-        }
-        show(false);
-      }
-      show(true);
+      await runSteps(title, plan);
       setSelected(new Set());
-      setNotice({ kind: failed ? 'warning' : 'success', text: t('Done: %1$d succeeded, %2$d failed.', plan.length - failed, failed) });
+    } catch (e) {
+      fail(e);
+    } finally {
+      setBusy(false);
+      void afterChange();
+    }
+  };
+
+  /** Runs only the steps that failed last time, in the same order. */
+  const retryFailed = async () => {
+    if (busy || !retry) return;
+    setBusy(true);
+    setNotice(null);
+    try {
+      await runSteps(retry.title, retry.steps);
     } catch (e) {
       fail(e);
     } finally {
@@ -320,7 +347,18 @@ function Packages() {
 
       <NoticeBar notice={notice} onClose={() => setNotice(null)} t={t} />
 
-      {run && <RunLog run={run} t={t} onToggle={() => setRun({ ...run, hidden: !run.hidden })} onClose={() => setRun(null)} />}
+      {run && (
+        <RunLog
+          run={run}
+          t={t}
+          onToggle={() => setRun({ ...run, hidden: !run.hidden })}
+          onClose={() => {
+            setRun(null);
+            setRetry(null);
+          }}
+          onRetry={run.finished && retry && !busy ? () => void retryFailed() : undefined}
+        />
+      )}
 
       {o && o.connection.state !== 'CONNECTED' && <StatusCard o={o} t={t} />}
       {o?.failingSources.map((f) => (
@@ -538,7 +576,7 @@ function BackupStrip({ o, t, onInstall, onActivate }: { o: Overview; t: ReturnTy
   );
 }
 
-function RunLog({ run, t, onToggle, onClose }: { run: Run; t: ReturnType<typeof useSetup>['t']; onToggle: () => void; onClose: () => void }) {
+function RunLog({ run, t, onToggle, onClose, onRetry }: { run: Run; t: ReturnType<typeof useSetup>['t']; onToggle: () => void; onClose: () => void; onRetry?: () => void }) {
   const done = run.steps.filter((s) => s.state === 'ok' || s.state === 'err').length;
   const current = run.steps.find((s) => s.state === 'run');
   const stepText = (s: RunStep) => {
@@ -564,6 +602,11 @@ function RunLog({ run, t, onToggle, onClose }: { run: Run; t: ReturnType<typeof 
         <strong>{run.finished ? t('Done: %1$d succeeded, %2$d failed.', run.steps.length - run.failed, run.failed) : current ? stepText(current) : t('Working, please stay on this page…')}</strong>
         <span className="flxk-muted">{t('%1$d of %2$d', Math.min(done + (run.finished ? 0 : 1), run.steps.length), run.steps.length)}</span>
         <span className="flxk-spacer" />
+        {onRetry && (
+          <button type="button" className="flxk-btn is-small" onClick={onRetry}>
+            {t('Retry failed ones')}
+          </button>
+        )}
         <button type="button" className="flxk-linkbtn" onClick={onToggle}>
           {run.hidden ? t('Show log') : t('Hide log')}
         </button>

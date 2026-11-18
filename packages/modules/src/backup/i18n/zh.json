@@ -156,5 +156,6 @@
  "When the plugin is deleted": "当插件被删除时",
  "Also delete backup files": "也删除备份文件",
  "When off (default), deleting the plugin removes only its settings; the zip files stay in the folder.": "关闭(默认)时,删除插件仅删除其设置; zip 文件保留在该文件夹中。",
- "Save settings": "保存设置"
+ "Save settings": "保存设置",
+ "Refresh list": "刷新列表"
 }

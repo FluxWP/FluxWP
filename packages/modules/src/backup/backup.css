@@ -82,6 +82,8 @@
 .flxy-filters button{color:var(--flxy-ac);padding:2px 0}
 .flxy-filters button[aria-current=true]{color:var(--flux-text);font-weight:600}
 .flxy-filters span{color:var(--flxy-mut)}
+.flxy-filters__end{margin-left:auto}
+.flxy-filters button:disabled{opacity:.5;cursor:default}
 .flxy-bulk{display:flex;gap:8px;align-items:center;margin:0 0 10px}
 .flxy-tablewrap{overflow:auto;padding:0}
 .flxy-table{width:100%;border-collapse:collapse}

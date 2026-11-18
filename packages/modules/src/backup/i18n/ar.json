@@ -156,5 +156,6 @@
  "When the plugin is deleted": "عندما يتم حذف البرنامج المساعد",
  "Also delete backup files": "قم أيضًا بحذف ملفات النسخ الاحتياطي",
  "When off (default), deleting the plugin removes only its settings; the zip files stay in the folder.": "عند إيقافه (افتراضي)، يؤدي حذف المكون الإضافي إلى إزالة إعداداته فقط؛ تبقى الملفات المضغوطة في المجلد.",
- "Save settings": "حفظ الإعدادات"
+ "Save settings": "حفظ الإعدادات",
+ "Refresh list": "تحديث القائمة"
 }

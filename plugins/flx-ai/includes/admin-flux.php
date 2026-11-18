@@ -31,6 +31,32 @@ function flxai_flux_pages() {
 	);
 }
 
+/**
+ * First query of each page with the variables the screen sends, printed by PHP so the page opens without a
+ * spinner on the first visit too (later visits also use what the screen learned).
+ *
+ * @param string $view Start page.
+ * @return list<array{0:string,1?:array<string,mixed>}>
+ */
+function flxai_flux_preload( $view ) {
+	$map = array(
+		'overview'    => array( 'FlxAiOverview', array( 'days' => 30, 'source' => null ) ),
+		'logs'        => array( 'FlxAiLogs', array( 'first' => 50, 'after' => null, 'days' => 7, 'kind' => null, 'source' => null, 'errorsOnly' => false ) ),
+		'billing'     => array( 'FlxAiBilling', array( 'month' => null ) ),
+		'systems'     => array( 'FlxAiSystems' ),
+		'tools'       => array( 'FlxAiTools' ),
+		'settings'    => array( 'FlxAiSettingsScreen' ),
+		'approvals'   => array( 'FlxAiApprovals' ),
+		'tasks'       => array( 'FlxAiTasks' ),
+		'skills'      => array( 'FlxAiSkills' ),
+		'mcp'         => array( 'FlxAiMcp' ),
+		'connections' => array( 'FlxAiConnections' ),
+		'history'     => array( 'FlxAiChats', array( 'q' => '', 'archived' => 0, 'limit' => 30, 'offset' => 0 ) ),
+		'chat'        => array( 'FlxAiChats', array( 'q' => '', 'archived' => 0, 'limit' => 40, 'offset' => 0 ) ),
+	);
+	return isset( $map[ $view ] ) ? array( $map[ $view ] ) : array();
+}
+
 function flxai_flux_available() {
 	return file_exists( FLXAI_DIR . 'assets/flux/flux-modules.js' ) && function_exists( 'flx_gql_ready' ) && function_exists( 'flx_gql_all_caps' ) && flx_gql_ready();
 }
@@ -95,6 +121,7 @@ add_action(
 					'start'        => $view,
 					'container_id' => 'flxai-app',
 					'wrap_class'   => 'flxai-flux',
+					'preload'      => flxai_flux_preload( $view ),
 				)
 			);
 		}
