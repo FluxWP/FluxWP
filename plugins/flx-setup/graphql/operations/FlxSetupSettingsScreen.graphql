@@ -9,6 +9,12 @@ query FlxSetupSettingsScreen {
   flxSetupSources {
     ...FlxSetupSourceFields
   }
+  flxSetupCloud {
+    ...FlxSetupCloudFields
+  }
+  flxSetupTelemetry {
+    ...FlxSetupTelemetryFields
+  }
   flxSetupGraphqlStatus {
     state
     version

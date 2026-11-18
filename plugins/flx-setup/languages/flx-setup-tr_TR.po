@@ -397,12 +397,6 @@ msgstr "%1$s sitesinden %2$s tarihinde çıkarıldı."
 msgid "JavaScript is required for this screen."
 msgstr "Bu ekran için JavaScript gerekir."
 
-msgid "New view"
-msgstr "Yeni görünüm"
-
-msgid "Open the new view (same features, works in the FluxWP app too)."
-msgstr "Yeni görünümü aç (aynı özellikler, FluxWP uygulamasında da çalışır)."
-
 msgid "FluxWP Panel"
 msgstr "FluxWP Panel"
 
@@ -2844,6 +2838,87 @@ msgstr "Yöneticinin kurup etkinleştireceği ya da düzelteceği yer; yapılaca
 msgid "Name of that link."
 msgstr "O bağlantının adı."
 
+msgid "A button of the FluxWP account card. It posts to postUrl with action and _wpnonce."
+msgstr "FluxWP hesap kartının bir düğmesi. postUrl adresine action ve _wpnonce ile gönderilir."
+
+msgid "admin-post action."
+msgstr "admin-post işlemi."
+
+msgid "Button text."
+msgstr "Düğme metni."
+
+msgid "Nonce of the action."
+msgstr "İşlemin nonce değeri."
+
+msgid "primary, secondary or danger."
+msgstr "primary, secondary ya da danger."
+
+msgid "FluxWP account (Sign in with FluxWP): plan, sites and the buttons of the card."
+msgstr "FluxWP hesabı (FluxWP ile giriş): plan, siteler ve kartın düğmeleri."
+
+msgid "The site is connected to a FluxWP account."
+msgstr "Site bir FluxWP hesabına bağlı."
+
+msgid "Card title (plan and account when connected)."
+msgstr "Kart başlığı (bağlıyken plan ve hesap)."
+
+msgid "Card text."
+msgstr "Kart metni."
+
+msgid "Last check as a sentence; may be empty."
+msgstr "Son denetim cümle olarak; boş olabilir."
+
+msgid "Last error; empty when none."
+msgstr "Son hata; yoksa boş."
+
+msgid "Account page on fluxwp.com; may be empty."
+msgstr "fluxwp.com'daki hesap sayfası; boş olabilir."
+
+msgid "admin-post.php address the buttons post to."
+msgstr "Düğmelerin gönderildiği admin-post.php adresi."
+
+msgid "Message of the last failed sign-in; empty when none."
+msgstr "Son başarısız girişin iletisi; yoksa boş."
+
+msgid "Kind of that message."
+msgstr "O iletinin türü."
+
+msgid "Buttons."
+msgstr "Düğmeler."
+
+msgid "Anonymous usage data: state, hub address and the data that will be sent."
+msgstr "Anonim kullanım verisi: durum, merkez adresi ve gönderilecek veri."
+
+msgid "State as a sentence."
+msgstr "Durum cümle olarak."
+
+msgid "Hub address typed in the settings; empty sends to FluxWP."
+msgstr "Ayarlarda yazılan merkez adresi; boşsa FluxWP'ye gönderilir."
+
+msgid "FluxWP hub address."
+msgstr "FluxWP merkez adresi."
+
+msgid "The data that will be sent (JSON)."
+msgstr "Gönderilecek veri (JSON)."
+
+msgid "An optional Google setup card (Google Site Kit, Google for WooCommerce)."
+msgstr "İsteğe bağlı Google kurulum kartı (Google Site Kit, Google for WooCommerce)."
+
+msgid "Card id."
+msgstr "Kart kimliği."
+
+msgid "Title."
+msgstr "Başlık."
+
+msgid "Install or activate button text."
+msgstr "Kur ya da etkinleştir düğmesi metni."
+
+msgid "Installs, activates and opens the plugin setup (admin-post, with nonce)."
+msgstr "Eklentiyi kurar, etkinleştirir ve kurulum ekranını açar (admin-post, nonce ile)."
+
+msgid "\"Not needed\" link (admin-post, with nonce)."
+msgstr "\"Gerekli değil\" bağlantısı (admin-post, nonce ile)."
+
 msgid "An installed package that has an update before the wizard starts."
 msgstr "Sihirbaz başlamadan güncellemesi olan kurulu paket."
 
@@ -2912,6 +2987,15 @@ msgstr "Ana güncelleme sunucusu ve diğer kaynaklar, öncelik sırasıyla."
 
 msgid "The rows FluxWP Panel adds to the system check: PHP version, Flux GraphQL, update server, other sources and packages waiting for an update."
 msgstr "FluxWP Panel'in sistem kontrolüne eklediği satırlar: PHP sürümü, Flux GraphQL, güncelleme sunucusu, diğer kaynaklar ve güncelleme bekleyen paketler."
+
+msgid "FluxWP account card."
+msgstr "FluxWP hesap kartı."
+
+msgid "Anonymous usage data card."
+msgstr "Anonim kullanım verisi kartı."
+
+msgid "Google setup cards the Packages screen shows (closed and active ones are left out)."
+msgstr "Paketler ekranının gösterdiği Google kurulum kartları (kapatılanlar ve etkin olanlar hariç)."
 
 msgid "Asks every update source for the latest versions (\"Check for updates\")."
 msgstr "Her güncelleme kaynağından son sürümleri ister (\"Güncellemeleri kontrol et\")."
@@ -3060,6 +3144,27 @@ msgstr "Şimdi silinen süresi dolmuş yedekler."
 msgid "Retention after the change."
 msgstr "Değişiklikten sonra saklama süresi."
 
+msgid "Saves the telemetry hub address and, when asked, sends the usage data now."
+msgstr "Telemetri merkez adresini kaydeder; istenirse kullanım verisini hemen gönderir."
+
+msgid "Hub address (https); empty sends to FluxWP."
+msgstr "Merkez adresi (https); boşsa FluxWP'ye gönderilir."
+
+msgid "Send now (only when usage data is on)."
+msgstr "Hemen gönder (yalnız kullanım verisi açıkken)."
+
+msgid "Result of sending; null when not sent."
+msgstr "Gönderim sonucu; gönderilmediyse null."
+
+msgid "Card after the change."
+msgstr "Değişiklikten sonraki kart."
+
+msgid "\"Not needed\": closes a Google setup card site-wide."
+msgstr "\"Gerekli değil\": Google kurulum kartını site genelinde kapatır."
+
+msgid "The card is closed."
+msgstr "Kart kapatıldı."
+
 msgid "Runs one step of the setup wizard (site name, tagline, logo, pages, theme, colour, preset, consent, finish or skip)."
 msgstr "Kurulum sihirbazının bir adımını çalıştırır (site adı, slogan, logo, sayfalar, tema, renk, ön ayar, onay, bitir ya da atla)."
 
@@ -3092,6 +3197,12 @@ msgstr "Medya kitaplığı id'si; logo adımına verin."
 
 msgid "Medium size image address."
 msgstr "Orta boy görsel adresi."
+
+msgid "New view"
+msgstr "Yeni görünüm"
+
+msgid "Open the new view (same features, works in the FluxWP app too)."
+msgstr "Yeni görünümü aç (aynı özellikler, FluxWP uygulamasında da çalışır)."
 
 msgid "Apply (%d changes)"
 msgstr "Uygula (%d değişiklik)"

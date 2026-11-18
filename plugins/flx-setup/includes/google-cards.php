@@ -207,3 +207,44 @@ function flxk_google_install( array $c ) {
 	$res = activate_plugin( $c['file'] );
 	return is_wp_error( $res ) ? $res : true;
 }
+
+/**
+ * Cards to show on the React Packages screen (WordPress notices do not show on React screens).
+ *
+ * @return array<int,array{id:string,title:string,text:string,button:string,installUrl:string,dismissUrl:string}>
+ */
+function flxk_google_cards_view() {
+	if ( ! current_user_can( 'install_plugins' ) || ! current_user_can( 'activate_plugins' ) ) {
+		return array();
+	}
+	$closed = (array) get_option( 'flxk_google_cards', array() );
+	$out    = array();
+	foreach ( flxk_google_cards() as $id => $c ) {
+		if ( empty( $c['show'] ) || in_array( $id, $closed, true ) ) {
+			continue;
+		}
+		$state = flxk_google_card_state( $c );
+		if ( 'active' === $state ) {
+			continue;
+		}
+		$out[] = array(
+			'id'         => (string) $id,
+			'title'      => (string) $c['title'],
+			'text'       => (string) $c['text'],
+			'button'     => (string) ( 'inactive' === $state ? $c['activate'] : $c['install'] ),
+			'installUrl' => wp_nonce_url( admin_url( 'admin-post.php?action=flxk_google_install&card=' . rawurlencode( $id ) ), 'flxk_google_install_' . $id ),
+			'dismissUrl' => wp_nonce_url( admin_url( 'admin-post.php?action=flxk_google_dismiss&card=' . rawurlencode( $id ) ), 'flxk_google_dismiss_' . $id ),
+		);
+	}
+	return $out;
+}
+
+/** "Not needed" from the React screen: closes the card site-wide without leaving the page. */
+function flxk_google_card_dismiss( string $id ): bool {
+	if ( ! current_user_can( 'install_plugins' ) || ! isset( flxk_google_cards()[ $id ] ) ) {
+		return false;
+	}
+	$closed = (array) get_option( 'flxk_google_cards', array() );
+	update_option( 'flxk_google_cards', array_values( array_unique( array_merge( $closed, array( $id ) ) ) ), false );
+	return true;
+}

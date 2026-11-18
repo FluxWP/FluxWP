@@ -17,7 +17,7 @@ foreach ( (array) json_decode( (string) file_get_contents( FLXK_DIR . 'graphql/p
 		$GLOBALS['flxk_ops'][ $m[1] ] = $doc;
 	}
 }
-flxt_same( 18, count( $GLOBALS['flxk_ops'] ), 'FluxWP Panel ships 18 persisted operations' );
+flxt_same( 21, count( $GLOBALS['flxk_ops'] ), 'FluxWP Panel ships 21 persisted operations' );
 
 function flxk_t_op( string $name, array $vars = array(), int $user = 0 ): array {
 	return flxt_gql( $GLOBALS['flxk_ops'][ $name ], $vars, $user );
@@ -151,6 +151,29 @@ flxt_same( $checks === array() ? 0 : count( $checks ), count( FLXK_System_Servic
 $r = flxk_t_op( 'FlxSetupSettingsScreen', array(), $admin );
 $g = $r['data']['flxSetupGraphqlStatus'] ?? array();
 flxt_same( array( true, 'OK' ), array( $g['phpOk'] ?? null, $g['state'] ?? null ), 'graphql status: running on a supported PHP' );
+
+// FluxWP account, usage data, Google cards (the cards of the classic settings and packages pages).
+$r = flxk_t_op( 'FlxSetupSettingsScreen', array(), $admin );
+$cl = $r['data']['flxSetupCloud'] ?? array();
+flxt_same( array( false, 'flxk_cloud_connect' ), array( $cl['connected'] ?? null, $cl['actions'][0]['action'] ?? null ), 'cloud: not connected, sign-in button' );
+flxt_ok( false !== wp_verify_nonce( $cl['actions'][0]['nonce'] ?? '', 'flxk_cloud_connect' ), 'cloud: button carries a valid nonce' );
+flxt_same( true, json_decode( (string) ( $r['data']['flxSetupTelemetry']['payload'] ?? '' ), true ) !== null, 'telemetry: payload is JSON' );
+flxt_same( 'FORBIDDEN', flxt_code( flxk_t_op( 'FlxSetupTelemetrySave', array( 'input' => array( 'url' => 'https://x.example' ) ), $upd ) ), 'telemetry save: no manage_options → FORBIDDEN' );
+$r = flxk_t_op( 'FlxSetupTelemetrySave', array( 'input' => array( 'url' => 'http://insecure.example/hub' ) ), $admin );
+flxt_same( array( '', null ), array( $r['data']['flxSetupTelemetrySave']['telemetry']['url'] ?? null, $r['data']['flxSetupTelemetrySave']['sent'] ?? 'x' ), 'telemetry save: http address is dropped, nothing sent' );
+$r = flxk_t_op( 'FlxSetupTelemetrySave', array( 'input' => array( 'url' => 'https://hub.example/wp-json/flxan/v1/telemetry' ) ), $admin );
+flxt_same( 'https://hub.example/wp-json/flxan/v1/telemetry', get_option( 'flxk_telemetry_url' ), 'telemetry save: https address is kept' );
+flxk_t_op( 'FlxSetupTelemetrySave', array( 'input' => array( 'url' => '' ) ), $admin );
+$r = flxk_t_op( 'FlxSetupGoogleCards', array(), $admin );
+flxt_same( null, $r['errors'] ?? null, 'google cards: no errors' );
+$ids = array_column( $r['data']['flxSetupGoogleCards'] ?? array(), 'id' );
+if ( in_array( 'site-kit', $ids, true ) ) {
+	$r = flxk_t_op( 'FlxSetupGoogleCardDismiss', array( 'input' => array( 'id' => 'site-kit' ) ), $admin );
+	flxt_same( true, $r['data']['flxSetupGoogleCardDismiss']['ok'] ?? null, 'google cards: "Not needed" closes the card' );
+	$r = flxk_t_op( 'FlxSetupGoogleCards', array(), $admin );
+	flxt_ok( ! in_array( 'site-kit', array_column( $r['data']['flxSetupGoogleCards'] ?? array(), 'id' ), true ), 'google cards: closed card is left out' );
+	delete_option( 'flxk_google_cards' );
+}
 
 // Wizard.
 $r = flxk_t_op( 'FlxSetupWizardStep', array( 'input' => array( 'kind' => 'NAME', 'value' => 'Panel Test' ) ), $admin );

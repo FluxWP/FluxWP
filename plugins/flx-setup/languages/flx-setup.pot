@@ -397,12 +397,6 @@ msgstr ""
 msgid "JavaScript is required for this screen."
 msgstr ""
 
-msgid "New view"
-msgstr ""
-
-msgid "Open the new view (same features, works in the FluxWP app too)."
-msgstr ""
-
 msgid "FluxWP Panel"
 msgstr ""
 
@@ -2844,6 +2838,87 @@ msgstr ""
 msgid "Name of that link."
 msgstr ""
 
+msgid "A button of the FluxWP account card. It posts to postUrl with action and _wpnonce."
+msgstr ""
+
+msgid "admin-post action."
+msgstr ""
+
+msgid "Button text."
+msgstr ""
+
+msgid "Nonce of the action."
+msgstr ""
+
+msgid "primary, secondary or danger."
+msgstr ""
+
+msgid "FluxWP account (Sign in with FluxWP): plan, sites and the buttons of the card."
+msgstr ""
+
+msgid "The site is connected to a FluxWP account."
+msgstr ""
+
+msgid "Card title (plan and account when connected)."
+msgstr ""
+
+msgid "Card text."
+msgstr ""
+
+msgid "Last check as a sentence; may be empty."
+msgstr ""
+
+msgid "Last error; empty when none."
+msgstr ""
+
+msgid "Account page on fluxwp.com; may be empty."
+msgstr ""
+
+msgid "admin-post.php address the buttons post to."
+msgstr ""
+
+msgid "Message of the last failed sign-in; empty when none."
+msgstr ""
+
+msgid "Kind of that message."
+msgstr ""
+
+msgid "Buttons."
+msgstr ""
+
+msgid "Anonymous usage data: state, hub address and the data that will be sent."
+msgstr ""
+
+msgid "State as a sentence."
+msgstr ""
+
+msgid "Hub address typed in the settings; empty sends to FluxWP."
+msgstr ""
+
+msgid "FluxWP hub address."
+msgstr ""
+
+msgid "The data that will be sent (JSON)."
+msgstr ""
+
+msgid "An optional Google setup card (Google Site Kit, Google for WooCommerce)."
+msgstr ""
+
+msgid "Card id."
+msgstr ""
+
+msgid "Title."
+msgstr ""
+
+msgid "Install or activate button text."
+msgstr ""
+
+msgid "Installs, activates and opens the plugin setup (admin-post, with nonce)."
+msgstr ""
+
+msgid "\"Not needed\" link (admin-post, with nonce)."
+msgstr ""
+
 msgid "An installed package that has an update before the wizard starts."
 msgstr ""
 
@@ -2911,6 +2986,15 @@ msgid "The main update server and the other sources, in priority order."
 msgstr ""
 
 msgid "The rows FluxWP Panel adds to the system check: PHP version, Flux GraphQL, update server, other sources and packages waiting for an update."
+msgstr ""
+
+msgid "FluxWP account card."
+msgstr ""
+
+msgid "Anonymous usage data card."
+msgstr ""
+
+msgid "Google setup cards the Packages screen shows (closed and active ones are left out)."
 msgstr ""
 
 msgid "Asks every update source for the latest versions (\"Check for updates\")."
@@ -3058,6 +3142,27 @@ msgid "Expired backups deleted now."
 msgstr ""
 
 msgid "Retention after the change."
+msgstr ""
+
+msgid "Saves the telemetry hub address and, when asked, sends the usage data now."
+msgstr ""
+
+msgid "Hub address (https); empty sends to FluxWP."
+msgstr ""
+
+msgid "Send now (only when usage data is on)."
+msgstr ""
+
+msgid "Result of sending; null when not sent."
+msgstr ""
+
+msgid "Card after the change."
+msgstr ""
+
+msgid "\"Not needed\": closes a Google setup card site-wide."
+msgstr ""
+
+msgid "The card is closed."
 msgstr ""
 
 msgid "Runs one step of the setup wizard (site name, tagline, logo, pages, theme, colour, preset, consent, finish or skip)."

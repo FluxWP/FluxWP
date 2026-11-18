@@ -642,23 +642,55 @@ final class FLXK_Telemetry {
 		<?php
 	}
 
+	/**
+	 * The "Anonymous usage data" card as data, for the React settings screen.
+	 *
+	 * @return array{enabled:bool,status:string,url:string,defaultUrl:string,payload:string}
+	 */
+	public static function view(): array {
+		$on   = self::enabled();
+		$last = (int) get_option( self::LAST, 0 );
+		if ( $on ) {
+			$status = $last
+				/* translators: %s: süre, ör. "3 saat" */
+				? sprintf( __( 'Last sent %s. Sent at most once a day.', 'flx-setup' ), flx_time_ago( $last ) )
+				: __( 'Not sent yet. Sent at most once a day.', 'flx-setup' );
+		} else {
+			$status = __( 'Nothing is sent. Tick "Help us improve the product" to turn it on.', 'flx-setup' );
+		}
+		return array(
+			'enabled'    => $on,
+			'status'     => $status,
+			'url'        => (string) get_option( self::URL, '' ),
+			'defaultUrl' => self::DEFAULT_URL,
+			'payload'    => (string) wp_json_encode( self::payload( false ), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ),
+		);
+	}
+
+	/**
+	 * Saves the hub address (https only; empty or the default sends to FluxWP) and optionally sends now.
+	 *
+	 * @return array{sent:?bool}
+	 */
+	public static function save( string $url, bool $send ): array {
+		$url = esc_url_raw( trim( $url ) );
+		if ( '' !== $url && 'https' !== wp_parse_url( $url, PHP_URL_SCHEME ) ) {
+			$url = '';
+		}
+		if ( self::DEFAULT_URL === $url ) {
+			$url = '';
+		}
+		update_option( self::URL, $url, false );
+		return array( 'sent' => $send && self::enabled() ? self::send() : null );
+	}
+
 	public static function admin_post(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-setup' ), 403 );
 		}
 		check_admin_referer( 'flxk_telemetry' );
-		$url = esc_url_raw( trim( (string) wp_unslash( $_POST['url'] ?? '' ) ) );
-		if ( '' !== $url && 'https' !== wp_parse_url( $url, PHP_URL_SCHEME ) ) {
-			$url = '';
-		}
-		if ( $url === self::DEFAULT_URL ) {
-			$url = '';
-		}
-		update_option( self::URL, $url, false );
-		$msg = 'saved';
-		if ( 'send' === ( $_POST['op'] ?? '' ) ) {
-			$msg = self::send() ? 'sent' : 'fail';
-		}
+		$r   = self::save( (string) wp_unslash( $_POST['url'] ?? '' ), 'send' === ( $_POST['op'] ?? '' ) );
+		$msg = null === $r['sent'] ? 'saved' : ( $r['sent'] ? 'sent' : 'fail' );
 		$back = wp_get_referer() ? wp_get_referer() : admin_url();
 		wp_safe_redirect( add_query_arg( 'flxk_tm', $msg, remove_query_arg( 'flxk_tm', $back ) ) . '#flxk-telemetry' );
 		exit;

@@ -2,7 +2,7 @@
 // usage data consent and the other update sources. Same screen in wp-admin and the FluxWP app.
 import { useEffect, useState, type FormEvent } from 'react';
 import { useFlxMutation, useFlxQuery } from '@fluxwp/graphql/react';
-import { FlxSetupSettingsSave, FlxSetupSettingsScreen, FlxSetupSourceAdd, FlxSetupSourceChange } from '@fluxwp/graphql/operations';
+import { FlxSetupCheck, FlxSetupSettingsSave, FlxSetupSettingsScreen, FlxSetupSourceAdd, FlxSetupSourceChange, FlxSetupTelemetrySave } from '@fluxwp/graphql/operations';
 import type { FlxSetupSettingsScreenQuery } from '@fluxwp/graphql/types';
 import { Loading, Modal, Screen } from '@fluxwp/ui';
 import { errorText, NoticeBar, SetupProvider, useSetup, type Notice } from './shared';
@@ -57,6 +57,14 @@ function Settings() {
     },
     onError: fail,
   });
+  const test = useFlxMutation(FlxSetupCheck, {
+    onSuccess: (r) => {
+      const p = r.flxSetupCheck;
+      setNotice({ kind: p?.ok ? 'success' : 'warning', text: p?.summary || t('Updates checked.') });
+      reload();
+    },
+    onError: fail,
+  });
   const change = useFlxMutation(FlxSetupSourceChange, {
     onSuccess: (r, v) => {
       if (r.flxSetupSourceChange?.errors.length) return fail(new Error(r.flxSetupSourceChange.errors[0]?.message));
@@ -103,7 +111,12 @@ function Settings() {
             {c.packageCount > 0 && ' · ' + t('%1$d packages, %2$d updates', c.packageCount, c.updateCount)}
           </small>
         </div>
+        <button type="button" className="flxk-btn" disabled={test.isPending} onClick={() => test.mutate({})}>
+          {test.isPending ? t('Checking…') : t('Test connection')}
+        </button>
       </div>
+
+      <CloudCard cloud={q.data.flxSetupCloud} t={t} />
 
       <h2>{t('Connection')}</h2>
       <form className="flxk-card flxk-form" onSubmit={submit}>
@@ -290,6 +303,7 @@ function Settings() {
       </form>
 
       <GraphqlCard status={q.data.flxSetupGraphqlStatus} t={t} />
+      <TelemetryCard telemetry={q.data.flxSetupTelemetry} t={t} onNotice={setNotice} />
       <span className="flxk-sr">{tn('%s package', '%s packages', c.packageCount, c.packageCount)}</span>
 
       {confirm && (
@@ -332,6 +346,131 @@ function GraphqlCard({ status: g, t }: { status: Data['flxSetupGraphqlStatus']; 
             {g.actionLabel}
           </a>
         )}
+      </div>
+    </>
+  );
+}
+
+/** Result codes the sign-in flow adds to the address when it comes back (?flxk_cloud=…). */
+function cloudFlash(code: string, t: ReturnType<typeof useSetup>['t']): [Notice['kind'], string] | null {
+  switch (code) {
+    case 'ok':
+      return ['success', t("Connected to your FluxWP account. Your plan's packages are on the Packages screen.")];
+    case 'denied':
+      return ['warning', t('Connecting was cancelled on FluxWP.')];
+    case 'off':
+      return ['success', t('Disconnected. Installed plugins keep working; updates of paid packages stop.')];
+    case 'refreshed':
+      return ['success', t('Plan information refreshed.')];
+    case 'fail':
+      return ['error', t('Connecting failed. Try again.')];
+    default:
+      return null;
+  }
+}
+
+/** FluxWP account: "Sign in with FluxWP" (fluxwp.com gives this site its update key and plan packages). */
+function CloudCard({ cloud: c, t }: { cloud: Data['flxSetupCloud']; t: ReturnType<typeof useSetup>['t'] }) {
+  const code = typeof window === 'undefined' ? '' : new URLSearchParams(window.location.search).get('flxk_cloud') || '';
+  const flash = code === 'fail' && c.flash ? (['error', c.flash] as const) : cloudFlash(code, t);
+  if (!c.postUrl) return null;
+  return (
+    <>
+      {flash && <div className={'flxk-notice is-' + flash[0]} role={flash[0] === 'error' ? 'alert' : 'status'}><span>{flash[1]}</span></div>}
+      <div className={'flxk-cloud' + (c.connected ? ' is-connected' : '')}>
+        <span className="flxk-cloud__logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M7 18h10a4 4 0 0 0 .6-7.96A6 6 0 0 0 6.2 9.1 4.5 4.5 0 0 0 7 18z" />
+            <path d="m9.5 13.5 2 2 3.5-4" />
+          </svg>
+        </span>
+        <div className="flxk-cloud__body">
+          <strong>{c.title}</strong>
+          {c.text && <span>{c.text}</span>}
+          {c.error ? <small className="flxk-cloud__err">{c.error}</small> : c.note ? <small className="flxk-muted">{c.note}</small> : null}
+        </div>
+        <div className="flxk-cloud__actions">
+          {c.manageUrl && (
+            <a className="flxk-btn" href={c.manageUrl} target="_blank" rel="noopener noreferrer">
+              {t('Manage account')}
+            </a>
+          )}
+          {c.actions.map((a) => (
+            <form key={a.action} method="post" action={c.postUrl}>
+              <input type="hidden" name="action" value={a.action} />
+              <input type="hidden" name="_wpnonce" value={a.nonce} />
+              <button type="submit" className={a.kind === 'primary' ? 'flxk-btn is-primary' : a.kind === 'danger' ? 'flxk-linkbtn is-danger' : 'flxk-btn'}>
+                {a.label}
+              </button>
+            </form>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+}
+
+/** Anonymous usage data: state, hub address (own Flux Analytics hub), send now and the data that is sent. */
+function TelemetryCard({ telemetry: m, t, onNotice }: { telemetry: Data['flxSetupTelemetry']; t: ReturnType<typeof useSetup>['t']; onNotice: (n: Notice) => void }) {
+  const { refresh } = useSetup();
+  const [url, setUrl] = useState(m.url);
+  useEffect(() => setUrl(m.url), [m.url]);
+  const save = useFlxMutation(FlxSetupTelemetrySave, {
+    onSuccess: (r) => {
+      const p = r.flxSetupTelemetrySave;
+      if (!p || p.errors.length) return onNotice({ kind: 'error', text: p?.errors[0]?.message || t('The action could not be completed.') });
+      onNotice(
+        p.sent === null || p.sent === undefined
+          ? { kind: 'success', text: t('Saved.') }
+          : p.sent
+            ? { kind: 'success', text: t('Sent.') }
+            : { kind: 'error', text: t('Could not send. Check the URL and that the Flux Analytics telemetry hub is on at the target site.') },
+      );
+      void refresh();
+    },
+    onError: (e) => onNotice({ kind: 'error', text: errorText(e, t('The action could not be completed.')) }),
+  });
+  return (
+    <>
+      <h2 id="flxk-telemetry">{t('Anonymous usage data')}</h2>
+      <div className="flxk-card">
+        <p>
+          <span className={'flxk-badge' + (m.enabled ? ' is-ok' : '')}>{m.enabled ? t('On') : t('Off')}</span> {m.status}
+        </p>
+        <p className="flxk-desc">
+          {t('Sent: a random install ID, WordPress and PHP version, site language, country (from the time zone or store country), active FluxWP plugins and theme, PHP errors from FluxWP (with paths, domain, emails and IPs removed), setup wizard progress and choices. Site address, IP, users and content are never sent.')}
+        </p>
+        <form
+          className="flxk-form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            save.mutate({ input: { url, send: false } });
+          }}
+        >
+          <div className="flxk-field">
+            <label className="flxk-label" htmlFor="flxk-tm-url">
+              {t('Telemetry URL')}
+            </label>
+            <div>
+              <input id="flxk-tm-url" type="url" className="flxk-code" value={url} placeholder={m.defaultUrl} onChange={(e) => setUrl(e.target.value)} />
+              <p className="flxk-desc">{t('Leave empty to send to FluxWP. To run your own hub, turn on Flux Analytics › Settings › Telemetry hub on one site and paste that address here. https only.')}</p>
+            </div>
+          </div>
+          <div className="flxk-btnrow">
+            <button type="submit" className="flxk-btn is-primary" disabled={save.isPending}>
+              {t('Save')}
+            </button>
+            {m.enabled && (
+              <button type="button" className="flxk-btn" disabled={save.isPending} onClick={() => save.mutate({ input: { url, send: true } })}>
+                {t('Send now')}
+              </button>
+            )}
+          </div>
+        </form>
+        <details className="flxk-details">
+          <summary>{t('Show the data that will be sent')}</summary>
+          <pre>{m.payload}</pre>
+        </details>
       </div>
     </>
   );

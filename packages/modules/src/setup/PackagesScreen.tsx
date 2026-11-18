@@ -9,6 +9,8 @@ import { flxQueryKey, useFlxMutation, useFlxQuery } from '@fluxwp/graphql/react'
 import {
   FlxSetupAutoUpdateSet,
   FlxSetupCheck,
+  FlxSetupGoogleCardDismiss,
+  FlxSetupGoogleCards,
   FlxSetupManage,
   FlxSetupOverview,
   FlxSetupPackages,
@@ -350,6 +352,7 @@ function Packages() {
     >
 
       <NoticeBar notice={notice} onClose={() => setNotice(null)} t={t} />
+      <GoogleCards t={t} />
 
       {run && (
         <RunLog
@@ -550,6 +553,42 @@ function StatusCard({ o, t }: { o: Overview; t: ReturnType<typeof useSetup>['t']
         </a>
       )}
     </div>
+  );
+}
+
+/** Optional Google setup cards (Google Site Kit, Google for WooCommerce): install, or "Not needed" to close site-wide. */
+function GoogleCards({ t }: { t: ReturnType<typeof useSetup>['t'] }) {
+  const q = useFlxQuery(FlxSetupGoogleCards, {});
+  const [closed, setClosed] = useState<string[]>([]);
+  const dismiss = useFlxMutation(FlxSetupGoogleCardDismiss, {});
+  const cards = (q.data?.flxSetupGoogleCards ?? []).filter((c) => !closed.includes(c.id));
+  if (!cards.length) return null;
+  return (
+    <>
+      {cards.map((c) => (
+        <div key={c.id} className="flxk-gcard">
+          <div className="flxk-gcard__body">
+            <h2>{c.title}</h2>
+            <p>{c.text}</p>
+          </div>
+          <div className="flxk-gcard__act">
+            <button
+              type="button"
+              className="flxk-btn is-ghost"
+              onClick={() => {
+                setClosed((x) => [...x, c.id]);
+                dismiss.mutate({ input: { id: c.id } });
+              }}
+            >
+              {t('Not needed')}
+            </button>
+            <a className="flxk-btn is-primary" href={c.installUrl}>
+              {c.button}
+            </a>
+          </div>
+        </div>
+      ))}
+    </>
   );
 }
 

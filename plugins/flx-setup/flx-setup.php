@@ -90,8 +90,8 @@ add_filter(
 
 if ( is_admin() ) {
 	require_once FLXK_DIR . 'includes/admin.php';
-	require_once FLXK_DIR . 'includes/google-cards.php';
 }
+require_once FLXK_DIR . 'includes/google-cards.php'; // Also read by GraphQL (Packages screen cards).
 
 /* ---------- Güncelleyici (eski Flux Updater; sınıf ve ayar öneki flxu_ korunur) ---------- */
 require_once FLXK_DIR . 'includes/legacy.php';

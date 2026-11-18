@@ -466,6 +466,85 @@ final class FLXK_Cloud {
 		<?php
 	}
 
+	/**
+	 * The account card as data, for the React settings screen (same text and buttons as card()).
+	 * Buttons post to admin-post.php with their own nonce; the flow goes to fluxwp.com and back.
+	 *
+	 * @return array{connected:bool,title:string,text:string,note:string,error:string,manageUrl:string,postUrl:string,flash:string,flashType:string,actions:array<int,array{action:string,label:string,nonce:string,kind:string}>}
+	 */
+	public static function view(): array {
+		$s   = self::state();
+		$sum = $s['refresh'] ? self::summary() : array();
+		$s   = self::state();
+		$on  = '' !== $s['refresh'];
+		$out = array(
+			'connected' => $on,
+			'title'     => __( 'Connect your FluxWP account', 'flx-setup' ),
+			'text'      => __( 'Sign in or sign up on fluxwp.com: this site gets its update key and the packages of your plan automatically. The Free plan needs no card.', 'flx-setup' ),
+			'note'      => '',
+			'error'     => (string) $s['error'],
+			'manageUrl' => '',
+			'postUrl'   => admin_url( 'admin-post.php' ),
+			'flash'     => '',
+			'flashType' => '',
+			'actions'   => array(),
+		);
+		if ( $on && $sum ) {
+			$plan    = (array) ( $sum['plan'] ?? array() );
+			$sites   = (array) ( $sum['sites'] ?? array() );
+			$sets    = array_filter(
+				array_map(
+					static function ( $x ) {
+						return is_array( $x ) ? self::text( $x['name'] ?? '' ) : '';
+					},
+					(array) ( $sum['sets'] ?? array() )
+				)
+			);
+			$expires = (int) ( $plan['expires'] ?? 0 );
+			/* translators: 1: plan name, 2: account name */
+			$out['title'] = sprintf( __( 'FluxWP %1$s · %2$s', 'flx-setup' ), self::text( $plan['name'] ?? '' ), (string) ( $sum['account']['name'] ?? '' ) );
+			$bits         = array();
+			if ( 'ended' === ( $plan['status'] ?? '' ) ) {
+				$bits[] = __( 'Subscription ended: the Free plan applies, paid updates are paused.', 'flx-setup' );
+			} elseif ( $expires ) {
+				/* translators: %s: date */
+				$bits[] = sprintf( __( 'Renews or ends on %s', 'flx-setup' ), flx_date( $expires ) );
+			}
+			if ( $sets ) {
+				/* translators: %s: set names */
+				$bits[] = sprintf( __( 'Sets: %s', 'flx-setup' ), implode( ', ', $sets ) );
+			}
+			if ( isset( $sites['used'] ) ) {
+				$limit = (int) ( $sites['limit'] ?? 0 );
+				/* translators: 1: connected sites, 2: site limit */
+				$bits[] = $limit < 0 ? sprintf( __( '%d sites connected', 'flx-setup' ), (int) $sites['used'] ) : sprintf( __( '%1$d of %2$d sites', 'flx-setup' ), (int) $sites['used'], $limit );
+			}
+			$out['text'] = implode( ' · ', $bits );
+			if ( ! $s['error'] && $s['checked'] ) {
+				/* translators: %s: time ago */
+				$out['note'] = sprintf( __( 'Checked %s', 'flx-setup' ), flx_time_ago( (int) $s['checked'] ) );
+			}
+			if ( ! empty( $sum['manage_url'] ) && 0 === strpos( (string) $sum['manage_url'], self::url() ) ) {
+				$out['manageUrl'] = (string) $sum['manage_url'];
+			}
+		}
+		$out['actions'] = $on
+			? array(
+				array( 'action' => 'flxk_cloud_refresh', 'label' => __( 'Refresh', 'flx-setup' ), 'nonce' => wp_create_nonce( 'flxk_cloud_refresh' ), 'kind' => 'secondary' ),
+				array( 'action' => 'flxk_cloud_disconnect', 'label' => __( 'Disconnect', 'flx-setup' ), 'nonce' => wp_create_nonce( 'flxk_cloud_disconnect' ), 'kind' => 'danger' ),
+			)
+			: array(
+				array( 'action' => 'flxk_cloud_connect', 'label' => __( 'Sign in with FluxWP', 'flx-setup' ), 'nonce' => wp_create_nonce( 'flxk_cloud_connect' ), 'kind' => 'primary' ),
+			);
+		// The message of the last sign-in step (the redirect back adds ?flxk_cloud=…; the failure text waits in a transient).
+		$fail = (string) get_transient( 'flxk_cloud_msg_' . get_current_user_id() );
+		if ( '' !== $fail ) {
+			$out['flash']     = $fail;
+			$out['flashType'] = 'error';
+		}
+		return $out;
+	}
+
 	/* ------------------------------------------------------------------ */
 	/* System checks                                                       */
 	/* ------------------------------------------------------------------ */

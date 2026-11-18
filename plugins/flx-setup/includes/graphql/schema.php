@@ -717,6 +717,67 @@ flx_gql_type(
 );
 
 flx_gql_type(
+	'FlxSetupCloudAction',
+	array(
+		'description' => __( 'A button of the FluxWP account card. It posts to postUrl with action and _wpnonce.', 'flx-setup' ),
+		'fields'      => array(
+			'action' => array( 'type' => 'String!', 'description' => __( 'admin-post action.', 'flx-setup' ) ),
+			'label'  => array( 'type' => 'String!', 'description' => __( 'Button text.', 'flx-setup' ) ),
+			'nonce'  => array( 'type' => 'String!', 'description' => __( 'Nonce of the action.', 'flx-setup' ) ),
+			'kind'   => array( 'type' => 'String!', 'description' => __( 'primary, secondary or danger.', 'flx-setup' ) ),
+		),
+	)
+);
+
+flx_gql_type(
+	'FlxSetupCloud',
+	array(
+		'description' => __( 'FluxWP account (Sign in with FluxWP): plan, sites and the buttons of the card.', 'flx-setup' ),
+		'fields'      => array(
+			'connected' => array( 'type' => 'Boolean!', 'description' => __( 'The site is connected to a FluxWP account.', 'flx-setup' ) ),
+			'title'     => array( 'type' => 'String!', 'description' => __( 'Card title (plan and account when connected).', 'flx-setup' ) ),
+			'text'      => array( 'type' => 'String!', 'description' => __( 'Card text.', 'flx-setup' ) ),
+			'note'      => array( 'type' => 'String!', 'description' => __( 'Last check as a sentence; may be empty.', 'flx-setup' ) ),
+			'error'     => array( 'type' => 'String!', 'description' => __( 'Last error; empty when none.', 'flx-setup' ) ),
+			'manageUrl' => array( 'type' => 'String!', 'description' => __( 'Account page on fluxwp.com; may be empty.', 'flx-setup' ) ),
+			'postUrl'   => array( 'type' => 'String!', 'description' => __( 'admin-post.php address the buttons post to.', 'flx-setup' ) ),
+			'flash'     => array( 'type' => 'String!', 'description' => __( 'Message of the last failed sign-in; empty when none.', 'flx-setup' ) ),
+			'flashType' => array( 'type' => 'String!', 'description' => __( 'Kind of that message.', 'flx-setup' ) ),
+			'actions'   => array( 'type' => '[FlxSetupCloudAction!]!', 'description' => __( 'Buttons.', 'flx-setup' ) ),
+		),
+	)
+);
+
+flx_gql_type(
+	'FlxSetupTelemetry',
+	array(
+		'description' => __( 'Anonymous usage data: state, hub address and the data that will be sent.', 'flx-setup' ),
+		'fields'      => array(
+			'enabled'    => array( 'type' => 'Boolean!', 'description' => __( 'Usage data is sent.', 'flx-setup' ) ),
+			'status'     => array( 'type' => 'String!', 'description' => __( 'State as a sentence.', 'flx-setup' ) ),
+			'url'        => array( 'type' => 'String!', 'description' => __( 'Hub address typed in the settings; empty sends to FluxWP.', 'flx-setup' ) ),
+			'defaultUrl' => array( 'type' => 'String!', 'description' => __( 'FluxWP hub address.', 'flx-setup' ) ),
+			'payload'    => array( 'type' => 'String!', 'description' => __( 'The data that will be sent (JSON).', 'flx-setup' ) ),
+		),
+	)
+);
+
+flx_gql_type(
+	'FlxSetupGoogleCard',
+	array(
+		'description' => __( 'An optional Google setup card (Google Site Kit, Google for WooCommerce).', 'flx-setup' ),
+		'fields'      => array(
+			'id'         => array( 'type' => 'String!', 'description' => __( 'Card id.', 'flx-setup' ) ),
+			'title'      => array( 'type' => 'String!', 'description' => __( 'Title.', 'flx-setup' ) ),
+			'text'       => array( 'type' => 'String!', 'description' => __( 'Text.', 'flx-setup' ) ),
+			'button'     => array( 'type' => 'String!', 'description' => __( 'Install or activate button text.', 'flx-setup' ) ),
+			'installUrl' => array( 'type' => 'String!', 'description' => __( 'Installs, activates and opens the plugin setup (admin-post, with nonce).', 'flx-setup' ) ),
+			'dismissUrl' => array( 'type' => 'String!', 'description' => __( '"Not needed" link (admin-post, with nonce).', 'flx-setup' ) ),
+		),
+	)
+);
+
+flx_gql_type(
 	'FlxSetupWizardUpdate',
 	array(
 		'description' => __( 'An installed package that has an update before the wizard starts.', 'flx-setup' ),
@@ -899,6 +960,36 @@ flx_gql_query(
 		'type'        => 'FlxSetupGraphqlStatus!',
 		'cap'         => 'manage_options',
 		'resolve'     => static fn(): array => FLXK_System_Service::graphql(),
+	)
+);
+
+flx_gql_query(
+	'flxSetupCloud',
+	array(
+		'description' => __( 'FluxWP account card.', 'flx-setup' ),
+		'type'        => 'FlxSetupCloud!',
+		'cap'         => 'manage_options',
+		'resolve'     => static fn(): array => class_exists( 'FLXK_Cloud' ) ? FLXK_Cloud::view() : array( 'connected' => false, 'title' => '', 'text' => '', 'note' => '', 'error' => '', 'manageUrl' => '', 'postUrl' => '', 'flash' => '', 'flashType' => '', 'actions' => array() ),
+	)
+);
+
+flx_gql_query(
+	'flxSetupTelemetry',
+	array(
+		'description' => __( 'Anonymous usage data card.', 'flx-setup' ),
+		'type'        => 'FlxSetupTelemetry!',
+		'cap'         => 'manage_options',
+		'resolve'     => static fn(): array => FLXK_Telemetry::view(),
+	)
+);
+
+flx_gql_query(
+	'flxSetupGoogleCards',
+	array(
+		'description' => __( 'Google setup cards the Packages screen shows (closed and active ones are left out).', 'flx-setup' ),
+		'type'        => '[FlxSetupGoogleCard!]!',
+		'cap'         => 'update_plugins',
+		'resolve'     => static fn(): array => flxk_google_cards_view(),
 	)
 );
 
@@ -1179,6 +1270,42 @@ flx_gql_mutation(
 			$n = FLXK_Packages_Service::set_retention( flx_gql_int( $input['days'] ?? 0 ) );
 			return $n instanceof WP_Error ? $n : array( 'deleted' => $n );
 		},
+	)
+);
+
+flx_gql_mutation(
+	'flxSetupTelemetrySave',
+	array(
+		'description' => __( 'Saves the telemetry hub address and, when asked, sends the usage data now.', 'flx-setup' ),
+		'cap'         => 'manage_options',
+		'input'       => array(
+			'url'  => array( 'type' => 'String!', 'description' => __( 'Hub address (https); empty sends to FluxWP.', 'flx-setup' ) ),
+			'send' => array( 'type' => 'Boolean', 'description' => __( 'Send now (only when usage data is on).', 'flx-setup' ) ),
+		),
+		'output'      => array(
+			'sent'      => array( 'type' => 'Boolean', 'description' => __( 'Result of sending; null when not sent.', 'flx-setup' ) ),
+			'telemetry' => array(
+				'type'        => 'FlxSetupTelemetry',
+				'description' => __( 'Card after the change.', 'flx-setup' ),
+				'resolve'     => static fn(): array => FLXK_Telemetry::view(),
+			),
+		),
+		'resolve'     => static fn( array $input ): array => FLXK_Telemetry::save( flx_gql_str( $input['url'] ?? '' ), ! empty( $input['send'] ) ),
+	)
+);
+
+flx_gql_mutation(
+	'flxSetupGoogleCardDismiss',
+	array(
+		'description' => __( '"Not needed": closes a Google setup card site-wide.', 'flx-setup' ),
+		'cap'         => 'install_plugins',
+		'input'       => array(
+			'id' => array( 'type' => 'String!', 'description' => __( 'Card id.', 'flx-setup' ) ),
+		),
+		'output'      => array(
+			'ok' => array( 'type' => 'Boolean', 'description' => __( 'The card is closed.', 'flx-setup' ) ),
+		),
+		'resolve'     => static fn( array $input ): array => array( 'ok' => flxk_google_card_dismiss( flx_gql_str( $input['id'] ?? '' ) ) ),
 	)
 );
 

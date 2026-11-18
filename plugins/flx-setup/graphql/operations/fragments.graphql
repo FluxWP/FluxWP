@@ -123,3 +123,29 @@ fragment FlxSetupErrors on FlxUserError {
   message
   field
 }
+
+fragment FlxSetupTelemetryFields on FlxSetupTelemetry {
+  enabled
+  status
+  url
+  defaultUrl
+  payload
+}
+
+fragment FlxSetupCloudFields on FlxSetupCloud {
+  connected
+  title
+  text
+  note
+  error
+  manageUrl
+  postUrl
+  flash
+  flashType
+  actions {
+    action
+    label
+    nonce
+    kind
+  }
+}
