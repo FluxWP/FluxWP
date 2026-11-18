@@ -1,6 +1,6 @@
 # @fluxwp/panel
 
-## 0.3.9
+## 0.3.10
 - "Open in app" links (`fluxwp://connect?site=<site url>`): the app opens the add-site screen with that site found, and the normal browser sign-in follows. Works signed out and signed in. Only https addresses (http on localhost) without credentials are accepted; the link carries no secret. `openConnectLink()` is exported for the shell.
 
 ## 0.3.9
