@@ -1,5 +1,8 @@
 # Değişiklik günlüğü
 
+## 0.5.2
+- Pano, hesap bağlanmadan da kartları ve grafikleri gösterir; kurulum çağrısı üstte kart olarak durur.
+
 ## 0.5.1
 - Ekran ortak FluxWP kabuğuna taşındı: başlık, simge, sekmeler, kenar boşlukları, en fazla genişlik ve güvenli alan (safe area) bütün Flux ekranlarında aynı. Sekmeler eski Flux Admin sekmeleri gibi alt çizgili; taşarsa sayfa değil sekme çubuğu kayar. Ortak modül paketi yenilendi. Sosyal Medya ekranı Flux Admin uygulama modunda sol şeridin altına giriyordu (yan menü kesiliyordu); artık şeridin yanında açılır.
 
