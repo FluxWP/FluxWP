@@ -39,7 +39,7 @@
 .flxg-gantt-now::before { content: ""; position: absolute; top: -3px; left: -3px; width: 8px; height: 8px; border-radius: 50%; background: var(--danger); }
 
 .flxg-gantt-row { position: relative; display: flex; height: var(--row); }
-.flxg-gantt-row:hover .flxg-gantt-cell, .flxg-gantt-row.is-active .flxg-gantt-cell { background: color-mix(in srgb, var(--hover) 100%, var(--panel)); }
+.flxg-gantt-row:hover .flxg-gantt-cell, .flxg-gantt-row.is-active .flxg-gantt-cell { background: linear-gradient(var(--hover), var(--hover)) var(--panel); }
 .flxg-gantt-row:hover .flxg-gantt-track { background: color-mix(in srgb, var(--hover) 60%, transparent); }
 .flxg-gantt-row.is-ctx { opacity: .6; }
 .flxg-gantt-cell { position: sticky; left: 0; z-index: 4; flex: none; display: flex; align-items: center; gap: 6px; padding: 0 8px 0 8px; box-sizing: border-box; background: var(--panel); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line-2); min-width: 0; }
