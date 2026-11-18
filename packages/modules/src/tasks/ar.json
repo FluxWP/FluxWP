@@ -4,6 +4,7 @@
   "(copy)": "(نسخة)",
   "(deleted task)": "(مهمة محذوفة)",
   "+{n} more": "+{n}المزيد",
+  "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text.": "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text.",
   "AI": "منظمة العفو الدولية",
   "AI assistant": "مساعد الذكاء الاصطناعي",
   "AI is off: a key or model is missing in Flux AI.": "الذكاء الاصطناعي معطل: هناك مفتاح أو نموذج مفقود في Flux AI.",
@@ -318,6 +319,9 @@
   "Pick a date": "اختر موعدًا",
   "Pick a match for each status; tasks move to that status.": "اختر تطابقًا لكل حالة؛ تنتقل المهام إلى تلك الحالة.",
   "Plugins": "الإضافات",
+  "Preview": "معاينة",
+  "Preview image for YouTube links": "صورة معاينة لروابط يوتيوب",
+  "Preview not available": "تعذّرت المعاينة",
   "Previous": "السابق",
   "Print the meeting report or save it as PDF": "اطبع تقرير الاجتماع أو احفظه بصيغة PDF",
   "Priority": "الأولوية",
@@ -338,6 +342,7 @@
   "Refresh": "تحديث",
   "Regenerate": "تجديد",
   "Remove": "إزالة",
+  "Remove file": "إزالة الملف",
   "Remove from cover": "إزالة من الغطاء",
   "Remove priority": "إزالة الأولوية",
   "Rename": "إعادة تسمية",
@@ -537,10 +542,5 @@
   "{n} tasks completed": "اكتملت مهام {n}",
   "{n} tasks will be permanently deleted.": "سيتم حذف مهام{n}نهائيًا.",
   "{n} warning(s)": "تحذيرات {n}",
-  "{n} wrote a comment": "كتب{n}تعليقًا",
-  "Preview not available": "تعذّرت المعاينة",
-  "Preview": "معاينة",
-  "Remove file": "إزالة الملف",
-  "Preview image for YouTube links": "صورة معاينة لروابط يوتيوب",
-  "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text.": "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text."
+  "{n} wrote a comment": "كتب{n}تعليقًا"
 }

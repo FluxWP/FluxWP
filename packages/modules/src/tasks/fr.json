@@ -4,6 +4,7 @@
   "(copy)": "(copie)",
   "(deleted task)": "(tâche supprimée)",
   "+{n} more": "+{n}plus",
+  "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text.": "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text.",
   "AI": "IA",
   "AI assistant": "Assistant IA",
   "AI is off: a key or model is missing in Flux AI.": "L'IA est désactivée : une clé ou un modèle est manquant dans Flux AI.",
@@ -318,6 +319,9 @@
   "Pick a date": "Choisissez une date",
   "Pick a match for each status; tasks move to that status.": "Choisissez une correspondance pour chaque statut ; les tâches passent à ce statut.",
   "Plugins": "Plugins",
+  "Preview": "Aperçu",
+  "Preview image for YouTube links": "Image d'aperçu pour les liens YouTube",
+  "Preview not available": "Aperçu indisponible",
   "Previous": "Précédent",
   "Print the meeting report or save it as PDF": "Imprimez le rapport de la réunion ou enregistrez-le au format PDF",
   "Priority": "Priorité",
@@ -338,6 +342,7 @@
   "Refresh": "Actualiser",
   "Regenerate": "Régénérer",
   "Remove": "Supprimer",
+  "Remove file": "Retirer le fichier",
   "Remove from cover": "Retirer du couvercle",
   "Remove priority": "Supprimer la priorité",
   "Rename": "Renommer",
@@ -537,10 +542,5 @@
   "{n} tasks completed": "Tâches {n} terminées",
   "{n} tasks will be permanently deleted.": "Les tâches{n}seront définitivement supprimées.",
   "{n} warning(s)": "{n} avertissement(s)",
-  "{n} wrote a comment": "{n}a écrit un commentaire",
-  "Preview not available": "Aperçu indisponible",
-  "Preview": "Aperçu",
-  "Remove file": "Retirer le fichier",
-  "Preview image for YouTube links": "Image d'aperçu pour les liens YouTube",
-  "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text.": "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text."
+  "{n} wrote a comment": "{n}a écrit un commentaire"
 }

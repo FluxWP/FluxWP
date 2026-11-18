@@ -141,6 +141,8 @@ function flxg_page_row( $r ) {
 		'pos'       => (float) $r['position'],
 		'updated'   => flxg_iso( $r['updated_at'] ),
 		'updatedBy' => (int) $r['updated_by'],
+		'created'   => flxg_iso( $r['created_at'] ),
+		'createdBy' => (int) $r['created_by'],
 	);
 }
 
@@ -165,6 +167,51 @@ function flxg_doc_pages( $doc_id ) {
 	global $wpdb;
 	$rows = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM ' . flxg_table( 'doc_pages' ) . ' WHERE doc_id = %d ORDER BY position, id', (int) $doc_id ), ARRAY_A ); // phpcs:ignore
 	return array_map( 'flxg_page_row', (array) $rows );
+}
+
+/** Sayfa etkinliği: oluşturma, düzenleme, ad değişikliği, taşıma. Aynı kişinin art arda düzenlemesi tek satırda birleşir. */
+function flxg_doc_log( $page_id, $action, $data, $uid ) {
+	global $wpdb;
+	$t   = flxg_table( 'doc_activity' );
+	$now = flxg_now();
+	if ( 'edited' === $action ) {
+		$last = $wpdb->get_row( $wpdb->prepare( "SELECT id, created_at FROM $t WHERE page_id = %d AND user_id = %d AND action = 'edited' ORDER BY id DESC LIMIT 1", (int) $page_id, (int) $uid ), ARRAY_A ); // phpcs:ignore
+		if ( $last && strtotime( $last['created_at'] . ' UTC' ) > time() - 600 ) {
+			$wpdb->update( $t, array( 'created_at' => $now ), array( 'id' => (int) $last['id'] ) );
+			return;
+		}
+	}
+	$wpdb->insert(
+		$t,
+		array(
+			'page_id'    => (int) $page_id,
+			'user_id'    => (int) $uid,
+			'action'     => $action,
+			'data'       => flxg_enc( $data ),
+			'created_at' => $now,
+		)
+	);
+}
+
+function flxg_rest_page_activity( WP_REST_Request $r ) {
+	global $wpdb;
+	$p   = flxg_get_page( (int) $r['id'] );
+	$doc = flxg_page_doc( $p );
+	if ( ! $doc || ! FLXG_Doc_Service::can( (int) $p['id'], 'view', get_current_user_id() ) ) {
+		return flxg_error( 'flxg_404', __( 'Page not found or you have no access.', 'flx-tasks' ), 404 );
+	}
+	$rows = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM ' . flxg_table( 'doc_activity' ) . ' WHERE page_id = %d ORDER BY id DESC LIMIT 100', (int) $p['id'] ), ARRAY_A ); // phpcs:ignore
+	$out  = array();
+	foreach ( (array) $rows as $a ) {
+		$out[] = array(
+			'id'      => (int) $a['id'],
+			'user'    => (int) $a['user_id'],
+			'action'  => (string) $a['action'],
+			'data'    => flxg_json( $a['data'] ),
+			'created' => flxg_iso( $a['created_at'] ),
+		);
+	}
+	return array( 'activity' => $out );
 }
 
 function flxg_create_doc_page( $doc_id, array $d, $uid ) {
@@ -192,6 +239,7 @@ function flxg_create_doc_page( $doc_id, array $d, $uid ) {
 		)
 	);
 	$id = (int) $wpdb->insert_id;
+	flxg_doc_log( $id, 'created', array(), $uid );
 	flxg_bump_doc_tree( $doc_id );
 	return $id;
 }
@@ -220,6 +268,7 @@ function flxg_purge_page( $pid ) {
 	FLXG_Doc_Service::purge( (int) $pid );
 	$wpdb->delete( flxg_table( 'doc_blocks' ), array( 'page_id' => (int) $pid ) );
 	$wpdb->delete( flxg_table( 'doc_presence' ), array( 'page_id' => (int) $pid ) );
+	$wpdb->delete( flxg_table( 'doc_activity' ), array( 'page_id' => (int) $pid ) );
 	$wpdb->delete( flxg_table( 'doc_pages' ), array( 'id' => (int) $pid ) );
 }
 
@@ -375,6 +424,7 @@ function flxg_apply_block_ops( $page_id, array $ops, $uid ) {
 	}
 	if ( $revs ) {
 		$wpdb->update( flxg_table( 'doc_pages' ), array( 'updated_at' => $now, 'updated_by' => (int) $uid ), array( 'id' => (int) $page_id ) );
+		flxg_doc_log( $page_id, 'edited', array(), $uid );
 	}
 	return $revs;
 }
@@ -468,6 +518,7 @@ function flxg_register_doc_routes() {
 	flxg_route( '/doc-pages/(?P<id>\d+)', 'POST, PUT, PATCH', 'flxg_rest_page_update' );
 	flxg_route( '/doc-pages/(?P<id>\d+)', 'DELETE', 'flxg_rest_page_delete' );
 	flxg_route( '/doc-pages/(?P<id>\d+)/sync', 'POST', 'flxg_rest_doc_sync' );
+	flxg_route( '/doc-pages/(?P<id>\d+)/activity', 'GET', 'flxg_rest_page_activity' );
 	flxg_route( '/doc-pages/(?P<id>\d+)/email-draft', 'POST', 'flxg_rest_page_email_draft' );
 }
 
@@ -627,6 +678,12 @@ function flxg_rest_page_update( WP_REST_Request $r ) {
 		$set['updated_at'] = flxg_now();
 		$set['updated_by'] = get_current_user_id();
 		$wpdb->update( flxg_table( 'doc_pages' ), $set, array( 'id' => (int) $p['id'] ) );
+		if ( isset( $set['title'] ) && $set['title'] !== (string) $p['title'] ) {
+			flxg_doc_log( $p['id'], 'renamed', array( 'from' => (string) $p['title'], 'to' => $set['title'] ), get_current_user_id() );
+		}
+		if ( isset( $set['parent_id'] ) && (int) $set['parent_id'] !== (int) $p['parent_id'] ) {
+			flxg_doc_log( $p['id'], 'moved', array(), get_current_user_id() );
+		}
 		flxg_bump_doc_tree( $doc['id'] );
 	}
 	return array( 'pages' => flxg_doc_pages_for( $doc['id'] ), 'doc' => flxg_get_doc( $doc['id'] ) );
