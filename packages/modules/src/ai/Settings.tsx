@@ -19,6 +19,16 @@ function toForm(s: Data['flxAiSettings']): Form {
   return { ...rest, sourceModels } as Form;
 }
 
+/** Placeholder of an empty key field (the shape of the key). */
+const KEY_PLACEHOLDER: Record<string, string> = { key_openrouter: 'sk-or-…', key_anthropic: 'sk-ant-…', key_openai: 'sk-…', key_gemini: 'AIza…', key_evolink: 'sk-…' };
+
+/** Where to get the main provider keys (the catalog leaves these empty). */
+function KEY_HELP(name: string, t: (s: string) => string): string {
+  if (name === 'key_openrouter') return t('openrouter.ai › Keys. Hundreds of models with one key; actual cost is reported with every request.');
+  if (name === 'key_anthropic') return t('console.anthropic.com › API Keys. Claude models are listed with the "claude:" prefix.');
+  return '';
+}
+
 function Field({ label, hint, children }: { label: ReactNode; hint?: ReactNode; children: ReactNode }) {
   return (
     <div className="flxai-field">
@@ -115,13 +125,13 @@ export function Settings() {
     const s = secret(name);
     if (!s) return null;
     return (
-      <Field label={t('%s API key', s.label)} hint={s.fromConfig ? t('Set in wp-config.php; remove it there.') : s.help || undefined}>
+      <Field label={t('%s API key', s.label)} hint={s.fromConfig ? t('Set in wp-config.php; remove it there.') : s.help || KEY_HELP(name, t) || undefined}>
         <input
           className="flxai-input"
           type="password"
           autoComplete="new-password"
           value={keys[name] ?? ''}
-          placeholder={s.configured ? s.hint : ''}
+          placeholder={s.configured ? s.hint : (KEY_PLACEHOLDER[name] ?? '')}
           disabled={s.fromConfig || clear[name]}
           onChange={(e) => setKeys((k) => ({ ...k, [name]: e.target.value }))}
         />
@@ -158,27 +168,29 @@ export function Settings() {
         {group('provider').map((s) => (
           <KeyRow key={s.name} name={s.name} />
         ))}
-        <Field label={t('Anthropic workspace')} hint={t('Only needed when the key is not tied to a workspace.')}>
-          <input className="flxai-input" value={form.anthropicWorkspace} onChange={(e) => set('anthropicWorkspace', e.target.value)} />
+        <Field label={t('Anthropic workspace')} hint={t('Only needed when the key is not tied to a workspace (if the error asks for "anthropic-workspace-id").')}>
+          <input className="flxai-input" value={form.anthropicWorkspace} placeholder="wrkspc_…" onChange={(e) => set('anthropicWorkspace', e.target.value)} />
         </Field>
       </Card>
 
       <Card title={t('Models')}>
-        <Field label={t('Default model')} hint={o.defaultModel ? t('Empty uses %s.', o.defaultModel) : undefined}>
+        <Field label={t('Default model')} hint={t('Used when a plugin does not specify its own model.') + (o.defaultModel ? ' ' + t('Empty uses %s.', o.defaultModel) : '')}>
           <ModelInput value={form.model} onChange={(v) => set('model', v)} placeholder={o.defaultModel} />
           <button type="button" className="flxai-btn is-small" disabled={modelTest.isPending} onClick={() => modelTest.mutate({ input: { model: form.model } })}>
             {t('Test')}
           </button>
         </Field>
-        <Field label={t('Chat model')}>
-          <ModelInput value={form.chatModel} onChange={(v) => set('chatModel', v)} placeholder="chat" />
+        <Field label={t('Chat model')} hint={t('Choose a model that supports tools.')}>
+          <ModelInput value={form.chatModel} onChange={(v) => set('chatModel', v)} placeholder={t('Default')} />
         </Field>
-        <Field label={t('Chat title model')}>
-          <ModelInput value={form.titleModel} onChange={(v) => set('titleModel', v)} placeholder="title" />
+        <Field label={t('Chat title model')} hint={t('A cheap model is enough for automatic chat titles.')}>
+          <ModelInput value={form.titleModel} onChange={(v) => set('titleModel', v)} placeholder={t('Chat model')} />
         </Field>
+        <h3 className="flxai-subhead">{t('Per-plugin model')}</h3>
+        <p className="flxai-hint">{t("Used when the plugin's request names no model; empty means the default.")}</p>
         {data.flxAiSettings.sourceModels.map((m) => (
           <Field key={m.source} label={m.label}>
-            <ModelInput value={form.sourceModels[m.source] ?? ''} onChange={(v) => set('sourceModels', { ...form.sourceModels, [m.source]: v })} placeholder={m.source} />
+            <ModelInput value={form.sourceModels[m.source] ?? ''} onChange={(v) => set('sourceModels', { ...form.sourceModels, [m.source]: v })} placeholder={t('Default')} />
           </Field>
         ))}
         {test && !renderTest.isPending && (
@@ -225,10 +237,18 @@ export function Settings() {
           </Field>
         ))}
         <Field label={t('When the limit is reached')}>
-          <select className="flxai-input" value={form.limitAction} onChange={(e) => set('limitAction', e.target.value as FlxAiLimitAction)}>
-            <option value="BLOCK">{t('Stop requests (plugins switch to their fallback behaviour)')}</option>
-            <option value="WARN">{t('Warn only')}</option>
-          </select>
+          <div className="flxai-radios" role="radiogroup" aria-label={t('When the limit is reached')}>
+            {(
+              [
+                ['BLOCK', t('Stop requests (plugins switch to their fallback behaviour)')],
+                ['WARN', t('Warn only')],
+              ] as [FlxAiLimitAction, string][]
+            ).map(([v, label]) => (
+              <label key={v} className="flxai-check">
+                <input type="radio" name="flxai-limit-action" checked={form.limitAction === v} onChange={() => set('limitAction', v)} /> {label}
+              </label>
+            ))}
+          </div>
         </Field>
         <Field label={t('Warning threshold')}>
           <span>% </span>

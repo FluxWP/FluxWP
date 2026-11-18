@@ -627,5 +627,14 @@
   "Open full screen": "Tam ekran aç",
   "Empty folder": "Boş klasör",
   "Allowed folders": "İzin verilen klasörler",
-  "Rules that always apply": "Her zaman geçerli kurallar"
+  "Rules that always apply": "Her zaman geçerli kurallar",
+  "Per-plugin model": "Eklentiye özel model",
+  "Used when the plugin's request names no model; empty means the default.": "Eklenti istekte model belirtmezse buradaki model kullanılır; boşsa varsayılan.",
+  "openrouter.ai › Keys. Hundreds of models with one key; actual cost is reported with every request.": "openrouter.ai › Keys. Yüzlerce model tek anahtarla; gerçek maliyet her istekte bildirilir.",
+  "Default": "Varsayılan",
+  "Used when a plugin does not specify its own model.": "Eklentiler kendi modelini vermezse bu kullanılır.",
+  "Choose a model that supports tools.": "Araç kullanabilen bir model seçin.",
+  "console.anthropic.com › API Keys. Claude models are listed with the \"claude:\" prefix.": "console.anthropic.com › API Keys. Claude modelleri \"claude:\" önekiyle listelenir.",
+  "Only needed when the key is not tied to a workspace (if the error asks for \"anthropic-workspace-id\").": "Yalnız anahtar bir workspace'e bağlı değilse gerekir (hata mesajı \"anthropic-workspace-id\" isterse).",
+  "A cheap model is enough for automatic chat titles.": "Sohbete otomatik isim vermek için ucuz bir model yeterli."
 }
