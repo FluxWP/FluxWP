@@ -98,7 +98,7 @@ export function AppearanceTab() {
   });
 
   if (q.isLoading || (!draft && !q.isError)) return <Loading />;
-  if (q.isError || !q.data || !draft) return <div className="flxs-notice is-error">{q.error?.message || t('The action could not be completed.')}</div>;
+  if (q.isError || !q.data || !draft) return <div className="flxas-notice is-error">{q.error?.message || t('The action could not be completed.')}</div>;
   const a = q.data.flxAppAdminAppearance;
   const theme = rec(a.theme);
   const set = <K extends keyof Draft>(k: K, v: Draft[K]) => {
@@ -128,7 +128,7 @@ export function AppearanceTab() {
   };
 
   const TargetSelect = ({ id, value, onChange, empty }: { id: string; value: string; onChange: (v: string) => void; empty?: string }) => (
-    <select id={id} className="flxs-select" value={value} onChange={(e) => onChange(e.currentTarget.value)}>
+    <select id={id} className="flxas-select" value={value} onChange={(e) => onChange(e.currentTarget.value)}>
       <option value="">{empty ?? '—'}</option>
       {a.targets.map((g) => (
         <optgroup key={g.label} label={g.label}>
@@ -145,14 +145,14 @@ export function AppearanceTab() {
 
   return (
     <>
-      <p className="flxs-lead">
+      <p className="flxas-lead">
         {t("Appearance of the desktop and mobile app. Empty colours come from the theme (theme.json) and the Flux Admin colour. Menus are filtered by the user's role: an item they cannot see in the admin does not show in the app either.")}
       </p>
-      <div className="flxs-appearance">
+      <div className="flxas-appearance">
         <form onSubmit={submit}>
-          <section className="flxs-card">
+          <section className="flxas-card">
             <h2>{t('Theme')}</h2>
-            <div className="flxs-row">
+            <div className="flxas-row">
               <label>
                 {t('Mode')}{' '}
                 <select value={draft.mode} onChange={(e) => set('mode', e.currentTarget.value)}>
@@ -193,7 +193,7 @@ export function AppearanceTab() {
                 </label>
               ))}
             </div>
-            <table className="flxs-colors">
+            <table className="flxas-colors">
               <thead>
                 <tr>
                   <th />
@@ -211,10 +211,10 @@ export function AppearanceTab() {
                       const typed = draft.colors[m][c.key] ?? '';
                       return (
                         <td key={c.key}>
-                          <span className="flxs-swatch" style={{ background: /^#[0-9a-f]{6}$/i.test(typed) ? typed : resolved }} />
+                          <span className="flxas-swatch" style={{ background: /^#[0-9a-f]{6}$/i.test(typed) ? typed : resolved }} />
                           <input
                             type="text"
-                            className="flxs-hex"
+                            className="flxas-hex"
                             maxLength={7}
                             pattern="#[0-9A-Fa-f]{6}"
                             placeholder={resolved}
@@ -235,9 +235,9 @@ export function AppearanceTab() {
             </table>
           </section>
 
-          <section className="flxs-card">
+          <section className="flxas-card">
             <h2>{t('Mobile')}</h2>
-            <div className="flxs-row">
+            <div className="flxas-row">
               <label>
                 {t('Navigation')}{' '}
                 <select value={draft.nav} onChange={(e) => set('nav', e.currentTarget.value)}>
@@ -247,12 +247,12 @@ export function AppearanceTab() {
                 </select>
               </label>
               <label>
-                {t('Home screen')} <TargetSelect id="flxs-mhome" value={draft.mHome} empty={t('Home')} onChange={(v) => set('mHome', v)} />
+                {t('Home screen')} <TargetSelect id="flxas-mhome" value={draft.mHome} empty={t('Home')} onChange={(v) => set('mHome', v)} />
               </label>
             </div>
             <h3>{t('Tab bar (up to 5)')}</h3>
-            <p className="flxs-desc">{t('If empty, the Flux Admin mobile bottom bar setting is used. Tabs the user cannot open are hidden; "Menu" always stays reachable.')}</p>
-            <table className="flxs-tabs">
+            <p className="flxas-desc">{t('If empty, the Flux Admin mobile bottom bar setting is used. Tabs the user cannot open are hidden; "Menu" always stays reachable.')}</p>
+            <table className="flxas-tabs">
               <tbody>
                 {draft.tabs.map((tab, i) => {
                   const patch = (p: Partial<Tab>) => set('tabs', draft.tabs.map((x, j) => (j === i ? { ...x, ...p } : x)));
@@ -260,7 +260,7 @@ export function AppearanceTab() {
                     <tr key={i}>
                       <th>{i + 1}</th>
                       <td>
-                        <TargetSelect id={'flxs-tab' + i} value={tab.target} onChange={(v) => patch({ target: v })} />
+                        <TargetSelect id={'flxas-tab' + i} value={tab.target} onChange={(v) => patch({ target: v })} />
                       </td>
                       <td>
                         <input type="text" placeholder={t('Label')} aria-label={t('Label')} value={tab.label} onChange={(e) => patch({ label: e.currentTarget.value })} />
@@ -276,7 +276,7 @@ export function AppearanceTab() {
                 })}
               </tbody>
             </table>
-            <div className="flxs-row">
+            <div className="flxas-row">
               <Check checked={draft.drawer} onChange={(v) => set('drawer', v)}>
                 {t('Drawer (role menu groups)')}
               </Check>
@@ -296,28 +296,28 @@ export function AppearanceTab() {
             </div>
           </section>
 
-          <section className="flxs-card">
+          <section className="flxas-card">
             <h2>{t('Desktop')}</h2>
-            <div className="flxs-row">
+            <div className="flxas-row">
               <label>
-                {t('Home screen')} <TargetSelect id="flxs-dhome" value={draft.dHome} empty={t('Home')} onChange={(v) => set('dHome', v)} />
+                {t('Home screen')} <TargetSelect id="flxas-dhome" value={draft.dHome} empty={t('Home')} onChange={(v) => set('dHome', v)} />
               </label>
               <Check checked={draft.dSwitcher} onChange={(v) => set('dSwitcher', v)}>
                 {t('Site switcher')}
               </Check>
             </div>
-            <p className="flxs-desc">{t("The sidebar follows the role's Flux Admin menu layout (pins and groups). Shortcuts always shown in the command palette (⌘K):")}</p>
-            <div className="flxs-row">
+            <p className="flxas-desc">{t("The sidebar follows the role's Flux Admin menu layout (pins and groups). Shortcuts always shown in the command palette (⌘K):")}</p>
+            <div className="flxas-row">
               {draft.commands.map((c, i) => (
-                <TargetSelect key={i} id={'flxs-cmd' + i} value={c} onChange={(v) => set('commands', draft.commands.map((x, j) => (j === i ? v : x)))} />
+                <TargetSelect key={i} id={'flxas-cmd' + i} value={c} onChange={(v) => set('commands', draft.commands.map((x, j) => (j === i ? v : x)))} />
               ))}
             </div>
           </section>
 
-          <section className="flxs-card">
+          <section className="flxas-card">
             <h2>{t('Screens')}</h2>
-            <p className="flxs-desc">{t('A disabled screen does not open natively in the app; that page opens in the web view.')}</p>
-            <div className="flxs-screens">
+            <p className="flxas-desc">{t('A disabled screen does not open natively in the app; that page opens in the web view.')}</p>
+            <div className="flxas-screens">
               {a.screens.map((s) => (
                 <Check key={s.key} checked={draft.screens[s.key] ?? false} onChange={(v) => set('screens', { ...draft.screens, [s.key]: v })}>
                   {s.label}
@@ -328,7 +328,7 @@ export function AppearanceTab() {
           <SaveBar busy={save.isPending} dirty={dirty} />
         </form>
 
-        <aside className="flxs-preview">
+        <aside className="flxas-preview">
           <h2>{t('Preview')}</h2>
           <Preview a={a} label={label} />
         </aside>
@@ -355,19 +355,19 @@ function Preview({ a, label }: { a: Ap; label: (key: string) => string }) {
   return (
     <>
       {(['light', 'dark'] as const).map((mode) => (
-        <div key={mode} className={'flxs-phone is-' + mode} style={style(mode)}>
-          <div className="flxs-phone-top">
+        <div key={mode} className={'flxas-phone is-' + mode} style={style(mode)}>
+          <div className="flxas-phone-top">
             {logo && !!rec(shell.topbar).show_logo && <img src={logo} alt="" width={20} height={20} />}
             <strong>{str(brand.name)}</strong>
           </div>
-          <div className="flxs-phone-body">
-            <div className="flxs-ph-card" />
-            <div className="flxs-ph-card is-half" />
-            <div className="flxs-ph-card is-half" />
-            <div className="flxs-ph-row" />
-            <div className="flxs-ph-row" />
+          <div className="flxas-phone-body">
+            <div className="flxas-ph-card" />
+            <div className="flxas-ph-card is-half" />
+            <div className="flxas-ph-card is-half" />
+            <div className="flxas-ph-row" />
+            <div className="flxas-ph-row" />
           </div>
-          <div className="flxs-phone-tabs">
+          <div className="flxas-phone-tabs">
             {tabs.map((tab, i) => (
               <span key={i} className={i === 0 ? 'is-on' : ''}>
                 <i />
@@ -377,8 +377,8 @@ function Preview({ a, label }: { a: Ap; label: (key: string) => string }) {
           </div>
         </div>
       ))}
-      <div className="flxs-desk" style={style('light')}>
-        <div className="flxs-desk-side">
+      <div className="flxas-desk" style={style('light')}>
+        <div className="flxas-desk-side">
           <strong>{str(rec(d.brand).name)}</strong>
           {list(sidebar.pins).slice(0, 3).map((p, i) => (
             <span key={'p' + i} className="is-pin">
@@ -386,7 +386,7 @@ function Preview({ a, label }: { a: Ap; label: (key: string) => string }) {
             </span>
           ))}
           {list(sidebar.groups).slice(0, 3).map(rec).map((g, gi) => (
-            <div key={gi} className="flxs-desk-group">
+            <div key={gi} className="flxas-desk-group">
               {str(g.label) && <em>{str(g.label)}</em>}
               {list(g.items).slice(0, 4).map((it, i) => (
                 <span key={i}>{label(str(it))}</span>
@@ -394,15 +394,15 @@ function Preview({ a, label }: { a: Ap; label: (key: string) => string }) {
             </div>
           ))}
         </div>
-        <div className="flxs-desk-main">
-          <div className="flxs-desk-top">⌘K</div>
-          <div className="flxs-ph-card" />
-          <div className="flxs-ph-row" />
-          <div className="flxs-ph-row" />
-          <div className="flxs-ph-row" />
+        <div className="flxas-desk-main">
+          <div className="flxas-desk-top">⌘K</div>
+          <div className="flxas-ph-card" />
+          <div className="flxas-ph-row" />
+          <div className="flxas-ph-row" />
+          <div className="flxas-ph-row" />
         </div>
       </div>
-      <p className="flxs-desc">{t('Preview uses your role; other roles see their own menus.')}</p>
+      <p className="flxas-desc">{t('Preview uses your role; other roles see their own menus.')}</p>
     </>
   );
 }

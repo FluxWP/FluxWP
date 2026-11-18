@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.11.2
+- **Performans tabloları hizalı.** "İstek türüne göre", "En yavaş adresler" ve diğer tablolarda başlık satırı gövdeyle aynı sütunlara oturur, tablo tam genişliğe yayılır. Sebep: Flux SEO ile aynı CSS sınıf önekini (`flxs-`) paylaşıyordu; FluxApp gibi iki ekranın stilinin birlikte yüklendiği yerde SEO'nun `.flxs-list{display:flex}` kuralı tabloyu bozuyordu. Performans ekranının sınıfları `flxpf-` önekine taşındı.
+
 ## 0.11.1
 - Flux Görevler, Flux Chat, Flux App ve Flux CRM REST isteklerinde WooCommerce'in REST rotaları kaydedilmez (o istek bu rotaları hiç kullanmaz). WooCommerce'li sitede bu isteklerin PHP süresi yarıdan fazla kısalır (ölçüm: görev senkronu 0,33 sn → 0,12 sn). Filtre `flxp_lean_rest_namespaces` ile liste değişir, boş dizi kapatır.
 

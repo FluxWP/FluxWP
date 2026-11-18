@@ -42,7 +42,7 @@ export function ClientsTab() {
   });
 
   if (q.isLoading) return <Loading />;
-  if (q.isError || !q.data) return <div className="flxs-notice is-error">{q.error?.message || t('The action could not be completed.')}</div>;
+  if (q.isError || !q.data) return <div className="flxas-notice is-error">{q.error?.message || t('The action could not be completed.')}</div>;
   const d = q.data.flxAppAdminClients;
   const kindLabel = (k: string, secret: boolean) => {
     const base = k === 'BUILTIN' ? t('Built-in') : k === 'DYNAMIC' ? t('Self-registered (MCP)') : t('Added manually');
@@ -56,8 +56,8 @@ export function ClientsTab() {
   return (
     <>
       {shown && <Secret title={t('Copy it now; it will not be shown again.')} value={shown} onClose={() => setShown(null)} />}
-      <div className="flxs-card flxs-table-wrap">
-        <table className="flxs-table">
+      <div className="flxas-card flxas-table-wrap">
+        <table className="flxas-table">
           <thead>
             <tr>
               <th>{t('Application')}</th>
@@ -86,7 +86,7 @@ export function ClientsTab() {
                   {c.kind !== 'BUILTIN' && (
                     <button
                       type="button"
-                      className="flxs-link is-danger"
+                      className="flxas-link is-danger"
                       onClick={() => ask({ text: t('Delete the application and all of its sessions?'), action: t('Delete'), run: () => remove.mutate({ input: { id: c.id } }) })}
                     >
                       {t('Delete')}
@@ -100,30 +100,30 @@ export function ClientsTab() {
       </div>
 
       <h2>{t('Add application')}</h2>
-      <form className="flxs-card" onSubmit={submit}>
+      <form className="flxas-card" onSubmit={submit}>
         <p>
-          <label htmlFor="flxs-cn">{t('Name')}</label>
+          <label htmlFor="flxas-cn">{t('Name')}</label>
           <br />
-          <input id="flxs-cn" type="text" required maxLength={80} className="flxs-wide" value={name} onChange={(e) => setName(e.currentTarget.value)} />
+          <input id="flxas-cn" type="text" required maxLength={80} className="flxas-wide" value={name} onChange={(e) => setName(e.currentTarget.value)} />
         </p>
         <p>
-          <label htmlFor="flxs-cu">{t('Redirect URIs (one per line)')}</label>
+          <label htmlFor="flxas-cu">{t('Redirect URIs (one per line)')}</label>
           <br />
-          <textarea id="flxs-cu" rows={3} required className="flxs-wide" placeholder="https://ornek.com/oauth/callback" value={uris} onChange={(e) => setUris(e.currentTarget.value)} />
+          <textarea id="flxas-cu" rows={3} required className="flxas-wide" placeholder="https://ornek.com/oauth/callback" value={uris} onChange={(e) => setUris(e.currentTarget.value)} />
         </p>
         <p>
           <Check checked={secretOn} onChange={setSecretOn}>
             {t('Generate a client secret (for server-side apps; not needed for desktop/mobile)')}
           </Check>
         </p>
-        <button type="submit" className="flxs-btn is-primary" disabled={create.isPending}>
+        <button type="submit" className="flxas-btn is-primary" disabled={create.isPending}>
           {t('Add')}
         </button>
       </form>
 
       <h2>{t('Connection details')}</h2>
-      <div className="flxs-card">
-        <dl className="flxs-meta">
+      <div className="flxas-card">
+        <dl className="flxas-meta">
           {d.connection.map((c) => (
             <div key={c.key}>
               <dt>{c.key}</dt>

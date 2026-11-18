@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.9.2
+- Uygulama ayarları ekranının sınıfları `flxas-` önekine taşındı (Flux SEO ve Performans ile aynı `flxs-` önekini paylaşıyordu; FluxApp'te tablo ve alanlar başka ekranın stilini alabiliyordu).
+
 ## 0.9.1
 - **FluxApp masaüstünde eklenti ekranları kenara yapışmıyor.** Yönetim menüsü gizlenince içerik (Yedekleme, SEO vb.) soldaki menüye ve pencere kenarına dayanıyordu; gömülü masaüstü görünümünde `#wpcontent` için yan boşluk (12–28 px, pencereye göre) ve `.wrap` üst boşluğu verilir, içerik pencereden taşmaz. Tam ekran uygulamalar (Görevler, Studio, Social, GraphQL ekranları) ve blok editörü etkilenmez.
 

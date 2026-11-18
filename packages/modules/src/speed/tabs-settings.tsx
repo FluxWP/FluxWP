@@ -98,7 +98,7 @@ export function PageSpeedTab() {
   };
   const sub = (kind: 'css' | 'defer'): ReactNode =>
     kind === 'css' ? (
-      <div className="flxs-sub">
+      <div className="flxpf-sub">
         <fieldset>
           <legend>{t('Scope')}</legend>
           <label>
@@ -109,67 +109,67 @@ export function PageSpeedTab() {
           </label>
         </fieldset>
         <p>
-          <label htmlFor="flxs-ps-inline">{t('Inline limit')}</label>{' '}
-          <input id="flxs-ps-inline" type="number" min={0} max={500} className="flxs-small" value={d.inlineKb} onChange={(e) => setD({ ...d, inlineKb: e.currentTarget.value })} /> KB
-          <span className="flxs-desc"> {t('Trimmed CSS is written into <head> up to this size; anything beyond is loaded as a separate cached file. 0 = always a file.')}</span>
+          <label htmlFor="flxpf-ps-inline">{t('Inline limit')}</label>{' '}
+          <input id="flxpf-ps-inline" type="number" min={0} max={500} className="flxpf-small" value={d.inlineKb} onChange={(e) => setD({ ...d, inlineKb: e.currentTarget.value })} /> KB
+          <span className="flxpf-desc"> {t('Trimmed CSS is written into <head> up to this size; anything beyond is loaded as a separate cached file. 0 = always a file.')}</span>
         </p>
         <p>
-          <label htmlFor="flxs-ps-safelist">{t('Always keep these classes')}</label>
-          <textarea id="flxs-ps-safelist" rows={3} className="flxs-code" placeholder={'menu-open\nswiper-*'} value={d.safelist} onChange={(e) => setD({ ...d, safelist: e.currentTarget.value })} />
-          <span className="flxs-desc">{t('One class or id per line, * as wildcard. If a style added later by JavaScript breaks, add its class here. is-*, has-*, wp-*, swiper-* are always kept.')}</span>
+          <label htmlFor="flxpf-ps-safelist">{t('Always keep these classes')}</label>
+          <textarea id="flxpf-ps-safelist" rows={3} className="flxpf-code" placeholder={'menu-open\nswiper-*'} value={d.safelist} onChange={(e) => setD({ ...d, safelist: e.currentTarget.value })} />
+          <span className="flxpf-desc">{t('One class or id per line, * as wildcard. If a style added later by JavaScript breaks, add its class here. is-*, has-*, wp-*, swiper-* are always kept.')}</span>
         </p>
       </div>
     ) : (
-      <div className="flxs-sub">
-        <p className="flxs-desc">{t('jQuery stays blocking unless "Defer jQuery too" is on. WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on.')}</p>
+      <div className="flxpf-sub">
+        <p className="flxpf-desc">{t('jQuery stays blocking unless "Defer jQuery too" is on. WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on.')}</p>
       </div>
     );
   return (
     <>
-      <p className="flxs-intro">{t('Google PageSpeed / Lighthouse suggestions that can be applied without changing the theme. Each one is switched on separately; after enabling a "Test first" item, check a few pages of the site (home, a post, donation/checkout).')}</p>
+      <p className="flxpf-intro">{t('Google PageSpeed / Lighthouse suggestions that can be applied without changing the theme. Each one is switched on separately; after enabling a "Test first" item, check a few pages of the site (home, a post, donation/checkout).')}</p>
       <form onSubmit={submit}>
         {psSections(t).map((s) => (
-          <section key={s.title} className="flxs-card2">
+          <section key={s.title} className="flxpf-card2">
             <h2>{s.title}</h2>
             {s.rows.map((r) => (
-              <div key={r.key} className={'flxs-ps-row' + (d.on[r.key] ? ' is-on' : '')}>
+              <div key={r.key} className={'flxpf-ps-row' + (d.on[r.key] ? ' is-on' : '')}>
                 <Switch checked={d.on[r.key] ?? false} label={r.title} onChange={(v) => setD({ ...d, on: { ...d.on, [r.key]: v } })} />
-                <div className="flxs-ps-text">
-                  <strong>{r.title}</strong> <span className={'flxs-badge ' + (r.risk === 'safe' ? 'is-safe' : 'is-test')}>{r.risk === 'safe' ? t('Safe') : t('Test first')}</span>
-                  <p className="flxs-desc">{r.desc}</p>
-                  {forced(r.key) && <p className="flxs-forced">{t('The theme or a preset overrides this feature in code (flxp_pagespeed_enabled); this setting may not take effect.')}</p>}
+                <div className="flxpf-ps-text">
+                  <strong>{r.title}</strong> <span className={'flxpf-badge ' + (r.risk === 'safe' ? 'is-safe' : 'is-test')}>{r.risk === 'safe' ? t('Safe') : t('Test first')}</span>
+                  <p className="flxpf-desc">{r.desc}</p>
+                  {forced(r.key) && <p className="flxpf-forced">{t('The theme or a preset overrides this feature in code (flxp_pagespeed_enabled); this setting may not take effect.')}</p>}
                   {r.extra && sub(r.extra)}
                 </div>
               </div>
             ))}
           </section>
         ))}
-        <section className="flxs-card2">
+        <section className="flxpf-card2">
           <h2>{t('Exclusions')}</h2>
           <p>
-            <label htmlFor="flxs-ps-exclude">
+            <label htmlFor="flxpf-ps-exclude">
               <strong>{t('Files to leave alone')}</strong>
             </label>
-            <textarea id="flxs-ps-exclude" rows={3} className="flxs-code" placeholder={'woocommerce\nflx-donate'} value={d.exclude} onChange={(e) => setD({ ...d, exclude: e.currentTarget.value })} />
-            <span className="flxs-desc">{t('One handle or part of a URL per line. Trimming, minifying and defer are not applied to these files.')}</span>
+            <textarea id="flxpf-ps-exclude" rows={3} className="flxpf-code" placeholder={'woocommerce\nflx-donate'} value={d.exclude} onChange={(e) => setD({ ...d, exclude: e.currentTarget.value })} />
+            <span className="flxpf-desc">{t('One handle or part of a URL per line. Trimming, minifying and defer are not applied to these files.')}</span>
           </p>
           <p>
-            <label htmlFor="flxs-ps-skip">
+            <label htmlFor="flxpf-ps-skip">
               <strong>{t('Pages to leave alone')}</strong>
             </label>
-            <textarea id="flxs-ps-skip" rows={2} className="flxs-code" placeholder={'/checkout/\n/my-account/'} value={d.skipUrls} onChange={(e) => setD({ ...d, skipUrls: e.currentTarget.value })} />
-            <span className="flxs-desc">{t('One URL part per line. No PageSpeed optimization runs on these pages.')}</span>
+            <textarea id="flxpf-ps-skip" rows={2} className="flxpf-code" placeholder={'/checkout/\n/my-account/'} value={d.skipUrls} onChange={(e) => setD({ ...d, skipUrls: e.currentTarget.value })} />
+            <span className="flxpf-desc">{t('One URL part per line. No PageSpeed optimization runs on these pages.')}</span>
           </p>
         </section>
-        <button type="submit" className="flxs-btn is-primary" disabled={save.isPending}>
+        <button type="submit" className="flxpf-btn is-primary" disabled={save.isPending}>
           {t('Save and clear cache')}
         </button>
       </form>
 
-      <div className="flxs-env">
-        <section className="flxs-card2">
+      <div className="flxpf-env">
+        <section className="flxpf-card2">
           <h2>{t('Status')}</h2>
-          <table className="flxs-kv">
+          <table className="flxpf-kv">
             <tbody>
               <tr>
                 <th>{t('Cache')}</th>
@@ -188,7 +188,7 @@ export function PageSpeedTab() {
                   <a href={p.offUrl} target="_blank" rel="noopener noreferrer">
                     {t('Off (?flxp_off=1)')}
                   </a>
-                  <p className="flxs-desc">{t('Adding ?flxp_off=1 to a URL opens the page without optimizations; if the page looks different, the cause is here.')}</p>
+                  <p className="flxpf-desc">{t('Adding ?flxp_off=1 to a URL opens the page without optimizations; if the page looks different, the cause is here.')}</p>
                 </td>
               </tr>
               <tr>
@@ -197,7 +197,7 @@ export function PageSpeedTab() {
                   {p.auditUrl ? (
                     <>
                       <a href={p.auditUrl}>{t('Flux SEO › Site audit')}</a>
-                      <p className="flxs-desc">{t('The site audit suggests these settings itself and turns them on with one click.')}</p>
+                      <p className="flxpf-desc">{t('The site audit suggests these settings itself and turns them on with one click.')}</p>
                     </>
                   ) : (
                     <a href={'https://pagespeed.web.dev/analysis?url=' + encodeURIComponent(p.homeUrl)} target="_blank" rel="noopener noreferrer">
@@ -208,16 +208,16 @@ export function PageSpeedTab() {
               </tr>
             </tbody>
           </table>
-          <button type="button" className="flxs-btn" disabled={clear.isPending} onClick={() => clear.mutate({})}>
+          <button type="button" className="flxpf-btn" disabled={clear.isPending} onClick={() => clear.mutate({})}>
             {t('Clear cache')}
           </button>
         </section>
-        <section className="flxs-card2">
+        <section className="flxpf-card2">
           <h2>{t('Animations not running on the GPU')}</h2>
-          <p className="flxs-desc">{t('Lighthouse "non-composited animations": properties other than transform and opacity (stroke-dashoffset, background, width…) repaint every frame. A setting cannot fix this; the theme or preset must rewrite them with transform/opacity.')}</p>
+          <p className="flxpf-desc">{t('Lighthouse "non-composited animations": properties other than transform and opacity (stroke-dashoffset, background, width…) repaint every frame. A setting cannot fix this; the theme or preset must rewrite them with transform/opacity.')}</p>
           {p.animations.length > 0 ? (
-            <div className="flxs-tablewrap">
-              <table className="flxs-list">
+            <div className="flxpf-tablewrap">
+              <table className="flxpf-list">
                 <thead>
                   <tr>
                     <th>{t('Animation')}</th>
@@ -232,8 +232,8 @@ export function PageSpeedTab() {
                         <code>@keyframes {a.name}</code>
                       </td>
                       <td data-l={t('Properties')}>{a.props.join(', ')}</td>
-                      <td data-l={t('File')} className="flxs-url">
-                        {a.file} {!a.reduced && <span className="flxs-flag flxs-flag-slow">{t('no prefers-reduced-motion')}</span>}
+                      <td data-l={t('File')} className="flxpf-url">
+                        {a.file} {!a.reduced && <span className="flxpf-flag flxpf-flag-slow">{t('no prefers-reduced-motion')}</span>}
                       </td>
                     </tr>
                   ))}
@@ -241,9 +241,9 @@ export function PageSpeedTab() {
               </table>
             </div>
           ) : (
-            <p className="flxs-ok">{t('All good: animations in the CSS files seen use transform/opacity.')}</p>
+            <p className="flxpf-ok">{t('All good: animations in the CSS files seen use transform/opacity.')}</p>
           )}
-          <p className="flxs-desc">
+          <p className="flxpf-desc">
             {p.seenAt && p.seenFiles !== null
               ? t('Scanned %1$d CSS files seen on the front end (%2$s).', p.seenFiles, p.seenAt.relative)
               : t('The front end has not been seen yet, so the theme folder was scanned. Once the site is opened, the files the page loads are scanned.')}
@@ -285,7 +285,7 @@ export function CacheTab() {
     <button
       key={op}
       type="button"
-      className={'flxs-btn' + (primary ? ' is-primary' : '')}
+      className={'flxpf-btn' + (primary ? ' is-primary' : '')}
       disabled={busy}
       onClick={() => (confirmText ? setAsk({ text: confirmText, label, op }) : run.mutate({ input: { op } }))}
     >
@@ -295,12 +295,12 @@ export function CacheTab() {
   const owners: Record<string, string> = { litespeed: 'LiteSpeed Cache', sqlite: 'SQLite Object Cache', redis: 'Redis', memcached: 'Memcached', other: st.dropinName || t('another plugin'), none: t('None') };
   const provider = owners[st.provider] ?? st.provider;
   const req = (state: boolean | 'opt', label: string, hint = '') => (
-    <li className={'flxs-req ' + (state === true ? 'is-ok' : state === 'opt' ? 'is-opt' : 'is-no')}>
-      <span className="flxs-mark" aria-hidden="true">
+    <li className={'flxpf-req ' + (state === true ? 'is-ok' : state === 'opt' ? 'is-opt' : 'is-no')}>
+      <span className="flxpf-mark" aria-hidden="true">
         {state === true ? '✓' : state === 'opt' ? '–' : '✕'}
       </span>
       <span>
-        {label} {hint && <span className="flxs-hint">{hint}</span>}
+        {label} {hint && <span className="flxpf-hint">{hint}</span>}
       </span>
     </li>
   );
@@ -308,14 +308,14 @@ export function CacheTab() {
     const p = key === 'litespeed' ? ls : sq;
     if (p.active) return null;
     return (
-      <div className="flxs-need">
+      <div className="flxpf-need">
         <p>{p.installed ? t('%1$s needs the %2$s plugin to be active. It is installed but turned off.', feature, p.name) : t('%1$s needs the %2$s plugin. It is not installed yet.', feature, p.name)}</p>
         {p.installed ? (
           btn(key === 'litespeed' ? 'ACTIVATE_LITESPEED' : 'ACTIVATE_SQLITE', t('Activate'), true)
         ) : st.canInstall ? (
           btn(key === 'litespeed' ? 'INSTALL_LITESPEED' : 'INSTALL_SQLITE', t('Install and activate'), true)
         ) : (
-          <p className="flxs-desc">{t('Ask an administrator who can install plugins.')}</p>
+          <p className="flxpf-desc">{t('Ask an administrator who can install plugins.')}</p>
         )}
       </div>
     );
@@ -327,20 +327,20 @@ export function CacheTab() {
   const verLabel = (p: { active: boolean; installed: boolean; version: string }, notInstalled: string) => (p.active ? t('version %s', p.version) : p.installed ? t('installed, not active') : notInstalled);
   const testLine = () => {
     const x = st.test;
-    if (!x) return <p className="flxs-desc">{t('Test: writes a value in this request and reads it in a separate request. Only then is the cache really shared between visitors.')}</p>;
+    if (!x) return <p className="flxpf-desc">{t('Test: writes a value in this request and reads it in a separate request. Only then is the cache really shared between visitors.')}</p>;
     const prov = owners[x.provider] ?? (x.provider || owners.none || '');
-    if (x.error) return <p className="flxs-test is-warn">{t('Last test (%1$s) could not finish: %2$s', x.at.relative, x.error)}</p>;
-    if (x.persistent) return <p className="flxs-test is-ok">{t('Last test (%1$s): works, %2$s keeps values between requests. 100 writes + 100 reads took %3$s ms.', x.at.relative, prov, num(x.ms, lang, 1))}</p>;
-    return <p className="flxs-test is-warn">{t('Last test (%s): values are lost after the request ends, so there is no persistent object cache.', x.at.relative)}</p>;
+    if (x.error) return <p className="flxpf-test is-warn">{t('Last test (%1$s) could not finish: %2$s', x.at.relative, x.error)}</p>;
+    if (x.persistent) return <p className="flxpf-test is-ok">{t('Last test (%1$s): works, %2$s keeps values between requests. 100 writes + 100 reads took %3$s ms.', x.at.relative, prov, num(x.ms, lang, 1))}</p>;
+    return <p className="flxpf-test is-warn">{t('Last test (%s): values are lost after the request ends, so there is no persistent object cache.', x.at.relative)}</p>;
   };
   const badge = (used: boolean, recommended: boolean) =>
-    used ? <span className="flxs-badge is-safe">{t('In use')}</span> : recommended ? <span className="flxs-badge is-test">{t('Recommended here')}</span> : null;
+    used ? <span className="flxpf-badge is-safe">{t('In use')}</span> : recommended ? <span className="flxpf-badge is-test">{t('Recommended here')}</span> : null;
   return (
-    <div className="flxs-cache">
-      <p className="flxs-intro">{t('Two layers make the site fast: the page cache serves ready HTML without running PHP, the object cache keeps database results between requests. Only one object cache can run at a time; this screen keeps it that way.')}</p>
-      {st.pendingError && <div className="flxs-notice is-warn inline">{st.pendingError}</div>}
+    <div className="flxpf-cache">
+      <p className="flxpf-intro">{t('Two layers make the site fast: the page cache serves ready HTML without running PHP, the object cache keeps database results between requests. Only one object cache can run at a time; this screen keeps it that way.')}</p>
+      {st.pendingError && <div className="flxpf-notice is-warn inline">{st.pendingError}</div>}
       {st.conflicts.map((c) => (
-        <div key={c.code} className="flxs-alert">
+        <div key={c.code} className="flxpf-alert">
           <p>
             <strong>{t('Cache conflict')}</strong> {c.text}
           </p>
@@ -348,55 +348,55 @@ export function CacheTab() {
         </div>
       ))}
 
-      <section className="flxs-card2">
+      <section className="flxpf-card2">
         <h2>
-          {t('Page cache')} <span className="flxs-by">LiteSpeed Cache</span>
+          {t('Page cache')} <span className="flxpf-by">LiteSpeed Cache</span>
         </h2>
-        <ul className="flxs-reqs">
+        <ul className="flxpf-reqs">
           {req(st.litespeedServer, t('LiteSpeed web server'), st.litespeedServer ? '' : t('Not detected: LiteSpeed page cache works only on a LiteSpeed server (or through QUIC.cloud).'))}
           {req(ls.active, t('LiteSpeed Cache plugin'), verLabel(ls, t('not installed')))}
         </ul>
         {needPlugin('litespeed', t('Page cache'))}
         {ls.active && (
           <>
-            <div className="flxs-row">
+            <div className="flxpf-row">
               <div>
                 {t('Page cache')} <Pill on={ls.pageCache} yes={t('On')} no={t('Off')} />
               </div>
-              <div className="flxs-actions">
+              <div className="flxpf-actions">
                 {ls.pageCache ? btn('PAGE_OFF', t('Turn off')) : btn('PAGE_ON', t('Turn on'), true)}
                 {btn('PURGE', t('Purge all'))}
                 <a href={st.settingsUrls.litespeedPage}>{t('LiteSpeed settings')}</a>
               </div>
             </div>
-            <p className="flxs-desc">{t('Logged-in users, cart and checkout are not cached by LiteSpeed by default. Purge after changing the theme or menus.')}</p>
+            <p className="flxpf-desc">{t('Logged-in users, cart and checkout are not cached by LiteSpeed by default. Purge after changing the theme or menus.')}</p>
           </>
         )}
       </section>
 
-      <section className="flxs-card2">
+      <section className="flxpf-card2">
         <h2>{t('Object cache')}</h2>
-        <div className="flxs-row">
+        <div className="flxpf-row">
           <div>
             {t('In use:')} <strong>{provider}</strong> <Pill on={st.persistent} yes={t('Persistent')} no={t('Not persistent')} />
           </div>
-          <div className="flxs-actions">
+          <div className="flxpf-actions">
             {btn('TEST', t('Test'))}
             {st.persistent && btn('FLUSH', t('Empty object cache'))}
           </div>
         </div>
         {testLine()}
-        <div className="flxs-opts">
-          <div className={'flxs-opt' + (usedSqlite ? ' is-used' : '')}>
+        <div className="flxpf-opts">
+          <div className={'flxpf-opt' + (usedSqlite ? ' is-used' : '')}>
             <h3>SQLite Object Cache {badge(usedSqlite, rec === 'sqlite')}</h3>
-            <p className="flxs-desc">{t('Keeps the cache in a SQLite file in wp-content. Needs no extra service, so it fits shared hosting without Redis/Memcached.')}</p>
-            <ul className="flxs-reqs">
+            <p className="flxpf-desc">{t('Keeps the cache in a SQLite file in wp-content. Needs no extra service, so it fits shared hosting without Redis/Memcached.')}</p>
+            <ul className="flxpf-reqs">
               {req(ext.sqlite3, t('PHP sqlite3 extension'), ext.sqlite3 ? '' : t('required; enable it in the hosting PHP settings'))}
               {req(ext.igbinary ? true : 'opt', t('PHP igbinary extension'), ext.igbinary ? '' : t('optional, makes it smaller and faster'))}
               {req(sq.active, t('SQLite Object Cache plugin'), verLabel(sq, t('not installed, installed from wordpress.org with one click')))}
             </ul>
             {usedSqlite && sq.fileName && (
-              <p className="flxs-meta">
+              <p className="flxpf-meta">
                 {t('Cache file %1$s, %2$s.', sq.fileName, fmtBytes(sq.fileSize, lang))} <a href={st.settingsUrls.sqlitePlugin}>{t('Plugin settings')}</a>
               </p>
             )}
@@ -409,20 +409,20 @@ export function CacheTab() {
                   st.dropinExists ? t('The current object cache is turned off and SQLite Object Cache takes over. Continue?') : '',
                 )
               ) : (
-                <p className="flxs-blocked">{t('Cannot be used on this server without the sqlite3 extension.')}</p>
+                <p className="flxpf-blocked">{t('Cannot be used on this server without the sqlite3 extension.')}</p>
               ))}
           </div>
-          <div className={'flxs-opt' + (usedLs ? ' is-used' : '')}>
+          <div className={'flxpf-opt' + (usedLs ? ' is-used' : '')}>
             <h3>
               {t('LiteSpeed Cache + Memcached')} {badge(usedLs, rec === 'litespeed')}
             </h3>
-            <p className="flxs-desc">{t("LiteSpeed Cache's own object cache, kept in Memcached memory. On Hostinger, Memcached is switched on per site in hPanel.")}</p>
-            <ul className="flxs-reqs">
+            <p className="flxpf-desc">{t("LiteSpeed Cache's own object cache, kept in Memcached memory. On Hostinger, Memcached is switched on per site in hPanel.")}</p>
+            <ul className="flxpf-reqs">
               {req(ext.memcached ? true : ext.redis ? 'opt' : false, t('Memcached PHP extension'), ext.memcached ? '' : ext.redis ? t('missing; Redis is used instead') : t('missing; on Hostinger: hPanel › Advanced › PHP Configuration › Memcached'))}
               {req(ls.active, t('LiteSpeed Cache plugin'), verLabel(ls, t('not installed, installed from wordpress.org with one click')))}
             </ul>
             {usedLs && (
-              <p className="flxs-meta">
+              <p className="flxpf-meta">
                 {(ls.objectKind === 'REDIS' ? 'Redis' : 'Memcached') + ' ' + ls.objectHost} <a href={st.settingsUrls.litespeedObject}>{t('Plugin settings')}</a>
               </p>
             )}
@@ -435,24 +435,24 @@ export function CacheTab() {
                   st.dropinExists ? t('The current object cache is turned off and LiteSpeed Cache takes over. Continue?') : '',
                 )
               ) : (
-                <p className="flxs-blocked">{t('Enable Memcached for this site in the hosting panel first; this option unlocks afterwards.')}</p>
+                <p className="flxpf-blocked">{t('Enable Memcached for this site in the hosting panel first; this option unlocks afterwards.')}</p>
               ))}
           </div>
         </div>
         {st.dropinExists && (st.provider === 'sqlite' || st.provider === 'litespeed') && (
-          <div className="flxs-foot">{btn('OBJECT_OFF', t('Turn object cache off'), false, t('Turn the object cache off? The site keeps working, only slower on database-heavy pages.'))}</div>
+          <div className="flxpf-foot">{btn('OBJECT_OFF', t('Turn object cache off'), false, t('Turn the object cache off? The site keeps working, only slower on database-heavy pages.'))}</div>
         )}
       </section>
       {ask && (
         <Modal title={ask.label} onClose={() => setAsk(null)}>
-          <p className="flxs-confirm">{ask.text}</p>
-          <div className="flxs-modal-actions">
-            <button type="button" className="flxs-btn" onClick={() => setAsk(null)}>
+          <p className="flxpf-confirm">{ask.text}</p>
+          <div className="flxpf-modal-actions">
+            <button type="button" className="flxpf-btn" onClick={() => setAsk(null)}>
               {t('Cancel')}
             </button>
             <button
               type="button"
-              className="flxs-btn is-primary"
+              className="flxpf-btn is-primary"
               onClick={() => {
                 run.mutate({ input: { op: ask.op } });
                 setAsk(null);
@@ -565,7 +565,7 @@ export function SettingsTab() {
     });
   };
   const num2 = (k: keyof SDraft, props: { min?: number; max?: number; step?: number; id: string }) => (
-    <input {...props} type="number" className="flxs-small" value={String(d[k])} onChange={(e) => setD({ ...d, [k]: e.currentTarget.value })} />
+    <input {...props} type="number" className="flxpf-small" value={String(d[k])} onChange={(e) => setD({ ...d, [k]: e.currentTarget.value })} />
   );
   const copy = () => {
     void navigator.clipboard?.writeText(s.loginUrl).then(() => {
@@ -576,7 +576,7 @@ export function SettingsTab() {
   return (
     <>
       {moved && (
-        <div className="flxs-notice is-warn">
+        <div className="flxpf-notice is-warn">
           <div>
             <p>
               <strong>{t('Login URL changed.')}</strong> {t('New address:')} <code>{s.loginUrl}</code>
@@ -587,11 +587,11 @@ export function SettingsTab() {
               <p>{t('Redirect stopped. You are still logged in; the new address is used the next time you log in.')}</p>
             )}
             <p>
-              <a className="flxs-btn is-primary" href={moved.url}>
+              <a className="flxpf-btn is-primary" href={moved.url}>
                 {t('Go now')}
               </a>{' '}
               {!moved.stopped && (
-                <button type="button" className="flxs-btn" onClick={() => setMoved({ ...moved, stopped: true })}>
+                <button type="button" className="flxpf-btn" onClick={() => setMoved({ ...moved, stopped: true })}>
                   {t('Stay logged in')}
                 </button>
               )}
@@ -599,8 +599,8 @@ export function SettingsTab() {
           </div>
         </div>
       )}
-      <form onSubmit={submit} className="flxs-settings">
-        <table className="flxs-form">
+      <form onSubmit={submit} className="flxpf-settings">
+        <table className="flxpf-form">
           <tbody>
             <tr>
               <th>{t('Developer panel')}</th>
@@ -616,7 +616,7 @@ export function SettingsTab() {
                 <Check checked={d.caps} onChange={(v) => setD({ ...d, caps: v })}>
                   {t('Collect capability checks')}
                 </Check>
-                <p className="flxs-desc">{t('The panel is visible to administrators and to staff granted "View performance" by Flux Roles.')}</p>
+                <p className="flxpf-desc">{t('The panel is visible to administrators and to staff granted "View performance" by Flux Roles.')}</p>
               </td>
             </tr>
             <tr>
@@ -633,72 +633,72 @@ export function SettingsTab() {
             </tr>
             <tr>
               <th>
-                <label htmlFor="flxs-sample">{t('Sampling')}</label>
+                <label htmlFor="flxpf-sample">{t('Sampling')}</label>
               </th>
               <td>
-                {num2('sample', { id: 'flxs-sample', min: 0, max: 100 })} %<p className="flxs-desc">{t('This share of requests is collected in detail (with the query list) and recorded. 1-5 is recommended on Hostinger; 0 turns it off.')}</p>
+                {num2('sample', { id: 'flxpf-sample', min: 0, max: 100 })} %<p className="flxpf-desc">{t('This share of requests is collected in detail (with the query list) and recorded. 1-5 is recommended on Hostinger; 0 turns it off.')}</p>
               </td>
             </tr>
             <tr>
               <th>
-                <label htmlFor="flxs-slow">{t('Slow request threshold')}</label>
+                <label htmlFor="flxpf-slow">{t('Slow request threshold')}</label>
               </th>
-              <td>{num2('slowMs', { id: 'flxs-slow', min: 100, step: 100 })} ms</td>
+              <td>{num2('slowMs', { id: 'flxpf-slow', min: 100, step: 100 })} ms</td>
             </tr>
             <tr>
               <th>
-                <label htmlFor="flxs-slowq">{t('Slow query threshold')}</label>
+                <label htmlFor="flxpf-slowq">{t('Slow query threshold')}</label>
               </th>
-              <td>{num2('slowQueryMs', { id: 'flxs-slowq', min: 1 })} ms</td>
+              <td>{num2('slowQueryMs', { id: 'flxpf-slowq', min: 1 })} ms</td>
             </tr>
             <tr>
               <th>
-                <label htmlFor="flxs-keep">{t('Retention')}</label>
+                <label htmlFor="flxpf-keep">{t('Retention')}</label>
               </th>
               <td>
-                {num2('keepDays', { id: 'flxs-keep', min: 1, max: 90 })} {t('days')}, {t('at most')} {num2('maxRows', { id: 'flxs-rows', min: 100, max: 50000, step: 100 })} {t('records')}
+                {num2('keepDays', { id: 'flxpf-keep', min: 1, max: 90 })} {t('days')}, {t('at most')} {num2('maxRows', { id: 'flxpf-rows', min: 100, max: 50000, step: 100 })} {t('records')}
               </td>
             </tr>
             <tr>
               <th>
-                <label htmlFor="flxs-quota">{t('Disk quota')}</label>
+                <label htmlFor="flxpf-quota">{t('Disk quota')}</label>
               </th>
               <td>
-                {num2('diskQuotaGb', { id: 'flxs-quota', min: 0, step: 0.1 })} GB
-                <p className="flxs-desc">{t("Your shared hosting plan's disk limit (Hostinger: hPanel › Account resources). PHP cannot read it; when set, the Disk card shows account usage as a percentage. Leave empty to show used space only.")}</p>
+                {num2('diskQuotaGb', { id: 'flxpf-quota', min: 0, step: 0.1 })} GB
+                <p className="flxpf-desc">{t("Your shared hosting plan's disk limit (Hostinger: hPanel › Account resources). PHP cannot read it; when set, the Disk card shows account usage as a percentage. Leave empty to show used space only.")}</p>
               </td>
             </tr>
           </tbody>
         </table>
 
-        <h2 id="flxs-login">{t('Admin login URL')}</h2>
+        <h2 id="flxpf-login">{t('Admin login URL')}</h2>
         <p>{t('Opens the login screen at an address of your own instead of wp-login.php. wp-login.php and wp-admin requests from logged-out visitors no longer respond, which cuts bot password guessing and server load.')}</p>
         {s.loginDisabled ? (
-          <div className="flxs-notice is-warn inline">{t('FLXP_LOGIN_DISABLE is defined in wp-config.php: the custom URL is off and login uses wp-login.php. Remove that line once the problem is solved.')}</div>
+          <div className="flxpf-notice is-warn inline">{t('FLXP_LOGIN_DISABLE is defined in wp-config.php: the custom URL is off and login uses wp-login.php. Remove that line once the problem is solved.')}</div>
         ) : (
           s.loginActive && (
             <>
-              <div className="flxs-login-now">
+              <div className="flxpf-login-now">
                 <span>{t('Your login URL')}</span> <code>{s.loginUrl}</code>{' '}
-                <button type="button" className="flxs-btn is-small" onClick={copy}>
+                <button type="button" className="flxpf-btn is-small" onClick={copy}>
                   {copied ? t('Copied') : t('Copy')}
                 </button>
               </div>
-              <p className="flxs-desc">{t('Bookmark this address and share it with everyone who logs in. If you forget it, use the recovery step below.')}</p>
+              <p className="flxpf-desc">{t('Bookmark this address and share it with everyone who logs in. If you forget it, use the recovery step below.')}</p>
             </>
           )
         )}
-        <table className="flxs-form">
+        <table className="flxpf-form">
           <tbody>
             <tr>
               <th>
-                <label htmlFor="flxs-login-slug">{t('Login URL')}</label>
+                <label htmlFor="flxpf-login-slug">{t('Login URL')}</label>
               </th>
               <td>
-                <div className="flxs-slug">
-                  <span className="flxs-slug-pre">{s.loginPrefix}</span>
+                <div className="flxpf-slug">
+                  <span className="flxpf-slug-pre">{s.loginPrefix}</span>
                   <input
-                    id="flxs-login-slug"
+                    id="flxpf-login-slug"
                     type="text"
                     value={d.loginSlug}
                     maxLength={40}
@@ -709,8 +709,8 @@ export function SettingsTab() {
                     onChange={(e) => setD({ ...d, loginSlug: e.currentTarget.value })}
                   />
                 </div>
-                {fieldError && <p className="flxs-errtext">{fieldError}</p>}
-                <p className="flxs-desc">
+                {fieldError && <p className="flxpf-errtext">{fieldError}</p>}
+                <p className="flxpf-desc">
                   {s.loginSlugLocked
                     ? t('The address comes from the FLXP_LOGIN_SLUG constant in wp-config.php; edit or remove the constant to change it.')
                     : t('Leave empty to use the standard WordPress address (wp-login.php). 3-40 characters: lowercase letters, digits, hyphen, underscore. Pick something hard to guess (admin and login are not allowed).')}
@@ -721,20 +721,20 @@ export function SettingsTab() {
               <th>{t('Visitors to the old addresses')}</th>
               <td>
                 <label>
-                  <input type="radio" name="flxs-blocked" checked={d.loginBlocked === 'NOT_FOUND'} onChange={() => setD({ ...d, loginBlocked: 'NOT_FOUND' })} /> {t('Show the 404 page (recommended)')}
+                  <input type="radio" name="flxpf-blocked" checked={d.loginBlocked === 'NOT_FOUND'} onChange={() => setD({ ...d, loginBlocked: 'NOT_FOUND' })} /> {t('Show the 404 page (recommended)')}
                 </label>
                 <br />
                 <label>
-                  <input type="radio" name="flxs-blocked" checked={d.loginBlocked === 'HOME'} onChange={() => setD({ ...d, loginBlocked: 'HOME' })} /> {t('Redirect to the home page')}
+                  <input type="radio" name="flxpf-blocked" checked={d.loginBlocked === 'HOME'} onChange={() => setD({ ...d, loginBlocked: 'HOME' })} /> {t('Redirect to the home page')}
                 </label>
-                <p className="flxs-desc">{t('Applies to wp-login.php and to wp-admin requests from logged-out visitors. admin-ajax.php, admin-post.php, the REST API, wp-cron, WooCommerce My Account login and the Flux App connection are not affected.')}</p>
+                <p className="flxpf-desc">{t('Applies to wp-login.php and to wp-admin requests from logged-out visitors. admin-ajax.php, admin-post.php, the REST API, wp-cron, WooCommerce My Account login and the Flux App connection are not affected.')}</p>
               </td>
             </tr>
             <tr>
               <th>{t('Recovery')}</th>
               <td>
-                <p className="flxs-desc">{t("If you forget the address or login won't open: add the line below to wp-config.php using your file manager (Hostinger hPanel › File Manager). Login goes back to wp-login.php; once you're in, fix the address here and remove the line.")}</p>
-                <code className="flxs-codeline">define( &apos;FLXP_LOGIN_DISABLE&apos;, true );</code>
+                <p className="flxpf-desc">{t("If you forget the address or login won't open: add the line below to wp-config.php using your file manager (Hostinger hPanel › File Manager). Login goes back to wp-login.php; once you're in, fix the address here and remove the line.")}</p>
+                <code className="flxpf-codeline">define( &apos;FLXP_LOGIN_DISABLE&apos;, true );</code>
               </td>
             </tr>
           </tbody>
@@ -743,7 +743,7 @@ export function SettingsTab() {
         <h2>{t('AI (MCP)')}</h2>
         <p>{t('The data is read by read-only tools on the Flux AI & MCP server and in Flux AI chat: flxp_summary, flxp_requests, flxp_request, flxp_slow_queries, flxp_php_errors, flxp_http_calls, flxp_environment, flxp_server, flxp_database, flxp_autoload, flxp_cron, flxp_profile_url.')}</p>
         <p>{s.mcpActive ? t('Flux AI & MCP is active: tools are registered.') : t('Flux AI & MCP is not active: tools are available in Flux AI chat only.')}</p>
-        <button type="submit" className="flxs-btn is-primary" disabled={save.isPending}>
+        <button type="submit" className="flxpf-btn is-primary" disabled={save.isPending}>
           {t('Save Changes')}
         </button>
       </form>

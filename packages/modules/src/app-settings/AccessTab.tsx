@@ -43,7 +43,7 @@ export function AccessTab({ all }: { all: boolean }) {
   });
 
   if (q.isLoading) return <Loading />;
-  if (q.isError || !q.data) return <div className="flxs-notice is-error">{q.error?.message || t('The action could not be completed.')}</div>;
+  if (q.isError || !q.data) return <div className="flxas-notice is-error">{q.error?.message || t('The action could not be completed.')}</div>;
   const d = q.data.flxAppAccess;
   const sessions = d.rows.filter((r) => r.kind === 'SESSION');
   const keys = d.rows.filter((r) => r.kind === 'KEY');
@@ -55,10 +55,10 @@ export function AccessTab({ all }: { all: boolean }) {
 
   const tokens = (rows: Row[]) =>
     !rows.length ? (
-      <p className="flxs-empty">{t('Nothing here yet.')}</p>
+      <p className="flxas-empty">{t('Nothing here yet.')}</p>
     ) : (
-      <div className="flxs-card flxs-table-wrap">
-        <table className="flxs-table">
+      <div className="flxas-card flxas-table-wrap">
+        <table className="flxas-table">
           <thead>
             <tr>
               {all && <th>{t('User')}</th>}
@@ -80,11 +80,11 @@ export function AccessTab({ all }: { all: boolean }) {
                 <td data-label={t('Type')}>{r.kind === 'KEY' ? t('API key') : t('App session')}</td>
                 <td data-label={t('Created')}>{when(r.created)}</td>
                 <td data-label={t('Last used')}>
-                  {when(r.lastUsed)} {r.lastIp && <span className="flxs-muted">{r.lastIp}</span>}
+                  {when(r.lastUsed)} {r.lastIp && <span className="flxas-muted">{r.lastIp}</span>}
                 </td>
                 <td data-label={t('Expires')}>{r.expires ? when(r.expires) : t('Never')}</td>
                 <td>
-                  <button type="button" className="flxs-link is-danger" onClick={() => ask({ text: t('Remove this access?'), action: t('Remove'), run: () => revoke.mutate({ input: { id: r.id } }) })}>
+                  <button type="button" className="flxas-link is-danger" onClick={() => ask({ text: t('Remove this access?'), action: t('Remove'), run: () => revoke.mutate({ input: { id: r.id } }) })}>
                     {t('Remove')}
                   </button>
                 </td>
@@ -96,10 +96,10 @@ export function AccessTab({ all }: { all: boolean }) {
     );
 
   const devices = !d.devices.length ? (
-    <p className="flxs-empty">{t('No device is signed in to the app.')}</p>
+    <p className="flxas-empty">{t('No device is signed in to the app.')}</p>
   ) : (
-    <div className="flxs-card flxs-table-wrap">
-      <table className="flxs-table">
+    <div className="flxas-card flxas-table-wrap">
+      <table className="flxas-table">
         <thead>
           <tr>
             {all && <th>{t('User')}</th>}
@@ -115,17 +115,17 @@ export function AccessTab({ all }: { all: boolean }) {
             <tr key={v.id}>
               {all && <td data-label={t('User')}>{v.user}</td>}
               <td data-label={t('Device')}>
-                <strong>{v.name}</strong> <span className="flxs-muted">{v.platform}</span>
+                <strong>{v.name}</strong> <span className="flxas-muted">{v.platform}</span>
               </td>
               <td data-label={t('Application')}>
                 {v.app} {v.brand && <code>{v.brand}</code>}
               </td>
               <td data-label={t('Notifications')}>
-                <span className={'flxs-pf' + (v.push ? ' is-on' : '')}>{v.push ? t('On') : t('Off')}</span>
+                <span className={'flxas-pf' + (v.push ? ' is-on' : '')}>{v.push ? t('On') : t('Off')}</span>
               </td>
               <td data-label={t('Last seen')}>{v.lastSeenAgo}</td>
               <td>
-                <button type="button" className="flxs-link is-danger" onClick={() => ask({ text: t('Sign this device out?'), action: t('Sign out'), run: () => signOut.mutate({ input: { id: v.id } }) })}>
+                <button type="button" className="flxas-link is-danger" onClick={() => ask({ text: t('Sign this device out?'), action: t('Sign out'), run: () => signOut.mutate({ input: { id: v.id } }) })}>
                   {t('Sign out')}
                 </button>
               </td>
@@ -149,25 +149,25 @@ export function AccessTab({ all }: { all: boolean }) {
   return (
     <>
       {shown && <Secret title={t('Copy it now; it will not be shown again.')} value={shown} onClose={() => setShown(null)} />}
-      <p className="flxs-lead">
+      <p className="flxas-lead">
         {t('In the Flux Desktop app, press "Sign in": you sign in to this site in the browser and approve; the app then works with your permissions. For other tools (MCP clients, scripts) you can create a personal API key.')}
       </p>
       <h2>{t('Desktop app')}</h2>
-      <div className="flxs-card">
+      <div className="flxas-card">
         <p>{t('Use the panel as a separate app on your Mac or Windows computer. New versions install themselves.')}</p>
-        <p className="flxs-row">
+        <p className="flxas-row">
           {[
             { os: 'macos', label: t('Download for macOS'), url: d.downloads.macos, primary: !win },
             { os: 'windows', label: t('Download for Windows'), url: d.downloads.windows, primary: win },
           ]
             .sort((a, b) => Number(b.primary) - Number(a.primary))
             .map((b) => (
-              <a key={b.os} className={'flxs-btn' + (b.primary ? ' is-primary' : '')} href={b.url}>
+              <a key={b.os} className={'flxas-btn' + (b.primary ? ' is-primary' : '')} href={b.url}>
                 {b.label}
               </a>
             ))}
         </p>
-        <p className="flxs-desc">
+        <p className="flxas-desc">
           {t('macOS 11 or later (Apple Silicon and Intel). Windows 10 and 11 (64-bit).')} <a href={d.downloads.windowsMsi}>{t('Windows MSI package (managed deployment)')}</a>
         </p>
       </div>
@@ -179,7 +179,7 @@ export function AccessTab({ all }: { all: boolean }) {
       {tokens(keys)}
       {d.canCreateKeys && (
         <>
-          <form className="flxs-card flxs-row" onSubmit={submit}>
+          <form className="flxas-card flxas-row" onSubmit={submit}>
             <label>
               {t('Name')} <input type="text" required maxLength={100} placeholder={t('e.g. Claude MCP')} value={name} onChange={(e) => setName(e.currentTarget.value)} />
             </label>
@@ -194,11 +194,11 @@ export function AccessTab({ all }: { all: boolean }) {
                 ))}
               </select>
             </label>
-            <button type="submit" className="flxs-btn is-primary" disabled={create.isPending}>
+            <button type="submit" className="flxas-btn is-primary" disabled={create.isPending}>
               {t('Create key')}
             </button>
           </form>
-          <p className="flxs-desc">{t('Usage: send Authorization: Bearer flxak_… to any REST endpoint and MCP (/wp-json/flx-mcp/v1/mcp). The key acts with your permissions.')}</p>
+          <p className="flxas-desc">{t('Usage: send Authorization: Bearer flxak_… to any REST endpoint and MCP (/wp-json/flx-mcp/v1/mcp). The key acts with your permissions.')}</p>
         </>
       )}
     </>
