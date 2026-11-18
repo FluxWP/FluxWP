@@ -1,6 +1,6 @@
 // Flux Backup › Backups. Same screen in wp-admin (wp-embed) and the FluxWP app; every read and write
 // goes through the Flux Backup GraphQL operations (plugins/flx-backup/graphql/operations).
-// It has everything the classic pages have: dashboard, backup list, detail with the size breakdown,
+// Dashboard, backup list, detail with the size breakdown,
 // settings, back up now, restore, delete, lock, chunked upload and the running job's progress.
 import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -161,11 +161,6 @@ function Backup() {
             <p>{t('Automatic pre-update backups, scheduled backups and restore')}</p>
           </div>
           <div className="flxy-head-actions">
-            {host.classicUrl && (
-              <a className="flxy-classic" href={host.classicUrl}>
-                {t('Classic view')}
-              </a>
-            )}
             {current !== 'settings' && health && (
               <>
                 {current === 'list' && <Upload health={health} onDone={(id) => { refresh(); setPage(`detail:${id}`); }} onError={failed} t={t} lang={i18n.language} />}

@@ -80,7 +80,7 @@ final class FLXADS_Settings_Service {
 	}
 
 	/**
-	 * Read side effects the classic page runs on load (queue flush, spend and suggestion refresh) so the
+	 * Read side effects the screen runs on load (queue flush, spend and suggestion refresh) so the
 	 * React screen can trigger them on a timer. Nothing here writes to an ad account.
 	 *
 	 * @return array{ok: bool, openSuggestions: int}
@@ -206,7 +206,7 @@ final class FLXADS_Settings_Service {
 	}
 
 	/**
-	 * Saves the form values first (as the classic Test button does), then tests one platform. Test events
+	 * Saves the form values first (as the Test button does), then tests one platform. Test events
 	 * only: Meta/TikTok use the test event code, GA4 the validation endpoint.
 	 *
 	 * @param string                   $platform meta | tiktok | ga4.

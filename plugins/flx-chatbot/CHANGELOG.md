@@ -1,5 +1,9 @@
 # Flux AI Chatbot
 
+## 0.4.0
+- **Klasik sayfalar kaldırıldı.** Ayarlar ve Site sohbetleri yalnız React ekranıyla açılır; "Klasik görünüm" bağlantısı, görünüm değiştirme (`flxcb_ui`), eski istemci (assets/admin.js, admin.css, inbox.js) ve klasik form kaydı (`admin_post_flxcb_save`) silindi.
+- Ekran açılamazsa (Flux GraphQL hazır değil, paket dosyası eksik, bundle yüklenmedi) boş sayfa yerine "Bu ekran yüklenemedi" kutusu ve **Sayfayı yenile** düğmesi çıkar.
+
 ## 0.3.1
 - wp-admin ekranı Flux GraphQL ekran kabuğundan açılır: ilk veri PHP'de sayfaya basılır (yükleniyor göstergesi yok), menüden diğer Flux ekranlarına sayfa yenilenmeden geçilir. Ekranın parçaları sayfa başında birlikte iner (modulepreload).
 - Ortak modül paketi yenilendi.

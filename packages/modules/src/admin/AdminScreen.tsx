@@ -1,6 +1,6 @@
 // Settings › Admin theme. Same screen in wp-admin (wp-embed) and the FluxWP app; every read and write
 // goes through the Flux Admin GraphQL operations (plugins/flx-admin/graphql/operations).
-// It has everything the classic page has: General, Appearance, Menu and bottom bar, Permissions,
+// It is the only admin page (no classic page): General, Appearance, Menu and bottom bar, Permissions,
 // Dashboard, App (PWA) and the System check link.
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -61,7 +61,7 @@ function Admin() {
   const { t } = useMemo(() => translator(i18n.language), [i18n.language]);
   const q = useFlxQuery(FlxAdminSettingsScreen, {});
   const [tab, setTabState] = useState<Tab>(() => {
-    const v = new URLSearchParams(location.search).get('tab');
+    const v = new URLSearchParams(location.search).get('tab') ?? host.startPage;
     return TABS.includes(v as Tab) ? (v as Tab) : 'general';
   });
   const [seen, setSeen] = useState<ReadonlySet<Tab>>(() => new Set([tab]));
@@ -121,10 +121,9 @@ function Admin() {
     pwa: t('App (PWA)'),
     system: t('System check'),
   };
-  const classicTab = (k: Tab) => (host.classicUrl ? host.classicUrl + '&tab=' + k : '');
-  const tabs = TABS.filter((k) => k !== 'system' || host.mode === 'wp' || config.systemUrl);
-  const capsHref = host.classicUrl ? classicTab('caps') : '';
-  const panel: Omit<PanelProps, 'onDirty' | 'capsHref'> = { t, active: true, onNotice: setNotice };
+  // The system check lives in Flux Speed (Performance › System check); without it there is no tab.
+  const tabs = TABS.filter((k) => k !== 'system' || config.systemUrl);
+  const panel: Omit<PanelProps, 'onDirty' | 'onOpenCaps'> = { t, active: true, onNotice: setNotice };
 
   return (
     <div className="flxad-app">
@@ -133,11 +132,6 @@ function Admin() {
           {host.appIcon && <img src={host.appIcon} alt="" width={32} height={32} />}
           {t('Admin theme')}
         </h1>
-        {host.classicUrl && (
-          <a className="flxad-classic" href={classicTab(tab)}>
-            {t('Classic view')}
-          </a>
-        )}
       </div>
       {notice && (
         <div className={'flxad-notice is-' + notice.kind} role={notice.kind === 'error' ? 'alert' : 'status'}>
@@ -159,7 +153,7 @@ function Admin() {
       {seen.has('menu') && (
         <div hidden={tab !== 'menu'}>
           <p className="flxad-lead">{t('Each role sees its own side menu and mobile bottom bar. Drag to reorder, rename, hide, group. Hiding does not change permissions; it only removes the item from the menu.')}</p>
-          <MenuEditor {...panel} active={tab === 'menu'} onDirty={dirtyMenu} capsHref={capsHref || '#'} />
+          <MenuEditor {...panel} active={tab === 'menu'} onDirty={dirtyMenu} onOpenCaps={() => setTab('caps')} />
           <p className="flxad-desc">{t('"Block access" really closes that menu for this role: it isn\'t shown, and opening it by URL shows a "no permission" page. See the Permissions tab for detailed permissions.')}</p>
         </div>
       )}
@@ -172,7 +166,7 @@ function Admin() {
         <div className="flxad-card">
           <h2>{t('System check')}</h2>
           <p className="flxad-lead">
-            <a className="flxad-btn" href={config.systemUrl || classicTab('system') || '#'}>
+            <a className="flxad-btn" href={config.systemUrl || '#'}>
               {t('Open the system check')}
             </a>
           </p>

@@ -1,5 +1,5 @@
 // Flux AI › Connections: external MCP servers this site uses (add, change, sign in, test, per-tool permissions).
-// Same features as the classic page; everything goes over the flxAiConnection* operations. Secrets are write-only:
+// Everything goes over the flxAiConnection* operations. Secrets are write-only:
 // the form only shows whether one is saved, and an empty field keeps it.
 import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
@@ -21,7 +21,7 @@ import { Field, firstError } from './Skills';
 type Conn = FlxAiConnectionFieldsFragment;
 type Screen = { roles: ReadonlyArray<{ id: string; label: string }>; callbackUrl: string; connections: ReadonlyArray<Conn> };
 
-/** The OAuth return and some classic links pass the screen and a message in the address. */
+/** The OAuth return and some links pass the screen and a message in the address. */
 function fromUrl(t: AiT['t']): { edit: string | null; notice: Notice | null } {
   const p = new URLSearchParams(typeof window === 'undefined' ? '' : window.location.search);
   const edit = p.get('edit');

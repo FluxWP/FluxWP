@@ -1,6 +1,6 @@
 <?php
 /**
- * Typed values the Flux Lang service returns (GraphQL, the classic settings page and the REST fields read the same shapes).
+ * Typed values the Flux Lang service returns (GraphQL and the REST fields read the same shapes).
  *
  * @package flx-lang
  */

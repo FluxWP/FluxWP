@@ -1,7 +1,7 @@
 <?php
 /**
  * Admin theme settings (Settings › Admin theme: General, Appearance, Dashboard, App): the one place that
- * reads and changes the `flxa_settings` option. The classic page (admin-post handler), GraphQL and
+ * reads and changes the `flxa_settings` option. GraphQL, presets and
  * Flux AI call this. Permission checks stay with the caller (manage_options).
  *
  * Errors are WP_Error with `graphql_code` INVALID_INPUT and the input `field`.
@@ -174,7 +174,7 @@ final class FLXA_Settings_Service {
 	 * font_custom, font_size, density, light{…}, dark{…}).
 	 *
 	 * @param array<string,mixed> $patch  Changes.
-	 * @param bool                $strict Invalid values are errors (GraphQL); false = replaced by the default (classic form).
+	 * @param bool                $strict Invalid values are errors (GraphQL); false = replaced by the default (presets, MCP).
 	 * @return FlxaSettings|WP_Error
 	 */
 	public static function update( array $patch, bool $strict = true ) {

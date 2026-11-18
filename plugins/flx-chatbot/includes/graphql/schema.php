@@ -5,7 +5,7 @@
  * and Site chats screens (wp-admin and FluxWP app) read and write only through these fields.
  *
  * The settings values themselves are the generated `flxSettings.chatbot` group (flx_settings_schema);
- * saving goes through flxChatbotSettingsSave so the same cleaning as the classic form runs.
+ * saving goes through flxChatbotSettingsSave (the service cleans every field).
  *
  * The visitor side of the chat (session, message stream, poll, handoff, contact, upload, file, rate,
  * close, typing) is the public protocol of the widget and stays on REST (docs/graphql/ISTISNALAR.md).
@@ -119,7 +119,7 @@ function flxcb_gql_src( $source, string $class ) {
 	return $source;
 }
 
-/** Who may answer chats (the same rule as the classic inbox). */
+/** Who may answer chats. */
 $flxcb_gql_reply = flx_gql_any_cap( 'manage_options', 'flxcb_reply', 'flxc_use' );
 
 /* ------------------------------------------------------------------ Enums */

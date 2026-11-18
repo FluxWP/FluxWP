@@ -1,5 +1,5 @@
-// Flux AI › Skills: the list, the edit screen (SKILL.md, Files, Tests), import and the brand kit. Same features as the
-// classic page; everything goes over the flxAiSkill* and flxAiBrand* operations.
+// Flux AI › Skills: the list, the edit screen (SKILL.md, Files, Tests), import and the brand kit. Everything goes
+// over the flxAiSkill* and flxAiBrand* operations.
 import { useQueryClient } from '@tanstack/react-query';
 import { useState, type ReactNode } from 'react';
 import {

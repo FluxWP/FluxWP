@@ -26,7 +26,6 @@ export function SystemScreen() {
 }
 
 function System() {
-  const host = useHost();
   const { i18n } = useTranslation();
   const { t } = useMemo(() => translator(i18n.language), [i18n.language]);
   // The page re-checks every time it opens, and "Check again" runs it once more.
@@ -46,11 +45,6 @@ function System() {
     <div className="flxt-app">
       <div className="flxt-head">
         <h1>{t('System Check')}</h1>
-        {host.classicUrl && (
-          <a className="flxt-classic" href={host.classicUrl}>
-            {t('Classic view')}
-          </a>
-        )}
       </div>
       <p className="flxt-lead">{t('Plugins, scheduled tasks and key settings. Red rows mean part of the site is not working; yellow rows are recommended fixes. The page re-checks every time it opens.')}</p>
       <div className="flxt-sum">

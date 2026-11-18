@@ -1,51 +1,19 @@
 <?php
 /**
- * New Block Editor dashboard (0.3.0, GraphQL): the page opens the same React screen as the FluxWP app
- * (@fluxwp/modules `flxbk-dashboard`, assets/flux/, tools/fluxapp/embed-sync.sh flx-blocks). It is the
- * default and has every feature of the classic dashboard, plus the design library (linked libraries,
- * sharing, pattern previews). A user can switch back to the classic dashboard from the screen header
- * for now. Needs Flux GraphQL.
+ * Block Editor dashboard: the page opens the same React screen as the FluxWP app (@fluxwp/modules
+ * `flxbk-dashboard`, assets/flux/, tools/fluxapp/embed-sync.sh flx-blocks), with the block list, editor
+ * widths and the design library. There is no classic dashboard: without Flux GraphQL or the bundle the
+ * page says it cannot open.
  *
  * @package flx-blocks
  */
 
 defined( 'ABSPATH' ) || exit;
 
-/** The new screen can run: bundle shipped and Flux GraphQL ready. */
+/** The screen can run: bundle shipped and Flux GraphQL ready. */
 function flxbk_flux_available(): bool {
 	return file_exists( FLXBK_PATH . 'assets/flux/flux-modules.js' ) && function_exists( 'flx_gql_ready' ) && function_exists( 'flx_gql_all_caps' ) && flx_gql_ready();
 }
-
-/** The current user sees the new screen. */
-function flxbk_flux_ui(): bool {
-	return flxbk_flux_available() && 'classic' !== get_user_meta( get_current_user_id(), 'flxbk_ui', true );
-}
-
-/**
- * Link that switches the current user between the views.
- *
- * @param string $ui flux | classic.
- */
-function flxbk_ui_switch_url( string $ui ): string {
-	return wp_nonce_url( add_query_arg( array( 'page' => 'flx-blocks', 'flxbk_ui' => 'flux' === $ui ? 'flux' : 'classic' ), admin_url( 'admin.php' ) ), 'flxbk_ui' );
-}
-
-add_action(
-	'admin_init',
-	static function () {
-		if ( ! isset( $_GET['flxbk_ui'], $_GET['page'] ) || 'flx-blocks' !== $_GET['page'] || ! FLXBK_Dashboard_Service::can_manage() ) { // phpcs:ignore WordPress.Security.NonceVerification
-			return;
-		}
-		check_admin_referer( 'flxbk_ui' );
-		if ( 'classic' === $_GET['flxbk_ui'] ) {
-			update_user_meta( get_current_user_id(), 'flxbk_ui', 'classic' );
-		} else {
-			delete_user_meta( get_current_user_id(), 'flxbk_ui' );
-		}
-		wp_safe_redirect( admin_url( 'admin.php?page=flx-blocks' ) );
-		exit;
-	}
-);
 
 /**
  * The chunked bundle loads as an ES module.
@@ -77,7 +45,6 @@ function flxbk_flux_options() {
 			'primary'         => $accent,
 			'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
 		),
-		'classicUrl' => flxbk_ui_switch_url( 'classic' ),
 	);
 }
 
@@ -95,7 +62,6 @@ add_action(
 				'assets_dir'   => FLXBK_PATH . 'assets/flux/',
 				'assets_url'   => FLXBK_URL . 'assets/flux/',
 				'version'      => FLXBK_VERSION,
-				'enabled'      => 'flxbk_flux_ui',
 				'options'      => 'flxbk_flux_options',
 				'container_id' => 'flxbk-app',
 				'preload'      => array( array( 'FlxBlocksDashboard' ) ),
@@ -134,21 +100,23 @@ function flxbk_flux_assets(): void {
 	);
 }
 
-/** Mount point of the React screen. */
+/** Mount point of the React screen, or the "could not be loaded" box when the screen cannot open. */
 function flxbk_flux_render(): void {
 	echo '<style>#flxbk-app.flux-root{height:auto;background:transparent;font-family:inherit}</style>';
 	if ( function_exists( 'flx_admin_screen_render' ) && flx_admin_screen_render() ) {
 		return;
 	}
-	echo '<div class="wrap flxbk-wrap"><div id="flxbk-app"><noscript>' . esc_html__( 'JavaScript is required for this screen.', 'flx-blocks' ) . '</noscript></div></div>';
-}
-
-/** Classic dashboard: button to the new view. */
-function flxbk_flux_switch_notice(): void {
 	if ( ! flxbk_flux_available() ) {
+		if ( function_exists( 'flx_admin_screen_unavailable' ) ) {
+			flx_admin_screen_unavailable();
+		}
 		return;
 	}
-	echo '<p style="margin:12px 0"><a class="button" href="' . esc_url( flxbk_ui_switch_url( 'flux' ) ) . '">' . esc_html__( 'New view', 'flx-blocks' ) . '</a> <span style="color:#646970">' . esc_html__( 'Open the new view (same features plus the design library, works in the FluxWP app too).', 'flx-blocks' ) . '</span></p>';
+	echo '<div class="wrap flxbk-wrap"><div id="flxbk-app"><noscript>' . esc_html__( 'JavaScript is required for this screen.', 'flx-blocks' ) . '</noscript></div>';
+	if ( function_exists( 'flx_admin_screen_failsafe' ) ) {
+		flx_admin_screen_failsafe( 'flxbk-app' );
+	}
+	echo '</div>';
 }
 
 /*

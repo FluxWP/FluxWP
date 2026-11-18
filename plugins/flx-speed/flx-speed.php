@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Speed
  * Description:       Site performansı tek yerde: istek başına sorgular, PHP hataları, dış HTTP istekleri (geliştirici paneli), yavaş/hatalı istek kayıtları, sunucu (CPU, RAM, disk, OPcache), veritabanı, autoload, cron ve Sistem Kontrolü. Yapay zekâ hepsini Flux AI & MCP / Flux AI araçlarıyla okur.
- * Version:           0.10.1
+ * Version:           0.11.0
  * Requires at least: 6.4
  * Requires PHP:      8.1
  * Requires Plugins:  flx-graphql
@@ -22,7 +22,7 @@ if ( defined( 'FLXP_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXP_VERSION', '0.10.1' );
+define( 'FLXP_VERSION', '0.11.0' );
 define( 'FLXP_DB_VERSION', 1 );
 define( 'FLXP_FILE', __FILE__ );
 define( 'FLXP_DIR', plugin_dir_path( __FILE__ ) );
@@ -48,8 +48,6 @@ require_once FLXP_DIR . 'includes/dashboard.php';
 require_once FLXP_DIR . 'includes/app.php';
 if ( is_admin() ) {
 	require_once FLXP_DIR . 'includes/admin.php';
-	require_once FLXP_DIR . 'includes/admin-pagespeed.php';
-	require_once FLXP_DIR . 'includes/admin-cache.php';
 }
 
 // Toplama mümkün olduğunca erken başlar (yüklenen eklentilerin sorguları da görünsün).
@@ -59,7 +57,7 @@ FLXP_Cron_Timing::boot();
 /*
  * GraphQL (Flux GraphQL): schema only inside a GraphQL request; the persisted operations the Speed
  * screen sends. Without Flux GraphQL (0.2.0+, capability model) the schema is left out and the
- * classic pages keep working.
+ * admin screen says it cannot open.
  */
 add_action(
 	'flx_gql_register',

@@ -5,7 +5,6 @@
 .flxai-app h3{font-size:14px;font-weight:600;margin:12px 0 6px}
 .flxai-app a{color:var(--ac)}
 .flxai-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:9px 0 4px}
-.flxai-classic{font-size:13px}
 .flxai-lead{color:var(--mut);max-width:760px;margin:8px 0 14px}
 .flxai-muted,.flxai-note{color:var(--mut);font-size:12.5px}
 .flxai-empty{color:var(--mut);padding:8px 0}

@@ -1,5 +1,5 @@
 // Flux AI › Settings: providers and API keys (write-only), models, cache and thinking, spending limit, shared chat,
-// image and video, web, visuals and logs. Same fields as the classic page; saved through flxAiSettingsUpdate.
+// image and video, web, visuals and logs. Saved through flxAiSettingsUpdate.
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState, type ReactNode } from 'react';
 import { FlxAiModels, FlxAiModelTest, FlxAiRenderTest, FlxAiSettingsScreen, FlxAiSettingsUpdate } from '@fluxwp/graphql/operations';

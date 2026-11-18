@@ -1,6 +1,6 @@
 // Flux App › Application settings (administrators): General, Appearance, Applications, Modules, Menu, OAuth clients,
 // All access. Same screen in wp-admin (wp-embed) and the FluxWP app; every read and write goes through the Flux App
-// GraphQL operations (plugins/flx-app/graphql/operations). It has everything the classic page has.
+// GraphQL operations (plugins/flx-app/graphql/operations).
 import { useMemo, useState } from 'react';
 import { createGraphQLClient } from '@fluxwp/graphql';
 import { FlxGraphQLProvider } from '@fluxwp/graphql/react';
@@ -29,7 +29,7 @@ export function AppSettingsScreen() {
   const { t } = useMemo(() => translator(i18n.language), [i18n.language]);
   return (
     <FlxGraphQLProvider client={client} scope={host.scope}>
-      <ScreenProvider title={t('Application')} classicUrl={host.classicUrl}>
+      <ScreenProvider title={t('Application')}>
         <Tabs />
       </ScreenProvider>
     </FlxGraphQLProvider>

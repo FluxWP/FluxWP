@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 1.5.0
+- **Klasik görünüm kaldırıldı.** Paketler ve Ayarlar, Flux GraphQL çalıştığı sürece yalnız React ekranıyla açılır; "Klasik görünüm" bağlantısı ve görünüm değiştirme (`flxk_ui`) silindi. Flux GraphQL'i kuran paket Flux Setup olduğu için, Flux GraphQL yokken PHP sayfası yalnız kurtarma yolu olarak kalır ("Flux GraphQL'i kur" düğmesi ve açtığı kurulum adımları).
+- React ekranı açılamazsa (bundle yüklenmedi) boş sayfa yerine "Bu ekran yüklenemedi" kutusu ve **Sayfayı yenile** düğmesi çıkar.
+
 ## 1.4.2
 - Paketler ekranı anında açılır: paket listesi de sayfaya PHP'den hazır basılır, "Kontrol ediliyor…" beklenmez. Sayfa açılırken güncelleme sunucusuna gidilmez (menü rozeti dahil); önbellek bitmişse son bilinen liste gösterilir, güncelleme kontrolü arka planda sürer ve bitince listeyi yeniler (artık listeyi baştan yüklemez).
 - "Güncellemeleri kontrol et" sunucuya bir kez sorar (önceden iki kez soruyordu, yavaş sunucuda süre ikiye katlanıyordu). Eksik ikonlar sayfa gönderildikten sonra iner.

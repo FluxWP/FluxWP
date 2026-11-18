@@ -31,7 +31,7 @@ export function useScreen(): Screen {
   return c;
 }
 
-export function ScreenProvider({ children, title, lead, classicUrl }: { children: ReactNode; title: string; lead?: string; classicUrl?: string }) {
+export function ScreenProvider({ children, title, lead }: { children: ReactNode; title: string; lead?: string }) {
   const { i18n } = useTranslation();
   const { t, tn } = useMemo(() => translator(i18n.language), [i18n.language]);
   const [notice, setNotice] = useState<Notice | null>(null);
@@ -56,11 +56,6 @@ export function ScreenProvider({ children, title, lead, classicUrl }: { children
       <div className="flxs-app">
         <div className="flxs-head">
           <h1>{title}</h1>
-          {classicUrl && (
-            <a className="flxs-classic" href={classicUrl}>
-              {t('Classic view')}
-            </a>
-          )}
         </div>
         {notice && (
           <div className={'flxs-notice is-' + notice.kind} role={notice.kind === 'error' ? 'alert' : 'status'}>
@@ -110,7 +105,7 @@ export function Switch({ checked, onChange, label, disabled }: { checked: boolea
   );
 }
 
-/** Checkbox with its text, as in the classic forms. */
+/** Checkbox with its text. */
 export function Check({ checked, onChange, children, disabled }: { checked: boolean; onChange: (on: boolean) => void; children: ReactNode; disabled?: boolean }) {
   return (
     <label className="flxs-check">

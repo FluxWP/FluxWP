@@ -253,7 +253,6 @@
     "ai_edit_hint": "AI suggests a change and shows the difference. Nothing is saved until you apply it and press Save.",
     "ai_suggest": "Suggest a change",
     "ai_apply": "Apply in editor",
-    "classic_view": "Classic view",
     "up_level": "Up one level",
     "ai_applied": "Applied in the editor. Review it and press Save."
 }

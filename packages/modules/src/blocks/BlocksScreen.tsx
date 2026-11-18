@@ -1,6 +1,6 @@
 // Flux Block Editor › dashboard. Same screen in wp-admin (wp-embed) and the FluxWP app; every read and
 // write goes through the Flux Block Editor GraphQL operations (plugins/flx-blocks/graphql/operations).
-// It has everything the classic dashboard has (blocks, editor widths, admin bar) plus the design
+// Blocks, editor widths, admin bar and the design
 // library around the editor: linked libraries, sharing and a pattern browser with live previews.
 // The block editor itself is not here; it stays in WordPress.
 import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from 'react';
@@ -76,7 +76,6 @@ function Dashboard() {
           <a href={d.flxBlocksSettings.styleLibraryUrl} onClick={(e) => { e.preventDefault(); host.openUrl(d.flxBlocksSettings.styleLibraryUrl); }}>
             {t('Style Library')}
           </a>
-          {host.classicUrl && <a href={host.classicUrl}>{t('Classic view')}</a>}
         </div>
       </div>
       <div className="flxbk-tabs" role="tablist">

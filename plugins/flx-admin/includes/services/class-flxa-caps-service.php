@@ -3,7 +3,7 @@
  * Settings › Admin theme › Permissions: the role × permission table. Changes here are real WordPress
  * permissions (add_cap / remove_cap), not menu hiding. The Administrator column cannot change. The first
  * change backs up every role (`flxa_caps_backup`); "Restore backup" returns to that state.
- * The classic page (admin-post handlers), GraphQL and Flux AI call this; manage_options stays with the caller.
+ * GraphQL and Flux AI call this; manage_options stays with the caller.
  *
  * @package flx-admin
  */

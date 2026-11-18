@@ -1,6 +1,6 @@
 <?php
 /**
- * Backup service: the one place the classic admin page, GraphQL and the REST list use for reading
+ * Backup service: the one place GraphQL and the REST list use for reading
  * backups, the dashboard, settings and the step-by-step jobs. The long work itself stays in
  * FLXY_Backup / FLXY_Restore / FLXY_Runner (resumable steps, PHP ~60 s limit): a start call only
  * creates the job, a step call advances it by one budget, and the status is read separately.
@@ -731,7 +731,7 @@ final class FLXY_Service {
 	}
 
 	/**
-	 * Saves settings from the form fields of the classic page (snake_case, as posted) and runs what
+	 * Saves settings from snake_case fields and runs what
 	 * a change needs: retention of pre-update backups, the cron schedule and a new storage sample.
 	 *
 	 * @param array<string,mixed> $in Fields; checkboxes are present when on.

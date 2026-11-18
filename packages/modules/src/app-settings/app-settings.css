@@ -1,11 +1,10 @@
-/* Application settings / App access: the classic pages' look (plugins/flx-app/assets/admin.css) on FluxWP tokens. */
+/* Application settings / App access on FluxWP tokens. */
 .flxs-app{--flxs-bd:var(--flux-border);--flxs-mut:var(--flux-text-muted);--flxs-ac:var(--flux-primary);--flxs-card:var(--flux-surface);max-width:1400px;padding:0 0 24px;color:var(--flux-text);font-size:14px;line-height:1.5}
 .flxs-app h1{font-size:23px;font-weight:600;letter-spacing:0;margin:0}
 .flxs-app h2{font-size:16px;font-weight:600;margin:22px 0 8px;display:block}
 .flxs-app h3{font-size:14px;font-weight:600;margin:14px 0 4px}
 .flxs-app a{color:var(--flxs-ac)}
 .flxs-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:9px 0 4px}
-.flxs-classic{font-size:13px}
 .flxs-lead{font-size:14px;color:var(--flxs-mut);max-width:760px;margin:12px 0 16px}
 .flxs-desc{margin:6px 0 0;color:var(--flxs-mut);font-size:13px;max-width:700px}
 .flxs-muted{color:var(--flxs-mut)}

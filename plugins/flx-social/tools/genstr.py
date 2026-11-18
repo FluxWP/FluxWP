@@ -68,12 +68,6 @@ def main():
         else:
             pot.append('msgid "%s"\nmsgstr ""\n' % po_esc(k))
             po.append('msgid "%s"\nmsgstr "%s"\n' % (po_esc(k), po_esc(en.get(k, ''))))
-    # JS dizeleri: includes/js-strings.php
-    rows = ["<?php", "/** Otomatik üretildi: tools/genstr.py — JS arayüz dizeleri. */", "defined( 'ABSPATH' ) || exit;", "", "function flxsm_js_strings() {", "\treturn array("]
-    for k in js:
-        rows.append("\t\t'%s' => __( '%s', '%s' )," % (php_esc(k), php_esc(k), DOMAIN))
-    rows += ["\t);", "}", ""]
-    open(os.path.join(ROOT, 'includes', 'js-strings.php'), 'w', encoding='utf-8').write("\n".join(rows))
     open(os.path.join(lang, DOMAIN + '.pot'), 'w', encoding='utf-8').write('\n'.join(pot))
     open(os.path.join(lang, DOMAIN + '-en_US.po'), 'w', encoding='utf-8').write('\n'.join(po))
     # l10n.php

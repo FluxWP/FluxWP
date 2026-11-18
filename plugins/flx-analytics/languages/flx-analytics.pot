@@ -22,180 +22,6 @@ msgstr ""
 msgid "You are not allowed to view this page."
 msgstr ""
 
-msgid "This screen requires JavaScript."
-msgstr ""
-
-msgid "Settings saved."
-msgstr ""
-
-msgid "All statistics were deleted."
-msgstr ""
-
-msgid "Koko Analytics data imported: %s rows."
-msgstr ""
-
-msgid "%s visit rows processed."
-msgstr ""
-
-msgid "Counting"
-msgstr ""
-
-msgid "Count visits"
-msgstr ""
-
-msgid "On"
-msgstr ""
-
-msgid "No IP address or browser data is stored. A visitor is recognised only within the same day by a random key that is deleted the next day. A cookie is set only for visitors who arrive via a referral link (?r=code); it holds only the code (30 days). Mention in your privacy policy that statistics are collected."
-msgstr ""
-
-msgid "Collection method"
-msgstr ""
-
-msgid "Automatic (recommended)"
-msgstr ""
-
-msgid "Fast endpoint (WordPress is not loaded)"
-msgstr ""
-
-msgid "WordPress REST"
-msgstr ""
-
-msgid "Now: fast endpoint"
-msgstr ""
-
-msgid "Now: REST"
-msgstr ""
-
-msgid "Automatic: the fast endpoint is tested when this page opens; if it fails, REST is used."
-msgstr ""
-
-msgid "\"Do Not Track\""
-msgstr ""
-
-msgid "Do not count visitors whose browser sends \"Do Not Track\" or GPC"
-msgstr ""
-
-msgid "Exclusions"
-msgstr ""
-
-msgid "Roles"
-msgstr ""
-
-msgid "Logged-in people with these roles are not counted. The browser you open this screen in is not counted either (even after logging out)."
-msgstr ""
-
-msgid "IP addresses"
-msgstr ""
-
-msgid "One address per line, \"*\" or CIDR (e.g. office network)."
-msgstr ""
-
-msgid "Events"
-msgstr ""
-
-msgid "Tracked automatically"
-msgstr ""
-
-msgid "Outbound link clicks"
-msgstr ""
-
-msgid "File downloads (PDF, ZIP, DOCX…)"
-msgstr ""
-
-msgid "Phone, email and WhatsApp clicks"
-msgstr ""
-
-msgid "Site searches (search term)"
-msgstr ""
-
-msgid "Paid donations and orders (WooCommerce; type and amount)"
-msgstr ""
-
-msgid "Your own event: add data-flxan-event=\"name\" (and optional data-flxan-param) to a link, or call flxan.track(\"name\", \"detail\") in JavaScript. PHP: flxan_track_event( \"name\", \"detail\", amount )."
-msgstr ""
-
-msgid "Funnels"
-msgstr ""
-
-msgid "Shows how far visitors get. Each step can be a page (all pages starting with that path), an event (e.g. the \"Pay\" click) or the site entry. Up to 5 funnels with 10 steps each. Changes apply to new visits; funnel steps can also be picked as goals on the Journeys screen."
-msgstr ""
-
-msgid "Display and retention"
-msgstr ""
-
-msgid "Admin screens"
-msgstr ""
-
-msgid "\"Views\" column in the post and page lists"
-msgstr ""
-
-msgid "Page views in the admin bar while browsing the site"
-msgstr ""
-
-msgid "Retention"
-msgstr ""
-
-msgid "months (0 = unlimited)"
-msgstr ""
-
-msgid "Daily summaries take little space; keeping them forever is usually fine."
-msgstr ""
-
-msgid "Telemetry hub"
-msgstr ""
-
-msgid "Receive data from FluxWP installs"
-msgstr ""
-
-msgid "Sites that tick \"Help us improve the product\" in FluxWP Panel send anonymous usage data once a day: which FluxWP plugins are used together, versions, FluxWP PHP errors and setup-wizard progress. IP and site address are not stored; records are kept for 90 days. When enabled, \"Product telemetry\" appears in the menu."
-msgstr ""
-
-msgid "Collection URL (FluxWP Panel › Settings › Telemetry URL):"
-msgstr ""
-
-msgid "Data"
-msgstr ""
-
-msgid "Last processed %1$s. Waiting in queue: %2$s."
-msgstr ""
-
-msgid "No visits processed yet."
-msgstr ""
-
-msgid "Process now"
-msgstr ""
-
-msgid "Download daily totals (CSV)"
-msgstr ""
-
-msgid "Download pages (CSV)"
-msgstr ""
-
-msgid "Koko Analytics data found: %1$s days (%2$s – %3$s). Days before Flux Analytics was installed are imported; Koko tables are not modified."
-msgstr ""
-
-msgid "Import Koko Analytics data"
-msgstr ""
-
-msgid "All statistics will be permanently deleted. Are you sure?"
-msgstr ""
-
-msgid "Delete all statistics"
-msgstr ""
-
-msgid "Shortcodes and AI"
-msgstr ""
-
-msgid "list of the most viewed posts."
-msgstr ""
-
-msgid "total views of this page (gun=\"30\" for the last 30 days)."
-msgstr ""
-
-msgid "Flux AI chat and MCP clients (Claude and others) read stats with: flxan_summary, flxan_timeseries, flxan_pages, flxan_referrers, flxan_breakdown, flxan_events, flxan_realtime, flxan_page, flxan_compare, flxan_funnel, flxan_journeys, flxan_refs, flxan_ref_save. Access needs the \"View statistics\" capability (flxan_view), which Flux Roles can grant."
-msgstr ""
-
 msgid "You are not allowed to do this."
 msgstr ""
 
@@ -346,12 +172,6 @@ msgstr ""
 msgid "%s · last 7 days"
 msgstr ""
 
-msgid "New view"
-msgstr ""
-
-msgid "Open the new view (same features, works in the FluxWP app too)."
-msgstr ""
-
 msgid "No goal"
 msgstr ""
 
@@ -391,496 +211,19 @@ msgstr ""
 msgid "Other pages"
 msgstr ""
 
-msgid "Fast endpoint works"
-msgstr ""
-
-msgid "Fast endpoint unreachable, REST will be used"
-msgstr ""
-
-msgid "%s s"
-msgstr ""
-
-msgid "%1$s min %2$s s"
-msgstr ""
-
-msgid "Copied"
-msgstr ""
-
-msgid "Link"
-msgstr ""
-
-msgid "Date range"
-msgstr ""
-
-msgid "Start"
-msgstr ""
-
-msgid "End"
-msgstr ""
-
-msgid "Apply"
-msgstr ""
-
-msgid "Download CSV"
-msgstr ""
-
-msgid "Visitor type"
-msgstr ""
-
-msgid "All visitors"
-msgstr ""
-
-msgid "Outside visitors"
-msgstr ""
-
-msgid "Logged-in users"
-msgstr ""
-
-msgid "Role: %s"
-msgstr ""
-
-msgid "Referral"
-msgstr ""
-
-msgid "All sources"
-msgstr ""
-
-msgid "Referral links only"
-msgstr ""
-
-msgid "Visitors: the sum of unique people per day. A person is recognised only within the same day; someone arriving via a referral link is credited to that code for 30 days. Country is derived from the browser time zone, not the IP."
-msgstr ""
-
-msgid "Visitors and views chart"
-msgstr ""
-
-msgid "Week of %s"
-msgstr ""
-
-msgid "Compared with the previous period of equal length"
-msgstr ""
-
-msgid "Previous period: %s"
-msgstr ""
-
-msgid "Sessions"
-msgstr ""
-
-msgid "Pages / visitor"
-msgstr ""
-
-msgid "Avg. session duration"
-msgstr ""
-
-msgid "Bounce rate"
-msgstr ""
-
-msgid "Left after viewing one page"
-msgstr ""
-
-msgid "%1$s min ago: %2$s"
-msgstr ""
-
-msgid "Live"
-msgstr ""
-
-msgid "Refreshes every 5 s"
-msgstr ""
-
-msgid "visitors in last %s min"
-msgstr ""
-
-msgid "%s views"
-msgstr ""
-
-msgid "%s min ago"
-msgstr ""
-
-msgid "now"
-msgstr ""
-
-msgid "Pages"
-msgstr ""
-
-msgid "Countries"
-msgstr ""
-
-msgid "See all (%s)"
-msgstr ""
-
-msgid "Traffic sources"
-msgstr ""
-
-msgid "By role"
-msgstr ""
-
-msgid "not logged in"
-msgstr ""
-
-msgid "Click a row to filter the whole screen by that visitor type. For outside traffic only, choose \"Outside visitors\" at the top."
-msgstr ""
-
-msgid "Most viewed pages"
-msgstr ""
-
-msgid "No visits from other sites yet."
-msgstr ""
-
-msgid "Device and browser"
-msgstr ""
-
-msgid "Campaigns (UTM)"
-msgstr ""
-
-msgid "Not found pages (404)"
-msgstr ""
-
-msgid "Visitors by country"
-msgstr ""
-
-msgid "World map"
-msgstr ""
-
-msgid "Few"
-msgstr ""
-
-msgid "Many"
-msgstr ""
-
-msgid "Country"
-msgstr ""
-
-msgid "No country data in this range."
-msgstr ""
-
-msgid "Funnel"
-msgstr ""
-
-msgid "Funnel: %s"
-msgstr ""
-
-msgid "Drop from previous step"
-msgstr ""
-
-msgid "No visits entered the funnel in this range."
-msgstr ""
-
-msgid "Completion"
-msgstr ""
-
-msgid "Counts the furthest step each visitor reached within a day. You can change the steps in Settings › Funnels."
-msgstr ""
-
-msgid "Funnel settings"
-msgstr ""
-
-msgid "New link"
-msgstr ""
-
-msgid "Name (e.g. Ayşe's Instagram)"
-msgstr ""
-
-msgid "Code (e.g. ayse-ig)"
-msgstr ""
-
-msgid "Save"
-msgstr ""
-
-msgid "No referral links yet. Add ?r=code to the site address wherever you share it (e.g. %s); give it a name here and reports will show that name."
-msgstr ""
-
-msgid "Pages / session"
-msgstr ""
-
-msgid "Avg. duration"
-msgstr ""
-
-msgid "Furthest step"
-msgstr ""
-
-msgid "Donations"
-msgstr ""
-
-msgid "Show what visitors from this link did"
-msgstr ""
-
-msgid "Copy link"
-msgstr ""
-
-msgid "Rename"
-msgstr ""
-
-msgid "Remove name"
-msgstr ""
-
-msgid "A visitor arriving via the link gets a 30-day cookie; their later pages, later days and donation are credited to that code. Click a row to filter the whole screen to visitors from that link."
-msgstr ""
-
-msgid "Copy"
-msgstr ""
-
-msgid "Name for \"%s\""
-msgstr ""
-
-msgid "Remove the name? Statistics are kept and shown under the code."
-msgstr ""
-
-msgid "Clicks and conversions"
-msgstr ""
-
-msgid "No events in this range. Outbound links, downloads, phone/WhatsApp clicks, searches and donations appear here."
-msgstr ""
-
-msgid "All"
-msgstr ""
-
-msgid "Close"
-msgstr ""
-
-msgid "Search"
-msgstr ""
-
-msgid "More"
-msgstr ""
-
-msgid "Could not load. Try again in a moment."
-msgstr ""
-
-msgid "No data yet."
-msgstr ""
-
-msgid "Open the site in a browser where you are not logged in (or on your phone); the visit appears here within a few minutes."
-msgstr ""
-
-msgid "Filter:"
-msgstr ""
-
-msgid "Clear filter"
-msgstr ""
-
-msgid "Site entry"
-msgstr ""
-
-msgid "Page"
-msgstr ""
-
-msgid "The first page of every visit counts"
-msgstr ""
-
-msgid "Choose an event…"
-msgstr ""
-
-msgid "Type another event…"
-msgstr ""
-
-msgid "all pages starting with this path"
-msgstr ""
-
-msgid "Funnel name"
-msgstr ""
-
-msgid "%s steps"
-msgstr ""
-
-msgid "Delete funnel"
-msgstr ""
-
-msgid "Drag to move"
-msgstr ""
-
-msgid "Step name"
-msgstr ""
-
-msgid "Step type"
-msgstr ""
-
-msgid "Move up"
-msgstr ""
-
-msgid "Move down"
-msgstr ""
-
-msgid "Delete step"
-msgstr ""
-
-msgid "Add step"
-msgstr ""
-
-msgid "Add preset step"
-msgstr ""
-
-msgid "Add preset step…"
-msgstr ""
-
-msgid "At most %s steps."
-msgstr ""
-
-msgid "New funnel"
-msgstr ""
-
-msgid "Reset to default donation funnel"
-msgstr ""
-
-msgid "Edit as text"
-msgstr ""
-
-msgid "Event name (e.g. donation_form or checkout:submit):"
-msgstr ""
-
-msgid "Delete funnel \"%s\"?"
-msgstr ""
-
-msgid "Funnel %s"
-msgstr ""
-
-msgid "Replace all funnels with the default donation funnel? (Applied when you click Save.)"
-msgstr ""
-
-msgid "Back to visual editor"
-msgstr ""
-
-msgid "Compare previous period"
-msgstr ""
-
-msgid "Goal page"
-msgstr ""
-
-msgid "Combine sub-pages like /news/… into one box"
-msgstr ""
-
-msgid "Group pages"
-msgstr ""
-
-msgid "Paths from session start"
-msgstr ""
-
-msgid "Starts at"
-msgstr ""
-
-msgid "All pages"
-msgstr ""
-
-msgid "Ends at"
-msgstr ""
-
-msgid "Steps"
-msgstr ""
-
-msgid "Fewer steps"
-msgstr ""
-
-msgid "More steps"
-msgstr ""
-
-msgid "Paths shown"
-msgstr ""
-
-msgid "Top %s paths"
-msgstr ""
-
-msgid "Top paths"
-msgstr ""
-
-msgid "Search pages…"
-msgstr ""
-
-msgid "Reach goal"
-msgstr ""
-
-msgid "Never reach"
-msgstr ""
-
-msgid "Journey: the order of pages in one visit (first 8 steps; refreshing the same page counts once). Events such as add to cart, checkout form, \"Place order\", payment method, order, and WhatsApp/phone clicks show as steps marked ⚡. Only visits with at least 2 pages are listed. The goal is chosen from Settings › Funnels. This screen shows visits after version 0.3.0."
-msgstr ""
-
-msgid "Could not load data. Refresh the page."
-msgstr ""
-
-msgid "%1$s visits · %2$s"
-msgstr ""
-
-msgid "No data"
-msgstr ""
-
-msgid "Multi-page sessions"
-msgstr ""
-
-msgid "%s of all visits"
-msgstr ""
-
-msgid "Avg path length"
-msgstr ""
-
-msgid "%s pages"
-msgstr ""
-
-msgid "In multi-page sessions"
-msgstr ""
-
-msgid "Top entry page"
-msgstr ""
-
-msgid "Top exit after 2+ pages"
-msgstr ""
-
-msgid "No goal selected"
-msgstr ""
-
-msgid "No journeys yet"
-msgstr ""
-
-msgid "No visits with at least 2 pages in the selected period. Widen the filters or wait for new visits."
-msgstr ""
-
-msgid "Click a box to filter the paths below by that page. Thickness shows the number of visits."
-msgstr ""
-
-msgid "%s visits"
-msgstr ""
-
-msgid "Entries"
-msgstr ""
-
-msgid "Step %s"
-msgstr ""
-
-msgid "%s end here"
-msgstr ""
-
-msgid "all continue"
-msgstr ""
-
-msgid "continues"
-msgstr ""
-
-msgid "No paths match the search."
-msgstr ""
-
-msgid "No paths to show."
-msgstr ""
-
-msgid "Path"
-msgstr ""
-
-msgid "Share"
-msgstr ""
-
-msgid "vs prev"
-msgstr ""
-
-msgid "new"
-msgstr ""
-
-msgid "Showing %2$s of %1$s paths."
-msgstr ""
-
 msgid "Site traffic summary"
 msgstr ""
 
 msgid "Daily visitor chart data"
 msgstr ""
 
+msgid "Most viewed pages"
+msgstr ""
+
 msgid "Channel, device, browser breakdown"
+msgstr ""
+
+msgid "Clicks and conversions"
 msgstr ""
 
 msgid "How many people are on the site now?"
@@ -913,6 +256,9 @@ msgstr ""
 msgid "Invalid code. Use letters, digits, - and _."
 msgstr ""
 
+msgid "%s views"
+msgstr ""
+
 msgid "Last 30 days (Site Analytics)"
 msgstr ""
 
@@ -934,6 +280,9 @@ msgstr ""
 msgid "Every 5 minutes"
 msgstr ""
 
+msgid "Site entry"
+msgstr ""
+
 msgid "Donation page"
 msgstr ""
 
@@ -947,6 +296,9 @@ msgid "Donation completed"
 msgstr ""
 
 msgid "Donation flow"
+msgstr ""
+
+msgid "Funnel"
 msgstr ""
 
 msgid "First touch on checkout form"
@@ -1018,6 +370,9 @@ msgstr ""
 msgid "Browser language"
 msgstr ""
 
+msgid "Country"
+msgstr ""
+
 msgid "Campaign source"
 msgstr ""
 
@@ -1051,6 +406,9 @@ msgstr ""
 msgid "Home page"
 msgstr ""
 
+msgid "Outside visitors"
+msgstr ""
+
 msgid "Total"
 msgstr ""
 
@@ -1061,6 +419,9 @@ msgid "By referring site"
 msgstr ""
 
 msgid "By referral code"
+msgstr ""
+
+msgid "By role"
 msgstr ""
 
 msgid "By country"
@@ -1102,6 +463,9 @@ msgstr ""
 msgid "wp-content/uploads/flx-analytics could not be created or is not writable; visits cannot be recorded. Check the directory permissions (755)."
 msgstr ""
 
+msgid "Collection method"
+msgstr ""
+
 msgid "Fast endpoint: visits are recorded without loading WordPress."
 msgstr ""
 
@@ -1115,6 +479,9 @@ msgid "Statistics processing"
 msgstr ""
 
 msgid "Last processed %1$s. Waiting: %2$s."
+msgstr ""
+
+msgid "No visits processed yet."
 msgstr ""
 
 msgid "Processing error"
@@ -1207,215 +574,11 @@ msgstr ""
 msgid "Plugins: %s"
 msgstr ""
 
-msgid "No records in this range."
-msgstr ""
-
-msgid "Overview"
-msgstr ""
-
-msgid "Errors"
-msgstr ""
-
-msgid "Setup wizard"
-msgstr ""
-
-msgid "%d days"
-msgstr ""
-
-msgid "All countries"
-msgstr ""
-
-msgid "Filter"
-msgstr ""
-
-msgid "Anonymous data sent once a day by sites that tick \"Help us improve the product\" in FluxWP Panel. IP and site address are not stored; records are kept for 90 days."
-msgstr ""
-
-msgid "Reporting sites"
-msgstr ""
-
-msgid "Unique installs"
-msgstr ""
-
-msgid "Reports"
-msgstr ""
-
-msgid "At most one per site per day"
-msgstr ""
-
-msgid "Distinct errors"
-msgstr ""
-
-msgid "%s fatal"
-msgstr ""
-
-msgid "Error events"
-msgstr ""
-
-msgid "Total occurrences"
-msgstr ""
-
-msgid "No reports yet."
-msgstr ""
-
-msgid "FluxWP Panel on sites sends to this URL:"
-msgstr ""
-
-msgid "Mobile app: daily active accounts"
-msgstr ""
-
-msgid "UTC day / platform"
-msgstr ""
-
-msgid "Consenting accounts"
-msgstr ""
-
-msgid "No eligible totals yet. Both device and site consent are required; cohorts below five accounts per site/platform/day are withheld. Country is the configured site country, not a person’s location. The same person may count on multiple sites or platforms."
-msgstr ""
-
-msgid "Plugin usage"
-msgstr ""
-
-msgid "Package"
-msgstr ""
-
-msgid "Common version"
-msgstr ""
-
-msgid "Used together"
-msgstr ""
-
-msgid "Pair"
-msgstr ""
-
-msgid "FluxWP Panel only"
-msgstr ""
-
-msgid "Most common package sets"
-msgstr ""
-
-msgid "Set (excluding FluxWP Panel)"
-msgstr ""
-
-msgid "Version"
-msgstr ""
-
-msgid "Site language"
-msgstr ""
-
-msgid "Language"
-msgstr ""
-
-msgid "Country comes from the sending site's settings (WooCommerce store country or the Settings › General time zone). IP addresses are never looked up or stored. Click a country to filter every tab by it."
-msgstr ""
-
-msgid "Error record removed. It will reappear if it happens again."
-msgstr ""
-
-msgid "All packages"
-msgstr ""
-
-msgid "All types"
-msgstr ""
-
-msgid "Fatal only"
-msgstr ""
-
-msgid "%s records"
-msgstr ""
-
-msgid "No errors in this range."
-msgstr ""
-
-msgid "Error"
-msgstr ""
-
-msgid "Last"
-msgstr ""
-
-msgid "Remove as resolved"
-msgstr ""
-
-msgid "Resolved"
-msgstr ""
-
-msgid "Delete all error records?"
-msgstr ""
-
-msgid "Clear all errors"
-msgstr ""
-
-msgid "Server paths, domain, URLs, emails and IPs are removed from messages. The same error in the same package, version, file and line is one record; \"Sites\" is how many different installs saw it."
-msgstr ""
-
-msgid "Wizard runs"
-msgstr ""
-
-msgid "Latest run per install"
-msgstr ""
-
-msgid "Finished"
-msgstr ""
-
-msgid "sites"
-msgstr ""
-
-msgid "Skipped"
-msgstr ""
-
-msgid "Abandoned"
-msgstr ""
-
-msgid "Median time for finishers: %s min"
-msgstr ""
-
-msgid "No wizard data yet."
-msgstr ""
-
-msgid "FluxWP Panel 1.0.11 and later sends the last step and choices when the wizard is finished or closed."
-msgstr ""
-
-msgid "Reached each step"
-msgstr ""
-
-msgid "skipped"
-msgstr ""
-
-msgid "closed"
-msgstr ""
-
-msgid "Where they stopped"
-msgstr ""
-
-msgid "Last step"
-msgstr ""
-
-msgid "Everyone finished."
-msgstr ""
-
-msgid "Card choices"
-msgstr ""
-
-msgid "Card"
-msgstr ""
-
-msgid "Picked"
-msgstr ""
-
-msgid "Picked then removed"
-msgstr ""
-
-msgid "Removed suggestion"
-msgstr ""
-
-msgid "Preset (finishers)"
-msgstr ""
-
-msgid "Colour style (finishers)"
-msgstr ""
-
-msgid "Choice"
+msgid "All visitors"
 msgstr ""
 
 msgid "Logged-in people"
+msgstr ""
+
+msgid "Role: %s"
 msgstr ""

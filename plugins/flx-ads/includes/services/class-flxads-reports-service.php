@@ -1,8 +1,8 @@
 <?php
 /**
- * Flux Ads: report, ad spend, donor value, send log and the ad link builder. The classic pages, GraphQL
- * and Flux AI read the same legacy classes; this service gives GraphQL typed shapes of what the classic
- * pages print. Permission checks stay with the caller (flxads_can).
+ * Flux Ads: report, ad spend, donor value, send log and the ad link builder. GraphQL
+ * and Flux AI read the same legacy classes; this service gives GraphQL typed shapes of what the
+ * screen shows. Permission checks stay with the caller (flxads_can).
  *
  * Errors are WP_Error with `graphql_code` INVALID_INPUT / NOT_FOUND and the input `field`.
  *
@@ -32,7 +32,7 @@ final class FLXADS_Reports_Service {
 	public const CACHE_TAG = 'flx-ads:report';
 
 	/**
-	 * Report filter like the classic page reads it from the address.
+	 * Report filter as the screen sends it.
 	 *
 	 * @param FlxadsFilter $in         Raw filter.
 	 * @param string       $default_by Default grouping.
@@ -360,7 +360,7 @@ final class FLXADS_Reports_Service {
 	/**
 	 * What the people an ad brought gave in total, per campaign or channel, and the monthly cohort table.
 	 *
-	 * @param FlxadsFilter $in Filter (the classic page defaults to the last 90 days).
+	 * @param FlxadsFilter $in Filter (defaults to the last 90 days).
 	 * @return FlxadsValuePage
 	 */
 	public static function value_page( array $in ): array {
@@ -434,7 +434,7 @@ final class FLXADS_Reports_Service {
 	/* ------------------------------------------------------------ Send log */
 
 	/**
-	 * Status text and the reason the classic log shows.
+	 * Status text and the reason the send log shows.
 	 *
 	 * @return array{0: string, 1: string}
 	 */

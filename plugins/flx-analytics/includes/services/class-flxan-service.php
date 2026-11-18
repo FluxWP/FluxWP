@@ -1,7 +1,7 @@
 <?php
 /**
  * Flux Analytics reports and settings: the one place the Statistics, Journeys and Settings screens
- * (GraphQL), the classic pages (admin-post handlers) and the REST/MCP write endpoints read and change
+ * (GraphQL) and the REST/MCP write endpoints read and change
  * data. The read layer itself stays FLXAN_Stats / FLXAN_Journeys (REST and Flux AI tools use it as before);
  * this class puts a typed face on it: camelCase array shapes the GraphQL schema reads as they are.
  *
@@ -58,7 +58,7 @@ defined( 'ABSPATH' ) || exit;
  */
 final class FLXAN_Service {
 
-	/** Admin menu slug of the classic pages (the settings link is built from it). */
+	/** Admin menu slug of the Statistics page (the settings link is built from it). */
 	public const PAGE = 'flx-analytics';
 
 	public const CACHE_TAG = 'flx-analytics:stats';
@@ -883,7 +883,7 @@ final class FLXAN_Service {
 	}
 
 	/**
-	 * Stores sanitized settings (the classic form and GraphQL end here).
+	 * Stores sanitized settings (GraphQL and presets end here).
 	 *
 	 * @param array<mixed> $in Raw settings (form keys).
 	 */

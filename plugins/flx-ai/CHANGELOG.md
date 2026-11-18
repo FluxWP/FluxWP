@@ -1,5 +1,10 @@
 # Flux AI — Değişiklikler
 
+## 0.33.0
+- **Klasik ekranlar kaldırıldı.** Genel bakış, Sohbet, Geçmiş, Görevler, Onaylar, Skill'ler, Kayıtlar, Sistemler, Faturalandırma, Araçlar, MCP, Bağlantılar ve Ayarlar yalnız React ekranıyla açılır; "Klasik görünüm" bağlantısı, görünüm değiştirme (`flxai_ui`) ve eski PHP form işleyicileri silindi (admin-*.php, assets/js/admin.js, skills.js).
+- Ekran açılamazsa (Flux GraphQL hazır değil, paket dosyası eksik, bundle yüklenmedi) boş sayfa yerine "Bu ekran yüklenemedi" kutusu ve **Sayfayı yenile** düğmesi çıkar.
+- Skill zip dışa aktarma, klasör dosyası indirme ve bildirimlerdeki görev raporu bağlantısı aynen çalışır. Ortak model seçici (`flxai_enqueue_model_picker`) diğer eklentiler için durur.
+
 ## 0.32.1
 - wp-admin ekranları Flux GraphQL ekran kabuğundan açılır: ilk veri PHP'de sayfaya basılır, Flux AI sayfaları ve diğer Flux ekranları arasında sayfa yenilenmeden geçilir; ekranın parçaları sayfa başında birlikte iner.
 - Ortak modül paketi yenilendi.

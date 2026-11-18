@@ -1,5 +1,5 @@
 // Pieces both FluxWP Panel screens (Packages, Settings) use: the GraphQL provider, translator,
-// notices and the on/off switch.
+// notices, the on/off switch.
 import { useMemo, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from '@tanstack/react-query';

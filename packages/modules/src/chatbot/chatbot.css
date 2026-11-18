@@ -1,4 +1,4 @@
-/* Flux AI Chatbot screens: the classic page look (plugins/flx-chatbot/assets/admin.css) on FluxWP tokens. */
+/* Flux AI Chatbot screens on FluxWP tokens. */
 .flxcb{--c-bd:var(--flux-border);--c-mut:var(--flux-text-muted);--c-tx:var(--flux-text);--c-ac:var(--flux-primary);--c-ac-soft:color-mix(in srgb,var(--flux-primary) 10%,transparent);--c-card:var(--flux-surface);--c-s2:var(--flux-surface2);--c-ok:var(--flux-success);--c-ok-s:color-mix(in srgb,var(--flux-success) 14%,transparent);--c-info:var(--flux-primary);--c-info-s:color-mix(in srgb,var(--flux-primary) 12%,transparent);--c-warn:color-mix(in srgb,var(--flux-warning) 75%,var(--flux-text));--c-warn-s:color-mix(in srgb,var(--flux-warning) 18%,transparent);--c-bad:var(--flux-danger);--c-bad-s:color-mix(in srgb,var(--flux-danger) 14%,transparent);--c-r:12px;max-width:1440px;padding:0 0 24px;color:var(--c-tx);font-size:14px;line-height:1.5}
 .flxcb *{box-sizing:border-box}
 .flxcb .flxcb-i{flex:none;vertical-align:-3px}
@@ -242,7 +242,7 @@
 	.flxcb-im{max-width:90%}
 }
 
-/* Controls the classic page gets from wp-admin */
+/* Controls wp-admin styles outside the screen */
 .flxcb h1{font-size:23px;font-weight:600;margin:0}
 .flxcb a{color:var(--c-ac)}
 .flxcb input[type=text],.flxcb input[type=email],.flxcb input[type=number],.flxcb input[type=search],.flxcb input[type=time],.flxcb select,.flxcb textarea{padding:0 10px;border:1px solid var(--c-bd);border-radius:8px;background:var(--flux-bg);color:var(--c-tx);font:inherit;font-size:14px;box-sizing:border-box;max-width:100%}

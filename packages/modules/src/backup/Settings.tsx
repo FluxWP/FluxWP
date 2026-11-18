@@ -1,4 +1,4 @@
-// Backups › Settings: every field of the classic settings page, saved through flxBackupSettingsSave.
+// Backups › Settings: every backup setting, saved through flxBackupSettingsSave.
 import { useEffect, useState, type FormEvent } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';

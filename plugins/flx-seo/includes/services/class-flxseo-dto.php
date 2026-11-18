@@ -1,6 +1,6 @@
 <?php
 /**
- * Typed values the Flux SEO services return. The classic pages, GraphQL, REST and Flux AI read the same shapes.
+ * Typed values the Flux SEO services return. GraphQL, REST and Flux AI read the same shapes.
  *
  * @package flx-seo
  */

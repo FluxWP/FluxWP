@@ -1,5 +1,5 @@
 // Flux SEO. Same screen in wp-admin (wp-embed) and the FluxWP app; every read and write goes through the
-// Flux SEO GraphQL operations (plugins/flx-seo/graphql/operations). It has everything the classic tabs have:
+// Flux SEO GraphQL operations (plugins/flx-seo/graphql/operations). It is the only admin page (no classic tabs):
 // General (site name, titles, search engines, IndexNow, indexing, images), Organization and social,
 // SEO check (content recommendations), Site audit (on-site + PageSpeed, agent readiness, recommendations
 // with one-click fixes, report history) and Settings (PageSpeed key, agents, security headers, schedule, guide).
@@ -92,11 +92,6 @@ function Seo() {
     <div className="flxs-app">
       <div className="flxs-head">
         <h1>{t('SEO')}</h1>
-        {host.classicUrl && (
-          <a className="flxs-classic" href={host.classicUrl + (tab === 'genel' ? '' : '&tab=' + tab)}>
-            {t('Classic view')}
-          </a>
-        )}
       </div>
       <nav className="flxs-tabs" role="tablist" aria-label={t('SEO')}>
         {TABS.map((k) => (
