@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 1.5.3
+- Ön ayar güncellemeleri, aynı slug ile bulunan sahipsiz sayfa/yazıları kendiliğinden sahiplenmez; belirsiz anahtarlar ve değişmiş kayıt kimlikleri korunur.
+- SEO meta alanları ve taksonomiler içerikten bağımsız karşılaştırılır, sahiplenilir ve yedeklenir. Kullanıcının değiştirdiği alanlar korunur; eski sahiplik kayıtlarında kanıtlanamayan alanlar inceleme için bekler.
+- Kısmen uygulanan veya hatalı migration tamamlandı sayılmaz. Bekleyen kayıtlar elle önizlenip hedef bazlı yeniden denenebilir; değişmeyen başarısız otomatik denemeler her yönetici isteğinde tekrarlanmaz.
+- `flxk_content_fields_supported()` yetenek kontrolü ve gerçek WordPress içerik/SEO/geri alma regresyon testleri eklendi.
+
 ## 1.5.2
 - Toplu kurulum/güncellemeden sonra işlem kaydında **"Hatalıları tekrar dene"** düğmesi: yalnız başarısız adımlar aynı sırayla yeniden çalışır (klasik ekranda vardı).
 - Güncelleme ayarları ilk ziyarette de spinner'sız açılır.

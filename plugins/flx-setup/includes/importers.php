@@ -48,6 +48,7 @@ function flxk_core_importers() {
 	};
 	$post_like = function ( $default ) use ( $post_type ) {
 		return array(
+			'post_fields' => true, // Separate field ownership; retain the legacy body hash.
 			'label'   => 'page' === $default ? __( 'Page', 'flx-setup' ) : __( 'Post', 'flx-setup' ),
 			'find'    => function ( $item ) use ( $post_type, $default ) {
 				$pt = $post_type( $item, $default );

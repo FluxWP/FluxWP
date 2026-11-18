@@ -19,6 +19,7 @@
  */
 
 defined( 'ABSPATH' ) || exit;
+require_once __DIR__ . '/content-fields.php';
 
 const FLXK_ABSENT = '__flxk_absent__';
 
@@ -417,6 +418,7 @@ function flxk_plan( $preset_id, array $p, array $opts = array() ) {
 	$ctx['plan'] = true;
 	$ops  = array();
 	$warn = array();
+	$unavailable = 0;
 
 	foreach ( (array) ( $p['media'] ?? array() ) as $key => $def ) {
 		$id                              = flxk_media_find( $preset_id . ':' . $key );
@@ -452,6 +454,7 @@ function flxk_plan( $preset_id, array $p, array $opts = array() ) {
 		$type = (string) ( $item['type'] ?? '' );
 		$key  = (string) ( $item['key'] ?? '' );
 		if ( ! isset( $imp[ $type ] ) ) {
+			++$unavailable;
 			/* translators: %s: tür */
 			$warn[] = sprintf( __( 'Content type "%s" does not exist on this site, skipped.', 'flx-setup' ), $type );
 			continue;
@@ -463,6 +466,9 @@ function flxk_plan( $preset_id, array $p, array $opts = array() ) {
 		$new      = (array) call_user_func( $T['data'], $resolved );
 		$same     = $id ? ( isset( $T['same'] ) ? (bool) call_user_func( $T['same'], $new, $cur ) : flxk_hash( $new ) === flxk_hash( $cur ) ) : false;
 		$op       = flxk_decide( $preset_id, 'content:' . $type . ':' . $key, (bool) $id, $cur, $new, $st, $opts, $same );
+		if ( ! empty( $T['post_fields'] ) ) {
+			$op = flxk_content_identity_guard( $op, $id, $key, $st, $opts );
+		}
 		$op      += array(
 			'section' => 'content',
 			'type'    => $type,
@@ -479,6 +485,9 @@ function flxk_plan( $preset_id, array $p, array $opts = array() ) {
 			}
 		}
 		$ops[] = $op;
+		if ( ! empty( $T['post_fields'] ) ) {
+			$ops = array_merge( $ops, flxk_content_field_plan( $preset_id, $resolved, $id, $op, $st, $opts ) );
+		}
 	}
 
 	foreach ( (array) ( $p['wp'] ?? array() ) as $name => $v ) {
@@ -533,6 +542,7 @@ function flxk_plan( $preset_id, array $p, array $opts = array() ) {
 	}
 	return array(
 		'ops'      => $ops,
+		'unavailable' => $unavailable,
 		'warnings' => array_values( array_unique( array_merge( $warn, flxk_validate_warnings() ) ) ),
 	);
 }
@@ -634,18 +644,23 @@ function flxk_execute( $preset_id, array $p, array $opts = array(), array $meta 
 		$st['ver'] = (string) $p['version'];
 	}
 	$remaining = 0;
-	if ( isset( $opts['only'] ) ) {
+	if ( isset( $opts['only'] ) || 'migration' === $run['kind'] ) {
 		flxk_save_state( $preset_id, $st );
 		$after = flxk_plan( $preset_id, $full_p, array( 'mode' => $opts['mode'] ?? 'apply' ) );
 		foreach ( $after['ops'] as $op ) {
 			if ( 'same' !== $op['status'] ) { ++$remaining; }
 		}
+		$remaining += count( $run['errors'] ) + (int) ( $after['unavailable'] ?? 0 );
 	}
 	if ( 'migration' === $run['kind'] && ! empty( $meta['migration'] ) && ! $remaining ) {
+		unset( $st['migration_blocked'][ $meta['migration'] ] );
 		$st['migrations'][ $meta['migration'] ] = array(
 			'at'     => current_time( 'mysql' ),
 			'status' => 'applied',
 		);
+	} elseif ( 'migration' === $run['kind'] && ! empty( $meta['migration'] ) ) {
+		unset( $st['migrations'][ $meta['migration'] ] );
+		$st['migration_blocked'][ $meta['migration'] ] = array( 'signature' => flxk_hash( $full_p ), 'remaining' => $remaining, 'run' => $run['id'] );
 	}
 	flxk_save_state( $preset_id, $st );
 	update_option( 'flxk_run_' . $run['id'], $run, false );
@@ -681,6 +696,7 @@ function flxk_execute_ops( array $ops, array $p, array &$ctx, array &$run, array
 		if ( 'same' === $op['status'] && ( ! isset( $op['selected'] ) || $op['selected'] ) ) {
 			// Reconcile older importer shapes only when the full current value matches the preset.
 			$st['owned'][ $t ] = flxk_target_hash( $t );
+			if ( 'content' === $op['section'] && isset( $op['identity'] ) ) { $st['content_ids'][ $t ] = (int) $op['id']; }
 		}
 		if ( 'content' === $op['section'] && $op['id'] ) {
 			$ctx['refs'][ $op['type'] ][ $op['key'] ] = $op['id'];
@@ -726,6 +742,14 @@ function flxk_execute_ops( array $ops, array $p, array &$ctx, array &$run, array
 			case 'content':
 				$T    = flxk_importers()[ $op['type'] ];
 				$item = flxk_resolve( $op['item'], $ctx );
+				if ( ! empty( $T['post_fields'] ) ) {
+					// Verify the exact identity/body observed by the planner, including a slug-only force selection.
+					$now = (int) call_user_func( $T['find'], $item );
+					if ( $now !== (int) $op['id'] || ( $now && ( (string) get_post_meta( $now, '_flxk_key', true ) !== $op['identity'] || flxk_hash( call_user_func( $T['read'], $now ) ) !== flxk_hash( $op['old'] ) ) ) ) {
+						$run['errors'][] = $t . ': content changed since preview'; break;
+					}
+					unset( $item['meta'], $item['terms'] );
+				}
 				$id   = call_user_func( $T['save'], $item, (int) $op['id'] );
 				if ( is_wp_error( $id ) ) {
 					$run['errors'][] = $t . ': ' . $id->get_error_message();
@@ -738,9 +762,15 @@ function flxk_execute_ops( array $ops, array $p, array &$ctx, array &$run, array
 					$run['backup'][ $t ] = array(
 						'id'   => (int) $id,
 						'data' => $op['old'],
+						'identity' => $op['identity_values'] ?? null,
 					);
 				}
 				$run['written'][ $t ] = flxk_hash( call_user_func( $T['read'], (int) $id ) );
+				if ( ! empty( $T['post_fields'] ) ) { $st['content_ids'][ $t ] = (int) $id; }
+				break;
+
+			case 'content_field':
+				flxk_content_field_execute( $op, $ctx, $run );
 				break;
 
 			case 'wp':
@@ -973,6 +1003,10 @@ function flxk_auto_migrations() {
 	}
 	foreach ( array_keys( flxk_state() ) as $id ) {
 		foreach ( flxk_pending_migrations( $id ) as $m ) {
+			$blocked = flxk_state( $id )['migration_blocked'][ $m['id'] ] ?? array();
+			if ( isset( $blocked['signature'] ) && $blocked['signature'] === flxk_hash( flxk_migration( $id, $m['id'] ) ) ) {
+				continue; // Remains pending for explicit preview/retry; do not create a run on every admin request.
+			}
 			if ( empty( $m['auto'] ) ) {
 				continue;
 			}
@@ -1139,13 +1173,16 @@ function flxk_revert_run( $run_id ) {
 	$profile  = flxk_profile_all();
 	$pdirty   = false;
 	$options  = array();
+	$identities = array();
 	foreach ( $run['backup'] as $t => $old ) {
 		$cur_hash = flxk_target_hash( $t );
 		if ( isset( $run['written'][ $t ] ) && $cur_hash !== $run['written'][ $t ] ) {
 			$skipped[] = $t; // Sonradan değişmiş.
 			continue;
 		}
-		if ( 0 === strpos( $t, 'profile:' ) ) {
+		if ( 0 === strpos( $t, 'content-field:' ) ) {
+			if ( ! flxk_content_field_restore( $t, $old ) ) { $skipped[] = $t; continue; }
+		} elseif ( 0 === strpos( $t, 'profile:' ) ) {
 			$path    = substr( $t, 8 );
 			$profile = flxk_path_set( $profile, $path, $old, FLXK_ABSENT === $old );
 			$pdirty  = true;
@@ -1167,11 +1204,19 @@ function flxk_revert_run( $run_id ) {
 			list( , $type ) = explode( ':', $t, 3 );
 			$T             = flxk_importers()[ $type ] ?? null;
 			if ( $T ) {
-				call_user_func( $T['save'], flxk_content_restore_item( $type, $t, $old['data'] ), (int) $old['id'] );
+				$restore = flxk_content_restore_item( $type, $t, $old['data'] );
+				if ( ! empty( $T['post_fields'] ) && ( ! get_post( (int) $old['id'] ) || (int) call_user_func( $T['find'], $restore ) !== (int) $old['id'] ) ) { $skipped[] = $t; continue; }
+				$result = call_user_func( $T['save'], $restore, (int) $old['id'] );
+				if ( is_wp_error( $result ) ) { $skipped[] = $t; continue; }
+				if ( isset( $old['identity'] ) ) { $identities[ (int) $old['id'] ] = $old['identity']; }
 			}
 		}
-		unset( $st['owned'][ $t ] );
+		unset( $st['owned'][ $t ], $st['content_ids'][ $t ] );
 		++$restored;
+	}
+	foreach ( $identities as $id => $values ) {
+		delete_post_meta( $id, '_flxk_key' );
+		foreach ( $values as $value ) { add_post_meta( $id, '_flxk_key', wp_slash( $value ) ); }
 	}
 	if ( $pdirty ) {
 		update_option( 'flx_profile', $profile );
@@ -1189,7 +1234,7 @@ function flxk_revert_run( $run_id ) {
 		if ( $T && ! empty( $T['disable'] ) ) {
 			call_user_func( $T['disable'], (int) $id );
 		}
-		unset( $st['owned'][ 'content:' . $type . ':' . $key ] );
+		unset( $st['owned'][ 'content:' . $type . ':' . $key ], $st['content_ids'][ 'content:' . $type . ':' . $key ] );
 		++$restored;
 	}
 	$st['runs'] = array_values( array_diff( (array) ( $st['runs'] ?? array() ), array( $run_id ) ) );
@@ -1237,6 +1282,12 @@ function flxk_content_restore_item( $type, $target, array $data ) {
 
 /** Hedefin sitedeki güncel değerinin hash'i (elle değişiklik tespiti). */
 function flxk_target_hash( $t ) {
+	if ( 0 === strpos( $t, 'content-field:' ) ) {
+		list( , $type, $key, $kind, $field ) = explode( ':', $t, 5 );
+		$T = flxk_importers()[ $type ] ?? null;
+		$id = $T ? (int) call_user_func( $T['find'], array( 'key' => $key ) ) : 0;
+		return flxk_hash( $id ? flxk_content_field_read( $id, $kind, rawurldecode( $field ) ) : array() );
+	}
 	if ( 0 === strpos( $t, 'profile:' ) ) {
 		$v = flxk_path_get( flxk_profile_all(), substr( $t, 8 ), FLXK_ABSENT );
 		return flxk_hash( $v );
