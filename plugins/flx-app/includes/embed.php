@@ -99,6 +99,10 @@ function flxapp_embed_css() {
 		. implode( ',', array_map( fn( $x ) => "$b $x", array( '#wpadminbar', '#adminmenumain', '#adminmenuback', '#adminmenuwrap', '#wpfooter', '#flxa-bottom', '.flxa-resizer', '.flxa-sw', '#screen-meta-links', '#flxa-progress' ) ) ) . '{display:none!important}'
 		. "$b #wpcontent{margin-left:0!important}$b #wpbody-content{padding-bottom:24px!important}"
 		. "$b #flxg-app,$b #flxc-app,$b #flxst-app{top:0!important;left:0!important;right:0!important;bottom:0!important;width:auto!important;height:auto!important}"
+		// Masaüstü: yönetim menüsü gizli olunca içerik kenara yapışmasın; sayfa boşlukları. Tam ekran uygulamalar (kilit sınıfları) ve blok editörü kendi düzenini korur.
+		. "html:not(.flx-screen-full):not(.flxg-lock):not(.flxsm-lock):not(.flxst-lock) body.flxapp-embed-desktop.flxapp-embed-desktop:not(.block-editor-page) #wpcontent{box-sizing:border-box;padding-left:clamp(12px,3vw,28px)!important;padding-right:clamp(12px,3vw,28px)!important}"
+		. "html:not(.flx-screen-full):not(.flxg-lock):not(.flxsm-lock):not(.flxst-lock) body.flxapp-embed-desktop.flxapp-embed-desktop:not(.block-editor-page) .wrap{margin:16px 0 0!important;max-width:100%}"
+		. "$b #wpbody-content{min-width:0;max-width:100%;overflow-x:clip}"
 		// Mobil: çentik/ana çubuk boşlukları, tam genişlik, bildirim yığınları dar.
 		. "html body.flxapp-embed-mobile #wpcontent{padding-left:max(10px,env(safe-area-inset-left))!important;padding-right:max(10px,env(safe-area-inset-right))!important}"
 		. "html body.flxapp-embed-mobile #wpbody-content{padding-bottom:calc(24px + env(safe-area-inset-bottom))!important}"
