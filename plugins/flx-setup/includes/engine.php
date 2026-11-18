@@ -410,7 +410,7 @@ function flxk_decide( $preset_id, $target, $exists, $cur, $new, array $st, array
 /**
  * Şablonun (ya da yamanın) siteye etkisini çıkarır. Hiçbir şey yazmaz.
  *
- * @return array{ops: array, warnings: string[]}
+ * @return array{ops: array, warnings: string[], unavailable: int}
  */
 function flxk_plan( $preset_id, array $p, array $opts = array() ) {
 	$st   = flxk_state( $preset_id );
