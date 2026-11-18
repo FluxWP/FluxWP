@@ -1,7 +1,7 @@
 <?php
 /**
  * Side menu: the role layouts of Settings › Admin theme › Menu and bottom bar, and the personal
- * pin / move lists of each user. The classic page, the right-click menu (admin-ajax), GraphQL and
+ * pin / move lists of each user. The right-click menu (admin-ajax), GraphQL and
  * Flux AI call this. Permission checks stay with the caller (manage_options for layouts; any signed-in
  * user for their own lists).
  *
@@ -174,7 +174,7 @@ final class FLXA_Menu_Service {
 	}
 
 	/**
-	 * Saves the stored shape as is (cleaned): the classic editor posts every custom role at once.
+	 * Saves the stored shape as is (cleaned): every custom role at once.
 	 *
 	 * @param array<string,mixed> $raw { role: { entries, bottom } }.
 	 */

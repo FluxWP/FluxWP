@@ -1,11 +1,10 @@
-/* Flux SEO: the classic tabs' look on FluxWP tokens (light and dark follow the admin theme). */
+/* Flux SEO on FluxWP tokens (light and dark follow the admin theme). */
 .flxs-app{--flxs-bd:var(--flux-border);--flxs-mut:var(--flux-text-muted);--flxs-ac:var(--flux-primary);--flxs-card:var(--flux-surface);--flxs-good:var(--flux-success);--flxs-mid:var(--flux-warning);--flxs-bad:var(--flux-danger);max-width:1180px;padding:0 0 24px;color:var(--flux-text);font-size:14px;line-height:1.5}
 .flxs-app h1{font-size:23px;font-weight:600;letter-spacing:0;margin:0}
 .flxs-app h2{font-size:16px;font-weight:600;margin:0 0 6px;display:block}
 .flxs-app h3{font-size:14px;font-weight:600;margin:0 0 8px}
 .flxs-app a{color:var(--flxs-ac)}
 .flxs-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:9px 0 4px}
-.flxs-classic{font-size:13px}
 .flxs-tabs{display:flex;gap:2px;flex-wrap:wrap;border-bottom:1px solid var(--flxs-bd);margin:8px 0 16px}
 .flxs-tab{padding:9px 14px;border:1px solid transparent;border-bottom:0;border-radius:6px 6px 0 0;color:var(--flxs-mut);font-size:14px;margin-bottom:-1px}
 .flxs-tab:hover{color:var(--flux-text)}

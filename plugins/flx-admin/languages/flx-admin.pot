@@ -109,27 +109,6 @@ msgstr ""
 msgid "FluxWP plugins"
 msgstr ""
 
-msgid "Changes here are real permissions: a disabled action is not just hidden from the menu, it can't be done even by URL. The Administrator role can't be changed."
-msgstr ""
-
-msgid "Permissions before the first change are backed up (%s)."
-msgstr ""
-
-msgid "Restore all roles to the backup?"
-msgstr ""
-
-msgid "Restore backup"
-msgstr ""
-
-msgid "Search permissions…"
-msgstr ""
-
-msgid "users"
-msgstr ""
-
-msgid "You do not have permission."
-msgstr ""
-
 msgid "Search or type a command…"
 msgstr ""
 
@@ -266,21 +245,6 @@ msgid "Open"
 msgstr ""
 
 msgid "None"
-msgstr ""
-
-msgid "Select date"
-msgstr ""
-
-msgid "Previous month"
-msgstr ""
-
-msgid "Next month"
-msgstr ""
-
-msgid "Today"
-msgstr ""
-
-msgid "Clear"
 msgstr ""
 
 msgid "Switch app"
@@ -472,6 +436,9 @@ msgstr ""
 msgid "Filters"
 msgstr ""
 
+msgid "Clear"
+msgstr ""
+
 msgid "Pagination"
 msgstr ""
 
@@ -598,264 +565,6 @@ msgstr ""
 msgid "Try again"
 msgstr ""
 
-msgid "Appearance"
-msgstr ""
-
-msgid "Menu and bottom bar"
-msgstr ""
-
-msgid "Permissions"
-msgstr ""
-
-msgid "App (PWA)"
-msgstr ""
-
-msgid "Choose logo"
-msgstr ""
-
-msgid "All other roles"
-msgstr ""
-
-msgid "Custom layout"
-msgstr ""
-
-msgid "Default layout"
-msgstr ""
-
-msgid "Group"
-msgstr ""
-
-msgid "Group name"
-msgstr ""
-
-msgid "New group"
-msgstr ""
-
-msgid "+ Add group"
-msgstr ""
-
-msgid "Remove group"
-msgstr ""
-
-msgid "Menu name (empty = original name)"
-msgstr ""
-
-msgid "Visible"
-msgstr ""
-
-msgid "Hidden"
-msgstr ""
-
-msgid "This role has no access"
-msgstr ""
-
-msgid "Submenus"
-msgstr ""
-
-msgid "Reset this role to default"
-msgstr ""
-
-msgid "Copy from another role…"
-msgstr ""
-
-msgid "Preview"
-msgstr ""
-
-msgid "Mobile bottom bar"
-msgstr ""
-
-msgid "Up to 4 shortcuts; the fifth button \"More\" opens the side panel."
-msgstr ""
-
-msgid "— empty —"
-msgstr ""
-
-msgid "Menus of newly installed plugins automatically land in the \"Other\" group."
-msgstr ""
-
-msgid "You have unsaved changes."
-msgstr ""
-
-msgid "Block access"
-msgstr ""
-
-msgid "Access blocked: not in the menu, opening by URL shows \"no permission\""
-msgstr ""
-
-msgid "Start collapsed"
-msgstr ""
-
-msgid "All permissions: Permissions tab"
-msgstr ""
-
-msgid "Access can't be blocked for the Administrator role."
-msgstr ""
-
-msgid "Where to show"
-msgstr ""
-
-msgid "%s: hidden"
-msgstr ""
-
-msgid "JavaScript is required for this screen."
-msgstr ""
-
-msgid "New view"
-msgstr ""
-
-msgid "Open the new view (same features, works in the FluxWP app too)."
-msgstr ""
-
-msgid "Brand"
-msgstr ""
-
-msgid "On (turning it off restores the standard WordPress dashboard)"
-msgstr ""
-
-msgid "Name"
-msgstr ""
-
-msgid "Subtitle"
-msgstr ""
-
-msgid "Logo"
-msgstr ""
-
-msgid "Remove"
-msgstr ""
-
-msgid "If empty, the site icon is used; if there is none, the Flux Admin icon."
-msgstr ""
-
-msgid "Options"
-msgstr ""
-
-msgid "Features"
-msgstr ""
-
-msgid "Bottom bar on mobile"
-msgstr ""
-
-msgid "Open WhatsApp and Tasks right next to the side menu (menu shrinks to icons)"
-msgstr ""
-
-msgid "Show the app switcher on WhatsApp and Tasks screens on phones"
-msgstr ""
-
-msgid "Fast navigation: the clicked menu page is prepared in advance, transitions are smooth"
-msgstr ""
-
-msgid "Command palette (Ctrl+K / ⌘K)"
-msgstr ""
-
-msgid "Style the login screen too"
-msgstr ""
-
-msgid "Live counter interval"
-msgstr ""
-
-msgid "%d s"
-msgstr ""
-
-msgid "Badges (WhatsApp, tasks, pending donations, updates) ride on the WordPress Heartbeat request; no extra requests. 60 s is recommended for Hostinger."
-msgstr ""
-
-msgid "Each role sees its own side menu and mobile bottom bar. Drag to reorder, rename, hide, group. Hiding does not change permissions; it only removes the item from the menu."
-msgstr ""
-
-msgid "The menu list is built on the next page load. Reload the page."
-msgstr ""
-
-msgid "\"Block access\" really closes that menu for this role: it isn't shown, and opening it by URL shows a \"no permission\" page. See the Permissions tab for detailed permissions."
-msgstr ""
-
-msgid "Donation awaiting approval"
-msgstr ""
-
-msgid "Unread WhatsApp"
-msgstr ""
-
-msgid "Welcome and summary"
-msgstr ""
-
-msgid "Top section"
-msgstr ""
-
-msgid "Greeting, date and summary tiles"
-msgstr ""
-
-msgid "Summary tiles"
-msgstr ""
-
-msgid "People only see tiles they have permission for. Plugins can add tiles with the `flxa_dashboard_stats` filter."
-msgstr ""
-
-msgid "Extra quick actions"
-msgstr ""
-
-msgid "Events|edit.php?post_type=etkinlik\nLive site|https://"
-msgstr ""
-
-msgid "One \"Label|Address\" per line. The address can be relative to wp-admin or a full https:// URL."
-msgstr ""
-
-msgid "Module order and visibility are personal: open \"Edit modules\" on the dashboard and drag the boxes."
-msgstr ""
-
-msgid "Install as an app"
-msgstr ""
-
-msgid "The site is not HTTPS; browsers will not allow installing."
-msgstr ""
-
-msgid "PWA"
-msgstr ""
-
-msgid "Allow installing the dashboard as an app on phones and computers"
-msgstr ""
-
-msgid "Opens full screen, shows the unread count on the app icon, and shows an offline screen when the connection drops. Admin pages are never cached."
-msgstr ""
-
-msgid "App name"
-msgstr ""
-
-msgid "Short name (under the icon)"
-msgstr ""
-
-msgid "Icon"
-msgstr ""
-
-msgid "The site icon (Appearance › Customize › Site Identity) is used if set."
-msgstr ""
-
-msgid "How to install?"
-msgstr ""
-
-msgid "The \"Install\" button on the dashboard, or menu › Install the app."
-msgstr ""
-
-msgid "Share › Add to Home Screen."
-msgstr ""
-
-msgid "Computer"
-msgstr ""
-
-msgid "The install icon in the address bar."
-msgstr ""
-
-msgid "Save"
-msgstr ""
-
-msgid "Check"
-msgstr ""
-
-msgid "Status"
-msgstr ""
-
-msgid "Description"
-msgstr ""
-
 msgid "%s role has a custom menu layout; other roles use the default grouped menu."
 msgid_plural "%s roles have custom menu layouts; other roles use the default grouped menu."
 msgstr[0] ""
@@ -921,6 +630,9 @@ msgstr ""
 msgid "Admin theme turned off."
 msgstr ""
 
+msgid "Live counter interval"
+msgstr ""
+
 msgid "Seconds (30, 60 or 120)."
 msgstr ""
 
@@ -946,108 +658,6 @@ msgid "Role key (e.g. editor)."
 msgstr ""
 
 msgid "%s menu reset to default."
-msgstr ""
-
-msgid "Background"
-msgstr ""
-
-msgid "Side menu"
-msgstr ""
-
-msgid "Cards"
-msgstr ""
-
-msgid "Text"
-msgstr ""
-
-msgid "Default theme"
-msgstr ""
-
-msgid "Automatic (device setting)"
-msgstr ""
-
-msgid "Everyone can change their own preference with the moon/sun button at the bottom left."
-msgstr ""
-
-msgid "Accent color"
-msgstr ""
-
-msgid "Colors"
-msgstr ""
-
-msgid "Reset colors to default"
-msgstr ""
-
-msgid "Font"
-msgstr ""
-
-msgid "System font"
-msgstr ""
-
-msgid "Custom…"
-msgstr ""
-
-msgid "Custom: the name of a font installed on the computer or loaded on the site."
-msgstr ""
-
-msgid "Font size"
-msgstr ""
-
-msgid "Normal"
-msgstr ""
-
-msgid "Large"
-msgstr ""
-
-msgid "Larger"
-msgstr ""
-
-msgid "Corners"
-msgstr ""
-
-msgid "Sharp"
-msgstr ""
-
-msgid "Slightly rounded"
-msgstr ""
-
-msgid "Rounded"
-msgstr ""
-
-msgid "Very rounded"
-msgstr ""
-
-msgid "Density"
-msgstr ""
-
-msgid "Comfortable"
-msgstr ""
-
-msgid "Compact (more rows in the menu)"
-msgstr ""
-
-msgid "Icons"
-msgstr ""
-
-msgid "Line icons in WordPress menus (FluxWP logos stay in color)"
-msgstr ""
-
-msgid "Package logos"
-msgstr ""
-
-msgid "Gradient (default)"
-msgstr ""
-
-msgid "Pastel"
-msgstr ""
-
-msgid "Used in the side menu, the FluxWP Panel package list and FluxWP App. Colours show the package group: platform, maintenance, communication, content, commerce."
-msgstr ""
-
-msgid "Screens without dark theme"
-msgstr ""
-
-msgid "One screen ID or body class per line (may end with *). Complex screens without their own dark theme stay light here."
 msgstr ""
 
 msgid "All lists"
@@ -1090,6 +700,9 @@ msgid "Unassigned"
 msgstr ""
 
 msgid "Overdue"
+msgstr ""
+
+msgid "Today"
 msgstr ""
 
 msgid "Done in the last 7 days"
@@ -1173,6 +786,9 @@ msgstr ""
 msgid "There is no backup to restore."
 msgstr ""
 
+msgid "All other roles"
+msgstr ""
+
 msgid "A layout needs at least one menu item."
 msgstr ""
 
@@ -1180,6 +796,12 @@ msgid "Choose a menu item."
 msgstr ""
 
 msgid "Unknown menu action."
+msgstr ""
+
+msgid "Donation awaiting approval"
+msgstr ""
+
+msgid "Unread WhatsApp"
 msgstr ""
 
 msgid "The logo must be an image from the media library."

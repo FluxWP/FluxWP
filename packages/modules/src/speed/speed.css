@@ -7,7 +7,6 @@
 .flxs-linkbtn{background:none;border:0;padding:0;font:inherit;cursor:pointer;text-align:left;text-decoration:underline;text-underline-offset:2px}
 .flxs-linkbtn.is-danger{color:var(--flux-danger);margin-top:16px}
 .flxs-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:9px 0 4px}
-.flxs-classic{font-size:13px}
 .flxs-tabs{display:flex;flex-wrap:wrap;gap:2px;border-bottom:1px solid var(--flxs-bd);margin:8px 0 14px}
 .flxs-tab{padding:8px 14px;border:1px solid transparent;border-bottom:0;border-radius:6px 6px 0 0;background:none;color:var(--flxs-mut);font-size:14px;cursor:pointer;margin-bottom:-1px}
 .flxs-tab:hover{color:var(--flux-text)}

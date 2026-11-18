@@ -2,7 +2,7 @@
 /**
  * Settings tabs: everything the tabs show besides the setting values (those are the `flxseo` option, written
  * through `flx_settings_schema`): search engines, sitemap, IndexNow state, the other-plugin notice. Also the
- * IndexNow bulk submission. The classic tabs, GraphQL and Flux AI call this; permission (manage_options) stays
+ * IndexNow bulk submission. GraphQL and Flux AI call this; permission (manage_options) stays
  * with the caller.
  *
  * @package flx-seo

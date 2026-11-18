@@ -1,5 +1,5 @@
 // Flux Analytics › Statistics. Same screen in wp-admin (wp-embed) and the FluxWP app; every read and write
-// goes through the Flux Analytics GraphQL operations. It has everything the classic page has: range and
+// goes through the Flux Analytics GraphQL operations. It is the only admin page (no classic page): range and
 // visitor filters, sticky headline cards, chart, live panel (5 s), world map, funnel, referral links,
 // channels, roles, pages, referrers, device/browser/os/language, campaigns, events, 404s, lists and page details.
 import { useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from 'react';
@@ -90,7 +90,7 @@ function Stats() {
     return () => document.removeEventListener('visibilitychange', on);
   }, []);
 
-  // This browser is not counted when the user's role is excluded (the classic screen sets the same flag).
+  // This browser is not counted when the user's role is excluded (the flag the tracker reads).
   useEffect(() => {
     try {
       if (cfg.ignoreBrowser) localStorage.setItem('flxan_ignore', '1');
@@ -111,7 +111,7 @@ function Stats() {
   const [seg, setSeg] = useState<Record<string, DimKind>>({ tech: 'DEVICE', camp: 'UTM_SOURCE' });
   const [eventName, setEventName] = useState('');
 
-  // #page=/path/ opens a page's details (the classic screen's shared links).
+  // #page=/path/ opens a page's details (shared links).
   useEffect(() => {
     const p = new URLSearchParams(window.location.hash.slice(1)).get('page');
     if (p) setPageOpen({ target: p, title: p });

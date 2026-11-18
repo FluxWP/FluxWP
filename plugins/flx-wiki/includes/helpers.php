@@ -354,7 +354,7 @@ function flxwk_cache_key( $name ) {
 }
 
 /**
- * Settings written (classic page, GraphQL, panel, preset): caches are cleared, and the address rules
+ * Settings written (GraphQL, panel, preset): caches are cleared, and the address rules
  * are rewritten once when the address base changed.
  *
  * @param mixed $old Old value.

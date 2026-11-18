@@ -577,30 +577,6 @@ flxt_same( 'Green Turkey', $b['name'] ?? null, 'brand save: fields left out keep
 flxt_same( array( 'about-me.md' ), array_column( $b['docs'] ?? array(), 'name' ), 'brand save: an empty document is deleted' );
 delete_option( 'flxai_brand_kit' );
 
-// The classic settings form saves through the same service.
-if ( ! function_exists( 'flxai_save_settings' ) ) {
-	require_once FLXAI_DIR . 'includes/admin.php'; // only loaded in wp-admin requests
-}
-wp_set_current_user( $admin );
-$_POST = array(
-	'flxai_settings_nonce' => wp_create_nonce( 'flxai_settings' ),
-	'model'                => 'anthropic/test-model',
-	'limit_day'            => '2,5',
-	'limit_action'         => 'warn',
-	'web_on'               => '1',
-	'key_openrouter'       => 'sk-or-classic-12345678',
-);
-$GLOBALS['flxai_settings_cache'] = null;
-flxt_same( true, flxai_save_settings(), 'classic settings form: saves' );
-flxt_same( 'anthropic/test-model', flxai_setting( 'model' ), 'classic settings form: model saved' );
-flxt_same( 2.5, (float) flxai_setting( 'limit_day' ), 'classic settings form: a comma decimal is read' );
-flxt_same( 1, (int) flxai_setting( 'web_on' ), 'classic settings form: a ticked box is on' );
-flxt_same( 0, (int) flxai_setting( 'shell_on' ), 'classic settings form: an unticked box is off' );
-flxt_same( 'sk-or-classic-12345678', flxai_setting( 'key_openrouter' ), 'classic settings form: key written' );
-$r = flxai_t_op( 'FlxAiSettingsScreen', array(), $admin );
-flxt_ok( false === strpos( flxai_t_json( $r ), 'sk-or-classic-12345678' ), 'classic settings form: the key is not in the GraphQL response' );
-$_POST = array();
-
 // Per-system AI settings: the switch, the model and the fields a plugin declared with the SDK.
 flx_ai_settings( 'flx-test-sys', array(
 	'tone'  => array( 'type' => 'select', 'label' => 'Tone', 'default' => 'plain', 'options' => array( 'plain' => 'Plain', 'warm' => 'Warm' ) ),
@@ -698,10 +674,7 @@ flxt_same( 'NOT_FOUND', $r['data']['flxAiMcpKeyRevoke']['errors'][0]['code'] ?? 
 $r = flxai_t_op( 'FlxAiMcpKeyRevoke', array( 'input' => array( 'id' => $id ) ), $admin );
 flxt_same( array(), $r['data']['flxAiMcpKeyRevoke']['overview']['keys'] ?? null, 'mcp key revoke: gone' );
 flxt_same( null, flxai_mcp_find_key( $secret ), 'mcp key revoke: the server refuses the key' );
-// The classic form creates through the same service.
-if ( ! function_exists( 'flxai_page_mcp' ) ) {
-	require_once FLXAI_DIR . 'includes/admin-mcp.php';
-}
+// Defaults of the service: empty name, no tools.
 $r = FLXAI_Mcp_Service::create_key( '', array() );
 flxt_same( 'AI', $r->overview->keys[0]->name ?? null, 'mcp key create: empty name falls back' );
 flxt_same( array(), $r->overview->keys[0]->tools ?? null, 'mcp key create: no tools means all' );

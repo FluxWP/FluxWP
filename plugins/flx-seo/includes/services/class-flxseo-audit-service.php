@@ -1,8 +1,8 @@
 <?php
 /**
  * Site audit: the one place that reads the audit report, its history and schedule, runs audits, applies one-click
- * fixes, checks content and returns the build guide. The classic tabs (AJAX / admin-post), REST (Flux App),
- * GraphQL and Flux AI call this. Permission checks stay with the caller (manage_options), as before.
+ * fixes, checks content and returns the build guide. REST (Flux App), GraphQL
+ * and Flux AI call this. Permission checks stay with the caller (manage_options), as before.
  *
  * Errors are WP_Error with `graphql_code` INVALID_INPUT / NOT_FOUND / INTERNAL and, for input problems, the `field`.
  *
@@ -325,7 +325,7 @@ final class FLXSEO_Audit_Service {
 	}
 
 	/**
-	 * Keeps the classic message, adds the code the clients read.
+	 * Keeps the message, adds the code the clients read.
 	 */
 	private static function failed( WP_Error $e ): WP_Error {
 		return new WP_Error( $e->get_error_code(), $e->get_error_message(), array( 'graphql_code' => 'INVALID_INPUT', 'status' => 400 ) );
@@ -333,7 +333,7 @@ final class FLXSEO_Audit_Service {
 }
 
 /**
- * Cache purge that works without Flux GraphQL (the services run in the classic page too).
+ * Cache purge that works without Flux GraphQL (the services run in REST and MCP too).
  *
  * @param string $tag Cache tag.
  */

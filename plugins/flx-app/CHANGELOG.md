@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.8.0
+- **Klasik sayfalar kaldırıldı.** Uygulama (yönetici) ve Uygulama erişimi sayfaları yalnız React ekranıyla açılır; "Klasik görünüm" bağlantısı, görünüm değiştirme (`flxapp_ui`), klasik formlar ve admin-post işleyicileri (includes/admin-appearance.php, assets/admin.css) silindi. Ekranların okuduğu kataloglar includes/admin-catalogs.php'ye taşındı.
+- Ekran açılamazsa (Flux GraphQL hazır değil, paket dosyası eksik, bundle yüklenmedi) boş sayfa yerine "Bu ekran yüklenemedi" kutusu ve **Sayfayı yenile** düğmesi çıkar.
+
 ## 0.7.2
 - wp-admin ekranı Flux GraphQL ekran kabuğundan açılır: ilk veri PHP'de sayfaya basılır (yükleniyor göstergesi yok), menüden diğer Flux ekranlarına sayfa yenilenmeden geçilir. Ekranın parçaları sayfa başında birlikte iner (modulepreload).
 - Ortak modül paketi yenilendi.

@@ -192,7 +192,7 @@ msgid "A separately installed WPGraphQL %1$s is running instead of the built-in 
 msgstr ""
 
 #: includes/checks.php
-msgid "A separately installed WPGraphQL %1$s is active. FluxWP needs %2$s or newer and below %3$s, so FluxWP GraphQL screens fall back to the classic pages. Deactivate it to use the built-in copy."
+msgid "A separately installed WPGraphQL %1$s is active. FluxWP needs %2$s or newer and below %3$s, so FluxWP screens cannot open. Deactivate it to use the built-in copy."
 msgstr ""
 
 #: includes/checks.php
@@ -233,6 +233,30 @@ msgstr ""
 
 #: includes/screens.php
 msgid "Loading the screen…"
+msgstr ""
+
+#: includes/screens.php
+msgid "A separately installed WPGraphQL plugin is active and FluxWP cannot use it. Deactivate it under Plugins; FluxWP has its own copy."
+msgstr ""
+
+#: includes/screens.php
+msgid "Flux GraphQL is not ready on this site. Check Flux GraphQL under Plugins."
+msgstr ""
+
+#: includes/screens.php
+msgid "The screen files of this plugin are missing. Update or reinstall the plugin."
+msgstr ""
+
+#: includes/screens.php
+msgid "If the plugin was just updated, the browser or site cache may still hold old files. Hard-reload the page (Ctrl/Cmd + Shift + R); if it persists, purge the site cache."
+msgstr ""
+
+#: includes/screens.php
+msgid "This screen could not be loaded"
+msgstr ""
+
+#: includes/screens.php
+msgid "Reload page"
 msgstr ""
 
 #: includes/upload.php
@@ -972,10 +996,6 @@ msgid "Input problems to show next to the form fields. Empty when the mutation s
 msgstr ""
 
 #: includes/kit/settings-types.php
-msgid "Changes to %s. Only the fields you send are changed."
-msgstr ""
-
-#: includes/kit/settings-types.php
 msgid "Panel settings of the installed FluxWP packages (from flx_settings_schema)."
 msgstr ""
 
@@ -993,6 +1013,10 @@ msgstr ""
 
 #: includes/kit/settings-types.php
 msgid "This setting cannot be changed here."
+msgstr ""
+
+#: includes/kit/settings-types.php
+msgid "Changes to %s. Only the fields you send are changed."
 msgstr ""
 
 #: includes/kit/settings-types.php

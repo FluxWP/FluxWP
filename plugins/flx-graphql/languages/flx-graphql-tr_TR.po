@@ -146,8 +146,8 @@ msgstr "Yerleşik WPGraphQL %s çalışıyor."
 msgid "A separately installed WPGraphQL %1$s is running instead of the built-in %2$s. It works, but its updates are not tested with FluxWP. Use the built-in copy unless another plugin needs the separate one."
 msgstr "Yerleşik %2$s yerine ayrı kurulmuş WPGraphQL %1$s çalışıyor. Çalışır, ama güncellemeleri FluxWP ile test edilmez. Başka bir eklenti ayrı kopyaya ihtiyaç duymuyorsa yerleşik kopyayı kullanın."
 
-msgid "A separately installed WPGraphQL %1$s is active. FluxWP needs %2$s or newer and below %3$s, so FluxWP GraphQL screens fall back to the classic pages. Deactivate it to use the built-in copy."
-msgstr "Ayrı kurulmuş WPGraphQL %1$s etkin. FluxWP %2$s veya üstünü ve %3$s altını ister; bu yüzden FluxWP GraphQL ekranları klasik sayfalara döner. Yerleşik kopyayı kullanmak için onu devre dışı bırakın."
+msgid "A separately installed WPGraphQL %1$s is active. FluxWP needs %2$s or newer and below %3$s, so FluxWP screens cannot open. Deactivate it to use the built-in copy."
+msgstr "Ayrı kurulmuş WPGraphQL %1$s etkin. FluxWP %2$s veya üstünü ve %3$s altını ister; bu yüzden FluxWP ekranları açılamaz. Yerleşik kopyayı kullanmak için onu devre dışı bırakın."
 
 msgid "The built-in WPGraphQL files are missing. Reinstall Flux GraphQL from FluxWP Panel › Packages."
 msgstr "Yerleşik WPGraphQL dosyaları eksik. Flux GraphQL'i FluxWP Panel › Paketler'den yeniden kurun."
@@ -178,6 +178,24 @@ msgstr "Bu ekran JavaScript gerektirir."
 
 msgid "Loading the screen…"
 msgstr "Ekran yükleniyor…"
+
+msgid "A separately installed WPGraphQL plugin is active and FluxWP cannot use it. Deactivate it under Plugins; FluxWP has its own copy."
+msgstr "Ayrı kurulmuş bir WPGraphQL eklentisi etkin ve FluxWP onu kullanamıyor. Eklentiler sayfasından devre dışı bırakın; FluxWP kendi kopyasını taşır."
+
+msgid "Flux GraphQL is not ready on this site. Check Flux GraphQL under Plugins."
+msgstr "Flux GraphQL bu sitede hazır değil. Eklentiler sayfasında Flux GraphQL'i kontrol edin."
+
+msgid "The screen files of this plugin are missing. Update or reinstall the plugin."
+msgstr "Bu eklentinin ekran dosyaları eksik. Eklentiyi güncelleyin ya da yeniden kurun."
+
+msgid "If the plugin was just updated, the browser or site cache may still hold old files. Hard-reload the page (Ctrl/Cmd + Shift + R); if it persists, purge the site cache."
+msgstr "Eklenti yeni güncellendiyse tarayıcı ya da site önbelleği eski dosyaları tutuyor olabilir. Sayfayı sert yenileyin (Ctrl/Cmd + Shift + R); sürerse site önbelleğini temizleyin."
+
+msgid "This screen could not be loaded"
+msgstr "Bu ekran yüklenemedi"
+
+msgid "Reload page"
+msgstr "Sayfayı yenile"
 
 msgid "Uploads are not accepted for this screen."
 msgstr "Bu ekran için dosya yüklenemez."
@@ -731,9 +749,6 @@ msgstr "Veritabanı kimliği."
 msgid "Input problems to show next to the form fields. Empty when the mutation succeeded."
 msgstr "Form alanlarının yanında gösterilecek girdi sorunları. İşlem başarılıysa boş."
 
-msgid "Changes to %s. Only the fields you send are changed."
-msgstr "%s değişiklikleri. Yalnız gönderdiğiniz alanlar değişir."
-
 msgid "Panel settings of the installed FluxWP packages (from flx_settings_schema)."
 msgstr "Kurulu FluxWP paketlerinin panel ayarları (flx_settings_schema'dan)."
 
@@ -748,6 +763,9 @@ msgstr "Değişiklikten sonraki ayarlar."
 
 msgid "This setting cannot be changed here."
 msgstr "Bu ayar burada değiştirilemez."
+
+msgid "Changes to %s. Only the fields you send are changed."
+msgstr "%s değişiklikleri. Yalnız gönderdiğiniz alanlar değişir."
 
 msgid "A list or object is expected."
 msgstr "Liste ya da nesne bekleniyor."

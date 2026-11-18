@@ -207,22 +207,6 @@ function flxseo_indexnow_all_urls() {
 	return array_values( array_unique( (array) apply_filters( 'flxseo_indexnow_all_urls', $urls ) ) );
 }
 
-add_action(
-	'admin_post_flxseo_indexnow_all',
-	function () {
-		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'Not allowed.', 'flx-seo' ) );
-		}
-		check_admin_referer( 'flxseo_indexnow_all' );
-		$r = FLXSEO_Settings_Service::submit_indexnow();
-		/* translators: %d: adres sayısı */
-		$msg = is_wp_error( $r ) ? array( 'error', $r->get_error_message() ) : array( 'success', sprintf( __( '%d URLs submitted to Bing, Yandex and the other IndexNow search engines.', 'flx-seo' ), $r ) );
-		set_transient( 'flxseo_indexnow_msg_' . get_current_user_id(), $msg, 60 );
-		wp_safe_redirect( flxseo_admin_url() . '#indexnow' );
-		exit;
-	}
-);
-
 /**
  * İlk bildirim: IndexNow açıkken site hiç toplu bildirilmediyse (yeni kurulum, IndexNow yeni açıldı ya da site
  * arama motorlarına yeni açıldı) tüm site bir kez kendiliğinden gönderilir. Cron'a güvenilmez (Hostinger'da

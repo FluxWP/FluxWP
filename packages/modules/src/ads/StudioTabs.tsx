@@ -508,7 +508,7 @@ function hostOf(url: string): string {
   }
 }
 
-/** Live preview of one ad: text, image, headline and button, like the classic editor. */
+/** Live preview of one ad: text, image, headline and button. */
 function Preview({ ad, host, ctaLabel }: { ad: AdForm; host: string; ctaLabel: string }) {
   const safe = /^https?:\/\//i.test(ad.image) ? ad.image : '';
   return (

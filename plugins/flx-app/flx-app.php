@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux App
  * Description:       FluxWP masaüstü ve mobil uygulamasının sunucu tarafı: OAuth 2.0 (PKCE) giriş, cihazlar ve push, uygulama görünümü (config), eklenti ekranları (manifest), panel oturumu. MCP istemcileri de OAuth ile bağlanır.
- * Version:           0.7.2
+ * Version:           0.8.0
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Requires Plugins:  flx-graphql
@@ -22,7 +22,7 @@ if ( defined( 'FLXAPP_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXAPP_VERSION', '0.7.2' );
+define( 'FLXAPP_VERSION', '0.8.0' );
 define( 'FLXAPP_DB_VERSION', 2 );
 define( 'FLXAPP_FILE', __FILE__ );
 define( 'FLXAPP_DIR', plugin_dir_path( __FILE__ ) );
@@ -53,7 +53,7 @@ require_once FLXAPP_DIR . 'includes/system-checks.php';
 if ( is_admin() ) {
 	require_once FLXAPP_DIR . 'includes/flux-ui.php';
 	require_once FLXAPP_DIR . 'includes/admin.php';
-	require_once FLXAPP_DIR . 'includes/admin-appearance.php';
+	require_once FLXAPP_DIR . 'includes/admin-catalogs.php';
 }
 
 /*
@@ -67,9 +67,8 @@ add_action(
 			return;
 		}
 		require_once FLXAPP_DIR . 'includes/graphql/schema.php';
-		// The admin service reads the catalogs the classic pages define (they are only loaded in wp-admin).
-		require_once FLXAPP_DIR . 'includes/admin.php';
-		require_once FLXAPP_DIR . 'includes/admin-appearance.php';
+		// The admin service reads these catalogs (otherwise loaded only in wp-admin).
+		require_once FLXAPP_DIR . 'includes/admin-catalogs.php';
 		require_once FLXAPP_DIR . 'includes/graphql/admin-schema.php';
 	}
 );

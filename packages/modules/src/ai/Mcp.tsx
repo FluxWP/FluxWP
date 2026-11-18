@@ -1,5 +1,5 @@
 // Flux AI › MCP: switch the server and OAuth, create and revoke keys (shown once), connect an assistant, recent activity.
-// Same features as the classic page; everything goes over the flxAiMcp* operations.
+// Everything goes over the flxAiMcp* operations.
 import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { FlxAiMcp, FlxAiMcpKeyCreate, FlxAiMcpKeyRevoke, FlxAiMcpServerUpdate } from '@fluxwp/graphql/operations';

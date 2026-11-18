@@ -1,6 +1,12 @@
 # Changelog
 
+## 0.7.0
+
+- **Ortak "ekran yüklenemedi" kutusu.** `flx_admin_screen_page()`, `flx_admin_screen_unavailable()` ve `flx_admin_screen_failsafe()`: React ekranı açılamazsa (Flux GraphQL hazır değil, paket dosyası eksik, bundle/parça yüklenemedi, 6 sn sonra ekran hâlâ boş) boş sayfa yerine "Bu ekran yüklenemedi" kutusu ve **Sayfayı yenile** düğmesi çıkar. `flx_admin_screen_render()` bu kutuyu her ekrana kendisi ekler.
+- Ekran kabuğundan klasik sayfa yedeği ve `enabled` örneği kaldırıldı; klasik ekranlar artık yok.
+
 ## 0.6.0
+
 - Ekran kabuğu: ekranın ilk açılışta gönderdiği sorgular kullanıcı başına öğrenilir (admin-ajax `flx_screen_learn`, kullanıcı meta `flx_gql_screen_queries`, ekran başına en çok 10) ve bir sonraki açılışta PHP'de önceden basılır. Önyükleme 0,8 sn bütçeyle sınırlı.
 - Ekranın JS parçaları `<link rel="modulepreload">` ile sayfa başında birlikte iner (chunks.json `preload`, tools/fluxapp/embed-preload.mjs).
 - Yeni argüman `wrap_class`; seçeneklerdeki `startPage` boş değilse sayfa argümanını ezer; `needs` noktalı yol kabul eder (`wp.media`).

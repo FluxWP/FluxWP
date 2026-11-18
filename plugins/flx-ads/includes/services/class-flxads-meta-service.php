@@ -1,9 +1,9 @@
 <?php
 /**
  * Flux Ads: what happens in the Meta ad account: campaigns (read, pause, daily budget), the change history,
- * suggestions and A/B / holdout tests. The classic pages, GraphQL and Flux AI use the same legacy classes
+ * suggestions and A/B / holdout tests. GraphQL and Flux AI use the same legacy classes
  * (FLXADS_Manager, FLXADS_Optimizer, FLXADS_Experiments); this service gives GraphQL typed shapes and holds
- * the glue the classic admin-post handlers used to carry. Permission checks stay with the caller.
+ * the glue the old admin-post handlers used to carry. Permission checks stay with the caller.
  *
  * Errors are WP_Error with `graphql_code` INVALID_INPUT / NOT_FOUND and the input `field`.
  *
@@ -611,7 +611,7 @@ final class FLXADS_Meta_Service {
 	/* ------------------------------------------------------------ Tests */
 
 	/**
-	 * Result table of one test, built like the classic page does.
+	 * Result table of one test, built for the screen.
 	 *
 	 * @param array<string,mixed> $e   Test.
 	 * @param array<string,mixed> $r   Result.

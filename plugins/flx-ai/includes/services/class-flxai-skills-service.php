@@ -1,6 +1,6 @@
 <?php
 /**
- * Skills: list, edit, folder files, import and export, tests and the brand kit. The classic page and GraphQL
+ * Skills: list, edit, folder files, import and export, tests and the brand kit. GraphQL and the AI tools
  * share this class; the folder and zip work stays in includes/skills.php.
  *
  * @package FLX_AI

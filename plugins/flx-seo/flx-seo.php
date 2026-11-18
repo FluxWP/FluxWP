@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Flux SEO
  * Description: Meta başlık/açıklama, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap ayarları, favicon ve SEO kontrolü. Yapay zekâ asistanları için içerik ve SEO araçları (MCP sunucusu Flux AI'da).
- * Version: 1.12.1
+ * Version: 1.13.0
  * Author: FluxWP
  * Requires at least: 6.5
  * Requires PHP: 8.1
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback; no Flux Lang dependency.
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
-define( 'FLXSEO_VERSION', '1.12.1' );
+define( 'FLXSEO_VERSION', '1.13.0' );
 
 define( 'FLXSEO_FILE', __FILE__ );
 define( 'FLXSEO_DIR', plugin_dir_path( __FILE__ ) );
@@ -57,7 +57,7 @@ require FLXSEO_DIR . 'includes/admin-ui.php';
 
 /*
  * GraphQL (Flux GraphQL): schema only inside a GraphQL request; the persisted operations the SEO screen sends.
- * Without Flux GraphQL (0.2.0+) the schema is left out and the classic tabs keep working.
+ * Without Flux GraphQL (0.2.0+) the schema is left out and the admin screen says it cannot open.
  */
 add_action(
 	'flx_gql_register',

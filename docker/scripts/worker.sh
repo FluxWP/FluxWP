@@ -1,6 +1,6 @@
 #!/bin/sh
 # FluxWP Docker - worker container.
-# Runtime revision: 2026.11.10.2
+# Runtime revision: 2026.11.17.1
 #
 # 1. Waits for the WordPress files and the database.
 # 2. One-time bootstrap (idempotent, safe on every restart):
@@ -182,7 +182,12 @@ MU_DST="$ROOT/wp-content/mu-plugins/flx-docker.php"
 # activates it on install and opens its wizard on the first wp-admin visit.
 prepare_fluxwp() {
 	if ! truthy "${FLUXWP_SETUP:-true}"; then
-		[ -f "$MU_DST" ] && rm -f "$MU_DST"
+		# The mu-plugin also wires WordPress to the wpapi container (WPAPI_KEY), so it stays then.
+		if [ -n "${WPAPI_KEY:-}" ] && [ -f "$MU_SRC" ]; then
+			cmp -s "$MU_SRC" "$MU_DST" 2>/dev/null || { mkdir -p "$ROOT/wp-content/mu-plugins" && cp "$MU_SRC" "$MU_DST" || log "mu-plugin could not be written"; }
+		else
+			[ -f "$MU_DST" ] && rm -f "$MU_DST"
+		fi
 		return 0
 	fi
 	if [ -f "$MU_SRC" ] && ! cmp -s "$MU_SRC" "$MU_DST" 2>/dev/null; then

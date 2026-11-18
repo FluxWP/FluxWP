@@ -1,5 +1,9 @@
 # Flux Wiki
 
+## 0.4.0
+- **Klasik ayar sayfası kaldırıldı.** Wiki › Ayarlar yalnız React ekranıyla açılır; "Klasik görünüm" bağlantısı, görünüm değiştirme (`flxwk_ui`) ve eski form işleyicileri (`admin_post_flxwk_save`, `admin_post_flxwk_seed`) silindi. Sayfa düzenleyici (WordPress yazı ekranı, Markdown) aynen durur.
+- Ekran açılamazsa (Flux GraphQL hazır değil, paket dosyası eksik, bundle yüklenmedi) boş sayfa yerine "Bu ekran yüklenemedi" kutusu ve **Sayfayı yenile** düğmesi çıkar.
+
 ## 0.3.2
 - wp-admin ekranı Flux GraphQL ekran kabuğundan açılır: ilk veri PHP'de sayfaya basılır (yükleniyor göstergesi yok), menüden diğer Flux ekranlarına sayfa yenilenmeden geçilir. Ekranın parçaları sayfa başında birlikte iner (modulepreload).
 - Ortak modül paketi yenilendi.

@@ -16,7 +16,7 @@ final class FLXWK_Admin_Service {
 	/** MCP tools the wiki adds. */
 	public const MCP_TOOLS = array( 'flxwk_search', 'flxwk_get_page', 'flxwk_list_pages', 'flxwk_save_page' );
 
-	/** Settings tabs of the classic page. */
+	/** Settings tabs. */
 	public const TABS = array( 'general', 'look', 'ai' );
 
 	/**
@@ -45,7 +45,7 @@ final class FLXWK_Admin_Service {
 	}
 
 	/**
-	 * Saves one tab of the settings the way the classic page does (the same sanitising).
+	 * Saves one tab of the settings (the same sanitising for every caller).
 	 *
 	 * @param string               $tab Tab: general, look or ai.
 	 * @param array<string,mixed>  $p   Submitted values (already unslashed).

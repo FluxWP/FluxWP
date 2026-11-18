@@ -56,11 +56,6 @@ function Page() {
     <div className="flxai-app">
       <div className="flxai-head">
         <h1>{t(v.title)}</h1>
-        {host.classicUrl && (
-          <a className="flxai-classic" href={host.classicUrl}>
-            {t('Classic view')}
-          </a>
-        )}
       </div>
       {v.sub && <p className="flxai-lead">{t(v.sub)}</p>}
       <View />

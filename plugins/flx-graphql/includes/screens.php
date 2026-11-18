@@ -11,8 +11,7 @@
  *             'assets_dir'  => FLXSEO_DIR . 'assets/flux/',  // tools/fluxapp/embed-sync.sh output
  *             'assets_url'  => FLXSEO_URL . 'assets/flux/',
  *             'version'     => FLXSEO_VERSION,
- *             'enabled'     => 'flxseo_flux_ui',             // bool or callable: the new view is on for this user
- *             'options'     => 'flxseo_flux_options',        // callable: module mount options (siteName, colors, classicUrl…)
+ *             'options'     => 'flxseo_flux_options',        // callable: module mount options (siteName, colors…)
  *             'start_param' => 'tab',                        // query argument that selects the screen's start page
  *             'preload'     => array( array( 'FlxSeoSettingsScreen' ) ), // first queries: [ name, variables ]
  *         )
@@ -26,7 +25,9 @@
  * globals the screen needs; a page without them loads normally), 'enqueue' (callable run on the screen's own
  * page load; may return mount options), 'body_class'. The callables get the page slug.
  *
- * The page callback prints the screen with `if ( flx_admin_screen_render() ) { return; }`.
+ * The page callback prints the screen with `flx_admin_screen_page()`. There is no classic page behind it: when
+ * the screen cannot open (GraphQL not ready, bundle missing) or its code fails to load, the page says so and
+ * offers a reload instead of staying blank.
  *
  * What the shell does:
  *  - First load: enqueues the package's bundle and mounts the screen; runs the screen's first queries in
@@ -639,7 +640,8 @@ add_filter(
 
 /**
  * Prints the current screen: container, preloaded results, mount options and the navigator's routes.
- * Call it from the page callback; false when the page is not a usable Flux screen (print the classic page).
+ * Call it from the page callback; false when the page is not a usable Flux screen (flx_admin_screen_page()
+ * prints the "could not be loaded" notice then).
  */
 function flx_admin_screen_render(): bool {
 	$page = flx_admin_screen_current();
@@ -665,6 +667,7 @@ function flx_admin_screen_render(): bool {
 	flx_admin_screen_print_preload( $s, $query );
 	echo $full ? '' : '<div class="wrap flx-screen-wrap' . ( '' !== $s['wrap_class'] ? ' ' . esc_attr( $s['wrap_class'] ) : '' ) . '">';
 	echo '<div id="' . esc_attr( $id ) . '" class="flx-screen" data-layout="' . esc_attr( $full ? 'full' : 'inline' ) . '" tabindex="-1"><noscript>' . esc_html__( 'This screen needs JavaScript.', 'flx-graphql' ) . '</noscript></div>';
+	flx_admin_screen_failsafe( $id );
 	echo $full ? '' : '</div>';
 	// Paint in the right theme before the bundle runs (no light flash on a dark page).
 	echo '<script>(function(d){var e=d.getElementById(' . wp_json_encode( $id ) . '),t=' . wp_json_encode( flx_gql_str( $opts['theme'] ?? 'admin' ) ) . ',k=' . wp_json_encode( $s['theme_storage'] ) . ',m;if(!e)return;if(k){try{m=localStorage.getItem(k)}catch(x){}t=m||"auto"}if(t==="admin")t=d.documentElement.classList.contains("flxa-dark")?"dark":"light";if(t==="auto")t=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";e.dataset.theme=t})(document);</script>';
@@ -811,4 +814,70 @@ function flx_admin_screen_print_routes( string $current, string $el ): void {
 		),
 	);
 	echo '<script>window.FlxScreensConfig=' . wp_json_encode( $cfg, JSON_HEX_TAG | JSON_HEX_AMP | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . ';</script>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+}
+
+/**
+ * Prints the current Flux screen, or the "could not be loaded" notice when it cannot open here.
+ * The page callback of every Flux screen: there is no classic page to fall back to.
+ */
+function flx_admin_screen_page(): void {
+	if ( ! flx_admin_screen_render() ) {
+		flx_admin_screen_unavailable();
+	}
+}
+
+/**
+ * Why the screen of this page cannot open, for the notice (empty: nothing known).
+ */
+function flx_admin_screen_unavailable_reason(): string {
+	if ( ! flx_gql_ready() ) {
+		$s = flx_gql_state();
+		if ( 'external' === ( $s['source'] ?? '' ) ) {
+			return __( 'A separately installed WPGraphQL plugin is active and FluxWP cannot use it. Deactivate it under Plugins; FluxWP has its own copy.', 'flx-graphql' );
+		}
+		return __( 'Flux GraphQL is not ready on this site. Check Flux GraphQL under Plugins.', 'flx-graphql' );
+	}
+	return __( 'The screen files of this plugin are missing. Update or reinstall the plugin.', 'flx-graphql' );
+}
+
+/**
+ * The notice a Flux screen shows instead of a blank page: what happened and a reload button.
+ *
+ * @param string $reason  Extra sentence (why); empty: the cache hint.
+ * @param bool   $visible False: printed hidden, flx_admin_screen_failsafe() shows it when the screen fails.
+ * @param string $id      Element id.
+ */
+function flx_admin_screen_fail_html( string $reason = '', bool $visible = true, string $id = '' ): string {
+	if ( '' === $reason ) {
+		$reason = __( 'If the plugin was just updated, the browser or site cache may still hold old files. Hard-reload the page (Ctrl/Cmd + Shift + R); if it persists, purge the site cache.', 'flx-graphql' );
+	}
+	$btn = 'padding:8px 14px;border-radius:8px;border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer;font:inherit';
+	return '<div class="flx-screen-fail" role="alert"' . ( '' !== $id ? ' id="' . esc_attr( $id ) . '"' : '' ) . ( $visible ? '' : ' hidden' )
+		. ' style="max-width:520px;margin:48px auto;padding:24px;text-align:center">'
+		. '<h2 style="margin:0 0 8px;font-size:18px;font-weight:600">' . esc_html__( 'This screen could not be loaded', 'flx-graphql' ) . '</h2>'
+		. '<p style="margin:0 0 16px;opacity:.8">' . esc_html( $reason ) . '</p>'
+		. '<button type="button" style="' . esc_attr( $btn ) . '" onclick="location.reload()">' . esc_html__( 'Reload page', 'flx-graphql' ) . '</button>'
+		. '</div>';
+}
+
+/**
+ * Prints the notice for a Flux screen that cannot open on this page.
+ *
+ * @param string $reason Why; empty: flx_admin_screen_unavailable_reason().
+ */
+function flx_admin_screen_unavailable( string $reason = '' ): void {
+	echo '<div class="wrap">' . flx_admin_screen_fail_html( '' !== $reason ? $reason : flx_admin_screen_unavailable_reason() ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in flx_admin_screen_fail_html().
+}
+
+/**
+ * Watches a screen container: when the bundle (or one of its chunks) fails to load, or nothing mounts, the
+ * hidden notice next to it appears. A screen that mounted and then fails shows the same notice from React
+ * (apps/wp-embed ScreenGuard). Also for packages that mount their screen themselves.
+ *
+ * @param string $container Id of the screen element.
+ */
+function flx_admin_screen_failsafe( string $container ): void {
+	$fail = $container . '-fail';
+	echo flx_admin_screen_fail_html( '', false, $fail ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in flx_admin_screen_fail_html().
+	echo '<script>(function(w,d){var c=' . wp_json_encode( $container ) . ',f=' . wp_json_encode( $fail ) . ';function show(){var e=d.getElementById(f),el=d.getElementById(c);if(!e||!e.hidden||!el||el.querySelector("*:not(noscript)"))return;el.textContent="";el.style.display="none";e.hidden=false;}function bad(t){return t&&t.tagName==="SCRIPT"&&/\/assets\/(flux|runtime)\//.test(t.src||"");}w.addEventListener("error",function(e){if(bad(e.target))show();},true);w.addEventListener("unhandledrejection",function(e){var m=String(e.reason&&e.reason.message||e.reason||"");if(/dynamically imported module|Importing a module script failed|error loading dynamically/i.test(m))show();});w.addEventListener("load",function(){setTimeout(show,6000);});})(window,document);</script>';
 }

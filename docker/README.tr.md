@@ -18,6 +18,7 @@
 | `mysql` | Apache + mod_php | MySQL 8.4 LTS | yok | MySQL bekleyen sunucu ve araçlar |
 | `mariadb-redis` (varsayılan) | Apache + mod_php | MariaDB 11.8 LTS | Redis 8.8 | WooCommerce, üyelik, yoğun yönetim paneli. `docker/` içinde de var: `docker-compose.yml` (Coolify) ve `docker-compose.local.yml` + `.env.example` (düz Docker) |
 | `nginx-fpm` | nginx 1.30 + PHP-FPM | MariaDB 11.8 LTS | Redis 8.8 | GB RAM başına en çok trafik |
+| `wpapi` | Apache + mod_php | MariaDB 11.8 LTS | Redis 8.8 | `mariadb-redis` + aynı compose'da WhatsApp API (flx-wpapi), WordPress'e hazır bağlı. Bkz. [WordPress + WhatsApp API](#wordpress--whatsapp-api) |
 
 Her yığının iki hali var:
 
@@ -78,6 +79,25 @@ docker compose exec worker cat /run/flx-private/admin-password
 docker compose exec worker rm /run/flx-private/admin-password
 ```
 
+## WordPress + WhatsApp API
+
+`wpapi` yığını, `mariadb-redis` + `wpapi` servisi olarak [FluxWP WhatsApp API](https://github.com/FluxWP/whatsapp-api) (flx-wpapi, Evolution API v2 uyumlu WhatsApp köprüsü). Diğer yığınlar değişmez; WhatsApp'ı aynı sunucuda istediğinde bunu kullan.
+
+- **Tek ortak anahtar.** Verdiğin tek gizli değer `WPAPI_KEY`. `wpapi` konteyneri bunu `FLXW_API_KEY` olarak okur, WordPress `WPAPI_KEY` olarak alır. Coolify üretir; düz Docker'da `openssl rand -hex 32`.
+- **İç ağ.** WordPress `http://wpapi:3000` adresine bağlanır. Servis port yayınlamaz, dışarıdan erişilemez. `FLXW_ALLOW_PRIVATE_URLS=1`, köprünün Docker ağında WordPress'e webhook ve medya için geri çağrı yapmasına izin verir.
+- **Elle bağlantı yok.** Flux Mail etkinken FluxWP Docker mu-plugin'i bu adres, anahtar ve instance adıyla (`WPAPI_INSTANCE`, varsayılan `main`) bir WhatsApp bağlantısı (tür Flux WPAPI) ekler. Anahtarı ya da adresi değiştirirsen bağlantı sonraki istekte güncellenir.
+- **Aynı veritabanı.** Köprü verisini yığının MariaDB'sinde (`flxw_*` tabloları), ayarlarını `wpapi-data` volume'unda tutar. Numara eşleme: Flux Mail › Bağlantılar › WhatsApp bağlantısı › hesap ekle › QR'ı okut (WhatsApp › Bağlı cihazlar).
+- Opsiyonel: `WPAPI_MSG_KEEP_DAYS` (mesaj geçmişi, varsayılan 45) ve yedek panel için `WPAPI_PANEL=on` (port yayınla ya da proxy'le; ilk giriş `docker compose logs wpapi` içindeki kurulum token'ını ister).
+
+```bash
+cd compose/wpapi
+cp .env.example .env
+# DB_PASSWORD, DB_ROOT_PASSWORD, REDIS_PASSWORD, WPAPI_KEY değerlerini yaz
+docker compose up -d
+```
+
+Coolify: `coolify/wpapi/docker-compose.yml` içeriğini **Docker Compose Empty**'ye yapıştır. İmaj `ghcr.io/fluxwp/wordpress:wpapi-node22` (`FluxWP/whatsapp-api` `main`'den build edilir, her gün yenilenir). Baileys resmi olmayan WhatsApp Web protokolünü kullanır; kaybetmeyi göze alabileceğin bir numara kullan, toplu mesajdan kaçın.
+
 ## İmajlar
 
 Ayarlar imajlarımızın içinde, compose dosyalarında yalnız servisler ve env değişkenleri var:
@@ -88,6 +108,7 @@ Ayarlar imajlarımızın içinde, compose dosyalarında yalnız servisler ve env
 | `ghcr.io/fluxwp/wordpress:7.1-php8.4-fpm` | `wordpress:7.1-php8.4-fpm` | Aynısı + PHP-FPM havuzu |
 | `ghcr.io/fluxwp/wordpress:worker-php8.4` | `wordpress:cli-2.12-php8.4` | Worker script'i |
 | `ghcr.io/fluxwp/wordpress:nginx-1.30` | `nginx:1.30-alpine` | WordPress için nginx ayarı |
+| `ghcr.io/fluxwp/wordpress:wpapi-node22` | `node:22-alpine` | FluxWP WhatsApp API (flx-wpapi) |
 
 amd64 ve arm64 için üretilir, her gün yeniden build edilir; PHP ve işletim sistemi güvenlik yamaları bir sonraki pull'da gelir. Sabitlemek istersen her build'in tarihli etiketi de var (`7.1-php8.4-apache-20261105`). Bilinen kritik açığı olan PHP sürümünde build başarısız olur.
 

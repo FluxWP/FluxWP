@@ -16,7 +16,7 @@ export function AccessScreen() {
   const { t } = useMemo(() => translator(i18n.language), [i18n.language]);
   return (
     <FlxGraphQLProvider client={client} scope={host.scope}>
-      <ScreenProvider title={t('App access')} classicUrl={host.classicUrl}>
+      <ScreenProvider title={t('App access')}>
         <AccessTab all={false} />
       </ScreenProvider>
     </FlxGraphQLProvider>

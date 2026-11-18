@@ -1,5 +1,8 @@
 # Flux Tasks — Değişiklikler
 
+## 0.13.1
+- Dosya önizleme penceresi (PDF, görsel, video) WordPress yönetim çubuğunun altından başlar; sağ üstteki kapatma düğmesi çubuğun altında kalmaz.
+
 ## 0.13.0
 - Klasik görünüm kaldırıldı: Görevler, Pano ve Ayarlar sayfaları yalnız React ekranıyla açılır (Flux GraphQL gerekir; yoksa sayfada uyarı çıkar). Profil sayfasındaki "Klasik görünüm" kartı ve kullanıcı başına görünüm tercihi gitti; eski klasik görev uygulaması dosyaları paketten çıkarıldı.
 
