@@ -2715,3 +2715,9 @@ msgstr "Klasik görünüm"
 
 msgid "This screen is the same as FluxApp. The classic view stays available for a while."
 msgstr "Bu ekran FluxApp ile aynıdır. Klasik görünüm bir süre daha kullanılabilir."
+
+msgid "Gantt"
+msgstr "Gantt"
+
+msgid "This dependency would create a loop."
+msgstr "Bu bağımlılık döngü oluşturur."

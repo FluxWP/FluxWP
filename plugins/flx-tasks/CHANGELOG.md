@@ -1,5 +1,13 @@
 # Flux Tasks — Değişiklikler
 
+## 0.15.0
+- Gantt görünümü (ClickUp tarzı): solda görev listesi, sağda zaman çizelgesi. Yeni görünüm menüsünde "Gantt"; yeni listelerde varsayılan dört görünümden biri.
+- Çubuğu sürükleyince görev taşınır, uçlarından çekince başlangıç / bitiş değişir (saat kısmı korunur). Tarihsiz görevin satırında sürükleyerek ya da tıklayarak tarih verilir. Çubuğa tıklayınca görev açılır.
+- Bağımlılıklar: çubuğun ucundaki noktayı başka bir göreve sürükleyince "bu bitmeden o başlamaz" bağı kurulur; oklarla çizilir, bekleyen görev erken başlıyorsa ok kırmızı ve kesik olur. Oka tıklayınca görevleri açma ve bağı kaldırma menüsü. Döngü sunucuda da reddedilir. İstenirse bir görev geç bitince onu bekleyen görevler otomatik ileri kayar.
+- Ölçek: Gün / Hafta / Ay / Çeyrek; Bugün düğmesi, bugün çizgisi, hafta sonu gölgesi. Gruplama, sıralama ve filtreler diğer görünümlerle aynı; grup satırında grubun tarih aralığı ince çubukla görünür. Alt görevler açılır kapanır.
+- Özelleştir (görünüm başına kaydedilir): çubuk rengi (durum, öncelik, liste, atanan, tek renk), çubukta görev adı (içinde, yanında, gizli), görev listesi sütunları (atanan, başlangıç, bitiş, süre, durum, öncelik, ilerleme), hafta sonu, bugün çizgisi, ilerleme dolgusu, alt görevler, tarihsiz görevler, bağımlılık okları, otomatik kaydırma. Görev listesi genişliği sürükleyerek ayarlanır, gizlenebilir.
+- Görev etkinliğinde "bağımlılık ekledi / kaldırdı" satırları. REST'te görev satırı `deps` (bekledikleri görevler) taşır, `deps` ile güncellenir. Yeni tablo `flxg_deps` (şema 5).
+
 ## 0.14.0
 - Liste görünümü daha sade ve kompakt: satır yüksekliği, hücre boşlukları ve grup araları azaldı, ince ayırıcı çizgiler; sütun başlığı tek satır olarak listenin en üstünde, ilk grubun üstünde durur ve kaydırınca yapışır.
 - Durum gruplarının başlığında hover'da "…" menüsü ve "+" (görev ekle), tümünü seçen onay kutusu; satırın başında sürükleme tutamacı. Hover simgeleri metni itmez. Açık ve koyu temada.

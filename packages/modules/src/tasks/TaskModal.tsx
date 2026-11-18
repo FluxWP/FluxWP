@@ -1939,6 +1939,8 @@ function ActivityText({ a, task }: { a: FlxgActivity; task: Detail }) {
     case 'detach': return r(tt("deleted a file:"), ' ', <i key="i">{dt.name || ''}</i>);
     case 'archived': return r(tt("archived the task"));
     case 'unarchived': return r(tt("unarchived the task"));
+    case 'dep': return r(tt("added a dependency: waits for"), ' ', <i key="i">{e.S.tasks[dt.task]?.title ?? '#' + dt.task}</i>);
+    case 'undep': return r(tt("removed the dependency on"), ' ', <i key="i">{e.S.tasks[dt.task]?.title ?? '#' + dt.task}</i>);
   }
   return r(a.action);
 }

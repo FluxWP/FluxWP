@@ -34,10 +34,26 @@ export interface FlxgViewConfig {
   wrap?: boolean;
   widths?: Record<string, number>;
   collapsed?: string[];
+  gantt?: FlxgGanttConfig;
+}
+/** Gantt görünümü ayarları (sunucu: flxg_clean_gantt_config). */
+export interface FlxgGanttConfig {
+  zoom?: 'day' | 'week' | 'month' | 'quarter';
+  color?: 'status' | 'priority' | 'list' | 'assignee' | 'accent';
+  label?: 'inside' | 'right' | 'none';
+  cols?: ('assignees' | 'start' | 'due' | 'duration' | 'status' | 'priority' | 'progress')[];
+  side?: number;
+  weekends?: boolean;
+  today?: boolean;
+  deps?: boolean;
+  resched?: boolean;
+  subtasks?: boolean;
+  undated?: boolean;
+  progress?: boolean;
 }
 export interface FlxgView {
   id: number; scope: 'list' | 'space' | 'home'; scope_id: number; user_id: number; name: string;
-  type: 'list' | 'board' | 'calendar'; config: FlxgViewConfig; position: number;
+  type: 'list' | 'board' | 'calendar' | 'gantt'; config: FlxgViewConfig; position: number;
 }
 export interface FlxgTask {
   id: number; list: number; parent: number; kind: string; title: string; status: string; priority: number;
@@ -45,6 +61,8 @@ export interface FlxgTask {
   completed: string | null; assignees: number[]; tags: number[]; fields: Record<string, unknown>;
   comments: number; files: number; subtasks: number; archived: number; hasDesc?: boolean; description?: string;
   agenda?: number; decisions?: number;
+  /** Bu görevden önce bitmesi gereken görevler (Gantt bağımlılıkları). */
+  deps?: number[];
 }
 export interface FlxgFile {
   id: number; task: number; comment: number; field: number; doc?: number; context: string; user: number;

@@ -1823,5 +1823,7 @@ return array(
   'Flux Tasks tools require Flux AI & MCP.' => 'Flux Tasks tools require Flux AI & MCP.',
   'MCP' => 'MCP',
 
+  'Gantt' => 'Gantt',
+  'This dependency would create a loop.' => 'This dependency would create a loop.',
  ),
 );

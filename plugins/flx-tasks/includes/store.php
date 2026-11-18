@@ -426,14 +426,14 @@ function flxg_first_status( $list, $type = 'open' ) {
  * ====================================================================== */
 
 function flxg_view_types() {
-	return array( 'list', 'board', 'calendar' );
+	return array( 'list', 'board', 'calendar', 'gantt' );
 }
 
 function flxg_default_view_config( $type ) {
 	return array(
 		'filters'  => array(),
 		'group'    => 'calendar' === $type ? 'none' : 'status',
-		'sort'     => array( 'by' => 'position', 'dir' => 'asc' ),
+		'sort'     => array( 'by' => 'gantt' === $type ? 'start' : 'position', 'dir' => 'asc' ),
 		'fields'   => array( 'assignees', 'due', 'priority' ),
 		'cover'    => 'list' !== $type,
 		'showDone' => true,
@@ -446,6 +446,7 @@ function flxg_create_default_views( $scope, $scope_id, $config = array() ) {
 		'list'     => __( 'List', 'flx-tasks' ),
 		'board'    => __( 'Board', 'flx-tasks' ),
 		'calendar' => __( 'Calendar', 'flx-tasks' ),
+		'gantt'    => __( 'Gantt', 'flx-tasks' ),
 	);
 	$i = 1;
 	foreach ( $names as $type => $name ) {
@@ -513,7 +514,36 @@ function flxg_clean_view_config( $c, $type ) {
 	$out['subtasks']  = in_array( $c['subtasks'] ?? '', array( 'open', 'closed', 'off' ), true ) ? $c['subtasks'] : 'open';
 	$out['subFilter'] = ! empty( $c['subFilter'] );
 	$out['wrap']      = ! isset( $c['wrap'] ) || ! empty( $c['wrap'] );
+	$out['gantt']     = flxg_clean_gantt_config( $c['gantt'] ?? array() );
 	return $out;
+}
+
+/**
+ * Gantt görünümü ayarları: ölçek, renk, sol sütunlar, hafta sonu, bağımlılık okları, otomatik kaydırma.
+ *
+ * @param mixed $g Ham ayar.
+ * @return array
+ */
+function flxg_clean_gantt_config( $g ) {
+	$g    = is_array( $g ) ? $g : array();
+	$pick = static function ( $v, array $ok, $def ) {
+		return in_array( $v, $ok, true ) ? $v : $def;
+	};
+	$cols = array_values( array_intersect( array_map( 'strval', (array) ( $g['cols'] ?? array( 'assignees', 'due' ) ) ), array( 'assignees', 'start', 'due', 'duration', 'status', 'priority', 'progress' ) ) );
+	return array(
+		'zoom'     => $pick( $g['zoom'] ?? '', array( 'day', 'week', 'month', 'quarter' ), 'week' ),
+		'color'    => $pick( $g['color'] ?? '', array( 'status', 'priority', 'list', 'assignee', 'accent' ), 'status' ),
+		'label'    => $pick( $g['label'] ?? '', array( 'inside', 'right', 'none' ), 'inside' ),
+		'cols'     => $cols,
+		'side'     => max( 180, min( 720, (int) ( $g['side'] ?? 380 ) ) ),
+		'weekends' => ! isset( $g['weekends'] ) || ! empty( $g['weekends'] ),
+		'today'    => ! isset( $g['today'] ) || ! empty( $g['today'] ),
+		'deps'     => ! isset( $g['deps'] ) || ! empty( $g['deps'] ),
+		'resched'  => ! empty( $g['resched'] ),
+		'subtasks' => ! isset( $g['subtasks'] ) || ! empty( $g['subtasks'] ),
+		'undated'  => ! isset( $g['undated'] ) || ! empty( $g['undated'] ),
+		'progress' => ! isset( $g['progress'] ) || ! empty( $g['progress'] ),
+	);
 }
 
 function flxg_view_row( $r ) {
@@ -897,6 +927,10 @@ function flxg_format_tasks( array $rows, $with_desc = false ) {
 	foreach ( (array) $wpdb->get_results( 'SELECT task_id, COUNT(*) AS n FROM ' . flxg_table( 'files' ) . " WHERE task_id IN ($in) AND context <> 'pending' GROUP BY task_id" ) as $r ) { // phpcs:ignore
 		$fcount[ (int) $r->task_id ] = (int) $r->n;
 	}
+	$deps = array();
+	foreach ( (array) $wpdb->get_results( 'SELECT task_id, depends_on FROM ' . flxg_table( 'deps' ) . " WHERE task_id IN ($in) ORDER BY id" ) as $r ) { // phpcs:ignore
+		$deps[ (int) $r->task_id ][] = (int) $r->depends_on;
+	}
 	$sub = array();
 	$agn = array();
 	$dec = array();
@@ -934,6 +968,7 @@ function flxg_format_tasks( array $rows, $with_desc = false ) {
 			'comments'  => $ccount[ $id ] ?? 0,
 			'files'     => $fcount[ $id ] ?? 0,
 			'subtasks'  => $sub[ $id ] ?? 0,
+			'deps'      => $deps[ $id ] ?? array(),
 			'archived'  => (int) $r['archived'],
 		);
 		if ( isset( $agn[ $id ] ) ) {
@@ -1237,7 +1272,8 @@ function flxg_create_task( array $d, $uid ) {
 
 /**
  * Görevi günceller. Desteklenen alanlar: title, description, status, priority, start, due, cover, list, position,
- * parent, assignees (int[]), add_assignees, remove_assignees, tags (int[]), tag_names (string[]), fields ({id: value}), archived.
+ * parent, assignees (int[]), add_assignees, remove_assignees, tags (int[]), tag_names (string[]), fields ({id: value}), archived,
+ * deps (int[]: bu görevden önce bitmesi gereken görevler).
  *
  * @return array|WP_Error güncel görev
  */
@@ -1398,6 +1434,34 @@ function flxg_update_task( $id, array $d, $uid, $quiet_create = false ) {
 		$set['updated_at'] = flxg_now();
 	}
 
+	// Bağımlılıklar: bu görev, listelenen görevler bitmeden başlamaz. Görülemeyen görev, kendisi ve döngü reddedilir.
+	if ( isset( $d['deps'] ) && is_array( $d['deps'] ) ) {
+		$cur  = array_map( 'intval', $wpdb->get_col( $wpdb->prepare( 'SELECT depends_on FROM ' . flxg_table( 'deps' ) . ' WHERE task_id = %d', (int) $id ) ) ); // phpcs:ignore
+		$want = array();
+		foreach ( array_slice( array_unique( array_map( 'intval', $d['deps'] ) ), 0, 50 ) as $dep ) {
+			if ( $dep <= 0 || $dep === (int) $id ) {
+				continue;
+			}
+			if ( ! in_array( $dep, $cur, true ) ) {
+				if ( ! flxg_get_task_row( $dep ) || ! flxg_can_task( $dep, 'view', $uid ) ) {
+					continue;
+				}
+				if ( flxg_dep_reaches( $dep, (int) $id ) ) {
+					return flxg_error( 'flxg_dep_cycle', __( 'This dependency would create a loop.', 'flx-tasks' ) );
+				}
+			}
+			$want[] = $dep;
+		}
+		foreach ( array_diff( $want, $cur ) as $dep ) {
+			$wpdb->insert( flxg_table( 'deps' ), array( 'task_id' => (int) $id, 'depends_on' => (int) $dep ) );
+			$logs[] = array( 'dep', array( 'task' => (int) $dep ) );
+		}
+		foreach ( array_diff( $cur, $want ) as $dep ) {
+			$wpdb->delete( flxg_table( 'deps' ), array( 'task_id' => (int) $id, 'depends_on' => (int) $dep ) );
+			$logs[] = array( 'undep', array( 'task' => (int) $dep ) );
+		}
+	}
+
 	// Özel alanlar.
 	if ( isset( $d['fields'] ) && is_array( $d['fields'] ) ) {
 		$fields = array();
@@ -1458,11 +1522,36 @@ function flxg_delete_task( $id, $uid = 0, $log = true ) {
 	foreach ( array( 'assignees', 'watchers', 'task_tags', 'values', 'comments', 'notifications' ) as $t ) {
 		$wpdb->delete( flxg_table( $t ), array( 'task_id' => (int) $id ) );
 	}
+	$wpdb->delete( flxg_table( 'deps' ), array( 'task_id' => (int) $id ) );
+	$wpdb->delete( flxg_table( 'deps' ), array( 'depends_on' => (int) $id ) );
 	$wpdb->delete( flxg_table( 'activity' ), array( 'task_id' => (int) $id ) );
 	$wpdb->delete( flxg_table( 'tasks' ), array( 'id' => (int) $id ) );
 	if ( $log ) {
 		flxg_log_raw( (int) $id, (int) $row['list_id'], 'deleted', array( 'title' => $row['title'] ), $uid );
 	}
+}
+
+/**
+ * $from görevinden bağımlılık zinciriyle $to'ya ulaşılıyor mu (döngü denetimi).
+ */
+function flxg_dep_reaches( $from, $to ) {
+	global $wpdb;
+	$seen  = array();
+	$queue = array( (int) $from );
+	while ( $queue && count( $seen ) < 2000 ) {
+		$cur = array_shift( $queue );
+		if ( $cur === (int) $to ) {
+			return true;
+		}
+		if ( isset( $seen[ $cur ] ) ) {
+			continue;
+		}
+		$seen[ $cur ] = true;
+		foreach ( $wpdb->get_col( $wpdb->prepare( 'SELECT depends_on FROM ' . flxg_table( 'deps' ) . ' WHERE task_id = %d', $cur ) ) as $n ) { // phpcs:ignore
+			$queue[] = (int) $n;
+		}
+	}
+	return false;
 }
 
 /* =========================================================================

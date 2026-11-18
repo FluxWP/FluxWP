@@ -2706,3 +2706,9 @@ msgstr "This screen is the same as FluxApp. The classic view stays available for
 
 msgid "Could not start a chat."
 msgstr "Could not start a chat."
+
+msgid "Gantt"
+msgstr "Gantt"
+
+msgid "This dependency would create a loop."
+msgstr "This dependency would create a loop."

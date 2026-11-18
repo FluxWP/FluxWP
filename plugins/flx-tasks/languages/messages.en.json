@@ -905,6 +905,8 @@
     "Switch to the new view": "Switch to the new view",
     "Classic view": "Classic view",
     "This screen is the same as FluxApp. The classic view stays available for a while.": "This screen is the same as FluxApp. The classic view stays available for a while.",
-    "Could not start a chat.": "Could not start a chat."
+    "Could not start a chat.": "Could not start a chat.",
+    "Gantt": "Gantt",
+    "This dependency would create a loop.": "This dependency would create a loop."
   }
 }

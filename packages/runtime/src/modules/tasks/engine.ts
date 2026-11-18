@@ -642,6 +642,8 @@ export class FlxgEngine {
     if (t.hasDesc === undefined && typeof t.description === 'string')
       t.hasDesc = /<img\b/i.test(t.description) || !!stripTags(t.description).trim();
     for (const k of ['description', 'comments_list', 'activity', 'attachments', 'children', 'subtree', 'watchers', 'watching', 'role', 'parentInfo', 'depth', 'depthLimit']) delete t[k];
+    // GraphQL satırı bağımlılık taşımaz: eldekini koru.
+    if (t.deps === undefined && old?.deps) t.deps = old.deps;
     if (this.inScopeTask(t) || (this.S.scope?.type === 'home' && old)) this.S.tasks[t.id] = t;
     else delete this.S.tasks[t.id];
   }
@@ -682,6 +684,7 @@ export class FlxgEngine {
       if (typeof patch.kind === 'string') cur.kind = patch.kind;
       if (Array.isArray(patch.assignees)) cur.assignees = patch.assignees.map((n) => Number(n));
       if (Array.isArray(patch.tags)) cur.tags = patch.tags.map((n) => Number(n));
+      if (Array.isArray(patch.deps)) cur.deps = patch.deps.map((n) => Number(n));
     }
     if (!opts.silent) this.bump();
     try {
