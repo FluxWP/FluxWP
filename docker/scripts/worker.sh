@@ -1,6 +1,6 @@
 #!/bin/sh
 # FluxWP Docker - worker container.
-# Runtime revision: 2026.11.17.1
+# Runtime revision: 2026.11.18.1
 #
 # 1. Waits for the WordPress files and the database.
 # 2. One-time bootstrap (idempotent, safe on every restart):
