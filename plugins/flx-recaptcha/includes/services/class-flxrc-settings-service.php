@@ -1,8 +1,8 @@
 <?php
 /**
  * reCAPTCHA settings: the one place that reads and changes the keys, the protected forms and the
- * options, and that tests keys with Google. The classic page (admin-post / admin-ajax handlers) and
- * GraphQL call this. Permission checks stay with the caller (manage_options).
+ * options, and that tests keys with Google. GraphQL, MCP and
+ * other packages call this. Permission checks stay with the caller (manage_options).
  *
  * Errors are WP_Error with `graphql_code` INVALID_INPUT and the input `field`. Nothing is written when
  * any part of an update is invalid.

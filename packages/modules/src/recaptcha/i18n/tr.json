@@ -19,7 +19,6 @@
  "Test your keys": "Anahtarları test edin",
  "reCAPTCHA": "reCAPTCHA",
  "Protects login, registration, comments, checkout, donations and form submissions from bots with Google reCAPTCHA. Choose below which forms to protect.": "Giriş, kayıt, yorum, ödeme, bağış ve form gönderimlerini botlara karşı Google reCAPTCHA ile korur. Hangi formun korunacağını aşağıdan seçin.",
- "Classic view": "Klasik görünüm",
  "Close": "Kapat",
  "Protection is turned off by the recovery constant.": "Koruma kurtarma sabitiyle kapalı.",
  "Remove the FLXRC_DISABLE line from wp-config.php to turn protection back on.": "wp-config.php dosyasındaki FLXRC_DISABLE satırını silince koruma yeniden çalışır.",

@@ -1,6 +1,6 @@
 <?php
 /**
- * Yönetim ekranı: Flux Files menüsü, uygulama betiği, çeviri sözlüğü.
+ * Yönetim ekranı: Flux Files menüsü, React ekranı, çeviri sözlüğü.
  *
  * @package FLX_Files
  */
@@ -32,47 +32,22 @@ function flxfm_page_load() {
 			return $c . ' flxfm-screen';
 		}
 	);
-	add_action( 'admin_enqueue_scripts', flxfm_flux_ui() ? 'flxfm_flux_enqueue' : 'flxfm_enqueue' );
+	if ( flxfm_flux_available() ) {
+		add_action( 'admin_enqueue_scripts', 'flxfm_flux_enqueue' );
+	}
 }
 
 /*
- * New view (0.2.0, GraphQL): the page opens the same React screen as the FluxWP app (assets/flux/,
- * tools/fluxapp/embed-sync.sh flx-files). It is the default and has every feature of the classic screen;
- * the classic screen stays reachable from the screen's menu for now. Needs Flux GraphQL.
+ * The page opens the same React screen as the FluxWP app (assets/flux/, tools/fluxapp/embed-sync.sh
+ * flx-files). There is no classic screen: without Flux GraphQL or the bundle the page says it cannot open.
  */
 function flxfm_flux_available() {
 	return file_exists( FLXFM_DIR . 'assets/flux/flux-modules.js' ) && function_exists( 'flx_gql_ready' ) && function_exists( 'flx_gql_all_caps' ) && flx_gql_ready();
 }
 
-function flxfm_flux_ui() {
-	return flxfm_flux_available() && 'classic' !== get_user_meta( get_current_user_id(), 'flxfm_ui', true );
-}
-
 function flxfm_admin_url( $args = array() ) {
 	return add_query_arg( $args, admin_url( 'admin.php?page=flx-files' ) );
 }
-
-/** Link that switches the current user between the views. */
-function flxfm_ui_switch_url( $ui ) {
-	return wp_nonce_url( flxfm_admin_url( array( 'flxfm_ui' => 'flux' === $ui ? 'flux' : 'classic' ) ), 'flxfm_ui' );
-}
-
-add_action(
-	'admin_init',
-	static function () {
-		if ( ! isset( $_GET['flxfm_ui'], $_GET['page'] ) || 'flx-files' !== $_GET['page'] || ! current_user_can( 'flxfm_manage' ) ) { // phpcs:ignore WordPress.Security.NonceVerification
-			return;
-		}
-		check_admin_referer( 'flxfm_ui' );
-		if ( 'classic' === $_GET['flxfm_ui'] ) {
-			update_user_meta( get_current_user_id(), 'flxfm_ui', 'classic' );
-		} else {
-			delete_user_meta( get_current_user_id(), 'flxfm_ui' );
-		}
-		wp_safe_redirect( flxfm_admin_url() );
-		exit;
-	}
-);
 
 /** The chunked bundle loads as an ES module. */
 function flxfm_flux_module_tag( $tag, $handle ) {
@@ -90,16 +65,14 @@ function flxfm_flux_module_tag( $tag, $handle ) {
 	);
 }
 
-/** Scripts and styles of the new view; the editor uses WordPress's CodeMirror. */
 /** Mount options of the screen besides what the Flux GraphQL shell adds (rest, nonce, locale…). */
 function flxfm_flux_options() {
 	$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#2c7a64';
 	return array(
-		'colors'     => array(
+		'colors' => array(
 			'primary'         => $accent,
 			'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
 		),
-		'classicUrl' => flxfm_ui_switch_url( 'classic' ),
 	);
 }
 
@@ -117,7 +90,6 @@ add_action(
 				'assets_dir'   => FLXFM_DIR . 'assets/flux/',
 				'assets_url'   => FLXFM_URL . 'assets/flux/',
 				'version'      => FLXFM_VERSION,
-				'enabled'      => 'flxfm_flux_ui',
 				'options'      => 'flxfm_flux_options',
 				'container_id' => 'flxfm-app',
 				'preload'      => array( array( 'FlxFilesBootstrap' ) ),
@@ -128,6 +100,7 @@ add_action(
 	20
 );
 
+/** Scripts and styles of the screen; the editor uses WordPress's CodeMirror. */
 function flxfm_flux_enqueue() {
 	wp_enqueue_code_editor( array( 'type' => 'text/x-php', 'codemirror' => array( 'lint' => false, 'gutters' => array() ) ) );
 	if ( function_exists( 'flx_admin_screen_current' ) && '' !== flx_admin_screen_current() ) {
@@ -157,88 +130,29 @@ function flxfm_flux_enqueue() {
 	);
 }
 
-/** Parça boyutu: sunucunun izin verdiği yükleme sınırının biraz altı, en fazla 8 MB. */
-function flxfm_chunk_size() {
-	$max = (int) wp_max_upload_size();
-	$max = $max > 0 ? $max : 2097152;
-	return (int) max( 262144, min( 8388608, $max - 65536 ) );
-}
-
-/** Betik ve stiller. */
-function flxfm_enqueue() {
-	$cm = wp_enqueue_code_editor(
-		array(
-			'type'       => 'text/x-php',
-			'codemirror' => array( 'lint' => false, 'gutters' => array() ),
-		)
-	);
-	wp_enqueue_style( 'flx-files', FLXFM_URL . 'assets/app.css', array( 'code-editor' ), FLXFM_VERSION );
-	wp_enqueue_script( 'flx-files', FLXFM_URL . 'assets/app.js', array( 'code-editor' ), FLXFM_VERSION, true );
-	$s      = flxfm_settings();
-	$up     = wp_get_upload_dir();
-	$host   = (string) wp_parse_url( home_url(), PHP_URL_HOST );
-	$cmconf = is_array( $cm ) && isset( $cm['codemirror'] ) ? $cm['codemirror'] : array();
-	unset( $cmconf['mode'], $cmconf['lint'], $cmconf['gutters'] );
-	$open = isset( $_GET['open'] ) ? flxfm_clean( sanitize_text_field( wp_unslash( $_GET['open'] ) ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-	wp_localize_script(
-		'flx-files',
-		'FLXFM',
-		array(
-			'rest'     => esc_url_raw( rest_url( 'flx-files/v1/' ) ),
-			'nonce'    => wp_create_nonce( 'wp_rest' ),
-			'file'     => add_query_arg(
-				array(
-					'action'   => 'flxfm_file',
-					'_wpnonce' => wp_create_nonce( 'flxfm_file' ),
-				),
-				admin_url( 'admin-post.php' )
-			),
-			'host'     => $host ? $host : get_bloginfo( 'name' ),
-			'rootName' => basename( flxfm_root() ),
-			'abs'      => flxfm_root(),
-			'home'     => trailingslashit( site_url() ),
-			'uploads'  => array(
-				'rel' => flxfm_uploads_rel(),
-				'url' => untrailingslashit( $up['baseurl'] ),
-			),
-			'writable' => flxfm_writable_mode(),
-			'ai'       => flxfm_ai_ready(),
-			'chunk'    => flxfm_chunk_size(),
-			'cm'       => $cmconf,
-			'open'     => is_wp_error( $open ) ? '' : $open,
-			's'        => array(
-				'show_hidden' => (int) $s['show_hidden'],
-				'trash_days'  => (int) $s['trash_days'],
-				'versions'    => (int) $s['versions'],
-				'mcp_write'   => (int) $s['mcp_write'],
-				'ai_code'     => (int) $s['ai_code'],
-				'shared'      => array_values( (array) $s['shared'] ),
-			),
-			'i18n'     => flxfm_js_strings(),
-		)
-	);
-}
-
 /** Sayfa. */
 function flxfm_render_page() {
 	if ( ! current_user_can( 'flxfm_manage' ) ) {
 		wp_die( esc_html__( 'You are not allowed to do this.', 'flx-files' ) );
 	}
-	if ( flxfm_flux_ui() && function_exists( 'flx_admin_screen_render' ) && flx_admin_screen_render() ) {
+	if ( function_exists( 'flx_admin_screen_render' ) && flx_admin_screen_render() ) {
 		return;
 	}
-	if ( flxfm_flux_ui() ) {
-		echo '<style>#flxfm-app.flux-root{background:transparent;font-family:inherit;padding:0}</style>';
-		echo '<div class="wrap flxfm-wrap"><h1 class="screen-reader-text">Flux Files</h1><div id="flxfm-app"><noscript>' . esc_html__( 'Flux Files needs JavaScript.', 'flx-files' ) . '</noscript></div></div>';
+	if ( ! flxfm_flux_available() ) {
+		if ( function_exists( 'flx_admin_screen_unavailable' ) ) {
+			flx_admin_screen_unavailable();
+		}
 		return;
 	}
-	if ( flxfm_flux_available() ) {
-		echo '<p class="flxfm-newview"><a class="button" href="' . esc_url( flxfm_ui_switch_url( 'flux' ) ) . '">' . esc_html__( 'New view', 'flx-files' ) . '</a></p>';
+	echo '<style>#flxfm-app.flux-root{background:transparent;font-family:inherit;padding:0}</style>';
+	echo '<div class="wrap flxfm-wrap"><h1 class="screen-reader-text">Flux Files</h1><div id="flxfm-app"><noscript>' . esc_html__( 'Flux Files needs JavaScript.', 'flx-files' ) . '</noscript></div>';
+	if ( function_exists( 'flx_admin_screen_failsafe' ) ) {
+		flx_admin_screen_failsafe( 'flxfm-app' );
 	}
-	echo '<div class="wrap flxfm-wrap"><h1 class="screen-reader-text">Flux Files</h1><div id="flxfm-app" class="flxfm" data-mode="browse"><div class="flxfm-boot">' . esc_html__( 'Loading…', 'flx-files' ) . '</div></div><noscript>' . esc_html__( 'Flux Files needs JavaScript.', 'flx-files' ) . '</noscript></div>';
+	echo '</div>';
 }
 
-/** Arayüz metinleri. `_1` ekli anahtar tekil biçimdir (1 öğe). */
+/** React ekranının metinleri (tools/gen-react-i18n.sh sözlükleri bundan üretir). `_1` ekli anahtar tekil biçimdir (1 öğe). */
 function flxfm_js_strings() {
 	return array(
 		'error'               => __( 'Something went wrong. Try again.', 'flx-files' ),
@@ -526,7 +440,6 @@ function flxfm_js_strings() {
 		'ai_edit_hint'        => __( 'AI suggests a change and shows the difference. Nothing is saved until you apply it and press Save.', 'flx-files' ),
 		'ai_suggest'          => __( 'Suggest a change', 'flx-files' ),
 		'ai_apply'            => __( 'Apply in editor', 'flx-files' ),
-		'classic_view'        => __( 'Classic view', 'flx-files' ),
 		'up_level'            => __( 'Up one level', 'flx-files' ),
 		'ai_applied'          => __( 'Applied in the editor. Review it and press Save.', 'flx-files' ),
 	);

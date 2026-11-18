@@ -37,7 +37,7 @@ function flx_gql_check_rows(): array {
 	} elseif ( 'external' === $s['source'] ) {
 		$row['status'] = 'error';
 		/* translators: 1: WPGraphQL version, 2: lowest supported, 3: first unsupported. */
-		$row['message'] = sprintf( __( 'A separately installed WPGraphQL %1$s is active. FluxWP needs %2$s or newer and below %3$s, so FluxWP GraphQL screens fall back to the classic pages. Deactivate it to use the built-in copy.', 'flx-graphql' ), '' !== $s['version'] ? $s['version'] : '?', FLXGQL_WPGQL_MIN, FLXGQL_WPGQL_MAX );
+		$row['message'] = sprintf( __( 'A separately installed WPGraphQL %1$s is active. FluxWP needs %2$s or newer and below %3$s, so FluxWP screens cannot open. Deactivate it to use the built-in copy.', 'flx-graphql' ), '' !== $s['version'] ? $s['version'] : '?', FLXGQL_WPGQL_MIN, FLXGQL_WPGQL_MAX );
 	} else {
 		$row['status']  = 'error';
 		$row['message'] = __( 'The built-in WPGraphQL files are missing. Reinstall Flux GraphQL from FluxWP Panel › Packages.', 'flx-graphql' );

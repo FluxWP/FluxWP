@@ -5,7 +5,7 @@
  * through these fields. The `flxseo` option (General, Organization and Audit settings tabs) is typed by the kit
  * from `flx_settings_schema`: `flxSettings { flxseo { … } }` and `flxSettingsUpdate`.
  *
- * Everything here needs manage_options (as the classic tabs and REST), except `flxSeo` on content (public data
+ * Everything here needs manage_options (as REST), except `flxSeo` on content (public data
  * of the page head; the focus keyword needs edit_posts), `flxSeoGuide` (edit_posts) and `flxSeoContentSet`
  * (edit_post of the content).
  *

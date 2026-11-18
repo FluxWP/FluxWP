@@ -1,4 +1,4 @@
-/* Ad conversions screen: the classic page's look (plugins/flx-ads/assets/admin.css) on FluxWP tokens. */
+/* Ad conversions screen on FluxWP tokens. */
 .flxads{--c-bd:var(--flux-border);--c-mut:var(--flux-text-muted);--c-tx:var(--flux-text);--c-ac:var(--flux-primary);--c-card:var(--flux-surface);--c-s2:var(--flux-surface2);--c-ok:var(--flux-success);--c-ok-s:color-mix(in srgb,var(--flux-success) 14%,transparent);--c-warn:color-mix(in srgb,var(--flux-warning) 70%,var(--flux-text));--c-warn-s:color-mix(in srgb,var(--flux-warning) 18%,transparent);--c-bad:var(--flux-danger);--c-bad-s:color-mix(in srgb,var(--flux-danger) 14%,transparent);--c-r:10px;max-width:1200px;padding:0 0 24px;color:var(--c-tx);font-size:14px;line-height:1.5}
 .flxads .flxads-title{font-size:22px;font-weight:650;margin:8px 0 2px}
 .flxads .flxads-lead,.flxads .flxads-muted{color:var(--c-mut)}
@@ -157,7 +157,6 @@
 /* Screen shell */
 .flxads.flxads-app a{color:var(--c-ac)}
 .flxads .flxads-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.flxads .flxads-classic{font-size:13px}
 .flxads .flxads-tabs{display:flex;gap:2px;flex-wrap:wrap;border-bottom:1px solid var(--c-bd);margin:0 0 16px}
 .flxads .flxads-tab{padding:8px 12px;text-decoration:none;color:var(--c-mut)!important;font-weight:550;border-bottom:2px solid transparent;margin-bottom:-1px}
 .flxads .flxads-tab.is-on{color:var(--c-tx)!important;border-bottom-color:var(--c-ac)}

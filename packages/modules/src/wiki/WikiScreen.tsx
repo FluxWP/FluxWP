@@ -1,6 +1,6 @@
 // Flux Wiki: pages, settings and tools. Same screen in wp-admin (wp-embed) and the FluxWP app; every read
 // and write goes through the Flux Wiki GraphQL operations (plugins/flx-wiki/graphql/operations).
-// It has everything the classic settings page and the Markdown editor have: General / Appearance / AI
+// General / Appearance / AI
 // settings, addresses, bundled guides import, page list with filters, sections and the Markdown editor
 // (write / preview / side by side, toolbar, parent, section, status, summary, order).
 import { useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from 'react';
@@ -49,7 +49,6 @@ export function WikiScreen() {
 const errText = (e: unknown, fallback: string) => (e instanceof Error && e.message ? e.message : fallback);
 
 function Wiki() {
-  const host = useHost();
   const { i18n } = useTranslation();
   const { t, tn } = useMemo(() => translator(i18n.language), [i18n.language]);
   const { scope } = useGraphQL();
@@ -93,11 +92,6 @@ function Wiki() {
           <a className="flxw-btn" href={o.homeUrl} target="_blank" rel="noopener noreferrer">
             {t('Open wiki')}
           </a>
-          {host.classicUrl && (
-            <a className="flxw-classic" href={host.classicUrl}>
-              {t('Classic view')}
-            </a>
-          )}
         </div>
       </div>
       {s && s.enabled === false && <div className="flxw-notice is-warn">{t('The wiki is closed to visitors; only people who can write pages see it.')}</div>}
@@ -503,7 +497,7 @@ function Sections({ t, sections, onNotice, onConfirm, onChanged }: Common & { se
 
 type Tool = 'h2' | 'h3' | 'b' | 'i' | 'code' | 'pre' | 'link' | 'wiki' | 'ul' | 'note' | 'table';
 
-/** Inserts Markdown around the selection (the classic editor's toolbar). */
+/** Inserts Markdown around the selection. */
 function applyTool(tool: Tool, text: string, a: number, b: number, t: Translate): { text: string; start: number; end: number } {
   const sel = text.slice(a, b);
   const wrap = (l: string, r: string, ph: string) => {

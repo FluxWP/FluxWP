@@ -1,6 +1,5 @@
 // Shared pieces of the Ad conversions screen: environment (translator, notices, confirm), mutation helper,
-// KPI cards, tables and the report filter. Markup and class names follow the classic page
-// (plugins/flx-ads/assets/admin.css) so both views look the same.
+// KPI cards, tables and the report filter.
 import { createContext, useContext, useState, type ReactNode } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import type { FlxOperation } from '@fluxwp/graphql';
@@ -85,7 +84,7 @@ export const Roas = ({ v, level }: { v: number | null | undefined; level: string
 
 export const num = (n: number, locale: string, digits = 0) => n.toLocaleString(locale, { maximumFractionDigits: digits, minimumFractionDigits: digits });
 
-/** Tone of a pill: ok → sent, bad → failed, warn → pending (classic names). */
+/** Tone of a pill: ok → sent, bad → failed, warn → pending . */
 export const Pill = ({ tone, children }: { tone: string; children: ReactNode }) => (
   <span className={'flxads-pill flxads-pill--' + ({ ok: 'sent', bad: 'failed', warn: 'pending', off: '' } as Record<string, string>)[tone]}>{children}</span>
 );
@@ -127,7 +126,7 @@ export const Field = ({ label, children, hint, className }: { label: string; chi
   </label>
 );
 
-/** Report filter state. `kind` and `by` are what the classic filter bar has. */
+/** Report filter state. `kind` and `by` are the filter bar's fields. */
 export interface Filter {
   range: string;
   from: string;

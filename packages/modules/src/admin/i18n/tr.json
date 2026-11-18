@@ -9,7 +9,6 @@
  "App (PWA)": "Uygulama (PWA)",
  "System check": "Sistem kontrolü",
  "Admin theme": "Yönetim teması",
- "Classic view": "Klasik görünüm",
  "Close": "Kapat",
  "Each role sees its own side menu and mobile bottom bar. Drag to reorder, rename, hide, group. Hiding does not change permissions; it only removes the item from the menu.": "Her rol kendi sol menüsünü ve mobil alt barını görür. Sürükleyip sırala, yeniden adlandır, gizle, grupla. Gizlemek yetkiyi değiştirmez; yalnız menüden kaldırır.",
  "\"Block access\" really closes that menu for this role: it isn't shown, and opening it by URL shows a \"no permission\" page. See the Permissions tab for detailed permissions.": "\"Erişimi engelle\" o menüyü bu rol için gerçekten kapatır: menüde görünmez, adresle açılırsa \"yetkiniz yok\" sayfası çıkar. Ayrıntılı yetkiler için Yetkiler sekmesi.",

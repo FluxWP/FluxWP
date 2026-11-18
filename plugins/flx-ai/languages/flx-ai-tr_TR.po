@@ -3998,3 +3998,7 @@ msgstr "Kayıt yok"
 #: app/manifest.json
 msgid "Model and tool calls are listed here. Request contents are not sent to the app."
 msgstr "Model ve araç çağrıları burada listelenir. İstek içerikleri uygulamaya gönderilmez."
+
+#: includes/admin-flux.php
+msgid "Flux GraphQL is not active, so FluxWP screens cannot open."
+msgstr "Flux GraphQL etkin değil, bu yüzden FluxWP ekranları açılamıyor."

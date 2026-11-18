@@ -1,6 +1,6 @@
 // Flux AI Chatbot › Settings. Same screen in wp-admin (wp-embed) and the FluxWP app; every read and write
 // goes through the Flux AI Chatbot GraphQL operations (plugins/flx-chatbot/graphql/operations).
-// It has everything the classic page has: six tabs, figures, connections, the live preview with the
+// Six tabs, figures, connections, the live preview with the
 // real chat window, colours, avatar, launcher, texts, AI, live chat hours and visibility.
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -199,11 +199,6 @@ function ChatbotSettings() {
           <p className="flxcb-lead">{t('An AI chat window for your site: it answers from your content and products and hands the chat to a live agent when needed. Changes show up in the preview on the right right away.')}</p>
         </div>
         <div className="flxcb-head__actions">
-          {host.classicUrl && (
-            <a className="button" href={host.classicUrl}>
-              {t('Classic view')}
-            </a>
-          )}
           <a className="button" href={a.inboxUrl}>
             <Inbox size={14} />
             {t('Chats')}

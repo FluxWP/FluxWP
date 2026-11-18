@@ -1,11 +1,10 @@
-/* Languages: the classic page's look on FluxWP tokens. */
+/* Languages screen on FluxWP tokens. */
 .flxl-app{--flxl-bd:var(--flux-border);--flxl-mut:var(--flux-text-muted);--flxl-ac:var(--flux-primary);--flxl-card:var(--flux-surface);max-width:1100px;padding:0 0 24px;color:var(--flux-text);font-size:14px;line-height:1.5}
 .flxl-app h1{font-size:23px;font-weight:600;letter-spacing:0;margin:0}
 .flxl-app h2{font-size:16px;font-weight:600;margin:0 0 6px;display:block}
 .flxl-app h3{font-size:15px;font-weight:600;margin:0 0 6px}
 .flxl-app a{color:var(--flxl-ac)}
 .flxl-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:9px 0 4px}
-.flxl-classic{font-size:13px}
 .flxl-lead{font-size:14px;color:var(--flxl-mut);max-width:760px;margin:12px 0 16px}
 .flxl-notice{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;background:var(--flxl-card);border:1px solid var(--flxl-bd);border-left:4px solid var(--flux-success);border-radius:6px;padding:10px 12px;margin:12px 0}
 .flxl-notice.is-error{border-left-color:var(--flux-danger)}

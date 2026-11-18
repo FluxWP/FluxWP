@@ -1,7 +1,7 @@
 <?php
 /**
  * Roles and access: the one place that reads and changes FluxWP roles, their capabilities, their people
- * and the page settings. The classic page (admin-post handlers), GraphQL and Flux AI call this.
+ * and the page settings. GraphQL and Flux AI call this.
  * Permission checks stay with the caller (manage_options; promote_users for people), as before.
  *
  * Errors are WP_Error with `graphql_code` INVALID_INPUT / NOT_FOUND and the input `field`.
@@ -18,7 +18,7 @@ final class FLXR_Roles_Service {
 
 	public const CACHE_TAG = 'flx-roles:roles';
 
-	/** Highest number of people a role lists (classic page limit). */
+	/** Highest number of people a role lists (screen limit). */
 	public const MEMBERS_MAX = 300;
 
 	/**

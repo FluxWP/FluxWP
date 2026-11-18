@@ -509,8 +509,9 @@ final class FLXU_Admin {
 		// Eksik ikonlar sayfa gönderildikten sonra iner; sayfa onları beklemez.
 		add_action( 'shutdown', array( 'FLXU_Icon_Cache', 'warm_missing_after_response' ), PHP_INT_MAX );
 
-		// The shared React screen is the default when Flux GraphQL runs. Its first data (overview, table,
-		// history) is printed from cached data only; the screen's own check asks the servers in the background.
+		// The shared React screen whenever Flux GraphQL runs. Its first data (overview, table, history) is printed
+		// from cached data only; the screen's own check asks the servers in the background. The PHP page below is
+		// the recovery path without Flux GraphQL (and the installer that its "Install Flux GraphQL" button opens).
 		// phpcs:ignore WordPress.Security.NonceVerification
 		if ( ! isset( $_GET['flxu_install'] ) && empty( $_POST['flxu_do'] ) && FLXU_Updater::offline( static fn(): bool => flxk_flux_render( 'flxk-packages', self::SLUG ) ) ) {
 			return;

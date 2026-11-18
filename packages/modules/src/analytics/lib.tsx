@@ -114,7 +114,7 @@ export interface Filters {
 
 const read = (): URLSearchParams => new URLSearchParams(window.location.hash.slice(1));
 
-/** Range and visitor filters live in the address bar (#range=30d&seg=guest), like the classic screens. */
+/** Range and visitor filters live in the address bar (#range=30d&seg=guest). */
 export function useFilters(extra: string[] = []): { f: Filters; set: (p: Partial<Filters>) => void; param: (k: string) => string | null; setParam: (k: string, v: string | null) => void } {
   const [h, setH] = useState(() => read());
   const f: Filters = {
@@ -337,7 +337,7 @@ export interface Col<R> {
   second?: boolean;
 }
 
-/** Table with the label cell drawn as a bar scaled to `sort` (the classic report tables). */
+/** Table with the label cell drawn as a bar scaled to `sort` (the report tables). */
 export function BarTable<R>({ rows, title, label, cols, sort, onRow, empty }: { rows: R[]; title: string; label: (r: R) => ReactNode; cols: Col<R>[]; sort: (r: R) => number; onRow?: (r: R) => void; empty?: string }) {
   const { t } = useFmt();
   if (!rows.length) return <div className="flxan-empty">{empty ?? t('No data in this range.')}</div>;
@@ -601,18 +601,12 @@ export function useDebounced<T>(value: T, ms: number): T {
 }
 
 export function Shell({ title, head, children, notice, busy }: { title: string; head?: ReactNode; children: ReactNode; notice?: ReactNode; busy?: boolean }) {
-  const host = useHost();
   const { t } = useFmt();
   return (
     <div className="flxan flxan-react" aria-busy={busy ? 'true' : 'false'}>
       <div className="flxan-app">
         <div className="flxan-head">
           <h1>{title}</h1>
-          {host.classicUrl && (
-            <a className="flxan-btn flxan-classic" href={host.classicUrl}>
-              {t('Classic view')}
-            </a>
-          )}
           {head}
         </div>
         {notice}

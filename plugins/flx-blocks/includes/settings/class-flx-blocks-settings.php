@@ -68,9 +68,6 @@ class Flx_Blocks_Settings {
 			add_filter( 'plugin_action_links_flx-blocks/flx-blocks.php', [ $this, 'add_settings_link' ] );
 			add_action( 'in_plugin_update_message-flx-blocks/flx-blocks.php', [ $this, 'plugin_update_message' ], 10, 2 );
 		}
-		add_action( 'wp_ajax_flxbk_activate_deactivate', [ $this, 'ajax_blocks_activate_deactivate' ], 10, 0 );
-		add_action( 'wp_ajax_flxbk_save_config', [ $this, 'ajax_blocks_save_config' ], 10, 0 );
-		add_action( 'wp_ajax_flxbk_post_default_width', [ $this, 'ajax_default_editor_width' ], 10, 0 );
 		add_action( 'enqueue_block_editor_assets', [ $this, 'deregister_blocks' ] );
 		add_action( 'admin_init', [ $this, 'activation_redirect' ] );
 		add_action( 'admin_init', [ $this, 'load_settings' ] );
@@ -579,96 +576,12 @@ class Flx_Blocks_Settings {
 		add_action( 'admin_print_styles-' . $page, [ $this, 'scripts' ] );
 	}
 	/**
-	 * Loads admin style sheets and scripts
+	 * Loads the dashboard screen (React, includes/admin-screen.php).
 	 */
 	public function scripts() {
-		if ( function_exists( 'flxbk_flux_ui' ) && flxbk_flux_ui() ) {
+		if ( function_exists( 'flxbk_flux_available' ) && flxbk_flux_available() ) {
 			flxbk_flux_assets();
-			return;
 		}
-		$texts    = [
-			'close'    => __( 'Close', 'flx-blocks' ),
-			'save'     => __( 'Save', 'flx-blocks' ),
-			'updating' => __( 'Updating', 'flx-blocks' ),
-			'updated'  => __( 'Updated', 'flx-blocks' ),
-			'config'   => __( 'Config', 'flx-blocks' ),
-			'settings' => __( 'Default Settings', 'flx-blocks' ),
-		];
-		$settings = [
-			'flx/spacer'          => [
-				'moved' => [
-					'type' => 'info',
-					'name' => __( 'Setting defaults has moved into Gutenberg, click on the top right corner settings and go to Flux Block Editor Controls', 'flx-blocks' ),
-				],
-			],
-			'flx/rowlayout'       => [
-				'moved' => [
-					'type' => 'info',
-					'name' => __( 'Setting defaults has moved into Gutenberg, click on the top right corner settings and go to Flux Block Editor Controls', 'flx-blocks' ),
-				],
-			],
-			'flx/advancedbtn'     => [
-				'moved' => [
-					'type' => 'info',
-					'name' => __( 'Setting defaults has moved into Gutenberg, click on the top right corner settings and go to Flux Block Editor Controls', 'flx-blocks' ),
-				],
-			],
-			'flx/infobox'         => [
-				'moved' => [
-					'type' => 'info',
-					'name' => __( 'Setting defaults has moved into Gutenberg, click on the top right corner settings and go to Flux Block Editor Controls', 'flx-blocks' ),
-				],
-			],
-			'flx/accordion'       => [
-				'moved' => [
-					'type' => 'info',
-					'name' => __( 'Setting defaults has moved into Gutenberg, click on the top right corner settings and go to Flux Block Editor Controls', 'flx-blocks' ),
-				],
-			],
-			'flx/tabs'            => [
-				'moved' => [
-					'type' => 'info',
-					'name' => __( 'Setting defaults has moved into Gutenberg, click on the top right corner settings and go to Flux Block Editor Controls', 'flx-blocks' ),
-				],
-			],
-			'flx/iconlist'        => [
-				'moved' => [
-					'type' => 'info',
-					'name' => __( 'Setting defaults has moved into Gutenberg, click on the top right corner settings and go to Flux Block Editor Controls', 'flx-blocks' ),
-				],
-			],
-			'flx/testimonials'    => [
-				'moved' => [
-					'type' => 'info',
-					'name' => __( 'Setting defaults has moved into Gutenberg, click on the top right corner settings and go to Flux Block Editor Controls', 'flx-blocks' ),
-				],
-			],
-			'flx/advancedheading' => [
-				'moved' => [
-					'type' => 'info',
-					'name' => __( 'Setting defaults has moved into Gutenberg, click on the top right corner settings and go to Flux Block Editor Controls', 'flx-blocks' ),
-				],
-			],
-			'flx/icon'            => [
-				'moved' => [
-					'type' => 'info',
-					'name' => __( 'Setting defaults has moved into Gutenberg, click on the top right corner settings and go to Flux Block Editor Controls', 'flx-blocks' ),
-				],
-			],
-		];
-		wp_enqueue_style( 'flx-blocks-admin-css', FLXBK_URL . 'includes/assets/css/admin-dashboard.min.css', [ 'wp-jquery-ui-dialog', 'wp-color-picker' ], FLXBK_VERSION, 'all' );
-		wp_enqueue_script( 'flx-blocks-admin-js', FLXBK_URL . 'includes/assets/js/admin-scripts.min.js', [ 'jquery', 'jquery-ui-dialog', 'wp-color-picker' ], FLXBK_VERSION, true );
-		wp_localize_script(
-			'flx-blocks-admin-js',
-			'fxt_blocks_params',
-			[
-				'ajaxurl'             => admin_url( 'admin-ajax.php' ),
-				'wpnonce'             => wp_create_nonce( 'flx-blocks-manage' ),
-				'blockConfig'         => get_option( 'fxt_blocks_config_blocks' ),
-				'blockConfigSettings' => $settings,
-				'texts'               => $texts,
-			]
-		);
 	}
 	/**
 	 * Register settings
@@ -1087,118 +1000,10 @@ class Flx_Blocks_Settings {
 		return self::$editor_width;
 	}
 	/**
-	 * Loads config page
+	 * Dashboard page: the React screen (includes/admin-screen.php).
 	 */
 	public function config_page() {
-		if ( function_exists( 'flxbk_flux_ui' ) && flxbk_flux_ui() ) {
-			flxbk_flux_render();
-			return;
-		}
-		?>
-		<div class="flxbk_dash_head">
-			<div class="flxbk_dash_head_container">
-				<div class="flxbk_dash_version">
-					<span>
-						<?php echo esc_html( apply_filters( 'flxbk_brand_name', 'Flux Block Editor' ) ) . ' ' . esc_html( FLXBK_VERSION ); ?>
-					</span>
-				</div>
-			</div>
-		</div>
-		<div class="wrap flxbk_dash">
-			<div class="flxbk_dashboard">
-				<h2 class="notices" style="display:none;"></h2>
-				<?php settings_errors(); ?>
-				<?php if ( function_exists( 'flxbk_flux_switch_notice' ) ) { flxbk_flux_switch_notice(); } ?>
-				<div class="page-grid">
-					<div class="flxbk_dashboard_main">
-						<h2 class="section-header"><?php echo esc_html( apply_filters( 'flxbk_brand_name', 'Flux Block Editor' ) ); ?></h2>
-						<div class="three-col-grid">
-							<?php
-							$blocks              = $this->blocks_array();
-							$unregistered_blocks = get_option( 'fxt_blocks_unregistered_blocks', [] );
-							if ( ! is_array( $unregistered_blocks ) ) {
-								$unregistered_blocks = [];
-							}
-							foreach ( $blocks as $block_key => $block ) {
-								if ( in_array( $block['slug'], $unregistered_blocks ) ) {
-									$btn_enabled_class = 'button-primary fxt-block-inactive';
-									$enabled_class     = 'fxt-block-inactive';
-								} else {
-									$btn_enabled_class = 'fxt-block-active';
-									$enabled_class     = 'fxt-block-active';
-								}
-								echo '<div class="flxbk_item ' . esc_attr( $enabled_class ) . '">';
-								echo '<h3>' . esc_html( $block['name'] ) . '</h3>';
-								echo '<p>' . wp_kses_post( $block['desc'] ) . '</p>';
-								echo '<div class="flxbk_item_footer">';
-								if ( in_array( $block['slug'], $unregistered_blocks ) ) {
-									$btntitle = __( 'Activate', 'flx-blocks' );
-									echo '<a class="fxt_block_button button ' . esc_attr( $btn_enabled_class ) . '" data-inactive-label="' . esc_attr__( 'Activate', 'flx-blocks' ) . '" data-active-label="' . esc_attr__( 'Deactivate', 'flx-blocks' ) . '" data-activating-label="' . esc_attr__( 'Activating…', 'flx-blocks' ) . '" data-activated-label="' . esc_attr__( 'Activated', 'flx-blocks' ) . '"  data-deactivating-label="' . esc_attr__( 'Deactivating…', 'flx-blocks' ) . '"  data-deactivated-label="' . esc_attr__( 'Deactivated', 'flx-blocks' ) . '" data-block-slug="' . esc_attr( $block['slug'] ) . '" href="#">' . esc_html( $btntitle ) . '</a>';
-								} else {
-									$btntitle = __( 'Deactivate', 'flx-blocks' );
-									// echo '<a class="fxt_block_button button ' . esc_attr( $btn_enabled_class ) . '" data-inactive-label="' . esc_attr__( 'Activate', 'flx-blocks' ) . '" data-active-label="' . esc_attr__( 'Deactivate', 'flx-blocks' ) . '" data-activating-label="' . esc_attr__( 'Activating…', 'flx-blocks' ) . '" data-activated-label="' . esc_attr__( 'Activated', 'flx-blocks' ) . '"  data-deactivating-label="' . esc_attr__( 'Deactivating…', 'flx-blocks' ) . '"  data-deactivated-label="' . esc_attr__( 'Deactivated', 'flx-blocks' ) . '" data-block-slug="' . esc_attr( $block['slug'] ) . '" href="#">' . esc_html( $btntitle ) . '</a>';
-								}
-								if ( ! empty( $block['link'] ) && ! empty( $block['linkText'] ) ) {
-									echo '<a class="button" href="' . esc_attr( $block['link'] ) . '">' . esc_html( $block['linkText'] ) . '</a>';
-								}
-
-								echo '</div>';
-								echo '</div>';
-							}
-							?>
-						</div>
-						<div class="fxt-dashboard-spacer"></div>
-						<?php if ( apply_filters( 'flxbk_editor_width', $this->show_editor_width() ) ) { ?>
-							<h2><?php echo esc_html__( 'Editor Max Widths', 'flx-blocks' ); ?></br><small class="fxt-main-subtitle"><?php echo esc_html__( 'Match the editor width to your sites width.', 'flx-blocks' ); ?></small></h2>
-							<?php global $content_width; ?>
-							<div class="fxt-main-description-notice"><?php echo esc_html__( 'Note: The current active themes "content_width" is set to:', 'flx-blocks' ) . ' ' . esc_html( $content_width ); ?>px</div>
-							<div class="fxt-promo-row-area">
-								<?php
-								echo '<form action="options.php" method="post">';
-									settings_fields( 'fxt_blocks_editor_width' );
-									do_settings_sections( 'fxt_blocks_editor_width_section' );
-									do_settings_sections( 'fxt_blocks_editor_defaults_section' );
-									submit_button( __( 'Save Changes', 'flx-blocks' ) );
-								echo '</form>';
-								?>
-							</div>
-							<div class="fxt-dashboard-spacer"></div>
-						<?php } ?>
-						<?php if ( apply_filters( 'flxbk_show_local_fonts', ! defined( 'FLXBK_VERSION' ) ) ) { ?>
-								<h2><?php echo esc_html__( 'Google Fonts', 'flx-blocks' ); ?></h2>
-								<div class="fxt-promo-row-area">
-								<?php
-								echo '<form action="options.php" method="post">';
-									settings_fields( 'flxbk_font_settings' );
-									do_settings_sections( 'fxt_blocks_fonts_section' );
-									submit_button( __( 'Save Changes', 'flx-blocks' ) );
-								echo '</form>';
-								?>
-							</div>
-							<div class="fxt-dashboard-spacer"></div>
-						<?php } ?>
-						<?php if ( apply_filters( 'flxbk_show_admin_bar', true ) ) { ?>
-								<h2><?php echo esc_html__( 'Admin Bar', 'flx-blocks' ); ?></h2>
-								<div class="fxt-promo-row-area">
-								<?php
-								echo '<form action="options.php" method="post">';
-									settings_fields( 'flxbk_admin_bar_settings' );
-									do_settings_sections( 'fxt_blocks_admin_bar_section' );
-									submit_button( __( 'Save Changes', 'flx-blocks' ) );
-								echo '</form>';
-								?>
-							</div>
-							<div class="fxt-dashboard-spacer"></div>
-						<?php } ?>
-					</div>
-					<div class="side-panel">
-						<?php do_action( 'flxbk_dash_side_panel' ); ?>
-						<?php do_action( 'flxbk_dash_below_side_panel' ); ?>
-					</div>
-				</div>
-			</div>
-		</div>
-		<?php
+		flxbk_flux_render();
 	}
 
 	/**
@@ -1322,107 +1127,6 @@ class Flx_Blocks_Settings {
 		}
 
 		return apply_filters( 'flxbk_enable_disable_array', $blocks );
-	}
-	/**
-	 * Ajax Save blocks Config
-	 */
-	public function ajax_blocks_save_config() {
-		if ( ! check_ajax_referer( 'flx-blocks-manage', 'wpnonce' ) ) {
-			wp_send_json_error( __( 'Invalid nonce', 'flx-blocks' ) );
-		}
-		if ( ! isset( $_POST['fxt_block'] ) && ! isset( $_POST['config'] ) ) {
-			return wp_send_json_error( __( 'Missing Content', 'flx-blocks' ) );
-		}
-		// Get settings.
-		$current_settings = get_option( 'fxt_blocks_config_blocks' );
-		$new_settings     = wp_unslash( $_POST['config'] );
-		if ( ! is_array( $new_settings ) ) {
-			return wp_send_json_error( __( 'Nothing to Save', 'flx-blocks' ) );
-		}
-		foreach ( $new_settings as $block_key => $settings ) {
-			foreach ( $settings as $attribute_key => $value ) {
-				if ( is_array( $value ) ) {
-					foreach ( $value as $array_attribute_index => $array_value ) {
-						if ( is_array( $array_value ) ) {
-							foreach ( $array_value as $array_attribute_key => $array_attribute_value ) {
-								$array_attribute_value = sanitize_text_field( $array_attribute_value );
-								if ( is_numeric( $array_attribute_value ) ) {
-									$array_attribute_value = floatval( $array_attribute_value );
-								}
-								if ( 'true' === $array_attribute_value ) {
-									$array_attribute_value = true;
-								}
-								if ( 'false' === $array_attribute_value ) {
-									$array_attribute_value = false;
-								}
-								$new_settings[ $block_key ][ $attribute_key ][ $array_attribute_index ][ $array_attribute_key ] = $array_attribute_value;
-							}
-						} else {
-							$array_value = sanitize_text_field( $array_value );
-							if ( is_numeric( $array_value ) ) {
-								$array_value = floatval( $array_value );
-							}
-							$new_settings[ $block_key ][ $attribute_key ][ $array_attribute_index ] = $array_value;
-						}
-					}
-				} else {
-					$value = sanitize_text_field( $value );
-					if ( is_numeric( $value ) ) {
-						$value = floatval( $value );
-					}
-					if ( 'true' === $value ) {
-						$value = true;
-					}
-					if ( 'false' === $value ) {
-						$value = false;
-					}
-					$new_settings[ $block_key ][ $attribute_key ] = $value;
-				}
-			}
-		}
-		$block = sanitize_text_field( wp_unslash( $_POST['fxt_block'] ) );
-
-		if ( ! is_array( $current_settings ) ) {
-			$current_settings = [];
-		}
-		$current_settings[ $block ] = $new_settings[ $block ];
-		update_option( 'fxt_blocks_config_blocks', $current_settings );
-		return wp_send_json_success();
-	}
-	/**
-	 * Ajax activate/deactivate blocks
-	 */
-	public function ajax_blocks_activate_deactivate() {
-		if ( ! check_ajax_referer( 'flx-blocks-manage', 'wpnonce' ) ) {
-			wp_send_json_error();
-		}
-		if ( ! isset( $_POST['fxt_block'] ) ) {
-			return wp_send_json_error();
-		}
-		FLXBK_Dashboard_Service::toggle( sanitize_text_field( wp_unslash( $_POST['fxt_block'] ) ) );
-		return wp_send_json_success();
-	}
-	/**
-	 * Ajax default posts width
-	 */
-	public function ajax_default_editor_width() {
-		if ( ! check_ajax_referer( 'flx-blocks-manage', 'wpnonce' ) ) {
-			wp_send_json_error();
-		}
-		if ( ! isset( $_POST['post_default'] ) ) {
-			return wp_send_json_error();
-		}
-		// Get variables.
-		$editor_widths = get_option( 'fxt_blocks_editor_width' );
-		$default       = sanitize_text_field( wp_unslash( $_POST['post_default'] ) );
-
-		if ( ! is_array( $editor_widths ) ) {
-			$editor_widths = [];
-		}
-		$editor_widths['post_default'] = $default;
-
-		update_option( 'fxt_blocks_editor_width', $editor_widths );
-		return wp_send_json_success();
 	}
 	/**
 	 * Add settings link

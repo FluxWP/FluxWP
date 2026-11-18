@@ -7,399 +7,6 @@ msgstr "Flux Speed'i görüntüle"
 msgid "Performance"
 msgstr "Performans"
 
-msgid "%1$s needs the %2$s plugin. It is not installed yet."
-msgstr "%1$s için %2$s eklentisini kurmalısınız. Henüz kurulu değil."
-
-msgid "Install and activate"
-msgstr "Kur ve etkinleştir"
-
-msgid "Ask an administrator who can install plugins."
-msgstr "Eklenti kurabilen bir yöneticiye başvurun."
-
-msgid "%1$s needs the %2$s plugin to be active. It is installed but turned off."
-msgstr "%1$s için %2$s eklentisi etkin olmalı. Kurulu ama kapalı."
-
-msgid "Activate"
-msgstr "Etkinleştir"
-
-msgid "Plugin installed and activated."
-msgstr "Eklenti kuruldu ve etkinleştirildi."
-
-msgid "Plugin activated."
-msgstr "Eklenti etkinleştirildi."
-
-msgid "Object cache is now SQLite Object Cache. Run the test below to confirm."
-msgstr "Nesne önbelleği artık SQLite Object Cache. Doğrulamak için aşağıdan test edin."
-
-msgid "Object cache is now LiteSpeed Cache. Run the test below to confirm."
-msgstr "Nesne önbelleği artık LiteSpeed Cache. Doğrulamak için aşağıdan test edin."
-
-msgid "LiteSpeed Cache was activated. Its object cache setting is finished when this page loads; run the test below."
-msgstr "LiteSpeed Cache etkinleştirildi. Nesne önbelleği ayarı bu sayfa açılınca tamamlanır; aşağıdan test edin."
-
-msgid "Object cache turned off."
-msgstr "Nesne önbelleği kapatıldı."
-
-msgid "Object cache repaired."
-msgstr "Nesne önbelleği onarıldı."
-
-msgid "Page cache turned on and purged."
-msgstr "Sayfa önbelleği açıldı ve temizlendi."
-
-msgid "Page cache turned off and purged."
-msgstr "Sayfa önbelleği kapatıldı ve temizlendi."
-
-msgid "All caches cleared (LiteSpeed page, CSS/JS and object cache)."
-msgstr "Tüm önbellekler temizlendi (LiteSpeed sayfa, CSS/JS ve nesne önbelleği)."
-
-msgid "Object cache emptied."
-msgstr "Nesne önbelleği boşaltıldı."
-
-msgid "another plugin"
-msgstr "başka bir eklenti"
-
-msgid "None"
-msgstr "Yok"
-
-msgid "Two layers make the site fast: the page cache serves ready HTML without running PHP, the object cache keeps database results between requests. Only one object cache can run at a time; this screen keeps it that way."
-msgstr "Siteyi iki katman hızlandırır: sayfa önbelleği PHP çalıştırmadan hazır HTML verir, nesne önbelleği veritabanı sonuçlarını istekler arasında saklar. Aynı anda yalnız bir nesne önbelleği çalışabilir; bu ekran bunu korur."
-
-msgid "Cache conflict"
-msgstr "Önbellek çakışması"
-
-msgid "Repair"
-msgstr "Onar"
-
-msgid "Page cache"
-msgstr "Sayfa önbelleği"
-
-msgid "LiteSpeed web server"
-msgstr "LiteSpeed web sunucusu"
-
-msgid "Not detected: LiteSpeed page cache works only on a LiteSpeed server (or through QUIC.cloud)."
-msgstr "Algılanmadı: LiteSpeed sayfa önbelleği yalnız LiteSpeed sunucuda (ya da QUIC.cloud üzerinden) çalışır."
-
-msgid "LiteSpeed Cache plugin"
-msgstr "LiteSpeed Cache eklentisi"
-
-msgid "version %s"
-msgstr "sürüm %s"
-
-msgid "installed, not active"
-msgstr "kurulu, etkin değil"
-
-msgid "not installed"
-msgstr "kurulu değil"
-
-msgid "On"
-msgstr "Açık"
-
-msgid "Off"
-msgstr "Kapalı"
-
-msgid "Turn off"
-msgstr "Kapat"
-
-msgid "Turn on"
-msgstr "Aç"
-
-msgid "Purge all"
-msgstr "Tümünü temizle"
-
-msgid "LiteSpeed settings"
-msgstr "LiteSpeed ayarları"
-
-msgid "Logged-in users, cart and checkout are not cached by LiteSpeed by default. Purge after changing the theme or menus."
-msgstr "Giriş yapmış kullanıcılar, sepet ve ödeme sayfası LiteSpeed'de varsayılan olarak önbelleğe alınmaz. Tema ya da menü değişince temizleyin."
-
-msgid "Object cache"
-msgstr "Nesne önbelleği"
-
-msgid "In use:"
-msgstr "Kullanılan:"
-
-msgid "Persistent"
-msgstr "Kalıcı"
-
-msgid "Not persistent"
-msgstr "Kalıcı değil"
-
-msgid "Test"
-msgstr "Test et"
-
-msgid "Empty object cache"
-msgstr "Nesne önbelleğini boşalt"
-
-msgid "Turn object cache off"
-msgstr "Nesne önbelleğini kapat"
-
-msgid "Turn the object cache off? The site keeps working, only slower on database-heavy pages."
-msgstr "Nesne önbelleği kapatılsın mı? Site çalışmaya devam eder, yalnız veritabanı ağırlıklı sayfalar yavaşlar."
-
-msgid "Test: writes a value in this request and reads it in a separate request. Only then is the cache really shared between visitors."
-msgstr "Test: bu istekte bir değer yazar, ayrı bir istekte okur. Ancak o zaman önbellek ziyaretçiler arasında gerçekten paylaşılıyordur."
-
-msgid "Last test (%1$s) could not finish: %2$s"
-msgstr "Son test (%1$s) tamamlanamadı: %2$s"
-
-msgid "Last test (%1$s): works, %2$s keeps values between requests. 100 writes + 100 reads took %3$s ms."
-msgstr "Son test (%1$s): çalışıyor, %2$s değerleri istekler arasında saklıyor. 100 yazma + 100 okuma %3$s ms sürdü."
-
-msgid "Last test (%s): values are lost after the request ends, so there is no persistent object cache."
-msgstr "Son test (%s): değerler istek bitince kayboluyor, kalıcı nesne önbelleği yok."
-
-msgid "In use"
-msgstr "Kullanılıyor"
-
-msgid "Recommended here"
-msgstr "Bu sunucu için önerilen"
-
-msgid "Keeps the cache in a SQLite file in wp-content. Needs no extra service, so it fits shared hosting without Redis/Memcached."
-msgstr "Önbelleği wp-content içinde bir SQLite dosyasında tutar. Ek servis gerekmez; Redis/Memcached olmayan paylaşımlı hosting'e uyar."
-
-msgid "PHP sqlite3 extension"
-msgstr "PHP sqlite3 uzantısı"
-
-msgid "required; enable it in the hosting PHP settings"
-msgstr "gerekli; hosting PHP ayarlarından açın"
-
-msgid "PHP igbinary extension"
-msgstr "PHP igbinary uzantısı"
-
-msgid "optional, makes it smaller and faster"
-msgstr "isteğe bağlı, daha küçük ve hızlı yapar"
-
-msgid "SQLite Object Cache plugin"
-msgstr "SQLite Object Cache eklentisi"
-
-msgid "not installed, installed from wordpress.org with one click"
-msgstr "kurulu değil, wordpress.org'dan tek tıkla kurulur"
-
-msgid "Cache file %1$s, %2$s."
-msgstr "Önbellek dosyası %1$s, %2$s."
-
-msgid "Plugin settings"
-msgstr "Eklenti ayarları"
-
-msgid "Cannot be used on this server without the sqlite3 extension."
-msgstr "sqlite3 uzantısı olmadan bu sunucuda kullanılamaz."
-
-msgid "Use SQLite Object Cache"
-msgstr "SQLite Object Cache kullan"
-
-msgid "Install and use SQLite Object Cache"
-msgstr "SQLite Object Cache kur ve kullan"
-
-msgid "The current object cache is turned off and SQLite Object Cache takes over. Continue?"
-msgstr "Mevcut nesne önbelleği kapatılır, yerine SQLite Object Cache geçer. Devam edilsin mi?"
-
-msgid "LiteSpeed Cache + Memcached"
-msgstr "LiteSpeed Cache + Memcached"
-
-msgid "LiteSpeed Cache's own object cache, kept in Memcached memory. On Hostinger, Memcached is switched on per site in hPanel."
-msgstr "LiteSpeed Cache'in kendi nesne önbelleği, Memcached belleğinde tutulur. Hostinger'da Memcached site başına hPanel'den açılır."
-
-msgid "Memcached PHP extension"
-msgstr "Memcached PHP uzantısı"
-
-msgid "missing; Redis is used instead"
-msgstr "yok; yerine Redis kullanılır"
-
-msgid "missing; on Hostinger: hPanel › Advanced › PHP Configuration › Memcached"
-msgstr "yok; Hostinger'da: hPanel › Gelişmiş › PHP Yapılandırması › Memcached"
-
-msgid "Enable Memcached for this site in the hosting panel first; this option unlocks afterwards."
-msgstr "Önce hosting panelinden bu site için Memcached'i açın; bu seçenek sonra açılır."
-
-msgid "Use LiteSpeed object cache"
-msgstr "LiteSpeed nesne önbelleğini kullan"
-
-msgid "Install LiteSpeed Cache and use it"
-msgstr "LiteSpeed Cache kur ve kullan"
-
-msgid "The current object cache is turned off and LiteSpeed Cache takes over. Continue?"
-msgstr "Mevcut nesne önbelleği kapatılır, yerine LiteSpeed Cache geçer. Devam edilsin mi?"
-
-msgid "Safe"
-msgstr "Güvenli"
-
-msgid "Test first"
-msgstr "Önce deneyin"
-
-msgid "The theme or a preset overrides this feature in code (flxp_pagespeed_enabled); this setting may not take effect."
-msgstr "Tema ya da ön ayar bu özelliği kod ile değiştiriyor (flxp_pagespeed_enabled); ayar geçerli olmayabilir."
-
-msgid "Saved. The cache and the LiteSpeed page cache were cleared; browse a few pages to check."
-msgstr "Kaydedildi. Önbellek ve LiteSpeed sayfa önbelleği temizlendi; birkaç sayfayı gezip kontrol edin."
-
-msgid "PageSpeed cache cleared."
-msgstr "PageSpeed önbelleği temizlendi."
-
-msgid "Google PageSpeed / Lighthouse suggestions that can be applied without changing the theme. Each one is switched on separately; after enabling a \"Test first\" item, check a few pages of the site (home, a post, donation/checkout)."
-msgstr "Google PageSpeed / Lighthouse önerilerinin tema değiştirmeden yapılabilenleri. Her biri ayrı açılır; \"Önce deneyin\" olanları açtıktan sonra sitenin birkaç sayfasını (ana sayfa, yazı, bağış/ödeme) kontrol edin."
-
-msgid "Basics"
-msgstr "Temel"
-
-msgid "Remove the zoom lock"
-msgstr "Yakınlaştırma kilidini kaldır"
-
-msgid "user-scalable=no and maximum-scale are removed from the viewport tag so visitors with low vision can zoom in. Directly affects the Accessibility score."
-msgstr "Viewport etiketindeki user-scalable=no ve maximum-scale değerleri silinir; az gören kullanıcılar sayfayı büyütebilir. Erişilebilirlik puanını doğrudan etkiler."
-
-msgid "Remove the emoji script"
-msgstr "Emoji betiğini kaldır"
-
-msgid "WordPress's emoji detection script and style are not loaded. Modern browsers render emoji themselves."
-msgstr "WordPress'in emoji algılama betiği ve stili yüklenmez. Modern tarayıcılar emojiyi kendisi çizer."
-
-msgid "Scope"
-msgstr "Kapsam"
-
-msgid "Theme CSS only (recommended)"
-msgstr "Yalnız tema CSS'i (önerilen)"
-
-msgid "Theme + plugins (all CSS under wp-content)"
-msgstr "Tema + eklentiler (wp-content altındaki tüm CSS)"
-
-msgid "Inline limit"
-msgstr "Satır içi sınırı"
-
-msgid "Trimmed CSS is written into <head> up to this size; anything beyond is loaded as a separate cached file. 0 = always a file."
-msgstr "Kırpılmış CSS bu boyuta kadar <head> içine yazılır; fazlası önbellekten ayrı dosya olarak yüklenir. 0 = hep dosya."
-
-msgid "Always keep these classes"
-msgstr "Her zaman korunan sınıflar"
-
-msgid "One class or id per line, * as wildcard. If a style added later by JavaScript breaks, add its class here. is-*, has-*, wp-*, swiper-* are always kept."
-msgstr "Satır başına bir sınıf ya da id, * joker. JavaScript'in sonradan eklediği bir görünüm bozulursa sınıfını buraya yazın. is-*, has-*, wp-*, swiper-* her zaman korunur."
-
-msgid "Remove unused CSS and inline it"
-msgstr "Kullanılmayan CSS'i kırp ve satır içine al"
-
-msgid "Each page's class/id inventory is collected (HTML + the page's scripts); rules with no match on that page are dropped from the CSS file and the rest is written into <head>. The render-blocking CSS request goes away and LCP/FCP improve. Pages with the same inventory share one copy; copies are rebuilt when the file changes, and the full file is used if there are too many different pages."
-msgstr "Her sayfanın sınıf/id envanteri çıkarılır (HTML + sayfadaki betikler); CSS dosyasından o sayfada karşılığı olmayan kurallar atılır, kalan kısım <head> içine yazılır. Engelleyen CSS isteği kalkar, LCP ve FCP hızlanır. Aynı envanterli sayfalar aynı kopyayı paylaşır; dosya değişince kopyalar yenilenir, çok fazla farklı sayfa olursa tam dosyaya dönülür."
-
-msgid "Minify CSS files"
-msgstr "CSS dosyalarını sıkıştır"
-
-msgid "For unminified (non-.min) local CSS files, an up-to-date .min sibling or a copy without comments and whitespace is used."
-msgstr "Sıkıştırılmamış (.min olmayan) yerel CSS dosyaları için güncel .min kardeşi ya da yorumları ve boşlukları atılmış kopya kullanılır."
-
-msgid "Minify JS files"
-msgstr "JS dosyalarını sıkıştır"
-
-msgid "For theme and plugin scripts, the .min sibling is used if it is newer than the source; otherwise a copy without comments and indentation is generated (line breaks are kept). Bundles that load chunks relative to their own location and scripts with translations are left alone."
-msgstr "Tema ve eklenti betikleri için .min kardeşi kaynaktan yeniyse o kullanılır; değilse yorumları ve satır boşlukları atılmış kopya üretilir (satır sonları korunur). Kendi konumundan parça yükleyen paketlere ve çevirisi olan betiklere dokunulmaz."
-
-msgid "jQuery stays blocking unless \"Defer jQuery too\" is on. WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on."
-msgstr "\"jQuery'yi de ertele\" açık değilse jQuery engelleyici kalır. WordPress, ardından satır içi betik gelen ya da engelleyici bir betiğin bağlı olduğu betiklerde defer'i kendisi bırakır."
-
-msgid "Defer head scripts"
-msgstr "Head betiklerini ertele (defer)"
-
-msgid "Scripts loaded in the page <head> that hold up rendering get defer (e.g. language suggestion, analytics scripts)."
-msgstr "Sayfanın <head> bölümünde yüklenen ve çizimi bekleten betiklere defer verilir (ör. dil önerisi, analiz betikleri)."
-
-msgid "Defer jQuery too"
-msgstr "jQuery'yi de ertele"
-
-msgid "jQuery and jQuery Migrate get defer as well. WordPress keeps them blocking when a blocking script depends on them, and Flux Speed keeps them blocking on pages with an inline script that calls jQuery or $ directly."
-msgstr "jQuery ve jQuery Migrate de defer alır. Engelleyici bir betik onlara bağlıysa WordPress, jQuery ya da $ çağıran satır içi betiği olan sayfalarda ise Flux Speed onları engelleyici bırakır."
-
-msgid "Fonts"
-msgstr "Yazı tipleri"
-
-msgid "Remove unused fonts"
-msgstr "Kullanılmayan yazı tiplerini çıkar"
-
-msgid "Font families defined in theme.json but not referenced in the page's CSS (@font-face) are not printed. If usage cannot be determined, nothing is removed."
-msgstr "theme.json'da tanımlı ama sayfanın CSS'inde geçmeyen yazı tipi aileleri (@font-face) sayfaya yazılmaz. Kullanım belirlenemezse hiçbiri çıkarılmaz."
-
-msgid "Preload the above-the-fold font"
-msgstr "İlk ekran yazı tipini önden yükle (preload)"
-
-msgid "The regular (400) woff2 of up to two families in use is requested with <link rel=\"preload\"> so text paints sooner. Preloading the wrong weight wastes a download; turn this off if PageSpeed reports an unused preload."
-msgstr "Kullanılan en fazla iki ailenin normal (400) woff2 dosyası <link rel=\"preload\"> ile istenir; metin daha erken çizilir. Yanlış ağırlık önden yüklenirse boşa indirme olur; PageSpeed'de \"kullanılmayan preload\" uyarısı çıkarsa kapatın."
-
-msgid "Exclusions"
-msgstr "Hariç tutma"
-
-msgid "Files to leave alone"
-msgstr "Dokunulmayacak dosyalar"
-
-msgid "One handle or part of a URL per line. Trimming, minifying and defer are not applied to these files."
-msgstr "Satır başına tanıtıcı (handle) ya da adresin bir parçası. Kırpma, sıkıştırma ve defer bu dosyalara uygulanmaz."
-
-msgid "Pages to leave alone"
-msgstr "Dokunulmayacak sayfalar"
-
-msgid "One URL part per line. No PageSpeed optimization runs on these pages."
-msgstr "Satır başına adres parçası. Bu sayfalarda hiçbir PageSpeed iyileştirmesi yapılmaz."
-
-msgid "Save and clear cache"
-msgstr "Kaydet ve önbelleği temizle"
-
-msgid "Status"
-msgstr "Durum"
-
-msgid "Cache"
-msgstr "Önbellek"
-
-msgid "%1$d CSS, %2$d JS copies · %3$s"
-msgstr "%1$d CSS, %2$d JS kopyası · %3$s"
-
-msgid "Compare"
-msgstr "Karşılaştır"
-
-msgid "Optimized"
-msgstr "İyileştirilmiş"
-
-msgid "Off (?flxp_off=1)"
-msgstr "Kapalı (?flxp_off=1)"
-
-msgid "Adding ?flxp_off=1 to a URL opens the page without optimizations; if the page looks different, the cause is here."
-msgstr "Adresin sonuna ?flxp_off=1 eklenince sayfa iyileştirmesiz açılır; bir görünüm farkı varsa sebebi buradadır."
-
-msgid "Measure"
-msgstr "Ölçüm"
-
-msgid "Flux SEO › Site audit"
-msgstr "Flux SEO › Site denetimi"
-
-msgid "The site audit suggests these settings itself and turns them on with one click."
-msgstr "Site denetimi bu ayarları kendisi önerir ve tek tıkla açar."
-
-msgid "Clear cache"
-msgstr "Önbelleği temizle"
-
-msgid "Animations not running on the GPU"
-msgstr "GPU'da çalışmayan animasyonlar"
-
-msgid "Lighthouse \"non-composited animations\": properties other than transform and opacity (stroke-dashoffset, background, width…) repaint every frame. A setting cannot fix this; the theme or preset must rewrite them with transform/opacity."
-msgstr "Lighthouse \"bileşik olmayan animasyonlar\" uyarısı: transform ve opacity dışındaki özellikler (stroke-dashoffset, background, width…) her karede yeniden çizim yapar. Bunu ayar düzeltemez; tema ya da ön ayarda transform/opacity ile yeniden yazılmalı."
-
-msgid "Animation"
-msgstr "Animasyon"
-
-msgid "Properties"
-msgstr "Özellikler"
-
-msgid "File"
-msgstr "Dosya"
-
-msgid "no prefers-reduced-motion"
-msgstr "prefers-reduced-motion yok"
-
-msgid "All good: animations in the CSS files seen use transform/opacity."
-msgstr "Sorun yok: görülen CSS dosyalarındaki animasyonlar transform/opacity kullanıyor."
-
-msgid "Scanned %1$d CSS files seen on the front end (%2$s)."
-msgstr "Ön yüzde görülen %1$d CSS dosyası tarandı (%2$s)."
-
-msgid "The front end has not been seen yet, so the theme folder was scanned. Once the site is opened, the files the page loads are scanned."
-msgstr "Henüz ön yüz görülmedi; tema klasörü tarandı. Siteyi bir kez açınca sayfanın yüklediği dosyalar taranır."
-
 msgid "Summary"
 msgstr "Özet"
 
@@ -415,608 +22,20 @@ msgstr "Veritabanı"
 msgid "System check"
 msgstr "Sistem Kontrolü"
 
+msgid "Cache"
+msgstr "Önbellek"
+
 msgid "Settings"
 msgstr "Site ayarları"
 
 msgid "Flux Performance"
 msgstr "Flux Speed"
 
-msgid "Settings saved."
-msgstr "Ayarlar kaydedildi."
-
-msgid "All records deleted."
-msgstr "Tüm kayıtlar silindi."
-
-msgid "Custom login URL turned off; login is back on wp-login.php."
-msgstr "Özel giriş adresi kapatıldı; giriş yeniden wp-login.php üzerinden."
-
-msgid "Cleanup done: %s items."
-msgstr "Temizlik tamam: %s öğe."
-
-msgid "Login URL changed."
-msgstr "Giriş adresi değişti."
-
-msgid "New address:"
-msgstr "Yeni adres:"
-
-msgid "You are being logged out so you can see the new address work; you will be redirected to the new login page in %s seconds. After logging in you come back to this screen."
-msgstr "Yeni adresin çalıştığını görmeniz için oturumunuz kapatılıyor; %s saniye içinde yeni giriş sayfasına yönlendirileceksiniz. Giriş yapınca bu ekrana dönersiniz."
-
-msgid "Redirect stopped. You are still logged in; the new address is used the next time you log in."
-msgstr "Yönlendirme durduruldu. Oturumunuz açık; yeni adres bir sonraki girişte kullanılır."
-
-msgid "Go now"
-msgstr "Şimdi git"
-
-msgid "Stay logged in"
-msgstr "Oturumda kal"
-
 msgid "You are not allowed to view this page."
 msgstr "Bu sayfayı görme yetkiniz yok."
 
-msgid "Recording is off: only the live panel works."
-msgstr "Kayıt kapalı: yalnız anlık panel çalışıyor."
-
-msgid "All time"
-msgstr "Tüm zamanlar"
-
-msgid "Last hour"
-msgstr "Son 1 saat"
-
-msgid "Last 24 hours"
-msgstr "Son 24 saat"
-
-msgid "Last 7 days"
-msgstr "Son 7 gün"
-
-msgid "All flags"
-msgstr "Tüm durumlar"
-
-msgid "All types"
-msgstr "Tüm türler"
-
-msgid "Newest"
-msgstr "En yeni"
-
-msgid "Slowest"
-msgstr "En yavaş"
-
-msgid "Search URL"
-msgstr "Adreste ara"
-
-msgid "Filter"
-msgstr "Süz"
-
-msgid "URL to profile"
-msgstr "Ölçülecek adres"
-
-msgid "Profile page"
-msgstr "Sayfayı ölç"
-
-msgid "\"Profile page\" opens the URL as a visitor (bypassing cache) and records it in full detail."
-msgstr "\"Sayfayı ölç\" adresi ziyaretçi gibi açar (önbelleksiz) ve tüm ayrıntıyla kaydeder."
-
-msgid "Time"
-msgstr "Süre"
-
-msgid "URL"
-msgstr "Adres"
-
-msgid "Memory"
-msgstr "Bellek"
-
-msgid "Queries"
-msgstr "Sorgular"
-
-msgid "Errors"
-msgstr "Hata"
-
-msgid "Flags"
-msgstr "İşaretler"
-
-msgid "No records yet. Slow or failing requests and sampled requests appear here."
-msgstr "Henüz kayıt yok. Yavaş ya da hatalı istekler ve örneklenen istekler burada görünür."
-
-msgid "Records: %s"
-msgstr "Kayıt sayısı: %s"
-
-msgid "Delete all records?"
-msgstr "Tüm kayıtlar silinsin mi?"
-
-msgid "Delete all records"
-msgstr "Tüm kayıtları sil"
-
 msgid "Record not found."
 msgstr "Kayıt bulunamadı."
-
-msgid "Recorded requests"
-msgstr "Kayıtlı istek"
-
-msgid "Average time"
-msgstr "Ortalama süre"
-
-msgid "Longest"
-msgstr "En uzun"
-
-msgid "Times are calculated from recorded requests: sampled requests plus slow/failing ones, so the average may look higher than the real average."
-msgstr "Süreler kayıtlı isteklerden hesaplanır: örneklenen istekler + yavaş/hatalı istekler. Bu yüzden ortalama gerçek ortalamadan yüksek görünebilir."
-
-msgid "By request type"
-msgstr "İstek türüne göre"
-
-msgid "The time visitors wait is the \"Front end\" row. Cron, Ajax and REST are mostly background work (backup step, scheduled task, Heartbeat); when they take long they do not slow pages directly, but they keep the server busy."
-msgstr "Ziyaretçinin beklediği süre \"Ön yüz\" satırıdır. Cron, Ajax ve REST çoğunlukla arka plan işidir (yedek adımı, zamanlanmış görev, Heartbeat); uzun sürmeleri sayfaları doğrudan yavaşlatmaz ama sunucuyu meşgul eder."
-
-msgid "Type"
-msgstr "Tür"
-
-msgid "Request"
-msgstr "İstek"
-
-msgid "Average"
-msgstr "Ortalama"
-
-msgid "Slowest URLs"
-msgstr "En yavaş adresler"
-
-msgid "Query time by component (per request)"
-msgstr "Sorgu süresi: bileşenlere göre (istek başına)"
-
-msgid "Component"
-msgstr "Bileşen"
-
-msgid "Per request"
-msgstr "İstek başına"
-
-msgid "Slow and failed queries"
-msgstr "Yavaş ve hatalı sorgular"
-
-msgid "Count"
-msgstr "Adet"
-
-msgid "PHP errors"
-msgstr "PHP hataları"
-
-msgid "Level"
-msgstr "Seviye"
-
-msgid "Message"
-msgstr "Mesaj"
-
-msgid "HTTP API calls"
-msgstr "Dış istekler"
-
-msgid "Endpoint"
-msgstr "Uç"
-
-msgid "Failed"
-msgstr "Hatalı"
-
-msgid "Last error"
-msgstr "Son hata"
-
-msgid "No records."
-msgstr "Kayıt yok."
-
-msgid "Suggestions"
-msgstr "Öneriler"
-
-msgid "Account limit (cgroup)"
-msgstr "Hesap sınırı (cgroup)"
-
-msgid "Shared hosting: account limit cannot be read"
-msgstr "Paylaşımlı hosting: hesap sınırı okunamıyor"
-
-msgid "Server belongs to this site (VPS/dedicated)"
-msgstr "Sunucu bu siteye ait (VPS/dedicated)"
-
-msgid "Scanned folder"
-msgstr "Taranan klasör"
-
-msgid "Files"
-msgstr "Dosyalar"
-
-msgid "Calculating…"
-msgstr "Hesaplanıyor…"
-
-msgid "Files and folders (inodes)"
-msgstr "Dosya ve klasör sayısı (inode)"
-
-msgid "Disk quota"
-msgstr "Disk kotası"
-
-msgid "Not set (Settings)"
-msgstr "Girilmedi (Ayarlar)"
-
-msgid "Last measured"
-msgstr "Son ölçüm"
-
-msgid "refreshing"
-msgstr "yenileniyor"
-
-msgid "Account disk"
-msgstr "Hesap diski"
-
-msgid "Whole machine (shared, all accounts)"
-msgstr "Makine geneli (paylaşımlı, tüm hesaplar)"
-
-msgid "CPU cores"
-msgstr "Çekirdek sayısı"
-
-msgid "Load (1/5/15 min)"
-msgstr "Yük (1/5/15 dk)"
-
-msgid "Disk"
-msgstr "Disk"
-
-msgid "%s free"
-msgstr "%s boş"
-
-msgid "Note"
-msgstr "Not"
-
-msgid "These values belong to every account on the machine; they are not your site's usage or limit."
-msgstr "Bu değerler sunucudaki tüm hesaplarındır, sitenizin kullanımı veya sınırı değildir."
-
-msgid "Yes"
-msgstr "Evet"
-
-msgid "No"
-msgstr "Hayır"
-
-msgid "Operating system"
-msgstr "İşletim sistemi"
-
-msgid "Software"
-msgstr "Yazılım"
-
-msgid "Hostname"
-msgstr "Sunucu adı"
-
-msgid "IP address"
-msgstr "IP adresi"
-
-msgid "Port"
-msgstr "Port"
-
-msgid "Document root"
-msgstr "Belge kökü"
-
-msgid "Resource values"
-msgstr "Kaynak bilgisi"
-
-msgid "Version"
-msgstr "Sürüm"
-
-msgid "Memory (this request)"
-msgstr "Bellek (bu istek)"
-
-msgid "peak"
-msgstr "tepe"
-
-msgid "Disabled functions"
-msgstr "Kapalı fonksiyonlar"
-
-msgid "Extensions"
-msgstr "Uzantılar"
-
-msgid "Hit rate"
-msgstr "İsabet oranı"
-
-msgid "Cached files"
-msgstr "Önbellekteki dosya"
-
-msgid "Wasted"
-msgstr "Boşa giden"
-
-msgid "Restarts"
-msgstr "Yeniden başlama"
-
-msgid "No data (disabled or not allowed by the server)."
-msgstr "Bilgi alınamadı (kapalı ya da sunucu izin vermiyor)."
-
-msgid "External"
-msgstr "Harici"
-
-msgid "Page cache (WP_CACHE)"
-msgstr "Sayfa önbelleği (WP_CACHE)"
-
-msgid "Locale"
-msgstr "Dil"
-
-msgid "Timezone"
-msgstr "Saat dilimi"
-
-msgid "Permalinks"
-msgstr "Kalıcı bağlantılar"
-
-msgid "Environment type"
-msgstr "Ortam türü"
-
-msgid "Theme"
-msgstr "Tema"
-
-msgid "undefined"
-msgstr "tanımsız"
-
-msgid "Active plugins"
-msgstr "Etkin eklentiler"
-
-msgid "Data"
-msgstr "Veri"
-
-msgid "Index"
-msgstr "İndeks"
-
-msgid "Free space"
-msgstr "Boş alan"
-
-msgid "Table"
-msgstr "Tablo"
-
-msgid "Rows (approx.)"
-msgstr "Satır (yaklaşık)"
-
-msgid "Open connections"
-msgstr "Açık bağlantı"
-
-msgid "Charset"
-msgstr "Karakter seti"
-
-msgid "Uptime"
-msgstr "Çalışma süresi"
-
-msgid "Queries per second"
-msgstr "Saniyede sorgu"
-
-msgid "Slow queries (server)"
-msgstr "Yavaş sorgu (sunucu)"
-
-msgid "Max concurrent connections"
-msgstr "En çok eş zamanlı bağlantı"
-
-msgid "Running threads"
-msgstr "Çalışan iş parçacığı"
-
-msgid "Buffer pool hit rate"
-msgstr "Buffer pool isabeti"
-
-msgid "Temp tables on disk"
-msgstr "Diske düşen geçici tablo"
-
-msgid "Aborted connects"
-msgstr "Reddedilen bağlantı"
-
-msgid "Cleanup"
-msgstr "Temizlik"
-
-msgid "Safe jobs only: posts, pages and revisions are never deleted. Limit revisions with WP_POST_REVISIONS in wp-config."
-msgstr "Yalnız güvenli işler: yazı, sayfa ve revizyonlar silinmez. Revizyon sayısını wp-config'te WP_POST_REVISIONS ile sınırlayın."
-
-msgid "continue?"
-msgstr "devam edilsin mi?"
-
-msgid "Clean"
-msgstr "Temizle"
-
-msgid "Revisions"
-msgstr "Revizyonlar"
-
-msgid "Trashed posts"
-msgstr "Çöpteki yazılar"
-
-msgid "All transients"
-msgstr "Tüm geçici veriler"
-
-msgid "Job"
-msgstr "İş"
-
-msgid "Tables"
-msgstr "Tablolar"
-
-msgid "Engine"
-msgstr "Motor"
-
-msgid "Rows"
-msgstr "Satır"
-
-msgid "Collation"
-msgstr "Karşılaştırma"
-
-msgid "Autoloaded options"
-msgstr "Autoload seçenekleri"
-
-msgid "Total size"
-msgstr "Toplam boyut"
-
-msgid "These options are loaded from the database on every request. Over 800 KB in total slows pages down; shrink the setting or cache in the plugin that owns the large rows."
-msgstr "Bu seçenekler her istekte veritabanından okunur. Toplam 800 KB üstü sayfaları yavaşlatır; büyük satırların sahibi eklentide ayarı ya da önbelleği küçültmek gerekir."
-
-msgid "Option"
-msgstr "Seçenek"
-
-msgid "Owner"
-msgstr "Sahibi"
-
-msgid "Size"
-msgstr "Boyut"
-
-msgid "Events"
-msgstr "Görev"
-
-msgid "Overdue"
-msgstr "Gecikmiş"
-
-msgid "Last run"
-msgstr "Son çalışma"
-
-msgid "Not seen"
-msgstr "Görülmedi"
-
-msgid "WordPress cron is disabled: events run only when a server cron job calls wp-cron.php. On Hostinger, add a cron job that calls it every 5 minutes."
-msgstr "WordPress cron kapalı: görevler yalnız sunucu cron'u wp-cron.php'yi çağırınca çalışır. Hostinger'da 5 dakikada bir çağıran bir cron işi tanımlı olmalı."
-
-msgid "Task durations"
-msgstr "Görev süreleri"
-
-msgid "Measured per task each time wp-cron.php runs; sorted by total time. A summary older than a day resets when the task runs again. \"Cut off\": the task hit the time limit and stopped halfway."
-msgstr "wp-cron.php her çalıştığında görev başına ölçülür; toplam süreye göre sıralı. Bir günden eski özet, görev yeniden çalışınca sıfırlanır. \"Kesildi\": görev süre sınırına takılıp yarıda kaldı."
-
-msgid "Hook"
-msgstr "Kanca"
-
-msgid "Runs"
-msgstr "Çalışma"
-
-msgid "Last"
-msgstr "Son"
-
-msgid "Cut off"
-msgstr "Kesildi"
-
-msgid "Scheduled events"
-msgstr "Zamanlanmış görevler"
-
-msgid "Next"
-msgstr "Sonraki"
-
-msgid "Recurrence"
-msgstr "Tekrar"
-
-msgid "Args"
-msgstr "Argüman"
-
-msgid "Overdue: due %s"
-msgstr "Gecikti: %s çalışmalıydı"
-
-msgid "once"
-msgstr "bir kez"
-
-msgid "Recent fixes (AI / MCP)"
-msgstr "Son düzeltmeler (yapay zekâ / MCP)"
-
-msgid "User"
-msgstr "Kullanıcı"
-
-msgid "Fix"
-msgstr "Düzeltme"
-
-msgid "Before → After"
-msgstr "Önce → Sonra"
-
-msgid "Result"
-msgstr "Sonuç"
-
-msgid "Developer panel"
-msgstr "Geliştirici paneli"
-
-msgid "Show a summary in the admin bar and a bottom panel to authorized users"
-msgstr "Yetkili kullanıcıya yönetici çubuğunda özet ve alt panel göster"
-
-msgid "Show on the front end too"
-msgstr "Ön yüzde de göster"
-
-msgid "Collect capability checks"
-msgstr "Yetki kontrollerini topla"
-
-msgid "The panel is visible to administrators and to staff granted \"View performance\" by Flux Roles."
-msgstr "Panel; yöneticiye ve Flux Roles'den \"Performansı görüntüle\" yetkisi verilen personele görünür."
-
-msgid "Recording"
-msgstr "Kayıt"
-
-msgid "Record slow and failing requests"
-msgstr "Yavaş ve hatalı istekleri kaydet"
-
-msgid "Also record my own requests while the panel is on (only when something is wrong)"
-msgstr "Panel açıkken kendi isteklerimi de kaydet (yalnız sorun varsa)"
-
-msgid "Sampling"
-msgstr "Örnekleme"
-
-msgid "This share of requests is collected in detail (with the query list) and recorded. 1-5 is recommended on Hostinger; 0 turns it off."
-msgstr "İsteklerin bu kadarı sorgu listesiyle ayrıntılı toplanır ve kaydedilir. Hostinger için 1-5 önerilir; 0 kapatır."
-
-msgid "Slow request threshold"
-msgstr "Yavaş istek eşiği"
-
-msgid "Slow query threshold"
-msgstr "Yavaş sorgu eşiği"
-
-msgid "Retention"
-msgstr "Saklama"
-
-msgid "days"
-msgstr "gün"
-
-msgid "at most"
-msgstr "en fazla"
-
-msgid "records"
-msgstr "kayıt"
-
-msgid "Your shared hosting plan's disk limit (Hostinger: hPanel › Account resources). PHP cannot read it; when set, the Disk card shows account usage as a percentage. Leave empty to show used space only."
-msgstr "Paylaşımlı hosting planınızın disk sınırı (Hostinger: hPanel › Hesap kaynakları). PHP bu sınırı okuyamaz; girilirse Disk kutusu hesap kullanımını yüzde olarak gösterir. Boş bırakılırsa yalnız kullanılan alan görünür."
-
-msgid "AI (MCP)"
-msgstr "Yapay zekâ (MCP)"
-
-msgid "The data is read by read-only tools on the Flux AI & MCP server and in Flux AI chat: flxp_summary, flxp_requests, flxp_request, flxp_slow_queries, flxp_php_errors, flxp_http_calls, flxp_environment, flxp_server, flxp_database, flxp_autoload, flxp_cron, flxp_profile_url."
-msgstr "Kayıtlar Flux AI & MCP sunucusunda ve Flux AI sohbetinde salt okunur araçlarla okunur: flxp_summary, flxp_requests, flxp_request, flxp_slow_queries, flxp_php_errors, flxp_http_calls, flxp_environment, flxp_server, flxp_database, flxp_autoload, flxp_cron, flxp_profile_url."
-
-msgid "Flux AI & MCP is active: tools are registered."
-msgstr "Flux AI & MCP etkin: araçlar kayıtlı."
-
-msgid "Flux AI & MCP is not active: tools are available in Flux AI chat only."
-msgstr "Flux AI & MCP etkin değil: araçlar yalnız Flux AI sohbetinde."
-
-msgid "Admin login URL"
-msgstr "Yönetim giriş adresi"
-
-msgid "Opens the login screen at an address of your own instead of wp-login.php. wp-login.php and wp-admin requests from logged-out visitors no longer respond, which cuts bot password guessing and server load."
-msgstr "Giriş ekranını wp-login.php yerine size özel bir adreste açar. wp-login.php ve giriş yapmamış ziyaretçinin wp-admin istekleri yanıt vermez; botların şifre denemesi ve sunucu yükü azalır."
-
-msgid "FLXP_LOGIN_DISABLE is defined in wp-config.php: the custom URL is off and login uses wp-login.php. Remove that line once the problem is solved."
-msgstr "wp-config.php içinde FLXP_LOGIN_DISABLE tanımlı: özel adres kapalı, giriş yine wp-login.php üzerinden. Sorun çözüldüyse bu satırı silin."
-
-msgid "Your login URL"
-msgstr "Giriş adresiniz"
-
-msgid "Copied"
-msgstr "Kopyalandı"
-
-msgid "Copy"
-msgstr "Kopyala"
-
-msgid "Bookmark this address and share it with everyone who logs in. If you forget it, use the recovery step below."
-msgstr "Bu adresi yer imlerine ekleyin ve giriş yapan herkese iletin. Unutursanız aşağıdaki kurtarma adımını kullanın."
-
-msgid "Login URL"
-msgstr "Giriş adresi"
-
-msgid "The address comes from the FLXP_LOGIN_SLUG constant in wp-config.php; edit or remove the constant to change it."
-msgstr "Adres wp-config.php içindeki FLXP_LOGIN_SLUG sabitinden geliyor; değiştirmek için sabiti düzenleyin ya da silin."
-
-msgid "Leave empty to use the standard WordPress address (wp-login.php). 3-40 characters: lowercase letters, digits, hyphen, underscore. Pick something hard to guess (admin and login are not allowed)."
-msgstr "Boş bırakılırsa WordPress'in standart adresi (wp-login.php) kullanılır. 3-40 karakter: küçük harf, rakam, tire, alt çizgi. Tahmin edilmesi zor bir ad seçin (admin, login kullanılamaz)."
-
-msgid "Visitors to the old addresses"
-msgstr "Eski adreslere gelen ziyaretçi"
-
-msgid "Show the 404 page (recommended)"
-msgstr "404 sayfası göster (önerilen)"
-
-msgid "Redirect to the home page"
-msgstr "Ana sayfaya yönlendir"
-
-msgid "Applies to wp-login.php and to wp-admin requests from logged-out visitors. admin-ajax.php, admin-post.php, the REST API, wp-cron, WooCommerce My Account login and the Flux App connection are not affected."
-msgstr "wp-login.php ve giriş yapmamış ziyaretçinin wp-admin istekleri için. admin-ajax.php, admin-post.php, REST API, wp-cron, WooCommerce hesabım girişi ve Flux App bağlantısı etkilenmez."
-
-msgid "Recovery"
-msgstr "Kurtarma"
-
-msgid "If you forget the address or login won't open: add the line below to wp-config.php using your file manager (Hostinger hPanel › File Manager). Login goes back to wp-login.php; once you're in, fix the address here and remove the line."
-msgstr "Adresi unutursanız ya da giriş açılmazsa: dosya yöneticisinden (Hostinger hPanel › Dosya Yöneticisi) wp-config.php dosyasına aşağıdaki satırı ekleyin. Giriş yeniden wp-login.php olur; girdikten sonra adresi buradan düzeltip satırı silin."
 
 msgid "Two object caches are on at the same time: LiteSpeed Cache object cache and SQLite Object Cache. Only one can own object-cache.php; choose one below."
 msgstr "İki nesne önbelleği aynı anda açık: LiteSpeed Cache nesne önbelleği ve SQLite Object Cache. object-cache.php yalnız birine ait olabilir; aşağıdan birini seçin."
@@ -1078,11 +97,20 @@ msgstr "Ayar kaydedildi ama LiteSpeed Cache henüz object-cache.php yazmadı. Li
 msgid "The test request returned HTTP %d."
 msgstr "Test isteği HTTP %d döndü."
 
+msgid "Cache conflict"
+msgstr "Önbellek çakışması"
+
+msgid "Object cache"
+msgstr "Nesne önbelleği"
+
 msgid "Persistent object cache is on (%s)."
 msgstr "Kalıcı nesne önbelleği açık (%s)."
 
 msgid "No persistent object cache: every request reads options and queries from the database again. Turn one on from Performance › Cache."
 msgstr "Kalıcı nesne önbelleği yok: her istek ayarları ve sorguları veritabanından yeniden okuyor. Performans › Önbellek'ten birini açın."
+
+msgid "Page cache"
+msgstr "Sayfa önbelleği"
 
 msgid "The server is LiteSpeed but the LiteSpeed Cache page cache is off."
 msgstr "Sunucu LiteSpeed ama LiteSpeed Cache sayfa önbelleği kapalı."
@@ -1114,8 +142,17 @@ msgstr "Hesap sınırı %s çekirdek"
 msgid "%1$d cores · load %2$s"
 msgstr "%1$d çekirdek · yük %2$s"
 
+msgid "Disk"
+msgstr "Disk"
+
+msgid "%s free"
+msgstr "%s boş"
+
 msgid "Disk (account)"
 msgstr "Disk (hesap)"
+
+msgid "Calculating…"
+msgstr "Hesaplanıyor…"
 
 msgid "Scanning the account folder"
 msgstr "Hesap klasörü taranıyor"
@@ -1174,11 +211,17 @@ msgstr "Ara…"
 msgid "All"
 msgstr "Tümü"
 
+msgid "No records."
+msgstr "Kayıt yok."
+
 msgid "Showing the first 1500 rows; narrow down with search."
 msgstr "İlk 1500 satır gösteriliyor; aramayla daraltın."
 
 msgid "Call stack"
 msgstr "Çağrı yığını"
+
+msgid "Component"
+msgstr "Bileşen"
 
 msgid "Fatal"
 msgstr "Ölümcül"
@@ -1201,11 +244,17 @@ msgstr "Yönetim"
 msgid "Overview"
 msgstr "Genel bakış"
 
+msgid "Queries"
+msgstr "Sorgular"
+
 msgid "Duplicate queries"
 msgstr "Tekrar eden sorgular"
 
 msgid "By component"
 msgstr "Bileşenlere göre"
+
+msgid "PHP errors"
+msgstr "PHP hataları"
 
 msgid "Doing it wrong"
 msgstr "Yanlış kullanım"
@@ -1213,11 +262,17 @@ msgstr "Yanlış kullanım"
 msgid "Cron tasks"
 msgstr "Cron görevleri"
 
+msgid "HTTP API calls"
+msgstr "Dış istekler"
+
 msgid "Logs"
 msgstr "Loglar"
 
 msgid "Template"
 msgstr "Şablon"
+
+msgid "Request"
+msgstr "İstek"
 
 msgid "Capability checks"
 msgstr "Yetki kontrolleri"
@@ -1233,6 +288,9 @@ msgstr "Transient güncellemeleri"
 
 msgid "Hooks"
 msgstr "Hook'lar"
+
+msgid "Time"
+msgstr "Süre"
 
 msgid "Slow"
 msgstr "Yavaş"
@@ -1258,6 +316,15 @@ msgstr "Bu istekte sorgu ayrıntısı toplanmadı (örneklenmeyen istek). Sorgu 
 msgid "Timeline"
 msgstr "Zaman çizelgesi"
 
+msgid "URL"
+msgstr "Adres"
+
+msgid "Type"
+msgstr "Tür"
+
+msgid "User"
+msgstr "Kullanıcı"
+
 msgid "Visitor"
 msgstr "Ziyaretçi"
 
@@ -1270,6 +337,9 @@ msgstr "Ayrıntılı"
 msgid "Light"
 msgstr "Hafif"
 
+msgid "Failed"
+msgstr "Hatalı"
+
 msgid "Duplicates"
 msgstr "Tekrar eden"
 
@@ -1279,17 +349,44 @@ msgstr "Kayıtta yalnız en yavaş sorgular saklandı."
 msgid "Caller"
 msgstr "Çağıran"
 
+msgid "Count"
+msgstr "Adet"
+
 msgid "Callers"
 msgstr "Çağıranlar"
 
 msgid "Query types"
 msgstr "Sorgu türleri"
 
+msgid "Level"
+msgstr "Seviye"
+
+msgid "Message"
+msgstr "Mesaj"
+
+msgid "File"
+msgstr "Dosya"
+
 msgid "Subject"
 msgstr "Konu"
 
 msgid "Method"
 msgstr "Yöntem"
+
+msgid "Status"
+msgstr "Durum"
+
+msgid "Size"
+msgstr "Boyut"
+
+msgid "Hook"
+msgstr "Kanca"
+
+msgid "Cut off"
+msgstr "Kesildi"
+
+msgid "Runs"
+msgstr "Çalışma"
 
 msgid "No logs in this request."
 msgstr "Bu istekte log yok."
@@ -1306,11 +403,20 @@ msgstr "Durdurulmadı"
 msgid "Template file"
 msgstr "Şablon dosyası"
 
+msgid "Theme"
+msgstr "Tema"
+
 msgid "Parent theme"
 msgstr "Ana tema"
 
 msgid "Block theme"
 msgstr "Blok teması"
+
+msgid "Yes"
+msgstr "Evet"
+
+msgid "No"
+msgstr "Hayır"
 
 msgid "Block template"
 msgstr "Blok şablonu"
@@ -1344,6 +450,9 @@ msgstr "Koşullar"
 
 msgid "Capability"
 msgstr "Yetki"
+
+msgid "Result"
+msgstr "Sonuç"
 
 msgid "Granted"
 msgstr "Var"
@@ -1423,6 +532,9 @@ msgstr "Kayıtlı istekleri listele"
 msgid "Record details"
 msgstr "Kayıt ayrıntısı"
 
+msgid "Slow and failed queries"
+msgstr "Yavaş ve hatalı sorgular"
+
 msgid "Outgoing HTTP requests"
 msgstr "Dış HTTP istekleri"
 
@@ -1434,6 +546,15 @@ msgstr "Sunucu durumu"
 
 msgid "Database status"
 msgstr "Veritabanı durumu"
+
+msgid "Autoloaded options"
+msgstr "Autoload seçenekleri"
+
+msgid "Scheduled events"
+msgstr "Zamanlanmış görevler"
+
+msgid "Profile page"
+msgstr "Sayfayı ölç"
 
 msgid "Cache status"
 msgstr "Önbellek durumu"
@@ -1669,6 +790,9 @@ msgstr "Her satır sitenin ihtiyaç duyduğu bir şeyi ve yerinde olup olmadığ
 msgid "OK"
 msgstr "Tamam"
 
+msgid "Errors"
+msgstr "Hata"
+
 msgid "Info"
 msgstr "Bilgi"
 
@@ -1744,8 +868,230 @@ msgstr "Drop-in: %s"
 msgid "WordPress core"
 msgstr "WordPress çekirdeği"
 
+msgid "Account limit (cgroup)"
+msgstr "Hesap sınırı (cgroup)"
+
+msgid "Shared hosting: account limit cannot be read"
+msgstr "Paylaşımlı hosting: hesap sınırı okunamıyor"
+
+msgid "Server belongs to this site (VPS/dedicated)"
+msgstr "Sunucu bu siteye ait (VPS/dedicated)"
+
+msgid "Operating system"
+msgstr "İşletim sistemi"
+
+msgid "Software"
+msgstr "Yazılım"
+
+msgid "Hostname"
+msgstr "Sunucu adı"
+
+msgid "IP address"
+msgstr "IP adresi"
+
+msgid "Port"
+msgstr "Port"
+
+msgid "Document root"
+msgstr "Belge kökü"
+
+msgid "Resource values"
+msgstr "Kaynak bilgisi"
+
+msgid "Account disk"
+msgstr "Hesap diski"
+
+msgid "Scanned folder"
+msgstr "Taranan klasör"
+
+msgid "Files"
+msgstr "Dosyalar"
+
+msgid "Files and folders (inodes)"
+msgstr "Dosya ve klasör sayısı (inode)"
+
+msgid "Disk quota"
+msgstr "Disk kotası"
+
+msgid "Not set (Settings)"
+msgstr "Girilmedi (Ayarlar)"
+
+msgid "Last measured"
+msgstr "Son ölçüm"
+
+msgid "refreshing"
+msgstr "yenileniyor"
+
+msgid "Whole machine (shared, all accounts)"
+msgstr "Makine geneli (paylaşımlı, tüm hesaplar)"
+
+msgid "CPU cores"
+msgstr "Çekirdek sayısı"
+
+msgid "Load (1/5/15 min)"
+msgstr "Yük (1/5/15 dk)"
+
+msgid "Memory"
+msgstr "Bellek"
+
+msgid "Note"
+msgstr "Not"
+
+msgid "These values belong to every account on the machine; they are not your site's usage or limit."
+msgstr "Bu değerler sunucudaki tüm hesaplarındır, sitenizin kullanımı veya sınırı değildir."
+
+msgid "Version"
+msgstr "Sürüm"
+
+msgid "Memory (this request)"
+msgstr "Bellek (bu istek)"
+
+msgid "peak"
+msgstr "tepe"
+
+msgid "Disabled functions"
+msgstr "Kapalı fonksiyonlar"
+
+msgid "Extensions"
+msgstr "Uzantılar"
+
+msgid "On"
+msgstr "Açık"
+
+msgid "Off"
+msgstr "Kapalı"
+
+msgid "Hit rate"
+msgstr "İsabet oranı"
+
+msgid "Cached files"
+msgstr "Önbellekteki dosya"
+
+msgid "Wasted"
+msgstr "Boşa giden"
+
+msgid "Restarts"
+msgstr "Yeniden başlama"
+
+msgid "No data (disabled or not allowed by the server)."
+msgstr "Bilgi alınamadı (kapalı ya da sunucu izin vermiyor)."
+
+msgid "External"
+msgstr "Harici"
+
+msgid "None"
+msgstr "Yok"
+
+msgid "Page cache (WP_CACHE)"
+msgstr "Sayfa önbelleği (WP_CACHE)"
+
+msgid "Locale"
+msgstr "Dil"
+
+msgid "Timezone"
+msgstr "Saat dilimi"
+
+msgid "Permalinks"
+msgstr "Kalıcı bağlantılar"
+
+msgid "Environment type"
+msgstr "Ortam türü"
+
+msgid "undefined"
+msgstr "tanımsız"
+
+msgid "Active plugins"
+msgstr "Etkin eklentiler"
+
+msgid "Data"
+msgstr "Veri"
+
+msgid "Index"
+msgstr "İndeks"
+
+msgid "Free space"
+msgstr "Boş alan"
+
+msgid "Table"
+msgstr "Tablo"
+
+msgid "Rows (approx.)"
+msgstr "Satır (yaklaşık)"
+
+msgid "Open connections"
+msgstr "Açık bağlantı"
+
+msgid "Charset"
+msgstr "Karakter seti"
+
+msgid "Uptime"
+msgstr "Çalışma süresi"
+
+msgid "Queries per second"
+msgstr "Saniyede sorgu"
+
+msgid "Slow queries (server)"
+msgstr "Yavaş sorgu (sunucu)"
+
+msgid "Max concurrent connections"
+msgstr "En çok eş zamanlı bağlantı"
+
+msgid "Running threads"
+msgstr "Çalışan iş parçacığı"
+
+msgid "Buffer pool hit rate"
+msgstr "Buffer pool isabeti"
+
+msgid "Temp tables on disk"
+msgstr "Diske düşen geçici tablo"
+
+msgid "Aborted connects"
+msgstr "Reddedilen bağlantı"
+
+msgid "Revisions"
+msgstr "Revizyonlar"
+
+msgid "Trashed posts"
+msgstr "Çöpteki yazılar"
+
+msgid "All transients"
+msgstr "Tüm geçici veriler"
+
 msgid "Unknown operation."
 msgstr "Bilinmeyen işlem."
+
+msgid "Plugin installed and activated."
+msgstr "Eklenti kuruldu ve etkinleştirildi."
+
+msgid "Plugin activated."
+msgstr "Eklenti etkinleştirildi."
+
+msgid "Object cache is now SQLite Object Cache. Run the test below to confirm."
+msgstr "Nesne önbelleği artık SQLite Object Cache. Doğrulamak için aşağıdan test edin."
+
+msgid "Object cache is now LiteSpeed Cache. Run the test below to confirm."
+msgstr "Nesne önbelleği artık LiteSpeed Cache. Doğrulamak için aşağıdan test edin."
+
+msgid "LiteSpeed Cache was activated. Its object cache setting is finished when this page loads; run the test below."
+msgstr "LiteSpeed Cache etkinleştirildi. Nesne önbelleği ayarı bu sayfa açılınca tamamlanır; aşağıdan test edin."
+
+msgid "Object cache turned off."
+msgstr "Nesne önbelleği kapatıldı."
+
+msgid "Object cache repaired."
+msgstr "Nesne önbelleği onarıldı."
+
+msgid "Page cache turned on and purged."
+msgstr "Sayfa önbelleği açıldı ve temizlendi."
+
+msgid "Page cache turned off and purged."
+msgstr "Sayfa önbelleği kapatıldı ve temizlendi."
+
+msgid "All caches cleared (LiteSpeed page, CSS/JS and object cache)."
+msgstr "Tüm önbellekler temizlendi (LiteSpeed sayfa, CSS/JS ve nesne önbelleği)."
+
+msgid "Object cache emptied."
+msgstr "Nesne önbelleği boşaltıldı."
 
 msgid "How much attention a figure needs."
 msgstr "Bir değerin ne kadar dikkat istediği."
@@ -2787,263 +2133,3 @@ msgstr "Ne olduğu; testten sonra boş."
 
 msgid "The state after the operation."
 msgstr "İşlemden sonraki durum."
-
-#: app/manifest.json
-msgid "Requests"
-msgstr "İstekler"
-
-#: app/manifest.json
-msgid "Slowest 5%"
-msgstr "En yavaş %5"
-
-#: app/manifest.json
-msgid "Needs attention"
-msgstr "Dikkat"
-
-#: app/manifest.json
-msgid "Problem"
-msgstr "Sorun"
-
-#: app/manifest.json
-msgid "Request types"
-msgstr "İstek türleri"
-
-#: app/manifest.json
-msgid "{{count|number}} requests · {{msAvg}} ms on average"
-msgstr "{{count|number}} istek · ortalama {{msAvg}} ms"
-
-#: app/manifest.json
-msgid "Slowest addresses"
-msgstr "En yavaş adresler"
-
-#: app/manifest.json
-msgid "Plugins and themes"
-msgstr "Eklentiler ve temalar"
-
-#: app/manifest.json
-msgid "{{requests|number}} requests · {{queries|number}} queries"
-msgstr "{{requests|number}} istek · {{queries|number}} sorgu"
-
-#: app/manifest.json
-msgid "External calls"
-msgstr "Dış çağrılar"
-
-#: app/manifest.json
-msgid "{{component}} · {{count|number}} calls · {{failed|number}} failed"
-msgstr "{{component}} · {{count|number}} çağrı · {{failed|number}} başarısız"
-
-#: app/manifest.json
-msgid "Search address"
-msgstr "Adres ara"
-
-#: app/manifest.json
-msgid "Show"
-msgstr "Göster"
-
-#: app/manifest.json
-msgid "With errors"
-msgstr "Hatalı"
-
-#: app/manifest.json
-msgid "{{typeLabel}} · {{queries|number}} queries · {{memKb|number}} KB"
-msgstr "{{typeLabel}} · {{queries|number}} sorgu · {{memKb|number}} KB"
-
-#: app/manifest.json
-msgid "{{errors}} errors"
-msgstr "{{errors}} hata"
-
-#: app/manifest.json
-msgid "No requests"
-msgstr "İstek yok"
-
-#: app/manifest.json
-msgid "Requests appear here once recording is on."
-msgstr "Kayıt açılınca istekler burada görünür."
-
-#: app/manifest.json
-msgid "Address"
-msgstr "Adres"
-
-#: app/manifest.json
-msgid "Conflicts"
-msgstr "Çakışmalar"
-
-#: app/manifest.json
-msgid "Provider"
-msgstr "Sağlayıcı"
-
-#: app/manifest.json
-msgid "Last test"
-msgstr "Son test"
-
-#: app/manifest.json
-msgid "Test result"
-msgstr "Test sonucu"
-
-#: app/manifest.json
-msgid "Test error"
-msgstr "Test hatası"
-
-#: app/manifest.json
-msgid "LiteSpeed Cache"
-msgstr "LiteSpeed Cache"
-
-#: app/manifest.json
-msgid "Plugin"
-msgstr "Eklenti"
-
-#: app/manifest.json
-msgid "Database cleanup"
-msgstr "Veritabanı temizliği"
-
-#: app/manifest.json
-msgid "Nothing to clean"
-msgstr "Temizlenecek bir şey yok"
-
-#: app/manifest.json
-msgid "Record requests"
-msgstr "İstekleri kaydet"
-
-#: app/manifest.json
-msgid "Also record administrators"
-msgstr "Yöneticileri de kaydet"
-
-#: app/manifest.json
-msgid "Record one in every N requests"
-msgstr "Her N istekte birini kaydet"
-
-#: app/manifest.json
-msgid "Slow request (ms)"
-msgstr "Yavaş istek (ms)"
-
-#: app/manifest.json
-msgid "Slow query (ms)"
-msgstr "Yavaş sorgu (ms)"
-
-#: app/manifest.json
-msgid "Keep records (days)"
-msgstr "Kayıtları sakla (gün)"
-
-#: app/manifest.json
-msgid "Most records"
-msgstr "En fazla kayıt"
-
-#: app/manifest.json
-msgid "Disk limit (GB)"
-msgstr "Disk sınırı (GB)"
-
-#: app/manifest.json
-msgid "Disk limit of the hosting plan; 0 when unknown."
-msgstr "Hosting paketinin disk sınırı; bilinmiyorsa 0."
-
-#: app/manifest.json
-msgid "Request panel in wp-admin"
-msgstr "wp-admin'de istek paneli"
-
-#: app/manifest.json
-msgid "Request panel on the site"
-msgstr "Sitede istek paneli"
-
-#: app/manifest.json
-msgid "Login address"
-msgstr "Giriş adresi"
-
-#: app/manifest.json
-msgid "3–40 lowercase letters, digits, hyphen or underscore. Empty goes back to wp-login.php."
-msgstr "3–40 küçük harf, rakam, tire ya da alt çizgi. Boş bırakılırsa wp-login.php'ye döner."
-
-#: app/manifest.json
-msgid "Visitors of wp-login.php"
-msgstr "wp-login.php ziyaretçileri"
-
-#: app/manifest.json
-msgid "Home page"
-msgstr "Ana sayfa"
-
-#: app/manifest.json
-msgid "Saved"
-msgstr "Kaydedildi"
-
-#: app/manifest.json
-msgid "Clear records"
-msgstr "Kayıtları temizle"
-
-#: app/manifest.json
-msgid "Clear all records?"
-msgstr "Tüm kayıtlar temizlensin mi?"
-
-#: app/manifest.json
-msgid "The summary starts again from zero."
-msgstr "Özet sıfırdan başlar."
-
-#: app/manifest.json
-msgid "Clear"
-msgstr "Temizle"
-
-#: app/manifest.json
-msgid "Cleared"
-msgstr "Temizlendi"
-
-#: app/manifest.json
-msgid "Purge page cache"
-msgstr "Sayfa önbelleğini boşalt"
-
-#: app/manifest.json
-msgid "Page cache purged"
-msgstr "Sayfa önbelleği boşaltıldı"
-
-#: app/manifest.json
-msgid "Flush object cache"
-msgstr "Nesne önbelleğini boşalt"
-
-#: app/manifest.json
-msgid "Object cache flushed"
-msgstr "Nesne önbelleği boşaltıldı"
-
-#: app/manifest.json
-msgid "Test object cache"
-msgstr "Nesne önbelleğini test et"
-
-#: app/manifest.json
-msgid "Repaired"
-msgstr "Onarıldı"
-
-#: app/manifest.json
-msgid "Turn page cache on"
-msgstr "Sayfa önbelleğini aç"
-
-#: app/manifest.json
-msgid "Page cache on"
-msgstr "Sayfa önbelleği açık"
-
-#: app/manifest.json
-msgid "Turn page cache off"
-msgstr "Sayfa önbelleğini kapat"
-
-#: app/manifest.json
-msgid "Turn the page cache off?"
-msgstr "Sayfa önbelleği kapatılsın mı?"
-
-#: app/manifest.json
-msgid "Pages are built on every visit until it is on again."
-msgstr "Yeniden açılana kadar sayfalar her ziyarette baştan oluşturulur."
-
-#: app/manifest.json
-msgid "Page cache off"
-msgstr "Sayfa önbelleği kapalı"
-
-#: app/manifest.json
-msgid "Clean {{label}}?"
-msgstr "{{label}} temizlensin mi?"
-
-#: app/manifest.json
-msgid "{{count}} items are removed from the database."
-msgstr "Veritabanından {{count}} öğe silinir."
-
-#: app/manifest.json
-msgid "Cleaned"
-msgstr "Temizlendi"
-
-#: app/manifest.json
-msgid "Open in panel"
-msgstr "Panelde aç"

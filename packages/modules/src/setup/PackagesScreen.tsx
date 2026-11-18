@@ -1,6 +1,5 @@
 // FluxWP Panel › Packages. Same screen in wp-admin (wp-embed) and the FluxWP app; every read and write goes
-// through the FluxWP Panel GraphQL operations (plugins/flx-setup/graphql/operations). It has everything the
-// classic page has: connection card, tabs with counts, search, "only updates", the package table (select,
+// through the FluxWP Panel GraphQL operations (plugins/flx-setup/graphql/operations). Connection card, tabs with counts, search, "only updates", the package table (select,
 // install / update, change version, automatic updates, details), bulk actions, "update all", the step log,
 // the backup strip and the update history.
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -105,7 +104,7 @@ function Packages() {
     // Printed by wp-admin: the table shows at once; the screen's own update check refreshes it.
     ...(seed && tab === 'ALL' && !query && !onlyUpdates ? { initialData: seed.rows, initialDataUpdatedAt: seed.at } : {}),
     staleTime: 30_000,
-    // The server pages the table (50 at most); the screen shows it whole like the classic page.
+    // The server pages the table (50 at most); the screen shows it whole.
     queryFn: async ({ signal }): Promise<Row[]> => {
       const out: Row[] = [];
       let after: string | null = null;

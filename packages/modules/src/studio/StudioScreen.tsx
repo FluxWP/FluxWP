@@ -1,6 +1,6 @@
 // Flux Studio › image and video generation. Same screen in wp-admin (wp-embed) and the FluxWP app; every read
 // and write goes through the Flux Studio GraphQL operations (plugins/flx-studio/graphql/operations).
-// It has everything the classic page has: gallery with folders and favorites, generation bar with references,
+// Gallery with folders and favorites, generation bar with references,
 // people (@name), Enhance, Brainstorm, templates, viewer, area edit, compare, dashboard, settings.
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type DragEvent, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -548,11 +548,6 @@ function Studio({ ws, locale }: { ws: Workspace; locale: string }) {
               }}
             />
             {ws.canManage && <IconBtn icon="settings" title={t('Studio settings')} onClick={() => setDialog('settings')} />}
-            {host.classicUrl && (
-              <a className="flxst-ib" href={host.classicUrl} title={t('Classic view')} aria-label={t('Classic view')}>
-                <Ic n="template" size={18} />
-              </a>
-            )}
           </div>
         </div>
       </aside>

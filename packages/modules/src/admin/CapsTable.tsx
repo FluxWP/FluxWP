@@ -13,14 +13,14 @@ type Draft = Record<string, Set<string>>;
 const draftOf = (c: Caps): Draft => Object.fromEntries(c.roles.map((r) => [r.key, new Set(r.granted)]));
 const same = (a: ReadonlySet<string>, b: ReadonlyArray<string>) => a.size === b.length && b.every((x) => a.has(x));
 
-export function CapsTable(p: Omit<PanelProps, 'capsHref'>) {
+export function CapsTable(p: Omit<PanelProps, 'onOpenCaps'>) {
   const q = useFlxQuery(FlxAdminCapsScreen, {});
   if (q.isLoading) return <Loading />;
   if (q.isError || !q.data) return <div className="flxad-notice is-error">{q.error?.message || p.t('The action could not be completed.')}</div>;
   return <Table {...p} caps={q.data.flxAdminCaps} />;
 }
 
-function Table({ t, caps, onDirty, onNotice }: Omit<PanelProps, 'capsHref'> & { caps: Caps }) {
+function Table({ t, caps, onDirty, onNotice }: Omit<PanelProps, 'onOpenCaps'> & { caps: Caps }) {
   const qc = useQueryClient();
   const { scope } = useGraphQL();
   const [draft, setDraft] = useState(() => draftOf(caps));

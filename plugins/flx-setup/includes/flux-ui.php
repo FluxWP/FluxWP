@@ -1,9 +1,10 @@
 <?php
 /**
  * FluxWP Panel screens (Packages, Settings) as the shared React screens (assets/flux/, built with
- * tools/fluxapp/embed-sync.sh flx-setup). They are the default when Flux GraphQL (0.2.0+) runs; a user can
- * switch to the classic page from the screen header. Without Flux GraphQL the classic pages open and show
- * a notice with the install button (flxk_graphql_notice).
+ * tools/fluxapp/embed-sync.sh flx-setup). Whenever Flux GraphQL (0.2.0+) runs, only the React screen opens;
+ * there is no classic view to switch to. Flux Setup is what installs Flux GraphQL, so without it the PHP
+ * page stays as the recovery path: the notice with the install button (flxk_graphql_notice) and the
+ * installer it opens.
  *
  * @package FLX_Setup
  */
@@ -13,37 +14,6 @@ defined( 'ABSPATH' ) || exit;
 function flxk_flux_available(): bool {
 	return file_exists( FLXK_DIR . 'assets/flux/flux-modules.js' ) && function_exists( 'flx_gql_ready' ) && function_exists( 'flx_gql_all_caps' ) && flx_gql_ready();
 }
-
-function flxk_flux_ui(): bool {
-	return flxk_flux_available() && 'classic' !== get_user_meta( get_current_user_id(), 'flxk_ui', true );
-}
-
-/**
- * Link that switches the current user between the views.
- *
- * @param string $ui   flux|classic.
- * @param string $page Admin page slug.
- */
-function flxk_ui_switch_url( string $ui, string $page ): string {
-	return wp_nonce_url( add_query_arg( 'flxk_ui', 'flux' === $ui ? 'flux' : 'classic', admin_url( 'admin.php?page=' . $page ) ), 'flxk_ui' );
-}
-
-add_action(
-	'admin_init',
-	static function () {
-		if ( ! isset( $_GET['flxk_ui'], $_GET['page'] ) || ! in_array( $_GET['page'], array( 'flx-setup', 'flx-setup-settings' ), true ) || ! current_user_can( 'update_plugins' ) ) { // phpcs:ignore WordPress.Security.NonceVerification
-			return;
-		}
-		check_admin_referer( 'flxk_ui' );
-		if ( 'classic' === $_GET['flxk_ui'] ) {
-			update_user_meta( get_current_user_id(), 'flxk_ui', 'classic' );
-		} else {
-			delete_user_meta( get_current_user_id(), 'flxk_ui' );
-		}
-		wp_safe_redirect( admin_url( 'admin.php?page=' . sanitize_key( wp_unslash( $_GET['page'] ) ) ) ); // phpcs:ignore WordPress.Security.NonceVerification
-		exit;
-	}
-);
 
 /**
  * The chunked bundle loads as an ES module.
@@ -71,14 +41,13 @@ function flxk_flux_module_tag( $tag, $handle ) {
  *
  * @param string $page Admin page slug.
  */
-function flxk_flux_options( string $page ): array {
+function flxk_flux_options( string $page ): array { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found -- the shell passes the page.
 	$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#2c7a64';
 	return array(
-		'colors'     => array(
+		'colors' => array(
 			'primary'         => $accent,
 			'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
 		),
-		'classicUrl' => flxk_ui_switch_url( 'classic', $page ),
 	);
 }
 
@@ -97,7 +66,6 @@ add_action(
 					'assets_dir'   => FLXK_DIR . 'assets/flux/',
 					'assets_url'   => FLXK_URL . 'assets/flux/',
 					'version'      => FLXK_VERSION,
-					'enabled'      => 'flxk_flux_ui',
 					'options'      => 'flxk_flux_options',
 					'container_id' => 'flxk-app',
 					'preload'      => 'flxk-packages' === $module ? 'flxk_packages_preload' : array(),
@@ -142,7 +110,7 @@ function flxk_packages_preload(): array {
  * Enqueues the bundle and mounts a module in #flxk-app.
  *
  * @param string $module Module id (flxk-packages|flxk-settings).
- * @param string $page   Admin page slug (for the classic view link).
+ * @param string $page   Admin page slug (unused, kept for callers).
  */
 function flxk_flux_assets( string $module, string $page ): void {
 	$ver  = FLXK_VERSION . '-' . (int) filemtime( FLXK_DIR . 'assets/flux/flux-modules.js' );
@@ -176,7 +144,7 @@ function flxk_flux_assets( string $module, string $page ): void {
  * @param string $page   Admin page slug.
  */
 function flxk_flux_render( string $module, string $page ): bool {
-	if ( ! flxk_flux_ui() ) {
+	if ( ! flxk_flux_available() ) {
 		return false;
 	}
 	if ( function_exists( 'flx_admin_screen_render' ) && flx_admin_screen_render() ) {
@@ -184,19 +152,21 @@ function flxk_flux_render( string $module, string $page ): bool {
 	}
 	flxk_flux_assets( $module, $page );
 	echo '<style>#flxk-app.flux-root{height:auto;background:transparent;font-family:inherit}</style>';
-	echo '<div class="wrap flxk-wrap"><div id="flxk-app"><noscript>' . esc_html__( 'JavaScript is required for this screen.', 'flx-setup' ) . '</noscript></div></div>';
+	echo '<div class="wrap flxk-wrap"><div id="flxk-app"><noscript>' . esc_html__( 'JavaScript is required for this screen.', 'flx-setup' ) . '</noscript></div>';
+	if ( function_exists( 'flx_admin_screen_failsafe' ) ) {
+		flx_admin_screen_failsafe( 'flxk-app' );
+	}
+	echo '</div>';
 	return true;
 }
 
 /**
- * On the classic pages: a link to the new view, or (without Flux GraphQL) the notice with the install button.
+ * On the recovery page (no Flux GraphQL): the notice with the install button.
  *
  * @param string $page Admin page slug.
  */
-function flxk_flux_classic_notice( string $page ): void {
-	if ( flxk_flux_available() ) {
-		echo '<p><a class="button" href="' . esc_url( flxk_ui_switch_url( 'flux', $page ) ) . '">' . esc_html__( 'New view', 'flx-setup' ) . '</a> <span class="description">' . esc_html__( 'Open the new view (same features, works in the FluxWP app too).', 'flx-setup' ) . '</span></p>';
-	} elseif ( function_exists( 'flxk_graphql_notice' ) ) {
+function flxk_flux_classic_notice( string $page ): void { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found -- kept for callers.
+	if ( ! flxk_flux_available() && function_exists( 'flxk_graphql_notice' ) ) {
 		flxk_graphql_notice( __( 'FluxWP Panel', 'flx-setup' ) );
 	}
 }

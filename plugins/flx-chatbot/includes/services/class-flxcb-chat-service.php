@@ -1,7 +1,7 @@
 <?php
 /**
  * Agent side of the site chat: list, read, reply, close, delete, typing indicator, figures.
- * The classic REST routes (`/agent/*`), the Chatbot inbox and the GraphQL schema all call this class,
+ * The REST routes (`/agent/*`), the Chatbot inbox and the GraphQL schema all call this class,
  * so who may do what and what a write triggers is decided in one place.
  *
  * Visitor routes (session, message stream, poll, upload, file) are not here: they are the public chat
@@ -149,7 +149,7 @@ final class FLXCB_Chat_Service {
 
 	/**
 	 * Messages after a message id, oldest first. Without $peek the agent's read mark moves to the last
-	 * visitor message (the classic inbox does the same when it opens a chat).
+	 * visitor message.
 	 */
 	public static function messages( int $conv_id, int $after, int $limit = self::MESSAGE_LIMIT, bool $peek = false ): FLXCB_Message_Page|WP_Error {
 		$c = flxcb_get_conversation( $conv_id );

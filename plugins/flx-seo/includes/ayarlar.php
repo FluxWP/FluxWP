@@ -309,28 +309,13 @@ add_filter(
 	}
 );
 
-add_action(
-	'admin_init',
-	function () {
-		register_setting(
-			'flxseo',
-			'flxseo',
-			array(
-				'type'              => 'array',
-				'sanitize_callback' => 'flxseo_sanitize',
-			)
-		);
-	}
-);
-
-// Every write of the option (settings tab, GraphQL flxSettingsUpdate, presets, MCP) goes through the same validation.
+// Every write of the option (GraphQL flxSettingsUpdate, presets, MCP) goes through the same validation.
 add_filter( 'sanitize_option_flxseo', 'flxseo_sanitize' );
 
 function flxseo_sanitize( $in ) {
 	$in  = (array) $in;
 	$d   = flxseo_defaults();
 	// Gelen dizide olmayan anahtar eski değerini korur (Flux Setup ön ayarı, MCP ve kod yalnız birkaç alan yazar).
-	// Ayar formu kapalı onay kutuları için gizli 0 gönderir.
 	$in  = array_merge( wp_parse_args( (array) get_option( 'flxseo', array() ), $d ), $in );
 	$out = array();
 	foreach ( $d as $k => $v ) {
@@ -366,127 +351,5 @@ function flxseo_settings_page() {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		return;
 	}
-	$tab = isset( $_GET['tab'] ) ? sanitize_key( $_GET['tab'] ) : 'genel'; // phpcs:ignore WordPress.Security.NonceVerification
-	if ( flxseo_flux_ui() && flx_admin_screen_render() ) {
-		return;
-	}
-	$o   = wp_parse_args( (array) get_option( 'flxseo', array() ), flxseo_defaults() );
-	$n   = 'flxseo';
-	$tabs = flxseo_tabs();
-	?>
-<div class="wrap flxseo-wrap">
-	<h1>SEO</h1>
-	<?php if ( flxseo_flux_available() ) : ?>
-		<p><a class="button" href="<?php echo esc_url( flxseo_ui_switch_url( 'flux', $tab ) ); ?>"><?php esc_html_e( 'New view', 'flx-seo' ); ?></a> <span class="description"><?php esc_html_e( 'Open the new view (same features, works in the FluxWP app too).', 'flx-seo' ); ?></span></p>
-	<?php endif; ?>
-	<?php settings_errors(); ?>
-	<?php if ( flxseo_other_seo_plugin() ) : ?>
-		<div class="notice notice-warning"><p>Başka bir SEO eklentisi etkin. Çakışma olmaması için bu eklentinin meta ve schema çıktısı kapalı; favicon, SEO kontrolü ve yapay zekâ araçları çalışmaya devam ediyor.</p></div>
-	<?php endif; ?>
-	<?php if ( ! function_exists( 'flxai_mcp_tools' ) ) : ?>
-		<div class="notice notice-info"><p><?php esc_html_e( 'Flux SEO\'s AI (MCP) tools run through the shared MCP server. The server, keys and settings are in Flux AI & MCP › MCP; install and activate Flux AI 0.7.0 or later.', 'flx-seo' ); ?></p></div>
-	<?php endif; ?>
-	<nav class="nav-tab-wrapper">
-		<?php foreach ( $tabs as $k => $label ) : ?>
-			<a class="nav-tab<?php echo $tab === $k ? ' nav-tab-active' : ''; ?>" href="<?php echo esc_url( flxseo_admin_url( $k ) ); ?>"><?php echo esc_html( $label ); ?></a>
-		<?php endforeach; ?>
-	</nav>
-	<?php
-	if ( 'kontrol' === $tab ) {
-		flxseo_audit_page();
-		echo '</div>';
-		return;
-	}
-	if ( 'denetim' === $tab ) {
-		flxseo_audit_admin_page();
-		echo '</div>';
-		return;
-	}
-	if ( 'ayarlar' === $tab ) {
-		flxseo_audit_settings_page();
-		echo '</div>';
-		return;
-	}
-	?>
-	<form method="post" action="options.php">
-		<?php settings_fields( 'flxseo' ); ?>
-		<?php
-		// Diğer sekmedeki değerler kaybolmasın.
-		foreach ( $o as $k => $v ) {
-			$here = 'genel' === $tab
-				? in_array( $k, array( 'enabled', 'site_name', 'alt_name', 'sep', 'home_title', 'home_desc', 'og_image', 'verify_google', 'verify_bing', 'verify_yandex', 'verify_naver', 'verify_seznam', 'verify_baidu', 'noindex_shop', 'noindex_search', 'noindex_author', 'noindex_tags', 'auto_alt', 'indexnow' ), true )
-				: in_array( $k, array( 'org_name', 'org_type', 'founding', 'logo', 'street', 'locality', 'postal', 'country', 'phone', 'email', 'same_as', 'twitter', 'knows_about', 'area_served', 'donate_label', 'donate_url' ), true );
-			if ( ! $here ) {
-				printf( '<input type="hidden" name="%s[%s]" value="%s">', esc_attr( $n ), esc_attr( $k ), esc_attr( $v ) );
-			} elseif ( is_int( flxseo_defaults()[ $k ] ) ) {
-				// Kapalı onay kutusu gönderilmez; gizli 0 kapalı olduğunu bildirir (onay kutusu sonra gelir, 1 kazanır).
-				printf( '<input type="hidden" name="%s[%s]" value="0">', esc_attr( $n ), esc_attr( $k ) );
-			}
-		}
-		?>
-		<table class="form-table" role="presentation">
-		<?php if ( 'genel' === $tab ) : ?>
-			<tr><th scope="row">SEO çıktısı</th><td><label><input type="checkbox" name="<?php echo esc_attr( $n ); ?>[enabled]" value="1" <?php checked( $o['enabled'] ); ?>> Meta etiketleri, Open Graph ve schema'yı ekle</label></td></tr>
-			<tr><th scope="row"><label for="ys-sn">Google'da görünen site adı</label></th><td><input id="ys-sn" class="regular-text" name="<?php echo esc_attr( $n ); ?>[site_name]" value="<?php echo esc_attr( $o['site_name'] ); ?>" placeholder="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
-				<p class="description">Arama sonuçlarında alan adı yerine bu ad görünür (WebSite schema). Kısa ve tanınan bir ad seçin. Değişiklik Google'a yeniden taramadan sonra yansır. Alternatif: <input class="regular-text" name="<?php echo esc_attr( $n ); ?>[alt_name]" value="<?php echo esc_attr( $o['alt_name'] ); ?>"></p></td></tr>
-			<tr><th scope="row"><label for="ys-sep">Başlık ayıracı</label></th><td><input id="ys-sep" class="small-text" name="<?php echo esc_attr( $n ); ?>[sep]" value="<?php echo esc_attr( $o['sep'] ); ?>"> <span class="description">Örnek: Hakkımızda <?php echo esc_html( $o['sep'] ); ?> <?php echo esc_html( $o['alt_name'] ); ?></span></td></tr>
-			<tr><th scope="row"><label for="ys-ht">Ana sayfa başlığı</label></th><td><input id="ys-ht" class="large-text" maxlength="70" name="<?php echo esc_attr( $n ); ?>[home_title]" value="<?php echo esc_attr( $o['home_title'] ); ?>" placeholder="<?php echo esc_attr( flxseo_opt( 'home_title' ) ); ?>"></td></tr>
-			<tr><th scope="row"><label for="ys-hd">Ana sayfa açıklaması</label></th><td><textarea id="ys-hd" class="large-text" rows="3" maxlength="320" name="<?php echo esc_attr( $n ); ?>[home_desc]" placeholder="<?php echo esc_attr( flxseo_opt( 'home_desc' ) ); ?>"><?php echo esc_textarea( $o['home_desc'] ); ?></textarea><p class="description">150–160 karakter ideal. Boşsa site sloganı kullanılır.</p></td></tr>
-			<tr><th scope="row"><label for="ys-og">Varsayılan paylaşım görseli</label></th><td><input id="ys-og" class="large-text code" name="<?php echo esc_attr( $n ); ?>[og_image]" value="<?php echo esc_attr( $o['og_image'] ); ?>" placeholder="<?php echo esc_attr( FLXSEO_URL . 'assets/icons/og-varsayilan.jpg' ); ?>"><p class="description">Öne çıkan görseli olmayan sayfalarda kullanılır. 1200×630 JPG/PNG. Boşsa eklentinin görseli.</p></td></tr>
-			<tr id="search-engines"><th scope="row"><?php esc_html_e( 'Search engines', 'flx-seo' ); ?></th><td>
-				<p class="description"><?php esc_html_e( 'Search engines other than Google (Bing, Yandex, DuckDuckGo, Yahoo, Ecosia) crawl a site quickly only once it is introduced to them. Add the site in each one\'s webmaster panel, paste the verification code below and submit the sitemap URL.', 'flx-seo' ); ?></p>
-				<p><label for="flxseo-sitemap-url"><strong><?php esc_html_e( 'Sitemap URL', 'flx-seo' ); ?></strong></label><br>
-					<input id="flxseo-sitemap-url" class="regular-text code" readonly value="<?php echo esc_attr( home_url( '/wp-sitemap.xml' ) ); ?>" onclick="this.select()">
-					<span class="description"><?php esc_html_e( 'Also listed in robots.txt; add this URL in Search Console, Bing and Yandex.', 'flx-seo' ); ?></span></p>
-				<table class="widefat striped" style="max-width:760px;margin-top:8px"><tbody>
-				<?php foreach ( flxseo_search_engines() as $k => $e ) : ?>
-					<tr>
-						<td style="width:180px"><label for="flxseo-<?php echo esc_attr( $k ); ?>"><strong><?php echo esc_html( $e['name'] ); ?></strong></label><br>
-							<a href="<?php echo esc_url( $e['url'] ); ?>" target="_blank" rel="noopener"><?php echo esc_html( $e['link'] ); ?> ↗</a></td>
-						<td><input id="flxseo-<?php echo esc_attr( $k ); ?>" class="regular-text code" name="<?php echo esc_attr( $n ); ?>[<?php echo esc_attr( $k ); ?>]" value="<?php echo esc_attr( $o[ $k ] ); ?>" placeholder="<?php echo esc_attr( $e['placeholder'] ); ?>">
-							<?php echo $o[ $k ] ? '<span class="dashicons dashicons-yes-alt" style="color:#008a20" title="' . esc_attr__( 'Verification tag is on the site', 'flx-seo' ) . '"></span>' : ''; ?>
-							<?php if ( 'verify_google' === $k && flxseo_sitekit_connected() ) : ?><p><span class="dashicons dashicons-yes-alt" style="color:#008a20"></span> <?php esc_html_e( 'Connected with Google Site Kit; Search Console verification and the sitemap are handled there. You can leave this empty.', 'flx-seo' ); ?></p><?php endif; ?>
-							<p class="description"><?php echo esc_html( $e['help'] ); ?></p></td>
-					</tr>
-				<?php endforeach; ?>
-				</tbody></table></td></tr>
-			<tr id="indexnow"><th scope="row">IndexNow</th><td>
-				<?php
-				$imsg = get_transient( 'flxseo_indexnow_msg_' . get_current_user_id() );
-				if ( $imsg ) {
-					delete_transient( 'flxseo_indexnow_msg_' . get_current_user_id() );
-					printf( '<div class="notice notice-%s inline"><p>%s</p></div>', esc_attr( $imsg[0] ), esc_html( $imsg[1] ) );
-				}
-				$ilast = (array) get_option( 'flxseo_indexnow_last', array() );
-				?>
-				<p><label><input type="checkbox" name="<?php echo esc_attr( $n ); ?>[indexnow]" value="1" <?php checked( $o['indexnow'] ); ?>> <?php esc_html_e( 'Instantly notify Bing, Yandex, DuckDuckGo (via Bing), Seznam and Naver about published and updated pages', 'flx-seo' ); ?></label></p>
-				<p class="description"><?php esc_html_e( 'Key file:', 'flx-seo' ); ?> <a href="<?php echo esc_url( home_url( '/' . flxseo_indexnow_key() . '.txt' ) ); ?>" target="_blank" rel="noopener"><?php echo esc_html( flxseo_indexnow_key() ); ?>.txt</a>. <?php esc_html_e( 'When on, the whole site is submitted once automatically. Google does not use IndexNow; add your sitemap in Search Console for Google.', 'flx-seo' ); ?>
-				<?php if ( ! get_option( 'blog_public' ) ) : ?><br><strong><?php esc_html_e( 'The site is hidden from search engines (Settings › Reading); IndexNow sends nothing.', 'flx-seo' ); ?></strong><?php endif; ?>
-				<?php if ( ! empty( $ilast['time'] ) ) : ?><br><?php esc_html_e( 'Last bulk submission:', 'flx-seo' ); ?> <?php echo esc_html( flxseo_indexnow_last_text( $ilast ) ); ?><?php endif; ?></p>
-				<p><a class="button" href="<?php echo esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=flxseo_indexnow_all' ), 'flxseo_indexnow_all' ) ); ?>"><?php esc_html_e( 'Submit the whole site now', 'flx-seo' ); ?></a></p></td></tr>
-			<tr><th scope="row">Dizine ekleme</th><td>
-				<p><label><input type="checkbox" name="<?php echo esc_attr( $n ); ?>[noindex_shop]" value="1" <?php checked( $o['noindex_shop'] ); ?>> Sepet, ödeme ve Hesabım sayfaları dizine eklenmesin</label></p>
-				<p><label><input type="checkbox" name="<?php echo esc_attr( $n ); ?>[noindex_search]" value="1" <?php checked( $o['noindex_search'] ); ?>> Site içi arama sonuçları dizine eklenmesin</label></p>
-				<p><label><input type="checkbox" name="<?php echo esc_attr( $n ); ?>[noindex_author]" value="1" <?php checked( $o['noindex_author'] ); ?>> Yazar sayfalarını kapat (ana sayfaya yönlendir, sitemap'ten çıkar)</label></p>
-				<p><label><input type="checkbox" name="<?php echo esc_attr( $n ); ?>[noindex_tags]" value="1" <?php checked( $o['noindex_tags'] ); ?>> Etiket sayfaları dizine eklenmesin (sitemap'ten de çıkar; kategoriler açık kalır)</label></p>
-				<p class="description">RSS beslemeleri her zaman "noindex" başlığıyla sunulur; Google'da sayfa olarak görünmeleri gerekmez.</p></td></tr>
-			<tr><th scope="row">Görseller</th><td><label><input type="checkbox" name="<?php echo esc_attr( $n ); ?>[auto_alt]" value="1" <?php checked( $o['auto_alt'] ); ?>> Alt metni boş görsellere medya kütüphanesindeki alt metni, o da yoksa görsel adını ekle</label></td></tr>
-		<?php else : ?>
-			<tr><th scope="row"><label for="ys-on">Kurum adı</label></th><td><input id="ys-on" class="large-text" name="<?php echo esc_attr( $n ); ?>[org_name]" value="<?php echo esc_attr( $o['org_name'] ); ?>"></td></tr>
-			<tr><th scope="row"><label for="ys-ot">Kurum türü</label></th><td><select id="ys-ot" name="<?php echo esc_attr( $n ); ?>[org_type]"><?php foreach ( array( 'NGO' => 'Dernek / STK (NGO)', 'Organization' => 'Kurum (Organization)' ) as $k => $l ) : ?><option value="<?php echo esc_attr( $k ); ?>" <?php selected( $o['org_type'], $k ); ?>><?php echo esc_html( $l ); ?></option><?php endforeach; ?></select>
-				Kuruluş yılı <input class="small-text" name="<?php echo esc_attr( $n ); ?>[founding]" value="<?php echo esc_attr( $o['founding'] ); ?>"></td></tr>
-			<tr><th scope="row"><label for="ys-lg">Logo (kare)</label></th><td><input id="ys-lg" class="large-text code" name="<?php echo esc_attr( $n ); ?>[logo]" value="<?php echo esc_attr( $o['logo'] ); ?>" placeholder="<?php echo esc_attr( FLXSEO_URL . 'assets/icons/icon-512.png' ); ?>"><p class="description">Google bilgi paneli için. En az 112×112 PNG. Boşsa Flux SEO simgesi.</p></td></tr>
-			<tr><th scope="row">Adres</th><td><input class="regular-text" name="<?php echo esc_attr( $n ); ?>[street]" value="<?php echo esc_attr( $o['street'] ); ?>" placeholder="Sokak, no"> <input class="regular-text" name="<?php echo esc_attr( $n ); ?>[locality]" value="<?php echo esc_attr( $o['locality'] ); ?>" placeholder="İlçe, il"> <input class="small-text" name="<?php echo esc_attr( $n ); ?>[postal]" value="<?php echo esc_attr( $o['postal'] ); ?>" placeholder="Posta kodu"> <input class="small-text" maxlength="2" name="<?php echo esc_attr( $n ); ?>[country]" value="<?php echo esc_attr( $o['country'] ); ?>" placeholder="TR" aria-label="<?php esc_attr_e( 'Country code', 'flx-seo' ); ?>"><p class="description"><?php esc_html_e( 'Country is a two-letter code (TR, US, DE). Empty fields are filled from the organization profile (Flux Setup) when it has an address or phone.', 'flx-seo' ); ?></p></td></tr>
-			<tr><th scope="row">İletişim</th><td><input class="regular-text" name="<?php echo esc_attr( $n ); ?>[phone]" value="<?php echo esc_attr( $o['phone'] ); ?>" placeholder="+90 ..."> <input class="regular-text" name="<?php echo esc_attr( $n ); ?>[email]" value="<?php echo esc_attr( $o['email'] ); ?>" placeholder="e-posta"></td></tr>
-			<tr><th scope="row"><label for="ys-sa">Sosyal medya profilleri</label></th><td><textarea id="ys-sa" class="large-text code" rows="5" name="<?php echo esc_attr( $n ); ?>[same_as]" placeholder="https://www.instagram.com/...&#10;https://www.youtube.com/@..."><?php echo esc_textarea( $o['same_as'] ); ?></textarea><p class="description">Her satıra bir adres. Google kurum bilgisini bu profillerle eşleştirir.</p></td></tr>
-			<tr><th scope="row"><label for="ys-tw">X (Twitter) kullanıcı adı</label></th><td><input id="ys-tw" class="regular-text" name="<?php echo esc_attr( $n ); ?>[twitter]" value="<?php echo esc_attr( $o['twitter'] ); ?>" placeholder="@kullanici"></td></tr>
-			<tr><th scope="row"><label for="ys-ka"><?php esc_html_e( 'Areas of expertise', 'flx-seo' ); ?></label></th><td><textarea id="ys-ka" class="large-text" rows="4" name="<?php echo esc_attr( $n ); ?>[knows_about]" placeholder="<?php esc_attr_e( 'One topic per line', 'flx-seo' ); ?>"><?php echo esc_textarea( $o['knows_about'] ); ?></textarea><p class="description"><?php esc_html_e( 'Topics the organization is an expert in (schema knowsAbout). Search engines and AI assistants match the organization to these topics. Left out when empty.', 'flx-seo' ); ?></p></td></tr>
-			<tr><th scope="row"><label for="ys-as"><?php esc_html_e( 'Area served', 'flx-seo' ); ?></label></th><td><input id="ys-as" class="regular-text" name="<?php echo esc_attr( $n ); ?>[area_served]" value="<?php echo esc_attr( $o['area_served'] ); ?>" placeholder="<?php esc_attr_e( 'e.g. United States', 'flx-seo' ); ?>"><p class="description"><?php esc_html_e( 'Country served (schema areaServed). Left out when empty.', 'flx-seo' ); ?></p></td></tr>
-			<tr><th scope="row"><label for="ys-dl"><?php esc_html_e( 'Donation call to action', 'flx-seo' ); ?></label></th><td><input id="ys-dl" class="regular-text" name="<?php echo esc_attr( $n ); ?>[donate_label]" value="<?php echo esc_attr( $o['donate_label'] ); ?>" placeholder="<?php esc_attr_e( 'e.g. Donate', 'flx-seo' ); ?>"> <input class="regular-text code" name="<?php echo esc_attr( $n ); ?>[donate_url]" value="<?php echo esc_attr( $o['donate_url'] ); ?>" placeholder="<?php echo esc_attr( home_url( '/…/' ) ); ?>"><p class="description"><?php esc_html_e( 'For organizations that accept donations (schema DonateAction). Left out when the label is empty; when the URL is empty the donation page is found automatically.', 'flx-seo' ); ?></p></td></tr>
-		<?php endif; ?>
-		</table>
-		<?php submit_button(); ?>
-	</form>
-</div>
-	<?php
+	flx_admin_screen_page();
 }

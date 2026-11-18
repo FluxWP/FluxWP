@@ -1,4 +1,4 @@
-/* Theme Settings and System Check: the classic pages' look on FluxWP tokens (wp-admin and the app). */
+/* Theme Settings and System Check on FluxWP tokens (wp-admin and the app). */
 .flxt-app{--flxt-bd:var(--flux-border);--flxt-mut:var(--flux-text-muted);--flxt-ac:var(--flux-primary);--flxt-card:var(--flux-surface);max-width:1000px;padding:0 0 24px;color:var(--flux-text);font-size:14px;line-height:1.5}
 .flxt-app h1{font-size:23px;font-weight:600;letter-spacing:0;margin:0}
 .flxt-app h2{font-size:16px;font-weight:600;margin:0 0 6px;display:block}

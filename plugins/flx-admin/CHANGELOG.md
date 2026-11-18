@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.10.0
+- Klasik (PHP) "Yönetim teması" ayar sayfası kaldırıldı; wp-admin'de yalnız React ekranı açılır ve artık ortak kabukla (`flx_admin_screen`) basılır. "Klasik görünüm" bağlantısı, kullanıcı başına görünüm tercihi (`flxa_ui`), eski `admin-post` uçları (`flxa_save`, `flxa_caps_restore`), klasik sekme çizicileri (görünüm, yetki tablosu, kendi sistem kontrolü listesi) ve `assets/css/settings.css`, `assets/js/settings.js`, `assets/js/menu-editor.js` silindi.
+- Menü düzenleyicideki "Tüm yetkiler" bağlantısı artık klasik sayfaya değil, aynı ekrandaki Yetkiler sekmesine geçer. Sistem kontrolü sekmesi yalnız Flux Speed kuruluyken görünür (kontrol orada).
+- Ekran açılamazsa boş sayfa yerine "Bu ekran yüklenemedi" uyarısı ve yenile düğmesi görünür.
+
 ## 1.9.1
 - wp-admin ekranı Flux GraphQL ekran kabuğundan açılır: ilk veri PHP'de sayfaya basılır (yükleniyor göstergesi yok), menüden diğer Flux ekranlarına sayfa yenilenmeden geçilir. Ekranın parçaları sayfa başında birlikte iner (modulepreload).
 - Ortak modül paketi yenilendi.

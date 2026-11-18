@@ -14,7 +14,7 @@ export function useAi() {
   const lang = i18n.language;
   const { t, tn } = useMemo(() => translator(lang), [lang]);
   const num = (v: number, dec = 0) => new Intl.NumberFormat(lang, { minimumFractionDigits: dec, maximumFractionDigits: dec }).format(v);
-  /** "$0.0123"; 4 decimals, 2 from $100 (same as the classic pages). */
+  /** "$0.0123"; 4 decimals, 2 from $100. */
   const usd = (v: number, dec = 4) => '$' + num(v, v >= 100 ? 2 : dec);
   const ms = (v: number) => (v < 1000 ? t('%s ms', num(v)) : t('%s s', num(v / 1000, 1)));
   return { t, tn, lang, num, usd, ms };

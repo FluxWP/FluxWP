@@ -1,6 +1,6 @@
 <?php
 /**
- * Typed values the reCAPTCHA services return (GraphQL, the classic page and other packages read the same shapes).
+ * Typed values the reCAPTCHA services return (GraphQL and other packages read the same shapes).
  *
  * @package FLX_Recaptcha
  */
