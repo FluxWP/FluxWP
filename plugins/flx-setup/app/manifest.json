@@ -2,6 +2,7 @@
   "id": "setup",
   "plugin": "flx-setup",
   "min_app": "1.0.0",
+  "platforms": ["mobile"],
   "title": "FluxWP Panel",
   "icon": "update",
   "menu": "flx-setup",

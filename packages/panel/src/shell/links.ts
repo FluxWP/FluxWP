@@ -51,7 +51,7 @@ export function fromNav(n: NavItem): SideLink {
     iconUrl: n.iconUrl,
     badge: n.badge,
     route,
-    children: n.children.filter((c) => c.title !== n.title).map((c) => ({ id: c.id, title: c.title, route: { kind: 'web', path: c.path, title: c.title } })),
+    children: n.children.filter((c) => c.title !== n.title).map((c) => ({ id: c.id, title: c.title, route: c.moduleId ? { kind: 'native', component: c.moduleId, params: {} } : { kind: 'web', path: c.path, title: c.title } })),
   };
 }
 

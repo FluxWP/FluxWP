@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.5.1
+- FluxApp masaüstünde FluxWP Panel (Paketler, Güncelleme ayarları) gömülü wp-admin sayfası yerine uygulamanın kendi ekranlarıyla açılır: uygulama manifesti yalnız mobil içindir (`platforms: ["mobile"]`). Mobil davranış değişmedi.
+
 ## 1.5.0
 - **Klasik görünüm kaldırıldı.** Paketler ve Ayarlar, Flux GraphQL çalıştığı sürece yalnız React ekranıyla açılır; "Klasik görünüm" bağlantısı ve görünüm değiştirme (`flxk_ui`) silindi. Flux GraphQL'i kuran paket Flux Setup olduğu için, Flux GraphQL yokken PHP sayfası yalnız kurtarma yolu olarak kalır ("Flux GraphQL'i kur" düğmesi ve açtığı kurulum adımları).
 - React ekranı açılamazsa (bundle yüklenmedi) boş sayfa yerine "Bu ekran yüklenemedi" kutusu ve **Sayfayı yenile** düğmesi çıkar.

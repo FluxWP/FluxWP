@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.4.8
+- `mergeLayout`: a menu sub-page whose slug belongs to a module with a native screen gets `moduleId` (FluxWP Panel › Update settings).
+
 ## 0.4.7
 - Strings (10 languages): `boot.*` for the app loading screen, `settings.poweredBy` and `settings.website` for Settings › About.
 

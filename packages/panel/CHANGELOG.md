@@ -1,5 +1,9 @@
 # @fluxwp/panel
 
+## 0.3.9
+- Module screens that have no manifest on desktop (FluxWP Panel: Packages, Update settings) open natively from the site-configured sidebar too: the desktop renderer's native set now includes every screen of `@fluxwp/modules` (before, only four ids were listed, so those menus fell back to an embedded wp-admin page).
+- Sub-pages of the menu (Update settings under FluxWP Panel) open their own native screen when they have one.
+
 ## 0.3.8
 - App update check runs 1.5 s after start (was 8 s), every hour (was 6 h) and whenever the window comes to the front if the last check is older than 30 minutes. macOS throttles timers of background windows, so a start-up timer alone could miss the check until the user pressed Check.
 - A failed background check is retried up to 5 times (1, 2, 3… minutes apart).
