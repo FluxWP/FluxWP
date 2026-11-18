@@ -1,5 +1,8 @@
 # Flux Tasks — Değişiklikler
 
+## 0.16.2
+- Gantt: satırın üstüne gelince soldaki görev listesinde zaman çizelgesinin çizgileri ve hafta sonu şeritleri artık görünmez; hover arka planı düz.
+
 ## 0.16.1
 - Görevler ekranı çok daha hızlı açılır: ilk veri (yan menü, kullanıcılar, son açılan liste ya da "Benim görevlerim" ve görevleri) sayfayla birlikte gelir; açılışta sunucuya ayrıca istek gitmez. Yavaş sunucuda (her istek ~0,4 sn) görevlerin görünmesi 2,1 sn'den 0,7 sn'ye indi.
 - Veri beklenirken (FluxApp, sayfa içi geçiş) üst bar ve sol menünün çerçevesi hemen çizilir; açılış verisi ile liste verisi aynı anda istenir (iki tur yerine bir).
