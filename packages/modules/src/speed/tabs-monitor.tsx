@@ -22,16 +22,16 @@ export function LiveCards({ note = true }: { note?: boolean }) {
   const l = q.data.flxSpeedLive;
   return (
     <>
-      <div className="flxs-cards flxs-live">
+      <div className="flxpf-cards flxpf-live">
         {l.meters.map((m) => {
           const pct = m.pct;
           const cls = pct === null ? '' : pct >= 90 ? 'is-err' : pct >= 70 ? 'is-warn' : '';
           return (
-            <div key={m.key} className={'flxs-card flxs-meter ' + cls}>
+            <div key={m.key} className={'flxpf-card flxpf-meter ' + cls}>
               <span>{m.label}</span>
               <b>{m.text}</b>
               {pct !== null && (
-                <i className="flxs-bar">
+                <i className="flxpf-bar">
                   <em style={{ width: Math.min(100, Math.max(0, pct)) + '%' }} />
                 </i>
               )}
@@ -40,7 +40,7 @@ export function LiveCards({ note = true }: { note?: boolean }) {
           );
         })}
       </div>
-      {note && <p className="flxs-desc">{l.note}</p>}
+      {note && <p className="flxpf-desc">{l.note}</p>}
     </>
   );
 }
@@ -49,7 +49,7 @@ function FlagBadges({ flags }: { flags: { key: string; label: string }[] }) {
   return (
     <>
       {flags.map((f) => (
-        <span key={f.key} className={'flxs-flag flxs-flag-' + f.key}>
+        <span key={f.key} className={'flxpf-flag flxpf-flag-' + f.key}>
           {f.label}
         </span>
       ))}{' '}
@@ -60,7 +60,7 @@ function FlagBadges({ flags }: { flags: { key: string; label: string }[] }) {
 function Period({ value, onChange }: { value: number; onChange: (h: number) => void }) {
   const { t } = useT();
   return (
-    <div className="flxs-filters">
+    <div className="flxpf-filters">
       <select value={value} onChange={(e) => onChange(Number(e.currentTarget.value))} aria-label={t('Period')}>
         {PERIODS.map(([h, l]) => (
           <option key={h} value={h}>
@@ -96,7 +96,7 @@ function SummaryBody({ data }: { data: FlxSpeedSummaryQuery }) {
   return (
     <>
       {hints.length > 0 && (
-        <div className="flxs-hints">
+        <div className="flxpf-hints">
           <h2>{t('Suggestions')}</h2>
           <ul>
             {hints.map((h, i) => (
@@ -123,16 +123,16 @@ function SummaryBody({ data }: { data: FlxSpeedSummaryQuery }) {
           <Card key={f.key} label={f.label} value={num(f.count, lg)} tone={f.tone} onClick={() => go('records', { filter: { flag: f.key, hours: String(hours) } })} />
         ))}
       </Cards>
-      <p className="flxs-desc">{t('Times are calculated from recorded requests: sampled requests plus slow/failing ones, so the average may look higher than the real average.')}</p>
+      <p className="flxpf-desc">{t('Times are calculated from recorded requests: sampled requests plus slow/failing ones, so the average may look higher than the real average.')}</p>
 
       <h2>{t('By request type')}</h2>
-      <p className="flxs-desc">{t('The time visitors wait is the "Front end" row. Cron, Ajax and REST are mostly background work (backup step, scheduled task, Heartbeat); when they take long they do not slow pages directly, but they keep the server busy.')}</p>
+      <p className="flxpf-desc">{t('The time visitors wait is the "Front end" row. Cron, Ajax and REST are mostly background work (backup step, scheduled task, Heartbeat); when they take long they do not slow pages directly, but they keep the server busy.')}</p>
       <Table
         head={[t('Type'), t('Request'), t('Average'), 'p50', 'p95', t('Longest')]}
         numeric={[1, 2, 3, 4, 5]}
         empty={t('No records.')}
         rows={s.byType.map((r) => [
-          <button type="button" className="flxs-linkbtn" onClick={() => go('records', { filter: { type: r.type, hours: String(hours), slow: true } })}>
+          <button type="button" className="flxpf-linkbtn" onClick={() => go('records', { filter: { type: r.type, hours: String(hours), slow: true } })}>
             {r.label}
           </button>,
           num(r.count, lg),
@@ -149,7 +149,7 @@ function SummaryBody({ data }: { data: FlxSpeedSummaryQuery }) {
         numeric={[1, 2, 3, 4]}
         empty={t('No records.')}
         rows={s.slowestUrls.map((u) => [
-          <button type="button" className="flxs-linkbtn" onClick={() => go('records', { filter: { q: u.url, slow: true } })}>
+          <button type="button" className="flxpf-linkbtn" onClick={() => go('records', { filter: { q: u.url, slow: true } })}>
             {u.url}
           </button>,
           num(u.count, lg),
@@ -175,8 +175,8 @@ function SummaryBody({ data }: { data: FlxSpeedSummaryQuery }) {
         rows={s.slowQueries.map((x) => [
           <>
             <code>{x.sql}</code>
-            {x.error && <div className="flxs-errtext">{x.error}</div>}{' '}
-            <button type="button" className="flxs-linkbtn" onClick={() => go('records', { id: x.lastId })}>
+            {x.error && <div className="flxpf-errtext">{x.error}</div>}{' '}
+            <button type="button" className="flxpf-linkbtn" onClick={() => go('records', { id: x.lastId })}>
               #{x.lastId}
             </button>
           </>,
@@ -198,7 +198,7 @@ function SummaryBody({ data }: { data: FlxSpeedSummaryQuery }) {
             {e.message}
             <br />
             <code>{e.file}</code>{' '}
-            <button type="button" className="flxs-linkbtn" onClick={() => go('records', { id: e.lastId })}>
+            <button type="button" className="flxpf-linkbtn" onClick={() => go('records', { id: e.lastId })}>
               #{e.lastId}
             </button>
           </>,
@@ -281,9 +281,9 @@ export function RecordsTab({ filter, setFilter }: { filter: RecordFilter; setFil
 
   return (
     <>
-      {!config.recording && <div className="flxs-notice is-warn inline">{t('Recording is off: only the live panel works.')}</div>}
-      <div className="flxs-toolbar">
-        <form className="flxs-filters" onSubmit={submit}>
+      {!config.recording && <div className="flxpf-notice is-warn inline">{t('Recording is off: only the live panel works.')}</div>}
+      <div className="flxpf-toolbar">
+        <form className="flxpf-filters" onSubmit={submit}>
           <select value={draft.hours} onChange={(e) => upd({ hours: e.currentTarget.value })} aria-label={t('Period')}>
             <option value="">{t('All time')}</option>
             {PERIODS.map(([h, l]) => (
@@ -313,24 +313,24 @@ export function RecordsTab({ filter, setFilter }: { filter: RecordFilter; setFil
             <option value="slow">{t('Slowest')}</option>
           </select>
           <input type="search" value={draft.q} onChange={(e) => upd({ q: e.currentTarget.value })} placeholder={t('Search URL')} />
-          <button type="submit" className="flxs-btn">
+          <button type="submit" className="flxpf-btn">
             {t('Filter')}
           </button>
         </form>
-        <form className="flxs-filters" onSubmit={submitProfile}>
+        <form className="flxpf-filters" onSubmit={submitProfile}>
           <input type="text" value={profileUrl} onChange={(e) => setProfileUrl(e.currentTarget.value)} placeholder="/donate/" aria-label={t('URL to profile')} />
-          <button type="submit" className="flxs-btn is-primary" disabled={profile.isPending}>
+          <button type="submit" className="flxpf-btn is-primary" disabled={profile.isPending}>
             {t('Profile page')}
           </button>
         </form>
       </div>
-      <p className="flxs-desc">{t('"Profile page" opens the URL as a visitor (bypassing cache) and records it in full detail.')}</p>
+      <p className="flxpf-desc">{t('"Profile page" opens the URL as a visitor (bypassing cache) and records it in full detail.')}</p>
       {q.isLoading && <Loading />}
       {q.isError && <ErrorBox error={q.error} fallback={t('The action could not be completed.')} />}
       {conn && (
         <>
-          <div className="flxs-tablewrap">
-            <table className="flxs-list">
+          <div className="flxpf-tablewrap">
+            <table className="flxpf-list">
               <thead>
                 <tr>
                   <th>{t('Time')}</th>
@@ -347,7 +347,7 @@ export function RecordsTab({ filter, setFilter }: { filter: RecordFilter; setFil
               <tbody>
                 {conn.nodes.length === 0 && (
                   <tr>
-                    <td colSpan={9} className="flxs-empty">
+                    <td colSpan={9} className="flxpf-empty">
                       {t('No records yet. Slow or failing requests and sampled requests appear here.')}
                     </td>
                   </tr>
@@ -358,11 +358,11 @@ export function RecordsTab({ filter, setFilter }: { filter: RecordFilter; setFil
               </tbody>
             </table>
           </div>
-          <div className="flxs-pager">
+          <div className="flxpf-pager">
             <span>{t('Records: %s', num(total, lang))}</span>
             {pages > 1 && (
               <>
-                <button type="button" className="flxs-btn is-small" disabled={page === 0} onClick={() => setPage(page - 1)}>
+                <button type="button" className="flxpf-btn is-small" disabled={page === 0} onClick={() => setPage(page - 1)}>
                   ‹
                 </button>
                 <span>
@@ -370,7 +370,7 @@ export function RecordsTab({ filter, setFilter }: { filter: RecordFilter; setFil
                 </span>
                 <button
                   type="button"
-                  className="flxs-btn is-small"
+                  className="flxpf-btn is-small"
                   disabled={!conn.pageInfo.hasNextPage}
                   onClick={() => {
                     setCursors((c) => {
@@ -387,7 +387,7 @@ export function RecordsTab({ filter, setFilter }: { filter: RecordFilter; setFil
             )}
           </div>
           {config.canManage && total > 0 && (
-            <button type="button" className="flxs-linkbtn is-danger" onClick={() => setConfirm(true)}>
+            <button type="button" className="flxpf-linkbtn is-danger" onClick={() => setConfirm(true)}>
               {t('Delete all records')}
             </button>
           )}
@@ -395,14 +395,14 @@ export function RecordsTab({ filter, setFilter }: { filter: RecordFilter; setFil
       )}
       {confirm && (
         <Modal title={t('Delete all records')} onClose={() => setConfirm(false)}>
-          <p className="flxs-confirm">{t('Delete all records?')}</p>
-          <div className="flxs-modal-actions">
-            <button type="button" className="flxs-btn" onClick={() => setConfirm(false)}>
+          <p className="flxpf-confirm">{t('Delete all records?')}</p>
+          <div className="flxpf-modal-actions">
+            <button type="button" className="flxpf-btn" onClick={() => setConfirm(false)}>
               {t('Cancel')}
             </button>
             <button
               type="button"
-              className="flxs-btn is-danger"
+              className="flxpf-btn is-danger"
               onClick={() => {
                 setConfirm(false);
                 clear.mutate({});
@@ -421,20 +421,20 @@ function RecordLine({ r, lang, typeLabel, open }: { r: RecordRow; lang: string; 
   const { t } = useT();
   const bad = r.flags.some((f) => ['fatal', 'error', '5xx'].includes(f.key));
   const link = (c: React.ReactNode) => (
-    <button type="button" className="flxs-linkbtn" onClick={open}>
+    <button type="button" className="flxpf-linkbtn" onClick={open}>
       {c}
     </button>
   );
   return (
-    <tr className={bad ? 'flxs-row-err' : undefined}>
+    <tr className={bad ? 'flxpf-row-err' : undefined}>
       <td data-l={t('Time')}>{link(r.at.short)}</td>
-      <td data-l={t('URL')} className="flxs-url">
+      <td data-l={t('URL')} className="flxpf-url">
         {link(
           <>
-            <span className="flxs-m">{r.method}</span> {r.url}
+            <span className="flxpf-m">{r.method}</span> {r.url}
           </>,
         )}{' '}
-        <span className="flxs-type">{r.typeLabel || typeLabel(r.type)}</span>
+        <span className="flxpf-type">{r.typeLabel || typeLabel(r.type)}</span>
       </td>
       <td data-l={t('Status')} className="n">
         {r.status}
@@ -509,16 +509,16 @@ export function RecordDetail({ id }: { id: number }) {
   return (
     <>
       <p>
-        <button type="button" className="flxs-linkbtn" onClick={() => go('records')}>
+        <button type="button" className="flxpf-linkbtn" onClick={() => go('records')}>
           ← {t('Records')}
         </button>
       </p>
       {q.isLoading && <Loading />}
       {q.isError && <ErrorBox error={q.error} fallback={t('The action could not be completed.')} />}
-      {q.data && !d && <div className="flxs-notice is-error">{t('Record not found.')}</div>}
+      {q.data && !d && <div className="flxpf-notice is-error">{t('Record not found.')}</div>}
       {d && (
         <>
-          <p className="flxs-detail-head">
+          <p className="flxpf-detail-head">
             <strong>#{d.record.databaseId}</strong> · {d.record.at.date} {d.record.at.short.split(' ')[1]} · <FlagBadges flags={d.record.flags} />
           </p>
           <div ref={rootRef}>

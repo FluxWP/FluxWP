@@ -75,7 +75,7 @@ export function MobileTab() {
   });
 
   if (q.isLoading || (!draft && !q.isError)) return <Loading />;
-  if (q.isError || !q.data || !draft) return <div className="flxs-notice is-error">{q.error?.message || t('The action could not be completed.')}</div>;
+  if (q.isError || !q.data || !draft) return <div className="flxas-notice is-error">{q.error?.message || t('The action could not be completed.')}</div>;
   const m = q.data.flxAppAdminMobile;
   const set = <K extends keyof Draft>(k: K, v: Draft[K]) => {
     setDraft((d) => d && { ...d, [k]: v });
@@ -105,8 +105,8 @@ export function MobileTab() {
 
   return (
     <form onSubmit={submit}>
-      <p className="flxs-lead">{t('Which apps may connect to this site, store links and notifications.')}</p>
-      <div className="flxs-card flxs-form">
+      <p className="flxas-lead">{t('Which apps may connect to this site, store links and notifications.')}</p>
+      <div className="flxas-card flxas-form">
         <Field label={t('Main FluxWP app')} desc={t('When off, only the branded apps below can connect; open sessions of the main app end at their next refresh.')}>
           <Check checked={draft.genericApp} onChange={(v) => set('genericApp', v)}>
             {t('Allow the FluxWP desktop and mobile app (flx-masaustu, flx-mobil)')}
@@ -114,10 +114,10 @@ export function MobileTab() {
         </Field>
         <Field label={t('Store links')}>
           <p>
-            <input type="url" className="flxs-wide" placeholder="https://apps.apple.com/…" aria-label="App Store" value={draft.storeIos} onChange={(e) => set('storeIos', e.currentTarget.value)} /> App Store
+            <input type="url" className="flxas-wide" placeholder="https://apps.apple.com/…" aria-label="App Store" value={draft.storeIos} onChange={(e) => set('storeIos', e.currentTarget.value)} /> App Store
           </p>
           <p>
-            <input type="url" className="flxs-wide" placeholder="https://play.google.com/…" aria-label="Google Play" value={draft.storeAndroid} onChange={(e) => set('storeAndroid', e.currentTarget.value)} /> Google Play
+            <input type="url" className="flxas-wide" placeholder="https://play.google.com/…" aria-label="Google Play" value={draft.storeAndroid} onChange={(e) => set('storeAndroid', e.currentTarget.value)} /> Google Play
           </p>
         </Field>
         <Field label={t('Notifications')} desc={t('Only needed when enhanced push security is on in the Expo account. The desktop app does not receive push; it shows notifications through sync while open.')}>
@@ -130,7 +130,7 @@ export function MobileTab() {
           <p>
             <input
               type="password"
-              className="flxs-wide"
+              className="flxas-wide"
               autoComplete="new-password"
               aria-label={t('Expo access token (optional)')}
               placeholder={m.hasExpoToken ? t('Saved (type to replace)') : t('Expo access token (optional)')}
@@ -146,7 +146,7 @@ export function MobileTab() {
             {m.lastPush && (
               <>
                 {' · ' + t('Last send %1$s: %2$d sent, %3$d failed', m.lastPush.ago, m.lastPush.sent, m.lastPush.failed)}
-                {m.lastPush.error && <span className="flxs-bad"> {m.lastPush.error}</span>}
+                {m.lastPush.error && <span className="flxas-bad"> {m.lastPush.error}</span>}
               </>
             )}
           </p>
@@ -164,9 +164,9 @@ export function MobileTab() {
       </div>
 
       <h2>{t('Branded apps')}</h2>
-      <p className="flxs-desc">{t("An app published under the organisation's own name connects to this site only if it is listed here. Usually filled in by the preset.")}</p>
-      <div className="flxs-card flxs-table-wrap">
-        <table className="flxs-table">
+      <p className="flxas-desc">{t("An app published under the organisation's own name connects to this site only if it is listed here. Usually filled in by the preset.")}</p>
+      <div className="flxas-card flxas-table-wrap">
+        <table className="flxas-table">
           <thead>
             <tr>
               <th>client_id</th>
@@ -191,7 +191,7 @@ export function MobileTab() {
                   </select>
                 </td>
                 <td data-label={t('Redirect URIs')}>
-                  <textarea rows={2} className="flxs-wide" placeholder="marka://oauth/callback" aria-label={t('Redirect URIs')} value={a.uris} onChange={(e) => setApp(i, { uris: e.currentTarget.value })} />
+                  <textarea rows={2} className="flxas-wide" placeholder="marka://oauth/callback" aria-label={t('Redirect URIs')} value={a.uris} onChange={(e) => setApp(i, { uris: e.currentTarget.value })} />
                 </td>
               </tr>
             ))}
@@ -199,14 +199,14 @@ export function MobileTab() {
         </table>
       </div>
       <SaveBar busy={save.isPending} dirty={dirty}>
-        <button type="button" className="flxs-btn" disabled={test.isPending} onClick={() => test.mutate({})}>
+        <button type="button" className="flxas-btn" disabled={test.isPending} onClick={() => test.mutate({})}>
           {t('Send me a test notification')}
         </button>
       </SaveBar>
 
       <h2>{t('Connection details')}</h2>
-      <div className="flxs-card">
-        <dl className="flxs-meta">
+      <div className="flxas-card">
+        <dl className="flxas-meta">
           <div>
             <dt>bootstrap</dt>
             <dd>

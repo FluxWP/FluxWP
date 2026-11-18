@@ -63,7 +63,7 @@ export function toneClass(t: Tone | string): string {
 }
 
 export function Cards({ children }: { children: ReactNode }) {
-  return <div className="flxs-cards">{children}</div>;
+  return <div className="flxpf-cards">{children}</div>;
 }
 
 export function Card({ label, value, tone = 'NONE', onClick, extra }: { label: string; value: string; tone?: Tone | string; onClick?: () => void; extra?: ReactNode }) {
@@ -75,18 +75,18 @@ export function Card({ label, value, tone = 'NONE', onClick, extra }: { label: s
     </>
   );
   return onClick ? (
-    <button type="button" className={'flxs-card is-link ' + toneClass(tone)} onClick={onClick}>
+    <button type="button" className={'flxpf-card is-link ' + toneClass(tone)} onClick={onClick}>
       {inner}
     </button>
   ) : (
-    <div className={'flxs-card ' + toneClass(tone)}>{inner}</div>
+    <div className={'flxpf-card ' + toneClass(tone)}>{inner}</div>
   );
 }
 
 export function Table({ head, rows, empty, numeric = [] }: { head: string[]; rows: ReactNode[][]; empty: string; numeric?: number[] }) {
   return (
-    <div className="flxs-tablewrap">
-      <table className="flxs-list">
+    <div className="flxpf-tablewrap">
+      <table className="flxpf-list">
         <thead>
           <tr>
             {head.map((h, i) => (
@@ -99,7 +99,7 @@ export function Table({ head, rows, empty, numeric = [] }: { head: string[]; row
         <tbody>
           {rows.length === 0 && (
             <tr>
-              <td colSpan={head.length} className="flxs-empty">
+              <td colSpan={head.length} className="flxpf-empty">
                 {empty}
               </td>
             </tr>
@@ -122,9 +122,9 @@ export function Table({ head, rows, empty, numeric = [] }: { head: string[]; row
 /** A titled box of label and value rows (server, database, resources). */
 export function Kv({ title, rows }: { title: string; rows: { label: string; value: string }[] }) {
   return (
-    <section className="flxs-box">
+    <section className="flxpf-box">
       <h2>{title}</h2>
-      <table className="flxs-kv">
+      <table className="flxpf-kv">
         <tbody>
           {rows.map((r, i) => (
             <tr key={i}>
@@ -140,29 +140,29 @@ export function Kv({ title, rows }: { title: string; rows: { label: string; valu
 
 export function Switch({ checked, onChange, label, disabled }: { checked: boolean; onChange: (v: boolean) => void; label: string; disabled?: boolean }) {
   return (
-    <label className="flxs-switch">
+    <label className="flxpf-switch">
       <input type="checkbox" checked={checked} disabled={disabled} onChange={(e) => onChange(e.currentTarget.checked)} />
       <span aria-hidden="true" />
-      <span className="flxs-sr">{label}</span>
+      <span className="flxpf-sr">{label}</span>
     </label>
   );
 }
 
 export function Check({ checked, onChange, children, disabled }: { checked: boolean; onChange: (v: boolean) => void; children: ReactNode; disabled?: boolean }) {
   return (
-    <label className="flxs-check">
+    <label className="flxpf-check">
       <input type="checkbox" checked={checked} disabled={disabled} onChange={(e) => onChange(e.currentTarget.checked)} /> {children}
     </label>
   );
 }
 
 export function Pill({ on, yes, no }: { on: boolean; yes: string; no: string }) {
-  return <span className={'flxs-pill ' + (on ? 'is-on' : 'is-off')}>{on ? yes : no}</span>;
+  return <span className={'flxpf-pill ' + (on ? 'is-on' : 'is-off')}>{on ? yes : no}</span>;
 }
 
 export function Linked({ text, onClick }: { text: string; onClick: () => void }) {
   return (
-    <button type="button" className="flxs-linkbtn" onClick={onClick}>
+    <button type="button" className="flxpf-linkbtn" onClick={onClick}>
       {text}
     </button>
   );
@@ -171,7 +171,7 @@ export function Linked({ text, onClick }: { text: string; onClick: () => void })
 export function ErrorBox({ error, fallback }: { error: unknown; fallback: string }) {
   const msg = error instanceof Error && error.message ? error.message : fallback;
   return (
-    <div className="flxs-notice is-error" role="alert">
+    <div className="flxpf-notice is-error" role="alert">
       <span>{msg}</span>
     </div>
   );

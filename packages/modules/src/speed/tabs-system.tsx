@@ -16,7 +16,7 @@ export function ServerTab() {
       {q.isLoading && <Loading />}
       {q.isError && <ErrorBox error={q.error} fallback={t('The action could not be completed.')} />}
       {q.data && (
-        <div className="flxs-env">
+        <div className="flxpf-env">
           {q.data.flxSpeedServer.map((s) => (
             <Kv key={s.key} title={s.title} rows={s.rows} />
           ))}
@@ -52,13 +52,13 @@ export function DatabaseTab() {
           <Card key={c.label} label={c.label} value={c.value} tone={c.tone} />
         ))}
       </Cards>
-      <div className="flxs-env">
+      <div className="flxpf-env">
         {d.sections.map((s) => (
           <Kv key={s.key} title={s.title} rows={s.rows} />
         ))}
       </div>
       <h2>{t('Cleanup')}</h2>
-      <p className="flxs-desc">{t('Safe jobs only: posts, pages and revisions are never deleted. Limit revisions with WP_POST_REVISIONS in wp-config.')}</p>
+      <p className="flxpf-desc">{t('Safe jobs only: posts, pages and revisions are never deleted. Limit revisions with WP_POST_REVISIONS in wp-config.')}</p>
       <Table
         head={[t('Job'), t('Count'), '']}
         numeric={[1]}
@@ -68,7 +68,7 @@ export function DatabaseTab() {
             j.label,
             num(j.count, lang),
             j.runnable ? (
-              <button type="button" className="flxs-btn is-small" onClick={() => setAsk({ key: j.key, label: j.label })}>
+              <button type="button" className="flxpf-btn is-small" onClick={() => setAsk({ key: j.key, label: j.label })}>
                 {t('Clean')}
               </button>
             ) : (
@@ -87,14 +87,14 @@ export function DatabaseTab() {
       />
       {ask && (
         <Modal title={ask.label} onClose={() => setAsk(null)}>
-          <p className="flxs-confirm">{ask.label + ' — ' + t('continue?')}</p>
-          <div className="flxs-modal-actions">
-            <button type="button" className="flxs-btn" onClick={() => setAsk(null)}>
+          <p className="flxpf-confirm">{ask.label + ' — ' + t('continue?')}</p>
+          <div className="flxpf-modal-actions">
+            <button type="button" className="flxpf-btn" onClick={() => setAsk(null)}>
               {t('Cancel')}
             </button>
             <button
               type="button"
-              className="flxs-btn is-primary"
+              className="flxpf-btn is-primary"
               onClick={() => {
                 run.mutate({ input: { job: ask.key } });
                 setAsk(null);
@@ -121,7 +121,7 @@ export function AutoloadTab() {
         <Card label={t('Autoloaded options')} value={num(a.count, lang)} />
         <Card label={t('Total size')} value={num(a.totalKb, lang) + ' KB'} tone={a.tone} />
       </Cards>
-      <p className="flxs-desc">{t('These options are loaded from the database on every request. Over 800 KB in total slows pages down; shrink the setting or cache in the plugin that owns the large rows.')}</p>
+      <p className="flxpf-desc">{t('These options are loaded from the database on every request. Over 800 KB in total slows pages down; shrink the setting or cache in the plugin that owns the large rows.')}</p>
       <Table
         head={[t('Option'), t('Owner'), t('Size')]}
         numeric={[2]}
@@ -146,9 +146,9 @@ export function CronTab() {
         <Card label={t('Last run')} value={c.lastSeen ? c.lastSeen.relative : t('Not seen')} tone={c.lastWarn ? 'WARNING' : 'NONE'} />
         <Card label="DISABLE_WP_CRON" value={c.disabled ? t('On') : t('Off')} />
       </Cards>
-      {c.disabled && <p className="flxs-desc">{t('WordPress cron is disabled: events run only when a server cron job calls wp-cron.php. On Hostinger, add a cron job that calls it every 5 minutes.')}</p>}
+      {c.disabled && <p className="flxpf-desc">{t('WordPress cron is disabled: events run only when a server cron job calls wp-cron.php. On Hostinger, add a cron job that calls it every 5 minutes.')}</p>}
       <h2>{t('Task durations')}</h2>
-      <p className="flxs-desc">{t('Measured per task each time wp-cron.php runs; sorted by total time. A summary older than a day resets when the task runs again. "Cut off": the task hit the time limit and stopped halfway.')}</p>
+      <p className="flxpf-desc">{t('Measured per task each time wp-cron.php runs; sorted by total time. A summary older than a day resets when the task runs again. "Cut off": the task hit the time limit and stopped halfway.')}</p>
       <Table
         head={[t('Hook'), t('Component'), t('Runs'), t('Average'), t('Longest'), t('Last'), t('Last run')]}
         numeric={[2, 3, 4, 5]}
@@ -156,11 +156,11 @@ export function CronTab() {
         rows={c.timings.map((x) => [
           <>
             <code>{x.hook}</code>
-            {x.cut && <span className="flxs-errtext"> {t('Cut off')}</span>}
+            {x.cut && <span className="flxpf-errtext"> {t('Cut off')}</span>}
           </>,
           x.component,
           num(x.runs, lang),
-          <span className={x.slow ? 'flxs-errtext' : undefined}>{fmtMs(x.avgMs, lang)}</span>,
+          <span className={x.slow ? 'flxpf-errtext' : undefined}>{fmtMs(x.avgMs, lang)}</span>,
           fmtMs(x.maxMs, lang),
           fmtMs(x.lastMs, lang),
           x.lastAt ? x.lastAt.relative : '—',
@@ -173,7 +173,7 @@ export function CronTab() {
         empty={t('No records.')}
         rows={c.items.map((e) => {
           const when = e.next.short + ' · ' + (e.overdue ? t('Overdue: due %s', e.next.relative) : e.next.relative);
-          return [<code>{e.hook}</code>, <span className={e.overdue ? 'flxs-errtext' : undefined}>{when}</span>, e.schedule || t('once'), e.args];
+          return [<code>{e.hook}</code>, <span className={e.overdue ? 'flxpf-errtext' : undefined}>{when}</span>, e.schedule || t('once'), e.args];
         })}
       />
     </>
@@ -195,21 +195,21 @@ export function SystemTab() {
   const mark = (st: string) => (st === 'OK' ? '✓' : st === 'ERROR' ? '✕' : st === 'WARNING' ? '!' : 'i');
   return (
     <>
-      <div className="flxs-sysbar">
-        <span className="flxs-pill is-on">{t('%s OK', s.summary.ok)}</span>
-        {s.summary.warning > 0 && <span className="flxs-pill is-warn">{t('%s warnings', s.summary.warning)}</span>}
-        {s.summary.error > 0 && <span className="flxs-pill is-err">{t('%s errors', s.summary.error)}</span>}
-        <button type="button" className="flxs-btn" disabled={q.isFetching} onClick={() => void q.refetch()}>
+      <div className="flxpf-sysbar">
+        <span className="flxpf-pill is-on">{t('%s OK', s.summary.ok)}</span>
+        {s.summary.warning > 0 && <span className="flxpf-pill is-warn">{t('%s warnings', s.summary.warning)}</span>}
+        {s.summary.error > 0 && <span className="flxpf-pill is-err">{t('%s errors', s.summary.error)}</span>}
+        <button type="button" className="flxpf-btn" disabled={q.isFetching} onClick={() => void q.refetch()}>
           {t('Check again')}
         </button>
       </div>
       {groups.map((g) => (
-        <section key={g.key} className="flxs-box">
+        <section key={g.key} className="flxpf-box">
           <h2>{g.label}</h2>
-          <ul className="flxs-checks">
+          <ul className="flxpf-checks">
             {g.items.map((c) => (
               <li key={c.id} className={'is-' + c.status.toLowerCase()}>
-                <span className="flxs-mark" aria-hidden="true">
+                <span className="flxpf-mark" aria-hidden="true">
                   {mark(c.status)}
                 </span>
                 <span>

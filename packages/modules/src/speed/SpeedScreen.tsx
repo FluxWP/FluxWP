@@ -89,7 +89,7 @@ function Speed() {
   );
 
   if (q.isLoading) return <Loading />;
-  if (q.isError || !q.data || !ctx) return <div className="flxs-app"><ErrorBox error={q.error} fallback={t('The action could not be completed.')} /></div>;
+  if (q.isError || !q.data || !ctx) return <div className="flxpf-app"><ErrorBox error={q.error} fallback={t('The action could not be completed.')} /></div>;
   const cfg = q.data.flxSpeedConfig;
   const tab = cfg.tabs.some((x) => x.key === view.tab) ? view.tab : 'summary';
 
@@ -130,21 +130,21 @@ function Speed() {
 
   return (
     <SpeedProvider value={ctx}>
-      <div className="flxs-app">
-        <div className="flxs-head">
+      <div className="flxpf-app">
+        <div className="flxpf-head">
           <h1>{t('Flux Performance')}</h1>
         </div>
         {notice && (
-          <div className={'flxs-notice is-' + notice.kind} role={notice.kind === 'error' ? 'alert' : 'status'}>
+          <div className={'flxpf-notice is-' + notice.kind} role={notice.kind === 'error' ? 'alert' : 'status'}>
             <span>{notice.text}</span>
-            <button type="button" className="flxs-x" aria-label={t('Close')} onClick={() => setNotice(null)}>
+            <button type="button" className="flxpf-x" aria-label={t('Close')} onClick={() => setNotice(null)}>
               ×
             </button>
           </div>
         )}
-        <nav className="flxs-tabs" aria-label={t('Flux Performance')}>
+        <nav className="flxpf-tabs" aria-label={t('Flux Performance')}>
           {cfg.tabs.map((x) => (
-            <button key={x.key} type="button" className={'flxs-tab' + (x.key === tab && !view.id ? ' is-active' : '')} onClick={() => go(x.key)}>
+            <button key={x.key} type="button" className={'flxpf-tab' + (x.key === tab && !view.id ? ' is-active' : '')} onClick={() => go(x.key)}>
               {x.label}
             </button>
           ))}

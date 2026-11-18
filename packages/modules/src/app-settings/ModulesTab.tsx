@@ -30,17 +30,17 @@ export function ModulesTab() {
   });
 
   if (q.isLoading || (!on && !q.isError)) return <Loading />;
-  if (q.isError || !q.data || !on) return <div className="flxs-notice is-error">{q.error?.message || t('The action could not be completed.')}</div>;
+  if (q.isError || !q.data || !on) return <div className="flxas-notice is-error">{q.error?.message || t('The action could not be completed.')}</div>;
   const mods = q.data.flxAppAdminModules;
   const kinds: Record<string, string> = { manifest: t('Manifest'), native: t('Native screen'), web: t('Web view') };
 
   return (
     <>
-      <p className="flxs-lead">
+      <p className="flxas-lead">
         {t("Plugin screens in the app. Manifest modules are drawn from the same definition on desktop and mobile; native modules open with the app's own screen. A disabled module's menu opens as an admin page in the app. Who sees what follows capabilities and the role menu.")}
       </p>
       {!mods.length ? (
-        <p className="flxs-empty">{t('No modules registered.')}</p>
+        <p className="flxas-empty">{t('No modules registered.')}</p>
       ) : (
         <form
           onSubmit={(e) => {
@@ -48,8 +48,8 @@ export function ModulesTab() {
             save.mutate({ input: { on: [...on] } });
           }}
         >
-          <div className="flxs-card flxs-table-wrap">
-            <table className="flxs-table">
+          <div className="flxas-card flxas-table-wrap">
+            <table className="flxas-table">
               <thead>
                 <tr>
                   <th>{t('On')}</th>
@@ -83,13 +83,13 @@ export function ModulesTab() {
                       </td>
                       <td data-label={t('Module')}>
                         <strong>{m.title}</strong> <code>{m.id}</code>
-                        {m.errors.length > 0 && <div className="flxs-bad">{t('Manifest error: %s', m.errors.slice(0, 6).join(', '))}</div>}
+                        {m.errors.length > 0 && <div className="flxas-bad">{t('Manifest error: %s', m.errors.slice(0, 6).join(', '))}</div>}
                       </td>
                       <td data-label={t('In the app')}>
-                        <span className="flxs-pf is-on">{kinds[kind] ?? kind}</span>
-                        {kind === 'manifest' && m.screens > 0 && <span className="flxs-muted"> {tn('%d screen', '%d screens', m.screens, m.screens)}</span>}
+                        <span className="flxas-pf is-on">{kinds[kind] ?? kind}</span>
+                        {kind === 'manifest' && m.screens > 0 && <span className="flxas-muted"> {tn('%d screen', '%d screens', m.screens, m.screens)}</span>}
                       </td>
-                      <td data-label={t('Menu')}>{m.menu ? <code>{m.menu}</code> : <span className="flxs-muted">{t('Separate item')}</span>}</td>
+                      <td data-label={t('Menu')}>{m.menu ? <code>{m.menu}</code> : <span className="flxas-muted">{t('Separate item')}</span>}</td>
                       <td data-label={t('Capability')}>{m.cap ? <code>{m.cap}</code> : '—'}</td>
                       <td data-label={t('Version')}>{m.version || '—'}</td>
                     </tr>

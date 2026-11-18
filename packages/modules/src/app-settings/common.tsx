@@ -53,30 +53,30 @@ export function ScreenProvider({ children, title, lead }: { children: ReactNode;
   );
   return (
     <Ctx.Provider value={value}>
-      <div className="flxs-app">
-        <div className="flxs-head">
+      <div className="flxas-app">
+        <div className="flxas-head">
           <h1>{title}</h1>
         </div>
         {notice && (
-          <div className={'flxs-notice is-' + notice.kind} role={notice.kind === 'error' ? 'alert' : 'status'}>
+          <div className={'flxas-notice is-' + notice.kind} role={notice.kind === 'error' ? 'alert' : 'status'}>
             <span>{notice.text}</span>
-            <button type="button" className="flxs-x" aria-label={t('Close')} onClick={() => setNotice(null)}>
+            <button type="button" className="flxas-x" aria-label={t('Close')} onClick={() => setNotice(null)}>
               ×
             </button>
           </div>
         )}
-        {lead && <p className="flxs-lead">{lead}</p>}
+        {lead && <p className="flxas-lead">{lead}</p>}
         {children}
         {confirm && (
           <Modal title={confirm.action} onClose={() => setConfirm(null)}>
-            <p className="flxs-confirm">{confirm.text}</p>
-            <div className="flxs-modal-actions">
-              <button type="button" className="flxs-btn" onClick={() => setConfirm(null)}>
+            <p className="flxas-confirm">{confirm.text}</p>
+            <div className="flxas-modal-actions">
+              <button type="button" className="flxas-btn" onClick={() => setConfirm(null)}>
                 {t('Cancel')}
               </button>
               <button
                 type="button"
-                className="flxs-btn is-danger"
+                className="flxas-btn is-danger"
                 onClick={() => {
                   confirm.run();
                   setConfirm(null);
@@ -97,10 +97,10 @@ export const payloadError = (errors: { message: string }[] | null | undefined): 
 
 export function Switch({ checked, onChange, label, disabled }: { checked: boolean; onChange: (on: boolean) => void; label: string; disabled?: boolean }) {
   return (
-    <label className="flxs-switch">
+    <label className="flxas-switch">
       <input type="checkbox" checked={checked} disabled={disabled} onChange={(e) => onChange(e.currentTarget.checked)} />
       <span aria-hidden="true" />
-      <span className="flxs-sr">{label}</span>
+      <span className="flxas-sr">{label}</span>
     </label>
   );
 }
@@ -108,7 +108,7 @@ export function Switch({ checked, onChange, label, disabled }: { checked: boolea
 /** Checkbox with its text. */
 export function Check({ checked, onChange, children, disabled }: { checked: boolean; onChange: (on: boolean) => void; children: ReactNode; disabled?: boolean }) {
   return (
-    <label className="flxs-check">
+    <label className="flxas-check">
       <input type="checkbox" checked={checked} disabled={disabled} onChange={(e) => onChange(e.currentTarget.checked)} /> <span>{children}</span>
     </label>
   );
@@ -116,11 +116,11 @@ export function Check({ checked, onChange, children, disabled }: { checked: bool
 
 export function Field({ label, htmlFor, children, desc }: { label: string; htmlFor?: string; children: ReactNode; desc?: string }) {
   return (
-    <div className="flxs-field">
+    <div className="flxas-field">
       <label htmlFor={htmlFor}>{label}</label>
       <div>
         {children}
-        {desc && <p className="flxs-desc">{desc}</p>}
+        {desc && <p className="flxas-desc">{desc}</p>}
       </div>
     </div>
   );
@@ -129,11 +129,11 @@ export function Field({ label, htmlFor, children, desc }: { label: string; htmlF
 export function SaveBar({ busy, dirty, onSave, children }: { busy: boolean; dirty: boolean; onSave?: () => void; children?: ReactNode }) {
   const { t } = useScreen();
   return (
-    <div className="flxs-actions">
-      <button type="submit" className="flxs-btn is-primary" disabled={busy} onClick={onSave}>
+    <div className="flxas-actions">
+      <button type="submit" className="flxas-btn is-primary" disabled={busy} onClick={onSave}>
         {t('Save')}
       </button>
-      {dirty && <span className="flxs-dirty">{t('Unsaved changes')}</span>}
+      {dirty && <span className="flxas-dirty">{t('Unsaved changes')}</span>}
       {children}
     </div>
   );
@@ -143,12 +143,12 @@ export function SaveBar({ busy, dirty, onSave, children }: { busy: boolean; dirt
 export function Secret({ title, value, onClose }: { title: string; value: string; onClose: () => void }) {
   const { t } = useScreen();
   return (
-    <div className="flxs-notice is-secret" role="status">
+    <div className="flxas-notice is-secret" role="status">
       <div>
         <strong>{title}</strong>
         <textarea readOnly rows={Math.min(3, value.split('\n').length)} value={value} onFocus={(e) => e.currentTarget.select()} />
       </div>
-      <button type="button" className="flxs-x" aria-label={t('Close')} onClick={onClose}>
+      <button type="button" className="flxas-x" aria-label={t('Close')} onClick={onClose}>
         ×
       </button>
     </div>

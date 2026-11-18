@@ -60,9 +60,9 @@ function Tabs() {
   };
   return (
     <>
-      <div className="flxs-tablist" role="tablist">
+      <div className="flxas-tablist" role="tablist">
         {TABS.map((k) => (
-          <button key={k} type="button" role="tab" aria-selected={k === tab} className={'flxs-tab' + (k === tab ? ' is-active' : '')} onClick={() => go(k)}>
+          <button key={k} type="button" role="tab" aria-selected={k === tab} className={'flxas-tab' + (k === tab ? ' is-active' : '')} onClick={() => go(k)}>
             {labels[k]}
           </button>
         ))}

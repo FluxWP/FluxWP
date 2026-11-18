@@ -46,7 +46,7 @@ export function GeneralTab() {
   });
 
   if (q.isLoading || (!draft && !q.isError)) return <Loading />;
-  if (q.isError || !q.data || !draft) return <div className="flxs-notice is-error">{q.error?.message || t('The action could not be completed.')}</div>;
+  if (q.isError || !q.data || !draft) return <div className="flxas-notice is-error">{q.error?.message || t('The action could not be completed.')}</div>;
   const s = q.data.flxAppAdminSettings;
   const set = <K extends keyof Draft>(k: K, v: Draft[K]) => {
     setDraft((d) => d && { ...d, [k]: v });
@@ -71,13 +71,13 @@ export function GeneralTab() {
 
   return (
     <form onSubmit={submit}>
-      <p className="flxs-lead">{t('Sign-in, session and panel settings for the desktop (macOS, Windows) and mobile (iOS, Android) app.')}</p>
-      <div className="flxs-card flxs-form">
-        <Field label={t('Access token lifetime')} htmlFor="flxs-am">
-          <input id="flxs-am" type="number" min={5} max={1440} className="flxs-num" value={draft.accessMinutes} onChange={(e) => set('accessMinutes', e.currentTarget.value)} /> {t('minutes')}
+      <p className="flxas-lead">{t('Sign-in, session and panel settings for the desktop (macOS, Windows) and mobile (iOS, Android) app.')}</p>
+      <div className="flxas-card flxas-form">
+        <Field label={t('Access token lifetime')} htmlFor="flxas-am">
+          <input id="flxas-am" type="number" min={5} max={1440} className="flxas-num" value={draft.accessMinutes} onChange={(e) => set('accessMinutes', e.currentTarget.value)} /> {t('minutes')}
         </Field>
-        <Field label={t('Session lifetime (when unused)')} htmlFor="flxs-rd" desc={t('The period renews while the app is used; after this many days without use, sign-in is required again.')}>
-          <input id="flxs-rd" type="number" min={1} max={365} className="flxs-num" value={draft.refreshDays} onChange={(e) => set('refreshDays', e.currentTarget.value)} /> {t('days')}
+        <Field label={t('Session lifetime (when unused)')} htmlFor="flxas-rd" desc={t('The period renews while the app is used; after this many days without use, sign-in is required again.')}>
+          <input id="flxas-rd" type="number" min={1} max={365} className="flxas-num" value={draft.refreshDays} onChange={(e) => set('refreshDays', e.currentTarget.value)} /> {t('days')}
         </Field>
         <Field label={t('MCP clients')}>
           <Check checked={draft.dynamicClients} onChange={(v) => set('dynamicClients', v)}>
@@ -111,8 +111,8 @@ export function GeneralTab() {
             {t('Let a signed-in donor confirm a phone number and save it on their account')}
           </Check>
         </Field>
-        <Field label={t('Can create API keys')} htmlFor="flxs-kc">
-          <select id="flxs-kc" value={draft.keysCap} onChange={(e) => set('keysCap', e.currentTarget.value)}>
+        <Field label={t('Can create API keys')} htmlFor="flxas-kc">
+          <select id="flxas-kc" value={draft.keysCap} onChange={(e) => set('keysCap', e.currentTarget.value)}>
             {s.keysCapChoices.map((c) => (
               <option key={c.key} value={c.key}>
                 {c.label}
