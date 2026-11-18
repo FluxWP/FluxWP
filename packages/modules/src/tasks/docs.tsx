@@ -6,6 +6,7 @@ import type { FlxgFile, FlxgTask } from '@fluxwp/core';
 import { useHost, type ModuleHost } from '../host';
 import { rank, between, norm, type FlxgDocRef, type Route } from './engine';
 import { flxgLocale, tt } from './i18n';
+import { navReplace } from './nav';
 import { openAI } from './pages';
 import { downloadFile, useYtg, type Ctx, type MenuItem } from './ui';
 
@@ -115,7 +116,10 @@ function bridge(Y: Legacy) {
   set('openTask', (id: number) => need().e.openTask(id));
   set('openAI', (ctx?: { page?: { id: number; title: string } | null; task?: number }) => openAI(ctx ?? {}));
   set('isMobile', () => window.innerWidth <= 720);
-  set('go', (hash: string) => void need().e.go(routeOf(hash)));
+  set('go', (hash: string, replace?: boolean) => {
+    if (replace) navReplace();
+    void need().e.go(routeOf(hash));
+  });
   // API: uygulamada belirteç, WP'de çerez + nonce; ikisi de istemciden geçer.
   set('api', (method: string, path: string, body?: unknown) => {
     const m = method.toUpperCase() as 'GET' | 'POST' | 'PATCH' | 'DELETE';

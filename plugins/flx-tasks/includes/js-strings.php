@@ -82,6 +82,7 @@ function flxg_js_strings() {
 		'Sayfa adı' => __( 'Page name', 'flx-tasks' ),
 		'Üstteki sayfanın altına taşı' => __( 'Move under the page above', 'flx-tasks' ),
 		'Bir üst düzeye taşı' => __( 'Move up a level', 'flx-tasks' ),
+		'Kilitli bir sayfanın içine ya da altına taşınamaz.' => __( 'Cannot be moved into or under a locked page.', 'flx-tasks' ),
 		'Sayfayı sil' => __( 'Delete page', 'flx-tasks' ),
 		'"{p}" sayfası ve {n} alt sayfası silinecek.' => __( '"{p}" and its {n} subpages will be deleted.', 'flx-tasks' ),
 		'"{p}" sayfası silinecek.' => __( '"{p}" will be deleted.', 'flx-tasks' ),

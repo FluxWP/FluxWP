@@ -2721,3 +2721,6 @@ msgstr "Gantt"
 
 msgid "This dependency would create a loop."
 msgstr "Bu bağımlılık döngü oluşturur."
+
+msgid "Kilitli bir sayfanın içine ya da altına taşınamaz."
+msgstr "Kilitli bir sayfanın içine ya da altına taşınamaz."

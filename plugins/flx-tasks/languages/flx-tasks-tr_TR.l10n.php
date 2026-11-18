@@ -1184,6 +1184,7 @@ return array(
   'Sayfa adı' => 'Sayfa adı',
   'Üstteki sayfanın altına taşı' => 'Üstteki sayfanın altına taşı',
   'Bir üst düzeye taşı' => 'Bir üst düzeye taşı',
+  'Kilitli bir sayfanın içine ya da altına taşınamaz.' => 'Kilitli bir sayfanın içine ya da altına taşınamaz.',
   'Sayfayı sil' => 'Sayfayı sil',
   '"{p}" sayfası ve {n} alt sayfası silinecek.' => '"{p}" sayfası ve {n} alt sayfası silinecek.',
   '"{p}" sayfası silinecek.' => '"{p}" sayfası silinecek.',

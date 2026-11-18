@@ -116,6 +116,7 @@
   "Bir görevi bağla (#)": "Link a task (#)",
   "Bir görevin altına en fazla kaç kademe alt görev eklenebileceği (1–10). Varsayılan 3.": "How many levels of subtasks can be nested under a task (1–10). Default is 3.",
   "Bir üst düzeye taşı": "Move up a level",
+  "Kilitli bir sayfanın içine ya da altına taşınamaz.": "Cannot be moved into or under a locked page.",
   "Biri": "Someone",
   "Birinden bahset": "Mention someone",
   "Bitiş": "Due",

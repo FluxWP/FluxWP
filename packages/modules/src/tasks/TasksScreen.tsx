@@ -1,5 +1,6 @@
 // Flux Tasks ana ekranı (WP assets/js/pages.js karşılığı): sol menü (Benim görevlerim, Bildirimler, proje ağacı),
 // görünüm sekmeleri, araç çubuğu, liste/pano/takvim, bildirim kutusu, görev penceresi. WP ile aynı tasarım (flxg.css).
+import { takeReplace } from './nav';
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { type FlxgList, type FlxgNotif, type FlxgView } from '@fluxwp/core';
@@ -114,11 +115,14 @@ export function TasksScreen() {
     const e = new FlxgEngine(flxgGraphQL(host.client), initial);
     const ui = new Ui();
     e.onError = ui.fail;
+    let firstRoute = false;
     e.onRoute = (r) => {
       if (r.page === 'list' || r.page === 'space') store.set('last', r.page + ':' + r.id);
       if (host.mode === 'wp') {
         const h = toHash(r);
-        if (location.hash !== h) history.replaceState(null, '', h);
+        const rep = takeReplace() || !firstRoute;
+        firstRoute = true;
+        if (location.hash !== h) (rep ? history.replaceState : history.pushState).call(history, null, '', h);
       } else store.set('route-' + host.scope, JSON.stringify({ ...r, task: 0 }));
     };
     e.onNotify = (list: FlxgNotif[]) => {

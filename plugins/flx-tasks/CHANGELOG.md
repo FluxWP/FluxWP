@@ -1,5 +1,9 @@
 # Flux Tasks — Değişiklikler
 
+## 0.18.0
+- Doküman sayfa ağacında sayfayı basılı tutup (fare: çekerek, dokunmatik: uzun basarak) sürükleyince sırası değişir, başka bir sayfanın altına alt sayfa olarak taşınır ya da üst düzeye çıkar. Bırakma yeri sürüklerken görünür: satırın üst/alt kenarında çizgi (kardeş olur; alt kenarda yatay konum üst düzeyleri seçer), ortasında çerçeve (alt sayfa olur). Başlık bağlantısından da sürüklenir (önceden yalnız boşluktan başlıyordu).
+- Kilitli sayfa taşınmaz, kilitli sayfanın içine bırakılmaz; sunucu da aynısını doğrular (423). Kaydedilemezse ağaç sunucudaki haline döner.
+- Tarayıcının ileri/geri tuşu artık doküman sayfaları, listeler ve görev ekranları arasında gezer (önceden her geçiş geçmişin yerini değiştirdiği için geri tuşu siteden çıkıyordu). Her doküman sayfasının kendi adresi vardır; yenilemede aynı sayfa açılır. Dokümanın ilk sayfasına otomatik yönlendirme geçmişe eklenmez.
 ## 0.17.0
 - Dokümanlarda görsel genişliği artık görselin kenarındaki tutamaçtan sürüklenerek ayarlanır (fare ve dokunmatik); sürüklerken genişlik px olarak görünür, tam genişliğe ulaşınca tam genişlik olur. Hazır Küçük / Orta / Tam genişlik seçenekleri menüde durur.
 - Görsele tıklayınca açılan menüde Sola / Ortaya / Sağa hizalama. Sağa yaslı görselin tutamacı sol kenardadır.

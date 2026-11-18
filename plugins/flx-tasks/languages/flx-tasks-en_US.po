@@ -2712,3 +2712,6 @@ msgstr "Gantt"
 
 msgid "This dependency would create a loop."
 msgstr "This dependency would create a loop."
+
+msgid "Kilitli bir sayfanın içine ya da altına taşınamaz."
+msgstr "Cannot be moved into or under a locked page."
