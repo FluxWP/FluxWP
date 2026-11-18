@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: FluxWP Docker
- * Description: Activates Flux Setup right after the WordPress install screen, opens its setup wizard on the first wp-admin visit, and (wpapi stack) adds the WhatsApp API connection. Written by the FluxWP Docker worker.
- * Version: 1.1.0
+ * Description: Activates Flux Setup right after the WordPress install screen, opens its setup wizard on the first wp-admin visit (visitors of a brand-new site are sent to the login first), and (wpapi stack) adds the WhatsApp API connection. Written by the FluxWP Docker worker.
+ * Version: 1.2.0
  * Author: FluxWP
  * License: MIT
  *
@@ -57,6 +57,33 @@ add_action(
 		}
 	},
 	1
+);
+
+/**
+ * First visit of a brand-new site: the front end has nothing to show yet, so send visitors to the login
+ * (wp-admin), where Flux Setup's wizard opens. Stops once the wizard is done or skipped, a preset is applied,
+ * or the site has real content. Filter: flx_docker_first_run_redirect.
+ */
+add_action(
+	'template_redirect',
+	static function () {
+		if ( is_user_logged_in() || 'GET' !== ( $_SERVER['REQUEST_METHOD'] ?? '' ) || wp_doing_cron() || wp_doing_ajax() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
+			return;
+		}
+		if ( 'pending' !== get_option( 'flxk_onboarding' ) || get_option( 'flxk_state' ) ) {
+			return;
+		}
+		if ( (int) wp_count_posts( 'page' )->publish + (int) wp_count_posts( 'post' )->publish > 3 ) {
+			return;
+		}
+		if ( ! apply_filters( 'flx_docker_first_run_redirect', true ) ) {
+			return;
+		}
+		nocache_headers();
+		wp_safe_redirect( wp_login_url( admin_url() ), 302 );
+		exit;
+	},
+	0
 );
 
 /**

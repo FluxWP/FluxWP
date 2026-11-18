@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026.11.18.1
+
+- First open of a brand-new site: the FluxWP Docker mu-plugin (1.2.0) sends visitors to the WordPress login, where Flux Setup's wizard opens, until the wizard is done or skipped, a preset is applied or the site has content. Before the worker has installed WordPress, the closed install screen now shows a short "being set up" page (auto-refresh, points to the worker log) instead of a bare 403, in the Apache and nginx images.
+
 ## 2026.11.17.1
 
 - New `wpapi` stack (`compose/wpapi`, `coolify/wpapi`): `mariadb-redis` plus the FluxWP WhatsApp API (flx-wpapi) as an internal `wpapi` service, image `ghcr.io/fluxwp/wordpress:wpapi-node22`. One shared `WPAPI_KEY` is used by both sides; the FluxWP Docker mu-plugin adds the WhatsApp connection in Flux Mail, so nothing is linked by hand. The default stack and the other stacks are unchanged.
