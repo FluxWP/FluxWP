@@ -2076,3 +2076,5 @@ body.flxg-col-resizing, body.flxg-col-resizing * { cursor: col-resize !important
 /* Sütun başlığı listenin en üstünde (tek satır), kaydırınca yapışır. */
 .flxg-flux .flxg-listview > .flxg-row.is-head { position: sticky; top: 0; z-index: 6; background: var(--bg); }
 .flxg-flux .flxg-listview > .flxg-row.is-head > :nth-child(1), .flxg-flux .flxg-listview > .flxg-row.is-head > :nth-child(2) { background: var(--bg); }
+/* Liste seçme kutuları: köşeleri yuvarlak, tam kare. */
+.flxg-flux .flxg-row .flxg-check input[type="checkbox"], .flxg-flux .flxg-gcheck input[type="checkbox"] { width: 16px; min-width: 16px; max-width: 16px; height: 16px; min-height: 16px; max-height: 16px; aspect-ratio: 1; flex: none; border-radius: 4px; }
