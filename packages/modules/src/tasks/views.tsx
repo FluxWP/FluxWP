@@ -631,6 +631,7 @@ export function ListView() {
   const kidsIdx = mode === 'off' ? {} : e.childIndex();
   const canAddAny = e.scopeLists().some((l) => rank(l.role) >= 3);
   const [dragKids, setDragKids] = useState<Set<number>>(new Set());
+  const [addIn, setAddIn] = useState<{ k: string; n: number } | null>(null);
   if (!tasks.length && S.scope?.type === 'home') return <EmptyState />;
   const hasMatch = (task: FlxgTask): boolean => (kidsIdx[task.id] ?? []).some((k) => e.taskMatches(k) || hasMatch(k));
   const visibleKids = (task: FlxgTask) => (kidsIdx[task.id] ?? []).filter((k) => !subFilter || e.taskMatches(k) || S.keep[k.id] || hasMatch(k));
@@ -714,6 +715,7 @@ export function ListView() {
     >
       <div className="flxg-scroll-x">
         <div ref={wrapRef} className={'flxg-listview' + (cfg.wrap ? ' is-wrap' : '')} style={style}>
+          {tasks.length > 0 && <HeadRow cols={cols} onResize={() => force((x) => x + 1)} />}
           {groups.map((g) => {
             if (!g.tasks.length && g.key === 'all' && !tasks.length) return null;
             if (!g.tasks.length && (cfg.group === 'tag' || cfg.group === 'assignee') && g.key !== 'as:none') return null;
@@ -722,12 +724,22 @@ export function ListView() {
             const rows: ReactNode[] = [];
             if (!isCol) g.tasks.forEach((task) => rowsOf(task, 0, 0, rows));
             return (
-              <GroupSection key={g.key} g={g} isCol={isCol} onToggle={() => ((cfg.collapsed = isCol ? collapsed.filter((k) => k !== g.key) : [...collapsed, g.key]), e.bump())}>
-                {!isCol && <HeadRow cols={cols} onResize={() => force((x) => x + 1)} />}
+              <GroupSection
+                key={g.key}
+                g={g}
+                isCol={isCol}
+                canAdd={!!g.patch && canAddAny}
+                onAdd={() => {
+                  if (isCol) cfg.collapsed = collapsed.filter((k) => k !== g.key);
+                  setAddIn({ k: g.key, n: (addIn?.n ?? 0) + 1 });
+                  e.bump();
+                }}
+                onToggle={() => ((cfg.collapsed = isCol ? collapsed.filter((k) => k !== g.key) : [...collapsed, g.key]), e.bump())}
+              >
                 {!isCol && (
                   <ListRows zone={g.key} disabled={!g.patch}>
                     {rows}
-                    {g.patch && canAddAny && <InlineAdd g={g} />}
+                    {g.patch && canAddAny && <InlineAdd key={g.key + (addIn?.k === g.key ? ':' + addIn.n : '')} g={g} autoOpen={addIn?.k === g.key} />}
                   </ListRows>
                 )}
               </GroupSection>
@@ -739,19 +751,55 @@ export function ListView() {
     </DndArea>
   );
 }
-function GroupSection({ g, isCol, onToggle, children }: { g: Group; isCol: boolean; onToggle: () => void; children: ReactNode }) {
-  const { e } = useYtg();
+function GroupSection({ g, isCol, onToggle, onAdd, canAdd, children }: { g: Group; isCol: boolean; onToggle: () => void; onAdd: () => void; canAdd: boolean; children: ReactNode }) {
+  const c = useYtg();
+  const { e } = c;
+  const S = e.S;
+  const own = g.tasks.filter((x) => !(x as T)._ctx);
+  const allSel = own.length > 0 && own.every((x) => S.selected[x.id]);
   return (
     <section className={'flxg-group' + (isCol ? ' is-collapsed' : '')}>
       <div className="flxg-group-head">
+        <label className="flxg-check flxg-gcheck" onClick={(ev) => ev.stopPropagation()}>
+          <input
+            type="checkbox"
+            checked={allSel}
+            aria-label={tt("Select all")}
+            onChange={(ev) => {
+              own.forEach((x) => (ev.target.checked ? (S.selected[x.id] = 1) : delete S.selected[x.id]));
+              e.bump();
+            }}
+          />
+        </label>
         <button type="button" className="flxg-caret" aria-label={tt("Collapse")} onClick={onToggle}>
-          <Ic n={isCol ? 'chevR' : 'chevD'} s={16} />
+          <Ic n={isCol ? 'chevR' : 'chevD'} s={14} />
         </button>
         <span className="flxg-gpill" style={cv(g.color)}>
-          {g.user ? <Avatar u={e.S.users[g.user]} size={18} /> : null}
+          {g.user ? <Avatar u={e.S.users[g.user]} size={16} /> : null}
           {g.label}
         </span>
-        <span className="flxg-gcount">{g.tasks.filter((x) => !(x as T)._ctx).length}</span>
+        <span className="flxg-gcount">{own.length}</span>
+        <span className="flxg-gtools">
+          <button
+            type="button"
+            className="flxg-gtool"
+            title={tt("More")}
+            aria-label={tt("More")}
+            onClick={(ev) =>
+              c.ui.menu(ev.currentTarget, [
+                { label: isCol ? tt("Expand") : tt("Collapse"), icon: isCol ? 'chevD' : 'chevU', onClick: onToggle },
+                canAdd && { label: e.meetingScope() ? tt("Add meeting") : tt("Add task"), icon: 'plus', onClick: onAdd },
+              ])
+            }
+          >
+            <Ic n="dots" s={15} />
+          </button>
+          {canAdd && (
+            <button type="button" className="flxg-gtool" title={e.meetingScope() ? tt("Add meeting") : tt("Add task")} aria-label={tt("Add task")} onClick={onAdd}>
+              <Ic n="plus" s={15} />
+            </button>
+          )}
+        </span>
       </div>
       {children}
     </section>
@@ -801,6 +849,11 @@ function ListRow(o: { task: T; cols: Col[]; depth: number; parent: number; kids:
       onKeyDown={(ev) => ev.key === 'Enter' && e.openTask(task.id)}
     >
       <label className="flxg-check flxg-nodrag" onClick={(ev) => ev.stopPropagation()} onPointerDown={(ev) => ev.stopPropagation()}>
+        {canEdit && (
+          <span className="flxg-grip" aria-hidden="true" title={tt("Drag to move")} onClick={(ev) => ev.preventDefault()}>
+            <Ic n="grip" s={14} />
+          </span>
+        )}
         <input
           type="checkbox"
           checked={sel}

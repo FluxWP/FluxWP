@@ -1,5 +1,9 @@
 # Flux Tasks — Değişiklikler
 
+## 0.14.0
+- Liste görünümü daha sade ve kompakt: satır yüksekliği, hücre boşlukları ve grup araları azaldı, ince ayırıcı çizgiler; sütun başlığı tek satır olarak listenin en üstünde, ilk grubun üstünde durur ve kaydırınca yapışır.
+- Durum gruplarının başlığında hover'da "…" menüsü ve "+" (görev ekle), tümünü seçen onay kutusu; satırın başında sürükleme tutamacı. Hover simgeleri metni itmez. Açık ve koyu temada.
+
 ## 0.13.1
 - Dosya önizleme penceresi (PDF, görsel, video) WordPress yönetim çubuğunun altından başlar; sağ üstteki kapatma düğmesi çubuğun altında kalmaz.
 
