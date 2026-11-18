@@ -196,7 +196,7 @@
     },
     "packages/panel": {
       "name": "@fluxwp/panel",
-      "version": "0.3.7",
+      "version": "0.3.8",
       "dependencies": {
         "@fluxwp/core": "workspace:*",
         "@fluxwp/graphql": "workspace:*",

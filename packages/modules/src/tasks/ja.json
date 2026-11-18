@@ -4,6 +4,7 @@
   "(copy)": "(コピー)",
   "(deleted task)": "(削除されたタスク)",
   "+{n} more": "+{n}詳細",
+  "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text.": "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text.",
   "AI": "AI",
   "AI assistant": "AIアシスタント",
   "AI is off: a key or model is missing in Flux AI.": "AI がオフです: Flux AI にキーまたはモデルがありません。",
@@ -318,6 +319,9 @@
   "Pick a date": "日付を選択してください",
   "Pick a match for each status; tasks move to that status.": "各ステータスに一致するものを選択します。タスクはそのステータスに移行します。",
   "Plugins": "プラグイン",
+  "Preview": "プレビュー",
+  "Preview image for YouTube links": "YouTube リンクのプレビュー画像",
+  "Preview not available": "プレビューできません",
   "Previous": "前へ",
   "Print the meeting report or save it as PDF": "会議レポートを印刷するか、PDF として保存します",
   "Priority": "優先順位",
@@ -338,6 +342,7 @@
   "Refresh": "リフレッシュ",
   "Regenerate": "再生する",
   "Remove": "削除",
+  "Remove file": "ファイルを削除",
   "Remove from cover": "カバーから取り外します",
   "Remove priority": "優先順位の削除",
   "Rename": "名前の変更",
@@ -537,10 +542,5 @@
   "{n} tasks completed": "{n}タスクが完了しました",
   "{n} tasks will be permanently deleted.": "{n}タスクは完全に削除されます。",
   "{n} warning(s)": "{n}警告",
-  "{n} wrote a comment": "{n}さんがコメントを書きました",
-  "Preview not available": "プレビューできません",
-  "Preview": "プレビュー",
-  "Remove file": "ファイルを削除",
-  "Preview image for YouTube links": "YouTube リンクのプレビュー画像",
-  "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text.": "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text."
+  "{n} wrote a comment": "{n}さんがコメントを書きました"
 }

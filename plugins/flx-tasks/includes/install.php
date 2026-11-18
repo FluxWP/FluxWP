@@ -248,6 +248,17 @@ function flxg_install_tables() {
 		KEY list_created (list_id,created_at)
 	) $c;";
 
+	$sql[] = 'CREATE TABLE ' . flxg_table( 'doc_activity' ) . " (
+		id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+		page_id bigint(20) unsigned NOT NULL DEFAULT 0,
+		user_id bigint(20) unsigned NOT NULL DEFAULT 0,
+		action varchar(30) NOT NULL DEFAULT '',
+		data longtext,
+		created_at datetime NOT NULL,
+		PRIMARY KEY  (id),
+		KEY page_id (page_id)
+	) $c;";
+
 	$sql[] = 'CREATE TABLE ' . flxg_table( 'notifications' ) . " (
 		id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 		user_id bigint(20) unsigned NOT NULL DEFAULT 0,

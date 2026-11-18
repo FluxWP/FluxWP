@@ -5,6 +5,9 @@
 - The Mac App Store entitlements are now: sandbox, outgoing network, keychain group, user-selected files.
 - The server already accepts `fluxwp://oauth/callback` for the desktop client (flx-app); no site update is needed. Sites running an old flx-app that lacks it cannot sign in from this version until flx-app is updated.
 
+## 0.3.5
+- New versions are found without pressing Check: the app checks right after start, every hour and when the window comes to the front. Details in `@fluxwp/panel` 0.3.8.
+
 ## 0.3.4
 - Pages open at once: the app prepares the site's screens while a short loading screen is shown, keeps visited screens in memory and saves the cache in IndexedDB. Details in `@fluxwp/panel` 0.3.7.
 - Loading screen at every start; site logo at the top of the sidebar, FluxWP logo in Settings › About; hover on the sidebar tiles; HTML entities in dashboard lists.
