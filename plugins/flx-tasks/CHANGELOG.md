@@ -1,7 +1,9 @@
 # Flux Tasks — Değişiklikler
 
-## 0.15.1
-- Doküman sayfaları kenar çubuğunda sayfa adı artık tam genişlikte görünür; "+" ve "…" düğmeleri yalnız üzerine gelince (ya da seçili sayfada) çıkar, o zaman ad kısaltılır.
+## 0.16.0
+- Doküman sayfaları kenar çubuğunda sayfa adı tam genişlikte görünür; "+" ve "…" düğmeleri yalnız üzerine gelince (ya da seçili sayfada) çıkar. Uzun ad kesilmek yerine en çok iki satıra sarar.
+- Kenar çubuğunu gizleme düğmesi "Doküman" başlığının yanında; üst çubuktaki düğme yalnız çubuk gizliyken (ve mobilde) görünür.
+- Dokümanlarda "i" düğmesi: sağda Bilgi ve etkinlik paneli açılır; sayfayı kimin oluşturduğu, kim ne zaman düzenledi, yeniden adlandırdı ya da taşıdı listelenir (art arda düzenlemeler tek satırda birleşir). Yeni tablo `flxg_doc_activity` (şema 6); REST `GET doc-pages/{id}/activity`; sayfa satırı `created` ve `createdBy` taşır.
 
 ## 0.15.0
 - Gantt görünümü (ClickUp tarzı): solda görev listesi, sağda zaman çizelgesi. Yeni görünüm menüsünde "Gantt"; yeni listelerde varsayılan dört görünümden biri.

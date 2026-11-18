@@ -4,6 +4,7 @@
   "(copy)": "(Kopie)",
   "(deleted task)": "(gelöschte Aufgabe)",
   "+{n} more": "+{n}mehr",
+  "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text.": "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text.",
   "AI": "KI",
   "AI assistant": "KI-Assistent",
   "AI is off: a key or model is missing in Flux AI.": "KI ist ausgeschaltet: In Flux AI fehlt ein Schlüssel oder Modell.",
@@ -318,6 +319,9 @@
   "Pick a date": "Wählen Sie ein Datum",
   "Pick a match for each status; tasks move to that status.": "Wählen Sie für jeden Status eine Übereinstimmung aus. Aufgaben werden in diesen Status verschoben.",
   "Plugins": "Plugins",
+  "Preview": "Vorschau",
+  "Preview image for YouTube links": "Vorschaubild für YouTube-Links",
+  "Preview not available": "Vorschau nicht verfügbar",
   "Previous": "Zurück",
   "Print the meeting report or save it as PDF": "Drucken Sie den Besprechungsbericht aus oder speichern Sie ihn als PDF",
   "Priority": "Priorität",
@@ -338,6 +342,7 @@
   "Refresh": "Aktualisieren",
   "Regenerate": "Regenerieren",
   "Remove": "Entfernen",
+  "Remove file": "Datei entfernen",
   "Remove from cover": "Aus der Abdeckung nehmen",
   "Remove priority": "Priorität entfernen",
   "Rename": "Umbenennen",
@@ -537,10 +542,5 @@
   "{n} tasks completed": "{n}-Aufgaben abgeschlossen",
   "{n} tasks will be permanently deleted.": "{n}-Aufgaben werden dauerhaft gelöscht.",
   "{n} warning(s)": "{n}-Warnung(en)",
-  "{n} wrote a comment": "{n}hat einen Kommentar geschrieben",
-  "Preview not available": "Vorschau nicht verfügbar",
-  "Preview": "Vorschau",
-  "Remove file": "Datei entfernen",
-  "Preview image for YouTube links": "Vorschaubild für YouTube-Links",
-  "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text.": "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text."
+  "{n} wrote a comment": "{n}hat einen Kommentar geschrieben"
 }
