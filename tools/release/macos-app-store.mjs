@@ -61,7 +61,6 @@ if (stage === 'prepare') {
 <key>com.apple.developer.team-identifier</key><string>${team}</string>
 <key>keychain-access-groups</key><array><string>${team}.${bundleId}</string></array>
 <key>com.apple.security.network.client</key><true/>
-<key>com.apple.security.network.server</key><true/>
 <key>com.apple.security.files.user-selected.read-write</key><true/>
 </dict></plist>\n`, { mode: 0o600 });
   const info = join(dir, 'Info.plist');
