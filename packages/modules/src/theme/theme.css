@@ -39,8 +39,8 @@
 .flxt-btn:disabled{opacity:.6;cursor:default}
 .flxt-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
 .flxt-logos{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:14px;border-radius:10px;background:#1f2b2c;min-height:44px;max-width:720px}
-.flxt-logo{position:relative;display:inline-flex;align-items:center;gap:6px}
-.flxt-logo img{display:block;height:24px;width:auto;max-width:342px}
+.flxt-logo{position:relative;display:inline-flex;align-items:center;gap:6px;max-width:100%;min-width:0}
+.flxt-logo img{display:block;height:24px;width:auto;max-width:min(342px,100%);min-width:0;object-fit:contain}
 .flxt-logo.is-chip img{height:22px;max-width:140px;padding:5px 10px;border-radius:6px;background:#fff}
 .flxt-logo button{border:0;border-radius:50%;width:22px;height:22px;line-height:20px;padding:0;cursor:pointer;background:#ffffff26;color:#fff;font-size:14px}
 .flxt-logo button:hover,.flxt-logo button:focus-visible{background:#d63638}

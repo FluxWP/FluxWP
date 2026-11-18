@@ -92,7 +92,7 @@
 .flxk-preview{max-width:760px}.flxk-preview__shots img{max-width:100%;border-radius:8px}
 .flxk-preview__thumbs{display:flex;gap:6px;margin:8px 0}.flxk-preview__thumbs button{padding:0;border:2px solid transparent;border-radius:6px}.flxk-preview__thumbs button.is-active{border-color:var(--flxk-ac)}.flxk-preview__thumbs img{width:72px;height:48px;object-fit:cover;border-radius:4px}
 .flxk-preview__meta{display:grid;grid-template-columns:max-content 1fr;gap:6px 18px;font-size:13px}.flxk-preview__meta div{display:contents}.flxk-preview__meta dt{color:var(--flxk-mut)}.flxk-preview__meta dd{margin:0;word-break:break-word}
-@media(max-width:700px){.flxk-field{grid-template-columns:1fr}}
+@media(max-width:700px){.flxk-field{grid-template-columns:minmax(0,1fr)}}
 /* Packages: one top bar (check + "Update all"), filters, a selection bar only while something is selected. */
 .flxk-top{display:flex;align-items:center;gap:10px 16px;flex-wrap:wrap;padding:4px 0 2px}
 .flxk-top__check{display:flex;align-items:center;gap:10px;flex:1 1 auto;min-width:0;flex-wrap:wrap}
@@ -114,8 +114,9 @@
   .flxk-updall,.flxk-allgood{order:-1;width:100%;justify-content:center}
   body.flxa-has-bottom .flxk-selbar{bottom:calc(66px + env(safe-area-inset-bottom))}
   .flxk-filter{flex-direction:column;align-items:stretch;gap:10px}
-  .flxk-filter__find{flex:none;justify-content:space-between}
-  .flxk-filter__find .flxk-search{flex:1;min-width:0;max-width:none}
+  .flxk-filter__find{flex:none;justify-content:space-between;flex-wrap:wrap;width:100%;margin-left:0}
+  .flxk-filter__find .flxk-search{flex:1 1 160px;width:auto;min-width:0;max-width:none}
+  .flxk-filter > .flx-tabs{max-width:100%}
   .flxk-selbar{border-radius:10px 10px 0 0;margin:12px -12px 10px;padding:10px 12px}
   .flxk-selbar .flxk-spacer{display:none}
   .flxk-selbar>.flxk-btn.is-primary{flex:1}
@@ -147,3 +148,25 @@
   .flxk-ver__box{min-width:0;width:min(320px,80vw);left:0;right:auto}
   .flxk-strip__end{margin-left:0}
 }
+/* FluxWP account card (Sign in with FluxWP) */
+.flxk-cloud{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:var(--flxk-card);border:1px solid var(--flxk-bd);border-radius:10px;padding:14px 16px;margin:0 0 16px}
+.flxk-cloud__logo{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;flex:none;color:#fff;background:linear-gradient(135deg,#38bdf8,#0369a1)}
+.flxk-cloud__body{flex:1 1 320px;min-width:0;display:flex;flex-direction:column;gap:2px}
+.flxk-cloud__body span{color:var(--flxk-mut);font-size:13px}
+.flxk-cloud__err{color:var(--flux-danger)}
+.flxk-cloud__actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.flxk-cloud__actions form{margin:0}
+@media (max-width:640px){.flxk-cloud__actions{width:100%}.flxk-cloud__actions .is-primary{width:100%}}
+.flxk-btnrow{display:flex;gap:8px;flex-wrap:wrap}
+.flxk-details{margin-top:12px}
+.flxk-details summary{cursor:pointer;color:var(--flxk-ac);font-size:13px}
+.flxk-details pre{max-height:360px;overflow:auto;background:var(--flux-surface2);border-radius:8px;padding:10px;white-space:pre-wrap;font-size:12px;margin:8px 0 0}
+/* Google setup cards (Packages) */
+.flxk-gcard{display:flex;align-items:center;justify-content:space-between;gap:14px 28px;flex-wrap:wrap;background:var(--flxk-card);border:1px solid var(--flxk-bd);border-radius:12px;padding:18px 22px;margin:0 0 16px}
+.flxk-gcard__body{flex:1 1 420px;min-width:0}
+.flxk-gcard h2{margin:0 0 6px;font-size:15px}
+.flxk-gcard p{margin:0;color:var(--flxk-mut);font-size:13px;line-height:1.55;max-width:70ch}
+.flxk-gcard__act{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+@media (max-width:600px){.flxk-gcard__act{width:100%}.flxk-gcard__act>*{flex:1;text-align:center}}
+.flxk-btn.is-ghost{background:transparent;border-color:transparent}.flxk-btn.is-ghost:hover{background:var(--flux-surface2)}
+.flxk-field .flxk-check-label{white-space:normal}

@@ -48,7 +48,6 @@ export function Billing() {
           </ul>
         </Card>
         <Card
-          wide
           title={
             <span className="flxai-bill-head">
               {cur?.label ?? b.month}

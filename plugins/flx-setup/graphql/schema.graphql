@@ -159,6 +159,46 @@ enum FlxSetupCheckStatus {
   WARNING
 }
 
+"""
+FluxWP account (Sign in with FluxWP): plan, sites and the buttons of the card.
+"""
+type FlxSetupCloud {
+  """Buttons."""
+  actions: [FlxSetupCloudAction!]!
+  """The site is connected to a FluxWP account."""
+  connected: Boolean!
+  """Last error; empty when none."""
+  error: String!
+  """Message of the last failed sign-in; empty when none."""
+  flash: String!
+  """Kind of that message."""
+  flashType: String!
+  """Account page on fluxwp.com; may be empty."""
+  manageUrl: String!
+  """Last check as a sentence; may be empty."""
+  note: String!
+  """admin-post.php address the buttons post to."""
+  postUrl: String!
+  """Card text."""
+  text: String!
+  """Card title (plan and account when connected)."""
+  title: String!
+}
+
+"""
+A button of the FluxWP account card. It posts to postUrl with action and _wpnonce.
+"""
+type FlxSetupCloudAction {
+  """admin-post action."""
+  action: String!
+  """primary, secondary or danger."""
+  kind: String!
+  """Button text."""
+  label: String!
+  """Nonce of the action."""
+  nonce: String!
+}
+
 """Connection to the main update server."""
 type FlxSetupConnection {
   """The server asked the site to wait before the next check."""
@@ -205,6 +245,50 @@ type FlxSetupFailingSource {
   error: String!
   """Source name."""
   name: String!
+}
+
+"""
+An optional Google setup card (Google Site Kit, Google for WooCommerce).
+"""
+type FlxSetupGoogleCard {
+  """Install or activate button text."""
+  button: String!
+  """&quot;Not needed&quot; link (admin-post, with nonce)."""
+  dismissUrl: String!
+  """Card id."""
+  id: String!
+  """
+  Installs, activates and opens the plugin setup (admin-post, with nonce).
+  """
+  installUrl: String!
+  """Text."""
+  text: String!
+  """Title."""
+  title: String!
+}
+
+"""Input for the flxSetupGoogleCardDismiss mutation."""
+input FlxSetupGoogleCardDismissInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Card id."""
+  id: String!
+}
+
+"""The payload for the flxSetupGoogleCardDismiss mutation."""
+type FlxSetupGoogleCardDismissPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The card is closed."""
+  ok: Boolean
 }
 
 """State of Flux GraphQL on the site."""
@@ -908,6 +992,76 @@ type FlxSetupTag {
   label: String!
 }
 
+"""
+Anonymous usage data: state, hub address and the data that will be sent.
+"""
+type FlxSetupTelemetry {
+  """FluxWP hub address."""
+  defaultUrl: String!
+  """Usage data is sent."""
+  enabled: Boolean!
+  """Usage choices other packages add (mobile app usage …)."""
+  options: [FlxSetupUsageOption!]!
+  """The data that will be sent (JSON)."""
+  payload: String!
+  """State as a sentence."""
+  status: String!
+  """Hub address typed in the settings; empty sends to FluxWP."""
+  url: String!
+}
+
+"""Input for the flxSetupTelemetrySave mutation."""
+input FlxSetupTelemetrySaveInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Usage choices of other packages."""
+  options: [FlxSetupUsageOptionInput!]
+  """Send now (only when usage data is on)."""
+  send: Boolean
+  """Hub address (https); empty sends to FluxWP."""
+  url: String!
+}
+
+"""The payload for the flxSetupTelemetrySave mutation."""
+type FlxSetupTelemetrySavePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result of sending; null when not sent."""
+  sent: Boolean
+  """Card after the change."""
+  telemetry: FlxSetupTelemetry
+}
+
+"""A usage choice another package adds to the usage data card."""
+type FlxSetupUsageOption {
+  """Choice id."""
+  id: String!
+  """Checkbox text."""
+  label: String!
+  """Turned on."""
+  on: Boolean!
+  """What is shared."""
+  text: String!
+  """Title."""
+  title: String!
+}
+
+"""A usage choice to save."""
+input FlxSetupUsageOptionInput {
+  """Choice id."""
+  id: String!
+  """Turned on."""
+  on: Boolean!
+}
+
 """Another version of a package the site can switch to."""
 type FlxSetupVersion {
   """Older than the installed version."""
@@ -1062,6 +1216,11 @@ extend type RootMutation {
     """Input for the flxSetupCheck mutation"""
     input: FlxSetupCheckInput!
   ): FlxSetupCheckPayload
+  """&quot;Not needed&quot;: closes a Google setup card site-wide."""
+  flxSetupGoogleCardDismiss(
+    """Input for the flxSetupGoogleCardDismiss mutation"""
+    input: FlxSetupGoogleCardDismissInput!
+  ): FlxSetupGoogleCardDismissPayload
   """
   Activates, deactivates or deletes installed packages, or turns their automatic updates on or off. FluxWP Panel does not close or delete itself and the active theme is not deleted.
   """
@@ -1105,6 +1264,13 @@ extend type RootMutation {
     input: FlxSetupStepRunInput!
   ): FlxSetupStepRunPayload
   """
+  Saves the telemetry hub address and, when asked, sends the usage data now.
+  """
+  flxSetupTelemetrySave(
+    """Input for the flxSetupTelemetrySave mutation"""
+    input: FlxSetupTelemetrySaveInput!
+  ): FlxSetupTelemetrySavePayload
+  """
   Adds an uploaded image (POST /wp-json/flx/v1/upload, context flx-setup/logo) to the media library for the logo.
   """
   flxSetupWizardLogo(
@@ -1128,8 +1294,14 @@ extend type RootMutation {
 }
 
 extend type RootQuery {
+  """FluxWP account card."""
+  flxSetupCloud: FlxSetupCloud!
   """Connection to the main update server."""
   flxSetupConnection: FlxSetupConnection!
+  """
+  Google setup cards the Packages screen shows (closed and active ones are left out).
+  """
+  flxSetupGoogleCards: [FlxSetupGoogleCard!]!
   """Flux GraphQL on this site and the PHP version it needs."""
   flxSetupGraphqlStatus: FlxSetupGraphqlStatus!
   """A page of the update history with the backup of each record."""
@@ -1182,4 +1354,6 @@ extend type RootQuery {
   The rows FluxWP Panel adds to the system check: PHP version, Flux GraphQL, update server, other sources and packages waiting for an update.
   """
   flxSetupSystemChecks: [FlxSetupSystemCheck!]!
+  """Anonymous usage data card."""
+  flxSetupTelemetry: FlxSetupTelemetry!
 }
