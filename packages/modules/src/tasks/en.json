@@ -581,5 +581,6 @@
   "added a dependency: waits for": "added a dependency: waits for",
   "removed the dependency on": "removed the dependency on",
   "{n} waiting tasks moved forward.": "{n} waiting tasks moved forward.",
-  "{n}d": "{n}d"
+  "{n}d": "{n}d",
+  "Dependency": "Dependency"
 }

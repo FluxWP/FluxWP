@@ -581,5 +581,6 @@
   "added a dependency: waits for": "bağımlılık ekledi: şunu bekliyor",
   "removed the dependency on": "şu bağımlılığı kaldırdı",
   "{n} waiting tasks moved forward.": "Bekleyen {n} görev ileri kaydırıldı.",
-  "{n}d": "{n} g"
+  "{n}d": "{n} g",
+  "Dependency": "Bağımlılık"
 }

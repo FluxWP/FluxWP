@@ -707,7 +707,7 @@ function depMenu(c: Ctx, anchor: HTMLElement, waiter: number, blocker: number) {
   const b = e.S.tasks[waiter];
   if (!a || !b) return;
   const items: MenuItem[] = [
-    { head: tt("\"{b}\" waits for \"{a}\"", { a: a.title, b: b.title }) },
+    { head: tt("Dependency") },
     { label: tt("Open \"{n}\"", { n: a.title }), icon: 'external', onClick: () => e.openTask(a.id) },
     { label: tt("Open \"{n}\"", { n: b.title }), icon: 'external', onClick: () => e.openTask(b.id) },
   ];

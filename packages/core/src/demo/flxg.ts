@@ -73,7 +73,7 @@ const tasks: T[] = [
   base({ id: 111, list: 11, title: 'Alan keşfi ve fotoğraf çekimi', status: 'done', start: day(-8), due: day(-6), assignees: [5], files: 1, completed: ago(60 * 24 * 5), fields: { 2: 'a' } }),
   base({ id: 121, list: 12, title: 'Kurumsal bağış teşekkür e-postaları', status: 'doing', priority: 3, due: day(2), assignees: [ME], tags: [] }),
   base({ id: 122, list: 12, title: 'Havale/EFT dekontlarını eşleştir', status: 'todo', priority: 2, due: day(0), assignees: [ME, 2] }),
-  base({ id: 131, list: 13, title: 'Okul müdürlükleriyle görüşme takvimi', status: 'todo', priority: 3, due: day(7), assignees: [4] }),
+  base({ id: 131, list: 13, title: 'Okul müdürlükleriyle görüşme takvimi', status: 'todo', priority: 3, assignees: [4] }),
   base({ id: 201, list: 21, title: 'Kasım ayı yönetim kurulu toplantısı', status: 'planned', due: day(2), assignees: [ME, 2, 3, 4], tags: [5],
     description: '<p>Yer: Dernek ofisi, saat 19.00. Gündem maddeleri aşağıda.</p>' }),
   base({ id: 202, list: 21, parent: 201, kind: 'agenda', title: '11 Kasım etkinliği son durum', status: 'held', pos: 1, description: '<p>Fidan teslimi ve gönüllü sayısı.</p>' }),

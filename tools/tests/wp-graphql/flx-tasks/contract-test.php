@@ -163,5 +163,6 @@ $r = graphql( array( 'queryId' => $hash, 'variables' => array( 'id' => (string) 
 flxt_same( 'REST task', $r['data']['flxTask']['title'] ?? null, 'persisted queryId runs (strict mode)' );
 
 require __DIR__ . '/docs-test.php';
+require __DIR__ . '/gantt-test.php';
 
 flxt_done();
