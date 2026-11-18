@@ -1,4 +1,4 @@
-// Uygulama güncellemesi: açılışta ve 6 saatte bir denetlenir. Yeni sürüm bulununca kullanıcıya sorulur
+// Uygulama güncellemesi: açılışta, saatte bir ve uygulama öne gelince denetlenir. Yeni sürüm bulununca kullanıcıya sorulur
 // ("Yeni sürüm X · İndir"); indirme yalnız kullanıcı onaylayınca başlar, bitince "Yeniden başlat" çıkar.
 import { create } from 'zustand';
 import { platform, type AppUpdate } from '@fluxwp/core';
@@ -19,7 +19,7 @@ interface UpdateState {
   install(): Promise<void>;
 }
 
-const EVERY = 6 * 60 * 60 * 1000;
+const EVERY = 60 * 60 * 1000;
 
 export const useUpdate = create<UpdateState>((set, get) => ({
   status: 'idle',
@@ -74,10 +74,40 @@ function errorText(e: unknown): string {
 }
 
 let started = false;
-/** Masaüstünde bir kez çağrılır. */
+let lastOk = 0;
+let retries = 0;
+const RETRY = 60 * 1000;
+const STALE = 30 * 60 * 1000;
+
+/** Arka plan denetimi: hata olursa birkaç kez kısa aralıkla tekrar dener, başarılıysa zamanı kaydeder. */
+async function autoCheck(): Promise<void> {
+  const st = useUpdate.getState();
+  await st.check();
+  const s = useUpdate.getState().status;
+  if (s === 'error' && useUpdate.getState().failedAt === 'check') {
+    if (retries++ < 5) setTimeout(() => void autoCheck(), RETRY * retries);
+    return;
+  }
+  if (s !== 'checking') {
+    retries = 0;
+    lastOk = Date.now();
+  }
+}
+
+/**
+ * Masaüstünde bir kez çağrılır. Açılışta hemen, sonra saatte bir ve uygulama öne gelince
+ * (son denetim 30 dakikadan eskiyse) denetler. macOS arka plandaki pencerenin zamanlayıcılarını
+ * kıstığı için yalnız setTimeout'a güvenilmez; öne gelme olayı denetimi garanti eder.
+ */
 export function startUpdateChecks(): void {
-  if (started || !platform().checkUpdate) return;
+  const p = platform();
+  if (started || !p.checkUpdate) return;
   started = true;
-  setTimeout(() => void useUpdate.getState().check(), 8000);
-  setInterval(() => void useUpdate.getState().check(), EVERY);
+  setTimeout(() => void autoCheck(), 1500);
+  setInterval(() => void autoCheck(), EVERY);
+  const onVisible = (visible: boolean) => {
+    if (visible && Date.now() - lastOk > STALE && useUpdate.getState().status !== 'checking') void autoCheck();
+  };
+  if (p.visibility) p.visibility.subscribe(onVisible);
+  else document.addEventListener('visibilitychange', () => onVisible(document.visibilityState === 'visible'));
 }

@@ -1,5 +1,9 @@
 # @fluxwp/panel
 
+## 0.3.8
+- App update check runs 1.5 s after start (was 8 s), every hour (was 6 h) and whenever the window comes to the front if the last check is older than 30 minutes. macOS throttles timers of background windows, so a start-up timer alone could miss the check until the user pressed Check.
+- A failed background check is retried up to 5 times (1, 2, 3… minutes apart).
+
 ## 0.3.7
 - Loading screen: `index.html` draws it before any script runs (app icon, bar; follows the saved theme). It stays while accounts load, then shows the site's icon and name while the site is prepared, and fades out (at least ~0.45 s on screen, never more than 20 s).
 - Site warm-up on entry (app start or site switch): the shell contract loads first, then every menu screen's code, then the pinned tiles are mounted in the background until the network goes quiet (4 s at most with a saved cache, 12 s for a new site). The rest of the menu warms after the loading screen, one screen at a time and only while the window is in front.
