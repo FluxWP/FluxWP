@@ -130,6 +130,13 @@ fragment FlxSetupTelemetryFields on FlxSetupTelemetry {
   url
   defaultUrl
   payload
+  options {
+    id
+    title
+    text
+    label
+    on
+  }
 }
 
 fragment FlxSetupCloudFields on FlxSetupCloud {

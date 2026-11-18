@@ -2901,14 +2901,32 @@ msgstr "FluxWP merkez adresi."
 msgid "The data that will be sent (JSON)."
 msgstr "Gönderilecek veri (JSON)."
 
+msgid "Usage choices other packages add (mobile app usage …)."
+msgstr "Diğer paketlerin eklediği kullanım seçenekleri (mobil uygulama kullanımı …)."
+
+msgid "A usage choice another package adds to the usage data card."
+msgstr "Başka bir paketin kullanım verisi kartına eklediği seçenek."
+
+msgid "Choice id."
+msgstr "Seçenek kimliği."
+
+msgid "Title."
+msgstr "Başlık."
+
+msgid "What is shared."
+msgstr "Ne paylaşılır."
+
+msgid "Checkbox text."
+msgstr "Onay kutusu metni."
+
+msgid "A usage choice to save."
+msgstr "Kaydedilecek kullanım seçeneği."
+
 msgid "An optional Google setup card (Google Site Kit, Google for WooCommerce)."
 msgstr "İsteğe bağlı Google kurulum kartı (Google Site Kit, Google for WooCommerce)."
 
 msgid "Card id."
 msgstr "Kart kimliği."
-
-msgid "Title."
-msgstr "Başlık."
 
 msgid "Install or activate button text."
 msgstr "Kur ya da etkinleştir düğmesi metni."
@@ -3152,6 +3170,9 @@ msgstr "Merkez adresi (https); boşsa FluxWP'ye gönderilir."
 
 msgid "Send now (only when usage data is on)."
 msgstr "Hemen gönder (yalnız kullanım verisi açıkken)."
+
+msgid "Usage choices of other packages."
+msgstr "Diğer paketlerin kullanım seçenekleri."
 
 msgid "Result of sending; null when not sent."
 msgstr "Gönderim sonucu; gönderilmediyse null."

@@ -414,7 +414,10 @@ function CloudCard({ cloud: c, t }: { cloud: Data['flxSetupCloud']; t: ReturnTyp
 function TelemetryCard({ telemetry: m, t, onNotice }: { telemetry: Data['flxSetupTelemetry']; t: ReturnType<typeof useSetup>['t']; onNotice: (n: Notice) => void }) {
   const { refresh } = useSetup();
   const [url, setUrl] = useState(m.url);
+  const [opts, setOpts] = useState<Record<string, boolean>>({});
   useEffect(() => setUrl(m.url), [m.url]);
+  useEffect(() => setOpts(Object.fromEntries(m.options.map((o) => [o.id, o.on]))), [m.options]);
+  const options = Object.entries(opts).map(([id, on]) => ({ id, on }));
   const save = useFlxMutation(FlxSetupTelemetrySave, {
     onSuccess: (r) => {
       const p = r.flxSetupTelemetrySave;
@@ -444,7 +447,7 @@ function TelemetryCard({ telemetry: m, t, onNotice }: { telemetry: Data['flxSetu
           className="flxk-form"
           onSubmit={(e) => {
             e.preventDefault();
-            save.mutate({ input: { url, send: false } });
+            save.mutate({ input: { url, send: false, options } });
           }}
         >
           <div className="flxk-field">
@@ -456,12 +459,23 @@ function TelemetryCard({ telemetry: m, t, onNotice }: { telemetry: Data['flxSetu
               <p className="flxk-desc">{t('Leave empty to send to FluxWP. To run your own hub, turn on Flux Analytics › Settings › Telemetry hub on one site and paste that address here. https only.')}</p>
             </div>
           </div>
+          {m.options.map((o) => (
+            <div key={o.id} className="flxk-field">
+              <span className="flxk-label">{o.title}</span>
+              <div>
+                <label className="flxk-check-label">
+                  <input type="checkbox" checked={!!opts[o.id]} onChange={(e) => setOpts((x) => ({ ...x, [o.id]: e.target.checked }))} /> {o.label}
+                </label>
+                <p className="flxk-desc">{o.text}</p>
+              </div>
+            </div>
+          ))}
           <div className="flxk-btnrow">
             <button type="submit" className="flxk-btn is-primary" disabled={save.isPending}>
               {t('Save')}
             </button>
             {m.enabled && (
-              <button type="button" className="flxk-btn" disabled={save.isPending} onClick={() => save.mutate({ input: { url, send: true } })}>
+              <button type="button" className="flxk-btn" disabled={save.isPending} onClick={() => save.mutate({ input: { url, send: true, options } })}>
                 {t('Send now')}
               </button>
             )}

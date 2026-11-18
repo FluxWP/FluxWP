@@ -126,3 +126,32 @@ function flxapp_usage_save_consent() {
 
 add_action( 'flxu_settings_after', 'flxapp_usage_settings' );
 add_action( 'admin_post_flxapp_usage_consent', 'flxapp_usage_save_consent' );
+
+/** The same choice on the React FluxWP Panel › Settings screen (usage data card). */
+add_filter(
+	'flxk_usage_options',
+	static function ( $list ) {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return $list;
+		}
+		$list   = is_array( $list ) ? $list : array();
+		$list[] = array(
+			'id'    => 'flxapp_usage',
+			'title' => __( 'Aggregate mobile app usage', 'flx-app' ),
+			'text'  => __( 'Optional and off by default. Only accounts that also opt in inside the app are counted. Completed UTC-day iOS/Android totals go to your telemetry hub only for cohorts of at least five accounts. No names, account IDs, content, site URLs or GPS location are included. Country comes from site settings. General usage sharing must also be on. Sign-in and app features do not depend on this choice.', 'flx-app' ),
+			'label' => __( 'Share aggregate mobile app usage', 'flx-app' ),
+			'on'    => '1' === (string) get_option( 'flxapp_usage_share', '' ),
+		);
+		return $list;
+	}
+);
+add_action(
+	'flxk_usage_option_save',
+	static function ( $id, $on ) {
+		if ( 'flxapp_usage' === $id && current_user_can( 'manage_options' ) ) {
+			update_option( 'flxapp_usage_share', $on ? '1' : '0', false );
+		}
+	},
+	10,
+	2
+);

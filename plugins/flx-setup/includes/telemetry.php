@@ -645,7 +645,10 @@ final class FLXK_Telemetry {
 	/**
 	 * The "Anonymous usage data" card as data, for the React settings screen.
 	 *
-	 * @return array{enabled:bool,status:string,url:string,defaultUrl:string,payload:string}
+	 * Other packages add their own usage choices with the `flxk_usage_options` filter
+	 * (each: id, title, text, label, on) and save them on the `flxk_usage_option_save` action ( $id, $on ).
+	 *
+	 * @return array{enabled:bool,status:string,url:string,defaultUrl:string,payload:string,options:array<int,array{id:string,title:string,text:string,label:string,on:bool}>}
 	 */
 	public static function view(): array {
 		$on   = self::enabled();
@@ -664,7 +667,37 @@ final class FLXK_Telemetry {
 			'url'        => (string) get_option( self::URL, '' ),
 			'defaultUrl' => self::DEFAULT_URL,
 			'payload'    => (string) wp_json_encode( self::payload( false ), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ),
+			'options'    => self::options(),
 		);
+	}
+
+	/** Usage choices other packages add (flxk_usage_options). */
+	public static function options(): array {
+		$out = array();
+		foreach ( (array) apply_filters( 'flxk_usage_options', array() ) as $o ) {
+			if ( ! is_array( $o ) || '' === sanitize_key( (string) ( $o['id'] ?? '' ) ) ) {
+				continue;
+			}
+			$out[] = array(
+				'id'    => sanitize_key( (string) $o['id'] ),
+				'title' => (string) ( $o['title'] ?? '' ),
+				'text'  => (string) ( $o['text'] ?? '' ),
+				'label' => (string) ( $o['label'] ?? '' ),
+				'on'    => ! empty( $o['on'] ),
+			);
+		}
+		return $out;
+	}
+
+	/** Saves the usage choices other packages added; unknown ids are ignored. */
+	public static function save_options( array $in ): void {
+		$known = array_column( self::options(), 'id' );
+		foreach ( $in as $o ) {
+			$id = sanitize_key( (string) ( $o['id'] ?? '' ) );
+			if ( in_array( $id, $known, true ) ) {
+				do_action( 'flxk_usage_option_save', $id, ! empty( $o['on'] ) );
+			}
+		}
 	}
 
 	/**

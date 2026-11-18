@@ -391,5 +391,12 @@
  "Result of sending; null when not sent.": "Gönderim sonucu; gönderilmediyse null.",
  "Card after the change.": "Değişiklikten sonraki kart.",
  "\"Not needed\": closes a Google setup card site-wide.": "\"Gerekli değil\": Google kurulum kartını site genelinde kapatır.",
- "The card is closed.": "Kart kapatıldı."
+ "The card is closed.": "Kart kapatıldı.",
+ "Usage choices other packages add (mobile app usage …).": "Diğer paketlerin eklediği kullanım seçenekleri (mobil uygulama kullanımı …).",
+ "A usage choice another package adds to the usage data card.": "Başka bir paketin kullanım verisi kartına eklediği seçenek.",
+ "Choice id.": "Seçenek kimliği.",
+ "What is shared.": "Ne paylaşılır.",
+ "Checkbox text.": "Onay kutusu metni.",
+ "A usage choice to save.": "Kaydedilecek kullanım seçeneği.",
+ "Usage choices of other packages.": "Diğer paketlerin kullanım seçenekleri."
 }

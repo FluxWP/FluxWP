@@ -2901,13 +2901,31 @@ msgstr ""
 msgid "The data that will be sent (JSON)."
 msgstr ""
 
+msgid "Usage choices other packages add (mobile app usage …)."
+msgstr ""
+
+msgid "A usage choice another package adds to the usage data card."
+msgstr ""
+
+msgid "Choice id."
+msgstr ""
+
+msgid "Title."
+msgstr ""
+
+msgid "What is shared."
+msgstr ""
+
+msgid "Checkbox text."
+msgstr ""
+
+msgid "A usage choice to save."
+msgstr ""
+
 msgid "An optional Google setup card (Google Site Kit, Google for WooCommerce)."
 msgstr ""
 
 msgid "Card id."
-msgstr ""
-
-msgid "Title."
 msgstr ""
 
 msgid "Install or activate button text."
@@ -3151,6 +3169,9 @@ msgid "Hub address (https); empty sends to FluxWP."
 msgstr ""
 
 msgid "Send now (only when usage data is on)."
+msgstr ""
+
+msgid "Usage choices of other packages."
 msgstr ""
 
 msgid "Result of sending; null when not sent."

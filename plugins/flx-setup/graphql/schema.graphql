@@ -994,6 +994,8 @@ type FlxSetupTelemetry {
   defaultUrl: String!
   """Usage data is sent."""
   enabled: Boolean!
+  """Usage choices other packages add (mobile app usage …)."""
+  options: [FlxSetupUsageOption!]!
   """The data that will be sent (JSON)."""
   payload: String!
   """State as a sentence."""
@@ -1008,6 +1010,8 @@ input FlxSetupTelemetrySaveInput {
   This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
   """
   clientMutationId: String
+  """Usage choices of other packages."""
+  options: [FlxSetupUsageOptionInput!]
   """Send now (only when usage data is on)."""
   send: Boolean
   """Hub address (https); empty sends to FluxWP."""
@@ -1028,6 +1032,28 @@ type FlxSetupTelemetrySavePayload {
   sent: Boolean
   """Card after the change."""
   telemetry: FlxSetupTelemetry
+}
+
+"""A usage choice another package adds to the usage data card."""
+type FlxSetupUsageOption {
+  """Choice id."""
+  id: String!
+  """Checkbox text."""
+  label: String!
+  """Turned on."""
+  on: Boolean!
+  """What is shared."""
+  text: String!
+  """Title."""
+  title: String!
+}
+
+"""A usage choice to save."""
+input FlxSetupUsageOptionInput {
+  """Choice id."""
+  id: String!
+  """Turned on."""
+  on: Boolean!
 }
 
 """Another version of a package the site can switch to."""

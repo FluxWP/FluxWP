@@ -758,6 +758,32 @@ flx_gql_type(
 			'url'        => array( 'type' => 'String!', 'description' => __( 'Hub address typed in the settings; empty sends to FluxWP.', 'flx-setup' ) ),
 			'defaultUrl' => array( 'type' => 'String!', 'description' => __( 'FluxWP hub address.', 'flx-setup' ) ),
 			'payload'    => array( 'type' => 'String!', 'description' => __( 'The data that will be sent (JSON).', 'flx-setup' ) ),
+			'options'    => array( 'type' => '[FlxSetupUsageOption!]!', 'description' => __( 'Usage choices other packages add (mobile app usage …).', 'flx-setup' ) ),
+		),
+	)
+);
+
+flx_gql_type(
+	'FlxSetupUsageOption',
+	array(
+		'description' => __( 'A usage choice another package adds to the usage data card.', 'flx-setup' ),
+		'fields'      => array(
+			'id'    => array( 'type' => 'String!', 'description' => __( 'Choice id.', 'flx-setup' ) ),
+			'title' => array( 'type' => 'String!', 'description' => __( 'Title.', 'flx-setup' ) ),
+			'text'  => array( 'type' => 'String!', 'description' => __( 'What is shared.', 'flx-setup' ) ),
+			'label' => array( 'type' => 'String!', 'description' => __( 'Checkbox text.', 'flx-setup' ) ),
+			'on'    => array( 'type' => 'Boolean!', 'description' => __( 'Turned on.', 'flx-setup' ) ),
+		),
+	)
+);
+
+flx_gql_input(
+	'FlxSetupUsageOptionInput',
+	array(
+		'description' => __( 'A usage choice to save.', 'flx-setup' ),
+		'fields'      => array(
+			'id' => array( 'type' => 'String!', 'description' => __( 'Choice id.', 'flx-setup' ) ),
+			'on' => array( 'type' => 'Boolean!', 'description' => __( 'Turned on.', 'flx-setup' ) ),
 		),
 	)
 );
@@ -1280,7 +1306,8 @@ flx_gql_mutation(
 		'cap'         => 'manage_options',
 		'input'       => array(
 			'url'  => array( 'type' => 'String!', 'description' => __( 'Hub address (https); empty sends to FluxWP.', 'flx-setup' ) ),
-			'send' => array( 'type' => 'Boolean', 'description' => __( 'Send now (only when usage data is on).', 'flx-setup' ) ),
+			'send'    => array( 'type' => 'Boolean', 'description' => __( 'Send now (only when usage data is on).', 'flx-setup' ) ),
+			'options' => array( 'type' => '[FlxSetupUsageOptionInput!]', 'description' => __( 'Usage choices of other packages.', 'flx-setup' ) ),
 		),
 		'output'      => array(
 			'sent'      => array( 'type' => 'Boolean', 'description' => __( 'Result of sending; null when not sent.', 'flx-setup' ) ),
@@ -1290,7 +1317,10 @@ flx_gql_mutation(
 				'resolve'     => static fn(): array => FLXK_Telemetry::view(),
 			),
 		),
-		'resolve'     => static fn( array $input ): array => FLXK_Telemetry::save( flx_gql_str( $input['url'] ?? '' ), ! empty( $input['send'] ) ),
+		'resolve'     => static function ( array $input ): array {
+			FLXK_Telemetry::save_options( is_array( $input['options'] ?? null ) ? $input['options'] : array() );
+			return FLXK_Telemetry::save( flx_gql_str( $input['url'] ?? '' ), ! empty( $input['send'] ) );
+		},
 	)
 );
 
