@@ -1,6 +1,9 @@
 # Değişiklikler
 
 ## 0.3.7
+- "Open in app" links from a site (`fluxwp://connect?site=…`) open the app, find the site and start the normal sign-in. Details in `@fluxwp/panel` 0.3.9.
+
+## 0.3.7
 - FluxWP Panel (Packages, Update settings) opens as the app's own screens on macOS instead of an embedded wp-admin page. Details in `@fluxwp/panel` 0.3.9.
 
 ## 0.3.6

@@ -11,6 +11,7 @@ import { CommandPalette } from '../components/CommandPalette';
 import { useNav } from '../state/hooks';
 import { useRoute } from '../state/route';
 import { AddSite } from './AddSite';
+import { useConnect } from '../state/connect';
 import { buildMenu } from '../lib/menuGroups';
 import { activeOf, fromEntry, fromNav, labelOf, type SideLink } from '../shell/links';
 import { PrefsBridge, SiteSync, SyncNotifier } from '../shell/bridges';
@@ -84,6 +85,15 @@ export function Shell() {
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, []);
+
+  // "Open in app" link from a site: add that site (the sign-in itself still asks the user).
+  const connectRequest = useConnect((c) => c.pending);
+  const connectHandled = useConnect((c) => c.handled);
+  useEffect(() => {
+    if (!connectRequest || connectRequest.seq <= connectHandled) return;
+    useConnect.getState().markHandled();
+    go({ kind: 'add-account', siteUrl: connectRequest.siteUrl });
+  }, [connectRequest, connectHandled, go]);
 
   const open = (next: Route) => {
     if (next.kind === 'shell' && next.name === 'search') {

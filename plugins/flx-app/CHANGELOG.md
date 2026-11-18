@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 0.9.0
+- **Uygulamada aç.** Sitenin herkese açık `wp-login.php?action=flxapp_open` sayfası `fluxwp://connect?site=<site adresi>` bağlantısını dener; uygulama açılmazsa ziyaretçinin sistemine göre indirmeyi gösterir (iOS App Store, Android Google Play, macOS ve Windows için güncelleme sunucusundan indirme). `[flxapp_open label="…"]` kısa kodu ve `flxapp_open_url()` ile düğme eklenir. Bağlantıda gizli bilgi yok: uygulama siteyi ekler, giriş yine OAuth + PKCE ile yapılır ve kullanıcı onay ekranını görür.
+- Mağaza bağlantıları Uygulama ayarlarındaki `store_ios` / `store_android` alanlarından okunur; iOS ve macOS boşsa FluxWP uygulamasının App Store bağlantısı kullanılır. Süreli bağlantılar için filtreler: `flxapp_open_scheme`, `flxapp_open_downloads`.
+- Masaüstü OAuth yönlendirmesi `fluxwp://oauth/callback` kabul edilir (zaten kayıtlıydı).
+
 ## 0.8.0
 - **Klasik sayfalar kaldırıldı.** Uygulama (yönetici) ve Uygulama erişimi sayfaları yalnız React ekranıyla açılır; "Klasik görünüm" bağlantısı, görünüm değiştirme (`flxapp_ui`), klasik formlar ve admin-post işleyicileri (includes/admin-appearance.php, assets/admin.css) silindi. Ekranların okuduğu kataloglar includes/admin-catalogs.php'ye taşındı.
 - Ekran açılamazsa (Flux GraphQL hazır değil, paket dosyası eksik, bundle yüklenmedi) boş sayfa yerine "Bu ekran yüklenemedi" kutusu ve **Sayfayı yenile** düğmesi çıkar.

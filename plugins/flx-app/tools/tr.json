@@ -321,5 +321,14 @@
  "Unsaved changes": "Kaydedilmemiş değişiklikler",
  "New view": "Yeni görünüm",
  "Open the new view (same features, works in the FluxWP app too).": "Yeni görünümü aç (aynı özellikler, FluxWP uygulamasında da çalışır).",
- "JavaScript is required for this screen.": "Bu ekran için JavaScript gerekli."
+ "JavaScript is required for this screen.": "Bu ekran için JavaScript gerekli.",
+ "Open in app": "Uygulamada aç",
+ "Open in the FluxWP app": "FluxWP uygulamasında aç",
+ "Opening the app…": "Uygulama açılıyor…",
+ "The app did not open. Install it, then come back and press the button again.": "Uygulama açılmadı. Önce uygulamayı kurun, sonra buraya dönüp düğmeye yeniden basın.",
+ "Download on the App Store": "App Store'dan indir",
+ "Get it on Google Play": "Google Play'den edinin",
+ "Download for Mac": "Mac için indir",
+ "Download for Windows": "Windows için indir",
+ "Open the app": "Uygulamayı aç"
 }

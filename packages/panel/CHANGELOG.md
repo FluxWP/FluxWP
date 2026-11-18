@@ -1,6 +1,9 @@
 # @fluxwp/panel
 
 ## 0.3.9
+- "Open in app" links (`fluxwp://connect?site=<site url>`): the app opens the add-site screen with that site found, and the normal browser sign-in follows. Works signed out and signed in. Only https addresses (http on localhost) without credentials are accepted; the link carries no secret. `openConnectLink()` is exported for the shell.
+
+## 0.3.9
 - Module screens that have no manifest on desktop (FluxWP Panel: Packages, Update settings) open natively from the site-configured sidebar too: the desktop renderer's native set now includes every screen of `@fluxwp/modules` (before, only four ids were listed, so those menus fell back to an embedded wp-admin page).
 - Sub-pages of the menu (Update settings under FluxWP Panel) open their own native screen when they have one.
 
