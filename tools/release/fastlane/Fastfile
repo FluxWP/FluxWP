@@ -98,7 +98,19 @@ platform :ios do
       entitlements['aps-environment'] = 'production'
       File.write(entitlements_path, entitlements.to_plist)
     end
-    latest = latest_testflight_build_number(api_key: api, app_identifier: identifier, version: version, initial_build_number: 0)
+    # App Store Connect sometimes answers the builds lookup with HTTP 500 (seen for a version with no build yet).
+    # Fall back to the lookup without a version, then to the workflow run number, so the upload is not blocked.
+    latest = begin
+      latest_testflight_build_number(api_key: api, app_identifier: identifier, version: version, initial_build_number: 0)
+    rescue StandardError => e
+      UI.important("TestFlight build lookup for #{version} failed (#{e.message}); trying all versions")
+      begin
+        latest_testflight_build_number(api_key: api, app_identifier: identifier, initial_build_number: 0)
+      rescue StandardError => e2
+        UI.important("TestFlight build lookup failed again (#{e2.message}); using the workflow run number")
+        ENV.fetch('GITHUB_RUN_NUMBER', '0').to_i
+      end
+    end
     build_number = [latest.to_i + 1, ENV.fetch('FLUX_BUILD_NUMBER', '1').to_i].max
     increment_build_number(build_number: build_number, xcodeproj: project)
 
