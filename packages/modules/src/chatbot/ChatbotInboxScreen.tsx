@@ -1,6 +1,5 @@
 // Flux AI Chatbot › Site chats. Same screen in wp-admin (wp-embed) and the FluxWP app; list, chat, reply,
-// close and delete go through the Flux AI Chatbot GraphQL operations. It has everything the classic
-// inbox has: filters, search, unread and typing marks, details, assistant note, product cards, files.
+// close and delete go through the Flux AI Chatbot GraphQL operations: filters, search, unread and typing marks, details, assistant note, product cards, files.
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from '@tanstack/react-query';
@@ -107,7 +106,6 @@ function Avatar({ c }: { c: Row }) {
 }
 
 function Inbox() {
-  const host = useHost();
   const { i18n } = useTranslation();
   const { t } = useMemo(() => translator(i18n.language), [i18n.language]);
   const { scope } = useGraphQL();
@@ -167,11 +165,6 @@ function Inbox() {
           <p className="flxcb-lead">{t('Conversations from the chat window on your site. Chats the assistant answered are here too; visitors asking for an agent are on top.')}</p>
         </div>
         <div className="flxcb-head__actions">
-          {host.classicUrl && (
-            <a className="button" href={host.classicUrl}>
-              {t('Classic view')}
-            </a>
-          )}
           {m.fluxChatUrl && (
             <a className="button" href={m.fluxChatUrl}>
               <MessageCircle size={14} />

@@ -1,7 +1,7 @@
 <?php
 /**
  * Typed values the chat service returns: a conversation, a message, a product card, the figures,
- * a status row. The classic REST and admin code and the GraphQL schema read the same objects.
+ * a status row. The REST routes and the GraphQL schema read the same objects.
  *
  * @package FLX_Chatbot
  */

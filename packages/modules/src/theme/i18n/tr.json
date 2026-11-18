@@ -5,7 +5,6 @@
  "OK": "Tamam",
  "Info": "Bilgi",
  "System Check": "Sistem Kontrolü",
- "Classic view": "Klasik görünüm",
  "Plugins, scheduled tasks and key settings. Red rows mean part of the site is not working; yellow rows are recommended fixes. The page re-checks every time it opens.": "Eklentiler, zamanlanmış görevler ve temel ayarlar. Kırmızı satırlar sitenin bir bölümünün çalışmadığını, sarılar önerilen düzeltmeleri gösterir. Sayfa her açılışta yeniden kontrol eder.",
  "Show only these (click again for all)": "Yalnızca bunları göster (tekrar tıklayınca hepsi)",
  "Check again": "Yeniden kontrol et",

@@ -1,5 +1,5 @@
 // Flux AI › Scheduled tasks: the list with run now / pause / delete, and the form (instructions, skill, repeat,
-// notifications with recipients, files). Same rules as the classic page; everything over the flxAiTask* operations.
+// notifications with recipients, files). Everything goes over the flxAiTask* operations.
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { FlxAiRecipients, FlxAiTaskDelete, FlxAiTaskRun, FlxAiTaskSave, FlxAiTaskSetActive, FlxAiTasks, FlxAiTasksToggle } from '@fluxwp/graphql/operations';

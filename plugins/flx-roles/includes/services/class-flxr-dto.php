@@ -1,6 +1,6 @@
 <?php
 /**
- * Typed values the Roles service returns (GraphQL, the classic page and Flux AI read the same shapes).
+ * Typed values the Roles service returns (GraphQL and Flux AI read the same shapes).
  *
  * @package flx-roles
  */

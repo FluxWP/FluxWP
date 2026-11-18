@@ -1,7 +1,7 @@
 <?php
 /**
  * Flux AI settings: the one place that reads and changes the settings page values, the API keys and the
- * model picker. The classic page, GraphQL and the Flux App settings bridge write through save(); keys are
+ * model picker. GraphQL and the Flux App settings bridge write through save(); keys are
  * write-only (a key is described by FLXAI_Secret, never returned). Permission checks stay with the caller
  * (manage_options).
  *

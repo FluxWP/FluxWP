@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Ads
  * Description:       Reklam dönüşüm takibi: Meta Pixel + Conversions API, TikTok Pixel + Events API ve Google Analytics 4 (Measurement Protocol). Meta reklam harcamasını çeker, ROAS ve bağış başı maliyeti gösterir. Bağış ve siparişleri hangi reklamın, kampanyanın ve reklam metninin getirdiğini ölçer; Havale/EFT bağışı onaylanınca dönüşümü sunucudan gönderir. Çerez onayına uyar, kişisel veri yalnız izinle ve hash'li gider. Flux CRM kuruluysa kişi kartına reklam kaynağını yazar.
- * Version:           0.9.1
+ * Version:           0.10.0
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Requires Plugins:  woocommerce, flx-graphql
@@ -25,7 +25,7 @@ if ( defined( 'FLXADS_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXADS_VERSION', '0.9.1' );
+define( 'FLXADS_VERSION', '0.10.0' );
 define( 'FLXADS_DB_VERSION', 3 );
 define( 'FLXADS_FILE', __FILE__ );
 define( 'FLXADS_DIR', plugin_dir_path( __FILE__ ) );
@@ -50,7 +50,6 @@ require_once FLXADS_DIR . 'includes/services/class-flxads-reports-service.php';
 require_once FLXADS_DIR . 'includes/services/class-flxads-meta-service.php';
 require_once FLXADS_DIR . 'includes/services/class-flxads-creative-service.php';
 require_once FLXADS_DIR . 'includes/services/class-flxads-settings-service.php';
-require_once FLXADS_DIR . 'includes/flux-ui.php';
 require_once FLXADS_DIR . 'includes/app.php';
 require_once FLXADS_DIR . 'includes/crm.php';
 require_once FLXADS_DIR . 'includes/mcp.php';
@@ -70,8 +69,8 @@ register_deactivation_hook(
 
 /*
  * GraphQL (Flux GraphQL): schema only inside a GraphQL request; the persisted operations the Ad conversions
- * screen sends. Without Flux GraphQL (0.2.0+, capability model) the schema is left out and the classic page
- * keeps working.
+ * screen sends. Without Flux GraphQL (0.2.0+, capability model) the schema is left out and the admin screen
+ * says it cannot open.
  */
 add_action(
 	'flx_gql_register',

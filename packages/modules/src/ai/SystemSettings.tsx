@@ -1,5 +1,5 @@
 // Flux AI › Connected systems › <plugin>: the AI switch, the model of one plugin and the settings it declared
-// with the Flux AI SDK. Same features as the classic page; goes over flxAiSystemSettings / ...Update.
+// with the Flux AI SDK. Goes over flxAiSystemSettings / ...Update.
 import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { FlxAiSystemSettings, FlxAiSystemSettingsUpdate } from '@fluxwp/graphql/operations';

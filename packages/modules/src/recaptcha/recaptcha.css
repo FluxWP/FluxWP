@@ -1,4 +1,4 @@
-/* reCAPTCHA: the classic page's look (plugins/flx-recaptcha/assets/admin.css) on FluxWP tokens. */
+/* reCAPTCHA on FluxWP tokens. */
 .flxrc-app{--c-bd:var(--flux-border);--c-mut:var(--flux-text-muted);--c-tx:var(--flux-text);--c-ac:var(--flux-primary);--c-ac-soft:color-mix(in srgb,var(--flux-primary) 10%,var(--flux-surface));--c-card:var(--flux-surface);--c-s2:var(--flux-surface2);--c-ok:var(--flux-success);--c-ok-s:color-mix(in srgb,var(--flux-success) 14%,var(--flux-surface));--c-info:var(--flux-primary);--c-info-s:var(--c-ac-soft);--c-warn:color-mix(in srgb,var(--flux-warning) 70%,var(--flux-text));--c-warn-s:color-mix(in srgb,var(--flux-warning) 16%,var(--flux-surface));--c-bad:var(--flux-danger);--c-bad-s:color-mix(in srgb,var(--flux-danger) 12%,var(--flux-surface));--c-r:12px;max-width:1280px;padding:0 0 24px;color:var(--c-tx);font-size:14px;line-height:1.5}
 .flxrc-app *{box-sizing:border-box}
 .flxrc-app [hidden]{display:none!important}
@@ -8,7 +8,6 @@
 .flxrc-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 20px;margin:8px 0 14px}
 .flxrc-head h1{margin:0 0 2px;padding:0;font-size:23px;line-height:1.3;font-weight:600;letter-spacing:0}
 .flxrc-lead{margin:0;color:var(--c-mut);font-size:13.5px;max-width:760px}
-.flxrc-classic{font-size:13px}
 .flxrc-notice{display:flex;align-items:center;gap:8px;border-radius:10px;padding:10px 14px;margin:0 0 14px;font-weight:500}
 .flxrc-notice.is-ok{background:var(--c-ok-s);color:var(--c-ok)}
 .flxrc-notice.is-warn{background:var(--c-warn-s);color:var(--c-warn)}

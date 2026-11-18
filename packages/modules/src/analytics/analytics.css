@@ -487,7 +487,6 @@ html.flxa-dark .flxan-rate.hi, body.flx-dark .flxan-rate.hi { background: rgba(7
 .flxan-react .flxan-btn:disabled{opacity:.55;cursor:default}
 .flxan-react .flxan-btn--danger{background:var(--flux-danger);border-color:var(--flux-danger);color:#fff}
 .flxan-react a{color:var(--flxan-accent)}
-.flxan-react .flxan-classic{margin-left:auto}
 .flxan-react .flxan-notice{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;background:var(--flxan-card);border:1px solid var(--flxan-line);border-left:4px solid var(--flux-success);border-radius:6px;padding:10px 12px;margin:12px 0}
 .flxan-react .flxan-notice.is-error{border-left-color:var(--flux-danger)}
 .flxan-react .flxan-x{font-size:18px;line-height:1;color:var(--flxan-muted)}

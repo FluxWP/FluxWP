@@ -2,7 +2,7 @@
 """Builds the dictionaries of the new React screen (packages/modules/src/studio/i18n/*.json).
 
 Keys are the English strings used in `t('...')` calls of packages/modules/src/studio. Translations come from the
-plugin's language packs (languages/*.po: the classic screen uses the same wording) and from
+plugin's language packs (languages/*.po) and from
 tools/i18n-react-extra.json for strings only the new screen has: { "English": { "tr": "...", "de": "..." } }.
 Run from the repository root:  python3 plugins/flx-studio/tools/i18n-react.py [--missing]
 """

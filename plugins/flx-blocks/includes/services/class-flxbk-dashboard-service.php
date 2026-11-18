@@ -1,7 +1,7 @@
 <?php
 /**
  * Block Editor dashboard service: the block list (turned on / off), editor widths and the admin bar
- * setting. The classic dashboard (Flx_Blocks_Settings, admin-ajax and options.php) and GraphQL both use it.
+ * setting. GraphQL uses it; the block list and the theme check come from Flx_Blocks_Settings.
  *
  * @package flx-blocks
  */
@@ -92,7 +92,7 @@ final class FLXBK_Dashboard_Service {
 	}
 
 	/**
-	 * Flips a block (the classic dashboard's button).
+	 * Flips a block.
 	 *
 	 * @param string $slug Block name.
 	 */
@@ -106,7 +106,7 @@ final class FLXBK_Dashboard_Service {
 		update_option( self::OPT_OFF, $off );
 	}
 
-	/** The classic settings class, which holds the block list and the theme check. */
+	/** The settings class, which holds the block list and the theme check. */
 	private static function legacy(): ?Flx_Blocks_Settings {
 		$instance = class_exists( 'Flx_Blocks_Settings' ) ? Flx_Blocks_Settings::get_instance() : null;
 		return $instance instanceof Flx_Blocks_Settings ? $instance : null;
@@ -171,7 +171,7 @@ final class FLXBK_Dashboard_Service {
 	}
 
 	/**
-	 * Editor widths as stored (defaults as the classic form shows them).
+	 * Editor widths as stored (with defaults).
 	 */
 	private static function editor_width(): FLXBK_Editor_Width {
 		$w     = self::option_array( self::OPT_WIDTH );

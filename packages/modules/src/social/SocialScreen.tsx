@@ -1,6 +1,6 @@
 // Flux Social › Social Media. Same screen in wp-admin (wp-embed) and the FluxWP app; every read and write
 // goes through the Flux Social GraphQL operations (plugins/flx-social/graphql/operations).
-// It has everything the classic screen has: dashboard, posts, approvals, calendar, accounts (connect,
+// Dashboard, posts, approvals, calendar, accounts (connect,
 // WhatsApp), settings (apps, networks, auto sharing, log), the composer and the post details.
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -201,11 +201,6 @@ function Social() {
           <div className="flxsm-side-foot">
             {host.adminUrl && host.mode === 'wp' && (
               <a href={host.adminUrl}>{t('Back to dashboard')}</a>
-            )}
-            {host.classicUrl && (
-              <a className="flxsm-classic" href={host.classicUrl}>
-                {t('Classic view')}
-              </a>
             )}
           </div>
         </aside>

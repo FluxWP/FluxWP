@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.7.0
+- Klasik (PHP) "Roller ve erişim" sayfası kaldırıldı; wp-admin'de yalnız React ekranı açılır. "Klasik görünüm" bağlantısı, kullanıcı başına görünüm tercihi (`flxr_ui`), eski `admin-post` uçları (`flxr_save`, `flxr_user`, `flxr_reset`, `flxr_role`) ve `assets/admin.css` silindi. Ekran ortak kabukla (`flx_admin_screen`) açılır; açılamazsa boş sayfa yerine "Bu ekran yüklenemedi" uyarısı ve yenile düğmesi görünür.
+
 ## 1.6.1
 - wp-admin ekranı Flux GraphQL ekran kabuğundan açılır: ilk veri PHP'de sayfaya basılır (yükleniyor göstergesi yok), menüden diğer Flux ekranlarına sayfa yenilenmeden geçilir. Ekranın parçaları sayfa başında birlikte iner (modulepreload).
 - Ortak modül paketi yenilendi.

@@ -1,8 +1,8 @@
 <?php
 /**
- * New view (0.6.0, GraphQL): "Application" (administrators) and "App access" (everyone) open the same React screens as
- * the FluxWP app (assets/flux/, tools/fluxapp/embed-sync.sh flx-app). It is the default and has every feature of the
- * classic pages; a user can switch back to the classic page from the screen header for now. Needs Flux GraphQL.
+ * "Application" (administrators) and "App access" (everyone) open the same React screens as the FluxWP app
+ * (assets/flux/, tools/fluxapp/embed-sync.sh flx-app). There are no classic pages: without Flux GraphQL or the
+ * bundle the page says it cannot open.
  *
  * @package flx-app
  */
@@ -17,46 +17,6 @@ function flxapp_flux_module( $page ) {
 function flxapp_flux_available() {
 	return file_exists( FLXAPP_DIR . 'assets/flux/flux-modules.js' ) && function_exists( 'flx_gql_ready' ) && function_exists( 'flx_gql_all_caps' ) && flx_gql_ready();
 }
-
-/** The React view is on for the current user. */
-function flxapp_flux_ui() {
-	return flxapp_flux_available() && 'classic' !== get_user_meta( get_current_user_id(), 'flxapp_ui', true );
-}
-
-/**
- * Link that switches the current user between the views.
- *
- * @param string $ui   flux | classic.
- * @param string $page flxapp-settings | flx-app.
- */
-function flxapp_ui_switch_url( $ui, $page ) {
-	$base = 'flxapp-settings' === $page ? admin_url( 'admin.php?page=flxapp-settings' ) : admin_url( current_user_can( 'list_users' ) ? 'users.php?page=flx-app' : 'profile.php?page=flx-app' );
-	return add_query_arg(
-		array(
-			'flxapp_ui' => 'flux' === $ui ? 'flux' : 'classic',
-			'_wpnonce'  => wp_create_nonce( 'flxapp_ui' ),
-		),
-		$base
-	);
-}
-
-add_action(
-	'admin_init',
-	function () {
-		$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-		if ( ! isset( $_GET['flxapp_ui'] ) || '' === flxapp_flux_module( $page ) ) { // phpcs:ignore WordPress.Security.NonceVerification
-			return;
-		}
-		check_admin_referer( 'flxapp_ui' );
-		if ( 'classic' === $_GET['flxapp_ui'] ) { // phpcs:ignore WordPress.Security.NonceVerification
-			update_user_meta( get_current_user_id(), 'flxapp_ui', 'classic' );
-		} else {
-			delete_user_meta( get_current_user_id(), 'flxapp_ui' );
-		}
-		wp_safe_redirect( remove_query_arg( array( 'flxapp_ui', '_wpnonce' ) ) );
-		exit;
-	}
-);
 
 /** The chunked bundle loads as an ES module. */
 function flxapp_flux_module_tag( $tag, $handle ) {
@@ -74,7 +34,6 @@ function flxapp_flux_module_tag( $tag, $handle ) {
 	);
 }
 
-/** Styles and script of the shared bundle, mounted on #flxapp-app. */
 /**
  * Mount options of the screen besides what the Flux GraphQL shell adds (rest, nonce, locale…).
  *
@@ -83,11 +42,10 @@ function flxapp_flux_module_tag( $tag, $handle ) {
 function flxapp_flux_options( $page ) {
 	$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#2c7a64';
 	return array(
-		'colors'     => array(
+		'colors' => array(
 			'primary'         => $accent,
 			'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
 		),
-		'classicUrl' => flxapp_ui_switch_url( 'classic', $page ),
 	);
 }
 
@@ -106,7 +64,6 @@ add_action(
 					'assets_dir'   => FLXAPP_DIR . 'assets/flux/',
 					'assets_url'   => FLXAPP_URL . 'assets/flux/',
 					'version'      => FLXAPP_VERSION,
-					'enabled'      => 'flxapp_flux_ui',
 					'options'      => 'flxapp_flux_options',
 					'start_param'  => 'tab',
 					'container_id' => 'flxapp-app',
@@ -119,6 +76,7 @@ add_action(
 	20
 );
 
+/** Styles and script of the shared bundle, mounted on #flxapp-app. */
 function flxapp_flux_assets( $page ) {
 	if ( function_exists( 'flx_admin_screen_current' ) && '' !== flx_admin_screen_current() ) {
 		return; // The Flux GraphQL screen shell loads the bundle.
@@ -148,19 +106,21 @@ function flxapp_flux_assets( $page ) {
 	);
 }
 
-/** The mount point (the React view's page body). */
+/** The mount point (the screen's page body), or the "could not be loaded" box when the screen cannot open. */
 function flxapp_flux_root() {
 	if ( function_exists( 'flx_admin_screen_render' ) && flx_admin_screen_render() ) {
 		return;
 	}
-	echo '<style>#flxapp-app.flux-root{height:auto;background:transparent;font-family:inherit}</style>';
-	echo '<div class="wrap flxapp-wrap"><div id="flxapp-app"><noscript>' . esc_html__( 'JavaScript is required for this screen.', 'flx-app' ) . '</noscript></div></div>';
-}
-
-/** "New view" link of a classic page, shown when the React view is installed but switched off for the user. */
-function flxapp_flux_switch_link( $page ) {
 	if ( ! flxapp_flux_available() ) {
+		if ( function_exists( 'flx_admin_screen_unavailable' ) ) {
+			flx_admin_screen_unavailable();
+		}
 		return;
 	}
-	echo '<p><a class="button" href="' . esc_url( flxapp_ui_switch_url( 'flux', $page ) ) . '">' . esc_html__( 'New view', 'flx-app' ) . '</a> <span class="flxapp-muted">' . esc_html__( 'Open the new view (same features, works in the FluxWP app too).', 'flx-app' ) . '</span></p>';
+	echo '<style>#flxapp-app.flux-root{height:auto;background:transparent;font-family:inherit}</style>';
+	echo '<div class="wrap flxapp-wrap"><div id="flxapp-app"><noscript>' . esc_html__( 'JavaScript is required for this screen.', 'flx-app' ) . '</noscript></div>';
+	if ( function_exists( 'flx_admin_screen_failsafe' ) ) {
+		flx_admin_screen_failsafe( 'flxapp-app' );
+	}
+	echo '</div>';
 }

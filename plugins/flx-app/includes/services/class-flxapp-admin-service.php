@@ -1,8 +1,7 @@
 <?php
 /**
  * Flux App admin service: everything the "Application" settings pages (wp-admin and the FluxWP app) and the
- * personal "App access" page read and write. The classic admin-post handlers and the GraphQL schema both call it,
- * so the two screens behave the same.
+ * personal "App access" page read and write. The GraphQL schema calls it.
  *
  * Failures are WP_Error with `graphql_code` and the REST-like `status`.
  *
@@ -114,7 +113,7 @@ final class FLXAPP_Admin_Service {
 	}
 
 	/**
-	 * Saves the sent fields only (the classic form sends all of them).
+	 * Saves the sent fields only.
 	 *
 	 * @param array<string,mixed> $in Fields (camelCase).
 	 * @return array<string,mixed>|WP_Error
@@ -669,7 +668,7 @@ final class FLXAPP_Admin_Service {
 	}
 
 	/**
-	 * Saves the theme, the mobile and desktop shell and the enabled screens. $in uses the classic form shape:
+	 * Saves the theme, the mobile and desktop shell and the enabled screens. $in uses the form shape:
 	 * theme, mobile, desktop (arrays), screens_on and screens_all.
 	 *
 	 * @param array<string,mixed> $p Form-shaped input.

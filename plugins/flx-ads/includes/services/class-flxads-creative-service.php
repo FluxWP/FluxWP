@@ -1,8 +1,8 @@
 <?php
 /**
- * Flux Ads: audiences, the Studio (AI campaign drafts) and the season plan. The classic pages, GraphQL and
+ * Flux Ads: audiences, the Studio (AI campaign drafts) and the season plan. GraphQL and
  * Flux AI use the same legacy classes (FLXADS_Audiences, FLXADS_Studio, FLXADS_Planner); this service gives
- * GraphQL typed shapes and holds the glue the classic admin-post handlers used to carry. Permission checks
+ * GraphQL typed shapes and holds the glue the old admin-post handlers used to carry. Permission checks
  * stay with the caller.
  *
  * Errors are WP_Error with `graphql_code` INVALID_INPUT / NOT_FOUND and the input `field`.

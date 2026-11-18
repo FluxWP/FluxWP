@@ -22,7 +22,8 @@ export interface PanelProps {
   active: boolean;
   onDirty: (dirty: boolean) => void;
   onNotice: (n: { kind: 'success' | 'error'; text: string }) => void;
-  capsHref: string;
+  /** Opens the Permissions tab. */
+  onOpenCaps: () => void;
 }
 
 const newGroup = (label: string): Entry => ({ type: 'GROUP', label, collapsed: false, slug: null, hidden: false, blocked: false, subHidden: [], platformsOff: [] });
@@ -39,7 +40,7 @@ export function MenuEditor(p: PanelProps) {
   return <Editor {...p} data={q.data.flxAdminMenuEditor} />;
 }
 
-function Editor({ t, data, onDirty, onNotice, capsHref }: PanelProps & { data: Data }) {
+function Editor({ t, data, onDirty, onNotice, onOpenCaps }: PanelProps & { data: Data }) {
   const qc = useQueryClient();
   const { scope } = useGraphQL();
   const cat = useMemo(() => new Map(data.catalog.map((c) => [c.slug, c])), [data.catalog]);
@@ -307,7 +308,15 @@ function Editor({ t, data, onDirty, onNotice, capsHref }: PanelProps & { data: D
         <p className="flxad-me-note">{t('Menus of newly installed plugins automatically land in the "Other" group.')}</p>
         {role === 'administrator' && <p className="flxad-me-note">{t("Access can't be blocked for the Administrator role.")}</p>}
         <p className="flxad-me-note">
-          <a href={capsHref}>{t('All permissions: Permissions tab')}</a>
+          <a
+            href="#caps"
+            onClick={(e) => {
+              e.preventDefault();
+              onOpenCaps();
+            }}
+          >
+            {t('All permissions: Permissions tab')}
+          </a>
         </p>
       </section>
 

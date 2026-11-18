@@ -1,6 +1,6 @@
 // Flux Ads › Ad conversions. Same screen in wp-admin (wp-embed) and the FluxWP app; every read and write goes
-// through the Flux Ads GraphQL operations (plugins/flx-ads/graphql/operations). It has everything the classic
-// page has: report, campaigns, suggestions, Studio, season plan, tests, donor value, ad spend, audiences,
+// through the Flux Ads GraphQL operations (plugins/flx-ads/graphql/operations). It is the only admin page
+// (no classic page): report, campaigns, suggestions, Studio, season plan, tests, donor value, ad spend, audiences,
 // send log, ad link builder and settings.
 import { useCallback, useContext, useEffect, useMemo, useState, type ComponentType } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -87,7 +87,7 @@ function Ads() {
     window.scrollTo?.({ top: 0, behavior: 'smooth' });
   }, []);
 
-  // The classic page flushes the send queue and refreshes spend and suggestions on load; here a timer does it.
+  // The send queue is flushed and spend and suggestions are refreshed on load and then by a timer.
   const beat = useFlxMutation(FlxAdsHeartbeat, {
     onSuccess: (r) => {
       const open = r.flxAdsHeartbeat?.openSuggestions;
@@ -151,11 +151,6 @@ function Ads() {
       <div className="flxads flxads-app">
         <div className="flxads-head">
           <h1 className="flxads-title">{current === 'report' ? t('Ad conversions') : names[current]}</h1>
-          {host.classicUrl && (
-            <a className="flxads-classic" href={host.classicUrl}>
-              {t('Classic view')}
-            </a>
-          )}
         </div>
         {current === 'report' && <p className="flxads-lead">{t('Which ad, campaign and ad text brought which donation. Paid donations and orders only; bank transfers count when approved.')}</p>}
         <nav className="flxads-tabs" aria-label={t('Ad conversions')}>

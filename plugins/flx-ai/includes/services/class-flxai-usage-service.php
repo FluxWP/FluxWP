@@ -1,8 +1,8 @@
 <?php
 /**
  * Usage: spending against the limits, reports, billing, the request log and the connected systems.
- * Read-only apart from refreshing the OpenRouter credit and switching a system on or off. The classic
- * pages, the REST routes and GraphQL read these shapes; permission checks stay with the caller
+ * Read-only apart from refreshing the OpenRouter credit and switching a system on or off. The REST
+ * routes and GraphQL read these shapes; permission checks stay with the caller
  * (manage_options).
  *
  * @package FLX_AI
@@ -14,7 +14,7 @@ final class FLXAI_Usage_Service {
 
 	public const CACHE_TAG = 'flx-ai:usage';
 
-	/** Days the overview and the log can look back (classic pages offer fewer; the API takes up to this). */
+	/** Days the overview and the log can look back (the API takes up to this). */
 	public const MAX_DAYS = 365;
 
 	/**

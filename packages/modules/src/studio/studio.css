@@ -1,4 +1,4 @@
-/* Flux Studio screen. The look of the classic app (plugins/flx-studio/assets/css/app.css); the root is .flxst.is-embedded
+/* Flux Studio screen; the root is .flxst.is-embedded
    inside the mount element (#flxst-app in wp-admin, the FluxWP screen area in the app). Theme: data-theme on the root. */
 .flxst {
 	--bg: color-mix(in srgb, var(--flxa-accent, var(--brand, #1F2937)) 6%, #0D0E13); --panel: color-mix(in srgb, var(--flxa-accent, var(--brand, #1F2937)) 8%, #15171E); --panel2: color-mix(in srgb, var(--flxa-accent, var(--brand, #1F2937)) 10%, #1C1F27); --line: color-mix(in srgb, var(--flxa-accent, var(--brand, #1F2937)) 12%, #272A34); --line2: color-mix(in srgb, var(--flxa-accent, var(--brand, #1F2937)) 15%, #363A47);

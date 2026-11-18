@@ -1,7 +1,7 @@
 <?php
 /**
- * Scheduled tasks: the list, one task, saving, running now, pausing and deleting. The classic page and
- * GraphQL share this class.
+ * Scheduled tasks: the list, one task, saving, running now, pausing and deleting. GraphQL and the AI
+ * tools share this class.
  *
  * @package FLX_AI
  */

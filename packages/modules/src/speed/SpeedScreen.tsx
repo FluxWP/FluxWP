@@ -1,6 +1,6 @@
 // Flux Speed › Performance. Same screen in wp-admin (wp-embed) and the FluxWP app; every read and write
-// goes through the Flux Speed GraphQL operations (plugins/flx-speed/graphql/operations). It has everything
-// the classic page has: Summary, Records (+ one record), Server, Database, Autoload, Cron, System check,
+// goes through the Flux Speed GraphQL operations (plugins/flx-speed/graphql/operations). It is the
+// only admin page (no classic page): Summary, Records (+ one record), Server, Database, Autoload, Cron, System check,
 // PageSpeed, Cache and Settings (with the admin login address).
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { createGraphQLClient } from '@fluxwp/graphql';
@@ -92,7 +92,6 @@ function Speed() {
   if (q.isError || !q.data || !ctx) return <div className="flxs-app"><ErrorBox error={q.error} fallback={t('The action could not be completed.')} /></div>;
   const cfg = q.data.flxSpeedConfig;
   const tab = cfg.tabs.some((x) => x.key === view.tab) ? view.tab : 'summary';
-  const classic = cfg.classicUrl + (tab !== 'summary' ? '&tab=' + tab : '');
 
   let body;
   if (view.id) body = <RecordDetail id={view.id} />;
@@ -134,11 +133,6 @@ function Speed() {
       <div className="flxs-app">
         <div className="flxs-head">
           <h1>{t('Flux Performance')}</h1>
-          {(host.classicUrl || cfg.classicUrl) && (
-            <a className="flxs-classic" href={host.classicUrl || classic}>
-              {t('Classic view')}
-            </a>
-          )}
         </div>
         {notice && (
           <div className={'flxs-notice is-' + notice.kind} role={notice.kind === 'error' ? 'alert' : 'status'}>

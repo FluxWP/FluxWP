@@ -1,7 +1,7 @@
 <?php
 /**
  * Flux Lang service: the one place that reads and changes languages, translations and the Languages
- * settings. The classic settings page, GraphQL, REST fields and the Flux AI tools call this.
+ * settings. GraphQL, REST fields and the Flux AI tools call this.
  * Permission checks stay with the caller (manage_options for settings, edit_post for a content), as before.
  *
  * Errors are WP_Error with `graphql_code` INVALID_INPUT / NOT_FOUND / FORBIDDEN and the input `field`.
@@ -438,10 +438,10 @@ final class FLXL_Language_Service {
 
 	/**
 	 * Saves the Languages settings. Absent keys stay as they are; `languages` and `texts`, when given,
-	 * replace the whole list (a language that is not listed is removed). Same cleaning as the classic form.
+	 * replace the whole list (a language that is not listed is removed).
 	 *
 	 * @param FlxlSettingsInput $in     Input.
-	 * @param bool              $strict Refuse invalid input (GraphQL). The classic form passes false: bad values are dropped quietly, as before.
+	 * @param bool              $strict Refuse invalid input (GraphQL). False drops bad values quietly.
 	 * @return FLXL_Settings|WP_Error
 	 */
 	public static function save_settings( array $in, bool $strict = true ) {

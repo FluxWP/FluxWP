@@ -18,6 +18,7 @@ Production-ready WordPress stacks for **Coolify** and plain **Docker Compose**: 
 | `mysql` | Apache + mod_php | MySQL 8.4 LTS | none | Hosts or tools that expect MySQL |
 | `mariadb-redis` (default) | Apache + mod_php | MariaDB 11.8 LTS | Redis 8.8 | WooCommerce, membership, busy admin. Also in `docker/`: `docker-compose.yml` (Coolify) and `docker-compose.local.yml` + `.env.example` (plain Docker) |
 | `nginx-fpm` | nginx 1.30 + PHP-FPM | MariaDB 11.8 LTS | Redis 8.8 | Most traffic per GB of RAM |
+| `wpapi` | Apache + mod_php | MariaDB 11.8 LTS | Redis 8.8 | Same as `mariadb-redis` plus the WhatsApp API (flx-wpapi) in the same compose, already connected to WordPress. See [WordPress + WhatsApp API](#wordpress--whatsapp-api) |
 
 Every stack comes twice:
 
@@ -78,6 +79,25 @@ Change the password after the first login, then delete the file:
 docker compose exec worker rm /run/flx-private/admin-password
 ```
 
+## WordPress + WhatsApp API
+
+The `wpapi` stack is `mariadb-redis` plus [FluxWP WhatsApp API](https://github.com/FluxWP/whatsapp-api) (flx-wpapi, an Evolution API v2 compatible WhatsApp bridge) as a `wpapi` service. The other stacks are unchanged; use this one only when you want WhatsApp on the same server.
+
+- **One shared key.** `WPAPI_KEY` is the only secret you set. The `wpapi` container reads it as `FLXW_API_KEY`, WordPress gets it as `WPAPI_KEY`. Coolify generates it; with plain Docker run `openssl rand -hex 32`.
+- **Internal network.** WordPress talks to `http://wpapi:3000`. The service publishes no port, so nothing from outside can reach it. `FLXW_ALLOW_PRIVATE_URLS=1` lets it call WordPress back for webhooks and media on the Docker network.
+- **No manual connection.** When Flux Mail is active, the FluxWP Docker mu-plugin adds a WhatsApp connection (type Flux WPAPI) with that address, key and instance name (`WPAPI_INSTANCE`, default `main`). If you change the key or the address, the connection is updated on the next request.
+- **Same database.** The bridge keeps its data in the stack's MariaDB (tables `flxw_*`) and its settings in the `wpapi-data` volume. Pairing a number: Flux Mail › Connections › the WhatsApp connection › add account › scan the QR (WhatsApp › Linked devices).
+- Optional: `WPAPI_MSG_KEEP_DAYS` (message history, default 45) and `WPAPI_PANEL=on` for the fallback panel (publish a port or proxy it yourself; first login needs the setup token from `docker compose logs wpapi`).
+
+```bash
+cd compose/wpapi
+cp .env.example .env
+# set DB_PASSWORD, DB_ROOT_PASSWORD, REDIS_PASSWORD, WPAPI_KEY
+docker compose up -d
+```
+
+Coolify: paste `coolify/wpapi/docker-compose.yml` into **Docker Compose Empty**. The image is `ghcr.io/fluxwp/wordpress:wpapi-node22` (built from `FluxWP/whatsapp-api` `main`, rebuilt daily). Baileys uses the unofficial WhatsApp Web protocol, so use a number you can afford to lose and avoid bulk messages.
+
 ## Images
 
 The settings live in our images, so the compose files only hold services and environment variables:
@@ -88,6 +108,7 @@ The settings live in our images, so the compose files only hold services and env
 | `ghcr.io/fluxwp/wordpress:7.1-php8.4-fpm` | `wordpress:7.1-php8.4-fpm` | Same, plus the PHP-FPM pool |
 | `ghcr.io/fluxwp/wordpress:worker-php8.4` | `wordpress:cli-2.12-php8.4` | The worker script |
 | `ghcr.io/fluxwp/wordpress:nginx-1.30` | `nginx:1.30-alpine` | nginx config for WordPress |
+| `ghcr.io/fluxwp/wordpress:wpapi-node22` | `node:22-alpine` | FluxWP WhatsApp API (flx-wpapi) |
 
 They are built for amd64 and arm64 and rebuilt every day, so security fixes in PHP and the base OS reach you on the next pull. Each build also gets a dated tag (`7.1-php8.4-apache-20261105`) if you want to pin one. The build fails on a PHP release with known critical vulnerabilities.
 
@@ -99,7 +120,7 @@ To change a file without building your own image, mount yours over it, for examp
 |---|---|
 | `wordpress:latest`, `mariadb:11` | Pinned: `wordpress:7.1-php8.4-*`, `mariadb:11.8`, `mysql:8.4`, `redis:8.8-alpine`, `nginx:1.30-alpine`. Patch updates arrive on pull, major/minor upgrades are your decision. |
 | PHP defaults (2 MB uploads, 128 MB memory) | 128 MB uploads, 256 MB memory, 300 s execution, 5000 input vars, all from env |
-| OPcache with image defaults | 192 MB, 30k files, 32 MB interned strings, JIT off (no gain for WordPress) |
+| OPcache with image defaults | 256 MB, 30k files, 32 MB interned strings, JIT off (no gain for WordPress) |
 | Healthcheck loads the home page every 2 s (PHP + DB on every probe) | Static file (Apache) or FPM ping through nginx every 15 s, with `start_period` |
 | `depends_on` without condition | Waits for a healthy database and Redis |
 | WP-Cron on page loads | `DISABLE_WP_CRON` + worker container runs due events every 60 s, so cron also runs on quiet sites |
@@ -118,7 +139,7 @@ All optional. In Coolify they are environment variables, with Compose they go in
 | `PHP_UPLOAD_MAX_FILESIZE` | `128M` | Largest single upload |
 | `PHP_POST_MAX_SIZE` | `128M` | Keep ≥ upload size |
 | `PHP_MAX_EXECUTION_TIME` | `300` | Seconds |
-| `PHP_OPCACHE_MEMORY` | `192` | MB |
+| `PHP_OPCACHE_MEMORY` | `256` | MB |
 | `PHP_TIMEZONE` | `UTC` | PHP `date.timezone` |
 | `APACHE_MAX_WORKERS` | `20` | Apache stacks: max processes (~64 MB each) |
 | `PHP_FPM_MAX_CHILDREN` | `10` | nginx-fpm: max PHP workers (~64 MB each, keep ≥ 4) |

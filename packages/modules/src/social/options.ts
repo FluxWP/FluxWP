@@ -1,4 +1,4 @@
-// Per-network post options of the composer (same set and rules as the classic screen's optDefs).
+// Per-network post options of the composer.
 import type { FlxSocialOptionsInput } from '@fluxwp/graphql/types';
 import type { Translate } from './i18n';
 import type { Account } from './common';

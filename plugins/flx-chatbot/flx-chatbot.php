@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux AI Chatbot, Live Chat & Customer Support
  * Description:       Siteye yapay zekâ destekli sohbet penceresi: Flux AI ile sitenizin içeriğinden ve ürünlerinden 7/24 cevap, potansiyel müşteri toplama, WooCommerce bilgisi, tek tıkla canlı temsilciye devir (Flux Chat gelen kutusu ya da eklentinin kendi gelen kutusu), dosya paylaşımı, okundu bilgisi, sohbet sonu puanlama ve mesai dışında mesaj bırakma. Renk, konum, avatar, metinler ve görünürlük panelden özelleştirilir.
- * Version:           0.3.1
+ * Version:           0.4.0
  * Requires at least: 6.4
  * Requires PHP:      8.1
  * Requires Plugins:  flx-graphql
@@ -26,7 +26,7 @@ if ( defined( 'FLXCB_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXCB_VERSION', '0.3.1' );
+define( 'FLXCB_VERSION', '0.4.0' );
 define( 'FLXCB_DB_VERSION', '1' );
 define( 'FLXCB_FILE', __FILE__ );
 define( 'FLXCB_DIR', plugin_dir_path( __FILE__ ) );
@@ -58,7 +58,7 @@ if ( is_admin() ) {
 /*
  * GraphQL (Flux GraphQL 0.2.0+): the schema is only loaded inside a GraphQL request. The agent side of the
  * chat (list, read, reply, close, delete), the figures and the settings screen read and write through it;
- * the visitor side of the chat stays on REST. Without Flux GraphQL the classic pages keep working.
+ * the visitor side of the chat stays on REST. Without Flux GraphQL the admin pages say they cannot open.
  */
 add_action(
 	'flx_gql_register',

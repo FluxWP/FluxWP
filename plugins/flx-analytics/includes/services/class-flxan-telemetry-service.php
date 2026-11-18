@@ -1,6 +1,6 @@
 <?php
 /**
- * Product telemetry hub, read side: what the "Product telemetry" screen (GraphQL and the classic page)
+ * Product telemetry hub, read side: what the "Product telemetry" screen (GraphQL)
  * shows. The collection endpoint (POST /flxan/v1/telemetry, sent by FluxWP Panel on other sites) stays in
  * FLXAN_Telemetry_Hub: it is a public ingest endpoint called by other installs, not a screen.
  *

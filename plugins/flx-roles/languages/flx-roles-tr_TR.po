@@ -22,148 +22,8 @@ msgstr "Başlangıç (panel ana sayfası)"
 msgid "Profile"
 msgstr "Profil"
 
-msgid "%s person"
-msgid_plural "%s people"
-msgstr[0] "%s kişi"
-msgstr[1] "%s kişi"
-
 msgid "You are not allowed to do this."
 msgstr "Bu işlem için yetkiniz yok."
-
-msgid "JavaScript is required for this screen."
-msgstr "Bu ekran için JavaScript gerekli."
-
-msgid "Saved. Permission changes apply immediately."
-msgstr "Kaydedildi. Yetki değişikliği hemen geçerli."
-
-msgid "The role is back to its default permissions."
-msgstr "Rol varsayılan yetkilerine döndü."
-
-msgid "Person added to the role."
-msgstr "Kişi role eklendi."
-
-msgid "Person removed from the role."
-msgstr "Kişi rolden çıkarıldı."
-
-msgid "No user with this username or email. Create the user first."
-msgstr "Bu kullanıcı adı ya da e-posta ile kayıtlı kullanıcı yok. Önce kullanıcıyı oluşturun."
-
-msgid "Administrators can't get this role; they already see everything."
-msgstr "Yöneticiye bu rol verilmez; yönetici zaten her şeyi görür."
-
-msgid "The action could not be completed."
-msgstr "İşlem yapılamadı."
-
-msgid "Role added; it starts with admin panel access only. Turn on its permissions in the table."
-msgstr "Rol eklendi; yalnız panele girme yetkisiyle başlar. Tablodan yetkilerini açın."
-
-msgid "Role deleted; its people moved to the default role."
-msgstr "Rol silindi; kişileri varsayılan role geçti."
-
-msgid "Role name must be 1-40 characters."
-msgstr "Rol adı 1-40 karakter olmalı."
-
-msgid "New view"
-msgstr "Yeni görünüm"
-
-msgid "Open the new view (same features, works in the FluxWP app too)."
-msgstr "Yeni görünümü aç (aynı özellikler, FluxWP uygulamasında da çalışır)."
-
-msgid "Turn on and off what each role can access. A disabled action disappears from the menu and can't be done even by URL. The WordPress Administrator sees everything."
-msgstr "Rollerin neye erişeceğini buradan açıp kapatın. Kapatılan işlem menüden kalkar, adresle girilse de yapılamaz. WordPress yöneticisi (Administrator) her şeyi görür."
-
-msgid "Delete this role? Its people move to the default role."
-msgstr "Bu rol silinsin mi? Kişileri varsayılan role geçer."
-
-msgid "Delete role"
-msgstr "Rolü sil"
-
-msgid "New role"
-msgstr "Yeni rol"
-
-msgid "For example Volunteer or Accounting. Starts with admin panel access only."
-msgstr "Örneğin Gönüllü ya da Muhasebe. Yalnız panele girme yetkisiyle başlar."
-
-msgid "Role name"
-msgstr "Rol adı"
-
-msgid "Add role"
-msgstr "Rol ekle"
-
-msgid "Access"
-msgstr "Erişim"
-
-msgid "%s is not installed"
-msgstr "%s kurulu değil"
-
-msgid "The setting is saved; it takes effect once the plugin is updated to a version that enforces this permission."
-msgstr "Ayar kaydedilir; eklenti bu yetkiyi uygulayan sürüme güncellenince geçerli olur."
-
-msgid "Waiting for %s update"
-msgstr "%s güncellemesi bekleniyor"
-
-msgid "broad access"
-msgstr "geniş yetki"
-
-msgid "Settings"
-msgstr "Ayarlar"
-
-msgid "%s: screen after login"
-msgstr "%s girişte açılan ekran"
-
-msgid "Referral link lifetime"
-msgstr "Referans linki geçerlilik süresi"
-
-msgid "days"
-msgstr "gün"
-
-msgid "If a visitor who came through a referral link donates within this period, the donation is credited to that person. If they come through another referral link, the latest one wins."
-msgstr "Referans linkiyle gelen ziyaretçi bu süre içinde bağış yaparsa bağış o kişiye bağlanır. Başka bir referans linkiyle gelirse son link geçerli olur."
-
-msgid "Save"
-msgstr "Kaydet"
-
-msgid "Reset this role's permissions to the defaults?"
-msgstr "Bu rolün yetkileri varsayılana dönsün mü?"
-
-msgid "%s: reset to defaults"
-msgstr "%s: varsayılana döndür"
-
-msgid "People"
-msgstr "Kişiler"
-
-msgid "Add WhatsApp number"
-msgstr "WhatsApp numarası ekle"
-
-msgid "Referral link"
-msgstr "Referans linki"
-
-msgid "Copy"
-msgstr "Kopyala"
-
-msgid "Remove this person from the role?"
-msgstr "Bu kişi rolden çıkarılsın mı?"
-
-msgid "Remove from role"
-msgstr "Rolden çıkar"
-
-msgid "Nobody yet."
-msgstr "Henüz kimse yok."
-
-msgid "Username or email"
-msgstr "Kullanıcı adı ya da e-posta"
-
-msgid "Add"
-msgstr "Ekle"
-
-msgid "For a new person, first <a href=\"%s\">create a user</a> and choose one of these roles."
-msgstr "Yeni kişi için önce <a href=\"%s\">kullanıcı oluşturun</a>, Rol alanından bu rollerden birini seçin."
-
-msgid "For every permission of every role, see <a href=\"%s\">Admin theme › Permissions</a>."
-msgstr "Tüm rollerin tüm yetkileri için <a href=\"%s\">Yönetim teması › Yetkiler</a>."
-
-msgid "Copied"
-msgstr "Kopyalandı"
 
 msgid "Director"
 msgstr "Yönetici"
@@ -185,6 +45,9 @@ msgstr "Görevlerde normal kullanıcı, sertifika oluşturur, başkası adına b
 
 msgid "Role added from the panel."
 msgstr "Panelden eklenen rol."
+
+msgid "Role name must be 1-40 characters."
+msgstr "Rol adı 1-40 karakter olmalı."
 
 msgid "General"
 msgstr "Genel"
@@ -288,6 +151,9 @@ msgstr "Telefon"
 msgid "The WhatsApp assistant recognizes whoever writes from this number as this user and enables what their role allows (e.g. donations on behalf of others, their own donors). Only an administrator can change the number."
 msgstr "WhatsApp asistanı bu numaradan yazan kişiyi bu kullanıcı olarak tanır ve rolünün izin verdiği işlemleri (ör. başkası adına bağış, kendi bağışçıları) açar. Numarayı yalnız yönetici değiştirebilir."
 
+msgid "Referral link"
+msgstr "Referans linki"
+
 msgid "Personal link"
 msgstr "Kişisel link"
 
@@ -315,6 +181,9 @@ msgstr "%s kişinin profilinde WhatsApp numarası yok; asistan bu kişileri tan�
 msgid "Everyone in the roles has a number."
 msgstr "Rollerdeki herkesin numarası kayıtlı."
 
+msgid "People"
+msgstr "Kişiler"
+
 msgid "Plugins enforcing role permissions"
 msgstr "Rol yetkilerini uygulayan eklentiler"
 
@@ -338,6 +207,12 @@ msgstr "1 ile 365 gün arası girin."
 
 msgid "Only roles added from the panel can be deleted."
 msgstr "Yalnız panelden eklenen roller silinebilir."
+
+msgid "No user with this username or email. Create the user first."
+msgstr "Bu kullanıcı adı ya da e-posta ile kayıtlı kullanıcı yok. Önce kullanıcıyı oluşturun."
+
+msgid "Administrators can't get this role; they already see everything."
+msgstr "Yöneticiye bu rol verilmez; yönetici zaten her şeyi görür."
 
 msgid "Not found."
 msgstr "Bulunamadı."
@@ -530,95 +405,3 @@ msgstr "Kullanıcıdan rolü alır; rolü kalmazsa varsayılan rolü alır."
 
 msgid "User the role was taken from."
 msgstr "Rolü alınan kullanıcı."
-
-#: app/manifest.json
-msgid "Roles"
-msgstr "Roller"
-
-#: app/manifest.json
-msgid "Custom"
-msgstr "Özel"
-
-#: app/manifest.json
-msgid "No roles"
-msgstr "Rol yok"
-
-#: app/manifest.json
-msgid "Nobody in this role"
-msgstr "Bu rolde kimse yok"
-
-#: app/manifest.json
-msgid "Add a person by user name or email."
-msgstr "Kullanıcı adı ya da e-posta ile kişi ekleyin."
-
-#: app/manifest.json
-msgid "Role created"
-msgstr "Rol oluşturuldu"
-
-#: app/manifest.json
-msgid "Reset permissions"
-msgstr "Yetkileri sıfırla"
-
-#: app/manifest.json
-msgid "Reset {{label}}?"
-msgstr "{{label}} sıfırlansın mı?"
-
-#: app/manifest.json
-msgid "Its permissions go back to the WordPress defaults."
-msgstr "Yetkileri WordPress varsayılanlarına döner."
-
-#: app/manifest.json
-msgid "Reset"
-msgstr "Sıfırla"
-
-#: app/manifest.json
-msgid "Delete {{label}}?"
-msgstr "{{label}} silinsin mi?"
-
-#: app/manifest.json
-msgid "Its people keep their other roles."
-msgstr "Kişiler diğer rollerini korur."
-
-#: app/manifest.json
-msgid "Delete"
-msgstr "Sil"
-
-#: app/manifest.json
-msgid "Deleted"
-msgstr "Silindi"
-
-#: app/manifest.json
-msgid "Edit permissions in panel"
-msgstr "Yetkileri panelde düzenle"
-
-#: app/manifest.json
-msgid "Add person"
-msgstr "Kişi ekle"
-
-#: app/manifest.json
-msgid "User name or email"
-msgstr "Kullanıcı adı ya da e-posta"
-
-#: app/manifest.json
-msgid "Added"
-msgstr "Eklendi"
-
-#: app/manifest.json
-msgid "Call"
-msgstr "Ara"
-
-#: app/manifest.json
-msgid "Remove {{name}}?"
-msgstr "{{name}} çıkarılsın mı?"
-
-#: app/manifest.json
-msgid "The account stays; only this role is taken away."
-msgstr "Hesap kalır; yalnız bu rol alınır."
-
-#: app/manifest.json
-msgid "Remove"
-msgstr "Çıkar"
-
-#: app/manifest.json
-msgid "Removed"
-msgstr "Çıkarıldı"

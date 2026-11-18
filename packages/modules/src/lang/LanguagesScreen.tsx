@@ -1,6 +1,6 @@
 // Flux Lang › Languages. Same screen in wp-admin (wp-embed) and the FluxWP app; every read and write goes
 // through the Flux Lang GraphQL operations (plugins/flx-lang/graphql/operations).
-// It has everything the classic page has: the language table (active, name, flag, locale, default,
+// The language table (active, name, flag, locale, default,
 // remove, add from the catalog), translated content types, fallback, switcher style and place, the
 // automatic language for visitors (mode, suggested language, home countries, country info), the site
 // texts per language and the AI translation note.
@@ -70,7 +70,6 @@ export function LanguagesScreen() {
 }
 
 function Languages() {
-  const host = useHost();
   const { i18n } = useTranslation();
   const { t } = useMemo(() => translator(i18n.language), [i18n.language]);
   const { scope } = useGraphQL();
@@ -143,11 +142,6 @@ function Languages() {
     <div className="flxl-app">
       <div className="flxl-head">
         <h1>{t("Languages")}</h1>
-        {host.classicUrl && (
-          <a className="flxl-classic" href={host.classicUrl}>
-            {t('Classic view')}
-          </a>
-        )}
       </div>
       {notice && (
         <div className={'flxl-notice is-' + notice.kind} role={notice.kind === 'error' ? 'alert' : 'status'}>

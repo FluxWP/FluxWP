@@ -5,7 +5,7 @@
  * FluxWP app) reads and writes only through these fields.
  *
  * Display data (server, database, system check) comes as labelled sections and rows already
- * translated by the server, the same text the classic tabs show.
+ * translated by the server, the same text on every client.
  *
  * @package flx-speed
  */

@@ -142,29 +142,3 @@ function flxseo_audit_site( $limit = 200, $post_type = '' ) {
 		'items'   => $rows,
 	);
 }
-
-function flxseo_audit_page() {
-	$r = flxseo_audit_site( 300 );
-	?>
-	<p>Yayındaki <strong><?php echo (int) $r['checked']; ?></strong> içerik kontrol edildi; <strong><?php echo count( $r['items'] ); ?></strong> içerikte öneri var. Düzeltmek için içeriği açıp sağdaki <em>SEO</em> panelini kullanın ya da yapay zekâ asistanına (MCP) "SEO eksiklerini düzelt" deyin.</p>
-	<table class="widefat striped">
-		<thead><tr><th>İçerik</th><th>Tür</th><th>Öneriler</th></tr></thead>
-		<tbody>
-		<?php foreach ( array_slice( $r['items'], 0, 100 ) as $row ) : ?>
-			<tr>
-				<td><a href="<?php echo esc_url( get_edit_post_link( $row['id'] ) ); ?>"><strong><?php echo esc_html( $row['title'] ); ?></strong></a><br><a href="<?php echo esc_url( $row['url'] ); ?>" target="_blank" rel="noopener" style="font-size:12px">görüntüle</a></td>
-				<td><?php echo esc_html( $row['type'] ); ?></td>
-				<td><ul style="margin:0">
-				<?php foreach ( $row['issues'] as $i ) : ?>
-					<li style="color:<?php echo 'error' === $i['level'] ? 'var(--flxa-error, #d63638)' : 'var(--flxa-warn, #8a6100)'; ?>"><?php echo esc_html( $i['msg'] ); ?></li>
-				<?php endforeach; ?>
-				</ul></td>
-			</tr>
-		<?php endforeach; ?>
-		<?php if ( ! $r['items'] ) : ?>
-			<tr><td colspan="3">Her şey yolunda.</td></tr>
-		<?php endif; ?>
-		</tbody>
-	</table>
-	<?php
-}

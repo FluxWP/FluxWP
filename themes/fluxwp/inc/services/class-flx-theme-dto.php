@@ -1,6 +1,6 @@
 <?php
 /**
- * Typed values the theme service returns (GraphQL, the classic pages and Flux AI read the same shapes).
+ * Typed values the theme service returns (GraphQL and Flux AI read the same shapes).
  *
  * @package fluxwp
  */

@@ -1,8 +1,8 @@
 <?php
 /**
  * Flux App admin GraphQL schema: the "Application" settings pages (General, Appearance, Applications, Modules, Menu,
- * OAuth clients, All access) and the personal "App access" page. Same service as the classic admin-post handlers
- * (FLXAPP_Admin_Service). Appearance carries the open `flxapp_app` option document and the resolved config as FlxJSON
+ * OAuth clients, All access) and the personal "App access" page. Reads and writes through
+ * FLXAPP_Admin_Service. Appearance carries the open `flxapp_app` option document and the resolved config as FlxJSON
  * (the same documents REST and the app read); everything else is typed.
  *
  * @package flx-app

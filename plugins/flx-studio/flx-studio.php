@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Studio
  * Description:       Yapay zekâ ile görsel ve video stüdyosu: üretim, referanslar ve kişiler, alan düzenleme, Geliştir ve Beyin fırtınası, klasörlü galeri. Üretim Flux AI üzerinden (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).
- * Version:           0.6.1
+ * Version:           0.7.0
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Requires Plugins:  flx-graphql
@@ -22,7 +22,7 @@ if ( defined( 'FLXST_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXST_VERSION', '0.6.1' );
+define( 'FLXST_VERSION', '0.7.0' );
 define( 'FLXST_DB_VERSION', 1 );
 define( 'FLXST_FILE', __FILE__ );
 define( 'FLXST_DIR', plugin_dir_path( __FILE__ ) );
@@ -47,7 +47,7 @@ if ( is_admin() ) {
 /*
  * GraphQL (Flux GraphQL 0.2.0+, capability model): the schema is registered only inside a GraphQL request;
  * the persisted operations the Studio screen sends. Without Flux GraphQL the schema is left out and the
- * classic screen (assets/js) keeps working over REST.
+ * admin page says it cannot open.
  */
 add_action(
 	'flx_gql_register',

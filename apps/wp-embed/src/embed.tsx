@@ -48,7 +48,7 @@ export interface MountOptions {
   aiEmbed?: boolean;
   /** İlk sayfa (WP alt menüsü), ör. 'dashboard'. */
   startPage?: string;
-  /** Klasik görünüme geçiş bağlantısı (varsa). */
+  /** Eski: klasik sayfası henüz kalkmamış paketlerin geçiş bağlantısı. Klasik ekranı kalkan paket vermez. */
   classicUrl?: string;
   /**
    * wp-admin screen shell (Flux GraphQL): the queries the server preloaded for this screen. The screen's
@@ -60,26 +60,25 @@ export interface MountOptions {
 /** Queries a screen sends in its first moments count as its first queries. */
 const LEARN_MS = 2500;
 
-const FAIL_TEXT: Record<string, { title: string; body: string; reload: string; classic: string }> = {
+const FAIL_TEXT: Record<string, { title: string; body: string; reload: string }> = {
   tr: {
     title: 'Bu ekran yüklenemedi',
     body: 'Eklenti yeni güncellendiyse tarayıcı ya da site önbelleği eski dosyaları tutuyor olabilir. Sayfayı sert yenileyin (Ctrl/Cmd + Shift + R); sürerse site önbelleğini temizleyin.',
     reload: 'Sayfayı yenile',
-    classic: 'Klasik ekrana geç',
   },
   en: {
     title: 'This screen could not be loaded',
     body: 'If the plugin was just updated, the browser or site cache may still hold old files. Hard-reload the page (Ctrl/Cmd + Shift + R); if it persists, purge the site cache.',
     reload: 'Reload page',
-    classic: 'Open the classic screen',
   },
 };
 
 /**
  * A screen whose code cannot load (stale cached file, failed chunk, runtime error) used to leave a blank page.
- * This shows what happened and the way out instead: reload, or the classic screen when the plugin has one.
+ * This shows what happened and the way out instead: reload. There is no classic screen to fall back to.
+ * (A bundle that cannot load at all is caught by flx-graphql flx_admin_screen_failsafe() with the same text.)
  */
-class ScreenGuard extends Component<{ lang: string; classicUrl?: string; children: ReactNode }, { failed: boolean }> {
+class ScreenGuard extends Component<{ lang: string; children: ReactNode }, { failed: boolean }> {
   state = { failed: false };
   static getDerivedStateFromError() {
     return { failed: true };
@@ -99,11 +98,6 @@ class ScreenGuard extends Component<{ lang: string; classicUrl?: string; childre
           <button type="button" style={btn} onClick={() => location.reload()}>
             {t.reload}
           </button>
-          {this.props.classicUrl && (
-            <a href={this.props.classicUrl} style={btn}>
-              {t.classic}
-            </a>
-          )}
         </div>
       </div>
     );
@@ -266,7 +260,7 @@ export function createEmbed(screens: ScreenSource): EmbedApi {
           <QueryClientProvider client={qc}>
             <ModuleHostProvider value={host}>
               <Themed el={el} theme={o.theme ?? 'auto'} />
-              <ScreenGuard lang={i18n.language} classicUrl={o.classicUrl}>
+              <ScreenGuard lang={i18n.language}>
                 <Screen />
               </ScreenGuard>
             </ModuleHostProvider>

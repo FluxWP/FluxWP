@@ -2,7 +2,7 @@
 /**
  * Theme service: the one place that reads and changes Theme Settings, payment logos, the System Check
  * and the "migrate from previous theme" action for GraphQL (and the Theme Settings / System Check screens).
- * The classic pages keep their own handlers; both write the same options through the same sanitizers.
+ * It writes the options through the same sanitizers as everything else.
  * Permission checks stay with the caller (manage_options; switch_themes for the migration).
  *
  * Errors are WP_Error with `graphql_code` INVALID_INPUT / NOT_FOUND and the input `field`.
@@ -239,7 +239,7 @@ final class FLX_Theme_Service {
 		if ( $given( 'cookie_reset' ) && ! empty( $in['cookie_reset'] ) ) {
 			$store['cookie_reset'] = 1;
 		}
-		// Same as the classic form post: every field is sent, so the sanitizer takes the values as they are.
+		// Every field is sent, so the sanitizer takes the values as they are.
 		$store['_form'] = 1;
 		foreach ( array( 'animasyon', 'aktif_kart' ) as $on ) {
 			$store[ $on ] = 'off' === $store[ $on ] ? 0 : 1;

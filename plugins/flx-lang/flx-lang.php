@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Lang
  * Description:       Siteyi çok dilli yapar: /en/ gibi dil adresleri, sayfa, yazı, proje ve etkinlik başına çeviri, dile özgü görsel, hreflang ve canonical, Türkiye dışından gelene İngilizce önerisi, dil seçici; Flux AI & MCP ve Flux AI araçlarına dil desteği.
- * Version:           0.4.1
+ * Version:           0.5.0
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Requires Plugins:  flx-graphql
@@ -22,7 +22,7 @@ if ( defined( 'FLXL_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXL_VERSION', '0.4.1' );
+define( 'FLXL_VERSION', '0.5.0' );
 define( 'FLXL_FILE', __FILE__ );
 define( 'FLXL_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXL_URL', plugin_dir_url( __FILE__ ) );
@@ -53,7 +53,7 @@ if ( is_admin() ) {
 
 /*
  * GraphQL (Flux GraphQL): the schema loads only inside a GraphQL request; the persisted operations the
- * Languages screen sends. Without Flux GraphQL the schema is left out and the classic page keeps working.
+ * Languages screen sends. Without Flux GraphQL the schema is left out and the settings page says it cannot open.
  */
 add_action(
 	'flx_gql_register',

@@ -2,11 +2,10 @@
 /**
  * GraphQL (Flux GraphQL) and the shared React screens of the theme.
  *
- * - The schema loads only inside a GraphQL request (lazy); without Flux GraphQL (0.2.0+) nothing changes
- *   and the classic Theme Settings and System Check pages keep working.
+ * - The schema loads only inside a GraphQL request (lazy).
  * - Theme Settings and System Check open the same React screens as the FluxWP app (assets/flux/,
- *   tools/fluxapp/embed-sync.sh fluxwp). They are the default and have every feature of the classic
- *   pages; a user can switch to the classic page from the screen header for now.
+ *   tools/fluxapp/embed-sync.sh fluxwp). There are no classic pages: without Flux GraphQL (0.2.0+) or the
+ *   bundle the page says it cannot open. The Presets tab of Theme Settings (Flux Setup) stays a PHP page.
  *
  * @package fluxwp
  */
@@ -77,39 +76,6 @@ function flx_flux_available() {
 	return file_exists( get_theme_file_path( 'assets/flux/flux-modules.js' ) ) && function_exists( 'flx_gql_ready' ) && function_exists( 'flx_gql_all_caps' ) && flx_gql_ready();
 }
 
-/** This user sees the React screens (default) and has not chosen the classic pages. */
-function flx_flux_ui() {
-	return flx_flux_available() && 'classic' !== get_user_meta( get_current_user_id(), 'flx_ui', true );
-}
-
-/**
- * Link that switches the current user between the views.
- *
- * @param string $page Admin page slug (flx-ayarlar | flx-sistem).
- * @param string $ui   flux | classic.
- */
-function flx_ui_switch_url( $page, $ui ) {
-	return wp_nonce_url( add_query_arg( array( 'page' => $page, 'flx_ui' => 'flux' === $ui ? 'flux' : 'classic' ), admin_url( 'themes.php' ) ), 'flx_ui' );
-}
-
-add_action(
-	'admin_init',
-	static function () {
-		$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-		if ( ! isset( $_GET['flx_ui'] ) || ! in_array( $page, array( 'flx-ayarlar', 'flx-sistem' ), true ) || ! current_user_can( 'manage_options' ) ) { // phpcs:ignore WordPress.Security.NonceVerification
-			return;
-		}
-		check_admin_referer( 'flx_ui' );
-		if ( 'classic' === $_GET['flx_ui'] ) {
-			update_user_meta( get_current_user_id(), 'flx_ui', 'classic' );
-		} else {
-			delete_user_meta( get_current_user_id(), 'flx_ui' );
-		}
-		wp_safe_redirect( admin_url( 'themes.php?page=' . $page ) );
-		exit;
-	}
-);
-
 /** The chunked bundle loads as an ES module. */
 function flx_flux_module_tag( $tag, $handle ) {
 	if ( 'flx-flux' !== $handle ) {
@@ -131,21 +97,20 @@ function flx_flux_module_tag( $tag, $handle ) {
  *
  * @param string $page Admin page slug (flx-ayarlar | flx-sistem).
  */
-function flx_flux_options( $page = '' ) {
+function flx_flux_options( $page = '' ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found -- the shell passes the page.
 	$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#2c7a64';
 	return array(
-		'colors'     => array(
+		'colors' => array(
 			'primary'         => $accent,
 			'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
 		),
-		'classicUrl' => flx_ui_switch_url( '' !== $page ? $page : 'flx-ayarlar', 'classic' ),
 	);
 }
 
-/** Theme Settings opens the React screen except on its Presets tab (a classic page of its own). */
+/** Theme Settings opens the React screen except on its Presets tab (the Flux Setup panel). */
 function flx_flux_settings_ui() {
 	$tab = isset( $_GET['bolum'] ) ? sanitize_key( wp_unslash( $_GET['bolum'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-	return 'onayarlar' !== $tab && flx_flux_ui();
+	return 'onayarlar' !== $tab;
 }
 
 // Flux GraphQL screen shell: first data printed by PHP, in-place navigation from the menu.
@@ -177,7 +142,6 @@ add_action(
 			'flx-sistem',
 			$base + array(
 				'module'       => 'flxt-theme-system',
-				'enabled'      => 'flx_flux_ui',
 				'container_id' => 'flx-theme-system-app',
 			)
 		);
@@ -189,7 +153,7 @@ add_action(
  * Loads the bundle for one screen.
  *
  * @param string $module  flxt-theme-settings | flxt-theme-system.
- * @param string $page    Admin page slug (for the classic-view link).
+ * @param string $page    Admin page slug.
  * @param string $root_id Mount element ID.
  */
 function flx_flux_assets( $module, $page, $root_id ) {
@@ -223,28 +187,38 @@ function flx_flux_assets( $module, $page, $root_id ) {
 	);
 }
 
-/** Prints the mount point of a React screen. */
+/** Prints the mount point of a React screen, or the "could not be loaded" box when it cannot open. */
 function flx_flux_root( $root_id ) {
-	echo '<style>#' . esc_attr( $root_id ) . '.flux-root{height:auto;background:transparent;font-family:inherit}</style>';
-	echo '<div class="wrap flx-flux-wrap"><div id="' . esc_attr( $root_id ) . '"><noscript>' . esc_html__( 'JavaScript is required for this screen.', 'fluxwp' ) . '</noscript></div></div>';
-}
-
-/** "New view" bar on top of a classic page (only when the React screen is available). */
-function flx_flux_new_view_link( $page ) {
-	if ( ! flx_flux_available() ) {
+	if ( function_exists( 'flx_admin_screen_render' ) && flx_admin_screen_render() ) {
 		return;
 	}
-	echo '<p><a class="button" href="' . esc_url( flx_ui_switch_url( $page, 'flux' ) ) . '">' . esc_html__( 'New view', 'fluxwp' ) . '</a> <span class="description">' . esc_html__( 'Open the new view (same features, works in the FluxWP app too).', 'fluxwp' ) . '</span></p>';
+	if ( ! flx_flux_available() ) {
+		if ( function_exists( 'flx_admin_screen_unavailable' ) ) {
+			flx_admin_screen_unavailable();
+		} else {
+			echo '<div class="wrap"><div class="notice notice-error"><p>' . esc_html__( 'Flux GraphQL is not active, so FluxWP screens cannot open.', 'fluxwp' ) . '</p></div></div>';
+		}
+		return;
+	}
+	echo '<style>#' . esc_attr( $root_id ) . '.flux-root{height:auto;background:transparent;font-family:inherit}</style>';
+	echo '<div class="wrap flx-flux-wrap"><div id="' . esc_attr( $root_id ) . '"><noscript>' . esc_html__( 'JavaScript is required for this screen.', 'fluxwp' ) . '</noscript></div>';
+	if ( function_exists( 'flx_admin_screen_failsafe' ) ) {
+		flx_admin_screen_failsafe( $root_id );
+	}
+	echo '</div>';
 }
 
-/* Assets are enqueued for the two pages only, and only when their React screen is the one shown. */
+/* Assets are enqueued for the two pages only (not on the Presets tab, which stays a PHP page). */
 add_action(
 	'admin_enqueue_scripts',
 	static function ( $hook ) {
+		if ( ! flx_flux_available() ) {
+			return;
+		}
 		$tab = isset( $_GET['bolum'] ) ? sanitize_key( wp_unslash( $_GET['bolum'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-		if ( 'appearance_page_flx-ayarlar' === $hook && 'onayarlar' !== $tab && flx_flux_ui() ) {
+		if ( 'appearance_page_flx-ayarlar' === $hook && ! ( 'onayarlar' === $tab && function_exists( 'flxk_render_panel' ) ) ) {
 			flx_flux_assets( 'flxt-theme-settings', 'flx-ayarlar', 'flx-theme-settings-app' );
-		} elseif ( 'appearance_page_flx-sistem' === $hook && flx_flux_ui() ) {
+		} elseif ( 'appearance_page_flx-sistem' === $hook ) {
 			flx_flux_assets( 'flxt-theme-system', 'flx-sistem', 'flx-theme-system-app' );
 		}
 	}

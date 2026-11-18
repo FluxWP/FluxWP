@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.9.0
+- **Klasik sayfalar kaldırıldı.** Tema Ayarları (Genel) ve Sistem Kontrolü yalnız React ekranıyla açılır; "Klasik görünüm" bağlantısı, görünüm değiştirme (`flx_ui`), klasik ayar formu ve renk seçici yüklemesi silindi. Ön ayarlar sekmesi (Flux Setup) aynen durur.
+- Ekran açılamazsa (Flux GraphQL hazır değil, bundle yüklenmedi) boş sayfa yerine "Bu ekran yüklenemedi" kutusu ve **Sayfayı yenile** düğmesi çıkar.
+
 ## 0.8.1
 - Tema Ayarları ve Sistem Kontrolü ekranları Flux GraphQL ekran kabuğundan açılır: ilk veri PHP'de sayfaya basılır (yükleniyor göstergesi yok), menüden diğer Flux ekranlarına sayfa yenilenmeden geçilir. Ekranın parçaları sayfa başında birlikte iner (modulepreload).
 - Ortak modül paketi yenilendi.

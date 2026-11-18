@@ -121,7 +121,7 @@ export const providerLabel = (ws: Workspace, id: string): string => ws.catalog.p
 
 const EMPTY_MODEL: Model = { id: '', label: '', kind: 'IMAGE', routes: [], providers: [], auto: null, aspects: [], resolutions: [], qualities: [], durationMin: null, durationMax: null, durationDefault: null, maxRefs: 14, maxCount: 1, mask: false, prices: [] };
 
-/** Brings the stored settings in line with the model's abilities (same rules as the classic screen). */
+/** Brings the stored settings in line with the model's abilities. */
 export function normalizeCfg(c: Cfg, ws: Workspace): { cfg: Cfg; model: Model } {
   const out: Cfg = { ...c, kind: c.kind === 'video' ? 'video' : 'image' };
   const list = modelsOf(ws, out.kind);
