@@ -5,11 +5,11 @@ import { useTranslation } from 'react-i18next';
 import { type FlxgList, type FlxgNotif, type FlxgView } from '@fluxwp/core';
 import { flxgGraphQL } from '@fluxwp/graphql/flx-tasks';
 import { useHost } from '../host';
-import { addDays, dayKey, rank, store, FlxgEngine, type FlxgDocRef, type Route } from './engine';
+import { addDays, dayKey, rank, store, FlxgEngine, type FlxgDocRef, type FlxgPreload, type Route } from './engine';
 import { addMenu, folderMenu, listMenu, listSettings, spaceMenu, spaceModal, tree, treeDragProps, treeDropProps } from './admin';
 import { AiPanel, DashboardPage, openAI, ProfilePage, SettingsPage, themeMenu, useThemeMode } from './pages';
 import { DocPage, docMenu, newDoc, useDocBridge } from './docs';
-import { setYtgLang, tt, flxgLocale } from './i18n';
+import { loadYtgLang, setYtgLang, tt, flxgLocale, ytgLangReady } from './i18n';
 import { ago, Avatar, fullTime, Ic, Layer, Ui, FlxgCtx, useYtg, type Ctx } from './ui';
 import { BoardView, BulkBar, CalendarView, EmptyState, ListView, quickCreate, Toolbar } from './views';
 import { GanttView } from './gantt';
@@ -50,6 +50,22 @@ function toHash(r: Route) {
   return h;
 }
 
+/** The data flx-tasks printed into the page (#flxg-pre), for the first mount only. */
+let taken: FlxgPreload | null = null;
+function takePreload(): FlxgPreload | null {
+  const el = document.getElementById('flxg-pre');
+  // A render that was thrown away (Suspense while the language loads, StrictMode) asks again: same data.
+  if (!el) return taken;
+  el.remove();
+  try {
+    const v = JSON.parse(el.textContent || 'null') as FlxgPreload | null;
+    taken = v && v.boot && v.boot.me ? v : null;
+  } catch {
+    taken = null;
+  }
+  return taken;
+}
+
 function useTheme(ref: React.RefObject<HTMLElement | null>) {
   const mode = useThemeMode();
   const read = () => {
@@ -87,8 +103,13 @@ export function TasksScreen() {
       if (host.startPage === 'dashboard' || host.startPage === 'settings') return { page: host.startPage } as Partial<Route>;
       // Son açılan liste/proje.
       const m = /^(list|space):(\d+)$/.exec(store.get('last') ?? '');
-      return m ? ({ page: m[1], id: +m[2]! } as Partial<Route>) : {};
+      if (m) return { page: m[1], id: +m[2]! } as Partial<Route>;
+      // Another browser: the scope the server remembers (and preloaded).
+      const sc = pre?.scope;
+      return sc && sc.type !== 'home' ? ({ page: sc.type, id: sc.id } as Partial<Route>) : {};
     };
+    // wp-admin: the plugin printed the first data into the page (flxg_print_preload); read it once.
+    const pre = host.mode === 'wp' ? takePreload() : null;
     const initial = host.mode === 'wp' ? fromWp() : (store.json<Partial<Route>>('route-' + host.scope) ?? {});
     const e = new FlxgEngine(flxgGraphQL(host.client), initial);
     const ui = new Ui();
@@ -105,12 +126,22 @@ export function TasksScreen() {
         host.notify?.({ title: notifText(e, n), body: n.title, onClick: () => void e.go({ page: 'inbox', task: n.task }) });
       host.refreshCounts?.();
     };
+    if (pre) {
+      try {
+        e.hydrate(pre);
+      } catch {
+        e.S.ready = false;
+      }
+    }
     return { e, ui };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [host.client, host.scope]);
   useEffect(() => {
+    taken = null; // Mounted: a later mount (navigator) loads fresh.
+    // Started from the page's data: only load what it did not hold, then keep in sync.
+    if (c.e.hydrated && c.e.S.ready) void c.e.start();
     // Shown again after being kept hidden (app): the data is still here, only pick up changes.
-    if (c.e.S.ready) c.e.resume();
+    else if (c.e.S.ready) c.e.resume();
     else void c.e.boot();
     const onHash = () => host.mode === 'wp' && void c.e.go(parseHash(location.hash));
     window.addEventListener('hashchange', onHash);
@@ -123,9 +154,27 @@ export function TasksScreen() {
     };
   }, [c, host.mode]);
 
+  // A language other than English / Turkish: its words load beside the first data (one small file).
+  const langOk = ytgLangReady(i18n.language);
+  const [, setLangTick] = useState(0);
+  useEffect(() => {
+    if (!langOk) void loadYtgLang(i18n.language).then(() => setLangTick((n) => n + 1));
+  }, [langOk, i18n.language]);
+
   return (
     <FlxgCtx.Provider value={c}>
-      <Shell rootRef={rootRef} theme={theme} />
+      {langOk ? (
+        <Shell rootRef={rootRef} theme={theme} />
+      ) : (
+        <div ref={rootRef} className="flxg flxg-flux" data-theme={theme}>
+          <div className="flxg-shell">
+            <SideSkeleton />
+            <main className="flxg-main">
+              <Skeleton />
+            </main>
+          </div>
+        </div>
+      )}
     </FlxgCtx.Provider>
   );
 }
@@ -205,7 +254,7 @@ function Shell({ rootRef, theme }: { rootRef: React.RefObject<HTMLDivElement | n
       onKeyDown={() => e.touchInput()}
     >
       <div className="flxg-shell">
-        {S.ready && <Side closeNav={closeNav} hide={() => setCol(true)} setW={setSideW} setResizing={setResizing} collapse={() => setCol(true)} />}
+        {S.ready ? <Side closeNav={closeNav} hide={() => setCol(true)} setW={setSideW} setResizing={setResizing} collapse={() => setCol(true)} /> : <SideSkeleton />}
         <div className="flxg-nav-shade" onClick={closeNav} />
         <main className="flxg-main">{main}</main>
       </div>
@@ -216,9 +265,51 @@ function Shell({ rootRef, theme }: { rootRef: React.RefObject<HTMLDivElement | n
   );
 }
 
+/** The side menu's frame while the first data is on its way (app; wp-admin gets the data with the page). */
+function SideSkeleton() {
+  const host = useHost();
+  return (
+    <aside className="flxg-side" aria-busy="true">
+      <div className="flxg-brand">
+        {host.appIcon ? (
+          <img className="flxg-brand-logo" src={host.appIcon} alt="" />
+        ) : (
+          <span className="flxg-brand-mark">
+            <Ic n="check" s={16} />
+          </span>
+        )}
+        <div className="flxg-brand-text">
+          <b>{tt("Tasks")}</b>
+          <span>{host.siteName ?? ''}</span>
+        </div>
+      </div>
+      <nav className="flxg-nav">
+        <span className="flxg-nav-item">
+          <Ic n="home" s={17} />
+          <span className="flxg-nav-label">{tt("My tasks")}</span>
+        </span>
+        <span className="flxg-nav-item">
+          <Ic n="inbox" s={17} />
+          <span className="flxg-nav-label">{tt("Notifications")}</span>
+        </span>
+      </nav>
+      <div style={{ padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+        {['45%', '70%', '62%', '74%', '58%'].map((w, i) => (
+          <span key={i} className="flxg-sk" style={{ display: 'block', width: w, height: i ? 14 : 10 }} />
+        ))}
+      </div>
+    </aside>
+  );
+}
+
 function Skeleton() {
   return (
     <div className="flxg-content">
+      <header className="flxg-top">
+        <div className="flxg-top-title">
+          <span className="flxg-sk" style={{ display: 'block', width: 140, height: 18 }} />
+        </div>
+      </header>
       <div style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 14 }}>
         {['35%', '80%', '72%', '86%', '64%', '78%'].map((w, i) => (
           <span key={i} className="flxg-sk" style={{ display: 'block', width: w, height: i ? 16 : 24 }} />

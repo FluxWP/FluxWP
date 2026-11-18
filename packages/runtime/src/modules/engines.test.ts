@@ -83,6 +83,40 @@ describe('platform ports', () => {
     engine.dispose();
   });
 
+  it('opens from preloaded data without a request, and boot asks for the scope at the same time', async () => {
+    const calls: string[] = [];
+    const track: typeof demoFetch = (input, init) => (calls.push(String(input).replace(/^.*flx-tasks\/v1\//, '').replace(/\?.*$/, '')), demoFetch(input, init));
+    const api = flxg(createClient({ siteUrl: DEMO_SITE, fetchImpl: track, getCredentials: async () => ({ token: 'demo' }) }));
+    const boot = await api.boot();
+    const [meta, tasks] = await Promise.all([api.home(), api.tasks({ mine: 1 })]);
+    calls.length = 0;
+    const engine = new FlxgEngine(api, { page: 'home' }, memoryPorts());
+    engine.hydrate({ boot, scope: { type: 'home', id: 0, meta, tasks } });
+    expect(engine.S.ready).toBe(true);
+    expect(engine.S.scope?.type).toBe('home');
+    expect(Object.keys(engine.S.tasks).length).toBe(tasks.tasks.length);
+    await engine.start();
+    expect(calls.filter((c) => c !== 'sync')).toEqual([]);
+    engine.dispose();
+
+    // A preload of another scope is left out; start() loads the one the route asks for.
+    const list = boot.lists[0]!;
+    const other = new FlxgEngine(api, { page: 'list', id: list.id }, memoryPorts());
+    other.hydrate({ boot, scope: { type: 'home', id: 0, meta, tasks } });
+    expect(other.S.scope).toBeNull();
+    await other.start();
+    expect(other.S.scope).toMatchObject({ type: 'list', id: list.id });
+    other.dispose();
+
+    // Without preload, the scope request leaves together with boot.
+    calls.length = 0;
+    const cold = new FlxgEngine(api, { page: 'list', id: list.id }, memoryPorts());
+    await cold.boot();
+    expect(calls.slice(0, 3).sort()).toEqual(['boot', 'lists/' + list.id, 'tasks'].sort());
+    expect(cold.S.scope).toMatchObject({ type: 'list', id: list.id });
+    cold.dispose();
+  });
+
   it('notifies only when the app is hidden', () => {
     const shown: string[] = [];
     const hidden = memoryPorts({ visible: false });

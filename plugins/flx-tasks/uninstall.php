@@ -22,6 +22,7 @@ delete_transient( 'flxg_ai_models' ); // eski sürümlerden kalan önbellek
 delete_transient( 'flxg_uploads_size' );
 $wpdb->query( "DELETE FROM {$wpdb->usermeta} WHERE meta_key = 'flxg_email'" ); // phpcs:ignore
 $wpdb->query( "DELETE FROM {$wpdb->usermeta} WHERE meta_key = 'flxg_prefs'" ); // phpcs:ignore
+$wpdb->query( "DELETE FROM {$wpdb->usermeta} WHERE meta_key = 'flxg_last_scope'" ); // phpcs:ignore
 $flxg_up = wp_upload_dir( null, false );
 $flxg_dir = trailingslashit( $flxg_up['basedir'] ) . 'flx-tasks';
 if ( is_dir( $flxg_dir ) ) {

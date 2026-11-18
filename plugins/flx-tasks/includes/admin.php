@@ -102,6 +102,7 @@ add_action(
 /* The page body: the screen shell prints the React screen; without Flux GraphQL there is nothing to show. */
 function flxg_render_app() {
 	if ( flxg_flux_available() && flx_admin_screen_render() ) {
+		flxg_print_preload();
 		return;
 	}
 	echo '<div class="wrap"><h1>' . esc_html__( 'Tasks', 'flx-tasks' ) . '</h1><div class="notice notice-error"><p>' . esc_html__( 'Flux Tasks needs the Flux GraphQL plugin. Install and activate it to open this screen.', 'flx-tasks' ) . '</p></div></div>';
@@ -164,3 +165,65 @@ add_action(
 	},
 	80
 );
+
+/*
+ * First open without waiting on the network: the data the screen asks for first (boot, and the project or list
+ * the user had open last) is printed into the page, so the screen draws in full on its first render. Without
+ * it the screen sent /boot and then the scope's /lists + /tasks one after another, each a full WordPress
+ * start on the server (1–2 s apiece on shared hosting). The screen reads #flxg-pre once (TasksScreen.tsx).
+ */
+function flxg_print_preload() {
+	$start = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : 'flx-tasks'; // phpcs:ignore WordPress.Security.NonceVerification
+	$pre   = array( 'boot' => flxg_rest_boot() );
+	if ( 'flx-tasks' === $start ) {
+		$scope = flxg_preload_scope( flxg_last_scope() );
+		if ( $scope ) {
+			$pre['scope'] = $scope;
+		}
+	}
+	$json = wp_json_encode( $pre, JSON_HEX_TAG | JSON_HEX_AMP | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
+	if ( is_string( $json ) ) {
+		echo '<script type="application/json" id="flxg-pre">' . $json . '</script>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- JSON, < and & hex-escaped.
+	}
+}
+
+/**
+ * The same answers the screen would get from /lists/{id} (or /spaces/{id}, /home) and /tasks for a scope.
+ *
+ * @param string $scope 'list:5', 'space:2' or 'home'.
+ * @return array|null { type, id, meta, tasks } or null when the scope is gone or not visible.
+ */
+function flxg_preload_scope( $scope ) {
+	list( $type, $id ) = array_pad( explode( ':', $scope ), 2, 0 );
+	$id                = (int) $id;
+	$q                 = new WP_REST_Request( 'GET' );
+	if ( 'list' === $type ) {
+		$q->set_url_params( array( 'id' => $id ) );
+		$meta = flxg_rest_list_get( $q );
+		$t    = array( 'list' => $id );
+	} elseif ( 'space' === $type ) {
+		$q->set_url_params( array( 'id' => $id ) );
+		$meta = flxg_rest_space_get( $q );
+		$t    = array( 'space' => $id );
+	} else {
+		$type = 'home';
+		$id   = 0;
+		$meta = flxg_rest_home();
+		$t    = array( 'mine' => 1 );
+	}
+	if ( is_wp_error( $meta ) ) {
+		return 'home' === $type ? null : flxg_preload_scope( 'home' );
+	}
+	$tq = new WP_REST_Request( 'GET' );
+	$tq->set_query_params( $t );
+	$tasks = flxg_rest_tasks( $tq );
+	if ( is_wp_error( $tasks ) ) {
+		return null;
+	}
+	return array(
+		'type'  => $type,
+		'id'    => $id,
+		'meta'  => $meta,
+		'tasks' => $tasks,
+	);
+}

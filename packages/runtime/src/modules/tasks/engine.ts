@@ -18,6 +18,16 @@ export type Group = {
   patch: ((task: FlxgTask, from: string | null) => Record<string, unknown> | null) | null;
   user?: number; list?: number; statusType?: string;
 };
+type ScopeMeta = Awaited<ReturnType<FlxgApi['home']>>;
+type ScopeTasks = Awaited<ReturnType<FlxgApi['tasks']>>;
+/**
+ * Data the page already holds when the screen mounts (wp-admin: printed by the plugin, #flxg-pre): boot and the
+ * scope the user had open last. The screen then draws in full on its first render, with no request first.
+ */
+export interface FlxgPreload {
+  boot: FlxgBoot;
+  scope?: { type: Scope['type']; id: number; meta: ScopeMeta; tasks: ScopeTasks };
+}
 type ScopeField = { key: string; id: number; ids: number[]; name: string; type: string; options: FlxgField['options'] };
 
 export interface FlxgState {
@@ -87,6 +97,10 @@ export class FlxgEngine {
   private inFlight = false;
   private fail = 0;
   private loadSeq = 0;
+  /** Scope data asked for together with boot (one round trip instead of two). */
+  private prefetch: { key: string; p: Promise<[ScopeMeta, ScopeTasks] | null> } | null = null;
+  /** Started from preloaded data (hydrate), not from boot(). */
+  hydrated = false;
   private prefTimer: ReturnType<typeof setTimeout> | undefined;
   private prefQueue: Record<string, unknown> = {};
   private listeners: Record<string, Set<(a?: unknown) => void>> = {};
@@ -136,6 +150,13 @@ export class FlxgEngine {
   /* ---------------- Açılış ---------------- */
   async boot() {
     try {
+      // The scope the screen opens on does not depend on boot: ask for both at once.
+      const r = this.S.route;
+      const type = r.page === 'list' || r.page === 'space' ? r.page : !r.page || r.page === 'home' ? 'home' : null;
+      if (type) {
+        const id = type === 'home' ? 0 : +r.id || 0;
+        this.prefetch = { key: type + id, p: this.fetchScope(type, id).catch(() => null) };
+      }
       const b = await this.api.boot();
       this.applyBoot(b);
       this.S.ready = true;
@@ -145,6 +166,35 @@ export class FlxgEngine {
       this.S.error = e instanceof Error ? e.message : String(e);
       this.bump();
     }
+  }
+  /**
+   * Starts from data the page already holds (FlxgPreload), synchronously: the first render shows the side menu,
+   * the top bar and the tasks. A preloaded scope that is not the one the route asks for is left out; start() loads it.
+   */
+  hydrate(pre: FlxgPreload) {
+    this.applyBoot(pre.boot);
+    this.S.ready = true;
+    this.hydrated = true;
+    const S = this.S;
+    const next = this.normRoute({ ...S.route });
+    S.route = next;
+    S.openTask = next.task;
+    this.onRoute?.(next);
+    const sc = pre.scope;
+    if (PLAIN_PAGES.includes(next.page)) {
+      S.scope = null;
+      S.tasks = {};
+    } else if (sc && sc.type === next.page && (sc.type === 'home' || sc.id === next.id)) {
+      this.applyScope(sc.type, sc.id, sc.meta, sc.tasks);
+      this.pickView(next.view);
+    }
+    this.bump();
+  }
+  /** After hydrate: load the scope if the preload did not hold it, then keep in sync. */
+  async start() {
+    const p = this.S.route.page;
+    if (!this.S.scope && !PLAIN_PAGES.includes(p) && !this.S.loading) await this.go(this.S.route, true);
+    this.schedule();
   }
   private applyBoot(b: FlxgBoot) {
     const S = this.S;
@@ -189,10 +239,7 @@ export class FlxgEngine {
     const sameScope = !force && S.scope && next.page === S.route.page && next.id === S.route.id;
     S.route = next;
     this.onRoute?.(next);
-    if (!['home', 'list', 'space', ...PLAIN_PAGES].includes(next.page)) next.page = 'home';
-    if (next.page === 'list' && !this.list(next.id)) next.page = 'home';
-    if (next.page === 'space' && !this.space(next.id)) next.page = 'home';
-    if ((next.page === 'dashboard' || next.page === 'settings') && !S.me?.can.manage) next.page = 'home';
+    this.normRoute(next);
     S.openTask = next.task;
     if (PLAIN_PAGES.includes(next.page)) {
       if (next.page !== 'inbox') {
@@ -220,6 +267,14 @@ export class FlxgEngine {
       S.loading = false;
       this.bump();
     }
+  }
+  /** Pages that do not exist or that this user cannot open fall back to home. */
+  private normRoute(next: Route) {
+    if (!['home', 'list', 'space', ...PLAIN_PAGES].includes(next.page)) next.page = 'home';
+    if (next.page === 'list' && !this.list(next.id)) next.page = 'home';
+    if (next.page === 'space' && !this.space(next.id)) next.page = 'home';
+    if ((next.page === 'dashboard' || next.page === 'settings') && !this.S.me?.can.manage) next.page = 'home';
+    return next;
   }
   /** Görev aç/kapat (görünüm aynı kalır). */
   openTask(id: number) {
@@ -361,12 +416,21 @@ export class FlxgEngine {
     if (!sc) return {};
     return sc.type === 'list' ? { list: sc.id } : sc.type === 'space' ? { space: sc.id } : { mine: 1 };
   }
-  async loadScope(type: Scope['type'], id: number) {
-    const seq = ++this.loadSeq;
+  private fetchScope(type: Scope['type'], id: number): Promise<[ScopeMeta, ScopeTasks]> {
     const meta = type === 'list' ? this.api.list(id) : type === 'space' ? this.api.space(id) : this.api.home();
     const q = type === 'list' ? { list: id } : type === 'space' ? { space: id } : { mine: 1 };
-    const [m, r] = await Promise.all([meta, this.api.tasks(q)]);
+    return Promise.all([meta, this.api.tasks(q)]);
+  }
+  async loadScope(type: Scope['type'], id: number) {
+    const seq = ++this.loadSeq;
+    const pf = this.prefetch;
+    this.prefetch = null;
+    const [m, r] = (pf && pf.key === type + (+id || 0) ? await pf.p : null) ?? (await this.fetchScope(type, id));
     if (seq !== this.loadSeq) return false;
+    this.applyScope(type, id, m, r);
+    return true;
+  }
+  private applyScope(type: Scope['type'], id: number, m: ScopeMeta, r: ScopeTasks) {
     const S = this.S;
     S.scope = { type, id: +id || 0, role: m.role ?? (type === 'home' ? 'admin' : 'view') };
     S.views = m.views ?? [];
@@ -376,7 +440,6 @@ export class FlxgEngine {
     for (const x of r.tasks) S.tasks[x.id] = x;
     S.since = r.time;
     S.selected = {};
-    return true;
   }
   async reloadTasks() {
     if (!this.S.scope) return;

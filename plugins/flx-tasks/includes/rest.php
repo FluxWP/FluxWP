@@ -287,6 +287,7 @@ function flxg_rest_space_get( WP_REST_Request $r ) {
 	if ( ! $space || ( ! flxg_can_space( $space ) && ! $lists ) ) {
 		return flxg_error( 'flxg_404', __( 'Project not found.', 'flx-tasks' ), 404 );
 	}
+	flxg_remember_scope( 'space', $id );
 	return array(
 		'space'  => $space,
 		'role'   => flxg_space_role( $space ),
@@ -410,6 +411,7 @@ function flxg_rest_list_get( WP_REST_Request $r ) {
 	if ( ! $list || ! flxg_can_list( $list ) ) {
 		return flxg_error( 'flxg_404', __( 'List not found or you don\'t have access.', 'flx-tasks' ), 404 );
 	}
+	flxg_remember_scope( 'list', $list['id'] );
 	return array(
 		'list'   => $list,
 		'role'   => flxg_list_role( $list ),
@@ -615,6 +617,7 @@ function flxg_rest_field_delete( WP_REST_Request $r ) {
 
 function flxg_rest_home() {
 	$uid = get_current_user_id();
+	flxg_remember_scope( 'home' );
 	return array(
 		'views'  => flxg_get_views( 'home', $uid, $uid ),
 		'fields' => array(),
@@ -1136,4 +1139,24 @@ function flxg_rest_ai_task( WP_REST_Request $r ) {
 	}
 	$b = flxg_body( $r );
 	return flxg_ai_task_action( $id, (string) ( $b['action'] ?? '' ), (string) ( $b['hint'] ?? '' ) );
+}
+
+/** The scope the user opened last ('list:5', 'space:2' or 'home'). */
+function flxg_last_scope() {
+	$v = (string) get_user_meta( get_current_user_id(), 'flxg_last_scope', true );
+	return preg_match( '/^(list|space):\d+$|^home$/', $v ) ? $v : 'home';
+}
+
+/**
+ * Remembers the scope the screen loaded (the scope endpoints call it), for the next page's preload.
+ *
+ * @param string $type list|space|home.
+ * @param int    $id   Scope id.
+ */
+function flxg_remember_scope( $type, $id = 0 ) {
+	$v   = 'home' === $type ? 'home' : $type . ':' . (int) $id;
+	$uid = get_current_user_id();
+	if ( $uid && get_user_meta( $uid, 'flxg_last_scope', true ) !== $v ) {
+		update_user_meta( $uid, 'flxg_last_scope', $v );
+	}
 }

@@ -624,6 +624,9 @@ function HeadRow({ cols, onResize }: { cols: Col[]; onResize: () => void }) {
   );
 }
 
+/** Rows drawn on a list's first paint; the rest follow a frame later. */
+const FIRST_ROWS = 60;
+
 export function ListView() {
   const c = useYtg();
   const { e, ui } = c;
@@ -640,6 +643,16 @@ export function ListView() {
   const canAddAny = e.scopeLists().some((l) => rank(l.role) >= 3);
   const [dragKids, setDragKids] = useState<Set<number>>(new Set());
   const [addIn, setAddIn] = useState<{ k: string; n: number } | null>(null);
+  // A long list paints its first screenful at once and the rest right after (a frame later), so opening
+  // a scope with a thousand tasks does not wait for every row.
+  const [full, setFull] = useState(false);
+  useEffect(() => {
+    if (full) return;
+    let t: ReturnType<typeof setTimeout> | undefined;
+    const f = requestAnimationFrame(() => (t = setTimeout(() => setFull(true), 0)));
+    return () => (cancelAnimationFrame(f), clearTimeout(t));
+  }, [full]);
+  let budget = full ? Infinity : FIRST_ROWS;
   if (!tasks.length && S.scope?.type === 'home') return <EmptyState />;
   const hasMatch = (task: FlxgTask): boolean => (kidsIdx[task.id] ?? []).some((k) => e.taskMatches(k) || hasMatch(k));
   const visibleKids = (task: FlxgTask) => (kidsIdx[task.id] ?? []).filter((k) => !subFilter || e.taskMatches(k) || S.keep[k.id] || hasMatch(k));
@@ -730,7 +743,12 @@ export function ListView() {
             total += g.tasks.length;
             const isCol = collapsed.includes(g.key);
             const rows: ReactNode[] = [];
-            if (!isCol) g.tasks.forEach((task) => rowsOf(task, 0, 0, rows));
+            if (!isCol)
+              for (const task of g.tasks) {
+                if (budget <= 0) break;
+                rowsOf(task, 0, 0, rows);
+                budget -= 1;
+              }
             return (
               <GroupSection
                 key={g.key}
