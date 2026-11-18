@@ -302,5 +302,6 @@
  "Proje yöneticileri ({n}) her zaman erişir.": "Project admins ({n}) always have access.",
  "Yorum ekle": "Add comment",
  "Yorum ekle (Ctrl+Alt+M)": "Add comment (Ctrl+Alt+M)",
- "Çözülmemiş": "Unresolved"
+ "Çözülmemiş": "Unresolved",
+ "Yapay zekâ kapalı": "AI is off"
 }

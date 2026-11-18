@@ -1,5 +1,9 @@
 # Flux Tasks — Değişiklikler
 
+## 0.18.1
+- Dokümanda "Yapay zekâ" düğmesi (ve seçili metindeki balon, "/" menüsü) artık açılıyor: istem kutusu + Gönder, hazır işlemler ve sonuç önizlemesi görünür. Panel önceden ekranın stil alanının dışına ekleniyordu, bu yüzden basınca hiçbir şey görünmüyordu. Görsel yeniden boyutlandırma ipucu ve dosya üstü düğmesi de aynı sebeple düzeltildi.
+- Flux AI kurulu değilse ya da anahtar/model yoksa düğme sessiz kalmaz: nedenini söyleyen bir pencere açılır.
+- Profilden seçilen dil artık Flux Tasks'ın sunucu tarafı metinlerine (hata mesajları vb.) de uygulanır; önceden REST/GraphQL istekleri site dilini kullanıyordu.
 ## 0.18.0
 - Doküman sayfa ağacında sayfayı basılı tutup (fare: çekerek, dokunmatik: uzun basarak) sürükleyince sırası değişir, başka bir sayfanın altına alt sayfa olarak taşınır ya da üst düzeye çıkar. Bırakma yeri sürüklerken görünür: satırın üst/alt kenarında çizgi (kardeş olur; alt kenarda yatay konum üst düzeyleri seçer), ortasında çerçeve (alt sayfa olur). Başlık bağlantısından da sürüklenir (önceden yalnız boşluktan başlıyordu).
 - Kilitli sayfa taşınmaz, kilitli sayfanın içine bırakılmaz; sunucu da aynısını doğrular (423). Kaydedilemezse ağaç sunucudaki haline döner.
