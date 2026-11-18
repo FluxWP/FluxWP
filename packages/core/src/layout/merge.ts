@@ -27,7 +27,8 @@ export interface NavItem {
   /** wp-admin göreli yol (session ucu için), ör. admin.php?page=flx-tasks */
   path: string;
   url: string;
-  children: { id: string; title: string; path: string; url: string; badge?: number | string | undefined }[];
+  /** moduleId: alt sayfanın da yerel ekranı varsa (ör. flx-setup-settings → flxk-settings). */
+  children: { id: string; title: string; path: string; url: string; badge?: number | string | undefined; moduleId?: string | undefined }[];
   hidden: boolean;
   pinned: boolean;
 }
@@ -73,7 +74,7 @@ export function mergeLayout(input: {
       moduleId: modId,
       path: adminPath(m.url),
       url: m.url,
-      children: (m.items ?? []).map((c) => ({ id: c.slug, title: c.title, path: adminPath(c.url), url: c.url, badge: c.badge })),
+      children: (m.items ?? []).map((c) => ({ id: c.slug, title: c.title, path: adminPath(c.url), url: c.url, badge: c.badge, ...(native(bySlug.get(c.slug)) ? { moduleId: bySlug.get(c.slug) } : {}) })),
       hidden: false,
       pinned: false,
     };

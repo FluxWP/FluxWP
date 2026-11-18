@@ -27,6 +27,18 @@ describe('mergeLayout', () => {
     expect(nav[2]!.children[0]!.path).toBe('edit.php');
   });
 
+  it('alt sayfanın da yerel ekranı varsa child moduleId taşır', () => {
+    const m: MenuItem[] = [{ id: 'flx-setup', slug: 'flx-setup', title: 'FluxWP Panel', url: A + 'admin.php?page=flx-setup', icon: '', items: [
+      { slug: 'flx-setup', title: 'Paketler', url: A + 'admin.php?page=flx-setup' },
+      { slug: 'flx-setup-settings', title: 'Ayarlar', url: A + 'admin.php?page=flx-setup-settings' },
+      { slug: 'flx-setup-presets', title: 'Ön ayarlar', url: A + 'admin.php?page=flx-setup-presets' },
+    ] }];
+    const mods = { 'flxk-packages': { title: 'P', menu: 'flx-setup' }, 'flxk-settings': { title: 'S', menu: 'flx-setup-settings' } };
+    const nav = mergeLayout({ menu: m, modules: mods, implemented: new Set(['flxk-packages', 'flxk-settings']) });
+    expect(nav[0]!.kind).toBe('native');
+    expect(nav[0]!.children.map((c) => c.moduleId)).toEqual(['flxk-packages', 'flxk-settings', undefined]);
+  });
+
   it('menüsüz modül yalnız ekranı varsa ayrı öğe olur', () => {
     const nav = mergeLayout({ menu, modules, implemented: new Set(['flxb-review']) });
     expect(nav.map((n) => n.id)).toContain('mod:flxb-review');

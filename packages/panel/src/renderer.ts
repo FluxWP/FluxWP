@@ -4,6 +4,7 @@ import type { Renderer } from '@fluxwp/runtime';
 import { platform } from '@fluxwp/core';
 import { webUI } from '@fluxwp/render-web';
 import { ensureI18n } from './i18n';
+import { implemented } from './modules/registry';
 import { useRoute } from './state/route';
 
 const SCREENS: ReadonlySet<ScreenType> = new Set(['list', 'detail', 'form', 'dashboard', 'settings', 'content', 'tabs', 'native', 'web']);
@@ -15,7 +16,7 @@ export function desktopRenderer(): Renderer {
   const t = (key: string, vars?: Record<string, unknown>) => i18n.t(key, vars ?? {});
   return {
     screens: SCREENS,
-    native: new Set(NATIVE_SCREENS),
+    native: new Set([...NATIVE_SCREENS, ...implemented]),
     t,
     nav: {
       push: (route) => {
