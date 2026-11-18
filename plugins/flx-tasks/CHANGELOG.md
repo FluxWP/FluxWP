@@ -1,5 +1,8 @@
 # Flux Tasks — Değişiklikler
 
+## 0.16.4
+- Liste görünümünün arka planı artık beyaz (önceden gri). Sabit sütun başlıkları da beyaz.
+
 ## 0.16.3
 - Gantt: görev listesindeki Atanan hücresine tıklayınca kişi seçici açılır (önceden yalnız gösteriyordu).
 - Gantt: Başlangıç ya da Bitiş hücresine tıklayınca tarih aralığı açılır kutusu gelir: üstte Başlangıç / Bitiş sekmeleri, altta ortak tarih seçici. Başlangıcı seçip Uygula deyince Bitiş sekmesine geçer, bitişi seçince ikisi birlikte kaydedilir. Bitiş başlangıçtan önce seçilemez.

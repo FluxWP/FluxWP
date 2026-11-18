@@ -2050,3 +2050,9 @@ body.flxg-col-resizing, body.flxg-col-resizing * { cursor: col-resize !important
 .flxg-dnd-ghost .flxg-row { background: var(--panel); }
 .is-drop-over { background: color-mix(in srgb, var(--accent) 6%, transparent); }
 .is-drag-hidden { opacity: .35; }
+
+/* Liste görünümü beyaz zemin (0.16.4): içerik alanı ve sabit başlık hücreleri panel rengini alır. */
+.flxg-flux .flxg-content.is-list { background: var(--panel); }
+.flxg-flux .flxg-content.is-list .flxg-listview:not(.is-mobile) .flxg-row.is-head > :nth-child(1),
+.flxg-flux .flxg-content.is-list .flxg-listview:not(.is-mobile) .flxg-row.is-head > :nth-child(2) { background: var(--panel); }
+.flxg-flux .flxg-content.is-list .flxg-listview:not(.is-mobile) .flxg-row.is-head > :nth-child(2)::after { background: linear-gradient(to right, var(--panel), transparent); }
