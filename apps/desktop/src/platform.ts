@@ -1,6 +1,7 @@
-// Tauri platformu: CORS'suz HTTP (Rust tarafı), Keychain, sistem tarayıcısı, loopback OAuth, panel penceresi.
+// Tauri platformu: CORS'suz HTTP (Rust tarafı), Keychain, sistem tarayıcısı, fluxwp:// OAuth, panel penceresi.
 import { invoke } from '@tauri-apps/api/core';
 import { listen } from '@tauri-apps/api/event';
+import { onOpenUrl } from '@tauri-apps/plugin-deep-link';
 import { WebviewWindow } from '@tauri-apps/api/webviewWindow';
 import { Webview } from '@tauri-apps/api/webview';
 import { getCurrentWindow } from '@tauri-apps/api/window';
@@ -26,24 +27,38 @@ const storage: KeyValueStore = {
   remove: async (k) => localStorage.removeItem('flux.' + k),
 };
 
-async function prepareOAuthRedirect(): Promise<OAuthRedirect> {
-  const t = createI18n(usePrefs.getState().locale ?? navigator.language).t;
-  const port = await invoke<number>('oauth_listen', { title: t('oauth.doneTitle'), body: t('oauth.doneBody'), brand: brand.name });
-  let unlisten: (() => void) | null = null;
+/** Sign-in returns through the app's own `fluxwp://` link (no local server, so the sandbox needs no listening entitlement). */
+async function prepareOAuthRedirect(path = 'oauth/callback'): Promise<OAuthRedirect> {
+  const redirectUri = `fluxwp://${path}`;
+  let off: (() => void) | null = null;
+  let timer: ReturnType<typeof setTimeout> | null = null;
   let reject: ((e: Error) => void) | null = null;
+  const stop = () => {
+    off?.();
+    off = null;
+    if (timer) clearTimeout(timer);
+  };
   const result = new Promise<URL>((res, rej) => {
     reject = rej;
-    void listen<string>('oauth://callback', (e) => {
-      unlisten?.();
-      res(new URL(e.payload));
-    }).then((u) => (unlisten = u));
+    timer = setTimeout(() => {
+      stop();
+      rej(new Error('timeout'));
+    }, 600_000);
+    void onOpenUrl((urls) => {
+      const hit = urls.find((u) => u.startsWith(redirectUri));
+      if (!hit) return;
+      stop();
+      void getCurrentWindow().setFocus().catch(() => undefined);
+      res(new URL(hit));
+    }).then((u) => {
+      off = u;
+    });
   });
   return {
-    redirectUri: `http://127.0.0.1:${port}/callback`,
+    redirectUri,
     wait: () => result,
     cancel: () => {
-      unlisten?.();
-      void invoke('oauth_cancel');
+      stop();
       reject?.(new Error('cancelled'));
     },
   };

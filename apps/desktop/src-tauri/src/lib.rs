@@ -1,5 +1,4 @@
 mod embed;
-mod oauth;
 mod secure;
 
 use tauri::Manager;
@@ -12,7 +11,16 @@ fn webview_reload(app: tauri::AppHandle, label: String) -> Result<(), String> {
 }
 
 pub fn run() {
-    let builder = tauri::Builder::default()
+    let builder = tauri::Builder::default();
+    // Windows/Linux start a new process for a fluxwp:// link; hand it to the running one.
+    #[cfg(any(target_os = "windows", target_os = "linux"))]
+    let builder = builder.plugin(tauri_plugin_single_instance::init(|app, _args, _cwd| {
+        if let Some(w) = app.get_webview_window("main") {
+            let _ = w.set_focus();
+        }
+    }));
+    let builder = builder
+        .plugin(tauri_plugin_deep_link::init())
         .plugin(tauri_plugin_http::init())
         .plugin(tauri_plugin_opener::init());
     #[cfg(not(feature = "app-store"))]
@@ -21,13 +29,10 @@ pub fn run() {
         .plugin(tauri_plugin_process::init());
     builder
         .plugin(tauri_plugin_notification::init())
-        .manage(oauth::OAuthState::default())
         .invoke_handler(tauri::generate_handler![
             secure::secure_get,
             secure::secure_set,
             secure::secure_remove,
-            oauth::oauth_listen,
-            oauth::oauth_cancel,
             webview_reload,
             embed::embed_open,
             embed::embed_message,

@@ -33,7 +33,7 @@ fluxwp/
     ui-web/              web bileşen kütüphanesi (button, liste, tablo, form)
     ui-native/           RN bileşen kütüphanesi (aynı API isimleri)
   apps/
-    desktop/             Tauri 2 (src-tauri: keychain, deep link, loopback OAuth, updater)
+    desktop/             Tauri 2 (src-tauri: keychain, fluxwp:// deep link OAuth, updater)
     wp-embed/            (sırada) modül ekranlarını WP admin sayfasında açan bundle, bkz. §6
 ```
 Paket yöneticisi Bun (workspaces, `bun.lock`); testler Vitest. Dil: TypeScript strict. Test: Vitest (core), Playwright (panel ekran görüntüleri), Detox sonra.
@@ -49,7 +49,7 @@ Paket yöneticisi Bun (workspaces, `bun.lock`); testler Vitest. Dil: TypeScript 
 - `Account = {id, siteUrl, siteName, siteIcon, user:{id,name,avatar}, authType:'oauth'|'apikey'|'otp'}`; belirteçler SecureStore'da (macOS Keychain / Windows Credential Manager / iOS Keychain / Android Keystore), hesap listesi düz storage'da.
 - Hesap değiştirici sol üstte (masaüstü) / profil sekmesinde (mobil). Her hesap ayrı query cache anahtarı (`[accountId, ...]`), geçişte veri karışmaz.
 - Site eklerken keşif: `GET /wp-json/` → `flxapp/v1` namespace var mı. Varsa OAuth+PKCE; yoksa (Flux App kurulu değil) WordPress Application Passwords ile sınırlı mod (yalnız WP çekirdek modülleri). Böylece herhangi bir WP sitesine de bağlanır.
-- OAuth istemcisi: markaya göre değişen şema yüzünden sabit `flx-masaustu` yerine **dinamik kayıt** (`flxapp/v1/oauth/register`, zaten var) ya da Flux App'ya `fluxapp` istemcisi eklenir. Masaüstü: 127.0.0.1 loopback; mobil: `<scheme>://oauth/callback`.
+- OAuth istemcisi: markaya göre değişen şema yüzünden sabit `flx-masaustu` yerine **dinamik kayıt** (`flxapp/v1/oauth/register`, zaten var) ya da Flux App'ya `fluxapp` istemcisi eklenir. Masaüstü ve mobil: `<scheme>://oauth/callback`.
 
 ## 5. Düzenlenebilirlik
 Üç katman, sırayla birleşir (`core/layout`):
