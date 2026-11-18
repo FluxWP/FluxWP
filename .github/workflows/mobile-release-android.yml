@@ -69,6 +69,12 @@ jobs:
           bunx turbo run typecheck test --filter=@fluxwp/core --filter=@fluxwp/tokens --filter=@fluxwp/manifest --filter=@fluxwp/runtime
           bun run --filter @fluxwp/mobile typecheck
           node --test tools/release/*.test.mjs
+      - name: OTA runtime (fingerprint)
+        working-directory: apps/mobile
+        run: |
+          rt="$(node ../../node_modules/expo-updates/bin/cli.js runtimeversion:resolve --platform android | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>console.log(JSON.parse(s).runtimeVersion))')"
+          echo "OTA runtime android: $rt"
+          echo "OTA runtime (android): \`$rt\` — Mobile OTA update reaches this build only with the same value." >> "$GITHUB_STEP_SUMMARY"
       - name: Generate Android project
         working-directory: apps/mobile
         run: bunx expo prebuild --platform android --no-install

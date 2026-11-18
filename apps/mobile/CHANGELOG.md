@@ -1,6 +1,7 @@
 # Değişiklikler
 
 ## Yayınlanmamış
+- Mağazaya gitmeden güncelleme (OTA): uygulama açılışta kendi güncelleme sunucumuzdan (updater.fluxwp.com) JS ve görsel güncellemesini sessizce indirir, bir sonraki açılışta devreye girer. EAS kullanılmaz; güncellemeler imzalıdır, imzasız ya da yanlış imzalı güncelleme uygulanmaz. İlk kez bu sürümle gelen yerel modül (expo-updates) yüzünden mağaza/TestFlight yapısı gerekir.
 - reCAPTCHA, SEO, Yedekleme, Diller, Performans, Roller ve erişim, Yönetim teması, Headless, Sohbet botu, Site sohbetleri, Reklamlar, Dosyalar ve Blok Düzenleyici menüleri web görünümü yerine uygulamanın kendi ekranlarında açılır (eklentilerin GraphQL manifestleriyle).
 - Uzun seçenek listeleri (diller, günler…) ekranı dolduran düğmeler yerine dokununca açılan bir listeden seçilir; kısa listeler yine yan yana düğme.
 - Etiket alanları (ör. izinli IP adresleri) virgülle ayrılarak düzenlenebilir.

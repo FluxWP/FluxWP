@@ -5,6 +5,8 @@ import pkg from './package.json';
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const { applyBrand } = require('./scripts/brand.cjs') as { applyBrand: (slug?: string) => MobileBrand };
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const { existsSync } = require('node:fs') as typeof import('node:fs');
 
 interface MobileBrand {
   slug: string;
@@ -15,6 +17,7 @@ interface MobileBrand {
   colors: { primary: string };
   splash: { background?: string; backgroundDark?: string };
   eas: { projectId?: string | null; owner?: string; updatesChannel?: string } | null;
+  ota: { url: string; channel: string };
   oauthClientId: string;
   allowedSites: string[];
   lockSite: boolean;
@@ -30,6 +33,10 @@ export default ({ config }: ConfigContext): ExpoConfig => {
   if (!/^\d+\.\d+\.\d+$/.test(version)) throw new Error('FLUX_APP_VERSION must be major.minor.patch');
   if (buildNumber && (!/^[1-9]\d*$/.test(buildNumber) || Number(buildNumber) > 2_100_000_000)) throw new Error('Invalid FLUX_BUILD_NUMBER');
   if (projectId && !/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(projectId)) throw new Error('Invalid EAS project ID');
+  const otaChannel = process.env.FLUX_OTA_CHANNEL || brand.ota.channel;
+  if (!/^[a-z0-9][a-z0-9_-]{0,39}$/.test(otaChannel)) throw new Error('Invalid FLUX_OTA_CHANNEL');
+  const otaCert = asset('ota-certificate.pem');
+  const otaOn = existsSync(`${__dirname}/assets/brand/ota-certificate.pem`) && process.env.FLUX_OTA !== 'off';
   return {
     ...config,
     name: brand.name,
@@ -41,7 +48,15 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     scheme: brand.scheme,
     userInterfaceStyle: 'automatic',
     runtimeVersion: { policy: 'fingerprint' },
-    ...(projectId ? { updates: { url: `https://u.expo.dev/${projectId}` } } : {}),
+    updates: {
+      enabled: otaOn,
+      url: `${brand.ota.url}/v1/expo/${brand.slug}/manifest`,
+      requestHeaders: { 'expo-channel-name': otaChannel },
+      // Silent (Ahmet 2026-11-18): download in the background on launch, apply on the next cold start.
+      checkAutomatically: 'ON_LOAD',
+      fallbackToCacheTimeout: 0,
+      ...(otaOn ? { codeSigningCertificate: otaCert, codeSigningMetadata: { keyid: 'main', alg: 'rsa-v1_5-sha256' as const } } : {}),
+    },
     ios: {
       bundleIdentifier: brand.bundleId,
       supportsTablet: true,
@@ -91,6 +106,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       oauthClientId: brand.oauthClientId,
       allowedSites: brand.allowedSites,
       lockSite: brand.lockSite,
+      otaChannel,
       ...(projectId ? { eas: { projectId } } : {}),
     },
   };

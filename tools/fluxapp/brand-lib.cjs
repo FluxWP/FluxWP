@@ -104,6 +104,10 @@ function assertBrand(slug, b, dir) {
     assertColors(slug, b.theme.dark, 'theme.dark');
   }
   if (b.eas && b.eas.projectId && !/^[0-9a-f-]{36}$/i.test(String(b.eas.projectId))) fail(slug, 'eas.projectId must be a UUID or null');
+  if (b.ota) {
+    if (b.ota.url && !/^https:\/\/[a-z0-9.-]+(:\d+)?(\/[A-Za-z0-9._~\/-]*)?$/.test(String(b.ota.url))) fail(slug, 'ota.url must be an https URL of the update server');
+    if (b.ota.channel && !/^[a-z0-9][a-z0-9_-]{0,39}$/.test(String(b.ota.channel))) fail(slug, 'ota.channel invalid');
+  }
 
   const blob = JSON.stringify(b);
   if (/PRIVATE KEY|EXPO_TOKEN|BEGIN [A-Z ]+KEY|AKIA[0-9A-Z]{16}/.test(blob)) fail(slug, 'brand.json must not contain secrets');
@@ -147,6 +151,7 @@ function toMobileBrand(slug, b) {
     shell: b.shell || null,
     splash: mobile.splash || {},
     eas: b.eas || null,
+    ota: { url: String((b.ota && b.ota.url) || 'https://updater.fluxwp.com').replace(/\/+$/, ''), channel: (b.ota && b.ota.channel) || 'production' },
   };
 }
 
