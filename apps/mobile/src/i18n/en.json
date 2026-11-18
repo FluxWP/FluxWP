@@ -163,6 +163,7 @@
       "emptyBody": "Nothing in this view.",
       "list": "List",
       "board": "Board",
+      "mine": "My tasks",
       "home": "All",
       "add": "New task",
       "addTitle": "Task name",
