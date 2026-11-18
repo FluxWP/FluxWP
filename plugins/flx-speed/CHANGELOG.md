@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.11.3
+- Ekran ortak FluxWP kabuğuna taşındı: başlık, simge, sekmeler, kenar boşlukları, en fazla genişlik ve güvenli alan (safe area) bütün Flux ekranlarında aynı. Sekmeler eski Flux Admin sekmeleri gibi alt çizgili; taşarsa sayfa değil sekme çubuğu kayar. Ortak modül paketi yenilendi.
+
 ## 0.11.2
 - **Performans tabloları hizalı.** "İstek türüne göre", "En yavaş adresler" ve diğer tablolarda başlık satırı gövdeyle aynı sütunlara oturur, tablo tam genişliğe yayılır. Sebep: Flux SEO ile aynı CSS sınıf önekini (`flxs-`) paylaşıyordu; FluxApp gibi iki ekranın stilinin birlikte yüklendiği yerde SEO'nun `.flxs-list{display:flex}` kuralı tabloyu bozuyordu. Performans ekranının sınıfları `flxpf-` önekine taşındı.
 

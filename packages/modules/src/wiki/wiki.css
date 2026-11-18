@@ -1,19 +1,13 @@
 /* Wiki screen on FluxWP tokens. */
-.flxw-app{--flxw-bd:var(--flux-border);--flxw-mut:var(--flux-text-muted);--flxw-ac:var(--flux-primary);--flxw-card:var(--flux-surface);max-width:1100px;padding:0 0 24px;color:var(--flux-text);font-size:14px;line-height:1.5}
-.flxw-app h1{font-size:23px;font-weight:600;letter-spacing:0;margin:0}
+.flxw-app{--flxw-bd:var(--flux-border);--flxw-mut:var(--flux-text-muted);--flxw-ac:var(--flux-primary);--flxw-card:var(--flux-surface);color:var(--flux-text);font-size:14px;line-height:1.5}
 .flxw-app h2{font-size:16px;font-weight:600;margin:0 0 8px;display:block}
 .flxw-app a{color:var(--flxw-ac)}
 .flxw-app code{background:none;border:0;padding:0;font-family:var(--flux-font-mono,monospace);font-size:12px}
-.flxw-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:9px 0 8px}
 .flxw-links{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .flxw-notice{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;background:var(--flxw-card);border:1px solid var(--flxw-bd);border-left:4px solid var(--flux-success);border-radius:6px;padding:10px 12px;margin:12px 0}
 .flxw-notice.is-error{border-left-color:var(--flux-danger)}
 .flxw-notice.is-warn{border-left-color:var(--flux-warning)}
 .flxw-x{font-size:18px;line-height:1;color:var(--flxw-mut)}
-.flxw-tabs{display:flex;gap:2px;flex-wrap:wrap;border-bottom:1px solid var(--flxw-bd);margin:8px 0 16px}
-.flxw-tabs button{padding:8px 14px;border:0;border-bottom:2px solid transparent;margin-bottom:-1px;background:none;color:var(--flxw-mut);font-size:14px}
-.flxw-tabs button:hover{color:var(--flux-text)}
-.flxw-tabs button.is-on{color:var(--flxw-ac);border-bottom-color:var(--flxw-ac);font-weight:600}
 .flxw-card{background:var(--flxw-card);border:1px solid var(--flxw-bd);border-radius:10px;padding:16px 18px;margin:0 0 16px}
 .flxw-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
 .flxw-grid>.flxw-card{margin:0}

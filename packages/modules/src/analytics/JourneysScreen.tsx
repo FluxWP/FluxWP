@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useFlxQuery } from '@fluxwp/graphql/react';
 import { FlxAnalyticsJourneys } from '@fluxwp/graphql/operations';
 import type { FlxAnalyticsJourneysQuery } from '@fluxwp/graphql/types';
-import { Delta, FilterBar, Kpi, KpiSkeleton, Panel, Shell, SkRows, filterInput, useConfig, useFilters, useFmt, withAnalytics } from './lib';
+import { Delta, FilterBar, Kpi, KpiSkeleton, Panel, Shell, SkRows, Tabs, filterInput, useConfig, useFilters, useFmt, withAnalytics } from './lib';
 
 type Data = FlxAnalyticsJourneysQuery['flxAnalyticsJourneys'];
 type Tab = 'all' | 'reach' | 'never';
@@ -144,13 +144,7 @@ function Journeys() {
           <h2>{t('Most frequent paths')}</h2>
           <div className="flxan-filterbar">
             {s && s.goalRate !== null && (
-              <div className="flxan-tabs" role="tablist">
-                {([['all', t('All')], ['reach', t('Reached the goal')], ['never', t('Did not reach')]] as [Tab, string][]).map(([k, l]) => (
-                  <button key={k} type="button" role="tab" aria-selected={tab === k} onClick={() => setTab(k)}>
-                    {l}
-                  </button>
-                ))}
-              </div>
+              <Tabs items={([['all', t('All')], ['reach', t('Reached the goal')], ['never', t('Did not reach')]] as [Tab, string][]).map(([key, label]) => ({ key, label }))} value={tab} onChange={setTab} />
             )}
             <input type="search" className="flxan-search" placeholder={t('Search pages…')} value={search} onChange={(e) => setSearch(e.target.value)} />
           </div>

@@ -20,7 +20,7 @@ import type {
   FlxThemeSiteType,
   FlxThemeVisibility,
 } from '@fluxwp/graphql/types';
-import { Loading } from '@fluxwp/ui';
+import { Loading, Screen } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { translator, type Translate } from './i18n';
 import './theme.css';
@@ -221,18 +221,14 @@ function ThemeSettings() {
   const visible = (...modes: FlxThemeVisibility[]) => modes.includes(draft.visibility);
 
   return (
-    <div className="flxt-app">
-      <div className="flxt-head">
-        <h1>{t('Theme Settings')}</h1>
-      </div>
-      {s.presetsUrl && (
-        <nav className="flxt-tabs" aria-label={t('Theme Settings')}>
-          <span className="is-active" aria-current="page">
-            {t('General')}
-          </span>
-          <a href={s.presetsUrl}>{t('Presets')}</a>
-        </nav>
-      )}
+    <Screen
+      className="flxt-app"
+      icon={host.appIcon}
+      title={t('Theme Settings')}
+      tabs={s.presetsUrl ? [{ id: 'general', label: t('General') }, { id: 'presets', label: t('Presets') }] : undefined}
+      tab="general"
+      onTab={(k) => { if (k === 'presets' && s.presetsUrl) window.location.href = s.presetsUrl; }}
+    >
       {notice && (
         <div className={'flxt-notice is-' + notice.kind} role={notice.kind === 'error' ? 'alert' : 'status'}>
           <span>{notice.text}</span>
@@ -547,7 +543,7 @@ function ThemeSettings() {
           </div>
         </section>
       )}
-    </div>
+    </Screen>
   );
 }
 

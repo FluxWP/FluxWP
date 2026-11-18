@@ -1,10 +1,8 @@
 /* Flux AI screens on FluxWP tokens (look of plugins/flx-ai/assets/admin.css). */
-.flxai-app{--bd:var(--flux-border);--mut:var(--flux-text-muted);--ac:var(--flux-primary);--card:var(--flux-surface);max-width:1280px;padding:0 0 24px;color:var(--flux-text);font-size:14px;line-height:1.5}
-.flxai-app h1{font-size:23px;font-weight:600;margin:0}
+.flxai-app{--bd:var(--flux-border);--mut:var(--flux-text-muted);--ac:var(--flux-primary);--card:var(--flux-surface);color:var(--flux-text);font-size:14px;line-height:1.5}
 .flxai-app h2{font-size:16px;font-weight:600;margin:0 0 8px}
 .flxai-app h3{font-size:14px;font-weight:600;margin:12px 0 6px}
 .flxai-app a{color:var(--ac)}
-.flxai-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:9px 0 4px}
 .flxai-lead{color:var(--mut);max-width:760px;margin:8px 0 14px}
 .flxai-muted,.flxai-note{color:var(--mut);font-size:12.5px}
 .flxai-empty{color:var(--mut);padding:8px 0}
@@ -130,9 +128,6 @@ textarea.flxai-input{width:100%;max-width:560px}
 .flxai-skill-meta,.flxai-skill-acts{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .flxai-link{background:none;border:0;padding:0;color:var(--ac);cursor:pointer;font:inherit;text-decoration:underline}
 .flxai-link.is-danger{color:#dc2626}
-.flxai-tabs{display:flex;gap:4px;border-bottom:1px solid var(--bd);margin:0 0 12px;flex-wrap:wrap}
-.flxai-tab{background:none;border:0;border-bottom:2px solid transparent;padding:8px 12px;cursor:pointer;color:var(--flux-text);font:inherit}
-.flxai-tab.is-on{border-bottom-color:var(--ac);font-weight:600}
 .flxai-table{width:100%;border-collapse:collapse;font-size:13px}
 .flxai-table th,.flxai-table td{text-align:left;padding:6px 8px;border-top:1px solid var(--bd);vertical-align:top}
 .flxai-skill-file-new{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}

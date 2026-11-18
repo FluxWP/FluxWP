@@ -8,3 +8,4 @@ export { Icon } from './Icon';
 export { openSanitizedLink, sanitizeHtml } from './sanitize';
 export { useOverlay } from './overlay';
 export { MenuIcon } from './MenuIcon';
+export { Screen, Tabs, type ScreenProps, type TabsProps, type TabItem } from './Screen';

@@ -1,5 +1,8 @@
 # Flux AI Chatbot
 
+## 0.4.1
+- Ekran ortak FluxWP kabuğuna taşındı: başlık, simge, sekmeler, kenar boşlukları, en fazla genişlik ve güvenli alan (safe area) bütün Flux ekranlarında aynı. Sekmeler eski Flux Admin sekmeleri gibi alt çizgili; taşarsa sayfa değil sekme çubuğu kayar. Ortak modül paketi yenilendi.
+
 ## 0.4.0
 - **Klasik sayfalar kaldırıldı.** Ayarlar ve Site sohbetleri yalnız React ekranıyla açılır; "Klasik görünüm" bağlantısı, görünüm değiştirme (`flxcb_ui`), eski istemci (assets/admin.js, admin.css, inbox.js) ve klasik form kaydı (`admin_post_flxcb_save`) silindi.
 - Ekran açılamazsa (Flux GraphQL hazır değil, paket dosyası eksik, bundle yüklenmedi) boş sayfa yerine "Bu ekran yüklenemedi" kutusu ve **Sayfayı yenile** düğmesi çıkar.

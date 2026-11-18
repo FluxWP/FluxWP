@@ -17,7 +17,7 @@ import {
   FlxHeadlessWpFrontSet,
 } from '@fluxwp/graphql/operations';
 import type { FlxHeadlessFrontendSaveInput, FlxHeadlessScreenQuery, FlxHeadlessWpFront } from '@fluxwp/graphql/types';
-import { Check, Icon, Loading, Modal } from '@fluxwp/ui';
+import { Check, Icon, Loading, Modal, Screen } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { translator, type Translate } from './i18n';
 import './headless.css';
@@ -93,6 +93,7 @@ export function HeadlessScreen() {
 }
 
 function Headless() {
+  const host = useHost();
   const { i18n } = useTranslation();
   const { t, tn } = useMemo(() => translator(i18n.language), [i18n.language]);
   const { scope } = useGraphQL();
@@ -185,17 +186,18 @@ function Headless() {
   };
 
   return (
-    <div className="flxhl-app">
-      <div className="flxhl-head">
-        <div>
-          <h1>{t('Headless')}</h1>
-          <p className="flxhl-lead">{t('Serve this site to one or more headless front ends (Next.js, Nuxt, Astro or any framework) over GraphQL. Each front end gets its own address, languages and revalidate webhook; content changes reach them within seconds.')}</p>
-        </div>
+    <Screen
+      className="flxhl-app"
+      icon={host.appIcon}
+      title={t('Headless')}
+      subtitle={t('Serve this site to one or more headless front ends (Next.js, Nuxt, Astro or any framework) over GraphQL. Each front end gets its own address, languages and revalidate webhook; content changes reach them within seconds.')}
+      actions={
         <button type="button" className="flxhl-btn is-primary" onClick={() => { setErrors([]); setEditing(draftOf(null, s.frontends.length === 0)); }}>
           <Icon name="plus-alt" size={16} />
           {t('Add front end')}
         </button>
-      </div>
+      }
+    >
 
       {notice && (
         <div className={'flxhl-notice is-' + notice.kind} role={notice.kind === 'bad' ? 'alert' : 'status'}>
@@ -401,7 +403,7 @@ function Headless() {
           </div>
         </Modal>
       )}
-    </div>
+    </Screen>
   );
 }
 

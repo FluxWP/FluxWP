@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.9.1
+- Ekran ortak FluxWP kabuğuna taşındı: başlık, simge, sekmeler, kenar boşlukları, en fazla genişlik ve güvenli alan (safe area) bütün Flux ekranlarında aynı. Sekmeler eski Flux Admin sekmeleri gibi alt çizgili; taşarsa sayfa değil sekme çubuğu kayar. Ortak modül paketi yenilendi.
+
 ## 0.9.0
 - **Klasik sayfalar kaldırıldı.** Tema Ayarları (Genel) ve Sistem Kontrolü yalnız React ekranıyla açılır; "Klasik görünüm" bağlantısı, görünüm değiştirme (`flx_ui`), klasik ayar formu ve renk seçici yüklemesi silindi. Ön ayarlar sekmesi (Flux Setup) aynen durur.
 - Ekran açılamazsa (Flux GraphQL hazır değil, bundle yüklenmedi) boş sayfa yerine "Bu ekran yüklenemedi" kutusu ve **Sayfayı yenile** düğmesi çıkar.

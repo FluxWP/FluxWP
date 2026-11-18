@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.10.1
+- Ekran ortak FluxWP kabuğuna taşındı: başlık, simge, sekmeler, kenar boşlukları, en fazla genişlik ve güvenli alan (safe area) bütün Flux ekranlarında aynı. Sekmeler eski Flux Admin sekmeleri gibi alt çizgili; taşarsa sayfa değil sekme çubuğu kayar. Ortak modül paketi yenilendi.
+
 ## 1.10.0
 - Klasik (PHP) "Yönetim teması" ayar sayfası kaldırıldı; wp-admin'de yalnız React ekranı açılır ve artık ortak kabukla (`flx_admin_screen`) basılır. "Klasik görünüm" bağlantısı, kullanıcı başına görünüm tercihi (`flxa_ui`), eski `admin-post` uçları (`flxa_save`, `flxa_caps_restore`), klasik sekme çizicileri (görünüm, yetki tablosu, kendi sistem kontrolü listesi) ve `assets/css/settings.css`, `assets/js/settings.js`, `assets/js/menu-editor.js` silindi.
 - Menü düzenleyicideki "Tüm yetkiler" bağlantısı artık klasik sayfaya değil, aynı ekrandaki Yetkiler sekmesine geçer. Sistem kontrolü sekmesi yalnız Flux Speed kuruluyken görünür (kontrol orada).

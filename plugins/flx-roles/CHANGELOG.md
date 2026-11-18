@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.7.1
+- Ekran ortak FluxWP kabuğuna taşındı: başlık, simge, sekmeler, kenar boşlukları, en fazla genişlik ve güvenli alan (safe area) bütün Flux ekranlarında aynı. Sekmeler eski Flux Admin sekmeleri gibi alt çizgili; taşarsa sayfa değil sekme çubuğu kayar. Ortak modül paketi yenilendi.
+
 ## 1.7.0
 - Klasik (PHP) "Roller ve erişim" sayfası kaldırıldı; wp-admin'de yalnız React ekranı açılır. "Klasik görünüm" bağlantısı, kullanıcı başına görünüm tercihi (`flxr_ui`), eski `admin-post` uçları (`flxr_save`, `flxr_user`, `flxr_reset`, `flxr_role`) ve `assets/admin.css` silindi. Ekran ortak kabukla (`flx_admin_screen`) açılır; açılamazsa boş sayfa yerine "Bu ekran yüklenemedi" uyarısı ve yenile düğmesi görünür.
 

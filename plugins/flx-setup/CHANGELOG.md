@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.5.3
+- Ekran ortak FluxWP kabuğuna taşındı: başlık, simge, sekmeler, kenar boşlukları, en fazla genişlik ve güvenli alan (safe area) bütün Flux ekranlarında aynı. Sekmeler eski Flux Admin sekmeleri gibi alt çizgili; taşarsa sayfa değil sekme çubuğu kayar. Ortak modül paketi yenilendi.
+
 ## 1.5.2
 - Toplu kurulum/güncellemeden sonra işlem kaydında **"Hatalıları tekrar dene"** düğmesi: yalnız başarısız adımlar aynı sırayla yeniden çalışır (klasik ekranda vardı).
 - Güncelleme ayarları ilk ziyarette de spinner'sız açılır.

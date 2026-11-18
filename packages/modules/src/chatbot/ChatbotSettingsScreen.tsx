@@ -12,7 +12,7 @@ import { createGraphQLClient } from '@fluxwp/graphql';
 import { FlxGraphQLProvider, flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
 import { FlxChatbotSettingsSave, FlxChatbotSettingsScreen } from '@fluxwp/graphql/operations';
 import type { FlxChatbotSettingsFieldsFragment, FlxChatbotSettingsScreenQuery, FlxSettingsChatbotInput } from '@fluxwp/graphql/types';
-import { Loading } from '@fluxwp/ui';
+import { Loading, Screen, Tabs } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { translator } from './i18n';
 import { Area, Card, Check, Choices, IconPick, Kpi, Range, Select, Switch, Text, type Tr } from './fields';
@@ -192,13 +192,14 @@ function ChatbotSettings() {
   const st = a.stats;
 
   return (
-    <div className="flxcb">
-      <div className="flxcb-head">
-        <div>
-          <h1>{t('Flux AI Chatbot')}</h1>
-          <p className="flxcb-lead">{t('An AI chat window for your site: it answers from your content and products and hands the chat to a live agent when needed. Changes show up in the preview on the right right away.')}</p>
-        </div>
-        <div className="flxcb-head__actions">
+    <Screen
+      className="flxcb"
+      width="wide"
+      icon={host.appIcon}
+      title={t('Flux AI Chatbot')}
+      subtitle={t('An AI chat window for your site: it answers from your content and products and hands the chat to a live agent when needed. Changes show up in the preview on the right right away.')}
+      actions={
+        <>
           <a className="button" href={a.inboxUrl}>
             <Inbox size={14} />
             {t('Chats')}
@@ -207,8 +208,9 @@ function ChatbotSettings() {
             <ExternalLink size={14} />
             {t('Try on site')}
           </a>
-        </div>
-      </div>
+        </>
+      }
+    >
 
       {notice && (
         <div className={'flxcb-notice ' + (notice.kind === 'ok' ? 'is-ok' : 'is-bad')} role="status">
@@ -231,24 +233,12 @@ function ChatbotSettings() {
 
       <div className="flxcb-layout">
         <div className="flxcb-main">
-          <nav className="flxcb-tabs" role="tablist">
-            {tabs.map(([k, label, icon]) => (
-              <a
-                key={k}
-                href={'#' + k}
-                className={'flxcb-tab' + (k === tab ? ' is-on' : '')}
-                role="tab"
-                aria-selected={k === tab}
-                onClick={(e) => {
-                  e.preventDefault();
-                  goTab(k);
-                }}
-              >
-                {icon}
-                <span>{label}</span>
-              </a>
-            ))}
-          </nav>
+          <Tabs
+            items={tabs.map(([id, label, icon]) => ({ id, label: (<>{icon}<span>{label}</span></>) }))}
+            current={tab}
+            onChange={goTab}
+            label={t('Flux AI Chatbot')}
+          />
 
           <form
             className="flxcb-form"
@@ -276,7 +266,7 @@ function ChatbotSettings() {
           <Preview t={t} a={a} d={draft} avatarUrl={avatarUrl} view={view} setView={setView} />
         </aside>
       </div>
-    </div>
+    </Screen>
   );
 }
 

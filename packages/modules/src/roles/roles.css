@@ -1,10 +1,8 @@
 /* Roles and access on FluxWP tokens. */
-.flxr-app{--flxr-bd:var(--flux-border);--flxr-mut:var(--flux-text-muted);--flxr-ac:var(--flux-primary);--flxr-card:var(--flux-surface);max-width:1100px;padding:0 0 24px;color:var(--flux-text);font-size:14px;line-height:1.5}
-.flxr-app h1{font-size:23px;font-weight:600;letter-spacing:0;margin:0}
+.flxr-app{--flxr-bd:var(--flux-border);--flxr-mut:var(--flux-text-muted);--flxr-ac:var(--flux-primary);--flxr-card:var(--flux-surface);color:var(--flux-text);font-size:14px;line-height:1.5}
 .flxr-app h2{font-size:16px;font-weight:600;margin:0 0 6px;display:block}
 .flxr-app h3{font-size:15px;font-weight:600;margin:0 0 6px}
 .flxr-app a{color:var(--flxr-ac)}
-.flxr-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:9px 0 4px}
 .flxr-lead{font-size:14px;color:var(--flxr-mut);max-width:760px;margin:12px 0 16px}
 .flxr-notice{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;background:var(--flxr-card);border:1px solid var(--flxr-bd);border-left:4px solid var(--flux-success);border-radius:6px;padding:10px 12px;margin:12px 0}
 .flxr-notice.is-error{border-left-color:var(--flux-danger)}

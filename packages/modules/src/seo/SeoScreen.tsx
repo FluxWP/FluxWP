@@ -28,7 +28,7 @@ import type {
   FlxSeoStrategy,
   FlxSettingsFlxseoInput,
 } from '@fluxwp/graphql/types';
-import { Loading } from '@fluxwp/ui';
+import { Loading, Screen } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { translator, type Translate } from './i18n';
 import './seo.css';
@@ -89,17 +89,7 @@ function Seo() {
   };
 
   return (
-    <div className="flxs-app">
-      <div className="flxs-head">
-        <h1>{t('SEO')}</h1>
-      </div>
-      <nav className="flxs-tabs" role="tablist" aria-label={t('SEO')}>
-        {TABS.map((k) => (
-          <button key={k} type="button" role="tab" aria-selected={tab === k} className={'flxs-tab' + (tab === k ? ' is-on' : '')} onClick={() => go(k)}>
-            {labels[k]}
-          </button>
-        ))}
-      </nav>
+    <Screen className="flxs-app" icon={host.appIcon} title={t('SEO')} tabs={TABS.map((k) => ({ id: k, label: labels[k] }))} tab={tab} onTab={go}>
       {notice && (
         <div className={'flxs-notice is-' + notice.kind} role={notice.kind === 'error' ? 'alert' : 'status'}>
           <span>{notice.text}</span>
@@ -115,7 +105,7 @@ function Seo() {
       ) : (
         <SettingsTabs tab={tab} t={t} onNotice={setNotice} dirty={dirty} setDirty={setDirty} />
       )}
-    </div>
+    </Screen>
   );
 }
 

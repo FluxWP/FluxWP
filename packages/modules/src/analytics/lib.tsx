@@ -6,7 +6,7 @@ import { createGraphQLClient } from '@fluxwp/graphql';
 import { FlxGraphQLProvider, useFlxQuery } from '@fluxwp/graphql/react';
 import { FlxAnalyticsConfig } from '@fluxwp/graphql/operations';
 import type { FlxAnalyticsConfigQuery, FlxAnalyticsFilterInput, FlxAnalyticsRangePreset } from '@fluxwp/graphql/types';
-import { DatePicker, Loading, Modal } from '@fluxwp/ui';
+import { DatePicker, Loading, Modal, Screen, Tabs as UiTabs } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { translator, type Translate } from './i18n';
 import './analytics.css';
@@ -320,15 +320,7 @@ export function Panel({ title, head, wide, children, id }: { title: ReactNode; h
 }
 
 export function Tabs<K extends string>({ items, value, onChange }: { items: { key: K; label: string }[]; value: K; onChange: (k: K) => void }) {
-  return (
-    <div className="flxan-tabs" role="tablist">
-      {items.map((i) => (
-        <button key={i.key} type="button" role="tab" aria-selected={value === i.key} onClick={() => onChange(i.key)}>
-          {i.label}
-        </button>
-      ))}
-    </div>
-  );
+  return <UiTabs size="sm" items={items.map((i) => ({ id: i.key, label: i.label }))} current={value} onChange={onChange} />;
 }
 
 export interface Col<R> {
@@ -601,17 +593,12 @@ export function useDebounced<T>(value: T, ms: number): T {
 }
 
 export function Shell({ title, head, children, notice, busy }: { title: string; head?: ReactNode; children: ReactNode; notice?: ReactNode; busy?: boolean }) {
-  const { t } = useFmt();
+  const host = useHost();
   return (
     <div className="flxan flxan-react" aria-busy={busy ? 'true' : 'false'}>
-      <div className="flxan-app">
-        <div className="flxan-head">
-          <h1>{title}</h1>
-          {head}
-        </div>
-        {notice}
+      <Screen className="flxan-app" width="wide" icon={host.appIcon} title={title} actions={head} notice={notice}>
         {children}
-      </div>
+      </Screen>
     </div>
   );
 }

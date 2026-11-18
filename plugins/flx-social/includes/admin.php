@@ -141,7 +141,7 @@ function flxsm_render_app() {
 		return;
 	}
 	echo '<script>document.documentElement.classList.add("flxsm-lock");</script>';
-	echo '<style>html.flxsm-lock,html.flxsm-lock body{overflow:hidden;height:100%}html.flxsm-lock #wpadminbar,html.flxsm-lock #adminmenumain,html.flxsm-lock #wpfooter,html.flxsm-lock .notice,html.flxsm-lock .update-nag,html.flxsm-lock #screen-meta-links{display:none!important}html.flxsm-lock #wpcontent,html.flxsm-lock #wpbody-content{margin:0!important;padding:0!important}#flxsm-app.flux-root{position:fixed;inset:0;z-index:99990;height:auto}</style>';
+	echo '<style>html.flxsm-lock,html.flxsm-lock body{overflow:hidden;height:100%}html.flxsm-lock #wpadminbar,html.flxsm-lock #adminmenumain,html.flxsm-lock #wpfooter,html.flxsm-lock .notice,html.flxsm-lock .update-nag,html.flxsm-lock #screen-meta-links{display:none!important}html.flxsm-lock #wpcontent,html.flxsm-lock #wpbody-content{margin:0!important;padding:0!important}#flxsm-app.flux-root{position:fixed;inset:0;z-index:99990;height:auto}@media screen and (min-width:783px){html body.flxa-appmode #flxsm-app.flux-root{top:var(--wp-admin--admin-bar--height,32px);left:var(--flxa-app-w,0px);transition:left .22s ease}}@media screen and (max-width:782px){html:not(.flxa-kb) body.flxa-appmode.flxa-has-bottom #flxsm-app.flux-root{bottom:calc(67px + env(safe-area-inset-bottom))}}</style>';
 	if ( function_exists( 'flx_admin_screen_render' ) && flx_admin_screen_render() ) {
 		return;
 	}

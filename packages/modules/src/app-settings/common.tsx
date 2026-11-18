@@ -2,7 +2,8 @@
 // switch, date formatting, and the "payload with errors" helper every mutation uses.
 import { createContext, useContext, useMemo, useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Modal } from '@fluxwp/ui';
+import { Modal, Screen } from '@fluxwp/ui';
+import { useHost } from '../host';
 import { translator, type Translate } from './i18n';
 
 export type Notice = { kind: 'success' | 'error'; text: string };
@@ -32,6 +33,7 @@ export function useScreen(): Screen {
 }
 
 export function ScreenProvider({ children, title, lead }: { children: ReactNode; title: string; lead?: string }) {
+  const host = useHost();
   const { i18n } = useTranslation();
   const { t, tn } = useMemo(() => translator(i18n.language), [i18n.language]);
   const [notice, setNotice] = useState<Notice | null>(null);
@@ -53,19 +55,22 @@ export function ScreenProvider({ children, title, lead }: { children: ReactNode;
   );
   return (
     <Ctx.Provider value={value}>
-      <div className="flxas-app">
-        <div className="flxas-head">
-          <h1>{title}</h1>
-        </div>
-        {notice && (
-          <div className={'flxas-notice is-' + notice.kind} role={notice.kind === 'error' ? 'alert' : 'status'}>
-            <span>{notice.text}</span>
-            <button type="button" className="flxas-x" aria-label={t('Close')} onClick={() => setNotice(null)}>
-              ×
-            </button>
-          </div>
-        )}
-        {lead && <p className="flxas-lead">{lead}</p>}
+      <Screen
+        className="flxas-app"
+        icon={host.appIcon}
+        title={title}
+        subtitle={lead || undefined}
+        notice={
+          notice && (
+            <div className={'flxas-notice is-' + notice.kind} role={notice.kind === 'error' ? 'alert' : 'status'}>
+              <span>{notice.text}</span>
+              <button type="button" className="flxas-x" aria-label={t('Close')} onClick={() => setNotice(null)}>
+                ×
+              </button>
+            </div>
+          )
+        }
+      >
         {children}
         {confirm && (
           <Modal title={confirm.action} onClose={() => setConfirm(null)}>
@@ -87,7 +92,7 @@ export function ScreenProvider({ children, title, lead }: { children: ReactNode;
             </div>
           </Modal>
         )}
-      </div>
+      </Screen>
     </Ctx.Provider>
   );
 }

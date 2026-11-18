@@ -18,7 +18,7 @@ import {
 } from '@fluxwp/graphql/operations';
 import type { FlxAiSkillDetailFieldsFragment, FlxAiSkillFieldsFragment } from '@fluxwp/graphql/types';
 import { flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
-import { Loading, Modal } from '@fluxwp/ui';
+import { Loading, Modal, Tabs } from '@fluxwp/ui';
 import { Card, NoticeBar, Pill, errText, useAi, type AiT, type Notice } from './common';
 import { Brand, ImportSkills } from './SkillsExtra';
 
@@ -215,13 +215,7 @@ function SkillEditor({ slug, tab, go }: { slug: string | null; tab: string; go: 
         </button>
       </p>
       {slug && (
-        <nav className="flxai-tabs">
-          {tabs.map(([k, label]) => (
-            <button key={k} type="button" className={'flxai-tab' + (k === tab ? ' is-on' : '')} onClick={() => go({ kind: 'edit', slug, tab: k })}>
-              {label}
-            </button>
-          ))}
-        </nav>
+        <Tabs items={tabs.map(([id, label]) => ({ id, label }))} current={tab} onChange={(k) => go({ kind: 'edit', slug, tab: k })} label={t('Skills')} />
       )}
       {d && tab === 'files' && <FilesTab d={d} go={go} refresh={refresh} />}
       {d && tab === 'tests' && <TestsTab d={d} refresh={refresh} />}

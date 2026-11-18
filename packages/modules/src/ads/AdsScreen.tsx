@@ -8,7 +8,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { createGraphQLClient } from '@fluxwp/graphql';
 import { FlxGraphQLProvider, flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
 import { FlxAdsContext, FlxAdsHeartbeat, FlxAdsSuggestions } from '@fluxwp/graphql/operations';
-import { Loading, Modal } from '@fluxwp/ui';
+import { Loading, Modal, Screen } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { translator } from './i18n';
 import { EnvContext, Btn, type Env } from './common';
@@ -148,28 +148,16 @@ function Ads() {
 
   return (
     <EnvContext.Provider value={env}>
-      <div className="flxads flxads-app">
-        <div className="flxads-head">
-          <h1 className="flxads-title">{current === 'report' ? t('Ad conversions') : names[current]}</h1>
-        </div>
-        {current === 'report' && <p className="flxads-lead">{t('Which ad, campaign and ad text brought which donation. Paid donations and orders only; bank transfers count when approved.')}</p>}
-        <nav className="flxads-tabs" aria-label={t('Ad conversions')}>
-          {ctx.tabs.map((k) => (
-            <a
-              key={k}
-              href="#"
-              className={'flxads-tab' + (k === current ? ' is-on' : '')}
-              aria-current={k === current ? 'page' : undefined}
-              onClick={(e) => {
-                e.preventDefault();
-                go(k);
-              }}
-            >
-              {names[k] ?? k}
-              {k === 'suggestions' && ctx.openSuggestions > 0 && <span className="flxads-badge">{ctx.openSuggestions}</span>}
-            </a>
-          ))}
-        </nav>
+      <Screen
+        className="flxads flxads-app"
+        width="wide"
+        icon={host.appIcon}
+        title={current === 'report' ? t('Ad conversions') : names[current]}
+        subtitle={current === 'report' ? t('Which ad, campaign and ad text brought which donation. Paid donations and orders only; bank transfers count when approved.') : undefined}
+        tabs={ctx.tabs.map((k) => ({ id: k, label: names[k] ?? k, badge: k === 'suggestions' ? ctx.openSuggestions : null }))}
+        tab={current}
+        onTab={go}
+      >
         {notice && (
           <div className={'flxads-notice is-' + notice.kind} role={notice.kind === 'error' ? 'alert' : 'status'}>
             <span>{notice.text}</span>
@@ -197,7 +185,7 @@ function Ads() {
             </div>
           </Modal>
         )}
-      </div>
+      </Screen>
     </EnvContext.Provider>
   );
 }

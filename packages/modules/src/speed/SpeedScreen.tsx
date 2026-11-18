@@ -6,7 +6,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { createGraphQLClient } from '@fluxwp/graphql';
 import { FlxGraphQLProvider, useFlxQuery } from '@fluxwp/graphql/react';
 import { FlxSpeedConfig } from '@fluxwp/graphql/operations';
-import { Loading } from '@fluxwp/ui';
+import { Loading, Screen } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { AutoloadTab, CronTab, DatabaseTab, ServerTab, SystemTab } from './tabs-system';
 import { CacheTab, PageSpeedTab, SettingsTab } from './tabs-settings';
@@ -130,27 +130,27 @@ function Speed() {
 
   return (
     <SpeedProvider value={ctx}>
-      <div className="flxpf-app">
-        <div className="flxpf-head">
-          <h1>{t('Flux Performance')}</h1>
-        </div>
-        {notice && (
-          <div className={'flxpf-notice is-' + notice.kind} role={notice.kind === 'error' ? 'alert' : 'status'}>
-            <span>{notice.text}</span>
-            <button type="button" className="flxpf-x" aria-label={t('Close')} onClick={() => setNotice(null)}>
-              ×
-            </button>
-          </div>
-        )}
-        <nav className="flxpf-tabs" aria-label={t('Flux Performance')}>
-          {cfg.tabs.map((x) => (
-            <button key={x.key} type="button" className={'flxpf-tab' + (x.key === tab && !view.id ? ' is-active' : '')} onClick={() => go(x.key)}>
-              {x.label}
-            </button>
-          ))}
-        </nav>
+      <Screen
+        className="flxpf-app"
+        width="wide"
+        icon={host.appIcon}
+        title={t('Flux Performance')}
+        notice={
+          notice && (
+            <div className={'flxpf-notice is-' + notice.kind} role={notice.kind === 'error' ? 'alert' : 'status'}>
+              <span>{notice.text}</span>
+              <button type="button" className="flxpf-x" aria-label={t('Close')} onClick={() => setNotice(null)}>
+                ×
+              </button>
+            </div>
+          )
+        }
+        tabs={cfg.tabs.map((x) => ({ id: x.key, label: x.label }))}
+        tab={view.id ? null : tab}
+        onTab={go}
+      >
         {body}
-      </div>
+      </Screen>
     </SpeedProvider>
   );
 }

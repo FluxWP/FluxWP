@@ -20,11 +20,12 @@ import { Systems } from './Systems';
 import { Tasks } from './Tasks';
 import { Tools } from './Tools';
 import './ai.css';
+import { Screen } from '@fluxwp/ui';
 
-const VIEWS: Record<string, { title: string; sub: string; View: ComponentType }> = {
-  overview: { title: 'Flux AI', sub: 'AI usage across all plugins: cost, time, cache and tools.', View: Overview },
-  logs: { title: 'Logs', sub: 'Every model request and tool call: which system, for whom, which model, tokens, time and cost. Content is stored with personal data masked.', View: Logs },
-  billing: { title: 'Billing', sub: 'Monthly breakdown, spending limits and provider credit. Amounts in USD; OpenRouter reports actual cost, Anthropic is computed from the price list.', View: Billing },
+const VIEWS: Record<string, { title: string; sub: string; View: ComponentType; wide?: boolean }> = {
+  overview: { title: 'Flux AI', sub: 'AI usage across all plugins: cost, time, cache and tools.', View: Overview, wide: true },
+  logs: { title: 'Logs', sub: 'Every model request and tool call: which system, for whom, which model, tokens, time and cost. Content is stored with personal data masked.', View: Logs, wide: true },
+  billing: { title: 'Billing', sub: 'Monthly breakdown, spending limits and provider credit. Amounts in USD; OpenRouter reports actual cost, Anthropic is computed from the price list.', View: Billing, wide: true },
   systems: { title: 'Connected systems', sub: '', View: Systems },
   tools: { title: 'Tools', sub: '', View: Tools },
   approvals: { title: 'Awaiting approval', sub: '', View: Approvals },
@@ -34,7 +35,7 @@ const VIEWS: Record<string, { title: string; sub: string; View: ComponentType }>
   mcp: { title: 'MCP', sub: '', View: Mcp },
   connections: { title: 'Connections', sub: '', View: Connections },
   history: { title: 'Chat history', sub: '', View: History },
-  chat: { title: 'Chat', sub: '', View: ChatScreen },
+  chat: { title: 'Chat', sub: '', View: ChatScreen, wide: true },
 };
 
 export function AiScreen() {
@@ -53,12 +54,8 @@ function Page() {
   const v = VIEWS[host.startPage ?? 'overview'] ?? VIEWS.overview!;
   const View = v.View;
   return (
-    <div className="flxai-app">
-      <div className="flxai-head">
-        <h1>{t(v.title)}</h1>
-      </div>
-      {v.sub && <p className="flxai-lead">{t(v.sub)}</p>}
+    <Screen className="flxai-app" width={v.wide ? 'wide' : 'md'} icon={host.appIcon} title={t(v.title)} subtitle={v.sub ? t(v.sub) : undefined}>
       <View />
-    </div>
+    </Screen>
   );
 }

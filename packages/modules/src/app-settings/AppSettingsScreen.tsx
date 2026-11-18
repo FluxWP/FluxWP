@@ -16,6 +16,7 @@ import { ClientsTab } from './ClientsTab';
 import { AccessTab } from './AccessTab';
 import { useTranslation } from 'react-i18next';
 import './app-settings.css';
+import { Tabs as UiTabs } from '@fluxwp/ui';
 
 const TABS = ['settings', 'appearance', 'mobile', 'modules', 'menu', 'apps', 'all'] as const;
 type Tab = (typeof TABS)[number];
@@ -60,13 +61,7 @@ function Tabs() {
   };
   return (
     <>
-      <div className="flxas-tablist" role="tablist">
-        {TABS.map((k) => (
-          <button key={k} type="button" role="tab" aria-selected={k === tab} className={'flxas-tab' + (k === tab ? ' is-active' : '')} onClick={() => go(k)}>
-            {labels[k]}
-          </button>
-        ))}
-      </div>
+      <UiTabs items={TABS.map((k) => ({ id: k, label: labels[k] }))} current={tab} onChange={go} label={t('Application')} />
       {tab === 'settings' && <GeneralTab />}
       {tab === 'appearance' && <AppearanceTab />}
       {tab === 'mobile' && <MobileTab />}

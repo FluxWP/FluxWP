@@ -11,7 +11,7 @@ import { createGraphQLClient } from '@fluxwp/graphql';
 import { FlxGraphQLProvider, flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
 import { FlxLanguageSettingsScreen, FlxLanguageSettingsUpdate } from '@fluxwp/graphql/operations';
 import type { FlxLanguageSettingsFieldsFragment, FlxLanguageSuggestMode, FlxLanguageSwitcherPlace, FlxLanguageSwitcherStyle } from '@fluxwp/graphql/types';
-import { Loading } from '@fluxwp/ui';
+import { Loading, Screen } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { translator } from './i18n';
 import './lang.css';
@@ -70,6 +70,7 @@ export function LanguagesScreen() {
 }
 
 function Languages() {
+  const host = useHost();
   const { i18n } = useTranslation();
   const { t } = useMemo(() => translator(i18n.language), [i18n.language]);
   const { scope } = useGraphQL();
@@ -139,10 +140,7 @@ function Languages() {
   };
 
   return (
-    <div className="flxl-app">
-      <div className="flxl-head">
-        <h1>{t("Languages")}</h1>
-      </div>
+    <Screen className="flxl-app" width="md" icon={host.appIcon} title={t("Languages")} subtitle={t("The default language has no prefix in the address (example.org/hakkimizda/); other languages open with a prefix such as /en/. Each language version of a content is a separate page/post: create it from the language badge in the list or from the Language box in the editor. Theme and plugin interface texts use their own translations.")}>
       {notice && (
         <div className={'flxl-notice is-' + notice.kind} role={notice.kind === 'error' ? 'alert' : 'status'}>
           <span>{notice.text}</span>
@@ -151,7 +149,6 @@ function Languages() {
           </button>
         </div>
       )}
-      <p className="flxl-lead">{t("The default language has no prefix in the address (example.org/hakkimizda/); other languages open with a prefix such as /en/. Each language version of a content is a separate page/post: create it from the language badge in the list or from the Language box in the editor. Theme and plugin interface texts use their own translations.")}</p>
 
       <form onSubmit={submit}>
         <h2>{t("Languages")}</h2>
@@ -363,6 +360,6 @@ function Languages() {
 
       <h2>{t("Translation with AI")}</h2>
       <p className="flxl-desc flxl-ai">{t("With Flux AI installed, a \"Translate with AI\" button appears in the list and the editor. AI agents connected over MCP (Claude etc.) and the Flux AI chat use these tools: flxl_languages, flxl_untranslated, flxl_translations, flxl_save_translation, flxl_set_language, flxl_image_language, flxl_term_translation, flxl_site_texts. Flux SEO tools (list_content, create_content, update_content) have a lang parameter.")}</p>
-    </div>
+    </Screen>
   );
 }

@@ -7,7 +7,7 @@ import { createGraphQLClient } from '@fluxwp/graphql';
 import { FlxGraphQLProvider, useFlxQuery } from '@fluxwp/graphql/react';
 import { FlxThemeSystem } from '@fluxwp/graphql/operations';
 import type { FlxThemeCheckStatus, FlxThemeSystemQuery } from '@fluxwp/graphql/types';
-import { Loading } from '@fluxwp/ui';
+import { Loading, Screen } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { translator } from './i18n';
 import './theme.css';
@@ -26,6 +26,7 @@ export function SystemScreen() {
 }
 
 function System() {
+  const host = useHost();
   const { i18n } = useTranslation();
   const { t } = useMemo(() => translator(i18n.language), [i18n.language]);
   // The page re-checks every time it opens, and "Check again" runs it once more.
@@ -42,11 +43,7 @@ function System() {
   for (const c of sys.checks) if (!filter || c.status === filter) groups.set(c.group, [...(groups.get(c.group) ?? []), c]);
 
   return (
-    <div className="flxt-app">
-      <div className="flxt-head">
-        <h1>{t('System Check')}</h1>
-      </div>
-      <p className="flxt-lead">{t('Plugins, scheduled tasks and key settings. Red rows mean part of the site is not working; yellow rows are recommended fixes. The page re-checks every time it opens.')}</p>
+    <Screen className="flxt-app" width="wide" icon={host.appIcon} title={t('System Check')} subtitle={t('Plugins, scheduled tasks and key settings. Red rows mean part of the site is not working; yellow rows are recommended fixes. The page re-checks every time it opens.')}>
       <div className="flxt-sum">
         {STATUSES.map((st) => (
           <button key={st} type="button" className="flxt-pill" aria-pressed={filter === st} disabled={count(st) === 0} title={t('Show only these (click again for all)')} onClick={() => setFilter(filter === st ? '' : st)}>
@@ -127,6 +124,6 @@ function System() {
           )}
         </section>
       )}
-    </div>
+    </Screen>
   );
 }

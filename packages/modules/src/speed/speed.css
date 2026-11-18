@@ -1,16 +1,10 @@
 /* Performance: the classic page's look (plugins/flx-speed/assets/admin.css) on FluxWP tokens. */
-.flxpf-app{--flxpf-bd:var(--flux-border);--flxpf-mut:var(--flux-text-muted);--flxpf-ac:var(--flux-primary);--flxpf-card:var(--flux-surface);max-width:1280px;padding:0 0 24px;color:var(--flux-text);font-size:14px;line-height:1.5}
-.flxpf-app h1{font-size:23px;font-weight:600;margin:0}
+.flxpf-app{--flxpf-bd:var(--flux-border);--flxpf-mut:var(--flux-text-muted);--flxpf-ac:var(--flux-primary);--flxpf-card:var(--flux-surface);color:var(--flux-text);font-size:14px;line-height:1.5}
 .flxpf-app h2{font-size:16px;font-weight:600;margin:24px 0 8px;display:block}
 .flxpf-app h3{font-size:15px;font-weight:600;margin:0 0 6px}
 .flxpf-app a,.flxpf-linkbtn{color:var(--flxpf-ac)}
 .flxpf-linkbtn{background:none;border:0;padding:0;font:inherit;cursor:pointer;text-align:left;text-decoration:underline;text-underline-offset:2px}
 .flxpf-linkbtn.is-danger{color:var(--flux-danger);margin-top:16px}
-.flxpf-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:9px 0 4px}
-.flxpf-tabs{display:flex;flex-wrap:wrap;gap:2px;border-bottom:1px solid var(--flxpf-bd);margin:8px 0 14px}
-.flxpf-tab{padding:8px 14px;border:1px solid transparent;border-bottom:0;border-radius:6px 6px 0 0;background:none;color:var(--flxpf-mut);font-size:14px;cursor:pointer;margin-bottom:-1px}
-.flxpf-tab:hover{color:var(--flux-text)}
-.flxpf-tab.is-active{background:var(--flxpf-card);border-color:var(--flxpf-bd);color:var(--flux-text);font-weight:600}
 .flxpf-notice{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;background:var(--flxpf-card);border:1px solid var(--flxpf-bd);border-left:4px solid var(--flux-success);border-radius:6px;padding:10px 12px;margin:12px 0}
 .flxpf-notice.is-error{border-left-color:var(--flux-danger)}
 .flxpf-notice.is-warn{border-left-color:var(--flux-warning)}
@@ -144,5 +138,4 @@
   .flxpf-list td:first-child{white-space:normal}
   .flxpf-list td::before{content:attr(data-l);color:var(--flxpf-mut);min-width:80px;flex:none;font-size:12px}
   .flxpf-list td.flxpf-empty::before{content:none}
-  .flxpf-tab{padding:6px 10px;font-size:13px}
 }

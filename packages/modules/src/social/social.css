@@ -61,9 +61,6 @@
 .flxsm-label small{font-weight:400;margin-left:6px}
 .flxsm-code{display:block;padding:8px 10px;border:1px solid var(--bd);border-radius:6px;background:var(--flux-surface2);overflow-wrap:anywhere;font-family:var(--flux-font-mono,monospace);font-size:12px}
 /* tabs / segmented */
-.flxsm-tabs{display:flex;gap:4px;border-bottom:1px solid var(--bd);margin:0 0 14px;overflow-x:auto}
-.flxsm-tab{padding:8px 14px;background:none;border:0;border-bottom:2px solid transparent;white-space:nowrap}
-.flxsm-tab.is-on{border-bottom-color:var(--ac);font-weight:600}
 .flxsm-seg{display:inline-flex;border:1px solid var(--bd);border-radius:6px;overflow:hidden}
 .flxsm-seg button{padding:5px 12px;background:none;border:0;border-right:1px solid var(--bd);font-size:13px}
 .flxsm-seg button:last-child{border-right:0}

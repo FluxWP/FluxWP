@@ -1,12 +1,7 @@
 /* Theme Settings and System Check on FluxWP tokens (wp-admin and the app). */
-.flxt-app{--flxt-bd:var(--flux-border);--flxt-mut:var(--flux-text-muted);--flxt-ac:var(--flux-primary);--flxt-card:var(--flux-surface);max-width:1000px;padding:0 0 24px;color:var(--flux-text);font-size:14px;line-height:1.5}
-.flxt-app h1{font-size:23px;font-weight:600;letter-spacing:0;margin:0}
+.flxt-app{--flxt-bd:var(--flux-border);--flxt-mut:var(--flux-text-muted);--flxt-ac:var(--flux-primary);--flxt-card:var(--flux-surface);color:var(--flux-text);font-size:14px;line-height:1.5}
 .flxt-app h2{font-size:16px;font-weight:600;margin:0 0 6px;display:block}
 .flxt-app a{color:var(--flxt-ac)}
-.flxt-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:9px 0 4px}
-.flxt-tabs{display:flex;gap:4px;margin:10px 0 4px;border-bottom:1px solid var(--flxt-bd)}
-.flxt-tabs a,.flxt-tabs span{padding:8px 14px;border:1px solid transparent;border-bottom:0;border-radius:6px 6px 0 0;text-decoration:none;color:var(--flxt-mut)}
-.flxt-tabs .is-active{background:var(--flxt-card);border-color:var(--flxt-bd);color:var(--flux-text);font-weight:600;margin-bottom:-1px}
 .flxt-lead{color:var(--flxt-mut);max-width:760px;margin:12px 0 16px}
 .flxt-notice{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;background:var(--flxt-card);border:1px solid var(--flxt-bd);border-left:4px solid var(--flux-success);border-radius:6px;padding:10px 12px;margin:12px 0}
 .flxt-notice.is-error{border-left-color:var(--flux-danger)}
