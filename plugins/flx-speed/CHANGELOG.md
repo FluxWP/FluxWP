@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.11.1
+- Flux Görevler, Flux Chat, Flux App ve Flux CRM REST isteklerinde WooCommerce'in REST rotaları kaydedilmez (o istek bu rotaları hiç kullanmaz). WooCommerce'li sitede bu isteklerin PHP süresi yarıdan fazla kısalır (ölçüm: görev senkronu 0,33 sn → 0,12 sn). Filtre `flxp_lean_rest_namespaces` ile liste değişir, boş dizi kapatır.
+
 ## 0.11.0
 - Klasik (PHP) Performans sayfası ve sekmeleri (Özet, Kayıtlar, Sunucu, Veritabanı, Autoload, Cron, Sistem kontrolü, PageSpeed, Önbellek, Ayarlar) kaldırıldı; wp-admin'de yalnız React ekranı açılır. "Klasik görünüm" bağlantısı, kullanıcı başına görünüm tercihi (`flxp_ui`), eski `admin-post` uçları (`flxp_save`, `flxp_clear`, `flxp_cleanup`, `flxp_profile`, `flxp_ps_save`, `flxp_ps_clear`, `flxp_cache`) ve `includes/admin-pagespeed.php`, `includes/admin-cache.php` silindi. Pano bileşeni ve ön yüz paneli değişmedi. Ekran açılamazsa boş sayfa yerine "Bu ekran yüklenemedi" uyarısı ve yenile düğmesi görünür.
 - GraphQL `FlxSpeedConfig.classicUrl` alanı uygulama istemcileri için şimdilik duruyor; artık aynı (React) sayfayı gösterir.
