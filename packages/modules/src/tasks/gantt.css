@@ -120,3 +120,10 @@
 	.flxg-gantt-bar.is-active .flxg-gantt-dot { opacity: 1; }
 	.flxg-gantt-hint { opacity: 1; }
 }
+
+/* Tarih aralığı açılır kutusu */
+.flxg-gantt-range { display: flex; flex-direction: column; gap: 8px; }
+.flxg-gantt-range-tabs { display: flex; margin: 8px 8px 0; }
+.flxg-gantt-range-tabs button { flex: 1; height: auto; padding: 5px 10px; flex-direction: column; align-items: flex-start; gap: 0; }
+.flxg-gantt-range-tabs small { font-size: 11px; color: var(--muted); font-weight: 400; }
+.flxg-gantt-range-tabs b { font-size: 13px; color: var(--ink); }

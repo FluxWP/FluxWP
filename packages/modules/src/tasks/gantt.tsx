@@ -4,7 +4,8 @@ import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type 
 import type { FlxgGanttConfig, FlxgTask } from '@fluxwp/core';
 import { addDays, dayKey, parseDay, today, type FlxgEngine, type Group } from './engine';
 import { flxgLocale, tt } from './i18n';
-import { Avatars, cv, Ic, pickDate, PrioFlag, StatusPill, useYtg, type Ctx, type MenuItem } from './ui';
+import { DateCalendar } from '@fluxwp/ui';
+import { Avatars, cv, debounce, Ic, pickPeople, PrioFlag, StatusPill, useYtg, type Ctx, type MenuItem } from './ui';
 import { saveViewPart } from './views';
 import './gantt.css';
 
@@ -593,13 +594,22 @@ function TaskRow(o: {
   const setDate = (ev: RMouseEvent<HTMLElement>, k: 'start' | 'due') => {
     ev.stopPropagation();
     if (!edit) return e.openTask(t.id);
-    pickDate(c, ev.currentTarget, t[k], (v) => void e.patchTask(t.id, { [k]: v }).catch(() => {}), { label: k === 'start' ? tt("Start date") : tt("Due date") });
+    pickRange(c, ev.currentTarget, t, k);
+  };
+  const setPeople = (ev: RMouseEvent<HTMLElement>) => {
+    ev.stopPropagation();
+    if (!edit) return e.openTask(t.id);
+    pickPeople(c, ev.currentTarget, t.assignees, debounce((ids: number[]) => void e.patchTask(t.id, { assignees: ids }).catch(() => {}), 400));
   };
   const short = (s: string) => (s ? parseDay(s)!.toLocaleDateString(flxgLocale(), { day: 'numeric', month: 'short' }) : '–');
   const cell = (k: string): ReactNode => {
     switch (k) {
       case 'assignees':
-        return t.assignees.length ? <Avatars ids={t.assignees} size={20} max={2} /> : <span className="flxg-faint">–</span>;
+        return (
+          <button type="button" className="flxg-gantt-date" aria-label={tt("Assignee")} onClick={setPeople}>
+            {t.assignees.length ? <Avatars ids={t.assignees} size={20} max={2} /> : <span className="flxg-faint">–</span>}
+          </button>
+        );
       case 'start':
       case 'due':
         return (
@@ -773,6 +783,55 @@ export function GanttPop() {
       <div className="flxg-menu-head">{tt("Dependencies")}</div>
       {sw('deps', tt("Dependency arrows"), tt("Drag the dot at the end of a bar onto another task to link them."))}
       {sw('resched', tt("Move waiting tasks automatically"), tt("When a task ends later, the tasks waiting for it shift forward."))}
+    </div>
+  );
+}
+
+/* ---------------- Tarih aralığı ---------------- */
+/** Başlangıç ve bitişi tek açılır kutuda seçtirir: üstte iki sekme, altta ortak tarih seçici (Uygula ile). */
+export function pickRange(c: Ctx, anchor: HTMLElement, t: FlxgTask, first: 'start' | 'due') {
+  c.ui.openPop(anchor, <RangePick c={c} t={t} first={first} />, { inline: true });
+}
+function RangePick({ c, t, first }: { c: Ctx; t: FlxgTask; first: 'start' | 'due' }) {
+  const [v, setV] = useState({ start: t.start || '', due: t.due || '' });
+  const [tab, setTab] = useState<'start' | 'due'>(first);
+  const short = (s: string) => (s ? parseDay(s)!.toLocaleDateString(flxgLocale(), { day: 'numeric', month: 'short' }) : '–');
+  const save = (n: { start: string; due: string }) => {
+    const p: Record<string, string> = {};
+    if (n.start !== (t.start || '')) p.start = n.start;
+    if (n.due !== (t.due || '')) p.due = n.due;
+    if (Object.keys(p).length) void c.e.patchTask(t.id, p).catch(() => {});
+    c.ui.closePop();
+  };
+  return (
+    <div className="flxg-gantt-range">
+      <div className="flxg-seg flxg-gantt-range-tabs">
+        {(['start', 'due'] as const).map((k) => (
+          <button key={k} type="button" className={tab === k ? 'is-on' : ''} onClick={() => setTab(k)}>
+            <small>{k === 'start' ? tt("Start") : tt("Due")}</small>
+            <b>{short(v[k])}</b>
+          </button>
+        ))}
+      </div>
+      <DateCalendar
+        key={tab}
+        bare
+        time
+        quick
+        locale={flxgLocale()}
+        label={tab === 'start' ? tt("Start date") : tt("Due date")}
+        value={v[tab] ? v[tab].slice(0, 16) : ''}
+        min={tab === 'due' && v.start ? v.start : undefined}
+        max={tab === 'start' && v.due ? v.due : undefined}
+        onPick={(x) => {
+          const n = { ...v, [tab]: x };
+          setV(n);
+          // Başlangıç seçilince bitiş sekmesine geçilir (Uygula ile mevcut bitiş korunur); bitiş seçilince ikisi birden kaydedilir.
+          if (tab === 'start') setTab('due');
+          else save(n);
+        }}
+        onCancel={() => c.ui.closePop()}
+      />
     </div>
   );
 }
