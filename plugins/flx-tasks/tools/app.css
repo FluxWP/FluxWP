@@ -1457,8 +1457,9 @@ body.flxg-col-resizing * { cursor: col-resize !important; user-select: none !imp
 .flxg-doc-prow .flxg-caret { flex: none; }
 .flxg-doc-prow .flxg-caret.is-leaf { color: var(--faint); display: inline-flex; align-items: center; justify-content: center; width: 22px; }
 .flxg-doc-plink { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13.5px; color: var(--ink-2) !important; text-decoration: none !important; padding: 5px 2px; }
-.flxg-doc-padd, .flxg-doc-pmore { opacity: 0; flex: none; }
-.flxg-doc-prow:hover .flxg-doc-padd, .flxg-doc-prow:hover .flxg-doc-pmore, .flxg-doc-prow.is-active .flxg-doc-pmore { opacity: 1; }
+.flxg-doc-padd, .flxg-doc-pmore { display: none; flex: none; }
+.flxg-doc-prow:hover .flxg-doc-padd, .flxg-doc-prow:hover .flxg-doc-pmore, .flxg-doc-prow:focus-within .flxg-doc-padd, .flxg-doc-prow:focus-within .flxg-doc-pmore, .flxg-doc-prow.is-active .flxg-doc-pmore { display: inline-flex; }
+@media (hover: none) { .flxg-doc-padd, .flxg-doc-pmore { display: inline-flex; } }
 .flxg-doc-prow.flxg-ghost { background: var(--panel); box-shadow: var(--shadow); }
 .flxg-doc-tree-shade { display: none; }
 .flxg-doc-scroll { flex: 1; min-width: 0; overflow-y: auto; position: relative; }

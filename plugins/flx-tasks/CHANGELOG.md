@@ -1,5 +1,8 @@
 # Flux Tasks — Değişiklikler
 
+## 0.15.1
+- Doküman sayfaları kenar çubuğunda sayfa adı artık tam genişlikte görünür; "+" ve "…" düğmeleri yalnız üzerine gelince (ya da seçili sayfada) çıkar, o zaman ad kısaltılır.
+
 ## 0.15.0
 - Gantt görünümü (ClickUp tarzı): solda görev listesi, sağda zaman çizelgesi. Yeni görünüm menüsünde "Gantt"; yeni listelerde varsayılan dört görünümden biri.
 - Çubuğu sürükleyince görev taşınır, uçlarından çekince başlangıç / bitiş değişir (saat kısmı korunur). Tarihsiz görevin satırında sürükleyerek ya da tıklayarak tarih verilir. Çubuğa tıklayınca görev açılır.
