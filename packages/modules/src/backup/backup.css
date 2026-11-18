@@ -123,3 +123,4 @@
 @media (max-width:1100px){.flxy-cards{grid-template-columns:1fr 1fr}.flxy-grid{grid-template-columns:1fr}}
 @media (max-width:782px){.flxy-cards{grid-template-columns:1fr}.flxy-field{grid-template-columns:1fr;gap:6px}.flxy-field>label,.flxy-field>b{padding-top:0}.flxy-meta{grid-template-columns:1fr}.flxy-table th,.flxy-table td{padding:8px}}
 .flxy-link{color:var(--flxy-ac);text-decoration:none;padding:0;text-align:left;cursor:pointer}.flxy-link:hover{text-decoration:underline}
+.flxy-contents{color:var(--flux-text-muted,#646970);font-size:12px;max-width:260px}
