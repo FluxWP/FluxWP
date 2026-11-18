@@ -715,6 +715,7 @@ export function ListView() {
     >
       <div className="flxg-scroll-x">
         <div ref={wrapRef} className={'flxg-listview' + (cfg.wrap ? ' is-wrap' : '')} style={style}>
+          {tasks.length > 0 && <HeadRow cols={cols} onResize={() => force((x) => x + 1)} />}
           {groups.map((g) => {
             if (!g.tasks.length && g.key === 'all' && !tasks.length) return null;
             if (!g.tasks.length && (cfg.group === 'tag' || cfg.group === 'assignee') && g.key !== 'as:none') return null;
@@ -735,7 +736,6 @@ export function ListView() {
                 }}
                 onToggle={() => ((cfg.collapsed = isCol ? collapsed.filter((k) => k !== g.key) : [...collapsed, g.key]), e.bump())}
               >
-                {!isCol && g === groups.find((x) => !collapsed.includes(x.key)) && <HeadRow cols={cols} onResize={() => force((x) => x + 1)} />}
                 {!isCol && (
                   <ListRows zone={g.key} disabled={!g.patch}>
                     {rows}

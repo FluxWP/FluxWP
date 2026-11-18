@@ -2073,3 +2073,6 @@ body.flxg-col-resizing, body.flxg-col-resizing * { cursor: col-resize !important
 .flxg-row.is-dragging .flxg-grip { cursor: grabbing; }
 .flxg-listview.is-mobile .flxg-grip { display: none; }
 .flxg-flux .flxg-badges { flex-wrap: nowrap; white-space: nowrap; }
+/* Sütun başlığı listenin en üstünde (tek satır), kaydırınca yapışır. */
+.flxg-flux .flxg-listview > .flxg-row.is-head { position: sticky; top: 0; z-index: 6; background: var(--bg); }
+.flxg-flux .flxg-listview > .flxg-row.is-head > :nth-child(1), .flxg-flux .flxg-listview > .flxg-row.is-head > :nth-child(2) { background: var(--bg); }
