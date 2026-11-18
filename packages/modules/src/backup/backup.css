@@ -1,16 +1,7 @@
 /* Flux Backup screen on FluxWP tokens. */
-.flxy-app{--flxy-bd:var(--flux-border);--flxy-mut:var(--flux-text-muted);--flxy-ac:var(--flux-primary);--flxy-card:var(--flux-surface);max-width:1400px;padding:0 0 24px;color:var(--flux-text);font-size:14px;line-height:1.5}
-.flxy-app h1{font-size:23px;font-weight:600;margin:0;line-height:1.25}
+.flxy-app{--flxy-bd:var(--flux-border);--flxy-mut:var(--flux-text-muted);--flxy-ac:var(--flux-primary);--flxy-card:var(--flux-surface);color:var(--flux-text);font-size:14px;line-height:1.5}
 .flxy-app h2{font-size:13px;font-weight:600;color:var(--flxy-mut);margin:0 0 10px}
 .flxy-app a{color:var(--flxy-ac)}
-.flxy-head{display:flex;align-items:center;gap:14px;margin:6px 0 12px;flex-wrap:wrap}
-.flxy-logo{width:44px;height:44px;border-radius:10px;flex:none}
-.flxy-head-text{flex:1;min-width:200px}
-.flxy-head-text p{margin:2px 0 0;color:var(--flxy-mut)}
-.flxy-head-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.flxy-tabs{display:flex;gap:2px;border-bottom:1px solid var(--flxy-bd);margin:0 0 16px;overflow:auto}
-.flxy-tabs button{padding:8px 16px;border:1px solid transparent;border-bottom:0;border-radius:6px 6px 0 0;color:var(--flxy-mut);font-size:14px;white-space:nowrap}
-.flxy-tabs button[aria-current=page]{background:var(--flxy-card);border-color:var(--flxy-bd);color:var(--flux-text);font-weight:600;margin-bottom:-1px;box-shadow:0 1px 0 var(--flxy-card)}
 .flxy-btn{display:inline-flex;align-items:center;justify-content:center;min-height:32px;padding:0 12px;border:1px solid var(--flxy-bd);border-radius:6px;background:var(--flux-surface2);color:var(--flux-text);font-size:13px;white-space:nowrap;cursor:pointer;text-decoration:none!important}
 .flxy-btn:hover:not(:disabled){border-color:var(--flxy-ac)}
 .flxy-btn:disabled{opacity:.55;cursor:not-allowed}

@@ -22,7 +22,7 @@ import {
   FlxWikiTree,
 } from '@fluxwp/graphql/operations';
 import type { FlxSettingsWikiInput, FlxWikiPageStatus, FlxWikiPagesQuery, FlxWikiScreenQuery } from '@fluxwp/graphql/types';
-import { Loading, Modal, sanitizeHtml } from '@fluxwp/ui';
+import { Loading, Modal, sanitizeHtml, Screen } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { translator, type Translate } from './i18n';
 import './wiki.css';
@@ -49,6 +49,7 @@ export function WikiScreen() {
 const errText = (e: unknown, fallback: string) => (e instanceof Error && e.message ? e.message : fallback);
 
 function Wiki() {
+  const host = useHost();
   const { i18n } = useTranslation();
   const { t, tn } = useMemo(() => translator(i18n.language), [i18n.language]);
   const { scope } = useGraphQL();
@@ -82,34 +83,37 @@ function Wiki() {
   ];
 
   return (
-    <div className="flxw-app">
-      <div className="flxw-head">
-        <h1>{t('Wiki')}</h1>
-        <div className="flxw-links">
+    <Screen
+      className="flxw-app"
+      icon={host.appIcon}
+      title={t('Wiki')}
+      actions={
+        <>
           <button type="button" className="flxw-btn" onClick={() => { setTab('pages'); setEditing('new'); }}>
             {t('Add page')}
           </button>
           <a className="flxw-btn" href={o.homeUrl} target="_blank" rel="noopener noreferrer">
             {t('Open wiki')}
           </a>
-        </div>
-      </div>
-      {s && s.enabled === false && <div className="flxw-notice is-warn">{t('The wiki is closed to visitors; only people who can write pages see it.')}</div>}
-      {notice && (
-        <div className={'flxw-notice is-' + notice.kind} role={notice.kind === 'error' ? 'alert' : 'status'}>
-          <span>{notice.text}</span>
-          <button type="button" className="flxw-x" aria-label={t('Close')} onClick={() => setNotice(null)}>
-            ×
-          </button>
-        </div>
-      )}
-      <nav className="flxw-tabs" role="tablist">
-        {tabs.map(([k, label]) => (
-          <button key={k} type="button" role="tab" aria-selected={tab === k} className={tab === k ? 'is-on' : undefined} onClick={() => { setTab(k); setEditing(null); }}>
-            {label}
-          </button>
-        ))}
-      </nav>
+        </>
+      }
+      notice={
+        <>
+          {s && s.enabled === false && <div className="flxw-notice is-warn">{t('The wiki is closed to visitors; only people who can write pages see it.')}</div>}
+          {notice && (
+            <div className={'flxw-notice is-' + notice.kind} role={notice.kind === 'error' ? 'alert' : 'status'}>
+              <span>{notice.text}</span>
+              <button type="button" className="flxw-x" aria-label={t('Close')} onClick={() => setNotice(null)}>
+                ×
+              </button>
+            </div>
+          )}
+        </>
+      }
+      tabs={tabs.map(([id, label]) => ({ id, label }))}
+      tab={tab}
+      onTab={(k) => { setTab(k); setEditing(null); }}
+    >
 
       {tab === 'pages' && editing === null && (
         <PageList t={t} tn={tn} sections={d.flxWikiSections} onEdit={setEditing} onNotice={setNotice} onConfirm={setConfirm} onChanged={() => { void refreshPages(); void refreshScreen(); }} />
@@ -141,7 +145,7 @@ function Wiki() {
           </div>
         </Modal>
       )}
-    </div>
+    </Screen>
   );
 }
 

@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useFlxMutation, useFlxQuery } from '@fluxwp/graphql/react';
 import { FlxSocialPostBulkAct, FlxSocialPostDelete, FlxSocialPostDuplicate, FlxSocialPosts } from '@fluxwp/graphql/operations';
 import type { FlxSocialBulkAction, FlxSocialPostStatus } from '@fluxwp/graphql/types';
-import { Loading } from '@fluxwp/ui';
+import { Loading, Tabs } from '@fluxwp/ui';
 import { NetDot, StatusBadge, STATUS_KEYS, errorText, excerpt, payloadError, postTime, useSocial, type Post, type Query } from './common';
 
 const PAGE = 20;
@@ -146,13 +146,7 @@ export function PostsPage({ approvals, initial }: { approvals: boolean; initial:
   return (
     <div className="flxsm-posts">
       {approvals ? <p className="flxsm-lead">{t('Posts waiting for someone who can publish to approve them.')}</p> : (
-        <div className="flxsm-tabs" role="tablist">
-          {TABS.map((x) => (
-            <button key={x.id} type="button" role="tab" aria-selected={tab === x.id} className={'flxsm-tab' + (tab === x.id ? ' is-on' : '')} onClick={() => setTab(x.id)}>
-              {t(x.label)}
-            </button>
-          ))}
-        </div>
+        <Tabs items={TABS.map((x) => ({ id: x.id, label: t(x.label) }))} current={tab} onChange={setTab} />
       )}
       <div className="flxsm-filters">
         <input type="search" value={search} placeholder={t('Search posts')} aria-label={t('Search posts')} onChange={(e) => setSearch(e.target.value)} />

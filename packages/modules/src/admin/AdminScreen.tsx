@@ -18,7 +18,7 @@ import type {
   FlxAdminSettingsScreenQuery,
   FlxAdminSettingsUpdateInput,
 } from '@fluxwp/graphql/types';
-import { Loading } from '@fluxwp/ui';
+import { Loading, Screen } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { CapsTable } from './CapsTable';
 import { translator, type Translate } from './i18n';
@@ -126,28 +126,24 @@ function Admin() {
   const panel: Omit<PanelProps, 'onDirty' | 'onOpenCaps'> = { t, active: true, onNotice: setNotice };
 
   return (
-    <div className="flxad-app">
-      <div className="flxad-head">
-        <h1 className="flxad-title">
-          {host.appIcon && <img src={host.appIcon} alt="" width={32} height={32} />}
-          {t('Admin theme')}
-        </h1>
-      </div>
-      {notice && (
-        <div className={'flxad-notice is-' + notice.kind} role={notice.kind === 'error' ? 'alert' : 'status'}>
-          <span>{notice.text}</span>
-          <button type="button" className="flxad-x" aria-label={t('Close')} onClick={() => setNotice(null)}>
-            ×
-          </button>
-        </div>
-      )}
-      <div className="flxad-tabs" role="tablist">
-        {tabs.map((k) => (
-          <button key={k} type="button" role="tab" className="flxad-tab" aria-selected={tab === k} onClick={() => setTab(k)}>
-            {labels[k]}
-          </button>
-        ))}
-      </div>
+    <Screen
+      className="flxad-app"
+      icon={host.appIcon}
+      title={t('Admin theme')}
+      notice={
+        notice && (
+          <div className={'flxad-notice is-' + notice.kind} role={notice.kind === 'error' ? 'alert' : 'status'}>
+            <span>{notice.text}</span>
+            <button type="button" className="flxad-x" aria-label={t('Close')} onClick={() => setNotice(null)}>
+              ×
+            </button>
+          </div>
+        )
+      }
+      tabs={tabs.map((k) => ({ id: k, label: labels[k] }))}
+      tab={tab}
+      onTab={setTab}
+    >
 
       <SettingsForm settings={settings} config={config} tab={tab} t={t} locale={i18n.language} onDirty={dirtyForm} onNotice={setNotice} />
       {seen.has('menu') && (
@@ -172,7 +168,7 @@ function Admin() {
           </p>
         </div>
       )}
-    </div>
+    </Screen>
   );
 }
 

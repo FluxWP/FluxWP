@@ -32,8 +32,6 @@ body.flx-dark .flxan {
 }
 
 .flxan * { box-sizing: border-box; }
-.flxan-head { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; justify-content: space-between; margin: 8px 0 16px; }
-.flxan-head h1 { margin: 0; padding: 0; font-size: 23px; line-height: 1.3; color: var(--flxan-text); }
 .flxan-tools { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .flxan .flxan-tools select,
 .flxan .flxan-tools input[type="date"],
@@ -103,9 +101,6 @@ body.flx-dark .flxan {
 .flxan-lbl img { width: 16px; height: 16px; vertical-align: -3px; margin-right: 6px; border-radius: 3px; }
 .flxan-empty { color: var(--flxan-muted); padding: 18px 6px; text-align: center; }
 .flxan-more { margin-top: 10px; display: flex; gap: 8px; justify-content: flex-end; }
-.flxan-tabs { display: inline-flex; gap: 2px; background: var(--flxan-bg); border-radius: 8px; padding: 2px; flex-wrap: wrap; }
-.flxan-tabs button { border: 0; background: transparent; color: var(--flxan-muted); border-radius: 6px; padding: 4px 10px; font-size: 12px; cursor: pointer; }
-.flxan-tabs button[aria-selected="true"] { background: var(--flxan-card); color: var(--flxan-text); box-shadow: var(--flxan-shadow); }
 .flxan-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
 .flxan-chip { border: 1px solid var(--flxan-line); border-radius: 99px; padding: 3px 10px; font-size: 12px; background: var(--flxan-card); color: var(--flxan-text); cursor: pointer; }
 .flxan-chip b { margin-left: 4px; }
@@ -147,7 +142,6 @@ body.flx-dark .flxan {
 }
 @media (max-width: 782px) {
 	.flxan-grid { grid-template-columns: 1fr; }
-	.flxan-head { align-items: stretch; }
 	.flxan-tools { width: 100%; }
 	.flxan-tools select { flex: 1 1 auto; }
 	.flxan-card__value { font-size: 24px; }
@@ -257,7 +251,6 @@ html.flxa-dark .flxan-heat, body.flx-dark .flxan-heat { background: color-mix(in
 /* 0.2.1: sabit üst kısım, canlı güncelleme vurgusu, ülke kodu */
 .flxan-sticky { position: sticky; top: 32px; z-index: 50; background: var(--flxan-bg-page, #f0f0f1); margin: 0 -20px 0 -20px; padding: 0 20px 2px; }
 html.flxa-dark .flxan-sticky, body.flx-dark .flxan-sticky { background: var(--flxan-bg); }
-.flxan-sticky .flxan-head { margin: 0 0 10px; padding-top: 8px; }
 .flxan-sticky .flxan-cards { margin-bottom: 10px; }
 .flxan-sticky.stuck { box-shadow: 0 6px 12px -8px rgba(0, 0, 0, .25); }
 .flxan-sticky.stuck .flxan-kpis .flxan-card { min-height: 0; padding: 8px 12px; }
@@ -503,7 +496,6 @@ html.flxa-dark .flxan-rate.hi, body.flx-dark .flxan-rate.hi { background: rgba(7
 .flxan-react .flxan-dlg__acts{display:flex;justify-content:flex-end;gap:8px}
 .flxan-react .flxan-pill{margin-left:8px}
 .flxan-react .flxan-filterbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.flxan-react .flxan-head{align-items:center}
 .flxan-react .tm-filter{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
 .flxan-react .tm-msg{white-space:pre-wrap;word-break:break-word;font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;margin:0}
 .flxan-react .tm-err td{height:auto;padding:8px 6px;vertical-align:top}

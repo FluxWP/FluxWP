@@ -1,18 +1,9 @@
 /* Admin theme on FluxWP tokens. */
-.flxad-app{--flxad-bd:var(--flux-border);--flxad-mut:var(--flux-text-muted);--flxad-ac:var(--flux-primary);--flxad-card:var(--flux-surface);max-width:1100px;padding:0 0 24px;color:var(--flux-text);font-size:14px;line-height:1.5;box-sizing:border-box}
+.flxad-app{--flxad-bd:var(--flux-border);--flxad-mut:var(--flux-text-muted);--flxad-ac:var(--flux-primary);--flxad-card:var(--flux-surface);color:var(--flux-text);font-size:14px;line-height:1.5;box-sizing:border-box}
 .flxad-app *{box-sizing:border-box}
-.flxad-app h1{font-size:23px;font-weight:600;letter-spacing:0;margin:0}
 .flxad-app h2{font-size:16px;font-weight:600;margin:0 0 6px;display:block}
 .flxad-app h3{font-size:14px;font-weight:600;margin:0 0 8px}
 .flxad-app a{color:var(--flxad-ac)}
-.flxad-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:9px 0 4px}
-.flxad-title{display:flex;align-items:center;gap:10px}
-.flxad-title img{border-radius:8px}
-.flxad-title small{font-size:13px;font-weight:500;color:var(--flxad-mut)}
-.flxad-tabs{display:flex;gap:4px;overflow-x:auto;border-bottom:1px solid var(--flxad-bd);margin:12px 0 18px;padding:0;scrollbar-width:thin}
-.flxad-tab{flex:none;padding:8px 14px;margin:0 0 -1px;border:1px solid transparent;border-bottom:0;border-radius:8px 8px 0 0;color:var(--flxad-mut);font-size:14px;font-weight:500;text-decoration:none;white-space:nowrap;background:none}
-.flxad-tab:hover{color:var(--flux-text)}
-.flxad-tab[aria-selected=true]{background:var(--flxad-card);border-color:var(--flxad-bd);color:var(--flux-text);font-weight:600}
 .flxad-notice{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;background:var(--flxad-card);border:1px solid var(--flxad-bd);border-left:4px solid var(--flux-success);border-radius:6px;padding:10px 12px;margin:12px 0}
 .flxad-notice.is-error{border-left-color:var(--flux-danger)}
 .flxad-notice.is-info{border-left-color:var(--flxad-ac)}

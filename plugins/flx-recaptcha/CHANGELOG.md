@@ -1,5 +1,8 @@
 # Flux reCAPTCHA
 
+## 0.5.1
+- Ekran ortak FluxWP kabuğuna taşındı: başlık, simge, sekmeler, kenar boşlukları, en fazla genişlik ve güvenli alan (safe area) bütün Flux ekranlarında aynı. Sekmeler eski Flux Admin sekmeleri gibi alt çizgili; taşarsa sayfa değil sekme çubuğu kayar. Ortak modül paketi yenilendi.
+
 ## 0.5.0
 - Klasik (PHP) yönetim sayfası kaldırıldı; wp-admin'de yalnız React ekranı açılır. "Klasik görünüm" bağlantısı, kullanıcı başına görünüm tercihi, eski kaydetme/test uçları (`admin-post` `flxrc_save`, `wp_ajax_flxrc_test`) ve `assets/admin.{js,css}` silindi. Ekran ortak kabukla (`flx_admin_screen`) açılır; açılamazsa boş sayfa yerine "Bu ekran yüklenemedi" uyarısı ve yenile düğmesi görünür.
 

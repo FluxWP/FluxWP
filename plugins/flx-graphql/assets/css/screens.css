@@ -3,7 +3,8 @@
 .flx-screen:focus { outline: none; }
 
 /* Full layout: the screen covers wp-admin (its own sidebar and header). */
-.flx-screen[data-layout="full"] { position: fixed; inset: 0; z-index: 100000; overflow: hidden; background: #f6f7f9; }
+.flx-screen[data-layout="full"] { position: fixed; inset: 0; z-index: 100000; overflow: hidden; background: #f6f7f9; height: auto; min-height: 0; }
+/* Full screens take their size from inset (the plugin moves top/left/bottom for the app rail, admin bar and bottom bar); .flux-root height:100% would push them past the window. */
 .flx-screen[data-layout="full"][data-theme="dark"] { background: #121417; }
 html.flx-screen-full, html.flx-screen-full body { overflow: hidden !important; height: 100%; }
 html.flx-screen-full #wpadminbar,

@@ -16,7 +16,7 @@ import {
   FlxChatbotInbox,
 } from '@fluxwp/graphql/operations';
 import type { FlxChatbotConversationFilter, FlxChatbotConversationRowFragment, FlxChatbotMessageFieldsFragment } from '@fluxwp/graphql/types';
-import { Loading, Modal } from '@fluxwp/ui';
+import { Loading, Modal, Screen } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { translator } from './i18n';
 import type { Tr } from './fields';
@@ -106,6 +106,7 @@ function Avatar({ c }: { c: Row }) {
 }
 
 function Inbox() {
+  const host = useHost();
   const { i18n } = useTranslation();
   const { t } = useMemo(() => translator(i18n.language), [i18n.language]);
   const { scope } = useGraphQL();
@@ -158,13 +159,14 @@ function Inbox() {
   const rows = list.data?.flxChatbotConversations.nodes ?? [];
 
   return (
-    <div className="flxcb flxcb-inbox-wrap">
-      <div className="flxcb-head">
-        <div>
-          <h1>{t('Site chats')}</h1>
-          <p className="flxcb-lead">{t('Conversations from the chat window on your site. Chats the assistant answered are here too; visitors asking for an agent are on top.')}</p>
-        </div>
-        <div className="flxcb-head__actions">
+    <Screen
+      className="flxcb flxcb-inbox-wrap"
+      width="full"
+      icon={host.appIcon}
+      title={t('Site chats')}
+      subtitle={t('Conversations from the chat window on your site. Chats the assistant answered are here too; visitors asking for an agent are on top.')}
+      actions={
+        <>
           {m.fluxChatUrl && (
             <a className="button" href={m.fluxChatUrl}>
               <MessageCircle size={14} />
@@ -177,8 +179,9 @@ function Inbox() {
               {t('Settings')}
             </a>
           )}
-        </div>
-      </div>
+        </>
+      }
+    >
       {error && (
         <div className="flxcb-notice is-bad" role="alert">
           <span>{error}</span>
@@ -280,7 +283,7 @@ function Inbox() {
           </div>
         </Modal>
       )}
-    </div>
+    </Screen>
   );
 }
 

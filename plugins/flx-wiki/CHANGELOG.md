@@ -1,5 +1,8 @@
 # Flux Wiki
 
+## 0.4.1
+- Ekran ortak FluxWP kabuğuna taşındı: başlık, simge, sekmeler, kenar boşlukları, en fazla genişlik ve güvenli alan (safe area) bütün Flux ekranlarında aynı. Sekmeler eski Flux Admin sekmeleri gibi alt çizgili; taşarsa sayfa değil sekme çubuğu kayar. Ortak modül paketi yenilendi.
+
 ## 0.4.0
 - **Klasik ayar sayfası kaldırıldı.** Wiki › Ayarlar yalnız React ekranıyla açılır; "Klasik görünüm" bağlantısı, görünüm değiştirme (`flxwk_ui`) ve eski form işleyicileri (`admin_post_flxwk_save`, `admin_post_flxwk_seed`) silindi. Sayfa düzenleyici (WordPress yazı ekranı, Markdown) aynen durur.
 - Ekran açılamazsa (Flux GraphQL hazır değil, paket dosyası eksik, bundle yüklenmedi) boş sayfa yerine "Bu ekran yüklenemedi" kutusu ve **Sayfayı yenile** düğmesi çıkar.

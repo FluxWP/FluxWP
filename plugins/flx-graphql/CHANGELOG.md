@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.7.1
+- Tam ekran uygulamalar (Studio, Görevler, Sosyal Medya) pencereden taşmıyor: yönetim çubuğu ve alt çubuk payı düşülünce alt kısım (Studio yazma kutusu) artık kesilmiyor.
+
 ## 0.7.0
 
 - **Ortak "ekran yüklenemedi" kutusu.** `flx_admin_screen_page()`, `flx_admin_screen_unavailable()` ve `flx_admin_screen_failsafe()`: React ekranı açılamazsa (Flux GraphQL hazır değil, paket dosyası eksik, bundle/parça yüklenemedi, 6 sn sonra ekran hâlâ boş) boş sayfa yerine "Bu ekran yüklenemedi" kutusu ve **Sayfayı yenile** düğmesi çıkar. `flx_admin_screen_render()` bu kutuyu her ekrana kendisi ekler.

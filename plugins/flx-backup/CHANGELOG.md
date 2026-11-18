@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.7.2
+- Ekran ortak FluxWP kabuğuna taşındı: başlık, simge, sekmeler, kenar boşlukları, en fazla genişlik ve güvenli alan (safe area) bütün Flux ekranlarında aynı. Sekmeler eski Flux Admin sekmeleri gibi alt çizgili; taşarsa sayfa değil sekme çubuğu kayar. Ortak modül paketi yenilendi.
+
 ## 1.7.0
 - **Klasik sayfalar kaldırıldı.** Panel, Yedekler, yedek ayrıntısı ve Ayarlar yalnız React ekranıyla açılır; "Klasik görünüm" bağlantısı, görünüm değiştirme (`flxy_ui`), eski istemci (assets/admin.js, admin.css), klasik form kaydı ve admin-ajax başlat/geri yükle/sil/kilitle işleyicileri silindi. İndirme bağlantısı ve üst çubuktaki iş göstergesinin iptal düğmesi aynen çalışır.
 - Ekran açılamazsa (Flux GraphQL hazır değil, paket dosyası eksik, bundle yüklenmedi) boş sayfa yerine "Bu ekran yüklenemedi" kutusu ve **Sayfayı yenile** düğmesi çıkar.

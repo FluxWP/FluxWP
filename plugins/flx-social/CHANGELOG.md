@@ -1,5 +1,8 @@
 # Değişiklik günlüğü
 
+## 0.5.1
+- Ekran ortak FluxWP kabuğuna taşındı: başlık, simge, sekmeler, kenar boşlukları, en fazla genişlik ve güvenli alan (safe area) bütün Flux ekranlarında aynı. Sekmeler eski Flux Admin sekmeleri gibi alt çizgili; taşarsa sayfa değil sekme çubuğu kayar. Ortak modül paketi yenilendi. Sosyal Medya ekranı Flux Admin uygulama modunda sol şeridin altına giriyordu (yan menü kesiliyordu); artık şeridin yanında açılır.
+
 ## 0.5.0
 - **Klasik ekran kaldırıldı.** Sosyal Medya yalnız React ekranıyla açılır; "Klasik görünüm" bağlantısı, görünüm değiştirme (`flxsm_ui`), eski istemci (assets/js, assets/css/app.css) ve includes/js-strings.php silindi.
 - Ekran açılamazsa (Flux GraphQL hazır değil, paket dosyası eksik, bundle yüklenmedi) boş sayfa yerine "Bu ekran yüklenemedi" kutusu ve **Sayfayı yenile** düğmesi çıkar.

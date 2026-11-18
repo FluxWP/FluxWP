@@ -16,7 +16,7 @@ import {
   FlxSetupStepRun,
 } from '@fluxwp/graphql/operations';
 import type { FlxSetupOverviewQuery, FlxSetupPackagesQuery, FlxSetupPackageTab, FlxSetupPlanQuery, FlxSetupStepKind } from '@fluxwp/graphql/types';
-import { Loading, Modal } from '@fluxwp/ui';
+import { Loading, Modal, Screen, Tabs } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { History } from './History';
 import { errorText, NoticeBar, SetupProvider, Switch, useSetup, type Notice } from './shared';
@@ -324,26 +324,30 @@ function Packages() {
   const tabLabel = (c: Overview['tabs'][number]) => c.label;
 
   return (
-    <div className="flxk-app">
-      <div className="flxk-head">
-        <h1>{t('Packages')}</h1>
-      </div>
-      <div className="flxk-top">
-        <div className="flxk-top__check">
-          <button type="button" className="flxk-btn" disabled={check.isPending || busy} onClick={() => check.mutate({})}>
-            {check.isPending && <span className="flxk-spin" aria-hidden="true" />}
-            {check.isPending ? t('Checking…') : t('Check for updates')}
-          </button>
-          <span className="flxk-muted flxk-top__when">{check.data?.flxSetupCheck?.checkedLabel || o?.connection.checkedLabel}</span>
+    <Screen
+      className="flxk-app"
+      width="wide"
+      icon={host.appIcon}
+      title={t('Packages')}
+      actions={
+        <div className="flxk-top">
+          <div className="flxk-top__check">
+            <button type="button" className="flxk-btn" disabled={check.isPending || busy} onClick={() => check.mutate({})}>
+              {check.isPending && <span className="flxk-spin" aria-hidden="true" />}
+              {check.isPending ? t('Checking…') : t('Check for updates')}
+            </button>
+            <span className="flxk-muted flxk-top__when">{check.data?.flxSetupCheck?.checkedLabel || o?.connection.checkedLabel}</span>
+          </div>
+          {updateTotal > 0 ? (
+            <button type="button" className="flxk-btn is-primary flxk-updall" disabled={busy} onClick={() => void updateAll()}>
+              {t('Update all (%s)', count(updateTotal))}
+            </button>
+          ) : (
+            o?.connection.state === 'CONNECTED' && <span className="flxk-allgood">{t('All up to date ✓')}</span>
+          )}
         </div>
-        {updateTotal > 0 ? (
-          <button type="button" className="flxk-btn is-primary flxk-updall" disabled={busy} onClick={() => void updateAll()}>
-            {t('Update all (%s)', count(updateTotal))}
-          </button>
-        ) : (
-          o?.connection.state === 'CONNECTED' && <span className="flxk-allgood">{t('All up to date ✓')}</span>
-        )}
-      </div>
+      }
+    >
 
       <NoticeBar notice={notice} onClose={() => setNotice(null)} t={t} />
 
@@ -371,22 +375,28 @@ function Packages() {
       ))}
 
       <div className="flxk-filter">
-        <div className="flxk-tabs" role="tablist" aria-label={t('Filter packages')}>
-          {TABS.map((id) => {
+        <Tabs
+          label={t('Filter packages')}
+          current={tab}
+          onChange={setTab}
+          items={TABS.map((id) => {
             const c = o?.tabs.find((x) => x.tab === id);
-            return (
-              <button key={id} type="button" role="tab" aria-selected={tab === id} className={'flxk-tab' + (tab === id ? ' is-active' : '')} onClick={() => setTab(id)}>
-                <span>{c ? tabLabel(c) : id}</span>
-                <span className="flxk-tab__n">{count(c?.count ?? 0)}</span>
-                {!!c?.updates && (
-                  <span className="flxk-tab__up" title={t('Updates available')}>
-                    {count(c.updates)}
-                  </span>
-                )}
-              </button>
-            );
+            return {
+              id,
+              label: (
+                <>
+                  <span>{c ? tabLabel(c) : id}</span>
+                  <span className="flxk-tab__n">{count(c?.count ?? 0)}</span>
+                  {!!c?.updates && (
+                    <span className="flxk-tab__up" title={t('Updates available')}>
+                      {count(c.updates)}
+                    </span>
+                  )}
+                </>
+              ),
+            };
           })}
-        </div>
+        />
         <div className="flxk-filter__find">
           <input
             type="search"
@@ -517,7 +527,7 @@ function Packages() {
       <span className="flxk-sr" aria-live="polite">
         {tn('%s package', '%s packages', rows.length, count(rows.length))}
       </span>
-    </div>
+    </Screen>
   );
 }
 

@@ -27,7 +27,7 @@ import type {
   FlxBlocksSettingsFieldsFragment,
   FlxBlocksSourceRowFragment,
 } from '@fluxwp/graphql/types';
-import { Loading, Modal } from '@fluxwp/ui';
+import { Loading, Modal, Screen } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { translator, type Translate } from './i18n';
 import './blocks.css';
@@ -69,22 +69,19 @@ function Dashboard() {
   ];
 
   return (
-    <div className="flxbk-app">
-      <div className="flxbk-head">
-        <h1>{t('Flux Block Editor')}</h1>
-        <div className="flxbk-head-links">
-          <a href={d.flxBlocksSettings.styleLibraryUrl} onClick={(e) => { e.preventDefault(); host.openUrl(d.flxBlocksSettings.styleLibraryUrl); }}>
-            {t('Style Library')}
-          </a>
-        </div>
-      </div>
-      <div className="flxbk-tabs" role="tablist">
-        {tabs.map(([k, label]) => (
-          <button key={k} type="button" role="tab" aria-selected={tab === k} className={'flxbk-tab' + (tab === k ? ' is-on' : '')} onClick={() => setTab(k)}>
-            {label}
-          </button>
-        ))}
-      </div>
+    <Screen
+      className="flxbk-app"
+      icon={host.appIcon}
+      title={t('Flux Block Editor')}
+      actions={
+        <a className="flxbk-btn" href={d.flxBlocksSettings.styleLibraryUrl} onClick={(e) => { e.preventDefault(); host.openUrl(d.flxBlocksSettings.styleLibraryUrl); }}>
+          {t('Style Library')}
+        </a>
+      }
+      tabs={tabs.map(([id, label]) => ({ id, label }))}
+      tab={tab}
+      onTab={setTab}
+    >
       {notice && (
         <div className={'flxbk-notice is-' + notice.kind} role={notice.kind === 'error' ? 'alert' : 'status'}>
           <span>{notice.text}</span>
@@ -116,7 +113,7 @@ function Dashboard() {
           </div>
         </Modal>
       )}
-    </div>
+    </Screen>
   );
 }
 
