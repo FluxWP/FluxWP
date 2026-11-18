@@ -12,6 +12,7 @@ import { DocPage, docMenu, newDoc, useDocBridge } from './docs';
 import { setYtgLang, tt, flxgLocale } from './i18n';
 import { ago, Avatar, fullTime, Ic, Layer, Ui, FlxgCtx, useYtg, type Ctx } from './ui';
 import { BoardView, BulkBar, CalendarView, EmptyState, ListView, quickCreate, Toolbar } from './views';
+import { GanttView } from './gantt';
 import { TaskDrawer } from './TaskModal';
 import './flxg.css';
 
@@ -555,7 +556,7 @@ function ScopeTitle() {
 }
 
 /* ---------------- Liste / proje / benim görevlerim sayfası ---------------- */
-const viewIcon = (type: string) => (type === 'board' ? 'board' : type === 'calendar' ? 'calendar' : 'list');
+const viewIcon = (type: string) => (type === 'board' ? 'board' : type === 'calendar' ? 'calendar' : type === 'gantt' ? 'gantt' : 'list');
 function ScopePage({ toggleSide, mobile }: { toggleSide: () => void; mobile: boolean }) {
   const c = useYtg();
   const { e, ui } = c;
@@ -620,7 +621,7 @@ function ScopePage({ toggleSide, mobile }: { toggleSide: () => void; mobile: boo
   const addView = (anchor: HTMLElement) => {
     const mk = (type: string, name: string) =>
       e.api
-        .createView({ scope: sc!.type, scope_id: scopeId(), name, type, shared: sc!.type !== 'home' && rank(sc!.role) >= 3, config: { fields: ['assignees', 'due', 'priority'], cover: type !== 'list', group: type === 'calendar' ? 'none' : 'status' } })
+        .createView({ scope: sc!.type, scope_id: scopeId(), name, type, shared: sc!.type !== 'home' && rank(sc!.role) >= 3, config: { fields: ['assignees', 'due', 'priority'], cover: type !== 'list', group: type === 'calendar' || type === 'gantt' ? 'none' : 'status', ...(type === 'gantt' ? { sort: { by: 'start', dir: 'asc' as const } } : {}) } })
         .then((r) => {
           S.views = r.views;
           void e.go({ ...S.route, view: r.view.id });
@@ -630,6 +631,7 @@ function ScopePage({ toggleSide, mobile }: { toggleSide: () => void; mobile: boo
       { label: tt("List"), icon: 'list', onClick: () => void mk('list', tt("List")) },
       { label: tt("Board"), icon: 'board', onClick: () => void mk('board', tt("Board")) },
       { label: tt("Calendar"), icon: 'calendar', onClick: () => void mk('calendar', tt("Calendar")) },
+      { label: tt("Gantt"), icon: 'gantt', onClick: () => void mk('gantt', tt("Gantt")) },
     ]);
   };
   const extra = (
@@ -658,6 +660,7 @@ function ScopePage({ toggleSide, mobile }: { toggleSide: () => void; mobile: boo
   else if (!v) content = <EmptyState />;
   else if (v.type === 'board') content = <BoardView />;
   else if (v.type === 'calendar') content = <CalendarView onQuick={(x) => quickCreate(c, x)} />;
+  else if (v.type === 'gantt') content = <GanttView onQuick={(x) => quickCreate(c, x)} />;
   else content = <ListView />;
 
   return (

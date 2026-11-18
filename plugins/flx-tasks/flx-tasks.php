@@ -18,7 +18,7 @@ require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
 define( 'FLXG_VERSION', '0.14.0' );
-define( 'FLXG_DB_VERSION', '4' );
+define( 'FLXG_DB_VERSION', '5' );
 define( 'FLXG_FILE', __FILE__ );
 define( 'FLXG_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXG_URL', plugin_dir_url( __FILE__ ) );

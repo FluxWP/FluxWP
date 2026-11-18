@@ -969,6 +969,8 @@
     "Project admins ({n}) always have access.": "Proje yöneticileri ({n}) her zaman erişir.",
     "Add comment": "Yorum ekle",
     "Add comment (Ctrl+Alt+M)": "Yorum ekle (Ctrl+Alt+M)",
-    "Unresolved": "Çözülmemiş"
+    "Unresolved": "Çözülmemiş",
+    "Gantt": "Gantt",
+    "This dependency would create a loop.": "Bu bağımlılık döngü oluşturur."
   }
 }

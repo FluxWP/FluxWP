@@ -139,7 +139,7 @@ function flxg_dashboard_data() {
 
 	// Veritabanı tabloları.
 	$tables = array();
-	$names  = array( 'tasks', 'comments', 'activity', 'notifications', 'files', 'values', 'assignees', 'watchers', 'task_tags', 'tags', 'fields', 'views', 'lists', 'folders', 'spaces', 'members', 'docs', 'doc_pages', 'doc_blocks', 'doc_comments' );
+	$names  = array( 'tasks', 'comments', 'activity', 'notifications', 'files', 'values', 'assignees', 'watchers', 'task_tags', 'deps', 'tags', 'fields', 'views', 'lists', 'folders', 'spaces', 'members', 'docs', 'doc_pages', 'doc_blocks', 'doc_comments' );
 	$sizes  = array();
 	if ( defined( 'DATABASE_TYPE' ) && 'sqlite' === DATABASE_TYPE ) {
 		$sizes = array();

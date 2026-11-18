@@ -2700,3 +2700,9 @@ msgstr ""
 
 msgid "Could not start a chat."
 msgstr ""
+
+msgid "Gantt"
+msgstr ""
+
+msgid "This dependency would create a loop."
+msgstr ""

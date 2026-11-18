@@ -1890,5 +1890,7 @@ return array(
   'Add comment' => 'Yorum ekle',
   'Add comment (Ctrl+Alt+M)' => 'Yorum ekle (Ctrl+Alt+M)',
   'Unresolved' => 'Çözülmemiş',
+  'Gantt' => 'Gantt',
+  'This dependency would create a loop.' => 'Bu bağımlılık döngü oluşturur.',
  ),
 );

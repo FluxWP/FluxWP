@@ -120,6 +120,16 @@ function flxg_install_tables() {
 		KEY due_date (due_date)
 	) $c;";
 
+	// Bağımlılık: task_id, depends_on bitmeden başlayamaz (Gantt oku depends_on → task_id).
+	$sql[] = 'CREATE TABLE ' . flxg_table( 'deps' ) . " (
+		id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+		task_id bigint(20) unsigned NOT NULL DEFAULT 0,
+		depends_on bigint(20) unsigned NOT NULL DEFAULT 0,
+		PRIMARY KEY  (id),
+		KEY task_id (task_id),
+		KEY depends_on (depends_on)
+	) $c;";
+
 	$sql[] = 'CREATE TABLE ' . flxg_table( 'assignees' ) . " (
 		id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 		task_id bigint(20) unsigned NOT NULL DEFAULT 0,

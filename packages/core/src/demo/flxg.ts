@@ -83,6 +83,13 @@ const tasks: T[] = [
   base({ id: 221, list: 22, title: 'Gönüllü oryantasyon sunumu', status: 'todo', priority: 3, due: day(8), assignees: [2, ME] }),
   base({ id: 311, list: 31, title: 'Instagram: dikim etkinliği geri sayım serisi', status: 'doing', priority: 3, due: day(3), assignees: [4, ME], tags: [6], comments: 4 }),
 ];
+// Gantt örneği: başlangıç tarihleri ve bağımlılıklar.
+for (const [id, start, deps] of [
+  [101, -5, [111]], [106, -3, []], [107, -1, [106]], [108, 4, [102]], [109, 7, [108]], [110, 10, [109]], [103, -2, []], [104, 0, [103]], [105, 2, [104]],
+] as [number, number, number[]][]) {
+  const t = tasks.find((x) => x.id === id);
+  if (t) Object.assign(t, { start: day(start), deps });
+}
 const kidsOf = (id: number) => tasks.filter((t) => t.parent === id);
 for (const t of tasks) t.subtasks = kidsOf(t.id).filter((k) => k.kind === 'task').length;
 (tasks.find((t) => t.id === 201) as T).agenda = 3;
@@ -121,6 +128,7 @@ const mkViews = (scope: FlxgView['scope'], scope_id: number, meeting = false) =>
     { id: vseq++, scope, scope_id, user_id: 0, name: 'Liste', type: 'list', config: { fields: scope === 'list' && scope_id === 11 ? [...fieldsCfg, 'f1', 'f2'] : scope === 'list' ? fieldsCfg : ['list', ...fieldsCfg], group: 'status', subtasks: 'closed' }, position: 1 },
     { id: vseq++, scope, scope_id, user_id: 0, name: 'Pano', type: 'board', config: { fields: ['assignees', 'due', 'tags'], cover: true, group: 'status' }, position: 2 },
     { id: vseq++, scope, scope_id, user_id: 0, name: 'Takvim', type: 'calendar', config: { fields: [], group: 'none' }, position: 3 },
+    { id: vseq++, scope, scope_id, user_id: 0, name: 'Gantt', type: 'gantt', config: { fields: [], group: 'none', sort: { by: 'start', dir: 'asc' } }, position: 4 },
   ];
   views.push(...out);
   return out;

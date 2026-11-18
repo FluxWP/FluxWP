@@ -12,7 +12,7 @@ if ( empty( $flxg_settings['delete_data'] ) ) {
 	return;
 }
 global $wpdb;
-foreach ( array( 'spaces', 'folders', 'lists', 'members', 'tasks', 'assignees', 'watchers', 'tags', 'task_tags', 'fields', 'values', 'views', 'comments', 'files', 'activity', 'notifications', 'docs', 'doc_pages', 'doc_blocks', 'doc_revs', 'doc_presence', 'doc_comments', 'doc_page_members' ) as $flxg_t ) {
+foreach ( array( 'spaces', 'folders', 'lists', 'members', 'tasks', 'deps', 'assignees', 'watchers', 'tags', 'task_tags', 'fields', 'values', 'views', 'comments', 'files', 'activity', 'notifications', 'docs', 'doc_pages', 'doc_blocks', 'doc_revs', 'doc_presence', 'doc_comments', 'doc_page_members' ) as $flxg_t ) {
 	$wpdb->query( 'DROP TABLE IF EXISTS ' . $wpdb->prefix . 'flxg_' . $flxg_t ); // phpcs:ignore
 }
 foreach ( array( 'flxg_settings', 'flxg_db_version', 'flxg_seeded', 'flxg_struct_rev', 'flxg_ai_usage' ) as $flxg_o ) {

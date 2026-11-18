@@ -8,6 +8,7 @@ import {
   StatusPill, TagChips, useYtg, type Ctx, type MenuItem,
 } from './ui';
 import { DndArea, useDragItem, useDropZone, type DropInfo } from './dnd';
+import { GanttPop } from './gantt';
 
 type Col = { key: string; name: string; w: string; field?: { key: string; id: number; ids: number[]; name: string; type: string; options: Record<string, unknown> } };
 type T = FlxgTask & { _ctx?: boolean; _outside?: boolean };
@@ -345,10 +346,17 @@ export function Toolbar({ onQuick }: { onQuick: () => void }) {
             <span className="flxg-tb-label">{tt("Subtasks")}</span>
           </button>
         )}
-        <button type="button" className="flxg-tb-btn" onClick={(ev) => ui.openPop(ev.currentTarget, <FieldsPop />, { alignRight: true, inline: true })}>
-          <Ic n="columns" s={15} />
-          <span className="flxg-tb-label">{tt("Fields")}</span>
-        </button>
+        {v?.type === 'gantt' ? (
+          <button type="button" className="flxg-tb-btn" onClick={(ev) => ui.openPop(ev.currentTarget, <GanttPop />, { alignRight: true, inline: true })}>
+            <Ic n="settings" s={15} />
+            <span className="flxg-tb-label">{tt("Customize")}</span>
+          </button>
+        ) : (
+          <button type="button" className="flxg-tb-btn" onClick={(ev) => ui.openPop(ev.currentTarget, <FieldsPop />, { alignRight: true, inline: true })}>
+            <Ic n="columns" s={15} />
+            <span className="flxg-tb-label">{tt("Fields")}</span>
+          </button>
+        )}
         {S.dirty && v && (
           <button type="button" className="flxg-tb-btn is-save" onClick={(ev) => saveMenu(ev.currentTarget)}>
             <Ic n="check" s={15} />
