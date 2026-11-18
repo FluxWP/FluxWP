@@ -281,6 +281,8 @@
     "Loading",
     "MenuIcon",
     "Modal",
+    "Screen",
+    "Tabs",
     "formatDate",
     "openSanitizedLink",
     "parseDate",
