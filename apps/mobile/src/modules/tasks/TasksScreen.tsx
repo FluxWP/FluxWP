@@ -339,7 +339,7 @@ const styles = StyleSheet.create((theme) => ({
   people: { flexDirection: 'row' },
   overlap: { marginLeft: -8 },
   group: { flexDirection: 'row', alignItems: 'center', gap: 8, minHeight: 44, paddingHorizontal: theme.space[4], marginTop: 6 },
-  pill: { paddingHorizontal: 10, paddingVertical: 3, borderRadius: theme.radius.full },
+  pill: { paddingHorizontal: 10, paddingVertical: 3, borderRadius: 8 },
   dot: { width: 10, height: 10, borderRadius: 5 },
   done: { textDecorationLine: 'line-through', color: theme.colors.textMuted },
   board: { padding: theme.space[3], gap: theme.space[3], alignItems: 'stretch' },
