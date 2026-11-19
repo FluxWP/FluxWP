@@ -627,7 +627,7 @@ html.has-modal-open .flx-header-part{z-index:100000}
 
 /* ---------- v0.3.6: Header menü hover ---------- */
 .flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation-item__content{position:relative;padding-block:.35rem;transition:color .25s}
-.flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation-item__content::after{content:"";position:absolute;left:50%;bottom:-2px;width:100%;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--flx-primary),var(--flx-leaf));transform:translateX(-50%) scaleX(0);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation-item__content::after{content:"";position:absolute;left:50%;bottom:-2px;width:100%;height:3px;border-radius:3px;background:var(--flx-nav-line,var(--flx-primary));transform:translateX(-50%) scaleX(0);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
 body.flx-decoration--leaves .flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation-item__content::before{content:"";position:absolute;left:50%;top:-.95rem;width:.9rem;height:.9rem;margin-inline-start:-.45rem;background:var(--flx-leaf);-webkit-mask:var(--flx-i-sprout) center/contain no-repeat;mask:var(--flx-i-sprout) center/contain no-repeat;opacity:0;transform:translateY(6px) scale(.4) rotate(-20deg);transition:opacity .3s,transform .4s cubic-bezier(.3,1.6,.5,1)}
 .flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation-item__content:is(:hover,:focus-visible)::after,
 .flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .current-menu-item>.wp-block-navigation-item__content::after{transform:translateX(-50%) scaleX(1)}
@@ -635,7 +635,7 @@ body.flx-decoration--leaves .flx-header .wp-block-navigation__responsive-contain
 /* Kayan alt çizgi (main.js): hover'daki öğeye kayar; JS varsa öğe başına ::after çizgisi kapanır */
 .flx-header .flx-nav-slide{position:relative}
 .flx-header .flx-nav-slide .wp-block-navigation-item__content::after{display:none}
-.flx-header .flx-nav-ind{position:absolute;left:0;top:0;height:3px;margin:-5px 0 0;border-radius:3px;background:linear-gradient(90deg,var(--flx-primary),var(--flx-leaf));opacity:0;pointer-events:none;list-style:none;transition:transform .35s cubic-bezier(.2,.8,.2,1),width .35s cubic-bezier(.2,.8,.2,1),opacity .2s}
+.flx-header .flx-nav-ind{position:absolute;left:0;top:0;height:3px;margin:-5px 0 0;border-radius:3px;background:var(--flx-nav-line,var(--flx-primary));opacity:0;pointer-events:none;list-style:none;transition:transform .35s cubic-bezier(.2,.8,.2,1),width .35s cubic-bezier(.2,.8,.2,1),opacity .2s}
 /* Header butonları: normal ve hover rengi tema renginden (--flx-hbtn-* ile ön ayar değiştirebilir) */
 .flx-header{--flx-hbtn-bg:var(--flx-primary);--flx-hbtn-fg:#fff;--flx-hbtn-hover-bg:var(--flx-primary-dark);--flx-hbtn-hover-fg:var(--flx-hbtn-fg)}
 .flx-header .wp-block-button:not(.is-style-outline) .wp-block-button__link{background:var(--flx-hbtn-bg);color:var(--flx-hbtn-fg)}
