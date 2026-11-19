@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.9.3
+- Menü öğesi üstündeki fidan simgesi ve çerez kutusundaki fidan simgesi artık varsayılanda yok (menüde simge yok, çerez kutusunda nötr çerez simgesi). Fidan yalnız Süs deseni "Yapraklar" seçiliyken (Yeşil Türkiye ön ayarı) çıkar.
+
 ## 0.9.2
 - Telefon genişliğinde ayar ekranındaki uzun logo kartın dışına taşmıyor.
 
