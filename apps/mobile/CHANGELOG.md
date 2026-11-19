@@ -1,6 +1,7 @@
 # Değişiklikler
 
 ## Yayınlanmamış
+- İşler ekranı sitedeki mobil Tasks görünümüyle eşitlendi: proje/liste menüsü, Liste/Pano görünüm sekmeleri, arama yanında Grupla ve Sırala düğmeleri, dolu renkli durum rozetleri, her grupta "Yeni görev", alt görevleri aç/kapa oku, satır sonunda alt görev/yorum/dosya sayıları, sağ altta + düğmesi.
 - İşler ekranı sitedeki Tasks mobil görünümüne yaklaştı: sayfa başlığı, duruma göre gruplanmış (aç/kapa) liste, durum dairesine dokununca tamamla, satırda liste/tarih/atananlar/alt görev/yorum sayısı. Son açılan liste ya da proje hatırlanır; "Benim görevlerim" boşsa ilk liste açılır (önceden boş "Görev yok" görünüyordu).
 - Sitelerin "Uygulamada aç" düğmesi (`fluxwp://connect?site=<site adresi>`) uygulamayı açar, siteyi ekleme ekranına getirir ve normal OAuth girişi başlar. Bağlantıda gizli bilgi yok.
 - OTA beta: güncelleme sunucusunda seçilen cihaz ya da kullanıcı (`site#kullanıcıNo`) beta kanalındaki güncellemeyi önce alır. Uygulama güncelleme kontrolünde rastgele cihaz kodunu, modeli ve hesapların site + kullanıcı numarasını gönderir (ad/e-posta yok). Ayarlar'ın altında cihaz kodu görünür.

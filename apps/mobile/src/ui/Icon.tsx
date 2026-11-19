@@ -9,7 +9,7 @@ import {
   Mail, MapPin, Megaphone, MessageCircle, MessageSquare, Monitor, Music, Package, Paintbrush, Palette, Phone, PieChart,
   Plug, Plus, QrCode, Receipt, RefreshCw, Search, Send, Settings, Share2, Shield, ShieldCheck, ShoppingBag, ShoppingCart,
   Smartphone, Sparkles, Star, Store, Tag, Tags, Trash2, TreePine, TrendingUp, Truck, Tv, Unlock, Upload, User, UserCog,
-  Users, Video, Wallet, Wrench, X, TriangleAlert, Gamepad2, Clapperboard, Menu, ChevronRight, ChevronLeft, ChevronDown, ArrowLeft, EllipsisVertical, RotateCw, ExternalLink, WifiOff, LogOut, Sun, Moon, SunMoon, Pencil, StickyNote, Filter, Box, Bot, Copy, CircleAlert, type LucideIcon,
+  Users, Video, Wallet, Wrench, X, TriangleAlert, Gamepad2, Clapperboard, Menu, ChevronRight, ChevronLeft, ChevronDown, ArrowLeft, EllipsisVertical, RotateCw, ExternalLink, WifiOff, LogOut, Sun, Moon, SunMoon, Pencil, StickyNote, Filter, Box, Bot, Copy, CircleAlert, ArrowUpDown, CornerDownRight, Paperclip, List as ListIcon, Columns3, type LucideIcon,
 } from 'lucide-react-native';
 
 const map: Record<string, LucideIcon> = {
@@ -67,7 +67,7 @@ const slugs: [RegExp, LucideIcon][] = [
 
 
 // Plan §7.8 common names not covered above.
-Object.assign(map, { menu: Menu, edit: Pencil, note: StickyNote, trash: Trash2, plus: Plus, x: X, search: Search, filter: Filter, star: Star, globe: Globe, wallet: Wallet, box: Box, plugin: Plug, more: EllipsisVertical, back: ArrowLeft, chevron: ChevronRight, 'chevron-left': ChevronLeft, 'chevron-down': ChevronDown, refresh: RotateCw, external: ExternalLink, offline: WifiOff, logout: LogOut, sun: Sun, moon: Moon, system: SunMoon, bot: Bot, copy: Copy, alert: CircleAlert, key: KeyRound });
+Object.assign(map, { menu: Menu, edit: Pencil, note: StickyNote, trash: Trash2, plus: Plus, x: X, search: Search, filter: Filter, star: Star, globe: Globe, wallet: Wallet, box: Box, plugin: Plug, more: EllipsisVertical, back: ArrowLeft, chevron: ChevronRight, 'chevron-left': ChevronLeft, 'chevron-down': ChevronDown, refresh: RotateCw, external: ExternalLink, offline: WifiOff, logout: LogOut, sun: Sun, moon: Moon, system: SunMoon, bot: Bot, copy: Copy, alert: CircleAlert, key: KeyRound, group: LayoutGrid, sort: ArrowUpDown, subtask: CornerDownRight, paperclip: Paperclip, list: ListIcon, board: Columns3 });
 
 export function iconFor(name?: string, slug?: string): LucideIcon {
   const key = (name ?? '').trim().replace(/^dashicons-/, '');
