@@ -3,6 +3,7 @@
 .flx-decoration--none{--flx-decoration-pattern:none}
 :root{
   --flx-i-leaf:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 19c0-9 6-14 15-14 0 9-5 15-14 15z'/%3E%3Cpath d='M5 19l8-8'/%3E%3C/svg%3E");
+  --flx-i-cookie:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3a9 9 0 1 0 9 9 4 4 0 0 1-4-4 4 4 0 0 1-5-5z'/%3E%3Cpath d='M8.5 11.5h.01M12 16h.01M15.5 13.5h.01'/%3E%3C/svg%3E");
   --flx-i-sprout:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21v-9'/%3E%3Cpath d='M12 12C7 12 5 9 5 5c5 0 7 3 7 7z'/%3E%3Cpath d='M12 10c4 0 7-2 7-6-4 0-7 2-7 6z'/%3E%3C/svg%3E");
   --flx-i-tree:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 22v-5'/%3E%3Cpath d='M12 2l6 8h-3l4 6H5l4-6H6z'/%3E%3C/svg%3E");
   --flx-i-users:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='9' cy='7.5' r='3'/%3E%3Cpath d='M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5'/%3E%3Ccircle cx='17' cy='8.5' r='2.4'/%3E%3Cpath d='M15.5 14.6c3 0 5.5 1.7 5.5 4.9'/%3E%3C/svg%3E");
@@ -627,11 +628,19 @@ html.has-modal-open .flx-header-part{z-index:100000}
 /* ---------- v0.3.6: Header menü hover ---------- */
 .flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation-item__content{position:relative;padding-block:.35rem;transition:color .25s}
 .flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation-item__content::after{content:"";position:absolute;left:50%;bottom:-2px;width:100%;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--flx-primary),var(--flx-leaf));transform:translateX(-50%) scaleX(0);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
-.flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation-item__content::before{content:"";position:absolute;left:50%;top:-.95rem;width:.9rem;height:.9rem;margin-inline-start:-.45rem;background:var(--flx-leaf);-webkit-mask:var(--flx-i-sprout) center/contain no-repeat;mask:var(--flx-i-sprout) center/contain no-repeat;opacity:0;transform:translateY(6px) scale(.4) rotate(-20deg);transition:opacity .3s,transform .4s cubic-bezier(.3,1.6,.5,1)}
+body.flx-decoration--leaves .flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation-item__content::before{content:"";position:absolute;left:50%;top:-.95rem;width:.9rem;height:.9rem;margin-inline-start:-.45rem;background:var(--flx-leaf);-webkit-mask:var(--flx-i-sprout) center/contain no-repeat;mask:var(--flx-i-sprout) center/contain no-repeat;opacity:0;transform:translateY(6px) scale(.4) rotate(-20deg);transition:opacity .3s,transform .4s cubic-bezier(.3,1.6,.5,1)}
 .flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation-item__content:is(:hover,:focus-visible)::after,
 .flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .current-menu-item>.wp-block-navigation-item__content::after{transform:translateX(-50%) scaleX(1)}
-.flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation-item__content:is(:hover,:focus-visible)::before{opacity:1;transform:none}
-.flx-header .wp-block-search__button{border-radius:50%;transition:background .25s,color .25s,transform .35s cubic-bezier(.3,1.6,.5,1)}
+body.flx-decoration--leaves .flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation-item__content:is(:hover,:focus-visible)::before{opacity:1;transform:none}
+/* Kayan alt çizgi (main.js): hover'daki öğeye kayar; JS varsa öğe başına ::after çizgisi kapanır */
+.flx-header .flx-nav-slide{position:relative}
+.flx-header .flx-nav-slide .wp-block-navigation-item__content::after{display:none}
+.flx-header .flx-nav-ind{position:absolute;left:0;top:0;height:3px;margin:-5px 0 0;border-radius:3px;background:linear-gradient(90deg,var(--flx-primary),var(--flx-leaf));opacity:0;pointer-events:none;list-style:none;transition:transform .35s cubic-bezier(.2,.8,.2,1),width .35s cubic-bezier(.2,.8,.2,1),opacity .2s}
+/* Header butonları: normal ve hover rengi tema renginden (--flx-hbtn-* ile ön ayar değiştirebilir) */
+.flx-header{--flx-hbtn-bg:var(--flx-primary);--flx-hbtn-fg:#fff;--flx-hbtn-hover-bg:var(--flx-primary-dark);--flx-hbtn-hover-fg:var(--flx-hbtn-fg)}
+.flx-header .wp-block-button:not(.is-style-outline) .wp-block-button__link{background:var(--flx-hbtn-bg);color:var(--flx-hbtn-fg)}
+.flx-header .wp-block-button:not(.is-style-outline) .wp-block-button__link:is(:hover,:focus-visible){background:var(--flx-hbtn-hover-bg);color:var(--flx-hbtn-hover-fg)}
+.flx-header .wp-block-search__button{box-sizing:border-box;width:2.6rem;height:2.6rem;min-width:0;padding:0;margin:0;display:inline-flex;align-items:center;justify-content:center;flex:none;aspect-ratio:1;border-radius:50%;transition:background .25s,color .25s,transform .35s cubic-bezier(.3,1.6,.5,1)}
 .flx-header .wp-block-search__button:hover{background:var(--flx-mint);color:var(--flx-primary);transform:rotate(-12deg) scale(1.08)}
 .flx-header .flx-btn-heart .wp-block-button__link{transition:transform .25s,box-shadow .25s,background .25s}
 .flx-header .flx-btn-heart .wp-block-button__link:hover{box-shadow:0 10px 24px color-mix(in srgb,var(--flx-brand) 28%,transparent)}
@@ -677,7 +686,8 @@ html.has-modal-open .flx-header-part{z-index:100000}
 .flx-cookie::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:.06;background:var(--flx-primary);-webkit-mask:var(--flx-menu-pattern) 0 0/90px 90px repeat;mask:var(--flx-menu-pattern) 0 0/90px 90px repeat}
 .flx-cookie{--flx-menu-pattern:var(--flx-decoration-pattern)}
 .flx-cookie__icon{flex:none;width:2.6rem;height:2.6rem;border-radius:14px;background:var(--flx-mint);position:relative}
-.flx-cookie__icon::before{content:"";position:absolute;inset:.55rem;background:var(--flx-primary);-webkit-mask:var(--flx-i-sprout) center/contain no-repeat;mask:var(--flx-i-sprout) center/contain no-repeat}
+.flx-cookie__icon::before{content:"";position:absolute;inset:.55rem;background:var(--flx-primary);-webkit-mask:var(--flx-i-cookie) center/contain no-repeat;mask:var(--flx-i-cookie) center/contain no-repeat}
+.flx-decoration--leaves .flx-cookie__icon::before{-webkit-mask-image:var(--flx-i-sprout);mask-image:var(--flx-i-sprout)}
 .flx-cookie__body{flex:1;min-width:0}
 .flx-cookie--card .flx-cookie__body{flex-basis:calc(100% - 3.8rem)}
 .flx-cookie__title{margin:0 0 .25rem;font-family:var(--wp--preset--font-family--heading);font-weight:800;font-size:1rem;color:var(--flx-ink)}
