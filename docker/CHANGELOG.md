@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026.11.19.1
+
+- Coolify Git deploys of a non-default stack: README now says to use `/coolify/<stack>/docker-compose.yml` as the Compose Location. `compose/<stack>/` (plain Docker) has no `SERVICE_URL_*`, so Coolify found no domain there. The plain files now carry a warning line saying so.
+
 ## 2026.11.18.1
 
 - First open of a brand-new site: the FluxWP Docker mu-plugin (1.2.0) sends visitors to the WordPress login, where Flux Setup's wizard opens, until the wizard is done or skipped, a preset is applied or the site has content. Before the worker has installed WordPress, the closed install screen now shows a short "being set up" page (auto-refresh, points to the worker log) instead of a bare 403, in the Apache and nginx images.
