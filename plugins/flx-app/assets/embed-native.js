@@ -20,7 +20,7 @@
 		return;
 	}
 	var seq = 0;
-	var wait = {};
+	var wait = new Map();
 
 	function send( m ) {
 		m.v = 1;
@@ -31,7 +31,7 @@
 	function ask( m ) {
 		return new Promise( function ( done ) {
 			var id = 'd' + ++seq;
-			wait[ id ] = done;
+			wait.set( id, done );
 			m.type = 'dialog';
 			m.id = id;
 			send( m );
@@ -46,11 +46,14 @@
 				return;
 			}
 		}
-		if ( ! m || 'flxapp:dialog' !== m.type || ! wait[ m.id ] ) {
+		if ( ! m || 'flxapp:dialog' !== m.type || 'string' !== typeof m.id ) {
 			return;
 		}
-		var done = wait[ m.id ];
-		delete wait[ m.id ];
+		var done = wait.get( m.id );
+		if ( 'function' !== typeof done ) {
+			return;
+		}
+		wait.delete( m.id );
 		done( m );
 	}
 	w.addEventListener( 'message', onMessage );
