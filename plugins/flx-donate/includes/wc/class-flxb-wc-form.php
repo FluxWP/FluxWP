@@ -641,7 +641,7 @@ final class FLXB_WC_Form {
 	<form class="flxwb-form" method="post" action="" novalidate>
 		<input type="hidden" name="flxb_action" value="add">
 		<input type="hidden" name="flxb_type" value="<?php echo esc_attr( $cur ); ?>" data-flxwb-type>
-		<?php if ( ! $amounts ) : ?><?php echo FLXB_WC_Currency::switcher(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped inside ?><?php endif; ?>
+		<?php if ( ! $amounts && 'panel' !== FLXB_WC_Look::get( 'form_style' ) ) : ?><?php echo FLXB_WC_Currency::switcher(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped inside ?><?php endif; ?>
 		<?php if ( $period ) : ?>
 		<div class="flxwb-period" role="tablist" aria-label="<?php esc_attr_e( 'How often', 'flx-donate' ); ?>" data-flxwb-periods>
 			<button type="button" role="tab" class="flxwb-period__tab" aria-selected="<?php echo $is_month ? 'false' : 'true'; ?>" data-flxwb-period="once"><span class="flxwb-period__in"><?php echo FLXB_WC::icon( 'heart' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><span><?php esc_html_e( 'One-time donation', 'flx-donate' ); ?></span></span></button>
@@ -794,8 +794,15 @@ final class FLXB_WC_Form {
 		}
 		$money   = FLXB_WC_Cart::currency();
 		$presets = FLXB_WC_Currency::presets( $t, $money );
+		if ( ! $presets ) {
+			$presets = array_map( 'floatval', FLXB_WC_Look::amount_presets( $money ) ); // 2.33.0: the site's quick amounts
+		}
 		$units   = max( 1, absint( $old['u'][ $id ] ?? ( isset( $_GET['flxb_qty'] ) ? absint( $_GET['flxb_qty'] ) : 1 ) ) ); // phpcs:ignore WordPress.Security.NonceVerification
 		$name_o  = 'o[' . $id . ']';
+		if ( 'panel' === FLXB_WC_Look::get( 'form_style' ) ) {
+			/* 2.33.0: B · the picked type's name over its details, the currency menu beside it. */
+			echo '<div class="flxwb-phead"><h3 class="flxwb-ptitle">' . esc_html( self::tab_title( $t ) ) . '</h3>' . ( 'amounts' === $view ? '' : FLXB_WC_Currency::switcher( 'menu' ) ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped inside
+		}
 		if ( '' !== (string) $t['description'] ) {
 			echo '<p class="flxwb-desc">' . esc_html( (string) $t['description'] ) . '</p>';
 		}
@@ -876,15 +883,29 @@ final class FLXB_WC_Form {
 			$min = FLXB_WC_Cart::min_free( $t, $money );
 			?>
 		<fieldset class="flxwb-fs flxwb-free" data-flxwb-free<?php echo $cards && '__free' !== $sel ? ' hidden' : ''; ?>>
-			<legend class="flxwb-legend"><?php esc_html_e( 'Donation amount', 'flx-donate' ); ?></legend>
-			<?php if ( $presets ) : ?>
-			<div class="flxwb-chips">
+			<legend class="flxwb-legend"><?php echo esc_html( '' !== FLXB_WC_Look::label( 'amount_label' ) ? FLXB_WC_Look::label( 'amount_label' ) : __( 'Donation amount', 'flx-donate' ) ); ?></legend>
+			<?php
+			if ( $presets ) :
+				/* 2.33.0: preset amounts as large buttons + "Other amount"; the field opens only for an own amount. */
+				$typed = (string) ( $old['a'][ $id ] ?? '' );
+				$tv    = '' !== $typed ? (float) str_replace( ',', '.', $typed ) : 0;
+				$hit   = $tv > 0 ? array_values( array_filter( $presets, static function ( $a ) use ( $tv ) { return abs( $a - $tv ) < 0.001; } ) ) : array();
+				$other = $tv > 0 && ! $hit;
+				$pick  = $other ? 0 : ( $hit ? $hit[0] : $presets[ count( $presets ) >= 3 ? 1 : 0 ] );
+				$o_lbl = '' !== FLXB_WC_Look::label( 'other_label' ) ? FLXB_WC_Look::label( 'other_label' ) : __( 'Other amount', 'flx-donate' );
+				?>
+			<div class="flxwb-amts flxwb-amts--money" role="group" aria-label="<?php esc_attr_e( 'Donation amount', 'flx-donate' ); ?>" style="--flxwb-amts:<?php echo esc_attr( (string) count( $presets ) ); ?>">
 				<?php foreach ( $presets as $a ) : ?>
-				<button type="button" class="flxwb-chip" data-flxwb-amount="<?php echo esc_attr( $a ); ?>"><?php echo wp_kses_post( wc_price( $a ) ); ?></button>
+				<button type="button" class="flxwb-amt" data-flxwb-amount="<?php echo esc_attr( (string) $a ); ?>" aria-pressed="<?php echo $a === $pick ? 'true' : 'false'; ?>"><strong class="flxwb-amt__price"><?php echo wp_kses_post( self::price_short( $a ) ); ?></strong></button>
 				<?php endforeach; ?>
+				<div class="flxwb-amt-other<?php echo $other ? ' is-on' : ''; ?>" data-flxwb-other>
+					<?php echo self::amount_field( $t, array( 'a' => array( $id => $other ? $typed : '' ) ), $o_lbl, 0, true ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				</div>
 			</div>
+			<input type="hidden" name="a[<?php echo esc_attr( (string) $id ); ?>]" value="<?php echo esc_attr( $other ? $typed : ( $pick > 0 ? (string) $pick : '' ) ); ?>" data-flxwb-amount-input>
+			<?php else : ?>
+			<?php echo self::amount_field( $t, $old, __( 'Amount', 'flx-donate' ), max( $min, 100 ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			<?php endif; ?>
-			<?php echo self::amount_field( $t, $old, $presets ? __( 'Or write another amount', 'flx-donate' ) : __( 'Amount', 'flx-donate' ), $presets ? $presets[0] : max( $min, 100 ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 		</fieldset>
 			<?php
 		endif;
@@ -929,7 +950,7 @@ final class FLXB_WC_Form {
 	 * 2.23.0: the hand-written amount as a shared FluxWP field (icon, label, currency at the end). The lowest
 	 * amount is not written up front: the warning comes under the field when a lower amount is sent.
 	 */
-	private static function amount_field( array $t, array $old, $label, $example = 0 ) {
+	private static function amount_field( array $t, array $old, $label, $example = 0, $own = false ) {
 		$id   = (int) $t['id'];
 		$sym  = html_entity_decode( get_woocommerce_currency_symbol(), ENT_QUOTES, 'UTF-8' );
 		$code = class_exists( 'FLXB_WC_Currency' ) ? FLXB_WC_Currency::short( FLXB_WC_Cart::currency() ) : $sym;
@@ -944,7 +965,14 @@ final class FLXB_WC_Form {
 			'wide'        => true,
 			'class'       => 'flxwb-amount',
 			'attrs'       => array( 'inputmode' => 'decimal', 'autocomplete' => 'off', 'data-flxwb-amount-input' => '' ),
+			'wrap_attrs'  => array( 'data-flx-manual' => '' ), // 2.33.0: the form script owns the warning (a blur check no longer wipes it)
 		);
+		if ( $own ) {
+			/* 2.33.0: the "Other amount" card among the quick amounts; a hidden input carries the amount. */
+			$args['name']  = '';
+			$args['icon']  = '';
+			$args['attrs'] = array( 'inputmode' => 'decimal', 'autocomplete' => 'off', 'data-flxwb-other-input' => '', 'aria-label' => $label );
+		}
 		if ( function_exists( 'flx_field' ) ) {
 			return flx_field( $args );
 		}

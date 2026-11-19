@@ -209,7 +209,7 @@ final class FLXB_WC_Currency {
 	/**
 	 * Currency switcher: a segmented row of links (no JavaScript, works with page caches).
 	 *
-	 * @param bool $compact Small pill row without the label (header, shortcode).
+	 * @param bool|string $compact Small pill row without the label (header, shortcode); 'menu' = drop-down.
 	 */
 	public static function switcher( $compact = false ) {
 		$all = self::all();
