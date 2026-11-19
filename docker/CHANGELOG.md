@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026.11.19.2
+
+- `WP_AUTO_INSTALL` now defaults to false in every stack: the domain shows WordPress's own install screen (language, site name, admin) again, open without a token (Apache and nginx). `WP_AUTO_INSTALL=true` keeps the unattended worker install and the closed install screen (`WP_INSTALL_TOKEN` still opens it). Anyone who reaches a brand-new domain first can run the install, so open it right after the deploy.
+
+- FluxWP Docker mu-plugin 1.3.0: the first time an administrator opens wp-admin while Flux Setup's wizard is still pending, they are sent to the wizard once, even if the activation flag or Flux Setup's 60 second redirect was missed (seen on the `wpapi` stack: login went straight to the dashboard). Filter `flx_docker_first_run_redirect` turns it off.
+
 ## 2026.11.19.1
 
 - Coolify Git deploys of a non-default stack: README now says to use `/coolify/<stack>/docker-compose.yml` as the Compose Location. `compose/<stack>/` (plain Docker) has no `SERVICE_URL_*`, so Coolify found no domain there. The plain files now carry a warning line saying so.

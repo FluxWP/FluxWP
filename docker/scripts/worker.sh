@@ -67,17 +67,17 @@ install_core() {
 	if wp core is-installed >/dev/null 2>&1; then
 		return 0
 	fi
-	# WP_AUTO_INSTALL defaults to true: install without WP_ADMIN_EMAIL,
+	# WP_AUTO_INSTALL=true: install without WP_ADMIN_EMAIL,
 	# admin e-mail falls back to admin@<site host>.
-	if [ -z "${WP_ADMIN_EMAIL:-}" ] && [ -n "${WP_URL:-}" ] && truthy "${WP_AUTO_INSTALL:-true}"; then
+	if [ -z "${WP_ADMIN_EMAIL:-}" ] && [ -n "${WP_URL:-}" ] && truthy "${WP_AUTO_INSTALL:-false}"; then
 		host="$(echo "$WP_URL" | sed -E 's#^[a-zA-Z]+://##; s#[/:].*$##')"
 		WP_ADMIN_EMAIL="admin@${host:-example.com}"
 	fi
 	if [ -z "${WP_URL:-}" ] || [ -z "${WP_ADMIN_EMAIL:-}" ]; then
 		if [ -z "${FLX_WARNED:-}" ]; then
 			log "WordPress is not installed. The install screen is closed."
-			log "Leave WP_AUTO_INSTALL=true (default) or set WP_ADMIN_EMAIL to install from this worker,"
-			log "or set WP_INSTALL_TOKEN to open /wp-admin/install.php in the browser."
+			log "Open the site to use the WordPress install screen, or set WP_AUTO_INSTALL=true / WP_ADMIN_EMAIL to install from this worker,"
+			log "(with WP_AUTO_INSTALL=true the install screen needs WP_INSTALL_TOKEN)."
 			FLX_WARNED=1
 		fi
 		return 1
