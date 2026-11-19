@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 2.5.1
+- Doğrulama uyarıları yeniden tasarlandı: "Bu alan zorunludur" gibi mesajlar artık alanın ALTINDA, ikonlu kırmızı tek satır olarak çıkar; label'ın üstüne binen balon kalktı. Koyu mod ve mobil uyumlu.
+- Zorunlu alan hatasında üstteki sarı bildirim (toast) kalktı; sayfa ilk hatalı alana kayar ve odaklanır.
+- Erişilebilirlik: hatalı alanda `aria-invalid`, mesaja `aria-describedby` bağı ve `role="alert"`.
+- İlk hatalı alana kaydırma, sonradan gelen geçerli bir alana kayabiliyordu; düzeldi.
+
 ## 2.5.0
 - Herkese açık form okuma ve gönderim GraphQL üzerinden: `flxForm`, `flxFormSubmit`, `flxFormTrack`, `flxFormTrackReply`. Çizim alanları döner; bildirim alıcıları, webhook, sırlar ve rezervasyon sayaçları dönmez. Gönderim form, anket ve abonelik içindir. Captcha Flux reCAPTCHA (`flxf_submit`), formun kendi captcha'sı, Human Shield, honeypot ve hız sınırı GraphQL'de. Gönderim klasik hattan geçer: koşullu mantık, zorunlu ve alan doğrulaması, takip kodu stili ve kayıt biçimi REST ile aynıdır. Klasik REST çıktısı aynı kaldı.
 - PHP 8.1 ve Flux GraphQL gerekli. Flux GraphQL yoksa GraphQL kaydı atlanır, REST çalışır.

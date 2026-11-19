@@ -1976,8 +1976,33 @@ fun_text_forbiden_convert_efb=(value)=>{
  value= value.replaceAll(`\r`, " ");
  return value;
 }
-show_msg_efb=(el)=>{ if(el) el.style.display='block'; }
-hide_msg_efb=(el)=>{ if(el){ el.style.display='none'; el.innerHTML=''; } }
+/* Field message (under the field) + a11y: aria-invalid on the control, aria-describedby to the message, role=alert on the message. */
+flxf_msg_control_=(el)=>{
+  if(!el || !el.id) return null;
+  const base = el.id.replace(/-message$/,'');
+  return document.getElementById(base) || document.getElementById(base.replace(/_$/,'_options')) || document.getElementById(base.replace(/_$/,'_yn'));
+}
+show_msg_efb=(el)=>{
+  if(!el) return;
+  el.style.display='block';
+  el.setAttribute('role','alert');
+  const c = flxf_msg_control_(el);
+  if(c){
+    c.setAttribute('aria-invalid','true');
+    const ids = (c.getAttribute('aria-describedby')||'').split(' ').filter(Boolean);
+    if(ids.indexOf(el.id)===-1){ ids.push(el.id); c.setAttribute('aria-describedby', ids.join(' ')); }
+  }
+}
+hide_msg_efb=(el)=>{
+  if(!el) return;
+  el.style.display='none'; el.innerHTML=''; el.removeAttribute('role');
+  const c = flxf_msg_control_(el);
+  if(c){
+    c.removeAttribute('aria-invalid');
+    const ids = (c.getAttribute('aria-describedby')||'').split(' ').filter(x=>x && x!==el.id);
+    ids.length ? c.setAttribute('aria-describedby', ids.join(' ')) : c.removeAttribute('aria-describedby');
+  }
+}
 remove_ttmsg_efb=(id)=>{
   const m=document.getElementById(`${id}_-message`);
   hide_msg_efb(m);
@@ -4002,7 +4027,7 @@ async function fun_validation_efb_v4(form_id) {
         if (inputEl && type_validate_efb(valj_efb[row].type) == true) {
           inputEl.className = colorBorderChangerEfb(inputEl.className, "border-danger");}
       } else {
-        idi = valj_efb[row].id_;
+        if (state == true) idi = valj_efb[row].id_;
         if (el) hide_msg_efb(el);
         if (inputEl && type_validate_efb(valj_efb[row].type) == true) inputEl.className = colorBorderChangerEfb(inputEl.className, "border-success");
         const v = sendBack_emsFormBuilder_pub.length>0 && valj_efb[row].type == "multiselect" && sendBack_emsFormBuilder_pub[s].hasOwnProperty('value') ? sendBack_emsFormBuilder_pub[s].value.split("@efb!") :"";
@@ -4086,7 +4111,7 @@ async function fun_validation_efb_v4(form_id) {
       first_invalid_name: name_field,
       dom: efb_steps_dom_debug_efb(form_id, body_efb_v || document)
     });
-    alert_message_efb(efb_var.text.fillrequiredfields, '', 6, 'warning');
+    /* No toast: the message is under each field. Scroll to and focus the first invalid field. */
     if (idi != "null") {
       if(typeof smoothy_scroll_postion_efb === 'function'){
         smoothy_scroll_postion_efb(idi, form_id)
@@ -4094,6 +4119,8 @@ async function fun_validation_efb_v4(form_id) {
         const scrollTarget = efb_get_by_id_in_form_efb(form_id, idi);
         if (scrollTarget) scrollTarget.scrollIntoView({behavior: "smooth", block: "center", inline: "center"});
       }
+      const firstBad = efb_get_by_id_in_form_efb(form_id, idi + '_') || efb_get_by_id_in_form_efb(form_id, idi + '_options');
+      if (firstBad && typeof firstBad.focus === 'function') { try { firstBad.focus({preventScroll:true}); } catch(e) {} }
     }
     return false;
   }
