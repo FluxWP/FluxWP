@@ -1,0 +1,124 @@
+<?php
+/**
+ * Return types of the untyped Flux Donate helpers the GraphQL services call.
+ * PHPStan reads these instead of the sources, so the legacy files stay untouched.
+ */
+
+/**
+ * @param array<string, mixed> $args
+ * @return list<array{id: int, slug: string, title: string, description: string, image_url: string, currency: string, state: string, state_message: string, category: string, category_label: string, options: list<array{key: string, label: string, price: float|null, prices: array<string, float>, unit: string|null, unit_label: string|null, units_per: int, active: bool}>, allow_free: bool, min_amount: float, allow_quantity: bool, requires_proxy: bool, progress: array{raised: float, gifts: int, goal: float, percent: float, currency: string}|null}>
+ */
+function flxb_get_types( array $args = array() ) {}
+
+/**
+ * @param int|string $id_or_slug
+ * @return array{id: int, slug: string, title: string, description: string, image_url: string, currency: string, state: string, state_message: string, category: string, category_label: string, options: list<array{key: string, label: string, price: float|null, prices: array<string, float>, unit: string|null, unit_label: string|null, units_per: int, active: bool}>, allow_free: bool, min_amount: float, allow_quantity: bool, requires_proxy: bool, progress: array{raised: float, gifts: int, goal: float, percent: float, currency: string}|null}|null
+ */
+function flxb_get_type( $id_or_slug ) {}
+
+/** @return array{holder: string, iban: string, iban_display: string, bank: string}|null */
+function flxb_bank_account() {}
+
+class FLXB_Types {
+	/** @return array<string, mixed>|null */
+	public static function get( mixed $id ) {}
+
+	/**
+	 * @param array<string, mixed> $t
+	 * @return bool
+	 */
+	public static function requires_proxy( array $t ) {}
+}
+
+class FLXB_App {
+	/** @return list<array<int, array<string, mixed>>> */
+	public static function gifts( mixed $user_id ) {}
+
+	/**
+	 * @param array<int, array<string, mixed>> $g
+	 * @return array{id: int, order_id: int, date: string, title: string, amount: float, currency: string, status: string}
+	 */
+	public static function gift_out( array $g ) {}
+}
+
+class FLXB_Lookup {
+	/** @return array{on: int, page_id: int, channels: list<string>} */
+	public static function settings() {}
+
+	/** @return bool */
+	public static function channel_ready( mixed $ch ) {}
+
+	/** @return bool */
+	public static function phone_ready() {}
+
+	/** @return array{0: string, 1: string} */
+	public static function normalize( mixed $login ) {}
+
+	/** @return array{donors: list<int>, orders: list<int>} */
+	public static function match( mixed $type, mixed $value ) {}
+
+	/** @return string */
+	public static function ip() {}
+
+	/** @return string */
+	public static function h( mixed $s ) {}
+
+	/** @return bool */
+	public static function rate( mixed $key, mixed $max, mixed $window ) {}
+
+	/** @return string */
+	public static function sent_message( mixed $via ) {}
+
+	/** @return string|false */
+	public static function deliver( mixed $type, mixed $value, mixed $code ) {}
+
+	/** @return array{who: string, account: bool, count: int, total_label: string, items: list<array{id: int, title: string, status: string, date: string, amount: float, currency: string}>, certificates: list<array{code: string}>, donate_url: string} */
+	public static function proven( mixed $type, mixed $value ) {}
+
+	/** @return array{who: string, account: bool, count: int, total_label: string, items: list<array{id: int, title: string, status: string, date: string, amount: float, currency: string}>, certificates: list<array{code: string}>, donate_url: string} */
+	public static function account( mixed $user_id ) {}
+
+	/** @return list<array<int, array<string, mixed>>> */
+	public static function gifts( mixed $type, mixed $value ) {}
+
+	/** @return void */
+	public static function set_cookie( mixed $value, mixed $expire ) {}
+
+	/** @return array{type: string, value: string}|null */
+	public static function session() {}
+}
+
+class FLXB_WC_Products {
+	/** @return int */
+	public static function product_id( mixed $type, mixed $create = true ) {}
+}
+
+class FLXB_WC_Currency {
+	/** @return bool */
+	public static function set( mixed $code ) {}
+}
+
+class FLXB_WC_Form {
+	/**
+	 * @param array<string, mixed> $line
+	 * @return string
+	 */
+	public static function contact_missing( array $line ) {}
+
+	/**
+	 * @param array<string, mixed> $line
+	 * @return void
+	 */
+	public static function remember_contact( array $line ) {}
+
+	/** @return string */
+	public static function phone_value( mixed $raw ) {}
+}
+
+class FLXB_WC_Fee {
+	/**
+	 * @param array<string, mixed> $in
+	 * @return void
+	 */
+	public static function remember( array $in ) {}
+}

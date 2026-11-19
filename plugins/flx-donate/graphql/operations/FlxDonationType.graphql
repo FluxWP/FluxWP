@@ -1,0 +1,8 @@
+query FlxDonationType($id: Int, $slug: String) {
+  flxDonationType(id: $id, slug: $slug) {
+    databaseId
+    slug
+    title
+    state
+  }
+}

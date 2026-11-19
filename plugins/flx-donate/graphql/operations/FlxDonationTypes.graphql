@@ -1,0 +1,28 @@
+query FlxDonationTypes($status: FlxDonationTypeList, $category: String, $first: Int) {
+  flxDonationTypes(status: $status, category: $category, first: $first) {
+    nodes {
+      databaseId
+      slug
+      title
+      description
+      imageUrl
+      currency
+      state
+      allowFree
+      minAmount { amount currency }
+      allowQuantity
+      requiresProxy
+      progress {
+        raised { amount currency }
+        goal { amount currency }
+      }
+      options {
+        key
+        label
+        price { amount currency }
+        unit
+        active
+      }
+    }
+  }
+}

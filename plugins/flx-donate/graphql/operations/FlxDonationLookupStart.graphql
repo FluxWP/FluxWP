@@ -1,0 +1,12 @@
+mutation FlxDonationLookupStart($input: FlxDonationLookupStartInput!) {
+  flxDonationLookupStart(input: $input) {
+    ok
+    via
+    message
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

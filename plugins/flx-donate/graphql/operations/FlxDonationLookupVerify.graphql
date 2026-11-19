@@ -1,0 +1,9 @@
+mutation FlxDonationLookupVerify($input: FlxDonationLookupVerifyInput!) {
+  flxDonationLookupVerify(input: $input) {
+    ok
+    errors {
+      code
+      message
+    }
+  }
+}

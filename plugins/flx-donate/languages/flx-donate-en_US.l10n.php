@@ -2806,6 +2806,8 @@ return array(
   'Monthly donations are not available at the moment.' => 'Monthly donations are not available at the moment.',
   'Donations in %s cannot be paid here at the moment.' => 'Donations in %s cannot be paid here at the moment.',
   'The donation product could not be found.' => 'The donation product could not be found.',
+  'The shop is not available on this site.' => 'The shop is not available on this site.',
+  'Donation lookup is not available.' => 'Donation lookup is not available.',
   'It could not be added to the cart.' => 'It could not be added to the cart.',
   'A donation in your cart cannot be paid in %s and was removed.' => 'A donation in your cart cannot be paid in %s and was removed.',
   'A donation in your cart is no longer available and was removed.' => 'A donation in your cart is no longer available and was removed.',

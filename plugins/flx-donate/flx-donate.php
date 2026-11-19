@@ -2,10 +2,10 @@
 /**
  * Plugin Name:       Flux Donate
  * Description:       Donations on WooCommerce: donation types and sapling packages sold as hidden products, cart and checkout (iyzico, bank transfer with receipt upload), monthly donations, online and printed certificates, donors, campaigns and a donation dashboard. Includes Flux WooCommerce Bağış.
- * Version:           2.32.0
+ * Version:           2.33.0
  * Requires at least: 6.4
- * Requires PHP:      7.4
- * Requires Plugins:  woocommerce, flx-crm
+ * Requires PHP:      8.1
+ * Requires Plugins:  woocommerce, flx-crm, flx-graphql
  * WC requires at least: 8.0
  * WC tested up to:   11.2
  * Author:            Flux Donate contributors
@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback; no Flux Lang dependency.
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
-define( 'FLXB_VERSION', '2.32.0' );
+define( 'FLXB_VERSION', '2.33.0' );
 define( 'FLXB_FILE', __FILE__ );
 define( 'FLXB_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXB_URL', plugin_dir_url( __FILE__ ) );
@@ -58,6 +58,12 @@ FLXB_Track::init();
 FLXB_Preset::init();
 require_once FLXB_DIR . 'includes/class-flxb-form-sync.php';
 require_once FLXB_DIR . 'includes/class-flxb-preselect.php';
+require_once FLXB_DIR . 'includes/services/class-flxb-type-public-service.php';
+require_once FLXB_DIR . 'includes/services/class-flxb-cart-service.php';
+require_once FLXB_DIR . 'includes/services/class-flxb-lookup-service.php';
+require_once FLXB_DIR . 'includes/services/class-flxb-my-donations-service.php';
+FLXB_Type_Public_Service::init();
+FLXB_Cart_Service::init();
 require_once FLXB_DIR . 'includes/class-flxb-rest.php';
 require_once FLXB_DIR . 'includes/class-flxb-app.php';
 require_once FLXB_DIR . 'includes/class-flxb-lookup.php';
@@ -90,6 +96,27 @@ FLXB_System_Fixes::init();
 
 register_activation_hook( __FILE__, array( 'FLXB_Install', 'activate' ) );
 register_deactivation_hook( __FILE__, array( 'FLXB_Install', 'deactivate' ) );
+
+/*
+ * GraphQL (Flux GraphQL 0.3.0 cart bridge). Without the kit the schema is left out; REST keeps working.
+ */
+add_action(
+	'flx_gql_register',
+	static function () {
+		if ( ! function_exists( 'flx_gql_query' ) || ! function_exists( 'flx_gql_connection' ) ) {
+			return;
+		}
+		require_once FLXB_DIR . 'includes/graphql/schema.php';
+	}
+);
+add_filter(
+	'flx_gql_persisted_manifests',
+	static function ( $m ) {
+		$m               = is_array( $m ) ? $m : array();
+		$m['flx-donate'] = FLXB_DIR . 'graphql/persisted-queries.json';
+		return $m;
+	}
+);
 
 add_action( 'plugins_loaded', array( 'FLXB_Install', 'maybe_upgrade' ), 5 );
 add_action( 'plugins_loaded', array( 'FLXB_Install', 'purge_on_update' ), 6 );

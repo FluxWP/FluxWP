@@ -1,5 +1,12 @@
 # Değişiklikler
 
+## 2.33.0
+- Bağış sayfasının GraphQL'i (a): `flxDonationTypes`, `flxDonationType`, `flxDonationCartAdd`, `flxMyDonations`, bağışçı sorgulama (`flxDonationLookupStart` / `Verify` / `End`) ve `flxDonationBankAccount`. Tutarlar `FlxMoney`, kayıt zamanı `FlxDateTime` (saklanan değer UTC). Ödeme ve banka dönüşleri Store API'de kalır. Birkaç ad tek satır, tek ödeme, ad başına bir sertifika.
+- `flxDonationCartAdd` klasik formun iletişim kapısından geçer (`contacts`: her ad için WhatsApp/e-posta), bağışçının iletişimini ve ücret tercihini (`feeCover`) formdaki gibi hatırlar; seçilemeyen para birimi `flxb_currency` hatası verir.
+- Store API'de sepet adedi klasik sepetle aynı yerde sabittir (serbest tutar, birden çok adet, aylık).
+- `flx-donate:types` önbellek etiketi tür kaydı/silme ve bağış değişince temizlenir; sorgulama kapalıyken oturumla okuma ve doğrulama kapanır; `flxMyDonations` reddi de önbelleğe girmez.
+- PHP 8.1 ve Flux GraphQL gerekli. Flux GraphQL yoksa REST eskisi gibi çalışır.
+
 ## 2.32.0
 - **Vekâlet onayı sağdaki özet kutusunda.** Vekâlet isteyen bağışlarda (kurban) "Vekâlet metnini oku" ve onay kutusu artık toplam tutarın ve gönder düğmesinin hemen üstünde; geniş ekranda sağda sabit kalır, telefonda düğmenin üstünde görünür. Onay atlanınca çıkan uyarının yanındaki kutu artık gözden kaçmaz. Adlar ve "Kimin adına?" bölümü yerinde kaldı.
 
