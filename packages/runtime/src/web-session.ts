@@ -118,9 +118,34 @@ export function classifyNavigation(url: string, opts: NavOptions): NavDecision {
 export type BridgeMessage =
   | { type: 'title'; title: string }
   | { type: 'route'; path: string }
-  | { type: 'toast'; text: string }
+  | { type: 'toast'; text: string; tone?: 'ok' | 'error' }
   | { type: 'counts'; counts: Record<string, number> }
-  | { type: 'close' };
+  | { type: 'close' }
+  | BridgeDialog;
+
+/**
+ * A site window the app opens natively (flx-app `embed-native.js`, mobile 1.0.2+): flxDialog confirm/alert/prompt,
+ * a plain confirmation window of a React screen (`choice`: its ≤3 buttons) or a React menu (`menu`: ≤20 items,
+ * an action sheet). Answer with `dialogAnswer` (`index` = chosen button/item, -1 = dismissed).
+ */
+export interface BridgeDialog {
+  type: 'dialog';
+  id: string;
+  kind: 'confirm' | 'alert' | 'prompt' | 'choice' | 'menu';
+  title: string;
+  message: string;
+  ok?: string;
+  cancel?: string;
+  danger?: boolean;
+  value?: string;
+  placeholder?: string;
+  buttons?: { label: string; danger?: boolean; cancel?: boolean }[];
+}
+
+/** The page's answer to a `dialog` (posted into the webview). */
+export function dialogAnswer(id: string, a: { ok: boolean; value?: string; index?: number }): string {
+  return JSON.stringify({ type: 'flxapp:dialog', id, ok: a.ok, ...(a.value !== undefined ? { value: a.value } : {}), ...(a.index !== undefined ? { index: a.index } : {}) });
+}
 
 /** Whitelisted postMessage payloads from flx-app's embed bridge; anything else is ignored. */
 export function parseBridgeMessage(raw: unknown): BridgeMessage | null {
@@ -142,7 +167,21 @@ export function parseBridgeMessage(raw: unknown): BridgeMessage | null {
     case 'route':
       return s(o.path, 500) !== null ? { type: 'route', path: s(o.path, 500)! } : null;
     case 'toast':
-      return s(o.text) !== null ? { type: 'toast', text: s(o.text)! } : null;
+      return s(o.text) !== null ? { type: 'toast', text: s(o.text)!, ...(o.tone === 'error' || o.tone === 'bad' ? { tone: 'error' as const } : {}) } : null;
+    case 'dialog': {
+      const id = s(o.id, 40);
+      const kind = o.kind;
+      if (!id || (kind !== 'confirm' && kind !== 'alert' && kind !== 'prompt' && kind !== 'choice' && kind !== 'menu')) return null;
+      const buttons = Array.isArray(o.buttons)
+        ? o.buttons
+            .slice(0, kind === 'menu' ? 20 : 3)
+            .filter((b): b is Record<string, unknown> => !!b && typeof b === 'object' && typeof (b as Record<string, unknown>).label === 'string')
+            .map((b) => ({ label: s(b.label, 40)!, danger: b.danger === true, cancel: b.cancel === true }))
+        : undefined;
+      if ((kind === 'choice' || kind === 'menu') && !buttons?.length) return null;
+      const opt = (k: string, max: number) => (s(o[k], max) ? { [k]: s(o[k], max)! } : {});
+      return { type: 'dialog', id, kind, title: s(o.title, 120) ?? '', message: s(o.message, 600) ?? '', ...opt('ok', 40), ...opt('cancel', 40), ...opt('value', 500), ...opt('placeholder', 120), ...(o.danger === true ? { danger: true } : {}), ...(buttons ? { buttons } : {}) };
+    }
     case 'counts': {
       if (!o.counts || typeof o.counts !== 'object') return null;
       const counts: Record<string, number> = {};

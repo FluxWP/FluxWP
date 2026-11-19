@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.9.5
+- Uygulama içinde (mobil 1.0.2+) sitenin onay, uyarı ve metin isteme pencereleri ile React ekranlarının düz onay pencereleri telefonun kendi penceresiyle açılır; bildirimler uygulamanın bildirimi olur. Alan, liste ya da görsel içeren pencereler sayfada kalır. Eski uygulama sürümlerinde değişiklik yok.
+
 ## 0.9.4
 - "Toplu mobil uygulama kullanımı" seçeneği FluxWP Panel › Ayarlar'daki React kullanım verisi kartında görünür (flxk_usage_options).
 

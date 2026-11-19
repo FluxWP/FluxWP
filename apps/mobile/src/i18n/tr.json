@@ -99,7 +99,8 @@
     "reload": "Yenile",
     "relogin": "Panel oturumu düştü, yeniden açılıyor…",
     "demo": "Demo: örnek panel sayfası (gerçek sitede oturum açık gelir)",
-    "sessionLost": "Panel oturumu açılamadı. Yeniden deneyin ya da hesaptan çıkıp tekrar girin."
+    "sessionLost": "Panel oturumu açılamadı. Yeniden deneyin ya da hesaptan çıkıp tekrar girin.",
+    "ok": "Tamam"
   },
   "shell": {
     "openDrawer": "Menüyü aç",
@@ -163,6 +164,14 @@
       "emptyBody": "Bu görünümde görev bulunmuyor.",
       "list": "Liste",
       "board": "Pano",
+      "projects": "Projeler",
+      "group": "Grupla",
+      "sort": "Sırala",
+      "sortManual": "Elle sıra",
+      "sortDue": "Bitiş tarihi",
+      "sortPriority": "Öncelik",
+      "sortCreated": "Oluşturulma",
+      "sortTitle": "Ad",
       "mine": "Benim görevlerim",
       "home": "Tümü",
       "add": "Yeni görev",

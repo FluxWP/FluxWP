@@ -639,6 +639,7 @@
 		--flxf-ink: var(--flxf-dark-ink, #E8F2EC);
 		--flxf-text: var(--flxf-dark-text, #AFC3B8);
 		--flxf-surface: var(--flxf-dark-surface, #13251F);
+		--flxf-error: var(--flxf-dark-error, #FF8A8A);
 		--flxf-soft: var(--flxf-dark-soft, #10221D);
 		--flxf-mint: var(--flxf-dark-mint, #17302A);
 		--flxf-line: var(--flxf-dark-line, #26453C);
@@ -674,3 +675,22 @@
 /* The "online payment is not available" box (flxf-pay.js) */
 body .body_efb div.flxf-pay-unavailable,
 body .body_efb div.efb.flxf-pay-unavailable, body .body_efb .efb div.efb.flxf-pay-unavailable { color: var(--flxf-warn-ink, #6B4E00) !important; background: var(--flxf-warn-bg, #FFF8E6) !important; border-color: var(--flxf-warn-line, #EBD9A8) !important; }
+
+/* Field validation message: under the field (V1), no floating bubble ----------- */
+.body_efb .efb.ttEfb:has(> .efb.ttiptext) { display: flex !important; flex-direction: column; }
+.body_efb .efb.ttEfb > .efb.ttiptext,
+.body_efb .efb.ttiptext.unpx {
+	position: static !important; order: 1; margin: .4rem 0 0 !important;
+	padding: 0 !important; max-width: none !important; width: 100%;
+	background: transparent !important; border: 0 !important; border-radius: 0 !important;
+	text-align: start; font-size: .85rem !important; line-height: 1.35; font-weight: 600;
+	color: var(--flxf-error, #C62F2F) !important;
+}
+.body_efb .efb.ttEfb > .efb.ttiptext[style*="display: block"] { display: flex !important; align-items: center; gap: .4rem; }
+.body_efb .efb.ttEfb > .efb.ttiptext[style*="display: block"]::before {
+	content: ""; flex: none; width: 1rem; height: 1rem; background: currentColor;
+	-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 8v4M12 16h.01'/%3E%3C/svg%3E") center/contain no-repeat;
+	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 8v4M12 16h.01'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+.body_efb .efb.ttEfb > .efb-field-description { order: 2; }
+.body_efb .efb.ttEfb > .efb.ttiptext .nmsgefb { display: none; }

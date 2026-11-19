@@ -9877,12 +9877,6 @@ parameters:
 			path: ../../plugins/flx-donate/includes/wc/class-flxb-wc-form.php
 
 		-
-			message: '#^Parameter \#1 \$compact of static method FLXB_WC_Currency\:\:switcher\(\) expects bool, string given\.$#'
-			identifier: argument.type
-			count: 1
-			path: ../../plugins/flx-donate/includes/wc/class-flxb-wc-form.php
-
-		-
 			message: '#^Parameter \#1 \$text of function esc_attr expects string, int given\.$#'
 			identifier: argument.type
 			count: 8

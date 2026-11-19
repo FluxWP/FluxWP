@@ -12,7 +12,7 @@ export function useResolveEnv(): ResolveEnv {
   const me = useMe().data;
   const manifests = useManifest().data?.modules;
   const forceWeb = useUserPrefs().data?.forceWeb;
-  return useMemo(() => ({ me, manifests, native: renderer.native, appVersion: app.version, forceWeb: new Set(forceWeb ?? []) }), [me, manifests, renderer.native, app.version, forceWeb]);
+  return useMemo(() => ({ me, manifests, native: renderer.native, appVersion: app.version, forceWeb: new Set(forceWeb ?? []), preferWeb: renderer.preferWeb }), [me, manifests, renderer.native, renderer.preferWeb, app.version, forceWeb]);
 }
 
 /** Base template context for a manifest screen. */

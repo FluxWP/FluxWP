@@ -10,6 +10,7 @@ import { DashboardScreen } from './DashboardScreen';
 import { DetailScreen } from './DetailScreen';
 import { FormScreen } from './FormScreen';
 import { ListScreen } from './ListScreen';
+import { preferWeb } from './renderer';
 
 class Boundary extends Component<{ fallback: ReactNode; children: ReactNode }, { failed: boolean }> {
   state = { failed: false };
@@ -33,6 +34,8 @@ export function ManifestScreen({ module, screen, params }: { module: string; scr
   const { manifest, screen: s } = found;
   const web = fallbackPath(manifest);
   const fallback = web ? <WebScreen path={web} note={t('shell.openedInWeb')} /> : <EmptyState icon="alert" title={t('mobile.shell.notFound')} />;
+  // Same screen as the site's mobile view (a push or old link can still land here with a manifest route).
+  if (web && preferWeb(manifest) && s.type !== 'native' && s.type !== 'web') return <WebScreen path={web} />;
   let body: ReactNode;
   switch (s.type) {
     case 'list':

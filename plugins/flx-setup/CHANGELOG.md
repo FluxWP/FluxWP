@@ -1,10 +1,13 @@
 # Değişiklikler
 
-## 1.5.5
+## 1.5.6
 - Ön ayar güncellemeleri, aynı slug ile bulunan sahipsiz sayfa/yazıları kendiliğinden sahiplenmez; belirsiz anahtarlar ve değişmiş kayıt kimlikleri korunur.
 - SEO meta alanları ve taksonomiler içerikten bağımsız karşılaştırılır, sahiplenilir ve yedeklenir. Kullanıcının değiştirdiği alanlar korunur; eski sahiplik kayıtlarında kanıtlanamayan alanlar inceleme için bekler.
 - Kısmen uygulanan veya hatalı migration tamamlandı sayılmaz. Bekleyen kayıtlar elle önizlenip hedef bazlı yeniden denenebilir; değişmeyen başarısız otomatik denemeler her yönetici isteğinde tekrarlanmaz.
 - `flxk_content_fields_supported()` yetenek kontrolü ve gerçek WordPress içerik/SEO/geri alma regresyon testleri eklendi.
+
+## 1.5.5
+- Paketler: "Otomatik güncelleme" sütununda çift çizilen anahtar düzeltildi; tek ortak anahtar (eski paket CSS'i kaldırıldı).
 
 ## 1.5.4
 - Klasik ekranda olup React'te kaybolanlar geri geldi: Ayarlar'da FluxWP hesabı kartı (FluxWP ile giriş, yenile, bağlantıyı kes), bağlantı kutusunda "Bağlantıyı sına", "Anonim kullanım verisi" kartı (telemetri adresi, şimdi gönder, gönderilecek veri) ve diğer paketlerin kullanım seçenekleri (flxk_usage_options); Paketler'de "Google'da bulunun" kartı. Yeni GraphQL: flxSetupCloud, flxSetupTelemetry, flxSetupGoogleCards, flxSetupTelemetrySave, flxSetupGoogleCardDismiss.

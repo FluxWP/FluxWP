@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.7.4
+- Telefonda Yedekleme listesi kart düzeninde: önceden 8 sütunluk tablo dar ekranda harf harf kırılıyordu. Seçim kutusu, ad, tür, tarih, boyut, saklama ve düğmeler okunur.
+
 ## 1.7.3
 - Yedekler listesinde İçerik sütunu ve toplam boyut (klasik ekrandaki gibi).
 

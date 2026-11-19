@@ -315,3 +315,79 @@ document.addEventListener('click', function (e) {
 		a.setAttribute('aria-expanded', open ? 'true' : 'false');
 	}, true);
 })();
+
+/* Masaüstü menü: alt çizgi hover'daki öğeye kayar, çıkınca aktif öğeye döner (öğe yoksa kaybolur).
+   JS yoksa ya da mobil menüde öğe başına ::after çizgisi kalır. prefers-reduced-motion CSS'te geçişi kapatır. */
+(function () {
+	function init(ul) {
+		if (ul.querySelector(':scope > .flx-nav-ind')) {
+			return;
+		}
+		var ind = document.createElement('li');
+		ind.className = 'flx-nav-ind';
+		ind.setAttribute('aria-hidden', 'true');
+		ul.appendChild(ind);
+		ul.classList.add('flx-nav-slide');
+		var placed = false;
+		function items() {
+			return ul.querySelectorAll(':scope > .wp-block-navigation-item');
+		}
+		function current() {
+			var c = ul.querySelector(':scope > .current-menu-item, :scope > .current-menu-ancestor, :scope > .current_page_item');
+			return c || ul.querySelector(':scope > .wp-block-navigation-item > [aria-current="page"]');
+		}
+		function show(li) {
+			if (!li) {
+				ind.style.opacity = '0';
+				return;
+			}
+			var a = li.classList.contains('wp-block-navigation-item') ? li : li.closest('.wp-block-navigation-item');
+			var link = a.querySelector(':scope > .wp-block-navigation-item__content') || a;
+			var r = link.getBoundingClientRect(), u = ul.getBoundingClientRect();
+			if (!r.width) {
+				return;
+			}
+			if (!placed) {
+				ind.style.transition = 'none';
+			}
+			ind.style.width = r.width + 'px';
+			ind.style.transform = 'translate(' + Math.round(r.left - u.left) + 'px,' + Math.round(r.bottom - u.top) + 'px)';
+			ind.style.opacity = '1';
+			if (!placed) {
+				void ind.offsetWidth;
+				ind.style.transition = '';
+				placed = true;
+			}
+		}
+		function rest() {
+			show(current());
+		}
+		items().forEach(function (li) {
+			li.addEventListener('mouseenter', function () { show(li); });
+			li.addEventListener('focusin', function () { show(li); });
+		});
+		ul.addEventListener('mouseleave', rest);
+		ul.addEventListener('focusout', function (e) {
+			if (!ul.contains(e.relatedTarget)) {
+				rest();
+			}
+		});
+		window.addEventListener('resize', function () { rest(); });
+		if (document.fonts && document.fonts.ready) {
+			document.fonts.ready.then(rest);
+		}
+		rest();
+	}
+	function boot() {
+		document.querySelectorAll('.flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation__container').forEach(function (ul) {
+			if (window.matchMedia('(min-width:601px)').matches) {
+				init(ul);
+			}
+		});
+	}
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', boot);
+	} else {
+		boot();
+	}
+})();

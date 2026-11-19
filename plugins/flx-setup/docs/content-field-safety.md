@@ -1,4 +1,4 @@
-# Content-field safety (1.5.5)
+# Content-field safety (1.5.6)
 
 `flxk_content_fields_supported()` returns true when the engine supports this contract. A preset depending on it must gate registration on this capability; older versions only check plugin presence, not version constraints.
 
@@ -17,7 +17,7 @@ Only declared fields are read/hashed/written. No scan of unrelated SEO/plugin me
 
 Meta snapshots retain all rows, their order, serialized values and absence (`[]` versus `['']`). Rollback restores field snapshots independently, preserving later edits. Newly added fields are removed on rollback; previous `_flxk_key` identity is restored after field rollback. Taxonomy snapshots retain term IDs; deleted taxonomy objects are not recreated. Body/field identity and values are rechecked before writing, but this is not a database-wide transaction against arbitrary concurrent third-party writes.
 
-Old runs created before 1.5.5 never recorded old SEO and cannot acquire a retroactive SEO backup. Their existing rollback behavior is unchanged. Legacy body ownership without a stored record ID can only be checked against its key/hash, not an unknowable historic ID.
+Old runs created before 1.5.6 never recorded old SEO and cannot acquire a retroactive SEO backup. Their existing rollback behavior is unchanged. Legacy body ownership without a stored record ID can only be checked against its key/hash, not an unknowable historic ID.
 
 ## Partial migrations and retry
 Completion is based on a post-execution plan plus errors/unavailable importers, not merely having attempted the migration. Unresolved work stays out of `state.migrations` and remains in `flxk_pending_migrations()`. `state.migration_blocked` records its source signature, latest run and remaining count. Automatic handling pauses an unchanged blocked source to avoid repeated run logs; independent later migrations may continue. Explicit preview/apply (`flxk_plan`, `flxk_apply_migration`) retries immediately. A changed migration source signature also permits an automatic retry, though published migration definitions should remain immutable.

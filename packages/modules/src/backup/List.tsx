@@ -69,7 +69,7 @@ export function BackupList() {
         </div>
       )}
       <div className="flxy-card flxy-tablewrap">
-        <table className="flxy-table">
+        <table className="flxy-table flxy-table--list">
           <thead>
             <tr>
               <th scope="col" style={{ width: 28 }}>
@@ -131,13 +131,13 @@ export function BackupList() {
           {running && <small>{r.progress || t('Running…')}</small>}
           {r.label && r.label !== r.title && <small>{r.label}</small>}
         </td>
-        <td>
+        <td className="flxy-c-type">
           <Badge label={r.typeLabel} color={r.typeColor} />
         </td>
-        <td title={r.created?.label}>{r.created?.relative}</td>
+        <td className="flxy-c-date" title={r.created?.label}>{r.created?.relative}</td>
         <td className="flxy-contents">{r.contents.join(', ') || '—'}</td>
-        <td className="num">{r.status === 'OK' ? r.sizeLabel : '—'}</td>
-        <td>
+        <td className="num flxy-c-size">{r.status === 'OK' ? r.sizeLabel : '—'}</td>
+        <td className="flxy-c-keep">
           <button
             type="button"
             className={'flxy-lock flxy-link' + (r.locked ? ' is-on' : '')}
@@ -150,7 +150,7 @@ export function BackupList() {
           </button>{' '}
           <span className="flxy-muted">{r.keepLabel}</span>
         </td>
-        <td>
+        <td className="flxy-c-actions">
           <div className="flxy-actions">
             {r.status === 'OK' && (
               <>
