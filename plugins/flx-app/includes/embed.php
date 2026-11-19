@@ -9,8 +9,9 @@
  *   - oturum devri (POST /flxapp/v1/session, `embed` varsayılan true) sonrası oturum çerezi `flxapp_embed`
  *   - adres parametresi `?flxapp_embed=1` (çerezi de yazar); `?flxapp_embed=0` kapatır
  * Tema: `flxapp_mode=dark|light` çerezi Flux Admin koyu/açık temasını seçer (uygulamanın tema modu).
- * Köprü: sayfa uygulamaya yalnız `{type: title|route|toast|counts|close, …}` mesajları gönderir (route: `path` + `url`)
- * (ReactNativeWebView, Tauri `flxapp` kanalı ya da `window.parent`); uygulama JS enjekte etmez.
+ * Köprü: sayfa uygulamaya yalnız `{type: title|route|toast|counts|close|dialog, …}` mesajları gönderir (route: `path` + `url`)
+ * (ReactNativeWebView, Tauri `flxapp` kanalı ya da `window.parent`); uygulama JS enjekte etmez. Mobil 1.0.2+ `dialog`
+ * sorusuna `{type: flxapp:dialog}` ile cevap verir: sitenin onay/uyarı pencereleri telefonun kendi penceresiyle açılır.
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -171,6 +172,27 @@ add_action(
 		wp_add_inline_script( 'wp-edit-post', 'wp.domReady(function(){try{var p=wp.data.dispatch("core/preferences");p&&p.set("core/edit-post","fullscreenMode",true);}catch(e){}});' );
 	}
 );
+
+/**
+ * Uygulama sitenin pencerelerini (onay, uyarı, metin isteme, bildirim) telefonun kendi pencereleriyle açabiliyor mu:
+ * Flux App mobil 1.0.2+ (UA). Eski sürümler cevap vermez, sayfa kendi penceresini kullanır.
+ */
+function flxapp_embed_native() {
+	$a = flxapp_embed_agent();
+	return $a && 'mobile' === $a['platform'] && version_compare( $a['version'], '1.0.2', '>=' );
+}
+
+/** Yerel pencere köprüsü (assets/embed-native.js): sayfanın başında, pencereler açılmadan önce. */
+function flxapp_embed_native_script() {
+	if ( ! flxapp_is_embed() || ! flxapp_embed_native() ) {
+		return;
+	}
+	$js = (string) file_get_contents( FLXAPP_DIR . 'assets/embed-native.js' ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+	echo '<script id="flxapp-native">' . $js . '</script>' . "\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+}
+add_action( 'admin_head', 'flxapp_embed_native_script', 1 );
+add_action( 'wp_head', 'flxapp_embed_native_script', 1 );
+add_action( 'login_head', 'flxapp_embed_native_script', 1 );
 
 /** Köprü betiği: başlık, adres ve başarı bildirimini uygulamaya iletir (yalnız beyaz listeli türler). */
 function flxapp_embed_bridge() {

@@ -124,3 +124,19 @@
 @media (max-width:782px){.flxy-cards{grid-template-columns:1fr}.flxy-field{grid-template-columns:1fr;gap:6px}.flxy-field>label,.flxy-field>b{padding-top:0}.flxy-meta{grid-template-columns:1fr}.flxy-table th,.flxy-table td{padding:8px}}
 .flxy-link{color:var(--flxy-ac);text-decoration:none;padding:0;text-align:left;cursor:pointer}.flxy-link:hover{text-decoration:underline}
 .flxy-contents{color:var(--flux-text-muted,#646970);font-size:12px;max-width:260px}
+/* Telefonda yedek listesi tablo değil kart: 8 sütun 390px'e sığmıyor, metin harf harf kırılıyordu. */
+@media (max-width:782px){
+.flxy-table--list thead{display:none}
+.flxy-table--list,.flxy-table--list tbody{display:block}
+.flxy-table--list tr{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;position:relative;padding:12px 12px 12px 44px;border-bottom:1px solid var(--flxy-bd)}
+.flxy-table--list tr:last-child{border-bottom:0}
+.flxy-table--list td{display:block;padding:0;border:0}
+.flxy-table--list td:first-child{position:absolute;left:14px;top:14px}
+.flxy-table--list td:nth-child(2){flex:1 1 100%;font-weight:600}
+.flxy-table--list .flxy-c-date,.flxy-table--list .flxy-c-size,.flxy-table--list .flxy-c-keep{color:var(--flxy-mut);font-size:13px}
+.flxy-table--list .num{text-align:left}
+.flxy-table--list .flxy-contents{flex:1 1 100%;color:var(--flxy-mut);font-size:13px}
+.flxy-table--list .flxy-c-actions{flex:1 1 100%;margin-top:4px}
+.flxy-table--list .flxy-actions{justify-content:flex-start}
+.flxy-table--list .flxy-empty{padding:4px 0}
+}
