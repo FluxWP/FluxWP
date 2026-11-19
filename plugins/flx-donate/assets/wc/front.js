@@ -173,13 +173,13 @@
 			if (opt === '__free' || opt === '') {
 				var ai = P.querySelector('[data-flxwb-amount-input]');
 				sum = parseAmount(ai && ai.value);
-				var obox = P.querySelector('[data-flxwb-other-box]'), own = !!(obox && !obox.hidden);
+				var oin = P.querySelector('[data-flxwb-other-input]'), own = !!(oin && String(oin.value || '').trim() !== '');
 				P.querySelectorAll('[data-flxwb-amount]').forEach(function (c) {
 					var on = sum > 0 && Math.abs(parseFloat(c.getAttribute('data-flxwb-amount')) - sum) < 0.001;
 					c.classList.toggle('is-active', on);
 					if (c.hasAttribute('aria-pressed')) c.setAttribute('aria-pressed', on && !own ? 'true' : 'false');
 				});
-				P.querySelectorAll('[data-flxwb-other]').forEach(function (b) { b.setAttribute('aria-pressed', own ? 'true' : 'false'); });
+				P.querySelectorAll('[data-flxwb-other]').forEach(function (b) { b.classList.toggle('is-on', own); });
 				if (T.unit && T.unit.unit === 'fidan' && pieceCount(T, sum)) label = pieceCount(T, sum).toLocaleString(document.documentElement.lang || undefined) + ' 🌱';
 				pcs = pieceCount(T, sum) || 1;
 			} else if (T.opts && T.opts[opt]) {
@@ -486,21 +486,19 @@
 				var P = c.closest('[data-flxwb-panel]');
 				var ai = P && P.querySelector('[data-flxwb-amount-input]');
 				if (ai) ai.value = String(parseFloat(c.getAttribute('data-flxwb-amount'))).replace('.', M.dec);
-				var ob = P && P.querySelector('[data-flxwb-other-box]');
-				if (ob) ob.hidden = true;
+				var oi = P && P.querySelector('[data-flxwb-other-input]');
+				if (oi) { oi.value = ''; fieldError(oi, ''); }
 				if (ai) fieldError(ai, '');
 				update();
 			});
 		});
-		/* 2.33.0: "Other amount" opens the field for an own amount. */
-		form.querySelectorAll('[data-flxwb-other]').forEach(function (b) {
-			b.addEventListener('click', function () {
-				var P = b.closest('[data-flxwb-panel]');
-				var ob = P && P.querySelector('[data-flxwb-other-box]');
+		/* 2.33.0: writing in the "Other amount" card is the amount; emptying it goes back to no pick. */
+		form.querySelectorAll('[data-flxwb-other-input]').forEach(function (oi) {
+			oi.addEventListener('input', function () {
+				var P = oi.closest('[data-flxwb-panel]');
 				var ai = P && P.querySelector('[data-flxwb-amount-input]');
-				if (!ob) return;
-				ob.hidden = false;
-				if (ai) { ai.value = ''; ai.focus(); }
+				fieldError(oi, '');
+				if (ai) ai.value = oi.value;
 				update();
 			});
 		});
@@ -516,6 +514,7 @@
 			} else if (P && (opt === '__free' || opt === '')) {
 				var ai = P.querySelector('[data-flxwb-amount-input]');
 				var a = parseAmount(ai && ai.value);
+				if (ai && ai.type === 'hidden') ai = P.querySelector('[data-flxwb-other-input]') || ai; // 2.33.0: the warning goes under the "Other amount" card
 				if (!(a > 0) || a < (+T.min || 0)) {
 					/* 2.23.0: the lowest amount is said only now, under the field. */
 					msg = a > 0 && T.minMsg ? T.minMsg : (L.needAmount || '');

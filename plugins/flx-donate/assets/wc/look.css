@@ -413,14 +413,22 @@ body:has(.flxwb-hero) .wp-block-post-content:has(.flxwb-hero), .flxwb:has(> .flx
 }
 
 /* ---------- 2.33.0 · quick amounts of a free amount (Appearance › Quick amounts) ---------- */
-.flxwb-amts--money { padding-top: 2px; }
+/* Preset buttons, then a wider "Other amount" card the donor types into. */
+.flxwb-amts--money { grid-template-columns: repeat(var(--flxwb-amts, 3), minmax(0, 1fr)) minmax(0, 1.6fr); align-items: start; padding-top: 2px; }
 .flxwb .flxwb-amts--money .flxwb-amt { min-height: 64px; }
-.flxwb-amt--other .flxwb-amt__price { font-size: 1rem; font-weight: 700; color: var(--w-ink); }
-.flxwb-other { margin-top: 10px; }
-.flxwb-other[hidden] { display: none; }
-.flxwb .flxwb-free .flxwb-legend + .flxwb-amts--money { margin-top: 0; }
+.flxwb-amt-other { min-width: 0; }
+.flxwb .flxwb-amt-other .flx-fld { margin: 0; }
+.flxwb .flxwb-amt-other .flx-fld .flx-fld__box { min-height: 64px; box-sizing: border-box; border-width: 1.5px; border-color: var(--w-line); border-radius: var(--w-r2); background: var(--w-surface); }
+.flxwb .flxwb-amt-other .flx-fld .flx-fld__box:hover { border-color: var(--w-primary); }
+.flxwb .flxwb-amt-other .flx-fld__label { font-size: .86rem; color: var(--w-ink); font-weight: 700; }
+.flxwb .flxwb-amt-other .flx-fld__input { font-size: 1.15rem; font-weight: 700; }
+.flxwb .flxwb-amt-other.is-on .flx-fld:not(.is-error) .flx-fld__box, .flxwb .flxwb-amt-other .flx-fld:not(.is-error) .flx-fld__box:focus-within { border-color: var(--w-primary); background: var(--w-mint-soft); box-shadow: inset 0 0 0 1px var(--w-primary); }
+.flxwb .flxwb-amt-other .flx-fld.is-error .flx-fld__box { border-color: var(--flx-f-err, #c0392b); }
 @media (max-width: 600px) {
-	.flxwb-amts--money { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.flxwb-amts--money { grid-template-columns: repeat(var(--flxwb-amts, 3), minmax(0, 1fr)); gap: 8px; }
+	.flxwb-amts--money .flxwb-amt-other { grid-column: 1 / -1; }
+	.flxwb .flxwb-amts--money .flxwb-amt { min-height: 56px; padding: 10px 4px; }
+	.flxwb-amts--money .flxwb-amt__price { font-size: 1.1rem; }
 }
 
 /* ---------- 2.33.0 · B · Two panels: light total box, type name over the details ---------- */
