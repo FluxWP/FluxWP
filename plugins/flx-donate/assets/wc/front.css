@@ -366,9 +366,9 @@
 .flxwb-monthly small { font-size: .85rem; line-height: 1.4; }
 .flxwb-monthly:has(input:checked) { border-style: solid; border-color: var(--w-primary); background: var(--w-mint-soft); }
 .flxwb-seg { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.flxwb-seg__opt { position: relative; cursor: pointer; }
+.flxwb-seg__opt { position: relative; display: flex; cursor: pointer; }
 .flxwb-seg__opt input { position: absolute; opacity: 0; pointer-events: none; }
-.flxwb-seg__opt span { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 8px 12px; border: 1.5px solid var(--w-line); border-radius: var(--w-r2); font-weight: 700; color: var(--w-ink); text-align: center; transition: all .18s; }
+.flxwb-seg__opt span { flex: 1 1 auto; box-sizing: border-box; display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 8px 12px; border: 1.5px solid var(--w-line); border-radius: var(--w-r2); font-weight: 700; color: var(--w-ink); text-align: center; transition: all .18s; }
 .flxwb-seg__opt input:checked + span { border-color: var(--w-primary); background: var(--w-mint-soft); color: var(--w-primary); }
 .flxwb-seg__opt input:focus-visible + span { outline: 2px solid var(--w-primary); outline-offset: 2px; }
 .flxwb-deliver { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }

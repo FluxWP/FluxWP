@@ -6109,3 +6109,6 @@ msgstr "Boş = ziyaretçinin dilindeki hazır metin. Ön ayar bunları doldurabi
 
 msgid "Write your own"
 msgstr "Kendiniz yazın"
+
+msgid "For someone else"
+msgstr "Başkası adına"

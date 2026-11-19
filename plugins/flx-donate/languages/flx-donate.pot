@@ -5691,3 +5691,6 @@ msgstr ""
 
 msgid "Write your own"
 msgstr ""
+
+msgid "For someone else"
+msgstr ""

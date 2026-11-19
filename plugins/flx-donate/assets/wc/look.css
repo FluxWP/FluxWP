@@ -443,3 +443,9 @@ body:has(.flxwb-hero) .wp-block-post-content:has(.flxwb-hero), .flxwb:has(> .flx
 @media (max-width: 820px) {
 	.flxwb--panel .flxwb-ptitle { font-size: 1.15rem; }
 }
+
+/* 2.33.1: "For myself / For someone else" stay on one line on phones. */
+@media (max-width: 420px) {
+	.flxwb .flxwb-seg__opt span { gap: 6px; padding: 8px 6px; font-size: .9rem; }
+	.flxwb .flxwb-seg__opt span .flxwb-ic { width: 16px; height: 16px; }
+}

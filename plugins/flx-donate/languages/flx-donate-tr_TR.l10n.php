@@ -3633,4 +3633,5 @@ Teşekkürler,
 'Language'=>'Dil',
 'Empty = the built-in text in the visitor\'s language. A preset can fill these.'=>'Boş = ziyaretçinin dilindeki hazır metin. Ön ayar bunları doldurabilir.',
 'Write your own'=>'Kendiniz yazın',
+'For someone else'=>'Başkası adına',
 ));

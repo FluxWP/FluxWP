@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 2.33.1
+- "Kendim için" ve "Başkası adına" kutuları her zaman aynı yükseklikte (telefonda biri iki satıra düşse de).
+- İngilizce metin kısaldı: "On behalf of someone else" yerine "For someone else". Türkçe "Başkası adına" aynı.
+
 ## 2.33.0
 - **Hızlı tutar düğmeleri.** Tutarı bağışçının yazdığı türlerde uzun tutar kutusu yerine para birimine göre hazır tutar düğmeleri ve yanlarında biraz daha geniş, doğrudan yazılabilen "Diğer tutar" kutusu var: EUR/USD/GBP 25-50-75, TL 150-300-500 (ortadaki seçili gelir). Telefonda "Diğer tutar" düğmelerin altında tam satır. Alt sınır uyarısı bu kutunun altında çıkar ve odak değişince kaybolmaz. Tutarlar Bağışlar › Ayarlar › Görünüm › "Hızlı tutarlar"dan para birimi başına değişir; türe girilen hazır tutarlar önceliklidir. Ön ayar alanı `flxb_look.amount_presets`.
 - **B · İki panel düzeni yenilendi.** Geniş ekranda solda bağış türleri, sağda seçili türün adı, para birimi menüsü (başlığın yanında) ve ayrıntılar; toplam kutusu açık renkli, düğme ana renkte. Telefonda türler üstte kayan sekme olarak kalır.

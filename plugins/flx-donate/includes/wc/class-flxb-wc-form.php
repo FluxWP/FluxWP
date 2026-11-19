@@ -529,7 +529,7 @@ final class FLXB_WC_Form {
 			<legend class="flxwb-legend"><?php esc_html_e( 'Who is this donation for?', 'flx-donate' ); ?></legend>
 			<div class="flxwb-seg" role="radiogroup">
 				<label class="flxwb-seg__opt"><input type="radio" name="for_other" value="0" <?php checked( ! $for_other ); ?>><span><?php echo FLXB_WC::icon( 'user' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php esc_html_e( 'For myself', 'flx-donate' ); ?></span></label>
-				<label class="flxwb-seg__opt"><input type="radio" name="for_other" value="1" <?php checked( $for_other ); ?>><span><?php echo FLXB_WC::icon( 'gift' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php esc_html_e( 'On behalf of someone else', 'flx-donate' ); ?></span></label>
+				<label class="flxwb-seg__opt"><input type="radio" name="for_other" value="1" <?php checked( $for_other ); ?>><span><?php echo FLXB_WC::icon( 'gift' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php esc_html_e( 'For someone else', 'flx-donate' ); ?></span></label>
 			</div>
 			<?php if ( ! $cur_d['cert'] ) { echo self::name_field( $old, $for_other, false ); } // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			<div class="flxwb-deliver" data-flxwb-deliver<?php echo $cur_d['cert'] ? '' : ' hidden'; ?>>
@@ -1038,7 +1038,7 @@ final class FLXB_WC_Form {
 			<legend class="flxwb-legend"><?php esc_html_e( 'On whose behalf?', 'flx-donate' ); ?></legend>
 			<div class="flxwb-seg" role="radiogroup" aria-label="<?php esc_attr_e( 'On whose behalf?', 'flx-donate' ); ?>">
 				<label class="flxwb-seg__opt"><input type="radio" name="owner_mode[<?php echo esc_attr( $id ); ?>]" value="self" <?php checked( $mode, 'self' ); ?> data-flxwb-owner-mode><span><?php echo FLXB_WC::icon( 'user' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php esc_html_e( 'For myself', 'flx-donate' ); ?></span></label>
-				<label class="flxwb-seg__opt"><input type="radio" name="owner_mode[<?php echo esc_attr( $id ); ?>]" value="other" <?php checked( $mode, 'other' ); ?> data-flxwb-owner-mode><span><?php echo FLXB_WC::icon( 'gift' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php esc_html_e( 'On behalf of someone else', 'flx-donate' ); ?></span></label>
+				<label class="flxwb-seg__opt"><input type="radio" name="owner_mode[<?php echo esc_attr( $id ); ?>]" value="other" <?php checked( $mode, 'other' ); ?> data-flxwb-owner-mode><span><?php echo FLXB_WC::icon( 'gift' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php esc_html_e( 'For someone else', 'flx-donate' ); ?></span></label>
 			</div>
 			<p class="flxwb-field__help" data-flxwb-self-help<?php echo 'self' === $mode ? '' : ' hidden'; ?>><?php esc_html_e( 'Given in your name, as you write it at the checkout.', 'flx-donate' ); ?></p>
 			<div class="flxwb-shares" data-flxwb-shares<?php echo 'other' === $mode ? '' : ' hidden'; ?>>
