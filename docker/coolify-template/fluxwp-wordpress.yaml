@@ -28,6 +28,7 @@ services:
       - WP_REDIS_PASSWORD=$SERVICE_PASSWORD_REDIS
       - APACHE_MAX_WORKERS=${APACHE_MAX_WORKERS:-20}
       - WP_INSTALL_TOKEN=${WP_INSTALL_TOKEN:-}
+      - WP_AUTO_INSTALL=${WP_AUTO_INSTALL:-false}
     depends_on:
       mariadb:
         condition: service_healthy
@@ -67,7 +68,7 @@ services:
       - WP_ADMIN_USER=${WP_ADMIN_USER:-}
       - WP_ADMIN_PASSWORD=${WP_ADMIN_PASSWORD:-}
       - WP_ADMIN_EMAIL=${WP_ADMIN_EMAIL:-}
-      - WP_AUTO_INSTALL=${WP_AUTO_INSTALL:-true}
+      - WP_AUTO_INSTALL=${WP_AUTO_INSTALL:-false}
       - WP_LOCALE=${WP_LOCALE:-en_US}
       - WP_TIMEZONE=${WP_TIMEZONE:-UTC}
       - WP_CRON_INTERVAL=${WP_CRON_INTERVAL:-60}
