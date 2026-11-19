@@ -896,13 +896,13 @@ final class FLXB_WC_Form {
 				?>
 			<div class="flxwb-amts flxwb-amts--money" role="group" aria-label="<?php esc_attr_e( 'Donation amount', 'flx-donate' ); ?>" style="--flxwb-amts:<?php echo esc_attr( (string) count( $presets ) ); ?>">
 				<?php foreach ( $presets as $a ) : ?>
-				<button type="button" class="flxwb-amt" data-flxwb-amount="<?php echo esc_attr( $a ); ?>" aria-pressed="<?php echo $a === $pick ? 'true' : 'false'; ?>"><strong class="flxwb-amt__price"><?php echo wp_kses_post( self::price_short( $a ) ); ?></strong></button>
+				<button type="button" class="flxwb-amt" data-flxwb-amount="<?php echo esc_attr( (string) $a ); ?>" aria-pressed="<?php echo $a === $pick ? 'true' : 'false'; ?>"><strong class="flxwb-amt__price"><?php echo wp_kses_post( self::price_short( $a ) ); ?></strong></button>
 				<?php endforeach; ?>
 				<div class="flxwb-amt-other<?php echo $other ? ' is-on' : ''; ?>" data-flxwb-other>
 					<?php echo self::amount_field( $t, array( 'a' => array( $id => $other ? $typed : '' ) ), $o_lbl, 0, true ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 				</div>
 			</div>
-			<input type="hidden" name="a[<?php echo esc_attr( $id ); ?>]" value="<?php echo esc_attr( $other ? $typed : ( $pick > 0 ? (string) $pick : '' ) ); ?>" data-flxwb-amount-input>
+			<input type="hidden" name="a[<?php echo esc_attr( (string) $id ); ?>]" value="<?php echo esc_attr( $other ? $typed : ( $pick > 0 ? (string) $pick : '' ) ); ?>" data-flxwb-amount-input>
 			<?php else : ?>
 			<?php echo self::amount_field( $t, $old, __( 'Amount', 'flx-donate' ), max( $min, 100 ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			<?php endif; ?>
