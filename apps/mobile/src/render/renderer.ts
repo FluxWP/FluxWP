@@ -6,12 +6,20 @@ import * as Haptics from 'expo-haptics';
 import { router } from 'expo-router';
 import * as WebBrowser from 'expo-web-browser';
 import * as Linking from 'expo-linking';
-import type { ScreenType } from '@fluxwp/manifest';
+import type { Manifest, ScreenType } from '@fluxwp/manifest';
 import type { Renderer } from '@fluxwp/runtime';
 import { i18n } from '@/i18n';
 import { NATIVE } from '@/modules/registry';
 import { hrefFor } from '@/shell/routes';
 import { overlays } from '@/ui/overlays';
+
+/**
+ * FluxWP plugin screens open the site's own mobile screen in the webview: the same React screen, tabs and
+ * data as the site at phone width. Core screens (posts, pages, media, orders) and native components stay
+ * native. Packages owned elsewhere keep their manifest screens until their owners move them.
+ */
+const KEEP_NATIVE = new Set(['flx-crm', 'flx-donate', 'flx-commerce', 'flx-mail', 'flx-forms', 'flx-certificates', 'flx-chat']);
+export const preferWeb = (m: Manifest): boolean => !!m.plugin?.startsWith('flx-') && !KEEP_NATIVE.has(m.plugin);
 
 /** Screen types this renderer draws; others open their web fallback. */
 export const SCREENS: ReadonlySet<ScreenType> = new Set(['list', 'detail', 'form', 'dashboard', 'native', 'web']);
@@ -21,6 +29,7 @@ export function useRenderer(accountId: string): Renderer {
     () => ({
       screens: SCREENS,
       native: new Set(Object.keys(NATIVE)),
+      preferWeb,
       t: (key, vars) => i18n.t(key, vars),
       nav: {
         push: (route) => {

@@ -39,6 +39,15 @@ describe('resolveTarget (§6 order)', () => {
     expect(resolveTarget('module:crm', { ...env, forceWeb: new Set(['crm']) }).kind).toBe('web');
   });
 
+  it('preferWeb opens the picked manifests on the site, native components stay native', () => {
+    const web = { ...env, preferWeb: (m: { id: string }) => m.id === 'crm' };
+    expect(resolveTarget('module:crm', web)).toEqual({ kind: 'web', path: 'admin.php?page=flx-crm' });
+    expect(resolveTarget('screen:crm/contact', web, { id: '5' }).kind).toBe('web');
+    expect(routeForAdminPath('admin.php?page=flx-crm', web)).toBeNull();
+    expect(resolveTarget('screen:core/posts', web)).toMatchObject({ kind: 'manifest', module: 'core' });
+    expect(resolveTarget('native:dashboard', web)).toMatchObject({ kind: 'native' });
+  });
+
   it('menu items open a native screen when a manifest route claims their page', () => {
     expect(resolveTarget('menu:edit.php', env)).toMatchObject({ kind: 'manifest', module: 'core', screen: 'posts' });
     expect(resolveTarget('menu:flxs', env)).toEqual({ kind: 'web', path: 'admin.php?page=flxs' });

@@ -151,8 +151,8 @@ export function useShellModel(): ResolvedShell {
   const prefs = useUserPrefs().data;
   const counts = useSync(!!me).data?.counts;
   return useMemo(
-    () => resolveShell(config, { me, counts, manifests: manifests?.modules, native: renderer.native, appVersion: app.version, forceWeb: new Set(prefs?.forceWeb ?? []) }),
-    [config, me, counts, manifests, renderer.native, app.version, prefs?.forceWeb],
+    () => resolveShell(config, { me, counts, manifests: manifests?.modules, native: renderer.native, appVersion: app.version, forceWeb: new Set(prefs?.forceWeb ?? []), preferWeb: renderer.preferWeb }),
+    [config, me, counts, manifests, renderer.native, renderer.preferWeb, app.version, prefs?.forceWeb],
   );
 }
 

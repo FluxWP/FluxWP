@@ -1,6 +1,7 @@
 # Değişiklikler
 
 ## Yayınlanmamış
+- FluxWP eklenti ekranları (Yedekleme, SEO, Performans, Yönetim teması, Reklamlar, İstatistik, Flux AI ayarları, Sohbet botu, Site sohbetleri, Dosyalar, Headless, Diller, reCAPTCHA, Roller, FluxWP Panel, Sosyal medya, Stüdyo, Wiki, Blok Düzenleyici) sitedeki mobil ekranın aynısıyla uygulama içinde açılır: aynı başlık, tüm sekmeler, aynı düzen ve veri. Önceki yerel çizimde sekmeler yoktu, bazı metinler İngilizce kalıyordu, düzen ve alanlar siteden farklıydı. Yazılar, Sayfalar, Ortam, Siparişler, İşler, Mesajlar, Flux AI sohbeti ve CRM/Bağış uygulamanın kendi ekranlarında kalır.
 - İşler ekranı sitedeki mobil Tasks görünümüyle eşitlendi: proje/liste menüsü, Liste/Pano görünüm sekmeleri, arama yanında Grupla ve Sırala düğmeleri, dolu renkli durum rozetleri, her grupta "Yeni görev", alt görevleri aç/kapa oku, satır sonunda alt görev/yorum/dosya sayıları, sağ altta + düğmesi.
 - İşler ekranı sitedeki Tasks mobil görünümüne yaklaştı: sayfa başlığı, duruma göre gruplanmış (aç/kapa) liste, durum dairesine dokununca tamamla, satırda liste/tarih/atananlar/alt görev/yorum sayısı. Son açılan liste ya da proje hatırlanır; "Benim görevlerim" boşsa ilk liste açılır (önceden boş "Görev yok" görünüyordu).
 - Sitelerin "Uygulamada aç" düğmesi (`fluxwp://connect?site=<site adresi>`) uygulamayı açar, siteyi ekleme ekranına getirir ve normal OAuth girişi başlar. Bağlantıda gizli bilgi yok.

@@ -1,5 +1,8 @@
 # @fluxwp/runtime
 
+## 0.4.4
+- `Renderer.preferWeb(manifest)` / `ResolveEnv.preferWeb`: picked manifests open the site's own page in the webview (targets, menu items, link capture); `native` and `web` screens and core manifests are unaffected.
+
 ## 0.4.3
 - Tasks engine: `resume()` picks up polling after `dispose()` without a fresh boot, so a screen that was kept hidden shows its loaded tasks at once.
 
