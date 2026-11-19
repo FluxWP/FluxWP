@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.9.5
+- Header arama butonunun hover arka planı tam yuvarlak (eşit genişlik/yükseklik), elips görünmüyor.
+
 ## 0.9.4
 - Menü altındaki aktif çizgi hover'daki öğeye sağa sola kayar, imleç çıkınca aktif öğeye döner (hareket azaltma açıksa kaymaz).
 - Header butonlarının normal ve hover rengi tema renginden gelir (`--flx-hbtn-bg`, `--flx-hbtn-fg`, `--flx-hbtn-hover-bg`, `--flx-hbtn-hover-fg` ile ön ayar değiştirebilir).
