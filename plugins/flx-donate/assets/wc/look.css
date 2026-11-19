@@ -411,3 +411,27 @@ body:has(.flxwb-hero) .wp-block-post-content:has(.flxwb-hero), .flxwb:has(> .flx
 	.flxwb .flxwb-cert > .flxwb-opts:has(> .flxwb-opt + .flxwb-opt) { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; align-items: stretch; }
 	.flxwb .flxwb-cert > .flxwb-opts > .flxwb-opt { margin: 0; height: 100%; box-sizing: border-box; }
 }
+
+/* ---------- 2.33.0 · quick amounts of a free amount (Appearance › Quick amounts) ---------- */
+.flxwb-amts--money { padding-top: 2px; }
+.flxwb .flxwb-amts--money .flxwb-amt { min-height: 64px; }
+.flxwb-amt--other .flxwb-amt__price { font-size: 1rem; font-weight: 700; color: var(--w-ink); }
+.flxwb-other { margin-top: 10px; }
+.flxwb-other[hidden] { display: none; }
+.flxwb .flxwb-free .flxwb-legend + .flxwb-amts--money { margin-top: 0; }
+@media (max-width: 600px) {
+	.flxwb-amts--money { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* ---------- 2.33.0 · B · Two panels: light total box, type name over the details ---------- */
+.flxwb--panel .flxwb-phead { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 4px; }
+.flxwb--panel .flxwb-ptitle { margin: 0; font-family: inherit; font-size: 1.35rem; font-weight: 800; line-height: 1.25; letter-spacing: -.01em; color: var(--w-ink); }
+.flxwb--panel .flxwb-phead + .flxwb-desc { margin-bottom: 6px; }
+.flxwb--panel .flxwb-phead + .flxwb-desc { margin-top: 0; }
+.flxwb--panel .flxwb-bar { background: var(--w-mint-soft); border: 1px solid var(--w-line); color: var(--w-ink); }
+.flxwb--panel .flxwb-bar__label { color: var(--w-text); }
+.flxwb--panel .flxwb-bar__total, .flxwb--panel .flxwb-bar__meta { color: var(--w-ink); }
+.flxwb--panel .flxwb-bar .flxwb-btn { background: var(--w-primary); border-color: var(--w-primary); color: #fff; }
+@media (max-width: 820px) {
+	.flxwb--panel .flxwb-ptitle { font-size: 1.15rem; }
+}

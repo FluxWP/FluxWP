@@ -5667,3 +5667,27 @@ msgid "%s more"
 msgid_plural "%s more"
 msgstr[0] ""
 msgstr[1] ""
+
+msgid "Heading over the amount"
+msgstr ""
+
+msgid "\"Other amount\" button"
+msgstr ""
+
+msgid "Quick amounts"
+msgstr ""
+
+msgid "Amount buttons of types that take an amount written by the donor, with an \"Other amount\" button beside them. Comma separated; empty = no buttons in that currency. Amounts set on a donation type win."
+msgstr ""
+
+msgid "Texts per language"
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Empty = the built-in text in the visitor's language. A preset can fill these."
+msgstr ""
+
+msgid "Write your own"
+msgstr ""

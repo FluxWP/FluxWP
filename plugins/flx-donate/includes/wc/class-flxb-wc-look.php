@@ -24,6 +24,59 @@ final class FLXB_WC_Look {
 
 	private static $cache = null;
 
+	/** 2.33.0: built-in quick amounts of a free amount. Other currencies have none until set. */
+	const AMOUNT_PRESETS = array(
+		'EUR' => array( 25, 50, 75 ),
+		'USD' => array( 25, 50, 75 ),
+		'GBP' => array( 25, 50, 75 ),
+		'TRY' => array( 150, 300, 500 ),
+	);
+
+	/** 2.33.0: headings a site can write per language (empty = the plugin's translated text). */
+	public static function text_keys() {
+		return array(
+			'type_label'   => __( 'Heading over the types', 'flx-donate' ),
+			'option_label' => __( 'Heading over the options', 'flx-donate' ),
+			'amount_label' => __( 'Heading over the amount', 'flx-donate' ),
+			'other_label'  => __( '"Other amount" button', 'flx-donate' ),
+		);
+	}
+
+	/** 2.33.0: language code of the visitor (Flux Lang, else the locale: "en", "tr", "lv"). */
+	public static function lang() {
+		if ( function_exists( 'flxl_current_language' ) ) {
+			$l = (string) flxl_current_language();
+			if ( '' !== $l ) {
+				return strtolower( $l );
+			}
+		}
+		return strtolower( substr( (string) determine_locale(), 0, 2 ) );
+	}
+
+	/** 2.33.0: languages offered on the settings screen (Flux Lang's, else the site's). */
+	public static function langs() {
+		$out = array();
+		if ( function_exists( 'flxl_language_codes' ) ) {
+			foreach ( (array) flxl_language_codes() as $c ) {
+				$out[ strtolower( (string) $c ) ] = function_exists( 'flxl_language_name' ) ? (string) flxl_language_name( $c ) : strtoupper( (string) $c );
+			}
+		}
+		if ( ! $out ) {
+			$c         = strtolower( substr( (string) get_locale(), 0, 2 ) );
+			$out[ $c ] = strtoupper( $c );
+		}
+		foreach ( array_keys( (array) self::get( 'texts' ) ) as $c ) {
+			$out[ $c ] = $out[ $c ] ?? strtoupper( $c );
+		}
+		return $out;
+	}
+
+	/** 2.33.0: quick amounts of a free amount in a currency (Appearance › Quick amounts). */
+	public static function amount_presets( $currency ) {
+		$all = (array) self::get( 'amount_presets' );
+		return array_values( (array) ( $all[ strtoupper( (string) $currency ) ] ?? array() ) );
+	}
+
 	public static function init() {
 		add_filter( 'flxb_settings_tabs', array( __CLASS__, 'tab' ) );
 		add_action( 'flxb_settings_tab_look', array( __CLASS__, 'render_tab' ) );
@@ -116,6 +169,9 @@ final class FLXB_WC_Look {
 			'sticky_bar'   => 1,         // 2.23.0: phones keep the total and the button fixed at the bottom (form and checkout)
 			'card_first'   => 1,         // card methods before bank transfer and cash at the checkout
 			'addresses'    => 1,         // address book (My Account › Addresses, saved addresses at the checkout)
+			/* 2.33.0 */
+			'amount_presets' => self::AMOUNT_PRESETS, // quick amount buttons of a free amount per currency (a type's own presets win)
+			'texts'          => array(),  // headings per language: [ 'en' => [ 'type_label' => '…', 'amount_label' => '…' ] ]
 		);
 	}
 
@@ -136,7 +192,13 @@ final class FLXB_WC_Look {
 	 * Filter flxb_look_label lets a preset or a translation plugin give it in the visitor's language.
 	 */
 	public static function label( $key ) {
-		return (string) apply_filters( 'flxb_look_label', (string) self::get( $key ), $key, determine_locale() );
+		$texts = (array) self::get( 'texts' );
+		$lang  = self::lang();
+		$v     = (string) ( $texts[ $lang ][ $key ] ?? '' ); // 2.33.0: the language's own text first
+		if ( '' === $v ) {
+			$v = (string) self::get( $key );
+		}
+		return (string) apply_filters( 'flxb_look_label', $v, $key, determine_locale() );
 	}
 
 	public static function form_styles() {
@@ -240,6 +302,36 @@ final class FLXB_WC_Look {
 		}
 		foreach ( array( 'coupons', 'card_first', 'addresses', 'sticky_bar' ) as $k ) {
 			$out[ $k ] = array_key_exists( $k, $in ) ? ( empty( $in[ $k ] ) ? 0 : 1 ) : $d[ $k ];
+		}
+		/* 2.33.0: quick amounts per currency; a missing key keeps the built-in lists, an empty list = no buttons. */
+		$out['amount_presets'] = array();
+		$ap                    = array_key_exists( 'amount_presets', $in ) ? (array) $in['amount_presets'] : $d['amount_presets'];
+		foreach ( $ap as $c => $list ) {
+			$c = strtoupper( preg_replace( '/[^A-Za-z]/', '', (string) $c ) );
+			if ( 3 !== strlen( $c ) ) {
+				continue;
+			}
+			$vals = array();
+			foreach ( is_array( $list ) ? $list : preg_split( '/[\s,;]+/', (string) $list ) as $v ) {
+				$v = round( (float) trim( (string) $v ), 2 );
+				if ( $v > 0 && $v <= 1000000 && ! in_array( $v, $vals, true ) && count( $vals ) < 6 ) {
+					$vals[] = $v;
+				}
+			}
+			$out['amount_presets'][ $c ] = $vals;
+		}
+		$out['texts'] = array();
+		foreach ( (array) ( $in['texts'] ?? array() ) as $lang => $row ) {
+			$lang = strtolower( preg_replace( '/[^A-Za-z_-]/', '', (string) $lang ) );
+			if ( '' === $lang || strlen( $lang ) > 10 || ! is_array( $row ) ) {
+				continue;
+			}
+			foreach ( array_keys( self::text_keys() ) as $k ) {
+				$v = mb_substr( sanitize_text_field( (string) ( $row[ $k ] ?? '' ) ), 0, 60 );
+				if ( '' !== $v ) {
+					$out['texts'][ $lang ][ $k ] = $v;
+				}
+			}
 		}
 		$out['fee_rates']    = array();
 		foreach ( (array) ( $in['fee_rates'] ?? array() ) as $gw => $r ) {
@@ -376,6 +468,8 @@ final class FLXB_WC_Look {
 				'sticky_bar'   => array( 'type' => 'bool', 'default' => true, 'desc' => 'Phones: the total and the button stay fixed at the bottom of the form and the checkout.' ),
 				'card_first'   => array( 'type' => 'bool', 'default' => true, 'desc' => 'Checkout: card methods come before bank transfer and cash.' ),
 				'addresses'    => array( 'type' => 'bool', 'default' => true, 'desc' => 'Address book: My Account › Addresses and the saved addresses at the checkout. Off = the site asks for no address anywhere.' ),
+				'amount_presets' => array( 'type' => 'object', 'default' => self::AMOUNT_PRESETS, 'desc' => 'Quick amount buttons of a free (hand-written) amount per currency, beside an "Other amount" button: { "EUR": [25,50,75], "TRY": [150,300,500] }. A type\'s own preset amounts win; an empty list = no buttons in that currency.' ),
+				'texts'          => array( 'type' => 'object', 'default' => array(), 'desc' => 'Form headings per language (Flux Lang code): { "en": { "type_label": "Donation type", "option_label": "", "amount_label": "Donation amount", "other_label": "Other amount" } }. Empty = the plugin\'s translated text.' ),
 				'fee_rates'    => array( 'type' => 'object', 'default' => array(), 'desc' => 'Transaction fee per payment method: { "gateway id": { "pct": 2.9, "fixed": 0.25 } } (fixed in the store currency).' ),
 			),
 		);
@@ -431,8 +525,28 @@ final class FLXB_WC_Look {
 			echo '</span></div>';
 		}
 		echo '</div>';
+		echo '<div class="flxb-field"><span class="flxb-label">' . esc_html__( 'Quick amounts', 'flx-donate' ) . '</span><span class="flxb-look__mins">';
+		$codes = array_unique( array_merge( class_exists( 'FLXB_WC_Currency' ) ? (array) FLXB_WC_Currency::codes() : array(), array( function_exists( 'get_woocommerce_currency' ) ? get_woocommerce_currency() : 'EUR' ) ) );
+		foreach ( $codes as $c ) {
+			$list = (array) ( $s['amount_presets'][ $c ] ?? array() );
+			echo '<label>' . esc_html( $c ) . ' <input type="text" name="amount_presets[' . esc_attr( $c ) . ']" style="width:150px" value="' . esc_attr( implode( ', ', $list ) ) . '" placeholder="' . esc_attr( implode( ', ', self::AMOUNT_PRESETS[ $c ] ?? array( 25, 50, 75 ) ) ) . '"></label>';
+		}
+		echo '</span><p class="flxb-help">' . esc_html__( 'Amount buttons of types that take an amount written by the donor, with an "Other amount" button beside them. Comma separated; empty = no buttons in that currency. Amounts set on a donation type win.', 'flx-donate' ) . '</p></div>';
 		echo '<label class="flxb-check"><input type="checkbox" name="period_tabs" value="1"' . checked( (int) $s['period_tabs'], 1, false ) . '> ' . esc_html__( '"One-time donation / Monthly donation" tabs over the form (shown when a payment method can take monthly payments)', 'flx-donate' ) . '</label>';
 
+		echo '<div class="flxb-field"><span class="flxb-label">' . esc_html__( 'Texts per language', 'flx-donate' ) . '</span><table class="flxb-look__fees flxb-look__texts"><thead><tr><th>' . esc_html__( 'Language', 'flx-donate' ) . '</th>';
+		foreach ( self::text_keys() as $l ) {
+			echo '<th>' . esc_html( $l ) . '</th>';
+		}
+		echo '</tr></thead><tbody>';
+		foreach ( self::langs() as $code => $name ) {
+			echo '<tr><td>' . esc_html( $name ) . ' <code>' . esc_html( $code ) . '</code></td>';
+			foreach ( array_keys( self::text_keys() ) as $k ) {
+				echo '<td><input type="text" maxlength="60" name="texts[' . esc_attr( $code ) . '][' . esc_attr( $k ) . ']" value="' . esc_attr( (string) ( $s['texts'][ $code ][ $k ] ?? '' ) ) . '"></td>';
+			}
+			echo '</tr>';
+		}
+		echo '</tbody></table><p class="flxb-help">' . esc_html__( 'Empty = the built-in text in the visitor\'s language. A preset can fill these.', 'flx-donate' ) . '</p></div>';
 		echo '<div class="flxb-field"><span class="flxb-label">' . esc_html__( 'Order of the sections', 'flx-donate' ) . '</span><ol class="flxb-look__order" data-flxb-look-order>';
 		$labels = self::section_labels();
 		foreach ( $s['order'] as $k ) {
@@ -504,6 +618,8 @@ final class FLXB_WC_Look {
 .flxb-look__color input[type=text]{width:120px}
 .flxb-look__mins{display:flex;flex-wrap:wrap;gap:12px}
 .flxb-look__mins input{width:90px}
+.flxb-look__texts input{width:150px}
+.flxb-look__texts th{font-weight:600}
 </style>
 <script>
 (function(){

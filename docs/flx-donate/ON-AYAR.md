@@ -64,5 +64,8 @@ Flux Donate 2.11.0, Flux Setup ön ayarlarının `content` listesinde dört tür
 | `card_first` | bool | Ödemede kart havaleden önce gelir |
 | `coupons` | bool | Yalnız bağış olan sepette kupon kutusu |
 | `addresses` | bool | Adres defteri ve Hesabım > Adresler |
+| `form_style` | `panel` | B · İki panel: solda tür listesi (alt başlıklı), sağda türün adı + para birimi menüsü + ayrıntılar, altta açık renkli toplam kutusu (2.33.0). Telefonda türler üstte kayan sekme |
+| `amount_presets` | `{ "EUR": [25,50,75], "USD": [25,50,75], "TRY": [150,300,500] }` | Serbest tutarlı türlerde para birimine göre hızlı tutar düğmeleri + "Diğer tutar" düğmesi (2.33.0). Varsayılan bu değerler; türün kendi `presets` / `presets_by_currency`'si önceliklidir; boş liste = o para biriminde düğme yok |
+| `texts` | `{ "lv": { "type_label": "Ziedojuma veids", "amount_label": "Ziedojuma summa", "other_label": "Cita summa", "option_label": "" } }` | Form başlıkları dile göre (Flux Lang kodu, 2.33.0). Boş alan = eklentinin o dildeki çevirisi. `type_label`/`option_label`'ın dil bağımsız değeri yedektir; `flxb_look_label` filtresi en son çalışır |
 
 Filtreler: `flxb_takes_free( bool, $type )`, `flxb_min_free( float, $type, $currency )`.

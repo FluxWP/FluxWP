@@ -6085,3 +6085,27 @@ msgstr "Abonelik"
 
 msgid "iyzico keeps your card and the subscription renews from it automatically. You can remove the card or cancel any time in My account."
 msgstr "Kartınızı iyzico saklar, abonelik bu karttan otomatik yenilenir. Kartı kaldırmak ya da iptal etmek için Hesabım'a gidebilirsiniz."
+
+msgid "Heading over the amount"
+msgstr "Tutarın üstündeki başlık"
+
+msgid "\"Other amount\" button"
+msgstr "\"Diğer tutar\" düğmesi"
+
+msgid "Quick amounts"
+msgstr "Hızlı tutarlar"
+
+msgid "Amount buttons of types that take an amount written by the donor, with an \"Other amount\" button beside them. Comma separated; empty = no buttons in that currency. Amounts set on a donation type win."
+msgstr "Bağışçının tutar yazabildiği türlerde hazır tutar düğmeleri; yanında \"Diğer tutar\" düğmesi olur. Virgülle ayırın; boş = o para biriminde düğme yok. Bağış türünde girilen tutarlar önceliklidir."
+
+msgid "Texts per language"
+msgstr "Dile göre metinler"
+
+msgid "Language"
+msgstr "Dil"
+
+msgid "Empty = the built-in text in the visitor's language. A preset can fill these."
+msgstr "Boş = ziyaretçinin dilindeki hazır metin. Ön ayar bunları doldurabilir."
+
+msgid "Write your own"
+msgstr "Kendiniz yazın"
