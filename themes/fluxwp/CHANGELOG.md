@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.9.6
+- Menü altındaki hover/aktif çizgisi tek renk: tema ana rengi (`--flx-nav-line` ile ön ayar değiştirebilir); eski ana renk → yaprak rengi geçişi kalktı.
+
 ## 0.9.5
 - Header arama butonunun hover arka planı tam yuvarlak (eşit genişlik/yükseklik), elips görünmüyor.
 
