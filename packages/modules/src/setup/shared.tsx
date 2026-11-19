@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useQueryClient } from '@tanstack/react-query';
 import { createGraphQLClient, type GraphQLClient } from '@fluxwp/graphql';
 import { FlxGraphQLProvider, useGraphQL } from '@fluxwp/graphql/react';
+import { Check } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { translator, type Translate } from './i18n';
 import './setup.css';
@@ -49,12 +50,7 @@ export function NoticeBar({ notice, onClose, t }: { notice: Notice | null; onClo
 }
 
 export function Switch({ checked, onChange, label, disabled }: { checked: boolean; onChange: (on: boolean) => void; label: string; disabled?: boolean }) {
-  return (
-    <label className="flxk-switch">
-      <input type="checkbox" role="switch" checked={checked} disabled={disabled} onChange={(e) => onChange(e.target.checked)} aria-label={label} />
-      <span aria-hidden="true" />
-    </label>
-  );
+  return <Check switch checked={checked} disabled={disabled} aria-label={label} onChange={onChange} />;
 }
 
 /** A translated sentence with one <a href="%s">…</a> link (React escapes everything else). */

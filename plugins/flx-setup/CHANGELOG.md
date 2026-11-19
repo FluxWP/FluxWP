@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.5.5
+- Paketler: "Otomatik güncelleme" sütununda çift çizilen anahtar düzeltildi; tek ortak anahtar (eski paket CSS'i kaldırıldı).
+
 ## 1.5.4
 - Klasik ekranda olup React'te kaybolanlar geri geldi: Ayarlar'da FluxWP hesabı kartı (FluxWP ile giriş, yenile, bağlantıyı kes), bağlantı kutusunda "Bağlantıyı sına", "Anonim kullanım verisi" kartı (telemetri adresi, şimdi gönder, gönderilecek veri) ve diğer paketlerin kullanım seçenekleri (flxk_usage_options); Paketler'de "Google'da bulunun" kartı. Yeni GraphQL: flxSetupCloud, flxSetupTelemetry, flxSetupGoogleCards, flxSetupTelemetrySave, flxSetupGoogleCardDismiss.
 - Telefon genişliğinde içerik ekranın dışına taşmıyor (grid sütunları minmax(0,1fr), arama ve süzgeç satırı alt alta).
