@@ -29,6 +29,8 @@ Every stack comes twice:
 
 **From Git (default stack):** **Projects › Add Resource › Public Repository** › `https://github.com/FluxWP/FluxWP`, branch `main`, build pack **Docker Compose**, **Base Directory** `/docker`, **Docker Compose Location** `/docker-compose.yml`. Coolify reads `docker/docker-compose.yml` (MariaDB + Redis) and generates a domain. Under **Advanced › Watch Paths** set `docker/**`, otherwise every push to the monorepo redeploys the site. Deploy.
 
+For another stack from Git, set **Docker Compose Location** to `/coolify/<stack>/docker-compose.yml` (for example `/coolify/wpapi/docker-compose.yml`). Do not point Coolify at `compose/<stack>/`: those files are for plain Docker, have no `SERVICE_URL_*` variable, so Coolify finds no domain and no generated secrets.
+
 > These stacks used to live in `FluxWP/docker-wordpress`. The images (`ghcr.io/fluxwp/wordpress:*`) and their tags did not change; for an existing Coolify app only the repository, Base Directory and Watch Paths change.
 
 **Another stack, or without Git:**
