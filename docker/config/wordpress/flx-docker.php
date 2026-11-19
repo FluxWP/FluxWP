@@ -2,7 +2,7 @@
 /**
  * Plugin Name: FluxWP Docker
  * Description: Activates Flux Setup right after the WordPress install screen, opens its setup wizard on the first wp-admin visit (visitors of a brand-new site are sent to the login first), and (wpapi stack) adds the WhatsApp API connection. Written by the FluxWP Docker worker.
- * Version: 1.2.0
+ * Version: 1.3.0
  * Author: FluxWP
  * License: MIT
  *
@@ -57,6 +57,34 @@ add_action(
 		}
 	},
 	1
+);
+
+/**
+ * Safety net, independent of the activation flag and Flux Setup's 60 second transient: the first time an
+ * administrator opens wp-admin while the wizard is still pending, go to the wizard once. Covers installs
+ * where the flag was never set (worker install, plugin activated earlier, wpapi/other stacks).
+ */
+add_action(
+	'admin_init',
+	static function () {
+		if ( 'pending' !== get_option( 'flxk_onboarding' ) || get_option( 'flx_docker_wizard_opened' ) ) {
+			return;
+		}
+		if ( 'GET' !== ( $_SERVER['REQUEST_METHOD'] ?? '' ) || wp_doing_ajax() || wp_doing_cron() || ! current_user_can( 'install_plugins' ) ) {
+			return;
+		}
+		if ( isset( $_GET['page'] ) && 'flx-setup-wizard' === $_GET['page'] ) { // phpcs:ignore WordPress.Security.NonceVerification
+			update_option( 'flx_docker_wizard_opened', 1, false );
+			return;
+		}
+		if ( ! apply_filters( 'flx_docker_first_run_redirect', true ) ) {
+			return;
+		}
+		update_option( 'flx_docker_wizard_opened', 1, false );
+		wp_safe_redirect( admin_url( 'admin.php?page=flx-setup-wizard' ) );
+		exit;
+	},
+	2
 );
 
 /**
