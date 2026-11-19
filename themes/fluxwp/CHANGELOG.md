@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.9.4
+- Menü altındaki aktif çizgi hover'daki öğeye sağa sola kayar, imleç çıkınca aktif öğeye döner (hareket azaltma açıksa kaymaz).
+- Header butonlarının normal ve hover rengi tema renginden gelir (`--flx-hbtn-bg`, `--flx-hbtn-fg`, `--flx-hbtn-hover-bg`, `--flx-hbtn-hover-fg` ile ön ayar değiştirebilir).
+
 ## 0.9.3
 - Menü öğesi üstündeki fidan simgesi ve çerez kutusundaki fidan simgesi artık varsayılanda yok (menüde simge yok, çerez kutusunda nötr çerez simgesi). Fidan yalnız Süs deseni "Yapraklar" seçiliyken (Yeşil Türkiye ön ayarı) çıkar.
 

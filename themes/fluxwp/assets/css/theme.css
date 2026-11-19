@@ -632,6 +632,14 @@ body.flx-decoration--leaves .flx-header .wp-block-navigation__responsive-contain
 .flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation-item__content:is(:hover,:focus-visible)::after,
 .flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .current-menu-item>.wp-block-navigation-item__content::after{transform:translateX(-50%) scaleX(1)}
 body.flx-decoration--leaves .flx-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation-item__content:is(:hover,:focus-visible)::before{opacity:1;transform:none}
+/* Kayan alt çizgi (main.js): hover'daki öğeye kayar; JS varsa öğe başına ::after çizgisi kapanır */
+.flx-header .flx-nav-slide{position:relative}
+.flx-header .flx-nav-slide .wp-block-navigation-item__content::after{display:none}
+.flx-header .flx-nav-ind{position:absolute;left:0;top:0;height:3px;margin:-5px 0 0;border-radius:3px;background:linear-gradient(90deg,var(--flx-primary),var(--flx-leaf));opacity:0;pointer-events:none;list-style:none;transition:transform .35s cubic-bezier(.2,.8,.2,1),width .35s cubic-bezier(.2,.8,.2,1),opacity .2s}
+/* Header butonları: normal ve hover rengi tema renginden (--flx-hbtn-* ile ön ayar değiştirebilir) */
+.flx-header{--flx-hbtn-bg:var(--flx-primary);--flx-hbtn-fg:#fff;--flx-hbtn-hover-bg:var(--flx-primary-dark);--flx-hbtn-hover-fg:var(--flx-hbtn-fg)}
+.flx-header .wp-block-button:not(.is-style-outline) .wp-block-button__link{background:var(--flx-hbtn-bg);color:var(--flx-hbtn-fg)}
+.flx-header .wp-block-button:not(.is-style-outline) .wp-block-button__link:is(:hover,:focus-visible){background:var(--flx-hbtn-hover-bg);color:var(--flx-hbtn-hover-fg)}
 .flx-header .wp-block-search__button{border-radius:50%;transition:background .25s,color .25s,transform .35s cubic-bezier(.3,1.6,.5,1)}
 .flx-header .wp-block-search__button:hover{background:var(--flx-mint);color:var(--flx-primary);transform:rotate(-12deg) scale(1.08)}
 .flx-header .flx-btn-heart .wp-block-button__link{transition:transform .25s,box-shadow .25s,background .25s}
