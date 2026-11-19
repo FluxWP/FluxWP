@@ -99,7 +99,8 @@
     "reload": "Reload",
     "relogin": "Dashboard session ended, reopening…",
     "demo": "Demo: sample dashboard page (a real site opens signed in)",
-    "sessionLost": "The dashboard session could not be opened. Try again, or sign out of the account and back in."
+    "sessionLost": "The dashboard session could not be opened. Try again, or sign out of the account and back in.",
+    "ok": "OK"
   },
   "shell": {
     "openDrawer": "Open menu",

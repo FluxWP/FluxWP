@@ -6,12 +6,13 @@ import { WebView, type WebViewMessageEvent, type WebViewNavigation } from 'react
 import { useNavigation } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
-import { DEMO_SITE, WebSessionManager, classifyNavigation, embedUserAgent, parseBridgeMessage, useAccount, useApi, useBootstrap, useConfig, useMe, useRenderer, useResolveEnv } from '@fluxwp/runtime';
+import { DEMO_SITE, WebSessionManager, classifyNavigation, dialogAnswer, embedUserAgent, parseBridgeMessage, useAccount, useApi, useBootstrap, useConfig, useMe, useRenderer, useResolveEnv } from '@fluxwp/runtime';
 import { GlassButton } from '@/ui/Glass';
 import { brand } from '@/brand';
 import { APP_VERSION } from '@/platform';
 import { EmptyState, Skeleton, Text } from '@/ui/primitives';
 import { demoAdminHtml } from './demo-admin';
+import { nativeDialog } from './nativeDialog';
 import { ChromeFrame, useChrome } from '@/shell/chrome';
 
 export function WebScreen({ path, title, note }: { path: string; title?: string; note?: string }) {
@@ -105,7 +106,8 @@ export function WebScreen({ path, title, note }: { path: string; title?: string;
         onMessage={(e: WebViewMessageEvent) => {
           const m = parseBridgeMessage(e.nativeEvent.data);
           if (m?.type === 'title') setPageTitle(m.title);
-          else if (m?.type === 'toast') renderer.ui.toast(m.text);
+          else if (m?.type === 'toast') renderer.ui.toast(m.text, m.tone);
+          else if (m?.type === 'dialog') void nativeDialog(m).then((a) => ref.current?.postMessage(dialogAnswer(m.id, a)));
           else if (m?.type === 'close') renderer.nav.back();
         }}
         // A load we cancelled ourselves (native screen, browser, relogin) ends with "cancelled" /

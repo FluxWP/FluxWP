@@ -15,7 +15,7 @@ import { accountForPush, pushDataOf, routePush } from './notify';
 import { resolveTarget, routeForAdminPath, type ResolveEnv } from './resolve';
 import { resolveShell } from './shell';
 import { actionRequest, formRequest, parsePage, sourceRequest } from './source';
-import { classifyNavigation, embedUserAgent, parseBridgeMessage } from './web-session';
+import { classifyNavigation, dialogAnswer, embedUserAgent, parseBridgeMessage } from './web-session';
 import { rowView } from './controllers/list';
 import { fieldSchema, initialValues, submitValues } from './controllers/form';
 import { appResources, textOf } from './i18n';
@@ -37,6 +37,15 @@ describe('resolveTarget (§6 order)', () => {
     const old = { ...env, appVersion: '0.0.9' };
     expect(resolveTarget('module:crm', old)).toEqual({ kind: 'web', path: 'admin.php?page=flx-crm' });
     expect(resolveTarget('module:crm', { ...env, forceWeb: new Set(['crm']) }).kind).toBe('web');
+  });
+
+  it('preferWeb opens the picked manifests on the site, native components stay native', () => {
+    const web = { ...env, preferWeb: (m: { id: string }) => m.id === 'crm' };
+    expect(resolveTarget('module:crm', web)).toEqual({ kind: 'web', path: 'admin.php?page=flx-crm' });
+    expect(resolveTarget('screen:crm/contact', web, { id: '5' }).kind).toBe('web');
+    expect(routeForAdminPath('admin.php?page=flx-crm', web)).toBeNull();
+    expect(resolveTarget('screen:core/posts', web)).toMatchObject({ kind: 'manifest', module: 'core' });
+    expect(resolveTarget('native:dashboard', web)).toMatchObject({ kind: 'native' });
   });
 
   it('menu items open a native screen when a manifest route claims their page', () => {
@@ -173,6 +182,12 @@ describe('webview decisions', () => {
 
   it('accepts only whitelisted bridge messages', () => {
     expect(parseBridgeMessage('{"type":"title","title":"Ortam"}')).toEqual({ type: 'title', title: 'Ortam' });
+    expect(parseBridgeMessage({ type: 'dialog', id: 'd1', kind: 'confirm', title: 'Sil', message: 'Emin misin?', danger: true, x: 1 })).toEqual({ type: 'dialog', id: 'd1', kind: 'confirm', title: 'Sil', message: 'Emin misin?', danger: true });
+    expect(parseBridgeMessage({ type: 'dialog', id: 'd2', kind: 'choice', title: 'T', message: '', buttons: [{ label: 'Vazgeç', cancel: true }, { label: 'Sil', danger: true }, 5] })).toMatchObject({ buttons: [{ label: 'Vazgeç', cancel: true, danger: false }, { label: 'Sil', danger: true, cancel: false }] });
+    expect(parseBridgeMessage({ type: 'dialog', id: 'd3', kind: 'choice', title: 'T', message: '' })).toBeNull();
+    expect(parseBridgeMessage({ type: 'dialog', id: 'd4', kind: 'eval', title: 'T' })).toBeNull();
+    expect(JSON.parse(dialogAnswer('d1', { ok: true, value: 'x' }))).toEqual({ type: 'flxapp:dialog', id: 'd1', ok: true, value: 'x' });
+    expect(parseBridgeMessage({ type: 'toast', text: 'Hata', tone: 'bad' })).toEqual({ type: 'toast', text: 'Hata', tone: 'error' });
     expect(parseBridgeMessage({ type: 'counts', counts: { a: 1, b: 'x' } })).toEqual({ type: 'counts', counts: { a: 1 } });
     expect(parseBridgeMessage({ type: 'eval', code: 'x' })).toBeNull();
     expect(parseBridgeMessage('not json')).toBeNull();

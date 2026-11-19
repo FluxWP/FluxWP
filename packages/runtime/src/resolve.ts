@@ -19,10 +19,16 @@ export interface ResolveEnv {
   appVersion: string;
   /** Module ids the user wants on the web (layout prefs `forceWeb`). */
   forceWeb?: ReadonlySet<string>;
+  /**
+   * Plugin manifests open the site's own screen in the webview instead of the native manifest renderer
+   * (`Renderer.preferWeb`): the app then shows the same screen, tabs and data as the site's mobile view.
+   * Native components (`native:<id>`, manifest `native` screens) stay native. Picks the manifests it applies to.
+   */
+  preferWeb?: (m: Manifest) => boolean;
 }
 
 const usable = (m: Manifest | undefined, env: ResolveEnv): boolean =>
-  !!m && !env.forceWeb?.has(m.id) && (!m.min_app || !newerVersion(m.min_app, env.appVersion)) && !!m.screens[m.entry];
+  !!m && !env.preferWeb?.(m) && !env.forceWeb?.has(m.id) && (!m.min_app || !newerVersion(m.min_app, env.appVersion)) && !!m.screens[m.entry];
 
 function menuPath(slug: string, env: ResolveEnv): string | null {
   for (const item of env.me?.menu ?? []) {
@@ -68,6 +74,8 @@ export function resolveTarget(target: string | Target | null | undefined, env: R
     case 'screen': {
       const m = env.manifests?.[t.module];
       if (m && usable(m, env) && m.screens[t.screen]) return screenRoute(m, t.screen, env, params);
+      const s = m?.screens[t.screen];
+      if (s && env.preferWeb?.(m!) && (s.type === 'native' || s.type === 'web')) return screenRoute(m!, t.screen, env, params);
       return moduleRoute(t.module, env, params);
     }
     case 'module':

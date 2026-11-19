@@ -1,6 +1,6 @@
 // Renderer contract (plan §2.2): each platform supplies its views and these UI/navigation ports.
 // The runtime decides *what* happens (confirm → request → invalidate → toast → back); the renderer draws it.
-import type { FormField, ScreenType } from '@fluxwp/manifest';
+import type { FormField, Manifest, ScreenType } from '@fluxwp/manifest';
 import type { Route } from './resolve';
 
 export interface ConfirmRequest {
@@ -37,4 +37,6 @@ export interface Renderer {
   native: ReadonlySet<string>;
   /** Text for "$t:" keys and app strings. */
   t(key: string, vars?: Record<string, unknown>): string;
+  /** Manifests that open the site's own (mobile) screen in the webview; see ResolveEnv.preferWeb. */
+  preferWeb?: (m: Manifest) => boolean;
 }
