@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 1.6.4
+- Ön ayar güncellemeleri, aynı slug ile bulunan sahipsiz sayfa/yazıları kendiliğinden sahiplenmez; belirsiz anahtarlar ve değişmiş kayıt kimlikleri korunur.
+- SEO meta alanları ve taksonomiler içerikten bağımsız karşılaştırılır, sahiplenilir ve yedeklenir. Kullanıcının değiştirdiği alanlar korunur; eski sahiplik kayıtlarında kanıtlanamayan alanlar inceleme için bekler.
+- Kısmen uygulanan veya hatalı migration tamamlandı sayılmaz. Bekleyen kayıtlar elle önizlenip hedef bazlı yeniden denenebilir; değişmeyen başarısız otomatik denemeler her yönetici isteğinde tekrarlanmaz.
+- `flxk_content_fields_supported()` yetenek kontrolü ve gerçek WordPress içerik/SEO/geri alma regresyon testleri eklendi.
+
 ## 1.6.3
 - Paketler ekranında sunucudan gelen metinler ("Google'da bulunun" kartı, "Son kontrol", sekme adları, güncelleme günlüğü satırları, tarihler) Türkçe panelde İngilizce kalıyordu: /graphql site dilinde çalışıyordu. Panel GraphQL istekleri artık oturumdaki kullanıcının dilinde yanıt verir.
 
