@@ -14,7 +14,7 @@
  *   add_filter( 'flx_realtime_topics', fn( $t ) => $t + array( 'chatbot.' => 'flxchatbot_inbox' ) );
  *   flx_realtime_client_config(); // null, or array( 'url' => 'wss://…/flx-rt', 'ticket' => REST URL ) for clients
  *   flx_realtime_ticket( $user_id ); // 60 second ticket, sent as the first WebSocket message {"auth": ticket}
- *   flx_realtime_online( array( 1, 5 ) ); // users with a socket open now (skip phone push for them)
+ *   flx_realtime_online( array( 1, 5 ) ); // users looking at an open screen now (skip phone push for them)
  * Signals carry no content (no message text, names or amounts): clients reload data through WordPress.
  */
 

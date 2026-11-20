@@ -107,6 +107,26 @@ describe("server", () => {
     expect(await pub.get(config.channel + ":online:1")).toBeNull();
   });
 
+  test("presence follows visible sockets only", async () => {
+    const a = await connect();
+    const b = await connect();
+    a.ws.send(JSON.stringify({ auth: ticket(11) }));
+    b.ws.send(JSON.stringify({ auth: ticket(11), vis: false }));
+    expect(await until(() => a.msgs.length === 1 && b.msgs.length === 1)).toBe(true);
+    const key = config.channel + ":online:11";
+    expect(await pub.get(key)).toBe("1");
+    a.ws.send(JSON.stringify({ vis: false }));
+    await Bun.sleep(150);
+    expect(await pub.get(key)).toBeNull();
+    b.ws.send(JSON.stringify({ vis: true }));
+    await Bun.sleep(150);
+    expect(await pub.get(key)).toBe("1");
+    b.ws.close();
+    await Bun.sleep(150);
+    expect(await pub.get(key)).toBeNull();
+    a.ws.close();
+  });
+
   test("ticket is single use", async () => {
     const t = ticket(3);
     const a = await connect();

@@ -103,6 +103,8 @@ export function routes(msg: Envelope): string[] {
 interface Conn {
   ip: string;
   uid: number;
+  /** Screen in front (client sends {"vis": false} when its tab/app goes to the background). */
+  visible: boolean;
   authTimer?: ReturnType<typeof setTimeout>;
   lifeTimer?: ReturnType<typeof setTimeout>;
 }
@@ -140,21 +142,24 @@ function clientIp(req: Request, server: { requestIP(r: Request): { address: stri
   return server.requestIP(req)?.address ?? "?";
 }
 
-// Presence for WordPress: "flx:rt:online:<uid>" exists while the user has a socket open (TTL refreshed),
-// so flx_notify() can skip a phone push when the message already reached an open screen.
+// Presence for WordPress: "flx:rt:online:<uid>" exists while the user has a socket open on a screen in front
+// (TTL refreshed), so a phone push can be skipped when the message already reached a screen they are looking at.
+// A tab left open in the background does not count.
 const ONLINE_TTL = 90;
 let presence: RedisClient | null = null;
 const onlineKey = (uid: number) => `${config.channel}:online:${uid}`;
-const markOnline = (uid: number) => presence?.set(onlineKey(uid), "1", "EX", String(ONLINE_TTL)).catch(() => null);
+const seen = (uid: number) => [...(byUser.get(uid) ?? [])].some((w) => w.data.visible);
+function markOnline(uid: number) {
+  if (!presence) return;
+  (seen(uid) ? presence.set(onlineKey(uid), "1", "EX", String(ONLINE_TTL)) : presence.del(onlineKey(uid))).catch(() => null);
+}
 
 function drop(ws: ServerWebSocket<Conn>) {
   const set = byUser.get(ws.data.uid);
   if (set) {
     set.delete(ws);
-    if (!set.size) {
-      byUser.delete(ws.data.uid);
-      presence?.del(onlineKey(ws.data.uid)).catch(() => null);
-    }
+    if (!set.size) byUser.delete(ws.data.uid);
+    markOnline(ws.data.uid);
   }
 }
 
@@ -185,7 +190,7 @@ export async function start() {
       const ip = clientIp(req, srv);
       if (!originOk(req)) return new Response("Forbidden", { status: 403 });
       if (!rateOk(ip) || open >= config.maxConn) return new Response("Too many connections", { status: 429 });
-      if (srv.upgrade(req, { data: { ip, uid: 0 } })) return undefined;
+      if (srv.upgrade(req, { data: { ip, uid: 0, visible: true } })) return undefined;
       return new Response("Upgrade failed", { status: 400 });
     },
     websocket: {
@@ -207,9 +212,14 @@ export async function start() {
         }
         if (ws.data.uid) {
           if (msg.ping !== undefined) ws.send('{"t":"pong"}');
+          if (typeof (msg as { vis?: unknown }).vis === "boolean" && (msg as { vis: boolean }).vis !== ws.data.visible) {
+            ws.data.visible = (msg as { vis: boolean }).vis;
+            markOnline(ws.data.uid);
+          }
           return; // Clients only listen; nothing else is accepted.
         }
         if (msg.auth === undefined) return;
+        if (typeof (msg as { vis?: unknown }).vis === "boolean") ws.data.visible = (msg as { vis: boolean }).vis;
         const t = verifyTicket(msg.auth, config.secret);
         if (typeof t === "string") return ws.close(t === "expired" ? CLOSE.expired : CLOSE.badTicket, t);
         // One use per ticket: a copied ticket cannot open a second socket.
