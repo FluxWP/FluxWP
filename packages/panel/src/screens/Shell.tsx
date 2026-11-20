@@ -14,7 +14,7 @@ import { AddSite } from './AddSite';
 import { useConnect } from '../state/connect';
 import { buildMenu } from '../lib/menuGroups';
 import { activeOf, fromEntry, fromNav, labelOf, type SideLink } from '../shell/links';
-import { PrefsBridge, SiteSync, SyncNotifier } from '../shell/bridges';
+import { PrefsBridge, RealtimeBridge, SiteSync, SyncNotifier } from '../shell/bridges';
 import { Stage } from '../shell/Stage';
 import { Warmup } from '../shell/Warmup';
 import type { SiteBrand } from '../components/SiteLogo';
@@ -113,6 +113,7 @@ export function Shell() {
     <div className="shell">
       <PrefsBridge />
       <SyncNotifier />
+      <RealtimeBridge />
       <SiteSync />
       <Warmup account={account} ready={!me.isLoading && !(site.isLoading && !configShell)} failed={me.isError && !me.data} logo={siteBrand.icon} pins={menu.pins} groups={menu.groups} />
       <Sidebar

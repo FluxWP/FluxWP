@@ -13,3 +13,4 @@ delete_metadata( 'user', 0, 'flxapp_menu', '', true );
 delete_metadata( 'user', 0, 'flxapp_menu_hash', '', true );
 delete_metadata( 'user', 0, 'flxapp_prefs', '', true );
 delete_metadata( 'user', 0, 'flxapp_events', '', true );
+delete_metadata( 'user', 0, 'flxapp_webpush', '', true );

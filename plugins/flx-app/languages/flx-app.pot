@@ -400,6 +400,63 @@ msgstr ""
 msgid "Yetkiniz yok."
 msgstr ""
 
+msgid "This push service is not allowed."
+msgstr ""
+
+msgid "Invalid subscription keys."
+msgstr ""
+
+msgid "Browser notifications need a signed-in browser session."
+msgstr ""
+
+msgid "Notifications are turned off on this site."
+msgstr ""
+
+msgid "Notifications on"
+msgstr ""
+
+msgid "Notifications blocked"
+msgstr ""
+
+msgid "Get notifications in this browser, also when the site is closed."
+msgstr ""
+
+msgid "Stop notifications in this browser."
+msgstr ""
+
+msgid "Notifications are blocked for this site in the browser settings."
+msgstr ""
+
+msgid "Notifications could not be turned on"
+msgstr ""
+
+msgid "Browser notifications (Web Push)"
+msgstr ""
+
+msgid "Browsers allow notifications only on https sites."
+msgstr ""
+
+msgid "Ready. Users turn them on per browser with Notifications in the admin bar."
+msgstr ""
+
+msgid "PHP OpenSSL cannot sign P-256 keys here; browsers do not get notifications. Mobile app push still works."
+msgstr ""
+
+msgid "Live connection (realtime)"
+msgstr ""
+
+msgid "The realtime service runs but has no public address (FLX_REALTIME_URL); apps poll."
+msgstr ""
+
+msgid "Panel and app get changes at once."
+msgstr ""
+
+msgid "Not checked yet; shown after the next app sign-in."
+msgstr ""
+
+msgid "The realtime service is not answering; apps poll until it is back."
+msgstr ""
+
 msgid "Default"
 msgstr ""
 

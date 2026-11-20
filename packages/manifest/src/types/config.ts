@@ -83,7 +83,15 @@ export interface AppConfig {
   theme?: ThemeConfig;
   shell: ShellConfig;
   features?: { web_session?: boolean; push?: boolean; otp?: boolean; search?: boolean; biometric_lock?: boolean };
-  transport?: { method_override?: boolean; poll_min?: number; token_header?: 'authorization' | 'x-fluxwp-token' };
+  transport?: {
+    method_override?: boolean;
+    poll_min?: number;
+    token_header?: 'authorization' | 'x-fluxwp-token';
+    /** Docker sites with the realtime service, only while it is healthy. `ticket`: REST URL (POST). */
+    realtime?: { url: string; ticket?: string; ttl?: number };
+  };
+  /** Web Push for browsers (flx-app 0.10.0+, push on): VAPID public key, service worker and REST URLs. */
+  webpush?: { key: string; sw: string; subscribe: string; remove: string } | null;
   webview?: { allow_hosts?: string[]; external?: 'in_app_browser' | 'system' };
   links?: { privacy?: string; support?: string };
   versions?: Record<string, string>;

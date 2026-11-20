@@ -408,9 +408,57 @@
             "x-fluxwp-token"
           ],
           "type": "string"
+        },
+        "realtime": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "pattern": "^wss?:\\/\\/"
+            },
+            "ticket": {
+              "type": "string"
+            },
+            "ttl": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "url"
+          ]
         }
       },
       "required": []
+    },
+    "webpush": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "key": {
+              "type": "string"
+            },
+            "sw": {
+              "type": "string"
+            },
+            "subscribe": {
+              "type": "string"
+            },
+            "remove": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "key",
+            "sw",
+            "subscribe",
+            "remove"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
     },
     "webview": {
       "type": "object",
