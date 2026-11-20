@@ -1,0 +1,36 @@
+name: Paket imzası
+
+# flx-setup imza doğrulaması (FLXU_Signature) ve bin/sign-package.php birlikte çalışıyor mu.
+on:
+  pull_request:
+    paths:
+      - 'plugins/flx-setup/includes/updater/**'
+      - 'tools/tests/package-signature.php'
+      - 'bin/sign-*'
+      - '.github/workflows/package-signature.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'plugins/flx-setup/includes/updater/**'
+      - 'bin/sign-*'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Doğrulama testi
+        run: php tools/tests/package-signature.php
+      - name: İmzala + doğrula (geçici anahtar)
+        run: |
+          set -euo pipefail
+          printf 'PK test' > /tmp/flx-test.zip
+          export FLX_RELEASE_SIGNING_KEY="$(php -r 'echo base64_encode(sodium_crypto_sign_secretkey(sodium_crypto_sign_keypair()));')"
+          php bin/sign-package.php /tmp/flx-test.zip flx-test 1.0.0
+          test -s /tmp/flx-test.zip.sig
+          # Secret yoksa çıkış kodu 3 (release imzasız devam eder, uyarı verir).
+          set +e; FLX_RELEASE_SIGNING_KEY= php bin/sign-package.php /tmp/flx-test.zip flx-test 1.0.0; rc=$?; set -e
+          test "$rc" = 3

@@ -393,6 +393,10 @@ final class FLXU_Updater {
 			if ( strtolower( (string) wp_parse_url( $p['package'], PHP_URL_HOST ) ) !== $host ) {
 				continue;
 			}
+			// İmzalı paket: adresteki slug/sürüm bildirilenle aynı olmalı (eski imzalı sürümü yeni diye sunup geri indirme olmasın).
+			if ( ! FLXU_Signature::matches( (string) $p['package'], (string) $slug, (string) $p['version'] ) ) {
+				continue;
+			}
 			$out[ $slug ] = array(
 				'slug'             => (string) $slug,
 				'type'             => 'theme' === ( $p['type'] ?? '' ) ? 'theme' : 'plugin',
@@ -405,7 +409,7 @@ final class FLXU_Updater {
 				'requires_plugins' => self::slug_list( $p['requires_plugins'] ?? array() ),
 				'changelog'        => wp_kses_post( (string) ( $p['changelog'] ?? '' ) ),
 				'released'         => sanitize_text_field( (string) ( $p['released'] ?? '' ) ),
-				'versions'         => $this->clean_versions( (array) ( $p['versions'] ?? array() ), $host ),
+				'versions'         => $this->clean_versions( (array) ( $p['versions'] ?? array() ), $host, (string) $slug ),
 				// Sunucunun bildirdiği görünürlük ve sihirbaz yeri. Eski sunucular göndermez: public sayılır, kategori boş.
 				'public'           => ! isset( $p['public'] ) || ! empty( $p['public'] ),
 				'category'         => sanitize_key( (string) ( $p['category'] ?? '' ) ),
@@ -493,13 +497,16 @@ final class FLXU_Updater {
 	}
 
 	/** Sunucunun verdiği eski sürümler: yalnız o sunucunun host'undaki indirme adresleri. */
-	private function clean_versions( array $list, string $host ): array {
+	private function clean_versions( array $list, string $host, string $slug = '' ): array {
 		$out = array();
 		foreach ( $list as $v ) {
 			if ( ! is_array( $v ) || empty( $v['version'] ) || empty( $v['package'] ) ) {
 				continue;
 			}
 			if ( strtolower( (string) wp_parse_url( $v['package'], PHP_URL_HOST ) ) !== $host ) {
+				continue;
+			}
+			if ( ! FLXU_Signature::matches( (string) $v['package'], $slug, (string) $v['version'] ) ) {
 				continue;
 			}
 			$out[] = array(

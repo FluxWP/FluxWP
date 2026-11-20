@@ -628,7 +628,7 @@ function flxai_media_ref_bytes( $ref, $max = 20971520 ) {
 	if ( ! preg_match( '#^https?://#i', $ref ) ) {
 		return new WP_Error( 'flxai_media_ref', __( 'Could not read the reference.', 'flx-ai' ) );
 	}
-	$r = wp_safe_remote_get(
+	$r = flxai_safe_get(
 		$ref,
 		array(
 			'timeout'             => 20,

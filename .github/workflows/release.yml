@@ -62,6 +62,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           UPDATE_SERVER: ${{ vars.UPDATE_SERVER || 'https://updater.fluxwp.com' }}
           WEBHOOK_SECRET: ${{ secrets.UPDATE_WEBHOOK_SECRET }}
+          FLX_RELEASE_SIGNING_KEY: ${{ secrets.FLX_RELEASE_SIGNING_KEY }}
         run: |
           set -euo pipefail
           released=0
@@ -111,7 +112,22 @@ jobs:
             bin/release-notes.sh "$dir" > "dist/$SLUG-notes.md"
             pre=""
             case "$VERSION" in *-*) pre="--prerelease" ;; esac
-            gh release create "$tag" "dist/$SLUG.zip" \
+            # Ed25519 imzası (bin/sign-package.php): FluxWP Panel kurmadan önce doğrular. Secret yoksa uyarı, imzasız.
+            assets="dist/$SLUG.zip"
+            set +e
+            php bin/sign-package.php "dist/$SLUG.zip" "$SLUG" "$VERSION"
+            sign_rc=$?
+            set -e
+            if [ "$sign_rc" = 0 ]; then
+              assets="$assets dist/$SLUG.zip.sig"
+            elif [ "$sign_rc" = 3 ]; then
+              echo "::warning::$SLUG $VERSION imzasız yayınlanıyor: FLX_RELEASE_SIGNING_KEY secret'ı yok"
+            else
+              echo "::error::$SLUG $VERSION imzalanamadı, yayınlanmadı"
+              failed="$failed $SLUG"
+              continue
+            fi
+            gh release create "$tag" $assets \
               --target "$GITHUB_SHA" \
               --title "$NAME $VERSION" \
               --notes-file "dist/$SLUG-notes.md" $pre
@@ -131,6 +147,15 @@ jobs:
             echo "::error::Yayınlanmayan paketler:$failed"
             exit 1
           fi
+
+      - name: Eski sürümlerin eksik imzalarını tamamla
+        # Son 5 sürümde <slug>.zip.sig yoksa üretir (geri alma ve ilk kurulum imzalı paket ister). Secret yoksa uyarı.
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          FLX_RELEASE_SIGNING_KEY: ${{ secrets.FLX_RELEASE_SIGNING_KEY }}
+          SIGN_OPTIONAL: '1'
+        run: bin/sign-missing.sh
 
       - name: README paket tablosunu güncelle
         # Kopya repoda da yazılırsa iki tarafta farklı README commit'i oluşur, main ayrışır.

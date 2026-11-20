@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 1.6.0
+- Paket imzası (Ed25519): resmi güncelleme sunucusundan ve github.com/FluxWP'den gelen paketler, release'teki `<slug>.zip.sig` imzası gömülü public key'le doğrulanmadan kurulmaz. İmza slug + sürüm + zip sha256'ya bağlı; başka pakete ya da sürüme taşınamaz. Güncelleme sunucusu, onu yöneten panel ya da site anahtarı ele geçirilse bile imzasız zip kurulmaz.
+- Resmi kaynaktan gelen kanonik olmayan paket adresi (http, başka yol, port, slug/sürüm uyuşmazlığı) reddedilir; sunucunun bildirdiği sürüm adresteki sürümle aynı olmalı (eski imzalı paketi yeni diye sunup geri indirme olmaz).
+- Acil kapatma: wp-config.php'de `define( 'FLXU_SIGNATURES', 'off' );`. Anahtar listesi boşken doğrulama devrede değil.
+
 ## 1.5.5
 - Paketler: "Otomatik güncelleme" sütununda çift çizilen anahtar düzeltildi; tek ortak anahtar (eski paket CSS'i kaldırıldı).
 
