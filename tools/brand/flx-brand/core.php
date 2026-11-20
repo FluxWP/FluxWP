@@ -13,6 +13,7 @@
  *    Contexts: admin, block, shortcode, footer-fallback, or the plugin's own context (qr-menu, ...).
  *  - flx_brand_is_screen( bool $is, WP_Screen|null $screen )  which admin screens are FluxWP screens.
  *  - flx_brand_url( string $url, string $context )
+ *  - flx_brand_utm( array $params, string $context ) hidden UTM params on the link (utm_source = site host, utm_medium, utm_campaign, utm_content = site name)
  *
  * Source: FluxWP/fluxwp tools/brand/flx-brand (copy with tools/brand/sync.sh, do not edit the copies).
  *
@@ -46,7 +47,37 @@ function flx_brand_str( $key ) {
 
 /** fluxwp.com address. */
 function flx_brand_url( $context = '' ) {
-	return (string) apply_filters( 'flx_brand_url', 'https://fluxwp.com/', (string) $context );
+	$context = (string) $context;
+	$url     = 'https://fluxwp.com/';
+
+	/**
+	 * Hidden referral parameters on the signature link (analytics only, the visible text does not change).
+	 * Return an empty array / false to drop them, or change the values.
+	 */
+	$host = wp_parse_url( home_url(), PHP_URL_HOST );
+	$utm  = apply_filters(
+		'flx_brand_utm',
+		array(
+			'utm_source'   => is_string( $host ) ? strtolower( $host ) : '',
+			'utm_medium'   => 'admin' === $context ? 'admin' : 'footer',
+			'utm_campaign' => 'powered_by',
+			'utm_content'  => wp_strip_all_tags( (string) get_bloginfo( 'name' ) ),
+		),
+		$context
+	);
+	if ( is_array( $utm ) ) {
+		$pairs = array();
+		foreach ( $utm as $k => $v ) {
+			$v = trim( (string) $v );
+			if ( '' !== $v ) {
+				$pairs[] = rawurlencode( (string) $k ) . '=' . rawurlencode( $v );
+			}
+		}
+		if ( $pairs ) {
+			$url .= '?' . implode( '&', $pairs );
+		}
+	}
+	return (string) apply_filters( 'flx_brand_url', $url, $context );
 }
 
 /**
