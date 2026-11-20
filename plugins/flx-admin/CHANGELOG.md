@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.10.2
+- Soldaki menü başlığında uzun site adı ikinci satıra geçer; en fazla 2 satır, sonuna "…" gelir ve menüyü daralt düğmesinin altına girmez.
+
 ## 1.10.1
 - Ekran ortak FluxWP kabuğuna taşındı: başlık, simge, sekmeler, kenar boşlukları, en fazla genişlik ve güvenli alan (safe area) bütün Flux ekranlarında aynı. Sekmeler eski Flux Admin sekmeleri gibi alt çizgili; taşarsa sayfa değil sekme çubuğu kayar. Ortak modül paketi yenilendi.
 

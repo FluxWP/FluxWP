@@ -150,6 +150,7 @@ All optional. In Coolify they are environment variables, with Compose they go in
 | `DB_MAX_CONNECTIONS` | `100` | |
 | `REDIS_MAXMEMORY` | `128mb` | Cache only, no persistence, LRU eviction |
 | `WP_URL`, `WP_TITLE`, `WP_ADMIN_USER`, `WP_ADMIN_PASSWORD`, `WP_ADMIN_EMAIL` | | Automatic install (Coolify fills the URL). Empty password is generated |
+| `WP_URL_SYNC` | `true` | The worker makes the database follow `WP_URL` when the domain changes (see [Changing the domain](#changing-the-domain)). `false` turns it off |
 | `WP_AUTO_INSTALL` | `false` | `true`: install on first start without `WP_ADMIN_EMAIL` (e-mail `admin@<host>`) and close the install screen. `false`: use WordPress's own install screen |
 | `WP_INSTALL_TOKEN` | | Alphanumeric token (max 128) that opens `/wp-admin/install.php` and `/wp-admin/setup-config.php`. Only matters with `WP_AUTO_INSTALL=true`; empty keeps them closed then. Unset it after the install is finished, because a token passed in the query string can end up in the Apache access log |
 | `WP_LOCALE` | `en_US` | Language installed on first setup, e.g. `tr_TR` |
@@ -168,11 +169,12 @@ Anything else: `WORDPRESS_CONFIG_EXTRA` (PHP appended to `wp-config.php`; keep t
 
 ## The worker
 
-`worker` runs `wordpress:cli` and does three things, all safe to repeat:
+`worker` runs `wordpress:cli` and does four things, all safe to repeat:
 
 1. Waits for the WordPress files and the database.
 2. On first start: installs WordPress when `WP_AUTO_INSTALL=true` (default false, WordPress's own install screen; set `WP_ADMIN_EMAIL` to choose the address, otherwise `admin@<host>`), the language, the Redis Object Cache plugin and its drop-in (Redis stacks), and FluxWP Panel (`FLUXWP_SETUP`, on by default). The zip is downloaded over HTTPS, size-capped, and installed only if it contains `flx-setup/flx-setup.php` and no escaping paths. It is active as soon as WordPress is installed, and the first wp-admin visit opens its setup wizard. Language and FluxWP Panel are done once, so later changes in wp-admin stay. A generated admin password is stored at `/run/flx-private/admin-password` (mode `0600`, only the worker can read it), not in the logs. Read it with `docker compose exec worker cat /run/flx-private/admin-password`. Change the password after the first login, then delete the file: `docker compose exec worker rm /run/flx-private/admin-password`.
-3. Runs due WP-Cron events on shared-volume wake signals (checked every 2 seconds by default), while retaining the `WP_CRON_INTERVAL` periodic fallback. Idle checks do not start PHP or WordPress.
+3. Follows a domain change: when `WP_URL` (Coolify's domain) differs from the address stored in WordPress, it updates `home`/`siteurl` and replaces the old address in the database once. See [Changing the domain](#changing-the-domain).
+4. Runs due WP-Cron events on shared-volume wake signals (checked every 2 seconds by default), while retaining the `WP_CRON_INTERVAL` periodic fallback. Idle checks do not start PHP or WordPress.
 
 
 The shared library bundled in Flux Mail, Certificates and Backup runs independent jobs concurrently: default **3 per plugin**, with a **9-job site-wide ceiling**. Change `WP_BACKGROUND_WORKERS_PER_PLUGIN` and `WP_BACKGROUND_MAX_PROCESSES` in the Coolify Environment Variables panel or Compose `.env`, then recreate the worker. These are capacity controls, not a claim that every server can sustain nine heavy jobs. Resource locks, mailbox quotas and the single-backup rule still apply. Unregistered third-party cron handlers keep their normal execution path.
@@ -213,6 +215,45 @@ docker compose exec worker tar -C /var/www/html -czf - wp-content > wp-content.t
 ```
 
 Coolify can also back up the database service on a schedule.
+
+## Changing the domain
+
+Change the domain in Coolify (or `WP_URL` in `.env`) and redeploy. Nothing else is needed: when the worker starts it compares `WP_URL` with the `home`/`siteurl` stored in WordPress. If they differ it
+
+1. logs `site address changed: <old> -> <new>`,
+2. replaces the old address with the new one in every table with `wp search-replace` (serialized data stays valid, the `guid` column is skipped, JSON-escaped copies in block content are included),
+3. flushes the object cache and stores the new address in the `flx_docker_url` option, so it runs once per change.
+
+Follow it with `docker compose logs worker` (Coolify: the worker service logs). A change made by hand in wp-admin is not undone on later restarts, because the worker only reacts when `WP_URL` itself changes. Set `WP_URL_SYNC=false` to turn this off. A `WP_URL` with a path (`https://example.com/blog`) is not synced; use the manual steps.
+
+If the site still redirects to the old domain, check, in this order:
+
+- `docker compose logs worker` shows no `site address sync failed`.
+- `WP_HOME` / `WP_SITEURL` in `WORDPRESS_CONFIG_EXTRA` or `wp-config.php` override the database. The worker warns about them; remove or update them.
+- A redirect or caching plugin still stores the old address. Purge its cache.
+- Cloudflare or another proxy points at the new domain and its SSL mode is Full (strict).
+
+Manual fix. The cli image already has WP-CLI, so use the worker:
+
+```bash
+docker compose exec worker wp option update home 'https://new.example'
+docker compose exec worker wp option update siteurl 'https://new.example'
+docker compose exec worker wp search-replace 'https://old.example' 'https://new.example' --all-tables --skip-columns=guid
+docker compose exec worker wp cache flush
+```
+
+In Coolify open the `worker` service's Terminal instead of `docker compose exec worker`. If you are inside the `wordpress` container, it has no WP-CLI (`wp: command not found`). Download it once, it lives only until the next redeploy:
+
+```bash
+cd /tmp
+curl -fsSLO https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+php wp-cli.phar --allow-root --path=/var/www/html option update home 'https://new.example'
+php wp-cli.phar --allow-root --path=/var/www/html option update siteurl 'https://new.example'
+php wp-cli.phar --allow-root --path=/var/www/html search-replace 'https://old.example' 'https://new.example' --all-tables --skip-columns=guid
+php wp-cli.phar --allow-root --path=/var/www/html cache flush
+```
+
+Take a database backup first (above). Add `--dry-run` to the `search-replace` to see the counts before changing anything.
 
 ## Upgrades
 

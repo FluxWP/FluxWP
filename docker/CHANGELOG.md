@@ -1,9 +1,14 @@
 # Changelog
 
-## 2026.11.20.1
+## 2026.11.20.2
 
 - New optional `realtime` service in every stack with Redis (`mariadb-redis`, `nginx-fpm`, `wpapi`, and the default `docker-compose.yml`), image `ghcr.io/fluxwp/wordpress:realtime-bun1.4`: WebSocket live updates for the FluxWP panel and FluxApp. WordPress publishes small signals to Redis (no content), the service passes them to signed-in clients on the site's own domain at `/flx-rt` (Coolify routes it; `nginx-fpm` proxies it). Coolify generates the shared secret; plain Docker sets `FLX_REALTIME_SECRET`. Without it, or if the service is down, clients poll as before.
 - New mu-plugin FluxWP Realtime 1.0.0 (`flx-realtime.php`, written by the worker only when `FLX_REALTIME_SECRET` is set): `flx_realtime_publish()`, single-use 60 second tickets (`POST /wp-json/flx-realtime/v1/ticket`), presence (`flx_realtime_online()`), sockets closed on logout / role / password change, and `wp flx realtime status|test`.
+
+## 2026.11.20.1
+
+- The worker follows a domain change. When `WP_URL` (Coolify's domain) differs from the `siteurl`/`home` stored in WordPress, it replaces the old address in the database once (`wp search-replace`, serialized-safe, `guid` skipped, JSON-escaped copies included), flushes the cache and records the address in the `flx_docker_url` option. Logged, off with `WP_URL_SYNC=false`; a change made by hand in wp-admin is kept while `WP_URL` stays the same. Warns when `WP_HOME`/`WP_SITEURL` in `wp-config.php` override the database.
+- README (EN/TR): "Changing the domain" section with the automatic behaviour, a checklist for a redirect to the old domain, and the manual WP-CLI commands, including the `wp-cli.phar` way for the `wordpress` container, which has no WP-CLI.
 
 ## 2026.11.19.2
 
