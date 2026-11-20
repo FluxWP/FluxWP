@@ -97,6 +97,15 @@ if ( ! function_exists( 'flxai_media_submit' ) ) {
 		}
 	}
 	flxai_update_settings( array( 'model' => 'openrouter/test-model', 'limit_day' => 5 ) );
+	// The fake CDN has no DNS record; the checked download (flx-brand http.php) needs a public address for it.
+	add_filter(
+		'flx_host_ips',
+		static function ( $ips, $host ) {
+			return 'cdn.example.test' === $host ? array( '93.184.216.34' ) : $ips;
+		},
+		10,
+		2
+	);
 	add_filter(
 		'pre_http_request',
 		static function ( $pre, $args, $url ) {
