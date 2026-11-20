@@ -10,6 +10,7 @@ import { applyUserPrefs, useUserPrefs } from './prefs';
 import { demoShellFetch } from './demo/fetch';
 import { qk } from './query';
 import { useScope } from './scope';
+import { useLivePoll } from './realtime';
 import { resolveShell, type ResolvedShell } from './shell';
 
 /** Public discovery (login methods, clients, login_url…). Null on sites before flx-app 0.4.0. */
@@ -117,7 +118,8 @@ const hiddenInterval = (every: number) => {
 export function useSync(enabled = true) {
   const { api } = useScope();
   const config = useConfig();
-  const every = Math.max(10, config.transport?.poll_min ?? 15) * 1000;
+  // Realtime connected (Docker sites): events arrive at once, polling is only a 120 s safety net.
+  const every = useLivePoll(Math.max(10, config.transport?.poll_min ?? 15) * 1000);
   const since = useRef(0);
   return useQuery<SyncState>({
     queryKey: qk.sync(),

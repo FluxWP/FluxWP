@@ -1,7 +1,7 @@
 // Prefs sync (GET/POST /prefs) and desktop notifications from /sync events.
 import { useEffect, useRef } from 'react';
 import { layoutStore, platform } from '@fluxwp/core';
-import { qk, savePrefs, useMe, useSync, useUserPrefs, type SyncEvent } from '@fluxwp/runtime';
+import { qk, savePrefs, useMe, useRealtime, useSync, useUserPrefs, type SyncEvent } from '@fluxwp/runtime';
 import { useScope } from '@fluxwp/runtime';
 import { create } from 'zustand';
 import { useWarm } from './warm';
@@ -69,6 +69,12 @@ export function SyncNotifier() {
       void platform().notify?.({ title: ev.title, body: ev.body, data: { target: ev.target, params: ev.params, site: undefined } });
     }
   }, [sync.data, add]);
+  return null;
+}
+
+/** Docker sites: live connection; events refetch /sync at once, so SyncNotifier shows them without waiting for a poll. */
+export function RealtimeBridge() {
+  useRealtime();
   return null;
 }
 

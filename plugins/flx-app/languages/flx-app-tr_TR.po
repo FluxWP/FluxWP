@@ -20,7 +20,7 @@ msgid "Search"
 msgstr "Arama"
 
 msgid "Notifications"
-msgstr "Bildirim"
+msgstr "Bildirimler"
 
 msgid "Accounts"
 msgstr "Hesaplar"
@@ -399,6 +399,63 @@ msgstr "Kaydet"
 
 msgid "Yetkiniz yok."
 msgstr "Yetkiniz yok."
+
+msgid "This push service is not allowed."
+msgstr "Bu bildirim servisine izin verilmiyor."
+
+msgid "Invalid subscription keys."
+msgstr "Abonelik anahtarları geçersiz."
+
+msgid "Browser notifications need a signed-in browser session."
+msgstr "Tarayıcı bildirimleri için tarayıcıda oturum açık olmalı."
+
+msgid "Notifications are turned off on this site."
+msgstr "Bu sitede bildirimler kapalı."
+
+msgid "Notifications on"
+msgstr "Bildirimler açık"
+
+msgid "Notifications blocked"
+msgstr "Bildirimler engelli"
+
+msgid "Get notifications in this browser, also when the site is closed."
+msgstr "Bu tarayıcıda, site kapalıyken de bildirim al."
+
+msgid "Stop notifications in this browser."
+msgstr "Bu tarayıcıda bildirimleri kapat."
+
+msgid "Notifications are blocked for this site in the browser settings."
+msgstr "Tarayıcı ayarlarında bu site için bildirimler engellenmiş."
+
+msgid "Notifications could not be turned on"
+msgstr "Bildirimler açılamadı"
+
+msgid "Browser notifications (Web Push)"
+msgstr "Tarayıcı bildirimleri (Web Push)"
+
+msgid "Browsers allow notifications only on https sites."
+msgstr "Tarayıcılar bildirimlere yalnız https sitelerde izin verir."
+
+msgid "Ready. Users turn them on per browser with Notifications in the admin bar."
+msgstr "Hazır. Kullanıcılar her tarayıcıda yönetim çubuğundaki Bildirimler ile açar."
+
+msgid "PHP OpenSSL cannot sign P-256 keys here; browsers do not get notifications. Mobile app push still works."
+msgstr "Bu sunucuda PHP OpenSSL P-256 anahtarı imzalayamıyor; tarayıcılara bildirim gitmez. Mobil uygulama bildirimleri çalışır."
+
+msgid "Live connection (realtime)"
+msgstr "Canlı bağlantı (realtime)"
+
+msgid "The realtime service runs but has no public address (FLX_REALTIME_URL); apps poll."
+msgstr "Realtime servisi çalışıyor ama genel adresi yok (FLX_REALTIME_URL); uygulamalar polling yapar."
+
+msgid "Panel and app get changes at once."
+msgstr "Panel ve uygulama değişiklikleri anında alır."
+
+msgid "Not checked yet; shown after the next app sign-in."
+msgstr "Henüz kontrol edilmedi; bir sonraki uygulama girişinden sonra görünür."
+
+msgid "The realtime service is not answering; apps poll until it is back."
+msgstr "Realtime servisi yanıt vermiyor; geri gelene kadar uygulamalar polling yapar."
 
 msgid "Default"
 msgstr "Varsayılan"

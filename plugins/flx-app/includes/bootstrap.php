@@ -237,6 +237,10 @@ function flxapp_event_record( $user_id, array $e ) {
 		'at'     => time(),
 	);
 	update_user_meta( (int) $user_id, 'flxapp_events', array_slice( $list, -FLXAPP_EVENTS_MAX ) );
+	// Docker (Flux Realtime): açık panel /sync'i hemen yeniler, bildirimi beklemeden gösterir. İçerik gitmez.
+	if ( function_exists( 'flx_realtime_publish' ) ) {
+		flx_realtime_publish( 'app.event', array( 'event' => $event ), array( 'users' => array( (int) $user_id ), 'inv' => array( 'sync' ) ) );
+	}
 }
 
 function flxapp_events_since( $user_id, $since ) {

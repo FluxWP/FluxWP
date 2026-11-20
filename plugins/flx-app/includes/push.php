@@ -10,6 +10,8 @@
  *       'params' => array( 'id' => 12 ),
  *   ) );
  *
+ * Aynı bildirim, kullanıcının abone olduğu tarayıcılara Web Push ile de gider (includes/webpush.php). Docker'da
+ * (Flux Realtime) olay açık ekranlara anında düşer; ekranı önünde olan kullanıcıya push gönderilmez.
  * Gönderim yanıt kullanıcıya gittikten sonra yapılır (fastcgi/litespeed_finish_request), cron'a güvenilmez.
  * Expo'ya 100'lük paketler; `DeviceNotRegistered` dönen cihazın belirteci silinir. FCM/APNs için
  * `flxapp_push_send` filtresi. Bildirim verisi: { v: 1, site, user, event, target, params }.
@@ -118,6 +120,17 @@ function flxapp_push_flush() {
 function flxapp_push_deliver( array $user_ids, array $msg ) {
 	global $wpdb;
 	$out  = array( 'sent' => 0, 'failed' => 0, 'skipped' => 0 );
+	// Docker (Flux Realtime): ekranı önünde açık olan kullanıcı olayı zaten canlı gördü; telefona ikinci kez gitmez.
+	if ( empty( $msg['now'] ) && function_exists( 'flx_realtime_online' ) ) {
+		$online = flx_realtime_online( $user_ids );
+		if ( $online ) {
+			$user_ids        = array_values( array_diff( $user_ids, $online ) );
+			$out['skipped'] += count( $online );
+			if ( ! $user_ids ) {
+				return $out;
+			}
+		}
+	}
 	$d    = flxapp_devices_table();
 	$t    = flxapp_table();
 	$in   = implode( ',', array_fill( 0, count( $user_ids ), '%d' ) );
@@ -172,6 +185,12 @@ function flxapp_push_deliver( array $user_ids, array $msg ) {
 		$out['failed'] += (int) ( $res['failed'] ?? 0 );
 		foreach ( (array) ( $res['invalid'] ?? array() ) as $bad ) {
 			$wpdb->update( $d, array( 'token_hash' => '', 'token_enc' => '', 'provider' => '' ), array( 'token_hash' => flxapp_hash( (string) $bad ) ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
+		}
+	}
+	if ( function_exists( 'flxapp_webpush_deliver' ) ) {
+		$web = flxapp_webpush_deliver( $user_ids, $event, array( 'title' => $title, 'body' => $body, 'data' => $base ), $msg );
+		foreach ( $web as $k => $n ) {
+			$out[ $k ] += $n;
 		}
 	}
 	update_option( 'flxapp_push_last', $out + array( 'at' => time(), 'error' => $GLOBALS['flxapp_push_error'] ?? '' ), false );
