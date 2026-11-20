@@ -14,6 +14,7 @@ export * from './notify';
 export * from './prefs';
 export * from './devices';
 export * from './upload';
+export * from './realtime';
 export * from './i18n';
 export * from './controllers/context';
 export * from './controllers/action';

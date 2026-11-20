@@ -583,7 +583,17 @@ function flxapp_config( $user = null, $platform = null ) {
 			'search'         => ! isset( $site['features']['search'] ) || ! empty( $site['features']['search'] ),
 			'biometric_lock' => ! empty( $site['features']['biometric_lock'] ),
 		),
-		'transport' => array( 'method_override' => true, 'poll_min' => 10, 'token_header' => 'authorization' ),
+		'transport' => array_filter(
+			array(
+				'method_override' => true,
+				'poll_min'        => 10,
+				'token_header'    => 'authorization',
+				// Docker + Redis: canlı bağlantı (yoksa null, istemci polling yapar).
+				'realtime'        => function_exists( 'flx_realtime_client_config' ) ? flx_realtime_client_config() : null,
+			),
+			static fn( $v ) => null !== $v
+		),
+		'webpush'   => function_exists( 'flxapp_webpush_client_config' ) ? flxapp_webpush_client_config() : null,
 		'webview'   => array( 'allow_hosts' => flxapp_webview_hosts(), 'external' => 'in_app_browser' ),
 		'links'     => array_filter(
 			array(

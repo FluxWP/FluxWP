@@ -137,6 +137,12 @@ Manifest sözlüğü tek adımlı formdur (bir `submit`, alanlar). İki adımlı
 
 `packages`: etkin FluxWP eklentileri (`flx-*`) ve FluxWP teması. Sürümler herkese açık değildir; girişli `/me.versions`'ta. Gizli bilgi yoktur (filtre `flxapp_bootstrap` de gizli bilgi eklememeli). Önbellek ayar, profil, eklenti ve tema değişince boşalır.
 
+## Canlı bağlantı ve tarayıcı bildirimi (0.10.0)
+
+- `transport.realtime` yalnız Docker sitede (FluxWP Realtime servisi sağlıklıyken) gelir. İstemci `POST flx-realtime/v1/ticket` ile 60 sn'lik tek kullanımlık bilet alır, WebSocket'e bağlanıp ilk mesajda `{"auth": bilet, "vis": true}` gönderir, ekran arka plana geçince `{"vis": false}`. Gelen sinyal `{ t, inv, d? }`: `inv` sorgu anahtarı önekini yeniler (ör. `app.event` → `["sync"]`). Bağlıyken `/sync` 120 sn'de bir (güvenlik ağı). `@fluxwp/runtime`: `useRealtime()`, `useRealtimeLive()`, `useLivePoll(ms)`. Sunucu protokolü: `docker/images/realtime/server.ts`, PHP API: `docker/config/wordpress/flx-realtime.php`.
+- Bildirim akışı tek giriş `do_action( 'flxapp_push', $user_ids, $msg )`: olay `/sync` listesine yazılır (+ realtime sinyali), sonra Expo cihazlarına ve abone tarayıcılara (Web Push) gider. Ekranı önünde açık kullanıcı (realtime presence) atlanır.
+- `webpush`: push açıkken ve OpenSSL P-256 destekliyse. Abonelik `POST flxapp/v1/webpush/subscribe` `{ endpoint, keys: { p256dh, auth } }` (çerez + nonce; WordPress oturumuna bağlı), çıkış `POST …/unsubscribe` `{ endpoint }`. Service worker `/?flxapp-sw=1` (kapsam site kökü). wp-admin'de yönetim çubuğu "Bildirimler" düğmesi bunu yapar (`flxapp_webpush_show` filtresi, varsayılan `edit_posts`). Tıklanınca açılan adres: hedef `web:` → wp-admin yolu, `url:` → güvenli adres, değilse wp-admin (`flxapp_webpush_url`).
+
 ## `GET /config` (`flx-app-config/1`)
 
 Katmanlar: site (`flxapp_app` seçeneği; Uygulama › Görünüm sekmesi ya da preset `settings.flxapp_app`) + rol (Flux Admin rol menüsü, mobil alt bar, platform gizlemesi) sunucuda birleşir. Marka, kullanıcı (`/prefs`) ve cihaz katmanlarını istemci uygular.
@@ -148,7 +154,8 @@ Katmanlar: site (`flxapp_app` seçeneği; Uygulama › Görünüm sekmesi ya da 
   "theme": { "mode": "system", "light": { "primary", "onPrimary", "accent", "onAccent", "bg", "surface", "text" }, "dark": { … }, "radius": "medium", "density": "comfortable", "font": { "body": "Nunito Sans", "heading": "Nunito", "files": null } },
   "shell": { … platforma göre … },
   "features": { "web_session": true, "push": true, "push_hide": false, "otp": true, "search": true, "biometric_lock": false },
-  "transport": { "method_override": true, "poll_min": 10, "token_header": "authorization" },
+  "transport": { "method_override": true, "poll_min": 10, "token_header": "authorization", "realtime": { "url": "wss://…/flx-rt", "ticket": "…/wp-json/flx-realtime/v1/ticket", "ttl": 60 } },
+  "webpush": { "key": "<VAPID public, base64url>", "sw": "…/?flxapp-sw=1", "subscribe": "…/wp-json/flxapp/v1/webpush/subscribe", "remove": "…/webpush/unsubscribe" },
   "webview": { "allow_hosts": ["site"], "external": "in_app_browser" },
   "links": { "privacy": "…", "support": "mailto:…", "ios": "…", "android": "…" },
   "versions": { "flx-app": "0.4.0", "min_app": "1.0.0", "min_app_mobile": "1.0.0", "min_app_desktop": "0.3.0" }
