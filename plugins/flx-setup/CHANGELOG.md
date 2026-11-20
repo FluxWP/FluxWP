@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.6.3
+- Paketler ekranında sunucudan gelen metinler ("Google'da bulunun" kartı, "Son kontrol", sekme adları, güncelleme günlüğü satırları, tarihler) Türkçe panelde İngilizce kalıyordu: /graphql site dilinde çalışıyordu. Panel GraphQL istekleri artık oturumdaki kullanıcının dilinde yanıt verir.
+
 ## 1.6.2
 - FluxWP hesabına bağlanırken site sahipliği kanıtı: fluxwp.com bağlantıyı onaylamadan önce siteye geri kanaldan sorar (`?rest_route=/flx-setup/v1/cloud/proof&state=…`); site yalnız kendi başlattığı isteğin PKCE challenge'ını verir. Başkası bu sitenin adresiyle bağlantı başlatıp siteyi kendi hesabına bağlayamaz. Bilinmeyen state 404 döner, yanıt önbelleğe alınmaz.
 

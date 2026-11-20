@@ -16,6 +16,16 @@ if ( ! class_exists( 'FLXK_Onboarding' ) ) {
 	require_once FLXK_DIR . 'includes/onboarding.php'; // The wizard steps live there (the admin-only load skips it in GraphQL requests).
 }
 
+/*
+ * /graphql runs in the site language, not the signed-in user's: server-built texts (Google card, "Last check: …", tab
+ * names, update log lines, dates) came out English in a Turkish panel. The screen already shows the user's language,
+ * so the server texts follow it too. Restored by WordPress when the request ends; not repeated per field.
+ */
+if ( is_user_logged_in() && function_exists( 'switch_to_user_locale' ) && empty( $GLOBALS['flxk_gql_locale'] ) ) {
+	$GLOBALS['flxk_gql_locale'] = true;
+	switch_to_user_locale( get_current_user_id() );
+}
+
 /**
  * Service result → value, or the WP_Error as a typed GraphQL error.
  *
