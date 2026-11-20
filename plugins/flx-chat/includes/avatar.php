@@ -108,14 +108,15 @@ function flxc_avatar_store( $chat, $src ) {
 		flxc_update_chat( $id, array( 'avatar' => esc_url_raw( $src ), 'avatar_at' => time() ) );
 		return false;
 	}
-	$res = wp_safe_remote_get(
+	// Adres WhatsApp sunucusunun yanıtından gelir: yalnız herkese açık adres, her yönlendirme yeniden denetlenir.
+	$res = function_exists( 'flx_safe_remote_get' ) ? flx_safe_remote_get(
 		$src,
 		array(
 			'timeout'             => 8,
 			'limit_response_size' => 3 * MB_IN_BYTES,
-			'redirection'         => 2,
-		)
-	);
+		),
+		2
+	) : new WP_Error( 'flx_url_blocked', 'flx-brand' );
 	if ( is_wp_error( $res ) ) {
 		return $res;
 	}

@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.13.3
+- Güvenlik: MCP ile adresten görsel yükleme ortak denetimli indirmeden (flx-brand `flx_safe_download`) geçer: yalnız herkese açık adresler, her yönlendirme yeniden denetlenir.
+
 ## 1.13.2
 - Ekran ortak FluxWP kabuğuna taşındı: başlık, simge, sekmeler, kenar boşlukları, en fazla genişlik ve güvenli alan (safe area) bütün Flux ekranlarında aynı. Sekmeler eski Flux Admin sekmeleri gibi alt çizgili; taşarsa sayfa değil sekme çubuğu kayar. Ortak modül paketi yenilendi.
 - Öneriler ve rapor geçmişi başlıkları, durum çipleri görünür: SEO sınıf öneki `flxseo-` oldu, Sertifikalar'ın genel `.flxs-*` stilleri artık bunları kırpmıyor.

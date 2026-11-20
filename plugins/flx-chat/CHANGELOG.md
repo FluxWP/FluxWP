@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.50.1
+- Güvenlik: bağlantı önizlemesi ve profil fotoğrafı indirme, ortak denetimli istekten (flx-brand `flx_safe_remote_get`) geçer. Mesajdaki adres iç ağa, bulut metadata adresine (169.254.169.254) ya da IPv6 özel aralıklarına çözülüyorsa ve yönlendirme oraya gidiyorsa istek atılmaz.
+
 ## 1.50.0
 - WhatsApp asistanı vekâlet isteyen türlerde (kurban) bağışı artık kendisi açar: özetin sonunda sitedeki vekâlet metni çıkar, kişi açıkça onaylayınca kayıt açılır ve onay bağışa yazılır (`create_donation` yeni `proxy_consent`). Onay yoksa kayıt açılmaz; sitede vekâlet metni yoksa eskisi gibi ekibe devreder.
 - Eklentiler asistana kendi araçlarını ekleyebilir: `flxc_bot_tools`, `flxc_bot_tool_call`, `flxc_bot_rules` (docs/cagri-merkezi/KURULUM.md §11).

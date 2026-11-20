@@ -84,20 +84,7 @@ function flxsm_mcp_media( array $a ) {
 		require_once ABSPATH . 'wp-admin/includes/file.php';
 		require_once ABSPATH . 'wp-admin/includes/media.php';
 		require_once ABSPATH . 'wp-admin/includes/image.php';
-		$id = media_sideload_image( $url, 0, null, 'id' );
-		if ( is_wp_error( $id ) ) {
-			$tmp = download_url( $url, 120 );
-			if ( is_wp_error( $tmp ) ) {
-				return $tmp;
-			}
-			$id = media_handle_sideload(
-				array(
-					'name'     => basename( (string) wp_parse_url( $url, PHP_URL_PATH ) ),
-					'tmp_name' => $tmp,
-				),
-				0
-			);
-		}
+		$id = flxsm_sideload_url( $url );
 		if ( is_wp_error( $id ) ) {
 			return $id;
 		}

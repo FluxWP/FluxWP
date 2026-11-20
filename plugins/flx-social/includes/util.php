@@ -305,3 +305,31 @@ function flxsm_media_public( $ids ) {
 		flxsm_media_list( $ids )
 	);
 }
+
+/**
+ * Adds a file from an address on the internet to the media library. The address comes from a user or
+ * an AI tool, so it goes through the shared checked download (public addresses only, every redirect
+ * re-checked): flx_safe_download() in flx-brand.
+ *
+ * @param string $url File address.
+ * @return int|WP_Error Attachment ID. Error code flxsm_fetch when the file could not be fetched.
+ */
+function flxsm_sideload_url( $url ) {
+	$url = esc_url_raw( (string) $url );
+	$tmp = function_exists( 'flx_safe_download' ) ? flx_safe_download( $url, 120 ) : new WP_Error( 'flx_url_blocked', 'flx-brand' );
+	if ( is_wp_error( $tmp ) ) {
+		return new WP_Error( 'flxsm_fetch', $tmp->get_error_message() );
+	}
+	$id = media_handle_sideload(
+		array(
+			'name'     => sanitize_file_name( basename( (string) wp_parse_url( $url, PHP_URL_PATH ) ) ),
+			'tmp_name' => $tmp,
+		),
+		0
+	);
+	if ( is_wp_error( $id ) ) {
+		@unlink( $tmp ); // phpcs:ignore WordPress.PHP.NoSilencedErrors, WordPress.WP.AlternativeFunctions
+		return $id;
+	}
+	return (int) $id;
+}

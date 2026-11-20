@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.33.5
+- **Güvenlik:** SSRF denetimi ortak modüle (flx-brand `flx_url_is_public`, `flx_safe_remote_request`) taşındı; `flxai_*` adları ve `flxai_url_is_public` filtresi aynen çalışır. Yenilikler: bağlantı denetlenen adrese sabitlenir (ikinci DNS yanıtı adresi değiştiremez), MCP istemcisi ve üretilen medyanın indirilmesi de her yönlendirmede yeniden denetlenir, yönlendirme başka ana makineye geçerse yetki başlıkları gönderilmez. Dış adreslerde yalnız 80 ve 443 portu.
+
 ## 0.33.4
 - **Güvenlik (SSRF):** AI'nin açtığı adresler (web sayfası okuma, sanal shell `curl`, görsel referansı indirme, MCP sunucu adresi) artık adın çözüldüğü her IP'ye bakar. WordPress'in kendi denetiminin açık bıraktığı link-local `169.254.0.0/16` (bulut metadata, 169.254.169.254), CGNAT `100.64.0.0/10`, IPv6 loopback/ULA/link-local ve IPv4 gömen IPv6 biçimleri kapalı. Yönlendirmeler adım adım yeniden denetlenir (metadata adresine giden 302 durur). İstisna için `flxai_url_is_public` filtresi.
 

@@ -311,20 +311,9 @@ final class FLXSM_Admin_Service {
 		}
 		self::media_includes();
 		$url = esc_url_raw( $url );
-		$id  = media_sideload_image( $url, 0, null, 'id' );
-		$id  = is_wp_error( $id ) ? $id : FLXSM_Cast::int( $id );
-		if ( is_wp_error( $id ) ) {
-			$tmp = download_url( $url, 120 );
-			if ( is_wp_error( $tmp ) ) {
-				return new WP_Error( 'flxsm_media', $tmp->get_error_message(), array( 'status' => 400 ) );
-			}
-			$id = media_handle_sideload(
-				array(
-					'name'     => basename( FLXSM_Cast::str( wp_parse_url( $url, PHP_URL_PATH ) ) ),
-					'tmp_name' => $tmp,
-				),
-				0
-			);
+		$id  = flxsm_sideload_url( $url );
+		if ( is_wp_error( $id ) && 'flxsm_fetch' === $id->get_error_code() ) {
+			return new WP_Error( 'flxsm_media', $id->get_error_message(), array( 'status' => 400 ) );
 		}
 		return self::finish_media( $id, $poster );
 	}

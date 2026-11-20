@@ -440,20 +440,7 @@ add_action(
 				require_once ABSPATH . 'wp-admin/includes/image.php';
 				$url = esc_url_raw( (string) $r->get_param( 'url' ) );
 				if ( $url ) {
-					$id = media_sideload_image( $url, 0, null, 'id' );
-					if ( is_wp_error( $id ) ) {
-						$tmp = download_url( $url, 120 );
-						if ( is_wp_error( $tmp ) ) {
-							return new WP_Error( 'flxsm_media', $tmp->get_error_message(), array( 'status' => 400 ) );
-						}
-						$id = media_handle_sideload(
-							array(
-								'name'     => basename( wp_parse_url( $url, PHP_URL_PATH ) ),
-								'tmp_name' => $tmp,
-							),
-							0
-						);
-					}
+					$id = flxsm_sideload_url( $url );
 				} else {
 					$files = $r->get_file_params();
 					if ( empty( $files['file'] ) ) {

@@ -140,17 +140,19 @@ function flxai_mcpc_http( $method, $url, array $args = array() ) {
 		return new WP_Error( 'flxai_mcpc_url', __( 'Invalid or blocked address. Use a public https address.', 'flx-ai' ) );
 	}
 	$args += array(
-		'timeout'     => 25,
-		'redirection' => 3,
-		'user-agent'  => 'FluxAI-MCP-Client/' . FLXAI_VERSION,
-		'headers'     => array(),
+		'timeout'    => 25,
+		'user-agent' => 'FluxAI-MCP-Client/' . FLXAI_VERSION,
+		'headers'    => array(),
 	);
-	$args['method']             = $method;
 	$args['limit_response_size'] = 2097152;
-	if ( ! flxai_mcpc_allow_local() ) {
-		$args['reject_unsafe_urls'] = true;
+	if ( flxai_mcpc_allow_local() ) {
+		$args['method']      = $method;
+		$args['redirection'] = 3;
+		return wp_remote_request( $url, $args );
 	}
-	return wp_remote_request( $url, $args );
+	// Her yönlendirme adımı yeniden denetlenir, başka ana makineye geçişte yetki başlıkları düşer.
+	$args['flx_url'] = array( 'https' => true );
+	return flxai_safe_request( $method, $url, $args, 3 );
 }
 
 /** Bağlantının Authorization/özel başlıkları. OAuth belirteci dolmuşsa yeniler. */

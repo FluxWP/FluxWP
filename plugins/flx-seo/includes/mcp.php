@@ -319,7 +319,7 @@ function flxseo_mcp_sideload( $url, $post_id = 0, $alt = '', $title = '', $base6
 		file_put_contents( $tmp, $bin ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 		$name = $filename ? $filename : 'gorsel.jpg';
 	} else {
-		$tmp = download_url( esc_url_raw( $url ), 60 );
+		$tmp = function_exists( 'flx_safe_download' ) ? flx_safe_download( esc_url_raw( $url ), 60 ) : new WP_Error( 'flx_url_blocked', 'flx-brand' ); // AI tool argument: public addresses only, redirects re-checked.
 		if ( is_wp_error( $tmp ) ) {
 			throw new Exception( 'İndirilemedi: ' . $tmp->get_error_message() );
 		}
