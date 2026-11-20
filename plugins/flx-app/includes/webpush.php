@@ -480,7 +480,7 @@ add_filter(
 					: ( $ok ? __( 'Ready. Users turn them on per browser with Notifications in the admin bar.', 'flx-app' ) : __( 'PHP OpenSSL cannot sign P-256 keys here; browsers do not get notifications. Mobile app push still works.', 'flx-app' ) ),
 			);
 		}
-		if ( function_exists( 'flx_realtime_enabled' ) && flx_realtime_enabled() ) {
+		if ( function_exists( 'flx_realtime_enabled' ) && function_exists( 'flx_realtime_public_url' ) && flx_realtime_enabled() ) {
 			$h        = get_transient( 'flx_realtime_health' );
 			$url      = flx_realtime_public_url();
 			$ok       = is_array( $h ) && ! empty( $h['ok'] );
