@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.6.4
+- Güvenlik: paket simgeleri ortak denetimli istekle (flx-brand `flx_safe_remote_get`) indirilir: katalogdan gelen adres iç ağa çözülüyorsa istek atılmaz.
+
 ## 1.6.3
 - Paketler ekranında sunucudan gelen metinler ("Google'da bulunun" kartı, "Son kontrol", sekme adları, güncelleme günlüğü satırları, tarihler) Türkçe panelde İngilizce kalıyordu: /graphql site dilinde çalışıyordu. Panel GraphQL istekleri artık oturumdaki kullanıcının dilinde yanıt verir.
 

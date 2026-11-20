@@ -1348,3 +1348,6 @@ require_once __DIR__ . '/people.php';
 
 /* Shared events table and API (1.4.0): one event record for every FluxWP package. */
 require_once __DIR__ . '/events.php';
+
+/* Shared outbound requests for addresses the site did not choose (1.10.0). */
+require_once __DIR__ . '/http.php';
