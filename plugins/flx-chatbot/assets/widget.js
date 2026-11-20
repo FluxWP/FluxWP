@@ -944,12 +944,73 @@
 	function livePolling() {
 		return S.token && S.conv && ['queued', 'agent', 'offline'].indexOf(S.conv.status) > -1;
 	}
+	/* Flux Realtime (Docker sites, C.rt): a signal for this conversation means "poll now". The socket carries no
+	   message text; replies still come from poll(). Without it, or if it drops, polling is the same as before. */
+	var RT = { ws: null, live: false, fails: 0, t: 0, off: false };
+	function rtRetry() {
+		RT.fails++;
+		clearTimeout(RT.t);
+		if (RT.fails <= 5 && !RT.off) {
+			RT.t = setTimeout(rtConnect, Math.min(60000, 2000 * Math.pow(2, RT.fails)));
+		}
+	}
+	function rtConnect() {
+		if (!C.rt || RT.ws || RT.off || !livePolling() || typeof W.WebSocket === 'undefined' || C.preview) {
+			return;
+		}
+		RT.ws = true; // reserved while the ticket is fetched
+		api('rt', {}).then(function (r) {
+			if (!r || !r.ticket || !r.url) {
+				throw new Error('rt');
+			}
+			var ws = new WebSocket(r.url);
+			RT.ws = ws;
+			ws.onopen = function () {
+				ws.send(JSON.stringify({ auth: r.ticket }));
+			};
+			ws.onmessage = function (e) {
+				var m;
+				try {
+					m = JSON.parse(e.data);
+				} catch (x) {
+					return;
+				}
+				if (!m || typeof m.t !== 'string' || m.t === 'pong') {
+					return;
+				}
+				if (m.t === 'hello') {
+					RT.live = true;
+					RT.fails = 0;
+					schedulePoll();
+					return;
+				}
+				poll();
+			};
+			ws.onclose = function () {
+				RT.ws = null;
+				RT.live = false;
+				rtRetry();
+				if (livePolling()) {
+					poll(); // back to normal polling right away
+				}
+			};
+			ws.onerror = function () {};
+		}).catch(function (e) {
+			RT.ws = null;
+			if (e && e.status === 503) {
+				RT.off = true; // this site has no realtime: stop asking
+				return;
+			}
+			rtRetry();
+		});
+	}
 	function schedulePoll() {
 		clearTimeout(S.pollT);
 		if (!livePolling() || C.preview && !S.open) {
 			return;
 		}
-		var ms = D.hidden ? 30000 : (S.open && S.view === 'chat' ? (S.conv.status === 'offline' ? 15000 : 3500) : 15000);
+		rtConnect();
+		var ms = RT.live ? 60000 : D.hidden ? 30000 : (S.open && S.view === 'chat' ? (S.conv.status === 'offline' ? 15000 : 3500) : 15000);
 		S.pollT = setTimeout(poll, ms);
 	}
 	function poll() {

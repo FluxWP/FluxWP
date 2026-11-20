@@ -201,6 +201,7 @@ It is optional. If the service is down or removed, or the secret is empty, clien
 - **Check:** `docker compose exec worker wp flx realtime status` and `wp flx realtime test` (WordPress → Redis → realtime).
 - Sign-in: clients get a 60 second, single-use ticket from WordPress and send it as the first WebSocket message (never in the URL). Logging out, role and password changes close the user's sockets.
 - For package authors: the mu-plugin `flx-realtime.php` has `flx_realtime_publish()`, `flx_realtime_online()` and the `flx_realtime_topics` filter; see its header.
+- **Visitors (signed out):** the same server also serves site visitors, with tickets that carry only the topics WordPress listed (no user, no capabilities, `RT_MAX_VISITORS` sockets at once, default 300). `flx_realtime_visitor_ticket( array( 'chatbot.conv.42' ) )` after you authenticated the visitor yourself, and `flx_realtime_publish( $topic, $data, array( 'topic' => $topic ) )` to reach exactly those sockets. Public topics (`public.*`, e.g. a live donation total) are listed with the `flx_realtime_public_topics` filter; anyone may then fetch a ticket from `POST /wp-json/flx-realtime/v1/public-ticket` `{ "topics": [...] }` (30 per minute per address). Public payloads must be fit for everyone to read. The Flux AI Chatbot widget uses this to show replies at once.
 
 ## Backup and restore
 

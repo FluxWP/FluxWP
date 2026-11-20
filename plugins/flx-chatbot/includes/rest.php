@@ -21,6 +21,7 @@ function flxcb_rest_routes() {
 	};
 	register_rest_route( $ns, '/session', array( 'methods' => 'POST', 'callback' => 'flxcb_rest_session', 'permission_callback' => $pub ) );
 	register_rest_route( $ns, '/message', array( 'methods' => 'POST', 'callback' => 'flxcb_rest_message', 'permission_callback' => $pub ) );
+	register_rest_route( $ns, '/rt', array( 'methods' => 'POST', 'callback' => 'flxcb_rest_rt', 'permission_callback' => $pub ) );
 	register_rest_route( $ns, '/poll', array( 'methods' => 'GET', 'callback' => 'flxcb_rest_poll', 'permission_callback' => $pub ) );
 	register_rest_route( $ns, '/handoff', array( 'methods' => 'POST', 'callback' => 'flxcb_rest_handoff', 'permission_callback' => $pub ) );
 	register_rest_route( $ns, '/contact', array( 'methods' => 'POST', 'callback' => 'flxcb_rest_contact', 'permission_callback' => $pub ) );
@@ -126,6 +127,23 @@ function flxcb_rest_session( WP_REST_Request $req ) {
 		flxcb_mark_visitor_read( $conv, $last );
 	}
 	return flxcb_rest_out( $state );
+}
+
+/** Flux Realtime (Docker): ticket for this visitor's own conversation only; the chat token is the proof. */
+function flxcb_rest_rt( WP_REST_Request $req ) {
+	$conv = flxcb_req_conv( $req );
+	if ( ! $conv ) {
+		return flxcb_rest_err( 'flxcb_conv', __( 'Chat not found.', 'flx-chatbot' ), 404 );
+	}
+	if ( ! function_exists( 'flx_realtime_visitor_ticket' ) || ! function_exists( 'flx_realtime_visitor_config' ) || ! flxcb_rate( 'rt|' . $conv['id'], 20, MINUTE_IN_SECONDS ) ) {
+		return flxcb_rest_err( 'flxcb_rt', 'Realtime is not available.', 503 );
+	}
+	$cfg    = flx_realtime_visitor_config();
+	$ticket = $cfg ? flx_realtime_visitor_ticket( array( 'chatbot.conv.' . (int) $conv['id'] ) ) : '';
+	if ( '' === $ticket ) {
+		return flxcb_rest_err( 'flxcb_rt', 'Realtime is not available.', 503 );
+	}
+	return flxcb_rest_out( array( 'ticket' => $ticket, 'url' => $cfg['url'] ) );
 }
 
 function flxcb_rest_poll( WP_REST_Request $req ) {
