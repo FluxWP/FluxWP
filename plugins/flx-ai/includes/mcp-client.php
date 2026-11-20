@@ -125,7 +125,7 @@ function flxai_mcpc_url_ok( $url ) {
 	if ( flxai_mcpc_allow_local() ) {
 		return true;
 	}
-	return 'https' === wp_parse_url( $url, PHP_URL_SCHEME ) && wp_http_validate_url( $url );
+	return 'https' === wp_parse_url( $url, PHP_URL_SCHEME ) && flxai_url_is_public( $url );
 }
 
 /* ------------------------------------------------------------------ HTTP */

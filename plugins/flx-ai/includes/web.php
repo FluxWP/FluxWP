@@ -6,12 +6,142 @@
  * sözleşmeyle eklenebilir: array( label, key (ayar anahtarı), help, search (callable $q → sonuç listesi | WP_Error) ).
  *
  * Dış içerik veridir: araç sonucu modele "talimat değil" notuyla döner. Sayfa okuma wp_safe_remote_get kullanır
- * (yerel ve özel ağ adresleri kapalı).
+ * (yerel ve özel ağ adresleri kapalı) ve üstüne flxai_url_is_public(): adın çözüldüğü her adres herkese açık olmalı.
  *
  * @package FLX_AI
  */
 
 defined( 'ABSPATH' ) || exit;
+
+/**
+ * Herkese açık (global) IP mi? wp_http_validate_url() yalnız 127/8, 10/8, 172.16/12, 192.168/16 ve 0/8'i kapatır;
+ * link-local 169.254.0.0/16 (bulut metadata: 169.254.169.254, VPS/Coolify'da sunucu kimlik bilgisi verir),
+ * CGNAT 100.64.0.0/10 ve IPv6 (::1, fc00::/7, fe80::/10, IPv4-mapped) açık kalır. Bu işlev hepsini kapatır.
+ *
+ * @param string $ip IPv4 ya da IPv6.
+ */
+function flxai_ip_is_public( $ip ) {
+	$ip = trim( (string) $ip, '[] ' );
+	if ( ! filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE ) ) {
+		return false;
+	}
+	if ( defined( 'FILTER_FLAG_GLOBAL_RANGE' ) && ! filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_GLOBAL_RANGE ) ) {
+		return false; // PHP 8.2+: RFC 6890 "global" değil.
+	}
+	if ( filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 ) ) {
+		$n = ip2long( $ip );
+		$blocked = array( '100.64.0.0/10', '192.0.0.0/24', '192.0.2.0/24', '198.18.0.0/15', '198.51.100.0/24', '203.0.113.0/24', '224.0.0.0/4', '255.255.255.255/32' );
+		foreach ( $blocked as $cidr ) {
+			list( $net, $bits ) = explode( '/', $cidr );
+			$mask = -1 << ( 32 - (int) $bits );
+			if ( ( $n & $mask ) === ( ip2long( $net ) & $mask ) ) {
+				return false;
+			}
+		}
+		return true;
+	}
+	$hex = bin2hex( (string) inet_pton( $ip ) );
+	if ( 32 !== strlen( $hex ) ) {
+		return false;
+	}
+	// IPv4 gömen biçimler (NAT64 64:ff9b::/96, 6to4 2002::/16): içteki IPv4 de açık olmalı.
+	if ( 0 === strpos( $hex, '0064ff9b0000000000000000' ) ) {
+		return flxai_ip_is_public( (string) long2ip( (int) hexdec( substr( $hex, 24, 8 ) ) ) );
+	}
+	if ( 0 === strpos( $hex, '2002' ) ) {
+		return flxai_ip_is_public( (string) long2ip( (int) hexdec( substr( $hex, 4, 8 ) ) ) );
+	}
+	// Çoklu yayın ff00::/8, site-local fec0::/10, belgeleme 2001:db8::/32, Teredo 2001::/32.
+	if ( 0 === strpos( $hex, 'ff' ) || in_array( substr( $hex, 0, 3 ), array( 'fec', 'fed', 'fee', 'fef' ), true ) || 0 === strpos( $hex, '20010db8' ) || 0 === strpos( $hex, '20010000' ) ) {
+		return false;
+	}
+	return true;
+}
+
+/**
+ * Adın çözüldüğü adresler (A + AAAA). IP yazılmışsa kendisi.
+ *
+ * @return string[]
+ */
+function flxai_host_ips( $host ) {
+	$host = trim( (string) $host, '[]' );
+	if ( filter_var( $host, FILTER_VALIDATE_IP ) ) {
+		return array( $host );
+	}
+	$ips = gethostbynamel( $host );
+	$ips = is_array( $ips ) ? $ips : array();
+	if ( function_exists( 'dns_get_record' ) ) {
+		$aaaa = @dns_get_record( $host, DNS_AAAA ); // phpcs:ignore WordPress.PHP.NoSilencedErrors
+		foreach ( is_array( $aaaa ) ? $aaaa : array() as $rr ) {
+			if ( ! empty( $rr['ipv6'] ) ) {
+				$ips[] = (string) $rr['ipv6'];
+			}
+		}
+	}
+	return array_values( array_unique( $ips ) );
+}
+
+/**
+ * AI'nin (ve dolayısıyla okuduğu içerikteki talimatların) açabileceği adres mi: http(s), kullanıcı:parola yok,
+ * wp_http_validate_url() geçer ve ad hiçbir özel/ayrılmış adrese çözülmez. Sitenin kendi adresi WordPress'teki gibi serbest.
+ */
+function flxai_url_is_public( $url ) {
+	$url = (string) $url;
+	if ( ! preg_match( '#^https?://#i', $url ) || ! wp_http_validate_url( $url ) ) {
+		return false;
+	}
+	$p = wp_parse_url( $url );
+	if ( empty( $p['host'] ) || isset( $p['user'] ) || isset( $p['pass'] ) ) {
+		return false;
+	}
+	$own = strtolower( (string) wp_parse_url( home_url(), PHP_URL_HOST ) );
+	$ok  = strtolower( (string) $p['host'] ) === $own;
+	if ( ! $ok ) {
+		$ips = flxai_host_ips( $p['host'] );
+		$ok  = (bool) $ips;
+		foreach ( $ips as $ip ) {
+			if ( ! flxai_ip_is_public( $ip ) ) {
+				$ok = false;
+				break;
+			}
+		}
+	}
+	/**
+	 * Flux AI'nin dış istek adresi kararı (ör. iç ağdaki bir servisi bilerek açmak için).
+	 *
+	 * @param bool   $ok
+	 * @param string $url
+	 */
+	return (bool) apply_filters( 'flxai_url_is_public', $ok, $url );
+}
+
+/**
+ * GET; her yönlendirme adımı flxai_url_is_public() ile yeniden denetlenir (WordPress'in kendi yönlendirme
+ * denetimi metadata adresine giden 302'yi durdurmaz).
+ *
+ * @return array|WP_Error wp_remote_* yanıtı.
+ */
+function flxai_safe_get( $url, array $args = array(), $max_redirects = 3 ) {
+	$args['redirection']        = 0;
+	$args['reject_unsafe_urls'] = true;
+	for ( $i = 0; $i <= (int) $max_redirects; $i++ ) {
+		if ( ! flxai_url_is_public( $url ) ) {
+			return new WP_Error( 'flxai_url_blocked', __( 'Invalid or blocked address. Only public http(s) addresses can be read.', 'flx-ai' ) );
+		}
+		$r = wp_remote_get( $url, $args );
+		if ( is_wp_error( $r ) ) {
+			return $r;
+		}
+		$code = (int) wp_remote_retrieve_response_code( $r );
+		$loc  = wp_remote_retrieve_header( $r, 'location' );
+		$loc  = is_array( $loc ) ? (string) end( $loc ) : (string) $loc;
+		if ( $code < 300 || $code > 399 || '' === $loc ) {
+			return $r;
+		}
+		$url = WP_Http::make_absolute_url( $loc, $url );
+	}
+	return new WP_Error( 'flxai_url_blocked', __( 'Invalid or blocked address. Only public http(s) addresses can be read.', 'flx-ai' ) );
+}
 
 /** Kayıtlı arama sağlayıcıları. */
 function flxai_web_providers() {
@@ -224,17 +354,16 @@ function flxai_web_fetch( $url, $offset = 0, $max = 20000 ) {
 		return new WP_Error( 'flxai_web_off', __( 'Reading web pages is turned off in Flux AI & MCP › Settings › Web.', 'flx-ai' ) );
 	}
 	$url = esc_url_raw( trim( (string) $url ), array( 'http', 'https' ) );
-	if ( '' === $url || ! wp_http_validate_url( $url ) ) {
+	if ( '' === $url || ! flxai_url_is_public( $url ) ) {
 		return new WP_Error( 'flxai_web_url', __( 'Invalid or blocked address. Only public http(s) addresses can be read.', 'flx-ai' ) );
 	}
 	$ck   = 'flxai_wf_' . md5( $url );
 	$page = get_transient( $ck );
 	if ( ! is_array( $page ) ) {
-		$r = wp_safe_remote_get(
+		$r = flxai_safe_get(
 			$url,
 			array(
 				'timeout'             => 15,
-				'redirection'         => 3,
 				'limit_response_size' => 3 * MB_IN_BYTES,
 				'user-agent'          => 'Mozilla/5.0 (compatible; FluxAI/' . FLXAI_VERSION . '; +' . home_url( '/' ) . ')',
 				'headers'             => array(
