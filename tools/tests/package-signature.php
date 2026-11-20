@@ -1,14 +1,14 @@
 <?php
 /**
- * Paket imzası (FLXU_Signature) birim testi, WordPress gerekmez: php plugins/flx-setup/tests/package-signature.php
+ * Paket imzası (FLXU_Signature) birim testi, WordPress gerekmez: php tools/tests/package-signature.php
  */
 define( 'ABSPATH', __DIR__ . '/' );
 define( 'FLXU_DEFAULT_SERVER', 'https://updater.fluxwp.com' );
 class WP_Error { public $code; public function __construct( $code, $msg = '' ) { $this->code = $code; } }
-function __( $s ) { return $s; }
+function __( $s, $d = '' ) { return $s; }
 function wp_parse_url( $u, $c = -1 ) { return parse_url( $u, $c ); }
 // KEYS boş gelir; target()'ı sınamak için anahtar listesi dolu bir kopya yüklenir.
-$src = file_get_contents( dirname( __DIR__ ) . '/includes/updater/class-flxu-signature.php' );
+$src = file_get_contents( dirname( __DIR__, 2 ) . '/plugins/flx-setup/includes/updater/class-flxu-signature.php' );
 $src = str_replace( 'const KEYS = array();', "const KEYS = array( 'test' => 'test' );", $src );
 eval( '?>' . $src );
 $fail = 0;

@@ -5,7 +5,7 @@ on:
   pull_request:
     paths:
       - 'plugins/flx-setup/includes/updater/**'
-      - 'plugins/flx-setup/tests/package-signature.php'
+      - 'tools/tests/package-signature.php'
       - 'bin/sign-*'
       - '.github/workflows/package-signature.yml'
   push:
@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Doğrulama testi
-        run: php plugins/flx-setup/tests/package-signature.php
+        run: php tools/tests/package-signature.php
       - name: İmzala + doğrula (geçici anahtar)
         run: |
           set -euo pipefail
