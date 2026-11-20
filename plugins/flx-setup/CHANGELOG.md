@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.6.4
+- "Güncellemeleri kontrol et" yeni release'i hemen görür. Eskiden güncelleme sunucusu release listesini 5 dakika önbellekte tuttuğu için yeni sürüm çıktıktan sonra düğmeye kaç kez basılsa da ~5 dk görünmüyordu. Elle kontrol artık sunucuya `fresh` bilgisi gönderir; sunucu (updater 1.21.0+) GitHub'a koşullu istek atar (değişmediyse 304, kotadan düşmez). Sunucu en çok 15 sn'de bir sorar. Arka plan kontrolleri aynı kalır. Eski sunucular `fresh`'i yok sayar.
+
 ## 1.6.3
 - Paketler ekranında sunucudan gelen metinler ("Google'da bulunun" kartı, "Son kontrol", sekme adları, güncelleme günlüğü satırları, tarihler) Türkçe panelde İngilizce kalıyordu: /graphql site dilinde çalışıyordu. Panel GraphQL istekleri artık oturumdaki kullanıcının dilinde yanıt verir.
 
