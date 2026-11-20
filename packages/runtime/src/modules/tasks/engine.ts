@@ -4,7 +4,7 @@ import { useSyncExternalStore } from 'react';
 import { stripTags } from '@fluxwp/core';
 import type { FlxgApi, FlxgBoot, FlxgField, FlxgList, FlxgNotif, FlxgSpace, FlxgStatus, FlxgTag, FlxgTask, FlxgUser, FlxgView, FlxgViewConfig } from '@fluxwp/core';
 import { browserPorts, store, type ModulePorts } from '../ports';
-import { feedPoll, type RealtimeFeed } from '../../realtime';
+import { feedPoll, type RealtimeFeed } from '../../feed';
 
 export { store };
 

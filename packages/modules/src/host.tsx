@@ -3,7 +3,7 @@
 import { createContext, useContext, useMemo, type ReactNode } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import type { ApiClient } from '@fluxwp/core';
-import type { RealtimeFeed } from '@fluxwp/runtime/src/realtime';
+import type { RealtimeFeed } from '@fluxwp/runtime/src/feed';
 
 export interface ModuleHost {
   /** 'app': FluxWP (belirteç), 'wp': WordPress admin sayfası (çerez + nonce). */

@@ -13,7 +13,7 @@ import {
   FlxChatReplyUse, FlxChatSuggest, FlxChatTyping, FlxChatUpdate, FlxChatUpdates,
 } from '@fluxwp/graphql/operations';
 import { browserPorts, type ModulePorts } from '@fluxwp/runtime/src/modules/ports';
-import { feedPoll, type RealtimeFeed } from '@fluxwp/runtime/src/realtime';
+import { feedPoll, type RealtimeFeed } from '@fluxwp/runtime/src/feed';
 
 export interface ChatMsgs {
   list: FlxcMessage[];

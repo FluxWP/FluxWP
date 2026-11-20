@@ -17,7 +17,7 @@ import {
 } from '@fluxwp/graphql/operations';
 import type { FlxChatbotConversationFilter, FlxChatbotConversationRowFragment, FlxChatbotMessageFieldsFragment } from '@fluxwp/graphql/types';
 import { Loading, Modal, Screen } from '@fluxwp/ui';
-import { feedPoll } from '@fluxwp/runtime/src/realtime';
+import { feedPoll } from '@fluxwp/runtime/src/feed';
 import { useHost } from '../host';
 import { translator } from './i18n';
 import type { Tr } from './fields';
