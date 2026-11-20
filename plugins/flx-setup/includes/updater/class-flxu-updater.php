@@ -24,6 +24,9 @@ final class FLXU_Updater {
 	/** @var array|null İstek içi önbellek. */
 	private $catalog = null;
 
+	/** "Şimdi kontrol et" sürerken true: /v1/check gövdesine fresh gider, sunucu 5 dk önbelleği beklemeden yeniden doğrular. */
+	private $fresh = false;
+
 	/**
 	 * Sayfa çizilirken (menü rozeti, Paketler ekranının PHP ön yüklemesi) sunucuya gidilmez: önbellek
 	 * yoksa son bilinen katalog kullanılır, tazeleme ekranın arka plandaki kontrolüne kalır.
@@ -447,6 +450,9 @@ final class FLXU_Updater {
 			'site'     => home_url( '/' ),
 			'usage'    => function_exists( 'flxk_telemetry_enabled' ) && flxk_telemetry_enabled(),
 		);
+		if ( $this->fresh ) {
+			$body['fresh'] = true;
+		}
 		if ( $body['usage'] ) {
 			$body += array(
 				'wp'     => get_bloginfo( 'version' ),
@@ -990,6 +996,15 @@ final class FLXU_Updater {
 
 	/** "Şimdi kontrol et": katalog + WP güncelleme verisi yenilenir. */
 	public function check_now(): void {
+		$this->fresh = true;
+		try {
+			$this->check_now_run();
+		} finally {
+			$this->fresh = false;
+		}
+	}
+
+	private function check_now_run(): void {
 		delete_site_transient( self::CATALOG_TRANSIENT );
 		$this->catalog = null;
 		delete_site_transient( 'update_plugins' );
