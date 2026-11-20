@@ -51,16 +51,17 @@ function flxc_link_preview( $url, $fresh = false ) {
 		'site'   => '',
 		'domain' => preg_replace( '/^www\./i', '', $host ),
 	);
-	$r = wp_safe_remote_get(
+	// Adres sohbet mesajından gelir: yalnız herkese açık adres, her yönlendirme yeniden denetlenir (flx-brand).
+	$r = ! function_exists( 'flx_safe_remote_get' ) ? new WP_Error( 'flx_url_blocked', 'flx-brand' ) : flx_safe_remote_get(
 		$url,
 		array(
 			'timeout'             => 6,
-			'redirection'         => 4,
 			'limit_response_size' => 600 * KB_IN_BYTES,
 			// Birçok site OG etiketlerini yalnız bilinen önizleme botlarına tam verir.
 			'user-agent'          => 'WhatsApp/2.24 (compatible; FluxWP-Cagri/' . FLXC_VERSION . ')',
 			'headers'             => array( 'Accept' => 'text/html,application/xhtml+xml', 'Accept-Language' => str_replace( '_', '-', get_user_locale() ) . ',en;q=0.5' ),
-		)
+		),
+		4
 	);
 	$code = is_wp_error( $r ) ? 0 : (int) wp_remote_retrieve_response_code( $r );
 	if ( $code >= 200 && $code < 300 ) {

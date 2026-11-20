@@ -129,3 +129,23 @@ flxDialog.toast( 'Saved.', { type: 'ok' } );                                    
 ```
 
 Without code: `<form data-flx-confirm="Message" data-flx-confirm-title="…" data-flx-confirm-ok="Delete" data-flx-confirm-danger data-flx-confirm-type="Jane Doe">` (also on a button or link). After OK the form is submitted again with the same submit button, so other `submit` handlers still run. Native `<dialog>` (focus trap, Esc), backdrop click cancels, bottom sheet under 600 px, Flux Admin light/dark colours. Texts: `flx_dialog_strings` filter. One dialog at a time; later calls wait in a queue.
+
+## Outbound requests to addresses the site did not choose (1.10.0)
+
+`http.php`. Use it whenever the address comes from a visitor, a chat message, an AI tool argument, catalog data or a remote API answer. `wp_safe_remote_get()` alone still reaches `169.254.0.0/16` (cloud metadata), `100.64.0.0/10` and the IPv6 special ranges.
+
+```php
+$r   = flx_safe_remote_get( $url, array( 'timeout' => 6 ), 3 );   // wp_remote_get() answer or WP_Error( 'flx_url_blocked' )
+$r   = flx_safe_remote_request( $url, array( 'method' => 'POST', 'body' => $b, 'flx_url' => array( 'https' => true ) ) );
+$tmp = flx_safe_download( $url, 60 );                              // download_url() replacement, temp file path
+if ( flx_url_is_public( $url ) ) { /* ... */ }
+```
+
+- http(s) only, no `user:password`, ports 80 and 443 (`flx_url_public_ports`), every A and AAAA address of the name must be public (`flx_ip_is_public`). The site's own host is allowed (`flx_url` option `own` false refuses it).
+- Redirects are followed here, one checked hop at a time (third argument, `redirection` is ignored). `Authorization`, `Cookie` and `X-*` headers are dropped when a redirect leaves the first host; POST becomes GET on 301/302/303.
+- The connection is pinned to the checked address (cURL transport), so a second DNS answer cannot move it.
+- Filters: `flx_url_is_public( bool $ok, string $url )` has the final say (open one internal service on purpose), `flx_host_ips` replaces the resolver.
+- Do not use it for addresses an administrator configured on purpose (Gotenberg, Evolution, a local headless front end) or for loopback requests to the own site.
+- The core loads on `after_setup_theme`: guard with `function_exists( 'flx_safe_remote_get' )` and refuse the request when it is missing.
+
+Checks: `php tools/brand/tests/http.php`.

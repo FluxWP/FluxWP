@@ -194,14 +194,15 @@ final class FLXU_Icon_Cache {
 
 	/** İndir, doğrula (güvenli SVG / gerçek resim), yaz. */
 	private static function download( string $url, string $dest ): bool {
-		$res = wp_safe_remote_get(
+		// The address comes from catalog data: public addresses only, the redirect is checked again.
+		$res = function_exists( 'flx_safe_remote_get' ) ? flx_safe_remote_get(
 			$url,
 			array(
 				'timeout'             => 5,
-				'redirection'         => 1,
 				'limit_response_size' => self::MAX_BYTES + 1,
-			)
-		);
+			),
+			1
+		) : new WP_Error( 'flx_url_blocked', 'flx-brand' );
 		if ( is_wp_error( $res ) || 200 !== (int) wp_remote_retrieve_response_code( $res ) ) {
 			return false;
 		}

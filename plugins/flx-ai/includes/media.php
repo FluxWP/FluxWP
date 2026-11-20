@@ -1611,16 +1611,17 @@ function flxai_media_download( array $o, $provider ) {
 	}
 	list( $dir ) = flxai_media_dir();
 	$tmp         = $dir . '/.dl-' . bin2hex( random_bytes( 6 ) );
-	$r           = wp_remote_get(
+	// Adres sağlayıcının yanıtından gelir: yalnız herkese açık adres, yönlendirmede anahtar başka ana makineye gitmez.
+	$r           = flxai_safe_get(
 		$url,
 		array(
 			'timeout'             => $video ? 45 : 25,
-			'redirection'         => 3,
 			'stream'              => true,
 			'filename'            => $tmp,
 			'limit_response_size' => $max,
 			'headers'             => $headers,
-		)
+		),
+		3
 	);
 	if ( is_wp_error( $r ) || 200 !== wp_remote_retrieve_response_code( $r ) || ! file_exists( $tmp ) ) {
 		@unlink( $tmp ); // phpcs:ignore
