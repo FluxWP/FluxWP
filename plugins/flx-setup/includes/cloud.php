@@ -25,6 +25,49 @@ final class FLXK_Cloud {
 		add_action( 'admin_post_flxk_cloud_disconnect', array( __CLASS__, 'disconnect' ) );
 		add_action( 'flxu_settings_before', array( __CLASS__, 'card' ) );
 		add_filter( 'flx_system_checks', array( __CLASS__, 'system_checks' ) );
+		add_action( 'rest_api_init', array( __CLASS__, 'rest' ) );
+	}
+
+	/**
+	 * Ownership proof: fluxwp.com asks this site, before it approves a connect request, whether the request
+	 * (state) really started here and with which PKCE challenge. Someone who starts a connect with this site's
+	 * address from elsewhere cannot answer it, so the site cannot be claimed by another account.
+	 * Public: the challenge is already in the browser URL; an unknown state answers 404.
+	 */
+	public static function rest(): void {
+		register_rest_route(
+			'flx-setup/v1',
+			'/cloud/proof',
+			array(
+				'methods'             => 'GET',
+				'permission_callback' => '__return_true',
+				'args'                => array(
+					'state' => array(
+						'type'     => 'string',
+						'required' => true,
+					),
+				),
+				'callback'            => array( __CLASS__, 'rest_proof' ),
+			)
+		);
+	}
+
+	public static function rest_proof( WP_REST_Request $req ): WP_REST_Response {
+		$state   = (string) $req->get_param( 'state' );
+		$pending = preg_match( '/^[A-Za-z0-9_-]{16,128}$/', $state ) ? get_transient( 'flxk_cloud_' . $state ) : false;
+		$res     = is_array( $pending ) && ! empty( $pending['c'] )
+			? new WP_REST_Response(
+				array(
+					'state'     => $state,
+					'challenge' => (string) $pending['c'],
+				),
+				200
+			)
+			: new WP_REST_Response( array( 'error' => 'unknown_state' ), 404 );
+		$res->header( 'Cache-Control', 'no-store, private' );
+		$res->header( 'X-LiteSpeed-Cache-Control', 'no-cache' );
+		do_action( 'litespeed_control_set_nocache', 'flx-setup cloud proof' );
+		return $res;
 	}
 
 	/** Account server. https only (http allowed for localhost while developing). */
@@ -103,10 +146,12 @@ final class FLXK_Cloud {
 		check_admin_referer( 'flxk_cloud_connect' );
 		$verifier = self::b64u( random_bytes( 48 ) );
 		$state    = self::b64u( random_bytes( 24 ) );
+		$chal     = self::b64u( hash( 'sha256', $verifier, true ) );
 		set_transient(
 			'flxk_cloud_' . $state,
 			array(
 				'v' => self::seal( $verifier ),
+				'c' => $chal,
 				'u' => get_current_user_id(),
 			),
 			10 * MINUTE_IN_SECONDS
@@ -117,7 +162,7 @@ final class FLXK_Cloud {
 			'site_name' => wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES ),
 			'return'    => admin_url( 'admin-post.php?action=flxk_cloud_back' ),
 			'state'     => $state,
-			'challenge' => self::b64u( hash( 'sha256', $verifier, true ) ),
+			'challenge' => $chal,
 			'wp'        => get_bloginfo( 'version' ),
 			'v'         => FLXK_VERSION,
 		);
