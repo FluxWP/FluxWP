@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Eksik release imzalarını tamamlar: her paketin son KEEP (5) sürümünde <slug>.zip var, <slug>.zip.sig yoksa
 # zip indirilir, bin/sign-package.php ile imzalanır ve release'e eklenir. Zip'e dokunulmaz.
-# Release workflow'u her çalışmada sonda çağırır (SIGN_OPTIONAL=1: secret yoksa uyarı); "Release imzalarını
-# tamamla" workflow'u elle (tek paket ya da daha çok sürüm için).
+# Yalnız elle: "Release imzalarını tamamla" workflow'u. Kendiliğinden çalışmaz; release'teki zip'i olduğu gibi
+# imzaladığı için, çalıştırmadan önce o release'lerin değişmediğinden emin olun.
 #
 #   GH_TOKEN=… GITHUB_REPOSITORY=FluxWP/fluxwp FLX_RELEASE_SIGNING_KEY=… [KEEP=5] [ONLY=flx-ai] bin/sign-missing.sh
 set -euo pipefail
