@@ -111,6 +111,7 @@ The settings live in our images, so the compose files only hold services and env
 | `ghcr.io/fluxwp/wordpress:worker-php8.4` | `wordpress:cli-2.12-php8.4` | The worker script |
 | `ghcr.io/fluxwp/wordpress:nginx-1.30` | `nginx:1.30-alpine` | nginx config for WordPress |
 | `ghcr.io/fluxwp/wordpress:wpapi-node22` | `node:22-alpine` | FluxWP WhatsApp API (flx-wpapi) |
+| `ghcr.io/fluxwp/wordpress:realtime-bun1.4` | `oven/bun:1.4-alpine` | FluxWP Realtime WebSocket server |
 
 They are built for amd64 and arm64 and rebuilt every day, so security fixes in PHP and the base OS reach you on the next pull. Each build also gets a dated tag (`7.1-php8.4-apache-20261105`) if you want to pin one. The build fails on a PHP release with known critical vulnerabilities.
 
@@ -188,6 +189,18 @@ docker compose exec worker wp search-replace 'http://old.test' 'https://new.exam
 ```
 
 `wp db cli/export/import` use the MariaDB client of the cli image; on the `mysql` stack use the `mysql` container instead (see below).
+
+## Realtime (live updates)
+
+Stacks with Redis (`mariadb-redis`, `nginx-fpm`, `wpapi`) have a small `realtime` service (~25 MB RAM). WordPress publishes short "this changed" signals to Redis; the realtime service passes them over WebSocket to the signed-in FluxWP panel and FluxApp, so inboxes, badges and notifications update at once instead of on the next poll. Signals carry no content: clients load the data from WordPress as before, with the same permissions.
+
+It is optional. If the service is down or removed, or the secret is empty, clients keep polling; nothing else depends on it.
+
+- **Coolify:** nothing to set. The secret is generated (`SERVICE_PASSWORD_64_REALTIME`) and the service answers on the site's own domain at `/flx-rt`. If you change the WordPress domain on an Apache stack, set the `realtime` service's domain to `https://<domain>/flx-rt` too. On `nginx-fpm`, nginx serves `/flx-rt` itself.
+- **Plain Docker:** set `FLX_REALTIME_SECRET` (`openssl rand -hex 32`). `nginx-fpm` serves `/flx-rt` itself. On the Apache stacks, route `/flx-rt` (WebSocket) in your reverse proxy to `127.0.0.1:${REALTIME_PORT:-8081}` and set `FLX_REALTIME_URL=/flx-rt`.
+- **Check:** `docker compose exec worker wp flx realtime status` and `wp flx realtime test` (WordPress → Redis → realtime).
+- Sign-in: clients get a 60 second, single-use ticket from WordPress and send it as the first WebSocket message (never in the URL). Logging out, role and password changes close the user's sockets.
+- For package authors: the mu-plugin `flx-realtime.php` has `flx_realtime_publish()`, `flx_realtime_online()` and the `flx_realtime_topics` filter; see its header.
 
 ## Backup and restore
 

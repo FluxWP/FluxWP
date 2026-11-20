@@ -109,6 +109,7 @@ Ayarlar imajlarımızın içinde, compose dosyalarında yalnız servisler ve env
 | `ghcr.io/fluxwp/wordpress:worker-php8.4` | `wordpress:cli-2.12-php8.4` | Worker script'i |
 | `ghcr.io/fluxwp/wordpress:nginx-1.30` | `nginx:1.30-alpine` | WordPress için nginx ayarı |
 | `ghcr.io/fluxwp/wordpress:wpapi-node22` | `node:22-alpine` | FluxWP WhatsApp API (flx-wpapi) |
+| `ghcr.io/fluxwp/wordpress:realtime-bun1.4` | `oven/bun:1.4-alpine` | FluxWP Realtime WebSocket sunucusu |
 
 amd64 ve arm64 için üretilir, her gün yeniden build edilir; PHP ve işletim sistemi güvenlik yamaları bir sonraki pull'da gelir. Sabitlemek istersen her build'in tarihli etiketi de var (`7.1-php8.4-apache-20261105`). Bilinen kritik açığı olan PHP sürümünde build başarısız olur.
 
@@ -186,6 +187,18 @@ docker compose exec worker wp search-replace 'http://eski.test' 'https://yeni.ex
 ```
 
 `wp db cli/export/import` cli imajındaki MariaDB istemcisini kullanır; `mysql` yığınında bunun yerine `mysql` konteynerini kullan (aşağıda).
+
+## Realtime (canlı güncelleme)
+
+Redis'li yığınlarda (`mariadb-redis`, `nginx-fpm`, `wpapi`) küçük bir `realtime` servisi var (~25 MB RAM). WordPress kısa "bu değişti" sinyallerini Redis'e yayınlar, realtime servisi bunları WebSocket ile oturum açmış FluxWP paneline ve FluxApp'e iletir. Böylece gelen kutuları, rozetler ve bildirimler bir sonraki polling'i beklemeden anında güncellenir. Sinyal içerik taşımaz: istemci veriyi yine aynı yetkilerle WordPress'ten çeker.
+
+Zorunlu değil. Servis kapalıysa, silinmişse ya da secret boşsa istemciler polling ile devam eder, başka hiçbir şey ona bağlı değil.
+
+- **Coolify:** ayar yok. Secret üretilir (`SERVICE_PASSWORD_64_REALTIME`), servis sitenin kendi domaininde `/flx-rt` yolunda çalışır. Apache yığınında WordPress domainini değiştirirsen `realtime` servisinin domainini de `https://<domain>/flx-rt` yap. `nginx-fpm`'de `/flx-rt`'yi nginx kendisi sunar.
+- **Düz Docker:** `FLX_REALTIME_SECRET` ver (`openssl rand -hex 32`). `nginx-fpm` `/flx-rt`'yi kendisi sunar. Apache yığınlarında reverse proxy'de `/flx-rt` yolunu (WebSocket) `127.0.0.1:${REALTIME_PORT:-8081}`'e yönlendir ve `FLX_REALTIME_URL=/flx-rt` yap.
+- **Kontrol:** `docker compose exec worker wp flx realtime status` ve `wp flx realtime test` (WordPress → Redis → realtime).
+- Giriş: istemci WordPress'ten 60 saniyelik, tek kullanımlık bir ticket alır ve WebSocket'in ilk mesajında gönderir (URL'de asla). Çıkış, rol ve şifre değişikliği kullanıcının açık bağlantılarını kapatır.
+- Paket geliştiricileri için: `flx-realtime.php` mu-plugin'inde `flx_realtime_publish()`, `flx_realtime_online()` ve `flx_realtime_topics` filtresi var; başlığına bak.
 
 ## Yedek ve geri yükleme
 

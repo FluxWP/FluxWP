@@ -27,6 +27,7 @@ BUILDS = {
     "worker-php8.4": ("images/worker/Dockerfile", "wordpress:cli-2.12-php8.4"),
     "nginx-1.30": ("images/nginx/Dockerfile", "nginx:1.30-alpine"),
     "wpapi-node22": ("images/wpapi/Dockerfile", "node:22-alpine"),
+    "realtime-bun1.4": ("images/realtime/Dockerfile", "oven/bun:1.4-alpine"),
 }
 
 IMAGES = {
@@ -35,6 +36,7 @@ IMAGES = {
     "worker": f"{REGISTRY}:worker-php8.4",
     "nginx": f"{REGISTRY}:nginx-1.30",
     "wpapi": f"{REGISTRY}:wpapi-node22",
+    "realtime": f"{REGISTRY}:realtime-bun1.4",
     "mariadb": "mariadb:11.8",
     "mysql": "mysql:8.4",
     "redis": "redis:8.8-alpine",
@@ -75,6 +77,7 @@ MODES = {
         "db_name": "${DB_NAME:-wordpress}",
         "redis_pw_ref": "$SERVICE_PASSWORD_REDIS",
         "wpapi_link_ref": "$SERVICE_PASSWORD_64_WPAPIKEY",
+        "realtime_secret_ref": "$SERVICE_PASSWORD_64_REALTIME",
         "wp_url": "$SERVICE_URL_WORDPRESS",
         "wp_admin_user": "${WP_ADMIN_USER:-}",
         "wp_admin_pw_ref": "${WP_ADMIN_PASSWORD:-}",
@@ -88,6 +91,8 @@ MODES = {
         "db_name": "${DB_NAME:-wordpress}",
         "redis_pw_ref": "${REDIS_PASSWORD:?set REDIS_PASSWORD in .env}",
         "wpapi_link_ref": "${WPAPI_KEY:?set WPAPI_KEY in .env}",
+        # Optional: empty keeps the realtime service idle and every client polling.
+        "realtime_secret_ref": "${FLX_REALTIME_SECRET:-}",
         "wp_url": "${WP_URL:-}",
         "wp_admin_user": "${WP_ADMIN_USER:-admin}",
         "wp_admin_pw_ref": "${WP_ADMIN_PASSWORD:-}",
@@ -99,6 +104,16 @@ MODES = {
 def env(lines, indent=6):
     pad = " " * indent
     return "".join(f"{pad}- {line}\n" for line in lines)
+
+
+def realtime_url(mode, v):
+    """Public WebSocket path WordPress hands to clients. Coolify routes /flx-rt itself (Apache stacks) or
+    through nginx; plain Docker with Apache has no proxy rule for it, so it stays off until one is set."""
+    if mode == "coolify":
+        return "/flx-rt"
+    if v["web"] == "nginx":
+        return "${FLX_REALTIME_URL:-/flx-rt}"
+    return "${FLX_REALTIME_URL:-}"
 
 
 def wp_env(mode, v):
@@ -122,6 +137,11 @@ def wp_env(mode, v):
         lines += [
             "WP_REDIS_HOST=redis",
             f"WP_REDIS_PASSWORD={m['redis_pw_ref']}",
+        ]
+    if v["redis"]:
+        lines += [
+            f"FLX_REALTIME_SECRET={m['realtime_secret_ref']}",
+            f"FLX_REALTIME_URL={realtime_url(mode, v)}",
         ]
     if v.get("wpapi"):
         lines += [
@@ -298,6 +318,49 @@ def wpapi_service(mode, v):
     )
 
 
+def realtime_service(mode, v):
+    m = MODES[mode]
+    out = (
+        "  # FluxWP Realtime: WebSocket live updates for the panel and FluxApp (signals from WordPress over Redis).\n"
+        "  # Optional: if it is down or removed, clients poll as before. Path /flx-rt on the site's own domain.\n"
+    )
+    if mode == "coolify" and v["web"] == "apache":
+        out += "  # Coolify serves it on the WordPress domain at /flx-rt. Changed the domain? Set this service's domain to <domain>/flx-rt.\n"
+    out += (
+        "  realtime:\n"
+        f"    image: '{IMAGES['realtime']}'\n"
+        "    restart: unless-stopped\n"
+        "    environment:\n"
+    )
+    lines = []
+    if mode == "coolify" and v["web"] == "apache":
+        lines.append("SERVICE_URL_WORDPRESS=/flx-rt")
+    lines += [
+        "REDIS_HOST=redis",
+        f"REDIS_PASSWORD={m['redis_pw_ref']}",
+        f"FLX_REALTIME_SECRET={m['realtime_secret_ref']}",
+        "RT_MAX_CONN=${RT_MAX_CONN:-500}",
+        "RT_PER_USER=${RT_PER_USER:-10}",
+    ]
+    out += env(lines)
+    if mode == "compose" and v["web"] == "apache":
+        out += "    ports:\n      - '127.0.0.1:${REALTIME_PORT:-8081}:80'\n"
+    out += (
+        "    depends_on:\n"
+        "      redis:\n"
+        "        condition: service_healthy\n"
+        "    healthcheck:\n"
+        "      test: ['CMD', 'wget', '-q', '-O', '/dev/null', 'http://127.0.0.1/healthz']\n"
+        "      interval: 15s\n"
+        "      timeout: 5s\n"
+        "      retries: 10\n"
+        "      start_period: 10s\n"
+        "    security_opt:\n"
+        "      - no-new-privileges:true\n"
+    )
+    return out
+
+
 def depends(v, extra=()):
     out = "    depends_on:\n"
     out += f"      {v['db']}:\n        condition: service_healthy\n"
@@ -429,6 +492,7 @@ def build(mode, name, v):
     out += db_service(mode, v)
     if v["redis"]:
         out += redis_service(mode)
+        out += realtime_service(mode, v)
     out += "\nvolumes:\n  wordpress-files:\n  flx-private:\n"
     out += f"  {v['db']}-data:\n"
     if v.get("wpapi"):
@@ -454,6 +518,21 @@ def env_example(name, v):
     ]
     if v["redis"]:
         lines += ["", "# Redis object cache", "REDIS_PASSWORD=", "REDIS_MAXMEMORY=128mb"]
+        lines += [
+            "",
+            "# FluxWP Realtime (optional): live updates for the panel and FluxApp over WebSocket.",
+            "# Empty secret: the realtime service stays idle and clients poll. Generate: openssl rand -hex 32",
+            "FLX_REALTIME_SECRET=",
+        ]
+        if v["web"] == "nginx":
+            lines += ["# nginx serves it at /flx-rt on this site."]
+        else:
+            lines += [
+                "# Browsers reach it only through your reverse proxy: route /flx-rt (WebSocket) to",
+                "# 127.0.0.1:REALTIME_PORT, then set FLX_REALTIME_URL=/flx-rt. Empty: publishing works, clients poll.",
+                "REALTIME_PORT=8081",
+            ]
+        lines += ["FLX_REALTIME_URL=" + ("/flx-rt" if v["web"] == "nginx" else ""), "RT_MAX_CONN=500", "RT_PER_USER=10"]
     lines += [
         "",
         "# WordPress installs itself on first start. Empty WP_ADMIN_EMAIL becomes admin@<host>.",
