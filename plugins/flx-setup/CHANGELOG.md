@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.6.2
+- FluxWP hesabına bağlanırken site sahipliği kanıtı: fluxwp.com bağlantıyı onaylamadan önce siteye geri kanaldan sorar (`?rest_route=/flx-setup/v1/cloud/proof&state=…`); site yalnız kendi başlattığı isteğin PKCE challenge'ını verir. Başkası bu sitenin adresiyle bağlantı başlatıp siteyi kendi hesabına bağlayamaz. Bilinmeyen state 404 döner, yanıt önbelleğe alınmaz.
+
 ## 1.6.1
 - Paket imzası doğrulaması açıldı: FluxWP release anahtarı (kid `62a6e76c0e412d9d`) gömülü. Resmi kaynaktan gelen paket imzasızsa ya da imza tutmazsa kurulmaz.
 
