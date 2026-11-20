@@ -2998,62 +2998,9 @@ class Admin {
     }
         public function isScript( $str ) { return preg_match( "/<script.*type=\"(?!text\/x-template).*>(.*)<\/script>/im", $str ) != 0; }
         public function fun_addon_new($url){
-            $name =substr($url,strrpos($url ,"/")+1,-4);
-            require_once(ABSPATH . 'wp-admin/includes/file.php');
-
-            $r = download_url($url);
-            if(is_wp_error($r)){
-                $r = download_url($url, 300, true);
-                if (is_wp_error($r)) {
-                    return new \WP_Error('download_failed',
-                        esc_html__('Cannot install add-ons of Flux Forms because the plugin is not able to download files', 'flx-forms')
-                        . ' (' . $r->get_error_message() . ')'
-                    );
-                }
-            }
-            $filesystem_ready = WP_Filesystem();
-            if ($filesystem_ready) {
-                global $wp_filesystem;
-                $directory = EMSFB_PLUGIN_DIRECTORY . 'temp';
-                if (!$wp_filesystem->exists($directory)) {
-                    $wp_filesystem->mkdir($directory, 0755);
-                }
-                $moved = $wp_filesystem->move($r, EMSFB_PLUGIN_DIRECTORY . 'temp/temp.zip', true);
-            } else {
-                if ( ! emsfb_is_php_function_available_efb( 'mkdir' ) || ! emsfb_is_php_function_available_efb( 'rename' ) ) {
-                    return new \WP_Error(
-                        'filesystem_functions_unavailable',
-                        esc_html__( 'Cannot install add-ons because this server has disabled the PHP filesystem functions needed to prepare the download. Please ask your hosting provider to enable mkdir and rename, or configure the WordPress filesystem.', 'flx-forms' )
-                    );
-                }
-                $directory = EMSFB_PLUGIN_DIRECTORY . 'temp';
-                if (!file_exists($directory)) {
-                    mkdir($directory, 0755, true);
-                }
-                $moved = rename($r, EMSFB_PLUGIN_DIRECTORY . 'temp/temp.zip');
-            }
-            if(!$moved){
-                if ( emsfb_is_php_function_available_efb( 'unlink' ) ) {
-                    @unlink($r);
-                }
-                return new \WP_Error('move_failed',
-                    esc_html__('Cannot install add-ons of Flux Forms because the plugin is not able to move the downloaded file', 'flx-forms')
-                );
-            }
-            if (!$filesystem_ready) {
-                WP_Filesystem();
-            }
-            $r = unzip_file(EMSFB_PLUGIN_DIRECTORY . 'temp/temp.zip', EMSFB_PLUGIN_DIRECTORY . 'vendor/');
-            if ( emsfb_is_php_function_available_efb( 'unlink' ) ) {
-                @unlink(EMSFB_PLUGIN_DIRECTORY . 'temp/temp.zip');
-            }
-            if(is_wp_error($r)){
-                return new \WP_Error('unzip_failed',
-                    esc_html__('Cannot install add-ons of Flux Forms because the plugin is not able to unzip files', 'flx-forms')
-                    . ' (' . $r->get_error_message() . ')'
-                );
-            }
-            return true;
+            /* Flux Forms: add-ons ship inside the signed package. Remote archives are never downloaded
+             * or extracted, whatever the outbound block in includes/flx/flx-fork.php does. */
+            return new \WP_Error( 'flxf_remote_addons_disabled', esc_html__( 'Cannot install add-ons of Flux Forms because the plugin is not able to download files', 'flx-forms' ) );
         }
     public function file_upload_public(){
 

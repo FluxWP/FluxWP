@@ -102,6 +102,7 @@ Ayarlar'daki "FluxWP ile giriş yap" kartı siteyi fluxwp.com hesabına bağlar 
 
 - `FLXK_Cloud::connected()`: bağlı mı. `FLXK_Cloud::summary( $force = false )`: plan özeti (6 saat önbellek).
 - `FLXK_Cloud::access_token()`: geçerli JWT ya da `WP_Error`; süresi bitince refresh token ile yenilenir (tek seferde bir yenileme). FluxWP servislerine `Authorization: Bearer` ile gönderin; token tarayıcıya verilmez.
+- `GET /?rest_route=/flx-setup/v1/cloud/proof&state=<state>` (herkese açık): bağlantı isteği bu sitede başladıysa `{"state","challenge"}`, yoksa 404 `unknown_state`. fluxwp.com onaydan önce bununla site sahipliğini doğrular.
 - `flxk_cloud_url` filtresi / `FLX_CLOUD_URL` sabiti: hesap sunucusu (varsayılan https://fluxwp.com).
 - `flxu_settings_before`: Ayarlar ekranının en üstüne kart eklemek için.
 

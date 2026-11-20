@@ -25,7 +25,7 @@ Date/time in the user's language (TR + EN built in, independent of core language
 Signed loopback job (1.2.8): `flx_job_sig( $action, $id )` is `hash_hmac( 'sha256', $action . '|' . $id, wp_salt( 'auth' ) )`. `flx_job_kick( $action, $id )` posts `action`, `id` and `sig` to `admin-ajax.php` without waiting (`blocking` false, `timeout` 0.5, `sslverify` from the `https_local_ssl_verify` filter). `flx_job_check( $action )` returns the posted id when that signature matches, otherwise `0`.
 
 API: `flx_brand_credit( $context, $args )`, `flx_brand_mark( $size )`, shortcode `[flx_credit]`, block `flx/credit`.
-Filters: `flx_brand_show` (false hides it, e.g. white-label), `flx_brand_is_screen`, `flx_brand_url`, `flx_brand_strings`.
+Filters: `flx_brand_show` (false hides it, e.g. white-label), `flx_brand_is_screen`, `flx_brand_url`, `flx_brand_utm` (hidden analytics params on the link: `utm_source` = site host, `utm_medium` footer|admin, `utm_campaign` powered_by, `utm_content` = site name; return `array()` to drop), `flx_brand_strings`.
 
 ## Phone field (1.2.0)
 

@@ -1761,5 +1761,9 @@ return array(
   '%dyedek silindi.\\x00%dyedek silindi.' . chr(0) . '%dyedek silindi.\\x00%dyedek silindi.' => '%d yedek silindi.' . chr(0) . '%d yedek silindi.',
   '%dgün\\x00%dgün' . chr(0) . '%dgün\\x00%dgün' => '%d gün' . chr(0) . '%d gün',
   '%skayıt\\x00%skayıt' . chr(0) . '%skayıt\\x00%skayıt' => '%s kayıt' . chr(0) . '%s kayıt',
+  'This FluxWP package address is not in the expected signed form, so it was not installed. Contact FluxWP support.' => 'Bu FluxWP paket adresi beklenen imzalı biçimde değil, bu yüzden kurulmadı. FluxWP desteğine başvurun.',
+  'The package signature could not be downloaded (%s). The package was not installed. Try again in a minute.' => 'Paket imzası indirilemedi (%s). Paket kurulmadı. Bir dakika sonra tekrar deneyin.',
+  '%1$s %2$s has no valid FluxWP signature (HTTP %3$d), so it was not installed. Check for updates later or contact FluxWP support.' => '%1$s %2$s için geçerli FluxWP imzası yok (HTTP %3$d), bu yüzden kurulmadı. Güncellemeleri sonra yeniden denetleyin ya da FluxWP desteğine başvurun.',
+  'The FluxWP signature of %1$s %2$s does not match the downloaded file, so it was not installed. The package may have been changed on the way or on the server. Contact FluxWP support.' => '%1$s %2$s için FluxWP imzası indirilen dosyayla uyuşmuyor, bu yüzden kurulmadı. Paket yolda ya da sunucuda değiştirilmiş olabilir. FluxWP desteğine başvurun.',
  ),
 );

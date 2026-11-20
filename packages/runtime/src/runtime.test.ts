@@ -176,6 +176,13 @@ describe('webview decisions', () => {
     expect(classifyNavigation('https://demo.fluxapp.local/fluxadmin/?action=flxapp_sso&t=abc', speed)).toEqual({ action: 'allow' });
     expect(classifyNavigation('https://demo.fluxapp.local/fluxadmin/', opts)).toEqual({ action: 'allow' });
     expect(classifyNavigation('https://example.com/', opts)).toEqual({ action: 'browser', url: 'https://example.com/' });
+    // allow_hosts is site-supplied: only the site's own subdomains count, never foreign hosts.
+    const hosts = { ...opts, allowHosts: ['shop.demo.fluxapp.local', 'other-site.com', 'evildemo.fluxapp.local'] };
+    expect(classifyNavigation('https://shop.demo.fluxapp.local/x', hosts)).toEqual({ action: 'allow' });
+    expect(classifyNavigation('https://other-site.com/x', hosts)).toEqual({ action: 'browser', url: 'https://other-site.com/x' });
+    expect(classifyNavigation('https://evildemo.fluxapp.local/x', hosts).action).toBe('browser');
+    expect(classifyNavigation('http://shop.demo.fluxapp.local/x', hosts).action).toBe('browser');
+    expect(classifyNavigation('https://shop.demo.fluxapp.local/x', opts).action).toBe('browser');
     expect(classifyNavigation('tel:+905320000000', opts).action).toBe('system');
     expect(classifyNavigation('javascript:alert(1)', opts)).toEqual({ action: 'block', reason: 'scheme' });
   });

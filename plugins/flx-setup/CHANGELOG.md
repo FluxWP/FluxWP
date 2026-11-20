@@ -1,10 +1,24 @@
 # Değişiklikler
 
-## 1.5.6
+## 1.6.4
 - Ön ayar güncellemeleri, aynı slug ile bulunan sahipsiz sayfa/yazıları kendiliğinden sahiplenmez; belirsiz anahtarlar ve değişmiş kayıt kimlikleri korunur.
 - SEO meta alanları ve taksonomiler içerikten bağımsız karşılaştırılır, sahiplenilir ve yedeklenir. Kullanıcının değiştirdiği alanlar korunur; eski sahiplik kayıtlarında kanıtlanamayan alanlar inceleme için bekler.
 - Kısmen uygulanan veya hatalı migration tamamlandı sayılmaz. Bekleyen kayıtlar elle önizlenip hedef bazlı yeniden denenebilir; değişmeyen başarısız otomatik denemeler her yönetici isteğinde tekrarlanmaz.
 - `flxk_content_fields_supported()` yetenek kontrolü ve gerçek WordPress içerik/SEO/geri alma regresyon testleri eklendi.
+
+## 1.6.3
+- Paketler ekranında sunucudan gelen metinler ("Google'da bulunun" kartı, "Son kontrol", sekme adları, güncelleme günlüğü satırları, tarihler) Türkçe panelde İngilizce kalıyordu: /graphql site dilinde çalışıyordu. Panel GraphQL istekleri artık oturumdaki kullanıcının dilinde yanıt verir.
+
+## 1.6.2
+- FluxWP hesabına bağlanırken site sahipliği kanıtı: fluxwp.com bağlantıyı onaylamadan önce siteye geri kanaldan sorar (`?rest_route=/flx-setup/v1/cloud/proof&state=…`); site yalnız kendi başlattığı isteğin PKCE challenge'ını verir. Başkası bu sitenin adresiyle bağlantı başlatıp siteyi kendi hesabına bağlayamaz. Bilinmeyen state 404 döner, yanıt önbelleğe alınmaz.
+
+## 1.6.1
+- Paket imzası doğrulaması açıldı: FluxWP release anahtarı (kid `62a6e76c0e412d9d`) gömülü. Resmi kaynaktan gelen paket imzasızsa ya da imza tutmazsa kurulmaz.
+
+## 1.6.0
+- Paket imzası (Ed25519): resmi güncelleme sunucusundan ve github.com/FluxWP'den gelen paketler, release'teki `<slug>.zip.sig` imzası gömülü public key'le doğrulanmadan kurulmaz. İmza slug + sürüm + zip sha256'ya bağlı; başka pakete ya da sürüme taşınamaz. Güncelleme sunucusu, onu yöneten panel ya da site anahtarı ele geçirilse bile imzasız zip kurulmaz.
+- Resmi kaynaktan gelen kanonik olmayan paket adresi (http, başka yol, port, slug/sürüm uyuşmazlığı) reddedilir; sunucunun bildirdiği sürüm adresteki sürümle aynı olmalı (eski imzalı paketi yeni diye sunup geri indirme olmaz).
+- Acil kapatma: wp-config.php'de `define( 'FLXU_SIGNATURES', 'off' );`. Anahtar listesi boşken doğrulama devrede değil.
 
 ## 1.5.5
 - Paketler: "Otomatik güncelleme" sütununda çift çizilen anahtar düzeltildi; tek ortak anahtar (eski paket CSS'i kaldırıldı).

@@ -38,13 +38,33 @@ final class FLXU_Download {
 	 * @return false|string|WP_Error
 	 */
 	public static function pre_download( $reply, $package, $upgrader = null, $hook_extra = array() ) {
-		if ( false !== $reply || ! is_string( $package ) || ! self::is_ours( $package ) ) {
+		if ( false !== $reply || ! is_string( $package ) ) {
 			return $reply;
+		}
+		$target = FLXU_Signature::target( $package );
+		if ( ! self::is_ours( $package ) && ! $target ) {
+			return $reply;
+		}
+		if ( ! empty( $target['reject'] ) ) {
+			$err = FLXU_Signature::check( $package, '' );
+			self::log( $package, $err );
+			return $err;
 		}
 		if ( $upgrader instanceof WP_Upgrader && $upgrader->skin ) {
 			$upgrader->skin->feedback( 'downloading_package', $package );
 		}
-		return self::fetch( $package );
+		$file = self::fetch( $package );
+		if ( is_wp_error( $file ) ) {
+			return $file;
+		}
+		// Resmi paket: Ed25519 imzası tutmazsa kurulmaz (class-flxu-signature.php).
+		$sig = FLXU_Signature::check( $package, $file );
+		if ( is_wp_error( $sig ) ) {
+			@unlink( $file ); // phpcs:ignore WordPress.PHP.NoSilencedErrors
+			self::log( $package, $sig );
+			return $sig;
+		}
+		return $file;
 	}
 
 	/** Paket adresi FluxWP kaynaklarından birinde mi (sunucu ya da GitHub kaynağı). */

@@ -85,6 +85,20 @@ function isLoginPage(u: URL, loginUrl?: string | null): boolean {
   }
 }
 
+/**
+ * `webview.allow_hosts` comes from the site itself, so a compromised site must not be able to open the
+ * webview (and its shared cookies) onto another host. Only the site's own host family counts: the same
+ * host with/without `www.` and its subdomains, same scheme and port. Everything else is ignored.
+ */
+export function isTrustedSiteHost(u: URL, site: URL, allowHosts?: string[]): boolean {
+  if (u.origin === site.origin) return true;
+  if (u.protocol !== site.protocol || u.port !== site.port) return false;
+  const base = site.hostname.toLowerCase().replace(/^www\./, '');
+  const h = u.hostname.toLowerCase();
+  if (h !== base && h !== 'www.' + base && !h.endsWith('.' + base)) return false;
+  return (allowHosts ?? []).some((a) => a.toLowerCase() === u.host.toLowerCase());
+}
+
 /** What to do when the webview is about to load `url` (onShouldStartLoadWithRequest / on_navigation). */
 export function classifyNavigation(url: string, opts: NavOptions): NavDecision {
   if (SYSTEM.test(url) || /^https:\/\/(wa\.me|api\.whatsapp\.com)\//i.test(url)) return { action: 'system', url };
@@ -97,7 +111,7 @@ export function classifyNavigation(url: string, opts: NavOptions): NavDecision {
   }
   if (u.protocol !== 'https:' && u.protocol !== 'http:') return { action: 'block', reason: 'scheme' };
   const site = new URL(opts.siteUrl);
-  const sameSite = u.origin === site.origin || (opts.allowHosts ?? []).includes(u.host);
+  const sameSite = isTrustedSiteHost(u, site, opts.allowHosts);
   if (!sameSite) return { action: 'browser', url };
   if (opts.ssoUrl && url === opts.ssoUrl) return { action: 'allow' };
   if (isLoginPage(u, opts.loginUrl)) {

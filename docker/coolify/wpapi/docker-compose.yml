@@ -36,6 +36,8 @@ services:
       - WP_ENVIRONMENT_TYPE=${WP_ENVIRONMENT_TYPE:-production}
       - WP_REDIS_HOST=redis
       - WP_REDIS_PASSWORD=$SERVICE_PASSWORD_REDIS
+      - FLX_REALTIME_SECRET=$SERVICE_PASSWORD_64_REALTIME
+      - FLX_REALTIME_URL=/flx-rt
       - WPAPI_URL=http://wpapi:3000
       - WPAPI_KEY=$SERVICE_PASSWORD_64_WPAPIKEY
       - WPAPI_INSTANCE=${WPAPI_INSTANCE:-main}
@@ -77,6 +79,8 @@ services:
       - WP_ENVIRONMENT_TYPE=${WP_ENVIRONMENT_TYPE:-production}
       - WP_REDIS_HOST=redis
       - WP_REDIS_PASSWORD=$SERVICE_PASSWORD_REDIS
+      - FLX_REALTIME_SECRET=$SERVICE_PASSWORD_64_REALTIME
+      - FLX_REALTIME_URL=/flx-rt
       - WPAPI_URL=http://wpapi:3000
       - WPAPI_KEY=$SERVICE_PASSWORD_64_WPAPIKEY
       - WPAPI_INSTANCE=${WPAPI_INSTANCE:-main}
@@ -186,6 +190,30 @@ services:
       interval: 10s
       timeout: 5s
       retries: 10
+    security_opt:
+      - no-new-privileges:true
+  # FluxWP Realtime: WebSocket live updates for the panel and FluxApp (signals from WordPress over Redis).
+  # Optional: if it is down or removed, clients poll as before. Path /flx-rt on the site's own domain.
+  # Coolify serves it on the WordPress domain at /flx-rt. Changed the domain? Set this service's domain to <domain>/flx-rt.
+  realtime:
+    image: 'ghcr.io/fluxwp/wordpress:realtime-bun1.4'
+    restart: unless-stopped
+    environment:
+      - SERVICE_URL_WORDPRESS=/flx-rt
+      - REDIS_HOST=redis
+      - REDIS_PASSWORD=$SERVICE_PASSWORD_REDIS
+      - FLX_REALTIME_SECRET=$SERVICE_PASSWORD_64_REALTIME
+      - RT_MAX_CONN=${RT_MAX_CONN:-500}
+      - RT_PER_USER=${RT_PER_USER:-10}
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ['CMD', 'wget', '-q', '-O', '/dev/null', 'http://127.0.0.1/healthz']
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
     security_opt:
       - no-new-privileges:true
 

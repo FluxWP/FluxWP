@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 2.5.2
+- Güvenlik: add-on arşivi indirip `vendor/` içine açan kod yolu tamamen kapatıldı. Add-on'lar (Stripe, koşullu mantık, çevrimdışı listeler) zaten paketin içinde geliyor ve üretici sunucularına istek engelliydi; artık bu engel kalksa bile uzaktan kod kurulamaz.
+
 ## 2.5.1
 - Doğrulama uyarıları yeniden tasarlandı: "Bu alan zorunludur" gibi mesajlar artık alanın ALTINDA, ikonlu kırmızı tek satır olarak çıkar; label'ın üstüne binen balon kalktı. Koyu mod ve mobil uyumlu.
 - Zorunlu alan hatasında üstteki sarı bildirim (toast) kalktı; sayfa ilk hatalı alana kayar ve odaklanır.

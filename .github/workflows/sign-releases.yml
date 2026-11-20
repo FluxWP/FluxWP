@@ -1,0 +1,35 @@
+name: Release imzalarını tamamla
+
+# Yalnız elle çalıştırılır (bin/sign-missing.sh): imzası olmayan eski sürümleri imzalar. Release'teki zip'i
+# olduğu gibi imzalar; yeni sürümler release workflow'unun publish işinde, depodan üretilen zip'le imzalanır.
+
+on:
+  workflow_dispatch:
+    inputs:
+      keep:
+        description: 'Paket başına imzalanacak son sürüm sayısı'
+        required: false
+        default: '5'
+      package:
+        description: 'Tek paket slug (ör. flx-ai). Boşsa hepsi.'
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  sign:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Eksik imzaları üret
+        env:
+          GH_TOKEN: ${{ github.token }}
+          FLX_RELEASE_SIGNING_KEY: ${{ secrets.FLX_RELEASE_SIGNING_KEY }}
+          KEEP: ${{ github.event.inputs.keep }}
+          ONLY: ${{ github.event.inputs.package }}
+        run: bin/sign-missing.sh
