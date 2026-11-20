@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.7.4
+- Telemetri merkezi: Flux Admin duyuru kartlarının gösterim/kapatma adetlerini (yalnız kart kimliği ve sayı, anonim) `flxan_ann_counts` seçeneğinde toplar; Flux Cloud › Duyurular okur.
+
 ## 0.7.3
 - Telefon genişliğinde tablolar ve kartlar ekranın dışına taşmıyor (grid sütunları minmax(0,1fr)).
 

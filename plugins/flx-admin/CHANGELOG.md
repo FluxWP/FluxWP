@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.11.0
+- Duyuru kartları: fluxwp.com'dan (güncelleme sunucusu `/v1/announcements`) yayınlanan duyurular ana sayfada kapatılabilir kart olarak görünür; kapatılan kart o yönetici için bir daha gösterilmez. Akış sayfa çizilirken çekilmez, önbellekten basılır ve yanıt gittikten sonra saatte bir yenilenir (ortak denetimli istek, HTTPS, şema doğrulamalı; metin düz metin). Hedefleme: eklenti, site dili, tarih. Yalnız `manage_options`. Filtreler `flxa_announcements_url` (boş = kapalı), `flxa_announcements`.
+- Anonim sayaç: kaç yöneticinin gördüğü ve kapattığı yalnız kullanım verisi paylaşımı açık sitelerde (`flxk_telemetry`) tutulur ve günlük telemetriyle gider (`announcements`); izin yoksa hiçbir şey saklanmaz ya da gönderilmez.
+
 ## 1.10.2
 - Soldaki menü başlığında uzun site adı ikinci satıra geçer; en fazla 2 satır, sonuna "…" gelir ve menüyü daralt düğmesinin altına girmez.
 

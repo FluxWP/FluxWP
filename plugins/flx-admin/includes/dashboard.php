@@ -48,6 +48,7 @@ function flxa_dash_header() {
 				<button type="button" class="flxa-btn" data-flxa-edit aria-expanded="false"><?php echo flxa_icon( 'grid', 16 ); // phpcs:ignore ?><span><?php esc_html_e( 'Edit modules', 'flx-admin' ); ?></span></button>
 			</div>
 		</div>
+		<?php flxa_ann_render(); ?>
 		<?php flxa_quick_bar(); ?>
 		<?php if ( $stats ) : ?>
 		<div class="flxa-stats">

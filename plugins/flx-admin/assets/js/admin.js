@@ -444,6 +444,18 @@
 		// Sunucu kalıcı oturumu yalnız uygulama (PWA) girişlerinde verir; tarayıcıdaki oturumlar normal kalır.
 		try { d.cookie = 'flxa_app=1; path=/; max-age=31536000; samesite=lax' + (location.protocol === 'https:' ? '; secure' : ''); } catch (e) {}
 	}
+	d.addEventListener('click', function (e) {
+		var b = e.target.closest('[data-flxa-ann-dismiss]');
+		if (!b) return;
+		var card = b.closest('[data-flxa-ann]');
+		if (!card) return;
+		var fd = new FormData();
+		fd.append('action', 'flxa_ann_dismiss');
+		fd.append('nonce', B.nonce);
+		fd.append('id', card.getAttribute('data-flxa-ann'));
+		fetch(B.ajax, { method: 'POST', body: fd, credentials: 'same-origin' }).catch(function () {});
+		card.remove();
+	});
 	/* ───────── v1.1 · yardımcılar ───────── */
 	function store(k, v) {
 		try {

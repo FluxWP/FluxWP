@@ -275,10 +275,31 @@ class FLXAN_Telemetry_Hub {
 			}
 			// phpcs:enable
 		}
+		self::announcements( $b['announcements'] ?? array() );
 		$day = gmdate( 'Y-m-d', $now );
 		$wpdb->query( $wpdb->prepare( 'INSERT INTO ' . self::t( 'days' ) . ' (d, r, e) VALUES (%s, 1, %d) ON DUPLICATE KEY UPDATE r = r + 1, e = e + VALUES(e)', $day, $events ) ); // phpcs:ignore WordPress.DB
 		delete_transient( 'flxan_tm_sum' );
 		return 'ok';
+	}
+
+	/**
+	 * Announcement cards: how many administrators of consenting sites saw / dismissed each card (option `flxan_ann_counts`,
+	 * id => {seen, dismiss}). Only ids and numbers are kept; at most 100 ids.
+	 */
+	private static function announcements( $in ) {
+		if ( ! is_array( $in ) || ! $in ) {
+			return;
+		}
+		$all = (array) get_option( 'flxan_ann_counts', array() );
+		foreach ( array_slice( $in, 0, 40, true ) as $id => $c ) {
+			if ( ! is_array( $c ) || ! preg_match( '/^[A-Za-z0-9_-]{1,40}$/', (string) $id ) || ( ! isset( $all[ $id ] ) && count( $all ) >= 100 ) ) {
+				continue;
+			}
+			foreach ( array( 'seen', 'dismiss' ) as $k ) {
+				$all[ $id ][ $k ] = (int) ( $all[ $id ][ $k ] ?? 0 ) + max( 0, min( 1000, (int) ( $c[ $k ] ?? 0 ) ) );
+			}
+		}
+		update_option( 'flxan_ann_counts', $all, false );
 	}
 
 	/** Strict aggregate schema; unknown keys, current/future days and small cohorts are discarded. */
