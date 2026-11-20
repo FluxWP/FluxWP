@@ -17,6 +17,7 @@ import {
 } from '@fluxwp/graphql/operations';
 import type { FlxChatbotConversationFilter, FlxChatbotConversationRowFragment, FlxChatbotMessageFieldsFragment } from '@fluxwp/graphql/types';
 import { Loading, Modal, Screen } from '@fluxwp/ui';
+import { feedPoll } from '@fluxwp/runtime/src/realtime';
 import { useHost } from '../host';
 import { translator } from './i18n';
 import type { Tr } from './fields';
@@ -126,7 +127,8 @@ function Inbox() {
 
   const vars = { filter, search: q || null };
   const list = useFlxQuery(FlxChatbotConversationList, vars, {
-    refetchInterval: () => (document.hidden ? 60000 : 15000),
+    // Realtime connected (Docker): the "chatbot." signal reloads the list, this is only a safety net.
+    refetchInterval: () => feedPoll(host.realtime, document.hidden ? 60000 : 15000),
     placeholderData: (prev) => prev,
   });
   const refreshList = useCallback(() => qc.invalidateQueries({ queryKey: flxQueryKey(scope, FlxChatbotConversationList) }), [qc, scope]);
@@ -298,6 +300,7 @@ interface ConvState {
 /** One chat: first load, then incremental polling (4 s while someone is talking, slower otherwise, slowest in a hidden tab). */
 function useConversation(id: number, onChanged: () => void) {
   const { client } = useGraphQL();
+  const feed = useHost().realtime;
   const [s, setS] = useState<ConvState>({ conv: null, msgs: [], last: 0, loading: true, error: '' });
   const lastRef = useRef(0);
   const timer = useRef(0);
@@ -333,7 +336,7 @@ function useConversation(id: number, onChanged: () => void) {
       }
       if (alive.current) {
         const live = status.current === 'QUEUED' || status.current === 'AGENT';
-        timer.current = window.setTimeout(() => void pull(false), document.hidden ? 30000 : live ? 4000 : 10000);
+        timer.current = window.setTimeout(() => void pull(false), feedPoll(feed, document.hidden ? 30000 : live ? 4000 : 10000));
       }
     },
     [client, id, onChanged],
@@ -347,13 +350,19 @@ function useConversation(id: number, onChanged: () => void) {
       if (!document.hidden) void pull(false);
     };
     document.addEventListener('visibilitychange', vis);
+    // Live signal (Docker sites): fetch the new messages now. Connection lost: back to the normal poll.
+    const unrt = [
+      feed?.on('chatbot.', () => !document.hidden && void pull(false)),
+      feed?.onLive((l) => !l && void pull(false)),
+    ];
     return () => {
       alive.current = false;
       window.clearTimeout(timer.current);
       document.removeEventListener('visibilitychange', vis);
+      unrt.forEach((f) => f?.());
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+  }, [id, feed]);
 
   return { s, setS, pull };
 }

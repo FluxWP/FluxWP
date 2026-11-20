@@ -14,6 +14,7 @@ function flxg_rest_can_use() {
 
 function flxg_bump_structure() {
 	update_option( 'flxg_struct_rev', (int) get_option( 'flxg_struct_rev', 0 ) + 1, true );
+	flxg_realtime_ping();
 }
 
 function flxg_route( $path, $methods, $cb, $perm = 'flxg_rest_can_use' ) {

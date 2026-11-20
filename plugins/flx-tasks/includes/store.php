@@ -1718,6 +1718,7 @@ function flxg_log_raw( $task_id, $list_id, $action, $data, $uid ) {
 			'created_at' => flxg_now(),
 		)
 	);
+	flxg_realtime_ping();
 }
 
 function flxg_get_activity( $task_id ) {

@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.51.0
+- Canlı akış (Docker siteler, Flux Realtime): sohbet, mesaj ya da durum değişince açık WhatsApp ekranı sıradaki yoklamayı beklemeden hemen güncellenir (`chat.inbox` sinyali, yalnız `flxc_use` olanlara; sinyalde sohbet numarası, ad ya da metin yok, veri yine yetkili GraphQL'den gelir). Bağlıyken yoklama 120 sn güvenlik ağına iner, bağlantı koparsa eski aralığa döner. Flux Realtime yoksa (Hostinger, Redis'siz) hiçbir şey değişmez.
+
 ## 1.50.0
 - WhatsApp asistanı vekâlet isteyen türlerde (kurban) bağışı artık kendisi açar: özetin sonunda sitedeki vekâlet metni çıkar, kişi açıkça onaylayınca kayıt açılır ve onay bağışa yazılır (`create_donation` yeni `proxy_consent`). Onay yoksa kayıt açılmaz; sitede vekâlet metni yoksa eskisi gibi ekibe devreder.
 - Eklentiler asistana kendi araçlarını ekleyebilir: `flxc_bot_tools`, `flxc_bot_tool_call`, `flxc_bot_rules` (docs/cagri-merkezi/KURULUM.md §11).

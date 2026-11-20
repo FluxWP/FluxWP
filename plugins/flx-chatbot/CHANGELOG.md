@@ -1,5 +1,8 @@
 # Flux AI Chatbot
 
+## 0.5.0
+- Canlı akış (Docker siteler, Flux Realtime): ziyaretçi mesajı, devir ya da durum değişince açık gelen kutusu ve açık sohbet hemen yenilenir (`chatbot.inbox` → `flxcb_reply`, `chatbot.staff.inbox` → `flxc_use` olanlara; sinyalde içerik yok). Bağlıyken liste ve sohbet yoklaması 120 sn güvenlik ağına iner; bağlantı koparsa eski aralıklara (15 / 4 / 10 sn) döner. Flux Realtime yoksa hiçbir şey değişmez.
+
 ## 0.4.1
 - Ekran ortak FluxWP kabuğuna taşındı: başlık, simge, sekmeler, kenar boşlukları, en fazla genişlik ve güvenli alan (safe area) bütün Flux ekranlarında aynı. Sekmeler eski Flux Admin sekmeleri gibi alt çizgili; taşarsa sayfa değil sekme çubuğu kayar. Ortak modül paketi yenilendi.
 

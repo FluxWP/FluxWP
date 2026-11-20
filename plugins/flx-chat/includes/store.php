@@ -141,6 +141,7 @@ function flxc_ensure_chat( $conn, $jid, $data = array() ) {
 		flxc_clog_add( $row['id'], 'name', '', $row['name'], array_merge( flxc_clog_default_by(), array( 'note' => $name_note ) ) );
 	}
 	do_action( 'flxc_chat_created', $row );
+	flxc_realtime_ping();
 	return array_merge(
 		$row,
 		array(
@@ -201,6 +202,7 @@ function flxc_update_chat( $id, array $fields, array $by = array() ) {
 	}
 	$fields['rev'] = flxc_rev();
 	$wpdb->update( flxc_table( 'chats' ), $fields, array( 'id' => (int) $id ) );
+	flxc_realtime_ping();
 	if ( $before ) {
 		flxc_clog_diff( $before, $fields, $by );
 	}
@@ -484,6 +486,7 @@ function flxc_insert_message( array $m, $chat = null ) {
 	if ( ! $id ) {
 		return 0;
 	}
+	flxc_realtime_ping();
 	$chat = $chat ? $chat : flxc_get_chat( $m['chat_id'] );
 	if ( $chat ) {
 		$upd = array();
@@ -520,6 +523,7 @@ function flxc_update_message( $id, array $fields ) {
 	}
 	$fields['rev'] = flxc_rev();
 	$wpdb->update( flxc_table( 'messages' ), $fields, array( 'id' => (int) $id ) );
+	flxc_realtime_ping();
 	// Sohbet listesindeki önizleme (tik) de güncellensin.
 	$m = flxc_get_message( $id );
 	if ( $m ) {

@@ -26,6 +26,7 @@ function flxg_notify( $user_ids, $type, $task_id, $data, $actor ) {
 		);
 		flxg_maybe_email( $u, $type, $task_id, $data, $actor );
 	}
+	flxg_realtime_ping();
 }
 
 function flxg_after_task_change( $task_id, $logs, $newly_assigned, $uid, $before ) {

@@ -26,6 +26,7 @@ export function WhatsAppScreen() {
         client: host.client,
         onNonce: host.setNonce,
         onUnreadChange: () => host.refreshCounts?.(),
+        realtime: host.realtime,
         onIncoming: (items) => notifyIncoming(items, e.s.active, host.notify, (id) => e.open(id)),
       });
       return e;

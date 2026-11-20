@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { clientFor, platform, type Account } from '@fluxwp/core';
 import { ModuleHostProvider, type ModuleHost } from '@fluxwp/modules';
-import { useAccount, useBootstrap, useMe, useShellModel, useSiteConfig } from '@fluxwp/runtime';
+import { realtimeFeed, useAccount, useBootstrap, useMe, useShellModel, useSiteConfig } from '@fluxwp/runtime';
 import { Sidebar } from '../components/Sidebar';
 import { TitleBar } from '../components/TitleBar';
 import { useSidebar } from '../state/sidebar';
@@ -32,7 +32,7 @@ export function Shell() {
   const [palette, setPalette] = useState(false);
   const collapsed = useSidebar((s) => s.collapsed);
   const booted = useRef(false);
-  const host = useMemo<ModuleHost>(() => ({ mode: 'app', client: clientFor(account), scope: account.id, siteUrl: account.siteUrl, siteName: account.siteName, openUrl: (u) => void platform().openExternal(u) }), [account]);
+  const host = useMemo<ModuleHost>(() => ({ mode: 'app', client: clientFor(account), scope: account.id, siteUrl: account.siteUrl, siteName: account.siteName, openUrl: (u) => void platform().openExternal(u), realtime: realtimeFeed(account.id) }), [account]);
 
   const configShell = site.isSuccess && !!site.data;
   const menu = useMemo(() => {

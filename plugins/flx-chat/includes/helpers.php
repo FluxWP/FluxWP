@@ -182,6 +182,24 @@ function flxc_rev() {
 	return $r;
 }
 
+/**
+ * Flux Realtime (Docker sites with Redis): a chat, message or status changed. Open panels sync at once instead of
+ * waiting for their next poll. The signal carries nothing (no chat id, name or text); clients read through GraphQL,
+ * which applies each agent's chat visibility. Without Flux Realtime this does nothing and clients poll as before.
+ */
+function flxc_realtime_ping() {
+	if ( function_exists( 'flx_realtime_publish' ) ) {
+		flx_realtime_publish( 'chat.inbox', array(), array( 'inv' => array() ) );
+	}
+}
+add_filter(
+	'flx_realtime_topics',
+	static function ( $topics ) {
+		$topics['chat.'] = 'flxc_use';
+		return $topics;
+	}
+);
+
 function flxc_json( $data ) {
 	return wp_json_encode( $data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES );
 }

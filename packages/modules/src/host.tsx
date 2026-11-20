@@ -3,6 +3,7 @@
 import { createContext, useContext, useMemo, type ReactNode } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import type { ApiClient } from '@fluxwp/core';
+import type { RealtimeFeed } from '@fluxwp/runtime/src/realtime';
 
 export interface ModuleHost {
   /** 'app': FluxWP (belirteç), 'wp': WordPress admin sayfası (çerez + nonce). */
@@ -32,6 +33,8 @@ export interface ModuleHost {
   startPage?: string;
   /** WP: klasik görünüme geçiş bağlantısı. */
   classicUrl?: string;
+  /** Canlı akış (Docker sitelerde WebSocket sinyalleri). Yoksa ekranlar eskisi gibi yoklar. */
+  realtime?: RealtimeFeed;
   /** Sunucu yeni REST nonce'u verdi (WP oturumu yenilendi). */
   setNonce?: (nonce: string) => void;
 }

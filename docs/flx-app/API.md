@@ -143,6 +143,19 @@ Manifest sözlüğü tek adımlı formdur (bir `submit`, alanlar). İki adımlı
 - Bildirim akışı tek giriş `do_action( 'flxapp_push', $user_ids, $msg )`: olay `/sync` listesine yazılır (+ realtime sinyali), sonra Expo cihazlarına ve abone tarayıcılara (Web Push) gider. Ekranı önünde açık kullanıcı (realtime presence) atlanır.
 - `webpush`: push açıkken ve OpenSSL P-256 destekliyse. Abonelik `POST flxapp/v1/webpush/subscribe` `{ endpoint, keys: { p256dh, auth } }` (çerez + nonce; WordPress oturumuna bağlı), çıkış `POST …/unsubscribe` `{ endpoint }`. Service worker `/?flxapp-sw=1` (kapsam site kökü). wp-admin'de yönetim çubuğu "Bildirimler" düğmesi bunu yapar (`flxapp_webpush_show` filtresi, varsayılan `edit_posts`). Tıklanınca açılan adres: hedef `web:` → wp-admin yolu, `url:` → güvenli adres, değilse wp-admin (`flxapp_webpush_url`).
 
+### Modül sinyalleri (Faz 3)
+
+Sinyalde içerik yoktur (id, ad, metin yok); ekran veriyi yetkili GraphQL/REST'ten yeniden okur. Konu öneki → gereken yetki → alan paket:
+
+| Konu | Yetki | Paket | Ekranda ne olur |
+|---|---|---|---|
+| `chat.inbox` | `flxc_use` | flx-chat | WhatsApp ekranı hemen `flxChatUpdates` çeker |
+| `chatbot.inbox` / `chatbot.staff.inbox` | `flxcb_reply` / `flxc_use` | flx-chatbot | Liste (`FlxChatbot*` sorguları) yenilenir, açık sohbet yeni mesajı çeker |
+| `tasks.changed` | `flxg_use` | flx-tasks | Flux Tasks motoru `sync` çalıştırır |
+| `tvremote.state` | `flxtv_use` | flx-tv-remote (wp-extras) | Köprü durumu değişti; şimdilik tüketen ekran yok |
+
+`inv` değeri `["gql", "FlxChatbot"]` gibi başlarsa istemci o hesabın adı `FlxChatbot` ile başlayan GraphQL sorgularını yeniler. Motorlar sinyali `ModuleHost.realtime` (`RealtimeFeed`: `live()`, `on(önek, fn)`, `onLive(fn)`) üzerinden dinler; bağlıyken yoklama 120 sn'ye iner, bağlantı kopunca eski aralığa döner. Paketler kendi konusunu `flx_realtime_topics` ile kaydeder ve `flx_realtime_publish()` çağırmadan önce `function_exists` ile korur.
+
 ## `GET /config` (`flx-app-config/1`)
 
 Katmanlar: site (`flxapp_app` seçeneği; Uygulama › Görünüm sekmesi ya da preset `settings.flxapp_app`) + rol (Flux Admin rol menüsü, mobil alt bar, platform gizlemesi) sunucuda birleşir. Marka, kullanıcı (`/prefs`) ve cihaz katmanlarını istemci uygular.
