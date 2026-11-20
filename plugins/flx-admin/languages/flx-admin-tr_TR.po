@@ -4,6 +4,12 @@ msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: tr_TR\nPlural-Forms: 
 msgid "Settings"
 msgstr "Ayarlar"
 
+msgid "Learn more"
+msgstr "Daha fazla"
+
+msgid "Dismiss"
+msgstr "Kapat"
+
 msgid "Admin theme"
 msgstr "Yönetim teması"
 

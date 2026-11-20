@@ -4,6 +4,12 @@ msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: en_US\nPlural-Forms: 
 msgid "Settings"
 msgstr ""
 
+msgid "Learn more"
+msgstr ""
+
+msgid "Dismiss"
+msgstr ""
+
 msgid "Admin theme"
 msgstr ""
 

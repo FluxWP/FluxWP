@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.6.6
+- Telemetri gönderimi başarılı olunca `flxk_telemetry_sent` eylemi çalışır (Flux Admin duyuru sayaçlarını sıfırlar). Gönderilen veri izin kutusuna bağlı kalır.
+
 ## 1.6.5
 - Güvenlik: paket simgeleri ortak denetimli istekle (flx-brand `flx_safe_remote_get`) indirilir: katalogdan gelen adres iç ağa çözülüyorsa istek atılmaz.
 

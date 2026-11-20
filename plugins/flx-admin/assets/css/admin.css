@@ -469,6 +469,15 @@ a.flxa-stat:hover { border-color: var(--flxa-border-strong); transform: translat
 .flxa-install[hidden] { display: none; }
 .flxa-install-ico { width: 40px; height: 40px; flex: none; border-radius: calc(var(--flxa-radius, 14px) + 12px - 14px); background: var(--flxa-accent); color: var(--flxa-on-accent); display: flex; align-items: center; justify-content: center; }
 .flxa-install-text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.flxa-anns { display: flex; flex-direction: column; gap: 8px; }
+.flxa-ann { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: calc(var(--flxa-radius, 14px) + 16px - 14px); border: 1px solid var(--flxa-border); background: var(--flxa-surface); color: var(--flxa-text); box-shadow: var(--flxa-shadow); }
+.flxa-ann-ico { width: 34px; height: 34px; flex: none; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: var(--flxa-accent-soft); color: var(--flxa-accent-strong); }
+.flxa-ann.is-warn .flxa-ann-ico { background: var(--flxa-warn-soft); color: var(--flxa-warn); }
+.flxa-ann.is-critical { border-color: var(--flxa-error); }
+.flxa-ann.is-critical .flxa-ann-ico { background: var(--flxa-error-soft); color: var(--flxa-error); }
+.flxa-ann-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; overflow-wrap: anywhere; }
+.flxa-ann-text span { font-size: 13px; color: var(--flxa-muted); }
+@media (max-width: 600px) { .flxa-ann { flex-wrap: wrap; } .flxa-ann-text { flex-basis: calc(100% - 100px); } }
 .flxa-install-text small { font-size: 12px; opacity: .9; }
 .flxa-install .flxa-icon-btn { border-color: transparent; color: inherit; }
 
