@@ -1,0 +1,7 @@
+mutation FlxChatConnectionWebhook($input: FlxChatConnectionWebhookInput!) {
+  flxChatConnectionWebhook(input: $input) {
+    ok
+    error
+    errors { code message field }
+  }
+}

@@ -1,0 +1,7 @@
+mutation FlxChatReportAdd($input: FlxChatReportAddInput!) {
+  flxChatReportAdd(input: $input) {
+    id
+    reports { ...FlxChatReportsFields }
+    errors { code message field }
+  }
+}

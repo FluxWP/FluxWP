@@ -1,0 +1,7 @@
+mutation FlxChatReportRun($input: FlxChatReportRunInput!) {
+  flxChatReportRun(input: $input) {
+    started
+    status { on due running nextAt { iso timestamp label relative } loopbackError loopbackErrorAt { iso timestamp label relative } }
+    errors { code message field }
+  }
+}

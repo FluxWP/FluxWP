@@ -1,0 +1,6 @@
+mutation FlxChatSettingsSave($input: FlxChatSettingsSaveInput!) {
+  flxChatSettingsSave(input: $input) {
+    settings { ...FlxChatSettingsFields }
+    errors { code message field }
+  }
+}

@@ -5829,3 +5829,891 @@ msgstr "Vekâlet"
 
 msgid "Please reply \"I agree\" to give your proxy."
 msgstr "Vekâlet vermek için \"Onaylıyorum\" yazmanız yeterli."
+
+msgid "Name shown in the panel."
+msgstr "Panelde görünen ad."
+
+msgid "Accent color (hex)."
+msgstr "Vurgu rengi (hex)."
+
+msgid "Send read receipts when a chat is opened."
+msgstr "Sohbet açılınca okundu bilgisi gönder."
+
+msgid "Prefix agent replies with the agent name."
+msgstr "Temsilci cevaplarının başına temsilci adını ekle."
+
+msgid "Agents see only chats assigned to them or to nobody."
+msgstr "Temsilciler yalnız kendilerine atanan ya da kimseye atanmamış sohbetleri görür."
+
+msgid "Show WhatsApp group chats."
+msgstr "WhatsApp grup sohbetlerini göster."
+
+msgid "Open the chat page in the React screen."
+msgstr "Sohbet sayfasını React ekranında aç."
+
+msgid "Delete all chat data when the plugin is removed."
+msgstr "Eklenti silinince tüm sohbet verisini sil."
+
+msgid "Hours a message can be deleted for everyone."
+msgstr "Bir mesajın herkesten silinebileceği saat sayısı."
+
+msgid "Seconds between chat refreshes, 3 to 60."
+msgstr "Sohbet yenilemeleri arasındaki saniye, 3 ile 60 arası."
+
+msgid "Send a welcome message to new chats."
+msgstr "Yeni sohbetlere karşılama mesajı gönder."
+
+msgid "Welcome message."
+msgstr "Karşılama mesajı."
+
+msgid "Send an away message outside open hours."
+msgstr "Çalışma saatleri dışında uzakta mesajı gönder."
+
+msgid "Away message."
+msgstr "Uzakta mesajı."
+
+msgid "Open days, 1 (Monday) to 7 (Sunday)."
+msgstr "Açık günler, 1 (Pazartesi) ile 7 (Pazar) arası."
+
+msgid "Opening time, HH:MM."
+msgstr "Açılış saati, SS:DD."
+
+msgid "Closing time, HH:MM."
+msgstr "Kapanış saati, SS:DD."
+
+msgid "Hours before the away message is sent to the same chat again."
+msgstr "Uzakta mesajının aynı sohbete yeniden gönderilmesinden önceki saat sayısı."
+
+msgid "Agents can record donations."
+msgstr "Temsilciler bağış kaydı oluşturabilir."
+
+msgid "Agents can issue certificates."
+msgstr "Temsilciler sertifika düzenleyebilir."
+
+msgid "Show the quick action chips."
+msgstr "Hızlı eylem çiplerini göster."
+
+msgid "Message for a donation awaiting payment."
+msgstr "Ödeme bekleyen bağış için mesaj."
+
+msgid "Message for a paid donation."
+msgstr "Ödenmiş bağış için mesaj."
+
+msgid "Message sent with a receipt."
+msgstr "Dekontla birlikte giden mesaj."
+
+msgid "Bank transfer text."
+msgstr "Banka havalesi metni."
+
+msgid "AI provider."
+msgstr "AI sağlayıcısı."
+
+msgid "Model for suggestions."
+msgstr "Öneriler için model."
+
+msgid "Model for the assistant."
+msgstr "Asistan için model."
+
+msgid "Model for images."
+msgstr "Görseller için model."
+
+msgid "Model for voice notes."
+msgstr "Sesli notlar için model."
+
+msgid "Temperature, 0 to 1."
+msgstr "Sıcaklık, 0 ile 1 arası."
+
+msgid "Suggest a reply for each incoming message."
+msgstr "Gelen her mesaj için cevap öner."
+
+msgid "Extra instructions for suggestions."
+msgstr "Öneriler için ek talimatlar."
+
+msgid "The assistant answers chats."
+msgstr "Asistan sohbetleri cevaplar."
+
+msgid "Which chats the assistant answers: all, away or unassigned."
+msgstr "Asistanın hangi sohbetleri cevaplayacağı: tümü, mesai dışı ya da atanmamış."
+
+msgid "The assistant answers only the test numbers."
+msgstr "Asistan yalnız test numaralarını cevaplar."
+
+msgid "Test numbers."
+msgstr "Test numaraları."
+
+msgid "Hours the assistant stays quiet after an agent replies."
+msgstr "Temsilci cevap yazdıktan sonra asistanın sessiz kaldığı saat."
+
+msgid "Assistant replies per chat per day."
+msgstr "Sohbet başına günlük asistan cevabı."
+
+msgid "Quick donation amounts."
+msgstr "Hızlı bağış adetleri."
+
+msgid "Hours of history the assistant reads."
+msgstr "Asistanın okuduğu geçmiş saat sayısı."
+
+msgid "Donation types the assistant offers. Empty is all open types."
+msgstr "Asistanın sunduğu bağış türleri. Boşsa tüm açık türler."
+
+msgid "Read receipts with AI."
+msgstr "Dekontları AI ile oku."
+
+msgid "Text under the price list."
+msgstr "Fiyat listesinin altındaki metin."
+
+msgid "Bank account holder."
+msgstr "Banka hesap sahibi."
+
+msgid "Bank IBAN."
+msgstr "Banka IBAN."
+
+msgid "Bank transfer description."
+msgstr "Banka havalesi açıklaması."
+
+msgid "Donation page address."
+msgstr "Bağış sayfası adresi."
+
+msgid "Message after a payment."
+msgstr "Ödeme sonrası mesaj."
+
+msgid "Message when a donation is cancelled."
+msgstr "Bağış iptal edilince mesaj."
+
+msgid "Message when the daily limit is reached."
+msgstr "Günlük sınıra ulaşılınca mesaj."
+
+msgid "Message when a person takes over."
+msgstr "Bir kişi devralınca mesaj."
+
+msgid "Message when the assistant cannot answer."
+msgstr "Asistan cevap veremeyince mesaj."
+
+msgid "Seconds before the fallback message."
+msgstr "Bekletme mesajından önceki saniye."
+
+msgid "Seconds an assistant turn may take."
+msgstr "Bir asistan turunun alabileceği saniye."
+
+msgid "Numbers told when a person is needed."
+msgstr "Bir kişi gerektiğinde haber verilen numaralar."
+
+msgid "Words that hand the chat to a person."
+msgstr "Sohbeti bir kişiye devreden sözcükler."
+
+msgid "Extra assistant instructions."
+msgstr "Asistan için ek talimatlar."
+
+msgid "Message when a contact opts out."
+msgstr "Kişi abonelikten çıkınca mesaj."
+
+msgid "Summarize chats into contact memory."
+msgstr "Sohbetleri kişi hafızasına özetle."
+
+msgid "Hours of silence before a chat is summarized."
+msgstr "Bir sohbet özetlenmeden önceki sessizlik saati."
+
+msgid "Most background AI jobs at once."
+msgstr "Aynı anda en çok arka plan AI işi."
+
+msgid "Background jobs kept free for live replies."
+msgstr "Canlı cevaplar için boş tutulan arka plan işçisi."
+
+msgid "Night window start, HH:MM."
+msgstr "Gece aralığı başlangıcı, SS:DD."
+
+msgid "Night window end, HH:MM."
+msgstr "Gece aralığı sonu, SS:DD."
+
+msgid "The assistant reacts to messages."
+msgstr "Asistan mesajlara tepki verir."
+
+msgid "The assistant reads voice notes."
+msgstr "Asistan sesli notları dinler."
+
+msgid "Longest voice note in seconds."
+msgstr "En uzun sesli not, saniye."
+
+msgid "The assistant can show widgets."
+msgstr "Asistan görsel bileşen gösterebilir."
+
+msgid "Tell the beneficiary about a certificate."
+msgstr "Sertifikayı hak sahibine bildir."
+
+msgid "Beneficiary certificate message."
+msgstr "Hak sahibi sertifika mesajı."
+
+msgid "Send chat reminders."
+msgstr "Sohbet hatırlatıcıları gönder."
+
+msgid "Reminder time, HH:MM."
+msgstr "Hatırlatıcı saati, SS:DD."
+
+msgid "Most reminders per run."
+msgstr "Çalışma başına en çok hatırlatıcı."
+
+msgid "Staff mode."
+msgstr "Personel modu."
+
+msgid "Tell staff about their referral donations."
+msgstr "Personele yönlendirdiği bağışları bildir."
+
+msgid "Message to a staff donor."
+msgstr "Personelin bağışçısına mesaj."
+
+msgid "Tell staff about referral certificates."
+msgstr "Personele yönlendirme sertifikalarını bildir."
+
+msgid "Referral certificate message."
+msgstr "Yönlendirme sertifika mesajı."
+
+msgid "Most certificates staff may issue at once."
+msgstr "Personelin tek seferde düzenleyebileceği en çok sertifika."
+
+msgid "Verify the e-mail before records are shown."
+msgstr "Kayıtlar gösterilmeden önce e-postayı doğrula."
+
+msgid "Minutes a verification code is valid."
+msgstr "Doğrulama kodunun geçerli olduğu dakika."
+
+msgid "Wrong codes allowed."
+msgstr "İzin verilen yanlış kod sayısı."
+
+msgid "Channel for phone codes: auto, whatsapp or sms."
+msgstr "Telefon kodları için kanal: otomatik, whatsapp ya da sms."
+
+msgid "Message after too many wrong codes."
+msgstr "Çok fazla yanlış koddan sonra mesaj."
+
+msgid "Verification message."
+msgstr "Doğrulama mesajı."
+
+msgid "The assistant searches the site."
+msgstr "Asistan sitede arama yapar."
+
+msgid "Post types the assistant may search."
+msgstr "Asistanın arayabileceği içerik türleri."
+
+msgid "Addresses the assistant must not share."
+msgstr "Asistanın paylaşmaması gereken adresler."
+
+msgid "WhatsApp group that gets a copy of notifications."
+msgstr "Bildirimlerin kopyasını alan WhatsApp grubu."
+
+msgid "Copy notifications to the group."
+msgstr "Bildirimleri gruba kopyala."
+
+msgid "Send notifications to the group."
+msgstr "Bildirimleri gruba gönder."
+
+msgid "A value and its label."
+msgstr "Bir değer ve etiketi."
+
+msgid "Value."
+msgstr "Değer."
+
+msgid "A WhatsApp line. The API key is never returned; hasApiKey says whether one is saved."
+msgstr "Bir WhatsApp hattı. API anahtarı hiç döndürülmez; hasApiKey kayıtlı olup olmadığını söyler."
+
+msgid "Line id."
+msgstr "Hat kimliği."
+
+msgid "own, flxi (Flux Mail) or flxs (Flux Certificates)."
+msgstr "own, flxi (Flux Mail) ya da flxs (Flux Certificates)."
+
+msgid "Selected source: own, flxi:<id> or flxs:<id>."
+msgstr "Seçili kaynak: own, flxi:<id> ya da flxs:<id>."
+
+msgid "Where the line details come from."
+msgstr "Hat bilgilerinin geldiği yer."
+
+msgid "Evolution API address."
+msgstr "Evolution API adresi."
+
+msgid "Instance name."
+msgstr "Örnek adı."
+
+msgid "An API key is saved."
+msgstr "Bir API anahtarı kayıtlı."
+
+msgid "Last known state: open, connecting, close, missing or error. Empty when unknown."
+msgstr "Bilinen son durum: open, connecting, close, missing ya da error. Bilinmiyorsa boş."
+
+msgid "When the state was read."
+msgstr "Durumun okunduğu zaman."
+
+msgid "Last webhook received. Null when none yet."
+msgstr "Alınan son webhook. Henüz yoksa boş."
+
+msgid "Source choices for this line."
+msgstr "Bu hat için kaynak seçenekleri."
+
+msgid "Color (hex)."
+msgstr "Renk (hex)."
+
+msgid "AI use of this month."
+msgstr "Bu ayın AI kullanımı."
+
+msgid "Month, YYYY-MM."
+msgstr "Ay, YYYY-AA."
+
+msgid "Tokens."
+msgstr "Token."
+
+msgid "Cost in US dollars."
+msgstr "ABD doları cinsinden maliyet."
+
+msgid "Last problem copying a notification to the group."
+msgstr "Bir bildirimi gruba kopyalarken yaşanan son sorun."
+
+msgid "When."
+msgstr "Ne zaman."
+
+msgid "Message."
+msgstr "Mesaj."
+
+msgid "An open Flux Donate type."
+msgstr "Açık bir Flux Donate türü."
+
+msgid "Type id."
+msgstr "Tür kimliği."
+
+msgid "A public post type the assistant may search."
+msgstr "Asistanın arayabileceği herkese açık bir içerik türü."
+
+msgid "Searched by default."
+msgstr "Varsayılan olarak aranır."
+
+msgid "Flux Mail provides WhatsApp lines."
+msgstr "Flux Mail WhatsApp hatları sağlıyor."
+
+msgid "Flux Mail connections page."
+msgstr "Flux Mail bağlantılar sayfası."
+
+msgid "Flux Certificates is active."
+msgstr "Flux Certificates etkin."
+
+msgid "Flux Donate is active."
+msgstr "Flux Donate etkin."
+
+msgid "Flux Roles is active."
+msgstr "Flux Roles etkin."
+
+msgid "Flux AI is active."
+msgstr "Flux AI etkin."
+
+msgid "The assistant model and key are ready."
+msgstr "Asistan modeli ve anahtarı hazır."
+
+msgid "Why the assistant cannot reply. Empty when fine."
+msgstr "Asistanın neden cevap veremediği. Sorun yoksa boş."
+
+msgid "Flux AI settings page."
+msgstr "Flux AI ayarlar sayfası."
+
+msgid "Assistant page."
+msgstr "Asistan sayfası."
+
+msgid "Chats page."
+msgstr "Sohbetler sayfası."
+
+msgid "New user page."
+msgstr "Yeni kullanıcı sayfası."
+
+msgid "The widget renderer works."
+msgstr "Görsel bileşen çizici çalışıyor."
+
+msgid "Flux AI can render widgets."
+msgstr "Flux AI görsel bileşen çizebilir."
+
+msgid "Site time zone."
+msgstr "Site saat dilimi."
+
+msgid "It is open hours now."
+msgstr "Şu an çalışma saatleri içinde."
+
+msgid "Price list as the assistant sends it."
+msgstr "Asistanın gönderdiği haliyle fiyat listesi."
+
+msgid "Built-in text."
+msgstr "Yerleşik metin."
+
+msgid "Built-in value."
+msgstr "Yerleşik değer."
+
+msgid "Built-in words."
+msgstr "Yerleşik sözcükler."
+
+msgid "People who can be assigned a chat."
+msgstr "Sohbet atanabilecek kişiler."
+
+msgid "AI providers that are ready."
+msgstr "Hazır AI sağlayıcıları."
+
+msgid "AI use this month. Null when none."
+msgstr "Bu ayki AI kullanımı. Yoksa boş."
+
+msgid "Source for a new line."
+msgstr "Yeni hat için kaynak."
+
+msgid "Source choices for a new line."
+msgstr "Yeni hat için kaynak seçenekleri."
+
+msgid "Open donation types."
+msgstr "Açık bağış türleri."
+
+msgid "Public post types."
+msgstr "Herkese açık içerik türleri."
+
+msgid "Last copy problem. Null when none."
+msgstr "Son kopyalama sorunu. Yoksa boş."
+
+msgid "An AI provider."
+msgstr "Bir AI sağlayıcısı."
+
+msgid "What the settings screen needs to explain itself: what is installed, defaults and choices. Nothing secret."
+msgstr "Ayarlar ekranının kendini anlatması için gerekenler: nelerin kurulu olduğu, varsayılanlar ve seçenekler. Gizli bir şey yok."
+
+msgid "WhatsApp lines. No keys."
+msgstr "WhatsApp hatları. Anahtar yok."
+
+msgid "Chat labels."
+msgstr "Sohbet etiketleri."
+
+msgid "Installed packages, defaults and choices."
+msgstr "Kurulu paketler, varsayılanlar ve seçenekler."
+
+msgid "Flux Chat settings. The webhook address and every API key are left out; see flxChatWebhookUrlReveal."
+msgstr "Flux Chat ayarları. Webhook adresi ve tüm API anahtarları dışarıda bırakılır; bkz. flxChatWebhookUrlReveal."
+
+msgid "One line of the system check."
+msgstr "Sistem kontrolünün bir satırı."
+
+msgid "Group."
+msgstr "Grup."
+
+msgid "What is checked."
+msgstr "Neyin kontrol edildiği."
+
+msgid "ok, warning, error or info."
+msgstr "ok, warning, error ya da info."
+
+msgid "Result."
+msgstr "Sonuç."
+
+msgid "Settings tab that fixes it. Empty when none."
+msgstr "Sorunu gideren ayar sekmesi. Yoksa boş."
+
+msgid "Where to fix it. Empty when none."
+msgstr "Nerede düzeltileceği. Yoksa boş."
+
+msgid "Fix link text."
+msgstr "Düzeltme bağlantısı metni."
+
+msgid "System check of Flux Chat."
+msgstr "Flux Chat sistem kontrolü."
+
+msgid "Errors."
+msgstr "Hatalar."
+
+msgid "Warnings."
+msgstr "Uyarılar."
+
+msgid "Passed."
+msgstr "Geçenler."
+
+msgid "Lines."
+msgstr "Satırlar."
+
+msgid "A WhatsApp group."
+msgstr "Bir WhatsApp grubu."
+
+msgid "Group id."
+msgstr "Grup kimliği."
+
+msgid "Group name."
+msgstr "Grup adı."
+
+msgid "A model of the Flux AI catalog."
+msgstr "Flux AI kataloğundan bir model."
+
+msgid "Model id."
+msgstr "Model kimliği."
+
+msgid "Family."
+msgstr "Aile."
+
+msgid "Provider."
+msgstr "Sağlayıcı."
+
+msgid "Context size in tokens."
+msgstr "Bağlam boyutu, token cinsinden."
+
+msgid "US dollars per million input tokens."
+msgstr "Milyon girdi token'ı başına ABD doları."
+
+msgid "US dollars per million output tokens."
+msgstr "Milyon çıktı token'ı başına ABD doları."
+
+msgid "Calls tools."
+msgstr "Araç çağırır."
+
+msgid "Reads images."
+msgstr "Görselleri okur."
+
+msgid "A page of the model catalog."
+msgstr "Model kataloğunun bir sayfası."
+
+msgid "Models, at most 50."
+msgstr "Modeller, en çok 50."
+
+msgid "Models that match."
+msgstr "Eşleşen modeller."
+
+msgid "Providers that are ready."
+msgstr "Hazır sağlayıcılar."
+
+msgid "Result of a line check. The webhook address has its key hidden."
+msgstr "Hat kontrolünün sonucu. Webhook adresinin anahtarı gizlidir."
+
+msgid "The server answered."
+msgstr "Sunucu cevap verdi."
+
+msgid "Connection state."
+msgstr "Bağlantı durumu."
+
+msgid "Error. Empty when none."
+msgstr "Hata. Yoksa boş."
+
+msgid "Messages on the server. -1 when unknown."
+msgstr "Sunucudaki mesajlar. Bilinmiyorsa -1."
+
+msgid "The server sends to this site."
+msgstr "Sunucu bu siteye gönderiyor."
+
+msgid "Address the server sends to, key hidden."
+msgstr "Sunucunun gönderdiği adres, anahtar gizli."
+
+msgid "Server version."
+msgstr "Sunucu sürümü."
+
+msgid "A scheduled WhatsApp report."
+msgstr "Zamanlanmış bir WhatsApp raporu."
+
+msgid "Rule id."
+msgstr "Kural kimliği."
+
+msgid "Scheduled."
+msgstr "Zamanlanmış."
+
+msgid "Who gets it."
+msgstr "Kimin alacağı."
+
+msgid "Selected people when the audience is USERS."
+msgstr "Alıcı USERS ise seçilen kişiler."
+
+msgid "What it says."
+msgstr "Ne yazdığı."
+
+msgid "Period covered."
+msgstr "Kapsanan dönem."
+
+msgid "How often."
+msgstr "Ne sıklıkta."
+
+msgid "Day of week, 1 Monday to 7 Sunday."
+msgstr "Haftanın günü, 1 Pazartesi ile 7 Pazar arası."
+
+msgid "Day of month, 1 to 28."
+msgstr "Ayın günü, 1 ile 28 arası."
+
+msgid "Send time, HH:MM, site time zone."
+msgstr "Gönderim saati, SS:DD, site saat dilimi."
+
+msgid "Closing lines, one per line."
+msgstr "Kapanış satırları, her satırda bir tane."
+
+msgid "People with a number and permission."
+msgstr "Numarası ve yetkisi olan kişiler."
+
+msgid "Day of the last complete send. Null when never."
+msgstr "Son tamamlanan gönderimin günü. Hiç yoksa boş."
+
+msgid "A person a report can be sent to."
+msgstr "Rapor gönderilebilecek bir kişi."
+
+msgid "A WhatsApp number is saved on the profile."
+msgstr "Profilde kayıtlı bir WhatsApp numarası var."
+
+msgid "A weekday."
+msgstr "Bir hafta günü."
+
+msgid "1 Monday to 7 Sunday."
+msgstr "1 Pazartesi ile 7 Pazar arası."
+
+msgid "Name in the site language."
+msgstr "Site dilinde ad."
+
+msgid "The reports screen."
+msgstr "Raporlar ekranı."
+
+msgid "Flux Roles and Flux Donate are active, so reports can be sent."
+msgstr "Flux Roles ve Flux Donate etkin, raporlar gönderilebilir."
+
+msgid "Weekdays."
+msgstr "Hafta günleri."
+
+msgid "People who can receive or view reports, at most 300."
+msgstr "Rapor alabilen ya da görebilen kişiler, en çok 300."
+
+msgid "Rules."
+msgstr "Kurallar."
+
+msgid "Delivery state of scheduled reports. Reading it sends nothing."
+msgstr "Zamanlanmış raporların gönderim durumu. Okumak hiçbir şey göndermez."
+
+msgid "Reports can be sent."
+msgstr "Raporlar gönderilebilir."
+
+msgid "A report is waiting to be sent."
+msgstr "Gönderilmeyi bekleyen bir rapor var."
+
+msgid "A send is running."
+msgstr "Bir gönderim sürüyor."
+
+msgid "Next scheduled run. Null when none."
+msgstr "Sonraki planlı çalışma. Yoksa boş."
+
+msgid "Last problem reaching the background request. Empty when none."
+msgstr "Arka plan isteğine ulaşırken yaşanan son sorun. Yoksa boş."
+
+msgid "When that problem happened."
+msgstr "O sorunun yaşandığı zaman."
+
+msgid "Who gets a report."
+msgstr "Raporu kimin alacağı."
+
+msgid "Everyone who can receive reports."
+msgstr "Rapor alabilen herkes."
+
+msgid "Those who can see the overall report."
+msgstr "Genel raporu görebilenler."
+
+msgid "Selected people."
+msgstr "Seçilen kişiler."
+
+msgid "What a report says."
+msgstr "Raporda ne yazdığı."
+
+msgid "The person's own donations."
+msgstr "Kişinin kendi bağışları."
+
+msgid "Overall totals and per staff."
+msgstr "Genel toplamlar ve personel bazında."
+
+msgid "Period a report covers."
+msgstr "Raporun kapsadığı dönem."
+
+msgid "Last 7 days."
+msgstr "Son 7 gün."
+
+msgid "This month."
+msgstr "Bu ay."
+
+msgid "How often a report goes out."
+msgstr "Raporun ne sıklıkta gittiği."
+
+msgid "Who a manual send goes to."
+msgstr "Elle gönderimin kime gittiği."
+
+msgid "Only the viewer."
+msgstr "Yalnız görüntüleyen."
+
+msgid "Every recipient, at most 25 per call."
+msgstr "Tüm alıcılar, çağrı başına en çok 25."
+
+msgid "A label. A blank id makes one from the name."
+msgstr "Bir etiket. Boş kimlik addan üretilir."
+
+msgid "Name. A blank name drops the label."
+msgstr "Ad. Boş ad etiketi çıkarır."
+
+msgid "A line to keep. Lines left out of the list are removed. The API key is write-only: empty keeps the saved one, \"__clear__\" removes it."
+msgstr "Korunacak bir hat. Listede olmayan hatlar silinir. API anahtarı yalnız yazılır: boş bırakmak kayıtlıyı korur, \"__clear__\" siler."
+
+msgid "Line id. Blank adds a new line."
+msgstr "Hat kimliği. Boşsa yeni hat eklenir."
+
+msgid "Remove this line."
+msgstr "Bu hattı sil."
+
+msgid "own, flxi:<id> or flxs:<id>."
+msgstr "own, flxi:<id> ya da flxs:<id>."
+
+msgid "API key. Write-only."
+msgstr "API anahtarı. Yalnız yazılır."
+
+msgid "Make a new webhook key."
+msgstr "Yeni bir webhook anahtarı üret."
+
+msgid "The editable fields of a report rule."
+msgstr "Bir rapor kuralının düzenlenebilir alanları."
+
+msgid "Period."
+msgstr "Dönem."
+
+msgid "Day of week."
+msgstr "Haftanın günü."
+
+msgid "Day of month."
+msgstr "Ayın günü."
+
+msgid "HH:MM."
+msgstr "SS:DD."
+
+msgid "Closing lines."
+msgstr "Kapanış satırları."
+
+msgid "Settings. No API key and no webhook address."
+msgstr "Ayarlar. API anahtarı ve webhook adresi yok."
+
+msgid "The labels to keep. Replaces the list."
+msgstr "Korunacak etiketler. Listenin yerine geçer."
+
+msgid "The lines to keep. Replaces the list."
+msgstr "Korunacak hatlar. Listenin yerine geçer."
+
+msgid "Save the fields that are sent; the rest keep their value. Values are limited and cleaned exactly as the classic settings page does."
+msgstr "Gönderilen alanları kaydeder; gerisi değerini korur. Değerler klasik ayar sayfasındaki gibi sınırlanır ve temizlenir."
+
+msgid "Settings after the save."
+msgstr "Kayıttan sonraki ayarlar."
+
+msgid "The address Evolution API must send to. It carries the line's secret key, so only a manager gets it and it is never cached or listed with the settings."
+msgstr "Evolution API'nin göndermesi gereken adres. Hattın gizli anahtarını taşıdığı için yalnız yönetici alır; önbelleğe alınmaz ve ayarlarla birlikte listelenmez."
+
+msgid "Make a new key first. The old address stops working."
+msgstr "Önce yeni bir anahtar üret. Eski adres çalışmaz olur."
+
+msgid "Webhook address."
+msgstr "Webhook adresi."
+
+msgid "Ask the server for the line state, its webhook and message count."
+msgstr "Sunucudan hattın durumunu, webhook'unu ve mesaj sayısını iste."
+
+msgid "Point the server's webhook at this site."
+msgstr "Sunucunun webhook'unu bu siteye yönlendir."
+
+msgid "The server accepted it."
+msgstr "Sunucu kabul etti."
+
+msgid "Ask for a pairing QR code. A line that is already open says so."
+msgstr "Eşleştirme QR kodu iste. Zaten açık olan hat bunu belirtir."
+
+msgid "QR image as base64. Empty when none."
+msgstr "QR görseli base64 olarak. Yoksa boş."
+
+msgid "Pairing code. Empty when none."
+msgstr "Eşleştirme kodu. Yoksa boş."
+
+msgid "Line state."
+msgstr "Hat durumu."
+
+msgid "Bring in the latest chats and their recent messages from the server."
+msgstr "Sunucudan son sohbetleri ve son mesajlarını getir."
+
+msgid "How many chats, 1 to 200. 30 when omitted."
+msgstr "Kaç sohbet, 1 ile 200 arası. Verilmezse 30."
+
+msgid "The import ran."
+msgstr "İçe aktarma çalıştı."
+
+msgid "Chats brought in."
+msgstr "Getirilen sohbetler."
+
+msgid "Messages brought in."
+msgstr "Getirilen mesajlar."
+
+msgid "The system check table. Read only."
+msgstr "Sistem kontrolü tablosu. Salt okunur."
+
+msgid "WhatsApp groups of the notification line. refresh asks the server again."
+msgstr "Bildirim hattının WhatsApp grupları. refresh sunucuya yeniden sorar."
+
+msgid "Ask the server instead of the cache."
+msgstr "Önbellek yerine sunucuya sor."
+
+msgid "Models of the Flux AI catalog, matching search, at most 50 per call. Models in ids are always included."
+msgstr "Flux AI kataloğundaki aramaya uyan modeller, çağrı başına en çok 50. ids içindeki modeller her zaman dahildir."
+
+msgid "Text in the id or name."
+msgstr "Kimlikte ya da adda geçen metin."
+
+msgid "Only this provider."
+msgstr "Yalnız bu sağlayıcı."
+
+msgid "Models to include whatever the search says (the selected ones)."
+msgstr "Arama ne derse desin dahil edilecek modeller (seçili olanlar)."
+
+msgid "Only models that call tools."
+msgstr "Yalnız araç çağıran modeller."
+
+msgid "Only models that read images."
+msgstr "Yalnız görsel okuyan modeller."
+
+msgid "Ask the providers instead of the cache."
+msgstr "Önbellek yerine sağlayıcılara sor."
+
+msgid "Send one short test message to the configured model. It spends a few tokens."
+msgstr "Ayarlı modele kısa bir deneme mesajı gönder. Birkaç token harcar."
+
+msgid "The model's answer."
+msgstr "Modelin cevabı."
+
+msgid "Milliseconds it took."
+msgstr "Geçen milisaniye."
+
+msgid "Report rules and the people they can reach."
+msgstr "Rapor kuralları ve ulaşabildikleri kişiler."
+
+msgid "The text of a report as the viewer would get it. Sends nothing."
+msgstr "Raporun görüntüleyenin alacağı haliyle metni. Hiçbir şey göndermez."
+
+msgid "Report not found."
+msgstr "Rapor bulunamadı."
+
+msgid "Whether a report is due, running or waiting for the background request. Sends nothing."
+msgstr "Bir raporun zamanının gelip gelmediği, çalışıp çalışmadığı ya da arka plan isteğini bekleyip beklemediği. Hiçbir şey göndermez."
+
+msgid "Save the report rules that are sent. Rules not in the list keep their value."
+msgstr "Gönderilen rapor kurallarını kaydeder. Listede olmayan kurallar değerini korur."
+
+msgid "Reports after the save."
+msgstr "Kayıttan sonraki raporlar."
+
+msgid "Add an inactive report rule."
+msgstr "Etkin olmayan bir rapor kuralı ekle."
+
+msgid "The new rule."
+msgstr "Yeni kural."
+
+msgid "Reports after the change."
+msgstr "Değişiklikten sonraki raporlar."
+
+msgid "Delete a report rule."
+msgstr "Bir rapor kuralını sil."
+
+msgid "Send a report now: a test to the viewer, or to every recipient (at most 25 per call)."
+msgstr "Raporu şimdi gönder: görüntüleyene deneme olarak ya da tüm alıcılara (çağrı başına en çok 25)."
+
+msgid "Messages sent. Null when the request was refused."
+msgstr "Gönderilen mesajlar. İstek reddedildiyse boş."
+
+msgid "Run the report schedule now on the background request (the same one chat jobs use). Reports that are not due are not sent."
+msgstr "Rapor zamanlamasını arka plan isteğiyle şimdi çalıştır (sohbet işlerinin kullandığıyla aynı). Zamanı gelmemiş raporlar gönderilmez."
+
+msgid "The background request was accepted."
+msgstr "Arka plan isteği kabul edildi."
+
+msgid "State after the request."
+msgstr "İstekten sonraki durum."

@@ -1,0 +1,8 @@
+query FlxChatSystemChecks {
+  flxChatSystemChecks {
+    errorCount
+    warningCount
+    okCount
+    items { id group label status message actionTab actionUrl actionLabel }
+  }
+}

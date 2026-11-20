@@ -66,6 +66,9 @@ function flxc_render_settings() {
 	if ( ! flxc_can_manage() ) {
 		wp_die( esc_html__( 'You do not have permission to access this page.', 'flx-chat' ) );
 	}
+	if ( function_exists( 'flxc_flux_screens_ready' ) && flxc_flux_screens_ready() && function_exists( 'flx_admin_screen_render' ) && flx_admin_screen_render() ) {
+		return;
+	}
 	$tabs = flxc_settings_tabs();
 	$tab  = isset( $_GET['tab'] ) && isset( $tabs[ $_GET['tab'] ] ) ? sanitize_key( $_GET['tab'] ) : 'baglantilar'; // phpcs:ignore
 	$s    = flxc_settings();
@@ -673,168 +676,8 @@ function flxc_save_settings() {
 	}
 	check_admin_referer( 'flxc_save_settings' );
 	$tab = sanitize_key( $_POST['tab'] ?? 'baglantilar' );
-	$in  = wp_unslash( $_POST );
-	$cur = flxc_settings();
-	$upd = array();
-
-	if ( 'baglantilar' === $tab ) {
-		$old  = flxc_connections();
-		$list = array();
-		foreach ( (array) ( $in['connections'] ?? array() ) as $row ) {
-			if ( ! is_array( $row ) ) {
-				continue;
-			}
-			$id = sanitize_key( $row['id'] ?? '' );
-			if ( ! empty( $row['delete'] ) ) {
-				continue;
-			}
-			$prev = $id && isset( $old[ $id ] ) ? $old[ $id ] : null;
-			$c    = $prev ? $prev : flxc_new_connection();
-			$src  = (string) ( $row['source'] ?? 'own' );
-			if ( 0 === strpos( $src, 'flxi:' ) ) {
-				$pid = (int) substr( $src, 5 );
-				if ( 'flxi' !== $c['source'] || (int) $c['provider_id'] !== $pid ) {
-					$c['flxs_id'] = 0; // başka bir bağlantı seçildi; eski Flux Certificates geri dönüşü geçersiz
-				}
-				$c['source']      = 'flxi';
-				$c['provider_id'] = $pid;
-			} elseif ( 0 === strpos( $src, 'flxs:' ) ) {
-				$c['source']      = 'flxs';
-				$c['provider_id'] = (int) substr( $src, 5 );
-			} else {
-				$c['source']      = 'own';
-				$c['provider_id'] = 0;
-			}
-			$c['label']    = sanitize_text_field( $row['label'] ?? '' );
-			$c['label']    = '' !== $c['label'] ? $c['label'] : 'WhatsApp';
-			$c['base_url'] = esc_url_raw( trim( (string) ( $row['base_url'] ?? '' ) ) );
-			$c['instance'] = sanitize_text_field( $row['instance'] ?? '' );
-			$key           = trim( (string) ( $row['api_key'] ?? '' ) );
-			if ( '' !== $key ) {
-				$c['api_key'] = sanitize_text_field( $key );
-			}
-			if ( ! empty( $row['new_secret'] ) ) {
-				$c['secret'] = wp_generate_password( 32, false, false );
-			}
-			$list[] = $c;
-		}
-		$upd['connections'] = $list;
-	} elseif ( 'genel' === $tab ) {
-		$upd['brand_name']      = sanitize_text_field( $in['brand_name'] ?? '' );
-		$upd['accent']          = sanitize_hex_color( $in['accent'] ?? '' ) ? sanitize_hex_color( $in['accent'] ) : '#00a884';
-		$upd['send_read']       = empty( $in['send_read'] ) ? 0 : 1;
-		$upd['agent_signature'] = empty( $in['agent_signature'] ) ? 0 : 1;
-		$upd['restrict_agents'] = empty( $in['restrict_agents'] ) ? 0 : 1;
-		$upd['show_groups']     = empty( $in['show_groups'] ) ? 0 : 1;
-		$upd['ui_flux']         = empty( $in['ui_flux'] ) ? 0 : 1;
-		$upd['delete_data']     = empty( $in['delete_data'] ) ? 0 : 1;
-		$upd['poll_interval']   = min( 60, max( 3, (int) ( $in['poll_interval'] ?? 10 ) ) );
-		$upd['delete_everyone_hours'] = min( 60, max( 0, (int) ( $in['delete_everyone_hours'] ?? 60 ) ) );
-	} elseif ( 'otomatik' === $tab ) {
-		$upd['welcome_enabled'] = empty( $in['welcome_enabled'] ) ? 0 : 1;
-		$upd['welcome_text']    = sanitize_textarea_field( $in['welcome_text'] ?? '' );
-		$upd['away_enabled']    = empty( $in['away_enabled'] ) ? 0 : 1;
-		$upd['away_text']       = sanitize_textarea_field( $in['away_text'] ?? '' );
-		$upd['away_days']       = array_values( array_filter( array_map( 'intval', (array) ( $in['away_days'] ?? array() ) ), function ( $d ) {
-			return $d >= 1 && $d <= 7;
-		} ) );
-		$upd['away_start']      = preg_match( '/^\d{2}:\d{2}$/', (string) ( $in['away_start'] ?? '' ) ) ? $in['away_start'] : '09:00';
-		$upd['away_end']        = preg_match( '/^\d{2}:\d{2}$/', (string) ( $in['away_end'] ?? '' ) ) ? $in['away_end'] : '18:00';
-		$upd['away_throttle']   = min( 72, max( 1, (int) ( $in['away_throttle'] ?? 6 ) ) );
-	} elseif ( 'etiketler' === $tab ) {
-		$labels = array();
-		$seen   = array();
-		foreach ( (array) ( $in['labels'] ?? array() ) as $l ) {
-			$name = sanitize_text_field( $l['name'] ?? '' );
-			if ( '' === $name ) {
-				continue;
-			}
-			$id = sanitize_key( $l['id'] ?? '' );
-			if ( '' === $id ) {
-				$id = substr( sanitize_key( remove_accents( $name ) ), 0, 30 );
-				$id = '' !== $id ? $id : 'l' . strtolower( wp_generate_password( 5, false, false ) );
-			}
-			while ( isset( $seen[ $id ] ) ) {
-				$id .= '2';
-			}
-			$seen[ $id ] = 1;
-			$labels[]    = array(
-				'id'    => $id,
-				'name'  => $name,
-				'color' => sanitize_hex_color( $l['color'] ?? '' ) ? sanitize_hex_color( $l['color'] ) : '#25d366',
-			);
-		}
-		$upd['labels'] = $labels;
-	} elseif ( 'kayitlar' === $tab ) {
-		foreach ( array( 'agents_donations', 'agents_certificates', 'chips_bar' ) as $k ) {
-			$upd[ $k ] = empty( $in[ $k ] ) ? 0 : 1;
-		}
-		foreach ( array( 'msg_donation_pending', 'msg_donation_done', 'msg_receipt', 'bank_text' ) as $k ) {
-			$upd[ $k ] = sanitize_textarea_field( $in[ $k ] ?? '' );
-		}
-	} elseif ( 'ai' === $tab ) {
-		$upd['ai_provider'] = sanitize_key( $in['ai_provider'] ?? '' );
-		foreach ( array( 'ai_model', 'ai_model_bot', 'ai_model_vision', 'ai_model_audio' ) as $f ) {
-			// OpenRouter "en güncel" takma adları ~ ile başlar (ör. ~deepseek/deepseek-v4-flash-latest).
-			$upd[ $f ] = preg_replace( '/[^a-zA-Z0-9_.:\/@~+-]/', '', trim( (string) ( $in[ $f ] ?? '' ) ) );
-		}
-		$upd['ai_temperature']  = min( 1, max( 0, (float) str_replace( ',', '.', (string) ( $in['ai_temperature'] ?? 0.4 ) ) ) );
-		$upd['ai_auto_suggest'] = empty( $in['ai_auto_suggest'] ) ? 0 : 1;
-		$upd['bot_enabled']     = empty( $in['bot_enabled'] ) ? 0 : 1;
-		$upd['bot_receipt_ai']  = empty( $in['bot_receipt_ai'] ) ? 0 : 1;
-		$upd['bot_scope']       = in_array( $in['bot_scope'] ?? '', array( 'all', 'away', 'unassigned' ), true ) ? $in['bot_scope'] : 'all';
-		$upd['bot_test_only']   = empty( $in['bot_test_only'] ) ? 0 : 1;
-		$upd['bot_test_numbers'] = implode( ', ', array_filter( array_map( 'flxc_normalize_phone', preg_split( '/[\s,;]+/', (string) ( $in['bot_test_numbers'] ?? '' ) ) ) ) );
-		$upd['bot_notify_numbers'] = implode( ', ', array_filter( array_map( 'flxc_normalize_phone', preg_split( '/[\s,;]+/', (string) ( $in['bot_notify_numbers'] ?? '' ) ) ) ) );
-		$upd['bot_context_hours'] = min( 168, max( 1, (int) ( $in['bot_context_hours'] ?? 24 ) ) );
-		$upd['bot_pause_hours'] = min( 720, max( 1, (int) ( $in['bot_pause_hours'] ?? 12 ) ) );
-		$upd['bot_daily_limit'] = min( 500, max( 5, (int) ( $in['bot_daily_limit'] ?? 40 ) ) );
-		$upd['bot_types']       = array_values( array_filter( array_map( 'absint', (array) ( $in['bot_types'] ?? array() ) ) ) );
-		$upd['bot_presets']     = implode( ', ', array_slice( array_filter( array_map( 'absint', preg_split( '/[\s,;]+/', (string) ( $in['bot_presets'] ?? '' ) ) ) ), 0, 8 ) );
-		$upd['bank_iban']       = strtoupper( preg_replace( '/[^A-Za-z0-9 ]/', '', (string) ( $in['bank_iban'] ?? '' ) ) );
-		$upd['donate_url']      = esc_url_raw( (string) ( $in['donate_url'] ?? '' ) );
-		$upd['mem_enabled']     = empty( $in['mem_enabled'] ) ? 0 : 1;
-		$upd['mem_after_hours'] = min( 168, max( 1, (int) ( $in['mem_after_hours'] ?? 24 ) ) );
-		$upd['workers_max']     = min( 30, max( 1, (int) ( $in['workers_max'] ?? 20 ) ) );
-		$upd['workers_reserved'] = min( 30, max( 0, (int) ( $in['workers_reserved'] ?? 5 ) ) );
-		foreach ( array( 'mem_window_from' => '03:00', 'mem_window_to' => '05:00' ) as $f => $def ) {
-			$upd[ $f ] = preg_match( '/^\d{2}:\d{2}$/', (string) ( $in[ $f ] ?? '' ) ) ? (string) $in[ $f ] : $def;
-		}
-		$upd['bot_site_search'] = empty( $in['bot_site_search'] ) ? 0 : 1;
-		$upd['bot_site_types']  = array_values( array_intersect( array_map( 'sanitize_key', (array) ( $in['bot_site_types'] ?? array() ) ), get_post_types( array( 'public' => true ) ) ) );
-		$upd['mirror_enabled']  = empty( $in['mirror_enabled'] ) ? 0 : 1;
-		$upd['bot_time_budget'] = min( 110, max( 20, (int) ( $in['bot_time_budget'] ?? 50 ) ) );
-		$upd['rem_enabled']     = empty( $in['rem_enabled'] ) ? 0 : 1;
-		$upd['rem_time']        = preg_match( '/^\d{2}:\d{2}$/', (string) ( $in['rem_time'] ?? '' ) ) ? (string) $in['rem_time'] : '09:00';
-		$upd['rem_max']         = min( 50, max( 1, (int) ( $in['rem_max'] ?? 10 ) ) );
-		$upd['email_verify']    = empty( $in['email_verify'] ) ? 0 : 1;
-		$upd['verify_ttl']      = min( 30, max( 1, (int) ( $in['verify_ttl'] ?? 5 ) ) );
-		$upd['verify_phone_channel'] = in_array( $in['verify_phone_channel'] ?? '', array( 'auto', 'whatsapp', 'sms' ), true ) ? $in['verify_phone_channel'] : 'auto';
-		$upd['verify_msg']      = sanitize_textarea_field( $in['verify_msg'] ?? '' );
-		$upd['bot_cancel_text'] = sanitize_textarea_field( $in['bot_cancel_text'] ?? '' );
-		$upd['verify_max_fails'] = min( 10, max( 1, (int) ( $in['verify_max_fails'] ?? 3 ) ) );
-		$upd['verify_fail_text'] = sanitize_text_field( $in['verify_fail_text'] ?? '' );
-		$upd['bot_fallback_wait'] = min( 45, max( 0, (int) ( $in['bot_fallback_wait'] ?? 30 ) ) );
-		$upd['notify_to_group'] = empty( $in['notify_to_group'] ) ? 0 : 1;
-		$upd['staff_on']        = empty( $in['staff_on'] ) ? 0 : 1;
-		$upd['ref_notify']      = empty( $in['ref_notify'] ) ? 0 : 1;
-		$upd['benef_cert_notify'] = empty( $in['benef_cert_notify'] ) ? 0 : 1;
-		$upd['ref_cert_notify']   = empty( $in['ref_cert_notify'] ) ? 0 : 1;
-		$upd['staff_cert_max']    = min( 20, max( 0, (int) ( $in['staff_cert_max'] ?? 3 ) ) );
-		$upd['bot_widgets']     = empty( $in['bot_widgets'] ) ? 0 : 1;
-		$upd['bot_voice']       = empty( $in['bot_voice'] ) ? 0 : 1;
-		$upd['bot_reactions']   = empty( $in['bot_reactions'] ) ? 0 : 1;
-		$upd['bot_voice_max']   = min( 300, max( 10, (int) ( $in['bot_voice_max'] ?? 60 ) ) );
-		$upd['mirror_group']    = preg_match( '/^[0-9-]+@g\.us$/', (string) ( $in['mirror_group'] ?? '' ) ) ? (string) $in['mirror_group'] : '';
-		foreach ( array( 'bot_price_footer', 'bank_holder', 'bank_desc', 'bot_after_payment', 'bot_handoff_text', 'bot_limit_text', 'staff_donor_text', 'benef_cert_text', 'ref_cert_text', 'bot_optout_text', 'bot_site_exclude', 'bot_fallback_text' ) as $f ) {
-			$upd[ $f ] = sanitize_text_field( $in[ $f ] ?? '' );
-		}
-		foreach ( array( 'ai_instructions', 'bot_instructions', 'bot_handoff_words' ) as $f ) {
-			$upd[ $f ] = sanitize_textarea_field( $in[ $f ] ?? '' );
-		}
-	}
-	unset( $cur );
-	flxc_update_settings( $upd );
+	// The tab sanitizing and storage live in FLXC_Settings_Service; GraphQL calls the same code.
+	FLXC_Settings_Service::apply( $tab, wp_unslash( $_POST ) );
 	wp_safe_redirect( admin_url( 'admin.php?page=flx-chat-ayarlar&tab=' . $tab . '&saved=1' ) );
 	exit;
 }

@@ -1,0 +1,10 @@
+mutation FlxChatConnectionQr($input: FlxChatConnectionQrInput!) {
+  flxChatConnectionQr(input: $input) {
+    ok
+    qr
+    code
+    state
+    error
+    errors { code message field }
+  }
+}

@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.51.0
+- Ayarlar (yedi sekme), hat işlemleri (test, QR, webhook, içe aktarma), sistem kontrolü, AI model listesi ve WhatsApp raporları GraphQL'de (`flxChatSettings`, `flxChatSettingsSave`, `flxChatReports…`). Klasik sayfa, `flxc_save_settings`, rapor formu ve `flx-chat/v1/admin/*` aynı servisleri çağırır; REST cevapları değişmedi.
+- Ayarlar ve Raporlar sayfaları varsayılan olarak React ekranıdır; Flux GraphQL ya da paket dosyaları yoksa klasik sayfa açılır.
+- API anahtarı ve webhook sırrı hiçbir cevapta yok. Kurulum adresi yalnız yönetici mutation'ı `flxChatWebhookUrlReveal` ile gelir.
+- Rapor gönderimi `spawn_cron` yerine jetonlu loopback (`flx-chat/v1/reports/bg`) kullanır. Durum `flxChatReportStatus`, elle çalıştırma `flxChatReportRun`.
+- Asistan sayfası (stüdyo) klasik kalır; sonraki bölümde taşınır.
+
 ## 1.50.0
 - WhatsApp asistanı vekâlet isteyen türlerde (kurban) bağışı artık kendisi açar: özetin sonunda sitedeki vekâlet metni çıkar, kişi açıkça onaylayınca kayıt açılır ve onay bağışa yazılır (`create_donation` yeni `proxy_consent`). Onay yoksa kayıt açılmaz; sitede vekâlet metni yoksa eskisi gibi ekibe devreder.
 - Eklentiler asistana kendi araçlarını ekleyebilir: `flxc_bot_tools`, `flxc_bot_tool_call`, `flxc_bot_rules` (docs/cagri-merkezi/KURULUM.md §11).

@@ -308,7 +308,7 @@ function flxc_reports_schedule() {
 add_action( 'flxc_reports_tick', 'flxc_reports_run_due' );
 add_action( 'flxc_jobs_tick', 'flxc_reports_run_due', 20 );
 // Panel ve webhook istekleri de dürter (WP-Cron çalışmayan sunucuda): en çok 5 dk'da bir bakılır;
-// gönderim bu istekte değil, arka planda (wp-cron.php) yapılır, webhook cevabı gecikmesin.
+// gönderim bu istekte değil, jetonlu arka plan isteğinde (jobs ile aynı loopback) yapılır, webhook cevabı gecikmesin.
 add_action(
 	'flxc_jobs_poked',
 	function () {
@@ -318,8 +318,37 @@ add_action(
 		set_transient( 'flxc_reports_poked', 1, 5 * MINUTE_IN_SECONDS );
 		if ( flxc_reports_has_due() ) {
 			wp_schedule_single_event( time() - 1, 'flxc_reports_tick' );
-			spawn_cron();
+			flxc_reports_kick();
 		}
+	}
+);
+
+/** Gönderim döngüsünü jetonlu arka plan isteğiyle başlatır (WP-Cron çalışmayan sunucuda spawn_cron çözüm değil). */
+function flxc_reports_kick() {
+	return flxc_loopback( 'flx-chat/v1/reports/bg' );
+}
+
+add_action(
+	'rest_api_init',
+	function () {
+		register_rest_route(
+			'flx-chat/v1',
+			'/reports/bg',
+			array(
+				'methods'             => 'POST',
+				'permission_callback' => function ( WP_REST_Request $req ) {
+					return hash_equals( flxc_bench_key(), (string) $req->get_param( 'key' ) );
+				},
+				'callback'            => function () {
+					$early = flxc_detach_response();
+					$sent  = flxc_reports_run_due();
+					if ( $early ) {
+						exit;
+					}
+					return array( 'ok' => true, 'sent' => $sent );
+				},
+			)
+		);
 	}
 );
 
@@ -374,45 +403,26 @@ function flxc_reports_post() {
 		$byid[ $r['id'] ] = $i;
 	}
 	// Formdaki tüm kurallar kaydedilir (önizle/gönder düğmesi de önce kaydeder).
-	foreach ( (array) ( $in['r'] ?? array() ) as $rid => $f ) {
-		if ( ! isset( $byid[ $rid ] ) || ! is_array( $f ) ) {
-			continue;
-		}
-		$r = $list[ $byid[ $rid ] ];
-		$r['title']      = sanitize_text_field( (string) ( $f['title'] ?? '' ) );
-		$r['active']     = empty( $f['active'] ) ? 0 : 1;
-		$r['audience']   = in_array( $f['audience'] ?? '', array( 'receive', 'view', 'users' ), true ) ? $f['audience'] : 'receive';
-		$r['users']      = array_values( array_filter( array_map( 'intval', (array) ( $f['users'] ?? array() ) ) ) );
-		$r['content']    = 'general' === ( $f['content'] ?? '' ) ? 'general' : 'own';
-		$r['period']     = in_array( $f['period'] ?? '', array( 'today', 'yesterday', 'week', 'month' ), true ) ? $f['period'] : 'today';
-		$r['freq']       = in_array( $f['freq'] ?? '', array( 'daily', 'weekly', 'monthly' ), true ) ? $f['freq'] : 'daily';
-		$r['weekday']    = min( 7, max( 1, (int) ( $f['weekday'] ?? 1 ) ) );
-		$r['monthday']   = min( 28, max( 1, (int) ( $f['monthday'] ?? 1 ) ) );
-		$r['time']       = preg_match( '/^\d{2}:\d{2}$/', (string) ( $f['time'] ?? '' ) ) ? $f['time'] : '18:00';
-		$r['motivation'] = sanitize_textarea_field( (string) ( $f['motivation'] ?? '' ) );
-		$list[ $byid[ $rid ] ] = $r;
-	}
+	$list   = FLXC_Report_Service::apply_forms( $list, (array) ( $in['r'] ?? array() ) );
 	$target = sanitize_key( (string) ( $in['rtarget'] ?? '' ) );
 	if ( 'add' === $do ) {
-		$list[] = wp_parse_args( array( 'id' => 'r' . wp_generate_password( 6, false, false ), 'title' => __( 'New report', 'flx-chat' ), 'active' => 0 ), flxc_report_defaults() );
+		$list = FLXC_Report_Service::with_new( $list );
 	} elseif ( 'delete' === $do && isset( $byid[ $target ] ) ) {
-		array_splice( $list, $byid[ $target ], 1 );
+		$list = FLXC_Report_Service::without( $list, $target );
 	}
 	flxc_reports_save( $list );
+	FLXC_Report_Service::changed();
 	if ( in_array( $do, array( 'test', 'sendnow' ), true ) && isset( $byid[ $target ] ) ) {
 		$r = flxc_reports()[ $byid[ $target ] ];
 		$n = 0;
 		if ( 'test' === $do ) {
-			$me = function_exists( 'flxr_user_phone' ) ? (string) flxr_user_phone( get_current_user_id() ) : '';
-			if ( '' === $me ) {
-				wp_safe_redirect( add_query_arg( 'err', rawurlencode( __( 'Your profile has no WhatsApp number (Users › Profile).', 'flx-chat' ) ), $back ) );
+			$n = FLXC_Report_Service::send_test( $r );
+			if ( is_wp_error( $n ) ) {
+				wp_safe_redirect( add_query_arg( 'err', rawurlencode( $n->get_error_message() ), $back ) );
 				exit;
 			}
-			$n = flxc_report_send( $me, wp_get_current_user()->display_name, flxc_report_text( $r, get_current_user_id() ) ) ? 1 : 0;
 		} else {
-			foreach ( array_slice( flxc_report_recipients( $r ), 0, 25 ) as $p ) {
-				$n += flxc_report_send( $p['phone'], $p['name'], flxc_report_text( $r, $p['id'] ) ) ? 1 : 0;
-			}
+			$n = FLXC_Report_Service::send_now( $r );
 		}
 		wp_safe_redirect( add_query_arg( 'sent', $n, $back ) . '#' . $target );
 		exit;
@@ -424,6 +434,9 @@ function flxc_reports_post() {
 function flxc_render_reports() {
 	if ( ! flxc_reports_can_manage() ) {
 		wp_die( esc_html__( 'You do not have permission to access this page.', 'flx-chat' ) );
+	}
+	if ( function_exists( 'flxc_flux_screens_ready' ) && flxc_flux_screens_ready() && function_exists( 'flx_admin_screen_render' ) && flx_admin_screen_render() ) {
+		return;
 	}
 	$list  = flxc_reports();
 	$days  = array();
