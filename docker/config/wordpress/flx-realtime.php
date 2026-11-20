@@ -2,7 +2,7 @@
 /**
  * Plugin Name: FluxWP Realtime
  * Description: Live updates for the FluxWP panel and FluxApp on Docker sites: WordPress publishes small "this changed" signals to Redis and the realtime container passes them to signed-in clients over WebSocket. Without it, clients keep polling. Written by the FluxWP Docker worker.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: FluxWP
  * License: MIT
  *
@@ -15,12 +15,17 @@
  *   flx_realtime_client_config(); // null, or array( 'url' => 'wss://…/flx-rt', 'ticket' => REST URL ) for clients
  *   flx_realtime_ticket( $user_id ); // 60 second ticket, sent as the first WebSocket message {"auth": ticket}
  *   flx_realtime_online( array( 1, 5 ) ); // users looking at an open screen now (skip phone push for them)
+ * Visitors (signed out, no WordPress user):
+ *   flx_realtime_publish( 'chatbot.conv.42', array(), array( 'topic' => 'chatbot.conv.42' ) ); // only sockets whose ticket lists this topic
+ *   flx_realtime_visitor_ticket( array( 'chatbot.conv.42' ) ); // ticket for a visitor you already authenticated yourself (e.g. by chat token)
+ *   add_filter( 'flx_realtime_public_topics', fn( $t ) => array_merge( $t, array( 'public.donate.total' ) ) ); // anyone may listen
+ *   flx_realtime_publish( 'public.donate.total', array( 'total' => 1250 ) ); // topics starting with "public." go to the public audience; data must be public
  * Signals carry no content (no message text, names or amounts): clients reload data through WordPress.
  */
 
 defined( 'ABSPATH' ) || exit;
 
-const FLX_REALTIME_VERSION    = '1.0.0';
+const FLX_REALTIME_VERSION    = '1.1.0';
 const FLX_REALTIME_TICKET_TTL = 60;
 const FLX_REALTIME_MAX_BYTES  = 4096;
 
@@ -85,6 +90,7 @@ function flx_realtime_topic_cap( string $topic ): string {
  * @param string $topic Dotted name, e.g. "chatbot.inbox". [a-z0-9_.:-], up to 80 characters.
  * @param array  $data  Small, non-sensitive hints (ids, counts). Never message text, names or amounts.
  * @param array  $args  users: int[] (only these users), cap: string (overrides the topic's capability),
+ *                      topic: string (visitor topic: only sockets whose visitor ticket lists it; "public.*" topics default to it),
  *                      inv: string[] query key prefix for clients to reload (default: topic split on dots).
  */
 function flx_realtime_publish( string $topic, array $data = array(), array $args = array() ): bool {
@@ -92,7 +98,17 @@ function flx_realtime_publish( string $topic, array $data = array(), array $args
 		return false;
 	}
 	$users = array_values( array_unique( array_filter( array_map( 'intval', (array) ( $args['users'] ?? array() ) ) ) ) );
-	$aud   = $users ? array( 'users' => $users ) : array( 'cap' => is_string( $args['cap'] ?? null ) ? $args['cap'] : flx_realtime_topic_cap( $topic ) );
+	$vt    = is_string( $args['topic'] ?? null ) ? $args['topic'] : ( 0 === strpos( $topic, 'public.' ) ? $topic : '' );
+	if ( '' !== $vt && ! preg_match( '/^[a-z0-9_.:-]{1,80}$/', $vt ) ) {
+		return false;
+	}
+	if ( $users ) {
+		$aud = array( 'users' => $users );
+	} elseif ( '' !== $vt ) {
+		$aud = array( 'topic' => $vt ); // Visitors who hold a ticket for this topic. Staff do not get it through their capability.
+	} else {
+		$aud = array( 'cap' => is_string( $args['cap'] ?? null ) ? $args['cap'] : flx_realtime_topic_cap( $topic ) );
+	}
 	$inv   = isset( $args['inv'] ) ? array_values( array_map( 'strval', (array) $args['inv'] ) ) : explode( '.', $topic );
 	$env   = array(
 		'v'   => 1,
@@ -273,6 +289,52 @@ function flx_realtime_ticket( int $user_id = 0 ): string {
 	return 'v1.' . $body . '.' . flx_realtime_b64url( hash_hmac( 'sha256', 'v1.' . $body, $secret, true ) );
 }
 
+/**
+ * Ticket for a visitor socket (no WordPress user): it only lets the socket hear the listed topics (up to 5), never
+ * staff signals. Authenticate the visitor yourself first (chat token, order key ...) and list only topics that
+ * belong to them. '' if realtime is off or no valid topic.
+ *
+ * @param string[] $topics e.g. array( 'chatbot.conv.42' )
+ */
+function flx_realtime_visitor_ticket( array $topics ): string {
+	$secret = flx_realtime_secret();
+	$topics = array_values( array_filter( array_slice( array_map( 'strval', $topics ), 0, 5 ), static fn( $t ) => (bool) preg_match( '/^[a-z0-9_.:-]{1,80}$/', $t ) ) );
+	if ( '' === $secret || ! $topics ) {
+		return '';
+	}
+	$body = flx_realtime_b64url(
+		(string) wp_json_encode(
+			array(
+				'uid'    => 0,
+				'topics' => $topics,
+				'exp'    => time() + FLX_REALTIME_TICKET_TTL,
+				'jti'    => bin2hex( random_bytes( 16 ) ),
+			)
+		)
+	);
+	return 'v1.' . $body . '.' . flx_realtime_b64url( hash_hmac( 'sha256', 'v1.' . $body, $secret, true ) );
+}
+
+/** Topics anyone may listen to without signing in. Each must start with "public."; payloads must be fit for the public. */
+function flx_realtime_public_topics(): array {
+	$out = array();
+	foreach ( (array) apply_filters( 'flx_realtime_public_topics', array() ) as $t ) {
+		if ( is_string( $t ) && 0 === strpos( $t, 'public.' ) && preg_match( '/^[a-z0-9_.:-]{1,80}$/', $t ) ) {
+			$out[] = $t;
+		}
+	}
+	return array_values( array_unique( $out ) );
+}
+
+/**
+ * For visitor widgets: null unless realtime is configured, reachable from outside and healthy (no ticket URL, because
+ * each feature issues its own ticket after its own check).
+ */
+function flx_realtime_visitor_config(): ?array {
+	$c = flx_realtime_client_config();
+	return $c ? array( 'url' => $c['url'], 'ttl' => $c['ttl'] ) : null;
+}
+
 /** Internal health of the realtime container, cached (60 s when up, 300 s when down). */
 function flx_realtime_health( bool $fresh = false ): array {
 	$cached = $fresh ? false : get_transient( 'flx_realtime_health' );
@@ -351,6 +413,43 @@ add_action(
 							'ttl'    => FLX_REALTIME_TICKET_TTL,
 						)
 					);
+					$res->header( 'Cache-Control', 'no-store' );
+					return $res;
+				},
+			)
+		);
+	}
+);
+
+add_action(
+	'rest_api_init',
+	static function () {
+		register_rest_route(
+			'flx-realtime/v1',
+			'/public-ticket',
+			array(
+				'methods'             => 'POST',
+				'permission_callback' => '__return_true',
+				'callback'            => static function ( WP_REST_Request $r ) {
+					$want   = array_values( array_filter( array_map( 'strval', (array) $r->get_param( 'topics' ) ) ) );
+					$public = flx_realtime_public_topics();
+					if ( ! $want || array_diff( $want, $public ) ) {
+						return new WP_Error( 'flx_realtime_topic', 'Unknown topic.', array( 'status' => 400 ) );
+					}
+					// Anonymous endpoint: a small per-address budget (the realtime server rate limits sockets too).
+					$ip  = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '';
+					$key = 'flx_rt_pub_' . md5( $ip );
+					$n   = (int) get_transient( $key );
+					if ( $n >= 30 ) {
+						return new WP_Error( 'flx_realtime_rate', 'Too many requests.', array( 'status' => 429 ) );
+					}
+					set_transient( $key, $n + 1, MINUTE_IN_SECONDS );
+					$ticket = flx_realtime_visitor_ticket( $want );
+					$cfg    = flx_realtime_visitor_config();
+					if ( '' === $ticket || ! $cfg ) {
+						return new WP_Error( 'flx_realtime_off', 'Realtime is not available on this site.', array( 'status' => 503 ) );
+					}
+					$res = rest_ensure_response( array( 'ticket' => $ticket, 'url' => $cfg['url'], 'ttl' => $cfg['ttl'] ) );
 					$res->header( 'Cache-Control', 'no-store' );
 					return $res;
 				},

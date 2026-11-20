@@ -30,6 +30,9 @@ export const config = {
   })(),
   maxConn: int("RT_MAX_CONN", 500, 1, 100000),
   perUser: int("RT_PER_USER", 10, 1, 1000),
+  /** Visitor (signed-out) sockets at once, e.g. site chat widgets and public counters. */
+  maxVisitors: int("RT_MAX_VISITORS", 300, 0, 100000),
+  visitorLifeMs: int("RT_VISITOR_LIFE_MINUTES", 60, 1, 1440) * 60_000,
   perIpPerMin: int("RT_PER_IP_PER_MIN", 30, 1, 10000),
   authTimeoutMs: 5000,
   maxLifeMs: int("RT_MAX_LIFE_HOURS", 12, 1, 168) * 3600_000,
@@ -43,11 +46,16 @@ export const CLOSE = { authTimeout: 4000, expired: 4001, badTicket: 4003, tooMan
 const APP_ORIGINS = new Set(["tauri://localhost", "http://tauri.localhost", "https://tauri.localhost"]);
 
 export interface Ticket {
+  /** 0 = visitor ticket (no WordPress user): it carries `topics` and nothing else. */
   uid: number;
   caps: string[];
+  /** Visitor topics this socket may hear, e.g. "chatbot.conv.42" or "public.donate.total". */
+  topics: string[];
   exp: number;
   jti: string;
 }
+
+const TOPIC_RE = /^[a-z0-9_.:-]{1,80}$/;
 
 const b64url = (b: Buffer) => b.toString("base64url");
 
@@ -70,16 +78,19 @@ export function verifyTicket(raw: unknown, secret: string, now = Math.floor(Date
   } catch {
     return "format";
   }
-  if (!Number.isInteger(t.uid) || (t.uid as number) < 1) return "format";
+  const topics = Array.isArray(t.topics) ? t.topics.filter((x) => typeof x === "string" && TOPIC_RE.test(x)).slice(0, 5) : [];
+  // A user ticket needs a user id; a visitor ticket (uid 0) needs at least one topic and carries no capabilities.
+  if (!Number.isInteger(t.uid) || (t.uid as number) < 0) return "format";
+  if ((t.uid as number) === 0 && !topics.length) return "format";
   if (!Number.isInteger(t.exp) || (t.exp as number) < now) return "expired";
   if ((t.exp as number) > now + 300) return "format"; // Tickets are short-lived by design.
   if (typeof t.jti !== "string" || !/^[A-Za-z0-9_-]{8,64}$/.test(t.jti)) return "format";
   const caps = Array.isArray(t.caps) ? t.caps.filter((c) => typeof c === "string" && /^[a-z0-9_]{1,64}$/.test(c)) : [];
-  return { uid: t.uid as number, caps, exp: t.exp as number, jti: t.jti };
+  return { uid: t.uid as number, caps: t.uid === 0 ? [] : caps, topics, exp: t.exp as number, jti: t.jti };
 }
 
 /** Same format WordPress writes; used by tests and `bun server.ts --ticket`. */
-export function signTicket(t: Ticket, secret: string): string {
+export function signTicket(t: Omit<Ticket, "topics"> & { topics?: string[] }, secret: string): string {
   const body = b64url(Buffer.from(JSON.stringify(t)));
   return "v1." + body + "." + b64url(createHmac("sha256", secret).update("v1." + body).digest());
 }
@@ -87,7 +98,7 @@ export function signTicket(t: Ticket, secret: string): string {
 interface Envelope {
   v?: number;
   t?: string;
-  aud?: { users?: unknown; cap?: unknown };
+  aud?: { users?: unknown; cap?: unknown; topic?: unknown };
   [k: string]: unknown;
 }
 
@@ -97,6 +108,7 @@ export function routes(msg: Envelope): string[] {
   const users = Array.isArray(aud.users) ? aud.users.filter((u) => Number.isInteger(u) && (u as number) > 0) : [];
   if (users.length) return users.map((u) => "u:" + u);
   if (typeof aud.cap === "string" && /^[a-z0-9_]{1,64}$/.test(aud.cap)) return ["cap:" + aud.cap];
+  if (typeof aud.topic === "string" && TOPIC_RE.test(aud.topic)) return ["t:" + aud.topic];
   return []; // No audience: nobody. WordPress always sets one (default manage_options).
 }
 
@@ -113,6 +125,7 @@ const stats = { received: 0, delivered: 0, dropped: 0, lastAt: 0, startedAt: Dat
 const byUser = new Map<number, Set<ServerWebSocket<Conn>>>();
 const attempts = new Map<string, number[]>();
 let open = 0;
+let visitors = 0;
 
 function rateOk(ip: string): boolean {
   const now = Date.now();
@@ -179,6 +192,7 @@ export async function start() {
           redis: enabled ? Boolean(sub?.connected) : false,
           connections: open,
           users: byUser.size,
+          visitors,
           ...stats,
         };
         return Response.json(body, { status: !enabled || body.redis ? 200 : 503 });
@@ -214,7 +228,7 @@ export async function start() {
           if (msg.ping !== undefined) ws.send('{"t":"pong"}');
           if (typeof (msg as { vis?: unknown }).vis === "boolean" && (msg as { vis: boolean }).vis !== ws.data.visible) {
             ws.data.visible = (msg as { vis: boolean }).vis;
-            markOnline(ws.data.uid);
+            if (ws.data.uid > 0) markOnline(ws.data.uid);
           }
           return; // Clients only listen; nothing else is accepted.
         }
@@ -226,6 +240,17 @@ export async function start() {
         const fresh = await cmd?.set(`${config.channel}:jti:${t.jti}`, "1", "NX", "EX", "600").catch(() => null);
         if (fresh !== "OK") return ws.close(CLOSE.badTicket, "used");
         if (ws.readyState !== 1) return;
+        if (t.uid === 0) {
+          // Visitor: only the topics WordPress signed, never users or capabilities.
+          if (visitors >= config.maxVisitors) return ws.close(CLOSE.tooMany, "too many");
+          visitors++;
+          clearTimeout(ws.data.authTimer);
+          ws.data.uid = -1;
+          for (const topic of t.topics) ws.subscribe("t:" + topic);
+          ws.data.lifeTimer = setTimeout(() => ws.close(CLOSE.expired, "renew"), config.visitorLifeMs);
+          ws.send(JSON.stringify({ t: "hello", uid: 0 }));
+          return;
+        }
         const mine = byUser.get(t.uid) ?? new Set();
         if (mine.size >= config.perUser) return ws.close(CLOSE.tooMany, "too many");
         clearTimeout(ws.data.authTimer);
@@ -242,7 +267,8 @@ export async function start() {
         open--;
         clearTimeout(ws.data.authTimer);
         clearTimeout(ws.data.lifeTimer);
-        if (ws.data.uid) drop(ws);
+        if (ws.data.uid === -1) visitors--;
+        else if (ws.data.uid) drop(ws);
       },
     },
   });

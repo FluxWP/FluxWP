@@ -214,6 +214,8 @@ function flxcb_widget_config() {
 		'privacy'    => wp_kses( flxcb_text( 'privacy_text' ), array( 'a' => array( 'href' => array(), 'target' => array(), 'rel' => array() ) ) ),
 		'user'       => $user,
 		'locale'     => determine_locale(),
+		// Docker sites with Flux Realtime: the widget listens for replies instead of polling every few seconds.
+		'rt'         => function_exists( 'flx_realtime_visitor_config' ) && null !== flx_realtime_visitor_config(),
 		'i18n'       => flxcb_js_strings(),
 	);
 	return (array) apply_filters( 'flxcb_widget_config', $cfg );
