@@ -1507,3 +1507,8 @@ body.flxa .flxa-date:disabled, body.flxa .flxa-date.is-readonly { background-col
 body.flxa .flxa-date-ico { display: inline-flex; color: var(--flxa-muted); flex: none; }
 body.flxa .flxa-date-val { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
+
+/* Long site names: wrap to a second line, at most 2 lines, then "…"; never run under the fold button. */
+body.flxa #adminmenu li.flxa-side-head a.flxa-brand { min-width: 0; max-width: 100%; overflow: hidden; }
+body.flxa #adminmenu li.flxa-side-head .flxa-brand-text { min-width: 0; overflow: hidden; }
+body.flxa #adminmenu li.flxa-side-head .flxa-brand-text strong { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; white-space: normal; overflow: hidden; overflow-wrap: anywhere; line-height: 1.2; }
