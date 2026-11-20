@@ -24,6 +24,15 @@ final class FLXU_Signature {
 	 */
 	const KEYS = array();
 
+	/**
+	 * Güvenilen anahtarlar (KEYS). Liste boş olabilir: çağıran taraf sabit değeri değil tipi görsün diye metot.
+	 *
+	 * @return array<string,string>
+	 */
+	public static function keys(): array {
+		return self::KEYS;
+	}
+
 	/** GitHub'da resmi paket sahibi. */
 	const GITHUB_OWNER = 'fluxwp';
 
@@ -37,7 +46,7 @@ final class FLXU_Signature {
 	 * @return array{slug:string,version:string,sig:string}|array{reject:true}|null
 	 */
 	public static function target( string $url ): ?array {
-		if ( 'off' === self::mode() || ! self::KEYS ) {
+		if ( 'off' === self::mode() || ! self::keys() ) {
 			return null;
 		}
 		$p        = wp_parse_url( $url );
@@ -133,7 +142,7 @@ final class FLXU_Signature {
 	 * @return true|WP_Error
 	 */
 	public static function verify( string $sig_json, string $slug, string $version, string $file, ?array $keys = null ) {
-		$keys = null === $keys ? self::KEYS : $keys;
+		$keys = null === $keys ? self::keys() : $keys;
 		$j    = json_decode( trim( $sig_json ), true );
 		$sig  = is_array( $j ) ? base64_decode( (string) ( $j['sig'] ?? '' ), true ) : false;
 		$kid  = is_array( $j ) ? (string) ( $j['kid'] ?? '' ) : '';
