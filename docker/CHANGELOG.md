@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026.11.20.1
+
+- New optional `realtime` service in every stack with Redis (`mariadb-redis`, `nginx-fpm`, `wpapi`, and the default `docker-compose.yml`), image `ghcr.io/fluxwp/wordpress:realtime-bun1.4`: WebSocket live updates for the FluxWP panel and FluxApp. WordPress publishes small signals to Redis (no content), the service passes them to signed-in clients on the site's own domain at `/flx-rt` (Coolify routes it; `nginx-fpm` proxies it). Coolify generates the shared secret; plain Docker sets `FLX_REALTIME_SECRET`. Without it, or if the service is down, clients poll as before.
+- New mu-plugin FluxWP Realtime 1.0.0 (`flx-realtime.php`, written by the worker only when `FLX_REALTIME_SECRET` is set): `flx_realtime_publish()`, single-use 60 second tickets (`POST /wp-json/flx-realtime/v1/ticket`), presence (`flx_realtime_online()`), sockets closed on logout / role / password change, and `wp flx realtime status|test`.
+
 ## 2026.11.19.2
 
 - `WP_AUTO_INSTALL` now defaults to false in every stack: the domain shows WordPress's own install screen (language, site name, admin) again, open without a token (Apache and nginx). `WP_AUTO_INSTALL=true` keeps the unattended worker install and the closed install screen (`WP_INSTALL_TOKEN` still opens it). Anyone who reaches a brand-new domain first can run the install, so open it right after the deploy.

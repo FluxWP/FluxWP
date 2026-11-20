@@ -1,6 +1,6 @@
 #!/bin/sh
 # FluxWP Docker - worker container.
-# Runtime revision: 2026.11.18.1
+# Runtime revision: 2026.11.20.1
 #
 # 1. Waits for the WordPress files and the database.
 # 2. One-time bootstrap (idempotent, safe on every restart):
@@ -15,6 +15,7 @@
 #      - enables the Redis object cache when WP_REDIS_HOST is set,
 #      - Flux Setup (FLUXWP_SETUP, default true): downloaded before the install screen,
 #        activated on install, its wizard opens on the first wp-admin visit.
+#      - FluxWP Realtime mu-plugin when FLX_REALTIME_SECRET is set (removed when it is not).
 # 3. Runs due cron on shared-volume wake signals (poll 2s), with a 60s fallback.
 #
 # Installed in the image as /usr/local/bin/flx-worker; runs in the wordpress:cli image as www-data (33).
@@ -260,8 +261,21 @@ wait_for_work() {
 	done
 }
 
+# FluxWP Realtime (realtime service): mu-plugin present exactly when the shared secret is set.
+RT_SRC=/usr/local/etc/flux/flx-realtime.php
+RT_DST="$ROOT/wp-content/mu-plugins/flx-realtime.php"
+sync_realtime() {
+	if [ -n "${FLX_REALTIME_SECRET:-}" ] && [ -f "$RT_SRC" ]; then
+		cmp -s "$RT_SRC" "$RT_DST" 2>/dev/null && return 0
+		mkdir -p "$ROOT/wp-content/mu-plugins" && cp "$RT_SRC" "$RT_DST" && log "realtime mu-plugin installed" || log "realtime mu-plugin could not be written"
+	elif [ -f "$RT_DST" ]; then
+		rm -f "$RT_DST" && log "realtime mu-plugin removed (FLX_REALTIME_SECRET not set)"
+	fi
+}
+
 wait_files
 wait_db
+sync_realtime
 log "ready (cron every ${INTERVAL}s)"
 
 # Bootstrap until it succeeds; give up after 30 tries (~30 min) and only run cron.

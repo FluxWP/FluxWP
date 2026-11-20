@@ -26,6 +26,8 @@ services:
       - WP_ENVIRONMENT_TYPE=${WP_ENVIRONMENT_TYPE:-production}
       - WP_REDIS_HOST=redis
       - WP_REDIS_PASSWORD=${REDIS_PASSWORD:?set REDIS_PASSWORD in .env}
+      - FLX_REALTIME_SECRET=${FLX_REALTIME_SECRET:-}
+      - FLX_REALTIME_URL=${FLX_REALTIME_URL:-/flx-rt}
       - PHP_FPM_MAX_CHILDREN=${PHP_FPM_MAX_CHILDREN:-10}
     depends_on:
       mariadb:
@@ -81,6 +83,8 @@ services:
       - WP_ENVIRONMENT_TYPE=${WP_ENVIRONMENT_TYPE:-production}
       - WP_REDIS_HOST=redis
       - WP_REDIS_PASSWORD=${REDIS_PASSWORD:?set REDIS_PASSWORD in .env}
+      - FLX_REALTIME_SECRET=${FLX_REALTIME_SECRET:-}
+      - FLX_REALTIME_URL=${FLX_REALTIME_URL:-/flx-rt}
       - WP_URL=${WP_URL:-}
       - WP_TITLE=${WP_TITLE:-WordPress}
       - WP_ADMIN_USER=${WP_ADMIN_USER:-admin}
@@ -157,6 +161,28 @@ services:
       interval: 10s
       timeout: 5s
       retries: 10
+    security_opt:
+      - no-new-privileges:true
+  # FluxWP Realtime: WebSocket live updates for the panel and FluxApp (signals from WordPress over Redis).
+  # Optional: if it is down or removed, clients poll as before. Path /flx-rt on the site's own domain.
+  realtime:
+    image: 'ghcr.io/fluxwp/wordpress:realtime-bun1.4'
+    restart: unless-stopped
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PASSWORD=${REDIS_PASSWORD:?set REDIS_PASSWORD in .env}
+      - FLX_REALTIME_SECRET=${FLX_REALTIME_SECRET:-}
+      - RT_MAX_CONN=${RT_MAX_CONN:-500}
+      - RT_PER_USER=${RT_PER_USER:-10}
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ['CMD', 'wget', '-q', '-O', '/dev/null', 'http://127.0.0.1/healthz']
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
     security_opt:
       - no-new-privileges:true
 
