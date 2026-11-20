@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.6.1
+- Paket imzası doğrulaması açıldı: FluxWP release anahtarı (kid `62a6e76c0e412d9d`) gömülü. Resmi kaynaktan gelen paket imzasızsa ya da imza tutmazsa kurulmaz.
+
 ## 1.6.0
 - Paket imzası (Ed25519): resmi güncelleme sunucusundan ve github.com/FluxWP'den gelen paketler, release'teki `<slug>.zip.sig` imzası gömülü public key'le doğrulanmadan kurulmaz. İmza slug + sürüm + zip sha256'ya bağlı; başka pakete ya da sürüme taşınamaz. Güncelleme sunucusu, onu yöneten panel ya da site anahtarı ele geçirilse bile imzasız zip kurulmaz.
 - Resmi kaynaktan gelen kanonik olmayan paket adresi (http, başka yol, port, slug/sürüm uyuşmazlığı) reddedilir; sunucunun bildirdiği sürüm adresteki sürümle aynı olmalı (eski imzalı paketi yeni diye sunup geri indirme olmaz).

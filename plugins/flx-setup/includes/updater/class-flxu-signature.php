@@ -22,7 +22,9 @@ final class FLXU_Signature {
 	 * Güvenilen public key'ler: kid (sha256(pk) ilk 16 hex) => base64 public key. Anahtar değişince yenisi eklenir,
 	 * eskisi bir sürüm sonra çıkarılır.
 	 */
-	const KEYS = array();
+	const KEYS = array(
+		'62a6e76c0e412d9d' => 'PxeM00rC+xjZAhAGFGwxk/mHa2lb9AL0rFCw07SiH7E=',
+	);
 
 	/**
 	 * Güvenilen anahtarlar (KEYS). Liste boş olabilir: çağıran taraf sabit değeri değil tipi görsün diye metot.
