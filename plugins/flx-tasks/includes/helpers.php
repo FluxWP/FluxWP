@@ -1,6 +1,25 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Flux Realtime (Docker sites with Redis): a task, comment, list or notification changed. Open boards and
+ * lists sync at once instead of waiting for their poll. The signal carries nothing (no ids, titles or text);
+ * the screen asks the server, which applies each user's list permissions. Without Flux Realtime this does
+ * nothing and screens poll as before.
+ */
+function flxg_realtime_ping() {
+	if ( function_exists( 'flx_realtime_publish' ) ) {
+		flx_realtime_publish( 'tasks.changed', array(), array( 'inv' => array() ) );
+	}
+}
+add_filter(
+	'flx_realtime_topics',
+	static function ( $topics ) {
+		$topics['tasks.'] = 'flxg_use';
+		return $topics;
+	}
+);
+
 function flxg_table( $name ) {
 	global $wpdb;
 	return $wpdb->prefix . 'flxg_' . $name;

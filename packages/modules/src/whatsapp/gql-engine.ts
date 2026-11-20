@@ -13,6 +13,7 @@ import {
   FlxChatReplyUse, FlxChatSuggest, FlxChatTyping, FlxChatUpdate, FlxChatUpdates,
 } from '@fluxwp/graphql/operations';
 import { browserPorts, type ModulePorts } from '@fluxwp/runtime/src/modules/ports';
+import { feedPoll, type RealtimeFeed } from '@fluxwp/runtime/src/feed';
 
 export interface ChatMsgs {
   list: FlxcMessage[];
@@ -50,6 +51,8 @@ export interface EngineOptions {
   /** Server poll hint, seconds. Never below 10. */
   poll?: number;
   ports?: ModulePorts;
+  /** Live signals (Docker sites): a "chat." signal syncs at once and polling slows down to a safety net. */
+  realtime?: RealtimeFeed;
 }
 
 const PAGE = 50;
@@ -128,6 +131,8 @@ export class WaEngine {
   private readonly pendingArgs = new Map<number, FlxcSendArgs>();
   private readonly ports: ModulePorts;
   private unvis: (() => void) | null = null;
+  private unrt: (() => void)[] = [];
+  private again = false;
 
   constructor(private o: EngineOptions) {
     this.ports = o.ports ?? browserPorts();
@@ -185,6 +190,14 @@ export class WaEngine {
 
   async start() {
     this.stopped = false;
+    const rt = this.o.realtime;
+    if (rt) {
+      this.unrt = [
+        rt.on('chat.', () => (this.syncing ? (this.again = true) : this.schedule(0))),
+        // Connection lost: go back to the normal poll at once instead of waiting out the safety net.
+        rt.onLive((live) => (live ? undefined : this.schedule(500))),
+      ];
+    }
     this.unvis = this.ports.onVisibility((visible) => {
       if (!visible) {
         if (this.timer) clearTimeout(this.timer);
@@ -221,6 +234,8 @@ export class WaEngine {
     if (this.timer) clearTimeout(this.timer);
     this.unvis?.();
     this.unvis = null;
+    this.unrt.forEach((f) => f());
+    this.unrt = [];
   }
 
   async loadChats(more = false) {
@@ -439,7 +454,7 @@ export class WaEngine {
 
   private interval() {
     const base = Math.max(10, this.o.poll ?? 10) * 1000;
-    return Math.min(120_000, base * 2 ** Math.min(4, this.fails));
+    return feedPoll(this.o.realtime, Math.min(120_000, base * 2 ** Math.min(4, this.fails)));
   }
 
   async sync() {
@@ -477,6 +492,10 @@ export class WaEngine {
       this.schedule(this.interval());
     } finally {
       this.syncing = false;
+      if (this.again) {
+        this.again = false;
+        this.schedule(0); // a signal arrived while this sync was running
+      }
     }
   }
 }

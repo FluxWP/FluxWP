@@ -4,6 +4,7 @@ import { useSyncExternalStore } from 'react';
 import { stripTags } from '@fluxwp/core';
 import type { FlxgApi, FlxgBoot, FlxgField, FlxgList, FlxgNotif, FlxgSpace, FlxgStatus, FlxgTag, FlxgTask, FlxgUser, FlxgView, FlxgViewConfig } from '@fluxwp/core';
 import { browserPorts, store, type ModulePorts } from '../ports';
+import { feedPoll, type RealtimeFeed } from '../../feed';
 
 export { store };
 
@@ -104,6 +105,10 @@ export class FlxgEngine {
   private prefTimer: ReturnType<typeof setTimeout> | undefined;
   private prefQueue: Record<string, unknown> = {};
   private listeners: Record<string, Set<(a?: unknown) => void>> = {};
+  /** Live feed (Docker sites): a "tasks." signal syncs at once; polling is a slow safety net while it is live. */
+  private feed: RealtimeFeed | undefined;
+  private unfeed: (() => void)[] = [];
+  private again = false;
   onRoute?: (r: Route) => void;
   onNotify?: (n: FlxgNotif[]) => void;
   onError: (e: unknown) => void = () => {};
@@ -123,6 +128,21 @@ export class FlxgEngine {
     this.unvis = this.ports.onVisibility((v) => {
       if (v) this.schedule(500);
     });
+  }
+
+  /** Listens to the account's realtime signals (call once after construction). */
+  attach(feed: RealtimeFeed | undefined) {
+    this.detach();
+    this.feed = feed;
+    if (!feed) return;
+    this.unfeed = [
+      feed.on('tasks.', () => (this.inFlight ? (this.again = true) : this.schedule(0))),
+      feed.onLive((live) => (live ? undefined : this.schedule(500))),
+    ];
+  }
+  private detach() {
+    this.unfeed.forEach((f) => f());
+    this.unfeed = [];
   }
 
   private t(s: string, vars?: Record<string, string | number>) {
@@ -222,10 +242,12 @@ export class FlxgEngine {
     this.unvis = this.ports.onVisibility((v) => {
       if (v) this.schedule(500);
     });
+    this.attach(this.feed);
     this.schedule(0);
   }
 
   dispose() {
+    this.detach();
     clearTimeout(this.syncTimer);
     clearTimeout(this.prefTimer);
     this.unvis();
@@ -792,8 +814,8 @@ export class FlxgEngine {
   }
   private interval() {
     const base = Math.max(15, this.S.config.poll || 45) * 1000;
-    if (this.fail) return Math.min(300000, base * 2 ** this.fail);
-    return Date.now() - this.lastInput < 120000 ? Math.min(base, 10000) : base;
+    if (this.fail) return feedPoll(this.feed, Math.min(300000, base * 2 ** this.fail));
+    return feedPoll(this.feed, Date.now() - this.lastInput < 120000 ? Math.min(base, 10000) : base);
   }
   schedule(ms?: number) {
     clearTimeout(this.syncTimer);
@@ -840,7 +862,10 @@ export class FlxgEngine {
       this.fail = Math.min(this.fail + 1, 5);
     } finally {
       this.inFlight = false;
-      this.schedule();
+      if (this.again) {
+        this.again = false;
+        this.schedule(0); // a signal arrived while this sync was running
+      } else this.schedule();
     }
   }
 }

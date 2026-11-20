@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.51.0
+- Canlı akış (Docker siteler, Flux Realtime): sohbet, mesaj ya da durum değişince açık WhatsApp ekranı sıradaki yoklamayı beklemeden hemen güncellenir (`chat.inbox` sinyali, yalnız `flxc_use` olanlara; sinyalde sohbet numarası, ad ya da metin yok, veri yine yetkili GraphQL'den gelir). Bağlıyken yoklama 120 sn güvenlik ağına iner, bağlantı koparsa eski aralığa döner. Flux Realtime yoksa (Hostinger, Redis'siz) hiçbir şey değişmez.
+
 ## 1.50.1
 - Güvenlik: bağlantı önizlemesi ve profil fotoğrafı indirme, ortak denetimli istekten (flx-brand `flx_safe_remote_get`) geçer. Mesajdaki adres iç ağa, bulut metadata adresine (169.254.169.254) ya da IPv6 özel aralıklarına çözülüyorsa ve yönlendirme oraya gidiyorsa istek atılmaz.
 

@@ -1,5 +1,8 @@
 # Flux Tasks — Değişiklikler
 
+## 0.19.0
+- Canlı akış (Docker siteler, Flux Realtime): görev, yorum, liste yapısı ya da bildirim değişince açık Flux Tasks ekranı hemen eşitlenir (`tasks.changed` sinyali, `flxg_use` olanlara; içerik taşımaz, yetki yine listelere göre sunucuda uygulanır). Bağlıyken eşitleme 120 sn güvenlik ağına iner, bağlantı koparsa ayardaki aralığa döner. Flux Realtime yoksa hiçbir şey değişmez.
+
 ## 0.18.1
 - Dokümanda "Yapay zekâ" düğmesi (ve seçili metindeki balon, "/" menüsü) artık açılıyor: istem kutusu + Gönder, hazır işlemler ve sonuç önizlemesi görünür. Panel önceden ekranın stil alanının dışına ekleniyordu, bu yüzden basınca hiçbir şey görünmüyordu. Görsel yeniden boyutlandırma ipucu ve dosya üstü düğmesi de aynı sebeple düzeltildi.
 - Flux AI kurulu değilse ya da anahtar/model yoksa düğme sessiz kalmaz: nedenini söyleyen bir pencere açılır.

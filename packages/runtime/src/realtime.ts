@@ -6,17 +6,13 @@
 // POST flx-realtime/v1/ticket, 60 s, single use), then {"vis": bool} when the screen goes to the background or
 // back, so the site does not send a phone push for something already on screen.
 import { useEffect, useSyncExternalStore } from 'react';
+import type { QueryClient } from '@tanstack/react-query';
 import { platform } from '@fluxwp/core';
 import { useScope } from './scope';
 import { useConfig } from './hooks';
+import { makeFeed, type FeedImpl, type RealtimeFeed, type RealtimeMessage } from './feed';
 
-export interface RealtimeMessage {
-  v?: number;
-  t: string;
-  inv?: string[];
-  d?: Record<string, unknown>;
-  at?: number;
-}
+export { feedPoll, REALTIME_SAFETY_MS, type RealtimeFeed, type RealtimeMessage } from './feed';
 
 type WsLike = Pick<WebSocket, 'send' | 'close' | 'readyState'> & {
   onopen: ((e: unknown) => void) | null;
@@ -149,29 +145,55 @@ export class RealtimeConnection {
   }
 }
 
-/* Per-account "connected" flag, read by polling hooks to slow down. */
-const liveAccounts = new Set<string>();
-const listeners = new Set<() => void>();
-function setAccountLive(id: string, v: boolean) {
-  if (v === liveAccounts.has(id)) return;
-  if (v) liveAccounts.add(id);
-  else liveAccounts.delete(id);
-  listeners.forEach((l) => l());
+const feeds = new Map<string, FeedImpl>();
+
+/** The account's feed (created on first use). */
+export function realtimeFeed(accountId: string): RealtimeFeed {
+  return feedImpl(accountId);
 }
+function feedImpl(accountId: string): FeedImpl {
+  let f = feeds.get(accountId);
+  if (!f) feeds.set(accountId, (f = makeFeed()));
+  return f;
+}
+
+const listeners = new Set<() => void>();
 const subscribeLive = (l: () => void) => {
   listeners.add(l);
   return () => listeners.delete(l);
 };
+function setAccountLive(id: string, v: boolean) {
+  const f = feedImpl(id);
+  if (v === f.live()) return;
+  f.set(v);
+  listeners.forEach((l) => l());
+}
 
 /** True while this account has a live realtime connection. */
 export function useRealtimeLive(): boolean {
   const { account } = useScope();
-  return useSyncExternalStore(subscribeLive, () => liveAccounts.has(account.id), () => false);
+  return useSyncExternalStore(subscribeLive, () => feedImpl(account.id).live(), () => false);
 }
 
 /** Polling interval to use: `ms` normally, a 120 s safety net while realtime is connected. */
 export function useLivePoll(ms: number): number {
   return useRealtimeLive() ? Math.max(ms, 120_000) : ms;
+}
+
+/**
+ * `inv` is a react-query key prefix. `["gql", "FlxChatbot"]` is special: it reloads every GraphQL operation of
+ * this account whose name starts with "FlxChatbot" (their keys are [account, "gql", name, variables]).
+ */
+export function invalidateFor(client: QueryClient, accountId: string, inv: unknown): void {
+  if (!Array.isArray(inv) || !inv.length) return;
+  if (inv[0] === 'gql') {
+    const prefix = typeof inv[1] === 'string' ? inv[1] : '';
+    void client.invalidateQueries({
+      predicate: (q) => q.queryKey[0] === accountId && q.queryKey[1] === 'gql' && String(q.queryKey[2] ?? '').startsWith(prefix),
+    });
+    return;
+  }
+  void client.invalidateQueries({ queryKey: inv });
 }
 
 /**
@@ -194,7 +216,8 @@ export function useRealtime(onMessage?: (m: RealtimeMessage) => void) {
       url,
       ticket: async () => (await api<{ ticket: string }>('flx-realtime/v1/ticket', { method: 'POST', body: {} })).ticket,
       onMessage: (m) => {
-        if (Array.isArray(m.inv) && m.inv.length) void client.invalidateQueries({ queryKey: m.inv });
+        invalidateFor(client, account.id, m.inv);
+        feedImpl(account.id).emit(m);
         onMessage?.(m);
       },
       onLive: (v) => setAccountLive(account.id, v),

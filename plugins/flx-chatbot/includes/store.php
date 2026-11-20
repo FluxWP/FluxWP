@@ -44,6 +44,28 @@ function flxcb_conversation_by_flxc( $chat_id ) {
 }
 
 /**
+ * Flux Realtime (Docker sites with Redis): a conversation or message changed. Open panels reload the inbox at
+ * once instead of waiting for their poll. Signals carry nothing (no ids, names or text). Two topics because
+ * the inbox is open to flxcb_reply holders and to Flux Chat agents (flxc_use); each gets the one it can hear.
+ * Without Flux Realtime this does nothing and panels poll as before.
+ */
+function flxcb_realtime_ping() {
+	if ( function_exists( 'flx_realtime_publish' ) ) {
+		$args = array( 'inv' => array( 'gql', 'FlxChatbot' ) );
+		flx_realtime_publish( 'chatbot.inbox', array(), $args );
+		flx_realtime_publish( 'chatbot.staff.inbox', array(), $args );
+	}
+}
+add_filter(
+	'flx_realtime_topics',
+	static function ( $topics ) {
+		$topics['chatbot.']       = 'flxcb_reply';
+		$topics['chatbot.staff.'] = 'flxc_use';
+		return $topics;
+	}
+);
+
+/**
  * Yeni sohbet.
  *
  * @return array{0: array, 1: string} sohbet ve ziyaretçi anahtarı
@@ -72,6 +94,7 @@ function flxcb_create_conversation( array $data ) {
 	}
 	$conv = flxcb_get_conversation( $id );
 	do_action( 'flxcb_conversation_created', $conv );
+	flxcb_realtime_ping();
 	return array( $conv, $token );
 }
 
@@ -84,6 +107,7 @@ function flxcb_update_conversation( $id, array $fields ) {
 		return;
 	}
 	$wpdb->update( flxcb_table( 'conversations' ), $fields, array( 'id' => (int) $id ) );
+	flxcb_realtime_ping();
 	if ( array_intersect_key( $fields, array( 'name' => 1, 'email' => 1, 'phone' => 1 ) ) ) {
 		do_action( 'flxcb_contact_changed', (int) $id, $fields );
 	}
@@ -116,6 +140,7 @@ function flxcb_delete_conversation( $id ) {
 	$wpdb->delete( flxcb_table( 'messages' ), array( 'conv_id' => (int) $id ) );
 	$wpdb->delete( flxcb_table( 'conversations' ), array( 'id' => (int) $id ) );
 	do_action( 'flxcb_conversation_deleted', (int) $id );
+	flxcb_realtime_ping();
 }
 
 /**
@@ -158,6 +183,7 @@ function flxcb_add_message( array $m ) {
 	}
 	$row = flxcb_get_message( $id );
 	do_action( 'flxcb_message_added', $row );
+	flxcb_realtime_ping();
 	return $id;
 }
 

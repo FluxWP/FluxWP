@@ -147,6 +147,7 @@ export function TasksScreen() {
     // Shown again after being kept hidden (app): the data is still here, only pick up changes.
     else if (c.e.S.ready) c.e.resume();
     else void c.e.boot();
+    c.e.attach(host.realtime);
     const onHash = () => host.mode === 'wp' && void c.e.go(parseHash(location.hash));
     window.addEventListener('hashchange', onHash);
     const vis = () => !document.hidden && c.e.schedule(500);
@@ -156,7 +157,7 @@ export function TasksScreen() {
       document.removeEventListener('visibilitychange', vis);
       c.e.dispose();
     };
-  }, [c, host.mode]);
+  }, [c, host.mode, host.realtime]);
 
   // A language other than English / Turkish: its words load beside the first data (one small file).
   const langOk = ytgLangReady(i18n.language);

@@ -109,3 +109,31 @@ describe('realtime', () => {
     expect(realtimeDelay(6, 0.5)).toBe(600000);
   });
 });
+
+describe('realtime feed', () => {
+  it('routes signals by topic prefix, reports live changes and slows polling only while live', async () => {
+    const { realtimeFeed, feedPoll, invalidateFor } = await import('./realtime');
+    const f = realtimeFeed('acct-feed');
+    const seen: string[] = [];
+    const off = f.on('chat.', (m) => seen.push(m.t));
+    const lives: boolean[] = [];
+    f.onLive((v) => lives.push(v));
+    expect(feedPoll(f, 10_000)).toBe(10_000);
+    // Same object per account: engines and the bridge component share it.
+    expect(realtimeFeed('acct-feed')).toBe(f);
+    expect(realtimeFeed('acct-other')).not.toBe(f);
+    const calls: unknown[] = [];
+    const client = { invalidateQueries: (o: unknown) => calls.push(o) } as never;
+    invalidateFor(client, 'a1', ['gql', 'FlxChatbot']);
+    invalidateFor(client, 'a1', ['sync']);
+    invalidateFor(client, 'a1', []);
+    expect(calls).toHaveLength(2);
+    const pred = (calls[0] as { predicate: (q: { queryKey: unknown[] }) => boolean }).predicate;
+    expect(pred({ queryKey: ['a1', 'gql', 'FlxChatbotConversationList', {}] })).toBe(true);
+    expect(pred({ queryKey: ['a2', 'gql', 'FlxChatbotConversationList'] })).toBe(false);
+    expect(pred({ queryKey: ['a1', 'gql', 'FlxTasks'] })).toBe(false);
+    expect(calls[1]).toEqual({ queryKey: ['sync'] });
+    off();
+    expect(seen).toEqual([]);
+  });
+});
