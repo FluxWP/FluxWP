@@ -1,7 +1,7 @@
 name: Release imzalarını tamamla
 
-# Elle çalıştırılır. Paket release workflow'u her çalışmada son 5 sürümün eksik imzalarını zaten tamamlar
-# (bin/sign-missing.sh); bu workflow tek paket ya da daha çok eski sürüm için.
+# Yalnız elle çalıştırılır (bin/sign-missing.sh): imzası olmayan eski sürümleri imzalar. Release'teki zip'i
+# olduğu gibi imzalar; yeni sürümler release workflow'unun publish işinde, depodan üretilen zip'le imzalanır.
 
 on:
   workflow_dispatch:

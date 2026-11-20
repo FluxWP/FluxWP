@@ -2,6 +2,8 @@ name: Paket release
 
 # main'e push edilen her pakette sürüm (Version:) değiştiyse:
 #   zip üret → <slug>-v<sürüm> tag'i + GitHub Release → güncelleme sunucusunun önbelleğini boşalt.
+# İki iş: "release" test eder (WordPress, WP-CLI, başka eklentiler çalışır; hiçbir secret görmez),
+# "publish" temiz makinede zip'i yeniden üretir, imzalar ve yayınlar (imza anahtarı yalnız orada).
 # Sürüm değişmediyse hiçbir şey yapılmaz. Sürümde "-" varsa (1.2.0-beta.1) pre-release olur.
 # Yayından önce güncelleme testi (bin/test-update.sh): önceki sürüm kurulu temiz bir WordPress'te
 # yeni sürüme geçilir, sayfalar açılır; PHP fatal / HTTP 500 olursa o paket yayınlanmaz.
@@ -24,7 +26,7 @@ on:
         default: false
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: release
@@ -57,16 +59,13 @@ jobs:
       - name: Yayın testi hata algılama kontrolleri
         run: bash bin/tests/test-smoke-response.sh
 
-      - name: Sürümü değişenleri test et ve yayınla
+      - name: Sürümü değişenleri test et
         env:
           GH_TOKEN: ${{ github.token }}
-          UPDATE_SERVER: ${{ vars.UPDATE_SERVER || 'https://updater.fluxwp.com' }}
-          WEBHOOK_SECRET: ${{ secrets.UPDATE_WEBHOOK_SECRET }}
-          FLX_RELEASE_SIGNING_KEY: ${{ secrets.FLX_RELEASE_SIGNING_KEY }}
         run: |
           set -euo pipefail
-          released=0
           failed=""
+          : > ready.txt
           mkdir -p prev
           for dir in ${{ steps.find.outputs.dirs }}; do
             [ -d "$dir" ] || continue
@@ -109,6 +108,65 @@ jobs:
               echo "::endgroup::"
             fi
 
+            # Yayın ayrı işte (publish): imza anahtarı test edilen kodla aynı makinede bulunmaz.
+            echo "$dir" >> ready.txt
+          done
+
+          if [ -n "$failed" ]; then
+            echo "::error::Yayınlanmayan paketler:$failed"
+            exit 1
+          fi
+
+      - name: Testten geçen paket listesi
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: ready
+          path: ready.txt
+          if-no-files-found: ignore
+          retention-days: 1
+
+  # İmza ve yayın temiz bir makinede: yalnız depodaki kod çalışır (WordPress, WP-CLI, başka eklenti yok).
+  # Zip burada, aynı commit'ten yeniden üretilir; test işinin ürettiği dosya imzalanmaz.
+  publish:
+    needs: release
+    if: always() && needs.release.result != 'cancelled' && needs.release.result != 'skipped'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Testten geçen paket listesi
+        uses: actions/download-artifact@v5
+        continue-on-error: true
+        with:
+          name: ready
+
+      - name: İmzala ve yayınla
+        env:
+          GH_TOKEN: ${{ github.token }}
+          UPDATE_SERVER: ${{ vars.UPDATE_SERVER || 'https://updater.fluxwp.com' }}
+          WEBHOOK_SECRET: ${{ secrets.UPDATE_WEBHOOK_SECRET }}
+          FLX_RELEASE_SIGNING_KEY: ${{ secrets.FLX_RELEASE_SIGNING_KEY }}
+        run: |
+          set -euo pipefail
+          released=0
+          failed=""
+          [ -f ready.txt ] || { echo "Yayınlanacak paket yok"; exit 0; }
+          while IFS= read -r dir; do
+            dir="${dir%/}"
+            # Liste test işinden gelir: yalnız depodaki gerçek paket klasörü kabul edilir.
+            [[ "$dir" =~ ^(plugins|themes)/[a-z0-9][a-z0-9-]*$ ]] && [ -d "$dir" ] || { echo "::warning::Geçersiz satır atlandı"; continue; }
+            eval "$(bin/package-info.sh "$dir")"
+            [ -n "$VERSION" ] || continue
+            tag="$SLUG-v$VERSION"
+            if git rev-parse -q --verify "refs/tags/$tag" >/dev/null; then
+              echo "$tag zaten var"; continue
+            fi
+            bin/build.sh "$dir"
             bin/release-notes.sh "$dir" > "dist/$SLUG-notes.md"
             pre=""
             case "$VERSION" in *-*) pre="--prerelease" ;; esac
@@ -133,7 +191,7 @@ jobs:
               --notes-file "dist/$SLUG-notes.md" $pre
             echo "::notice::$tag yayınlandı"
             released=1
-          done
+          done < ready.txt
 
           if [ "$released" = 1 ] && [ -n "${WEBHOOK_SECRET:-}" ] && [ "$GITHUB_REPOSITORY_OWNER" = "FluxWP" ]; then
             body='{"source":"github-actions"}'
@@ -144,18 +202,9 @@ jobs:
           fi
 
           if [ -n "$failed" ]; then
-            echo "::error::Yayınlanmayan paketler:$failed"
+            echo "::error::İmzalanamayan paketler:$failed"
             exit 1
           fi
-
-      - name: Eski sürümlerin eksik imzalarını tamamla
-        # Son 5 sürümde <slug>.zip.sig yoksa üretir (geri alma ve ilk kurulum imzalı paket ister). Secret yoksa uyarı.
-        if: always()
-        env:
-          GH_TOKEN: ${{ github.token }}
-          FLX_RELEASE_SIGNING_KEY: ${{ secrets.FLX_RELEASE_SIGNING_KEY }}
-          SIGN_OPTIONAL: '1'
-        run: bin/sign-missing.sh
 
       - name: README paket tablosunu güncelle
         # Kopya repoda da yazılırsa iki tarafta farklı README commit'i oluşur, main ayrışır.
