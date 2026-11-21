@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.6.9
+- Paketler › toplu "Otomatik güncellemeyi aç/kapat": işlemden sonra tablo, işlemden önce başlamış eski bir yenilemeye takılmadan yeni durumu gösterir (önceden açılışta çalışan güncelleme kontrolü sırasında satırlar eski haliyle kalıyordu). Kurulu olmayan satırlar seçimden çıkarılır, "atlandı" listesini şişirmez; sonuç mesajı görünür alana kaydırılır. Site genelinde otomatik güncelleme kapalıysa (AUTOMATIC_UPDATER_DISABLED vb.) hepsi tek tek atlanmak yerine nedeniyle birlikte hata verir.
+
 ## 1.6.8
 - Ayarlar › "FluxWP hesabınızı bağlayın" kartı çarpıyla gizlenir; seçilen süre dolunca (varsayılan 7 gün; 1, 3, 7, 14, 30 gün ya da bir daha gösterme) yeniden görünür. Süre kartın altından değişir, gizliyken "Şimdi göster" var. Gizleme kullanıcı başına, süre site geneli. Bağlı sitede kart gizlenmez. GraphQL `flxSetupCloudCard` mutation'ı, `FlxSetupCloud.hidden` / `hideDays` alanları.
 - "FluxWP ile giriş yap" isteği 10 yerine 30 dakika geçerli: fluxwp.com'da kaydolup e-postayı doğrulayan kişi aynı istekle döner.
