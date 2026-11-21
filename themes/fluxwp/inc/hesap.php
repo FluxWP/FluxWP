@@ -172,12 +172,33 @@ add_action(
 		<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
+<script>
+/* Pencere, açan sayfanın temasını kullanır: koyu/açık sınıfları ve sayfanın renk değişkenleri (--flx-*, --wp--preset--*) aynen alınır. */
+( function () {
+	try {
+		var P = window.parent.document;
+		if ( P === document ) { return; }
+		var h = document.documentElement, b = document.body;
+		var dark = /(^|-)dark$/;
+		P.documentElement.classList.forEach( function ( c ) { if ( dark.test( c ) ) { h.classList.add( c ); } } );
+		P.body.classList.forEach( function ( c ) { if ( dark.test( c ) ) { b.classList.add( c ); } } );
+		h.classList.forEach( function ( c ) { if ( dark.test( c ) && ! P.documentElement.classList.contains( c ) ) { h.classList.remove( c ); } } );
+		b.classList.forEach( function ( c ) { if ( dark.test( c ) && ! P.body.classList.contains( c ) ) { b.classList.remove( c ); } } );
+		[ 'data-flxfw-theme', 'data-theme' ].forEach( function ( a ) { if ( P.documentElement.hasAttribute( a ) ) { h.setAttribute( a, P.documentElement.getAttribute( a ) ); } } );
+		var cs = window.parent.getComputedStyle( P.body );
+		for ( var i = 0; i < cs.length; i++ ) {
+			if ( 0 === cs[ i ].indexOf( '--' ) ) { b.style.setProperty( cs[ i ], cs.getPropertyValue( cs[ i ] ) ); }
+		}
+		h.style.colorScheme = window.parent.getComputedStyle( P.documentElement ).colorScheme || '';
+	} catch ( e ) {}
+} )();
+</script>
 <main class="flx-auth-frame__main"><?php echo do_shortcode( '[woocommerce_my_account]' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></main>
 <script>
 ( function () {
 	var send = function () { if ( window.parent !== window ) { window.parent.postMessage( { flxAuthH: document.querySelector( '.flx-auth-frame__main' ).scrollHeight }, location.origin ); } };
 	if ( 'ResizeObserver' in window ) { new ResizeObserver( send ).observe( document.querySelector( '.flx-auth-frame__main' ) ); }
-	window.addEventListener( 'load', send );
+	window.addEventListener( 'load', function () { send(); setTimeout( send, 800 ); setTimeout( send, 2500 ); } ); // Google butonu sonradan çizilir.
 } )();
 </script>
 		<?php wp_footer(); ?>
