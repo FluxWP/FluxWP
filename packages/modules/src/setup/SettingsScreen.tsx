@@ -2,7 +2,7 @@
 // usage data consent and the other update sources. Same screen in wp-admin and the FluxWP app.
 import { useEffect, useState, type FormEvent } from 'react';
 import { useFlxMutation, useFlxQuery } from '@fluxwp/graphql/react';
-import { FlxSetupCheck, FlxSetupSettingsSave, FlxSetupSettingsScreen, FlxSetupSourceAdd, FlxSetupSourceChange, FlxSetupTelemetrySave } from '@fluxwp/graphql/operations';
+import { FlxSetupCheck, FlxSetupCloudCard, FlxSetupSettingsSave, FlxSetupSettingsScreen, FlxSetupSourceAdd, FlxSetupSourceChange, FlxSetupTelemetrySave } from '@fluxwp/graphql/operations';
 import type { FlxSetupSettingsScreenQuery } from '@fluxwp/graphql/types';
 import { Loading, Modal, Screen } from '@fluxwp/ui';
 import { errorText, NoticeBar, SetupProvider, useSetup, type Notice } from './shared';
@@ -116,7 +116,7 @@ function Settings() {
         </button>
       </div>
 
-      <CloudCard cloud={q.data.flxSetupCloud} t={t} />
+      <CloudCard cloud={q.data.flxSetupCloud} t={t} onNotice={setNotice} />
 
       <h2>{t('Connection')}</h2>
       <form className="flxk-card flxk-form" onSubmit={submit}>
@@ -369,15 +369,43 @@ function cloudFlash(code: string, t: ReturnType<typeof useSetup>['t']): [Notice[
   }
 }
 
-/** FluxWP account: "Sign in with FluxWP" (fluxwp.com gives this site its update key and plan packages). */
-function CloudCard({ cloud: c, t }: { cloud: Data['flxSetupCloud']; t: ReturnType<typeof useSetup>['t'] }) {
+/** Choices for "show the hidden card again after": days, 0 = never. */
+const CLOUD_CARD_DAYS = [1, 3, 7, 14, 30, 0];
+
+/**
+ * FluxWP account: "Sign in with FluxWP" (fluxwp.com gives this site its update key and plan packages).
+ * Not connected: × hides the card for this user; it comes back after the chosen number of days (default 7).
+ */
+function CloudCard({ cloud: c, t, onNotice }: { cloud: Data['flxSetupCloud']; t: ReturnType<typeof useSetup>['t']; onNotice: (n: Notice) => void }) {
+  const { refresh } = useSetup();
   const code = typeof window === 'undefined' ? '' : new URLSearchParams(window.location.search).get('flxk_cloud') || '';
   const flash = code === 'fail' && c.flash ? (['error', c.flash] as const) : cloudFlash(code, t);
+  const card = useFlxMutation(FlxSetupCloudCard, {
+    onSuccess: (r) => {
+      const p = r.flxSetupCloudCard;
+      if (p?.errors.length) return onNotice({ kind: 'error', text: p.errors.map((e) => e.message).join(' ') });
+      void refresh();
+    },
+    onError: (e) => onNotice({ kind: 'error', text: errorText(e, t('The action could not be completed.')) }),
+  });
   if (!c.postUrl) return null;
+  const daysLabel = (d: number) => (d === 0 ? t('Never') : d === 1 ? t('After 1 day') : t('After %d days', d));
+  if (c.hidden && !flash) {
+    return (
+      <div className="flxk-cloud-hidden">
+        <span className="flxk-muted">
+          {c.hideDays === 0 ? t('The FluxWP account card is hidden.') : t('The FluxWP account card is hidden for %d days after you close it.', c.hideDays)}
+        </span>
+        <button type="button" className="flxk-linkbtn" disabled={card.isPending} onClick={() => card.mutate({ input: { hide: false } })}>
+          {t('Show now')}
+        </button>
+      </div>
+    );
+  }
   return (
     <>
       {flash && <div className={'flxk-notice is-' + flash[0]} role={flash[0] === 'error' ? 'alert' : 'status'}><span>{flash[1]}</span></div>}
-      <div className={'flxk-cloud' + (c.connected ? ' is-connected' : '')}>
+      <div className={'flxk-cloud' + (c.connected ? ' is-connected' : ' is-dismissible')}>
         <span className="flxk-cloud__logo" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <path d="M7 18h10a4 4 0 0 0 .6-7.96A6 6 0 0 0 6.2 9.1 4.5 4.5 0 0 0 7 18z" />
@@ -388,6 +416,18 @@ function CloudCard({ cloud: c, t }: { cloud: Data['flxSetupCloud']; t: ReturnTyp
           <strong>{c.title}</strong>
           {c.text && <span>{c.text}</span>}
           {c.error ? <small className="flxk-cloud__err">{c.error}</small> : c.note ? <small className="flxk-muted">{c.note}</small> : null}
+          {!c.connected && (
+            <label className="flxk-cloud__again">
+              <span className="flxk-muted">{t('If hidden, show again')}</span>
+              <select value={c.hideDays} disabled={card.isPending} onChange={(e) => card.mutate({ input: { days: Number(e.target.value) } })}>
+                {CLOUD_CARD_DAYS.map((d) => (
+                  <option key={d} value={d}>
+                    {daysLabel(d)}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
         </div>
         <div className="flxk-cloud__actions">
           {c.manageUrl && (
@@ -405,6 +445,13 @@ function CloudCard({ cloud: c, t }: { cloud: Data['flxSetupCloud']; t: ReturnTyp
             </form>
           ))}
         </div>
+        {!c.connected && (
+          <button type="button" className="flxk-cloud__close" aria-label={t('Hide')} title={t('Hide')} disabled={card.isPending} onClick={() => card.mutate({ input: { hide: true } })}>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+              <path d="M6 6l12 12M18 6 6 18" />
+            </svg>
+          </button>
+        )}
       </div>
     </>
   );

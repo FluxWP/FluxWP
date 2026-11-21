@@ -151,6 +151,13 @@
 .flxk-cloud__actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .flxk-cloud__actions form{margin:0}
 @media (max-width:640px){.flxk-cloud__actions{width:100%}.flxk-cloud__actions .is-primary{width:100%}}
+.flxk-cloud.is-dismissible{position:relative;padding-right:44px}
+.flxk-cloud__close{position:absolute;top:8px;right:8px;width:30px;height:30px;display:grid;place-items:center;border:0;border-radius:8px;background:transparent;color:var(--flxk-mut);cursor:pointer;padding:0}
+.flxk-cloud__close:hover{background:var(--flxk-bd);color:var(--flux-text)}
+.flxk-cloud__close:focus-visible{outline:2px solid var(--flxk-ac);outline-offset:1px}
+.flxk-cloud__again{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:6px;font-size:12px}
+.flxk-cloud__again select{min-height:28px;font-size:12px;padding:0 24px 0 8px;max-width:100%}
+.flxk-cloud-hidden{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:13px;margin:0 0 16px;padding:8px 12px;border:1px dashed var(--flxk-bd);border-radius:10px}
 .flxk-btnrow{display:flex;gap:8px;flex-wrap:wrap}
 .flxk-details{margin-top:12px}
 .flxk-details summary{cursor:pointer;color:var(--flxk-ac);font-size:13px}
