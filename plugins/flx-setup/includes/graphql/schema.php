@@ -1357,7 +1357,7 @@ flx_gql_mutation(
 				return new WP_Error( 'flxk_cloud_off', __( 'The FluxWP account card is not available.', 'flx-setup' ), array( 'graphql_code' => 'NOT_FOUND' ) );
 			}
 			$hide = array_key_exists( 'hide', $input ) && null !== $input['hide'] ? (bool) $input['hide'] : null;
-			$days = array_key_exists( 'days', $input ) && null !== $input['days'] ? (int) $input['days'] : null;
+			$days = array_key_exists( 'days', $input ) && null !== $input['days'] ? flx_gql_int( $input['days'] ) : null;
 			$r    = FLXK_Cloud::card_save( $hide, $days );
 			return $r instanceof WP_Error ? $r : array();
 		},
