@@ -173,6 +173,76 @@ document.addEventListener('click', function (e) {
 	});
 })();
 
+/* Giriş penceresi: "Giriş yap" / Hesabım bağlantısı sayfadan ayrılmadan ortada Hesabım'ın giriş/kayıt formunu açar
+   (Google ile giriş ve kayıt dahil). Form başka adrese yönlenince (giriş tamam, şifre sıfırlama) sayfa oraya gider. */
+(function () {
+	var A = (window.flxHesap || {}).auth;
+	if (!A || !A.url || !window.URL || window.top !== window) return;
+	var trim = function (p) { return (p || '').replace(/\/+$/, ''); };
+	var target = function (a) {
+		if (!a.href || a.target === '_blank' || a.hasAttribute('download')) return null;
+		var u;
+		try { u = new URL(a.href, location.href); } catch (e) { return null; }
+		if (u.origin !== location.origin) return null;
+		var p = trim(u.pathname), act = u.searchParams.get('action') || '';
+		var P = trim(A.path), acc = !!P && p.slice(-P.length) === P; // Dil öneki olsa da (/tr/my-account).
+		var login = !!A.login && p === trim(A.login) && (act === '' || act === 'login' || act === 'register');
+		if (!a.hasAttribute('data-flx-auth') && !acc && !login) return null;
+		var f = new URL(acc ? u.href : A.url, location.href);
+		var back = u.searchParams.get('redirect_to') || u.searchParams.get('flx_donus') || (location.pathname + location.search);
+		f.searchParams.set('flx_auth', '1');
+		if (!f.searchParams.get('flx_donus')) f.searchParams.set('flx_donus', back);
+		var reg = act === 'register' || /^#(kayit|register)$/.test(u.hash) || a.getAttribute('data-flx-auth') === 'register';
+		f.hash = reg ? 'kayit' : '';
+		return f.href;
+	};
+
+	var dlg, frame, wrap, fallback;
+	function build() {
+		dlg = document.createElement('dialog');
+		dlg.className = 'flx-auth-modal';
+		dlg.setAttribute('aria-label', A.title || 'Giriş');
+		dlg.innerHTML = '<div class="flx-auth-modal__inner"><button type="button" class="flx-auth-modal__close" aria-label="' + flxT('close', 'Kapat') + '"></button>' +
+			'<p class="flx-auth-modal__loading">' + flxT('loading', 'Yükleniyor…') + '</p><iframe class="flx-auth-modal__frame" title="' + (A.title || '') + '"></iframe></div>';
+		document.body.appendChild(dlg);
+		wrap = dlg.querySelector('.flx-auth-modal__inner');
+		frame = dlg.querySelector('iframe');
+		var close = function () { dlg.close ? dlg.close() : dlg.removeAttribute('open'); };
+		dlg.querySelector('.flx-auth-modal__close').addEventListener('click', close);
+		dlg.addEventListener('click', function (e) { if (e.target === dlg) close(); });
+		dlg.addEventListener('close', function () { document.documentElement.classList.remove('flx-modal-open'); });
+		frame.addEventListener('load', function () {
+			var href;
+			try { href = frame.contentWindow.location.href; } catch (e) { href = null; }
+			if (!href || href === 'about:blank') { if (href === null && fallback) location.href = fallback; return; }
+			if (!/[?&]flx_auth=1/.test(href)) { location.href = href; return; } // Pencere dışına çıkan her yönlendirme: sayfa o adrese gider.
+			wrap.classList.add('is-ready');
+		});
+		window.addEventListener('message', function (e) {
+			if (e.origin !== location.origin || !e.data || typeof e.data.flxAuthH !== 'number' || e.source !== frame.contentWindow) return;
+			frame.style.height = Math.ceil(e.data.flxAuthH) + 'px';
+		});
+	}
+	function open(url, back) {
+		if (!dlg) build();
+		fallback = back;
+		if (frame.getAttribute('src') !== url) { wrap.classList.remove('is-ready'); frame.style.height = ''; frame.setAttribute('src', url); }
+		if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+		document.documentElement.classList.add('flx-modal-open');
+	}
+	document.addEventListener('click', function (e) {
+		if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+		var a = e.target.closest && e.target.closest('a[href]');
+		if (!a || a.closest('.flx-auth-modal')) return;
+		var url = target(a);
+		if (!url) return;
+		e.preventDefault();
+		var nav = a.closest('.wp-block-navigation__responsive-container.is-menu-open');
+		if (nav) { var c = nav.querySelector('.wp-block-navigation__responsive-container-close'); if (c) c.click(); }
+		open(url, a.href);
+	}, true);
+})();
+
 /* Bağış modunda boş sepet: "Mağazaya geri dön" → "Bağışlar Sayfasına dön" (bağış sayfası). Mini sepet sonradan çizildiği için izlenir. */
 (function () {
 	var H = window.flxHesap || {};

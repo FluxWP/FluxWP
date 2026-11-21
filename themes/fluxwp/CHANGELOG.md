@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.9.8
+- Giriş penceresi: header'daki "Giriş yap" / Hesabım bağlantısı (ve WordPress giriş bağlantıları) sayfadan ayrılmadan ortada açılan pencerede Hesabım'ın giriş/kayıt formunu gösterir; Giriş / Kayıt sekmeleri, Google ile giriş ve e-posta doğrulaması aynı form. Giriş tamamlanınca ziyaretçi bulunduğu sayfaya (ya da bağlantının `redirect_to` adresine) döner, hatalı şifre pencerede kalır. JS yoksa ya da çerçeve açılamazsa bağlantı eskisi gibi Hesabım'a gider. Pencere içeriği `/my-account/?flx_auth=1`.
+
 ## 0.9.7
 - Hesap / sepet / ödeme başlık alanı ön ayardan değiştirilebilir: yeni filtre `flx_wc_hero` (başlık, açıklama, simge, üst etiket; bağlam ve Hesabım uç noktası ile).
 - Simge setine `site` ve `plug` eklendi; ön ayar ya da eklenti `flx_wc_icons` filtresiyle yeni simge ekleyebilir (pano kartı simgeleri için).

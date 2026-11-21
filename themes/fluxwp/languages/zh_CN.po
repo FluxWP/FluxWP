@@ -1450,3 +1450,6 @@ msgstr "点"
 #, php-format
 msgid "Güvenli ödeme · %s"
 msgstr "安全支付·%s"
+
+msgid "Log in or sign up"
+msgstr "登录或注册"

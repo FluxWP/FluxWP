@@ -166,6 +166,7 @@ return array(
   'Required pages' => 'Обязательные страницы',
   'Server cron' => 'Крон сервера',
   'Log In' => 'Войти',
+  'Log in or sign up' => 'Вход или регистрация',
   'Log in' => 'Войти',
   'Privacy Agreement' => 'Соглашение о конфиденциальности',
   'Volunteers' => 'Волонтёры',

@@ -1450,3 +1450,6 @@ msgstr "النقاط"
 #, php-format
 msgid "Güvenli ödeme · %s"
 msgstr "الدفع الآمن · %s"
+
+msgid "Log in or sign up"
+msgstr "تسجيل الدخول أو إنشاء حساب"

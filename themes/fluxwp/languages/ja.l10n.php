@@ -166,6 +166,7 @@ return array(
   'Required pages' => '必要なページ',
   'Server cron' => 'サーバークーロン',
   'Log In' => 'ログイン',
+  'Log in or sign up' => 'ログインまたは新規登録',
   'Log in' => 'ログイン',
   'Privacy Agreement' => 'プライバシー規約',
   'Volunteers' => 'ボランティア',

@@ -1968,3 +1968,7 @@ msgstr ""
 
 msgid "We're putting the finishing touches on our website. Please check back soon."
 msgstr ""
+
+#: inc/hesap.php
+msgid "Log in or sign up"
+msgstr ""
