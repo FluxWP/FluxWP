@@ -11,6 +11,8 @@ foreach ( array( 'flxk_state', 'flxk_history', 'flxk_patches', 'flxk_settings', 
 	delete_option( $flxk_opt );
 }
 wp_clear_scheduled_hook( 'flxk_telemetry_send' );
+delete_site_option( 'flxk_cloud_card_days' );
+delete_metadata( 'user', 0, 'flxk_cloud_card_hidden', '', true );
 $wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE 'flxk\\_run\\_%'" ); // phpcs:ignore WordPress.DB
 
 // Eski Flux Updater hâlâ kuruluysa onun ayarlarına dokunma.

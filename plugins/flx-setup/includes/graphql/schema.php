@@ -754,6 +754,8 @@ flx_gql_type(
 			'flash'     => array( 'type' => 'String!', 'description' => __( 'Message of the last failed sign-in; empty when none.', 'flx-setup' ) ),
 			'flashType' => array( 'type' => 'String!', 'description' => __( 'Kind of that message.', 'flx-setup' ) ),
 			'actions'   => array( 'type' => '[FlxSetupCloudAction!]!', 'description' => __( 'Buttons.', 'flx-setup' ) ),
+			'hidden'    => array( 'type' => 'Boolean!', 'description' => __( 'The current user hid the connect card and it is not due again yet.', 'flx-setup' ) ),
+			'hideDays'  => array( 'type' => 'Int!', 'description' => __( 'Days after which a hidden connect card shows again; 0 = never.', 'flx-setup' ) ),
 		),
 	)
 );
@@ -1005,7 +1007,7 @@ flx_gql_query(
 		'description' => __( 'FluxWP account card.', 'flx-setup' ),
 		'type'        => 'FlxSetupCloud!',
 		'cap'         => 'manage_options',
-		'resolve'     => static fn(): array => class_exists( 'FLXK_Cloud' ) ? FLXK_Cloud::view() : array( 'connected' => false, 'title' => '', 'text' => '', 'note' => '', 'error' => '', 'manageUrl' => '', 'postUrl' => '', 'flash' => '', 'flashType' => '', 'actions' => array() ),
+		'resolve'     => static fn(): array => class_exists( 'FLXK_Cloud' ) ? FLXK_Cloud::view() : array( 'connected' => false, 'title' => '', 'text' => '', 'note' => '', 'error' => '', 'manageUrl' => '', 'postUrl' => '', 'flash' => '', 'flashType' => '', 'actions' => array(), 'hidden' => false, 'hideDays' => 7 ),
 	)
 );
 
@@ -1330,6 +1332,34 @@ flx_gql_mutation(
 		'resolve'     => static function ( array $input ): array {
 			FLXK_Telemetry::save_options( is_array( $input['options'] ?? null ) ? $input['options'] : array() );
 			return FLXK_Telemetry::save( flx_gql_str( $input['url'] ?? '' ), ! empty( $input['send'] ) );
+		},
+	)
+);
+
+flx_gql_mutation(
+	'flxSetupCloudCard',
+	array(
+		'description' => __( 'Hides or shows the FluxWP account connect card for the current user, and sets after how many days a hidden card shows again.', 'flx-setup' ),
+		'cap'         => 'manage_options',
+		'input'       => array(
+			'hide' => array( 'type' => 'Boolean', 'description' => __( 'true hides the card, false shows it again; leave out to keep.', 'flx-setup' ) ),
+			'days' => array( 'type' => 'Int', 'description' => __( 'Days after which a hidden card shows again: 1, 3, 7, 14 or 30; 0 = never. Leave out to keep.', 'flx-setup' ) ),
+		),
+		'output'      => array(
+			'cloud' => array(
+				'type'        => 'FlxSetupCloud',
+				'description' => __( 'The card after the change.', 'flx-setup' ),
+				'resolve'     => static fn(): array => FLXK_Cloud::view(),
+			),
+		),
+		'resolve'     => static function ( array $input ) {
+			if ( ! class_exists( 'FLXK_Cloud' ) ) {
+				return new WP_Error( 'flxk_cloud_off', __( 'The FluxWP account card is not available.', 'flx-setup' ), array( 'graphql_code' => 'NOT_FOUND' ) );
+			}
+			$hide = array_key_exists( 'hide', $input ) && null !== $input['hide'] ? (bool) $input['hide'] : null;
+			$days = array_key_exists( 'days', $input ) && null !== $input['days'] ? (int) $input['days'] : null;
+			$r    = FLXK_Cloud::card_save( $hide, $days );
+			return $r instanceof WP_Error ? $r : array();
 		},
 	)
 );

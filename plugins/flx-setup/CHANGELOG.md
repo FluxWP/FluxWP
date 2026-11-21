@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 1.6.8
+- Ayarlar › "FluxWP hesabınızı bağlayın" kartı çarpıyla gizlenir; seçilen süre dolunca (varsayılan 7 gün; 1, 3, 7, 14, 30 gün ya da bir daha gösterme) yeniden görünür. Süre kartın altından değişir, gizliyken "Şimdi göster" var. Gizleme kullanıcı başına, süre site geneli. Bağlı sitede kart gizlenmez. GraphQL `flxSetupCloudCard` mutation'ı, `FlxSetupCloud.hidden` / `hideDays` alanları.
+- "FluxWP ile giriş yap" isteği 10 yerine 30 dakika geçerli: fluxwp.com'da kaydolup e-postayı doğrulayan kişi aynı istekle döner.
+
 ## 1.6.7
 - Kurulum sihirbazı: adımların içinde dikey kaydırma. Hata listesi ya da düşük ekran yüksekliğinde son adımın alt kısmı kesiliyor, sayfa kaymıyordu.
 - Sihirbazda paket indirme HTTP 429/408/425/5xx ile düşerse paket 20 sn ve 45 sn sonra yeniden denenir (eskiden ~7 sn içinde 3 deneme, sonra pes). Art arda indirmede kaynağın hız sınırına takılan paketler artık çoğunlukla tamamlanır.

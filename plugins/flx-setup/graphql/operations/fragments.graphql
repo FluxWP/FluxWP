@@ -149,6 +149,8 @@ fragment FlxSetupCloudFields on FlxSetupCloud {
   postUrl
   flash
   flashType
+  hidden
+  hideDays
   actions {
     action
     label
