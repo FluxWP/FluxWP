@@ -1,6 +1,6 @@
 # Değişiklikler
 
-## 1.6.8
+## 1.6.9
 - Toplu güncellemede "Çeviriler" adımı kurulumdan sonra "WordPress.org hâlâ daha yeni çeviri bildiriyor" diye hata veriyordu: çeviri paketi yazılmış olsa da .po tarih başlığı önerilen tarihle eşleşmeyince wordpress.org aynı çeviriyi yeniden öneriyordu. Başarıyla kurulan çeviri anımsanır, aynı öneri hata sayılmaz ve satırda "güncelleme var" kalmaz.
 - Çeviriler satırında açıklama iki kez görünüyordu (alt başlık ve kaynak notu); yalnız biri gösterilir.
 
