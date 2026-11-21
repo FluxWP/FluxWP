@@ -1,9 +1,5 @@
-#
 msgid ""
-msgstr ""
-"Language: tr_TR\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: tr_TR\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Presets"
 msgstr "Ön ayarlar"
@@ -986,6 +982,9 @@ msgstr "uygulandı"
 msgid "error"
 msgstr "hata"
 
+msgid "The server asked us to slow down, trying again shortly…"
+msgstr "Sunucu yavaşlamamızı istedi, birazdan yeniden deniyoruz…"
+
 msgid "Downloading packages"
 msgstr "Paketler indiriliyor"
 
@@ -1895,6 +1894,18 @@ msgstr "indirme adresi yok"
 
 msgid "unknown error"
 msgstr "bilinmeyen hata"
+
+msgid "This FluxWP package address is not in the expected signed form, so it was not installed. Contact FluxWP support."
+msgstr "Bu FluxWP paket adresi beklenen imzalı biçimde değil, bu yüzden kurulmadı. FluxWP desteğine başvurun."
+
+msgid "The package signature could not be downloaded (%s). The package was not installed. Try again in a minute."
+msgstr "Paket imzası indirilemedi (%s). Paket kurulmadı. Bir dakika sonra tekrar deneyin."
+
+msgid "%1$s %2$s has no valid FluxWP signature (HTTP %3$d), so it was not installed. Check for updates later or contact FluxWP support."
+msgstr "%1$s %2$s için geçerli FluxWP imzası yok (HTTP %3$d), bu yüzden kurulmadı. Güncellemeleri sonra yeniden denetleyin ya da FluxWP desteğine başvurun."
+
+msgid "The FluxWP signature of %1$s %2$s does not match the downloaded file, so it was not installed. The package may have been changed on the way or on the server. Contact FluxWP support."
+msgstr "%1$s %2$s için FluxWP imzası indirilen dosyayla uyuşmuyor, bu yüzden kurulmadı. Paket yolda ya da sunucuda değiştirilmiş olabilir. FluxWP desteğine başvurun."
 
 msgid "The GitHub address is not in owner/repo form."
 msgstr "GitHub adresi owner/repo biçiminde değil."
@@ -5318,22 +5329,3 @@ msgid "%skayıt\\x00%skayıt"
 msgid_plural "%skayıt\\x00%skayıt"
 msgstr[0] "%s kayıt"
 msgstr[1] "%s kayıt"
-
-#: includes/updater/class-flxu-signature.php
-msgid "This FluxWP package address is not in the expected signed form, so it was not installed. Contact FluxWP support."
-msgstr "Bu FluxWP paket adresi beklenen imzalı biçimde değil, bu yüzden kurulmadı. FluxWP desteğine başvurun."
-
-#: includes/updater/class-flxu-signature.php
-#, php-format
-msgid "The package signature could not be downloaded (%s). The package was not installed. Try again in a minute."
-msgstr "Paket imzası indirilemedi (%s). Paket kurulmadı. Bir dakika sonra tekrar deneyin."
-
-#: includes/updater/class-flxu-signature.php
-#, php-format
-msgid "%1$s %2$s has no valid FluxWP signature (HTTP %3$d), so it was not installed. Check for updates later or contact FluxWP support."
-msgstr "%1$s %2$s için geçerli FluxWP imzası yok (HTTP %3$d), bu yüzden kurulmadı. Güncellemeleri sonra yeniden denetleyin ya da FluxWP desteğine başvurun."
-
-#: includes/updater/class-flxu-signature.php
-#, php-format
-msgid "The FluxWP signature of %1$s %2$s does not match the downloaded file, so it was not installed. The package may have been changed on the way or on the server. Contact FluxWP support."
-msgstr "%1$s %2$s için FluxWP imzası indirilen dosyayla uyuşmuyor, bu yüzden kurulmadı. Paket yolda ya da sunucuda değiştirilmiş olabilir. FluxWP desteğine başvurun."

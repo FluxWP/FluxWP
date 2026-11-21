@@ -398,5 +398,6 @@
  "What is shared.": "Ne paylaşılır.",
  "Checkbox text.": "Onay kutusu metni.",
  "A usage choice to save.": "Kaydedilecek kullanım seçeneği.",
- "Usage choices of other packages.": "Diğer paketlerin kullanım seçenekleri."
+ "Usage choices of other packages.": "Diğer paketlerin kullanım seçenekleri.",
+ "The server asked us to slow down, trying again shortly…": "Sunucu yavaşlamamızı istedi, birazdan yeniden deniyoruz…"
 }
