@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 1.6.8
+- Toplu güncellemede "Çeviriler" adımı kurulumdan sonra "WordPress.org hâlâ daha yeni çeviri bildiriyor" diye hata veriyordu: çeviri paketi yazılmış olsa da .po tarih başlığı önerilen tarihle eşleşmeyince wordpress.org aynı çeviriyi yeniden öneriyordu. Başarıyla kurulan çeviri anımsanır, aynı öneri hata sayılmaz ve satırda "güncelleme var" kalmaz.
+- Çeviriler satırında açıklama iki kez görünüyordu (alt başlık ve kaynak notu); yalnız biri gösterilir.
+
 ## 1.6.7
 - Kurulum sihirbazı: adımların içinde dikey kaydırma. Hata listesi ya da düşük ekran yüksekliğinde son adımın alt kısmı kesiliyor, sayfa kaymıyordu.
 - Sihirbazda paket indirme HTTP 429/408/425/5xx ile düşerse paket 20 sn ve 45 sn sonra yeniden denenir (eskiden ~7 sn içinde 3 deneme, sonra pes). Art arda indirmede kaynağın hız sınırına takılan paketler artık çoğunlukla tamamlanır.

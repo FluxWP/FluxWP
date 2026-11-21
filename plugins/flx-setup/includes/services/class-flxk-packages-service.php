@@ -483,7 +483,7 @@ final class FLXK_Packages_Service {
 			'canManage'   => $third,
 			'canVersion'  => false,
 			'versions'    => array(),
-			'description' => FLXK_Val::str( $r['desc'] ?? ( $third ? '' : $sub ) ),
+			'description' => FLXK_Val::str( $r['desc'] ?? ( $third || 'wp_lang' === $kind ? '' : $sub ) ),
 			'website'     => esc_url_raw( FLXK_Val::str( $r['web'] ?? '' ), array( 'https', 'http' ) ),
 			'images'      => array(),
 			'info'        => self::info_rows(
