@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.9.9
+- Giriş penceresi açan sayfanın temasını kullanır: koyu/açık sınıfları ve sayfanın renk değişkenleri pencereye aynen geçer (ön ayarın koyu modu dahil). Etiketler, alanlar, sekmeler ve buton tema renginde; reCAPTCHA rozeti pencerede gizli; Google butonu sonradan çizilince pencere yüksekliği yeniden ölçülür.
+
 ## 0.9.8
 - Giriş penceresi: header'daki "Giriş yap" / Hesabım bağlantısı (ve WordPress giriş bağlantıları) sayfadan ayrılmadan ortada açılan pencerede Hesabım'ın giriş/kayıt formunu gösterir; Giriş / Kayıt sekmeleri, Google ile giriş ve e-posta doğrulaması aynı form. Giriş tamamlanınca ziyaretçi bulunduğu sayfaya (ya da bağlantının `redirect_to` adresine) döner, hatalı şifre pencerede kalır. JS yoksa ya da çerçeve açılamazsa bağlantı eskisi gibi Hesabım'a gider. Pencere içeriği `/my-account/?flx_auth=1`.
 

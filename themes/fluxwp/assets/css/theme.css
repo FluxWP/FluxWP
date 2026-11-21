@@ -1574,9 +1574,21 @@ html[dir=rtl] .flx-pay-logos{background-position:right center}
 .flx-auth-modal__loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;margin:0;color:var(--flx-muted,inherit);pointer-events:none}
 .flx-auth-modal__inner.is-ready .flx-auth-modal__loading{display:none}
 /* Çerçevenin kendisi: yalnız form, arka plan şeffaf; çerez kutusu, sohbet balonu gibi sayfa ekleri gizli. */
-html:has(body.flx-auth-frame),body.flx-auth-frame{background:transparent!important;margin:0!important;padding:0!important;min-height:0!important}
+html:has(body.flx-auth-frame),html body.flx-auth-frame.flx-auth-frame.flx-auth-frame{background:transparent!important;margin:0!important;padding:0!important;min-height:0!important}
 body.flx-auth-frame>:not(.flx-auth-frame__main):not(script):not(style):not(link):not(:has(iframe[src*="recaptcha"])){display:none!important}
 .flx-auth-frame__main{padding:2px 2px 6px}
 .flx-auth-frame__main>.woocommerce{max-width:none;margin:0;padding:0}
 .flx-auth-frame #customer_login.flx-tabbed{max-width:none}
 .flx-auth-frame #customer_login>.u-column1,.flx-auth-frame #customer_login>.u-column2{padding:0;background:transparent;box-shadow:none;border:0}
+/* Form renkleri sayfanın tema değişkenlerinden (koyu/açık); ön ayar CSS'i yüklü olmasa da okunur kalır. */
+.flx-auth-frame .woocommerce form label,.flx-auth-frame .woocommerce-form__label-for-checkbox span{color:var(--flx-ink)!important}
+.flx-auth-frame .woocommerce form :is(input.input-text,input[type=text],input[type=email],input[type=password],input[type=tel]){background:color-mix(in srgb,var(--flx-ink) 4%,var(--flx-surface))!important;color:var(--flx-ink)!important;border:1.5px solid var(--flx-line)!important;border-radius:12px}
+.flx-auth-frame .woocommerce form :is(input.input-text,input[type=text],input[type=email],input[type=password],input[type=tel]):focus{border-color:var(--flx-primary)!important;outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--flx-primary) 22%,transparent)}
+.flx-auth-frame .woocommerce form .show-password-input{color:var(--flx-ink);filter:none}
+.flx-auth-frame .woocommerce form input[type=checkbox]{accent-color:var(--flx-primary)}
+.flx-auth-frame .woocommerce form :is(p,.woocommerce-privacy-policy-text,.woocommerce-LostPassword) {color:var(--flx-text,var(--flx-ink))}
+.flx-auth-frame .woocommerce form a{color:var(--flx-primary)}
+.flx-auth-frame .woocommerce form :is(button.button,.woocommerce-button){background:var(--flx-primary)!important;color:var(--flx-on-primary,#fff)!important;border:0!important}
+.flx-auth-frame .flx-or span{color:var(--flx-text,var(--flx-ink))}
+.flx-auth-frame .grecaptcha-badge{visibility:hidden!important}
+
