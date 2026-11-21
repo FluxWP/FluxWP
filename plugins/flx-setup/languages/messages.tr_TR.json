@@ -332,6 +332,7 @@
     "applying": "uygulanıyor",
     "applied": "uygulandı",
     "error": "hata",
+    "The server asked us to slow down, trying again shortly…": "Sunucu yavaşlamamızı istedi, birazdan yeniden deniyoruz…",
     "Downloading packages": "Paketler indiriliyor",
     "Installing plugins": "Eklentiler kuruluyor",
     "Getting your site ready": "Siteniz sizin için hazırlanıyor",
@@ -605,6 +606,7 @@
     "Too many requests in a short time. Wait a minute and try again.": "Kısa sürede çok fazla istek. Bir dakika bekleyip yeniden deneyin.",
     "The update server had a temporary error. Try again in a minute.": "Güncelleme sunucusunda geçici bir hata oldu. Bir dakika sonra yeniden deneyin.",
     "Download failed (HTTP %1$d: %2$s). %3$s": "Dosya indirilemedi (HTTP %1$d: %2$s). %3$s",
+    "Before updating %d packages": "%d paket güncellenmeden önce",
     "Package did not change; the installation may have failed.": "Paket değişmedi; kurulum başarısız olmuş olabilir.",
     "Rolled back to the previous version automatically.": "Önceki sürüme otomatik dönüldü.",
     "Previous version not found; restore it manually.": "Eski sürüm bulunamadı; elle geri yükleyin.",
@@ -628,6 +630,10 @@
     "Could not download %1$s from wordpress.org: %2$s": "%1$s wordpress.org'dan alınamadı: %2$s",
     "no download link": "indirme adresi yok",
     "unknown error": "bilinmeyen hata",
+    "This FluxWP package address is not in the expected signed form, so it was not installed. Contact FluxWP support.": "Bu FluxWP paket adresi beklenen imzalı biçimde değil, bu yüzden kurulmadı. FluxWP desteğine başvurun.",
+    "The package signature could not be downloaded (%s). The package was not installed. Try again in a minute.": "Paket imzası indirilemedi (%s). Paket kurulmadı. Bir dakika sonra tekrar deneyin.",
+    "%1$s %2$s has no valid FluxWP signature (HTTP %3$d), so it was not installed. Check for updates later or contact FluxWP support.": "%1$s %2$s için geçerli FluxWP imzası yok (HTTP %3$d), bu yüzden kurulmadı. Güncellemeleri sonra yeniden denetleyin ya da FluxWP desteğine başvurun.",
+    "The FluxWP signature of %1$s %2$s does not match the downloaded file, so it was not installed. The package may have been changed on the way or on the server. Contact FluxWP support.": "%1$s %2$s için FluxWP imzası indirilen dosyayla uyuşmuyor, bu yüzden kurulmadı. Paket yolda ya da sunucuda değiştirilmiş olabilir. FluxWP desteğine başvurun.",
     "The GitHub address is not in owner/repo form.": "GitHub adresi owner/repo biçiminde değil.",
     "Could not reach the source: %s": "Kaynağa ulaşılamadı: %s",
     "Repository not found or not public.": "Depo bulunamadı ya da public değil.",
@@ -1762,7 +1768,6 @@
     "%dpaket kaldırıldı.\\x00%dpaket kaldırıldı.\u0000%dpaket kaldırıldı.\\x00%dpaket kaldırıldı.": "%d paket kaldırıldı.\u0000%d paket kaldırıldı.",
     "%dyedek silindi.\\x00%dyedek silindi.\u0000%dyedek silindi.\\x00%dyedek silindi.": "%d yedek silindi.\u0000%d yedek silindi.",
     "%dgün\\x00%dgün\u0000%dgün\\x00%dgün": "%d gün\u0000%d gün",
-    "%skayıt\\x00%skayıt\u0000%skayıt\\x00%skayıt": "%s kayıt\u0000%s kayıt",
-    "Before updating %d packages": "%d paket güncellenmeden önce"
+    "%skayıt\\x00%skayıt\u0000%skayıt\\x00%skayıt": "%s kayıt\u0000%s kayıt"
   }
 }
