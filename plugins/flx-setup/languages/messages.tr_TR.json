@@ -1762,6 +1762,7 @@
     "%dpaket kaldırıldı.\\x00%dpaket kaldırıldı.\u0000%dpaket kaldırıldı.\\x00%dpaket kaldırıldı.": "%d paket kaldırıldı.\u0000%d paket kaldırıldı.",
     "%dyedek silindi.\\x00%dyedek silindi.\u0000%dyedek silindi.\\x00%dyedek silindi.": "%d yedek silindi.\u0000%d yedek silindi.",
     "%dgün\\x00%dgün\u0000%dgün\\x00%dgün": "%d gün\u0000%d gün",
-    "%skayıt\\x00%skayıt\u0000%skayıt\\x00%skayıt": "%s kayıt\u0000%s kayıt"
+    "%skayıt\\x00%skayıt\u0000%skayıt\\x00%skayıt": "%s kayıt\u0000%s kayıt",
+    "Before updating %d packages": "%d paket güncellenmeden önce"
   }
 }

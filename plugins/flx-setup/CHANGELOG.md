@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.6.6
+- Toplu güncellemede (2+ paket) yedek işlemin başında tek seferde alınır: ilk güncelleme adımı plandaki tüm paket klasörlerini ve veritabanını tek yedeğe yazar, sonraki adımlar yedek almaz. Eskiden her paket yedeğe ek olarak ekleniyordu ve her ekleme zip'i baştan yazdığı için yavaşlıyordu; 180 sn'lik birleştirme penceresi dolarsa veritabanı yeniden yedekleniyordu. Geri dönüş aynı: sorunlu paket yalnız kendi klasörüne, o yedekten döner (veritabanı değişmez). Yedek alınamazsa ya da kapsam dışıysa her paket kendi yedeğine döner (eski davranış). Geçmiş satırlarındaki yedek kimliği ve yedeğin paket sürümleri doğru yazılır.
+
 ## 1.6.5
 - Güvenlik: paket simgeleri ortak denetimli istekle (flx-brand `flx_safe_remote_get`) indirilir: katalogdan gelen adres iç ağa çözülüyorsa istek atılmaz.
 

@@ -1765,5 +1765,6 @@ return array(
   'The package signature could not be downloaded (%s). The package was not installed. Try again in a minute.' => 'Paket imzası indirilemedi (%s). Paket kurulmadı. Bir dakika sonra tekrar deneyin.',
   '%1$s %2$s has no valid FluxWP signature (HTTP %3$d), so it was not installed. Check for updates later or contact FluxWP support.' => '%1$s %2$s için geçerli FluxWP imzası yok (HTTP %3$d), bu yüzden kurulmadı. Güncellemeleri sonra yeniden denetleyin ya da FluxWP desteğine başvurun.',
   'The FluxWP signature of %1$s %2$s does not match the downloaded file, so it was not installed. The package may have been changed on the way or on the server. Contact FluxWP support.' => '%1$s %2$s için FluxWP imzası indirilen dosyayla uyuşmuyor, bu yüzden kurulmadı. Paket yolda ya da sunucuda değiştirilmiş olabilir. FluxWP desteğine başvurun.',
+  'Before updating %d packages' => '%d paket güncellenmeden önce',
  ),
 );
