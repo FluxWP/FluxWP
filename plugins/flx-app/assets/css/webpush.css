@@ -1,0 +1,21 @@
+/* Flux App: notification window (admin bar "Notifications"). Reuses the shared flx-brand dialog and switch styles. */
+.flxapp-wpd.flx-dlg{--flx-f-p:var(--d-ac);--flx-f-bg:var(--d-bg);--flx-f-ink:var(--d-tx);--flx-f-muted:var(--d-mut);--flx-f-line:var(--d-bd);width:min(480px,calc(100vw - 32px));flex-direction:column;overflow:hidden;color:var(--d-tx)}
+.flxapp-wpd[open]{display:flex}
+.flxapp-wpd .flx-dlg__head{flex:none}
+.flxapp-wpd .flx-dlg__body{flex:1;min-height:0;padding:0;overflow:auto;overscroll-behavior:contain}
+.flxapp-wpd__lead{padding:16px 20px;border-bottom:1px solid var(--d-bd)}
+.flxapp-wpd__sec{position:sticky;top:0;z-index:1;margin:0;padding:10px 20px;background:color-mix(in srgb,var(--d-tx) 4%,var(--d-bg));border-bottom:1px solid var(--d-bd);font-size:13px;font-weight:650;color:var(--d-mut);text-transform:none;letter-spacing:0}
+.flxapp-wpd__sec span{font-weight:400;display:block;margin-top:2px}
+.flxapp-wpd__row{padding:13px 20px;border-bottom:1px solid var(--d-bd)}
+.flxapp-wpd__row:last-child{border-bottom:0}
+.flxapp-wpd .flx-chk{flex-direction:row-reverse;align-items:center;justify-content:space-between;gap:16px;width:100%;font-size:15px;color:var(--d-tx)}
+.flxapp-wpd .flx-chk .flx-chk__input{left:auto;right:0}
+.flxapp-wpd .flx-chk__text{padding-top:0;font-weight:550}
+.flxapp-wpd .flx-chk__text small{font-weight:400;font-size:13px;color:var(--d-mut)}
+.flxapp-wpd .flx-chk--switch .flx-chk__box{flex:none}
+.flxapp-wpd__msg{margin:10px 0 0;font-size:14px;color:var(--d-mut)}
+.flxapp-wpd__msg.is-bad{color:var(--d-bad)}
+.flxapp-wpd__msg[hidden]{display:none}
+.flxapp-wpd__empty{margin:0;padding:18px 20px;color:var(--d-mut)}
+.flxapp-wpd .flx-dlg__foot{flex:none;margin-top:0}
+@media (max-width:600px){.flxapp-wpd.flx-dlg{width:100%;max-height:88dvh}.flxapp-wpd__lead,.flxapp-wpd__row{padding-left:18px;padding-right:18px}.flxapp-wpd__sec{padding-left:18px;padding-right:18px}}

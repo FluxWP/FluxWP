@@ -350,5 +350,10 @@
  "The realtime service runs but has no public address (FLX_REALTIME_URL); apps poll.": "Realtime servisi çalışıyor ama genel adresi yok (FLX_REALTIME_URL); uygulamalar polling yapar.",
  "Panel and app get changes at once.": "Panel ve uygulama değişiklikleri anında alır.",
  "Not checked yet; shown after the next app sign-in.": "Henüz kontrol edilmedi; bir sonraki uygulama girişinden sonra görünür.",
- "The realtime service is not answering; apps poll until it is back.": "Realtime servisi yanıt vermiyor; geri gelene kadar uygulamalar polling yapar."
+ "The realtime service is not answering; apps poll until it is back.": "Realtime servisi yanıt vermiyor; geri gelene kadar uygulamalar polling yapar.",
+ "This browser": "Bu tarayıcı",
+ "Notification types": "Bildirim türleri",
+ "Applies to all your devices, also the mobile app.": "Tüm cihazlarınız için geçerlidir, mobil uygulama dahil.",
+ "No notification types are available yet.": "Henüz bildirim türü yok.",
+ "Could not save, try again.": "Kaydedilemedi, tekrar deneyin."
 }
