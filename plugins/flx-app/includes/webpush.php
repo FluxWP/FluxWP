@@ -427,14 +427,24 @@ function flxapp_webpush_assets(): void {
 		return;
 	}
 	$cfg = flxapp_webpush_client_config();
-	wp_enqueue_script( 'flxapp-webpush', FLXAPP_URL . 'assets/js/webpush.js', array(), FLXAPP_VERSION, true );
+	$dep = array();
+	if ( function_exists( 'flx_dialog_enqueue' ) && function_exists( 'flx_field_enqueue' ) ) {
+		flx_dialog_enqueue();
+		flx_field_enqueue();
+		$dep = array( 'flx-dialog', 'flx-field' );
+	}
+	wp_enqueue_style( 'flxapp-webpush', FLXAPP_URL . 'assets/css/webpush.css', $dep, FLXAPP_VERSION );
+	wp_enqueue_script( 'flxapp-webpush', FLXAPP_URL . 'assets/js/webpush.js', $dep, FLXAPP_VERSION, true );
+	$prefs = flxapp_prefs_out( get_current_user_id() );
 	wp_localize_script(
 		'flxapp-webpush',
 		'flxappWebPush',
 		$cfg + array(
-			'scope' => (string) ( wp_parse_url( home_url( '/' ), PHP_URL_PATH ) ?: '/' ),
-			'nonce' => wp_create_nonce( 'wp_rest' ),
-			'i18n'  => array(
+			'scope'  => (string) ( wp_parse_url( home_url( '/' ), PHP_URL_PATH ) ?: '/' ),
+			'nonce'  => wp_create_nonce( 'wp_rest' ),
+			'prefs'  => rest_url( 'flxapp/v1/prefs' ),
+			'events' => $prefs['events'],
+			'i18n'   => array(
 				'off'         => __( 'Notifications', 'flx-app' ),
 				'on'          => __( 'Notifications on', 'flx-app' ),
 				'blocked'     => __( 'Notifications blocked', 'flx-app' ),
@@ -442,6 +452,13 @@ function flxapp_webpush_assets(): void {
 				'turnOff'     => __( 'Stop notifications in this browser.', 'flx-app' ),
 				'blockedHelp' => __( 'Notifications are blocked for this site in the browser settings.', 'flx-app' ),
 				'failed'      => __( 'Notifications could not be turned on', 'flx-app' ),
+				'title'       => __( 'Notifications', 'flx-app' ),
+				'thisBrowser' => __( 'This browser', 'flx-app' ),
+				'types'       => __( 'Notification types', 'flx-app' ),
+				'typesHelp'   => __( 'Applies to all your devices, also the mobile app.', 'flx-app' ),
+				'noTypes'     => __( 'No notification types are available yet.', 'flx-app' ),
+				'saveFailed'  => __( 'Could not save, try again.', 'flx-app' ),
+				'close'       => __( 'Close', 'flx-app' ),
 			),
 		)
 	);
