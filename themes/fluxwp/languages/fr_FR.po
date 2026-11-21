@@ -1450,3 +1450,6 @@ msgstr "Points"
 #, php-format
 msgid "Güvenli ödeme · %s"
 msgstr "Paiement sécurisé · %s"
+
+msgid "Log in or sign up"
+msgstr "Connexion ou inscription"

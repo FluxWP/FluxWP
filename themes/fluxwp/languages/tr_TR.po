@@ -3378,3 +3378,6 @@ msgstr "Eski tema klasör adı (flxThemeMigrationSources.stylesheet)."
 
 msgid "What was done."
 msgstr "Yapılanlar."
+
+msgid "Log in or sign up"
+msgstr "Giriş yap veya hesap oluştur"

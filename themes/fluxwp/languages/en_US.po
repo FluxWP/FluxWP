@@ -1559,3 +1559,6 @@ msgstr "Your account does not have access to the site yet. If you are on the tea
 
 msgid "Sign out"
 msgstr "Sign out"
+
+msgid "Log in or sign up"
+msgstr "Log in or sign up"

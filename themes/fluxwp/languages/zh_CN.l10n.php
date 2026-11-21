@@ -166,6 +166,7 @@ return array(
   'Required pages' => '所需页数',
   'Server cron' => '服务器计划任务',
   'Log In' => '登录',
+  'Log in or sign up' => '登录或注册',
   'Log in' => '登录',
   'Privacy Agreement' => '隐私协议',
   'Volunteers' => '志愿者',

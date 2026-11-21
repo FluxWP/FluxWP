@@ -1450,3 +1450,6 @@ msgstr "Точки"
 #, php-format
 msgid "Güvenli ödeme · %s"
 msgstr "Безопасная оплата · %s"
+
+msgid "Log in or sign up"
+msgstr "Вход или регистрация"

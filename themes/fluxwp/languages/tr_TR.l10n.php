@@ -167,6 +167,7 @@ return array(
   'Required pages' => 'Gerekli sayfalar',
   'Server cron' => 'Gerçek cron',
   'Log In' => 'Giriş Yap',
+  'Log in or sign up' => 'Giriş yap veya hesap oluştur',
   'Log in' => 'Giriş yap',
   'Privacy Agreement' => 'Gizlilik Sözleşmesi',
   'Volunteers' => 'Gönüllü',

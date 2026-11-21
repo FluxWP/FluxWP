@@ -166,6 +166,7 @@ return array(
   'Required pages' => 'الصفحات المطلوبة',
   'Server cron' => 'كرون الخادم',
   'Log In' => 'تسجيل الدخول',
+  'Log in or sign up' => 'تسجيل الدخول أو إنشاء حساب',
   'Log in' => 'تسجيل الدخول',
   'Privacy Agreement' => 'اتفاقية الخصوصية',
   'Volunteers' => 'المتطوعين',

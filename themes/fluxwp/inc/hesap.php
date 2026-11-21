@@ -129,6 +129,66 @@ add_filter(
 	}
 );
 
+/* ---------- Giriş penceresi: Hesabım'ın giriş/kayıt formu sayfanın ortasında (siteden ayrılmadan) ---------- */
+/*
+ * Header'daki "Giriş yap" (Hesabım bağlantısı ya da WordPress giriş bağlantısı) tıklanınca main.js bir pencere açar
+ * ve içine Hesabım'ı ?flx_auth=1 ile yükler. Bu adreste sayfa yalnız WooCommerce giriş/kayıt formunu basar: aynı
+ * form, aynı Google butonu, aynı e-posta doğrulaması. Giriş/kayıt başka bir adrese yönlenince pencere o adrese gider.
+ */
+
+/** Hesabım ?flx_auth=1 ile, pencere içinde açılıyor. */
+function flx_auth_frame_mi() {
+	return isset( $_GET['flx_auth'] ) && function_exists( 'is_account_page' ) && is_account_page(); // phpcs:ignore WordPress.Security.NonceVerification
+}
+
+add_action(
+	'template_redirect',
+	function () {
+		if ( ! flx_auth_frame_mi() ) {
+			return;
+		}
+		nocache_headers();
+		do_action( 'litespeed_control_set_nocache', 'flx auth window' ); // phpcs:ignore WordPress.NamingConventions.ValidHookName
+		if ( is_user_logged_in() ) { // Giriş tamam (ör. Google): pencereyi kapatıp hedef sayfaya git.
+			$to = flx_donus_hedefi();
+			$to = $to ? $to : wc_get_page_permalink( 'myaccount' );
+			echo '<!doctype html><meta charset="utf-8"><script>(window.top||window).location.replace(' . wp_json_encode( esc_url_raw( $to ) ) . ');</script>';
+			exit;
+		}
+		add_filter( 'show_admin_bar', '__return_false' );
+		add_filter(
+			'body_class',
+			function ( $c ) {
+				return array_merge( $c, array( 'flx-auth-frame', 'woocommerce-account', 'woocommerce-page' ) );
+			}
+		);
+		?>
+<!doctype html>
+<html <?php language_attributes(); ?>>
+<head>
+<meta charset="<?php bloginfo( 'charset' ); ?>">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+		<?php wp_head(); ?>
+</head>
+<body <?php body_class(); ?>>
+<main class="flx-auth-frame__main"><?php echo do_shortcode( '[woocommerce_my_account]' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></main>
+<script>
+( function () {
+	var send = function () { if ( window.parent !== window ) { window.parent.postMessage( { flxAuthH: document.querySelector( '.flx-auth-frame__main' ).scrollHeight }, location.origin ); } };
+	if ( 'ResizeObserver' in window ) { new ResizeObserver( send ).observe( document.querySelector( '.flx-auth-frame__main' ) ); }
+	window.addEventListener( 'load', send );
+} )();
+</script>
+		<?php wp_footer(); ?>
+</body>
+</html>
+		<?php
+		exit;
+	},
+	5
+);
+
 /* ---------- Boş sepet: "Bağışlar Sayfasına dön" ---------- */
 add_filter(
 	'woocommerce_return_to_shop_redirect',
@@ -164,6 +224,19 @@ add_action(
 			'tabReg'     => __( 'Sign Up', 'fluxwp' ),
 			'or'         => __( 'or', 'fluxwp' ),
 		);
+		// Giriş penceresi: yalnız giriş yapmamış ziyaretçide ve Hesabım sayfası varken.
+		if ( ! is_user_logged_in() && function_exists( 'wc_get_page_id' ) && wc_get_page_id( 'myaccount' ) > 0 && ! ( function_exists( 'is_account_page' ) && is_account_page() ) ) {
+			$acc = (string) wc_get_page_permalink( 'myaccount' );
+			if ( function_exists( 'flxl_current_language' ) && function_exists( 'flxl_url_for_language' ) ) {
+				$acc = (string) flxl_url_for_language( $acc, flxl_current_language() );
+			}
+			$d['auth'] = array(
+				'url'   => $acc,
+				'path'  => untrailingslashit( (string) wp_parse_url( (string) wc_get_page_permalink( 'myaccount' ), PHP_URL_PATH ) ),
+				'login' => untrailingslashit( (string) wp_parse_url( wp_login_url(), PHP_URL_PATH ) ),
+				'title' => __( 'Log in or sign up', 'fluxwp' ),
+			);
+		}
 		wp_add_inline_script( 'fluxwp', 'window.flxHesap=' . wp_json_encode( $d ) . ';', 'before' );
 	},
 	21

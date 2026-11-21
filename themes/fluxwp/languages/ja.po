@@ -1450,3 +1450,6 @@ msgstr "ドット"
 #, php-format
 msgid "Güvenli ödeme · %s"
 msgstr "安全な支払い · %s"
+
+msgid "Log in or sign up"
+msgstr "ログインまたは新規登録"

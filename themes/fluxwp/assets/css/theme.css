@@ -1560,3 +1560,23 @@ html[dir=rtl] :is(.flx-swiper-progress span,.flx-hero .swiper-pagination-bullet-
 html[dir=rtl] .flx-pay-logos{background-position:right center}
 .flx-secure-badge__t{display:inline-flex;align-items:baseline}.flx-secure-badge__p::before{content:"·";margin:0 .35em}
 @media (max-width:600px){.flx-secure-badge{border-radius:14px}.flx-secure-badge__t{flex-direction:column;align-items:flex-start;line-height:1.15}.flx-secure-badge__p{font-size:.95em}.flx-secure-badge__p::before{content:none}}
+
+/* Giriş penceresi (main.js): Hesabım'ın giriş/kayıt formu sayfanın ortasında; içerik ?flx_auth=1 çerçevesinden gelir. */
+.flx-auth-modal{box-sizing:border-box;border:0;padding:0;margin:0;max-width:none;max-height:none;width:100%;height:100%;background:transparent;color:var(--flx-ink)}
+.flx-auth-modal::backdrop{background:color-mix(in srgb,var(--flx-deep) 60%,transparent);backdrop-filter:blur(8px)}
+.flx-auth-modal[open]{display:flex;align-items:flex-start;justify-content:center;padding:clamp(1rem,8vh,5rem) 16px 1rem;overflow:auto}
+.flx-auth-modal__inner{box-sizing:border-box;position:relative;width:min(520px,100%);background:var(--flx-surface);border-radius:var(--flx-radius-media);padding:3.5rem clamp(1rem,4vw,2rem) clamp(1rem,4vw,1.75rem);box-shadow:0 40px 80px -20px rgba(0,0,0,.4);animation:flx-modal-in .35s cubic-bezier(.2,.7,.2,1)}
+.flx-auth-modal__close{position:absolute;z-index:1;top:.75rem;inset-inline-end:.75rem;width:40px;height:40px;border:0;border-radius:50%;background:var(--flx-mint-soft);cursor:pointer;font-size:1.4rem;line-height:1;color:var(--flx-ink)}
+.flx-auth-modal__close:hover{background:var(--flx-mint)}
+.flx-auth-modal__close::before{content:"\00d7"}
+.flx-auth-modal__frame{display:block;width:100%;height:420px;border:0;background:transparent;opacity:0;transition:opacity .2s}
+.flx-auth-modal__inner.is-ready .flx-auth-modal__frame{opacity:1}
+.flx-auth-modal__loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;margin:0;color:var(--flx-muted,inherit);pointer-events:none}
+.flx-auth-modal__inner.is-ready .flx-auth-modal__loading{display:none}
+/* Çerçevenin kendisi: yalnız form, arka plan şeffaf; çerez kutusu, sohbet balonu gibi sayfa ekleri gizli. */
+html:has(body.flx-auth-frame),body.flx-auth-frame{background:transparent!important;margin:0!important;padding:0!important;min-height:0!important}
+body.flx-auth-frame>:not(.flx-auth-frame__main):not(script):not(style):not(link):not(:has(iframe[src*="recaptcha"])){display:none!important}
+.flx-auth-frame__main{padding:2px 2px 6px}
+.flx-auth-frame__main>.woocommerce{max-width:none;margin:0;padding:0}
+.flx-auth-frame #customer_login.flx-tabbed{max-width:none}
+.flx-auth-frame #customer_login>.u-column1,.flx-auth-frame #customer_login>.u-column2{padding:0;background:transparent;box-shadow:none;border:0}
