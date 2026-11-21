@@ -108,9 +108,9 @@ final class FLXU_Guard {
 		$catalog = FLXU_Updater::instance()->catalog();
 		$files   = FLXU_Updater::plugin_files();
 		foreach ( $steps as $st ) {
-			$kind = (string) ( $st['kind'] ?? '' );
+			$kind = (string) $st['kind'];
 			if ( 'update' === $kind ) {
-				$slug = (string) ( $st['slug'] ?? '' );
+				$slug = (string) $st['slug'];
 				if ( isset( $catalog[ $slug ] ) ) {
 					$type = (string) $catalog[ $slug ]['type'];
 					if ( 'theme' === $type || isset( $files[ $slug ] ) ) {
@@ -118,13 +118,13 @@ final class FLXU_Guard {
 					}
 				}
 			} elseif ( 'wp_plugin' === $kind ) {
-				$file = (string) ( $st['id'] ?? '' );
+				$file = (string) $st['id'];
 				$slug = dirname( $file );
 				if ( '' !== $file && '.' !== $slug ) {
 					$items[ $slug ] = array( 'type' => 'plugin', 'file' => $file );
 				}
 			} elseif ( 'wp_theme' === $kind ) {
-				$slug = (string) ( $st['id'] ?? '' );
+				$slug = (string) $st['id'];
 				if ( '' !== $slug ) {
 					$items[ $slug ] = array( 'type' => 'theme', 'file' => '' );
 				}
