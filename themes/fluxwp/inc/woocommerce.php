@@ -27,7 +27,13 @@ function flx_wc_icon( $name ) {
 		'item'     => '<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 9h8M8 12h8M8 15h5"/>',
 		'arrow'    => '<path d="M5 12h14m-5-5 5 5-5 5"/>',
 		'check'    => '<path d="m5 12.5 4.5 4.5L19 7.5"/>',
+		'site'     => '<rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18M6.5 6.5h.01M9 6.5h.01M7 13h6M7 16h10"/>',
+		'plug'     => '<path d="M9 3v5M15 3v5M6 8h12v3a6 6 0 0 1-12 0zM12 17v4"/>',
 	);
+	/**
+	 * Ek simgeler: array( ad => SVG iç içeriği (24x24, currentColor çizgi) ).
+	 */
+	$p = (array) apply_filters( 'flx_wc_icons', $p );
 	if ( ! isset( $p[ $name ] ) ) {
 		return '';
 	}
@@ -220,12 +226,35 @@ function flx_wc_hero( $html, $block, $instance = null ) {
 		}
 	}
 
+	/**
+	 * Hesap / sepet / ödeme başlık alanı: array( title, lead, icon, eyebrow ). Ön ayarlar metni siteye göre değiştirir.
+	 *
+	 * @param array  $args Başlık alanı.
+	 * @param string $ctx  account | cart | checkout | received.
+	 * @param string $ep   Hesabım uç noktası ('' = pano veya hesap dışı).
+	 */
+	$args  = (array) apply_filters(
+		'flx_wc_hero',
+		array(
+			'title'   => $title,
+			'lead'    => $lead,
+			'icon'    => $icon,
+			'eyebrow' => $title !== $page ? $page : '',
+		),
+		$ctx,
+		'account' === $ctx ? (string) WC()->query->get_current_endpoint() : ''
+	);
+	$title = (string) ( $args['title'] ?? $title );
+	$lead  = (string) ( $args['lead'] ?? $lead );
+	$icon  = (string) ( $args['icon'] ?? $icon );
+	$brow  = (string) ( $args['eyebrow'] ?? '' );
+
 	ob_start();
 	?>
 <header class="flx-shop-hero flx-shop-hero--<?php echo esc_attr( $ctx ); ?> alignwide">
 	<div class="flx-shop-hero__icon"><?php echo flx_wc_icon( $icon ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
 	<div class="flx-shop-hero__text">
-		<?php if ( $title !== $page ) : ?><p class="flx-shop-hero__eyebrow"><?php echo esc_html( $page ); ?></p><?php endif; ?>
+		<?php if ( '' !== $brow ) : ?><p class="flx-shop-hero__eyebrow"><?php echo esc_html( $brow ); ?></p><?php endif; ?>
 		<h1 class="wp-block-post-title flx-shop-hero__title"><?php echo esc_html( $title ); ?></h1>
 		<?php if ( $lead ) : ?><p class="flx-shop-hero__lead"><?php echo esc_html( $lead ); ?></p><?php endif; ?>
 	</div>

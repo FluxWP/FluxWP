@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.9.7
+- Hesap / sepet / ödeme başlık alanı ön ayardan değiştirilebilir: yeni filtre `flx_wc_hero` (başlık, açıklama, simge, üst etiket; bağlam ve Hesabım uç noktası ile).
+- Simge setine `site` ve `plug` eklendi; ön ayar ya da eklenti `flx_wc_icons` filtresiyle yeni simge ekleyebilir (pano kartı simgeleri için).
+
 ## 0.9.6
 - Menü altındaki hover/aktif çizgisi tek renk: tema ana rengi (`--flx-nav-line` ile ön ayar değiştirebilir); eski ana renk → yaprak rengi geçişi kalktı.
 
