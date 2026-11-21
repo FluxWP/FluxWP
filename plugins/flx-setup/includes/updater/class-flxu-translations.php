@@ -26,6 +26,22 @@ final class FLXU_Translations {
 		add_action( 'upgrader_process_complete', array( __CLASS__, 'flush' ), 1, 0 );
 	}
 
+	/** Güncelleyicinin başarıyla kurduğu çevirileri anımsar (Seçenek: tür:slug:dil => önerilen tarih). */
+	public static function remember( array $items ): void {
+		if ( ! $items ) {
+			return;
+		}
+		$opt = get_option( 'flxk_lang_done', array() );
+		$opt = is_array( $opt ) ? $opt : array();
+		foreach ( $items as $t ) {
+			$when = strtotime( (string) ( $t['updated'] ?? '' ) );
+			if ( $when && ! empty( $t['language'] ) ) {
+				$opt[ ( $t['type'] ?? '' ) . ':' . ( 'core' === ( $t['type'] ?? '' ) ? 'default' : ( $t['slug'] ?? '' ) ) . ':' . $t['language'] ] = $when;
+			}
+		}
+		update_option( 'flxk_lang_done', array_slice( $opt, -300, null, true ), false );
+	}
+
 	public static function flush(): void {
 		self::$installed = array();
 	}
@@ -62,6 +78,10 @@ final class FLXU_Translations {
 		}
 		if ( 'core' === $type ) {
 			$slug = 'default';
+		}
+		$done = get_option( 'flxk_lang_done', array() );
+		if ( is_array( $done ) && (int) ( $done[ $type . ':' . $slug . ':' . $lang ] ?? 0 ) >= $updated ) {
+			return true;
 		}
 		$have = self::installed_time( $type, $slug, $lang );
 		return $have && $have >= $updated;

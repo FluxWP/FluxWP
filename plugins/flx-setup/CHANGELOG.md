@@ -3,6 +3,9 @@
 ## 1.6.9
 - Paketler › toplu "Otomatik güncellemeyi aç/kapat": işlemden sonra tablo, işlemden önce başlamış eski bir yenilemeye takılmadan yeni durumu gösterir (önceden açılışta çalışan güncelleme kontrolü sırasında satırlar eski haliyle kalıyordu). Kurulu olmayan satırlar seçimden çıkarılır, "atlandı" listesini şişirmez; sonuç mesajı görünür alana kaydırılır. Site genelinde otomatik güncelleme kapalıysa (AUTOMATIC_UPDATER_DISABLED vb.) hepsi tek tek atlanmak yerine nedeniyle birlikte hata verir.
 
+- Toplu güncellemede "Çeviriler" adımı kurulumdan sonra "WordPress.org hâlâ daha yeni çeviri bildiriyor" diye hata veriyordu: çeviri paketi yazılmış olsa da .po tarih başlığı önerilen tarihle eşleşmeyince wordpress.org aynı çeviriyi yeniden öneriyordu. Başarıyla kurulan çeviri anımsanır, aynı öneri hata sayılmaz ve satırda "güncelleme var" kalmaz.
+- Çeviriler satırında açıklama iki kez görünüyordu (alt başlık ve kaynak notu); yalnız biri gösterilir.
+
 ## 1.6.8
 - Ayarlar › "FluxWP hesabınızı bağlayın" kartı çarpıyla gizlenir; seçilen süre dolunca (varsayılan 7 gün; 1, 3, 7, 14, 30 gün ya da bir daha gösterme) yeniden görünür. Süre kartın altından değişir, gizliyken "Şimdi göster" var. Gizleme kullanıcı başına, süre site geneli. Bağlı sitede kart gizlenmez. GraphQL `flxSetupCloudCard` mutation'ı, `FlxSetupCloud.hidden` / `hideDays` alanları.
 - "FluxWP ile giriş yap" isteği 10 yerine 30 dakika geçerli: fluxwp.com'da kaydolup e-postayı doğrulayan kişi aynı istekle döner.
