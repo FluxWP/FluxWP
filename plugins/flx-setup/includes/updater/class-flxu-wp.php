@@ -509,6 +509,7 @@ final class FLXU_WP {
 			$todo     = wp_get_translation_updates();
 			$upgrader = new Language_Pack_Upgrader( $skin );
 			$res      = $upgrader->bulk_upgrade( $todo );
+			$done     = ( $res && ! is_array( $res ) && ! is_wp_error( $res ) ) ? array_map( 'get_object_vars', $todo ) : array();
 			if ( is_array( $res ) ) {
 				// Sonuç dizisinde WP_Error ya da false olan çeviri kurulmadı (eskiden "başarılı" sayılıyordu).
 				$bad = array();
@@ -518,6 +519,11 @@ final class FLXU_WP {
 						$bad[] = ( $t ? self::translation_name( $t ) . ' (' . $t->language . ')' : '#' . ( $i + 1 ) ) . ( is_wp_error( $r ) ? ': ' . $r->get_error_message() : '' );
 					}
 				}
+				foreach ( $res as $i => $r ) {
+					if ( ! is_wp_error( $r ) && $r && isset( $todo[ $i ] ) ) {
+						$done[] = (array) $todo[ $i ];
+					}
+				}
 				$res = $bad
 					/* translators: %s: list of translations that failed */
 					? new WP_Error( 'flxu_lang', sprintf( __( 'Not installed: %s', 'flx-setup' ), implode( ', ', $bad ) ) )
@@ -525,6 +531,8 @@ final class FLXU_WP {
 			}
 			// WordPress güncelleme verisini sildi; hemen yeniden sor ki satır ve rozet doğru kalsın.
 			if ( ! is_wp_error( $res ) && $res ) {
+				// Paket yazıldı: aynı çevirinin wordpress.org'da yeniden önerilmesi hata sayılmaz.
+				FLXU_Translations::remember( $done );
 				wp_update_plugins();
 				wp_update_themes();
 				wp_version_check( array(), true );
