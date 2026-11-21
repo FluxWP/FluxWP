@@ -1,0 +1,17 @@
+query FlxMailConnectionMeta {
+  flxMailConnectionMeta {
+    flxsActive
+    sampleImageUrl
+    sampleAudioUrl
+    types {
+      type
+      channel
+      label
+      help
+      scenarios
+      evolution
+      cloud
+      fields { name kind label help required placeholder defaultValue options { key label } }
+    }
+  }
+}

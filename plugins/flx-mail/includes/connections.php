@@ -83,9 +83,10 @@ function flxi_resolve_connection( $channel, $id = 0 ) {
 /**
  * Kaydet. Boş bırakılan gizli alanlar eski değerini korur.
  *
+ * @param string[] $clear Config anahtarları: bu gizli alanlar boşaltılır (yalnız GraphQL yolu geçer).
  * @return int|WP_Error
  */
-function flxi_save_connection( $id, $type, $name, array $input, $active, $is_default = null ) {
+function flxi_save_connection( $id, $type, $name, array $input, $active, $is_default = null, array $clear = array() ) {
 	global $wpdb;
 	$types = flxi_connection_types();
 	if ( ! isset( $types[ $type ] ) ) {
@@ -103,7 +104,9 @@ function flxi_save_connection( $id, $type, $name, array $input, $active, $is_def
 		switch ( $f['type'] ) {
 			case 'password':
 				$v = trim( (string) $v );
-				if ( '' === $v && $old ) {
+				if ( in_array( $k, $clear, true ) ) {
+					$v = '';
+				} elseif ( '' === $v && $old ) {
 					$v = $old['config'][ $k ] ?? '';
 				}
 				break;
@@ -124,7 +127,7 @@ function flxi_save_connection( $id, $type, $name, array $input, $active, $is_def
 		}
 		if ( ! empty( $f['required'] ) && '' === (string) $v ) {
 			/* translators: %s: alan adı */
-			return new WP_Error( 'flxi_required', sprintf( __( '%s is required.', 'flx-mail' ), $f['label'] ) );
+			return new WP_Error( 'flxi_required', sprintf( __( '%s is required.', 'flx-mail' ), $f['label'] ), array( 'field' => (string) $k ) );
 		}
 		$config[ $k ] = 'password' === $f['type'] ? flxi_encrypt( $v ) : $v;
 	}

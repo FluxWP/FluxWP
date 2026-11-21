@@ -1,0 +1,6 @@
+mutation FlxMailConnectionSetDefault($input: FlxMailConnectionSetDefaultInput!) {
+  flxMailConnectionSetDefault(input: $input) {
+    connection { ...FlxMailConnection }
+    errors { code message field }
+  }
+}

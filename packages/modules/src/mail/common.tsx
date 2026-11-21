@@ -1,7 +1,7 @@
 import { createContext, useContext } from 'react';
 import type { Translate } from './i18n';
 
-export type Page = 'templates' | 'logs' | 'settings' | 'system';
+export type Page = 'templates' | 'logs' | 'settings' | 'connections' | 'system';
 
 export interface MailCtx {
   t: Translate;

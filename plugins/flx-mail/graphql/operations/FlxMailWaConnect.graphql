@@ -1,0 +1,12 @@
+mutation FlxMailWaConnect($input: FlxMailWaConnectInput!) {
+  flxMailWaConnect(input: $input) {
+    state
+    qr
+    pairing
+    me
+    name
+    error
+    at { ...FlxMailDate }
+    errors { code message field }
+  }
+}

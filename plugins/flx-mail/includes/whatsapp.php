@@ -390,29 +390,29 @@ add_action(
 		$ns   = 'flxi/v1';
 		$id   = '/wa/(?P<id>\d+)';
 		register_rest_route( $ns, $id . '/state', array( 'methods' => 'GET', 'callback' => function ( WP_REST_Request $r ) {
-			return flxi_wa_state( (int) $r['id'], ! empty( $r['fresh'] ) );
+			return FLXI_Connection_Service::wa_state_raw( (int) $r['id'], ! empty( $r['fresh'] ) );
 		}, 'permission_callback' => $perm ) );
 		register_rest_route( $ns, $id . '/connect', array( 'methods' => 'POST', 'callback' => function ( WP_REST_Request $r ) {
-			return flxi_wa_connect( (int) $r['id'], sanitize_text_field( (string) $r['number'] ) );
+			return FLXI_Connection_Service::wa_connect_raw( (int) $r['id'], sanitize_text_field( (string) $r['number'] ) );
 		}, 'permission_callback' => $perm ) );
 		register_rest_route( $ns, $id . '/restart', array( 'methods' => 'POST', 'callback' => function ( WP_REST_Request $r ) {
-			return flxi_wa_restart( (int) $r['id'] );
+			return FLXI_Connection_Service::wa_restart_raw( (int) $r['id'] );
 		}, 'permission_callback' => $perm ) );
 		register_rest_route( $ns, $id . '/logout', array( 'methods' => 'POST', 'callback' => function ( WP_REST_Request $r ) {
-			return flxi_wa_logout( (int) $r['id'] );
+			return FLXI_Connection_Service::wa_logout_raw( (int) $r['id'] );
 		}, 'permission_callback' => $perm ) );
 		register_rest_route( $ns, $id . '/instances', array( 'methods' => 'GET', 'callback' => function ( WP_REST_Request $r ) {
-			return flxi_wa_server_instances( (int) $r['id'] );
+			return FLXI_Connection_Service::wa_instances( (int) $r['id'] );
 		}, 'permission_callback' => $perm ) );
 		register_rest_route( $ns, $id . '/groups', array( 'methods' => 'GET', 'callback' => function ( WP_REST_Request $r ) {
-			return flxi_whatsapp_groups( (int) $r['id'], ! empty( $r['fresh'] ) );
+			return FLXI_Connection_Service::wa_groups( (int) $r['id'], ! empty( $r['fresh'] ) );
 		}, 'permission_callback' => $perm ) );
 		register_rest_route( $ns, $id . '/server', array(
 			array( 'methods' => 'GET', 'callback' => function ( WP_REST_Request $r ) {
-				return flxi_wa_server_get( (int) $r['id'] );
+				return FLXI_Connection_Service::wa_server_get_raw( (int) $r['id'] );
 			}, 'permission_callback' => $perm ),
 			array( 'methods' => 'POST', 'callback' => function ( WP_REST_Request $r ) {
-				return flxi_wa_server_save( (int) $r['id'], (array) $r->get_json_params() );
+				return FLXI_Connection_Service::wa_server_save_raw( (int) $r['id'], (array) $r->get_json_params() );
 			}, 'permission_callback' => $perm ),
 		) );
 	}
