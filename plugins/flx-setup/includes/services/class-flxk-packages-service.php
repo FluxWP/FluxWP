@@ -811,6 +811,14 @@ final class FLXK_Packages_Service {
 			}
 		}
 
+		if ( 'auto_on' === $op || 'auto_off' === $op ) {
+			// Everything would be skipped one by one with a misleading summary: say why once.
+			$types = array_unique( array_column( $items, 'type' ) );
+			if ( $types && ! array_filter( $types, static fn( $t ): bool => wp_is_auto_update_enabled_for_type( 'theme' === $t ? 'theme' : 'plugin' ) ) ) {
+				return new WP_Error( 'flxk_auto', __( 'Automatic updates are turned off for this site.', 'flx-setup' ), array( 'graphql_code' => 'CONFLICT' ) );
+			}
+		}
+
 		$done   = 0;
 		$skip   = array();
 		$fail   = array();
