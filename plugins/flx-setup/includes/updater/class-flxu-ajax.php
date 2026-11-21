@@ -119,6 +119,7 @@ final class FLXU_Ajax {
 				$lines[] = array( 'ok' => false, 'text' => $p['name'] . ': ' . $res->get_error_message() );
 			}
 		} elseif ( 'update' === $kind ) {
+			$guard->ensure_batch( $p['type'], $slug );
 			if ( 'theme' === $p['type'] ) {
 				self::ensure_update_data( 'update_themes' );
 				$upgrader = new Theme_Upgrader( $skin );

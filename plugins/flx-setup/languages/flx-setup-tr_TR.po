@@ -1826,6 +1826,9 @@ msgstr "Güncelleme sunucusunda geçici bir hata oldu. Bir dakika sonra yeniden 
 msgid "Download failed (HTTP %1$d: %2$s). %3$s"
 msgstr "Dosya indirilemedi (HTTP %1$d: %2$s). %3$s"
 
+msgid "Before updating %d packages"
+msgstr "%d paket güncellenmeden önce"
+
 msgid "Package did not change; the installation may have failed."
 msgstr "Paket değişmedi; kurulum başarısız olmuş olabilir."
 

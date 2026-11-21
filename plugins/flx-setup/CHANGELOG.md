@@ -1,8 +1,11 @@
 # Değişiklikler
 
-## 1.6.6
+## 1.6.7
 - Kurulum sihirbazı: adımların içinde dikey kaydırma. Hata listesi ya da düşük ekran yüksekliğinde son adımın alt kısmı kesiliyor, sayfa kaymıyordu.
 - Sihirbazda paket indirme HTTP 429/408/425/5xx ile düşerse paket 20 sn ve 45 sn sonra yeniden denenir (eskiden ~7 sn içinde 3 deneme, sonra pes). Art arda indirmede kaynağın hız sınırına takılan paketler artık çoğunlukla tamamlanır.
+
+## 1.6.6
+- Toplu güncellemede (2+ paket) yedek işlemin başında tek seferde alınır: ilk güncelleme adımı plandaki tüm paket klasörlerini ve veritabanını tek yedeğe yazar, sonraki adımlar yedek almaz. Eskiden her paket yedeğe ek olarak ekleniyordu ve her ekleme zip'i baştan yazdığı için yavaşlıyordu; 180 sn'lik birleştirme penceresi dolarsa veritabanı yeniden yedekleniyordu. Geri dönüş aynı: sorunlu paket yalnız kendi klasörüne, o yedekten döner (veritabanı değişmez). Yedek alınamazsa ya da kapsam dışıysa her paket kendi yedeğine döner (eski davranış). Geçmiş satırlarındaki yedek kimliği ve yedeğin paket sürümleri doğru yazılır.
 
 ## 1.6.5
 - Güvenlik: paket simgeleri ortak denetimli istekle (flx-brand `flx_safe_remote_get`) indirilir: katalogdan gelen adres iç ağa çözülüyorsa istek atılmaz.

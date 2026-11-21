@@ -604,6 +604,7 @@ return array(
   'Too many requests in a short time. Wait a minute and try again.' => 'Kısa sürede çok fazla istek. Bir dakika bekleyip yeniden deneyin.',
   'The update server had a temporary error. Try again in a minute.' => 'Güncelleme sunucusunda geçici bir hata oldu. Bir dakika sonra yeniden deneyin.',
   'Download failed (HTTP %1$d: %2$s). %3$s' => 'Dosya indirilemedi (HTTP %1$d: %2$s). %3$s',
+  'Before updating %d packages' => '%d paket güncellenmeden önce',
   'Package did not change; the installation may have failed.' => 'Paket değişmedi; kurulum başarısız olmuş olabilir.',
   'Rolled back to the previous version automatically.' => 'Önceki sürüme otomatik dönüldü.',
   'Previous version not found; restore it manually.' => 'Eski sürüm bulunamadı; elle geri yükleyin.',
