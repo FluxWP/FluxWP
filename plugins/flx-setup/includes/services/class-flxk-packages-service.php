@@ -692,6 +692,7 @@ final class FLXK_Packages_Service {
 				'version' => '',
 			);
 		}
+		FLXU_Guard::remember_plan( $steps );
 		return $steps;
 	}
 

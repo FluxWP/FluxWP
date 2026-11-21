@@ -3241,3 +3241,8 @@ msgstr ""
 #, php-format
 msgid "The FluxWP signature of %1$s %2$s does not match the downloaded file, so it was not installed. The package may have been changed on the way or on the server. Contact FluxWP support."
 msgstr ""
+
+#: includes/updater/class-flxu-guard.php
+#, php-format
+msgid "Before updating %d packages"
+msgstr ""

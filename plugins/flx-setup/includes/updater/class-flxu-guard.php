@@ -45,6 +45,7 @@ final class FLXU_Guard {
 		add_action( 'upgrader_process_complete', array( $this, 'complete' ), 20, 2 );
 		add_action( 'flxy_backup_created', array( $this, 'backup_created' ) );
 		add_action( 'flxy_backup_appended', array( $this, 'backup_created' ) );
+		add_filter( 'flxy_pre_update_backup', array( $this, 'skip_covered' ), 10, 2 );
 		add_action( 'wp_ajax_nopriv_flxu_ping', array( $this, 'ping' ) );
 		add_action( 'wp_ajax_flxu_ping', array( $this, 'ping' ) );
 	}
@@ -69,6 +70,204 @@ final class FLXU_Guard {
 		$abs = wp_normalize_path( ABSPATH );
 		$dir = wp_normalize_path( $dir );
 		return 0 === strpos( $dir, $abs ) ? ltrim( substr( $dir, strlen( $abs ) ), '/' ) : $dir;
+	}
+
+
+	/* ------------------------------------------------------------------ */
+	/* Toplu güncelleme: işlem başında tek yedek                           */
+	/* ------------------------------------------------------------------ */
+
+	const BATCH_TTL = 1200;
+
+	private static function batch_key(): string {
+		return 'flxu_batch_' . get_current_user_id();
+	}
+
+	/** @return array{items:array<string,array>,id:string,failed:bool}|null */
+	private static function batch(): ?array {
+		$b = get_transient( self::batch_key() );
+		return is_array( $b ) && ! empty( $b['items'] ) ? $b : null;
+	}
+
+	private static function batch_save( array $b ): void {
+		if ( empty( $b['items'] ) ) {
+			delete_transient( self::batch_key() );
+			return;
+		}
+		set_transient( self::batch_key(), $b, self::BATCH_TTL );
+	}
+
+	/**
+	 * Güncelleme planı 2+ pakete dokunuyorsa kaydet: ilk güncelleme adımı tüm klasörleri ve veritabanını
+	 * tek yedekte alır, sonraki adımlar yedek almaz. Plan kısa tutulur; yedeğin kimliği adımlar arasında burada durur.
+	 *
+	 * @param list<array{kind:string,slug:string,id:string}> $steps FLXK_Packages_Service::plan() adımları.
+	 */
+	public static function remember_plan( array $steps ): void {
+		$items   = array();
+		$catalog = FLXU_Updater::instance()->catalog();
+		$files   = FLXU_Updater::plugin_files();
+		foreach ( $steps as $st ) {
+			$kind = (string) ( $st['kind'] ?? '' );
+			if ( 'update' === $kind ) {
+				$slug = (string) ( $st['slug'] ?? '' );
+				if ( isset( $catalog[ $slug ] ) ) {
+					$type = (string) $catalog[ $slug ]['type'];
+					if ( 'theme' === $type || isset( $files[ $slug ] ) ) {
+						$items[ $slug ] = array( 'type' => $type, 'file' => 'theme' === $type ? '' : $files[ $slug ] );
+					}
+				}
+			} elseif ( 'wp_plugin' === $kind ) {
+				$file = (string) ( $st['id'] ?? '' );
+				$slug = dirname( $file );
+				if ( '' !== $file && '.' !== $slug ) {
+					$items[ $slug ] = array( 'type' => 'plugin', 'file' => $file );
+				}
+			} elseif ( 'wp_theme' === $kind ) {
+				$slug = (string) ( $st['id'] ?? '' );
+				if ( '' !== $slug ) {
+					$items[ $slug ] = array( 'type' => 'theme', 'file' => '' );
+				}
+			}
+		}
+		if ( count( $items ) < 2 ) {
+			delete_transient( self::batch_key() );
+			return;
+		}
+		self::batch_save( array( 'items' => $items, 'id' => '', 'failed' => false ) );
+	}
+
+	/** hook_extra'daki paketin klasör adı ve türü. */
+	private static function hook_slug( $extra ): array {
+		if ( is_array( $extra ) && ! empty( $extra['plugin'] ) ) {
+			return array( 'plugin', dirname( (string) $extra['plugin'] ) );
+		}
+		if ( is_array( $extra ) && ! empty( $extra['theme'] ) ) {
+			return array( 'theme', (string) $extra['theme'] );
+		}
+		return array( '', '' );
+	}
+
+	/** Toplu yedek bu pakete ait mi (ve yedek hâlâ duruyor mu): yedek kimliği ya da ''. */
+	private static function covering_id( string $type, string $slug ): string {
+		$b = self::batch();
+		if ( ! $b || '' === $b['id'] || ! isset( $b['items'][ $slug ] ) || $b['items'][ $slug ]['type'] !== $type ) {
+			return '';
+		}
+		if ( ! function_exists( 'flxy_backup_get' ) ) {
+			return '';
+		}
+		$rec = flxy_backup_get( $b['id'] );
+		return is_array( $rec ) && 'ok' === ( $rec['status'] ?? '' ) ? $b['id'] : '';
+	}
+
+	/**
+	 * Toplu planın ilk güncelleme adımında çağrılır: plandaki tüm paket klasörleri + veritabanı tek yedekte.
+	 * Yedek alınamazsa ya da kapsam dışıysa sessizce her paketin kendi yedeğine dönülür (eski davranış).
+	 */
+	public function ensure_batch( string $type, string $slug ): void {
+		$b = self::batch();
+		if ( ! $b || $b['failed'] || ! isset( $b['items'][ $slug ] ) || $b['items'][ $slug ]['type'] !== $type ) {
+			return;
+		}
+		$id = self::covering_id( $type, $slug );
+		if ( '' !== $id ) {
+			$this->backup_id = $this->backup_id ? $this->backup_id : $id;
+			return;
+		}
+		if ( ! self::backup_ready() || ! class_exists( 'FLXY_Pre_Update' ) ) {
+			return;
+		}
+		$paths    = array();
+		$packages = array();
+		foreach ( $b['items'] as $s => $it ) {
+			if ( ! FLXY_Pre_Update::in_scope( array( 'type' => $it['type'], 'slug' => $s ) ) ) {
+				unset( $b['items'][ $s ] );
+				continue;
+			}
+			$from = self::installed_version( $it['type'], $s );
+			if ( '' === $from ) {
+				unset( $b['items'][ $s ] );
+				continue;
+			}
+			$paths[]    = self::rel_path( $it['type'], $s );
+			$packages[] = array(
+				'type'         => $it['type'],
+				'slug'         => $s,
+				'file'         => $it['file'],
+				'name'         => self::local_name( $it['type'], $s ),
+				'from_version' => $from,
+				'to_version'   => '',
+			);
+		}
+		if ( count( $paths ) < 2 ) {
+			// Tek paket kaldıysa toplu yedeğin anlamı yok; her paket kendi yedeğini alır.
+			$b['failed'] = true;
+			self::batch_save( $b );
+			return;
+		}
+		$res = flxy_backup_create(
+			array(
+				'type'    => 'pre_update',
+				/* translators: %d: number of packages */
+				'label'   => sprintf( __( 'Before updating %d packages', 'flx-setup' ), count( $paths ) ),
+				'db'      => true,
+				'paths'   => $paths,
+				'context' => array(
+					'source'   => 'update',
+					'action'   => 'update',
+					'user'     => get_current_user_id(),
+					'packages' => $packages,
+				),
+				'sync'    => true,
+			)
+		);
+		if ( is_wp_error( $res ) || empty( $res['id'] ) ) {
+			$b['failed'] = true;
+			self::batch_save( $b );
+			return;
+		}
+		$b['id'] = (string) $res['id'];
+		self::batch_save( $b );
+		$this->backup_id = $b['id'];
+	}
+
+	/** Toplu yedek paketi kapsıyorsa Flux Backup'in kendi güncelleme öncesi yedeğini atla. */
+	public function skip_covered( $take, $extra = array() ) {
+		if ( ! $take ) {
+			return $take;
+		}
+		list( $type, $slug ) = self::hook_slug( $extra );
+		return '' !== $type && '' !== self::covering_id( $type, $slug ) ? false : $take;
+	}
+
+	/** Güncellenen paketleri toplu plandan düş; yedeğin bağlamına yeni sürümleri yaz. */
+	private function batch_done( array $changed ): void {
+		$b = self::batch();
+		if ( ! $b ) {
+			return;
+		}
+		if ( '' !== $b['id'] && class_exists( 'FLXY_Storage' ) ) {
+			$rec = FLXY_Storage::get( $b['id'] );
+			if ( $rec ) {
+				$ctx = $rec['context'];
+				foreach ( (array) ( $ctx['packages'] ?? array() ) as $i => $p ) {
+					if ( isset( $changed[ $p['slug'] ?? '' ] ) ) {
+						$ctx['packages'][ $i ]['to_version'] = $changed[ $p['slug'] ]['to'];
+					}
+				}
+				FLXY_Storage::patch( $b['id'], array( 'context' => $ctx ) );
+			}
+		}
+		foreach ( array_keys( $changed ) as $slug ) {
+			unset( $b['items'][ $slug ] );
+		}
+		if ( $b['items'] ) {
+			// Düşen paketlerin yedeği artık "kapsayan" olarak aranmaz; kalanlar için kimlik durur.
+			self::batch_save( $b );
+		} else {
+			self::batch_save( array() );
+		}
 	}
 
 	/* ------------------------------------------------------------------ */
@@ -133,6 +332,10 @@ final class FLXU_Guard {
 			'name' => $name,
 			'from' => $from,
 		);
+		if ( '' === $this->backup_id ) {
+			// Toplu güncellemede bu paketin yedeği işlemin başında alındı; geri dönüş ve geçmiş ondan okur.
+			$this->backup_id = self::covering_id( $type, $slug );
+		}
 	}
 
 	/** Kurulu eklenti/temanın görünen adı (katalogda olmayanlar için). */
@@ -169,6 +372,7 @@ final class FLXU_Guard {
 		if ( ! $changed ) {
 			return;
 		}
+		$this->batch_done( $changed );
 
 		$health = ! empty( FLXU_Updater::settings()['health'] );
 		$probe  = $health ? self::probe() : array( 'state' => 'skipped', 'message' => '' );

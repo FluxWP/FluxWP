@@ -478,6 +478,7 @@ final class FLXU_WP {
 				return self::fail( __( 'Package not found.', 'flx-setup' ) );
 			}
 			$name     = (string) $all[ $id ]['Name'];
+			$guard->ensure_batch( 'plugin', dirname( $id ) );
 			$upgrader = new Plugin_Upgrader( $skin );
 			$res      = $upgrader->bulk_upgrade( array( $id ) );
 			$res      = is_array( $res ) ? ( $res[ $id ] ?? null ) : $res;
@@ -490,6 +491,7 @@ final class FLXU_WP {
 				return self::fail( __( 'Package not found.', 'flx-setup' ) );
 			}
 			$name     = (string) $theme->get( 'Name' );
+			$guard->ensure_batch( 'theme', $id );
 			$upgrader = new Theme_Upgrader( $skin );
 			$res      = $upgrader->bulk_upgrade( array( $id ) );
 			$res      = is_array( $res ) ? ( $res[ $id ] ?? null ) : $res;
