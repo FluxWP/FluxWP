@@ -1133,11 +1133,21 @@ flx_gql_mutation(
 		),
 		'resolve'     => static function ( array $input ) {
 			flxk_gql_engine();
-			return FLXK_Packages_Service::manage(
-				flx_gql_str( $input['op'] ?? '' ),
-				flxk_gql_strings( $input['slugs'] ?? array() ),
-				flxk_gql_strings( $input['wpKeys'] ?? array() )
-			);
+			try {
+				return FLXK_Packages_Service::manage(
+					flx_gql_str( $input['op'] ?? '' ),
+					flxk_gql_strings( $input['slugs'] ?? array() ),
+					flxk_gql_strings( $input['wpKeys'] ?? array() )
+				);
+			} catch ( \Throwable $e ) {
+				error_log( 'flx-setup flxSetupManage: ' . $e->getMessage() . ' @ ' . $e->getFile() . ':' . $e->getLine() ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+				return new WP_Error(
+					'flxk_manage',
+					/* translators: %s: error message */
+					sprintf( __( 'The action could not be completed: %s', 'flx-setup' ), $e->getMessage() ),
+					array( 'graphql_code' => 'CONFLICT' )
+				);
+			}
 		},
 	)
 );

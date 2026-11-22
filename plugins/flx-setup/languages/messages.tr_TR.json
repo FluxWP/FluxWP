@@ -1028,6 +1028,7 @@
     "Packages changed.": "Değişen paketler.",
     "Names skipped (already in that state, active theme or FluxWP Panel).": "Atlanan adlar (zaten o durumda, etkin tema ya da FluxWP Panel).",
     "Names that failed.": "Başarısız olan adlar.",
+    "The action could not be completed: %s": "İşlem tamamlanamadı: %s",
     "Turns WordPress' automatic updates of one plugin or theme on or off.": "Bir eklenti ya da temanın WordPress otomatik güncellemesini açar ya da kapatır.",
     "Plugin or theme.": "Eklenti ya da tema.",
     "Plugin file or theme folder (FlxSetupAutoUpdate.id).": "Eklenti dosyası ya da tema klasörü (FlxSetupAutoUpdate.id).",

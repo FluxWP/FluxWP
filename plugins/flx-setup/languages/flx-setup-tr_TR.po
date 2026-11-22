@@ -3096,6 +3096,9 @@ msgstr "Atlanan adlar (zaten o durumda, etkin tema ya da FluxWP Panel)."
 msgid "Names that failed."
 msgstr "Başarısız olan adlar."
 
+msgid "The action could not be completed: %s"
+msgstr "İşlem tamamlanamadı: %s"
+
 msgid "Turns WordPress' automatic updates of one plugin or theme on or off."
 msgstr "Bir eklenti ya da temanın WordPress otomatik güncellemesini açar ya da kapatır."
 

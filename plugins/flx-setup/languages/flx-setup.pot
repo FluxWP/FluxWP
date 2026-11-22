@@ -3096,6 +3096,9 @@ msgstr ""
 msgid "Names that failed."
 msgstr ""
 
+msgid "The action could not be completed: %s"
+msgstr ""
+
 msgid "Turns WordPress' automatic updates of one plugin or theme on or off."
 msgstr ""
 
