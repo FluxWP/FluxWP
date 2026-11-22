@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.9.10
+- Giriş penceresinde "Google ile giriş yap" butonu yeniden çıkıyor: pencere, Site Kit Google script'ini kaydetmeden önce sayfayı kesiyordu ("veya" altı boş kalıyordu). Pencere artık `template_redirect` 99'da basılıyor.
+
 ## 0.9.9
 - Giriş penceresi açan sayfanın temasını kullanır: koyu/açık sınıfları ve sayfanın renk değişkenleri pencereye aynen geçer (ön ayarın koyu modu dahil). Etiketler, alanlar, sekmeler ve buton tema renginde; reCAPTCHA rozeti pencerede gizli; Google butonu sonradan çizilince pencere yüksekliği yeniden ölçülür.
 

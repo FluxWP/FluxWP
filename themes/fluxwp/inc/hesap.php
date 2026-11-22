@@ -207,7 +207,8 @@ add_action(
 		<?php
 		exit;
 	},
-	5
+	// 10'dan sonra: Site Kit "Sign in with Google" script'ini template_redirect 10'da kaydeder; daha önce çıkılırsa pencerede Google butonu çizilmez.
+	99
 );
 
 /* ---------- Boş sepet: "Bağışlar Sayfasına dön" ---------- */
