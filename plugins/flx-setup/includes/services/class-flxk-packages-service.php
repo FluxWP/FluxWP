@@ -884,7 +884,7 @@ final class FLXK_Packages_Service {
 	 * One package of a bulk action.
 	 *
 	 * @param string                           $op     One of MANAGE_OPS.
-	 * @param string                           $type   plugin|theme.
+	 * @param 'plugin'|'theme'                 $type   Package type.
 	 * @param string                           $id     Plugin file or theme folder.
 	 * @param array<string,list<string>>       $auto   Automatic-update lists (changed in place).
 	 * @param array<string,string>             $del_pl Plugins to delete after the loop (id => name).
