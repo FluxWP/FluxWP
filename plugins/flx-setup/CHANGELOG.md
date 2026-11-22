@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.6.11
+- Paketler › toplu etkinleştir/devre dışı bırak/sil/otomatik güncelleme işlemi `flxSetupManage` bir eklentinin kendi etkinleştirme, devre dışı bırakma ya da silme kodu hata verince "Internal server error" ile çöküyordu. Artık her paket ayrı korunur: hata veren paket "başarısız" listesine girer, diğerleri sürer; hata kaydı error_log'a yazılır. Beklenmeyen bir hata olursa anlamlı mesajla döner ("İşlem tamamlanamadı: …"). Eklenti kodunun yazdığı çıktı yanıtı bozmaz.
+
 ## 1.6.10
 - Paketler › toplu "Otomatik güncellemeyi aç/kapat": işlemden sonra tablo, işlemden önce başlamış eski bir yenilemeye takılmadan yeni durumu gösterir (önceden açılışta çalışan güncelleme kontrolü sırasında satırlar eski haliyle kalıyordu). Kurulu olmayan satırlar seçimden çıkarılır, "atlandı" listesini şişirmez; sonuç mesajı görünür alana kaydırılır. Site genelinde otomatik güncelleme kapalıysa (AUTOMATIC_UPDATER_DISABLED vb.) hepsi tek tek atlanmak yerine nedeniyle birlikte hata verir.
 

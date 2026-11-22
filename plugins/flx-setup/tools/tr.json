@@ -415,5 +415,6 @@
  "The FluxWP account card is hidden for %d days after you close it.": "FluxWP hesap kartı kapatıldıktan sonra %d gün gizli kalır.",
  "Show now": "Şimdi göster",
  "If hidden, show again": "Gizlenirse yeniden göster",
- "Hide": "Gizle"
+ "Hide": "Gizle",
+ "The action could not be completed: %s": "İşlem tamamlanamadı: %s"
 }
