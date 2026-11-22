@@ -207,7 +207,35 @@ add_action(
 		<?php
 		exit;
 	},
-	5
+	// 10'dan sonra: Site Kit "Sign in with Google" script'ini template_redirect 10'da kaydeder; daha önce çıkılırsa pencerede Google butonu çizilmez.
+	99
+);
+
+/* ---------- Kayıt / ödeme gizlilik metni dile göre ---------- */
+/*
+ * WooCommerce bu metni ayar olarak saklar; site İngilizce kurulduysa ayarda İngilizce varsayılan kalır ve her dilde
+ * İngilizce çıkar. Ayar hâlâ WooCommerce'ün varsayılanıysa o anki dilin WooCommerce çevirisi gösterilir; elle
+ * değiştirilmiş metne dokunulmaz.
+ */
+add_filter(
+	'woocommerce_get_privacy_policy_text',
+	function ( $text, $type ) {
+		$defaults = array(
+			'registration' => 'Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our [privacy_policy].',
+			'checkout'     => 'Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our [privacy_policy].',
+		);
+		if ( ! isset( $defaults[ $type ] ) || trim( (string) $text ) !== $defaults[ $type ] ) {
+			return $text;
+		}
+		$msg = 'registration' === $type
+			/* translators: %s privacy policy page name and link */
+			? __( 'Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our %s.', 'woocommerce' ) // phpcs:ignore WordPress.WP.I18n.TextDomainMismatch
+			/* translators: %s privacy policy page name and link */
+			: __( 'Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our %s.', 'woocommerce' ); // phpcs:ignore WordPress.WP.I18n.TextDomainMismatch
+		return sprintf( $msg, '[privacy_policy]' );
+	},
+	10,
+	2
 );
 
 /* ---------- Boş sepet: "Bağışlar Sayfasına dön" ---------- */
