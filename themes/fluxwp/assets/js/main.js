@@ -203,7 +203,7 @@ document.addEventListener('click', function (e) {
 		dlg.className = 'flx-auth-modal';
 		dlg.setAttribute('aria-label', A.title || 'Giriş');
 		dlg.innerHTML = '<div class="flx-auth-modal__inner"><button type="button" class="flx-auth-modal__close" aria-label="' + flxT('close', 'Kapat') + '"></button>' +
-			'<p class="flx-auth-modal__loading">' + flxT('loading', 'Yükleniyor…') + '</p><iframe class="flx-auth-modal__frame" title="' + (A.title || '') + '"></iframe></div>';
+			'<div class="flx-auth-modal__loading" role="status" aria-label="' + flxT('loading', 'Yükleniyor…') + '"><i class="flx-sk flx-sk--tabs"></i><i class="flx-sk flx-sk--label"></i><i class="flx-sk flx-sk--field"></i><i class="flx-sk flx-sk--label"></i><i class="flx-sk flx-sk--field"></i><i class="flx-sk flx-sk--btn"></i><i class="flx-sk flx-sk--line"></i><i class="flx-sk flx-sk--google"></i></div><iframe class="flx-auth-modal__frame" title="' + (A.title || '') + '"></iframe></div>';
 		document.body.appendChild(dlg);
 		wrap = dlg.querySelector('.flx-auth-modal__inner');
 		frame = dlg.querySelector('iframe');
@@ -223,10 +223,13 @@ document.addEventListener('click', function (e) {
 			frame.style.height = Math.ceil(e.data.flxAuthH) + 'px';
 		});
 	}
-	function open(url, back) {
+	function load(url) {
 		if (!dlg) build();
-		fallback = back;
 		if (frame.getAttribute('src') !== url) { wrap.classList.remove('is-ready'); frame.style.height = ''; frame.setAttribute('src', url); }
+	}
+	function open(url, back) {
+		load(url);
+		fallback = back;
 		if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
 		document.documentElement.classList.add('flx-modal-open');
 	}
@@ -241,6 +244,14 @@ document.addEventListener('click', function (e) {
 		if (nav) { var c = nav.querySelector('.wp-block-navigation__responsive-container-close'); if (c) c.click(); }
 		open(url, a.href);
 	}, true);
+	// Niyet görünce (fare üstüne gelince, dokununca, klavyeyle odaklanınca) pencere arkada önden yüklenir: tıklayınca form hazır gelir.
+	var intent = function (e) {
+		var a = e.target.closest && e.target.closest('a[href]');
+		if (!a || a.closest('.flx-auth-modal')) return;
+		var url = target(a);
+		if (url) load(url);
+	};
+	['pointerover', 'touchstart', 'focusin'].forEach(function (t) { document.addEventListener(t, intent, { passive: true, capture: true }); });
 })();
 
 /* Bağış modunda boş sepet: "Mağazaya geri dön" → "Bağışlar Sayfasına dön" (bağış sayfası). Mini sepet sonradan çizildiği için izlenir. */
