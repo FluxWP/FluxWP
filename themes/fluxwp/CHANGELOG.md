@@ -2,6 +2,7 @@
 
 ## 0.10.1
 - "Google ile giriş yap" (Site Kit) butonu Kayıt Ol sekmesinde de çıkar ("Google ile kaydol" metniyle). Giriş formunda buton yoksa (Site Kit bağlı değilse) kayıtta da çıkmaz.
+- Google ile giriş sürerken formun üstünde bilgi kartı ve İptal butonu: Google penceresi açıkken "hesabınızı seçin (açılmadıysa açılır pencerelere izin verin)", giriş sunucuya gidince "Google ile giriş yapılıyor, hesabınız yoksa oluşturuluyor", 25 sn'de sonuç gelmezse "uzun sürüyor". İptal isteği durdurur, forma geri döner.
 
 ## 0.10.0
 - Giriş penceresi tasarımı seçilebilir (Tema Ayarları › Giriş penceresi; ön ayarda `flx_ayarlar.auth_*`):

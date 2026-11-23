@@ -199,6 +199,18 @@ msgstr ""
 msgid "or with email"
 msgstr ""
 
+msgid "Choose your account in the Google window. If it does not open, allow pop-ups for this site."
+msgstr ""
+
+msgid "Signing you in with Google. If you have no account yet, we are creating one."
+msgstr ""
+
+msgid "This is taking longer than usual. You can wait a little more or cancel and try again."
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
 msgid "Phone"
 msgstr ""
 

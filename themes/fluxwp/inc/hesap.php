@@ -381,6 +381,13 @@ add_action(
 			$d['authGoogleTop'] = 'split' !== flx_ayar( 'auth_style' ); // Kart düzeninde Google butonu formun üstünde.
 			$d['orEmail']       = __( 'or with email', 'fluxwp' );
 		}
+		// Google ile giriş sürerken formun üstündeki bilgi katmanı (main.js).
+		$d['gWait'] = array(
+			'popup'  => __( 'Choose your account in the Google window. If it does not open, allow pop-ups for this site.', 'fluxwp' ),
+			'auth'   => __( 'Signing you in with Google. If you have no account yet, we are creating one.', 'fluxwp' ),
+			'slow'   => __( 'This is taking longer than usual. You can wait a little more or cancel and try again.', 'fluxwp' ),
+			'cancel' => __( 'Cancel', 'fluxwp' ),
+		);
 		wp_add_inline_script( 'fluxwp', 'window.flxHesap=' . wp_json_encode( $d ) . ';', 'before' );
 	},
 	21

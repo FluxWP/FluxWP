@@ -3447,3 +3447,15 @@ msgstr "Resmin ortam ID'si; 0 kaldırır."
 
 msgid "Small label on the picture."
 msgstr "Resmin üstündeki küçük etiket."
+
+msgid "Choose your account in the Google window. If it does not open, allow pop-ups for this site."
+msgstr "Google penceresinde hesabınızı seçin. Pencere açılmadıysa bu sitede açılır pencerelere izin verin."
+
+msgid "Signing you in with Google. If you have no account yet, we are creating one."
+msgstr "Google ile giriş yapılıyor. Hesabınız yoksa sizin için oluşturuluyor."
+
+msgid "This is taking longer than usual. You can wait a little more or cancel and try again."
+msgstr "Bu her zamankinden uzun sürüyor. Biraz daha bekleyebilir ya da iptal edip tekrar deneyebilirsiniz."
+
+msgid "Cancel"
+msgstr "İptal"
