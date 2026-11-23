@@ -1,0 +1,3 @@
+query FlxMailWaState($id: Int!, $fresh: Boolean) {
+  flxMailWaState(id: $id, fresh: $fresh) { ...FlxMailWaState }
+}

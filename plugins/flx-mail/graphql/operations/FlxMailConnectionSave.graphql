@@ -1,0 +1,6 @@
+mutation FlxMailConnectionSave($input: FlxMailConnectionSaveInput!) {
+  flxMailConnectionSave(input: $input) {
+    connection { ...FlxMailConnection }
+    errors { code message field }
+  }
+}

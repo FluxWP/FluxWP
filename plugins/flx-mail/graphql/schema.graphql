@@ -39,12 +39,480 @@ input FlxMailBrandInput {
   website: String
 }
 
+"""A send channel."""
+enum FlxMailChannel {
+  """"""
+  EMAIL
+  """"""
+  SMS
+  """"""
+  WHATSAPP
+}
+
 """One option in a settings list."""
 type FlxMailChoice {
   """Stored key."""
   key: String!
   """Label."""
   label: String!
+}
+
+"""A WhatsApp or SMS connection. Secrets are masked."""
+type FlxMailConnection {
+  """Used for sending."""
+  active: Boolean!
+  """Write-only secret. The value is never returned."""
+  apiKey: FlxMailSecret!
+  """Write-only secret. The value is never returned."""
+  appSecret: FlxMailSecret!
+  """
+  Cloud API connection without an App Secret: incoming webhooks are rejected.
+  """
+  appSecretMissing: Boolean!
+  """
+  Connection setting &quot;baseUrl&quot;. Connection types lists which types use it.
+  """
+  baseUrl: String!
+  """
+  Connection setting &quot;batchPause&quot;. Connection types lists which types use it.
+  """
+  batchPause: Int!
+  """
+  Connection setting &quot;batchSize&quot;. Connection types lists which types use it.
+  """
+  batchSize: Int!
+  """Channel."""
+  channel: FlxMailChannel!
+  """Created."""
+  createdAt: FlxDateTime
+  """
+  Connection setting &quot;dailyLimit&quot;. Connection types lists which types use it.
+  """
+  dailyLimit: Int!
+  """Connection id."""
+  databaseId: Int!
+  """
+  Connection setting &quot;delay&quot;. Connection types lists which types use it.
+  """
+  delay: Int!
+  """
+  Connection setting &quot;delayMax&quot;. Connection types lists which types use it.
+  """
+  delayMax: Int!
+  """
+  Connection setting &quot;encoding&quot;. Connection types lists which types use it.
+  """
+  encoding: String!
+  """
+  Connection setting &quot;failStop&quot;. Connection types lists which types use it.
+  """
+  failStop: Int!
+  """
+  Connection setting &quot;graph&quot;. Connection types lists which types use it.
+  """
+  graph: String!
+  """
+  Connection setting &quot;header&quot;. Connection types lists which types use it.
+  """
+  header: String!
+  """
+  Connection setting &quot;hourlyLimit&quot;. Connection types lists which types use it.
+  """
+  hourlyLimit: Int!
+  """
+  Connection setting &quot;instance&quot;. Connection types lists which types use it.
+  """
+  instance: String!
+  """Default for its channel."""
+  isDefault: Boolean!
+  """
+  Connection setting &quot;iysfilter&quot;. Connection types lists which types use it.
+  """
+  iysfilter: String!
+  """Last test, null when it was never tested."""
+  lastTest: FlxMailConnectionTest
+  """
+  Connection setting &quot;linkPreview&quot;. Connection types lists which types use it.
+  """
+  linkPreview: Boolean!
+  """Name."""
+  name: String!
+  """Where it was migrated from, empty when it was created here."""
+  origin: String!
+  """
+  Connection setting &quot;partnercode&quot;. Connection types lists which types use it.
+  """
+  partnercode: String!
+  """Write-only secret. The value is never returned."""
+  password: FlxMailSecret!
+  """
+  Connection setting &quot;phoneId&quot;. Connection types lists which types use it.
+  """
+  phoneId: String!
+  """
+  Connection setting &quot;quietFrom&quot;. Connection types lists which types use it.
+  """
+  quietFrom: String!
+  """
+  Connection setting &quot;quietTo&quot;. Connection types lists which types use it.
+  """
+  quietTo: String!
+  """Test scenarios it supports."""
+  scenarios: [String!]!
+  """
+  Connection setting &quot;skipNoWa&quot;. Connection types lists which types use it.
+  """
+  skipNoWa: Boolean!
+  """Write-only secret. The value is never returned."""
+  token: FlxMailSecret!
+  """Type key."""
+  type: String!
+  """Type name."""
+  typeLabel: String!
+  """
+  Connection setting &quot;typing&quot;. Connection types lists which types use it.
+  """
+  typing: Int!
+  """
+  Connection setting &quot;typingAuto&quot;. Connection types lists which types use it.
+  """
+  typingAuto: Boolean!
+  """Last saved."""
+  updatedAt: FlxDateTime
+  """
+  Connection setting &quot;username&quot;. Connection types lists which types use it.
+  """
+  username: String!
+  """
+  Connection setting &quot;version&quot;. Connection types lists which types use it.
+  """
+  version: String!
+  """Last seen WhatsApp state, null for SMS."""
+  waState: FlxMailWaState
+  """
+  Connection setting &quot;wabaId&quot;. Connection types lists which types use it.
+  """
+  wabaId: String!
+  """
+  Connection setting &quot;warmup&quot;. Connection types lists which types use it.
+  """
+  warmup: Boolean!
+}
+
+"""A page of connections."""
+type FlxMailConnectionConnection {
+  """Records with their cursors."""
+  edges: [FlxMailConnectionEdge!]!
+  """Records of this page."""
+  nodes: [FlxMailConnection!]!
+  """Paging information."""
+  pageInfo: FlxPageInfo!
+  """All matching records (null when counting would be slow)."""
+  totalCount: Int
+}
+
+"""Input for the flxMailConnectionDelete mutation."""
+input FlxMailConnectionDeleteInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Connection id."""
+  id: Int!
+  """Also delete the number on the server."""
+  remote: Boolean
+}
+
+"""The payload for the flxMailConnectionDelete mutation."""
+type FlxMailConnectionDeletePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """It was deleted."""
+  ok: Boolean
+}
+
+"""One FlxMailConnection in a list, with its cursor."""
+type FlxMailConnectionEdge {
+  """Opaque cursor of this record."""
+  cursor: String!
+  """The record."""
+  node: FlxMailConnection!
+}
+
+"""
+One field of a connection form. The classic form renders the same definition.
+"""
+type FlxMailConnectionField {
+  """Default for a new connection."""
+  defaultValue: String!
+  """Help text, empty when there is none."""
+  help: String!
+  """text, url, number, password, select, checkbox or heading."""
+  kind: String!
+  """Label."""
+  label: String!
+  """Input and output field name on FlxMailConnection. Empty for a heading."""
+  name: String!
+  """Choices of a select field."""
+  options: [FlxMailChoice!]!
+  """Placeholder."""
+  placeholder: String!
+  """A value is required."""
+  required: Boolean!
+}
+
+"""What the Connections screen needs besides the connections."""
+type FlxMailConnectionMeta {
+  """Flux Certificates is active and sends through these connections."""
+  flxsActive: Boolean!
+  """Sample audio used by the audio test."""
+  sampleAudioUrl: String!
+  """Sample image used by the image test."""
+  sampleImageUrl: String!
+  """Types a new connection can be."""
+  types: [FlxMailConnectionTypeInfo!]!
+}
+
+"""Input for the flxMailConnectionSave mutation."""
+input FlxMailConnectionSaveInput {
+  """Used for sending."""
+  active: Boolean
+  """Empty keeps the stored value. __clear__ removes it."""
+  apiKey: String
+  """Empty keeps the stored value. __clear__ removes it."""
+  appSecret: String
+  """
+  Connection setting "baseUrl". Connection types lists which types use it. Omitted keeps the stored value.
+  """
+  baseUrl: String
+  """
+  Connection setting "batchPause". Connection types lists which types use it. Omitted keeps the stored value.
+  """
+  batchPause: Int
+  """
+  Connection setting "batchSize". Connection types lists which types use it. Omitted keeps the stored value.
+  """
+  batchSize: Int
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  New Evolution or Flux WPAPI connection: reuse the server address and API key of this one.
+  """
+  copyFrom: Int
+  """
+  Connection setting "dailyLimit". Connection types lists which types use it. Omitted keeps the stored value.
+  """
+  dailyLimit: Int
+  """
+  Connection setting "delay". Connection types lists which types use it. Omitted keeps the stored value.
+  """
+  delay: Int
+  """
+  Connection setting "delayMax". Connection types lists which types use it. Omitted keeps the stored value.
+  """
+  delayMax: Int
+  """
+  Connection setting "encoding". Connection types lists which types use it. Omitted keeps the stored value.
+  """
+  encoding: String
+  """
+  Connection setting "failStop". Connection types lists which types use it. Omitted keeps the stored value.
+  """
+  failStop: Int
+  """
+  Connection setting "graph". Connection types lists which types use it. Omitted keeps the stored value.
+  """
+  graph: String
+  """
+  Connection setting "header". Connection types lists which types use it. Omitted keeps the stored value.
+  """
+  header: String
+  """
+  Connection setting "hourlyLimit". Connection types lists which types use it. Omitted keeps the stored value.
+  """
+  hourlyLimit: Int
+  """Connection to change. Omit to create one."""
+  id: Int
+  """
+  Connection setting "instance". Connection types lists which types use it. Omitted keeps the stored value.
+  """
+  instance: String
+  """Make it the default of its channel."""
+  isDefault: Boolean
+  """
+  Connection setting "iysfilter". Connection types lists which types use it. Omitted keeps the stored value.
+  """
+  iysfilter: String
+  """
+  Connection setting "linkPreview". Connection types lists which types use it. Omitted keeps the stored value.
+  """
+  linkPreview: Boolean
+  """Name."""
+  name: String
+  """
+  Connection setting "partnercode". Connection types lists which types use it. Omitted keeps the stored value.
+  """
+  partnercode: String
+  """Empty keeps the stored value. __clear__ removes it."""
+  password: String
+  """
+  Connection setting "phoneId". Connection types lists which types use it. Omitted keeps the stored value.
+  """
+  phoneId: String
+  """
+  Connection setting "quietFrom". Connection types lists which types use it. Omitted keeps the stored value.
+  """
+  quietFrom: String
+  """
+  Connection setting "quietTo". Connection types lists which types use it. Omitted keeps the stored value.
+  """
+  quietTo: String
+  """
+  Connection setting "skipNoWa". Connection types lists which types use it. Omitted keeps the stored value.
+  """
+  skipNoWa: Boolean
+  """Empty keeps the stored value. __clear__ removes it."""
+  token: String
+  """Type key for a new connection. Ignored on an update."""
+  type: String
+  """
+  Connection setting "typing". Connection types lists which types use it. Omitted keeps the stored value.
+  """
+  typing: Int
+  """
+  Connection setting "typingAuto". Connection types lists which types use it. Omitted keeps the stored value.
+  """
+  typingAuto: Boolean
+  """
+  Connection setting "username". Connection types lists which types use it. Omitted keeps the stored value.
+  """
+  username: String
+  """
+  Connection setting "version". Connection types lists which types use it. Omitted keeps the stored value.
+  """
+  version: String
+  """
+  Connection setting "wabaId". Connection types lists which types use it. Omitted keeps the stored value.
+  """
+  wabaId: String
+  """
+  Connection setting "warmup". Connection types lists which types use it. Omitted keeps the stored value.
+  """
+  warmup: Boolean
+}
+
+"""The payload for the flxMailConnectionSave mutation."""
+type FlxMailConnectionSavePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """The connection after the change."""
+  connection: FlxMailConnection
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""Input for the flxMailConnectionSetDefault mutation."""
+input FlxMailConnectionSetDefaultInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Connection id."""
+  id: Int!
+}
+
+"""The payload for the flxMailConnectionSetDefault mutation."""
+type FlxMailConnectionSetDefaultPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """The connection after the change."""
+  connection: FlxMailConnection
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""The last test of a connection."""
+type FlxMailConnectionTest {
+  """When it ran."""
+  at: FlxDateTime
+  """Error text, empty when it passed."""
+  error: String!
+  """The test passed."""
+  ok: Boolean!
+}
+
+"""Input for the flxMailConnectionTest mutation."""
+input FlxMailConnectionTestInput {
+  """Caption for image and document."""
+  caption: String
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Connection id."""
+  id: Int!
+  """check, text, image, audio, document or template. Empty is check."""
+  scenario: String
+  """Template for the template scenario."""
+  template: FlxMailWacloudTemplateInput
+  """Message text for the text scenario."""
+  text: String
+  """Recipient number."""
+  to: String
+}
+
+"""The payload for the flxMailConnectionTest mutation."""
+type FlxMailConnectionTestPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """The connection with its new last test."""
+  connection: FlxMailConnection
+  """Error text, empty when it passed."""
+  error: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The test passed."""
+  ok: Boolean
+}
+
+"""A connection type this site offers."""
+type FlxMailConnectionTypeInfo {
+  """Channel."""
+  channel: FlxMailChannel!
+  """Meta WhatsApp Cloud API."""
+  cloud: Boolean!
+  """Talks the Evolution API (QR connect, restart, logout)."""
+  evolution: Boolean!
+  """Form fields in display order."""
+  fields: [FlxMailConnectionField!]!
+  """What the type is and where to find its values."""
+  help: String!
+  """Name."""
+  label: String!
+  """Test scenarios the type supports."""
+  scenarios: [String!]!
+  """Type key: evolution, flxwpapi, wacloud or netgsm."""
+  type: String!
 }
 
 """Stored SPF, DMARC and MX lookup."""
@@ -931,6 +1399,334 @@ type FlxMailVar {
   name: String!
 }
 
+"""Input for the flxMailWaConnect mutation."""
+input FlxMailWaConnectInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Connection id."""
+  id: Int!
+  """Phone number to pair with a code instead of a QR."""
+  number: String
+}
+
+"""The payload for the flxMailWaConnect mutation."""
+type FlxMailWaConnectPayload {
+  """When the state was read."""
+  at: FlxDateTime
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Error text."""
+  error: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Linked phone number once open."""
+  me: String
+  """Profile name once open."""
+  name: String
+  """Pairing code, empty when there is none."""
+  pairing: String
+  """QR image as a data URI, empty when there is none."""
+  qr: String
+  """open, connecting …"""
+  state: String
+}
+
+"""A WhatsApp group the number is in."""
+type FlxMailWaGroup {
+  """Only admins can write."""
+  announce: Boolean!
+  """Group id."""
+  id: String!
+  """Name."""
+  name: String!
+  """Members."""
+  size: Int!
+}
+
+"""A number on the same WhatsApp server."""
+type FlxMailWaInstance {
+  """Linked phone number."""
+  me: String!
+  """Instance name."""
+  name: String!
+  """Connection state."""
+  state: String!
+  """Id of the connection here that uses it, 0 when none."""
+  used: Int!
+}
+
+"""Input for the flxMailWaLogout mutation."""
+input FlxMailWaLogoutInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Connection id."""
+  id: Int!
+}
+
+"""The payload for the flxMailWaLogout mutation."""
+type FlxMailWaLogoutPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """It was logged out."""
+  ok: Boolean
+  """State after the call."""
+  state: FlxMailWaState
+}
+
+"""Input for the flxMailWaRestart mutation."""
+input FlxMailWaRestartInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Connection id."""
+  id: Int!
+}
+
+"""The payload for the flxMailWaRestart mutation."""
+type FlxMailWaRestartPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """State after the call."""
+  state: FlxMailWaState
+}
+
+"""Flux WPAPI server information and settings."""
+type FlxMailWaServer {
+  """Baileys version."""
+  baileys: String!
+  """Database settings."""
+  db: FlxMailWaServerDb!
+  """
+  The database comes from environment variables and cannot be changed here.
+  """
+  dbLocked: Boolean!
+  """ffmpeg is available for voice notes."""
+  ffmpeg: Boolean!
+  """Keep-alive is on."""
+  keepAlive: Boolean!
+  """Keep-alive error."""
+  keepAliveError: String!
+  """The last keep-alive worked."""
+  keepAliveOk: Boolean!
+  """Last keep-alive ping."""
+  lastKeepAlive: FlxDateTime
+  """Node.js version."""
+  node: String!
+  """Public address of the bridge."""
+  publicUrl: String!
+  """Session store."""
+  store: String!
+  """Store error, empty when it works."""
+  storeError: String!
+  """Bridge version."""
+  version: String!
+}
+
+"""Database of a Flux WPAPI server. The password is never returned."""
+type FlxMailWaServerDb {
+  """Database."""
+  database: String!
+  """file or mysql."""
+  driver: String!
+  """Host."""
+  host: String!
+  """A password is stored on the server."""
+  passwordSet: Boolean!
+  """Port."""
+  port: Int!
+  """Table prefix."""
+  prefix: String!
+  """User."""
+  user: String!
+}
+
+"""Database settings to send to the bridge."""
+input FlxMailWaServerDbInput {
+  """Database."""
+  database: String
+  """file or mysql."""
+  driver: String
+  """Host."""
+  host: String
+  """
+  Write-only. Empty keeps the stored password. It goes to the bridge and is not kept in WordPress.
+  """
+  password: String
+  """Port."""
+  port: Int
+  """Table prefix."""
+  prefix: String
+  """User."""
+  user: String
+}
+
+"""Input for the flxMailWaServerUpdate mutation."""
+input FlxMailWaServerUpdateInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Database settings."""
+  db: FlxMailWaServerDbInput
+  """Connection id."""
+  id: Int!
+  """Keep-alive."""
+  keepAlive: Boolean
+  """Public address of the bridge."""
+  publicUrl: String
+  """Only try the MySQL login; save nothing."""
+  test: Boolean
+}
+
+"""The payload for the flxMailWaServerUpdate mutation."""
+type FlxMailWaServerUpdatePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Database test error, empty when it worked."""
+  error: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """It worked."""
+  ok: Boolean
+  """Server settings after a save. Null for a test."""
+  server: FlxMailWaServer
+}
+
+"""State of a WhatsApp number as last seen."""
+type FlxMailWaState {
+  """When the state was read."""
+  at: FlxDateTime
+  """Last error, empty when there is none."""
+  error: String!
+  """The linked phone number."""
+  me: String!
+  """Profile or verified name."""
+  name: String!
+  """Cloud API quality rating, empty for other types."""
+  quality: String!
+  """open, connecting, close, missing, error or empty when unknown."""
+  state: String!
+}
+
+"""Phone number details Meta reports for a Cloud API connection."""
+type FlxMailWacloudPhone {
+  """Number verification status."""
+  codeVerificationStatus: String!
+  """Number shown to people."""
+  displayPhoneNumber: String!
+  """Display name review status."""
+  nameStatus: String!
+  """Platform type."""
+  platformType: String!
+  """Quality rating."""
+  qualityRating: String!
+  """Verified business name."""
+  verifiedName: String!
+}
+
+"""
+What to enter in the Meta app so WhatsApp Cloud posts to this site. Manager only. The App Secret is never returned.
+"""
+type FlxMailWacloudSetup {
+  """Last event rejected for a wrong signature."""
+  badSignatureAt: FlxDateTime
+  """Why the number details could not be read, empty when they could."""
+  error: String!
+  """A WABA id is stored, so the template list works."""
+  hasWaba: Boolean!
+  """Last event Meta posted."""
+  lastEventAt: FlxDateTime
+  """Last webhook verification by Meta."""
+  lastVerifyAt: FlxDateTime
+  """Last event rejected because no App Secret is stored."""
+  noSecretAt: FlxDateTime
+  """People who wrote in the last 24 hours (free-form replies are allowed)."""
+  openChats: Int!
+  """Number details, null when Meta could not be reached."""
+  phone: FlxMailWacloudPhone
+  """An App Secret is stored, so incoming events are checked."""
+  signed: Boolean!
+  """
+  Callback URL for the Meta webhook. Stays a REST route: Meta posts to this fixed address.
+  """
+  webhookUrl: String!
+  """
+  The verify token to paste into Meta. It is a handshake string, not a credential.
+  """
+  webhookVerifyValue: String!
+}
+
+"""A WhatsApp message template from the Meta account."""
+type FlxMailWacloudTemplate {
+  """Body text with {{1}} placeholders."""
+  body: String!
+  """Category."""
+  category: String!
+  """Language code."""
+  lang: String!
+  """Template name."""
+  name: String!
+  """Number of placeholders."""
+  params: Int!
+  """approved, pending, rejected …"""
+  status: String!
+}
+
+"""A page of Cloud API templates."""
+type FlxMailWacloudTemplateConnection {
+  """Records with their cursors."""
+  edges: [FlxMailWacloudTemplateEdge!]!
+  """Records of this page."""
+  nodes: [FlxMailWacloudTemplate!]!
+  """Paging information."""
+  pageInfo: FlxPageInfo!
+  """All matching records (null when counting would be slow)."""
+  totalCount: Int
+}
+
+"""One FlxMailWacloudTemplate in a list, with its cursor."""
+type FlxMailWacloudTemplateEdge {
+  """Opaque cursor of this record."""
+  cursor: String!
+  """The record."""
+  node: FlxMailWacloudTemplate!
+}
+
+"""The template a test sends."""
+input FlxMailWacloudTemplateInput {
+  """Language code. Default tr."""
+  lang: String
+  """Template name."""
+  name: String!
+  """Values for {{1}}, {{2}} …"""
+  params: [String!]
+}
+
 """Input for the flxMailWcBrandApply mutation."""
 input FlxMailWcBrandApplyInput {
   """
@@ -984,6 +1780,32 @@ extend input FlxSettingsUpdateInput {
 }
 
 extend type RootMutation {
+  """
+  Deletes a connection. remote also deletes the number on the Evolution or Flux WPAPI server.
+  """
+  flxMailConnectionDelete(
+    """Input for the flxMailConnectionDelete mutation"""
+    input: FlxMailConnectionDeleteInput!
+  ): FlxMailConnectionDeletePayload
+  """
+  Creates or changes a connection. A secret left empty keeps the stored one; __clear__ removes it.
+  """
+  flxMailConnectionSave(
+    """Input for the flxMailConnectionSave mutation"""
+    input: FlxMailConnectionSaveInput!
+  ): FlxMailConnectionSavePayload
+  """Makes a connection the default of its channel."""
+  flxMailConnectionSetDefault(
+    """Input for the flxMailConnectionSetDefault mutation"""
+    input: FlxMailConnectionSetDefaultInput!
+  ): FlxMailConnectionSetDefaultPayload
+  """
+  Checks a connection, or sends a test message (text, image, audio, document or Cloud API template).
+  """
+  flxMailConnectionTest(
+    """Input for the flxMailConnectionTest mutation"""
+    input: FlxMailConnectionTestInput!
+  ): FlxMailConnectionTestPayload
   """Looks up SPF, DMARC and MX and stores the result."""
   flxMailDnsCheck(
     """Input for the flxMailDnsCheck mutation"""
@@ -1028,6 +1850,32 @@ extend type RootMutation {
     """Input for the flxMailTestSend mutation"""
     input: FlxMailTestSendInput!
   ): FlxMailTestSendPayload
+  """
+  Asks the server for a QR code, or a pairing code when a phone number is given. Creates the instance when it does not exist.
+  """
+  flxMailWaConnect(
+    """Input for the flxMailWaConnect mutation"""
+    input: FlxMailWaConnectInput!
+  ): FlxMailWaConnectPayload
+  """
+  Logs the number out. The instance stays on the server; linking it again needs a QR scan.
+  """
+  flxMailWaLogout(
+    """Input for the flxMailWaLogout mutation"""
+    input: FlxMailWaLogoutInput!
+  ): FlxMailWaLogoutPayload
+  """Restarts the instance on the server."""
+  flxMailWaRestart(
+    """Input for the flxMailWaRestart mutation"""
+    input: FlxMailWaRestartInput!
+  ): FlxMailWaRestartPayload
+  """
+  Changes the Flux WPAPI server settings, or with test only tries the MySQL login. The database password is write-only and is not kept in WordPress.
+  """
+  flxMailWaServerUpdate(
+    """Input for the flxMailWaServerUpdate mutation"""
+    input: FlxMailWaServerUpdateInput!
+  ): FlxMailWaServerUpdatePayload
   """Copies the logo, colors, sender and footer onto WooCommerce emails."""
   flxMailWcBrandApply(
     """Input for the flxMailWcBrandApply mutation"""
@@ -1036,6 +1884,24 @@ extend type RootMutation {
 }
 
 extend type RootQuery {
+  """One connection, null when it does not exist."""
+  flxMailConnection(
+    """Connection id."""
+    id: Int!
+  ): FlxMailConnection
+  """Connection types, their form fields and the sample test files."""
+  flxMailConnectionMeta: FlxMailConnectionMeta!
+  """WhatsApp and SMS connections."""
+  flxMailConnections(
+    """Only active connections."""
+    activeOnly: Boolean
+    """Cursor to continue after (pageInfo.endCursor)."""
+    after: String
+    """Only this channel."""
+    channel: FlxMailChannel
+    """Records per page (at most 50)."""
+    first: Int
+  ): FlxMailConnectionConnection!
   """One send log row, with the body when logging bodies is on."""
   flxMailLog(
     """Row id."""
@@ -1080,4 +1946,48 @@ extend type RootQuery {
     """Name, key or group contains."""
     search: String
   ): FlxMailTemplateConnection!
+  """
+  WhatsApp groups the number is in. Cached for ten minutes; fresh asks the server.
+  """
+  flxMailWaGroups(
+    """Ask the server instead of the cache."""
+    fresh: Boolean
+    """Connection id."""
+    id: Int!
+  ): [FlxMailWaGroup!]!
+  """Numbers on the same Evolution or Flux WPAPI server."""
+  flxMailWaInstances(
+    """Connection id."""
+    id: Int!
+  ): [FlxMailWaInstance!]!
+  """Flux WPAPI server information. No key or password is returned."""
+  flxMailWaServer(
+    """Connection id."""
+    id: Int!
+  ): FlxMailWaServer!
+  """
+  State of a WhatsApp number. Cached for a minute; fresh asks the server.
+  """
+  flxMailWaState(
+    """Ask the server instead of the cache."""
+    fresh: Boolean
+    """Connection id."""
+    id: Int!
+  ): FlxMailWaState!
+  """
+  Webhook URL, verify value and live status of a Cloud API connection. Null when it is not a Cloud API connection.
+  """
+  flxMailWacloudSetup(
+    """Connection id."""
+    id: Int!
+  ): FlxMailWacloudSetup
+  """Message templates of the Meta account (needs the WABA id)."""
+  flxMailWacloudTemplates(
+    """Cursor to continue after (pageInfo.endCursor)."""
+    after: String
+    """Records per page (at most 50)."""
+    first: Int
+    """Connection id."""
+    id: Int!
+  ): FlxMailWacloudTemplateConnection!
 }

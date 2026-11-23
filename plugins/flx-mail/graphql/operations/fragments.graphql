@@ -139,3 +139,74 @@ fragment FlxMailLog on FlxMailLog {
   ...FlxMailLogRow
   body
 }
+
+fragment FlxMailWaState on FlxMailWaState {
+  state
+  me
+  name
+  quality
+  at { ...FlxMailDate }
+  error
+}
+
+fragment FlxMailConnection on FlxMailConnection {
+  databaseId
+  name
+  type
+  typeLabel
+  channel
+  active
+  isDefault
+  origin
+  scenarios
+  appSecretMissing
+  createdAt { ...FlxMailDate }
+  updatedAt { ...FlxMailDate }
+  lastTest { ok error at { ...FlxMailDate } }
+  waState { ...FlxMailWaState }
+  baseUrl
+  instance
+  version
+  linkPreview
+  typing
+  delay
+  delayMax
+  batchSize
+  batchPause
+  hourlyLimit
+  dailyLimit
+  warmup
+  quietFrom
+  quietTo
+  skipNoWa
+  failStop
+  typingAuto
+  phoneId
+  wabaId
+  graph
+  username
+  header
+  iysfilter
+  encoding
+  partnercode
+  apiKey { ...FlxMailSecret }
+  token { ...FlxMailSecret }
+  appSecret { ...FlxMailSecret }
+  password { ...FlxMailSecret }
+}
+
+fragment FlxMailWaServer on FlxMailWaServer {
+  version
+  baileys
+  node
+  store
+  storeError
+  lastKeepAlive { ...FlxMailDate }
+  keepAliveOk
+  keepAliveError
+  ffmpeg
+  publicUrl
+  keepAlive
+  dbLocked
+  db { driver host port database user passwordSet prefix }
+}

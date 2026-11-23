@@ -495,10 +495,10 @@ add_action(
 			return flxi_can_manage();
 		};
 		register_rest_route( 'flxi/v1', '/wacloud/(?P<id>\d+)/setup', array( 'methods' => 'GET', 'callback' => function ( WP_REST_Request $r ) {
-			return flxi_wacloud_setup( (int) $r['id'] );
+			return FLXI_Connection_Service::wacloud_setup_raw( (int) $r['id'] );
 		}, 'permission_callback' => $perm ) );
 		register_rest_route( 'flxi/v1', '/wacloud/(?P<id>\d+)/templates', array( 'methods' => 'GET', 'callback' => function ( WP_REST_Request $r ) {
-			return flxi_wacloud_templates( (int) $r['id'] );
+			return FLXI_Connection_Service::wacloud_templates( (int) $r['id'] );
 		}, 'permission_callback' => $perm ) );
 	}
 );

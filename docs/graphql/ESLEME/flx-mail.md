@@ -325,3 +325,11 @@ Koordinatör kapattı:
 - `flxMailQueueRun` sunucu bütçeli. Cron kancası kalır. İstemci ≥ 10 sn.
 - Posta kutusu AI düğmesi `flxMailDraftAi`. Flux AI çağrılır. Bu pakette AI anahtarı yok.
 - Kişi alanı paylaşılan `FlxPerson`. CRM yoksa `null`. Görünürlük `flxcrm_gql_can_see_contact`. `Requires Plugins: flx-crm` yok.
+
+## Parça 2 uygulama notları
+
+- `type` alanı enum değil `String`: `flxi_connection_types` filtresiyle başka eklentiler tip ekleyebilir; kullanılabilir tipler `flxMailConnectionMeta.types`.
+- `flxMailConnectionMeta` eklendi: tipler ve form alanları klasik formla aynı tanımdan gelir.
+- `flxMailWaLogout` çıktısı `{ ok, state }`; hata `errors`. `flxMailWaState` bir sorgudur, `fresh: true` sunucuya sorar.
+- Gizli alanlar `apiKey`, `token`, `appSecret`, `password`. Yerleşik tiplerde hepsi zorunlu olduğundan `"__clear__"` alan hatası verir.
+- Test mutasyonu `flxMailConnectionTest`; sonuç `lastTest` olarak bağlantıda döner.

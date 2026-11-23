@@ -1,0 +1,15 @@
+query FlxMailWacloudSetup($id: Int!) {
+  flxMailWacloudSetup(id: $id) {
+    webhookUrl
+    webhookVerifyValue
+    signed
+    hasWaba
+    openChats
+    error
+    phone { displayPhoneNumber verifiedName qualityRating nameStatus codeVerificationStatus platformType }
+    lastVerifyAt { ...FlxMailDate }
+    lastEventAt { ...FlxMailDate }
+    badSignatureAt { ...FlxMailDate }
+    noSecretAt { ...FlxMailDate }
+  }
+}

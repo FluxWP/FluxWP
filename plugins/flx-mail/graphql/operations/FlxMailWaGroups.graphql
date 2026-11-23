@@ -1,0 +1,3 @@
+query FlxMailWaGroups($id: Int!, $fresh: Boolean) {
+  flxMailWaGroups(id: $id, fresh: $fresh) { id name size announce }
+}

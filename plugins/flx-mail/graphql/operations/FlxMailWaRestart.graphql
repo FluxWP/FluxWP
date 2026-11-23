@@ -1,0 +1,6 @@
+mutation FlxMailWaRestart($input: FlxMailWaRestartInput!) {
+  flxMailWaRestart(input: $input) {
+    state { ...FlxMailWaState }
+    errors { code message field }
+  }
+}

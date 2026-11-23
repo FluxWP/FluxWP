@@ -1,0 +1,8 @@
+mutation FlxMailWaServerUpdate($input: FlxMailWaServerUpdateInput!) {
+  flxMailWaServerUpdate(input: $input) {
+    ok
+    error
+    server { ...FlxMailWaServer }
+    errors { code message field }
+  }
+}

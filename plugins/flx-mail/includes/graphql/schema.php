@@ -772,4 +772,7 @@ function flxi_gql_register(): void {
 			},
 		)
 	);
+
+	require_once __DIR__ . '/schema-connections.php';
+	flxi_gql_register_connections();
 }

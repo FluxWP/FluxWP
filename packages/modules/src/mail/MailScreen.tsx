@@ -9,6 +9,7 @@ import { useHost } from '../host';
 import { translator } from './i18n';
 import { MailContext, type MailCtx, type Page } from './common';
 import { SettingsPage } from './Settings';
+import { ConnectionsPage } from './Connections';
 import { TemplatesPage } from './Templates';
 import { LogsPage } from './Logs';
 import { SystemPage } from './System';
@@ -28,7 +29,7 @@ interface Toast {
   kind: 'ok' | 'error';
 }
 
-const PAGES: Page[] = ['templates', 'logs', 'settings', 'system'];
+const PAGES: Page[] = ['templates', 'logs', 'settings', 'connections', 'system'];
 
 function parseStart(start: string | undefined): Route {
   if (!start) return { page: 'templates', key: null, status: '', template: '', campaign: '', section: '' };
@@ -124,13 +125,20 @@ function Mail() {
     if (!host.classicUrl) return undefined;
     if (!route.key) return host.classicUrl;
     const u = new URL(host.classicUrl, window.location.href);
-    u.searchParams.set('key', route.key);
+    if (route.page === 'connections') {
+      // The classic page takes edit=<id>|new&type=<type>.
+      if (route.key.startsWith('new:')) {
+        u.searchParams.set('edit', 'new');
+        u.searchParams.set('type', route.key.slice(4));
+      } else u.searchParams.set('edit', route.key);
+    } else u.searchParams.set('key', route.key);
     return u.toString();
-  }, [host.classicUrl, route.key]);
+  }, [host.classicUrl, route.key, route.page]);
 
   const nav: { page: Page; label: string }[] = [
     { page: 'templates', label: t('Emails') },
     { page: 'logs', label: t('Log') },
+    { page: 'connections', label: t('Connections') },
     { page: 'settings', label: t('Settings') },
     { page: 'system', label: t('System check') },
   ];
@@ -169,6 +177,7 @@ function Mail() {
             <>
               {route.page === 'templates' ? <TemplatesPage editKey={route.key} onEdit={(key) => go('templates', key ? { key } : undefined)} /> : null}
               {route.page === 'logs' ? <LogsPage initialStatus={route.status} initialTemplate={route.template} initialCampaign={route.campaign} /> : null}
+              {route.page === 'connections' ? <ConnectionsPage editKey={route.key} onEdit={(key) => go('connections', key ? { key } : undefined)} /> : null}
               {route.page === 'settings' ? <SettingsPage section={route.section} /> : null}
               {route.page === 'system' ? <SystemPage /> : null}
             </>

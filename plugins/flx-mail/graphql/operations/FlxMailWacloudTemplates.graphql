@@ -1,0 +1,7 @@
+query FlxMailWacloudTemplates($id: Int!, $first: Int, $after: String) {
+  flxMailWacloudTemplates(id: $id, first: $first, after: $after) {
+    totalCount
+    pageInfo { hasNextPage endCursor }
+    nodes { name lang status category body params }
+  }
+}

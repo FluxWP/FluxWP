@@ -1,0 +1,7 @@
+mutation FlxMailWaLogout($input: FlxMailWaLogoutInput!) {
+  flxMailWaLogout(input: $input) {
+    ok
+    state { ...FlxMailWaState }
+    errors { code message field }
+  }
+}
