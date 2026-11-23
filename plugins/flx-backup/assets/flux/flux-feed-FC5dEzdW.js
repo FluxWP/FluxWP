@@ -1,0 +1,1 @@
+function e(e,t){return e?.live()?Math.max(t,12e4):t}export{e as t};
