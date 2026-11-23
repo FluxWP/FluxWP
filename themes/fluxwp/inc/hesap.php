@@ -119,7 +119,13 @@ add_action( 'woocommerce_register_form_end', $flx_donus_input );
  * (woocommerce_login_form_start). Giriş formunda bastıysa aynısını "Google ile kaydol" metniyle kayıt formuna da bas.
  * Hesap yoksa Google girişi zaten hesap açar (WP ya da WooCommerce kaydı açıkken), sekme fark etmez.
  */
-add_action( 'woocommerce_login_form_start', static fn() => ob_start(), 0 );
+add_action(
+	'woocommerce_login_form_start',
+	static function () {
+		ob_start();
+	},
+	0
+);
 add_action(
 	'woocommerce_login_form_start',
 	static function () {
