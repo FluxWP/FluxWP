@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.10.1
+- "Google ile giriş yap" (Site Kit) butonu Kayıt Ol sekmesinde de çıkar ("Google ile kaydol" metniyle). Giriş formunda buton yoksa (Site Kit bağlı değilse) kayıtta da çıkmaz.
+
 ## 0.10.0
 - Giriş penceresi tasarımı seçilebilir (Tema Ayarları › Giriş penceresi; ön ayarda `flx_ayarlar.auth_*`):
   - **Kart** (varsayılan): üstte başlık ve isteğe bağlı kısa metin, istenirse header logosu; Google butonu formun üstünde, altında "veya e-posta ile" ayracı.
