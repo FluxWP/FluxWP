@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.7.2
+- Gömülü WPGraphQL'in "Review your WPGraphQL settings" bildirimi ve "Review Settings" menü öğesi gizlendi: erişim, istek sınırı ve hata ayıklama ayarlarının hepsi zaten Flux GraphQL ayarlarından yönetiliyor.
+
 ## 0.7.1
 - Tam ekran uygulamalar (Studio, Görevler, Sosyal Medya) pencereden taşmıyor: yönetim çubuğu ve alt çubuk payı düşülünce alt kısım (Studio yazma kutusu) artık kesilmiyor.
 
