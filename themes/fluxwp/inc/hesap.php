@@ -238,6 +238,58 @@ add_filter(
 	2
 );
 
+/* ---------- Giriş penceresi tasarımı (Tema Ayarları › Giriş penceresi; ön ayar flx_ayarlar.auth_*) ---------- */
+
+/**
+ * Pencere başlığının çevrilmiş varsayılanı.
+ *
+ * @return string
+ */
+function flx_auth_title_default(): string {
+	return __( 'Welcome', 'fluxwp' );
+}
+
+/**
+ * Pencerenin düzeni ve metinleri (main.js pencereyi bununla çizer). Metinler Flux Lang ile dile göre gelir.
+ *
+ * @return array<string,mixed>
+ */
+function flx_auth_window_data() {
+	$style = 'split' === flx_ayar( 'auth_style' ) ? 'split' : 'card';
+	$title = trim( (string) flx_ayar( 'auth_title' ) );
+	$d     = array(
+		'style'   => $style,
+		'heading' => '' !== $title ? $title : flx_auth_title_default(),
+		'text'    => trim( (string) flx_ayar( 'auth_text' ) ),
+	);
+	if ( 'card' === $style && flx_ayar( 'auth_logo' ) && function_exists( 'flx_logo_files' ) ) {
+		$f = flx_logo_files();
+		if ( '' !== $f['light'] ) {
+			$d['logo'] = array(
+				'src'  => $f['light'],
+				'dark' => function_exists( 'flx_logo_dark_enabled' ) && flx_logo_dark_enabled() && $f['dark'] !== $f['light'] ? $f['dark'] : '',
+				'alt'  => $f['alt'],
+			);
+		}
+	}
+	if ( 'split' === $style ) {
+		$panel = array(
+			'badge' => trim( (string) flx_ayar( 'auth_badge' ) ),
+			'title' => trim( (string) flx_ayar( 'auth_panel_title' ) ),
+			'text'  => trim( (string) flx_ayar( 'auth_panel_text' ) ),
+		);
+		$img = absint( flx_ayar( 'auth_image' ) );
+		if ( $img && wp_attachment_is_image( $img ) ) {
+			// Paneli dolduracak kadar büyük kaynak: retina ekranda bulanık görünmesin (srcset tarayıcıya seçtirir).
+			$panel['img']    = (string) wp_get_attachment_image_url( $img, '2048x2048' );
+			$panel['srcset'] = (string) wp_get_attachment_image_srcset( $img, 'full' );
+			$panel['alt']    = (string) get_post_meta( $img, '_wp_attachment_image_alt', true );
+		}
+		$d['panel'] = $panel;
+	}
+	return $d;
+}
+
 /* ---------- Boş sepet: "Bağışlar Sayfasına dön" ---------- */
 add_filter(
 	'woocommerce_return_to_shop_redirect',
@@ -284,7 +336,11 @@ add_action(
 				'path'  => untrailingslashit( (string) wp_parse_url( (string) wc_get_page_permalink( 'myaccount' ), PHP_URL_PATH ) ),
 				'login' => untrailingslashit( (string) wp_parse_url( wp_login_url(), PHP_URL_PATH ) ),
 				'title' => __( 'Log in or sign up', 'fluxwp' ),
-			);
+			) + flx_auth_window_data();
+		}
+		if ( flx_auth_frame_mi() ) {
+			$d['authGoogleTop'] = 'split' !== flx_ayar( 'auth_style' ); // Kart düzeninde Google butonu formun üstünde.
+			$d['orEmail']       = __( 'or with email', 'fluxwp' );
 		}
 		wp_add_inline_script( 'fluxwp', 'window.flxHesap=' . wp_json_encode( $d ) . ';', 'before' );
 	},

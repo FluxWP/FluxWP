@@ -1,5 +1,12 @@
 # Değişiklikler
 
+## 0.10.0
+- Giriş penceresi tasarımı seçilebilir (Tema Ayarları › Giriş penceresi; ön ayarda `flx_ayarlar.auth_*`):
+  - **Kart** (varsayılan): üstte başlık ve isteğe bağlı kısa metin, istenirse header logosu; Google butonu formun üstünde, altında "veya e-posta ile" ayracı.
+  - **Resimli panel**: solda fotoğraf, üstünde etiket, başlık ve metin; sağda form (Google altta). Telefonda resim formun üstünde ince bir şerit olur. Resim srcset ile büyük boydan gelir (retina'da bulanık değil); resim yoksa site renginde panel.
+  - Metinler Flux Lang'de dile göre girilebilir (`tema_auth_title`, `tema_auth_text`, `tema_auth_badge`, `tema_auth_panel_title`, `tema_auth_panel_text`). GraphQL: `FlxThemeSettings.auth*`, `flxThemeSettingsSave` girdisi, `FlxThemeAuthStyle`.
+- Giriş penceresi anında açılır: "Yükleniyor…" yazısı yerine formun iskeleti (sekmeler, alanlar, buton, Google) görünür; Hesabım / Giriş bağlantısının üstüne gelince, dokununca ya da klavyeyle odaklanınca pencere arkada önden yüklenir, tıklayınca form hazır gelir. Sayfa açılışında ek istek yok.
+
 ## 0.9.10
 - Giriş penceresinde "Google ile giriş yap" butonu yeniden çıkıyor: pencere, Site Kit Google script'ini kaydetmeden önce sayfayı kesiyordu ("veya" altı boş kalıyordu). Pencere artık `template_redirect` 99'da basılıyor.
 - Kayıt ve ödeme formundaki gizlilik metni ("Your personal data will be used…") dile göre çıkıyor: WooCommerce ayarında İngilizce varsayılan kalmışsa o anki dilin WooCommerce çevirisi gösterilir; elle yazılmış metne dokunulmaz.
