@@ -240,8 +240,12 @@ add_filter(
 
 /* ---------- Giriş penceresi tasarımı (Tema Ayarları › Giriş penceresi; ön ayar flx_ayarlar.auth_*) ---------- */
 
-/** Pencere başlığının çevrilmiş varsayılanı. */
-function flx_auth_title_default() {
+/**
+ * Pencere başlığının çevrilmiş varsayılanı.
+ *
+ * @return string
+ */
+function flx_auth_title_default(): string {
 	return __( 'Welcome', 'fluxwp' );
 }
 
