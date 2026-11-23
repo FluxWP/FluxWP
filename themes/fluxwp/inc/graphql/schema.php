@@ -121,6 +121,16 @@ flx_gql_enum(
 	)
 );
 flx_gql_enum(
+	'FlxThemeAuthStyle',
+	array(
+		'description' => __( 'Sign-in window layout.', 'fluxwp' ),
+		'values'      => array(
+			'CARD'  => array( 'value' => 'card', 'description' => __( 'Single column card.', 'fluxwp' ) ),
+			'SPLIT' => array( 'value' => 'split', 'description' => __( 'Picture panel on the left, form on the right.', 'fluxwp' ) ),
+		),
+	)
+);
+flx_gql_enum(
 	'FlxThemeGaMode',
 	array(
 		'description' => __( 'How Google Analytics loads.', 'fluxwp' ),
@@ -213,6 +223,23 @@ flx_gql_type(
 				},
 			),
 			'campaigns'           => flx_theme_gql_prop( $flx_theme_s, 'campaigns', '[FlxThemeOption!]!', __( 'Donation types to pick the home page card from (the first 100); empty without Flux Donate.', 'fluxwp' ) ),
+			'authStyle'           => flx_theme_gql_prop( $flx_theme_s, 'auth_style', 'FlxThemeAuthStyle!', __( 'Sign-in window layout.', 'fluxwp' ) ),
+			'authLogo'            => flx_theme_gql_prop( $flx_theme_s, 'auth_logo', 'Boolean!', __( 'Show the header logo at the top of the sign-in window.', 'fluxwp' ) ),
+			'authTitle'           => flx_theme_gql_prop( $flx_theme_s, 'auth_title', 'String!', __( 'Sign-in window heading; empty uses the translated default.', 'fluxwp' ) ),
+			'authTitleDefault'    => flx_theme_gql_prop( $flx_theme_s, 'auth_title_default', 'String!', __( 'Translated default heading of the sign-in window.', 'fluxwp' ) ),
+			'authText'            => flx_theme_gql_prop( $flx_theme_s, 'auth_text', 'String!', __( 'Line under the sign-in window heading; empty shows none.', 'fluxwp' ) ),
+			'authImage'           => flx_theme_gql_prop( $flx_theme_s, 'auth_image', 'Int!', __( 'Picture of the split layout (attachment ID); 0 shows a colour panel.', 'fluxwp' ) ),
+			'authImageUrl'        => array(
+				'type'        => 'String',
+				'description' => __( 'Preview URL of the picture; null without one.', 'fluxwp' ),
+				'resolve'     => static function ( $s ): ?string {
+					$v = flx_theme_gql_src( $s, FLX_Theme_Settings::class )->auth_image_url;
+					return '' === $v ? null : $v;
+				},
+			),
+			'authBadge'           => flx_theme_gql_prop( $flx_theme_s, 'auth_badge', 'String!', __( 'Small label on the picture; empty hides it.', 'fluxwp' ) ),
+			'authPanelTitle'      => flx_theme_gql_prop( $flx_theme_s, 'auth_panel_title', 'String!', __( 'Big line on the picture.', 'fluxwp' ) ),
+			'authPanelText'       => flx_theme_gql_prop( $flx_theme_s, 'auth_panel_text', 'String!', __( 'Sentence on the picture.', 'fluxwp' ) ),
 		),
 	)
 );
@@ -266,6 +293,14 @@ flx_gql_mutation(
 			'consentScripts'  => array( 'type' => 'String', 'description' => __( 'Extra code added after consent; needs the unfiltered_html capability.', 'fluxwp' ) ),
 			'bankHolder'      => array( 'type' => 'String', 'description' => __( 'Account holder.', 'fluxwp' ) ),
 			'bankIban'        => array( 'type' => 'String', 'description' => __( 'IBAN (TR + 24 digits); empty clears it.', 'fluxwp' ) ),
+			'authStyle'       => array( 'type' => 'FlxThemeAuthStyle', 'description' => __( 'Sign-in window layout.', 'fluxwp' ) ),
+			'authLogo'        => array( 'type' => 'Boolean', 'description' => __( 'Show the header logo at the top of the sign-in window.', 'fluxwp' ) ),
+			'authTitle'       => array( 'type' => 'String', 'description' => __( 'Sign-in window heading; empty uses the translated default.', 'fluxwp' ) ),
+			'authText'        => array( 'type' => 'String', 'description' => __( 'Line under the heading; empty shows none.', 'fluxwp' ) ),
+			'authImage'       => array( 'type' => 'Int', 'description' => __( 'Picture attachment ID; 0 removes it.', 'fluxwp' ) ),
+			'authBadge'       => array( 'type' => 'String', 'description' => __( 'Small label on the picture.', 'fluxwp' ) ),
+			'authPanelTitle'  => array( 'type' => 'String', 'description' => __( 'Big line on the picture.', 'fluxwp' ) ),
+			'authPanelText'   => array( 'type' => 'String', 'description' => __( 'Sentence on the picture.', 'fluxwp' ) ),
 		),
 		'output'      => array(
 			'settings' => array(
@@ -305,6 +340,14 @@ flx_gql_mutation(
 				'consentScripts'   => 'consent_scripts',
 				'bankHolder'       => 'bank_holder',
 				'bankIban'         => 'bank_iban',
+				'authStyle'        => 'auth_style',
+				'authLogo'         => 'auth_logo',
+				'authTitle'        => 'auth_title',
+				'authText'         => 'auth_text',
+				'authImage'        => 'auth_image',
+				'authBadge'        => 'auth_badge',
+				'authPanelTitle'   => 'auth_panel_title',
+				'authPanelText'    => 'auth_panel_text',
 			);
 			$changes = array();
 			foreach ( $map as $gql => $key ) {

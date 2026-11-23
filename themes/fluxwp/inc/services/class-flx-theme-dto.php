@@ -65,6 +65,16 @@ final class FLX_Theme_Settings {
 	 * @param bool                   $can_edit_scripts The user may save raw scripts.
 	 * @param string                 $presets_url      Presets tab ('' without Flux Setup).
 	 * @param list<FLX_Theme_Option> $campaigns        Donation types to pick from.
+	 * @param string                 $auth_style       Sign-in window layout: card | split.
+	 * @param bool                   $auth_logo        Header logo at the top of the sign-in window.
+	 * @param string                 $auth_title       Heading ('' = translated default).
+	 * @param string                 $auth_text        Line under the heading.
+	 * @param int                    $auth_image       Picture attachment ID (split layout, 0 = none).
+	 * @param string                 $auth_image_url   Its preview URL ('' = none).
+	 * @param string                 $auth_badge       Label on the picture.
+	 * @param string                 $auth_panel_title Big line on the picture.
+	 * @param string                 $auth_panel_text  Sentence on the picture.
+	 * @param string                 $auth_title_default Translated default heading.
 	 */
 	public function __construct(
 		public readonly string $visibility,
@@ -104,6 +114,16 @@ final class FLX_Theme_Settings {
 		public readonly bool $can_edit_scripts,
 		public readonly string $presets_url,
 		public readonly array $campaigns,
+		public readonly string $auth_style,
+		public readonly bool $auth_logo,
+		public readonly string $auth_title,
+		public readonly string $auth_text,
+		public readonly int $auth_image,
+		public readonly string $auth_image_url,
+		public readonly string $auth_badge,
+		public readonly string $auth_panel_title,
+		public readonly string $auth_panel_text,
+		public readonly string $auth_title_default,
 	) {}
 }
 

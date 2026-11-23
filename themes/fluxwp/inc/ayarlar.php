@@ -40,6 +40,14 @@ function flx_ayar_defaults() {
 		'consent_scripts' => '',
 		'bank_holder'     => '',
 		'bank_iban'       => '',
+		'auth_style'      => 'card',
+		'auth_logo'       => 0,
+		'auth_title'      => '',
+		'auth_text'       => '',
+		'auth_image'      => 0,
+		'auth_badge'      => '',
+		'auth_panel_title' => '',
+		'auth_panel_text' => '',
 	);
 }
 
@@ -241,6 +249,14 @@ function flx_ayar_sanitize( $in ) {
 		'consent_scripts' => $old['consent_scripts'],
 		'bank_holder'     => sanitize_text_field( $in['bank_holder'] ?? $old['bank_holder'] ),
 		'bank_iban'       => flx_iban_temizle( $in['bank_iban'] ?? $old['bank_iban'] ),
+		'auth_style'      => 'split' === ( $in['auth_style'] ?? '' ) ? 'split' : 'card',
+		'auth_logo'       => $on( $in['auth_logo'] ?? 0 ) ? 1 : 0,
+		'auth_title'      => sanitize_text_field( $in['auth_title'] ?? '' ),
+		'auth_text'       => sanitize_textarea_field( $in['auth_text'] ?? '' ),
+		'auth_image'      => absint( $in['auth_image'] ?? 0 ),
+		'auth_badge'      => sanitize_text_field( $in['auth_badge'] ?? '' ),
+		'auth_panel_title' => sanitize_text_field( $in['auth_panel_title'] ?? '' ),
+		'auth_panel_text' => sanitize_textarea_field( $in['auth_panel_text'] ?? '' ),
 	);
 	if ( ! empty( $in['bank_iban'] ) && ! $out['bank_iban'] ) {
 		if ( function_exists( 'add_settings_error' ) ) {
@@ -479,6 +495,14 @@ add_filter(
 			'aktif_kampanya'  => $f( 'int', 'Active campaign ID.' ),
 			'bank_holder'     => $f( 'string', 'Bank account holder for Havale/EFT.' ),
 			'bank_iban'       => $f( 'string', 'IBAN (TR + 24 digits).' ),
+			'auth_style'      => $f( 'enum', 'Sign-in window layout: card = single column; split = picture panel on the left (auth_image, auth_badge, auth_panel_title, auth_panel_text), form on the right. On phones the panel becomes a short strip above the form.', array( 'enum' => array( 'card', 'split' ) ) ),
+			'auth_logo'       => $f( 'bool', 'Show the header logo at the top of the sign-in window (card layout).' ),
+			'auth_title'      => $f( 'string', 'Heading above the sign-in form; empty uses the translated default (Flux Lang: tema_auth_title).' ),
+			'auth_text'       => $f( 'string', 'Short line under the heading; empty shows none (Flux Lang: tema_auth_text).' ),
+			'auth_image'      => $f( 'int', 'Attachment ID of the split layout picture ("@media:<key>" in a preset). Use a large, sharp photo; 0 shows a colour panel.' ),
+			'auth_badge'      => $f( 'string', 'Small label at the top of the picture panel; empty hides it (Flux Lang: tema_auth_badge).' ),
+			'auth_panel_title' => $f( 'string', 'Big line on the picture panel (Flux Lang: tema_auth_panel_title).' ),
+			'auth_panel_text' => $f( 'string', 'Sentence under it on the picture panel (Flux Lang: tema_auth_panel_text).' ),
 		);
 		foreach ( $fields as $k => $v ) {
 			$fields[ $k ]['default'] = $d[ $k ] ?? null;

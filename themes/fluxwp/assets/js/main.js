@@ -167,9 +167,13 @@ document.addEventListener('click', function (e) {
 		if (!items.length) return;
 		var wrap = document.createElement('div');
 		wrap.className = 'flx-social-login';
-		wrap.innerHTML = '<div class="flx-or"><span>' + (H.or || 'veya') + '</span></div>';
+		// Giriş penceresi kart düzeninde: Google üstte, altında "veya e-posta ile" ayracı.
+		var top = !!H.authGoogleTop && document.body.classList.contains('flx-auth-frame');
+		var or = '<div class="flx-or"><span>' + (top ? (H.orEmail || 'veya e-posta ile') : (H.or || 'veya')) + '</span></div>';
+		if (!top) wrap.innerHTML = or;
 		items.forEach(function (el) { wrap.appendChild(el); });
-		form.appendChild(wrap);
+		if (top) { wrap.classList.add('is-top'); wrap.insertAdjacentHTML('beforeend', or); form.insertBefore(wrap, form.firstChild); }
+		else form.appendChild(wrap);
 	});
 })();
 
@@ -198,14 +202,43 @@ document.addEventListener('click', function (e) {
 	};
 
 	var dlg, frame, wrap, fallback;
+	var el = function (tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text) e.textContent = text; return e; };
+	/* Tema Ayarları › Giriş penceresi: kart (başlık, isteğe bağlı logo) ya da resimli yan panel. Metinler DOM'a yazı olarak girer. */
+	function decorate(inner) {
+		var body = inner.querySelector('.flx-auth-modal__body');
+		var head = el('div', 'flx-auth-modal__head');
+		if (A.logo && A.logo.src) {
+			var pic = document.createElement('picture');
+			if (A.logo.dark) { var so = document.createElement('source'); so.media = '(prefers-color-scheme: dark)'; so.srcset = A.logo.dark; pic.appendChild(so); }
+			var li = el('img', 'flx-auth-modal__logo'); li.src = A.logo.src; li.alt = A.logo.alt || ''; li.decoding = 'async';
+			pic.appendChild(li); head.appendChild(pic);
+		}
+		if (A.heading) head.appendChild(el('h2', 'flx-auth-modal__title', A.heading));
+		if (A.text) head.appendChild(el('p', 'flx-auth-modal__text', A.text));
+		if (head.childNodes.length) body.insertBefore(head, body.firstChild);
+		if (A.style !== 'split' || !A.panel) { inner.classList.add('is-card'); return; }
+		var P = A.panel, aside = el('aside', 'flx-auth-modal__panel' + (P.img ? ' has-img' : ''));
+		if (P.img) {
+			var im = el('img', 'flx-auth-modal__img'); im.src = P.img; if (P.srcset) { im.srcset = P.srcset; im.sizes = '(max-width: 760px) 100vw, 460px'; }
+			im.alt = P.alt || ''; im.decoding = 'async'; aside.appendChild(im);
+		}
+		var cap = el('div', 'flx-auth-modal__cap');
+		if (P.badge) cap.appendChild(el('span', 'flx-auth-modal__badge', P.badge));
+		if (P.title) cap.appendChild(el('p', 'flx-auth-modal__ptitle', P.title));
+		if (P.text) cap.appendChild(el('p', 'flx-auth-modal__ptext', P.text));
+		aside.appendChild(cap);
+		inner.insertBefore(aside, body);
+		inner.classList.add('is-split');
+	}
 	function build() {
 		dlg = document.createElement('dialog');
 		dlg.className = 'flx-auth-modal';
 		dlg.setAttribute('aria-label', A.title || 'Giriş');
 		dlg.innerHTML = '<div class="flx-auth-modal__inner"><button type="button" class="flx-auth-modal__close" aria-label="' + flxT('close', 'Kapat') + '"></button>' +
-			'<div class="flx-auth-modal__loading" role="status" aria-label="' + flxT('loading', 'Yükleniyor…') + '"><i class="flx-sk flx-sk--tabs"></i><i class="flx-sk flx-sk--label"></i><i class="flx-sk flx-sk--field"></i><i class="flx-sk flx-sk--label"></i><i class="flx-sk flx-sk--field"></i><i class="flx-sk flx-sk--btn"></i><i class="flx-sk flx-sk--line"></i><i class="flx-sk flx-sk--google"></i></div><iframe class="flx-auth-modal__frame" title="' + (A.title || '') + '"></iframe></div>';
+			'<div class="flx-auth-modal__body"><div class="flx-auth-modal__stage"><div class="flx-auth-modal__loading" role="status" aria-label="' + flxT('loading', 'Yükleniyor…') + '"><i class="flx-sk flx-sk--tabs"></i><i class="flx-sk flx-sk--label"></i><i class="flx-sk flx-sk--field"></i><i class="flx-sk flx-sk--label"></i><i class="flx-sk flx-sk--field"></i><i class="flx-sk flx-sk--btn"></i><i class="flx-sk flx-sk--line"></i><i class="flx-sk flx-sk--google"></i></div><iframe class="flx-auth-modal__frame" title="' + (A.title || '') + '"></iframe></div></div></div>';
 		document.body.appendChild(dlg);
 		wrap = dlg.querySelector('.flx-auth-modal__inner');
+		decorate(wrap);
 		frame = dlg.querySelector('iframe');
 		var close = function () { dlg.close ? dlg.close() : dlg.removeAttribute('open'); };
 		dlg.querySelector('.flx-auth-modal__close').addEventListener('click', close);

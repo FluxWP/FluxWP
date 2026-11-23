@@ -9,6 +9,34 @@ type FlxSettingsThemeSettings {
   aktifKart: FlxSettingsThemeSettingsAktifKart
   """Scroll reveal animations."""
   animasyon: FlxSettingsThemeSettingsAnimasyon
+  """
+  Small label at the top of the picture panel; empty hides it (Flux Lang: tema_auth_badge).
+  """
+  authBadge: String
+  """
+  Attachment ID of the split layout picture (&quot;@media:&lt;key&gt;&quot; in a preset). Use a large, sharp photo; 0 shows a colour panel.
+  """
+  authImage: Int
+  """Show the header logo at the top of the sign-in window (card layout)."""
+  authLogo: Boolean
+  """
+  Sentence under it on the picture panel (Flux Lang: tema_auth_panel_text).
+  """
+  authPanelText: String
+  """Big line on the picture panel (Flux Lang: tema_auth_panel_title)."""
+  authPanelTitle: String
+  """
+  Sign-in window layout: card = single column; split = picture panel on the left (auth_image, auth_badge, auth_panel_title, auth_panel_text), form on the right. On phones the panel becomes a short strip above the form.
+  """
+  authStyle: FlxSettingsThemeSettingsAuthStyle
+  """
+  Short line under the heading; empty shows none (Flux Lang: tema_auth_text).
+  """
+  authText: String
+  """
+  Heading above the sign-in form; empty uses the translated default (Flux Lang: tema_auth_title).
+  """
+  authTitle: String
   """Bank account holder for Havale/EFT."""
   bankHolder: String
   """IBAN (TR + 24 digits)."""
@@ -84,6 +112,14 @@ enum FlxSettingsThemeSettingsAnimasyon {
 }
 
 """"""
+enum FlxSettingsThemeSettingsAuthStyle {
+  """"""
+  CARD
+  """"""
+  SPLIT
+}
+
+""""""
 enum FlxSettingsThemeSettingsCookiePosition {
   """"""
   BAR
@@ -127,6 +163,34 @@ input FlxSettingsThemeSettingsInput {
   aktifKart: FlxSettingsThemeSettingsAktifKart
   """Scroll reveal animations."""
   animasyon: FlxSettingsThemeSettingsAnimasyon
+  """
+  Small label at the top of the picture panel; empty hides it (Flux Lang: tema_auth_badge).
+  """
+  authBadge: String
+  """
+  Attachment ID of the split layout picture (&quot;@media:&lt;key&gt;&quot; in a preset). Use a large, sharp photo; 0 shows a colour panel.
+  """
+  authImage: Int
+  """Show the header logo at the top of the sign-in window (card layout)."""
+  authLogo: Boolean
+  """
+  Sentence under it on the picture panel (Flux Lang: tema_auth_panel_text).
+  """
+  authPanelText: String
+  """Big line on the picture panel (Flux Lang: tema_auth_panel_title)."""
+  authPanelTitle: String
+  """
+  Sign-in window layout: card = single column; split = picture panel on the left (auth_image, auth_badge, auth_panel_title, auth_panel_text), form on the right. On phones the panel becomes a short strip above the form.
+  """
+  authStyle: FlxSettingsThemeSettingsAuthStyle
+  """
+  Short line under the heading; empty shows none (Flux Lang: tema_auth_text).
+  """
+  authText: String
+  """
+  Heading above the sign-in form; empty uses the translated default (Flux Lang: tema_auth_title).
+  """
+  authTitle: String
   """Bank account holder for Havale/EFT."""
   bankHolder: String
   """IBAN (TR + 24 digits)."""
@@ -209,6 +273,14 @@ enum FlxSettingsThemeSettingsSiteVisibility {
   COMING_SOON
   """"""
   STORE
+}
+
+"""Sign-in window layout."""
+enum FlxThemeAuthStyle {
+  """Single column card."""
+  CARD
+  """Picture panel on the left, form on the right."""
+  SPLIT
 }
 
 """One row of the System Check."""
@@ -457,6 +529,26 @@ type FlxThemeSettings {
   activeCardAvailable: Boolean!
   """Scroll reveal animations."""
   animations: Boolean!
+  """Small label on the picture; empty hides it."""
+  authBadge: String!
+  """Picture of the split layout (attachment ID); 0 shows a colour panel."""
+  authImage: Int!
+  """Preview URL of the picture; null without one."""
+  authImageUrl: String
+  """Show the header logo at the top of the sign-in window."""
+  authLogo: Boolean!
+  """Sentence on the picture."""
+  authPanelText: String!
+  """Big line on the picture."""
+  authPanelTitle: String!
+  """Sign-in window layout."""
+  authStyle: FlxThemeAuthStyle!
+  """Line under the sign-in window heading; empty shows none."""
+  authText: String!
+  """Sign-in window heading; empty uses the translated default."""
+  authTitle: String!
+  """Translated default heading of the sign-in window."""
+  authTitleDefault: String!
   """Account holder for Havale/EFT."""
   bankHolder: String!
   """IBAN without spaces; empty when not set."""
@@ -541,6 +633,22 @@ input FlxThemeSettingsSaveInput {
   activeCard: Boolean
   """Scroll reveal animations."""
   animations: Boolean
+  """Small label on the picture."""
+  authBadge: String
+  """Picture attachment ID; 0 removes it."""
+  authImage: Int
+  """Show the header logo at the top of the sign-in window."""
+  authLogo: Boolean
+  """Sentence on the picture."""
+  authPanelText: String
+  """Big line on the picture."""
+  authPanelTitle: String
+  """Sign-in window layout."""
+  authStyle: FlxThemeAuthStyle
+  """Line under the heading; empty shows none."""
+  authText: String
+  """Sign-in window heading; empty uses the translated default."""
+  authTitle: String
   """Account holder."""
   bankHolder: String
   """IBAN (TR + 24 digits); empty clears it."""
