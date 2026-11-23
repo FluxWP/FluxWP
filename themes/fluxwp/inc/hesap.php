@@ -114,6 +114,45 @@ $flx_donus_input = function () {
 add_action( 'woocommerce_login_form_end', $flx_donus_input );
 add_action( 'woocommerce_register_form_end', $flx_donus_input );
 
+/*
+ * Google ile giriş (Site Kit) butonu Kayıt Ol sekmesinde de: Site Kit butonu yalnız giriş formuna basar
+ * (woocommerce_login_form_start). Giriş formunda bastıysa aynısını "Google ile kaydol" metniyle kayıt formuna da bas.
+ * Hesap yoksa Google girişi zaten hesap açar (WP ya da WooCommerce kaydı açıkken), sekme fark etmez.
+ */
+add_action(
+	'woocommerce_login_form_start',
+	static function () {
+		ob_start();
+	},
+	0
+);
+add_action(
+	'woocommerce_login_form_start',
+	static function () {
+		$html = (string) ob_get_clean();
+		echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Başka eklentilerin zaten bastığı çıktı.
+		if ( str_contains( $html, 'googlesitekit-sign-in-with-google__frontend-output-button' ) ) {
+			$GLOBALS['flx_siwg_login'] = true;
+		}
+	},
+	PHP_INT_MAX
+);
+add_action(
+	'woocommerce_register_form_start',
+	static function () {
+		if ( empty( $GLOBALS['flx_siwg_login'] ) || is_user_logged_in() ) {
+			return;
+		}
+		do_action(
+			'googlesitekit_render_sign_in_with_google_button',
+			array(
+				'class' => 'woocommerce-form-row form-row',
+				'text'  => 'signup_with',
+			)
+		);
+	}
+);
+
 add_filter(
 	'woocommerce_login_redirect',
 	function ( $to ) {
@@ -342,6 +381,13 @@ add_action(
 			$d['authGoogleTop'] = 'split' !== flx_ayar( 'auth_style' ); // Kart düzeninde Google butonu formun üstünde.
 			$d['orEmail']       = __( 'or with email', 'fluxwp' );
 		}
+		// Google ile giriş sürerken formun üstündeki bilgi katmanı (main.js).
+		$d['gWait'] = array(
+			'popup'  => __( 'Choose your account in the Google window. If it does not open, allow pop-ups for this site.', 'fluxwp' ),
+			'auth'   => __( 'Signing you in with Google. If you have no account yet, we are creating one.', 'fluxwp' ),
+			'slow'   => __( 'This is taking longer than usual. You can wait a little more or cancel and try again.', 'fluxwp' ),
+			'cancel' => __( 'Cancel', 'fluxwp' ),
+		);
 		wp_add_inline_script( 'fluxwp', 'window.flxHesap=' . wp_json_encode( $d ) . ';', 'before' );
 	},
 	21

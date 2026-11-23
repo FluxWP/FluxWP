@@ -177,6 +177,74 @@ document.addEventListener('click', function (e) {
 	});
 })();
 
+/* Google ile giriş sürerken bilgi + İptal: Google penceresi açıkken "hesabınızı seçin", Site Kit girişi sunucuya
+   gönderince "giriş yapılıyor / hesap oluşturuluyor"; 25 sn'de sonuç gelmezse "uzun sürüyor". İptal isteği durdurur. */
+(function () {
+	var W = (window.flxHesap || {}).gWait;
+	if (!W || !document.querySelector('.flx-social-login')) return;
+	var box, msg, slowT, ctl, busy = false;
+	var isAuth = function (u) { return /googlesitekit_auth/.test(String(u || '')); };
+	function hide() {
+		clearTimeout(slowT);
+		busy = false;
+		if (box) box.hidden = true;
+	}
+	function show(text) {
+		if (!box) {
+			box = document.createElement('div');
+			box.className = 'flx-gwait';
+			box.setAttribute('role', 'status');
+			box.innerHTML = '<div class="flx-gwait__card"><span class="flx-gwait__dots" aria-hidden="true"><i></i><i></i><i></i></span><p class="flx-gwait__msg"></p><button type="button" class="flx-gwait__cancel"></button></div>';
+			msg = box.querySelector('.flx-gwait__msg');
+			var b = box.querySelector('.flx-gwait__cancel');
+			b.textContent = W.cancel;
+			b.addEventListener('click', function () {
+				if (busy) { try { if (ctl) ctl.abort(); window.stop(); } catch (e) {} }
+				hide();
+			});
+			(document.querySelector('.flx-auth-frame__main') || document.body).appendChild(box); // Pencerede yalnız __main görünür.
+		}
+		msg.textContent = text;
+		box.hidden = false;
+	}
+	function started() {
+		busy = true;
+		show(W.auth);
+		clearTimeout(slowT);
+		slowT = setTimeout(function () { if (busy) msg.textContent = W.slow; }, 25000);
+	}
+	// Site Kit girişi fetch ya da form ile gönderir: ikisini de yakala.
+	if (window.fetch) {
+		var f = window.fetch;
+		window.fetch = function (u, o) {
+			if (isAuth(u && u.url ? u.url : u)) {
+				started();
+				ctl = window.AbortController ? new AbortController() : null;
+				if (ctl) { o = Object.assign({}, o || {}, { signal: ctl.signal }); }
+				return f.call(this, u, o).catch(function (e) { hide(); throw e; });
+			}
+			return f.apply(this, arguments);
+		};
+	}
+	var sub = HTMLFormElement.prototype.submit;
+	HTMLFormElement.prototype.submit = function () {
+		if (isAuth(this.action)) started();
+		return sub.apply(this, arguments);
+	};
+	document.addEventListener('submit', function (e) { if (isAuth(e.target.action)) started(); }, true);
+	// Google butonu (accounts.google.com iframe'i) tıklanınca odak ona geçer: açılan pencere için bilgi göster.
+	window.addEventListener('blur', function () {
+		setTimeout(function () {
+			var a = document.activeElement;
+			if (!busy && a && a.tagName === 'IFRAME' && a.closest('.flx-social-login')) show(W.popup);
+		}, 0);
+	});
+	window.addEventListener('focus', function () {
+		setTimeout(function () { if (!busy) hide(); }, 1500); // Google penceresi seçim yapılmadan kapandı.
+	});
+	window.addEventListener('pageshow', hide);
+})();
+
 /* Giriş penceresi: "Giriş yap" / Hesabım bağlantısı sayfadan ayrılmadan ortada Hesabım'ın giriş/kayıt formunu açar
    (Google ile giriş ve kayıt dahil). Form başka adrese yönlenince (giriş tamam, şifre sıfırlama) sayfa oraya gider. */
 (function () {

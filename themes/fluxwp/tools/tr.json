@@ -255,5 +255,9 @@
  "Label on the picture": "Resim üstü etiket",
  "Title on the picture": "Resim üstü başlık",
  "Text on the picture": "Resim üstü metin",
- "Empty fields are not shown.": "Boş alanlar gösterilmez."
+ "Empty fields are not shown.": "Boş alanlar gösterilmez.",
+ "Choose your account in the Google window. If it does not open, allow pop-ups for this site.": "Google penceresinde hesabınızı seçin. Pencere açılmadıysa bu sitede açılır pencerelere izin verin.",
+ "Signing you in with Google. If you have no account yet, we are creating one.": "Google ile giriş yapılıyor. Hesabınız yoksa sizin için oluşturuluyor.",
+ "This is taking longer than usual. You can wait a little more or cancel and try again.": "Bu her zamankinden uzun sürüyor. Biraz daha bekleyebilir ya da iptal edip tekrar deneyebilirsiniz.",
+ "Cancel": "İptal"
 }

@@ -1152,5 +1152,9 @@ return array(
   'Line under the heading; empty shows none.' => 'Başlığın altındaki satır; boşsa gösterilmez.',
   'Picture attachment ID; 0 removes it.' => 'Resmin ortam ID\'si; 0 kaldırır.',
   'Small label on the picture.' => 'Resmin üstündeki küçük etiket.',
+  'Choose your account in the Google window. If it does not open, allow pop-ups for this site.' => 'Google penceresinde hesabınızı seçin. Pencere açılmadıysa bu sitede açılır pencerelere izin verin.',
+  'Signing you in with Google. If you have no account yet, we are creating one.' => 'Google ile giriş yapılıyor. Hesabınız yoksa sizin için oluşturuluyor.',
+  'This is taking longer than usual. You can wait a little more or cancel and try again.' => 'Bu her zamankinden uzun sürüyor. Biraz daha bekleyebilir ya da iptal edip tekrar deneyebilirsiniz.',
+  'Cancel' => 'İptal',
  ),
 );
