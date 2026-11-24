@@ -66,12 +66,12 @@ final class FLXB_WC_Boxes {
 		$seen = array();
 		$skip = array_flip( (array) apply_filters( 'flxb_wc_box_skip', self::SKIP ) );
 		try {
-			$wp_meta_boxes[ $screen ] = array(); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+			unset( $wp_meta_boxes[ $screen ] );
 			do_action( 'add_meta_boxes', $screen, $obj );
 			do_action( 'add_meta_boxes_' . $screen, $obj );
 			foreach ( array( 'normal', 'advanced', 'side' ) as $context ) {
 				foreach ( array( 'high', 'core', 'default', 'low' ) as $prio ) {
-					foreach ( (array) ( $wp_meta_boxes[ $screen ][ $context ][ $prio ] ?? array() ) as $id => $box ) {
+					foreach ( self::registered( $screen, $context, $prio ) as $id => $box ) {
 						if ( ! $box || ! is_array( $box ) || isset( $skip[ $id ] ) || empty( $box['callback'] ) || ! is_callable( $box['callback'] ) ) {
 							continue;
 						}
@@ -118,6 +118,17 @@ final class FLXB_WC_Boxes {
 			wp_reset_postdata();
 		}
 		return (array) apply_filters( 'flxb_wc_boxes', $out, $order );
+	}
+
+	/**
+	 * Boxes registered for a screen (read after add_meta_boxes ran).
+	 *
+	 * @return array<string,mixed>
+	 */
+	private static function registered( $screen, $context, $prio ) {
+		$all = isset( $GLOBALS['wp_meta_boxes'] ) && is_array( $GLOBALS['wp_meta_boxes'] ) ? $GLOBALS['wp_meta_boxes'] : array();
+		$list = $all[ $screen ][ $context ][ $prio ] ?? array();
+		return is_array( $list ) ? $list : array();
 	}
 
 	private static function save_row() {
