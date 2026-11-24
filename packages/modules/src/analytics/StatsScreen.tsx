@@ -930,7 +930,7 @@ function PageModal({ target, title, filter, range, group, onClose }: { target: s
                 <div className="flxan-card__value">{n(r.pageviews)}</div>
               </div>
             </div>
-            <BarChart items={items} group="DAY" />
+            <BarChart items={items} group="DAY" height={200} />
             <p className="flxan-note">
               {r.paths.map((p, i) => (
                 <span key={p}>

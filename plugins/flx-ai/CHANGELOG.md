@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.34.0
+- Genel bakış ve Faturalandırma grafikleri etkileşimli (ortak Chart.js grafiği): üzerine gelince ipucu (tooltip), legend'dan seri aç/kapa, koyu/açık tema. Günlük maliyet çubuk + model istekleri çizgisi (sağ eksen), zaman yığılmış çubuk, token alan grafiği (önbellek serisi legend'dan açılır), araç süreleri yatay çubuk; yeni: eklentiye ve modele göre maliyet halka grafikleri. Ortak modül paketi yenilendi.
+
 ## 0.33.5
 - **Güvenlik:** SSRF denetimi ortak modüle (flx-brand `flx_url_is_public`, `flx_safe_remote_request`) taşındı; `flxai_*` adları ve `flxai_url_is_public` filtresi aynen çalışır. Yenilikler: bağlantı denetlenen adrese sabitlenir (ikinci DNS yanıtı adresi değiştiremez), MCP istemcisi ve üretilen medyanın indirilmesi de her yönlendirmede yeniden denetlenir, yönlendirme başka ana makineye geçerse yetki başlıkları gönderilmez. Dış adreslerde yalnız 80 ve 443 portu.
 

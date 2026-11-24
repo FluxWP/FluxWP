@@ -7,6 +7,7 @@ import { FlxGraphQLProvider, useFlxQuery } from '@fluxwp/graphql/react';
 import { FlxAnalyticsConfig } from '@fluxwp/graphql/operations';
 import type { FlxAnalyticsConfigQuery, FlxAnalyticsFilterInput, FlxAnalyticsRangePreset } from '@fluxwp/graphql/types';
 import { DatePicker, Loading, Modal, Screen, Tabs as UiTabs } from '@fluxwp/ui';
+import { Chart } from '@fluxwp/ui/chart';
 import { useHost } from '../host';
 import { translator, type Translate } from './i18n';
 import './analytics.css';
@@ -376,100 +377,29 @@ export function Flag({ cc }: { cc: string }) {
   return /^[A-Z]{2}$/.test(cc) ? <span className="flxan-cc">{cc}</span> : null;
 }
 
-/** Bar chart of visitors (front) over page views (behind) with a hover tip. */
-export function BarChart({ items, group }: { items: { date: string; visitors: number; pageviews: number }[]; group: 'DAY' | 'WEEK' | 'MONTH' }) {
-  const { t, n, day, compact, locale } = useFmt();
-  const box = useRef<HTMLDivElement>(null);
-  const [w, setW] = useState(600);
-  const [tip, setTip] = useState<{ i: number; x: number; y: number } | null>(null);
-  useEffect(() => {
-    const el = box.current;
-    if (!el) return;
-    const ro = new ResizeObserver(() => setW(Math.max(300, el.clientWidth || 600)));
-    ro.observe(el);
-    setW(Math.max(300, el.clientWidth || 600));
-    return () => ro.disconnect();
-  }, []);
-  const H = 260;
-  const pl = 40;
-  const pb = 22;
-  const pt = 8;
-  const max = Math.max(0, ...items.map((i) => i.pageviews));
-  const step = (() => {
-    if (max <= 4) return 1;
-    const raw = max / 4;
-    const p = Math.pow(10, Math.floor(Math.log10(raw)));
-    const f = raw / p;
-    return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 5 ? 5 : 10) * p;
-  })();
-  const top = Math.max(step, Math.ceil(max / step) * step);
-  const iw = w - pl;
-  const ih = H - pb - pt;
-  const bw = iw / Math.max(1, items.length);
-  const every = Math.ceil(items.length / Math.max(2, Math.floor(iw / 60)));
+/** Visitors (bars) and page views (area) per day/week/month: shared interactive chart. */
+export function BarChart({ items, group, height = 260 }: { items: { date: string; visitors: number; pageviews: number }[]; group: 'DAY' | 'WEEK' | 'MONTH'; height?: number }) {
+  const { t, n, day, compact } = useFmt();
   const label = (d: string, short: boolean) => {
     if (group === 'MONTH') return day(d, { month: 'short', year: short ? '2-digit' : 'numeric' });
     if (group === 'WEEK') return short ? day(d) : t('Week of %s', day(d, { day: 'numeric', month: 'long' }));
     return short ? day(d) : day(d, { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' });
   };
-  const ticks: number[] = [];
-  for (let y = 0; y <= top; y += step) ticks.push(y);
-  void locale;
   return (
-    <div className="flxan-chart" ref={box}>
-      <svg viewBox={`0 0 ${w} ${H}`} role="img" aria-label={t('Visitors and page views chart')}>
-        <g className="grid">
-          {ticks.map((y) => {
-            const yy = pt + ih - (y / top) * ih;
-            return (
-              <g key={y}>
-                <line x1={pl} x2={w} y1={yy} y2={yy} />
-                <text className="ax" x={pl - 6} y={yy + 4} textAnchor="end" style={{ fill: 'var(--flxan-muted)', fontSize: 11 }}>
-                  {compact(y)}
-                </text>
-              </g>
-            );
-          })}
-        </g>
-        {items.map((it, i) => {
-          const x = pl + i * bw;
-          const bwid = Math.max(2, bw * (w < 520 ? 0.86 : 0.72));
-          const ox = x + (bw - bwid) / 2;
-          const hp = it.pageviews ? Math.max(3, (it.pageviews / top) * ih) : 0;
-          const hv = it.visitors ? Math.max(3, (it.visitors / top) * ih) : 0;
-          const rx = Math.min(3, bwid / 3);
-          return (
-            <g key={it.date}>
-              <rect className="pv" x={ox} y={pt + ih - hp} width={bwid} height={hp} rx={rx} />
-              <rect className="v" x={ox} y={pt + ih - hv} width={bwid} height={hv} rx={rx} />
-              <rect
-                className="hit"
-                x={x}
-                y={pt}
-                width={bw}
-                height={ih}
-                onMouseEnter={() => setTip({ i, x: ((x + bw / 2) / w) * (box.current?.clientWidth ?? w), y: Math.max(10, pt + ih - (it.pageviews / top) * ih - 6) })}
-                onMouseLeave={() => setTip(null)}
-              />
-              {i % every === 0 && (
-                <text className="ax" x={x + bw / 2} y={H - 6} textAnchor="middle" style={{ fill: 'var(--flxan-muted)', fontSize: 11 }}>
-                  {label(it.date, true)}
-                </text>
-              )}
-            </g>
-          );
-        })}
-      </svg>
-      {tip && items[tip.i] && (
-        <div className="flxan-tip" style={{ display: 'block', left: tip.x, top: tip.y }}>
-          <b>{label(items[tip.i]!.date, false)}</b>
-          <br />
-          {t('Visitors')}: {n(items[tip.i]!.visitors)}
-          <br />
-          {t('Page views')}: {n(items[tip.i]!.pageviews)}
-        </div>
-      )}
-    </div>
+    <Chart
+      kind="bar"
+      height={height}
+      labels={items.map((i) => i.date)}
+      formatLabel={(d) => label(d, false)}
+      tickLabel={(d) => label(d, true)}
+      series={[
+        { label: t('Visitors'), data: items.map((i) => i.visitors), color: 'var(--flxan-accent)' },
+        { label: t('Page views'), data: items.map((i) => i.pageviews), kind: 'area', color: 'var(--flxan-accent-2)' },
+      ]}
+      format={(v) => n(v)}
+      formatTick={(v) => compact(v)}
+      label={t('Visitors and page views chart')}
+    />
   );
 }
 

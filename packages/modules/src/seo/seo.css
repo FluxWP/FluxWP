@@ -64,7 +64,7 @@
 .flxseo-run{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0 0}
 .flxseo-run input{flex:1;min-width:220px}
 .flxseo-status{min-height:20px;margin:8px 0 0;color:var(--flxseo-mut);font-size:13px}
-.flxseo-scores{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin:0 0 16px}
+.flxseo-scores{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:16px;margin:0 0 16px}
 .flxseo-scores>.flxseo-card{margin:0}
 .flxseo-rings{display:flex;flex-wrap:wrap;gap:12px}
 .flxseo-ring{margin:0;text-align:center;width:72px}
@@ -108,16 +108,9 @@
 .flxseo-f-body p{margin:6px 0}
 .flxseo-items{margin:6px 0;padding-left:20px;overflow-wrap:anywhere}
 /* History */
-.flxseo-charts{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin:0 0 16px}
+.flxseo-charts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:16px;margin:0 0 16px}
 .flxseo-chart{margin:0}
-.flxseo-chart svg{width:100%;height:auto;display:block}
-.flxseo-chart figcaption{font-size:12px;color:var(--flxseo-mut);display:flex;flex-wrap:wrap;gap:4px 12px;justify-content:space-between}
-.flxseo-chart .grid{stroke:var(--flxseo-bd);stroke-width:1}
-.flxseo-chart .axis{font-size:10px;fill:var(--flxseo-mut)}
-.flxseo-chart .line path{stroke:currentColor;stroke-width:2}
-.flxseo-chart .line circle{fill:currentColor}
-.flxseo-legend{display:flex;flex-wrap:wrap;gap:4px 10px}
-.flxseo-key::before{content:"";display:inline-block;width:10px;height:3px;margin-right:4px;vertical-align:middle;background:currentColor}
+.flxseo-chart figcaption{font-size:12px;font-weight:600;color:var(--flxseo-mut);margin:0 0 4px}
 .flxseo-app .is-critical{color:var(--flxseo-bad)}.flxseo-app .is-high{color:#e8742a}.flxseo-app .is-medium{color:color-mix(in srgb,var(--flxseo-mid) 80%,var(--flux-text))}.flxseo-app .is-low{color:var(--flxseo-mut)}
 .flxseo-app .is-c1{color:#3b82f6}.flxseo-app .is-c2{color:#8b5cf6}.flxseo-app .is-c3{color:#14b8a6}.flxseo-app .is-c4{color:#f59e0b}
 .flxseo-counts span{margin-right:8px;font-weight:600}

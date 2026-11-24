@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.8.0
+- Ziyaretçi/sayfa görüntüleme grafiği ortak etkileşimli grafiğe geçti: ziyaretçi çubuk, görüntüleme alan; legend'dan seri aç/kapa, koyu/açık tema. Ortak modül paketi yenilendi.
+
 ## 0.7.4
 - Telemetri merkezi: Flux Admin duyuru kartlarının gösterim/kapatma adetlerini (yalnız kart kimliği ve sayı, anonim) `flxan_ann_counts` seçeneğinde toplar; Flux Cloud › Duyurular okur.
 

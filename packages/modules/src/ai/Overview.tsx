@@ -4,8 +4,9 @@ import { FlxAiOverview } from '@fluxwp/graphql/operations';
 import type { FlxAiReportFieldsFragment } from '@fluxwp/graphql/types';
 import { useFlxQuery } from '@fluxwp/graphql/react';
 import { Loading } from '@fluxwp/ui';
+import { Chart } from '@fluxwp/ui/chart';
 import { useHost } from '../host';
-import { Bars, Card, Pill, useAi, type AiT } from './common';
+import { Card, Pill, dayLabel, useAi, type AiT } from './common';
 import { Meters } from './Meters';
 
 const DAYS = [1, 7, 30, 90];
@@ -25,6 +26,7 @@ export function Overview() {
   const rep = d.flxAiReport;
   const tt = rep.totals;
   const totMs = Math.max(1, tt.modelMs + tt.toolMs);
+  const days1 = rep.daily;
   const noKey = !d.flxAiSecrets.some((s) => s.configured);
   const settingsUrl = (host.adminUrl ?? '') + 'admin.php?page=flx-ai-settings';
   return (
@@ -67,16 +69,64 @@ export function Overview() {
 
       <div className="flxai-grid">
         <Card title={t('Daily cost (USD)')} wide>
-          <Bars rows={rep.daily.map((r) => ({ label: r.date, values: [r.cost] }))} colors={['var(--flux-primary)']} format={(v) => usd(v)} />
+          <Chart
+            kind="bar"
+            labels={days1.map((r) => r.date)}
+            formatLabel={dayLabel}
+            series={[
+              { label: t('Cost'), data: days1.map((r) => r.cost), color: 'var(--flux-primary)' },
+              { label: t('Model requests'), data: days1.map((r) => r.calls), kind: 'line', axis: 'y2', color: 'var(--flux-warning)' },
+            ]}
+            format={(v) => usd(v)}
+            format2={(v) => num(v)}
+            label={t('Daily cost (USD)')}
+          />
         </Card>
         <Card title={t('Where time goes: model/thinking vs tools')} wide>
-          <Bars rows={rep.daily.map((r) => ({ label: r.date, values: [r.modelMs, r.toolMs] }))} colors={['var(--flux-primary)', 'var(--flux-warning)']} format={ms} legend={[t('Model/thinking'), t('Tools')]} />
+          <Chart
+            kind="bar"
+            stacked
+            labels={days1.map((r) => r.date)}
+            formatLabel={dayLabel}
+            series={[
+              { label: t('Model/thinking'), data: days1.map((r) => r.modelMs), color: 'var(--flux-primary)' },
+              { label: t('Tools'), data: days1.map((r) => r.toolMs), color: 'var(--flux-warning)' },
+            ]}
+            format={(v) => ms(v)}
+          />
         </Card>
         <Card title={t('Daily tokens')}>
-          <Bars rows={rep.daily.map((r) => ({ label: r.date, values: [r.inTokens, r.outTokens] }))} colors={['var(--flux-primary)', 'var(--flux-info, #3b82f6)']} format={(v) => num(v)} legend={[t('Input'), t('Output')]} />
+          <Chart
+            kind="area"
+            labels={days1.map((r) => r.date)}
+            formatLabel={dayLabel}
+            series={[
+              { label: t('Input'), data: days1.map((r) => r.inTokens), color: 'var(--flux-primary)' },
+              { label: t('Output'), data: days1.map((r) => r.outTokens), color: 'var(--flux-info, #1D5FA8)' },
+              { label: t('From cache'), data: days1.map((r) => r.cacheRead), color: 'var(--flux-success)', hidden: true },
+            ]}
+            format={(v) => num(v)}
+          />
         </Card>
         <Card title={t('Average time per tool')}>
-          <Bars horizontal rows={rep.byTool.slice(0, 10).map((r) => ({ label: r.label || r.key, values: [r.avgMs] }))} colors={['var(--flux-warning)']} format={ms} />
+          {rep.byTool.length === 0 ? (
+            <p className="flxai-empty">{t('No records in this range.')}</p>
+          ) : (
+            <Chart
+              kind="bar"
+              horizontal
+              height={Math.max(160, Math.min(10, rep.byTool.length) * 28 + 30)}
+              labels={rep.byTool.slice(0, 10).map((r) => r.label || r.key)}
+              series={[{ label: t('Average'), data: rep.byTool.slice(0, 10).map((r) => r.avgMs), color: 'var(--flux-warning)' }]}
+              format={(v) => ms(v)}
+            />
+          )}
+        </Card>
+        <Card title={t('Cost by plugin')}>
+          <Share rows={rep.bySource} ai={ai} />
+        </Card>
+        <Card title={t('Cost by model')}>
+          <Share rows={rep.byModel} ai={ai} />
         </Card>
       </div>
 
@@ -120,6 +170,22 @@ export function Overview() {
       </Card>
     </>
   );
+}
+
+/** Cost share as a doughnut; the long tail folds into "Other" so slices stay readable. */
+function Share({ rows, ai }: { rows: Breakdown; ai: AiT }) {
+  const { t, usd } = ai;
+  const list = rows.filter((r) => r.cost > 0).sort((a, b) => b.cost - a.cost);
+  if (list.length === 0) return <p className="flxai-empty">{t('No records in this range.')}</p>;
+  const top = list.slice(0, 6);
+  const rest = list.slice(6).reduce((a, r) => a + r.cost, 0);
+  const labels = top.map((r) => r.label || r.key);
+  const data = top.map((r) => r.cost);
+  if (rest > 0) {
+    labels.push(t('Other'));
+    data.push(rest);
+  }
+  return <Chart kind="doughnut" height={240} labels={labels} series={[{ label: t('Cost'), data }]} format={(v) => usd(v)} />;
 }
 
 function Kpi({ label, value, sub }: { label: string; value: string; sub: string }) {

@@ -324,25 +324,11 @@ textarea.flxst-input { resize: vertical; }
 .flxst-tile-h { display: flex; align-items: center; gap: 7px; color: var(--muted); font-size: 12.5px; }
 .flxst-tile-v { margin-top: 6px; font-size: 26px; font-weight: 700; letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
 .flxst-tile-s { margin-top: 2px; color: var(--muted); font-size: 12px; }
-.flxst-dgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 12px; margin-bottom: 12px; }
+.flxst-dgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 12px; margin-bottom: 12px; }
 .flxst-dcard { padding: 14px 16px; border-radius: var(--r); background: var(--panel); border: 1px solid var(--line); min-width: 0; }
 .flxst-dash > .flxst-dcard { margin-bottom: 12px; }
 .flxst-card-h { display: flex; align-items: center; gap: 10px; justify-content: space-between; margin-bottom: 10px; }
 .flxst-card-h h3 { margin: 0; font-size: 14px; font-weight: 600; }
-.flxst-chart { display: block; width: 100%; height: auto; overflow: visible; }
-.flxst-grid-l { stroke: var(--line); stroke-width: 1; }
-.flxst-axis { fill: var(--faint); font-size: 10px; }
-.flxst-hit { fill: transparent; cursor: default; }
-.flxst-hit:hover { fill: var(--acc-soft); }
-.flxst-bar-img { fill: var(--c-img); background: var(--c-img); }
-.flxst-bar-vid { fill: var(--c-vid); background: var(--c-vid); }
-.flxst-bar-err { fill: var(--err); background: var(--err); opacity: .8; }
-.flxst-bar-cost { fill: var(--c-cost); }
-.flxst-legend { display: flex; gap: 12px; font-size: 12px; color: var(--muted); }
-.flxst-legend span { display: inline-flex; align-items: center; gap: 5px; }
-.flxst-legend i { width: 9px; height: 9px; border-radius: 2px; }
-.flxst-dtip { position: fixed; z-index: 100140; pointer-events: none; padding: 8px 10px; border-radius: 8px; background: var(--panel); border: 1px solid var(--line2); box-shadow: var(--shadow); color: var(--text); font: 12px/1.5 -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; }
-.flxst-dtip strong { display: block; margin-bottom: 2px; }
 .flxst-dbudget { display: flex; flex-direction: column; gap: 8px; }
 .flxst-dtable { width: 100%; border-collapse: collapse; font-size: 13px; }
 .flxst-dtable th { padding: 0 6px 6px; text-align: left; font-size: 11.5px; font-weight: 600; color: var(--faint); border-bottom: 1px solid var(--line); }

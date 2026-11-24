@@ -636,5 +636,9 @@
   "Choose a model that supports tools.": "Araç kullanabilen bir model seçin.",
   "console.anthropic.com › API Keys. Claude models are listed with the \"claude:\" prefix.": "console.anthropic.com › API Keys. Claude modelleri \"claude:\" önekiyle listelenir.",
   "Only needed when the key is not tied to a workspace (if the error asks for \"anthropic-workspace-id\").": "Yalnız anahtar bir workspace'e bağlı değilse gerekir (hata mesajı \"anthropic-workspace-id\" isterse).",
-  "A cheap model is enough for automatic chat titles.": "Sohbete otomatik isim vermek için ucuz bir model yeterli."
+  "A cheap model is enough for automatic chat titles.": "Sohbete otomatik isim vermek için ucuz bir model yeterli.",
+  "From cache": "Önbellekten",
+  "Other": "Diğer",
+  "Cost by plugin": "Eklentiye göre maliyet",
+  "Cost by model": "Modele göre maliyet"
 }

@@ -3,6 +3,7 @@
 import { useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore, type ReactNode } from 'react';
 import type { FlxgAiAction, FlxgDashboard, FlxgSettings, FlxgSystemCheck } from '@fluxwp/core';
 import { openSanitizedLink, sanitizeHtml } from '@fluxwp/ui';
+import { Chart } from '@fluxwp/ui/chart';
 import { useHost } from '../host';
 import { cmpStr, store } from './engine';
 import { flxgLocale, tt } from './i18n';
@@ -74,20 +75,20 @@ function Bar({ v, max, color }: { v: number; max: number; color?: string }) {
 function MonthBars({ months }: { months: Record<string, number> }) {
   const keys = Object.keys(months ?? {});
   if (!keys.length) return <p className="flxg-muted">{tt("No data.")}</p>;
-  const max = Math.max(1, ...keys.map((k) => months[k]!));
+  const month = (k: string, o: Intl.DateTimeFormatOptions) => {
+    const [y, m] = k.split('-');
+    return new Date(+y!, +m! - 1, 1).toLocaleDateString(flxgLocale(), o);
+  };
   return (
-    <div className="flxg-vbars">
-      {keys.map((k) => {
-        const [y, m] = k.split('-');
-        return (
-          <div key={k} className="flxg-vbar" title={bytes(months[k])}>
-            <span className="flxg-vbar-v">{bytes(months[k])}</span>
-            <span className="flxg-vbar-b" style={{ height: Math.max(2, Math.round((months[k]! / max) * 100)) + '%' }} />
-            <span className="flxg-vbar-l">{new Date(+y!, +m! - 1, 1).toLocaleDateString(flxgLocale(), { month: 'short' })}</span>
-          </div>
-        );
-      })}
-    </div>
+    <Chart
+      kind="bar"
+      height={180}
+      labels={keys}
+      tickLabel={(k) => month(k, { month: 'short' })}
+      formatLabel={(k) => month(k, { month: 'long', year: 'numeric' })}
+      series={[{ label: tt("Monthly uploads"), data: keys.map((k) => months[k] ?? 0), color: 'var(--accent, var(--flux-primary))' }]}
+      format={(v) => bytes(v)}
+    />
   );
 }
 

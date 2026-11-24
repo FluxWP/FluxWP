@@ -12,7 +12,7 @@
 .flxai-notice.is-warn{border-left-color:var(--flux-warning)}
 .flxai-x,.flxai-link{background:none;border:0;color:var(--mut);cursor:pointer;font:inherit}
 .flxai-card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:14px 16px;margin:0 0 16px;min-width:0}
-.flxai-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px}
+.flxai-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));gap:16px}
 .flxai-grid>.flxai-card{margin:0}
 .flxai-grid>.is-wide{grid-column:1/-1}
 .flxai-bill{grid-template-columns:260px 1fr}
@@ -62,17 +62,6 @@
 .flxai-dl{display:grid;grid-template-columns:max-content 1fr;gap:6px 18px;margin:0}
 .flxai-dl dd{margin:0}
 .flxai-body pre{white-space:pre-wrap;word-break:break-word;background:var(--flux-surface2);border-radius:6px;padding:8px;max-height:240px;overflow:auto}
-.flxai-chart{width:100%}
-.flxai-legend{display:flex;gap:14px;font-size:12px;color:var(--mut);margin:0 0 6px}
-.flxai-legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px}
-.flxai-chart:not(.is-h) .flxai-bars{display:flex;align-items:flex-end;gap:3px;height:150px}
-.flxai-chart:not(.is-h) .flxai-bar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:100%;min-width:0;font-size:10px;color:var(--mut);text-align:center}
-.flxai-chart:not(.is-h) .flxai-bar-track{flex:1;display:flex;flex-direction:column-reverse;justify-content:flex-start}
-.flxai-bar-seg{min-height:0}
-.flxai-chart.is-h .flxai-bar{display:grid;grid-template-columns:minmax(80px,30%) 1fr auto;gap:8px;align-items:center;margin:4px 0}
-.flxai-chart.is-h .flxai-bar-track{height:12px;display:flex;background:color-mix(in srgb,var(--flux-text) 8%,transparent);border-radius:3px;overflow:hidden}
-.flxai-bar-label{overflow:visible;text-overflow:ellipsis;white-space:nowrap;font-size:12px}
-.flxai-bar-val{font-size:12px;color:var(--mut)}
 
 .flxai-field{display:grid;grid-template-columns:minmax(150px,240px) 1fr;gap:6px 16px;padding:10px 0;border-top:1px solid var(--bd)}
 .flxai-field:first-of-type{border-top:0}

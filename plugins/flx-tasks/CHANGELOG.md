@@ -1,5 +1,8 @@
 # Flux Tasks — Değişiklikler
 
+## 0.20.0
+- Pano > Aylık yüklemeler grafiği ortak etkileşimli grafiğe geçti (ipucu, koyu/açık tema). Ortak modül paketi yenilendi.
+
 ## 0.19.0
 - Canlı akış (Docker siteler, Flux Realtime): görev, yorum, liste yapısı ya da bildirim değişince açık Flux Tasks ekranı hemen eşitlenir (`tasks.changed` sinyali, `flxg_use` olanlara; içerik taşımaz, yetki yine listelere göre sunucuda uygulanır). Bağlıyken eşitleme 120 sn güvenlik ağına iner, bağlantı koparsa ayardaki aralığa döner. Flux Realtime yoksa hiçbir şey değişmez.
 
