@@ -1,0 +1,29 @@
+query FlxDonateDashboard($range: FlxDonationRange, $from: String, $to: String) {
+  flxDonationDashboard(range: $range, from: $from, to: $to) {
+    from
+    to
+    fromLabel
+    toLabel
+    currency
+    symbol
+    hasAny
+    allDonors
+    now { total gifts donors newDonors average }
+    prev { total gifts donors newDonors average }
+    mrr
+    activeSubscriptions
+    pastDueSubscriptions
+    series { day label oneTime recurring gifts }
+    oneTime { amount gifts }
+    recurring { amount gifts }
+    byType { id label amount gifts }
+    byForm { id label amount gifts }
+    topDonors { id name contact amount gifts url }
+    canList
+    csvUrl
+    listUrl
+    donorsUrl
+    importUrl
+    ownOnly
+  }
+}

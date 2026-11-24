@@ -1,0 +1,38 @@
+query FlxDonateDonations($first: Int, $after: String, $filter: FlxDonationListFilter) {
+  flxDonationList(first: $first, after: $after, filter: $filter) {
+    totalCount
+    pageInfo { hasNextPage hasPreviousPage }
+    nodes {
+      databaseId
+      donorId
+      donorName
+      contact
+      amountLabel
+      kind
+      statusLabel
+      tone
+      date { label }
+      where
+      lines
+      referral
+      referralFromDonor
+      code
+      url
+    }
+  }
+  flxDonationListInfo(filter: $filter) {
+    sumLabel
+    trashCount
+    statuses { value label }
+    donationTypes { value label }
+    forms { value label }
+    referrals { value label }
+    awaiting { databaseId donorName what date { relative } amountLabel url }
+    ownOnly
+    canManage
+    canDeletePermanently
+    canAdd
+    csvUrl
+    addUrl
+  }
+}

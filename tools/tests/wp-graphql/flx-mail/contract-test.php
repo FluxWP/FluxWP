@@ -350,7 +350,7 @@ update_option(
 		),
 	)
 );
-$r      = $run( 'FlxMailTemplates', array( 'first' => 50 ), $admin );
+$r      = $run( 'FlxMailTemplates', array( 'first' => 50, 'search' => 'contract' ), $admin );
 $groups = array();
 foreach ( $r['data']['flxMailTemplates']['nodes'] ?? array() as $node ) {
 	$groups[ (string) $node['key'] ] = (string) $node['group'];

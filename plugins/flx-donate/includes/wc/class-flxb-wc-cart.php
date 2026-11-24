@@ -43,6 +43,7 @@ final class FLXB_WC_Cart {
 		add_action( 'woocommerce_checkout_create_order', array( __CLASS__, 'fill_address' ), 20 );
 		add_action( 'woocommerce_store_api_checkout_update_order_from_request', array( __CLASS__, 'fill_address_store_api' ), 20 );
 		add_filter( 'woocommerce_cart_item_quantity', array( __CLASS__, 'fixed_quantity' ), 10, 3 );
+		add_filter( 'woocommerce_store_api_product_quantity_editable', array( __CLASS__, 'quantity_editable' ), 10, 3 );
 		add_action( 'woocommerce_check_cart_items', array( __CLASS__, 'check_cart' ) );
 	}
 
@@ -346,7 +347,13 @@ final class FLXB_WC_Cart {
 
 	/** 2.15: the donor's currency now (store currency without the currency choice). */
 	public static function currency() {
-		return class_exists( 'FLXB_WC_Currency' ) ? FLXB_WC_Currency::current() : strtoupper( (string) get_woocommerce_currency() );
+		if ( class_exists( 'FLXB_WC_Currency' ) ) {
+			return FLXB_WC_Currency::current();
+		}
+		if ( function_exists( 'get_woocommerce_currency' ) ) {
+			return strtoupper( (string) get_woocommerce_currency() );
+		}
+		return 'TRY';
 	}
 
 	/**
@@ -652,9 +659,29 @@ final class FLXB_WC_Cart {
 		return '' !== $title ? esc_html( $title ) : $name;
 	}
 
+	/**
+	 * Store API twin of fixed_quantity(): the quantity is not editable where the classic cart shows a fixed 1.
+	 *
+	 * @param mixed $editable  Whether the shopper may change the quantity.
+	 * @param mixed $product   Product.
+	 * @param mixed $cart_item Cart item.
+	 */
+	public static function quantity_editable( $editable, $product = null, $cart_item = null ) {
+		unset( $product );
+		if ( is_array( $cart_item ) && self::quantity_fixed( $cart_item ) ) {
+			return false;
+		}
+		return $editable;
+	}
+
+	/** Free-amount, custom count (units > 1) and monthly lines keep quantity 1: the count is in the line. */
+	private static function quantity_fixed( array $item ): bool {
+		return ! empty( $item[ self::KEY ] ) && ( '' === (string) ( $item[ self::KEY ]['option'] ?? '' ) || (int) ( $item[ self::KEY ]['units'] ?? 1 ) > 1 || ! empty( $item[ self::KEY ]['monthly'] ) );
+	}
+
 	/** Custom count and free-amount lines keep quantity 1 in the cart (the count is in the line). */
 	public static function fixed_quantity( $html, $key, $item ) {
-		if ( ! empty( $item[ self::KEY ] ) && ( '' === (string) ( $item[ self::KEY ]['option'] ?? '' ) || (int) ( $item[ self::KEY ]['units'] ?? 1 ) > 1 || ! empty( $item[ self::KEY ]['monthly'] ) ) ) {
+		if ( self::quantity_fixed( (array) $item ) ) {
 			return '1<input type="hidden" name="cart[' . esc_attr( $key ) . '][qty]" value="1">';
 		}
 		return $html;

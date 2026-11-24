@@ -1,0 +1,22 @@
+mutation FlxDonationCartAdd($input: FlxDonationCartAddInput!) {
+  flxDonationCartAdd(input: $input) {
+    itemKey
+    cart {
+      items {
+        key
+        kind
+        flxDonation {
+          option
+          units
+          names
+          amount { amount currency }
+        }
+      }
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}

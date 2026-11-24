@@ -1,0 +1,7 @@
+mutation FlxDonationsBulk($ids: [Int!]!, $action: FlxDonationBulkAction!) {
+  flxDonationsBulk(input: { ids: $ids, action: $action }) {
+    done
+    message
+    errors { message field }
+  }
+}

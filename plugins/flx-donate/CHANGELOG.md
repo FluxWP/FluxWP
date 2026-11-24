@@ -1,5 +1,13 @@
 # Değişiklikler
 
+## 2.37.0
+- **Pano ve Bağışlar anında açılır.** İki sayfa artık React ekranı (Flux GraphQL kabuğu): veri sayfayla birlikte hazır gelir, yükleniyor dönmez; Flux ekranları arasında geçiş sayfa yenilemeden olur.
+- Pano: 7/30/90 gün ve özel aralık, göstergeler, günlük grafik, tek seferlik/düzenli oranı, türe ve forma göre, en çok bağış yapanlar (klasik görünümle aynı).
+- Bağışlar: onay bekleyen dekontlar, filtreler (adres çubuğunda kalır), tüm satır bağışı açar, toplu çöpe taşı / geri al / kalıcı sil (onay penceresiyle), toplam, çöp kutusu, sayfalar.
+- Bağış detayı ve diğer sayfalar şimdilik eski haliyle; sonraki sürümde taşınır.
+- GraphQL: `flxDonationDashboard`, `flxDonationList`, `flxDonationListInfo`, `flxDonationsBulk` (yetkiler klasik sayfalarla aynı; referans personeli yalnız kendi bağışlarını görür).
+- Flux POS kurulu ama henüz POS hesabı yoksa artık kart yöntemi sayılmaz: iyzico bandı ve kart yöntemi seçimi eskisi gibi kalır (hesapsız Flux POS iyzico'yu gizliyordu).
+
 ## 2.36.0
 - **Ödeme detayları.** WooCommerce siparişinin en üstünde ve bağış detayında yeni "Ödeme detayları" kutusu: tek satırda "Kart · EsnekPOS · ₺100,00 · tek çekim", altında kart (ilk 6 + son 4, gerisi gizli), kart sahibi, taksit, çekilen tutar, banka referansı, onay kodu, işlem numarası ve test/canlı. Önceden yalnız notlarda bir referans kodu vardı. Kart numarası yine saklanmaz.
 - Başka ödeme eklentileri (Flux POS gibi) kendi ödemesini `flxb_payment_details( $info, $order )` filtresiyle bu kutuya yazar. iyzico ödemesinde taksit de tutulur.

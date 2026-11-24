@@ -296,6 +296,9 @@ final class FLXB_WC {
 	}
 
 	public static function money_text( $amount, $currency = '' ) {
+		if ( ! function_exists( 'wc_price' ) ) {
+			return trim( (string) $amount . ' ' . (string) $currency );
+		}
 		return html_entity_decode( wp_strip_all_tags( wc_price( $amount, array( 'currency' => $currency ) ) ), ENT_QUOTES, 'UTF-8' );
 	}
 
