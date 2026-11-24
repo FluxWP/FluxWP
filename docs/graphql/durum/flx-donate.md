@@ -1,4 +1,4 @@
-# flx-donate 2.40.0
+# flx-donate 2.41.0
 
 - Faz: 2
 - Durum: 👀
@@ -10,7 +10,9 @@
 
 2.39.0: Bağışçılar (`Donors.tsx`, start `donors`, adres s/kind/orderby/paged), bağışçı kartı (`Donor.tsx`, startPage `donor?id=N`) ve düzenli bağışlar (`Subscriptions.tsx`, start `subscriptions`, adres s/status/paged) React ekranı. Servis `FLXB_Admin_People_Service`; query `flxDonorList` (connection), `flxDonorListInfo`, `flxDonor(id)` (görünmeyen bağışçı null), `flxSubscriptionList` (connection), `flxSubscriptionTotals`; mutation `flxDonorSave`, `flxSubscriptionCancel`. Yetki: bağışçılar `FLXB_Refs::can_donors` (flxb_donors_own personeli yalnız kendi referans olduğu bağışçılar, o bağışların rakamları; kartta düzenli bağış/sertifika/not yok), kayıt `flxb_can_manage`, düzenli bağışlar `flxb_can_view`, iptal `flxb_owns_payments && flxb_can_manage`. Flux CRM kişi kartı varken `?donor=` hâlâ CRM kartı (`FLXB_Page_Donors::crm_page()` ekranı kapatır; CRM taşınınca kalkar). `FLXB_Donors::query` / `FLXB_Subscriptions::query` `offset` alır (kit limit+1 ister).
 
-2.40.0: Bağış türleri listesi (`Types.tsx`, start `types`, adres `view=archived`; klasik form silme bildirimi `notice=<ok|error>:<metin>` ile startPage'e geçer). Servis `FLXB_Admin_Types_Service`; query `flxDonationTypeAdminList(archived)`; mutation `flxDonationTypeSetStatus` (açma çakışması CONFLICT + `FLXB_Types::$notices`), `flxDonationTypeMove(up)`, `flxDonationTypeSamples(key)`. Yetki: liste `flxb_can_view`, diğerleri `flxb_can_manage`. `?edit=` (tür formu) hâlâ klasik: `FLXB_Admin::types_screen_enabled()` o sayfada ekranı kapatır (PR5'te kalkar). Klasik status/move/samples admin-post işleyicileri silindi.
+2.40.0: Bağış türleri listesi (`Types.tsx`, start `types`, adres `view=archived`; klasik form silme bildirimi `notice=<ok|error>:<metin>` ile startPage'e geçer). Servis `FLXB_Admin_Types_Service`; query `flxDonationTypeAdminList(archived)`; mutation `flxDonationTypeSetStatus` (açma çakışması CONFLICT + `FLXB_Types::$notices`), `flxDonationTypeMove(up)`, `flxDonationTypeSamples(key)`. Yetki: liste `flxb_can_view`, diğerleri `flxb_can_manage`. Klasik status/move/samples admin-post işleyicileri silindi.
+
+2.41.0: Tür formu (`TypeForm.tsx`, startPage `type?id=N` (0 = yeni), preload `FlxDonateTypeForm {id}`). Query `flxDonationTypeForm(id)` (yoksa null; seçim listeleri dahil), mutation `flxDonationTypeSave` (tipli alanlar + `extra`: adaların klasik form gövdesi `meta[…]`, `form_map[…]`; yeni tür / bağlı form / seçenek / para birimi değişince sayfa yeniden yüklenir ki adalar güncellensin), `flxDonationTypeDelete` (bağışı olan CONFLICT). Adalar: form eşleştirme (`FLXB_Page_Types::mapping`), çeviriler (`i18n_card`), `flxb_type_fields` eklenti kartları, kısa kod önizlemesi; `FLXB_Admin_Types_Service::want_islands/print_islands`, uygulamada (GraphQL dışı sayfa) yok. Klasik form ve admin-post işleyicileri silindi; `relink` servise taşındı.
 
 (a) public bu PR'de: `flxDonationTypes`, `flxDonationType`, `flxDonationCartAdd`, `flxMyDonations`, `flxDonationLookupStart` / `Verify` / `End`, `flxDonationBankAccount`. Eşleme `ESLEME/flx-donate.md`: 102 GraphQL, 32 istisna. (a) 16, (b) 24, (c) 11, (d) 17, (e) 34. Sıra (a) → (b) → (c) → (d) → (e). Tek `schema.graphql`. React ekranı yok.
 

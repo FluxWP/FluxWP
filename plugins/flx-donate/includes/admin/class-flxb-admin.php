@@ -45,9 +45,6 @@ final class FLXB_Admin {
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'assets' ) );
 		add_action( 'admin_post_flxb_csv', array( 'FLXB_Page_Donations', 'csv' ) );
 		add_action( 'admin_post_flxb_receipt', array( 'FLXB_Page_Donations', 'receipt' ) );
-		foreach ( array( 'save', 'delete' ) as $a ) {
-			add_action( 'admin_post_flxb_type_' . $a, array( 'FLXB_Page_Types', $a ) );
-		}
 		add_action( 'admin_post_flxb_settings_save', array( 'FLXB_Page_Settings', 'save' ) );
 		add_action( 'admin_post_flxb_backfill', array( 'FLXB_Page_Settings', 'backfill' ) );
 		add_action( 'admin_post_flxb_donor_save', array( 'FLXB_Page_Donors', 'save' ) );
@@ -191,8 +188,8 @@ final class FLXB_Admin {
 		if ( ! in_array( $hook, self::$hooks, true ) ) {
 			return;
 		}
-		if ( function_exists( 'flx_admin_screen_current' ) && in_array( flx_admin_screen_current(), self::SCREENS, true ) && '' === self::q( 'donation' ) ) {
-			return; // The Flux GraphQL screen shell loads the React screen; the donation page keeps the classic styles for other plugins' boxes.
+		if ( function_exists( 'flx_admin_screen_current' ) && in_array( flx_admin_screen_current(), self::SCREENS, true ) && '' === self::q( 'donation' ) && '' === self::q( 'edit' ) ) {
+			return; // The Flux GraphQL screen shell loads the React screen; the donation page and the type editor keep the classic styles for the boxes printed by PHP.
 		}
 		wp_enqueue_style( 'flxb-admin', FLXB_URL . 'assets/admin.css', array(), self::ver( 'admin.css' ) );
 		wp_add_inline_style( 'flxb-admin', flxb_brand_css( '.flxb' ) );
@@ -479,7 +476,7 @@ final class FLXB_Admin {
 	/**
 	 * 2.36.0: Dashboard and Donations are React screens (packages/modules/src/donate) on the Flux GraphQL
 	 * shell: data printed by PHP, in-place navigation between Flux screens. 2.38.0: the donation page;
-	 * 2.39.0: donors, the donor card and recurring donations; 2.40.0: the donation types list.
+	 * 2.39.0: donors, the donor card and recurring donations; 2.40.0: the donation types list; 2.41.0: the type editor.
 	 */
 	public static function register_screens() {
 		if ( ! function_exists( 'flx_admin_screen' ) ) {
@@ -492,10 +489,7 @@ final class FLXB_Admin {
 			'flxb-subscriptions' => array( 'subscriptions', 'preload_subscriptions' ),
 			'flxb-types'         => array( 'types', 'preload_types' ),
 		);
-		$enabled = array(
-			'flxb-donors' => 'donors_screen_enabled',
-			'flxb-types'  => 'types_screen_enabled',
-		);
+		$enabled = array( 'flxb-donors' => 'donors_screen_enabled' );
 		foreach ( $screens as $page => $s ) {
 			flx_admin_screen(
 				$page,
@@ -523,11 +517,6 @@ final class FLXB_Admin {
 	/** 2.39.0: donors are part of the screen too; with Flux CRM the donor card stays the CRM person card. */
 	public static function donors_screen_enabled() {
 		return ! FLXB_Page_Donors::crm_page();
-	}
-
-	/** 2.40.0: the donation types list is part of the screen; the type form (?edit=) is still classic. */
-	public static function types_screen_enabled() {
-		return '' === self::q( 'edit' ) || ! flxb_can_manage() || 'flxb-types' !== self::q( 'page' );
 	}
 
 	/**
@@ -568,15 +557,21 @@ final class FLXB_Admin {
 			}
 			return $opts;
 		}
-		// 2.40.0: the types list keeps its view; the notice after the classic type form (deleted…) goes with it.
+		// 2.40.0: the types list keeps its view; a redirect notice goes with it. 2.41.0: ?edit= opens the editor.
 		if ( 'flxb-types' === $page && 'flxb-types' === self::q( 'page' ) ) {
-			$q = 'archived' === self::q( 'view' ) ? array( 'view' => 'archived' ) : array();
+			$edit = self::q( 'edit' );
+			$q    = array();
+			if ( '' !== $edit && flxb_can_manage() ) {
+				$q['id'] = 'new' === $edit ? 0 : absint( $edit );
+			} elseif ( 'archived' === self::q( 'view' ) ) {
+				$q['view'] = 'archived';
+			}
 			$n = self::redirect_notice();
 			if ( $n && '' !== $n[1] ) {
 				$q['notice'] = ( 'ok' === $n[0] ? 'ok:' : 'error:' ) . $n[1];
 			}
 			if ( $q ) {
-				$opts['startPage'] = 'types?' . http_build_query( $q, '', '&', PHP_QUERY_RFC3986 );
+				$opts['startPage'] = ( isset( $q['id'] ) ? 'type?' : 'types?' ) . http_build_query( $q, '', '&', PHP_QUERY_RFC3986 );
 			}
 			return $opts;
 		}
@@ -719,12 +714,18 @@ final class FLXB_Admin {
 	}
 
 	/**
-	 * First query of the donation types list (packages/modules/src/donate/Types.tsx).
+	 * First query of the donation types list (packages/modules/src/donate/Types.tsx), or of the type
+	 * editor with ?edit= (TypeForm.tsx).
 	 *
 	 * @param mixed $query Query arguments of the page.
 	 */
 	public static function preload_types( $query = array() ) {
 		$query = is_array( $query ) ? $query : array();
+		$edit  = isset( $query['edit'] ) && is_scalar( $query['edit'] ) ? (string) $query['edit'] : '';
+		if ( '' !== $edit && flxb_can_manage() ) {
+			FLXB_Admin_Types_Service::want_islands(); // the mapping, translations and add-on cards are printed with the page
+			return array( array( 'FlxDonateTypeForm', array( 'id' => 'new' === $edit ? 0 : absint( $edit ) ) ) );
+		}
 		return array( array( 'FlxDonateTypes', array( 'archived' => isset( $query['view'] ) && 'archived' === $query['view'] ) ) );
 	}
 
@@ -768,6 +769,7 @@ final class FLXB_Admin {
 		if ( function_exists( 'flx_admin_screen_page' ) ) {
 			flx_admin_screen_page();
 			FLXB_Admin_Detail_Service::print_islands();
+			FLXB_Admin_Types_Service::print_islands();
 			return;
 		}
 		echo '<div class="wrap"><div class="notice notice-error"><p>' . esc_html__( 'The data could not be loaded.', 'flx-donate' ) . ' (Flux GraphQL)' . '</p></div></div>';

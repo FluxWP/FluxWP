@@ -1,0 +1,3 @@
+mutation FlxDonationTypeSave($input: FlxDonationTypeSaveInput!) {
+  flxDonationTypeSave(input: $input) { message databaseId warning errors { message field } }
+}

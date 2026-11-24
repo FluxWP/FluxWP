@@ -1,0 +1,49 @@
+query FlxDonateTypeForm($id: Int!) {
+  flxDonationTypeForm(id: $id) {
+    databaseId
+    title
+    slug
+    category
+    currency
+    description
+    subtitle
+    icon
+    imageId
+    imageUrl
+    options { key label price unit unitsPer badge active prices { currency amount } }
+    allowFree
+    minAmount
+    minByCurrency { currency amount }
+    allowQuantity
+    maxQuantity
+    allowRecurring
+    formIds
+    lockPreselect
+    trackOn
+    trackItems
+    fileCompletes
+    trackLabels { key label value placeholder }
+    kurbanOn
+    requiresProxy
+    intention
+    grouping
+    meatToNeedy
+    status
+    startDate
+    endDate
+    goal
+    shortcode
+    hasGifts
+    categories { value label }
+    categoriesUrl
+    currencies { value label }
+    extraCurrencies
+    icons { value label }
+    units { value label }
+    badges { value label }
+    intentions { value label }
+    forms { databaseId title others }
+    listUrl
+    islands { id title col }
+  }
+}

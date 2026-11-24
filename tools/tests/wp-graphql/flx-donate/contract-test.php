@@ -18,7 +18,7 @@ foreach ( (array) json_decode( (string) file_get_contents( FLXB_DIR . 'graphql/p
 		$GLOBALS['flxb_ops'][ $m[1] ] = $doc;
 	}
 }
-flxt_same( 31, count( $GLOBALS['flxb_ops'] ), 'Flux Donate ships 31 persisted operations' );
+flxt_same( 34, count( $GLOBALS['flxb_ops'] ), 'Flux Donate ships 34 persisted operations' );
 
 /**
  * @param array<string,mixed> $vars Variables.
@@ -839,6 +839,64 @@ flxt_ok( ! empty( $r['data']['flxDonationTypeSamples']['errors'] ), 'type sample
 $r = flxb_t_op( 'FlxDonationTypeSamples', array( 'key' => 'trees' ), $staff_a );
 flxt_ok( null !== flxt_code( $r ), 'type samples: staff is refused' );
 
+// Type editor (2.41.0): rights, the fields, save with the cards' fields (extra), delete.
+$r = flxb_t_op( 'FlxDonateTypeForm', array( 'id' => (int) $open ), $staff_a );
+flxt_ok( null !== flxt_code( $r ), 'type form: staff is refused' );
+$r = flxb_t_op( 'FlxDonateTypeForm', array( 'id' => (int) $open ), $admin );
+flxt_same( null, $r['errors'] ?? null, 'type form: an administrator reads' );
+$tf = $r['data']['flxDonationTypeForm'] ?? array();
+flxt_ok( 'Saplings' === ( $tf['title'] ?? '' ) && 'one' === ( $tf['options'][0]['key'] ?? '' ) && 100.0 === (float) ( $tf['options'][0]['price'] ?? 0 ), 'type form: title and options' );
+flxt_same( array(), $tf['islands'] ?? null, 'type form: no islands over plain GraphQL' );
+$r = flxb_t_op( 'FlxDonateTypeForm', array( 'id' => 0 ), $admin );
+flxt_ok( 0 === ( $r['data']['flxDonationTypeForm']['databaseId'] ?? -1 ) && 'ACTIVE' === ( $r['data']['flxDonationTypeForm']['status'] ?? '' ), 'type form: a new type' );
+$r = flxb_t_op( 'FlxDonateTypeForm', array( 'id' => 99999999 ), $admin );
+flxt_ok( array_key_exists( 'flxDonationTypeForm', (array) ( $r['data'] ?? array() ) ) && null === $r['data']['flxDonationTypeForm'], 'type form: an unknown type is null' );
+
+$tin = array(
+	'id'             => 0,
+	'title'          => 'GQL editor type',
+	'slug'           => '',
+	'category'       => '',
+	'currency'       => 'TRY',
+	'description'    => 'From the editor.',
+	'subtitle'       => 'Sub',
+	'icon'           => 'gift',
+	'imageId'        => 0,
+	'options'        => array( array( 'key' => '', 'label' => 'Big one', 'price' => 75.5, 'unit' => 'adet', 'unitsPer' => 2, 'badge' => '', 'active' => true, 'prices' => array() ) ),
+	'allowFree'      => false,
+	'minAmount'      => 0,
+	'minByCurrency'  => array(),
+	'allowQuantity'  => true,
+	'maxQuantity'    => 3,
+	'allowRecurring' => false,
+	'formIds'        => array(),
+	'lockPreselect'  => true,
+	'status'         => 'CLOSED',
+	'startDate'      => '2026-01-01',
+	'endDate'        => '2026-12-31',
+	'goal'           => 900,
+	'extra'          => 'meta%5Bmeat_to_needy%5D=1',
+);
+$r = flxb_t_op( 'FlxDonationTypeSave', array( 'input' => $tin ), $staff_a );
+flxt_ok( null !== flxt_code( $r ), 'type save: staff is refused' );
+$r   = flxb_t_op( 'FlxDonationTypeSave', array( 'input' => $tin ), $admin );
+$nid = (int) ( $r['data']['flxDonationTypeSave']['databaseId'] ?? 0 );
+flxt_ok( $nid > 0 && empty( $r['data']['flxDonationTypeSave']['errors'] ), 'type save: a new type' );
+$nt = FLXB_Types::get( $nid );
+flxt_same( array( 'GQL editor type', 'closed', 'big-one', 75.5, 2, 3, '900', '2026-01-01', 'Sub', true, true ), array( $nt['title'] ?? '', $nt['status'] ?? '', $nt['options'][0]['key'] ?? '', (float) ( $nt['options'][0]['price'] ?? 0 ), (int) ( $nt['options'][0]['units_per'] ?? 0 ), (int) ( $nt['max_quantity'] ?? 0 ), (string) (float) ( $nt['goal_amount'] ?? 0 ), $nt['start_date'] ?? '', $nt['meta']['subtitle'] ?? '', $nt['meta']['lock_preselect'] ?? null, $nt['meta']['meat_to_needy'] ?? null ), 'type save: the fields and the cards\' meta are saved' );
+$r = flxb_t_op( 'FlxDonationTypeSave', array( 'input' => array( 'id' => $nid, 'endDate' => '2025-01-01', 'extra' => '' ) + $tin ), $admin );
+flxt_ok( ! empty( $r['data']['flxDonationTypeSave']['errors'] ), 'type save: an end before the start is refused' );
+$r = flxb_t_op( 'FlxDonationTypeSave', array( 'input' => array( 'id' => $nid, 'title' => 'GQL editor type 2', 'extra' => '' ) + $tin ), $admin );
+flxt_same( $nid, (int) ( $r['data']['flxDonationTypeSave']['databaseId'] ?? 0 ), 'type save: saves the same type' );
+$nt = FLXB_Types::get( $nid );
+flxt_same( array( 'GQL editor type 2', true ), array( $nt['title'] ?? '', $nt['meta']['meat_to_needy'] ?? null ), 'type save: without extra the cards\' meta is kept' );
+$r = flxb_t_op( 'FlxDonationTypeDelete', array( 'id' => $nid ), $staff_a );
+flxt_ok( null !== flxt_code( $r ), 'type delete: staff is refused' );
+$r = flxb_t_op( 'FlxDonationTypeDelete', array( 'id' => (int) $open ), $admin );
+flxt_ok( ! empty( $r['data']['flxDonationTypeDelete']['errors'] ) && FLXB_Types::get( (int) $open ), 'type delete: a type with gifts is refused' );
+$r = flxb_t_op( 'FlxDonationTypeDelete', array( 'id' => $nid ), $admin );
+flxt_ok( empty( $r['data']['flxDonationTypeDelete']['errors'] ) && ! FLXB_Types::get( $nid ), 'type delete: deleted' );
+
 if ( ! class_exists( 'FLXB_Admin' ) ) {
 	require_once FLXB_DIR . 'includes/admin/class-flxb-admin.php';
 }
@@ -853,5 +911,11 @@ flxt_same( array( array( 'FlxDonateDonor', array( 'id' => 7 ) ) ), FLXB_Admin::p
 flxt_same( array( array( 'FlxDonateSubscriptions', array( 'first' => 25, 'after' => null, 'filter' => array( 'status' => 'PAST_DUE' ) ) ) ), FLXB_Admin::preload_subscriptions( array( 'status' => 'past_due', 's' => '' ) ), 'preload: recurring donations' );
 flxt_same( array( array( 'FlxDonateTypes', array( 'archived' => false ) ) ), FLXB_Admin::preload_types( array() ), 'preload: donation types' );
 flxt_same( array( array( 'FlxDonateTypes', array( 'archived' => true ) ) ), FLXB_Admin::preload_types( array( 'view' => 'archived' ) ), 'preload: the type archive' );
+if ( function_exists( 'wp_set_current_user' ) ) {
+	wp_set_current_user( $admin );
+	flxt_same( array( array( 'FlxDonateTypeForm', array( 'id' => 0 ) ) ), FLXB_Admin::preload_types( array( 'edit' => 'new' ) ), 'preload: a new type' );
+	flxt_same( array( array( 'FlxDonateTypeForm', array( 'id' => 5 ) ) ), FLXB_Admin::preload_types( array( 'edit' => '5' ) ), 'preload: the type editor' );
+	wp_set_current_user( 0 );
+}
 
 flxt_done();
