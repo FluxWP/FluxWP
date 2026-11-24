@@ -499,6 +499,7 @@ final class FLXK_Telemetry {
 		self::$queue = array();
 		self::$dirty = false;
 		update_option( self::LAST, time(), false );
+		do_action( 'flxk_telemetry_sent' );
 		return true;
 	}
 

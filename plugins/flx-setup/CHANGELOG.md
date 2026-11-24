@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.6.12
+- Telemetri gönderimi başarılı olunca `flxk_telemetry_sent` eylemi çalışır (Flux Admin duyuru sayaçlarını sıfırlar). Gönderilen veri izin kutusuna bağlı kalır.
+
 ## 1.6.11
 - Paketler › toplu etkinleştir/devre dışı bırak/sil/otomatik güncelleme işlemi `flxSetupManage` bir eklentinin kendi etkinleştirme, devre dışı bırakma ya da silme kodu hata verince "Internal server error" ile çöküyordu. Artık her paket ayrı korunur: hata veren paket "başarısız" listesine girer, diğerleri sürer; hata kaydı error_log'a yazılır. Beklenmeyen bir hata olursa anlamlı mesajla döner ("İşlem tamamlanamadı: …"). Eklenti kodunun yazdığı çıktı yanıtı bozmaz.
 
