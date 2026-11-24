@@ -1,6 +1,7 @@
 <?php
 /**
- * CRM › Kişi kartı (360°): özet, zaman tüneli, bilgiler, roller, izinler, etiketler, kaynaklar. Yeni kişi formu da burada.
+ * CRM kişi kartı (360°) başka eklentilerin kişi sayfaları için (flxcrm_person_card): özet, zaman tüneli, bilgiler,
+ * roller, izinler, etiketler, kaynaklar. 0.12.0: CRM'in kendi sayfaları React ekranı (flux-ui.php).
  *
  * @package FLX_CRM
  */
@@ -32,28 +33,6 @@ final class FLXCRM_Page_Contact {
 			'forms'    => array( __( 'Forms', 'flx-crm' ), array( 'form', 'signup' ) ),
 			'notes'    => array( __( 'Notes', 'flx-crm' ), array( 'note', 'call', 'meeting' ) ),
 		);
-	}
-
-	public static function render() {
-		if ( ! flxcrm_can() ) {
-			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-crm' ), 403 );
-		}
-		$id = isset( $_GET['id'] ) ? absint( $_GET['id'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification
-		if ( ! $id ) {
-			if ( ! flxcrm_can( true ) ) {
-				wp_die( esc_html__( 'You are not allowed to do this.', 'flx-crm' ), 403 );
-			}
-			self::render_new();
-			return;
-		}
-		$c = FLXCRM_Contacts::get( $id );
-		if ( ! $c ) {
-			FLXCRM_Admin::open( __( 'Contact not found', 'flx-crm' ) );
-			echo '<p><a href="' . esc_url( flxcrm_admin_url( 'contacts' ) ) . '">' . esc_html__( 'Back to contacts', 'flx-crm' ) . '</a></p>';
-			FLXCRM_Admin::close();
-			return;
-		}
-		self::card( $c );
 	}
 
 	/**
@@ -131,7 +110,7 @@ final class FLXCRM_Page_Contact {
 		/* Özet */
 		$has_paid = (int) $c['paid_days'] > 0;
 		echo '<div class="flxcrm-kpis flxcrm-kpis--6">';
-		FLXCRM_Admin::kpi( 'coins', __( 'Total value', 'flx-crm' ), $has_paid ? flxcrm_money( $c['ltv'] ) : '—', FLXCRM_Page_Contacts::counts_label( $c ) );
+		FLXCRM_Admin::kpi( 'coins', __( 'Total value', 'flx-crm' ), $has_paid ? flxcrm_money( $c['ltv'] ) : '—', self::counts_label( $c ) );
 		FLXCRM_Admin::kpi( 'heart', __( 'First payment', 'flx-crm' ), $has_paid ? flxcrm_date( $c['first_paid_at'] ) : '—' );
 		FLXCRM_Admin::kpi( 'clock', __( 'Last payment', 'flx-crm' ), $has_paid ? flxcrm_ago( $c['last_paid_at'] ) : '—', (int) $c['avg_gap_days'] ? sprintf( /* translators: %s: days */ __( 'once every %s days on average', 'flx-crm' ), number_format_i18n( (int) $c['avg_gap_days'] ) ) : '' );
 		$risk = (int) $c['churn'];
@@ -465,16 +444,16 @@ final class FLXCRM_Page_Contact {
 		echo '</section>';
 	}
 
-	private static function render_new() {
-		$blank = array( 'id' => 0, 'name' => '', 'email' => '', 'phone' => '', 'company' => '', 'city' => '', 'roles' => '', 'note' => '', 'owner_id' => 0, 'consent_email' => 0, 'consent_sms' => 0, 'consent_whatsapp' => 0, 'consent_ads' => 0 );
-		FLXCRM_Admin::open( __( 'New contact', 'flx-crm' ), __( 'An e-mail or a phone number is enough. If a contact with the same e-mail or phone exists, their card opens.', 'flx-crm' ), '', true, array( flxcrm_admin_url( 'contacts' ), __( 'Contacts', 'flx-crm' ) ) );
-		echo '<div class="flxcrm-card flxcrm-narrow"><form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
-		wp_nonce_field( 'flxcrm_contact_save' );
-		echo '<input type="hidden" name="action" value="flxcrm_contact_save"><input type="hidden" name="id" value="0">';
-		self::fields( $blank, true );
-		echo '<div class="flxcrm-form"><label><span>' . esc_html__( 'Tags', 'flx-crm' ) . '</span><input type="text" name="tags" placeholder="' . esc_attr__( 'separate with commas', 'flx-crm' ) . '"></label></div>';
-		echo '<p class="flxcrm-actions"><button class="button button-primary">' . esc_html__( 'Add contact', 'flx-crm' ) . '</button> <a class="button" href="' . esc_url( flxcrm_admin_url( 'contacts' ) ) . '">' . esc_html__( 'Cancel', 'flx-crm' ) . '</a></p>';
-		echo '</form></div>';
-		FLXCRM_Admin::close();
+	public static function counts_label( array $c ) {
+		$p = array();
+		if ( (int) $c['donations'] ) {
+			/* translators: %s: count */
+			$p[] = sprintf( _n( '%s donation', '%s donations', (int) $c['donations'], 'flx-crm' ), number_format_i18n( (int) $c['donations'] ) );
+		}
+		if ( (int) $c['orders'] ) {
+			/* translators: %s: count */
+			$p[] = sprintf( _n( '%s order', '%s orders', (int) $c['orders'], 'flx-crm' ), number_format_i18n( (int) $c['orders'] ) );
+		}
+		return implode( ' · ', $p );
 	}
 }

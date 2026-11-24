@@ -299,6 +299,11 @@ function flxcrm_admin_url( $page = 'overview', array $args = array() ) {
 	return add_query_arg( array_merge( array( 'page' => $slug ), $args ), admin_url( 'admin.php' ) );
 }
 
+/** CRM › Events URL (other packages link and redirect here when Flux CRM is active). */
+function flxcrm_events_url( array $args = array() ) {
+	return flxcrm_admin_url( 'events', $args );
+}
+
 function flxcrm_contact_url( $id ) {
 	return flxcrm_admin_url( 'contacts', array( 'id' => (int) $id ) );
 }
