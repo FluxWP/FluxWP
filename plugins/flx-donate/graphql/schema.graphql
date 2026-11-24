@@ -1219,6 +1219,18 @@ type FlxDonationType {
   title: String!
 }
 
+"""The donation types screen: the list and the rights."""
+type FlxDonationTypeAdminList {
+  """The user may add, edit, open, close and order types."""
+  canManage: Boolean!
+  """Types in display order."""
+  items: [FlxDonationTypeRow!]!
+  """New type form; empty without the right."""
+  newUrl: String!
+  """Sample sets; empty in the archive or without the right."""
+  samples: [FlxDonationTypeSample!]!
+}
+
 """A page of FlxDonationType records."""
 type FlxDonationTypeConnection {
   """Records with their cursors."""
@@ -1245,6 +1257,32 @@ enum FlxDonationTypeList {
   OPEN
   """"""
   VISIBLE
+}
+
+"""Input for the flxDonationTypeMove mutation."""
+input FlxDonationTypeMoveInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Type id."""
+  id: Int!
+  """True moves up, false down."""
+  up: Boolean!
+}
+
+"""The payload for the flxDonationTypeMove mutation."""
+type FlxDonationTypeMovePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result for the notice; null when refused (see errors)."""
+  message: String
 }
 
 """One choice on a donation type (a sapling package, a share)."""
@@ -1285,6 +1323,104 @@ type FlxDonationTypeProgress {
   raised: FlxMoney!
 }
 
+"""One donation type of the wp-admin list, with labels ready to show."""
+type FlxDonationTypeRow {
+  """Category name."""
+  category: String!
+  """Type id."""
+  databaseId: Int!
+  """Start and end dates, formatted."""
+  dates: String!
+  """Number of donors, formatted."""
+  donors: String!
+  """Edit form; empty without the right."""
+  editUrl: String!
+  """Quantity and recurring, when allowed."""
+  flags: String!
+  """Forms that collect for the type; empty without one."""
+  forms: String!
+  """The type has a goal."""
+  hasGoal: Boolean!
+  """The type&#039;s donations in the donation list."""
+  listUrl: String!
+  """Share of the goal raised."""
+  percent: Float!
+  """Options and prices, formatted."""
+  prices: String!
+  """Raised (of goal), formatted."""
+  progress: String!
+  """Shortcode of the type page."""
+  shortcode: String!
+  """
+  Life-cycle as people read it (&quot;Open&quot;, &quot;Upcoming (date)&quot;…).
+  """
+  stateLabel: String!
+  """Status."""
+  status: FlxDonationTypeStatus!
+  """Title."""
+  title: String!
+  """Colour of the life-cycle label."""
+  tone: FlxDonationTone!
+}
+
+"""A sample set of donation types that can be loaded."""
+type FlxDonationTypeSample {
+  """Name."""
+  label: String!
+  """Key."""
+  value: String!
+}
+
+"""Input for the flxDonationTypeSamples mutation."""
+input FlxDonationTypeSamplesInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Sample set key."""
+  key: String!
+}
+
+"""The payload for the flxDonationTypeSamples mutation."""
+type FlxDonationTypeSamplesPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result for the notice; null when refused (see errors)."""
+  message: String
+}
+
+"""Input for the flxDonationTypeSetStatus mutation."""
+input FlxDonationTypeSetStatusInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Type id."""
+  id: Int!
+  """New status."""
+  status: FlxDonationTypeStatus!
+}
+
+"""The payload for the flxDonationTypeSetStatus mutation."""
+type FlxDonationTypeSetStatusPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result for the notice; null when refused (see errors)."""
+  message: String
+}
+
 """Whether a donation type can be given today."""
 enum FlxDonationTypeState {
   """"""
@@ -1295,6 +1431,16 @@ enum FlxDonationTypeState {
   OPEN
   """"""
   UPCOMING
+}
+
+"""Status of a donation type set in wp-admin."""
+enum FlxDonationTypeStatus {
+  """"""
+  ACTIVE
+  """"""
+  ARCHIVED
+  """"""
+  CLOSED
 }
 
 """Input for the flxDonationsBulk mutation."""
@@ -1739,6 +1885,23 @@ extend type RootMutation {
     """Input for the flxDonationSetStatus mutation"""
     input: FlxDonationSetStatusInput!
   ): FlxDonationSetStatusPayload
+  """Moves a donation type one place up or down."""
+  flxDonationTypeMove(
+    """Input for the flxDonationTypeMove mutation"""
+    input: FlxDonationTypeMoveInput!
+  ): FlxDonationTypeMovePayload
+  """Loads a sample set of donation types and categories."""
+  flxDonationTypeSamples(
+    """Input for the flxDonationTypeSamples mutation"""
+    input: FlxDonationTypeSamplesInput!
+  ): FlxDonationTypeSamplesPayload
+  """
+  Opens, closes or archives a donation type. Opening is refused when one of its forms already collects for another open type.
+  """
+  flxDonationTypeSetStatus(
+    """Input for the flxDonationTypeSetStatus mutation"""
+    input: FlxDonationTypeSetStatusInput!
+  ): FlxDonationTypeSetStatusPayload
   """
   Moves donations to the trash, restores or deletes them. An order&#039;s donations always move together, with the order.
   """
@@ -1806,6 +1969,13 @@ extend type RootQuery {
     """Type slug. Used when id is empty."""
     slug: String
   ): FlxDonationType
+  """
+  Donation types of the wp-admin screen: open and closed ones, or the archive.
+  """
+  flxDonationTypeAdminList(
+    """List the archive instead."""
+    archived: Boolean
+  ): FlxDonationTypeAdminList!
   """Donation types the public page lists. Archived types are left out."""
   flxDonationTypes(
     """Cursor to continue after (pageInfo.endCursor)."""

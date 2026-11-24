@@ -29,7 +29,7 @@ final class FLXB_Admin {
 	const SLUG = 'flxb-dashboard';
 
 	/** 2.36.0: pages that are React screens on the Flux GraphQL shell (page slug => start page). */
-	const SCREENS = array( 'flxb-dashboard', 'flxb-donations', 'flxb-donors', 'flxb-subscriptions' );
+	const SCREENS = array( 'flxb-dashboard', 'flxb-donations', 'flxb-donors', 'flxb-subscriptions', 'flxb-types' );
 
 	/** Rows of the first list page (the screen's PER). */
 	const LIST_PER = 25;
@@ -45,7 +45,7 @@ final class FLXB_Admin {
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'assets' ) );
 		add_action( 'admin_post_flxb_csv', array( 'FLXB_Page_Donations', 'csv' ) );
 		add_action( 'admin_post_flxb_receipt', array( 'FLXB_Page_Donations', 'receipt' ) );
-		foreach ( array( 'save', 'status', 'move', 'delete', 'samples' ) as $a ) {
+		foreach ( array( 'save', 'delete' ) as $a ) {
 			add_action( 'admin_post_flxb_type_' . $a, array( 'FLXB_Page_Types', $a ) );
 		}
 		add_action( 'admin_post_flxb_settings_save', array( 'FLXB_Page_Settings', 'save' ) );
@@ -354,9 +354,21 @@ final class FLXB_Admin {
 
 	/** One-shot notice after a redirect (?flxb_msg=). */
 	private static function notice() {
+		$n = self::redirect_notice();
+		if ( $n ) {
+			echo '<div class="flxb-notice flxb-notice--' . esc_attr( $n[0] ) . '" role="status">' . esc_html( $n[1] ) . '</div>';
+		}
+	}
+
+	/**
+	 * The notice of ?flxb_msg= (and ?flxb_err=) as [ kind, text ]; null without one.
+	 *
+	 * @return array{0: string, 1: string}|null
+	 */
+	public static function redirect_notice() {
 		$msg = isset( $_GET['flxb_msg'] ) ? sanitize_key( wp_unslash( $_GET['flxb_msg'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 		if ( '' === $msg ) {
-			return;
+			return null;
 		}
 		$map = array(
 			'saved'    => array( 'ok', __( 'Saved.', 'flx-donate' ) ),
@@ -377,9 +389,7 @@ final class FLXB_Admin {
 			$map['imported'][1] = sprintf( __( 'Import finished: %1$s payments checked, %2$s imported, %3$s already known.', 'flx-donate' ), number_format_i18n( (int) ( $r['seen'] ?? 0 ) ), number_format_i18n( (int) ( $r['imported'] ?? 0 ) ), number_format_i18n( (int) ( $r['existing'] ?? 0 ) ) );
 		}
 		$err = isset( $_GET['flxb_err'] ) ? sanitize_text_field( wp_unslash( $_GET['flxb_err'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-		if ( isset( $map[ $msg ] ) ) {
-			echo '<div class="flxb-notice flxb-notice--' . esc_attr( $map[ $msg ][0] ) . '" role="status">' . esc_html( '' !== $err ? $err : $map[ $msg ][1] ) . '</div>';
-		}
+		return isset( $map[ $msg ] ) ? array( $map[ $msg ][0], '' !== $err ? $err : $map[ $msg ][1] ) : null;
 	}
 
 	public static function pill( $status ) {
@@ -469,7 +479,7 @@ final class FLXB_Admin {
 	/**
 	 * 2.36.0: Dashboard and Donations are React screens (packages/modules/src/donate) on the Flux GraphQL
 	 * shell: data printed by PHP, in-place navigation between Flux screens. 2.38.0: the donation page;
-	 * 2.39.0: donors, the donor card and recurring donations.
+	 * 2.39.0: donors, the donor card and recurring donations; 2.40.0: the donation types list.
 	 */
 	public static function register_screens() {
 		if ( ! function_exists( 'flx_admin_screen' ) ) {
@@ -480,6 +490,11 @@ final class FLXB_Admin {
 			'flxb-donations'     => array( 'list', 'preload_list' ),
 			'flxb-donors'        => array( 'donors', 'preload_donors' ),
 			'flxb-subscriptions' => array( 'subscriptions', 'preload_subscriptions' ),
+			'flxb-types'         => array( 'types', 'preload_types' ),
+		);
+		$enabled = array(
+			'flxb-donors' => 'donors_screen_enabled',
+			'flxb-types'  => 'types_screen_enabled',
 		);
 		foreach ( $screens as $page => $s ) {
 			flx_admin_screen(
@@ -489,7 +504,7 @@ final class FLXB_Admin {
 					'assets_dir'   => FLXB_DIR . 'assets/flux/',
 					'assets_url'   => FLXB_URL . 'assets/flux/',
 					'version'      => FLXB_VERSION,
-					'enabled'      => array( __CLASS__, 'flxb-donors' === $page ? 'donors_screen_enabled' : 'screen_enabled' ),
+					'enabled'      => array( __CLASS__, $enabled[ $page ] ?? 'screen_enabled' ),
 					'options'      => array( __CLASS__, 'screen_options' ),
 					'start'        => $s[0],
 					'container_id' => 'flxdn-app',
@@ -508,6 +523,11 @@ final class FLXB_Admin {
 	/** 2.39.0: donors are part of the screen too; with Flux CRM the donor card stays the CRM person card. */
 	public static function donors_screen_enabled() {
 		return ! FLXB_Page_Donors::crm_page();
+	}
+
+	/** 2.40.0: the donation types list is part of the screen; the type form (?edit=) is still classic. */
+	public static function types_screen_enabled() {
+		return '' === self::q( 'edit' ) || ! flxb_can_manage() || 'flxb-types' !== self::q( 'page' );
 	}
 
 	/**
@@ -545,6 +565,18 @@ final class FLXB_Admin {
 			$q = self::page_args( array( 's', 'status', 'paged' ) );
 			if ( $q ) {
 				$opts['startPage'] = 'subscriptions?' . http_build_query( $q, '', '&', PHP_QUERY_RFC3986 );
+			}
+			return $opts;
+		}
+		// 2.40.0: the types list keeps its view; the notice after the classic type form (deleted…) goes with it.
+		if ( 'flxb-types' === $page && 'flxb-types' === self::q( 'page' ) ) {
+			$q = 'archived' === self::q( 'view' ) ? array( 'view' => 'archived' ) : array();
+			$n = self::redirect_notice();
+			if ( $n && '' !== $n[1] ) {
+				$q['notice'] = ( 'ok' === $n[0] ? 'ok:' : 'error:' ) . $n[1];
+			}
+			if ( $q ) {
+				$opts['startPage'] = 'types?' . http_build_query( $q, '', '&', PHP_QUERY_RFC3986 );
 			}
 			return $opts;
 		}
@@ -684,6 +716,16 @@ final class FLXB_Admin {
 			$f['status'] = strtoupper( $st );
 		}
 		return array( array( 'FlxDonateSubscriptions', self::page_vars( $query, $f ) ) );
+	}
+
+	/**
+	 * First query of the donation types list (packages/modules/src/donate/Types.tsx).
+	 *
+	 * @param mixed $query Query arguments of the page.
+	 */
+	public static function preload_types( $query = array() ) {
+		$query = is_array( $query ) ? $query : array();
+		return array( array( 'FlxDonateTypes', array( 'archived' => isset( $query['view'] ) && 'archived' === $query['view'] ) ) );
 	}
 
 	/**
