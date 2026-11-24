@@ -155,6 +155,7 @@ final class FLXPOS_Accounts {
 		);
 		$raw[ $id ] = $a;
 		update_option( self::OPTION, $raw, false );
+		self::maybe_enable_card( $a );
 		do_action( 'flxpos_account_saved', $id, $a );
 		return $id;
 	}
@@ -234,6 +235,21 @@ final class FLXPOS_Accounts {
 	}
 
 	/** Cüzdan/ayrı yöntem olarak ödeme sayfasında görünen hesaplar. */
+	/** İlk kartlı hesap eklenince "Kart ile öde" yöntemini açar; kullanıcı yöntemi hiç ayarlamadıysa. */
+	private static function maybe_enable_card( array $a ) {
+		$p = FLXPOS_Providers::get( (string) $a['provider'] );
+		if ( empty( $a['enabled'] ) || ! $p || 'wallet' === $p['group'] ) {
+			return;
+		}
+		$s = get_option( 'woocommerce_flxpos_card_settings' );
+		if ( is_array( $s ) && isset( $s['enabled'] ) ) {
+			return;
+		}
+		$s            = is_array( $s ) ? $s : array();
+		$s['enabled'] = 'yes';
+		update_option( 'woocommerce_flxpos_card_settings', $s );
+	}
+
 	public static function wallets() {
 		return array_filter(
 			self::active(),
