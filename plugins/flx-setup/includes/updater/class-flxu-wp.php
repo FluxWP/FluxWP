@@ -607,29 +607,31 @@ final class FLXU_WP {
 			$t = get_site_transient( $key );
 			return is_object( $t ) && ! empty( $t->response ) && isset( ( (array) $t->response )[ $id ] );
 		};
-		if ( $has() ) {
-			return;
-		}
-		delete_site_transient( $key );
-		if ( 'plugin' === $type ) {
-			wp_update_plugins();
-		} else {
-			wp_update_themes();
-		}
-		if ( $has() ) {
-			return;
-		}
-		// wordpress.org did not answer: put back what the plan saw.
-		$snap = get_site_transient( 'flxu_update_snapshot' );
-		$item = is_array( $snap ) ? ( $snap[ $key ][ $id ] ?? null ) : null;
-		if ( null !== $item ) {
-			$t = get_site_transient( $key );
-			$t = is_object( $t ) ? $t : new stdClass();
-			if ( empty( $t->response ) || ! is_array( $t->response ) ) {
-				$t->response = array();
+		foreach ( array( 'check', 'refresh', 'restore' ) as $stage ) {
+			if ( $has() ) {
+				return;
 			}
-			$t->response[ $id ] = $item;
-			set_site_transient( $key, $t );
+			if ( 'refresh' === $stage ) {
+				delete_site_transient( $key );
+				if ( 'plugin' === $type ) {
+					wp_update_plugins();
+				} else {
+					wp_update_themes();
+				}
+			} elseif ( 'restore' === $stage ) {
+				// wordpress.org did not answer: put back what the plan saw.
+				$snap = get_site_transient( 'flxu_update_snapshot' );
+				$item = is_array( $snap ) ? ( $snap[ $key ][ $id ] ?? null ) : null;
+				if ( null !== $item ) {
+					$t = get_site_transient( $key );
+					$t = is_object( $t ) ? $t : new stdClass();
+					if ( empty( $t->response ) || ! is_array( $t->response ) ) {
+						$t->response = array();
+					}
+					$t->response[ $id ] = $item;
+					set_site_transient( $key, $t );
+				}
+			}
 		}
 	}
 
@@ -665,20 +667,22 @@ final class FLXU_WP {
 	 * again, then puts back what the plan saw.
 	 */
 	private static function ensure_translation_data(): void {
-		if ( wp_get_translation_updates() ) {
-			return;
-		}
-		wp_update_plugins();
-		wp_update_themes();
-		if ( wp_get_translation_updates() ) {
-			return;
-		}
-		$snap = get_site_transient( 'flxu_update_snapshot' );
-		foreach ( is_array( $snap ) ? (array) ( $snap['translations'] ?? array() ) : array() as $key => $items ) {
-			$t = get_site_transient( $key );
-			$t = is_object( $t ) ? $t : new stdClass();
-			$t->translations = $items;
-			set_site_transient( $key, $t );
+		foreach ( array( 'check', 'refresh', 'restore' ) as $stage ) {
+			if ( wp_get_translation_updates() ) {
+				return;
+			}
+			if ( 'refresh' === $stage ) {
+				wp_update_plugins();
+				wp_update_themes();
+			} elseif ( 'restore' === $stage ) {
+				$snap = get_site_transient( 'flxu_update_snapshot' );
+				foreach ( is_array( $snap ) ? (array) ( $snap['translations'] ?? array() ) : array() as $key => $items ) {
+					$t = get_site_transient( $key );
+					$t = is_object( $t ) ? $t : new stdClass();
+					$t->translations = $items;
+					set_site_transient( $key, $t );
+				}
+			}
 		}
 		FLXU_Translations::flush();
 	}
