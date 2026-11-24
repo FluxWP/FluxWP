@@ -1,7 +1,18 @@
 # Değişiklikler
 
-## 2.33.2
+## 2.36.0
+- **Ödeme detayları.** WooCommerce siparişinin en üstünde ve bağış detayında yeni "Ödeme detayları" kutusu: tek satırda "Kart · EsnekPOS · ₺100,00 · tek çekim", altında kart (ilk 6 + son 4, gerisi gizli), kart sahibi, taksit, çekilen tutar, banka referansı, onay kodu, işlem numarası ve test/canlı. Önceden yalnız notlarda bir referans kodu vardı. Kart numarası yine saklanmaz.
+- Başka ödeme eklentileri (Flux POS gibi) kendi ödemesini `flxb_payment_details( $info, $order )` filtresiyle bu kutuya yazar. iyzico ödemesinde taksit de tutulur.
+- **EsnekPOS kart sahibi.** EsnekPOS kart sahibi adını en az 6 harf ister ("CC_OWNER" hatası). Kısa yazılan ad fatura ad soyadıyla tamamlanır; o da kısaysa ödeme gönderilmeden anlaşılır bir uyarı çıkar.
+- EsnekPOS sipariş notları ("ödeme başlatılamadı") artık Türkçe görünür (metinde eksik boşluk çeviriyi tutmuyordu).
 - Bağış formunun altındaki güvence yazısı artık bağışçıya o an gösterilen kart yöntemini yazar (ör. "Ödemeler EsnekPOS güvencesiyle alınmaktadır"). Önceden iyzico eklentisi açık olduğu sürece, kartlar EsnekPOS gibi başka bir POS'tan alınsa da "iyzico" yazıyordu. Birden fazla kart yöntemi gösteriliyorsa genel yazı çıkar.
+
+## 2.34.0
+- **Bağışın dili.** Çok dilli sitede her bağış verildiği dili tutar (web'de ziyaretçinin dili, siparişte `_flxb_lang`, bağışta `meta.lang`). `flxb_create_order()` ve kayıt `lang` alır.
+- **Sahibine kendi dilinde.** Takipteki dosya/video yazısı bağışçının dilinde gider. Takip sözcükleri dil başına yazılabilir (`flxb_track_labels_i18n`, tür meta `labels_i18n`); başka dilde boş alan eklentinin o dildeki çevirisini kullanır.
+- **Sahibine mesaj.** Takip kaydının sahibine kendi dilinde WhatsApp metni gönderen genel fonksiyon `flxb_track_send_message()`; geçmişte "Sahibine mesaj gönderildi". Hat `flxb_track_connection` filtresiyle seçilebilir.
+- **Vekâlet metni dil başına.** Aynı sürümün diğer dillerdeki metni (`i18n`) ziyaretçinin dilinde gösterilir; onay sürümle birlikte okunduğu dili de tutar. Kaydetme `flxb_proxy_text_save()`.
+- Tek dilli sitede davranış değişmedi. API: `API.md` › "Bağışın dili".
 
 ## 2.33.1
 - "Kendim için" ve "Başkası adına" kutuları her zaman aynı yükseklikte (telefonda biri iki satıra düşse de).

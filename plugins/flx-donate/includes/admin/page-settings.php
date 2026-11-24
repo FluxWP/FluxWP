@@ -164,7 +164,7 @@ final class FLXB_Page_Settings {
 		}
 		echo '</div>';
 		if ( flxb_kurban_enabled() ) {
-			$cur = flxb_proxy_text();
+			$cur = flxb_proxy_text( 0, '' );
 			echo '<div class="flxb-field"><label for="flxb-proxy">' . esc_html__( 'Proxy (vekâlet) text', 'flx-donate' ) . '</label><textarea id="flxb-proxy" name="proxy_text" rows="8">' . esc_textarea( $cur ? (string) $cur['text'] : '' ) . '</textarea><p class="flxb-help">' . esc_html__( 'The text a donor accepts to authorise the organisation to give on their behalf. Every change is saved as a new version; each donation keeps the version that was accepted.', 'flx-donate' ) . '</p></div>';
 		}
 		echo '<div class="flxb-formactions"><button type="submit" class="flxb-btn flxb-btn--primary">' . esc_html__( 'Save settings', 'flx-donate' ) . '</button></div></form></section>';
@@ -294,11 +294,9 @@ final class FLXB_Page_Settings {
 			FLXB_Admin::redirect( 'flxb-settings', array( 'tab' => 'tabs', 'flxb_msg' => 'saved' ) );
 		} elseif ( 'kurban' === $tab ) {
 			$text = isset( $_POST['proxy_text'] ) ? trim( sanitize_textarea_field( wp_unslash( $_POST['proxy_text'] ) ) ) : '';
-			$cur  = flxb_proxy_text();
+			$cur  = flxb_proxy_text( 0, '' );
 			if ( '' !== $text && ( ! $cur || $cur['text'] !== $text ) ) {
-				$all   = (array) get_option( 'flxb_proxy_texts', array() );
-				$all[] = array( 'version' => $cur ? (int) $cur['version'] + 1 : 1, 'text' => $text, 'created_at' => flxb_now(), 'user' => get_current_user_id() );
-				update_option( 'flxb_proxy_texts', array_values( $all ), false );
+				flxb_proxy_text_save( $text ); // 2.34.0: a changed text drops the old version's languages.
 			}
 			if ( isset( $_POST['early_days'] ) ) {
 				update_option( 'flxb_track_early_days', max( 0, min( 30, absint( $_POST['early_days'] ) ) ), false );

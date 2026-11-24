@@ -1,5 +1,8 @@
 # @fluxwp/ui
 
+## 0.3.4
+- `Screen` and `Tabs` (shared screen shell: title, tabs, padding, max width, safe area) are exported, so external plugin screens look like the Flux screens.
+
 ## 0.3.3
 - npm: README with install and usage, description and keywords.
 

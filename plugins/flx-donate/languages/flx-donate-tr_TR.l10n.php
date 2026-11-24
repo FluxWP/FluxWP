@@ -1,5 +1,7 @@
 <?php
 return array('language'=>'tr_TR','plural-forms'=>'nplurals=2; plural=(n != 1);','messages'=>array(
+'Message sent to owner'=>'Sahibine mesaj gönderildi',
+'The message is empty.'=>'Mesaj boş.',
 'No subscriptions'=>'Abonelik yok',
 'Subscriptions'=>'Abonelikler',
 'Name, e-mail or phone'=>'Ad, e-posta ya da telefon',

@@ -6116,3 +6116,9 @@ msgstr "Kendiniz yazın"
 
 msgid "For someone else"
 msgstr "Başkası adına"
+
+msgid "Message sent to owner"
+msgstr "Sahibine mesaj gönderildi"
+
+msgid "The message is empty."
+msgstr "Mesaj boş."

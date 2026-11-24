@@ -313,6 +313,7 @@ class FLXB_WC_Ledger {
 			'version'     => (int) $c['version'],
 			'accepted_at' => sanitize_text_field( (string) ( $c['accepted_at'] ?? '' ) ),
 			'source'      => sanitize_key( (string) ( $c['source'] ?? 'woocommerce' ) ),
+			'lang'        => FLXB_Lang::clean( $c['lang'] ?? '' ), // 2.34.0: language the text was read in
 		);
 	}
 

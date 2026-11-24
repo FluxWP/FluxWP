@@ -53,7 +53,7 @@ final class FLXB_Donations {
 	 *                 option_key, option_label, quantity, unit_price (snapshot of the type's price),
 	 *                 certificate_code, source, wc_order_id (WooCommerce order), created_at (UTC), meta (array),
 	 *                 lines (line items, see FLXB_Items::create()), beneficiaries (names, proxy types),
-	 *                 beneficiary_phones (2.16.0: phone per name, same order).
+	 *                 beneficiary_phones (2.16.0: phone per name, same order), lang (2.34.0: language code, see FLXB_Lang).
 	 * @return int Donation id (0 on failure).
 	 */
 	public static function record( array $d ) {
@@ -67,6 +67,14 @@ final class FLXB_Donations {
 		}
 		$status = in_array( $d['status'] ?? '', self::STATUSES, true ) ? $d['status'] : 'completed';
 		$type   = 'recurring' === ( $d['type'] ?? '' ) ? 'recurring' : 'one_time';
+		/* 2.34.0: language of the gift (meta.lang); a web visit without one keeps the visitor's. */
+		$lang = FLXB_Lang::clean( $d['lang'] ?? ( $d['meta']['lang'] ?? '' ) );
+		if ( '' === $lang && ! is_admin() && ! wp_doing_cron() && ! ( defined( 'REST_REQUEST' ) && REST_REQUEST ) && ! empty( $_SERVER['REQUEST_METHOD'] ) ) {
+			$lang = FLXB_Lang::current();
+		}
+		if ( '' !== $lang ) {
+			$d['meta'] = array_merge( (array) ( $d['meta'] ?? array() ), array( 'lang' => $lang ) );
+		}
 
 		$donor_id = (int) ( $d['donor_id'] ?? 0 );
 		if ( ! $donor_id && ! empty( $d['donor'] ) && is_array( $d['donor'] ) ) {

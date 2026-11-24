@@ -5698,3 +5698,9 @@ msgstr ""
 
 msgid "For someone else"
 msgstr ""
+
+msgid "Message sent to owner"
+msgstr ""
+
+msgid "The message is empty."
+msgstr ""

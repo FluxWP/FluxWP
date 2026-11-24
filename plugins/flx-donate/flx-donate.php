@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Donate
  * Description:       Donations on WooCommerce: donation types and sapling packages sold as hidden products, cart and checkout (iyzico, bank transfer with receipt upload), monthly donations, online and printed certificates, donors, campaigns and a donation dashboard. Includes Flux WooCommerce Bağış.
- * Version:           2.33.2
+ * Version:           2.36.0
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Requires Plugins:  woocommerce, flx-crm
@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback; no Flux Lang dependency.
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
-define( 'FLXB_VERSION', '2.33.2' );
+define( 'FLXB_VERSION', '2.36.0' );
 define( 'FLXB_FILE', __FILE__ );
 define( 'FLXB_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXB_URL', plugin_dir_url( __FILE__ ) );
@@ -42,6 +42,8 @@ FLXB_People::init();
 require_once FLXB_DIR . 'includes/class-flxb-types.php';
 require_once FLXB_DIR . 'includes/class-flxb-subscriptions.php';
 require_once FLXB_DIR . 'includes/class-flxb-donations.php';
+require_once FLXB_DIR . 'includes/class-flxb-lang.php'; // 2.34.0: language of a gift, messages in it.
+FLXB_Lang::init();
 require_once FLXB_DIR . 'includes/class-flxb-refs.php';
 FLXB_Refs::init();
 require_once FLXB_DIR . 'includes/class-flxb-flxform-bridge.php';
