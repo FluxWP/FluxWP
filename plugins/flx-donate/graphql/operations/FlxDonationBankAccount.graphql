@@ -1,0 +1,8 @@
+query FlxDonationBankAccount {
+  flxDonationBankAccount {
+    holder
+    iban
+    ibanDisplay
+    bank
+  }
+}

@@ -1,0 +1,5 @@
+mutation FlxDonationLookupEnd($input: FlxDonationLookupEndInput!) {
+  flxDonationLookupEnd(input: $input) {
+    ok
+  }
+}

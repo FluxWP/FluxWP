@@ -208,7 +208,7 @@ final class FLXB_WC_Form {
 	}
 
 	/** 2.0.5: the donor's own WhatsApp / e-mail fill the checkout's contact fields (never overwrite what is there). */
-	private static function remember_contact( array $line ) {
+	public static function remember_contact( array $line ) {
 		if ( ! empty( $line['for_other'] ) || ! function_exists( 'WC' ) || ! WC()->customer ) {
 			return;
 		}

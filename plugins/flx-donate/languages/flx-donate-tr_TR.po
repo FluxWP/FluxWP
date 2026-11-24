@@ -3954,6 +3954,12 @@ msgstr "%s ile bağış şu anda burada ödenemiyor."
 msgid "The donation product could not be found."
 msgstr "Bağış ürünü bulunamadı."
 
+msgid "The shop is not available on this site."
+msgstr "Mağaza bu sitede kullanılamıyor."
+
+msgid "Donation lookup is not available."
+msgstr "Bağış sorgulama kullanılamıyor."
+
 msgid "It could not be added to the cart."
 msgstr "Sepete eklenemedi."
 

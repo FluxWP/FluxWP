@@ -1,0 +1,14 @@
+query FlxMyDonations($first: Int) {
+  flxMyDonations(first: $first) {
+    nodes {
+      databaseId
+      title
+      status
+      date { iso timestamp }
+      amount {
+        amount
+        currency
+      }
+    }
+  }
+}
