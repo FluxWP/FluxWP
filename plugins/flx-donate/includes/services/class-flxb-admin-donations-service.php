@@ -378,7 +378,7 @@ final class FLXB_Admin_Donations_Service {
 				'donor_id' => $f['donor_id'],
 				'ref'      => $own ? '' : $f['ref_user_id'],
 			),
-			static fn( $v ): bool => is_string( $v ) && '' !== $v
+			static fn( $v ): bool => '' !== $v
 		);
 		return array(
 			'sum'                  => flx_gql_money( self::sum( $f ), self::s( flxb_default_currency() ) ),

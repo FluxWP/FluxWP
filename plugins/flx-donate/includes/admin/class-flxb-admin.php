@@ -544,7 +544,7 @@ final class FLXB_Admin {
 	 * First query of the list with the address's filter, as the screen sends it
 	 * (packages/modules/src/donate/shared.tsx filterFromQuery()).
 	 *
-	 * @param array $query Query arguments of the page.
+	 * @param mixed $query Query arguments of the page.
 	 */
 	public static function preload_list( $query = array() ) {
 		$query  = is_array( $query ) ? $query : array();
