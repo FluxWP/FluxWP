@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 1.6.13
+- "Tümünü güncelle" ve seçilenleri güncelle: WooCommerce gibi harici eklenti/tema güncellemeleri ve çeviriler sessizce atlanıyordu. Çeviri adımı önce çalışınca (ya da bir eklenti güncellenince) WordPress kendi güncelleme verisini siliyor, sonraki adım "güncellendi" yazıp hiçbir şey yapmıyordu. Artık çeviriler en sona alınır, her adım önce güncelleme verisinin durduğunu doğrular (yoksa wordpress.org'a yeniden sorar, o da yanıt vermezse planın gördüğü veriyi geri koyar) ve sürüm gerçekten değişmediyse "başarılı" saymaz, nedenini yazar.
+- Çeviriler satırında açıklama iki kez görünüyordu; bir kez gösterilir.
+
 ## 1.6.12
 - Telemetri gönderimi başarılı olunca `flxk_telemetry_sent` eylemi çalışır (Flux Admin duyuru sayaçlarını sıfırlar). Gönderilen veri izin kutusuna bağlı kalır.
 

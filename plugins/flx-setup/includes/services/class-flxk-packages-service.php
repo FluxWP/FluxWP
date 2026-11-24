@@ -496,7 +496,7 @@ final class FLXK_Packages_Service {
 					array( __( 'Status', 'flx-setup' ), $third ? ( FLXK_Val::bool( $r['active'] ?? false ) ? __( 'Active', 'flx-setup' ) : __( 'Inactive', 'flx-setup' ) ) : '' ),
 				)
 			),
-			'sourceNote'  => 'wp_lang' === $kind && 'update' === $state ? $sub : '',
+			'sourceNote'  => '',
 			'wpAuto'      => false,
 		);
 	}
@@ -678,12 +678,13 @@ final class FLXK_Packages_Service {
 				'version' => '',
 			);
 		}
+		$lang = array();
 		foreach ( $include_wp ? FLXU_WP::pending( FLXU_WP::rows( $catalog ) ) : array() as $r ) {
 			$r = FLXK_Val::arr( $r );
 			if ( ! $all && ! in_array( FLXK_Val::str( $r['key'] ?? '' ), $wp_keys, true ) ) {
 				continue;
 			}
-			$steps[] = array(
+			$step = array(
 				'kind'    => FLXK_Val::str( $r['kind'] ?? '' ),
 				'slug'    => FLXK_Val::str( $r['key'] ?? '' ),
 				'id'      => FLXK_Val::str( $r['id'] ?? '' ),
@@ -691,7 +692,16 @@ final class FLXK_Packages_Service {
 				'why'     => '',
 				'version' => '',
 			);
+			// Translations go last: installing them makes WordPress drop its update data, and the plugin and
+			// theme steps after it would find nothing to update. New versions also bring new translations.
+			if ( 'wp_lang' === $step['kind'] ) {
+				$lang[] = $step;
+			} else {
+				$steps[] = $step;
+			}
 		}
+		$steps = array_merge( $steps, $lang );
+		FLXU_WP::snapshot( $steps );
 		FLXU_Guard::remember_plan( $steps );
 		return $steps;
 	}
