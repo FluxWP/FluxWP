@@ -18,7 +18,7 @@ foreach ( (array) json_decode( (string) file_get_contents( FLXB_DIR . 'graphql/p
 		$GLOBALS['flxb_ops'][ $m[1] ] = $doc;
 	}
 }
-flxt_same( 8, count( $GLOBALS['flxb_ops'] ), 'Flux Donate ships 8 persisted operations' );
+flxt_same( 11, count( $GLOBALS['flxb_ops'] ), 'Flux Donate ships 11 persisted operations' );
 
 /**
  * @param array<string,mixed> $vars Variables.
@@ -614,5 +614,84 @@ $GLOBALS['flxb_purged'] = array();
 $GLOBALS['flxb_purged'] = array();
 FLXB_Types::delete( (int) $purge_type );
 flxt_ok( in_array( FLXB_Type_Public_Service::TAG, $GLOBALS['flxb_purged'], true ), 'cache: deleting a type purges flx-donate:types' );
+
+
+// Admin screens (2.36.0): dashboard, list (own-only scoping), bulk rights.
+echo "Flux Donate GraphQL (admin)\n";
+$admin = (int) wp_insert_user(
+	array(
+		'user_login' => 'flxb_admin_' . wp_rand(),
+		'user_pass'  => wp_generate_password(),
+		'user_email' => 'admin.gql@example.com',
+		'role'       => 'administrator',
+	)
+);
+$staff_a = (int) wp_insert_user( array( 'user_login' => 'flxb_sa_' . wp_rand(), 'user_pass' => wp_generate_password(), 'user_email' => 'sa.gql@example.com', 'role' => 'subscriber' ) );
+$staff_b = (int) wp_insert_user( array( 'user_login' => 'flxb_sb_' . wp_rand(), 'user_pass' => wp_generate_password(), 'user_email' => 'sb.gql@example.com', 'role' => 'subscriber' ) );
+foreach ( array( $staff_a, $staff_b ) as $u ) {
+	$wu = new WP_User( $u );
+	$wu->add_cap( FLXB_Refs::CAP_REF );
+	$wu->add_cap( FLXB_Refs::CAP_OWN );
+}
+global $wpdb;
+$ref_a = (int) FLXB_Donations::record( array( 'provider' => 'test', 'provider_ref' => 'gql-ra-' . wp_rand(), 'amount' => 40, 'currency' => 'TRY', 'status' => 'completed', 'type_id' => (int) $open, 'donor' => array( 'name' => 'Ref A', 'email' => 'refa.gql@example.com' ) ) );
+$ref_b = (int) FLXB_Donations::record( array( 'provider' => 'test', 'provider_ref' => 'gql-rb-' . wp_rand(), 'amount' => 60, 'currency' => 'TRY', 'status' => 'completed', 'type_id' => (int) $open, 'donor' => array( 'name' => 'Ref B', 'email' => 'refb.gql@example.com' ) ) );
+$wpdb->update( flxb_table( 'donations' ), array( 'ref_user_id' => $staff_a ), array( 'id' => $ref_a ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+$wpdb->update( flxb_table( 'donations' ), array( 'ref_user_id' => $staff_b ), array( 'id' => $ref_b ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+
+$r = flxb_t_op( 'FlxDonateDashboard', array( 'range' => 'DAYS_30' ) );
+flxt_ok( null !== flxt_code( $r ), 'dashboard: visitor is refused' );
+$r = flxb_t_op( 'FlxDonateDashboard', array( 'range' => 'DAYS_30' ), $staff_a );
+flxt_ok( null !== flxt_code( $r ), 'dashboard: own-only staff without flxb_dashboard is refused' );
+$r = flxb_t_op( 'FlxDonateDashboard', array( 'range' => 'DAYS_90' ), $admin );
+flxt_same( null, $r['errors'] ?? null, 'dashboard: an administrator reads' );
+$dash = $r['data']['flxDonationDashboard'] ?? array();
+flxt_same( true, $dash['hasAny'] ?? null, 'dashboard: hasAny' );
+flxt_ok( isset( $dash['now']['total'], $dash['series'] ) && count( $dash['series'] ) >= 90, 'dashboard: totals and one point per day' );
+$r = flxb_t_op( 'FlxDonateDashboard', array( 'range' => 'CUSTOM', 'from' => '2026-06-01', 'to' => '2026-06-30' ), $admin );
+flxt_same( '2026-06-01', $r['data']['flxDonationDashboard']['from'] ?? null, 'dashboard: custom range from' );
+flxt_same( 30, count( $r['data']['flxDonationDashboard']['series'] ?? array() ), 'dashboard: custom range days' );
+
+$r = flxb_t_op( 'FlxDonateDonations', array( 'first' => 25, 'after' => null ) );
+flxt_ok( null !== flxt_code( $r ), 'list: visitor is refused' );
+$r = flxb_t_op( 'FlxDonateDonations', array( 'first' => 25, 'after' => null ), $admin );
+flxt_same( null, $r['errors'] ?? null, 'list: an administrator reads' );
+$ids = array_map( 'intval', array_column( $r['data']['flxDonationList']['nodes'] ?? array(), 'databaseId' ) );
+flxt_ok( in_array( $ref_a, $ids, true ) && in_array( $ref_b, $ids, true ), 'list: the administrator sees every donation' );
+flxt_same( true, $r['data']['flxDonationListInfo']['canManage'] ?? null, 'list: the administrator manages' );
+$r = flxb_t_op( 'FlxDonateDonations', array( 'first' => 25, 'after' => null ), $staff_a );
+flxt_same( null, $r['errors'] ?? null, 'list: own-only staff reads' );
+$ids = array_map( 'intval', array_column( $r['data']['flxDonationList']['nodes'] ?? array(), 'databaseId' ) );
+flxt_same( array( $ref_a ), $ids, 'list: own-only staff sees only their referrals' );
+flxt_same( true, $r['data']['flxDonationListInfo']['ownOnly'] ?? null, 'list: ownOnly' );
+$r = flxb_t_op( 'FlxDonateDonations', array( 'first' => 25, 'after' => null, 'filter' => array( 'referralId' => $staff_b ) ), $staff_a );
+$ids = array_map( 'intval', array_column( $r['data']['flxDonationList']['nodes'] ?? array(), 'databaseId' ) );
+flxt_same( array( $ref_a ), $ids, 'list: own-only staff cannot widen the referral filter' );
+$r = flxb_t_op( 'FlxDonateDonations', array( 'first' => 1, 'after' => null, 'filter' => array( 'search' => 'refb.gql@example.com' ) ), $admin );
+flxt_same( array( $ref_b ), array_map( 'intval', array_column( $r['data']['flxDonationList']['nodes'] ?? array(), 'databaseId' ) ), 'list: search by e-mail' );
+$r = flxb_t_op( 'FlxDonateDonations', array( 'first' => 1, 'after' => null ), $admin );
+$total = (int) ( $r['data']['flxDonationList']['totalCount'] ?? 0 );
+$first = (int) ( $r['data']['flxDonationList']['nodes'][0]['databaseId'] ?? 0 );
+flxt_ok( $total >= 3 && true === ( $r['data']['flxDonationList']['pageInfo']['hasNextPage'] ?? null ), 'list: first=1 has a next page' );
+$r = flxb_t_op( 'FlxDonateDonations', array( 'first' => 1, 'after' => base64_encode( 'flxo:0' ) ), $admin ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
+$second = (int) ( $r['data']['flxDonationList']['nodes'][0]['databaseId'] ?? 0 );
+flxt_ok( $second > 0 && $second !== $first, 'list: the offset cursor opens the next row' );
+
+$r = flxb_t_op( 'FlxDonationsBulk', array( 'ids' => array( $ref_a ), 'action' => 'TRASH' ), $staff_a );
+flxt_ok( null !== flxt_code( $r ) || ! empty( $r['data']['flxDonationsBulk']['errors'] ), 'bulk: own-only staff is refused' );
+$r = flxb_t_op( 'FlxDonationsBulk', array( 'ids' => array( $ref_a ), 'action' => 'TRASH' ), $admin );
+flxt_same( null, $r['errors'] ?? null, 'bulk: an administrator moves to the trash' );
+flxt_same( 1, $r['data']['flxDonationsBulk']['done'] ?? null, 'bulk: one donation moved' );
+$r = flxb_t_op( 'FlxDonateDonations', array( 'first' => 25, 'after' => null, 'filter' => array( 'status' => 'TRASH' ) ), $admin );
+flxt_ok( in_array( $ref_a, array_map( 'intval', array_column( $r['data']['flxDonationList']['nodes'] ?? array(), 'databaseId' ) ), true ), 'bulk: the donation is in the trash list' );
+$r = flxb_t_op( 'FlxDonationsBulk', array( 'ids' => array( $ref_a ), 'action' => 'RESTORE' ), $admin );
+flxt_same( 1, $r['data']['flxDonationsBulk']['done'] ?? null, 'bulk: restore' );
+
+if ( ! class_exists( 'FLXB_Admin' ) ) {
+	require_once FLXB_DIR . 'includes/admin/class-flxb-admin.php';
+}
+// Preload: the PHP filter is the one the screen sends (same store key).
+flxt_same( array( 'search' => 'x', 'status' => 'RECEIPT', 'kind' => 'ONE_TIME', 'donationTypeId' => 0, 'referralId' => 3 ), FLXB_Admin::flux_list_filter( array( 's' => ' x ', 'status' => 'receipt', 'type' => 'one_time', 'dtype' => '0', 'ref' => '3', 'form' => 'a', 'from' => '2026-1-1' ) ), 'preload: classic arguments → filter' );
+flxt_same( array( array( 'FlxDonateDonations', array( 'first' => 25, 'after' => null ) ) ), FLXB_Admin::preload_list( array() ), 'preload: no filter → no filter variable' );
 
 flxt_done();

@@ -1,5 +1,12 @@
 # Değişiklikler
 
+## 2.36.0
+- **Pano ve Bağışlar anında açılır.** İki sayfa artık React ekranı (Flux GraphQL kabuğu): veri sayfayla birlikte hazır gelir, yükleniyor dönmez; Flux ekranları arasında geçiş sayfa yenilemeden olur.
+- Pano: 7/30/90 gün ve özel aralık, göstergeler, günlük grafik, tek seferlik/düzenli oranı, türe ve forma göre, en çok bağış yapanlar (klasik görünümle aynı).
+- Bağışlar: onay bekleyen dekontlar, filtreler (adres çubuğunda kalır), tüm satır bağışı açar, toplu çöpe taşı / geri al / kalıcı sil (onay penceresiyle), toplam, çöp kutusu, sayfalar.
+- Bağış detayı ve diğer sayfalar şimdilik eski haliyle; sonraki sürümde taşınır.
+- GraphQL: `flxDonationDashboard`, `flxDonationList`, `flxDonationListInfo`, `flxDonationsBulk` (yetkiler klasik sayfalarla aynı; referans personeli yalnız kendi bağışlarını görür).
+
 ## 2.34.0
 - **Bağışın dili.** Çok dilli sitede her bağış verildiği dili tutar (web'de ziyaretçinin dili, siparişte `_flxb_lang`, bağışta `meta.lang`). `flxb_create_order()` ve kayıt `lang` alır.
 - **Sahibine kendi dilinde.** Takipteki dosya/video yazısı bağışçının dilinde gider. Takip sözcükleri dil başına yazılabilir (`flxb_track_labels_i18n`, tür meta `labels_i18n`); başka dilde boş alan eklentinin o dildeki çevirisini kullanır.

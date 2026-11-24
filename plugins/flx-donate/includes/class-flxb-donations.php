@@ -317,7 +317,7 @@ final class FLXB_Donations {
 		$ob    = in_array( $a['orderby'], $cols, true ) ? 'x.' . $a['orderby'] : 'x.created_at';
 		$order = 'ASC' === strtoupper( (string) $a['order'] ) ? 'ASC' : 'DESC';
 		$open  = ! empty( $a['open_first'] ) ? "CASE WHEN x.status = 'pending' THEN 0 ELSE 1 END, " : '';
-		$limit = (int) $a['per_page'] > 0 ? $wpdb->prepare( ' LIMIT %d OFFSET %d', (int) $a['per_page'], ( max( 1, (int) $a['page'] ) - 1 ) * (int) $a['per_page'] ) : '';
+		$limit = (int) $a['per_page'] > 0 ? $wpdb->prepare( ' LIMIT %d OFFSET %d', (int) $a['per_page'], isset( $a['offset'] ) ? max( 0, (int) $a['offset'] ) : ( max( 1, (int) $a['page'] ) - 1 ) * (int) $a['per_page'] ) : '';
 		$sql   = "SELECT x.*, d.name AS donor_name, d.email AS donor_email, d.phone AS donor_phone {$from} ORDER BY {$open}{$ob} {$order}, x.id DESC" . $limit;
 		$items = $prm ? $wpdb->get_results( $wpdb->prepare( $sql, $prm ), ARRAY_A ) : $wpdb->get_results( $sql, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL
 		return array( 'items' => (array) $items, 'total' => $total, 'sum' => (float) $sum );
@@ -346,7 +346,7 @@ final class FLXB_Donations {
 		$ob    = 'amount' === $a['orderby'] ? 'g_amount' : 'g_created';
 		$open  = ! empty( $a['open_first'] ) ? 'g_open DESC, ' : ''; // 2.19.0: gifts still waiting for something come first
 		$order = 'ASC' === strtoupper( (string) $a['order'] ) ? 'ASC' : 'DESC';
-		$limit = (int) $a['per_page'] > 0 ? $wpdb->prepare( ' LIMIT %d OFFSET %d', (int) $a['per_page'], ( max( 1, (int) $a['page'] ) - 1 ) * (int) $a['per_page'] ) : '';
+		$limit = (int) $a['per_page'] > 0 ? $wpdb->prepare( ' LIMIT %d OFFSET %d', (int) $a['per_page'], isset( $a['offset'] ) ? max( 0, (int) $a['offset'] ) : ( max( 1, (int) $a['page'] ) - 1 ) * (int) $a['per_page'] ) : '';
 		$heads = (array) $run( "SELECT MIN(x.id) AS g_id, SUM(x.amount) AS g_amount, COUNT(*) AS g_lines, GROUP_CONCAT(DISTINCT x.status) AS g_statuses, MAX(x.created_at) AS g_created, MAX(CASE WHEN x.status = 'pending' THEN 1 ELSE 0 END) AS g_open {$from} GROUP BY {$g} ORDER BY {$open}{$ob} {$order}, g_id DESC" . $limit, 'get_results' );
 		$items = array();
 		if ( $heads ) {

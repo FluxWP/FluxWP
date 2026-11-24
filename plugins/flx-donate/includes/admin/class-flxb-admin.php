@@ -27,14 +27,20 @@ final class FLXB_Admin {
 
 	const SLUG = 'flxb-dashboard';
 
+	/** 2.36.0: pages that are React screens on the Flux GraphQL shell (page slug => start page). */
+	const SCREENS = array( 'flxb-dashboard', 'flxb-donations' );
+
+	/** Rows of the first list page (the screen's PER). */
+	const LIST_PER = 25;
+
 	/** @var string[] page hook suffixes of our screens */
 	private static $hooks = array();
 
 	public static function init() {
 		add_action( 'admin_menu', array( __CLASS__, 'menu' ) );
+		add_action( 'admin_menu', array( __CLASS__, 'register_screens' ), 20 );
 		add_action( 'admin_head', array( __CLASS__, 'menu_icon_css' ) );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'assets' ) );
-		add_action( 'wp_ajax_flxb_stats', array( 'FLXB_Page_Dashboard', 'ajax' ) );
 		add_action( 'admin_post_flxb_csv', array( 'FLXB_Page_Donations', 'csv' ) );
 		add_action( 'admin_post_flxb_receipt', array( 'FLXB_Page_Donations', 'receipt' ) );
 		foreach ( array( 'save', 'status', 'move', 'delete', 'samples' ) as $a ) {
@@ -182,6 +188,9 @@ final class FLXB_Admin {
 	public static function assets( $hook ) {
 		if ( ! in_array( $hook, self::$hooks, true ) ) {
 			return;
+		}
+		if ( function_exists( 'flx_admin_screen_current' ) && in_array( flx_admin_screen_current(), self::SCREENS, true ) ) {
+			return; // The Flux GraphQL screen shell loads the React screen.
 		}
 		wp_enqueue_style( 'flxb-admin', FLXB_URL . 'assets/admin.css', array(), self::ver( 'admin.css' ) );
 		wp_add_inline_style( 'flxb-admin', flxb_brand_css( '.flxb' ) );
@@ -453,6 +462,145 @@ final class FLXB_Admin {
 	/** Request value from $_GET (sanitised text). */
 	public static function q( $key, $default = '' ) {
 		return isset( $_GET[ $key ] ) ? sanitize_text_field( wp_unslash( $_GET[ $key ] ) ) : $default; // phpcs:ignore WordPress.Security.NonceVerification
+	}
+
+	/**
+	 * 2.36.0: Dashboard and Donations are React screens (packages/modules/src/donate) on the Flux GraphQL
+	 * shell: data printed by PHP, in-place navigation between Flux screens. One donation (?donation=ID)
+	 * is still the classic detail page.
+	 */
+	public static function register_screens() {
+		if ( ! function_exists( 'flx_admin_screen' ) ) {
+			return;
+		}
+		foreach ( array( self::SLUG => 'dashboard', 'flxb-donations' => 'list' ) as $page => $start ) {
+			flx_admin_screen(
+				$page,
+				array(
+					'module'       => 'flxb-donate',
+					'assets_dir'   => FLXB_DIR . 'assets/flux/',
+					'assets_url'   => FLXB_URL . 'assets/flux/',
+					'version'      => FLXB_VERSION,
+					'enabled'      => array( __CLASS__, 'screen_enabled' ),
+					'options'      => array( __CLASS__, 'screen_options' ),
+					'start'        => $start,
+					'container_id' => 'flxdn-app',
+					'preload'      => 'dashboard' === $start ? array( __CLASS__, 'preload_dashboard' ) : array( __CLASS__, 'preload_list' ),
+					'wrap_class'   => 'flxdn-react',
+				)
+			);
+		}
+	}
+
+	/** The detail of one donation is not part of the screen. */
+	public static function screen_enabled() {
+		return '' === self::q( 'donation' );
+	}
+
+	/**
+	 * Mount options besides what the shell adds (rest, nonce, locale…).
+	 *
+	 * @param string $page Page slug.
+	 */
+	public static function screen_options( $page = '' ) {
+		$b    = flxb_brand();
+		$opts = array(
+			'colors'  => array(
+				'primary'         => $b['primary'],
+				'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $b['primary'] ) : '#ffffff',
+			),
+			'appIcon' => self::menu_icon_url(),
+		);
+		// A list link with filters (dashboard bars, bookmarks) starts the list with them.
+		if ( 'flxb-donations' === $page && 'flxb-donations' === self::q( 'page' ) ) {
+			$q = self::list_args();
+			if ( $q ) {
+				$opts['startPage'] = 'list?' . http_build_query( $q, '', '&', PHP_QUERY_RFC3986 );
+			}
+		}
+		return $opts;
+	}
+
+	/** The list arguments of the address (the screen's filter bar keys and paged). */
+	private static function list_args() {
+		$q = array();
+		foreach ( array( 's', 'from', 'to', 'status', 'type', 'dtype', 'form', 'donor_id', 'ref', 'paged' ) as $k ) {
+			$v = self::q( $k );
+			if ( '' !== $v ) {
+				$q[ $k ] = $v;
+			}
+		}
+		return $q;
+	}
+
+	/** First query of the dashboard: the 30 day view the screen opens with. */
+	public static function preload_dashboard() {
+		return array( array( 'FlxDonateDashboard', array( 'range' => 'DAYS_30' ) ) );
+	}
+
+	/**
+	 * First query of the list with the address's filter, as the screen sends it
+	 * (packages/modules/src/donate/shared.tsx filterFromQuery()).
+	 *
+	 * @param array $query Query arguments of the page.
+	 */
+	public static function preload_list( $query = array() ) {
+		$query  = is_array( $query ) ? $query : array();
+		$filter = self::flux_list_filter( $query );
+		$paged  = isset( $query['paged'] ) && preg_match( '/^\d+$/', (string) $query['paged'] ) ? (int) $query['paged'] : 1;
+		$offset = $paged > 1 ? ( $paged - 1 ) * self::LIST_PER : 0;
+		$vars   = array(
+			'first' => self::LIST_PER,
+			'after' => $offset > 0 ? base64_encode( 'flxo:' . ( $offset - 1 ) ) : null, // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode -- offset cursor of the Flux GraphQL kit.
+		);
+		if ( $filter ) {
+			$vars['filter'] = $filter;
+		}
+		return array( array( 'FlxDonateDonations', $vars ) );
+	}
+
+	/**
+	 * The classic list arguments → FlxDonationListFilter; only set keys (an empty filter is left out).
+	 *
+	 * @param array $q Query arguments.
+	 * @return array<string,string|int>
+	 */
+	public static function flux_list_filter( array $q ) {
+		$g   = static function ( $k ) use ( $q ) {
+			return isset( $q[ $k ] ) && is_scalar( $q[ $k ] ) ? (string) $q[ $k ] : '';
+		};
+		$f   = array();
+		$day = '/^\d{4}-\d{2}-\d{2}$/';
+		if ( '' !== trim( $g( 's' ) ) ) {
+			$f['search'] = trim( $g( 's' ) );
+		}
+		if ( preg_match( $day, $g( 'from' ) ) ) {
+			$f['from'] = $g( 'from' );
+		}
+		if ( preg_match( $day, $g( 'to' ) ) ) {
+			$f['to'] = $g( 'to' );
+		}
+		if ( in_array( $g( 'status' ), FLXB_Admin_Donations_Service::LIST_STATUSES, true ) ) {
+			$f['status'] = strtoupper( $g( 'status' ) );
+		}
+		if ( in_array( $g( 'type' ), array( 'one_time', 'recurring' ), true ) ) {
+			$f['kind'] = strtoupper( $g( 'type' ) );
+		}
+		foreach ( array( 'dtype' => 'donationTypeId', 'form' => 'formId', 'donor_id' => 'donorId', 'ref' => 'referralId' ) as $k => $key ) {
+			if ( preg_match( '/^\d+$/', $g( $k ) ) ) {
+				$f[ $key ] = (int) $g( $k );
+			}
+		}
+		return $f;
+	}
+
+	/** Prints the React screen of the current page, or why it cannot open. */
+	public static function screen() {
+		if ( function_exists( 'flx_admin_screen_page' ) ) {
+			flx_admin_screen_page();
+			return;
+		}
+		echo '<div class="wrap"><div class="notice notice-error"><p>' . esc_html__( 'The data could not be loaded.', 'flx-donate' ) . ' (Flux GraphQL)' . '</p></div></div>';
 	}
 
 	public static function deny() {

@@ -53,257 +53,25 @@ final class FLXB_Page_Donations {
 		return $f;
 	}
 
-	/** Status filter choices: the stored statuses, with "Pending" split into its two stages. */
-	private static function status_choices() {
-		$st = array();
-		foreach ( FLXB_Donations::STATUSES as $s ) {
-			$st[ $s ] = flxb_status_label( $s )[1];
-			if ( 'pending' === $s ) {
-				$st['receipt'] = '— ' . __( 'Receipt awaiting approval', 'flx-donate' );
-				$st['payment'] = '— ' . __( 'Awaiting payment', 'flx-donate' );
-			}
-		}
-		return $st;
-	}
-
 	/** May the current user open this donation? */
 	private static function may_see( array $d ) {
 		return flxb_can_view() || ( FLXB_Refs::own_only() && (int) ( $d['ref_user_id'] ?? 0 ) === get_current_user_id() );
 	}
 
+	/**
+	 * The list is the React screen (packages/modules/src/donate, Flux GraphQL shell); one donation
+	 * (?donation=ID) is still this page's detail view.
+	 */
 	public static function render() {
 		if ( ! FLXB_Refs::can_list() ) {
 			FLXB_Admin::deny();
 		}
-		$own = FLXB_Refs::own_only();
-		$id  = absint( FLXB_Admin::q( 'donation', '0' ) );
+		$id = absint( FLXB_Admin::q( 'donation', '0' ) );
 		if ( $id ) {
 			self::detail( $id );
 			return;
 		}
-		if ( ! $own && flxb_can_manage() && class_exists( 'FLXB_WC_Ledger' ) && function_exists( 'wc_get_order' ) ) {
-			FLXB_WC_Ledger::reconcile(); // 2.5.0: donations of orders deleted before
-		}
-		$f     = self::filters( $_GET ); // phpcs:ignore WordPress.Security.NonceVerification
-		$page  = max( 1, absint( FLXB_Admin::q( 'paged', '1' ) ) );
-		$per   = FLXB_Admin::per_page( 'flxb-donations', self::PER_PAGE );
-		$res   = FLXB_Donations::query( array_merge( self::query_args( $f ), array( 'per_page' => $per, 'page' => $page, 'group' => true, 'open_first' => true ) ) );
-		$args  = array_filter( array( 'page' => 'flxb-donations', 's' => $f['search'], 'from' => $f['from'], 'to' => $f['to'], 'status' => $f['status'], 'type' => $f['type'], 'dtype' => $f['type_id'], 'form' => $f['form_id'], 'donor_id' => $f['donor_id'], 'ref' => $own ? '' : $f['ref_user_id'] ), 'strlen' );
-		$csv   = wp_nonce_url( add_query_arg( array_merge( $args, array( 'action' => 'flxb_csv' ) ), admin_url( 'admin-post.php' ) ), 'flxb_csv' );
-
-		FLXB_Admin::header(
-			$own ? __( 'My referrals', 'flx-donate' ) : __( 'Donations', 'flx-donate' ),
-			$own ? __( 'Donations made through your referral link or recorded with you as the referral.', 'flx-donate' ) : __( 'Every gift received through your forms, one-time and recurring.', 'flx-donate' ),
-			array_merge( array( array( 'label' => __( 'Export CSV', 'flx-donate' ), 'url' => $csv, 'icon' => 'download' ) ), flxb_can_manage() ? array( array( 'label' => __( 'Add donation', 'flx-donate' ), 'url' => FLXB_Admin_Url::page( 'flxb-add' ), 'icon' => 'plus', 'primary' => true ) ) : array() )
-		);
-		$trash = flxb_can_manage() && ! $own && 'trash' !== $f['status'] ? FLXB_Donations::trash_count() : 0;
-		if ( 1 === $page && 'trash' !== $f['status'] && 'receipt' !== $f['status'] ) {
-			self::awaiting_box( $own );
-		}
-		FLXB_Admin::list_lib() ? self::filter_bar_lib( $f ) : self::filter_bar( $f, $trash );
-
-		echo '<div class="flxb-panel">';
-		if ( ! $res['items'] ) {
-			echo '<div class="flxb-emptystate">' . FLXB_Admin::icon( 'heart', 32 ) . '<h2>' . esc_html__( 'No donations found', 'flx-donate' ) . '</h2><p>' . esc_html__( 'Try a wider date range or clear the filters.', 'flx-donate' ) . '</p></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		} else {
-			$bulk = self::bulk_actions( 'trash' === $f['status'] );
-			if ( $bulk ) {
-				echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxb-bulkform" data-flxb-bulk>';
-				wp_nonce_field( 'flxb_bulk' );
-				echo '<input type="hidden" name="action" value="flxb_bulk"><input type="hidden" name="back" value="' . esc_attr( add_query_arg( array_merge( $args, array( 'paged' => $page ) ), admin_url( 'admin.php' ) ) ) . '">';
-				echo '<div class="flxb-bulkbar" hidden><span class="flxb-bulkbar__n" data-flxb-bulk-n></span><label class="screen-reader-text" for="flxb-bulk-do">' . esc_html__( 'Bulk action', 'flx-donate' ) . '</label><select id="flxb-bulk-do" name="do">';
-				foreach ( $bulk as $k => $label ) {
-					echo '<option value="' . esc_attr( $k ) . '">' . esc_html( $label ) . '</option>';
-				}
-				echo '</select><button type="submit" class="flxb-btn flxb-btn--primary">' . esc_html__( 'Apply', 'flx-donate' ) . '</button><button type="button" class="flxb-btn" data-flxb-bulk-clear>' . esc_html__( 'Clear selection', 'flx-donate' ) . '</button></div>';
-			}
-			self::table( $res['items'], true, ! $own, (bool) $bulk );
-			if ( $bulk ) {
-				echo '</form>';
-			}
-			echo '<div class="flxb-tablefoot"><span>';
-			/* translators: 1: number of donations, 2: received amount */
-			echo esc_html( sprintf( _n( '%1$s donation · %2$s received', '%1$s donations · %2$s received', $res['total'], 'flx-donate' ), number_format_i18n( $res['total'] ), flxb_money( $res['sum'] ) ) );
-			if ( $trash && FLXB_Admin::list_lib() ) {
-				/* translators: %s: number of gifts in the trash */
-				echo ' · <a class="flxb-filters__trash" href="' . esc_url( FLXB_Admin_Url::page( 'flxb-donations', array( 'status' => 'trash' ) ) ) . '">' . esc_html( sprintf( __( 'Trash (%s)', 'flx-donate' ), number_format_i18n( $trash ) ) ) . '</a>';
-			}
-			echo '</span>' . FLXB_Admin::list_pagination( $res['total'], $per, $page, $args ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		}
-		echo '</div>';
-		FLXB_Admin::footer();
-	}
-
-	/**
-	 * 2.19.0: "Receipts awaiting approval" above the list. Each entry opens the donation, where the
-	 * approval card shows the receipt with Approve / Reject. The first five show, the rest fold out.
-	 */
-	private static function awaiting_box( $own ) {
-		$items = FLXB_Approval::awaiting( $own ? get_current_user_id() : 0 );
-		if ( ! $items ) {
-			return;
-		}
-		$n    = count( $items );
-		$show = 5;
-		$all  = FLXB_Admin_Url::page( 'flxb-donations', array( 'status' => 'receipt' ) );
-		echo '<section class="flxb-card flxb-awaiting" aria-labelledby="flxb-awaiting-title"><div class="flxb-card__head"><div>';
-		echo '<h2 class="flxb-card__title" id="flxb-awaiting-title">' . esc_html__( 'Receipts awaiting approval', 'flx-donate' ) . ' <span class="flxb-awaiting__n">' . esc_html( number_format_i18n( $n ) ) . '</span></h2>';
-		echo '<p class="flxb-card__hint">' . esc_html__( 'The donor sent a receipt. Open it, check the bank account, then approve or reject.', 'flx-donate' ) . '</p></div>';
-		if ( $n > $show ) {
-			echo '<a class="flxb-btn flxb-btn--ghost flxb-btn--sm" href="' . esc_url( $all ) . '">' . esc_html__( 'Show in the list', 'flx-donate' ) . '</a>';
-		}
-		echo '</div>';
-		$row = function ( array $r ) {
-			$ts    = strtotime( (string) $r['created_at'] . ' UTC' );
-			$lines = (int) ( $r['group_lines'] ?? 1 );
-			$what  = array();
-			if ( (int) $r['type_id'] ) {
-				$t = FLXB_Types::get( (int) $r['type_id'] );
-				if ( $t ) {
-					$what[] = (string) $t['title'];
-				}
-			}
-			if ( $lines > 1 ) {
-				/* translators: %s: number of lines in the order */
-				$what = array( sprintf( _n( '%s item', '%s items', $lines, 'flx-donate' ), number_format_i18n( $lines ) ) );
-			}
-			$name = (int) $r['donor_id'] ? FLXB_Admin::donor_name( $r ) : __( 'Anonymous', 'flx-donate' );
-			echo '<li><a class="flxb-awaiting__item" href="' . esc_url( FLXB_Admin_Url::donation( (int) $r['id'] ) ) . '">';
-			echo '<span class="flxb-awaiting__icon" aria-hidden="true">' . FLXB_Admin::icon( 'file', 18 ) . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			echo '<span class="flxb-awaiting__who"><strong>' . esc_html( $name ) . '</strong><small>' . esc_html( implode( ' · ', array_filter( array_merge( $what, array( $ts ? flx_time_ago( $ts ) : '' ) ) ) ) ) . '</small></span>';
-			echo '<span class="flxb-awaiting__amt">' . esc_html( flxb_money( $r['group_amount'] ?? $r['amount'], $r['currency'] ) ) . '</span>';
-			echo '<span class="flxb-awaiting__go">' . esc_html__( 'Review', 'flx-donate' ) . '<span aria-hidden="true">›</span></span>';
-			echo '</a></li>';
-		};
-		echo '<ul class="flxb-awaiting__list">';
-		foreach ( array_slice( $items, 0, $show ) as $r ) {
-			$row( $r );
-		}
-		echo '</ul>';
-		if ( $n > $show ) {
-			/* translators: %s: number of further receipts */
-			echo '<details class="flxb-awaiting__more"><summary>' . esc_html( sprintf( _n( '%s more', '%s more', $n - $show, 'flx-donate' ), number_format_i18n( $n - $show ) ) ) . '</summary><ul class="flxb-awaiting__list">';
-			foreach ( array_slice( $items, $show ) as $r ) {
-				$row( $r );
-			}
-			echo '</ul></details>';
-		}
-		echo '</section>';
-	}
-
-	/**
-	 * 2.6.0: filter bar on the shared Flux Admin list library. Every field is a direct child of the form:
-	 * search on its own row, status and donation type beside it, the rest under "Filters".
-	 */
-	private static function filter_bar_lib( array $f ) {
-		$forms  = flxb_forms();
-		$dtypes = FLXB_Types::all( 'all' );
-		$sel    = function ( $name, $label, $all, array $opts, $value, $primary = false ) {
-			echo '<label' . ( $primary ? ' data-flxa-primary' : '' ) . '><span>' . esc_html( $label ) . '</span><select name="' . esc_attr( $name ) . '"><option value="">' . esc_html( $all ) . '</option>';
-			foreach ( $opts as $k => $l ) {
-				echo '<option value="' . esc_attr( $k ) . '"' . selected( (string) $value, (string) $k, false ) . '>' . esc_html( $l ) . '</option>';
-			}
-			echo '</select></label>';
-		};
-		echo '<form class="flxb-filters flxb-filters--lib" method="get" action="' . esc_url( admin_url( 'admin.php' ) ) . '"' . FLXB_Admin::list_attrs( 'flxb-donations' ) . '>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo '<input type="hidden" name="page" value="flxb-donations">';
-		if ( '' !== $f['donor_id'] ) {
-			echo '<input type="hidden" name="donor_id" value="' . esc_attr( $f['donor_id'] ) . '">';
-		}
-		echo '<input type="search" name="s" value="' . esc_attr( $f['search'] ) . '" placeholder="' . esc_attr__( 'Name, e-mail, phone, code…', 'flx-donate' ) . '" aria-label="' . esc_attr__( 'Search', 'flx-donate' ) . '">';
-		$st = self::status_choices();
-		$sel( 'status', __( 'Status', 'flx-donate' ), __( 'All statuses', 'flx-donate' ), $st, $f['status'], true );
-		if ( $dtypes ) {
-			$dt = array( '0' => __( 'No donation type', 'flx-donate' ) );
-			foreach ( $dtypes as $c ) {
-				$dt[ (int) $c['id'] ] = $c['title'];
-			}
-			$sel( 'dtype', __( 'Donation type', 'flx-donate' ), __( 'All donation types', 'flx-donate' ), $dt, $f['type_id'], true );
-		}
-		$sel( 'type', __( 'Type', 'flx-donate' ), __( 'All types', 'flx-donate' ), array( 'one_time' => flxb_type_label( 'one_time' ), 'recurring' => flxb_type_label( 'recurring' ) ), $f['type'], ! $dtypes );
-		echo '<label><span>' . esc_html__( 'From', 'flx-donate' ) . '</span><input type="date" name="from" value="' . esc_attr( $f['from'] ) . '"></label>';
-		echo '<label><span>' . esc_html__( 'To', 'flx-donate' ) . '</span><input type="date" name="to" value="' . esc_attr( $f['to'] ) . '"></label>';
-		$fo = array();
-		foreach ( $forms as $fid => $fm ) {
-			if ( 'payment' === $fm['type'] ) {
-				$fo[ (int) $fid ] = $fm['title'];
-			}
-		}
-		if ( $fo ) {
-			$sel( 'form', __( 'Form', 'flx-donate' ), __( 'All forms', 'flx-donate' ), $fo, $f['form_id'] );
-		}
-		$refs = FLXB_Refs::own_only() ? array() : FLXB_Refs::users();
-		if ( $refs || ( '' !== $f['ref_user_id'] && ! FLXB_Refs::own_only() ) ) {
-			$sel( 'ref', __( 'Referral', 'flx-donate' ), __( 'All referrals', 'flx-donate' ), array( '0' => __( 'No referral', 'flx-donate' ) ) + $refs, $f['ref_user_id'] );
-		}
-		echo '<button class="flxb-btn flxb-btn--primary" type="submit">' . esc_html__( 'Filter', 'flx-donate' ) . '</button>';
-		echo '</form>';
-	}
-
-	private static function filter_bar( array $f, $trash = 0 ) {
-		$forms     = flxb_forms();
-		$dtypes = FLXB_Types::all( 'all' );
-		echo '<form class="flxb-filters" method="get" action="' . esc_url( admin_url( 'admin.php' ) ) . '">';
-		echo '<input type="hidden" name="page" value="flxb-donations">';
-		if ( '' !== $f['donor_id'] ) {
-			echo '<input type="hidden" name="donor_id" value="' . esc_attr( $f['donor_id'] ) . '">';
-		}
-		/* 2.2.3: search on one line; the other filters open under "Detailed filter". */
-		$adv = count( array_filter( array( $f['from'], $f['to'], $f['status'], $f['type'], $f['type_id'], $f['form_id'], FLXB_Refs::own_only() ? '' : $f['ref_user_id'] ), 'strlen' ) );
-		echo '<div class="flxb-filters__main">';
-		echo '<label class="screen-reader-text" for="flxb-s">' . esc_html__( 'Search', 'flx-donate' ) . '</label>';
-		echo '<input type="search" id="flxb-s" name="s" value="' . esc_attr( $f['search'] ) . '" placeholder="' . esc_attr__( 'Name, e-mail, phone, code…', 'flx-donate' ) . '">';
-		echo '<button class="flxb-btn flxb-btn--primary" type="submit">' . FLXB_Admin::icon( 'search' ) . '<span class="screen-reader-text">' . esc_html__( 'Search', 'flx-donate' ) . '</span></button>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo '<button class="flxb-btn flxb-filters__toggle" type="button" aria-controls="flxb-filters-adv" aria-expanded="' . ( $adv ? 'true' : 'false' ) . '">' . esc_html__( 'Detailed filter', 'flx-donate' ) . ( $adv ? ' <span class="flxb-filters__n">' . (int) $adv . '</span>' : '' ) . '</button>';
-		if ( array_filter( $f, 'strlen' ) ) {
-			echo '<a class="flxb-btn flxb-btn--ghost" href="' . esc_url( FLXB_Admin_Url::page( 'flxb-donations' ) ) . '">' . esc_html__( 'Clear', 'flx-donate' ) . '</a>';
-		}
-		if ( $trash ) {
-			/* translators: %s: number of gifts in the trash */
-			echo '<a class="flxb-btn flxb-filters__trash" href="' . esc_url( FLXB_Admin_Url::page( 'flxb-donations', array( 'status' => 'trash' ) ) ) . '">' . esc_html( sprintf( __( 'Trash (%s)', 'flx-donate' ), number_format_i18n( $trash ) ) ) . '</a>';
-		}
-		echo '</div>';
-		echo '<div class="flxb-filters__adv" id="flxb-filters-adv"' . ( $adv ? '' : ' hidden' ) . '>';
-		echo '<div class="flxb-filters__dates"><label for="flxb-from"><span>' . esc_html__( 'From', 'flx-donate' ) . '</span>';
-		echo '<input type="date" id="flxb-from" name="from" value="' . esc_attr( $f['from'] ) . '"></label>';
-		echo '<label for="flxb-to"><span>' . esc_html__( 'To', 'flx-donate' ) . '</span><input type="date" id="flxb-to" name="to" value="' . esc_attr( $f['to'] ) . '"></label></div>';
-		echo '<label class="screen-reader-text" for="flxb-status">' . esc_html__( 'Status', 'flx-donate' ) . '</label><select id="flxb-status" name="status"><option value="">' . esc_html__( 'All statuses', 'flx-donate' ) . '</option>';
-		foreach ( self::status_choices() as $s => $label ) {
-			echo '<option value="' . esc_attr( $s ) . '"' . selected( $f['status'], $s, false ) . '>' . esc_html( $label ) . '</option>';
-		}
-		echo '</select>';
-		echo '<label class="screen-reader-text" for="flxb-type">' . esc_html__( 'Type', 'flx-donate' ) . '</label><select id="flxb-type" name="type"><option value="">' . esc_html__( 'All types', 'flx-donate' ) . '</option>';
-		foreach ( array( 'one_time', 'recurring' ) as $t ) {
-			echo '<option value="' . esc_attr( $t ) . '"' . selected( $f['type'], $t, false ) . '>' . esc_html( flxb_type_label( $t ) ) . '</option>';
-		}
-		echo '</select>';
-		if ( $dtypes ) {
-			echo '<label class="screen-reader-text" for="flxb-dtype">' . esc_html__( 'Donation type', 'flx-donate' ) . '</label><select id="flxb-dtype" name="dtype"><option value="">' . esc_html__( 'All donation types', 'flx-donate' ) . '</option><option value="0"' . selected( $f['type_id'], '0', false ) . '>' . esc_html__( 'No donation type', 'flx-donate' ) . '</option>';
-			foreach ( $dtypes as $c ) {
-				echo '<option value="' . (int) $c['id'] . '"' . selected( $f['type_id'], (string) $c['id'], false ) . '>' . esc_html( $c['title'] ) . '</option>';
-			}
-			echo '</select>';
-		}
-		if ( $forms ) {
-			echo '<label class="screen-reader-text" for="flxb-form">' . esc_html__( 'Form', 'flx-donate' ) . '</label><select id="flxb-form" name="form"><option value="">' . esc_html__( 'All forms', 'flx-donate' ) . '</option>';
-			foreach ( $forms as $fid => $fm ) {
-				if ( 'payment' !== $fm['type'] ) {
-					continue;
-				}
-				echo '<option value="' . (int) $fid . '"' . selected( $f['form_id'], (string) $fid, false ) . '>' . esc_html( $fm['title'] ) . '</option>';
-			}
-			echo '</select>';
-		}
-		$refs = FLXB_Refs::own_only() ? array() : FLXB_Refs::users();
-		if ( $refs || '' !== $f['ref_user_id'] ) {
-			echo '<label class="screen-reader-text" for="flxb-ref">' . esc_html__( 'Referral', 'flx-donate' ) . '</label><select id="flxb-ref" name="ref"><option value="">' . esc_html__( 'All referrals', 'flx-donate' ) . '</option><option value="0"' . selected( $f['ref_user_id'], '0', false ) . '>' . esc_html__( 'No referral', 'flx-donate' ) . '</option>';
-			foreach ( $refs as $uid => $label ) {
-				echo '<option value="' . (int) $uid . '"' . selected( $f['ref_user_id'], (string) $uid, false ) . '>' . esc_html( $label ) . '</option>';
-			}
-			echo '</select>';
-		}
-		echo '<div class="flxb-filters__end"><button class="flxb-btn flxb-btn--primary" type="submit">' . FLXB_Admin::icon( 'search' ) . esc_html__( 'Filter', 'flx-donate' ) . '</button></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo '</div></form>';
+		FLXB_Admin::screen();
 	}
 
 	/** Donation rows (also used on the donor card). */
@@ -401,69 +169,12 @@ final class FLXB_Page_Donations {
 		}
 		$back = isset( $_POST['back'] ) ? esc_url_raw( wp_unslash( $_POST['back'] ) ) : '';
 		$back = $back && 0 === strpos( $back, admin_url() ) ? $back : FLXB_Admin_Url::page( 'flxb-donations' );
-		$ids  = isset( $_POST['ids'] ) ? array_filter( array_map( 'absint', (array) wp_unslash( $_POST['ids'] ) ) ) : array();
-		$done = 0;
-		$seen = array();
-		foreach ( $ids as $id ) {
-			$d = FLXB_Donations::get( $id );
-			if ( ! $d ) {
-				continue;
-			}
-			$oid = (int) $d['wc_order_id'];
-			if ( $oid ) {
-				if ( isset( $seen[ $oid ] ) ) {
-					continue;
-				}
-				$seen[ $oid ] = true;
-				$order        = function_exists( 'wc_get_order' ) ? wc_get_order( $oid ) : null;
-				if ( $order && ! current_user_can( 'delete_shop_orders' ) && ! current_user_can( 'manage_woocommerce' ) ) {
-					continue;
-				}
-				if ( $order ) {
-					if ( 'trash' === $do ) {
-						$order->delete( false ); // moves the order to the trash; the ledger follows
-					} elseif ( 'delete' === $do ) {
-						$order->delete( true );
-					} elseif ( 'restore' === $do ) {
-						$store = $order->get_data_store();
-						if ( 'trash' === $order->get_status() && is_callable( array( $store, 'untrash_order' ) ) ) {
-							$store->untrash_order( $order );
-						} else {
-							FLXB_Donations::restore_rows( FLXB_Donations::ids_of_order( $oid ) );
-						}
-					}
-					// Anything the hooks missed (e.g. an order not in the trash) is brought in line here.
-					$left = FLXB_Donations::ids_of_order( $oid );
-					if ( 'delete' === $do && $left ) {
-						FLXB_Donations::delete_rows( $left );
-					} elseif ( 'trash' === $do ) {
-						FLXB_Donations::trash_rows( $left );
-					}
-					++$done;
-					continue;
-				}
-				$rows = FLXB_Donations::ids_of_order( $oid ); // the order is gone already
-			} else {
-				$rows = array( $id );
-			}
-			if ( 'trash' === $do ) {
-				FLXB_Donations::trash_rows( $rows );
-			} elseif ( 'delete' === $do ) {
-				FLXB_Donations::delete_rows( $rows );
-			} else {
-				FLXB_Donations::restore_rows( $rows );
-			}
-			++$done;
+		$ids = isset( $_POST['ids'] ) ? array_values( array_filter( array_map( 'absint', (array) wp_unslash( $_POST['ids'] ) ) ) ) : array();
+		$res = FLXB_Admin_Donations_Service::bulk( $ids, $do ); // 2.36.0: same service as the React list
+		if ( is_wp_error( $res ) ) {
+			FLXB_Admin::deny();
 		}
-		$msg = array(
-			/* translators: %s: number of gifts */
-			'trash'   => _n( '%s donation moved to the trash.', '%s donations moved to the trash.', $done, 'flx-donate' ),
-			/* translators: %s: number of gifts */
-			'restore' => _n( '%s donation restored.', '%s donations restored.', $done, 'flx-donate' ),
-			/* translators: %s: number of gifts */
-			'delete'  => _n( '%s donation deleted permanently.', '%s donations deleted permanently.', $done, 'flx-donate' ),
-		);
-		wp_safe_redirect( add_query_arg( array( 'flxb_msg' => 'saved', 'flxb_err' => rawurlencode( sprintf( $msg[ $do ], number_format_i18n( $done ) ) ) ), $back ) );
+		wp_safe_redirect( add_query_arg( array( 'flxb_msg' => 'saved', 'flxb_err' => rawurlencode( $res['message'] ) ), $back ) );
 		exit;
 	}
 
