@@ -1,6 +1,6 @@
 // Flux Donate › Dashboard and Donations. Same screen in wp-admin (wp-embed) and the FluxWP app; every read
 // and write goes through the Flux Donate GraphQL operations (plugins/flx-donate/graphql/operations).
-// The donation detail and the other pages are still the plugin's own pages: links to them load as usual.
+// The donation page (detail?id=N) is here too; the other pages are still the plugin's own pages.
 import { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { createGraphQLClient } from '@fluxwp/graphql';
@@ -10,6 +10,7 @@ import { translator } from './i18n';
 import { DonateCtx, type Ctx, type Notice, type Page } from './shared';
 import { Dashboard } from './Dashboard';
 import { Donations } from './Donations';
+import { Detail } from './Detail';
 import './donate.css';
 
 export function DonateScreen() {
@@ -22,8 +23,9 @@ export function DonateScreen() {
   );
 }
 
-/** host.startPage: 'dashboard', 'list' or 'list?<classic list arguments>'. */
+/** host.startPage: 'dashboard', 'list', 'list?<classic list arguments>' or 'detail?id=<donation id>'. */
 function parseStart(s?: string): { page: Page; query: string } {
+  if (s && s.startsWith('detail')) return { page: 'detail', query: s.slice(7) };
   if (s && s.startsWith('list')) return { page: 'list', query: s.slice(5) };
   return { page: 'dashboard', query: '' };
 }
@@ -49,7 +51,13 @@ function Donate() {
   ) : null;
   return (
     <DonateCtx.Provider value={ctx}>
-      {start.page === 'list' ? <Donations query={start.query} notice={box} /> : <Dashboard notice={box} />}
+      {start.page === 'detail' ? (
+        <Detail id={Number(new URLSearchParams(start.query).get('id')) || 0} notice={box} />
+      ) : start.page === 'list' ? (
+        <Donations query={start.query} notice={box} />
+      ) : (
+        <Dashboard notice={box} />
+      )}
     </DonateCtx.Provider>
   );
 }

@@ -1,0 +1,3 @@
+mutation FlxDonationLayoutSave($main: [String!]!, $side: [String!]!, $closed: [String!]!) {
+  flxDonationLayoutSave(input: { main: $main, side: $side, closed: $closed }) { ok errors { message field } }
+}

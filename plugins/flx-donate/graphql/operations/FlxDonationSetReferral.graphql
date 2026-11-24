@@ -1,0 +1,3 @@
+mutation FlxDonationSetReferral($id: Int!, $referralId: Int!) {
+  flxDonationSetReferral(input: { id: $id, referralId: $referralId }) { message errors { message field } }
+}

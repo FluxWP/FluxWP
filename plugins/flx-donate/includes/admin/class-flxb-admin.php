@@ -191,8 +191,8 @@ final class FLXB_Admin {
 		if ( ! in_array( $hook, self::$hooks, true ) ) {
 			return;
 		}
-		if ( function_exists( 'flx_admin_screen_current' ) && in_array( flx_admin_screen_current(), self::SCREENS, true ) ) {
-			return; // The Flux GraphQL screen shell loads the React screen.
+		if ( function_exists( 'flx_admin_screen_current' ) && in_array( flx_admin_screen_current(), self::SCREENS, true ) && '' === self::q( 'donation' ) ) {
+			return; // The Flux GraphQL screen shell loads the React screen; the donation page keeps the classic styles for other plugins' boxes.
 		}
 		wp_enqueue_style( 'flxb-admin', FLXB_URL . 'assets/admin.css', array(), self::ver( 'admin.css' ) );
 		wp_add_inline_style( 'flxb-admin', flxb_brand_css( '.flxb' ) );
@@ -494,9 +494,9 @@ final class FLXB_Admin {
 		}
 	}
 
-	/** The detail of one donation is not part of the screen. */
+	/** 2.38.0: the donation page is part of the screen too. */
 	public static function screen_enabled() {
-		return '' === self::q( 'donation' );
+		return true;
 	}
 
 	/**
@@ -513,6 +513,12 @@ final class FLXB_Admin {
 			),
 			'appIcon' => self::menu_icon_url(),
 		);
+		// 2.38.0: ?donation= opens the donation page of the screen.
+		$donation = absint( self::q( 'donation', '0' ) );
+		if ( 'flxb-donations' === $page && $donation ) {
+			$opts['startPage'] = 'detail?id=' . $donation;
+			return $opts;
+		}
 		// A list link with filters (dashboard bars, bookmarks) starts the list with them.
 		if ( 'flxb-donations' === $page && 'flxb-donations' === self::q( 'page' ) ) {
 			$q = self::list_args();
@@ -548,6 +554,11 @@ final class FLXB_Admin {
 	 */
 	public static function preload_list( $query = array() ) {
 		$query  = is_array( $query ) ? $query : array();
+		$id     = isset( $query['donation'] ) && preg_match( '/^\d+$/', (string) $query['donation'] ) ? (int) $query['donation'] : 0;
+		if ( $id ) {
+			FLXB_Admin_Detail_Service::want_islands(); // other plugins' boxes are printed with the page
+			return array( array( 'FlxDonateDetail', array( 'id' => $id ) ) );
+		}
 		$filter = self::flux_list_filter( $query );
 		$paged  = isset( $query['paged'] ) && preg_match( '/^\d+$/', (string) $query['paged'] ) ? (int) $query['paged'] : 1;
 		$offset = $paged > 1 ? ( $paged - 1 ) * self::LIST_PER : 0;
@@ -600,6 +611,7 @@ final class FLXB_Admin {
 	public static function screen() {
 		if ( function_exists( 'flx_admin_screen_page' ) ) {
 			flx_admin_screen_page();
+			FLXB_Admin_Detail_Service::print_islands();
 			return;
 		}
 		echo '<div class="wrap"><div class="notice notice-error"><p>' . esc_html__( 'The data could not be loaded.', 'flx-donate' ) . ' (Flux GraphQL)' . '</p></div></div>';

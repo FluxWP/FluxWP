@@ -2,4 +2,4 @@
 "@fluxwp/modules": minor
 ---
 
-Flux Donate screen (`flxb-donate`): dashboard and donations list on the Flux GraphQL shell.
+Flux Donate screen (`flxb-donate`): dashboard, donations list and the donation page (movable boxes, other plugins' boxes placed in, every action as a mutation) on the Flux GraphQL shell.

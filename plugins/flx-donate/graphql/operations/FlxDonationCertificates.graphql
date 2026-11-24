@@ -1,0 +1,3 @@
+mutation FlxDonationCertificates($id: Int!, $action: FlxDonationCertificateAction!) {
+  flxDonationCertificates(input: { id: $id, action: $action }) { message errors { message field } }
+}

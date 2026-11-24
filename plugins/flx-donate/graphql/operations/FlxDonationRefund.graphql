@@ -1,0 +1,3 @@
+mutation FlxDonationRefund($id: Int!, $amount: Float!) {
+  flxDonationRefund(input: { id: $id, amount: $amount }) { message errors { message field } }
+}

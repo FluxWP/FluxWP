@@ -1,0 +1,3 @@
+mutation FlxDonationReject($id: Int!, $reason: String!, $notify: Boolean) {
+  flxDonationReject(input: { id: $id, reason: $reason, notify: $notify }) { message errors { message field } }
+}
