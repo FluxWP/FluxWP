@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.11.1
+- Giriş ekranında "Google ile oturum açın" (Site Kit) butonu kartın üstünde beyaz şerit olarak durmuyor: formun altında "veya" ayracıyla, ortada; koyu modda beyaz zemin yok.
+
 ## 1.11.0
 - Duyuru kartları: fluxwp.com'dan (güncelleme sunucusu `/v1/announcements`) yayınlanan duyurular ana sayfada kapatılabilir kart olarak görünür; kapatılan kart o yönetici için bir daha gösterilmez. Akış sayfa çizilirken çekilmez, önbellekten basılır ve yanıt gittikten sonra saatte bir yenilenir (ortak denetimli istek, HTTPS, şema doğrulamalı; metin düz metin). Hedefleme: eklenti, site dili, tarih. Yalnız `manage_options`. Filtreler `flxa_announcements_url` (boş = kapalı), `flxa_announcements`.
 - Anonim sayaç: kaç yöneticinin gördüğü ve kapattığı yalnız kullanım verisi paylaşımı açık sitelerde (`flxk_telemetry`) tutulur ve günlük telemetriyle gider (`announcements`); izin yoksa hiçbir şey saklanmaz ya da gönderilmez.
