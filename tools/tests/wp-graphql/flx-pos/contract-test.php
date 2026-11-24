@@ -42,6 +42,7 @@ flxt_ok( empty( $r['errors'] ), 'accounts: admin reads', $r['errors'] ?? null );
 flxt_ok( in_array( 'esnekpos', $ids, true ) && in_array( 'iyzico', $ids, true ), 'catalog has EsnekPOS and iyzico' );
 flxt_same( array(), $r['data']['flxPosAccounts'] ?? null, 'no account yet' );
 
+delete_option( 'woocommerce_flxpos_card_settings' );
 // Add an EsnekPOS account: the secret is write-only.
 $r = flxpos_t_op(
 	'FlxPosAccountSave',
@@ -105,6 +106,11 @@ $s = $r['data']['flxPosSettingsUpdate']['settings'] ?? array();
 flxt_same( 'Kartla öde', $s['cardTitle'] ?? null, 'settings: title saved' );
 flxt_same( $acc['id'], $s['cardAccount'] ?? null, 'settings: default account saved' );
 flxt_same( false, $s['showBrands'] ?? null, 'settings: brands off' );
+
+flxt_same( 'yes', get_option( 'woocommerce_flxpos_card_settings' )['enabled'] ?? null, 'first card account turns the card method on' );
+update_option( 'woocommerce_flxpos_card_settings', array( 'enabled' => 'no' ) );
+$r = flxpos_t_op( 'FlxPosAccountSave', array( 'input' => array( 'id' => $acc['id'], 'provider' => 'esnekpos', 'label' => 'Test EsnekPOS 2' ) ), $admin );
+flxt_same( 'no', get_option( 'woocommerce_flxpos_card_settings' )['enabled'] ?? null, 'a method the admin turned off stays off' );
 
 // Methods and transactions read.
 $r = flxpos_t_op( 'FlxPosMethods', array(), $admin );

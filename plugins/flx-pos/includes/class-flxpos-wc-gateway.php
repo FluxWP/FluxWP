@@ -19,7 +19,7 @@ abstract class FLXPOS_WC_Base extends WC_Payment_Gateway {
 		$this->supports   = array( 'products', 'refunds' );
 		$this->init_form_fields();
 		$this->init_settings();
-		$this->enabled = 'yes' === ( $this->settings['enabled'] ?? 'yes' ) ? 'yes' : 'no';
+		$this->enabled = 'yes' === ( $this->settings['enabled'] ?? $this->default_enabled() ) ? 'yes' : 'no';
 		add_action(
 			'woocommerce_update_options_payment_gateways_' . $this->id,
 			function (): void {
@@ -34,9 +34,17 @@ abstract class FLXPOS_WC_Base extends WC_Payment_Gateway {
 				'title'   => __( 'Etkin', 'flx-pos' ),
 				'type'    => 'checkbox',
 				'label'   => __( 'Bu ödeme yöntemini göster', 'flx-pos' ),
-				'default' => 'yes',
+				'default' => $this->default_enabled(),
 			),
 		);
+	}
+
+	/**
+	 * Kart yöntemi ilk kartlı POS hesabı eklenene kadar kapalı gelir (hesapsız açık görünüp başka eklentilere
+	 * "kart yöntemi" sayılmasın). Cüzdan yöntemleri hesabıyla birlikte doğar, açık gelir.
+	 */
+	protected function default_enabled() {
+		return 'flxpos_card' === $this->id ? 'no' : 'yes';
 	}
 
 	public function admin_options() {

@@ -1,5 +1,9 @@
 # Flux POS Entegrator
 
+## 0.2.1
+
+- "Kart ile öde (Flux POS)" yöntemi ilk kartlı POS hesabı eklenene kadar kapalı gelir. Önceden hesap yokken de "açık" görünüyordu; Flux Donate onu kart yöntemi sayınca iyzico bandı ve tek kart seçimi kayboluyordu. İlk kartlı hesap kaydedilince yöntem kendiliğinden açılır; elle kapattıysanız kapalı kalır.
+
 ## 0.2.0
 
 - İlk sürüm: WooCommerce için ortak, isteğe bağlı sanal POS eklentisi (açık kaynak). Kendi temiz uygulamamız; bankaların ve kuruluşların yayımladığı protokol belgelerine göre, better-payment (MIT) sürücüleriyle karşılaştırıldı. Flux GraphQL gerekir, PHP 8.1+.
