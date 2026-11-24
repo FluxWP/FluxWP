@@ -18,7 +18,7 @@ foreach ( (array) json_decode( (string) file_get_contents( FLXB_DIR . 'graphql/p
 		$GLOBALS['flxb_ops'][ $m[1] ] = $doc;
 	}
 }
-flxt_same( 11, count( $GLOBALS['flxb_ops'] ), 'Flux Donate ships 11 persisted operations' );
+flxt_same( 22, count( $GLOBALS['flxb_ops'] ), 'Flux Donate ships 22 persisted operations' );
 
 /**
  * @param array<string,mixed> $vars Variables.
@@ -687,11 +687,51 @@ flxt_ok( in_array( $ref_a, array_map( 'intval', array_column( $r['data']['flxDon
 $r = flxb_t_op( 'FlxDonationsBulk', array( 'ids' => array( $ref_a ), 'action' => 'RESTORE' ), $admin );
 flxt_same( 1, $r['data']['flxDonationsBulk']['done'] ?? null, 'bulk: restore' );
 
+// Donation page (2.38.0): read rights, own-only scoping, actions.
+$r = flxb_t_op( 'FlxDonateDetail', array( 'id' => $ref_b ) );
+flxt_ok( null !== flxt_code( $r ), 'detail: visitor is refused' );
+$r = flxb_t_op( 'FlxDonateDetail', array( 'id' => $ref_b ), $admin );
+flxt_same( null, $r['errors'] ?? null, 'detail: an administrator reads' );
+$dv = $r['data']['flxDonationDetail'] ?? array();
+flxt_same( $ref_b, (int) ( $dv['databaseId'] ?? 0 ), 'detail: the donation' );
+flxt_ok( count( $dv['lines']['rows'] ?? array() ) >= 1 && count( $dv['hero'] ?? array() ) >= 4, 'detail: items and summary' );
+flxt_ok( ! empty( $dv['manage']['statuses'] ) && null !== ( $dv['referral'] ?? null ), 'detail: the administrator manages and sees the referral' );
+flxt_same( array(), $dv['islands'] ?? null, 'detail: no islands outside the page' );
+flxt_same( false, strpos( (string) ( $dv['receiptUrl'] ?? '' ), '&amp;' ), 'detail: receipt link is not HTML-escaped' );
+$r = flxb_t_op( 'FlxDonateDetail', array( 'id' => $ref_b ), $staff_a );
+flxt_ok( array_key_exists( 'flxDonationDetail', (array) ( $r['data'] ?? array() ) ) && null === $r['data']['flxDonationDetail'], 'detail: own-only staff cannot open another referral' );
+$r = flxb_t_op( 'FlxDonateDetail', array( 'id' => $ref_a ), $staff_a );
+$dv = $r['data']['flxDonationDetail'] ?? array();
+flxt_same( $ref_a, (int) ( $dv['databaseId'] ?? 0 ), 'detail: own-only staff opens their referral' );
+flxt_ok( array_key_exists( 'manage', $dv ) && null === $dv['manage'] && null === $dv['referral'], 'detail: own-only staff gets no actions or referral picker' );
+$r = flxb_t_op( 'FlxDonationSetStatus', array( 'id' => $ref_a, 'status' => 'pending' ), $staff_a );
+flxt_ok( null !== flxt_code( $r ), 'status: own-only staff is refused' );
+$r = flxb_t_op( 'FlxDonationSetStatus', array( 'id' => $ref_b, 'status' => 'nope' ), $admin );
+flxt_ok( ! empty( $r['data']['flxDonationSetStatus']['errors'] ) || null !== flxt_code( $r ), 'status: an unknown status is refused' );
+$r = flxb_t_op( 'FlxDonationSetStatus', array( 'id' => $ref_b, 'status' => 'pending' ), $admin );
+flxt_same( null, $r['errors'] ?? null, 'status: an administrator changes it' );
+flxt_same( 'pending', (string) ( FLXB_Donations::get( $ref_b )['status'] ?? '' ), 'status: saved' );
+flxb_t_op( 'FlxDonationSetStatus', array( 'id' => $ref_b, 'status' => 'completed' ), $admin );
+$r = flxb_t_op( 'FlxDonationSetReferral', array( 'id' => $ref_b, 'referralId' => $staff_a ), $admin );
+flxt_same( null, $r['errors'] ?? null, 'referral: an administrator changes it' );
+flxt_same( $staff_a, (int) ( FLXB_Donations::get( $ref_b )['ref_user_id'] ?? 0 ), 'referral: saved' );
+$wpdb->update( flxb_table( 'donations' ), array( 'ref_user_id' => $staff_b ), array( 'id' => $ref_b ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+$r = flxb_t_op( 'FlxDonationApprove', array( 'id' => $ref_b ), $admin );
+flxt_ok( ! empty( $r['data']['flxDonationApprove']['errors'] ) || null !== flxt_code( $r ), 'approve: a paid gift is not awaiting approval' );
+$r = flxb_t_op( 'FlxDonationNoteAdd', array( 'id' => $ref_b, 'text' => 'x' ), $admin );
+flxt_ok( ! empty( $r['data']['flxDonationNoteAdd']['errors'] ) || null !== flxt_code( $r ), 'note: a gift without an order has no notes' );
+$r = flxb_t_op( 'FlxDonationLayoutSave', array( 'main' => array( 'payment', 'lines' ), 'side' => array( 'donor' ), 'closed' => array( 'history' ) ), $admin );
+flxt_same( true, $r['data']['flxDonationLayoutSave']['ok'] ?? null, 'layout: saved' );
+$r = flxb_t_op( 'FlxDonateDetail', array( 'id' => $ref_b ), $admin );
+flxt_same( array( 'main' => array( 'payment', 'lines' ), 'side' => array( 'donor' ), 'closed' => array( 'history' ) ), $r['data']['flxDonationDetail']['layout'] ?? null, 'layout: read back' );
+
 if ( ! class_exists( 'FLXB_Admin' ) ) {
 	require_once FLXB_DIR . 'includes/admin/class-flxb-admin.php';
 }
 // Preload: the PHP filter is the one the screen sends (same store key).
 flxt_same( array( 'search' => 'x', 'status' => 'RECEIPT', 'kind' => 'ONE_TIME', 'donationTypeId' => 0, 'referralId' => 3 ), FLXB_Admin::flux_list_filter( array( 's' => ' x ', 'status' => 'receipt', 'type' => 'one_time', 'dtype' => '0', 'ref' => '3', 'form' => 'a', 'from' => '2026-1-1' ) ), 'preload: classic arguments → filter' );
 flxt_same( array( array( 'FlxDonateDonations', array( 'first' => 25, 'after' => null ) ) ), FLXB_Admin::preload_list( array() ), 'preload: no filter → no filter variable' );
+
+flxt_same( array( array( 'FlxDonateDetail', array( 'id' => 12 ) ) ), FLXB_Admin::preload_list( array( 'donation' => '12' ) ), 'preload: the donation page' );
 
 flxt_done();

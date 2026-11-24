@@ -1,10 +1,12 @@
-# flx-donate 2.37.0
+# flx-donate 2.38.0
 
 - Faz: 2
 - Durum: 👀
 - PR: #340 (bu PR'ye katıldı), Donate ekranları PR'si
 
 2.37.0: Pano ve Bağışlar React ekranı (`packages/modules/src/donate`, modül `flxb-donate`), Flux GraphQL kabuğu + preload. Admin GraphQL: `flxDonationDashboard`, `flxDonationList` (connection, `flx_gql_paginate`), `flxDonationListInfo`, `flxDonationsBulk`; servis `FLXB_Admin_Donations_Service`. Yetki: liste `can_list` (own-only personel yalnız kendi `ref_user_id`'si, filtre genişletemez), pano `can_dashboard`, toplu işlem `!own_only && flxb_can_manage`, kalıcı silme `manage_options`. Liste filtresi URL'de klasik anahtarlarla (s, from, to, status, type, dtype, form, donor_id, ref, paged); PHP preload filtresi `FLXB_Admin::flux_list_filter()` = TS `filterFromQuery()`. Bağış detayı (`?donation=`) ve diğer sayfalar hâlâ klasik (sıradaki PR).
+
+2.38.0: Bağış detayı React ekranı (`Detail.tsx`, startPage `detail?id=N`, preload `FlxDonateDetail {id}`). Query `flxDonationDetail(id)` (cap `can_list`, görünmeyen bağış null), servis `FLXB_Admin_Detail_Service`. Mutation'lar: SetStatus, SetReferral, SaveNames, Approve, Reject, Certificates (REMAKE/SEND), Refund, NoteAdd, NoteDelete, LayoutSave; çöp/geri al/sil `flxDonationsBulk`. Başka eklentilerin kutuları "ada": PHP sayfayla gizli basar (`#flxdn-islands`, WC kutuları + kayıt formu, `flxb_detail_boxes`, Flux POS iade formu, Detail_Tabs), GraphQL yalnız id/başlık/sütun verir, React DOM düğümünü kutusuna taşır; bu sayfada klasik `admin.css/admin.js` yüklü kalır. Klasik `detail()` kaldırıldı; admin-post işleyicileri (durum, sertifika, referans, adlar) geriye uyum için duruyor. Sıradaki: bağışçılar, abonelikler, türler, ortaklar, takip, içe aktarma, raporlar, ayarlar.
 
 (a) public bu PR'de: `flxDonationTypes`, `flxDonationType`, `flxDonationCartAdd`, `flxMyDonations`, `flxDonationLookupStart` / `Verify` / `End`, `flxDonationBankAccount`. Eşleme `ESLEME/flx-donate.md`: 102 GraphQL, 32 istisna. (a) 16, (b) 24, (c) 11, (d) 17, (e) 34. Sıra (a) → (b) → (c) → (d) → (e). Tek `schema.graphql`. React ekranı yok.
 

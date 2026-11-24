@@ -1,0 +1,3 @@
+mutation FlxDonationSaveNames($id: Int!, $names: [FlxDonationNameInput!]!) {
+  flxDonationSaveNames(input: { id: $id, names: $names }) { message errors { message field } }
+}

@@ -1,0 +1,3 @@
+mutation FlxDonationApprove($id: Int!) {
+  flxDonationApprove(input: { id: $id }) { message errors { message field } }
+}

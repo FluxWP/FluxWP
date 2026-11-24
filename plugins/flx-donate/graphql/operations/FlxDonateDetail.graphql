@@ -1,0 +1,64 @@
+fragment FlxDonationFactFields on FlxDonationFact { label text url look tone hint }
+
+query FlxDonateDetail($id: Int!) {
+  flxDonationDetail(id: $id) {
+    databaseId
+    title
+    date
+    statusLabel
+    tone
+    kind
+    kindLabel
+    multi
+    trashed
+    receiptUrl
+    listUrl
+    hero { ...FlxDonationFactFields }
+    approval {
+      title
+      hint
+      canAct
+      notifyTo
+      receipts { url kind name meta warn }
+    }
+    lines {
+      hint
+      rows {
+        image name url current statusLabel tone unit qty total unitLabel qtyLabel totalLabel
+        bits { ...FlxDonationFactFields }
+        share { code url statusLabel tone place }
+      }
+      totals {
+        lines { label value look }
+        paid { label value look }
+        via
+      }
+      names { itemId label value }
+    }
+    payment {
+      title kindLabel recurring statusLabel tone note canCertificates
+      facts { ...FlxDonationFactFields }
+      certificates { label url revoked }
+      menu {
+        orderLabel orderUrl
+        refund { label help field max auto }
+      }
+    }
+    contacts { name phone phoneUrl email }
+    receipts { name url meta }
+    history { date text user }
+    donor { name initial contact paid total waiting cardUrl chatUrl }
+    referral {
+      hint current canEdit
+      person { name initial contact }
+      choices { value label }
+    }
+    manage {
+      multi statusConfirm trashed trashConfirm canDelete
+      statuses { value label }
+    }
+    notes { items { id html meta customer system } }
+    islands { id title col }
+    layout { main side closed }
+  }
+}

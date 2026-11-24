@@ -1,0 +1,3 @@
+mutation FlxDonationNoteDelete($id: Int!, $noteId: Int!) {
+  flxDonationNoteDelete(input: { id: $id, noteId: $noteId }) { message errors { message field } }
+}

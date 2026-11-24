@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 2.38.0
+- **Bağış detayı anında açılır.** Bağış sayfası da artık React ekranı: veri sayfayla hazır gelir, yükleniyor dönmez. Görünüm klasikle aynı: özet şeridi, onay bekleyen dekont (önizleme, onayla / reddet), kalemler (sıralanır, adlar düzeltilir), ödeme (sertifikaları yeniden yap / gönder, "⋯" menüsünde sipariş ve iade), kişilerin iletişimi, geçmiş, bağışçı, referans, işlemler (durum, çöp, kalıcı silme) ve sipariş notları.
+- Kutular eskisi gibi taşınır (oklar, geniş ekranda sürükle), daraltılır; düzen kullanıcı başına saklanır. WooCommerce sipariş ekranındaki diğer eklentilerin kutuları, Flux POS iade formu ve ek sekmeler yerinde, kendi formlarıyla çalışır.
+- Bütün işlemler onay penceresiyle ve sayfa yenilemeden yapılır; sonuç sayfanın üstünde yazar.
+- GraphQL: `flxDonationDetail` ve bağış işlemleri (`flxDonationSetStatus`, `flxDonationSetReferral`, `flxDonationSaveNames`, `flxDonationApprove`, `flxDonationReject`, `flxDonationCertificates`, `flxDonationRefund`, `flxDonationNoteAdd`, `flxDonationNoteDelete`, `flxDonationLayoutSave`). Yetkiler klasik sayfayla aynı; referans personeli yalnız kendi bağışını açar, işlem kartlarını görmez.
+
 ## 2.37.0
 - **Pano ve Bağışlar anında açılır.** İki sayfa artık React ekranı (Flux GraphQL kabuğu): veri sayfayla birlikte hazır gelir, yükleniyor dönmez; Flux ekranları arasında geçiş sayfa yenilemeden olur.
 - Pano: 7/30/90 gün ve özel aralık, göstergeler, günlük grafik, tek seferlik/düzenli oranı, türe ve forma göre, en çok bağış yapanlar (klasik görünümle aynı).

@@ -1,0 +1,3 @@
+mutation FlxDonationNoteAdd($id: Int!, $text: String!, $customer: Boolean) {
+  flxDonationNoteAdd(input: { id: $id, text: $text, customer: $customer }) { message errors { message field } }
+}
