@@ -334,11 +334,9 @@ final class FLXB_Admin_Detail_Service {
 			$item = $order && class_exists( 'FLXB_WC_Ledger' ) ? $order->get_item( self::i( FLXB_WC_Ledger::item_of( $s ) ) ) : null;
 			$bits = array();
 			if ( $item ) {
-				foreach ( $item->get_formatted_meta_data() as $m ) {
-					if ( ! is_object( $m ) ) {
-						continue;
-					}
-					$bits[] = self::fact( rtrim( trim( wp_strip_all_tags( self::s( $m->display_key ?? '' ) ) ), ':' ), trim( wp_strip_all_tags( self::s( $m->display_value ?? '' ) ) ) );
+				foreach ( self::arr( $item->get_formatted_meta_data() ) as $m ) {
+					$m      = (array) $m;
+					$bits[] = self::fact( rtrim( trim( wp_strip_all_tags( self::s( $m['display_key'] ?? '' ) ) ), ':' ), trim( wp_strip_all_tags( self::s( $m['display_value'] ?? '' ) ) ) );
 				}
 			}
 			return array( $item ?: null, $bits );
@@ -850,7 +848,7 @@ final class FLXB_Admin_Detail_Service {
 
 	/** Payment record of Flux Donate's payment layer (loaded only when it owns payments). */
 	private static function payment_record( int $id ): mixed {
-		$cb = array( 'FLXB_Payment_Records', 'get' );
+		$cb = apply_filters( 'flxb_payment_record_getter', 'FLXB_Payment_Records::get' );
 		return is_callable( $cb ) ? call_user_func( $cb, $id ) : null;
 	}
 
@@ -912,17 +910,16 @@ final class FLXB_Admin_Detail_Service {
 		unset( $d );
 		$out = array();
 		foreach ( function_exists( 'wc_get_order_notes' ) ? (array) wc_get_order_notes( array( 'order_id' => $order->get_id() ) ) : array() as $n ) {
-			if ( ! is_object( $n ) ) {
-				continue;
-			}
-			$by    = 'system' === ( $n->added_by ?? '' ) ? __( 'System', 'flx-donate' ) : self::s( $n->added_by ?? '' );
-			$when  = isset( $n->date_created ) && $n->date_created instanceof WC_DateTime ? self::date( gmdate( 'Y-m-d H:i:s', $n->date_created->getTimestamp() ) ) : '';
+			$n     = (array) $n;
+			$by    = 'system' === ( $n['added_by'] ?? '' ) ? __( 'System', 'flx-donate' ) : self::s( $n['added_by'] ?? '' );
+			$dc    = $n['date_created'] ?? null;
+			$when  = $dc instanceof WC_DateTime ? self::date( gmdate( 'Y-m-d H:i:s', $dc->getTimestamp() ) ) : '';
 			$out[] = array(
-				'id'       => self::i( $n->id ?? 0 ),
-				'html'     => wpautop( wptexturize( wp_kses_post( self::s( $n->content ?? '' ) ) ) ),
+				'id'       => self::i( $n['id'] ?? 0 ),
+				'html'     => wpautop( wptexturize( wp_kses_post( self::s( $n['content'] ?? '' ) ) ) ),
 				'meta'     => trim( $when . ' · ' . $by, ' ·' ),
-				'customer' => ! empty( $n->customer_note ),
-				'system'   => 'system' === ( $n->added_by ?? '' ),
+				'customer' => ! empty( $n['customer_note'] ),
+				'system'   => 'system' === ( $n['added_by'] ?? '' ),
 			);
 		}
 		return array( 'items' => $out );
@@ -1006,15 +1003,13 @@ final class FLXB_Admin_Detail_Service {
 		}
 		$list = self::islands( $d, $order );
 		self::$islands = $list;
-		return array_values(
-			array_map(
-				static fn( array $b ): array => array(
-					'id'    => $b['id'],
-					'title' => $b['title'],
-					'col'   => $b['col'],
-				),
-				$list
-			)
+		return array_map(
+			static fn( array $b ): array => array(
+				'id'    => $b['id'],
+				'title' => $b['title'],
+				'col'   => $b['col'],
+			),
+			$list
 		);
 	}
 
