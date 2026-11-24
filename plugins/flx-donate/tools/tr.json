@@ -6,5 +6,7 @@
  "%1$s of %2$s": "%1$s / %2$s",
  "Next page": "Sonraki sayfa",
  "%s piece\u0000%s pieces": "%s adet\u0000%s adet",
- "Country": "Ülke"
+ "Country": "Ülke",
+ "Open this page in wp-admin to upload a file.": "Dosya yüklemek için bu sayfayı wp-admin'de açın.",
+ "Open this page in wp-admin.": "Bu sayfayı wp-admin'de açın."
 }

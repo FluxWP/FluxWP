@@ -1,0 +1,20 @@
+query FlxDonateReport($id: String!, $period: String!, $from: String!, $to: String!) {
+  flxDonationReport(id: $id, period: $period, from: $from, to: $to) {
+    reports { value label }
+    canManage
+    periods { value label }
+    id
+    title
+    description
+    edited
+    builtin
+    period
+    from
+    to
+    csvUrl
+    kpis { label value sub }
+    columns { label num }
+    rows { cells bar }
+    note
+  }
+}

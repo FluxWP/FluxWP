@@ -1019,3 +1019,15 @@ html.flxa-dark .flxdn .flxdn-pill--failed { background: #3B1E1E; color: #FCA5A5;
 .flxdn-add2__consents .chk { margin: 0; }
 .flxdn-add2__proxy .chk, .flxdn-add2 .flxdn-card > .chk { margin-top: 10px; }
 .flxdn-reqdone { margin-bottom: 18px; }
+
+/* 2.44.0: Settings */
+.flxdn-card--narrow { max-width: 760px; }
+.flxdn-colorrow { display: inline-flex; gap: 8px; align-items: center; }
+.flxdn-colorrow input[type="color"] { width: 38px; height: 34px; padding: 2px; border: 1px solid var(--flxdn-line); border-radius: 8px; background: transparent; cursor: pointer; }
+.flxdn-colorrow input[type="text"] { width: 120px; }
+.flxdn-brandlogo { max-width: 72px; max-height: 72px; border-radius: 12px; }
+.flxdn-num { width: 90px; }
+/* The shell resets buttons (.flux-root button); the classic buttons printed by PHP keep theirs. */
+.flux-root .flxdn-island .flxb-btn { background: var(--flxb-surface); }
+.flux-root .flxdn-island .flxb-btn--primary { background: var(--flxb-primary); }
+.flux-root .flxdn-island .flxb-btn--primary:hover { background: var(--flxb-dark); }

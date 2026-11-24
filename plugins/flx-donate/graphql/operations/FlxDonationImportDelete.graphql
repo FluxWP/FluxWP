@@ -1,0 +1,3 @@
+mutation FlxDonationImportDelete($input: FlxDonationImportDeleteInput!) {
+  flxDonationImportDelete(input: $input) { message errors { message field } }
+}

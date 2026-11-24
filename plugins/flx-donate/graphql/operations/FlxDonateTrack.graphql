@@ -1,0 +1,35 @@
+query FlxDonateTrack($filter: FlxDonationTrackFilter, $page: Int) {
+  flxDonationTrack(filter: $filter, page: $page) {
+    title
+    partnerLabel
+    filesLabel
+    canEdit
+    actions { label url primary }
+    tabs { value label count }
+    types { value label }
+    places { value label }
+    steps { value label }
+    columns
+    items {
+      databaseId
+      code
+      option
+      beneficiary
+      phone
+      donationId
+      donationUrl
+      donor
+      pay { label tone }
+      target { date state label }
+      place
+      status
+      tone
+      files
+      cells
+    }
+    total
+    totalLabel
+    page
+    perPage
+  }
+}

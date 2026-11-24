@@ -1,0 +1,3 @@
+mutation FlxDonationImportStep($input: FlxDonationImportStepInput!) {
+  flxDonationImportStep(input: $input) { message done errors { message field } }
+}

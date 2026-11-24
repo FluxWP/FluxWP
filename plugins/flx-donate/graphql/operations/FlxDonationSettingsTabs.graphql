@@ -1,0 +1,3 @@
+mutation FlxDonationSettingsTabs($input: FlxDonationSettingsTabsInput!) {
+  flxDonationSettingsTabs(input: $input) { message errors { message field } }
+}

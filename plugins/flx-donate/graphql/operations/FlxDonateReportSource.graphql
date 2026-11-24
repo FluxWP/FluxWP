@@ -1,0 +1,11 @@
+query FlxDonateReportSource($id: String!) {
+  flxDonationReportSource(id: $id) {
+    id
+    title
+    json
+    edited
+    builtin
+    help { source label group metrics }
+    periods
+  }
+}

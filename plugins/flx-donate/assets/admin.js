@@ -258,23 +258,6 @@
 	}, true);
 })();
 
-/* 2.10.0: Kurban shares — bulk step shows the place picker for "give proxy"; select all. */
-(function () {
-	var step = document.querySelector('[data-flxb-kstep]');
-	var place = document.querySelector('[data-flxb-kplace]');
-	if (step && place) {
-		var sync = function () { place.hidden = step.value !== 'assign'; };
-		step.addEventListener('change', sync);
-		sync();
-	}
-	var all = document.querySelector('[data-flxb-kall]');
-	if (all) {
-		all.addEventListener('change', function () {
-			document.querySelectorAll('input[name="ids[]"][form="flxb-kbulk"]').forEach(function (c) { c.checked = all.checked; });
-		});
-	}
-})();
-
 /* 2.25.0: donation detail: sortable tables (click a column header), the "⋯" menu and its refund prompt. */
 (function () {
 	document.querySelectorAll('table[data-flxb-sortable]').forEach(function (table) {

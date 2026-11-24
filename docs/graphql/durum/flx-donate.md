@@ -1,4 +1,4 @@
-# flx-donate 2.43.0
+# flx-donate 2.44.0
 
 - Faz: 2
 - Durum: 👀
@@ -68,3 +68,5 @@ Lookup (a): HttpOnly çerez `flxb_lk` (adı `flxb_lookup` değil), kod 10 dk, ot
 | Hesabım `bekleyen-bagislar` | flx-donate | WooCommerce hesap şablonu | `flxMyDonations` |
 | `admin_post_flx_system_checks_dismiss` | flx-donate | Ortak sistem çubuğu | Flux Speed / Admin ekranı |
 | `[flx_credit]` + blok `flx/credit` | flx-donate | Marka kopyası, bağış verisi değil | Bu paketin şemasına girmez |
+
+2.44.0: Takip (`Track.tsx`; start `track?status=&place=&type=&paid=&due=&s=&paged=`, `item?id=N`; PHP `FLXB_Admin::preload_track()`, filtre `track_filter()`), Excel'den içe aktarma (`Import.tsx`; start `import?id=`), Raporlar (`Reports.tsx`; start `reports?id=&period=&from=&to=` ya da `report-edit?id=`; PHP `report_start()`), Ayarlar (`Settings.tsx`; start `settings?tab=`). Servisler `FLXB_Admin_Track_Service`, `FLXB_Admin_Import_Service`, `FLXB_Admin_Reports_Service`, `FLXB_Admin_Settings_Service`. Query `flxDonationTrack(filter, page)`, `flxDonationTrackItem(id)`, `flxDonationImport(id)`, `flxDonationReport(id, period, from, to)`, `flxDonationReportSource(id)`, `flxDonationSettings`; mutation'lar CHANGELOG'da. Kayıt sayfasının ek sekmeleri ve Ayarlar'da diğer modüllerin sekmeleri (`flxb_settings_tabs` + `flxb_settings_tab_<id>`, sistem kontrolü, iyzico kutusu) PHP'nin gizli bastığı "ada"lar; ekran yerine taşır, klasik CSS yalnız o sayfalarda yüklenir. Kalan admin-post: dosya yükleme (`flxb_track_file_upload`, `flxb_import_upload`), rapor CSV (`flxb_report_csv`). Klasik ayar/backfill işleyicileri silindi.

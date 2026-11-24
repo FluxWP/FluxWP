@@ -29,7 +29,7 @@ const NONE = '';
 const PAGE = 'admin.php?page=flxb-partners';
 
 /** A redirect notice in the start page (notice=ok:<text>) shows once; the address loses flxb_msg. */
-function useStartNotice(query: string) {
+export function useStartNotice(query: string) {
   const host = useHost();
   const { told } = useDonate();
   useEffect(() => {

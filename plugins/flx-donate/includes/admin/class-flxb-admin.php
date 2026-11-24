@@ -29,7 +29,7 @@ final class FLXB_Admin {
 	const SLUG = 'flxb-dashboard';
 
 	/** 2.36.0: pages that are React screens on the Flux GraphQL shell (page slug => start page). */
-	const SCREENS = array( 'flxb-dashboard', 'flxb-donations', 'flxb-donors', 'flxb-subscriptions', 'flxb-types', 'flxb-add', 'flxb-partners' );
+	const SCREENS = array( 'flxb-dashboard', 'flxb-donations', 'flxb-donors', 'flxb-subscriptions', 'flxb-types', 'flxb-add', 'flxb-partners', 'flxb-track', 'flxb-import', 'flxb-reports', 'flxb-settings' );
 
 	/** Rows of the first list page (the screen's PER). */
 	const LIST_PER = 25;
@@ -45,8 +45,6 @@ final class FLXB_Admin {
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'assets' ) );
 		add_action( 'admin_post_flxb_csv', array( 'FLXB_Page_Donations', 'csv' ) );
 		add_action( 'admin_post_flxb_receipt', array( 'FLXB_Page_Donations', 'receipt' ) );
-		add_action( 'admin_post_flxb_settings_save', array( 'FLXB_Page_Settings', 'save' ) );
-		add_action( 'admin_post_flxb_backfill', array( 'FLXB_Page_Settings', 'backfill' ) );
 		add_action( 'admin_post_flxb_donor_save', array( 'FLXB_Page_Donors', 'save' ) );
 		FLXB_Approval::init();
 		FLXB_Page_Track::init();
@@ -189,8 +187,12 @@ final class FLXB_Admin {
 		if ( 'flxb-add' === self::q( 'page' ) && function_exists( 'flx_phone_enqueue' ) ) {
 			flx_phone_enqueue(); // 2.42.0: the phone fields of the Add donation screen.
 		}
-		if ( function_exists( 'flx_admin_screen_current' ) && in_array( flx_admin_screen_current(), self::SCREENS, true ) && '' === self::q( 'donation' ) && '' === self::q( 'edit' ) ) {
-			return; // The Flux GraphQL screen shell loads the React screen; the donation page and the type editor keep the classic styles for the boxes printed by PHP.
+		if ( 'flxb-settings' === self::q( 'page' ) ) {
+			wp_enqueue_media(); // 2.44.0: the logo of Settings › Organisation.
+		}
+		$islands = '' !== self::q( 'donation' ) || '' !== self::q( 'edit' ) || ( 'flxb-track' === self::q( 'page' ) && '' !== self::q( 'item' ) ) || ( 'flxb-settings' === self::q( 'page' ) && FLXB_Admin_Settings_Service::island_tab() );
+		if ( function_exists( 'flx_admin_screen_current' ) && in_array( flx_admin_screen_current(), self::SCREENS, true ) && ! $islands ) {
+			return; // The Flux GraphQL screen shell loads the React screen; the donation page, the type editor, a tracked item and the module tabs of Settings keep the classic styles for what PHP prints.
 		}
 		wp_enqueue_style( 'flxb-admin', FLXB_URL . 'assets/admin.css', array(), self::ver( 'admin.css' ) );
 		wp_add_inline_style( 'flxb-admin', flxb_brand_css( '.flxb' ) );
@@ -491,6 +493,10 @@ final class FLXB_Admin {
 			'flxb-types'         => array( 'types', 'preload_types' ),
 			'flxb-add'           => array( 'add', 'preload_add' ),
 			'flxb-partners'      => array( 'partners', 'preload_partners' ),
+			'flxb-track'         => array( 'track', 'preload_track' ),
+			'flxb-import'        => array( 'import', 'preload_import' ),
+			'flxb-reports'       => array( 'reports', 'preload_reports' ),
+			'flxb-settings'      => array( 'settings', 'preload_settings' ),
 		);
 		$enabled = array( 'flxb-donors' => 'donors_screen_enabled' );
 		foreach ( $screens as $page => $s ) {
@@ -601,6 +607,54 @@ final class FLXB_Admin {
 			if ( 'partners' !== $first[0] || $q ) {
 				$opts['startPage'] = $first[0] . ( $q ? '?' . http_build_query( $q, '', '&', PHP_QUERY_RFC3986 ) : '' );
 			}
+			return $opts;
+		}
+		// 2.44.0: Tracking: ?item= opens the item, the list keeps its filter arguments.
+		if ( 'flxb-track' === $page && 'flxb-track' === self::q( 'page' ) ) {
+			$item = absint( self::q( 'item', '0' ) );
+			$q    = $item ? array( 'id' => $item ) : self::page_args( array( 'status', 'place', 'type', 'paid', 'due', 's', 'paged' ) );
+			$n    = self::redirect_notice();
+			if ( $n && '' !== $n[1] ) {
+				$q['notice'] = ( 'ok' === $n[0] ? 'ok:' : 'error:' ) . $n[1];
+			}
+			if ( $item || $q ) {
+				$opts['startPage'] = ( $item ? 'item' : 'track' ) . '?' . http_build_query( $q, '', '&', PHP_QUERY_RFC3986 );
+			}
+			return $opts;
+		}
+		// 2.44.0: Import: ?import= opens that import (preview or run).
+		if ( 'flxb-import' === $page && 'flxb-import' === self::q( 'page' ) ) {
+			$q   = array_filter( array( 'id' => sanitize_key( self::q( 'import' ) ) ), static fn( string $v ): bool => '' !== $v );
+			$n   = self::redirect_notice();
+			if ( $n && '' !== $n[1] ) {
+				$q['notice'] = ( 'ok' === $n[0] ? 'ok:' : 'error:' ) . $n[1];
+			}
+			if ( $q ) {
+				$opts['startPage'] = 'import?' . http_build_query( $q, '', '&', PHP_QUERY_RFC3986 );
+			}
+			return $opts;
+		}
+		// 2.44.0: Reports: ?r=&period=&from=&to= the report, ?edit= / ?new=1 the JSON editor.
+		if ( 'flxb-reports' === $page && 'flxb-reports' === self::q( 'page' ) ) {
+			$first = self::report_start( $_GET ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$q     = array_filter( $first[1], static fn( string $v ): bool => '' !== $v );
+			$n     = self::redirect_notice();
+			if ( $n && '' !== $n[1] ) {
+				$q['notice'] = ( 'ok' === $n[0] ? 'ok:' : 'error:' ) . $n[1];
+			}
+			if ( 'reports' !== $first[0] || $q ) {
+				$opts['startPage'] = $first[0] . ( $q ? '?' . http_build_query( $q, '', '&', PHP_QUERY_RFC3986 ) : '' );
+			}
+			return $opts;
+		}
+		// 2.44.0: Settings: ?tab= opens that tab; a redirect notice (another module's tab saved) goes with it.
+		if ( 'flxb-settings' === $page && 'flxb-settings' === self::q( 'page' ) ) {
+			$q = array( 'tab' => FLXB_Admin_Settings_Service::current_tab() );
+			$n = self::redirect_notice();
+			if ( $n && '' !== $n[1] ) {
+				$q['notice'] = ( 'ok' === $n[0] ? 'ok:' : 'error:' ) . $n[1];
+			}
+			$opts['startPage'] = 'settings?' . http_build_query( $q, '', '&', PHP_QUERY_RFC3986 );
 			return $opts;
 		}
 		// A list link with filters (dashboard bars, bookmarks) starts the list with them.
@@ -816,6 +870,124 @@ final class FLXB_Admin {
 	}
 
 	/**
+	 * The tracking list filter of the address, as the screen sends it (packages/modules/src/donate/Track.tsx
+	 * trackFilter()): only set keys.
+	 *
+	 * @param array<string,mixed> $query Query arguments.
+	 * @return array<string,string|int|bool>
+	 */
+	public static function track_filter( array $query ) {
+		$g = static function ( $k ) use ( $query ) {
+			return isset( $query[ $k ] ) && is_scalar( $query[ $k ] ) ? sanitize_text_field( (string) $query[ $k ] ) : '';
+		};
+		$f  = array();
+		$st = sanitize_key( $g( 'status' ) );
+		if ( isset( FLXB_Track::statuses()[ $st ] ) ) {
+			$f['status'] = $st;
+		}
+		if ( '' !== trim( $g( 'place' ) ) ) {
+			$f['place'] = trim( $g( 'place' ) );
+		}
+		if ( absint( $g( 'type' ) ) ) {
+			$f['typeId'] = absint( $g( 'type' ) );
+		}
+		if ( in_array( $g( 'paid' ), array( '0', '1' ), true ) ) {
+			$f['paid'] = $g( 'paid' );
+		}
+		if ( '' !== $g( 'due' ) && '0' !== $g( 'due' ) ) {
+			$f['due'] = true;
+		}
+		if ( '' !== trim( $g( 's' ) ) ) {
+			$f['search'] = trim( $g( 's' ) );
+		}
+		return $f;
+	}
+
+	/**
+	 * First query of Tracking (packages/modules/src/donate/Track.tsx): ?item= the item, else the list.
+	 *
+	 * @param mixed $query Query arguments of the page.
+	 */
+	public static function preload_track( $query = array() ) {
+		$query = is_array( $query ) ? $query : array();
+		$item  = isset( $query['item'] ) && is_scalar( $query['item'] ) ? absint( $query['item'] ) : 0;
+		if ( $item ) {
+			FLXB_Admin_Track_Service::want_islands(); // the extra tabs are printed with the page
+			return array( array( 'FlxDonateTrackItem', array( 'id' => $item ) ) );
+		}
+		$f    = self::track_filter( $query );
+		$page = isset( $query['paged'] ) && is_scalar( $query['paged'] ) ? max( 1, absint( $query['paged'] ) ) : 1;
+		$vars = array( 'page' => $page );
+		if ( $f ) {
+			$vars['filter'] = $f;
+		}
+		return array( array( 'FlxDonateTrack', $vars ) );
+	}
+
+	/**
+	 * The Reports page of an address: [ 'reports', {id, period, from, to} ] or [ 'report-edit', {id} ]
+	 * (id empty = a new report), as packages/modules/src/donate/Reports.tsx reads it.
+	 *
+	 * @param mixed $query Query arguments.
+	 * @return array{0: string, 1: array<string,string>}
+	 */
+	public static function report_start( $query ) {
+		$query = is_array( $query ) ? $query : array();
+		$g     = static function ( $k ) use ( $query ) {
+			return isset( $query[ $k ] ) && is_scalar( $query[ $k ] ) ? sanitize_text_field( wp_unslash( (string) $query[ $k ] ) ) : '';
+		};
+		if ( flxb_can_manage() && ( '' !== $g( 'edit' ) || '1' === $g( 'new' ) ) ) {
+			return array( 'report-edit', array( 'id' => sanitize_key( $g( 'edit' ) ) ) );
+		}
+		$period = sanitize_key( $g( 'period' ) );
+		$day    = '/^\d{4}-\d{2}-\d{2}$/';
+		$custom = 'custom' === $period;
+		return array(
+			'reports',
+			array(
+				'id'     => sanitize_key( $g( 'r' ) ),
+				'period' => $period,
+				'from'   => $custom && preg_match( $day, $g( 'from' ) ) ? $g( 'from' ) : '',
+				'to'     => $custom && preg_match( $day, $g( 'to' ) ) ? $g( 'to' ) : '',
+			),
+		);
+	}
+
+	/**
+	 * First query of Reports (packages/modules/src/donate/Reports.tsx).
+	 *
+	 * @param mixed $query Query arguments of the page.
+	 */
+	public static function preload_reports( $query = array() ) {
+		$s = self::report_start( $query );
+		if ( 'report-edit' === $s[0] ) {
+			return array( array( 'FlxDonateReportSource', array( 'id' => $s[1]['id'] ) ) );
+		}
+		return array( array( 'FlxDonateReport', $s[1] ) );
+	}
+
+	/**
+	 * First query of Settings (packages/modules/src/donate/Settings.tsx); the tab of another module is printed
+	 * with the page (an island).
+	 */
+	public static function preload_settings() {
+		if ( 'flxb-settings' === self::q( 'page' ) && is_admin() ) {
+			FLXB_Admin_Settings_Service::want_islands();
+		}
+		return array( array( 'FlxDonateSettings', array() ) );
+	}
+
+	/**
+	 * First query of Import from Excel (packages/modules/src/donate/Import.tsx).
+	 *
+	 * @param mixed $query Query arguments of the page.
+	 */
+	public static function preload_import( $query = array() ) {
+		$id = is_array( $query ) && isset( $query['import'] ) && is_scalar( $query['import'] ) ? sanitize_key( (string) $query['import'] ) : '';
+		return array( array( 'FlxDonateImport', array( 'id' => $id ) ) );
+	}
+
+	/**
 	 * First query of Add donation (packages/modules/src/donate/Add.tsx); ?donor= prefills the donor.
 	 *
 	 * @param mixed $query Query arguments of the page.
@@ -867,6 +1039,8 @@ final class FLXB_Admin {
 			flx_admin_screen_page();
 			FLXB_Admin_Detail_Service::print_islands();
 			FLXB_Admin_Types_Service::print_islands();
+			FLXB_Admin_Track_Service::print_islands();
+			FLXB_Admin_Settings_Service::print_islands();
 			return;
 		}
 		echo '<div class="wrap"><div class="notice notice-error"><p>' . esc_html__( 'The data could not be loaded.', 'flx-donate' ) . ' (Flux GraphQL)' . '</p></div></div>';

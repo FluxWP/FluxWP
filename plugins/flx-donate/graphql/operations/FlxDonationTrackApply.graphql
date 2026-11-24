@@ -1,0 +1,3 @@
+mutation FlxDonationTrackApply($input: FlxDonationTrackApplyInput!) {
+  flxDonationTrackApply(input: $input) { message warning errors { message field } }
+}

@@ -3,7 +3,7 @@ import { createContext, useContext, type MouseEvent, type ReactNode } from 'reac
 import type { FlxDonationListFilter } from '@fluxwp/graphql/types';
 import type { Translate, TranslateN } from './i18n';
 
-export type Page = 'dashboard' | 'list' | 'detail' | 'donors' | 'donor' | 'subscriptions' | 'types' | 'type' | 'add' | 'partners' | 'settle' | 'partner';
+export type Page = 'dashboard' | 'list' | 'detail' | 'donors' | 'donor' | 'subscriptions' | 'types' | 'type' | 'add' | 'partners' | 'settle' | 'partner' | 'track' | 'item' | 'import' | 'reports' | 'report-edit' | 'settings';
 export type Notice = { kind: 'ok' | 'error'; text: string };
 
 export interface Ctx {

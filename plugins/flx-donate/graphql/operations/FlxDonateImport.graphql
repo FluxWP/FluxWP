@@ -1,0 +1,36 @@
+query FlxDonateImport($id: String!) {
+  flxDonationImport(id: $id) {
+    id
+    state
+    file
+    uploadUrl
+    uploadNonce
+    earlier { id file state sub }
+    preview {
+      stats { label value accent }
+      summary { label value accent }
+      byRef { name rows units amount }
+      confirm
+      ready
+      runLabel
+      fields { value label }
+      columns { col header field example }
+      types { value label }
+      options { type paid keepDate nodate nodateDay }
+      matches { group title choices { value label } rows { key raw count to } }
+      rows { n who sub date dated type quantity amount status checks { label tone } }
+      more
+    }
+    run {
+      done
+      pos
+      total
+      percent
+      progress
+      kpis { label value accent }
+      errors { n name msg }
+      nextUrl
+      nextLabel
+    }
+  }
+}

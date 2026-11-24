@@ -19,6 +19,10 @@ import { Types } from './Types';
 import { TypeForm } from './TypeForm';
 import { Add } from './Add';
 import { Partner, Partners } from './Partners';
+import { Track, TrackItem } from './Track';
+import { Import } from './Import';
+import { Reports } from './Reports';
+import { Settings } from './Settings';
 import './donate.css';
 
 export function DonateScreen() {
@@ -34,12 +38,12 @@ export function DonateScreen() {
 /**
  * host.startPage: 'dashboard', 'list[?<classic list arguments>]', 'detail?id=<donation id>',
  * 'donors[?s,kind,orderby,paged]', 'donor?id=<donor id>', 'subscriptions[?s,status,paged]' or
- * 'types[?view=archived&notice=<ok|error>:<text>]', 'type?id=<type id; 0 = new>[&notice=…]' 'add[?donor=<donor id>]', 'partners', 'settle[?kind,period,partner]' or 'partner?id=<partner id; 0 = new>'.
+ * 'types[?view=archived&notice=<ok|error>:<text>]', 'type?id=<type id; 0 = new>[&notice=…]' 'add[?donor=<donor id>]', 'partners', 'settle[?kind,period,partner]' or 'partner?id=<partner id; 0 = new>', 'track[?status,place,type,paid,due,s,paged]' 'item?id=<tracked item id>' 'import[?id=<import id>]', 'reports[?id,period,from,to]' 'report-edit?id=<report id; empty = new>' or 'settings?tab=<tab>[&notice=…]'.
  * The donation page takes a redirect notice too ('detail?id=N&notice=ok:<text>').
  */
 function parseStart(s?: string): { page: Page; query: string } {
   const [head = '', query = ''] = (s ?? '').split('?', 2);
-  const pages: Page[] = ['list', 'detail', 'donors', 'donor', 'subscriptions', 'types', 'type', 'add', 'partners', 'settle', 'partner'];
+  const pages: Page[] = ['list', 'detail', 'donors', 'donor', 'subscriptions', 'types', 'type', 'add', 'partners', 'settle', 'partner', 'track', 'item', 'import', 'reports', 'report-edit', 'settings'];
   return (pages as string[]).includes(head) ? { page: head as Page, query } : { page: 'dashboard', query: '' };
 }
 
@@ -93,6 +97,16 @@ function Donate() {
         <Partners page={start.page} query={start.query} notice={box} />
       ) : start.page === 'partner' ? (
         <Partner id={Number(new URLSearchParams(start.query).get('id')) || 0} query={start.query} notice={box} />
+      ) : start.page === 'track' ? (
+        <Track query={start.query} notice={box} />
+      ) : start.page === 'item' ? (
+        <TrackItem id={Number(new URLSearchParams(start.query).get('id')) || 0} query={start.query} notice={box} />
+      ) : start.page === 'reports' || start.page === 'report-edit' ? (
+        <Reports page={start.page} query={start.query} notice={box} />
+      ) : start.page === 'settings' ? (
+        <Settings query={start.query} notice={box} />
+      ) : start.page === 'import' ? (
+        <Import query={start.query} notice={box} />
       ) : start.page === 'add' ? (
         <Add query={start.query} notice={box} />
       ) : start.page === 'types' ? (
