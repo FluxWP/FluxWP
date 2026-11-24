@@ -624,7 +624,7 @@ final class FLXB_Admin {
 		}
 		// 2.44.0: Import: ?import= opens that import (preview or run).
 		if ( 'flxb-import' === $page && 'flxb-import' === self::q( 'page' ) ) {
-			$q   = array_filter( array( 'id' => sanitize_key( self::q( 'import' ) ) ), 'strlen' );
+			$q   = array_filter( array( 'id' => sanitize_key( self::q( 'import' ) ) ), static fn( string $v ): bool => '' !== $v );
 			$n   = self::redirect_notice();
 			if ( $n && '' !== $n[1] ) {
 				$q['notice'] = ( 'ok' === $n[0] ? 'ok:' : 'error:' ) . $n[1];
@@ -637,7 +637,7 @@ final class FLXB_Admin {
 		// 2.44.0: Reports: ?r=&period=&from=&to= the report, ?edit= / ?new=1 the JSON editor.
 		if ( 'flxb-reports' === $page && 'flxb-reports' === self::q( 'page' ) ) {
 			$first = self::report_start( $_GET ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			$q     = array_filter( $first[1], 'strlen' );
+			$q     = array_filter( $first[1], static fn( string $v ): bool => '' !== $v );
 			$n     = self::redirect_notice();
 			if ( $n && '' !== $n[1] ) {
 				$q['notice'] = ( 'ok' === $n[0] ? 'ok:' : 'error:' ) . $n[1];

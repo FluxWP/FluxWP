@@ -135,7 +135,7 @@ final class FLXB_Admin_Settings_Service {
 			}
 		}
 		$b    = flxb_brand();
-		$logo = ! empty( $s['logo_id'] ) ? wp_get_attachment_image_url( (int) self::s( $s['logo_id'] ?? '' ), 'medium' ) : '';
+		$logo = ! empty( $s['logo_id'] ) ? wp_get_attachment_image_url( (int) self::s( $s['logo_id'] ), 'medium' ) : '';
 
 		/** @var wpdb $wpdb */
 		global $wpdb;
