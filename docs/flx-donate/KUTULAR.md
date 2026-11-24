@@ -1,4 +1,4 @@
-# Flux Donate · Bağış detayında kutular (2.34.0)
+# Flux Donate · Bağış detayında kutular (2.35.0)
 
 Bağış detay sayfası WooCommerce sipariş ekranı gibi kutulardan oluşur; görünüm Flux kartıdır.
 

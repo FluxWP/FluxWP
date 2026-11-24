@@ -97,40 +97,67 @@ final class FLXB_Track {
 		);
 	}
 
-	/** Labels of a type (0 = the site's own words, or the only tracked type's). */
-	public static function labels( $type_id = 0 ) {
+	/**
+	 * Labels of a type (0 = the site's own words, or the only tracked type's).
+	 *
+	 * 2.34.0: $lang (language code) gives the words for an owner who gave in another language. The plain
+	 * labels (site option `flxb_track_labels`, type meta `labels`) are in the site's language; other languages
+	 * take the built-in words in that language (call inside flxb_in_lang()) plus `flxb_track_labels_i18n` /
+	 * type meta `labels_i18n` ({ lang: { key: text } }). Empty $lang = as before.
+	 */
+	public static function labels( $type_id = 0, $lang = '' ) {
 		static $cache = array();
 		$type_id = (int) $type_id;
+		$lang    = FLXB_Lang::clean( $lang );
+		$lang    = FLXB_Lang::site() === $lang ? '' : $lang;
 		if ( ! $type_id ) {
 			$tracked = self::tracked_types();
 			if ( 1 === count( $tracked ) ) {
 				$type_id = (int) $tracked[0]['id'];
 			}
 		}
-		if ( isset( $cache[ $type_id ] ) ) {
-			return $cache[ $type_id ];
+		$ck = $type_id . '|' . $lang . '|' . determine_locale();
+		if ( isset( $cache[ $ck ] ) ) {
+			return $cache[ $ck ];
 		}
 		$l    = self::default_labels();
-		$site = get_option( 'flxb_track_labels', array() );
-		foreach ( is_array( $site ) ? $site : array() as $k => $v ) {
-			if ( isset( $l[ $k ] ) && '' !== trim( (string) $v ) ) {
-				$l[ $k ] = (string) $v;
-			}
+		$t    = $type_id ? FLXB_Types::get( $type_id ) : null;
+		$sets = array();
+		if ( '' === $lang ) {
+			$sets[] = get_option( 'flxb_track_labels', array() );
+			$sets[] = $t ? (array) FLXB_Types::meta( $t, 'labels', array() ) : array();
+		} else {
+			$sets[] = ( (array) get_option( 'flxb_track_labels_i18n', array() ) )[ $lang ] ?? array();
+			$sets[] = $t ? ( (array) FLXB_Types::meta( $t, 'labels_i18n', array() ) )[ $lang ] ?? array() : array();
 		}
-		if ( $type_id && ( $t = FLXB_Types::get( $type_id ) ) ) {
-			foreach ( (array) FLXB_Types::meta( $t, 'labels', array() ) as $k => $v ) {
+		foreach ( $sets as $set ) {
+			foreach ( is_array( $set ) ? $set : array() as $k => $v ) {
 				if ( isset( $l[ $k ] ) && '' !== trim( (string) $v ) ) {
 					$l[ $k ] = (string) $v;
 				}
 			}
 		}
-		$cache[ $type_id ] = (array) apply_filters( 'flxb_track_labels', $l, $type_id );
-		return $cache[ $type_id ];
+		$cache[ $ck ] = (array) apply_filters( 'flxb_track_labels', $l, $type_id, $lang );
+		return $cache[ $ck ];
 	}
 
-	public static function label( $key, $type_id = 0 ) {
-		$l = self::labels( $type_id );
-		return (string) apply_filters( 'flxb_track_label', $l[ $key ] ?? $key, $key, (int) $type_id );
+	/** 2.34.0: clean { lang: { key: text } } from a preset or the API. */
+	public static function clean_labels_i18n( $raw ) {
+		$out = array();
+		foreach ( (array) $raw as $lang => $set ) {
+			$lang = FLXB_Lang::clean( $lang );
+			$set  = '' !== $lang && is_array( $set ) ? self::clean_labels( $set ) : array();
+			if ( $set ) {
+				$out[ $lang ] = $set;
+			}
+		}
+		ksort( $out );
+		return $out;
+	}
+
+	public static function label( $key, $type_id = 0, $lang = '' ) {
+		$l = self::labels( $type_id, $lang );
+		return (string) apply_filters( 'flxb_track_label', $l[ $key ] ?? $key, $key, (int) $type_id, (string) $lang );
 	}
 
 	/** Clean a labels array from a form or a preset. */
@@ -197,6 +224,7 @@ final class FLXB_Track {
 			'file'      => __( 'File added', 'flx-donate' ),
 			'file_del'  => __( 'File removed', 'flx-donate' ),
 			'file_sent' => __( 'File sent to owner', 'flx-donate' ),
+			'msg_sent'  => __( 'Message sent to owner', 'flx-donate' ),
 			'edited'    => __( 'Details changed', 'flx-donate' ),
 			'note'      => __( 'Note', 'flx-donate' ),
 			'imported'  => __( 'Imported', 'flx-donate' ),
@@ -721,11 +749,80 @@ final class FLXB_Track {
 		return function_exists( 'flxc_send' ) && function_exists( 'flxc_ensure_chat' ) && function_exists( 'flxc_default_connection' );
 	}
 
-	public static function file_caption( array $it ) {
-		$tpl = self::label( 'caption', (int) $it['type_id'] );
-		$t   = sprintf( $tpl, (string) $it['beneficiary_name'], (string) $it['code'] );
-		$t   = (string) apply_filters( 'flxb_kurban_video_caption', $t, $it ); // before 2.11
-		return (string) apply_filters( 'flxb_track_file_caption', $t, $it );
+	/**
+	 * Text sent with a file. 2.34.0: in the owner's language ($lang, default the gift's); filters get the
+	 * language as the third argument and run inside flxb_in_lang().
+	 */
+	public static function file_caption( array $it, $lang = null ) {
+		$lang = null === $lang ? FLXB_Lang::of_item( $it ) : (string) $lang;
+		return (string) FLXB_Lang::run(
+			$lang,
+			static function () use ( $it, $lang ) {
+				$tpl = self::label( 'caption', (int) $it['type_id'], $lang );
+				$t   = sprintf( $tpl, (string) $it['beneficiary_name'], (string) $it['code'] );
+				$t   = (string) apply_filters( 'flxb_kurban_video_caption', $t, $it ); // before 2.11
+				return (string) apply_filters( 'flxb_track_file_caption', $t, $it, $lang );
+			}
+		);
+	}
+
+	/** Open (or find) the owner's WhatsApp chat. */
+	private static function owner_chat( array $it, $phone = '' ) {
+		if ( ! self::can_send() ) {
+			return new WP_Error( 'flxb_wa', __( 'Flux Chat is needed to send over WhatsApp.', 'flx-donate' ) );
+		}
+		$phone = function_exists( 'flxc_normalize_phone' ) ? flxc_normalize_phone( '' !== (string) $phone ? $phone : self::owner_phone( $it ) ) : preg_replace( '/\D/', '', (string) $phone );
+		if ( ! $phone ) {
+			return new WP_Error( 'flxb_phone', __( 'There is no phone number for the owner.', 'flx-donate' ) );
+		}
+		$conn = (array) apply_filters( 'flxb_track_connection', flxc_default_connection(), $it );
+		if ( ! $conn || empty( $conn['id'] ) ) {
+			return new WP_Error( 'flxb_wa', __( 'There is no WhatsApp connection.', 'flx-donate' ) );
+		}
+		$chat = flxc_ensure_chat( $conn['id'], $phone . '@s.whatsapp.net', array( 'name' => (string) $it['beneficiary_name'] ) );
+		if ( ! $chat ) {
+			return new WP_Error( 'flxb_wa', __( 'The WhatsApp chat could not be opened.', 'flx-donate' ) );
+		}
+		return array( $chat, $phone );
+	}
+
+	/**
+	 * 2.34.0: send a text to the owner over WhatsApp (Flux Chat), in the owner's language.
+	 * $text is a string or a callable( array $it, string $lang ): string that runs inside flxb_in_lang().
+	 * Logged as "msg_sent" with $o['event'] (e.g. an add-on's notice key).
+	 *
+	 * @param array $o phone, event, source.
+	 * @return true|WP_Error
+	 */
+	public static function send_message( $id, $text, array $o = array() ) {
+		$it = self::get( $id );
+		if ( ! $it ) {
+			return new WP_Error( 'flxb_item', __( 'Item not found.', 'flx-donate' ) );
+		}
+		$lang = FLXB_Lang::of_item( $it );
+		$body = is_callable( $text ) ? (string) FLXB_Lang::run( $lang, static function () use ( $text, $it, $lang ) { return call_user_func( $text, $it, $lang ); } ) : (string) $text;
+		if ( '' === trim( $body ) ) {
+			return new WP_Error( 'flxb_text', __( 'The message is empty.', 'flx-donate' ) );
+		}
+		$c = self::owner_chat( $it, (string) ( $o['phone'] ?? '' ) );
+		if ( is_wp_error( $c ) ) {
+			return $c;
+		}
+		list( $chat, $phone ) = $c;
+		$r = flxc_send(
+			$chat,
+			array(
+				'type'    => 'text',
+				'body'    => $body,
+				'source'  => sanitize_key( (string) ( $o['source'] ?? 'flxb-track' ) ),
+				'user_id' => get_current_user_id(),
+			)
+		);
+		if ( is_wp_error( $r ) ) {
+			return $r;
+		}
+		self::log( $id, 'msg_sent', '', array( 'to' => $phone, 'event' => sanitize_key( (string) ( $o['event'] ?? '' ) ), 'lang' => $lang ) );
+		return true;
 	}
 
 	/** Send a kept file to the owner over WhatsApp (Flux Chat). */
@@ -734,25 +831,15 @@ final class FLXB_Track {
 		if ( ! $it ) {
 			return new WP_Error( 'flxb_item', __( 'Item not found.', 'flx-donate' ) );
 		}
-		if ( ! self::can_send() ) {
-			return new WP_Error( 'flxb_wa', __( 'Flux Chat is needed to send over WhatsApp.', 'flx-donate' ) );
-		}
-		$phone = function_exists( 'flxc_normalize_phone' ) ? flxc_normalize_phone( '' !== (string) $phone ? $phone : self::owner_phone( $it ) ) : preg_replace( '/\D/', '', (string) $phone );
-		if ( ! $phone ) {
-			return new WP_Error( 'flxb_phone', __( 'There is no phone number for the owner.', 'flx-donate' ) );
-		}
 		$path = get_attached_file( (int) $attachment_id );
 		if ( ! $path || ! is_readable( $path ) ) {
 			return new WP_Error( 'flxb_file', __( 'The file was not found.', 'flx-donate' ) );
 		}
-		$conn = flxc_default_connection();
-		if ( ! $conn ) {
-			return new WP_Error( 'flxb_wa', __( 'There is no WhatsApp connection.', 'flx-donate' ) );
+		$c = self::owner_chat( $it, (string) $phone );
+		if ( is_wp_error( $c ) ) {
+			return $c;
 		}
-		$chat = flxc_ensure_chat( $conn['id'], $phone . '@s.whatsapp.net', array( 'name' => (string) $it['beneficiary_name'] ) );
-		if ( ! $chat ) {
-			return new WP_Error( 'flxb_wa', __( 'The WhatsApp chat could not be opened.', 'flx-donate' ) );
-		}
+		list( $chat, $phone ) = $c;
 		$mime = (string) get_post_mime_type( (int) $attachment_id );
 		$kind = 0 === strpos( $mime, 'video/' ) ? 'video' : ( 0 === strpos( $mime, 'image/' ) ? 'image' : ( 0 === strpos( $mime, 'audio/' ) ? 'audio' : 'document' ) );
 		$r    = flxc_send(
@@ -834,6 +921,11 @@ function flxb_track_send_file( $item_id, $attachment_id, $phone = '' ) {
 }
 
 /** Write a line to an item's history. */
+/** 2.34.0: text to the owner of a tracked item in the owner's language (see FLXB_Track::send_message()). */
+function flxb_track_send_message( $item_id, $text, array $o = array() ) {
+	return FLXB_Track::send_message( (int) $item_id, $text, $o );
+}
+
 function flxb_track_log( $item_id, $event, $note = '', array $data = array() ) {
 	FLXB_Track::log( $item_id, $event, $note, $data );
 }

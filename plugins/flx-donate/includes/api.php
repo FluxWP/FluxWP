@@ -189,23 +189,74 @@ function flxb_split_names( $raw ) {
 }
 
 /**
- * Current proxy (vekâlet) text: array( version, text, created_at ) or null when none is set.
+ * Current proxy (vekâlet) text: array( version, text, created_at, lang ) or null when none is set.
  * Every edit in Settings › Kurban creates a new version; donations keep the version they accepted.
+ *
+ * 2.34.0: a version may carry the same text in other languages (`i18n` { lang: text }, written by a preset
+ * or flxb_proxy_text_save()). $lang null = the visitor's language, '' = the text as saved (site language).
+ * The version number is the same in every language; the consent keeps it and the language it was read in.
  */
-function flxb_proxy_text( $version = 0 ) {
+function flxb_proxy_text( $version = 0, $lang = null ) {
 	$all = get_option( 'flxb_proxy_texts', array() );
 	if ( ! is_array( $all ) || ! $all ) {
 		return null;
 	}
+	$entry = null;
 	if ( $version ) {
 		foreach ( $all as $v ) {
 			if ( (int) $v['version'] === (int) $version ) {
-				return $v;
+				$entry = $v;
+				break;
 			}
 		}
+	} else {
+		$entry = end( $all );
+	}
+	if ( ! is_array( $entry ) ) {
 		return null;
 	}
-	return end( $all );
+	$site          = FLXB_Lang::site();
+	$lang          = null === $lang ? FLXB_Lang::current() : FLXB_Lang::clean( $lang );
+	$entry['lang'] = $site;
+	$tr            = '' !== $lang && $lang !== $site ? trim( (string) ( ( (array) ( $entry['i18n'] ?? array() ) )[ $lang ] ?? '' ) ) : '';
+	if ( '' !== $tr ) {
+		$entry['text'] = $tr;
+		$entry['lang'] = $lang;
+	}
+	return (array) apply_filters( 'flxb_proxy_text', $entry, $lang );
+}
+
+/**
+ * 2.34.0: save a proxy text (site language) with its other languages. A new version is made only when the
+ * site-language text changes; otherwise the languages of the current version are updated.
+ *
+ * @param string $text Text in the site's language.
+ * @param array  $i18n { lang: text }.
+ * @return int Current version.
+ */
+function flxb_proxy_text_save( $text, array $i18n = array() ) {
+	$text = trim( sanitize_textarea_field( (string) $text ) );
+	$all  = (array) get_option( 'flxb_proxy_texts', array() );
+	$cur  = flxb_proxy_text( 0, '' );
+	$tr   = array();
+	foreach ( $i18n as $l => $v ) {
+		$l = FLXB_Lang::clean( $l );
+		$v = trim( sanitize_textarea_field( (string) $v ) );
+		if ( '' !== $l && '' !== $v && FLXB_Lang::site() !== $l ) {
+			$tr[ $l ] = $v;
+		}
+	}
+	if ( '' === $text ) {
+		return $cur ? (int) $cur['version'] : 0;
+	}
+	if ( ! $cur || $cur['text'] !== $text ) {
+		$all[] = array( 'version' => $cur ? (int) $cur['version'] + 1 : 1, 'text' => $text, 'i18n' => $tr, 'created_at' => flxb_now(), 'user' => get_current_user_id() );
+	} else {
+		$k                 = array_key_last( $all );
+		$all[ $k ]['i18n'] = $tr;
+	}
+	update_option( 'flxb_proxy_texts', array_values( $all ), false );
+	return (int) end( $all )['version'];
 }
 
 /**

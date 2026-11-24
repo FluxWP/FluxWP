@@ -725,7 +725,7 @@
 	});
 })();
 
-/* 2.34.0: movable boxes (FLXB_Boxes). Up/down walk the page order (main column, then side), so a box
+/* 2.35.0: movable boxes (FLXB_Boxes). Up/down walk the page order (main column, then side), so a box
    can cross columns on a phone too; on a wide screen the handle drags it anywhere. The layout is
    saved per user; the page prints it in that order next time. */
 (function () {

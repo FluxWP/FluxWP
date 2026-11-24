@@ -570,7 +570,7 @@ final class FLXB_Page_Donations {
 			$u = (int) $id ? get_userdata( (int) $id ) : null;
 			return $u ? $u->display_name : ( (int) $id ? '#' . (int) $id : __( 'System', 'flx-donate' ) );
 		};
-		// 2.34.0: the contacts and the history are separate movable boxes ($part); '' prints both side by side.
+		// 2.35.0: the contacts and the history are separate movable boxes ($part); '' prints both side by side.
 		$contacts = 'history' === $part ? array() : $contacts;
 		if ( 'contacts' === $part ) {
 			$receipts = array();
@@ -666,7 +666,7 @@ final class FLXB_Page_Donations {
 		self::hero( $d, $donor, $camp );
 		FLXB_Approval::card( $d, $sibs );
 		// 2.20.0: two columns: what was given and how it was paid on the left, people and actions on the right.
-		// 2.34.0: every card is a movable box (FLXB_Boxes); the WooCommerce order's other boxes come along.
+		// 2.35.0: every card is a movable box (FLXB_Boxes); the WooCommerce order's other boxes come along.
 		$cap = static function ( $fn ) {
 			ob_start();
 			$fn();

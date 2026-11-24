@@ -1,6 +1,6 @@
 <?php
 /**
- * 2.34.0: the WooCommerce order's boxes on the donation page.
+ * 2.35.0: the WooCommerce order's boxes on the donation page.
  *
  * Boxes that other plugins add to the WooCommerce order screen (LiteSpeed, Google for WooCommerce,
  * order attribution …) open on the donation page as Flux cards, so the order screen is not needed.

@@ -903,7 +903,7 @@ html.flxa-dark .flxb-add2__save { background: var(--flxa-accent-soft); border-co
 	.flxb-ppl-row__end { grid-column: 3; }
 }
 
-/* 2.34.0: movable boxes on the donation page (FLXB_Boxes): up/down, fold, drag on wide screens.
+/* 2.35.0: movable boxes on the donation page (FLXB_Boxes): up/down, fold, drag on wide screens.
    The buttons sit in the card's top-right corner; the card head leaves room for them. */
 .flxb-boxes .flxb-detail__side { position: static; }
 .flxb-boxes__col { align-content: start; min-height: 40px; }

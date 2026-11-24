@@ -27,7 +27,7 @@ final class FLXB_Preset {
 	}
 
 	public static function export_options( $o ) {
-		return array_merge( (array) $o, array( 'flxb_track_labels', 'flxb_track_early_days', 'flxb_categories' ) );
+		return array_merge( (array) $o, array( 'flxb_track_labels', 'flxb_track_labels_i18n', 'flxb_track_early_days', 'flxb_categories' ) );
 	}
 
 	/* ---------- Numeric ids for keyed things ---------- */

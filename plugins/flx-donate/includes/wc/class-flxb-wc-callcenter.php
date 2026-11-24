@@ -40,7 +40,8 @@ class FLXB_WC_Callcenter {
 	 *                 payment_method (flxb_havale | any gateway id | ''), payment_title,
 	 *                 status (pending | on-hold | completed), created_via, note, emails (bool, default false),
 	 *                 currency (2.10.0: ISO code, default the store currency),
-	 *                 ref_user_id (2.3.0: the referral, written as order meta `_flx_ref_user`).
+	 *                 ref_user_id (2.3.0: the referral, written as order meta `_flx_ref_user`),
+	 *                 lang (2.34.0: language code of the gift, e.g. "lv"; see FLXB_Lang).
 	 * @return WC_Order|WP_Error
 	 */
 	public static function create_order( array $a ) {
@@ -65,6 +66,11 @@ class FLXB_WC_Callcenter {
 			$order = wc_create_order( array( 'customer_id' => $cust, 'created_via' => sanitize_key( (string) ( $a['created_via'] ?? 'flxb-api' ) ) ) );
 			if ( is_wp_error( $order ) ) {
 				return $order;
+			}
+			/* 2.34.0: language of the gift (messages to the owner go in it). */
+			$lang = FLXB_Lang::clean( $a['lang'] ?? '' );
+			if ( '' !== $lang ) {
+				$order->update_meta_data( FLXB_Lang::ORDER_META, $lang );
 			}
 			/* 2.10.0: an order in another currency (e.g. a kurban request from an organisation abroad). */
 			if ( ! empty( $a['currency'] ) && preg_match( '/^[A-Za-z]{3}$/', (string) $a['currency'] ) ) {

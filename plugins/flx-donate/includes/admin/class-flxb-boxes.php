@@ -1,6 +1,6 @@
 <?php
 /**
- * 2.34.0: movable boxes on detail pages (like the WooCommerce order screen, in the Flux look).
+ * 2.35.0: movable boxes on detail pages (like the WooCommerce order screen, in the Flux look).
  *
  * A page passes its boxes to FLXB_Boxes::render( $screen, $boxes ). Each box is one card in the
  * main or the side column; the person can move it up or down (across the columns too), fold it,
