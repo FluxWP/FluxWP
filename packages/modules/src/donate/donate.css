@@ -1004,3 +1004,9 @@ html.flxa-dark .flxdn .flxdn-pill--failed { background: #3B1E1E; color: #FCA5A5;
 	.flxdn .flxdn-filters__main .flxdn-filters__field { flex: 1 1 120px; }
 	.flxdn .flxdn-filters__main .flxdn-filters__field select { width: 100%; }
 }
+
+/* 2.40.0: donation types */
+.flxdn-card--samples { max-width: 760px; }
+.flxdn-filters--flat { margin: 0; }
+.flxdn .flxdn-table--types .flxdn-col-act .flxdn-actions { flex-wrap: nowrap; justify-content: flex-end; margin-top: 0; }
+.flxdn-table--types .flxdn-sub2 code { white-space: nowrap; }

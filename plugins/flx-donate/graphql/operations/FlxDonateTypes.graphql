@@ -1,0 +1,26 @@
+query FlxDonateTypes($archived: Boolean) {
+  flxDonationTypeAdminList(archived: $archived) {
+    canManage
+    newUrl
+    samples { value label }
+    items {
+      databaseId
+      title
+      stateLabel
+      tone
+      category
+      shortcode
+      prices
+      flags
+      hasGoal
+      percent
+      progress
+      donors
+      dates
+      forms
+      status
+      listUrl
+      editUrl
+    }
+  }
+}

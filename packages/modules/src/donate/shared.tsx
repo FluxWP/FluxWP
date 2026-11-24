@@ -3,7 +3,7 @@ import { createContext, useContext, type MouseEvent, type ReactNode } from 'reac
 import type { FlxDonationListFilter } from '@fluxwp/graphql/types';
 import type { Translate, TranslateN } from './i18n';
 
-export type Page = 'dashboard' | 'list' | 'detail' | 'donors' | 'donor' | 'subscriptions';
+export type Page = 'dashboard' | 'list' | 'detail' | 'donors' | 'donor' | 'subscriptions' | 'types';
 export type Notice = { kind: 'ok' | 'error'; text: string };
 
 export interface Ctx {
@@ -84,6 +84,7 @@ const PATHS: Record<string, string> = {
   search: 'M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21 21l-4.3-4.3',
   file: 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6',
   repeat: 'm17 2 4 4-4 4M3 11v-1a4 4 0 0 1 4-4h14m-14 16-4-4 4-4m14-1v1a4 4 0 0 1-4 4H3',
+  flag: 'M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1zM4 22v-7',
   users: 'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75',
 };
 

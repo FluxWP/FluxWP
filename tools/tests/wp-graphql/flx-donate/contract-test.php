@@ -18,7 +18,7 @@ foreach ( (array) json_decode( (string) file_get_contents( FLXB_DIR . 'graphql/p
 		$GLOBALS['flxb_ops'][ $m[1] ] = $doc;
 	}
 }
-flxt_same( 27, count( $GLOBALS['flxb_ops'] ), 'Flux Donate ships 27 persisted operations' );
+flxt_same( 31, count( $GLOBALS['flxb_ops'] ), 'Flux Donate ships 31 persisted operations' );
 
 /**
  * @param array<string,mixed> $vars Variables.
@@ -798,6 +798,47 @@ if ( FLXB_Admin_People_Service::can_cancel() ) {
 	flxt_ok( ! empty( $r['data']['flxSubscriptionCancel']['errors'] ), 'cancel: a provider without cancel is refused' );
 }
 
+// Donation types list (2.40.0): rights, the views, status, order and sample sets.
+$r = flxb_t_op( 'FlxDonateTypes', array( 'archived' => false ) );
+flxt_ok( null !== flxt_code( $r ), 'types: visitor is refused' );
+$r = flxb_t_op( 'FlxDonateTypes', array( 'archived' => false ), $staff_a );
+flxt_ok( null !== flxt_code( $r ), 'types: staff without the view right is refused' );
+$r = flxb_t_op( 'FlxDonateTypes', array( 'archived' => false ), $admin );
+flxt_same( null, $r['errors'] ?? null, 'types: an administrator reads' );
+$tl  = $r['data']['flxDonationTypeAdminList'] ?? array();
+$tid = array_map( 'intval', array_column( $tl['items'] ?? array(), 'databaseId' ) );
+flxt_ok( in_array( (int) $open, $tid, true ) && in_array( (int) $closed, $tid, true ) && ! in_array( (int) $archived, $tid, true ), 'types: open and closed ones, not the archive' );
+flxt_ok( true === ( $tl['canManage'] ?? null ) && '' !== ( $tl['newUrl'] ?? '' ) && ! empty( $tl['samples'] ), 'types: the administrator manages and gets the sample sets' );
+$row = array_values( array_filter( $tl['items'] ?? array(), static fn( $i ) => (int) $open === (int) $i['databaseId'] ) )[0] ?? array();
+flxt_ok( 'ACTIVE' === ( $row['status'] ?? '' ) && 'OK' === ( $row['tone'] ?? '' ) && str_contains( (string) ( $row['shortcode'] ?? '' ), 'id=' . (int) $open ), 'types: the open row' );
+$r = flxb_t_op( 'FlxDonateTypes', array( 'archived' => true ), $admin );
+$tl = $r['data']['flxDonationTypeAdminList'] ?? array();
+flxt_ok( array( (int) $archived ) === array_values( array_intersect( array( (int) $open, (int) $closed, (int) $archived ), array_map( 'intval', array_column( $tl['items'] ?? array(), 'databaseId' ) ) ) ) && array() === ( $tl['samples'] ?? null ), 'types: the archive, without sample sets' );
+
+$r = flxb_t_op( 'FlxDonationTypeSetStatus', array( 'id' => (int) $closed, 'status' => 'ACTIVE' ), $staff_a );
+flxt_ok( null !== flxt_code( $r ), 'type status: staff is refused' );
+$r = flxb_t_op( 'FlxDonationTypeSetStatus', array( 'id' => (int) $closed, 'status' => 'ACTIVE' ), $admin );
+flxt_ok( null === ( $r['errors'] ?? null ) && empty( $r['data']['flxDonationTypeSetStatus']['errors'] ), 'type status: an administrator opens' );
+flxt_same( 'active', FLXB_Types::get( (int) $closed )['status'] ?? '', 'type status: saved' );
+flxb_t_op( 'FlxDonationTypeSetStatus', array( 'id' => (int) $closed, 'status' => 'CLOSED' ), $admin );
+flxt_same( 'closed', FLXB_Types::get( (int) $closed )['status'] ?? '', 'type status: closed again' );
+$r = flxb_t_op( 'FlxDonationTypeSetStatus', array( 'id' => 99999999, 'status' => 'CLOSED' ), $admin );
+flxt_ok( ! empty( $r['data']['flxDonationTypeSetStatus']['errors'] ), 'type status: an unknown type is refused' );
+
+$order = static fn(): array => array_map( 'intval', wp_list_pluck( FLXB_Types::all( 'all' ), 'id' ) );
+$before = $order();
+$pos    = array_search( (int) $closed, $before, true );
+$r      = flxb_t_op( 'FlxDonationTypeMove', array( 'id' => (int) $closed, 'up' => true ), $admin );
+flxt_ok( null === ( $r['errors'] ?? null ) && empty( $r['data']['flxDonationTypeMove']['errors'] ), 'type move: an administrator moves' );
+flxt_same( false === $pos || 0 === $pos ? $pos : $pos - 1, array_search( (int) $closed, $order(), true ), 'type move: one place up' );
+flxb_t_op( 'FlxDonationTypeMove', array( 'id' => (int) $closed, 'up' => false ), $admin );
+flxt_same( $before, $order(), 'type move: and back down' );
+
+$r = flxb_t_op( 'FlxDonationTypeSamples', array( 'key' => 'no-such-set' ), $admin );
+flxt_ok( ! empty( $r['data']['flxDonationTypeSamples']['errors'] ), 'type samples: an unknown set is refused' );
+$r = flxb_t_op( 'FlxDonationTypeSamples', array( 'key' => 'trees' ), $staff_a );
+flxt_ok( null !== flxt_code( $r ), 'type samples: staff is refused' );
+
 if ( ! class_exists( 'FLXB_Admin' ) ) {
 	require_once FLXB_DIR . 'includes/admin/class-flxb-admin.php';
 }
@@ -810,5 +851,7 @@ flxt_same( array( array( 'FlxDonateDonors', array( 'first' => 25, 'after' => nul
 flxt_same( array( array( 'FlxDonateDonors', array( 'first' => 25, 'after' => base64_encode( 'flxo:24' ), 'filter' => array( 'search' => 'x', 'kind' => 'CONSENT', 'orderBy' => 'TOTAL' ) ) ) ), FLXB_Admin::preload_donors( array( 's' => ' x ', 'kind' => 'consent', 'orderby' => 'total_amount', 'paged' => '2' ) ), 'preload: donors with the address filter' ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
 flxt_same( array( array( 'FlxDonateDonor', array( 'id' => 7 ) ) ), FLXB_Admin::preload_donors( array( 'donor' => '7' ) ), 'preload: the donor card' );
 flxt_same( array( array( 'FlxDonateSubscriptions', array( 'first' => 25, 'after' => null, 'filter' => array( 'status' => 'PAST_DUE' ) ) ) ), FLXB_Admin::preload_subscriptions( array( 'status' => 'past_due', 's' => '' ) ), 'preload: recurring donations' );
+flxt_same( array( array( 'FlxDonateTypes', array( 'archived' => false ) ) ), FLXB_Admin::preload_types( array() ), 'preload: donation types' );
+flxt_same( array( array( 'FlxDonateTypes', array( 'archived' => true ) ) ), FLXB_Admin::preload_types( array( 'view' => 'archived' ) ), 'preload: the type archive' );
 
 flxt_done();

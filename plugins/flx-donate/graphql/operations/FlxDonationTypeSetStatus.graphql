@@ -1,0 +1,3 @@
+mutation FlxDonationTypeSetStatus($id: Int!, $status: FlxDonationTypeStatus!) {
+  flxDonationTypeSetStatus(input: { id: $id, status: $status }) { message errors { message field } }
+}

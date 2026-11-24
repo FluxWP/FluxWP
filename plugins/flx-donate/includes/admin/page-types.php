@@ -21,23 +21,6 @@ final class FLXB_Page_Types {
 		return $map[ $s ] ?? array( 'muted', $s );
 	}
 
-	/** Pill for the list: the life-cycle state (upcoming / ended come from the dates). */
-	public static function state_label( array $t ) {
-		switch ( FLXB_Types::state( $t ) ) {
-			case 'open':
-				return array( 'ok', __( 'Open', 'flx-donate' ) );
-			case 'upcoming':
-				/* translators: %s: start date */
-				return array( 'pending', sprintf( __( 'Upcoming (%s)', 'flx-donate' ), flx_date( strtotime( $t['start_date'] . ' 12:00' ) ) ) );
-			case 'ended':
-				return array( 'muted', __( 'Ended', 'flx-donate' ) );
-			case 'archived':
-				return array( 'muted', __( 'Archived', 'flx-donate' ) );
-			default:
-				return array( 'pending', __( 'Closed', 'flx-donate' ) );
-		}
-	}
-
 	private static function notices_redirect( array $args ) {
 		if ( FLXB_Types::$notices ) {
 			$args['flxb_msg'] = 'warn';
@@ -65,101 +48,7 @@ final class FLXB_Page_Types {
 			self::form( 'new' === $edit ? 0 : absint( $edit ) );
 			return;
 		}
-		$view    = FLXB_Admin::q( 'view' );
-		$list    = FLXB_Types::all( 'archived' === $view ? 'archived' : '' );
-		$cats    = flxb_categories();
-		$manage  = flxb_can_manage();
-		$actions = $manage ? array( array( 'label' => __( 'New donation type', 'flx-donate' ), 'url' => FLXB_Admin_Url::page( 'flxb-types', array( 'edit' => 'new' ) ), 'primary' => true, 'icon' => 'plus' ) ) : array();
-		FLXB_Admin::header( __( 'Donation types and campaigns', 'flx-donate' ), __( 'What people can give for: each type has its own prices and options, dates, goal and linked forms.', 'flx-donate' ), $actions );
-
-		echo '<div class="flxb-filters"><div class="flxb-seg">';
-		echo '<a class="' . ( 'archived' !== $view ? 'is-on' : '' ) . '" href="' . esc_url( FLXB_Admin_Url::page( 'flxb-types' ) ) . '">' . esc_html__( 'Open and closed', 'flx-donate' ) . '</a>';
-		echo '<a class="' . ( 'archived' === $view ? 'is-on' : '' ) . '" href="' . esc_url( FLXB_Admin_Url::page( 'flxb-types', array( 'view' => 'archived' ) ) ) . '">' . esc_html__( 'Archive', 'flx-donate' ) . '</a>';
-		echo '</div></div>';
-
-		echo '<div class="flxb-panel">';
-		if ( ! $list ) {
-			echo '<div class="flxb-emptystate">' . FLXB_Admin::icon( 'flag', 32 ) . '<h2>' . esc_html( 'archived' === $view ? __( 'The archive is empty', 'flx-donate' ) : __( 'No donation types yet', 'flx-donate' ) ) . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			if ( 'archived' !== $view ) {
-				echo '<p>' . esc_html__( 'Create a type such as a general donation, a sapling or a kurban share, set its prices, and link the forms that collect for it.', 'flx-donate' ) . '</p>';
-			}
-			echo '</div>';
-		} else {
-			echo '<div class="flxb-tablewrap"><table class="flxb-table"><thead><tr>';
-			if ( $manage && 'archived' !== $view ) {
-				echo '<th scope="col"><span class="screen-reader-text">' . esc_html__( 'Order', 'flx-donate' ) . '</span></th>';
-			}
-			echo '<th scope="col">' . esc_html__( 'Donation type', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Prices', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Progress', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Dates', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Forms', 'flx-donate' ) . '</th><th scope="col"><span class="screen-reader-text">' . esc_html__( 'Actions', 'flx-donate' ) . '</span></th></tr></thead><tbody>';
-			$n = count( $list );
-			foreach ( $list as $i => $t ) {
-				$p  = FLXB_Types::progress( $t );
-				$st = self::state_label( $t );
-				echo '<tr>';
-				if ( $manage && 'archived' !== $view ) {
-					echo '<td class="flxb-order">' . ( $i > 0 ? self::post_button( 'flxb_type_move', $t['id'], '<span aria-hidden="true">▲</span><span class="screen-reader-text">' . esc_html__( 'Move up', 'flx-donate' ) . '</span>', array( 'dir' => '-1' ), 'flxb-iconbtn' ) : '<span class="flxb-iconbtn is-off"></span>' ) . ( $i < $n - 1 ? self::post_button( 'flxb_type_move', $t['id'], '<span aria-hidden="true">▼</span><span class="screen-reader-text">' . esc_html__( 'Move down', 'flx-donate' ) . '</span>', array( 'dir' => '1' ), 'flxb-iconbtn' ) : '' ) . '</td>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				}
-				echo '<td class="flxb-col-main"><a href="' . esc_url( FLXB_Admin_Url::page( 'flxb-donations', array( 'dtype' => (int) $t['id'] ) ) ) . '">' . esc_html( $t['title'] ) . '</a> <span class="flxb-pill flxb-pill--' . esc_attr( $st[0] ) . '">' . esc_html( $st[1] ) . '</span>';
-				echo '<span class="flxb-sub2">' . esc_html( $cats[ $t['category'] ] ?? __( 'No category', 'flx-donate' ) ) . ' · <code>[flx_bagis_kampanya id=' . (int) $t['id'] . ']</code></span></td>';
-				$prices = array();
-				foreach ( array_slice( $t['options'], 0, 4 ) as $o ) {
-					$prices[] = $o['label'] . ' ' . ( ! $o['active'] ? __( '(inactive)', 'flx-donate' ) : ( (float) $o['price'] > 0 ? flxb_money( $o['price'], $t['currency'] ) : __( '(price not set)', 'flx-donate' ) ) );
-				}
-				if ( count( $t['options'] ) > 4 ) {
-					$prices[] = '…';
-				}
-				if ( $t['allow_free'] ) {
-					$prices[] = (float) $t['min_amount'] > 0 ? sprintf( /* translators: %s: minimum */ __( 'free amount (min. %s)', 'flx-donate' ), flxb_money( $t['min_amount'], $t['currency'] ) ) : __( 'free amount', 'flx-donate' );
-				}
-				$flags = array();
-				if ( $t['allow_quantity'] ) {
-					$flags[] = __( 'quantity', 'flx-donate' );
-				}
-				if ( $t['allow_recurring'] ) {
-					$flags[] = __( 'recurring', 'flx-donate' );
-				}
-				echo '<td data-label="' . esc_attr__( 'Prices', 'flx-donate' ) . '"><span>' . esc_html( implode( ' · ', $prices ) ) . ( $flags ? '<span class="flxb-sub2">' . esc_html( implode( ', ', $flags ) ) . '</span>' : '' ) . '</span></td>';
-				echo '<td data-label="' . esc_attr__( 'Progress', 'flx-donate' ) . '"><div class="flxb-progresscell">';
-				if ( $p['goal'] > 0 ) {
-					echo '<div class="flxb-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' . esc_attr( (string) $p['percent'] ) . '"><span style="width:' . esc_attr( (string) $p['percent'] ) . '%"></span></div>';
-					/* translators: 1: raised, 2: goal, 3: percent */
-					echo '<small>' . esc_html( sprintf( __( '%1$s of %2$s (%3$s%%)', 'flx-donate' ), flxb_money( $p['raised'], $t['currency'] ), flxb_money( $p['goal'], $t['currency'] ), number_format_i18n( $p['percent'], 0 ) ) ) . '</small>';
-				} else {
-					/* translators: %s: number of donors */
-					echo '<strong>' . esc_html( flxb_money( $p['raised'], $t['currency'] ) ) . '</strong><small>' . esc_html( sprintf( _n( '%s donor', '%s donors', $p['donors'], 'flx-donate' ), number_format_i18n( $p['donors'] ) ) ) . '</small>';
-				}
-				echo '</div></td>';
-				$dates = $t['start_date'] || $t['end_date'] ? ( $t['start_date'] ? flx_date( strtotime( $t['start_date'] . ' 12:00' ) ) : '…' ) . ' – ' . ( $t['end_date'] ? flx_date( strtotime( $t['end_date'] . ' 12:00' ) ) : '…' ) : __( 'Open-ended', 'flx-donate' );
-				echo '<td class="flxb-col-date" data-label="' . esc_attr__( 'Dates', 'flx-donate' ) . '"><span>' . esc_html( $dates ) . '</span></td>';
-				echo '<td data-label="' . esc_attr__( 'Forms', 'flx-donate' ) . '"><span>' . esc_html( $t['form_ids'] ? implode( ', ', array_map( 'flxb_form_title', $t['form_ids'] ) ) : '—' ) . '</span></td>';
-				echo '<td class="flxb-col-act"><div class="flxb-actions">';
-				if ( $manage ) {
-					echo '<a class="flxb-btn flxb-btn--sm" href="' . esc_url( FLXB_Admin_Url::page( 'flxb-types', array( 'edit' => (int) $t['id'] ) ) ) . '">' . esc_html__( 'Edit', 'flx-donate' ) . '</a>';
-					if ( 'active' === $t['status'] ) {
-						echo self::post_button( 'flxb_type_status', $t['id'], esc_html__( 'Close', 'flx-donate' ), array( 'status' => 'closed' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					} else {
-						echo self::post_button( 'flxb_type_status', $t['id'], esc_html__( 'Open', 'flx-donate' ), array( 'status' => 'active' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					}
-					if ( 'archived' !== $t['status'] ) {
-						echo self::post_button( 'flxb_type_status', $t['id'], esc_html__( 'Archive', 'flx-donate' ), array( 'status' => 'archived' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					}
-				}
-				echo '</div></td></tr>';
-			}
-			echo '</tbody></table></div>';
-		}
-		echo '</div>';
-
-		if ( $manage && 'archived' !== $view ) {
-			echo '<section class="flxb-card" style="max-width:760px"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( 'Load sample types', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( 'Adds ready-made types and categories that you can edit. Types whose sample price is 0 start closed until you set their prices.', 'flx-donate' ) . '</p></div></div>';
-			echo '<form class="flxb-filters" style="margin:0" method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="flxb_type_samples">';
-			wp_nonce_field( 'flxb_type_samples' );
-			echo '<label class="screen-reader-text" for="flxb-sample">' . esc_html__( 'Sample set', 'flx-donate' ) . '</label><select id="flxb-sample" name="sample">';
-			foreach ( FLXB_Types::samples() as $k => $s ) {
-				echo '<option value="' . esc_attr( $k ) . '">' . esc_html( $s['label'] ) . '</option>';
-			}
-			echo '</select><button type="submit" class="flxb-btn">' . FLXB_Admin::icon( 'plus' ) . esc_html__( 'Load', 'flx-donate' ) . '</button></form></section>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		}
-		FLXB_Admin::footer();
+		FLXB_Admin::screen(); // 2.40.0: the list is the React screen (packages/modules/src/donate/Types.tsx).
 	}
 
 	private static function form( $id ) {
@@ -544,18 +433,6 @@ final class FLXB_Page_Types {
 		return $id;
 	}
 
-	public static function status() {
-		$id = self::guard( 'flxb_type_status' );
-		FLXB_Types::set_status( $id, isset( $_POST['status'] ) ? sanitize_key( wp_unslash( $_POST['status'] ) ) : '' );
-		self::notices_redirect( array( 'flxb_msg' => 'saved' ) );
-	}
-
-	public static function move() {
-		$id = self::guard( 'flxb_type_move' );
-		FLXB_Types::move( $id, isset( $_POST['dir'] ) ? (int) $_POST['dir'] : 1 );
-		FLXB_Admin::redirect( 'flxb-types' );
-	}
-
 	public static function delete() {
 		$id = self::guard( 'flxb_type_delete' );
 		global $wpdb;
@@ -563,14 +440,5 @@ final class FLXB_Page_Types {
 			FLXB_Types::delete( $id );
 		}
 		FLXB_Admin::redirect( 'flxb-types', array( 'flxb_msg' => 'deleted' ) );
-	}
-
-	public static function samples() {
-		if ( ! flxb_can_manage() ) {
-			FLXB_Admin::deny();
-		}
-		check_admin_referer( 'flxb_type_samples' );
-		FLXB_Types::load_sample( isset( $_POST['sample'] ) ? sanitize_key( wp_unslash( $_POST['sample'] ) ) : '' );
-		FLXB_Admin::redirect( 'flxb-types', array( 'flxb_msg' => 'saved' ) );
 	}
 }

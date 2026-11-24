@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 2.40.0
+- **Bağış türleri listesi anında açılır.** Bağış türleri sayfası artık React ekranı: veri sayfayla hazır gelir, yükleniyor dönmez.
+- Açık ve kapalı türler / arşiv görünümü (adres çubuğunda kalır), yukarı / aşağı sıralama, aç / kapat / arşivle ve örnek tür yükleme sayfa yenilemeden olur. Bir formu başka açık türde olan tür açılamaz, nedeni uyarıda yazar.
+- Tür düzenleme formu şimdilik eski sayfa; silme sonrası "Silindi." uyarısı yeni listede görünür.
+- GraphQL: `flxDonationTypeAdminList`, `flxDonationTypeSetStatus`, `flxDonationTypeMove`, `flxDonationTypeSamples` (yetkiler klasik sayfayla aynı).
+
 ## 2.39.0
 - **Bağışçılar ve düzenli bağışlar anında açılır.** Bağışçı listesi, bağışçı kartı ve düzenli bağışlar artık React ekranı: veri sayfayla hazır gelir, yükleniyor dönmez, Flux ekranları arasında geçiş sayfa yenilemeden olur.
 - Bağışçılar: arama, "tekrarlayan / iletişim izni" ve sıralama (adres çubuğunda kalır), tüm satır kartı açar. Personelin "Bağışçılarım" sayfası yalnız kendi referans olduğu bağışçıları ve o bağışların rakamlarını gösterir.

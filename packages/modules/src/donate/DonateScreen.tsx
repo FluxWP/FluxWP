@@ -1,7 +1,7 @@
 // Flux Donate › Dashboard and Donations. Same screen in wp-admin (wp-embed) and the FluxWP app; every read
 // and write goes through the Flux Donate GraphQL operations (plugins/flx-donate/graphql/operations).
 // The donation page (detail?id=N), donors (donors, donor?id=N) and recurring donations (subscriptions) are
-// here too; the other pages are still the plugin's own pages.
+// (and the donation types list, types) here too; the other pages are still the plugin's own pages.
 import { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { createGraphQLClient } from '@fluxwp/graphql';
@@ -15,6 +15,7 @@ import { Detail } from './Detail';
 import { Donors } from './Donors';
 import { Donor } from './Donor';
 import { Subscriptions } from './Subscriptions';
+import { Types } from './Types';
 import './donate.css';
 
 export function DonateScreen() {
@@ -29,11 +30,12 @@ export function DonateScreen() {
 
 /**
  * host.startPage: 'dashboard', 'list[?<classic list arguments>]', 'detail?id=<donation id>',
- * 'donors[?s,kind,orderby,paged]', 'donor?id=<donor id>' or 'subscriptions[?s,status,paged]'.
+ * 'donors[?s,kind,orderby,paged]', 'donor?id=<donor id>', 'subscriptions[?s,status,paged]' or
+ * 'types[?view=archived&notice=<ok|error>:<text>]'.
  */
 function parseStart(s?: string): { page: Page; query: string } {
   const [head = '', query = ''] = (s ?? '').split('?', 2);
-  const pages: Page[] = ['list', 'detail', 'donors', 'donor', 'subscriptions'];
+  const pages: Page[] = ['list', 'detail', 'donors', 'donor', 'subscriptions', 'types'];
   return (pages as string[]).includes(head) ? { page: head as Page, query } : { page: 'dashboard', query: '' };
 }
 
@@ -66,6 +68,8 @@ function Donate() {
         <Donors query={start.query} notice={box} />
       ) : start.page === 'subscriptions' ? (
         <Subscriptions query={start.query} notice={box} />
+      ) : start.page === 'types' ? (
+        <Types query={start.query} notice={box} />
       ) : start.page === 'list' ? (
         <Donations query={start.query} notice={box} />
       ) : (

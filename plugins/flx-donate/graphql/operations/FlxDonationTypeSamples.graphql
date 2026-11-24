@@ -1,0 +1,3 @@
+mutation FlxDonationTypeSamples($key: String!) {
+  flxDonationTypeSamples(input: { key: $key }) { message errors { message field } }
+}

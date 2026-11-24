@@ -1,0 +1,3 @@
+mutation FlxDonationTypeMove($id: Int!, $up: Boolean!) {
+  flxDonationTypeMove(input: { id: $id, up: $up }) { message errors { message field } }
+}
