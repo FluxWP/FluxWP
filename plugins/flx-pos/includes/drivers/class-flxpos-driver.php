@@ -36,7 +36,7 @@ abstract class FLXPOS_Driver {
 	/** Hesap alanı. */
 	protected function c( $key, $default = '' ) {
 		$v = $this->a['creds'][ $key ] ?? '';
-		return '' === $v || null === $v ? $default : trim( (string) $v );
+		return '' === $v ? $default : trim( (string) $v );
 	}
 
 	/** Seçili 3D modeli (mode). */

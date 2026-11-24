@@ -48,12 +48,12 @@ final class FLXPOS_Generic_Blocks extends AbstractPaymentMethodType {
 
 	public function get_payment_method_data() {
 		$g    = $this->gateway;
-		$icon = (string) apply_filters( 'flxpos_generic_blocks_icon', (string) ( $g->icon ?? '' ), $g );
+		$icon = (string) apply_filters( 'flxpos_generic_blocks_icon', (string) $g->icon, $g );
 		return array(
 			'title'       => wp_strip_all_tags( (string) $g->get_title() ),
 			'description' => wp_strip_all_tags( (string) $g->get_description() ),
 			'icon'        => esc_url_raw( $icon ),
-			'button'      => (string) ( $g->order_button_text ?? '' ),
+			'button'      => (string) $g->order_button_text,
 			'supports'    => array_values( array_filter( (array) $g->supports, 'is_string' ) ),
 		);
 	}

@@ -62,7 +62,7 @@ final class FLXPOS_Screen_Service {
 
 	/** @return array<string,WC_Payment_Gateway> */
 	private static function gateways(): array {
-		if ( ! function_exists( 'WC' ) || ! WC()->payment_gateways() ) {
+		if ( ! function_exists( 'WC' ) ) {
 			return array();
 		}
 		$out = array();
@@ -210,7 +210,7 @@ final class FLXPOS_Screen_Service {
 				update_option( 'flxpos_settings', $s, false );
 			}
 		}
-		if ( function_exists( 'WC' ) && WC()->payment_gateways() ) {
+		if ( function_exists( 'WC' ) ) {
 			WC()->payment_gateways()->init(); // reload so the payload shows the new order and switches
 		}
 		self::changed();
@@ -378,7 +378,7 @@ final class FLXPOS_Screen_Service {
 			$routes[] = new FLXPOS_Option( (string) $c, self::s( $id ) );
 		}
 		$displays = array();
-		foreach ( flxpos_display_modes() as $k => $l ) {
+		foreach ( self::a( flxpos_display_modes() ) as $k => $l ) {
 			$displays[] = new FLXPOS_Option( (string) $k, self::s( $l ) );
 		}
 		return new FLXPOS_Settings_DTO(
@@ -419,7 +419,7 @@ final class FLXPOS_Screen_Service {
 			$s['currency_routes'] = $r;
 		}
 		if ( isset( $in['display'] ) ) {
-			$s['display'] = isset( flxpos_display_modes()[ $in['display'] ] ) ? $in['display'] : 'redirect';
+			$s['display'] = isset( self::a( flxpos_display_modes() )[ $in['display'] ] ) ? $in['display'] : 'redirect';
 		}
 		foreach ( array( 'show_brands', 'block_fallback', 'save_log' ) as $k ) {
 			if ( isset( $in[ $k ] ) ) {

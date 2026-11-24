@@ -28,7 +28,7 @@ final class FLXPOS_Vault {
 				$cookie,
 				array(
 					'expires'  => time() + self::TTL,
-					'path'     => COOKIEPATH ? COOKIEPATH : '/',
+					'path'     => defined( 'COOKIEPATH' ) && COOKIEPATH ? COOKIEPATH : '/',
 					'domain'   => COOKIE_DOMAIN ? COOKIE_DOMAIN : '',
 					'secure'   => is_ssl(),
 					'httponly' => true,
@@ -51,7 +51,7 @@ final class FLXPOS_Vault {
 		delete_transient( 'flxpos_v_' . $id );
 		$k = isset( $_COOKIE[ $name ] ) ? base64_decode( sanitize_text_field( wp_unslash( $_COOKIE[ $name ] ) ), true ) : false; // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
 		if ( ! headers_sent() ) {
-			setcookie( $name, '', time() - 3600, COOKIEPATH ? COOKIEPATH : '/', COOKIE_DOMAIN ? COOKIE_DOMAIN : '', is_ssl(), true );
+			setcookie( $name, '', time() - 3600, defined( 'COOKIEPATH' ) && COOKIEPATH ? COOKIEPATH : '/', COOKIE_DOMAIN ? COOKIE_DOMAIN : '', is_ssl(), true );
 		}
 		unset( $_COOKIE[ $name ] );
 		if ( ! $enc || ! $k || 32 !== strlen( $k ) ) {

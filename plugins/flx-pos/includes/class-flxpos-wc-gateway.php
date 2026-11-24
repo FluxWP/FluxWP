@@ -20,7 +20,12 @@ abstract class FLXPOS_WC_Base extends WC_Payment_Gateway {
 		$this->init_form_fields();
 		$this->init_settings();
 		$this->enabled = 'yes' === ( $this->settings['enabled'] ?? 'yes' ) ? 'yes' : 'no';
-		add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
+		add_action(
+			'woocommerce_update_options_payment_gateways_' . $this->id,
+			function (): void {
+				$this->process_admin_options();
+			}
+		);
 	}
 
 	public function init_form_fields() {
@@ -61,7 +66,8 @@ abstract class FLXPOS_WC_Base extends WC_Payment_Gateway {
 				return (float) $o->get_total();
 			}
 		}
-		return WC()->cart ? (float) WC()->cart->get_total( 'edit' ) : 0.0;
+		$cart = function_exists( 'WC' ) ? WC()->cart : null;
+		return $cart ? (float) $cart->get_total( 'edit' ) : 0.0;
 	}
 
 	public function is_available() {
@@ -128,7 +134,7 @@ abstract class FLXPOS_WC_Base extends WC_Payment_Gateway {
 	}
 
 	public function can_refund_order( $order ) {
-		return $order && FLXPOS_Txn::paid_for_order( $order->get_id() );
+		return FLXPOS_Txn::paid_for_order( $order->get_id() );
 	}
 }
 

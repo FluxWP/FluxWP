@@ -209,7 +209,7 @@ final class FLXPOS_Gateways {
 		$item->set_amount( $fee );
 		$item->set_total( $fee );
 		$item->set_tax_status( 'none' );
-		$item->add_meta_data( '_flxpos_fee', 1, true );
+		$item->add_meta_data( '_flxpos_fee', '1', true );
 		$order->add_item( $item );
 		$order->calculate_totals( false );
 		$order->save();

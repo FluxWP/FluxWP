@@ -25,7 +25,7 @@ final class FLXPOS_Blocks extends AbstractPaymentMethodType {
 	}
 
 	private function gateway() {
-		$all = function_exists( 'WC' ) && WC()->payment_gateways() ? WC()->payment_gateways()->payment_gateways() : array();
+		$all = function_exists( 'WC' ) ? WC()->payment_gateways()->payment_gateways() : array();
 		return $all[ $this->name ] ?? null;
 	}
 

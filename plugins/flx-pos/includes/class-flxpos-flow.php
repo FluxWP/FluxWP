@@ -179,7 +179,7 @@ final class FLXPOS_Flow {
 			$items          = array();
 			foreach ( $o->get_items( array( 'line_item', 'fee', 'shipping' ) ) as $item ) {
 				$qty     = max( 1, (int) $item->get_quantity() );
-				$total   = (float) $item->get_total() + (float) $item->get_total_tax();
+				$total   = $item instanceof WC_Order_Item_Product || $item instanceof WC_Order_Item_Fee || $item instanceof WC_Order_Item_Shipping ? (float) $item->get_total() + (float) $item->get_total_tax() : 0.0;
 				$items[] = array(
 					'id'       => 'i' . $item->get_id(),
 					'name'     => wp_strip_all_tags( $item->get_name() ),

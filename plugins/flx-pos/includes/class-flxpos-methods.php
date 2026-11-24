@@ -46,7 +46,7 @@ final class FLXPOS_Methods {
 
 	/** @return WC_Payment_Gateway[] */
 	public static function all() {
-		return function_exists( 'WC' ) && WC()->payment_gateways() ? (array) WC()->payment_gateways()->payment_gateways() : array();
+		return function_exists( 'WC' ) ? (array) WC()->payment_gateways()->payment_gateways() : array();
 	}
 
 	public static function adapters() {
