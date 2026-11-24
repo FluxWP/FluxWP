@@ -78,7 +78,11 @@ final class FLXPOS_Screen_Service {
 		return class_exists( 'FLXB_WC_Gateways' ) && class_exists( 'FLXB_WC' );
 	}
 
-	/** Logo addresses inside the method's icon HTML. @return list<string> */
+	/**
+	 * Logo addresses inside the method's icon HTML.
+	 *
+	 * @return list<string>
+	 */
 	private static function icons( WC_Payment_Gateway $gw ): array {
 		$html = self::s( $gw->get_icon() );
 		if ( '' === $html || ! preg_match_all( '/<img[^>]+src=["\']([^"\']+)["\']/i', $html, $m ) ) {
@@ -134,7 +138,7 @@ final class FLXPOS_Screen_Service {
 				$on && self::hidden( $id ),
 				(bool) $gw->has_fields,
 				in_array( $id, array( 'bacs', 'cheque', 'cod', 'flxb_havale' ), true ),
-				$flux ? flxpos_admin_url( array( 'tab' => 'accounts' ) ) : admin_url( 'admin.php?page=wc-settings&tab=checkout&section=' . rawurlencode( $id ) ),
+				$flux ? self::s( flxpos_admin_url( array( 'tab' => 'accounts' ) ) ) : admin_url( 'admin.php?page=wc-settings&tab=checkout&section=' . rawurlencode( $id ) ),
 				self::caps( $gw )
 			);
 		}
@@ -201,7 +205,7 @@ final class FLXPOS_Screen_Service {
 			if ( self::donate() ) {
 				FLXB_WC::save_settings( array( 'card_method' => $card ) );
 			} else {
-				$s                = flxpos_settings();
+				$s                = self::a( flxpos_settings() );
 				$s['card_method'] = $card;
 				update_option( 'flxpos_settings', $s, false );
 			}
@@ -350,6 +354,9 @@ final class FLXPOS_Screen_Service {
 		if ( is_wp_error( $drv ) ) {
 			return new FLXPOS_Test_Result( false, true, $drv->get_error_message() );
 		}
+		if ( ! $drv instanceof FLXPOS_Driver ) {
+			return new FLXPOS_Test_Result( false, true, __( 'POS hesabı bulunamadı.', 'flx-pos' ) );
+		}
 		$t = $drv->test_connection();
 		if ( is_wp_error( $t ) ) {
 			return new FLXPOS_Test_Result( false, true, $t->get_error_message() );
@@ -365,7 +372,7 @@ final class FLXPOS_Screen_Service {
 	/* ------------------------------------------------------------------ */
 
 	public static function settings(): FLXPOS_Settings_DTO {
-		$s      = flxpos_settings();
+		$s      = self::a( flxpos_settings() );
 		$routes = array();
 		foreach ( self::a( $s['currency_routes'] ?? array() ) as $c => $id ) {
 			$routes[] = new FLXPOS_Option( (string) $c, self::s( $id ) );
@@ -393,7 +400,7 @@ final class FLXPOS_Screen_Service {
 	 * @param array{card_title?:string,card_desc?:string,card_account?:string,routes?:list<array{value:string,label:string}>,display?:string,show_brands?:bool,block_fallback?:bool,save_log?:bool} $in Changes.
 	 */
 	public static function update_settings( array $in ): FLXPOS_Settings_DTO {
-		$s = flxpos_settings();
+		$s = self::a( flxpos_settings() );
 		foreach ( array( 'card_title', 'card_desc' ) as $k ) {
 			if ( isset( $in[ $k ] ) ) {
 				$s[ $k ] = sanitize_text_field( $in[ $k ] );

@@ -772,6 +772,7 @@ flx_gql_query(
 		),
 		'resolve'     => static function ( $root, array $args ): array {
 			flxpos_gql_tag();
+			/** @var array<string,mixed> $args */
 			$filter = array(
 				'status'  => flx_gql_str( $args['status'] ?? '' ),
 				'account' => flx_gql_str( $args['account'] ?? '' ),
@@ -958,7 +959,7 @@ flx_gql_mutation(
 				$in[ $k ] = isset( $input[ $k ] ) ? flx_gql_str( $input[ $k ] ) : ( $old[ $k ] ?? '' );
 			}
 			foreach ( array( 'enabled', 'test' ) as $k ) {
-				$in[ $k ] = isset( $input[ $k ] ) ? (bool) $input[ $k ] : (bool) ( $old[ $k ] ?? ( 'enabled' === $k || 'test' === $k ) );
+				$in[ $k ] = isset( $input[ $k ] ) ? (bool) $input[ $k ] : (bool) ( $old[ $k ] ?? true );
 			}
 			$creds = array();
 			foreach ( flx_gql_arr( $input['creds'] ?? array() ) as $c ) {
