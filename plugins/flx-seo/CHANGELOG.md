@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.14.0
+- Rapor geçmişi grafikleri (öneriler, PageSpeed puanları) etkileşimli ortak grafiğe geçti: tarih tarih ipucu, legend'dan seri aç/kapa, koyu/açık tema, mobilde tam genişlik. Ortak modül paketi yenilendi.
+
 ## 1.13.3
 - Güvenlik: MCP ile adresten görsel yükleme ortak denetimli indirmeden (flx-brand `flx_safe_download`) geçer: yalnız herkese açık adresler, her yönlendirme yeniden denetlenir.
 

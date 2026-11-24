@@ -4,7 +4,8 @@ import { useFlxQuery } from '@fluxwp/graphql/react';
 import { FlxBackupDashboard } from '@fluxwp/graphql/operations';
 import type { FlxBackupDashboardQuery } from '@fluxwp/graphql/types';
 import { Loading } from '@fluxwp/ui';
-import { Badge, useBackup } from './shared';
+import { Chart } from '@fluxwp/ui/chart';
+import { Badge, bytes, useBackup } from './shared';
 
 type History = FlxBackupDashboardQuery['flxBackupHistory'];
 
@@ -130,31 +131,14 @@ export function Dashboard() {
   );
 }
 
-const W = 760;
-const H = 260;
-const PAD = { l: 56, r: 16, t: 14, b: 26 };
-
 function HistoryChart({ h }: { h: History }) {
   const { t, lang } = useBackup();
   const [range, setRange] = useState(30);
-  const [hover, setHover] = useState<number | null>(null);
   const r = h.ranges.find((x) => x.days === range) ?? h.ranges[0];
   const days = useMemo(() => h.days.slice(-(r?.days ?? 30)), [h.days, r?.days]);
   if (!r) return null;
-  const iw = W - PAD.l - PAD.r;
-  const ih = H - PAD.t - PAD.b;
-  const x = (i: number) => PAD.l + (days.length > 1 ? (iw * i) / (days.length - 1) : iw / 2);
-  const y = (v: number) => PAD.t + ih - (ih * Math.min(v, r.max)) / Math.max(1, r.max);
-  // Stacked areas, bottom series first.
-  const areas = h.series.map((s, si) => {
-    const top = days.map((d, i) => [x(i), y(d.values.slice(0, si + 1).reduce((a, b) => a + b, 0))] as const);
-    const bottom = days.map((d, i) => [x(i), y(d.values.slice(0, si).reduce((a, b) => a + b, 0))] as const).reverse();
-    const pts = [...top, ...bottom].map((p) => p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' ');
-    return { s, pts };
-  });
-  const step = Math.max(1, Math.ceil(days.length / 7));
-  const hd = hover === null ? null : days[hover];
   const nf = new Intl.NumberFormat(lang);
+  const quota = r.showQuota && h.quota <= r.max;
   return (
     <section className="flxy-card">
       <div className="flxy-card-head">
@@ -167,103 +151,39 @@ function HistoryChart({ h }: { h: History }) {
           ))}
         </div>
       </div>
-      <div className="flxy-legend">
-        {h.series.map((s) => (
-          <span key={s.key}>
-            <i style={{ background: s.color }} />
-            {s.name}
-          </span>
-        ))}
-        {r.showQuota && (
-          <span>
-            <i className="flxy-quota-key" />
-            {t('Quota')}
-          </span>
-        )}
-      </div>
-      <div className="flxy-chart" onMouseLeave={() => setHover(null)}>
-        <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={t('Storage history')}>
-          {r.ticks.map((tk) => (
-            <g key={tk.value}>
-              <line className="gl" x1={PAD.l} x2={W - PAD.r} y1={y(tk.value)} y2={y(tk.value)} />
-              <text className="tk" x={PAD.l - 8} y={y(tk.value) + 4} textAnchor="end">
-                {tk.label}
-              </text>
-            </g>
-          ))}
-          {days.map((d, i) =>
-            i % step === 0 ? (
-              <text key={d.key} className="tk" x={x(i)} y={H - 8} textAnchor="middle">
-                {d.label}
-              </text>
-            ) : null,
-          )}
-          {areas.map((a) => (
-            <polygon key={a.s.key} points={a.pts} fill={a.s.color} fillOpacity={0.85} />
-          ))}
-          {r.showQuota && h.quota <= r.max && (
-            <>
-              <line className="ql" x1={PAD.l} x2={W - PAD.r} y1={y(h.quota)} y2={y(h.quota)} />
-              <text className="qt" x={W - PAD.r} y={y(h.quota) - 4} textAnchor="end">
-                {t('Quota')}: {h.quotaLabel}
-              </text>
-            </>
-          )}
-          {hover !== null && <line className="cr" x1={x(hover)} x2={x(hover)} y1={PAD.t} y2={PAD.t + ih} />}
-          <rect
-            x={PAD.l}
-            y={PAD.t}
-            width={iw}
-            height={ih}
-            fill="transparent"
-            onMouseMove={(e) => {
-              const box = e.currentTarget.getBoundingClientRect();
-              const f = (e.clientX - box.left) / Math.max(1, box.width);
-              setHover(Math.max(0, Math.min(days.length - 1, Math.round(f * (days.length - 1)))));
-            }}
-          />
-        </svg>
-        {hd && hover !== null && (
-          <div className="flxy-tip" style={{ left: `${Math.min(70, (100 * x(hover)) / W)}%`, top: 8 }}>
-            <strong>{hd.fullLabel}</strong>
-            {h.series.map((s, i) => (
-              <div key={s.key}>
-                <i style={{ background: s.color }} />
-                {s.name}
-                <b>{hd.valueLabels[i]}</b>
-              </div>
-            ))}
-            <div>
-              {t('Total %s', '')}
-              <b>{hd.totalLabel}</b>
-            </div>
-          </div>
-        )}
-      </div>
+      <Chart
+        kind="area"
+        stacked
+        height={260}
+        labels={days.map((d) => d.fullLabel)}
+        tickLabel={(_, i) => days[i]?.label ?? ''}
+        series={[
+          ...h.series.map((s, i) => ({ label: s.name, color: s.color, data: days.map((d) => d.values[i] ?? 0) })),
+          ...(quota ? [{ label: t('Quota') + ': ' + h.quotaLabel, color: 'var(--flux-danger)', dashed: true, data: days.map(() => h.quota) }] : []),
+        ]}
+        legend
+        format={(v) => bytes(v, lang)}
+        label={t('Storage history')}
+      />
     </section>
   );
 }
 
 function Donut({ by, total }: { by: FlxBackupDashboardQuery['flxBackupOverview']['byType']; total: number }) {
   const { t, lang } = useBackup();
-  const R = 60;
-  const C = 2 * Math.PI * R;
-  let off = 0;
   const pct = new Intl.NumberFormat(lang, { style: 'percent', maximumFractionDigits: 0 });
+  const parts = by.filter((x) => x.bytes > 0);
   return (
     <div className="flxy-donut">
-      <svg viewBox="0 0 160 160" role="img" aria-label={t('By type')}>
-        <circle cx="80" cy="80" r={R} fill="none" stroke="var(--flux-surface2)" strokeWidth="22" />
-        {total > 0 &&
-          by
-            .filter((x) => x.bytes > 0)
-            .map((x) => {
-              const len = (C * x.bytes) / total;
-              const el = <circle key={x.type} cx="80" cy="80" r={R} fill="none" stroke={x.color} strokeWidth="22" strokeDasharray={`${len} ${C - len}`} strokeDashoffset={-off} transform="rotate(-90 80 80)" />;
-              off += len;
-              return el;
-            })}
-      </svg>
+      <div className="flxy-donut-chart">
+        {total > 0 && parts.length > 0 ? (
+          <Chart kind="doughnut" height={170} legend={false} labels={parts.map((x) => x.label)} colors={parts.map((x) => x.color)} series={[{ label: t('By type'), data: parts.map((x) => x.bytes) }]} format={(v) => bytes(v, lang)} label={t('By type')} />
+        ) : (
+          <svg viewBox="0 0 160 160" role="img" aria-label={t('By type')}>
+            <circle cx="80" cy="80" r="60" fill="none" stroke="var(--flux-surface2)" strokeWidth="22" />
+          </svg>
+        )}
+      </div>
       <table className="flxy-donut-table">
         <tbody>
           {by.map((x) => (

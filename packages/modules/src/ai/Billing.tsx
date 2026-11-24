@@ -4,8 +4,9 @@ import { useQueryClient } from '@tanstack/react-query';
 import { FlxAiBilling, FlxAiCreditsRefresh } from '@fluxwp/graphql/operations';
 import { flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
 import { Loading } from '@fluxwp/ui';
+import { Chart } from '@fluxwp/ui/chart';
 import { BreakdownTable } from './Overview';
-import { Bars, Card, Pill, errText, useAi, type Notice, NoticeBar } from './common';
+import { Card, dayLabel, Pill, errText, useAi, type Notice, NoticeBar } from './common';
 import { Meters } from './Meters';
 
 export function Billing() {
@@ -62,7 +63,13 @@ export function Billing() {
             <Kpi label={t('Cache savings')} value={usd(tt.saved)} sub={tt.fullCost > 0 ? t('%s%% less', num((tt.saved / tt.fullCost) * 100, 1)) : ''} />
             <Kpi label={t('Model requests')} value={num(tt.calls)} sub="" />
           </div>
-          <Bars rows={b.report.daily.map((r) => ({ label: r.date, values: [r.cost] }))} colors={['var(--flux-primary)']} format={(v) => usd(v)} />
+          <Chart
+            kind="area"
+            labels={b.report.daily.map((r) => r.date)}
+            formatLabel={dayLabel}
+            series={[{ label: t('Cost'), data: b.report.daily.map((r) => r.cost), color: 'var(--flux-primary)' }]}
+            format={(v) => usd(v)}
+          />
           <h3>{t('By provider')}</h3>
           <div className="flxai-tscroll">
             <table className="flxai-table">

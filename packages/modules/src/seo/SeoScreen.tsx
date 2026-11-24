@@ -5,6 +5,7 @@
 // with one-click fixes, report history) and Settings (PageSpeed key, agents, security headers, schedule, guide).
 import { useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Chart } from '@fluxwp/ui/chart';
 import { useQueryClient } from '@tanstack/react-query';
 import { createGraphQLClient } from '@fluxwp/graphql';
 import { FlxGraphQLProvider, flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
@@ -996,56 +997,35 @@ interface Series {
   points: (number | null)[];
 }
 
+const LINE_COLORS: Record<string, string> = {
+  'is-critical': 'var(--flux-danger)',
+  'is-high': '#e8742a',
+  'is-medium': 'var(--flux-warning)',
+  'is-low': 'var(--flux-text-muted)',
+  'is-c1': '#3b82f6',
+  'is-c2': '#8b5cf6',
+  'is-c3': '#14b8a6',
+  'is-c4': '#f59e0b',
+};
+
 function LineChart({ title, series, labels, max, empty }: { title: string; series: Series[]; labels: string[]; max?: number; empty: string }) {
-  const w = 520;
-  const h = 150;
-  const pad = { l: 30, r: 8, t: 8, b: 18 };
-  const n = labels.length;
-  const vals = series.flatMap((x) => x.points.filter((p): p is number => p !== null));
-  if (n < 1 || vals.length === 0) return <p className="flxseo-empty">{empty}</p>;
-  const top = max ?? Math.max(1, ...vals);
-  const x = (i: number) => pad.l + (n === 1 ? (w - pad.l - pad.r) / 2 : (i * (w - pad.l - pad.r)) / (n - 1));
-  const y = (v: number) => pad.t + (h - pad.t - pad.b) * (1 - v / top);
+  const has = labels.length > 0 && series.some((x) => x.points.some((p) => p !== null));
   return (
     <figure className="flxseo-chart">
-      <svg viewBox={`0 0 ${w} ${h}`} role="img" aria-label={title}>
-        {[0, 0.5, 1].map((g) => (
-          <g key={g}>
-            <line x1={pad.l} x2={w - pad.r} y1={y(top * g)} y2={y(top * g)} className="grid" />
-            <text x={pad.l - 4} y={y(top * g) + 3} textAnchor="end" className="axis">
-              {Math.round(top * g)}
-            </text>
-          </g>
-        ))}
-        {series.map((sr) => {
-          const pts = sr.points.map((p, i) => (p === null ? null : [x(i), y(p)] as const));
-          const path = pts.reduce((d, p, i) => (p ? d + (pts[i - 1] ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1) : d), '');
-          return (
-            <g key={sr.label} className={'line ' + sr.cls}>
-              <path d={path} fill="none" />
-              {pts.map((p, i) => p && <circle key={i} cx={p[0]} cy={p[1]} r="2.5" />)}
-            </g>
-          );
-        })}
-        <text x={pad.l} y={h - 4} className="axis">
-          {labels[0]}
-        </text>
-        {n > 1 && (
-          <text x={w - pad.r} y={h - 4} textAnchor="end" className="axis">
-            {labels[n - 1]}
-          </text>
-        )}
-      </svg>
-      <figcaption>
-        {title}
-        <span className="flxseo-legend">
-          {series.map((sr) => (
-            <span key={sr.label} className={'flxseo-key ' + sr.cls}>
-              {sr.label}
-            </span>
-          ))}
-        </span>
-      </figcaption>
+      <figcaption>{title}</figcaption>
+      {has ? (
+        <Chart
+          kind="line"
+          height={190}
+          labels={labels}
+          series={series.map((sr) => ({ label: sr.label, data: sr.points, color: LINE_COLORS[sr.cls] }))}
+          legend
+          format={(v) => (max === 100 ? String(Math.round(v)) : v.toLocaleString())}
+          label={title}
+        />
+      ) : (
+        <p className="flxseo-empty">{empty}</p>
+      )}
     </figure>
   );
 }

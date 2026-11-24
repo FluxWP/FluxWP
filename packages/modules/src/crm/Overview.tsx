@@ -4,6 +4,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
 import { FlxCrmOverview, FlxCrmScoreRun, FlxCrmSyncStep } from '@fluxwp/graphql/operations';
 import { Loading } from '@fluxwp/ui';
+import { Chart } from '@fluxwp/ui/chart';
 import { Avatar, Card, Head, Ic, Kpi, Money, errText, href, useCrm } from './ui';
 import { runSync } from './sync';
 
@@ -55,7 +56,6 @@ export function Overview(_props: { go: (to: string) => void }) {
   const risk = q.data.atRisk.nodes;
   const delta = o.newPrev ? ((o.new30 - o.newPrev) / o.newPrev) * 100 : null;
   const maxSeg = Math.max(0, ...o.segments.map((s) => s.count));
-  const maxSrc = Math.max(1, ...o.sources.map((s) => s.count));
 
   return (
     <>
@@ -236,19 +236,7 @@ export function Overview(_props: { go: (to: string) => void }) {
           {o.sources.length === 0 ? (
             <p className="flxcrm-empty">{t('No contacts yet.')}</p>
           ) : (
-            <ul className="flxcrm-bars">
-              {o.sources.map((s) => (
-                <li key={s.key}>
-                  <div className="flxcrm-bars__top">
-                    <span>{s.label}</span>
-                    <strong>{num(s.count)}</strong>
-                  </div>
-                  <div className="flxcrm-bars__track">
-                    <span style={{ width: Math.round((s.count / maxSrc) * 1000) / 10 + '%' }} />
-                  </div>
-                </li>
-              ))}
-            </ul>
+            <Chart kind="doughnut" height={220} labels={o.sources.map((x) => x.label)} series={[{ label: t('Contacts'), data: o.sources.map((x) => x.count) }]} format={(v) => num(v)} label={t('Where they came from')} />
           )}
           {shell.flxSegments.length > 0 && (
             <>

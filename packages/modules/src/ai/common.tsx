@@ -55,39 +55,14 @@ export function Pill({ children, kind }: { children: ReactNode; kind?: 'err' | '
   return <span className={'flxai-pill' + (kind ? ' is-' + kind : '')}>{children}</span>;
 }
 
-export interface BarRow {
-  label: string;
-  values: number[];
-}
-
-/** Vertical (days) or horizontal (names) bars; several values per row stack on top of each other. */
-export function Bars({ rows, colors, format, horizontal, legend }: { rows: BarRow[]; colors: string[]; format: (v: number) => string; horizontal?: boolean; legend?: string[] }) {
-  const total = (r: BarRow) => r.values.reduce((a, b) => a + b, 0);
-  const max = Math.max(...rows.map(total), 0) || 1;
-  return (
-    <div className={'flxai-chart' + (horizontal ? ' is-h' : '')}>
-      {legend && (
-        <div className="flxai-legend">
-          {legend.map((l, i) => (
-            <span key={l}>
-              <i style={{ background: colors[i] }} /> {l}
-            </span>
-          ))}
-        </div>
-      )}
-      <div className="flxai-bars">
-        {rows.map((r, idx) => (
-          <div key={r.label} className="flxai-bar" title={`${r.label}: ${format(total(r))}`}>
-            {horizontal && <span className="flxai-bar-label">{r.label}</span>}
-            <div className="flxai-bar-track">
-              {r.values.map((v, i) => (
-                <div key={i} className="flxai-bar-seg" style={{ background: colors[i], [horizontal ? 'width' : 'height']: `${(v / max) * 100}%` }} />
-              ))}
-            </div>
-            {horizontal ? <span className="flxai-bar-val">{format(total(r))}</span> : <span className="flxai-bar-label">{idx % Math.ceil(rows.length / 8) === 0 ? r.label.slice(5) : '\u00a0'}</span>}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+/** Short day label for chart axes and tooltips: "2026-11-24" → "24 Kas" (page locale). */
+export function dayLabel(d: string): string {
+  const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(d);
+  if (!m) return d;
+  const dt = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+  try {
+    return dt.toLocaleDateString(document.documentElement.lang || undefined, { day: 'numeric', month: 'short' });
+  } catch {
+    return d.slice(5);
+  }
 }

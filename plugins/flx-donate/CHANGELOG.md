@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 2.45.0
+- Pano > Günlük bağışlar grafiği ortak etkileşimli grafiğe geçti: tek seferlik/düzenli yığılmış çubuk, ipucunda toplam, legend'dan seri aç/kapa. Ortak modül paketi yenilendi.
+
 ## 2.44.0
 - **Takip, Excel'den içe aktarma, Raporlar ve Ayarlar anında açılır.** Bağışlar eklentisinin kalan sayfaları da React ekranı: veri sayfayla hazır gelir, yükleniyor dönmez. Eski PHP sayfaları silindi.
 - Takip: durum sekmeleri, filtreler (yer, tür, ödeme, vadesi gelen, arama) ve sayfa adres çubuğunda kalır; toplu işlem (onayla, ortağa gönder, geri al, tamamla…) onay penceresiyle. Kayıt sayfası: akış, ayrıntılar, ad / telefon / hedef tarih düzenleme, ortağa gönderme, not, dosya gönderme ve kaldırma, ek sekmeler, geçmiş.

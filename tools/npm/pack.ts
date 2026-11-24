@@ -117,7 +117,8 @@ for (const p of NPM_PACKAGES) {
     const sub = (src.exports && typeof src.exports === 'object' ? (src.exports as Record<string, string>) : { '.': `./${main}` });
     for (const [k, v] of Object.entries(sub)) {
       const rel = v.replace(/^\.\//, '');
-      if (!rel.startsWith('src/')) continue;
+      // Workspace-only wildcards ('./src/*') stay out of the published map.
+      if (!rel.startsWith('src/') || k.includes('*')) continue;
       exports[k] = { types: './types/' + rel.slice(4).replace(/\.tsx?$/, '.d.ts'), default: `./${rel}` };
     }
     if (!sub['.'] && !exports['.']) exports['.'] = { types: './types/' + main.slice(4).replace(/\.tsx?$/, '.d.ts'), default: `./${main}` };

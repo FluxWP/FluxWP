@@ -880,11 +880,6 @@ body.flxg-dragging * { cursor: grabbing !important; user-select: none !important
 .flxg-table .is-bar { width: 26%; min-width: 80px; }
 .flxg-bar { display: block; height: 8px; border-radius: 4px; background: var(--hover); overflow: hidden; }
 .flxg-bar > span { display: block; height: 100%; border-radius: 4px; }
-.flxg-vbars { display: flex; align-items: flex-end; gap: 6px; height: 170px; padding-top: 18px; }
-.flxg-vbar { flex: 1; min-width: 0; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 4px; }
-.flxg-vbar-b { width: 70%; max-width: 36px; background: var(--accent); border-radius: 4px 4px 0 0; min-height: 2px; }
-.flxg-vbar-v { font-size: 10px; color: var(--muted); white-space: nowrap; }
-.flxg-vbar-l { font-size: 11px; color: var(--muted); text-transform: capitalize; }
 .flxg-copyrow { display: flex; align-items: center; gap: 8px; padding: 8px 8px 8px 12px; background: var(--panel-2); border: 1px solid var(--line); border-radius: var(--r); margin: 6px 0; }
 .flxg-copyrow code { flex: 1; min-width: 0; overflow-x: auto; white-space: nowrap; background: none; padding: 0; }
 .flxg-newkey { padding: 12px; border: 1px solid var(--accent); background: var(--accent-soft); border-radius: var(--r); margin: 10px 0; }
@@ -1056,8 +1051,6 @@ body.flxg-dragging * { cursor: grabbing !important; user-select: none !important
 	.flxg-toasts { bottom: calc(90px + env(safe-area-inset-bottom)); }
 	.flxg-kpi-val { font-size: 21px; }
 	.flxg-notif { padding: 12px; }
-	.flxg-vbars { gap: 3px; }
-	.flxg-vbar-v { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

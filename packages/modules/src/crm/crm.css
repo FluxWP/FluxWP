@@ -111,11 +111,6 @@
 .flxcrm-list__main small{color:var(--c-mut)}
 .flxcrm-list__side{display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex:none;font-variant-numeric:tabular-nums}
 .flxcrm-list--plain .flxcrm-i{color:var(--c-mut)}
-.flxcrm-bars{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
-.flxcrm-bars li{margin:0}
-.flxcrm-bars__top{display:flex;justify-content:space-between;gap:10px;font-size:13px}
-.flxcrm-bars__track{height:6px;background:var(--c-s2);border-radius:99px;margin:5px 0 0;overflow:hidden}
-.flxcrm-bars__track span{display:block;height:100%;background:var(--c-ac);border-radius:99px}
 /* RFM segmentleri */
 .flxcrm-segs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 18px;margin:0;padding:0;list-style:none}
 .flxcrm-segs li{margin:0;--sc:var(--c-mut)}

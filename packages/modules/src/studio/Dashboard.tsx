@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useFlxQuery } from '@fluxwp/graphql/react';
 import { FlxStudioStats } from '@fluxwp/graphql/operations';
 import type { FlxStudioStatsQuery } from '@fluxwp/graphql/types';
+import { Chart } from '@fluxwp/ui/chart';
 import { Btn, Ic, IconBtn, useT, type IconName } from './ui';
 import { ago, loadPref, money, savePref } from './lib';
 
@@ -14,19 +15,10 @@ interface Series {
   cls: string;
 }
 
-const niceStep = (max: number): number => {
-  if (max <= 0) return 1;
-  const raw = max / 4;
-  const p = Math.pow(10, Math.floor(Math.log10(raw)));
-  const m = raw / p;
-  return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 5 ? 5 : 10) * p;
-};
-
 export function Dashboard({ locale }: { locale: string }) {
   const t = useT();
   const [days, setDays] = useState<number>(loadPref<number>('dashDays') ?? 30);
   const q = useFlxQuery(FlxStudioStats, { days });
-  const [tip, setTip] = useState<{ x: number; y: number; lines: string[] } | null>(null);
   const money2 = (v: number) => (v >= 10 ? '$' + v.toLocaleString(locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : money(v, locale));
   const num = (n: number) => (n || 0).toLocaleString(locale);
   const bytes = (b: number) => (!b ? '0 MB' : b >= 1073741824 ? (b / 1073741824).toLocaleString(locale, { maximumFractionDigits: 1 }) + ' GB' : Math.max(1, Math.round(b / 1048576)).toLocaleString(locale) + ' MB');
@@ -54,71 +46,20 @@ export function Dashboard({ locale }: { locale: string }) {
   const out = d.image + d.video;
   const tried = out + d.failed;
 
-  const bars = (series: Series[], fmt: (v: number, axis?: boolean) => string) => {
-    const W = 640;
-    const H = 168;
-    const PL = 36;
-    const PB = 22;
-    const PT = 8;
-    const n = d.daily.length;
-    let max = 0;
-    for (const x of d.daily) max = Math.max(max, series.reduce((s, y) => s + (x[y.key] || 0), 0));
-    const step = niceStep(max);
-    const top = Math.max(step, Math.ceil(max / step) * step);
-    const ih = H - PB - PT;
-    const iw = W - PL;
-    const bw = iw / Math.max(1, n);
-    const gap = Math.max(2, bw * 0.22);
-    const w = Math.max(2, bw - gap);
-    const every = Math.ceil(n / 8);
-    const grid: number[] = [];
-    for (let g = 0; g <= top + 1e-9; g += step) grid.push(g);
-    return (
-      <svg viewBox={`0 0 ${W} ${H}`} className="flxst-chart" role="img">
-        {grid.map((g) => {
-          const y = PT + ih - (g / top) * ih;
-          return (
-            <g key={g}>
-              <line x1={PL} x2={W} y1={y} y2={y} className="flxst-grid-l" />
-              <text x={PL - 6} y={y + 3.5} className="flxst-axis" textAnchor="end">
-                {fmt(g, true)}
-              </text>
-            </g>
-          );
-        })}
-        {d.daily.map((day: Daily, i) => {
-          const x = PL + i * bw + gap / 2;
-          let base = PT + ih;
-          return (
-            <g key={day.date}>
-              {series.map((s, si) => {
-                const v = day[s.key] || 0;
-                if (!v) return null;
-                const hgt = Math.max(1.5, (v / top) * ih);
-                const y = base - hgt;
-                base -= hgt;
-                return <rect key={s.key} x={x} y={y} width={w} height={Math.max(1, hgt - (si ? 2 : 0))} rx={Math.min(3, w / 2)} className={'flxst-bar-' + s.cls} />;
-              })}
-              {(i % every === 0 || (i === n - 1 && i % every >= every / 2)) && (
-                <text x={x + w / 2} y={H - 6} className="flxst-axis" textAnchor="middle">
-                  {dayLabel(day.date)}
-                </text>
-              )}
-              <rect
-                x={PL + i * bw}
-                y={PT}
-                width={bw}
-                height={ih}
-                className="flxst-hit"
-                onMouseMove={(e) => setTip({ x: e.clientX + 14, y: e.clientY + 14, lines: [dayLabel(day.date, true), ...series.map((s) => `${s.label}: ${fmt(day[s.key] || 0)}`)] })}
-                onMouseLeave={() => setTip(null)}
-              />
-            </g>
-          );
-        })}
-      </svg>
-    );
-  };
+  const COLORS: Record<string, string> = { img: 'var(--c-img)', vid: 'var(--c-vid)', err: 'var(--err)', cost: 'var(--c-cost)' };
+  const bars = (series: Series[], fmt: (v: number, axis?: boolean) => string) => (
+    <Chart
+      kind="bar"
+      stacked
+      height={190}
+      labels={d.daily.map((x) => x.date)}
+      tickLabel={(iso) => dayLabel(iso)}
+      formatLabel={(iso) => dayLabel(iso, true)}
+      series={series.filter((s) => s.key !== 'failed' || d.failed > 0).map((s) => ({ label: s.label, data: d.daily.map((x) => x[s.key] || 0), color: COLORS[s.cls] }))}
+      format={(v) => fmt(v)}
+      formatTick={(v) => fmt(v, true)}
+    />
+  );
 
   const tile = (label: string, value: string, sub: string, icon: IconName) => (
     <div className="flxst-tile">
@@ -194,22 +135,6 @@ export function Dashboard({ locale }: { locale: string }) {
                 (v) => num(v),
               )
             : empty(t('No generations in this period.')),
-          <div className="flxst-legend">
-            <span>
-              <i className="flxst-bar-img" />
-              {t('Images')}
-            </span>
-            <span>
-              <i className="flxst-bar-vid" />
-              {t('Videos')}
-            </span>
-            {d.failed > 0 && (
-              <span>
-                <i className="flxst-bar-err" />
-                {t('Failed')}
-              </span>
-            )}
-          </div>,
         )}
         {card(t('Daily spend'), d.spendTotal > 0 ? bars([{ key: 'cost', label: t('Spend'), cls: 'cost' }], (v, axis) => (axis ? '$' + Math.round(v * 100) / 100 : money(v, locale))) : empty(t('No spend in this period.')))}
         {budgets.length > 0 &&
@@ -353,11 +278,6 @@ export function Dashboard({ locale }: { locale: string }) {
             ))}
           </ul>,
         )}
-      {tip && (
-        <div className="flxst-dtip" style={{ left: Math.min(tip.x, window.innerWidth - 180), top: Math.min(tip.y, window.innerHeight - 90) }}>
-          {tip.lines.map((l, i) => (i ? <div key={i}>{l}</div> : <strong key={i}>{l}</strong>))}
-        </div>
-      )}
     </div>
   );
 }
