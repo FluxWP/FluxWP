@@ -1,0 +1,6 @@
+mutation FlxPosAccountDelete($input: FlxPosAccountDeleteInput!) {
+  flxPosAccountDelete(input: $input) {
+    accounts { ...FlxPosAccountFields }
+    errors { code message field }
+  }
+}

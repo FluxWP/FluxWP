@@ -1,0 +1,6 @@
+mutation FlxPosTxnRefund($input: FlxPosTxnRefundInput!) {
+  flxPosTxnRefund(input: $input) {
+    txn { ...FlxPosTxnRow }
+    errors { code message field }
+  }
+}

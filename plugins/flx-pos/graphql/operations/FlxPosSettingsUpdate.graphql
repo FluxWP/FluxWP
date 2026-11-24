@@ -1,0 +1,6 @@
+mutation FlxPosSettingsUpdate($input: FlxPosSettingsUpdateInput!) {
+  flxPosSettingsUpdate(input: $input) {
+    settings { ...FlxPosSettingsFields }
+    errors { code message field }
+  }
+}

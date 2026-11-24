@@ -1,0 +1,384 @@
+{
+  "mode": "chunks",
+  "entry": "flux-modules.js",
+  "files": [
+    "flux-admin-BfNTgeJ2.js",
+    "flux-ads-DKef12Q9.js",
+    "flux-ai-7fXcPk8Z.js",
+    "flux-analytics-D6_N3Rn5.js",
+    "flux-analytics-D7Rl6esP.js",
+    "flux-analytics-DdBqrNTy.js",
+    "flux-analytics-Z6aVJdy4.js",
+    "flux-app-settings-BWOJAm3P.js",
+    "flux-app-settings-Cn1HRu8a.js",
+    "flux-app-settings-Dlmev3cE.js",
+    "flux-arrow-left-BKcUx3Ew.js",
+    "flux-backup-DgXnf48n.js",
+    "flux-blocks-CIAk6lEz.js",
+    "flux-certificates-Dpdftp3o.js",
+    "flux-chatbot-6OZv6Q0H.js",
+    "flux-chatbot-CZukUTe6.js",
+    "flux-chatbot-DkYDdrTa.js",
+    "flux-chevron-down-CRPngy6C.js",
+    "flux-client-CXQl4Q46.js",
+    "flux-coins-DrgHeiHK.js",
+    "flux-commerce-B4g-6Zvh.js",
+    "flux-context-WPLfnRg1.js",
+    "flux-copy-IayC763v.js",
+    "flux-core-BX2zscRD.js",
+    "flux-crm-Q0T8dFfv.js",
+    "flux-doc-comments-qOIWdJh_.js",
+    "flux-docs-DG7geWO0.js",
+    "flux-external-link-CwPwYTdw.js",
+    "flux-face-slightly-smiling-Gasi3tdn.js",
+    "flux-feed-FC5dEzdW.js",
+    "flux-files-BSMKfy47.js",
+    "flux-headless-Bie1oOF9.js",
+    "flux-lang-DO6G1n9L.js",
+    "flux-lib-OemJTBq6.js",
+    "flux-mail-DQwvlyzN.js",
+    "flux-modules-BIeFcT5E.js",
+    "flux-modules.css",
+    "flux-modules.js",
+    "flux-operations-dWpdp64-.js",
+    "flux-paperclip-C4P0EafD.js",
+    "flux-pencil-D5NcQ2UZ.js",
+    "flux-ports-Br2l4D2K.js",
+    "flux-pos-lyhrQVAO.js",
+    "flux-react-JP0AALHJ.js",
+    "flux-recaptcha-FwFfwCjW.js",
+    "flux-review-CgthdKE7.js",
+    "flux-roles-CuOETuMq.js",
+    "flux-rolldown-runtime-WkwZ5CU-.js",
+    "flux-seo-i1LtXlrX.js",
+    "flux-setup-Cnbc60a_.js",
+    "flux-setup-vGa4NwjX.js",
+    "flux-shared-BGOTX-ww.js",
+    "flux-social-OEw9iXjs.js",
+    "flux-speed-CbO1LmLQ.js",
+    "flux-square-DhvuMlaU.js",
+    "flux-sticky-note-D0OaowDn.js",
+    "flux-studio-DWQhhDCk.js",
+    "flux-tasks--ayLS6cT.js",
+    "flux-tasks-1UV2IXyt.js",
+    "flux-tasks-B-cU-I8c.js",
+    "flux-tasks-B48Bg_C6.js",
+    "flux-tasks-B9ay3QN0.js",
+    "flux-tasks-BLbBYhpD.js",
+    "flux-tasks-BU1nLvV4.js",
+    "flux-tasks-BZ0dvmWD.js",
+    "flux-tasks-BafaiWiM.js",
+    "flux-tasks-C26LieM6.js",
+    "flux-tasks-C9UWaS2G.js",
+    "flux-tasks-CXn0Et8U.js",
+    "flux-tasks-CitxYQ5R.js",
+    "flux-tasks-CkDX5dOX.js",
+    "flux-tasks-Das5d55d.js",
+    "flux-tasks-Dy-nBYW3.js",
+    "flux-tasks-M7Vo35Md.js",
+    "flux-tasks-VUDOi8QN.js",
+    "flux-tasks-tyrlI6oS.js",
+    "flux-theme-C0DqGfWh.js",
+    "flux-theme-MJHLw-ld.js",
+    "flux-theme-rqxT9gm3.js",
+    "flux-useMutation-B2QY5mJJ.js",
+    "flux-useQuery-Br7pu5xc.js",
+    "flux-useTranslation-CfxLNN3b.js",
+    "flux-whatsapp-CCozJOms.js",
+    "flux-wiki-6HSLM6YT.js"
+  ],
+  "main": "flux-modules-BIeFcT5E.js",
+  "preload": {
+    "entry": [
+      "flux-modules-BIeFcT5E.js",
+      "flux-rolldown-runtime-WkwZ5CU-.js",
+      "flux-context-WPLfnRg1.js",
+      "flux-client-CXQl4Q46.js",
+      "flux-useQuery-Br7pu5xc.js",
+      "flux-ports-Br2l4D2K.js",
+      "flux-feed-FC5dEzdW.js"
+    ],
+    "screens": {
+      "flxa-admin": [
+        "flux-admin-BfNTgeJ2.js",
+        "flux-useTranslation-CfxLNN3b.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js",
+        "flux-chevron-down-CRPngy6C.js"
+      ],
+      "flxads-ads": [
+        "flux-ads-DKef12Q9.js",
+        "flux-useTranslation-CfxLNN3b.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js"
+      ],
+      "flxai-admin": [
+        "flux-ai-7fXcPk8Z.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js",
+        "flux-useTranslation-CfxLNN3b.js",
+        "flux-square-DhvuMlaU.js",
+        "flux-paperclip-C4P0EafD.js",
+        "flux-chevron-down-CRPngy6C.js",
+        "flux-pencil-D5NcQ2UZ.js",
+        "flux-external-link-CwPwYTdw.js",
+        "flux-arrow-left-BKcUx3Ew.js"
+      ],
+      "flxan-stats": [
+        "flux-analytics-D6_N3Rn5.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js",
+        "flux-lib-OemJTBq6.js",
+        "flux-useTranslation-CfxLNN3b.js"
+      ],
+      "flxan-journeys": [
+        "flux-analytics-DdBqrNTy.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js",
+        "flux-lib-OemJTBq6.js",
+        "flux-useTranslation-CfxLNN3b.js"
+      ],
+      "flxan-settings": [
+        "flux-analytics-Z6aVJdy4.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js",
+        "flux-lib-OemJTBq6.js",
+        "flux-useTranslation-CfxLNN3b.js"
+      ],
+      "flxan-telemetry": [
+        "flux-analytics-D7Rl6esP.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js",
+        "flux-lib-OemJTBq6.js",
+        "flux-useTranslation-CfxLNN3b.js"
+      ],
+      "flxapp-settings": [
+        "flux-app-settings-Dlmev3cE.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js",
+        "flux-app-settings-Cn1HRu8a.js",
+        "flux-useTranslation-CfxLNN3b.js"
+      ],
+      "flxapp-access": [
+        "flux-app-settings-BWOJAm3P.js",
+        "flux-useTranslation-CfxLNN3b.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js",
+        "flux-app-settings-Cn1HRu8a.js"
+      ],
+      "flxy-backup": [
+        "flux-backup-DgXnf48n.js",
+        "flux-useTranslation-CfxLNN3b.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js"
+      ],
+      "flxbk-dashboard": [
+        "flux-blocks-CIAk6lEz.js",
+        "flux-useTranslation-CfxLNN3b.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js"
+      ],
+      "flxs-certificates": [
+        "flux-certificates-Dpdftp3o.js",
+        "flux-useTranslation-CfxLNN3b.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js"
+      ],
+      "flxcb-inbox": [
+        "flux-chatbot-6OZv6Q0H.js",
+        "flux-useTranslation-CfxLNN3b.js",
+        "flux-arrow-left-BKcUx3Ew.js",
+        "flux-external-link-CwPwYTdw.js",
+        "flux-paperclip-C4P0EafD.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js",
+        "flux-chatbot-DkYDdrTa.js"
+      ],
+      "flxcb-settings": [
+        "flux-chatbot-CZukUTe6.js",
+        "flux-useTranslation-CfxLNN3b.js",
+        "flux-face-slightly-smiling-Gasi3tdn.js",
+        "flux-external-link-CwPwYTdw.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js",
+        "flux-chatbot-DkYDdrTa.js"
+      ],
+      "flxcm-store": [
+        "flux-commerce-B4g-6Zvh.js",
+        "flux-useTranslation-CfxLNN3b.js",
+        "flux-arrow-left-BKcUx3Ew.js",
+        "flux-coins-DrgHeiHK.js",
+        "flux-copy-IayC763v.js",
+        "flux-sticky-note-D0OaowDn.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js"
+      ],
+      "crm": [
+        "flux-crm-Q0T8dFfv.js",
+        "flux-useTranslation-CfxLNN3b.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js",
+        "flux-arrow-left-BKcUx3Ew.js",
+        "flux-coins-DrgHeiHK.js",
+        "flux-pencil-D5NcQ2UZ.js",
+        "flux-sticky-note-D0OaowDn.js"
+      ],
+      "flxfm-files": [
+        "flux-files-BSMKfy47.js",
+        "flux-useTranslation-CfxLNN3b.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js"
+      ],
+      "flxhl-headless": [
+        "flux-headless-Bie1oOF9.js",
+        "flux-useTranslation-CfxLNN3b.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js"
+      ],
+      "flxl-lang": [
+        "flux-lang-DO6G1n9L.js",
+        "flux-useTranslation-CfxLNN3b.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js"
+      ],
+      "flxi-mail": [
+        "flux-mail-DQwvlyzN.js",
+        "flux-useTranslation-CfxLNN3b.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js"
+      ],
+      "flxpos-pos": [
+        "flux-pos-lyhrQVAO.js",
+        "flux-useTranslation-CfxLNN3b.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js"
+      ],
+      "flxrc-recaptcha": [
+        "flux-recaptcha-FwFfwCjW.js",
+        "flux-useTranslation-CfxLNN3b.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js"
+      ],
+      "flxb-review": [
+        "flux-review-CgthdKE7.js",
+        "flux-useTranslation-CfxLNN3b.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-sticky-note-D0OaowDn.js"
+      ],
+      "flxr-roles": [
+        "flux-roles-CuOETuMq.js",
+        "flux-useTranslation-CfxLNN3b.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js"
+      ],
+      "flxseo-seo": [
+        "flux-seo-i1LtXlrX.js",
+        "flux-useTranslation-CfxLNN3b.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js"
+      ],
+      "flxk-packages": [
+        "flux-setup-Cnbc60a_.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js",
+        "flux-shared-BGOTX-ww.js",
+        "flux-useTranslation-CfxLNN3b.js"
+      ],
+      "flxk-settings": [
+        "flux-setup-vGa4NwjX.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js",
+        "flux-shared-BGOTX-ww.js",
+        "flux-useTranslation-CfxLNN3b.js"
+      ],
+      "flxsm-social": [
+        "flux-social-OEw9iXjs.js",
+        "flux-useTranslation-CfxLNN3b.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js"
+      ],
+      "flxp-speed": [
+        "flux-speed-CbO1LmLQ.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js",
+        "flux-useTranslation-CfxLNN3b.js"
+      ],
+      "studio": [
+        "flux-studio-DWQhhDCk.js",
+        "flux-useTranslation-CfxLNN3b.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js"
+      ],
+      "flxg-tasks": [
+        "flux-tasks-VUDOi8QN.js",
+        "flux-useTranslation-CfxLNN3b.js",
+        "flux-operations-dWpdp64-.js"
+      ],
+      "flxt-theme-settings": [
+        "flux-theme-rqxT9gm3.js",
+        "flux-useTranslation-CfxLNN3b.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js",
+        "flux-theme-C0DqGfWh.js"
+      ],
+      "flxt-theme-system": [
+        "flux-theme-MJHLw-ld.js",
+        "flux-useTranslation-CfxLNN3b.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js",
+        "flux-theme-C0DqGfWh.js"
+      ],
+      "flxc-inbox": [
+        "flux-whatsapp-CCozJOms.js",
+        "flux-useTranslation-CfxLNN3b.js",
+        "flux-face-slightly-smiling-Gasi3tdn.js",
+        "flux-square-DhvuMlaU.js",
+        "flux-sticky-note-D0OaowDn.js",
+        "flux-operations-dWpdp64-.js",
+        "flux-chevron-down-CRPngy6C.js",
+        "flux-copy-IayC763v.js",
+        "flux-pencil-D5NcQ2UZ.js",
+        "flux-paperclip-C4P0EafD.js",
+        "flux-external-link-CwPwYTdw.js"
+      ],
+      "flxwk-wiki": [
+        "flux-wiki-6HSLM6YT.js",
+        "flux-useTranslation-CfxLNN3b.js",
+        "flux-react-JP0AALHJ.js",
+        "flux-useMutation-B2QY5mJJ.js",
+        "flux-operations-dWpdp64-.js"
+      ]
+    }
+  }
+}

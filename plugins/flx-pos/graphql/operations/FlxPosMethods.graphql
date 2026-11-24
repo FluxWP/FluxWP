@@ -1,0 +1,4 @@
+# Every WooCommerce payment method in checkout order, with what it can do and the one-card rule.
+query FlxPosMethods {
+  flxPosMethods { ...FlxPosMethodsFields }
+}
