@@ -1,5 +1,12 @@
 # Değişiklikler
 
+## 2.34.0
+- **Bağışın dili.** Çok dilli sitede her bağış verildiği dili tutar (web'de ziyaretçinin dili, siparişte `_flxb_lang`, bağışta `meta.lang`). `flxb_create_order()` ve kayıt `lang` alır.
+- **Sahibine kendi dilinde.** Takipteki dosya/video yazısı bağışçının dilinde gider. Takip sözcükleri dil başına yazılabilir (`flxb_track_labels_i18n`, tür meta `labels_i18n`); başka dilde boş alan eklentinin o dildeki çevirisini kullanır.
+- **Sahibine mesaj.** Takip kaydının sahibine kendi dilinde WhatsApp metni gönderen genel fonksiyon `flxb_track_send_message()`; geçmişte "Sahibine mesaj gönderildi". Hat `flxb_track_connection` filtresiyle seçilebilir.
+- **Vekâlet metni dil başına.** Aynı sürümün diğer dillerdeki metni (`i18n`) ziyaretçinin dilinde gösterilir; onay sürümle birlikte okunduğu dili de tutar. Kaydetme `flxb_proxy_text_save()`.
+- Tek dilli sitede davranış değişmedi. API: `API.md` › "Bağışın dili".
+
 ## 2.33.1
 - "Kendim için" ve "Başkası adına" kutuları her zaman aynı yükseklikte (telefonda biri iki satıra düşse de).
 - İngilizce metin kısaldı: "On behalf of someone else" yerine "For someone else". Türkçe "Başkası adına" aynı.
