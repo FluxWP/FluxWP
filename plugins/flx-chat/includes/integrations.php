@@ -679,6 +679,8 @@ function flxc_create_donation( array $p, $chat = null ) {
 			'meta'          => $meta,
 			'lines'         => $lines,
 			'beneficiaries' => $names,
+			// 1.52.0: sohbetin dili (Flux Donate 2.34+ meta.lang; boşsa site dili).
+			'lang'          => function_exists( 'flxc_lang_clean' ) ? flxc_lang_clean( $p['lang'] ?? '' ) : '',
 		)
 	);
 	if ( ! $id ) {

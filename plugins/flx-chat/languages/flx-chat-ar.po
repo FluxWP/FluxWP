@@ -4998,3 +4998,18 @@ msgstr "لا تُرسل الرسائل الترويجية والتذكيرات. 
 
 msgid "The person replied STOP to promotional messages."
 msgstr "ردّ الشخص بـ STOP على الرسائل الترويجية."
+
+msgid "at least %s"
+msgstr "على الأقل %s"
+
+msgid "(updates are sent to this address too)"
+msgstr "(تُرسل الإشعارات إلى هذا العنوان أيضًا)"
+
+msgid "Assistant languages"
+msgstr "لغات المساعد"
+
+msgid "Ready messages go out in the language the person writes in. Saved translation templates: %s. Numbers, prices, IBAN and links are not translated; they are filled in when sending."
+msgstr "تُرسل الرسائل الجاهزة باللغة التي يكتب بها الشخص. قوالب الترجمة المحفوظة: %s. لا تُترجم الأرقام والأسعار والآيبان والروابط، بل تُدرج عند الإرسال."
+
+msgid "Ready messages go out in the language the person writes in. A message is translated the first time it is needed in a language and then reused; numbers, prices, IBAN and links are filled in when sending."
+msgstr "تُرسل الرسائل الجاهزة باللغة التي يكتب بها الشخص. تُترجم الرسالة أول مرة تُحتاج فيها بلغة ما ثم يُعاد استخدامها؛ وتُدرج الأرقام والأسعار والآيبان والروابط عند الإرسال."

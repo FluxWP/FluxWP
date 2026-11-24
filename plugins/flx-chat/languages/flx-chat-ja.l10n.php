@@ -3256,5 +3256,10 @@ return array(
   'Off (the person replied STOP)' => 'オフ（STOPと返信済み）',
   'Promotional messages and reminders are not sent. Replies to the person\'s own messages still go.' => 'プロモーションメッセージとリマインダーは送信されません。本人からのメッセージへの返信は送信されます。',
   'The person replied STOP to promotional messages.' => 'この人はプロモーションメッセージにSTOPと返信しました。',
+  'at least %s' => '%s以上',
+  '(updates are sent to this address too)' => '(お知らせはこのアドレスにも送信されます)',
+  'Assistant languages' => 'アシスタントの言語',
+  'Ready messages go out in the language the person writes in. Saved translation templates: %s. Numbers, prices, IBAN and links are not translated; they are filled in when sending.' => '定型メッセージは相手が書いた言語で送信されます。保存済みの翻訳テンプレート: %s。数字、金額、IBAN、リンクは翻訳されず、送信時に挿入されます。',
+  'Ready messages go out in the language the person writes in. A message is translated the first time it is needed in a language and then reused; numbers, prices, IBAN and links are filled in when sending.' => '定型メッセージは相手が書いた言語で送信されます。メッセージはその言語で初めて必要になったときに翻訳され、以後は再利用されます。数字、金額、IBAN、リンクは送信時に挿入されます。',
  ),
 );

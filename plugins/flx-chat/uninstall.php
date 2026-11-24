@@ -16,6 +16,8 @@ foreach ( array( 'flxc_settings', 'flxc_db_version', 'flxc_replies_seeded', 'flx
 	delete_option( $flxc_o );
 }
 $wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE 'flxc\_last\_webhook\_%'" ); // phpcs:ignore
+// 1.52.0: dil başına çeviri şablonları ve araç önbelleği sürümü.
+$wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE 'flxc\_tr\_%' OR option_name = 'flxc_tcache_v'" ); // phpcs:ignore
 $flxc_up  = wp_upload_dir( null, false );
 $flxc_dir = trailingslashit( $flxc_up['basedir'] ) . 'flx-chat';
 if ( is_dir( $flxc_dir ) ) {

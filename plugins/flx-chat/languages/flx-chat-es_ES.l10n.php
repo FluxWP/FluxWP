@@ -3256,5 +3256,10 @@ return array(
   'Off (the person replied STOP)' => 'Desactivado (la persona respondió STOP)',
   'Promotional messages and reminders are not sent. Replies to the person\'s own messages still go.' => 'No se envían mensajes promocionales ni recordatorios. Las respuestas a los mensajes de la persona sí se envían.',
   'The person replied STOP to promotional messages.' => 'La persona respondió STOP a los mensajes promocionales.',
+  'at least %s' => 'mínimo %s',
+  '(updates are sent to this address too)' => '(las notificaciones también se envían a esta dirección)',
+  'Assistant languages' => 'Idiomas del asistente',
+  'Ready messages go out in the language the person writes in. Saved translation templates: %s. Numbers, prices, IBAN and links are not translated; they are filled in when sending.' => 'Los mensajes predefinidos se envían en el idioma en que escribe la persona. Plantillas de traducción guardadas: %s. Los números, precios, IBAN y enlaces no se traducen; se insertan al enviar.',
+  'Ready messages go out in the language the person writes in. A message is translated the first time it is needed in a language and then reused; numbers, prices, IBAN and links are filled in when sending.' => 'Los mensajes predefinidos se envían en el idioma en que escribe la persona. Un mensaje se traduce la primera vez que se necesita en un idioma y luego se reutiliza; los números, precios, IBAN y enlaces se insertan al enviar.',
  ),
 );
