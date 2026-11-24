@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 2.35.0
+- **Bağış detayında taşınabilir kutular.** Kalemler, Ödeme, Bağışçı, Referans, İşlemler, Geçmiş ve diğer kartlar artık kutu: köşedeki oklarla yukarı/aşağı taşınır (sütunlar arasında da), "–" ile daraltılır; geniş ekranda tutamaktan sürüklenir. Sıra ve daraltılan kutular kullanıcı başına saklanır, sayfa bir dahaki açılışta aynı düzenle gelir. Telefonda tek sütun, oklarla taşınır.
+- **WooCommerce sipariş ekranındaki diğer eklentilerin kutuları bağış detayında.** LiteSpeed, Google for WooCommerce, sipariş niteliği (Order attribution) gibi kutular Flux kartı olarak açılır. Alanı olan kutularda "Kaydet" hepsini birlikte, eklentilerin kendi kayıt kancasıyla (`woocommerce_process_shop_order_meta`) kaydeder; siparişin geri kalanı değişmez. WooCommerce'in kendi kutuları (sipariş verisi, ürünler, eylemler, özel alanlar) gösterilmez, bağış sayfasında karşılıkları var.
+- **Sipariş notları kutusu.** Notlar listelenir; özel not ya da bağışçıya (e-postayla) not eklenir, not silinir.
+- Geliştirici: `flxb_detail_boxes` (bağış sayfasına kutu ekle), `flxb_wc_box_skip`, `flxb_wc_boxes`, `flxb_wc_boxes_enqueue` (kutunun sipariş ekranına bağlı script'ini bağış sayfasında yükle). Ayrıntı `docs/flx-donate/KUTULAR.md`.
+
 ## 2.34.0
 - **Bağışın dili.** Çok dilli sitede her bağış verildiği dili tutar (web'de ziyaretçinin dili, siparişte `_flxb_lang`, bağışta `meta.lang`). `flxb_create_order()` ve kayıt `lang` alır.
 - **Sahibine kendi dilinde.** Takipteki dosya/video yazısı bağışçının dilinde gider. Takip sözcükleri dil başına yazılabilir (`flxb_track_labels_i18n`, tür meta `labels_i18n`); başka dilde boş alan eklentinin o dildeki çevirisini kullanır.
