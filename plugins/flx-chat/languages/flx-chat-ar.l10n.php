@@ -3256,5 +3256,10 @@ return array(
   'Off (the person replied STOP)' => 'متوقفة (ردّ الشخص بـ STOP)',
   'Promotional messages and reminders are not sent. Replies to the person\'s own messages still go.' => 'لا تُرسل الرسائل الترويجية والتذكيرات. الردود على رسائل الشخص نفسه تُرسل.',
   'The person replied STOP to promotional messages.' => 'ردّ الشخص بـ STOP على الرسائل الترويجية.',
+  'at least %s' => 'على الأقل %s',
+  '(updates are sent to this address too)' => '(تُرسل الإشعارات إلى هذا العنوان أيضًا)',
+  'Assistant languages' => 'لغات المساعد',
+  'Ready messages go out in the language the person writes in. Saved translation templates: %s. Numbers, prices, IBAN and links are not translated; they are filled in when sending.' => 'تُرسل الرسائل الجاهزة باللغة التي يكتب بها الشخص. قوالب الترجمة المحفوظة: %s. لا تُترجم الأرقام والأسعار والآيبان والروابط، بل تُدرج عند الإرسال.',
+  'Ready messages go out in the language the person writes in. A message is translated the first time it is needed in a language and then reused; numbers, prices, IBAN and links are filled in when sending.' => 'تُرسل الرسائل الجاهزة باللغة التي يكتب بها الشخص. تُترجم الرسالة أول مرة تُحتاج فيها بلغة ما ثم يُعاد استخدامها؛ وتُدرج الأرقام والأسعار والآيبان والروابط عند الإرسال.',
  ),
 );

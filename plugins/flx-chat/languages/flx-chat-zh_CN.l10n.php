@@ -3256,5 +3256,10 @@ return array(
   'Off (the person replied STOP)' => '已关闭（对方回复了 STOP）',
   'Promotional messages and reminders are not sent. Replies to the person\'s own messages still go.' => '不会发送推广消息和提醒。对方本人消息的回复仍会发送。',
   'The person replied STOP to promotional messages.' => '对方已对推广消息回复 STOP。',
+  'at least %s' => '至少 %s',
+  '(updates are sent to this address too)' => '(通知也会发送到此地址)',
+  'Assistant languages' => '助手语言',
+  'Ready messages go out in the language the person writes in. Saved translation templates: %s. Numbers, prices, IBAN and links are not translated; they are filled in when sending.' => '预设消息以对方书写的语言发送。已保存的翻译模板：%s。数字、价格、IBAN 和链接不翻译，发送时填入。',
+  'Ready messages go out in the language the person writes in. A message is translated the first time it is needed in a language and then reused; numbers, prices, IBAN and links are filled in when sending.' => '预设消息以对方书写的语言发送。消息在某种语言中首次需要时翻译，之后重复使用；数字、价格、IBAN 和链接在发送时填入。',
  ),
 );

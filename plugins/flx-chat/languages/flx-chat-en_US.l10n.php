@@ -3277,5 +3277,10 @@ return array(
   'Enlarge photo' => 'Enlarge photo',
   'Bulk send' => 'Bulk send',
   'Open send details' => 'Open send details',
+  'at least %s' => 'at least %s',
+  '(updates are sent to this address too)' => '(updates are sent to this address too)',
+  'Assistant languages' => 'Assistant languages',
+  'Ready messages go out in the language the person writes in. Saved translation templates: %s. Numbers, prices, IBAN and links are not translated; they are filled in when sending.' => 'Ready messages go out in the language the person writes in. Saved translation templates: %s. Numbers, prices, IBAN and links are not translated; they are filled in when sending.',
+  'Ready messages go out in the language the person writes in. A message is translated the first time it is needed in a language and then reused; numbers, prices, IBAN and links are filled in when sending.' => 'Ready messages go out in the language the person writes in. A message is translated the first time it is needed in a language and then reused; numbers, prices, IBAN and links are filled in when sending.',
  ),
 );
