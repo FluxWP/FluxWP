@@ -179,11 +179,19 @@ class FLXB_WC_Gateways {
 		return in_array( $id, array( 'bacs', 'cheque', 'cod' ), true );
 	}
 
+	/**
+	 * 2.37.0: a POS method that is switched on but has no merchant account yet (Flux POS before its
+	 * first account) takes no card, so it does not count as the card method.
+	 */
+	private static function no_account( $gw ) {
+		return is_object( $gw ) && method_exists( $gw, 'account' ) && ! $gw->account();
+	}
+
 	/** Enabled third-party card / POS methods (not ours, not offline), id => title. */
 	public static function third_party_enabled() {
 		$out = array();
 		foreach ( self::all() as $id => $gw ) {
-			if ( 'yes' === $gw->enabled && ! self::own( $id ) && ! self::offline( $id ) && FLXB_WC_Iyzico::OFFICIAL !== $id ) {
+			if ( 'yes' === $gw->enabled && ! self::own( $id ) && ! self::offline( $id ) && FLXB_WC_Iyzico::OFFICIAL !== $id && ! self::no_account( $gw ) ) {
 				$out[ $id ] = wp_strip_all_tags( (string) $gw->get_method_title() );
 			}
 		}
