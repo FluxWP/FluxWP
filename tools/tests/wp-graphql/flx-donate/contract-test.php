@@ -18,7 +18,7 @@ foreach ( (array) json_decode( (string) file_get_contents( FLXB_DIR . 'graphql/p
 		$GLOBALS['flxb_ops'][ $m[1] ] = $doc;
 	}
 }
-flxt_same( 22, count( $GLOBALS['flxb_ops'] ), 'Flux Donate ships 22 persisted operations' );
+flxt_same( 27, count( $GLOBALS['flxb_ops'] ), 'Flux Donate ships 27 persisted operations' );
 
 /**
  * @param array<string,mixed> $vars Variables.
@@ -725,6 +725,79 @@ flxt_same( true, $r['data']['flxDonationLayoutSave']['ok'] ?? null, 'layout: sav
 $r = flxb_t_op( 'FlxDonateDetail', array( 'id' => $ref_b ), $admin );
 flxt_same( array( 'main' => array( 'payment', 'lines' ), 'side' => array( 'donor' ), 'closed' => array( 'history' ) ), $r['data']['flxDonationDetail']['layout'] ?? null, 'layout: read back' );
 
+// Donors and recurring donations (2.39.0): rights, own-only scoping, card, save, cancel.
+$wu = new WP_User( $staff_a );
+$wu->add_cap( FLXB_Refs::CAP_DONORS );
+$donor_a = (int) ( FLXB_Donations::get( $ref_a )['donor_id'] ?? 0 );
+$donor_b = (int) ( FLXB_Donations::get( $ref_b )['donor_id'] ?? 0 );
+flxt_ok( $donor_a > 0 && $donor_b > 0 && $donor_a !== $donor_b, 'donors: the two referral gifts have their own donors' );
+$r = flxb_t_op( 'FlxDonateDonors', array( 'first' => 25, 'after' => null ) );
+flxt_ok( null !== flxt_code( $r ), 'donors: visitor is refused' );
+$r = flxb_t_op( 'FlxDonateDonors', array( 'first' => 100, 'after' => null ), $admin );
+flxt_same( null, $r['errors'] ?? null, 'donors: an administrator reads' );
+$ids = array_map( 'intval', array_column( $r['data']['flxDonorList']['nodes'] ?? array(), 'databaseId' ) );
+flxt_ok( in_array( $donor_a, $ids, true ) && in_array( $donor_b, $ids, true ), 'donors: the administrator sees every donor' );
+flxt_same( false, $r['data']['flxDonorListInfo']['ownOnly'] ?? null, 'donors: not own-only' );
+$r = flxb_t_op( 'FlxDonateDonors', array( 'first' => 100, 'after' => null ), $staff_a );
+flxt_same( null, $r['errors'] ?? null, 'donors: own-only staff reads' );
+flxt_same( array( $donor_a ), array_map( 'intval', array_column( $r['data']['flxDonorList']['nodes'] ?? array(), 'databaseId' ) ), 'donors: own-only staff sees only their donors' );
+flxt_same( true, $r['data']['flxDonorListInfo']['ownOnly'] ?? null, 'donors: ownOnly' );
+$r = flxb_t_op( 'FlxDonateDonors', array( 'first' => 5, 'after' => null, 'filter' => array( 'search' => 'refb.gql@example.com' ) ), $admin );
+flxt_same( array( $donor_b ), array_map( 'intval', array_column( $r['data']['flxDonorList']['nodes'] ?? array(), 'databaseId' ) ), 'donors: search by e-mail' );
+$r = flxb_t_op( 'FlxDonateDonors', array( 'first' => 1, 'after' => null, 'filter' => array( 'orderBy' => 'NAME' ) ), $admin );
+$first = (int) ( $r['data']['flxDonorList']['nodes'][0]['databaseId'] ?? 0 );
+flxt_same( true, $r['data']['flxDonorList']['pageInfo']['hasNextPage'] ?? null, 'donors: first=1 has a next page' );
+$r = flxb_t_op( 'FlxDonateDonors', array( 'first' => 1, 'after' => base64_encode( 'flxo:0' ), 'filter' => array( 'orderBy' => 'NAME' ) ), $admin ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
+$second = (int) ( $r['data']['flxDonorList']['nodes'][0]['databaseId'] ?? 0 );
+flxt_ok( $second > 0 && $second !== $first, 'donors: the offset cursor opens the next row' );
+
+$r = flxb_t_op( 'FlxDonateDonor', array( 'id' => $donor_b ), $admin );
+flxt_same( null, $r['errors'] ?? null, 'donor: an administrator reads the card' );
+$dc = $r['data']['flxDonor'] ?? array();
+flxt_same( $donor_b, (int) ( $dc['databaseId'] ?? 0 ), 'donor: the card' );
+flxt_ok( in_array( $ref_b, array_map( 'intval', array_column( $dc['gifts'] ?? array(), 'databaseId' ) ), true ), 'donor: the gift is on the card' );
+flxt_same( true, $dc['canEdit'] ?? null, 'donor: the administrator edits' );
+$r = flxb_t_op( 'FlxDonateDonor', array( 'id' => $donor_b ), $staff_a );
+flxt_ok( array_key_exists( 'flxDonor', (array) ( $r['data'] ?? array() ) ) && null === $r['data']['flxDonor'], 'donor: own-only staff cannot open another donor' );
+$r = flxb_t_op( 'FlxDonateDonor', array( 'id' => $donor_a ), $staff_a );
+$dc = $r['data']['flxDonor'] ?? array();
+flxt_same( true, $dc['ownOnly'] ?? null, 'donor: own-only card' );
+flxt_ok( false === ( $dc['canEdit'] ?? null ) && array() === ( $dc['subscriptions'] ?? null ) && '' === ( $dc['note'] ?? null ), 'donor: own-only staff gets no edit, recurring donations or note' );
+$save = array( 'id' => $donor_b, 'consentKvkk' => true, 'consentEmail' => false, 'consentSms' => true, 'note' => 'GraphQL note' );
+$r = flxb_t_op( 'FlxDonorSave', $save, $staff_a );
+flxt_ok( null !== flxt_code( $r ), 'donor save: own-only staff is refused' );
+$r = flxb_t_op( 'FlxDonorSave', $save, $admin );
+flxt_same( null, $r['errors'] ?? null, 'donor save: an administrator saves' );
+$row = FLXB_Donors::get( $donor_b );
+flxt_same( array( 1, 0, 1, 'GraphQL note' ), array( (int) $row['consent_kvkk'], (int) $row['consent_email'], (int) $row['consent_sms'], (string) $row['note'] ), 'donor save: saved' );
+$r = flxb_t_op( 'FlxDonorSave', array( 'id' => 99999999 ) + $save, $admin );
+flxt_ok( ! empty( $r['data']['flxDonorSave']['errors'] ), 'donor save: an unknown donor is refused' );
+
+$sub = (int) FLXB_Subscriptions::upsert( array( 'provider' => 'test', 'provider_ref' => 'gql-sub-' . wp_rand(), 'donor_id' => $donor_b, 'amount' => 50, 'currency' => 'TRY', 'interval_unit' => 'month', 'status' => 'active', 'next_charge_at' => '2026-12-24 10:00:00' ) );
+$r = flxb_t_op( 'FlxDonateSubscriptions', array( 'first' => 25, 'after' => null ) );
+flxt_ok( null !== flxt_code( $r ), 'subscriptions: visitor is refused' );
+$r = flxb_t_op( 'FlxDonateSubscriptions', array( 'first' => 25, 'after' => null ), $staff_a );
+flxt_ok( null !== flxt_code( $r ), 'subscriptions: own-only staff is refused' );
+$r = flxb_t_op( 'FlxDonateSubscriptions', array( 'first' => 25, 'after' => null, 'filter' => array( 'status' => 'ACTIVE' ) ), $admin );
+flxt_same( null, $r['errors'] ?? null, 'subscriptions: an administrator reads' );
+$node = null;
+foreach ( (array) ( $r['data']['flxSubscriptionList']['nodes'] ?? array() ) as $n ) {
+	if ( $sub === (int) $n['databaseId'] ) {
+		$node = $n;
+	}
+}
+flxt_ok( is_array( $node ) && 'ACTIVE' === $node['status'] && $donor_b === (int) $node['donorId'] && '' !== $node['nextLabel'], 'subscriptions: the recurring donation, active, with the next charge' );
+flxt_same( false, $node['canCancel'] ?? null, 'subscriptions: a provider without cancel cannot be canceled here' );
+flxt_ok( (int) ( $r['data']['flxSubscriptionTotals']['active'] ?? 0 ) >= 1, 'subscriptions: active count' );
+$r = flxb_t_op( 'FlxDonateDonor', array( 'id' => $donor_b ), $admin );
+flxt_ok( in_array( $sub, array_map( 'intval', array_column( $r['data']['flxDonor']['subscriptions'] ?? array(), 'databaseId' ) ), true ), 'donor: the recurring donation is on the card' );
+$r = flxb_t_op( 'FlxSubscriptionCancel', array( 'id' => $sub ), $staff_a );
+flxt_ok( null !== flxt_code( $r ), 'cancel: own-only staff is refused' );
+if ( FLXB_Admin_People_Service::can_cancel() ) {
+	$r = flxb_t_op( 'FlxSubscriptionCancel', array( 'id' => $sub ), $admin );
+	flxt_ok( ! empty( $r['data']['flxSubscriptionCancel']['errors'] ), 'cancel: a provider without cancel is refused' );
+}
+
 if ( ! class_exists( 'FLXB_Admin' ) ) {
 	require_once FLXB_DIR . 'includes/admin/class-flxb-admin.php';
 }
@@ -733,5 +806,9 @@ flxt_same( array( 'search' => 'x', 'status' => 'RECEIPT', 'kind' => 'ONE_TIME', 
 flxt_same( array( array( 'FlxDonateDonations', array( 'first' => 25, 'after' => null ) ) ), FLXB_Admin::preload_list( array() ), 'preload: no filter → no filter variable' );
 
 flxt_same( array( array( 'FlxDonateDetail', array( 'id' => 12 ) ) ), FLXB_Admin::preload_list( array( 'donation' => '12' ) ), 'preload: the donation page' );
+flxt_same( array( array( 'FlxDonateDonors', array( 'first' => 25, 'after' => null ) ) ), FLXB_Admin::preload_donors( array( 'orderby' => 'last_donation_at' ) ), 'preload: donors, default sort → no filter' );
+flxt_same( array( array( 'FlxDonateDonors', array( 'first' => 25, 'after' => base64_encode( 'flxo:24' ), 'filter' => array( 'search' => 'x', 'kind' => 'CONSENT', 'orderBy' => 'TOTAL' ) ) ) ), FLXB_Admin::preload_donors( array( 's' => ' x ', 'kind' => 'consent', 'orderby' => 'total_amount', 'paged' => '2' ) ), 'preload: donors with the address filter' ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
+flxt_same( array( array( 'FlxDonateDonor', array( 'id' => 7 ) ) ), FLXB_Admin::preload_donors( array( 'donor' => '7' ) ), 'preload: the donor card' );
+flxt_same( array( array( 'FlxDonateSubscriptions', array( 'first' => 25, 'after' => null, 'filter' => array( 'status' => 'PAST_DUE' ) ) ) ), FLXB_Admin::preload_subscriptions( array( 'status' => 'past_due', 's' => '' ) ), 'preload: recurring donations' );
 
 flxt_done();

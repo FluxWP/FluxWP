@@ -1,6 +1,7 @@
 // Flux Donate › Dashboard and Donations. Same screen in wp-admin (wp-embed) and the FluxWP app; every read
 // and write goes through the Flux Donate GraphQL operations (plugins/flx-donate/graphql/operations).
-// The donation page (detail?id=N) is here too; the other pages are still the plugin's own pages.
+// The donation page (detail?id=N), donors (donors, donor?id=N) and recurring donations (subscriptions) are
+// here too; the other pages are still the plugin's own pages.
 import { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { createGraphQLClient } from '@fluxwp/graphql';
@@ -11,6 +12,9 @@ import { DonateCtx, type Ctx, type Notice, type Page } from './shared';
 import { Dashboard } from './Dashboard';
 import { Donations } from './Donations';
 import { Detail } from './Detail';
+import { Donors } from './Donors';
+import { Donor } from './Donor';
+import { Subscriptions } from './Subscriptions';
 import './donate.css';
 
 export function DonateScreen() {
@@ -23,11 +27,14 @@ export function DonateScreen() {
   );
 }
 
-/** host.startPage: 'dashboard', 'list', 'list?<classic list arguments>' or 'detail?id=<donation id>'. */
+/**
+ * host.startPage: 'dashboard', 'list[?<classic list arguments>]', 'detail?id=<donation id>',
+ * 'donors[?s,kind,orderby,paged]', 'donor?id=<donor id>' or 'subscriptions[?s,status,paged]'.
+ */
 function parseStart(s?: string): { page: Page; query: string } {
-  if (s && s.startsWith('detail')) return { page: 'detail', query: s.slice(7) };
-  if (s && s.startsWith('list')) return { page: 'list', query: s.slice(5) };
-  return { page: 'dashboard', query: '' };
+  const [head = '', query = ''] = (s ?? '').split('?', 2);
+  const pages: Page[] = ['list', 'detail', 'donors', 'donor', 'subscriptions'];
+  return (pages as string[]).includes(head) ? { page: head as Page, query } : { page: 'dashboard', query: '' };
 }
 
 function Donate() {
@@ -53,6 +60,12 @@ function Donate() {
     <DonateCtx.Provider value={ctx}>
       {start.page === 'detail' ? (
         <Detail id={Number(new URLSearchParams(start.query).get('id')) || 0} notice={box} />
+      ) : start.page === 'donor' ? (
+        <Donor id={Number(new URLSearchParams(start.query).get('id')) || 0} notice={box} />
+      ) : start.page === 'donors' ? (
+        <Donors query={start.query} notice={box} />
+      ) : start.page === 'subscriptions' ? (
+        <Subscriptions query={start.query} notice={box} />
       ) : start.page === 'list' ? (
         <Donations query={start.query} notice={box} />
       ) : (

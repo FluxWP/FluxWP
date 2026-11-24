@@ -1325,6 +1325,190 @@ type FlxDonationsBulkPayload {
   message: String!
 }
 
+"""
+The donor card. For own-only staff: only the gifts they referred, no recurring donations, certificates or notes.
+"""
+type FlxDonor {
+  """Add donation page for this donor."""
+  addUrl: String!
+  """Average gift, formatted."""
+  averageLabel: String!
+  """May add a donation for this donor."""
+  canAdd: Boolean!
+  """May change the consent and the note."""
+  canEdit: Boolean!
+  """Certificates (12)."""
+  certificates: [FlxDonorCertificate!]!
+  """Flux Certificates is available."""
+  certificatesOn: Boolean!
+  """May be contacted by e-mail."""
+  consentEmail: Boolean!
+  """Privacy notice (KVKK) accepted."""
+  consentKvkk: Boolean!
+  """May be contacted by SMS."""
+  consentSms: Boolean!
+  """Donor id."""
+  databaseId: Int!
+  """E-mail."""
+  email: String!
+  """Number of gifts."""
+  giftCount: Int!
+  """Latest gifts (25)."""
+  gifts: [FlxDonationListItem!]!
+  """All gifts."""
+  giftsTotal: Int!
+  """All gifts in the donation list."""
+  giftsUrl: String!
+  """First letter of the name."""
+  initial: String!
+  """Latest gift; empty without one."""
+  lastGiftLabel: String!
+  """Donor list."""
+  listUrl: String!
+  """Certificates not listed."""
+  moreCertificates: Int!
+  """Name, else e-mail or phone."""
+  name: String!
+  """Note."""
+  note: String!
+  """Own-only view (staff)."""
+  ownOnly: Boolean!
+  """Phone as stored (for tel: links)."""
+  phone: String!
+  """Phone, formatted."""
+  phoneLabel: String!
+  """First gift (else when the card was made)."""
+  sinceLabel: String!
+  """Recurring donations."""
+  subscriptions: [FlxSubscriptionItem!]!
+  """Total given, formatted."""
+  totalLabel: String!
+}
+
+"""A certificate of the donor (Flux Certificates)."""
+type FlxDonorCertificate {
+  """When it was made."""
+  dateLabel: String!
+  """Number, else code."""
+  number: String!
+  """Certificate page."""
+  url: String!
+}
+
+"""Which donors the list shows."""
+enum FlxDonorKind {
+  """Who may be contacted by e-mail or SMS."""
+  CONSENT
+  """With an active recurring donation."""
+  RECURRING
+}
+
+"""Filters of the donor list."""
+input FlxDonorListFilter {
+  """Only recurring donors or only those who may be contacted."""
+  kind: FlxDonorKind
+  """Sort order; latest gift first by default."""
+  orderBy: FlxDonorOrder
+  """Name, e-mail or phone."""
+  search: String
+}
+
+"""Rights of the donor list screen."""
+type FlxDonorListInfo {
+  """The user sees only the donors of the gifts they referred."""
+  ownOnly: Boolean!
+}
+
+"""
+One donor of the donor list. For own-only staff the figures count only the gifts they referred.
+"""
+type FlxDonorListItem {
+  """Donor id."""
+  databaseId: Int!
+  """E-mail under the name. Empty when it is the name."""
+  email: String!
+  """Number of gifts."""
+  gifts: Int!
+  """Latest gift."""
+  lastGift: FlxDateTime
+  """Name, else e-mail or phone."""
+  name: String!
+  """Phone, formatted."""
+  phone: String!
+  """Has an active recurring donation."""
+  recurring: Boolean!
+  """Total given, formatted."""
+  totalLabel: String!
+  """Donor card in wp-admin."""
+  url: String!
+}
+
+"""A page of FlxDonorListItem records."""
+type FlxDonorListItemConnection {
+  """Records with their cursors."""
+  edges: [FlxDonorListItemEdge!]!
+  """Records of this page."""
+  nodes: [FlxDonorListItem!]!
+  """Paging information."""
+  pageInfo: FlxPageInfo!
+  """All matching records (null when counting would be slow)."""
+  totalCount: Int
+}
+
+"""One FlxDonorListItem in a list, with its cursor."""
+type FlxDonorListItemEdge {
+  """Opaque cursor of this record."""
+  cursor: String!
+  """The record."""
+  node: FlxDonorListItem!
+}
+
+"""Sort order of the donor list."""
+enum FlxDonorOrder {
+  """"""
+  FIRST_GIFT
+  """"""
+  GIFTS
+  """"""
+  LAST_GIFT
+  """"""
+  NAME
+  """"""
+  TOTAL
+}
+
+"""Input for the flxDonorSave mutation."""
+input FlxDonorSaveInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """May be contacted by e-mail."""
+  consentEmail: Boolean!
+  """Privacy notice (KVKK) accepted."""
+  consentKvkk: Boolean!
+  """May be contacted by SMS."""
+  consentSms: Boolean!
+  """Donor id."""
+  id: Int!
+  """Note."""
+  note: String!
+}
+
+"""The payload for the flxDonorSave mutation."""
+type FlxDonorSavePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result for the notice; null when refused (see errors)."""
+  message: String
+}
+
 """One donation of the signed-in donor, or of the lookup session."""
 type FlxMyDonation {
   """Amount."""
@@ -1357,6 +1541,116 @@ type FlxMyDonationEdge {
   cursor: String!
   """The record."""
   node: FlxMyDonation!
+}
+
+"""Input for the flxSubscriptionCancel mutation."""
+input FlxSubscriptionCancelInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Recurring donation id."""
+  id: Int!
+}
+
+"""The payload for the flxSubscriptionCancel mutation."""
+type FlxSubscriptionCancelPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result for the notice; null when refused (see errors)."""
+  message: String
+}
+
+"""One recurring donation as the classic table shows it."""
+type FlxSubscriptionItem {
+  """Amount, formatted."""
+  amountLabel: String!
+  """May be canceled from here."""
+  canCancel: Boolean!
+  """Recurring donation id."""
+  databaseId: Int!
+  """Donor id; 0 = anonymous."""
+  donorId: Int!
+  """Donor."""
+  donorName: String!
+  """Donor card; empty for anonymous."""
+  donorUrl: String!
+  """Gifts received."""
+  gifts: Int!
+  """The donor&#039;s recurring gifts in the donation list."""
+  giftsUrl: String!
+  """Interval (&quot;Monthly&quot;…)."""
+  intervalLabel: String!
+  """Next charge, or when it was canceled; empty when unknown."""
+  nextLabel: String!
+  """Card and the last failed attempt (iyzico); empty without one."""
+  note: String!
+  """Reference at the payment provider."""
+  reference: String!
+  """Start date."""
+  startedLabel: String!
+  """Status."""
+  status: FlxSubscriptionStatus!
+  """Status as people read it."""
+  statusLabel: String!
+  """Colour of the status."""
+  tone: FlxDonationTone!
+}
+
+"""A page of FlxSubscriptionItem records."""
+type FlxSubscriptionItemConnection {
+  """Records with their cursors."""
+  edges: [FlxSubscriptionItemEdge!]!
+  """Records of this page."""
+  nodes: [FlxSubscriptionItem!]!
+  """Paging information."""
+  pageInfo: FlxPageInfo!
+  """All matching records (null when counting would be slow)."""
+  totalCount: Int
+}
+
+"""One FlxSubscriptionItem in a list, with its cursor."""
+type FlxSubscriptionItemEdge {
+  """Opaque cursor of this record."""
+  cursor: String!
+  """The record."""
+  node: FlxSubscriptionItem!
+}
+
+"""Filters of the recurring donation list."""
+input FlxSubscriptionListFilter {
+  """Name, e-mail, phone or provider reference."""
+  search: String
+  """Status."""
+  status: FlxSubscriptionStatus
+}
+
+"""Status of a recurring donation."""
+enum FlxSubscriptionStatus {
+  """"""
+  ACTIVE
+  """"""
+  CANCELED
+  """"""
+  PAST_DUE
+}
+
+"""Figures above the recurring donation list."""
+type FlxSubscriptionTotals {
+  """Active."""
+  active: Int!
+  """Canceled."""
+  canceled: Int!
+  """Monthly value of the active ones, formatted."""
+  mrrLabel: String!
+  """Past due."""
+  pastDue: Int!
 }
 
 extend type FlxCartItem {
@@ -1452,6 +1746,18 @@ extend type RootMutation {
     """Input for the flxDonationsBulk mutation"""
     input: FlxDonationsBulkInput!
   ): FlxDonationsBulkPayload
+  """Saves the consent switches and the note of a donor."""
+  flxDonorSave(
+    """Input for the flxDonorSave mutation"""
+    input: FlxDonorSaveInput!
+  ): FlxDonorSavePayload
+  """
+  Cancels a recurring donation at the payment provider. No further charges are made.
+  """
+  flxSubscriptionCancel(
+    """Input for the flxSubscriptionCancel mutation"""
+    input: FlxSubscriptionCancelInput!
+  ): FlxSubscriptionCancelPayload
 }
 
 extend type RootQuery {
@@ -1512,6 +1818,24 @@ extend type RootQuery {
     status: FlxDonationTypeList
   ): FlxDonationTypeConnection!
   """
+  One donor card. Null when the donor does not exist or the user may not open it.
+  """
+  flxDonor(
+    """Donor id."""
+    id: Int!
+  ): FlxDonor
+  """Donors of the wp-admin donor list."""
+  flxDonorList(
+    """Cursor to continue after (pageInfo.endCursor)."""
+    after: String
+    """Filters."""
+    filter: FlxDonorListFilter
+    """Records per page (at most 50)."""
+    first: Int
+  ): FlxDonorListItemConnection!
+  """Rights of the donor list screen."""
+  flxDonorListInfo: FlxDonorListInfo!
+  """
   Donations of the signed-in donor, or of the lookup session. Nobody else&#039;s.
   """
   flxMyDonations(
@@ -1520,4 +1844,15 @@ extend type RootQuery {
     """Records per page (at most 50)."""
     first: Int
   ): FlxMyDonationConnection!
+  """Recurring donations, active first."""
+  flxSubscriptionList(
+    """Cursor to continue after (pageInfo.endCursor)."""
+    after: String
+    """Filters."""
+    filter: FlxSubscriptionListFilter
+    """Records per page (at most 50)."""
+    first: Int
+  ): FlxSubscriptionItemConnection!
+  """Figures above the recurring donation list (default currency)."""
+  flxSubscriptionTotals: FlxSubscriptionTotals!
 }

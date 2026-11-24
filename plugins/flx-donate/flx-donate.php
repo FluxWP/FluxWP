@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Donate
  * Description:       Donations on WooCommerce: donation types and sapling packages sold as hidden products, cart and checkout (iyzico, bank transfer with receipt upload), monthly donations, online and printed certificates, donors, campaigns and a donation dashboard. Includes Flux WooCommerce Bağış.
- * Version:           2.38.0
+ * Version:           2.39.0
  * Requires at least: 6.4
  * Requires PHP:      8.1
  * Requires Plugins:  woocommerce, flx-crm, flx-graphql
@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback; no Flux Lang dependency.
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
-define( 'FLXB_VERSION', '2.38.0' );
+define( 'FLXB_VERSION', '2.39.0' );
 define( 'FLXB_FILE', __FILE__ );
 define( 'FLXB_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXB_URL', plugin_dir_url( __FILE__ ) );
@@ -66,6 +66,7 @@ require_once FLXB_DIR . 'includes/services/class-flxb-lookup-service.php';
 require_once FLXB_DIR . 'includes/services/class-flxb-my-donations-service.php';
 require_once FLXB_DIR . 'includes/services/class-flxb-admin-donations-service.php';
 require_once FLXB_DIR . 'includes/services/class-flxb-admin-detail-service.php';
+require_once FLXB_DIR . 'includes/services/class-flxb-admin-people-service.php';
 FLXB_Type_Public_Service::init();
 FLXB_Cart_Service::init();
 require_once FLXB_DIR . 'includes/class-flxb-rest.php';
@@ -113,6 +114,7 @@ add_action(
 		require_once FLXB_DIR . 'includes/graphql/schema.php';
 		require_once FLXB_DIR . 'includes/graphql/admin.php';
 		require_once FLXB_DIR . 'includes/graphql/admin-detail.php';
+		require_once FLXB_DIR . 'includes/graphql/admin-people.php';
 	}
 );
 add_filter(

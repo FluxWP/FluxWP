@@ -1,0 +1,3 @@
+mutation FlxDonorSave($id: Int!, $consentKvkk: Boolean!, $consentEmail: Boolean!, $consentSms: Boolean!, $note: String!) {
+  flxDonorSave(input: { id: $id, consentKvkk: $consentKvkk, consentEmail: $consentEmail, consentSms: $consentSms, note: $note }) { message errors { message field } }
+}

@@ -3954,6 +3954,12 @@ msgstr "%s ile bağış şu anda burada ödenemiyor."
 msgid "The donation product could not be found."
 msgstr "Bağış ürünü bulunamadı."
 
+msgid "This recurring donation cannot be canceled here."
+msgstr "Bu düzenli bağış buradan iptal edilemez."
+
+msgid "The action could not be completed."
+msgstr "İşlem tamamlanamadı."
+
 msgid "It could not be added to the cart."
 msgstr "Sepete eklenemedi."
 

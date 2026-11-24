@@ -171,7 +171,7 @@ final class FLXB_Subscriptions {
 		$w     = implode( ' AND ', $where );
 		$from  = "FROM {$t} s LEFT JOIN {$d} d ON d.id = s.donor_id WHERE {$w}";
 		$total = (int) ( $prm ? $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) {$from}", $prm ) ) : $wpdb->get_var( "SELECT COUNT(*) {$from}" ) ); // phpcs:ignore WordPress.DB.PreparedSQL
-		$limit = $wpdb->prepare( ' LIMIT %d OFFSET %d', (int) $a['per_page'], ( max( 1, (int) $a['page'] ) - 1 ) * (int) $a['per_page'] );
+		$limit = $wpdb->prepare( ' LIMIT %d OFFSET %d', (int) $a['per_page'], isset( $a['offset'] ) ? max( 0, (int) $a['offset'] ) : ( max( 1, (int) $a['page'] ) - 1 ) * (int) $a['per_page'] ); // 2.39.0: offset (GraphQL pages)
 		$sql   = "SELECT s.*, d.name AS donor_name, d.email AS donor_email, d.phone AS donor_phone {$from} ORDER BY CASE s.status WHEN 'active' THEN 0 WHEN 'past_due' THEN 1 WHEN 'canceled' THEN 2 ELSE 3 END, s.id DESC" . $limit;
 		$items = $prm ? $wpdb->get_results( $wpdb->prepare( $sql, $prm ), ARRAY_A ) : $wpdb->get_results( $sql, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL
 		return array( 'items' => (array) $items, 'total' => $total );

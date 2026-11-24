@@ -227,7 +227,7 @@ export function Donations({ query, notice }: { query: string; notice: ReactNode 
                 </button>
               </div>
             ) : null}
-            <Table rows={rows} showRef={showRef} bulk={bulkChoices.length > 0} picked={picked} setPicked={setPicked} />
+            <GiftTable rows={rows} showRef={showRef} bulk={bulkChoices.length > 0} picked={picked} setPicked={setPicked} />
             <div className="flxdn-tablefoot">
               <span>
                 {tn('%1$s donation · %2$s received', '%1$s donations · %2$s received', total, total.toLocaleString(), info?.sumLabel ?? '')}
@@ -352,7 +352,8 @@ function Awaiting({ items, onShow }: { items: Info['awaiting']; onShow: () => vo
   );
 }
 
-function Table({ rows, showRef, bulk, picked, setPicked }: { rows: Row[]; showRef: boolean; bulk: boolean; picked: Set<number>; setPicked: (s: Set<number>) => void }) {
+/** The gift table; `compact` (donor card) keeps date, amount, type, status and donation type, as the classic card. */
+export function GiftTable({ rows, showRef, bulk, picked, setPicked, compact = false }: { rows: Row[]; showRef: boolean; bulk: boolean; picked: Set<number>; setPicked: (s: Set<number>) => void; compact?: boolean }) {
   const { t, open } = useDonate();
   const allOn = rows.length > 0 && rows.every((r) => picked.has(r.databaseId));
   const toggle = (id: number, on: boolean) => {
@@ -369,7 +370,7 @@ function Table({ rows, showRef, bulk, picked, setPicked }: { rows: Row[]; showRe
   };
   return (
     <div className="flxdn-tablewrap">
-      <table className={'flxdn-table flxdn-table--gifts flxdn-table--list' + (bulk ? ' flxdn-table--bulk' : '')}>
+      <table className={'flxdn-table flxdn-table--gifts' + (compact ? '' : ' flxdn-table--list') + (bulk ? ' flxdn-table--bulk' : '')}>
         <thead>
           <tr>
             {bulk ? (
@@ -378,18 +379,22 @@ function Table({ rows, showRef, bulk, picked, setPicked }: { rows: Row[]; showRe
               </th>
             ) : null}
             <th scope="col">{t('Date')}</th>
-            <th scope="col">{t('Donor')}</th>
+            {compact ? null : <th scope="col">{t('Donor')}</th>}
             <th scope="col" className="num">
               {t('Amount')}
             </th>
             <th scope="col">{t('Type')}</th>
             <th scope="col">{t('Status')}</th>
             <th scope="col">{t('Donation type / form')}</th>
-            {showRef ? <th scope="col">{t('Referral')}</th> : null}
-            <th scope="col">{t('Confirmation code')}</th>
-            <th scope="col">
-              <span className="screen-reader-text">{t('Actions')}</span>
-            </th>
+            {compact ? null : (
+              <>
+                {showRef ? <th scope="col">{t('Referral')}</th> : null}
+                <th scope="col">{t('Confirmation code')}</th>
+                <th scope="col">
+                  <span className="screen-reader-text">{t('Actions')}</span>
+                </th>
+              </>
+            )}
           </tr>
         </thead>
         <tbody>
@@ -403,16 +408,18 @@ function Table({ rows, showRef, bulk, picked, setPicked }: { rows: Row[]; showRe
               <td className="flxdn-col-date" data-label={t('Date')}>
                 <span>{r.date?.label ?? ''}</span>
               </td>
-              <td className="flxdn-col-main">
-                {!r.donorId ? (
-                  <span className="flxdn-muted">{t('Anonymous')}</span>
-                ) : (
-                  <Go className="flxdn-row-main" href={r.url}>
-                    {r.donorName}
-                  </Go>
-                )}
-                {r.contact && r.contact !== r.donorName ? <span className="flxdn-sub2">{r.contact}</span> : null}
-              </td>
+              {compact ? null : (
+                <td className="flxdn-col-main">
+                  {!r.donorId ? (
+                    <span className="flxdn-muted">{t('Anonymous')}</span>
+                  ) : (
+                    <Go className="flxdn-row-main" href={r.url}>
+                      {r.donorName}
+                    </Go>
+                  )}
+                  {r.contact && r.contact !== r.donorName ? <span className="flxdn-sub2">{r.contact}</span> : null}
+                </td>
+              )}
               <td className="num flxdn-c-amount" data-label={t('Amount')}>
                 <span>{r.amountLabel}</span>
               </td>
@@ -436,32 +443,36 @@ function Table({ rows, showRef, bulk, picked, setPicked }: { rows: Row[]; showRe
               <td className="flxdn-c-where" data-label={t('Donation type / form')}>
                 <span>{r.where || '—'}</span>
               </td>
-              {showRef ? (
-                <td className="flxdn-c-ref" data-label={t('Referral')}>
-                  <span>
-                    {r.referral ? (
-                      r.referralFromDonor ? (
-                        <span className="flxdn-ref-chip flxdn-ref-chip--donor" title={t("The donor's earlier gifts came through %s.", r.referral)}>
-                          {r.referral}
-                        </span>
+              {compact ? null : (
+                <>
+                {showRef ? (
+                  <td className="flxdn-c-ref" data-label={t('Referral')}>
+                    <span>
+                      {r.referral ? (
+                        r.referralFromDonor ? (
+                          <span className="flxdn-ref-chip flxdn-ref-chip--donor" title={t("The donor's earlier gifts came through %s.", r.referral)}>
+                            {r.referral}
+                          </span>
+                        ) : (
+                          <span className="flxdn-ref-chip">{r.referral}</span>
+                        )
                       ) : (
-                        <span className="flxdn-ref-chip">{r.referral}</span>
-                      )
-                    ) : (
-                      '—'
-                    )}
-                  </span>
+                        '—'
+                      )}
+                    </span>
+                  </td>
+                ) : null}
+                <td className="flxdn-c-code" data-label={t('Confirmation code')}>
+                  <span>{r.code ? <code>{r.code}</code> : '—'}</span>
                 </td>
-              ) : null}
-              <td className="flxdn-c-code" data-label={t('Confirmation code')}>
-                <span>{r.code ? <code>{r.code}</code> : '—'}</span>
-              </td>
-              <td className="flxdn-col-act">
-                <Go className="flxdn-btn flxdn-btn--sm flxdn-row-go" href={r.url}>
-                  {t('Details')}
-                  <span aria-hidden="true">›</span>
-                </Go>
-              </td>
+                <td className="flxdn-col-act">
+                  <Go className="flxdn-btn flxdn-btn--sm flxdn-row-go" href={r.url}>
+                    {t('Details')}
+                    <span aria-hidden="true">›</span>
+                  </Go>
+                </td>
+                </>
+              )}
             </tr>
           ))}
         </tbody>

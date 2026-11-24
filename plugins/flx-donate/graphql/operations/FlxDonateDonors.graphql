@@ -1,0 +1,18 @@
+query FlxDonateDonors($first: Int, $after: String, $filter: FlxDonorListFilter) {
+  flxDonorList(first: $first, after: $after, filter: $filter) {
+    totalCount
+    pageInfo { hasNextPage hasPreviousPage }
+    nodes {
+      databaseId
+      name
+      email
+      phone
+      totalLabel
+      gifts
+      lastGift { label }
+      recurring
+      url
+    }
+  }
+  flxDonorListInfo { ownOnly }
+}

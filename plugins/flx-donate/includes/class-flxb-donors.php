@@ -195,7 +195,7 @@ final class FLXB_Donors {
 		$w       = implode( ' AND ', $where );
 		$from    = "FROM {$t} d WHERE {$w}";
 		$total   = (int) ( $prm ? $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) {$from}", $prm ) ) : $wpdb->get_var( "SELECT COUNT(*) {$from}" ) ); // phpcs:ignore WordPress.DB.PreparedSQL
-		$limit   = $wpdb->prepare( ' LIMIT %d OFFSET %d', (int) $a['per_page'], ( max( 1, (int) $a['page'] ) - 1 ) * (int) $a['per_page'] );
+		$limit   = $wpdb->prepare( ' LIMIT %d OFFSET %d', (int) $a['per_page'], isset( $a['offset'] ) ? max( 0, (int) $a['offset'] ) : ( max( 1, (int) $a['page'] ) - 1 ) * (int) $a['per_page'] ); // 2.39.0: offset (GraphQL pages)
 		$sql     = "SELECT d.*, (SELECT COUNT(*) FROM {$s} s WHERE s.donor_id = d.id AND s.status IN ('active','past_due')) AS active_subs {$from} ORDER BY {$orderby} {$order}, d.id DESC" . $limit;
 		$items   = $prm ? $wpdb->get_results( $wpdb->prepare( $sql, $prm ), ARRAY_A ) : $wpdb->get_results( $sql, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL
 		if ( $own ) {

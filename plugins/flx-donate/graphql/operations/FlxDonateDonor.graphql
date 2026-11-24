@@ -1,0 +1,64 @@
+query FlxDonateDonor($id: Int!) {
+  flxDonor(id: $id) {
+    databaseId
+    name
+    initial
+    email
+    phone
+    phoneLabel
+    sinceLabel
+    totalLabel
+    giftCount
+    averageLabel
+    lastGiftLabel
+    ownOnly
+    gifts {
+      databaseId
+      donorId
+      donorName
+      contact
+      amountLabel
+      kind
+      statusLabel
+      tone
+      date { label }
+      where
+      lines
+      referral
+      referralFromDonor
+      code
+      url
+    }
+    giftsTotal
+    giftsUrl
+    subscriptions {
+      databaseId
+      donorId
+      donorName
+      donorUrl
+      reference
+      amountLabel
+      intervalLabel
+      status
+      statusLabel
+      tone
+      note
+      startedLabel
+      nextLabel
+      gifts
+      giftsUrl
+      canCancel
+    }
+    certificatesOn
+    certificates { number dateLabel url }
+    moreCertificates
+    consentKvkk
+    consentEmail
+    consentSms
+    note
+    canEdit
+    canAdd
+    addUrl
+    listUrl
+  }
+}

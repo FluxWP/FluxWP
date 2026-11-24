@@ -1,0 +1,27 @@
+query FlxDonateSubscriptions($first: Int, $after: String, $filter: FlxSubscriptionListFilter) {
+  flxSubscriptionList(first: $first, after: $after, filter: $filter) {
+    totalCount
+    pageInfo { hasNextPage hasPreviousPage }
+    nodes { ...FlxSubscriptionFields }
+  }
+  flxSubscriptionTotals { mrrLabel active pastDue canceled }
+}
+
+fragment FlxSubscriptionFields on FlxSubscriptionItem {
+  databaseId
+  donorId
+  donorName
+  donorUrl
+  reference
+  amountLabel
+  intervalLabel
+  status
+  statusLabel
+  tone
+  note
+  startedLabel
+  nextLabel
+  gifts
+  giftsUrl
+  canCancel
+}
