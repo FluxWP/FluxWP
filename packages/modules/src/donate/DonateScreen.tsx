@@ -2,7 +2,7 @@
 // and write goes through the Flux Donate GraphQL operations (plugins/flx-donate/graphql/operations).
 // The donation page (detail?id=N), donors (donors, donor?id=N) and recurring donations (subscriptions) are
 // (and the donation types list and editor, types / type) here too; the other pages are still the plugin's own pages.
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { createGraphQLClient } from '@fluxwp/graphql';
 import { FlxGraphQLProvider } from '@fluxwp/graphql/react';
@@ -17,6 +17,7 @@ import { Donor } from './Donor';
 import { Subscriptions } from './Subscriptions';
 import { Types } from './Types';
 import { TypeForm } from './TypeForm';
+import { Add } from './Add';
 import './donate.css';
 
 export function DonateScreen() {
@@ -32,11 +33,12 @@ export function DonateScreen() {
 /**
  * host.startPage: 'dashboard', 'list[?<classic list arguments>]', 'detail?id=<donation id>',
  * 'donors[?s,kind,orderby,paged]', 'donor?id=<donor id>', 'subscriptions[?s,status,paged]' or
- * 'types[?view=archived&notice=<ok|error>:<text>]' or 'type?id=<type id; 0 = new>[&notice=…]'.
+ * 'types[?view=archived&notice=<ok|error>:<text>]', 'type?id=<type id; 0 = new>[&notice=…]' or 'add[?donor=<donor id>]'.
+ * The donation page takes a redirect notice too ('detail?id=N&notice=ok:<text>').
  */
 function parseStart(s?: string): { page: Page; query: string } {
   const [head = '', query = ''] = (s ?? '').split('?', 2);
-  const pages: Page[] = ['list', 'detail', 'donors', 'donor', 'subscriptions', 'types', 'type'];
+  const pages: Page[] = ['list', 'detail', 'donors', 'donor', 'subscriptions', 'types', 'type', 'add'];
   return (pages as string[]).includes(head) ? { page: head as Page, query } : { page: 'dashboard', query: '' };
 }
 
@@ -50,6 +52,21 @@ function Donate() {
     setNotice(n);
     if (n) window.scrollTo?.({ top: 0, behavior: 'smooth' });
   }, []);
+  // 2.42.0: the notice of a redirect to the donation page ("Saved." after Add donation) shows once.
+  useEffect(() => {
+    if (start.page !== 'detail') return;
+    const n = new URLSearchParams(start.query).get('notice') ?? '';
+    const i = n.indexOf(':');
+    if (i > 0) told({ kind: n.slice(0, i) === 'ok' ? 'ok' : 'error', text: n.slice(i + 1) });
+    if (host.mode === 'wp' && typeof history !== 'undefined') {
+      const u = new URL(location.href);
+      if (u.searchParams.has('flxb_msg')) {
+        u.searchParams.delete('flxb_msg');
+        u.searchParams.delete('flxb_err');
+        history.replaceState(history.state, '', u.pathname + u.search);
+      }
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const ctx = useMemo<Ctx>(() => ({ t, tn, lang: i18n.language, told, open: host.openUrl }), [t, tn, i18n.language, told, host.openUrl]);
   const box = notice ? (
     <div className={`flxdn-notice flxdn-notice--${notice.kind}`} role={notice.kind === 'ok' ? 'status' : 'alert'}>
@@ -71,6 +88,8 @@ function Donate() {
         <Subscriptions query={start.query} notice={box} />
       ) : start.page === 'type' ? (
         <TypeForm id={Number(new URLSearchParams(start.query).get('id')) || 0} query={start.query} notice={box} />
+      ) : start.page === 'add' ? (
+        <Add query={start.query} notice={box} />
       ) : start.page === 'types' ? (
         <Types query={start.query} notice={box} />
       ) : start.page === 'list' ? (

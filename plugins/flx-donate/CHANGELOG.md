@@ -1,5 +1,12 @@
 # Değişiklikler
 
+## 2.42.0
+- **Bağış ekle anında açılır.** Bağış ekleme sayfası artık React ekranı: veri sayfayla hazır gelir, yükleniyor dönmez.
+- Görünüm ve alanlar eskisiyle aynı: tek "tür · seçenek" seçimi, adet, farklı birim fiyat (gerekçeyle), serbest tutar ve para birimi, vekâlet adları ve onayı, bağışçı (telefon alanı ülke seçicili), başkaları adına kişi satırları (kişi başı sertifika), canlı toplam ve sertifika özeti, ödeme yolu, hesap, durum, tarih, dekont no, referans ve not.
+- Kaydedince bağış sayfası açılır, "Kaydedildi." bildirimiyle. Hata olursa form kaybolmaz, uyarı üstte çıkar.
+- Personel bağış talebi de yeni ekranda: ödeme bağlantısı sayfa yenilenmeden çıkar; kopyala ve WhatsApp ile gönder.
+- GraphQL: `flxDonationAddForm`, `flxDonationAdd` (yetki `flxb_can_manage`), `flxDonationRequest` (talep yetkisi; referans çağıran kişi).
+
 ## 2.41.0
 - **Bağış türü düzenleme anında açılır.** Tür formu (yeni tür ve düzenleme) artık React ekranı: veri sayfayla hazır gelir, yükleniyor dönmez. Bağış türleri artık tamamen yeni ekranda; eski sayfa kalmadı.
 - Görünüm ve alanlar eskisiyle aynı: temel bilgiler, görsel (medya kütüphanesi), fiyatlar ve seçenekler (diğer para birimleri dahil), serbest tutar / adet / düzenli bağış, bağlı formlar, takip, vekâletle bağış, yayın (durum, tarih seçici, hedef), kısa kod ve önizleme.

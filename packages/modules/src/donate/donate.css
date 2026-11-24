@@ -1013,3 +1013,9 @@ html.flxa-dark .flxdn .flxdn-pill--failed { background: #3B1E1E; color: #FCA5A5;
 /* 2.41.0: type editor; the cards printed by PHP sit in the stack like the others. */
 .flxdn-typeform .flxdn-islandslot .flxb-card { margin: 0; }
 .flxdn-typeform .flxdn-stack > .flxdn-islandslot + .flxdn-islandslot { margin-top: 4px; }
+
+/* 2.42.0: Add donation (React): consents and the request result. */
+.flxdn-add2__consents { gap: 8px 18px; }
+.flxdn-add2__consents .chk { margin: 0; }
+.flxdn-add2__proxy .chk, .flxdn-add2 .flxdn-card > .chk { margin-top: 10px; }
+.flxdn-reqdone { margin-bottom: 18px; }
