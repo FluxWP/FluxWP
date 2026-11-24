@@ -121,9 +121,10 @@ function flxc_lang_detect( $text ) {
 			return array( $code, $n >= 3 ? 3 : 2 );
 		}
 	}
-	$low   = mb_strtolower( $t );
-	$score = array();
-	// Ayırt edici harfler.
+	$low    = mb_strtolower( $t );
+	$tokens = preg_split( '/\s+/u', $low );
+	$tokens = is_array( $tokens ) ? $tokens : array();
+	// Ayırt edici harfler (2 puan) ve sık kelimeler (1 puan).
 	$marks = array(
 		'tr' => '/[ğış]|İ/u',
 		'lv' => '/[āēīūķļņģ]/u',
@@ -132,30 +133,29 @@ function flxc_lang_detect( $text ) {
 		'es' => '/[ñ¿¡]/u',
 		'pt' => '/[ãõ]/u',
 	);
-	foreach ( $marks as $code => $re ) {
-		if ( preg_match( $re, 'tr' === $code ? $t : $low ) ) {
-			$score[ $code ] = ( $score[ $code ] ?? 0 ) + 2;
-		}
-	}
-	$words = array_count_values( preg_split( '/\s+/u', $low ) );
+	$score = array();
 	foreach ( flxc_lang_words() as $code => $list ) {
-		foreach ( explode( ' ', $list ) as $w ) {
-			if ( isset( $words[ $w ] ) ) {
-				$score[ $code ] = ( $score[ $code ] ?? 0 ) + 1;
-			}
-		}
+		$score[ $code ] = count( array_intersect( $tokens, explode( ' ', $list ) ) );
 	}
-	if ( ! $score ) {
-		return array( '', 0 );
+	foreach ( $marks as $code => $re ) {
+		if ( 1 === preg_match( $re, 'tr' === $code ? $t : $low ) ) {
+			$score[ $code ] = (int) ( $score[ $code ] ?? 0 ) + 2;
+		}
 	}
 	arsort( $score );
-	$codes = array_keys( $score );
-	$best  = $score[ $codes[0] ];
-	$next  = isset( $codes[1] ) ? $score[ $codes[1] ] : 0;
-	if ( $best === $next ) {
+	$vals = array_values( $score );
+	$best = (int) ( $vals[0] ?? 0 );
+	$next = (int) ( $vals[1] ?? 0 );
+	if ( $best < 1 || $best === $next ) {
 		return array( '', 0 );
 	}
-	return array( $codes[0], $best >= 3 && $best >= 2 * $next ? 3 : ( $best >= 2 ? 2 : 1 ) );
+	$conf = 1;
+	if ( $best >= 3 && $best >= 2 * $next ) {
+		$conf = 3;
+	} elseif ( $best >= 2 ) {
+		$conf = 2;
+	}
+	return array( (string) array_key_first( $score ), $conf );
 }
 
 /**
@@ -272,8 +272,9 @@ function flxc_bot_tool_lang( $name, array $args, $chat, array &$ctx ) {
 
 /** WordPress'i (ve Flux Lang'i) bir dile geçirip çalıştırır. Aynı dildeyse doğrudan. */
 function flxc_in_lang( $code, callable $fn ) {
-	static $depth = array();
-	$code = flxc_lang_clean( $code );
+	static $depth = null;
+	$depth = is_array( $depth ) ? $depth : array();
+	$code  = flxc_lang_clean( $code );
 	if ( '' === $code || ( $depth && end( $depth ) === $code ) ) {
 		return $fn();
 	}
@@ -324,7 +325,16 @@ function flxc_tr_mask( $text, array $keep = array() ) {
 		}
 		return "\u{E000}" . $s . "\u{E001}";
 	};
-	$keep = array_values( array_unique( array_filter( array_map( 'trim', array_map( 'strval', $keep ) ), 'strlen' ) ) );
+	$keep = array_values(
+		array_unique(
+			array_filter(
+				array_map( 'trim', array_map( 'strval', $keep ) ),
+				function ( $k ) {
+					return '' !== $k;
+				}
+			)
+		)
+	);
 	usort(
 		$keep,
 		function ( $a, $b ) {
@@ -397,7 +407,8 @@ function flxc_tr_valid( $src, $out ) {
 
 /** Dilin saklanan çevirileri: md5(şablon) => [s => çeviri, t => zaman]. */
 function flxc_tr_store( $lang, $set = null ) {
-	static $mem = array();
+	static $mem = null;
+	$mem = is_array( $mem ) ? $mem : array();
 	$key = 'flxc_tr_' . str_replace( '-', '_', $lang );
 	if ( null !== $set ) {
 		if ( count( $set ) > 400 ) {
@@ -461,7 +472,8 @@ function flxc_tr_many( array $texts, $lang, array $keep = array(), $ai = true ) 
 	$need  = array();
 	$jobs  = array();
 	foreach ( $texts as $k => $t ) {
-		if ( ! is_string( $t ) || '' === trim( $t ) ) {
+		$t = (string) $t;
+		if ( '' === trim( $t ) ) {
 			continue;
 		}
 		list( $tpl, $vals ) = flxc_tr_mask( $t, $keep );
@@ -582,17 +594,7 @@ function flxc_bot_tr_out( array $texts, array $state, $ai = true ) {
 	if ( $lang === flxc_lang_site() ) {
 		return $texts;
 	}
-	$keys = array();
-	foreach ( $texts as $k => $t ) {
-		if ( is_string( $t ) ) {
-			$keys[ $k ] = $t;
-		}
-	}
-	$tr = flxc_tr_many( $keys, $lang, flxc_bot_tr_keep( $state ), $ai );
-	foreach ( $tr as $k => $t ) {
-		$texts[ $k ] = $t;
-	}
-	return $texts;
+	return flxc_tr_many( array_map( 'strval', $texts ), $lang, flxc_bot_tr_keep( $state ), $ai );
 }
 
 /* ---------- Araç sonucu önbelleği ---------- */
