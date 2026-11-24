@@ -996,3 +996,11 @@ html.flxa-dark .flxdn .flxdn-pill--failed { background: #3B1E1E; color: #FCA5A5;
 .flxdn-noteform textarea { width: 100%; box-sizing: border-box; min-height: 64px; }
 .flxdn-noteform__row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; margin-top: 8px; }
 .flxdn-noteform__row select { min-width: 0; width: 100%; }
+
+/* Phones: the filter row wraps, search on its own line (donors, recurring donations, donations). */
+@media (max-width: 782px) {
+	.flxdn .flxdn-filters__main { flex-wrap: wrap; }
+	.flxdn .flxdn-filters__main input[type=search] { flex: 1 1 100%; }
+	.flxdn .flxdn-filters__main .flxdn-filters__field { flex: 1 1 120px; }
+	.flxdn .flxdn-filters__main .flxdn-filters__field select { width: 100%; }
+}

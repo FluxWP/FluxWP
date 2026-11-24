@@ -1,0 +1,3 @@
+mutation FlxSubscriptionCancel($id: Int!) {
+  flxSubscriptionCancel(input: { id: $id }) { message errors { message field } }
+}

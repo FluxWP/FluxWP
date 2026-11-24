@@ -29,7 +29,7 @@ final class FLXB_Admin {
 	const SLUG = 'flxb-dashboard';
 
 	/** 2.36.0: pages that are React screens on the Flux GraphQL shell (page slug => start page). */
-	const SCREENS = array( 'flxb-dashboard', 'flxb-donations' );
+	const SCREENS = array( 'flxb-dashboard', 'flxb-donations', 'flxb-donors', 'flxb-subscriptions' );
 
 	/** Rows of the first list page (the screen's PER). */
 	const LIST_PER = 25;
@@ -468,14 +468,20 @@ final class FLXB_Admin {
 
 	/**
 	 * 2.36.0: Dashboard and Donations are React screens (packages/modules/src/donate) on the Flux GraphQL
-	 * shell: data printed by PHP, in-place navigation between Flux screens. One donation (?donation=ID)
-	 * is still the classic detail page.
+	 * shell: data printed by PHP, in-place navigation between Flux screens. 2.38.0: the donation page;
+	 * 2.39.0: donors, the donor card and recurring donations.
 	 */
 	public static function register_screens() {
 		if ( ! function_exists( 'flx_admin_screen' ) ) {
 			return;
 		}
-		foreach ( array( self::SLUG => 'dashboard', 'flxb-donations' => 'list' ) as $page => $start ) {
+		$screens = array(
+			self::SLUG           => array( 'dashboard', 'preload_dashboard' ),
+			'flxb-donations'     => array( 'list', 'preload_list' ),
+			'flxb-donors'        => array( 'donors', 'preload_donors' ),
+			'flxb-subscriptions' => array( 'subscriptions', 'preload_subscriptions' ),
+		);
+		foreach ( $screens as $page => $s ) {
 			flx_admin_screen(
 				$page,
 				array(
@@ -483,11 +489,11 @@ final class FLXB_Admin {
 					'assets_dir'   => FLXB_DIR . 'assets/flux/',
 					'assets_url'   => FLXB_URL . 'assets/flux/',
 					'version'      => FLXB_VERSION,
-					'enabled'      => array( __CLASS__, 'screen_enabled' ),
+					'enabled'      => array( __CLASS__, 'flxb-donors' === $page ? 'donors_screen_enabled' : 'screen_enabled' ),
 					'options'      => array( __CLASS__, 'screen_options' ),
-					'start'        => $start,
+					'start'        => $s[0],
 					'container_id' => 'flxdn-app',
-					'preload'      => 'dashboard' === $start ? array( __CLASS__, 'preload_dashboard' ) : array( __CLASS__, 'preload_list' ),
+					'preload'      => array( __CLASS__, $s[1] ),
 					'wrap_class'   => 'flxdn-react',
 				)
 			);
@@ -497,6 +503,11 @@ final class FLXB_Admin {
 	/** 2.38.0: the donation page is part of the screen too. */
 	public static function screen_enabled() {
 		return true;
+	}
+
+	/** 2.39.0: donors are part of the screen too; with Flux CRM the donor card stays the CRM person card. */
+	public static function donors_screen_enabled() {
+		return ! FLXB_Page_Donors::crm_page();
 	}
 
 	/**
@@ -519,6 +530,24 @@ final class FLXB_Admin {
 			$opts['startPage'] = 'detail?id=' . $donation;
 			return $opts;
 		}
+		// 2.39.0: ?donor= opens the donor card; the donor and recurring lists keep their address arguments.
+		if ( 'flxb-donors' === $page && 'flxb-donors' === self::q( 'page' ) ) {
+			$donor = absint( self::q( 'donor', '0' ) );
+			$q     = self::page_args( array( 's', 'kind', 'orderby', 'paged' ) );
+			if ( $donor ) {
+				$opts['startPage'] = 'donor?id=' . $donor;
+			} elseif ( $q ) {
+				$opts['startPage'] = 'donors?' . http_build_query( $q, '', '&', PHP_QUERY_RFC3986 );
+			}
+			return $opts;
+		}
+		if ( 'flxb-subscriptions' === $page && 'flxb-subscriptions' === self::q( 'page' ) ) {
+			$q = self::page_args( array( 's', 'status', 'paged' ) );
+			if ( $q ) {
+				$opts['startPage'] = 'subscriptions?' . http_build_query( $q, '', '&', PHP_QUERY_RFC3986 );
+			}
+			return $opts;
+		}
 		// A list link with filters (dashboard bars, bookmarks) starts the list with them.
 		if ( 'flxb-donations' === $page && 'flxb-donations' === self::q( 'page' ) ) {
 			$q = self::list_args();
@@ -531,8 +560,18 @@ final class FLXB_Admin {
 
 	/** The list arguments of the address (the screen's filter bar keys and paged). */
 	private static function list_args() {
+		return self::page_args( array( 's', 'from', 'to', 'status', 'type', 'dtype', 'form', 'donor_id', 'ref', 'paged' ) );
+	}
+
+	/**
+	 * The set arguments of the address among the given keys.
+	 *
+	 * @param string[] $keys Keys.
+	 * @return array<string,string>
+	 */
+	private static function page_args( array $keys ) {
 		$q = array();
-		foreach ( array( 's', 'from', 'to', 'status', 'type', 'dtype', 'form', 'donor_id', 'ref', 'paged' ) as $k ) {
+		foreach ( $keys as $k ) {
 			$v = self::q( $k );
 			if ( '' !== $v ) {
 				$q[ $k ] = $v;
@@ -570,6 +609,81 @@ final class FLXB_Admin {
 			$vars['filter'] = $filter;
 		}
 		return array( array( 'FlxDonateDonations', $vars ) );
+	}
+
+	/** Sort keys of the donor list (address) → FlxDonorOrder. */
+	const DONOR_ORDERS = array(
+		'last_donation_at'  => 'LAST_GIFT',
+		'total_amount'      => 'TOTAL',
+		'donation_count'    => 'GIFTS',
+		'first_donation_at' => 'FIRST_GIFT',
+		'name'              => 'NAME',
+	);
+
+	/**
+	 * Variables of a list page: first, after (offset cursor of the page number) and the filter when set.
+	 *
+	 * @param mixed                $query  Query arguments.
+	 * @param array<string,string> $filter Filter.
+	 * @return array<string,mixed>
+	 */
+	private static function page_vars( $query, array $filter ) {
+		$paged  = is_array( $query ) && isset( $query['paged'] ) && preg_match( '/^\d+$/', (string) $query['paged'] ) ? (int) $query['paged'] : 1;
+		$offset = $paged > 1 ? ( $paged - 1 ) * self::LIST_PER : 0;
+		$vars   = array(
+			'first' => self::LIST_PER,
+			'after' => $offset > 0 ? base64_encode( 'flxo:' . ( $offset - 1 ) ) : null, // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode -- offset cursor of the Flux GraphQL kit.
+		);
+		if ( $filter ) {
+			$vars['filter'] = $filter;
+		}
+		return $vars;
+	}
+
+	/**
+	 * First query of the donor list or the donor card, as the screen sends it
+	 * (packages/modules/src/donate/Donors.tsx donorFilter()).
+	 *
+	 * @param mixed $query Query arguments of the page.
+	 */
+	public static function preload_donors( $query = array() ) {
+		$query = is_array( $query ) ? $query : array();
+		$g     = static function ( $k ) use ( $query ) {
+			return isset( $query[ $k ] ) && is_scalar( $query[ $k ] ) ? trim( (string) $query[ $k ] ) : '';
+		};
+		if ( preg_match( '/^\d+$/', $g( 'donor' ) ) && (int) $g( 'donor' ) > 0 ) {
+			return array( array( 'FlxDonateDonor', array( 'id' => (int) $g( 'donor' ) ) ) );
+		}
+		$f = array();
+		if ( '' !== $g( 's' ) ) {
+			$f['search'] = $g( 's' );
+		}
+		if ( in_array( $g( 'kind' ), array( 'recurring', 'consent' ), true ) ) {
+			$f['kind'] = strtoupper( $g( 'kind' ) );
+		}
+		if ( isset( self::DONOR_ORDERS[ $g( 'orderby' ) ] ) && 'last_donation_at' !== $g( 'orderby' ) ) {
+			$f['orderBy'] = self::DONOR_ORDERS[ $g( 'orderby' ) ];
+		}
+		return array( array( 'FlxDonateDonors', self::page_vars( $query, $f ) ) );
+	}
+
+	/**
+	 * First query of the recurring donation list (packages/modules/src/donate/Subscriptions.tsx).
+	 *
+	 * @param mixed $query Query arguments of the page.
+	 */
+	public static function preload_subscriptions( $query = array() ) {
+		$query = is_array( $query ) ? $query : array();
+		$f     = array();
+		$s     = isset( $query['s'] ) && is_scalar( $query['s'] ) ? trim( (string) $query['s'] ) : '';
+		$st    = isset( $query['status'] ) && is_scalar( $query['status'] ) ? (string) $query['status'] : '';
+		if ( '' !== $s ) {
+			$f['search'] = $s;
+		}
+		if ( in_array( $st, array( 'active', 'past_due', 'canceled' ), true ) ) {
+			$f['status'] = strtoupper( $st );
+		}
+		return array( array( 'FlxDonateSubscriptions', self::page_vars( $query, $f ) ) );
 	}
 
 	/**

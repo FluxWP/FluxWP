@@ -1,6 +1,6 @@
 <?php
 /**
- * Flux Donate: recurring donations.
+ * Flux Donate: recurring donations (the screen, and the table of the Flux CRM person card).
  *
  * @package FLX_Bagis
  */
@@ -11,63 +11,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 final class FLXB_Page_Subscriptions {
 
-	const PER_PAGE = 25;
-
+	/** 2.39.0: the list is the React screen (packages/modules/src/donate). */
 	public static function render() {
 		if ( ! flxb_can_view() ) {
 			FLXB_Admin::deny();
 		}
-		$status = FLXB_Admin::q( 'status' );
-		$search = FLXB_Admin::q( 's' );
-		$page   = max( 1, absint( FLXB_Admin::q( 'paged', '1' ) ) );
-		$per    = FLXB_Admin::per_page( 'flxb-subscriptions', self::PER_PAGE );
-		$res    = FLXB_Subscriptions::query( array( 'status' => $status, 'search' => $search, 'per_page' => $per, 'page' => $page ) );
-		$tot    = FLXB_Subscriptions::totals();
-		$args   = array_filter( array( 'page' => 'flxb-subscriptions', 'status' => $status, 's' => $search ), 'strlen' );
-
-		FLXB_Admin::header( __( 'Recurring donations', 'flx-donate' ), __( 'Monthly, weekly or yearly gifts charged automatically by the payment provider.', 'flx-donate' ) );
-		echo '<div class="flxb-kpis">';
-		echo '<div class="flxb-kpi"><div class="flxb-kpi__label">' . esc_html__( 'Recurring (monthly)', 'flx-donate' ) . '</div><div class="flxb-kpi__value">' . esc_html( flxb_money( $tot['mrr'] ) ) . '</div><div class="flxb-kpi__sub">' . esc_html__( 'monthly value of active ones', 'flx-donate' ) . '</div></div>';
-		echo '<div class="flxb-kpi" style="--accent:#2F6FA3"><div class="flxb-kpi__label">' . esc_html__( 'Active', 'flx-donate' ) . '</div><div class="flxb-kpi__value">' . esc_html( number_format_i18n( $tot['active'] ) ) . '</div></div>';
-		echo '<div class="flxb-kpi" style="--accent:#E0A526"><div class="flxb-kpi__label">' . esc_html__( 'Past due', 'flx-donate' ) . '</div><div class="flxb-kpi__value">' . esc_html( number_format_i18n( $tot['past_due'] ) ) . '</div></div>';
-		echo '<div class="flxb-kpi" style="--accent:#7A8C96"><div class="flxb-kpi__label">' . esc_html__( 'Canceled', 'flx-donate' ) . '</div><div class="flxb-kpi__value">' . esc_html( number_format_i18n( $tot['canceled'] ) ) . '</div></div>';
-		echo '</div>';
-
-		$sts = array( '' => __( 'All', 'flx-donate' ), 'active' => __( 'Active', 'flx-donate' ), 'past_due' => __( 'Past due', 'flx-donate' ), 'canceled' => __( 'Canceled', 'flx-donate' ) );
-		if ( FLXB_Admin::list_lib() ) {
-			/* 2.6.0: shared Flux Admin list library. */
-			echo '<form class="flxb-filters flxb-filters--lib" method="get" action="' . esc_url( admin_url( 'admin.php' ) ) . '"' . FLXB_Admin::list_attrs( 'flxb-subscriptions' ) . '><input type="hidden" name="page" value="flxb-subscriptions">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			echo '<input type="search" name="s" value="' . esc_attr( $search ) . '" placeholder="' . esc_attr__( 'Name, e-mail, phone, reference…', 'flx-donate' ) . '" aria-label="' . esc_attr__( 'Search', 'flx-donate' ) . '">';
-			echo '<label><span>' . esc_html__( 'Status', 'flx-donate' ) . '</span><select name="status">';
-			foreach ( $sts as $k => $label ) {
-				echo '<option value="' . esc_attr( $k ) . '"' . selected( $status, $k, false ) . '>' . esc_html( $label ) . '</option>';
-			}
-			echo '</select></label><button class="flxb-btn flxb-btn--primary" type="submit">' . esc_html__( 'Search', 'flx-donate' ) . '</button></form>';
-		} else {
-			echo '<form class="flxb-filters" method="get" action="' . esc_url( admin_url( 'admin.php' ) ) . '"><input type="hidden" name="page" value="flxb-subscriptions"><div class="flxb-seg">';
-			foreach ( $sts as $k => $label ) {
-				echo '<a class="' . ( $k === $status ? 'is-on' : '' ) . '" href="' . esc_url( FLXB_Admin_Url::page( 'flxb-subscriptions', array_filter( array( 'status' => $k ), 'strlen' ) ) ) . '">' . esc_html( $label ) . '</a>';
-		}
-		echo '</div>';
-		if ( '' !== $status ) {
-			echo '<input type="hidden" name="status" value="' . esc_attr( $status ) . '">';
-		}
-		echo '<label class="screen-reader-text" for="flxb-s">' . esc_html__( 'Search', 'flx-donate' ) . '</label><input type="search" id="flxb-s" name="s" value="' . esc_attr( $search ) . '" placeholder="' . esc_attr__( 'Name, e-mail, phone, reference…', 'flx-donate' ) . '">';
-		echo '<div class="flxb-filters__end"><button class="flxb-btn flxb-btn--primary" type="submit">' . FLXB_Admin::icon( 'search' ) . esc_html__( 'Search', 'flx-donate' ) . '</button></div></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		}
-
-		echo '<div class="flxb-panel">';
-		if ( ! $res['items'] ) {
-			echo '<div class="flxb-emptystate">' . FLXB_Admin::icon( 'repeat', 32 ) . '<h2>' . esc_html__( 'No recurring donations yet', 'flx-donate' ) . '</h2><p>' . esc_html__( 'A recurring donation is created when a payment form is set to charge every day, week, month or year.', 'flx-donate' ) . '</p></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		} else {
-			self::table( $res['items'], true );
-			echo '<div class="flxb-tablefoot"><span>';
-			/* translators: %s: number of recurring donations */
-			echo esc_html( sprintf( _n( '%s recurring donation', '%s recurring donations', $res['total'], 'flx-donate' ), number_format_i18n( $res['total'] ) ) );
-			echo '</span>' . FLXB_Admin::list_pagination( $res['total'], $per, $page, $args ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		}
-		echo '</div>';
-		FLXB_Admin::footer();
+		FLXB_Admin::screen();
 	}
 
 	/** Recurring gifts can be canceled from here when Flux Donate takes the payments. */
@@ -75,6 +24,7 @@ final class FLXB_Page_Subscriptions {
 		return function_exists( 'flxb_owns_payments' ) && flxb_owns_payments() && flxb_can_manage();
 	}
 
+	/** The donor's recurring donations on the Flux CRM person card (FLXB_Page_Donors::crm_main_before()). */
 	public static function table( array $items, $show_donor ) {
 		echo '<div class="flxb-tablewrap"><table class="flxb-table"><thead><tr>';
 		if ( $show_donor ) {

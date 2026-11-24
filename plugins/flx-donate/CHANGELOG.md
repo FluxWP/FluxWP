@@ -1,5 +1,12 @@
 # Değişiklikler
 
+## 2.39.0
+- **Bağışçılar ve düzenli bağışlar anında açılır.** Bağışçı listesi, bağışçı kartı ve düzenli bağışlar artık React ekranı: veri sayfayla hazır gelir, yükleniyor dönmez, Flux ekranları arasında geçiş sayfa yenilemeden olur.
+- Bağışçılar: arama, "tekrarlayan / iletişim izni" ve sıralama (adres çubuğunda kalır), tüm satır kartı açar. Personelin "Bağışçılarım" sayfası yalnız kendi referans olduğu bağışçıları ve o bağışların rakamlarını gösterir.
+- Bağışçı kartı: kişi, göstergeler, son bağışlar, düzenli bağışlar, sertifikalar, KVKK / e-posta / SMS izinleri ve not (sayfa yenilemeden kaydedilir). Flux CRM kuruluysa bağışçı sayfası eskisi gibi CRM kişi kartıdır.
+- Düzenli bağışlar: aylık değer ve durum sayıları, durum ve arama, iyzico kart ve son başarısız deneme bilgisi, onay penceresiyle sağlayıcıda iptal.
+- GraphQL: `flxDonorList`, `flxDonorListInfo`, `flxDonor`, `flxDonorSave`, `flxSubscriptionList`, `flxSubscriptionTotals`, `flxSubscriptionCancel` (yetkiler klasik sayfalarla aynı).
+
 ## 2.38.0
 - **Bağış detayı anında açılır.** Bağış sayfası da artık React ekranı: veri sayfayla hazır gelir, yükleniyor dönmez. Görünüm klasikle aynı: özet şeridi, onay bekleyen dekont (önizleme, onayla / reddet), kalemler (sıralanır, adlar düzeltilir), ödeme (sertifikaları yeniden yap / gönder, "⋯" menüsünde sipariş ve iade), kişilerin iletişimi, geçmiş, bağışçı, referans, işlemler (durum, çöp, kalıcı silme) ve sipariş notları.
 - Kutular eskisi gibi taşınır (oklar, geniş ekranda sürükle), daraltılır; düzen kullanıcı başına saklanır. WooCommerce sipariş ekranındaki diğer eklentilerin kutuları, Flux POS iade formu ve ek sekmeler yerinde, kendi formlarıyla çalışır.
