@@ -414,4 +414,14 @@ $blob = (string) wp_json_encode( $seen );
 flxt_ok( false === strpos( $blob, $secret ), 'no captured response contains the secret' );
 flxt_ok( false === strpos( $blob, 'smtp_pass' ), 'stored secret key name is not a response field' );
 
+if ( ! function_exists( 'flxi_preload_for' ) ) {
+	require_once FLXI_DIR . 'includes/admin/flux-ui.php';
+}
+// 1.24.0: the shell preloads the first queries of the start route (same variables as the screen).
+flxt_same( array( array( 'FlxMailTemplates', array( 'first' => 50 ) ) ), flxi_preload_for( 'templates' ), 'preload: templates' );
+flxt_same( array( array( 'FlxMailTemplate', array( 'key' => 'welcome' ) ) ), flxi_preload_for( 'edit:welcome' ), 'preload: one template' );
+flxt_same( array( array( 'FlxMailLogs', array( 'first' => 50, 'status' => 'failed', 'campaign' => 7 ) ) ), flxi_preload_for( 'logs?status=failed&campaign=7' ), 'preload: filtered log' );
+flxt_same( array( array( 'FlxMailSettings', array() ) ), flxi_preload_for( 'settings' ), 'preload: settings' );
+flxt_same( array(), flxi_preload_for( 'send' ), 'preload: an island page has no query' );
+
 flxt_done();

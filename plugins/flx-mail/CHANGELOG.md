@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.24.0 — 2026-11-24
+- İletişim sayfaları Flux GraphQL ekran kabuğunda: ilk veri sayfayla birlikte gelir (preload), tıklayınca anında açılır.
+- Ortak ekran başlığı ve sekmeler: E-postalar, Gönder, Kuyruk, Kayıtlar, Kara liste, Bağlantılar, Ayarlar, Sistem kontrolü tek sekme çubuğunda.
+- Gönder, Kuyruk, Kara liste ve Bağlantılar formları aynı başlık altında açılır (sonraki sürümde React'e geçecek).
+- Klasik görünüm ve "Yeni görünüm" geçişi kaldırıldı; E-postalar, Kayıtlar, Ayarlar ve Sistem kontrolünün klasik PHP sayfaları silindi. Flux GraphQL yoksa uyarı gösterilir.
+
 ## 1.23.0 — 2026-11-16
 - Ayarlar, E-postalar (şablon düzenleyici dahil), Kayıtlar ve Sistem kontrolü GraphQL üzerinden. Yönetim ekranı React (`flxi-mail`); klasik görünüm `flxi_ui=classic` ile duruyor. Parolalar yazma-yalnız: boş değer saklananı korur, `__clear__` siler (yalnız GraphQL), okumada yalnız sabit maske (••••••••); wp-config sabiti olan parola GraphQL'den değiştirilemez.
 - Flux GraphQL yokken kayıt atlanır, REST çalışmaya devam eder. PHP 8.1 ve `flx-graphql` başlıkta zorunlu.
