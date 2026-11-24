@@ -29,6 +29,7 @@ defined( 'ABSPATH' ) || exit;
 final class FLXB_Admin_Detail_Service {
 
 	/** Islands collected for the page that is being printed (screen render). */
+	/** @var list<FlxbIsland>|null */
 	private static ?array $islands = null;
 
 	private static function boot(): void {
@@ -43,6 +44,23 @@ final class FLXB_Admin_Detail_Service {
 	 */
 	private static function arr( $v ): array {
 		return is_array( $v ) ? $v : array();
+	}
+
+	/**
+	 * A database row with string keys, or null.
+	 *
+	 * @param mixed $v Value.
+	 * @return array<string,mixed>|null
+	 */
+	private static function row( $v ): ?array {
+		if ( ! is_array( $v ) ) {
+			return null;
+		}
+		$out = array();
+		foreach ( $v as $k => $x ) {
+			$out[ (string) $k ] = $x;
+		}
+		return $out;
 	}
 
 	/**
@@ -104,7 +122,11 @@ final class FLXB_Admin_Detail_Service {
 		return mb_strtoupper( mb_substr( $name, 0, 1 ) );
 	}
 
-	/** May the current user open this donation? (FLXB_Page_Donations::may_see()) */
+	/**
+	 * May the current user open this donation? (FLXB_Page_Donations::may_see())
+	 *
+	 * @param array<string,mixed> $d Donation.
+	 */
 	public static function may_see( array $d ): bool {
 		if ( ! FLXB_Refs::can_list() ) {
 			return false;
@@ -124,28 +146,41 @@ final class FLXB_Admin_Detail_Service {
 	public static function donation( int $id ): ?array {
 		self::boot();
 		$d = $id ? FLXB_Donations::get( $id ) : null;
-		return is_array( $d ) && self::may_see( $d ) ? $d : null;
+		$d = self::row( $d );
+		return $d && self::may_see( $d ) ? $d : null;
 	}
 
-	/** @return WC_Order|null */
+	/**
+	 * @param array<string,mixed> $d Donation.
+	 * @return WC_Order|null
+	 */
 	private static function order( array $d ) {
 		$oid = self::i( $d['wc_order_id'] ?? 0 );
 		$o   = $oid && function_exists( 'wc_get_order' ) ? wc_get_order( $oid ) : null;
 		return $o instanceof WC_Order ? $o : null;
 	}
 
+	/**
+	 * @param array<string,mixed> $d Donation.
+	 */
 	private static function method_label( array $d ): string {
 		$order = self::order( $d );
 		return $order && '' !== $order->get_payment_method_title() ? $order->get_payment_method_title() : self::s( flxb_provider_label( self::s( $d['provider'] ?? '' ) ) );
 	}
 
-	/** @return array<string,mixed>|null */
+	/**
+	 * @param array<string,mixed> $d Donation.
+	 * @return array<string,mixed>|null
+	 */
 	private static function payinfo( array $d ): ?array {
 		$order = class_exists( 'FLXB_WC_Payinfo' ) ? self::order( $d ) : null;
 		if ( ! $order ) {
 			return null;
 		}
-		$info = self::arr( FLXB_WC_Payinfo::get( $order ) );
+		$info = array();
+		foreach ( self::arr( FLXB_WC_Payinfo::get( $order ) ) as $k => $v ) {
+			$info[ (string) $k ] = $v;
+		}
 		return FLXB_WC_Payinfo::worth( $info ) ? $info : null;
 	}
 
@@ -161,10 +196,10 @@ final class FLXB_Admin_Detail_Service {
 		}
 		$id     = self::i( $d['id'] );
 		$donor  = self::i( $d['donor_id'] ?? 0 ) ? FLXB_Donors::get( self::i( $d['donor_id'] ) ) : null;
-		$donor  = is_array( $donor ) ? $donor : null;
+		$donor  = self::row( $donor );
 		$camp   = self::i( $d['type_id'] ?? 0 ) ? FLXB_Types::get( self::i( $d['type_id'] ) ) : null;
-		$camp   = is_array( $camp ) ? $camp : null;
-		$sibs   = array_values( array_filter( self::arr( FLXB_Donations::siblings( $d ) ), 'is_array' ) );
+		$camp   = self::row( $camp );
+		$sibs   = array_values( array_filter( array_map( array( __CLASS__, 'row' ), self::arr( FLXB_Donations::siblings( $d ) ) ) ) );
 		$multi  = count( $sibs ) > 1;
 		$cur    = self::s( $d['currency'] ?? '' );
 		$amount = $multi ? array_sum( array_map( static fn( $s ): float => self::f( $s['amount'] ?? 0 ), $sibs ) ) : self::f( $d['amount'] ?? 0 );
@@ -200,7 +235,12 @@ final class FLXB_Admin_Detail_Service {
 		);
 	}
 
-	/** @return list<FlxbFact> */
+	/**
+	 * @param array<string,mixed> $d Donation.
+	 * @param array<string,mixed>|null $donor Donor.
+	 * @param array<string,mixed>|null $camp Donation type.
+	 * @return list<FlxbFact>
+	 */
 	private static function hero( array $d, ?array $donor, ?array $camp ): array {
 		$ts    = strtotime( self::s( $d['created_at'] ?? '' ) . ' UTC' );
 		$ref   = self::i( $d['ref_user_id'] ?? 0 );
@@ -210,7 +250,7 @@ final class FLXB_Admin_Detail_Service {
 		$state = self::arr( flxb_donation_state( $d ) );
 		$out   = array(
 			self::fact( __( 'Status', 'flx-donate' ), self::s( $state[1] ?? '' ), 'pill', '', self::tone( self::s( $state[0] ?? '' ) ) ),
-			self::fact( __( 'Donor', 'flx-donate' ), $name, 'text', $donor && FLXB_Refs::can_donors() ? FLXB_Admin_Url::donor( self::i( $donor['id'] ) ) : '' ),
+			self::fact( __( 'Donor', 'flx-donate' ), $name, 'text', $donor && FLXB_Refs::can_donors() ? self::s( FLXB_Admin_Url::donor( self::i( $donor['id'] ) ) ) : '' ),
 		);
 		if ( $ref ) {
 			$out[] = self::fact( __( 'Referral', 'flx-donate' ), self::s( FLXB_Refs::name( $ref ) ), 'chip' );
@@ -229,6 +269,9 @@ final class FLXB_Admin_Detail_Service {
 	/**
 	 * Receipt / payment awaiting approval (FLXB_Approval::card()).
 	 *
+	 * @param array<string,mixed> $d Donation.
+	 * @param list<array<string,mixed>> $sibs Gifts of the same order.
+	 * @param array<string,mixed>|null $donor Donor.
 	 * @return array<string,mixed>|null
 	 */
 	private static function approval( array $d, array $sibs, ?array $donor ): ?array {
@@ -277,6 +320,9 @@ final class FLXB_Admin_Detail_Service {
 	/**
 	 * Items table, totals and the names on whose behalf (FLXB_Page_Donations::lines_card()).
 	 *
+	 * @param array<string,mixed> $d Donation.
+	 * @param list<array<string,mixed>> $sibs Gifts of the same order.
+	 * @param array<string,mixed>|null $camp Donation type.
 	 * @param WC_Order|null $order Order.
 	 * @return array<string,mixed>
 	 */
@@ -285,11 +331,14 @@ final class FLXB_Admin_Detail_Service {
 		$cur     = self::s( $d['currency'] ?? '' );
 		$rows    = array();
 		$wc_bits = static function ( array $s ) use ( $order ): array {
-			$item = $order && class_exists( 'FLXB_WC_Ledger' ) ? $order->get_item( FLXB_WC_Ledger::item_of( $s ) ) : null;
+			$item = $order && class_exists( 'FLXB_WC_Ledger' ) ? $order->get_item( self::i( FLXB_WC_Ledger::item_of( $s ) ) ) : null;
 			$bits = array();
 			if ( $item ) {
 				foreach ( $item->get_formatted_meta_data() as $m ) {
-					$bits[] = self::fact( rtrim( trim( wp_strip_all_tags( (string) $m->display_key ) ), ':' ), trim( wp_strip_all_tags( (string) $m->display_value ) ) );
+					if ( ! is_object( $m ) ) {
+						continue;
+					}
+					$bits[] = self::fact( rtrim( trim( wp_strip_all_tags( self::s( $m->display_key ?? '' ) ) ), ':' ), trim( wp_strip_all_tags( self::s( $m->display_value ?? '' ) ) ) );
 				}
 			}
 			return array( $item ?: null, $bits );
@@ -298,19 +347,19 @@ final class FLXB_Admin_Detail_Service {
 		$image   = static function ( int $type_id ) use ( &$images ): string {
 			if ( ! isset( $images[ $type_id ] ) ) {
 				$t                  = $type_id ? FLXB_Types::get( $type_id ) : null;
-				$images[ $type_id ] = is_array( $t ) && (int) ( $t['image_id'] ?? 0 ) ? (string) wp_get_attachment_image_url( (int) $t['image_id'], 'thumbnail' ) : '';
+				$images[ $type_id ] = is_array( $t ) && self::i( $t['image_id'] ?? 0 ) ? self::s( wp_get_attachment_image_url( self::i( $t['image_id'] ), 'thumbnail' ) ) : '';
 			}
 			return $images[ $type_id ];
 		};
 		$type_url = static function ( int $type_id ): string {
-			return $type_id && flxb_can_view() ? FLXB_Admin_Url::page( 'flxb-types', array( 'edit' => $type_id ) ) : '';
+			return $type_id && flxb_can_view() ? self::s( FLXB_Admin_Url::page( 'flxb-types', array( 'edit' => $type_id ) ) ) : '';
 		};
 		$row      = static function ( array $r ) use ( $cur ): array {
-			$c = '' !== $r['cur'] ? $r['cur'] : $cur;
+			$c = '' !== self::s( $r['cur'] ?? '' ) ? self::s( $r['cur'] ) : $cur;
 			return $r + array(
-				'unitLabel'  => self::money( $r['unit'], $c, 2 ),
-				'qtyLabel'   => '× ' . number_format_i18n( $r['qty'] ),
-				'totalLabel' => self::money( $r['total'], $c, 2 ),
+				'unitLabel'  => self::money( self::f( $r['unit'] ?? 0 ), $c, 2 ),
+				'qtyLabel'   => '× ' . number_format_i18n( self::i( $r['qty'] ?? 0 ) ),
+				'totalLabel' => self::money( self::f( $r['total'] ?? 0 ), $c, 2 ),
 			);
 		};
 		if ( $multi ) {
@@ -408,7 +457,7 @@ final class FLXB_Admin_Detail_Service {
 				);
 			}
 		}
-		$sum = array_sum( array_map( static fn( array $r ): float => (float) $r['total'], $rows ) );
+		$sum = array_sum( array_map( static fn( array $r ): float => self::f( $r['total'] ?? 0 ), $rows ) );
 		foreach ( $rows as &$r ) {
 			unset( $r['cur'] );
 		}
@@ -424,6 +473,8 @@ final class FLXB_Admin_Detail_Service {
 	/**
 	 * Totals under the items (FLXB_Page_Donations::totals()): look is '', total, paid, none, wait or refund.
 	 *
+	 * @param array<string,mixed> $d Donation.
+	 * @param list<array<string,mixed>> $sibs Gifts of the same order.
 	 * @param WC_Order|null $order Order.
 	 * @return array{lines: list<array{label: string, value: string, look: string}>, paid: list<array{label: string, value: string, look: string}>, via: string}
 	 */
@@ -480,6 +531,7 @@ final class FLXB_Admin_Detail_Service {
 	/**
 	 * Names on whose behalf, editable (FLXB_Page_Donations::names_form()); null when not offered.
 	 *
+	 * @param array<string,mixed> $d Donation.
 	 * @return list<array{itemId: int, label: string, value: string}>|null
 	 */
 	private static function names( array $d, bool $multi ): ?array {
@@ -513,6 +565,7 @@ final class FLXB_Admin_Detail_Service {
 	/**
 	 * Payment card: facts, certificates, note and the "⋯" menu (FLXB_Page_Donations::detail(), more_menu()).
 	 *
+	 * @param array<string,mixed> $d Donation.
 	 * @param WC_Order|null $order Order.
 	 * @return array<string,mixed>
 	 */
@@ -574,7 +627,7 @@ final class FLXB_Admin_Detail_Service {
 				__( 'Recurring donation', 'flx-donate' ),
 				sprintf( '%1$s · %2$s · %3$s', self::money( self::f( $sub['amount'] ?? 0 ), self::s( $sub['currency'] ?? '' ) ), self::s( flxb_interval_label( self::s( $sub['interval_unit'] ?? '' ) ) ), self::s( $st[1] ?? '' ) ),
 				'text',
-				flxb_can_view() ? FLXB_Admin_Url::page( 'flxb-subscriptions', array( 's' => self::s( $sub['provider_ref'] ?? '' ) ) ) : ''
+				flxb_can_view() ? self::s( FLXB_Admin_Url::page( 'flxb-subscriptions', array( 's' => self::s( $sub['provider_ref'] ?? '' ) ) ) ) : ''
 			);
 		}
 		if ( ! empty( $meta['account'] ) ) {
@@ -652,7 +705,10 @@ final class FLXB_Admin_Detail_Service {
 		);
 	}
 
-	/** @return list<array{name: string, phone: string, phoneUrl: string, email: string}> */
+	/**
+	 * @param array<string,mixed> $d Donation.
+	 * @return list<array{name: string, phone: string, phoneUrl: string, email: string}>
+	 */
 	private static function contacts( array $d ): array {
 		$m   = self::arr( FLXB_Donations::meta( $d ) );
 		$out = array();
@@ -672,7 +728,10 @@ final class FLXB_Admin_Detail_Service {
 		return $out;
 	}
 
-	/** @return list<array{name: string, url: string, meta: string}> */
+	/**
+	 * @param array<string,mixed> $d Donation.
+	 * @return list<array{name: string, url: string, meta: string}>
+	 */
 	private static function receipts( array $d ): array {
 		if ( FLXB_Approval::pending( $d ) ) {
 			return array(); // in the approval card while the gift awaits approval
@@ -700,7 +759,10 @@ final class FLXB_Admin_Detail_Service {
 		return $out;
 	}
 
-	/** @return list<array{date: string, text: string, user: string}> */
+	/**
+	 * @param array<string,mixed> $d Donation.
+	 * @return list<array{date: string, text: string, user: string}>
+	 */
 	private static function history( array $d ): array {
 		$m   = self::arr( FLXB_Donations::meta( $d ) );
 		$out = array();
@@ -717,14 +779,18 @@ final class FLXB_Admin_Detail_Service {
 		return $out;
 	}
 
-	/** @return array<string,mixed>|null */
+	/**
+	 * @param array<string,mixed>|null $donor Donor.
+	 * @return array<string,mixed>|null
+	 */
 	private static function donor( ?array $donor ): ?array {
 		if ( ! $donor ) {
 			return null;
 		}
 		global $wpdb;
+		/** @var wpdb $wpdb */
 		$name  = self::s( FLXB_Admin::donor_name( $donor, '' ) );
-		$open  = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(DISTINCT ' . FLXB_Donations::GROUP_KEY . ') FROM ' . flxb_table( 'donations' ) . " x WHERE x.donor_id = %d AND x.status = 'pending'", self::i( $donor['id'] ) ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		$open  = self::i( $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(DISTINCT ' . FLXB_Donations::GROUP_KEY . ") FROM %i x WHERE x.donor_id = %d AND x.status = 'pending'", self::s( flxb_table( 'donations' ) ), self::i( $donor['id'] ) ) ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 		$phone = preg_replace( '/\D+/', '', self::s( $donor['phone'] ?? '' ) );
 		return array(
 			'name'     => $name,
@@ -738,7 +804,10 @@ final class FLXB_Admin_Detail_Service {
 		);
 	}
 
-	/** @return array<string,mixed>|null */
+	/**
+	 * @param array<string,mixed> $d Donation.
+	 * @return array<string,mixed>|null
+	 */
 	private static function referral( array $d ): ?array {
 		if ( FLXB_Refs::own_only() ) {
 			return null;
@@ -779,12 +848,30 @@ final class FLXB_Admin_Detail_Service {
 		);
 	}
 
-	/** Statuses an admin may set by hand (FLXB_Page_Donations::manual_statuses()). */
-	private static function manual_statuses(): array {
-		return self::arr( FLXB_Page_Donations::manual_statuses() );
+	/** Payment record of Flux Donate's payment layer (loaded only when it owns payments). */
+	private static function payment_record( int $id ): mixed {
+		$cb = array( 'FLXB_Payment_Records', 'get' );
+		return is_callable( $cb ) ? call_user_func( $cb, $id ) : null;
 	}
 
-	/** @return array<string,mixed>|null */
+	/**
+	 * Statuses an admin may set by hand (FLXB_Page_Donations::manual_statuses()).
+	 *
+	 * @return array<string,string>
+	 */
+	private static function manual_statuses(): array {
+		$out = array();
+		foreach ( self::arr( FLXB_Page_Donations::manual_statuses() ) as $k => $v ) {
+			$out[ (string) $k ] = self::s( $v );
+		}
+		return $out;
+	}
+
+	/**
+	 * @param array<string,mixed> $d Donation.
+	 * @param list<array<string,mixed>> $sibs Gifts of the same order.
+	 * @return array<string,mixed>|null
+	 */
 	private static function manage( array $d, array $sibs ): ?array {
 		if ( ! self::can_manage() ) {
 			return null;
@@ -814,6 +901,7 @@ final class FLXB_Admin_Detail_Service {
 	/**
 	 * WooCommerce order notes (FLXB_WC_Boxes::notes_box()); null without the right or an order.
 	 *
+	 * @param array<string,mixed> $d Donation.
 	 * @param WC_Order|null $order Order.
 	 * @return array<string,mixed>|null
 	 */
@@ -844,6 +932,7 @@ final class FLXB_Admin_Detail_Service {
 	 * Boxes of other plugins as ready HTML: id, title, column and the HTML. Printed on the page
 	 * (print_islands()); the screen moves each one into its box.
 	 *
+	 * @param array<string,mixed> $d Donation.
 	 * @param WC_Order|null $order Order.
 	 * @return list<FlxbIsland>
 	 */
@@ -861,7 +950,7 @@ final class FLXB_Admin_Detail_Service {
 					continue;
 				}
 				$out[] = array(
-					'id'    => FLXB_Boxes::key( self::s( $b['id'] ) ),
+					'id'    => self::s( FLXB_Boxes::key( self::s( $b['id'] ) ) ),
 					'title' => wp_strip_all_tags( self::s( $b['title'] ?? '' ) ),
 					'col'   => 'side' === ( $b['col'] ?? '' ) ? 'side' : 'main',
 					'html'  => isset( $b['html'] ) ? self::s( $b['html'] ) : self::s( FLXB_Boxes::card( $b ) ),
@@ -878,7 +967,7 @@ final class FLXB_Admin_Detail_Service {
 			$b['donation'] = $d;
 			unset( $b['html'] );
 			$out[] = array(
-				'id'    => FLXB_Boxes::key( 'x:' . self::s( $b['id'] ) ),
+				'id'    => self::s( FLXB_Boxes::key( 'x:' . self::s( $b['id'] ) ) ),
 				'title' => wp_strip_all_tags( self::s( $b['title'] ?? '' ) ),
 				'col'   => 'side' === ( $b['col'] ?? '' ) ? 'side' : 'main',
 				'html'  => self::s( FLXB_Boxes::card( $b ) ),
@@ -888,7 +977,7 @@ final class FLXB_Admin_Detail_Service {
 		$wcm = class_exists( 'FLXB_WC_Admin' ) && FLXB_WC::ready() ? FLXB_WC_Admin::donation_menu( $d ) : null;
 		if ( ! $wcm && function_exists( 'flxb_owns_payments' ) && flxb_owns_payments() && class_exists( 'FLXB_Page_Payments' ) ) {
 			$m   = self::arr( FLXB_Donations::meta( $d ) );
-			$row = self::i( $d['pay_id'] ?? 0 ) && empty( $m['renewal'] ) ? FLXB_Payment_Records::get( self::i( $d['pay_id'] ) ) : null;
+			$row = self::i( $d['pay_id'] ?? 0 ) && empty( $m['renewal'] ) ? self::payment_record( self::i( $d['pay_id'] ) ) : null;
 			ob_start();
 			FLXB_Page_Payments::money_form( $row, $d, $back );
 			$html = trim( (string) ob_get_clean() );
@@ -907,6 +996,7 @@ final class FLXB_Admin_Detail_Service {
 	 * Island ids, titles and columns for the screen; the HTML is printed on the page. Over GraphQL
 	 * outside the page (the app) the islands are left out: they need the page's scripts.
 	 *
+	 * @param array<string,mixed> $d Donation.
 	 * @param WC_Order|null $order Order.
 	 * @return list<array{id: string, title: string, col: string}>
 	 */
@@ -1171,7 +1261,7 @@ final class FLXB_Admin_Detail_Service {
 		if ( ! is_user_logged_in() ) {
 			return false;
 		}
-		$clean = static fn( array $l ): array => array_slice( array_values( array_unique( array_filter( array_map( static fn( $v ): string => FLXB_Boxes::key( $v ), $l ) ) ) ), 0, 60 );
+		$clean = static fn( array $l ): array => array_slice( array_values( array_unique( array_filter( array_map( static fn( $v ): string => self::s( FLXB_Boxes::key( $v ) ), $l ) ) ) ), 0, 60 );
 		$all   = get_user_meta( get_current_user_id(), FLXB_Boxes::META, true );
 		$all   = is_array( $all ) ? $all : array();
 		$all['donation'] = array(
