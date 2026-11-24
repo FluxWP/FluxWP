@@ -112,7 +112,7 @@ final class FLXPOS_Order_Box {
 			__( 'Mod', 'flx-pos' )            => $d['test'] ? '<strong>' . esc_html__( 'Test', 'flx-pos' ) . '</strong>' : esc_html__( 'Canlı', 'flx-pos' ),
 		);
 		echo '<table class="widefat striped" style="border:0"><tbody>';
-		foreach ( array_filter( $rows, 'strlen' ) as $k => $v ) {
+		foreach ( array_filter( $rows, static fn( $v ): bool => '' !== (string) $v ) as $k => $v ) {
 			echo '<tr><th scope="row" style="width:160px">' . esc_html( $k ) . '</th><td>' . $v . '</td></tr>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped above
 		}
 		echo '</tbody></table><p><a href="' . esc_url( flxpos_admin_url( array( 'tab' => 'txns', 's' => $order->get_id() ) ) ) . '">' . esc_html__( 'Tüm işlemler', 'flx-pos' ) . '</a></p>';

@@ -159,7 +159,7 @@ class FLXB_WC_Payinfo {
 		if ( '' !== $inst ) {
 			$bits[] = $inst;
 		}
-		return implode( ' · ', array_filter( $bits, 'strlen' ) );
+		return implode( ' · ', array_filter( $bits, static fn( $v ): bool => '' !== (string) $v ) );
 	}
 
 	/** Label => escaped HTML value, empty ones left out. */
@@ -176,7 +176,7 @@ class FLXB_WC_Payinfo {
 			__( 'Transaction ID', 'flx-donate' )   => '' !== (string) $info['txn'] ? '<code>' . esc_html( (string) $info['txn'] ) . '</code>' : '',
 			__( 'Mode', 'flx-donate' )             => null === $info['test'] ? '' : ( $info['test'] ? '<strong>' . esc_html__( 'Test', 'flx-donate' ) . '</strong>' : esc_html__( 'Live', 'flx-donate' ) ),
 		);
-		return array_filter( $rows, 'strlen' );
+		return array_filter( $rows, static fn( $v ): bool => '' !== (string) $v );
 	}
 
 	/** Is there anything worth a box (a card or a provider)? */
