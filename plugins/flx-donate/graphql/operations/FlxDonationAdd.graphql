@@ -1,0 +1,3 @@
+mutation FlxDonationAdd($input: FlxDonationAddInput!) {
+  flxDonationAdd(input: $input) { message databaseId url errors { message field } }
+}

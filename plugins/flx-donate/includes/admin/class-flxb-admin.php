@@ -29,7 +29,7 @@ final class FLXB_Admin {
 	const SLUG = 'flxb-dashboard';
 
 	/** 2.36.0: pages that are React screens on the Flux GraphQL shell (page slug => start page). */
-	const SCREENS = array( 'flxb-dashboard', 'flxb-donations', 'flxb-donors', 'flxb-subscriptions', 'flxb-types' );
+	const SCREENS = array( 'flxb-dashboard', 'flxb-donations', 'flxb-donors', 'flxb-subscriptions', 'flxb-types', 'flxb-add' );
 
 	/** Rows of the first list page (the screen's PER). */
 	const LIST_PER = 25;
@@ -48,8 +48,6 @@ final class FLXB_Admin {
 		add_action( 'admin_post_flxb_settings_save', array( 'FLXB_Page_Settings', 'save' ) );
 		add_action( 'admin_post_flxb_backfill', array( 'FLXB_Page_Settings', 'backfill' ) );
 		add_action( 'admin_post_flxb_donor_save', array( 'FLXB_Page_Donors', 'save' ) );
-		add_action( 'admin_post_flxb_add_donation', array( 'FLXB_Page_Add', 'save' ) );
-		add_action( 'admin_post_flxb_ref_request', array( 'FLXB_Page_Add', 'save_request' ) );
 		FLXB_Approval::init();
 		FLXB_Page_Track::init();
 		FLXB_Page_Partners::init();
@@ -187,6 +185,9 @@ final class FLXB_Admin {
 	public static function assets( $hook ) {
 		if ( ! in_array( $hook, self::$hooks, true ) ) {
 			return;
+		}
+		if ( 'flxb-add' === self::q( 'page' ) && function_exists( 'flx_phone_enqueue' ) ) {
+			flx_phone_enqueue(); // 2.42.0: the phone fields of the Add donation screen.
 		}
 		if ( function_exists( 'flx_admin_screen_current' ) && in_array( flx_admin_screen_current(), self::SCREENS, true ) && '' === self::q( 'donation' ) && '' === self::q( 'edit' ) ) {
 			return; // The Flux GraphQL screen shell loads the React screen; the donation page and the type editor keep the classic styles for the boxes printed by PHP.
@@ -488,6 +489,7 @@ final class FLXB_Admin {
 			'flxb-donors'        => array( 'donors', 'preload_donors' ),
 			'flxb-subscriptions' => array( 'subscriptions', 'preload_subscriptions' ),
 			'flxb-types'         => array( 'types', 'preload_types' ),
+			'flxb-add'           => array( 'add', 'preload_add' ),
 		);
 		$enabled = array( 'flxb-donors' => 'donors_screen_enabled' );
 		foreach ( $screens as $page => $s ) {
@@ -537,6 +539,10 @@ final class FLXB_Admin {
 		$donation = absint( self::q( 'donation', '0' ) );
 		if ( 'flxb-donations' === $page && $donation ) {
 			$opts['startPage'] = 'detail?id=' . $donation;
+			$n                 = self::redirect_notice(); // 2.42.0: "Saved." after Add donation
+			if ( $n && '' !== $n[1] && in_array( self::q( 'flxb_msg' ), array( 'saved' ), true ) ) {
+				$opts['startPage'] .= '&' . http_build_query( array( 'notice' => 'ok:' . $n[1] ), '', '&', PHP_QUERY_RFC3986 );
+			}
 			return $opts;
 		}
 		// 2.39.0: ?donor= opens the donor card; the donor and recurring lists keep their address arguments.
@@ -572,6 +578,14 @@ final class FLXB_Admin {
 			}
 			if ( $q ) {
 				$opts['startPage'] = ( isset( $q['id'] ) ? 'type?' : 'types?' ) . http_build_query( $q, '', '&', PHP_QUERY_RFC3986 );
+			}
+			return $opts;
+		}
+		// 2.42.0: ?donor= prefills the donor of Add donation.
+		if ( 'flxb-add' === $page && 'flxb-add' === self::q( 'page' ) ) {
+			$donor = absint( self::q( 'donor', '0' ) );
+			if ( $donor ) {
+				$opts['startPage'] = 'add?donor=' . $donor;
 			}
 			return $opts;
 		}
@@ -727,6 +741,17 @@ final class FLXB_Admin {
 			return array( array( 'FlxDonateTypeForm', array( 'id' => 'new' === $edit ? 0 : absint( $edit ) ) ) );
 		}
 		return array( array( 'FlxDonateTypes', array( 'archived' => isset( $query['view'] ) && 'archived' === $query['view'] ) ) );
+	}
+
+	/**
+	 * First query of Add donation (packages/modules/src/donate/Add.tsx); ?donor= prefills the donor.
+	 *
+	 * @param mixed $query Query arguments of the page.
+	 */
+	public static function preload_add( $query = array() ) {
+		$query = is_array( $query ) ? $query : array();
+		$donor = isset( $query['donor'] ) && is_scalar( $query['donor'] ) ? absint( $query['donor'] ) : 0;
+		return array( array( 'FlxDonateAdd', array( 'donorId' => $donor ) ) );
 	}
 
 	/**

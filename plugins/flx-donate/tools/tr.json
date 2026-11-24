@@ -4,5 +4,7 @@
  "Filters": "Filtreler",
  "Previous page": "Önceki sayfa",
  "%1$s of %2$s": "%1$s / %2$s",
- "Next page": "Sonraki sayfa"
+ "Next page": "Sonraki sayfa",
+ "%s piece\u0000%s pieces": "%s adet\u0000%s adet",
+ "Country": "Ülke"
 }

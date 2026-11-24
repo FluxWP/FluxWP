@@ -1,0 +1,3 @@
+mutation FlxDonationRequest($input: FlxDonationRequestInput!) {
+  flxDonationRequest(input: $input) { message payUrl whatsappUrl emailed errors { message field } }
+}

@@ -1,0 +1,16 @@
+query FlxDonateAdd($donorId: Int!) {
+  flxDonationAddForm(donorId: $donorId) {
+    request
+    types { databaseId title currency free proxy cert options { key label price per unitOne unitMany } }
+    methods { value label }
+    accounts { value label }
+    referrals { value label }
+    currencies { value label }
+    currency
+    proxyVersion
+    now
+    donor { name phone email consentKvkk consentEmail consentSms }
+    listUrl
+    listLabel
+  }
+}

@@ -18,7 +18,7 @@ foreach ( (array) json_decode( (string) file_get_contents( FLXB_DIR . 'graphql/p
 		$GLOBALS['flxb_ops'][ $m[1] ] = $doc;
 	}
 }
-flxt_same( 34, count( $GLOBALS['flxb_ops'] ), 'Flux Donate ships 34 persisted operations' );
+flxt_same( 37, count( $GLOBALS['flxb_ops'] ), 'Flux Donate ships 37 persisted operations' );
 
 /**
  * @param array<string,mixed> $vars Variables.
@@ -897,6 +897,57 @@ flxt_ok( ! empty( $r['data']['flxDonationTypeDelete']['errors'] ) && FLXB_Types:
 $r = flxb_t_op( 'FlxDonationTypeDelete', array( 'id' => $nid ), $admin );
 flxt_ok( empty( $r['data']['flxDonationTypeDelete']['errors'] ) && ! FLXB_Types::get( $nid ), 'type delete: deleted' );
 
+// Add donation (2.42.0): rights, the form, validation and a recorded gift; the staff request form.
+$r = flxb_t_op( 'FlxDonateAdd', array( 'donorId' => 0 ), $staff_a );
+flxt_ok( null !== flxt_code( $r ), 'add form: staff without the request right is refused' );
+$r  = flxb_t_op( 'FlxDonateAdd', array( 'donorId' => 0 ), $admin );
+$af = $r['data']['flxDonationAddForm'] ?? array();
+flxt_same( null, $r['errors'] ?? null, 'add form: an administrator reads' );
+$at = array_values( array_filter( $af['types'] ?? array(), static fn( $t ) => (int) $open === (int) $t['databaseId'] ) )[0] ?? array();
+flxt_ok( false === ( $af['request'] ?? null ) && true === ( $at['proxy'] ?? null ) && 'one' === ( $at['options'][0]['key'] ?? '' ) && 1 === ( $af['proxyVersion'] ?? 0 ) && 3 === count( $af['methods'] ?? array() ), 'add form: types, options, proxy text and methods' );
+$ain = array(
+	'typeId'    => 0,
+	'optionKey' => '',
+	'quantity'  => 1,
+	'amount'    => 250.5,
+	'currency'  => 'EUR',
+	'donor'     => array( 'name' => 'Add Donor', 'phone' => '', 'email' => 'add' . wp_rand() . '.gql@example.com', 'consentKvkk' => true ),
+	'method'    => 'cash',
+	'paid'      => false,
+	'date'      => '2026-03-04T10:20',
+	'reference' => 'R-1',
+	'note'      => 'From the screen',
+);
+$r = flxb_t_op( 'FlxDonationAdd', array( 'input' => $ain ), $staff_a );
+flxt_ok( null !== flxt_code( $r ), 'add: staff is refused' );
+$r = flxb_t_op( 'FlxDonationAdd', array( 'input' => array( 'amount' => 0 ) + $ain ), $admin );
+flxt_ok( ! empty( $r['data']['flxDonationAdd']['errors'] ) && null === $r['data']['flxDonationAdd']['databaseId'], 'add: no amount is refused' );
+$r = flxb_t_op( 'FlxDonationAdd', array( 'input' => array( 'typeId' => (int) $open, 'optionKey' => 'one', 'quantity' => 2 ) + $ain ), $admin );
+flxt_ok( ! empty( $r['data']['flxDonationAdd']['errors'] ), 'add: a proxy type without the consent is refused' );
+$r = flxb_t_op( 'FlxDonationAdd', array( 'input' => array( 'typeId' => (int) $open, 'optionKey' => 'one', 'quantity' => 2, 'proxyConsent' => true, 'unitPrice' => 80 ) + $ain ), $admin );
+flxt_ok( ! empty( $r['data']['flxDonationAdd']['errors'] ), 'add: a different unit price without a reason is refused' );
+$r   = flxb_t_op( 'FlxDonationAdd', array( 'input' => $ain ), $admin );
+$aid = (int) ( $r['data']['flxDonationAdd']['databaseId'] ?? 0 );
+flxt_ok( $aid > 0 && empty( $r['data']['flxDonationAdd']['errors'] ) && false !== strpos( (string) ( $r['data']['flxDonationAdd']['url'] ?? '' ), 'donation=' . $aid ), 'add: a free amount is recorded' );
+$ag = (array) FLXB_Donations::get( $aid );
+$am = FLXB_Donations::meta( $ag );
+flxt_same( array( 250.5, 'EUR', 'pending', 'cash', 'R-1', 'From the screen' ), array( (float) ( $ag['amount'] ?? 0 ), $ag['currency'] ?? '', $ag['status'] ?? '', $am['method'] ?? '', $am['reference'] ?? '', $am['note'] ?? '' ), 'add: amount, currency, status and meta' );
+$ad = FLXB_Donors::get( (int) ( $ag['donor_id'] ?? 0 ) );
+$r  = flxb_t_op( 'FlxDonateAdd', array( 'donorId' => (int) ( $ag['donor_id'] ?? 0 ) ), $admin );
+flxt_ok( 'Add Donor' === ( $r['data']['flxDonationAddForm']['donor']['name'] ?? '' ) && true === ( $r['data']['flxDonationAddForm']['donor']['consentKvkk'] ?? null ) && is_array( $ad ), 'add form: ?donor= prefills the donor' );
+FLXB_Donations::delete_rows( array( $aid ) );
+$wu = new WP_User( $staff_b );
+$wu->add_cap( FLXB_Refs::CAP_CREATE );
+$r = flxb_t_op( 'FlxDonateAdd', array( 'donorId' => 0 ), $staff_b );
+flxt_ok( true === ( $r['data']['flxDonationAddForm']['request'] ?? null ) && array() === ( $r['data']['flxDonationAddForm']['accounts'] ?? null ), 'add form: staff with the request right get the request form' );
+$r = flxb_t_op( 'FlxDonationAdd', array( 'input' => $ain ), $staff_b );
+flxt_ok( null !== flxt_code( $r ), 'add: staff with the request right cannot record a gift' );
+$r = flxb_t_op( 'FlxDonationRequest', array( 'input' => array( 'typeId' => 0, 'optionKey' => '', 'quantity' => 1, 'donor' => array( 'name' => 'X', 'phone' => '', 'email' => '' ) ) ), $staff_a );
+flxt_ok( null !== flxt_code( $r ), 'request: staff without the right is refused' );
+$r = flxb_t_op( 'FlxDonationRequest', array( 'input' => array( 'typeId' => 0, 'optionKey' => '', 'quantity' => 1, 'donor' => array( 'name' => 'X', 'phone' => '', 'email' => '' ) ) ), $staff_b );
+flxt_ok( ! empty( $r['data']['flxDonationRequest']['errors'] ) && null === $r['data']['flxDonationRequest']['payUrl'], 'request: a request without a type is refused' );
+$wu->remove_cap( FLXB_Refs::CAP_CREATE );
+
 if ( ! class_exists( 'FLXB_Admin' ) ) {
 	require_once FLXB_DIR . 'includes/admin/class-flxb-admin.php';
 }
@@ -915,6 +966,8 @@ if ( function_exists( 'wp_set_current_user' ) ) {
 	wp_set_current_user( $admin );
 	flxt_same( array( array( 'FlxDonateTypeForm', array( 'id' => 0 ) ) ), FLXB_Admin::preload_types( array( 'edit' => 'new' ) ), 'preload: a new type' );
 	flxt_same( array( array( 'FlxDonateTypeForm', array( 'id' => 5 ) ) ), FLXB_Admin::preload_types( array( 'edit' => '5' ) ), 'preload: the type editor' );
+	flxt_same( array( array( 'FlxDonateAdd', array( 'donorId' => 0 ) ) ), FLXB_Admin::preload_add( array() ), 'preload: add donation' );
+	flxt_same( array( array( 'FlxDonateAdd', array( 'donorId' => 9 ) ) ), FLXB_Admin::preload_add( array( 'donor' => '9' ) ), 'preload: add donation for a donor' );
 	wp_set_current_user( 0 );
 }
 
