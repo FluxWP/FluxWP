@@ -414,7 +414,7 @@ function AccountsTab({ t, say }: { t: Translate; say: (n: Notice | null) => void
             {d.flxPosAccounts.map((a) => {
               const p = prov.get(a.provider);
               const r = tests[a.id];
-              const missing = a.creds.filter((c) => p?.fields.some((f) => f.key === c.key) && !c.isSet).length;
+              const missing = a.creds.filter((c) => p?.fields.some((f) => f.key === c.key && f.secret) && !c.isSet).length;
               return (
                 <li key={a.id} className={'flxpos-account' + (a.enabled ? '' : ' is-off')}>
                   <div className="flxpos-account__main">
