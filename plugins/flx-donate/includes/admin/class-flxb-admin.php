@@ -22,6 +22,7 @@ require_once __DIR__ . '/page-partners.php';
 require_once __DIR__ . '/page-reports.php';
 require_once __DIR__ . '/page-import.php';
 require_once __DIR__ . '/class-flxb-approval.php';
+require_once __DIR__ . '/class-flxb-boxes.php';
 
 final class FLXB_Admin {
 
@@ -38,6 +39,7 @@ final class FLXB_Admin {
 
 	public static function init() {
 		add_action( 'admin_menu', array( __CLASS__, 'menu' ) );
+		FLXB_Boxes::init();
 		add_action( 'admin_menu', array( __CLASS__, 'register_screens' ), 20 );
 		add_action( 'admin_head', array( __CLASS__, 'menu_icon_css' ) );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'assets' ) );
