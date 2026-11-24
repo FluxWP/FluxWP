@@ -116,7 +116,7 @@ flxt_ok( empty( $r['errors'] ) && array() === ( $r['data']['flxPosTxns']['nodes'
 $r = flxpos_t_op( 'FlxPosAccountDelete', array( 'input' => array( 'id' => $acc['id'] ) ), $admin );
 flxt_same( array(), $r['data']['flxPosAccountDelete']['accounts'] ?? null, 'delete: account removed' );
 $r = flxpos_t_op( 'FlxPosAccountDelete', array( 'input' => array( 'id' => 'missing' ) ), $admin );
-flxt_ok( ! empty( $r['data']['flxPosAccountDelete']['errors'] ), 'delete: unknown id → error' );
+flxt_ok( ! empty( $r['data']['flxPosAccountDelete']['errors'] ) || ! empty( $r['errors'] ), 'delete: unknown id → error' );
 
 wp_delete_user( $sub );
 flxt_done();

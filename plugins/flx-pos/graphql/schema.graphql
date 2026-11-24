@@ -27,13 +27,17 @@ type FlxPosAccount {
   mode: String!
   """Name shown in lists."""
   name: String!
-  """Address to enter in the provider&#039;s panel for server notifications."""
+  """
+  Address to enter in the provider&#039;s panel for server notifications.
+  """
   notifyUrl: String!
   """Provider id."""
   provider: String!
   """Provider name."""
   providerName: String!
-  """The card is typed on this site (otherwise on the provider&#039;s page)."""
+  """
+  The card is typed on this site (otherwise on the provider&#039;s page).
+  """
   takesCard: Boolean!
   """Test mode (the provider&#039;s test service)."""
   test: Boolean!
@@ -73,7 +77,7 @@ input FlxPosAccountSaveInput {
   clientMutationId: String
   """Account fields."""
   creds: [FlxPosCredInput!]
-  """Currencies; empty means all of the provider&#039;s."""
+  """Currencies; empty means all of the provider's."""
   currencies: [String!]
   """redirect, modal, inline; empty uses the general setting."""
   display: String
@@ -159,7 +163,7 @@ enum FlxPosCapState {
   FLUX
   """No."""
   NO
-  """On the provider&#039;s page."""
+  """On the provider's page."""
   PAGE
   """Unknown; try it."""
   UNKNOWN
@@ -173,7 +177,7 @@ A saved credential. A secret is never returned: only whether it is saved and its
 type FlxPosCred {
   """A value is saved."""
   isSet: Boolean!
-  """Field key (url_<endpoint> for an endpoint override)."""
+  """Field key (url_&lt;endpoint&gt; for an endpoint override)."""
   key: String!
   """Masked last characters of a saved secret; empty otherwise."""
   mask: String!
@@ -181,7 +185,9 @@ type FlxPosCred {
   value: String!
 }
 
-"""One account field. A secret is write-only: empty keeps the saved value."""
+"""
+One account field. A secret is write-only: empty keeps the saved value.
+"""
 input FlxPosCredInput {
   """Field key (url_<endpoint> overrides an endpoint)."""
   key: String!
@@ -371,7 +377,9 @@ type FlxPosSettings {
   displays: [FlxPosOption!]!
   """Account per currency (value = currency, label = account id)."""
   routes: [FlxPosOption!]!
-  """Keep provider answers in the transaction log (never card data or keys)."""
+  """
+  Keep provider answers in the transaction log (never card data or keys).
+  """
   saveLog: Boolean!
   """Card brand logos in the card form."""
   showBrands: Boolean!
@@ -545,7 +553,9 @@ enum FlxPosTxnStatus {
   PENDING
   """Refunded in full."""
   REFUNDED
-  """Paid at the provider, but the amount or order does not match; check it."""
+  """
+  Paid at the provider, but the amount or order does not match; check it.
+  """
   REVIEW
   """Voided before end of day."""
   VOIDED
