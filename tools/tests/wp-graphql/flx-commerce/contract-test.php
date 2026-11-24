@@ -138,18 +138,15 @@ flxt_same( class_exists( 'FLXB_WC_Cart' ), array_key_exists( 'exclude_donations'
 flxt_same( class_exists( 'FLXB_WC_Havale' ), array_key_exists( 'defer_to_donate', $donate ), 'deferToDonate needs Flux Donate' );
 flxt_same( 1, $donate['hide_company'] ?? 0, 'other boolean keys still pass' );
 
-// The React "Classic view" link goes into an href as data: no HTML escaping.
+// 0.7.0: the shell preloads the first queries of the start route (same variables as the screen).
 if ( ! class_exists( 'FLXCM_Admin' ) ) {
 	require_once FLXCM_DIR . 'includes/admin/class-flxcm-admin.php';
 }
-$raw_url = FLXCM_Admin::ui_switch_raw_url( 'classic' );
-flxt_ok( ! str_contains( $raw_url, '&amp;' ) && ! str_contains( $raw_url, '&#038;' ), 'classic switch URL for React has no HTML entities', $raw_url );
-$raw_q = array();
-parse_str( (string) wp_parse_url( $raw_url, PHP_URL_QUERY ), $raw_q );
-flxt_same( 'classic', $raw_q['flxcm_ui'] ?? '', 'classic switch URL carries flxcm_ui' );
-flxt_ok( false !== wp_verify_nonce( (string) ( $raw_q['_wpnonce'] ?? '' ), 'flxcm_ui' ), 'classic switch URL carries a valid nonce', $raw_url );
-$html_url = FLXCM_Admin::ui_switch_url( 'flux' );
-flxt_ok( str_contains( $html_url, '&#038;_wpnonce=' ) || str_contains( $html_url, '&amp;_wpnonce=' ), 'classic PHP link keeps the escaped wp_nonce_url output', $html_url );
+flxt_same( array( 'FlxCommerceSummary', array( 'days' => 30 ) ), FLXCM_Admin::preload_for( 'overview' )[0], 'preload: overview summary' );
+flxt_same( array( 'FlxCommerceReportProducts', array( 'first' => 6, 'preset' => 'D30', 'from' => null, 'to' => null ) ), FLXCM_Admin::preload_for( 'overview' )[1], 'preload: overview products' );
+flxt_same( array( 'FlxCommerceCustomer', array( 'id' => '12' ) ), FLXCM_Admin::preload_for( 'customer:12' )[0], 'preload: a customer' );
+flxt_same( 5, count( FLXCM_Admin::preload_for( 'reports' ) ), 'preload: the report queries' );
+flxt_same( array(), FLXCM_Admin::preload_for( 'reports?preset=d7' ), 'preload: a filtered route is left to the screen' );
 
 foreach ( array( 'view_woocommerce_reports', 'manage_woocommerce', 'edit_shop_orders' ) as $cap ) {
 	flxt_ok( isset( flx_gql_capabilities()[ $cap ] ), 'catalog keeps ' . $cap );

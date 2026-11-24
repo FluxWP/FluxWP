@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 0.7.0
+- Mağaza sayfaları (Genel bakış, Müşteriler, müşteri kartı, Abonelikler, Satış raporu, Ayarlar) Flux GraphQL ekran kabuğunda; ilk veri sayfayla birlikte gelir (preload), tıklayınca anında açılır.
+- Ortak ekran başlığı ve sekmeler kullanılır.
+- Klasik görünüm ve "Yeni görünüm / Klasik görünüm" geçişi kaldırıldı; klasik PHP sayfaları ve form işleyicileri silindi. Flux CRM kişi kartındaki Mağaza bölümleri korunur. Flux GraphQL yoksa uyarı gösterilir.
+
 ## 0.6.1
 - Panel yüzeyleri (düğme, etiket, kenarlık) krem yerine nötr gri; ortak modül paketi yenilendi.
 

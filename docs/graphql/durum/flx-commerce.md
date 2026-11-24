@@ -1,4 +1,4 @@
-# flx-commerce 0.6.0
+# flx-commerce 0.7.0
 
 - Faz: 1
 - Durum: 👀
@@ -22,3 +22,6 @@
 | Gizli ürün `template_redirect`, `_flxcm_hidden`, `_flxcm_no_feed`, sepet `validate` / `individually` | flx-commerce | WooCommerce kancaları | Ayar `hiddenRedirect`; sepet köprüsü adet 1 |
 | WP pano widget'ı `flxcm_today` | flx-commerce | Pano HTML'i | `flxCommerceSummary(days: 1)` |
 | FluxApp manifest REST'i ve CSV admin-post | flx-commerce | Eski istemci ve dosya indirme | REST cevabı aynı; CSV admin-post |
+
+
+0.7.0: tüm Mağaza sayfaları `flx_admin_screen` kabuğunda, sayfa başına preload (`FLXCM_Admin::preload_for`; filtreli rota ekrana bırakılır). Klasik sayfalar, `flxcm_save`/`flxcm_report_csv`/`flxcm_sub` işleyicileri ve görünüm geçişi silindi; CRM kişi kartı bölümleri (page-customer.php) kaldı.

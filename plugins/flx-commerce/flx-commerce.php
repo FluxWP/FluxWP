@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Commerce
  * Description:       WooCommerce mağazası için satış paneli, müşteriler, aylık/yıllık abonelikler, satış raporları, dekont yüklemeli Havale/EFT, sade ödeme sayfası, ücretsiz kargo çubuğu, Google Merchant ürün feed'i ve WhatsApp/e-posta bildirimleri.
- * Version:           0.6.1
+ * Version:           0.7.0
  * Requires at least: 6.4
  * Requires PHP:      8.1
  * Requires Plugins:  woocommerce, flx-graphql
@@ -27,7 +27,7 @@ if ( defined( 'FLXCM_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXCM_VERSION', '0.6.1' );
+define( 'FLXCM_VERSION', '0.7.0' );
 define( 'FLXCM_DB_VERSION', 2 );
 define( 'FLXCM_FILE', __FILE__ );
 define( 'FLXCM_DIR', plugin_dir_path( __FILE__ ) );

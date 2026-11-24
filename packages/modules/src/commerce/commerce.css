@@ -14,8 +14,6 @@
   --flxcm-bad: var(--flux-danger);
   --flxcm-bad-s: color-mix(in srgb, var(--flux-danger) 14%, transparent);
   --flxcm-r: 12px;
-  max-width: 1240px;
-  padding: 0 0 28px;
   color: var(--flxcm-tx);
   font-size: 14px;
   line-height: 1.5;
