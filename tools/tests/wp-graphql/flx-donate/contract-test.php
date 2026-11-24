@@ -622,12 +622,12 @@ $admin = (int) wp_insert_user(
 	array(
 		'user_login' => 'flxb_admin_' . wp_rand(),
 		'user_pass'  => wp_generate_password(),
-		'user_email' => 'admin.gql@example.com',
+		'user_email' => 'admin' . wp_rand() . '.gql@example.com',
 		'role'       => 'administrator',
 	)
 );
-$staff_a = (int) wp_insert_user( array( 'user_login' => 'flxb_sa_' . wp_rand(), 'user_pass' => wp_generate_password(), 'user_email' => 'sa.gql@example.com', 'role' => 'subscriber' ) );
-$staff_b = (int) wp_insert_user( array( 'user_login' => 'flxb_sb_' . wp_rand(), 'user_pass' => wp_generate_password(), 'user_email' => 'sb.gql@example.com', 'role' => 'subscriber' ) );
+$staff_a = (int) wp_insert_user( array( 'user_login' => 'flxb_sa_' . wp_rand(), 'user_pass' => wp_generate_password(), 'user_email' => 'sa' . wp_rand() . '.gql@example.com', 'role' => 'subscriber' ) );
+$staff_b = (int) wp_insert_user( array( 'user_login' => 'flxb_sb_' . wp_rand(), 'user_pass' => wp_generate_password(), 'user_email' => 'sb' . wp_rand() . '.gql@example.com', 'role' => 'subscriber' ) );
 foreach ( array( $staff_a, $staff_b ) as $u ) {
 	$wu = new WP_User( $u );
 	$wu->add_cap( FLXB_Refs::CAP_REF );
