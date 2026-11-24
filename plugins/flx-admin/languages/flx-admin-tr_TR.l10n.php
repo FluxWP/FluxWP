@@ -4,6 +4,8 @@ return array(
  'plural-forms' => 'nplurals=2; plural=(n != 1);',
  'messages' => array(
   'Settings' => 'Ayarlar',
+  'Learn more' => 'Daha fazla',
+  'Dismiss' => 'Kapat',
   'Admin theme' => 'Yönetim teması',
   'Content' => 'İçerik',
   'Can access the dashboard' => 'Panele girebilir',
