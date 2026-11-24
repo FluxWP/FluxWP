@@ -1,0 +1,28 @@
+/* Flux POS · kart formu (klasik + blok). */
+fieldset.flxpos-card{margin:0;padding:0;border:0}
+.flxpos-card .flxpos-pan,.flxpos-b .flxpos-pan{position:relative}
+.flxpos-brand{position:absolute;right:10px;bottom:10px;width:38px;height:24px;background:no-repeat center/contain;pointer-events:none}
+.flxpos-brand[data-brand="visa"]{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 16'%3E%3Ctext x='0' y='14' font-family='Arial' font-weight='700' font-style='italic' font-size='16' fill='%231a1f71'%3EVISA%3C/text%3E%3C/svg%3E")}
+.flxpos-brand[data-brand="mastercard"]{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 38 24'%3E%3Ccircle cx='14' cy='12' r='10' fill='%23eb001b'/%3E%3Ccircle cx='24' cy='12' r='10' fill='%23f79e1b' fill-opacity='.85'/%3E%3C/svg%3E")}
+.flxpos-brand[data-brand="amex"]{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 38 24'%3E%3Crect width='38' height='24' rx='3' fill='%232e77bc'/%3E%3Ctext x='4' y='16' font-family='Arial' font-weight='700' font-size='10' fill='%23fff'%3EAMEX%3C/text%3E%3C/svg%3E")}
+.flxpos-brand[data-brand="troy"]{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 16'%3E%3Ctext x='0' y='13' font-family='Arial' font-weight='700' font-size='14' fill='%2300a19b'%3Etroy%3C/text%3E%3C/svg%3E")}
+.flxpos-secure,.flxpos-test{font-size:.85em;opacity:.8;margin:.5em 0 0}
+.flxpos-test{color:#b45309;opacity:1}
+.flxpos-b{display:grid;gap:12px}
+.flxpos-b-field{display:grid;gap:4px}
+.flxpos-b-field label{font-size:.9em}
+.flxpos-b-input{width:100%;box-sizing:border-box;padding:12px;border:1px solid currentColor;border-color:rgba(0,0,0,.25);border-radius:4px;font:inherit;background:transparent;color:inherit}
+.flxpos-b-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.flxpos-b-label{display:inline-flex;align-items:center;gap:8px}
+.flxpos-b-label img{max-height:24px}
+.flxpos-page{font:16px/1.5 system-ui,sans-serif;max-width:520px;margin:10vh auto;padding:0 16px;text-align:center;color:#1f2937}
+.flxpos-frame{width:100%;min-height:640px;border:0}
+/* Açılır pencere gösterimi */
+.flxpos-modal-open,.flxpos-modal-open body{overflow:hidden}
+.flxpos-modal{position:fixed;inset:0;z-index:999999;background:rgba(15,18,20,.55);display:flex;align-items:center;justify-content:center;padding:16px;box-sizing:border-box}
+.flxpos-modal__box{background:#fff;color:#1f2328;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.3);width:min(720px,100%);height:min(780px,100%);display:flex;flex-direction:column;overflow:hidden}
+.flxpos-modal__bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 14px;border-bottom:1px solid rgba(0,0,0,.08);font-weight:600;font-size:15px}
+.flxpos-modal__x{border:0;background:transparent;font-size:26px;line-height:1;cursor:pointer;color:inherit;padding:2px 8px;border-radius:8px}
+.flxpos-modal__x:hover,.flxpos-modal__x:focus-visible{background:rgba(0,0,0,.06)}
+.flxpos-modal__frame{flex:1;width:100%;border:0;background:#fff}
+@media (max-width:600px){.flxpos-modal{padding:0}.flxpos-modal__box{width:100%;height:100%;border-radius:0}}

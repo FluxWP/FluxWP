@@ -556,6 +556,17 @@ final class FLXB_Page_Donations {
 		return $order && '' !== $order->get_payment_method_title() ? $order->get_payment_method_title() : flxb_provider_label( $d['provider'] );
 	}
 
+	/** 2.34.0: payment details of the WooCommerce order (card, provider, installments…), or null. */
+	private static function payinfo( array $d ) {
+		$oid   = (int) $d['wc_order_id'];
+		$order = $oid && class_exists( 'FLXB_WC_Payinfo' ) && function_exists( 'wc_get_order' ) ? wc_get_order( $oid ) : null;
+		if ( ! $order ) {
+			return null;
+		}
+		$info = FLXB_WC_Payinfo::get( $order );
+		return FLXB_WC_Payinfo::worth( $info ) ? $info : null;
+	}
+
 	/** Receipts linked by Flux Chat (meta.receipts) and the change log (meta.audit). */
 	private static function records_card( array $d, $part = '' ) {
 		$m        = FLXB_Donations::meta( $d );
@@ -685,6 +696,13 @@ final class FLXB_Page_Donations {
 		$rows += array(
 			__( 'Date', 'flx-donate' )              => esc_html( flxb_date( $d['created_at'] ) ),
 			__( 'Payment provider', 'flx-donate' )  => esc_html( self::method_label( $d ) ),
+		);
+		$pinfo = self::payinfo( $d );
+		if ( $pinfo ) {
+			unset( $rows[ __( 'Payment provider', 'flx-donate' ) ] );
+			$rows += FLXB_WC_Payinfo::rows( $pinfo );
+		}
+		$rows += array(
 			__( 'Provider reference', 'flx-donate' ) => '' !== (string) $d['provider_ref'] && ! (int) $d['wc_order_id'] ? '<code>' . esc_html( $d['provider_ref'] ) . '</code>' : '—',
 			__( 'Confirmation code', 'flx-donate' ) => '' !== (string) $d['track'] ? '<code>' . esc_html( $d['track'] ) . '</code>' : '—',
 			__( 'Form', 'flx-donate' )              => (int) $d['form_id'] ? esc_html( flxb_form_title( (int) $d['form_id'] ) ) : '—',
@@ -725,7 +743,9 @@ final class FLXB_Page_Donations {
 		if ( ! empty( $meta['iyzico']['paymentId'] ) ) {
 			$iz   = $meta['iyzico'];
 			$info = 'iyzico ' . (string) $iz['paymentId'] . ( ! empty( $iz['card'] ) ? ' · ' . (string) $iz['card'] : '' );
-			$rows[ __( 'Card payment', 'flx-donate' ) ] = '<code>' . esc_html( $info ) . '</code>';
+			if ( ! $pinfo ) {
+				$rows[ __( 'Card payment', 'flx-donate' ) ] = '<code>' . esc_html( $info ) . '</code>';
+			}
 			if ( ! empty( $iz['refunds'] ) ) {
 				$sum = array_sum( array_map( 'floatval', wp_list_pluck( (array) $iz['refunds'], 'amount' ) ) );
 				$rows[ __( 'Refunded', 'flx-donate' ) ] = esc_html( flxb_money( $sum, $d['currency'], 2 ) );
@@ -797,11 +817,12 @@ final class FLXB_Page_Donations {
 		$ref   = (int) ( $d['ref_user_id'] ?? 0 );
 		$dref  = ! $ref && $donor ? FLXB_Refs::donor_ref( (int) $donor['id'] ) : 0;
 		$name  = $donor ? FLXB_Admin::donor_name( $donor, '' ) : __( 'Anonymous', 'flx-donate' );
+		$pi    = self::payinfo( $d );
 		$facts = array(
 			array( __( 'Status', 'flx-donate' ), FLXB_Approval::pill( $d ) ),
 			array( __( 'Donor', 'flx-donate' ), $donor && FLXB_Refs::can_donors() ? '<a href="' . esc_url( FLXB_Admin_Url::donor( (int) $donor['id'] ) ) . '">' . esc_html( $name ) . '</a>' : esc_html( $name ) ),
 			array( __( 'Referral', 'flx-donate' ), $ref ? '<span class="flxb-ref-chip">' . FLXB_Admin::icon( 'users', 13 ) . esc_html( FLXB_Refs::name( $ref ) ) . '</span>' : ( $dref ? '<span class="flxb-ref-chip flxb-ref-chip--donor" title="' . esc_attr( sprintf( /* translators: %s: referral name */ __( 'The donor\'s earlier gifts came through %s.', 'flx-donate' ), FLXB_Refs::name( $dref ) ) ) . '">' . esc_html( FLXB_Refs::name( $dref ) ) . '</span>' : '<span class="flxb-muted">' . esc_html__( 'None', 'flx-donate' ) . '</span>' ) ),
-			array( __( 'Payment', 'flx-donate' ), esc_html( self::method_label( $d ) ) ),
+			array( __( 'Payment', 'flx-donate' ), esc_html( $pi ? FLXB_WC_Payinfo::summary( $pi ) : self::method_label( $d ) ) ),
 			array( __( 'Donation type', 'flx-donate' ), esc_html( $camp ? $camp['title'] : flxb_type_label( $d['type'] ) ) ),
 			array( __( 'Received', 'flx-donate' ), $ts ? esc_html( flx_time_ago( $ts ) ) : '—' ),
 		);

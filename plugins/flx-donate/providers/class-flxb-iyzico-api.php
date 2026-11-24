@@ -222,12 +222,13 @@ final class FLXB_Iyzico_Api {
 		}
 		$last4 = (string) ( $r['lastFourDigits'] ?? '' );
 		return array(
-			'paymentId' => sanitize_text_field( (string) ( $r['paymentId'] ?? '' ) ),
-			'paidPrice' => round( (float) ( $r['paidPrice'] ?? 0 ), 2 ),
-			'currency'  => strtoupper( sanitize_text_field( (string) ( $r['currency'] ?? '' ) ) ),
-			'items'     => $items,
-			'card'      => trim( sanitize_text_field( (string) ( $r['cardAssociation'] ?? '' ) ) . ( preg_match( '/^\d{4}$/', $last4 ) ? ' ···· ' . $last4 : '' ) ),
-			'at'        => current_time( 'mysql', true ),
+			'paymentId'   => sanitize_text_field( (string) ( $r['paymentId'] ?? '' ) ),
+			'paidPrice'   => round( (float) ( $r['paidPrice'] ?? 0 ), 2 ),
+			'currency'    => strtoupper( sanitize_text_field( (string) ( $r['currency'] ?? '' ) ) ),
+			'items'       => $items,
+			'installment' => max( 1, (int) ( $r['installment'] ?? 1 ) ),
+			'card'        => trim( sanitize_text_field( (string) ( $r['cardAssociation'] ?? '' ) ) . ( preg_match( '/^\d{4}$/', $last4 ) ? ' ···· ' . $last4 : '' ) ),
+			'at'          => current_time( 'mysql', true ),
 		);
 	}
 

@@ -1,0 +1,7 @@
+mutation FlxPosAccountSave($input: FlxPosAccountSaveInput!) {
+  flxPosAccountSave(input: $input) {
+    account { ...FlxPosAccountFields }
+    accounts { ...FlxPosAccountFields }
+    errors { code message field }
+  }
+}
