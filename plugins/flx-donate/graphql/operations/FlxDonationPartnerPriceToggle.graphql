@@ -1,0 +1,3 @@
+mutation FlxDonationPartnerPriceToggle($input: FlxDonationPartnerPriceToggleInput!) {
+  flxDonationPartnerPriceToggle(input: $input) { message errors { message field } }
+}

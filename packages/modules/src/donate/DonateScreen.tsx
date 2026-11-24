@@ -18,6 +18,7 @@ import { Subscriptions } from './Subscriptions';
 import { Types } from './Types';
 import { TypeForm } from './TypeForm';
 import { Add } from './Add';
+import { Partner, Partners } from './Partners';
 import './donate.css';
 
 export function DonateScreen() {
@@ -33,12 +34,12 @@ export function DonateScreen() {
 /**
  * host.startPage: 'dashboard', 'list[?<classic list arguments>]', 'detail?id=<donation id>',
  * 'donors[?s,kind,orderby,paged]', 'donor?id=<donor id>', 'subscriptions[?s,status,paged]' or
- * 'types[?view=archived&notice=<ok|error>:<text>]', 'type?id=<type id; 0 = new>[&notice=…]' or 'add[?donor=<donor id>]'.
+ * 'types[?view=archived&notice=<ok|error>:<text>]', 'type?id=<type id; 0 = new>[&notice=…]' 'add[?donor=<donor id>]', 'partners', 'settle[?kind,period,partner]' or 'partner?id=<partner id; 0 = new>'.
  * The donation page takes a redirect notice too ('detail?id=N&notice=ok:<text>').
  */
 function parseStart(s?: string): { page: Page; query: string } {
   const [head = '', query = ''] = (s ?? '').split('?', 2);
-  const pages: Page[] = ['list', 'detail', 'donors', 'donor', 'subscriptions', 'types', 'type', 'add'];
+  const pages: Page[] = ['list', 'detail', 'donors', 'donor', 'subscriptions', 'types', 'type', 'add', 'partners', 'settle', 'partner'];
   return (pages as string[]).includes(head) ? { page: head as Page, query } : { page: 'dashboard', query: '' };
 }
 
@@ -88,6 +89,10 @@ function Donate() {
         <Subscriptions query={start.query} notice={box} />
       ) : start.page === 'type' ? (
         <TypeForm id={Number(new URLSearchParams(start.query).get('id')) || 0} query={start.query} notice={box} />
+      ) : start.page === 'partners' || start.page === 'settle' ? (
+        <Partners page={start.page} query={start.query} notice={box} />
+      ) : start.page === 'partner' ? (
+        <Partner id={Number(new URLSearchParams(start.query).get('id')) || 0} query={start.query} notice={box} />
       ) : start.page === 'add' ? (
         <Add query={start.query} notice={box} />
       ) : start.page === 'types' ? (

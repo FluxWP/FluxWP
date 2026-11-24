@@ -1055,6 +1055,416 @@ type FlxDonationOrderNotes {
   items: [FlxDonationOrderNote!]!
 }
 
+"""The partner editor with its agreements and payments."""
+type FlxDonationPartner {
+  """Active."""
+  active: Boolean!
+  """Agreements."""
+  agreements: [FlxDonationPartnerAgreement!]!
+  """The viewer can edit."""
+  canManage: Boolean!
+  """Contact person."""
+  contactName: String!
+  """Currencies."""
+  currencies: [String!]!
+  """Currency."""
+  currency: String!
+  """Partner id; 0 = a new one."""
+  databaseId: Int!
+  """E-mail."""
+  email: String!
+  """Group."""
+  group: String!
+  """Carries the work out."""
+  isService: Boolean!
+  """Brings gifts in."""
+  isSource: Boolean!
+  """Name."""
+  name: String!
+  """Note."""
+  note: String!
+  """What a partner that carries the work out is called on this site."""
+  partnerLabel: String!
+  """Payments."""
+  payments: [FlxDonationPartnerPayment!]!
+  """Phone (WhatsApp)."""
+  phone: String!
+  """Key."""
+  pkey: String!
+  """Today (Y-m-d)."""
+  today: String!
+  """Donation types; empty = all."""
+  typeIds: [Int!]!
+  """Type and option choices of an agreement (&quot;type|option&quot;)."""
+  typeOptions: [FlxDonationChoice!]!
+  """Donation types."""
+  types: [FlxDonationChoice!]!
+}
+
+"""An agreed price of a partner."""
+type FlxDonationPartnerAgreement {
+  """Active."""
+  active: Boolean!
+  """Agreement id."""
+  databaseId: Int!
+  """Note."""
+  note: String!
+  """Option."""
+  option: String!
+  """Price, formatted."""
+  price: String!
+  """Donation type."""
+  type: String!
+  """Valid from, formatted."""
+  validFrom: String!
+}
+
+"""The partners of the tracking module."""
+type FlxDonationPartnerList {
+  """The viewer can add and edit partners."""
+  canManage: Boolean!
+  """Partners."""
+  items: [FlxDonationPartnerRow!]!
+  """What a partner that carries the work out is called on this site."""
+  partnerLabel: String!
+}
+
+"""A month card of the settlement."""
+type FlxDonationPartnerMonth {
+  """Records, formatted."""
+  count: String!
+  """Month (Y-m)."""
+  key: String!
+  """Month as people read it."""
+  label: String!
+  """Sums per currency, formatted."""
+  sum: String!
+}
+
+"""A payment to or from a partner."""
+type FlxDonationPartnerPayment {
+  """Amount, formatted."""
+  amount: String!
+  """Payment id."""
+  databaseId: Int!
+  """Date, formatted."""
+  date: String!
+  """Paid or received."""
+  direction: String!
+  """Note."""
+  note: String!
+}
+
+"""Input for the flxDonationPartnerPaymentAdd mutation."""
+input FlxDonationPartnerPaymentAddInput {
+  """Amount."""
+  amount: String!
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Currency."""
+  currency: String!
+  """Date (Y-m-d)."""
+  date: String!
+  """Note."""
+  note: String!
+  """Partner id."""
+  partnerId: Int!
+  """We received it (false = we paid)."""
+  received: Boolean!
+}
+
+"""The payload for the flxDonationPartnerPaymentAdd mutation."""
+type FlxDonationPartnerPaymentAddPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result for the notice; null when refused (see errors)."""
+  message: String
+}
+
+"""Input for the flxDonationPartnerPaymentDelete mutation."""
+input FlxDonationPartnerPaymentDeleteInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Payment id."""
+  id: Int!
+}
+
+"""The payload for the flxDonationPartnerPaymentDelete mutation."""
+type FlxDonationPartnerPaymentDeletePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result for the notice; null when refused (see errors)."""
+  message: String
+}
+
+"""Input for the flxDonationPartnerPriceAdd mutation."""
+input FlxDonationPartnerPriceAddInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Currency."""
+  currency: String!
+  """Note."""
+  note: String!
+  """Partner id."""
+  partnerId: Int!
+  """Price."""
+  price: String!
+  """
+  Type and option ("type|option"; 0 = all types, empty option = all options).
+  """
+  typeOption: String!
+  """Valid from (Y-m-d)."""
+  validFrom: String!
+}
+
+"""The payload for the flxDonationPartnerPriceAdd mutation."""
+type FlxDonationPartnerPriceAddPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result for the notice; null when refused (see errors)."""
+  message: String
+}
+
+"""Input for the flxDonationPartnerPriceDelete mutation."""
+input FlxDonationPartnerPriceDeleteInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Agreement id."""
+  id: Int!
+}
+
+"""The payload for the flxDonationPartnerPriceDelete mutation."""
+type FlxDonationPartnerPriceDeletePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result for the notice; null when refused (see errors)."""
+  message: String
+}
+
+"""Input for the flxDonationPartnerPriceToggle mutation."""
+input FlxDonationPartnerPriceToggleInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Agreement id."""
+  id: Int!
+}
+
+"""The payload for the flxDonationPartnerPriceToggle mutation."""
+type FlxDonationPartnerPriceTogglePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result for the notice; null when refused (see errors)."""
+  message: String
+}
+
+"""Input for the flxDonationPartnerReprice mutation."""
+input FlxDonationPartnerRepriceInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Partner id."""
+  partnerId: Int!
+  """Period: Y-m or Y-m-d..Y-m-d."""
+  period: String!
+}
+
+"""The payload for the flxDonationPartnerReprice mutation."""
+type FlxDonationPartnerRepricePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result for the notice; null when refused (see errors)."""
+  message: String
+}
+
+"""One partner of the wp-admin list, with labels ready to show."""
+type FlxDonationPartnerRow {
+  """Active."""
+  active: Boolean!
+  """State of its agreements."""
+  agreement: String!
+  """Contact person and phone."""
+  contact: String!
+  """Partner id."""
+  databaseId: Int!
+  """Group; empty without one."""
+  group: String!
+  """Name."""
+  name: String!
+  """Roles."""
+  roles: String!
+  """Donation types it works for."""
+  types: String!
+}
+
+"""Input for the flxDonationPartnerSave mutation."""
+input FlxDonationPartnerSaveInput {
+  """Active."""
+  active: Boolean!
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Contact person."""
+  contactName: String!
+  """Currency."""
+  currency: String!
+  """E-mail."""
+  email: String!
+  """Group."""
+  group: String!
+  """Partner id; 0 = a new one."""
+  id: Int!
+  """Carries the work out."""
+  isService: Boolean!
+  """Brings gifts in."""
+  isSource: Boolean!
+  """Name."""
+  name: String!
+  """Note."""
+  note: String!
+  """Phone (WhatsApp)."""
+  phone: String!
+  """Key."""
+  pkey: String!
+  """Donation types; empty = all."""
+  typeIds: [Int!]!
+}
+
+"""The payload for the flxDonationPartnerSave mutation."""
+type FlxDonationPartnerSavePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """The saved partner."""
+  databaseId: Int
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result for the notice; null when refused (see errors)."""
+  message: String
+}
+
+"""The records of the chosen partner."""
+type FlxDonationPartnerSettleDetail {
+  """Prices can be read again from the agreements."""
+  canReprice: Boolean!
+  """Records."""
+  items: [FlxDonationPartnerSettleItem!]!
+  """Partner name."""
+  name: String!
+}
+
+"""A record of one partner in the settlement."""
+type FlxDonationPartnerSettleItem {
+  """On behalf of."""
+  beneficiary: String!
+  """Record code."""
+  code: String!
+  """Date, formatted."""
+  date: String!
+  """Option."""
+  option: String!
+  """Price, formatted; &quot;—&quot; without one."""
+  price: String!
+  """Status."""
+  status: String!
+  """Colour of the status: ok, pending, recurring, failed or muted."""
+  tone: String!
+  """The record in the tracking page."""
+  trackUrl: String!
+}
+
+"""One partner of the settlement."""
+type FlxDonationPartnerSettleRow {
+  """Records, formatted."""
+  count: String!
+  """Paid (or received), formatted."""
+  moved: String!
+  """Name."""
+  name: String!
+  """Open balance, formatted."""
+  open: String!
+  """Partner id."""
+  partnerId: Int!
+  """Cost (or gift price), formatted."""
+  sum: String!
+  """Records without a price; empty without one."""
+  uncosted: String!
+}
+
+"""The settlement of a period."""
+type FlxDonationPartnerSettlement {
+  """CSV download."""
+  csvUrl: String!
+  """Records of the chosen partner; null without one."""
+  detail: FlxDonationPartnerSettleDetail
+  """First day (Y-m-d)."""
+  from: String!
+  """SERVICE (cost) or SOURCE (gift price)."""
+  kind: String!
+  """The last 12 months, newest first."""
+  months: [FlxDonationPartnerMonth!]!
+  """What a partner that carries the work out is called on this site."""
+  partnerLabel: String!
+  """Partners of the kind."""
+  partners: [FlxDonationChoice!]!
+  """Period: Y-m or Y-m-d..Y-m-d."""
+  period: String!
+  """Partners of the period."""
+  rows: [FlxDonationPartnerSettleRow!]!
+  """Last day (Y-m-d)."""
+  to: String!
+}
+
 """How it was paid."""
 type FlxDonationPaymentCard {
   """May make and send the certificates again."""
@@ -2373,6 +2783,43 @@ extend type RootMutation {
     """Input for the flxDonationNoteDelete mutation"""
     input: FlxDonationNoteDeleteInput!
   ): FlxDonationNoteDeletePayload
+  """Adds a payment to or from a partner."""
+  flxDonationPartnerPaymentAdd(
+    """Input for the flxDonationPartnerPaymentAdd mutation"""
+    input: FlxDonationPartnerPaymentAddInput!
+  ): FlxDonationPartnerPaymentAddPayload
+  """Deletes a partner payment."""
+  flxDonationPartnerPaymentDelete(
+    """Input for the flxDonationPartnerPaymentDelete mutation"""
+    input: FlxDonationPartnerPaymentDeleteInput!
+  ): FlxDonationPartnerPaymentDeletePayload
+  """Adds an agreed price of a partner."""
+  flxDonationPartnerPriceAdd(
+    """Input for the flxDonationPartnerPriceAdd mutation"""
+    input: FlxDonationPartnerPriceAddInput!
+  ): FlxDonationPartnerPriceAddPayload
+  """Deletes an agreed price; items already sent keep their price."""
+  flxDonationPartnerPriceDelete(
+    """Input for the flxDonationPartnerPriceDelete mutation"""
+    input: FlxDonationPartnerPriceDeleteInput!
+  ): FlxDonationPartnerPriceDeletePayload
+  """Switches an agreed price on or off."""
+  flxDonationPartnerPriceToggle(
+    """Input for the flxDonationPartnerPriceToggle mutation"""
+    input: FlxDonationPartnerPriceToggleInput!
+  ): FlxDonationPartnerPriceTogglePayload
+  """
+  Reads the agreement prices again for the records a partner got in a period.
+  """
+  flxDonationPartnerReprice(
+    """Input for the flxDonationPartnerReprice mutation"""
+    input: FlxDonationPartnerRepriceInput!
+  ): FlxDonationPartnerRepricePayload
+  """Creates or saves a partner."""
+  flxDonationPartnerSave(
+    """Input for the flxDonationPartnerSave mutation"""
+    input: FlxDonationPartnerSaveInput!
+  ): FlxDonationPartnerSavePayload
   """Refunds an amount of the gift&#039;s WooCommerce order line."""
   flxDonationRefund(
     """Input for the flxDonationRefund mutation"""
@@ -2499,6 +2946,24 @@ extend type RootQuery {
     """Filters (for the received total and the CSV link)."""
     filter: FlxDonationListFilter
   ): FlxDonationListInfo!
+  """
+  The partner editor; id 0 = a new one. Null when the partner does not exist.
+  """
+  flxDonationPartner(
+    """Partner id; 0 = a new one."""
+    id: Int!
+  ): FlxDonationPartner
+  """The settlement of a period."""
+  flxDonationPartnerSettlement(
+    """SERVICE (cost) or SOURCE (gift price)."""
+    kind: String!
+    """One partner with its records; 0 = all."""
+    partnerId: Int!
+    """Y-m or Y-m-d..Y-m-d; empty = this month."""
+    period: String!
+  ): FlxDonationPartnerSettlement!
+  """The partners of the tracking module."""
+  flxDonationPartners: FlxDonationPartnerList!
   """
   One public donation type, by id or slug. Null when it is missing or archived.
   """

@@ -1,0 +1,3 @@
+mutation FlxDonationPartnerPaymentAdd($input: FlxDonationPartnerPaymentAddInput!) {
+  flxDonationPartnerPaymentAdd(input: $input) { message errors { message field } }
+}

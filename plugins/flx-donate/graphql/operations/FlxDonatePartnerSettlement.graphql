@@ -1,0 +1,14 @@
+query FlxDonatePartnerSettlement($kind: String!, $period: String!, $partnerId: Int!) {
+  flxDonationPartnerSettlement(kind: $kind, period: $period, partnerId: $partnerId) {
+    kind
+    period
+    from
+    to
+    partnerLabel
+    months { key label count sum }
+    partners { value label }
+    rows { partnerId name uncosted count sum moved open }
+    detail { name canReprice items { date code trackUrl beneficiary option status tone price } }
+    csvUrl
+  }
+}

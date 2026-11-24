@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 2.43.0
+- **Ortaklar anında açılır.** İş ortakları listesi, Hesaplaşma sekmesi ve ortak formu artık React ekranı: veri sayfayla hazır gelir, yükleniyor dönmez.
+- Hesaplaşma: maliyet / getirilen ayrımı, son 12 ayın kartları, tarih aralığı (ortak tarih seçici) ve ortak filtresi sayfa yenilenmeden değişir; adres çubuğunda kalır. Bir ortağın kayıtları altta; fiyatı olmayanlar için "fiyatları anlaşmalardan yeniden oku". CSV indirme aynı.
+- Ortak formu: roller ve etkinlik anahtarla, bağış türleri onay kutusuyla; anlaşma ve ödeme ekleme, anlaşmayı açma / kapama ve silme (onay penceresiyle) sayfa yenilenmeden.
+- GraphQL: `flxDonationPartners`, `flxDonationPartnerSettlement`, `flxDonationPartner`, mutation'lar `flxDonationPartnerSave`, `…PriceAdd`, `…PriceToggle`, `…PriceDelete`, `…PaymentAdd`, `…PaymentDelete`, `…Reprice` (okuma `flx_bagis_view`, yazma `flxb_can_manage`).
+
 ## 2.42.0
 - **Bağış ekle anında açılır.** Bağış ekleme sayfası artık React ekranı: veri sayfayla hazır gelir, yükleniyor dönmez.
 - Görünüm ve alanlar eskisiyle aynı: tek "tür · seçenek" seçimi, adet, farklı birim fiyat (gerekçeyle), serbest tutar ve para birimi, vekâlet adları ve onayı, bağışçı (telefon alanı ülke seçicili), başkaları adına kişi satırları (kişi başı sertifika), canlı toplam ve sertifika özeti, ödeme yolu, hesap, durum, tarih, dekont no, referans ve not.
