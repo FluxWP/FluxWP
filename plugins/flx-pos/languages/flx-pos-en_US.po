@@ -458,6 +458,9 @@ msgstr "TEST1234 for testing."
 msgid "Üye işyeri anahtarı (MERCHANT_KEY)"
 msgstr "Merchant key (MERCHANT_KEY)"
 
+msgid "Genel anahtar (MERCHANT_PUBLIC_TOKEN, taksit oranları için)"
+msgstr "Public token (MERCHANT_PUBLIC_TOKEN, for installment rates)"
+
 msgid "Bayi kodu"
 msgstr "Dealer code"
 
@@ -1236,6 +1239,12 @@ msgstr "Other"
 
 msgid "Çok satırlı ödemede kısmi iade Craftgate panelinden yapılır."
 msgstr "For a payment with several lines, partial refunds are made in the Craftgate panel."
+
+msgid "Kart sahibinin adını kartta yazdığı gibi tam yazın (en az 6 harf)."
+msgstr "Please write the card holder's full name as it is on the card (at least 6 letters)."
+
+msgid "Ödeme başlatılamadı. Lütfen tekrar deneyin."
+msgstr "The payment could not be started. Please try again."
 
 msgid "Bankadaki durum: %s"
 msgstr "Status at the bank: %s"

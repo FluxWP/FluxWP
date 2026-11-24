@@ -456,6 +456,9 @@ msgstr ""
 msgid "Üye işyeri anahtarı (MERCHANT_KEY)"
 msgstr ""
 
+msgid "Genel anahtar (MERCHANT_PUBLIC_TOKEN, taksit oranları için)"
+msgstr ""
+
 msgid "Bayi kodu"
 msgstr ""
 
@@ -1233,6 +1236,12 @@ msgid "Diğer"
 msgstr ""
 
 msgid "Çok satırlı ödemede kısmi iade Craftgate panelinden yapılır."
+msgstr ""
+
+msgid "Kart sahibinin adını kartta yazdığı gibi tam yazın (en az 6 harf)."
+msgstr ""
+
+msgid "Ödeme başlatılamadı. Lütfen tekrar deneyin."
 msgstr ""
 
 msgid "Bankadaki durum: %s"

@@ -2,6 +2,8 @@
 /**
  * EsnekPOS (Hoppa).
  *
+ * 3D Pay: kart sitedeki formda; EYV3DPay bankanın 3D sayfasını açar (URL_3DS), çekimi EsnekPOS yapar. Taksit
+ * seçenekleri EYVBinService (kart ailesi) + GetInstallments (oranlar) ile. Kart hiç saklanmaz.
  * Hosted: CommonPaymentDealer ortak ödeme sayfasını açar (URL_3DS); 3D doğrulamayı EsnekPOS sayfası yapar.
  * Dönüş verisine güvenilmez: ProcessQuery ile sunucudan sorulur; STATUS=SUCCESS, RETURN_CODE=0, referans
  * ve tutar tutmalı, işlem listesi varsa başarılı (STATUS_ID=3) bir satır olmalı.
@@ -54,6 +56,9 @@ class FLXPOS_Driver_Esnekpos extends FLXPOS_Driver {
 	}
 
 	public function start( FLXPOS_Payment $p ) {
+		if ( '3d_pay' === $this->mode() && $p->card ) {
+			return $this->start_3d( $p );
+		}
 		$c     = $p->customer;
 		$first = '' !== (string) $c['first'] ? (string) $c['first'] : ( '' !== (string) $c['name'] ? (string) $c['name'] : '-' );
 		$city  = '' !== (string) $c['city'] ? (string) $c['city'] : 'Istanbul';
@@ -89,6 +94,128 @@ class FLXPOS_Driver_Esnekpos extends FLXPOS_Driver {
 			return $this->err( $this->msg( $r ) );
 		}
 		return array( 'redirect' => $url );
+	}
+
+	/** Kart sitede: EYV3DPay. EsnekPOS kart sahibi adını en az 6 harf ister. */
+	protected function start_3d( FLXPOS_Payment $p ) {
+		$c     = $p->customer;
+		$first = '' !== (string) $c['first'] ? (string) $c['first'] : ( '' !== (string) $c['name'] ? (string) $c['name'] : '-' );
+		$last  = '' !== (string) $c['last'] ? (string) $c['last'] : '-';
+		$city  = '' !== (string) $c['city'] ? (string) $c['city'] : 'Istanbul';
+		$owner = trim( (string) preg_replace( '/\s+/u', ' ', (string) ( $p->card['name'] ?? '' ) ) );
+		if ( mb_strlen( $owner ) < 6 ) {
+			$full  = trim( $first . ' ' . ( '-' !== $last ? $last : '' ) );
+			$owner = mb_strlen( $full ) >= 6 ? $full : $owner;
+		}
+		if ( mb_strlen( $owner ) < 6 ) {
+			return $this->err( __( 'Kart sahibinin adını kartta yazdığı gibi tam yazın (en az 6 harf).', 'flx-pos' ) );
+		}
+		$r = $this->post_json(
+			$this->base() . '/api/pay/EYV3DPay',
+			array(
+				'Config'     => array(
+					'MERCHANT'         => $this->c( 'merchant' ),
+					'MERCHANT_KEY'     => $this->c( 'merchant_key' ),
+					'BACK_URL'         => $p->return_url,
+					'PRICES_CURRENCY'  => strtoupper( $p->currency ),
+					'ORDER_REF_NUMBER' => $p->ref,
+					'ORDER_AMOUNT'     => self::amount( $p->amount ),
+				),
+				'CreditCard' => array(
+					'CC_NUMBER'          => $p->pan(),
+					'EXP_MONTH'          => $p->mm(),
+					'EXP_YEAR'           => '20' . $p->yy(),
+					'CC_CVV'             => $p->cvv(),
+					'CC_OWNER'           => $owner,
+					'INSTALLMENT_NUMBER' => (string) max( 1, (int) $p->installment ),
+				),
+				'Customer'   => array(
+					'FIRST_NAME' => $first,
+					'LAST_NAME'  => $last,
+					'MAIL'       => (string) $c['email'],
+					'PHONE'      => (string) $c['phone'],
+					'CITY'       => $city,
+					'STATE'      => $city,
+					'ADDRESS'    => '' !== (string) $c['address'] ? (string) $c['address'] : '-',
+					'CLIENT_IP'  => (string) $p->ip,
+				),
+				'Product'    => $this->products( $p ),
+			)
+		);
+		if ( is_wp_error( $r ) ) {
+			return $r;
+		}
+		if ( ! $this->approved( $r ) ) {
+			return $this->err( $this->msg( $r ) );
+		}
+		$url = (string) ( $r['URL_3DS'] ?? '' );
+		$no3 = in_array( strtolower( (string) ( $r['IS_NOT_3D_PAYMENT'] ?? '' ) ), array( '1', 'true' ), true );
+		if ( $no3 || '' === $url ) {
+			return array( 'result' => $this->status( array( 'ref' => $p->ref ) ) );
+		}
+		if ( ! preg_match( '#^https://#', $url ) ) {
+			return $this->err( __( 'Ödeme başlatılamadı. Lütfen tekrar deneyin.', 'flx-pos' ) );
+		}
+		return array( 'redirect' => $url );
+	}
+
+	/**
+	 * Kartın ailesine göre taksitler: EYVBinService (aile, kredi/banka kartı) + GetInstallments (oran).
+	 * Oran tek çekime göre farktır (yüzde); yalnız kredi kartları.
+	 */
+	public function installments( $bin, $amount, $currency ) {
+		if ( 'TRY' !== strtoupper( (string) $currency ) ) {
+			return null;
+		}
+		$b = $this->post_json( $this->base() . '/api/services/EYVBinService', array( 'CardNumber' => substr( preg_replace( '/\D/', '', (string) $bin ), 0, 8 ) ) );
+		if ( is_wp_error( $b ) ) {
+			return $b;
+		}
+		$family = strtolower( trim( (string) ( $b['Card_Family'] ?? '' ) ) );
+		$type   = strtolower( trim( (string) ( $b['Card_Type'] ?? '' ) ) );
+		if ( '' === $family || ( '' !== $type && 'credit' !== $type ) ) {
+			return array();
+		}
+		$j = $this->post_json(
+			$this->base() . '/api/services/GetInstallments',
+			array(
+				'MERCHANT'                => $this->c( 'merchant' ),
+				'MERCHANT_KEY'            => $this->c( 'merchant_key' ),
+				'AMOUNT'                  => number_format( (float) $amount, 2, ',', '' ),
+				'MERCHANT_PUBLIC_TOKEN'   => $this->c( 'public_token' ),
+				'COMMISSION_FOR_CUSTOMER' => 0,
+			)
+		);
+		if ( is_wp_error( $j ) ) {
+			return $j;
+		}
+		if ( ! $this->approved( $j ) || empty( $j['INSTALLMENTS'] ) || ! is_array( $j['INSTALLMENTS'] ) ) {
+			return null;
+		}
+		$rows = array();
+		$base = 0.0;
+		foreach ( $j['INSTALLMENTS'] as $i ) {
+			if ( ! is_array( $i ) || strtolower( trim( (string) ( $i['FAMILY'] ?? '' ) ) ) !== $family ) {
+				continue;
+			}
+			$n    = (int) ( $i['INSTALLMENT'] ?? 0 );
+			$rate = (float) str_replace( ',', '.', (string) ( $i['RATE'] ?? 0 ) );
+			if ( 1 === $n ) {
+				$base = $rate;
+			} elseif ( $n >= 2 && $n <= 36 ) {
+				$rows[ $n ] = $rate;
+			}
+		}
+		$out = array();
+		foreach ( $rows as $n => $rate ) {
+			$diff      = max( 0.0, $rate - $base );
+			$out[ $n ] = array(
+				'rate'  => round( $diff * 100, 2 ),
+				'total' => round( (float) $amount * ( 1 + $diff ), 2 ),
+			);
+		}
+		ksort( $out );
+		return $out;
 	}
 
 	public function finish( array $txn, array $req ) {

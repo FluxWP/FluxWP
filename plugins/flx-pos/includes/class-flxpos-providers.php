@@ -131,6 +131,7 @@ final class FLXPOS_Providers {
 			'esnekpos'   => array(
 				'merchant'     => self::f( __( 'Üye işyeri (MERCHANT)', 'flx-pos' ), false, __( 'Test için TEST1234.', 'flx-pos' ) ),
 				'merchant_key' => self::f( __( 'Üye işyeri anahtarı (MERCHANT_KEY)', 'flx-pos' ), true ),
+				'public_token' => self::f( __( 'Genel anahtar (MERCHANT_PUBLIC_TOKEN, taksit oranları için)', 'flx-pos' ) ),
 			),
 			'moka'       => array(
 				'dealer_code' => self::f( __( 'Bayi kodu', 'flx-pos' ) ),
@@ -526,8 +527,8 @@ final class FLXPOS_Providers {
 				'name'       => 'EsnekPOS',
 				'group'      => 'psp',
 				'driver'     => 'esnekpos',
-				'modes'      => array( 'hosted' ),
-				'caps'       => self::caps( array( 'status' ) ),
+				'modes'      => array( '3d_pay', 'hosted' ),
+				'caps'       => self::caps( array( 'status', 'installments' ) ),
 				'currencies' => array( 'TRY' ),
 				'endpoints'  => array(
 					'live' => array( 'api' => 'https://posservice.esnekpos.com' ),

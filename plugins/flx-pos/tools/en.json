@@ -608,5 +608,8 @@
  "Settings after the change.": "Settings after the change.",
  "Refunds a paid transaction at the provider (same day and full amount voids first). Leave the amount out to refund what is left.": "Refunds a paid transaction at the provider (same day and full amount voids first). Leave the amount out to refund what is left.",
  "Amount to refund.": "Amount to refund.",
- "The transaction after the refund.": "The transaction after the refund."
+ "The transaction after the refund.": "The transaction after the refund.",
+ "Genel anahtar (MERCHANT_PUBLIC_TOKEN, taksit oranları için)": "Public token (MERCHANT_PUBLIC_TOKEN, for installment rates)",
+ "Kart sahibinin adını kartta yazdığı gibi tam yazın (en az 6 harf).": "Please write the card holder's full name as it is on the card (at least 6 letters).",
+ "Ödeme başlatılamadı. Lütfen tekrar deneyin.": "The payment could not be started. Please try again."
 }
