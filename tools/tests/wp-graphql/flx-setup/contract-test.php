@@ -17,7 +17,7 @@ foreach ( (array) json_decode( (string) file_get_contents( FLXK_DIR . 'graphql/p
 		$GLOBALS['flxk_ops'][ $m[1] ] = $doc;
 	}
 }
-flxt_same( 21, count( $GLOBALS['flxk_ops'] ), 'FluxWP Panel ships 21 persisted operations' );
+flxt_same( 22, count( $GLOBALS['flxk_ops'] ), 'FluxWP Panel ships 22 persisted operations' );
 
 function flxk_t_op( string $name, array $vars = array(), int $user = 0 ): array {
 	return flxt_gql( $GLOBALS['flxk_ops'][ $name ], $vars, $user );
