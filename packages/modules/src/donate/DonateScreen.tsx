@@ -1,7 +1,7 @@
 // Flux Donate › Dashboard and Donations. Same screen in wp-admin (wp-embed) and the FluxWP app; every read
 // and write goes through the Flux Donate GraphQL operations (plugins/flx-donate/graphql/operations).
 // The donation page (detail?id=N), donors (donors, donor?id=N) and recurring donations (subscriptions) are
-// (and the donation types list, types) here too; the other pages are still the plugin's own pages.
+// (and the donation types list and editor, types / type) here too; the other pages are still the plugin's own pages.
 import { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { createGraphQLClient } from '@fluxwp/graphql';
@@ -16,6 +16,7 @@ import { Donors } from './Donors';
 import { Donor } from './Donor';
 import { Subscriptions } from './Subscriptions';
 import { Types } from './Types';
+import { TypeForm } from './TypeForm';
 import './donate.css';
 
 export function DonateScreen() {
@@ -31,11 +32,11 @@ export function DonateScreen() {
 /**
  * host.startPage: 'dashboard', 'list[?<classic list arguments>]', 'detail?id=<donation id>',
  * 'donors[?s,kind,orderby,paged]', 'donor?id=<donor id>', 'subscriptions[?s,status,paged]' or
- * 'types[?view=archived&notice=<ok|error>:<text>]'.
+ * 'types[?view=archived&notice=<ok|error>:<text>]' or 'type?id=<type id; 0 = new>[&notice=…]'.
  */
 function parseStart(s?: string): { page: Page; query: string } {
   const [head = '', query = ''] = (s ?? '').split('?', 2);
-  const pages: Page[] = ['list', 'detail', 'donors', 'donor', 'subscriptions', 'types'];
+  const pages: Page[] = ['list', 'detail', 'donors', 'donor', 'subscriptions', 'types', 'type'];
   return (pages as string[]).includes(head) ? { page: head as Page, query } : { page: 'dashboard', query: '' };
 }
 
@@ -68,6 +69,8 @@ function Donate() {
         <Donors query={start.query} notice={box} />
       ) : start.page === 'subscriptions' ? (
         <Subscriptions query={start.query} notice={box} />
+      ) : start.page === 'type' ? (
+        <TypeForm id={Number(new URLSearchParams(start.query).get('id')) || 0} query={start.query} notice={box} />
       ) : start.page === 'types' ? (
         <Types query={start.query} notice={box} />
       ) : start.page === 'list' ? (

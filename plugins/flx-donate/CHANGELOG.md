@@ -1,5 +1,12 @@
 # Değişiklikler
 
+## 2.41.0
+- **Bağış türü düzenleme anında açılır.** Tür formu (yeni tür ve düzenleme) artık React ekranı: veri sayfayla hazır gelir, yükleniyor dönmez. Bağış türleri artık tamamen yeni ekranda; eski sayfa kalmadı.
+- Görünüm ve alanlar eskisiyle aynı: temel bilgiler, görsel (medya kütüphanesi), fiyatlar ve seçenekler (diğer para birimleri dahil), serbest tutar / adet / düzenli bağış, bağlı formlar, takip, vekâletle bağış, yayın (durum, tarih seçici, hedef), kısa kod ve önizleme.
+- Form eşleştirme, çeviriler ve diğer eklentilerin kartları (ör. "Online bağış sayfası") eskisi gibi yerinde, kendi alanlarıyla kaydedilir.
+- Silme onay penceresiyle; bağışı olan tür silinmez, arşivlenir.
+- GraphQL: `flxDonationTypeForm`, `flxDonationTypeSave`, `flxDonationTypeDelete` (yetki `flxb_can_manage`).
+
 ## 2.40.0
 - **Bağış türleri listesi anında açılır.** Bağış türleri sayfası artık React ekranı: veri sayfayla hazır gelir, yükleniyor dönmez.
 - Açık ve kapalı türler / arşiv görünümü (adres çubuğunda kalır), yukarı / aşağı sıralama, aç / kapat / arşivle ve örnek tür yükleme sayfa yenilemeden olur. Bir formu başka açık türde olan tür açılamaz, nedeni uyarıda yazar.

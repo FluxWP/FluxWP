@@ -531,7 +531,7 @@ const Svg = ({ d }: { d: string }) => (
 );
 
 /** Moves the island printed by PHP into this box; it goes back to the hidden container when the box goes. */
-function IslandNode({ id }: { id: string }) {
+export function IslandNode({ id }: { id: string }) {
   const ref = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
     const el = typeof document !== 'undefined' ? document.querySelector<HTMLElement>(`[data-flxdn-island="${CSS.escape(id)}"]`) : null;

@@ -1,0 +1,3 @@
+mutation FlxDonationTypeDelete($id: Int!) {
+  flxDonationTypeDelete(input: { id: $id }) { message errors { message field } }
+}

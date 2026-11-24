@@ -1010,3 +1010,6 @@ html.flxa-dark .flxdn .flxdn-pill--failed { background: #3B1E1E; color: #FCA5A5;
 .flxdn-filters--flat { margin: 0; }
 .flxdn .flxdn-table--types .flxdn-col-act .flxdn-actions { flex-wrap: nowrap; justify-content: flex-end; margin-top: 0; }
 .flxdn-table--types .flxdn-sub2 code { white-space: nowrap; }
+/* 2.41.0: type editor; the cards printed by PHP sit in the stack like the others. */
+.flxdn-typeform .flxdn-islandslot .flxb-card { margin: 0; }
+.flxdn-typeform .flxdn-stack > .flxdn-islandslot + .flxdn-islandslot { margin-top: 4px; }

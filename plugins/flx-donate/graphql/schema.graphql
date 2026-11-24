@@ -1231,6 +1231,22 @@ type FlxDonationTypeAdminList {
   samples: [FlxDonationTypeSample!]!
 }
 
+"""An amount in a currency."""
+type FlxDonationTypeAmount {
+  """Amount."""
+  amount: Float!
+  """Currency code."""
+  currency: String!
+}
+
+"""An amount in a currency."""
+input FlxDonationTypeAmountInput {
+  """Amount; 0 = not offered."""
+  amount: Float!
+  """Currency code."""
+  currency: String!
+}
+
 """A page of FlxDonationType records."""
 type FlxDonationTypeConnection {
   """Records with their cursors."""
@@ -1243,12 +1259,182 @@ type FlxDonationTypeConnection {
   totalCount: Int
 }
 
+"""Input for the flxDonationTypeDelete mutation."""
+input FlxDonationTypeDeleteInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Type id."""
+  id: Int!
+}
+
+"""The payload for the flxDonationTypeDelete mutation."""
+type FlxDonationTypeDeletePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result for the notice; null when refused (see errors)."""
+  message: String
+}
+
 """One FlxDonationType in a list, with its cursor."""
 type FlxDonationTypeEdge {
   """Opaque cursor of this record."""
   cursor: String!
   """The record."""
   node: FlxDonationType!
+}
+
+"""The donation type editor: the fields and their choices."""
+type FlxDonationTypeForm {
+  """Free amount allowed."""
+  allowFree: Boolean!
+  """Quantity allowed."""
+  allowQuantity: Boolean!
+  """Recurring giving allowed."""
+  allowRecurring: Boolean!
+  """Option badges."""
+  badges: [FlxDonationChoice!]!
+  """Categories."""
+  categories: [FlxDonationChoice!]!
+  """Where categories are edited."""
+  categoriesUrl: String!
+  """Category key; empty = none."""
+  category: String!
+  """Currencies."""
+  currencies: [FlxDonationChoice!]!
+  """Currency code."""
+  currency: String!
+  """Type id; 0 = a new type."""
+  databaseId: Int!
+  """Short description."""
+  description: String!
+  """End date (Y-m-d); empty = none."""
+  endDate: String!
+  """Other currencies donors can choose (prices per option)."""
+  extraCurrencies: [String!]!
+  """The first file marks it completed."""
+  fileCompletes: Boolean!
+  """Linked forms."""
+  formIds: [Int!]!
+  """Payment forms that can be linked."""
+  forms: [FlxDonationTypeFormLink!]!
+  """Goal amount; 0 = none."""
+  goal: Float!
+  """Animal: buyukbas, kucukbas or none."""
+  grouping: String!
+  """The type has gifts (it can be archived, not deleted)."""
+  hasGifts: Boolean!
+  """Card icon; empty = automatic."""
+  icon: String!
+  """Card icons."""
+  icons: [FlxDonationChoice!]!
+  """Image attachment id; 0 = none."""
+  imageId: Int!
+  """Image address; empty = none."""
+  imageUrl: String!
+  """Intention key; empty = none."""
+  intention: String!
+  """Intentions."""
+  intentions: [FlxDonationChoice!]!
+  """
+  Cards printed on the page: form mapping, translations, other plugins (empty outside wp-admin).
+  """
+  islands: [FlxDonationIsland!]!
+  """Gifts on behalf of a person are on."""
+  kurbanOn: Boolean!
+  """The donation types list."""
+  listUrl: String!
+  """Hide the choice in the form when it was preselected."""
+  lockPreselect: Boolean!
+  """Maximum quantity; 0 = no limit."""
+  maxQuantity: Int!
+  """All of the meat goes to people in need."""
+  meatToNeedy: Boolean!
+  """Minimum free amount."""
+  minAmount: Float!
+  """Minimum free amount in the other currencies."""
+  minByCurrency: [FlxDonationTypeAmount!]!
+  """Options."""
+  options: [FlxDonationTypeFormOption!]!
+  """Proxy (vekâlet) required."""
+  requiresProxy: Boolean!
+  """Shortcode; empty for a new type."""
+  shortcode: String!
+  """Slug."""
+  slug: String!
+  """Start date (Y-m-d); empty = none."""
+  startDate: String!
+  """Status."""
+  status: FlxDonationTypeStatus!
+  """Card subtitle."""
+  subtitle: String!
+  """Title."""
+  title: String!
+  """Track every unit one by one."""
+  trackItems: Boolean!
+  """Tracking words of the type."""
+  trackLabels: [FlxDonationTypeLabel!]!
+  """The tracking module is on."""
+  trackOn: Boolean!
+  """Units."""
+  units: [FlxDonationChoice!]!
+}
+
+"""A payment form that can be linked to a donation type."""
+type FlxDonationTypeFormLink {
+  """Form id."""
+  databaseId: Int!
+  """Other open types the form is linked to; empty without one."""
+  others: String!
+  """Form title."""
+  title: String!
+}
+
+"""One option of a donation type in the editor."""
+type FlxDonationTypeFormOption {
+  """Shown and payable."""
+  active: Boolean!
+  """Badge key."""
+  badge: String!
+  """Key."""
+  key: String!
+  """Name."""
+  label: String!
+  """Price in the type&#039;s currency; 0 = not announced yet."""
+  price: Float!
+  """Prices in the other currencies."""
+  prices: [FlxDonationTypeAmount!]!
+  """Unit key; empty = not set."""
+  unit: String!
+  """Units per choice."""
+  unitsPer: Int!
+}
+
+"""A tracking word the type may override."""
+type FlxDonationTypeLabel {
+  """Key."""
+  key: String!
+  """What it is."""
+  label: String!
+  """The default word."""
+  placeholder: String!
+  """The type&#039;s word; empty = the default."""
+  value: String!
+}
+
+"""A tracking word of the type."""
+input FlxDonationTypeLabelInput {
+  """Key."""
+  key: String!
+  """Word; empty = the default."""
+  value: String!
 }
 
 """Which public types to list."""
@@ -1304,6 +1490,26 @@ type FlxDonationTypeOption {
   """Unit label for one item. Null when there is no unit."""
   unitLabel: String
   """How many units one choice stands for."""
+  unitsPer: Int!
+}
+
+"""One option of a donation type."""
+input FlxDonationTypeOptionInput {
+  """Shown and payable."""
+  active: Boolean!
+  """Badge key."""
+  badge: String!
+  """Key; empty = from the name."""
+  key: String!
+  """Name; an option without a name is dropped."""
+  label: String!
+  """Price; 0 = not announced yet."""
+  price: Float!
+  """Prices in the other currencies."""
+  prices: [FlxDonationTypeAmountInput!]!
+  """Unit key."""
+  unit: String!
+  """Units per choice."""
   unitsPer: Int!
 }
 
@@ -1393,6 +1599,94 @@ type FlxDonationTypeSamplesPayload {
   errors: [FlxUserError!]!
   """Result for the notice; null when refused (see errors)."""
   message: String
+}
+
+"""Input for the flxDonationTypeSave mutation."""
+input FlxDonationTypeSaveInput {
+  """Free amount allowed."""
+  allowFree: Boolean!
+  """Quantity allowed."""
+  allowQuantity: Boolean!
+  """Recurring giving allowed."""
+  allowRecurring: Boolean!
+  """Category key."""
+  category: String!
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Currency code."""
+  currency: String!
+  """Short description."""
+  description: String!
+  """End date (Y-m-d); empty = none."""
+  endDate: String!
+  """
+  Fields of the cards printed on the page, as a form body (meta[…], form_map[…]).
+  """
+  extra: String
+  """The first file marks it completed (tracking module)."""
+  fileCompletes: Boolean
+  """Linked forms."""
+  formIds: [Int!]!
+  """Goal amount; 0 = none."""
+  goal: Float!
+  """Animal: buyukbas, kucukbas or none (gifts on behalf of a person)."""
+  grouping: String
+  """Card icon."""
+  icon: String!
+  """Type id; 0 = a new type."""
+  id: Int!
+  """Image attachment id; 0 = none."""
+  imageId: Int!
+  """Intention key (gifts on behalf of a person)."""
+  intention: String
+  """Hide the choice in the form when it was preselected."""
+  lockPreselect: Boolean!
+  """Maximum quantity; 0 = no limit."""
+  maxQuantity: Int!
+  """All of the meat goes to people in need (gifts on behalf of a person)."""
+  meatToNeedy: Boolean
+  """Minimum free amount."""
+  minAmount: Float!
+  """Minimum free amount in the other currencies."""
+  minByCurrency: [FlxDonationTypeAmountInput!]!
+  """Options."""
+  options: [FlxDonationTypeOptionInput!]!
+  """Proxy (vekâlet) required (gifts on behalf of a person)."""
+  requiresProxy: Boolean
+  """Slug; empty = from the title."""
+  slug: String!
+  """Start date (Y-m-d); empty = none."""
+  startDate: String!
+  """Status."""
+  status: FlxDonationTypeStatus!
+  """Card subtitle."""
+  subtitle: String!
+  """Title."""
+  title: String!
+  """Track every unit one by one (tracking module)."""
+  trackItems: Boolean
+  """Tracking words (tracking module)."""
+  trackLabels: [FlxDonationTypeLabelInput!]
+}
+
+"""The payload for the flxDonationTypeSave mutation."""
+type FlxDonationTypeSavePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """The saved type."""
+  databaseId: Int
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result for the notice; null when refused (see errors)."""
+  message: String
+  """Forms that could not be linked; empty without one."""
+  warning: String
 }
 
 """Input for the flxDonationTypeSetStatus mutation."""
@@ -1885,6 +2179,11 @@ extend type RootMutation {
     """Input for the flxDonationSetStatus mutation"""
     input: FlxDonationSetStatusInput!
   ): FlxDonationSetStatusPayload
+  """Deletes a donation type that has no gifts."""
+  flxDonationTypeDelete(
+    """Input for the flxDonationTypeDelete mutation"""
+    input: FlxDonationTypeDeleteInput!
+  ): FlxDonationTypeDeletePayload
   """Moves a donation type one place up or down."""
   flxDonationTypeMove(
     """Input for the flxDonationTypeMove mutation"""
@@ -1895,6 +2194,13 @@ extend type RootMutation {
     """Input for the flxDonationTypeSamples mutation"""
     input: FlxDonationTypeSamplesInput!
   ): FlxDonationTypeSamplesPayload
+  """
+  Creates or saves a donation type. A linked form that already collects for another open type with the same dates is not linked (see warning).
+  """
+  flxDonationTypeSave(
+    """Input for the flxDonationTypeSave mutation"""
+    input: FlxDonationTypeSaveInput!
+  ): FlxDonationTypeSavePayload
   """
   Opens, closes or archives a donation type. Opening is refused when one of its forms already collects for another open type.
   """
@@ -1976,6 +2282,13 @@ extend type RootQuery {
     """List the archive instead."""
     archived: Boolean
   ): FlxDonationTypeAdminList!
+  """
+  The editor of a donation type; id 0 = a new one. Null when the type does not exist.
+  """
+  flxDonationTypeForm(
+    """Type id; 0 = a new type."""
+    id: Int!
+  ): FlxDonationTypeForm
   """Donation types the public page lists. Archived types are left out."""
   flxDonationTypes(
     """Cursor to continue after (pageInfo.endCursor)."""
