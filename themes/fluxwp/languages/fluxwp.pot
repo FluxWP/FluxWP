@@ -55,45 +55,6 @@ msgstr ""
 msgid "A preset sets up the site in one step with the organisation profile, plugin settings, colours, header/footer, templates, pages and menus. Changes you make in the panel are never overwritten; updates are applied one by one with your approval."
 msgstr ""
 
-msgid "Appearance"
-msgstr ""
-
-msgid "Site type"
-msgstr ""
-
-msgid "Shop: Orders, Return to shop"
-msgstr ""
-
-msgid "Donation: Donations, Donate button, return to the donation page"
-msgstr ""
-
-msgid "Sets the wording in My account, the cart and the mobile menu."
-msgstr ""
-
-msgid "Background pattern"
-msgstr ""
-
-msgid "Dots"
-msgstr ""
-
-msgid "Leaves"
-msgstr ""
-
-msgid "None"
-msgstr ""
-
-msgid "Table header background"
-msgstr ""
-
-msgid "Header cells of tables in pages, Wiki and WooCommerce. Pick a tone slightly darker than the page background. Leave empty to use the style colour."
-msgstr ""
-
-msgid "News introduction"
-msgstr ""
-
-msgid "Save settings"
-msgstr ""
-
 msgid "Play video"
 msgstr ""
 
@@ -104,63 +65,6 @@ msgid "Online donations open soon."
 msgstr ""
 
 msgid "Our online store opens soon."
-msgstr ""
-
-msgid "Site visibility"
-msgstr ""
-
-msgid "Visibility"
-msgstr ""
-
-msgid "Live"
-msgstr ""
-
-msgid "Everyone can see the whole site."
-msgstr ""
-
-msgid "Coming soon: entire site"
-msgstr ""
-
-msgid "Visitors, including signed-in customers, only see the coming-soon page."
-msgstr ""
-
-msgid "Coming soon: store pages only"
-msgstr ""
-
-msgid "The site stays open. Shop, product, cart and checkout pages show a coming-soon notice inside the normal header and footer."
-msgstr ""
-
-msgid "Requires WooCommerce."
-msgstr ""
-
-msgid "Administrators, shop managers and editors keep seeing the site. This is the same setting as WooCommerce › Settings › Site visibility; changing either one updates the other, and WooCommerce private preview links keep working."
-msgstr ""
-
-msgid "Administrators and editors keep seeing the site."
-msgstr ""
-
-msgid "Coming-soon title"
-msgstr ""
-
-msgid "Coming-soon message"
-msgstr ""
-
-msgid "Leave the title and message empty to use the translated defaults."
-msgstr ""
-
-msgid "Store notice title"
-msgstr ""
-
-msgid "Store notice message"
-msgstr ""
-
-msgid "Leave the title and message empty to use the translated defaults. The wording follows the site type (shop or donations)."
-msgstr ""
-
-msgid "Public contact email"
-msgstr ""
-
-msgid "Optional. Only this address is shown; the administrator email stays private."
 msgstr ""
 
 msgid "Store coming soon"
@@ -223,6 +127,21 @@ msgstr ""
 msgid "Cookie banner: policy link"
 msgstr ""
 
+msgid "Sign-in window: heading"
+msgstr ""
+
+msgid "Sign-in window: text under the heading"
+msgstr ""
+
+msgid "Sign-in window: picture label"
+msgstr ""
+
+msgid "Sign-in window: picture title"
+msgstr ""
+
+msgid "Sign-in window: picture text"
+msgstr ""
+
 msgid "Language selection"
 msgstr ""
 
@@ -235,13 +154,10 @@ msgstr ""
 msgid "System Check"
 msgstr ""
 
+msgid "Flux GraphQL is not active, so FluxWP screens cannot open."
+msgstr ""
+
 msgid "JavaScript is required for this screen."
-msgstr ""
-
-msgid "New view"
-msgstr ""
-
-msgid "Open the new view (same features, works in the FluxWP app too)."
 msgstr ""
 
 msgid "Hi %s, your donations are saved to your account."
@@ -262,6 +178,9 @@ msgstr ""
 msgid "Sign up"
 msgstr ""
 
+msgid "Welcome"
+msgstr ""
+
 msgid "Back to Donations"
 msgstr ""
 
@@ -272,6 +191,24 @@ msgid "Sign Up"
 msgstr ""
 
 msgid "or"
+msgstr ""
+
+msgid "Log in or sign up"
+msgstr ""
+
+msgid "or with email"
+msgstr ""
+
+msgid "Choose your account in the Google window. If it does not open, allow pop-ups for this site."
+msgstr ""
+
+msgid "Signing you in with Google. If you have no account yet, we are creating one."
+msgstr ""
+
+msgid "This is taking longer than usual. You can wait a little more or cancel and try again."
+msgstr ""
+
+msgid "Cancel"
 msgstr ""
 
 msgid "Phone"
@@ -643,61 +580,10 @@ msgstr ""
 msgid "Theme"
 msgstr ""
 
-msgid "Error"
-msgstr ""
-
-msgid "Warning"
-msgstr ""
-
-msgid "OK"
-msgstr ""
-
-msgid "Info"
-msgstr ""
-
-msgid "Plugins, scheduled tasks and key settings. Red rows mean part of the site is not working; yellow rows are recommended fixes. The page re-checks every time it opens."
-msgstr ""
-
-msgid "Show only these (click again for all)"
-msgstr ""
-
-msgid "Check again"
-msgstr ""
-
-msgid "Checked: %s"
-msgstr ""
-
-msgid "%d issues"
-msgstr ""
-
-msgid "All good"
-msgstr ""
-
 msgid "%1$d critical issues: %2$s"
 msgstr ""
 
 msgid "See the status of plugins, cron and settings on the %s screen."
-msgstr ""
-
-msgid "Recent fixes (AI / MCP)"
-msgstr ""
-
-msgid "No fixes have been made through MCP yet."
-msgstr ""
-
-msgid "Time"
-msgstr ""
-
-msgid "User"
-msgstr ""
-
-msgid "Fix"
-msgstr ""
-
-msgid "Before → After"
-msgstr ""
-
-msgid "Result"
 msgstr ""
 
 msgid "Theme settings copied (%d fields)."
@@ -734,9 +620,6 @@ msgid "Donate"
 msgstr ""
 
 msgid "Shop"
-msgstr ""
-
-msgid "Welcome"
 msgstr ""
 
 msgid "Log in to manage your donations, addresses and account details, or create an account in seconds."
@@ -823,6 +706,9 @@ msgstr ""
 msgid "This choice is not available."
 msgstr ""
 
+msgid "Requires WooCommerce."
+msgstr ""
+
 msgid "The IBAN must be 26 characters starting with “TR”; it was not saved."
 msgstr ""
 
@@ -875,6 +761,15 @@ msgid "How archive pages continue."
 msgstr ""
 
 msgid "Cookie banner layout."
+msgstr ""
+
+msgid "Sign-in window layout."
+msgstr ""
+
+msgid "Single column card."
+msgstr ""
+
+msgid "Picture panel on the left, form on the right."
 msgstr ""
 
 msgid "How Google Analytics loads."
@@ -1006,6 +901,33 @@ msgstr ""
 msgid "Donation types to pick the home page card from (the first 100); empty without Flux Donate."
 msgstr ""
 
+msgid "Show the header logo at the top of the sign-in window."
+msgstr ""
+
+msgid "Sign-in window heading; empty uses the translated default."
+msgstr ""
+
+msgid "Translated default heading of the sign-in window."
+msgstr ""
+
+msgid "Line under the sign-in window heading; empty shows none."
+msgstr ""
+
+msgid "Picture of the split layout (attachment ID); 0 shows a colour panel."
+msgstr ""
+
+msgid "Preview URL of the picture; null without one."
+msgstr ""
+
+msgid "Small label on the picture; empty hides it."
+msgstr ""
+
+msgid "Big line on the picture."
+msgstr ""
+
+msgid "Sentence on the picture."
+msgstr ""
+
 msgid "Theme Settings and the context the Theme Settings screen needs."
 msgstr ""
 
@@ -1061,6 +983,15 @@ msgid "Account holder."
 msgstr ""
 
 msgid "IBAN (TR + 24 digits); empty clears it."
+msgstr ""
+
+msgid "Line under the heading; empty shows none."
+msgstr ""
+
+msgid "Picture attachment ID; 0 removes it."
+msgstr ""
+
+msgid "Small label on the picture."
 msgstr ""
 
 msgid "The settings after the change; null when something was invalid."
@@ -1240,6 +1171,9 @@ msgstr ""
 msgid "What was done."
 msgstr ""
 
+msgid "%d issues"
+msgstr ""
+
 msgid "%s. Choose 8.1 or later under Hostinger › PHP Configuration."
 msgstr ""
 
@@ -1316,6 +1250,9 @@ msgid "With your donation we plant new saplings and protect green spaces."
 msgstr ""
 
 msgid "Can I donate a sapling on behalf of someone else?"
+msgstr ""
+
+msgid "Info"
 msgstr ""
 
 msgid "One sapling is 150 TL. Just write “fidan bağışı” and your name in the description. 🌿"
@@ -1438,7 +1375,13 @@ msgstr ""
 msgid "Announcements"
 msgstr ""
 
+msgid "Fix"
+msgstr ""
+
 msgid "Email and phone"
+msgstr ""
+
+msgid "Plugins, scheduled tasks and key settings. Red rows mean part of the site is not working; yellow rows are recommended fixes. The page re-checks every time it opens."
 msgstr ""
 
 msgid "Ecosystem protection"
@@ -1561,7 +1504,13 @@ msgstr ""
 msgid "About Us"
 msgstr ""
 
+msgid "Error"
+msgstr ""
+
 msgid "Donate by Bank Transfer"
+msgstr ""
+
+msgid "No fixes have been made through MCP yet."
 msgstr ""
 
 msgid "No content found yet."
@@ -1571,6 +1520,9 @@ msgid "No content yet."
 msgstr ""
 
 msgid "Every sapling is recorded with a certificate issued in your name or in the name of someone you love."
+msgstr ""
+
+msgid "All good"
 msgstr ""
 
 msgid "Quick Links"
@@ -1604,6 +1556,12 @@ msgid "Our Library"
 msgstr ""
 
 msgid "People Trained"
+msgstr ""
+
+msgid "Checked: %s"
+msgstr ""
+
+msgid "User"
 msgstr ""
 
 msgid "Can our company or school make a bulk sapling donation?"
@@ -1693,13 +1651,22 @@ msgstr ""
 msgid "Latest News"
 msgstr ""
 
+msgid "Recent fixes (AI / MCP)"
+msgstr ""
+
 msgid "Autumn"
+msgstr ""
+
+msgid "Result"
 msgstr ""
 
 msgid "TRY IBAN"
 msgstr ""
 
 msgid "TR00 0000 0000 0000 0000 0000 00"
+msgstr ""
+
+msgid "OK"
 msgstr ""
 
 msgid "Completed Projects"
@@ -1738,6 +1705,9 @@ msgstr ""
 msgid "For Türkiye,"
 msgstr ""
 
+msgid "Warning"
+msgstr ""
+
 msgid "Tax Exemption"
 msgstr ""
 
@@ -1745,6 +1715,9 @@ msgid "Video"
 msgstr ""
 
 msgid "WooCommerce account icon and mini cart. Hidden when WooCommerce is inactive."
+msgstr ""
+
+msgid "Show only these (click again for all)"
 msgstr ""
 
 msgid "Essential only"
@@ -1756,7 +1729,13 @@ msgstr ""
 msgid "Add news from the Posts menu; they are listed here automatically."
 msgstr ""
 
+msgid "Check again"
+msgstr ""
+
 msgid "Green Library"
+msgstr ""
+
+msgid "Time"
 msgstr ""
 
 msgid "has begun"
@@ -1837,6 +1816,9 @@ msgstr ""
 msgid "Fill the hole with soil and press gently so no air pockets remain."
 msgstr ""
 
+msgid "Before → After"
+msgstr ""
+
 msgid "Featured"
 msgstr ""
 
@@ -1859,6 +1841,24 @@ msgid "Our Istanbul Branch and Provincial Office"
 msgstr ""
 
 msgid "Istanbul Branch"
+msgstr ""
+
+msgid "Appearance"
+msgstr ""
+
+msgid "Site type"
+msgstr ""
+
+msgid "Shop: Orders, Return to shop"
+msgstr ""
+
+msgid "Donation: Donations, Donate button, return to the donation page"
+msgstr ""
+
+msgid "Sets the wording in My account, the cart and the mobile menu."
+msgstr ""
+
+msgid "Save settings"
 msgstr ""
 
 msgid "New season"
@@ -1960,11 +1960,92 @@ msgstr ""
 msgid "context_dd7eb423550cPage background"
 msgstr ""
 
+msgid "Background pattern"
+msgstr ""
+
+msgid "Leaves"
+msgstr ""
+
+msgid "None"
+msgstr ""
+
+msgid "News introduction"
+msgstr ""
+
+msgid "Dots"
+msgstr ""
+
+msgid "Site visibility"
+msgstr ""
+
+msgid "Visibility"
+msgstr ""
+
 msgid "Live / follow WooCommerce"
+msgstr ""
+
+msgid "Coming soon: entire site"
 msgstr ""
 
 msgid "Entire-site mode hides public pages from visitors, including signed-in customers. Administrators and shop managers can keep working. Automatic mode keeps WooCommerce visibility settings and private preview links unchanged."
 msgstr ""
 
+msgid "Coming-soon title"
+msgstr ""
+
+msgid "Coming-soon message"
+msgstr ""
+
 msgid "We're putting the finishing touches on our website. Please check back soon."
+msgstr ""
+
+msgid "Leave the title and message empty to use the translated defaults."
+msgstr ""
+
+msgid "Public contact email"
+msgstr ""
+
+msgid "Optional. Only this address is shown; the administrator email stays private."
+msgstr ""
+
+msgid "Table header background"
+msgstr ""
+
+msgid "Header cells of tables in pages, Wiki and WooCommerce. Pick a tone slightly darker than the page background. Leave empty to use the style colour."
+msgstr ""
+
+msgid "Live"
+msgstr ""
+
+msgid "Everyone can see the whole site."
+msgstr ""
+
+msgid "Visitors, including signed-in customers, only see the coming-soon page."
+msgstr ""
+
+msgid "Coming soon: store pages only"
+msgstr ""
+
+msgid "The site stays open. Shop, product, cart and checkout pages show a coming-soon notice inside the normal header and footer."
+msgstr ""
+
+msgid "Administrators, shop managers and editors keep seeing the site. This is the same setting as WooCommerce › Settings › Site visibility; changing either one updates the other, and WooCommerce private preview links keep working."
+msgstr ""
+
+msgid "Administrators and editors keep seeing the site."
+msgstr ""
+
+msgid "Store notice title"
+msgstr ""
+
+msgid "Store notice message"
+msgstr ""
+
+msgid "Leave the title and message empty to use the translated defaults. The wording follows the site type (shop or donations)."
+msgstr ""
+
+msgid "New view"
+msgstr ""
+
+msgid "Open the new view (same features, works in the FluxWP app too)."
 msgstr ""

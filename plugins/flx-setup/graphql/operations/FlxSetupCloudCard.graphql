@@ -1,0 +1,10 @@
+mutation FlxSetupCloudCard($input: FlxSetupCloudCardInput!) {
+  flxSetupCloudCard(input: $input) {
+    cloud {
+      ...FlxSetupCloudFields
+    }
+    errors {
+      ...FlxSetupErrors
+    }
+  }
+}

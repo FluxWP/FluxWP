@@ -824,6 +824,7 @@ final class FLXK_Onboarding {
 			'applying'   => __( 'applying', 'flx-setup' ),
 			'applied'    => __( 'applied', 'flx-setup' ),
 			'failed'     => __( 'error', 'flx-setup' ),
+			'retryWait'  => __( 'The server asked us to slow down, trying again shortly…', 'flx-setup' ),
 			'msgs'       => array(
 				__( 'Downloading packages', 'flx-setup' ),
 				__( 'Installing plugins', 'flx-setup' ),

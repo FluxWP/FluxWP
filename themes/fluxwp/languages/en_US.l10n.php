@@ -167,6 +167,7 @@ return array(
   'Required pages' => 'Required pages',
   'Server cron' => 'Server cron',
   'Log In' => 'Log In',
+  'Log in or sign up' => 'Log in or sign up',
   'Log in' => 'Log in',
   'Privacy Agreement' => 'Privacy Agreement',
   'Volunteers' => 'Volunteers',

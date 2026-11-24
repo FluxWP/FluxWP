@@ -51,6 +51,14 @@ final class FLX_Theme_Service {
 		'ga_mode'           => array( 'ga_mode', 'enum' ),
 		'bank_holder'       => array( 'bank_holder', 'str' ),
 		'bank_iban'         => array( 'bank_iban', 'str' ),
+		'auth_style'        => array( 'auth_style', 'enum' ),
+		'auth_logo'         => array( 'auth_logo', 'bool' ),
+		'auth_title'        => array( 'auth_title', 'str' ),
+		'auth_text'         => array( 'auth_text', 'text' ),
+		'auth_image'        => array( 'auth_image', 'int' ),
+		'auth_badge'        => array( 'auth_badge', 'str' ),
+		'auth_panel_title'  => array( 'auth_panel_title', 'str' ),
+		'auth_panel_text'   => array( 'auth_panel_text', 'text' ),
 	);
 
 	/** Allowed values of the enum fields (service values). */
@@ -62,6 +70,7 @@ final class FLX_Theme_Service {
 		'pagination'      => array( 'sonsuz', 'numara' ),
 		'cookie_position' => array( 'card', 'bar' ),
 		'ga_mode'         => array( 'consent', 'after' ),
+		'auth_style'      => array( 'card', 'split' ),
 	);
 
 	/* ---------- Settings ---------- */
@@ -166,6 +175,16 @@ final class FLX_Theme_Service {
 			can_edit_scripts: $can_js,
 			presets_url: function_exists( 'flxk_render_panel' ) ? admin_url( 'themes.php?page=flx-ayarlar&bolum=onayarlar' ) : '',
 			campaigns: $campaigns,
+			auth_style: 'split' === $o['auth_style'] ? 'split' : 'card',
+			auth_logo: (bool) $o['auth_logo'],
+			auth_title: self::str( $o['auth_title'] ),
+			auth_text: self::str( $o['auth_text'] ),
+			auth_image: self::int( $o['auth_image'] ),
+			auth_image_url: self::int( $o['auth_image'] ) ? (string) wp_get_attachment_image_url( self::int( $o['auth_image'] ), 'medium_large' ) : '',
+			auth_badge: self::str( $o['auth_badge'] ),
+			auth_panel_title: self::str( $o['auth_panel_title'] ),
+			auth_panel_text: self::str( $o['auth_panel_text'] ),
+			auth_title_default: flx_auth_title_default(),
 		);
 	}
 

@@ -509,3 +509,10 @@ section.step.on{display:flex}
 .gate-check{display:flex;align-items:center;gap:10px;color:var(--text);font-size:15px;margin:22px 0 0}
 .gate .acts{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 @media(max-width:900px){.gate-in h1{font-size:30px}}
+
+/* Uzun içerik (hata listesi, küçük ekran yüksekliği): adımın içinde dikey kaydırma. */
+section.step{overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+#step1{justify-content:safe center}
+.intro{align-content:safe center}
+.donebox{margin:auto}
+@media (max-width:900px),(max-height:560px){section.step{overflow:visible}}

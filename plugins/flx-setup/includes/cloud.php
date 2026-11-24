@@ -17,6 +17,9 @@ final class FLXK_Cloud {
 	const DEFAULT_URL = 'https://fluxwp.com';
 	const SUMMARY_TTL = 6 * HOUR_IN_SECONDS;
 	const CONTEXT     = 'flxk_cloud';
+	const CARD_OPTION = 'flxk_cloud_card_days';
+	const CARD_META   = 'flxk_cloud_card_hidden';
+	const CARD_DAYS   = array( 0, 1, 3, 7, 14, 30 );
 
 	public static function init(): void {
 		add_action( 'admin_post_flxk_cloud_connect', array( __CLASS__, 'connect' ) );
@@ -154,7 +157,7 @@ final class FLXK_Cloud {
 				'c' => $chal,
 				'u' => get_current_user_id(),
 			),
-			10 * MINUTE_IN_SECONDS
+			30 * MINUTE_IN_SECONDS // Room for signing up on fluxwp.com (the password link comes by e-mail).
 		);
 		$args = array(
 			'flxcl'     => 'connect',
@@ -435,6 +438,9 @@ final class FLXK_Cloud {
 		$s   = self::state();
 		$sum = self::summary();
 		$s   = self::state();
+		if ( self::card_hidden() && ! $msg ) {
+			return;
+		}
 		?>
 		<div class="flxu-card flxk-cloud <?php echo $s['refresh'] ? 'flxu-card--connected' : 'flxu-card--unknown'; ?>">
 			<span class="flxk-cloud__logo" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18h10a4 4 0 0 0 .6-7.96A6 6 0 0 0 6.2 9.1 4.5 4.5 0 0 0 7 18z"/><path d="m9.5 13.5 2 2 3.5-4"/></svg></span>
@@ -533,6 +539,8 @@ final class FLXK_Cloud {
 			'flash'     => '',
 			'flashType' => '',
 			'actions'   => array(),
+			'hidden'    => self::card_hidden(),
+			'hideDays'  => self::card_days(),
 		);
 		if ( $on && $sum ) {
 			$plan    = (array) ( $sum['plan'] ?? array() );
@@ -588,6 +596,52 @@ final class FLXK_Cloud {
 			$out['flashType'] = 'error';
 		}
 		return $out;
+	}
+
+	/* ------------------------------------------------------------------ */
+	/* "Connect your FluxWP account" card: hide with ×, back after N days   */
+	/* ------------------------------------------------------------------ */
+
+	/** Days after which a hidden card shows again (site-wide setting); 0 = never. Default 7. */
+	public static function card_days(): int {
+		$d = (int) get_site_option( self::CARD_OPTION, 7 );
+		return in_array( $d, self::CARD_DAYS, true ) ? $d : 7;
+	}
+
+	/** The current user hid the connect card and it is not due again. A connected site's card is never hidden. */
+	public static function card_hidden( int $user_id = 0 ): bool {
+		$user_id = $user_id ? $user_id : get_current_user_id();
+		if ( ! $user_id || self::connected() ) {
+			return false;
+		}
+		$at = (int) get_user_meta( $user_id, self::CARD_META, true );
+		if ( $at <= 0 ) {
+			return false;
+		}
+		$days = self::card_days();
+		return 0 === $days || time() - $at < $days * DAY_IN_SECONDS;
+	}
+
+	/**
+	 * Hides or shows the card for the current user and/or changes the days setting.
+	 *
+	 * @param bool|null $hide true hides, false shows again, null leaves it.
+	 * @param int|null  $days New days setting (one of CARD_DAYS), null leaves it.
+	 * @return true|WP_Error
+	 */
+	public static function card_save( ?bool $hide, ?int $days ) {
+		if ( null !== $days ) {
+			if ( ! in_array( $days, self::CARD_DAYS, true ) ) {
+				return new WP_Error( 'flxk_cloud_days', __( 'Choose one of the listed periods.', 'flx-setup' ), array( 'graphql_code' => 'INVALID_INPUT', 'field' => 'days' ) );
+			}
+			update_site_option( self::CARD_OPTION, $days );
+		}
+		if ( true === $hide ) {
+			update_user_meta( get_current_user_id(), self::CARD_META, time() );
+		} elseif ( false === $hide ) {
+			delete_user_meta( get_current_user_id(), self::CARD_META );
+		}
+		return true;
 	}
 
 	/* ------------------------------------------------------------------ */

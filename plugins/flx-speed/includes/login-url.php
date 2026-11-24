@@ -87,10 +87,19 @@ class FLXP_Login_URL {
 	/** Yeni giriş adresi (tam URL). */
 	public static function url( $scheme = null, $slug = null ) {
 		$slug = null === $slug ? self::slug() : $slug;
-		if ( get_option( 'permalink_structure' ) ) {
-			return user_trailingslashit( home_url( '/' . $slug, $scheme ) );
-		}
-		return home_url( '/?' . $slug, $scheme );
+		return self::home( get_option( 'permalink_structure' ) ? '/' . $slug : '/?' . $slug, $scheme, (bool) get_option( 'permalink_structure' ) );
+	}
+
+	/**
+	 * Dil öneki olmadan site adresi: Flux Lang ön yüzde home_url'e /tr/ gibi önek ekler, giriş adresi tek
+	 * (öneksiz) yolda çözülür. Önekli adres 404 verirdi (ör. Site Kit Google girişi /tr/fluxadmin/?action=…).
+	 */
+	private static function home( $path, $scheme = null, $slash = false ) {
+		$make = static function () use ( $path, $scheme, $slash ) {
+			$u = home_url( $path, $scheme );
+			return $slash ? user_trailingslashit( $u ) : $u;
+		};
+		return function_exists( 'flxl_raw' ) ? flxl_raw( $make ) : $make();
 	}
 
 	/** İstek yolu (sorgu olmadan, sondaki / atılmış, kodu çözülmüş). */
@@ -102,7 +111,7 @@ class FLXP_Login_URL {
 
 	/** Özel adresin yolu (alt klasör kurulumu dahil). */
 	private static function login_path() {
-		return untrailingslashit( (string) wp_parse_url( home_url( '/' . self::slug() ), PHP_URL_PATH ) );
+		return untrailingslashit( (string) wp_parse_url( self::home( '/' . self::slug() ), PHP_URL_PATH ) );
 	}
 
 	/** plugins_loaded: isteğin türünü belirler. */

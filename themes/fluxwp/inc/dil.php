@@ -250,6 +250,11 @@ add_filter(
 			'cookie_accept' => array( __( 'Cookie banner: accept button', 'fluxwp' ), false ),
 			'cookie_reject' => array( __( 'Cookie banner: necessary only button', 'fluxwp' ), false ),
 			'cookie_more'   => array( __( 'Cookie banner: policy link', 'fluxwp' ), false ),
+			'auth_title'    => array( __( 'Sign-in window: heading', 'fluxwp' ), false ),
+			'auth_text'     => array( __( 'Sign-in window: text under the heading', 'fluxwp' ), true ),
+			'auth_badge'    => array( __( 'Sign-in window: picture label', 'fluxwp' ), false ),
+			'auth_panel_title' => array( __( 'Sign-in window: picture title', 'fluxwp' ), false ),
+			'auth_panel_text'  => array( __( 'Sign-in window: picture text', 'fluxwp' ), true ),
 		);
 		foreach ( $fields as $key => $d ) {
 			$f[ 'tema_' . $key ] = array(

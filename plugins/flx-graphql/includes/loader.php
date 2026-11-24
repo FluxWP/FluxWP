@@ -121,6 +121,9 @@ function flx_gql_boot_wpgraphql(): void {
  * Hooks only for the embedded copy: our panel owns its settings, menus and telemetry.
  */
 function flx_gql_embedded_hooks(): void {
+	// WPGraphQL 2.24+ settings review invitation: our panel already owns every setting it covers.
+	add_filter( 'graphql_settings_review_show_invitation', '__return_false' );
+
 	// WPGraphQL reads its own settings page; the embedded copy takes ours instead.
 	add_filter(
 		'graphql_get_setting_section_fields',

@@ -1,9 +1,5 @@
-#
 msgid ""
-msgstr ""
-"Language: tr_TR\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: tr_TR\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Presets"
 msgstr "Ön ayarlar"
@@ -346,6 +342,9 @@ msgstr "Bağlantıyı kes"
 
 msgid "Sign in with FluxWP"
 msgstr "FluxWP ile giriş yap"
+
+msgid "Choose one of the listed periods."
+msgstr "Listelenen sürelerden birini seçin."
 
 msgid "FluxWP account"
 msgstr "FluxWP hesabı"
@@ -985,6 +984,9 @@ msgstr "uygulandı"
 
 msgid "error"
 msgstr "hata"
+
+msgid "The server asked us to slow down, trying again shortly…"
+msgstr "Sunucu yavaşlamamızı istedi, birazdan yeniden deniyoruz…"
 
 msgid "Downloading packages"
 msgstr "Paketler indiriliyor"
@@ -1827,6 +1829,9 @@ msgstr "Güncelleme sunucusunda geçici bir hata oldu. Bir dakika sonra yeniden 
 msgid "Download failed (HTTP %1$d: %2$s). %3$s"
 msgstr "Dosya indirilemedi (HTTP %1$d: %2$s). %3$s"
 
+msgid "Before updating %d packages"
+msgstr "%d paket güncellenmeden önce"
+
 msgid "Package did not change; the installation may have failed."
 msgstr "Paket değişmedi; kurulum başarısız olmuş olabilir."
 
@@ -1895,6 +1900,18 @@ msgstr "indirme adresi yok"
 
 msgid "unknown error"
 msgstr "bilinmeyen hata"
+
+msgid "This FluxWP package address is not in the expected signed form, so it was not installed. Contact FluxWP support."
+msgstr "Bu FluxWP paket adresi beklenen imzalı biçimde değil, bu yüzden kurulmadı. FluxWP desteğine başvurun."
+
+msgid "The package signature could not be downloaded (%s). The package was not installed. Try again in a minute."
+msgstr "Paket imzası indirilemedi (%s). Paket kurulmadı. Bir dakika sonra tekrar deneyin."
+
+msgid "%1$s %2$s has no valid FluxWP signature (HTTP %3$d), so it was not installed. Check for updates later or contact FluxWP support."
+msgstr "%1$s %2$s için geçerli FluxWP imzası yok (HTTP %3$d), bu yüzden kurulmadı. Güncellemeleri sonra yeniden denetleyin ya da FluxWP desteğine başvurun."
+
+msgid "The FluxWP signature of %1$s %2$s does not match the downloaded file, so it was not installed. The package may have been changed on the way or on the server. Contact FluxWP support."
+msgstr "%1$s %2$s için FluxWP imzası indirilen dosyayla uyuşmuyor, bu yüzden kurulmadı. Paket yolda ya da sunucuda değiştirilmiş olabilir. FluxWP desteğine başvurun."
 
 msgid "The GitHub address is not in owner/repo form."
 msgstr "GitHub adresi owner/repo biçiminde değil."
@@ -2890,6 +2907,12 @@ msgstr "O iletinin türü."
 msgid "Buttons."
 msgstr "Düğmeler."
 
+msgid "The current user hid the connect card and it is not due again yet."
+msgstr "Geçerli kullanıcı bağlantı kartını gizledi ve yeniden gösterme zamanı gelmedi."
+
+msgid "Days after which a hidden connect card shows again; 0 = never."
+msgstr "Gizlenen bağlantı kartının kaç gün sonra yeniden görüneceği; 0 = hiçbir zaman."
+
 msgid "Anonymous usage data: state, hub address and the data that will be sent."
 msgstr "Anonim kullanım verisi: durum, merkez adresi ve gönderilecek veri."
 
@@ -3073,6 +3096,9 @@ msgstr "Atlanan adlar (zaten o durumda, etkin tema ya da FluxWP Panel)."
 msgid "Names that failed."
 msgstr "Başarısız olan adlar."
 
+msgid "The action could not be completed: %s"
+msgstr "İşlem tamamlanamadı: %s"
+
 msgid "Turns WordPress' automatic updates of one plugin or theme on or off."
 msgstr "Bir eklenti ya da temanın WordPress otomatik güncellemesini açar ya da kapatır."
 
@@ -3183,6 +3209,21 @@ msgstr "Gönderim sonucu; gönderilmediyse null."
 
 msgid "Card after the change."
 msgstr "Değişiklikten sonraki kart."
+
+msgid "Hides or shows the FluxWP account connect card for the current user, and sets after how many days a hidden card shows again."
+msgstr "FluxWP hesap bağlantı kartını geçerli kullanıcı için gizler ya da gösterir ve gizlenen kartın kaç gün sonra yeniden görüneceğini ayarlar."
+
+msgid "true hides the card, false shows it again; leave out to keep."
+msgstr "true kartı gizler, false yeniden gösterir; değiştirmemek için boş bırakın."
+
+msgid "Days after which a hidden card shows again: 1, 3, 7, 14 or 30; 0 = never. Leave out to keep."
+msgstr "Gizlenen kartın kaç gün sonra yeniden görüneceği: 1, 3, 7, 14 ya da 30; 0 = hiçbir zaman. Değiştirmemek için boş bırakın."
+
+msgid "The card after the change."
+msgstr "Değişiklikten sonraki kart."
+
+msgid "The FluxWP account card is not available."
+msgstr "FluxWP hesap kartı kullanılamıyor."
 
 msgid "\"Not needed\": closes a Google setup card site-wide."
 msgstr "\"Gerekli değil\": Google kurulum kartını site genelinde kapatır."
@@ -5318,22 +5359,3 @@ msgid "%skayıt\\x00%skayıt"
 msgid_plural "%skayıt\\x00%skayıt"
 msgstr[0] "%s kayıt"
 msgstr[1] "%s kayıt"
-
-#: includes/updater/class-flxu-signature.php
-msgid "This FluxWP package address is not in the expected signed form, so it was not installed. Contact FluxWP support."
-msgstr "Bu FluxWP paket adresi beklenen imzalı biçimde değil, bu yüzden kurulmadı. FluxWP desteğine başvurun."
-
-#: includes/updater/class-flxu-signature.php
-#, php-format
-msgid "The package signature could not be downloaded (%s). The package was not installed. Try again in a minute."
-msgstr "Paket imzası indirilemedi (%s). Paket kurulmadı. Bir dakika sonra tekrar deneyin."
-
-#: includes/updater/class-flxu-signature.php
-#, php-format
-msgid "%1$s %2$s has no valid FluxWP signature (HTTP %3$d), so it was not installed. Check for updates later or contact FluxWP support."
-msgstr "%1$s %2$s için geçerli FluxWP imzası yok (HTTP %3$d), bu yüzden kurulmadı. Güncellemeleri sonra yeniden denetleyin ya da FluxWP desteğine başvurun."
-
-#: includes/updater/class-flxu-signature.php
-#, php-format
-msgid "The FluxWP signature of %1$s %2$s does not match the downloaded file, so it was not installed. The package may have been changed on the way or on the server. Contact FluxWP support."
-msgstr "%1$s %2$s için FluxWP imzası indirilen dosyayla uyuşmuyor, bu yüzden kurulmadı. Paket yolda ya da sunucuda değiştirilmiş olabilir. FluxWP desteğine başvurun."

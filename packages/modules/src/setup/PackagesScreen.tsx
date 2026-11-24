@@ -124,9 +124,9 @@ function Packages() {
   });
 
   const fail = (e: unknown) => setNotice({ kind: 'error', text: errorText(e, t('The action could not be completed.')) });
-  const afterChange = () => {
+  const afterChange = (restart = false) => {
     host.refreshCounts?.();
-    return refresh();
+    return refresh(restart);
   };
 
   const check = useFlxMutation(FlxSetupCheck, {
@@ -263,18 +263,21 @@ function Packages() {
       setSelected(new Set());
       setBulkOp('');
       setNotice({ kind: p.failed?.length ? 'warning' : 'success', text: p.summary ?? '' });
-      void afterChange();
+      void afterChange(true);
     },
     onError: fail,
   });
   const auto = useFlxMutation(FlxSetupAutoUpdateSet, {
-    onSuccess: (r) => (r.flxSetupAutoUpdateSet?.errors.length ? fail(new Error(r.flxSetupAutoUpdateSet.errors[0]?.message)) : void afterChange()),
+    onSuccess: (r) => (r.flxSetupAutoUpdateSet?.errors.length ? fail(new Error(r.flxSetupAutoUpdateSet.errors[0]?.message)) : void afterChange(true)),
     onError: fail,
   });
 
   const applyBulk = () => {
-    const { slugs, wpKeys } = split([...selected].filter((k) => byKey.get(k)?.canManage));
     const op = bulkOp.toUpperCase() as 'ACTIVATE' | 'DEACTIVATE' | 'DELETE' | 'AUTO_ON' | 'AUTO_OFF';
+    // Automatic updates exist only for installed packages: rows still to be installed are left out, not reported as skipped.
+    const isAuto = op === 'AUTO_ON' || op === 'AUTO_OFF';
+    const { slugs, wpKeys } = split([...selected].filter((k) => byKey.get(k)?.canManage && (!isAuto || byKey.get(k)?.installed)));
+    if (!slugs.length && !wpKeys.length) return setNotice({ kind: 'warning', text: t('Nothing to do.') });
     const go = () => manage.mutate({ input: { op, slugs, wpKeys } });
     if (op === 'DELETE') {
       setConfirm({ text: t('Delete these packages from the site? Their files will be removed. %s', ''), action: t('Delete'), danger: true, run: go });

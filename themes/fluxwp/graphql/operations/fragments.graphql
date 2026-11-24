@@ -35,6 +35,16 @@ fragment FlxThemeSettingsFields on FlxThemeSettings {
   activeCardAvailable
   canEditScripts
   presetsUrl
+  authStyle
+  authLogo
+  authTitle
+  authTitleDefault
+  authText
+  authImage
+  authImageUrl
+  authBadge
+  authPanelTitle
+  authPanelText
   campaigns {
     databaseId
     title

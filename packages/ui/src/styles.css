@@ -407,7 +407,11 @@ input:is([type=checkbox],[type=radio])[type=checkbox][role=switch][aria-invalid=
 .flx-page__title p{margin:2px 0 0;color:var(--flux-text-muted);font-size:13px}
 .flx-page__actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-left:auto}
 .flx-page__body{min-width:0}
-.flx-page__body table{max-width:100%}
+/* Ortak tablo davranışı: sütunlar harf harf sıkışmaz, taşan tablo sayfayı değil yalnız kendi sarmalayıcısını kaydırır.
+   (.flx-page'in overflow-wrap:anywhere'i tablo hücrelerinde min-content'i 1 harfe düşürüyordu.) */
+.flx-page table{overflow-wrap:normal;word-break:normal}
+.flx-page th{white-space:nowrap}
+.flx-page :where(div,section,figure):has(>table){overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}
 .flx-tabs{display:flex;gap:4px;border-bottom:1px solid var(--flux-border);margin:0 0 16px;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;-webkit-overflow-scrolling:touch;min-width:0}
 .flx-tabs>.flx-tab{flex:none;display:inline-flex;align-items:center;gap:6px;padding:8px 14px;margin:0 0 -1px;border:0;border-bottom:2px solid transparent;box-shadow:none;min-height:0;height:auto;line-height:1.4;text-decoration:none;border-radius:10px 10px 0 0;background:transparent;color:var(--flux-text-muted);font:inherit;font-size:14px;font-weight:600;white-space:nowrap;cursor:pointer}
 .flx-tabs>.flx-tab:hover{background:var(--flux-surface2);color:var(--flux-text)}

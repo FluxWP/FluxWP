@@ -199,6 +199,7 @@ Zorunlu değil. Servis kapalıysa, silinmişse ya da secret boşsa istemciler po
 - **Kontrol:** `docker compose exec worker wp flx realtime status` ve `wp flx realtime test` (WordPress → Redis → realtime).
 - Giriş: istemci WordPress'ten 60 saniyelik, tek kullanımlık bir ticket alır ve WebSocket'in ilk mesajında gönderir (URL'de asla). Çıkış, rol ve şifre değişikliği kullanıcının açık bağlantılarını kapatır.
 - Paket geliştiricileri için: `flx-realtime.php` mu-plugin'inde `flx_realtime_publish()`, `flx_realtime_online()` ve `flx_realtime_topics` filtresi var; başlığına bak.
+- **Ziyaretçiler (giriş yapmamış):** aynı sunucu site ziyaretçilerine de hizmet verir; biletleri yalnız WordPress'in yazdığı konuları taşır (kullanıcı ve yetki yok, aynı anda `RT_MAX_VISITORS` soket, varsayılan 300). Ziyaretçiyi kendiniz doğruladıktan sonra `flx_realtime_visitor_ticket( array( 'chatbot.conv.42' ) )`; yalnız o soketlere ulaşmak için `flx_realtime_publish( $konu, $veri, array( 'topic' => $konu ) )`. Herkese açık konular (`public.*`, ör. canlı bağış toplamı) `flx_realtime_public_topics` filtresiyle listelenir; sonra herkes `POST /wp-json/flx-realtime/v1/public-ticket` `{ "topics": [...] }` ile bilet alabilir (adres başına dakikada 30). Herkese açık sinyalin içeriği herkesin görebileceği türden olmalı. Flux AI Chatbot widget'ı yanıtları anında göstermek için bunu kullanır.
 
 ## Yedek ve geri yükleme
 

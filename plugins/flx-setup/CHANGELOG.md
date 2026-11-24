@@ -1,7 +1,28 @@
 # Değişiklikler
 
-## 1.6.6
+## 1.6.12
 - Telemetri gönderimi başarılı olunca `flxk_telemetry_sent` eylemi çalışır (Flux Admin duyuru sayaçlarını sıfırlar). Gönderilen veri izin kutusuna bağlı kalır.
+
+## 1.6.11
+- Paketler › toplu etkinleştir/devre dışı bırak/sil/otomatik güncelleme işlemi `flxSetupManage` bir eklentinin kendi etkinleştirme, devre dışı bırakma ya da silme kodu hata verince "Internal server error" ile çöküyordu. Artık her paket ayrı korunur: hata veren paket "başarısız" listesine girer, diğerleri sürer; hata kaydı error_log'a yazılır. Beklenmeyen bir hata olursa anlamlı mesajla döner ("İşlem tamamlanamadı: …"). Eklenti kodunun yazdığı çıktı yanıtı bozmaz.
+
+## 1.6.10
+- Paketler › toplu "Otomatik güncellemeyi aç/kapat": işlemden sonra tablo, işlemden önce başlamış eski bir yenilemeye takılmadan yeni durumu gösterir (önceden açılışta çalışan güncelleme kontrolü sırasında satırlar eski haliyle kalıyordu). Kurulu olmayan satırlar seçimden çıkarılır, "atlandı" listesini şişirmez; sonuç mesajı görünür alana kaydırılır. Site genelinde otomatik güncelleme kapalıysa (AUTOMATIC_UPDATER_DISABLED vb.) hepsi tek tek atlanmak yerine nedeniyle birlikte hata verir.
+
+## 1.6.9
+- Toplu güncellemede "Çeviriler" adımı kurulumdan sonra "WordPress.org hâlâ daha yeni çeviri bildiriyor" diye hata veriyordu: çeviri paketi yazılmış olsa da .po tarih başlığı önerilen tarihle eşleşmeyince wordpress.org aynı çeviriyi yeniden öneriyordu. Başarıyla kurulan çeviri anımsanır, aynı öneri hata sayılmaz ve satırda "güncelleme var" kalmaz.
+- Çeviriler satırında açıklama iki kez görünüyordu (alt başlık ve kaynak notu); yalnız biri gösterilir.
+
+## 1.6.8
+- Ayarlar › "FluxWP hesabınızı bağlayın" kartı çarpıyla gizlenir; seçilen süre dolunca (varsayılan 7 gün; 1, 3, 7, 14, 30 gün ya da bir daha gösterme) yeniden görünür. Süre kartın altından değişir, gizliyken "Şimdi göster" var. Gizleme kullanıcı başına, süre site geneli. Bağlı sitede kart gizlenmez. GraphQL `flxSetupCloudCard` mutation'ı, `FlxSetupCloud.hidden` / `hideDays` alanları.
+- "FluxWP ile giriş yap" isteği 10 yerine 30 dakika geçerli: fluxwp.com'da kaydolup e-postayı doğrulayan kişi aynı istekle döner.
+
+## 1.6.7
+- Kurulum sihirbazı: adımların içinde dikey kaydırma. Hata listesi ya da düşük ekran yüksekliğinde son adımın alt kısmı kesiliyor, sayfa kaymıyordu.
+- Sihirbazda paket indirme HTTP 429/408/425/5xx ile düşerse paket 20 sn ve 45 sn sonra yeniden denenir (eskiden ~7 sn içinde 3 deneme, sonra pes). Art arda indirmede kaynağın hız sınırına takılan paketler artık çoğunlukla tamamlanır.
+
+## 1.6.6
+- Toplu güncellemede (2+ paket) yedek işlemin başında tek seferde alınır: ilk güncelleme adımı plandaki tüm paket klasörlerini ve veritabanını tek yedeğe yazar, sonraki adımlar yedek almaz. Eskiden her paket yedeğe ek olarak ekleniyordu ve her ekleme zip'i baştan yazdığı için yavaşlıyordu; 180 sn'lik birleştirme penceresi dolarsa veritabanı yeniden yedekleniyordu. Geri dönüş aynı: sorunlu paket yalnız kendi klasörüne, o yedekten döner (veritabanı değişmez). Yedek alınamazsa ya da kapsam dışıysa her paket kendi yedeğine döner (eski davranış). Geçmiş satırlarındaki yedek kimliği ve yedeğin paket sürümleri doğru yazılır.
 
 ## 1.6.5
 - Güvenlik: paket simgeleri ortak denetimli istekle (flx-brand `flx_safe_remote_get`) indirilir: katalogdan gelen adres iç ağa çözülüyorsa istek atılmaz.

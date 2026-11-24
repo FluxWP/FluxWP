@@ -63,6 +63,20 @@ $p = json_decode( base64_decode( strtr( $body, '-_', '+/' ) ), true );
 $ok( 1 === $p['uid'] && array( 'manage_options' ) === $p['caps'] && $p['exp'] > time() && $p['exp'] <= time() + 60 && strlen( $p['jti'] ) === 32, 'ticket payload' );
 $ok( '' === flx_realtime_ticket( 0 ), 'no ticket when signed out' );
 
+// Visitors: topic audience and the visitor ticket (no user, no capabilities, only listed topics).
+$ok( flx_realtime_publish( 'chatbot.conv.42', array(), array( 'topic' => 'chatbot.conv.42' ) ), 'visitor topic queued' );
+$ok( flx_realtime_publish( 'public.donate.total', array( 'total' => 5 ) ), 'public topic queued' );
+$ok( ! flx_realtime_publish( 'x.y', array(), array( 'topic' => 'Bad Topic' ) ), 'bad visitor topic refused' );
+$q = array_map( 'json_decode', array_values( $GLOBALS['flx_realtime_queue'] ), array_fill( 0, count( $GLOBALS['flx_realtime_queue'] ), true ) );
+$ok( array( 'topic' => 'chatbot.conv.42' ) === $q[0]['aud'] && array( 'topic' => 'public.donate.total' ) === $q[1]['aud'], 'visitor audience is the topic, not a capability' );
+$GLOBALS['flx_realtime_queue'] = array();
+$vt = flx_realtime_visitor_ticket( array( 'chatbot.conv.42', 'Bad Topic' ) );
+[ $v, $body, $sig ] = explode( '.', $vt );
+$ok( hash_equals( flx_realtime_b64url( hash_hmac( 'sha256', "v1.$body", $secret, true ) ), $sig ), 'visitor ticket signature' );
+$p = json_decode( base64_decode( strtr( $body, '-_', '+/' ) ), true );
+$ok( 0 === $p['uid'] && array( 'chatbot.conv.42' ) === $p['topics'] && ! isset( $p['caps'] ) && $p['exp'] <= time() + 60, 'visitor ticket payload' );
+$ok( '' === flx_realtime_visitor_ticket( array( 'Bad Topic' ) ), 'no visitor ticket without a valid topic' );
+
 // Presence.
 flx_realtime_redis( array( array( 'SET', 'flx:rt:phptest:online:8', '1', 'EX', '5' ) ) );
 $ok( array( 8 ) === flx_realtime_online( array( 7, 8, 8 ) ), 'online users' );

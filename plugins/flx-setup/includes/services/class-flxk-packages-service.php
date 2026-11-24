@@ -483,7 +483,7 @@ final class FLXK_Packages_Service {
 			'canManage'   => $third,
 			'canVersion'  => false,
 			'versions'    => array(),
-			'description' => FLXK_Val::str( $r['desc'] ?? ( $third ? '' : $sub ) ),
+			'description' => FLXK_Val::str( $r['desc'] ?? ( $third || 'wp_lang' === $kind ? '' : $sub ) ),
 			'website'     => esc_url_raw( FLXK_Val::str( $r['web'] ?? '' ), array( 'https', 'http' ) ),
 			'images'      => array(),
 			'info'        => self::info_rows(
@@ -692,6 +692,7 @@ final class FLXK_Packages_Service {
 				'version' => '',
 			);
 		}
+		FLXU_Guard::remember_plan( $steps );
 		return $steps;
 	}
 
@@ -810,6 +811,14 @@ final class FLXK_Packages_Service {
 			}
 		}
 
+		if ( 'auto_on' === $op || 'auto_off' === $op ) {
+			// Everything would be skipped one by one with a misleading summary: say why once.
+			$types = array_unique( array_column( $items, 'type' ) );
+			if ( $types && ! array_filter( $types, static fn( $t ): bool => wp_is_auto_update_enabled_for_type( 'theme' === $t ? 'theme' : 'plugin' ) ) ) {
+				return new WP_Error( 'flxk_auto', __( 'Automatic updates are turned off for this site.', 'flx-setup' ), array( 'graphql_code' => 'CONFLICT' ) );
+			}
+		}
+
 		$done   = 0;
 		$skip   = array();
 		$fail   = array();
@@ -822,66 +831,25 @@ final class FLXK_Packages_Service {
 			$id   = $it['id'];
 			$name = $it['name'];
 			$type = 'theme' === $it['type'] ? 'theme' : 'plugin';
-			if ( '' === $id ) {
-				$skip[] = $name;
-				continue;
+			// A plugin's own activation/deactivation hook or theme deletion can throw: that package fails, the rest go on.
+			ob_start();
+			try {
+				$res = self::manage_one( $op, $type, $id, $auto, $del_pl );
+			} catch ( \Throwable $e ) {
+				error_log( 'flx-setup manage ' . $op . ' ' . $id . ': ' . $e->getMessage() ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+				$res = 'fail';
 			}
-			if ( 'auto_on' === $op || 'auto_off' === $op ) {
-				if ( ! current_user_can( 'theme' === $type ? 'update_themes' : 'update_plugins' ) || ! wp_is_auto_update_enabled_for_type( $type ) ) {
-					$skip[] = $name;
-					continue;
-				}
-				$on  = in_array( $id, $auto[ $type ], true );
-				$set = 'auto_on' === $op;
-				if ( $on === $set ) {
-					$skip[] = $name;
-					continue;
-				}
-				$auto[ $type ] = $set ? array_merge( $auto[ $type ], array( $id ) ) : array_values( array_diff( $auto[ $type ], array( $id ) ) );
-				++$done;
-				continue;
-			}
-			if ( 'theme' === $type ) {
-				$theme = wp_get_theme( $id );
-				if ( 'delete' !== $op || ! $theme->exists() || ! current_user_can( 'delete_themes' ) || in_array( $id, array( get_stylesheet(), get_template() ), true ) ) {
-					$skip[] = $name;
-					continue;
-				}
-				if ( true === delete_theme( $id ) ) {
-					++$done;
-				} else {
-					$fail[] = $name;
-				}
-				continue;
-			}
-			if ( plugin_basename( FLXK_FILE ) === $id && 'activate' !== $op ) {
-				$skip[] = $name;
-				continue;
-			}
-			if ( 'activate' === $op ) {
-				if ( ! current_user_can( 'activate_plugins' ) || is_plugin_active( $id ) ) {
-					$skip[] = $name;
-					continue;
-				}
-				if ( is_wp_error( activate_plugin( $id ) ) ) {
-					$fail[] = $name;
-				} else {
-					++$done;
-				}
-			} elseif ( 'deactivate' === $op ) {
-				if ( ! current_user_can( 'activate_plugins' ) || ! is_plugin_active( $id ) ) {
-					$skip[] = $name;
-					continue;
-				}
-				deactivate_plugins( $id );
-				++$done;
-			} else {
-				if ( ! current_user_can( 'delete_plugins' ) ) {
-					$skip[] = $name;
-					continue;
-				}
+			ob_end_clean();
+			if ( 'queued' === $res ) {
 				$del_pl[ $id ] = $name;
+			} elseif ( 'done' === $res ) {
+				++$done;
+			} elseif ( 'skip' === $res ) {
+				$skip[] = $name;
+			} else {
+				$fail[] = $name;
 			}
+			continue;
 		}
 		if ( 'auto_on' === $op || 'auto_off' === $op ) {
 			update_site_option( 'auto_update_plugins', array_values( array_unique( $auto['plugin'] ) ) );
@@ -889,8 +857,16 @@ final class FLXK_Packages_Service {
 		}
 		if ( $del_pl ) {
 			// Deactivate first, then delete (WordPress does not delete an active plugin).
-			deactivate_plugins( array_keys( $del_pl ), true );
-			if ( true === delete_plugins( array_keys( $del_pl ) ) ) {
+			ob_start();
+			try {
+				deactivate_plugins( array_keys( $del_pl ), true );
+				$deleted = true === delete_plugins( array_keys( $del_pl ) );
+			} catch ( \Throwable $e ) {
+				error_log( 'flx-setup manage delete: ' . $e->getMessage() ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+				$deleted = false;
+			}
+			ob_end_clean();
+			if ( $deleted ) {
 				$done += count( $del_pl );
 			} else {
 				$fail = array_merge( $fail, array_values( $del_pl ) );
@@ -902,6 +878,61 @@ final class FLXK_Packages_Service {
 			'skip' => $skip,
 			'fail' => $fail,
 		);
+	}
+
+	/**
+	 * One package of a bulk action.
+	 *
+	 * @param string                           $op     One of MANAGE_OPS.
+	 * @param 'plugin'|'theme'                 $type   Package type.
+	 * @param string                           $id     Plugin file or theme folder.
+	 * @param array<string,list<string>>       $auto   Automatic-update lists (changed in place).
+	 * @param array<string,string>             $del_pl Plugins to delete after the loop (id => name).
+	 * @return string done|skip|fail
+	 */
+	private static function manage_one( string $op, string $type, string $id, array &$auto, array &$del_pl ): string {
+		if ( '' === $id ) {
+			return 'skip';
+		}
+		if ( 'auto_on' === $op || 'auto_off' === $op ) {
+			if ( ! current_user_can( 'theme' === $type ? 'update_themes' : 'update_plugins' ) || ! wp_is_auto_update_enabled_for_type( $type ) ) {
+				return 'skip';
+			}
+			$set = 'auto_on' === $op;
+			if ( in_array( $id, $auto[ $type ], true ) === $set ) {
+				return 'skip';
+			}
+			$auto[ $type ] = $set ? array_merge( $auto[ $type ], array( $id ) ) : array_values( array_diff( $auto[ $type ], array( $id ) ) );
+			return 'done';
+		}
+		if ( 'theme' === $type ) {
+			$theme = wp_get_theme( $id );
+			if ( 'delete' !== $op || ! $theme->exists() || ! current_user_can( 'delete_themes' ) || in_array( $id, array( get_stylesheet(), get_template() ), true ) ) {
+				return 'skip';
+			}
+			return true === delete_theme( $id ) ? 'done' : 'fail';
+		}
+		if ( plugin_basename( FLXK_FILE ) === $id && 'activate' !== $op ) {
+			return 'skip';
+		}
+		if ( 'activate' === $op ) {
+			if ( ! current_user_can( 'activate_plugins' ) || is_plugin_active( $id ) ) {
+				return 'skip';
+			}
+			return is_wp_error( activate_plugin( $id ) ) ? 'fail' : 'done';
+		}
+		if ( 'deactivate' === $op ) {
+			if ( ! current_user_can( 'activate_plugins' ) || ! is_plugin_active( $id ) ) {
+				return 'skip';
+			}
+			deactivate_plugins( $id );
+			return 'done';
+		}
+		if ( ! current_user_can( 'delete_plugins' ) ) {
+			return 'skip';
+		}
+		$del_pl[ $id ] = $id;
+		return 'queued';
 	}
 
 	/**

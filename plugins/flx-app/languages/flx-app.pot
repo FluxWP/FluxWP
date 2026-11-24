@@ -430,6 +430,24 @@ msgstr ""
 msgid "Notifications could not be turned on"
 msgstr ""
 
+msgid "This browser"
+msgstr ""
+
+msgid "Notification types"
+msgstr ""
+
+msgid "Applies to all your devices, also the mobile app."
+msgstr ""
+
+msgid "No notification types are available yet."
+msgstr ""
+
+msgid "Could not save, try again."
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
 msgid "Browser notifications (Web Push)"
 msgstr ""
 

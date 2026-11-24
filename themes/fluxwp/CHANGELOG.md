@@ -1,5 +1,30 @@
 # Değişiklikler
 
+## 0.10.1
+- "Google ile giriş yap" (Site Kit) butonu Kayıt Ol sekmesinde de çıkar ("Google ile kaydol" metniyle). Giriş formunda buton yoksa (Site Kit bağlı değilse) kayıtta da çıkmaz.
+- Google ile giriş sürerken formun üstünde bilgi kartı ve İptal butonu: Google penceresi açıkken "hesabınızı seçin (açılmadıysa açılır pencerelere izin verin)", giriş sunucuya gidince "Google ile giriş yapılıyor, hesabınız yoksa oluşturuluyor", 25 sn'de sonuç gelmezse "uzun sürüyor". İptal isteği durdurur, forma geri döner.
+
+## 0.10.0
+- Giriş penceresi tasarımı seçilebilir (Tema Ayarları › Giriş penceresi; ön ayarda `flx_ayarlar.auth_*`):
+  - **Kart** (varsayılan): üstte başlık ve isteğe bağlı kısa metin, istenirse header logosu; Google butonu formun üstünde, altında "veya e-posta ile" ayracı.
+  - **Resimli panel**: solda fotoğraf, üstünde etiket, başlık ve metin; sağda form (Google altta). Telefonda resim formun üstünde ince bir şerit olur. Resim srcset ile büyük boydan gelir (retina'da bulanık değil); resim yoksa site renginde panel.
+  - Metinler Flux Lang'de dile göre girilebilir (`tema_auth_title`, `tema_auth_text`, `tema_auth_badge`, `tema_auth_panel_title`, `tema_auth_panel_text`). GraphQL: `FlxThemeSettings.auth*`, `flxThemeSettingsSave` girdisi, `FlxThemeAuthStyle`.
+- Giriş penceresi anında açılır: "Yükleniyor…" yazısı yerine formun iskeleti (sekmeler, alanlar, buton, Google) görünür; Hesabım / Giriş bağlantısının üstüne gelince, dokununca ya da klavyeyle odaklanınca pencere arkada önden yüklenir, tıklayınca form hazır gelir. Sayfa açılışında ek istek yok.
+
+## 0.9.10
+- Giriş penceresinde "Google ile giriş yap" butonu yeniden çıkıyor: pencere, Site Kit Google script'ini kaydetmeden önce sayfayı kesiyordu ("veya" altı boş kalıyordu). Pencere artık `template_redirect` 99'da basılıyor.
+- Kayıt ve ödeme formundaki gizlilik metni ("Your personal data will be used…") dile göre çıkıyor: WooCommerce ayarında İngilizce varsayılan kalmışsa o anki dilin WooCommerce çevirisi gösterilir; elle yazılmış metne dokunulmaz.
+
+## 0.9.9
+- Giriş penceresi açan sayfanın temasını kullanır: koyu/açık sınıfları ve sayfanın renk değişkenleri pencereye aynen geçer (ön ayarın koyu modu dahil). Etiketler, alanlar, sekmeler ve buton tema renginde; reCAPTCHA rozeti pencerede gizli; Google butonu sonradan çizilince pencere yüksekliği yeniden ölçülür.
+
+## 0.9.8
+- Giriş penceresi: header'daki "Giriş yap" / Hesabım bağlantısı (ve WordPress giriş bağlantıları) sayfadan ayrılmadan ortada açılan pencerede Hesabım'ın giriş/kayıt formunu gösterir; Giriş / Kayıt sekmeleri, Google ile giriş ve e-posta doğrulaması aynı form. Giriş tamamlanınca ziyaretçi bulunduğu sayfaya (ya da bağlantının `redirect_to` adresine) döner, hatalı şifre pencerede kalır. JS yoksa ya da çerçeve açılamazsa bağlantı eskisi gibi Hesabım'a gider. Pencere içeriği `/my-account/?flx_auth=1`.
+
+## 0.9.7
+- Hesap / sepet / ödeme başlık alanı ön ayardan değiştirilebilir: yeni filtre `flx_wc_hero` (başlık, açıklama, simge, üst etiket; bağlam ve Hesabım uç noktası ile).
+- Simge setine `site` ve `plug` eklendi; ön ayar ya da eklenti `flx_wc_icons` filtresiyle yeni simge ekleyebilir (pano kartı simgeleri için).
+
 ## 0.9.6
 - Menü altındaki hover/aktif çizgisi tek renk: tema ana rengi (`--flx-nav-line` ile ön ayar değiştirebilir); eski ana renk → yaprak rengi geçişi kalktı.
 

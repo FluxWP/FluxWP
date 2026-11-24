@@ -166,6 +166,7 @@ return array(
   'Required pages' => 'Erforderliche Seiten',
   'Server cron' => 'Server-Cron',
   'Log In' => 'Anmelden',
+  'Log in or sign up' => 'Anmelden oder registrieren',
   'Log in' => 'Melden Sie sich an',
   'Privacy Agreement' => 'Datenschutzvereinbarung',
   'Volunteers' => 'Freiwillige',

@@ -493,6 +493,9 @@ msgstr "Gerçek cron"
 msgid "Log In"
 msgstr "Giriş Yap"
 
+msgid "Log in or sign up"
+msgstr "Giriş yap veya hesap oluştur"
+
 msgid "Log in"
 msgstr "Giriş yap"
 
@@ -3378,3 +3381,81 @@ msgstr "Eski tema klasör adı (flxThemeMigrationSources.stylesheet)."
 
 msgid "What was done."
 msgstr "Yapılanlar."
+
+msgid "Sign-in window: heading"
+msgstr "Giriş penceresi: başlık"
+
+msgid "Sign-in window: text under the heading"
+msgstr "Giriş penceresi: başlık altı metni"
+
+msgid "Sign-in window: picture label"
+msgstr "Giriş penceresi: resim etiketi"
+
+msgid "Sign-in window: picture title"
+msgstr "Giriş penceresi: resim başlığı"
+
+msgid "Sign-in window: picture text"
+msgstr "Giriş penceresi: resim metni"
+
+msgid "Flux GraphQL is not active, so FluxWP screens cannot open."
+msgstr "Flux GraphQL etkin değil, bu yüzden FluxWP ekranları açılamıyor."
+
+msgid "or with email"
+msgstr "veya e-posta ile"
+
+msgid "Sign-in window layout."
+msgstr "Giriş penceresi düzeni."
+
+msgid "Single column card."
+msgstr "Tek sütunlu kart."
+
+msgid "Picture panel on the left, form on the right."
+msgstr "Solda resimli panel, sağda form."
+
+msgid "Show the header logo at the top of the sign-in window."
+msgstr "Giriş penceresinin üstünde header logosu gösterilir."
+
+msgid "Sign-in window heading; empty uses the translated default."
+msgstr "Giriş penceresi başlığı; boşsa çevrilmiş varsayılan kullanılır."
+
+msgid "Translated default heading of the sign-in window."
+msgstr "Giriş penceresinin çevrilmiş varsayılan başlığı."
+
+msgid "Line under the sign-in window heading; empty shows none."
+msgstr "Giriş penceresi başlığının altındaki satır; boşsa gösterilmez."
+
+msgid "Picture of the split layout (attachment ID); 0 shows a colour panel."
+msgstr "Resimli düzenin resmi (ortam ID'si); 0 renkli panel gösterir."
+
+msgid "Preview URL of the picture; null without one."
+msgstr "Resmin önizleme adresi; resim yoksa null."
+
+msgid "Small label on the picture; empty hides it."
+msgstr "Resmin üstündeki küçük etiket; boşsa gizlenir."
+
+msgid "Big line on the picture."
+msgstr "Resmin üstündeki büyük satır."
+
+msgid "Sentence on the picture."
+msgstr "Resmin üstündeki cümle."
+
+msgid "Line under the heading; empty shows none."
+msgstr "Başlığın altındaki satır; boşsa gösterilmez."
+
+msgid "Picture attachment ID; 0 removes it."
+msgstr "Resmin ortam ID'si; 0 kaldırır."
+
+msgid "Small label on the picture."
+msgstr "Resmin üstündeki küçük etiket."
+
+msgid "Choose your account in the Google window. If it does not open, allow pop-ups for this site."
+msgstr "Google penceresinde hesabınızı seçin. Pencere açılmadıysa bu sitede açılır pencerelere izin verin."
+
+msgid "Signing you in with Google. If you have no account yet, we are creating one."
+msgstr "Google ile giriş yapılıyor. Hesabınız yoksa sizin için oluşturuluyor."
+
+msgid "This is taking longer than usual. You can wait a little more or cancel and try again."
+msgstr "Bu her zamankinden uzun sürüyor. Biraz daha bekleyebilir ya da iptal edip tekrar deneyebilirsiniz."
+
+msgid "Cancel"
+msgstr "İptal"

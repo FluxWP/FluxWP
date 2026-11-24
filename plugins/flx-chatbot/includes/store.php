@@ -49,11 +49,15 @@ function flxcb_conversation_by_flxc( $chat_id ) {
  * the inbox is open to flxcb_reply holders and to Flux Chat agents (flxc_use); each gets the one it can hear.
  * Without Flux Realtime this does nothing and panels poll as before.
  */
-function flxcb_realtime_ping() {
+function flxcb_realtime_ping( $conv_id = 0, $to_visitor = false ) {
 	if ( function_exists( 'flx_realtime_publish' ) ) {
 		$args = array( 'inv' => array( 'gql', 'FlxChatbot' ) );
 		flx_realtime_publish( 'chatbot.inbox', array(), $args );
 		flx_realtime_publish( 'chatbot.staff.inbox', array(), $args );
+		// The visitor's open widget (ticket for this one conversation) polls at once: a reply or a status change.
+		if ( $to_visitor && $conv_id ) {
+			flx_realtime_publish( 'chatbot.conv.' . (int) $conv_id, array(), array( 'topic' => 'chatbot.conv.' . (int) $conv_id, 'inv' => array() ) );
+		}
 	}
 }
 add_filter(
@@ -107,7 +111,7 @@ function flxcb_update_conversation( $id, array $fields ) {
 		return;
 	}
 	$wpdb->update( flxcb_table( 'conversations' ), $fields, array( 'id' => (int) $id ) );
-	flxcb_realtime_ping();
+	flxcb_realtime_ping( $id, true );
 	if ( array_intersect_key( $fields, array( 'name' => 1, 'email' => 1, 'phone' => 1 ) ) ) {
 		do_action( 'flxcb_contact_changed', (int) $id, $fields );
 	}
@@ -183,7 +187,7 @@ function flxcb_add_message( array $m ) {
 	}
 	$row = flxcb_get_message( $id );
 	do_action( 'flxcb_message_added', $row );
-	flxcb_realtime_ping();
+	flxcb_realtime_ping( $m['conv_id'], 'visitor' !== $m['role'] );
 	return $id;
 }
 

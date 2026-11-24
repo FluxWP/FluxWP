@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.10.1
+- Yönetim çubuğundaki **Bildirimler** artık düğme değil pencere açar: bu tarayıcı için bir anahtar ve her bildirim türü (bekleyen yorumlar, görevler vb.) için ayrı Açık/Kapalı anahtarı; liste kaydırılır, değişiklik hemen kaydedilir (mobil uygulamadaki tercihlerle aynı). "Bildirimler açılamadı" yazısı çubukta kalmaz, pencerede gösterilir. Ortak flx-brand pencere ve anahtar stilleri kullanılır.
+
 ## 0.10.0
 - Tarayıcı bildirimleri (Web Push): yönetim çubuğunda "Bildirimler" ile her kullanıcı bu tarayıcıyı açar; bildirimler site kapalıyken de gelir (masaüstü tarayıcılar, Android, ana ekrana eklenmiş iOS PWA). `flxapp_push` ile giden her bildirim mobil uygulamanın yanında abone tarayıcılara da gider. Ek kütüphane yok (VAPID + aes128gcm, PHP OpenSSL); abonelik açıldığı WordPress oturumuna bağlı, çıkışta durur; yalnız bilinen push servislerine istek atılır (`flxapp_webpush_hosts`).
 - Docker sitelerde (FluxWP Realtime servisi) canlı bağlantı: yeni bildirim olayı açık panele anında düşer, `/config` `transport.realtime` verir; ekranı önünde açık olan kullanıcıya telefon/tarayıcı push'u ikinci kez gönderilmez. Realtime yoksa her şey eskisi gibi (polling).

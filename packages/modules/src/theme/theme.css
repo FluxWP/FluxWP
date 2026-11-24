@@ -77,3 +77,5 @@
 .flxt-row .flxt-msg,.flxt-row .flxt-act{grid-column:2}
 .flxt-fixlog{display:block;overflow-x:auto}
 }
+
+.flxt-auth-img { display: block; width: min(360px, 100%); aspect-ratio: 4 / 3; object-fit: cover; border-radius: 12px; margin-bottom: 8px; }

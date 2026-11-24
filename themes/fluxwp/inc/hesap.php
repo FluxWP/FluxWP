@@ -114,6 +114,45 @@ $flx_donus_input = function () {
 add_action( 'woocommerce_login_form_end', $flx_donus_input );
 add_action( 'woocommerce_register_form_end', $flx_donus_input );
 
+/*
+ * Google ile giriş (Site Kit) butonu Kayıt Ol sekmesinde de: Site Kit butonu yalnız giriş formuna basar
+ * (woocommerce_login_form_start). Giriş formunda bastıysa aynısını "Google ile kaydol" metniyle kayıt formuna da bas.
+ * Hesap yoksa Google girişi zaten hesap açar (WP ya da WooCommerce kaydı açıkken), sekme fark etmez.
+ */
+add_action(
+	'woocommerce_login_form_start',
+	static function () {
+		ob_start();
+	},
+	0
+);
+add_action(
+	'woocommerce_login_form_start',
+	static function () {
+		$html = (string) ob_get_clean();
+		echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Başka eklentilerin zaten bastığı çıktı.
+		if ( str_contains( $html, 'googlesitekit-sign-in-with-google__frontend-output-button' ) ) {
+			$GLOBALS['flx_siwg_login'] = true;
+		}
+	},
+	PHP_INT_MAX
+);
+add_action(
+	'woocommerce_register_form_start',
+	static function () {
+		if ( empty( $GLOBALS['flx_siwg_login'] ) || is_user_logged_in() ) {
+			return;
+		}
+		do_action(
+			'googlesitekit_render_sign_in_with_google_button',
+			array(
+				'class' => 'woocommerce-form-row form-row',
+				'text'  => 'signup_with',
+			)
+		);
+	}
+);
+
 add_filter(
 	'woocommerce_login_redirect',
 	function ( $to ) {
@@ -128,6 +167,167 @@ add_filter(
 		return $d ? $d : $to;
 	}
 );
+
+/* ---------- Giriş penceresi: Hesabım'ın giriş/kayıt formu sayfanın ortasında (siteden ayrılmadan) ---------- */
+/*
+ * Header'daki "Giriş yap" (Hesabım bağlantısı ya da WordPress giriş bağlantısı) tıklanınca main.js bir pencere açar
+ * ve içine Hesabım'ı ?flx_auth=1 ile yükler. Bu adreste sayfa yalnız WooCommerce giriş/kayıt formunu basar: aynı
+ * form, aynı Google butonu, aynı e-posta doğrulaması. Giriş/kayıt başka bir adrese yönlenince pencere o adrese gider.
+ */
+
+/** Hesabım ?flx_auth=1 ile, pencere içinde açılıyor. */
+function flx_auth_frame_mi() {
+	return isset( $_GET['flx_auth'] ) && function_exists( 'is_account_page' ) && is_account_page(); // phpcs:ignore WordPress.Security.NonceVerification
+}
+
+add_action(
+	'template_redirect',
+	function () {
+		if ( ! flx_auth_frame_mi() ) {
+			return;
+		}
+		nocache_headers();
+		do_action( 'litespeed_control_set_nocache', 'flx auth window' ); // phpcs:ignore WordPress.NamingConventions.ValidHookName
+		if ( is_user_logged_in() ) { // Giriş tamam (ör. Google): pencereyi kapatıp hedef sayfaya git.
+			$to = flx_donus_hedefi();
+			$to = $to ? $to : wc_get_page_permalink( 'myaccount' );
+			echo '<!doctype html><meta charset="utf-8"><script>(window.top||window).location.replace(' . wp_json_encode( esc_url_raw( $to ) ) . ');</script>';
+			exit;
+		}
+		add_filter( 'show_admin_bar', '__return_false' );
+		add_filter(
+			'body_class',
+			function ( $c ) {
+				return array_merge( $c, array( 'flx-auth-frame', 'woocommerce-account', 'woocommerce-page' ) );
+			}
+		);
+		?>
+<!doctype html>
+<html <?php language_attributes(); ?>>
+<head>
+<meta charset="<?php bloginfo( 'charset' ); ?>">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+		<?php wp_head(); ?>
+</head>
+<body <?php body_class(); ?>>
+<script>
+/* Pencere, açan sayfanın temasını kullanır: koyu/açık sınıfları ve sayfanın renk değişkenleri (--flx-*, --wp--preset--*) aynen alınır. */
+( function () {
+	try {
+		var P = window.parent.document;
+		if ( P === document ) { return; }
+		var h = document.documentElement, b = document.body;
+		var dark = /(^|-)dark$/;
+		P.documentElement.classList.forEach( function ( c ) { if ( dark.test( c ) ) { h.classList.add( c ); } } );
+		P.body.classList.forEach( function ( c ) { if ( dark.test( c ) ) { b.classList.add( c ); } } );
+		h.classList.forEach( function ( c ) { if ( dark.test( c ) && ! P.documentElement.classList.contains( c ) ) { h.classList.remove( c ); } } );
+		b.classList.forEach( function ( c ) { if ( dark.test( c ) && ! P.body.classList.contains( c ) ) { b.classList.remove( c ); } } );
+		[ 'data-flxfw-theme', 'data-theme' ].forEach( function ( a ) { if ( P.documentElement.hasAttribute( a ) ) { h.setAttribute( a, P.documentElement.getAttribute( a ) ); } } );
+		var cs = window.parent.getComputedStyle( P.body );
+		for ( var i = 0; i < cs.length; i++ ) {
+			if ( 0 === cs[ i ].indexOf( '--' ) ) { b.style.setProperty( cs[ i ], cs.getPropertyValue( cs[ i ] ) ); }
+		}
+		h.style.colorScheme = window.parent.getComputedStyle( P.documentElement ).colorScheme || '';
+	} catch ( e ) {}
+} )();
+</script>
+<main class="flx-auth-frame__main"><?php echo do_shortcode( '[woocommerce_my_account]' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></main>
+<script>
+( function () {
+	var send = function () { if ( window.parent !== window ) { window.parent.postMessage( { flxAuthH: document.querySelector( '.flx-auth-frame__main' ).scrollHeight }, location.origin ); } };
+	if ( 'ResizeObserver' in window ) { new ResizeObserver( send ).observe( document.querySelector( '.flx-auth-frame__main' ) ); }
+	window.addEventListener( 'load', function () { send(); setTimeout( send, 800 ); setTimeout( send, 2500 ); } ); // Google butonu sonradan çizilir.
+} )();
+</script>
+		<?php wp_footer(); ?>
+</body>
+</html>
+		<?php
+		exit;
+	},
+	// 10'dan sonra: Site Kit "Sign in with Google" script'ini template_redirect 10'da kaydeder; daha önce çıkılırsa pencerede Google butonu çizilmez.
+	99
+);
+
+/* ---------- Kayıt / ödeme gizlilik metni dile göre ---------- */
+/*
+ * WooCommerce bu metni ayar olarak saklar; site İngilizce kurulduysa ayarda İngilizce varsayılan kalır ve her dilde
+ * İngilizce çıkar. Ayar hâlâ WooCommerce'ün varsayılanıysa o anki dilin WooCommerce çevirisi gösterilir; elle
+ * değiştirilmiş metne dokunulmaz.
+ */
+add_filter(
+	'woocommerce_get_privacy_policy_text',
+	function ( $text, $type ) {
+		$defaults = array(
+			'registration' => 'Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our [privacy_policy].',
+			'checkout'     => 'Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our [privacy_policy].',
+		);
+		if ( ! isset( $defaults[ $type ] ) || trim( (string) $text ) !== $defaults[ $type ] ) {
+			return $text;
+		}
+		$msg = 'registration' === $type
+			/* translators: %s privacy policy page name and link */
+			? __( 'Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our %s.', 'woocommerce' ) // phpcs:ignore WordPress.WP.I18n.TextDomainMismatch
+			/* translators: %s privacy policy page name and link */
+			: __( 'Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our %s.', 'woocommerce' ); // phpcs:ignore WordPress.WP.I18n.TextDomainMismatch
+		return sprintf( $msg, '[privacy_policy]' );
+	},
+	10,
+	2
+);
+
+/* ---------- Giriş penceresi tasarımı (Tema Ayarları › Giriş penceresi; ön ayar flx_ayarlar.auth_*) ---------- */
+
+/**
+ * Pencere başlığının çevrilmiş varsayılanı.
+ *
+ * @return string
+ */
+function flx_auth_title_default(): string {
+	return __( 'Welcome', 'fluxwp' );
+}
+
+/**
+ * Pencerenin düzeni ve metinleri (main.js pencereyi bununla çizer). Metinler Flux Lang ile dile göre gelir.
+ *
+ * @return array<string,mixed>
+ */
+function flx_auth_window_data() {
+	$style = 'split' === flx_ayar( 'auth_style' ) ? 'split' : 'card';
+	$title = trim( (string) flx_ayar( 'auth_title' ) );
+	$d     = array(
+		'style'   => $style,
+		'heading' => '' !== $title ? $title : flx_auth_title_default(),
+		'text'    => trim( (string) flx_ayar( 'auth_text' ) ),
+	);
+	if ( 'card' === $style && flx_ayar( 'auth_logo' ) && function_exists( 'flx_logo_files' ) ) {
+		$f = flx_logo_files();
+		if ( '' !== $f['light'] ) {
+			$d['logo'] = array(
+				'src'  => $f['light'],
+				'dark' => function_exists( 'flx_logo_dark_enabled' ) && flx_logo_dark_enabled() && $f['dark'] !== $f['light'] ? $f['dark'] : '',
+				'alt'  => $f['alt'],
+			);
+		}
+	}
+	if ( 'split' === $style ) {
+		$panel = array(
+			'badge' => trim( (string) flx_ayar( 'auth_badge' ) ),
+			'title' => trim( (string) flx_ayar( 'auth_panel_title' ) ),
+			'text'  => trim( (string) flx_ayar( 'auth_panel_text' ) ),
+		);
+		$img = absint( flx_ayar( 'auth_image' ) );
+		if ( $img && wp_attachment_is_image( $img ) ) {
+			// Paneli dolduracak kadar büyük kaynak: retina ekranda bulanık görünmesin (srcset tarayıcıya seçtirir).
+			$panel['img']    = (string) wp_get_attachment_image_url( $img, '2048x2048' );
+			$panel['srcset'] = (string) wp_get_attachment_image_srcset( $img, 'full' );
+			$panel['alt']    = (string) get_post_meta( $img, '_wp_attachment_image_alt', true );
+		}
+		$d['panel'] = $panel;
+	}
+	return $d;
+}
 
 /* ---------- Boş sepet: "Bağışlar Sayfasına dön" ---------- */
 add_filter(
@@ -163,6 +363,30 @@ add_action(
 			'tabLogin'   => __( 'Log In', 'fluxwp' ),
 			'tabReg'     => __( 'Sign Up', 'fluxwp' ),
 			'or'         => __( 'or', 'fluxwp' ),
+		);
+		// Giriş penceresi: yalnız giriş yapmamış ziyaretçide ve Hesabım sayfası varken.
+		if ( ! is_user_logged_in() && function_exists( 'wc_get_page_id' ) && wc_get_page_id( 'myaccount' ) > 0 && ! ( function_exists( 'is_account_page' ) && is_account_page() ) ) {
+			$acc = (string) wc_get_page_permalink( 'myaccount' );
+			if ( function_exists( 'flxl_current_language' ) && function_exists( 'flxl_url_for_language' ) ) {
+				$acc = (string) flxl_url_for_language( $acc, flxl_current_language() );
+			}
+			$d['auth'] = array(
+				'url'   => $acc,
+				'path'  => untrailingslashit( (string) wp_parse_url( (string) wc_get_page_permalink( 'myaccount' ), PHP_URL_PATH ) ),
+				'login' => untrailingslashit( (string) wp_parse_url( wp_login_url(), PHP_URL_PATH ) ),
+				'title' => __( 'Log in or sign up', 'fluxwp' ),
+			) + flx_auth_window_data();
+		}
+		if ( flx_auth_frame_mi() ) {
+			$d['authGoogleTop'] = 'split' !== flx_ayar( 'auth_style' ); // Kart düzeninde Google butonu formun üstünde.
+			$d['orEmail']       = __( 'or with email', 'fluxwp' );
+		}
+		// Google ile giriş sürerken formun üstündeki bilgi katmanı (main.js).
+		$d['gWait'] = array(
+			'popup'  => __( 'Choose your account in the Google window. If it does not open, allow pop-ups for this site.', 'fluxwp' ),
+			'auth'   => __( 'Signing you in with Google. If you have no account yet, we are creating one.', 'fluxwp' ),
+			'slow'   => __( 'This is taking longer than usual. You can wait a little more or cancel and try again.', 'fluxwp' ),
+			'cancel' => __( 'Cancel', 'fluxwp' ),
 		);
 		wp_add_inline_script( 'fluxwp', 'window.flxHesap=' . wp_json_encode( $d ) . ';', 'before' );
 	},

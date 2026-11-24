@@ -430,6 +430,24 @@ msgstr "Tarayıcı ayarlarında bu site için bildirimler engellenmiş."
 msgid "Notifications could not be turned on"
 msgstr "Bildirimler açılamadı"
 
+msgid "This browser"
+msgstr "Bu tarayıcı"
+
+msgid "Notification types"
+msgstr "Bildirim türleri"
+
+msgid "Applies to all your devices, also the mobile app."
+msgstr "Tüm cihazlarınız için geçerlidir, mobil uygulama dahil."
+
+msgid "No notification types are available yet."
+msgstr "Henüz bildirim türü yok."
+
+msgid "Could not save, try again."
+msgstr "Kaydedilemedi, tekrar deneyin."
+
+msgid "Close"
+msgstr "Kapat"
+
 msgid "Browser notifications (Web Push)"
 msgstr "Tarayıcı bildirimleri (Web Push)"
 

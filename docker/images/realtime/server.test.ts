@@ -13,6 +13,23 @@ const { start, signTicket, verifyTicket, routes, CLOSE, config } = await import(
 const now = () => Math.floor(Date.now() / 1000);
 const jti = () => crypto.randomUUID().replaceAll("-", "");
 const ticket = (uid: number, caps: string[] = [], exp = now() + 60) => signTicket({ uid, caps, exp, jti: jti() }, SECRET);
+const visitorTicket = (topics: string[], exp = now() + 60) => signTicket({ uid: 0, caps: ["manage_options"], topics, exp, jti: jti() }, SECRET);
+
+describe("visitor ticket", () => {
+  test("needs topics, drops bad ones, never carries capabilities", () => {
+    const t = verifyTicket(visitorTicket(["chatbot.conv.42", "Bad Topic", "public.x"]), SECRET) as { uid: number; caps: string[]; topics: string[] };
+    expect(t.uid).toBe(0);
+    expect(t.caps).toEqual([]);
+    expect(t.topics).toEqual(["chatbot.conv.42", "public.x"]);
+    expect(verifyTicket(visitorTicket([]), SECRET)).toBe("format");
+    expect(verifyTicket(visitorTicket(["Bad Topic"]), SECRET)).toBe("format");
+  });
+  test("routes by topic after users and cap", () => {
+    expect(routes({ aud: { topic: "chatbot.conv.42" } })).toEqual(["t:chatbot.conv.42"]);
+    expect(routes({ aud: { topic: "no spaces" } })).toEqual([]);
+    expect(routes({ aud: { users: [3], topic: "a.b" } })).toEqual(["u:3"]);
+  });
+});
 
 describe("ticket", () => {
   test("valid round trip", () => {
@@ -162,6 +179,31 @@ describe("server", () => {
     await expect(connect("/flx-rt", { Origin: "https://evil.example" })).rejects.toThrow();
     const ok = await connect("/flx-rt", { Origin: "tauri://localhost" });
     ok.ws.close();
+  });
+
+  test("visitor hears only its topic, never user or cap signals", async () => {
+    const a = await connect("/flx-rt");
+    const b = await connect("/flx-rt");
+    const admin = await connect("/flx-rt");
+    a.ws.send(JSON.stringify({ auth: visitorTicket(["chatbot.conv.1"]) }));
+    b.ws.send(JSON.stringify({ auth: visitorTicket(["chatbot.conv.2", "public.counter"]) }));
+    admin.ws.send(JSON.stringify({ auth: ticket(1, ["manage_options"]) }));
+    expect(await until(() => a.msgs.length > 0 && b.msgs.length > 0 && admin.msgs.length > 0)).toBe(true);
+    expect(a.msgs[0]).toEqual({ t: "hello", uid: 0 });
+    await publish({ v: 1, t: "chatbot.conv.1", inv: [], aud: { topic: "chatbot.conv.1" } });
+    await publish({ v: 1, t: "public.counter", d: { n: 7 }, aud: { topic: "public.counter" } });
+    await publish({ v: 1, t: "secret.staff", aud: { cap: "manage_options" } });
+    expect(await until(() => a.msgs.length === 2 && b.msgs.length === 2 && admin.msgs.length === 2)).toBe(true);
+    expect((a.msgs[1] as { t: string }).t).toBe("chatbot.conv.1");
+    expect((b.msgs[1] as { t: string; d: { n: number } }).d.n).toBe(7);
+    expect((admin.msgs[1] as { t: string }).t).toBe("secret.staff");
+    await Bun.sleep(100);
+    expect(a.msgs.length).toBe(2); // Not the public counter, not the staff signal.
+    expect(b.msgs.length).toBe(2);
+    expect(admin.msgs.length).toBe(2); // Staff does not hear visitor topics either.
+    a.ws.close();
+    b.ws.close();
+    admin.ws.close();
   });
 
   test("unknown path 404, plain GET 426", async () => {

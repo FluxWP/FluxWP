@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.11.4
+- Özel giriş adresi dil önekinden etkilenmez: Flux Lang açıkken /tr/fluxadmin gibi önekli adres üretiliyor ve 404 veriyordu. Site Kit "Google ile giriş" bu adrese gönderdiği için yeni Google hesabıyla giriş/kayıt takılı kalıyordu. Adres artık her dilde öneksiz (/fluxadmin).
+
 ## 0.11.3
 - Ekran ortak FluxWP kabuğuna taşındı: başlık, simge, sekmeler, kenar boşlukları, en fazla genişlik ve güvenli alan (safe area) bütün Flux ekranlarında aynı. Sekmeler eski Flux Admin sekmeleri gibi alt çizgili; taşarsa sayfa değil sekme çubuğu kayar. Ortak modül paketi yenilendi.
 

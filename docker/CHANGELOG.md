@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026.11.20.3
+
+- Realtime serves visitors too (image `realtime-bun1.4` rebuilt, mu-plugin FluxWP Realtime 1.1.0): visitor tickets (`flx_realtime_visitor_ticket()`) that carry only the topics WordPress listed, never users or capabilities; `flx_realtime_publish( ..., array( 'topic' => ... ) )` reaches exactly those sockets; public topics (`public.*`) through the `flx_realtime_public_topics` filter and `POST /wp-json/flx-realtime/v1/public-ticket`. `RT_MAX_VISITORS` (default 300) caps visitor sockets, `RT_VISITOR_LIFE_MINUTES` (default 60) their lifetime. Redeploy the stack to pick up the new image and mu-plugin.
+
 ## 2026.11.20.2
 
 - New optional `realtime` service in every stack with Redis (`mariadb-redis`, `nginx-fpm`, `wpapi`, and the default `docker-compose.yml`), image `ghcr.io/fluxwp/wordpress:realtime-bun1.4`: WebSocket live updates for the FluxWP panel and FluxApp. WordPress publishes small signals to Redis (no content), the service passes them to signed-in clients on the site's own domain at `/flx-rt` (Coolify routes it; `nginx-fpm` proxies it). Coolify generates the shared secret; plain Docker sets `FLX_REALTIME_SECRET`. Without it, or if the service is down, clients poll as before.

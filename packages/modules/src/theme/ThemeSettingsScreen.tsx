@@ -10,6 +10,7 @@ import { createGraphQLClient } from '@fluxwp/graphql';
 import { FlxGraphQLProvider, flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
 import { FlxThemeMigrate, FlxThemeMigrationSources, FlxThemePayLogosSave, FlxThemeSettings, FlxThemeSettingsSave } from '@fluxwp/graphql/operations';
 import type {
+  FlxThemeAuthStyle,
   FlxThemeCookiePosition,
   FlxThemeDarkMode,
   FlxThemeGaMode,
@@ -59,6 +60,14 @@ const EDITABLE = [
   'consentScripts',
   'bankHolder',
   'bankIban',
+  'authStyle',
+  'authLogo',
+  'authTitle',
+  'authText',
+  'authImage',
+  'authBadge',
+  'authPanelTitle',
+  'authPanelText',
 ] as const;
 type EditKey = (typeof EDITABLE)[number];
 type Draft = Pick<Settings, EditKey> & { cookieReset: boolean };
@@ -115,6 +124,7 @@ function ThemeSettings() {
   const [dirty, setDirty] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<EditKey, string>>>({});
   const [notice, setNotice] = useState<Notice | null>(null);
+  const [authPreview, setAuthPreview] = useState<string | null>(null);
 
   useEffect(() => {
     if (q.data && !dirty) {
@@ -217,6 +227,22 @@ function ThemeSettings() {
     });
     frame.open();
   };
+
+  const pickAuthImage = () => {
+    const media = window.wp?.media;
+    if (!media || !draft) return;
+    const frame = media({ title: t('Sign-in window picture'), button: { text: t('Use this picture') }, library: { type: 'image' }, multiple: false });
+    frame.off('select');
+    frame.on('select', () => {
+      frame.state().get('selection').each((a) => {
+        const o = a.toJSON() as { id: number; url: string; sizes?: { medium_large?: { url: string }; large?: { url: string } } };
+        set('authImage', o.id);
+        setAuthPreview(o.sizes?.medium_large?.url ?? o.sizes?.large?.url ?? o.url);
+      });
+    });
+    frame.open();
+  };
+  const authImageSrc = draft.authImage ? (authPreview ?? (draft.authImage === s.authImage ? s.authImageUrl : null)) : null;
 
   const visible = (...modes: FlxThemeVisibility[]) => modes.includes(draft.visibility);
 
@@ -363,6 +389,60 @@ function ThemeSettings() {
                 )}
                 <p className="flxt-desc">{t("The project's image, title and summary come from the project itself.")}</p>
               </Field>
+            )}
+          </div>
+        </section>
+
+        <section className="flxt-card" id="flx-auth">
+          <h2>{t('Sign-in window')}</h2>
+          <p>{t('The window that opens from “Log in” and My account in the header, without leaving the page.')}</p>
+          <div className="flxt-form">
+            <Field label={t('Layout')}>
+              <Choice name="authStyle" value="CARD" current={draft.authStyle} onChange={(v: FlxThemeAuthStyle) => set('authStyle', v)} title={t('Card: heading, Google button and the form in one column')} />
+              <Choice name="authStyle" value="SPLIT" current={draft.authStyle} onChange={(v: FlxThemeAuthStyle) => set('authStyle', v)} title={t('Picture panel: a photo with a short text on the left, the form on the right')} desc={t('On phones the picture becomes a short strip above the form.')} />
+            </Field>
+            {draft.authStyle === 'CARD' && (
+              <Field label={t('Logo')}>
+                <label className="flxt-choice">
+                  <input type="checkbox" checked={draft.authLogo} onChange={(e) => set('authLogo', e.currentTarget.checked)} />
+                  {t('Show the header logo at the top of the window')}
+                </label>
+              </Field>
+            )}
+            <Field id="flxt-auth-title" label={t('Heading')}>
+              <input id="flxt-auth-title" type="text" value={draft.authTitle} placeholder={s.authTitleDefault} onChange={(e) => set('authTitle', e.currentTarget.value)} />
+            </Field>
+            <Field id="flxt-auth-text" label={t('Text under the heading')}>
+              <input id="flxt-auth-text" type="text" value={draft.authText} onChange={(e) => set('authText', e.currentTarget.value)} />
+              <p className="flxt-desc">{t('Optional. Flux Lang can hold these texts per language.')}</p>
+            </Field>
+            {draft.authStyle === 'SPLIT' && (
+              <>
+                <Field label={t('Picture')}>
+                  {authImageSrc ? <img className="flxt-auth-img" src={authImageSrc} alt="" /> : <p className="flxt-desc">{t('No picture: the panel shows the site colour.')}</p>}
+                  <div className="flxt-inline">
+                    <button type="button" className="flxt-btn" disabled={!window.wp?.media} onClick={pickAuthImage}>
+                      {draft.authImage ? t('Change picture') : t('Choose picture')}
+                    </button>
+                    {draft.authImage > 0 && (
+                      <button type="button" className="flxt-btn" onClick={() => { set('authImage', 0); setAuthPreview(null); }}>
+                        {t('Remove')}
+                      </button>
+                    )}
+                  </div>
+                  <p className="flxt-desc">{t('Use a large, sharp photo (at least 1200 px wide); it is cropped to fill the panel.')}</p>
+                </Field>
+                <Field id="flxt-auth-badge" label={t('Label on the picture')}>
+                  <input id="flxt-auth-badge" type="text" value={draft.authBadge} onChange={(e) => set('authBadge', e.currentTarget.value)} />
+                </Field>
+                <Field id="flxt-auth-ptitle" label={t('Title on the picture')}>
+                  <input id="flxt-auth-ptitle" type="text" value={draft.authPanelTitle} onChange={(e) => set('authPanelTitle', e.currentTarget.value)} />
+                </Field>
+                <Field id="flxt-auth-ptext" label={t('Text on the picture')}>
+                  <textarea id="flxt-auth-ptext" rows={2} value={draft.authPanelText} onChange={(e) => set('authPanelText', e.currentTarget.value)} />
+                  <p className="flxt-desc">{t('Empty fields are not shown.')}</p>
+                </Field>
+              </>
             )}
           </div>
         </section>

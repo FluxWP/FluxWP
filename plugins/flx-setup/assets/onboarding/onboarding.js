@@ -589,14 +589,25 @@
 						? { action: 'flxu_step', nonce: D.flxuNonce, kind: j.kind, slug: j.slug }
 						: { action: 'flxk_onboarding_step', nonce: D.nonce, kind: j.kind, value: j.value || '' };
 					line('<span class="w">' + esc(r.name) + '</span> <span class="y">' + esc(j.kind === 'activate' ? T.activating : (j.type === 'ob' ? T.applying : T.installing)) + '…</span>');
-					post(req).then(function (res) {
-						(res.lines || []).forEach(function (l) {
-							line((l.ok ? '<span class="g">✓</span> ' : '<span class="r">✕</span> ') + esc(l.text));
-							if (!l.ok) { errors.push(l.text); }
+					var tries = 0;
+					var RETRY_MS = [20000, 45000];
+					function attempt() {
+						return post(req).then(function (res) {
+							// Paket indirme sınırı (429) ya da geçici hata: kısa bekleyip yeniden dene, sonra pes et.
+							if (!res.ok && j.pkg && tries < RETRY_MS.length && (res.lines || []).some(function (l) { return !l.ok && /HTTP (408|425|429|5\d\d)/.test(l.text); })) {
+								var wait = RETRY_MS[tries++];
+								line('<span class="y">' + esc(r.name) + ' · ' + esc(T.retryWait) + '</span>');
+								return new Promise(function (ok) { setTimeout(ok, wait); }).then(attempt);
+							}
+							(res.lines || []).forEach(function (l) {
+								line((l.ok ? '<span class="g">✓</span> ' : '<span class="r">✕</span> ') + esc(l.text));
+								if (!l.ok) { errors.push(l.text); }
+							});
+							if (!res.ok) { rowOk = false; }
+							if (res.pages) { stats.pages = res.pages; }
 						});
-						if (!res.ok) { rowOk = false; }
-						if (res.pages) { stats.pages = res.pages; }
-					}).catch(function (e) {
+					}
+					attempt().catch(function (e) {
 						rowOk = false;
 						errors.push(e.message);
 						line('<span class="r">✕</span> ' + esc(e.message));

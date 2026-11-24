@@ -167,10 +167,192 @@ document.addEventListener('click', function (e) {
 		if (!items.length) return;
 		var wrap = document.createElement('div');
 		wrap.className = 'flx-social-login';
-		wrap.innerHTML = '<div class="flx-or"><span>' + (H.or || 'veya') + '</span></div>';
+		// Giriş penceresi kart düzeninde: Google üstte, altında "veya e-posta ile" ayracı.
+		var top = !!H.authGoogleTop && document.body.classList.contains('flx-auth-frame');
+		var or = '<div class="flx-or"><span>' + (top ? (H.orEmail || 'veya e-posta ile') : (H.or || 'veya')) + '</span></div>';
+		if (!top) wrap.innerHTML = or;
 		items.forEach(function (el) { wrap.appendChild(el); });
-		form.appendChild(wrap);
+		if (top) { wrap.classList.add('is-top'); wrap.insertAdjacentHTML('beforeend', or); form.insertBefore(wrap, form.firstChild); }
+		else form.appendChild(wrap);
 	});
+})();
+
+/* Google ile giriş sürerken bilgi + İptal: Google penceresi açıkken "hesabınızı seçin", Site Kit girişi sunucuya
+   gönderince "giriş yapılıyor / hesap oluşturuluyor"; 25 sn'de sonuç gelmezse "uzun sürüyor". İptal isteği durdurur. */
+(function () {
+	var W = (window.flxHesap || {}).gWait;
+	if (!W || !document.querySelector('.flx-social-login')) return;
+	var box, msg, slowT, ctl, busy = false;
+	var isAuth = function (u) { return /googlesitekit_auth/.test(String(u || '')); };
+	function hide() {
+		clearTimeout(slowT);
+		busy = false;
+		if (box) box.hidden = true;
+	}
+	function show(text) {
+		if (!box) {
+			box = document.createElement('div');
+			box.className = 'flx-gwait';
+			box.setAttribute('role', 'status');
+			box.innerHTML = '<div class="flx-gwait__card"><span class="flx-gwait__dots" aria-hidden="true"><i></i><i></i><i></i></span><p class="flx-gwait__msg"></p><button type="button" class="flx-gwait__cancel"></button></div>';
+			msg = box.querySelector('.flx-gwait__msg');
+			var b = box.querySelector('.flx-gwait__cancel');
+			b.textContent = W.cancel;
+			b.addEventListener('click', function () {
+				if (busy) { try { if (ctl) ctl.abort(); window.stop(); } catch (e) {} }
+				hide();
+			});
+			(document.querySelector('.flx-auth-frame__main') || document.body).appendChild(box); // Pencerede yalnız __main görünür.
+		}
+		msg.textContent = text;
+		box.hidden = false;
+	}
+	function started() {
+		busy = true;
+		show(W.auth);
+		clearTimeout(slowT);
+		slowT = setTimeout(function () { if (busy) msg.textContent = W.slow; }, 25000);
+	}
+	// Site Kit girişi fetch ya da form ile gönderir: ikisini de yakala.
+	if (window.fetch) {
+		var f = window.fetch;
+		window.fetch = function (u, o) {
+			if (isAuth(u && u.url ? u.url : u)) {
+				started();
+				ctl = window.AbortController ? new AbortController() : null;
+				if (ctl) { o = Object.assign({}, o || {}, { signal: ctl.signal }); }
+				return f.call(this, u, o).catch(function (e) { hide(); throw e; });
+			}
+			return f.apply(this, arguments);
+		};
+	}
+	var sub = HTMLFormElement.prototype.submit;
+	HTMLFormElement.prototype.submit = function () {
+		if (isAuth(this.action)) started();
+		return sub.apply(this, arguments);
+	};
+	document.addEventListener('submit', function (e) { if (isAuth(e.target.action)) started(); }, true);
+	// Google butonu (accounts.google.com iframe'i) tıklanınca odak ona geçer: açılan pencere için bilgi göster.
+	window.addEventListener('blur', function () {
+		setTimeout(function () {
+			var a = document.activeElement;
+			if (!busy && a && a.tagName === 'IFRAME' && a.closest('.flx-social-login')) show(W.popup);
+		}, 0);
+	});
+	window.addEventListener('focus', function () {
+		setTimeout(function () { if (!busy) hide(); }, 1500); // Google penceresi seçim yapılmadan kapandı.
+	});
+	window.addEventListener('pageshow', hide);
+})();
+
+/* Giriş penceresi: "Giriş yap" / Hesabım bağlantısı sayfadan ayrılmadan ortada Hesabım'ın giriş/kayıt formunu açar
+   (Google ile giriş ve kayıt dahil). Form başka adrese yönlenince (giriş tamam, şifre sıfırlama) sayfa oraya gider. */
+(function () {
+	var A = (window.flxHesap || {}).auth;
+	if (!A || !A.url || !window.URL || window.top !== window) return;
+	var trim = function (p) { return (p || '').replace(/\/+$/, ''); };
+	var target = function (a) {
+		if (!a.href || a.target === '_blank' || a.hasAttribute('download')) return null;
+		var u;
+		try { u = new URL(a.href, location.href); } catch (e) { return null; }
+		if (u.origin !== location.origin) return null;
+		var p = trim(u.pathname), act = u.searchParams.get('action') || '';
+		var P = trim(A.path), acc = !!P && p.slice(-P.length) === P; // Dil öneki olsa da (/tr/my-account).
+		var login = !!A.login && p === trim(A.login) && (act === '' || act === 'login' || act === 'register');
+		if (!a.hasAttribute('data-flx-auth') && !acc && !login) return null;
+		var f = new URL(acc ? u.href : A.url, location.href);
+		var back = u.searchParams.get('redirect_to') || u.searchParams.get('flx_donus') || (location.pathname + location.search);
+		f.searchParams.set('flx_auth', '1');
+		if (!f.searchParams.get('flx_donus')) f.searchParams.set('flx_donus', back);
+		var reg = act === 'register' || /^#(kayit|register)$/.test(u.hash) || a.getAttribute('data-flx-auth') === 'register';
+		f.hash = reg ? 'kayit' : '';
+		return f.href;
+	};
+
+	var dlg, frame, wrap, fallback;
+	var el = function (tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text) e.textContent = text; return e; };
+	/* Tema Ayarları › Giriş penceresi: kart (başlık, isteğe bağlı logo) ya da resimli yan panel. Metinler DOM'a yazı olarak girer. */
+	function decorate(inner) {
+		var body = inner.querySelector('.flx-auth-modal__body');
+		var head = el('div', 'flx-auth-modal__head');
+		if (A.logo && A.logo.src) {
+			var pic = document.createElement('picture');
+			if (A.logo.dark) { var so = document.createElement('source'); so.media = '(prefers-color-scheme: dark)'; so.srcset = A.logo.dark; pic.appendChild(so); }
+			var li = el('img', 'flx-auth-modal__logo'); li.src = A.logo.src; li.alt = A.logo.alt || ''; li.decoding = 'async';
+			pic.appendChild(li); head.appendChild(pic);
+		}
+		if (A.heading) head.appendChild(el('h2', 'flx-auth-modal__title', A.heading));
+		if (A.text) head.appendChild(el('p', 'flx-auth-modal__text', A.text));
+		if (head.childNodes.length) body.insertBefore(head, body.firstChild);
+		if (A.style !== 'split' || !A.panel) { inner.classList.add('is-card'); return; }
+		var P = A.panel, aside = el('aside', 'flx-auth-modal__panel' + (P.img ? ' has-img' : ''));
+		if (P.img) {
+			var im = el('img', 'flx-auth-modal__img'); im.src = P.img; if (P.srcset) { im.srcset = P.srcset; im.sizes = '(max-width: 760px) 100vw, 460px'; }
+			im.alt = P.alt || ''; im.decoding = 'async'; aside.appendChild(im);
+		}
+		var cap = el('div', 'flx-auth-modal__cap');
+		if (P.badge) cap.appendChild(el('span', 'flx-auth-modal__badge', P.badge));
+		if (P.title) cap.appendChild(el('p', 'flx-auth-modal__ptitle', P.title));
+		if (P.text) cap.appendChild(el('p', 'flx-auth-modal__ptext', P.text));
+		aside.appendChild(cap);
+		inner.insertBefore(aside, body);
+		inner.classList.add('is-split');
+	}
+	function build() {
+		dlg = document.createElement('dialog');
+		dlg.className = 'flx-auth-modal';
+		dlg.setAttribute('aria-label', A.title || 'Giriş');
+		dlg.innerHTML = '<div class="flx-auth-modal__inner"><button type="button" class="flx-auth-modal__close" aria-label="' + flxT('close', 'Kapat') + '"></button>' +
+			'<div class="flx-auth-modal__body"><div class="flx-auth-modal__stage"><div class="flx-auth-modal__loading" role="status" aria-label="' + flxT('loading', 'Yükleniyor…') + '"><i class="flx-sk flx-sk--tabs"></i><i class="flx-sk flx-sk--label"></i><i class="flx-sk flx-sk--field"></i><i class="flx-sk flx-sk--label"></i><i class="flx-sk flx-sk--field"></i><i class="flx-sk flx-sk--btn"></i><i class="flx-sk flx-sk--line"></i><i class="flx-sk flx-sk--google"></i></div><iframe class="flx-auth-modal__frame" title="' + (A.title || '') + '"></iframe></div></div></div>';
+		document.body.appendChild(dlg);
+		wrap = dlg.querySelector('.flx-auth-modal__inner');
+		decorate(wrap);
+		frame = dlg.querySelector('iframe');
+		var close = function () { dlg.close ? dlg.close() : dlg.removeAttribute('open'); };
+		dlg.querySelector('.flx-auth-modal__close').addEventListener('click', close);
+		dlg.addEventListener('click', function (e) { if (e.target === dlg) close(); });
+		dlg.addEventListener('close', function () { document.documentElement.classList.remove('flx-modal-open'); });
+		frame.addEventListener('load', function () {
+			var href;
+			try { href = frame.contentWindow.location.href; } catch (e) { href = null; }
+			if (!href || href === 'about:blank') { if (href === null && fallback) location.href = fallback; return; }
+			if (!/[?&]flx_auth=1/.test(href)) { location.href = href; return; } // Pencere dışına çıkan her yönlendirme: sayfa o adrese gider.
+			wrap.classList.add('is-ready');
+		});
+		window.addEventListener('message', function (e) {
+			if (e.origin !== location.origin || !e.data || typeof e.data.flxAuthH !== 'number' || e.source !== frame.contentWindow) return;
+			frame.style.height = Math.ceil(e.data.flxAuthH) + 'px';
+		});
+	}
+	function load(url) {
+		if (!dlg) build();
+		if (frame.getAttribute('src') !== url) { wrap.classList.remove('is-ready'); frame.style.height = ''; frame.setAttribute('src', url); }
+	}
+	function open(url, back) {
+		load(url);
+		fallback = back;
+		if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+		document.documentElement.classList.add('flx-modal-open');
+	}
+	document.addEventListener('click', function (e) {
+		if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+		var a = e.target.closest && e.target.closest('a[href]');
+		if (!a || a.closest('.flx-auth-modal')) return;
+		var url = target(a);
+		if (!url) return;
+		e.preventDefault();
+		var nav = a.closest('.wp-block-navigation__responsive-container.is-menu-open');
+		if (nav) { var c = nav.querySelector('.wp-block-navigation__responsive-container-close'); if (c) c.click(); }
+		open(url, a.href);
+	}, true);
+	// Niyet görünce (fare üstüne gelince, dokununca, klavyeyle odaklanınca) pencere arkada önden yüklenir: tıklayınca form hazır gelir.
+	var intent = function (e) {
+		var a = e.target.closest && e.target.closest('a[href]');
+		if (!a || a.closest('.flx-auth-modal')) return;
+		var url = target(a);
+		if (url) load(url);
+	};
+	['pointerover', 'touchstart', 'focusin'].forEach(function (t) { document.addEventListener(t, intent, { passive: true, capture: true }); });
 })();
 
 /* Bağış modunda boş sepet: "Mağazaya geri dön" → "Bağışlar Sayfasına dön" (bağış sayfası). Mini sepet sonradan çizildiği için izlenir. */
