@@ -67,7 +67,12 @@ export function Dashboard({ notice }: { notice: ReactNode }) {
     const el = root.current?.closest('.flxdn') ?? root.current;
     if (!el) return;
     const v = getComputedStyle(el).getPropertyValue('--flxdn-primary').trim();
-    if (/^#[0-9a-f]{3,8}$|^rgb/i.test(v)) setC1(v);
+    const dark = !!el.closest('[data-theme="dark"]') || document.documentElement.classList.contains('flxa-dark');
+    const m = v.match(/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})/i);
+    const lum = m ? (0.299 * parseInt(m[1] ?? '0', 16) + 0.587 * parseInt(m[2] ?? '0', 16) + 0.114 * parseInt(m[3] ?? '0', 16)) / 255 : 1;
+    // A dark brand colour would vanish on the dark background: a light slate stands in for it there.
+    if (dark && lum < 0.35) setC1('#94A3B8');
+    else if (/^#[0-9a-f]{3,8}$|^rgb/i.test(v)) setC1(v);
   }, [d]);
   const c2 = second(c1);
 
