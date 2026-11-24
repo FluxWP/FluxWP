@@ -419,6 +419,9 @@ final class FLXB_Types {
 		if ( array_key_exists( 'labels', $m ) ) {
 			$out['labels'] = FLXB_Track::clean_labels( (array) $m['labels'] );
 		}
+		if ( array_key_exists( 'labels_i18n', $m ) ) {
+			$out['labels_i18n'] = FLXB_Track::clean_labels_i18n( (array) $m['labels_i18n'] ); // 2.34.0
+		}
 		if ( array_key_exists( 'lock_preselect', $m ) ) {
 			$out['lock_preselect'] = ! empty( $m['lock_preselect'] );
 		}

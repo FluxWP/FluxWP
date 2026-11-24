@@ -262,7 +262,7 @@ final class FLXB_WC_Cart {
 			} else {
 				unset( $line['beneficiary_phones'] );
 			}
-			$line['proxy_consent'] = array( 'version' => (int) $text['version'], 'accepted_at' => flxb_now(), 'source' => 'cart' );
+			$line['proxy_consent'] = array( 'version' => (int) $text['version'], 'accepted_at' => flxb_now(), 'source' => 'cart', 'lang' => (string) ( $text['lang'] ?? '' ) );
 			$line['for_other']     = (bool) $names;
 			$line['name']          = $names ? mb_substr( implode( ', ', $names ), 0, 80 ) : '';
 			$line['send_me']       = false;
