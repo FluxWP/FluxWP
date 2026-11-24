@@ -1,0 +1,3 @@
+mutation FlxDonationImportSave($input: FlxDonationImportSaveInput!) {
+  flxDonationImportSave(input: $input) { message state errors { message field } }
+}

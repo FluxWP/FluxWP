@@ -1,0 +1,3 @@
+mutation FlxDonationReportSave($input: FlxDonationReportSaveInput!) {
+  flxDonationReportSave(input: $input) { message id errors { message field } }
+}

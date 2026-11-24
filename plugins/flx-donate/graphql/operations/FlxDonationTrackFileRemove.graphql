@@ -1,0 +1,3 @@
+mutation FlxDonationTrackFileRemove($input: FlxDonationTrackFileRemoveInput!) {
+  flxDonationTrackFileRemove(input: $input) { message errors { message field } }
+}

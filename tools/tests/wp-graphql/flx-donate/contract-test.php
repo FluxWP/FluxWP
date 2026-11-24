@@ -18,7 +18,7 @@ foreach ( (array) json_decode( (string) file_get_contents( FLXB_DIR . 'graphql/p
 		$GLOBALS['flxb_ops'][ $m[1] ] = $doc;
 	}
 }
-flxt_same( 47, count( $GLOBALS['flxb_ops'] ), 'Flux Donate ships 47 persisted operations' );
+flxt_same( 69, count( $GLOBALS['flxb_ops'] ), 'Flux Donate ships 69 persisted operations' );
 
 /**
  * @param array<string,mixed> $vars Variables.
@@ -1028,7 +1028,56 @@ if ( function_exists( 'wp_set_current_user' ) ) {
 	flxt_same( array( array( 'FlxDonatePartner', array( 'id' => 0 ) ) ), FLXB_Admin::preload_partners( array( 'tab' => 'edit' ) ), 'preload: a new partner' );
 	flxt_same( array( array( 'FlxDonatePartnerSettlement', array( 'kind' => 'SOURCE', 'period' => '2026-01-01..2026-02-01', 'partnerId' => 3 ) ) ), FLXB_Admin::preload_partners( array( 'tab' => 'settle', 'kind' => 'source', 'from' => '2026-01-01', 'to' => '2026-02-01', 'partner' => '3' ) ), 'preload: the settlement of a range' );
 	flxt_same( array( array( 'FlxDonatePartnerSettlement', array( 'kind' => 'SERVICE', 'period' => '', 'partnerId' => 0 ) ) ), FLXB_Admin::preload_partners( array( 'tab' => 'settle' ) ), 'preload: the settlement of this month' );
+	// 2.44.0: Tracking, Import, Reports and Settings.
+	flxt_same( array( array( 'FlxDonateTrack', array( 'page' => 1 ) ) ), FLXB_Admin::preload_track( array() ), 'preload: tracking' );
+	flxt_same( array( array( 'FlxDonateTrack', array( 'page' => 2, 'filter' => array( 'place' => 'North', 'typeId' => 3, 'paid' => '1', 'due' => true, 'search' => 'x' ) ) ) ), FLXB_Admin::preload_track( array( 'place' => ' North ', 'type' => '3', 'paid' => '1', 'due' => '1', 's' => 'x', 'paged' => '2', 'status' => 'nope' ) ), 'preload: tracking with the address filter' );
+	flxt_same( array( array( 'FlxDonateTrackItem', array( 'id' => 8 ) ) ), FLXB_Admin::preload_track( array( 'item' => '8' ) ), 'preload: a tracked item' );
+	flxt_same( array( array( 'FlxDonateImport', array( 'id' => '' ) ) ), FLXB_Admin::preload_import( array() ), 'preload: import upload' );
+	flxt_same( array( array( 'FlxDonateImport', array( 'id' => 'abc' ) ) ), FLXB_Admin::preload_import( array( 'import' => 'abc' ) ), 'preload: an import' );
+	flxt_same( array( array( 'FlxDonateReport', array( 'id' => 'by-type', 'period' => 'custom', 'from' => '2026-01-01', 'to' => '' ) ) ), FLXB_Admin::preload_reports( array( 'r' => 'by-type', 'period' => 'custom', 'from' => '2026-01-01', 'to' => 'x' ) ), 'preload: a report of custom dates' );
+	flxt_same( array( array( 'FlxDonateReport', array( 'id' => '', 'period' => 'this_year', 'from' => '', 'to' => '' ) ) ), FLXB_Admin::preload_reports( array( 'period' => 'this_year', 'from' => '2026-01-01' ) ), 'preload: a period drops the dates' );
+	flxt_same( array( array( 'FlxDonateReportSource', array( 'id' => '' ) ) ), FLXB_Admin::preload_reports( array( 'new' => '1' ) ), 'preload: a new report' );
+	flxt_same( array( array( 'FlxDonateSettings', array() ) ), FLXB_Admin::preload_settings(), 'preload: settings' );
 	wp_set_current_user( 0 );
 }
+
+// 2.44.0: Settings, Reports, Tracking and Import (managers only).
+$r = flxb_t_op( 'FlxDonateSettings', array(), $staff_a );
+flxt_ok( null !== flxt_code( $r ), 'settings: staff is refused' );
+$r = flxb_t_op( 'FlxDonationSettingsGeneral', array( 'input' => array( 'currency' => 'EUR', 'donationForms' => 'list', 'formIds' => array( 3, 0 ), 'moduleTrack' => true, 'moduleReports' => true, 'moduleKurban' => false ) ), $staff_a );
+flxt_ok( null !== flxt_code( $r ) && 'TRY' === flxb_default_currency(), 'settings general: staff is refused' );
+$old_settings = get_option( 'flxb_settings' );
+$old_cats     = get_option( 'flxb_categories' );
+$old_early    = get_option( 'flxb_track_early_days' );
+$old_labels   = get_option( 'flxb_track_labels' );
+$r = flxb_t_op( 'FlxDonationSettingsGeneral', array( 'input' => array( 'currency' => 'EUR', 'donationForms' => 'list', 'formIds' => array( 3, 0 ), 'moduleTrack' => true, 'moduleReports' => true, 'moduleKurban' => false ) ), $admin );
+$st = flxb_settings();
+flxt_ok( 'Saved.' === ( $r['data']['flxDonationSettingsGeneral']['message'] ?? '' ) && 'EUR' === $st['currency'] && 'list' === $st['donation_forms'] && array( 3 ) === $st['form_ids'] && 1 === $st['module_track'], 'settings general: saved' );
+$r = flxb_t_op( 'FlxDonationSettingsOrganisation', array( 'input' => array( 'orgName' => 'Org', 'logoId' => 0, 'primaryColor' => '#12ab34', 'receiptText' => 'Thanks', 'footerText' => 'Addr' ) ), $admin );
+$r = flxb_t_op( 'FlxDonateSettings', array(), $admin );
+$sv = $r['data']['flxDonationSettings'] ?? array();
+flxt_ok( 'EUR' === ( $sv['currency'] ?? '' ) && 'Org' === ( $sv['orgName'] ?? '' ) && '#12AB34' === ( $sv['primaryColor'] ?? '' ) && in_array( 'general', array_column( $sv['tabs'] ?? array(), 'id' ), true ), 'settings: read back' );
+$r = flxb_t_op( 'FlxDonationSettingsCategories', array( 'input' => array( 'categories' => array( array( 'key' => '', 'label' => 'Ramazan Özel' ) ) ) ), $admin );
+flxt_ok( isset( flxb_categories()['ramazan-ozel'] ), 'settings categories: key from the name' );
+$r = flxb_t_op( 'FlxDonationSettingsTrack', array( 'input' => array( 'earlyDays' => 99, 'labels' => array( array( 'key' => 'menu', 'value' => 'Takip' ) ), 'proxyText' => '' ) ), $admin );
+flxt_ok( 30 === (int) get_option( 'flxb_track_early_days' ) && 'Takip' === ( get_option( 'flxb_track_labels' )['menu'] ?? '' ), 'settings tracking: early days capped, words saved' );
+$r = flxb_t_op( 'FlxDonationSettingsTabs', array( 'input' => array( 'json' => '{nope' ) ), $admin );
+flxt_ok( ! empty( $r['data']['flxDonationSettingsTabs']['errors'] ), 'settings tabs: bad JSON is an error' );
+update_option( 'flxb_settings', $old_settings );
+update_option( 'flxb_categories', $old_cats );
+update_option( 'flxb_track_early_days', $old_early );
+update_option( 'flxb_track_labels', $old_labels );
+$r = flxb_t_op( 'FlxDonateReport', array( 'id' => '', 'period' => '', 'from' => '', 'to' => '' ), $admin );
+flxt_ok( '' !== ( $r['data']['flxDonationReport']['id'] ?? '' ) && ! empty( $r['data']['flxDonationReport']['reports'] ), 'reports: the first report' );
+$r = flxb_t_op( 'FlxDonateReportSource', array( 'id' => '' ), $staff_a );
+flxt_ok( null !== flxt_code( $r ), 'report editor: staff is refused' );
+$r = flxb_t_op( 'FlxDonationReportSave', array( 'input' => array( 'json' => '{"id":"gql-r","title":"R","source":"donations","group":["type"],"metrics":["count"]}', 'old' => '' ) ), $admin );
+flxt_same( 'gql-r', $r['data']['flxDonationReportSave']['id'] ?? '', 'report save: a new report' );
+flxb_t_op( 'FlxDonationReportDelete', array( 'input' => array( 'id' => 'gql-r' ) ), $admin );
+flxt_ok( null === FLXB_Reports::get( 'gql-r' ), 'report delete: gone' );
+$r = flxb_t_op( 'FlxDonateImport', array( 'id' => '' ), $admin );
+flxt_same( 'upload', $r['data']['flxDonationImport']['state'] ?? '', 'import: the upload page' );
+$r = flxb_t_op( 'FlxDonateTrack', array( 'page' => 1 ), $admin );
+flxt_ok( isset( $r['data']['flxDonationTrack']['items'], $r['data']['flxDonationTrack']['tabs'] ), 'tracking: the list' );
 
 flxt_done();

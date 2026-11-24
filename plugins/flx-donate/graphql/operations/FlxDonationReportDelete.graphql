@@ -1,0 +1,3 @@
+mutation FlxDonationReportDelete($input: FlxDonationReportDeleteInput!) {
+  flxDonationReportDelete(input: $input) { message errors { message field } }
+}

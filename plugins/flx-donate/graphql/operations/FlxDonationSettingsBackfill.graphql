@@ -1,0 +1,3 @@
+mutation FlxDonationSettingsBackfill($input: FlxDonationSettingsBackfillInput!) {
+  flxDonationSettingsBackfill(input: $input) { message errors { message field } }
+}

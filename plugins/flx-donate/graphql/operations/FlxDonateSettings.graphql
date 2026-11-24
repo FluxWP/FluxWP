@@ -1,0 +1,37 @@
+query FlxDonateSettings {
+  flxDonationSettings {
+    tabs { id label island url }
+    currency
+    currencies { value label }
+    donationForms
+    formIds
+    forms { value label }
+    moduleTrack
+    moduleReports
+    moduleKurban
+    orgName
+    orgPlaceholder
+    logoId
+    logoUrl
+    primaryColor
+    colorHolder
+    receiptText
+    footerText
+    brandName
+    brandLogo
+    brandPrimary
+    brandDark
+    categories { key label used }
+    earlyDays
+    labels { key label value placeholder max }
+    kurban
+    proxyText
+    proxyVersions
+    tabsJson
+    tabsInUse { id title donation fields builtin }
+    fieldTypes
+    tabsExample
+    importReady
+    importLast
+  }
+}

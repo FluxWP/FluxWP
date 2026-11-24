@@ -1,0 +1,40 @@
+query FlxDonateTrackItem($id: Int!) {
+  flxDonationTrackItem(id: $id) {
+    databaseId
+    code
+    title
+    subtitle
+    listTitle
+    partnerLabel
+    filesLabel
+    itemLabel
+    assignLabel
+    status
+    statusKey
+    tone
+    canceled
+    late
+    canEdit
+    canAssign
+    flow { label state date }
+    details { label html }
+    beneficiary
+    phone
+    targetDate
+    donationStatus
+    donationTone
+    payment { label html }
+    unpaid
+    places { value label }
+    actions { step label tone confirm }
+    files { att url kind name meta sent }
+    filesHint
+    canSend
+    sendHint
+    ownerPhone
+    uploadUrl
+    uploadNonce
+    islands
+    history { date event label more note user }
+  }
+}

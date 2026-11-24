@@ -349,6 +349,14 @@ type FlxDonationCartLine {
   units: Int!
 }
 
+"""A category row."""
+input FlxDonationCategoryInput {
+  """Key; empty = from the name."""
+  key: String!
+  """Name."""
+  label: String!
+}
+
 """A certificate of the donation."""
 type FlxDonationCertificate {
   """Number and name."""
@@ -593,6 +601,304 @@ type FlxDonationHistoryLine {
   user: String!
 }
 
+"""The import page."""
+type FlxDonationImport {
+  """Earlier imports (upload page)."""
+  earlier: [FlxDonationImportEarlier!]!
+  """File name."""
+  file: String!
+  """Import id; empty on the upload page."""
+  id: String!
+  """The preview; null otherwise."""
+  preview: FlxDonationImportPreview
+  """The run; null otherwise."""
+  run: FlxDonationImportRun
+  """upload, preview, running or done."""
+  state: String!
+  """Nonce of an upload."""
+  uploadNonce: String!
+  """Form address of an upload."""
+  uploadUrl: String!
+}
+
+"""A column of the file and the field it fills."""
+type FlxDonationImportColumn {
+  """Column index."""
+  col: Int!
+  """A value of the column."""
+  example: String!
+  """Field; empty = skipped."""
+  field: String!
+  """Column name."""
+  header: String!
+}
+
+"""Input for the flxDonationImportDelete mutation."""
+input FlxDonationImportDeleteInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Import id."""
+  id: String!
+}
+
+"""The payload for the flxDonationImportDelete mutation."""
+type FlxDonationImportDeletePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result for the notice; null when refused (see errors)."""
+  message: String
+}
+
+"""An earlier import."""
+type FlxDonationImportEarlier {
+  """File name."""
+  file: String!
+  """Import id."""
+  id: String!
+  """State."""
+  state: String!
+  """When, rows and how many were written."""
+  sub: String!
+}
+
+"""A row that could not be written."""
+type FlxDonationImportError {
+  """Reason."""
+  msg: String!
+  """Row number."""
+  n: Int!
+  """Name."""
+  name: String!
+}
+
+"""A column and the field it fills."""
+input FlxDonationImportMapInput {
+  """Column index."""
+  col: Int!
+  """Field; empty = skip."""
+  field: String!
+}
+
+"""A group of matches."""
+type FlxDonationImportMatch {
+  """What a value can be matched to."""
+  choices: [FlxDonationChoice!]!
+  """type, partner, source, status, ref or paid."""
+  group: String!
+  """Values."""
+  rows: [FlxDonationImportMatchRow!]!
+  """Title."""
+  title: String!
+}
+
+"""A value of the file and what it is matched to."""
+input FlxDonationImportMatchInput {
+  """Group."""
+  group: String!
+  """Key of the value."""
+  key: String!
+  """Matched to."""
+  value: String!
+}
+
+"""A value of the file and what it is matched to."""
+type FlxDonationImportMatchRow {
+  """Rows with it."""
+  count: Int!
+  """Key of the value."""
+  key: String!
+  """Value in the file."""
+  raw: String!
+  """Matched to."""
+  to: String!
+}
+
+"""Options of an import."""
+type FlxDonationImportOptions {
+  """Keep the dates of the file."""
+  keepDate: Boolean!
+  """Date when the row has none: above, target, day or today."""
+  nodate: String!
+  """The chosen day (Y-m-d)."""
+  nodateDay: String!
+  """Paid when the row does not say."""
+  paid: Boolean!
+  """Donation type when the row has none."""
+  type: String!
+}
+
+"""A check of a row."""
+type FlxDonationImportPill {
+  """Text."""
+  label: String!
+  """Colour."""
+  tone: String!
+}
+
+"""The preview of an import."""
+type FlxDonationImportPreview {
+  """Ready rows per referral."""
+  byRef: [FlxDonationImportRef!]!
+  """Columns."""
+  columns: [FlxDonationImportColumn!]!
+  """Question asked before starting."""
+  confirm: String!
+  """Fields a column can fill."""
+  fields: [FlxDonationChoice!]!
+  """Matches."""
+  matches: [FlxDonationImportMatch!]!
+  """Note when not every row is shown."""
+  more: String!
+  """Options."""
+  options: FlxDonationImportOptions!
+  """Ready rows."""
+  ready: Int!
+  """Rows (problems first, at most 200)."""
+  rows: [FlxDonationImportRow!]!
+  """Start button."""
+  runLabel: String!
+  """Counts of the rows."""
+  stats: [FlxDonationKpi!]!
+  """What will be written."""
+  summary: [FlxDonationKpi!]!
+  """Donation types."""
+  types: [FlxDonationChoice!]!
+}
+
+"""Ready rows of one referral."""
+type FlxDonationImportRef {
+  """Amount."""
+  amount: String!
+  """Referral."""
+  name: String!
+  """Records."""
+  rows: String!
+  """Units."""
+  units: String!
+}
+
+"""A row of the file as it will be written."""
+type FlxDonationImportRow {
+  """Amount."""
+  amount: String!
+  """Checks."""
+  checks: [FlxDonationImportPill!]!
+  """Date."""
+  date: String!
+  """The row has its own date."""
+  dated: Boolean!
+  """Row number."""
+  n: Int!
+  """Quantity."""
+  quantity: Int!
+  """Status."""
+  status: String!
+  """On behalf of."""
+  sub: String!
+  """Donation type."""
+  type: String!
+  """Donor."""
+  who: String!
+}
+
+"""A running or finished import."""
+type FlxDonationImportRun {
+  """Finished."""
+  done: Boolean!
+  """Rows that could not be written."""
+  errors: [FlxDonationImportError!]!
+  """Written, skipped, errors."""
+  kpis: [FlxDonationKpi!]!
+  """Label of that page."""
+  nextLabel: String!
+  """Where the records are."""
+  nextUrl: String!
+  """Progress (0–100)."""
+  percent: Int!
+  """Rows done."""
+  pos: Int!
+  """Progress as people read it."""
+  progress: String!
+  """Rows in all."""
+  total: Int!
+}
+
+"""Input for the flxDonationImportSave mutation."""
+input FlxDonationImportSaveInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Import id."""
+  id: String!
+  """Keep the dates of the file."""
+  keepDate: Boolean!
+  """Columns."""
+  map: [FlxDonationImportMapInput!]!
+  """Matches."""
+  matches: [FlxDonationImportMatchInput!]!
+  """Date when the row has none."""
+  nodate: String!
+  """The chosen day."""
+  nodateDay: String!
+  """Paid when the row does not say."""
+  paid: Boolean!
+  """Start the import."""
+  run: Boolean!
+  """Donation type when the row has none."""
+  type: String!
+}
+
+"""The payload for the flxDonationImportSave mutation."""
+type FlxDonationImportSavePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result for the notice; null when refused (see errors)."""
+  message: String
+  """State after saving: preview or running."""
+  state: String
+}
+
+"""Input for the flxDonationImportStep mutation."""
+input FlxDonationImportStepInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Import id."""
+  id: String!
+}
+
+"""The payload for the flxDonationImportStep mutation."""
+type FlxDonationImportStepPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """The import has finished."""
+  done: Boolean
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result for the notice; null when refused (see errors)."""
+  message: String
+}
+
 """
 A box of another plugin: the page prints its HTML, the screen places it.
 """
@@ -611,6 +917,24 @@ enum FlxDonationKind {
   ONE_TIME
   """"""
   RECURRING
+}
+
+"""A stat tile."""
+type FlxDonationKpi {
+  """Colour (#rrggbb); empty = the brand colour."""
+  accent: String!
+  """Label."""
+  label: String!
+  """Value, formatted."""
+  value: String!
+}
+
+"""A tracking word."""
+input FlxDonationLabelInput {
+  """Key."""
+  key: String!
+  """Word; empty = built-in."""
+  value: String!
 }
 
 """The person&#039;s order of the boxes."""
@@ -1603,6 +1927,150 @@ type FlxDonationRejectPayload {
   message: String
 }
 
+"""A report with its period, totals and table."""
+type FlxDonationReport {
+  """Shipped with the plugin."""
+  builtin: Boolean!
+  """The viewer can edit reports."""
+  canManage: Boolean!
+  """Columns."""
+  columns: [FlxDonationReportColumn!]!
+  """CSV download."""
+  csvUrl: String!
+  """Description."""
+  description: String!
+  """The site has its own copy."""
+  edited: Boolean!
+  """First day (Y-m-d); empty = open."""
+  from: String!
+  """Report id; empty without reports."""
+  id: String!
+  """Totals."""
+  kpis: [FlxDonationReportKpi!]!
+  """Note when rows are cut."""
+  note: String!
+  """Period key."""
+  period: String!
+  """Periods (custom = dates)."""
+  periods: [FlxDonationChoice!]!
+  """All reports."""
+  reports: [FlxDonationChoice!]!
+  """Rows."""
+  rows: [FlxDonationReportRow!]!
+  """Title."""
+  title: String!
+  """Last day (Y-m-d); empty = open."""
+  to: String!
+}
+
+"""A column of a report."""
+type FlxDonationReportColumn {
+  """Label."""
+  label: String!
+  """A metric (right aligned)."""
+  num: Boolean!
+}
+
+"""Input for the flxDonationReportDelete mutation."""
+input FlxDonationReportDeleteInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Report id."""
+  id: String!
+}
+
+"""The payload for the flxDonationReportDelete mutation."""
+type FlxDonationReportDeletePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result for the notice; null when refused (see errors)."""
+  message: String
+}
+
+"""What a report source offers."""
+type FlxDonationReportHelp {
+  """Dimensions (&quot;key — label&quot;)."""
+  group: [String!]!
+  """Source."""
+  label: String!
+  """Metrics (&quot;key — label&quot;)."""
+  metrics: [String!]!
+  """Source key."""
+  source: String!
+}
+
+"""A total of a report."""
+type FlxDonationReportKpi {
+  """Metric."""
+  label: String!
+  """Other currencies; empty without."""
+  sub: String!
+  """Total, formatted."""
+  value: String!
+}
+
+"""A row of a report."""
+type FlxDonationReportRow {
+  """Bar of the first metric (0–100); 0 without a bar."""
+  bar: Float!
+  """Cells, formatted."""
+  cells: [String!]!
+}
+
+"""Input for the flxDonationReportSave mutation."""
+input FlxDonationReportSaveInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Definition (JSON)."""
+  json: String!
+  """Id it had; empty = a new one."""
+  old: String!
+}
+
+"""The payload for the flxDonationReportSave mutation."""
+type FlxDonationReportSavePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The saved report."""
+  id: String
+  """Result for the notice; null when refused (see errors)."""
+  message: String
+}
+
+"""The JSON editor of a report."""
+type FlxDonationReportSource {
+  """Shipped with the plugin."""
+  builtin: Boolean!
+  """The site has its own copy."""
+  edited: Boolean!
+  """Sources with their dimensions and metrics."""
+  help: [FlxDonationReportHelp!]!
+  """Report id; empty = a new one."""
+  id: String!
+  """Definition (JSON)."""
+  json: String!
+  """Period keys."""
+  periods: String!
+  """Title."""
+  title: String!
+}
+
 """Input for the flxDonationRequest mutation."""
 input FlxDonationRequestInput {
   """Free amount."""
@@ -1725,6 +2193,290 @@ type FlxDonationSetStatusPayload {
   message: String
 }
 
+"""Donation settings."""
+type FlxDonationSettings {
+  """Dark colour in use."""
+  brandDark: String!
+  """Logo in use."""
+  brandLogo: String!
+  """Name in use."""
+  brandName: String!
+  """Colour in use."""
+  brandPrimary: String!
+  """Categories."""
+  categories: [FlxDonationSettingsCategory!]!
+  """The theme&#039;s colour."""
+  colorHolder: String!
+  """Currencies."""
+  currencies: [FlxDonationChoice!]!
+  """Default currency."""
+  currency: String!
+  """payments = every paid form, list = the chosen forms."""
+  donationForms: String!
+  """Early days."""
+  earlyDays: Int!
+  """Field types."""
+  fieldTypes: String!
+  """Footer text."""
+  footerText: String!
+  """Chosen forms."""
+  formIds: [Int!]!
+  """Payment forms."""
+  forms: [FlxDonationChoice!]!
+  """Last run; empty = never."""
+  importLast: String!
+  """Flux Forms payments can be read."""
+  importReady: Boolean!
+  """Gifts on behalf of a person are on."""
+  kurban: Boolean!
+  """Tracking words."""
+  labels: [FlxDonationSettingsLabel!]!
+  """Logo attachment; 0 = none."""
+  logoId: Int!
+  """Logo."""
+  logoUrl: String!
+  """Gifts on behalf of a person."""
+  moduleKurban: Boolean!
+  """Reports."""
+  moduleReports: Boolean!
+  """Tracking module."""
+  moduleTrack: Boolean!
+  """Organisation name."""
+  orgName: String!
+  """Site name."""
+  orgPlaceholder: String!
+  """Brand colour; empty = the theme&#039;s."""
+  primaryColor: String!
+  """Proxy text."""
+  proxyText: String!
+  """Proxy text versions, newest first."""
+  proxyVersions: [String!]!
+  """Receipt text."""
+  receiptText: String!
+  """Tabs."""
+  tabs: [FlxDonationSettingsTab!]!
+  """Example (JSON)."""
+  tabsExample: String!
+  """Extra tabs in use."""
+  tabsInUse: [FlxDonationSettingsXTab!]!
+  """Own extra tabs (JSON)."""
+  tabsJson: String!
+}
+
+"""Input for the flxDonationSettingsBackfill mutation."""
+input FlxDonationSettingsBackfillInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+}
+
+"""The payload for the flxDonationSettingsBackfill mutation."""
+type FlxDonationSettingsBackfillPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result for the notice; null when refused (see errors)."""
+  message: String
+}
+
+"""Input for the flxDonationSettingsCategories mutation."""
+input FlxDonationSettingsCategoriesInput {
+  """Rows."""
+  categories: [FlxDonationCategoryInput!]!
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+}
+
+"""The payload for the flxDonationSettingsCategories mutation."""
+type FlxDonationSettingsCategoriesPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result for the notice; null when refused (see errors)."""
+  message: String
+}
+
+"""A donation type category."""
+type FlxDonationSettingsCategory {
+  """Key."""
+  key: String!
+  """Name."""
+  label: String!
+  """Donation types in it; used ones cannot be removed."""
+  used: Int!
+}
+
+"""Input for the flxDonationSettingsGeneral mutation."""
+input FlxDonationSettingsGeneralInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Default currency."""
+  currency: String!
+  """payments or list."""
+  donationForms: String!
+  """Chosen forms."""
+  formIds: [Int!]!
+  """Gifts on behalf of a person."""
+  moduleKurban: Boolean!
+  """Reports."""
+  moduleReports: Boolean!
+  """Tracking module."""
+  moduleTrack: Boolean!
+}
+
+"""The payload for the flxDonationSettingsGeneral mutation."""
+type FlxDonationSettingsGeneralPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result for the notice; null when refused (see errors)."""
+  message: String
+}
+
+"""A word of the tracking screens."""
+type FlxDonationSettingsLabel {
+  """Key."""
+  key: String!
+  """Label."""
+  label: String!
+  """Max length."""
+  max: Int!
+  """Built-in word."""
+  placeholder: String!
+  """Own word; empty = built-in."""
+  value: String!
+}
+
+"""Input for the flxDonationSettingsOrganisation mutation."""
+input FlxDonationSettingsOrganisationInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Footer text."""
+  footerText: String!
+  """Logo attachment; 0 = none."""
+  logoId: Int!
+  """Organisation name."""
+  orgName: String!
+  """Brand colour (#rrggbb); empty = the theme's."""
+  primaryColor: String!
+  """Receipt text."""
+  receiptText: String!
+}
+
+"""The payload for the flxDonationSettingsOrganisation mutation."""
+type FlxDonationSettingsOrganisationPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result for the notice; null when refused (see errors)."""
+  message: String
+}
+
+"""A settings tab."""
+type FlxDonationSettingsTab {
+  """Tab key."""
+  id: String!
+  """Printed by PHP (another module&#039;s tab); opens with the page."""
+  island: Boolean!
+  """Label."""
+  label: String!
+  """wp-admin address of the tab."""
+  url: String!
+}
+
+"""Input for the flxDonationSettingsTabs mutation."""
+input FlxDonationSettingsTabsInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Tabs (JSON list); empty = none."""
+  json: String!
+}
+
+"""The payload for the flxDonationSettingsTabs mutation."""
+type FlxDonationSettingsTabsPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result for the notice; null when refused (see errors)."""
+  message: String
+}
+
+"""Input for the flxDonationSettingsTrack mutation."""
+input FlxDonationSettingsTrackInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Early days (0–30)."""
+  earlyDays: Int!
+  """Words."""
+  labels: [FlxDonationLabelInput!]!
+  """Proxy text (with gifts on behalf of a person)."""
+  proxyText: String!
+}
+
+"""The payload for the flxDonationSettingsTrack mutation."""
+type FlxDonationSettingsTrackPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result for the notice; null when refused (see errors)."""
+  message: String
+}
+
+"""An extra detail tab in use."""
+type FlxDonationSettingsXTab {
+  """Added by a plugin."""
+  builtin: Boolean!
+  """On the donation page (else the record page)."""
+  donation: Boolean!
+  """Fields."""
+  fields: Int!
+  """Tab id."""
+  id: String!
+  """Title."""
+  title: String!
+}
+
 """Amount and count of one part."""
 type FlxDonationSlice {
   """Received amount."""
@@ -1801,6 +2553,406 @@ type FlxDonationTotals {
   newDonors: Int!
   """Received amount."""
   total: Float!
+}
+
+"""A button of the page head."""
+type FlxDonationTrackAction {
+  """Label."""
+  label: String!
+  """Main button."""
+  primary: Boolean!
+  """Address."""
+  url: String!
+}
+
+"""Input for the flxDonationTrackApply mutation."""
+input FlxDonationTrackApplyInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Items."""
+  ids: [Int!]!
+  """Note for the history."""
+  note: String!
+  """Partner ref of assign; empty otherwise."""
+  place: String!
+  """Step."""
+  step: String!
+}
+
+"""The payload for the flxDonationTrackApply mutation."""
+type FlxDonationTrackApplyPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result for the notice; null when refused (see errors)."""
+  message: String
+  """Some items were skipped (the message says why)."""
+  warning: Boolean
+}
+
+"""Input for the flxDonationTrackEdit mutation."""
+input FlxDonationTrackEditInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Item id."""
+  id: Int!
+  """On behalf of."""
+  name: String!
+  """Owner phone; empty = donor phone."""
+  phone: String!
+  """Target day (Y-m-d); empty = none."""
+  targetDate: String!
+}
+
+"""The payload for the flxDonationTrackEdit mutation."""
+type FlxDonationTrackEditPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result for the notice; null when refused (see errors)."""
+  message: String
+}
+
+"""A line of the history."""
+type FlxDonationTrackEvent {
+  """When, formatted."""
+  date: String!
+  """Event key."""
+  event: String!
+  """Event."""
+  label: String!
+  """Details; empty without."""
+  more: String!
+  """Note."""
+  note: String!
+  """Who."""
+  user: String!
+}
+
+"""A file kept on an item."""
+type FlxDonationTrackFile {
+  """Attachment id."""
+  att: Int!
+  """video, image, audio or file."""
+  kind: String!
+  """When and by whom."""
+  meta: String!
+  """File name."""
+  name: String!
+  """Where and when it was sent."""
+  sent: [String!]!
+  """Address."""
+  url: String!
+}
+
+"""Input for the flxDonationTrackFileRemove mutation."""
+input FlxDonationTrackFileRemoveInput {
+  """Attachment id."""
+  att: Int!
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Item id."""
+  id: Int!
+}
+
+"""The payload for the flxDonationTrackFileRemove mutation."""
+type FlxDonationTrackFileRemovePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result for the notice; null when refused (see errors)."""
+  message: String
+}
+
+"""Input for the flxDonationTrackFileSend mutation."""
+input FlxDonationTrackFileSendInput {
+  """Attachment id."""
+  att: Int!
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Item id."""
+  id: Int!
+}
+
+"""The payload for the flxDonationTrackFileSend mutation."""
+type FlxDonationTrackFileSendPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result for the notice; null when refused (see errors)."""
+  message: String
+}
+
+"""Filter of the tracking list."""
+input FlxDonationTrackFilter {
+  """Only items due now, by target date."""
+  due: Boolean
+  """"1" paid, "0" not paid, empty = any."""
+  paid: String
+  """Partner ref."""
+  place: String
+  """Code, name, phone, donation no."""
+  search: String
+  """Status; empty = all."""
+  status: String
+  """Donation type."""
+  typeId: Int
+}
+
+"""A step of the flow strip."""
+type FlxDonationTrackFlow {
+  """When, formatted; empty when not reached."""
+  date: String!
+  """Status."""
+  label: String!
+  """done, on or empty."""
+  state: String!
+}
+
+"""One tracked item."""
+type FlxDonationTrackItem {
+  """Status buttons."""
+  actions: [FlxDonationTrackStep!]!
+  """Button: send to partner."""
+  assignLabel: String!
+  """On behalf of."""
+  beneficiary: String!
+  """It can be sent to a partner now."""
+  canAssign: Boolean!
+  """The viewer can change it."""
+  canEdit: Boolean!
+  """Files can be sent to the owner over WhatsApp."""
+  canSend: Boolean!
+  """Canceled."""
+  canceled: Boolean!
+  """Code."""
+  code: String!
+  """Item id."""
+  databaseId: Int!
+  """Details."""
+  details: [FlxDonationTrackRowHtml!]!
+  """Status of the donation; empty without one."""
+  donationStatus: String!
+  """Colour of the donation status."""
+  donationTone: String!
+  """Files."""
+  files: [FlxDonationTrackFile!]!
+  """Hint of the files card."""
+  filesHint: String!
+  """What the files are called."""
+  filesLabel: String!
+  """Flow strip."""
+  flow: [FlxDonationTrackFlow!]!
+  """History."""
+  history: [FlxDonationTrackEvent!]!
+  """Ids of the cards printed with the page (extra tabs)."""
+  islands: [String!]!
+  """What one item is called."""
+  itemLabel: String!
+  """Past the target date and not completed."""
+  late: Boolean!
+  """Title of the list."""
+  listTitle: String!
+  """Where files go, formatted."""
+  ownerPhone: String!
+  """What a partner is called."""
+  partnerLabel: String!
+  """Donation and payment."""
+  payment: [FlxDonationTrackRowHtml!]!
+  """Owner phone as stored."""
+  phone: String!
+  """Partners it can go to."""
+  places: [FlxDonationChoice!]!
+  """Why files cannot be sent; empty when they can."""
+  sendHint: String!
+  """Status."""
+  status: String!
+  """Status key."""
+  statusKey: String!
+  """Option."""
+  subtitle: String!
+  """Target day (Y-m-d); empty without one."""
+  targetDate: String!
+  """Page title."""
+  title: String!
+  """Colour of the status."""
+  tone: String!
+  """The payment is not received yet."""
+  unpaid: Boolean!
+  """Nonce of a file upload."""
+  uploadNonce: String!
+  """Form address of a file upload; empty without the right."""
+  uploadUrl: String!
+}
+
+"""The tracking list."""
+type FlxDonationTrackList {
+  """Buttons of the page head."""
+  actions: [FlxDonationTrackAction!]!
+  """The viewer can change items."""
+  canEdit: Boolean!
+  """Labels of the extra columns."""
+  columns: [String!]!
+  """What the files are called."""
+  filesLabel: String!
+  """Items of the page."""
+  items: [FlxDonationTrackRow!]!
+  """Page."""
+  page: Int!
+  """What a partner is called."""
+  partnerLabel: String!
+  """Items per page."""
+  perPage: Int!
+  """Partners."""
+  places: [FlxDonationChoice!]!
+  """Steps of the bulk bar."""
+  steps: [FlxDonationChoice!]!
+  """Status tabs with counts."""
+  tabs: [FlxDonationTrackTab!]!
+  """Page title."""
+  title: String!
+  """Items in all."""
+  total: Int!
+  """Items in all, as people read it."""
+  totalLabel: String!
+  """Tracked donation types; empty with one."""
+  types: [FlxDonationChoice!]!
+}
+
+"""Input for the flxDonationTrackNote mutation."""
+input FlxDonationTrackNoteInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Item id."""
+  id: Int!
+  """Note."""
+  note: String!
+}
+
+"""The payload for the flxDonationTrackNote mutation."""
+type FlxDonationTrackNotePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Result for the notice; null when refused (see errors)."""
+  message: String
+}
+
+"""Payment status of the gift."""
+type FlxDonationTrackPay {
+  """Status."""
+  label: String!
+  """Colour."""
+  tone: String!
+}
+
+"""One item of the tracking list."""
+type FlxDonationTrackRow {
+  """On behalf of."""
+  beneficiary: String!
+  """HTML of the extra columns, in their order."""
+  cells: [String!]!
+  """Code."""
+  code: String!
+  """Item id."""
+  databaseId: Int!
+  """Donation id."""
+  donationId: Int!
+  """The donation page."""
+  donationUrl: String!
+  """Donor name."""
+  donor: String!
+  """Files and how many were sent; empty without any."""
+  files: String!
+  """Option."""
+  option: String!
+  """Payment status; null without one."""
+  pay: FlxDonationTrackPay
+  """Owner phone, formatted."""
+  phone: String!
+  """Partner name."""
+  place: String!
+  """Status."""
+  status: String!
+  """Target date."""
+  target: FlxDonationTrackTarget!
+  """Colour of the status."""
+  tone: String!
+}
+
+"""A label with its value as HTML."""
+type FlxDonationTrackRowHtml {
+  """Value (escaped HTML)."""
+  html: String!
+  """Label."""
+  label: String!
+}
+
+"""A status button of an item."""
+type FlxDonationTrackStep {
+  """Question asked first; empty = none."""
+  confirm: String!
+  """Label."""
+  label: String!
+  """Step."""
+  step: String!
+  """primary, danger or empty."""
+  tone: String!
+}
+
+"""A status tab of the tracking list."""
+type FlxDonationTrackTab {
+  """Items, formatted."""
+  count: String!
+  """Label."""
+  label: String!
+  """Status; empty = all."""
+  value: String!
+}
+
+"""Target date of an item."""
+type FlxDonationTrackTarget {
+  """Day, formatted; empty without one."""
+  date: String!
+  """due or late; empty otherwise."""
+  label: String!
+  """early, window, late, ok or empty."""
+  state: String!
 }
 
 """A donation type the public page can show."""
@@ -2749,6 +3901,23 @@ extend type RootMutation {
     """Input for the flxDonationCertificates mutation"""
     input: FlxDonationCertificatesInput!
   ): FlxDonationCertificatesPayload
+  """Discards an import file (records already written stay)."""
+  flxDonationImportDelete(
+    """Input for the flxDonationImportDelete mutation"""
+    input: FlxDonationImportDeleteInput!
+  ): FlxDonationImportDeletePayload
+  """
+  Saves the columns, options and matches of an import; with run (and no column change) it starts.
+  """
+  flxDonationImportSave(
+    """Input for the flxDonationImportSave mutation"""
+    input: FlxDonationImportSaveInput!
+  ): FlxDonationImportSavePayload
+  """Writes the next rows of a running import."""
+  flxDonationImportStep(
+    """Input for the flxDonationImportStep mutation"""
+    input: FlxDonationImportStepInput!
+  ): FlxDonationImportStepPayload
   """Saves the person&#039;s order and folded boxes of the donation page."""
   flxDonationLayoutSave(
     """Input for the flxDonationLayoutSave mutation"""
@@ -2831,6 +4000,18 @@ extend type RootMutation {
     input: FlxDonationRejectInput!
   ): FlxDonationRejectPayload
   """
+  Removes the site&#039;s copy of a report: a shipped one goes back to its original, a new one is gone.
+  """
+  flxDonationReportDelete(
+    """Input for the flxDonationReportDelete mutation"""
+    input: FlxDonationReportDeleteInput!
+  ): FlxDonationReportDeletePayload
+  """Saves a report from its JSON."""
+  flxDonationReportSave(
+    """Input for the flxDonationReportSave mutation"""
+    input: FlxDonationReportSaveInput!
+  ): FlxDonationReportSavePayload
+  """
   Opens a donation request on behalf of a donor: a payment link for the donor, with the caller as the referral.
   """
   flxDonationRequest(
@@ -2854,6 +4035,65 @@ extend type RootMutation {
     """Input for the flxDonationSetStatus mutation"""
     input: FlxDonationSetStatusInput!
   ): FlxDonationSetStatusPayload
+  """Imports the completed Flux Forms payments that are not donations yet."""
+  flxDonationSettingsBackfill(
+    """Input for the flxDonationSettingsBackfill mutation"""
+    input: FlxDonationSettingsBackfillInput!
+  ): FlxDonationSettingsBackfillPayload
+  """Saves the categories; the ones in use are kept."""
+  flxDonationSettingsCategories(
+    """Input for the flxDonationSettingsCategories mutation"""
+    input: FlxDonationSettingsCategoriesInput!
+  ): FlxDonationSettingsCategoriesPayload
+  """Saves the general settings."""
+  flxDonationSettingsGeneral(
+    """Input for the flxDonationSettingsGeneral mutation"""
+    input: FlxDonationSettingsGeneralInput!
+  ): FlxDonationSettingsGeneralPayload
+  """Saves the organisation (receipts, pages, exports)."""
+  flxDonationSettingsOrganisation(
+    """Input for the flxDonationSettingsOrganisation mutation"""
+    input: FlxDonationSettingsOrganisationInput!
+  ): FlxDonationSettingsOrganisationPayload
+  """Saves the extra tabs (JSON)."""
+  flxDonationSettingsTabs(
+    """Input for the flxDonationSettingsTabs mutation"""
+    input: FlxDonationSettingsTabsInput!
+  ): FlxDonationSettingsTabsPayload
+  """Saves the tracking words, early days and the proxy text."""
+  flxDonationSettingsTrack(
+    """Input for the flxDonationSettingsTrack mutation"""
+    input: FlxDonationSettingsTrackInput!
+  ): FlxDonationSettingsTrackPayload
+  """
+  Applies a step to items (approve, assign, revoke, done, delivered, cancel, reset).
+  """
+  flxDonationTrackApply(
+    """Input for the flxDonationTrackApply mutation"""
+    input: FlxDonationTrackApplyInput!
+  ): FlxDonationTrackApplyPayload
+  """
+  Saves who an item is on behalf of, the owner phone and the target date.
+  """
+  flxDonationTrackEdit(
+    """Input for the flxDonationTrackEdit mutation"""
+    input: FlxDonationTrackEditInput!
+  ): FlxDonationTrackEditPayload
+  """Removes a file from an item; it stays in the media library."""
+  flxDonationTrackFileRemove(
+    """Input for the flxDonationTrackFileRemove mutation"""
+    input: FlxDonationTrackFileRemoveInput!
+  ): FlxDonationTrackFileRemovePayload
+  """Sends a file of an item to its owner over WhatsApp."""
+  flxDonationTrackFileSend(
+    """Input for the flxDonationTrackFileSend mutation"""
+    input: FlxDonationTrackFileSendInput!
+  ): FlxDonationTrackFileSendPayload
+  """Adds a note to an item&#039;s history."""
+  flxDonationTrackNote(
+    """Input for the flxDonationTrackNote mutation"""
+    input: FlxDonationTrackNoteInput!
+  ): FlxDonationTrackNotePayload
   """Deletes a donation type that has no gifts."""
   flxDonationTypeDelete(
     """Input for the flxDonationTypeDelete mutation"""
@@ -2929,6 +4169,13 @@ extend type RootQuery {
     id: Int!
   ): FlxDonationDetail
   """
+  The import page; id empty = the upload page. Null when the import is gone.
+  """
+  flxDonationImport(
+    """Import id; empty = the upload page."""
+    id: String!
+  ): FlxDonationImport
+  """
   Donation list of the wp-admin screen: an order is one row, open gifts first. Staff with flxb_view_own see only their referrals.
   """
   flxDonationList(
@@ -2964,6 +4211,36 @@ extend type RootQuery {
   ): FlxDonationPartnerSettlement!
   """The partners of the tracking module."""
   flxDonationPartners: FlxDonationPartnerList!
+  """A report with its period, totals and table."""
+  flxDonationReport(
+    """First day of custom (Y-m-d)."""
+    from: String!
+    """Report id; empty = the first one."""
+    id: String!
+    """Period key or custom; empty = the report's own."""
+    period: String!
+    """Last day of custom (Y-m-d)."""
+    to: String!
+  ): FlxDonationReport!
+  """The JSON editor of a report."""
+  flxDonationReportSource(
+    """Report id; empty = a new one."""
+    id: String!
+  ): FlxDonationReportSource!
+  """Donation settings."""
+  flxDonationSettings: FlxDonationSettings!
+  """The tracking list."""
+  flxDonationTrack(
+    """Filter."""
+    filter: FlxDonationTrackFilter
+    """Page (from 1)."""
+    page: Int
+  ): FlxDonationTrackList!
+  """One tracked item; null when it does not exist."""
+  flxDonationTrackItem(
+    """Item id."""
+    id: Int!
+  ): FlxDonationTrackItem
   """
   One public donation type, by id or slug. Null when it is missing or archived.
   """

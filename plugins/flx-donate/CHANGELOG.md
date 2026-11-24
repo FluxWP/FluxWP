@@ -1,5 +1,13 @@
 # Değişiklikler
 
+## 2.44.0
+- **Takip, Excel'den içe aktarma, Raporlar ve Ayarlar anında açılır.** Bağışlar eklentisinin kalan sayfaları da React ekranı: veri sayfayla hazır gelir, yükleniyor dönmez. Eski PHP sayfaları silindi.
+- Takip: durum sekmeleri, filtreler (yer, tür, ödeme, vadesi gelen, arama) ve sayfa adres çubuğunda kalır; toplu işlem (onayla, ortağa gönder, geri al, tamamla…) onay penceresiyle. Kayıt sayfası: akış, ayrıntılar, ad / telefon / hedef tarih düzenleme, ortağa gönderme, not, dosya gönderme ve kaldırma, ek sekmeler, geçmiş.
+- Excel'den içe aktarma: dosya yükleme, önizleme (sütun eşleme, seçenekler, eşleştirmeler, satırlar) ve çalıştırma (sayfa açık kaldıkça parça parça ilerler, hata olursa yeniden dener).
+- Raporlar: rapor seçimi, dönem ve tarih aralığı (ortak tarih seçici), toplamlar, çubuklu tablo, CSV. Yöneticiler JSON'u düzenler, yeni rapor ekler, hazır raporu geri alır.
+- Ayarlar: Genel (para birimi, modüller anahtarla, hangi ödemeler bağış), Kurum (ad, logo, renk, makbuz ve alt metin, önizleme), Kategoriler, Takip (kelimeler, erken gün, vekâlet metni ve sürümleri), Ek sekmeler (JSON), İçe aktarma. Diğer modüllerin sekmeleri (WooCommerce, Görünüm, Bağış sorgulama, Sistem kontrolü) kendi formlarıyla ekranın içinde açılır.
+- GraphQL: `flxDonationTrack`, `flxDonationTrackItem`, `flxDonationImport`, `flxDonationReport`, `flxDonationReportSource`, `flxDonationSettings` ve mutation'ları (`flxDonationTrack{Apply,Edit,Note,FileSend,FileRemove}`, `flxDonationImport{Save,Delete,Step}`, `flxDonationReport{Save,Delete}`, `flxDonationSettings{General,Organisation,Categories,Track,Tabs,Backfill}`). Yetki: takip ve rapor okuma `flx_bagis_view`, geri kalan `flxb_can_manage`.
+
 ## 2.43.0
 - **Ortaklar anında açılır.** İş ortakları listesi, Hesaplaşma sekmesi ve ortak formu artık React ekranı: veri sayfayla hazır gelir, yükleniyor dönmez.
 - Hesaplaşma: maliyet / getirilen ayrımı, son 12 ayın kartları, tarih aralığı (ortak tarih seçici) ve ortak filtresi sayfa yenilenmeden değişir; adres çubuğunda kalır. Bir ortağın kayıtları altta; fiyatı olmayanlar için "fiyatları anlaşmalardan yeniden oku". CSV indirme aynı.
