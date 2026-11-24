@@ -5704,3 +5704,40 @@ msgstr ""
 
 msgid "The message is empty."
 msgstr ""
+
+msgid "single payment"
+msgstr ""
+
+#, php-format
+msgid "%d installments"
+msgstr ""
+
+msgid "Card"
+msgstr ""
+
+msgid "Card holder"
+msgstr ""
+
+msgid "Amount charged"
+msgstr ""
+
+msgid "Bank reference"
+msgstr ""
+
+msgid "Authorization code"
+msgstr ""
+
+msgid "Transaction ID"
+msgstr ""
+
+msgid "Mode"
+msgstr ""
+
+msgid "Test"
+msgstr ""
+
+msgid "No payment has been taken for this order yet."
+msgstr ""
+
+msgid "Please write the card holder's full name as it is on the card (at least 6 letters)."
+msgstr ""

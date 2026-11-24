@@ -6122,3 +6122,36 @@ msgstr "Sahibine mesaj gönderildi"
 
 msgid "The message is empty."
 msgstr "Mesaj boş."
+
+msgid "single payment"
+msgstr "tek çekim"
+
+msgid "Card"
+msgstr "Kart"
+
+msgid "Card holder"
+msgstr "Kart sahibi"
+
+msgid "Amount charged"
+msgstr "Çekilen tutar"
+
+msgid "Bank reference"
+msgstr "Banka referansı"
+
+msgid "Authorization code"
+msgstr "Onay kodu"
+
+msgid "Transaction ID"
+msgstr "İşlem numarası"
+
+msgid "Mode"
+msgstr "Mod"
+
+msgid "Test"
+msgstr "Test"
+
+msgid "No payment has been taken for this order yet."
+msgstr "Bu sipariş için henüz ödeme alınmadı."
+
+msgid "Please write the card holder's full name as it is on the card (at least 6 letters)."
+msgstr "Kart sahibinin adını kartta yazdığı gibi tam yazın (en az 6 harf)."

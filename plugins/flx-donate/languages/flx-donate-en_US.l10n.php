@@ -3451,5 +3451,17 @@ return array(
   'The donor\'s earlier gifts came through %s.' => 'The donor\'s earlier gifts came through %s.',
   '%s more' . chr(0) . '%s more' => '%s more' . chr(0) . '%s more',
 
+  'single payment' => 'single payment',
+  '%d installments' => '%d installments',
+  'Card' => 'Card',
+  'Card holder' => 'Card holder',
+  'Amount charged' => 'Amount charged',
+  'Bank reference' => 'Bank reference',
+  'Authorization code' => 'Authorization code',
+  'Transaction ID' => 'Transaction ID',
+  'Mode' => 'Mode',
+  'Test' => 'Test',
+  'No payment has been taken for this order yet.' => 'No payment has been taken for this order yet.',
+  'Please write the card holder\'s full name as it is on the card (at least 6 letters).' => 'Please write the card holder\'s full name as it is on the card (at least 6 letters).',
  ),
 );
