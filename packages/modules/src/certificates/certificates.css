@@ -1,12 +1,11 @@
 .flxs-app{--bd:var(--flux-border);--mut:var(--flux-text-muted);--ac:var(--flux-primary);--card:var(--flux-surface);color:var(--flux-text);font-size:14px;line-height:1.45;padding:0 0 28px}
-.flxs-app h1{font-size:23px;font-weight:600;margin:0}
 .flxs-app a{color:var(--ac)}
 .flxs-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:8px 0 12px}
 .flxs-acts{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .flxs-filters,.flxs-bulk{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px;align-items:center}
 .flxs-app input,.flxs-app select,.flxs-app textarea{font:inherit;color:inherit;background:var(--card);border:1px solid var(--bd);border-radius:6px;padding:6px 8px}
-.flxs-app button,.flxs-btn{font:inherit;border:1px solid var(--bd);background:var(--card);border-radius:6px;padding:6px 10px;cursor:pointer;color:inherit}
-.flxs-app button.is-primary,.flxs-btn.is-primary{background:var(--ac);color:var(--flux-on-primary,#fff);border-color:transparent}
+.flxs-app .flx-page__body button,.flxs-btn{font:inherit;border:1px solid var(--bd);background:var(--card);border-radius:6px;padding:6px 10px;cursor:pointer;color:inherit}
+.flxs-app .flx-page__body button.is-primary,.flxs-btn.is-primary{background:var(--ac);color:var(--flux-on-primary,#fff);border-color:transparent}
 .flxs-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--bd);border-radius:8px;overflow:hidden}
 .flxs-table th,.flxs-table td{padding:8px 10px;border-bottom:1px solid var(--bd);text-align:left;vertical-align:top}
 .flxs-table th{font-weight:600;font-size:12px}
@@ -37,3 +36,8 @@
   .flxs-table tr{display:block;border-bottom:1px solid var(--bd);padding:8px 0}
   .flxs-table td,.flxs-table th.check{display:block;border:0;padding:4px 10px}
 }
+
+/* 2.3.0 islands: the PHP pages (dashboard, queue, bulk, templates, log, settings, system) under the shared header. */
+.flxs-islandslot{display:contents}
+.flxs-app .flxs-island{display:block;min-width:0}
+.flxs-app .flxs-head--island{justify-content:flex-end;padding:0 0 12px}

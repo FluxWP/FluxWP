@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.3.0
+- Sertifika sayfaları Flux GraphQL ekran kabuğunda: ilk veri sayfayla birlikte gelir (preload), tıklayınca anında açılır.
+- Ortak ekran başlığı ve sekmeler: Sertifikalar, Yeni sertifika, Kişiler, Pano, Gönderim kuyruğu, Toplu gönderim, Şablonlar, Kayıtlar, Ayarlar, Sistem kontrolü tek sekme çubuğunda (kullanıcının yetkisine göre).
+- Pano, kuyruk, toplu gönderim, şablonlar, kayıtlar, ayarlar ve sistem kontrolü formları aynı başlık altında açılır (sonraki sürümlerde React'e geçecek).
+- Klasik görünüm ve "Yeni görünüm" geçişi kaldırıldı; Sertifikalar, Yeni sertifika ve Kişiler'in klasik PHP sayfaları silindi. Flux GraphQL yoksa uyarı gösterilir.
+
 ## 2.2.2
 - Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
 

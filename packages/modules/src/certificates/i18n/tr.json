@@ -2,7 +2,6 @@
   "Certificates": "Sertifikalar",
   "New certificate": "Yeni sertifika",
   "People": "Kişiler",
-  "Classic view": "Klasik görünüm",
   "Download Excel": "Excel indir",
   "Name, phone, email, certificate no…": "Ad, telefon, e-posta, sertifika no…",
   "All statuses": "Tüm durumlar",
@@ -109,5 +108,13 @@
   "Queueing…": "Gönderime alınıyor…",
   "Done.": "Hazır.",
   "Name is required.": "Ad soyad boş.",
-  "The PDF library could not be loaded.": "PDF kütüphanesi yüklenemedi."
+  "The PDF library could not be loaded.": "PDF kütüphanesi yüklenemedi.",
+  "Dashboard": "Pano",
+  "Events": "Etkinlikler",
+  "Send queue": "Gönderim kuyruğu",
+  "Bulk send": "Toplu gönderim",
+  "Templates": "Şablonlar",
+  "Log": "Kayıtlar",
+  "Settings": "Ayarlar",
+  "System check": "Sistem kontrolü"
 }

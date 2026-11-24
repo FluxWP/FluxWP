@@ -1,8 +1,10 @@
 <?php
 /**
- * Records, new certificate and people open the React screen (assets/flux/, tools/fluxapp/embed-sync.sh
- * flx-certificates). It is the default when Flux GraphQL is available. A user can switch back to the
- * classic pages; pages that have not moved stay classic.
+ * The Certificates pages are one React screen (packages/modules/src/certificates, assets/flux/ via
+ * tools/fluxapp/embed-sync.sh flx-certificates) on the Flux GraphQL shell (flx_admin_screen): 2.3.0 preloads
+ * the first queries of the page, so it opens at once, and the classic view is gone. Records, New certificate
+ * and People are React; the other pages are still PHP: the page prints the open one hidden ("island") and the
+ * screen shows it under the shared header and tabs. Without Flux GraphQL the page says so.
  *
  * @package flx-certificates
  */
@@ -10,167 +12,194 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * The bundle and Flux GraphQL are both present.
- */
-function flxs_flux_available(): bool {
-	return is_readable( FLXS_DIR . 'assets/flux/flux-modules.js' ) && function_exists( 'flx_gql_ready' ) && function_exists( 'flx_gql_all_caps' ) && flx_gql_ready();
-}
-
-/**
- * This user sees the React screen.
- */
-function flxs_flux_ui(): bool {
-	return flxs_flux_available() && 'classic' !== get_user_meta( get_current_user_id(), 'flxs_ui', true );
-}
-
-/**
- * Pages that have a React screen. The rest stay classic.
+ * The React pages and the route each one starts on.
  *
- * @return string[]
- */
-function flxs_flux_pages(): array {
-	return array( 'flxs', 'flxs-yeni', 'flxs-kisiler' );
-}
-
-/**
  * @return array<string,string>
  */
-function flxs_flux_current_args(): array {
-	$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : 'flxs'; // phpcs:ignore WordPress.Security.NonceVerification
-	$args = array( 'page' => $page );
-	foreach ( array( 'id', 'person', 'add', 's', 'status', 'event', 'template', 'ref', 'by' ) as $key ) {
-		if ( isset( $_GET[ $key ] ) && '' !== (string) $_GET[ $key ] ) { // phpcs:ignore WordPress.Security.NonceVerification
-			$args[ $key ] = sanitize_text_field( wp_unslash( $_GET[ $key ] ) ); // phpcs:ignore WordPress.Security.NonceVerification
-		}
+function flxs_react_pages(): array {
+	return array(
+		'flxs'         => 'records',
+		'flxs-yeni'    => 'new',
+		'flxs-kisiler' => 'people',
+	);
+}
+
+/**
+ * The PHP pages (islands) this user can open: page slug => [route, classic callback].
+ *
+ * @return array<string,array{0:string,1:callable-string}>
+ */
+function flxs_island_pages(): array {
+	$out = array();
+	if ( flxs_can_dashboard() ) {
+		$out['flxs-dashboard'] = array( 'dashboard', 'flxs_page_dashboard' );
 	}
-	return $args;
+	if ( flxs_can_manage() && ! function_exists( 'flxcrm_events_url' ) ) {
+		$out['flxs-etkinlikler'] = array( 'events', 'flxs_page_events' );
+	}
+	$out['flxs-kuyruk'] = array( 'queue', 'flxs_page_queue' );
+	if ( flxs_can_bulk() ) {
+		$out['flxs-toplu'] = array( 'bulk', 'flxs_page_bulk' );
+	}
+	if ( flxs_can_manage() ) {
+		$out['flxs-sablonlar'] = array( 'templates', 'flxs_page_templates' );
+		$out['flxs-kayitlar']  = array( 'logs', 'flxs_page_logs' );
+		$out['flxs-ayarlar']   = array( 'settings', 'flxs_page_settings' );
+		$out['flxs-sistem']    = array( 'system', 'flxs_page_system' );
+	}
+	return $out;
 }
 
-/**
- * Link that switches this user between the views.
- */
-function flxs_ui_switch_url( string $ui ): string {
-	$args           = flxs_flux_current_args();
-	$args['flxs_ui'] = 'flux' === $ui ? 'flux' : 'classic';
-	// Not wp_nonce_url(): it HTML-escapes the ampersand, and this address also goes to a link in JSON (classicUrl).
-	// Markup output passes it through esc_url().
-	$args['_wpnonce'] = wp_create_nonce( 'flxs_ui' );
-	return esc_url_raw( add_query_arg( $args, admin_url( 'admin.php' ) ) );
+/** Is the page being printed an island (its classic content goes into the screen)? */
+function flxs_is_island(): bool {
+	return ! empty( $GLOBALS['flxs_island'] );
 }
 
-add_action(
-	'admin_init',
-	static function (): void {
-		$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-		if ( ! isset( $_GET['flxs_ui'] ) || ! in_array( $page, flxs_flux_pages(), true ) || ! flxs_can_use() ) { // phpcs:ignore WordPress.Security.NonceVerification
-			return;
-		}
-		check_admin_referer( 'flxs_ui' );
-		if ( 'classic' === $_GET['flxs_ui'] ) { // phpcs:ignore WordPress.Security.NonceVerification
-			update_user_meta( get_current_user_id(), 'flxs_ui', 'classic' );
-		} else {
-			delete_user_meta( get_current_user_id(), 'flxs_ui' );
-		}
-		$args = flxs_flux_current_args();
-		unset( $args['flxs_ui'] );
-		wp_safe_redirect( add_query_arg( $args, admin_url( 'admin.php' ) ) );
-		exit;
-	},
-	1
-);
+/** Registers the pages on the shell (before the menu). */
+function flxs_register_screens(): void {
+	if ( ! function_exists( 'flx_admin_screen' ) ) {
+		return;
+	}
+	$pages = flxs_react_pages();
+	foreach ( flxs_island_pages() as $slug => $island ) {
+		$pages[ $slug ] = $island[0];
+	}
+	foreach ( $pages as $page => $route ) {
+		flx_admin_screen(
+			$page,
+			array(
+				'module'       => 'flxs-certificates',
+				'assets_dir'   => FLXS_DIR . 'assets/flux/',
+				'assets_url'   => FLXS_URL . 'assets/flux/',
+				'version'      => FLXS_VERSION,
+				'enabled'      => '__return_true',
+				'options'      => 'flxs_screen_options',
+				'start'        => $route,
+				'container_id' => 'flxs-app',
+				'preload'      => 'flxs_screen_preload',
+			)
+		);
+	}
+}
+add_action( 'admin_menu', 'flxs_register_screens', 5 );
 
-/**
- * startPage for the React screen.
- */
+/** startPage for the React screen. */
 function flxs_flux_start(): string {
-	$args = flxs_flux_current_args();
-	$page = $args['page'];
+	// phpcs:disable WordPress.Security.NonceVerification.Recommended
+	$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : 'flxs';
+	if ( isset( flxs_island_pages()[ $page ] ) ) {
+		return flxs_island_pages()[ $page ][0];
+	}
 	if ( 'flxs-yeni' === $page ) {
-		return ! empty( $args['id'] ) ? 'new:' . (int) $args['id'] : 'new';
+		return ! empty( $_GET['id'] ) ? 'new:' . absint( $_GET['id'] ) : 'new';
 	}
 	if ( 'flxs-kisiler' === $page ) {
-		if ( ! empty( $args['person'] ) ) {
-			return 'person:' . (int) $args['person'];
+		if ( ! empty( $_GET['person'] ) ) {
+			return 'person:' . absint( $_GET['person'] );
 		}
-		return ! empty( $args['add'] ) ? 'people:add' : 'people';
+		return ! empty( $_GET['add'] ) ? 'people:add' : 'people';
 	}
+	// phpcs:enable WordPress.Security.NonceVerification.Recommended
 	return 'records';
 }
 
 /**
- * @param string $tag    Tag.
- * @param string $handle Handle.
+ * Mount options besides what the shell adds.
+ *
+ * @param string $page Page slug.
+ * @return array<string,mixed>
  */
-function flxs_flux_module_tag( $tag, $handle ): string {
-	if ( 'flxs-flux' !== $handle ) {
-		return (string) $tag;
-	}
-	$replaced = preg_replace_callback(
-		'/<script\b[^>]*\ssrc=[^>]*>/',
-		static function ( array $m ): string {
-			$open = (string) preg_replace( '/\stype=("|\')[^"\']*\1/', '', $m[0] );
-			return (string) preg_replace( '/^<script\b/', '<script type="module"', $open );
-		},
-		(string) $tag,
-		1
-	);
-	return is_string( $replaced ) ? $replaced : (string) $tag;
-}
-
-/**
- * Prints the React mount and returns true when the new view is on.
- */
-function flxs_render_flux(): bool {
-	if ( ! flxs_flux_ui() ) {
-		return false;
-	}
-	$ver    = FLXS_VERSION . '-' . (int) filemtime( FLXS_DIR . 'assets/flux/flux-modules.js' );
+function flxs_screen_options( $page = '' ): array {
+	unset( $page );
 	$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#2c7a64';
-	$opts   = array(
-		'module'     => 'flxs-certificates',
-		'rest'       => rest_url(),
-		'nonce'      => wp_create_nonce( 'wp_rest' ),
-		'locale'     => get_user_locale(),
-		'siteName'   => get_bloginfo( 'name' ),
-		'adminUrl'   => admin_url(),
-		'theme'      => 'light',
-		'colors'     => array(
+	return array(
+		'startPage' => flxs_flux_start(),
+		'colors'    => array(
 			'primary'         => $accent,
 			'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
 		),
-		'appIcon'    => FLXS_URL . 'assets/icon.svg',
-		'startPage'  => flxs_flux_start(),
-		'classicUrl' => flxs_ui_switch_url( 'classic' ),
+		'appIcon'   => FLXS_URL . 'assets/icon.svg',
 	);
-	wp_enqueue_style( 'flxs-flux', FLXS_URL . 'assets/flux/flux-modules.css', array(), $ver );
-	wp_enqueue_script( 'flxs-flux', FLXS_URL . 'assets/flux/flux-modules.js', array(), $ver, true );
-	add_filter( 'script_loader_tag', 'flxs_flux_module_tag', 10, 2 );
-	wp_add_inline_script(
-		'flxs-flux',
-		'(function(){var h=document.documentElement,o=' . wp_json_encode( $opts ) . ';o.theme=h.classList.contains("flxa-dark")?"dark":"light";var slot=window.FluxModulesOptions||(window.FluxModulesOptions={});slot.id="flxs-app";slot.opts=o;function sync(){var el=document.getElementById("flxs-app");if(el)el.dataset.theme=h.classList.contains("flxa-dark")?"dark":"light";}new MutationObserver(sync).observe(h,{attributes:true,attributeFilter:["class"]});function go(){if(slot.done||!window.FluxModules)return;var el=document.getElementById(slot.id);if(!el)return;slot.done=true;try{window.FluxModules.mount(el,slot.opts);}catch(e){el.textContent=String(e&&e.message||e);}}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);go();})();',
-		'before'
-	);
-	echo '<style>#flxs-app.flux-root{height:auto;background:transparent;font-family:inherit}</style>';
-	echo '<div class="wrap flxs-react"><div id="flxs-app"><noscript>' . esc_html__( 'JavaScript is required for this screen.', 'flx-certificates' ) . '</noscript></div></div>';
-	return true;
 }
 
 /**
- * Classic pages that have a React twin link to it.
- *
- * @param array<int,array<string,string>> $actions Actions.
- * @return array<int,array<string,string>>
+ * @param mixed $query Query arguments of the page (unused: the start route comes from the address).
+ * @return list<array{0:string,1:array<string,mixed>}>
  */
-function flxs_classic_switch( array $actions ): array {
-	if ( flxs_flux_available() && ! flxs_flux_ui() ) {
-		array_unshift(
-			$actions,
+function flxs_screen_preload( $query = array() ): array {
+	unset( $query );
+	return flxs_preload_for( flxs_flux_start() );
+}
+
+/**
+ * The first queries of a start route, with the variables the screen sends (same store key).
+ *
+ * @param string $start Start route.
+ * @return list<array{0:string,1:array<string,mixed>}>
+ */
+function flxs_preload_for( string $start ): array {
+	if ( 'records' === $start ) {
+		return array(
 			array(
-				'label' => __( 'New view', 'flx-certificates' ),
-				'url'   => flxs_ui_switch_url( 'flux' ),
-				'class' => '',
-			)
+				'FlxCertificateRecords',
+				array(
+					'first'  => 20,
+					'after'  => null,
+					'filter' => (object) array(), // the client keys an empty filter as {}
+				),
+			),
 		);
 	}
-	return $actions;
+	if ( 'new' === $start ) {
+		return array( array( 'FlxCertificateCreateConfig', array( 'certificateId' => null ) ) );
+	}
+	if ( 'people' === $start ) {
+		return array(
+			array(
+				'FlxCertificateDirectory',
+				array(
+					'search' => '',
+					'first'  => 30,
+					'after'  => null,
+				),
+			),
+		);
+	}
+	if ( 0 === strpos( $start, 'person:' ) && absint( substr( $start, 7 ) ) ) {
+		$id = absint( substr( $start, 7 ) );
+		return array(
+			array( 'FlxCertificatePerson', array( 'id' => $id ) ),
+			array( 'FlxCertificatePersonMessages', array( 'personId' => $id ) ),
+		);
+	}
+	return array();
+}
+
+/** The menu callback of every Certificates page: the shell prints the screen (and the open island). */
+function flxs_screen_page(): void {
+	if ( ! function_exists( 'flx_admin_screen_page' ) ) {
+		echo '<div class="wrap"><div class="notice notice-error"><p>' . esc_html__( 'Something went wrong.', 'flx-certificates' ) . ' (Flux GraphQL)</p></div></div>';
+		return;
+	}
+	$page    = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : 'flxs'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	$islands = flxs_island_pages();
+	$html    = '';
+	if ( isset( $islands[ $page ] ) ) {
+		$GLOBALS['flxs_island'] = true;
+		ob_start();
+		call_user_func( $islands[ $page ][1] );
+		$html = trim( (string) ob_get_clean() );
+		unset( $GLOBALS['flxs_island'] );
+	}
+	flx_admin_screen_page();
+	$tabs = array();
+	foreach ( $islands as $island ) {
+		$tabs[] = $island[0];
+	}
+	// The island tabs this user has (the screen adds them to its tabs) and the open island.
+	echo '<div id="flxs-islands" hidden data-tabs="' . esc_attr( (string) wp_json_encode( $tabs ) ) . '">';
+	if ( '' !== $html ) {
+		echo '<div class="flxs-wrap flxs-island" data-flxs-island="' . esc_attr( $islands[ $page ][0] ) . '">' . $html . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- the page's own escaped output
+	}
+	echo '</div>';
 }
