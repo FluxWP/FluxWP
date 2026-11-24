@@ -749,11 +749,22 @@ final class FLXB_WC_Form {
 		return $h;
 	}
 
-	/** 2.0.2: "Payments are taken securely by iyzico" under the button (iyzico gateway on), else the generic line. */
+	/**
+	 * 2.0.2: "Payments are taken securely by …" under the button, else the generic line.
+	 * 2.33.2: the name is the card method donors see now (EsnekPOS, iyzico…, FLXB_WC_Gateways::badge_provider()),
+	 * not "iyzico" whenever an iyzico plugin is on.
+	 */
 	public static function secure_note() {
-		$iyzico = class_exists( 'FLXB_WC_Iyzico' ) && ( FLXB_WC_Iyzico::official_enabled() || FLXB_WC_Iyzico::usable() );
-		$text   = $iyzico ? __( 'Payments are taken securely by iyzico.', 'flx-donate' ) : __( 'Pay safely by card or bank transfer.', 'flx-donate' );
-		$sub    = $iyzico ? __( 'Your card details are never stored on our site.', 'flx-donate' ) : '';
+		$prov = class_exists( 'FLXB_WC_Gateways' ) ? (string) FLXB_WC_Gateways::badge_provider( '' ) : '';
+		if ( 'iyzico' === $prov ) {
+			$text = __( 'Payments are taken securely by iyzico.', 'flx-donate' );
+		} elseif ( '' !== $prov ) {
+			/* translators: %s: payment provider name (EsnekPOS, PayTR…) */
+			$text = sprintf( __( 'Payments are taken securely by %s.', 'flx-donate' ), $prov );
+		} else {
+			$text = __( 'Pay safely by card or bank transfer.', 'flx-donate' );
+		}
+		$sub = '' !== $prov ? __( 'Your card details are never stored on our site.', 'flx-donate' ) : '';
 		$html   = '<div class="flxwb-pay"><span class="flxwb-pay__icon">' . FLXB_WC::icon( 'lock' ) . '</span><span class="flxwb-pay__text"><strong>' . esc_html( $text ) . '</strong>';
 		if ( '' !== $sub ) {
 			$html .= '<small>' . esc_html( $sub ) . '</small>';

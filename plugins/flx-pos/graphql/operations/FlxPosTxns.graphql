@@ -1,0 +1,6 @@
+query FlxPosTxns($first: Int, $after: String, $status: FlxPosTxnStatus, $account: String, $search: String) {
+  flxPosTxns(first: $first, after: $after, status: $status, account: $account, search: $search) {
+    nodes { ...FlxPosTxnRow }
+    pageInfo { hasNextPage endCursor }
+  }
+}

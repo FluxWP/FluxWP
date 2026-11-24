@@ -416,7 +416,17 @@ final class FLXB_WC_Esnekpos_Direct {
 				$order->calculate_totals( false );
 			}
 		}
+		/* 2.34.0: EsnekPOS wants at least 6 letters for the card holder; a short name falls back to the billing name. */
+		$owner = trim( preg_replace( '/\s+/u', ' ', (string) $card['name'] ) );
+		if ( mb_strlen( $owner ) < 6 ) {
+			$full  = trim( $order->get_billing_first_name() . ' ' . $order->get_billing_last_name() );
+			$owner = mb_strlen( $full ) >= 6 ? $full : $owner;
+		}
+		if ( mb_strlen( $owner ) < 6 ) {
+			return new WP_Error( 'flxb_cc', __( 'Please write the card holder\'s full name as it is on the card (at least 6 letters).', 'flx-donate' ) );
+		}
 		$order->update_meta_data( '_flxb_esn_installments', $inst );
+		FLXB_WC_Payinfo::keep_card( $order, $card['number'], $owner );
 		$order->save();
 
 		$exp_m = substr( $card['exp'], 0, 2 );
@@ -440,7 +450,7 @@ final class FLXB_WC_Esnekpos_Direct {
 				'EXP_MONTH'          => $exp_m,
 				'EXP_YEAR'           => $exp_y,
 				'CC_CVV'             => $card['cvv'],
-				'CC_OWNER'           => $card['name'],
+				'CC_OWNER'           => $owner,
 				'INSTALLMENT_NUMBER' => (string) $inst,
 			),
 			'Customer'   => array(
@@ -460,13 +470,13 @@ final class FLXB_WC_Esnekpos_Direct {
 		unset( $body ); // the card is not kept anywhere
 		if ( is_wp_error( $r ) ) {
 			/* translators: %s: error */
-			$order->add_order_note( sprintf( __( 'EsnekPOS payment could not start:%s', 'flx-donate' ), $r->get_error_message() ) );
+			$order->add_order_note( sprintf( __( 'EsnekPOS payment could not start: %s', 'flx-donate' ), $r->get_error_message() ) );
 			return new WP_Error( 'flxb_esn', __( 'We could not reach the payment service. No payment was taken. Please try again in a moment.', 'flx-donate' ) );
 		}
 		$msg = FLXB_WC_Esnekpos::message( $r );
 		if ( ! FLXB_WC_Esnekpos::ok( $r ) ) {
 			/* translators: 1: EsnekPOS message, 2: test or live */
-			$order->add_order_note( sprintf( __( 'EsnekPOS payment could not start:%1$s(%2$s).', 'flx-donate' ), '' !== $msg ? $msg : '-', $c['test'] ? __( 'test mode', 'flx-donate' ) : __( 'live', 'flx-donate' ) ) );
+			$order->add_order_note( sprintf( __( 'EsnekPOS payment could not start: %1$s (%2$s).', 'flx-donate' ), '' !== $msg ? $msg : '-', $c['test'] ? __( 'test mode', 'flx-donate' ) : __( 'live', 'flx-donate' ) ) );
 			return new WP_Error( 'flxb_esn', self::explain( $msg ) );
 		}
 		$order->update_meta_data( FLXB_WC_Esnekpos::REF, $ref );

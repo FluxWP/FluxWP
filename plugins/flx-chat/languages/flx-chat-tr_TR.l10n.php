@@ -3569,5 +3569,10 @@ return array(
   'Cleared.' => 'Temizlendi.',
   'Proxy' => 'Vekâlet',
   'Please reply "I agree" to give your proxy.' => 'Vekâlet vermek için "Onaylıyorum" yazmanız yeterli.',
+  'at least %s' => 'en az %s',
+  '(updates are sent to this address too)' => '(bilgilendirmeler bu adrese de gider)',
+  'Assistant languages' => 'Asistanın dilleri',
+  'Ready messages go out in the language the person writes in. Saved translation templates: %s. Numbers, prices, IBAN and links are not translated; they are filled in when sending.' => 'Hazır mesajlar kişinin yazdığı dilde gider. Kayıtlı çeviri şablonları: %s. Rakam, fiyat, IBAN ve linkler çevrilmez; gönderirken yerine konur.',
+  'Ready messages go out in the language the person writes in. A message is translated the first time it is needed in a language and then reused; numbers, prices, IBAN and links are filled in when sending.' => 'Hazır mesajlar kişinin yazdığı dilde gider. Bir mesaj bir dilde ilk gerektiğinde çevrilir, sonra saklanan çeviri kullanılır; rakam, fiyat, IBAN ve linkler gönderirken yerine konur.',
  ),
 );

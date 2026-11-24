@@ -1,0 +1,11 @@
+# POS accounts (secrets only as "saved"), the provider catalog and the general settings.
+query FlxPosAccounts {
+  flxPosAccounts { ...FlxPosAccountFields }
+  flxPosProviders {
+    id name group ready currencies caps notes testCards
+    modes { value label }
+    fields { key label secret help defaultValue }
+    endpoints { value label }
+  }
+  flxPosSettings { ...FlxPosSettingsFields }
+}

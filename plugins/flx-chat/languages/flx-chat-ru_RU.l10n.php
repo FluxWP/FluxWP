@@ -3256,5 +3256,10 @@ return array(
   'Off (the person replied STOP)' => 'Выкл. (человек ответил STOP)',
   'Promotional messages and reminders are not sent. Replies to the person\'s own messages still go.' => 'Рекламные сообщения и напоминания не отправляются. Ответы на собственные сообщения человека отправляются.',
   'The person replied STOP to promotional messages.' => 'Человек ответил STOP на рекламные сообщения.',
+  'at least %s' => 'не менее %s',
+  '(updates are sent to this address too)' => '(уведомления приходят и на этот адрес)',
+  'Assistant languages' => 'Языки ассистента',
+  'Ready messages go out in the language the person writes in. Saved translation templates: %s. Numbers, prices, IBAN and links are not translated; they are filled in when sending.' => 'Готовые сообщения отправляются на языке, на котором пишет человек. Сохранённые шаблоны переводов: %s. Числа, цены, IBAN и ссылки не переводятся, а подставляются при отправке.',
+  'Ready messages go out in the language the person writes in. A message is translated the first time it is needed in a language and then reused; numbers, prices, IBAN and links are filled in when sending.' => 'Готовые сообщения отправляются на языке, на котором пишет человек. Сообщение переводится, когда оно впервые нужно на языке, и затем используется повторно; числа, цены, IBAN и ссылки подставляются при отправке.',
  ),
 );

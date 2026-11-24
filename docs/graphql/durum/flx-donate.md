@@ -1,10 +1,10 @@
-# flx-donate 2.36.0
+# flx-donate 2.37.0
 
 - Faz: 2
 - Durum: 👀
 - PR: #340 (bu PR'ye katıldı), Donate ekranları PR'si
 
-2.36.0: Pano ve Bağışlar React ekranı (`packages/modules/src/donate`, modül `flxb-donate`), Flux GraphQL kabuğu + preload. Admin GraphQL: `flxDonationDashboard`, `flxDonationList` (connection, `flx_gql_paginate`), `flxDonationListInfo`, `flxDonationsBulk`; servis `FLXB_Admin_Donations_Service`. Yetki: liste `can_list` (own-only personel yalnız kendi `ref_user_id`'si, filtre genişletemez), pano `can_dashboard`, toplu işlem `!own_only && flxb_can_manage`, kalıcı silme `manage_options`. Liste filtresi URL'de klasik anahtarlarla (s, from, to, status, type, dtype, form, donor_id, ref, paged); PHP preload filtresi `FLXB_Admin::flux_list_filter()` = TS `filterFromQuery()`. Bağış detayı (`?donation=`) ve diğer sayfalar hâlâ klasik (sıradaki PR).
+2.37.0: Pano ve Bağışlar React ekranı (`packages/modules/src/donate`, modül `flxb-donate`), Flux GraphQL kabuğu + preload. Admin GraphQL: `flxDonationDashboard`, `flxDonationList` (connection, `flx_gql_paginate`), `flxDonationListInfo`, `flxDonationsBulk`; servis `FLXB_Admin_Donations_Service`. Yetki: liste `can_list` (own-only personel yalnız kendi `ref_user_id`'si, filtre genişletemez), pano `can_dashboard`, toplu işlem `!own_only && flxb_can_manage`, kalıcı silme `manage_options`. Liste filtresi URL'de klasik anahtarlarla (s, from, to, status, type, dtype, form, donor_id, ref, paged); PHP preload filtresi `FLXB_Admin::flux_list_filter()` = TS `filterFromQuery()`. Bağış detayı (`?donation=`) ve diğer sayfalar hâlâ klasik (sıradaki PR).
 
 (a) public bu PR'de: `flxDonationTypes`, `flxDonationType`, `flxDonationCartAdd`, `flxMyDonations`, `flxDonationLookupStart` / `Verify` / `End`, `flxDonationBankAccount`. Eşleme `ESLEME/flx-donate.md`: 102 GraphQL, 32 istisna. (a) 16, (b) 24, (c) 11, (d) 17, (e) 34. Sıra (a) → (b) → (c) → (d) → (e). Tek `schema.graphql`. React ekranı yok.
 

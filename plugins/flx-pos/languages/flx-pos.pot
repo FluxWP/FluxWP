@@ -1,0 +1,1305 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: Flux POS Entegrator\n"
+
+msgid "POS hesapları"
+msgstr ""
+
+msgid "Bankalar ve ödeme kuruluşlarıyla kartlı ödeme"
+msgstr ""
+
+msgid "Sanal POS"
+msgstr ""
+
+msgid "POS"
+msgstr ""
+
+msgid "Bunu yapmaya yetkiniz yok."
+msgstr ""
+
+msgid "Tutar sıfırdan büyük olmalı."
+msgstr ""
+
+msgid "Bu para birimi için POS hesabı yok."
+msgstr ""
+
+msgid "Bu hesap kart bilgisi istiyor."
+msgstr ""
+
+msgid "Ödeme kaydı açılamadı."
+msgstr ""
+
+msgid "İşlem bulunamadı."
+msgstr ""
+
+msgid "Sağlayıcı seçin."
+msgstr ""
+
+msgid "test"
+msgstr ""
+
+msgid "POS hesabı bulunamadı."
+msgstr ""
+
+msgid "Bu sağlayıcı için henüz sürücü yok."
+msgstr ""
+
+msgid "EsnekPOS (resmi modül)"
+msgstr ""
+
+msgid "Flux POS her zaman EsnekPOS güvenli ödeme sayfasını kullanır; gerekiyorsa banka 3D Secure doğrulamasını orada ister."
+msgstr ""
+
+msgid "Bu ödeme yöntemini Flux POS yürütür: klasik ve blok ödeme, sepetsiz ödeme bağlantıları; her ödeme sipariş \"ödendi\" olmadan önce EsnekPOS'a sunucudan sorulur. Test için üye işyeri TEST1234 ve EsnekPOS geliştirici sayfasındaki test anahtarı."
+msgstr ""
+
+msgid "EsnekPOS üye işyeri bilgileri eksik."
+msgstr ""
+
+msgid "Test modu (üye işyeri TEST1234)."
+msgstr ""
+
+msgid "Flux POS sipariş satırlarını gönderir, sepet gerekmez."
+msgstr ""
+
+msgid "Flux POS sipariş \"ödendi\" olmadan önce EsnekPOS'a sorar (ProcessQuery)."
+msgstr ""
+
+msgid "EsnekPOS ödeme sayfasında, EsnekPOS panelindeki ayara göre."
+msgstr ""
+
+msgid "İadeyi EsnekPOS panelinden yapın, sonra siparişi iade edildi olarak işaretleyin."
+msgstr ""
+
+msgid "Ödeme bağlantısı geçersiz ya da süresi dolmuş."
+msgstr ""
+
+msgid "Sipariş %s"
+msgstr ""
+
+msgid "Genel"
+msgstr ""
+
+msgid "Kart bilgisinin süresi doldu; lütfen yeniden deneyin."
+msgstr ""
+
+msgid "Güvenli ödeme"
+msgstr ""
+
+msgid "Ödeme formu"
+msgstr ""
+
+msgid "Vazgeç, ödeme sayfasına dön"
+msgstr ""
+
+msgid "Güvenli ödemeye geçiliyor…"
+msgstr ""
+
+msgid "Devam et"
+msgstr ""
+
+msgid "Bankanın çektiği tutar (%1$s) beklenenden (%2$s) farklı; kontrol edin."
+msgstr ""
+
+msgid "Kartla ödendi (%1$s): %2$s, referans %3$s, %4$s."
+msgstr ""
+
+msgid "%d taksit"
+msgstr ""
+
+msgid "peşin"
+msgstr ""
+
+msgid "Kart ödemesi kontrol gerektiriyor (%1$s): %2$s"
+msgstr ""
+
+msgid "Kart ödemesi başarısız (%1$s): %2$s"
+msgstr ""
+
+msgid "Yönlendiriliyor…"
+msgstr ""
+
+msgid "Ödeme tamamlanamadı. Lütfen yeniden deneyin ya da başka bir kart kullanın."
+msgstr ""
+
+msgid "Kart üzerindeki ad"
+msgstr ""
+
+msgid "Kart numarası"
+msgstr ""
+
+msgid "Son kullanma (AA/YY)"
+msgstr ""
+
+msgid "Güvenlik kodu (CVC)"
+msgstr ""
+
+msgid "Taksit"
+msgstr ""
+
+msgid "Tek çekim"
+msgstr ""
+
+msgid "%1$s taksit × %2$s (toplam %3$s)"
+msgstr ""
+
+msgid "Kart bilgileriniz bankanın 3D Secure doğrulamasıyla korunur ve sitede saklanmaz."
+msgstr ""
+
+msgid "Kart numarasını kontrol edin."
+msgstr ""
+
+msgid "Son kullanma tarihini kontrol edin."
+msgstr ""
+
+msgid "Güvenlik kodunu kontrol edin."
+msgstr ""
+
+msgid "Kart üzerindeki adı yazın."
+msgstr ""
+
+msgid "Test modu: gerçek para çekilmez."
+msgstr ""
+
+msgid "Kapat"
+msgstr ""
+
+msgid "Ödeme yarıda kalacak. Kapatılsın mı?"
+msgstr ""
+
+msgid "Seçilen taksit bu kartta kullanılamıyor."
+msgstr ""
+
+msgid "Taksit farkı (%d taksit)"
+msgstr ""
+
+msgid "Bu siparişte başarılı bir kart ödemesi bulunamadı."
+msgstr ""
+
+msgid "Bu işlem iade edilemez."
+msgstr ""
+
+msgid "İade tutarı ödenen tutarı aşamaz."
+msgstr ""
+
+msgid "Banka iadeyi onaylamadı."
+msgstr ""
+
+msgid "Kart ödemesi bankada iptal edildi (%s)."
+msgstr ""
+
+msgid "Karta iade edildi: %s."
+msgstr ""
+
+msgid "Blok ödeme"
+msgstr ""
+
+msgid "Ödeme bağlantısı"
+msgstr ""
+
+msgid "Sunucu doğrulaması"
+msgstr ""
+
+msgid "Kayıtlı kart"
+msgstr ""
+
+msgid "Siteden iade"
+msgstr ""
+
+msgid "Ödeme bloğuyla yapılmış ödeme sayfasında görünür. Klasik ödeme ([woocommerce_checkout]) tüm yöntemleri gösterir."
+msgstr ""
+
+msgid "Var olan bir siparişi sepetsiz, ödeme bağlantısından öder (çağrı merkezi, \"tekrar öde\")."
+msgstr ""
+
+msgid "Sipariş \"ödendi\" olmadan önce ödeme sağlayıcıyla sunucudan doğrulanır."
+msgstr ""
+
+msgid "Ödeyen taksitle ödeyebilir."
+msgstr ""
+
+msgid "Ödeyen kartını sonraki ödeme için kaydedebilir."
+msgstr ""
+
+msgid "Siparişteki İade düğmesi iadeyi sağlayıcıya gönderir."
+msgstr ""
+
+msgid "Flux POS ekledi (eklentinin blok desteği yok)."
+msgstr ""
+
+msgid "Yöntem açılınca Flux POS ekler."
+msgstr ""
+
+msgid "\"Diğer ödeme eklentilerini blok ödemede göster\" ayarını açın."
+msgstr ""
+
+msgid "Eklenti kart alanlarını yalnız klasik ödemede gösteriyor. Klasik ödeme sayfası kullanın ya da sağlayıcıdan blok desteği isteyin."
+msgstr ""
+
+msgid "Çoğu eklenti çalışır; bir kez ödeme bağlantısıyla deneyin."
+msgstr ""
+
+msgid "Eklentiye bağlı; sağlayıcıya sorun."
+msgstr ""
+
+msgid "Sağlayıcı sunuyorsa ödeme sayfasında."
+msgstr ""
+
+msgid "İadeyi sağlayıcının panelinden yapın, sonra siparişi iade edildi olarak işaretleyin."
+msgstr ""
+
+msgid "Banka dönüşü imzayla ya da sunucu sorgusuyla doğrulanır, tutar eşleşmeli."
+msgstr ""
+
+msgid "Hesapta taksit tablosu boş."
+msgstr ""
+
+msgid "Sağlayıcı siteden iadeyi desteklemiyor."
+msgstr ""
+
+msgid "Dekonttan sonra elle onaylanır."
+msgstr ""
+
+msgid "Ödeme detayları"
+msgstr ""
+
+msgid "tek çekim"
+msgstr ""
+
+msgid "Bu siparişte Flux POS işlemi yok."
+msgstr ""
+
+msgid "Kart"
+msgstr ""
+
+msgid "Durum"
+msgstr ""
+
+msgid "Tutar"
+msgstr ""
+
+msgid "Banka referansı"
+msgstr ""
+
+msgid "Onay kodu"
+msgstr ""
+
+msgid "İşlem no"
+msgstr ""
+
+msgid "Mod"
+msgstr ""
+
+msgid "Test"
+msgstr ""
+
+msgid "Canlı"
+msgstr ""
+
+msgid "Tüm işlemler"
+msgstr ""
+
+msgid "3D Pay (doğrulama ve çekim bankada)"
+msgstr ""
+
+msgid "3D Model (doğrulama bankada, çekim sunucudan)"
+msgstr ""
+
+msgid "Bankanın ödeme sayfası (3D Host)"
+msgstr ""
+
+msgid "Kuruluşun ödeme sayfası"
+msgstr ""
+
+msgid "Sayfa içinde ödeme formu (iFrame)"
+msgstr ""
+
+msgid "Cüzdan ile öde"
+msgstr ""
+
+msgid "3D'siz (yalnız bankanın izin verdiği hesaplarda)"
+msgstr ""
+
+msgid "Mağaza numarası (Client ID)"
+msgstr ""
+
+msgid "API kullanıcı adı"
+msgstr ""
+
+msgid "Banka panelinde API rolüyle açılan kullanıcı. İade, iptal ve sorgu için gerekir."
+msgstr ""
+
+msgid "API kullanıcı şifresi"
+msgstr ""
+
+msgid "3D Store Key"
+msgstr ""
+
+msgid "Üye işyeri numarası"
+msgstr ""
+
+msgid "Terminal numarası"
+msgstr ""
+
+msgid "Provizyon kullanıcısı"
+msgstr ""
+
+msgid "Provizyon şifresi"
+msgstr ""
+
+msgid "3D Secure anahtarı"
+msgstr ""
+
+msgid "İade kullanıcısı (PROVRFN)"
+msgstr ""
+
+msgid "Boşsa provizyon kullanıcısı kullanılır."
+msgstr ""
+
+msgid "İade kullanıcısı şifresi"
+msgstr ""
+
+msgid "Üye işyeri numarası (MID)"
+msgstr ""
+
+msgid "Terminal numarası (TID)"
+msgstr ""
+
+msgid "Posnet ID"
+msgstr ""
+
+msgid "Şifreleme anahtarı (ENCKEY)"
+msgstr ""
+
+msgid "Üye işyeri şifresi"
+msgstr ""
+
+msgid "API kullanıcı kodu"
+msgstr ""
+
+msgid "Mağaza kodu (ShopCode)"
+msgstr ""
+
+msgid "Üye işyeri anahtarı (MerchantPass)"
+msgstr ""
+
+msgid "Mağaza numarası (MerchantId)"
+msgstr ""
+
+msgid "Müşteri numarası (CustomerId)"
+msgstr ""
+
+msgid "Merchant Safe ID"
+msgstr ""
+
+msgid "Terminal Safe ID"
+msgstr ""
+
+msgid "Gizli anahtar (Secret Key)"
+msgstr ""
+
+msgid "Üye işyeri kodu (MERCHANT)"
+msgstr ""
+
+msgid "API kullanıcısı"
+msgstr ""
+
+msgid "API şifresi"
+msgstr ""
+
+msgid "Bayi tipi (isteğe bağlı)"
+msgstr ""
+
+msgid "Uygulama anahtarı (App ID)"
+msgstr ""
+
+msgid "Uygulama gizli anahtarı (App Secret)"
+msgstr ""
+
+msgid "Üye işyeri anahtarı (Merchant Key)"
+msgstr ""
+
+msgid "API anahtarı"
+msgstr ""
+
+msgid "Gizli anahtar"
+msgstr ""
+
+msgid "Mağaza numarası"
+msgstr ""
+
+msgid "Mağaza parolası (Merchant Key)"
+msgstr ""
+
+msgid "Mağaza gizli anahtarı (Merchant Salt)"
+msgstr ""
+
+msgid "Terminal numarası (CLIENT_CODE)"
+msgstr ""
+
+msgid "Kullanıcı adı"
+msgstr ""
+
+msgid "Şifre"
+msgstr ""
+
+msgid "Anahtar (GUID)"
+msgstr ""
+
+msgid "Üye işyeri (MERCHANT)"
+msgstr ""
+
+msgid "Test için TEST1234."
+msgstr ""
+
+msgid "Üye işyeri anahtarı (MERCHANT_KEY)"
+msgstr ""
+
+msgid "Genel anahtar (MERCHANT_PUBLIC_TOKEN, taksit oranları için)"
+msgstr ""
+
+msgid "Bayi kodu"
+msgstr ""
+
+msgid "Client ID"
+msgstr ""
+
+msgid "İmza anahtarı kimliği (kid)"
+msgstr ""
+
+msgid "İmza anahtarı (k)"
+msgstr ""
+
+msgid "Ödeme anahtarı (sx)"
+msgstr ""
+
+msgid "İptal/iade anahtarı (sx)"
+msgstr ""
+
+msgid "API anahtarı (test_… ya da live_…)"
+msgstr ""
+
+msgid "Web sitesi sırası"
+msgstr ""
+
+msgid "Bu banka 3D dönüşünden sonra kartı yeniden ister: kart, işleme bağlı şifreli olarak en çok 20 dakika saklanır ve dönüşte bir kez açılır."
+msgstr ""
+
+msgid "Bu bankanın dönüş imzası belgelendiği gibi çalışmıyor; başarılı dönüş her seferinde bankaya sorularak doğrulanır."
+msgstr ""
+
+msgid "\"Kuruluşun ödeme sayfası\" modeli iyzico ortak ödeme formudur; \"iyzico ile Öde\" cüzdanı da o sayfadadır."
+msgstr ""
+
+msgid "PayTR panelinde Bildirim URL'si olarak bu hesabın bildirim adresini girin (hesap ekranında yazar). Test modu PayTR hesabının test anahtarıyla çalışır."
+msgstr ""
+
+msgid "Test için üye işyeri TEST1234 ve EsnekPOS geliştirici sayfasındaki test anahtarı."
+msgstr ""
+
+msgid "Shopier panelinde geri dönüş adresi olarak bu hesabın bildirim adresini girin. İade Shopier panelinden yapılır."
+msgstr ""
+
+msgid "Test ya da canlı, anahtarın önekinden anlaşılır (test_… / live_…). Türk lirası desteklenmez."
+msgstr ""
+
+msgid "GiroGate yöntemi"
+msgstr ""
+
+msgid "Bankalar"
+msgstr ""
+
+msgid "Ödeme kuruluşları"
+msgstr ""
+
+msgid "Cüzdanlar"
+msgstr ""
+
+msgid "Yemek ve hediye kartları"
+msgstr ""
+
+msgid "İade"
+msgstr ""
+
+msgid "Kısmi iade"
+msgstr ""
+
+msgid "İptal"
+msgstr ""
+
+msgid "Durum sorgusu"
+msgstr ""
+
+msgid "Karta göre taksit"
+msgstr ""
+
+msgid "Sunucu bildirimi"
+msgstr ""
+
+msgid "Bekliyor"
+msgstr ""
+
+msgid "Ödendi"
+msgstr ""
+
+msgid "Başarısız"
+msgstr ""
+
+msgid "İade edildi"
+msgstr ""
+
+msgid "İptal edildi"
+msgstr ""
+
+msgid "Kontrol gerekli"
+msgstr ""
+
+msgid "Etkin"
+msgstr ""
+
+msgid "Bu ödeme yöntemini göster"
+msgstr ""
+
+msgid "Hesaplar, anahtarlar, taksitler ve görünen ad Flux POS panelinden yönetilir."
+msgstr ""
+
+msgid "Flux POS paneli"
+msgstr ""
+
+msgid "Bu para birimi için kart ödemesi kullanılamıyor."
+msgstr ""
+
+msgid "Kart ile öde (Flux POS)"
+msgstr ""
+
+msgid "Banka veya ödeme kuruluşu üzerinden 3D Secure kartlı ödeme."
+msgstr ""
+
+msgid "Banka / Kredi Kartı"
+msgstr ""
+
+msgid "%s (Flux POS)"
+msgstr ""
+
+msgid "Ödeme sağlayıcının sayfasında tamamlanır."
+msgstr ""
+
+msgid "Yönlendirme: banka ya da kuruluş sayfası tam ekran açılır"
+msgstr ""
+
+msgid "Açılır pencere: ödeme sayfasından ayrılmadan, çerçeve içinde"
+msgstr ""
+
+msgid "Site içinde: sitenin üst ve alt bölümüyle, çerçeve içinde"
+msgstr ""
+
+msgid "%1$s yanıt vermedi (HTTP %2$d)."
+msgstr ""
+
+msgid "Bu sağlayıcıda bağlantı testi yok; test kartıyla küçük bir ödeme deneyin."
+msgstr ""
+
+msgid "Bağlantı başarılı, anahtarlar kabul edildi."
+msgstr ""
+
+msgid "%d hesap canlı modda etkin."
+msgid_plural "%d hesap canlı modda etkin."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Etkin POS hesabı yok; kartla ödeme alınmıyor."
+msgstr ""
+
+msgid "Test modunda hesap var, gerçek para çekilmez: %s"
+msgstr ""
+
+msgid "Site HTTPS değil; bankalar dönüş adresine kart sonucu göndermez, kart formu güvensiz olur."
+msgstr ""
+
+msgid "Anahtar şifreleme"
+msgstr ""
+
+msgid "PHP sodium ya da openssl yok; POS anahtarları şifrelenemiyor."
+msgstr ""
+
+msgid "Anahtarlar WordPress tuzlarıyla şifreli. wp-config.php tuzları değişirse POS anahtarlarını yeniden girin."
+msgstr ""
+
+msgid "Denetim çalışmadı: %s"
+msgstr ""
+
+msgid "Otomatik"
+msgstr ""
+
+msgid "Hepsini göster"
+msgstr ""
+
+msgid "WooCommerce etkin değil."
+msgstr ""
+
+msgid "Kart ile öde yöntemini açmadan önce bir POS hesabı ekleyin."
+msgstr ""
+
+msgid "Panelden iade"
+msgstr ""
+
+msgid "Whether a payment method can do something on this site."
+msgstr ""
+
+msgid "Yes."
+msgstr ""
+
+msgid "Yes, a FluxWP plugin does it."
+msgstr ""
+
+msgid "On the provider's page."
+msgstr ""
+
+msgid "No."
+msgstr ""
+
+msgid "Unknown; try it."
+msgstr ""
+
+msgid "Kind of POS provider."
+msgstr ""
+
+msgid "Bank virtual POS."
+msgstr ""
+
+msgid "Payment institution."
+msgstr ""
+
+msgid "Wallet or alternative method (a separate checkout method)."
+msgstr ""
+
+msgid "Meal and gift cards."
+msgstr ""
+
+msgid "Result of a transaction."
+msgstr ""
+
+msgid "Started; waiting for the provider."
+msgstr ""
+
+msgid "Paid."
+msgstr ""
+
+msgid "Failed."
+msgstr ""
+
+msgid "Refunded in full."
+msgstr ""
+
+msgid "Refunded in part."
+msgstr ""
+
+msgid "Voided before end of day."
+msgstr ""
+
+msgid "Paid at the provider, but the amount or order does not match; check it."
+msgstr ""
+
+msgid "Kind of transaction."
+msgstr ""
+
+msgid "Payment."
+msgstr ""
+
+msgid "Refund."
+msgstr ""
+
+msgid "Void."
+msgstr ""
+
+msgid "A value with its label."
+msgstr ""
+
+msgid "Stored value."
+msgstr ""
+
+msgid "Label in the user's language."
+msgstr ""
+
+msgid "What a payment method can do on this site."
+msgstr ""
+
+msgid "Capability key (blocks, no_cart, no_address, verified, installments, tokenization, refunds, monthly)."
+msgstr ""
+
+msgid "Column label."
+msgstr ""
+
+msgid "What the capability means."
+msgstr ""
+
+msgid "Whether the method can do it."
+msgstr ""
+
+msgid "Detail; empty when none."
+msgstr ""
+
+msgid "A WooCommerce payment method of any plugin, in checkout order."
+msgstr ""
+
+msgid "Gateway id."
+msgstr ""
+
+msgid "Title the payer sees at checkout."
+msgstr ""
+
+msgid "Name of the method in the admin."
+msgstr ""
+
+msgid "Description the payer sees under the title (plain text)."
+msgstr ""
+
+msgid "The method is on in WooCommerce."
+msgstr ""
+
+msgid "Position at checkout, from 0."
+msgstr ""
+
+msgid "Logo addresses the method shows at checkout."
+msgstr ""
+
+msgid "A Flux POS method (its settings are on this screen)."
+msgstr ""
+
+msgid "On, but hidden at checkout by the one-card rule."
+msgstr ""
+
+msgid "The method draws its own fields (card form) at checkout."
+msgstr ""
+
+msgid "Bank transfer, cheque or cash on delivery."
+msgstr ""
+
+msgid "Where the method's own settings are."
+msgstr ""
+
+msgid "What the method can do on this site."
+msgstr ""
+
+msgid "Every payment method and the rules around them."
+msgstr ""
+
+msgid "Methods in checkout order."
+msgstr ""
+
+msgid "The checkout page is built with the Checkout block."
+msgstr ""
+
+msgid "One-card rule: auto, iyzico, flxpos, a gateway id or all."
+msgstr ""
+
+msgid "Which plugin runs the one-card rule: donate (Flux Donate) or pos."
+msgstr ""
+
+msgid "Choices of the one-card rule."
+msgstr ""
+
+msgid "Checkout page address."
+msgstr ""
+
+msgid "Store currency."
+msgstr ""
+
+msgid "A field of a provider's account form."
+msgstr ""
+
+msgid "Field key."
+msgstr ""
+
+msgid "Field label."
+msgstr ""
+
+msgid "Write-only secret (stored encrypted, never returned)."
+msgstr ""
+
+msgid "Help text; empty when none."
+msgstr ""
+
+msgid "Value used when left empty."
+msgstr ""
+
+msgid "A bank, payment institution or wallet of the catalog."
+msgstr ""
+
+msgid "Provider id."
+msgstr ""
+
+msgid "Provider name."
+msgstr ""
+
+msgid "Kind of provider."
+msgstr ""
+
+msgid "Flux POS has a driver for it; otherwise it waits for documentation."
+msgstr ""
+
+msgid "Payment models the provider offers."
+msgstr ""
+
+msgid "Account fields."
+msgstr ""
+
+msgid "Supported currencies."
+msgstr ""
+
+msgid "Driver capabilities: refund, partial, cancel, status, installments, notify."
+msgstr ""
+
+msgid "Notes for the merchant; empty when none."
+msgstr ""
+
+msgid "Live endpoint addresses (value = key, label = address); an account can override them."
+msgstr ""
+
+msgid "Number of published test cards."
+msgstr ""
+
+msgid "A saved credential. A secret is never returned: only whether it is saved and its masked tail."
+msgstr ""
+
+msgid "Field key (url_<endpoint> for an endpoint override)."
+msgstr ""
+
+msgid "Value of a plain field; always empty for a secret."
+msgstr ""
+
+msgid "A value is saved."
+msgstr ""
+
+msgid "Masked last characters of a saved secret; empty otherwise."
+msgstr ""
+
+msgid "One installment option."
+msgstr ""
+
+msgid "Number of installments (2-36)."
+msgstr ""
+
+msgid "Extra charge in percent."
+msgstr ""
+
+msgid "A POS account: provider, keys and options."
+msgstr ""
+
+msgid "Account id."
+msgstr ""
+
+msgid "Own name; empty uses the provider name."
+msgstr ""
+
+msgid "Name shown in lists."
+msgstr ""
+
+msgid "The account takes payments."
+msgstr ""
+
+msgid "Test mode (the provider's test service)."
+msgstr ""
+
+msgid "Payment model."
+msgstr ""
+
+msgid "Saved credentials (secrets masked)."
+msgstr ""
+
+msgid "Chosen currencies; empty means every currency of the provider."
+msgstr ""
+
+msgid "Installment table; empty means single payment only."
+msgstr ""
+
+msgid "Smallest amount that offers installments."
+msgstr ""
+
+msgid "Title at checkout for a wallet or a hosted page."
+msgstr ""
+
+msgid "Display of the provider page: redirect, modal, inline; empty uses the general setting."
+msgstr ""
+
+msgid "Address to enter in the provider's panel for server notifications."
+msgstr ""
+
+msgid "The card is typed on this site (otherwise on the provider's page)."
+msgstr ""
+
+msgid "General Flux POS settings."
+msgstr ""
+
+msgid "Title of the card method at checkout; empty uses the default."
+msgstr ""
+
+msgid "Description of the card method."
+msgstr ""
+
+msgid "Account that takes card payments; empty uses the first fitting one."
+msgstr ""
+
+msgid "Account per currency (value = currency, label = account id)."
+msgstr ""
+
+msgid "Display of the provider page: redirect, modal or inline."
+msgstr ""
+
+msgid "Card brand logos in the card form."
+msgstr ""
+
+msgid "Show redirect plugins without block support on the Checkout block."
+msgstr ""
+
+msgid "Keep provider answers in the transaction log (never card data or keys)."
+msgstr ""
+
+msgid "Display choices."
+msgstr ""
+
+msgid "A payment attempt, refund or void. The card is masked (first 6 and last 4 digits)."
+msgstr ""
+
+msgid "Transaction id."
+msgstr ""
+
+msgid "Reference sent to the provider."
+msgstr ""
+
+msgid "Provider reference; empty when none."
+msgstr ""
+
+msgid "Sale, refund or void."
+msgstr ""
+
+msgid "Account name."
+msgstr ""
+
+msgid "WooCommerce order id; 0 without an order."
+msgstr ""
+
+msgid "Order number; empty without an order."
+msgstr ""
+
+msgid "Order edit address; empty without an order."
+msgstr ""
+
+msgid "Amount."
+msgstr ""
+
+msgid "Refunded so far."
+msgstr ""
+
+msgid "Number of installments (1 = single)."
+msgstr ""
+
+msgid "Masked card; empty when none."
+msgstr ""
+
+msgid "Result."
+msgstr ""
+
+msgid "Provider message; empty when none."
+msgstr ""
+
+msgid "Made in test mode."
+msgstr ""
+
+msgid "When it started."
+msgstr ""
+
+msgid "Can be refunded from this screen."
+msgstr ""
+
+msgid "Result of an account connection test."
+msgstr ""
+
+msgid "The provider accepted the keys."
+msgstr ""
+
+msgid "The provider has a connection test; otherwise try a small payment with a test card."
+msgstr ""
+
+msgid "What happened, in the user's language."
+msgstr ""
+
+msgid "A page of transactions, newest first."
+msgstr ""
+
+msgid "Every WooCommerce payment method (any plugin) in checkout order, with its switch and what it can do here."
+msgstr ""
+
+msgid "Catalog of banks, payment institutions and wallets Flux POS can connect to."
+msgstr ""
+
+msgid "Saved POS accounts. Secret keys are never returned."
+msgstr ""
+
+msgid "Transactions, newest first."
+msgstr ""
+
+msgid "Only this result."
+msgstr ""
+
+msgid "Only this account."
+msgstr ""
+
+msgid "Reference, order number, card or message."
+msgstr ""
+
+msgid "Turns one payment method on or off."
+msgstr ""
+
+msgid "On."
+msgstr ""
+
+msgid "Changes the checkout order, the switches and the one-card rule of the payment methods. Fields left out stay as they are."
+msgstr ""
+
+msgid "Gateway ids in the new checkout order; ids left out keep their place after these."
+msgstr ""
+
+msgid "Switches to change."
+msgstr ""
+
+msgid "Methods after the change."
+msgstr ""
+
+msgid "One account field. A secret is write-only: empty keeps the saved value."
+msgstr ""
+
+msgid "Field key (url_<endpoint> overrides an endpoint)."
+msgstr ""
+
+msgid "Value."
+msgstr ""
+
+msgid "Adds a POS account or updates one. Secret keys left empty keep the saved value; keys are stored encrypted."
+msgstr ""
+
+msgid "Account id; empty adds a new account."
+msgstr ""
+
+msgid "Provider id from flxPosProviders."
+msgstr ""
+
+msgid "Own name."
+msgstr ""
+
+msgid "Takes payments."
+msgstr ""
+
+msgid "Test mode."
+msgstr ""
+
+msgid "Currencies; empty means all of the provider's."
+msgstr ""
+
+msgid "Installment table; replaces the saved one."
+msgstr ""
+
+msgid "redirect, modal, inline; empty uses the general setting."
+msgstr ""
+
+msgid "The saved account."
+msgstr ""
+
+msgid "Every account after the change."
+msgstr ""
+
+msgid "Deletes a POS account and its encrypted keys. Its transactions stay."
+msgstr ""
+
+msgid "Asks the provider whether the saved keys work (no money moves). Providers without a test say so."
+msgstr ""
+
+msgid "Result of the test."
+msgstr ""
+
+msgid "Account that takes card payments in one currency."
+msgstr ""
+
+msgid "Currency code."
+msgstr ""
+
+msgid "Account id; empty uses the default."
+msgstr ""
+
+msgid "Changes the general settings. Fields left out stay as they are."
+msgstr ""
+
+msgid "Title of the card method at checkout."
+msgstr ""
+
+msgid "Account per currency; replaces the list."
+msgstr ""
+
+msgid "redirect, modal or inline."
+msgstr ""
+
+msgid "Keep provider answers in the transaction log."
+msgstr ""
+
+msgid "Settings after the change."
+msgstr ""
+
+msgid "Refunds a paid transaction at the provider (same day and full amount voids first). Leave the amount out to refund what is left."
+msgstr ""
+
+msgid "Amount to refund."
+msgstr ""
+
+msgid "The transaction after the refund."
+msgstr ""
+
+msgid "Genel düzen"
+msgstr ""
+
+msgid "Ekstre düzeni tanınmadı: başlık satırında tarih, tutar ve açıklama sütunları bulunamadı."
+msgstr ""
+
+msgid "Sırada"
+msgstr ""
+
+msgid "Eşleşmedi"
+msgstr ""
+
+msgid "Öneri var"
+msgstr ""
+
+msgid "Eşleşti"
+msgstr ""
+
+msgid "Yoksayıldı"
+msgstr ""
+
+msgid "Çıkan"
+msgstr ""
+
+msgid "Dosyada hareket bulunamadı."
+msgstr ""
+
+msgid "Hareket ya da sipariş bulunamadı."
+msgstr ""
+
+msgid "Bu hareket zaten eşleşmiş."
+msgstr ""
+
+msgid "Sipariş zaten ödenmiş."
+msgstr ""
+
+msgid "Havale/EFT banka hareketiyle eşleşti: %1$s, %2$s, \"%3$s\" (%4$s)."
+msgstr ""
+
+msgid "otomatik"
+msgstr ""
+
+msgid "Banka hareketi eşleşmesi kaldırıldı; sipariş durumu değiştirilmedi."
+msgstr ""
+
+msgid "Dosya boş."
+msgstr ""
+
+msgid "Dosya okunamadı; Excel (.xls, .xlsx) ya da CSV olarak yeniden indirin."
+msgstr ""
+
+msgid "Sunucuda DOM uzantısı yok."
+msgstr ""
+
+msgid "Sunucuda zip uzantısı yok; dosyayı CSV olarak yükleyin."
+msgstr ""
+
+msgid "Excel dosyası açılamadı."
+msgstr ""
+
+msgid "Excel dosyasında sayfa bulunamadı."
+msgstr ""
+
+msgid "Üye işyeri bilgileri hatalı; hesap ayarlarını kontrol edin."
+msgstr ""
+
+msgid "Banka dönüşünün imzası tutmadı."
+msgstr ""
+
+msgid "Banka dönüşü bu ödemeye ait değil."
+msgstr ""
+
+msgid "Bankada başarılı bir satış bulunamadı."
+msgstr ""
+
+msgid "Ödeme sağlayıcıda beklemede."
+msgstr ""
+
+msgid "Diğer"
+msgstr ""
+
+msgid "Çok satırlı ödemede kısmi iade Craftgate panelinden yapılır."
+msgstr ""
+
+msgid "Kart sahibinin adını kartta yazdığı gibi tam yazın (en az 6 harf)."
+msgstr ""
+
+msgid "Ödeme başlatılamadı. Lütfen tekrar deneyin."
+msgstr ""
+
+msgid "Bankadaki durum: %s"
+msgstr ""
+
+msgid "iyzico ödemeyi incelemeye aldı."
+msgstr ""
+
+msgid "%s provizyon yanıtı okunamadı; bankadan kontrol edin."
+msgstr ""
+
+msgid "Ödeme tamamlanmadı (%s)."
+msgstr ""
+
+msgid "Ödeme yöntemi sonucu sonradan bildirecek."
+msgstr ""
+
+msgid "İşlem bankada iptal edilmiş."
+msgstr ""
+
+msgid "Ödeme tamamlanmadı."
+msgstr ""
+
+msgid "Papara yalnız tam iade yapar."
+msgstr ""
+
+msgid "Kart 3D Secure doğrulamasına uygun değil."
+msgstr ""
+
+msgid "Ödeme süresi doldu; lütfen kart bilgilerini yeniden girin."
+msgstr ""
+
+msgid "Sonuç PayTR bildirimiyle gelecek."
+msgstr ""
+
+msgid "%s yanıt vermedi."
+msgstr ""
+
+msgid "Banka 3D doğrulamasını tamamlamadı."
+msgstr ""
+
+msgid "Sonuç Shopier bildirimiyle gelecek."
+msgstr ""
+
+msgid "Bu sağlayıcı bildirim göndermiyor."
+msgstr ""
+
+msgid "Bu sağlayıcıda siteden iade yok; sağlayıcının panelinden yapın."
+msgstr ""
+
+msgid "Bu sağlayıcıda siteden iptal yok."
+msgstr ""
+
+msgid "Bu sağlayıcıda durum sorgusu yok."
+msgstr ""
+
+msgid "Hata kodu %s"
+msgstr ""
+
+msgid "Ödeme onaylanmadı."
+msgstr ""

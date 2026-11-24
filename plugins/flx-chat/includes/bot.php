@@ -301,7 +301,7 @@ function flxc_bot_run( $chat_id ) {
 						$chat,
 						array(
 							'type'    => 'text',
-							'body'    => flxc_bot_limit_text(),
+							'body'    => flxc_bot_tr_text( flxc_bot_limit_text(), $state ),
 							'source'  => 'bot',
 							'user_id' => 0,
 						)
@@ -423,7 +423,7 @@ function flxc_bot_fallback( $chat, $reason = '' ) {
 		$chat,
 		array(
 			'type'    => 'text',
-			'body'    => flxc_bot_fallback_text(),
+			'body'    => flxc_bot_tr_text( flxc_bot_fallback_text(), $state, false ), // 1.52.0: AI hatasından sonra yalnız saklanan çeviri
 			'source'  => 'bot',
 			'user_id' => 0,
 		)
@@ -545,11 +545,12 @@ function flxc_bot_wants_human( $chat_id, $after_id ) {
 }
 
 function flxc_bot_human_now( $chat ) {
+	flxc_bot_lang_turn( $chat );
 	flxc_send(
 		$chat,
 		array(
 			'type'    => 'text',
-			'body'    => flxc_bot_handoff_text(),
+			'body'    => flxc_bot_tr_text( flxc_bot_handoff_text(), flxc_bot_state( $chat ) ),
 			'source'  => 'bot',
 			'user_id' => 0,
 		)
@@ -582,6 +583,7 @@ function flxc_bot_turn( $chat ) {
 		}
 	};
 	$keep_up();
+	flxc_bot_lang_turn( $chat ); // 1.52.0: kişinin dili (son gelen mesajlardan)
 	$seen  = flxc_bot_last_in_id( $chat['id'] );
 	$ctx   = array(
 		'after'    => array(), // asistan cevabından sonra gönderilecek sunucu mesajları
@@ -649,6 +651,10 @@ function flxc_bot_turn( $chat ) {
 	// Model "---" satırıyla birden fazla mesaj isteyebilir.
 	$parts = '' === $reply ? array() : preg_split( '/\n\s*-{3,}\s*\n/', $reply );
 	$imgs  = $wg['codes'] && flxc_widgets_on() ? array_fill( 0, count( $wg['codes'] ), null ) : array();
+	// 1.52.0: sistemin hazır mesajları (fiyat listesi, ödeme, devir…) kişinin dilinde; modelin metni zaten öyle.
+	$fst           = flxc_bot_state( $fresh );
+	$ctx['before'] = flxc_bot_tr_out( (array) ( $ctx['before'] ?? array() ), $fst );
+	$ctx['after']  = flxc_bot_tr_out( (array) $ctx['after'], $fst );
 	foreach ( array_merge( (array) ( $ctx['before'] ?? array() ), $parts, $imgs, $ctx['after'] ) as $i => $text ) {
 		if ( null === $text ) {
 			$k = $i - count( (array) ( $ctx['before'] ?? array() ) ) - count( $parts );
@@ -788,9 +794,17 @@ function flxc_bot_complete( array $messages, $chat, array &$ctx, $tick = null ) 
 		foreach ( $calls as $c ) {
 			$name = (string) ( $c['function']['name'] ?? '' );
 			$args = json_decode( (string) ( $c['function']['arguments'] ?? '{}' ), true );
-			$res  = ! empty( $ctx['only_tools'] ) && ! in_array( $name, (array) $ctx['only_tools'], true )
-				? array( 'ok' => false, 'error' => 'Bu araç şu an kullanılamaz.' )
-				: flxc_bot_tool( $name, is_array( $args ) ? $args : array(), $chat, $ctx );
+			$args = is_array( $args ) ? $args : array();
+			if ( ! empty( $ctx['only_tools'] ) && ! in_array( $name, (array) $ctx['only_tools'], true ) ) {
+				$res = array( 'ok' => false, 'error' => 'Bu araç şu an kullanılamaz.' );
+			} else {
+				flxc_bot_tool_lang( $name, $args, $chat, $ctx ); // 1.52.0: model kişinin dilini verdiyse
+				$run = function () use ( $name, $args, $chat, &$ctx ) {
+					return flxc_bot_tool( $name, $args, $chat, $ctx );
+				};
+				// 1.52.0: kişiye özel olmayan bilgi araçları kısa süre önbellekten (test sohbetinde değil).
+				$res = empty( $ctx['sandbox'] ) && flxc_bot_tool_cacheable( $name ) ? flxc_bot_tool_cached( $name, $args, $run ) : $run();
+			}
 			$res          = flxc_bot_hide_links( $res, $ctx );
 			$ctx['log'][] = array( 'tool' => $name, 'args' => $args, 'result' => $res );
 			$messages[] = array(
@@ -991,6 +1005,7 @@ function flxc_bot_system_prompt( $chat, array $state, $template = null ) {
 	$known[] = 'Hitap: ' . ( '' !== $state['name'] ? $state['name'] : ( $state['no_name'] ? '(vermek istemedi; adsız, "siz" diye hitap et)' : '(henüz bilinmiyor)' ) );
 	$known[] = 'Ad soyad (kayıt/sertifika için): ' . ( '' !== $state['full'] ? $state['full'] : '(bilinmiyor)' );
 	$known[] = 'WhatsApp profil adı (güvenilmez, hitapta kullanma): ' . ( '' !== $wa ? $wa : '-' );
+	$known[] = flxc_bot_lang_known( $state ); // 1.52.0
 	$known[] = 'E-posta: ' . ( '' !== $state['email'] ? $state['email'] : '-' ) . ( ! empty( $state['email_pending'] ) ? ' · kişiye doğrulatılan (henüz kaydedilmedi): ' . $state['email_pending'] : '' );
 	if ( function_exists( 'flxc_verify_locked' ) && flxc_verify_locked( $state ) ) {
 		$known[] = 'Kayıt doğrulaması: BAŞARISIZ (sınır aşıldı). Bu kişiye kayıt bilgisi verme, yeni kod gönderme; kayıtlarını sorarsa ekibin kendisiyle iletişime geçeceğini söyle. Diğer sorularına normal cevap ver.';
@@ -1038,6 +1053,7 @@ function flxc_bot_system_prompt( $chat, array $state, $template = null ) {
 	$rules[] = '- Araç sonucu ok=false dönerse error alanındaki yönergeye uy; aynı aracı aynı değerlerle tekrar çağırma.';
 	$rules[] = '- Link (internet adresi) asla kendin yazma, uydurma. Ödeme, sertifika ve fiyat listesi linklerini sistem ayrı mesajla gönderir. Araç sonucunda [[link1]] gibi bir işaret varsa ve kişi o sayfayı istiyorsa işareti aynen yaz; sistem gerçek linke çevirir. Kişi link istemediğini söylediyse link işareti yazma.';
 	$rules[] = flxc_voice_rule();
+	$rules[] = flxc_bot_lang_rule(); // 1.52.0
 	// 1.50.0: rules for tools other plugins add (`flxc_bot_tools`), each a "- ..." line.
 	$rules = array_values( (array) apply_filters( 'flxc_bot_rules', $rules, $tools, $chat ) );
 	$rules[] = '- "Sa", "Slm", "Selam", "Sa knk", "Selamün aleyküm" selamdır: selamı al (ör. "Aleyküm selam"), "Rica ederim" deme. Selama yalnız selam ve kısa bir "nasıl yardımcı olabilirim" ile karşılık ver; sorulmadıkça bağış ya da dekont durumunu anlatma.';
@@ -1288,7 +1304,8 @@ function flxc_bot_tools() {
 	 * 1.50.0: other plugins add their own assistant tools (OpenAI format, build them with $f).
 	 * Answer the call with the `flxc_bot_tool_call` filter.
 	 */
-	return array_values( (array) apply_filters( 'flxc_bot_tools', $list, $f ) );
+	// 1.52.0: hazır mesaj gönderen araçlara kişinin dili (lang).
+	return array_values( flxc_bot_lang_tool_defs( (array) apply_filters( 'flxc_bot_tools', $list, $f ) ) );
 }
 
 /** 1.41.0: "Selma", "Ayşe Nur" gibi düz ad mı (hitap, lakap, unvan değil)? */
@@ -1427,7 +1444,7 @@ function flxc_bot_tool( $name, array $a, $chat, array &$ctx ) {
 			}
 			$state['order'] = $o;
 			$save( $state );
-			return array( 'ok' => true, 'summary' => flxc_bot_order_summary( $o, $state ), 'note' => 'Özeti kişiye satırlarıyla aynen göster: satır çıkarma (Bağışçı satırı da kalır; kayıt ve havale açıklaması bu adla açılır, kişi düzeltirse save_details(full_name) ile düzelt), ekleme, dağılımı değiştirme. Dağılım kişinin dediğine uymuyorsa özeti göstermeden set_order\'ı düzeltip yeniden çağır.' );
+			return array( 'ok' => true, 'summary' => flxc_bot_tr_text( flxc_bot_order_summary( $o, $state ), $state ), 'note' => 'Özeti kişiye satırlarıyla aynen göster: satır çıkarma (Bağışçı satırı da kalır; kayıt ve havale açıklaması bu adla açılır, kişi düzeltirse save_details(full_name) ile düzelt), ekleme, dağılımı değiştirme. Dağılım kişinin dediğine uymuyorsa özeti göstermeden set_order\'ı düzeltip yeniden çağır.' );
 
 		case 'create_donation':
 			if ( empty( $a['confirmed'] ) ) {
@@ -1483,6 +1500,8 @@ function flxc_bot_tool( $name, array $a, $chat, array &$ctx ) {
 					'user_id'              => 0,
 					'source_detail'        => 'flx-chat-bot',
 					'proxy_consent'        => ! empty( $state['order']['proxy'] ) && ! empty( $a['proxy_consent'] ),
+					// 1.52.0: bağışın dili (Flux Donate meta.lang): sertifika / bilgilendirme mesajları da bu dilde.
+					'lang'                 => ! empty( $state['lang'] ) ? flxc_bot_state_lang( $state ) : '',
 				),
 				$chat
 			);
@@ -2150,7 +2169,8 @@ function flxc_bot_build_order( array $a ) {
 	// 1.50.0: vekâlet isteyen türde metin özete girer, kişi onaylayınca kayıt açılır (create_donation proxy_consent).
 	$proxy = '';
 	if ( $type['proxy'] ) {
-		$pt    = function_exists( 'flxb_proxy_text' ) ? flxb_proxy_text() : null;
+		// 1.52.0: Flux Donate'taki kişinin dilindeki vekâlet metni (yoksa site dili); hukuki metin AI ile çevrilmez.
+		$pt    = function_exists( 'flxb_proxy_text' ) ? flxb_proxy_text( 0, flxc_bot_cur_lang() ) : null;
 		$proxy = $pt ? trim( wp_strip_all_tags( (string) ( $pt['text'] ?? '' ) ) ) : '';
 		if ( '' === $proxy ) {
 			return new WP_Error( 'proxy', 'Bu tür vekâlet onayı gerektiriyor ama sitede vekâlet metni yok; handoff çağır.' );
@@ -2250,8 +2270,8 @@ function flxc_bot_order_summary( array $o, array $state = array() ) {
 		$what .= ' · ' . $o['label'];
 	}
 	$lines   = array();
-	$lines[] = '*' . $what . '*: ' . number_format_i18n( $o['qty'] ) . ( '' !== $o['unit'] ? ' ' . $o['unit'] : ' adet' );
-	$lines[] = 'Toplam: *' . flxc_money( $o['amount'], $o['currency'] ) . '*';
+	$lines[] = '*' . $what . '*: ' . number_format_i18n( $o['qty'] ) . ' ' . ( '' !== $o['unit'] ? $o['unit'] : __( 'unit', 'flx-chat' ) );
+	$lines[] = __( 'Total', 'flx-chat' ) . ': *' . flxc_money( $o['amount'], $o['currency'] ) . '*';
 	if ( $o['benef'] ) {
 		$names = array();
 		foreach ( $o['benef'] as $b ) {
@@ -2286,10 +2306,10 @@ function flxc_bot_order_summary( array $o, array $state = array() ) {
 		}
 	}
 	if ( ! empty( $state['full'] ) ) {
-		$lines[] = 'Bağışçı: ' . $state['full'];
+		$lines[] = __( 'Donor', 'flx-chat' ) . ': ' . $state['full'];
 	}
 	if ( ! empty( $state['email'] ) && 'hayır' !== ( $state['email_notify'] ?? '' ) ) {
-		$lines[] = 'E-posta: ' . $state['email'] . ( 'evet' === ( $state['email_notify'] ?? '' ) ? ' (bilgilendirmeler bu adrese de gider)' : '' );
+		$lines[] = __( 'Email', 'flx-chat' ) . ': ' . $state['email'] . ( 'evet' === ( $state['email_notify'] ?? '' ) ? ' ' . __( '(updates are sent to this address too)', 'flx-chat' ) : '' );
 	}
 	if ( ! empty( $o['proxy'] ) ) {
 		$lines[] = '';
@@ -2331,7 +2351,8 @@ function flxc_bot_price_text( $type_id = 0 ) {
 			}
 		}
 		if ( $t['free'] ) {
-			$rows[] = '• ' . __( 'Any amount you like', 'flx-chat' ) . ( $t['min'] > 0 ? ' (en az ' . flxc_money( $t['min'], $t['currency'] ) . ')' : '' );
+			/* translators: %s: lowest amount */
+			$rows[] = '• ' . __( 'Any amount you like', 'flx-chat' ) . ( $t['min'] > 0 ? ' (' . sprintf( __( 'at least %s', 'flx-chat' ), flxc_money( $t['min'], $t['currency'] ) ) . ')' : '' );
 		}
 		$blocks[] = $b . "\n\n" . implode( "\n", $rows );
 	}

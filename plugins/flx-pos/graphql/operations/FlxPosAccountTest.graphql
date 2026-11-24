@@ -1,0 +1,6 @@
+mutation FlxPosAccountTest($input: FlxPosAccountTestInput!) {
+  flxPosAccountTest(input: $input) {
+    result { ok supported message }
+    errors { code message field }
+  }
+}

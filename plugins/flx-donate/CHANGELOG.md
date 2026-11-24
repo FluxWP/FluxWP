@@ -1,11 +1,19 @@
 # Değişiklikler
 
-## 2.36.0
+## 2.37.0
 - **Pano ve Bağışlar anında açılır.** İki sayfa artık React ekranı (Flux GraphQL kabuğu): veri sayfayla birlikte hazır gelir, yükleniyor dönmez; Flux ekranları arasında geçiş sayfa yenilemeden olur.
 - Pano: 7/30/90 gün ve özel aralık, göstergeler, günlük grafik, tek seferlik/düzenli oranı, türe ve forma göre, en çok bağış yapanlar (klasik görünümle aynı).
 - Bağışlar: onay bekleyen dekontlar, filtreler (adres çubuğunda kalır), tüm satır bağışı açar, toplu çöpe taşı / geri al / kalıcı sil (onay penceresiyle), toplam, çöp kutusu, sayfalar.
 - Bağış detayı ve diğer sayfalar şimdilik eski haliyle; sonraki sürümde taşınır.
 - GraphQL: `flxDonationDashboard`, `flxDonationList`, `flxDonationListInfo`, `flxDonationsBulk` (yetkiler klasik sayfalarla aynı; referans personeli yalnız kendi bağışlarını görür).
+
+## 2.36.0
+- **Ödeme detayları.** WooCommerce siparişinin en üstünde ve bağış detayında yeni "Ödeme detayları" kutusu: tek satırda "Kart · EsnekPOS · ₺100,00 · tek çekim", altında kart (ilk 6 + son 4, gerisi gizli), kart sahibi, taksit, çekilen tutar, banka referansı, onay kodu, işlem numarası ve test/canlı. Önceden yalnız notlarda bir referans kodu vardı. Kart numarası yine saklanmaz.
+- Başka ödeme eklentileri (Flux POS gibi) kendi ödemesini `flxb_payment_details( $info, $order )` filtresiyle bu kutuya yazar. iyzico ödemesinde taksit de tutulur.
+- **EsnekPOS kart sahibi.** EsnekPOS kart sahibi adını en az 6 harf ister ("CC_OWNER" hatası). Kısa yazılan ad fatura ad soyadıyla tamamlanır; o da kısaysa ödeme gönderilmeden anlaşılır bir uyarı çıkar.
+- EsnekPOS sipariş notları ("ödeme başlatılamadı") artık Türkçe görünür (metinde eksik boşluk çeviriyi tutmuyordu).
+- Bağış formunun altındaki güvence yazısı artık bağışçıya o an gösterilen kart yöntemini yazar (ör. "Ödemeler EsnekPOS güvencesiyle alınmaktadır"). Önceden iyzico eklentisi açık olduğu sürece, kartlar EsnekPOS gibi başka bir POS'tan alınsa da "iyzico" yazıyordu. Birden fazla kart yöntemi gösteriliyorsa genel yazı çıkar.
+
 ## 2.35.0
 - **Bağış detayında taşınabilir kutular.** Kalemler, Ödeme, Bağışçı, Referans, İşlemler, Geçmiş ve diğer kartlar artık kutu: köşedeki oklarla yukarı/aşağı taşınır (sütunlar arasında da), "–" ile daraltılır; geniş ekranda tutamaktan sürüklenir. Sıra ve daraltılan kutular kullanıcı başına saklanır, sayfa bir dahaki açılışta aynı düzenle gelir. Telefonda tek sütun, oklarla taşınır.
 - **WooCommerce sipariş ekranındaki diğer eklentilerin kutuları bağış detayında.** LiteSpeed, Google for WooCommerce, sipariş niteliği (Order attribution) gibi kutular Flux kartı olarak açılır. Alanı olan kutularda "Kaydet" hepsini birlikte, eklentilerin kendi kayıt kancasıyla (`woocommerce_process_shop_order_meta`) kaydeder; siparişin geri kalanı değişmez. WooCommerce'in kendi kutuları (sipariş verisi, ürünler, eylemler, özel alanlar) gösterilmez, bağış sayfasında karşılıkları var.

@@ -1,0 +1,6 @@
+mutation FlxPosMethodsUpdate($input: FlxPosMethodsUpdateInput!) {
+  flxPosMethodsUpdate(input: $input) {
+    methods { ...FlxPosMethodsFields }
+    errors { code message field }
+  }
+}

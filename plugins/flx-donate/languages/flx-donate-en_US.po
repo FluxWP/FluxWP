@@ -4446,6 +4446,10 @@ msgstr "Your donation"
 msgid "from %s"
 msgstr "from %s"
 
+#. translators: %s: payment provider name (EsnekPOS, PayTR…)
+msgid "Payments are taken securely by %s."
+msgstr "Payments are taken securely by %s."
+
 msgid "Payments are taken securely by iyzico."
 msgstr "Payments are taken securely by iyzico."
 
@@ -5673,3 +5677,40 @@ msgid "%s more"
 msgid_plural "%s more"
 msgstr[0] "%s more"
 msgstr[1] "%s more"
+
+msgid "single payment"
+msgstr "single payment"
+
+#, php-format
+msgid "%d installments"
+msgstr "%d installments"
+
+msgid "Card"
+msgstr "Card"
+
+msgid "Card holder"
+msgstr "Card holder"
+
+msgid "Amount charged"
+msgstr "Amount charged"
+
+msgid "Bank reference"
+msgstr "Bank reference"
+
+msgid "Authorization code"
+msgstr "Authorization code"
+
+msgid "Transaction ID"
+msgstr "Transaction ID"
+
+msgid "Mode"
+msgstr "Mode"
+
+msgid "Test"
+msgstr "Test"
+
+msgid "No payment has been taken for this order yet."
+msgstr "No payment has been taken for this order yet."
+
+msgid "Please write the card holder's full name as it is on the card (at least 6 letters)."
+msgstr "Please write the card holder's full name as it is on the card (at least 6 letters)."

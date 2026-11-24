@@ -1,0 +1,26 @@
+fragment FlxPosMoney on FlxMoney { amount currency formatted }
+fragment FlxPosWhen on FlxDateTime { iso timestamp label relative }
+fragment FlxPosMethodsFields on FlxPosMethods {
+  blockCheckout cardMethod cardMethodOwner checkoutUrl currency
+  cardChoices { value label }
+  methods {
+    id title methodTitle description enabled order icons flux hidden hasFields offline settingsUrl
+    caps { key label help state note }
+  }
+}
+fragment FlxPosAccountFields on FlxPosAccount {
+  id provider providerName group label name enabled test mode currencies instMin title display notifyUrl takesCard
+  creds { key value isSet mask }
+  installments { count rate }
+}
+fragment FlxPosSettingsFields on FlxPosSettings {
+  cardTitle cardDesc cardAccount display showBrands blockFallback saveLog
+  routes { value label }
+  displays { value label }
+}
+fragment FlxPosTxnRow on FlxPosTxn {
+  databaseId ref bankRef kind account accountName orderId orderNumber orderUrl installment card status message test refundable
+  amount { ...FlxPosMoney }
+  refunded { ...FlxPosMoney }
+  created { ...FlxPosWhen }
+}

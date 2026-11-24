@@ -241,6 +241,26 @@ function flxc_system_checks() {
 			/* translators: %s: type names */
 			$add( 'bot', $g_ai, __( 'Donation assistant', 'flx-chat' ), 'ok', sprintf( __( 'On. Donation types offered: %s.', 'flx-chat' ), implode( ', ', $names ) ), 'ai' );
 
+			// 1.52.0: hazır mesajların dil başına çeviri şablonları.
+			if ( function_exists( 'flxc_tr_stats' ) ) {
+				$tr = flxc_tr_stats();
+				$tl = array();
+				foreach ( $tr as $l => $n ) {
+					$tl[] = strtoupper( $l ) . ' ' . number_format_i18n( $n );
+				}
+				$add(
+					'bot-lang',
+					$g_ai,
+					__( 'Assistant languages', 'flx-chat' ),
+					'info',
+					$tl
+						/* translators: %s: languages and template counts, e.g. "EN 12, DE 4" */
+						? sprintf( __( 'Ready messages go out in the language the person writes in. Saved translation templates: %s. Numbers, prices, IBAN and links are not translated; they are filled in when sending.', 'flx-chat' ), implode( ', ', $tl ) )
+						: __( 'Ready messages go out in the language the person writes in. A message is translated the first time it is needed in a language and then reused; numbers, prices, IBAN and links are filled in when sending.', 'flx-chat' ),
+					'ai'
+				);
+			}
+
 			// Model araç (tools) destekliyor mu? Yalnız önbellekteki model listesine bakılır.
 			$cache = get_transient( 'flxc_ai_models_all' );
 			if ( is_array( $cache ) ) {

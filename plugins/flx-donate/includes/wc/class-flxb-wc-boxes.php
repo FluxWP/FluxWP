@@ -22,7 +22,7 @@ defined( 'ABSPATH' ) || exit;
 final class FLXB_WC_Boxes {
 
 	/** WooCommerce's own boxes (the donation page shows these its own way) and ours. */
-	const SKIP = array( 'woocommerce-order-data', 'woocommerce-order-items', 'woocommerce-order-notes', 'woocommerce-order-actions', 'woocommerce-order-downloads', 'order_custom', 'postcustom', 'submitdiv', 'slugdiv', 'commentsdiv', 'commentstatusdiv', 'flxwb-box' );
+	const SKIP = array( 'woocommerce-order-data', 'woocommerce-order-items', 'woocommerce-order-notes', 'woocommerce-order-actions', 'woocommerce-order-downloads', 'order_custom', 'postcustom', 'submitdiv', 'slugdiv', 'commentsdiv', 'commentstatusdiv', 'flxwb-box', 'flxb-payinfo' );
 
 	public static function init() {
 		add_action( 'admin_post_flxb_wc_boxes_save', array( __CLASS__, 'save' ) );

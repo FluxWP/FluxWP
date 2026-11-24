@@ -616,7 +616,7 @@ FLXB_Types::delete( (int) $purge_type );
 flxt_ok( in_array( FLXB_Type_Public_Service::TAG, $GLOBALS['flxb_purged'], true ), 'cache: deleting a type purges flx-donate:types' );
 
 
-// Admin screens (2.36.0): dashboard, list (own-only scoping), bulk rights.
+// Admin screens (2.37.0): dashboard, list (own-only scoping), bulk rights.
 echo "Flux Donate GraphQL (admin)\n";
 $admin = (int) wp_insert_user(
 	array(
