@@ -54,7 +54,7 @@ final class FLXB_Admin_Donations_Service {
 	 */
 	private static function order_ids( int $oid ): array {
 		$ids = FLXB_Donations::ids_of_order( $oid );
-		return array_values( array_map( 'intval', self::arr( $ids ) ) );
+		return array_values( array_map( static fn( $v ): int => self::i( $v ), self::arr( $ids ) ) );
 	}
 
 	public static function can_list(): bool {
