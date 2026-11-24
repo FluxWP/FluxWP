@@ -283,7 +283,7 @@ final class FLXB_Admin_Import_Service {
 		$groups  = self::map( $a['groups'] ?? array() );
 		$matches = array();
 		foreach ( $sets as $g => $def ) {
-			if ( ! array_intersect( $def[2], $map ) ) {
+			if ( ! array_intersect( array_map( array( __CLASS__, 's' ), self::arr( $def[2] ) ), array_map( array( __CLASS__, 's' ), $map ) ) ) {
 				continue;
 			}
 			$list = array();
