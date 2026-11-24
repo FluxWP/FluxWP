@@ -902,3 +902,60 @@ html.flxa-dark .flxb-add2__save { background: var(--flxa-accent-soft); border-co
 	.flxb-ppl-row > :nth-child(4) { grid-column: 2 / 4; grid-row: 3; }
 	.flxb-ppl-row__end { grid-column: 3; }
 }
+
+/* 2.34.0: movable boxes on the donation page (FLXB_Boxes): up/down, fold, drag on wide screens.
+   The buttons sit in the card's top-right corner; the card head leaves room for them. */
+.flxb-boxes .flxb-detail__side { position: static; }
+.flxb-boxes__col { align-content: start; min-height: 40px; }
+.flxb-box { position: relative; min-width: 0; }
+.flxb-box > .flxb-card { margin: 0; }
+.flxb-box > .flxb-card > .flxb-card__head:first-child { padding-right: 112px; min-height: 30px; }
+.flxb-box__tools { position: absolute; top: 14px; right: 12px; z-index: 2; display: flex; gap: 2px; }
+.flxb-box__btn { display: grid; place-items: center; width: 30px; height: 30px; padding: 0; border: 0; border-radius: 8px; background: transparent; color: var(--flxb-muted); cursor: pointer; }
+.flxb-box__btn:hover, .flxb-box__btn:focus-visible { background: var(--flxb-soft); color: var(--flxb-ink); }
+.flxb-box__btn:focus-visible { outline: 2px solid var(--flxb-primary); outline-offset: 1px; }
+.flxb-box__btn[disabled] { opacity: .3; cursor: default; background: transparent; }
+.flxb-box__grip { display: none; cursor: grab; }
+.flxb-box__v { display: none; }
+.flxb-box.is-closed .flxb-box__v { display: inline; }
+.flxb-box.is-closed > .flxb-card > :not(.flxb-card__head:first-child) { display: none !important; }
+.flxb-box.is-closed > .flxb-card > .flxb-card__head:first-child { margin-bottom: 0; }
+.flxb-box.is-closed > .flxb-card .flxb-card__head > :not(.flxb-card__title):not(div:first-child) { display: none; }
+.flxb-box.is-moved > .flxb-card { animation: flxb-box-flash .7s ease-out; }
+@keyframes flxb-box-flash { from { box-shadow: 0 0 0 3px color-mix(in srgb, var(--flxb-primary) 35%, transparent); } to { box-shadow: 0 1px 2px rgba(20, 50, 74, .04); } }
+@media (hover: hover) and (pointer: fine) {
+	.flxb-box__tools { opacity: .55; transition: opacity .15s; }
+	.flxb-box:hover .flxb-box__tools, .flxb-box__tools:focus-within { opacity: 1; }
+}
+@media (hover: hover) and (pointer: fine) and (min-width: 1101px) {
+	.flxb-box__grip { display: grid; }
+	.flxb-box > .flxb-card > .flxb-card__head:first-child { padding-right: 140px; }
+	.flxb-box.is-dragging { opacity: .45; }
+	.flxb-boxes.is-dragging .flxb-boxes__col { outline: 2px dashed var(--flxb-line); outline-offset: 6px; border-radius: var(--flxb-radius); }
+}
+@media (prefers-reduced-motion: reduce) { .flxb-box.is-moved > .flxb-card { animation: none; } }
+
+/* Boxes of other plugins (the WooCommerce order screen's) and the notes, in the Flux card look. */
+.flxb-xbox__body { min-width: 0; overflow-wrap: anywhere; color: var(--flxb-text); font-size: 13.5px; }
+.flxb-xbox__body > :first-child { margin-top: 0; }
+.flxb-xbox__body > :last-child { margin-bottom: 0; }
+.flxb-xbox__wc { overflow-x: auto; }
+.flxb-xbox__wc :is(input:not([type=checkbox]):not([type=radio]):not([type=button]):not([type=submit]), select, textarea) { max-width: 100%; box-sizing: border-box; }
+.flxb-xbox__wc textarea { width: 100%; }
+.flxb-xbox__wc table { max-width: 100%; }
+.flxb-xbox__wc img { max-width: 100%; height: auto; }
+.flxb-xbox__wc .hidden, .flxb-xbox__wc .hide-if-js { display: none; }
+.flxb-xbox__save { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--flxb-line); font-size: 12.5px; }
+.flxb-notes { list-style: none; margin: 0 0 12px; padding: 0; display: grid; gap: 8px; max-height: 420px; overflow-y: auto; }
+.flxb-note { padding: 10px 12px; border-radius: 10px; background: var(--flxb-soft); }
+.flxb-note.is-customer { background: color-mix(in srgb, var(--flxb-primary) 10%, var(--flxb-surface)); }
+.flxb-note.is-system { background: transparent; box-shadow: inset 0 0 0 1px var(--flxb-line); }
+.flxb-note__text { color: var(--flxb-ink); font-size: 13px; overflow-wrap: anywhere; }
+.flxb-note__text p { margin: 0 0 4px; }
+.flxb-note__meta { display: flex; justify-content: space-between; align-items: center; gap: 8px; color: var(--flxb-muted); font-size: 12px; }
+.flxb-note__meta .flxb-inline-form { margin: 0; }
+.flxb-noteform textarea { width: 100%; box-sizing: border-box; min-height: 64px; }
+.flxb-noteform__row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; margin-top: 8px; }
+.flxb-noteform__row select { min-width: 0; width: 100%; }
+html.flxa-dark .flxb-xbox__wc [style*="background"] { background: transparent !important; }
+html.flxa-dark .flxb-xbox__wc [style*="border"] { border-color: var(--flxb-line) !important; }

@@ -557,7 +557,7 @@ final class FLXB_Page_Donations {
 	}
 
 	/** Receipts linked by Flux Chat (meta.receipts) and the change log (meta.audit). */
-	private static function records_card( array $d ) {
+	private static function records_card( array $d, $part = '' ) {
 		$m        = FLXB_Donations::meta( $d );
 		// 2.4.0: while the gift awaits approval its receipts are in the approval card.
 		$receipts = FLXB_Approval::pending( $d ) ? array() : array_values( array_filter( (array) ( $m['receipts'] ?? array() ), 'is_array' ) );
@@ -570,7 +570,18 @@ final class FLXB_Page_Donations {
 			$u = (int) $id ? get_userdata( (int) $id ) : null;
 			return $u ? $u->display_name : ( (int) $id ? '#' . (int) $id : __( 'System', 'flx-donate' ) );
 		};
-		echo '<div class="flxb-grid flxb-grid--1-1 flxb-card--gap">';
+		// 2.34.0: the contacts and the history are separate movable boxes ($part); '' prints both side by side.
+		$contacts = 'history' === $part ? array() : $contacts;
+		if ( 'contacts' === $part ) {
+			$receipts = array();
+			$audit    = array();
+		}
+		if ( ! $receipts && ! $contacts && ! $audit ) {
+			return;
+		}
+		if ( '' === $part ) {
+			echo '<div class="flxb-grid flxb-grid--1-1 flxb-card--gap">';
+		}
 		if ( $contacts ) {
 			echo '<section class="flxb-card flxb-contacts"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( 'Contacts of the people on whose behalf', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( 'Given to the call center so they can be told when the donation is carried out.', 'flx-donate' ) . '</p></div></div><div class="flxb-tablewrap"><table class="flxb-table flxb-table--compact"><thead><tr><th scope="col">' . esc_html__( 'Name', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Phone', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'E-mail', 'flx-donate' ) . '</th></tr></thead><tbody>';
 			foreach ( $contacts as $c ) {
@@ -604,7 +615,9 @@ final class FLXB_Page_Donations {
 			}
 			echo '</section>';
 		}
-		echo '</div>';
+		if ( '' === $part ) {
+			echo '</div>';
+		}
 	}
 
 	/** One change-log line in words. */
@@ -653,8 +666,15 @@ final class FLXB_Page_Donations {
 		self::hero( $d, $donor, $camp );
 		FLXB_Approval::card( $d, $sibs );
 		// 2.20.0: two columns: what was given and how it was paid on the left, people and actions on the right.
-		echo '<div class="flxb-detail"><div class="flxb-detail__main">';
-		self::lines_card( $d, $sibs, $camp );
+		// 2.34.0: every card is a movable box (FLXB_Boxes); the WooCommerce order's other boxes come along.
+		$cap = static function ( $fn ) {
+			ob_start();
+			$fn();
+			return (string) ob_get_clean();
+		};
+		$boxes   = array();
+		$boxes[] = array( 'id' => 'lines', 'title' => __( 'Items', 'flx-donate' ), 'col' => 'main', 'html' => $cap( function () use ( $d, $sibs, $camp ) { self::lines_card( $d, $sibs, $camp ); } ) );
+		ob_start();
 		// 2.25.0: payment facts in a tidy grid; certificates and the note get their own rows; the
 		// WooCommerce order and the refund live in the "⋯" menu (they are rarely needed).
 		echo '<section class="flxb-card flxb-card--gap flxb-paycard"><div class="flxb-card__head"><h2 class="flxb-card__title">' . esc_html( $multi ? __( 'This item', 'flx-donate' ) : __( 'Payment', 'flx-donate' ) ) . '</h2><div class="flxb-chips">' . FLXB_Admin::type_pill( $d['type'] ) . FLXB_Approval::pill( $d ) . self::more_menu( $d ) . '</div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -738,12 +758,33 @@ final class FLXB_Page_Donations {
 			echo '<div class="flxb-paycard__row"><h3 class="flxb-paycard__h">' . esc_html__( 'Notes', 'flx-donate' ) . '</h3><p class="flxb-paycard__note">' . nl2br( esc_html( (string) $meta['note'] ) ) . '</p></div>';
 		}
 		echo '</section>';
-		self::records_card( $d );
-		echo '</div><aside class="flxb-detail__side">';
-		self::donor_card( $d, $donor );
-		self::ref_card( $d );
-		self::manage_card( $d, $sibs );
-		echo '</aside></div>';
+		$boxes[] = array( 'id' => 'payment', 'title' => $multi ? __( 'This item', 'flx-donate' ) : __( 'Payment', 'flx-donate' ), 'col' => 'main', 'html' => (string) ob_get_clean() );
+		$boxes[] = array( 'id' => 'contacts', 'title' => __( 'Contacts of the people on whose behalf', 'flx-donate' ), 'col' => 'main', 'html' => $cap( function () use ( $d ) { self::records_card( $d, 'contacts' ); } ) );
+		$boxes[] = array( 'id' => 'history', 'title' => __( 'History', 'flx-donate' ), 'col' => 'main', 'html' => $cap( function () use ( $d ) { self::records_card( $d, 'history' ); } ) );
+		$boxes[] = array( 'id' => 'donor', 'title' => __( 'Donor', 'flx-donate' ), 'col' => 'side', 'html' => $cap( function () use ( $d, $donor ) { self::donor_card( $d, $donor ); } ) );
+		$boxes[] = array( 'id' => 'ref', 'title' => __( 'Referral', 'flx-donate' ), 'col' => 'side', 'html' => $cap( function () use ( $d ) { self::ref_card( $d ); } ) );
+		$boxes[] = array( 'id' => 'manage', 'title' => __( 'Manage', 'flx-donate' ), 'col' => 'side', 'html' => $cap( function () use ( $d, $sibs ) { self::manage_card( $d, $sibs ); } ) );
+		$xform = '';
+		$order = (int) $d['wc_order_id'] && class_exists( 'FLXB_WC_Boxes' ) ? wc_get_order( (int) $d['wc_order_id'] ) : null;
+		if ( $order && FLXB_WC_Boxes::can( $order ) ) {
+			$back    = FLXB_Admin_Url::donation( (int) $d['id'] );
+			$boxes[] = array( 'id' => 'notes', 'title' => __( 'Order notes', 'flx-donate' ), 'col' => 'side', 'class' => 'flxb-xbox--notes', 'body' => FLXB_WC_Boxes::notes_box( $order, $back ) );
+			$wc      = FLXB_WC_Boxes::collect( $order );
+			if ( $wc ) {
+				$boxes = array_merge( $boxes, $wc );
+				$xform = FLXB_WC_Boxes::save_form( $order, $back );
+			}
+		}
+		foreach ( (array) apply_filters( 'flxb_detail_boxes', array(), $d ) as $b ) {
+			if ( is_array( $b ) && ! empty( $b['id'] ) ) {
+				$b['id']       = 'x:' . $b['id'];
+				$b['donation'] = $d;
+				unset( $b['html'] );
+				$boxes[] = $b;
+			}
+		}
+		FLXB_Boxes::render( 'donation', $boxes );
+		echo $xform; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in save_form()
 		echo FLXB_Detail_Tabs::render( 'donation', $d, flxb_can_manage() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped inside
 		FLXB_Admin::footer();
 	}

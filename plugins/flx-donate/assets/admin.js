@@ -724,3 +724,146 @@
 		});
 	});
 })();
+
+/* 2.34.0: movable boxes (FLXB_Boxes). Up/down walk the page order (main column, then side), so a box
+   can cross columns on a phone too; on a wide screen the handle drags it anywhere. The layout is
+   saved per user; the page prints it in that order next time. */
+(function () {
+	var root = document.querySelector('[data-flxb-boxes]');
+	if (!root) return;
+	var cols = Array.prototype.slice.call(root.querySelectorAll('.flxb-boxes__col'));
+	var boxes = function () { return Array.prototype.slice.call(root.querySelectorAll('.flxb-box')); };
+	var timer = null;
+	var save = function () {
+		clearTimeout(timer);
+		timer = setTimeout(function () {
+			if (!window.flxbAdmin || !window.fetch) return;
+			var body = new URLSearchParams();
+			body.append('action', 'flxb_boxes');
+			body.append('nonce', root.getAttribute('data-nonce'));
+			body.append('screen', root.getAttribute('data-flxb-boxes'));
+			cols.forEach(function (c) {
+				body.append(c.getAttribute('data-col'), Array.prototype.map.call(c.querySelectorAll(':scope > .flxb-box'), function (b) { return b.getAttribute('data-box'); }).join(','));
+			});
+			body.append('closed', boxes().filter(function (b) { return b.classList.contains('is-closed'); }).map(function (b) { return b.getAttribute('data-box'); }).join(','));
+			fetch(window.flxbAdmin.ajax, { method: 'POST', credentials: 'same-origin', body: body }).catch(function () {});
+		}, 250);
+	};
+	var refresh = function () {
+		var all = boxes();
+		all.forEach(function (b, i) {
+			var up = b.querySelector('[data-box-move="up"]');
+			var down = b.querySelector('[data-box-move="down"]');
+			if (up) up.disabled = i === 0;
+			if (down) down.disabled = i === all.length - 1;
+		});
+	};
+	var flash = function (b) {
+		b.classList.remove('is-moved');
+		void b.offsetWidth;
+		b.classList.add('is-moved');
+	};
+	root.addEventListener('click', function (e) {
+		var btn = e.target.closest('[data-box-move],[data-box-fold]');
+		if (!btn || !root.contains(btn)) return;
+		var box = btn.closest('.flxb-box');
+		if (btn.hasAttribute('data-box-fold')) {
+			var closed = box.classList.toggle('is-closed');
+			btn.setAttribute('aria-expanded', closed ? 'false' : 'true');
+			save();
+			return;
+		}
+		var all = boxes();
+		var i = all.indexOf(box);
+		var up = btn.getAttribute('data-box-move') === 'up';
+		var col = box.parentNode;
+		if (up) {
+			var prev = box.previousElementSibling;
+			if (prev) col.insertBefore(box, prev);
+			else if (i > 0) all[i - 1].parentNode.appendChild(box); // end of the column above
+		} else {
+			var next = box.nextElementSibling;
+			if (next) col.insertBefore(next, box);
+			else if (i < all.length - 1) { var nc = all[i + 1].parentNode; nc.insertBefore(box, nc.firstChild); }
+		}
+		refresh();
+		flash(box);
+		btn.focus();
+		if (box.getBoundingClientRect().top < 60) box.scrollIntoView({ block: 'nearest' });
+		save();
+	});
+
+	/* Drag by the handle (wide screens; the handle is hidden elsewhere). */
+	var dragged = null;
+	root.addEventListener('pointerdown', function (e) {
+		var grip = e.target.closest('[data-box-grip]');
+		if (grip) grip.closest('.flxb-box').setAttribute('draggable', 'true');
+	});
+	root.addEventListener('pointerup', function () {
+		boxes().forEach(function (b) { if (b !== dragged) b.removeAttribute('draggable'); });
+	});
+	root.addEventListener('dragstart', function (e) {
+		var b = e.target.closest && e.target.closest('.flxb-box[draggable]');
+		if (!b) return;
+		dragged = b;
+		b.classList.add('is-dragging');
+		root.classList.add('is-dragging');
+		if (e.dataTransfer) { e.dataTransfer.effectAllowed = 'move'; try { e.dataTransfer.setData('text/plain', b.getAttribute('data-box')); } catch (x) {} }
+	});
+	root.addEventListener('dragover', function (e) {
+		if (!dragged) return;
+		var col = e.target.closest('.flxb-boxes__col');
+		if (!col) return;
+		e.preventDefault();
+		var after = null;
+		Array.prototype.some.call(col.querySelectorAll(':scope > .flxb-box:not(.is-dragging)'), function (b) {
+			var r = b.getBoundingClientRect();
+			if (e.clientY < r.top + r.height / 2) { after = b; return true; }
+			return false;
+		});
+		if (after) { if (after.previousElementSibling !== dragged) col.insertBefore(dragged, after); }
+		else if (col.lastElementChild !== dragged) col.appendChild(dragged);
+	});
+	root.addEventListener('drop', function (e) { if (dragged) e.preventDefault(); });
+	root.addEventListener('dragend', function () {
+		if (!dragged) return;
+		dragged.classList.remove('is-dragging');
+		dragged.removeAttribute('draggable');
+		root.classList.remove('is-dragging');
+		flash(dragged);
+		dragged = null;
+		refresh();
+		save();
+	});
+	refresh();
+
+	/* The WooCommerce order's boxes: one "Save" posts the fields of all of them, like the order screen. */
+	var xform = document.getElementById('flxb-xform');
+	root.addEventListener('click', function (e) {
+		var btn = e.target.closest('[data-flxb-xsave]');
+		if (!btn || !xform) return;
+		xform.querySelectorAll('[data-copied]').forEach(function (n) { n.remove(); });
+		var add = function (name, value) {
+			var inp = document.createElement('input');
+			inp.type = 'hidden';
+			inp.name = name;
+			inp.value = value;
+			inp.setAttribute('data-copied', '');
+			xform.appendChild(inp);
+		};
+		root.querySelectorAll('[data-flxb-wcbox]').forEach(function (box) {
+			box.querySelectorAll('input[name],select[name],textarea[name]').forEach(function (el) {
+				if (el.disabled || el.type === 'file' || el.type === 'button' || el.type === 'submit') return;
+				if (/^(action|_flxb_nonce|flxb_order|flxb_back|post_ID|woocommerce_meta_nonce)$/.test(el.name)) return;
+				if ((el.type === 'checkbox' || el.type === 'radio') && !el.checked) return;
+				if (el.tagName === 'SELECT' && el.multiple) {
+					Array.prototype.forEach.call(el.options, function (o) { if (o.selected) add(el.name, o.value); });
+					return;
+				}
+				add(el.name, el.value);
+			});
+		});
+		btn.disabled = true;
+		xform.submit();
+	});
+})();

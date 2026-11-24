@@ -6112,3 +6112,57 @@ msgstr "Kendiniz yazın"
 
 msgid "For someone else"
 msgstr "Başkası adına"
+
+msgid "This box could not be shown."
+msgstr "Bu kutu gösterilemedi."
+
+msgid "Box: %s"
+msgstr "Kutu: %s"
+
+msgid "Drag to move"
+msgstr "Taşımak için sürükleyin"
+
+msgid "Fold or unfold"
+msgstr "Daralt ya da aç"
+
+msgid "Saves the fields of every order box on this page."
+msgstr "Bu sayfadaki tüm sipariş kutularının alanlarını kaydeder."
+
+msgid "The order boxes could not be saved."
+msgstr "Sipariş kutuları kaydedilemedi."
+
+msgid "No notes yet."
+msgstr "Henüz not yok."
+
+msgid "Delete this note?"
+msgstr "Bu not silinsin mi?"
+
+msgid "Add a note…"
+msgstr "Not ekleyin…"
+
+msgid "Note type"
+msgstr "Not türü"
+
+msgid "Private note"
+msgstr "Özel not"
+
+msgid "Note to the donor (sent by e-mail)"
+msgstr "Bağışçıya not (e-postayla gider)"
+
+msgid "Add"
+msgstr "Ekle"
+
+msgid "Write the note first."
+msgstr "Önce notu yazın."
+
+msgid "Note added."
+msgstr "Not eklendi."
+
+msgid "The note was not found."
+msgstr "Not bulunamadı."
+
+msgid "Note deleted."
+msgstr "Not silindi."
+
+msgid "Order notes"
+msgstr "Sipariş notları"
