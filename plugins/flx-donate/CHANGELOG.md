@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 2.33.2
+- Bağış formunun altındaki güvence yazısı artık bağışçıya o an gösterilen kart yöntemini yazar (ör. "Ödemeler EsnekPOS güvencesiyle alınmaktadır"). Önceden iyzico eklentisi açık olduğu sürece, kartlar EsnekPOS gibi başka bir POS'tan alınsa da "iyzico" yazıyordu. Birden fazla kart yöntemi gösteriliyorsa genel yazı çıkar.
+
 ## 2.33.1
 - "Kendim için" ve "Başkası adına" kutuları her zaman aynı yükseklikte (telefonda biri iki satıra düşse de).
 - İngilizce metin kısaldı: "On behalf of someone else" yerine "For someone else". Türkçe "Başkası adına" aynı.

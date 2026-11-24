@@ -4440,6 +4440,10 @@ msgstr "Bağışınız"
 msgid "from %s"
 msgstr "%s'den başlayan"
 
+#. translators: %s: payment provider name (EsnekPOS, PayTR…)
+msgid "Payments are taken securely by %s."
+msgstr "Ödemeler %s güvencesiyle alınmaktadır."
+
 msgid "Payments are taken securely by iyzico."
 msgstr "Ödemeler iyzico güvencesiyle alınmaktadır."
 

@@ -4440,6 +4440,10 @@ msgstr ""
 msgid "from %s"
 msgstr ""
 
+#. translators: %s: payment provider name (EsnekPOS, PayTR…)
+msgid "Payments are taken securely by %s."
+msgstr ""
+
 msgid "Payments are taken securely by iyzico."
 msgstr ""
 

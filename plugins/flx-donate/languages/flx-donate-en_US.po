@@ -4440,6 +4440,10 @@ msgstr "Your donation"
 msgid "from %s"
 msgstr "from %s"
 
+#. translators: %s: payment provider name (EsnekPOS, PayTR…)
+msgid "Payments are taken securely by %s."
+msgstr "Payments are taken securely by %s."
+
 msgid "Payments are taken securely by iyzico."
 msgstr "Payments are taken securely by iyzico."
 
