@@ -31,10 +31,20 @@ final class FLXB_Admin_Donations_Service {
 		}
 	}
 
+	/**
+	 * Any value as an array (helpers of the classic code are untyped).
+	 *
+	 * @param mixed $v Value.
+	 * @return array<mixed>
+	 */
+	private static function arr( $v ): array {
+		return is_array( $v ) ? $v : array();
+	}
+
 	/** Label of a stored status (flxb_status_label() gives [ tone, label ]). */
 	private static function status_label( string $s ): string {
 		$l = flxb_status_label( $s );
-		return is_array( $l ) ? self::s( $l[1] ?? $s ) : $s;
+		return self::s( self::arr( $l )[1] ?? $s );
 	}
 
 	/**
@@ -44,7 +54,7 @@ final class FLXB_Admin_Donations_Service {
 	 */
 	private static function order_ids( int $oid ): array {
 		$ids = FLXB_Donations::ids_of_order( $oid );
-		return is_array( $ids ) ? array_values( array_map( 'intval', $ids ) ) : array();
+		return array_values( array_map( 'intval', self::arr( $ids ) ) );
 	}
 
 	public static function can_list(): bool {
@@ -157,9 +167,9 @@ final class FLXB_Admin_Donations_Service {
 				)
 			)
 		);
-		$res   = is_array( $res ) ? $res : array();
+		$res   = self::arr( $res );
 		$items = array();
-		$rows  = is_array( $res['items'] ?? null ) ? $res['items'] : array();
+		$rows  = self::arr( $res['items'] ?? null );
 		$refs  = self::own_only() ? array() : self::donor_refs( $rows );
 		$types = self::type_titles();
 		foreach ( $rows as $r ) {
@@ -180,13 +190,13 @@ final class FLXB_Admin_Donations_Service {
 	 */
 	public static function sum( array $f ): float {
 		$res = FLXB_Donations::query( array_merge( self::query_args( $f ), array( 'per_page' => 1, 'page' => 1 ) ) );
-		return is_array( $res ) ? self::f( $res['sum'] ?? 0 ) : 0.0;
+		return self::f( self::arr( $res )['sum'] ?? 0 );
 	}
 
 	/** @return array<int,string> type id → title */
 	private static function type_titles(): array {
 		$out = array();
-		foreach ( (array) FLXB_Types::all( 'all' ) as $c ) {
+		foreach ( self::arr( FLXB_Types::all( 'all' ) ) as $c ) {
 			if ( is_array( $c ) ) {
 				$out[ self::i( $c['id'] ?? 0 ) ] = self::s( $c['title'] ?? '' );
 			}
@@ -208,7 +218,7 @@ final class FLXB_Admin_Donations_Service {
 			}
 		}
 		$out = array();
-		foreach ( (array) FLXB_Refs::donor_refs( $ids ) as $donor => $ref ) {
+		foreach ( self::arr( FLXB_Refs::donor_refs( $ids ) ) as $donor => $ref ) {
 			$out[ self::i( $donor ) ] = self::i( $ref );
 		}
 		return $out;
@@ -258,7 +268,7 @@ final class FLXB_Admin_Donations_Service {
 		if ( $lines > 1 ) {
 			/* translators: %s: number of lines in the order */
 			$where = array( sprintf( _n( '%s item', '%s items', $lines, 'flx-donate' ), number_format_i18n( $lines ) ) );
-			foreach ( (array) FLXB_Donations::siblings( $r ) as $sib ) {
+			foreach ( self::arr( FLXB_Donations::siblings( $r ) ) as $sib ) {
 				$sid = is_array( $sib ) ? self::i( $sib['type_id'] ?? 0 ) : 0;
 				if ( $sid && isset( $types[ $sid ] ) && ! in_array( $types[ $sid ], $where, true ) ) {
 					$where[] = $types[ $sid ];
@@ -322,21 +332,21 @@ final class FLXB_Admin_Donations_Service {
 			$types[] = array( 'value' => (string) $id, 'label' => $title );
 		}
 		$forms = array();
-		foreach ( (array) flxb_forms() as $fid => $fm ) {
+		foreach ( self::arr( flxb_forms() ) as $fid => $fm ) {
 			if ( is_array( $fm ) && 'payment' === self::s( $fm['type'] ?? '' ) ) {
 				$forms[] = array( 'value' => (string) self::i( $fid ), 'label' => self::s( $fm['title'] ?? '' ) );
 			}
 		}
 		$refs = array();
 		if ( ! $own ) {
-			foreach ( (array) FLXB_Refs::users() as $uid => $label ) {
+			foreach ( self::arr( FLXB_Refs::users() ) as $uid => $label ) {
 				$refs[] = array( 'value' => (string) self::i( $uid ), 'label' => self::s( $label ) );
 			}
 		}
 		$awaiting = array();
 		if ( 'trash' !== $f['status'] && 'receipt' !== $f['status'] ) {
 			$types_t = self::type_titles();
-			foreach ( (array) FLXB_Approval::awaiting( $own ? get_current_user_id() : 0 ) as $r ) {
+			foreach ( self::arr( FLXB_Approval::awaiting( $own ? get_current_user_id() : 0 ) ) as $r ) {
 				if ( ! is_array( $r ) ) {
 					continue;
 				}
@@ -405,8 +415,8 @@ final class FLXB_Admin_Donations_Service {
 		$done = 0;
 		$seen = array();
 		foreach ( array_unique( array_filter( array_map( 'absint', $ids ) ) ) as $id ) {
-			$d = FLXB_Donations::get( $id );
-			if ( ! is_array( $d ) ) {
+			$d = self::arr( FLXB_Donations::get( $id ) );
+			if ( ! $d ) {
 				continue;
 			}
 			$oid = self::i( $d['wc_order_id'] ?? 0 );
@@ -426,7 +436,7 @@ final class FLXB_Admin_Donations_Service {
 						$order->delete( true );
 					} else {
 						$store = $order->get_data_store();
-						if ( 'trash' === $order->get_status() && is_object( $store ) && is_callable( array( $store, 'untrash_order' ) ) ) {
+						if ( 'trash' === $order->get_status() && is_callable( array( $store, 'untrash_order' ) ) ) {
 							call_user_func( array( $store, 'untrash_order' ), $order );
 						} else {
 							FLXB_Donations::restore_rows( self::order_ids( $oid ) );
@@ -484,14 +494,14 @@ final class FLXB_Admin_Donations_Service {
 		global $wpdb;
 		/** @var wpdb $wpdb */
 		$range        = in_array( $range, array( '7', '30', '90', 'custom' ), true ) ? $range : '30';
-		$period       = (array) FLXB_Stats::range( $range, $from, $to );
+		$period       = self::arr( FLXB_Stats::range( $range, $from, $to ) );
 		$from         = self::s( $period[0] ?? '' );
 		$to           = self::s( $period[1] ?? '' );
-		$d            = (array) FLXB_Stats::collect( $from, $to );
+		$d            = self::arr( FLXB_Stats::collect( $from, $to ) );
 		$all          = (bool) flxb_can_view();
 		$num          = static fn( $v ): float => is_numeric( $v ) ? round( (float) $v, 2 ) : 0.0;
 		$totals       = static function ( $t ) use ( $num ): array {
-			$t = is_array( $t ) ? $t : array();
+			$t = self::arr( $t );
 			return array(
 				'total'     => $num( $t['total'] ?? 0 ),
 				'gifts'     => is_numeric( $t['gifts'] ?? null ) ? (int) $t['gifts'] : 0,
@@ -502,7 +512,7 @@ final class FLXB_Admin_Donations_Service {
 		};
 		$bars         = static function ( $rows ) use ( $num ): array {
 			$out = array();
-			foreach ( is_array( $rows ) ? $rows : array() as $r ) {
+			foreach ( self::arr( $rows ) as $r ) {
 				if ( is_array( $r ) ) {
 					$out[] = array(
 						'id'     => is_numeric( $r['id'] ?? null ) ? (int) $r['id'] : 0,
@@ -515,7 +525,7 @@ final class FLXB_Admin_Donations_Service {
 			return $out;
 		};
 		$series = array();
-		foreach ( is_array( $d['series'] ?? null ) ? $d['series'] : array() as $r ) {
+		foreach ( self::arr( $d['series'] ?? null ) as $r ) {
 			if ( is_array( $r ) ) {
 				$series[] = array(
 					'day'       => self::s( $r['day'] ?? '' ),
@@ -526,16 +536,16 @@ final class FLXB_Admin_Donations_Service {
 				);
 			}
 		}
-		$split = is_array( $d['split'] ?? null ) ? $d['split'] : array();
+		$split = self::arr( $d['split'] ?? null );
 		$slice = static function ( $v ) use ( $num ): array {
-			$v = is_array( $v ) ? array_values( $v ) : array();
+			$v = array_values( self::arr( $v ) );
 			return array(
 				'amount' => $num( $v[0] ?? 0 ),
 				'gifts'  => is_numeric( $v[1] ?? null ) ? (int) $v[1] : 0,
 			);
 		};
 		$top = array();
-		foreach ( is_array( $d['top'] ?? null ) ? $d['top'] : array() as $r ) {
+		foreach ( self::arr( $d['top'] ?? null ) as $r ) {
 			if ( is_array( $r ) ) {
 				/* flxb_dashboard alone: overall totals, no donor contacts or links into screens they cannot open. */
 				$top[] = array(
@@ -548,7 +558,7 @@ final class FLXB_Admin_Donations_Service {
 				);
 			}
 		}
-		$subs     = is_array( $d['subs'] ?? null ) ? $d['subs'] : array();
+		$subs     = self::arr( $d['subs'] ?? null );
 		$currency = self::s( $d['currency'] ?? flxb_default_currency() );
 		$has_any  = (bool) $wpdb->get_var( 'SELECT id FROM ' . self::s( flxb_table( 'donations' ) ) . ' LIMIT 1' ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery
 		$csv      = $all ? wp_nonce_url( add_query_arg( array( 'action' => 'flxb_csv', 'from' => $from, 'to' => $to ), admin_url( 'admin-post.php' ) ), 'flxb_csv' ) : '';
