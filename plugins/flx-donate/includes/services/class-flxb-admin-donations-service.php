@@ -10,14 +10,15 @@
  *   WooCommerce order also needs delete_shop_orders or manage_woocommerce.
  *
  * @package FLX_Bagis
- *
- * @phpstan-type FlxbListFilter array{search: string, from: string, to: string, status: string, type: string, type_id: string, form_id: string, donor_id: string, ref_user_id: string}
- * @phpstan-type FlxbListRow array<string,mixed>
- * @phpstan-type FlxbChoice array{value: string, label: string}
  */
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * @phpstan-type FlxbListFilter array{search: string, from: string, to: string, status: string, type: string, type_id: string, form_id: string, donor_id: string, ref_user_id: string}
+ * @phpstan-type FlxbListRow array<string,mixed>
+ * @phpstan-type FlxbChoice array{value: string, label: string}
+ */
 final class FLXB_Admin_Donations_Service {
 
 	/** Stored statuses plus the two stages of a pending gift. */
@@ -26,8 +27,24 @@ final class FLXB_Admin_Donations_Service {
 	/** The approval class (receipt stages) lives with the admin pages; GraphQL requests are not is_admin(). */
 	private static function boot(): void {
 		if ( ! class_exists( 'FLXB_Approval' ) ) {
-			require_once FLXB_DIR . 'includes/admin/class-flxb-approval.php';
+			require_once dirname( __DIR__ ) . '/admin/class-flxb-approval.php';
 		}
+	}
+
+	/** Label of a stored status (flxb_status_label() gives [ tone, label ]). */
+	private static function status_label( string $s ): string {
+		$l = flxb_status_label( $s );
+		return is_array( $l ) ? self::s( $l[1] ?? $s ) : $s;
+	}
+
+	/**
+	 * Donation ids of a WooCommerce order.
+	 *
+	 * @return list<int>
+	 */
+	private static function order_ids( int $oid ): array {
+		$ids = FLXB_Donations::ids_of_order( $oid );
+		return is_array( $ids ) ? array_values( array_map( 'intval', $ids ) ) : array();
 	}
 
 	public static function can_list(): bool {
@@ -105,12 +122,13 @@ final class FLXB_Admin_Donations_Service {
 	 */
 	private static function query_args( array $f ): array {
 		self::boot();
+		/** @var array<string,mixed> $a */
 		$a = $f;
 		if ( self::own_only() ) {
 			$a['ref_user_id'] = (string) get_current_user_id();
 		}
-		if ( in_array( $a['status'], array( 'receipt', 'payment' ), true ) ) {
-			$a['stage']  = FLXB_Approval::stage_filter( $a['status'] );
+		if ( in_array( $f['status'], array( 'receipt', 'payment' ), true ) ) {
+			$a['stage']  = FLXB_Approval::stage_filter( $f['status'] );
 			$a['status'] = '';
 		}
 		return $a;
@@ -139,6 +157,7 @@ final class FLXB_Admin_Donations_Service {
 				)
 			)
 		);
+		$res   = is_array( $res ) ? $res : array();
 		$items = array();
 		$rows  = is_array( $res['items'] ?? null ) ? $res['items'] : array();
 		$refs  = self::own_only() ? array() : self::donor_refs( $rows );
@@ -161,7 +180,7 @@ final class FLXB_Admin_Donations_Service {
 	 */
 	public static function sum( array $f ): float {
 		$res = FLXB_Donations::query( array_merge( self::query_args( $f ), array( 'per_page' => 1, 'page' => 1 ) ) );
-		return self::f( $res['sum'] ?? 0 );
+		return is_array( $res ) ? self::f( $res['sum'] ?? 0 ) : 0.0;
 	}
 
 	/** @return array<int,string> type id → title */
@@ -292,7 +311,7 @@ final class FLXB_Admin_Donations_Service {
 			if ( 'trash' === $s ) {
 				continue;
 			}
-			$statuses[] = array( 'value' => $s, 'label' => self::s( flxb_status_label( $s )[1] ?? $s ) );
+			$statuses[] = array( 'value' => $s, 'label' => self::status_label( $s ) );
 			if ( 'pending' === $s ) {
 				$statuses[] = array( 'value' => 'receipt', 'label' => '— ' . __( 'Receipt awaiting approval', 'flx-donate' ) );
 				$statuses[] = array( 'value' => 'payment', 'label' => '— ' . __( 'Awaiting payment', 'flx-donate' ) );
@@ -349,10 +368,10 @@ final class FLXB_Admin_Donations_Service {
 				'donor_id' => $f['donor_id'],
 				'ref'      => $own ? '' : $f['ref_user_id'],
 			),
-			'strlen'
+			static fn( $v ): bool => is_string( $v ) && '' !== $v
 		);
 		return array(
-			'sum'                  => flx_gql_money( self::sum( $f ), flxb_default_currency() ),
+			'sum'                  => flx_gql_money( self::sum( $f ), self::s( flxb_default_currency() ) ),
 			'sumLabel'             => self::s( flxb_money( self::sum( $f ) ) ),
 			'trashCount'           => $manage && 'trash' !== $f['status'] ? self::i( FLXB_Donations::trash_count() ) : 0,
 			'statuses'             => $statuses,
@@ -410,11 +429,11 @@ final class FLXB_Admin_Donations_Service {
 						if ( 'trash' === $order->get_status() && is_object( $store ) && is_callable( array( $store, 'untrash_order' ) ) ) {
 							call_user_func( array( $store, 'untrash_order' ), $order );
 						} else {
-							FLXB_Donations::restore_rows( FLXB_Donations::ids_of_order( $oid ) );
+							FLXB_Donations::restore_rows( self::order_ids( $oid ) );
 						}
 					}
 					// Anything the hooks missed (e.g. an order not in the trash) is brought in line here.
-					$left = FLXB_Donations::ids_of_order( $oid );
+					$left = self::order_ids( $oid );
 					if ( 'delete' === $action && $left ) {
 						FLXB_Donations::delete_rows( $left );
 					} elseif ( 'trash' === $action ) {
@@ -423,7 +442,7 @@ final class FLXB_Admin_Donations_Service {
 					++$done;
 					continue;
 				}
-				$rows = FLXB_Donations::ids_of_order( $oid ); // the order is gone already
+				$rows = self::order_ids( $oid ); // the order is gone already
 			} else {
 				$rows = array( $id );
 			}
@@ -463,8 +482,9 @@ final class FLXB_Admin_Donations_Service {
 	 */
 	public static function dashboard( string $range, string $from, string $to ): array {
 		global $wpdb;
+		/** @var wpdb $wpdb */
 		$range        = in_array( $range, array( '7', '30', '90', 'custom' ), true ) ? $range : '30';
-		$period       = FLXB_Stats::range( $range, $from, $to );
+		$period       = (array) FLXB_Stats::range( $range, $from, $to );
 		$from         = self::s( $period[0] ?? '' );
 		$to           = self::s( $period[1] ?? '' );
 		$d            = (array) FLXB_Stats::collect( $from, $to );
@@ -530,7 +550,7 @@ final class FLXB_Admin_Donations_Service {
 		}
 		$subs     = is_array( $d['subs'] ?? null ) ? $d['subs'] : array();
 		$currency = self::s( $d['currency'] ?? flxb_default_currency() );
-		$has_any  = (bool) $wpdb->get_var( 'SELECT id FROM ' . flxb_table( 'donations' ) . ' LIMIT 1' ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery
+		$has_any  = (bool) $wpdb->get_var( 'SELECT id FROM ' . self::s( flxb_table( 'donations' ) ) . ' LIMIT 1' ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery
 		$csv      = $all ? wp_nonce_url( add_query_arg( array( 'action' => 'flxb_csv', 'from' => $from, 'to' => $to ), admin_url( 'admin-post.php' ) ), 'flxb_csv' ) : '';
 		return array(
 			'from'          => $from,
