@@ -143,7 +143,7 @@ final class FLXB_WC {
 			return;
 		}
 		$dir = FLXB_DIR . 'includes/wc/';
-		foreach ( array( 'currency', 'products', 'cart', 'form', 'havale', 'iyzico', 'iyzico-card', 'receipts', 'certificates', 'notify', 'account', 'ledger', 'recurring', 'feed', 'callcenter', 'flxform', 'admin', 'checks', 'addresses', 'contact', 'designs', 'terms', 'gateways', 'esnekpos', 'esnekpos-direct', 'look', 'fee', 'checkout-layout', 'commerce-card', 'payinfo' ) as $f ) {
+		foreach ( array( 'currency', 'products', 'cart', 'form', 'havale', 'iyzico', 'iyzico-card', 'receipts', 'certificates', 'notify', 'account', 'ledger', 'recurring', 'feed', 'callcenter', 'flxform', 'admin', 'boxes', 'checks', 'addresses', 'contact', 'designs', 'terms', 'gateways', 'esnekpos', 'esnekpos-direct', 'look', 'fee', 'checkout-layout', 'commerce-card', 'payinfo' ) as $f ) {
 			require_once $dir . 'class-flxb-wc-' . $f . '.php';
 		}
 		if ( ! defined( 'FLXWB_VERSION' ) ) {
@@ -167,6 +167,7 @@ final class FLXB_WC {
 		FLXB_WC_Callcenter::init();
 		FLXB_WC_FLXForm::init();
 		FLXB_WC_Admin::init();
+		FLXB_WC_Boxes::init();
 		FLXB_WC_Checks::init();
 		FLXB_WC_Addresses::init();
 		FLXB_WC_Contact::init();

@@ -5741,3 +5741,60 @@ msgstr ""
 
 msgid "Please write the card holder's full name as it is on the card (at least 6 letters)."
 msgstr ""
+
+msgid "This box could not be shown."
+msgstr ""
+
+msgid "Box: %s"
+msgstr ""
+
+msgid "Drag to move"
+msgstr ""
+
+msgid "Fold or unfold"
+msgstr ""
+
+msgid "Saves the fields of every order box on this page."
+msgstr ""
+
+msgid "The order boxes could not be saved."
+msgstr ""
+
+msgid "No notes yet."
+msgstr ""
+
+msgid "to the donor"
+msgstr ""
+
+msgid "Delete this note?"
+msgstr ""
+
+msgid "Add a note…"
+msgstr ""
+
+msgid "Note type"
+msgstr ""
+
+msgid "Private note"
+msgstr ""
+
+msgid "Note to the donor (sent by e-mail)"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Write the note first."
+msgstr ""
+
+msgid "Note added."
+msgstr ""
+
+msgid "The note was not found."
+msgstr ""
+
+msgid "Note deleted."
+msgstr ""
+
+msgid "Order notes"
+msgstr ""
