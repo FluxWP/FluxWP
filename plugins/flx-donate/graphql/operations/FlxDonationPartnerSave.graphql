@@ -1,0 +1,3 @@
+mutation FlxDonationPartnerSave($input: FlxDonationPartnerSaveInput!) {
+  flxDonationPartnerSave(input: $input) { message databaseId errors { message field } }
+}

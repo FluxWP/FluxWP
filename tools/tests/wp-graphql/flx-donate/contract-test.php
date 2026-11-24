@@ -18,7 +18,7 @@ foreach ( (array) json_decode( (string) file_get_contents( FLXB_DIR . 'graphql/p
 		$GLOBALS['flxb_ops'][ $m[1] ] = $doc;
 	}
 }
-flxt_same( 37, count( $GLOBALS['flxb_ops'] ), 'Flux Donate ships 37 persisted operations' );
+flxt_same( 47, count( $GLOBALS['flxb_ops'] ), 'Flux Donate ships 47 persisted operations' );
 
 /**
  * @param array<string,mixed> $vars Variables.
@@ -948,6 +948,61 @@ $r = flxb_t_op( 'FlxDonationRequest', array( 'input' => array( 'typeId' => 0, 'o
 flxt_ok( ! empty( $r['data']['flxDonationRequest']['errors'] ) && null === $r['data']['flxDonationRequest']['payUrl'], 'request: a request without a type is refused' );
 $wu->remove_cap( FLXB_Refs::CAP_CREATE );
 
+// Partners (2.43.0): rights, the list, the editor, agreements, payments and the settlement.
+$pin = array(
+	'id'          => 0,
+	'name'        => 'GQL partner',
+	'pkey'        => 'gql-partner',
+	'group'       => 'North',
+	'isService'   => true,
+	'isSource'    => false,
+	'typeIds'     => array( (int) $open ),
+	'contactName' => 'Ali',
+	'phone'       => '+905321112233',
+	'email'       => 'partner.gql@example.com',
+	'currency'    => 'TRY',
+	'active'      => true,
+	'note'        => '',
+);
+$r = flxb_t_op( 'FlxDonatePartners', array(), $staff_a );
+flxt_ok( null !== flxt_code( $r ), 'partners: staff is refused' );
+$r = flxb_t_op( 'FlxDonationPartnerSave', array( 'input' => $pin ), $staff_a );
+flxt_ok( null !== flxt_code( $r ), 'partner save: staff is refused' );
+$r = flxb_t_op( 'FlxDonationPartnerSave', array( 'input' => array( 'name' => '' ) + $pin ), $admin );
+flxt_ok( ! empty( $r['data']['flxDonationPartnerSave']['errors'] ), 'partner save: a name is needed' );
+$r   = flxb_t_op( 'FlxDonationPartnerSave', array( 'input' => $pin ), $admin );
+$pid = (int) ( $r['data']['flxDonationPartnerSave']['databaseId'] ?? 0 );
+flxt_ok( $pid > 0 && empty( $r['data']['flxDonationPartnerSave']['errors'] ), 'partner save: a new partner' );
+$r   = flxb_t_op( 'FlxDonatePartners', array(), $admin );
+$row = array_values( array_filter( $r['data']['flxDonationPartners']['items'] ?? array(), static fn( $i ) => $pid === (int) $i['databaseId'] ) )[0] ?? array();
+flxt_ok( 'GQL partner' === ( $row['name'] ?? '' ) && 'North' === ( $row['group'] ?? '' ) && 'Saplings' === ( $row['types'] ?? '' ) && true === ( $row['active'] ?? null ), 'partners: the row' );
+$r = flxb_t_op( 'FlxDonationPartnerPriceAdd', array( 'input' => array( 'partnerId' => $pid, 'typeOption' => (int) $open . '|one', 'price' => '0', 'currency' => 'TRY', 'validFrom' => '2026-01-01', 'note' => '' ) ), $admin );
+flxt_ok( ! empty( $r['data']['flxDonationPartnerPriceAdd']['errors'] ), 'agreement: a price is needed' );
+$r = flxb_t_op( 'FlxDonationPartnerPriceAdd', array( 'input' => array( 'partnerId' => $pid, 'typeOption' => (int) $open . '|one', 'price' => '12,5', 'currency' => 'TRY', 'validFrom' => '2026-01-01', 'note' => 'n' ) ), $admin );
+flxt_ok( empty( $r['data']['flxDonationPartnerPriceAdd']['errors'] ), 'agreement: added' );
+$r = flxb_t_op( 'FlxDonationPartnerPaymentAdd', array( 'input' => array( 'partnerId' => $pid, 'received' => false, 'amount' => '40', 'currency' => 'TRY', 'date' => wp_date( 'Y-m-d' ), 'note' => 'cash' ) ), $admin );
+flxt_ok( empty( $r['data']['flxDonationPartnerPaymentAdd']['errors'] ), 'payment: added' );
+$r  = flxb_t_op( 'FlxDonatePartner', array( 'id' => $pid ), $admin );
+$pf = $r['data']['flxDonationPartner'] ?? array();
+flxt_ok( array( (int) $open ) === ( $pf['typeIds'] ?? null ) && 'One sapling' === ( $pf['agreements'][0]['option'] ?? '' ) && true === ( $pf['agreements'][0]['active'] ?? null ) && 1 === count( $pf['payments'] ?? array() ), 'partner editor: fields, agreement and payment' );
+$aid = (int) ( $pf['agreements'][0]['databaseId'] ?? 0 );
+flxb_t_op( 'FlxDonationPartnerPriceToggle', array( 'input' => array( 'id' => $aid ) ), $admin );
+flxt_same( 'off', FLXB_Partners::price_state( $pid ), 'agreement: switched off' );
+$r = flxb_t_op( 'FlxDonatePartnerSettlement', array( 'kind' => 'SERVICE', 'period' => '', 'partnerId' => 0 ), $admin );
+$st = $r['data']['flxDonationPartnerSettlement'] ?? array();
+$sr = array_values( array_filter( $st['rows'] ?? array(), static fn( $i ) => $pid === (int) $i['partnerId'] ) )[0] ?? array();
+flxt_ok( wp_date( 'Y-m' ) === ( $st['period'] ?? '' ) && 12 === count( $st['months'] ?? array() ) && false !== strpos( (string) ( $sr['moved'] ?? '' ), '40' ), 'settlement: this month, 12 month cards, the payment' );
+$r = flxb_t_op( 'FlxDonationPartnerPriceDelete', array( 'input' => array( 'id' => $aid ) ), $admin );
+$p2 = (array) ( flxb_t_op( 'FlxDonatePartner', array( 'id' => $pid ), $admin )['data']['flxDonationPartner'] ?? array() );
+flxt_ok( array() === ( $p2['agreements'] ?? null ), 'agreement: deleted' );
+flxb_t_op( 'FlxDonationPartnerPaymentDelete', array( 'input' => array( 'id' => (int) ( $p2['payments'][0]['databaseId'] ?? 0 ) ) ), $admin );
+flxt_same( array(), FLXB_Partners::payments( $pid ), 'payment: deleted' );
+$r = flxb_t_op( 'FlxDonatePartner', array( 'id' => 99999999 ), $admin );
+flxt_ok( array_key_exists( 'flxDonationPartner', (array) ( $r['data'] ?? array() ) ) && null === $r['data']['flxDonationPartner'], 'partner editor: an unknown partner is null' );
+global $wpdb;
+$wpdb->delete( flxb_table( 'partners' ), array( 'id' => $pid ) );
+FLXB_Partners::flush();
+
 if ( ! class_exists( 'FLXB_Admin' ) ) {
 	require_once FLXB_DIR . 'includes/admin/class-flxb-admin.php';
 }
@@ -968,6 +1023,11 @@ if ( function_exists( 'wp_set_current_user' ) ) {
 	flxt_same( array( array( 'FlxDonateTypeForm', array( 'id' => 5 ) ) ), FLXB_Admin::preload_types( array( 'edit' => '5' ) ), 'preload: the type editor' );
 	flxt_same( array( array( 'FlxDonateAdd', array( 'donorId' => 0 ) ) ), FLXB_Admin::preload_add( array() ), 'preload: add donation' );
 	flxt_same( array( array( 'FlxDonateAdd', array( 'donorId' => 9 ) ) ), FLXB_Admin::preload_add( array( 'donor' => '9' ) ), 'preload: add donation for a donor' );
+	flxt_same( array( array( 'FlxDonatePartners', array() ) ), FLXB_Admin::preload_partners( array() ), 'preload: partners' );
+	flxt_same( array( array( 'FlxDonatePartner', array( 'id' => 4 ) ) ), FLXB_Admin::preload_partners( array( 'id' => '4' ) ), 'preload: a partner' );
+	flxt_same( array( array( 'FlxDonatePartner', array( 'id' => 0 ) ) ), FLXB_Admin::preload_partners( array( 'tab' => 'edit' ) ), 'preload: a new partner' );
+	flxt_same( array( array( 'FlxDonatePartnerSettlement', array( 'kind' => 'SOURCE', 'period' => '2026-01-01..2026-02-01', 'partnerId' => 3 ) ) ), FLXB_Admin::preload_partners( array( 'tab' => 'settle', 'kind' => 'source', 'from' => '2026-01-01', 'to' => '2026-02-01', 'partner' => '3' ) ), 'preload: the settlement of a range' );
+	flxt_same( array( array( 'FlxDonatePartnerSettlement', array( 'kind' => 'SERVICE', 'period' => '', 'partnerId' => 0 ) ) ), FLXB_Admin::preload_partners( array( 'tab' => 'settle' ) ), 'preload: the settlement of this month' );
 	wp_set_current_user( 0 );
 }
 

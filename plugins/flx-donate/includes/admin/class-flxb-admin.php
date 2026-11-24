@@ -29,7 +29,7 @@ final class FLXB_Admin {
 	const SLUG = 'flxb-dashboard';
 
 	/** 2.36.0: pages that are React screens on the Flux GraphQL shell (page slug => start page). */
-	const SCREENS = array( 'flxb-dashboard', 'flxb-donations', 'flxb-donors', 'flxb-subscriptions', 'flxb-types', 'flxb-add' );
+	const SCREENS = array( 'flxb-dashboard', 'flxb-donations', 'flxb-donors', 'flxb-subscriptions', 'flxb-types', 'flxb-add', 'flxb-partners' );
 
 	/** Rows of the first list page (the screen's PER). */
 	const LIST_PER = 25;
@@ -490,6 +490,7 @@ final class FLXB_Admin {
 			'flxb-subscriptions' => array( 'subscriptions', 'preload_subscriptions' ),
 			'flxb-types'         => array( 'types', 'preload_types' ),
 			'flxb-add'           => array( 'add', 'preload_add' ),
+			'flxb-partners'      => array( 'partners', 'preload_partners' ),
 		);
 		$enabled = array( 'flxb-donors' => 'donors_screen_enabled' );
 		foreach ( $screens as $page => $s ) {
@@ -586,6 +587,19 @@ final class FLXB_Admin {
 			$donor = absint( self::q( 'donor', '0' ) );
 			if ( $donor ) {
 				$opts['startPage'] = 'add?donor=' . $donor;
+			}
+			return $opts;
+		}
+		// 2.43.0: Partners: ?id= / ?tab=edit opens the editor, ?tab=settle the settlement with its period.
+		if ( 'flxb-partners' === $page && 'flxb-partners' === self::q( 'page' ) ) {
+			$first = self::partner_start();
+			$q     = $first[1];
+			$n     = self::redirect_notice();
+			if ( $n && '' !== $n[1] ) {
+				$q['notice'] = ( 'ok' === $n[0] ? 'ok:' : 'error:' ) . $n[1];
+			}
+			if ( 'partners' !== $first[0] || $q ) {
+				$opts['startPage'] = $first[0] . ( $q ? '?' . http_build_query( $q, '', '&', PHP_QUERY_RFC3986 ) : '' );
 			}
 			return $opts;
 		}
@@ -741,6 +755,64 @@ final class FLXB_Admin {
 			return array( array( 'FlxDonateTypeForm', array( 'id' => 'new' === $edit ? 0 : absint( $edit ) ) ) );
 		}
 		return array( array( 'FlxDonateTypes', array( 'archived' => isset( $query['view'] ) && 'archived' === $query['view'] ) ) );
+	}
+
+	/**
+	 * The Partners page of the address: [ page, arguments ] with page partners, settle or partner.
+	 *
+	 * @param array<string,mixed>|null $query Query arguments; null = the request.
+	 * @return array{0: string, 1: array<string,string|int>}
+	 */
+	public static function partner_start( $query = null ) {
+		$g = static function ( $k ) use ( $query ) {
+			if ( null === $query ) {
+				return self::q( $k );
+			}
+			return isset( $query[ $k ] ) && is_scalar( $query[ $k ] ) ? sanitize_text_field( (string) $query[ $k ] ) : '';
+		};
+		$id = absint( $g( 'id' ) );
+		if ( $id || 'edit' === $g( 'tab' ) ) {
+			return array( 'partner', array( 'id' => $id ) );
+		}
+		if ( 'settle' !== $g( 'tab' ) ) {
+			return array( 'partners', array() );
+		}
+		$day = '/^\d{4}-\d{2}-\d{2}$/';
+		$q   = array( 'kind' => 'source' === $g( 'kind' ) ? 'source' : 'service' );
+		if ( preg_match( $day, $g( 'from' ) ) && preg_match( $day, $g( 'to' ) ) ) {
+			$q['period'] = $g( 'from' ) . '..' . $g( 'to' );
+		} elseif ( preg_match( '/^\d{4}-\d{2}$/', $g( 'month' ) ) ) {
+			$q['period'] = $g( 'month' );
+		}
+		if ( absint( $g( 'partner' ) ) ) {
+			$q['partner'] = absint( $g( 'partner' ) );
+		}
+		return array( 'settle', $q );
+	}
+
+	/**
+	 * First query of Partners (packages/modules/src/donate/Partners.tsx).
+	 *
+	 * @param mixed $query Query arguments of the page.
+	 */
+	public static function preload_partners( $query = array() ) {
+		$s = self::partner_start( is_array( $query ) ? $query : array() );
+		if ( 'partner' === $s[0] ) {
+			return array( array( 'FlxDonatePartner', array( 'id' => (int) $s[1]['id'] ) ) );
+		}
+		if ( 'settle' === $s[0] ) {
+			return array(
+				array(
+					'FlxDonatePartnerSettlement',
+					array(
+						'kind'      => strtoupper( (string) $s[1]['kind'] ),
+						'period'    => (string) ( $s[1]['period'] ?? '' ),
+						'partnerId' => (int) ( $s[1]['partner'] ?? 0 ),
+					),
+				),
+			);
+		}
+		return array( array( 'FlxDonatePartners', array() ) );
 	}
 
 	/**

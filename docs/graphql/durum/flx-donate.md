@@ -1,4 +1,4 @@
-# flx-donate 2.42.0
+# flx-donate 2.43.0
 
 - Faz: 2
 - Durum: 👀
@@ -15,6 +15,8 @@
 2.41.0: Tür formu (`TypeForm.tsx`, startPage `type?id=N` (0 = yeni), preload `FlxDonateTypeForm {id}`). Query `flxDonationTypeForm(id)` (yoksa null; seçim listeleri dahil), mutation `flxDonationTypeSave` (tipli alanlar + `extra`: adaların klasik form gövdesi `meta[…]`, `form_map[…]`; yeni tür / bağlı form / seçenek / para birimi değişince sayfa yeniden yüklenir ki adalar güncellensin), `flxDonationTypeDelete` (bağışı olan CONFLICT). Adalar: form eşleştirme (`FLXB_Page_Types::mapping`), çeviriler (`i18n_card`), `flxb_type_fields` eklenti kartları, kısa kod önizlemesi; `FLXB_Admin_Types_Service::want_islands/print_islands`, uygulamada (GraphQL dışı sayfa) yok. Klasik form ve admin-post işleyicileri silindi; `relink` servise taşındı.
 
 2.42.0: Bağış ekle (`Add.tsx`, start `add`, startPage `add?donor=N`, preload `FlxDonateAdd {donorId}`). Servis `FLXB_Admin_Add_Service` (klasik `FLXB_Page_Add::save/save_order/save_request` buraya taşındı); query `flxDonationAddForm(donorId)` (yönetici formu ya da `request: true` personel talep formu; türler, seçenekler, hesaplar, referanslar, para birimleri, vekâlet metni sürümü, bağışçı ön dolgusu), mutation `flxDonationAdd` (INVALID_INPUT hataları), `flxDonationRequest` (ödeme bağlantısı + WhatsApp bağlantısı döner). Yetki: form `FLXB_Refs::can_create`, kayıt `flxb_can_manage`, talep `can_create` (referans çağıran). Telefon alanları flx-brand telefon bileşeni (`flx_phone_field` işaretlemesi, phone.js; numara gizli alandan E.164). Kayıt sonrası `flxb-donations&donation=ID&flxb_msg=saved` → detay startPage'ine `notice=ok:…`. Klasik form, admin.js ekleme kodu ve admin-post işleyicileri silindi.
+
+2.43.0: Ortaklar (`Partners.tsx`; start `partners`, `settle?kind=&period=&partner=`, `partner?id=N` (0 = yeni); adres klasik `tab`, `kind`, `month` / `from`+`to`, `partner`, `id` anahtarlarıyla; PHP `FLXB_Admin::partner_start()` = preload). Servis `FLXB_Admin_Partners_Service`; query `flxDonationPartners`, `flxDonationPartnerSettlement(kind, period, partnerId)` (period boş = bu ay; ay kartları, ortak satırları, seçili ortağın kayıtları, CSV bağlantısı), `flxDonationPartner(id)` (yoksa null); mutation `flxDonationPartnerSave`, `PriceAdd`, `PriceToggle`, `PriceDelete`, `PaymentAdd`, `PaymentDelete`, `Reprice`. Yetki: okuma `flxb_can_view`, yazma `flxb_can_manage`. CSV admin-post `flxb_partner_settle_csv` kaldı; diğer klasik işleyiciler ve sayfa silindi.
 
 (a) public bu PR'de: `flxDonationTypes`, `flxDonationType`, `flxDonationCartAdd`, `flxMyDonations`, `flxDonationLookupStart` / `Verify` / `End`, `flxDonationBankAccount`. Eşleme `ESLEME/flx-donate.md`: 102 GraphQL, 32 istisna. (a) 16, (b) 24, (c) 11, (d) 17, (e) 34. Sıra (a) → (b) → (c) → (d) → (e). Tek `schema.graphql`. React ekranı yok.
 

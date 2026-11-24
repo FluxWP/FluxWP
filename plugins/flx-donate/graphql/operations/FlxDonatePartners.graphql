@@ -1,0 +1,7 @@
+query FlxDonatePartners {
+  flxDonationPartners {
+    canManage
+    partnerLabel
+    items { databaseId name group roles types agreement contact active }
+  }
+}

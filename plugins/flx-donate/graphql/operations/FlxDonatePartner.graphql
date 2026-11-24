@@ -1,0 +1,25 @@
+query FlxDonatePartner($id: Int!) {
+  flxDonationPartner(id: $id) {
+    databaseId
+    name
+    pkey
+    group
+    isService
+    isSource
+    typeIds
+    contactName
+    phone
+    email
+    currency
+    active
+    note
+    canManage
+    partnerLabel
+    currencies
+    types { value label }
+    typeOptions { value label }
+    today
+    payments { databaseId date direction amount note }
+    agreements { databaseId type option price validFrom active note }
+  }
+}
