@@ -243,6 +243,15 @@ function flxc_bot_sandbox_turn( array $history, array $state, $template, $model 
 			'userText' => $fx['text'],
 		);
 	}
+	// 1.52.0: gerçek hatta olduğu gibi kişinin dili son mesajlarından.
+	$ut = array();
+	foreach ( array_slice( $history, -6 ) as $m ) {
+		if ( 'user' === ( $m['role'] ?? '' ) ) {
+			$ut[] = (string) ( $m['content'] ?? '' );
+		}
+	}
+	$state = flxc_bot_lang_from_text( $state, implode( "\n", array_slice( $ut, -3 ) ) );
+	flxc_bot_lang_set( flxc_bot_state_lang( $state ) );
 	$messages = array( array( 'role' => 'system', 'content' => flxc_bot_system_prompt( $chat, $state, $template ) ) );
 	$prev     = null;
 	foreach ( array_slice( $history, -60 ) as $m ) {
@@ -269,7 +278,7 @@ function flxc_bot_sandbox_turn( array $history, array $state, $template, $model 
 	$w    = flxc_bot_keyword_hit( $last );
 	if ( '' !== $w ) {
 		return array(
-			'replies' => array( flxc_bot_handoff_text() ),
+			'replies' => array( flxc_bot_tr_text( flxc_bot_handoff_text(), $state ) ),
 			'auto'    => array( true ),
 			'state'   => $state,
 			'log'     => array(),
@@ -317,8 +326,9 @@ function flxc_bot_sandbox_turn( array $history, array $state, $template, $model 
 	if ( is_wp_error( $reply ) ) {
 		return $reply;
 	}
-	$reply = flxc_bot_final_reply( $reply, $ctx );
-	$wg    = flxc_widgets_split( $reply );
+	$reply        = flxc_bot_final_reply( $reply, $ctx );
+	$ctx['after'] = flxc_bot_tr_out( (array) $ctx['after'], (array) $ctx['sandbox']['state'] ); // 1.52.0
+	$wg           = flxc_widgets_split( $reply );
 	$reply = $wg['text'];
 	$parts = '' === $reply ? array() : preg_split( '/\n\s*-{3,}\s*\n/', $reply );
 	$out   = array();

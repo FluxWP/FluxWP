@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.52.0
+- WhatsApp asistanı kişinin dilinde: kişinin dili gelen mesajdan ücretsiz tespit edilir (yazı sistemi + sık kelimeler) ya da model araçta `lang` verir; sohbette saklanır. Sistemin gönderdiği hazır mesajlar (fiyat/fidan listesi, bağış özeti, ödeme ve IBAN mesajları, iptal, devir, günlük sınır, dekont cevabı, yedek mesaj) artık site dilinde değil kişinin dilinde gider. Personelin gördüğü sistem notları site dilinde kalır.
+- Değişkenli çeviri şablonu: rakam, tutar, IBAN, link, e-posta, `{değişken}` ve isimler çeviriden önce `{{n}}` olur; şablon dil başına bir kez AI ile çevrilip saklanır (`flxc_tr_<dil>`, Redis gerekmez), gönderirken güncel değerler yerine konur. Fiyat değişince yeni çeviri gerekmez. Yer tutucusu eksik ya da fazladan rakam/link içeren çeviri kullanılmaz, kaynak metin gider: fiyatı model yazmaz. Yedek mesaj yalnız saklanan çeviriyi kullanır (AI hatasında beklemez).
+- Bağış kaydına sohbetin dili yazılır (Flux Donate `meta.lang`): sertifika ve bilgilendirmeler de o dilde gider.
+- Araç sonucu önbelleği: `donation_options`, `payment_info`, `search_site`, `read_doc` 10 dk saklanır (kalıcı nesne önbelleği varsa orada); tür, ayar, ödeme ayarı, vekâlet metni ya da yazı kaydedilince boşalır. Test sohbetinde kullanılmaz.
+- Özetteki sabit Türkçe kelimeler ("Toplam", "adet", "Bağışçı", "en az") çeviri dosyasına alındı. Sistem kontrolünde "Asistanın dilleri" satırı (dil başına şablon sayısı).
+- Filtreler: `flxc_bot_lang`, `flxc_bot_lang_tools`, `flxc_tr_skip`, `flxc_bot_tool_cacheable`; yardımcılar `flxc_tr()`, `flxc_tr_many()`, `flxc_in_lang()` (docs/cagri-merkezi/KURULUM.md §11).
+
 ## 1.51.0
 - Canlı akış (Docker siteler, Flux Realtime): sohbet, mesaj ya da durum değişince açık WhatsApp ekranı sıradaki yoklamayı beklemeden hemen güncellenir (`chat.inbox` sinyali, yalnız `flxc_use` olanlara; sinyalde sohbet numarası, ad ya da metin yok, veri yine yetkili GraphQL'den gelir). Bağlıyken yoklama 120 sn güvenlik ağına iner, bağlantı koparsa eski aralığa döner. Flux Realtime yoksa (Hostinger, Redis'siz) hiçbir şey değişmez.
 

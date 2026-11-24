@@ -4998,3 +4998,18 @@ msgstr "Mensagens promocionais e lembretes não são enviados. Respostas às men
 
 msgid "The person replied STOP to promotional messages."
 msgstr "A pessoa respondeu STOP às mensagens promocionais."
+
+msgid "at least %s"
+msgstr "no mínimo %s"
+
+msgid "(updates are sent to this address too)"
+msgstr "(as notificações também vão para este endereço)"
+
+msgid "Assistant languages"
+msgstr "Idiomas do assistente"
+
+msgid "Ready messages go out in the language the person writes in. Saved translation templates: %s. Numbers, prices, IBAN and links are not translated; they are filled in when sending."
+msgstr "As mensagens prontas são enviadas no idioma em que a pessoa escreve. Modelos de tradução salvos: %s. Números, preços, IBAN e links não são traduzidos; são preenchidos no envio."
+
+msgid "Ready messages go out in the language the person writes in. A message is translated the first time it is needed in a language and then reused; numbers, prices, IBAN and links are filled in when sending."
+msgstr "As mensagens prontas são enviadas no idioma em que a pessoa escreve. Uma mensagem é traduzida na primeira vez que é necessária em um idioma e depois reutilizada; números, preços, IBAN e links são preenchidos no envio."
