@@ -155,9 +155,9 @@ type CalendarProps = Common & {
   bare?: boolean;
   /** Telefon görünümü (alttan açılan sayfa). */
   sheet?: boolean;
-  style?: React.CSSProperties;
+  style?: React.CSSProperties | undefined;
   theme?: 'dark' | 'light';
-  label?: string;
+  label?: string | undefined;
 };
 
 /**

@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 2.46.0
+- Bağışlar, Bağışçılar, Düzenli bağışlar ve Takip listeleri klasik ekranla aynı: ortak filtre çubuğu (filtre değişince hemen uygulanır, kalanlar "Filtreler" altında), sayfa numaraları ve "Sayfa başı" seçimi (varsayılan 20).
+- Tablolarda tarih yine 24.11.2026 23:52 biçiminde; Bağışçılar'da son bağış yalnız tarih.
+- Bağış ekle: "‹ Bağışlar" bağlantısı başlığın üstünde, tarih ortak tarih-saat seçiciyle, izinler çip görünümünde. Ayarlar'da kaydet düğmesi solda, başlık altında paket açıklaması.
+
 ## 2.45.2
 - Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
 

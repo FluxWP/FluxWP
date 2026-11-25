@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.4.9
+- Flux Chat tipleri: `FlxcChat.staffUser`, `FlxcBootstrap.staff` / `chips`, `FlxcChatPatch.staffUser`.
+
 ## 0.4.8
 - `mergeLayout`: a menu sub-page whose slug belongs to a module with a native screen gets `moduleId` (FluxWP Panel › Update settings).
 

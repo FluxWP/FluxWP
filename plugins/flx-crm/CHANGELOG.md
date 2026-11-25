@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.13.0
+- Kişiler, etkinlikler ve diğer CRM ekranları klasik ekranların düzeniyle birebir aynı: ortak filtre çubuğu, sayfa numaraları ve "Sayfa başı" seçimi.
+
 ## 0.12.2
 - Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
 

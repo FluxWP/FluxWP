@@ -15,7 +15,7 @@ export interface TabsProps<T extends string = string> {
   current: T | null | undefined;
   onChange: (id: T) => void;
   /** Ekran okuyucu etiketi (genelde ekran başlığı). */
-  label?: string;
+  label?: string | undefined;
   /** İkincil sekme sırası (ekran içinde alt görünüm): daha küçük ve alt çizgisiz. */
   size?: 'md' | 'sm';
   className?: string;
@@ -67,7 +67,7 @@ export interface ScreenProps<T extends string = string> {
 }
 
 /** Ekranın varsayılan alt başlığı (klasik Flux Admin başlığı gibi: ekran kendi alt başlığını vermezse paket açıklaması). */
-export const ScreenDefaults = createContext<{ subtitle?: string }>({});
+export const ScreenDefaults = createContext<{ subtitle?: string | undefined }>({});
 
 /** Ortak ekran kabuğu: başlık + sekmeler + içerik; padding, en fazla genişlik, safe area ve taşma tek yerde. */
 export function Screen<T extends string = string>(p: ScreenProps<T>) {

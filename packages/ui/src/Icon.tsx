@@ -63,7 +63,7 @@ const slugs: [RegExp, LucideIcon][] = [
   [/^flx-(setup|updater)/, RefreshCw], [/^flx-backup/, Archive], [/^flx-lang/, Languages], [/^flx-roles|^flxr/, UserCog], [/^flx-admin|^flxa/, Settings],
 ];
 
-export function Icon({ name, slug, size = 18 }: { name?: string; slug?: string; size?: number }) {
+export function Icon({ name, slug, size = 18 }: { name?: string | undefined; slug?: string | undefined; size?: number | undefined }) {
   const raw = (name ?? '').trim();
   if (/^(https?:|data:image\/)/.test(raw)) {
     return <img src={raw} width={size} height={size} alt="" aria-hidden className="flux-icon-img" style={{ objectFit: 'contain' }} />;
